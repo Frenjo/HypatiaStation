@@ -1,13 +1,13 @@
 /*********************MANUALS (BOOKS)***********************/
 
 //Oh god what the fuck I am not good at computer
-/obj/item/weapon/book/manual
+/obj/item/book/manual
 	icon = 'icons/obj/library.dmi'
 	due_date = 0 // Game time in 1/10th seconds
 	unique = 1	// 0 - Normal book, 1 - Should not be treated as normal book, unable to be copied, unable to be modified
 
 
-/obj/item/weapon/book/manual/engineering_construction
+/obj/item/book/manual/engineering_construction
 	name = "Station Repairs and Construction"
 	icon_state ="bookEngineering"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
@@ -27,7 +27,7 @@
 		"}
 
 
-/obj/item/weapon/book/manual/engineering_particle_accelerator
+/obj/item/book/manual/engineering_particle_accelerator
 	name = "Particle Accelerator User's Guide"
 	icon_state ="bookParticleAccelerator"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
@@ -69,7 +69,7 @@
 				</html>"}
 
 
-/obj/item/weapon/book/manual/supermatter_engine
+/obj/item/book/manual/supermatter_engine
 	name = "Supermatter Engine User's Guide"
 	icon_state = "bookSupermatter"
 	author = "Waleed Asad"
@@ -158,7 +158,7 @@
 			-Waleed Asad, Senior Engine Technician."}
 
 
-/obj/item/weapon/book/manual/engineering_hacking
+/obj/item/book/manual/engineering_hacking
 	name = "Hacking"
 	icon_state ="bookHacking"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
@@ -178,7 +178,7 @@
 		"}
 
 
-/obj/item/weapon/book/manual/engineering_singularity_safety
+/obj/item/book/manual/engineering_singularity_safety
 	name = "Singularity Safety in Special Circumstances"
 	icon_state ="bookEngineeringSingularitySafety"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
@@ -227,7 +227,7 @@
 				"}
 
 
-/obj/item/weapon/book/manual/hydroponics_pod_people
+/obj/item/book/manual/hydroponics_pod_people
 	name = "The Diona Harvest - From seed to market"
 	icon_state ="bookHydroponicsPodPeople"
 	author = "Farmer John"
@@ -260,7 +260,7 @@
 				"}
 
 
-/obj/item/weapon/book/manual/medical_cloning
+/obj/item/book/manual/medical_cloning
 	name = "Cloning techniques of the 26th century"
 	icon_state ="bookCloning"
 	author = "Medical Journal, volume 3"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
@@ -351,7 +351,7 @@
 				"}
 
 
-/obj/item/weapon/book/manual/ripley_build_and_repair
+/obj/item/book/manual/ripley_build_and_repair
 	name = "APLU \"Ripley\" Construction and Operation Manual"
 	icon_state ="book"
 	author = "Randall Varn, Einstein Engines Senior Mechanic"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
@@ -424,7 +424,7 @@
 			"}
 
 
-/obj/item/weapon/book/manual/research_and_development
+/obj/item/book/manual/research_and_development
 	name = "Research and Development 101"
 	icon_state = "rdbook"
 	author = "Dr. L. Ight"
@@ -490,7 +490,7 @@
 			"}
 
 
-/obj/item/weapon/book/manual/robotics_cyborgs
+/obj/item/book/manual/robotics_cyborgs
 	name = "Cyborgs for Dummies"
 	icon_state = "borgbook"
 	author = "XISC"
@@ -694,7 +694,7 @@
 		"}
 
 
-/obj/item/weapon/book/manual/security_space_law
+/obj/item/book/manual/security_space_law
 	name = "Space Law"
 	desc = "A set of NanoTrasen guidelines for keeping law and order on their space stations."
 	icon_state = "bookSpaceLaw"
@@ -714,7 +714,7 @@
 		"}
 
 
-/obj/item/weapon/book/manual/medical_diagnostics_manual
+/obj/item/book/manual/medical_diagnostics_manual
 	name = "NT Medical Diagnostics Manual"
 	desc = "First, do no harm. A detailed medical practitioner's guide."
 	icon_state = "bookMedical"
@@ -759,7 +759,7 @@
 		"}
 
 
-/obj/item/weapon/book/manual/engineering_guide
+/obj/item/book/manual/engineering_guide
 	name = "Engineering Textbook"
 	icon_state ="bookEngineering2"
 	author = "Engineering Encyclopedia"
@@ -778,7 +778,7 @@
 		"}
 
 
-/obj/item/weapon/book/manual/chef_recipes
+/obj/item/book/manual/chef_recipes
 	name = "Chef Recipes"
 	icon_state = "cooked_book"
 	author = "Victoria Ponsonby"
@@ -835,7 +835,7 @@
 			"}
 
 
-/obj/item/weapon/book/manual/barman_recipes
+/obj/item/book/manual/barman_recipes
 	name = "Barman Recipes"
 	icon_state = "barbook"
 	author = "Sir John Rose"
@@ -889,7 +889,7 @@
 			"}
 
 
-/obj/item/weapon/book/manual/detective
+/obj/item/book/manual/detective
 	name = "The Film Noir: Proper Procedures for Investigations"
 	icon_state ="bookDetective"
 	author = "NanoTrasen"
@@ -932,7 +932,7 @@
 			</html>"}
 
 
-/obj/item/weapon/book/manual/nuclear
+/obj/item/book/manual/nuclear
 	name = "Fission Mailed: Nuclear Sabotage 101"
 	icon_state ="bookNuclear"
 	author = "Syndicate"
@@ -969,7 +969,7 @@
 			</html>"}
 
 
-/obj/item/weapon/book/manual/atmospipes
+/obj/item/book/manual/atmospipes
 	name = "Pipes and You: Getting To Know Your Scary Tools"
 	icon_state = "pipingbook"
 	author = "Maria Crash, Senior Atmospherics Technician"
@@ -1067,7 +1067,7 @@
 			"}
 
 
-/obj/item/weapon/book/manual/evaguide
+/obj/item/book/manual/evaguide
 	name = "EVA Gear and You: Not Spending All Day Inside"
 	icon_state = "evabook"
 	author = "Maria Crash, Senior Atmospherics Technician"

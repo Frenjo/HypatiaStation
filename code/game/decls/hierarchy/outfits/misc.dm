@@ -6,7 +6,7 @@
 
 	uniform = /obj/item/clothing/under/color/grey
 	suit = /obj/item/clothing/suit/space
-	back = /obj/item/weapon/tank/jetpack/oxygen
+	back = /obj/item/tank/jetpack/oxygen
 
 	head = /obj/item/clothing/head/helmet/space
 	mask = /obj/item/clothing/mask/breath
@@ -32,8 +32,8 @@
 
 	uniform = /obj/item/clothing/under/soviet
 	suit = /obj/item/clothing/suit/hgpirate
-	back = /obj/item/weapon/storage/satchel
-	belt = /obj/item/weapon/gun/projectile/mateba
+	back = /obj/item/storage/satchel
+	belt = /obj/item/gun/projectile/mateba
 
 	head = /obj/item/clothing/head/hgpiratecap
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
@@ -43,5 +43,5 @@
 	l_ear = /obj/item/device/radio/headset/heads/captain
 
 	id_slot = SLOT_ID_WEAR_ID
-	id_type = /obj/item/weapon/card/id/centcom/station
+	id_type = /obj/item/card/id/centcom/station
 	id_pda_assignment = "Admiral"

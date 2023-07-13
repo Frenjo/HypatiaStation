@@ -14,7 +14,7 @@
 	var/state = 2
 	var/reinf = 0
 	var/basestate
-	var/shardtype = /obj/item/weapon/shard
+	var/shardtype = /obj/item/shard
 //	var/silicate = 0 // number of units of silicate
 //	var/icon/silicateIcon = null // the silicated icon
 
@@ -185,8 +185,8 @@
 	if(!istype(W))
 		return//I really wish I did not need this
 
-	if(istype(W, /obj/item/weapon/grab) && get_dist(src, user) < 2)
-		var/obj/item/weapon/grab/G = W
+	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
+		var/obj/item/grab/G = W
 		if(istype(G.affecting, /mob/living))
 			var/mob/living/M = G.affecting
 			var/state = G.state
@@ -212,7 +212,7 @@
 	if(W.flags & NOBLUDGEON)
 		return
 
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/screwdriver))
 		if(reinf && state >= 1)
 			state = 3 - state
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
@@ -227,7 +227,7 @@
 			update_nearby_icons()
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
 			to_chat(user, SPAN_NOTICE("[anchored ? "You have fastened the window to the floor" : "You have unfastened the window"]."))
-	else if(istype(W, /obj/item/weapon/crowbar) && reinf && state <= 1)
+	else if(istype(W, /obj/item/crowbar) && reinf && state <= 1)
 		state = 1 - state
 		playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
 		to_chat(user, SPAN_NOTICE("[state ? "You have pried the window into the frame" : "You have pried the window out of the frame"]."))
@@ -368,7 +368,7 @@
 	desc = "A plasma-glass alloy window. It looks insanely tough to break. It appears it's also insanely tough to burn through."
 	basestate = "plasmawindow"
 	icon_state = "plasmawindow"
-	shardtype = /obj/item/weapon/shard/plasma
+	shardtype = /obj/item/shard/plasma
 	maxhealth = 120
 
 /obj/structure/window/plasmabasic/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -381,7 +381,7 @@
 	desc = "A plasma-glass alloy window, with rods supporting it. It looks hopelessly tough to break. It also looks completely fireproof, considering how basic plasma windows are insanely fireproof."
 	basestate = "plasmarwindow"
 	icon_state = "plasmarwindow"
-	shardtype = /obj/item/weapon/shard/plasma
+	shardtype = /obj/item/shard/plasma
 	reinf = 1
 	maxhealth = 160
 

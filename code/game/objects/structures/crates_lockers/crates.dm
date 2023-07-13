@@ -68,14 +68,14 @@
 	src.opened = 0
 	return 1
 
-/obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
 	if(opened)
 		if(isrobot(user))
 			return
 		user.drop_item()
 		if(W)
 			W.loc = src.loc
-	else if(istype(W, /obj/item/weapon/package_wrap))
+	else if(istype(W, /obj/item/package_wrap))
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))
 		if(rigged)
@@ -92,7 +92,7 @@
 			user.drop_item()
 			W.loc = src
 			return
-	else if(istype(W, /obj/item/weapon/wirecutters))
+	else if(istype(W, /obj/item/wirecutters))
 		if(rigged)
 			to_chat(user, SPAN_NOTICE("You cut away the wiring."))
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)

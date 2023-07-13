@@ -8,14 +8,14 @@
 	var/num_copies = 1		// number of copies selected, will be maintained between jobs
 	var/copying = 0			// are we copying
 	var/job_num_copies = 0	// number of copies remaining
-	var/obj/item/weapon/template // the paper OR photo being scanned
+	var/obj/item/template // the paper OR photo being scanned
 	var/max_copies = 10		// MAP EDITOR: can set the number of max copies, possibly to 5 or something for public, more for QM, robutist, etc.
 
-/obj/machinery/copier/attackby(obj/item/weapon/O as obj, mob/user as mob)
+/obj/machinery/copier/attackby(obj/item/O as obj, mob/user as mob)
 	if(template)
 		return
 
-	if(istype(O, /obj/item/weapon/paper) || istype(O, /obj/item/weapon/photo))
+	if(istype(O, /obj/item/paper) || istype(O, /obj/item/photo))
 		// put it inside
 		template = O
 		usr.drop_item()
@@ -117,9 +117,9 @@
 			playsound(src, 'sound/items/polaroid1.ogg', 50, 1)
 
 			// dup the file
-			if(istype(template, /obj/item/weapon/paper))
+			if(istype(template, /obj/item/paper))
 				// make duplicate paper
-				var/obj/item/weapon/paper/P = new(src.loc)
+				var/obj/item/paper/P = new(src.loc)
 				P.name = template.name
 				P.info = template:info
 				P.stamped = template:stamped
@@ -127,9 +127,9 @@
 				P.overlays = null
 				for(var/overlay in template.overlays)
 					P.overlays += overlay
-			else if(istype(template, /obj/item/weapon/photo))
+			else if(istype(template, /obj/item/photo))
 				// make duplicate photo
-				var/obj/item/weapon/photo/P = new(src.loc)
+				var/obj/item/photo/P = new(src.loc)
 				P.name = template.name
 				P.desc = template.desc
 				P.icon = template.icon

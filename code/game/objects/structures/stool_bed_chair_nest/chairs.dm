@@ -15,7 +15,7 @@
 	. = ..()
 	handle_rotation()
 
-/obj/structure/stool/bed/chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/stool/bed/chair/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/assembly/shock_kit))
 		var/obj/item/assembly/shock_kit/SK = W
@@ -84,8 +84,8 @@
 	name = "wooden chair"
 	desc = "Old is never too old to not be in fashion."
 
-/obj/structure/stool/bed/chair/wood/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+/obj/structure/stool/bed/chair/wood/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/wrench))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		new /obj/item/stack/sheet/wood(src.loc)
 		qdel(src)

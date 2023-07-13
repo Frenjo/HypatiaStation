@@ -12,7 +12,7 @@
 	emote_see = list("shakes its head", "shivers")
 	speak_chance = 1
 	turns_per_move = 10
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/corgi
 	meat_amount = 3
 	response_help  = "pets the"
 	response_disarm = "bops the"
@@ -147,7 +147,7 @@
 						/obj/item/clothing/head/hardhat,
 						/obj/item/clothing/head/collectable/hardhat,
 						/obj/item/clothing/head/hardhat/white,
-						/obj/item/weapon/bedsheet,
+						/obj/item/bedsheet,
 						/obj/item/clothing/head/helmet/space/santahat,
 						/obj/item/clothing/head/collectable/paper,
 						/obj/item/clothing/head/soft
@@ -240,7 +240,7 @@
 		if(/obj/item/clothing/head/wizard/fake,	/obj/item/clothing/head/wizard,	/obj/item/clothing/head/collectable/wizard)
 			name = "Grandwizard [real_name]"
 			speak = list("YAP", "Woof!", "Bark!", "AUUUUUU", "EI  NATH!")
-		if(/obj/item/weapon/bedsheet)
+		if(/obj/item/bedsheet)
 			name = "\improper Ghost"
 			speak = list("WoooOOOooo~","AUUUUUUUUUUUUUUUUUU")
 			emote_see = list("stumbles around", "shivers")
@@ -283,7 +283,7 @@
 			if(!movement_target || !(movement_target.loc in oview(src, 3)))
 				movement_target = null
 				stop_automated_movement = 0
-				for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src, 3))
+				for(var/obj/item/reagent_containers/food/snacks/S in oview(src, 3))
 					if(isturf(S.loc) || ishuman(S.loc))
 						movement_target = S
 						break
@@ -320,12 +320,12 @@
 					dir = i
 					sleep(1)
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/corgi
+/obj/item/reagent_containers/food/snacks/meat/corgi
 	name = "Corgi meat"
 	desc = "Tastes like... well you know..."
 
 /mob/living/simple_animal/corgi/attackby(obj/item/O as obj, mob/user as mob)  //Marker -Agouri
-	if(istype(O, /obj/item/weapon/newspaper))
+	if(istype(O, /obj/item/newspaper))
 		if(!stat)
 			for(var/mob/M in viewers(user, null))
 				if((M.client && !(M.blinded)))

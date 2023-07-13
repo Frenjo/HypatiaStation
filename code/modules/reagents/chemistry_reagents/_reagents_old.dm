@@ -249,8 +249,8 @@ datum
 					lowertemp.react()
 					T.assume_air(lowertemp)
 					del(hotspot)
-				if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/monkeycube))
-					var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = O
+				if(istype(O,/obj/item/reagent_containers/food/snacks/monkeycube))
+					var/obj/item/reagent_containers/food/snacks/monkeycube/cube = O
 					if(!cube.wrapped)
 						cube.Expand()
 				return
@@ -346,7 +346,7 @@ datum
 					M.overlays.Cut()
 					M.invisibility = INVISIBILITY_MAXIMUM
 					for(var/obj/item/W in M)
-						if(istype(W, /obj/item/weapon/implant))	//TODO: Carn. give implants a dropped() or something
+						if(istype(W, /obj/item/implant))	//TODO: Carn. give implants a dropped() or something
 							del(W)
 							continue
 						W.reset_plane_and_layer()
@@ -1559,8 +1559,8 @@ datum
 				return
 			reaction_obj(var/obj/O, var/volume)
 				del(src)
-				/*if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/egg/slime))
-					var/obj/item/weapon/reagent_containers/food/snacks/egg/slime/egg = O
+				/*if(istype(O,/obj/item/reagent_containers/food/snacks/egg/slime))
+					var/obj/item/reagent_containers/food/snacks/egg/slime/egg = O
 					if (egg.grown)
 						egg.Hatch()*/
 				if((!O) || (!volume))	return 0
@@ -2997,13 +2997,13 @@ datum
 				return
 
 			reaction_obj(var/obj/O, var/volume)
-				if(istype(O,/obj/item/weapon/paper))
-					var/obj/item/weapon/paper/paperaffected = O
+				if(istype(O,/obj/item/paper))
+					var/obj/item/paper/paperaffected = O
 					paperaffected.clearpaper()
 					usr << "The solution dissolves the ink on the paper."
-				if(istype(O,/obj/item/weapon/book))
+				if(istype(O,/obj/item/book))
 					if(volume >= 5)
-						var/obj/item/weapon/book/affectedbook = O
+						var/obj/item/book/affectedbook = O
 						affectedbook.dat = null
 						usr << "The solution dissolves the ink on the book."
 					else

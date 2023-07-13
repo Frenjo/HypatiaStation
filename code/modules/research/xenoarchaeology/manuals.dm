@@ -1,4 +1,4 @@
-/obj/item/weapon/book/manual/excavation
+/obj/item/book/manual/excavation
 	name = "Out on the dig"
 	icon_state = "excavation"
 	author = "Professor Patrick Mason, Curator of the Antiquities Museum on Ichar VII"
@@ -111,7 +111,7 @@
 			"}
 
 
-/obj/item/weapon/book/manual/mass_spectrometry
+/obj/item/book/manual/mass_spectrometry
 	name = "High power mass spectrometry, a comprehensive guide"
 	icon_state = "analysis"
 	author = "Winton Rice, Chief Mass Spectrometry Technician at the Institute of Applied Sciences on Arcadia"
@@ -182,7 +182,7 @@
 			"}
 
 
-/obj/item/weapon/book/manual/anomaly_spectroscopy
+/obj/item/book/manual/anomaly_spectroscopy
 	name = "Spectroscopy: Analysing the anomalies of the cosmos"
 	icon_state = "anomaly"
 	author = "Doctor Martin Boyle, Director Research at the Lower Hydrolian Sector Listening Array"
@@ -206,7 +206,7 @@
 			"}
 
 
-/obj/item/weapon/book/manual/materials_chemistry_analysis
+/obj/item/book/manual/materials_chemistry_analysis
 	name = "Materials analysis and the chemical implications"
 	icon_state = "chemistry"
 	author = "Jasper Pascal, Senior Lecturer in Materials Analysis at the University of Jol'Nar"
@@ -233,7 +233,7 @@
 			"}
 
 
-/obj/item/weapon/book/manual/anomaly_testing
+/obj/item/book/manual/anomaly_testing
 	name = "Anomalous materials and energies"
 	icon_state = "triangulate"
 	author = "Norman York, formerly of the Tyrolion Institute on Titan"
@@ -311,7 +311,7 @@
 			"}
 
 
-/obj/item/weapon/book/manual/stasis
+/obj/item/book/manual/stasis
 	name = "Cellular suspension, the new Cryogenics?"
 	icon_state = "stasis"
 	author = "Elvin Schmidt"

@@ -65,12 +65,12 @@
 	thermal_conductivity = 0.025
 	heat_capacity = 325000
 
-/turf/simulated/floor/engine/attackby(obj/item/weapon/C as obj, mob/user as mob)
+/turf/simulated/floor/engine/attackby(obj/item/C as obj, mob/user as mob)
 	if(isnull(C))
 		return
 	if(isnull(user))
 		return
-	if(istype(C, /obj/item/weapon/wrench))
+	if(istype(C, /obj/item/wrench))
 		to_chat(user, SPAN_INFO("Removing rods..."))
 		playsound(src, 'sound/items/Ratchet.ogg', 80, 1)
 		if(do_after(user, 30))

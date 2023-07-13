@@ -3,7 +3,7 @@ CONTAINS:
 BEDSHEETS
 LINEN BINS
 */
-/obj/item/weapon/bedsheet
+/obj/item/bedsheet
 	name = "bedsheet"
 	desc = "A surprisingly soft linen bedsheet."
 	icon = 'icons/obj/items.dmi'
@@ -16,7 +16,7 @@ LINEN BINS
 	w_class = 1.0
 	item_color = "white"
 
-/obj/item/weapon/bedsheet/attack_self(mob/user as mob)
+/obj/item/bedsheet/attack_self(mob/user as mob)
 	user.drop_item()
 	if(layer == initial(layer))
 		layer = 5
@@ -25,67 +25,67 @@ LINEN BINS
 	add_fingerprint(user)
 	return
 
-/obj/item/weapon/bedsheet/blue
+/obj/item/bedsheet/blue
 	icon_state = "sheetblue"
 	item_color = "blue"
 
-/obj/item/weapon/bedsheet/green
+/obj/item/bedsheet/green
 	icon_state = "sheetgreen"
 	item_color = "green"
 
-/obj/item/weapon/bedsheet/orange
+/obj/item/bedsheet/orange
 	icon_state = "sheetorange"
 	item_color = "orange"
 
-/obj/item/weapon/bedsheet/purple
+/obj/item/bedsheet/purple
 	icon_state = "sheetpurple"
 	item_color = "purple"
 
-/obj/item/weapon/bedsheet/rainbow
+/obj/item/bedsheet/rainbow
 	icon_state = "sheetrainbow"
 	item_color = "rainbow"
 
-/obj/item/weapon/bedsheet/red
+/obj/item/bedsheet/red
 	icon_state = "sheetred"
 	item_color = "red"
 
-/obj/item/weapon/bedsheet/yellow
+/obj/item/bedsheet/yellow
 	icon_state = "sheetyellow"
 	item_color = "yellow"
 
-/obj/item/weapon/bedsheet/mime
+/obj/item/bedsheet/mime
 	icon_state = "sheetmime"
 	item_color = "mime"
 
-/obj/item/weapon/bedsheet/clown
+/obj/item/bedsheet/clown
 	icon_state = "sheetclown"
 	item_color = "clown"
 
-/obj/item/weapon/bedsheet/captain
+/obj/item/bedsheet/captain
 	icon_state = "sheetcaptain"
 	item_color = "captain"
 
-/obj/item/weapon/bedsheet/rd
+/obj/item/bedsheet/rd
 	icon_state = "sheetrd"
 	item_color = "director"
 
-/obj/item/weapon/bedsheet/medical
+/obj/item/bedsheet/medical
 	icon_state = "sheetmedical"
 	item_color = "medical"
 
-/obj/item/weapon/bedsheet/hos
+/obj/item/bedsheet/hos
 	icon_state = "sheethos"
 	item_color = "hosred"
 
-/obj/item/weapon/bedsheet/hop
+/obj/item/bedsheet/hop
 	icon_state = "sheethop"
 	item_color = "hop"
 
-/obj/item/weapon/bedsheet/ce
+/obj/item/bedsheet/ce
 	icon_state = "sheetce"
 	item_color = "chief"
 
-/obj/item/weapon/bedsheet/brown
+/obj/item/bedsheet/brown
 	icon_state = "sheetbrown"
 	item_color = "brown"
 
@@ -121,7 +121,7 @@ LINEN BINS
 #undef STARTING_LINEN_AMOUNT
 
 /obj/structure/bedsheetbin/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/bedsheet))
+	if(istype(I, /obj/item/bedsheet))
 		user.drop_item()
 		I.loc = src
 		sheets.Add(I)
@@ -140,13 +140,13 @@ LINEN BINS
 	if(amount >= 1)
 		amount--
 
-		var/obj/item/weapon/bedsheet/B
+		var/obj/item/bedsheet/B
 		if(length(sheets))
 			B = sheets[length(sheets)]
 			sheets.Remove(B)
 
 		else
-			B = new /obj/item/weapon/bedsheet(loc)
+			B = new /obj/item/bedsheet(loc)
 
 		B.loc = user.loc
 		user.put_in_hands(B)
@@ -163,13 +163,13 @@ LINEN BINS
 	if(amount >= 1)
 		amount--
 
-		var/obj/item/weapon/bedsheet/B
+		var/obj/item/bedsheet/B
 		if(length(sheets))
 			B = sheets[length(sheets)]
 			sheets.Remove(B)
 
 		else
-			B = new /obj/item/weapon/bedsheet(loc)
+			B = new /obj/item/bedsheet(loc)
 
 		B.loc = loc
 		to_chat(user, SPAN_NOTICE("You telekinetically remove [B] from [src]."))

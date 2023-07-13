@@ -97,7 +97,7 @@
 		return
 	attack_generic(user, rand(10, 15))
 
-/obj/structure/inflatable/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/inflatable/attackby(obj/item/W as obj, mob/user as mob)
 	if(!istype(W))
 		return
 
@@ -281,14 +281,14 @@
 	to_chat(user, SPAN_INFO("The inflatable door is too torn to be inflated!"))
 	add_fingerprint(user)
 
-/obj/item/weapon/storage/briefcase/inflatable
+/obj/item/storage/briefcase/inflatable
 	name = "inflatable barrier box"
 	desc = "Contains inflatable walls and doors."
 	icon_state = "inf_box"
 	item_state = "syringe_kit"
 	max_combined_w_class = 21
 
-/obj/item/weapon/storage/briefcase/inflatable/New()
+/obj/item/storage/briefcase/inflatable/New()
 	..()
 	new /obj/item/inflatable/door(src)
 	new /obj/item/inflatable/door(src)

@@ -25,15 +25,15 @@
 				P = trim(P)
 				var/path = text2path(P)
 				var/obj/item/Item = new path()
-				if(istype(Item,/obj/item/weapon/card/id))
+				if(istype(Item,/obj/item/card/id))
 					//id card needs to replace the original ID
 					if(M.ckey == "nerezza" && M.real_name == "Asher Spock" && M.mind.role_alt_title && M.mind.role_alt_title != "Emergency Physician")
 						//only spawn ID if asher is joining as an emergency physician
 						ok = 1
 						qdel(Item)
 						goto skip
-					var/obj/item/weapon/card/id/I = Item
-					for(var/obj/item/weapon/card/id/C in M)
+					var/obj/item/card/id/I = Item
+					for(var/obj/item/card/id/C in M)
 						//default settings
 						I.name = "[M.real_name]'s ID Card ([M.mind.role_alt_title ? M.mind.role_alt_title : M.mind.assigned_role])"
 						I.registered_name = M.real_name
@@ -57,14 +57,14 @@
 						qdel(C)
 						ok = M.equip_if_possible(I, SLOT_ID_WEAR_ID, 0)	//if 1, last argument deletes on fail
 						break
-				else if(istype(Item,/obj/item/weapon/storage/belt))
+				else if(istype(Item,/obj/item/storage/belt))
 					if(M.ckey == "jakksergal" && M.real_name == "Nashi Ra'hal" && M.mind.role_alt_title && M.mind.role_alt_title != "Nurse" && M.mind.role_alt_title != "Chemist")
 						ok = 1
 						qdel(Item)
 						goto skip
-					var/obj/item/weapon/storage/belt/medical/fluff/nashi_belt/I = Item
-					if(istype(M.belt,/obj/item/weapon/storage/belt))
-						for(var/obj/item/weapon/storage/belt/B in M)
+					var/obj/item/storage/belt/medical/fluff/nashi_belt/I = Item
+					if(istype(M.belt,/obj/item/storage/belt))
+						for(var/obj/item/storage/belt/B in M)
 							qdel(B)
 							M.belt=null
 						ok = M.equip_if_possible(I, SLOT_ID_BELT, 0)
@@ -74,14 +74,14 @@
 							M.belt=null
 							M.equip_if_possible(Pda, SLOT_ID_L_STORE, 0)
 						ok = M.equip_if_possible(I, SLOT_ID_BELT, 0)
-				else if(istype(M.back,/obj/item/weapon/storage)) // Try to place it in something on the mob's back
-					var/obj/item/weapon/storage/back = M.back
+				else if(istype(M.back,/obj/item/storage)) // Try to place it in something on the mob's back
+					var/obj/item/storage/back = M.back
 					if(back.contents.len < back.storage_slots)
 						Item.loc = back
 						ok = 1
 
 				else
-					for(var/obj/item/weapon/storage/S in M.contents) // Try to place it in any item that can store stuff, on the mob.
+					for(var/obj/item/storage/S in M.contents) // Try to place it in any item that can store stuff, on the mob.
 						if (S.contents.len < S.storage_slots)
 							Item.loc = S
 							ok = 1

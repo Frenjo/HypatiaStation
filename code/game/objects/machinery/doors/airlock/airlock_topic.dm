@@ -14,7 +14,7 @@
 		usr.set_machine(src)
 		if(href_list["wires"])
 			var/t1 = text2num(href_list["wires"])
-			if(!(istype(usr.get_active_hand(), /obj/item/weapon/wirecutters)))
+			if(!(istype(usr.get_active_hand(), /obj/item/wirecutters)))
 				to_chat(usr, "You need wirecutters!")
 				return
 			if(isWireColorCut(t1))

@@ -114,7 +114,7 @@
 	from.move_contents_to(dest)
 	return
 
-/obj/machinery/spaceship_builder/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/spaceship_builder/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(operating == 1)
 		user << "The machine is processing"

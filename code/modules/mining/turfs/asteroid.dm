@@ -39,21 +39,21 @@
 	. = ..()
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
-		if(istype(R.module, /obj/item/weapon/robot_module/miner))
-			if(istype(R.module_state_1, /obj/item/weapon/storage/bag/ore))
+		if(istype(R.module, /obj/item/robot_module/miner))
+			if(istype(R.module_state_1, /obj/item/storage/bag/ore))
 				attackby(R.module_state_1, R)
-			else if(istype(R.module_state_2, /obj/item/weapon/storage/bag/ore))
+			else if(istype(R.module_state_2, /obj/item/storage/bag/ore))
 				attackby(R.module_state_2, R)
-			else if(istype(R.module_state_3, /obj/item/weapon/storage/bag/ore))
+			else if(istype(R.module_state_3, /obj/item/storage/bag/ore))
 				attackby(R.module_state_3, R)
 			else
 				return
 
-/turf/simulated/floor/plating/airless/asteroid/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/turf/simulated/floor/plating/airless/asteroid/attackby(obj/item/W as obj, mob/user as mob)
 	if(!W || !user)
 		return 0
 
-	if(istype(W, /obj/item/weapon/shovel))
+	if(istype(W, /obj/item/shovel))
 		var/turf/T = user.loc
 		if(!isturf(T))
 			return
@@ -70,7 +70,7 @@
 			to_chat(user, SPAN_INFO("You dug a hole."))
 			gets_dug()
 
-	if(istype(W, /obj/item/weapon/pickaxe/drill))
+	if(istype(W, /obj/item/pickaxe/drill))
 		var/turf/T = user.loc
 		if(!isturf(T))
 			return
@@ -87,7 +87,7 @@
 			to_chat(user, SPAN_INFO("You dug a hole."))
 			gets_dug()
 
-	if(istype(W, /obj/item/weapon/pickaxe/diamonddrill) || istype(W, /obj/item/weapon/pickaxe/borgdrill))
+	if(istype(W, /obj/item/pickaxe/diamonddrill) || istype(W, /obj/item/pickaxe/borgdrill))
 		var/turf/T = user.loc
 		if(!isturf(T))
 			return
@@ -104,10 +104,10 @@
 			to_chat(user, SPAN_INFO("You dug a hole."))
 			gets_dug()
 
-	if(istype(W, /obj/item/weapon/storage/bag/ore))
-		var/obj/item/weapon/storage/bag/ore/S = W
+	if(istype(W, /obj/item/storage/bag/ore))
+		var/obj/item/storage/bag/ore/S = W
 		if(S.collection_mode)
-			for(var/obj/item/weapon/ore/O in contents)
+			for(var/obj/item/ore/O in contents)
 				O.attackby(W, user)
 				return
 
@@ -119,7 +119,7 @@
 	if(dug)
 		return
 	for(var/i = 0; i < 5; i++)
-		new /obj/item/weapon/ore/glass(src)
+		new /obj/item/ore/glass(src)
 	dug = TRUE
 	icon_plating = "asteroid_dug"
 	icon_state = "asteroid_dug"

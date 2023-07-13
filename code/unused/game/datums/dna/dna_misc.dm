@@ -398,7 +398,7 @@
 		var/mob/living/carbon/human/H = M
 		H.monkeyizing = 1
 		var/list/implants = list() //Try to preserve implants.
-		for(var/obj/item/weapon/implant/W in H)
+		for(var/obj/item/implant/W in H)
 			implants += W
 			W.loc = null
 
@@ -462,7 +462,7 @@
 		O.adjustOxyLoss(M.getOxyLoss())
 		O.stat = M.stat
 		O.a_intent = "hurt"
-		for (var/obj/item/weapon/implant/I in implants)
+		for (var/obj/item/implant/I in implants)
 			I.loc = O
 			I.implanted = O
 //		O.update_icon = 1	//queue a full icon update at next life() call
@@ -474,7 +474,7 @@
 		var/mob/living/carbon/monkey/Mo = M
 		Mo.monkeyizing = 1
 		var/list/implants = list() //Still preserving implants
-		for(var/obj/item/weapon/implant/W in Mo)
+		for(var/obj/item/implant/W in Mo)
 			implants += W
 			W.loc = null
 		if(!connected)
@@ -546,7 +546,7 @@
 		O.adjustToxLoss(M.getToxLoss())
 		O.adjustOxyLoss(M.getOxyLoss())
 		O.stat = M.stat
-		for (var/obj/item/weapon/implant/I in implants)
+		for (var/obj/item/implant/I in implants)
 			I.loc = O
 			I.implanted = O
 //		O.update_icon = 1	//queue a full icon update at next life() call

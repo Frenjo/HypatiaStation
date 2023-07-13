@@ -296,7 +296,7 @@
 	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 	add_fingerprint(user)
 
-/turf/simulated/wall/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/turf/simulated/wall/attackby(obj/item/W as obj, mob/user as mob)
 	if(!(ishuman(user) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
@@ -306,8 +306,8 @@
 		return	//can't do this stuff whilst inside objects and such
 
 	if(rotting)
-		if(istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = W
+		if(istype(W, /obj/item/weldingtool))
+			var/obj/item/weldingtool/WT = W
 			if(WT.remove_fuel(0, user))
 				to_chat(user, SPAN_NOTICE("You burn away the fungi with \the [WT]."))
 				playsound(src, 'sound/items/Welder.ogg', 10, 1)
@@ -322,18 +322,18 @@
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
 	if(thermite)
-		if(istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = W
+		if(istype(W, /obj/item/weldingtool))
+			var/obj/item/weldingtool/WT = W
 			if(WT.remove_fuel(0, user))
 				thermitemelt(user)
 				return
 
-		else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
+		else if(istype(W, /obj/item/pickaxe/plasmacutter))
 			thermitemelt(user)
 			return
 
-		else if(istype(W, /obj/item/weapon/melee/energy/blade))
-			var/obj/item/weapon/melee/energy/blade/EB = W
+		else if(istype(W, /obj/item/melee/energy/blade))
+			var/obj/item/melee/energy/blade/EB = W
 
 			EB.spark_system.start()
 			to_chat(user, SPAN_NOTICE("You slash \the [src] with \the [EB]; the thermite ignites!"))
@@ -346,12 +346,12 @@
 	var/turf/T = user.loc	//get user's location for delay checks
 
 	//DECONSTRUCTION
-	if(istype(W, /obj/item/weapon/weldingtool))
+	if(istype(W, /obj/item/weldingtool))
 		var/response = "Dismantle"
 		if(damage)
 			response = alert(user, "Would you like to repair or dismantle [src]?", "[src]", "Repair", "Dismantle")
 
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))
 			if(response == "Repair")
@@ -377,7 +377,7 @@
 			to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
 			return
 
-	else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
+	else if(istype(W, /obj/item/pickaxe/plasmacutter))
 		to_chat(user, SPAN_NOTICE("You begin slicing through the outer plating."))
 		playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
@@ -398,7 +398,7 @@
 		return
 
 	//DRILLING
-	else if(istype(W, /obj/item/weapon/pickaxe/diamonddrill))
+	else if(istype(W, /obj/item/pickaxe/diamonddrill))
 		to_chat(user, SPAN_NOTICE("You begin to drill though the wall."))
 
 		sleep(60)
@@ -417,8 +417,8 @@
 				)
 		return
 
-	else if(istype(W, /obj/item/weapon/melee/energy/blade))
-		var/obj/item/weapon/melee/energy/blade/EB = W
+	else if(istype(W, /obj/item/melee/energy/blade))
+		var/obj/item/melee/energy/blade/EB = W
 
 		EB.spark_system.start()
 		to_chat(user, SPAN_NOTICE("You stab \the [EB] into the wall and begin to slice it apart."))
@@ -478,7 +478,7 @@
 		return
 
 	//Poster stuff
-	else if(istype(W, /obj/item/weapon/contraband/poster))
+	else if(istype(W, /obj/item/contraband/poster))
 		place_poster(W, user)
 		return
 

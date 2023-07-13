@@ -8,9 +8,9 @@
 	..()
 	layer = 3.1
 
-/obj/machinery/door/poddoor/shutters/attackby(obj/item/weapon/C as obj, mob/user as mob)
+/obj/machinery/door/poddoor/shutters/attackby(obj/item/C as obj, mob/user as mob)
 	add_fingerprint(user)
-	if(!istype(C, /obj/item/weapon/crowbar || (istype(C, /obj/item/weapon/twohanded/fireaxe) && C:wielded == 1)))
+	if(!istype(C, /obj/item/crowbar || (istype(C, /obj/item/twohanded/fireaxe) && C:wielded == 1)))
 		return
 	if(density && (stat & NOPOWER) && !operating)
 		operating = 1

@@ -35,7 +35,7 @@
 /datum/job/hos/equip(mob/living/carbon/human/H)
 	. = ..()
 
-	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(H)
+	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(H)
 	L.imp_in = H
 	L.implanted = TRUE
 	var/datum/organ/external/affected = H.organs_by_name["head"]

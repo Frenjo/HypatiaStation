@@ -22,7 +22,7 @@
 
 	reagent_tag = IS_PLASMALIN
 
-	survival_kit = /obj/item/weapon/storage/box/survival/plasmalin
+	survival_kit = /obj/item/storage/box/survival/plasmalin
 
 /datum/species/plasmalin/handle_post_spawn(mob/living/carbon/human/H)
 	. = ..()
@@ -37,10 +37,10 @@
 	// Equips a set of plasma internals and activates them.
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), SLOT_ID_WEAR_MASK)
 	if(isnull(H.r_hand))
-		H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), SLOT_ID_R_HAND)
+		H.equip_to_slot_or_del(new /obj/item/tank/plasma2(H), SLOT_ID_R_HAND)
 		H.internal = H.r_hand
 	else if(isnull(H.l_hand))
-		H.equip_to_slot_or_del(new /obj/item/weapon/tank/plasma2(H), SLOT_ID_L_HAND)
+		H.equip_to_slot_or_del(new /obj/item/tank/plasma2(H), SLOT_ID_L_HAND)
 		H.internal = H.l_hand
 	spawn(20) // I hate the fact that this is necessary but I don't have the will to track down where HUD initialisation happens.
 		H.internals.icon_state = "internal1"

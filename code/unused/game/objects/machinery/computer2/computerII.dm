@@ -9,13 +9,13 @@
 	req_access = list() //This doesn't determine PROGRAM req access, just the access needed to install/delete programs.
 	var/base_icon_state = "aiupload" //Assembly creates a new computer2 and not a child typepath, so initial doesn't work!!
 	var/datum/radio_frequency/radio_connection
-	var/obj/item/weapon/disk/data/fixed_disk/hd = null
+	var/obj/item/disk/data/fixed_disk/hd = null
 	var/datum/computer/file/computer_program/active_program
 	var/datum/computer/file/computer_program/host_program //active is set to this when the normal active quits, if available
 	var/list/processing_programs = list()
-	var/obj/item/weapon/card/id/authid = null //For records computers etc
-	var/obj/item/weapon/card/id/auxid = null //For computers that need two ids for some reason.
-	var/obj/item/weapon/disk/data/diskette = null
+	var/obj/item/card/id/authid = null //For records computers etc
+	var/obj/item/card/id/auxid = null //For computers that need two ids for some reason.
+	var/obj/item/disk/data/diskette = null
 	var/list/peripherals = list()
 	//Setup for Starting program & peripherals
 	var/setup_starting_program = null //If set to a program path it will start with this one active.
@@ -26,7 +26,7 @@
 	var/setup_radio_tag
 	var/setup_frequency = 1411
 
-/obj/item/weapon/disk/data
+/obj/item/disk/data
 	var/datum/computer/folder/root = null
 	var/file_amount = 32.0
 	var/file_used = 0.0
@@ -37,7 +37,7 @@
 		src.root.holder = src
 		src.root.name = "root"
 
-/obj/item/weapon/disk/data/fixed_disk
+/obj/item/disk/data/fixed_disk
 	name = "Storage Drive"
 	icon_state = "harddisk"
 	title = "Storage Drive"
@@ -47,7 +47,7 @@
 	attack_self(mob/user as mob)
 		return
 
-/obj/item/weapon/disk/data/computer2test
+/obj/item/disk/data/computer2test
 	name = "Programme Diskette"
 	file_amount = 128.0
 	New()
@@ -63,7 +63,7 @@
 	icon_state = "dna"
 	setup_has_radio = 1
 	setup_starting_program = /datum/computer/file/computer_program/med_data
-	setup_starting_peripheral = /obj/item/weapon/peripheral/printer
+	setup_starting_peripheral = /obj/item/peripheral/printer
 
 /obj/machinery/computer2/arcade
 	name = "arcade machine"
@@ -71,7 +71,7 @@
 	desc = "An arcade machine."
 	setup_drive_size = 16.0
 	setup_starting_program = /datum/computer/file/computer_program/arcade
-	setup_starting_peripheral = /obj/item/weapon/peripheral/prize_vendor
+	setup_starting_peripheral = /obj/item/peripheral/prize_vendor
 
 
 /obj/machinery/computer2/New()
@@ -79,12 +79,12 @@
 
 	spawn(4)
 		if(setup_has_radio)
-			var/obj/item/weapon/peripheral/radio/radio = new /obj/item/weapon/peripheral/radio(src)
+			var/obj/item/peripheral/radio/radio = new /obj/item/peripheral/radio(src)
 			radio.frequency = setup_frequency
 			radio.code = setup_radio_tag
 
 		if(!hd && (setup_drive_size > 0))
-			src.hd = new /obj/item/weapon/disk/data/fixed_disk(src)
+			src.hd = new /obj/item/disk/data/fixed_disk(src)
 			src.hd.file_amount = src.setup_drive_size
 
 		if(ispath(src.setup_starting_program))
@@ -220,7 +220,7 @@
 					src.authid = null
 				else
 					var/obj/item/I = usr.equipped()
-					if (istype(I, /obj/item/weapon/card/id))
+					if (istype(I, /obj/item/card/id))
 						usr.drop_item()
 						I.loc = src
 						src.authid = I
@@ -230,7 +230,7 @@
 					src.auxid = null
 				else
 					var/obj/item/I = usr.equipped()
-					if (istype(I, /obj/item/weapon/card/id))
+					if (istype(I, /obj/item/card/id))
 						usr.drop_item()
 						I.loc = src
 						src.auxid = I
@@ -242,7 +242,7 @@
 			src.diskette = null
 /*		else
 			var/obj/item/I = usr.equipped()
-			if (istype(I, /obj/item/weapon/disk/data))
+			if (istype(I, /obj/item/disk/data))
 				usr.drop_item()
 				I.loc = src
 				src.diskette = I
@@ -277,7 +277,7 @@
 
 
 /obj/machinery/computer2/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/disk/data)) //INSERT SOME DISKETTES
+	if (istype(W, /obj/item/disk/data)) //INSERT SOME DISKETTES
 		if ((!src.diskette) && W:portable)
 			user.machine = src
 			user.drop_item()
@@ -287,14 +287,14 @@
 			src.updateUsrDialog()
 			return
 
-	else if (istype(W, /obj/item/weapon/screwdriver))
+	else if (istype(W, /obj/item/screwdriver))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			var/obj/computer2frame/A = new /obj/computer2frame( src.loc )
 			A.created_icon_state = src.base_icon_state
 			if (src.stat & BROKEN)
 				FEEDBACK_BROKEN_GLASS_FALLS(user)
-				new /obj/item/weapon/shard( src.loc )
+				new /obj/item/shard( src.loc )
 				A.state = 3
 				A.icon_state = "3"
 			else
@@ -302,7 +302,7 @@
 				A.state = 4
 				A.icon_state = "4"
 
-			for (var/obj/item/weapon/peripheral/C in src.peripherals)
+			for (var/obj/item/peripheral/C in src.peripherals)
 				C.loc = A
 				A.peripherals.Add(C)
 
@@ -320,7 +320,7 @@
 				src.hd.loc = A
 				A.hd = src.hd
 
-			A.mainboard = new /obj/item/weapon/motherboard(A)
+			A.mainboard = new /obj/item/motherboard(A)
 			A.mainboard.created_name = src.name
 
 
@@ -332,7 +332,7 @@
 	return
 
 /obj/machinery/computer2/proc/send_command(command, datum/signal/signal)
-	for(var/obj/item/weapon/peripheral/P in src.peripherals)
+	for(var/obj/item/peripheral/P in src.peripherals)
 		P.receive_command(src, command, signal)
 
 	del(signal)

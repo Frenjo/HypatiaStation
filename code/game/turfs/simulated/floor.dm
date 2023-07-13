@@ -481,7 +481,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	if(isnull(C) || isnull(user))
 		return 0
 
-	if(istype(C, /obj/item/weapon/light/bulb)) //only for light tiles
+	if(istype(C, /obj/item/light/bulb)) //only for light tiles
 		if(is_light_floor())
 			if(get_lightfloor_state())
 				user.drop_item(C)
@@ -492,7 +492,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 			else
 				to_chat(user, SPAN_INFO("The lightbulb seems fine, no need to replace it."))
 
-	if(istype(C, /obj/item/weapon/crowbar) && (!(is_plating())))
+	if(istype(C, /obj/item/crowbar) && (!(is_plating())))
 		if(broken || burnt)
 			to_chat(user, SPAN_WARNING("You remove the broken plating."))
 		else
@@ -510,7 +510,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 		playsound(src, 'sound/items/Crowbar.ogg', 80, 1)
 		return
 
-	if(istype(C, /obj/item/weapon/screwdriver) && is_wood_floor())
+	if(istype(C, /obj/item/screwdriver) && is_wood_floor())
 		if(broken || burnt)
 			return
 		else
@@ -572,17 +572,17 @@ var/list/wood_icons = list("wood", "wood-broken")
 		else
 			to_chat(user, SPAN_WARNING("You must remove the plating first."))
 
-	if(istype(C, /obj/item/weapon/shovel))
+	if(istype(C, /obj/item/shovel))
 		if(is_grass_floor())
-			new /obj/item/weapon/ore/glass(src)
-			new /obj/item/weapon/ore/glass(src) //Make some sand if you shovel grass
+			new /obj/item/ore/glass(src)
+			new /obj/item/ore/glass(src) //Make some sand if you shovel grass
 			to_chat(user, SPAN_INFO("You shovel the grass."))
 			make_plating()
 		else
 			to_chat(user, SPAN_WARNING("You cannot shovel this."))
 
-	if(istype(C, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/welder = C
+	if(istype(C, /obj/item/weldingtool))
+		var/obj/item/weldingtool/welder = C
 		if(welder.isOn() && (is_plating()))
 			if(broken || burnt)
 				if(welder.remove_fuel(0, user))

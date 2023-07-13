@@ -5,8 +5,8 @@
 	name = "Emergency Response Team"
 
 	uniform = /obj/item/clothing/under/rank/centcom_officer
-	back = /obj/item/weapon/storage/satchel
-	belt = /obj/item/weapon/gun/energy/gun
+	back = /obj/item/storage/satchel
+	belt = /obj/item/gun/energy/gun
 
 	glasses = /obj/item/clothing/glasses/sunglasses
 	gloves = /obj/item/clothing/gloves/swat
@@ -15,7 +15,7 @@
 	l_ear = /obj/item/device/radio/headset/ert
 
 	id_slot = SLOT_ID_WEAR_ID
-	id_type = /obj/item/weapon/card/id/centcom/station
+	id_type = /obj/item/card/id/centcom/station
 	id_pda_assignment = "Emergency Response Team"
 
 /decl/hierarchy/outfit/special_ops_officer
@@ -23,8 +23,8 @@
 
 	uniform = /obj/item/clothing/under/syndicate/combat
 	suit = /obj/item/clothing/suit/armor/swat/officer
-	back = /obj/item/weapon/storage/satchel
-	belt = /obj/item/weapon/gun/energy/pulse_rifle/M1911
+	back = /obj/item/storage/satchel
+	belt = /obj/item/gun/energy/pulse_rifle/M1911
 
 	head = /obj/item/clothing/head/helmet/space/deathsquad/beret
 	glasses = /obj/item/clothing/glasses/thermal/eyepatch
@@ -34,10 +34,10 @@
 
 	l_ear = /obj/item/device/radio/headset/heads/captain
 
-	r_pocket = /obj/item/weapon/lighter/zippo
+	r_pocket = /obj/item/lighter/zippo
 
 	id_slot = SLOT_ID_WEAR_ID
-	id_type = /obj/item/weapon/card/id/centcom/station
+	id_type = /obj/item/card/id/centcom/station
 	id_pda_assignment = "Special Operations Officer"
 
 /*
@@ -45,8 +45,8 @@
  */
 /decl/hierarchy/outfit/death_commando
 	suit = /obj/item/clothing/suit/armor/swat
-	back = /obj/item/weapon/storage/backpack/security
-	belt = /obj/item/weapon/gun/projectile/mateba
+	back = /obj/item/storage/backpack/security
+	belt = /obj/item/gun/projectile/mateba
 
 	head = /obj/item/clothing/head/helmet/space/deathsquad
 	glasses = /obj/item/clothing/glasses/thermal
@@ -56,21 +56,21 @@
 
 	l_ear = /obj/item/device/radio/headset
 
-	suit_store = /obj/item/weapon/tank/emergency_oxygen
-	l_pocket = /obj/item/weapon/melee/energy/sword
-	r_pocket = /obj/item/weapon/grenade/flashbang
+	suit_store = /obj/item/tank/emergency_oxygen
+	l_pocket = /obj/item/melee/energy/sword
+	r_pocket = /obj/item/grenade/flashbang
 
-	r_hand = /obj/item/weapon/gun/energy/pulse_rifle
+	r_hand = /obj/item/gun/energy/pulse_rifle
 
 	id_slot = SLOT_ID_WEAR_ID
-	id_type = /obj/item/weapon/card/id/centcom/station
+	id_type = /obj/item/card/id/centcom/station
 	id_pda_assignment = "Death Commando"
 
 	backpack_contents = list(
-		/obj/item/weapon/storage/box = 1,
+		/obj/item/storage/box = 1,
 		/obj/item/ammo_magazine/a357 = 1,
-		/obj/item/weapon/storage/firstaid/regular = 1,
-		/obj/item/weapon/storage/box/flashbangs = 1,
+		/obj/item/storage/firstaid/regular = 1,
+		/obj/item/storage/box/flashbangs = 1,
 		/obj/item/device/flashlight = 1
 	)
 
@@ -82,7 +82,7 @@
 	if(isnotnull(radio))
 		radio.radio_connection = register_radio(radio, null, FREQUENCY_DEATHSQUAD, RADIO_CHAT)
 
-	var/obj/item/weapon/implant/loyalty/loyalty_implant = new /obj/item/weapon/implant/loyalty(src)
+	var/obj/item/implant/loyalty/loyalty_implant = new /obj/item/implant/loyalty(src)
 	loyalty_implant.imp_in = src
 	loyalty_implant.implanted = TRUE
 
@@ -95,7 +95,7 @@
 	uniform = /obj/item/clothing/under/color/green
 
 /decl/hierarchy/outfit/death_commando/standard/New()
-	backpack_contents.Add(list(/obj/item/weapon/plastique = 1))
+	backpack_contents.Add(list(/obj/item/plastique = 1))
 	. = ..()
 
 /*
@@ -107,7 +107,7 @@
 	uniform = /obj/item/clothing/under/rank/centcom_officer
 
 /decl/hierarchy/outfit/death_commando/leader/New()
-	backpack_contents.Add(list(/obj/item/weapon/pinpointer = 1, /obj/item/weapon/disk/nuclear = 1))
+	backpack_contents.Add(list(/obj/item/pinpointer = 1, /obj/item/disk/nuclear = 1))
 	. = ..()
 
 /*
@@ -115,31 +115,31 @@
  */
 /decl/hierarchy/outfit/syndicate_commando
 	uniform = /obj/item/clothing/under/syndicate
-	back = /obj/item/weapon/storage/backpack/security
-	belt = /obj/item/weapon/gun/projectile/silenced
+	back = /obj/item/storage/backpack/security
+	belt = /obj/item/gun/projectile/silenced
 
 	glasses = /obj/item/clothing/glasses/thermal
 	mask = /obj/item/clothing/mask/gas/syndicate
 	gloves = /obj/item/clothing/gloves/swat
 	shoes = /obj/item/clothing/shoes/swat
 
-	suit_store = /obj/item/weapon/tank/emergency_oxygen
-	l_pocket = /obj/item/weapon/melee/energy/sword
-	r_pocket = /obj/item/weapon/grenade/empgrenade
+	suit_store = /obj/item/tank/emergency_oxygen
+	l_pocket = /obj/item/melee/energy/sword
+	r_pocket = /obj/item/grenade/empgrenade
 
 	l_ear = /obj/item/device/radio/headset/syndicate
 
-	r_hand = /obj/item/weapon/gun/energy/pulse_rifle // Will change to something different at a later time -- Superxpdude
+	r_hand = /obj/item/gun/energy/pulse_rifle // Will change to something different at a later time -- Superxpdude
 
 	// They get full station access because obviously the syndicate has HAAAX, and can make special IDs for their most elite members.
 	id_slot = SLOT_ID_WEAR_ID
-	id_type = /obj/item/weapon/card/id/syndicate/station_access
+	id_type = /obj/item/card/id/syndicate/station_access
 	id_pda_assignment = "Syndicate Commando"
 
 	backpack_contents = list(
-		/obj/item/weapon/storage/box = 1,
+		/obj/item/storage/box = 1,
 		/obj/item/ammo_magazine/c45 = 1,
-		/obj/item/weapon/storage/firstaid/regular = 1,
+		/obj/item/storage/firstaid/regular = 1,
 		/obj/item/device/flashlight = 1
 	)
 
@@ -154,7 +154,7 @@
 	head = /obj/item/clothing/head/helmet/space/syndicate/black
 
 /decl/hierarchy/outfit/syndicate_commando/standard/New()
-	backpack_contents.Add(list(/obj/item/weapon/plastique = 2))
+	backpack_contents.Add(list(/obj/item/plastique = 2))
 	. = ..()
 
 /*
@@ -168,5 +168,5 @@
 	head = /obj/item/clothing/head/helmet/space/syndicate/black/red
 
 /decl/hierarchy/outfit/syndicate_commando/leader/New()
-	backpack_contents.Add(list(/obj/item/weapon/plastique = 1, /obj/item/weapon/pinpointer = 1, /obj/item/weapon/disk/nuclear = 1))
+	backpack_contents.Add(list(/obj/item/plastique = 1, /obj/item/pinpointer = 1, /obj/item/disk/nuclear = 1))
 	. = ..()

@@ -77,5 +77,5 @@
 /obj/structure/ladder/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/structure/ladder/attackby(obj/item/weapon/W, mob/user as mob)
+/obj/structure/ladder/attackby(obj/item/W, mob/user as mob)
 	return attack_hand(user)

@@ -14,16 +14,16 @@
 	starts_with = list(
 		/obj/item/wardrobe/scientist,
 		/obj/item/device/pda/toxins,
-		/obj/item/weapon/tank/oxygen,
+		/obj/item/tank/oxygen,
 		/obj/item/clothing/mask/gas,
 		/obj/item/device/radio/headset/headset_sci
 	)
 
 /obj/structure/closet/secure_closet/scientist/New()
 	. = ..()
-	var/obj/item/weapon/storage/backpack/BPK = new /obj/item/weapon/storage/backpack(src)
-	var/obj/item/weapon/storage/box/B = new(BPK)
-	new /obj/item/weapon/pen(B)
+	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
+	var/obj/item/storage/box/B = new(BPK)
+	new /obj/item/pen(B)
 
 /*
  * Research Director
@@ -40,8 +40,8 @@
 	
 	starts_with = list(
 		/obj/item/wardrobe/rd,
-		/obj/item/weapon/clipboard,
-		/obj/item/weapon/tank/air,
+		/obj/item/clipboard,
+		/obj/item/tank/air,
 		/obj/item/clothing/mask/gas,
 		/obj/item/device/flash,
 		/obj/item/device/radio/headset/heads/rd
@@ -49,6 +49,6 @@
 
 /obj/structure/closet/secure_closet/rd/New()
 	. = ..()
-	var/obj/item/weapon/storage/backpack/BPK = new /obj/item/weapon/storage/backpack(src)
-	var/obj/item/weapon/storage/box/B = new(BPK)
-	new /obj/item/weapon/pen(B)
+	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
+	var/obj/item/storage/box/B = new(BPK)
+	new /obj/item/pen(B)

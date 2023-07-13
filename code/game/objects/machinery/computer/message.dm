@@ -10,7 +10,7 @@
 	icon_state = "comm_logs"
 	var/hack_icon = "comm_logsc"
 	var/normal_icon = "comm_logs"
-	circuit = /obj/item/weapon/circuitboard/message_monitor
+	circuit = /obj/item/circuitboard/message_monitor
 	//Server linked to.
 	var/obj/machinery/message_server/linkedServer = null
 	//Sparks effect - For emag
@@ -35,13 +35,13 @@
 
 	light_color = "#00b000"
 
-/obj/machinery/computer/message_monitor/attackby(obj/item/weapon/O as obj, mob/living/user as mob)
+/obj/machinery/computer/message_monitor/attackby(obj/item/O as obj, mob/living/user as mob)
 	if(stat & (NOPOWER|BROKEN))
 		..()
 		return
 	if(!istype(user))
 		return
-	if(istype(O,/obj/item/weapon/card/emag/))
+	if(istype(O,/obj/item/card/emag/))
 		// Will create sparks and print out the console's password. You will then have to wait a while for the console to be back online.
 		// It'll take more time if there's more characters in the password..
 		if(!emag)
@@ -51,7 +51,7 @@
 				screen = 2
 				spark_system.set_up(5, 0, src)
 				src.spark_system.start()
-				var/obj/item/weapon/paper/monitorkey/MK = new/obj/item/weapon/paper/monitorkey
+				var/obj/item/paper/monitorkey/MK = new/obj/item/paper/monitorkey
 				MK.loc = src.loc
 				// Will help make emagging the console not so easy to get away with.
 				MK.info += "<br><br><font color='red'>�%@%(*$%&(�&?*(%&�/{}</font>"
@@ -495,12 +495,12 @@
 	return src.attack_hand(usr)
 
 
-/obj/item/weapon/paper/monitorkey
+/obj/item/paper/monitorkey
 	//..()
 	name = "Monitor Decryption Key"
 	var/obj/machinery/message_server/server = null
 
-/obj/item/weapon/paper/monitorkey/New()
+/obj/item/paper/monitorkey/New()
 	..()
 	spawn(10)
 		if(GLOBL.message_servers)

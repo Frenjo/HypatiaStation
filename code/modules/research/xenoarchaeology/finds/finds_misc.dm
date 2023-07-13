@@ -1,4 +1,4 @@
-/obj/item/weapon/shard/plasma
+/obj/item/shard/plasma
 	name = "plasma shard"
 	desc = "A shard of plasma glass. Considerably tougher then normal glass shards. Apparently not tough enough to be a window."
 	force = 8.0
@@ -7,7 +7,7 @@
 	sharp = 1
 	edge = 1
 
-/obj/item/weapon/shard/plasma/New()
+/obj/item/shard/plasma/New()
 	icon_state = pick("plasmalarge", "plasmamedium", "plasmasmall")
 	switch(icon_state)
 		if("plasmasmall")
@@ -22,10 +22,10 @@
 		else
 	return
 
-/obj/item/weapon/shard/plasma/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/shard/plasma/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			var/obj/item/stack/sheet/glass/plasmaglass/NG = new(user.loc)
 			for(var/obj/item/stack/sheet/glass/plasmaglass/G in user.loc)

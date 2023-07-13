@@ -2,7 +2,7 @@
 /*
  * Backpack
  */
-/obj/item/weapon/storage/backpack
+/obj/item/storage/backpack
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon = 'icons/obj/storage/backpack.dmi'
@@ -13,18 +13,18 @@
 	max_w_class = 3
 	max_combined_w_class = 21
 
-/obj/item/weapon/storage/backpack/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/storage/backpack/attackby(obj/item/W as obj, mob/user as mob)
 	if(src.use_sound)
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 	..()
 
-/obj/item/weapon/storage/backpack/equipped(mob/user, slot)
+/obj/item/storage/backpack/equipped(mob/user, slot)
 	if(slot == SLOT_ID_BACK && src.use_sound)
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 	..(user, slot)
 
 /*
-/obj/item/weapon/storage/backpack/dropped(mob/user as mob)
+/obj/item/storage/backpack/dropped(mob/user as mob)
 	if (loc == user && src.use_sound)
 		playsound(src.loc, src.use_sound, 50, 1, -5)
 	..(user)
@@ -33,7 +33,7 @@
 /*
  * Backpack Types
  */
-/obj/item/weapon/storage/backpack/holding
+/obj/item/storage/backpack/holding
 	name = "bag of holding"
 	desc = "A backpack that opens into a localized pocket of Blue Space."
 	origin_tech = list(RESEARCH_TECH_BLUESPACE = 4)
@@ -41,20 +41,20 @@
 	max_w_class = 4
 	max_combined_w_class = 28
 
-/obj/item/weapon/storage/backpack/holding/New()
+/obj/item/storage/backpack/holding/New()
 	..()
 	return
 
-/obj/item/weapon/storage/backpack/holding/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/storage/backpack/holding/attackby(obj/item/W as obj, mob/user as mob)
 	if(crit_fail)
 		user << "\red The Bluespace generator isn't working."
 		return
-	if(istype(W, /obj/item/weapon/storage/backpack/holding) && !W.crit_fail)
+	if(istype(W, /obj/item/storage/backpack/holding) && !W.crit_fail)
 		user << "\red The Bluespace interfaces of the two devices conflict and malfunction."
 		qdel(W)
 		return
 		/* //BoH+BoH=Singularity, commented out.
-	if(istype(W, /obj/item/weapon/storage/backpack/holding) && !W.crit_fail)
+	if(istype(W, /obj/item/storage/backpack/holding) && !W.crit_fail)
 		investigate_log("has become a singularity. Caused by [user.key]","singulo")
 		user << "\red The Bluespace interfaces of the two devices catastrophically malfunction!"
 		del(W)
@@ -67,7 +67,7 @@
 		*/
 	..()
 
-/obj/item/weapon/storage/backpack/holding/proc/failcheck(mob/user as mob)
+/obj/item/storage/backpack/holding/proc/failcheck(mob/user as mob)
 	if(prob(src.reliability))
 		return 1 //No failure
 	if(prob(src.reliability))
@@ -79,7 +79,7 @@
 		crit_fail = 1
 		icon_state = "brokenpack"
 
-/obj/item/weapon/storage/backpack/santabag
+/obj/item/storage/backpack/santabag
 	name = "Santa's Gift Bag"
 	desc = "Space Santa uses this to deliver toys to all the nice children in space in Christmas! Wow, it's pretty big!"
 	icon_state = "giftbag0"
@@ -89,36 +89,36 @@
 	max_w_class = 3
 	max_combined_w_class = 400 // can store a ton of shit!
 
-/obj/item/weapon/storage/backpack/cultpack
+/obj/item/storage/backpack/cultpack
 	name = "trophy rack"
 	desc = "It's useful for both carrying extra gear and proudly declaring your insanity."
 	icon_state = "cultpack"
 
-/obj/item/weapon/storage/backpack/clown
+/obj/item/storage/backpack/clown
 	name = "Giggles von Honkerton"
 	desc = "It's a backpack made by Honk! Co."
 	icon_state = "clownpack"
 	item_state = "clownpack"
 
-/obj/item/weapon/storage/backpack/medic
+/obj/item/storage/backpack/medic
 	name = "medical backpack"
 	desc = "It's a backpack especially designed for use in a sterile environment."
 	icon_state = "medicalpack"
 	item_state = "medicalpack"
 
-/obj/item/weapon/storage/backpack/security
+/obj/item/storage/backpack/security
 	name = "security backpack"
 	desc = "It's a very robust backpack."
 	icon_state = "securitypack"
 	item_state = "securitypack"
 
-/obj/item/weapon/storage/backpack/captain
+/obj/item/storage/backpack/captain
 	name = "captain's backpack"
 	desc = "It's a special backpack made exclusively for NanoTrasen officers."
 	icon_state = "captainpack"
 	item_state = "captainpack"
 
-/obj/item/weapon/storage/backpack/industrial
+/obj/item/storage/backpack/industrial
 	name = "industrial backpack"
 	desc = "It's a tough backpack for the daily grind of station life."
 	icon_state = "engiepack"

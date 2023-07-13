@@ -115,8 +115,8 @@
 /mob/living/carbon/proc/swap_hand()
 	var/obj/item/item_in_hand = get_active_hand()
 	if(isnotnull(item_in_hand)) //this segment checks if the item in your hand is twohanded.
-		if(istype(item_in_hand, /obj/item/weapon/twohanded))
-			var/obj/item/weapon/twohanded/twohanded = item_in_hand
+		if(istype(item_in_hand, /obj/item/twohanded))
+			var/obj/item/twohanded/twohanded = item_in_hand
 			if(twohanded.wielded)
 				to_chat(usr, SPAN_WARNING("Your other hand is too busy holding the [twohanded.name]."))
 				return
@@ -272,8 +272,8 @@
 	if(isnull(item))
 		return
 
-	if(istype(item, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = item
+	if(istype(item, /obj/item/grab))
+		var/obj/item/grab/G = item
 		item = G.thrown() //throw the person instead of the grab
 		if(ismob(item))
 			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
@@ -357,7 +357,7 @@
 	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=mask'>[(wear_mask ? wear_mask : "Nothing")]</A>
 	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
 	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/weapon/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
+	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
 	<BR>[(handcuffed ? text("<A href='?src=\ref[src];item=handcuff'>Handcuffed</A>") : text("<A href='?src=\ref[src];item=handcuff'>Not Handcuffed</A>"))]
 	<BR>[(internal ? text("<A href='?src=\ref[src];item=internal'>Remove Internal</A>") : "")]
 	<BR><A href='?src=\ref[src];item=pockets'>Empty Pockets</A>

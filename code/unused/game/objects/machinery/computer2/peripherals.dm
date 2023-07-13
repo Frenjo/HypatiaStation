@@ -1,4 +1,4 @@
-/obj/item/weapon/peripheral
+/obj/item/peripheral
 	name = "Peripheral card"
 	desc = "A computer circuit board."
 	icon = 'icons/obj/module.dmi'
@@ -41,7 +41,7 @@
 
 			return
 
-/obj/item/weapon/peripheral/radio
+/obj/item/peripheral/radio
 	name = "Wireless card"
 	var/frequency = 1419
 	var/code = null
@@ -85,7 +85,7 @@
 		send_command("radio signal",newsignal)
 		return
 
-/obj/item/weapon/peripheral/printer
+/obj/item/peripheral/printer
 	name = "Printer module"
 	desc = "A small printer designed to fit into a computer casing."
 	icon_state = "card_mod"
@@ -107,7 +107,7 @@
 				src.printing = 0
 				return
 			spawn(50)
-				var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( src.host.loc )
+				var/obj/item/paper/P = new /obj/item/paper( src.host.loc )
 				P.info = print_data
 				if(print_title)
 					P.name = "paper - '[print_title]'"
@@ -117,7 +117,7 @@
 
 		return
 
-/obj/item/weapon/peripheral/prize_vendor
+/obj/item/peripheral/prize_vendor
 	name = "Prize vending module"
 	desc = "An arcade prize dispenser designed to fit inside a computer casing."
 	icon_state = "power_mod"
@@ -154,7 +154,7 @@
 
 		switch(prizeselect)
 			if(1)
-				prize = new /obj/item/weapon/money( prize_location )
+				prize = new /obj/item/money( prize_location )
 				prize.name = "space ticket"
 				prize.desc = "It's almost like actual currency!"
 			if(2)
@@ -162,21 +162,21 @@
 				prize.name = "electronic blink toy game"
 				prize.desc = "Blink.  Blink.  Blink."
 			if(3)
-				prize = new /obj/item/weapon/lighter/zippo( prize_location )
+				prize = new /obj/item/lighter/zippo( prize_location )
 				prize.name = "Burno Lighter"
 				prize.desc = "Almost like a decent lighter!"
 			if(4)
-				prize = new /obj/item/weapon/c_tube( prize_location )
+				prize = new /obj/item/c_tube( prize_location )
 				prize.name = "toy sword"
 				prize.icon = 'icons/obj/weapons/weapons.dmi'
 				prize.icon_state = "sword1"
 				prize.desc = "A sword made of cheap plastic."
 
 /*
-/obj/item/weapon/peripheral/card_scanner
+/obj/item/peripheral/card_scanner
 	name = "ID scanner module"
 	icon_state = "card_mod"
-	var/obj/item/weapon/card/id/authid = null
+	var/obj/item/card/id/authid = null
 
 	attack_self(mob/user as mob)
 		if(authid)

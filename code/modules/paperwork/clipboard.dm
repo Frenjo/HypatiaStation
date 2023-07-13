@@ -1,4 +1,4 @@
-/obj/item/weapon/clipboard
+/obj/item/clipboard
 	name = "clipboard"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "clipboard"
@@ -7,14 +7,14 @@
 	w_class = 2.0
 	throw_speed = 3
 	throw_range = 10
-	var/obj/item/weapon/pen/haspen		//The stored pen.
-	var/obj/item/weapon/toppaper	//The topmost piece of paper.
+	var/obj/item/pen/haspen		//The stored pen.
+	var/obj/item/toppaper	//The topmost piece of paper.
 	slot_flags = SLOT_BELT
 
-/obj/item/weapon/clipboard/New()
+/obj/item/clipboard/New()
 	update_icon()
 
-/obj/item/weapon/clipboard/MouseDrop(obj/over_object as obj) //Quick clipboard fix. -Agouri
+/obj/item/clipboard/MouseDrop(obj/over_object as obj) //Quick clipboard fix. -Agouri
 	if(ishuman(usr))
 		var/mob/M = usr
 		if(!(istype(over_object, /obj/screen)))
@@ -32,7 +32,7 @@
 			add_fingerprint(usr)
 			return
 
-/obj/item/weapon/clipboard/update_icon()
+/obj/item/clipboard/update_icon()
 	overlays.Cut()
 	if(toppaper)
 		overlays += toppaper.icon_state
@@ -42,11 +42,11 @@
 	overlays += "clipboard_over"
 	return
 
-/obj/item/weapon/clipboard/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/photo))
+/obj/item/clipboard/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo))
 		user.drop_item()
 		W.loc = src
-		if(istype(W, /obj/item/weapon/paper))
+		if(istype(W, /obj/item/paper))
 			toppaper = W
 		to_chat(user, SPAN_NOTICE("You clip the [W] onto \the [src]."))
 		update_icon()
@@ -55,7 +55,7 @@
 		update_icon()
 	return
 
-/obj/item/weapon/clipboard/attack_self(mob/user as mob)
+/obj/item/clipboard/attack_self(mob/user as mob)
 	var/dat = "<title>Clipboard</title>"
 	if(haspen)
 		dat += "<A href='?src=\ref[src];pen=1'>Remove Pen</A><BR><HR>"
@@ -64,14 +64,14 @@
 
 	//The topmost paper. I don't think there's any way to organise contents in byond, so this is what we're stuck with.	-Pete
 	if(toppaper)
-		var/obj/item/weapon/paper/P = toppaper
+		var/obj/item/paper/P = toppaper
 		dat += "<A href='?src=\ref[src];write=\ref[P]'>Write</A> <A href='?src=\ref[src];remove=\ref[P]'>Remove</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR><HR>"
 
-	for(var/obj/item/weapon/paper/P in src)
+	for(var/obj/item/paper/P in src)
 		if(P == toppaper)
 			continue
 		dat += "<A href='?src=\ref[src];remove=\ref[P]'>Remove</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR>"
-	for(var/obj/item/weapon/photo/Ph in src)
+	for(var/obj/item/photo/Ph in src)
 		dat += "<A href='?src=\ref[src];remove=\ref[Ph]'>Remove</A> - <A href='?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
 
 	user << browse(dat, "window=clipboard")
@@ -79,7 +79,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/item/weapon/clipboard/Topic(href, href_list)
+/obj/item/clipboard/Topic(href, href_list)
 	..()
 	if((usr.stat || usr.restrained()))
 		return
@@ -93,8 +93,8 @@
 
 		if(href_list["addpen"])
 			if(!haspen)
-				if(istype(usr.get_active_hand(), /obj/item/weapon/pen))
-					var/obj/item/weapon/pen/W = usr.get_active_hand()
+				if(istype(usr.get_active_hand(), /obj/item/pen))
+					var/obj/item/pen/W = usr.get_active_hand()
 					usr.drop_item()
 					W.loc = src
 					haspen = W
@@ -113,14 +113,14 @@
 				usr.put_in_hands(P)
 				if(P == toppaper)
 					toppaper = null
-					var/obj/item/weapon/paper/newtop = locate(/obj/item/weapon/paper) in src
+					var/obj/item/paper/newtop = locate(/obj/item/paper) in src
 					if(newtop && (newtop != P))
 						toppaper = newtop
 					else
 						toppaper = null
 
 		if(href_list["read"])
-			var/obj/item/weapon/paper/P = locate(href_list["read"])
+			var/obj/item/paper/P = locate(href_list["read"])
 			if(P)
 				if(!(ishuman(usr) || isobserver(usr) || issilicon(usr)))
 					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
@@ -130,7 +130,7 @@
 					onclose(usr, "[P.name]")
 
 		if(href_list["look"])
-			var/obj/item/weapon/photo/P = locate(href_list["look"])
+			var/obj/item/photo/P = locate(href_list["look"])
 			if(P)
 				P.show(usr)
 

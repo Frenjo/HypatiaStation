@@ -7,7 +7,7 @@
 	glasses = /obj/item/clothing/glasses/eyepatch
 	shoes = /obj/item/clothing/shoes/brown
 
-	r_hand = /obj/item/weapon/melee/energy/sword/pirate
+	r_hand = /obj/item/melee/energy/sword/pirate
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 

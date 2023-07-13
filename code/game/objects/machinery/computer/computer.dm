@@ -7,7 +7,7 @@
 	idle_power_usage = 300
 	active_power_usage = 300
 
-	var/obj/item/weapon/circuitboard/circuit = null //if circuit==null, computer can't disassembly
+	var/obj/item/circuitboard/circuit = null //if circuit==null, computer can't disassembly
 	var/processing = 0
 
 	var/light_range_on = 3
@@ -101,18 +101,18 @@
 
 
 /obj/machinery/computer/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver) && circuit)
+	if(istype(I, /obj/item/screwdriver) && circuit)
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-			var/obj/item/weapon/circuitboard/M = new circuit(A)
+			var/obj/item/circuitboard/M = new circuit(A)
 			A.circuit = M
 			A.anchored = TRUE
 			for(var/obj/C in src)
 				C.loc = src.loc
 			if(src.stat & BROKEN)
 				FEEDBACK_BROKEN_GLASS_FALLS(user)
-				new /obj/item/weapon/shard(src.loc)
+				new /obj/item/shard(src.loc)
 				A.state = 3
 				A.icon_state = "3"
 			else

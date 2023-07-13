@@ -27,7 +27,7 @@
 	var/obj/item/stack/sheet/wood/cyborg/stack_wood = null
 	var/obj/item/stack/sheet/glass/cyborg/stack_glass = null
 	var/obj/item/stack/sheet/mineral/plastic/cyborg/stack_plastic = null
-	var/obj/item/weapon/matter_decompiler/decompiler = null
+	var/obj/item/matter_decompiler/decompiler = null
 
 	//Used for self-mailing.
 	var/mail_destination = 0
@@ -55,7 +55,7 @@
 		C.max_damage = 10
 
 	verbs -= /mob/living/silicon/robot/verb/Namepick
-	module = new /obj/item/weapon/robot_module/drone(src)
+	module = new /obj/item/robot_module/drone(src)
 
 	//Grab stacks.
 	stack_metal = locate(/obj/item/stack/sheet/metal/cyborg) in src.module
@@ -64,7 +64,7 @@
 	stack_plastic = locate(/obj/item/stack/sheet/mineral/plastic/cyborg) in src.module
 
 	//Grab decompiler.
-	decompiler = locate(/obj/item/weapon/matter_decompiler) in src.module
+	decompiler = locate(/obj/item/matter_decompiler) in src.module
 
 	//Some tidying-up.
 	flavor_text = "It's a tiny little repair drone. The casing is stamped with an NT log and the subscript: 'NanoTrasen Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
@@ -104,17 +104,17 @@
 		stat(null, text("Systems nonfunctional"))
 
 //Drones cannot be upgraded with borg modules so we need to catch some items before they get used in ..().
-/mob/living/silicon/robot/drone/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/mob/living/silicon/robot/drone/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(istype(W, /obj/item/borg/upgrade))
 		user << "\red The maintenance drone chassis not compatible with \the [W]."
 		return
 
-	else if(istype(W, /obj/item/weapon/crowbar))
+	else if(istype(W, /obj/item/crowbar))
 		user << "The machine is hermetically sealed. You can't open the case."
 		return
 
-	else if(istype(W, /obj/item/weapon/card/emag))
+	else if(istype(W, /obj/item/card/emag))
 		if(!client || stat == DEAD)
 			user << "\red There's not much point subverting this heap of junk."
 			return
@@ -127,7 +127,7 @@
 		user << "\red You swipe the sequencer across [src]'s interface and watch its eyes flicker."
 		src << "\red You feel a sudden burst of malware loaded into your execute-as-root buffer. Your tiny brain methodically parses, loads and executes the script."
 
-		var/obj/item/weapon/card/emag/emag = W
+		var/obj/item/card/emag/emag = W
 		emag.uses--
 
 		message_admins("[key_name_admin(user)] emagged drone [key_name_admin(src)].  Laws overridden.")
@@ -148,7 +148,7 @@
 		src << "\red \b ALERT: [user.real_name] is your new master. Obey your new laws and his commands."
 		return
 
-	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
 		if(stat == DEAD)
 			user << "\red You swipe your ID card through [src], attempting to reboot it."
 			if(!CONFIG_GET(allow_drone_spawn) || emagged || health < -35) //It's dead, Dave.
@@ -201,7 +201,7 @@
 /mob/living/silicon/robot/drone/death(gibbed)
 
 	if(module)
-		var/obj/item/weapon/gripper/G = locate(/obj/item/weapon/gripper) in module
+		var/obj/item/gripper/G = locate(/obj/item/gripper) in module
 		if(G)
 			G.drop_item()
 

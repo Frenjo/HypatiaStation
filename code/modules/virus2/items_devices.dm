@@ -26,7 +26,7 @@
 
 ///////////////VIRUS DISH///////////////
 
-/obj/item/weapon/virusdish
+/obj/item/virusdish
 	name = "Virus containment/growth dish"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-b"
@@ -37,17 +37,17 @@
 
 	reagents = list()
 
-/obj/item/weapon/virusdish/random
+/obj/item/virusdish/random
 	name = "Virus Sample"
 
-/obj/item/weapon/virusdish/random/New()
+/obj/item/virusdish/random/New()
 	..()
 	src.virus2 = new /datum/disease2/disease
 	src.virus2.makerandom()
 	growth = rand(5, 50)
 
-/obj/item/weapon/virusdish/attackby(var/obj/item/weapon/W as obj,var/mob/living/carbon/user as mob)
-	if(istype(W,/obj/item/weapon/hand_labeler) || istype(W,/obj/item/weapon/reagent_containers/syringe))
+/obj/item/virusdish/attackby(var/obj/item/W as obj,var/mob/living/carbon/user as mob)
+	if(istype(W,/obj/item/hand_labeler) || istype(W,/obj/item/reagent_containers/syringe))
 		return
 	..()
 	if(prob(50))
@@ -59,7 +59,7 @@
 						infect_virus2(target,src.virus2)
 		qdel(src)
 
-/obj/item/weapon/virusdish/examine()
+/obj/item/virusdish/examine()
 	usr << "This is a virus containment dish"
 	if(src.info)
 		usr << "It has the following information about its contents"
@@ -67,14 +67,14 @@
 
 ///////////////GNA DISK///////////////
 
-/obj/item/weapon/diseasedisk
+/obj/item/diseasedisk
 	name = "Blank GNA disk"
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk0"
 	var/datum/disease2/effectholder/effect = null
 	var/stage = 1
 
-/obj/item/weapon/diseasedisk/premade/New()
+/obj/item/diseasedisk/premade/New()
 	name = "Blank GNA disk (stage: [5-stage])"
 	effect = new /datum/disease2/effectholder
 	effect.effect = new /datum/disease2/effect/invisible

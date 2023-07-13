@@ -21,7 +21,7 @@
 				qdel(src)
 	return
 
-/obj/effect/spider/attackby(obj/item/weapon/W, mob/user)
+/obj/effect/spider/attackby(obj/item/W, mob/user)
 	if(length(W.attack_verb))
 		visible_message(SPAN_DANGER("\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]" : "")]."))
 	else
@@ -29,8 +29,8 @@
 
 	var/damage = W.force / 4.0
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))
 			damage = 15

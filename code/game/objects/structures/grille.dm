@@ -95,7 +95,7 @@
 	healthcheck()
 	return 0
 
-/obj/structure/grille/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/grille/attackby(obj/item/W as obj, mob/user as mob)
 	if(iswirecutter(W))
 		if(!shock(user, 100))
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
@@ -157,7 +157,7 @@
 		return
 //window placing end
 
-	else if(istype(W, /obj/item/weapon/shard))
+	else if(istype(W, /obj/item/shard))
 		health -= W.force * 0.1
 	else if(!shock(user, 70))
 		playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)

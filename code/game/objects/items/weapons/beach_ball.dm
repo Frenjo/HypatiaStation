@@ -1,4 +1,4 @@
-/obj/item/weapon/beach_ball
+/obj/item/beach_ball
 	name = "beach ball"
 	icon = 'icons/misc/beach.dmi'
 	icon_state = "ball"
@@ -12,6 +12,6 @@
 	throw_range = 20
 	flags = CONDUCT
 	
-/obj/item/weapon/beach_ball/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
+/obj/item/beach_ball/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
 	user.drop_item()
 	src.throw_at(target, throw_range, throw_speed)

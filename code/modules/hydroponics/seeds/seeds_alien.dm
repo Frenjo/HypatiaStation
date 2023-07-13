@@ -8,7 +8,7 @@
 	mypath = /obj/item/seeds/shandseed
 	species = "shand"
 	plantname = "S'Rendarr's Hand"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/shand
+	productname = /obj/item/reagent_containers/food/snacks/grown/shand
 	lifespan = 50
 	endurance = 25
 	maturation = 3
@@ -28,7 +28,7 @@
 	mypath = /obj/item/seeds/mtearseed
 	species = "mtear"
 	plantname = "Messa's Tear"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/mtear
+	productname = /obj/item/reagent_containers/food/snacks/grown/mtear
 	lifespan = 50
 	endurance = 25
 	maturation = 3

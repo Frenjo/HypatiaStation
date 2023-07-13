@@ -71,9 +71,9 @@
 		sound = 1
 		iconholder = 1
 	else
-		var/obj/item/weapon/gun/energy/E = installation	//All energy-based weapons are applicable
+		var/obj/item/gun/energy/E = installation	//All energy-based weapons are applicable
 		switch(E.type)
-			if(/obj/item/weapon/gun/energy/laser/bluetag)
+			if(/obj/item/gun/energy/laser/bluetag)
 				projectile = /obj/item/projectile/energy/beam/laser/tag/blue
 				eprojectile = /obj/item/projectile/energy/beam/laser/tag/omni//This bolt will stun ERRYONE with a vest
 				iconholder = null
@@ -87,7 +87,7 @@
 				check_anomalies = 0
 				shot_delay = 30
 
-			if(/obj/item/weapon/gun/energy/laser/redtag)
+			if(/obj/item/gun/energy/laser/redtag)
 				projectile = /obj/item/projectile/energy/beam/laser/tag/red
 				eprojectile = /obj/item/projectile/energy/beam/laser/tag/omni
 				iconholder = null
@@ -101,67 +101,67 @@
 				check_anomalies = 0
 				shot_delay = 30
 
-			if(/obj/item/weapon/gun/energy/laser/practice)
+			if(/obj/item/gun/energy/laser/practice)
 				projectile = /obj/item/projectile/energy/beam/laser/practice
 				eprojectile = /obj/item/projectile/energy/beam/laser
 				iconholder = null
 				reqpower = 100
 
-			if(/obj/item/weapon/gun/energy/pulse_rifle)
+			if(/obj/item/gun/energy/pulse_rifle)
 				projectile = /obj/item/projectile/energy/beam/pulse
 				eprojectile = projectile
 				iconholder = null
 				reqpower = 700
 
-			if(/obj/item/weapon/gun/energy/staff)
+			if(/obj/item/gun/energy/staff)
 				projectile = /obj/item/projectile/change
 				eprojectile = projectile
 				iconholder = 1
 				reqpower = 700
 
-			if(/obj/item/weapon/gun/energy/ionrifle)
+			if(/obj/item/gun/energy/ionrifle)
 				projectile = /obj/item/projectile/ion
 				eprojectile = projectile
 				iconholder = 1
 				reqpower = 700
 
-			if(/obj/item/weapon/gun/energy/taser)
+			if(/obj/item/gun/energy/taser)
 				projectile = /obj/item/projectile/energy/electrode
 				eprojectile = projectile
 				iconholder = 1
 				reqpower = 200
 
-			if(/obj/item/weapon/gun/energy/stunrevolver)
+			if(/obj/item/gun/energy/stunrevolver)
 				projectile = /obj/item/projectile/energy/electrode
 				eprojectile = projectile
 				iconholder = 1
 				reqpower = 200
 
-			if(/obj/item/weapon/gun/energy/lasercannon)
+			if(/obj/item/gun/energy/lasercannon)
 				projectile = /obj/item/projectile/energy/beam/laser/heavy
 				eprojectile = projectile
 				iconholder = null
 				reqpower = 600
 
-			if(/obj/item/weapon/gun/energy/decloner)
+			if(/obj/item/gun/energy/decloner)
 				projectile = /obj/item/projectile/energy/declone
 				eprojectile = projectile
 				iconholder = null
 				reqpower = 600
 
-			if(/obj/item/weapon/gun/energy/crossbow/largecrossbow)
+			if(/obj/item/gun/energy/crossbow/largecrossbow)
 				projectile = /obj/item/projectile/energy/bolt/large
 				eprojectile = projectile
 				iconholder = null
 				reqpower = 125
 
-			if(/obj/item/weapon/gun/energy/crossbow)
+			if(/obj/item/gun/energy/crossbow)
 				projectile = /obj/item/projectile/energy/bolt
 				eprojectile = projectile
 				iconholder = null
 				reqpower = 50
 
-			if(/obj/item/weapon/gun/energy/laser)
+			if(/obj/item/gun/energy/laser)
 				projectile = /obj/item/projectile/energy/beam/laser
 				eprojectile = projectile
 				iconholder = null
@@ -264,7 +264,7 @@ Status: []<BR>"},
 	else
 		if( powered() )
 			if (on)
-				if (installation == /obj/item/weapon/gun/energy/laser || installation == /obj/item/weapon/gun/energy/pulse_rifle)
+				if (installation == /obj/item/gun/energy/laser || installation == /obj/item/gun/energy/pulse_rifle)
 					// laser guns and pulse rifles have an orange icon
 					icon_state = "[lasercolor]orange_target_prism"
 				else
@@ -280,7 +280,7 @@ Status: []<BR>"},
 
 /obj/machinery/porta_turret/attackby(obj/item/W as obj, mob/user as mob)
 	if(stat & BROKEN)
-		if(istype(W, /obj/item/weapon/crowbar))
+		if(istype(W, /obj/item/crowbar))
 
 			// If the turret is destroyed, you can remove it with a crowbar to
 			// try and salvage its components
@@ -289,7 +289,7 @@ Status: []<BR>"},
 			if(prob(70))
 				user << "You remove the turret and salvage some components."
 				if(installation)
-					var/obj/item/weapon/gun/energy/Gun = new installation(src.loc)
+					var/obj/item/gun/energy/Gun = new installation(src.loc)
 					Gun.power_supply.charge=gun_charge
 					Gun.update_icon()
 					lasercolor = null
@@ -300,7 +300,7 @@ Status: []<BR>"},
 			qdel(src)
 
 
-	if((istype(W, /obj/item/weapon/card/emag)) && (!src.emagged))
+	if((istype(W, /obj/item/card/emag)) && (!src.emagged))
 		// Emagging the turret makes it go bonkers and stun everyone. It also makes
 		// the turret shoot much, much faster.
 
@@ -313,7 +313,7 @@ Status: []<BR>"},
 		sleep(60) // 6 seconds for the traitor to gtfo of the area before the turret decides to ruin his shit
 		on = 1 // turns it back on. The cover popUp() popDown() are automatically called in process(), no need to define it here
 
-	else if((istype(W, /obj/item/weapon/wrench)) && (!on))
+	else if((istype(W, /obj/item/wrench)) && (!on))
 		if(raised) return
 		// This code handles moving the turret around. After all, it's a portable turret!
 
@@ -331,7 +331,7 @@ Status: []<BR>"},
 			invisibility = 0
 			qdel(cover) // deletes the cover, and the turret instance itself becomes its own cover.
 
-	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
 		// Behavior lock/unlock mangement
 		if (allowed(user))
 			locked = !src.locked
@@ -549,36 +549,36 @@ Status: []<BR>"},
 			return 10
 
 	if(auth_weapons) // check for weapon authorisation
-		if((isnull(perp.wear_id)) || (istype(perp.wear_id.get_id(), /obj/item/weapon/card/id/syndicate)))
+		if((isnull(perp.wear_id)) || (istype(perp.wear_id.get_id(), /obj/item/card/id/syndicate)))
 
 			if((src.allowed(perp)) && !(src.lasercolor)) // if the perp has security access, return 0
 				return 0
 
-			if((istype(perp.l_hand, /obj/item/weapon/gun) && !istype(perp.l_hand, /obj/item/weapon/gun/projectile/shotgun)) || istype(perp.l_hand, /obj/item/weapon/melee/baton))
+			if((istype(perp.l_hand, /obj/item/gun) && !istype(perp.l_hand, /obj/item/gun/projectile/shotgun)) || istype(perp.l_hand, /obj/item/melee/baton))
 				threatcount += 4
 
-			if((istype(perp.r_hand, /obj/item/weapon/gun) && !istype(perp.r_hand, /obj/item/weapon/gun/projectile/shotgun)) || istype(perp.r_hand, /obj/item/weapon/melee/baton))
+			if((istype(perp.r_hand, /obj/item/gun) && !istype(perp.r_hand, /obj/item/gun/projectile/shotgun)) || istype(perp.r_hand, /obj/item/melee/baton))
 				threatcount += 4
 
-			if(istype(perp.belt, /obj/item/weapon/gun) || istype(perp.belt, /obj/item/weapon/melee/baton))
+			if(istype(perp.belt, /obj/item/gun) || istype(perp.belt, /obj/item/melee/baton))
 				threatcount += 2
 
 	if((src.lasercolor) == "b")//Lasertag turrets target the opposing team, how great is that? -Sieve
 		threatcount = 0//But does not target anyone else
 		if(istype(perp.wear_suit, /obj/item/clothing/suit/redtag))
 			threatcount += 4
-		if((istype(perp.r_hand,/obj/item/weapon/gun/energy/laser/redtag)) || (istype(perp.l_hand,/obj/item/weapon/gun/energy/laser/redtag)))
+		if((istype(perp.r_hand,/obj/item/gun/energy/laser/redtag)) || (istype(perp.l_hand,/obj/item/gun/energy/laser/redtag)))
 			threatcount += 4
-		if(istype(perp.belt, /obj/item/weapon/gun/energy/laser/redtag))
+		if(istype(perp.belt, /obj/item/gun/energy/laser/redtag))
 			threatcount += 2
 
 	if((src.lasercolor) == "r")
 		threatcount = 0
 		if(istype(perp.wear_suit, /obj/item/clothing/suit/bluetag))
 			threatcount += 4
-		if((istype(perp.r_hand,/obj/item/weapon/gun/energy/laser/bluetag)) || (istype(perp.l_hand,/obj/item/weapon/gun/energy/laser/bluetag)))
+		if((istype(perp.r_hand,/obj/item/gun/energy/laser/bluetag)) || (istype(perp.l_hand,/obj/item/gun/energy/laser/bluetag)))
 			threatcount += 4
-		if(istype(perp.belt, /obj/item/weapon/gun/energy/laser/bluetag))
+		if(istype(perp.belt, /obj/item/gun/energy/laser/bluetag))
 			threatcount += 2
 
 	if (src.check_records) // if the turret can check the records, check if they are set to *Arrest* on records
@@ -586,7 +586,7 @@ Status: []<BR>"},
 
 			var/perpname = perp.name
 			if(isnotnull(perp.wear_id))
-				var/obj/item/weapon/card/id/id = perp.wear_id.get_id()
+				var/obj/item/card/id/id = perp.wear_id.get_id()
 				if(isnotnull(id))
 					perpname = id.registered_name
 
@@ -682,14 +682,14 @@ Status: []<BR>"},
 	// this is a bit unweildy but self-explanitory
 	switch(build_step)
 		if(0) // first step
-			if(istype(W, /obj/item/weapon/wrench) && !anchored)
+			if(istype(W, /obj/item/wrench) && !anchored)
 				playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 				user << "\blue You secure the external bolts."
 				anchored = TRUE
 				build_step = 1
 				return
 
-			else if(istype(W, /obj/item/weapon/crowbar) && !anchored)
+			else if(istype(W, /obj/item/crowbar) && !anchored)
 				playsound(src, 'sound/items/Crowbar.ogg', 75, 1)
 				user << "You dismantle the turret construction."
 				new /obj/item/stack/sheet/metal( loc, 5)
@@ -707,7 +707,7 @@ Status: []<BR>"},
 						qdel(W)
 					return
 
-			else if(istype(W, /obj/item/weapon/wrench))
+			else if(istype(W, /obj/item/wrench))
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				user << "You unfasten the external bolts."
 				anchored = FALSE
@@ -716,14 +716,14 @@ Status: []<BR>"},
 
 
 		if(2)
-			if(istype(W, /obj/item/weapon/wrench))
+			if(istype(W, /obj/item/wrench))
 				playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 				user << "\blue You bolt the metal armor into place."
 				build_step = 3
 				return
 
-			else if(istype(W, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = W
+			else if(istype(W, /obj/item/weldingtool))
+				var/obj/item/weldingtool/WT = W
 				if(!WT.isOn()) return
 				if (WT.get_fuel() < 5) // uses up 5 fuel.
 					user << "\red You need more fuel to complete this task."
@@ -739,9 +739,9 @@ Status: []<BR>"},
 
 
 		if(3)
-			if(istype(W, /obj/item/weapon/gun/energy)) // the gun installation part
+			if(istype(W, /obj/item/gun/energy)) // the gun installation part
 
-				var/obj/item/weapon/gun/energy/E = W // typecasts the item to an energy gun
+				var/obj/item/gun/energy/E = W // typecasts the item to an energy gun
 				installation = W.type // installation becomes W.type
 				gun_charge = E.power_supply.charge // the gun's charge is stored in src.gun_charge
 				user << "\blue You add \the [W] to the turret."
@@ -749,7 +749,7 @@ Status: []<BR>"},
 				qdel(W) // delete the gun :(
 				return
 
-			else if(istype(W, /obj/item/weapon/wrench))
+			else if(istype(W, /obj/item/wrench))
 				playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 				user << "You remove the turret's metal armor bolts."
 				build_step = 2
@@ -765,7 +765,7 @@ Status: []<BR>"},
 			// attack_hand() removes the gun
 
 		if(5)
-			if(istype(W, /obj/item/weapon/screwdriver))
+			if(istype(W, /obj/item/screwdriver))
 				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 				build_step = 6
 				user << "\blue You close the internal access hatch."
@@ -783,15 +783,15 @@ Status: []<BR>"},
 						qdel(W)
 					return
 
-			else if(istype(W, /obj/item/weapon/screwdriver))
+			else if(istype(W, /obj/item/screwdriver))
 				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 				build_step = 5
 				user << "You open the internal access hatch."
 				return
 
 		if(7)
-			if(istype(W, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = W
+			if(istype(W, /obj/item/weldingtool))
+				var/obj/item/weldingtool/WT = W
 				if(!WT.isOn()) return
 				if (WT.get_fuel() < 5)
 					user << "\red You need more fuel to complete this task."
@@ -814,14 +814,14 @@ Status: []<BR>"},
 					Turret.New()
 					qdel(src)
 
-			else if(istype(W, /obj/item/weapon/crowbar))
+			else if(istype(W, /obj/item/crowbar))
 				playsound(src, 'sound/items/Crowbar.ogg', 75, 1)
 				user << "You pry off the turret's exterior armor."
 				new /obj/item/stack/sheet/metal( loc, 2)
 				build_step = 6
 				return
 
-	if (istype(W, /obj/item/weapon/pen)) // you can rename turrets like bots!
+	if (istype(W, /obj/item/pen)) // you can rename turrets like bots!
 		var/t = input(user, "Enter new turret name", src.name, src.finish_name) as text
 		t = copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
 		if (!t)
@@ -841,7 +841,7 @@ Status: []<BR>"},
 			if(!installation) return
 			build_step = 3
 
-			var/obj/item/weapon/gun/energy/Gun = new installation(src.loc)
+			var/obj/item/gun/energy/Gun = new installation(src.loc)
 			Gun.power_supply.charge=gun_charge
 			Gun.update_icon()
 			installation = null
@@ -987,7 +987,7 @@ Status: []<BR>"},
 
 /obj/machinery/porta_turret_cover/attackby(obj/item/W as obj, mob/user as mob)
 
-	if ((istype(W, /obj/item/weapon/card/emag)) && (!Parent_Turret.emagged))
+	if ((istype(W, /obj/item/card/emag)) && (!Parent_Turret.emagged))
 		user << "\red You short out [Parent_Turret]'s threat assessment circuits."
 		spawn(0)
 			for(var/mob/O in hearers(Parent_Turret, null))
@@ -997,7 +997,7 @@ Status: []<BR>"},
 		sleep(40)
 		Parent_Turret.on = 1
 
-	else if((istype(W, /obj/item/weapon/wrench)) && (!Parent_Turret.on))
+	else if((istype(W, /obj/item/wrench)) && (!Parent_Turret.on))
 		if(Parent_Turret.raised) return
 
 		if(!Parent_Turret.anchored)
@@ -1012,7 +1012,7 @@ Status: []<BR>"},
 			Parent_Turret.invisibility = 0
 			qdel(src)
 
-	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
 		if (Parent_Turret.allowed(user))
 			Parent_Turret.locked = !Parent_Turret.locked
 			user << "Controls are now [Parent_Turret.locked ? "locked." : "unlocked."]"
@@ -1037,5 +1037,5 @@ Status: []<BR>"},
 	emagged = 1
 
 /obj/machinery/porta_turret/stationary/New()
-	installation = new/obj/item/weapon/gun/energy/laser(src.loc)
+	installation = new/obj/item/gun/energy/laser(src.loc)
 	..()

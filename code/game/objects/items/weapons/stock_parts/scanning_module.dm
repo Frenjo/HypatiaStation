@@ -1,5 +1,5 @@
 // Rating 1
-/obj/item/weapon/stock_part/scanning_module
+/obj/item/stock_part/scanning_module
 	name = "scanning module"
 	desc = "A compact, high resolution scanning module used in the construction of certain devices."
 	icon_state = "scan_module"
@@ -7,7 +7,7 @@
 	matter_amounts = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20)
 
 // Rating 2
-/obj/item/weapon/stock_part/scanning_module/adv
+/obj/item/stock_part/scanning_module/adv
 	name = "advanced scanning module"
 	desc = "A compact, high resolution scanning module used in the construction of certain devices."
 	icon_state = "adv_scan_module"
@@ -15,7 +15,7 @@
 	rating = 2
 
 // Rating 3
-/obj/item/weapon/stock_part/scanning_module/phasic
+/obj/item/stock_part/scanning_module/phasic
 	name = "phasic scanning module"
 	desc = "A compact, high resolution phasic scanning module used in the construction of certain devices."
 	icon_state = "phasic_scan_module"
@@ -23,7 +23,7 @@
 	rating = 3
 
 // Rating 4
-/obj/item/weapon/stock_part/scanning_module/hyperphasic
+/obj/item/stock_part/scanning_module/hyperphasic
 	name = "hyper-phasic scanning module"
 	desc = "A compact, high resolution hyper-phasic scanning module used in the construction of certain devices."
 	icon_state = "hyper_phasic_scan_module"

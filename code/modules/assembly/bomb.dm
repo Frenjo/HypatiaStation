@@ -10,7 +10,7 @@
 
 	var/status = 0   //0 - not readied //1 - bomb finished with welder
 	var/obj/item/device/assembly_holder/bombassembly = null   //The first part of the bomb is an assembly holder, holding an igniter+some device
-	var/obj/item/weapon/tank/bombtank = null //the second part of the bomb is a plasma tank
+	var/obj/item/tank/bombtank = null //the second part of the bomb is a plasma tank
 
 /obj/item/device/onetankbomb/examine()
 	..()
@@ -24,12 +24,12 @@
 		overlays += bombassembly.overlays
 		overlays += "bomb_assembly"
 
-/obj/item/device/onetankbomb/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/device/onetankbomb/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/analyzer))
 		bombtank.attackby(W, user)
 		return
 
-	if(istype(W, /obj/item/weapon/wrench) && !status)	//This is basically bomb assembly code inverted. apparently it works.
+	if(istype(W, /obj/item/wrench) && !status)	//This is basically bomb assembly code inverted. apparently it works.
 		to_chat(user, SPAN_NOTICE("You disassemble [src]."))
 
 		bombassembly.loc = user.loc
@@ -43,7 +43,7 @@
 		qdel(src)
 		return
 
-	if((istype(W, /obj/item/weapon/weldingtool) && W:welding))
+	if((istype(W, /obj/item/weldingtool) && W:welding))
 		if(!status)
 			status = 1
 			GLOBL.bombers += "[key_name(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]"
@@ -77,7 +77,7 @@
 
 // ---------- Procs below are for tanks that are used exclusively in 1-tank bombs ----------
 
-/obj/item/weapon/tank/proc/bomb_assemble(W, user)	//Bomb assembly proc. This turns assembly+tank into a bomb
+/obj/item/tank/proc/bomb_assemble(W, user)	//Bomb assembly proc. This turns assembly+tank into a bomb
 	var/obj/item/device/assembly_holder/S = W
 	var/mob/M = user
 
@@ -102,7 +102,7 @@
 	R.update_icon()
 	return
 
-/obj/item/weapon/tank/proc/ignite()	//This happens when a bomb is told to explode
+/obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
 	var/fuel_moles = air_contents.gas[/decl/xgm_gas/plasma] + air_contents.gas[/decl/xgm_gas/oxygen] / 6
 	var/strength = 1
 
@@ -150,7 +150,7 @@
 		qdel(master)
 	qdel(src)
 
-/obj/item/weapon/tank/proc/release()	//This happens when the bomb is not welded. Tank contents are just spat out.
+/obj/item/tank/proc/release()	//This happens when the bomb is not welded. Tank contents are just spat out.
 	var/datum/gas_mixture/removed = air_contents.remove(air_contents.total_moles)
 	var/turf/simulated/T = get_turf(src)
 	if(!T)

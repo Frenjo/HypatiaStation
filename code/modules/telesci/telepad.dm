@@ -21,8 +21,8 @@
 	active_power_usage = 500
 	var/stage = 0
 
-/obj/machinery/telepad_cargo/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+/obj/machinery/telepad_cargo/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/wrench))
 		anchored = FALSE
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		if(anchored)
@@ -31,7 +31,7 @@
 		else if(!anchored)
 			anchored = TRUE
 			to_chat(user, SPAN_CAUTION("The [src] is now secured."))
-	if(istype(W, /obj/item/weapon/screwdriver))
+	if(istype(W, /obj/item/screwdriver))
 		if(stage == 0)
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			to_chat(user, SPAN_CAUTION("You unscrew the telepad's tracking beacon."))
@@ -40,7 +40,7 @@
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			to_chat(user, SPAN_CAUTION("You screw in the telepad's tracking beacon."))
 			stage = 0
-	if(istype(W, /obj/item/weapon/weldingtool) && stage == 1)
+	if(istype(W, /obj/item/weldingtool) && stage == 1)
 		playsound(src, 'sound/items/Welder.ogg', 50, 1)
 		to_chat(user, SPAN_CAUTION("You disassemble the telepad."))
 		new /obj/item/stack/sheet/metal(get_turf(src))
@@ -65,7 +65,7 @@
 	return
 
 ///HANDHELD TELEPAD USER///
-/obj/item/weapon/rcs
+/obj/item/rcs
 	name = "rapid-crate-sender (RCS)"
 	desc = "Use this to send crates and closets to cargo telepads."
 	icon = 'icons/obj/telescience.dmi'
@@ -84,19 +84,19 @@
 	var/emagged = 0
 	var/teleporting = 0
 
-/obj/item/weapon/rcs/New()
+/obj/item/rcs/New()
 	..()
 	GLOBL.processing_objects.Add(src)
 
-/obj/item/weapon/rcs/examine()
+/obj/item/rcs/examine()
 	desc = "Use this to send crates and closets to cargo telepads. There are [rcharges] charges left."
 	..()
 
-/obj/item/weapon/rcs/Destroy()
+/obj/item/rcs/Destroy()
 	GLOBL.processing_objects.Remove(src)
 	return ..()
 
-/obj/item/weapon/rcs/process()
+/obj/item/rcs/process()
 	if(rcharges > 10)
 		rcharges = 10
 	if(last_charge == 0)
@@ -105,7 +105,7 @@
 	else
 		last_charge--
 
-/obj/item/weapon/rcs/attack_self(mob/user)
+/obj/item/rcs/attack_self(mob/user)
 	if(emagged)
 		if(mode == 0)
 			mode = 1
@@ -116,8 +116,8 @@
 			playsound(src, 'sound/effects/pop.ogg', 50, 0)
 			to_chat(user, SPAN_CAUTION("You calibrate the telepad locator."))
 
-/obj/item/weapon/rcs/attackby(obj/item/W, mob/user)
-	if(istype(W,  /obj/item/weapon/card/emag) && emagged == 0)
+/obj/item/rcs/attackby(obj/item/W, mob/user)
+	if(istype(W,  /obj/item/card/emag) && emagged == 0)
 		emagged = 1
 		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 		s.set_up(5, 1, src)

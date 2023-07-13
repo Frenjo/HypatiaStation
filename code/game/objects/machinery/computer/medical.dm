@@ -5,8 +5,8 @@
 	desc = "This can be used to check medical records."
 	icon_state = "medcomp"
 	req_one_access = list(ACCESS_MEDICAL, ACCESS_FORENSICS_LOCKERS)
-	circuit = /obj/item/weapon/circuitboard/med_data
-	var/obj/item/weapon/card/id/scan = null
+	circuit = /obj/item/circuitboard/med_data
+	var/obj/item/card/id/scan = null
 	var/authenticated = null
 	var/rank = null
 	var/screen = null
@@ -159,7 +159,7 @@
 
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/card/id))
+				if(istype(I, /obj/item/card/id))
 					usr.drop_item()
 					I.loc = src
 					src.scan = I
@@ -187,7 +187,7 @@
 				src.rank = "[R.modtype] [R.braintype]"
 				src.screen = 1
 
-			else if(istype(src.scan, /obj/item/weapon/card/id))
+			else if(istype(src.scan, /obj/item/card/id))
 				src.active1 = null
 				src.active2 = null
 
@@ -466,7 +466,7 @@
 				if (!( src.printing ))
 					src.printing = 1
 					sleep(50)
-					var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( src.loc )
+					var/obj/item/paper/P = new /obj/item/paper( src.loc )
 					P.info = "<CENTER><B>Medical Record</B></CENTER><BR>"
 					if(istype(src.active1, /datum/data/record) && GLOBL.data_core.general.Find(src.active1))
 						P.info += text("Name: [] ID: []<BR>\nSex: []<BR>\nAge: []<BR>\nFingerprint: []<BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", src.active1.fields["name"], src.active1.fields["id"], src.active1.fields["sex"], src.active1.fields["age"], src.active1.fields["fingerprint"], src.active1.fields["p_stat"], src.active1.fields["m_stat"])

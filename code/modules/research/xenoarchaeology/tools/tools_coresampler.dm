@@ -1,23 +1,23 @@
 //device to take core samples from mineral turfs - used for various types of analysis
 
-// Should really refactor /obj/item/weapon/evidencebag...
-// ... into /obj/item/weapon/bag/evidence and /obj/item/weapon/bag/sample.
-/obj/item/weapon/evidencebag/sample
+// Should really refactor /obj/item/evidencebag...
+// ... into /obj/item/bag/evidence and /obj/item/bag/sample.
+/obj/item/evidencebag/sample
 	name = "sample bag"
 	desc = "a bag for holding research samples."
 
-/obj/item/weapon/storage/box/samplebags
+/obj/item/storage/box/samplebags
 	name = "sample bag box"
 	desc = "A box claiming to contain sample bags."
 
 	starts_with = list(
-		/obj/item/weapon/evidencebag/sample,
-		/obj/item/weapon/evidencebag/sample,
-		/obj/item/weapon/evidencebag/sample,
-		/obj/item/weapon/evidencebag/sample,
-		/obj/item/weapon/evidencebag/sample,
-		/obj/item/weapon/evidencebag/sample,
-		/obj/item/weapon/evidencebag/sample
+		/obj/item/evidencebag/sample,
+		/obj/item/evidencebag/sample,
+		/obj/item/evidencebag/sample,
+		/obj/item/evidencebag/sample,
+		/obj/item/evidencebag/sample,
+		/obj/item/evidencebag/sample,
+		/obj/item/evidencebag/sample
 	)
 
 //////////////////////////////////////////////////////////////////
@@ -31,7 +31,7 @@
 
 	var/sampled_turf = ""
 	var/num_stored_bags = 10
-	var/obj/item/weapon/evidencebag/sample/filled_bag
+	var/obj/item/evidencebag/sample/filled_bag
 
 /obj/item/device/core_sampler/examine()
 	set src in orange(1)
@@ -43,8 +43,8 @@
 	else
 		return ..()
 
-/obj/item/device/core_sampler/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/evidencebag/sample))
+/obj/item/device/core_sampler/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/evidencebag/sample))
 		if(num_stored_bags < 10)
 			qdel(W)
 			num_stored_bags++
@@ -60,8 +60,8 @@
 		var/turf/simulated/mineral/T = item_to_sample
 		T.geologic_data.UpdateNearbyArtifactInfo(T)
 		geo_data = T.geologic_data
-	else if(istype(item_to_sample, /obj/item/weapon/ore))
-		var/obj/item/weapon/ore/O = item_to_sample
+	else if(istype(item_to_sample, /obj/item/ore))
+		var/obj/item/ore/O = item_to_sample
 		geo_data = O.geologic_data
 
 	if(geo_data)
@@ -71,13 +71,13 @@
 			to_chat(user, SPAN_WARNING("The core sampler is out of sample bags!"))
 		else
 			//create a new sample bag which we'll fill with rock samples
-			filled_bag = new /obj/item/weapon/evidencebag/sample(src)
+			filled_bag = new /obj/item/evidencebag/sample(src)
 
 			icon_state = "sampler1"
 			num_stored_bags--
 
 			//put in a rock sliver
-			var/obj/item/weapon/rocksliver/R = new /obj/item/weapon/rocksliver()
+			var/obj/item/rocksliver/R = new /obj/item/rocksliver()
 			R.geological_data = geo_data
 			R.loc = filled_bag
 

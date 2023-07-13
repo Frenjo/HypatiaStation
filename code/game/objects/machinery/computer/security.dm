@@ -5,9 +5,9 @@
 	desc = "Used to view and edit personnel's security records"
 	icon_state = "security"
 	req_one_access = list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS)
-	circuit = /obj/item/weapon/circuitboard/secure_data
+	circuit = /obj/item/circuitboard/secure_data
 
-	var/obj/item/weapon/card/id/scan = null
+	var/obj/item/card/id/scan = null
 	var/authenticated = null
 	var/rank = null
 	var/screen = null
@@ -26,7 +26,7 @@
 	light_color = "#a91515"
 
 /obj/machinery/computer/secure_data/attackby(obj/item/O as obj, user as mob)
-	if(istype(O, /obj/item/weapon/card/id) && !scan)
+	if(istype(O, /obj/item/card/id) && !scan)
 		usr.drop_item()
 		O.loc = src
 		scan = O
@@ -235,7 +235,7 @@ What a mess.*/
 					scan = null
 				else
 					var/obj/item/I = usr.get_active_hand()
-					if (istype(I, /obj/item/weapon/card/id))
+					if (istype(I, /obj/item/card/id))
 						usr.drop_item()
 						I.loc = src
 						scan = I
@@ -260,7 +260,7 @@ What a mess.*/
 					var/mob/living/silicon/robot/R = usr
 					src.rank = "[R.modtype] [R.braintype]"
 					src.screen = 1
-				else if (istype(scan, /obj/item/weapon/card/id))
+				else if (istype(scan, /obj/item/card/id))
 					active1 = null
 					active2 = null
 					if(check_access(scan))
@@ -332,7 +332,7 @@ What a mess.*/
 				if (!( printing ))
 					printing = 1
 					sleep(50)
-					var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( loc )
+					var/obj/item/paper/P = new /obj/item/paper( loc )
 					P.info = "<CENTER><B>Security Record</B></CENTER><BR>"
 					if(istype(active1, /datum/data/record) && GLOBL.data_core.general.Find(active1))
 						P.info += text("Name: [] ID: []<BR>\nSex: []<BR>\nAge: []<BR>\nFingerprint: []<BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", active1.fields["name"], active1.fields["id"], active1.fields["sex"], active1.fields["age"], active1.fields["fingerprint"], active1.fields["p_stat"], active1.fields["m_stat"])

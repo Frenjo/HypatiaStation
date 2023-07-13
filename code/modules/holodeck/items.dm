@@ -7,12 +7,13 @@
 	item_state = "boxing"
 
 // Base
-/obj/item/weapon/holo
+/obj/item/holo
 	damtype = HALLOSS
 
 // Energy Sword
-/obj/item/weapon/holo/esword
+/obj/item/holo/esword
 	desc = "May the force be within you. Sorta."
+	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "sword0"
 	force = 3.0
 	throw_speed = 1
@@ -23,10 +24,10 @@
 
 	var/active = 0
 
-/obj/item/weapon/holo/esword/New()
+/obj/item/holo/esword/New()
 	item_color = pick("red", "blue", "green", "purple")
 
-/obj/item/weapon/holo/esword/attack_self(mob/living/user as mob)
+/obj/item/holo/esword/attack_self(mob/living/user as mob)
 	active = !active
 	if(active)
 		force = 30
@@ -49,13 +50,13 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/weapon/holo/esword/IsShield()
+/obj/item/holo/esword/IsShield()
 	if(active)
 		return 1
 	return 0
 
-/obj/item/weapon/holo/esword/green/New()
+/obj/item/holo/esword/green/New()
 	item_color = "green"
 
-/obj/item/weapon/holo/esword/red/New()
+/obj/item/holo/esword/red/New()
 	item_color = "red"

@@ -1,19 +1,19 @@
 //////Exile implants will allow you to use the station gate, but not return home. This will allow security to exile badguys/for badguys to exile their kill targets////////
 
-/obj/item/weapon/implanter/exile
+/obj/item/implanter/exile
 	name = "implanter-exile"
 
-/obj/item/weapon/implanter/exile/New()
+/obj/item/implanter/exile/New()
 	..()
-	src.imp = new /obj/item/weapon/implant/exile(src)
+	src.imp = new /obj/item/implant/exile(src)
 	update()
 
 
-/obj/item/weapon/implant/exile
+/obj/item/implant/exile
 	name = "exile"
 	desc = "Prevents you from returning from away missions"
 
-/obj/item/weapon/implant/exile/get_data()
+/obj/item/implant/exile/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
 <b>Name:</b> NanoTrasen Employee Exile Implant<BR>
@@ -21,15 +21,15 @@
 	return dat
 
 
-/obj/item/weapon/implantcase/exile
+/obj/item/implantcase/exile
 	name = "Glass Case - 'Exile'"
 	desc = "A case containing an exile implant."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-r"
 
-/obj/item/weapon/implantcase/exile/New()
+/obj/item/implantcase/exile/New()
 	..()
-	src.imp = new /obj/item/weapon/implant/exile(src)
+	src.imp = new /obj/item/implant/exile(src)
 
 
 /obj/structure/closet/secure_closet/exile
@@ -37,10 +37,10 @@
 	req_access = list(ACCESS_HOS)
 
 	starts_with = list(
-		/obj/item/weapon/implanter/exile,
-		/obj/item/weapon/implantcase/exile,
-		/obj/item/weapon/implantcase/exile,
-		/obj/item/weapon/implantcase/exile,
-		/obj/item/weapon/implantcase/exile,
-		/obj/item/weapon/implantcase/exile
+		/obj/item/implanter/exile,
+		/obj/item/implantcase/exile,
+		/obj/item/implantcase/exile,
+		/obj/item/implantcase/exile,
+		/obj/item/implantcase/exile,
+		/obj/item/implantcase/exile
 	)

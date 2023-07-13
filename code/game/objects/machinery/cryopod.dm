@@ -17,7 +17,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 	desc = "An interface between crew and the cryogenic storage oversight systems."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cellconsole"
-	circuit = /obj/item/weapon/circuitboard/cryopodcontrol
+	circuit = /obj/item/circuitboard/cryopodcontrol
 	var/mode = null
 
 /obj/machinery/computer/cryopod/attack_paw()
@@ -95,7 +95,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 	src.updateUsrDialog()
 	return
 
-/obj/item/weapon/circuitboard/cryopodcontrol
+/obj/item/circuitboard/cryopodcontrol
 	name = "circuit board (Cryogenic Oversight Console)"
 	build_path = /obj/machinery/computer/cryopod
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
@@ -139,13 +139,13 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 
 	// These items are preserved when the process() despawn proc occurs.
 	var/list/preserve_items = list(
-		/obj/item/weapon/hand_tele,
-		/obj/item/weapon/card/id/captains_spare,
+		/obj/item/hand_tele,
+		/obj/item/card/id/captains_spare,
 		/obj/item/device/aicard,
 		/obj/item/device/mmi,
 		/obj/item/device/paicard,
-		/obj/item/weapon/gun,
-		/obj/item/weapon/pinpointer,
+		/obj/item/gun,
+		/obj/item/pinpointer,
 		/obj/item/clothing/suit,
 		/obj/item/clothing/shoes/magboots,
 		/obj/item/blueprints,
@@ -265,8 +265,8 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 
 	return
 
-/obj/machinery/cryopod/attackby(obj/item/weapon/G as obj, mob/user as mob)
-	if(istype(G, /obj/item/weapon/grab))
+/obj/machinery/cryopod/attackby(obj/item/G as obj, mob/user as mob)
+	if(istype(G, /obj/item/grab))
 		if(occupant)
 			to_chat(user, SPAN_INFO("The cryo pod is in use."))
 			return

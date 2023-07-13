@@ -23,31 +23,31 @@
 	switch(pickweight(list("small" = 55, "aid" = 25, "tank" = 10, "both" = 10, "nothing" = 0, "delete" = 0)))
 		if("small")
 			starts_with = list(
-				/obj/item/weapon/tank/emergency_oxygen,
-				/obj/item/weapon/tank/emergency_oxygen,
+				/obj/item/tank/emergency_oxygen,
+				/obj/item/tank/emergency_oxygen,
 				/obj/item/clothing/mask/breath,
 				/obj/item/clothing/mask/breath
 			)
 		if("aid")
 			starts_with = list(
-				/obj/item/weapon/tank/emergency_oxygen,
-				/obj/item/weapon/storage/toolbox/emergency,
+				/obj/item/tank/emergency_oxygen,
+				/obj/item/storage/toolbox/emergency,
 				/obj/item/clothing/mask/breath,
-				/obj/item/weapon/storage/firstaid/o2
+				/obj/item/storage/firstaid/o2
 			)
 		if("tank")
 			starts_with = list(
-				/obj/item/weapon/tank/emergency_oxygen/engi,
+				/obj/item/tank/emergency_oxygen/engi,
 				/obj/item/clothing/mask/breath,
-				/obj/item/weapon/tank/emergency_oxygen/engi,
+				/obj/item/tank/emergency_oxygen/engi,
 				/obj/item/clothing/mask/breath
 			)
 		if("both")
 			starts_with = list(
-				/obj/item/weapon/storage/toolbox/emergency,
-				/obj/item/weapon/tank/emergency_oxygen/engi,
+				/obj/item/storage/toolbox/emergency,
+				/obj/item/tank/emergency_oxygen/engi,
 				/obj/item/clothing/mask/breath,
-				/obj/item/weapon/storage/firstaid/o2
+				/obj/item/storage/firstaid/o2
 			)
 		if("nothing")
 			// doot
@@ -71,7 +71,7 @@
 	icon_opened = "emergencyopen"
 
 	starts_with = list(
-		/obj/item/weapon/tank/oxygen,
+		/obj/item/tank/oxygen,
 		/obj/item/clothing/mask/gas
 	)
 
@@ -88,8 +88,8 @@
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,
 		/obj/item/clothing/mask/gas,
-		/obj/item/weapon/tank/oxygen/red,
-		/obj/item/weapon/extinguisher,
+		/obj/item/tank/oxygen/red,
+		/obj/item/extinguisher,
 		/obj/item/clothing/head/hardhat/red
 	)
 
@@ -98,8 +98,8 @@
 		/obj/item/clothing/suit/fire/firefighter,
 		/obj/item/clothing/mask/gas,
 		/obj/item/device/flashlight,
-		/obj/item/weapon/tank/oxygen/red,
-		/obj/item/weapon/extinguisher,
+		/obj/item/tank/oxygen/red,
+		/obj/item/extinguisher,
 		/obj/item/clothing/head/hardhat/red
 	)
 
@@ -125,19 +125,19 @@
 	if(prob(70))
 		starts_with.Add(/obj/item/device/flashlight)
 	if(prob(70))
-		starts_with.Add(/obj/item/weapon/screwdriver)
+		starts_with.Add(/obj/item/screwdriver)
 	if(prob(70))
-		starts_with.Add(/obj/item/weapon/wrench)
+		starts_with.Add(/obj/item/wrench)
 	if(prob(70))
-		starts_with.Add(/obj/item/weapon/weldingtool)
+		starts_with.Add(/obj/item/weldingtool)
 	if(prob(70))
-		starts_with.Add(/obj/item/weapon/crowbar)
+		starts_with.Add(/obj/item/crowbar)
 	if(prob(70))
-		starts_with.Add(/obj/item/weapon/wirecutters)
+		starts_with.Add(/obj/item/wirecutters)
 	if(prob(70))
 		starts_with.Add(/obj/item/device/t_scanner)
 	if(prob(20))
-		starts_with.Add(/obj/item/weapon/storage/belt/utility)
+		starts_with.Add(/obj/item/storage/belt/utility)
 	if(prob(30))
 		starts_with.Add(/obj/item/stack/cable_coil/random)
 	if(prob(30))
@@ -217,8 +217,8 @@
 		/obj/item/clothing/suit/fire/firefighter,
 		/obj/item/clothing/mask/gas,
 		/obj/item/device/flashlight,
-		/obj/item/weapon/tank/oxygen/red,
-		/obj/item/weapon/extinguisher,
+		/obj/item/tank/oxygen/red,
+		/obj/item/extinguisher,
 		/obj/item/clothing/head/hardhat/red
 	)
 
@@ -236,7 +236,7 @@
 	wall_mounted = TRUE
 
 	starts_with = list(
-		/obj/item/weapon/reagent_containers/syringe/inaprovaline,
+		/obj/item/reagent_containers/syringe/inaprovaline,
 		/obj/item/stack/medical/ointment,
 		/obj/item/stack/medical/ointment,
 		/obj/item/stack/medical/ointment,

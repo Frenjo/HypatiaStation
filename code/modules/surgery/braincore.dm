@@ -13,8 +13,8 @@
 
 /datum/surgery_step/brain/saw_skull
 	allowed_tools = list(
-		/obj/item/weapon/circular_saw = 100,
-		/obj/item/weapon/hatchet = 75
+		/obj/item/circular_saw = 100,
+		/obj/item/hatchet = 75
 	)
 
 	min_duration = 50
@@ -47,9 +47,9 @@
 
 /datum/surgery_step/brain/cut_brain
 	allowed_tools = list(
-		/obj/item/weapon/scalpel = 100,
-		/obj/item/weapon/kitchenknife = 75,
-		/obj/item/weapon/shard = 50,
+		/obj/item/scalpel = 100,
+		/obj/item/kitchenknife = 75,
+		/obj/item/shard = 50,
 	)
 
 	min_duration = 80
@@ -82,8 +82,8 @@
 
 /datum/surgery_step/brain/saw_spine
 	allowed_tools = list(
-		/obj/item/weapon/circular_saw = 100,
-		/obj/item/weapon/hatchet = 75
+		/obj/item/circular_saw = 100,
+		/obj/item/hatchet = 75
 	)
 
 	min_duration = 50
@@ -148,9 +148,9 @@
 
 /datum/surgery_step/brain/bone_chips
 	allowed_tools = list(
-		/obj/item/weapon/hemostat = 100,
-		/obj/item/weapon/wirecutters = 75,
-		/obj/item/weapon/kitchen/utensil/fork = 20
+		/obj/item/hemostat = 100,
+		/obj/item/wirecutters = 75,
+		/obj/item/kitchen/utensil/fork = 20
 	)
 
 	min_duration = 80
@@ -183,7 +183,7 @@
 
 /datum/surgery_step/brain/hematoma
 	allowed_tools = list(
-		/obj/item/weapon/FixOVein = 100,
+		/obj/item/FixOVein = 100,
 		/obj/item/stack/cable_coil = 75
 	)
 
@@ -228,9 +228,9 @@
 
 /datum/surgery_step/slime/cut_flesh
 	allowed_tools = list(
-		/obj/item/weapon/scalpel = 100,
-		/obj/item/weapon/kitchenknife = 75,
-		/obj/item/weapon/shard = 50,
+		/obj/item/scalpel = 100,
+		/obj/item/kitchenknife = 75,
+		/obj/item/shard = 50,
 	)
 
 	min_duration = 30
@@ -261,9 +261,9 @@
 
 /datum/surgery_step/slime/cut_innards
 	allowed_tools = list(
-		/obj/item/weapon/scalpel = 100,
-		/obj/item/weapon/kitchenknife = 75,
-		/obj/item/weapon/shard = 50,
+		/obj/item/scalpel = 100,
+		/obj/item/kitchenknife = 75,
+		/obj/item/shard = 50,
 	)
 
 	min_duration = 30
@@ -294,8 +294,8 @@
 
 /datum/surgery_step/slime/saw_core
 	allowed_tools = list(
-		/obj/item/weapon/circular_saw = 100,
-		/obj/item/weapon/hatchet = 75
+		/obj/item/circular_saw = 100,
+		/obj/item/hatchet = 75
 	)
 
 	min_duration = 50

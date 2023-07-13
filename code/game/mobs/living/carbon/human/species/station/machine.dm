@@ -35,4 +35,4 @@
 	blood_color = "#1F181F"
 	flesh_color = "#575757"
 
-	survival_kit = /obj/item/weapon/storage/box/survival/machine
+	survival_kit = /obj/item/storage/box/survival/machine

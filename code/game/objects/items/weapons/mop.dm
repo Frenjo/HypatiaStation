@@ -1,4 +1,4 @@
-/obj/item/weapon/mop
+/obj/item/mop
 	desc = "The world of janitalia wouldn't be complete without a mop."
 	name = "mop"
 	icon = 'icons/obj/janitor.dmi'
@@ -12,10 +12,10 @@
 	var/mopping = 0
 	var/mopcount = 0
 
-/obj/item/weapon/mop/New()
+/obj/item/mop/New()
 	create_reagents(5)
 
-/obj/item/weapon/mop/proc/clean(turf/simulated/A)
+/obj/item/mop/proc/clean(turf/simulated/A)
 	if(reagents.has_reagent("water", 1))
 		A.clean_blood()
 		A.dirt = 0
@@ -25,7 +25,7 @@
 	reagents.reaction(A, TOUCH, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 	reagents.remove_any(1)			//reaction() doesn't use up the reagents
 
-/obj/item/weapon/mop/afterattack(atom/A, mob/user, proximity)
+/obj/item/mop/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(A, /turf/simulated) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || isrune(A))
@@ -41,6 +41,6 @@
 			to_chat(user, SPAN_NOTICE("You have finished mopping!"))
 
 /obj/effect/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/mop) || istype(I, /obj/item/weapon/soap))
+	if(istype(I, /obj/item/mop) || istype(I, /obj/item/soap))
 		return
 	..()

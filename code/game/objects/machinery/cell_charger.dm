@@ -10,7 +10,7 @@
 	idle_power_usage = 5
 	active_power_usage = 60
 	power_channel = EQUIP
-	var/obj/item/weapon/cell/charging = null
+	var/obj/item/cell/charging = null
 	var/chargelevel = -1
 	var/power_rating = 40000	//40 kW. A measure of how powerful this charger is for charging cells (this the power drawn when charging)
 
@@ -38,11 +38,11 @@
 	if(charging)
 		usr << "Current charge: [charging.charge]"
 
-/obj/machinery/cell_charger/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/cell_charger/attackby(obj/item/W, mob/user)
 	if(stat & BROKEN)
 		return
 
-	if(istype(W, /obj/item/weapon/cell) && anchored)
+	if(istype(W, /obj/item/cell) && anchored)
 		if(charging)
 			user << "\red There is already a cell in the charger."
 			return
@@ -60,7 +60,7 @@
 			user.visible_message("[user] inserts a cell into the charger.", "You insert a cell into the charger.")
 			chargelevel = -1
 		updateicon()
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/wrench))
 		if(charging)
 			user << "\red Remove the cell first!"
 			return

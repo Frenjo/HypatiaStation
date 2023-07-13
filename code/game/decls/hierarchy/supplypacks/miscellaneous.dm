@@ -5,7 +5,7 @@
 /decl/hierarchy/supply_pack/miscellaneous/wizard
 	name = "Wizard costume"
 	contains = list(
-		/obj/item/weapon/staff,
+		/obj/item/staff,
 		/obj/item/clothing/suit/wizrobe/fake,
 		/obj/item/clothing/shoes/sandal,
 		/obj/item/clothing/head/wizard/fake

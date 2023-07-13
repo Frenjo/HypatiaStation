@@ -410,7 +410,7 @@
 
 
 ///////// Circuitboards
-/obj/item/weapon/circuitboard/mecha
+/obj/item/circuitboard/mecha
 	name = "circuit board (Exosuit)"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_mod"
@@ -424,75 +424,75 @@
 	throw_range = 15
 
 // Ripley
-/obj/item/weapon/circuitboard/mecha/ripley
+/obj/item/circuitboard/mecha/ripley
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 
-/obj/item/weapon/circuitboard/mecha/ripley/peripherals
+/obj/item/circuitboard/mecha/ripley/peripherals
 	name = "circuit board (Ripley Peripherals Control module)"
 	icon_state = "mcontroller"
 
-/obj/item/weapon/circuitboard/mecha/ripley/main
+/obj/item/circuitboard/mecha/ripley/main
 	name = "circuit board (Ripley Central Control module)"
 	icon_state = "mainboard"
 
 // Gygax
-/obj/item/weapon/circuitboard/mecha/gygax
+/obj/item/circuitboard/mecha/gygax
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 
-/obj/item/weapon/circuitboard/mecha/gygax/peripherals
+/obj/item/circuitboard/mecha/gygax/peripherals
 	name = "circuit board (Gygax Peripherals Control module)"
 	icon_state = "mcontroller"
 
-/obj/item/weapon/circuitboard/mecha/gygax/targeting
+/obj/item/circuitboard/mecha/gygax/targeting
 	name = "circuit board (Gygax Weapon Control and Targeting module)"
 	icon_state = "mcontroller"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_COMBAT = 4)
 
-/obj/item/weapon/circuitboard/mecha/gygax/main
+/obj/item/circuitboard/mecha/gygax/main
 	name = "circuit board (Gygax Central Control module)"
 	icon_state = "mainboard"
 
 // Durand
-/obj/item/weapon/circuitboard/mecha/durand
+/obj/item/circuitboard/mecha/durand
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 
-/obj/item/weapon/circuitboard/mecha/durand/peripherals
+/obj/item/circuitboard/mecha/durand/peripherals
 	name = "circuit board (Durand Peripherals Control module)"
 	icon_state = "mcontroller"
 
-/obj/item/weapon/circuitboard/mecha/durand/targeting
+/obj/item/circuitboard/mecha/durand/targeting
 	name = "circuit board (Durand Weapon Control and Targeting module)"
 	icon_state = "mcontroller"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_COMBAT = 4)
 
-/obj/item/weapon/circuitboard/mecha/durand/main
+/obj/item/circuitboard/mecha/durand/main
 	name = "circuit board (Durand Central Control module)"
 	icon_state = "mainboard"
 
 // Honker
-/obj/item/weapon/circuitboard/mecha/honker
+/obj/item/circuitboard/mecha/honker
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 
-/obj/item/weapon/circuitboard/mecha/honker/peripherals
+/obj/item/circuitboard/mecha/honker/peripherals
 	name = "circuit board (H.O.N.K Peripherals Control module)"
 	icon_state = "mcontroller"
 
-/obj/item/weapon/circuitboard/mecha/honker/targeting
+/obj/item/circuitboard/mecha/honker/targeting
 	name = "circuit board (H.O.N.K Weapon Control and Targeting module)"
 	icon_state = "mcontroller"
 
-/obj/item/weapon/circuitboard/mecha/honker/main
+/obj/item/circuitboard/mecha/honker/main
 	name = "circuit board (H.O.N.K Central Control module)"
 	icon_state = "mainboard"
 
 // Odysseus
-/obj/item/weapon/circuitboard/mecha/odysseus
+/obj/item/circuitboard/mecha/odysseus
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 
-/obj/item/weapon/circuitboard/mecha/odysseus/peripherals
+/obj/item/circuitboard/mecha/odysseus/peripherals
 	name = "circuit board (Odysseus Peripherals Control module)"
 	icon_state = "mcontroller"
 
-/obj/item/weapon/circuitboard/mecha/odysseus/main
+/obj/item/circuitboard/mecha/odysseus/main
 	name = "circuit board (Odysseus Central Control module)"
 	icon_state = "mainboard"

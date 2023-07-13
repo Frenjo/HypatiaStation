@@ -47,7 +47,7 @@
 	icon_state = "toilet[open][cistern]"
 
 /obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
-	if(istype(I, /obj/item/weapon/crowbar))
+	if(istype(I, /obj/item/crowbar))
 		to_chat(user, SPAN_NOTICE("You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]."))
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
 		if(do_after(user, 30))
@@ -60,8 +60,8 @@
 			update_icon()
 			return
 
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
 
 		if(isliving(G.affecting))
 			var/mob/living/GM = G.affecting
@@ -117,8 +117,8 @@
 	anchored = TRUE
 
 /obj/structure/urinal/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
 		if(isliving(G.affecting))
 			var/mob/living/GM = G.affecting
 			if(G.state > 1)
@@ -171,7 +171,7 @@
 /obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.type == /obj/item/device/analyzer)
 		to_chat(user, SPAN_NOTICE("The water temperature seems to be [watertemp]."))
-	if(istype(I, /obj/item/weapon/wrench))
+	if(istype(I, /obj/item/wrench))
 		to_chat(user, SPAN_NOTICE("You begin to adjust the temperature valve with \the [I]."))
 		if(do_after(user, 50))
 			switch(watertemp)
@@ -335,7 +335,7 @@
 			return
 
 
-/obj/item/weapon/bikehorn/rubberducky
+/obj/item/bikehorn/rubberducky
 	name = "rubber ducky"
 	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"	//thanks doohl
 	icon = 'icons/obj/watercloset.dmi'
@@ -391,8 +391,8 @@
 		to_chat(user, SPAN_WARNING("Someone's already washing here."))
 		return
 
-	if(istype(O, /obj/item/weapon/reagent_containers))
-		var/obj/item/weapon/reagent_containers/RG = O
+	if(istype(O, /obj/item/reagent_containers))
+		var/obj/item/reagent_containers/RG = O
 		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message(
 			SPAN_INFO("[user] fills \the [RG] using \the [src]."),
@@ -400,8 +400,8 @@
 		)
 		return
 
-	else if(istype(O, /obj/item/weapon/melee/baton))
-		var/obj/item/weapon/melee/baton/B = O
+	else if(istype(O, /obj/item/melee/baton))
+		var/obj/item/melee/baton/B = O
 		/*if (B.charges > 0 && B.status == 1)
 			flick("baton_active", src)
 			user.Stun(10)

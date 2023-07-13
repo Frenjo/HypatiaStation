@@ -167,7 +167,7 @@
 	if(nuke_code)
 		synd_mind.store_memory("<B>Syndicate Nuclear Bomb Code</B>: [nuke_code]", 0, 0)
 		to_chat(synd_mind.current, "The nuclear authorisation code is: <B>[nuke_code]</B>")
-		var/obj/item/weapon/paper/P = new
+		var/obj/item/paper/P = new
 		P.info = "The nuclear authorisation code is: <b>[nuke_code]</b>"
 		P.name = "nuclear bomb code"
 		if(IS_GAME_MODE(/datum/game_mode/nuclear))
@@ -216,18 +216,18 @@
 	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(synd_mob), SLOT_ID_W_UNIFORM)
 	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(synd_mob), SLOT_ID_SHOES)
 	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(synd_mob), SLOT_ID_GLOVES)
-	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/card/id/syndicate(synd_mob), SLOT_ID_WEAR_ID)
+	synd_mob.equip_to_slot_or_del(new /obj/item/card/id/syndicate(synd_mob), SLOT_ID_WEAR_ID)
 	if(synd_mob.backbag == 2)
-		synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack(synd_mob), SLOT_ID_BACK)
+		synd_mob.equip_to_slot_or_del(new /obj/item/storage/backpack(synd_mob), SLOT_ID_BACK)
 	if(synd_mob.backbag == 3)
-		synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel/norm(synd_mob), SLOT_ID_BACK)
+		synd_mob.equip_to_slot_or_del(new /obj/item/storage/satchel/norm(synd_mob), SLOT_ID_BACK)
 	if(synd_mob.backbag == 4)
-		synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(synd_mob), SLOT_ID_BACK)
+		synd_mob.equip_to_slot_or_del(new /obj/item/storage/satchel(synd_mob), SLOT_ID_BACK)
 	synd_mob.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(synd_mob), SLOT_ID_IN_BACKPACK)
 	synd_mob.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(synd_mob), SLOT_ID_IN_BACKPACK)
-	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/reagent_containers/pill/cyanide(synd_mob), SLOT_ID_IN_BACKPACK)
-	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/automatic/c20r(synd_mob), SLOT_ID_BELT)
-	synd_mob.equip_to_slot_or_del(new /obj/item/weapon/storage/box/survival/engineer(synd_mob.back), SLOT_ID_IN_BACKPACK)
+	synd_mob.equip_to_slot_or_del(new /obj/item/reagent_containers/pill/cyanide(synd_mob), SLOT_ID_IN_BACKPACK)
+	synd_mob.equip_to_slot_or_del(new /obj/item/gun/projectile/automatic/c20r(synd_mob), SLOT_ID_BELT)
+	synd_mob.equip_to_slot_or_del(new /obj/item/storage/box/survival/engineer(synd_mob.back), SLOT_ID_IN_BACKPACK)
 
 	var/obj/item/clothing/suit/space/rig/syndi/new_suit = new(synd_mob)
 	var/obj/item/clothing/head/helmet/space/rig/syndi/new_helmet = new(synd_mob)
@@ -246,7 +246,7 @@
 	synd_mob.equip_to_slot_or_del(new_suit, SLOT_ID_WEAR_SUIT)
 	synd_mob.equip_to_slot_or_del(new_helmet, SLOT_ID_HEAD)
 
-	var/obj/item/weapon/implant/explosive/E = new/obj/item/weapon/implant/explosive(synd_mob)
+	var/obj/item/implant/explosive/E = new/obj/item/implant/explosive(synd_mob)
 	E.imp_in = synd_mob
 	E.implanted = 1
 	synd_mob.update_icons()
@@ -272,7 +272,7 @@
 	if(CONFIG_GET(objectives_disabled))
 		return
 	var/disk_rescued = 1
-	for(var/obj/item/weapon/disk/nuclear/D in world)
+	for(var/obj/item/disk/nuclear/D in world)
 		var/disk_area = get_area(D)
 		if(!is_type_in_list(disk_area, GLOBL.centcom_areas))
 			disk_rescued = 0

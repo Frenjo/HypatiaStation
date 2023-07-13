@@ -2,7 +2,7 @@
 CONTAINS:
 TOILET
 
-/obj/item/weapon/storage/toilet
+/obj/item/storage/toilet
 	name = "toilet"
 	w_class = 4.0
 	anchored = TRUE
@@ -14,23 +14,23 @@ TOILET
 	icon_state = "toilet"
 	item_state = "syringe_kit"
 
-/obj/item/weapon/storage/toilet/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/storage/toilet/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if (src.contents.len >= 7)
 		user << "The toilet is clogged!"
 		return
-	if (istype(W, /obj/item/weapon/disk/nuclear))
+	if (istype(W, /obj/item/disk/nuclear))
 		user << "This is far too important to flush!"
 		return
-	if (istype(W, /obj/item/weapon/storage/))
+	if (istype(W, /obj/item/storage/))
 		return
-	if (istype(W, /obj/item/weapon/grab))
+	if (istype(W, /obj/item/grab))
 		playsound(src.loc, 'sound/effects/slosh.ogg', 50, 1)
 		for(var/mob/O in viewers(user, null))
 			O << text("\blue [] gives [] a swirlie!", user, W)
 		return
 	var/t
-	for(var/obj/item/weapon/O in src)
+	for(var/obj/item/O in src)
 		t += O.w_class
 	t += W.w_class
 	if (t > 30)
@@ -47,7 +47,7 @@ TOILET
 		O.show_message(text("\blue [] has put [] in []!", user, W, src), 1)
 	return
 
-/obj/item/weapon/storage/toilet/MouseDrop_T(mob/M as mob, mob/user as mob)
+/obj/item/storage/toilet/MouseDrop_T(mob/M as mob, mob/user as mob)
 	if (!ticker)
 		user << "You can't help relieve anyone before the game starts."
 		return
@@ -67,7 +67,7 @@ TOILET
 	src.add_fingerprint(user)
 	return
 
-/obj/item/weapon/storage/toilet/attack_hand(mob/user as mob)
+/obj/item/storage/toilet/attack_hand(mob/user as mob)
 	for(var/mob/M in src.loc)
 		if (M.buckled)
 			if (M != user)

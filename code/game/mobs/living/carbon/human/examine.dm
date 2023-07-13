@@ -129,7 +129,7 @@
 
 	//handcuffed?
 	if(handcuffed)
-		if(istype(handcuffed, /obj/item/weapon/handcuffs/cable))
+		if(istype(handcuffed, /obj/item/handcuffs/cable))
 			msg += "<span class='warning'>[t_He] [t_is] \icon[handcuffed] restrained with cable!</span>\n"
 		else
 			msg += "<span class='warning'>[t_He] [t_is] \icon[handcuffed] handcuffed!</span>\n"
@@ -178,8 +178,8 @@
 		if(istype(wear_id, /obj/item/device/pda))
 			var/obj/item/device/pda/pda = wear_id
 			id = pda.owner
-		else if(istype(wear_id, /obj/item/weapon/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
-			var/obj/item/weapon/card/id/idcard = wear_id
+		else if(istype(wear_id, /obj/item/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
+			var/obj/item/card/id/idcard = wear_id
 			id = idcard.registered_name
 		if(id && (id != real_name) && (get_dist(src, usr) <= 1) && prob(10))
 			msg += "<span class='warning'>[t_He] [t_is] wearing \icon[wear_id] \a [wear_id] yet something doesn't seem right...</span>\n"
@@ -404,7 +404,7 @@
 		var/criminal = "None"
 
 		if(isnotnull(wear_id))
-			var/obj/item/weapon/card/id/I = wear_id.get_id()
+			var/obj/item/card/id/I = wear_id.get_id()
 			perpname = isnotnull(I) ? I.registered_name : name
 		else
 			perpname = name
@@ -424,7 +424,7 @@
 		var/medical = "None"
 
 		if(wear_id)
-			if(istype(wear_id,/obj/item/weapon/card/id))
+			if(istype(wear_id,/obj/item/card/id))
 				perpname = wear_id:registered_name
 			else if(istype(wear_id,/obj/item/device/pda))
 				var/obj/item/device/pda/tempPda = wear_id

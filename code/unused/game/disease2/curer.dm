@@ -7,19 +7,19 @@
 
 	var/curing
 	var/virusing
-	circuit = "/obj/item/weapon/circuitboard/mining"
+	circuit = "/obj/item/circuitboard/mining"
 
-	var/obj/item/weapon/virusdish/dish = null
+	var/obj/item/virusdish/dish = null
 
 /obj/machinery/computer/curer/attackby(var/obj/I as obj, var/mob/user as mob)
-	/*if(istype(I, /obj/item/weapon/screwdriver))
+	/*if(istype(I, /obj/item/screwdriver))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if (src.stat & BROKEN)
 				FEEDBACK_BROKEN_GLASS_FALLS(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				new /obj/item/weapon/shard( src.loc )
-				var/obj/item/weapon/circuitboard/curer/M = new /obj/item/weapon/circuitboard/curer( A )
+				new /obj/item/shard( src.loc )
+				var/obj/item/circuitboard/curer/M = new /obj/item/circuitboard/curer( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -30,7 +30,7 @@
 			else
 				FEEDBACK_DISCONNECT_MONITOR(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/weapon/circuitboard/curer/M = new /obj/item/weapon/circuitboard/curer( A )
+				var/obj/item/circuitboard/curer/M = new /obj/item/circuitboard/curer( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -38,7 +38,7 @@
 				A.icon_state = "4"
 				A.anchored = TRUE
 				del(src)*/
-	if(istype(I,/obj/item/weapon/virusdish))
+	if(istype(I,/obj/item/virusdish))
 		var/mob/living/carbon/c = user
 		if(!dish)
 
@@ -133,7 +133,7 @@
 
 
 /obj/machinery/computer/curer/proc/createcure(var/datum/disease2/disease/virus2)
-	var/obj/item/weapon/cureimplanter/implanter = new /obj/item/weapon/cureimplanter(src.loc)
+	var/obj/item/cureimplanter/implanter = new /obj/item/cureimplanter(src.loc)
 	implanter.resistance = new /datum/disease2/resistance(dish.virus2)
 	if(probG("Virus curing",3))
 		implanter.works = 0
@@ -142,7 +142,7 @@
 	state("The [src.name] Buzzes")
 
 /obj/machinery/computer/curer/proc/createvirus(var/datum/disease2/disease/virus2)
-	var/obj/item/weapon/cureimplanter/implanter = new /obj/item/weapon/cureimplanter(src.loc)
+	var/obj/item/cureimplanter/implanter = new /obj/item/cureimplanter(src.loc)
 	implanter.name = "Viral implanter (MAJOR BIOHAZARD)"
 	implanter.virus2 = dish.virus2.getcopy()
 	implanter.works = 3

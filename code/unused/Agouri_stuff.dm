@@ -192,7 +192,7 @@
 	//var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	//the values in this list show how much damage will pass through, not how much will be absorbed.
 	var/list/damage_absorption = list("brute"=0.8,"fire"=1.2,"bullet"=0.9,"laser"=1,"energy"=1,"bomb"=1)
-	var/obj/item/weapon/cell/cell //Our power source
+	var/obj/item/cell/cell //Our power source
 	var/state = 0
 	var/list/log = new
 	var/last_message = 0
@@ -269,7 +269,7 @@
 	internal_tank = new /obj/machinery/portable_atmospherics/canister/air(src)
 	return internal_tank*/
 
-/obj/vehicle/proc/add_cell(var/obj/item/weapon/cell/C=null)
+/obj/vehicle/proc/add_cell(var/obj/item/cell/C=null)
 	if(C)
 		C.forceMove(src)
 		cell = C
@@ -388,13 +388,13 @@
 	if(usr.stat || usr.restrained() || usr.lying)
 		return ..()
 
-	if(usr.hand && istype(usr.l_hand, /obj/item/weapon/flamethrower))
+	if(usr.hand && istype(usr.l_hand, /obj/item/flamethrower))
 		var/turflist = getline(usr,src)
-		var/obj/item/weapon/flamethrower/F = usr.l_hand
+		var/obj/item/flamethrower/F = usr.l_hand
 		F.flame_turf(turflist)
-	else if(!usr.hand && istype(usr.r_hand, /obj/item/weapon/flamethrower))
+	else if(!usr.hand && istype(usr.r_hand, /obj/item/flamethrower))
 		var/turflist = getline(usr,src)
-		var/obj/item/weapon/flamethrower/F = usr.r_hand
+		var/obj/item/flamethrower/F = usr.r_hand
 		F.flame_turf(turflist)
 
 	return ..()
@@ -770,13 +770,13 @@
 	src.add_fingerprint(user)
 	return
 
-/turf/simulated/wall/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/turf/simulated/wall/attackby(obj/item/W as obj, mob/user as mob)
 
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 
-	if (istype(W, /obj/item/weapon/weldingtool) && W:welding)
+	if (istype(W, /obj/item/weldingtool) && W:welding)
 		var/turf/T = get_turf(user)
 		if (!( istype(T, /turf) ))
 			return
@@ -812,7 +812,7 @@
 			user << "\blue You need more welding fuel to complete this task."
 			return
 
-	else if (istype(W, /obj/item/weapon/pickaxe/plasmacutter))
+	else if (istype(W, /obj/item/pickaxe/plasmacutter))
 		var/turf/T = user.loc
 		if (!( istype(T, /turf) ))
 			return
@@ -846,7 +846,7 @@
 						O.show_message(text("\blue The wall was sliced apart by []!", user), 1, text("\red You hear metal being sliced apart."), 2)
 		return
 
-	else if(istype(W, /obj/item/weapon/pickaxe/diamonddrill))
+	else if(istype(W, /obj/item/pickaxe/diamonddrill))
 		var/turf/T = user.loc
 		user << "\blue Now drilling through wall."
 		sleep(60)
@@ -857,7 +857,7 @@
 					O.show_message(text("\blue The wall was drilled apart by []!", user), 1, text("\red You hear metal being drilled appart."), 2)
 		return
 
-	else if(istype(W, /obj/item/weapon/melee/energy/blade))
+	else if(istype(W, /obj/item/melee/energy/blade))
 		var/turf/T = user.loc
 		user << "\blue Now slicing through wall."
 		W:spark_system.start()
@@ -876,8 +876,8 @@
 	else if(istype(W,/obj/item/apc_frame))
 		var/obj/item/apc_frame/AH = W
 		AH.try_build(src)
-	else if(istype(W,/obj/item/weapon/contraband/poster))
-		var/obj/item/weapon/contraband/poster/P = W
+	else if(istype(W,/obj/item/contraband/poster))
+		var/obj/item/contraband/poster/P = W
 		if(P.resulting_poster)
 			var/check = 0
 			var/stuff_on_wall = 0
@@ -927,7 +927,7 @@
 		return // this may seem stupid and redundant but apparently floors can call this attackby() proc, it was spamming shit up. -- Doohl
 
 
-	if (istype(W, /obj/item/weapon/weldingtool) && W:welding)
+	if (istype(W, /obj/item/weldingtool) && W:welding)
 		W:eyecheck(user)
 		var/turf/T = user.loc
 		if (!( istype(T, /turf) ))
@@ -971,7 +971,7 @@
 				user << "\blue You removed the support rods."
 			W:welding = 1
 
-	else if(istype(W, /obj/item/weapon/pickaxe/plasmacutter))
+	else if(istype(W, /obj/item/pickaxe/plasmacutter))
 		var/turf/T = user.loc
 		if (!( istype(T, /turf) ))
 			return
@@ -1010,11 +1010,11 @@
 				new /obj/item/stack/rods( src )
 				user << "\blue You removed the support rods."
 
-	else if(istype(W, /obj/item/weapon/melee/energy/blade))
+	else if(istype(W, /obj/item/melee/energy/blade))
 		user << "\blue This wall is too thick to slice through. You will need to find a different path."
 		return
 
-	else if (istype(W, /obj/item/weapon/wrench))
+	else if (istype(W, /obj/item/wrench))
 		if (src.d_state == 4)
 			var/turf/T = user.loc
 			user << "\blue Detaching support rods."
@@ -1024,13 +1024,13 @@
 				src.d_state = 5
 				user << "\blue You detach the support rods."
 
-	else if (istype(W, /obj/item/weapon/wirecutters))
+	else if (istype(W, /obj/item/wirecutters))
 		if (src.d_state == 0)
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 			src.d_state = 1
 			new /obj/item/stack/rods( src )
 
-	else if (istype(W, /obj/item/weapon/screwdriver))
+	else if (istype(W, /obj/item/screwdriver))
 		if (src.d_state == 1)
 			var/turf/T = user.loc
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
@@ -1040,7 +1040,7 @@
 				src.d_state = 2
 				user << "\blue You removed the support lines."
 
-	else if (istype(W, /obj/item/weapon/crowbar))
+	else if (istype(W, /obj/item/crowbar))
 
 		if (src.d_state == 3)
 			var/turf/T = user.loc
@@ -1062,7 +1062,7 @@
 					dismantle_wall()
 					return
 
-	else if (istype(W, /obj/item/weapon/pickaxe/diamonddrill))
+	else if (istype(W, /obj/item/pickaxe/diamonddrill))
 		var/turf/T = user.loc
 		user << "\blue You begin to drill though, this will take some time."
 		sleep(200)
@@ -1085,8 +1085,8 @@
 			else
 				del(W)
 
-	else if(istype(W,/obj/item/weapon/contraband/poster))
-		var/obj/item/weapon/contraband/poster/P = W
+	else if(istype(W,/obj/item/contraband/poster))
+		var/obj/item/contraband/poster/P = W
 		if(P.resulting_poster)
 			var/check = 0
 			var/stuff_on_wall = 0
@@ -1394,12 +1394,12 @@ turf/simulated/floor/return_siding_icon_state()
 		step(user.pulling, get_dir(user.pulling.loc, src))
 	return
 
-/turf/simulated/floor/engine/attackby(obj/item/weapon/C as obj, mob/user as mob)
+/turf/simulated/floor/engine/attackby(obj/item/C as obj, mob/user as mob)
 	if(!C)
 		return
 	if(!user)
 		return
-	if(istype(C, /obj/item/weapon/wrench))
+	if(istype(C, /obj/item/wrench))
 		user << "\blue Removing rods..."
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 80, 1)
 		if(do_after(user, 30))
@@ -1566,7 +1566,7 @@ turf/simulated/floor/return_siding_icon_state()
 	if(!C || !user)
 		return 0
 
-	if(istype(C,/obj/item/weapon/light/bulb)) //only for light tiles
+	if(istype(C,/obj/item/light/bulb)) //only for light tiles
 		if(is_light_floor())
 			var/obj/item/stack/tile/light/T = floor_tile
 			if(T.state)
@@ -1578,7 +1578,7 @@ turf/simulated/floor/return_siding_icon_state()
 			else
 				user << "\blue The lightbulb seems fine, no need to replace it."
 
-	if(istype(C, /obj/item/weapon/crowbar) && (!(is_plating())))
+	if(istype(C, /obj/item/crowbar) && (!(is_plating())))
 		if(broken || burnt)
 			user << "\red You remove the broken plating."
 		else
@@ -1630,24 +1630,24 @@ turf/simulated/floor/return_siding_icon_state()
 				user << "\blue This section is too damaged to support a tile. Use a welder to fix the damage."
 
 
-	if(istype(C, /obj/item/weapon/cable_coil))
+	if(istype(C, /obj/item/cable_coil))
 		if(is_plating())
-			var/obj/item/weapon/cable_coil/coil = C
+			var/obj/item/cable_coil/coil = C
 			coil.turf_place(src, user)
 		else
 			user << "\red You must remove the plating first."
 
-	if(istype(C, /obj/item/weapon/shovel))
+	if(istype(C, /obj/item/shovel))
 		if(is_grass_floor())
-			new /obj/item/weapon/ore/glass(src)
-			new /obj/item/weapon/ore/glass(src) //Make some sand if you shovel grass
+			new /obj/item/ore/glass(src)
+			new /obj/item/ore/glass(src) //Make some sand if you shovel grass
 			user << "\blue You shovel the grass."
 			make_plating()
 		else
 			user << "\red You cannot shovel this."
 
-	if(istype(C, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/welder = C
+	if(istype(C, /obj/item/weldingtool))
+		var/obj/item/weldingtool/welder = C
 		if(welder.welding && (is_plating()))
 			if(broken || burnt)
 				if(welder.remove_fuel(0,user))
@@ -1751,10 +1751,10 @@ turf/simulated/floor/return_siding_icon_state()
 					del(A)
 					return
 
-				if(istype(A, /obj/item/weapon/disk/nuclear)) // Don't let nuke disks travel Z levels  ... And moving this shit down here so it only fires when they're actually trying to change z-level.
+				if(istype(A, /obj/item/disk/nuclear)) // Don't let nuke disks travel Z levels  ... And moving this shit down here so it only fires when they're actually trying to change z-level.
 					return
 
-				if(!isemptylist(A.search_contents_for(/obj/item/weapon/disk/nuclear)))
+				if(!isemptylist(A.search_contents_for(/obj/item/disk/nuclear)))
 					if(istype(A, /mob/living))
 						var/mob/living/MM = A
 						if(MM.client)

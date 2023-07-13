@@ -173,14 +173,14 @@ update_flag
 	health = 0
 	healthcheck()
 
-/obj/machinery/portable_atmospherics/canister/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(!istype(W, /obj/item/weapon/wrench) && !istype(W, /obj/item/weapon/tank) && !istype(W, /obj/item/device/analyzer) && !istype(W, /obj/item/device/pda))
+/obj/machinery/portable_atmospherics/canister/attackby(obj/item/W as obj, mob/user as mob)
+	if(!istype(W, /obj/item/wrench) && !istype(W, /obj/item/tank) && !istype(W, /obj/item/device/analyzer) && !istype(W, /obj/item/device/pda))
 		visible_message(SPAN_WARNING("[user] hits the [src] with a [W]!"))
 		health -= W.force
 		add_fingerprint(user)
 		healthcheck()
 
-	if(isrobot(user) && istype(W, /obj/item/weapon/tank/jetpack))
+	if(isrobot(user) && istype(W, /obj/item/tank/jetpack))
 		var/datum/gas_mixture/thejetpack = W:air_contents
 		var/env_pressure = thejetpack.return_pressure()
 		var/pressure_delta = min(10 * ONE_ATMOSPHERE - env_pressure, (air_contents.return_pressure() - env_pressure) / 2)
@@ -258,7 +258,7 @@ update_flag
 
 	if(href_list["remove_tank"])
 		if(isnotnull(holding))
-			if(istype(holding, /obj/item/weapon/tank))
+			if(istype(holding, /obj/item/tank))
 				holding.manipulated_by = usr.real_name
 			holding.loc = loc
 			holding = null

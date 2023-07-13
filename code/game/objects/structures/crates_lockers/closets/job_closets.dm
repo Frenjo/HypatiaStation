@@ -40,16 +40,16 @@
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/janitor,
-		/obj/item/weapon/cartridge/janitor,
+		/obj/item/cartridge/janitor,
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/head/soft/purple,
 		/obj/item/device/flashlight,
-		/obj/item/weapon/caution,
-		/obj/item/weapon/caution,
-		/obj/item/weapon/caution,
-		/obj/item/weapon/caution,
+		/obj/item/caution,
+		/obj/item/caution,
+		/obj/item/caution,
+		/obj/item/caution,
 		/obj/item/device/lightreplacer,
-		/obj/item/weapon/storage/bag/trash,
+		/obj/item/storage/bag/trash,
 		/obj/item/clothing/shoes/galoshes
 	)
 

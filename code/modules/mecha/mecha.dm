@@ -32,7 +32,7 @@
 	var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	//the values in this list show how much damage will pass through, not how much will be absorbed.
 	var/list/damage_absorption = list("brute" = 0.8, "fire" = 1.2, "bullet" = 0.9, "laser" = 1, "energy" = 1, "bomb" = 1)
-	var/obj/item/weapon/cell/cell
+	var/obj/item/cell/cell
 	var/state = 0
 	var/list/log = new
 	var/last_message = 0
@@ -111,7 +111,7 @@
 	internal_tank = new /obj/machinery/portable_atmospherics/canister/air(src)
 	return internal_tank
 
-/obj/mecha/proc/add_cell(obj/item/weapon/cell/C = null)
+/obj/mecha/proc/add_cell(obj/item/cell/C = null)
 	if(C)
 		C.forceMove(src)
 		cell = C
@@ -626,7 +626,7 @@
 		src.check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL))
 	return
 
-/obj/mecha/proc/dynattackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/mecha/proc/dynattackby(obj/item/W as obj, mob/user as mob)
 	src.log_message("Attacked by [W]. Attacker - [user]")
 	if(prob(src.deflect_chance))
 		user << "\red \The [W] bounces off [src.name]."
@@ -647,7 +647,7 @@
 ////// AttackBy //////
 //////////////////////
 
-/obj/mecha/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/mecha/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/mmi) || istype(W, /obj/item/device/mmi/posibrain))
 		if(mmi_move_inside(W, user))
 			user << "[src]-MMI interface initialized successfuly"
@@ -665,11 +665,11 @@
 			else
 				user << "You were unable to attach [W] to [src]"
 		return
-	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
 		if(add_req_access || maint_access)
 			if(internals_access_allowed(usr))
-				var/obj/item/weapon/card/id/id_card
-				if(istype(W, /obj/item/weapon/card/id))
+				var/obj/item/card/id/id_card
+				if(istype(W, /obj/item/card/id))
 					id_card = W
 				else
 					var/obj/item/device/pda/pda = W
@@ -680,7 +680,7 @@
 				user << "\red Invalid ID: Access denied."
 		else
 			user << "\red Maintenance protocols disabled by operator."
-	else if(istype(W, /obj/item/weapon/wrench))
+	else if(istype(W, /obj/item/wrench))
 		if(state == 1)
 			state = 2
 			user << "You undo the securing bolts."
@@ -688,7 +688,7 @@
 			state = 1
 			user << "You tighten the securing bolts."
 		return
-	else if(istype(W, /obj/item/weapon/crowbar))
+	else if(istype(W, /obj/item/crowbar))
 		if(state == 2)
 			state = 3
 			user << "You open the hatch to the power unit"
@@ -706,7 +706,7 @@
 			else
 				user << "There's not enough wire to finish the task."
 		return
-	else if(istype(W, /obj/item/weapon/screwdriver))
+	else if(istype(W, /obj/item/screwdriver))
 		if(hasInternalDamage(MECHA_INT_TEMP_CONTROL))
 			clearInternalDamage(MECHA_INT_TEMP_CONTROL)
 			user << "You repair the damaged temperature controller."
@@ -721,7 +721,7 @@
 			user << "You screw the cell in place"
 		return
 
-	else if(istype(W, /obj/item/weapon/cell))
+	else if(istype(W, /obj/item/cell))
 		if(state == 4)
 			if(!src.cell)
 				user << "You install the powercell"
@@ -733,8 +733,8 @@
 				user << "There's already a powercell installed."
 		return
 
-	else if(istype(W, /obj/item/weapon/weldingtool) && user.a_intent != "hurt")
-		var/obj/item/weapon/weldingtool/WT = W
+	else if(istype(W, /obj/item/weldingtool) && user.a_intent != "hurt")
+		var/obj/item/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			if (hasInternalDamage(MECHA_INT_TANK_BREACH))
 				clearInternalDamage(MECHA_INT_TANK_BREACH)
@@ -754,12 +754,12 @@
 		user.visible_message("[user] attaches [W] to [src].", "You attach [W] to [src]")
 		return
 
-	else if(istype(W, /obj/item/weapon/paintkit))
+	else if(istype(W, /obj/item/paintkit))
 		if(occupant)
 			user << "You can't customize a mech while someone is piloting it - that would be unsafe!"
 			return
 
-		var/obj/item/weapon/paintkit/P = W
+		var/obj/item/paintkit/P = W
 		var/found = null
 
 		for(var/type in P.allowed_types)
@@ -1195,7 +1195,7 @@
 	return 0
 
 
-/obj/mecha/check_access(obj/item/weapon/card/id/I, list/access_list)
+/obj/mecha/check_access(obj/item/card/id/I, list/access_list)
 	if(!istype(access_list))
 		return 1
 	if(!length(access_list)) //no requirements
@@ -1372,7 +1372,7 @@
 	output += "</body></html>"
 	return output
 
-/obj/mecha/proc/output_access_dialog(obj/item/weapon/card/id/id_card, mob/user)
+/obj/mecha/proc/output_access_dialog(obj/item/card/id/id_card, mob/user)
 	if(!id_card || !user)
 		return
 	var/output = {"<html>
@@ -1400,7 +1400,7 @@
 	onclose(user, "exosuit_add_access")
 	return
 
-/obj/mecha/proc/output_maintenance_dialog(obj/item/weapon/card/id/id_card,mob/user)
+/obj/mecha/proc/output_maintenance_dialog(obj/item/card/id/id_card,mob/user)
 	if(!id_card || !user) return
 	var/output = {"<html>
 						<head>

@@ -102,7 +102,7 @@
 	if(T.intact)
 		return		// prevent intraction when T-scanner revealed
 
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/screwdriver))
 		open = !open
 
 		user.visible_message(
@@ -112,7 +112,7 @@
 
 		updateicon()
 
-	else if(istype(I, /obj/item/weapon/card/id) || istype(I, /obj/item/device/pda))
+	else if(istype(I, /obj/item/card/id) || istype(I, /obj/item/device/pda))
 		if(open)
 			if(src.allowed(user))
 				src.locked = !src.locked

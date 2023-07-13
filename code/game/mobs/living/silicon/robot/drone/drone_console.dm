@@ -3,7 +3,7 @@
 	desc = "Used to monitor the station's drone population and the assembler that services them."
 	icon_state = "power"
 	req_access = list(ACCESS_ENGINE_EQUIP)
-	circuit = /obj/item/weapon/circuitboard/robotics
+	circuit = /obj/item/circuitboard/robotics
 
 	//Used when pinging drones.
 	var/drone_call_area = "Engineering"

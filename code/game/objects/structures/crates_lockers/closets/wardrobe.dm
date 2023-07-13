@@ -88,9 +88,9 @@
 		/obj/item/clothing/head/chaplain_hood,
 		/obj/item/clothing/suit/holidaypriest,
 		/obj/item/clothing/under/wedding/bride_white,
-		/obj/item/weapon/storage/backpack/cultpack,
-		/obj/item/weapon/storage/fancy/candle_box,
-		/obj/item/weapon/storage/fancy/candle_box
+		/obj/item/storage/backpack/cultpack,
+		/obj/item/storage/fancy/candle_box,
+		/obj/item/storage/fancy/candle_box
 	)
 
 /*
@@ -418,7 +418,7 @@
 		/obj/item/clothing/head/helmet/tactical,
 		/obj/item/clothing/mask/balaclava/tactical,
 		/obj/item/clothing/glasses/sunglasses/sechud/tactical,
-		/obj/item/weapon/storage/belt/security/tactical,
+		/obj/item/storage/belt/security/tactical,
 		/obj/item/clothing/shoes/jackboots,
 		/obj/item/clothing/gloves/black
 	)

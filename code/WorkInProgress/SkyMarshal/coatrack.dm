@@ -33,7 +33,7 @@
 	user << "Something went wrong."
 	return
 
-/obj/machinery/coatrack/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/coatrack/attackby(obj/item/W as obj, mob/user as mob)
 	var/obj/item/I = user.equipped()
 	if ( istype(I,/obj/item/clothing/head/det_hat) && !hat)
 		user.drop_item()

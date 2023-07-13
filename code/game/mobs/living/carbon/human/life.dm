@@ -127,7 +127,7 @@
 	pulse = handle_pulse()
 
 	// Grabbing
-	for(var/obj/item/weapon/grab/G in src)
+	for(var/obj/item/grab/G in src)
 		G.process()
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
@@ -1301,8 +1301,8 @@
 			healths.icon_state = "health7"	//DEAD healthmeter
 		if(isnotnull(client))
 			if(client.view != world.view)
-				if(locate(/obj/item/weapon/gun/energy/sniperrifle, contents))
-					var/obj/item/weapon/gun/energy/sniperrifle/s = locate() in src
+				if(locate(/obj/item/gun/energy/sniperrifle, contents))
+					var/obj/item/gun/energy/sniperrifle/s = locate() in src
 					if(s.zoom)
 						s.zoom()
 
@@ -1764,7 +1764,7 @@
 	if(BITTEST(hud_updateflag, ID_HUD))
 		var/image/holder = hud_list[ID_HUD]
 		if(isnotnull(wear_id))
-			var/obj/item/weapon/card/id/I = wear_id.get_id()
+			var/obj/item/card/id/I = wear_id.get_id()
 			holder.icon_state = isnotnull(I) ? "hud[ckey(I.get_job_name())]" : "hudunknown"
 		else
 			holder.icon_state = "hudunknown"
@@ -1776,7 +1776,7 @@
 		holder.icon_state = "hudblank"
 		var/perpname = name
 		if(isnotnull(wear_id))
-			var/obj/item/weapon/card/id/I = wear_id.get_id()
+			var/obj/item/card/id/I = wear_id.get_id()
 			if(isnotnull(I))
 				perpname = I.registered_name
 
@@ -1806,13 +1806,13 @@
 		holder2.icon_state = "hudblank"
 		holder3.icon_state = "hudblank"
 
-		for(var/obj/item/weapon/implant/I in src)
+		for(var/obj/item/implant/I in src)
 			if(I.implanted)
-				if(istype(I, /obj/item/weapon/implant/tracking))
+				if(istype(I, /obj/item/implant/tracking))
 					holder1.icon_state = "hud_imp_tracking"
-				if(istype(I, /obj/item/weapon/implant/loyalty))
+				if(istype(I, /obj/item/implant/loyalty))
 					holder2.icon_state = "hud_imp_loyal"
-				if(istype(I, /obj/item/weapon/implant/chem))
+				if(istype(I, /obj/item/implant/chem))
 					holder3.icon_state = "hud_imp_chem"
 
 		hud_list[IMPTRACK_HUD] = holder1

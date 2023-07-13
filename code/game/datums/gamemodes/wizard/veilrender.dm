@@ -1,4 +1,4 @@
-/obj/item/weapon/veilrender
+/obj/item/veilrender
 	name = "veil render"
 	desc = "A wicked curved blade of alien origin, recovered from the ruins of a vast city."
 	icon = 'icons/obj/wizard.dmi'
@@ -9,7 +9,7 @@
 	w_class = 3
 	var/charged = 1
 
-/obj/item/weapon/veilrender/attack_self(mob/user as mob)
+/obj/item/veilrender/attack_self(mob/user as mob)
 	if(charged == 1)
 		new /obj/effect/rend(get_turf(usr))
 		charged = 0

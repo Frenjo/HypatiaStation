@@ -8,7 +8,7 @@
 	mypath = /obj/item/seeds/plastiseed
 	species = "plastellium"
 	plantname = "Plastellium"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/plastellium
+	productname = /obj/item/reagent_containers/food/snacks/grown/plastellium
 	lifespan = 15
 	endurance = 17
 	maturation = 5
@@ -29,7 +29,7 @@
 	mypath = /obj/item/seeds/towermycelium
 	species = "towercap"
 	plantname = "Tower Caps"
-	productname = /obj/item/weapon/grown/log
+	productname = /obj/item/grown/log
 	lifespan = 80
 	endurance = 50
 	maturation = 15
@@ -71,7 +71,7 @@
 	mypath = /obj/item/seeds/cashseed
 	species = "cashtree"
 	plantname = "Money Tree"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/money
+	productname = /obj/item/reagent_containers/food/snacks/grown/money
 	lifespan = 55
 	endurance = 45
 	maturation = 6
@@ -91,7 +91,7 @@
 	mypath = /obj/item/seeds/grassseed
 	species = "grass"
 	plantname = "Grass"
-	//productname = /obj/item/weapon/reagent_containers/food/snacks/grown/grass
+	//productname = /obj/item/reagent_containers/food/snacks/grown/grass
 	productname = /obj/item/stack/tile/grass // Temporary until I figure out wtf to do with this. -Frenjo
 	lifespan = 60
 	endurance = 50
@@ -111,7 +111,7 @@
 	mypath = /obj/item/seeds/kudzuseed
 	species = "kudzu"
 	plantname = "Kudzu"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/kudzupod
+	productname = /obj/item/reagent_containers/food/snacks/grown/kudzupod
 	lifespan = 20
 	endurance = 10
 	maturation = 6
@@ -138,7 +138,7 @@
 	mypath = /obj/item/seeds/nettleseed
 	species = "nettle"
 	plantname = "Nettles"
-	productname = /obj/item/weapon/grown/nettle
+	productname = /obj/item/grown/nettle
 	lifespan = 30
 	endurance = 40 // tuff like a toiger
 	maturation = 6
@@ -159,7 +159,7 @@
 	mypath = /obj/item/seeds/deathnettleseed
 	species = "deathnettle"
 	plantname = "Death Nettles"
-	productname = /obj/item/weapon/grown/deathnettle
+	productname = /obj/item/grown/deathnettle
 	lifespan = 30
 	endurance = 25
 	maturation = 8
@@ -204,7 +204,7 @@
 	mypath = /obj/item/seeds/sugarcaneseed
 	species = "sugarcane"
 	plantname = "Sugarcane"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/sugarcane
+	productname = /obj/item/reagent_containers/food/snacks/grown/sugarcane
 	lifespan = 60
 	endurance = 50
 	maturation = 3

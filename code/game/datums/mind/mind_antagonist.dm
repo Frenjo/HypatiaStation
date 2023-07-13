@@ -84,7 +84,7 @@
 			current.loc = pick(GLOBL.wizardstart)
 
 		global.CTgame_ticker.mode.equip_wizard(current)
-		for(var/obj/item/weapon/spellbook/S in current.contents)
+		for(var/obj/item/spellbook/S in current.contents)
 			S.op = 0
 		global.CTgame_ticker.mode.name_wizard(current)
 		global.CTgame_ticker.mode.forge_wizard_objectives(src)
@@ -109,7 +109,7 @@
 
 	var/mob/living/carbon/human/H = current
 	if(istype(H))
-		var/obj/item/weapon/tome/T = new(H)
+		var/obj/item/tome/T = new(H)
 		var/list/slots = list(
 			"backpack" = SLOT_ID_IN_BACKPACK,
 			"left pocket" = SLOT_ID_L_STORE,
@@ -164,7 +164,7 @@
 
 	if(istype(T.loc, /area/security/brig) || istype(T.loc, /area/prison))
 		is_currently_brigged = TRUE
-		for(var/obj/item/weapon/card/id/card in current)
+		for(var/obj/item/card/id/card in current)
 			is_currently_brigged = FALSE
 			break // if they still have ID they're not brigged
 		for(var/obj/item/device/pda/P in current)

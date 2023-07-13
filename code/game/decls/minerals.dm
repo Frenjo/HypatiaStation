@@ -11,7 +11,7 @@
 	// Chance of spreading in any direction.
 	var/spread_chance
 
-	// Path to the resultant ore. Must be a subtype of /obj/item/weapon/ore!
+	// Path to the resultant ore. Must be a subtype of /obj/item/ore!
 	var/ore
 
 /decl/mineral/iron
@@ -21,7 +21,7 @@
 	result_amount = 5
 	spread_chance = 20
 
-	ore = /obj/item/weapon/ore/iron
+	ore = /obj/item/ore/iron
 
 /decl/mineral/gold
 	id = MATERIAL_GOLD
@@ -30,7 +30,7 @@
 	result_amount = 5
 	spread_chance = 10
 
-	ore = /obj/item/weapon/ore/gold
+	ore = /obj/item/ore/gold
 
 /decl/mineral/silver
 	id = MATERIAL_SILVER
@@ -39,7 +39,7 @@
 	result_amount = 5
 	spread_chance = 10
 
-	ore = /obj/item/weapon/ore/silver
+	ore = /obj/item/ore/silver
 
 /decl/mineral/diamond
 	id = MATERIAL_DIAMOND
@@ -48,7 +48,7 @@
 	result_amount = 5
 	spread_chance = 10
 
-	ore = /obj/item/weapon/ore/diamond
+	ore = /obj/item/ore/diamond
 
 /decl/mineral/plasma
 	id = MATERIAL_PLASMA
@@ -57,7 +57,7 @@
 	result_amount = 5
 	spread_chance = 20
 
-	ore = /obj/item/weapon/ore/plasma
+	ore = /obj/item/ore/plasma
 
 /decl/mineral/uranium
 	id = MATERIAL_URANIUM
@@ -66,7 +66,7 @@
 	result_amount = 5
 	spread_chance = 10
 
-	ore = /obj/item/weapon/ore/uranium
+	ore = /obj/item/ore/uranium
 
 /decl/mineral/bananium
 	id = MATERIAL_BANANIUM
@@ -75,4 +75,4 @@
 	result_amount = 3
 	spread_chance = 1
 
-	ore = /obj/item/weapon/ore/bananium
+	ore = /obj/item/ore/bananium

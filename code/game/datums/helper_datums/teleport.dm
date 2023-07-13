@@ -142,10 +142,10 @@
 
 /datum/teleport/instant/science/setPrecision(aprecision)
 	..()
-	if(istype(teleatom, /obj/item/weapon/storage/backpack/holding))
+	if(istype(teleatom, /obj/item/storage/backpack/holding))
 		precision = rand(1, 100)
 
-	var/list/bagholding = teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)
+	var/list/bagholding = teleatom.search_contents_for(/obj/item/storage/backpack/holding)
 	if(length(bagholding))
 		precision = max(rand(1, 100) * length(bagholding), 100)
 		if(isliving(teleatom))
@@ -154,11 +154,11 @@
 	return 1
 
 /datum/teleport/instant/science/teleportChecks()
-	if(istype(teleatom, /obj/item/weapon/disk/nuclear)) // Don't let nuke disks get teleported --NeoFite
+	if(istype(teleatom, /obj/item/disk/nuclear)) // Don't let nuke disks get teleported --NeoFite
 		teleatom.visible_message(SPAN_DANGER("The [teleatom] bounces off of the portal!"))
 		return 0
 
-	if(!isemptylist(teleatom.search_contents_for(/obj/item/weapon/disk/nuclear)))
+	if(!isemptylist(teleatom.search_contents_for(/obj/item/disk/nuclear)))
 		if(isliving(teleatom))
 			var/mob/living/MM = teleatom
 			MM.visible_message(SPAN_DANGER("The [MM] bounces off of the portal!"), \
@@ -172,7 +172,7 @@
 			var/obj/mecha/MM = teleatom
 			to_chat(MM.occupant, SPAN_DANGER("The mech would not survive the jump to a location so far away!"))
 			return 0
-		if(!isemptylist(teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)))
+		if(!isemptylist(teleatom.search_contents_for(/obj/item/storage/backpack/holding)))
 			teleatom.visible_message(SPAN_DANGER("The Bag of Holding bounces off of the portal!"))
 			return 0
 

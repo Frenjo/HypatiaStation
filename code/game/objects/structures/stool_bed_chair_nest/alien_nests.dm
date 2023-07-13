@@ -68,7 +68,7 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/structure/stool/bed/nest/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/stool/bed/nest/attackby(obj/item/W as obj, mob/user as mob)
 	var/aforce = W.force
 	health = max(0, health - aforce)
 	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)

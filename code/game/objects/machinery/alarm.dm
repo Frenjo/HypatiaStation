@@ -1079,7 +1079,7 @@ table tr:first-child th:first-child { border: none;}
 
 	if(href_list["AAlarmwires"])
 		var/t1 = text2num(href_list["AAlarmwires"])
-		if(!(istype(usr.equipped(), /obj/item/weapon/wirecutters)))
+		if(!(istype(usr.equipped(), /obj/item/wirecutters)))
 			to_chat(usr, "You need wirecutters!")
 			return
 		if(isWireColorCut(t1))
@@ -1106,7 +1106,7 @@ table tr:first-child th:first-child { border: none;}
 	updateUsrDialog()
 
 /obj/machinery/alarm/attackby(obj/item/W as obj, mob/user as mob)
-/*	if (istype(W, /obj/item/weapon/wirecutters))
+/*	if (istype(W, /obj/item/wirecutters))
 		stat ^= BROKEN
 		add_fingerprint(user)
 		for(var/mob/O in viewers(user, null))
@@ -1118,17 +1118,17 @@ table tr:first-child th:first-child { border: none;}
 
 	switch(buildstage)
 		if(2)
-			if(istype(W, /obj/item/weapon/screwdriver))  // Opening that Air Alarm up.
+			if(istype(W, /obj/item/screwdriver))  // Opening that Air Alarm up.
 				//user << "You pop the Air Alarm's maintence panel open."
 				wiresexposed = !wiresexposed
 				to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"].")
 				update_icon()
 				return
 
-			if(wiresexposed && (istype(W, /obj/item/device/multitool) || istype(W, /obj/item/weapon/wirecutters)))
+			if(wiresexposed && (istype(W, /obj/item/device/multitool) || istype(W, /obj/item/wirecutters)))
 				return attack_hand(user)
 
-			if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
+			if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
 				if(stat & (NOPOWER|BROKEN))
 					to_chat(user, "It does nothing.")
 					return
@@ -1156,25 +1156,25 @@ table tr:first-child th:first-child { border: none;}
 				first_run()
 				return
 
-			else if(istype(W, /obj/item/weapon/crowbar))
+			else if(istype(W, /obj/item/crowbar))
 				to_chat(user, "You start prying out the circuit.")
 				playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 				if(do_after(user, 20))
 					to_chat(user, "You pry out the circuit!")
-					var/obj/item/weapon/airalarm_electronics/circuit = new /obj/item/weapon/airalarm_electronics()
+					var/obj/item/airalarm_electronics/circuit = new /obj/item/airalarm_electronics()
 					circuit.loc = user.loc
 					buildstage = 0
 					update_icon()
 				return
 		if(0)
-			if(istype(W, /obj/item/weapon/airalarm_electronics))
+			if(istype(W, /obj/item/airalarm_electronics))
 				to_chat(user, "You insert the circuit!")
 				qdel(W)
 				buildstage = 1
 				update_icon()
 				return
 
-			else if(istype(W, /obj/item/weapon/wrench))
+			else if(istype(W, /obj/item/wrench))
 				to_chat(user, "You remove the fire alarm assembly from the wall!")
 				var/obj/item/frame/alarm/frame = new /obj/item/frame/alarm()
 				frame.loc = user.loc
@@ -1201,7 +1201,7 @@ table tr:first-child th:first-child { border: none;}
 AIR ALARM CIRCUIT
 Just a object used in constructing air alarms
 */
-/obj/item/weapon/airalarm_electronics
+/obj/item/airalarm_electronics
 	name = "air alarm electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
@@ -1277,7 +1277,7 @@ FIRE ALARM
 /obj/machinery/firealarm/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 
-	if(istype(W, /obj/item/weapon/screwdriver) && buildstage == 2)
+	if(istype(W, /obj/item/screwdriver) && buildstage == 2)
 		wiresexposed = !wiresexposed
 		update_icon()
 		return
@@ -1304,22 +1304,22 @@ FIRE ALARM
 					to_chat(user, "You wire \the [src]!")
 					update_icon()
 
-				else if(istype(W, /obj/item/weapon/crowbar))
+				else if(istype(W, /obj/item/crowbar))
 					user << "You pry out the circuit!"
 					playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 					spawn(20)
-						var/obj/item/weapon/firealarm_electronics/circuit = new /obj/item/weapon/firealarm_electronics()
+						var/obj/item/firealarm_electronics/circuit = new /obj/item/firealarm_electronics()
 						circuit.loc = user.loc
 						buildstage = 0
 						update_icon()
 			if(0)
-				if(istype(W, /obj/item/weapon/firealarm_electronics))
+				if(istype(W, /obj/item/firealarm_electronics))
 					to_chat(user, "You insert the circuit!")
 					qdel(W)
 					buildstage = 1
 					update_icon()
 
-				else if(istype(W, /obj/item/weapon/wrench))
+				else if(istype(W, /obj/item/wrench))
 					to_chat(user, "You remove the fire alarm assembly from the wall!")
 					var/obj/item/frame/firealarm/frame = new /obj/item/frame/firealarm()
 					frame.loc = user.loc
@@ -1477,7 +1477,7 @@ FIRE ALARM
 FIRE ALARM CIRCUIT
 Just a object used in constructing fire alarms
 */
-/obj/item/weapon/firealarm_electronics
+/obj/item/firealarm_electronics
 	name = "fire alarm electronics"
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"

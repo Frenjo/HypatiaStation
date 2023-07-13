@@ -129,12 +129,12 @@
 	if(!..())
 		return FALSE
 
-	if(!istype(R.module, /obj/item/weapon/robot_module/security))
+	if(!istype(R.module, /obj/item/robot_module/security))
 		to_chat(R, "Upgrade mounting error! No suitable hardpoint detected!")
 		to_chat(usr, "There's no mounting point for the module!")
 		return FALSE
 
-	var/obj/item/weapon/gun/energy/taser/cyborg/T = locate() in R.module
+	var/obj/item/gun/energy/taser/cyborg/T = locate() in R.module
 	if(isnull(T))
 		T = locate() in R.module.contents
 	if(isnull(T))
@@ -165,13 +165,13 @@
 	if(!..())
 		return FALSE
 
-	if(!istype(R.module, /obj/item/weapon/robot_module/miner))
+	if(!istype(R.module, /obj/item/robot_module/miner))
 		to_chat(R, "Upgrade mounting error! No suitable hardpoint detected!")
 		to_chat(usr, "There's no mounting point for the module!")
 		return FALSE
 
-	R.module.modules.Add(new/obj/item/weapon/tank/jetpack/carbondioxide)
-	for(var/obj/item/weapon/tank/jetpack/carbondioxide in R.module.modules)
+	R.module.modules.Add(new/obj/item/tank/jetpack/carbondioxide)
+	for(var/obj/item/tank/jetpack/carbondioxide in R.module.modules)
 		R.internals = src
 	//R.icon_state="Miner+j"
 	return TRUE

@@ -105,14 +105,14 @@
 	else
 		icon_state = mineralType
 
-/obj/structure/mineral_door/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/pickaxe))
-		var/obj/item/weapon/pickaxe/digTool = W
+/obj/structure/mineral_door/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/pickaxe))
+		var/obj/item/pickaxe/digTool = W
 		to_chat(user, "You start digging the [name].")
 		if(do_after(user, digTool.digspeed * hardness) && src)
 			to_chat(user, "You finished digging.")
 			Dismantle()
-	else if(istype(W,/obj/item/weapon)) //not sure, can't not just weapons get passed to this proc?
+	else if(istype(W,/obj/item)) //not sure, can't not just weapons get passed to this proc?
 		hardness -= W.force / 100
 		to_chat(user, "You hit the [name] with your [W.name]!")
 		CheckHardness()
@@ -197,9 +197,9 @@
 /obj/structure/mineral_door/transparent/plasma
 	mineralType = MATERIAL_PLASMA
 
-/obj/structure/mineral_door/transparent/plasma/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+/obj/structure/mineral_door/transparent/plasma/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			TemperatureAct(100)
 	..()

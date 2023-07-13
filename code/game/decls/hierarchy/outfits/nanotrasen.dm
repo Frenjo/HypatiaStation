@@ -7,7 +7,7 @@
 	shoes = /obj/item/clothing/shoes/centcom
 
 	id_slot = SLOT_ID_WEAR_ID
-	id_type = /obj/item/weapon/card/id/centcom/station
+	id_type = /obj/item/card/id/centcom/station
 	pda_slot = SLOT_ID_R_STORE
 	pda_type = /obj/item/device/pda/heads
 
@@ -20,7 +20,7 @@
 	name = "NanoTrasen Representative"
 
 	uniform = /obj/item/clothing/under/rank/centcom/representative
-	belt = /obj/item/weapon/clipboard
+	belt = /obj/item/clipboard
 
 	l_ear = /obj/item/device/radio/headset/heads/hop
 
@@ -33,7 +33,7 @@
 	name = "NanoTrasen Officer"
 
 	uniform = /obj/item/clothing/under/rank/centcom/officer
-	belt = /obj/item/weapon/gun/energy
+	belt = /obj/item/gun/energy
 
 	head = /obj/item/clothing/head/beret/centcom/officer
 
@@ -48,7 +48,7 @@
 	name = "NanoTrasen Captain"
 
 	uniform = /obj/item/clothing/under/rank/centcom/captain
-	belt = /obj/item/weapon/gun/energy
+	belt = /obj/item/gun/energy
 
 	head = /obj/item/clothing/head/beret/centcom/captain
 

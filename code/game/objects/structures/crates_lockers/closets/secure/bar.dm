@@ -12,16 +12,16 @@
 	icon_off = "cabinetdetective_broken"
 
 	starts_with = list(
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer
 	)
 
 /obj/structure/closet/secure_closet/bar/update_icon()

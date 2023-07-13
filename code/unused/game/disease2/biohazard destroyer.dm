@@ -2,7 +2,7 @@
 	name = "Biohazard destroyer"
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "disposal"
-	var/list/accepts = list(/obj/item/clothing,/obj/item/weapon/virusdish/,/obj/item/weapon/cureimplanter,/obj/item/weapon/diseasedisk)
+	var/list/accepts = list(/obj/item/clothing,/obj/item/virusdish/,/obj/item/cureimplanter,/obj/item/diseasedisk)
 	density = TRUE
 	anchored = TRUE
 

@@ -227,8 +227,8 @@
 	add_fingerprint(user)
 	ui_interact(user)
 
-/obj/machinery/power/smes/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
+/obj/machinery/power/smes/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/screwdriver))
 		if(!open_hatch)
 			open_hatch = 1
 			to_chat(user, SPAN_NOTICE("You open the maintenance hatch of [src]."))
@@ -255,7 +255,7 @@
 			terminal.connect_to_network()
 			stat = 0
 
-		else if(istype(W, /obj/item/weapon/wirecutters) && terminal && !building_terminal)
+		else if(istype(W, /obj/item/wirecutters) && terminal && !building_terminal)
 			building_terminal = 1
 			var/turf/tempTDir = terminal.loc
 			if(istype(tempTDir))

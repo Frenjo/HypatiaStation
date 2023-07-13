@@ -1,4 +1,4 @@
-/obj/item/weapon/camera_assembly
+/obj/item/camera_assembly
 	name = "camera assembly"
 	desc = "The basic construction for NanoTrasen-Always-Watching-You cameras."
 	icon = 'icons/obj/machines/monitors.dmi'
@@ -12,7 +12,7 @@
 	var/list/obj/item/possible_upgrades = list(
 		/obj/item/device/assembly/prox_sensor,
 		/obj/item/stack/sheet/mineral/plasma,
-		/obj/item/weapon/reagent_containers/food/snacks/grown/carrot
+		/obj/item/reagent_containers/food/snacks/grown/carrot
 	)
 	var/list/upgrades = list()
 	var/state = 0
@@ -25,7 +25,7 @@
 				4 = Screwdriver panel closed and is fully built (you cannot attach upgrades)
 	*/
 
-/obj/item/weapon/camera_assembly/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/item/camera_assembly/attackby(obj/item/W as obj, mob/living/user as mob)
 	switch(state)
 		if(0)
 			// State 0
@@ -143,17 +143,17 @@
 
 	..()
 
-/obj/item/weapon/camera_assembly/update_icon()
+/obj/item/camera_assembly/update_icon()
 	if(anchored)
 		icon_state = "camera1"
 	else
 		icon_state = "cameracase"
 
-/obj/item/weapon/camera_assembly/attack_hand(mob/user as mob)
+/obj/item/camera_assembly/attack_hand(mob/user as mob)
 	if(!anchored)
 		..()
 
-/obj/item/weapon/camera_assembly/proc/weld(var/obj/item/weapon/weldingtool/WT, var/mob/user)
+/obj/item/camera_assembly/proc/weld(var/obj/item/weldingtool/WT, var/mob/user)
 	if(busy)
 		return 0
 	if(!WT.isOn())

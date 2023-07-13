@@ -9,7 +9,7 @@ RSF
 #define MODE_PEN 3
 #define MODE_DICE_PACK 4
 #define MODE_CIGARETTE 5
-/obj/item/weapon/rsf
+/obj/item/rsf
 	name = "\improper Rapid-Service-Fabricator"
 	desc = "A device used to rapidly deploy service items."
 	icon = 'icons/obj/items.dmi'
@@ -21,13 +21,13 @@ RSF
 	var/mode = MODE_DOSH
 	w_class = 3.0
 
-/obj/item/weapon/rsf/New()
+/obj/item/rsf/New()
 	desc = "An RSF. It currently holds [matter]/30 fabrication-units."
 	return
 
-/obj/item/weapon/rsf/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/rsf/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/weapon/rcd_ammo))
+	if(istype(W, /obj/item/rcd_ammo))
 		if((matter + 10) > 30)
 			to_chat(user, "The RSF can't hold any more matter.")
 			return
@@ -38,7 +38,7 @@ RSF
 		desc = "An RSF. It currently holds [matter]/30 fabrication-units."
 		return
 
-/obj/item/weapon/rsf/attack_self(mob/user as mob)
+/obj/item/rsf/attack_self(mob/user as mob)
 	playsound(src, 'sound/effects/pop.ogg', 50, 0)
 	if(mode == MODE_DOSH)
 		mode = MODE_DRINKING_GLASS
@@ -66,7 +66,7 @@ RSF
 		return
 	// Change mode
 
-/obj/item/weapon/rsf/afterattack(atom/A, mob/user as mob, proximity)
+/obj/item/rsf/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if(!(istype(A, /obj/structure/table) || istype(A, /turf/simulated/floor)))
@@ -76,7 +76,7 @@ RSF
 		if(istype(A, /obj/structure/table) && matter >= 1)
 			user << "Dispensing Dosh..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
-			new /obj/item/weapon/spacecash/c10(A.loc)
+			new /obj/item/spacecash/c10(A.loc)
 			if(isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 200 //once money becomes useful, I guess changing this to a high ammount, like 500 units a kick, till then, enjoy dosh!
@@ -90,7 +90,7 @@ RSF
 		if(istype(A, /turf/simulated/floor) && matter >= 1)
 			user << "Dispensing Dosh..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
-			new /obj/item/weapon/spacecash/c10(A)
+			new /obj/item/spacecash/c10(A)
 			if(isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 200 //once money becomes useful, I guess changing this to a high ammount, like 500 units a kick, till then, enjoy dosh!
@@ -104,7 +104,7 @@ RSF
 		if(istype(A, /obj/structure/table) && matter >= 1)
 			user << "Dispensing Drinking Glass..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
-			new /obj/item/weapon/reagent_containers/food/drinks/drinkingglass(A.loc)
+			new /obj/item/reagent_containers/food/drinks/drinkingglass(A.loc)
 			if (isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 50
@@ -118,7 +118,7 @@ RSF
 		if(istype(A, /turf/simulated/floor) && matter >= 1)
 			user << "Dispensing Drinking Glass..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
-			new /obj/item/weapon/reagent_containers/food/drinks/drinkingglass(A)
+			new /obj/item/reagent_containers/food/drinks/drinkingglass(A)
 			if(isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 50
@@ -132,7 +132,7 @@ RSF
 		if(istype(A, /obj/structure/table) && matter >= 1)
 			user << "Dispensing Paper Sheet..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
-			new /obj/item/weapon/paper(A.loc)
+			new /obj/item/paper(A.loc)
 			if(isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 10
@@ -146,7 +146,7 @@ RSF
 		if(istype(A, /turf/simulated/floor) && matter >= 1)
 			user << "Dispensing Paper Sheet..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
-			new /obj/item/weapon/paper(A)
+			new /obj/item/paper(A)
 			if(isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 10
@@ -160,7 +160,7 @@ RSF
 		if(istype(A, /obj/structure/table) && matter >= 1)
 			user << "Dispensing Pen..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
-			new /obj/item/weapon/pen(A.loc)
+			new /obj/item/pen(A.loc)
 			if(isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 50
@@ -174,7 +174,7 @@ RSF
 		if(istype(A, /turf/simulated/floor) && matter >= 1)
 			user << "Dispensing Pen..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
-			new /obj/item/weapon/pen(A)
+			new /obj/item/pen(A)
 			if(isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 50
@@ -188,7 +188,7 @@ RSF
 		if(istype(A, /obj/structure/table) && matter >= 1)
 			user << "Dispensing Dice Pack..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
-			new /obj/item/weapon/storage/pill_bottle/dice(A.loc)
+			new /obj/item/storage/pill_bottle/dice(A.loc)
 			if(isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 200
@@ -202,7 +202,7 @@ RSF
 		if(istype(A, /turf/simulated/floor) && matter >= 1)
 			user << "Dispensing Dice Pack..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
-			new /obj/item/weapon/storage/pill_bottle/dice(A)
+			new /obj/item/storage/pill_bottle/dice(A)
 			if(isrobot(user))
 				var/mob/living/silicon/robot/engy = user
 				engy.cell.charge -= 200

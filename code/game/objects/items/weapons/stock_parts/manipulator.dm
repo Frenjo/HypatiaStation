@@ -1,5 +1,5 @@
 // Rating 1
-/obj/item/weapon/stock_part/manipulator
+/obj/item/stock_part/manipulator
 	name = "micro-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "micro_mani"
@@ -7,7 +7,7 @@
 	matter_amounts = list(MATERIAL_METAL = 30)
 
 // Rating 2
-/obj/item/weapon/stock_part/manipulator/nano
+/obj/item/stock_part/manipulator/nano
 	name = "nano-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "nano_mani"
@@ -15,7 +15,7 @@
 	rating = 2
 
 // Rating 3
-/obj/item/weapon/stock_part/manipulator/pico
+/obj/item/stock_part/manipulator/pico
 	name = "pico-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "pico_mani"
@@ -23,7 +23,7 @@
 	rating = 3
 
 // Rating 4
-/obj/item/weapon/stock_part/manipulator/femto
+/obj/item/stock_part/manipulator/femto
 	name = "femto-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "femto_mani"

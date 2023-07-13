@@ -120,7 +120,7 @@
 /obj/effect/alien/resin/attack_paw()
 	return attack_hand()
 
-/obj/effect/alien/resin/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/effect/alien/resin/attackby(obj/item/W as obj, mob/user as mob)
 	var/aforce = W.force
 	health = max(0, health - aforce)
 	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
@@ -231,7 +231,7 @@ Alien plants should do something if theres a lot of poison
 				qdel(src)
 	return
 
-/obj/effect/alien/weeds/attackby(obj/item/weapon/W, mob/user)
+/obj/effect/alien/weeds/attackby(obj/item/W, mob/user)
 	if(length(W.attack_verb))
 		visible_message(SPAN_DANGER("\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]"))
 	else
@@ -239,8 +239,8 @@ Alien plants should do something if theres a lot of poison
 
 	var/damage = W.force / 4.0
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))
 			damage = 15
@@ -406,7 +406,7 @@ Alien plants should do something if theres a lot of poison
 	healthcheck()
 	return
 
-/obj/effect/alien/egg/attackby(obj/item/weapon/W, mob/user)
+/obj/effect/alien/egg/attackby(obj/item/W, mob/user)
 	if(health <= 0)
 		return
 	if(length(W.attack_verb))
@@ -415,8 +415,8 @@ Alien plants should do something if theres a lot of poison
 		src.visible_message(SPAN_DANGER("\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]"))
 	var/damage = W.force / 4.0
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))
 			damage = 15

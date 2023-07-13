@@ -18,12 +18,12 @@
 		/obj/item/clothing/under/rank/research_director/rdalt,
 		/obj/item/clothing/under/rank/research_director/dress_rd,
 		/obj/item/clothing/suit/storage/labcoat,
-		/obj/item/weapon/cartridge/rd,
+		/obj/item/cartridge/rd,
 		/obj/item/clothing/shoes/white,
 		/obj/item/clothing/shoes/leather,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/device/radio/headset/heads/rd,
-		/obj/item/weapon/tank/air,
+		/obj/item/tank/air,
 		/obj/item/clothing/mask/gas,
 		/obj/item/device/flash
 	)
@@ -46,8 +46,8 @@
 	//	/obj/item/clothing/suit/labcoat/science,
 		/obj/item/clothing/suit/storage/labcoat,
 		/obj/item/clothing/shoes/white,
-	//	/obj/item/weapon/cartridge/signal/toxins,
+	//	/obj/item/cartridge/signal/toxins,
 		/obj/item/device/radio/headset/sci,
-		/obj/item/weapon/tank/air,
+		/obj/item/tank/air,
 		/obj/item/clothing/mask/gas
 	)

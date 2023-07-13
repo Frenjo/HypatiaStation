@@ -110,8 +110,8 @@
 
 	src.icon_state = "barrier[src.locked]"
 
-/obj/machinery/deployable/barrier/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/weapon/card/id/))
+/obj/machinery/deployable/barrier/attackby(obj/item/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/card/id/))
 		if (src.allowed(user))
 			if	(src.emagged < 2.0)
 				src.locked = !src.locked
@@ -130,7 +130,7 @@
 				visible_message("\red BZZzZZzZZzZT")
 				return
 		return
-	else if (istype(W, /obj/item/weapon/card/emag))
+	else if (istype(W, /obj/item/card/emag))
 		if (src.emagged == 0)
 			src.emagged = 1
 			src.req_access.Cut()
@@ -149,7 +149,7 @@
 			s.start()
 			visible_message("\red BZZzZZzZZzZT")
 			return
-	else if (istype(W, /obj/item/weapon/wrench))
+	else if (istype(W, /obj/item/wrench))
 		if (src.health < src.maxhealth)
 			src.health = src.maxhealth
 			src.emagged = 0

@@ -502,9 +502,9 @@ var/datum/cameranet/cameranet = new()
 	cameranet.removeCamera(src)
 	..()
 
-/obj/machinery/camera/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/camera/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	. = ..(W, user)
-	if(istype(W, /obj/item/weapon/wirecutters))
+	if(istype(W, /obj/item/wirecutters))
 		if(status)
 			cameranet.addCamera(src)
 		else

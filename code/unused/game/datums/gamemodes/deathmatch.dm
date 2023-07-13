@@ -22,7 +22,7 @@
 		for(var/mob/living/carbon/human/M in mobs)
 			spawn()
 				if(M.client)
-					for(var/obj/item/weapon/W in list(M.wear_suit, M.w_uniform, M.r_store, M.l_store, M.wear_id, M.belt,
+					for(var/obj/item/W in list(M.wear_suit, M.w_uniform, M.r_store, M.l_store, M.wear_id, M.belt,
 					                              M.gloves, M.glasses, M.head, M.ears, M.shoes, M.wear_mask, M.back,
 					                              M.handcuffed, M.r_hand, M.l_hand))
 						M.u_equip(W)
@@ -46,15 +46,15 @@
 					M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/death_commando(M), SLOT_ID_WEAR_MASK)
 					M.equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(M), SLOT_ID_GLOVES)
 					M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal(M), SLOT_ID_GLASSES)
-					M.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/pulse_rifle(M), SLOT_ID_L_HAND)
-					M.equip_to_slot_or_del(new /obj/item/weapon/m_pill/cyanide(M), SLOT_ID_L_STORE)
-					M.equip_to_slot_or_del(new /obj/item/weapon/flashbang(M), SLOT_ID_R_STORE)
+					M.equip_to_slot_or_del(new /obj/item/gun/energy/pulse_rifle(M), SLOT_ID_L_HAND)
+					M.equip_to_slot_or_del(new /obj/item/m_pill/cyanide(M), SLOT_ID_L_STORE)
+					M.equip_to_slot_or_del(new /obj/item/flashbang(M), SLOT_ID_R_STORE)
 
-					var/obj/item/weapon/tank/air/O = new(M)
+					var/obj/item/tank/air/O = new(M)
 					M.equip_to_slot_or_del(O, SLOT_ID_BACK)
 					M.internal = O
 
-					var/obj/item/weapon/card/id/W = new(M)
+					var/obj/item/card/id/W = new(M)
 					W.access = get_all_station_access()
 					W.name = "[newname]'s ID card (Death Commando)"
 					W.assignment = "Death Commando"

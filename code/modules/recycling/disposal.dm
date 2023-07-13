@@ -51,11 +51,11 @@
 	if(stat & BROKEN || !I || !user)
 		return
 
-	if(isrobot(user) && !istype(I, /obj/item/weapon/storage/bag/trash))
+	if(isrobot(user) && !istype(I, /obj/item/storage/bag/trash))
 		return
 	src.add_fingerprint(user)
 	if(mode <= 0) // It's off
-		if(istype(I, /obj/item/weapon/screwdriver))
+		if(istype(I, /obj/item/screwdriver))
 			if(length(contents))
 				to_chat(user, "Eject the items first!")
 				return
@@ -69,11 +69,11 @@
 				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, "You attach the screws around the power connection.")
 				return
-		else if(istype(I, /obj/item/weapon/weldingtool) && mode == -1)
+		else if(istype(I, /obj/item/weldingtool) && mode == -1)
 			if(length(contents))
 				to_chat(user, "Eject the items first!")
 				return
-			var/obj/item/weapon/weldingtool/W = I
+			var/obj/item/weldingtool/W = I
 			if(W.remove_fuel(0, user))
 				playsound(src, 'sound/items/Welder2.ogg', 100, 1)
 				to_chat(user, "You start slicing the floorweld off the disposal unit.")
@@ -94,12 +94,12 @@
 				to_chat(user, "You need more welding fuel to complete this task.")
 				return
 
-	if(istype(I, /obj/item/weapon/melee/energy/blade))
+	if(istype(I, /obj/item/melee/energy/blade))
 		to_chat(user, "You can't place that item inside the disposal unit.")
 		return
 
-	if(istype(I, /obj/item/weapon/storage/bag/trash))
-		var/obj/item/weapon/storage/bag/trash/T = I
+	if(istype(I, /obj/item/storage/bag/trash))
+		var/obj/item/storage/bag/trash/T = I
 		to_chat(user, SPAN_INFO("You empty the bag."))
 		for(var/obj/item/O in T.contents)
 			T.remove_from_storage(O, src)
@@ -107,7 +107,7 @@
 		update()
 		return
 
-	var/obj/item/weapon/grab/G = I
+	var/obj/item/grab/G = I
 	if(istype(G))	// handle grabbed mob
 		if(ismob(G.affecting))
 			var/mob/GM = G.affecting
@@ -844,8 +844,8 @@
 	if(T.intact)
 		return		// prevent interaction with T-scanner revealed pipes
 	src.add_fingerprint(user)
-	if(istype(I, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/W = I
+	if(istype(I, /obj/item/weldingtool))
+		var/obj/item/weldingtool/W = I
 
 		if(W.remove_fuel(0, user))
 			playsound(src, 'sound/items/Welder2.ogg', 100, 1)
@@ -1262,8 +1262,8 @@
 	if(T.intact)
 		return		// prevent interaction with T-scanner revealed pipes
 	src.add_fingerprint(user)
-	if(istype(I, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/W = I
+	if(istype(I, /obj/item/weldingtool))
+		var/obj/item/weldingtool/W = I
 
 		if(W.remove_fuel(0, user))
 			playsound(src, 'sound/items/Welder2.ogg', 100, 1)
@@ -1375,7 +1375,7 @@
 	if(!I || !user)
 		return
 	src.add_fingerprint(user)
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/screwdriver))
 		if(mode == 0)
 			mode = 1
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
@@ -1386,8 +1386,8 @@
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			to_chat(user, "You attach the screws around the power connection.")
 			return
-	else if(istype(I, /obj/item/weapon/weldingtool) && mode == 1)
-		var/obj/item/weapon/weldingtool/W = I
+	else if(istype(I, /obj/item/weldingtool) && mode == 1)
+		var/obj/item/weldingtool/W = I
 		if(W.remove_fuel(0, user))
 			playsound(src, 'sound/items/Welder2.ogg', 100, 1)
 			to_chat(user, "You start slicing the floorweld off the disposal outlet.")

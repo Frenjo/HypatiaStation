@@ -8,9 +8,9 @@
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/mask/gas,
-		/obj/item/weapon/tank/air,
-		/obj/item/weapon/tank/air,
-		/obj/item/weapon/tank/air
+		/obj/item/tank/air,
+		/obj/item/tank/air,
+		/obj/item/tank/air
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/internals
@@ -20,15 +20,15 @@
 /decl/hierarchy/supply_pack/engineering/evacuation
 	name = "Emergency equipment"
 	contains = list(
-		/obj/item/weapon/storage/toolbox/emergency,
-		/obj/item/weapon/storage/toolbox/emergency,
+		/obj/item/storage/toolbox/emergency,
+		/obj/item/storage/toolbox/emergency,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/suit/storage/hazardvest,
-		/obj/item/weapon/tank/emergency_oxygen,
-		/obj/item/weapon/tank/emergency_oxygen,
-		/obj/item/weapon/tank/emergency_oxygen,
-		/obj/item/weapon/tank/emergency_oxygen,
-		/obj/item/weapon/tank/emergency_oxygen,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/tank/emergency_oxygen,
+		/obj/item/tank/emergency_oxygen,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/mask/gas,
@@ -43,9 +43,9 @@
 /decl/hierarchy/supply_pack/engineering/inflatables
 	name = "Inflatable barriers"
 	contains = list(
-		/obj/item/weapon/storage/briefcase/inflatable,
-		/obj/item/weapon/storage/briefcase/inflatable,
-		/obj/item/weapon/storage/briefcase/inflatable
+		/obj/item/storage/briefcase/inflatable,
+		/obj/item/storage/briefcase/inflatable,
+		/obj/item/storage/briefcase/inflatable
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate
@@ -55,9 +55,9 @@
 /decl/hierarchy/supply_pack/engineering/lightbulbs
 	name = "Replacement lights"
 	contains = list(
-		/obj/item/weapon/storage/box/lights/mixed,
-		/obj/item/weapon/storage/box/lights/mixed,
-		/obj/item/weapon/storage/box/lights/mixed
+		/obj/item/storage/box/lights/mixed,
+		/obj/item/storage/box/lights/mixed,
+		/obj/item/storage/box/lights/mixed
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
@@ -94,14 +94,14 @@
 /decl/hierarchy/supply_pack/engineering/electrical
 	name = "Electrical maintenance crate"
 	contains = list(
-		/obj/item/weapon/storage/toolbox/electrical,
-		/obj/item/weapon/storage/toolbox/electrical,
+		/obj/item/storage/toolbox/electrical,
+		/obj/item/storage/toolbox/electrical,
 		/obj/item/clothing/gloves/yellow,
 		/obj/item/clothing/gloves/yellow,
-		/obj/item/weapon/cell,
-		/obj/item/weapon/cell,
-		/obj/item/weapon/cell/high,
-		/obj/item/weapon/cell/high
+		/obj/item/cell,
+		/obj/item/cell,
+		/obj/item/cell/high,
+		/obj/item/cell/high
 	)
 	cost = 15
 	containertype = /obj/structure/closet/crate
@@ -111,9 +111,9 @@
 /decl/hierarchy/supply_pack/engineering/mechanical
 	name = "Mechanical maintenance crate"
 	contains = list(
-		/obj/item/weapon/storage/belt/utility/full,
-		/obj/item/weapon/storage/belt/utility/full,
-		/obj/item/weapon/storage/belt/utility/full,
+		/obj/item/storage/belt/utility/full,
+		/obj/item/storage/belt/utility/full,
+		/obj/item/storage/belt/utility/full,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/suit/storage/hazardvest,
@@ -158,9 +158,9 @@
 		/obj/item/solar_assembly,
 		/obj/item/solar_assembly,
 		/obj/item/solar_assembly, // 21 Solar Assemblies. 1 Extra for the controller
-		/obj/item/weapon/circuitboard/solar_control,
-		/obj/item/weapon/tracker_electronics,
-		/obj/item/weapon/paper/solar
+		/obj/item/circuitboard/solar_control,
+		/obj/item/tracker_electronics,
+		/obj/item/paper/solar
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate
@@ -228,9 +228,9 @@
 /decl/hierarchy/supply_pack/engineering/mecha_ripley
 	name = "Circuit Crate (\"Ripley\" APLU)"
 	contains = list(
-		/obj/item/weapon/book/manual/ripley_build_and_repair,
-		/obj/item/weapon/circuitboard/mecha/ripley/main,		//TEMPORARY due to lack of circuitboard printer
-		/obj/item/weapon/circuitboard/mecha/ripley/peripherals	//TEMPORARY due to lack of circuitboard printer
+		/obj/item/book/manual/ripley_build_and_repair,
+		/obj/item/circuitboard/mecha/ripley/main,		//TEMPORARY due to lack of circuitboard printer
+		/obj/item/circuitboard/mecha/ripley/peripherals	//TEMPORARY due to lack of circuitboard printer
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure
@@ -241,8 +241,8 @@
 /decl/hierarchy/supply_pack/engineering/mecha_odysseus
 	name = "Circuit Crate (\"Odysseus\")"
 	contains = list(
-		/obj/item/weapon/circuitboard/mecha/odysseus/peripherals,	//TEMPORARY due to lack of circuitboard printer
-		/obj/item/weapon/circuitboard/mecha/odysseus/main			//TEMPORARY due to lack of circuitboard printer
+		/obj/item/circuitboard/mecha/odysseus/peripherals,	//TEMPORARY due to lack of circuitboard printer
+		/obj/item/circuitboard/mecha/odysseus/main			//TEMPORARY due to lack of circuitboard printer
 	)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure
@@ -256,13 +256,13 @@
 		/obj/item/device/assembly/prox_sensor,
 		/obj/item/device/assembly/prox_sensor,
 		/obj/item/device/assembly/prox_sensor,
-		/obj/item/weapon/storage/toolbox/electrical,
+		/obj/item/storage/toolbox/electrical,
 		/obj/item/device/flash,
 		/obj/item/device/flash,
 		/obj/item/device/flash,
 		/obj/item/device/flash,
-		/obj/item/weapon/cell/high,
-		/obj/item/weapon/cell/high
+		/obj/item/cell/high,
+		/obj/item/cell/high
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -280,7 +280,7 @@
 
 
 /decl/hierarchy/supply_pack/engineering/rust_compressor
-	contains = list(/obj/item/weapon/module/rust_fuel_compressor)
+	contains = list(/obj/item/module/rust_fuel_compressor)
 	name = "RUST fuel compressor circuitry"
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
@@ -289,7 +289,7 @@
 
 
 /decl/hierarchy/supply_pack/engineering/rust_assembly_port
-	contains = list(/obj/item/weapon/module/rust_fuel_port)
+	contains = list(/obj/item/module/rust_fuel_port)
 	name = "RUST fuel assembly port circuitry"
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure
@@ -307,7 +307,7 @@
 
 
 /decl/hierarchy/supply_pack/engineering/shield_gen
-	contains = list(/obj/item/weapon/circuitboard/shield_gen)
+	contains = list(/obj/item/circuitboard/shield_gen)
 	name = "Experimental bubble shield generator circuitry"
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
@@ -316,7 +316,7 @@
 
 
 /decl/hierarchy/supply_pack/engineering/shield_cap
-	contains = list(/obj/item/weapon/circuitboard/shield_cap)
+	contains = list(/obj/item/circuitboard/shield_cap)
 	name = "Experimental bubble shield capacitor circuitry"
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure

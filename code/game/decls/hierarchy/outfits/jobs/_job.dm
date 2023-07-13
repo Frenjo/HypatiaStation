@@ -11,15 +11,15 @@
 	l_ear = /obj/item/device/radio/headset
 
 	id_slot = SLOT_ID_WEAR_ID
-	id_type = /obj/item/weapon/card/id
+	id_type = /obj/item/card/id
 	pda_slot = SLOT_ID_BELT
 	pda_type = /obj/item/device/pda
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 
-	var/backpack = /obj/item/weapon/storage/backpack
-	var/satchel_one = /obj/item/weapon/storage/satchel/norm
-	var/satchel_two = /obj/item/weapon/storage/satchel
+	var/backpack = /obj/item/storage/backpack
+	var/satchel_one = /obj/item/storage/satchel/norm
+	var/satchel_two = /obj/item/storage/satchel
 
 /decl/hierarchy/outfit/job/pre_equip(mob/living/carbon/human/user)
 	. = ..()

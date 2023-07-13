@@ -1,4 +1,4 @@
-/obj/item/weapon/spellbook
+/obj/item/spellbook
 	name = "spell book"
 	desc = "The legendary book of spells of the wizard."
 	icon = 'icons/obj/library.dmi'
@@ -11,7 +11,7 @@
 	var/max_uses = 5
 	var/op = 1
 
-/obj/item/weapon/spellbook/attack_self(mob/user as mob)
+/obj/item/spellbook/attack_self(mob/user as mob)
 	user.set_machine(src)
 	var/dat
 	if(temp)
@@ -59,7 +59,7 @@
 	onclose(user, "radio")
 	return
 
-/obj/item/weapon/spellbook/Topic(href, href_list)
+/obj/item/spellbook/Topic(href, href_list)
 	..()
 	var/mob/living/carbon/human/H = usr
 
@@ -163,17 +163,17 @@
 							temp = "Nothing could possibly go wrong with arming a crew of lunatics just itching for an excuse to kill eachother. Just be careful not to get hit in the crossfire!"
 						if("staffchange")
 							feedback_add_details("wizard_spell_learned", "ST") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/weapon/gun/energy/staff(get_turf(H))
+							new /obj/item/gun/energy/staff(get_turf(H))
 							temp = "An artefact that spits bolts of coruscating energy which cause the target's very form to reshape itself"
 							max_uses--
 						if("mentalfocus")
 							feedback_add_details("wizard_spell_learned", "MF") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/weapon/gun/energy/staff/focus(get_turf(H))
+							new /obj/item/gun/energy/staff/focus(get_turf(H))
 							temp = "An artefact that channels the will of the user into destructive bolts of force."
 							max_uses--
 						if("soulstone")
 							feedback_add_details("wizard_spell_learned", "SS") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/weapon/storage/belt/soulstone/full(get_turf(H))
+							new /obj/item/storage/belt/soulstone/full(get_turf(H))
 							H.spell_list += new /obj/effect/proc_holder/spell/aoe_turf/conjure/construct(H)
 							temp = "Soul Stone Shards are ancient tools capable of capturing and harnessing the spirits of the dead and dying. The spell Artificer allows you to create arcane machines for the captured souls to pilot."
 							max_uses--
@@ -187,7 +187,7 @@
 							max_uses--
 						if("staffanimation")
 							feedback_add_details("wizard_spell_learned", "SA") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/weapon/gun/energy/staff/animate(get_turf(H))
+							new /obj/item/gun/energy/staff/animate(get_turf(H))
 							temp = "An artefact that spits bolts of life-force which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
 							max_uses--
 		else

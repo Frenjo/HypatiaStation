@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/shotgun/pump
+/obj/item/gun/projectile/shotgun/pump
 	name = "shotgun"
 	desc = "Useful for sweeping alleys."
 	icon_state = "shotgun"
@@ -16,15 +16,15 @@
 	var/pumped = 0
 	var/obj/item/ammo_casing/current_shell = null
 
-/obj/item/weapon/gun/projectile/shotgun/pump/isHandgun()
+/obj/item/gun/projectile/shotgun/pump/isHandgun()
 	return FALSE
 
-/obj/item/weapon/gun/projectile/shotgun/pump/load_into_chamber()
+/obj/item/gun/projectile/shotgun/pump/load_into_chamber()
 	if(in_chamber)
 		return 1
 	return 0
 
-/obj/item/weapon/gun/projectile/shotgun/pump/attack_self(mob/living/user as mob)
+/obj/item/gun/projectile/shotgun/pump/attack_self(mob/living/user as mob)
 	if(recentpump)
 		return
 
@@ -34,7 +34,7 @@
 		recentpump = 0
 	return
 
-/obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)
+/obj/item/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)
 	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
 	pumped = 0
 	if(current_shell)//We have a shell in the chamber
@@ -53,7 +53,7 @@
 	update_icon()	//I.E. fix the desc
 	return 1
 
-/obj/item/weapon/gun/projectile/shotgun/pump/combat
+/obj/item/gun/projectile/shotgun/pump/combat
 	name = "combat shotgun"
 	icon_state = "cshotgun"
 	max_shells = 8
@@ -61,7 +61,7 @@
 	ammo_type = /obj/item/ammo_casing/shotgun
 
 //this is largely hacky and bad :(	-Pete
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel
+/obj/item/gun/projectile/shotgun/doublebarrel
 	name = "double-barreled shotgun"
 	desc = "A true classic."
 	icon_state = "dshotgun"
@@ -75,7 +75,7 @@
 	origin_tech = list(RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MATERIALS = 1)
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/load_into_chamber()
+/obj/item/gun/projectile/shotgun/doublebarrel/load_into_chamber()
 //		if(in_chamber)
 //			return 1 {R}
 	if(!length(loaded))
@@ -91,7 +91,7 @@
 		return 1
 	return 0
 
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/attack_self(mob/living/user as mob)
+/obj/item/gun/projectile/shotgun/doublebarrel/attack_self(mob/living/user as mob)
 	if(!(locate(/obj/item/ammo_casing/shotgun) in src) && !length(loaded))
 		to_chat(user, SPAN_NOTICE("\The [src] is empty."))
 		return
@@ -104,7 +104,7 @@
 	to_chat(user, SPAN_NOTICE("You break \the [src]."))
 	update_icon()
 
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/attackby(obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/shotgun/doublebarrel/attackby(obj/item/A as obj, mob/user as mob)
 	if(istype(A, /obj/item/ammo_casing) && !load_method)
 		var/obj/item/ammo_casing/AC = A
 		if(AC.caliber == caliber && (length(loaded) < max_shells) && (length(contents) < max_shells))	//forgive me father, for i have sinned
@@ -115,7 +115,7 @@
 	A.update_icon()
 	update_icon()
 
-	if(istype(A, /obj/item/weapon/circular_saw) || istype(A, /obj/item/weapon/melee/energy) || istype(A, /obj/item/weapon/pickaxe/plasmacutter))
+	if(istype(A, /obj/item/circular_saw) || istype(A, /obj/item/melee/energy) || istype(A, /obj/item/pickaxe/plasmacutter))
 		to_chat(user, SPAN_NOTICE("You begin to shorten the barrel of \the [src]."))
 		if(length(loaded))
 			afterattack(user, user)	//will this work?

@@ -6,9 +6,9 @@
 	icon_state = "apc_frame"
 	flags = CONDUCT
 
-/obj/item/apc_frame/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/apc_frame/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/wrench))
 		new /obj/item/stack/sheet/metal(get_turf(src.loc), 2)
 		qdel(src)
 

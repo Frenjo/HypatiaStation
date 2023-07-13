@@ -6,7 +6,7 @@
 	icon_state = "flood00"
 	density = TRUE
 	var/on = 0
-	var/obj/item/weapon/cell/high/cell = null
+	var/obj/item/cell/high/cell = null
 	var/use = 5
 	var/unlocked = 0
 	var/open = 0
@@ -63,8 +63,8 @@
 
 	updateicon()
 
-/obj/machinery/floodlight/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
+/obj/machinery/floodlight/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/screwdriver))
 		if(!open)
 			if(unlocked)
 				unlocked = 0
@@ -73,7 +73,7 @@
 				unlocked = 1
 				to_chat(user, "You unscrew the battery panel.")
 
-	if(istype(W, /obj/item/weapon/crowbar))
+	if(istype(W, /obj/item/crowbar))
 		if(unlocked)
 			if(open)
 				open = 0
@@ -84,7 +84,7 @@
 					open = 1
 					to_chat(user, "You remove the battery panel.")
 
-	if(istype(W, /obj/item/weapon/cell))
+	if(istype(W, /obj/item/cell))
 		if(open)
 			if(cell)
 				to_chat(user, "There is a power cell already installed.")

@@ -1,7 +1,7 @@
 /*
  * Implanter
  */
-/obj/item/weapon/implanter
+/obj/item/implanter
 	name = "implanter"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implanter0"
@@ -10,15 +10,15 @@
 	throw_range = 5
 	w_class = 2.0
 
-	var/obj/item/weapon/implant/imp = null
+	var/obj/item/implant/imp = null
 
-/obj/item/weapon/implanter/proc/update()
+/obj/item/implanter/proc/update()
 	if(isnotnull(imp))
 		icon_state = "implanter1"
 	else
 		icon_state = "implanter0"
 
-/obj/item/weapon/implanter/attack(mob/M as mob, mob/user as mob)
+/obj/item/implanter/attack(mob/M as mob, mob/user as mob)
 	if(!iscarbon(M))
 		return
 	if(isnotnull(user) && isnotnull(imp))
@@ -53,45 +53,45 @@
  * Prefab Types
  */
 // Loyalty.
-/obj/item/weapon/implanter/loyalty
+/obj/item/implanter/loyalty
 	name = "implanter-loyalty"
 
-/obj/item/weapon/implanter/loyalty/New()
+/obj/item/implanter/loyalty/New()
 	. = ..()
-	imp = new /obj/item/weapon/implant/loyalty(src)
+	imp = new /obj/item/implant/loyalty(src)
 	update()
 
 // Explosive.
-/obj/item/weapon/implanter/explosive
+/obj/item/implanter/explosive
 	name = "implanter (E)"
 
-/obj/item/weapon/implanter/explosive/New()
+/obj/item/implanter/explosive/New()
 	. = ..()
-	imp = new /obj/item/weapon/implant/explosive(src)
+	imp = new /obj/item/implant/explosive(src)
 	update()
 
 // Adrenalin.
-/obj/item/weapon/implanter/adrenalin
+/obj/item/implanter/adrenalin
 	name = "implanter-adrenalin"
 
-/obj/item/weapon/implanter/adrenalin/New()
+/obj/item/implanter/adrenalin/New()
 	. = ..()
-	imp = new /obj/item/weapon/implant/adrenalin(src)
+	imp = new /obj/item/implant/adrenalin(src)
 	update()
 
 // Compressed Matter.
-/obj/item/weapon/implanter/compressed
+/obj/item/implanter/compressed
 	name = "implanter (C)"
 	icon_state = "cimplanter1"
 
-/obj/item/weapon/implanter/compressed/New()
+/obj/item/implanter/compressed/New()
 	. = ..()
-	imp = new /obj/item/weapon/implant/compressed(src)
+	imp = new /obj/item/implant/compressed(src)
 	update()
 
-/obj/item/weapon/implanter/compressed/update()
+/obj/item/implanter/compressed/update()
 	if(isnotnull(imp))
-		var/obj/item/weapon/implant/compressed/c = imp
+		var/obj/item/implant/compressed/c = imp
 		if(isnull(c.scanned))
 			icon_state = "cimplanter1"
 		else
@@ -99,8 +99,8 @@
 	else
 		icon_state = "cimplanter0"
 
-/obj/item/weapon/implanter/compressed/attack(mob/M as mob, mob/user as mob)
-	var/obj/item/weapon/implant/compressed/c = imp
+/obj/item/implanter/compressed/attack(mob/M as mob, mob/user as mob)
+	var/obj/item/implant/compressed/c = imp
 	if(isnull(c))
 		return
 	if(isnull(c.scanned))
@@ -108,9 +108,9 @@
 		return
 	return ..()
 
-/obj/item/weapon/implanter/compressed/afterattack(atom/A, mob/user as mob)
+/obj/item/implanter/compressed/afterattack(atom/A, mob/user as mob)
 	if(isitem(A) && isnotnull(imp))
-		var/obj/item/weapon/implant/compressed/c = imp
+		var/obj/item/implant/compressed/c = imp
 		if(isnotnull(c.scanned))
 			to_chat(user, SPAN_WARNING("Something is already scanned inside the implant!"))
 			return
@@ -118,8 +118,8 @@
 		if(ishuman(A.loc))
 			var/mob/living/carbon/human/H = A.loc
 			H.u_equip(A)
-		else if(istype(A.loc, /obj/item/weapon/storage))
-			var/obj/item/weapon/storage/S = A.loc
+		else if(istype(A.loc, /obj/item/storage))
+			var/obj/item/storage/S = A.loc
 			S.remove_from_storage(A)
 		A.loc.contents.Remove(A)
 		update()

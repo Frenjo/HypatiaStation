@@ -45,7 +45,7 @@
 	return
 
 /obj/item/toy/balloon/attackby(obj/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/weapon/reagent_containers/glass))
+	if(istype(O, /obj/item/reagent_containers/glass))
 		if(O.reagents)
 			if(O.reagents.total_volume < 1)
 				to_chat(user, "The [O] is empty.")
@@ -113,7 +113,7 @@
 	icon_state = "singularity_s1"
 
 /*
- * Toy gun: Why isnt this an /obj/item/weapon/gun?
+ * Toy gun: Why isnt this an /obj/item/gun?
  */
 /obj/item/toy/gun
 	name = "cap gun"
@@ -436,7 +436,7 @@
 	return
 
 /obj/item/toy/waterflower/afterattack(atom/A as mob|obj, mob/user as mob)
-	if(istype(A, /obj/item/weapon/storage/backpack))
+	if(istype(A, /obj/item/storage/backpack))
 		return
 
 	else if(locate(/obj/structure/table, src.loc))
@@ -561,24 +561,12 @@
 	desc = "Mini-Mecha action figure! Collect them all! 11/11."
 	icon_state = "phazonprize"
 
-/obj/item/toy/katana
-	name = "replica katana"
-	desc = "Woefully underpowered in D20."
-	icon = 'icons/obj/weapons/weapons.dmi'
-	icon_state = "katana"
-	item_state = "katana"
-	flags = CONDUCT
-	slot_flags = SLOT_BELT | SLOT_BACK
-	force = 5
-	throwforce = 5
-	w_class = 3
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
-
 /* NYET.
-/obj/item/weapon/toddler
-	icon_state = "toddler"
+/obj/item/toddler
 	name = "toddler"
 	desc = "This baby looks almost real. Wait, did it just burp?"
+	icon = 'icons/obj/weapons/weapons.dmi'
+	icon_state = "toddler"
 	force = 5
 	w_class = 4.0
 	slot_flags = SLOT_BACK

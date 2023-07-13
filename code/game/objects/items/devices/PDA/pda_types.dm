@@ -14,12 +14,12 @@
 	ttone = "holy"
 
 /obj/item/device/pda/lawyer
-	default_cartridge = /obj/item/weapon/cartridge/lawyer
+	default_cartridge = /obj/item/cartridge/lawyer
 	icon_state = "pda-lawyer"
 	ttone = "..."
 
 /obj/item/device/pda/botanist
-	//default_cartridge = /obj/item/weapon/cartridge/botanist
+	//default_cartridge = /obj/item/cartridge/botanist
 	icon_state = "pda-hydro"
 
 /obj/item/device/pda/librarian
@@ -35,12 +35,12 @@
 	icon_state = "pda-bar"
 
 /obj/item/device/pda/janitor
-	default_cartridge = /obj/item/weapon/cartridge/janitor
+	default_cartridge = /obj/item/cartridge/janitor
 	icon_state = "pda-j"
 	ttone = "slip"
 
 /obj/item/device/pda/clown
-	default_cartridge = /obj/item/weapon/cartridge/clown
+	default_cartridge = /obj/item/cartridge/clown
 	icon_state = "pda-clown"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. The surface is coated with polytetrafluoroethylene and banana drippings."
 	ttone = "honk"
@@ -52,7 +52,7 @@
 			var/mob/living/carbon/human/H = M
 			if((istype(H.shoes, /obj/item/clothing/shoes) && H.shoes.flags & NOSLIP) || IS_WALKING(M))
 				return
-			if(M.real_name != src.owner && istype(src.cartridge, /obj/item/weapon/cartridge/clown))
+			if(M.real_name != src.owner && istype(src.cartridge, /obj/item/cartridge/clown))
 				if(src.cartridge.charges < 5)
 					src.cartridge.charges++
 
@@ -63,31 +63,31 @@
 		M.Weaken(5)
 
 /obj/item/device/pda/mime
-	default_cartridge = /obj/item/weapon/cartridge/mime
+	default_cartridge = /obj/item/cartridge/mime
 	icon_state = "pda-mime"
 	silent = TRUE
 	ttone = "silence"
 
 // Medical
 /obj/item/device/pda/medical
-	default_cartridge = /obj/item/weapon/cartridge/medical
+	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-m"
 
 /obj/item/device/pda/viro
-	default_cartridge = /obj/item/weapon/cartridge/medical
+	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-v"
 
 /obj/item/device/pda/chemist
-	default_cartridge = /obj/item/weapon/cartridge/chemistry
+	default_cartridge = /obj/item/cartridge/chemistry
 	icon_state = "pda-chem"
 
 /obj/item/device/pda/geneticist
-	default_cartridge = /obj/item/weapon/cartridge/medical
+	default_cartridge = /obj/item/cartridge/medical
 	icon_state = "pda-gene"
 
 // Science
 /obj/item/device/pda/toxins
-	default_cartridge = /obj/item/weapon/cartridge/signal/toxins
+	default_cartridge = /obj/item/cartridge/signal/toxins
 	icon_state = "pda-tox"
 	ttone = "boom"
 
@@ -96,29 +96,29 @@
 
 // Engineering
 /obj/item/device/pda/engineering
-	default_cartridge = /obj/item/weapon/cartridge/engineering
+	default_cartridge = /obj/item/cartridge/engineering
 	icon_state = "pda-e"
 
 /obj/item/device/pda/atmos
-	default_cartridge = /obj/item/weapon/cartridge/atmos
+	default_cartridge = /obj/item/cartridge/atmos
 	icon_state = "pda-atmo"
 
 // Security
 /obj/item/device/pda/security
-	default_cartridge = /obj/item/weapon/cartridge/security
+	default_cartridge = /obj/item/cartridge/security
 	icon_state = "pda-s"
 
 /obj/item/device/pda/detective
-	default_cartridge = /obj/item/weapon/cartridge/detective
+	default_cartridge = /obj/item/cartridge/detective
 	icon_state = "pda-det"
 
 /obj/item/device/pda/warden
-	default_cartridge = /obj/item/weapon/cartridge/security
+	default_cartridge = /obj/item/cartridge/security
 	icon_state = "pda-warden"
 
 // Cargo
 /obj/item/device/pda/cargo
-	default_cartridge = /obj/item/weapon/cartridge/quartermaster
+	default_cartridge = /obj/item/cartridge/quartermaster
 	icon_state = "pda-cargo"
 
 /obj/item/device/pda/cargo/quartermaster
@@ -133,38 +133,38 @@
 
 // Heads
 /obj/item/device/pda/heads
-	default_cartridge = /obj/item/weapon/cartridge/head
+	default_cartridge = /obj/item/cartridge/head
 	icon_state = "pda-h"
 
 /obj/item/device/pda/captain
-	default_cartridge = /obj/item/weapon/cartridge/captain
+	default_cartridge = /obj/item/cartridge/captain
 	icon_state = "pda-c"
 	detonate = FALSE
 	//toff = 1
 
 /obj/item/device/pda/heads/hop
-	default_cartridge = /obj/item/weapon/cartridge/hop
+	default_cartridge = /obj/item/cartridge/hop
 	icon_state = "pda-hop"
 
 /obj/item/device/pda/heads/hos
-	default_cartridge = /obj/item/weapon/cartridge/hos
+	default_cartridge = /obj/item/cartridge/hos
 	icon_state = "pda-hos"
 
 /obj/item/device/pda/heads/ce
-	default_cartridge = /obj/item/weapon/cartridge/ce
+	default_cartridge = /obj/item/cartridge/ce
 	icon_state = "pda-ce"
 
 /obj/item/device/pda/heads/cmo
-	default_cartridge = /obj/item/weapon/cartridge/cmo
+	default_cartridge = /obj/item/cartridge/cmo
 	icon_state = "pda-cmo"
 
 /obj/item/device/pda/heads/rd
-	default_cartridge = /obj/item/weapon/cartridge/rd
+	default_cartridge = /obj/item/cartridge/rd
 	icon_state = "pda-rd"
 
 // Syndicate
 /obj/item/device/pda/syndicate
-	default_cartridge = /obj/item/weapon/cartridge/syndicate
+	default_cartridge = /obj/item/cartridge/syndicate
 	icon_state = "pda-syn"
 	name = "Military PDA"
 	owner = "John Doe"

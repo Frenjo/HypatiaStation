@@ -5,7 +5,7 @@
 	emote_see = list("shakes its head", "kicks the ground")
 	speak_chance = 1
 	turns_per_move = 15
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/sliceable/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/sliceable/meat
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
@@ -49,7 +49,7 @@
 					movement_target = null
 					a_intent = "help"
 					turns_per_move = initial(turns_per_move)
-					for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,3))
+					for(var/obj/item/reagent_containers/food/snacks/S in oview(src,3))
 						if(isturf(S.loc) || ishuman(S.loc))
 							movement_target = S
 							break
@@ -75,7 +75,7 @@
 
 					if(isturf(movement_target.loc))
 						movement_target.attack_animal(src)
-						if(istype(movement_target, /obj/item/weapon/reagent_containers/food/snacks))
+						if(istype(movement_target, /obj/item/reagent_containers/food/snacks))
 							var/obj/item/I = movement_target
 							I.attack(src, src, "mouth")	// eat it, if it's food
 
@@ -96,7 +96,7 @@
 		a_intent = "hurt"
 
 	attackby(var/obj/item/O as obj, var/mob/user as mob)
-		if(nutrition < max_nutrition && istype(O,/obj/item/weapon/reagent_containers/food/snacks))
+		if(nutrition < max_nutrition && istype(O,/obj/item/reagent_containers/food/snacks))
 			O.attack_animal(src)
 		else
 			..(O, user)
@@ -107,7 +107,7 @@
 	icon_state = "cow"
 	icon_living = "cow"
 	icon_dead = "cow_d"
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/sliceable/meat/cow
+	meat_type = /obj/item/reagent_containers/food/snacks/sliceable/meat/cow
 	meat_amount = 10
 	max_nutrition = 1000
 	speak = list("Moo.","Moooo!","Snort.")
@@ -115,7 +115,7 @@
 	emote_hear = list("moos", "snorts")
 
 	attackby(var/obj/item/O as obj, var/mob/user as mob)
-		if(istype(O,/obj/item/weapon/reagent_containers/glass))
+		if(istype(O,/obj/item/reagent_containers/glass))
 			var/datum/reagents/R = O:reagents
 
 			R.add_reagent("milk", 50)
@@ -131,7 +131,7 @@
 		if(user.a_intent == "hurt")
 			rage_at(user)
 
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/meat/cow
+/obj/item/reagent_containers/food/snacks/sliceable/meat/cow
 	name = "Beef"
 	desc = "It's what's for dinner!"
 
@@ -141,7 +141,7 @@
 	icon_state = "chick"
 	icon_living = "chick"
 	icon_dead = "chick_d"
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/sliceable/meat/chicken
+	meat_type = /obj/item/reagent_containers/food/snacks/sliceable/meat/chicken
 	meat_amount = 3
 	max_nutrition = 200
 	speak = list("Bock bock!","Cl-cluck.","Click.")
@@ -155,10 +155,10 @@
 	if(stat != DEAD && nutrition_step == 1 && nutrition > max_nutrition / 2)
 		// lay an egg with probability of 5% in 5 second time period
 		if(prob(33))
-			new/obj/item/weapon/reagent_containers/food/snacks/egg(src.loc) // lay an egg
+			new/obj/item/reagent_containers/food/snacks/egg(src.loc) // lay an egg
 			nutrition -= 25
 
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/meat/chicken
+/obj/item/reagent_containers/food/snacks/sliceable/meat/chicken
 	name = "Chicken"
 	desc = "Tasty!"
 
@@ -174,7 +174,7 @@
 /datum/supply_packs/chicken
 	name = "\improper Chicken crate"
 	contains = list("/mob/living/simple_animal/livestock/chicken",
-					"/obj/item/weapon/reagent_containers/food/snacks/grown/corn")
+					"/obj/item/reagent_containers/food/snacks/grown/corn")
 	cost = 10
 	containertype = "/obj/structure/closet/critter"
 	containername = "Chicken crate"
@@ -183,7 +183,7 @@
 /datum/supply_packs/cow
 	name = "\improper Cow crate"
 	contains = list("/mob/living/simple_animal/livestock/cow",
-					"/obj/item/weapon/reagent_containers/food/snacks/grown/corn")
+					"/obj/item/reagent_containers/food/snacks/grown/corn")
 	cost = 50
 	containertype = "/obj/structure/closet/critter"
 	containername = "Cow crate"

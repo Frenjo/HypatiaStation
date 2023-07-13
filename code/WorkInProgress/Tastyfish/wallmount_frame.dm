@@ -33,7 +33,7 @@
 		return
 	switch(state)
 		if(1)
-			if(istype(P, /obj/item/weapon/cable_coil))
+			if(istype(P, /obj/item/cable_coil))
 				if(P:amount >= 5)
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 					user << "\blue You start to add cables to the frame."
@@ -43,14 +43,14 @@
 						user << "\blue You add cables to the frame."
 						state = 2
 						icon_state = "wm_1"
-			if(istype(P, /obj/item/weapon/wrench))
+			if(istype(P, /obj/item/wrench))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 				user << "\blue You dismantle the frame"
 				new /obj/item/stack/sheet/metal(src.loc, 2)
 				del(src)
 		if(2)
-			if(istype(P, /obj/item/weapon/circuitboard))
-				var/obj/item/weapon/circuitboard/B = P
+			if(istype(P, /obj/item/circuitboard))
+				var/obj/item/circuitboard/B = P
 				if(B.board_type == "wallmount")
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 					user << "\blue You add the circuit board to the frame."
@@ -75,16 +75,16 @@
 					user << desc
 				else
 					user << "\red This frame does not accept circuit boards of this type!"
-			if(istype(P, /obj/item/weapon/wirecutters))
+			if(istype(P, /obj/item/wirecutters))
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 				user << "\blue You remove the cables."
 				state = 1
 				icon_state = "wm_0"
-				var/obj/item/weapon/cable_coil/A = new /obj/item/weapon/cable_coil( src.loc )
+				var/obj/item/cable_coil/A = new /obj/item/cable_coil( src.loc )
 				A.amount = 5
 
 		if(3)
-			if(istype(P, /obj/item/weapon/crowbar))
+			if(istype(P, /obj/item/crowbar))
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				state = 2
 				circuit.loc = src.loc
@@ -93,14 +93,14 @@
 					user << "\blue You remove the circuit board."
 				else
 					user << "\blue You remove the circuit board and other components."
-					for(var/obj/item/weapon/W in components)
+					for(var/obj/item/W in components)
 						W.loc = src.loc
 				desc = initial(desc)
 				req_components = null
 				components = null
 				icon_state = "wm_1"
 
-			if(istype(P, /obj/item/weapon/screwdriver))
+			if(istype(P, /obj/item/screwdriver))
 				var/component_check = 1
 				for(var/R in req_components)
 					if(req_components[R] > 0)
@@ -110,7 +110,7 @@
 					playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 					var/obj/machinery/new_machine = new src.circuit.build_path(src.loc)
 					new_machine.dir = dir
-					if(istype(circuit, /obj/item/weapon/circuitboard/status_display))
+					if(istype(circuit, /obj/item/circuitboard/status_display))
 						new_machine.pixel_x = pixel_x * 1.33
 						new_machine.pixel_y = pixel_y * 1.33
 					else
@@ -132,15 +132,15 @@
 					new_machine.RefreshParts()
 					del(src)
 
-			if(istype(P, /obj/item/weapon))
+			if(istype(P, /obj/item))
 				for(var/I in req_components)
 					if(istype(P, text2path(I)) && (req_components[I] > 0))
 						playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-						if(istype(P, /obj/item/weapon/cable_coil))
-							var/obj/item/weapon/cable_coil/CP = P
+						if(istype(P, /obj/item/cable_coil))
+							var/obj/item/cable_coil/CP = P
 							if(CP.amount > 1)
 								var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
-								var/obj/item/weapon/cable_coil/CC = new /obj/item/weapon/cable_coil(src)
+								var/obj/item/cable_coil/CC = new /obj/item/cable_coil(src)
 								CC.amount = camt
 								CC.update_icon()
 								CP.use(camt)
@@ -155,10 +155,10 @@
 						update_desc()
 						break
 				user << desc
-				if(P.loc != src && !istype(P, /obj/item/weapon/cable_coil))
+				if(P.loc != src && !istype(P, /obj/item/cable_coil))
 					user << "\red You cannot add that component to the machine!"
 
-/obj/item/weapon/circuitboard/firealarm
+/obj/item/circuitboard/firealarm
 	name = "circuit board (Fire Alarm)"
 	build_path = "/obj/machinery/firealarm"
 	board_type = "wallmount"
@@ -166,11 +166,11 @@
 	frame_desc = "Requires 1 Scanning Module, 1 Capacitor, and 2 pieces of cable."
 	contain_parts = 0
 	req_components = list(
-							"/obj/item/weapon/stock_part/scanning_module" = 1,
-							"/obj/item/weapon/stock_part/capacitor" = 1,
-							"/obj/item/weapon/cable_coil" = 2)
+							"/obj/item/stock_part/scanning_module" = 1,
+							"/obj/item/stock_part/capacitor" = 1,
+							"/obj/item/cable_coil" = 2)
 
-/obj/item/weapon/circuitboard/alarm
+/obj/item/circuitboard/alarm
 	name = "circuit board (Atmospheric Alarm)"
 	build_path = "/obj/machinery/alarm"
 	board_type = "wallmount"
@@ -178,12 +178,12 @@
 	frame_desc = "Requires 1 Scanning Module, 1 Console Screen, and 2 pieces of cable."
 	contain_parts = 0
 	req_components = list(
-							"/obj/item/weapon/stock_part/scanning_module" = 1,
-							"/obj/item/weapon/stock_part/console_screen" = 1,
-							"/obj/item/weapon/cable_coil" = 2)
+							"/obj/item/stock_part/scanning_module" = 1,
+							"/obj/item/stock_part/console_screen" = 1,
+							"/obj/item/cable_coil" = 2)
 
 /* oh right, not a machine :(
-/obj/item/weapon/circuitboard/intercom
+/obj/item/circuitboard/intercom
 	name = "circuit board (Intercom)"
 	build_path = "/obj/item/device/radio/intercom"
 	board_type = "wallmount"
@@ -191,12 +191,12 @@
 	frame_desc = "Requires 1 Console Screen, and 2 piece of cable."
 	contain_parts = 0
 	req_components = list(
-							"/obj/item/weapon/stock_part/console_screen" = 1,
-							"/obj/item/weapon/cable_coil" = 2)
+							"/obj/item/stock_part/console_screen" = 1,
+							"/obj/item/cable_coil" = 2)
 */
 
 /* too complex to set up the dept for an RC in a way intuitive for the user
-/obj/item/weapon/circuitboard/requests_console
+/obj/item/circuitboard/requests_console
 	name = "circuit board (Requests Console)"
 	build_path = "/obj/machinery/requests_console"
 	board_type = "wallmount"
@@ -205,11 +205,11 @@
 	contain_parts = 0
 	req_components = list(
 							"/obj/item/device/radio" = 1,
-							"/obj/item/weapon/stock_part/console_screen" = 1
-							"/obj/item/weapon/cable_coil" = 1)
+							"/obj/item/stock_part/console_screen" = 1
+							"/obj/item/cable_coil" = 1)
 */
 
-/obj/item/weapon/circuitboard/status_display
+/obj/item/circuitboard/status_display
 	name = "circuit board (Status Display)"
 	build_path = "/obj/machinery/status_display"
 	board_type = "wallmount"
@@ -217,10 +217,10 @@
 	frame_desc = "Requires 2 Console Screens, and 1 piece of cable."
 	contain_parts = 0
 	req_components = list(
-							"/obj/item/weapon/stock_part/console_screen" = 2,
-							"/obj/item/weapon/cable_coil" = 1)
+							"/obj/item/stock_part/console_screen" = 2,
+							"/obj/item/cable_coil" = 1)
 
-/obj/item/weapon/circuitboard/light_switch
+/obj/item/circuitboard/light_switch
 	name = "circuit board (Light Switch)"
 	build_path = "/obj/machinery/light_switch"
 	board_type = "wallmount"
@@ -228,4 +228,4 @@
 	frame_desc = "Requires 2 pieces of cable."
 	contain_parts = 0
 	req_components = list(
-							"/obj/item/weapon/cable_coil" = 2)
+							"/obj/item/cable_coil" = 2)

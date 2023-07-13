@@ -27,12 +27,12 @@
 /obj/machinery/keycard_auth/attack_paw(mob/user as mob)
 	to_chat(user, "You are too primitive to use this device.")
 
-/obj/machinery/keycard_auth/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/keycard_auth/attackby(obj/item/W as obj, mob/user as mob)
 	if(stat & (NOPOWER | BROKEN))
 		to_chat(user, "This device is not powered.")
 		return
-	if(istype(W, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/ID = W
+	if(istype(W, /obj/item/card/id))
+		var/obj/item/card/id/ID = W
 		if(ACCESS_KEYCARD_AUTH in ID.access)
 			if(active == TRUE)
 				//This is not the device that made the initial request. It is the device confirming the request.

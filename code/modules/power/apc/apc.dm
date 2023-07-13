@@ -14,9 +14,9 @@
 
 	var/area/area
 	var/areastring = null
-	var/obj/item/weapon/cell/cell
+	var/obj/item/cell/cell
 	var/start_charge = 90				// initial cell charge %
-	var/cell_type = /obj/item/weapon/cell/apc
+	var/cell_type = /obj/item/cell/apc
 	var/opened = 0 //0=closed, 1=opened, 2=cover removed
 	var/shorted = 0
 	var/lighting = POWERCHAN_ON_AUTO
@@ -64,7 +64,7 @@
 /obj/machinery/power/apc/New(turf/loc, ndir, building = 0)
 	..()
 	wires = new(src)
-	var/obj/item/weapon/cell/tmp_cell = new
+	var/obj/item/cell/tmp_cell = new
 	standard_max_charge = tmp_cell.maxcharge
 	qdel(tmp_cell)
 

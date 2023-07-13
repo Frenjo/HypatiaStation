@@ -132,14 +132,14 @@
 	src.updateUsrDialog()
 
 /obj/machinery/computer/general_air_control/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/screwdriver))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if(src.stat & BROKEN)
 				FEEDBACK_BROKEN_GLASS_FALLS(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				new /obj/item/weapon/shard(src.loc)
-				var/obj/item/weapon/circuitboard/air_management/M = new /obj/item/weapon/circuitboard/air_management(A)
+				new /obj/item/shard(src.loc)
+				var/obj/item/circuitboard/air_management/M = new /obj/item/circuitboard/air_management(A)
 				for(var/obj/C in src)
 					C.loc = src.loc
 				M.frequency = src.frequency
@@ -151,7 +151,7 @@
 			else
 				FEEDBACK_DISCONNECT_MONITOR(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				var/obj/item/weapon/circuitboard/air_management/M = new /obj/item/weapon/circuitboard/air_management(A)
+				var/obj/item/circuitboard/air_management/M = new /obj/item/circuitboard/air_management(A)
 				for(var/obj/C in src)
 					C.loc = src.loc
 				M.frequency = src.frequency
@@ -333,14 +333,14 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 	var/on_temperature = 1200
 
 /obj/machinery/computer/general_air_control/fuel_injection/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/weapon/screwdriver))
+	if(istype(I, /obj/item/screwdriver))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if(src.stat & BROKEN)
 				FEEDBACK_BROKEN_GLASS_FALLS(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				new /obj/item/weapon/shard(src.loc)
-				var/obj/item/weapon/circuitboard/injector_control/M = new /obj/item/weapon/circuitboard/injector_control(A)
+				new /obj/item/shard(src.loc)
+				var/obj/item/circuitboard/injector_control/M = new /obj/item/circuitboard/injector_control(A)
 				for(var/obj/C in src)
 					C.loc = src.loc
 				M.frequency = src.frequency
@@ -352,7 +352,7 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 			else
 				FEEDBACK_DISCONNECT_MONITOR(user)
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				var/obj/item/weapon/circuitboard/injector_control/M = new /obj/item/weapon/circuitboard/injector_control(A)
+				var/obj/item/circuitboard/injector_control/M = new /obj/item/circuitboard/injector_control(A)
 				for(var/obj/C in src)
 					C.loc = src.loc
 				M.frequency = src.frequency

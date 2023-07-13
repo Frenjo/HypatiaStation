@@ -21,7 +21,7 @@
 
 //DRONE PICKUP.
 //Item holder.
-/obj/item/weapon/holder/drone
+/obj/item/holder/drone
 	name = "maintenance drone"
 	desc = "It's a small maintenance robot."
 	icon = 'icons/obj/objects.dmi'
@@ -32,7 +32,7 @@
 //Actual picking-up event.
 /mob/living/silicon/robot/drone/attack_hand(mob/living/carbon/human/M as mob)
 	if(M.a_intent == "help")
-		var/obj/item/weapon/holder/drone/D = new /obj/item/weapon/holder/drone(loc)
+		var/obj/item/holder/drone/D = new /obj/item/holder/drone(loc)
 		loc = D
 		D.name = loc.name
 		D.attack_hand(M)

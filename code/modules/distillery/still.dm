@@ -9,15 +9,15 @@
 	idle_power_usage = 10
 	active_power_usage = 10000
 
-	var/list/obj/item/weapon/reagent_containers/food/input = list()
-	var/list/obj/item/weapon/reagent_containers/food/output = list()
-	var/obj/item/weapon/reagent_containers/food/distilling_item
+	var/list/obj/item/reagent_containers/food/input = list()
+	var/list/obj/item/reagent_containers/food/output = list()
+	var/obj/item/reagent_containers/food/distilling_item
 	var/busy = 0
 	var/progress = 0
 	var/error = 0
 
-/obj/machinery/still/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/reagent_containers/food))
+/obj/machinery/still/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/reagent_containers/food))
 		user.u_equip(W)
 		W.loc = src
 		input += W
@@ -25,7 +25,7 @@
 		..()
 
 /obj/machinery/still/attack_hand(mob/user as mob)
-	for(var/obj/item/weapon/reagent_containers/food/F in output)
+	for(var/obj/item/reagent_containers/food/F in output)
 		F.loc = src.loc
 		output -= F
 
@@ -48,8 +48,8 @@
 		return	//Not done yet.
 
 	switch(distilling_item.type)
-		if(/obj/item/weapon/reagent_containers/food/drinks/cans/beer)
-			var/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka/V = new(src)
+		if(/obj/item/reagent_containers/food/drinks/cans/beer)
+			var/obj/item/reagent_containers/food/drinks/bottle/vodka/V = new(src)
 			output += V
 		else
 			error = 1

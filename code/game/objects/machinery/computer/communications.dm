@@ -22,7 +22,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 	desc = "This can be used for various important functions. Still under developement."
 	icon_state = "comm"
 	req_access = list(ACCESS_BRIDGE)
-	circuit = /obj/item/weapon/circuitboard/communications
+	circuit = /obj/item/circuitboard/communications
 
 	light_color = "#0099ff"
 
@@ -72,7 +72,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 			src.state = STATE_DEFAULT
 		if("login")
 			var/mob/M = usr
-			var/obj/item/weapon/card/id/I = M.get_active_hand()
+			var/obj/item/card/id/I = M.get_active_hand()
 			if(istype(I, /obj/item/device/pda))
 				var/obj/item/device/pda/pda = I
 				I = pda.id
@@ -86,7 +86,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 
 		if("swipeidseclevel")
 			var/mob/M = usr
-			var/obj/item/weapon/card/id/I = M.get_active_hand()
+			var/obj/item/card/id/I = M.get_active_hand()
 			if(istype(I, /obj/item/device/pda))
 				var/obj/item/device/pda/pda = I
 				I = pda.id
@@ -276,7 +276,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 	src.updateUsrDialog()
 
 /obj/machinery/computer/communications/attackby(obj/I as obj, mob/user as mob)
-	if(istype(I,/obj/item/weapon/card/emag))
+	if(istype(I,/obj/item/card/emag))
 		src.emagged = TRUE
 		to_chat(user, "You scramble the communication routing circuits!")
 	..()
@@ -557,8 +557,8 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 		if(isturf(commconsole.loc) && commconsole != src)
 			return ..()
 
-	for(var/obj/item/weapon/circuitboard/communications/commboard in world)
-		if(isturf(commboard.loc) || istype(commboard.loc, /obj/item/weapon/storage))
+	for(var/obj/item/circuitboard/communications/commboard in world)
+		if(isturf(commboard.loc) || istype(commboard.loc, /obj/item/storage))
 			return ..()
 
 	for(var/mob/living/silicon/ai/shuttlecaller in GLOBL.player_list)

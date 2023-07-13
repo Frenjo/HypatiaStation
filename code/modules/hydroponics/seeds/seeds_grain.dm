@@ -8,7 +8,7 @@
 	mypath = /obj/item/seeds/cornseed
 	species = "corn"
 	plantname = "Corn Stalks"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/corn
+	productname = /obj/item/reagent_containers/food/snacks/grown/corn
 	lifespan = 25
 	endurance = 15
 	maturation = 8
@@ -29,7 +29,7 @@
 	mypath = /obj/item/seeds/wheatseed
 	species = "wheat"
 	plantname = "Wheat Stalks"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/wheat
+	productname = /obj/item/reagent_containers/food/snacks/grown/wheat
 	lifespan = 25
 	endurance = 15
 	maturation = 6
@@ -50,7 +50,7 @@
 	mypath = /obj/item/seeds/riceseed
 	species = "rice"
 	plantname = "Rice Stalks"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/ricestalk
+	productname = /obj/item/reagent_containers/food/snacks/grown/ricestalk
 	lifespan = 25
 	endurance = 15
 	maturation = 6

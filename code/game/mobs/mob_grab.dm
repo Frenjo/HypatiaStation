@@ -1,7 +1,7 @@
 #define UPGRADE_COOLDOWN	40
 #define UPGRADE_KILL_TIMER	100
 
-/obj/item/weapon/grab
+/obj/item/grab
 	name = "grab"
 	flags = NOBLUDGEON
 
@@ -20,7 +20,7 @@
 
 	var/destroying = FALSE
 
-/obj/item/weapon/grab/New(mob/user, mob/victim)
+/obj/item/grab/New(mob/user, mob/victim)
 	. = ..()
 	loc = user
 	assailant = user
@@ -35,7 +35,7 @@
 	hud.name = "reinforce grab"
 	hud.master = src
 
-/obj/item/weapon/grab/Destroy()
+/obj/item/grab/Destroy()
 	if(isnotnull(affecting))
 		affecting.grabbed_by.Remove(src)
 		affecting = null
@@ -48,7 +48,7 @@
 	return ..()
 
 //Used by throw code to hand over the mob, instead of throwing the grab. The grab is then deleted by the throw code.
-/obj/item/weapon/grab/proc/thrown()
+/obj/item/grab/proc/thrown()
 	if(isnotnull(affecting))
 		if(isnotnull(affecting.buckled))
 			return null
@@ -57,14 +57,14 @@
 	return null
 
 //This makes sure that the grab screen object is displayed in the correct hand.
-/obj/item/weapon/grab/proc/synch()
+/obj/item/grab/proc/synch()
 	if(isnotnull(affecting))
 		if(assailant.r_hand == src)
 			hud.screen_loc = UI_RHAND
 		else
 			hud.screen_loc = UI_LHAND
 
-/obj/item/weapon/grab/process()
+/obj/item/grab/process()
 	if(GC_DESTROYED(src)) // GC is trying to delete us, we'll kill our processing so we can cleanly GC
 		return PROCESS_KILL
 
@@ -83,19 +83,19 @@
 	if(state <= GRAB_AGGRESSIVE)
 		allow_upgrade = TRUE
 		//disallow upgrading if we're grabbing more than one person
-		if(isnotnull(assailant.l_hand) && assailant.l_hand != src && istype(assailant.l_hand, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = assailant.l_hand
+		if(isnotnull(assailant.l_hand) && assailant.l_hand != src && istype(assailant.l_hand, /obj/item/grab))
+			var/obj/item/grab/G = assailant.l_hand
 			if(G.affecting != affecting)
 				allow_upgrade = TRUE
-		if(isnotnull(assailant.r_hand) && assailant.r_hand != src && istype(assailant.r_hand, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = assailant.r_hand
+		if(isnotnull(assailant.r_hand) && assailant.r_hand != src && istype(assailant.r_hand, /obj/item/grab))
+			var/obj/item/grab/G = assailant.r_hand
 			if(G.affecting != affecting)
 				allow_upgrade = TRUE
 		if(state == GRAB_AGGRESSIVE)
 			affecting.drop_l_hand()
 			affecting.drop_r_hand()
 			//disallow upgrading past aggressive if we're being grabbed aggressively
-			for(var/obj/item/weapon/grab/G in affecting.grabbed_by)
+			for(var/obj/item/grab/G in affecting.grabbed_by)
 				if(G == src)
 					continue
 				if(G.state == GRAB_AGGRESSIVE)
@@ -120,7 +120,7 @@
 		affecting.Weaken(5)	//Should keep you down unless you get help.
 		affecting.losebreath = min(affecting.losebreath + 2, 3)
 
-/obj/item/weapon/grab/proc/s_click(obj/screen/S)
+/obj/item/grab/proc/s_click(obj/screen/S)
 	if(isnull(affecting))
 		return
 	if(state == GRAB_UPGRADING)
@@ -185,7 +185,7 @@
 			state = GRAB_NECK
 
 // This is used to make sure the victim hasn't managed to yackety sax away before using the grab.
-/obj/item/weapon/grab/proc/confirm()
+/obj/item/grab/proc/confirm()
 	if(isnull(assailant) || isnull(affecting))
 		qdel(src)
 		return FALSE
@@ -197,7 +197,7 @@
 
 	return TRUE
 
-/obj/item/weapon/grab/attack(mob/M, mob/user)
+/obj/item/grab/attack(mob/M, mob/user)
 	if(isnull(affecting))
 		return
 
@@ -232,7 +232,7 @@
 			attacker.stomach_contents.Add(affecting)
 			qdel(src)
 
-/obj/item/weapon/grab/dropped()
+/obj/item/grab/dropped()
 	loc = null
 	if(!destroying)
 		qdel(src)

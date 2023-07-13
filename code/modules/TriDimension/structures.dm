@@ -61,7 +61,7 @@
 			user << "You cant build a ladder down there."
 		return
 
-	else if  (icon_state == "ladderdown" && d_state == 0 && istype(C, /obj/item/weapon/wrench))
+	else if  (icon_state == "ladderdown" && d_state == 0 && istype(C, /obj/item/wrench))
 		user << "<span class='notice'>You start loosening the anchoring bolts which secure the ladder to the frame.</span>"
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 
@@ -77,8 +77,8 @@
 			user << "<span class='notice'>You remove the bolts anchoring the ladder.</span>"
 		return
 
-	else if  (icon_state == "ladderdown" && d_state == 1 && istype(C, /obj/item/weapon/weldingtool) )
-		var/obj/item/weapon/weldingtool/WT = C
+	else if  (icon_state == "ladderdown" && d_state == 1 && istype(C, /obj/item/weldingtool) )
+		var/obj/item/weldingtool/WT = C
 		if( WT.remove_fuel(0,user) )
 
 			user << "<span class='notice'>You begin to remove the ladder.</span>"

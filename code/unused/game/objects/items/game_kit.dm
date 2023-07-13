@@ -4,14 +4,14 @@ THAT STUPID GAME KIT
 Which I am commenting out /N
 */
 /*
-/obj/item/weapon/game_kit/New()
+/obj/item/game_kit/New()
 	src.board_stat = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
 	src.selected = "CR"
 
-/obj/item/weapon/game_kit/attack_paw(mob/user as mob)
+/obj/item/game_kit/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/item/weapon/game_kit/MouseDrop(mob/user as mob)
+/obj/item/game_kit/MouseDrop(mob/user as mob)
 	if (user == usr && !usr.restrained() && !usr.stat && (usr.contents.Find(src) || in_range(src, usr)))
 		if (usr.hand)
 			if (!usr.l_hand)
@@ -22,7 +22,7 @@ Which I am commenting out /N
 				spawn (0)
 					src.attack_hand(usr, 0, 1)
 
-/obj/item/weapon/game_kit/proc/update()
+/obj/item/game_kit/proc/update()
 	var/dat = text("<CENTER><B>Game Board</B></CENTER><BR><a href='?src=\ref[];mode=hia'>[]</a> <a href='?src=\ref[];mode=remove'>remove</a><HR><table width= 256  border= 0  height= 256  cellspacing= 0  cellpadding= 0 >", src, (src.selected ? text("Selected: []", src.selected) : "Nothing Selected"), src)
 	for (var/y = 1 to 8)
 		dat += "<tr>"
@@ -53,7 +53,7 @@ Which I am commenting out /N
 		dat += "<a href='?src=\ref[src];s_piece=[piece]'><img src='[src.base_url]/board_[piece].png' width=32 height=32 border=0></a>"
 	src.data = dat
 
-/obj/item/weapon/game_kit/attack_hand(mob/user as mob, unused, flag)
+/obj/item/game_kit/attack_hand(mob/user as mob, unused, flag)
 
 	if (flag)
 		return ..()
@@ -66,7 +66,7 @@ Which I am commenting out /N
 		return
 	return
 
-/obj/item/weapon/game_kit/Topic(href, href_list)
+/obj/item/game_kit/Topic(href, href_list)
 	..()
 	if ((usr.stat || usr.restrained()))
 		return

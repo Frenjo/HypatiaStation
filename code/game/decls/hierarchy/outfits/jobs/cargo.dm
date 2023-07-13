@@ -20,7 +20,7 @@
 
 	l_ear = /obj/item/device/radio/headset/qm
 
-	l_hand = /obj/item/weapon/clipboard
+	l_hand = /obj/item/clipboard
 
 	pda_type = /obj/item/device/pda/cargo/quartermaster
 
@@ -58,16 +58,16 @@
  */
 /decl/hierarchy/outfit/job/cargo/mining
 	backpack_contents = list(
-		/obj/item/weapon/crowbar = 1,
-		/obj/item/weapon/storage/bag/ore = 1
+		/obj/item/crowbar = 1,
+		/obj/item/storage/bag/ore = 1
 	)
 
 	pda_type = /obj/item/device/pda/shaftminer
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 
-	backpack = /obj/item/weapon/storage/backpack/industrial
-	satchel_one = /obj/item/weapon/storage/satchel/eng
+	backpack = /obj/item/storage/backpack/industrial
+	satchel_one = /obj/item/storage/satchel/eng
 
 /*
  * Mining Foreman

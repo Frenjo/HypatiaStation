@@ -189,7 +189,7 @@
 	if(rev_mind.assigned_role in GLOBL.command_positions)
 		return 0
 	var/mob/living/carbon/human/H = rev_mind.current//Check to see if the potential rev is implanted
-	for(var/obj/item/weapon/implant/loyalty/L in H)//Checking that there is a loyalty implant in the contents
+	for(var/obj/item/implant/loyalty/L in H)//Checking that there is a loyalty implant in the contents
 		if(L.imp_in == H)//Checking that it's actually implanted
 			return 0
 	if((rev_mind in revolutionaries) || (rev_mind in head_revolutionaries))

@@ -151,14 +151,14 @@
 	update_icon()
 	return 0
 
-/obj/effect/blob/attackby(obj/item/weapon/W, mob/user)
+/obj/effect/blob/attackby(obj/item/W, mob/user)
 	playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 	visible_message(SPAN_DANGER("The [name] has been attacked with \the [W][(user ? " by [user]" : "")]."))
 	var/damage = 0
 	switch(W.damtype)
 		if("fire")
 			damage = (W.force / max(fire_resist, 1))
-			if(istype(W, /obj/item/weapon/weldingtool))
+			if(istype(W, /obj/item/weldingtool))
 				playsound(src, 'sound/items/Welder.ogg', 100, 1)
 		if("brute")
 			damage = (W.force / max(brute_resist, 1))

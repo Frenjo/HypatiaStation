@@ -15,16 +15,16 @@
 	desc = "It's a storage unit for operative gear."
 
 	starts_with = list(
-		/obj/item/weapon/tank/jetpack/oxygen,
+		/obj/item/tank/jetpack/oxygen,
 		/obj/item/clothing/mask/gas/syndicate,
 		/obj/item/clothing/under/syndicate,
 		/obj/item/clothing/head/helmet/space/rig/syndi,
 		/obj/item/clothing/suit/space/rig/syndi,
-		/obj/item/weapon/crowbar/red,
-		/obj/item/weapon/cell/high,
-		/obj/item/weapon/card/id/syndicate,
+		/obj/item/crowbar/red,
+		/obj/item/cell/high,
+		/obj/item/card/id/syndicate,
 		/obj/item/device/multitool,
-		/obj/item/weapon/shield/energy,
+		/obj/item/shield/energy,
 		/obj/item/clothing/shoes/magboots
 	)
 
@@ -40,18 +40,18 @@
 		/obj/item/ammo_magazine/a12mm,
 		/obj/item/ammo_magazine/a12mm,
 		/obj/item/ammo_magazine/a12mm,
-		/obj/item/weapon/storage/box/handcuffs,
-		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/gun/energy/gun,
-		/obj/item/weapon/gun/energy/gun,
-		/obj/item/weapon/gun/energy/gun,
-		/obj/item/weapon/gun/energy/gun,
-		/obj/item/weapon/gun/energy/gun,
-		/obj/item/weapon/pinpointer/nukeop,
-		/obj/item/weapon/pinpointer/nukeop,
-		/obj/item/weapon/pinpointer/nukeop,
-		/obj/item/weapon/pinpointer/nukeop,
-		/obj/item/weapon/pinpointer/nukeop,
+		/obj/item/storage/box/handcuffs,
+		/obj/item/storage/box/flashbangs,
+		/obj/item/gun/energy/gun,
+		/obj/item/gun/energy/gun,
+		/obj/item/gun/energy/gun,
+		/obj/item/gun/energy/gun,
+		/obj/item/gun/energy/gun,
+		/obj/item/pinpointer/nukeop,
+		/obj/item/pinpointer/nukeop,
+		/obj/item/pinpointer/nukeop,
+		/obj/item/pinpointer/nukeop,
+		/obj/item/pinpointer/nukeop,
 		/obj/item/device/pda/syndicate
 	)
 
@@ -80,7 +80,7 @@
 
 	//Sad trombone
 	if(pickednum == 1)
-		var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(src)
+		var/obj/item/paper/P = new /obj/item/paper(src)
 		P.name = "IOU"
 		P.info = "Sorry man, we needed the money so we sold your stash. It's ok, we'll double our money for sure this time!"
 
@@ -118,7 +118,7 @@
 
 	//Jetpack (You hit the jackpot!)
 	if(pickednum == 50)
-		new /obj/item/weapon/tank/jetpack/carbondioxide(src)
+		new /obj/item/tank/jetpack/carbondioxide(src)
 
 /*
  * Syndicate Resources (Everything)

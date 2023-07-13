@@ -317,8 +317,8 @@ This function restores all organs.
 	//Embedded projectile code.
 	if(!organ)
 		return
-	if(istype(used_weapon, /obj/item/weapon))
-		var/obj/item/weapon/W = used_weapon  //Sharp objects will always embed if they do enough damage.
+	if(istype(used_weapon, /obj/item))
+		var/obj/item/W = used_weapon  //Sharp objects will always embed if they do enough damage.
 		/*if( (damage > (10*W.w_class)) && ( (sharp && !ismob(W.loc)) || prob(damage/W.w_class) ) )
 			organ.implants += W
 			visible_message("<span class='danger'>\The [W] sticks in the wound!</span>")

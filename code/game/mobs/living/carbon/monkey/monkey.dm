@@ -11,7 +11,7 @@
 	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = MONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
 
-	var/obj/item/weapon/card/id/wear_id = null	// Fix for station bounced radios -- Skie
+	var/obj/item/card/id/wear_id = null	// Fix for station bounced radios -- Skie
 	var/greaterform = SPECIES_HUMAN				// Used when humanizing a monkey.
 	icon_state = "monkey1"
 	//var/uni_append = "12C4E2"					// Small appearance modifier for different species.
@@ -232,7 +232,7 @@
 				if (M == src || anchored)
 					return
 
-				var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src )
+				var/obj/item/grab/G = new /obj/item/grab(M, src )
 
 				M.put_in_active_hand(G)
 

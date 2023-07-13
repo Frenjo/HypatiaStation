@@ -51,7 +51,7 @@
 	construction_cost = list(MATERIAL_METAL = 40000)
 
 	var/wires = FALSE
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/cell/cell = null
 
 /obj/item/robot_parts/head
 	name = "robot head"
@@ -109,7 +109,7 @@
 	. = ..()
 	if(istype(W, /obj/item/stack/sheet/metal) && isnull(l_arm) && isnull(r_arm) && isnull(l_leg) && isnull(r_leg) && isnull(chest) && isnull(head))
 		var/obj/item/stack/sheet/metal/M = W
-		var/obj/item/weapon/ed209_assembly/B = new /obj/item/weapon/ed209_assembly
+		var/obj/item/ed209_assembly/B = new /obj/item/ed209_assembly
 		B.loc = get_turf(src)
 		to_chat(user, SPAN_INFO("You arm the robot frame."))
 		M.use(1)
@@ -243,7 +243,7 @@
 		else
 			to_chat(user, SPAN_INFO("The MMI must go in after everything else!"))
 
-	if(istype(W, /obj/item/weapon/pen))
+	if(istype(W, /obj/item/pen))
 		var/t = stripped_input(user, "Enter new robot name", src.name, src.created_name, MAX_NAME_LEN)
 		if(!t)
 			return
@@ -254,7 +254,7 @@
 
 /obj/item/robot_parts/chest/attackby(obj/item/W as obj, mob/user as mob)
 	. = ..()
-	if(istype(W, /obj/item/weapon/cell))
+	if(istype(W, /obj/item/cell))
 		if(isnotnull(cell))
 			to_chat(user, SPAN_INFO("You have already inserted a cell!"))
 			return
@@ -289,7 +289,7 @@
 			W.loc = src
 			flash1 = W
 			to_chat(user, SPAN_INFO("You insert the flash into the eye socket!"))
-	else if(istype(W, /obj/item/weapon/stock_part/manipulator))
+	else if(istype(W, /obj/item/stock_part/manipulator))
 		to_chat(user, SPAN_INFO("You install some manipulators and modify the head, creating a functional spider-bot!"))
 		new /mob/living/simple_animal/spiderbot(get_turf(loc))
 		user.drop_item()
@@ -297,7 +297,7 @@
 		qdel(src)
 
 /obj/item/robot_parts/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/card/emag))
+	if(istype(W, /obj/item/card/emag))
 		if(sabotaged)
 			to_chat(user, SPAN_WARNING("[src] is already sabotaged!"))
 		else

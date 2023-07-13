@@ -207,7 +207,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/anti_revolution/demote/check_completion()
 	if(isnotnull(target?.current) && ishuman(target))
-		var/obj/item/weapon/card/id/I = target.current:wear_id
+		var/obj/item/card/id/I = target.current:wear_id
 		if(istype(I, /obj/item/device/pda))
 			var/obj/item/device/pda/P = I
 			I = P.id
@@ -486,34 +486,34 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	var/target_name
 
 	var/static/list/possible_items = list(
-		"the captain's antique laser gun" = /obj/item/weapon/gun/energy/laser/captain,
-		"a hand teleporter" = /obj/item/weapon/hand_tele,
-		"an RCD" = /obj/item/weapon/rcd,
-		"a jetpack" = /obj/item/weapon/tank/jetpack,
+		"the captain's antique laser gun" = /obj/item/gun/energy/laser/captain,
+		"a hand teleporter" = /obj/item/hand_tele,
+		"an RCD" = /obj/item/rcd,
+		"a jetpack" = /obj/item/tank/jetpack,
 		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
 		"a functional AI" = /obj/item/device/aicard,
 		"a pair of magboots" = /obj/item/clothing/shoes/magboots,
 		"the station blueprints" = /obj/item/blueprints,
 		"a nasa voidsuit" = /obj/item/clothing/suit/space/nasavoid,
-		"28 moles of plasma (full tank)" = /obj/item/weapon/tank,
+		"28 moles of plasma (full tank)" = /obj/item/tank,
 		"a sample of slime extract" = /obj/item/slime_extract,
-		"a piece of corgi meat" = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi,
+		"a piece of corgi meat" = /obj/item/reagent_containers/food/snacks/meat/corgi,
 		"a research director's jumpsuit" = /obj/item/clothing/under/rank/research_director,
 		"a chief engineer's jumpsuit" = /obj/item/clothing/under/rank/chief_engineer,
 		"a chief medical officer's jumpsuit" = /obj/item/clothing/under/rank/chief_medical_officer,
 		"a head of security's jumpsuit" = /obj/item/clothing/under/rank/head_of_security,
 		"a head of personnel's jumpsuit" = /obj/item/clothing/under/rank/head_of_personnel,
-		"the hypospray" = /obj/item/weapon/reagent_containers/hypospray,
-		"the captain's pinpointer" = /obj/item/weapon/pinpointer,
+		"the hypospray" = /obj/item/reagent_containers/hypospray,
+		"the captain's pinpointer" = /obj/item/pinpointer,
 		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
 	)
 
 	var/static/list/possible_items_special = list(
-		/*"nuclear authentication disk" = /obj/item/weapon/disk/nuclear,*///Broken with the change to nuke disk making it respawn on z level change.
-		"nuclear gun" = /obj/item/weapon/gun/energy/gun/nuclear,
-		"diamond drill" = /obj/item/weapon/pickaxe/diamonddrill,
-		"bag of holding" = /obj/item/weapon/storage/backpack/holding,
-		"hyper-capacity cell" = /obj/item/weapon/cell/hyper,
+		/*"nuclear authentication disk" = /obj/item/disk/nuclear,*///Broken with the change to nuke disk making it respawn on z level change.
+		"nuclear gun" = /obj/item/gun/energy/gun/nuclear,
+		"diamond drill" = /obj/item/pickaxe/diamonddrill,
+		"bag of holding" = /obj/item/storage/backpack/holding,
+		"hyper-capacity cell" = /obj/item/cell/hyper,
 		"10 diamonds" = /obj/item/stack/sheet/mineral/diamond,
 		"50 gold bars" = /obj/item/stack/sheet/mineral/gold,
 		"25 refined uranium bars" = /obj/item/stack/sheet/mineral/uranium,
@@ -572,11 +572,11 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 			return found_amount >= target_amount
 
 		if("50 coins (in bag)")
-			var/obj/item/weapon/moneybag/B = locate() in all_items
+			var/obj/item/moneybag/B = locate() in all_items
 			if(isnotnull(B))
 				var/target = text2num(target_name)
 				var/found_amount = 0.0
-				for(var/obj/item/weapon/coin/C in B)
+				for(var/obj/item/coin/C in B)
 					found_amount++
 				return found_amount >= target
 
@@ -831,19 +831,19 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 			target_amount = 1
 			loot = "a nuclear bomb"
 		if(5)
-			target = /obj/item/weapon/gun
+			target = /obj/item/gun
 			target_amount = 6
 			loot = "six guns"
 		if(6)
-			target = /obj/item/weapon/gun/energy
+			target = /obj/item/gun/energy
 			target_amount = 4
 			loot = "four energy guns"
 		if(7)
-			target = /obj/item/weapon/gun/energy/laser
+			target = /obj/item/gun/energy/laser
 			target_amount = 2
 			loot = "two laser guns"
 		if(8)
-			target = /obj/item/weapon/gun/energy/ionrifle
+			target = /obj/item/gun/energy/ionrifle
 			target_amount = 1
 			loot = "an ion gun"
 

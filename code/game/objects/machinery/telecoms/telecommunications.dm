@@ -276,7 +276,7 @@
 	machinetype = 1
 	//heatgen = 0
 	operating_temperature = null
-	circuitboard = /obj/item/weapon/circuitboard/telecoms/receiver
+	circuitboard = /obj/item/circuitboard/telecoms/receiver
 
 /obj/machinery/telecoms/receiver/receive_signal(datum/signal/signal)
 	if(!on) // has to be on to receive messages
@@ -330,7 +330,7 @@
 	machinetype = 7
 	//heatgen = 40
 	operating_temperature = 40 + T0C
-	circuitboard = /obj/item/weapon/circuitboard/telecoms/hub
+	circuitboard = /obj/item/circuitboard/telecoms/hub
 	long_range_link = 1
 	netspeed = 40
 
@@ -365,7 +365,7 @@
 	machinetype = 8
 	//heatgen = 0
 	operating_temperature = null
-	circuitboard = /obj/item/weapon/circuitboard/telecoms/relay
+	circuitboard = /obj/item/circuitboard/telecoms/relay
 	netspeed = 5
 	long_range_link = 1
 
@@ -418,7 +418,7 @@
 	machinetype = 2
 	//heatgen = 20
 	operating_temperature = 20 + T0C
-	circuitboard = /obj/item/weapon/circuitboard/telecoms/bus
+	circuitboard = /obj/item/circuitboard/telecoms/bus
 	netspeed = 40
 
 	var/change_frequency = 0
@@ -470,7 +470,7 @@
 	//heatgen = 100
 	operating_temperature = 100 + T0C
 	delay = 5
-	circuitboard = /obj/item/weapon/circuitboard/telecoms/processor
+	circuitboard = /obj/item/circuitboard/telecoms/processor
 
 	var/process_mode = 1 // 1 = Uncompress Signals, 0 = Compress Signals
 
@@ -507,7 +507,7 @@
 	machinetype = 4
 	//heatgen = 50
 	operating_temperature = 50 + T0C
-	circuitboard = /obj/item/weapon/circuitboard/telecoms/server
+	circuitboard = /obj/item/circuitboard/telecoms/server
 
 	var/list/log_entries = list()
 	var/list/stored_names = list()

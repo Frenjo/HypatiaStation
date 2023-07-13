@@ -58,8 +58,8 @@
 		if(istype(crayon,/obj/item/toy/crayon))
 			var/obj/item/toy/crayon/CR = crayon
 			wash_color = CR.colourName
-		else if(istype(crayon,/obj/item/weapon/stamp))
-			var/obj/item/weapon/stamp/ST = crayon
+		else if(istype(crayon,/obj/item/stamp))
+			var/obj/item/stamp/ST = crayon
 			wash_color = ST.item_color
 
 		if(wash_color)
@@ -108,8 +108,8 @@
 					//to_world("DEBUG: YUP! [new_icon_state] and [new_item_state]")
 					break
 				qdel(S)
-			for(var/T in typesof(/obj/item/weapon/bedsheet))
-				var/obj/item/weapon/bedsheet/B = new T
+			for(var/T in typesof(/obj/item/bedsheet))
+				var/obj/item/bedsheet/B = new T
 				//to_world("DEBUG: [color] == [J.color]")
 				if(wash_color == B.item_color)
 					new_sheet_icon_state = B.icon_state
@@ -150,13 +150,13 @@
 					if (S.chained == 1)
 						S.chained = 0
 						S.slowdown = SHOES_SLOWDOWN
-						new /obj/item/weapon/handcuffs( src )
+						new /obj/item/handcuffs( src )
 					S.icon_state = new_shoe_icon_state
 					S.item_color = wash_color
 					S.name = new_shoe_name
 					S.desc = new_desc
 			if(new_sheet_icon_state && new_sheet_name)
-				for(var/obj/item/weapon/bedsheet/B in contents)
+				for(var/obj/item/bedsheet/B in contents)
 					//to_world("DEBUG: YUP! FOUND IT!")
 					B.icon_state = new_sheet_icon_state
 					B.item_color = wash_color
@@ -193,11 +193,11 @@
 /obj/machinery/washing_machine/update_icon()
 	icon_state = "wm_[state][panel]"
 
-/obj/machinery/washing_machine/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	/*if(istype(W,/obj/item/weapon/screwdriver))
+/obj/machinery/washing_machine/attackby(obj/item/W as obj, mob/user as mob)
+	/*if(istype(W,/obj/item/screwdriver))
 		panel = !panel
 		user << "\blue you [panel ? "open" : "close"] the [src]'s maintenance panel"*/
-	if(istype(W, /obj/item/toy/crayon) ||istype(W, /obj/item/weapon/stamp))
+	if(istype(W, /obj/item/toy/crayon) ||istype(W, /obj/item/stamp))
 		if(state in list(1, 3, 6))
 			if(!crayon)
 				user.drop_item()
@@ -207,9 +207,9 @@
 				..()
 		else
 			..()
-	else if(istype(W,/obj/item/weapon/grab))
+	else if(istype(W,/obj/item/grab))
 		if((state == 1) && hacked)
-			var/obj/item/weapon/grab/G = W
+			var/obj/item/grab/G = W
 			if(ishuman(G.assailant) && iscorgi(G.affecting))
 				G.affecting.loc = src
 				qdel(G)
@@ -223,7 +223,7 @@
 		istype(W, /obj/item/clothing/gloves) || \
 		istype(W, /obj/item/clothing/shoes) || \
 		istype(W, /obj/item/clothing/suit) || \
-		istype(W, /obj/item/weapon/bedsheet))
+		istype(W, /obj/item/bedsheet))
 
 		//YES, it's hardcoded... saves a var/can_be_washed for every single clothing item.
 		if(istype(W, /obj/item/clothing/suit/space))

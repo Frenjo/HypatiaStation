@@ -189,7 +189,7 @@ GLOBAL_GLOBL_LIST_INIT(breach_burn_descriptors, list(
 			repair_breaches(BURN, (istype(P, /obj/item/stack/sheet/mineral/plastic) ? 3 : 5), user)
 		return
 
-	else if(istype(W, /obj/item/weapon/weldingtool))
+	else if(istype(W, /obj/item/weldingtool))
 		if(isliving(src.loc))
 			to_chat(user, SPAN_WARNING("How do you intend to patch a hardsuit while someone is wearing it?"))
 			return
@@ -198,7 +198,7 @@ GLOBAL_GLOBL_LIST_INIT(breach_burn_descriptors, list(
 			to_chat(user, "There is no structural damage on \the [src] to repair.")
 			return
 
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weldingtool/WT = W
 		if(!WT.remove_fuel(5))
 			to_chat(user, SPAN_WARNING("You need more welding fuel to repair this suit."))
 			return

@@ -217,7 +217,7 @@
 
 /mob/living/carbon/human/proc/is_loyalty_implanted(mob/living/carbon/human/M)
 	for(var/L in M.contents)
-		if(istype(L, /obj/item/weapon/implant/loyalty))
+		if(istype(L, /obj/item/implant/loyalty))
 			for(var/datum/organ/external/O in M.organs)
 				if(L in O.implants)
 					return 1
@@ -313,7 +313,7 @@
 	<BR><B>Belt:</B> <A href='?src=\ref[src];item=belt'>[(belt ? belt : "Nothing")]</A>
 	<BR><B>Uniform:</B> <A href='?src=\ref[src];item=uniform'>[(w_uniform ? w_uniform : "Nothing")]</A>
 	<BR><B>(Exo)Suit:</B> <A href='?src=\ref[src];item=suit'>[(wear_suit ? wear_suit : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/weapon/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
+	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
 	<BR><B>ID:</B> <A href='?src=\ref[src];item=id'>[(wear_id ? wear_id : "Nothing")]</A>
 	<BR><B>Suit Storage:</B> <A href='?src=\ref[src];item=s_store'>[(s_store ? s_store : "Nothing")]</A>
 	<BR>[(handcuffed ? text("<A href='?src=\ref[src];item=handcuff'>Handcuffed</A>") : text("<A href='?src=\ref[src];item=handcuff'>Not Handcuffed</A>"))]
@@ -339,9 +339,9 @@
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_assignment(if_no_id = "No id", if_no_job = "No job")
 	var/obj/item/device/pda/pda = wear_id
-	var/obj/item/weapon/card/id/id = wear_id
+	var/obj/item/card/id/id = wear_id
 	if(istype(pda))
-		if(pda.id && istype(pda.id, /obj/item/weapon/card/id))
+		if(pda.id && istype(pda.id, /obj/item/card/id))
 			. = pda.id.assignment
 		else
 			. = pda.ownjob
@@ -357,7 +357,7 @@
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_authentification_name(if_no_id = "Unknown")
 	var/obj/item/device/pda/pda = wear_id
-	var/obj/item/weapon/card/id/id = wear_id
+	var/obj/item/card/id/id = wear_id
 	if(istype(pda))
 		if(pda.id)
 			. = pda.id.registered_name
@@ -396,7 +396,7 @@
 		var/obj/item/device/pda/P = wear_id
 		return P.owner
 	if(isnotnull(wear_id))
-		var/obj/item/weapon/card/id/I = wear_id.get_id()
+		var/obj/item/card/id/I = wear_id.get_id()
 		if(isnotnull(I))
 			return I.registered_name
 
@@ -442,7 +442,7 @@
 			var/modified = 0
 			var/perpname = "wot"
 			if(isnotnull(wear_id))
-				var/obj/item/weapon/card/id/I = wear_id.get_id()
+				var/obj/item/card/id/I = wear_id.get_id()
 				perpname = isnotnull(I) ? I.registered_name : name
 			else
 				perpname = name
@@ -478,7 +478,7 @@
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id, /obj/item/weapon/card/id))
+				if(istype(wear_id, /obj/item/card/id))
 					perpname = wear_id:registered_name
 				else if(istype(wear_id, /obj/item/device/pda))
 					var/obj/item/device/pda/tempPda = wear_id
@@ -508,7 +508,7 @@
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id, /obj/item/weapon/card/id))
+				if(istype(wear_id, /obj/item/card/id))
 					perpname = wear_id:registered_name
 				else if(istype(wear_id, /obj/item/device/pda))
 					var/obj/item/device/pda/tempPda = wear_id
@@ -536,7 +536,7 @@
 		if(hasHUD(usr, "security"))
 			var/perpname = "wot"
 			if(wear_id)
-				if(istype(wear_id, /obj/item/weapon/card/id))
+				if(istype(wear_id, /obj/item/card/id))
 					perpname = wear_id:registered_name
 				else if(istype(wear_id, /obj/item/device/pda))
 					var/obj/item/device/pda/tempPda = wear_id
@@ -567,7 +567,7 @@
 			var/modified = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
 				else if(istype(wear_id,/obj/item/device/pda))
 					var/obj/item/device/pda/tempPda = wear_id
@@ -606,7 +606,7 @@
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
 				else if(istype(wear_id,/obj/item/device/pda))
 					var/obj/item/device/pda/tempPda = wear_id
@@ -637,7 +637,7 @@
 			var/read = 0
 
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
 				else if(istype(wear_id,/obj/item/device/pda))
 					var/obj/item/device/pda/tempPda = wear_id
@@ -665,7 +665,7 @@
 		if(hasHUD(usr, "medical"))
 			var/perpname = "wot"
 			if(wear_id)
-				if(istype(wear_id,/obj/item/weapon/card/id))
+				if(istype(wear_id,/obj/item/card/id))
 					perpname = wear_id:registered_name
 				else if(istype(wear_id,/obj/item/device/pda))
 					var/obj/item/device/pda/tempPda = wear_id
@@ -961,7 +961,7 @@
 		vessel.add_reagent("blood", 560 - vessel.total_volume)
 		fixblood()
 
-	for(var/obj/item/weapon/organ/head/H in world)
+	for(var/obj/item/organ/head/H in world)
 		if(H.brainmob)
 			if(H.brainmob.real_name == src.real_name)
 				if(H.brainmob.mind)
@@ -1046,8 +1046,8 @@
 /mob/living/carbon/human/get_visible_implants(class = 0)
 	var/list/visible_implants = list()
 	for(var/datum/organ/external/organ in src.organs)
-		for(var/obj/item/weapon/O in organ.implants)
-			if(!istype(O,/obj/item/weapon/implant) && O.w_class > class)
+		for(var/obj/item/O in organ.implants)
+			if(!istype(O,/obj/item/implant) && O.w_class > class)
 				visible_implants += O
 
 	return(visible_implants)
@@ -1056,8 +1056,8 @@
 	for(var/datum/organ/external/organ in src.organs)
 		if(organ.status & ORGAN_SPLINTED) //Splints prevent movement.
 			continue
-		for(var/obj/item/weapon/O in organ.implants)
-			if(!istype(O, /obj/item/weapon/implant) && prob(5)) //Moving with things stuck in you could be bad.
+		for(var/obj/item/O in organ.implants)
+			if(!istype(O, /obj/item/implant) && prob(5)) //Moving with things stuck in you could be bad.
 				// All kinds of embedded objects cause bleeding.
 				var/msg = null
 				switch(rand(1, 3))

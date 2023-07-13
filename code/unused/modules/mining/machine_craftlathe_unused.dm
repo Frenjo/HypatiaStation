@@ -140,7 +140,7 @@ proc/check_craftlathe_recipe(var/list/param_recipe)
 
 
 
-/obj/machinery/autolathe2/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/autolathe2/attackby(obj/item/W as obj, mob/user as mob)
 	usr.machine = src
 	src.add_fingerprint(usr)
 	for (var/datum/craftlathe_item/CI in CRAFT_ITEMS)
@@ -175,7 +175,7 @@ proc/check_craftlathe_recipe(var/list/param_recipe)
 	CRAFT_ITEMS += new/datum/craftlathe_item("SILVER","Silver",1,1,list("","","","","","","","",""),/obj/item/stack/sheet/mineral/silver)
 	CRAFT_ITEMS += new/datum/craftlathe_item("DIAMOND","Diamond",1,1,list("","","","","","","","",""),/obj/item/stack/sheet/mineral/diamond)
 	CRAFT_ITEMS += new/datum/craftlathe_item("PLASMA","Plasma",1,1,list("","","","","","","","",""),/obj/item/stack/sheet/mineral/plasma)
-	CRAFT_ITEMS += new/datum/craftlathe_item("URANIUM","Uranium",1,1,list("","","","","","","","",""),/obj/item/weapon/ore/mineral/uranium)
+	CRAFT_ITEMS += new/datum/craftlathe_item("URANIUM","Uranium",1,1,list("","","","","","","","",""),/obj/item/ore/mineral/uranium)
 	CRAFT_ITEMS += new/datum/craftlathe_item("CLOWN","Bananium",1,1,list("","","","","","","","",""),/obj/item/stack/sheet/mineral/clown)
 	CRAFT_ITEMS += new/datum/craftlathe_item("ADMAMANTINE","Adamantine",1,1,list("","","","","","","","",""),/obj/item/stack/sheet/mineral/adamantine)
 	CRAFT_ITEMS += new/datum/craftlathe_item("SCREWS","Screws",9,9,list("","","","","METAL","","","METAL",""))

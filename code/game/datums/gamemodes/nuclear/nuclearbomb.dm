@@ -16,7 +16,7 @@ var/bomb_set
 	var/code = ""
 	var/yes_code = 0.0
 	var/safety = 1.0
-	var/obj/item/weapon/disk/nuclear/auth = null
+	var/obj/item/disk/nuclear/auth = null
 	var/list/wires = list()
 	var/light_wire
 	var/safety_wire
@@ -64,8 +64,8 @@ var/bomb_set
 				src.attack_hand(M)
 	return
 
-/obj/machinery/nuclearbomb/attackby(obj/item/weapon/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/weapon/screwdriver))
+/obj/machinery/nuclearbomb/attackby(obj/item/O as obj, mob/user as mob)
+	if(istype(O, /obj/item/screwdriver))
 		src.add_fingerprint(user)
 		if(src.auth)
 			if(src.opened == 0)
@@ -87,13 +87,13 @@ var/bomb_set
 
 		return
 
-	if(istype(O, /obj/item/weapon/wirecutters) || istype(O, /obj/item/device/multitool))
+	if(istype(O, /obj/item/wirecutters) || istype(O, /obj/item/device/multitool))
 		if(src.opened == 1)
 			nukehack_win(user)
 		return
 
 	if(src.extended)
-		if(istype(O, /obj/item/weapon/disk/nuclear))
+		if(istype(O, /obj/item/disk/nuclear))
 			usr.drop_item()
 			O.loc = src
 			src.auth = O
@@ -103,8 +103,8 @@ var/bomb_set
 	if(src.anchored)
 		switch(removal_stage)
 			if(0)
-				if(istype(O, /obj/item/weapon/weldingtool))
-					var/obj/item/weapon/weldingtool/WT = O
+				if(istype(O, /obj/item/weldingtool))
+					var/obj/item/weldingtool/WT = O
 					if(!WT.isOn())
 						return
 					if(WT.get_fuel() < 5) // uses up 5 fuel.
@@ -127,7 +127,7 @@ var/bomb_set
 				return
 
 			if(1)
-				if(istype(O, /obj/item/weapon/crowbar))
+				if(istype(O, /obj/item/crowbar))
 					user.visible_message(
 						"[user] starts forcing open the bolt covers on [src].",
 						"You start forcing open the anchoring bolt covers with [O]..."
@@ -144,8 +144,8 @@ var/bomb_set
 				return
 
 			if(2)
-				if(istype(O, /obj/item/weapon/weldingtool))
-					var/obj/item/weapon/weldingtool/WT = O
+				if(istype(O, /obj/item/weldingtool))
+					var/obj/item/weldingtool/WT = O
 					if(!WT.isOn())
 						return
 					if(WT.get_fuel() < 5) // uses up 5 fuel.
@@ -168,7 +168,7 @@ var/bomb_set
 				return
 
 			if(3)
-				if(istype(O, /obj/item/weapon/wrench))
+				if(istype(O, /obj/item/wrench))
 					user.visible_message(
 						"[user] begins unwrenching the anchoring bolts on [src].",
 						"You begin unwrenching the anchoring bolts..."
@@ -185,7 +185,7 @@ var/bomb_set
 				return
 
 			if(4)
-				if(istype(O, /obj/item/weapon/crowbar))
+				if(istype(O, /obj/item/crowbar))
 					user.visible_message(
 						"[user] begins lifting [src] off of the anchors.",
 						"You begin lifting the device off the anchors..."
@@ -307,7 +307,7 @@ var/bomb_set
 							else
 								visible_message(SPAN_INFO("The [src] emits a quiet whirling noise!"))
 			if(href_list["act"] == "wire")
-				if(!istype(usr.get_active_hand(), /obj/item/weapon/wirecutters))
+				if(!istype(usr.get_active_hand(), /obj/item/wirecutters))
 					to_chat(usr, "You need wirecutters!")
 				else
 					wires[temp_wire] = !wires[temp_wire]
@@ -330,7 +330,7 @@ var/bomb_set
 				src.auth = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/disk/nuclear))
+				if(istype(I, /obj/item/disk/nuclear))
 					usr.drop_item()
 					I.loc = src
 					src.auth = I
@@ -470,9 +470,9 @@ var/bomb_set
 	return
 #undef NUKERANGE
 
-/obj/item/weapon/disk/nuclear/Destroy()
+/obj/item/disk/nuclear/Destroy()
 	if(length(GLOBL.blobstart))
-		var/obj/D = new /obj/item/weapon/disk/nuclear(pick(GLOBL.blobstart))
+		var/obj/D = new /obj/item/disk/nuclear(pick(GLOBL.blobstart))
 		message_admins("[src] has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
 		log_game("[src] has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
 	return ..()

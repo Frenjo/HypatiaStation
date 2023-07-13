@@ -8,7 +8,7 @@
 	mypath = /obj/item/seeds/ambrosiavulgarisseed
 	species = "ambrosiavulgaris"
 	plantname = "Ambrosia Vulgaris"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris
+	productname = /obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris
 	lifespan = 60
 	endurance = 25
 	maturation = 6
@@ -28,7 +28,7 @@
 	mypath = /obj/item/seeds/ambrosiadeusseed
 	species = "ambrosiadeus"
 	plantname = "Ambrosia Deus"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus
+	productname = /obj/item/reagent_containers/food/snacks/grown/ambrosiadeus
 	lifespan = 60
 	endurance = 25
 	maturation = 6
@@ -48,7 +48,7 @@
 	mypath = /obj/item/seeds/peanutseed
 	species = "peanut"
 	plantname = "Peanuts"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/peanut
+	productname = /obj/item/reagent_containers/food/snacks/grown/peanut
 	lifespan = 55
 	endurance = 50
 	maturation = 6
@@ -68,7 +68,7 @@
 	mypath = /obj/item/seeds/eggyseed
 	species = "eggy"
 	plantname = "Eggplants"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/egg
+	productname = /obj/item/reagent_containers/food/snacks/egg
 	lifespan = 75
 	endurance = 15
 	maturation = 6

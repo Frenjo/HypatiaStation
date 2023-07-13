@@ -1,7 +1,7 @@
 /*
  * Ambrosia Vulgaris
  */
-/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris
+/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris
 	seed = /obj/item/seeds/ambrosiavulgarisseed
 	name = "ambrosia vulgaris branch"
 	desc = "This is a plant containing various healing chemicals."
@@ -9,7 +9,7 @@
 	potency = 10
 	filling_color = "#125709"
 	
-/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris/initialize()
+/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1)
 	reagents.add_reagent("space_drugs", 1 + round(potency / 8, 1))
@@ -21,7 +21,7 @@
 /*
  * Ambrosia Deus
  */
-/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus
+/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus
 	seed = /obj/item/seeds/ambrosiadeusseed
 	name = "ambrosia deus branch"
 	desc = "Eating this makes you feel immortal!"
@@ -29,7 +29,7 @@
 	potency = 10
 	filling_color = "#229E11"
 	
-/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus/initialize()
+/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1)
 	reagents.add_reagent("bicaridine", 1 + round(potency / 8, 1))
@@ -41,7 +41,7 @@
 /*
  * Peanut
  */
-/obj/item/weapon/reagent_containers/food/snacks/grown/peanut
+/obj/item/reagent_containers/food/snacks/grown/peanut
 	seed = /obj/item/seeds/peanutseed
 	name = "peanut"
 	desc = "Nuts!"
@@ -49,7 +49,7 @@
 	filling_color = "857e27"
 	potency = 25
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/peanut/initialize()
+/obj/item/reagent_containers/food/snacks/grown/peanut/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)

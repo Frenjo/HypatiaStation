@@ -1,38 +1,38 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 /var/global/list/autolathe_recipes = list(
 	/*screwdriver removed*/
-	new /obj/item/weapon/reagent_containers/glass/bucket(),
-	new /obj/item/weapon/crowbar(),
+	new /obj/item/reagent_containers/glass/bucket(),
+	new /obj/item/crowbar(),
 	new /obj/item/device/flashlight(),
-	new /obj/item/weapon/extinguisher(),
+	new /obj/item/extinguisher(),
 	new /obj/item/device/multitool(),
 	new /obj/item/device/t_scanner(),
-	new /obj/item/weapon/weldingtool(),
-	new /obj/item/weapon/screwdriver(),
-	new /obj/item/weapon/wirecutters(),
-	new /obj/item/weapon/wrench(),
+	new /obj/item/weldingtool(),
+	new /obj/item/screwdriver(),
+	new /obj/item/wirecutters(),
+	new /obj/item/wrench(),
 	new /obj/item/clothing/head/welding(),
-	new /obj/item/weapon/stock_part/console_screen(),
-	new /obj/item/weapon/airlock_electronics(),
-	new /obj/item/weapon/airalarm_electronics(),
-	new /obj/item/weapon/firealarm_electronics(),
-	new /obj/item/weapon/module/power_control(),
+	new /obj/item/stock_part/console_screen(),
+	new /obj/item/airlock_electronics(),
+	new /obj/item/airalarm_electronics(),
+	new /obj/item/firealarm_electronics(),
+	new /obj/item/module/power_control(),
 	new /obj/item/stack/sheet/metal(),
 	new /obj/item/stack/sheet/glass(),
 	new /obj/item/stack/sheet/rglass(),
 	new /obj/item/stack/rods(),
-	new /obj/item/weapon/rcd_ammo(),
-	new /obj/item/weapon/kitchenknife(),
-	new /obj/item/weapon/scalpel(),
-	new /obj/item/weapon/circular_saw(),
-	new /obj/item/weapon/surgicaldrill(),
-	new /obj/item/weapon/retractor(),
-	new /obj/item/weapon/cautery(),
-	new /obj/item/weapon/hemostat(),
-	new /obj/item/weapon/reagent_containers/glass/beaker(),
-	new /obj/item/weapon/reagent_containers/glass/beaker/large(),
-	new /obj/item/weapon/reagent_containers/glass/beaker/vial(),
-	new /obj/item/weapon/reagent_containers/syringe(),
+	new /obj/item/rcd_ammo(),
+	new /obj/item/kitchenknife(),
+	new /obj/item/scalpel(),
+	new /obj/item/circular_saw(),
+	new /obj/item/surgicaldrill(),
+	new /obj/item/retractor(),
+	new /obj/item/cautery(),
+	new /obj/item/hemostat(),
+	new /obj/item/reagent_containers/glass/beaker(),
+	new /obj/item/reagent_containers/glass/beaker/large(),
+	new /obj/item/reagent_containers/glass/beaker/vial(),
+	new /obj/item/reagent_containers/syringe(),
 	new /obj/item/ammo_casing/shotgun/blank(),
 	new /obj/item/ammo_casing/shotgun/beanbag(),
 	new /obj/item/ammo_magazine/c45r(),
@@ -44,23 +44,23 @@
 	new /obj/item/device/assembly/infra(),
 	new /obj/item/device/assembly/timer(),
 	new /obj/item/device/assembly/prox_sensor(),
-	new /obj/item/weapon/light/tube(),
-	new /obj/item/weapon/light/bulb(),
+	new /obj/item/light/tube(),
+	new /obj/item/light/bulb(),
 	new /obj/item/ashtray/glass(),
-	new /obj/item/weapon/camera_assembly()
+	new /obj/item/camera_assembly()
 )
 
 /var/global/list/autolathe_recipes_hidden = list(
-	new /obj/item/weapon/flamethrower/full(),
-	new /obj/item/weapon/rcd(),
+	new /obj/item/flamethrower/full(),
+	new /obj/item/rcd(),
 	new /obj/item/device/radio/electropack(),
-	new /obj/item/weapon/weldingtool/largetank(),
-	new /obj/item/weapon/handcuffs(),
+	new /obj/item/weldingtool/largetank(),
+	new /obj/item/handcuffs(),
 	new /obj/item/ammo_magazine/a357(),
 	new /obj/item/ammo_magazine/c45m(),
 	new /obj/item/ammo_casing/shotgun(),
 	new /obj/item/ammo_casing/shotgun/dart()
-	/* new /obj/item/weapon/shield/riot()*/
+	/* new /obj/item/shield/riot()*/
 )
 
 /obj/machinery/autolathe
@@ -164,7 +164,7 @@
 		to_chat(user, SPAN_WARNING("The autolathe is busy. Please wait for completion of previous operation."))
 		return 1
 
-	if(istype(O, /obj/item/weapon/screwdriver))
+	if(istype(O, /obj/item/screwdriver))
 		if(!panel_open)
 			src.panel_open = 1
 			src.icon_state = "autolathe_t"
@@ -176,7 +176,7 @@
 		return 1
 
 	if(panel_open)
-		if(istype(O, /obj/item/weapon/crowbar))
+		if(istype(O, /obj/item/crowbar))
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			M.state = 2
@@ -208,8 +208,8 @@
 		to_chat(user, SPAN_WARNING("This object does not contain significant amounts of metal or glass, or cannot be accepted by the autolathe due to size or hazardous materials."))
 		return 1
 	/*
-		if (istype(O, /obj/item/weapon/grab) && src.hacked)
-			var/obj/item/weapon/grab/G = O
+		if (istype(O, /obj/item/grab) && src.hacked)
+			var/obj/item/grab/G = O
 			if (prob(25) && G.affecting)
 				G.affecting.gib()
 				m_amount += 50000
@@ -328,7 +328,7 @@
 /obj/machinery/autolathe/RefreshParts()
 	..()
 	var/tot_rating = 0
-	for(var/obj/item/weapon/stock_part/matter_bin/MB in component_parts)
+	for(var/obj/item/stock_part/matter_bin/MB in component_parts)
 		tot_rating += MB.rating
 	tot_rating *= 25000
 	storage_capacity[MATERIAL_METAL] = tot_rating * 2
@@ -340,12 +340,12 @@
 	wires = new(src)
 
 	component_parts = list()
-	component_parts += new /obj/item/weapon/circuitboard/autolathe(src)
-	component_parts += new /obj/item/weapon/stock_part/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_part/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_part/matter_bin(src)
-	component_parts += new /obj/item/weapon/stock_part/manipulator(src)
-	component_parts += new /obj/item/weapon/stock_part/console_screen(src)
+	component_parts += new /obj/item/circuitboard/autolathe(src)
+	component_parts += new /obj/item/stock_part/matter_bin(src)
+	component_parts += new /obj/item/stock_part/matter_bin(src)
+	component_parts += new /obj/item/stock_part/matter_bin(src)
+	component_parts += new /obj/item/stock_part/manipulator(src)
+	component_parts += new /obj/item/stock_part/console_screen(src)
 	RefreshParts()
 
 	src.L = global.autolathe_recipes

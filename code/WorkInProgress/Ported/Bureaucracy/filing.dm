@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 
-/obj/structure/filingcabinet/attackby(obj/item/weapon/paper/P, mob/M)
+/obj/structure/filingcabinet/attackby(obj/item/paper/P, mob/M)
 	if(istype(P))
 		to_chat(M, "You put \the [P] in the [src].")
 		M.drop_item()
@@ -18,6 +18,6 @@
 	if(src.contents.len <= 0)
 		to_chat(user, "The [src] is empty.")
 		return
-	var/obj/item/weapon/paper/P = input(user, "Choose a sheet to take out.", "[src]", "Cancel") as null|obj in src.contents
+	var/obj/item/paper/P = input(user, "Choose a sheet to take out.", "[src]", "Cancel") as null|obj in src.contents
 	if(isnotnull(P) && in_range(src, user))
 		P.loc = user.loc

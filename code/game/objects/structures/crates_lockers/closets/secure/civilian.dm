@@ -12,9 +12,9 @@
 
 /obj/structure/closet/secure_closet/chef_personal/New()
 	. = ..()
-	var/obj/item/weapon/storage/backpack/BPK = new /obj/item/weapon/storage/backpack(src)
-	var/obj/item/weapon/storage/box/B = new(BPK)
-	new /obj/item/weapon/pen(B)
+	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
+	var/obj/item/storage/box/B = new(BPK)
+	new /obj/item/pen(B)
 
 /*
  * Booze Closet
@@ -24,16 +24,16 @@
 	req_access = list(ACCESS_BAR)
 
 	starts_with = list(
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/beer
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer,
+		/obj/item/reagent_containers/food/drinks/cans/beer
 	)
 
 /*
@@ -50,13 +50,13 @@
 
 /obj/structure/closet/secure_closet/barman_personal/New()
 	. = ..()
-	var/obj/item/weapon/storage/backpack/BPK = new /obj/item/weapon/storage/backpack(src)
+	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
 	new /obj/item/ammo_casing/shotgun/beanbag(BPK)
 	new /obj/item/ammo_casing/shotgun/beanbag(BPK)
 	new /obj/item/ammo_casing/shotgun/beanbag(BPK)
 	new /obj/item/ammo_casing/shotgun/beanbag(BPK)
-	var/obj/item/weapon/storage/box/B = new(BPK)
-	new /obj/item/weapon/pen(B)
+	var/obj/item/storage/box/B = new(BPK)
+	new /obj/item/pen(B)
 
 /*
  * Botanist
@@ -73,9 +73,9 @@
 
 /obj/structure/closet/secure_closet/hydro_personal/New()
 	. = ..()
-	var/obj/item/weapon/storage/backpack/BPK = new /obj/item/weapon/storage/backpack(src)
-	var/obj/item/weapon/storage/box/B = new(BPK)
-	new /obj/item/weapon/pen(B)
+	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
+	var/obj/item/storage/box/B = new(BPK)
+	new /obj/item/pen(B)
 
 /*
  * Janitor
@@ -91,9 +91,9 @@
 
 /obj/structure/closet/secure_closet/janitor_personal/New()
 	. = ..()
-	var/obj/item/weapon/storage/backpack/BPK = new /obj/item/weapon/storage/backpack(src)
-	var/obj/item/weapon/storage/box/B = new(BPK)
-	new /obj/item/weapon/pen(B)
+	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
+	var/obj/item/storage/box/B = new(BPK)
+	new /obj/item/pen(B)
 
 /*
  * Lawyer
@@ -106,14 +106,14 @@
 		/obj/item/wardrobe/lawyer,
 		/obj/item/device/pda/lawyer,
 		/obj/item/device/detective_scanner,
-		/obj/item/weapon/storage/briefcase
+		/obj/item/storage/briefcase
 	)
 
 /obj/structure/closet/secure_closet/lawyer_personal/New()
 	. = ..()
-	var/obj/item/weapon/storage/backpack/BPK = new /obj/item/weapon/storage/backpack(src)
-	var/obj/item/weapon/storage/box/B = new(BPK)
-	new /obj/item/weapon/pen(B)
+	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
+	var/obj/item/storage/box/B = new(BPK)
+	new /obj/item/pen(B)
 
 /*
  * Librarian
@@ -124,14 +124,14 @@
 
 	starts_with = list(
 		/obj/item/wardrobe/librarian,
-		/obj/item/weapon/barcodescanner
+		/obj/item/barcodescanner
 	)
 
 /obj/structure/closet/secure_closet/librarian_personal/New()
 	. = ..()
-	var/obj/item/weapon/storage/backpack/BPK = new /obj/item/weapon/storage/backpack(src)
-	var/obj/item/weapon/storage/box/B = new(BPK)
-	new /obj/item/weapon/pen(B)
+	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
+	var/obj/item/storage/box/B = new(BPK)
+	new /obj/item/pen(B)
 
 /*
  * Counselor
@@ -142,16 +142,16 @@
 
 	starts_with = list(
 		/obj/item/wardrobe/chaplain,
-		/obj/item/weapon/storage/backpack/cultpack,
-		/obj/item/weapon/storage/bible,
+		/obj/item/storage/backpack/cultpack,
+		/obj/item/storage/bible,
 		/obj/item/device/pda/chaplain,
 		/obj/item/device/radio/headset,
-		/obj/item/weapon/candlepack,
-		/obj/item/weapon/candlepack
+		/obj/item/candlepack,
+		/obj/item/candlepack
 	)
 
 /obj/structure/closet/secure_closet/counselor_personal/New()
 	. = ..()
-	var/obj/item/weapon/storage/backpack/BPK = new /obj/item/weapon/storage/backpack(src)
-	var/obj/item/weapon/storage/box/B = new(BPK)
-	new /obj/item/weapon/pen(B)
+	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
+	var/obj/item/storage/box/B = new(BPK)
+	new /obj/item/pen(B)

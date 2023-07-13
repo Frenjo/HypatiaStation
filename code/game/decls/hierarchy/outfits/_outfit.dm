@@ -71,7 +71,7 @@ GLOBAL_GLOBL_LIST_NEW(all_outfits)
 
 	// If the outfit comes with a jetpack, turn it on.
 	if(flags & OUTFIT_HAS_JETPACK)
-		var/obj/item/weapon/tank/jetpack/jet = locate(/obj/item/weapon/tank/jetpack) in user
+		var/obj/item/tank/jetpack/jet = locate(/obj/item/tank/jetpack) in user
 		if(isnull(jet))
 			return
 		jet.toggle()
@@ -116,7 +116,7 @@ if(isnotnull(VAR)) \
 
 	// Then the ID card and PDA, if any.
 	if(isnotnull(id_slot))
-		var/obj/item/weapon/card/id/identification = new id_type(user)
+		var/obj/item/card/id/identification = new id_type(user)
 		if(isnotnull(id_desc))
 			identification.desc = id_desc
 		identification.registered_name = user.real_name

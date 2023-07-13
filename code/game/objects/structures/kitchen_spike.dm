@@ -18,8 +18,8 @@
 /obj/structure/kitchenspike/attack_paw(mob/user as mob)
 	return src.attack_hand(usr)
 
-/obj/structure/kitchenspike/attackby(obj/item/weapon/grab/G as obj, mob/user as mob)
-	if(!istype(G, /obj/item/weapon/grab))
+/obj/structure/kitchenspike/attackby(obj/item/grab/G as obj, mob/user as mob)
+	if(!istype(G, /obj/item/grab))
 		return
 	if(ismonkey(G.affecting))
 		if(src.occupied == 0)
@@ -62,22 +62,22 @@
 		if(src.meattype == MEAT_TYPE_MONKEY)
 			if(src.meat > 1)
 				src.meat--
-				new /obj/item/weapon/reagent_containers/food/snacks/meat/monkey(src.loc)
+				new /obj/item/reagent_containers/food/snacks/meat/monkey(src.loc)
 				to_chat(user, "You remove some meat from the monkey.")
 			else if(src.meat == 1)
 				src.meat--
-				new /obj/item/weapon/reagent_containers/food/snacks/meat/monkey(src.loc)
+				new /obj/item/reagent_containers/food/snacks/meat/monkey(src.loc)
 				to_chat(user, "You remove the last piece of meat from the monkey!")
 				src.icon_state = "spike"
 				src.occupied = 0
 		else if(src.meattype == MEAT_TYPE_ALIEN)
 			if(src.meat > 1)
 				src.meat--
-				new /obj/item/weapon/reagent_containers/food/snacks/xenomeat(src.loc)
+				new /obj/item/reagent_containers/food/snacks/xenomeat(src.loc)
 				to_chat(user, "You remove some meat from the alien.")
 			else if(src.meat == 1)
 				src.meat--
-				new /obj/item/weapon/reagent_containers/food/snacks/xenomeat(src.loc)
+				new /obj/item/reagent_containers/food/snacks/xenomeat(src.loc)
 				to_chat(user, "You remove the last piece of meat from the alien!")
 				src.icon_state = "spike"
 				src.occupied = 0

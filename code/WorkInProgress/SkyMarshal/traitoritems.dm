@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 29/05/2012 15:03:06
 
-/obj/item/weapon/stamperaser
+/obj/item/stamperaser
 	name = "eraser"
 	desc = "It looks like some kind of eraser."
 	flags = FPRINT | TABLEPASS

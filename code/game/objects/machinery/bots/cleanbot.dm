@@ -1,5 +1,5 @@
 //Cleanbot assembly
-/obj/item/weapon/bucket_sensor
+/obj/item/bucket_sensor
 	desc = "It's a bucket. With a sensor attached."
 	name = "proxy bucket"
 	icon = 'icons/obj/aibots.dmi'
@@ -50,7 +50,7 @@
 
 	should_patrol = 1
 
-	src.botcard = new /obj/item/weapon/card/id(src)
+	src.botcard = new /obj/item/card/id(src)
 	var/datum/job/janitor/J = new/datum/job/janitor
 	src.botcard.access = J.get_access()
 
@@ -141,8 +141,8 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 			usr << "<span class='notice'>You press the weird button.</span>"
 			src.updateUsrDialog()
 
-/obj/machinery/bot/cleanbot/attackby(obj/item/weapon/W, mob/user as mob)
-	if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+/obj/machinery/bot/cleanbot/attackby(obj/item/W, mob/user as mob)
+	if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
 		if(src.allowed(usr) && !open && !emagged)
 			src.locked = !src.locked
 			user << "<span class='notice'>You [ src.locked ? "lock" : "unlock"] the [src] behaviour controls.</span>"
@@ -332,7 +332,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 	src.visible_message("\red <B>[src] blows apart!</B>", 1)
 	var/turf/Tsec = get_turf(src)
 
-	new /obj/item/weapon/reagent_containers/glass/bucket(Tsec)
+	new /obj/item/reagent_containers/glass/bucket(Tsec)
 
 	new /obj/item/device/assembly/prox_sensor(Tsec)
 
@@ -345,7 +345,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 	qdel(src)
 	return
 
-/obj/item/weapon/bucket_sensor/attackby(var/obj/item/W, mob/user as mob)
+/obj/item/bucket_sensor/attackby(var/obj/item/W, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm))
 		user.drop_item()
@@ -357,7 +357,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 		user.drop_from_inventory(src)
 		qdel(src)
 
-	else if (istype(W, /obj/item/weapon/pen))
+	else if (istype(W, /obj/item/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", src.name, src.created_name),1,MAX_NAME_LEN)
 		if (!t)
 			return

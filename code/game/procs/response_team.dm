@@ -149,7 +149,7 @@ GLOBAL_GLOBL(can_call_ert)
 	var/obj/machinery/nuclearbomb/nuke = locate() in nukeloc
 	if(!nuke)
 		nuke = locate() in world
-	var/obj/item/weapon/paper/P = new
+	var/obj/item/paper/P = new
 	P.info = "Your orders, Commander, are to use all means necessary to return the station to a survivable condition.<br>To this end, you have been provided with the best tools we can give in the three areas of Medicine, Engineering, and Security. The nuclear authorisation code is: <b>[ nuke ? nuke.r_code : "AHH, THE NUKE IS GONE!"]</b>. Be warned, if you detonate this without good reason, we will hold you to account for damages. Memorise this code, and then burn this message."
 	P.name = "Emergency Nuclear Code, and ERT Orders"
 	for (var/obj/effect/landmark/A in world)
@@ -241,15 +241,15 @@ GLOBAL_GLOBL(can_call_ert)
 	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), SLOT_ID_SHOES)
 	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), SLOT_ID_GLOVES)
 	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(src), SLOT_ID_GLASSES)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/satchel(src), SLOT_ID_BACK)
+	equip_to_slot_or_del(new /obj/item/storage/satchel(src), SLOT_ID_BACK)
 /*
 
 	//Old ERT Uniform
 	//Basic Uniform
 	equip_to_slot_or_del(new /obj/item/clothing/under/syndicate/tacticool(src), SLOT_ID_W_UNIFORM)
 	equip_to_slot_or_del(new /obj/item/device/flashlight(src), SLOT_ID_L_STORE)
-	equip_to_slot_or_del(new /obj/item/weapon/clipboard(src), SLOT_ID_R_STORE)
-	equip_to_slot_or_del(new /obj/item/weapon/gun/energy/gun(src), SLOT_ID_BELT)
+	equip_to_slot_or_del(new /obj/item/clipboard(src), SLOT_ID_R_STORE)
+	equip_to_slot_or_del(new /obj/item/gun/energy/gun(src), SLOT_ID_BELT)
 	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/swat(src), SLOT_ID_WEAR_MASK)
 
 	//Glasses
@@ -264,11 +264,11 @@ GLOBAL_GLOBL(can_call_ert)
 //	equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/deathsquad(src), SLOT_ID_HEAD)
 
 	//Backpack
-	equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(src), SLOT_ID_BACK)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/box/engineer(src), SLOT_ID_IN_BACKPACK)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(src), SLOT_ID_IN_BACKPACK)
+	equip_to_slot_or_del(new /obj/item/storage/backpack/security(src), SLOT_ID_BACK)
+	equip_to_slot_or_del(new /obj/item/storage/box/engineer(src), SLOT_ID_IN_BACKPACK)
+	equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(src), SLOT_ID_IN_BACKPACK)
 */
-	var/obj/item/weapon/card/id/W = new(src)
+	var/obj/item/card/id/W = new(src)
 	W.assignment = "Emergency Response Team[leader_selected ? " Leader" : ""]"
 	W.registered_name = real_name
 	W.name = "[real_name]'s ID Card ([W.assignment])"

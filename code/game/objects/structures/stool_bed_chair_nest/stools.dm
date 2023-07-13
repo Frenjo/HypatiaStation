@@ -26,8 +26,8 @@
 		new /obj/item/stack/sheet/metal(src.loc)
 		qdel(src)
 
-/obj/structure/stool/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+/obj/structure/stool/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/wrench))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		new /obj/item/stack/sheet/metal(src.loc)
 		qdel(src)
@@ -37,7 +37,7 @@
 	if(ishuman(over_object))
 		var/mob/living/carbon/human/H = over_object
 		if(H == usr && !H.restrained() && !H.stat && in_range(src, over_object))
-			var/obj/item/weapon/stool/S = new/obj/item/weapon/stool()
+			var/obj/item/stool/S = new/obj/item/stool()
 			S.origin = src
 			src.loc = S
 			H.put_in_hands(S)
@@ -46,7 +46,7 @@
 				SPAN_WARNING("You grab [src] from the floor!")
 			)
 
-/obj/item/weapon/stool
+/obj/item/stool
 	name = "stool"
 	desc = "Uh-hoh, bar is heating up."
 	icon = 'icons/obj/objects.dmi'
@@ -56,7 +56,7 @@
 	w_class = 5.0
 	var/obj/structure/stool/origin = null
 
-/obj/item/weapon/stool/attack_self(mob/user as mob)
+/obj/item/stool/attack_self(mob/user as mob)
 	..()
 	origin.loc = get_turf(src)
 	user.u_equip(src)
@@ -66,7 +66,7 @@
 	)
 	qdel(src)
 
-/obj/item/weapon/stool/attack(mob/M as mob, mob/user as mob)
+/obj/item/stool/attack(mob/M as mob, mob/user as mob)
 	if(prob(5) && isliving(M))
 		user.visible_message(SPAN_WARNING("[user] breaks [src] over [M]'s back!"))
 		user.u_equip(src)

@@ -13,10 +13,10 @@ var/list/alldepartments = list("Central Command")
 	active_power_usage = 200
 	power_channel = EQUIP
 
-	var/obj/item/weapon/card/id/scan = null // identification
+	var/obj/item/card/id/scan = null // identification
 	var/authenticated = 0
 
-	var/obj/item/weapon/paper/tofax = null // what we're sending
+	var/obj/item/paper/tofax = null // what we're sending
 	var/sendcooldown = 0 // to avoid spamming fax messages
 
 	var/department = "Unknown" // our department
@@ -129,7 +129,7 @@ var/list/alldepartments = list("Central Command")
 				scan = null
 		else
 			var/obj/item/I = usr.get_active_hand()
-			if (istype(I, /obj/item/weapon/card/id))
+			if (istype(I, /obj/item/card/id))
 				usr.drop_item()
 				I.loc = src
 				scan = I
@@ -150,7 +150,7 @@ var/list/alldepartments = list("Central Command")
 
 /obj/machinery/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
 
-	if(istype(O, /obj/item/weapon/paper))
+	if(istype(O, /obj/item/paper))
 		if(!tofax)
 			user.drop_item()
 			tofax = O
@@ -161,15 +161,15 @@ var/list/alldepartments = list("Central Command")
 		else
 			to_chat(user, SPAN_NOTICE("There is already something in \the [src]."))
 
-	else if(istype(O, /obj/item/weapon/card/id))
+	else if(istype(O, /obj/item/card/id))
 
-		var/obj/item/weapon/card/id/idcard = O
+		var/obj/item/card/id/idcard = O
 		if(!scan)
 			usr.drop_item()
 			idcard.loc = src
 			scan = idcard
 
-	else if(istype(O, /obj/item/weapon/wrench))
+	else if(istype(O, /obj/item/wrench))
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		anchored = !anchored
 		to_chat(user, SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src]."))
@@ -190,7 +190,7 @@ var/list/alldepartments = list("Central Command")
 
 				// give the sprite some time to flick
 				spawn(20)
-					var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( F.loc )
+					var/obj/item/paper/P = new /obj/item/paper( F.loc )
 					P.name = "[sentname]"
 					P.info = "[sent]"
 					P.update_icon()

@@ -22,24 +22,24 @@
 /decl/hierarchy/supply_pack/operations/artscrafts
 	name = "Arts and Crafts supplies"
 	contains = list(
-		/obj/item/weapon/storage/fancy/crayons,
+		/obj/item/storage/fancy/crayons,
 		/obj/item/device/camera,
 		/obj/item/device/camera_film,
 		/obj/item/device/camera_film,
-		/obj/item/weapon/storage/photo_album,
-		/obj/item/weapon/package_wrap,
-		/obj/item/weapon/reagent_containers/glass/paint/red,
-		/obj/item/weapon/reagent_containers/glass/paint/green,
-		/obj/item/weapon/reagent_containers/glass/paint/blue,
-		/obj/item/weapon/reagent_containers/glass/paint/yellow,
-		/obj/item/weapon/reagent_containers/glass/paint/violet,
-		/obj/item/weapon/reagent_containers/glass/paint/black,
-		/obj/item/weapon/reagent_containers/glass/paint/white,
-		/obj/item/weapon/reagent_containers/glass/paint/remover,
-		/obj/item/weapon/contraband/poster,
-		/obj/item/weapon/wrapping_paper,
-		/obj/item/weapon/wrapping_paper,
-		/obj/item/weapon/wrapping_paper
+		/obj/item/storage/photo_album,
+		/obj/item/package_wrap,
+		/obj/item/reagent_containers/glass/paint/red,
+		/obj/item/reagent_containers/glass/paint/green,
+		/obj/item/reagent_containers/glass/paint/blue,
+		/obj/item/reagent_containers/glass/paint/yellow,
+		/obj/item/reagent_containers/glass/paint/violet,
+		/obj/item/reagent_containers/glass/paint/black,
+		/obj/item/reagent_containers/glass/paint/white,
+		/obj/item/reagent_containers/glass/paint/remover,
+		/obj/item/contraband/poster,
+		/obj/item/wrapping_paper,
+		/obj/item/wrapping_paper,
+		/obj/item/wrapping_paper
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
@@ -50,9 +50,9 @@
 	name = "Contraband crate"
 	contains = list(
 		/obj/item/seeds/bloodtomatoseed,
-		/obj/item/weapon/storage/pill_bottle/zoom,
-		/obj/item/weapon/storage/pill_bottle/happy,
-		/obj/item/weapon/reagent_containers/food/drinks/bottle/pwine
+		/obj/item/storage/pill_bottle/zoom,
+		/obj/item/storage/pill_bottle/happy,
+		/obj/item/reagent_containers/food/drinks/bottle/pwine
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate

@@ -24,7 +24,7 @@
 					qdel(src)
 					return
 			if("internal")
-				if ((!( (istype(target.wear_mask, /obj/item/clothing/mask) && istype(target.back, /obj/item/weapon/tank) && !( target.internal )) ) && !( target.internal )))
+				if ((!( (istype(target.wear_mask, /obj/item/clothing/mask) && istype(target.back, /obj/item/tank) && !( target.internal )) ) && !( target.internal )))
 					qdel(src)
 					return
 
@@ -166,7 +166,7 @@
 					W.reset_plane_and_layer()
 				W.add_fingerprint(source)
 			else
-				if (istype(item, /obj/item/weapon/handcuffs))
+				if (istype(item, /obj/item/handcuffs))
 					source.drop_item()
 					target.handcuffed = item
 					item.loc = target
@@ -180,7 +180,7 @@
 				if (!( istype(target.wear_mask, /obj/item/clothing/mask) ))
 					return
 				else
-					if (istype(target.back, /obj/item/weapon/tank))
+					if (istype(target.back, /obj/item/tank))
 						target.internal = target.back
 						target.internal.add_fingerprint(source)
 						for(var/mob/M in viewers(target, 1))

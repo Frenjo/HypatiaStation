@@ -87,7 +87,7 @@
 				if (M == src)
 					return
 
-				var/obj/item/weapon/grab/G = new /obj/item/weapon/grab( M )
+				var/obj/item/grab/G = new /obj/item/grab( M )
 				G.assailant = M
 				if (M.hand)
 					M.l_hand = G
@@ -142,7 +142,7 @@
 		if ("grab")
 			if (M == src)
 				return
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab( M )
+			var/obj/item/grab/G = new /obj/item/grab( M )
 			G.assailant = M
 			if (M.hand)
 				M.l_hand = G

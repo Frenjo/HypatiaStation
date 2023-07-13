@@ -6,8 +6,8 @@
 	name = "Pacman II"
 	desc = "P.A.C.M.A.N. type II portable generator. Uses liquid plasma as a fuel source."
 	power_gen = 4500
-	var/obj/item/weapon/tank/plasma/P = null
-	var/board_path = "/obj/item/weapon/circuitboard/pacman2"
+	var/obj/item/tank/plasma/P = null
+	var/board_path = "/obj/item/circuitboard/pacman2"
 	var/emagged = 0
 	var/heat = 0
 /*
@@ -33,23 +33,23 @@
 	New()
 		..()
 		component_parts = list()
-		component_parts += new /obj/item/weapon/stock_part/matter_bin(src)
-		component_parts += new /obj/item/weapon/stock_part/micro_laser(src)
-		component_parts += new /obj/item/weapon/cable_coil(src)
-		component_parts += new /obj/item/weapon/cable_coil(src)
-		component_parts += new /obj/item/weapon/stock_part/capacitor(src)
+		component_parts += new /obj/item/stock_part/matter_bin(src)
+		component_parts += new /obj/item/stock_part/micro_laser(src)
+		component_parts += new /obj/item/cable_coil(src)
+		component_parts += new /obj/item/cable_coil(src)
+		component_parts += new /obj/item/stock_part/capacitor(src)
 		component_parts += new board_path(src)
 		RefreshParts()
 
 	RefreshParts()
 		var/temp_rating = 0
 		var/temp_reliability = 0
-		for(var/obj/item/weapon/stock_part/SP in component_parts)
-			if(istype(SP, /obj/item/weapon/stock_part/matter_bin))
+		for(var/obj/item/stock_part/SP in component_parts)
+			if(istype(SP, /obj/item/stock_part/matter_bin))
 				//max_coins = SP.rating * SP.rating * 1000
-			else if(istype(SP, /obj/item/weapon/stock_part/micro_laser) || istype(SP, /obj/item/weapon/stock_part/capacitor))
+			else if(istype(SP, /obj/item/stock_part/micro_laser) || istype(SP, /obj/item/stock_part/capacitor))
 				temp_rating += SP.rating
-		for(var/obj/item/weapon/CP in component_parts)
+		for(var/obj/item/CP in component_parts)
 			temp_reliability += CP.reliability
 		reliability = min(round(temp_reliability / 4), 100)
 		power_gen = round(initial(power_gen) * (max(2, temp_rating) / 2))
@@ -73,7 +73,7 @@
 			explosion(get_turf(src), 2, 5, 2, -1)
 
 	attackby(var/obj/item/O as obj, var/mob/user as mob)
-		if(istype(O, /obj/item/weapon/tank/plasma))
+		if(istype(O, /obj/item/tank/plasma))
 			if(P)
 				user << "\red The generator already has a plasma tank loaded!"
 				return
@@ -81,8 +81,8 @@
 			user.drop_item()
 			O.loc = src
 			user << "\blue You add the plasma tank to the generator."
-		else if (istype(O, /obj/item/weapon/card/emag))
-			var/obj/item/weapon/card/emag/E = O
+		else if (istype(O, /obj/item/card/emag))
+			var/obj/item/card/emag/E = O
 			if(E.uses)
 				E.uses--
 			else
@@ -90,7 +90,7 @@
 			emagged = 1
 			emp_act(1)
 		else if(!active)
-			if(istype(O, /obj/item/weapon/wrench))
+			if(istype(O, /obj/item/wrench))
 				anchored = !anchored
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				if(anchored)
@@ -98,14 +98,14 @@
 				else
 					user << "\blue You unsecure the generator from the floor."
 				makepowernets()
-			else if(istype(O, /obj/item/weapon/screwdriver))
+			else if(istype(O, /obj/item/screwdriver))
 				open = !open
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				if(open)
 					user << "\blue You open the access panel."
 				else
 					user << "\blue You close the access panel."
-			else if(istype(O, /obj/item/weapon/crowbar) && !open)
+			else if(istype(O, /obj/item/crowbar) && !open)
 				var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 				for(var/obj/item/I in component_parts)
 					if(I.reliability < 100)

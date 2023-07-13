@@ -15,7 +15,7 @@
  */
 
 //  Generic non-item
-/obj/item/weapon/storage/bag
+/obj/item/storage/bag
 	allow_quick_gather = 1
 	allow_quick_empty = 1
 	display_contents_with_number = 0 // UNStABLE AS FuCK, turn on when it stops crashing clients
@@ -25,7 +25,7 @@
 // -----------------------------
 //          Trash bag
 // -----------------------------
-/obj/item/weapon/storage/bag/trash
+/obj/item/storage/bag/trash
 	name = "trash bag"
 	desc = "It's the heavy-duty black polymer kind. Time to take out the trash!"
 	icon = 'icons/obj/janitor.dmi'
@@ -36,9 +36,9 @@
 	max_w_class = 2
 	storage_slots = 21
 	can_hold = list() // any
-	cant_hold = list("/obj/item/weapon/disk/nuclear")
+	cant_hold = list("/obj/item/disk/nuclear")
 
-/obj/item/weapon/storage/bag/trash/update_icon()
+/obj/item/storage/bag/trash/update_icon()
 	if(!length(contents))
 		icon_state = "trashbag0"
 	else if(length(contents) < 12)
@@ -52,7 +52,7 @@
 //        Plastic Bag
 // -----------------------------
 
-/obj/item/weapon/storage/bag/plasticbag
+/obj/item/storage/bag/plasticbag
 	name = "plastic bag"
 	desc = "It's a very flimsy, very noisy alternative to a bag."
 	icon = 'icons/obj/trash.dmi'
@@ -63,13 +63,13 @@
 	max_w_class = 2
 	storage_slots = 21
 	can_hold = list() // any
-	cant_hold = list("/obj/item/weapon/disk/nuclear")
+	cant_hold = list("/obj/item/disk/nuclear")
 
 // -----------------------------
 //        Mining Satchel
 // -----------------------------
 
-/obj/item/weapon/storage/bag/ore
+/obj/item/storage/bag/ore
 	name = "mining satchel"
 	desc = "This little bugger can be used to store and transport ores."
 	icon = 'icons/obj/mining.dmi'
@@ -79,26 +79,26 @@
 	storage_slots = 50
 	max_combined_w_class = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * ore.w_class
 	max_w_class = 3
-	can_hold = list(/obj/item/weapon/ore)
+	can_hold = list(/obj/item/ore)
 
 // -----------------------------
 //   Mining Satchel of Holding
 // -----------------------------
 
-/obj/item/weapon/storage/bag/ore/holding //miners, your messiah has arrived
+/obj/item/storage/bag/ore/holding //miners, your messiah has arrived
 	name = "mining satchel of holding"
 	desc = "A revolution in convenience, this satchel allows for infinite ore storage. It's been outfitted with anti-malfunction safety measures."
 	icon_state = "satchel_bspace"
 	storage_slots = INFINITY
 	max_combined_w_class = INFINITY
 	origin_tech = list(RESEARCH_TECH_BLUESPACE = 3)
-	can_hold = list(/obj/item/weapon/ore)
+	can_hold = list(/obj/item/ore)
 
 // -----------------------------
 //          Plant bag
 // -----------------------------
 
-/obj/item/weapon/storage/bag/plants
+/obj/item/storage/bag/plants
 	icon = 'icons/obj/flora/hydroponics.dmi'
 	icon_state = "plantbag"
 	name = "plant bag"
@@ -106,7 +106,7 @@
 	max_combined_w_class = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * plants.w_class
 	max_w_class = 3
 	w_class = 1
-	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/grown, /obj/item/seeds, /obj/item/weapon/grown)
+	can_hold = list(/obj/item/reagent_containers/food/snacks/grown, /obj/item/seeds, /obj/item/grown)
 
 
 // -----------------------------
@@ -115,7 +115,7 @@
 // Because it stacks stacks, this doesn't operate normally.
 // However, making it a storage/bag allows us to reuse existing code in some places. -Sayu
 
-/obj/item/weapon/storage/bag/sheetsnatcher
+/obj/item/storage/bag/sheetsnatcher
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
 	name = "sheet snatcher"
@@ -127,12 +127,12 @@
 
 	var/capacity = 300; //the number of sheets it can carry.
 
-/obj/item/weapon/storage/bag/sheetsnatcher/New()
+/obj/item/storage/bag/sheetsnatcher/New()
 	..()
-	//verbs -= /obj/item/weapon/storage/verb/quick_empty
-	//verbs += /obj/item/weapon/storage/bag/sheetsnatcher/quick_empty
+	//verbs -= /obj/item/storage/verb/quick_empty
+	//verbs += /obj/item/storage/bag/sheetsnatcher/quick_empty
 
-/obj/item/weapon/storage/bag/sheetsnatcher/can_be_inserted(obj/item/W as obj, stop_messages = 0)
+/obj/item/storage/bag/sheetsnatcher/can_be_inserted(obj/item/W as obj, stop_messages = 0)
 	if(!istype(W,/obj/item/stack/sheet) || istype(W,/obj/item/stack/sheet/mineral/sandstone) || istype(W,/obj/item/stack/sheet/wood))
 		if(!stop_messages)
 			usr << "The snatcher does not accept [W]."
@@ -147,7 +147,7 @@
 	return 1
 
 // Modified handle_item_insertion.  Would prefer not to, but...
-/obj/item/weapon/storage/bag/sheetsnatcher/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
+/obj/item/storage/bag/sheetsnatcher/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	var/obj/item/stack/sheet/S = W
 	if(!istype(S))
 		return 0
@@ -189,7 +189,7 @@
 
 // Sets up numbered display to show the stack size of each stored mineral
 // NOTE: numbered display is turned off currently because it's broken
-/obj/item/weapon/storage/bag/sheetsnatcher/orient2hud(mob/user as mob)
+/obj/item/storage/bag/sheetsnatcher/orient2hud(mob/user as mob)
 	var/adjusted_contents = length(contents)
 
 	//Numbered contents display
@@ -212,7 +212,7 @@
 
 
 // Modified quick_empty verb drops appropriate sized stacks
-/obj/item/weapon/storage/bag/sheetsnatcher/quick_empty()
+/obj/item/storage/bag/sheetsnatcher/quick_empty()
 	var/location = get_turf(src)
 	for(var/obj/item/stack/sheet/S in contents)
 		while(S.amount)
@@ -228,7 +228,7 @@
 	update_icon()
 
 // Instead of removing
-/obj/item/weapon/storage/bag/sheetsnatcher/remove_from_storage(obj/item/W as obj, atom/new_location)
+/obj/item/storage/bag/sheetsnatcher/remove_from_storage(obj/item/W as obj, atom/new_location)
 	var/obj/item/stack/sheet/S = W
 	if(!istype(S))
 		return 0
@@ -249,7 +249,7 @@
 //    Sheet Snatcher (Cyborg)
 // -----------------------------
 
-/obj/item/weapon/storage/bag/sheetsnatcher/borg
+/obj/item/storage/bag/sheetsnatcher/borg
 	name = "sheet snatcher 9000"
 	desc = ""
 	capacity = 500//Borgs get more because >specialization
@@ -258,7 +258,7 @@
 //           Cash Bag
 // -----------------------------
 
-/obj/item/weapon/storage/bag/cash
+/obj/item/storage/bag/cash
 	icon = 'icons/obj/storage/storage.dmi'
 	icon_state = "cashbag"
 	name = "cash bag"
@@ -267,4 +267,4 @@
 	max_combined_w_class = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * cash.w_class
 	max_w_class = 3
 	w_class = 1
-	can_hold = list(/obj/item/weapon/coin, /obj/item/weapon/spacecash)
+	can_hold = list(/obj/item/coin, /obj/item/spacecash)

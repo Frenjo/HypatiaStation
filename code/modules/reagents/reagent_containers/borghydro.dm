@@ -1,4 +1,4 @@
-/obj/item/weapon/reagent_containers/borghypo
+/obj/item/reagent_containers/borghypo
 	name = "Cyborg Hypospray"
 	desc = "An advanced chemical synthesizer and injection system, designed for heavy-duty medical equipment."
 	icon = 'icons/obj/syringe.dmi'
@@ -16,18 +16,18 @@
 	//var/list/reagent_ids = list("tricordrazine", "inaprovaline", "spaceacillin")
 	var/list/reagent_ids = list("dexalin", "kelotane", "bicaridine", "anti_toxin", "inaprovaline", "spaceacillin")
 
-/obj/item/weapon/reagent_containers/borghypo/New()
+/obj/item/reagent_containers/borghypo/New()
 	..()
 	for(var/R in reagent_ids)
 		add_reagent(R)
 
 	GLOBL.processing_objects.Add(src)
 
-/obj/item/weapon/reagent_containers/borghypo/Destroy()
+/obj/item/reagent_containers/borghypo/Destroy()
 	GLOBL.processing_objects.Remove(src)
 	return ..()
 
-/obj/item/weapon/reagent_containers/borghypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg
+/obj/item/reagent_containers/borghypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg
 	charge_tick++
 	if(charge_tick < recharge_time)
 		return 0
@@ -45,13 +45,13 @@
 
 // Purely for testing purposes I swear~
 /*
-/obj/item/weapon/reagent_containers/borghypo/verb/add_cyanide()
+/obj/item/reagent_containers/borghypo/verb/add_cyanide()
 	set src in world
 	add_reagent("cyanide")
 */
 
 // Use this to add more chemicals for the borghypo to produce.
-/obj/item/weapon/reagent_containers/borghypo/proc/add_reagent(reagent)
+/obj/item/reagent_containers/borghypo/proc/add_reagent(reagent)
 	reagent_ids |= reagent
 	var/datum/reagents/RG = new(30)
 	RG.my_atom = src
@@ -60,7 +60,7 @@
 	var/datum/reagents/R = reagent_list[length(reagent_list)]
 	R.add_reagent(reagent, 30)
 
-/obj/item/weapon/reagent_containers/borghypo/attack(mob/M as mob, mob/user as mob)
+/obj/item/reagent_containers/borghypo/attack(mob/M as mob, mob/user as mob)
 	var/datum/reagents/R = reagent_list[mode]
 	if(!R.total_volume)
 		to_chat(user, SPAN_WARNING("The injector is empty."))
@@ -77,7 +77,7 @@
 			to_chat(user, SPAN_INFO("[trans] units injected. [R.total_volume] units remaining."))
 	return
 
-/obj/item/weapon/reagent_containers/borghypo/attack_self(mob/user as mob)
+/obj/item/reagent_containers/borghypo/attack_self(mob/user as mob)
 	playsound(src, 'sound/effects/pop.ogg', 50, 0)		//Change the mode
 	mode++
 	if(mode > length(reagent_list))
@@ -88,7 +88,7 @@
 	to_chat(user, SPAN_INFO("Synthesizer is now producing '[R.name]'."))
 	return
 
-/obj/item/weapon/reagent_containers/borghypo/examine()
+/obj/item/reagent_containers/borghypo/examine()
 	set src in view()
 	..()
 	if(!(usr in view(2)) && usr != src.loc)

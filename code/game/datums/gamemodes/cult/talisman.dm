@@ -1,14 +1,14 @@
-/obj/item/weapon/paper/talisman
+/obj/item/paper/talisman
 	icon_state = "paper_talisman"
 	var/imbue = null
 	var/uses = 0
 
-/obj/item/weapon/paper/talisman/examine()
+/obj/item/paper/talisman/examine()
 	set src in view(2)
 	..()
 	return
 
-/obj/item/weapon/paper/talisman/attack_self(mob/living/user as mob)
+/obj/item/paper/talisman/attack_self(mob/living/user as mob)
 	if(iscultist(user))
 		var/delete = 1
 		switch(imbue)
@@ -45,7 +45,7 @@
 		to_chat(user, "You see strange symbols on the paper. Are they supposed to mean something?")
 		return
 
-/obj/item/weapon/paper/talisman/attack(mob/living/carbon/T as mob, mob/living/user as mob)
+/obj/item/paper/talisman/attack(mob/living/carbon/T as mob, mob/living/user as mob)
 	if(iscultist(user))
 		if(imbue == "runestun")
 			user.take_organ_damage(5, 0)
@@ -56,7 +56,7 @@
 	else
 		..()
 
-/obj/item/weapon/paper/talisman/proc/supply(key)
+/obj/item/paper/talisman/proc/supply(key)
 	if(!src.uses)
 		qdel(src)
 		return
@@ -76,7 +76,7 @@
 	usr << browse(dat, "window=id_com;size=350x200")
 	return
 
-/obj/item/weapon/paper/talisman/Topic(href, href_list)
+/obj/item/paper/talisman/Topic(href, href_list)
 	if(!src)
 		return
 	if(usr.stat || usr.restrained() || !in_range(src, usr))
@@ -85,26 +85,26 @@
 	if(href_list["rune"])
 		switch(href_list["rune"])
 			if("newtome")
-				var/obj/item/weapon/paper/talisman/T = new /obj/item/weapon/paper/talisman(get_turf(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(get_turf(usr))
 				T.imbue = "newtome"
 			if("teleport")
-				var/obj/item/weapon/paper/talisman/T = new /obj/item/weapon/paper/talisman(get_turf(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(get_turf(usr))
 				T.imbue = "[pick("ire", "ego", "nahlizet", "certum", "veri", "jatkaa", "balaq", "mgar", "karazet", "geeri", "orkan", "allaq")]"
 				T.info = "[T.imbue]"
 			if("emp")
-				var/obj/item/weapon/paper/talisman/T = new /obj/item/weapon/paper/talisman(get_turf(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(get_turf(usr))
 				T.imbue = "emp"
 			if("conceal")
-				var/obj/item/weapon/paper/talisman/T = new /obj/item/weapon/paper/talisman(get_turf(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(get_turf(usr))
 				T.imbue = "conceal"
 			if("communicate")
-				var/obj/item/weapon/paper/talisman/T = new /obj/item/weapon/paper/talisman(get_turf(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(get_turf(usr))
 				T.imbue = "communicate"
 			if("runestun")
-				var/obj/item/weapon/paper/talisman/T = new /obj/item/weapon/paper/talisman(get_turf(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(get_turf(usr))
 				T.imbue = "runestun"
 			if("armor")
-				var/obj/item/weapon/paper/talisman/T = new /obj/item/weapon/paper/talisman(get_turf(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(get_turf(usr))
 				T.imbue = "armor"
 			if("soulstone")
 				new /obj/item/device/soulstone(get_turf(usr))
@@ -114,6 +114,6 @@
 		supply()
 	return
 
-/obj/item/weapon/paper/talisman/supply
+/obj/item/paper/talisman/supply
 	imbue = "supply"
 	uses = 5

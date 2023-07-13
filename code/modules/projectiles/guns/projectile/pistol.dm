@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/silenced
+/obj/item/gun/projectile/silenced
 	name = "silenced pistol"
 	desc = "A small, quiet,  easily concealable gun. Uses .45 rounds."
 	icon_state = "silenced_pistol"
@@ -9,7 +9,7 @@
 	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_SYNDICATE = 8)
 	ammo_type = /obj/item/ammo_casing/c45
 
-/obj/item/weapon/gun/projectile/deagle
+/obj/item/gun/projectile/deagle
 	name = "desert eagle"
 	desc = "A robust handgun that uses .50 AE ammo"
 	icon_state = "deagle"
@@ -19,12 +19,12 @@
 	ammo_type = /obj/item/ammo_casing/a50
 	load_method = 2
 
-/obj/item/weapon/gun/projectile/deagle/New()
+/obj/item/gun/projectile/deagle/New()
 	. = ..()
 	empty_mag = new /obj/item/ammo_magazine/a50/empty(src)
 	update_icon()
 
-/obj/item/weapon/gun/projectile/deagle/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+/obj/item/gun/projectile/deagle/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
 	if(!length(loaded) && empty_mag)
 		empty_mag.loc = get_turf(src.loc)
@@ -33,17 +33,17 @@
 		update_icon()
 	return
 
-/obj/item/weapon/gun/projectile/deagle/gold
+/obj/item/gun/projectile/deagle/gold
 	desc = "A gold plated gun folded over a million times by superior martian gunsmiths. Uses .50 AE ammo."
 	icon_state = "deagleg"
 	item_state = "deagleg"
 
-/obj/item/weapon/gun/projectile/deagle/camo
+/obj/item/gun/projectile/deagle/camo
 	desc = "A Deagle brand Deagle for operators operating operationally. Uses .50 AE ammo."
 	icon_state = "deaglecamo"
 	item_state = "deagleg"
 
-/obj/item/weapon/gun/projectile/gyropistol
+/obj/item/gun/projectile/gyropistol
 	name = "gyrojet pistol"
 	desc = "A bulky pistol designed to fire self propelled rounds"
 	icon_state = "gyropistol"
@@ -54,12 +54,12 @@
 	ammo_type = /obj/item/ammo_casing/a75
 	load_method = 2
 
-/obj/item/weapon/gun/projectile/gyropistol/New()
+/obj/item/gun/projectile/gyropistol/New()
 	. = ..()
 	empty_mag = new /obj/item/ammo_magazine/a75/empty(src)
 	update_icon()
 
-/obj/item/weapon/gun/projectile/gyropistol/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+/obj/item/gun/projectile/gyropistol/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
 	if(!length(loaded) && empty_mag)
 		empty_mag.loc = get_turf(src.loc)
@@ -68,7 +68,7 @@
 		update_icon()
 	return
 
-/obj/item/weapon/gun/projectile/gyropistol/update_icon()
+/obj/item/gun/projectile/gyropistol/update_icon()
 	..()
 	if(empty_mag)
 		icon_state = "gyropistolloaded"
@@ -76,7 +76,7 @@
 		icon_state = "gyropistol"
 	return
 
-/obj/item/weapon/gun/projectile/pistol
+/obj/item/gun/projectile/pistol
 	name = "\improper Stechtkin pistol"
 	desc = "A small, easily concealable gun. Uses 9mm rounds."
 	icon_state = "pistol"
@@ -88,18 +88,18 @@
 	ammo_type = /obj/item/ammo_casing/c9mm
 	load_method = 2
 
-/obj/item/weapon/gun/projectile/pistol/New()
+/obj/item/gun/projectile/pistol/New()
 	. = ..()
 	empty_mag = new /obj/item/ammo_magazine/mc9mm/empty(src)
 
-/obj/item/weapon/gun/projectile/pistol/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+/obj/item/gun/projectile/pistol/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
 	..()
 	if(!length(loaded) && empty_mag)
 		empty_mag.loc = get_turf(src.loc)
 		empty_mag = null
 	return
 
-/obj/item/weapon/gun/projectile/pistol/attack_hand(mob/user as mob)
+/obj/item/gun/projectile/pistol/attack_hand(mob/user as mob)
 	if(loc == user)
 		if(silenced)
 			if(user.l_hand != src && user.r_hand != src)
@@ -113,8 +113,8 @@
 			return
 	..()
 
-/obj/item/weapon/gun/projectile/pistol/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/silencer))
+/obj/item/gun/projectile/pistol/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/silencer))
 		if(user.l_hand != src && user.r_hand != src)	//if we're not in his hands
 			to_chat(user, SPAN_NOTICE("You'll need [src] in your hands to do that."))
 			return
@@ -127,14 +127,14 @@
 		return
 	..()
 
-/obj/item/weapon/gun/projectile/pistol/update_icon()
+/obj/item/gun/projectile/pistol/update_icon()
 	..()
 	if(silenced)
 		icon_state = "pistol-silencer"
 	else
 		icon_state = "pistol"
 
-/obj/item/weapon/silencer
+/obj/item/silencer
 	name = "silencer"
 	desc = "a silencer"
 	icon = 'icons/obj/weapons/gun.dmi'

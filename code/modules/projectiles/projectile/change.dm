@@ -28,7 +28,7 @@
 				qdel(Robot.mmi)
 		else
 			for(var/obj/item/W in M)
-				if(istype(W, /obj/item/weapon/implant))	//TODO: Carn. give implants a dropped() or something
+				if(istype(W, /obj/item/implant))	//TODO: Carn. give implants a dropped() or something
 					qdel(W)
 					continue
 				W.reset_plane_and_layer()

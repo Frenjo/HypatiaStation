@@ -37,11 +37,11 @@ s_cooldown ticks off each second based on the suit recharge proc, in seconds. De
 
 //=======//TELEPORT GRAB CHECK//=======//
 /obj/item/clothing/suit/space/space_ninja/proc/handle_teleport_grab(turf/T, mob/living/U)
-	if(istype(U.get_active_hand(), /obj/item/weapon/grab))//Handles grabbed persons.
-		var/obj/item/weapon/grab/G = U.get_active_hand()
+	if(istype(U.get_active_hand(), /obj/item/grab))//Handles grabbed persons.
+		var/obj/item/grab/G = U.get_active_hand()
 		G.affecting.loc = locate(T.x + rand(-1, 1), T.y + rand(-1, 1), T.z)//variation of position.
-	if(istype(U.get_inactive_hand(), /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = U.get_inactive_hand()
+	if(istype(U.get_inactive_hand(), /obj/item/grab))
+		var/obj/item/grab/G = U.get_inactive_hand()
 		G.affecting.loc = locate(T.x + rand(-1, 1), T.y + rand(-1, 1), T.z)//variation of position.
 	return
 
@@ -125,8 +125,8 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 	if(!ninjacost(C, 0)) //Same spawn cost but higher upkeep cost
 		var/mob/living/carbon/human/U = affecting
 		if(!kamikaze)
-			if(!U.get_active_hand() && !istype(U.get_inactive_hand(), /obj/item/weapon/melee/energy/blade))
-				var/obj/item/weapon/melee/energy/blade/W = new()
+			if(!U.get_active_hand() && !istype(U.get_inactive_hand(), /obj/item/melee/energy/blade))
+				var/obj/item/melee/energy/blade/W = new()
 				spark_system.start()
 				playsound(U.loc, "sparks", 50, 1)
 				U.put_in_hands(W)
@@ -135,10 +135,10 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 				to_chat(U, SPAN_WARNING("You can only summon one blade. Try dropping an item first."))
 		else	//Else you can run around with TWO energy blades. I don't know why you'd want to but cool factor remains.
 			if(!U.get_active_hand())
-				var/obj/item/weapon/melee/energy/blade/W = new()
+				var/obj/item/melee/energy/blade/W = new()
 				U.put_in_hands(W)
 			if(!U.get_inactive_hand())
-				var/obj/item/weapon/melee/energy/blade/W = new()
+				var/obj/item/melee/energy/blade/W = new()
 				U.put_in_inactive_hand(W)
 			spark_system.start()
 			playsound(U.loc, "sparks", 50, 1)

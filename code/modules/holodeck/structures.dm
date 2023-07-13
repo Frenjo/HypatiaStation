@@ -19,9 +19,9 @@
 /obj/structure/table/holotable/attack_hand(mob/user as mob)
 	return // HOLOTABLE DOES NOT GIVE A FUCK
 
-/obj/structure/table/holotable/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/grab) && get_dist(src, user) < 2)
-		var/obj/item/weapon/grab/G = W
+/obj/structure/table/holotable/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
+		var/obj/item/grab/G = W
 		if(G.state < 2)
 			to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
 			return
@@ -31,7 +31,7 @@
 		qdel(W)
 		return
 
-	if(istype(W, /obj/item/weapon/wrench))
+	if(istype(W, /obj/item/wrench))
 		to_chat(user, "It's a holotable! There are no bolts!")
 		return
 
@@ -75,7 +75,7 @@
 /obj/structure/rack/holorack/attack_hand(mob/user as mob)
 	return
 
-/obj/structure/rack/holorack/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/wrench))
+/obj/structure/rack/holorack/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/wrench))
 		to_chat(user, "It's a holorack! You can't unwrench it!")
 		return

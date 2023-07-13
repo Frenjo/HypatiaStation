@@ -14,7 +14,7 @@
 	layer = MOB_LAYER
 	light_range = 3
 	use_power = 0
-	var/obj/item/weapon/card/id/botcard			// the ID card that the bot "holds"
+	var/obj/item/card/id/botcard			// the ID card that the bot "holds"
 	var/on = 1
 	var/health = 0 //do not forget to set health for your bot!
 	var/maxhealth = 0
@@ -70,12 +70,12 @@
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
 	healthcheck()
 
-/obj/machinery/bot/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/screwdriver))
+/obj/machinery/bot/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/screwdriver))
 		if(!locked)
 			open = !open
 			to_chat(user, SPAN_NOTICE("Maintenance panel is now [src.open ? "opened" : "closed"]."))
-	else if(istype(W, /obj/item/weapon/weldingtool))
+	else if(istype(W, /obj/item/weldingtool))
 		if(health < maxhealth)
 			if(open)
 				health = min(maxhealth, health + 10)
@@ -84,7 +84,7 @@
 				to_chat(user, SPAN_NOTICE("Unable to repair with the maintenance panel closed."))
 		else
 			to_chat(user, SPAN_NOTICE("[src] does not need a repair."))
-	else if(istype(W, /obj/item/weapon/card/emag) && emagged < 2)
+	else if(istype(W, /obj/item/card/emag) && emagged < 2)
 		Emag(user)
 	else
 		if(hasvar(W, "force") && hasvar(W, "damtype"))
@@ -171,7 +171,7 @@
 
 // Returns the surrounding cardinal turfs with open links
 // Including through doors openable with the ID
-/turf/proc/CardinalTurfsWithAccess(obj/item/weapon/card/id/ID)
+/turf/proc/CardinalTurfsWithAccess(obj/item/card/id/ID)
 	var/list/L = list()
 
 	//	for(var/turf/simulated/t in oview(src,1))
@@ -186,7 +186,7 @@
 
 // Returns true if a link between A and B is blocked
 // Movement through doors allowed if ID has access
-/proc/LinkBlockedWithAccess(turf/A, turf/B, obj/item/weapon/card/id/ID)
+/proc/LinkBlockedWithAccess(turf/A, turf/B, obj/item/card/id/ID)
 	if(A == null || B == null)
 		return 1
 	var/adir = get_dir(A, B)
@@ -215,7 +215,7 @@
 
 // Returns true if direction is blocked from loc
 // Checks doors against access with given ID
-/proc/DirBlockedWithAccess(turf/loc, dir, obj/item/weapon/card/id/ID)
+/proc/DirBlockedWithAccess(turf/loc, dir, obj/item/card/id/ID)
 	for(var/obj/structure/window/D in loc)
 		if(!D.density)
 			continue

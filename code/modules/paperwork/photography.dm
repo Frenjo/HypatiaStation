@@ -20,7 +20,7 @@
 /********
 * photo *
 ********/
-/obj/item/weapon/photo
+/obj/item/photo
 	name = "photo"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "photo"
@@ -29,18 +29,18 @@
 	var/icon/img	//Big photo image
 	var/scribble	//Scribble on the back.
 
-/obj/item/weapon/photo/attack_self(mob/user as mob)
+/obj/item/photo/attack_self(mob/user as mob)
 	examine()
 
-/obj/item/weapon/photo/attackby(obj/item/weapon/P as obj, mob/user as mob)
-	if(istype(P, /obj/item/weapon/pen) || istype(P, /obj/item/toy/crayon))
+/obj/item/photo/attackby(obj/item/P as obj, mob/user as mob)
+	if(istype(P, /obj/item/pen) || istype(P, /obj/item/toy/crayon))
 		var/txt = sanitize(input(user, "What would you like to write on the back?", "Photo Writing", null) as text)
 		txt = copytext(txt, 1, 128)
 		if(loc == user && user.stat == CONSCIOUS)
 			scribble = txt
 	..()
 
-/obj/item/weapon/photo/examine()
+/obj/item/photo/examine()
 	set src in oview(1)
 	if(in_range(usr, src))
 		show(usr)
@@ -48,7 +48,7 @@
 	else
 		to_chat(usr, SPAN_NOTICE("It is too far away."))
 
-/obj/item/weapon/photo/proc/show(mob/user as mob)
+/obj/item/photo/proc/show(mob/user as mob)
 	user << browse_rsc(img, "tmp_photo.png")
 	user << browse("<html><head><title>[name]</title></head>" \
 		+ "<body style='overflow:hidden'>" \
@@ -58,7 +58,7 @@
 	onclose(user, "[name]")
 	return
 
-/obj/item/weapon/photo/verb/rename()
+/obj/item/photo/verb/rename()
 	set name = "Rename photo"
 	set category = "Object"
 	set src in usr
@@ -73,14 +73,14 @@
 /**************
 * photo album *
 **************/
-/obj/item/weapon/storage/photo_album
+/obj/item/storage/photo_album
 	name = "Photo album"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "album"
 	item_state = "briefcase"
-	can_hold = list(/obj/item/weapon/photo)
+	can_hold = list(/obj/item/photo)
 
-/obj/item/weapon/storage/photo_album/MouseDrop(obj/over_object as obj)
+/obj/item/storage/photo_album/MouseDrop(obj/over_object as obj)
 	if((ishuman(usr) || (global.CTgame_ticker && global.CTgame_ticker.mode.name == "monkey")))
 		var/mob/M = usr
 		if(!(istype(over_object, /obj/screen)))
@@ -235,7 +235,7 @@
 		y_c--
 		x_c = x_c - 3
 
-	var/obj/item/weapon/photo/P = new/obj/item/weapon/photo()
+	var/obj/item/photo/P = new/obj/item/photo()
 	P.loc = user.loc
 	if(!user.get_inactive_hand())
 		user.put_in_inactive_hand(P)

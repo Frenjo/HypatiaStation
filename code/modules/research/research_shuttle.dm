@@ -66,7 +66,7 @@ proc/move_research_shuttle()
 	name = "Research Shuttle Console"
 	icon_state = "shuttle"
 	req_access = list(access_research)
-	circuit = "/obj/item/weapon/circuitboard/research_shuttle"
+	circuit = "/obj/item/circuitboard/research_shuttle"
 
 	var/hacked = 0
 	var/location = 0 //0 = station, 1 = research base
@@ -152,9 +152,9 @@ proc/move_research_shuttle()
 		else
 			usr << "\blue Shuttle is already moving."
 
-/obj/machinery/computer/research_shuttle/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/card/emag))
-		var/obj/item/weapon/card/emag/E = W
+/obj/machinery/computer/research_shuttle/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/card/emag))
+		var/obj/item/card/emag/E = W
 		if(E.uses)
 			E.uses--
 		else

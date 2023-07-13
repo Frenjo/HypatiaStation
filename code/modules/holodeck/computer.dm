@@ -169,17 +169,17 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/computer/holodeck_control/attackby(obj/item/weapon/D as obj, mob/user as mob)
+/obj/machinery/computer/holodeck_control/attackby(obj/item/D as obj, mob/user as mob)
 //Warning, uncommenting this can have concequences. For example, deconstructing the computer may cause holographic eswords to never derez
 
-/*		if(istype(D, /obj/item/weapon/screwdriver))
+/*		if(istype(D, /obj/item/screwdriver))
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			if(do_after(user, 20))
 				if (src.stat & BROKEN)
 					FEEDBACK_BROKEN_GLASS_FALLS(user)
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-					new /obj/item/weapon/shard( src.loc )
-					var/obj/item/weapon/circuitboard/comm_traffic/M = new /obj/item/weapon/circuitboard/comm_traffic( A )
+					new /obj/item/shard( src.loc )
+					var/obj/item/circuitboard/comm_traffic/M = new /obj/item/circuitboard/comm_traffic( A )
 					for (var/obj/C in src)
 						C.loc = src.loc
 					A.circuit = M
@@ -190,7 +190,7 @@
 				else
 					FEEDBACK_DISCONNECT_MONITOR(user)
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-					var/obj/item/weapon/circuitboard/comm_traffic/M = new /obj/item/weapon/circuitboard/comm_traffic( A )
+					var/obj/item/circuitboard/comm_traffic/M = new /obj/item/circuitboard/comm_traffic( A )
 					for (var/obj/C in src)
 						C.loc = src.loc
 					A.circuit = M
@@ -200,7 +200,7 @@
 					del(src)
 
 */
-	if(istype(D, /obj/item/weapon/card/emag) && !emagged)
+	if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
 		to_chat(user, SPAN_INFO("You vastly increase projector power and override the safety and security protocols."))
@@ -322,7 +322,7 @@
 	holographic_items = A.copy_contents_to(linkedholodeck , 1)
 
 	if(emagged)
-		for(var/obj/item/weapon/holo/esword/H in linkedholodeck)
+		for(var/obj/item/holo/esword/H in linkedholodeck)
 			H.damtype = BRUTE
 
 	spawn(30)

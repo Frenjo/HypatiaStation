@@ -9,7 +9,7 @@
 
 //NOTES: doesn't work with armor yet
 
-/obj/item/weapon/training //subclass of weapons that is currently the only one that uses the alternate combat system
+/obj/item/training //subclass of weapons that is currently the only one that uses the alternate combat system
 	name = "training weapon"
 	desc = "A weapon for training the advanced fighting technicues"
 	var/chance_parry = 0
@@ -21,7 +21,7 @@
 
 //chances - 5 is low, 10 is medium, 15 is good
 
-/obj/item/weapon/training/axe //hard-hitting, but doesn't have much in terms of disabling people (except by killing)
+/obj/item/training/axe //hard-hitting, but doesn't have much in terms of disabling people (except by killing)
 	name = "training axe"
 	icon_state = "training_axe"
 	/*combat stats*/
@@ -33,7 +33,7 @@
 	chance_knockout = 5
 	chance_disarm = 0
 
-/obj/item/weapon/training/sword //not bad attack, good at parrying and disarming
+/obj/item/training/sword //not bad attack, good at parrying and disarming
 	name = "training sword"
 	icon_state = "training_sword"
 	/*combat stats*/
@@ -45,7 +45,7 @@
 	chance_knockout = 0
 	chance_disarm = 15
 
-/obj/item/weapon/training/staff //not bad attack either, good at tripping and parrying
+/obj/item/training/staff //not bad attack either, good at tripping and parrying
 	name = "training staff"
 	icon_state = "training_staff"
 	/*combat stats*/
@@ -57,7 +57,7 @@
 	chance_knockout = 0
 	chance_disarm = 5
 
-/obj/item/weapon/training/mace //worst attack, but has a good chance of stun, knockout or weaken
+/obj/item/training/mace //worst attack, but has a good chance of stun, knockout or weaken
 	name = "training mace"
 	icon_state = "training_mace"
 	/*combat stats*/
@@ -69,17 +69,17 @@
 	chance_knockout = 10
 	chance_disarm = 0
 
-/obj/item/weapon/training/attack(target as mob, mob/user as mob)
+/obj/item/training/attack(target as mob, mob/user as mob)
 	var/target_area = attack_location(user.zone_sel.selecting)
 	for(var/mob/O in viewers(src,7))
 		O << "\red \b [user.name] attacks [target.name] in the [target_area] with [src.name]!"
 	if(!target.stat && target.zone_sel.selecting == target_area) //parrying occurs here
-		if(istype(target.r_hand,/obj/item/weapon/training)
+		if(istype(target.r_hand,/obj/item/training)
 			if(prob(target.r_hand:chance_parry))
 				for(var/mob/O in viewers(src,7))
 					O << "\red \b [target.name] deftly parries the attack with [target.r_hand.name]!"
 					return
-		if(istype(target.l_hand,/obj/item/weapon/training)
+		if(istype(target.l_hand,/obj/item/training)
 			if(prob(target.l_hand:chance_parry))
 				for(var/mob/O in viewers(src,7))
 					O << "\red \b [target.name] deftly parries the attack with [target.l_hand.name]!"

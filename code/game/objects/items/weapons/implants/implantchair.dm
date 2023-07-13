@@ -11,7 +11,7 @@
 
 	var/ready = 1
 	var/malfunction = 0
-	var/list/obj/item/weapon/implant/loyalty/implant_list = list()
+	var/list/obj/item/implant/loyalty/implant_list = list()
 	var/max_implants = 5
 	var/injection_cooldown = 600
 	var/replenish_cooldown = 6000
@@ -64,8 +64,8 @@
 		src.add_fingerprint(usr)
 		return
 
-/obj/machinery/implantchair/attackby(obj/item/weapon/G as obj, mob/user as mob)
-	if(istype(G, /obj/item/weapon/grab))
+/obj/machinery/implantchair/attackby(obj/item/G as obj, mob/user as mob)
+	if(istype(G, /obj/item/grab))
 		if(!ismob(G:affecting))
 			return
 		for(var/mob/living/carbon/slime/M in range(1,G:affecting))
@@ -116,10 +116,10 @@
 		return
 	if(!length(implant_list))
 		return
-	for(var/obj/item/weapon/implant/loyalty/imp in implant_list)
+	for(var/obj/item/implant/loyalty/imp in implant_list)
 		if(!imp)
 			continue
-		if(istype(imp, /obj/item/weapon/implant/loyalty))
+		if(istype(imp, /obj/item/implant/loyalty))
 			for (var/mob/O in viewers(M, null))
 				O.show_message("\red [M] has been implanted by the [src.name].", 1)
 
@@ -133,7 +133,7 @@
 
 /obj/machinery/implantchair/proc/add_implants()
 	for(var/i = 0, i < src.max_implants, i++)
-		var/obj/item/weapon/implant/loyalty/I = new /obj/item/weapon/implant/loyalty(src)
+		var/obj/item/implant/loyalty/I = new /obj/item/implant/loyalty(src)
 		implant_list += I
 	return
 

@@ -27,7 +27,7 @@
 
 /obj/structure/bush/attackby(obj/I as obj, mob/user as mob)
 	//hatchets can clear away undergrowth
-	if(istype(I, /obj/item/weapon/hatchet) && !stump)
+	if(istype(I, /obj/item/hatchet) && !stump)
 		if(indestructable)
 			//this bush marks the edge of the map, you can't destroy it
 			to_chat(user, SPAN_WARNING("You flail away at the undergrowth, but it's too thick here."))
@@ -64,7 +64,7 @@ var/jungle_plants_init = 0
 	fruit_icon_states = shuffle(fruit_icon_states)
 	reagent_effects = shuffle(reagent_effects)
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/jungle_fruit
+/obj/item/reagent_containers/food/snacks/grown/jungle_fruit
 	seed
 	name = "jungle fruit"
 	desc = "It smells weird and looks off."
@@ -105,7 +105,7 @@ var/jungle_plants_init = 0
 		fruits_left--
 		to_chat(user, SPAN_INFO("You pick a fruit off [src]."))
 
-		var/obj/item/weapon/reagent_containers/food/snacks/grown/jungle_fruit/J = new(src.loc)
+		var/obj/item/reagent_containers/food/snacks/grown/jungle_fruit/J = new(src.loc)
 		J.potency = plant_strength
 		J.icon_state = fruit_icon_states[fruit_type]
 		J.reagents.add_reagent(reagent_effects[fruit_type], 1+round((plant_strength / 20), 1))

@@ -24,7 +24,7 @@
 	var/next_rock = 0
 	var/archaeo_overlay = ""
 	var/excav_overlay = ""
-	var/obj/item/weapon/last_find
+	var/obj/item/last_find
 	var/datum/artifact_find/artifact_find = null
 
 /turf/simulated/mineral/New()
@@ -65,14 +65,14 @@
 	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
-		if(istype(H.l_hand, /obj/item/weapon/pickaxe) && !H.hand)
+		if(istype(H.l_hand, /obj/item/pickaxe) && !H.hand)
 			attackby(H.l_hand, H)
-		else if(istype(H.r_hand, /obj/item/weapon/pickaxe) && H.hand)
+		else if(istype(H.r_hand, /obj/item/pickaxe) && H.hand)
 			attackby(H.r_hand, H)
 
 	else if(isrobot(AM))
 		var/mob/living/silicon/robot/R = AM
-		if(istype(R.module_active, /obj/item/weapon/pickaxe))
+		if(istype(R.module_active, /obj/item/pickaxe))
 			attackby(R.module_active, R)
 
 	else if(ismecha(AM))
@@ -81,7 +81,7 @@
 			M.selected.action(src)
 
 // Not even going to touch this pile of spaghetti.
-/turf/simulated/mineral/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/turf/simulated/mineral/attackby(obj/item/W as obj, mob/user as mob)
 	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
@@ -107,12 +107,12 @@
 			to_chat(user, SPAN_INFO("\icon[P] [src] has been excavated to a depth of [2 * excavation_level]cm."))
 		return
 
-	if(istype(W, /obj/item/weapon/pickaxe))
+	if(istype(W, /obj/item/pickaxe))
 		var/turf/T = user.loc
 		if(!(isturf(T)))
 			return
 
-		var/obj/item/weapon/pickaxe/P = W
+		var/obj/item/pickaxe/P = W
 		if(last_act + P.digspeed > world.time)//prevents message spam
 			return
 		last_act = world.time
@@ -213,7 +213,7 @@
 			next_rock += P.excavation_amount * 10
 			while(next_rock > 100)
 				next_rock -= 100
-				var/obj/item/weapon/ore/O = new(src)
+				var/obj/item/ore/O = new(src)
 				geologic_data.UpdateNearbyArtifactInfo(src)
 				O.geologic_data = geologic_data
 	else
@@ -242,10 +242,10 @@
 /turf/simulated/mineral/proc/DropMineral()
 	if(isnull(mineral))
 		return
-	if(!ispath(mineral.ore, /obj/item/weapon/ore))
+	if(!ispath(mineral.ore, /obj/item/ore))
 		return
 
-	var/obj/item/weapon/ore/O = new mineral.ore(src)
+	var/obj/item/ore/O = new mineral.ore(src)
 	if(istype(O))
 		geologic_data.UpdateNearbyArtifactInfo(src)
 		O.geologic_data = geologic_data
@@ -286,15 +286,15 @@
 /turf/simulated/mineral/proc/excavate_find(prob_clean = 0, datum/find/F)
 	//with skill and luck, players can cleanly extract finds
 	//otherwise, they come out inside a chunk of rock
-	var/obj/item/weapon/X
+	var/obj/item/X
 	if(prob_clean)
-		X = new /obj/item/weapon/archaeological_find(src, new_item_type = F.find_type)
+		X = new /obj/item/archaeological_find(src, new_item_type = F.find_type)
 	else
-		X = new /obj/item/weapon/ore/strangerock(src, inside_item_type = F.find_type)
+		X = new /obj/item/ore/strangerock(src, inside_item_type = F.find_type)
 		geologic_data.UpdateNearbyArtifactInfo(src)
 		X:geologic_data = geologic_data
 
-	//some find types delete the /obj/item/weapon/archaeological_find and replace it with something else, this handles when that happens
+	//some find types delete the /obj/item/archaeological_find and replace it with something else, this handles when that happens
 	//yuck
 	var/display_name = "something"
 	if(!X)
@@ -338,12 +338,12 @@
 			if(5)
 				var/quantity = rand(1, 3)
 				for(var/i = 0, i < quantity, i++)
-					new /obj/item/weapon/shard(src)
+					new /obj/item/shard(src)
 
 			if(6)
 				var/quantity = rand(1, 3)
 				for(var/i = 0, i < quantity, i++)
-					new /obj/item/weapon/shard/plasma(src)
+					new /obj/item/shard/plasma(src)
 
 			if(7)
 				var/obj/item/stack/sheet/mineral/uranium/R = new(src)

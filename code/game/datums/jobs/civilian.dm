@@ -22,7 +22,7 @@
 /datum/job/bartender/equip(mob/living/carbon/human/H)
 	. = ..()
 
-	var/obj/item/weapon/storage/box/barpack = new /obj/item/weapon/storage/box(H)
+	var/obj/item/storage/box/barpack = new /obj/item/storage/box(H)
 	barpack.name = "bartender survival kit"
 	new /obj/item/ammo_casing/shotgun/beanbag(barpack)
 	new /obj/item/ammo_casing/shotgun/beanbag(barpack)
@@ -273,7 +273,7 @@
 /datum/job/lawyer/equip(mob/living/carbon/human/H)
 	. = ..()
 
-	var/obj/item/weapon/implant/loyalty/L = new/obj/item/weapon/implant/loyalty(H)
+	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(H)
 	L.imp_in = H
 	L.implanted = TRUE
 	var/datum/organ/external/affected = H.organs_by_name["head"]

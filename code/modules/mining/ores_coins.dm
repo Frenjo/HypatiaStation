@@ -1,71 +1,71 @@
 /*
  * Mineral Ores
  */
-/obj/item/weapon/ore
+/obj/item/ore
 	name = "rock"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "ore2"
 
 	var/datum/geosample/geologic_data
 
-/obj/item/weapon/ore/uranium
+/obj/item/ore/uranium
 	name = "uranium ore"
 	icon_state = "uranium_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 5)
 
-/obj/item/weapon/ore/iron
+/obj/item/ore/iron
 	name = "iron ore"
 	icon_state = "iron_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
 
-/obj/item/weapon/ore/glass
+/obj/item/ore/glass
 	name = "sand"
 	icon_state = "glass_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
 
-/obj/item/weapon/ore/glass/attack_self(mob/living/user as mob) //It's magic I ain't gonna explain how instant conversion with no tool works. -- Urist
+/obj/item/ore/glass/attack_self(mob/living/user as mob) //It's magic I ain't gonna explain how instant conversion with no tool works. -- Urist
 	var/location = get_turf(user)
-	for(var/obj/item/weapon/ore/glass/sand in location)
+	for(var/obj/item/ore/glass/sand in location)
 		new /obj/item/stack/sheet/mineral/sandstone(location)
 		qdel(sand)
 	new /obj/item/stack/sheet/mineral/sandstone(location)
 	qdel(src)
 
-/obj/item/weapon/ore/plasma
+/obj/item/ore/plasma
 	name = "plasma ore"
 	icon_state = "plasma_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
 
-/obj/item/weapon/ore/silver
+/obj/item/ore/silver
 	name = "silver ore"
 	icon_state = "silver_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 3)
 
-/obj/item/weapon/ore/gold
+/obj/item/ore/gold
 	name = "gold ore"
 	icon_state = "gold_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 4)
 
-/obj/item/weapon/ore/diamond
+/obj/item/ore/diamond
 	name = "diamond ore"
 	icon_state = "diamond_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 6)
 
-/obj/item/weapon/ore/bananium
+/obj/item/ore/bananium
 	name = "bananium ore"
 	icon_state = "bananium_ore"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 4)
 
-/obj/item/weapon/ore/slag
+/obj/item/ore/slag
 	name = "slag"
 	desc = "Completely useless"
 	icon_state = "slag"
 
-/obj/item/weapon/ore/New()
+/obj/item/ore/New()
 	pixel_x = rand(0, 16) - 8
 	pixel_y = rand(0, 8) - 8
 
-/obj/item/weapon/ore/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/ore/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/core_sampler))
 		var/obj/item/device/core_sampler/C = W
 		C.sample_item(src, user)
@@ -75,7 +75,7 @@
 /*
  * Coins
  */
-/obj/item/weapon/coin
+/obj/item/coin
 	icon = 'icons/obj/items.dmi'
 	name = "coin"
 	icon_state = "coin"
@@ -87,47 +87,47 @@
 	var/string_attached = FALSE
 	var/sides = 2
 
-/obj/item/weapon/coin/New()
+/obj/item/coin/New()
 	pixel_x = rand(0, 16) - 8
 	pixel_y = rand(0, 8) - 8
 
-/obj/item/weapon/coin/gold
+/obj/item/coin/gold
 	name = "gold coin"
 	icon_state = "coin_gold"
 
-/obj/item/weapon/coin/silver
+/obj/item/coin/silver
 	name = "silver coin"
 	icon_state = "coin_silver"
 
-/obj/item/weapon/coin/diamond
+/obj/item/coin/diamond
 	name = "diamond coin"
 	icon_state = "coin_diamond"
 
-/obj/item/weapon/coin/iron
+/obj/item/coin/iron
 	name = "iron coin"
 	icon_state = "coin_iron"
 
-/obj/item/weapon/coin/plasma
+/obj/item/coin/plasma
 	name = "solid plasma coin"
 	icon_state = "coin_plasma"
 
-/obj/item/weapon/coin/uranium
+/obj/item/coin/uranium
 	name = "uranium coin"
 	icon_state = "coin_uranium"
 
-/obj/item/weapon/coin/bananium
+/obj/item/coin/bananium
 	name = "bananium coin"
 	icon_state = "coin_bananium"
 
-/obj/item/weapon/coin/adamantine
+/obj/item/coin/adamantine
 	name = "adamantine coin"
 	icon_state = "coin_adamantine"
 
-/obj/item/weapon/coin/mythril
+/obj/item/coin/mythril
 	name = "mythril coin"
 	icon_state = "coin_mythril"
 
-/obj/item/weapon/coin/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/coin/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/CC = W
 		if(string_attached)
@@ -144,7 +144,7 @@
 		to_chat(user, SPAN_INFO("You attach a string to the coin."))
 		CC.use(1)
 
-	else if(istype(W, /obj/item/weapon/wirecutters))
+	else if(istype(W, /obj/item/wirecutters))
 		if(!string_attached)
 			..()
 			return
@@ -157,7 +157,7 @@
 		to_chat(user, SPAN_INFO("You detach the string from the coin."))
 	else ..()
 
-/obj/item/weapon/coin/attack_self(mob/user as mob)
+/obj/item/coin/attack_self(mob/user as mob)
 	var/result = rand(1, sides)
 	var/comment = ""
 	if(result == 1)

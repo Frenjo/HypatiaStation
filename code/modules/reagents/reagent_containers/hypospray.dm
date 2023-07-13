@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// HYPOSPRAY
 ////////////////////////////////////////////////////////////////////////////////
-/obj/item/weapon/reagent_containers/hypospray
+/obj/item/reagent_containers/hypospray
 	name = "hypospray"
 	desc = "The DeForest Medical Corporation hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
 	icon = 'icons/obj/syringe.dmi'
@@ -13,15 +13,15 @@
 	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 
-/obj/item/weapon/reagent_containers/hypospray/attack_paw(mob/user as mob)
+/obj/item/reagent_containers/hypospray/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/item/weapon/reagent_containers/hypospray/New() //comment this to make hypos start off empty
+/obj/item/reagent_containers/hypospray/New() //comment this to make hypos start off empty
 	..()
 	//reagents.add_reagent("tricordrazine", 30) // Commented this, planning on adding hypos to the RnD protolathe. -Frenjo
 	return
 
-/obj/item/weapon/reagent_containers/hypospray/attack(mob/M as mob, mob/user as mob)
+/obj/item/reagent_containers/hypospray/attack(mob/M as mob, mob/user as mob)
 	if(!reagents.total_volume)
 		to_chat(user, SPAN_WARNING("[src] is empty."))
 		return
@@ -47,7 +47,7 @@
 	return
 
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector
+/obj/item/reagent_containers/hypospray/autoinjector
 	name = "autoinjector"
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel."
 	icon_state = "autoinjector"
@@ -55,27 +55,27 @@
 	amount_per_transfer_from_this = 5
 	volume = 5
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/New()
+/obj/item/reagent_containers/hypospray/autoinjector/New()
 	..()
 	reagents.remove_reagent("tricordrazine", 30)
 	reagents.add_reagent("inaprovaline", 5)
 	update_icon()
 	return
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/attack(mob/M as mob, mob/user as mob)
+/obj/item/reagent_containers/hypospray/autoinjector/attack(mob/M as mob, mob/user as mob)
 	..()
 	if(reagents.total_volume <= 0) //Prevents autoinjectors to be refilled.
 		flags &= ~OPENCONTAINER
 	update_icon()
 	return
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/update_icon()
+/obj/item/reagent_containers/hypospray/autoinjector/update_icon()
 	if(reagents.total_volume > 0)
 		icon_state = "[initial(icon_state)]1"
 	else
 		icon_state = "[initial(icon_state)]0"
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/examine()
+/obj/item/reagent_containers/hypospray/autoinjector/examine()
 	..()
 	if(reagents && length(reagents.reagent_list))
 		to_chat(usr, SPAN_INFO("It is currently loaded."))

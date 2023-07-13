@@ -18,9 +18,9 @@
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/gloves/yellow,
 		/obj/item/clothing/shoes/brown,
-		/obj/item/weapon/cartridge/ce,
+		/obj/item/cartridge/ce,
 		/obj/item/device/radio/headset/heads/ce,
-		/obj/item/weapon/storage/toolbox/mechanical,
+		/obj/item/storage/toolbox/mechanical,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/mask/gas,
 		/obj/item/device/multitool,
@@ -30,9 +30,9 @@
 
 /obj/structure/closet/secure_closet/engineering_chief/New()
 	if(prob(50))
-		starts_with.Add(/obj/item/weapon/storage/backpack/industrial)
+		starts_with.Add(/obj/item/storage/backpack/industrial)
 	else
-		starts_with.Add(/obj/item/weapon/storage/satchel/eng)
+		starts_with.Add(/obj/item/storage/satchel/eng)
 	if(prob(70))
 		starts_with.Add(/obj/item/clothing/tie/storage/brown_vest)
 	else
@@ -55,18 +55,18 @@
 	starts_with = list(
 		/obj/item/clothing/gloves/yellow,
 		/obj/item/clothing/gloves/yellow,
-		/obj/item/weapon/storage/toolbox/electrical,
-		/obj/item/weapon/storage/toolbox/electrical,
-		/obj/item/weapon/storage/toolbox/electrical,
-		/obj/item/weapon/module/power_control,
-		/obj/item/weapon/module/power_control,
-		/obj/item/weapon/module/power_control,
+		/obj/item/storage/toolbox/electrical,
+		/obj/item/storage/toolbox/electrical,
+		/obj/item/storage/toolbox/electrical,
+		/obj/item/module/power_control,
+		/obj/item/module/power_control,
+		/obj/item/module/power_control,
 		/obj/item/device/multitool,
 		/obj/item/device/multitool,
 		/obj/item/device/multitool,
 
-		/obj/item/weapon/storage/box/circuits,
-		/obj/item/weapon/storage/box/circuits
+		/obj/item/storage/box/circuits,
+		/obj/item/storage/box/circuits
 	)
 
 /*
@@ -86,12 +86,12 @@
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/head/welding,
 		/obj/item/clothing/head/welding,
-		/obj/item/weapon/weldingtool/largetank,
-		/obj/item/weapon/weldingtool/largetank,
-		/obj/item/weapon/weldingtool/largetank,
-		/obj/item/weapon/weldpack,
-		/obj/item/weapon/weldpack,
-		/obj/item/weapon/weldpack
+		/obj/item/weldingtool/largetank,
+		/obj/item/weldingtool/largetank,
+		/obj/item/weldingtool/largetank,
+		/obj/item/weldpack,
+		/obj/item/weldpack,
+		/obj/item/weldpack
 	)
 
 /*
@@ -108,20 +108,20 @@
 	icon_off = "secureengoff"
 
 	starts_with = list(
-		/obj/item/weapon/storage/toolbox/mechanical,
+		/obj/item/storage/toolbox/mechanical,
 		/obj/item/device/radio/headset/engi,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/glasses/meson,
-		/obj/item/weapon/cartridge/engineering,
+		/obj/item/cartridge/engineering,
 		/obj/item/taperoll/engineering
 	)
 
 /obj/structure/closet/secure_closet/engineering_personal/New()
 	if(prob(50))
-		starts_with.Add(/obj/item/weapon/storage/backpack/industrial)
+		starts_with.Add(/obj/item/storage/backpack/industrial)
 	else
-		starts_with.Add(/obj/item/weapon/storage/satchel/eng)
+		starts_with.Add(/obj/item/storage/satchel/eng)
 	if(prob(70))
 		starts_with.Add(/obj/item/clothing/tie/storage/brown_vest)
 	else
@@ -144,19 +144,19 @@
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,
 		/obj/item/device/flashlight,
-		/obj/item/weapon/extinguisher,
+		/obj/item/extinguisher,
 		/obj/item/device/radio/headset/engi,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/mask/gas,
-		/obj/item/weapon/cartridge/atmos,
+		/obj/item/cartridge/atmos,
 		/obj/item/taperoll/engineering
 	)
 
 /obj/structure/closet/secure_closet/atmos_personal/New()
 	if(prob(50))
-		starts_with.Add(/obj/item/weapon/storage/backpack/industrial)
+		starts_with.Add(/obj/item/storage/backpack/industrial)
 	else
-		starts_with.Add(/obj/item/weapon/storage/satchel/eng)
+		starts_with.Add(/obj/item/storage/satchel/eng)
 	if(prob(70))
 		starts_with.Add(/obj/item/clothing/tie/storage/brown_vest)
 	else

@@ -229,7 +229,7 @@
 			if(!(status_flags & CANPUSH))
 				return
 
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, M, src)
+			var/obj/item/grab/G = new /obj/item/grab(M, M, src)
 
 			M.put_in_active_hand(G)
 
@@ -283,7 +283,7 @@
 		else
 			to_chat(user, SPAN_INFO("This [src] is dead, medical items won't bring it back to life."))
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
-		if(istype(O, /obj/item/weapon/kitchenknife) || istype(O, /obj/item/weapon/butch))
+		if(istype(O, /obj/item/kitchenknife) || istype(O, /obj/item/butch))
 			new meat_type (get_turf(src))
 			if(prob(95))
 				qdel(src)

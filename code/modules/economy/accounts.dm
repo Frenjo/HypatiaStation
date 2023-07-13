@@ -48,7 +48,7 @@
 		//create a sealed package containing the account details
 		var/obj/item/small_delivery/P = new /obj/item/small_delivery(source_db.loc)
 
-		var/obj/item/weapon/paper/R = new /obj/item/weapon/paper(P)
+		var/obj/item/paper/R = new /obj/item/paper(P)
 		P.wrapped = R
 		R.name = "Account information: [M.owner_name]"
 		R.info = "<b>Account details (confidential)</b><br><hr><br>"
@@ -65,7 +65,7 @@
 		stampoverlay.icon_state = "paper_stamp-cent"
 		if(!R.stamped)
 			R.stamped = new
-		R.stamped += /obj/item/weapon/stamp
+		R.stamped += /obj/item/stamp
 		R.overlays += stampoverlay
 		R.stamps += "<HR><i>This paper has been stamped by the Accounts Database.</i>"
 

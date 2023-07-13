@@ -33,7 +33,7 @@
 		/obj/item/clothing/suit/bio_suit/virology,
 		/obj/item/clothing/head/bio_hood/virology,
 		/obj/item/clothing/mask/breath,
-		/obj/item/weapon/tank/oxygen
+		/obj/item/tank/oxygen
 	)
 
 /*

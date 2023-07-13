@@ -72,7 +72,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/security
+	build_path = /obj/item/circuitboard/security
 
 /datum/design/aicore
 	name = "Circuit Design (AI Core)"
@@ -81,7 +81,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_BIOTECH = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/aicore
+	build_path = /obj/item/circuitboard/aicore
 
 /datum/design/aiupload
 	name = "Circuit Design (AI Upload)"
@@ -90,7 +90,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/aiupload
+	build_path = /obj/item/circuitboard/aiupload
 
 /datum/design/borgupload
 	name = "Circuit Design (Cyborg Upload)"
@@ -99,7 +99,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/borgupload
+	build_path = /obj/item/circuitboard/borgupload
 
 /datum/design/med_data
 	name = "Circuit Design (Medical Records)"
@@ -108,7 +108,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/med_data
+	build_path = /obj/item/circuitboard/med_data
 
 /datum/design/operating
 	name = "Circuit Design (Operating Computer)"
@@ -117,7 +117,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_BIOTECH = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/operating
+	build_path = /obj/item/circuitboard/operating
 
 /datum/design/pandemic
 	name = "Circuit Design (PanD.E.M.I.C. 2200)"
@@ -126,7 +126,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_BIOTECH = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/pandemic
+	build_path = /obj/item/circuitboard/pandemic
 
 /datum/design/scan_console
 	name = "Circuit Design (DNA Machine)"
@@ -135,7 +135,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_BIOTECH = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/scan_consolenew
+	build_path = /obj/item/circuitboard/scan_consolenew
 
 /datum/design/comconsole
 	name = "Circuit Design (Communications)"
@@ -144,7 +144,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_MAGNETS = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/communications
+	build_path = /obj/item/circuitboard/communications
 
 /datum/design/idcardconsole
 	name = "Circuit Design (ID Computer)"
@@ -153,7 +153,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/card
+	build_path = /obj/item/circuitboard/card
 
 /datum/design/crewconsole
 	name = "Circuit Design (Crew monitoring computer)"
@@ -162,7 +162,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_BIOTECH = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/crew
+	build_path = /obj/item/circuitboard/crew
 
 /datum/design/teleconsole
 	name = "Circuit Design (Teleporter Console)"
@@ -171,7 +171,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/teleporter
+	build_path = /obj/item/circuitboard/teleporter
 
 /datum/design/secdata
 	name = "Circuit Design (Security Records Console)"
@@ -180,7 +180,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/secure_data
+	build_path = /obj/item/circuitboard/secure_data
 
 /datum/design/atmosalerts
 	name = "Circuit Design (Atmosphere Alert)"
@@ -189,7 +189,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/atmos_alert
+	build_path = /obj/item/circuitboard/atmos_alert
 
 /datum/design/air_management
 	name = "Circuit Design (Atmospheric Monitor)"
@@ -198,7 +198,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/air_management
+	build_path = /obj/item/circuitboard/air_management
 
 /* Uncomment if someone makes these buildable
 /datum/design/general_alert
@@ -208,7 +208,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/general_alert
+	build_path = /obj/item/circuitboard/general_alert
 */
 
 /datum/design/robocontrol
@@ -218,7 +218,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/robotics
+	build_path = /obj/item/circuitboard/robotics
 
 /datum/design/clonecontrol
 	name = "Circuit Design (Cloning Machine Console)"
@@ -227,7 +227,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BIOTECH = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/cloning
+	build_path = /obj/item/circuitboard/cloning
 
 /datum/design/clonepod
 	name = "Circuit Design (Clone Pod)"
@@ -236,7 +236,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BIOTECH = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/clonepod
+	build_path = /obj/item/circuitboard/clonepod
 
 /datum/design/clonescanner
 	name = "Circuit Design (Cloning Scanner)"
@@ -245,7 +245,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BIOTECH = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/clonescanner
+	build_path = /obj/item/circuitboard/clonescanner
 
 /datum/design/arcademachine
 	name = "Circuit Design (Arcade Machine)"
@@ -254,7 +254,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 1)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/arcade
+	build_path = /obj/item/circuitboard/arcade
 
 /datum/design/powermonitor
 	name = "Circuit Design (Power Monitor)"
@@ -263,7 +263,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/powermonitor
+	build_path = /obj/item/circuitboard/powermonitor
 
 /datum/design/solarcontrol
 	name = "Circuit Design (Solar Control)"
@@ -272,7 +272,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_POWERSTORAGE = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/solar_control
+	build_path = /obj/item/circuitboard/solar_control
 
 /datum/design/prisonmanage
 	name = "Circuit Design (Prisoner Management Console)"
@@ -281,7 +281,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/prisoner
+	build_path = /obj/item/circuitboard/prisoner
 
 /datum/design/mechacontrol
 	name = "Circuit Design (Exosuit Control Console)"
@@ -290,7 +290,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mecha_control
+	build_path = /obj/item/circuitboard/mecha_control
 
 /datum/design/mechapower
 	name = "Circuit Design (Mech Bay Power Control Console)"
@@ -299,7 +299,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mech_bay_power_console
+	build_path = /obj/item/circuitboard/mech_bay_power_console
 
 /datum/design/rdconsole
 	name = "Circuit Design (R&D Console)"
@@ -308,7 +308,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/rdconsole
+	build_path = /obj/item/circuitboard/rdconsole
 
 /datum/design/ordercomp
 	name = "Circuit Design (Supply ordering console)"
@@ -317,7 +317,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/ordercomp
+	build_path = /obj/item/circuitboard/ordercomp
 
 /datum/design/supplycomp
 	name = "Circuit Design (Supply shuttle console)"
@@ -326,7 +326,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/supplycomp
+	build_path = /obj/item/circuitboard/supplycomp
 
 /datum/design/comm_monitor
 	name = "Circuit Design (Telecommunications Monitoring Console)"
@@ -335,7 +335,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/comm_monitor
+	build_path = /obj/item/circuitboard/comm_monitor
 
 /datum/design/comm_server
 	name = "Circuit Design (Telecommunications Server Monitoring Console)"
@@ -344,7 +344,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/comm_server
+	build_path = /obj/item/circuitboard/comm_server
 
 /datum/design/message_monitor
 	name = "Circuit Design (Messaging Monitor Console)"
@@ -353,7 +353,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 5)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/message_monitor
+	build_path = /obj/item/circuitboard/message_monitor
 
 /datum/design/aifixer
 	name = "Circuit Design (AI Integrity Restorer)"
@@ -362,7 +362,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BIOTECH = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/aifixer
+	build_path = /obj/item/circuitboard/aifixer
 
 ///////////////////////////////////
 //////////AI Module Disks//////////
@@ -374,7 +374,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_GOLD = 100)
-	build_path = /obj/item/weapon/aiModule/safeguard
+	build_path = /obj/item/aiModule/safeguard
 
 /datum/design/onehuman_module
 	name = "Module Design (OneHuman)"
@@ -383,7 +383,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_DIAMOND = 100)
-	build_path = /obj/item/weapon/aiModule/oneHuman
+	build_path = /obj/item/aiModule/oneHuman
 
 /datum/design/protectstation_module
 	name = "Module Design (ProtectStation)"
@@ -392,7 +392,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_GOLD = 100)
-	build_path = /obj/item/weapon/aiModule/protectStation
+	build_path = /obj/item/aiModule/protectStation
 
 /datum/design/notele_module
 	name = "Module Design (TeleporterOffline Module)"
@@ -401,7 +401,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_GOLD = 100)
-	build_path = /obj/item/weapon/aiModule/teleporterOffline
+	build_path = /obj/item/aiModule/teleporterOffline
 
 /datum/design/quarantine_module
 	name = "Module Design (Quarantine)"
@@ -410,7 +410,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BIOTECH = 2, RESEARCH_TECH_MATERIALS = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_GOLD = 100)
-	build_path = /obj/item/weapon/aiModule/quarantine
+	build_path = /obj/item/aiModule/quarantine
 
 /datum/design/oxygen_module
 	name = "Module Design (OxygenIsToxicToHumans)"
@@ -419,7 +419,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BIOTECH = 2, RESEARCH_TECH_MATERIALS = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_GOLD = 100)
-	build_path = /obj/item/weapon/aiModule/oxygen
+	build_path = /obj/item/aiModule/oxygen
 
 /datum/design/freeform_module
 	name = "Module Design (Freeform)"
@@ -428,7 +428,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MATERIALS = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_GOLD = 100)
-	build_path = /obj/item/weapon/aiModule/freeform
+	build_path = /obj/item/aiModule/freeform
 
 /datum/design/reset_module
 	name = "Module Design (Reset)"
@@ -437,7 +437,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_GOLD = 100)
-	build_path = /obj/item/weapon/aiModule/reset
+	build_path = /obj/item/aiModule/reset
 
 /datum/design/purge_module
 	name = "Module Design (Purge)"
@@ -446,7 +446,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_DIAMOND = 100)
-	build_path = /obj/item/weapon/aiModule/purge
+	build_path = /obj/item/aiModule/purge
 
 /datum/design/freeformcore_module
 	name = "Core Module Design (Freeform)"
@@ -455,7 +455,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_DIAMOND = 100)
-	build_path = /obj/item/weapon/aiModule/freeformcore
+	build_path = /obj/item/aiModule/freeformcore
 
 /datum/design/asimov
 	name = "Core Module Design (Asimov)"
@@ -464,7 +464,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_DIAMOND = 100)
-	build_path = /obj/item/weapon/aiModule/asimov
+	build_path = /obj/item/aiModule/asimov
 
 /datum/design/paladin_module
 	name = "Core Module Design (P.A.L.A.D.I.N.)"
@@ -473,7 +473,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_DIAMOND = 100)
-	build_path = /obj/item/weapon/aiModule/paladin
+	build_path = /obj/item/aiModule/paladin
 
 /datum/design/tyrant_module
 	name = "Core Module Design (T.Y.R.A.N.T.)"
@@ -482,7 +482,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_SYNDICATE = 2, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_DIAMOND = 100)
-	build_path = /obj/item/weapon/aiModule/tyrant
+	build_path = /obj/item/aiModule/tyrant
 
 ///////////////////////////////////
 /////Subspace Telecoms////////////
@@ -494,7 +494,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 3, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/telecoms/receiver
+	build_path = /obj/item/circuitboard/telecoms/receiver
 
 /datum/design/telecoms_bus
 	name = "Circuit Design (Bus Mainframe)"
@@ -503,7 +503,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/telecoms/bus
+	build_path = /obj/item/circuitboard/telecoms/bus
 
 /datum/design/telecoms_hub
 	name = "Circuit Design (Hub Mainframe)"
@@ -512,7 +512,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/telecoms/hub
+	build_path = /obj/item/circuitboard/telecoms/hub
 
 /datum/design/telecoms_relay
 	name = "Circuit Design (Relay Mainframe)"
@@ -521,7 +521,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_BLUESPACE = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/telecoms/relay
+	build_path = /obj/item/circuitboard/telecoms/relay
 
 /datum/design/telecoms_processor
 	name = "Circuit Design (Processor Unit)"
@@ -530,7 +530,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/telecoms/processor
+	build_path = /obj/item/circuitboard/telecoms/processor
 
 /datum/design/telecoms_server
 	name = "Circuit Design (Server Mainframe)"
@@ -539,7 +539,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/telecoms/server
+	build_path = /obj/item/circuitboard/telecoms/server
 
 /datum/design/subspace_broadcaster
 	name = "Circuit Design (Subspace Broadcaster)"
@@ -548,7 +548,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/telecoms/broadcaster
+	build_path = /obj/item/circuitboard/telecoms/broadcaster
 
 ///////////////////////////////////
 /////Non-Board Computer Stuff//////
@@ -591,7 +591,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mecha/ripley/main
+	build_path = /obj/item/circuitboard/mecha/ripley/main
 
 /datum/design/ripley_peri
 	name = "Circuit Design (APLU \"Ripley\" Peripherals Control module)"
@@ -600,7 +600,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mecha/ripley/peripherals
+	build_path = /obj/item/circuitboard/mecha/ripley/peripherals
 
 /datum/design/odysseus_main
 	name = "Circuit Design (\"Odysseus\" Central Control module)"
@@ -609,7 +609,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3,RESEARCH_TECH_BIOTECH = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mecha/odysseus/main
+	build_path = /obj/item/circuitboard/mecha/odysseus/main
 
 /datum/design/odysseus_peri
 	name = "Circuit Design (\"Odysseus\" Peripherals Control module)"
@@ -618,7 +618,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3,RESEARCH_TECH_BIOTECH = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mecha/odysseus/peripherals
+	build_path = /obj/item/circuitboard/mecha/odysseus/peripherals
 
 /datum/design/gygax_main
 	name = "Circuit Design (\"Gygax\" Central Control module)"
@@ -627,7 +627,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mecha/gygax/main
+	build_path = /obj/item/circuitboard/mecha/gygax/main
 
 /datum/design/gygax_peri
 	name = "Circuit Design (\"Gygax\" Peripherals Control module)"
@@ -636,7 +636,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mecha/gygax/peripherals
+	build_path = /obj/item/circuitboard/mecha/gygax/peripherals
 
 /datum/design/gygax_targ
 	name = "Circuit Design (\"Gygax\" Weapons & Targeting Control module)"
@@ -645,7 +645,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_COMBAT = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mecha/gygax/targeting
+	build_path = /obj/item/circuitboard/mecha/gygax/targeting
 
 /datum/design/durand_main
 	name = "Circuit Design (\"Durand\" Central Control module)"
@@ -654,7 +654,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mecha/durand/main
+	build_path = /obj/item/circuitboard/mecha/durand/main
 
 /datum/design/durand_peri
 	name = "Circuit Design (\"Durand\" Peripherals Control module)"
@@ -663,7 +663,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mecha/durand/peripherals
+	build_path = /obj/item/circuitboard/mecha/durand/peripherals
 
 /datum/design/durand_targ
 	name = "Circuit Design (\"Durand\" Weapons & Targeting Control module)"
@@ -672,7 +672,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_COMBAT = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mecha/durand/targeting
+	build_path = /obj/item/circuitboard/mecha/durand/targeting
 
 /datum/design/honker_main
 	name = "Circuit Design (\"H.O.N.K\" Central Control module)"
@@ -681,7 +681,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mecha/honker/main
+	build_path = /obj/item/circuitboard/mecha/honker/main
 
 /datum/design/honker_peri
 	name = "Circuit Design (\"H.O.N.K\" Peripherals Control module)"
@@ -690,7 +690,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mecha/honker/peripherals
+	build_path = /obj/item/circuitboard/mecha/honker/peripherals
 
 /datum/design/honker_targ
 	name = "Circuit Design (\"H.O.N.K\" Weapons & Targeting Control module)"
@@ -699,7 +699,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mecha/honker/targeting
+	build_path = /obj/item/circuitboard/mecha/honker/targeting
 
 ////////////////////////////////////////
 /////////// Mecha Equpment /////////////
@@ -873,7 +873,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 1)
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 10)
-	build_path = /obj/item/weapon/disk/design_disk
+	build_path = /obj/item/disk/design_disk
 
 /datum/design/tech_disk
 	name = "Technology Data Storage Disk"
@@ -882,7 +882,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 1)
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 10)
-	build_path = /obj/item/weapon/disk/tech_disk
+	build_path = /obj/item/disk/tech_disk
 
 ////////////////////////////////////////
 /////////////Stock Parts////////////////
@@ -894,7 +894,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_POWERSTORAGE = 1)
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/stock_part/capacitor
+	build_path = /obj/item/stock_part/capacitor
 
 /datum/design/basic_sensor
 	name = "Basic Sensor Module"
@@ -903,7 +903,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MAGNETS = 1)
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20)
-	build_path = /obj/item/weapon/stock_part/scanning_module
+	build_path = /obj/item/stock_part/scanning_module
 
 /datum/design/micro_mani
 	name = "Micro Manipulator"
@@ -912,7 +912,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_PROGRAMMING = 1)
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MATERIAL_METAL = 30)
-	build_path = /obj/item/weapon/stock_part/manipulator
+	build_path = /obj/item/stock_part/manipulator
 
 /datum/design/basic_micro_laser
 	name = "Basic Micro-Laser"
@@ -921,7 +921,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MAGNETS = 1)
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MATERIAL_METAL = 10, MATERIAL_GLASS = 20)
-	build_path = /obj/item/weapon/stock_part/micro_laser
+	build_path = /obj/item/stock_part/micro_laser
 
 /datum/design/basic_matter_bin
 	name = "Basic Matter Bin"
@@ -930,7 +930,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MATERIALS = 1)
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MATERIAL_METAL = 80)
-	build_path = /obj/item/weapon/stock_part/matter_bin
+	build_path = /obj/item/stock_part/matter_bin
 
 /datum/design/adv_capacitor
 	name = "Advanced Capacitor"
@@ -939,7 +939,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/stock_part/capacitor/adv
+	build_path = /obj/item/stock_part/capacitor/adv
 
 /datum/design/adv_sensor
 	name = "Advanced Sensor Module"
@@ -948,7 +948,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MAGNETS = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20)
-	build_path = /obj/item/weapon/stock_part/scanning_module/adv
+	build_path = /obj/item/stock_part/scanning_module/adv
 
 /datum/design/nano_mani
 	name = "Nano Manipulator"
@@ -957,7 +957,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_PROGRAMMING = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 30)
-	build_path = /obj/item/weapon/stock_part/manipulator/nano
+	build_path = /obj/item/stock_part/manipulator/nano
 
 /datum/design/high_micro_laser
 	name = "High-Power Micro-Laser"
@@ -966,7 +966,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MAGNETS = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 10, MATERIAL_GLASS = 20)
-	build_path = /obj/item/weapon/stock_part/micro_laser/high
+	build_path = /obj/item/stock_part/micro_laser/high
 
 /datum/design/adv_matter_bin
 	name = "Advanced Matter Bin"
@@ -975,7 +975,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MATERIALS = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 80)
-	build_path = /obj/item/weapon/stock_part/matter_bin/adv
+	build_path = /obj/item/stock_part/matter_bin/adv
 
 /datum/design/super_capacitor
 	name = "Super Capacitor"
@@ -985,7 +985,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	reliability_base = 71
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50, MATERIAL_GOLD = 20)
-	build_path = /obj/item/weapon/stock_part/capacitor/super
+	build_path = /obj/item/stock_part/capacitor/super
 
 /datum/design/phasic_sensor
 	name = "Phasic Sensor Module"
@@ -995,7 +995,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20, MATERIAL_SILVER = 10)
 	reliability_base = 72
-	build_path = /obj/item/weapon/stock_part/scanning_module/phasic
+	build_path = /obj/item/stock_part/scanning_module/phasic
 
 /datum/design/pico_mani
 	name = "Pico Manipulator"
@@ -1005,7 +1005,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 30)
 	reliability_base = 73
-	build_path = /obj/item/weapon/stock_part/manipulator/pico
+	build_path = /obj/item/stock_part/manipulator/pico
 
 /datum/design/ultra_micro_laser
 	name = "Ultra-High-Power Micro-Laser"
@@ -1015,7 +1015,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 10, MATERIAL_GLASS = 20, MATERIAL_URANIUM = 10)
 	reliability_base = 70
-	build_path = /obj/item/weapon/stock_part/micro_laser/ultra
+	build_path = /obj/item/stock_part/micro_laser/ultra
 
 /datum/design/super_matter_bin
 	name = "Super Matter Bin"
@@ -1025,7 +1025,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 80)
 	reliability_base = 75
-	build_path = /obj/item/weapon/stock_part/matter_bin/super
+	build_path = /obj/item/stock_part/matter_bin/super
 
 // Rating 4 -Frenjo.
 /datum/design/hyper_capacitor
@@ -1036,7 +1036,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	reliability_base = 71
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50, MATERIAL_GOLD = 20, MATERIAL_SILVER = 20)
-	build_path = /obj/item/weapon/stock_part/capacitor/hyper
+	build_path = /obj/item/stock_part/capacitor/hyper
 
 /datum/design/hyperphasic_sensor
 	name = "Hyper-Phasic Sensor Module"
@@ -1046,7 +1046,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20, MATERIAL_GOLD = 10, MATERIAL_SILVER = 10)
 	reliability_base = 72
-	build_path = /obj/item/weapon/stock_part/scanning_module/hyperphasic
+	build_path = /obj/item/stock_part/scanning_module/hyperphasic
 
 /datum/design/femto_mani
 	name = "Femto Manipulator"
@@ -1056,7 +1056,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 30)
 	reliability_base = 73
-	build_path = /obj/item/weapon/stock_part/manipulator/femto
+	build_path = /obj/item/stock_part/manipulator/femto
 
 /datum/design/hyper_ultra_micro_laser
 	name = "Hyper-Ultra-High-Power Micro-Laser"
@@ -1066,7 +1066,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 10, MATERIAL_GLASS = 20, MATERIAL_URANIUM = 10, MATERIAL_PLASMA = 10)
 	reliability_base = 70
-	build_path = /obj/item/weapon/stock_part/micro_laser/hyperultra
+	build_path = /obj/item/stock_part/micro_laser/hyperultra
 
 /datum/design/hyper_matter_bin
 	name = "Hyper Matter Bin"
@@ -1076,7 +1076,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 80)
 	reliability_base = 75
-	build_path = /obj/item/weapon/stock_part/matter_bin/hyper
+	build_path = /obj/item/stock_part/matter_bin/hyper
 
 ////////////////////////////////////////
 ///////////////Subspace/////////////////
@@ -1088,7 +1088,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 80, MATERIAL_SILVER = 20)
-	build_path = /obj/item/weapon/stock_part/subspace/ansible
+	build_path = /obj/item/stock_part/subspace/ansible
 
 /datum/design/hyperwave_filter
 	name = "Hyperwave Filter"
@@ -1097,7 +1097,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 40, MATERIAL_SILVER = 10)
-	build_path = /obj/item/weapon/stock_part/subspace/filter
+	build_path = /obj/item/stock_part/subspace/filter
 
 /datum/design/subspace_amplifier
 	name = "Subspace Amplifier"
@@ -1106,7 +1106,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 10, MATERIAL_GOLD = 30, MATERIAL_URANIUM = 15)
-	build_path = /obj/item/weapon/stock_part/subspace/amplifier
+	build_path = /obj/item/stock_part/subspace/amplifier
 
 /datum/design/subspace_treatment
 	name = "Subspace Treatment Disk"
@@ -1115,7 +1115,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 10, MATERIAL_SILVER = 20)
-	build_path = /obj/item/weapon/stock_part/subspace/treatment
+	build_path = /obj/item/stock_part/subspace/treatment
 
 /datum/design/subspace_analyzer
 	name = "Subspace Analyzer"
@@ -1124,7 +1124,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 10, MATERIAL_GOLD = 15)
-	build_path = /obj/item/weapon/stock_part/subspace/analyzer
+	build_path = /obj/item/stock_part/subspace/analyzer
 
 /datum/design/subspace_crystal
 	name = "Ansible Crystal"
@@ -1133,7 +1133,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_GLASS = 1000, MATERIAL_SILVER = 20, MATERIAL_GOLD = 20)
-	build_path = /obj/item/weapon/stock_part/subspace/crystal
+	build_path = /obj/item/stock_part/subspace/crystal
 
 /datum/design/subspace_transmitter
 	name = "Subspace Transmitter"
@@ -1142,7 +1142,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MAGNETS = 5, RESEARCH_TECH_MATERIALS = 5, RESEARCH_TECH_BLUESPACE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_GLASS = 100, MATERIAL_SILVER = 10, MATERIAL_URANIUM = 15)
-	build_path = /obj/item/weapon/stock_part/subspace/transmitter
+	build_path = /obj/item/stock_part/subspace/transmitter
 
 ////////////////////////////////////////
 //////////////////Power/////////////////
@@ -1154,7 +1154,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_POWERSTORAGE = 1)
 	build_type = PROTOLATHE | AUTOLATHE |MECHFAB
 	materials = list(MATERIAL_METAL = 700, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cell
+	build_path = /obj/item/cell
 	category = "Misc"
 
 /datum/design/high_cell
@@ -1164,7 +1164,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_POWERSTORAGE = 2)
 	build_type = PROTOLATHE | AUTOLATHE | MECHFAB
 	materials = list(MATERIAL_METAL = 700, MATERIAL_GLASS = 60)
-	build_path = /obj/item/weapon/cell/high
+	build_path = /obj/item/cell/high
 	category = "Misc"
 
 /datum/design/super_cell
@@ -1175,7 +1175,7 @@ other types of metals and chemistry for reagents).
 	reliability_base = 75
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(MATERIAL_METAL = 700, MATERIAL_GLASS = 70)
-	build_path = /obj/item/weapon/cell/super
+	build_path = /obj/item/cell/super
 	category = "Misc"
 
 /datum/design/hyper_cell
@@ -1186,7 +1186,7 @@ other types of metals and chemistry for reagents).
 	reliability_base = 70
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(MATERIAL_METAL = 400, MATERIAL_GOLD = 150, MATERIAL_SILVER = 150, MATERIAL_GLASS = 70)
-	build_path = /obj/item/weapon/cell/hyper
+	build_path = /obj/item/cell/hyper
 	category = "Misc"
 
 /datum/design/light_replacer
@@ -1208,7 +1208,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_ENGINEERING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/destructive_analyzer
+	build_path = /obj/item/circuitboard/destructive_analyzer
 
 /datum/design/protolathe
 	name = "Protolathe Board"
@@ -1217,7 +1217,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_ENGINEERING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/protolathe
+	build_path = /obj/item/circuitboard/protolathe
 
 /datum/design/circuit_imprinter
 	name = "Circuit Imprinter Board"
@@ -1226,7 +1226,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_ENGINEERING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/circuit_imprinter
+	build_path = /obj/item/circuitboard/circuit_imprinter
 
 /datum/design/autolathe
 	name = "Autolathe Board"
@@ -1235,7 +1235,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_ENGINEERING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/autolathe
+	build_path = /obj/item/circuitboard/autolathe
 
 /datum/design/rdservercontrol
 	name = "R&D Server Control Console Board"
@@ -1244,7 +1244,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/rdservercontrol
+	build_path = /obj/item/circuitboard/rdservercontrol
 
 /datum/design/rdserver
 	name = "R&D Server Board"
@@ -1253,7 +1253,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/rdserver
+	build_path = /obj/item/circuitboard/rdserver
 
 /datum/design/mechfab
 	name = "Exosuit Fabricator Board"
@@ -1262,7 +1262,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_ENGINEERING = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/mechfab
+	build_path = /obj/item/circuitboard/mechfab
 
 /////////////////////////////////////////
 ////////////Power Stuff//////////////////
@@ -1275,7 +1275,7 @@ other types of metals and chemistry for reagents).
 	build_type = IMPRINTER
 	reliability_base = 79
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/pacman
+	build_path = /obj/item/circuitboard/pacman
 
 /datum/design/superpacman
 	name = "SUPERPACMAN-type Generator Board"
@@ -1285,7 +1285,7 @@ other types of metals and chemistry for reagents).
 	build_type = IMPRINTER
 	reliability_base = 76
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/pacman/super
+	build_path = /obj/item/circuitboard/pacman/super
 
 /datum/design/mrspacman
 	name = "MRSPACMAN-type Generator Board"
@@ -1295,7 +1295,7 @@ other types of metals and chemistry for reagents).
 	build_type = IMPRINTER
 	reliability_base = 74
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/weapon/circuitboard/pacman/mrs
+	build_path = /obj/item/circuitboard/pacman/mrs
 
 /////////////////////////////////////////
 ////////////Medical Tools////////////////
@@ -1389,7 +1389,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_BIOTECH = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 7000, MATERIAL_GLASS = 7000)
-	build_path = /obj/item/weapon/implant/loyalty
+	build_path = /obj/item/implant/loyalty
 
 /datum/design/implant_chem
 	name = "chemical implant"
@@ -1398,7 +1398,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_BIOTECH = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/implant/chem
+	build_path = /obj/item/implant/chem
 
 /datum/design/implant_free
 	name = "freedom implant"
@@ -1407,7 +1407,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_SYNDICATE = 2, RESEARCH_TECH_BIOTECH = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/implant/freedom
+	build_path = /obj/item/implant/freedom
 
 /datum/design/chameleon
 	name = "Chameleon Jumpsuit"
@@ -1426,7 +1426,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 3000, MATERIAL_PLASMA = 3000, MATERIAL_DIAMOND = 500)
 	reliability_base = 76
-	build_path = /obj/item/weapon/reagent_containers/glass/beaker/bluespace
+	build_path = /obj/item/reagent_containers/glass/beaker/bluespace
 
 /datum/design/noreactbeaker
 	name = "cryostasis beaker"
@@ -1436,7 +1436,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 3000)
 	reliability_base = 76
-	build_path = /obj/item/weapon/reagent_containers/glass/beaker/noreact
+	build_path = /obj/item/reagent_containers/glass/beaker/noreact
 	category = "Misc"
 
 /datum/design/scalpel_laser1
@@ -1446,7 +1446,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_BIOTECH = 2, RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_MAGNETS = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 12500, MATERIAL_GLASS = 7500)
-	build_path = /obj/item/weapon/scalpel/laser1
+	build_path = /obj/item/scalpel/laser1
 
 /datum/design/scalpel_laser2
 	name = "Improved Laser Scalpel"
@@ -1455,7 +1455,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_BIOTECH = 3, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_MAGNETS = 4)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 12500, MATERIAL_GLASS = 7500, MATERIAL_SILVER = 2500)
-	build_path = /obj/item/weapon/scalpel/laser2
+	build_path = /obj/item/scalpel/laser2
 
 /datum/design/scalpel_laser3
 	name = "Advanced Laser Scalpel"
@@ -1464,7 +1464,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_BIOTECH = 4, RESEARCH_TECH_MATERIALS = 6, RESEARCH_TECH_MAGNETS = 5)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 12500, MATERIAL_GLASS = 7500, MATERIAL_SILVER = 2000, MATERIAL_GOLD = 1500)
-	build_path = /obj/item/weapon/scalpel/laser3
+	build_path = /obj/item/scalpel/laser3
 
 /datum/design/scalpel_manager
 	name = "Incision Management System"
@@ -1473,7 +1473,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_BIOTECH = 4, RESEARCH_TECH_MATERIALS = 7, RESEARCH_TECH_MAGNETS = 5, RESEARCH_TECH_PROGRAMMING = 4)
 	build_type = PROTOLATHE
 	materials = list (MATERIAL_METAL = 12500, MATERIAL_GLASS = 7500, MATERIAL_SILVER = 1500, MATERIAL_GOLD = 1500, MATERIAL_DIAMOND = 750)
-	build_path = /obj/item/weapon/scalpel/manager
+	build_path = /obj/item/scalpel/manager
 
 // Added hypospray to protolathe with some sensible-looking variables. -Frenjo
 /datum/design/hypospray
@@ -1483,7 +1483,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_BIOTECH = 4, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_ENGINEERING = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 7500, MATERIAL_GLASS = 4500, MATERIAL_SILVER = 1500, MATERIAL_GOLD = 1500)
-	build_path = /obj/item/weapon/reagent_containers/hypospray
+	build_path = /obj/item/reagent_containers/hypospray
 
 /////////////////////////////////////////
 /////////////////Weapons/////////////////
@@ -1496,7 +1496,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 1000, MATERIAL_URANIUM = 500)
 	reliability_base = 76
-	build_path = /obj/item/weapon/gun/energy/gun/nuclear
+	build_path = /obj/item/gun/energy/gun/nuclear
 	locked = 1
 
 /datum/design/stunrevolver
@@ -1506,7 +1506,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_POWERSTORAGE = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 4000)
-	build_path = /obj/item/weapon/gun/energy/stunrevolver
+	build_path = /obj/item/gun/energy/stunrevolver
 	locked = 1
 
 /datum/design/lasercannon
@@ -1516,7 +1516,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_COMBAT = 4, RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 10000, MATERIAL_GLASS = 1000, MATERIAL_DIAMOND = 2000)
-	build_path = /obj/item/weapon/gun/energy/lasercannon
+	build_path = /obj/item/gun/energy/lasercannon
 	locked = 1
 
 /datum/design/decloner
@@ -1526,7 +1526,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_COMBAT = 8, RESEARCH_TECH_MATERIALS = 7, RESEARCH_TECH_BIOTECH = 5, RESEARCH_TECH_POWERSTORAGE = 6)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_GOLD = 5000,MATERIAL_URANIUM = 10000, "mutagen" = 40)
-	build_path = /obj/item/weapon/gun/energy/decloner
+	build_path = /obj/item/gun/energy/decloner
 	locked = 1
 
 /datum/design/chemsprayer
@@ -1537,7 +1537,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 1000)
 	reliability_base = 100
-	build_path = /obj/item/weapon/reagent_containers/spray/chemsprayer
+	build_path = /obj/item/reagent_containers/spray/chemsprayer
 
 /datum/design/rapidsyringe
 	name = "Rapid Syringe Gun"
@@ -1546,7 +1546,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_ENGINEERING = 3, RESEARCH_TECH_BIOTECH = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 1000)
-	build_path = /obj/item/weapon/gun/syringe/rapidsyringe
+	build_path = /obj/item/gun/syringe/rapidsyringe
 
 /*
 /datum/design/largecrossbow
@@ -1556,7 +1556,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_COMBAT = 4, RESEARCH_TECH_MATERIALS = 5, RESEARCH_TECH_ENGINEERING = 3, RESEARCH_TECH_BIOTECH = 4, RESEARCH_TECH_SYNDICATE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 1000, MATERIAL_URANIUM = 1000, MATERIAL_SILVER = 1000)
-	build_path = /obj/item/weapon/gun/energy/crossbow/largecrossbow
+	build_path = /obj/item/gun/energy/crossbow/largecrossbow
 */
 
 /datum/design/temp_gun
@@ -1566,7 +1566,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_POWERSTORAGE = 3, RESEARCH_TECH_MAGNETS = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 500, MATERIAL_SILVER = 3000)
-	build_path = /obj/item/weapon/gun/energy/temperature
+	build_path = /obj/item/gun/energy/temperature
 	locked = 1
 
 /datum/design/flora_gun
@@ -1576,7 +1576,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_BIOTECH = 3, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 2000, MATERIAL_GLASS = 500, MATERIAL_URANIUM = 500)
-	build_path = /obj/item/weapon/gun/energy/floragun
+	build_path = /obj/item/gun/energy/floragun
 
 /datum/design/large_grenade
 	name = "Large Grenade"
@@ -1586,7 +1586,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 3000)
 	reliability_base = 79
-	build_path = /obj/item/weapon/grenade/chem_grenade/large
+	build_path = /obj/item/grenade/chem_grenade/large
 
 /datum/design/smg
 	name = "Submachine Gun"
@@ -1595,7 +1595,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_COMBAT = 4, RESEARCH_TECH_MATERIALS = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 8000, MATERIAL_SILVER = 2000, MATERIAL_DIAMOND = 1000)
-	build_path = /obj/item/weapon/gun/projectile/automatic
+	build_path = /obj/item/gun/projectile/automatic
 	locked = 1
 
 /datum/design/ammo_9mm
@@ -1623,7 +1623,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_COMBAT = 5, RESEARCH_TECH_PLASMATECH = 4)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 1000, MATERIAL_PLASMA = 3000)
-	build_path = /obj/item/weapon/gun/energy/toxgun
+	build_path = /obj/item/gun/energy/toxgun
 
 /////////////////////////////////////////
 /////////////////Mining//////////////////
@@ -1635,7 +1635,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_POWERSTORAGE = 2, RESEARCH_TECH_ENGINEERING = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 2000, MATERIAL_GLASS = 500, MATERIAL_SILVER = 500)
-	build_path = /obj/item/weapon/pickaxe/jackhammer
+	build_path = /obj/item/pickaxe/jackhammer
 
 /datum/design/drill
 	name = "Mining Drill"
@@ -1644,7 +1644,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_POWERSTORAGE = 3, RESEARCH_TECH_ENGINEERING = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 6000, MATERIAL_GLASS = 1000) //expensive, but no need for miners.
-	build_path = /obj/item/weapon/pickaxe/drill
+	build_path = /obj/item/pickaxe/drill
 
 /datum/design/plasmacutter
 	name = "Plasma Cutter"
@@ -1654,7 +1654,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 1500, MATERIAL_GLASS = 500, MATERIAL_GOLD = 500, MATERIAL_PLASMA = 500)
 	reliability_base = 79
-	build_path = /obj/item/weapon/pickaxe/plasmacutter
+	build_path = /obj/item/pickaxe/plasmacutter
 
 /datum/design/pick_diamond
 	name = "Diamond Pickaxe"
@@ -1663,7 +1663,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MATERIALS = 6)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_DIAMOND = 3000)
-	build_path = /obj/item/weapon/pickaxe/diamond
+	build_path = /obj/item/pickaxe/diamond
 
 /datum/design/drill_diamond
 	name = "Diamond Mining Drill"
@@ -1673,7 +1673,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 3000, MATERIAL_GLASS = 1000, MATERIAL_DIAMOND = 3750) //Yes, a whole diamond is needed.
 	reliability_base = 79
-	build_path = /obj/item/weapon/pickaxe/diamonddrill
+	build_path = /obj/item/pickaxe/diamonddrill
 
 /datum/design/mesons
 	name = "Optical Meson Scanners"
@@ -1704,7 +1704,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_GOLD = 3000, MATERIAL_DIAMOND = 1500, MATERIAL_URANIUM = 250)
 	reliability_base = 80
-	build_path = /obj/item/weapon/storage/backpack/holding
+	build_path = /obj/item/storage/backpack/holding
 
 /datum/design/bluespace_crystal
 	name = "Artificial Bluespace Crystal"
@@ -1724,7 +1724,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_GOLD = 500, MATERIAL_DIAMOND = 500, MATERIAL_URANIUM = 500) //quite cheap, for more convenience
 	reliability_base = 100
-	build_path = /obj/item/weapon/storage/bag/ore/holding
+	build_path = /obj/item/storage/bag/ore/holding
 
 /////////////////////////////////////////
 /////////////////HUDs////////////////////
@@ -1758,12 +1758,12 @@ other types of metals and chemistry for reagents).
 			build_type = PROTOLATHE
 			req_tech = list(RESEARCH_TECH_MATERIALS = 1)
 			materials = list(MATERIAL_GOLD = 3000, "iron" = 15, "copper" = 10, MATERIAL_SILVER = 2500)
-			build_path = "/obj/item/weapon/banhammer" */
+			build_path = "/obj/item/banhammer" */
 
 ////////////////////////////////////////
 //Disks for transporting design datums//
 ////////////////////////////////////////
-/obj/item/weapon/disk/design_disk
+/obj/item/disk/design_disk
 	name = "Component Design Disk"
 	desc = "A disk for storing device design data for construction in lathes."
 	icon = 'icons/obj/cloning.dmi'
@@ -1774,7 +1774,7 @@ other types of metals and chemistry for reagents).
 
 	var/datum/design/blueprint
 
-/obj/item/weapon/disk/design_disk/New()
+/obj/item/disk/design_disk/New()
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
 
@@ -1818,7 +1818,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge
+	build_path = /obj/item/cartridge
 
 /datum/design/cart_engineering
 	name = "Power-ON Cartridge"
@@ -1827,7 +1827,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/engineering
+	build_path = /obj/item/cartridge/engineering
 
 /datum/design/cart_atmos
 	name = "BreatheDeep Cartridge"
@@ -1836,7 +1836,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/atmos
+	build_path = /obj/item/cartridge/atmos
 
 /datum/design/cart_medical
 	name = "Med-U Cartridge"
@@ -1845,7 +1845,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/medical
+	build_path = /obj/item/cartridge/medical
 
 /datum/design/cart_chemistry
 	name = "ChemWhiz Cartridge"
@@ -1854,7 +1854,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/chemistry
+	build_path = /obj/item/cartridge/chemistry
 
 /datum/design/cart_security
 	name = "R.O.B.U.S.T. Cartridge"
@@ -1863,7 +1863,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/security
+	build_path = /obj/item/cartridge/security
 	locked = 1
 
 /datum/design/cart_janitor
@@ -1873,7 +1873,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/janitor
+	build_path = /obj/item/cartridge/janitor
 
 /datum/design/cart_clown
 	name = "Honkworks 5.0 Cartridge"
@@ -1882,7 +1882,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/clown
+	build_path = /obj/item/cartridge/clown
 
 /datum/design/cart_mime
 	name = "Gestur-O 1000 Cartridge"
@@ -1891,7 +1891,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/mime
+	build_path = /obj/item/cartridge/mime
 
 /datum/design/cart_toxins
 	name = "Signal Ace 2 Cartridge"
@@ -1900,7 +1900,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/signal/toxins
+	build_path = /obj/item/cartridge/signal/toxins
 
 /datum/design/cart_quartermaster
 	name = "Space Parts & Space Vendors Cartridge"
@@ -1909,7 +1909,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/quartermaster
+	build_path = /obj/item/cartridge/quartermaster
 	locked = 1
 
 /datum/design/cart_hop
@@ -1919,7 +1919,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/hop
+	build_path = /obj/item/cartridge/hop
 	locked = 1
 
 /datum/design/cart_hos
@@ -1929,7 +1929,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/hos
+	build_path = /obj/item/cartridge/hos
 	locked = 1
 
 /datum/design/cart_ce
@@ -1939,7 +1939,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/ce
+	build_path = /obj/item/cartridge/ce
 	locked = 1
 
 /datum/design/cart_cmo
@@ -1949,7 +1949,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/cmo
+	build_path = /obj/item/cartridge/cmo
 	locked = 1
 
 /datum/design/cart_rd
@@ -1959,7 +1959,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/rd
+	build_path = /obj/item/cartridge/rd
 	locked = 1
 
 /datum/design/cart_captain
@@ -1969,5 +1969,5 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/weapon/cartridge/captain
+	build_path = /obj/item/cartridge/captain
 	locked = 1

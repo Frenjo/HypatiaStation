@@ -1,4 +1,4 @@
-/obj/item/weapon/dice
+/obj/item/dice
 	name = "d6"
 	desc = "A dice with six sides."
 	icon = 'icons/obj/dice.dmi'
@@ -7,16 +7,16 @@
 	var/sides = 6
 	attack_verb = list("diced")
 
-/obj/item/weapon/dice/New()
+/obj/item/dice/New()
 	icon_state = "[name][rand(sides)]"
 
-/obj/item/weapon/dice/d20
+/obj/item/dice/d20
 	name = "d20"
 	desc = "A dice with twenty sides."
 	icon_state = "d2020"
 	sides = 20
 
-/obj/item/weapon/dice/attack_self(mob/user as mob)
+/obj/item/dice/attack_self(mob/user as mob)
 	var/result = rand(1, sides)
 	var/comment = ""
 	if(sides == 20 && result == 20)

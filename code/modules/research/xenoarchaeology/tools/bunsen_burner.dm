@@ -7,11 +7,11 @@
 
 	var/heating = 0		//whether the bunsen is turned on
 	var/heated = 0		//whether the bunsen has been on long enough to let stuff react
-	var/obj/item/weapon/reagent_containers/held_container
+	var/obj/item/reagent_containers/held_container
 	var/heat_time = 50
 
-/obj/machinery/bunsen_burner/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/reagent_containers))
+/obj/machinery/bunsen_burner/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/reagent_containers))
 		if(held_container)
 			to_chat(user, SPAN_WARNING("You must remove the [held_container] first."))
 		else

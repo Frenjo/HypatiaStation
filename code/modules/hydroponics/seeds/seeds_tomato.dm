@@ -11,7 +11,7 @@
 	mypath = /obj/item/seeds/tomatoseed
 	species = "tomato"
 	plantname = "Tomato Plants"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/tomato
+	productname = /obj/item/reagent_containers/food/snacks/grown/tomato
 	lifespan = 25
 	endurance = 15
 	maturation = 8
@@ -31,7 +31,7 @@
 	mypath = /obj/item/seeds/bloodtomatoseed
 	species = "bloodtomato"
 	plantname = "Blood-Tomato Plants"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/bloodtomato
+	productname = /obj/item/reagent_containers/food/snacks/grown/bloodtomato
 	lifespan = 25
 	endurance = 20
 	maturation = 8
@@ -51,7 +51,7 @@
 	mypath = /obj/item/seeds/killertomatoseed
 	species = "killertomato"
 	plantname = "Killer-Tomato Plants"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/killertomato
+	productname = /obj/item/reagent_containers/food/snacks/grown/killertomato
 	lifespan = 25
 	endurance = 15
 	maturation = 8
@@ -72,7 +72,7 @@
 	mypath = /obj/item/seeds/bluetomatoseed
 	species = "bluetomato"
 	plantname = "Blue-Tomato Plants"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/bluetomato
+	productname = /obj/item/reagent_containers/food/snacks/grown/bluetomato
 	lifespan = 25
 	endurance = 15
 	maturation = 8
@@ -92,7 +92,7 @@
 	mypath = /obj/item/seeds/bluespacetomatoseed
 	species = "bluespacetomato"
 	plantname = "Blue-Space Tomato Plants"
-	productname = /obj/item/weapon/reagent_containers/food/snacks/grown/bluespacetomato
+	productname = /obj/item/reagent_containers/food/snacks/grown/bluespacetomato
 	lifespan = 25
 	endurance = 15
 	maturation = 8
@@ -113,7 +113,7 @@
 	mypath = /obj/item/seeds/gibtomatoseed
 	species = "gibtomato"
 	plantname = "Gib Tomato plant"
-	productname = /obj/item/weapon/grown/gibtomato
+	productname = /obj/item/grown/gibtomato
 	lifespan = 35
 	endurance = 25
 	maturation = 6

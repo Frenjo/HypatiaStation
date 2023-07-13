@@ -21,37 +21,37 @@
 		master.growth_queue -= src
 	return ..()
 
-/obj/effect/biomass/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/effect/biomass/attackby(obj/item/W as obj, mob/user as mob)
 	if(!W || !user || !W.type)
 		return
 
 	switch(W.type)
-		if(/obj/item/weapon/circular_saw)
+		if(/obj/item/circular_saw)
 			qdel(src)
-		if(/obj/item/weapon/kitchen/utensil/knife)
+		if(/obj/item/kitchen/utensil/knife)
 			qdel(src)
-		if(/obj/item/weapon/scalpel)
+		if(/obj/item/scalpel)
 			qdel(src)
-		if(/obj/item/weapon/twohanded/fireaxe)
+		if(/obj/item/twohanded/fireaxe)
 			qdel(src)
-		if(/obj/item/weapon/hatchet)
+		if(/obj/item/hatchet)
 			qdel(src)
-		if(/obj/item/weapon/melee/energy)
+		if(/obj/item/melee/energy)
 			qdel(src)
 
 		//less effective weapons
-		if(/obj/item/weapon/wirecutters)
+		if(/obj/item/wirecutters)
 			if(prob(25))
 				qdel(src)
-		if(/obj/item/weapon/shard)
+		if(/obj/item/shard)
 			if(prob(25))
 				qdel(src)
 
 		else //weapons with subtypes
-			if(istype(W, /obj/item/weapon/melee/energy/sword))
+			if(istype(W, /obj/item/melee/energy/sword))
 				qdel(src)
-			else if(istype(W, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = W
+			else if(istype(W, /obj/item/weldingtool))
+				var/obj/item/weldingtool/WT = W
 				if(WT.remove_fuel(0, user))
 					qdel(src)
 			else

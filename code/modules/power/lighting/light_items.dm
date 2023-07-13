@@ -1,7 +1,7 @@
 // the light item
 // can be tube or bulb subtypes
 // will fit into empty /obj/machinery/light of the corresponding type
-/obj/item/weapon/light
+/obj/item/light
 	icon = 'icons/obj/lighting.dmi'
 	force = 2
 	throwforce = 5
@@ -19,7 +19,7 @@
 	var/brightness_color = "#FFFFFF"
 	var/list/lighting_modes = list()
 
-/obj/item/weapon/light/tube
+/obj/item/light/tube
 	name = "light tube"
 	desc = "A replacement light tube."
 	icon_state = "ltube"
@@ -34,7 +34,7 @@
 		LIGHT_MODE_EMERGENCY = list(l_range = 3, l_power = 1, l_color = "#d13e43"),
 	)
 
-/obj/item/weapon/light/tube/large
+/obj/item/light/tube/large
 	w_class = 2
 	name = "large light tube"
 	broken_chance = 5
@@ -42,7 +42,7 @@
 	brightness_range = 8
 	brightness_power = 2
 
-/obj/item/weapon/light/bulb
+/obj/item/light/bulb
 	name = "light bulb"
 	desc = "A replacement light bulb."
 	icon_state = "lbulb"
@@ -57,7 +57,7 @@
 		LIGHT_MODE_EMERGENCY = list(l_range = 4, l_power = 1, l_color = "#d13e43"),
 	)
 
-/obj/item/weapon/light/bulb/fire
+/obj/item/light/bulb/fire
 	name = "fire bulb"
 	desc = "A replacement fire bulb."
 	icon_state = "fbulb"
@@ -68,16 +68,16 @@
 	brightness_range = 4
 	brightness_power = 2
 
-/obj/item/weapon/light/bulb/red
+/obj/item/light/bulb/red
 	color = "#d13e43"
 	brightness_color = "#d13e43"
 
-/obj/item/weapon/light/throw_impact(atom/hit_atom)
+/obj/item/light/throw_impact(atom/hit_atom)
 	. = ..()
 	shatter()
 
 // update the icon state and description of the light
-/obj/item/weapon/light/update_icon()
+/obj/item/light/update_icon()
 	switch(status)
 		if(LIGHT_OK)
 			icon_state = base_state
@@ -89,7 +89,7 @@
 			icon_state = "[base_state]-broken"
 			desc = "A broken [name]."
 
-/obj/item/weapon/light/New(atom/newloc, obj/machinery/light/fixture = null)
+/obj/item/light/New(atom/newloc, obj/machinery/light/fixture = null)
 	. = ..()
 	if(isnotnull(fixture))
 		status = fixture.status
@@ -106,9 +106,9 @@
 
 // attack bulb/tube with object
 // if a syringe, can inject plasma to make it explode
-/obj/item/weapon/light/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
-		var/obj/item/weapon/reagent_containers/syringe/S = I
+/obj/item/light/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/reagent_containers/syringe))
+		var/obj/item/reagent_containers/syringe/S = I
 
 		to_chat(user, "You inject the solution into the [src].")
 
@@ -124,7 +124,7 @@
 // called after an attack with a light item
 // shatter light, unless it was an attempt to put it in a light socket
 // now only shatter if the intent was harm
-/obj/item/weapon/light/afterattack(atom/target, mob/user, proximity)
+/obj/item/light/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(target, /obj/machinery/light))
@@ -134,7 +134,7 @@
 
 	shatter()
 
-/obj/item/weapon/light/proc/shatter()
+/obj/item/light/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
 		visible_message(
 			SPAN_WARNING("[name] shatters."),

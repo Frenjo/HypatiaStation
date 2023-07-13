@@ -5,9 +5,9 @@
 	desc = "You can use this to change ID's."
 	icon_state = "id"
 	req_access = list(ACCESS_CHANGE_IDS)
-	circuit = /obj/item/weapon/circuitboard/card
-	var/obj/item/weapon/card/id/scan = null
-	var/obj/item/weapon/card/id/modify = null
+	circuit = /obj/item/circuitboard/card
+	var/obj/item/card/id/scan = null
+	var/obj/item/card/id/modify = null
 	var/authenticated = 0.0
 	var/mode = 0.0
 	var/printing = null
@@ -15,8 +15,8 @@
 	light_color = "#0099ff"
 
 /obj/machinery/computer/card/attackby(O as obj, user as mob)//TODO:SANITY
-	if(istype(O, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/idcard = O
+	if(istype(O, /obj/item/card/id))
+		var/obj/item/card/id/idcard = O
 		if(ACCESS_CHANGE_IDS in idcard.access)
 			if(!scan)
 				usr.drop_item()
@@ -212,7 +212,7 @@
 					modify = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/weapon/card/id))
+				if (istype(I, /obj/item/card/id))
 					usr.drop_item()
 					I.loc = src
 					modify = I
@@ -230,7 +230,7 @@
 					scan = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if (istype(I, /obj/item/weapon/card/id))
+				if (istype(I, /obj/item/card/id))
 					usr.drop_item()
 					I.loc = src
 					scan = I
@@ -298,7 +298,7 @@
 			if(!(printing))
 				printing = 1
 				sleep(50)
-				var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(loc)
+				var/obj/item/paper/P = new /obj/item/paper(loc)
 				/*var/t1 = "<B>Crew Manifest:</B><BR>"
 				var/list/L = list()
 				for (var/datum/data/record/t in global.data_core.general)
@@ -324,5 +324,5 @@
 
 /obj/machinery/computer/card/centcom
 	name = "CentCom Identification Computer"
-	circuit = /obj/item/weapon/circuitboard/card/centcom
+	circuit = /obj/item/circuitboard/card/centcom
 	req_access = list(ACCESS_CENT_CAPTAIN)

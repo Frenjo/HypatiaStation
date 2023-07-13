@@ -5,7 +5,7 @@
 
 //Grown foods
 //Subclass so we can pass on values
-/obj/item/weapon/reagent_containers/food/snacks/grown
+/obj/item/reagent_containers/food/snacks/grown
 	var/seed
 	var/plantname = ""
 	var/productname
@@ -19,14 +19,14 @@
 	var/plant_type = 0
 	icon = 'icons/obj/flora/harvest.dmi'
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/New(newloc, newpotency)
+/obj/item/reagent_containers/food/snacks/grown/New(newloc, newpotency)
 	if(isnotnull(newpotency))
 		potency = newpotency
 	..()
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
 
-/obj/item/weapon/reagent_containers/food/snacks/grown/attackby(obj/item/O as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/O as obj, mob/user as mob)
 	..()
 	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
 		var/msg
@@ -48,11 +48,11 @@
 		to_chat(usr, SPAN_INFO(msg))
 		return
 
-	/*if (istype(O, /obj/item/weapon/storage/bag/plants))
-		var/obj/item/weapon/plantbag/S = O
+	/*if (istype(O, /obj/item/storage/bag/plants))
+		var/obj/item/plantbag/S = O
 		if (S.mode == 1)
 			for(var/obj/item/G in get_turf(src))
-				if(istype(G, /obj/item/seeds) || istype(G, /obj/item/weapon/reagent_containers/food/snacks/grown))
+				if(istype(G, /obj/item/seeds) || istype(G, /obj/item/reagent_containers/food/snacks/grown))
 					if(length(S.contents) < S.capacity)
 						S.contents += G
 					else
@@ -67,11 +67,11 @@
 	return
 
 /*/obj/item/seeds/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if (istype(O, /obj/item/weapon/storage/bag/plants))
-		var/obj/item/weapon/plantbag/S = O
+	if (istype(O, /obj/item/storage/bag/plants))
+		var/obj/item/plantbag/S = O
 		if (S.mode == 1)
 			for(var/obj/item/G in get_turf(src))
-				if(istype(G, /obj/item/seeds) || istype(G, /obj/item/weapon/reagent_containers/food/snacks/grown))
+				if(istype(G, /obj/item/seeds) || istype(G, /obj/item/reagent_containers/food/snacks/grown))
 					if(length(S.contents) < S.capacity)
 						S.contents += G
 					else
@@ -85,7 +85,7 @@
 				user << "\blue The plant bag is full."
 	return*/
 
-/obj/item/weapon/grown/attackby(obj/item/O as obj, mob/user as mob)
+/obj/item/grown/attackby(obj/item/O as obj, mob/user as mob)
 	..()
 	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
 		var/msg

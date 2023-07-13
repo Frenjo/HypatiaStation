@@ -20,7 +20,7 @@
 		print_reference()
 
 		//create a short manual as well
-		var/obj/item/weapon/paper/R = new(src.loc)
+		var/obj/item/paper/R = new(src.loc)
 		/*
 		R.info += "<b>When first setting up your EFTPOS device:</b>"
 		R.info += "1. Memorise your EFTPOS command code (provided with all EFTPOS devices).<br>"
@@ -49,7 +49,7 @@
 		stampoverlay.icon_state = "paper_stamp-cent"
 		if(!R.stamped)
 			R.stamped = new
-		R.stamped += /obj/item/weapon/stamp
+		R.stamped += /obj/item/stamp
 		R.overlays += stampoverlay
 		R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 
@@ -58,7 +58,7 @@
 	linked_account = station_account
 
 /obj/item/device/eftpos/proc/print_reference()
-	var/obj/item/weapon/paper/R = new(src.loc)
+	var/obj/item/paper/R = new(src.loc)
 	R.name = "Reference: [eftpos_name]"
 	R.info = "<b>[eftpos_name] reference</b><br><br>"
 	R.info += "Access code: [access_code]<br><br>"
@@ -69,7 +69,7 @@
 	stampoverlay.icon_state = "paper_stamp-cent"
 	if(!R.stamped)
 		R.stamped = new
-	R.stamped += /obj/item/weapon/stamp
+	R.stamped += /obj/item/stamp
 	R.overlays += stampoverlay
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 	var/obj/item/small_delivery/D = new(R.loc)
@@ -106,14 +106,14 @@
 		user << browse(null, "window=eftpos")
 
 /obj/item/device/eftpos/attackby(O as obj, user as mob)
-	if(istype(O, /obj/item/weapon/card))
+	if(istype(O, /obj/item/card))
 		if(linked_account)
-			var/obj/item/weapon/card/I = O
+			var/obj/item/card/I = O
 			scan_card(I)
 		else
 			to_chat(usr, SPAN_WARNING("\icon[src] Unable to connect to linked account."))
-	else if(istype(O, /obj/item/weapon/spacecash/ewallet))
-		var/obj/item/weapon/spacecash/ewallet/E = O
+	else if(istype(O, /obj/item/spacecash/ewallet))
+		var/obj/item/spacecash/ewallet/E = O
 		if(linked_account)
 			if(!linked_account.suspended)
 				if(transaction_locked && !transaction_paid)
@@ -197,27 +197,27 @@
 			if("scan_card")
 				if(linked_account)
 					var/obj/item/I = usr.get_active_hand()
-					if(istype(I, /obj/item/weapon/card))
+					if(istype(I, /obj/item/card))
 						scan_card(I)
 				else
 					to_chat(usr, SPAN_WARNING("\icon[src] Unable to link accounts."))
 			if("reset")
 				//reset the access code - requires HoP/captain access
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/card))
-					var/obj/item/weapon/card/id/C = I
+				if(istype(I, /obj/item/card))
+					var/obj/item/card/id/C = I
 					if((ACCESS_CENT_CAPTAIN in C.access) || (ACCESS_HOP in C.access) || (ACCESS_CAPTAIN in C.access))
 						access_code = 0
 						to_chat(usr, SPAN_INFO("\icon[src] Access code reset to 0."))
-				else if(istype(I, /obj/item/weapon/card/emag))
+				else if(istype(I, /obj/item/card/emag))
 					access_code = 0
 					to_chat(usr, SPAN_INFO("\icon[src] Access code reset to 0."))
 
 	src.attack_self(usr)
 
-/obj/item/device/eftpos/proc/scan_card(obj/item/weapon/card/I)
-	if(istype(I, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/C = I
+/obj/item/device/eftpos/proc/scan_card(obj/item/card/I)
+	if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/C = I
 		visible_message(SPAN_INFO("[usr] swipes a card through [src]."))
 		if(transaction_locked && !transaction_paid)
 			if(linked_account)
@@ -266,7 +266,7 @@
 					to_chat(usr, SPAN_WARNING("\icon[src] Connected account has been suspended."))
 			else
 				to_chat(usr, SPAN_WARNING("\icon[src] EFTPOS is not connected to an account."))
-	else if(istype(I, /obj/item/weapon/card/emag))
+	else if(istype(I, /obj/item/card/emag))
 		if(transaction_locked)
 			if(transaction_paid)
 				to_chat(usr, SPAN_INFO("\icon[src] You stealthily swipe [I] through [src]."))

@@ -1,4 +1,4 @@
-/obj/item/weapon/cartridge
+/obj/item/cartridge
 	name = "generic cartridge"
 	desc = "A data cartridge for portable microcomputers."
 	icon = 'icons/obj/devices/pda.dmi'
@@ -33,7 +33,7 @@
 	var/message2
 	var/list/stored_data = list()
 
-/obj/item/weapon/cartridge/proc/post_status(command, data1, data2)
+/obj/item/cartridge/proc/post_status(command, data1, data2)
 	var/datum/radio_frequency/frequency = global.CTradio.return_frequency(1435)
 	if(!frequency)
 		return
@@ -68,7 +68,7 @@
 	the user can't access.  Well, unless they are href hacking.
 	But in that case their UI will just lock up.
 */
-/obj/item/weapon/cartridge/proc/create_NanoUI_values(mob/user as mob)
+/obj/item/cartridge/proc/create_NanoUI_values(mob/user as mob)
 	var/values[0]
 
 	/*		Signaler (Mode: 40)				*/
@@ -314,7 +314,7 @@
 		else
 			JaniData["user_loc"] = list("x" = 0, "y" = 0)
 		var/MopData[0]
-		for(var/obj/item/weapon/mop/M in world)
+		for(var/obj/item/mop/M in world)
 			var/turf/ml = get_turf(M)
 			if(ml)
 				if(ml.z != cl.z)
@@ -369,7 +369,7 @@
 
 	return values
 
-/obj/item/weapon/cartridge/Topic(href, href_list)
+/obj/item/cartridge/Topic(href, href_list)
 	..()
 	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 		usr.unset_machine()
