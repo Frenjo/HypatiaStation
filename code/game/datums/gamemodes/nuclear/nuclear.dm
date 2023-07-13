@@ -167,7 +167,7 @@
 	if(nuke_code)
 		synd_mind.store_memory("<B>Syndicate Nuclear Bomb Code</B>: [nuke_code]", 0, 0)
 		to_chat(synd_mind.current, "The nuclear authorisation code is: <B>[nuke_code]</B>")
-		var/obj/item/weapon/paper/P = new
+		var/obj/item/paper/P = new
 		P.info = "The nuclear authorisation code is: <b>[nuke_code]</b>"
 		P.name = "nuclear bomb code"
 		if(IS_GAME_MODE(/datum/game_mode/nuclear))

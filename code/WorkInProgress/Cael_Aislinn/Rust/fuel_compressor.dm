@@ -75,7 +75,7 @@ var/const/max_assembly_amount = 300
 
 	if( href_list["activate"] )
 		//to_world("\blue New fuel rod assembly")
-		var/obj/item/weapon/fuel_assembly/F = new(src)
+		var/obj/item/fuel_assembly/F = new(src)
 		var/fail = 0
 		var/old_matter = compressed_matter
 		for(var/reagent in new_assembly_quantities)

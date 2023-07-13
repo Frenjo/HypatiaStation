@@ -30,7 +30,7 @@
 	name = "[colour] lipstick"
 
 
-/obj/item/weapon/lipstick/attack_self(mob/user as mob)
+/obj/item/lipstick/attack_self(mob/user as mob)
 	to_chat(user, SPAN_NOTICE("You twist \the [src] [open ? "closed" : "open"]."))
 	open = !open
 	if(open)

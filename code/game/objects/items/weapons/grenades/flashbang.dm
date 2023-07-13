@@ -84,12 +84,12 @@
 		var/datum/organ/internal/eyes/E = H.internal_organs["eyes"]
 		if (E.damage >= E.min_bruised_damage)
 			to_chat(M, SPAN_WARNING("Your eyes start to burn badly!"))
-			if(!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))
+			if(!banglet && !(istype(src , /obj/item/grenade/flashbang/clusterbang)))
 				if(E.damage >= E.min_broken_damage)
 					to_chat(M, SPAN_WARNING("You can't see anything!"))
 	if(M.ear_damage >= 15)
 		to_chat(M, SPAN_WARNING("Your ears start to ring badly!"))
-		if(!banglet && !(istype(src , /obj/item/weapon/grenade/flashbang/clusterbang)))
+		if(!banglet && !(istype(src , /obj/item/grenade/flashbang/clusterbang)))
 			if(prob(M.ear_damage - 10 + 5))
 				to_chat(M, SPAN_WARNING("You can't hear anything!"))
 				M.sdisabilities |= DEAF

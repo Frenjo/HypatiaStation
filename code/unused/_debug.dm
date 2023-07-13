@@ -610,7 +610,7 @@ Doing this because FindTurfs() isn't even used
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	to_world("[usr.key] created an explosion")
-	var/obj/item/weapon/tank/plasmatank/pt = new /obj/item/weapon/tank/plasmatank( T )
+	var/obj/item/tank/plasmatank/pt = new /obj/item/tank/plasmatank( T )
 	playsound(pt.loc, "explosion", 100, 1,3)
 	playsound(pt.loc, 'sound/effects/explosionfar.ogg', 100, 1,10)
 	pt.gas.temperature = 500+T0C

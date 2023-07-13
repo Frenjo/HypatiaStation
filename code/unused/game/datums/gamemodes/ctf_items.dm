@@ -90,7 +90,7 @@
 					world.Reboot()
 		else
 			user << "\red You need to have your flag in the beginning position!"
-	else if(istype(C, /obj/item/weapon/ctf_flag/red))
+	else if(istype(C, /obj/item/ctf_flag/red))
 		to_world("<B>[user.real_name] has tried to score with their own flag! Idiot!</B>")
 	src.operating = 0
 	return
@@ -132,7 +132,7 @@
 					world.Reboot()
 		else
 			user << "\red You need to have your flag in the beginning position!"
-	else if(istype(C, /obj/item/weapon/ctf_flag/green))
+	else if(istype(C, /obj/item/ctf_flag/green))
 		to_world("<B>[user.real_name] has tried to score with their own flag! Idiot!</B>")
 	src.operating = 0
 	return

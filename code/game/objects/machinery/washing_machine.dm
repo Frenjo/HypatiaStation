@@ -108,8 +108,8 @@
 					//to_world("DEBUG: YUP! [new_icon_state] and [new_item_state]")
 					break
 				qdel(S)
-			for(var/T in typesof(/obj/item/weapon/bedsheet))
-				var/obj/item/weapon/bedsheet/B = new T
+			for(var/T in typesof(/obj/item/bedsheet))
+				var/obj/item/bedsheet/B = new T
 				//to_world("DEBUG: [color] == [J.color]")
 				if(wash_color == B.item_color)
 					new_sheet_icon_state = B.icon_state
@@ -156,7 +156,7 @@
 					S.name = new_shoe_name
 					S.desc = new_desc
 			if(new_sheet_icon_state && new_sheet_name)
-				for(var/obj/item/weapon/bedsheet/B in contents)
+				for(var/obj/item/bedsheet/B in contents)
 					//to_world("DEBUG: YUP! FOUND IT!")
 					B.icon_state = new_sheet_icon_state
 					B.item_color = wash_color
