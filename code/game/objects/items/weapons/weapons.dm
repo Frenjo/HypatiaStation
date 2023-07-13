@@ -1,7 +1,3 @@
-/obj/item
-	name = "weapon"
-	icon = 'icons/obj/weapons/weapons.dmi'
-
 /obj/item/Bump(mob/M as mob)
 	spawn(0)
 		..()
