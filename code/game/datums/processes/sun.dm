@@ -11,5 +11,5 @@ PROCESS_DEF(sun)
 	if(isnull(global.sun))
 		global.sun = new /datum/sun()
 
-/datum/process/sun/doWork()
+/datum/process/sun/do_work()
 	global.sun.calc_position()

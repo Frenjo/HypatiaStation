@@ -33,7 +33,7 @@ PROCESS_DEF(garbage)
 	global.delayed_garbage.Cut()
 	global.delayed_garbage = null
 
-/datum/process/garbage/doWork()
+/datum/process/garbage/do_work()
 	if(!garbage_collect)
 		return
 

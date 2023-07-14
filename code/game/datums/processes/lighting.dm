@@ -29,9 +29,9 @@ PROCESS_DEF(lighting)
 	to_world(SPAN_DANGER("Overlays initialised in [round(0.1 * (world.timeofday - start_time), 0.1)] seconds."))
 	// TODO: Give this more debug output like the air_system has, total areas, total turfs, total overlays, total corners, etc.
 
-	doWork(TRUE)
+	do_work(TRUE)
 
-/datum/process/lighting/doWork(roundstart = FALSE)
+/datum/process/lighting/do_work(roundstart = FALSE)
 	if(roundstart)
 		set waitfor = FALSE
 

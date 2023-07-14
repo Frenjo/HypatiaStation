@@ -11,7 +11,7 @@ PROCESS_DEF(air)
 		global.CTair_system = new /datum/controller/air_system()
 		global.CTair_system.setup()
 
-/datum/process/air/doWork()
+/datum/process/air/do_work()
 	if(!global.air_processing_killed)
 		if(!global.CTair_system.process()) //Runtimed.
 			global.CTair_system.failed_ticks++

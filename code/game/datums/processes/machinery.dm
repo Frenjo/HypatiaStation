@@ -12,7 +12,7 @@ PROCESS_DEF(machinery)
 	schedule_interval = 2 SECONDS
 	start_delay = 12
 
-/datum/process/machinery/doWork()
+/datum/process/machinery/do_work()
 	internal_sort()
 	internal_process_machinery()
 	internal_process_powernets()

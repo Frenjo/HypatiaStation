@@ -8,7 +8,7 @@ PROCESS_DEF(obj)
 	schedule_interval = 2 SECONDS
 	start_delay = 8
 
-/datum/process/obj/doWork()
+/datum/process/obj/do_work()
 	for(var/last_object in GLOBL.processing_objects)
 		var/obj/O = last_object
 		if(!GC_DESTROYED(O))
@@ -17,10 +17,10 @@ PROCESS_DEF(obj)
 					GLOBL.processing_objects.Remove(O)
 					continue
 			catch(var/exception/e)
-				catchException(e, O)
+				catch_exception(e, O)
 			SCHECK
 		else
-			catchBadType(O)
+			catch_bad_type(O)
 			GLOBL.processing_objects.Remove(O)
 
 /datum/process/obj/stat_entry()

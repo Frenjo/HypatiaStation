@@ -7,7 +7,7 @@ PROCESS_DEF(event)
 	name = "Event"
 	schedule_interval = 2 SECONDS
 
-/datum/process/event/doWork()
+/datum/process/event/do_work()
 	var/i = 1
 	while(i <= length(GLOBL.events))
 		var/datum/event/event = GLOBL.events[i]

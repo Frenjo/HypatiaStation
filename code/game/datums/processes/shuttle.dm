@@ -9,5 +9,5 @@ PROCESS_DEF(shuttle)
 	if(isnull(global.CTshuttle))
 		global.CTshuttle = new /datum/controller/shuttle()
 
-/datum/process/shuttle/doWork()
+/datum/process/shuttle/do_work()
 	global.CTshuttle.process()

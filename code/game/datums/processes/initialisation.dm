@@ -7,7 +7,7 @@ PROCESS_DEF(initialisation)
 	name = "Initialisation"
 	schedule_interval = 1 // Not 1 SECOND, 1 decisecond.
 
-/datum/process/initialisation/doWork()
+/datum/process/initialisation/do_work()
 	for(var/last_object in GLOBL.queued_initialisations)
 		var/atom/A = last_object
 		dequeue_for_initialisation(A)

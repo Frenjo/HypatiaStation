@@ -9,5 +9,5 @@ PROCESS_DEF(vote)
 	if(isnull(global.CTvote))
 		global.CTvote = new /datum/controller/vote()
 
-/datum/process/vote/doWork()
+/datum/process/vote/do_work()
 	global.CTvote.process()

@@ -48,7 +48,7 @@
 	global.CTmaster = new /datum/controller/master()
 	global.process_scheduler = new /datum/controller/process_scheduler()
 	spawn(1)
-		global.process_scheduler.deferSetupFor(/datum/process/ticker)
+		global.process_scheduler.defer_setup_for(/datum/process/ticker)
 		global.process_scheduler.setup()
 		global.CTmaster.setup()
 

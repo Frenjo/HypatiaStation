@@ -9,5 +9,5 @@ PROCESS_DEF(emergency)
 	if(isnull(global.CTemergency))
 		global.CTemergency = new /datum/controller/emergency()
 
-/datum/process/emergency/doWork()
+/datum/process/emergency/do_work()
 	global.CTemergency.process()

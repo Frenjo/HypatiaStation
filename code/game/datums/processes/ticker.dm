@@ -16,7 +16,7 @@ PROCESS_DEF(ticker)
 
 	wait_for_pregame()
 
-/datum/process/ticker/doWork()
+/datum/process/ticker/do_work()
 	var/currentTime = world.timeofday
 
 	if(currentTime < lastTickerTime) // check for midnight rollover

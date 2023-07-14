@@ -10,5 +10,5 @@ PROCESS_DEF(supply)
 		global.CTsupply = new /datum/controller/supply()
 		global.CTsupply.shuttle = global.CTshuttle.shuttles["Supply"]
 
-/datum/process/supply/doWork()
+/datum/process/supply/do_work()
 	global.CTsupply.process()

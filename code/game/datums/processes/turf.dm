@@ -7,7 +7,7 @@ PROCESS_DEF(turf)
 	name = "Turf"
 	schedule_interval = 3 SECONDS
 
-/datum/process/turf/doWork()
+/datum/process/turf/do_work()
 	for(var/turf/T in GLOBL.processing_turfs)
 		if(!GC_DESTROYED(T))
 			if(T.process() == PROCESS_KILL)

@@ -7,7 +7,7 @@ PROCESS_DEF(inactivity)
 	name = "Inactivity"
 	schedule_interval = INACTIVITY_KICK
 
-/datum/process/inactivity/doWork()
+/datum/process/inactivity/do_work()
 	if(CONFIG_GET(kick_inactive))
 		for(var/client/C in GLOBL.clients)
 			if(C.is_afk(INACTIVITY_KICK))

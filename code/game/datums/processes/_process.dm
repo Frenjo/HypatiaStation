@@ -27,7 +27,7 @@
 	var/tmp/status
 
 	// Previous status text var
-	var/tmp/previousStatus
+	var/tmp/previous_status
 
 	// TRUE if process is disabled
 	var/tmp/disabled = FALSE
@@ -98,7 +98,7 @@
 /datum/process/New(datum/controller/process_scheduler/scheduler)
 	. = ..()
 	main = scheduler
-	previousStatus = "idle"
+	previous_status = "idle"
 	idle()
 	sleep_interval = world.tick_lag / PROCESS_DEFAULT_SLEEP_INTERVAL
 	last_slept = 0
@@ -122,24 +122,24 @@
 	cpu_defer_count = 0
 
 	running()
-	main.processStarted(src)
+	main.process_started(src)
 
-	onStart()
+	on_start()
 
 /datum/process/proc/finished()
 	ticks++
 	idle()
-	main.processFinished(src)
+	main.process_finished(src)
 
-	onFinish()
+	on_finish()
 
-/datum/process/proc/doWork()
+/datum/process/proc/do_work()
 
 /datum/process/proc/setup()
 
 /datum/process/proc/process()
 	started()
-	doWork()
+	do_work()
 	finished()
 
 /datum/process/proc/running()
@@ -147,27 +147,27 @@
 	queued = FALSE
 	running = TRUE
 	hung = FALSE
-	setStatus(PROCESS_STATUS_RUNNING)
+	set_status(PROCESS_STATUS_RUNNING)
 
 /datum/process/proc/idle()
 	queued = FALSE
 	running = FALSE
 	idle = TRUE
 	hung = FALSE
-	setStatus(PROCESS_STATUS_IDLE)
+	set_status(PROCESS_STATUS_IDLE)
 
 /datum/process/proc/queued()
 	idle = FALSE
 	running = FALSE
 	queued = TRUE
 	hung = FALSE
-	setStatus(PROCESS_STATUS_QUEUED)
+	set_status(PROCESS_STATUS_QUEUED)
 
 /datum/process/proc/hung()
 	hung = TRUE
-	setStatus(PROCESS_STATUS_HUNG)
+	set_status(PROCESS_STATUS_HUNG)
 
-/datum/process/proc/handleHung()
+/datum/process/proc/handle_hung()
 	var/datum/lastObj = last_object
 	var/lastObjType = "null"
 	if(istype(lastObj))
@@ -177,7 +177,7 @@
 	log_debug(msg)
 	message_admins(msg)
 
-	main.restartProcess(src.name)
+	main.restart_process(src.name)
 
 /datum/process/proc/kill()
 	if(!killed)
@@ -187,13 +187,13 @@
 		//finished()
 
 		// Allow inheritors to clean up if needed
-		onKill()
+		on_kill()
 
 		// This should del
 		del(src)
 
 // Do not call this directly - use SHECK or SCHECK_EVERY
-/datum/process/proc/sleepCheck(tickId = 0)
+/datum/process/proc/sleep_check(tickId = 0)
 	calls_since_last_scheck = 0
 	if(killed)
 		// The kill proc is the only place where killed is set.
@@ -203,10 +203,10 @@
 
 	if(hung)
 		// This will only really help if the doWork proc ends up in an infinite loop.
-		handleHung()
+		handle_hung()
 		CRASH("Process [name] hung and was restarted.")
 
-	if(main.getCurrentTickElapsedTime() > main.timeAllowance)
+	if(main.get_current_tick_elapsed_time() > main.time_allowance)
 		sleep(world.tick_lag)
 		cpu_defer_count++
 		last_slept = 0
@@ -218,46 +218,46 @@
 
 /datum/process/proc/update()
 	// Clear delta
-	if(previousStatus != status)
-		setStatus(status)
+	if(previous_status != status)
+		set_status(status)
 
-	var/elapsedTime = getElapsedTime()
+	var/elapsedTime = get_elapsed_time()
 
 	if(hung)
-		handleHung()
+		handle_hung()
 		return
 	else if(elapsedTime > hang_restart_time)
 		hung()
 	else if(elapsedTime > hang_alert_time)
-		setStatus(PROCESS_STATUS_PROBABLY_HUNG)
+		set_status(PROCESS_STATUS_PROBABLY_HUNG)
 	else if(elapsedTime > hang_warning_time)
-		setStatus(PROCESS_STATUS_MAYBE_HUNG)
+		set_status(PROCESS_STATUS_MAYBE_HUNG)
 
-/datum/process/proc/getElapsedTime()
+/datum/process/proc/get_elapsed_time()
 	return TimeOfGame - run_start
 
-/datum/process/proc/tickDetail()
+/datum/process/proc/tick_detail()
 	return
 
-/datum/process/proc/getContext()
-	return "<tr><td>[name]</td><td>[main.averageRunTime(src)]</td><td>[main.last_run_time[src]]</td><td>[main.highest_run_time[src]]</td><td>[ticks]</td></tr>\n"
+/datum/process/proc/get_context()
+	return "<tr><td>[name]</td><td>[main.average_run_time(src)]</td><td>[main.last_run_time[src]]</td><td>[main.highest_run_time[src]]</td><td>[ticks]</td></tr>\n"
 
-/datum/process/proc/getContextData()
+/datum/process/proc/get_context_data()
 	return list(
 		"name" = name,
-		"averageRunTime" = main.averageRunTime(src),
+		"averageRunTime" = main.average_run_time(src),
 		"lastRunTime" = main.last_run_time[src],
 		"highestRunTime" = main.highest_run_time[src],
 		"ticks" = ticks,
 		"schedule" = schedule_interval,
-		"status" = getStatusText(),
+		"status" = get_status_text(),
 		"disabled" = disabled
 	)
 
-/datum/process/proc/getStatus()
+/datum/process/proc/get_status()
 	return status
 
-/datum/process/proc/getStatusText(s = null)
+/datum/process/proc/get_status_text(s = null)
 	if(isnull(s))
 		s = status
 	switch(s)
@@ -276,21 +276,21 @@
 		else
 			return "UNKNOWN"
 
-/datum/process/proc/getPreviousStatus()
-	return previousStatus
+/datum/process/proc/get_previous_status()
+	return previous_status
 
-/datum/process/proc/getPreviousStatusText()
-	return getStatusText(previousStatus)
+/datum/process/proc/get_previous_status_text()
+	return get_status_text(previous_status)
 
-/datum/process/proc/setStatus(newStatus)
-	previousStatus = status
+/datum/process/proc/set_status(newStatus)
+	previous_status = status
 	status = newStatus
 
-/datum/process/proc/setLastTask(task, object)
+/datum/process/proc/set_last_task(task, object)
 	last_task = task
 	last_object = object
 
-/datum/process/proc/_copyStateFrom(datum/process/target)
+/datum/process/proc/_copy_state_from(datum/process/target)
 	main = target.main
 	name = target.name
 	schedule_interval = target.schedule_interval
@@ -301,15 +301,15 @@
 	ticks = target.ticks
 	last_task = target.last_task
 	last_object = target.last_object
-	copyStateFrom(target)
+	copy_state_from(target)
 
-/datum/process/proc/copyStateFrom(datum/process/target)
+/datum/process/proc/copy_state_from(datum/process/target)
 
-/datum/process/proc/onKill()
+/datum/process/proc/on_kill()
 
-/datum/process/proc/onStart()
+/datum/process/proc/on_start()
 
-/datum/process/proc/onFinish()
+/datum/process/proc/on_finish()
 
 /datum/process/proc/disable()
 	disabled = TRUE
@@ -317,25 +317,25 @@
 /datum/process/proc/enable()
 	disabled = FALSE
 
-/datum/process/proc/getAverageRunTime()
-	return main.averageRunTime(src)
+/datum/process/proc/get_average_run_time()
+	return main.average_run_time(src)
 
-/datum/process/proc/getLastRunTime()
-	return main.getProcessLastRunTime(src)
+/datum/process/proc/get_last_run_time()
+	return main.get_process_last_run_time(src)
 
-/datum/process/proc/getHighestRunTime()
-	return main.getProcessHighestRunTime(src)
+/datum/process/proc/get_highest_run_time()
+	return main.get_process_highest_run_time(src)
 
-/datum/process/proc/getTicks()
+/datum/process/proc/get_ticks()
 	return ticks
 
 /datum/process/proc/stat_process()
 	SHOULD_NOT_OVERRIDE(TRUE)
 
-	var/averageRunTime = round(getAverageRunTime(), 0.1) / 10
-	var/lastRunTime = round(getLastRunTime(), 0.1) / 10
-	var/highestRunTime = round(getHighestRunTime(), 0.1) / 10
-	var/list/stats = list("T#[getTicks()] | AR [averageRunTime] | LR [lastRunTime] | HR [highestRunTime] | D [cpu_defer_count]")
+	var/average_run_time = round(get_average_run_time(), 0.1) / 10
+	var/last_run_time = round(get_last_run_time(), 0.1) / 10
+	var/highest_run_time = round(get_highest_run_time(), 0.1) / 10
+	var/list/stats = list("T#[get_ticks()] | AR [average_run_time] | LR [last_run_time] | HR [highest_run_time] | D [cpu_defer_count]")
 	stats.Add(stat_entry())
 	stat_click.name = jointext(stats, "\n")
 	stat(name, stat_click)
@@ -343,7 +343,7 @@
 /datum/process/proc/stat_entry()
 	RETURN_TYPE(/list)
 
-/datum/process/proc/catchException(exception/e, thrower)
+/datum/process/proc/catch_exception(exception/e, thrower)
 	if(istype(e)) // Real runtimes go to the real error handler
 		// There are two newlines here, because handling desc sucks
 		e.desc = "  Caught by process: [name]\n\n" + e.desc
@@ -373,7 +373,7 @@
 		spawn(6000)
 			exceptions[eid] = 0
 
-/datum/process/proc/catchBadType(datum/caught)
+/datum/process/proc/catch_bad_type(datum/caught)
 	if(isnull(caught) || !istype(caught) || GC_DESTROYED(caught))
 		return // Only bother with types we can identify and that don't belong
-	catchException("Type [caught.type] does not belong in process' queue")
+	catch_exception("Type [caught.type] does not belong in process' queue")

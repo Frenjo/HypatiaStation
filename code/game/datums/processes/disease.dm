@@ -7,7 +7,7 @@ PROCESS_DEF(disease)
 	name = "Disease"
 	schedule_interval = 2 SECONDS
 
-/datum/process/disease/doWork()
+/datum/process/disease/do_work()
 	for(var/disease in GLOBL.active_diseases)
 		var/datum/disease/D = disease
 		D.process()

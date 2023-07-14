@@ -15,8 +15,8 @@
 
 // SCHECK macros
 // This references src directly to work around a weird bug with try/catch
-#define SCHECK_EVERY(this_many_calls) if(++src.calls_since_last_scheck >= this_many_calls) sleepCheck()
-#define SCHECK sleepCheck()
+#define SCHECK_EVERY(this_many_calls) if(++src.calls_since_last_scheck >= this_many_calls) sleep_heck()
+#define SCHECK sleep_check()
 
 #define TICKS_IN_DAY	864000
 #define TICKS_IN_SECOND 10
