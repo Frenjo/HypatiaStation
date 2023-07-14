@@ -92,6 +92,9 @@
 	// Number of deciseconds to delay before starting the process
 	var/start_delay = 0
 
+	// The clickable stat() panel button object.
+	var/obj/clickable_stat/stat_click = null
+
 /datum/process/New(datum/controller/process_scheduler/scheduler)
 	. = ..()
 	main = scheduler
@@ -103,6 +106,13 @@
 	ticks = 0
 	last_task = 0
 	last_object = null
+
+	stat_click = new /obj/clickable_stat(null, src)
+
+/datum/process/Destroy()
+	main = null
+	qdel(stat_click)
+	return ..()
 
 /datum/process/proc/started()
 	// Initialize run_start so we can detect hung processes.
@@ -190,7 +200,7 @@
 		// The kill proc should have deleted this datum, and all sleeping procs that are
 		// owned by it.
 		CRASH("A killed process is still running somehow...")
-	
+
 	if(hung)
 		// This will only really help if the doWork proc ends up in an infinite loop.
 		handleHung()
@@ -319,11 +329,19 @@
 /datum/process/proc/getTicks()
 	return ticks
 
-/datum/process/proc/statProcess()
+/datum/process/proc/stat_process()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	var/averageRunTime = round(getAverageRunTime(), 0.1) / 10
 	var/lastRunTime = round(getLastRunTime(), 0.1) / 10
 	var/highestRunTime = round(getHighestRunTime(), 0.1) / 10
-	stat("[name]", "T#[getTicks()] | AR [averageRunTime] | LR [lastRunTime] | HR [highestRunTime] | D [cpu_defer_count]")
+	var/list/stats = list("T#[getTicks()] | AR [averageRunTime] | LR [lastRunTime] | HR [highestRunTime] | D [cpu_defer_count]")
+	stats.Add(stat_entry())
+	stat_click.name = jointext(stats, "\n")
+	stat(name, stat_click)
+
+/datum/process/proc/stat_entry()
+	RETURN_TYPE(/list)
 
 /datum/process/proc/catchException(exception/e, thrower)
 	if(istype(e)) // Real runtimes go to the real error handler

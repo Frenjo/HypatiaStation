@@ -22,32 +22,7 @@
 
 	if(isnull(holder))
 		return
-	
+
 	debug_variables(global.config)
 	feedback_add_details("admin_verb", "DConfiguration")
 	message_admins("Admin [key_name_admin(usr)] is debugging the global game configuration.")
-
-/*
- * Clickable stat() panel buttons.
- *
- * This is very simple and specifically designed for debugging controllers.
- * Idea stolen from Baystation12 and /tg/station13 which have significantly more complex implementations.
- */
-/obj/clickable_stat
-	name = "clickable"
-
-	// The controller to debug when the button is clicked.
-	var/datum/controller/target = null
-
-/obj/clickable_stat/New(loc, text, datum/controller/target)
-	. = ..()
-	name = text
-	src.target = target
-
-/obj/clickable_stat/Click()
-	if(isnull(usr.client.holder) || isnull(target))
-		return
-	
-	usr.client.debug_variables(target)
-	feedback_add_details("admin_verb", "D[target.name]")
-	message_admins("Admin [key_name_admin(usr)] is debugging the [target] controller.")

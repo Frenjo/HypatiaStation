@@ -16,6 +16,5 @@ PROCESS_DEF(turf)
 
 		SCHECK
 
-/datum/process/turf/statProcess()
-	. = ..()
-	stat(null, "[length(GLOBL.processing_turfs)] turf\s")
+/datum/process/turf/stat_entry()
+	return list("[length(GLOBL.processing_turfs)] turf\s")

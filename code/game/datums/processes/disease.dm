@@ -13,6 +13,5 @@ PROCESS_DEF(disease)
 		D.process()
 		SCHECK
 
-/datum/process/disease/statProcess()
-	. = ..()
-	stat(null, "[length(GLOBL.active_diseases)] disease\s")
+/datum/process/disease/stat_entry()
+	return list("[length(GLOBL.active_diseases)] disease\s")

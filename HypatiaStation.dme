@@ -623,6 +623,7 @@
 #include "code\game\mobs\new_player\splashscreen.dm"
 #include "code\game\mobs\new_player\sprite_accessories.dm"
 #include "code\game\objects\_obj.dm"
+#include "code\game\objects\clickable_stat.dm"
 #include "code\game\objects\obj_access.dm"
 #include "code\game\objects\effects\aliens.dm"
 #include "code\game\objects\effects\barsign.dm"

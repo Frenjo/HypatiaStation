@@ -19,6 +19,5 @@ PROCESS_DEF(mob)
 			catchBadType(M)
 			GLOBL.mob_list.Remove(M)
 
-/datum/process/mob/statProcess()
-	. = ..()
-	stat(null, "[length(GLOBL.mob_list)] mobs")
+/datum/process/mob/stat_entry()
+	return list("[length(GLOBL.mob_list)] mobs")

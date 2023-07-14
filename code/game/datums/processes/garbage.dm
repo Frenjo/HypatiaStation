@@ -91,10 +91,11 @@ PROCESS_DEF(garbage)
 	destroyed.Remove("\ref[A]") // Removing any previous references that were GC'd so that the current object will be at the end of the list.
 	destroyed["\ref[A]"] = world.time
 
-/datum/process/garbage/statProcess()
-	. = ..()
-	stat(null, "[garbage_collect ? "On" : "Off"], [length(destroyed)] queued")
-	stat(null, "Dels: [total_dels], [soft_dels] soft, [hard_dels] hard, [tick_dels] last run")
+/datum/process/garbage/stat_entry()
+	return list(
+		"[garbage_collect ? "On" : "Off"], [length(destroyed)] queued",
+		"Dels: [total_dels], [soft_dels] soft, [hard_dels] hard, [tick_dels] last run"
+	)
 
 // Should be treated as a replacement for the 'del' keyword.
 // Datums passed to this will be given a chance to clean up references to allow the GC to collect them.

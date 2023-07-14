@@ -24,6 +24,5 @@ PROCESS_DEF(nanoui)
 			catchBadType(NUI)
 			global.nanomanager.processing_uis.Remove(NUI)
 
-/datum/process/nanoui/statProcess()
-	. = ..()
-	stat(null, "[length(global.nanomanager.processing_uis)] UIs")
+/datum/process/nanoui/stat_entry()
+	return list("[length(global.nanomanager.processing_uis)] UIs")

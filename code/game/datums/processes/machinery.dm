@@ -51,8 +51,9 @@ PROCESS_DEF(machinery)
 			GLOBL.processing_power_items.Remove(I)
 		SCHECK
 
-/datum/process/machinery/statProcess()
-	. = ..()
-	stat(null, "[length(GLOBL.machines)] machines")
-	stat(null, "[length(GLOBL.powernets)] powernets")
-	stat(null, "[length(GLOBL.processing_power_items)] power item\s")
+/datum/process/machinery/stat_entry()
+	return list(
+		"[length(GLOBL.machines)] machines",
+		"[length(GLOBL.powernets)] powernets",
+		"[length(GLOBL.processing_power_items)] power item\s"
+	)

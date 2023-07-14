@@ -374,7 +374,7 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 	stat("Processes:", "[length(processes)] (R [length(running)] / Q [length(queued)] / I [length(idle)])")
 	stat(null, "[round(cpuAverage, 0.1)] CPU, [round(timeAllowance, 0.1) / 10] TA")
 	for(var/datum/process/p in processes)
-		p.statProcess()
+		p.stat_process()
 
 /datum/controller/process_scheduler/proc/getProcess(process_name)
 	return nameToProcessMap[process_name]

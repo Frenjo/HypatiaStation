@@ -27,6 +27,5 @@ PROCESS_DEF(initialisation)
 /proc/dequeue_for_initialisation(atom/A)
 	GLOBL.queued_initialisations.Remove(A)
 
-/datum/process/initialisation/statProcess()
-	. = ..()
-	stat(null, "[length(GLOBL.queued_initialisations)] pending object\s")
+/datum/process/initialisation/stat_entry()
+	return list("[length(GLOBL.queued_initialisations)] pending object\s")

@@ -23,6 +23,5 @@ PROCESS_DEF(obj)
 			catchBadType(O)
 			GLOBL.processing_objects.Remove(O)
 
-/datum/process/obj/statProcess()
-	. = ..()
-	stat(null, "[length(GLOBL.processing_objects)] object\s")
+/datum/process/obj/stat_entry()
+	return list("[length(GLOBL.processing_objects)] object\s")

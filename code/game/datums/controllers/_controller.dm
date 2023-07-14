@@ -12,9 +12,11 @@ GLOBAL_GLOBL_LIST_NEW(controllers)
 /datum/controller/New()
 	. = ..()
 	GLOBL.controllers.Add(src)
+	stat_click = new /obj/clickable_stat(null, src, name)
 
 /datum/controller/Destroy()
 	GLOBL.controllers.Remove(src)
+	qdel(stat_click)
 	return ..()
 
 /datum/controller/proc/setup()
@@ -22,6 +24,4 @@ GLOBAL_GLOBL_LIST_NEW(controllers)
 /datum/controller/proc/process()
 
 /datum/controller/proc/stat_controller()
-	if(isnull(stat_click))
-		stat_click = new /obj/clickable_stat(null, name, src)
 	stat(stat_click)
