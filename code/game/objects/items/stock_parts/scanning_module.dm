@@ -1,3 +1,6 @@
+/*
+ * Scanning Modules
+ */
 // Rating 1
 /obj/item/stock_part/scanning_module
 	name = "scanning module"

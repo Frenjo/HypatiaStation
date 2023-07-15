@@ -1,3 +1,6 @@
+/*
+ * Manipulators
+ */
 // Rating 1
 /obj/item/stock_part/manipulator
 	name = "micro-manipulator"

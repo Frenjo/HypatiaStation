@@ -1,4 +1,6 @@
-///////////////////////////////// Stock Parts /////////////////////////////////
+/*
+ * Stock Part
+ */
 // Sprited/added unique icons for upgraded capacitors and scanning modules, along with rating 4 parts. -Frenjo
 /obj/item/stock_part
 	name = "stock part"
@@ -10,9 +12,9 @@
 	var/rating = 1
 
 /obj/item/stock_part/New()
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
-	..()
+	. = ..()
+	pixel_x = rand(-5, 5)
+	pixel_y = rand(-5, 5)
 
 /obj/item/stock_part/console_screen
 	name = "console screen"

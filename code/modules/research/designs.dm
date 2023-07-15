@@ -1117,14 +1117,14 @@ other types of metals and chemistry for reagents).
 	materials = list(MATERIAL_METAL = 10, MATERIAL_SILVER = 20)
 	build_path = /obj/item/stock_part/subspace/treatment
 
-/datum/design/subspace_analyzer
-	name = "Subspace Analyzer"
-	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
-	id = "s-analyzer"
+/datum/design/subspace_analyser
+	name = "Subspace Analyser"
+	desc = "A sophisticated analyser capable of analyzing cryptic subspace wavelengths."
+	id = "s-analyser"
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 10, MATERIAL_GOLD = 15)
-	build_path = /obj/item/stock_part/subspace/analyzer
+	build_path = /obj/item/stock_part/subspace/analyser
 
 /datum/design/subspace_crystal
 	name = "Ansible Crystal"

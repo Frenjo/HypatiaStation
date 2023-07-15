@@ -1,3 +1,6 @@
+/*
+ * Micro-Lasers
+ */
 // Rating 1
 /obj/item/stock_part/micro_laser
 	name = "micro-laser"

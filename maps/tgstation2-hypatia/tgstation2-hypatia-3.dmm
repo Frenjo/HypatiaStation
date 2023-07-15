@@ -202,7 +202,7 @@
 "xr" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/lattice,/turf/space,/area/turret_protected/tcomsat)
 "xs" = (/obj/item/device/radio/intercom{dir = 1; name = "Station Intercom (General)"; pixel_y = 20},/turf/simulated/floor,/area/tcomsat/computer)
 "xt" = (/turf/simulated/shuttle/wall/corner/interior/smoothwhite/sw{icon_state = "swall_floor3"},/area/space)
-"xv" = (/obj/structure/table,/obj/item/stock_part/subspace/treatment,/obj/item/stock_part/subspace/treatment,/obj/item/stock_part/subspace/treatment,/obj/item/stock_part/subspace/analyzer,/obj/item/stock_part/subspace/analyzer,/obj/item/stock_part/subspace/analyzer,/turf/simulated/floor,/area/turret_protected/tcomsat)
+"xv" = (/obj/structure/table,/obj/item/stock_part/subspace/treatment,/obj/item/stock_part/subspace/treatment,/obj/item/stock_part/subspace/treatment,/obj/item/stock_part/subspace/analyser,/obj/item/stock_part/subspace/analyser,/obj/item/stock_part/subspace/analyser,/turf/simulated/floor,/area/turret_protected/tcomsat)
 "xC" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor{dir = 5; icon_state = "vault"},/area/turret_protected/tcomsat)
 "xE" = (/obj/machinery/telecoms/broadcaster/preset_right,/turf/simulated/floor/mainframe{dir = 4; icon_state = "vault"},/area/tcomsat/chamber)
 "xL" = (/turf/simulated/floor/mainframe,/area/tcomsat/chamber)

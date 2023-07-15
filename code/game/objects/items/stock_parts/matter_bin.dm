@@ -1,3 +1,6 @@
+/*
+ * Matter Bins
+ */
 // Rating 1
 /obj/item/stock_part/matter_bin
 	name = "matter bin"

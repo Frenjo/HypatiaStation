@@ -1,3 +1,6 @@
+/*
+ * Capacitors
+ */
 // Rating 1
 /obj/item/stock_part/capacitor
 	name = "capacitor"

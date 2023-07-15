@@ -66,7 +66,7 @@
 		/obj/item/stock_part/manipulator/pico = 2,
 		/obj/item/stock_part/subspace/filter = 1,
 		/obj/item/stock_part/subspace/treatment = 1,
-		/obj/item/stock_part/subspace/analyzer = 1,
+		/obj/item/stock_part/subspace/analyser = 1,
 		/obj/item/stock_part/console_screen = 1,
 		/obj/item/stack/cable_coil = 5
 	)
