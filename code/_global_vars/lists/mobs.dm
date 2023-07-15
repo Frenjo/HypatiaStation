@@ -6,7 +6,8 @@ GLOBAL_GLOBL_LIST_NEW(directory)	// List of all ckeys with associated client.
 // This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
 GLOBAL_GLOBL_LIST_NEW(player_list)		// List of all mobs **with clients attached**. Excludes /mob/new_player.
-GLOBAL_GLOBL_LIST_NEW(mob_list)			// List of all mobs, including clientless
+GLOBAL_GLOBL_LIST_NEW(mob_list)			// List of all mobs, including clientless.
+GLOBAL_GLOBL_LIST_NEW(ai_list)			// List of all AI mobs, including clientless.
 GLOBAL_GLOBL_LIST_NEW(living_mob_list)	// List of all alive mobs, including clientless. Excludes /mob/new_player.
 GLOBAL_GLOBL_LIST_NEW(dead_mob_list)	// List of all dead mobs, including clientless. Excludes /mob/new_player.
 
