@@ -178,7 +178,7 @@
 		O.mmi = new /obj/item/device/mmi(O)
 		O.mmi.transfer_identity(src)	//Does not transfer key/client.
 
-	O.Namepick()
+	O.namepick()
 
 	spawn(0)//To prevent the proc from returning null.
 		qdel(src)

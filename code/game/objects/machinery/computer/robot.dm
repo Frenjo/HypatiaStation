@@ -161,7 +161,7 @@
 						if(R && istype(R))
 							if(R.mind && R.mind.special_role && R.emagged)
 								R << "Extreme danger. Termination codes detected. Scrambling security codes and automatic AI unlink triggered."
-								R.ResetSecurityCodes()
+								R.reset_identity_codes()
 
 							else
 								message_admins("\blue [key_name_admin(usr)] detonated [R.name]!")
@@ -203,7 +203,7 @@
 							log_game("[key_name(usr)] emagged [R.name] using robotic console!")
 							R.emagged = 1
 							if(R.mind.special_role)
-								R.verbs += /mob/living/silicon/robot/proc/ResetSecurityCodes
+								R.verbs.Add(/mob/living/silicon/robot/proc/reset_identity_codes)
 
 		src.add_fingerprint(usr)
 	src.updateUsrDialog()

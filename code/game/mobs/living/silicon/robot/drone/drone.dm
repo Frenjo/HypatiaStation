@@ -10,7 +10,7 @@
 	gender = NEUTER
 	pass_flags = PASSTABLE
 	braintype = "Robot"
-	lawupdate = 0
+	lawupdate = FALSE
 	density = FALSE
 	integrated_light_power = 2
 	local_transmit = 1
@@ -29,50 +29,49 @@
 	var/obj/item/stack/sheet/mineral/plastic/cyborg/stack_plastic = null
 	var/obj/item/matter_decompiler/decompiler = null
 
-	//Used for self-mailing.
+	// Used for self-mailing.
 	var/mail_destination = 0
 
 /mob/living/silicon/robot/drone/New()
-	..()
+	. = ..()
 
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
+	verbs.Add(/mob/living/proc/ventcrawl)
+	verbs.Add(/mob/living/proc/hide)
 
 	remove_language("Robot Talk")
 	add_language("Robot Talk", FALSE)
 	add_language("Drone Talk")
 
-	//They are unable to be upgraded, so let's give them a bit of a better battery.
+	// They are unable to be upgraded, so let's give them a bit of a better battery.
 	cell.maxcharge = 10000
 	cell.charge = 10000
 
 	// NO BRAIN.
 	mmi = null
 
-	//We need to screw with their HP a bit. They have around one fifth as much HP as a full borg.
+	// We need to screw with their HP a bit. They have around one fifth as much HP as a full borg.
 	for(var/V in components) if(V != "power cell")
 		var/datum/robot_component/C = components[V]
 		C.max_damage = 10
 
-	verbs -= /mob/living/silicon/robot/verb/Namepick
+	verbs.Remove(/mob/living/silicon/robot/verb/namepick)
 	module = new /obj/item/robot_module/drone(src)
 
-	//Grab stacks.
-	stack_metal = locate(/obj/item/stack/sheet/metal/cyborg) in src.module
-	stack_wood = locate(/obj/item/stack/sheet/wood/cyborg) in src.module
-	stack_glass = locate(/obj/item/stack/sheet/glass/cyborg) in src.module
-	stack_plastic = locate(/obj/item/stack/sheet/mineral/plastic/cyborg) in src.module
+	// Grab stacks.
+	stack_metal = locate(/obj/item/stack/sheet/metal/cyborg) in module
+	stack_wood = locate(/obj/item/stack/sheet/wood/cyborg) in module
+	stack_glass = locate(/obj/item/stack/sheet/glass/cyborg) in module
+	stack_plastic = locate(/obj/item/stack/sheet/mineral/plastic/cyborg) in module
 
-	//Grab decompiler.
-	decompiler = locate(/obj/item/matter_decompiler) in src.module
+	// Grab decompiler.
+	decompiler = locate(/obj/item/matter_decompiler) in module
 
-	//Some tidying-up.
+	// Some tidying-up.
 	flavor_text = "It's a tiny little repair drone. The casing is stamped with an NT log and the subscript: 'NanoTrasen Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
 	updatename()
 	updateicon()
 
-
-//Redefining some robot procs...
+// Redefining some robot procs...
 /mob/living/silicon/robot/drone/updatename()
 	real_name = "maintenance drone ([rand(100, 999)])"
 	name = real_name
@@ -90,10 +89,10 @@
 /mob/living/silicon/robot/drone/pick_module()
 	return
 
-//Sick of trying to get this to display properly without redefining it.
+// Sick of trying to get this to display properly without redefining it.
 /mob/living/silicon/robot/drone/show_system_integrity()
-	if(!src.stat)
-		var/temphealth = health+35 //Brings it to 0.
+	if(!stat)
+		var/temphealth = health + 35 //Brings it to 0.
 		if(temphealth < 0)
 			temphealth = 0
 		//Convert to percentage.
@@ -103,29 +102,28 @@
 	else
 		stat(null, text("Systems nonfunctional"))
 
-//Drones cannot be upgraded with borg modules so we need to catch some items before they get used in ..().
+// Drones cannot be upgraded with borg modules so we need to catch some items before they get used in ..().
 /mob/living/silicon/robot/drone/attackby(obj/item/W as obj, mob/user as mob)
-
 	if(istype(W, /obj/item/borg/upgrade))
-		user << "\red The maintenance drone chassis not compatible with \the [W]."
+		to_chat(user, SPAN_WARNING("The maintenance drone chassis not compatible with \the [W]."))
 		return
 
 	else if(istype(W, /obj/item/crowbar))
-		user << "The machine is hermetically sealed. You can't open the case."
+		to_chat(user, "The machine is hermetically sealed. You can't open the case.")
 		return
 
 	else if(istype(W, /obj/item/card/emag))
 		if(!client || stat == DEAD)
-			user << "\red There's not much point subverting this heap of junk."
+			to_chat(user, SPAN_WARNING("There's not much point subverting this heap of junk."))
 			return
 
 		if(emagged)
-			src << "\red [user] attempts to load subversive software into you, but your hacked subroutined ignore the attempt."
-			user << "\red You attempt to subvert [src], but the sequencer has no effect."
+			to_chat(src, SPAN_WARNING("[user] attempts to load subversive software into you, but your hacked subroutines ignore the attempt."))
+			to_chat(user, SPAN_WARNING("You attempt to subvert [src], but the sequencer has no effect."))
 			return
 
-		user << "\red You swipe the sequencer across [src]'s interface and watch its eyes flicker."
-		src << "\red You feel a sudden burst of malware loaded into your execute-as-root buffer. Your tiny brain methodically parses, loads and executes the script."
+		to_chat(user, SPAN_WARNING("You swipe the sequencer across [src]'s interface and watch its eyes flicker."))
+		to_chat(src, SPAN_WARNING("You feel a sudden burst of malware loaded into your execute-as-root buffer. Your tiny brain methodically parses, loads and executes the script."))
 
 		var/obj/item/card/emag/emag = W
 		emag.uses--
@@ -135,37 +133,37 @@
 		var/time = time2text(world.realtime,"hh:mm:ss")
 		GLOBL.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
 
-		emagged = 1
-		lawupdate = 0
+		emagged = TRUE
+		lawupdate = FALSE
 		connected_ai = null
 		clear_supplied_laws()
 		clear_inherent_laws()
 		laws = new /datum/ai_laws/syndicate_override
 		set_zeroth_law("Only [user.real_name] and people he designates as being such are Syndicate Agents.")
 
-		src << "<b>Obey these laws:</b>"
+		to_chat(src, "<b>Obey these laws:</b>")
 		laws.show_laws(src)
-		src << "\red \b ALERT: [user.real_name] is your new master. Obey your new laws and his commands."
+		to_chat(src, SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and his commands."))
 		return
 
 	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
 		if(stat == DEAD)
-			user << "\red You swipe your ID card through [src], attempting to reboot it."
-			if(!CONFIG_GET(allow_drone_spawn) || emagged || health < -35) //It's dead, Dave.
-				user << "\red The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one."
+			to_chat(user, SPAN_WARNING("You swipe your ID card through [src], attempting to reboot it."))
+			if(!CONFIG_GET(allow_drone_spawn) || emagged || health < -35) // It's dead, Dave.
+				to_chat(user, SPAN_WARNING("The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one."))
 				return
 
 			var/drones = 0
 			for(var/mob/living/silicon/robot/drone/D in world)
-				if(D.key && D.client)
+				if(D.key && isnotnull(D.client))
 					drones++
 			if(drones < CONFIG_GET(max_maint_drones))
 				request_player()
 			return
 
 		else
-			src << "\red [user] swipes an ID card through your card reader."
-			user << "\red You swipe your ID card through [src], attempting to shut it down."
+			to_chat(src, SPAN_WARNING("[user] swipes an ID card through your card reader."))
+			to_chat(user, SPAN_WARNING("You swipe your ID card through [src], attempting to shut it down."))
 
 			if(emagged)
 				return
@@ -177,9 +175,9 @@
 
 	..()
 
-//DRONE LIFE/DEATH
+// DRONE LIFE/DEATH
 
-//For some goddamn reason robots have this hardcoded. Redefining it for our fragile friends here.
+// For some goddamn reason robots have this hardcoded. Redefining it for our fragile friends here.
 /mob/living/silicon/robot/drone/updatehealth()
 	if(status_flags & GODMODE)
 		health = 35
@@ -188,86 +186,84 @@
 	health = 35 - (getBruteLoss() + getFireLoss())
 	return
 
-//Easiest to check this here, then check again in the robot proc.
-//Standard robots use config for crit, which is somewhat excessive for these guys.
-//Drones killed by damage will gib.
+// Easiest to check this here, then check again in the robot proc.
+//S tandard robots use config for crit, which is somewhat excessive for these guys.
+// Drones killed by damage will gib.
 /mob/living/silicon/robot/drone/handle_regular_status_updates()
-
-	if(health <= -35 && src.stat != DEAD)
+	if(health <= -35 && stat != DEAD)
 		gib()
 		return
 	..()
 
 /mob/living/silicon/robot/drone/death(gibbed)
-
-	if(module)
+	if(isnotnull(module))
 		var/obj/item/gripper/G = locate(/obj/item/gripper) in module
-		if(G)
+		if(isnotnull(G))
 			G.drop_item()
 
 	..(gibbed)
 
-//DRONE MOVEMENT.
+// DRONE MOVEMENT.
 /mob/living/silicon/robot/drone/Process_Spaceslipping(prob_slip)
 	//TODO: Consider making a magboot item for drones to equip. ~Z
 	return 0
 
-//CONSOLE PROCS
+// CONSOLE PROCS
 /mob/living/silicon/robot/drone/proc/law_resync()
 	if(stat != DEAD)
 		if(emagged)
-			src << "\red You feel something attempting to modify your programming, but your hacked subroutines are unaffected."
+			to_chat(src, SPAN_WARNING("You feel something attempting to modify your programming, but your hacked subroutines are unaffected."))
 		else
-			src << "\red A reset-to-factory directive packet filters through your data connection, and you obediently modify your programming to suit it."
+			to_chat(src, SPAN_WARNING("A reset-to-factory directive packet filters through your data connection, and you obediently modify your programming to suit it."))
 			full_law_reset()
 			show_laws()
 
 /mob/living/silicon/robot/drone/proc/shut_down()
 	if(stat != DEAD)
 		if(emagged)
-			src << "\red You feel a system kill order percolate through your tiny brain, but it doesn't seem like a good idea to you."
+			to_chat(src, SPAN_WARNING("You feel a system kill order percolate through your tiny brain, but it doesn't seem like a good idea to you."))
 		else
-			src << "\red You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself."
+			to_chat(src, SPAN_WARNING("You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself."))
 			death()
 
 /mob/living/silicon/robot/drone/proc/full_law_reset()
 	clear_supplied_laws()
 	clear_inherent_laws()
 	clear_ion_laws()
-	laws = new /datum/ai_laws/drone
+	laws = new /datum/ai_laws/drone()
 
-//Reboot procs.
+// Reboot procs.
 /mob/living/silicon/robot/drone/proc/request_player()
 	for(var/mob/dead/observer/O in GLOBL.player_list)
 		if(jobban_isbanned(O, "Maintenance Drone"))
 			continue
-		if(O.client)
-			if(O.client.prefs.be_special & BE_PAI)
-				question(O.client)
+		if(O.client?.prefs.be_special & BE_PAI)
+			question(O.client)
 
 /mob/living/silicon/robot/drone/proc/question(client/C)
 	spawn(0)
-		if(!C)	return
+		if(isnull(C))
+			return
 		var/response = alert(C, "Someone is attempting to reboot a maintenance drone. Would you like to play as one?", "Maintenance drone reboot", "Yes", "No", "Never for this round.")
-		if(!C || ckey)
+		if(isnull(C) || ckey)
 			return
 		if(response == "Yes")
 			transfer_personality(C)
-		else if (response == "Never for this round")
+		else if(response == "Never for this round")
 			C.prefs.be_special ^= BE_PAI
 
 /mob/living/silicon/robot/drone/proc/transfer_personality(client/player)
-	if(!player)
+	if(isnull(player))
 		return
 
-	src.ckey = player.ckey
+	ckey = player.ckey
 
-	if(player.mob && player.mob.mind)
+	if(isnotnull(player.mob?.mind))
 		player.mob.mind.transfer_to(src)
 
-	emagged = 0
-	lawupdate = 0
-	src << "<b>Systems rebooted</b>. Loading base pattern maintenance protocol... <b>loaded</b>."
+	emagged = FALSE
+	lawupdate = FALSE
+	to_chat(src, "<b>Systems rebooted</b>. Loading base pattern maintenance protocol... <b>loaded</b>.")
 	full_law_reset()
 
 /mob/living/silicon/robot/drone/add_robot_verbs()

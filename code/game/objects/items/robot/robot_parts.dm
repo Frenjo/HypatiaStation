@@ -237,7 +237,7 @@
 				cell_component.installed = 1
 
 			feedback_inc("cyborg_birth", 1)
-			O.Namepick()
+			O.namepick()
 
 			qdel(src)
 		else

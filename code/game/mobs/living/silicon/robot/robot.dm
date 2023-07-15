@@ -1,7 +1,3 @@
-var/list/robot_verbs_default = list(
-	/mob/living/silicon/robot/proc/sensor_mode
-)
-
 /mob/living/silicon/robot
 	name = "Cyborg"
 	real_name = "Cyborg"
@@ -11,7 +7,7 @@ var/list/robot_verbs_default = list(
 	health = 200
 
 	mob_bump_flag = ROBOT
-	mob_swap_flags = ROBOT|MONKEY|SLIME|SIMPLE_ANIMAL
+	mob_swap_flags = ROBOT | MONKEY | SLIME | SIMPLE_ANIMAL
 	mob_push_flags = ALLMOBS //trundle trundle
 
 	var/sight_mode = 0
@@ -168,16 +164,10 @@ var/list/robot_verbs_default = list(
 	hud_list[IMPTRACK_HUD]		= image('icons/mob/screen/hud.dmi', src, "hudblank")
 	hud_list[SPECIALROLE_HUD]	= image('icons/mob/screen/hud.dmi', src, "hudblank")
 
-	if(istype(src,/mob/living/silicon/robot/drone))
+	if(isdrone(src))
 		playsound(src, 'sound/machines/twobeep.ogg', 50, 0)
 	else
 		playsound(loc, 'sound/voice/liveagain.ogg', 75, 1)
-
-// setup the PDA and its name
-/mob/living/silicon/robot/proc/setup_PDA()
-	if(isnull(rbPDA))
-		rbPDA = new/obj/item/device/pda/ai(src)
-	rbPDA.set_name_and_job(custom_name,"[modtype] [braintype]")
 
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 //Improved /N
@@ -196,229 +186,6 @@ var/list/robot_verbs_default = list(
 	connected_ai?.connected_robots.Remove(src)
 	return ..()
 
-/mob/living/silicon/robot/proc/pick_module()
-	if(isnotnull(module))
-		return
-	var/list/modules = list("Standard", "Engineering", "Medical", "Miner", "Janitor", "Service", "Security")
-	if(crisis && IS_SEC_LEVEL(/decl/security_level/red)) // Leaving this in until it's balanced appropriately.
-		to_chat(src, SPAN_WARNING("Crisis mode active. Combat module available."))
-		modules.Add("Combat")
-	modtype = input("Please, select a module!", "Robot", null, null) in modules
-
-	var/module_sprites[0] // Used to store the associations between sprite names and sprite index.
-
-	if(isnotnull(module))
-		return
-
-	switch(modtype)
-		if("Standard")
-			module = new /obj/item/robot_module/standard(src)
-			module_sprites["Basic"] = "robot_old"
-			module_sprites["Android"] = "droid"
-			module_sprites["Default"] = "robot"
-
-		if("Service")
-			module = new /obj/item/robot_module/butler(src)
-			module_sprites["Waitress"] = "Service"
-			module_sprites["Kent"] = "toiletbot"
-			module_sprites["Bro"] = "Brobot"
-			module_sprites["Rich"] = "maximillion"
-			module_sprites["Default"] = "Service2"
-
-		if("Miner")
-			module = new /obj/item/robot_module/miner(src)
-			module.channels = list("Supply" = 1)
-			if(isnotnull(camera) && ("Robots" in camera.network))
-				camera.network.Add("MINE")
-			module_sprites["Basic"] = "Miner_old"
-			module_sprites["Advanced Droid"] = "droid-miner"
-			module_sprites["Treadhead"] = "Miner"
-
-		if("Medical")
-			module = new /obj/item/robot_module/medical(src)
-			module.channels = list("Medical" = 1)
-			if(isnotnull(camera) && ("Robots" in camera.network))
-				camera.network.Add("Medical")
-			module_sprites["Basic"] = "Medbot"
-			module_sprites["Advanced Droid"] = "droid-medical"
-			module_sprites["Needles"] = "medicalrobot"
-			module_sprites["Standard"] = "surgeon"
-
-		if("Security")
-			module = new /obj/item/robot_module/security(src)
-			module.channels = list("Security" = 1)
-			module_sprites["Basic"] = "secborg"
-			module_sprites["Red Knight"] = "Security"
-			module_sprites["Black Knight"] = "securityrobot"
-			module_sprites["Bloodhound"] = "bloodhound"
-
-		if("Engineering")
-			module = new /obj/item/robot_module/engineering(src)
-			module.channels = list("Engineering" = 1)
-			if(isnotnull(camera) && ("Robots" in camera.network))
-				camera.network.Add("Engineering")
-			module_sprites["Basic"] = "Engineering"
-			module_sprites["Antique"] = "engineerrobot"
-			module_sprites["Landmate"] = "landmate"
-
-		if("Janitor")
-			module = new /obj/item/robot_module/janitor(src)
-			module_sprites["Basic"] = "JanBot2"
-			module_sprites["Mopbot"]  = "janitorrobot"
-			module_sprites["Mop Gear Rex"] = "mopgearrex"
-
-		if("Combat")
-			module = new /obj/item/robot_module/combat(src)
-			module_sprites["Combat Android"] = "droid-combat"
-			module.channels = list("Security" = 1)
-
-	//languages
-	module.add_languages(src)
-
-	// Custom_sprite check and entry.
-	if(custom_sprite)
-		module_sprites["Custom"] = "[src.ckey]-[modtype]"
-
-	hands.icon_state = lowertext(modtype)
-	feedback_inc("cyborg_[lowertext(modtype)]",1)
-	updatename()
-
-	if(modtype == "Medical" || modtype == "Security" || modtype == "Combat")
-		status_flags &= ~CANPUSH
-
-	choose_icon(6, module_sprites)
-	radio.config(module.channels)
-
-/mob/living/silicon/robot/proc/updatename(prefix as text)
-	if(prefix)
-		modtype = prefix
-	if(istype(mmi, /obj/item/device/mmi/posibrain))
-		braintype = "Android"
-	else
-		braintype = "Cyborg"
-
-	var/changed_name = ""
-	if(custom_name)
-		changed_name = custom_name
-	else
-		changed_name = "[modtype] [braintype]-[num2text(ident)]"
-	real_name = changed_name
-	name = real_name
-
-	// if we've changed our name, we also need to update the display name for our PDA
-	setup_PDA()
-
-	//We also need to update name of internal camera.
-	if(isnotnull(camera))
-		camera.c_tag = changed_name
-
-	if(!custom_sprite) //Check for custom sprite
-		var/file = file2text("config/custom_sprites.txt")
-		var/lines = splittext(file, "\n")
-
-		for(var/line in lines)
-		// split & clean up
-			var/list/Entry = splittext(line, "-")
-			for(var/i = 1 to length(Entry))
-				Entry[i] = trim(Entry[i])
-
-			if(length(Entry) < 2)
-				continue;
-
-			if(Entry[1] == ckey && Entry[2] == real_name) // They're in the list? Custom sprite time, var and icon change required.
-				custom_sprite = TRUE
-				icon = 'icons/mob/custom-synthetic.dmi'
-				if(icon_state == "robot")
-					icon_state = "[src.ckey]-Standard"
-
-/mob/living/silicon/robot/verb/Namepick()
-	set category = "Robot Commands"
-	if(custom_name)
-		return 0
-
-	spawn(0)
-		var/newname
-		newname = input(src,"You are a robot. Enter a name, or leave blank for the default name.", "Name change","") as text
-		if(newname != "")
-			custom_name = newname
-
-		updatename()
-		updateicon()
-
-/mob/living/silicon/robot/verb/cmd_robot_alerts()
-	set category = "Robot Commands"
-	set name = "Show Alerts"
-	robot_alerts()
-
-// this verb lets cyborgs see the stations manifest
-/mob/living/silicon/robot/verb/cmd_station_manifest()
-	set category = "Robot Commands"
-	set name = "Show Station Manifest"
-	show_station_manifest()
-
-/mob/living/silicon/robot/proc/robot_alerts()
-	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
-	dat += "<A HREF='?src=\ref[src];mach_close=robotalerts'>Close</A><BR><BR>"
-	for (var/cat in alarms)
-		dat += text("<B>[cat]</B><BR>\n")
-		var/list/alarmlist = alarms[cat]
-		if(length(alarmlist))
-			for (var/area_name in alarmlist)
-				var/datum/alarm/alarm = alarmlist[area_name]
-				dat += "<NOBR>"
-				dat += text("-- [area_name]")
-				if(length(alarm.sources) > 1)
-					dat += "- [length(alarm.sources)] sources"
-				dat += "</NOBR><BR>\n"
-		else
-			dat += "-- All Systems Nominal<BR>\n"
-		dat += "<BR>\n"
-
-	viewalerts = 1
-	src << browse(dat, "window=robotalerts&can_close=0")
-
-/mob/living/silicon/robot/proc/self_diagnosis()
-	if(!is_component_functioning("diagnosis unit"))
-		return null
-
-	var/dat = "<HEAD><TITLE>[src.name] Self-Diagnosis Report</TITLE></HEAD><BODY>\n"
-	for(var/V in components)
-		var/datum/robot_component/C = components[V]
-		dat += "<b>[C.name]</b><br><table><tr><td>Power consumption</td><td>[C.energy_consumption]</td></tr><tr><td>Brute Damage:</td><td>[C.brute_damage]</td></tr><tr><td>Electronics Damage:</td><td>[C.electronics_damage]</td></tr><tr><td>Powered:</td><td>[(!C.energy_consumption || C.is_powered()) ? "Yes" : "No"]</td></tr><tr><td>Toggled:</td><td>[ C.toggled ? "Yes" : "No"]</td></table><br>"
-
-	return dat
-
-/mob/living/silicon/robot/verb/self_diagnosis_verb()
-	set category = "Robot Commands"
-	set name = "Self Diagnosis"
-
-	if(!is_component_functioning("diagnosis unit"))
-		to_chat(src, SPAN_WARNING("Your self-diagnosis component isn't functioning."))
-
-	var/dat = self_diagnosis()
-	src << browse(dat, "window=robotdiagnosis")
-
-/mob/living/silicon/robot/verb/toggle_component()
-	set category = "Robot Commands"
-	set name = "Toggle Component"
-	set desc = "Toggle a component, conserving power."
-
-	var/list/installed_components = list()
-	for(var/V in components)
-		if(V == "power cell")
-			continue
-		var/datum/robot_component/C = components[V]
-		if(C.installed == 1)
-			installed_components.Add(V)
-
-	var/toggle = input(src, "Which component do you want to toggle?", "Toggle Component") as null|anything in installed_components
-	if(!toggle)
-		return
-
-	var/datum/robot_component/C = components[toggle]
-	C.toggled = !C.toggled
-	to_chat(src, SPAN_WARNING("You [C.toggled ? "enable" : "disable"] [C.name]."))
-
 // this function shows information about the malf_ai gameplay type in the status screen
 /mob/living/silicon/robot/show_malf_ai()
 	. = ..()
@@ -431,27 +198,6 @@ var/list/robot_verbs_default = list(
 			else if(malf.malf_mode_declared)
 				stat(null, "Time left: [max(malf.AI_win_timeleft / (malf.apcs / 3), 0)]")
 	return 0
-
-// this function displays jetpack pressure in the stat panel
-/mob/living/silicon/robot/proc/show_jetpack_pressure()
-	// if you have a jetpack, show the internal tank pressure
-	var/obj/item/tank/jetpack/current_jetpack = installed_jetpack()
-	if(isnotnull(current_jetpack))
-		stat("Internal Atmosphere Info", current_jetpack.name)
-		stat("Tank Pressure", current_jetpack.air_contents.return_pressure())
-
-// this function returns the robots jetpack, if one is installed
-/mob/living/silicon/robot/proc/installed_jetpack()
-	if(isnotnull(module))
-		return (locate(/obj/item/tank/jetpack) in module.modules)
-	return 0
-
-// this function displays the cyborgs current cell charge in the stat panel
-/mob/living/silicon/robot/proc/show_cell_power()
-	if(isnotnull(cell))
-		stat(null, text("Charge Left: [cell.charge]/[cell.maxcharge]"))
-	else
-		stat(null, text("No Cell Inserted!"))
 
 // update the status screen display
 /mob/living/silicon/robot/Stat()
@@ -548,7 +294,7 @@ var/list/robot_verbs_default = list(
 					C.l_arm = new /obj/item/robot_parts/l_arm(C)
 					C.r_arm = new /obj/item/robot_parts/r_arm(C)
 					C.updateicon()
-					new/obj/item/robot_parts/chest(loc)
+					new /obj/item/robot_parts/chest(loc)
 					qdel(src)
 			else
 				// Okay we're not removing the cell or an MMI, but maybe something else?
@@ -566,7 +312,7 @@ var/list/robot_verbs_default = list(
 				var/datum/robot_component/C = components[remove]
 				var/obj/item/I = C.wrapped
 				to_chat(user, "You remove \the [I].")
-				I.loc = src.loc
+				I.loc = loc
 
 				if(C.installed == 1)
 					C.uninstall()
@@ -764,7 +510,7 @@ var/list/robot_verbs_default = list(
 
 				flick("noise", flash)
 
-				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
+				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
 				s.set_up(5, 1, src)
 				s.start()
 
@@ -777,11 +523,11 @@ var/list/robot_verbs_default = list(
 	if(M.melee_damage_upper == 0)
 		M.emote("[M.friendly] [src]")
 	else
-		if(M.attack_sound)
+		if(isnotnull(M.attack_sound))
 			playsound(loc, M.attack_sound, 50, 1, 1)
 		visible_message(SPAN_WARNING("<B>[M]</B> [M.attacktext] [src]!"))
-		M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
-		src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
+		M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
+		attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		adjustBruteLoss(damage)
 		updatehealth()
@@ -805,6 +551,247 @@ var/list/robot_verbs_default = list(
 			var/obj/item/broken_device = cell_component.wrapped
 			to_chat(user, "You remove \the [broken_device].")
 			user.put_in_active_hand(broken_device)
+
+/mob/living/silicon/robot/updateicon()
+	overlays.Cut()
+	if(stat == CONSCIOUS)
+		overlays.Add("eyes")
+		overlays.Cut()
+		overlays.Add("eyes-[icon_state]")
+	else
+		overlays.Remove("eyes")
+
+	if(opened && custom_sprite) // Custom borgs also have custom panels, heh.
+		if(wiresexposed)
+			overlays.Add("[ckey]-openpanel +w")
+		else if(cell)
+			overlays.Add("[ckey]-openpanel +c")
+		else
+			overlays.Add("[ckey]-openpanel -c")
+
+	if(opened)
+		if(wiresexposed)
+			overlays.Add("ov-openpanel +w")
+		else if(cell)
+			overlays.Add("ov-openpanel +c")
+		else
+			overlays.Add("ov-openpanel -c")
+
+	if(module_active && istype(module_active, /obj/item/borg/combat/shield))
+		overlays.Add("[icon_state]-shield")
+
+	if(modtype == "Combat")
+		var/base_icon = ""
+		base_icon = icon_state
+		if(module_active && istype(module_active, /obj/item/borg/combat/mobility))
+			icon_state = "[icon_state]-roll"
+		else
+			icon_state = base_icon
+
+// Call when target overlay should be added/removed.
+/mob/living/silicon/robot/update_targeted()
+	if(!targeted_by && target_locked)
+		qdel(target_locked)
+	updateicon()
+	if(targeted_by && target_locked)
+		overlays.Add(target_locked)
+
+/mob/living/silicon/robot/Move(a, b, flag)
+	. = ..()
+	if(isnotnull(module))
+		if(istype(module, /obj/item/robot_module/janitor))
+			var/turf/tile = loc
+			if(isturf(tile))
+				tile.clean_blood()
+				if(istype(tile, /turf/simulated))
+					var/turf/simulated/S = tile
+					S.dirt = 0
+				for(var/A in tile)
+					if(istype(A, /obj/effect))
+						if(isrune(A) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
+							qdel(A)
+					else if(isitem(A))
+						var/obj/item/cleaned_item = A
+						cleaned_item.clean_blood()
+					else if(ishuman(A))
+						var/mob/living/carbon/human/cleaned_human = A
+						if(cleaned_human.lying)
+							if(isnotnull(cleaned_human.head))
+								cleaned_human.head.clean_blood()
+								cleaned_human.update_inv_head(0)
+							if(isnotnull(cleaned_human.wear_suit))
+								cleaned_human.wear_suit.clean_blood()
+								cleaned_human.update_inv_wear_suit(0)
+							else if(isnotnull(cleaned_human.w_uniform))
+								cleaned_human.w_uniform.clean_blood()
+								cleaned_human.update_inv_w_uniform(0)
+							if(isnotnull(cleaned_human.shoes))
+								cleaned_human.shoes.clean_blood()
+								cleaned_human.update_inv_shoes(0)
+							cleaned_human.clean_blood(1)
+							to_chat(cleaned_human, SPAN_WARNING("[src] cleans your face!"))
+
+// setup the PDA and its name
+/mob/living/silicon/robot/proc/setup_PDA()
+	if(isnull(rbPDA))
+		rbPDA = new /obj/item/device/pda/ai(src)
+	rbPDA.set_name_and_job(custom_name, "[modtype] [braintype]")
+
+/mob/living/silicon/robot/proc/pick_module()
+	if(isnotnull(module))
+		return
+	var/list/modules = list("Standard", "Engineering", "Medical", "Miner", "Janitor", "Service", "Security")
+	if(crisis && IS_SEC_LEVEL(/decl/security_level/red)) // Leaving this in until it's balanced appropriately.
+		to_chat(src, SPAN_WARNING("Crisis mode active. Combat module available."))
+		modules.Add("Combat")
+	modtype = input("Please, select a module!", "Robot", null, null) in modules
+
+	var/module_sprites[0] // Used to store the associations between sprite names and sprite index.
+
+	if(isnotnull(module))
+		return
+
+	switch(modtype)
+		if("Standard")
+			module = new /obj/item/robot_module/standard(src)
+			module_sprites["Basic"] = "robot_old"
+			module_sprites["Android"] = "droid"
+			module_sprites["Default"] = "robot"
+
+		if("Service")
+			module = new /obj/item/robot_module/butler(src)
+			module_sprites["Waitress"] = "Service"
+			module_sprites["Kent"] = "toiletbot"
+			module_sprites["Bro"] = "Brobot"
+			module_sprites["Rich"] = "maximillion"
+			module_sprites["Default"] = "Service2"
+
+		if("Miner")
+			module = new /obj/item/robot_module/miner(src)
+			module.channels = list("Supply" = 1)
+			if(isnotnull(camera) && ("Robots" in camera.network))
+				camera.network.Add("MINE")
+			module_sprites["Basic"] = "Miner_old"
+			module_sprites["Advanced Droid"] = "droid-miner"
+			module_sprites["Treadhead"] = "Miner"
+
+		if("Medical")
+			module = new /obj/item/robot_module/medical(src)
+			module.channels = list("Medical" = 1)
+			if(isnotnull(camera) && ("Robots" in camera.network))
+				camera.network.Add("Medical")
+			module_sprites["Basic"] = "Medbot"
+			module_sprites["Advanced Droid"] = "droid-medical"
+			module_sprites["Needles"] = "medicalrobot"
+			module_sprites["Standard"] = "surgeon"
+
+		if("Security")
+			module = new /obj/item/robot_module/security(src)
+			module.channels = list("Security" = 1)
+			module_sprites["Basic"] = "secborg"
+			module_sprites["Red Knight"] = "Security"
+			module_sprites["Black Knight"] = "securityrobot"
+			module_sprites["Bloodhound"] = "bloodhound"
+
+		if("Engineering")
+			module = new /obj/item/robot_module/engineering(src)
+			module.channels = list("Engineering" = 1)
+			if(isnotnull(camera) && ("Robots" in camera.network))
+				camera.network.Add("Engineering")
+			module_sprites["Basic"] = "Engineering"
+			module_sprites["Antique"] = "engineerrobot"
+			module_sprites["Landmate"] = "landmate"
+
+		if("Janitor")
+			module = new /obj/item/robot_module/janitor(src)
+			module_sprites["Basic"] = "JanBot2"
+			module_sprites["Mopbot"]  = "janitorrobot"
+			module_sprites["Mop Gear Rex"] = "mopgearrex"
+
+		if("Combat")
+			module = new /obj/item/robot_module/combat(src)
+			module_sprites["Combat Android"] = "droid-combat"
+			module.channels = list("Security" = 1)
+
+	//languages
+	module.add_languages(src)
+
+	// Custom_sprite check and entry.
+	if(custom_sprite)
+		module_sprites["Custom"] = "[ckey]-[modtype]"
+
+	hands.icon_state = lowertext(modtype)
+	feedback_inc("cyborg_[lowertext(modtype)]",1)
+	updatename()
+
+	if(modtype == "Medical" || modtype == "Security" || modtype == "Combat")
+		status_flags &= ~CANPUSH
+
+	choose_icon(6, module_sprites)
+	radio.config(module.channels)
+
+/mob/living/silicon/robot/proc/updatename(prefix as text)
+	if(prefix)
+		modtype = prefix
+	if(istype(mmi, /obj/item/device/mmi/posibrain))
+		braintype = "Android"
+	else
+		braintype = "Cyborg"
+
+	var/changed_name = ""
+	if(custom_name)
+		changed_name = custom_name
+	else
+		changed_name = "[modtype] [braintype]-[num2text(ident)]"
+	real_name = changed_name
+	name = real_name
+
+	// if we've changed our name, we also need to update the display name for our PDA
+	setup_PDA()
+
+	//We also need to update name of internal camera.
+	if(isnotnull(camera))
+		camera.c_tag = changed_name
+
+	if(!custom_sprite) //Check for custom sprite
+		var/file = file2text("config/custom_sprites.txt")
+		var/lines = splittext(file, "\n")
+
+		for(var/line in lines)
+		// split & clean up
+			var/list/Entry = splittext(line, "-")
+			for(var/i = 1 to length(Entry))
+				Entry[i] = trim(Entry[i])
+
+			if(length(Entry) < 2)
+				continue;
+
+			if(Entry[1] == ckey && Entry[2] == real_name) // They're in the list? Custom sprite time, var and icon change required.
+				custom_sprite = TRUE
+				icon = 'icons/mob/custom-synthetic.dmi'
+				if(icon_state == "robot")
+					icon_state = "[ckey]-Standard"
+
+// this function displays jetpack pressure in the stat panel
+/mob/living/silicon/robot/proc/show_jetpack_pressure()
+	// if you have a jetpack, show the internal tank pressure
+	var/obj/item/tank/jetpack/current_jetpack = installed_jetpack()
+	if(isnotnull(current_jetpack))
+		stat("Internal Atmosphere Info", current_jetpack.name)
+		stat("Tank Pressure", current_jetpack.air_contents.return_pressure())
+
+// this function returns the robots jetpack, if one is installed
+/mob/living/silicon/robot/proc/installed_jetpack()
+	if(isnotnull(module))
+		return (locate(/obj/item/tank/jetpack) in module.modules)
+	return 0
+
+// this function displays the cyborgs current cell charge in the stat panel
+/mob/living/silicon/robot/proc/show_cell_power()
+	if(isnotnull(cell))
+		stat(null, text("Charge Left: [cell.charge]/[cell.maxcharge]"))
+	else
+		stat(null, text("No Cell Inserted!"))
 
 /mob/living/silicon/robot/proc/allowed(mob/M)
 	//check if it doesn't require any access at all
@@ -835,50 +822,6 @@ var/list/robot_verbs_default = list(
 		if(!(req in I.access)) //doesn't have this access
 			return 0
 	return 1
-
-/mob/living/silicon/robot/updateicon()
-	overlays.Cut()
-	if(stat == CONSCIOUS)
-		overlays.Add("eyes")
-		overlays.Cut()
-		overlays.Add("eyes-[icon_state]")
-	else
-		overlays.Remove("eyes")
-
-	if(opened && custom_sprite) // Custom borgs also have custom panels, heh.
-		if(wiresexposed)
-			overlays.Add("[src.ckey]-openpanel +w")
-		else if(cell)
-			overlays.Add("[src.ckey]-openpanel +c")
-		else
-			overlays.Add("[src.ckey]-openpanel -c")
-
-	if(opened)
-		if(wiresexposed)
-			overlays.Add("ov-openpanel +w")
-		else if(cell)
-			overlays.Add("ov-openpanel +c")
-		else
-			overlays.Add("ov-openpanel -c")
-
-	if(module_active && istype(module_active, /obj/item/borg/combat/shield))
-		overlays.Add("[icon_state]-shield")
-
-	if(modtype == "Combat")
-		var/base_icon = ""
-		base_icon = icon_state
-		if(module_active && istype(module_active,/obj/item/borg/combat/mobility))
-			icon_state = "[icon_state]-roll"
-		else
-			icon_state = base_icon
-
-// Call when target overlay should be added/removed.
-/mob/living/silicon/robot/update_targeted()
-	if(!targeted_by && target_locked)
-		qdel(target_locked)
-	updateicon()
-	if(targeted_by && target_locked)
-		overlays.Add(target_locked)
 
 /mob/living/silicon/robot/proc/installed_modules()
 	if(weapon_lock)
@@ -1011,90 +954,8 @@ var/list/robot_verbs_default = list(
 /mob/living/silicon/robot/proc/radio_menu()
 	radio.interact(src) // Just use the radio's Topic() instead of bullshit special-snowflake code.
 
-/mob/living/silicon/robot/Move(a, b, flag)
-	. = ..()
-
-	if(module)
-		if(istype(module, /obj/item/robot_module/janitor))
-			var/turf/tile = loc
-			if(isturf(tile))
-				tile.clean_blood()
-				if(istype(tile, /turf/simulated))
-					var/turf/simulated/S = tile
-					S.dirt = 0
-				for(var/A in tile)
-					if(istype(A, /obj/effect))
-						if(isrune(A) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
-							qdel(A)
-					else if(isitem(A))
-						var/obj/item/cleaned_item = A
-						cleaned_item.clean_blood()
-					else if(ishuman(A))
-						var/mob/living/carbon/human/cleaned_human = A
-						if(cleaned_human.lying)
-							if(isnotnull(cleaned_human.head))
-								cleaned_human.head.clean_blood()
-								cleaned_human.update_inv_head(0)
-							if(isnotnull(cleaned_human.wear_suit))
-								cleaned_human.wear_suit.clean_blood()
-								cleaned_human.update_inv_wear_suit(0)
-							else if(isnotnull(cleaned_human.w_uniform))
-								cleaned_human.w_uniform.clean_blood()
-								cleaned_human.update_inv_w_uniform(0)
-							if(isnotnull(cleaned_human.shoes))
-								cleaned_human.shoes.clean_blood()
-								cleaned_human.update_inv_shoes(0)
-							cleaned_human.clean_blood(1)
-							to_chat(cleaned_human, SPAN_WARNING("[src] cleans your face!"))
-
 /mob/living/silicon/robot/proc/self_destruct()
 	gib()
-
-/mob/living/silicon/robot/proc/UnlinkSelf()
-	if(isnotnull(connected_ai))
-		connected_ai = null
-	lawupdate = FALSE
-	lockcharge = 0
-	canmove = TRUE
-	scrambledcodes = TRUE
-
-	// Disconnect it's camera so it's not so easily tracked.
-	if(isnotnull(camera))
-		camera.network = list()
-		global.CTcameranet.removeCamera(camera)
-
-/mob/living/silicon/robot/proc/ResetSecurityCodes()
-	set category = "Robot Commands"
-	set name = "Reset Identity Codes"
-	set desc = "Scrambles your security and identification codes and resets your current buffers.  Unlocks you and but permenantly severs you from your AI and the robotics console and will deactivate your camera system."
-
-	if(isnotnull(src))
-		UnlinkSelf()
-		to_chat(src, "Buffers flushed and reset. Camera system shutdown. All systems operational.")
-		verbs.Remove(/mob/living/silicon/robot/proc/ResetSecurityCodes)
-
-/mob/living/silicon/robot/mode()
-	set name = "Activate Held Object"
-	set category = "IC"
-	set src = usr
-
-	var/obj/item/W = get_active_hand()
-	if(isnotnull(W))
-		W.attack_self(src)
-
-/mob/living/silicon/robot/verb/pose()
-	set name = "Set Pose"
-	set desc = "Sets a description which will be shown when someone examines you."
-	set category = "IC"
-
-	pose = copytext(sanitize(input(usr, "This is [src]. It is...", "Pose", null) as text), 1, MAX_MESSAGE_LEN)
-
-/mob/living/silicon/robot/verb/set_flavor()
-	set name = "Set Flavour Text"
-	set desc = "Sets an extended description of your character's features."
-	set category = "IC"
-
-	flavor_text = copytext(sanitize(input(usr, "Please enter your new flavour text.", "Flavour text", null) as text), 1)
 
 /mob/living/silicon/robot/proc/choose_icon(triesleft, list/module_sprites)
 	if(triesleft < 1 || !length(module_sprites))
@@ -1130,15 +991,8 @@ var/list/robot_verbs_default = list(
 	else
 		to_chat(src, "Your icon has been set. You now require a module reset to change it.")
 
-/mob/living/silicon/robot/proc/sensor_mode() // Medical/Security HUD controller for borgs.
-	set name = "Set Sensor Augmentation"
-	set category = "Robot Commands"
-	set desc = "Augment visual feed with internal sensor overlays."
-
-	toggle_sensor_mode()
-
 /mob/living/silicon/robot/proc/add_robot_verbs()
-	verbs |= robot_verbs_default
+	verbs |= GLOBL.robot_verbs_default
 
 /mob/living/silicon/robot/proc/remove_robot_verbs()
-	verbs.Remove(robot_verbs_default)
+	verbs.Remove(GLOBL.robot_verbs_default)
