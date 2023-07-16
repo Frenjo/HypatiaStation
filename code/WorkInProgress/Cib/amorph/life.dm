@@ -9,10 +9,9 @@
 
 
 /mob/living/carbon/amorph/Life()
-	set invisibility = 0
 	set background = BACKGROUND_ENABLED
-	. = ..()
 
+	. = ..()
 	if(src.stat != DEAD) //still breathing
 		//First, resolve location and get a breath
 		if(air_master.current_cycle % 4 == 2)

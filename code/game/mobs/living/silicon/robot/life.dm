@@ -1,8 +1,7 @@
 /mob/living/silicon/robot/Life()
-	set invisibility = 0
 	set background = BACKGROUND_ENABLED
-	. = ..()
 
+	. = ..()
 	blinded = null
 
 	//Status updates, death etc.

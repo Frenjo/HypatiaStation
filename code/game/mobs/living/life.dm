@@ -1,8 +1,7 @@
 /mob/living/Life()
-	set invisibility = 0
 	set background = BACKGROUND_ENABLED
-	. = ..()
 
+	. = ..()
 	if(isnull(loc))
 		return	// Fixing a null error that occurs when the mob isn't found in the world -- TLE
 	if(monkeyizing)

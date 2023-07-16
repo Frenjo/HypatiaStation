@@ -1,8 +1,7 @@
 /mob/living/carbon/slime/Life()
-	set invisibility = 0
 	set background = BACKGROUND_ENABLED
-	. = ..()
 
+	. = ..()
 	if(stat != DEAD)
 		//Chemicals in the body
 		handle_chemicals_in_body()

@@ -33,7 +33,6 @@
 	var/in_stasis = 0
 
 /mob/living/carbon/human/Life()
-	set invisibility = 0
 	set background = BACKGROUND_ENABLED
 
 	// This duplicates some checks that are found later on (. = ..()) but it's necessary to prevent...

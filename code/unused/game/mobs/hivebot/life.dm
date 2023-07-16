@@ -1,5 +1,4 @@
 /mob/living/silicon/hivebot/Life()
-	set invisibility = 0
 	set background = BACKGROUND_ENABLED
 
 	if (src.monkeyizing)
