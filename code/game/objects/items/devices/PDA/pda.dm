@@ -2,7 +2,7 @@
 /obj/item/device/pda
 	name = "PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
-	icon = 'icons/obj/devices/pda.dmi'
+	icon = 'icons/obj/items/devices/pda.dmi'
 	icon_state = "pda"
 	item_state = "electronic"
 	w_class = 1.0
@@ -722,7 +722,7 @@
 
 		log_pda("[usr] (PDA: [src.name]) sent \"[t]\" to [P.name]")
 		P.overlays.Cut()
-		P.overlays += image('icons/obj/devices/pda.dmi', "pda-r")
+		P.overlays += image('icons/obj/items/devices/pda.dmi', "pda-r")
 		P.newmessage = TRUE
 	else
 		to_chat(U, SPAN_NOTICE("ERROR: Messaging server is not responding."))
@@ -1036,7 +1036,7 @@
 /obj/item/storage/box/PDAs
 	name = "spare PDAs"
 	desc = "A box of spare PDA microcomputers."
-	icon = 'icons/obj/devices/pda.dmi'
+	icon = 'icons/obj/items/devices/pda.dmi'
 	icon_state = "pdabox"
 
 	starts_with = list(

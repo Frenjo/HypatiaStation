@@ -76,7 +76,7 @@
  * Coins
  */
 /obj/item/coin
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/items/coins.dmi'
 	name = "coin"
 	icon_state = "coin"
 	flags = CONDUCT
@@ -139,7 +139,7 @@
 			qdel(CC)
 			return
 
-		overlays += image('icons/obj/items.dmi', "coin_string_overlay")
+		overlays += image('icons/obj/items/coins.dmi', "coin_string_overlay")
 		string_attached = TRUE
 		to_chat(user, SPAN_INFO("You attach a string to the coin."))
 		CC.use(1)

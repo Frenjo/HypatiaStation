@@ -1,7 +1,7 @@
 /obj/item/dice
 	name = "d6"
 	desc = "A dice with six sides."
-	icon = 'icons/obj/dice.dmi'
+	icon = 'icons/obj/items/dice.dmi'
 	icon_state = "d66"
 	w_class = 1
 	var/sides = 6

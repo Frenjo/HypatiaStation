@@ -47,7 +47,7 @@
 /obj/machinery/wish_granter_dark
 	name = "Wish Granter"
 	desc = "You're not so sure about this, anymore..."
-	icon = 'icons/obj/devices/device.dmi'
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "syndbeacon"
 
 	anchored = TRUE

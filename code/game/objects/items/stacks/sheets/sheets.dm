@@ -1,5 +1,7 @@
 /obj/item/stack/sheet
 	name = "sheet"
+	icon = 'icons/obj/items/stacks/sheets.dmi'
+
 	w_class = 3.0
 	force = 5
 	throwforce = 5

@@ -55,7 +55,7 @@
 /obj/item/storage/bag/plasticbag
 	name = "plastic bag"
 	desc = "It's a very flimsy, very noisy alternative to a bag."
-	icon = 'icons/obj/trash.dmi'
+	icon = 'icons/obj/items/trash.dmi'
 	icon_state = "plasticbag"
 	item_state = "plasticbag"
 

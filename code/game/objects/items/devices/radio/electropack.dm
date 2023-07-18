@@ -24,7 +24,7 @@
 			to_chat(user, SPAN_NOTICE("[src] is not ready to be attached!"))
 			return
 		var/obj/item/assembly/shock_kit/A = new /obj/item/assembly/shock_kit(user)
-		A.icon = 'icons/obj/assemblies/assemblies.dmi'
+		A.icon = 'icons/obj/items/assemblies/assemblies.dmi'
 
 		user.drop_from_inventory(W)
 		W.loc = A

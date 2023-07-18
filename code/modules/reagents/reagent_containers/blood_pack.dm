@@ -1,7 +1,7 @@
 /obj/item/reagent_containers/blood
 	name = "BloodPack"
 	desc = "Contains blood used for transfusion."
-	icon = 'icons/obj/bloodpack.dmi'
+	icon = 'icons/obj/items/bloodpack.dmi'
 	icon_state = "empty"
 	volume = 200
 

@@ -8,7 +8,7 @@
 /obj/item/reagent_containers/syringe
 	name = "syringe"
 	desc = "A syringe."
-	icon = 'icons/obj/syringe.dmi'
+	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "syringe_0"
 	icon_state = "0"
 	matter_amounts = list(MATERIAL_GLASS = 150)
@@ -263,7 +263,7 @@
 /obj/item/reagent_containers/ld50_syringe
 	name = "Lethal Injection Syringe"
 	desc = "A syringe used for lethal injections."
-	icon = 'icons/obj/syringe.dmi'
+	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "syringe_0"
 	icon_state = "0"
 	amount_per_transfer_from_this = 50
@@ -379,7 +379,7 @@
 /obj/item/reagent_containers/syringe/inaprovaline
 	name = "Syringe (inaprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
-	
+
 /obj/item/reagent_containers/syringe/inaprovaline/New()
 	..()
 	reagents.add_reagent("inaprovaline", 15)
@@ -390,7 +390,7 @@
 /obj/item/reagent_containers/syringe/antitoxin
 	name = "Syringe (anti-toxin)"
 	desc = "Contains anti-toxins."
-	
+
 /obj/item/reagent_containers/syringe/antitoxin/New()
 	..()
 	reagents.add_reagent("anti_toxin", 15)
@@ -401,7 +401,7 @@
 /obj/item/reagent_containers/syringe/antiviral
 	name = "Syringe (spaceacillin)"
 	desc = "Contains antiviral agents."
-	
+
 /obj/item/reagent_containers/syringe/antiviral/New()
 	..()
 	reagents.add_reagent("spaceacillin", 15)
@@ -410,7 +410,7 @@
 
 
 /obj/item/reagent_containers/ld50_syringe/choral
-	
+
 /obj/item/reagent_containers/ld50_syringe/choral/New()
 	..()
 	reagents.add_reagent("chloralhydrate", 50)
@@ -422,7 +422,7 @@
 /obj/item/reagent_containers/syringe/hyronalin
 	name = "Syringe (hyronalin)"
 	desc = "Contains hyronalin - used to treat radiation."
-	
+
 /obj/item/reagent_containers/syringe/hyronalin/New()
 	..()
 	reagents.add_reagent("hyronalin", 15)
@@ -434,7 +434,7 @@
 /obj/item/reagent_containers/syringe/robot/antitoxin
 	name = "Syringe (anti-toxin)"
 	desc = "Contains anti-toxins."
-	
+
 /obj/item/reagent_containers/syringe/robot/antitoxin/New()
 	..()
 	reagents.add_reagent("anti_toxin", 15)
@@ -445,7 +445,7 @@
 /obj/item/reagent_containers/syringe/robot/inoprovaline
 	name = "Syringe (inoprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
-	
+
 /obj/item/reagent_containers/syringe/robot/inoprovaline/New()
 	..()
 	reagents.add_reagent("inaprovaline", 15)
@@ -456,7 +456,7 @@
 /obj/item/reagent_containers/syringe/robot/mixed
 	name = "Syringe (mixed)"
 	desc = "Contains inaprovaline & anti-toxins."
-	
+
 /obj/item/reagent_containers/syringe/robot/mixed/New()
 	..()
 	reagents.add_reagent("inaprovaline", 7)

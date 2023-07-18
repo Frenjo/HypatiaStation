@@ -1,7 +1,7 @@
 /obj/item/device/mmi/posibrain
 	name = "positronic brain"
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves."
-	icon = 'icons/obj/assemblies/assemblies.dmi'
+	icon = 'icons/obj/items/assemblies/assemblies.dmi'
 	icon_state = "posibrain"
 	w_class = 3
 	origin_tech = list(

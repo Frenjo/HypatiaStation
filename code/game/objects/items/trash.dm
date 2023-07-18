@@ -3,10 +3,10 @@
 
 //Added by Jack Rost
 /obj/item/trash
-	icon = 'icons/obj/trash.dmi'
+	icon = 'icons/obj/items/trash.dmi'
 	w_class = 1.0
 	desc = "This is rubbish."
-	
+
 /obj/item/trash/raisins
 	name = "4no raisins"
 	icon_state = "4no_raisins"
@@ -18,52 +18,52 @@
 /obj/item/trash/cheesie
 	name = "Cheesie honkers"
 	icon_state = "cheesie_honkers"
-	
+
 /obj/item/trash/chips
 	name = "Chips"
 	icon_state = "chips"
-	
+
 /obj/item/trash/popcorn
 	name = "Popcorn"
 	icon_state = "popcorn"
-	
+
 /obj/item/trash/sosjerky
 	name = "Scaredy's Private Reserve Beef Jerky"
 	icon_state = "sosjerky"
-	
+
 /obj/item/trash/syndi_cakes
 	name = "Syndi cakes"
 	icon_state = "syndi_cakes"
-	
+
 /obj/item/trash/waffles
 	name = "Waffles"
 	icon_state = "waffles"
-	
+
 /obj/item/trash/plate
 	name = "Plate"
 	icon_state = "plate"
-	
+
 /obj/item/trash/snack_bowl
 	name = "Snack bowl"
 	icon_state	= "snack_bowl"
-	
+
 /obj/item/trash/pistachios
 	name = "Pistachios pack"
 	icon_state = "pistachios_pack"
-	
+
 /obj/item/trash/semki
 	name = "Semki pack"
 	icon_state = "semki_pack"
-	
+
 /obj/item/trash/tray
 	name = "Tray"
 	icon_state = "tray"
-	
+
 /obj/item/trash/candle
 	name = "candle"
-	icon = 'icons/obj/candle.dmi'
+	icon = 'icons/obj/items/candle.dmi'
 	icon_state = "candle4"
-	
+
 /obj/item/trash/liquidfood
 	name = "\improper \"LiquidFood\" ration"
 	icon_state = "liquidfood"

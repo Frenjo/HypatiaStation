@@ -5,7 +5,7 @@
 	name = "gloves"
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	w_class = 2.0
-	icon = 'icons/obj/clothing/gloves.dmi'
+	icon = 'icons/obj/items/clothing/gloves.dmi'
 	siemens_coefficient = 0.50
 
 	body_parts_covered = HANDS

@@ -1,7 +1,7 @@
 /obj/item/clothing/tie
 	name = "tie"
 	desc = "A neosilk clip-on tie."
-	icon = 'icons/obj/clothing/ties.dmi'
+	icon = 'icons/obj/items/clothing/ties.dmi'
 	icon_state = "bluetie"
 	item_state = ""	//no inhands
 	item_color = "bluetie"
@@ -12,7 +12,7 @@
 
 /obj/item/clothing/tie/New()
 	..()
-	inv_overlay = image("icon" = 'icons/obj/clothing/ties_overlay.dmi', "icon_state" = "[item_color? "[item_color]" : "[icon_state]"]")
+	inv_overlay = image("icon" = 'icons/obj/items/clothing/ties_overlay.dmi', "icon_state" = "[item_color? "[item_color]" : "[icon_state]"]")
 
 //when user attached an accessory to S
 /obj/item/clothing/tie/proc/on_attached(obj/item/clothing/under/S, mob/user as mob)

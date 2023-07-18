@@ -69,7 +69,7 @@
 /obj/item/mecha_parts/mecha_tracking
 	name = "Exosuit tracking beacon"
 	desc = "Device used to transmit exosuit data."
-	icon = 'icons/obj/devices/device.dmi'
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "motion2"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_MAGNETS = 2)
 	construction_time = 50

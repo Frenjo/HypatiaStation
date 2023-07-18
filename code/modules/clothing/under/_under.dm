@@ -2,7 +2,7 @@
  * Under Clothing
  */
 /obj/item/clothing/under
-	icon = 'icons/obj/clothing/uniforms.dmi'
+	icon = 'icons/obj/items/clothing/uniforms.dmi'
 	name = "under"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 	permeability_coefficient = 0.90

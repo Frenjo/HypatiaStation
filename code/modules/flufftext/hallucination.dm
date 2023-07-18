@@ -60,7 +60,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 								halitem.icon_state = "revolver"
 								halitem.name = "Revolver"
 							if(2) //c4
-								halitem.icon = 'icons/obj/assemblies/assemblies.dmi'
+								halitem.icon = 'icons/obj/items/assemblies/assemblies.dmi'
 								halitem.icon_state = "plastic-explosive0"
 								halitem.name = "Mysterious Package"
 								if(prob(25))
@@ -74,7 +74,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 								halitem.icon_state = "stunbaton"
 								halitem.name = "Stun Baton"
 							if(5) //emag
-								halitem.icon = 'icons/obj/card.dmi'
+								halitem.icon = 'icons/obj/items/card.dmi'
 								halitem.icon_state = "emag"
 								halitem.name = "Cryptographic Sequencer"
 							if(6) //flashbang
@@ -105,7 +105,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 								halimage = image('icons/effects/fire.dmi', target, "1", TURF_LAYER)
 							if(3)
 								//src << "C4"
-								halimage = image('icons/obj/assemblies/assemblies.dmi', target, "plastic-explosive2", OBJ_LAYER + 0.01)
+								halimage = image('icons/obj/items/assemblies/assemblies.dmi', target, "plastic-explosive2", OBJ_LAYER + 0.01)
 
 
 						if(client)

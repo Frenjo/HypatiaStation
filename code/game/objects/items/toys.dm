@@ -11,6 +11,7 @@
  *		Water flower
  */
 /obj/item/toy
+	icon = 'icons/obj/items/toy.dmi'
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
@@ -22,7 +23,6 @@
 /obj/item/toy/balloon
 	name = "water balloon"
 	desc = "A translucent balloon. There's nothing in it."
-	icon = 'icons/obj/toy.dmi'
 	icon_state = "waterballoon-e"
 	item_state = "balloon-empty"
 
@@ -99,7 +99,7 @@
 /obj/item/toy/blink
 	name = "electronic blink toy game"
 	desc = "Blink. Blink. Blink. Ages 8 and up."
-	icon = 'icons/obj/devices/radio.dmi'
+	icon = 'icons/obj/items/devices/radio.dmi'
 	icon_state = "beacon"
 	item_state = "signaler"
 
@@ -297,14 +297,12 @@
 /obj/item/toy/ammo/crossbow
 	name = "foam dart"
 	desc = "It's nerf or nothing! Ages 8 and up."
-	icon = 'icons/obj/toy.dmi'
 	icon_state = "foamdart"
 	w_class = 1.0
 
 /obj/effect/foam_dart_dummy
 	name = ""
 	desc = ""
-	icon = 'icons/obj/toy.dmi'
 	icon_state = "null"
 	anchored = TRUE
 	density = FALSE
@@ -366,7 +364,7 @@
 /obj/item/toy/crayon
 	name = "crayon"
 	desc = "A colourful crayon. Please refrain from eating it or putting it in your nose."
-	icon = 'icons/obj/crayons.dmi'
+	icon = 'icons/obj/items/crayons.dmi'
 	icon_state = "crayonred"
 	w_class = 1.0
 	attack_verb = list("attacked", "coloured")
@@ -386,7 +384,6 @@
 /obj/item/toy/snappop
 	name = "snap pop"
 	desc = "Wow!"
-	icon = 'icons/obj/toy.dmi'
 	icon_state = "snappop"
 	w_class = 1
 
@@ -486,7 +483,6 @@
  * Mech prizes
  */
 /obj/item/toy/prize
-	icon = 'icons/obj/toy.dmi'
 	icon_state = "ripleytoy"
 
 	var/cooldown = 0

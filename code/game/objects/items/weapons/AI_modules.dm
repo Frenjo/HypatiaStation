@@ -7,7 +7,7 @@ AI MODULES
 // AI module
 /obj/item/aiModule
 	name = "\improper AI module"
-	icon = 'icons/obj/module.dmi'
+	icon = 'icons/obj/items/module.dmi'
 	icon_state = "std_mod"
 	item_state = "electronic"
 	desc = "An AI Module for transmitting encrypted instructions to the AI."
@@ -380,7 +380,7 @@ AI MODULES
 	name = "\improper 'P.A.L.A.D.I.N.' core AI module"
 	desc = "A P.A.L.A.D.I.N. Core AI Module: 'Reconfigures the AI's core laws.'"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6)
-	
+
 
 /obj/item/aiModule/paladin/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	..()

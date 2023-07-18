@@ -45,7 +45,7 @@
 /obj/random/technology_scanner
 	name = "Random Scanner"
 	desc = "This is a random technology scanner."
-	icon = 'icons/obj/devices/device.dmi'
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "atmos"
 
 /obj/random/technology_scanner/item_to_spawn()
@@ -75,7 +75,7 @@
 /obj/random/bomb_supply
 	name = "Bomb Supply"
 	desc = "This is a random bomb supply."
-	icon = 'icons/obj/assemblies/new_assemblies.dmi'
+	icon = 'icons/obj/items/assemblies/new_assemblies.dmi'
 	icon_state = "signaller"
 
 /obj/random/bomb_supply/item_to_spawn()

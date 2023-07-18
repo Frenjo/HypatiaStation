@@ -2,7 +2,7 @@
  * Suit
  */
 /obj/item/clothing/suit
-	icon = 'icons/obj/clothing/suits.dmi'
+	icon = 'icons/obj/items/clothing/suits.dmi'
 	name = "suit"
 
 	allowed = list(/obj/item/tank/emergency_oxygen)

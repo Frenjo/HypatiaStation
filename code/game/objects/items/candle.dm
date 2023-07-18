@@ -1,7 +1,7 @@
 /obj/item/candle
 	name = "red candle"
 	desc = "a candle"
-	icon = 'icons/obj/candle.dmi'
+	icon = 'icons/obj/items/candle.dmi'
 	icon_state = "candle1"
 	item_state = "candle1"
 	w_class = 1

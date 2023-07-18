@@ -56,7 +56,7 @@
 	return ..()
 
 /obj/item/device
-	icon = 'icons/obj/devices/device.dmi'
+	icon = 'icons/obj/items/devices/device.dmi'
 
 /obj/item/ex_act(severity)
 	switch(severity)

@@ -100,7 +100,7 @@
 /obj/item/f_card
 	name = "finger print card"
 	desc = "Used to take fingerprints."
-	icon = 'icons/obj/card.dmi'
+	icon = 'icons/obj/items/card.dmi'
 	icon_state = "fingerprint0"
 	var/amount = 10.0
 	item_state = "paper"

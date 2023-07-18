@@ -1,6 +1,6 @@
 /obj/structure/walllocker
 	name = "Wall Locker"
-	icon = 'icons/obj/lockwall.dmi'
+	icon = 'icons/obj/closets/lockwall.dmi'
 	icon_state = "emerg"
 	var/list/spawnitems = list()
 	anchored = TRUE

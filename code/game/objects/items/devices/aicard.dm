@@ -1,6 +1,6 @@
 /obj/item/device/aicard
 	name = "inteliCard"
-	icon = 'icons/obj/devices/pda.dmi'
+	icon = 'icons/obj/items/devices/pda.dmi'
 	icon_state = "aicard" // aicard-full
 	item_state = "electronic"
 	w_class = 2.0
@@ -113,7 +113,7 @@
 				A.control_disabled = !A.control_disabled
 				to_chat(A, "The intelicard's wireless port has been [A.control_disabled ? "disabled" : "enabled"]!")
 				if(A.control_disabled)
-					overlays -= image('icons/obj/devices/pda.dmi', "aicard-on")
+					overlays -= image('icons/obj/items/devices/pda.dmi', "aicard-on")
 				else
-					overlays += image('icons/obj/devices/pda.dmi', "aicard-on")
+					overlays += image('icons/obj/items/devices/pda.dmi', "aicard-on")
 	attack_self(U)

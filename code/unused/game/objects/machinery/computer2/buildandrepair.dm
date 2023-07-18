@@ -2,7 +2,7 @@
 /obj/item/motherboard
 	name = "Computer mainboard"
 	desc = "A computer motherboard."
-	icon = 'icons/obj/module.dmi'
+	icon = 'icons/obj/items/module.dmi'
 	icon_state = "mainboard"
 	item_state = "electronic"
 	w_class = 3

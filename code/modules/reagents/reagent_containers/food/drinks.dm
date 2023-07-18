@@ -4,7 +4,7 @@
 /obj/item/reagent_containers/food/drinks
 	name = "drink"
 	desc = "yummy"
-	icon = 'icons/obj/drinks.dmi'
+	icon = 'icons/obj/items/drinks.dmi'
 	icon_state = null
 	flags = OPENCONTAINER
 	var/gulp_size = 5 //This is now officially broken ... need to think of a nice way to fix it.
@@ -155,7 +155,7 @@
 	desc = "It's milk. White and nutritious goodness!"
 	icon_state = "milk"
 	item_state = "carton"
-	
+
 /obj/item/reagent_containers/food/drinks/milk/New()
 	..()
 	reagents.add_reagent("milk", 50)
@@ -167,7 +167,7 @@
 /obj/item/reagent_containers/food/drinks/flour
 	name = "flour sack"
 	desc = "A big bag of flour. Good for baking!"
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/items/food.dmi'
 	icon_state = "flour"
 	item_state = "flour"
 	New()
@@ -195,7 +195,7 @@
 	name = "Robust Coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
 	icon_state = "coffee"
-	
+
 /obj/item/reagent_containers/food/drinks/coffee/New()
 	..()
 	reagents.add_reagent("coffee", 30)
@@ -208,7 +208,7 @@
 	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
 	icon_state = "teacup"
 	item_state = "coffee"
-	
+
 /obj/item/reagent_containers/food/drinks/tea/New()
 	..()
 	reagents.add_reagent("tea", 30)
@@ -220,7 +220,7 @@
 	name = "Ice Cup"
 	desc = "Careful, cold ice, do not chew."
 	icon_state = "coffee"
-	
+
 /obj/item/reagent_containers/food/drinks/ice/New()
 	..()
 	reagents.add_reagent("ice", 30)
@@ -233,7 +233,7 @@
 	desc = "Made in Space South America."
 	icon_state = "hot_coco"
 	item_state = "coffee"
-	
+
 /obj/item/reagent_containers/food/drinks/h_chocolate/New()
 	..()
 	reagents.add_reagent("hot_coco", 30)
@@ -245,7 +245,7 @@
 	name = "Cup Ramen"
 	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
 	icon_state = "ramen"
-	
+
 /obj/item/reagent_containers/food/drinks/dry_ramen/New()
 	..()
 	reagents.add_reagent("dry_ramen", 30)
@@ -259,7 +259,7 @@
 	icon_state = "water_cup_e"
 	possible_transfer_amounts = null
 	volume = 10
-	
+
 /obj/item/reagent_containers/food/drinks/sillycup/New()
 	..()
 	src.pixel_x = rand(-10.0, 10)

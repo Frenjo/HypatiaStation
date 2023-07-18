@@ -9,7 +9,7 @@
  */
 /obj/item/circuitboard
 	name = "circuit board"
-	icon = 'icons/obj/module.dmi'
+	icon = 'icons/obj/items/module.dmi'
 	icon_state = "id_mod"
 	item_state = "electronic"
 

@@ -1,7 +1,7 @@
 /obj/item/peripheral
 	name = "Peripheral card"
 	desc = "A computer circuit board."
-	icon = 'icons/obj/module.dmi'
+	icon = 'icons/obj/items/module.dmi'
 	icon_state = "id_mod"
 	item_state = "electronic"
 	w_class = 2

@@ -18,7 +18,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/match
 	name = "match"
 	desc = "A simple match stick, used for lighting fine smokables."
-	icon = 'icons/obj/cigarettes.dmi'
+	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "match_unlit"
 	var/lit = 0
 	var/burnt = 0
@@ -231,7 +231,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/cigbutt
 	name = "cigarette butt"
 	desc = "A manky old cigarette butt."
-	icon = 'icons/obj/clothing/masks.dmi'
+	icon = 'icons/obj/items/clothing/masks.dmi'
 	icon_state = "cigbutt"
 	w_class = 1
 	throwforce = 1

@@ -3,7 +3,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	// 1 = new radios (subspace technology)
 
 /obj/item/device/radio
-	icon = 'icons/obj/devices/radio.dmi'
+	icon = 'icons/obj/items/devices/radio.dmi'
 	name = "station bounced radio"
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"

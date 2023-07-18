@@ -128,7 +128,7 @@
 	desc = "A small bottle. Contains H13N1 flu virion culture in synthblood medium."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle3"
-	
+
 /obj/item/reagent_containers/glass/bottle/flu_virion/New()
 	..()
 	var/datum/disease/F = new /datum/disease/advance/flu(0)
@@ -141,7 +141,7 @@
 	desc = "A small bottle. Contains Epiglottis virion culture in synthblood medium."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle3"
-	
+
 /obj/item/reagent_containers/glass/bottle/epiglottis_virion/New()
 	..()
 	var/datum/disease/F = new /datum/disease/advance/voice_change(0)
@@ -154,7 +154,7 @@
 	desc = "A small bottle. Contains liver enhancement virion culture in synthblood medium."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle3"
-	
+
 /obj/item/reagent_containers/glass/bottle/liver_enhance_virion/New()
 	..()
 	var/datum/disease/F = new /datum/disease/advance/heal(0)
@@ -167,7 +167,7 @@
 	desc = "A small bottle. Contains hullucigen virion culture in synthblood medium."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle3"
-	
+
 /obj/item/reagent_containers/glass/bottle/hullucigen_virion/New()
 	..()
 	var/datum/disease/F = new /datum/disease/advance/hullucigen(0)
@@ -180,7 +180,7 @@
 	desc = "A small bottle. Contains H0NI<42 virion culture in synthblood medium."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle3"
-	
+
 /obj/item/reagent_containers/glass/bottle/pierrot_throat/New()
 	..()
 	var/datum/disease/F = new /datum/disease/pierrot_throat(0)
@@ -219,7 +219,7 @@
 	desc = "A small bottle. Contains a retrovirus culture in a synthblood medium."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle3"
-	
+
 /obj/item/reagent_containers/glass/bottle/retrovirus/New()
 	..()
 	var/datum/disease/F = new /datum/disease/dna_retrovirus(0)
@@ -325,7 +325,7 @@
 /obj/item/reagent_containers/glass/bottle/adminordrazine
 	name = "Adminordrazine Bottle"
 	desc = "A small bottle. Contains the liquid essence of the gods."
-	icon = 'icons/obj/drinks.dmi'
+	icon = 'icons/obj/items/drinks.dmi'
 	icon_state = "holyflask"
 
 /obj/item/reagent_containers/glass/bottle/adminordrazine/New()

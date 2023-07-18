@@ -51,7 +51,7 @@
 /obj/item/cloaking_device
 	name = "cloaking device"
 	desc = "Use this to become invisible to the human eyesocket."
-	icon = 'icons/obj/devices/device.dmi'
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "shield0"
 	flags = CONDUCT
 	item_state = "electronic"

@@ -7,7 +7,7 @@
 /obj/item/borg/upgrade
 	name = "borg upgrade module."
 	desc = "Protected by FRM."
-	icon = 'icons/obj/module.dmi'
+	icon = 'icons/obj/items/module.dmi'
 	icon_state = "cyborg_upgrade"
 
 	var/construction_time = 120
@@ -147,7 +147,7 @@
 		to_chat(R, "Maximum cooling achieved for this hardpoint!")
 		to_chat(usr, "There's no room for another cooling unit!")
 		return FALSE
-	
+
 	T.recharge_time = max(2 , T.recharge_time - 4)
 	return TRUE
 

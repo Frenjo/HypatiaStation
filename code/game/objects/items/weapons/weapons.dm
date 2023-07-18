@@ -208,7 +208,7 @@
 
 /obj/item/shard
 	name = "shard"
-	icon = 'icons/obj/shards.dmi'
+	icon = 'icons/obj/items/shards.dmi'
 	icon_state = "large"
 	sharp = 1
 	edge = 1
@@ -232,7 +232,7 @@
 /*/obj/item/syndicate_uplink
 	name = "station bounced radio"
 	desc = "Remain silent about this..."
-	icon = 'icons/obj/devices/radio.dmi'
+	icon = 'icons/obj/items/devices/radio.dmi'
 	icon_state = "radio"
 	var/temp = null
 	var/uses = 10.0
@@ -250,7 +250,6 @@
 
 /obj/item/shard/shrapnel
 	name = "shrapnel"
-	icon = 'icons/obj/shards.dmi'
 	icon_state = "shrapnellarge"
 	desc = "A bunch of tiny bits of shattered metal."
 
@@ -272,7 +271,7 @@
 /obj/item/SWF_uplink
 	name = "station-bounced radio"
 	desc = "used to communicate it appears."
-	icon = 'icons/obj/devices/radio.dmi'
+	icon = 'icons/obj/items/devices/radio.dmi'
 	icon_state = "radio"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -367,7 +366,7 @@
 /obj/item/syntiflesh
 	name = "syntiflesh"
 	desc = "Meat that appears... strange..."
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/items/food.dmi'
 	icon_state = "meat"
 	flags = CONDUCT
 	w_class = 1.0
@@ -384,7 +383,7 @@
 /obj/item/cigarpacket
 	name = "Pete's Cuban Cigars"
 	desc = "The most robust cigars on the planet."
-	icon = 'icons/obj/cigarettes.dmi'
+	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "cigarpacket"
 	item_state = "cigarpacket"
 	w_class = 1

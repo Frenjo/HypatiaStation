@@ -14,7 +14,7 @@
  */
 
 /obj/item/storage/fancy/
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/items/food.dmi'
 	icon_state = "donutbox6"
 	name = "donut box"
 	var/icon_type = "donut"
@@ -44,7 +44,7 @@
  */
 
 /obj/item/storage/fancy/donut_box
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/items/food.dmi'
 	icon_state = "donutbox6"
 	icon_type = "donut"
 	name = "donut box"
@@ -63,7 +63,7 @@
  */
 
 /obj/item/storage/fancy/donut_box/empty
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/items/food.dmi'
 	icon_state = "donutbox0"
 	icon_type = "donut"
 	name = "donut box"
@@ -78,7 +78,7 @@
  */
 
 /obj/item/storage/fancy/egg_box
-	icon = 'icons/obj/food.dmi'
+	icon = 'icons/obj/items/food.dmi'
 	icon_state = "eggbox"
 	icon_type = "egg"
 	name = "egg box"
@@ -98,7 +98,7 @@
 /obj/item/storage/fancy/candle_box
 	name = "candle pack"
 	desc = "A pack of red candles."
-	icon = 'icons/obj/candle.dmi'
+	icon = 'icons/obj/items/candle.dmi'
 	icon_state = "candlebox5"
 	icon_type = "candle"
 	item_state = "candlebox5"
@@ -119,7 +119,7 @@
 /obj/item/storage/fancy/crayons
 	name = "box of crayons"
 	desc = "A box of crayons for all your rune drawing needs."
-	icon = 'icons/obj/crayons.dmi'
+	icon = 'icons/obj/items/crayons.dmi'
 	icon_state = "crayonbox"
 	w_class = 2.0
 	storage_slots = 6
@@ -140,9 +140,9 @@
 
 /obj/item/storage/fancy/crayons/update_icon()
 	overlays = list() //resets list
-	overlays += image('icons/obj/crayons.dmi',"crayonbox")
+	overlays += image('icons/obj/items/crayons.dmi',"crayonbox")
 	for(var/obj/item/toy/crayon/crayon in contents)
-		overlays += image('icons/obj/crayons.dmi',crayon.colourName)
+		overlays += image('icons/obj/items/crayons.dmi',crayon.colourName)
 
 /obj/item/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/toy/crayon))
@@ -161,7 +161,7 @@
 /obj/item/storage/fancy/cigarettes
 	name = "cigarette packet"
 	desc = "The most popular brand of Space Cigarettes, sponsors of the Space Olympics."
-	icon = 'icons/obj/cigarettes.dmi'
+	icon = 'icons/obj/items/cigarettes.dmi'
 	icon_state = "cigpacket"
 	item_state = "cigpacket"
 	w_class = 1
@@ -221,7 +221,7 @@
  */
 
 /obj/item/storage/fancy/vials
-	icon = 'icons/obj/vialbox.dmi'
+	icon = 'icons/obj/items/vialbox.dmi'
 	icon_state = "vialbox6"
 	icon_type = "vial"
 	name = "vial storage box"
@@ -238,7 +238,7 @@
 /obj/item/storage/lockbox/vials
 	name = "secure vial storage box"
 	desc = "A locked box for keeping things away from children."
-	icon = 'icons/obj/vialbox.dmi'
+	icon = 'icons/obj/items/vialbox.dmi'
 	icon_state = "vialbox0"
 	item_state = "syringe_kit"
 	max_w_class = 3
