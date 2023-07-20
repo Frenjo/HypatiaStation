@@ -178,7 +178,7 @@
 			return
 
 		if(href_list["mode"])
-			current.mode = text2num(href_list["mode"])
+			current.mode = href_list["mode"]
 			current.apply_mode()
 			spawn(5)
 				src.updateUsrDialog()
@@ -192,26 +192,26 @@
 	var/output = ""//"<B>[alarm_zone] Air [name]</B><HR>"
 
 	switch(current.screen)
-		if(AALARM_SCREEN_MAIN)
+		if(AIR_ALARM_SCREEN_MAIN)
 			if(current.alarm_area.atmos_alarm)
 				output += {"<a href='?src=\ref[src];alarm=\ref[current];atmos_reset=1'>Reset - Atmospheric Alarm</a><hr>"}
 			else
 				output += {"<a href='?src=\ref[src];alarm=\ref[current];atmos_alarm=1'>Activate - Atmospheric Alarm</a><hr>"}
 
 			output += {"
-<a href='?src=\ref[src];alarm=\ref[current];screen=[AALARM_SCREEN_SCRUB]'>Scrubbers Control</a><br>
-<a href='?src=\ref[src];alarm=\ref[current];screen=[AALARM_SCREEN_VENT]'>Vents Control</a><br>
-<a href='?src=\ref[src];alarm=\ref[current];screen=[AALARM_SCREEN_MODE]'>Set environmental mode</a><br>
-<a href='?src=\ref[src];alarm=\ref[current];screen=[AALARM_SCREEN_SENSORS]'>Sensor Control</a><br>
+<a href='?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_SCRUB]'>Scrubbers Control</a><br>
+<a href='?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_VENT]'>Vents Control</a><br>
+<a href='?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MODE]'>Set environmental mode</a><br>
+<a href='?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_SENSORS]'>Sensor Control</a><br>
 <HR>
 "}
-			if(current.mode == AALARM_MODE_PANIC)
-				output += "<font color='red'><B>PANIC SYPHON ACTIVE</B></font><br><A href='?src=\ref[src];alarm=\ref[current];mode=[AALARM_MODE_SCRUBBING]'>turn syphoning off</A>"
+			if(current.mode == AIR_ALARM_MODE_PANIC)
+				output += "<font color='red'><B>PANIC SYPHON ACTIVE</B></font><br><A href='?src=\ref[src];alarm=\ref[current];mode=[AIR_ALARM_MODE_SCRUBBING]'>turn syphoning off</A>"
 			else
-				output += "<A href='?src=\ref[src];alarm=\ref[current];mode=[AALARM_MODE_PANIC]'><font color='red'><B>ACTIVATE PANIC SYPHON IN AREA</B></font></A>"
+				output += "<A href='?src=\ref[src];alarm=\ref[current];mode=[AIR_ALARM_MODE_PANIC]'><font color='red'><B>ACTIVATE PANIC SYPHON IN AREA</B></font></A>"
 
 			output += "<br><br>Atmospheric Lockdown: <a href='?src=\ref[src];alarm=\ref[current];atmos_unlock=[current.alarm_area.air_doors_activated]'>[current.alarm_area.air_doors_activated ? "<b>ENABLED</b>" : "Disabled"]</a>"
-		if(AALARM_SCREEN_VENT)
+		if(AIR_ALARM_SCREEN_VENT)
 			var/sensor_data = ""
 			if(current.alarm_area.air_vent_names.len)
 				for(var/id_tag in current.alarm_area.air_vent_names)
@@ -221,7 +221,7 @@
 					if(!data)
 						state = "<font color='red'> can not be found!</font>"
 						data = list("external" = 0) //for "0" instead of empty string
-					else if(data["timestamp"]+AALARM_REPORT_TIMEOUT < world.time)
+					else if(data["timestamp"] + AIR_ALARM_REPORT_TIMEOUT < world.time)
 						state = "<font color='red'> not responding!</font>"
 					sensor_data += {"
 <B>[long_name]</B>[state]<BR>
@@ -253,8 +253,8 @@ siphoning
 					sensor_data += {"<HR>"}
 			else
 				sensor_data = "No vents connected.<BR>"
-			output = {"<a href='?src=\ref[src];alarm=\ref[current];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br>[sensor_data]"}
-		if(AALARM_SCREEN_SCRUB)
+			output = {"<a href='?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MAIN]'>Main menu</a><br>[sensor_data]"}
+		if(AIR_ALARM_SCREEN_SCRUB)
 			var/sensor_data = ""
 			if(current.alarm_area.air_scrub_names.len)
 				for(var/id_tag in current.alarm_area.air_scrub_names)
@@ -264,7 +264,7 @@ siphoning
 					if(!data)
 						state = "<font color='red'> can not be found!</font>"
 						data = list("external" = 0) //for "0" instead of empty string
-					else if (data["timestamp"]+AALARM_REPORT_TIMEOUT < world.time)
+					else if(data["timestamp"] + AIR_ALARM_REPORT_TIMEOUT < world.time)
 						state = "<font color='red'> not responding!</font>"
 
 					sensor_data += {"
@@ -293,29 +293,22 @@ Nitrous Oxide
 "}
 			else
 				sensor_data = "No scrubbers connected.<BR>"
-			output = {"<a href='?src=\ref[src];alarm=\ref[current];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br>[sensor_data]"}
+			output = {"<a href='?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MAIN]'>Main menu</a><br>[sensor_data]"}
 
-		if(AALARM_SCREEN_MODE)
+		if(AIR_ALARM_SCREEN_MODE)
 			output += {"
-<a href='?src=\ref[src];alarm=\ref[current];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br>
+<a href='?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MAIN]'>Main menu</a><br>
 <b>Air machinery mode for the area:</b><ul>"}
-			var/list/modes = list(
-				AALARM_MODE_SCRUBBING	= "Filtering - Scrubs out contaminants",
-				AALARM_MODE_REPLACEMENT	= "<font color='blue'>Replace Air - Siphons out air while replacing</font>",
-				AALARM_MODE_PANIC		= "<font color='red'>Panic - Siphons air out of the room</font>",
-				AALARM_MODE_CYCLE		= "<font color='red'>Cycle - Siphons air before replacing</font>",
-				AALARM_MODE_FILL		= "<font color='green'>Fill - Shuts off scrubbers and opens vents</font>",
-				AALARM_MODE_OFF			= "<font color='blue'>Off - Shuts off vents and scrubbers</font>",
-			)
-			for(var/m = 1, m <= modes.len, m++)
-				if(current.mode == m)
-					output += {"<li><A href='?src=\ref[src];alarm=\ref[current];mode=[m]'><b>[modes[m]]</b></A> (selected)</li>"}
+			for(var/mode_type in current.available_modes)
+				var/decl/air_alarm_mode/iterated_mode = GET_DECL_INSTANCE(current.available_modes[mode_type])
+				if(current.mode == mode_type)
+					output += {"<li><A href='?src=\ref[src];alarm=\ref[current];mode=[mode_type]'><b>[iterated_mode.description]</b></A> (selected)</li>"}
 				else
-					output += {"<li><A href='?src=\ref[src];alarm=\ref[current];mode=[m]'>[modes[m]]</A></li>"}
+					output += {"<li><A href='?src=\ref[src];alarm=\ref[current];mode=[mode_type]'>[iterated_mode.description]</A></li>"}
 			output += "</ul>"
-		if(AALARM_SCREEN_SENSORS)
+		if(AIR_ALARM_SCREEN_SENSORS)
 			output += {"
-<a href='?src=\ref[src];alarm=\ref[current];screen=[AALARM_SCREEN_MAIN]'>Main menu</a><br>
+<a href='?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MAIN]'>Main menu</a><br>
 <b>Alarm thresholds:</b><br>
 Partial pressure for gases
 <style>/* some CSS woodoo here. Does not work perfect in ie6 but who cares? */
