@@ -12,10 +12,14 @@
 	return "[round(f / 10)].[f % 10]"
 
 /proc/register_radio(source, old_frequency, new_frequency, radio_filter)
+	RETURN_TYPE(/datum/radio_frequency)
+
 	if(isnotnull(old_frequency))
 		global.CTradio.remove_object(source, old_frequency)
 	if(isnotnull(new_frequency))
 		return global.CTradio.add_object(source, new_frequency, radio_filter)
+
+	return null
 
 /proc/unregister_radio(source, frequency)
 	global.CTradio?.remove_object(source, frequency)

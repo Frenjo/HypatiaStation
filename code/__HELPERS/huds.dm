@@ -46,6 +46,8 @@ the HUD updates properly! */
 	var/turf/turf
 
 /proc/arrange_hud_process(mob/M, mob/Alt, list/hud_list)
+	RETURN_TYPE(/datum/arranged_hud_process)
+
 	hud_list |= M
 	var/datum/arranged_hud_process/P = new /datum/arranged_hud_process()
 	P.client = M.client
@@ -75,6 +77,8 @@ the HUD updates properly! */
 	return view(T)
 
 /mob/aiEye/in_view(turf/T)
+	RETURN_TYPE(/list)
+
 	var/list/viewed = list()
 	for(var/mob/living/carbon/human/H in GLOBL.mob_list)
 		if(get_dist(H, T) <= 7)

@@ -34,6 +34,8 @@ CONTROLLER_DEF(radio)
 	var/list/frequencies = list()
 
 /datum/controller/radio/proc/add_object(obj/device as obj, new_frequency as num, filter = null as text|null)
+	RETURN_TYPE(/datum/radio_frequency)
+
 	var/f_text = num2text(new_frequency)
 	var/datum/radio_frequency/frequency = frequencies[f_text]
 	if(isnull(frequency))
@@ -55,6 +57,8 @@ CONTROLLER_DEF(radio)
 	return 1
 
 /datum/controller/radio/proc/return_frequency(new_frequency as num)
+	RETURN_TYPE(/datum/radio_frequency)
+
 	var/f_text = num2text(new_frequency)
 	var/datum/radio_frequency/frequency = frequencies[f_text]
 	if(isnull(frequency))

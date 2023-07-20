@@ -2,6 +2,8 @@
 	return ((job in GLOBL.command_positions) || (job in GLOBL.nonhuman_positions) || (job in GLOBL.security_positions))
 
 /proc/get_job_datums()
+	RETURN_TYPE(/list)
+
 	var/list/occupations = list()
 
 	for(var/job_name in GLOBL.all_jobs)
@@ -13,6 +15,8 @@
 	return occupations
 
 /proc/get_alternate_titles(job)
+	RETURN_TYPE(/list)
+
 	var/list/jobs = get_job_datums()
 	var/list/titles = list()
 
@@ -25,4 +29,6 @@
 	return titles
 
 /proc/get_all_job_icons() //For all existing HUD icons
+	RETURN_TYPE(/list)
+
 	return GLOBL.all_jobs + list("Prisoner")
