@@ -1,5 +1,5 @@
 /mob/living/silicon/ai/proc/get_camera_list()
-	if(src.stat == DEAD)
+	if(stat == DEAD)
 		return
 
 	var/list/L = list()
@@ -11,7 +11,7 @@
 	var/list/T = list()
 	T["Cancel"] = "Cancel"
 	for(var/obj/machinery/camera/C in L)
-		var/list/tempnetwork = C.network & src.network
+		var/list/tempnetwork = C.network & network
 		if(length(tempnetwork))
 			T[text("[][]", C.c_tag, (C.can_use() ? null : " (Deactivated)"))] = C
 
@@ -24,7 +24,7 @@
 	set category = "AI Commands"
 	set name = "Show Camera List"
 
-	if(src.stat == DEAD)
+	if(stat == DEAD)
 		src << "You can't list the cameras because you are dead!"
 		return
 
@@ -33,7 +33,7 @@
 
 	var/obj/machinery/camera/C = track.cameras[camera]
 	track = null
-	src.eyeobj.setLoc(C)
+	eyeobj.setLoc(C)
 
 	return
 
@@ -95,7 +95,7 @@
 			TB.others[name] = M
 
 	var/list/targets = sortList(TB.humans) + sortList(TB.others)
-	src.track = TB
+	track = TB
 	return targets
 
 /mob/living/silicon/ai/proc/ai_camera_track(target_name in trackable_mobs())
@@ -103,14 +103,14 @@
 	set name = "Track With Camera"
 	set desc = "Select who you would like to track."
 
-	if(src.stat == DEAD)
+	if(stat == DEAD)
 		src << "You can't track with camera because you are dead!"
 		return
 	if(!target_name)
-		src.cameraFollow = null
+		cameraFollow = null
 
 	var/mob/target = (isnull(track.humans[target_name]) ? track.others[target_name] : track.humans[target_name])
-	src.track = null
+	track = null
 	ai_actual_track(target)
 
 /mob/living/silicon/ai/proc/ai_actual_track(mob/living/target as mob)
@@ -174,7 +174,7 @@
 /obj/machinery/camera/attack_ai(var/mob/living/silicon/ai/user as mob)
 	if(!istype(user))
 		return
-	if(!src.can_use())
+	if(!can_use())
 		return
 	user.eyeobj.setLoc(get_turf(src))
 

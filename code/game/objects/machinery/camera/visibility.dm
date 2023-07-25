@@ -2,10 +2,10 @@
 // An addition to deactivate which removes/adds the camera from the chunk list based on if it works or not.
 /obj/machinery/camera/deactivate(user as mob, choice = 1)
 	..(user, choice)
-	if(src.can_use())
+	if(can_use())
 		global.CTcameranet.addCamera(src)
 	else
-		src.set_light(0)
+		set_light(0)
 		global.CTcameranet.removeCamera(src)
 
 /obj/machinery/camera/initialize()

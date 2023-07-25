@@ -29,7 +29,7 @@
 	switch(state)
 		if(0)
 			// State 0
-			if(iswrench(W) && isturf(src.loc))
+			if(iswrench(W) && isturf(loc))
 				playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 				user << "You wrench the assembly into place."
 				anchored = TRUE
@@ -92,8 +92,8 @@
 				input = strip_html(input(usr, "How would you like to name the camera?", "Set Camera Name", temptag))
 
 				state = 4
-				var/obj/machinery/camera/C = new(src.loc)
-				src.loc = C
+				var/obj/machinery/camera/C = new(loc)
+				loc = C
 				C.assembly = src
 
 				C.auto_turn()

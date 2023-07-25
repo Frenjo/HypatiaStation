@@ -103,7 +103,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 						secondsElectrified -= 1
 						if(secondsElectrified < 0)
 							secondsElectrified = 0
-//						src.updateUsrDialog()  //Commented this line out to keep the airlock from clusterfucking you with electricity. --NeoFite
+//						updateUsrDialog()  //Commented this line out to keep the airlock from clusterfucking you with electricity. --NeoFite
 						sleep(10)
 
 		if(AIRLOCK_WIRE_OPEN_DOOR)

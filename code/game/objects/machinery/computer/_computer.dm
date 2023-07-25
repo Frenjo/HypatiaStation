@@ -24,19 +24,16 @@
 
 /obj/machinery/computer/meteorhit(obj/O as obj)
 	for(var/x in verbs)
-		verbs -= x
+		verbs.Remove(x)
 	set_broken()
 	var/datum/effect/system/smoke_spread/smoke = PoolOrNew(/datum/effect/system/smoke_spread)
 	smoke.set_up(5, 0, src)
 	smoke.start()
-	return
-
 
 /obj/machinery/computer/emp_act(severity)
 	if(prob(20 / severity))
 		set_broken()
 	..()
-
 
 /obj/machinery/computer/ex_act(severity)
 	switch(severity)
@@ -57,13 +54,11 @@
 					verbs -= x
 				set_broken()
 		else
-	return
 
 /obj/machinery/computer/bullet_act(obj/item/projectile/Proj)
 	if(prob(Proj.damage))
 		set_broken()
 	..()
-
 
 /obj/machinery/computer/blob_act()
 	if (prob(75))
@@ -84,35 +79,31 @@
 		icon_state = initial(icon_state)
 		icon_state += "0"
 
-
-
 /obj/machinery/computer/power_change()
-	..()
+	. = ..()
 	update_icon()
 	if(stat & NOPOWER)
 		set_light(0)
 	else
 		set_light(light_range_on, light_power_on)
 
-
 /obj/machinery/computer/proc/set_broken()
 	stat |= BROKEN
 	update_icon()
 
-
 /obj/machinery/computer/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/screwdriver) && circuit)
+	if(istype(I, /obj/item/screwdriver) && isnotnull(circuit))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
-			var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
+			var/obj/structure/computerframe/A = new /obj/structure/computerframe(loc)
 			var/obj/item/circuitboard/M = new circuit(A)
 			A.circuit = M
 			A.anchored = TRUE
 			for(var/obj/C in src)
-				C.loc = src.loc
-			if(src.stat & BROKEN)
+				C.loc = loc
+			if(stat & BROKEN)
 				FEEDBACK_BROKEN_GLASS_FALLS(user)
-				new /obj/item/shard(src.loc)
+				new /obj/item/shard(loc)
 				A.state = 3
 				A.icon_state = "3"
 			else
@@ -121,5 +112,4 @@
 				A.icon_state = "4"
 			qdel(src)
 	else
-		src.attack_hand(user)
-	return
+		attack_hand(user)

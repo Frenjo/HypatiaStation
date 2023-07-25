@@ -13,9 +13,9 @@
 	var/c_tag_order = 999
 	var/status = 1.0
 	anchored = TRUE
-	var/panel_open = 0 // 0 = Closed / 1 = Open
+	var/panel_open = FALSE
 	var/invuln = null
-	var/bugged = 0
+	var/bugged = FALSE
 	var/obj/item/camera_assembly/assembly = null
 
 	// WIRES
@@ -26,25 +26,25 @@
 	var/short_range = 2
 
 	var/light_disabled = 0
-	var/alarm_on = 0
-	var/busy = 0
+	var/alarm_on = FALSE
+	var/busy = FALSE
 
 /obj/machinery/camera/New()
-	wires = new(src)
-	assembly = new(src)
+	wires = new /datum/wires/camera(src)
+	assembly = new /obj/item/camera_assembly(src)
 	assembly.state = 4
 	/* // Use this to look for cameras that have the same c_tag.
 	for(var/obj/machinery/camera/C in cameranet.cameras)
-		var/list/tempnetwork = C.network&src.network
-		if(C != src && C.c_tag == src.c_tag && length(tempnetwork))
-			world.log << "[src.c_tag] [src.x] [src.y] [src.z] conflicts with [C.c_tag] [C.x] [C.y] [C.z]"
+		var/list/tempnetwork = C.network & network
+		if(C != src && C.c_tag == c_tag && length(tempnetwork))
+			world.log << "[c_tag] [x] [y] [z] conflicts with [C.c_tag] [C.x] [C.y] [C.z]"
 	*/
 	if(!length(network))
 		if(loc)
-			error("[src.name] in [get_area(src)] (x:[src.x] y:[src.y] z:[src.z] has errored. [src.network ? "Empty network list" : "Null network list"]")
+			error("[name] in [get_area(src)] (x:[x] y:[y] z:[z] has errored. [network ? "Empty network list" : "Null network list"]")
 		else
-			error("[src.name] in [get_area(src)]has errored. [src.network ? "Empty network list" : "Null network list"]")
-		ASSERT(src.network)
+			error("[name] in [get_area(src)]has errored. [network ? "Empty network list" : "Null network list"]")
+		ASSERT(network)
 		ASSERT(length(network))
 	..()
 
@@ -84,7 +84,7 @@
 			..()
 
 /obj/machinery/camera/ex_act(severity)
-	if(src.invuln)
+	if(invuln)
 		return
 	else
 		..(severity)
@@ -94,7 +94,7 @@
 	return
 
 /obj/machinery/camera/proc/setViewRange(num = 7)
-	src.view_range = num
+	view_range = num
 	global.CTcameranet.updateVisibility(src, 0)
 
 /obj/machinery/camera/proc/shock(mob/living/user)
@@ -132,7 +132,7 @@
 	else if(iswelder(W) && wires.CanDeconstruct())
 		if(weld(W, user))
 			if(assembly)
-				assembly.loc = src.loc
+				assembly.loc = loc
 				assembly.state = 1
 			qdel(src)
 
@@ -168,15 +168,15 @@
 					to_chat(O, "[U] holds \a [itemname] up to one of the cameras...")
 					O << browse("<HTML><HEAD><TITLE>[itemname]</TITLE></HEAD><BODY><TT>[info]</TT></BODY></HTML>", "window=[itemname]")
 	else if(istype(W, /obj/item/camera_bug))
-		if(!src.can_use())
+		if(!can_use())
 			to_chat(user, SPAN_INFO("Camera non-functional."))
 			return
-		if(src.bugged)
+		if(bugged)
 			to_chat(user, SPAN_INFO("Camera bug removed."))
-			src.bugged = 0
+			bugged = 0
 		else
 			to_chat(user, SPAN_INFO("Camera bugged."))
-			src.bugged = 1
+			bugged = 1
 	else if(istype(W, /obj/item/melee/energy/blade))//Putting it here last since it's a special case. I wonder if there is a better way to do these than type casting.
 		deactivate(user, 2)//Here so that you can disconnect anyone viewing the camera, regardless if it's on or off.
 		var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
@@ -192,8 +192,8 @@
 
 /obj/machinery/camera/proc/deactivate(user as mob, choice = 1)
 	if(choice == 1)
-		status = !src.status
-		if(!src.status)
+		status = !status
+		if(!status)
 			visible_message(SPAN_WARNING("[user] has deactivated [src]!"))
 			playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 			icon_state = "[initial(icon_state)]1"
@@ -215,12 +215,12 @@
 				to_chat(O, "The screen bursts into static.")
 
 /obj/machinery/camera/proc/triggerCameraAlarm()
-	alarm_on = 1
+	alarm_on = TRUE
 	for(var/mob/living/silicon/S in GLOBL.mob_list)
 		S.triggerAlarm("Camera", get_area(src), list(src), src)
 
 /obj/machinery/camera/proc/cancelCameraAlarm()
-	alarm_on = 0
+	alarm_on = FALSE
 	for(var/mob/living/silicon/S in GLOBL.mob_list)
 		S.cancelAlarm("Camera", get_area(src), src)
 
@@ -249,13 +249,13 @@
 			//If someone knows a better way to do this, let me know. -Giacom
 			switch(i)
 				if(NORTH)
-					src.set_dir(SOUTH)
+					set_dir(SOUTH)
 				if(SOUTH)
-					src.set_dir(NORTH)
+					set_dir(NORTH)
 				if(WEST)
-					src.set_dir(EAST)
+					set_dir(EAST)
 				if(EAST)
-					src.set_dir(WEST)
+					set_dir(WEST)
 			break
 
 //Return a working camera that can see a given mob
@@ -282,13 +282,13 @@
 	to_chat(user, SPAN_NOTICE("You start to weld the [src]..."))
 	playsound(src, 'sound/items/Welder.ogg', 50, 1)
 	WT.eyecheck(user)
-	busy = 1
+	busy = TRUE
 	if(do_after(user, 100))
-		busy = 0
+		busy = FALSE
 		if(!WT.isOn())
 			return 0
 		return 1
-	busy = 0
+	busy = FALSE
 	return 0
 
 /obj/machinery/camera/interact(mob/living/user as mob)

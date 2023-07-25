@@ -31,7 +31,7 @@
 	var/width = 1
 
 /obj/machinery/door/New()
-	..()
+	. = ..()
 	if(density)
 		layer = closed_layer // Above most items if closed.
 		explosion_resistance = initial(explosion_resistance)
@@ -72,7 +72,7 @@
 
 	if(istype(AM, /obj/machinery/bot))
 		var/obj/machinery/bot/bot = AM
-		if(src.check_access(bot.botcard))
+		if(check_access(bot.botcard))
 			if(density)
 				open()
 		return
@@ -80,12 +80,11 @@
 	if(ismecha(AM))
 		var/obj/mecha/mecha = AM
 		if(density)
-			if(mecha.occupant && (src.allowed(mecha.occupant) || src.check_access_list(mecha.operation_req_access)))
+			if(mecha.occupant && (allowed(mecha.occupant) || check_access_list(mecha.operation_req_access)))
 				open()
 			else
 				flick("door_deny", src)
 		return
-	return
 
 /obj/machinery/door/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group)
@@ -99,8 +98,8 @@
 		return
 	if(user.last_airflow > world.time - global.vsc.airflow_delay) //Fakkit
 		return
-	src.add_fingerprint(user)
-	if(!src.requiresID())
+	add_fingerprint(user)
+	if(!requiresID())
 		user = null
 
 	if(density)
@@ -108,20 +107,18 @@
 			open()
 		else
 			flick("door_deny", src)
-	return
 
 /obj/machinery/door/meteorhit(obj/M as obj)
-	src.open()
-	return
+	open()
 
 /obj/machinery/door/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/door/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/door/attack_hand(mob/user as mob)
-	return src.attackby(user, user)
+	return attackby(user, user)
 
 /obj/machinery/door/attack_tk(mob/user as mob)
 	if(requiresID() && !allowed(null))
@@ -130,33 +127,31 @@
 /obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/device/detective_scanner))
 		return
-	if(src.operating || isrobot(user))
+	if(operating || isrobot(user))
 		return //borgs can't attack doors open because it conflicts with their AI-like interaction with them.
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if(!Adjacent(user))
 		user = null
-	if(!src.requiresID())
+	if(!requiresID())
 		user = null
-	if(src.density && (istype(I, /obj/item/card/emag) || istype(I, /obj/item/melee/energy/blade)))
+	if(density && (istype(I, /obj/item/card/emag) || istype(I, /obj/item/melee/energy/blade)))
 		flick("door_spark", src)
 		sleep(6)
 		open()
 		operating = -1
 		return 1
-	if(src.allowed(user))
-		if(src.density)
+	if(allowed(user))
+		if(density)
 			open()
 		else
 			close()
 		return
-	if(src.density)
+	if(density)
 		flick("door_deny", src)
-	return
 
 /obj/machinery/door/blob_act()
 	if(prob(40))
 		qdel(src)
-	return
 
 /obj/machinery/door/emp_act(severity)
 	if(prob(20 / severity) && (istype(src, /obj/machinery/door/airlock) || istype(src, /obj/machinery/door/window)))
@@ -180,14 +175,12 @@
 				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 				s.set_up(2, 1, src)
 				s.start()
-	return
 
 /obj/machinery/door/update_icon()
 	if(density)
 		icon_state = "door1"
 	else
 		icon_state = "door0"
-	return
 
 /obj/machinery/door/proc/do_animate(animation)
 	switch(animation)
@@ -203,7 +196,6 @@
 				flick("doorc1", src)
 		if("deny")
 			flick("door_deny", src)
-	return
 
 /obj/machinery/door/proc/open()
 	if(!density)
@@ -217,11 +209,11 @@
 
 	do_animate("opening")
 	icon_state = "door0"
-	src.set_opacity(0)
+	set_opacity(0)
 	//sleep(10)
 	sleep(7) // Makes doors open slightly quicker. -Frenjo
-	src.layer = open_layer
-	src.density = FALSE
+	layer = open_layer
+	density = FALSE
 	explosion_resistance = 0
 	update_icon()
 	set_opacity(0)
@@ -247,9 +239,9 @@
 	operating = 1
 
 	do_animate("closing")
-	src.density = TRUE
+	density = TRUE
 	explosion_resistance = initial(explosion_resistance)
-	src.layer = closed_layer
+	layer = closed_layer
 	//sleep(10)
 	sleep(7) // Makes doors close slightly quicker. -Frenjo
 	update_icon()
@@ -260,9 +252,8 @@
 
 	//I shall not add a check every x ticks if a door has closed over some fire.
 	var/obj/fire/fire = locate() in loc
-	if(fire)
+	if(isnotnull(fire))
 		qdel(fire)
-	return
 
 /obj/machinery/door/proc/requiresID()
 	return 1
@@ -279,7 +270,7 @@
 
 /obj/machinery/door/proc/update_heat_protection(turf/simulated/source)
 	if(istype(source))
-		if(src.density && (src.opacity || src.heat_proof))
+		if(density && (opacity || heat_proof))
 			source.thermal_conductivity = DOOR_HEAT_TRANSFER_COEFFICIENT
 		else
 			source.thermal_conductivity = initial(source.thermal_conductivity)
@@ -288,7 +279,6 @@
 	var/obj/machinery/door/airlock/A = src
 	if(!A.density && !A.operating && !A.locked && !A.welded && A.autoclose)
 		close()
-	return
 
 /obj/machinery/door/Move(new_loc, new_dir)
 	update_nearby_tiles()
