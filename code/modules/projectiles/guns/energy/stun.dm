@@ -8,7 +8,7 @@
 
 	cell_type = /obj/item/cell/crap
 
-	has_firemodes = FALSE
+	gun_setting = GUN_SETTING_STUN
 	pulse_projectile_types = list(
 		GUN_SETTING_STUN = /obj/item/projectile/energy/electrode
 	)
@@ -58,6 +58,7 @@
 
 	charge_cost = 125
 
+	gun_setting = GUN_SETTING_STUN
 	pulse_projectile_types = list(
 		GUN_SETTING_STUN = /obj/item/projectile/energy/electrode
 	)
@@ -94,7 +95,6 @@
 
 	cell_type = /obj/item/cell/crap
 
-	has_firemodes = FALSE
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(
 		GUN_SETTING_SPECIAL = /obj/item/projectile/energy/bolt

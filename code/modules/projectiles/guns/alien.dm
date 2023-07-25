@@ -1,6 +1,6 @@
-//Vox pinning weapon.
+// Vox pinning weapon.
 
-//Ammo.
+// Ammo.
 /obj/item/spike
 	name = "alloy spike"
 	desc = "It's about a foot of weird silver metal with a wicked point."
@@ -8,15 +8,18 @@
 	icon_state = "metal-rod"
 	item_state = "bolt"
 
-	sharp = TRUE
 	throwforce = 5
+	sharp = TRUE
 
 	w_class = 2
 
-//Launcher.
+// Launcher.
 /obj/item/spikethrower
 	name = "Vox spike thrower"
 	desc = "A vicious alien projectile weapon. Parts of it quiver gelatinously, as though the thing is insectile and alive."
+	icon = 'icons/obj/weapons/gun.dmi'
+	icon_state = "spikethrower3"
+	item_state = "spikethrower"
 
 	var/last_regen = 0
 	var/spike_gen_time = 100
@@ -25,13 +28,9 @@
 	var/obj/item/spike/spike
 	var/fire_force = 30
 
-	//Going to make an effort to get this compatible with the threat targetting system.
+	// Going to make an effort to get this compatible with the threat targetting system.
 	var/tmp/list/mob/living/target
 	var/tmp/mob/living/last_moved_mob
-
-	icon = 'icons/obj/weapons/gun.dmi'
-	icon_state = "spikethrower3"
-	item_state = "spikethrower"
 
 /obj/item/spikethrower/New()
 	. = ..()
@@ -58,7 +57,7 @@
 /obj/item/spikethrower/afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
 	if(flag)
 		return
-	if(user && user.client && user.client.gun_mode && !(A in target))
+	if(isnotnull(user?.client) && user.client.gun_mode && !(A in target))
 		//TODO: Make this compatible with targetting (prolly have to actually make it a gun subtype, ugh.)
 		//PreFire(A,user,params)
 	else
@@ -90,7 +89,7 @@
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.species && H.species.name != SPECIES_VOX)
+		if(H.species?.name != SPECIES_VOX)
 			to_chat(user, SPAN_WARNING("The weapon does not respond to you!"))
 			return
 	else
@@ -101,37 +100,41 @@
 		to_chat(user, SPAN_WARNING("The weapon has nothing to fire!"))
 		return
 
-	if(!spike)
-		spike = new(src) //Create a spike.
+	if(isnull(spike))
+		spike = new /obj/item/spike(src) //Create a spike.
 		spike.add_fingerprint(user)
 		spikes--
 
-	user.visible_message(SPAN_WARNING("[user] fires [src]!"), SPAN_WARNING("You fire [src]!"))
+	user.visible_message(
+		SPAN_WARNING("[user] fires [src]!"),
+		SPAN_WARNING("You fire [src]!")
+	)
 	spike.loc = get_turf(src)
 	spike.throw_at(target, 10, fire_force)
 	spike = null
 	update_icon()
 
-//This gun only functions for armalis. The on-sprite is too huge to render properly on other sprites.
+// This gun only functions for armalis. The on-sprite is too huge to render properly on other sprites.
 /obj/item/gun/energy/noisecannon
 	name = "alien heavy cannon"
 	desc = "It's some kind of enormous alien weapon, as long as a man is tall."
-
-	icon = 'icons/obj/weapons/gun.dmi' //Actual on-sprite is handled by icon_override.
+	icon = 'icons/obj/weapons/gun.dmi' // Actual on-sprite is handled by icon_override.
 	icon_state = "noisecannon"
 	item_state = "noisecannon"
-	recoil = 1
 
 	force = 10
 
-	has_firemodes = 0
+	fire_sound = 'sound/effects/basscannon.ogg'
+	fire_delay = 4 SECONDS
+
+	recoil = TRUE
+
+	cell_type = /obj/item/cell/super
+
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(
 		GUN_SETTING_SPECIAL = /obj/item/projectile/energy/sonic
 	)
-	cell_type = /obj/item/cell/super
-	fire_delay = 40
-	fire_sound = 'sound/effects/basscannon.ogg'
 
 	var/mode = 1
 
@@ -157,14 +160,15 @@
 	name = "distortion"
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
 	icon_state = "particle"
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+
 	damage = 60
 	damage_type = BRUTE
 	flag = "bullet"
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
 
-	embed = 0
-	weaken = 5
 	stun = 5
+	weaken = 5
+	embed = FALSE
 
 /obj/item/projectile/energy/sonic/proc/split()
 	//TODO: create two more projectiles to either side of this one, fire at targets to the side of target turf.

@@ -11,11 +11,13 @@
 	var/cell_type = /obj/item/cell	// What type of power cell this uses.
 	var/charge_cost = 100			// How much energy is needed to fire.
 
-	var/has_firemodes = TRUE
+	// This one is set TRUE/FALSE automatically based on whether both...
+	// ... pulse_projectile_types and beam_projectile_types are lists or null.
+	var/has_firemodes
 	var/gun_mode = GUN_MODE_PULSE
-	var/gun_setting = GUN_SETTING_STUN
-	var/list/pulse_projectile_types = list()
-	var/list/beam_projectile_types = list()
+	var/gun_setting = null
+	var/list/pulse_projectile_types = null
+	var/list/beam_projectile_types = null
 	var/projectile_type
 
 /obj/item/gun/energy/emp_act(severity)
@@ -25,6 +27,9 @@
 
 /obj/item/gun/energy/New()
 	. = ..()
+	// If both lists have been assigned on a subtype, then it has firemodes, otherwise it doesn't and is locked at its default.
+	has_firemodes = (isnotnull(pulse_projectile_types) && isnotnull(beam_projectile_types))
+
 	if(isnotnull(cell_type))
 		power_supply = new cell_type(src)
 	else
@@ -57,7 +62,7 @@
 
 /obj/item/gun/energy/AltClick(mob/user)
 	if(!has_firemodes)
-		to_chat(user, SPAN_WARNING("\The [src] does not have adjustable fire modes."))
+		to_chat(user, SPAN_WARNING("\The [src] does not have adjustable firing modes."))
 		return
 
 	switch(gun_mode)

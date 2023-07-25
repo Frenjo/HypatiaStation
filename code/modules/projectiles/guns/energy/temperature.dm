@@ -12,7 +12,6 @@
 
 	cell_type = /obj/item/cell/crap
 
-	has_firemodes = FALSE
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/temp)
 

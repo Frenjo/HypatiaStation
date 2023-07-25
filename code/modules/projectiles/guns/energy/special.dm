@@ -10,7 +10,6 @@
 
 	fire_sound = 'sound/weapons/Laser.ogg'
 
-	has_firemodes = FALSE
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/ion)
 
@@ -30,7 +29,6 @@
 
 	fire_sound = 'sound/weapons/pulse3.ogg'
 
-	has_firemodes = FALSE
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/declone)
 
@@ -50,7 +48,6 @@
 
 	charge_cost = 200
 
-	has_firemodes = FALSE
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/change)
 
@@ -103,7 +100,6 @@
 
 	modifystate = "floramut"
 
-	has_firemodes = FALSE
 	gun_setting = GUN_SETTING_KILL
 	pulse_projectile_types = list(
 		GUN_SETTING_KILL = /obj/item/projectile/energy/floramut,
@@ -157,7 +153,6 @@
 
 	cell_type = /obj/item/cell/potato
 
-	has_firemodes = FALSE
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/meteor)
 
@@ -200,7 +195,6 @@
 
 	fire_sound = 'sound/weapons/Laser.ogg'
 
-	has_firemodes = FALSE
 	gun_mode = GUN_MODE_BEAM
 	gun_setting = GUN_SETTING_SPECIAL
 	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/mindflayer)
@@ -212,7 +206,6 @@
 	icon_state = "focus"
 	item_state = "focus"
 
-	has_firemodes = FALSE
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/forcebolt)
 	/*
@@ -236,7 +229,6 @@
 
 	fire_sound = 'sound/effects/stealthoff.ogg'
 
-	has_firemodes = FALSE
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/plasma)
 
