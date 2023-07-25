@@ -1,6 +1,7 @@
 /obj/item/projectile/forcebolt
 	name = "force bolt"
 	icon_state = "ice_1"
+
 	damage = 20
 	flag = "energy"
 
@@ -15,12 +16,11 @@
 
 /*
 /obj/item/projectile/forcebolt/strong/on_hit(var/atom/target, var/blocked = 0)
-
 	// NONE OF THIS WORKS. DO NOT USE.
 	var/throwdir = null
 
 	for(var/mob/M in hearers(2, src))
-		if(M.loc != src.loc)
+		if(M.loc != loc)
 			throwdir = get_dir(src,target)
 			M.throw_at(get_edge_target_turf(M, throwdir),15,1)
 	return ..()

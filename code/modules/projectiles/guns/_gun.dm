@@ -4,34 +4,38 @@
 	icon = 'icons/obj/weapons/gun.dmi'
 	icon_state = "detective"
 	item_state = "gun"
+
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	matter_amounts = list(MATERIAL_METAL = 2000)
-	w_class = 3.0
+	origin_tech = list(RESEARCH_TECH_COMBAT = 1)
+
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 5
-	force = 5.0
-	origin_tech = list(RESEARCH_TECH_COMBAT = 1)
+	force = 5
 	attack_verb = list("struck", "hit", "bashed")
 
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
-	var/obj/item/projectile/in_chamber = null
-	var/caliber = ""
-	var/silenced = 0
-	var/recoil = 0
-	var/ejectshell = 1
-	var/clumsy_check = 1
-	var/tmp/list/mob/living/target //List of who yer targeting.
-	var/tmp/lock_time = -100
-	var/tmp/mouthshoot = FALSE ///To stop people from suiciding twice... >.>
-	var/automatic = 0 //Used to determine if you can target multiple people.
-	var/tmp/mob/living/last_moved_mob //Used to fire faster at more than one person.
-	var/tmp/told_cant_shoot = 0 //So that it doesn't spam them with the fact they cannot hit them.
-	var/firerate = 0 	//0 for keep shooting until aim is lowered
-						//1 for one bullet after tarrget moves and aim is lowered
-	var/fire_delay = 6
+	var/fire_delay = 0.6 SECONDS
 	var/last_fired = 0
+	var/firerate = 0 	// 0 for keep shooting until aim is lowered.
+						// 1 for one bullet after target moves and aim is lowered.
+
+	var/silenced = 0
+	var/recoil = FALSE
+	var/ejectshell = TRUE
+	var/clumsy_check = TRUE
+	var/automatic = FALSE	// Used to determine if you can target multiple people.
+
+	var/caliber = ""
+	var/obj/item/projectile/in_chamber = null
+
+	var/tmp/list/mob/living/target = null	// List of who yer targeting.
+	var/tmp/lock_time = -100
+	var/tmp/mouthshoot = FALSE				// To stop people from suiciding twice... >.>
+	var/tmp/mob/living/last_moved_mob		// Used to fire faster at more than one person.
+	var/tmp/told_cant_shoot = FALSE			// So that it doesn't spam them with the fact they cannot hit them.
 
 /obj/item/gun/proc/ready_to_fire()
 	if(world.time >= last_fired + fire_delay)
@@ -193,7 +197,7 @@
 		user.visible_message("*click click*", SPAN_DANGER("*click*"))
 		playsound(user, 'sound/weapons/empty.ogg', 100, 1)
 	else
-		src.visible_message("*click click*")
+		visible_message("*click click*")
 		playsound(src, 'sound/weapons/empty.ogg', 100, 1)
 
 /obj/item/gun/attack(mob/living/M as mob, mob/living/user as mob, def_zone)

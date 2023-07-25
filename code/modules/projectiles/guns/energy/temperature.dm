@@ -1,18 +1,20 @@
 /obj/item/gun/energy/temperature
 	name = "temperature gun"
-	icon_state = "freezegun"
-	fire_sound = 'sound/weapons/pulse3.ogg'
 	desc = "A gun that changes temperatures."
-	charge_cost = 100
+	icon_state = "freezegun"
+
 	origin_tech = list(
 		RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_POWERSTORAGE = 3,
 		RESEARCH_TECH_MAGNETS = 2
 	)
 
-	has_firemodes = 0
+	fire_sound = 'sound/weapons/pulse3.ogg'
+
+	cell_type = /obj/item/cell/crap
+
+	has_firemodes = FALSE
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/temp)
-	cell_type = /obj/item/cell/crap
 
 	var/temperature = T20C
 	var/current_temperature = T20C
@@ -45,17 +47,17 @@
 	if(..())
 		return
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 
 	if(href_list["temp"])
 		var/amount = text2num(href_list["temp"])
 		if(amount > 0)
-			src.current_temperature = min(500, src.current_temperature + amount)
+			current_temperature = min(500, current_temperature + amount)
 		else
-			src.current_temperature = max(0, src.current_temperature + amount)
-	if(ismob(src.loc))
-		attack_self(src.loc)
-	src.add_fingerprint(usr)
+			current_temperature = max(0, current_temperature + amount)
+	if(ismob(loc))
+		attack_self(loc)
+	add_fingerprint(usr)
 	return
 
 /obj/item/gun/energy/temperature/process()
@@ -80,4 +82,3 @@
 				temperature += 10
 		else
 			temperature = current_temperature
-	return

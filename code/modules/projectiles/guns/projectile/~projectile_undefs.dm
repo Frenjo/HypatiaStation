@@ -1,0 +1,3 @@
+#undef SPEEDLOADER
+#undef FROM_BOX
+#undef MAGAZINE

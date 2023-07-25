@@ -1,9 +1,10 @@
 /obj/item/projectile/change
 	name = "bolt of change"
 	icon_state = "ice_1"
+
 	damage = 0
 	damage_type = BURN
-	nodamage = 1
+	nodamage = TRUE
 	flag = "energy"
 
 /obj/item/projectile/change/on_hit(atom/change)
@@ -41,7 +42,7 @@
 		switch(randomize)
 			if("monkey")
 				new_mob = new /mob/living/carbon/monkey(M.loc)
-				new_mob.universal_speak = 1
+				new_mob.universal_speak = TRUE
 			if("robot")
 				new_mob = new /mob/living/silicon/robot(M.loc)
 				new_mob.gender = M.gender
@@ -55,11 +56,11 @@
 					new_mob = new /mob/living/carbon/slime/adult(M.loc)
 				else
 					new_mob = new /mob/living/carbon/slime(M.loc)
-				new_mob.universal_speak = 1
+				new_mob.universal_speak = TRUE
 			if("xeno")
 				var/alien_caste = pick("Hunter", "Sentinel", "Drone", "Larva")
 				new_mob = create_new_xenomorph(alien_caste, M.loc)
-				new_mob.universal_speak = 1
+				new_mob.universal_speak = TRUE
 			if("human")
 				new_mob = new /mob/living/carbon/human(M.loc, pick(GLOBL.all_species))
 				if(M.gender == MALE)
@@ -81,10 +82,10 @@
 				return
 
 		for(var/obj/effect/proc_holder/spell/S in M.spell_list)
-			new_mob.spell_list += new S.type
+			new_mob.spell_list.Add(new S.type())
 
 		new_mob.a_intent = "hurt"
-		if(M.mind)
+		if(isnotnull(M.mind))
 			M.mind.transfer_to(new_mob)
 		else
 			new_mob.key = M.key

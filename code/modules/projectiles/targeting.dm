@@ -1,16 +1,18 @@
 /obj/item/gun/verb/toggle_firerate()
-	set name = "Toggle Firerate"
 	set category = "Object"
+	set name = "Toggle Firerate"
+
 	firerate = !firerate
-	if(firerate == 0)
+	if(!firerate)
 		to_chat(loc, "You will now continue firing when your target moves.")
 	else
 		to_chat(loc, "You will now only fire once, then lower your aim, when your target moves.")
 
 /obj/item/gun/verb/lower_aim()
-	set name = "Lower Aim"
 	set category = "Object"
-	if(target)
+	set name = "Lower Aim"
+
+	if(isnotnull(target))
 		stop_aim()
 		usr.visible_message(SPAN_INFO("\The [usr] lowers \the [src]..."))
 
@@ -21,23 +23,20 @@
 //Removing the lock and the buttons.
 /obj/item/gun/dropped(mob/user as mob)
 	stop_aim()
-	if(user.client)
-		user.client.remove_gun_icons()
+	user.client?.remove_gun_icons()
 	return ..()
 
 /obj/item/gun/equipped(mob/user, slot)
 	if(slot != SLOT_ID_L_HAND && slot != SLOT_ID_R_HAND)
 		stop_aim()
-		if(user.client)
-			user.client.remove_gun_icons()
+		user.client?.remove_gun_icons()
 	return ..()
 
-//Removes lock fro mall targets
+// Removes lock from all targets.
 /obj/item/gun/proc/stop_aim()
-	if(target)
+	if(isnotnull(target))
 		for(var/mob/living/M in target)
-			if(M)
-				M.NotTargeted(src) //Untargeting people.
+			M?.NotTargeted(src) //Untargeting people.
 		qdel(target)
 
 //Compute how to fire.....
@@ -62,12 +61,11 @@
 
 //Aiming at the target mob.
 /obj/item/gun/proc/Aim(mob/living/M)
-	if(!target || !(M in target))
+	if(isnull(target) || !(M in target))
 		lock_time = world.time
 		if(target && !automatic) //If they're targeting someone and they have a non automatic weapon.
 			for(var/mob/living/L in target)
-				if(L)
-					L.NotTargeted(src)
+				L?.NotTargeted(src)
 			qdel(target)
 			usr.visible_message(SPAN_DANGER("[usr] turns \the [src] on [M]!"))
 		else
@@ -98,9 +96,9 @@
 				Fire(T, usr, reflex = 1)
 		else if(!told_cant_shoot)
 			to_chat(M, SPAN_WARNING("They can't be hit from here!"))
-			told_cant_shoot = 1
+			told_cant_shoot = TRUE
 			spawn(30)
-				told_cant_shoot = 0
+				told_cant_shoot = FALSE
 	else
 		click_empty(M)
 
@@ -125,15 +123,15 @@
 			Y1 += s
 			while(1)
 				T = locate(X1, Y1, Z)
-				if(!T)
+				if(isnull(T))
 					return 0
 				M = locate() in T
-				if(M)
+				if(isnotnull(M))
 					return M
 				M = locate() in orange(1, T) - exc_obj
-				if(M)
+				if(isnotnull(M))
 					return M
-				Y1+=s
+				Y1 += s
 	else
 		var/m = (32 * (Y2 - Y1) + (PY2 - PY1)) / (32 * (X2 - X1) + (PX2 - PX1))
 		var/b = (Y1 + PY1 / 32-0.015625) - m * (X1 + PX1 / 32 - 0.015625) //In tiles
@@ -148,30 +146,30 @@
 			else
 				X1 += signX //Line exits tile horizontally
 			T = locate(X1, Y1, Z)
-			if(!T)
+			if(isnull(T))
 				return 0
 			M = locate() in T
-			if(M)
+			if(isnotnull(M))
 				return M
 			M = locate() in orange(1, T) - exc_obj
-			if(M)
+			if(isnotnull(M))
 				return M
 	return 0
 
 
 //Targeting management procs
-/mob/var
-	list/targeted_by
-	target_time = -100
-	last_move_intent = -100
-	last_target_click = -5
-	target_locked = null
+/mob
+	var/list/targeted_by
+	var/target_time = -100
+	var/last_move_intent = -100
+	var/last_target_click = -5
+	var/target_locked = null
 
 /mob/living/proc/Targeted(obj/item/gun/I) //Self explanitory.
-	if(!I.target)
+	if(isnull(I.target))
 		I.target = list(src)
 	else if(I.automatic && length(I.target) < 5) //Automatic weapon, they can hold down a room.
-		I.target += src
+		I.target.Add(src)
 	else if(length(I.target) >= 5)
 		if(ismob(I.loc))
 			to_chat(I.loc, "You can only target 5 people at once!")
@@ -181,9 +179,9 @@
 	for(var/mob/living/K in viewers(usr))
 		K << 'sound/weapons/TargetOn.ogg'
 
-	if(!targeted_by)
+	if(isnull(targeted_by))
 		targeted_by = list()
-	targeted_by += I
+	targeted_by.Add(I)
 	I.lock_time = world.time + 20 //Target has 2 second to realize they're targeted and stop (or target the opponent).
 	to_chat(src, "((\red <b>Your character is being targeted. They have 2 seconds to stop any click or move actions.</b> \black While targeted, they may \
 	drag and drop items in or into the map, speak, and click on interface buttons. Clicking on the map objects (floors and walls are fine), their items \
@@ -202,8 +200,8 @@
 
 	//Adding the buttons to the controller person
 	var/mob/living/T = I.loc
-	if(T)
-		if(T.client)
+	if(isnotnull(T))
+		if(isnotnull(T.client))
 			T.client.add_gun_icons()
 		else
 			I.lower_aim()
@@ -243,7 +241,7 @@
 	if(!length(I.target))
 		qdel(I.target)
 	var/mob/living/T = I.loc //Remove the targeting icons
-	if(T && ismob(T) && !I.target)
+	if(isnotnull(T) && ismob(T) && !I.target)
 		T.client.remove_gun_icons()
 	if(!length(targeted_by))
 		qdel(target_locked) //Remove the overlay
@@ -258,17 +256,17 @@
 		if(!(M in view(src)))
 			NotTargeted(G)
 	for(var/obj/item/gun/G in src) //Handle the gunner loosing sight of their target/s
-		if(G.target)
+		if(isnotnull(G.target))
 			for(var/mob/living/M in G.target)
-				if(M && !(M in view(src)))
+				if(isnotnull(M) && !(M in view(src)))
 					M.NotTargeted(G)
 
-//If you move out of range, it isn't going to still stay locked on you any more.
-/client/var
-	target_can_move = 0
-	target_can_run = 0
-	target_can_click = 0
-	gun_mode = 0
+// If you move out of range, it isn't going to still stay locked on you any more.
+/client
+	var/target_can_move = FALSE
+	var/target_can_run = FALSE
+	var/target_can_click = FALSE
+	var/gun_mode = 0
 
 //These are called by the on-screen buttons, adjusting what the victim can and cannot do.
 /client/proc/add_gun_icons()
@@ -287,24 +285,24 @@
 		usr.gun_run_icon.icon_state = "no_run[target_can_run]"
 		usr.gun_run_icon.name = "[target_can_run ? "Disallow" : "Allow"] Running"
 
-	screen += usr.item_use_icon
-	screen += usr.gun_move_icon
+	screen.Add(usr.item_use_icon)
+	screen.Add(usr.gun_move_icon)
 	if(target_can_move)
-		screen += usr.gun_run_icon
+		screen.Add(usr.gun_run_icon)
 
 /client/proc/remove_gun_icons()
-	if(!usr)
+	if(isnull(usr))
 		return 1 // Runtime prevention on N00k agents spawning with SMG
-	screen -= usr.item_use_icon
-	screen -= usr.gun_move_icon
-	if (target_can_move)
-		screen -= usr.gun_run_icon
+	screen.Remove(usr.item_use_icon)
+	screen.Remove(usr.gun_move_icon)
+	if(target_can_move)
+		screen.Remove(usr.gun_run_icon)
 	qdel(usr.gun_move_icon)
 	qdel(usr.item_use_icon)
 	qdel(usr.gun_run_icon)
 
 /client/verb/ToggleGunMode()
-	set hidden = 1
+	set hidden = TRUE
 
 	gun_mode = !gun_mode
 	if(gun_mode)
@@ -315,32 +313,31 @@
 		for(var/obj/item/gun/G in usr)
 			G.stop_aim()
 		remove_gun_icons()
-	if(usr.gun_setting_icon)
-		usr.gun_setting_icon.icon_state = "gun[gun_mode]"
+	usr.gun_setting_icon?.icon_state = "gun[gun_mode]"
 
 /client/verb/AllowTargetMove()
-	set hidden = 1
+	set hidden = TRUE
 
 	//Changing client's permissions
 	target_can_move = !target_can_move
 	if(target_can_move)
 		to_chat(usr, "Target may now walk.")
 		usr.gun_run_icon = new /obj/screen/gun/run(null)	//adding icon for running permission
-		screen += usr.gun_run_icon
+		screen.Add(usr.gun_run_icon)
 	else
 		to_chat(usr, "Target may no longer move.")
-		target_can_run = 0
+		target_can_run = FALSE
 		qdel(usr.gun_run_icon)	//no need for icon for running permission
 
 	//Updating walking permission button
-	if(usr.gun_move_icon)
+	if(isnotnull(usr.gun_move_icon))
 		usr.gun_move_icon.icon_state = "no_walk[target_can_move]"
 		usr.gun_move_icon.name = "[target_can_move ? "Disallow" : "Allow"] Walking"
 
 	//Handling change for all the guns on client
 	for(var/obj/item/gun/G in usr)
 		G.lock_time = world.time + 5
-		if(G.target)
+		if(isnotnull(G.target))
 			for(var/mob/living/M in G.target)
 				if(target_can_move)
 					to_chat(M, "Your character may now <b>walk</b> at the discretion of their targeter.")
@@ -351,7 +348,7 @@
 					to_chat(M, SPAN_DANGER("Your character will now be shot if they move."))
 
 /client/verb/AllowTargetRun()
-	set hidden = 1
+	set hidden = TRUE
 
 	//Changing client's permissions
 	target_can_run = !target_can_run
@@ -361,14 +358,14 @@
 		to_chat(usr, "Target may no longer run.")
 
 	//Updating running permission button
-	if(usr.gun_run_icon)
+	if(isnotnull(usr.gun_run_icon))
 		usr.gun_run_icon.icon_state = "no_run[target_can_run]"
 		usr.gun_run_icon.name = "[target_can_run ? "Disallow" : "Allow"] Running"
 
 	//Handling change for all the guns on client
 	for(var/obj/item/gun/G in usr)
 		G.lock_time = world.time + 5
-		if(G.target)
+		if(isnotnull(G.target))
 			for(var/mob/living/M in G.target)
 				if(target_can_run)
 					to_chat(M, "Your character may now <b>run</b> at the discretion of their targeter.")
@@ -376,7 +373,7 @@
 					to_chat(M, SPAN_DANGER("Your character will now be shot if they run."))
 
 /client/verb/AllowTargetClick()
-	set hidden = 1
+	set hidden = TRUE
 
 	//Changing client's permissions
 	target_can_click = !target_can_click
@@ -385,14 +382,14 @@
 	else
 		to_chat(usr, "Target may no longer use items.")
 
-	if(usr.item_use_icon)
+	if(isnotnull(usr.item_use_icon))
 		usr.item_use_icon.icon_state = "no_item[target_can_click]"
 		usr.item_use_icon.name = "[target_can_click ? "Disallow" : "Allow"] Item Use"
 
 	//Handling change for all the guns on client
 	for(var/obj/item/gun/G in usr)
 		G.lock_time = world.time + 5
-		if(G.target)
+		if(isnotnull(G.target))
 			for(var/mob/living/M in G.target)
 				if(target_can_click)
 					to_chat(M, "Your character may now <b>use items</b> at the discretion of their targeter.")

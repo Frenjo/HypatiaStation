@@ -7,8 +7,10 @@
 	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "metal-rod"
 	item_state = "bolt"
-	sharp = 1
+
+	sharp = TRUE
 	throwforce = 5
+
 	w_class = 2
 
 //Launcher.

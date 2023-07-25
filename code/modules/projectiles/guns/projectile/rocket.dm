@@ -3,13 +3,14 @@
 	desc = "MAGGOT."
 	icon_state = "rocket"
 	item_state = "rocket"
-	w_class = 4.0
+
+	w_class = 4
+	flags = CONDUCT | USEDELAY
+	slot_flags = null
+	origin_tech = list(RESEARCH_TECH_COMBAT = 8, RESEARCH_TECH_MATERIALS = 5)
+
 	throw_speed = 2
 	throw_range = 10
-	force = 5.0
-	flags = CONDUCT | USEDELAY
-	slot_flags = 0
-	origin_tech = list(RESEARCH_TECH_COMBAT = 8, RESEARCH_TECH_MATERIALS = 5)
 
 	var/missile_speed = 2
 	var/missile_range = 30
@@ -21,7 +22,7 @@
 /obj/item/gun/rocketlauncher/examine()
 	set src in view()
 	..()
-	if(!(usr in view(2)) && usr != src.loc)
+	if(!(usr in view(2)) && usr != loc)
 		return
 	to_chat(usr, SPAN_INFO("[length(rockets)] / [max_rockets] rockets."))
 
@@ -46,9 +47,9 @@
 		playsound(user.loc, 'sound/effects/bang.ogg', 50, 1)
 		M.primed = 1
 		M.throw_at(target, missile_range, missile_speed)
-		message_admins("[key_name_admin(user)] fired a rocket from a rocket launcher ([src.name]).")
-		log_game("[key_name_admin(user)] used a rocket launcher ([src.name]).")
-		rockets -= I
+		message_admins("[key_name_admin(user)] fired a rocket from a rocket launcher ([name]).")
+		log_game("[key_name_admin(user)] used a rocket launcher ([name]).")
+		rockets.Remove(I)
 		qdel(I)
 		return
 	else

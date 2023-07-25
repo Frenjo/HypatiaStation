@@ -1,12 +1,11 @@
 /obj/item/projectile/bullet
 	name = "bullet"
 	icon_state = "bullet"
+
+	sharp = TRUE
+
 	damage = 60
-	damage_type = BRUTE
-	nodamage = 0
-	flag = "bullet"
-	embed = 1
-	sharp = 1
+	embed = TRUE
 
 /obj/item/projectile/bullet/on_hit(atom/target, blocked = 0)
 	if(..(target, blocked))
@@ -14,11 +13,12 @@
 		shake_camera(L, 3, 2)
 
 /obj/item/projectile/bullet/weakbullet // "rubber" bullets
+	sharp = FALSE
+
 	damage = 10
 	stun = 5
 	weaken = 5
-	embed = 0
-	sharp = 0
+	embed = FALSE
 
 /obj/item/projectile/bullet/weakbullet/beanbag		//because beanbags are not bullets
 	name = "beanbag"
@@ -36,26 +36,31 @@
 
 /obj/item/projectile/bullet/suffocationbullet//How does this even work?
 	name = "co bullet"
+
 	damage = 20
 	damage_type = OXY
 
 /obj/item/projectile/bullet/cyanideround
 	name = "poison bullet"
+
 	damage = 40
 	damage_type = TOX
 
 /obj/item/projectile/bullet/burstbullet//I think this one needs something for the on hit
 	name = "exploding bullet"
+
 	damage = 20
 
 /obj/item/projectile/bullet/stunshot
 	name = "stunshot"
+
+	sharp = FALSE
+
 	damage = 5
 	stun = 10
 	weaken = 10
 	stutter = 10
-	embed = 0
-	sharp = 0
+	embed = FALSE
 
 /obj/item/projectile/bullet/a762
 	damage = 25
