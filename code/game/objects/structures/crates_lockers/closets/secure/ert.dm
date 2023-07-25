@@ -16,7 +16,7 @@
 		/obj/item/clothing/suit/space/ert/commander,
 		/obj/item/plastique,
 		/obj/item/storage/belt/security/full,
-		/obj/item/gun/energy/ionrifle,
+		/obj/item/gun/energy/ion,
 		/obj/item/gun/energy/gun/nuclear,
 		/obj/item/clothing/glasses/thermal,
 		/obj/item/lighter/zippo,
@@ -41,7 +41,7 @@
 		/obj/item/clothing/suit/space/ert/security,
 		/obj/item/plastique,
 		/obj/item/storage/belt/security/full,
-		/obj/item/gun/energy/ionrifle,
+		/obj/item/gun/energy/ion,
 		/obj/item/gun/energy/gun/nuclear,
 		/obj/item/clothing/glasses/thermal
 	)
@@ -58,7 +58,7 @@
 	icon_opened = "secureengopen"
 	icon_broken = "secureengbroken"
 	icon_off = "secureengoff"
-	
+
 	starts_with = list(
 		/obj/item/clothing/head/helmet/space/ert/engineer,
 		/obj/item/clothing/suit/space/ert/engineer,

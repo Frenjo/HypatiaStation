@@ -147,9 +147,9 @@ Auto Patrol: []"},
 	src.add_fingerprint(usr)
 	if(lasercolor && (istype(usr,/mob/living/carbon/human)))
 		var/mob/living/carbon/human/H = usr
-		if((lasercolor == "b") && (istype(H.wear_suit, /obj/item/clothing/suit/redtag)))//Opposing team cannot operate it
+		if((lasercolor == "b") && (istype(H.wear_suit, /obj/item/clothing/suit/laser_tag/red)))//Opposing team cannot operate it
 			return
-		else if((lasercolor == "r") && (istype(H.wear_suit, /obj/item/clothing/suit/bluetag)))
+		else if((lasercolor == "r") && (istype(H.wear_suit, /obj/item/clothing/suit/laser_tag/blue)))
 			return
 	if ((href_list["power"]) && (src.allowed(usr)))
 		if (src.on)
@@ -660,20 +660,20 @@ Auto Patrol: []"},
 	if((src.idcheck) || (isnull(perp.wear_id)) || (istype(perp.wear_id.get_id(), /obj/item/card/id/syndicate)))
 
 		if((istype(perp.l_hand, /obj/item/gun) && !istype(perp.l_hand, /obj/item/gun/projectile/shotgun)) || istype(perp.l_hand, /obj/item/melee/baton))
-			if(!istype(perp.l_hand, /obj/item/gun/energy/laser/bluetag) \
-			&& !istype(perp.l_hand, /obj/item/gun/energy/laser/redtag) \
+			if(!istype(perp.l_hand, /obj/item/gun/energy/laser/tag/blue) \
+			&& !istype(perp.l_hand, /obj/item/gun/energy/laser/tag/red) \
 			&& !istype(perp.l_hand, /obj/item/gun/energy/laser/practice))
 				threatcount += 4
 
 		if(istype(perp.r_hand, /obj/item/gun) || istype(perp.r_hand, /obj/item/melee))
-			if(!istype(perp.r_hand, /obj/item/gun/energy/laser/bluetag) \
-			&& !istype(perp.r_hand, /obj/item/gun/energy/laser/redtag) \
+			if(!istype(perp.r_hand, /obj/item/gun/energy/laser/tag/blue) \
+			&& !istype(perp.r_hand, /obj/item/gun/energy/laser/tag/red) \
 			&& !istype(perp.r_hand, /obj/item/gun/energy/laser/practice))
 				threatcount += 4
 
 		if(istype(perp:belt, /obj/item/gun) || istype(perp:belt, /obj/item/melee))
-			if(!istype(perp:belt, /obj/item/gun/energy/laser/bluetag) \
-			&& !istype(perp:belt, /obj/item/gun/energy/laser/redtag) \
+			if(!istype(perp:belt, /obj/item/gun/energy/laser/tag/blue) \
+			&& !istype(perp:belt, /obj/item/gun/energy/laser/tag/red) \
 			&& !istype(perp:belt, /obj/item/gun/energy/laser/practice))
 				threatcount += 2
 
@@ -689,20 +689,20 @@ Auto Patrol: []"},
 
 	if(src.lasercolor == "b")//Lasertag turrets target the opposing team, how great is that? -Sieve
 		threatcount = 0//They will not, however shoot at people who have guns, because it gets really fucking annoying
-		if(istype(perp.wear_suit, /obj/item/clothing/suit/redtag))
+		if(istype(perp.wear_suit, /obj/item/clothing/suit/laser_tag/red))
 			threatcount += 4
-		if((istype(perp:r_hand,/obj/item/gun/energy/laser/redtag)) || (istype(perp:l_hand,/obj/item/gun/energy/laser/redtag)))
+		if((istype(perp:r_hand,/obj/item/gun/energy/laser/tag/red)) || (istype(perp:l_hand,/obj/item/gun/energy/laser/tag/red)))
 			threatcount += 4
-		if(istype(perp:belt, /obj/item/gun/energy/laser/redtag))
+		if(istype(perp:belt, /obj/item/gun/energy/laser/tag/red))
 			threatcount += 2
 
 	if(src.lasercolor == "r")
 		threatcount = 0
-		if(istype(perp.wear_suit, /obj/item/clothing/suit/bluetag))
+		if(istype(perp.wear_suit, /obj/item/clothing/suit/laser_tag/blue))
 			threatcount += 4
-		if((istype(perp:r_hand,/obj/item/gun/energy/laser/bluetag)) || (istype(perp:l_hand,/obj/item/gun/energy/laser/bluetag)))
+		if((istype(perp:r_hand,/obj/item/gun/energy/laser/tag/blue)) || (istype(perp:l_hand,/obj/item/gun/energy/laser/tag/blue)))
 			threatcount += 4
-		if(istype(perp:belt, /obj/item/gun/energy/laser/bluetag))
+		if(istype(perp:belt, /obj/item/gun/energy/laser/tag/blue))
 			threatcount += 2
 
 	if(src.check_records)
@@ -763,10 +763,10 @@ Auto Patrol: []"},
 		var/obj/item/gun/energy/taser/G = new /obj/item/gun/energy/taser(Tsec)
 		G.power_supply.charge = 0
 	else if(lasercolor == "b")
-		var/obj/item/gun/energy/laser/bluetag/G = new /obj/item/gun/energy/laser/bluetag(Tsec)
+		var/obj/item/gun/energy/laser/tag/blue/G = new /obj/item/gun/energy/laser/tag/blue(Tsec)
 		G.power_supply.charge = 0
 	else if(lasercolor == "r")
-		var/obj/item/gun/energy/laser/redtag/G = new /obj/item/gun/energy/laser/redtag(Tsec)
+		var/obj/item/gun/energy/laser/tag/red/G = new /obj/item/gun/energy/laser/tag/red(Tsec)
 		G.power_supply.charge = 0
 
 	if (prob(50))
@@ -780,9 +780,9 @@ Auto Patrol: []"},
 			if(!lasercolor)
 				new /obj/item/clothing/suit/armor/vest(Tsec)
 			if(lasercolor == "b")
-				new /obj/item/clothing/suit/bluetag(Tsec)
+				new /obj/item/clothing/suit/laser_tag/blue(Tsec)
 			if(lasercolor == "r")
-				new /obj/item/clothing/suit/redtag(Tsec)
+				new /obj/item/clothing/suit/laser_tag/red(Tsec)
 
 	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 	s.set_up(3, 1, src)
@@ -901,9 +901,9 @@ Auto Patrol: []"},
 					icon_state = "ed209_legs"
 
 		if(2)
-			if(istype(W, /obj/item/clothing/suit/redtag))
+			if(istype(W, /obj/item/clothing/suit/laser_tag/red))
 				lasercolor = "r"
-			else if(istype(W, /obj/item/clothing/suit/bluetag))
+			else if(istype(W, /obj/item/clothing/suit/laser_tag/blue))
 				lasercolor = "b"
 			if(lasercolor || istype(W, /obj/item/clothing/suit/armor/vest))
 				user.drop_item()
@@ -956,11 +956,11 @@ Auto Patrol: []"},
 		if(7)
 			switch(lasercolor)
 				if("b")
-					if(!istype(W, /obj/item/gun/energy/laser/bluetag))
+					if(!istype(W, /obj/item/gun/energy/laser/tag/blue))
 						return
 					name = "bluetag ED-209 assembly"
 				if("r")
-					if(!istype(W, /obj/item/gun/energy/laser/redtag))
+					if(!istype(W, /obj/item/gun/energy/laser/tag/red))
 						return
 					name = "redtag ED-209 assembly"
 				if("")

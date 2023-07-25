@@ -56,15 +56,15 @@
  */
 /obj/structure/closet/lasertag/red
 	name = "red laser tag equipment"
-	desc = "It's a storage unit for laser tag equipment."
+	desc = "It's a storage unit for red laser tag equipment."
 	icon_state = "red"
 	icon_closed = "red"
 
 	starts_with = list(
-		/obj/item/gun/energy/laser/redtag,
-		/obj/item/gun/energy/laser/redtag,
-		/obj/item/clothing/suit/redtag,
-		/obj/item/clothing/suit/redtag
+		/obj/item/gun/energy/laser/tag/red,
+		/obj/item/gun/energy/laser/tag/red,
+		/obj/item/clothing/suit/laser_tag/red,
+		/obj/item/clothing/suit/laser_tag/red
 	)
 
 /*
@@ -72,13 +72,13 @@
  */
 /obj/structure/closet/lasertag/blue
 	name = "blue laser tag equipment"
-	desc = "It's a storage unit for laser tag equipment."
+	desc = "It's a storage unit for blue laser tag equipment."
 	icon_state = "blue"
 	icon_closed = "blue"
 
 	starts_with = list(
-		/obj/item/gun/energy/laser/bluetag,
-		/obj/item/gun/energy/laser/bluetag,
-		/obj/item/clothing/suit/bluetag,
-		/obj/item/clothing/suit/bluetag
+		/obj/item/gun/energy/laser/tag/blue,
+		/obj/item/gun/energy/laser/tag/blue,
+		/obj/item/clothing/suit/laser_tag/blue,
+		/obj/item/clothing/suit/laser_tag/blue
 	)

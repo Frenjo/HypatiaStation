@@ -8,25 +8,26 @@
 /*
  * Lasertag
  */
-/obj/item/clothing/suit/bluetag
+/obj/item/clothing/suit/laser_tag
+	blood_overlay_type = "armor"
+	body_parts_covered = UPPER_TORSO | LOWER_TORSO
+	siemens_coefficient = 3.0
+
+/obj/item/clothing/suit/laser_tag/blue
 	name = "blue laser tag armour"
 	desc = "Blue Pride, Station Wide."
 	icon_state = "bluetag"
 	item_state = "bluetag"
-	blood_overlay_type = "armor"
-	body_parts_covered = UPPER_TORSO | LOWER_TORSO
-	allowed = list(/obj/item/gun/energy/laser/bluetag)
-	siemens_coefficient = 3.0
 
-/obj/item/clothing/suit/redtag
+	allowed = list(/obj/item/gun/energy/laser/tag/blue)
+
+/obj/item/clothing/suit/laser_tag/red
 	name = "red laser tag armour"
 	desc = "Reputed to go faster."
 	icon_state = "redtag"
 	item_state = "redtag"
-	blood_overlay_type = "armor"
-	body_parts_covered = UPPER_TORSO | LOWER_TORSO
-	allowed = list(/obj/item/gun/energy/laser/redtag)
-	siemens_coefficient = 3.0
+
+	allowed = list(/obj/item/gun/energy/laser/tag/red)
 
 /*
  * Costume

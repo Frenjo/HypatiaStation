@@ -1,25 +1,3 @@
-/obj/item/gun/energy/ionrifle
-	name = "ion rifle"
-	desc = "A man portable anti-armor weapon designed to disable mechanical threats"
-	icon_state = "ionrifle"
-
-	w_class = 4
-	flags = CONDUCT
-	slot_flags = SLOT_BACK
-	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MAGNETS = 4)
-
-	fire_sound = 'sound/weapons/Laser.ogg'
-
-	gun_setting = GUN_SETTING_SPECIAL
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/ion)
-
-/obj/item/gun/energy/ionrifle/emp_act(severity)
-	if(severity <= 2)
-		power_supply.use(round(power_supply.maxcharge / severity))
-		update_icon()
-	else
-		return
-
 /obj/item/gun/energy/decloner
 	name = "biological demolecularisor"
 	desc = "A gun that discharges high amounts of controlled radiation to slowly break a target into component elements."

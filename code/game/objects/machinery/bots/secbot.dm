@@ -637,20 +637,20 @@ Auto Patrol: []"},
 
 	if(src.idcheck && !src.allowed(perp))
 		if(istype(perp.l_hand, /obj/item/gun) || istype(perp.l_hand, /obj/item/melee))
-			if(!istype(perp.l_hand, /obj/item/gun/energy/laser/bluetag) \
-			&& !istype(perp.l_hand, /obj/item/gun/energy/laser/redtag) \
+			if(!istype(perp.l_hand, /obj/item/gun/energy/laser/tag/blue) \
+			&& !istype(perp.l_hand, /obj/item/gun/energy/laser/tag/red) \
 			&& !istype(perp.l_hand, /obj/item/gun/energy/laser/practice))
 				threatcount += 4
 
 		if(istype(perp.r_hand, /obj/item/gun) || istype(perp.r_hand, /obj/item/melee))
-			if(!istype(perp.r_hand, /obj/item/gun/energy/laser/bluetag) \
-			&& !istype(perp.r_hand, /obj/item/gun/energy/laser/redtag) \
+			if(!istype(perp.r_hand, /obj/item/gun/energy/laser/tag/blue) \
+			&& !istype(perp.r_hand, /obj/item/gun/energy/laser/tag/red) \
 			&& !istype(perp.r_hand, /obj/item/gun/energy/laser/practice))
 				threatcount += 4
 
 		if(istype(perp:belt, /obj/item/gun) || istype(perp:belt, /obj/item/melee))
-			if(!istype(perp:belt, /obj/item/gun/energy/laser/bluetag) \
-			&& !istype(perp:belt, /obj/item/gun/energy/laser/redtag) \
+			if(!istype(perp:belt, /obj/item/gun/energy/laser/tag/blue) \
+			&& !istype(perp:belt, /obj/item/gun/energy/laser/tag/red) \
 			&& !istype(perp:belt, /obj/item/gun/energy/laser/practice))
 				threatcount += 2
 

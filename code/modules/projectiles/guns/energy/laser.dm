@@ -1,6 +1,6 @@
 /obj/item/gun/energy/laser
 	name = "laser gun"
-	desc = "a basic weapon designed kill with concentrated energy bolts"
+	desc = "A basic weapon designed to kill with concentrated energy bolts."
 	icon_state = "laser"
 	item_state = "laser"
 
@@ -115,85 +115,60 @@
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/pulse/laser/xray)
 	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/laser/xray)
 
-////////////////////Laser Tag////////////////////
-/obj/item/gun/energy/laser/bluetag
+/*
+ * Laser Tag Guns
+ */
+/obj/item/gun/energy/laser/tag
 	name = "laser tag gun"
-	icon_state = "bluetag"
-	desc = "Standard issue weapon of the Imperial Guard"
+	desc = "Standard issue weapon of the Imperial Guard."
 
 	origin_tech = list(RESEARCH_TECH_COMBAT = 1, RESEARCH_TECH_MAGNETS = 2)
 
 	clumsy_check = FALSE
 
 	gun_setting = GUN_SETTING_SPECIAL
+
+	var/charge_tick = 0
+	var/vest_type = null
+
+/obj/item/gun/energy/laser/tag/New()
+	. = ..()
+	GLOBL.processing_objects.Add(src)
+
+/obj/item/gun/energy/laser/tag/Destroy()
+	GLOBL.processing_objects.Remove(src)
+	return ..()
+
+/obj/item/gun/energy/laser/tag/process()
+	charge_tick++
+	if(charge_tick < 4)
+		return 0
+	charge_tick = 0
+	if(isnull(power_supply))
+		return 0
+	power_supply.give(100)
+	update_icon()
+	return 1
+
+/obj/item/gun/energy/laser/tag/special_check(mob/living/carbon/human/M)
+	if(ishuman(M))
+		if(istype(M.wear_suit, vest_type))
+			return 1
+		to_chat(M, SPAN_WARNING("You need to be wearing your laser tag vest!"))
+	return 0
+
+/obj/item/gun/energy/laser/tag/blue
+	icon_state = "bluetag"
+
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/pulse/laser/tag/blue)
 	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/laser/tag/blue)
 
-	var/charge_tick = 0
+	vest_type = /obj/item/clothing/suit/laser_tag/blue
 
-/obj/item/gun/energy/laser/bluetag/special_check(mob/living/carbon/human/M)
-	if(ishuman(M))
-		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
-			return 1
-		to_chat(M, SPAN_WARNING("You need to be wearing your laser tag vest!"))
-	return 0
-
-/obj/item/gun/energy/laser/bluetag/New()
-	. = ..()
-	GLOBL.processing_objects.Add(src)
-
-/obj/item/gun/energy/laser/bluetag/Destroy()
-	GLOBL.processing_objects.Remove(src)
-	return ..()
-
-/obj/item/gun/energy/laser/bluetag/process()
-	charge_tick++
-	if(charge_tick < 4)
-		return 0
-	charge_tick = 0
-	if(isnull(power_supply))
-		return 0
-	power_supply.give(100)
-	update_icon()
-	return 1
-
-/obj/item/gun/energy/laser/redtag
-	name = "laser tag gun"
+/obj/item/gun/energy/laser/tag/red
 	icon_state = "redtag"
-	desc = "Standard issue weapon of the Imperial Guard"
 
-	origin_tech = list(RESEARCH_TECH_COMBAT = 1, RESEARCH_TECH_MAGNETS = 2)
-
-	clumsy_check = FALSE
-
-	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/pulse/laser/tag/red)
 	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/laser/tag/red)
 
-	var/charge_tick = 0
-
-/obj/item/gun/energy/laser/redtag/special_check(mob/living/carbon/human/M)
-	if(ishuman(M))
-		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
-			return 1
-		to_chat(M, SPAN_WARNING("You need to be wearing your laser tag vest!"))
-	return 0
-
-/obj/item/gun/energy/laser/redtag/New()
-	. = ..()
-	GLOBL.processing_objects.Add(src)
-
-/obj/item/gun/energy/laser/redtag/Destroy()
-	GLOBL.processing_objects.Remove(src)
-	return ..()
-
-/obj/item/gun/energy/laser/redtag/process()
-	charge_tick++
-	if(charge_tick < 4)
-		return 0
-	charge_tick = 0
-	if(isnull(power_supply))
-		return 0
-	power_supply.give(100)
-	update_icon()
-	return 1
+	vest_type = /obj/item/clothing/suit/laser_tag/red

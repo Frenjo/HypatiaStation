@@ -73,7 +73,7 @@
 	else
 		var/obj/item/gun/energy/E = installation	//All energy-based weapons are applicable
 		switch(E.type)
-			if(/obj/item/gun/energy/laser/bluetag)
+			if(/obj/item/gun/energy/laser/tag/blue)
 				projectile = /obj/item/projectile/energy/beam/laser/tag/blue
 				eprojectile = /obj/item/projectile/energy/beam/laser/tag/omni//This bolt will stun ERRYONE with a vest
 				iconholder = null
@@ -87,7 +87,7 @@
 				check_anomalies = 0
 				shot_delay = 30
 
-			if(/obj/item/gun/energy/laser/redtag)
+			if(/obj/item/gun/energy/laser/tag/red)
 				projectile = /obj/item/projectile/energy/beam/laser/tag/red
 				eprojectile = /obj/item/projectile/energy/beam/laser/tag/omni
 				iconholder = null
@@ -119,7 +119,7 @@
 				iconholder = 1
 				reqpower = 700
 
-			if(/obj/item/gun/energy/ionrifle)
+			if(/obj/item/gun/energy/ion)
 				projectile = /obj/item/projectile/ion
 				eprojectile = projectile
 				iconholder = 1
@@ -214,9 +214,9 @@ Neutralize All Unidentified Life Signs: []<BR>"},
 	else
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if(((src.lasercolor) == "b") && (istype(H.wear_suit, /obj/item/clothing/suit/redtag)))
+			if(((src.lasercolor) == "b") && (istype(H.wear_suit, /obj/item/clothing/suit/laser_tag/red)))
 				return
-			if(((src.lasercolor) == "r") && (istype(H.wear_suit, /obj/item/clothing/suit/bluetag)))
+			if(((src.lasercolor) == "r") && (istype(H.wear_suit, /obj/item/clothing/suit/laser_tag/blue)))
 				return
 		dat += text({"
 <TT><B>Automatic Portable Turret Installation</B></TT><BR><BR>
@@ -565,20 +565,20 @@ Status: []<BR>"},
 
 	if((src.lasercolor) == "b")//Lasertag turrets target the opposing team, how great is that? -Sieve
 		threatcount = 0//But does not target anyone else
-		if(istype(perp.wear_suit, /obj/item/clothing/suit/redtag))
+		if(istype(perp.wear_suit, /obj/item/clothing/suit/laser_tag/red))
 			threatcount += 4
-		if((istype(perp.r_hand,/obj/item/gun/energy/laser/redtag)) || (istype(perp.l_hand,/obj/item/gun/energy/laser/redtag)))
+		if((istype(perp.r_hand,/obj/item/gun/energy/laser/tag/red)) || (istype(perp.l_hand,/obj/item/gun/energy/laser/tag/red)))
 			threatcount += 4
-		if(istype(perp.belt, /obj/item/gun/energy/laser/redtag))
+		if(istype(perp.belt, /obj/item/gun/energy/laser/tag/red))
 			threatcount += 2
 
 	if((src.lasercolor) == "r")
 		threatcount = 0
-		if(istype(perp.wear_suit, /obj/item/clothing/suit/bluetag))
+		if(istype(perp.wear_suit, /obj/item/clothing/suit/laser_tag/blue))
 			threatcount += 4
-		if((istype(perp.r_hand,/obj/item/gun/energy/laser/bluetag)) || (istype(perp.l_hand,/obj/item/gun/energy/laser/bluetag)))
+		if((istype(perp.r_hand,/obj/item/gun/energy/laser/tag/blue)) || (istype(perp.l_hand,/obj/item/gun/energy/laser/tag/blue)))
 			threatcount += 4
-		if(istype(perp.belt, /obj/item/gun/energy/laser/bluetag))
+		if(istype(perp.belt, /obj/item/gun/energy/laser/tag/blue))
 			threatcount += 2
 
 	if (src.check_records) // if the turret can check the records, check if they are set to *Arrest* on records
@@ -935,9 +935,9 @@ Neutralize All Unidentified Life Signs: []<BR>"},
 	else
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
-			if(((Parent_Turret.lasercolor) == "b") && (istype(H.wear_suit, /obj/item/clothing/suit/redtag)))
+			if(((Parent_Turret.lasercolor) == "b") && (istype(H.wear_suit, /obj/item/clothing/suit/laser_tag/red)))
 				return
-			if(((Parent_Turret.lasercolor) == "r") && (istype(H.wear_suit, /obj/item/clothing/suit/bluetag)))
+			if(((Parent_Turret.lasercolor) == "r") && (istype(H.wear_suit, /obj/item/clothing/suit/laser_tag/blue)))
 				return
 		dat += text({"
 <TT><B>Automatic Portable Turret Installation</B></TT><BR><BR>

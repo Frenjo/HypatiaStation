@@ -843,7 +843,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 			target_amount = 2
 			loot = "two laser guns"
 		if(8)
-			target = /obj/item/gun/energy/ionrifle
+			target = /obj/item/gun/energy/ion
 			target_amount = 1
 			loot = "an ion gun"
 

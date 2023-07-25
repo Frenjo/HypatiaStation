@@ -6,8 +6,6 @@
 
 	origin_tech = list(RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MAGNETS = 2)
 
-	fire_sound = 'sound/weapons/Taser.ogg'
-
 	modifystate = "energystun"
 
 	charge_cost = 100 // How much energy is needed to fire.

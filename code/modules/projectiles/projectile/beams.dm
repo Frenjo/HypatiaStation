@@ -91,6 +91,8 @@ var/list/beam_master = list()
 	name = "laser"
 
 	damage = 0
+	nodamage = TRUE
+
 	eyeblur = 2
 
 /obj/item/projectile/energy/beam/laser/heavy
@@ -130,10 +132,23 @@ var/list/beam_master = list()
 
 	damage = 30
 
+/obj/item/projectile/energy/beam/sniper
+	name = "sniper beam"
+	icon_state = "xray"
+
+	damage = 60
+	stun = 5
+	weaken = 5
+	stutter = 5
+
+/*
+ * Laser Tag Projectiles
+ */
 /obj/item/projectile/energy/beam/laser/tag
 	name = "lasertag beam"
 
 	damage = 0
+	nodamage = TRUE
 
 /obj/item/projectile/energy/beam/laser/tag/blue
 	icon_state = "bluelaser"
@@ -141,7 +156,7 @@ var/list/beam_master = list()
 /obj/item/projectile/energy/beam/laser/tag/blue/on_hit(atom/target, blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
-		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag))
+		if(istype(M.wear_suit, /obj/item/clothing/suit/laser_tag/red))
 			M.Weaken(5)
 	return 1
 
@@ -151,7 +166,7 @@ var/list/beam_master = list()
 /obj/item/projectile/energy/beam/laser/tag/red/on_hit(atom/target, blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
-		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag))
+		if(istype(M.wear_suit, /obj/item/clothing/suit/laser_tag/blue))
 			M.Weaken(5)
 	return 1
 
@@ -161,15 +176,6 @@ var/list/beam_master = list()
 /obj/item/projectile/energy/beam/laser/tag/omni/on_hit(atom/target, blocked = 0)
 	if(ishuman(target))
 		var/mob/living/carbon/human/M = target
-		if(istype(M.wear_suit, /obj/item/clothing/suit/bluetag) || istype(M.wear_suit, /obj/item/clothing/suit/redtag))
+		if(istype(M.wear_suit, /obj/item/clothing/suit/laser_tag/blue) || istype(M.wear_suit, /obj/item/clothing/suit/laser_tag/red))
 			M.Weaken(5)
 	return 1
-
-/obj/item/projectile/energy/beam/sniper
-	name = "sniper beam"
-	icon_state = "xray"
-
-	damage = 60
-	stun = 5
-	weaken = 5
-	stutter = 5
