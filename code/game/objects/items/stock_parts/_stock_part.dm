@@ -7,7 +7,7 @@
 	desc = "What?"
 	gender = PLURAL
 	icon = 'icons/obj/stock_parts.dmi'
-	w_class = 2.0
+	w_class = 2
 
 	var/rating = 1
 
@@ -18,7 +18,7 @@
 
 /obj/item/stock_part/console_screen
 	name = "console screen"
-	desc = "Used in the construction of computers and other devices with a interactive console."
+	desc = "Used in the construction of computers and other devices with an interactive console."
 	icon_state = "screen"
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
 	matter_amounts = list(MATERIAL_GLASS = 200)
+	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)

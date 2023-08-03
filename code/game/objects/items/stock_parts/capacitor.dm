@@ -6,8 +6,8 @@
 	name = "capacitor"
 	desc = "A basic capacitor used in the construction of a variety of devices."
 	icon_state = "capacitor"
-	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 1)
 	matter_amounts = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
+	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 1)
 
 // Rating 2
 /obj/item/stock_part/capacitor/adv
@@ -28,7 +28,7 @@
 // Rating 4
 /obj/item/stock_part/capacitor/hyper
 	name = "hyper capacitor"
-	desc = "A hyper-high capacity capacitor used in the construction of a variety of devices."
+	desc = "A hyper-capacity capacitor used in the construction of a variety of devices."
 	icon_state = "hyper_capacitor"
 	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 7, RESEARCH_TECH_MATERIALS = 4)
 	rating = 4

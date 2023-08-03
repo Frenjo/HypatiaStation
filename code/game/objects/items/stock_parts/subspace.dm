@@ -56,13 +56,13 @@
 	name = "ansible crystal"
 	icon_state = "ansible_crystal"
 	desc = "A crystal made from pure glass used to transmit laser databursts to subspace."
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2)
 	matter_amounts = list(MATERIAL_GLASS = 50)
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2)
 
 // Subspace Transmitter
 /obj/item/stock_part/subspace/transmitter
 	name = "subspace transmitter"
 	icon_state = "subspace_transmitter"
 	desc = "A large piece of equipment used to open a window into the subspace dimension."
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 5, RESEARCH_TECH_MATERIALS = 5, RESEARCH_TECH_BLUESPACE = 3)
 	matter_amounts = list(MATERIAL_METAL = 50)
+	origin_tech = list(RESEARCH_TECH_MAGNETS = 5, RESEARCH_TECH_MATERIALS = 5, RESEARCH_TECH_BLUESPACE = 3)
