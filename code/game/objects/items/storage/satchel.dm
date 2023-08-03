@@ -11,9 +11,10 @@
 	max_w_class = 3
 	max_combined_w_class = 21
 
-/obj/item/storage/satchel/withwallet/New()
-	..()
-	new /obj/item/storage/wallet/random(src)
+/obj/item/storage/satchel/withwallet
+	starts_with = list(
+		/obj/item/storage/wallet/random
+	)
 
 /obj/item/storage/satchel/norm
 	name = "satchel"

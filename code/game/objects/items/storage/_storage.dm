@@ -25,7 +25,14 @@
 	var/foldable = null	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 
+	// An associative list of typepaths of things the item will spawn with and their quantities.
+	// If an entry isn't associative, the quantity is assumed to be one.
+	var/list/starts_with = null
+
 /obj/item/storage/New()
+	SHOULD_CALL_PARENT(TRUE)
+
+	. = ..()
 	if(allow_quick_empty)
 		verbs.Add(/obj/item/storage/verb/quick_empty)
 	else
@@ -42,11 +49,23 @@
 	boxes.icon_state = "block"
 	boxes.screen_loc = "7,7 to 10,8"
 	boxes.layer = 19
+
 	closer = new /obj/screen/close()
 	closer.master = src
 	closer.icon_state = "x"
 	closer.layer = 20
 	orient2hud()
+
+	// Spawns the items in the starts_with list.
+	if(isnotnull(starts_with))
+		for(var/type in starts_with)
+			// If the entry isn't associative, then assume we just want a single one.
+			var/count = starts_with[type]
+			if(isnull(count))
+				new type(src)
+			else
+				for(var/i = 0; i < count; i++)
+					new type(src)
 
 /obj/item/storage/Destroy()
 	close_all()

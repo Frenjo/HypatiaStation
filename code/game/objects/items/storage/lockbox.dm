@@ -19,29 +19,29 @@
 
 /obj/item/storage/lockbox/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/card/id))
-		if(src.broken)
+		if(broken)
 			user << "\red It appears to be broken."
 			return
-		if(src.allowed(user))
-			src.locked = !( src.locked )
-			if(src.locked)
-				src.icon_state = src.icon_locked
-				user << "\red You lock the [src.name]!"
+		if(allowed(user))
+			locked = !( locked )
+			if(locked)
+				icon_state = icon_locked
+				user << "\red You lock the [name]!"
 				return
 			else
-				src.icon_state = src.icon_closed
-				user << "\red You unlock the [src.name]!"
+				icon_state = icon_closed
+				user << "\red You unlock the [name]!"
 				return
 		else
 			FEEDBACK_ACCESS_DENIED(user)
-	else if((istype(W, /obj/item/card/emag)||istype(W, /obj/item/melee/energy/blade)) && !src.broken)
+	else if((istype(W, /obj/item/card/emag)||istype(W, /obj/item/melee/energy/blade)) && !broken)
 		broken = 1
 		locked = 0
 		desc = "It appears to be broken."
-		icon_state = src.icon_broken
+		icon_state = icon_broken
 		if(istype(W, /obj/item/melee/energy/blade))
 			var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
-			spark_system.set_up(5, 0, src.loc)
+			spark_system.set_up(5, 0, loc)
 			spark_system.start()
 			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 			playsound(src, "sparks", 50, 1)

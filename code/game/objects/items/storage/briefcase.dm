@@ -12,17 +12,13 @@
 	max_w_class = 3
 	max_combined_w_class = 16
 
-/obj/item/storage/briefcase/New()
-	..()
-
 /obj/item/storage/briefcase/attack(mob/living/M as mob, mob/living/user as mob)
 	//..()
 	if((CLUMSY in user.mutations) && prob(50))
-		user << "\red The [src] slips out of your hand and hits your head."
+		to_chat(user, SPAN_WARNING("The [src] slips out of your hand and hits your head."))
 		user.take_organ_damage(10)
 		user.Paralyse(2)
 		return
-
 
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been attacked with [src.name] by [user.name] ([user.ckey])</font>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to attack [M.name] ([M.ckey])</font>")
@@ -44,6 +40,5 @@
 		for(var/mob/O in viewers(M, null))
 			O.show_message(SPAN_DANGER("[M] has been knocked unconscious!"), 1, SPAN_WARNING("You hear someone fall."), 2)
 	else
-		M << SPAN_WARNING("[user] tried to knock you unconcious!")
+		to_chat(M, SPAN_WARNING("[user] tried to knock you unconcious!"))
 		M.eye_blurry += 3
-	return

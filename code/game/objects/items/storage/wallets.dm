@@ -30,34 +30,29 @@
 	var/obj/item/card/id/front_id = null
 
 /obj/item/storage/wallet/random/New()
-	..()
-	var/item1_type = pick( \
-		/obj/item/spacecash/c10, /obj/item/spacecash/c100, \
-		/obj/item/spacecash/c1000, /obj/item/spacecash/c20, \
-		/obj/item/spacecash/c200, /obj/item/spacecash/c50, \
-		/obj/item/spacecash/c500 \
+	var/list/cash_types = list(
+		/obj/item/spacecash/c10, /obj/item/spacecash/c100,
+		/obj/item/spacecash/c1000, /obj/item/spacecash/c20,
+		/obj/item/spacecash/c200, /obj/item/spacecash/c50,
+		/obj/item/spacecash/c500
 	)
-	var/item2_type
-	if(prob(50))
-		item2_type = pick( \
-			/obj/item/spacecash/c10, /obj/item/spacecash/c100, \
-			/obj/item/spacecash/c1000, /obj/item/spacecash/c20, \
-			/obj/item/spacecash/c200, /obj/item/spacecash/c50, \
-			/obj/item/spacecash/c500 \
-		)
-	var/item3_type = pick( \
-		/obj/item/coin/silver, /obj/item/coin/silver, \
-		/obj/item/coin/gold, /obj/item/coin/iron, \
-		/obj/item/coin/iron, /obj/item/coin/iron \
+	var/list/coin_types = list(
+		/obj/item/coin/silver, /obj/item/coin/silver,
+		/obj/item/coin/gold, /obj/item/coin/iron,
+		/obj/item/coin/iron, /obj/item/coin/iron
 	)
 
-	spawn(2)
-		if(item1_type)
-			new item1_type(src)
-		if(item2_type)
-			new item2_type(src)
-		if(item3_type)
-			new item3_type(src)
+	var/item1_type = pick(cash_types)
+	var/item2_type = prob(50) ? pick(cash_types) : null
+	var/item3_type = pick(coin_types)
+
+	if(isnotnull(item1_type))
+		starts_with.Add(item1_type)
+	if(isnotnull(item2_type))
+		starts_with.Add(item2_type)
+	if(isnotnull(item3_type))
+		starts_with.Add(item3_type)
+	. = ..()
 
 /obj/item/storage/wallet/remove_from_storage(obj/item/W as obj, atom/new_location)
 	. = ..(W, new_location)

@@ -13,35 +13,41 @@
 	icon_state = "utilitybelt"
 	item_state = "utility"
 	can_hold = list(
-		"/obj/item/crowbar",
-		"/obj/item/screwdriver",
-		"/obj/item/weldingtool",
-		"/obj/item/wirecutters",
-		"/obj/item/wrench",
-		"/obj/item/device/multitool",
-		"/obj/item/device/flashlight",
-		"/obj/item/stack/cable_coil",
-		"/obj/item/device/t_scanner",
-		"/obj/item/device/analyzer",
-		"/obj/item/taperoll/engineering")
+		/obj/item/crowbar,
+		/obj/item/screwdriver,
+		/obj/item/weldingtool,
+		/obj/item/wirecutters,
+		/obj/item/wrench,
+		/obj/item/device/multitool,
+		/obj/item/device/flashlight,
+		/obj/item/stack/cable_coil,
+		/obj/item/device/t_scanner,
+		/obj/item/device/analyzer,
+		/obj/item/taperoll/engineering
+	)
+
+/obj/item/storage/belt/utility/full
+	starts_with = list(
+		/obj/item/screwdriver,
+		/obj/item/wrench,
+		/obj/item/weldingtool,
+		/obj/item/crowbar,
+		/obj/item/wirecutters
+	)
 
 /obj/item/storage/belt/utility/full/New()
-	..()
-	new /obj/item/screwdriver(src)
-	new /obj/item/wrench(src)
-	new /obj/item/weldingtool(src)
-	new /obj/item/crowbar(src)
-	new /obj/item/wirecutters(src)
-	new /obj/item/stack/cable_coil(src,30,pick("red","yellow","orange"))
+	. = ..()
+	new /obj/item/stack/cable_coil(src, 30, pick("red", "yellow", "orange"))
 
-/obj/item/storage/belt/utility/atmostech/New()
-	..()
-	new /obj/item/screwdriver(src)
-	new /obj/item/wrench(src)
-	new /obj/item/weldingtool(src)
-	new /obj/item/crowbar(src)
-	new /obj/item/wirecutters(src)
-	new /obj/item/device/t_scanner(src)
+/obj/item/storage/belt/utility/atmostech
+	starts_with = list(
+		/obj/item/screwdriver,
+		/obj/item/wrench,
+		/obj/item/weldingtool,
+		/obj/item/crowbar,
+		/obj/item/wirecutters,
+		/obj/item/device/t_scanner
+	)
 
 /obj/item/storage/belt/medical
 	name = "medical belt"
@@ -49,22 +55,22 @@
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	can_hold = list(
-		"/obj/item/device/healthanalyzer",
-		"/obj/item/dnainjector",
-		"/obj/item/reagent_containers/dropper",
-		"/obj/item/reagent_containers/glass/beaker",
-		"/obj/item/reagent_containers/glass/bottle",
-		"/obj/item/reagent_containers/pill",
-		"/obj/item/reagent_containers/syringe",
-		"/obj/item/reagent_containers/glass/dispenser",
-		"/obj/item/lighter/zippo",
-		"/obj/item/storage/fancy/cigarettes",
-		"/obj/item/storage/pill_bottle",
-		"/obj/item/stack/medical",
-		"/obj/item/device/flashlight/pen",
-		"/obj/item/clothing/mask/surgical",
-		"/obj/item/clothing/gloves/latex",
-	        "/obj/item/reagent_containers/hypospray"
+		/obj/item/device/healthanalyzer,
+		/obj/item/dnainjector,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_containers/glass/beaker,
+		/obj/item/reagent_containers/glass/bottle,
+		/obj/item/reagent_containers/pill,
+		/obj/item/reagent_containers/syringe,
+//		/obj/item/reagent_containers/glass/dispenser, // I don't know what this one would map to in current code.
+		/obj/item/lighter/zippo,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/storage/pill_bottle,
+		/obj/item/stack/medical,
+		/obj/item/device/flashlight/pen,
+		/obj/item/clothing/mask/surgical,
+		/obj/item/clothing/gloves/latex,
+		/obj/item/reagent_containers/hypospray
 	)
 
 /obj/item/storage/belt/security
@@ -76,27 +82,27 @@
 	max_w_class = 3
 	max_combined_w_class = 21
 	can_hold = list(
-		"/obj/item/grenade/flashbang",
-		"/obj/item/reagent_containers/spray/pepper",
-		"/obj/item/handcuffs",
-		"/obj/item/device/flash",
-		"/obj/item/clothing/glasses",
-		"/obj/item/ammo_casing/shotgun",
-		"/obj/item/ammo_magazine",
-		"/obj/item/reagent_containers/food/snacks/donut/normal",
-		"/obj/item/reagent_containers/food/snacks/donut/jelly",
-		"/obj/item/melee/baton",
-		"/obj/item/gun/energy/taser",
-		"/obj/item/lighter/zippo",
-		"/obj/item/cigpacket",
-		"/obj/item/clothing/glasses/hud/security",
-		"/obj/item/device/flashlight",
-		"/obj/item/device/pda",
-		"/obj/item/device/radio/headset",
-		"/obj/item/melee",
-		"/obj/item/taperoll/police",
-		"/obj/item/gun/energy/taser"
-		)
+		/obj/item/grenade/flashbang,
+		/obj/item/reagent_containers/spray/pepper,
+		/obj/item/handcuffs,
+		/obj/item/device/flash,
+		/obj/item/clothing/glasses,
+		/obj/item/ammo_casing/shotgun,
+		/obj/item/ammo_magazine,
+		/obj/item/reagent_containers/food/snacks/donut/normal,
+		/obj/item/reagent_containers/food/snacks/donut/jelly,
+		/obj/item/melee/baton,
+		/obj/item/gun/energy/taser,
+		/obj/item/lighter/zippo,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/clothing/glasses/hud/security,
+		/obj/item/device/flashlight,
+		/obj/item/device/pda,
+		/obj/item/device/radio/headset,
+		/obj/item/melee,
+		/obj/item/taperoll/police,
+		/obj/item/gun/energy/taser
+	)
 
 /obj/item/storage/belt/soulstone
 	name = "soul stone belt"
@@ -105,17 +111,13 @@
 	item_state = "soulstonebelt"
 	storage_slots = 6
 	can_hold = list(
-		"/obj/item/device/soulstone"
-		)
+		/obj/item/device/soulstone
+	)
 
-/obj/item/storage/belt/soulstone/full/New()
-	..()
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
-	new /obj/item/device/soulstone(src)
+/obj/item/storage/belt/soulstone/full
+	starts_with = list(
+		/obj/item/device/soulstone = 6
+	)
 
 /obj/item/storage/belt/champion
 	name = "championship belt"
@@ -124,8 +126,8 @@
 	item_state = "champion"
 	storage_slots = 1
 	can_hold = list(
-		"/obj/item/clothing/mask/luchador"
-		)
+		/obj/item/clothing/mask/luchador
+	)
 
 /obj/item/storage/belt/inflatable
 	name = "inflatable duck"
@@ -142,22 +144,22 @@
 	max_w_class = 3
 	max_combined_w_class = 21
 	can_hold = list(
-		"/obj/item/grenade/flashbang",
-		"/obj/item/reagent_containers/spray/pepper",
-		"/obj/item/handcuffs",
-		"/obj/item/device/flash",
-		"/obj/item/clothing/glasses",
-		"/obj/item/ammo_casing/shotgun",
-		"/obj/item/ammo_magazine",
-		"/obj/item/reagent_containers/food/snacks/donut/normal",
-		"/obj/item/reagent_containers/food/snacks/donut/jelly",
-		"/obj/item/melee/baton",
-		"/obj/item/gun/energy/taser",
-		"/obj/item/lighter/zippo",
-		"/obj/item/cigpacket",
-		"/obj/item/clothing/glasses/hud/security",
-		"/obj/item/device/flashlight",
-		"/obj/item/device/pda",
-		"/obj/item/device/radio/headset",
-		"/obj/item/melee"
-		)
+		/obj/item/grenade/flashbang,
+		/obj/item/reagent_containers/spray/pepper,
+		/obj/item/handcuffs,
+		/obj/item/device/flash,
+		/obj/item/clothing/glasses,
+		/obj/item/ammo_casing/shotgun,
+		/obj/item/ammo_magazine,
+		/obj/item/reagent_containers/food/snacks/donut/normal,
+		/obj/item/reagent_containers/food/snacks/donut/jelly,
+		/obj/item/melee/baton,
+		/obj/item/gun/energy/taser,
+		/obj/item/lighter/zippo,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/clothing/glasses/hud/security,
+		/obj/item/device/flashlight,
+		/obj/item/device/pda,
+		/obj/item/device/radio/headset,
+		/obj/item/melee
+	)

@@ -12,37 +12,35 @@
  *		Crayon Box
  *		Cigarette Box
  */
-
-/obj/item/storage/fancy/
+/obj/item/storage/fancy
+	name = "donut box"
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "donutbox6"
-	name = "donut box"
+
 	var/icon_type = "donut"
 
-/obj/item/storage/fancy/update_icon(var/itemremoved = 0)
+/obj/item/storage/fancy/New()
+	. = ..()
+	update_icon()
+
+/obj/item/storage/fancy/update_icon(itemremoved = 0)
 	var/total_contents = length(contents) - itemremoved
-	src.icon_state = "[src.icon_type]box[total_contents]"
-	return
+	icon_state = "[icon_type]box[total_contents]"
 
 /obj/item/storage/fancy/examine()
 	set src in oview(1)
 
 	..()
 	if(length(contents) <= 0)
-		usr << "There are no [src.icon_type]s left in the box."
+		usr << "There are no [icon_type]s left in the box."
 	else if(length(contents) == 1)
-		usr << "There is one [src.icon_type] left in the box."
+		usr << "There is one [icon_type] left in the box."
 	else
-		usr << "There are [length(contents)] [src.icon_type]s in the box."
-
-	return
-
-
+		usr << "There are [length(contents)] [icon_type]s in the box."
 
 /*
  * Donut Box
  */
-
 /obj/item/storage/fancy/donut_box
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "donutbox6"
@@ -51,32 +49,16 @@
 	storage_slots = 6
 	can_hold = list(/obj/item/reagent_containers/food/snacks/donut)
 
-/obj/item/storage/fancy/donut_box/New()
-	..()
-	for(var/i = 1; i <= storage_slots; i++)
-		new /obj/item/reagent_containers/food/snacks/donut/normal(src)
-	return
-
-
-/*
- * Empty Donut Box
- */
+	starts_with = list(
+		/obj/item/reagent_containers/food/snacks/donut/normal = 6
+	)
 
 /obj/item/storage/fancy/donut_box/empty
-	icon = 'icons/obj/items/food.dmi'
-	icon_state = "donutbox0"
-	icon_type = "donut"
-	name = "donut box"
-	storage_slots = 6
-	can_hold = list(/obj/item/reagent_containers/food/snacks/donut)
-
-/obj/item/storage/fancy/donut_box/empty/New()
-	return
+	starts_with = null
 
 /*
  * Egg Box
  */
-
 /obj/item/storage/fancy/egg_box
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "eggbox"
@@ -85,16 +67,13 @@
 	storage_slots = 12
 	can_hold = list(/obj/item/reagent_containers/food/snacks/egg)
 
-/obj/item/storage/fancy/egg_box/New()
-	..()
-	for(var/i = 1; i <= storage_slots; i++)
-		new /obj/item/reagent_containers/food/snacks/egg(src)
-	return
+	starts_with = list(
+		/obj/item/reagent_containers/food/snacks/egg = 12
+	)
 
 /*
  * Candle Box
  */
-
 /obj/item/storage/fancy/candle_box
 	name = "candle pack"
 	desc = "A pack of red candles."
@@ -106,16 +85,13 @@
 	throwforce = 2
 	slot_flags = SLOT_BELT
 
-/obj/item/storage/fancy/candle_box/New()
-	..()
-	for(var/i = 1; i <= storage_slots; i++)
-		new /obj/item/candle(src)
-	return
+	starts_with = list(
+		/obj/item/candle = 5
+	)
 
 /*
  * Crayon Box
  */
-
 /obj/item/storage/fancy/crayons
 	name = "box of crayons"
 	desc = "A box of crayons for all your rune drawing needs."
@@ -124,25 +100,22 @@
 	w_class = 2.0
 	storage_slots = 6
 	icon_type = "crayon"
-	can_hold = list(
-		"/obj/item/toy/crayon"
-	)
+	can_hold = list(/obj/item/toy/crayon)
 
-/obj/item/storage/fancy/crayons/New()
-	..()
-	new /obj/item/toy/crayon/red(src)
-	new /obj/item/toy/crayon/orange(src)
-	new /obj/item/toy/crayon/yellow(src)
-	new /obj/item/toy/crayon/green(src)
-	new /obj/item/toy/crayon/blue(src)
-	new /obj/item/toy/crayon/purple(src)
-	update_icon()
+	starts_with = list(
+		/obj/item/toy/crayon/red,
+		/obj/item/toy/crayon/orange,
+		/obj/item/toy/crayon/yellow,
+		/obj/item/toy/crayon/green,
+		/obj/item/toy/crayon/blue,
+		/obj/item/toy/crayon/purple
+	)
 
 /obj/item/storage/fancy/crayons/update_icon()
 	overlays = list() //resets list
-	overlays += image('icons/obj/items/crayons.dmi',"crayonbox")
+	overlays.Add(image('icons/obj/items/crayons.dmi', "crayonbox"))
 	for(var/obj/item/toy/crayon/crayon in contents)
-		overlays += image('icons/obj/items/crayons.dmi',crayon.colourName)
+		overlays.Add(image('icons/obj/items/crayons.dmi', crayon.colourName))
 
 /obj/item/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/toy/crayon))
@@ -182,20 +155,19 @@
 	qdel(reagents)
 	return ..()
 
-
 /obj/item/storage/fancy/cigarettes/update_icon()
 	icon_state = "[initial(icon_state)][length(contents)]"
 	desc = "There are [length(contents)] cig\s left!"
-	return
 
 /obj/item/storage/fancy/cigarettes/remove_from_storage(obj/item/W as obj, atom/new_location)
-		var/obj/item/clothing/mask/cigarette/C = W
-		if(!istype(C)) return // what
-		reagents.trans_to(C, (reagents.total_volume / length(contents)))
-		..()
+	var/obj/item/clothing/mask/cigarette/C = W
+	if(!istype(C))
+		return // what
+	reagents.trans_to(C, (reagents.total_volume / length(contents)))
+	..()
 
 /obj/item/storage/fancy/cigarettes/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(!istype(M, /mob))
+	if(!ismob(M))
 		return
 
 	if(M == user && user.zone_sel.selecting == "mouth" && length(contents) && !user.wear_mask)
@@ -204,7 +176,7 @@
 		user.equip_to_slot_if_possible(W, SLOT_ID_WEAR_MASK)
 		reagents.maximum_volume = 15 * length(contents)
 		contents.len--
-		user << "<span class='notice'>You take a cigarette out of the pack.</span>"
+		to_chat(user, SPAN_NOTICE("You take a cigarette out of the pack."))
 		update_icon()
 	else
 		..()
@@ -215,11 +187,9 @@
 	icon_state = "Dpacket"
 	item_state = "Dpacket"
 
-
 /*
  * Vial Box
  */
-
 /obj/item/storage/fancy/vials
 	icon = 'icons/obj/items/vialbox.dmi'
 	icon_state = "vialbox6"
@@ -228,12 +198,9 @@
 	storage_slots = 6
 	can_hold = list(/obj/item/reagent_containers/glass/beaker/vial)
 
-
-/obj/item/storage/fancy/vials/New()
-	..()
-	for(var/i=1; i <= storage_slots; i++)
-		new /obj/item/reagent_containers/glass/beaker/vial(src)
-	return
+	starts_with = list(
+		/obj/item/reagent_containers/glass/beaker/vial = 6
+	)
 
 /obj/item/storage/lockbox/vials
 	name = "secure vial storage box"
@@ -247,22 +214,17 @@
 	storage_slots = 6
 	req_access = list(ACCESS_VIROLOGY)
 
-/obj/item/storage/lockbox/vials/New()
-	..()
-	update_icon()
-
-/obj/item/storage/lockbox/vials/update_icon(var/itemremoved = 0)
+/obj/item/storage/lockbox/vials/update_icon(itemremoved = 0)
 	var/total_contents = length(contents) - itemremoved
-	src.icon_state = "vialbox[total_contents]"
-	src.overlays.Cut()
-	if (!broken)
-		overlays += image(icon, src, "led[locked]")
+	icon_state = "vialbox[total_contents]"
+	overlays.Cut()
+	if(!broken)
+		overlays.Add(image(icon, src, "led[locked]"))
 		if(locked)
-			overlays += image(icon, src, "cover")
+			overlays.Add(image(icon, src, "cover"))
 	else
-		overlays += image(icon, src, "ledb")
-	return
+		overlays.Add(image(icon, src, "ledb"))
 
 /obj/item/storage/lockbox/vials/attackby(obj/item/W as obj, mob/user as mob)
-	..()
+	. = ..()
 	update_icon()

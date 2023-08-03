@@ -27,22 +27,3 @@
 	icon_state = "box"
 	item_state = "syringe_kit"
 	foldable = /obj/item/stack/sheet/cardboard	//BubbleWrap
-
-	// An associative list of typepaths of things the item will spawn with.
-	// If an entry isn't associative, the value is assumed to be one.
-	var/list/starts_with = null
-
-/obj/item/storage/box/New()
-	SHOULD_CALL_PARENT(TRUE)
-
-	. = ..()
-	// Spawns the items in the starts_with list.
-	if(isnotnull(starts_with))
-		for(var/type in starts_with)
-			// If the entry isn't associative, then assume we just want a single one.
-			var/count = starts_with[type]
-			if(isnull(count))
-				new type(src)
-			else
-				for(var/i = 0; i < count; i++)
-					new type(src)

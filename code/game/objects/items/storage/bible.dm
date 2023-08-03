@@ -11,17 +11,12 @@
 	var/deity_name = "Christ"
 
 /obj/item/storage/bible/booze
-	name = "bible"
 	desc = "To be applied to the head repeatedly."
-	icon_state ="bible"
 
-/obj/item/storage/bible/booze/New()
-	..()
-	new /obj/item/reagent_containers/food/drinks/cans/beer(src)
-	new /obj/item/reagent_containers/food/drinks/cans/beer(src)
-	new /obj/item/spacecash(src)
-	new /obj/item/spacecash(src)
-	new /obj/item/spacecash(src)
+	starts_with = list(
+		/obj/item/reagent_containers/food/drinks/cans/beer = 2,
+		/obj/item/spacecash = 3
+	)
 
 //BS12 EDIT
 /* // All cult functionality moved to Null Rod
@@ -97,14 +92,14 @@
 		user << "\blue You hit the floor with the bible."
 		if(user.mind && (user.mind.assigned_role == "Chaplain"))
 			call(/obj/effect/rune/proc/revealrunes)(src)*/
-	if(user.mind && (user.mind.assigned_role == "Chaplain"))
-		if(A.reagents && A.reagents.has_reagent("water")) //blesses all the water in the holder
-			user << "\blue You bless [A]."
+	if(user.mind?.assigned_role == "Chaplain")
+		if(A.reagents?.has_reagent("water")) //blesses all the water in the holder
+			to_chat(user, SPAN_INFO("You bless [A]."))
 			var/water2holy = A.reagents.get_reagent_amount("water")
 			A.reagents.del_reagent("water")
-			A.reagents.add_reagent("holywater",water2holy)
+			A.reagents.add_reagent("holywater", water2holy)
 
 /obj/item/storage/bible/attackby(obj/item/W as obj, mob/user as mob)
-	if(src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+	if(isnotnull(use_sound))
+		playsound(loc, use_sound, 50, 1, -5)
 	..()

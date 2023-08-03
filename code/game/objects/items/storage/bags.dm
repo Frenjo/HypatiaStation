@@ -36,7 +36,7 @@
 	max_w_class = 2
 	storage_slots = 21
 	can_hold = list() // any
-	cant_hold = list("/obj/item/disk/nuclear")
+	cant_hold = list(/obj/item/disk/nuclear)
 
 /obj/item/storage/bag/trash/update_icon()
 	if(!length(contents))
@@ -47,11 +47,9 @@
 		icon_state = "trashbag2"
 	else icon_state = "trashbag3"
 
-
 // -----------------------------
 //        Plastic Bag
 // -----------------------------
-
 /obj/item/storage/bag/plasticbag
 	name = "plastic bag"
 	desc = "It's a very flimsy, very noisy alternative to a bag."
@@ -63,12 +61,11 @@
 	max_w_class = 2
 	storage_slots = 21
 	can_hold = list() // any
-	cant_hold = list("/obj/item/disk/nuclear")
+	cant_hold = list(/obj/item/disk/nuclear)
 
 // -----------------------------
 //        Mining Satchel
 // -----------------------------
-
 /obj/item/storage/bag/ore
 	name = "mining satchel"
 	desc = "This little bugger can be used to store and transport ores."
@@ -84,7 +81,6 @@
 // -----------------------------
 //   Mining Satchel of Holding
 // -----------------------------
-
 /obj/item/storage/bag/ore/holding //miners, your messiah has arrived
 	name = "mining satchel of holding"
 	desc = "A revolution in convenience, this satchel allows for infinite ore storage. It's been outfitted with anti-malfunction safety measures."
@@ -97,52 +93,49 @@
 // -----------------------------
 //          Plant bag
 // -----------------------------
-
 /obj/item/storage/bag/plants
+	name = "plant bag"
 	icon = 'icons/obj/flora/hydroponics.dmi'
 	icon_state = "plantbag"
-	name = "plant bag"
 	storage_slots = 50; //the number of plant pieces it can carry.
 	max_combined_w_class = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * plants.w_class
 	max_w_class = 3
 	w_class = 1
 	can_hold = list(/obj/item/reagent_containers/food/snacks/grown, /obj/item/seeds, /obj/item/grown)
 
-
 // -----------------------------
 //        Sheet Snatcher
 // -----------------------------
 // Because it stacks stacks, this doesn't operate normally.
 // However, making it a storage/bag allows us to reuse existing code in some places. -Sayu
-
 /obj/item/storage/bag/sheetsnatcher
-	icon = 'icons/obj/mining.dmi'
-	icon_state = "sheetsnatcher"
 	name = "sheet snatcher"
 	desc = "A patented NanoTrasen storage system designed for any kind of mineral sheet."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "sheetsnatcher"
 
 	w_class = 3
 
 	allow_quick_empty = 1 // this function is superceded
 
-	var/capacity = 300; //the number of sheets it can carry.
+	var/capacity = 300 //the number of sheets it can carry.
 
 /obj/item/storage/bag/sheetsnatcher/New()
-	..()
+	. = ..()
 	//verbs -= /obj/item/storage/verb/quick_empty
 	//verbs += /obj/item/storage/bag/sheetsnatcher/quick_empty
 
 /obj/item/storage/bag/sheetsnatcher/can_be_inserted(obj/item/W as obj, stop_messages = 0)
-	if(!istype(W,/obj/item/stack/sheet) || istype(W,/obj/item/stack/sheet/mineral/sandstone) || istype(W,/obj/item/stack/sheet/wood))
+	if(!istype(W, /obj/item/stack/sheet) || istype(W, /obj/item/stack/sheet/mineral/sandstone) || istype(W, /obj/item/stack/sheet/wood))
 		if(!stop_messages)
-			usr << "The snatcher does not accept [W]."
+			to_chat(usr, "The snatcher does not accept [W].")
 		return 0 //I don't care, but the existing code rejects them for not being "sheets" *shrug* -Sayu
 	var/current = 0
 	for(var/obj/item/stack/sheet/S in contents)
 		current += S.amount
 	if(capacity == current)//If it's full, you're done
 		if(!stop_messages)
-			usr << "\red The snatcher is full."
+			to_chat(usr, SPAN_WARNING("The snatcher is full."))
 		return 0
 	return 1
 
@@ -186,7 +179,6 @@
 	update_icon()
 	return 1
 
-
 // Sets up numbered display to show the stack size of each stored mineral
 // NOTE: numbered display is turned off currently because it's broken
 /obj/item/storage/bag/sheetsnatcher/orient2hud(mob/user as mob)
@@ -209,7 +201,6 @@
 		row_num = round((adjusted_contents - 1) / 7) // 7 is the maximum allowed width.
 	src.standard_orient_objs(row_num, col_count, numbered_contents)
 	return
-
 
 // Modified quick_empty verb drops appropriate sized stacks
 /obj/item/storage/bag/sheetsnatcher/quick_empty()
@@ -248,7 +239,6 @@
 // -----------------------------
 //    Sheet Snatcher (Cyborg)
 // -----------------------------
-
 /obj/item/storage/bag/sheetsnatcher/borg
 	name = "sheet snatcher 9000"
 	desc = ""
@@ -257,7 +247,6 @@
 // -----------------------------
 //           Cash Bag
 // -----------------------------
-
 /obj/item/storage/bag/cash
 	icon = 'icons/obj/storage/storage.dmi'
 	icon_state = "cashbag"

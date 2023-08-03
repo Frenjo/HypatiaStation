@@ -1,4 +1,3 @@
-
 /*
  * Backpack
  */
@@ -14,19 +13,19 @@
 	max_combined_w_class = 21
 
 /obj/item/storage/backpack/attackby(obj/item/W as obj, mob/user as mob)
-	if(src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+	if(isnotnull(use_sound))
+		playsound(loc, use_sound, 50, 1, -5)
 	..()
 
 /obj/item/storage/backpack/equipped(mob/user, slot)
-	if(slot == SLOT_ID_BACK && src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+	if(slot == SLOT_ID_BACK && isnotnull(use_sound))
+		playsound(loc, use_sound, 50, 1, -5)
 	..(user, slot)
 
 /*
 /obj/item/storage/backpack/dropped(mob/user as mob)
-	if (loc == user && src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+	if (loc == user && use_sound)
+		playsound(loc, use_sound, 50, 1, -5)
 	..(user)
 */
 
@@ -41,16 +40,12 @@
 	max_w_class = 4
 	max_combined_w_class = 28
 
-/obj/item/storage/backpack/holding/New()
-	..()
-	return
-
 /obj/item/storage/backpack/holding/attackby(obj/item/W as obj, mob/user as mob)
 	if(crit_fail)
-		user << "\red The Bluespace generator isn't working."
+		to_chat(user, SPAN_WARNING("The Bluespace generator isn't working."))
 		return
 	if(istype(W, /obj/item/storage/backpack/holding) && !W.crit_fail)
-		user << "\red The Bluespace interfaces of the two devices conflict and malfunction."
+		to_chat(user, SPAN_WARNING("The Bluespace interfaces of the two devices conflict and malfunction."))
 		qdel(W)
 		return
 		/* //BoH+BoH=Singularity, commented out.
@@ -68,13 +63,13 @@
 	..()
 
 /obj/item/storage/backpack/holding/proc/failcheck(mob/user as mob)
-	if(prob(src.reliability))
+	if(prob(reliability))
 		return 1 //No failure
-	if(prob(src.reliability))
-		user << "\red The Bluespace portal resists your attempt to add another item." //light failure
+	if(prob(reliability))
+		to_chat(user, SPAN_WARNING("The Bluespace portal resists your attempt to add another item.")) // Light failure.
 	else
-		user << "\red The Bluespace generator malfunctions!"
-		for(var/obj/O in src.contents) //it broke, delete what was in it
+		to_chat(user, SPAN_WARNING("The Bluespace generator malfunctions!"))
+		for(var/obj/O in contents) //it broke, delete what was in it
 			qdel(O)
 		crit_fail = 1
 		icon_state = "brokenpack"
