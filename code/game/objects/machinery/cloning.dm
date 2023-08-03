@@ -432,13 +432,7 @@
 	icon_state = "disk_kit"
 
 	starts_with = list(
-		/obj/item/disk/data,
-		/obj/item/disk/data,
-		/obj/item/disk/data,
-		/obj/item/disk/data,
-		/obj/item/disk/data,
-		/obj/item/disk/data,
-		/obj/item/disk/data
+		/obj/item/disk/data = 7
 	)
 
 /*

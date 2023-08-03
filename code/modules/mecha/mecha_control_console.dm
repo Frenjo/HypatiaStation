@@ -123,11 +123,5 @@
 	name = "Exosuit Tracking Beacons"
 
 	starts_with = list(
-		/obj/item/mecha_parts/mecha_tracking,
-		/obj/item/mecha_parts/mecha_tracking,
-		/obj/item/mecha_parts/mecha_tracking,
-		/obj/item/mecha_parts/mecha_tracking,
-		/obj/item/mecha_parts/mecha_tracking,
-		/obj/item/mecha_parts/mecha_tracking,
-		/obj/item/mecha_parts/mecha_tracking
+		/obj/item/mecha_parts/mecha_tracking = 7
 	)

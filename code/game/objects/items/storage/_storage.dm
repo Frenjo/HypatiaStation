@@ -25,6 +25,29 @@
 	var/foldable = null	// BubbleWrap - if set, can be folded (when empty) into a sheet of cardboard
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 
+/obj/item/storage/New()
+	if(allow_quick_empty)
+		verbs.Add(/obj/item/storage/verb/quick_empty)
+	else
+		verbs.Remove(/obj/item/storage/verb/quick_empty)
+
+	if(allow_quick_gather)
+		verbs.Add(/obj/item/storage/verb/toggle_gathering_mode)
+	else
+		verbs.Remove(/obj/item/storage/verb/toggle_gathering_mode)
+
+	boxes = new /obj/screen/storage()
+	boxes.name = "storage"
+	boxes.master = src
+	boxes.icon_state = "block"
+	boxes.screen_loc = "7,7 to 10,8"
+	boxes.layer = 19
+	closer = new /obj/screen/close()
+	closer.master = src
+	closer.icon_state = "x"
+	closer.layer = 20
+	orient2hud()
+
 /obj/item/storage/Destroy()
 	close_all()
 	qdel(boxes)
@@ -37,14 +60,14 @@
 			return
 
 		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
-			src.open(usr)
+			open(usr)
 
 		if(!(istype(over_object, /obj/screen)))
 			return ..()
 
 		//makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.
 		//there's got to be a better way of doing this.
-		if(!(src.loc == usr) || (src.loc && src.loc.loc == usr))
+		if(!(loc == usr) || (isnotnull(loc) && loc.loc == usr))
 			return
 
 		if(!(usr.restrained()) && !(usr.stat))
@@ -55,20 +78,19 @@
 				if("l_hand")
 					usr.u_equip(src)
 					usr.put_in_l_hand(src)
-			src.add_fingerprint(usr)
+			add_fingerprint(usr)
 			return
-	return
 
 /obj/item/storage/proc/return_inv()
 	var/list/L = list()
-	L += src.contents
+	L.Add(contents)
 
 	for(var/obj/item/storage/S in src)
-		L += S.return_inv()
+		L.Add(S.return_inv())
 	for(var/obj/item/gift/G in src)
-		L += G.gift
+		L.Add(G.gift)
 		if(istype(G.gift, /obj/item/storage))
-			L += G.gift:return_inv()
+			L.Add(G.gift:return_inv())
 	return L
 
 /obj/item/storage/proc/show_to(mob/user as mob)
@@ -76,41 +98,38 @@
 		for(var/obj/item/I in src)
 			if(I.on_found(user))
 				return
-	if(user.s_active)
+	if(isnotnull(user.s_active))
 		user.s_active.hide_from(user)
-	user.client.screen -= src.boxes
-	user.client.screen -= src.closer
-	user.client.screen -= src.contents
-	user.client.screen += src.boxes
-	user.client.screen += src.closer
-	user.client.screen += src.contents
+	user.client.screen.Remove(boxes)
+	user.client.screen.Remove(closer)
+	user.client.screen.Remove(contents)
+	user.client.screen.Add(boxes)
+	user.client.screen.Add(closer)
+	user.client.screen.Add(contents)
 	user.s_active = src
 	is_seeing |= user
-	return
 
 /obj/item/storage/proc/hide_from(mob/user as mob)
-	if(!user.client)
+	if(isnull(user.client))
 		return
-	user.client.screen -= src.boxes
-	user.client.screen -= src.closer
-	user.client.screen -= src.contents
+	user.client.screen.Remove(boxes)
+	user.client.screen.Remove(closer)
+	user.client.screen.Remove(contents)
 	if(user.s_active == src)
 		user.s_active = null
-	is_seeing -= user
+	is_seeing.Remove(user)
 
 /obj/item/storage/proc/open(mob/user as mob)
-	if(src.use_sound)
-		playsound(src.loc, src.use_sound, 50, 1, -5)
+	if(isnotnull(use_sound))
+		playsound(loc, use_sound, 50, 1, -5)
 
 	orient2hud(user)
-	if (user.s_active)
-		user.s_active.close(user)
+	user.s_active?.close(user)
 	show_to(user)
 
 /obj/item/storage/proc/close(mob/user as mob)
-	src.hide_from(user)
+	hide_from(user)
 	user.s_active = null
-	return
 
 /obj/item/storage/proc/close_all()
 	for(var/mob/M in can_see_contents())
@@ -120,10 +139,10 @@
 /obj/item/storage/proc/can_see_contents()
 	var/list/cansee = list()
 	for(var/mob/M in is_seeing)
-		if(M.s_active == src && M.client)
+		if(M.s_active == src && isnotnull(M.client))
 			cansee |= M
 		else
-			is_seeing -= M
+			is_seeing.Remove(M)
 	return cansee
 
 //This proc draws out the inventory and places the items on it. tx and ty are the upper left tile and mx, my are the bottm right.
@@ -131,22 +150,21 @@
 /obj/item/storage/proc/orient_objs(tx, ty, mx, my)
 	var/cx = tx
 	var/cy = ty
-	src.boxes.screen_loc = "[tx]:,[ty] to [mx],[my]"
-	for(var/obj/O in src.contents)
+	boxes.screen_loc = "[tx]:,[ty] to [mx],[my]"
+	for(var/obj/O in contents)
 		O.screen_loc = "[cx],[cy]"
 		O.layer = 20
 		cx++
-		if (cx > mx)
+		if(cx > mx)
 			cx = tx
 			cy--
-	src.closer.screen_loc = "[mx+1],[my]"
-	return
+	closer.screen_loc = "[mx + 1],[my]"
 
 //This proc draws out the inventory and places the items on it. It uses the standard position.
-/obj/item/storage/proc/standard_orient_objs(var/rows, var/cols, var/list/obj/item/display_contents)
+/obj/item/storage/proc/standard_orient_objs(rows, cols, list/obj/item/display_contents)
 	var/cx = 4
-	var/cy = 2+rows
-	src.boxes.screen_loc = "4:16,2:16 to [4+cols]:16,[2+rows]:16"
+	var/cy = 2 + rows
+	boxes.screen_loc = "4:16,2:16 to [4 + cols]:16,[2 + rows]:16"
 
 	if(display_contents_with_number)
 		for(var/datum/numbered_display/ND in display_contents)
@@ -154,7 +172,7 @@
 			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
 			ND.sample_object.layer = 20
 			cx++
-			if (cx > (4+cols))
+			if(cx > (4 + cols))
 				cx = 4
 				cy--
 	else
@@ -163,11 +181,10 @@
 			O.maptext = ""
 			O.layer = 20
 			cx++
-			if (cx > (4+cols))
+			if(cx > (4 + cols))
 				cx = 4
 				cy--
-	src.closer.screen_loc = "[4+cols+1]:16,2:16"
-	return
+	closer.screen_loc = "[4 + cols + 1]:16,2:16"
 
 /datum/numbered_display
 	var/obj/item/sample_object
@@ -189,59 +206,58 @@
 		numbered_contents = list()
 		adjusted_contents = 0
 		for(var/obj/item/I in contents)
-			var/found = 0
+			var/found = FALSE
 			for(var/datum/numbered_display/ND in numbered_contents)
 				if(ND.sample_object.type == I.type)
 					ND.number++
-					found = 1
+					found = TRUE
 					break
 			if(!found)
 				adjusted_contents++
-				numbered_contents.Add( new/datum/numbered_display(I) )
+				numbered_contents.Add(new /datum/numbered_display(I))
 
 	//var/mob/living/carbon/human/H = user
 	var/row_num = 0
-	var/col_count = min(7,storage_slots) -1
-	if (adjusted_contents > 7)
+	var/col_count = min(7, storage_slots) -1
+	if(adjusted_contents > 7)
 		row_num = round((adjusted_contents-1) / 7) // 7 is the maximum allowed width.
-	src.standard_orient_objs(row_num, col_count, numbered_contents)
-	return
+	standard_orient_objs(row_num, col_count, numbered_contents)
 
 //This proc return 1 if the item can be picked up and 0 if it can't.
 //Set the stop_messages to stop it from printing messages
-/obj/item/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = 0)
+/obj/item/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = FALSE)
 	if(!istype(W))
 		return //Not an item
 
-	if(src.loc == W)
+	if(loc == W)
 		return 0 //Means the item is already in the storage item
 	if(length(contents) >= storage_slots)
 		if(!stop_messages)
-			usr << "<span class='notice'>[src] is full, make some space.</span>"
+			to_chat(usr, SPAN_NOTICE("[src] is full, make some space."))
 		return 0 //Storage item is full
 
 	if(length(can_hold))
-		var/ok = 0
+		var/ok = FALSE
 		for(var/A in can_hold)
 			if(istype(W, A))
-				ok = 1
+				ok = TRUE
 				break
 		if(!ok)
 			if(!stop_messages)
-				if (istype(W, /obj/item/hand_labeler))
+				if(istype(W, /obj/item/hand_labeler))
 					return 0
-				usr << "<span class='notice'>[src] cannot hold [W].</span>"
+				to_chat(usr, SPAN_NOTICE("[src] cannot hold [W]."))
 			return 0
 
 	for(var/A in cant_hold) //Check for specific items which this container can't hold.
 		if(istype(W, A))
 			if(!stop_messages)
-				usr << "<span class='notice'>[src] cannot hold [W].</span>"
+				to_chat(usr, SPAN_NOTICE("[src] cannot hold [W]."))
 			return 0
 
-	if (W.w_class > max_w_class)
+	if(W.w_class > max_w_class)
 		if(!stop_messages)
-			usr << "<span class='notice'>[W] is too big for this [src].</span>"
+			to_chat(usr, SPAN_NOTICE("[W] is too big for this [src]."))
 		return 0
 
 	var/sum_w_class = W.w_class
@@ -250,13 +266,13 @@
 
 	if(sum_w_class > max_combined_w_class)
 		if(!stop_messages)
-			usr << "<span class='notice'>[src] is full, make some space.</span>"
+			to_chat(usr, SPAN_NOTICE("[src] is full, make some space."))
 		return 0
 
-	if(W.w_class >= src.w_class && (istype(W, /obj/item/storage)))
+	if(W.w_class >= w_class && (istype(W, /obj/item/storage)))
 		if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 			if(!stop_messages)
-				usr << "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>"
+				to_chat(usr, SPAN_NOTICE("[src] cannot hold [W] as it's a storage item of the same size."))
 			return 0 //To prevent the stacking of same sized storage items.
 
 	return 1
@@ -265,45 +281,45 @@
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
 //such as when picking up all the items on a tile with one click.
 /obj/item/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
-	if(!istype(W)) return 0
-	if(usr)
+	if(!istype(W))
+		return 0
+	if(isnotnull(usr))
 		usr.u_equip(W)
 		usr.update_icons()	//update our overlays
 	W.loc = src
 	W.on_enter_storage(src)
-	if(usr)
-		if (usr.client && usr.s_active != src)
-			usr.client.screen -= W
+	if(isnotnull(usr))
+		if(usr.s_active != src)
+			usr.client?.screen.Remove(W)
 		W.dropped(usr)
 		add_fingerprint(usr)
 
 		if(!prevent_warning && !istype(W, /obj/item/gun/energy/crossbow))
 			for(var/mob/M in viewers(usr, null))
-				if (M == usr)
-					usr << "<span class='notice'>You put \the [W] into [src].</span>"
-				else if (M in range(1)) //If someone is standing close enough, they can tell what it is...
-					M.show_message("<span class='notice'>[usr] puts [W] into [src].</span>")
-				else if (W && W.w_class >= 3.0) //Otherwise they can only see large or normal items from a distance...
-					M.show_message("<span class='notice'>[usr] puts [W] into [src].</span>")
+				if(M == usr)
+					to_chat(usr, SPAN_NOTICE("You put \the [W] into [src]."))
+				else if(M in range(1)) //If someone is standing close enough, they can tell what it is...
+					M.show_message(SPAN_NOTICE("[usr] puts [W] into [src]."))
+				else if(W?.w_class >= 3.0) //Otherwise they can only see large or normal items from a distance...
+					M.show_message(SPAN_NOTICE("[usr] puts [W] into [src]."))
 
-		src.orient2hud(usr)
-		if(usr.s_active)
-			usr.s_active.show_to(usr)
+		orient2hud(usr)
+		usr.s_active?.show_to(usr)
 	update_icon()
 	return 1
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
 /obj/item/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
-	if(!istype(W)) return 0
+	if(!istype(W))
+		return 0
 
 	if(istype(src, /obj/item/storage/fancy))
 		var/obj/item/storage/fancy/F = src
 		F.update_icon(1)
 
-	for(var/mob/M in range(1, src.loc))
-		if (M.s_active == src)
-			if (M.client)
-				M.client.screen -= W
+	for(var/mob/M in range(1, loc))
+		if(M.s_active == src)
+			M.client?.screen.Remove(W)
 
 	if(new_location)
 		if(ismob(loc))
@@ -316,11 +332,10 @@
 	else
 		W.loc = get_turf(src)
 
-	if(usr)
-		src.orient2hud(usr)
-		if(usr.s_active)
-			usr.s_active.show_to(usr)
-	if(W.maptext)
+	if(isnotnull(usr))
+		orient2hud(usr)
+		usr.s_active?.show_to(usr)
+	if(isnotnull(W.maptext))
 		W.maptext = ""
 	W.on_exit_storage(src)
 	update_icon()
@@ -331,7 +346,7 @@
 	..()
 
 	if(isrobot(user))
-		user << "\blue You're a robot. No."
+		to_chat(user, SPAN_INFO("You're a robot. No."))
 		return //Robots can't interact with storage items.
 
 	if(!can_be_inserted(W))
@@ -341,18 +356,17 @@
 		var/obj/item/tray/T = W
 		if(T.calc_carry() > 0)
 			if(prob(85))
-				user << "\red The tray won't fit in [src]."
+				to_chat(user, SPAN_WARNING("The tray won't fit in [src]."))
 				return
 			else
 				W.loc = user.loc
-				if ((user.client && user.s_active != src))
-					user.client.screen -= W
+				if(user.s_active != src)
+					user.client?.screen.Remove(W)
 				W.dropped(user)
-				user << "\red God damnit!"
+				to_chat(user, SPAN_WARNING("God damnit!"))
 
 	W.add_fingerprint(user)
 	handle_item_insertion(W)
-	return
 
 /obj/item/storage/dropped(mob/user as mob)
 	return
@@ -369,33 +383,31 @@
 			H.r_store = null
 			return
 
-	if(src.loc == user)
-		src.open(user)
+	if(loc == user)
+		open(user)
 	else
 		..()
 		for(var/mob/M in range(1))
 			if(M.s_active == src)
-				src.close(M)
-	src.add_fingerprint(user)
-	return
+				close(M)
+	add_fingerprint(user)
 
 /obj/item/storage/verb/toggle_gathering_mode()
 	set name = "Switch Gathering Method"
 	set category = "Object"
 
 	collection_mode = !collection_mode
-	switch (collection_mode)
+	switch(collection_mode)
 		if(1)
 			usr << "[src] now picks up all items in a tile at once."
 		if(0)
 			usr << "[src] now picks up one item at a time."
 
-
 /obj/item/storage/verb/quick_empty()
 	set name = "Empty Contents"
 	set category = "Object"
 
-	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
+	if((!ishuman(usr) && (loc != usr)) || usr.stat || usr.restrained())
 		return
 
 	var/turf/T = get_turf(src)
@@ -403,32 +415,8 @@
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
 
-/obj/item/storage/New()
-	if(allow_quick_empty)
-		verbs += /obj/item/storage/verb/quick_empty
-	else
-		verbs -= /obj/item/storage/verb/quick_empty
-
-	if(allow_quick_gather)
-		verbs += /obj/item/storage/verb/toggle_gathering_mode
-	else
-		verbs -= /obj/item/storage/verb/toggle_gathering_mode
-
-	src.boxes = new /obj/screen/storage()
-	src.boxes.name = "storage"
-	src.boxes.master = src
-	src.boxes.icon_state = "block"
-	src.boxes.screen_loc = "7,7 to 10,8"
-	src.boxes.layer = 19
-	src.closer = new /obj/screen/close()
-	src.closer.master = src
-	src.closer.icon_state = "x"
-	src.closer.layer = 20
-	orient2hud()
-	return
-
 /obj/item/storage/emp_act(severity)
-	if(!istype(src.loc, /mob/living))
+	if(!istype(loc, /mob/living))
 		for(var/obj/O in contents)
 			O.emp_act(severity)
 	..()
@@ -437,34 +425,34 @@
 /obj/item/storage/attack_self(mob/user as mob)
 	//Clicking on itself will empty it, if it has the verb to do that.
 	if(user.get_active_hand() == src)
-		if(src.verbs.Find(/obj/item/storage/verb/quick_empty))
-			src.quick_empty()
+		if(verbs.Find(/obj/item/storage/verb/quick_empty))
+			quick_empty()
 			return
 
 	//Otherwise we'll try to fold it.
 	if(length(contents))
 		return
 
-	if(!ispath(src.foldable))
+	if(!ispath(foldable))
 		return
-	var/found = 0
+	var/found = FALSE
 	// Close any open UI windows first
 	for(var/mob/M in range(1))
 		if(M.s_active == src)
-			src.close(M)
+			close(M)
 		if(M == user)
-			found = 1
+			found = TRUE
 	if(!found)	// User is too far away
 		return
 	// Now make the cardboard
-	user << "<span class='notice'>You fold [src] flat.</span>"
-	new src.foldable(get_turf(src))
+	to_chat(user, SPAN_NOTICE("You fold [src] flat."))
+	new foldable(get_turf(src))
 	qdel(src)
 //BubbleWrap END
 
 /obj/item/storage/hear_talk(mob/M as mob, text)
 	for(var/atom/A in src)
-		if(istype(A, /obj/))
+		if(isobj(A))
 			var/obj/O = A
 			O.hear_talk(M, text)
 
@@ -481,7 +469,7 @@
 			depth++
 		cur_atom = cur_atom.loc
 
-	if(!cur_atom)
+	if(isnull(cur_atom))
 		return -1	//inside something with a null loc.
 
 	return depth
@@ -499,7 +487,7 @@
 			depth++
 		cur_atom = cur_atom.loc
 
-	if(!cur_atom)
+	if(isnull(cur_atom))
 		return -1	//inside something with a null loc.
 
 	return depth

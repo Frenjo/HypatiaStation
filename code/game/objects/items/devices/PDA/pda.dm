@@ -1040,10 +1040,7 @@
 	icon_state = "pdabox"
 
 	starts_with = list(
-		/obj/item/device/pda,
-		/obj/item/device/pda,
-		/obj/item/device/pda,
-		/obj/item/device/pda,
+		/obj/item/device/pda = 4,
 		/obj/item/cartridge/head
 	)
 

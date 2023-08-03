@@ -89,12 +89,7 @@
 	desc = "A box claiming to contain evidence bags."
 
 	starts_with = list(
-		/obj/item/evidencebag,
-		/obj/item/evidencebag,
-		/obj/item/evidencebag,
-		/obj/item/evidencebag,
-		/obj/item/evidencebag,
-		/obj/item/evidencebag
+		/obj/item/evidencebag = 6
 	)
 
 /obj/item/f_card

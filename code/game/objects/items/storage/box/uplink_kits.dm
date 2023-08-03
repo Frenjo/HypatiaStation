@@ -1,5 +1,9 @@
 /obj/item/storage/box/syndicate/New()
-	switch(pickweight(list("bloodyspai" = 1, "stealth" = 1, "screwed" = 1, "guns" = 1, "murder" = 1, "freedom" = 1, "hacker" = 1, "lordsingulo" = 1, "smoothoperator" = 1)))
+	switch(pickweight(list(
+		"bloodyspai" = 1, "stealth" = 1, "screwed" = 1,
+		"guns" = 1, "murder" = 1, "freedom" = 1,
+		"hacker" = 1, "lordsingulo" = 1, "smoothoperator" = 1
+	)))
 		if("bloodyspai")
 			starts_with = list(
 				/obj/item/clothing/under/chameleon,
@@ -17,8 +21,7 @@
 
 		if("screwed")
 			starts_with = list(
-				/obj/effect/spawner/newbomb/timer/syndicate,
-				/obj/effect/spawner/newbomb/timer/syndicate,
+				/obj/effect/spawner/newbomb/timer/syndicate = 2,
 				/obj/item/device/powersink,
 				/obj/item/clothing/suit/space/syndicate,
 				/obj/item/clothing/head/helmet/space/syndicate

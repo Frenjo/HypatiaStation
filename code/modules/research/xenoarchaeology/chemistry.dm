@@ -95,13 +95,7 @@
 	icon_state = "solution_trays"
 
 	starts_with = list(
-		/obj/item/reagent_containers/glass/solution_tray,
-		/obj/item/reagent_containers/glass/solution_tray,
-		/obj/item/reagent_containers/glass/solution_tray,
-		/obj/item/reagent_containers/glass/solution_tray,
-		/obj/item/reagent_containers/glass/solution_tray,
-		/obj/item/reagent_containers/glass/solution_tray,
-		/obj/item/reagent_containers/glass/solution_tray
+		/obj/item/reagent_containers/glass/solution_tray = 7
 	)
 
 

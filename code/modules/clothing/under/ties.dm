@@ -458,12 +458,8 @@
 	desc = "A box claiming to contain holobadges."
 
 	starts_with = list(
-		/obj/item/clothing/tie/holobadge,
-		/obj/item/clothing/tie/holobadge,
-		/obj/item/clothing/tie/holobadge,
-		/obj/item/clothing/tie/holobadge,
-		/obj/item/clothing/tie/holobadge/cord,
-		/obj/item/clothing/tie/holobadge/cord
+		/obj/item/clothing/tie/holobadge = 4,
+		/obj/item/clothing/tie/holobadge/cord = 2
 	)
 
 /obj/item/clothing/tie/storage/knifeharness

@@ -11,13 +11,7 @@
 	desc = "A box claiming to contain sample bags."
 
 	starts_with = list(
-		/obj/item/evidencebag/sample,
-		/obj/item/evidencebag/sample,
-		/obj/item/evidencebag/sample,
-		/obj/item/evidencebag/sample,
-		/obj/item/evidencebag/sample,
-		/obj/item/evidencebag/sample,
-		/obj/item/evidencebag/sample
+		/obj/item/evidencebag/sample = 7
 	)
 
 //////////////////////////////////////////////////////////////////

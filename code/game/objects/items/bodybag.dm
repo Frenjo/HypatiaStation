@@ -19,13 +19,7 @@
 	icon_state = "bodybags"
 
 	starts_with = list(
-		/obj/item/bodybag,
-		/obj/item/bodybag,
-		/obj/item/bodybag,
-		/obj/item/bodybag,
-		/obj/item/bodybag,
-		/obj/item/bodybag,
-		/obj/item/bodybag
+		/obj/item/bodybag = 7
 	)
 
 
