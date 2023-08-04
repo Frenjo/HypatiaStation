@@ -46,7 +46,7 @@ REVIVAL_BRAIN_LIFE -1
 ## We suggest editing this variable in-game to find a good speed for your server. To do this you must be a high level admin.
 ## This value gets directly added to values and totals in-game. To speed things up make the number negative, to slow things down, make the number positive.
 ## This modifies the run speed of all mobs before the mob-specific modifiers are applied.
-RUN_SPEED 2
+RUN_SPEED 3
 
 ## We suggest editing this variable in-game to find a good speed for your server. To do this you must be a high level admin.
 ## This value gets directly added to values and totals in-game. To speed things up make the number negative, to slow things down, make the number positive.

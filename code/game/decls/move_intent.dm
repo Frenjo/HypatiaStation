@@ -10,7 +10,7 @@
 
 /decl/move_intent/walk/New()
 	. = ..()
-	move_delay = CONFIG_GET(walk_speed) + 7
+	move_delay = CONFIG_GET(walk_speed)
 
 // Running
 /decl/move_intent/run
@@ -19,4 +19,4 @@
 
 /decl/move_intent/run/New()
 	. = ..()
-	move_delay = CONFIG_GET(walk_speed) + 1
+	move_delay = CONFIG_GET(run_speed)

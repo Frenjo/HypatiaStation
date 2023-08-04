@@ -36,7 +36,7 @@ CONFIG_ENTRY(revival_brain_life, -1, list("Amount of time (in hundredths of seco
 /*
  * Category: Universal Speed Modifiers
  */
-CONFIG_ENTRY(run_speed, 2, list("We suggest editing this variable in-game to find a good speed for your server. To do this you must be a high level admin.",\
+CONFIG_ENTRY(run_speed, 3, list("We suggest editing this variable in-game to find a good speed for your server. To do this you must be a high level admin.",\
 "This value gets directly added to values and totals in-game. To speed things up make the number negative, to slow things down, make the number positive.",\
 "This modifies the run speed of all mobs before the mob-specific modifiers are applied."), CATEGORY_MOVEMENT_UNIVERSAL, TYPE_NUMERIC)
 CONFIG_ENTRY(walk_speed, 5, list("We suggest editing this variable in-game to find a good speed for your server. To do this you must be a high level admin.",\
