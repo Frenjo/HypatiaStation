@@ -23,29 +23,29 @@
 	switch(pickweight(list("small" = 55, "aid" = 25, "tank" = 10, "both" = 10, "nothing" = 0, "delete" = 0)))
 		if("small")
 			starts_with = list(
-				/obj/item/tank/emergency_oxygen,
-				/obj/item/tank/emergency_oxygen,
+				/obj/item/tank/emergency/oxygen,
+				/obj/item/tank/emergency/oxygen,
 				/obj/item/clothing/mask/breath,
 				/obj/item/clothing/mask/breath
 			)
 		if("aid")
 			starts_with = list(
-				/obj/item/tank/emergency_oxygen,
+				/obj/item/tank/emergency/oxygen,
 				/obj/item/storage/toolbox/emergency,
 				/obj/item/clothing/mask/breath,
 				/obj/item/storage/firstaid/o2
 			)
 		if("tank")
 			starts_with = list(
-				/obj/item/tank/emergency_oxygen/engi,
+				/obj/item/tank/emergency/oxygen/engi,
 				/obj/item/clothing/mask/breath,
-				/obj/item/tank/emergency_oxygen/engi,
+				/obj/item/tank/emergency/oxygen/engi,
 				/obj/item/clothing/mask/breath
 			)
 		if("both")
 			starts_with = list(
 				/obj/item/storage/toolbox/emergency,
-				/obj/item/tank/emergency_oxygen/engi,
+				/obj/item/tank/emergency/oxygen/engi,
 				/obj/item/clothing/mask/breath,
 				/obj/item/storage/firstaid/o2
 			)
@@ -60,7 +60,7 @@
 		/*if ("fire")
 			new /obj/structure/closet/firecloset(src.loc)
 			del(src)*/
-		
+
 	. = ..()
 
 /obj/structure/closet/emcloset_legacy

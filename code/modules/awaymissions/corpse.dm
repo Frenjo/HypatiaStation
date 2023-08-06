@@ -123,7 +123,7 @@
 	corpsemask = /obj/item/clothing/mask/gas/syndicate
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/syndi
 	corpseback = /obj/item/tank/jetpack/oxygen
-	corpsepocket1 = /obj/item/tank/emergency_oxygen
+	corpsepocket1 = /obj/item/tank/emergency/oxygen
 	corpseid = 1
 	corpseidjob = "Operative"
 	corpseidaccess = "Syndicate"

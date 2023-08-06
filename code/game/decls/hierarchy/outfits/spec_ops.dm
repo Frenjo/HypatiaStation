@@ -56,7 +56,7 @@
 
 	l_ear = /obj/item/device/radio/headset
 
-	suit_store = /obj/item/tank/emergency_oxygen
+	suit_store = /obj/item/tank/emergency/oxygen
 	l_pocket = /obj/item/melee/energy/sword
 	r_pocket = /obj/item/grenade/flashbang
 
@@ -123,7 +123,7 @@
 	gloves = /obj/item/clothing/gloves/swat
 	shoes = /obj/item/clothing/shoes/swat
 
-	suit_store = /obj/item/tank/emergency_oxygen
+	suit_store = /obj/item/tank/emergency/oxygen
 	l_pocket = /obj/item/melee/energy/sword
 	r_pocket = /obj/item/grenade/empgrenade
 

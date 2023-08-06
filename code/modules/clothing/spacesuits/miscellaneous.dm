@@ -20,7 +20,7 @@
 	flags = STOPSPRESSUREDAMAGE
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
 	allowed = list(
-		/obj/item/tank/emergency_oxygen, /obj/item/device/flashlight, /obj/item/gun/energy,
+		/obj/item/tank/emergency/oxygen, /obj/item/device/flashlight, /obj/item/gun/energy,
 		/obj/item/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton, /obj/item/handcuffs
 	)
@@ -83,7 +83,7 @@
 	w_class = 3
 	allowed = list(
 		/obj/item/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
-		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/tank/emergency_oxygen
+		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/tank/emergency/oxygen
 	)
 	slowdown = 0
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)

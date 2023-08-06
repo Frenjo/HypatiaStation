@@ -78,7 +78,7 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 	allowed = list(
-		/obj/item/tank/emergency_oxygen, /obj/item/device/flashlight, /obj/item/gun/energy,
+		/obj/item/tank/emergency/oxygen, /obj/item/device/flashlight, /obj/item/gun/energy,
 		/obj/item/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/storage/fancy/cigarettes,
 		/obj/item/lighter, /obj/item/device/detective_scanner, /obj/item/device/taperecorder
@@ -95,7 +95,7 @@
 	item_state = "det_suit"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | ARMS
 	allowed = list(
-		/obj/item/tank/emergency_oxygen, /obj/item/device/flashlight, /obj/item/gun/energy,
+		/obj/item/tank/emergency/oxygen, /obj/item/device/flashlight, /obj/item/gun/energy,
 		/obj/item/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/device/detective_scanner,
 		/obj/item/device/taperecorder
@@ -122,7 +122,7 @@
 	allowed = list(
 		/obj/item/device/analyzer, /obj/item/device/flashlight, /obj/item/device/multitool, /obj/item/device/pipe_painter,
 		/obj/item/device/radio, /obj/item/device/t_scanner, /obj/item/crowbar, /obj/item/screwdriver,
-		/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/wrench, /obj/item/tank/emergency_oxygen,
+		/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/wrench, /obj/item/tank/emergency/oxygen,
 		/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering
 	)
 
@@ -182,7 +182,7 @@
 	allowed = list(
 		/obj/item/stack/medical, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/hypospray,
 		/obj/item/reagent_containers/syringe, /obj/item/device/healthanalyzer, /obj/item/device/flashlight,
-		/obj/item/device/radio, /obj/item/tank/emergency_oxygen
+		/obj/item/device/radio, /obj/item/tank/emergency/oxygen
 	)
 
 /obj/item/clothing/suit/storage/fr_jacket/verb/toggle()

@@ -118,7 +118,7 @@
 
 	//Jetpack (You hit the jackpot!)
 	if(pickednum == 50)
-		new /obj/item/tank/jetpack/carbondioxide(src)
+		new /obj/item/tank/jetpack/carbon_dioxide(src)
 
 /*
  * Syndicate Resources (Everything)

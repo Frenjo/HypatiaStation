@@ -95,7 +95,7 @@
 	allowed = list(
 		/obj/item/tome,
 		/obj/item/melee/cultblade,
-		/obj/item/tank/emergency_oxygen,
+		/obj/item/tank/emergency/oxygen,
 		/obj/item/device/suit_cooling_unit
 	)
 	slowdown = 1

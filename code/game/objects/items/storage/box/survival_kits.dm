@@ -15,7 +15,7 @@
 
 	starts_with = list(
 		/obj/item/clothing/mask/breath,
-		/obj/item/tank/emergency_oxygen,
+		/obj/item/tank/emergency/oxygen,
 		/obj/item/storage/pill_bottle/stokaline
 	)
 
@@ -26,7 +26,7 @@
 
 	starts_with = list(
 		/obj/item/clothing/mask/breath,
-		/obj/item/tank/emergency_oxygen/engi,
+		/obj/item/tank/emergency/oxygen/engi,
 		/obj/item/storage/pill_bottle/stokaline
 	)
 
@@ -37,7 +37,7 @@
 
 	starts_with = list(
 		/obj/item/clothing/mask/breath,
-		/obj/item/tank/emergency_plasma
+		/obj/item/tank/emergency/plasma
 	)
 
 // Diona survival kit with a flashlight, penlight and a flare.

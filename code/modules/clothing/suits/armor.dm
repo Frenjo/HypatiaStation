@@ -74,7 +74,7 @@
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	allowed = list(
 		/obj/item/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
-		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/tank/emergency_oxygen
+		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/tank/emergency/oxygen
 	)
 	slowdown = 1
 	armor = list(melee = 80, bullet = 60, laser = 50, energy = 25, bomb = 50, bio = 0, rad = 0)
@@ -151,7 +151,7 @@
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	allowed = list(
 		/obj/item/gun/energy, /obj/item/melee/baton, /obj/item/handcuffs,
-		/obj/item/tank/emergency_oxygen
+		/obj/item/tank/emergency/oxygen
 	)
 	flags_inv = HIDEGLOVES | HIDESHOES | HIDEJUMPSUIT
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS

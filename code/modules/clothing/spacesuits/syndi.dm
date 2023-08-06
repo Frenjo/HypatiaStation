@@ -17,7 +17,7 @@
 	allowed = list(
 		/obj/item/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton, /obj/item/melee/energy/sword, /obj/item/handcuffs,
-		/obj/item/tank/emergency_oxygen
+		/obj/item/tank/emergency/oxygen
 	)
 	slowdown = 1
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)

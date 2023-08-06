@@ -67,7 +67,7 @@
 		/obj/item/device/radio/headset/qm,
 		/obj/item/cartridge/quartermaster,
 		/obj/item/clothing/suit/fire/firefighter,
-		/obj/item/tank/emergency_oxygen,
+		/obj/item/tank/emergency/oxygen,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/glasses/meson,
 		/obj/item/clothing/head/soft
