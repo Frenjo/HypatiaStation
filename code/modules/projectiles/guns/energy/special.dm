@@ -10,63 +10,6 @@
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/declone)
 
-/obj/item/gun/energy/staff
-	name = "staff of change"
-	desc = "An artefact that spits bolts of coruscating energy which cause the target's very form to reshape itself"
-	icon_state = "staffofchange"
-	item_state = "staffofchange"
-
-	w_class = 4
-	slot_flags = SLOT_BACK
-	origin_tech = null
-
-	fire_sound = 'sound/weapons/emitter.ogg'
-
-	clumsy_check = FALSE
-
-	charge_cost = 200
-
-	gun_setting = GUN_SETTING_SPECIAL
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/change)
-
-	var/charge_tick = 0
-
-/obj/item/gun/energy/staff/New()
-	. = ..()
-	GLOBL.processing_objects.Add(src)
-
-/obj/item/gun/energy/staff/Destroy()
-	GLOBL.processing_objects.Remove(src)
-	return ..()
-
-/obj/item/gun/energy/staff/process()
-	charge_tick++
-	if(charge_tick < 4)
-		return 0
-	charge_tick = 0
-	if(isnull(power_supply))
-		return 0
-	power_supply.give(200)
-	return 1
-
-/obj/item/gun/energy/staff/update_icon()
-	return
-
-/obj/item/gun/energy/staff/click_empty(mob/user = null)
-	if(isnotnull(user))
-		user.visible_message("*fizzle*", SPAN_DANGER("*fizzle*"))
-	else
-		visible_message("*fizzle*")
-	playsound(src, 'sound/effects/sparks1.ogg', 100, 1)
-
-/obj/item/gun/energy/staff/animate
-	name = "staff of animation"
-	desc = "An artefact that spits bolts of life-force which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
-
-	charge_cost = 100
-
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/animate)
-
 /obj/item/gun/energy/floragun
 	name = "floral somatoray"
 	desc = "A tool that discharges controlled radiation which induces mutation in plant cells."
@@ -176,27 +119,6 @@
 	gun_mode = GUN_MODE_BEAM
 	gun_setting = GUN_SETTING_SPECIAL
 	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/mindflayer)
-
-/obj/item/gun/energy/staff/focus
-	name = "mental focus"
-	desc = "An artefact that channels the will of the user into destructive bolts of force. If you aren't careful with it, you might poke someone's brain out."
-	icon = 'icons/obj/wizard.dmi'
-	icon_state = "focus"
-	item_state = "focus"
-
-	gun_setting = GUN_SETTING_SPECIAL
-	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/forcebolt)
-	/*
-	attack_self(mob/living/user as mob)
-		if(projectile_type == "/obj/item/projectile/forcebolt")
-			charge_cost = 200
-			user << "\red The [name] will now strike a small area."
-			projectile_type = "/obj/item/projectile/forcebolt/strong"
-		else
-			charge_cost = 100
-			user << "\red The [name] will now strike only a single person."
-			projectile_type = "/obj/item/projectile/forcebolt"
-	*/
 
 /obj/item/gun/energy/toxgun
 	name = "plasma pistol"
