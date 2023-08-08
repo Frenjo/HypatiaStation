@@ -26,19 +26,19 @@
 	. = ..()
 	for(var/dir in GLOBL.cardinal)
 		input = locate(/obj/machinery/mineral/input, get_step(src, dir))
-		if(input)
+		if(isnotnull(input))
 			break
 	for(var/dir in GLOBL.cardinal)
 		output = locate(/obj/machinery/mineral/output, get_step(src, dir))
-		if(output)
+		if(isnotnull(output))
 			break
 	GLOBL.processing_objects.Add(src)
 
 /obj/machinery/mineral/mint/process()
-	if(src.input)
+	if(isnotnull(input))
 		var/obj/item/stack/sheet/O
 		O = locate(/obj/item/stack/sheet, input.loc)
-		if(O)
+		if(isnotnull(O))
 			if(istype(O, /obj/item/stack/sheet/mineral/gold))
 				amt_gold += 100 * O.amount
 				qdel(O)
@@ -54,7 +54,7 @@
 			if(istype(O, /obj/item/stack/sheet/mineral/uranium))
 				amt_uranium += 100 * O.amount
 				qdel(O)
-			if(istype(O,/obj/item/stack/sheet/metal))
+			if(istype(O, /obj/item/stack/sheet/metal))
 				amt_iron += 100 * O.amount
 				qdel(O)
 			if(istype(O, /obj/item/stack/sheet/mineral/bananium))
@@ -70,78 +70,78 @@
 /obj/machinery/mineral/mint/attack_hand(user as mob)
 	var/dat = "<b>Coin Press</b><br>"
 
-	if(!input)
-		dat += text("input connection status: ")
-		dat += text("<b><font color='red'>NOT CONNECTED</font></b><br>")
-	if(!output)
-		dat += text("<br>output connection status: ")
-		dat += text("<b><font color='red'>NOT CONNECTED</font></b><br>")
+	if(isnull(input))
+		dat += "input connection status: "
+		dat += "<b><font color='red'>NOT CONNECTED</font></b><br>"
+	if(isnull(output))
+		dat += "<br>output connection status: "
+		dat += "<b><font color='red'>NOT CONNECTED</font></b><br>"
 
-	dat += text("<br><font color='#ffcc00'><b>Gold inserted: </b>[amt_gold]</font> ")
+	dat += "<br><font color='#ffcc00'><b>Gold inserted: </b>[amt_gold]</font> "
 	if(chosen == MATERIAL_GOLD)
-		dat += text("chosen")
+		dat += "chosen"
 	else
-		dat += text("<A href='?src=\ref[src];choose=[MATERIAL_GOLD]'>Choose</A>")
-	dat += text("<br><font color='#888888'><b>Silver inserted: </b>[amt_silver]</font> ")
+		dat += "<A href='?src=\ref[src];choose=[MATERIAL_GOLD]'>Choose</A>"
+	dat += "<br><font color='#888888'><b>Silver inserted: </b>[amt_silver]</font> "
 	if(chosen == MATERIAL_SILVER)
-		dat += text("chosen")
+		dat += "chosen"
 	else
-		dat += text("<A href='?src=\ref[src];choose=[MATERIAL_SILVER]'>Choose</A>")
-	dat += text("<br><font color='#555555'><b>Iron inserted: </b>[amt_iron]</font> ")
+		dat += "<A href='?src=\ref[src];choose=[MATERIAL_SILVER]'>Choose</A>"
+	dat += "<br><font color='#555555'><b>Iron inserted: </b>[amt_iron]</font> "
 	if(chosen == MATERIAL_METAL)
-		dat += text("chosen")
+		dat += "chosen"
 	else
-		dat += text("<A href='?src=\ref[src];choose=[MATERIAL_METAL]'>Choose</A>")
-	dat += text("<br><font color='#8888FF'><b>Diamond inserted: </b>[amt_diamond]</font> ")
+		dat += "<A href='?src=\ref[src];choose=[MATERIAL_METAL]'>Choose</A>"
+	dat += "<br><font color='#8888FF'><b>Diamond inserted: </b>[amt_diamond]</font> "
 	if(chosen == MATERIAL_DIAMOND)
-		dat += text("chosen")
+		dat += "chosen"
 	else
-		dat += text("<A href='?src=\ref[src];choose=[MATERIAL_DIAMOND]'>Choose</A>")
-	dat += text("<br><font color='#FF8800'><b>Plasma inserted: </b>[amt_plasma]</font> ")
+		dat += "<A href='?src=\ref[src];choose=[MATERIAL_DIAMOND]'>Choose</A>"
+	dat += "<br><font color='#FF8800'><b>Plasma inserted: </b>[amt_plasma]</font> "
 	if(chosen == MATERIAL_PLASMA)
-		dat += text("chosen")
+		dat += "chosen"
 	else
-		dat += text("<A href='?src=\ref[src];choose=[MATERIAL_PLASMA]'>Choose</A>")
-	dat += text("<br><font color='#008800'><b>uranium inserted: </b>[amt_uranium]</font> ")
+		dat += "<A href='?src=\ref[src];choose=[MATERIAL_PLASMA]'>Choose</A>"
+	dat += "<br><font color='#008800'><b>uranium inserted: </b>[amt_uranium]</font> "
 	if(chosen == MATERIAL_URANIUM)
-		dat += text("chosen")
+		dat += "chosen"
 	else
-		dat += text("<A href='?src=\ref[src];choose=[MATERIAL_URANIUM]'>Choose</A>")
+		dat += "<A href='?src=\ref[src];choose=[MATERIAL_URANIUM]'>Choose</A>"
 	if(amt_bananium > 0)
-		dat += text("<br><font color='#AAAA00'><b>Bananium inserted: </b>[amt_bananium]</font> ")
+		dat += "<br><font color='#AAAA00'><b>Bananium inserted: </b>[amt_bananium]</font> "
 		if(chosen == MATERIAL_BANANIUM)
-			dat += text("chosen")
+			dat += "chosen"
 		else
-			dat += text("<A href='?src=\ref[src];choose=[MATERIAL_BANANIUM]'>Choose</A>")
-	dat += text("<br><font color='#888888'><b>Adamantine inserted: </b>[amt_adamantine]</font> ")//I don't even know these color codes, so fuck it.
+			dat += "<A href='?src=\ref[src];choose=[MATERIAL_BANANIUM]'>Choose</A>"
+	dat += "<br><font color='#888888'><b>Adamantine inserted: </b>[amt_adamantine]</font> " // I don't even know these color codes, so fuck it.
 	if(chosen == MATERIAL_ADAMANTINE)
-		dat += text("chosen")
+		dat += "chosen"
 	else
-		dat += text("<A href='?src=\ref[src];choose=[MATERIAL_ADAMANTINE]'>Choose</A>")
-	dat += text("<br><font color='#f30000'><b>Mythril inserted: </b>[amt_mythril]</font> ")//I don't even know these color codes, so fuck it.
+		dat += "<A href='?src=\ref[src];choose=[MATERIAL_ADAMANTINE]'>Choose</A>"
+	dat += "<br><font color='#f30000'><b>Mythril inserted: </b>[amt_mythril]</font> " // I don't even know these color codes, so fuck it.
 	if(chosen == MATERIAL_MYTHRIL)
-		dat += text("chosen")
+		dat += "chosen"
 	else
-		dat += text("<A href='?src=\ref[src];choose=[MATERIAL_MYTHRIL]'>Choose</A>")
+		dat += "<A href='?src=\ref[src];choose=[MATERIAL_MYTHRIL]'>Choose</A>"
 
-	dat += text("<br><br>Will produce [coinsToProduce] [chosen] coins if enough materials are available.<br>")
-	//dat += text("The dial which controls the number of coins to produce seems to be stuck. A technician has already been dispatched to fix this.")
-	dat += text("<A href='?src=\ref[src];chooseAmt=-10'>-10</A> ")
-	dat += text("<A href='?src=\ref[src];chooseAmt=-5'>-5</A> ")
-	dat += text("<A href='?src=\ref[src];chooseAmt=-1'>-1</A> ")
-	dat += text("<A href='?src=\ref[src];chooseAmt=1'>+1</A> ")
-	dat += text("<A href='?src=\ref[src];chooseAmt=5'>+5</A> ")
-	dat += text("<A href='?src=\ref[src];chooseAmt=10'>+10</A> ")
+	dat += "<br><br>Will produce [coinsToProduce] [chosen] coins if enough materials are available.<br>"
+	//dat += "The dial which controls the number of coins to produce seems to be stuck. A technician has already been dispatched to fix this."
+	dat += "<A href='?src=\ref[src];chooseAmt=-10'>-10</A> "
+	dat += "<A href='?src=\ref[src];chooseAmt=-5'>-5</A> "
+	dat += "<A href='?src=\ref[src];chooseAmt=-1'>-1</A> "
+	dat += "<A href='?src=\ref[src];chooseAmt=1'>+1</A> "
+	dat += "<A href='?src=\ref[src];chooseAmt=5'>+5</A> "
+	dat += "<A href='?src=\ref[src];chooseAmt=10'>+10</A> "
 
-	dat += text("<br><br>In total this machine produced <font color='green'><b>[newCoins]</b></font> coins.")
-	dat += text("<br><A href='?src=\ref[src];makeCoins=[1]'>Make coins</A>")
+	dat += "<br><br>In total this machine produced <font color='green'><b>[newCoins]</b></font> coins."
+	dat += "<br><A href='?src=\ref[src];makeCoins=[1]'>Make coins</A>"
 	user << browse("[dat]", "window=mint")
 
 /obj/machinery/mineral/mint/Topic(href, href_list)
 	if(..())
 		return
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	if(processing)
 		to_chat(usr, SPAN_INFO("The machine is processing."))
 		return
@@ -166,7 +166,7 @@
 						amt_iron -= 20
 						coinsToProduce--
 						newCoins++
-						src.updateUsrDialog()
+						updateUsrDialog()
 						sleep(5)
 				if(MATERIAL_GOLD)
 					while(amt_gold > 0 && coinsToProduce > 0)
@@ -178,7 +178,7 @@
 						amt_gold -= 20
 						coinsToProduce--
 						newCoins++
-						src.updateUsrDialog()
+						updateUsrDialog()
 						sleep(5)
 				if(MATERIAL_SILVER)
 					while(amt_silver > 0 && coinsToProduce > 0)
@@ -190,7 +190,7 @@
 						amt_silver -= 20
 						coinsToProduce--
 						newCoins++
-						src.updateUsrDialog()
+						updateUsrDialog()
 						sleep(5)
 				if(MATERIAL_DIAMOND)
 					while(amt_diamond > 0 && coinsToProduce > 0)
@@ -202,7 +202,7 @@
 						amt_diamond -= 20
 						coinsToProduce--
 						newCoins++
-						src.updateUsrDialog()
+						updateUsrDialog()
 						sleep(5)
 				if(MATERIAL_PLASMA)
 					while(amt_plasma > 0 && coinsToProduce > 0)
@@ -214,7 +214,7 @@
 						amt_plasma -= 20
 						coinsToProduce--
 						newCoins++
-						src.updateUsrDialog()
+						updateUsrDialog()
 						sleep(5)
 				if(MATERIAL_URANIUM)
 					while(amt_uranium > 0 && coinsToProduce > 0)
@@ -226,7 +226,7 @@
 						amt_uranium -= 20
 						coinsToProduce--
 						newCoins++
-						src.updateUsrDialog()
+						updateUsrDialog()
 						sleep(5)
 				if(MATERIAL_BANANIUM)
 					while(amt_bananium > 0 && coinsToProduce > 0)
@@ -238,7 +238,7 @@
 						amt_bananium -= 20
 						coinsToProduce--
 						newCoins++
-						src.updateUsrDialog()
+						updateUsrDialog()
 						sleep(5)
 				if(MATERIAL_ADAMANTINE)
 					while(amt_adamantine > 0 && coinsToProduce > 0)
@@ -250,7 +250,7 @@
 						amt_adamantine -= 20
 						coinsToProduce--
 						newCoins++
-						src.updateUsrDialog()
+						updateUsrDialog()
 						sleep(5)
 				if(MATERIAL_MYTHRIL)
 					while(amt_adamantine > 0 && coinsToProduce > 0)
@@ -262,10 +262,9 @@
 						amt_mythril -= 20
 						coinsToProduce--
 						newCoins++
-						src.updateUsrDialog()
+						updateUsrDialog()
 						sleep(5)
 			icon_state = "coinpress0"
 			processing = FALSE
 			coinsToProduce = temp_coins
-	src.updateUsrDialog()
-	return
+	updateUsrDialog()

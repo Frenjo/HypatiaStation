@@ -80,9 +80,9 @@
 	name = "coin"
 	icon_state = "coin"
 	flags = CONDUCT
-	force = 0.0
-	throwforce = 0.0
-	w_class = 1.0
+	force = 0
+	throwforce = 0
+	w_class = 1
 
 	var/string_attached = FALSE
 	var/sides = 2

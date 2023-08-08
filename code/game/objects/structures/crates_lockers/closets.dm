@@ -15,6 +15,7 @@
 	var/storage_capacity = 30 //This is so that someone can't pack hundreds of items in a locker/crate
 							  //then open it in a populated area to crash clients.
 
+	// This should probably be made null by default.
 	var/list/starts_with = list() // A list of typepaths for things this closet will spawn with.
 
 /obj/structure/closet/New()

@@ -11,7 +11,7 @@
 	initial_gases = null
 	opacity = TRUE
 	density = TRUE
-	blocks_air = 1
+	blocks_air = TRUE
 	temperature = T0C
 
 	var/decl/mineral/mineral = null
@@ -33,31 +33,34 @@
 
 /turf/simulated/mineral/initialize()
 	. = ..()
-	var/turf/T
-	if(istype(get_step(src, NORTH), /turf/simulated/floor) || isspace(get_step(src, NORTH)) || istype(get_step(src, NORTH), /turf/simulated/shuttle/floor))
-		T = get_step(src, NORTH)
-		if(T)
+	// I've tidied this up but I still hate it.
+	var/turf/T = get_step(src, NORTH)
+	if(isnotnull(T))
+		if(istype(T, /turf/simulated/floor) || isspace(T) || istype(T, /turf/simulated/shuttle/floor))
 			T.overlays.Add(image('icons/turf/walls.dmi', "rock_side_s"))
-	if(istype(get_step(src, SOUTH), /turf/simulated/floor) || isspace(get_step(src, SOUTH)) || istype(get_step(src, SOUTH), /turf/simulated/shuttle/floor))
-		T = get_step(src, SOUTH)
-		if(T)
+		T = null
+	T = get_step(src, SOUTH)
+	if(isnotnull(T))
+		if(istype(T, /turf/simulated/floor) || isspace(T) || istype(T, /turf/simulated/shuttle/floor))
 			T.overlays.Add(image('icons/turf/walls.dmi', "rock_side_n", layer = 6))
-	if(istype(get_step(src, EAST), /turf/simulated/floor) || isspace(get_step(src, EAST)) || istype(get_step(src, EAST), /turf/simulated/shuttle/floor))
-		T = get_step(src, EAST)
-		if(T)
+		T = null
+	T = get_step(src, EAST)
+	if(isnotnull(T))
+		if(istype(T, /turf/simulated/floor) || isspace(T) || istype(T, /turf/simulated/shuttle/floor))
 			T.overlays.Add(image('icons/turf/walls.dmi', "rock_side_w", layer = 6))
-	if(istype(get_step(src, WEST), /turf/simulated/floor) || isspace(get_step(src, WEST)) || istype(get_step(src, WEST), /turf/simulated/shuttle/floor))
-		T = get_step(src, WEST)
-		if(T)
+		T = null
+	T = get_step(src, WEST)
+	if(isnotnull(T))
+		if(istype(T, /turf/simulated/floor) || isspace(T) || istype(T, /turf/simulated/shuttle/floor))
 			T.overlays.Add(image('icons/turf/walls.dmi', "rock_side_e", layer = 6))
 
 /turf/simulated/mineral/ex_act(severity)
 	switch(severity)
-		if(2.0)
+		if(2)
 			if(prob(70))
 				mined_ore = 1 //some of the stuff gets blown up
 				GetDrilled()
-		if(1.0)
+		if(1)
 			mined_ore = 2 //some of the stuff gets blown up
 			GetDrilled()
 
@@ -82,7 +85,7 @@
 
 // Not even going to touch this pile of spaghetti.
 /turf/simulated/mineral/attackby(obj/item/W as obj, mob/user as mob)
-	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
+	if((!ishuman(usr) || isnull(global.CTgame_ticker)) && global.CTgame_ticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 
@@ -297,16 +300,16 @@
 	//some find types delete the /obj/item/archaeological_find and replace it with something else, this handles when that happens
 	//yuck
 	var/display_name = "something"
-	if(!X)
+	if(isnull(X))
 		X = last_find
-	if(X)
+	if(isnotnull(X))
 		display_name = X.name
 
 	//many finds are ancient and thus very delicate - luckily there is a specialised energy suspension field which protects them when they're being extracted
 	if(prob(F.prob_delicate))
 		var/obj/effect/suspension_field/S = locate() in src
-		if(!S || S.field_type != get_responsive_reagent(F.find_type))
-			if(X)
+		if(isnull(S) || S.field_type != get_responsive_reagent(F.find_type))
+			if(isnotnull(X))
 				visible_message(SPAN_DANGER("[pick("[display_name] crumbles away into dust", "[display_name] breaks apart")]."))
 				qdel(X)
 
@@ -320,19 +323,19 @@
 	for(var/j in 1 to rand(1, 3 + max(min(severity, 1), 0) * 2))
 		switch(rand(1, 7))
 			if(1)
-				var/obj/item/stack/rods/R = new(src)
+				var/obj/item/stack/rods/R = new /obj/item/stack/rods(src)
 				R.amount = rand(5, 25)
 
 			if(2)
-				var/obj/item/stack/tile/R = new(src)
+				var/obj/item/stack/tile/R = new /obj/item/stack/tile(src)
 				R.amount = rand(1, 5)
 
 			if(3)
-				var/obj/item/stack/sheet/metal/R = new(src)
+				var/obj/item/stack/sheet/metal/R = new /obj/item/stack/sheet/metal(src)
 				R.amount = rand(5, 25)
 
 			if(4)
-				var/obj/item/stack/sheet/plasteel/R = new(src)
+				var/obj/item/stack/sheet/plasteel/R = new /obj/item/stack/sheet/plasteel(src)
 				R.amount = rand(5, 25)
 
 			if(5)
@@ -346,5 +349,5 @@
 					new /obj/item/shard/plasma(src)
 
 			if(7)
-				var/obj/item/stack/sheet/mineral/uranium/R = new(src)
+				var/obj/item/stack/sheet/mineral/uranium/R = new /obj/item/stack/sheet/mineral/uranium(src)
 				R.amount = rand(5, 25)

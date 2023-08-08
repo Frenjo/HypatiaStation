@@ -26,12 +26,12 @@
 
 /turf/simulated/floor/plating/airless/asteroid/ex_act(severity)
 	switch(severity)
-		if(3.0)
+		if(3)
 			return
-		if(2.0)
+		if(2)
 			if (prob(70))
 				gets_dug()
-		if(1.0)
+		if(1)
 			gets_dug()
 	return
 
@@ -46,11 +46,9 @@
 				attackby(R.module_state_2, R)
 			else if(istype(R.module_state_3, /obj/item/storage/bag/ore))
 				attackby(R.module_state_3, R)
-			else
-				return
 
 /turf/simulated/floor/plating/airless/asteroid/attackby(obj/item/W as obj, mob/user as mob)
-	if(!W || !user)
+	if(isnull(W) || isnull(user))
 		return 0
 
 	if(istype(W, /obj/item/shovel))
@@ -113,7 +111,6 @@
 
 	else
 		..(W, user)
-	return
 
 /turf/simulated/floor/plating/airless/asteroid/proc/gets_dug()
 	if(dug)

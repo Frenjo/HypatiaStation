@@ -12,15 +12,15 @@
 	. = ..()
 	for(var/dir in GLOBL.cardinal)
 		input = locate(/obj/machinery/mineral/input, get_step(src, dir))
-		if(input)
+		if(isnotnull(input))
 			break
 	for(var/dir in GLOBL.cardinal)
 		output = locate(/obj/machinery/mineral/output, get_step(src, dir))
-		if(output)
+		if(isnotnull(output))
 			break
 
 /obj/machinery/mineral/unloading_machine/process()
-	if(output && input)
+	if(isnotnull(input) && isnotnull(output))
 		if(locate(/obj/structure/ore_box, input.loc))
 			var/obj/structure/ore_box/BOX = locate(/obj/structure/ore_box, input.loc)
 			var/i = 0
@@ -34,8 +34,4 @@
 			var/obj/item/O
 			for(var/i = 0; i < 10; i++)
 				O = locate(/obj/item, input.loc)
-				if(O)
-					O.loc = src.output.loc
-				else
-					return
-	return
+				O?.loc = output.loc

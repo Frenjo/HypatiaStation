@@ -64,10 +64,10 @@
 	icon_state = "pickaxe"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = 15.0
-	throwforce = 4.0
+	force = 15
+	throwforce = 4
 	item_state = "pickaxe"
-	w_class = 4.0
+	w_class = 4
 	matter_amounts = list(MATERIAL_METAL = 3750) //one sheet, but where can you make them?
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_ENGINEERING = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
@@ -124,7 +124,7 @@
 	name = "plasma cutter"
 	icon_state = "plasmacutter"
 	item_state = "gun"
-	w_class = 3.0 //it is smaller than the pickaxe
+	w_class = 3 //it is smaller than the pickaxe
 	damtype = "fire"
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/ light thermite on fire
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_PLASMATECH = 3, RESEARCH_TECH_ENGINEERING = 3)
@@ -166,10 +166,10 @@
 	icon_state = "shovel"
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
-	force = 8.0
-	throwforce = 4.0
+	force = 8
+	throwforce = 4
 	item_state = "shovel"
-	w_class = 3.0
+	w_class = 3
 	matter_amounts = list(MATERIAL_METAL = 50)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_ENGINEERING = 1)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
@@ -179,9 +179,9 @@
 	desc = "A small tool for digging and moving dirt."
 	icon_state = "spade"
 	item_state = "spade"
-	force = 5.0
-	throwforce = 7.0
-	w_class = 2.0
+	force = 5
+	throwforce = 7
+	w_class = 2
 
 /*
  * Mining Car

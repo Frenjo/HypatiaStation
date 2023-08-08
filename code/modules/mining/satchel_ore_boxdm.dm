@@ -1,10 +1,10 @@
 
 /**********************Ore box**************************/
 /obj/structure/ore_box
+	name = "ore box"
+	desc = "A heavy box used for storing ore."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "orebox0"
-	name = "Ore Box"
-	desc = "A heavy box used for storing ore."
 	density = TRUE
 
 	var/amt_gold = 0
@@ -20,14 +20,13 @@
 
 /obj/structure/ore_box/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/ore))
-		src.contents += W;
+		contents += W
 	if(istype(W, /obj/item/storage))
 		var/obj/item/storage/S = W
 		S.hide_from(usr)
 		for(var/obj/item/ore/O in S.contents)
-			S.remove_from_storage(O, src) //This will move the item to this item's contents
+			S.remove_from_storage(O, src) // This will move the item to this item's contents
 		to_chat(user, SPAN_INFO("You empty the satchel into the box."))
-	return
 
 /obj/structure/ore_box/attack_hand(obj, mob/user as mob)
 	var/amt_gold = 0
@@ -42,57 +41,55 @@
 
 	for(var/obj/item/ore/C in contents)
 		if(istype(C, /obj/item/ore/diamond))
-			amt_diamond++;
+			amt_diamond++
 		if(istype(C, /obj/item/ore/glass))
-			amt_glass++;
+			amt_glass++
 		if(istype(C, /obj/item/ore/plasma))
-			amt_plasma++;
+			amt_plasma++
 		if(istype(C, /obj/item/ore/iron))
-			amt_iron++;
+			amt_iron++
 		if(istype(C, /obj/item/ore/silver))
-			amt_silver++;
+			amt_silver++
 		if(istype(C, /obj/item/ore/gold))
-			amt_gold++;
+			amt_gold++
 		if(istype(C, /obj/item/ore/uranium))
-			amt_uranium++;
+			amt_uranium++
 		if(istype(C, /obj/item/ore/bananium))
-			amt_bananium++;
+			amt_bananium++
 		if(istype(C, /obj/item/ore/strangerock))
-			amt_strange++;
+			amt_strange++
 
-	var/dat = text("<b>The contents of the ore box reveal...</b><br>")
+	var/dat = "<b>The contents of the ore box reveal...</b><br>"
 	if(amt_gold)
-		dat += text("Gold ore: [amt_gold]<br>")
+		dat += "Gold ore: [amt_gold]<br>"
 	if(amt_silver)
-		dat += text("Silver ore: [amt_silver]<br>")
+		dat += "Silver ore: [amt_silver]<br>"
 	if(amt_iron)
-		dat += text("Metal ore: [amt_iron]<br>")
+		dat += "Metal ore: [amt_iron]<br>"
 	if(amt_glass)
-		dat += text("Sand: [amt_glass]<br>")
+		dat += "Sand: [amt_glass]<br>"
 	if(amt_diamond)
-		dat += text("Diamond ore: [amt_diamond]<br>")
+		dat += "Diamond ore: [amt_diamond]<br>"
 	if(amt_plasma)
-		dat += text("Plasma ore: [amt_plasma]<br>")
+		dat += "Plasma ore: [amt_plasma]<br>"
 	if(amt_uranium)
-		dat += text("Uranium ore: [amt_uranium]<br>")
+		dat += "Uranium ore: [amt_uranium]<br>"
 	if(amt_clown)
-		dat += text("Bananium ore: [amt_bananium]<br>")
+		dat += "Bananium ore: [amt_bananium]<br>"
 	if(amt_strange)
-		dat += text("Strange rocks: [amt_strange]<br>")
+		dat += "Strange rocks: [amt_strange]<br>"
 
-	dat += text("<br><br><A href='?src=\ref[src];removeall=1'>Empty box</A>")
+	dat += "<br><br><A href='?src=\ref[src];removeall=1'>Empty box</A>"
 	user << browse("[dat]", "window=orebox")
-	return
 
 /obj/structure/ore_box/Topic(href, href_list)
 	if(..())
 		return
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	if(href_list["removeall"])
 		for(var/obj/item/ore/O in contents)
 			contents -= O
-			O.loc = src.loc
+			O.loc = loc
 		to_chat(usr, SPAN_INFO("You empty the box."))
-	src.updateUsrDialog()
-	return
+	updateUsrDialog()
