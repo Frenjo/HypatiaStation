@@ -1,6 +1,8 @@
-// robot_upgrades.dm
-// Contains various borg upgrades.
-
+/*
+ * Cyborg/Robot Upgrades
+ *
+ * Contains various borg upgrades.
+ */
 /*
  * Base Upgrade
  */
@@ -14,7 +16,7 @@
 	var/construction_cost = list(MATERIAL_METAL = 10000)
 	var/locked = FALSE
 	var/require_module = FALSE
-	var/installed = 0
+	var/installed = FALSE
 
 /obj/item/borg/upgrade/proc/action(mob/living/silicon/robot/R)
 	if(R.stat == DEAD)
@@ -26,9 +28,10 @@
  * Reset Module
  */
 /obj/item/borg/upgrade/reset
-	name = "robotic module reset board"
-	desc = "Used to reset a cyborg's module. Destroys any other upgrades applied to the robot."
+	name = "robot module reset board"
+	desc = "Used to reset a robot's module. Destroys any other upgrades applied to the robot."
 	icon_state = "cyborg_upgrade1"
+
 	require_module = TRUE
 
 /obj/item/borg/upgrade/reset/action(mob/living/silicon/robot/R)
@@ -46,7 +49,6 @@
 	R.updateicon()
 	R.languages = list()
 	R.speech_synthesizer_langs = list()
-
 	return TRUE
 
 /*
@@ -54,8 +56,9 @@
  */
 /obj/item/borg/upgrade/rename
 	name = "robot reclassification board"
-	desc = "Used to rename a cyborg."
+	desc = "Used to rename a robot."
 	icon_state = "cyborg_upgrade1"
+
 	construction_cost = list(MATERIAL_METAL = 35000)
 
 	var/heldname = "default name"
@@ -70,7 +73,6 @@
 	R.name = heldname
 	R.custom_name = heldname
 	R.real_name = heldname
-
 	return TRUE
 
 /*
@@ -79,8 +81,9 @@
 /obj/item/borg/upgrade/restart
 	name = "robot emergency restart module"
 	desc = "Used to force a restart of a disabled-but-repaired robot, bringing it back online."
-	construction_cost = list(MATERIAL_METAL = 60000, MATERIAL_GLASS = 5000)
 	icon_state = "cyborg_upgrade1"
+
+	construction_cost = list(MATERIAL_METAL = 60000, MATERIAL_GLASS = 5000)
 
 /obj/item/borg/upgrade/restart/action(mob/living/silicon/robot/R)
 	if(R.health < 0)
@@ -91,38 +94,43 @@
 		for(var/mob/dead/observer/ghost in GLOBL.player_list)
 			if(ghost.mind?.current == R)
 				R.key = ghost.key
-
 	R.stat = CONSCIOUS
 	return TRUE
 
 /*
  * VTEC Module
  */
+#define VTEC_MOVE_DELAY_REDUCTION 0.5
 /obj/item/borg/upgrade/vtec
 	name = "robotic VTEC Module"
 	desc = "Used to kick in a robot's VTEC systems, increasing their speed."
-	construction_cost = list(MATERIAL_METAL = 80000, MATERIAL_GLASS = 6000, MATERIAL_GOLD = 5000)
 	icon_state = "cyborg_upgrade2"
+
+	construction_cost = list(MATERIAL_METAL = 80000, MATERIAL_GLASS = 6000, MATERIAL_GOLD = 5000)
 	require_module = TRUE
 
 /obj/item/borg/upgrade/vtec/action(mob/living/silicon/robot/R)
 	if(!..())
 		return FALSE
 
-	if(R.speed == -1)
+	if(R.speed == (initial(R.speed) - VTEC_MOVE_DELAY_REDUCTION))
 		return FALSE
 
-	R.speed--
+	R.speed -= VTEC_MOVE_DELAY_REDUCTION
 	return TRUE
+#undef VTEC_MOVE_DELAY_REDUCTION
 
 /*
  * Rapid Taser Cooling Module
+ *
+ * This actually reduces the recharge time, not the fire delay.
  */
 /obj/item/borg/upgrade/tasercooler
-	name = "robotic Rapid Taser Cooling Module"
+	name = "robot rapid taser cooling module"
 	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
-	construction_cost = list(MATERIAL_METAL = 80000, MATERIAL_GLASS = 6000, MATERIAL_GOLD = 2000, MATERIAL_DIAMOND = 500)
 	icon_state = "cyborg_upgrade3"
+
+	construction_cost = list(MATERIAL_METAL = 80000, MATERIAL_GLASS = 6000, MATERIAL_GOLD = 2000, MATERIAL_DIAMOND = 500)
 	require_module = TRUE
 
 /obj/item/borg/upgrade/tasercooler/action(mob/living/silicon/robot/R)
@@ -157,8 +165,9 @@
 /obj/item/borg/upgrade/jetpack
 	name = "mining robot jetpack"
 	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
-	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_PLASMA = 15000, MATERIAL_URANIUM = 20000)
 	icon_state = "cyborg_upgrade3"
+
+	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_PLASMA = 15000, MATERIAL_URANIUM = 20000)
 	require_module = TRUE
 
 /obj/item/borg/upgrade/jetpack/action(mob/living/silicon/robot/R)
@@ -177,13 +186,17 @@
 	return TRUE
 
 /*
- * Illegal Module
+ * Scrambled Equipment Module
+ *
+ * Used to be called "illegal equipment module".
+ * I stole "scrambled" from Polaris because it sounds cooler.
  */
 /obj/item/borg/upgrade/syndicate
-	name = "illegal equipment module"
-	desc = "Unlocks the hidden, deadlier functions of a robot"
-	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_GLASS = 15000, MATERIAL_DIAMOND = 10000)
+	name = "scrambled equipment module"
+	desc = "Unlocks the hidden, deadlier functions of a robot."
 	icon_state = "cyborg_upgrade3"
+
+	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_GLASS = 15000, MATERIAL_DIAMOND = 10000)
 	require_module = TRUE
 
 /obj/item/borg/upgrade/syndicate/action(mob/living/silicon/robot/R)
@@ -194,4 +207,24 @@
 		return FALSE
 
 	R.emagged = TRUE
+	return TRUE
+
+/*
+ * Flash-Suppression Module
+ *
+ * This doesn't actually work and isn't available but it's here for posterity.
+ */
+/obj/item/borg/upgrade/flashproof
+	name = "robot flash-suppression module"
+	desc = "A highly advanced, complex system for supressing incoming flashes directed at the borg's optical processing system."
+	icon_state = "cyborg_upgrade4"
+
+	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_GLASS = 2000, MATERIAL_GOLD = 2000, MATERIAL_SILVER = 3000, MATERIAL_DIAMOND = 5000)
+	require_module = TRUE
+
+/obj/item/borg/upgrade/flashproof/action(mob/living/silicon/robot/R)
+	if(!..())
+		return FALSE
+
+	R.module += src
 	return TRUE
