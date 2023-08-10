@@ -7,7 +7,6 @@
 
 /datum/chemical_reaction/coolant
 	name = "Coolant"
-	id = "coolant"
 	result = "coolant"
 	required_reagents = list("tungsten" = 1, "oxygen" = 1, "water" = 1)
 	result_amount = 3

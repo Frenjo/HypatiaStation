@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////
 /datum/chemical_reaction
 	var/name = null
-	var/id = null
 	var/result = null
 	var/list/required_reagents = list()
 	var/list/required_catalysts = list()
@@ -17,7 +16,6 @@
 
 /datum/chemical_reaction/proc/on_reaction(datum/reagents/holder, created_volume)
 	return
-
 
 /*
 // Drinks that required improved sprites according to someone called Agouri. //
