@@ -114,7 +114,7 @@
 			chemholder.reagents.update_total()
 
 			//apply wall affecting reagents to walls
-			if(R.id in list("thermite", "plantbgone"))
+			if(is_type_in_list(R, list(/datum/reagent/thermite, /datum/reagent/toxin/plantbgone)))
 				for(var/turf/T in wallList)
 					R.reaction_turf(T, R.volume)
 

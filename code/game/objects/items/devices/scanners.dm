@@ -302,7 +302,7 @@ REAGENT SCANNER
 	if(reagents.total_volume)
 		var/list/blood_traces = list()
 		for(var/datum/reagent/R in reagents.reagent_list)
-			if(R.id != "blood")
+			if(!istype(R, /datum/reagent/blood))
 				reagents.clear_reagents()
 				to_chat(user, SPAN_WARNING("The sample was contaminated! Please insert another sample."))
 				return
