@@ -64,7 +64,7 @@
  *
  * Fun if you want to typecast objects without writing long path-filled lines.
  */
-//#define isobj(X)	istype(X, /obj) // Built-in.
+#define isobj(X)	istype(X, /obj) // The built-in does not behave as expected.
 #define ismecha(X)	istype(X, /obj/mecha)
 
 #define isitem(X)	istype(X, /obj/item)
@@ -78,7 +78,7 @@
  *
  * Fun if you want to typecast turfs without writing long path-filled lines.
  */
-//#define isturf(X)		istype(X, /turf) // Built-in.
+//#define isturf(X)		istype(X, /turf) // This built-in has slightly different behaviour but as long as nobody instantiates /atom it'll be fine.
 #define isspace(X)		istype(X, /turf/space)
 #define isopenspace(X)	istype(X, /turf/simulated/floor/open)
 
