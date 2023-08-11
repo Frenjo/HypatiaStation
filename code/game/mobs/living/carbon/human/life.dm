@@ -1689,18 +1689,18 @@
 
 	//handles different chems' influence on pulse
 	for(var/datum/reagent/R in reagents.reagent_list)
-		if(is_type_in_list(R, GLOBL.tachycardics))
+		if(R.type in GLOBL.tachycardics)
 			if(temp <= PULSE_FAST && temp >= PULSE_NONE)
 				temp++
 
-		if(is_type_in_list(R, GLOBL.bradycardics))
+		if(R.type in GLOBL.bradycardics)
 			if(temp <= PULSE_THREADY && temp >= PULSE_NORM)
 				temp--
 
-		if(is_type_in_list(R, GLOBL.heartstopper)) //To avoid using fakedeath
+		if(R.type in GLOBL.heartstopper) //To avoid using fakedeath
 			temp = PULSE_NONE
 
-		if(is_type_in_list(R, GLOBL.cheartstopper)) //Conditional heart-stoppage
+		if(R.type in GLOBL.cheartstopper) //Conditional heart-stoppage
 			if(R.volume >= R.overdose)
 				temp = PULSE_NONE
 

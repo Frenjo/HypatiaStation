@@ -8,15 +8,21 @@
 	pass_flags = PASSTABLE | PASSGRILLE | PASSGLASS		//PASSGLASS is fine here, it's just so the visual effect can "flow" around glass
 
 /obj/effect/smoke/chem/New()
-	..()
-	var/datum/reagents/R = new/datum/reagents(500)
+	. = ..()
+	var/datum/reagents/R = new /datum/reagents(500)
 	reagents = R
 	R.my_atom = src
-	return
 
 
 /datum/effect/system/smoke_spread/chem
 	smoke_type = /obj/effect/smoke/chem
+
+	// A list of typepaths of reagents which affect walls.
+	var/static/list/wall_affecting_reagents = list(/datum/reagent/thermite, /datum/reagent/toxin/plantbgone)
+	// A list of typepaths of reagents which have a high (75%) chance to affect turfs.
+	var/static/list/turf_applied_reagents_high = list(/datum/reagent/carbon)
+	// A list of typepaths of reagents which have a low (25%) chance to affect turfs.
+	var/static/list/turf_applied_reagents_low = list(/datum/reagent/blood, /datum/reagent/radium, /datum/reagent/uranium)
 
 	var/obj/chemholder
 	var/range
@@ -25,9 +31,9 @@
 	var/density
 
 /datum/effect/system/smoke_spread/chem/New()
-	..()
-	chemholder = new/obj()
-	var/datum/reagents/R = new/datum/reagents(500)
+	. = ..()
+	chemholder = new /obj()
+	var/datum/reagents/R = new /datum/reagents(500)
 	chemholder.reagents = R
 	R.my_atom = chemholder
 
@@ -43,11 +49,11 @@
 	cardinals = c
 	carry.copy_to(chemholder, carry.total_volume)
 
-	if(istype(loca, /turf/))
+	if(isturf(loca))
 		location = loca
 	else
 		location = get_turf(loca)
-	if(!location)
+	if(isnull(location))
 		return
 
 	targetTurfs = list()
@@ -82,14 +88,13 @@
 	if(carry.my_atom.last_fingerprints)
 		var/mob/M = get_mob_by_key(carry.my_atom.last_fingerprints)
 		var/more = ""
-		if(M)
+		if(isnotnull(M))
 			more = "(<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</a>)"
 		message_admins("A chemical smoke reaction has taken place in ([whereLink])[contained]. Last associated key is [carry.my_atom.last_fingerprints][more].", 0, 1)
 		log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last associated key is [carry.my_atom.last_fingerprints].")
 	else
 		message_admins("A chemical smoke reaction has taken place in ([whereLink]). No associated key.", 0, 1)
 		log_game("A chemical smoke reaction has taken place in ([where])[contained]. No associated key.")
-
 
 //------------------------------------------
 //Runs the chem smoke effect
@@ -100,7 +105,7 @@
 // is covered fairly evenly.
 //------------------------------------------
 /datum/effect/system/smoke_spread/chem/start()
-	if(!location)	//kill grenade if it somehow ends up in nullspace
+	if(isnull(location))	//kill grenade if it somehow ends up in nullspace
 		return
 
 	//reagent application - only run if there are extra reagents in the smoke
@@ -114,14 +119,14 @@
 			chemholder.reagents.update_total()
 
 			//apply wall affecting reagents to walls
-			if(is_type_in_list(R, list(/datum/reagent/thermite, /datum/reagent/toxin/plantbgone)))
+			if(R.type in wall_affecting_reagents)
 				for(var/turf/T in wallList)
 					R.reaction_turf(T, R.volume)
 
 			//reagents that should be applied to turfs in a random pattern
-			if(istype(R, /datum/reagent/carbon))
+			if(R.type in turf_applied_reagents_high)
 				proba = 75
-			else if(is_type_in_list(R, list(/datum/reagent/blood, /datum/reagent/radium, /datum/reagent/uranium)))
+			else if(R.type in turf_applied_reagents_low)
 				proba = 25
 
 			spawn(0)
@@ -137,7 +142,7 @@
 								if(!dist)
 									dist = 1
 								R.reaction_mob(A, volume = R.volume / dist)
-							else if(istype(A, /obj))
+							else if(isobj(A))
 								R.reaction_obj(A, R.volume)
 					sleep(30)
 
@@ -173,12 +178,11 @@
 			var/x = round(radius * cos(a) + location.x, 1)
 			var/y = round(radius * sin(a) + location.y, 1)
 			var/turf/T = locate(x,y,location.z)
-			if(!T)
+			if(isnull(T))
 				continue
 			if(T in targetTurfs)
 				spawn(0)
 					spawnSmoke(T, I, range)
-
 
 //------------------------------------------
 // Randomizes and spawns the smoke effect.
@@ -200,7 +204,6 @@
 	fadeOut(smoke)
 	qdel(smoke)
 
-
 //------------------------------------------
 // Fades out the smoke smoothly using it's alpha variable.
 //------------------------------------------
@@ -209,8 +212,6 @@
 	for(var/i = 0, i < frames, i++)
 		A.alpha -= step
 		sleep(world.tick_lag)
-	return
-
 
 //------------------------------------------
 // Smoke pathfinder. Uses a flood fill method based on zones to
@@ -246,5 +247,3 @@
 			complete += current
 
 	targetTurfs = complete
-
-	return
