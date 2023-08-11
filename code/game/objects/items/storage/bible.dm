@@ -96,7 +96,7 @@
 		if(A.reagents?.has_reagent("water")) //blesses all the water in the holder
 			to_chat(user, SPAN_INFO("You bless [A]."))
 			var/water2holy = A.reagents.get_reagent_amount("water")
-			A.reagents.del_reagent("water")
+			A.reagents.del_reagent(/datum/reagent/water)
 			A.reagents.add_reagent("holywater", water2holy)
 
 /obj/item/storage/bible/attackby(obj/item/W as obj, mob/user as mob)

@@ -725,7 +725,7 @@
 	if(src.warm)
 		spawn(4200)
 			src.warm = 0
-			src.reagents.del_reagent("tricordrazine")
+			src.reagents.del_reagent(/datum/reagent/tricordrazine)
 			src.name = "donk-pocket"
 	return
 

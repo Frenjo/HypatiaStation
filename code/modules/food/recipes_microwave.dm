@@ -234,7 +234,7 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/meatball
 	)
 	result = /obj/item/reagent_containers/food/snacks/donkpocket //SPECIAL
-	
+
 /datum/recipe/donkpocket/proc/warm_up(obj/item/reagent_containers/food/snacks/donkpocket/being_cooked)
 	being_cooked.warm = 1
 	being_cooked.reagents.add_reagent("tricordrazine", 5)
@@ -683,7 +683,7 @@ I said no!
 
 /datum/recipe/amanitajelly/make_food(obj/container as obj)
 	var/obj/item/reagent_containers/food/snacks/amanitajelly/being_cooked = ..(container)
-	being_cooked.reagents.del_reagent("amatoxin")
+	being_cooked.reagents.del_reagent(/datum/reagent/toxin/amatoxin)
 	return being_cooked
 
 
@@ -1325,10 +1325,10 @@ I said no!
 		/obj/item/reagent_containers/food/snacks/meatball,
 	)
 	result = /obj/item/reagent_containers/food/snacks/validsalad
-	
+
 /datum/recipe/validsalad/make_food(obj/container as obj)
 	var/obj/item/reagent_containers/food/snacks/validsalad/being_cooked = ..(container)
-	being_cooked.reagents.del_reagent("toxin")
+	being_cooked.reagents.del_reagent(/datum/reagent/toxin)
 	return being_cooked
 
 

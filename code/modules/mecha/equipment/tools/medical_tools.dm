@@ -527,9 +527,9 @@
 	if(new_filter.get("show_reagents"))
 		chassis.occupant << browse(get_reagents_page(), "window=msyringegun")
 	if(new_filter.get("purge_reagent"))
-		var/reagent = new_filter.get("purge_reagent")
-		if(reagent)
-			reagents.del_reagent(reagent)
+		var/reagent_type = text2path(new_filter.get("purge_reagent"))
+		if(isnotnull(reagent_type))
+			reagents.del_reagent(reagent_type)
 		return
 	if(new_filter.get("purge_all"))
 		reagents.clear_reagents()
@@ -590,7 +590,7 @@
 	var/output
 	for(var/datum/reagent/R in reagents.reagent_list)
 		if(R.volume > 0)
-			output += "[R]: [round(R.volume, 0.001)] - <a href=\"?src=\ref[src];purge_reagent=[R.id]\">Purge Reagent</a><br />"
+			output += "[R]: [round(R.volume, 0.001)] - <a href=\"?src=\ref[src];purge_reagent=[R.type]\">Purge Reagent</a><br />"
 	if(output)
 		output += "Total: [round(reagents.total_volume, 0.001)] / [reagents.maximum_volume] - <a href=\"?src=\ref[src];purge_all=1\">Purge All</a>"
 	return output || "None"

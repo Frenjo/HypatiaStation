@@ -70,7 +70,8 @@
 		target_tile.assume_gas(/decl/xgm_gas/volatile_fuel, created_volume, 400 + T0C)
 		spawn(0)
 			target_tile.hotspot_expose(700, 400)
-	holder.del_reagent("napalm")
+	// holder.del_reagent("napalm")
+	// "napalm" isn't actually a reagent apparently.
 
 /*
 /datum/chemical_reaction/smoke

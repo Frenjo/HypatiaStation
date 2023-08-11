@@ -347,15 +347,15 @@
 	update_total()
 	return 0
 
-/datum/reagents/proc/isolate_reagent(reagent)
+/datum/reagents/proc/isolate_reagent(reagent_type)
 	for(var/datum/reagent/R in reagent_list)
-		if(R.id != reagent)
-			del_reagent(R.id)
+		if(R.type != reagent_type)
+			del_reagent(R.type)
 			update_total()
 
-/datum/reagents/proc/del_reagent(reagent)
+/datum/reagents/proc/del_reagent(reagent_type)
 	for(var/datum/reagent/R in reagent_list)
-		if(R.id == reagent)
+		if(R.type == reagent_type)
 			reagent_list.Remove(R)
 			qdel(R)
 			update_total()
@@ -367,14 +367,14 @@
 	total_volume = 0
 	for(var/datum/reagent/R in reagent_list)
 		if(R.volume < 0.1)
-			del_reagent(R.id)
+			del_reagent(R.type)
 		else
 			total_volume += R.volume
 	return 0
 
 /datum/reagents/proc/clear_reagents()
 	for(var/datum/reagent/R in reagent_list)
-		del_reagent(R.id)
+		del_reagent(R.type)
 		return 0
 
 /datum/reagents/proc/reaction(atom/A, method = TOUCH, volume_modifier = 0)
