@@ -118,8 +118,8 @@
 	contains = list(
 		/obj/item/scythe,
 		/obj/item/clothing/mask/gas,
-		/obj/item/grenade/chem_grenade/antiweed,
-		/obj/item/grenade/chem_grenade/antiweed
+		/obj/item/grenade/chemical/antiweed,
+		/obj/item/grenade/chemical/antiweed
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/hydrosec

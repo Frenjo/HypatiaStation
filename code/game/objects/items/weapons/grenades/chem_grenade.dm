@@ -1,4 +1,4 @@
-/obj/item/grenade/chem_grenade
+/obj/item/grenade/chemical
 	name = "Grenade Casing"
 	icon_state = "chemg"
 	item_state = "flashbang"
@@ -14,12 +14,12 @@
 	var/list/allowed_containers = list(/obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle)
 	var/affected_area = 3
 
-/obj/item/grenade/chem_grenade/New()
+/obj/item/grenade/chemical/New()
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
 
-/obj/item/grenade/chem_grenade/attack_self(mob/user as mob)
+/obj/item/grenade/chemical/attack_self(mob/user as mob)
 	if(!stage || stage==1)
 		if(detonator)
 //			detonator.loc=src.loc
@@ -45,7 +45,7 @@
 			var/mob/living/carbon/C = user
 			C.throw_mode_on()
 
-/obj/item/grenade/chem_grenade/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/grenade/chemical/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/assembly_holder) && (!stage || stage == 1) && path != 2)
 		var/obj/item/device/assembly_holder/det = W
 		if(istype(det.a_left,det.a_right.type) || (!isigniter(det.a_left) && !isigniter(det.a_right)))
@@ -104,13 +104,13 @@
 			else
 				user << "\red \the [W] is empty."
 
-/obj/item/grenade/chem_grenade/examine()
+/obj/item/grenade/chemical/examine()
 	set src in usr
 	usr << desc
 	if(detonator)
 		usr << "With attached [detonator.name]"
 
-/obj/item/grenade/chem_grenade/activate(mob/user as mob)
+/obj/item/grenade/chemical/activate(mob/user as mob)
 	if(active)
 		return
 
@@ -129,11 +129,11 @@
 
 	return
 
-/obj/item/grenade/chem_grenade/proc/primed(var/primed = 1)
+/obj/item/grenade/chemical/proc/primed(primed = 1)
 	if(active)
 		icon_state = initial(icon_state) + (primed?"_primed":"_active")
 
-/obj/item/grenade/chem_grenade/prime()
+/obj/item/grenade/chemical/prime()
 	if(!stage || stage<2) return
 
 	//if(prob(reliability))
@@ -173,7 +173,7 @@
 		qdel(src)		//correctly before deleting the grenade.
 
 
-/obj/item/grenade/chem_grenade/large
+/obj/item/grenade/chemical/large
 	name = "Large Chem Grenade"
 	desc = "An oversized grenade that affects a larger area."
 	icon_state = "large_grenade"
@@ -181,14 +181,14 @@
 	origin_tech = list(RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MATERIALS = 3)
 	affected_area = 4
 
-/obj/item/grenade/chem_grenade/metalfoam
+/obj/item/grenade/chemical/metalfoam
 	name = "Metal-Foam Grenade"
 	desc = "Used for emergency sealing of air breaches."
 	path = 1
 	stage = 2
 
-/obj/item/grenade/chem_grenade/large/New()
-	..()
+/obj/item/grenade/chemical/large/New()
+	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
@@ -202,14 +202,14 @@
 	beakers += B2
 	icon_state = initial(icon_state) + "_locked"
 
-/obj/item/grenade/chem_grenade/incendiary
+/obj/item/grenade/chemical/incendiary
 	name = "Incendiary Grenade"
 	desc = "Used for clearing rooms of living things."
 	path = 1
 	stage = 2
 
-/obj/item/grenade/chem_grenade/incendiary/New()
-	..()
+/obj/item/grenade/chemical/incendiary/New()
+	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
@@ -225,14 +225,14 @@
 	beakers += B2
 	icon_state = initial(icon_state) + "_locked"
 
-/obj/item/grenade/chem_grenade/antiweed
+/obj/item/grenade/chemical/antiweed
 	name = "weedkiller grenade"
 	desc = "Used for purging large areas of invasive plant species. Contents under pressure. Do not directly inhale contents."
 	path = 1
 	stage = 2
 
-/obj/item/grenade/chem_grenade/antiweed/New()
-	..()
+/obj/item/grenade/chemical/antiweed/New()
+	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 
@@ -247,14 +247,14 @@
 	beakers += B2
 	icon_state = "grenade"
 
-/obj/item/grenade/chem_grenade/cleaner
+/obj/item/grenade/chemical/cleaner
 	name = "cleaner grenade"
 	desc = "BLAM!-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
 	stage = 2
 	path = 1
 
-/obj/item/grenade/chem_grenade/cleaner/New()
-	..()
+/obj/item/grenade/chemical/cleaner/New()
+	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
 

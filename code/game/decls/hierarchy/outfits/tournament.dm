@@ -80,8 +80,8 @@
 
 	head = null
 
-	r_pocket = /obj/item/grenade/chem_grenade/cleaner
-	l_pocket = /obj/item/grenade/chem_grenade/cleaner
+	r_pocket = /obj/item/grenade/chemical/cleaner
+	l_pocket = /obj/item/grenade/chemical/cleaner
 
 	r_hand = /obj/item/mop
 	l_hand = /obj/item/reagent_containers/glass/bucket

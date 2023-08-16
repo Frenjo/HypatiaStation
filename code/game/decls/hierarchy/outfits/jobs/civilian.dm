@@ -110,7 +110,7 @@
 
 	backpack_contents = list(
 		/obj/item/toy/crayon/mime,
-		/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing
+		/obj/item/reagent_containers/food/drinks/bottle/nothing
 	)
 
 	pda_type = /obj/item/device/pda/mime

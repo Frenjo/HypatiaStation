@@ -10,7 +10,7 @@
 		/obj/item/grenade/smokebomb,
 		/obj/item/grenade/smokebomb,
 		/obj/item/pen/paralysis,
-		/obj/item/grenade/chem_grenade/incendiary
+		/obj/item/grenade/chemical/incendiary
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate
@@ -62,9 +62,9 @@
 		/obj/item/tank/plasma,
 		/obj/item/tank/plasma,
 		/obj/item/tank/plasma,
-		/obj/item/grenade/chem_grenade/incendiary,
-		/obj/item/grenade/chem_grenade/incendiary,
-		/obj/item/grenade/chem_grenade/incendiary
+		/obj/item/grenade/chemical/incendiary,
+		/obj/item/grenade/chemical/incendiary,
+		/obj/item/grenade/chemical/incendiary
 	)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/weapon

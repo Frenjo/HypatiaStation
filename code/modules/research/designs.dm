@@ -1586,7 +1586,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 3000)
 	reliability_base = 79
-	build_path = /obj/item/grenade/chem_grenade/large
+	build_path = /obj/item/grenade/chemical/large
 
 /datum/design/smg
 	name = "Submachine Gun"

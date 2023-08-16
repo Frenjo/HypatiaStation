@@ -12,8 +12,8 @@
 	if(!..())
 		return 0 //Cooldown check
 
-	if(holder && istype(holder.loc, /obj/item/grenade/chem_grenade))
-		var/obj/item/grenade/chem_grenade/grenade = holder.loc
+	if(holder && istype(holder.loc, /obj/item/grenade/chemical))
+		var/obj/item/grenade/chemical/grenade = holder.loc
 		grenade.prime()
 	else
 		var/turf/location = get_turf(loc)

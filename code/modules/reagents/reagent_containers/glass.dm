@@ -26,7 +26,7 @@
 		/obj/item/storage,
 		/obj/machinery/atmospherics/unary/cryo_cell,
 		/obj/machinery/dna_scannernew,
-		/obj/item/grenade/chem_grenade,
+		/obj/item/grenade/chemical,
 		/obj/machinery/bot/medbot,
 		/obj/machinery/computer/pandemic,
 		/obj/item/storage/secure/safe,

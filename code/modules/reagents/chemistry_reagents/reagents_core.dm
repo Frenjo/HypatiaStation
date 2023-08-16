@@ -176,13 +176,13 @@
 		if(M.fire_stacks <= 0)
 			M.ExtinguishMob()
 
-/datum/reagent/water/water/holywater
+/datum/reagent/water/holy
 	name = "Holy Water"
 	id = "holywater"
 	description = "An ashen-obsidian-water mix, this solution will alter certain sections of the brain's rationality."
 	color = "#E0E8EF" // rgb: 224, 232, 239
 
-/datum/reagent/water/water/holywater/on_mob_life(mob/living/M)
+/datum/reagent/water/holy/on_mob_life(mob/living/M)
 	if(ishuman(M))
 		if((M.mind in global.CTgame_ticker.mode.cult) && prob(10))
 			to_chat(M, SPAN_INFO("A cooling sensation from inside you brings you an untold calmness."))
@@ -579,8 +579,7 @@
 	if(volume >= 3)
 		if(isspace(T))
 			return
-		var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
-		if(isnull(glow))
+		if(isnull(locate(/obj/effect/decal/cleanable/greenglow, T)))
 			new /obj/effect/decal/cleanable/greenglow(T)
 
 /datum/reagent/thermite
@@ -595,7 +594,7 @@
 	if(volume >= 5)
 		if(istype(T, /turf/simulated/wall))
 			var/turf/simulated/wall/W = T
-			W.thermite = 1
+			W.thermite = TRUE
 			W.overlays.Add(image('icons/effects/effects.dmi', icon_state = "#673910"))
 
 /datum/reagent/thermite/on_mob_life(mob/living/M)
@@ -658,8 +657,7 @@
 	if(volume >= 3)
 		if(isspace(T))
 			return
-		var/obj/effect/decal/cleanable/greenglow/glow = locate(/obj/effect/decal/cleanable/greenglow, T)
-		if(isnull(glow))
+		if(isnull(locate(/obj/effect/decal/cleanable/greenglow, T)))
 			new /obj/effect/decal/cleanable/greenglow(T)
 
 /datum/reagent/aluminum

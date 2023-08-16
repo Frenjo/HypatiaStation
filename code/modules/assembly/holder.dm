@@ -242,8 +242,8 @@
 
 	if(!(usr.stat || usr.restrained()))
 		var/obj/item/device/assembly_holder/holder
-		if(istype(src, /obj/item/grenade/chem_grenade))
-			var/obj/item/grenade/chem_grenade/gren = src
+		if(istype(src, /obj/item/grenade/chemical))
+			var/obj/item/grenade/chemical/gren = src
 			holder = gren.detonator
 		var/obj/item/device/assembly/timer/tmr = holder.a_left
 		if(!istype(tmr, /obj/item/device/assembly/timer))

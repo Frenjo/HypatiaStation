@@ -171,12 +171,12 @@
 	reagents.add_reagent("tequilla", 100)
 
 
-/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing
+/obj/item/reagent_containers/food/drinks/bottle/nothing
 	name = "Bottle of Nothing"
 	desc = "A bottle filled with nothing"
 	icon_state = "bottleofnothing"
 
-/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing/New()
+/obj/item/reagent_containers/food/drinks/bottle/nothing/New()
 	..()
 	reagents.add_reagent("nothing", 100)
 

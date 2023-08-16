@@ -1,4 +1,4 @@
-/obj/machinery/light_construct
+/obj/machinery/light_frame
 	name = "light fixture frame"
 	desc = "A light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
@@ -11,7 +11,7 @@
 	var/sheets_refunded = 2
 	var/obj/machinery/light/newlight = null
 
-/obj/machinery/light_construct/New(atom/newloc, obj/machinery/light/fixture = null)
+/obj/machinery/light_frame/New(atom/newloc, obj/machinery/light/fixture = null)
 	. = ..(newloc)
 	if(isnotnull(fixture))
 		fixture_type = fixture.type
@@ -20,7 +20,7 @@
 		stage = LIGHT_STAGE_TWO
 	update_icon()
 
-/obj/machinery/light_construct/update_icon()
+/obj/machinery/light_frame/update_icon()
 	switch(stage)
 		if(LIGHT_STAGE_ONE)
 			icon_state = "tube-construct-stage1"
@@ -29,7 +29,7 @@
 		if(LIGHT_STAGE_THREE)
 			icon_state = "tube-empty"
 
-/obj/machinery/light_construct/examine()
+/obj/machinery/light_frame/examine()
 	. = ..()
 	if(!(usr in view(2)))
 		return
@@ -41,7 +41,7 @@
 		if(LIGHT_STAGE_THREE)
 			to_chat(usr, "The casing is closed.")
 
-/obj/machinery/light_construct/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/light_frame/attackby(obj/item/W as obj, mob/user as mob)
 	add_fingerprint(user)
 	if(istype(W, /obj/item/wrench))
 		if(stage == LIGHT_STAGE_ONE)
@@ -110,7 +110,7 @@
 			return
 	return ..()
 
-/obj/machinery/light_construct/small
+/obj/machinery/light_frame/small
 	name = "small light fixture frame"
 	desc = "A small light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
@@ -121,7 +121,7 @@
 	fixture_type = /obj/machinery/light/small
 	sheets_refunded = 1
 
-/obj/machinery/light_construct/small/update_icon()
+/obj/machinery/light_frame/small/update_icon()
 	switch(stage)
 		if(LIGHT_STAGE_ONE)
 			icon_state = "bulb-construct-stage1"

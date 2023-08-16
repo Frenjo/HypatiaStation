@@ -71,7 +71,7 @@ Code not shamelessly copied from apc_frame. -Frenjo
 	desc = "Used for building lights."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-item"
-	build_machine_type = /obj/machinery/light_construct
+	build_machine_type = /obj/machinery/light_frame
 	reverse = 1
 
 /*
@@ -83,5 +83,5 @@ Code not shamelessly copied from apc_frame. -Frenjo
 	name = "small light fixture frame"
 	desc = "Used for building small lights."
 	icon_state = "bulb-construct-item"
-	build_machine_type = /obj/machinery/light_construct/small
+	build_machine_type = /obj/machinery/light_frame/small
 	refund_amt = 1

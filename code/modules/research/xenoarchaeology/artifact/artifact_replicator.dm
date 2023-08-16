@@ -59,8 +59,8 @@
 		/obj/item/wirecutters,
 		/obj/item/wrench,
 		/obj/item/screwdriver,
-		/obj/item/grenade/chem_grenade/cleaner,
-		/obj/item/grenade/chem_grenade/metalfoam
+		/obj/item/grenade/chemical/cleaner,
+		/obj/item/grenade/chemical/metalfoam
 	)
 
 	var/quantity = rand(5, 15)

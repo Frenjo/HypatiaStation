@@ -52,9 +52,9 @@
 		/obj/item/storage/bag/trash,
 		/obj/item/reagent_containers/spray/cleaner,
 		/obj/item/reagent_containers/glass/rag,
-		/obj/item/grenade/chem_grenade/cleaner,
-		/obj/item/grenade/chem_grenade/cleaner,
-		/obj/item/grenade/chem_grenade/cleaner,
+		/obj/item/grenade/chemical/cleaner,
+		/obj/item/grenade/chemical/cleaner,
+		/obj/item/grenade/chemical/cleaner,
 		/obj/structure/mopbucket
 	)
 	cost = 10

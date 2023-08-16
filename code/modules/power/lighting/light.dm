@@ -22,7 +22,7 @@
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
 	var/flickering = FALSE
 	var/light_type = /obj/item/light/tube		// the type of light item
-	var/construct_type = /obj/machinery/light_construct
+	var/construct_type = /obj/machinery/light_frame
 	var/switchcount = 0			// count of number of times switched on/off
 								// this is used to calc the probability the light burns out
 
@@ -43,7 +43,7 @@
 	base_state = "bulb"
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light/bulb
-	construct_type = /obj/machinery/light_construct/small
+	construct_type = /obj/machinery/light_frame/small
 
 // the smaller emergency bulb light fixture
 /obj/machinery/light/small/emergency
@@ -55,7 +55,7 @@
 	light_type = /obj/item/light/tube/large
 
 // create a new lighting fixture
-/obj/machinery/light/New(atom/newloc, obj/machinery/light_construct/construct = null)
+/obj/machinery/light/New(atom/newloc, obj/machinery/light_frame/construct = null)
 	. = ..(newloc)
 	if(isnotnull(construct))
 		status = LIGHT_EMPTY

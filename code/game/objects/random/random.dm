@@ -56,13 +56,13 @@
 	)
 
 
-/obj/random/powercell
-	name = "Random Powercell"
-	desc = "This is a random powercell."
+/obj/random/power_cell
+	name = "Random Power Cell"
+	desc = "This is a random power cell."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 
-/obj/random/powercell/item_to_spawn()
+/obj/random/power_cell/item_to_spawn()
 	return pick( \
 		prob(10); /obj/item/cell/crap, \
 		prob(40); /obj/item/cell, \
@@ -110,7 +110,7 @@
 
 /obj/random/tech_supply/item_to_spawn()
 	return pick( \
-		prob(3); /obj/random/powercell, \
+		prob(3); /obj/random/power_cell, \
 		prob(2); /obj/random/technology_scanner, \
 		prob(1); /obj/item/package_wrap, \
 		prob(2); /obj/random/bomb_supply, \

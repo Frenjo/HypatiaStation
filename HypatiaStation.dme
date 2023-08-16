@@ -1411,7 +1411,7 @@
 #include "code\modules\power\apc\~apc_undefs.dm"
 #include "code\modules\power\lighting\_light_defines.dm"
 #include "code\modules\power\lighting\light.dm"
-#include "code\modules\power\lighting\light_construct.dm"
+#include "code\modules\power\lighting\light_frame.dm"
 #include "code\modules\power\lighting\light_items.dm"
 #include "code\modules\power\lighting\~light_undefs.dm"
 #include "code\modules\power\singularity\collector.dm"
