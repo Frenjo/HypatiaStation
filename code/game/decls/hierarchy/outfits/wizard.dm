@@ -14,7 +14,7 @@
 	r_hand = /obj/item/spellbook
 	l_hand = /obj/item/staff
 
-	backpack_contents = list(/obj/item/storage/box = 1)
+	backpack_contents = list(/obj/item/storage/box)
 
 /*
  * Blue

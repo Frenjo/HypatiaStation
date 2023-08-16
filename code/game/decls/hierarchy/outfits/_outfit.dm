@@ -131,6 +131,9 @@ if(isnotnull(VAR)) \
 	// Finally the backpack contents.
 	for(var/path in backpack_contents)
 		var/count = backpack_contents[path]
+		// If there's no specified count, assume it's 1.
+		if(isnull(count))
+			count = 1
 		for(var/i = 0; i < count; i++)
 			// If they don't have a backpack, just drop them on the floor.
 			if(user.equip_to_slot_or_del(new path(user), SLOT_ID_IN_BACKPACK))

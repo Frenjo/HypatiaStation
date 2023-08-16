@@ -27,7 +27,7 @@
 	suit_store = /obj/item/gun/energy/gun
 
 	backpack_contents = list(
-		/obj/item/handcuffs = 1
+		/obj/item/handcuffs
 	)
 
 	id_type = /obj/item/card/id/silver
@@ -47,7 +47,7 @@
 	l_pocket = /obj/item/device/flash
 
 	backpack_contents = list(
-		/obj/item/handcuffs = 1
+		/obj/item/handcuffs
 	)
 
 	pda_type = /obj/item/device/pda/warden
@@ -69,8 +69,8 @@
 	l_pocket = /obj/item/lighter/zippo
 
 	backpack_contents = list(
-		/obj/item/storage/box/evidence = 1,
-		/obj/item/device/detective_scanner = 1
+		/obj/item/storage/box/evidence,
+		/obj/item/device/detective_scanner
 	)
 
 	pda_type = /obj/item/device/pda/detective
@@ -98,7 +98,7 @@
 	r_pocket = /obj/item/handcuffs
 
 	backpack_contents = list(
-		/obj/item/handcuffs = 1
+		/obj/item/handcuffs
 	)
 
 	pda_type = /obj/item/device/pda/security

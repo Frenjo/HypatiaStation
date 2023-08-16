@@ -67,11 +67,11 @@
 	id_pda_assignment = "Death Commando"
 
 	backpack_contents = list(
-		/obj/item/storage/box = 1,
-		/obj/item/ammo_magazine/a357 = 1,
-		/obj/item/storage/firstaid/regular = 1,
-		/obj/item/storage/box/flashbangs = 1,
-		/obj/item/device/flashlight = 1
+		/obj/item/storage/box,
+		/obj/item/ammo_magazine/a357,
+		/obj/item/storage/firstaid/regular,
+		/obj/item/storage/box/flashbangs,
+		/obj/item/device/flashlight
 	)
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
@@ -95,7 +95,7 @@
 	uniform = /obj/item/clothing/under/color/green
 
 /decl/hierarchy/outfit/death_commando/standard/New()
-	backpack_contents.Add(list(/obj/item/plastique = 1))
+	backpack_contents.Add(/obj/item/plastique)
 	. = ..()
 
 /*
@@ -107,7 +107,7 @@
 	uniform = /obj/item/clothing/under/rank/centcom_officer
 
 /decl/hierarchy/outfit/death_commando/leader/New()
-	backpack_contents.Add(list(/obj/item/pinpointer = 1, /obj/item/disk/nuclear = 1))
+	backpack_contents.Add(/obj/item/pinpointer, /obj/item/disk/nuclear)
 	. = ..()
 
 /*
@@ -168,5 +168,5 @@
 	head = /obj/item/clothing/head/helmet/space/syndicate/black/red
 
 /decl/hierarchy/outfit/syndicate_commando/leader/New()
-	backpack_contents.Add(list(/obj/item/plastique = 1, /obj/item/pinpointer = 1, /obj/item/disk/nuclear = 1))
+	backpack_contents.Add(/obj/item/plastique, /obj/item/pinpointer, /obj/item/disk/nuclear)
 	. = ..()

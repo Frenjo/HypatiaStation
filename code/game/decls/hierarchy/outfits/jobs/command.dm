@@ -20,7 +20,7 @@
 	l_ear = /obj/item/device/radio/headset/heads/captain
 
 	backpack_contents = list(
-		/obj/item/storage/box/ids = 1
+		/obj/item/storage/box/ids
 	)
 
 	id_type = /obj/item/card/id/gold
@@ -47,7 +47,7 @@
 	l_ear = /obj/item/device/radio/headset/heads/hop
 
 	backpack_contents = list(
-		/obj/item/storage/box/ids = 1
+		/obj/item/storage/box/ids
 	)
 
 	id_type = /obj/item/card/id/silver

@@ -58,8 +58,8 @@
  */
 /decl/hierarchy/outfit/job/cargo/mining
 	backpack_contents = list(
-		/obj/item/crowbar = 1,
-		/obj/item/storage/bag/ore = 1
+		/obj/item/crowbar,
+		/obj/item/storage/bag/ore
 	)
 
 	pda_type = /obj/item/device/pda/shaftminer
