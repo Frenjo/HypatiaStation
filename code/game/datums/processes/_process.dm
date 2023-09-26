@@ -93,7 +93,7 @@
 	var/start_delay = 0
 
 	// The clickable stat() panel button object.
-	var/obj/clickable_stat/stat_click = null
+	var/atom/movable/clickable_stat/stat_click = null
 
 /datum/process/New(datum/controller/process_scheduler/scheduler)
 	. = ..()
@@ -107,7 +107,7 @@
 	last_task = 0
 	last_object = null
 
-	stat_click = new /obj/clickable_stat(null, src)
+	stat_click = new /atom/movable/clickable_stat(null, src)
 
 /datum/process/Destroy()
 	main = null

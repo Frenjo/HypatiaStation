@@ -7,12 +7,12 @@ GLOBAL_GLOBL_LIST_NEW(controllers)
 	// The controller's name.
 	var/name
 	// The clickable stat() panel button object.
-	var/obj/clickable_stat/stat_click = null
+	var/atom/movable/clickable_stat/stat_click = null
 
 /datum/controller/New()
 	. = ..()
 	GLOBL.controllers.Add(src)
-	stat_click = new /obj/clickable_stat(null, src, name)
+	stat_click = new /atom/movable/clickable_stat(null, src, name)
 
 /datum/controller/Destroy()
 	GLOBL.controllers.Remove(src)

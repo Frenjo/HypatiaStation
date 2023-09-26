@@ -4,7 +4,7 @@
  * This is very simple and specifically designed for debugging controllers and processes.
  * Idea stolen from Baystation12 and /tg/station13 which have significantly more complex implementations.
  */
-/obj/clickable_stat
+/atom/movable/clickable_stat
 	name = "clickable"
 
 	// The controller or process to debug when the button is clicked.
@@ -15,7 +15,7 @@
 	// Whether the target is a controller, if not, it's a process.
 	var/is_controller = null
 
-/obj/clickable_stat/New(loc, datum/target, name = null)
+/atom/movable/clickable_stat/New(loc, datum/target, name = null)
 	. = ..()
 	src.target = target
 	if(isnotnull(name))
@@ -33,7 +33,7 @@
 		// If it's not attached to a controller or a process it just deletes itself.
 		qdel(src)
 
-/obj/clickable_stat/Click()
+/atom/movable/clickable_stat/Click()
 	if(isnull(usr.client.holder) || isnull(target))
 		return
 
