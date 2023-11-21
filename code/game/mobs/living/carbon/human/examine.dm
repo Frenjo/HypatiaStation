@@ -72,95 +72,95 @@
 				tie_msg += " with \icon[U.hastie] \a [U.hastie]"
 
 		if(w_uniform.blood_DNA)
-			msg += "<span class='warning'>[t_He] [t_is] wearing \icon[w_uniform] [w_uniform.gender==PLURAL?"some":"a"] blood-stained [w_uniform.name][tie_msg]!</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_is] wearing \icon[w_uniform] [w_uniform.gender == PLURAL ? "some" : "a"] blood-stained [w_uniform.name][tie_msg]!")]\n"
 		else
 			msg += "[t_He] [t_is] wearing \icon[w_uniform] \a [w_uniform][tie_msg].\n"
 
 	//head
 	if(head)
 		if(head.blood_DNA)
-			msg += "<span class='warning'>[t_He] [t_is] wearing \icon[head] [head.gender==PLURAL?"some":"a"] blood-stained [head.name] on [t_his] head!</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_is] wearing \icon[head] [head.gender == PLURAL ? "some" : "a"] blood-stained [head.name] on [t_his] head!")]\n"
 		else
 			msg += "[t_He] [t_is] wearing \icon[head] \a [head] on [t_his] head.\n"
 
 	//suit/armour
 	if(wear_suit)
 		if(wear_suit.blood_DNA)
-			msg += "<span class='warning'>[t_He] [t_is] wearing \icon[wear_suit] [wear_suit.gender==PLURAL?"some":"a"] blood-stained [wear_suit.name]!</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_is] wearing \icon[wear_suit] [wear_suit.gender == PLURAL ? "some" : "a"] blood-stained [wear_suit.name]!")]\n"
 		else
 			msg += "[t_He] [t_is] wearing \icon[wear_suit] \a [wear_suit].\n"
 
 		//suit/armour storage
 		if(s_store && !skipsuitstorage)
 			if(s_store.blood_DNA)
-				msg += "<span class='warning'>[t_He] [t_is] carrying \icon[s_store] [s_store.gender==PLURAL?"some":"a"] blood-stained [s_store.name] on [t_his] [wear_suit.name]!</span>\n"
+				msg += "[SPAN_WARNING("[t_He] [t_is] carrying \icon[s_store] [s_store.gender == PLURAL ? "some" : "a"] blood-stained [s_store.name] on [t_his] [wear_suit.name]!")]\n"
 			else
 				msg += "[t_He] [t_is] carrying \icon[s_store] \a [s_store] on [t_his] [wear_suit.name].\n"
 
 	//back
 	if(back)
 		if(back.blood_DNA)
-			msg += "<span class='warning'>[t_He] [t_has] \icon[back] [back.gender==PLURAL?"some":"a"] blood-stained [back] on [t_his] back.</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_has] \icon[back] [back.gender == PLURAL ? "some" : "a"] blood-stained [back] on [t_his] back.")]\n"
 		else
 			msg += "[t_He] [t_has] \icon[back] \a [back] on [t_his] back.\n"
 
 	//left hand
 	if(l_hand)
 		if(l_hand.blood_DNA)
-			msg += "<span class='warning'>[t_He] [t_is] holding \icon[l_hand] [l_hand.gender==PLURAL?"some":"a"] blood-stained [l_hand.name] in [t_his] left hand!</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_is] holding \icon[l_hand] [l_hand.gender == PLURAL ? "some" : "a"] blood-stained [l_hand.name] in [t_his] left hand!")]\n"
 		else
 			msg += "[t_He] [t_is] holding \icon[l_hand] \a [l_hand] in [t_his] left hand.\n"
 
 	//right hand
 	if(r_hand)
 		if(r_hand.blood_DNA)
-			msg += "<span class='warning'>[t_He] [t_is] holding \icon[r_hand] [r_hand.gender==PLURAL?"some":"a"] blood-stained [r_hand.name] in [t_his] right hand!</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_is] holding \icon[r_hand] [r_hand.gender == PLURAL ? "some" : "a"] blood-stained [r_hand.name] in [t_his] right hand!")]\n"
 		else
 			msg += "[t_He] [t_is] holding \icon[r_hand] \a [r_hand] in [t_his] right hand.\n"
 
 	//gloves
 	if(gloves && !skipgloves)
 		if(gloves.blood_DNA)
-			msg += "<span class='warning'>[t_He] [t_has] \icon[gloves] [gloves.gender==PLURAL?"some":"a"] blood-stained [gloves.name] on [t_his] hands!</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_has] \icon[gloves] [gloves.gender == PLURAL ? "some" : "a"] blood-stained [gloves.name] on [t_his] hands!")]\n"
 		else
 			msg += "[t_He] [t_has] \icon[gloves] \a [gloves] on [t_his] hands.\n"
 	else if(blood_DNA)
-		msg += "<span class='warning'>[t_He] [t_has] blood-stained hands!</span>\n"
+		msg += "[SPAN_WARNING("[t_He] [t_has] blood-stained hands!")]\n"
 
 	//handcuffed?
 	if(handcuffed)
 		if(istype(handcuffed, /obj/item/handcuffs/cable))
-			msg += "<span class='warning'>[t_He] [t_is] \icon[handcuffed] restrained with cable!</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_is] \icon[handcuffed] restrained with cable!")]\n"
 		else
-			msg += "<span class='warning'>[t_He] [t_is] \icon[handcuffed] handcuffed!</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_is] \icon[handcuffed] handcuffed!")]\n"
 
 	//belt
 	if(belt)
 		if(belt.blood_DNA)
-			msg += "<span class='warning'>[t_He] [t_has] \icon[belt] [belt.gender==PLURAL?"some":"a"] blood-stained [belt.name] about [t_his] waist!</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_has] \icon[belt] [belt.gender == PLURAL ? "some" : "a"] blood-stained [belt.name] about [t_his] waist!")]\n"
 		else
 			msg += "[t_He] [t_has] \icon[belt] \a [belt] about [t_his] waist.\n"
 
 	//shoes
 	if(shoes && !skipshoes)
 		if(shoes.blood_DNA)
-			msg += "<span class='warning'>[t_He] [t_is] wearing \icon[shoes] [shoes.gender==PLURAL?"some":"a"] blood-stained [shoes.name] on [t_his] feet!</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_is] wearing \icon[shoes] [shoes.gender == PLURAL ? "some" : "a"] blood-stained [shoes.name] on [t_his] feet!")]\n"
 		else
 			msg += "[t_He] [t_is] wearing \icon[shoes] \a [shoes] on [t_his] feet.\n"
 	else if(feet_blood_DNA)
-		msg += "<span class='warning'>[t_He] [t_has] blood-stained feet!</span>\n"
+		msg += "[SPAN_WARNING("[t_He] [t_has] blood-stained feet!")]\n"
 
 	//mask
 	if(wear_mask && !skipmask)
 		if(wear_mask.blood_DNA)
-			msg += "<span class='warning'>[t_He] [t_has] \icon[wear_mask] [wear_mask.gender==PLURAL?"some":"a"] blood-stained [wear_mask.name] on [t_his] face!</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_has] \icon[wear_mask] [wear_mask.gender == PLURAL ? "some" : "a"] blood-stained [wear_mask.name] on [t_his] face!")]\n"
 		else
 			msg += "[t_He] [t_has] \icon[wear_mask] \a [wear_mask] on [t_his] face.\n"
 
 	//eyes
 	if(glasses && !skipeyes)
 		if(glasses.blood_DNA)
-			msg += "<span class='warning'>[t_He] [t_has] \icon[glasses] [glasses.gender==PLURAL?"some":"a"] blood-stained [glasses] covering [t_his] eyes!</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_has] \icon[glasses] [glasses.gender == PLURAL ? "some" : "a"] blood-stained [glasses] covering [t_his] eyes!")]\n"
 		else
 			msg += "[t_He] [t_has] \icon[glasses] \a [glasses] covering [t_his] eyes.\n"
 
@@ -189,20 +189,20 @@
 	//Jitters
 	if(is_jittery)
 		if(jitteriness >= 300)
-			msg += "<span class='warning'><B>[t_He] [t_is] convulsing violently!</B></span>\n"
+			msg += "[SPAN_DANGER("[t_He] [t_is] convulsing violently!")]\n"
 		else if(jitteriness >= 200)
-			msg += "<span class='warning'>[t_He] [t_is] extremely jittery.</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_is] extremely jittery.")]\n"
 		else if(jitteriness >= 100)
-			msg += "<span class='warning'>[t_He] [t_is] twitching ever so slightly.</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_is] twitching ever so slightly.")]\n"
 
 	//splints
 	for(var/organ in list("l_leg","r_leg","l_arm","r_arm"))
 		var/datum/organ/external/o = get_organ(organ)
 		if(o && o.status & ORGAN_SPLINTED)
-			msg += "<span class='warning'>[t_He] [t_has] a splint on [t_his] [o.display_name]!</span>\n"
+			msg += "[SPAN_WARNING("[t_He] [t_has] a splint on [t_his] [o.display_name]!")]\n"
 
 	if(suiciding)
-		msg += "<span class='warning'>[t_He] appears to have commited suicide... there is no hope of recovery.</span>\n"
+		msg += "[SPAN_WARNING("[t_He] appears to have commited suicide... there is no hope of recovery.")]\n"
 
 	if(mSmallsize in mutations)
 		msg += "[t_He] [t_is] small halfling!\n"
@@ -211,12 +211,11 @@
 	if(isobserver(usr) || usr.stat == DEAD) // ghosts can see anything
 		distance = 1
 	if(src.stat)
-		msg += "<span class='warning'>[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep.</span>\n"
+		msg += "[SPAN_WARNING("[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep.")]\n"
 		if((stat == DEAD || src.losebreath) && distance <= 3)
-			msg += "<span class='warning'>[t_He] does not appear to be breathing.</span>\n"
+			msg += "[SPAN_WARNING("[t_He] does not appear to be breathing.")]\n"
 		if(ishuman(usr) && !usr.stat && distance <= 1)
-			for(var/mob/O in viewers(usr.loc, null))
-				O.show_message("[usr] checks [src]'s pulse.", 1)
+			visible_message("[usr] checks [src]'s pulse.")
 		spawn(15)
 			if(distance <= 1 && usr.stat != 1)
 				if(pulse == PULSE_NONE)
@@ -227,7 +226,7 @@
 	if(fire_stacks)
 		msg += "[t_He] [t_is] covered in some liquid.\n"
 	if(on_fire)
-		msg += "<span class='warning'>[t_He] [t_is] on fire!</span>\n"
+		msg += "[SPAN_WARNING("[t_He] [t_is] on fire!")]\n"
 
 	msg += "<span class='warning'>"
 
@@ -259,12 +258,12 @@
 		if(temp)
 			if(temp.status & ORGAN_DESTROYED)
 				is_destroyed["[temp.display_name]"] = 1
-				wound_flavor_text["[temp.display_name]"] = "<span class='warning'><b>[t_He] is missing [t_his] [temp.display_name].</b></span>\n"
+				wound_flavor_text["[temp.display_name]"] = "[SPAN_DANGER("[t_He] is missing [t_his] [temp.display_name].")]\n"
 				continue
 			if(temp.status & ORGAN_ROBOT)
 				if(!(temp.brute_dam + temp.burn_dam))
 					if(!(species.flags & IS_SYNTHETIC))
-						wound_flavor_text["[temp.display_name]"] = "<span class='warning'>[t_He] has a robot [temp.display_name]!</span>\n"
+						wound_flavor_text["[temp.display_name]"] = "[SPAN_WARNING("[t_He] has a robot [temp.display_name]!")]\n"
 						continue
 				else
 					wound_flavor_text["[temp.display_name]"] = "<span class='warning'>[t_He] has a robot [temp.display_name], it has"
@@ -345,7 +344,7 @@
 	if(wound_flavor_text["head"] && (is_destroyed["head"] || (!skipmask && !(wear_mask && istype(wear_mask, /obj/item/clothing/mask/gas)))))
 		msg += wound_flavor_text["head"]
 	else if(is_bleeding["head"])
-		msg += "<span class='warning'>[src] has blood running down [t_his] face!</span>\n"
+		msg += "[SPAN_WARNING("[src] has blood running down [t_his] face!")]\n"
 	if(wound_flavor_text["chest"] && !w_uniform && !skipjumpsuit) //No need.  A missing chest gibs you.
 		msg += wound_flavor_text["chest"]
 	else if(is_bleeding["chest"])
@@ -387,14 +386,14 @@
 	else if(is_bleeding["right foot"])
 		display_shoes = 1
 	if(display_chest)
-		msg += "<span class='warning'><b>[src] has blood soaking through from under [t_his] clothing!</b></span>\n"
+		msg += "[SPAN_DANGER("[src] has blood soaking through from under [t_his] clothing!")]\n"
 	if(display_shoes)
-		msg += "<span class='warning'><b>[src] has blood running from [t_his] shoes!</b></span>\n"
+		msg += "[SPAN_DANGER("[src] has blood running from [t_his] shoes!")]\n"
 	if(display_gloves)
-		msg += "<span class='warning'><b>[src] has blood running from under [t_his] gloves!</b></span>\n"
+		msg += "[SPAN_DANGER("[src] has blood running from under [t_his] gloves!")]\n"
 
 	for(var/implant in get_visible_implants(1))
-		msg += "<span class='warning'><b>[src] has \a [implant] sticking out of their flesh!</span>\n"
+		msg += "[SPAN_DANGER("[src] has \a [implant] sticking out of their flesh!")]\n"
 	if(digitalcamo)
 		msg += "[t_He] [t_is] repulsively uncanny!\n"
 

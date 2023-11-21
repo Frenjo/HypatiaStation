@@ -15,7 +15,7 @@
 	var/affected_area = 3
 
 /obj/item/grenade/chemical/New()
-	var/datum/reagents/R = new/datum/reagents(1000)
+	var/datum/reagents/R = new /datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
 
@@ -35,7 +35,7 @@
 					user.put_in_hands(B)
 		name = "unsecured grenade with [length(beakers)] containers[detonator ? " and detonator" : ""]"
 	if(stage > 1 && !active && clown_check(user))
-		user << "<span class='warning'>You prime \the [name]!</span>"
+		to_chat(user, SPAN_WARNING("You prime \the [name]!"))
 
 		msg_admin_attack("[user.name] ([user.ckey]) primed \a [src]. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
@@ -49,13 +49,13 @@
 	if(istype(W, /obj/item/device/assembly_holder) && (!stage || stage == 1) && path != 2)
 		var/obj/item/device/assembly_holder/det = W
 		if(istype(det.a_left,det.a_right.type) || (!isigniter(det.a_left) && !isigniter(det.a_right)))
-			user << "\red Assembly must contain one igniter."
+			to_chat(user, SPAN_WARNING("Assembly must contain one igniter."))
 			return
 		if(!det.secured)
-			user << "\red Assembly must be secured with screwdriver."
+			to_chat(user, SPAN_WARNING("Assembly must be secured with a screwdriver."))
 			return
 		path = 1
-		user << "\blue You add [W] to the metal casing."
+		to_chat(user, SPAN_INFO("You add [W] to the metal casing."))
 		playsound(src, 'sound/items/Screwdriver2.ogg', 25, -3)
 		user.remove_from_mob(det)
 		det.loc = src
@@ -67,22 +67,22 @@
 		if(stage == 1)
 			path = 1
 			if(length(beakers))
-				user << "\blue You lock the assembly."
+				to_chat(user, SPAN_INFO("You lock the assembly."))
 				name = "grenade"
 			else
 //				user << "\red You need to add at least one beaker before locking the assembly."
-				user << "\blue You lock the empty assembly."
+				to_chat(user, SPAN_INFO("You lock the empty assembly."))
 				name = "fake grenade"
 			playsound(src, 'sound/items/Screwdriver.ogg', 25, -3)
 			icon_state = initial(icon_state) +"_locked"
 			stage = 2
 		else if(stage == 2)
 			if(active && prob(95))
-				user << "\red You trigger the assembly!"
+				to_chat(user, SPAN_WARNING("You trigger the assembly!"))
 				prime()
 				return
 			else
-				user << "\blue You unlock the assembly."
+				to_chat(user, SPAN_INFO("You unlock the assembly."))
 				playsound(src, 'sound/items/Screwdriver.ogg', 25, -3)
 				name = "unsecured grenade with [length(beakers)] containers[detonator ? " and detonator" : ""]"
 				icon_state = initial(icon_state) + (detonator?"_ass":"")
@@ -91,18 +91,18 @@
 	else if(is_type_in_list(W, allowed_containers) && (!stage || stage == 1) && path != 2)
 		path = 1
 		if(length(beakers) == 2)
-			user << "\red The grenade can not hold more containers."
+			to_chat(user, SPAN_WARNING("The grenade can not hold more containers."))
 			return
 		else
 			if(W.reagents.total_volume)
-				user << "\blue You add \the [W] to the assembly."
+				to_chat(user, SPAN_INFO("You add \the [W] to the assembly."))
 				user.drop_item()
 				W.loc = src
 				beakers += W
 				stage = 1
 				name = "unsecured grenade with [length(beakers)] containers[detonator ? " and detonator" : ""]"
 			else
-				user << "\red \the [W] is empty."
+				to_chat(user, SPAN_WARNING("\the [W] is empty."))
 
 /obj/item/grenade/chemical/examine()
 	set src in usr
@@ -123,23 +123,22 @@
 			active = 1
 	if(active)
 		icon_state = initial(icon_state) + "_active"
-
 		if(user)
 			msg_admin_attack("[user.name] ([user.ckey]) primed \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
-
-	return
 
 /obj/item/grenade/chemical/proc/primed(primed = 1)
 	if(active)
 		icon_state = initial(icon_state) + (primed?"_primed":"_active")
 
 /obj/item/grenade/chemical/prime()
-	if(!stage || stage<2) return
+	if(!stage || stage < 2)
+		return
 
 	//if(prob(reliability))
 	var/has_reagents = 0
 	for(var/obj/item/reagent_containers/glass/G in beakers)
-		if(G.reagents.total_volume) has_reagents = 1
+		if(G.reagents.total_volume)
+			has_reagents = 1
 
 	active = 0
 	if(!has_reagents)
@@ -163,7 +162,7 @@
 				continue
 			src.reagents.reaction(A, 1, 10)
 
-	if(istype(loc, /mob/living/carbon))		//drop dat grenade if it goes off in your hand
+	if(iscarbon(loc))		//drop dat grenade if it goes off in your hand
 		var/mob/living/carbon/C = loc
 		C.drop_from_inventory(src)
 		C.throw_mode_off()

@@ -1881,7 +1881,7 @@ datum
 
 						if(H.head)
 							if(prob(meltprob) && !H.head.unacidable)
-								H << "<span class='danger'>Your headgear melts away but protects you from the acid!</span>"
+								to_chat(H, SPAN_DANGER("Your headgear melts away but protects you from the acid!"))
 								del(H.head)
 								H.update_inv_head(0)
 								H.update_hair(0)
@@ -1891,7 +1891,7 @@ datum
 
 						if(H.wear_mask)
 							if(prob(meltprob) && !H.wear_mask.unacidable)
-								H << "<span class='danger'>Your mask melts away but protects you from the acid!</span>"
+								to_chat(H, SPAN_DANGER("Your mask melts away but protects you from the acid!"))
 								del (H.wear_mask)
 								H.update_inv_wear_mask(0)
 								H.update_hair(0)
@@ -1901,7 +1901,7 @@ datum
 
 						if(H.glasses) //Doesn't protect you from the acid but can melt anyways!
 							if(prob(meltprob) && !H.glasses.unacidable)
-								H << "<span class='danger'>Your glasses melts away!</span>"
+								to_chat(H, SPAN_DANGER("Your glasses melts away!"))
 								del (H.glasses)
 								H.update_inv_glasses(0)
 
@@ -1909,7 +1909,7 @@ datum
 						var/mob/living/carbon/monkey/MK = M
 						if(MK.wear_mask)
 							if(!MK.wear_mask.unacidable)
-								MK << "<span class='danger'>Your mask melts away but protects you from the acid!</span>"
+								to_chat(H, SPAN_DANGER("Your mask melts away but protects you from the acid!"))
 								del (MK.wear_mask)
 								MK.update_inv_wear_mask(0)
 							else

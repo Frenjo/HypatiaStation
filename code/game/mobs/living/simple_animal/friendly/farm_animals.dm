@@ -111,15 +111,15 @@
 	udder.my_atom = src
 	..()
 
-/mob/living/simple_animal/cow/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/cow/attackby(obj/item/O as obj, mob/user as mob)
 	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
-		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
+		user.visible_message(SPAN_NOTICE("[user] milks [src] using \the [O]."))
 		var/obj/item/reagent_containers/glass/G = O
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
-			user << "\red The [O] is full."
+			to_chat(user, SPAN_WARNING("The [O] is full."))
 		if(!transfered)
-			user << "\red The udder is dry. Wait a bit longer..."
+			to_chat(user, SPAN_WARNING("The udder is dry. Wait a bit longer..."))
 	else
 		..()
 
@@ -131,16 +131,21 @@
 
 /mob/living/simple_animal/cow/attack_hand(mob/living/carbon/M as mob)
 	if(!stat && M.a_intent == "disarm" && icon_state != icon_dead)
-		M.visible_message("<span class='warning'>[M] tips over [src].</span>","<span class='notice'>You tip over [src].</span>")
+		M.visible_message(
+			SPAN_WARNING("[M] tips over [src]."),
+			SPAN_NOTICE("You tip over [src].")
+		)
 		Weaken(30)
 		icon_state = icon_dead
 		spawn(rand(20,50))
 			if(!stat && M)
 				icon_state = icon_living
-				var/list/responses = list(	"[src] looks at you imploringly.",
-											"[src] looks at you pleadingly",
-											"[src] looks at you with a resigned expression.",
-											"[src] seems resigned to its fate.")
+				var/list/responses = list(
+					"[src] looks at you imploringly.",
+					"[src] looks at you pleadingly",
+					"[src] looks at you with a resigned expression.",
+					"[src] seems resigned to its fate."
+				)
 				M << pick(responses)
 	else
 		..()

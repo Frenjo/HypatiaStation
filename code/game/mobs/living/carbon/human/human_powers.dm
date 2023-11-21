@@ -78,7 +78,7 @@
 	last_special = world.time + 100
 	status_flags |= LEAPING
 
-	src.visible_message("<span class='warning'><b>\The [src]</b> leaps at [T]!</span>")
+	visible_message(SPAN_WARNING("<b>\The [src]</b> leaps at [T]!"))
 	src.throw_at(get_step(get_turf(T),get_turf(src)), 5, 1)
 	playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
 
@@ -101,7 +101,7 @@
 		else
 			use_hand = "right"
 
-	src.visible_message("<span class='warning'><b>\The [src]</b> seizes [T] aggressively!</span>")
+	visible_message(SPAN_WARNING("<b>\The [src]</b> seizes [T] aggressively!"))
 
 	var/obj/item/grab/G = new(src, T)
 	if(use_hand == "left")
@@ -136,7 +136,7 @@
 
 	last_special = world.time + 50
 
-	visible_message("<span class='warning'><b>\The [src]</b> rips viciously at \the [G.affecting]'s body with its claws!</span>")
+	visible_message(SPAN_WARNING("<b>\The [src]</b> rips viciously at \the [G.affecting]'s body with its claws!"))
 
 	if(ishuman(G.affecting))
 		var/mob/living/carbon/human/H = G.affecting

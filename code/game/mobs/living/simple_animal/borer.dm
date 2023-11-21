@@ -206,35 +206,34 @@
 	set name = "Assume Control"
 	set desc = "Fully connect to the brain of your host."
 
-	if(!host)
-		src << "You are not inside a host body."
+	if(isnull(host))
+		to_chat(src, "You are not inside a host body.")
 		return
 
-	if(src.stat)
-		src << "You cannot do that in your current state."
+	if(stat)
+		to_chat(src, "You cannot do that in your current state.")
 		return
 
-	if(!host.internal_organs_by_name["brain"]) //this should only run in admin-weirdness situations, but it's here non the less - RR
-		src << "<span class='warning'>There is no brain here for us to command!</span>"
+	if(isnull(host.internal_organs_by_name["brain"])) //this should only run in admin-weirdness situations, but it's here non the less - RR
+		to_chat(src, SPAN_WARNING("There is no brain here for us to command!"))
 		return
 
 	if(docile)
-		src << "\blue You are feeling far too docile to do that."
+		to_chat(src, SPAN_INFO("You are feeling far too docile to do that."))
 		return
 
-	src << "You begin delicately adjusting your connection to the host brain..."
+	to_chat(src, "You begin delicately adjusting your connection to the host brain...")
 
 	spawn(300 + (host.brainloss * 5))
-
-		if(!host || !src || controlling)
+		if(isnull(host) || isnull(src) || controlling)
 			return
 		else
-			src << "\red <B>You plunge your probosci deep into the cortex of the host brain, interfacing directly with their nervous system.</B>"
-			host << "\red <B>You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours.</B>"
+			to_chat(src, SPAN_DANGER("You plunge your probosci deep into the cortex of the host brain, interfacing directly with their nervous system."))
+			to_chat(host, SPAN_DANGER("You feel a strange shifting sensation behind your eyes as an alien consciousness displaces yours."))
 
 			host_brain.ckey = host.ckey
 			host.ckey = src.ckey
-			controlling = 1
+			controlling = TRUE
 
 			host.verbs += /mob/living/carbon/proc/release_control
 			host.verbs += /mob/living/carbon/proc/punish_host

@@ -7,10 +7,10 @@
 		return
 
 	var/msg = "<span class='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"
-	if (src.stat == DEAD)
+	if(src.stat == DEAD)
 		msg += "<span class='deadsay'>It is limp and unresponsive.</span>\n"
 	else
-		if (src.getBruteLoss())
+		if(src.getBruteLoss())
 			msg += "<span class='warning'>"
 			if (src.getBruteLoss() < 40)
 				msg += "It has some punctures in its flesh!"
@@ -27,10 +27,10 @@
 				msg += "It is glowing gently with moderate levels of electrical activity.\n"
 
 			if(6 to 9)
-				msg += "<span class='warning'>It is glowing brightly with high levels of electrical activity.</span>\n"
+				msg += "[SPAN_WARNING("It is glowing brightly with high levels of electrical activity.")]\n"
 
 			if(10)
-				msg += "<span class='warning'><B>It is radiating with massive levels of electrical activity!</B></span>\n"
+				msg += "[SPAN_DANGER("It is radiating with massive levels of electrical activity!")]\n"
 
 	msg += "*---------*</span>"
 	usr << msg

@@ -70,14 +70,13 @@
 		client.time_died_as_mouse = world.time
 
 /mob/living/simple_animal/mouse/start_pulling(atom/movable/AM)//Prevents mouse from pulling things
-	src << "<span class='warning'>You are too small to pull anything.</span>"
-	return
+	to_chat(src, SPAN_WARNING("You are too small to pull anything."))
 
 /mob/living/simple_animal/mouse/Crossed(AM as mob|obj)
 	if(ishuman(AM))
 		if(!stat)
 			var/mob/M = AM
-			M << "\blue \icon[src] Squeek!"
+			to_chat(M, SPAN_INFO("\icon[src] Squeek!"))
 			M << 'sound/effects/mousesqueek.ogg'
 	..()
 

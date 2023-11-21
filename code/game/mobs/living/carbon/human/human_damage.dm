@@ -332,7 +332,7 @@ This function restores all organs.
 		*/
 		if((damage > (4 * W.w_class)) && ((sharp && !ismob(W.loc)) || prob((damage * 1.5) / W.w_class)))
 			organ.implants += W
-			visible_message("<span class='danger'>\The [W] sticks in the wound!</span>")
+			visible_message(SPAN_DANGER("\The [W] sticks in the wound!"))
 			embedded_flag = 1
 			src.verbs += /mob/proc/yank_out_object
 			W.add_blood(src)
@@ -342,6 +342,6 @@ This function restores all organs.
 			W.loc = src
 		else if((damage > (4 * W.w_class)) && ((!ismob(W.loc) && !sharp)) || (prob(damage / W.w_class)))
 			organ.implants += W
-			visible_message("<span class='danger'>\The [W] sticks in the wound!</span>")
+			visible_message(SPAN_DANGER("\The [W] sticks in the wound!"))
 			embedded_flag = 1
 	return 1

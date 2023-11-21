@@ -27,7 +27,7 @@
 
 /obj/item/melee/baton/attack_self(mob/user as mob)
 	if(status && (CLUMSY in user.mutations) && prob(50))
-		user << "\red You grab the [src] on the wrong side."
+		to_chat(user, SPAN_WARNING("You grab the [src] on the wrong side."))
 		user.Weaken(30)
 		charges--
 		if(charges < 1)
@@ -36,17 +36,17 @@
 		return
 	if(charges > 0)
 		status = !status
-		user << "<span class='notice'>\The [src] is now [status ? "on" : "off"].</span>"
+		to_chat(user, SPAN_NOTICE("\The [src] is now [status ? "on" : "off"]."))
 		playsound(src.loc, "sparks", 75, 1, -1)
 		update_icon()
 	else
 		status = 0
-		user << "<span class='warning'>\The [src] is out of charge.</span>"
+		to_chat(user, SPAN_WARNING("\The [src] is out of charge."))
 	add_fingerprint(user)
 
 /obj/item/melee/baton/attack(mob/M as mob, mob/user as mob)
 	if(status && (CLUMSY in user.mutations) && prob(50))
-		user << "<span class='danger'>You accidentally hit yourself with the [src]!</span>"
+		to_chat(user, SPAN_DANGER("You accidentally hit yourself with the [src]!"))
 		user.Weaken(30)
 		charges--
 		if(charges < 1)
@@ -62,7 +62,7 @@
 	if(user.a_intent == "hurt")
 		if(!..()) return
 		//H.apply_effect(5, WEAKEN, 0)
-		H.visible_message("<span class='danger'>[M] has been beaten with the [src] by [user]!</span>")
+		H.visible_message(SPAN_DANGER("[M] has been beaten with the [src] by [user]!"))
 
 		user.attack_log += "\[[time_stamp()]\]<font color='red'> Beat [H.name] ([H.ckey]) with [src.name]</font>"
 		H.attack_log += "\[[time_stamp()]\]<font color='orange'> Beaten by [user.name] ([user.ckey]) with [src.name]</font>"
@@ -70,7 +70,7 @@
 
 		playsound(src.loc, "swing_hit", 50, 1, -1)
 	else if(!status)
-		H.visible_message("<span class='warning'>[M] has been prodded with the [src] by [user]. Luckily it was off.</span>")
+		H.visible_message(SPAN_WARNING("[M] has been prodded with the [src] by [user]. Luckily it was off."))
 		return
 
 	if(status)
@@ -85,7 +85,7 @@
 				R.cell.use(50)
 		else
 			charges--
-		H.visible_message("<span class='danger'>[M] has been stunned with the [src] by [user]!</span>")
+		H.visible_message(SPAN_DANGER("[M] has been stunned with the [src] by [user]!"))
 
 		user.attack_log += "\[[time_stamp()]\]<font color='red'> Stunned [H.name] ([H.ckey]) with [src.name]</font>"
 		H.attack_log += "\[[time_stamp()]\]<font color='orange'> Stunned by [user.name] ([user.ckey]) with [src.name]</font>"
@@ -113,7 +113,7 @@
 					foundmob = M
 					break
 
-				H.visible_message("<span class='danger'>[src], thrown by [foundmob.name], strikes [H] and stuns them!</span>")
+				H.visible_message(SPAN_DANGER("[src], thrown by [foundmob.name], strikes [H] and stuns them!"))
 
 				H.attack_log += "\[[time_stamp()]\]<font color='orange'> Stunned by thrown [src.name] last touched by ([src.fingerprintslast])</font>"
 				msg_admin_attack("Flying [src.name], last touched by ([src.fingerprintslast]) stunned [key_name(H)]" )

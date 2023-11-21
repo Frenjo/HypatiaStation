@@ -7,7 +7,7 @@
 			f_name = "some "
 		else
 			f_name = "a "
-		f_name += "<span class='danger'>blood-stained</span> [name]!"
+		f_name += "[SPAN_DANGER("blood-stained")] [name]!"
 
 	to_chat(user, "\icon[src] That's [f_name]")
 
