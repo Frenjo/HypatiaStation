@@ -3,7 +3,7 @@
 	desc = "A computer used to control a nearby holodeck."
 	icon_state = "holocontrol"
 
-	var/area/linkedholodeck = null
+	var/area/linked_holodeck = null
 	var/area/target = null
 	var/active = 0
 	var/list/holographic_items = list()
@@ -11,8 +11,8 @@
 	var/last_change = 0
 
 /obj/machinery/computer/holodeck_control/New()
-	..()
-	linkedholodeck = locate(/area/holodeck/alphadeck)
+	. = ..()
+	linked_holodeck = locate(/area/holodeck/alpha)
 	//if(linkedholodeck)
 	//	target = locate(/area/holodeck/source_emptycourt)
 	//	if(target)
@@ -24,7 +24,7 @@
 	return ..()
 
 /obj/machinery/computer/holodeck_control/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/computer/holodeck_control/attack_paw(mob/user as mob)
 	return
@@ -77,80 +77,80 @@
 /obj/machinery/computer/holodeck_control/Topic(href, href_list)
 	if(..())
 		return
-	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc))) || issilicon(usr))
+	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(loc))) || issilicon(usr))
 		usr.set_machine(src)
 
 		if(href_list["emptycourt"])
-			target = locate(/area/holodeck/source_emptycourt)
+			target = locate(/area/holodeck/source/empty_court)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["boxingcourt"])
-			target = locate(/area/holodeck/source_boxingcourt)
+			target = locate(/area/holodeck/source/boxing_court)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["basketball"])
-			target = locate(/area/holodeck/source_basketball)
+			target = locate(/area/holodeck/source/basketball_court)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["thunderdomecourt"])
-			target = locate(/area/holodeck/source_thunderdomecourt)
+			target = locate(/area/holodeck/source/thunderdome_court)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["beach"])
-			target = locate(/area/holodeck/source_beach)
+			target = locate(/area/holodeck/source/beach)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["desert"])
-			target = locate(/area/holodeck/source_desert)
+			target = locate(/area/holodeck/source/desert)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["space"])
-			target = locate(/area/holodeck/source_space)
+			target = locate(/area/holodeck/source/space)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["picnicarea"])
-			target = locate(/area/holodeck/source_picnicarea)
+			target = locate(/area/holodeck/source/picnic_area)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["snowfield"])
-			target = locate(/area/holodeck/source_snowfield)
+			target = locate(/area/holodeck/source/snow_field)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["theatre"])
-			target = locate(/area/holodeck/source_theatre)
+			target = locate(/area/holodeck/source/theatre)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["meetinghall"])
-			target = locate(/area/holodeck/source_meetinghall)
+			target = locate(/area/holodeck/source/meeting_hall)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["turnoff"])
-			target = locate(/area/holodeck/source_plating)
+			target = locate(/area/holodeck/source/plating)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["burntest"])
 			if(!emagged)
 				return
-			target = locate(/area/holodeck/source_burntest)
+			target = locate(/area/holodeck/source/burn_test)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["wildlifecarp"])
 			if(!emagged)
 				return
-			target = locate(/area/holodeck/source_wildlife)
+			target = locate(/area/holodeck/source/wildlife)
 			if(target)
 				loadProgram(target)
 
@@ -165,23 +165,22 @@
 				message_admins("[key_name_admin(usr)] restored the holodeck's safeties")
 				log_game("[key_name(usr)] restored the holodeck's safeties")
 
-		src.add_fingerprint(usr)
-	src.updateUsrDialog()
-	return
+		add_fingerprint(usr)
+	updateUsrDialog()
 
 /obj/machinery/computer/holodeck_control/attackby(obj/item/D as obj, mob/user as mob)
 //Warning, uncommenting this can have concequences. For example, deconstructing the computer may cause holographic eswords to never derez
 
 /*		if(istype(D, /obj/item/screwdriver))
-			playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
+			playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			if(do_after(user, 20))
-				if (src.stat & BROKEN)
+				if (stat & BROKEN)
 					FEEDBACK_BROKEN_GLASS_FALLS(user)
-					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-					new /obj/item/shard( src.loc )
+					var/obj/structure/computerframe/A = new /obj/structure/computerframe( loc )
+					new /obj/item/shard( loc )
 					var/obj/item/circuitboard/comm_traffic/M = new /obj/item/circuitboard/comm_traffic( A )
 					for (var/obj/C in src)
-						C.loc = src.loc
+						C.loc = loc
 					A.circuit = M
 					A.state = 3
 					A.icon_state = "3"
@@ -189,10 +188,10 @@
 					del(src)
 				else
 					FEEDBACK_DISCONNECT_MONITOR(user)
-					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
+					var/obj/structure/computerframe/A = new /obj/structure/computerframe( loc )
 					var/obj/item/circuitboard/comm_traffic/M = new /obj/item/circuitboard/comm_traffic( A )
 					for (var/obj/C in src)
-						C.loc = src.loc
+						C.loc = loc
 					A.circuit = M
 					A.state = 4
 					A.icon_state = "4"
@@ -206,7 +205,7 @@
 		to_chat(user, SPAN_INFO("You vastly increase projector power and override the safety and security protocols."))
 		to_chat(user, "Warning. Automatic shutoff and derezing protocols have been corrupted.  Please call NanoTrasen maintenance and do not use the simulator.")
 		log_game("[key_name(usr)] emagged the Holodeck Control Computer")
-	src.updateUsrDialog()
+	updateUsrDialog()
 	return
 
 /obj/machinery/computer/holodeck_control/meteorhit(obj/O as obj)
@@ -227,24 +226,24 @@
 
 /obj/machinery/computer/holodeck_control/process()
 	for(var/item in holographic_items) // do this first, to make sure people don't take items out when power is down.
-		if(!(get_turf(item) in linkedholodeck))
+		if(!(get_turf(item) in linked_holodeck))
 			derez(item, 0)
 
 	if(!..())
 		return
 	if(active)
-		if(!checkInteg(linkedholodeck))
+		if(!checkInteg(linked_holodeck))
 			damaged = 1
-			target = locate(/area/holodeck/source_plating)
+			target = locate(/area/holodeck/source/plating)
 			if(target)
 				loadProgram(target)
 			active = 0
 			for(var/mob/M in range(10, src))
 				M.show_message("The holodeck overloads!")
 
-			for(var/turf/T in linkedholodeck)
+			for(var/turf/T in linked_holodeck)
 				if(prob(30))
-					var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
+					var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
 					s.set_up(2, 1, T)
 					s.start()
 				T.ex_act(3)
@@ -275,15 +274,15 @@
 
 /obj/machinery/computer/holodeck_control/proc/togglePower(toggleOn = 0)
 	if(toggleOn)
-		var/area/targetsource = locate(/area/holodeck/source_emptycourt)
-		holographic_items = targetsource.copy_contents_to(linkedholodeck)
+		var/area/targetsource = locate(/area/holodeck/source/empty_court)
+		holographic_items = targetsource.copy_contents_to(linked_holodeck)
 
 		spawn(30)
-			for(var/obj/effect/landmark/L in linkedholodeck)
+			for(var/obj/effect/landmark/L in linked_holodeck)
 				if(L.name == "Atmospheric Test Start")
 					spawn(20)
 						var/turf/T = get_turf(L)
-						var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
+						var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
 						s.set_up(2, 1, T)
 						s.start()
 						if(T)
@@ -294,8 +293,8 @@
 	else
 		for(var/item in holographic_items)
 			derez(item)
-		var/area/targetsource = locate(/area/holodeck/source_plating)
-		targetsource.copy_contents_to(linkedholodeck , 1)
+		var/area/targetsource = locate(/area/holodeck/source/plating)
+		targetsource.copy_contents_to(linked_holodeck , 1)
 		active = 0
 
 /obj/machinery/computer/holodeck_control/proc/loadProgram(area/A)
@@ -313,24 +312,24 @@
 	for(var/item in holographic_items)
 		derez(item)
 
-	for(var/obj/effect/decal/cleanable/blood/B in linkedholodeck)
+	for(var/obj/effect/decal/cleanable/blood/B in linked_holodeck)
 		qdel(B)
 
-	for(var/mob/living/simple_animal/hostile/carp/C in linkedholodeck)
+	for(var/mob/living/simple_animal/hostile/carp/C in linked_holodeck)
 		qdel(C)
 
-	holographic_items = A.copy_contents_to(linkedholodeck , 1)
+	holographic_items = A.copy_contents_to(linked_holodeck, 1)
 
 	if(emagged)
-		for(var/obj/item/holo/esword/H in linkedholodeck)
+		for(var/obj/item/holo/esword/H in linked_holodeck)
 			H.damtype = BRUTE
 
 	spawn(30)
-		for(var/obj/effect/landmark/L in linkedholodeck)
+		for(var/obj/effect/landmark/L in linked_holodeck)
 			if(L.name == "Atmospheric Test Start")
 				spawn(20)
 					var/turf/T = get_turf(L)
-					var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
+					var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
 					s.set_up(2, 1, T)
 					s.start()
 					if(T)
@@ -344,10 +343,10 @@
 	for(var/item in holographic_items)
 		derez(item)
 	//Turn it back to the regular non-holographic room
-	target = locate(/area/holodeck/source_plating)
+	target = locate(/area/holodeck/source/plating)
 	if(target)
 		loadProgram(target)
 
-	var/area/targetsource = locate(/area/holodeck/source_plating)
-	targetsource.copy_contents_to(linkedholodeck, 1)
+	var/area/targetsource = locate(/area/holodeck/source/plating)
+	targetsource.copy_contents_to(linked_holodeck, 1)
 	active = 0

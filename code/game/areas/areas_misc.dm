@@ -1,24 +1,4 @@
-//Misc
-/area/wreck/ai
-	name = "\improper AI Chamber"
-	icon_state = "ai"
-
-/area/wreck/main
-	name = "\improper Wreck"
-	icon_state = "storage"
-
-/area/wreck/engineering
-	name = "\improper Power Room"
-	icon_state = "engine"
-
-/area/wreck/bridge
-	name = "\improper Bridge"
-	icon_state = "bridge"
-
-/area/generic
-	name = "Unknown"
-	icon_state = "storage"
-
+// Misc
 //EXTRA
 /area/asteroid					// -- TLE
 	name = "\improper Asteroid"

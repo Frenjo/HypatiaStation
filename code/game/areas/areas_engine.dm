@@ -32,10 +32,6 @@
 	name = "\improper Emergency Materials Storage"
 	icon_state = "engine_storage"
 
-/area/engine/chiefs_office
-	name = "\improper Chief Engineer's office"
-	icon_state = "engine_control"
-
 /area/engine/engineering_eva
 	name = "\improper Engineering EVA Storage"
 	icon_state = "engine_storage"

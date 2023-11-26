@@ -207,7 +207,7 @@ Alien plants should do something if theres a lot of poison
 		for(var/dirn in GLOBL.cardinal)
 			var/turf/T = get_step(src, dirn)
 
-			if(!istype(T) || T.density || locate(/obj/effect/alien/weeds) in T || istype(T.loc, /area/arrival) || isspace(T))
+			if(!istype(T) || T.density || locate(/obj/effect/alien/weeds) in T || isspace(T))
 				continue
 
 	//		if (locate(/obj/movable, T)) // don't propogate into movables

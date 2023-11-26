@@ -58,8 +58,8 @@
 		'sound/ambience/signal.ogg'
 	)
 
-/area/medical/medbreak
-	name = "\improper Break Room"
+/area/medical/break_room
+	name = "\improper Medical Break Room"
 	icon_state = "medbay3"
 	ambience = list(
 		'sound/ambience/signal.ogg'
@@ -89,21 +89,9 @@
 	name = "\improper Isolation Access"
 	icon_state = "patients"
 
-/area/medical/cmo
-	name = "\improper Chief Medical Officer's office"
-	icon_state = "CMO"
-
 /area/medical/cmostore
 	name = "\improper Secure Storage"
 	icon_state = "CMO"
-
-/area/medical/robotics
-	name = "\improper Robotics"
-	icon_state = "medresearch"
-
-/area/medical/research
-	name = "\improper Medical Research"
-	icon_state = "medresearch"
 
 /area/medical/virology
 	name = "\improper Virology"
@@ -123,16 +111,16 @@
 	icon_state = "chem"
 
 /area/medical/surgery
+	icon_state = "surgery"
+
+/area/medical/surgery/one
 	name = "\improper Operating Theatre One"
-	icon_state = "surgery"
 
-/area/medical/surgery1
+/area/medical/surgery/two
 	name = "\improper Operating Theatre Two"
-	icon_state = "surgery"
 
-/area/medical/surgeryobs
+/area/medical/surgery/observation
 	name = "\improper Surgery Observation"
-	icon_state = "surgery"
 
 /area/medical/cryo
 	name = "\improper Cryogenics"
@@ -159,21 +147,18 @@
 /area/toxins
 	icon_state = "toxlab"
 
+/area/research/hallway
+	name = "\improper Research Division"
+	icon_state = "medresearch"
+
 /area/toxins/lab
 	name = "\improper Research and Development"
 
 /area/toxins/hallway
 	name = "\improper Research Lab"
 
-/area/toxins/s_breakroom
+/area/toxins/breakroom
 	name = "\improper Science Break Room"
-
-/area/toxins/rdoffice
-	name = "\improper Research Director's Office"
-	icon_state = "head_quarters"
-
-/area/toxins/supermatter
-	name = "\improper Supermatter Lab"
 
 /area/toxins/xenobiology
 	name = "\improper Xenobiology Lab"
@@ -198,19 +183,19 @@
 	name = "\improper Telescience Lab"
 	icon_state = "toxmisc"
 
-/area/toxins/server
-	name = "\improper Server Room"
+/area/research/server
+	name = "\improper Research Server Room"
 	icon_state = "server"
 
 // Robotics
-/area/assembly/chargebay
+/area/robotics/lab
+	name = "\improper Robotics Lab"
+	icon_state = "ass_line"
+
+/area/robotics/chargebay
 	name = "\improper Mech Bay"
 	icon_state = "mechbay"
 
-/area/assembly/showroom
+/area/robotics/showroom
 	name = "\improper Robotics Showroom"
 	icon_state = "showroom"
-
-/area/assembly/robotics
-	name = "\improper Robotics Lab"
-	icon_state = "ass_line"

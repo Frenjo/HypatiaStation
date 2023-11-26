@@ -20,7 +20,7 @@ GLOBAL_GLOBL_LIST_NEW(ghostteleportlocs)
 	for(var/area/a in world)
 		if(GLOBL.ghostteleportlocs.Find(a.name))
 			continue
-		if(istype(a, /area/turret_protected/aisat) || istype(a, /area/derelict) || istype(a, /area/tdome))
+		if(/*istype(a, /area/turret_protected/aisat) ||*/ istype(a, /area/derelict) || istype(a, /area/tdome))
 			GLOBL.ghostteleportlocs += a.name
 			GLOBL.ghostteleportlocs[a.name] = a
 		var/turf/picked = pick(get_area_turfs(a.type))

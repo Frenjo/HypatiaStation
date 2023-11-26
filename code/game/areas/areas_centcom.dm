@@ -72,18 +72,18 @@
 	requires_power = FALSE
 	dynamic_lighting = FALSE
 
-/area/tdome/tdome1
+/area/tdome/team_one
 	name = "\improper Thunderdome (Team 1)"
 	icon_state = "green"
 
-/area/tdome/tdome2
+/area/tdome/team_two
 	name = "\improper Thunderdome (Team 2)"
 	icon_state = "yellow"
 
-/area/tdome/tdomeadmin
+/area/tdome/admin
 	name = "\improper Thunderdome (Admin)"
 	icon_state = "purple"
 
-/area/tdome/tdomeobserve
+/area/tdome/observation
 	name = "\improper Thunderdome (Observer)"
 	icon_state = "purple"

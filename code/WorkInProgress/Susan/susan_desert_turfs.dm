@@ -176,7 +176,7 @@ Alien plants should do something if theres a lot of poison
 		for(var/dirn in cardinal)
 			var/turf/T = get_step(src, dirn)
 
-			if(!istype(T) || T.density || locate(/obj/effect/alien/flesh/weeds) in T || istype(T.loc, /area/arrival) || isspace(T))
+			if(!istype(T) || T.density || locate(/obj/effect/alien/flesh/weeds) in T || isspace(T))
 				continue
 
 			if(!linked_node || get_dist(linked_node, src) > linked_node.node_range)

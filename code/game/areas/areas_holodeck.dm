@@ -4,47 +4,47 @@
 	icon_state = "Holodeck"
 	dynamic_lighting = FALSE
 
-/area/holodeck/alphadeck
+/area/holodeck/alpha
 	name = "\improper Holodeck Alpha"
 
-/area/holodeck/source_plating
+/area/holodeck/source/plating
 	name = "\improper Holodeck - Off"
 
-/area/holodeck/source_emptycourt
+/area/holodeck/source/empty_court
 	name = "\improper Holodeck - Empty Court"
 
-/area/holodeck/source_boxingcourt
+/area/holodeck/source/boxing_court
 	name = "\improper Holodeck - Boxing Court"
 
-/area/holodeck/source_basketball
+/area/holodeck/source/basketball_court
 	name = "\improper Holodeck - Basketball Court"
 
-/area/holodeck/source_thunderdomecourt
+/area/holodeck/source/thunderdome_court
 	name = "\improper Holodeck - Thunderdome Court"
 
-/area/holodeck/source_beach
+/area/holodeck/source/beach
 	name = "\improper Holodeck - Beach"
 
-/area/holodeck/source_burntest
-	name = "\improper Holodeck - Atmospheric Burn Test"
-
-/area/holodeck/source_wildlife
-	name = "\improper Holodeck - Wildlife Simulation"
-
-/area/holodeck/source_meetinghall
+/area/holodeck/source/meeting_hall
 	name = "\improper Holodeck - Meeting Hall"
 
-/area/holodeck/source_theatre
+/area/holodeck/source/theatre
 	name = "\improper Holodeck - Theatre"
 
-/area/holodeck/source_picnicarea
+/area/holodeck/source/picnic_area
 	name = "\improper Holodeck - Picnic Area"
 
-/area/holodeck/source_snowfield
+/area/holodeck/source/snow_field
 	name = "\improper Holodeck - Snow Field"
 
-/area/holodeck/source_desert
+/area/holodeck/source/desert
 	name = "\improper Holodeck - Desert"
 
-/area/holodeck/source_space
+/area/holodeck/source/space
 	name = "\improper Holodeck - Space"
+
+/area/holodeck/source/burn_test
+	name = "\improper Holodeck - Atmospheric Burn Test"
+
+/area/holodeck/source/wildlife
+	name = "\improper Holodeck - Wildlife Simulation"

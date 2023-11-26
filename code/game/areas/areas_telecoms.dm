@@ -1,5 +1,6 @@
 // Telecommunications Satellite
 /area/tcomsat
+	name = "\improper Telecommunications Satellite"
 	ambience = list(
 		'sound/ambience/ambisin2.ogg',
 		'sound/ambience/signal.ogg',
@@ -8,15 +9,22 @@
 	)
 
 /area/tcomsat/entrance
-	name = "\improper Telecommunications Teleporter"
+	name = "\improper Telecommunications Satellite Teleporter"
 	icon_state = "tcomsatentrance"
 
 /area/tcomsat/chamber
-	name = "\improper Telecommunications Central Compartment"
+	name = "\improper Telecommunications Satellite Central Compartment"
 	icon_state = "tcomsatcham"
 
+/area/tcomsat/computer
+	name = "\improper Telecommunications Satellite Control Room"
+	icon_state = "tcomsatcomp"
+
+/area/tcomsat/lounge
+	name = "\improper Telecommunications Satellite Lounge"
+	icon_state = "tcomsatlounge"
+
 /area/turret_protected/tcomsat
-	name = "\improper Telecommunications Satellite"
 	icon_state = "tcomsatlob"
 	ambience = list(
 		'sound/ambience/ambisin2.ogg',
@@ -25,8 +33,8 @@
 		'sound/ambience/ambigen10.ogg'
 	)
 
-/area/turret_protected/tcomfoyer
-	name = "\improper Telecommunications Foyer"
+/area/turret_protected/tcomsat/foyer
+	name = "\improper Telecommunications Satellite Foyer"
 	icon_state = "tcomsatentrance"
 	ambience = list(
 		'sound/ambience/ambisin2.ogg',
@@ -35,6 +43,7 @@
 		'sound/ambience/ambigen10.ogg'
 	)
 
+/*
 /area/turret_protected/tcomwest
 	name = "\improper Telecommunications Satellite West Wing"
 	icon_state = "tcomsatwest"
@@ -54,14 +63,7 @@
 		'sound/ambience/signal.ogg',
 		'sound/ambience/ambigen10.ogg'
 	)
-
-/area/tcomsat/computer
-	name = "\improper Telecommunications Control Room"
-	icon_state = "tcomsatcomp"
-
-/area/tcomsat/lounge
-	name = "\improper Telecommunications Satellite Lounge"
-	icon_state = "tcomsatlounge"
+*/
 
 // Added these due to map editing. -Frenjo
 /area/tcomsat/solar
@@ -70,13 +72,13 @@
 	icon_state = "tcomsatlounge"
 
 /area/tcomsat/solar/port
-	name = "\improper Telecommunications Port Solar Array"
+	name = "\improper Telecommunications Satellite Port Solar Array"
 
 /area/tcomsat/solar/fore
-	name = "\improper Telecommunications Fore Solar Array"
+	name = "\improper Telecommunications Satellite Fore Solar Array"
 
 /area/tcomsat/solar/starboard
-	name = "\improper Telecommunications Starboard Solar Array"
+	name = "\improper Telecommunications Satellite Starboard Solar Array"
 
 /area/tcomsat/solar/aft
-	name = "\improper Telecommunications Aft Solar Array"
+	name = "\improper Telecommunications Satellite Aft Solar Array"

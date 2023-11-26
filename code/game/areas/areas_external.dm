@@ -101,3 +101,12 @@
 /area/derelict/singularity_engine
 	name = "\improper Derelict Singularity Engine"
 	icon_state = "engine"
+
+// Old AI Satellite
+/area/abandoned/ai_satellite_teleporter
+	name = "\improper Abandoned AI Satellite Teleporter Room"
+	icon_state = "teleporter"
+	ambience = list(
+		'sound/ambience/signal.ogg',
+		'sound/ambience/ambimalf.ogg'
+	)

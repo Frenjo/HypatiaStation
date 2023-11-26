@@ -38,18 +38,6 @@
 /area/space/destruct_alert()
 	return
 
-/area/arrival
-	requires_power = FALSE
-
-/area/arrival/start
-	name = "\improper Arrival Area"
-	icon_state = "start"
-
-/area/admin
-	name = "\improper Admin room"
-	icon_state = "start"
-	dynamic_lighting = 0
-
 // Away Missions
 /area/awaymission
 	name = "\improper Strange Location"
@@ -133,6 +121,6 @@ GLOBAL_GLOBL_LIST_INIT(centcom_areas, list(
 ))
 
 // Preserved in case these ever get used later. -Frenjo
-/area/airtunnel1		// referenced in airtunnel.dm:759
-/area/dummy				// Referenced in engine.dm:261
+///area/airtunnel1		// referenced in airtunnel.dm:759
+///area/dummy			// Referenced in engine.dm:261
 //STATION13

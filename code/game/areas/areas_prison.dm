@@ -77,7 +77,3 @@
 /area/prison/cell_block/B
 	name = "Prison Satellite Cell Block B"
 	icon_state = "sec_prison"
-
-/area/prison/cell_block/C
-	name = "Prison Satellite Cell Block C"
-	icon_state = "sec_prison"

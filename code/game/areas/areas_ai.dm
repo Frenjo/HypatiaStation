@@ -61,6 +61,17 @@
 		'sound/ambience/ambimalf.ogg'
 	)
 
+// These two are just grouped here as they're right next to /area/turret_protected/ai_upload_foyer.
+/area/turret_protected/cyborg_station
+	name = "\improper Cyborg Station"
+	icon_state = "tcomsatcham"
+
+/area/turret_protected/messaging_server
+	name = "\improper Messaging Server Room"
+	icon_state = "server"
+
+/*
+// These are unused, but are kept because I may re-add the AI satellite later.
 /area/turret_protected/aisat
 	name = "\improper AI Satellite"
 
@@ -90,7 +101,4 @@
 	icon_state = "storage"
 	luminosity = 1
 	dynamic_lighting = FALSE
-
-/area/turret_protected/NewAIMain
-	name = "\improper AI Main New"
-	icon_state = "storage"
+*/

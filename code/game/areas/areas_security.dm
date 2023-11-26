@@ -22,10 +22,6 @@
 	name = "\improper Armoury"
 	icon_state = "Warden"
 
-/area/security/hos
-	name = "\improper Head of Security's Office"
-	icon_state = "sec_hos"
-
 /area/security/detectives_office
 	name = "\improper Detective's Office"
 	icon_state = "detective"
@@ -58,9 +54,6 @@
 /area/security/vacantoffice
 	name = "\improper Vacant Office"
 
-/area/security/headdorms
-	name = "\improper Head Dormitories"
-
 /*
  * Security Posts
  */
@@ -81,13 +74,13 @@
 	icon_state = "checkpoint1"
 
 /area/security/checkpoint/supply
-	name = "Security Post - Cargo Bay"
+	name = "Security Checkpoint - Cargo Bay"
 
 /area/security/checkpoint/engineering
-	name = "Security Post - Engineering"
+	name = "Security Checkpoint - Engineering"
 
 /area/security/checkpoint/medical
-	name = "Security Post - Medbay"
+	name = "Security Checkpoint - Medbay"
 
 /area/security/checkpoint/science
-	name = "Security Post - Science"
+	name = "Security Checkpoint - Science"
