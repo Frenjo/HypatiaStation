@@ -56,11 +56,11 @@ Note: Must be placed west/left of and R&D console to function.
 				linked_console.linked_lathe = null
 				linked_console = null
 			icon_state = "protolathe_t"
-			to_chat(user, "You open the maintenance hatch of the [src.name].")
 		else
 			opened = FALSE
 			icon_state = "protolathe"
-			to_chat(user, "You close the maintenance hatch of the [src.name].")
+		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, opened)
 		return 1
 	if(opened)
 		if(istype(O, /obj/item/crowbar))
@@ -80,7 +80,7 @@ Note: Must be placed west/left of and R&D console to function.
 		else
 			to_chat(user, SPAN_WARNING("You can't load the [src.name] while it's opened."))
 			return 1
-	
+
 	if(!linked_console)
 		to_chat(user, SPAN_WARNING("\The [src.name] must be linked to an R&D console first!"))
 		return 1

@@ -45,11 +45,11 @@ Note: Must be placed within 3 tiles of the R&D Console
 				linked_console.linked_destroy = null
 				linked_console = null
 			icon_state = "d_analyzer_t"
-			to_chat(user, "You open the maintenance hatch of the [src.name].")
 		else
 			opened = FALSE
 			icon_state = "d_analyzer"
-			to_chat(user, "You close the maintenance hatch of the [src.name].")
+		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, opened)
 		return 1
 	if(opened)
 		if(istype(O, /obj/item/crowbar))

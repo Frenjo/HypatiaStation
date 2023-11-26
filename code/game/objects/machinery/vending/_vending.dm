@@ -106,7 +106,8 @@
 		return
 	else if(istype(W, /obj/item/screwdriver))
 		panel_open = !panel_open
-		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
+		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panel_open)
 		overlays.Cut()
 		if(panel_open)
 			overlays.Add(image(icon, "[initial(icon_state)]-panel"))

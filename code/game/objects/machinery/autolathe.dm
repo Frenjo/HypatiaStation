@@ -166,13 +166,12 @@
 
 	if(istype(O, /obj/item/screwdriver))
 		if(!panel_open)
-			src.panel_open = 1
-			src.icon_state = "autolathe_t"
-			to_chat(user, "You open the maintenance hatch of [src].")
+			icon_state = "autolathe_t"
 		else
-			src.panel_open = 0
-			src.icon_state = "autolathe"
-			to_chat(user, "You close the maintenance hatch of [src].")
+			icon_state = "autolathe"
+		panel_open = !panel_open
+		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panel_open)
 		return 1
 
 	if(panel_open)

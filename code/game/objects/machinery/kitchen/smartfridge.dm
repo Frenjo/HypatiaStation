@@ -192,12 +192,13 @@
 		user << "You short out the product lock on [src]"
 		return
 	else if(istype(O, /obj/item/screwdriver))
-		src.panel_open = !src.panel_open
-		user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
-		src.overlays.Cut()
-		if(src.panel_open)
-			src.overlays += image(src.icon, src.icon_panel)
-		src.updateUsrDialog()
+		panel_open = !panel_open
+		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panel_open)
+		overlays.Cut()
+		if(panel_open)
+			overlays.Add(image(icon, icon_panel))
+		updateUsrDialog()
 		return
 	else if(istype(O, /obj/item/device/multitool)||istype(O, /obj/item/wirecutters))
 		if(src.panel_open)

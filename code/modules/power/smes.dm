@@ -230,11 +230,11 @@
 /obj/machinery/power/smes/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/screwdriver))
 		if(!open_hatch)
-			open_hatch = 1
-			to_chat(user, SPAN_NOTICE("You open the maintenance hatch of [src]."))
+			open_hatch = TRUE
 		else
-			open_hatch = 0
-			to_chat(user, SPAN_NOTICE("You close the maintenance hatch of [src]."))
+			open_hatch = FALSE
+		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, open_hatch)
 	if(open_hatch)
 		if(istype(W, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
 			building_terminal = 1

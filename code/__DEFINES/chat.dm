@@ -33,13 +33,21 @@
  *
  * In these macros, T represents the target of the feedback - IE user, usr, src, etc...
  */
+#define FEEDBACK_ERROR_GENERIC(T)			to_chat(T, SPAN_DANGER("ERROR"))
 #define FEEDBACK_ACCESS_DENIED(T)			to_chat(T, SPAN_WARNING("Access denied."))
 #define FEEDBACK_NOT_ENOUGH_DEXTERITY(T)	to_chat(T, SPAN_WARNING("You don't have the dexterity to use \the [src]!"))
 
-// These two will (hopefully) be removed when I get around to a construction overhaul...
+// These will (hopefully) be removed when I get around to a construction overhaul...
 // Because once that's done, this stuff will be more centralised and not all over the place.
-#define FEEDBACK_DISCONNECT_MONITOR(T) to_chat(T, SPAN_INFO("You disconnect the monitor."))
-#define FEEDBACK_BROKEN_GLASS_FALLS(T) to_chat(T, SPAN_INFO("The broken glass falls out."))
+#define FEEDBACK_DISCONNECT_MONITOR(T)				to_chat(T, SPAN_INFO("You disconnect the monitor."))
+#define FEEDBACK_BROKEN_GLASS_FALLS(T)				to_chat(T, SPAN_INFO("The broken glass falls out."))
+#define FEEDBACK_TOGGLE_CONTROLS_LOCK(USER, LOCKED)	to_chat(USER, SPAN_INFO("You [LOCKED ? "lock" : "unlock"] the controls on \the [src]."))
+#define FEEDBACK_TOGGLE_MAINTENANCE_PANEL(USER, OPENED) \
+USER.visible_message( \
+	SPAN_INFO("[USER] [OPENED ? "open" : "close"]s the maintenance panel on \the [src]."), \
+	SPAN_INFO("You [OPENED ? "open" : "close"] the maintenance panel on \the [src]."), \
+	SPAN_INFO("You hear someone using a screwdriver.") \
+)
 
 #define FEEDBACK_GUN_NOT_ACTIVE_HAND(T) to_chat(T, SPAN_WARNING("You need your gun in your active hand to do that!"))
 

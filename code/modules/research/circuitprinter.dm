@@ -55,11 +55,11 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 				linked_console.linked_imprinter = null
 				linked_console = null
 			icon_state = "circuit_imprinter_t"
-			to_chat(user, "You open the maintenance hatch of \the [src.name].")
 		else
 			opened = FALSE
 			icon_state = "circuit_imprinter"
-			to_chat(user, "You close the maintenance hatch of \the [src.name].")
+		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, opened)
 		return 1
 	if(opened)
 		if(istype(O, /obj/item/crowbar))
@@ -79,7 +79,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 		else
 			to_chat(user, SPAN_WARNING("You can't load \the [src.name] while it's opened."))
 			return 1
-	
+
 	if(!linked_console)
 		to_chat(user, SPAN_WARNING("\The [src.name] must be linked to an R&D console first!"))
 		return 1
@@ -87,7 +87,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	if(!istype(O, /obj/item/stack/sheet))
 		to_chat(user, SPAN_WARNING("You cannot insert this item into the [src.name]!"))
 		return 1
-	
+
 	var/obj/item/stack/sheet/stack = O
 	if(!O)
 		return

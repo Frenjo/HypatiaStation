@@ -132,11 +132,11 @@
 		if(!opened)
 			opened = TRUE
 			icon_state = "server_o"
-			to_chat(user, "You open the maintenance hatch of the [src.name].")
 		else
 			opened = FALSE
 			icon_state = "server"
-			to_chat(user, "You close the maintenance hatch of the [src.name].")
+		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, opened)
 		return 1
 	if(opened)
 		if(istype(O, /obj/item/crowbar))

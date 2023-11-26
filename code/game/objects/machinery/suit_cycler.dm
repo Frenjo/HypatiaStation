@@ -99,22 +99,23 @@
 			if(!G || !G.affecting)
 				return
 			var/mob/M = G.affecting
-			if(M.client)
+			if(isnotnull(M.client))
 				M.client.perspective = EYE_PERSPECTIVE
 				M.client.eye = src
 			M.loc = src
-			src.occupant = M
+			occupant = M
 
-			src.add_fingerprint(user)
+			add_fingerprint(user)
 			qdel(G)
 
-			src.updateUsrDialog()
-
+			updateUsrDialog()
 			return
+
 	else if(istype(I, /obj/item/screwdriver))
 		panel_open = !panel_open
-		to_chat(user, "You [panel_open ?  "open" : "close"] the maintenance panel.")
-		src.updateUsrDialog()
+		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panel_open)
+		updateUsrDialog()
 		return
 
 	else if(istype(I, /obj/item/card/emag))
@@ -143,13 +144,13 @@
 			to_chat(user, SPAN_WARNING("The cycler already contains a helmet."))
 			return
 
-		to_chat(user, "You fit \the [I] into the suit cycler.")
+		to_chat(user, SPAN_INFO("You fit \the [I] into the suit cycler."))
 		user.drop_item()
 		I.loc = src
 		helmet = I
 
-		src.update_icon()
-		src.updateUsrDialog()
+		update_icon()
+		updateUsrDialog()
 		return
 
 	else if(istype(I, /obj/item/clothing/suit/space/rig))
@@ -158,26 +159,26 @@
 			return
 
 		if(suit)
-			to_chat(user, "The cycler already contains a hardsuit.")
+			to_chat(user, SPAN_WARNING("The cycler already contains a hardsuit."))
 			return
 
 		var/obj/item/clothing/suit/space/rig/S = I
 
 		if(S.helmet)
-			to_chat(user, "\The [S] will not fit into the cycler with a helmet attached.")
+			to_chat(user, SPAN_WARNING("\The [S] will not fit into the cycler with a helmet attached."))
 			return
 
 		if(S.boots)
-			to_chat(user, "\The [S] will not fit into the cycler with boots attached.")
+			to_chat(user, SPAN_WARNING("\The [S] will not fit into the cycler with boots attached."))
 			return
 
-		to_chat(user, "You fit \the [I] into the suit cycler.")
+		to_chat(user, SPAN_INFO("You fit \the [I] into the suit cycler."))
 		user.drop_item()
 		I.loc = src
 		suit = I
 
-		src.update_icon()
-		src.updateUsrDialog()
+		update_icon()
+		updateUsrDialog()
 		return
 
 	..()
@@ -246,7 +247,6 @@
 
 	user << browse(dat, "window=suit_cycler")
 	onclose(user, "suit_cycler")
-	return
 
 /obj/machinery/suit_cycler/Topic(href, href_list)
 	if(href_list["eject_suit"])
@@ -339,7 +339,6 @@
 			src.pulse(twire)
 
 	src.updateUsrDialog()
-	return
 
 /obj/machinery/suit_cycler/process()
 	if(electrified > 0)
@@ -384,8 +383,6 @@
 	suit.breaches = list()
 	suit.calc_breach_damage()
 
-	return
-
 /obj/machinery/suit_cycler/verb/leave()
 	set name = "Eject Cycler"
 	set category = "Object"
@@ -414,8 +411,6 @@
 	add_fingerprint(usr)
 	src.updateUsrDialog()
 	src.update_icon()
-
-	return
 
 //HACKING PROCS, MOSTLY COPIED FROM VENDING MACHINES
 /obj/machinery/suit_cycler/proc/isWireColorCut(wireColor)

@@ -22,6 +22,8 @@
 		if(/obj/item/stack/sheet/mineral/mythril)
 			return MATERIAL_MYTHRIL
 
+	return null
+
 // Returns the typepath of the material with the provided MATERIAL_X define.
 /proc/get_material_type_by_name(name)
 	switch(name)
@@ -45,6 +47,8 @@
 			return /obj/item/stack/sheet/mineral/adamantine
 		if(MATERIAL_MYTHRIL)
 			return /obj/item/stack/sheet/mineral/mythril
+
+	return null
 
 // Returns the name of the material with the provided id or null if it doesn't exist.
 /proc/get_material_name_by_id(id)
