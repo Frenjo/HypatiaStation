@@ -1,56 +1,51 @@
-//Maintenance
-/area/maintenance/atmos_control
-	name = "Atmospherics Maintenance"
-	icon_state = "fpmaint"
+// Maintenance
 
-/area/maintenance/fpmaint
-	name = "EVA Maintenance"
-	icon_state = "fpmaint"
-
-/area/maintenance/fpmaint2
-	name = "Arrivals North Maintenance"
-	icon_state = "fpmaint"
-
-/area/maintenance/fsmaint
-	name = "Dormitory Maintenance"
-	icon_state = "fsmaint"
-
-/area/maintenance/fsmaint2
-	name = "Bar Maintenance"
-	icon_state = "fsmaint"
-
-/area/maintenance/asmaint
-	name = "Medbay Maintenance"
-	icon_state = "asmaint"
-
-/area/maintenance/asmaint2
-	name = "Science Maintenance"
-	icon_state = "asmaint"
-
-/area/maintenance/apmaint
-	name = "Cargo Maintenance"
-	icon_state = "apmaint"
-
+// Fore
 /area/maintenance/fore
 	name = "Fore Maintenance"
-	icon_state = "fmaint"
 
-/area/maintenance/starboard
-	name = "Starboard Maintenance"
-	icon_state = "smaint"
+/area/maintenance/fore/port
+	name = "Fore Port Maintenance"
+	icon_state = "fpmaint"
 
-/area/maintenance/port
-	name = "Locker Room Maintenance"
+/area/maintenance/fore/port_central
+	name = "Fore Port Central Maintenance"
+	icon_state = "fpmaint"
+
+/area/maintenance/fore/starboard
+	name = "Fore Starboard Maintenance"
+	icon_state = "fsmaint"
+
+/area/maintenance/fore/starboard_central
+	name = "Fore Starboard Central Maintenance"
+	icon_state = "fsmaint"
+
+// Central
+/area/maintenance/central
+	name = "Central Maintenance"
+	icon_state = "asmaint"
+
+/area/maintenance/central/port
+	name = "Central Port Maintenance"
 	icon_state = "pmaint"
 
+// Aft
 /area/maintenance/aft
-	name = "Engineering Maintenance"
+	name = "Aft Maintenance"
+
+/area/maintenance/aft/port
+	name = "Aft Port Maintenance"
 	icon_state = "amaint"
 
-/area/maintenance/storage
-	name = "Atmospherics"
-	icon_state = "green"
+/area/maintenance/aft/starboard
+	name = "Aft Starboard Maintenance"
+	icon_state = "asmaint"
 
+/area/maintenance/aft/starboard_central
+	name = "Aft Starboard Central Maintenance"
+	icon_state = "asmaint"
+
+// Incinerator
 /area/maintenance/incinerator
 	name = "\improper Incinerator"
 	icon_state = "disposal"
@@ -59,27 +54,24 @@
 	name = "\improper Incinerator Space"
 	requires_power = FALSE
 
+// Waste Disposal
 /area/maintenance/disposal
 	name = "Waste Disposal"
 	icon_state = "disposal"
 
-/area/maintenance/evahallway
-	name = "\improper EVA Hallway"
-	icon_state = "eva"
-
-// Solar Maintenance
-/area/maintenance/auxsolarport
+// Solars
+/area/maintenance/solar/fore_port
 	name = "Fore Port Solar Maintenance"
-	icon_state = "SolarcontrolA"
+	icon_state = "SolarcontrolP"
 
-/area/maintenance/starboardsolar
-	name = "Aft Starboard Solar Maintenance"
+/area/maintenance/solar/fore_starboard
+	name = "Fore Starboard Solar Maintenance"
 	icon_state = "SolarcontrolS"
 
-/area/maintenance/portsolar
+/area/maintenance/solar/aft_port
 	name = "Aft Port Solar Maintenance"
 	icon_state = "SolarcontrolP"
 
-/area/maintenance/auxsolarstarboard
-	name = "Fore Starboard Solar Maintenance"
-	icon_state = "SolarcontrolA"
+/area/maintenance/solar/aft_starboard
+	name = "Aft Starboard Solar Maintenance"
+	icon_state = "SolarcontrolS"

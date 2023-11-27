@@ -44,7 +44,7 @@
 	name = "\improper Mint"
 	icon_state = "green"
 
-//Teleporter
+// Teleporter
 /area/command/teleporter
 	name = "\improper Teleporter"
 	icon_state = "teleporter"
@@ -52,9 +52,15 @@
 		'sound/ambience/signal.ogg'
 	)
 
+// Gateway
 /area/command/gateway
 	name = "\improper Gateway"
 	icon_state = "teleporter"
 	ambience = list(
 		'sound/ambience/signal.ogg'
 	)
+
+// Vault
+/area/command/vault
+	name = "\improper Vault"
+	icon_state = "nuke_storage"

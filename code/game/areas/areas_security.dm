@@ -14,21 +14,24 @@
 	name = "\improper Brig"
 	icon_state = "brig"
 
-/area/security/warden
-	name = "\improper Warden"
-	icon_state = "Warden"
+/area/security/evidence_storage
+	name = "\improper Evidence Storage"
+
+/area/security/range
+	name = "\improper Firing Range"
+	icon_state = "firingrange"
 
 /area/security/armoury
 	name = "\improper Armoury"
 	icon_state = "Warden"
 
-/area/security/detectives_office
+/area/security/warden
+	name = "\improper Warden's Office"
+	icon_state = "Warden"
+
+/area/security/detective
 	name = "\improper Detective's Office"
 	icon_state = "detective"
-
-/area/security/range
-	name = "\improper Firing Range"
-	icon_state = "firingrange"
 
 /*
 	New()
@@ -46,13 +49,6 @@
 						newIcon.GrayScale()
 						objectToGrayscale.icon = newIcon
 */
-
-/area/security/nuke_storage
-	name = "\improper Vault"
-	icon_state = "nuke_storage"
-
-/area/security/vacantoffice
-	name = "\improper Vacant Office"
 
 /*
  * Security Posts

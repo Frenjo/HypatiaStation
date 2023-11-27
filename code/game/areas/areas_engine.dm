@@ -58,34 +58,26 @@
 	name = "\improper Thermoelectric Engine Room"
 	icon_state = "engine_therm"
 
-//Solars
+// Solars
 /area/solar
 	requires_power = TRUE
 	always_unpowered = TRUE
 
-/area/solar/auxport
+/area/solar/fore/port
 	name = "\improper Fore Port Solar Array"
-	icon_state = "panelsA"
+	icon_state = "panelsP"
 
-/area/solar/auxstarboard
+/area/solar/fore/starboard
 	name = "\improper Fore Starboard Solar Array"
-	icon_state = "panelsA"
-
-/area/solar/fore
-	name = "\improper Fore Solar Array"
-	icon_state = "yellow"
-
-/area/solar/aft
-	name = "\improper Aft Solar Array"
-	icon_state = "aft"
-
-/area/solar/starboard
-	name = "\improper Aft Starboard Solar Array"
 	icon_state = "panelsS"
 
-/area/solar/port
+/area/solar/aft/port
 	name = "\improper Aft Port Solar Array"
 	icon_state = "panelsP"
+
+/area/solar/aft/starboard
+	name = "\improper Aft Starboard Solar Array"
+	icon_state = "panelsS"
 
 // Atmos
 /area/atmos
@@ -97,27 +89,3 @@
 /area/construction
 	name = "\improper Construction Area"
 	icon_state = "yellow"
-
-/area/construction/checkpoint
-	name = "\improper Construction Area"
-
-/area/construction/supplyshuttle
-	name = "\improper Supply Shuttle"
-
-/area/construction/quarters
-	name = "\improper Engineer's Quarters"
-
-/area/construction/qmaint
-	name = "Maintenance"
-
-/area/construction/hallway
-	name = "\improper Hallway"
-
-/area/construction/solars
-	name = "\improper Solar Panels"
-
-/area/construction/solarscontrol
-	name = "\improper Solar Panel Control"
-
-/area/construction/Storage
-	name = "Construction Site Storage"

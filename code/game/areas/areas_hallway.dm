@@ -18,14 +18,14 @@
 	name = "\improper Fore Primary Hallway"
 	icon_state = "hallF"
 
-/area/hallway/primary/starboard
-	name = "\improper Starboard Primary Hallway"
-	icon_state = "hallS"
-
 /area/hallway/primary/aft
 	name = "\improper Aft Primary Hallway"
 	icon_state = "hallA"
 	ambience = list('sound/ambience/ambiruntime.ogg')
+
+/area/hallway/primary/starboard
+	name = "\improper Starboard Primary Hallway"
+	icon_state = "hallS"
 
 /area/hallway/primary/port
 	name = "\improper Port Primary Hallway"
@@ -39,18 +39,14 @@
 /*
  * Secondary
  */
-/area/hallway/secondary/exit
-	name = "\improper Escape Shuttle Hallway"
-	icon_state = "escape"
-
-/area/hallway/secondary/construction
-	name = "\improper Construction Area"
-	icon_state = "construction"
-
-/area/hallway/secondary/entry
+/area/hallway/secondary/arrivals
 	name = "\improper Arrival Shuttle Hallway"
 	icon_state = "entry"
 	ambience = list(
 		'sound/ambience/ambiruntime.ogg',
 		'sound/music/title2.ogg'
 	)
+
+/area/hallway/secondary/escape
+	name = "\improper Escape Shuttle Hallway"
+	icon_state = "escape"
