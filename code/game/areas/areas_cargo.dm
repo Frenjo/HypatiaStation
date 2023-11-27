@@ -1,24 +1,30 @@
-// Cargo/Supply
-/area/quartermaster
+// Cargo
+// Officially "Supply", but there we are.
+/area/cargo
 	icon_state = "quart"
 
-///////////WORK IN PROGRESS//////////
-/area/quartermaster/sorting
-	name = "\improper Delivery Office"
+/area/cargo/lobby
+	name = "\improper Cargo Lobby"
 	icon_state = "quartstorage"
 
-////////////WORK IN PROGRESS//////////
-/area/quartermaster/office
+/area/cargo/office
 	name = "\improper Cargo Office"
 	icon_state = "quartoffice"
 
-/area/quartermaster/storage
+/area/cargo/delivery
+	name = "\improper Delivery Office"
+	icon_state = "quartoffice"
+
+/area/cargo/bay
 	name = "\improper Cargo Bay"
 	icon_state = "quartstorage"
 
-/area/quartermaster/qm
-	name = "\improper Quartermaster's Office"
+/area/cargo/bay/warehouse
+	name = "\improper Cargo Bay Warehouse"
 
-/area/quartermaster/miningdock
+/area/cargo/mining_dock
 	name = "\improper Mining Dock"
 	icon_state = "mining"
+
+/area/cargo/quartermaster
+	name = "\improper Quartermaster's Office"
