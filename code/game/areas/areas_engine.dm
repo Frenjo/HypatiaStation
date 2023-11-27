@@ -1,5 +1,6 @@
 //Engineering
-/area/engine
+/area/engineering
+	name = "Engineering"
 	icon_state = "engine"
 	ambience = list(
 		'sound/ambience/ambisin1.ogg',
@@ -8,55 +9,83 @@
 		'sound/ambience/ambisin4.ogg'
 	)
 
-/area/engine/smes
+/area/engineering/hallway
+	icon_state = "engine_hallway"
+
+/area/engineering/hallway/main
+	name = "\improper Engineering Main"
+
+/area/engineering/hallway/auxiliary
+	name = "\improper Engineering Auxiliary"
+
+/area/engineering/foyer
+	name = "\improper Engineering Foyer"
+
+/area/engineering/storage
+	name = "\improper Engineering Storage"
+	icon_state = "engine_storage"
+
+/area/engineering/storage/emergency
+	name = "\improper Emergency Materials Storage"
+
+/area/engineering/storage/eva
+	name = "\improper Engineering EVA Storage"
+
+/area/engineering/storage/hard
+	name = "\improper Engineering Hard Storage"
+
+// SMES Rooms
+/area/engineering/smes
 	name = "\improper Engineering SMES"
 	icon_state = "engine_smes"
 	requires_power = FALSE//This area only covers the batteries and they deal with their own power
 
-/area/engine/smes/supermatter
+/area/engineering/smes/supermatter
 	name = "\improper Supermatter Engine SMES"
 
-/area/engine/smes/thermoelectric
+/area/engineering/smes/thermoelectric
 	name = "\improper Thermoelectric Engine SMES"
 
-/area/engine/smes/singularity
+/area/engineering/smes/singularity
 	name = "\improper Singularity Engine SMES"
-
-/area/engine/engineering
-	name = "Engineering"
-
-/area/engine/break_room
-	name = "\improper Engineering Foyer"
-
-/area/engine/emerg_storage
-	name = "\improper Emergency Materials Storage"
-	icon_state = "engine_storage"
-
-/area/engine/engineering_eva
-	name = "\improper Engineering EVA Storage"
-	icon_state = "engine_storage"
 
 // Added separate engine rooms for the three engines I mapped...
 // Just using instances of /area/engine makes the APCs break. -Frenjo
-/area/engine/supermatter_engine
+/area/engineering/engine/supermatter
 	name = "\improper Supermatter Engine Room"
 	icon_state = "engine_sm"
 
-/area/engine/supermatter_engine/monitoring
+/area/engineering/engine/supermatter/monitoring
 	name = "\improper Supermatter Monitoring Room"
-	icon_state = "engine_control"
+	icon_state = "engine_monitoring"
 
-/area/engine/singularity_engine
+/area/engineering/engine/singularity
 	name = "\improper Singularity Engine Room"
 	icon_state = "engine_sing"
 
-/area/engine/singularity_engine/space
+/area/engineering/engine/singularity/space
 	name = "\improper Singularity Engine Space"
 	requires_power = FALSE
 
-/area/engine/thermoelectric_engine
+/area/engineering/engine/thermoelectric
 	name = "\improper Thermoelectric Engine Room"
 	icon_state = "engine_therm"
+
+// Atmospherics
+/area/engineering/atmospherics
+	name = "Atmospherics"
+	icon_state = "atmos"
+	ambience = list('sound/ambience/ambiatm1.ogg')
+
+/area/engineering/atmospherics/control
+	name = "Atmospherics Control"
+	icon_state = "atmos"
+	ambience = list(
+		'sound/ambience/ambisin1.ogg',
+		'sound/ambience/ambisin2.ogg',
+		'sound/ambience/ambisin3.ogg',
+		'sound/ambience/ambisin4.ogg'
+	)
 
 // Solars
 /area/solar
@@ -79,13 +108,7 @@
 	name = "\improper Aft Starboard Solar Array"
 	icon_state = "panelsS"
 
-// Atmos
-/area/atmos
-	name = "Atmospherics"
-	icon_state = "atmos"
-	ambience = list('sound/ambience/ambiatm1.ogg')
-
-//Construction
+// Construction
 /area/construction
 	name = "\improper Construction Area"
 	icon_state = "yellow"

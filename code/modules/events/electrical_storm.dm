@@ -63,7 +63,7 @@
 			if(prob(2))
 				// Exploding APCs in AI areas could be REALLY bad, so let's not do that. -Frenjo
 				if(!istype(apc.area, /area/turret_protected/ai) && !istype(apc.area, /area/turret_protected/ai_upload) && !istype(apc.area, /area/turret_protected/ai_upload_foyer))
-					if(!istype(apc.area, /area/engine/supermatter_engine) && !istype(apc.area, /area/engine/singularity_engine) && !istype(apc.area, /area/engine/thermoelectric_engine))
+					if(!istype(apc.area, /area/engineering/engine/supermatter) && !istype(apc.area, /area/engineering/engine/singularity) && !istype(apc.area, /area/engineering/engine/thermoelectric))
 						var/datum/effect/system/spark_spread/spark = new
 						spark.set_up(5, 1, apc)
 						spark.start()
