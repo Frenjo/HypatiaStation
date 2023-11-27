@@ -3,6 +3,7 @@
 // Fore
 /area/maintenance/fore
 	name = "Fore Maintenance"
+	icon_state = "fmaint"
 
 /area/maintenance/fore/port
 	name = "Fore Port Maintenance"
@@ -23,19 +24,19 @@
 // Central
 /area/maintenance/central
 	name = "Central Maintenance"
-	icon_state = "asmaint"
+	icon_state = "maintcentral"
 
 /area/maintenance/central/port
 	name = "Central Port Maintenance"
-	icon_state = "pmaint"
 
 // Aft
 /area/maintenance/aft
 	name = "Aft Maintenance"
+	icon_state = "amaint"
 
 /area/maintenance/aft/port
 	name = "Aft Port Maintenance"
-	icon_state = "amaint"
+	icon_state = "apmaint"
 
 /area/maintenance/aft/starboard
 	name = "Aft Starboard Maintenance"

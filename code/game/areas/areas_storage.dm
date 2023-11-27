@@ -12,6 +12,7 @@
 
 /area/storage/tools/auxiliary
 	name = "Auxiliary Tool Storage"
+	icon_state = "auxstorage"
 
 /area/storage/art
 	name = "Art Supply Storage"
@@ -22,7 +23,6 @@
 
 /area/storage/tech
 	name = "Technical Storage"
-	icon_state = "auxstorage"
 
 // Emergency
 /area/storage/emergency

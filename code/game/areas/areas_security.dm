@@ -23,7 +23,7 @@
 
 /area/security/armoury
 	name = "\improper Armoury"
-	icon_state = "Warden"
+	icon_state = "armoury"
 
 /area/security/warden
 	name = "\improper Warden's Office"

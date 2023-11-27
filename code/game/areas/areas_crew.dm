@@ -12,6 +12,7 @@
 
 /area/crew/dormitories/bedroom/cryo
 	name = "\improper Cryogenic Storage"
+	icon_state = "cryo"
 
 /area/crew/dormitories/toilet
 	name = "\improper Dormitory Toilets"

@@ -9,6 +9,7 @@
 
 /area/command/bridge/meeting_room
 	name = "\improper Heads of Staff Meeting Room"
+	icon_state = "conference"
 	ambience = list()
 
 // Head of Staff Offices
