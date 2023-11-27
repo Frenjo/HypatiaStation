@@ -22,7 +22,7 @@
 			continue
 		if(isNotStationLevel(T.z))
 			continue
-		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
+		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew))
 			if(H.client)
 				H.client.screen.Remove(GLOBL.global_hud.rad_storm)
 			continue

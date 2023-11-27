@@ -11,10 +11,6 @@
 	name = "\improper Heads of Staff Meeting Room"
 	ambience = list()
 
-/area/command/courtroom
-	name = "\improper Courtroom"
-	icon_state = "courtroom"
-
 // Head of Staff Offices
 /area/command/office/captain
 	name = "\improper Captain's Office"
@@ -39,10 +35,6 @@
 /area/command/office/cmo
 	name = "\improper Chief Medical Officer's Office"
 	icon_state = "CMO"
-
-/area/mint
-	name = "\improper Mint"
-	icon_state = "green"
 
 // Teleporter
 /area/command/teleporter

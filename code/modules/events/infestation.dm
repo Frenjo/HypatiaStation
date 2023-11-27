@@ -28,7 +28,7 @@
 	var/spawn_area_type
 	switch(location)
 		if(LOC_KITCHEN)
-			spawn_area_type = /area/crew_quarters/kitchen
+			spawn_area_type = /area/crew/kitchen
 			locstring = "the kitchen"
 		if(LOC_ATMOS)
 			spawn_area_type = /area/engineering/atmospherics
@@ -37,13 +37,13 @@
 			spawn_area_type = /area/maintenance/incinerator
 			locstring = "the incinerator"
 		if(LOC_CHAPEL)
-			spawn_area_type = /area/chapel/main
+			spawn_area_type = /area/crew/chapel/main
 			locstring = "the chapel"
 		if(LOC_LIBRARY)
-			spawn_area_type = /area/library
+			spawn_area_type = /area/crew/library
 			locstring = "the library"
 		if(LOC_HYDRO)
-			spawn_area_type = /area/hydroponics
+			spawn_area_type = /area/crew/hydroponics
 			locstring = "hydroponics"
 		if(LOC_VAULT)
 			spawn_area_type = /area/command/vault
