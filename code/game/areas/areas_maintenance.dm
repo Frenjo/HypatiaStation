@@ -31,10 +31,6 @@
 	name = "Cargo Maintenance"
 	icon_state = "apmaint"
 
-/area/maintenance/maintcentral
-	name = "Bridge Maintenance"
-	icon_state = "maintcentral"
-
 /area/maintenance/fore
 	name = "Fore Maintenance"
 	icon_state = "fmaint"

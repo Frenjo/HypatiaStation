@@ -28,8 +28,11 @@
 /area/storage/emergency
 	icon_state = "emergencystorage"
 
-/area/storage/emergency/starboard
-	name = "Starboard Emergency Storage"
-
 /area/storage/emergency/port
 	name = "Port Emergency Storage"
+
+/area/storage/emergency/central
+	name = "Central Emergency Storage"
+
+/area/storage/emergency/starboard
+	name = "Starboard Emergency Storage"
