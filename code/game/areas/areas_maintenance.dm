@@ -29,6 +29,9 @@
 /area/maintenance/central/port
 	name = "Central Port Maintenance"
 
+/area/maintenance/central/starboard
+	name = "Central Starboard Maintenance"
+
 // Aft
 /area/maintenance/aft
 	name = "Aft Maintenance"
