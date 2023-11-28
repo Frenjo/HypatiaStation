@@ -119,7 +119,7 @@ rcd light flash thingy on matter drain
 	set category = "Malfunction"
 	set name = "Hack intercept"
 	usr.verbs -= /client/proc/interhack
-	global.CTgame_ticker.mode:hack_intercept()
+	global.CTticker.mode:hack_intercept()
 
 /datum/AI_Module/small/reactivate_camera
 	module_name = "Reactivate camera"

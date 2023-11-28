@@ -85,7 +85,7 @@
 
 // Not even going to touch this pile of spaghetti.
 /turf/simulated/mineral/attackby(obj/item/W as obj, mob/user as mob)
-	if((!ishuman(usr) || isnull(global.CTgame_ticker)) && global.CTgame_ticker.mode.name != "monkey")
+	if((!ishuman(usr) || isnull(global.CTticker)) && global.CTticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 

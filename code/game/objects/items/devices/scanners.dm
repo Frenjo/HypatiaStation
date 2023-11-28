@@ -82,7 +82,7 @@ REAGENT SCANNER
 		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
 		user.show_message("\blue Body Temperature: ???", 1)
 		return
-	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
+	if(!(ishuman(usr) || global.CTticker) && global.CTticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 	user.visible_message(
@@ -233,7 +233,7 @@ REAGENT SCANNER
 /obj/item/device/analyzer/attack_self(mob/user as mob)
 	if(user.stat)
 		return
-	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
+	if(!(ishuman(usr) || global.CTticker) && global.CTticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 
@@ -296,7 +296,7 @@ REAGENT SCANNER
 	if(crit_fail)
 		to_chat(user, SPAN_WARNING("This device has critically failed and is no longer functional!"))
 		return
-	if(!(ishuman(user) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
+	if(!(ishuman(user) || global.CTticker) && global.CTticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 	if(reagents.total_volume)
@@ -355,7 +355,7 @@ REAGENT SCANNER
 /obj/item/device/reagent_scanner/afterattack(obj/O, mob/user as mob)
 	if(user.stat)
 		return
-	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
+	if(!(ishuman(usr) || global.CTticker) && global.CTticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 	if(!istype(O))

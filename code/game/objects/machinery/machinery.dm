@@ -113,7 +113,7 @@ Class Procs:
 
 /obj/machinery/initialize()
 	. = ..()
-	if(!GLOBL.machinery_sort_required && global.CTgame_ticker)
+	if(!GLOBL.machinery_sort_required && global.CTticker)
 		dd_insertObjectList(GLOBL.machines, src)
 	else
 		GLOBL.machines += src
@@ -191,7 +191,7 @@ Class Procs:
 		return 1
 	if(usr.restrained() || usr.lying || usr.stat)
 		return 1
-	if(!(ishuman(usr) || issilicon(usr) || ismonkey(usr) && global.CTgame_ticker && global.CTgame_ticker.mode.name == "monkey"))
+	if(!(ishuman(usr) || issilicon(usr) || ismonkey(usr) && global.CTticker && global.CTticker.mode.name == "monkey"))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return 1
 
@@ -227,7 +227,7 @@ Class Procs:
 		return 1
 	if(user.lying || user.stat)
 		return 1
-	if(!(ishuman(usr) || issilicon(usr) || ismonkey(usr) && global.CTgame_ticker && global.CTgame_ticker.mode.name == "monkey"))
+	if(!(ishuman(usr) || issilicon(usr) || ismonkey(usr) && global.CTticker && global.CTticker.mode.name == "monkey"))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return 1
 /*

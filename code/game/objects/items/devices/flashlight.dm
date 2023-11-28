@@ -50,7 +50,7 @@
 		if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
-		if(!(ishuman(user) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")	//don't have dexterity
+		if(!(ishuman(user) || global.CTticker) && global.CTticker.mode.name != "monkey")	//don't have dexterity
 			FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 			return
 

@@ -116,7 +116,7 @@
 			to_chat(src, "<B>While observing through a camera, you can use most (networked) devices which you can see, such as computers, APCs, intercoms, doors, etc.</B>")
 			to_chat(src, "To use something, simply click on it.")
 			to_chat(src, "Use say :b to speak to your cyborgs through binary.")
-			if(isnull(global.CTgame_ticker?.mode) || !(mind in global.CTgame_ticker.mode.malf_ai))
+			if(isnull(global.CTticker?.mode) || !(mind in global.CTticker.mode.malf_ai))
 				show_laws()
 				to_chat(src, "<b>These laws may be changed by other players, or by you being the traitor.</b>")
 
@@ -143,7 +143,7 @@
 // displays the malf_ai information if the AI is the malf
 /mob/living/silicon/ai/show_malf_ai()
 	if(!IS_GAME_MODE(/datum/game_mode/malfunction))
-		var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
+		var/datum/game_mode/malfunction/malf = global.CTticker.mode
 		for(var/datum/mind/malfai in malf.malf_ai)
 			if(mind == malfai) // are we the evil one?
 				if(malf.apcs >= 3)

@@ -36,8 +36,8 @@ CONTROLLER_DEF(pai)
 			card.setPersonality(pai)
 			card.looking_for_personality = 0
 
-			global.CTgame_ticker.mode.update_cult_icons_removed(card.pai.mind)
-			global.CTgame_ticker.mode.update_rev_icons_removed(card.pai.mind)
+			global.CTticker.mode.update_cult_icons_removed(card.pai.mind)
+			global.CTticker.mode.update_rev_icons_removed(card.pai.mind)
 
 			pAI_candidates.Remove(candidate)
 			usr << browse(null, "window=findPai")

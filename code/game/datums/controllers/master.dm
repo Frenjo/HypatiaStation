@@ -18,12 +18,12 @@ CONTROLLER_DEF(master)
 			qdel(global.CTmaster)
 		global.CTmaster = src
 
-	if(isnull(global.CToccupations))
-		global.CToccupations = new /datum/controller/occupations()
-		global.CToccupations.setup_occupations()
-		global.CToccupations.load_jobs("config/jobs.txt")
+	if(isnull(global.CTjobs))
+		global.CTjobs = new /datum/controller/jobs()
+		global.CTjobs.setup_occupations()
+		global.CTjobs.load_jobs("config/jobs.txt")
 		to_world(SPAN_DANGER("Job setup complete."))
-	
+
 	if(isnull(global.CTradio))
 		global.CTradio = new /datum/controller/radio()
 		to_world(SPAN_DANGER("Radio setup complete."))

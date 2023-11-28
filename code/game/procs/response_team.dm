@@ -15,10 +15,10 @@ GLOBAL_GLOBL(can_call_ert)
 	if(isnull(holder))
 		FEEDBACK_COMMAND_ADMIN_ONLY(usr)
 		return
-	if(isnull(global.CTgame_ticker))
+	if(isnull(global.CTticker))
 		to_chat(usr, SPAN_WARNING("The game hasn't started yet!"))
 		return
-	if(global.CTgame_ticker.current_state == GAME_STATE_PREGAME)
+	if(global.CTticker.current_state == GAME_STATE_PREGAME)
 		to_chat(usr, SPAN_WARNING("The round hasn't started yet!"))
 		return
 	if(GLOBL.send_emergency_team)
@@ -226,8 +226,8 @@ GLOBAL_GLOBL(can_call_ert)
 	M.mind.original = M
 	M.mind.assigned_role = "MODE"
 	M.mind.special_role = "Response Team"
-	if(!(M.mind in global.CTgame_ticker.minds))
-		global.CTgame_ticker.minds.Add(M.mind)	//Adds them to regular mind list.
+	if(!(M.mind in global.CTticker.minds))
+		global.CTticker.minds.Add(M.mind)	//Adds them to regular mind list.
 	M.loc = spawn_location
 	M.equip_strike_team(leader_selected)
 	return M

@@ -108,7 +108,7 @@ var/list/sacrificed = list()
 			SPAN_WARNING("You hear an anguished scream.")
 		)
 		if(is_convertable_to_cult(M.mind) && !jobban_isbanned(M, "cultist"))//putting jobban check here because is_convertable uses mind as argument
-			global.CTgame_ticker.mode.add_cultist(M.mind)
+			global.CTticker.mode.add_cultist(M.mind)
 			M.mind.special_role = "Cultist"
 			to_chat(M, "<font color=\"purple\"><b><i>Your blood pulses. Your head throbs. The world goes red. All at once you are aware of a horrible, horrible truth. The veil of reality has been ripped away and in the festering wound left behind something sinister takes root.</b></i></font>")
 			to_chat(M, "<font color=\"purple\"><b><i>Assist your new compatriots in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>")
@@ -131,7 +131,7 @@ var/list/sacrificed = list()
 	if(cultist_count >= 9)
 		new /obj/singularity/narsie/large(src.loc)
 		if(IS_GAME_MODE(/datum/game_mode/cult))
-			var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+			var/datum/game_mode/cult/cult = global.CTticker.mode
 			cult.eldergod = 0
 		return
 	else
@@ -227,7 +227,7 @@ var/list/sacrificed = list()
 	for(var/mob/living/carbon/human/M in src.loc)
 		if(M.stat == DEAD)
 			if(IS_GAME_MODE(/datum/game_mode/cult))
-				var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+				var/datum/game_mode/cult/cult = global.CTticker.mode
 				if(M.mind == cult.sacrifice_target)
 					is_sacrifice_target = 1
 			else
@@ -246,7 +246,7 @@ var/list/sacrificed = list()
 			if(R.word1 == cultwords["blood"] && R.word2 == cultwords["join"] && R.word3 == cultwords["hell"])
 				for(var/mob/living/carbon/human/N in R.loc)
 					if(IS_GAME_MODE(/datum/game_mode/cult))
-						var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+						var/datum/game_mode/cult/cult = global.CTticker.mode
 						if(N.mind == cult.sacrifice_target)
 							is_sacrifice_target = 1
 					else
@@ -293,7 +293,7 @@ var/list/sacrificed = list()
 
 /*
 	if(IS_GAME_MODE(/datum/game_mode/cult))
-		var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+		var/datum/game_mode/cult/cult = global.CTticker.mode
 		cult.add_cultist(corpse_to_raise.mind)
 	else
 		ticker.mode.cult |= corpse_to_raise.mind
@@ -400,10 +400,10 @@ var/list/sacrificed = list()
 	D.key = ghost.key
 
 	if(IS_GAME_MODE(/datum/game_mode/cult))
-		var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+		var/datum/game_mode/cult/cult = global.CTticker.mode
 		cult.add_cultist(D.mind)
 	else
-		global.CTgame_ticker.mode.cult.Add(D.mind)
+		global.CTticker.mode.cult.Add(D.mind)
 
 	D.mind.special_role = "Cultist"
 	to_chat(D, "<font color=\"purple\"><b><i>Your blood pulses. Your head throbs. The world goes red. All at once you are aware of a horrible, horrible truth. The veil of reality has been ripped away and in the festering wound left behind something sinister takes root.</b></i></font>")
@@ -543,7 +543,7 @@ var/list/sacrificed = list()
 		usr.say("[input]")
 	else
 		usr.whisper("[input]")
-	for(var/datum/mind/H in global.CTgame_ticker.mode.cult)
+	for(var/datum/mind/H in global.CTticker.mode.cult)
 		if(H.current)
 			to_chat(H.current, SPAN_WARNING("\b [input]"))
 	qdel(src)
@@ -574,7 +574,7 @@ var/list/sacrificed = list()
 			C.say("Barhah hra zar[pick("'", "`")]garis!")
 	for(var/mob/H in victims)
 		if(IS_GAME_MODE(/datum/game_mode/cult))
-			var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+			var/datum/game_mode/cult/cult = global.CTticker.mode
 			if(H.mind == cult.sacrifice_target)
 				if(length(cultsinrange) >= 3)
 					sacrificed += H.mind
@@ -628,7 +628,7 @@ var/list/sacrificed = list()
 				if(H.stat !=2)
 					if(prob(80))
 						FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
-						global.CTgame_ticker.mode.grant_runeword(usr)
+						global.CTticker.mode.grant_runeword(usr)
 					else
 						FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
 						to_chat(usr, SPAN_WARNING("However, this soul was not enough to gain His favor."))
@@ -639,7 +639,7 @@ var/list/sacrificed = list()
 				else
 					if(prob(40))
 						FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
-						global.CTgame_ticker.mode.grant_runeword(usr)
+						global.CTticker.mode.grant_runeword(usr)
 					else
 						FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
 						to_chat(usr, SPAN_WARNING("However, a mere dead body is not enough to satisfy Him."))
@@ -653,7 +653,7 @@ var/list/sacrificed = list()
 				else
 					if(prob(40))
 						FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
-						global.CTgame_ticker.mode.grant_runeword(usr)
+						global.CTticker.mode.grant_runeword(usr)
 					else
 						FEEDBACK_CULT_SACRIFICE_ACCEPTED(usr)
 						to_chat(usr, SPAN_WARNING("However, a mere dead body is not enough to satisfy Him."))
@@ -664,7 +664,7 @@ var/list/sacrificed = list()
 
 	for(var/mob/living/carbon/monkey/M in src.loc)
 		if(IS_GAME_MODE(/datum/game_mode/cult))
-			var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+			var/datum/game_mode/cult/cult = global.CTticker.mode
 			if(M.mind == cult.sacrifice_target)
 				if(length(cultsinrange) >= 3)
 					sacrificed += M.mind
@@ -682,7 +682,7 @@ var/list/sacrificed = list()
 		else
 			to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts your meager sacrifice."))
 			if(prob(20))
-				global.CTgame_ticker.mode.grant_runeword(usr)
+				global.CTticker.mode.grant_runeword(usr)
 		M.gib()
 /*
 	for(var/mob/living/carbon/alien/A)
@@ -690,7 +690,7 @@ var/list/sacrificed = list()
 			K.say("Barhah hra zar'garis!")
 		A.dust() /// A.gib() doesnt work for some reason, and dust() leaves that skull and bones thingy which we dont really need.
 		if(IS_GAME_MODE(/datum/game_mode/cult))
-			var/datum/game_mode/cult/cult = global.CTgame_ticker.mode
+			var/datum/game_mode/cult/cult = global.CTticker.mode
 			if(prob(75))
 				to_chat(usr, SPAN_WARNING("The Geometer of Blood accepts your exotic sacrifice."))
 				cult.grant_runeword(usr)
@@ -765,7 +765,7 @@ var/list/sacrificed = list()
 /obj/effect/rune/proc/freedom()
 	var/mob/living/user = usr
 	var/list/mob/living/carbon/cultists = new
-	for(var/datum/mind/H in global.CTgame_ticker.mode.cult)
+	for(var/datum/mind/H in global.CTticker.mode.cult)
 		if(iscarbon(H.current))
 			cultists += H.current
 	var/list/mob/living/carbon/users = new
@@ -811,7 +811,7 @@ var/list/sacrificed = list()
 /obj/effect/rune/proc/cultsummon()
 	var/mob/living/user = usr
 	var/list/mob/living/carbon/cultists = new
-	for(var/datum/mind/H in global.CTgame_ticker.mode.cult)
+	for(var/datum/mind/H in global.CTticker.mode.cult)
 		if(iscarbon(H.current))
 			cultists += H.current
 	var/list/mob/living/carbon/users = new

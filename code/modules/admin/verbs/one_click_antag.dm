@@ -226,15 +226,15 @@
 				qdel(A)
 				continue
 
-		for(var/datum/mind/synd_mind in global.CTgame_ticker.mode.syndicates)
+		for(var/datum/mind/synd_mind in global.CTticker.mode.syndicates)
 			if(isnotnull(synd_mind.current?.client))
 				for(var/image/I in synd_mind.current.client.images)
 					if(I.icon_state == "synd")
 						qdel(I)
 
-		for(var/datum/mind/synd_mind in global.CTgame_ticker.mode.syndicates)
+		for(var/datum/mind/synd_mind in global.CTticker.mode.syndicates)
 			if(isnotnull(synd_mind.current?.client))
-				for(var/datum/mind/synd_mind_1 in global.CTgame_ticker.mode.syndicates)
+				for(var/datum/mind/synd_mind_1 in global.CTticker.mode.syndicates)
 					if(isnotnull(synd_mind_1.current))
 						var/I = image('icons/mob/mob.dmi', loc = synd_mind_1.current, icon_state = "synd")
 						synd_mind.current.client.images.Add(I)
@@ -365,7 +365,7 @@
 	new_syndicate_commando.mind.special_role = "Syndicate Commando"
 
 	//Adds them to current traitor list. Which is really the extra antagonist list.
-	global.CTgame_ticker.mode.traitors.Add(new_syndicate_commando.mind)
+	global.CTticker.mode.traitors.Add(new_syndicate_commando.mind)
 	new_syndicate_commando.equip_outfit(syndicate_leader_selected ? /decl/hierarchy/outfit/syndicate_commando/leader : /decl/hierarchy/outfit/syndicate_commando/standard)
 
 	return new_syndicate_commando
@@ -454,7 +454,7 @@
 	new_vox.mind.special_role = "Vox Raider"
 	new_vox.mutations |= NOCLONE //Stops the station crew from messing around with their DNA.
 
-	global.CTgame_ticker.mode.traitors.Add(new_vox.mind)
+	global.CTticker.mode.traitors.Add(new_vox.mind)
 	new_vox.equip_vox_raider()
 
 	return new_vox

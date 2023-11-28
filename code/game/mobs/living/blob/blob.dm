@@ -182,7 +182,7 @@
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
-	if(isnotnull(global.CTgame_ticker?.mode))
+	if(isnotnull(global.CTticker?.mode))
 		to_chat(src, "blobs: [length(GLOBL.blobs)]")
 		to_chat(src, "cores: [length(GLOBL.blob_cores)]")
 		to_chat(src, "nodes: [length(GLOBL.blob_nodes)]")

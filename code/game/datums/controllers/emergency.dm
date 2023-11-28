@@ -7,8 +7,7 @@
 /*
  * Emergency Controller
  */
-// Controls the emergency shuttle
-
+// Controls the emergency shuttle.
 CONTROLLER_DEF(emergency)
 	name = "Emergency"
 

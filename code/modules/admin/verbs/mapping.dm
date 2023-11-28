@@ -266,12 +266,12 @@ var/list/debug_verbs = list(
 	set name = "Reboot ZAS"
 
 	if(alert("This will destroy and remake all zone geometry on the whole map.", "Reboot ZAS", "Reboot ZAS", "Nevermind") == "Reboot ZAS")
-		var/datum/controller/air_system/old_air = global.CTair_system
+		var/datum/controller/air/old_air = global.CTair
 		for(var/zone/zone in old_air.zones)
 			zone.c_invalidate()
 		qdel(old_air)
-		global.CTair_system = new /datum/controller/air_system()
-		global.CTair_system.setup()
+		global.CTair = new /datum/controller/air()
+		global.CTair.setup()
 
 /client/proc/count_objects_on_z_level()
 	set category = "Mapping"

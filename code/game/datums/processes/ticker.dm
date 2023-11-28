@@ -11,8 +11,8 @@ PROCESS_DEF(ticker)
 /datum/process/ticker/setup()
 	lastTickerTime = world.timeofday
 
-	if(isnull(global.CTgame_ticker))
-		global.CTgame_ticker = new /datum/controller/game_ticker()
+	if(isnull(global.CTticker))
+		global.CTticker = new /datum/controller/ticker()
 
 	wait_for_pregame()
 
@@ -26,7 +26,7 @@ PROCESS_DEF(ticker)
 
 	lastTickerTime = currentTime
 
-	global.CTgame_ticker.process()
+	global.CTticker.process()
 
 /datum/process/ticker/proc/wait_for_pregame()
 	set waitfor = FALSE
@@ -34,7 +34,7 @@ PROCESS_DEF(ticker)
 	// It's going to be one of those "temporary fixes" they find is still in the code two decades later.
 	while(!global.CTmaster.initialised)
 		sleep(1)
-	global.CTgame_ticker?.pregame()
+	global.CTticker?.pregame()
 
 /datum/process/ticker/proc/getLastTickerTimeDuration()
 	return lastTickerTimeDuration

@@ -726,7 +726,7 @@ var/list/admin_verbs_donor = list(
 	set category = "Admin"
 	if(holder)
 		var/list/jobs = list()
-		for(var/datum/job/J in global.CToccupations.occupations)
+		for(var/datum/job/J in global.CTjobs.occupations)
 			if(J.current_positions >= J.total_positions && J.total_positions != -1)
 				jobs += J.title
 		if(!length(jobs))
@@ -734,7 +734,7 @@ var/list/admin_verbs_donor = list(
 			return
 		var/job = input("Please select job slot to free", "Free job slot") as null|anything in jobs
 		if(job)
-			global.CToccupations.free_role(job)
+			global.CTjobs.free_role(job)
 	return
 
 /client/proc/toggleattacklogs()

@@ -21,7 +21,7 @@
 	. = ..()
 	if(!ispath(win_path))
 		return
-	if(global.CTgame_ticker?.current_state < GAME_STATE_PLAYING)
+	if(global.CTticker?.current_state < GAME_STATE_PLAYING)
 		activate()
 
 /obj/effect/window_spawner/proc/activate()

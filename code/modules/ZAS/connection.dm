@@ -68,11 +68,11 @@ Class Procs:
 	zoneA = A.zone
 	if(!istype(B))
 		mark_space()
-		edge = global.CTair_system.get_edge(A.zone, B)
+		edge = global.CTair.get_edge(A.zone, B)
 		edge.add_connection(src)
 	else
 		zoneB = B.zone
-		edge = global.CTair_system.get_edge(A.zone, B.zone)
+		edge = global.CTair.get_edge(A.zone, B.zone)
 		edge.add_connection(src)
 
 /connection/proc/mark_direct()
@@ -104,7 +104,7 @@ Class Procs:
 		erase()
 		return
 
-	var/block_status = global.CTair_system.air_blocked(A,B)
+	var/block_status = global.CTair.air_blocked(A,B)
 	if(block_status & AIR_BLOCKED)
 		//to_world("Blocked connection.")
 		erase()
@@ -130,7 +130,7 @@ Class Procs:
 				return
 			else
 				edge.remove_connection(src)
-				edge = global.CTair_system.get_edge(A.zone, B)
+				edge = global.CTair.get_edge(A.zone, B)
 				edge.add_connection(src)
 				zoneA = A.zone
 
@@ -151,7 +151,7 @@ Class Procs:
 		//to_world("Zones changed, \...")
 		if(A.zone && B.zone)
 			edge.remove_connection(src)
-			edge = global.CTair_system.get_edge(A.zone, B.zone)
+			edge = global.CTair.get_edge(A.zone, B.zone)
 			edge.add_connection(src)
 			zoneA = A.zone
 			zoneB = B.zone

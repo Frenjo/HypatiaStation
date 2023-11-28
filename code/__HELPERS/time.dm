@@ -63,7 +63,7 @@ proc/time_stamp()
 /proc/stoplag(initial_delay)
 	// If we're initializing, our tick limit might be over 100 (testing config), but stoplag() penalizes procs that go over.
 	// Unfortunately, this penalty slows down init a *lot*. So, we disable it during boot and lobby, when relatively few things should be calling this.
-	if(isnull(global.CTmaster) || !global.CTmaster.initialised || global.CTgame_ticker.current_state != GAME_STATE_PLAYING)
+	if(isnull(global.CTmaster) || !global.CTmaster.initialised || global.CTticker.current_state != GAME_STATE_PLAYING)
 		sleep(world.tick_lag)
 		return 1
 

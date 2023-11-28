@@ -156,7 +156,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set category = "Fun"
 	set name = "Make Robot"
 
-	if(!global.CTgame_ticker)
+	if(!global.CTticker)
 		alert("Wait until the game starts")
 		return
 	if(ishuman(M))
@@ -171,7 +171,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set category = "Fun"
 	set name = "Make Simple Animal"
 
-	if(!global.CTgame_ticker)
+	if(!global.CTticker)
 		alert("Wait until the game starts")
 		return
 
@@ -218,7 +218,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set category = "Fun"
 	set name = "Make Alien"
 
-	if(!global.CTgame_ticker)
+	if(!global.CTticker)
 		alert("Wait until the game starts")
 		return
 	if(ishuman(M))
@@ -235,7 +235,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set category = "Fun"
 	set name = "Make slime"
 
-	if(!global.CTgame_ticker)
+	if(!global.CTticker)
 		alert("Wait until the game starts")
 		return
 	if(ishuman(M))
@@ -367,7 +367,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set category = "Admin"
 	set name = "Grant Full Access"
 
-	if(!global.CTgame_ticker)
+	if(!global.CTticker)
 		alert("Wait until the game starts")
 		return
 	if(ishuman(M))
@@ -612,7 +612,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(mob/M, block)
-	if(!global.CTgame_ticker)
+	if(!global.CTticker)
 		alert("Wait until the game starts")
 		return
 	if(iscarbon(M))

@@ -1,7 +1,7 @@
 /*
  * Game Ticker
  */
-CONTROLLER_DEF(game_ticker)
+CONTROLLER_DEF(ticker)
 	name = "Ticker"
 
 	var/const/restart_timeout = 600
@@ -51,7 +51,7 @@ CONTROLLER_DEF(game_ticker)
 	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
 	var/obj/screen/cinematic = null
 
-/datum/controller/game_ticker/proc/pregame()
+/datum/controller/ticker/proc/pregame()
 	if(CONFIG_GET(holiday_name) == "Halloween")
 		possible_login_music.Add(list(
 			'sound/music/halloween/skeletons.ogg',
@@ -81,7 +81,7 @@ CONTROLLER_DEF(game_ticker)
 				current_state = GAME_STATE_SETTING_UP
 	while(!setup())
 
-/datum/controller/game_ticker/setup()
+/datum/controller/ticker/setup()
 	//Create and announce mode
 	if(master_mode == "secret")
 		hide_mode = TRUE
@@ -96,7 +96,7 @@ CONTROLLER_DEF(game_ticker)
 			var/datum/game_mode/M = global.config.pick_mode(secret_force_mode)
 			if(M.can_start())
 				mode = global.config.pick_mode(secret_force_mode)
-		global.CToccupations.reset_occupations()
+		global.CTjobs.reset_occupations()
 		if(isnull(mode))
 			mode = pickweight(runnable_modes)
 		if(isnotnull(mode))
@@ -107,17 +107,17 @@ CONTROLLER_DEF(game_ticker)
 		to_world("<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
 		qdel(mode)
 		current_state = GAME_STATE_PREGAME
-		global.CToccupations.reset_occupations()
+		global.CTjobs.reset_occupations()
 		return 0
 
 	//Configure mode and assign player to special mode stuff
-	global.CToccupations.divide_occupations() //Distribute jobs
+	global.CTjobs.divide_occupations() //Distribute jobs
 	var/can_continue = mode.pre_setup()//Setup special modes
 	if(!can_continue)
 		qdel(mode)
 		current_state = GAME_STATE_PREGAME
 		to_world("<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
-		global.CToccupations.reset_occupations()
+		global.CTjobs.reset_occupations()
 		return 0
 
 	if(hide_mode)
@@ -176,7 +176,7 @@ CONTROLLER_DEF(game_ticker)
 	return 1
 
 //Plus it provides an easy way to make cinematics for other events. Just use this as a template :)
-/datum/controller/game_ticker/proc/station_explosion_cinematic(station_missed = 0, override = null)
+/datum/controller/ticker/proc/station_explosion_cinematic(station_missed = 0, override = null)
 	if(isnotnull(cinematic))
 		return	//already a cinematic in progress!
 
@@ -272,7 +272,7 @@ CONTROLLER_DEF(game_ticker)
 		qdel(temp_buckle)	//release everybody
 	return
 
-/datum/controller/game_ticker/proc/create_characters()
+/datum/controller/ticker/proc/create_characters()
 	for(var/mob/new_player/player in GLOBL.player_list)
 		if(!player.ready || isnull(player.mind))
 			continue
@@ -285,12 +285,12 @@ CONTROLLER_DEF(game_ticker)
 			player.create_character()
 			qdel(player)
 
-/datum/controller/game_ticker/proc/collect_minds()
+/datum/controller/ticker/proc/collect_minds()
 	for(var/mob/living/player in GLOBL.player_list)
 		if(isnotnull(player.mind))
-			global.CTgame_ticker.minds.Add(player.mind)
+			global.CTticker.minds.Add(player.mind)
 
-/datum/controller/game_ticker/proc/equip_characters()
+/datum/controller/ticker/proc/equip_characters()
 	var/captainless = TRUE
 	for(var/mob/living/carbon/human/player in GLOBL.player_list)
 		if(isnull(player) || isnull(player.mind))
@@ -299,14 +299,14 @@ CONTROLLER_DEF(game_ticker)
 			if(player.mind.assigned_role == "Captain")
 				captainless = FALSE
 			if(player.mind.assigned_role != "MODE")
-				global.CToccupations.equip_rank(player, player.mind.assigned_role, FALSE)
+				global.CTjobs.equip_rank(player, player.mind.assigned_role, FALSE)
 				EquipCustomItems(player)
 	if(captainless)
 		for(var/mob/M in GLOBL.player_list)
 			if(!isnewplayer(M))
 				to_chat(M, "Captainship not forced on anyone.")
 
-/datum/controller/game_ticker/process()
+/datum/controller/ticker/process()
 	if(current_state != GAME_STATE_PLAYING)
 		return 0
 
@@ -343,12 +343,12 @@ CONTROLLER_DEF(game_ticker)
 
 	return 1
 
-/datum/controller/game_ticker/proc/getfactionbyname(name)
+/datum/controller/ticker/proc/getfactionbyname(name)
 	for(var/datum/faction/F in factions)
 		if(F.name == name)
 			return F
 
-/datum/controller/game_ticker/proc/declare_completion()
+/datum/controller/ticker/proc/declare_completion()
 	set waitfor = FALSE
 	for(var/mob/living/silicon/ai/aiPlayer in GLOBL.mob_list)
 		if(aiPlayer.stat != DEAD)

@@ -96,7 +96,7 @@
 	if(malfai && operating)
 		if(IS_GAME_MODE(/datum/game_mode/malfunction))
 			if(isStationLevel(src.z))
-				var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
+				var/datum/game_mode/malfunction/malf = global.CTticker.mode
 				malf.apcs--
 
 	area.apc = null
@@ -206,7 +206,7 @@
 					locked = 1
 					if(IS_GAME_MODE(/datum/game_mode/malfunction))
 						if(isStationLevel(src.z))
-							var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
+							var/datum/game_mode/malfunction/malf = global.CTticker.mode
 							malf.apcs++
 					if(usr:parent)
 						src.malfai = usr:parent

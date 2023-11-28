@@ -15,7 +15,7 @@
 	return src.attack_hand(user)
 
 /obj/machinery/igniter/attack_paw(mob/user as mob)
-	if(global.CTgame_ticker && global.CTgame_ticker.mode.name == "monkey")
+	if(global.CTticker && global.CTticker.mode.name == "monkey")
 		return src.attack_hand(user)
 	return
 

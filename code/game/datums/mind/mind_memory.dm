@@ -19,7 +19,7 @@
 	recipient << browse(output,"window=memory")
 
 /datum/mind/proc/edit_memory()
-	if(isnull(global.CTgame_ticker?.mode))
+	if(isnull(global.CTticker?.mode))
 		alert("Not before round-start!", "Alert")
 		return
 
@@ -58,7 +58,7 @@
 		text = "<i><b>[text]</b></i>: "
 		if(ismonkey(current) || H.is_loyalty_implanted(H))
 			text += "<b>LOYAL EMPLOYEE</b>|headrev|rev"
-		else if(src in global.CTgame_ticker.mode.head_revolutionaries)
+		else if(src in global.CTticker.mode.head_revolutionaries)
 			text = "<a href='?src=\ref[src];revolution=clear'>employee</a>|<b>HEADREV</b>|<a href='?src=\ref[src];revolution=rev'>rev</a>"
 			text += "<br>Flash: <a href='?src=\ref[src];revolution=flash'>give</a>"
 
@@ -75,7 +75,7 @@
 			text += " <a href='?src=\ref[src];revolution=reequip'>Reequip</a> (gives traitor uplink)."
 			if(!length(objectives))
 				text += "<br>Objectives are empty! <a href='?src=\ref[src];revolution=autoobjectives'>Set to kill all heads</a>."
-		else if(src in global.CTgame_ticker.mode.revolutionaries)
+		else if(src in global.CTticker.mode.revolutionaries)
 			text += "<a href='?src=\ref[src];revolution=clear'>employee</a>|<a href='?src=\ref[src];revolution=headrev'>headrev</a>|<b>REV</b>"
 		else
 			text += "<b>EMPLOYEE</b>|<a href='?src=\ref[src];revolution=headrev'>headrev</a>|<a href='?src=\ref[src];revolution=rev'>rev</a>"
@@ -88,7 +88,7 @@
 		text = "<i><b>[text]</b></i>: "
 		if(ismonkey(current) || H.is_loyalty_implanted(H))
 			text += "<B>LOYAL EMPLOYEE</B>|cultist"
-		else if(src in global.CTgame_ticker.mode.cult)
+		else if(src in global.CTticker.mode.cult)
 			text += "<a href='?src=\ref[src];cult=clear'>employee</a>|<b>CULTIST</b>"
 			text += "<br>Give <a href='?src=\ref[src];cult=tome'>tome</a>|<a href='?src=\ref[src];cult=amulet'>amulet</a>."
 /*
@@ -104,7 +104,7 @@
 		if(IS_GAME_MODE(/datum/game_mode/wizard))
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if(src in global.CTgame_ticker.mode.wizards)
+		if(src in global.CTticker.mode.wizards)
 			text += "<b>YES</b>|<a href='?src=\ref[src];wizard=clear'>no</a>"
 			text += "<br><a href='?src=\ref[src];wizard=lair'>To lair</a>, <a href='?src=\ref[src];common=undress'>undress</a>, <a href='?src=\ref[src];wizard=dressup'>dress up</a>, <a href='?src=\ref[src];wizard=name'>let choose name</a>."
 			if(!length(objectives))
@@ -118,7 +118,7 @@
 		if(IS_GAME_MODE(/datum/game_mode/changeling) || IS_GAME_MODE(/datum/game_mode/traitor/changeling))
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if(src in global.CTgame_ticker.mode.changelings)
+		if(src in global.CTticker.mode.changelings)
 			text += "<b>YES</b>|<a href='?src=\ref[src];changeling=clear'>no</a>"
 			if(!length(objectives))
 				text += "<br>Objectives are empty! <a href='?src=\ref[src];changeling=autoobjectives'>Randomize!</a>"
@@ -136,7 +136,7 @@
 		if(IS_GAME_MODE(/datum/game_mode/nuclear))
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if(src in global.CTgame_ticker.mode.syndicates)
+		if(src in global.CTticker.mode.syndicates)
 			text += "<b>OPERATIVE</b>|<a href='?src=\ref[src];nuclear=clear'>nanotrasen</a>"
 			text += "<br><a href='?src=\ref[src];nuclear=lair'>To shuttle</a>, <a href='?src=\ref[src];common=undress'>undress</a>, <a href='?src=\ref[src];nuclear=dressup'>dress up</a>."
 			var/code
@@ -159,7 +159,7 @@
 		if(H.is_loyalty_implanted(H))
 			text += "traitor|<b>LOYAL EMPLOYEE</b>"
 		else
-			if(src in global.CTgame_ticker.mode.traitors)
+			if(src in global.CTticker.mode.traitors)
 				text += "<b>TRAITOR</b>|<a href='?src=\ref[src];traitor=clear'>Employee</a>"
 				if(!length(objectives))
 					text += "<br>Objectives are empty! <a href='?src=\ref[src];traitor=autoobjectives'>Randomize</a>!"
@@ -170,7 +170,7 @@
 	/*** MONKEY ***/
 	if(iscarbon(current))
 		text = "monkey"
-		if(global.CTgame_ticker.mode.config_tag == "monkey")
+		if(global.CTticker.mode.config_tag == "monkey")
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
 		if(ishuman(current))
@@ -197,7 +197,7 @@
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
 		if(isAI(current))
-			if(src in global.CTgame_ticker.mode.malf_ai)
+			if(src in global.CTticker.mode.malf_ai)
 				text += "<b>MALF</b>|<a href='?src=\ref[src];silicon=unmalf'>not malf</a>"
 			else
 				text += "<a href='?src=\ref[src];silicon=malf'>malf</a>|<b>NOT MALF</b>"
@@ -221,15 +221,15 @@
 		sections.Remove("traitor")
 		sections.Remove("changeling")
 	else
-		if(isnotnull(sections[global.CTgame_ticker.mode.config_tag]))
-			out += sections[global.CTgame_ticker.mode.config_tag]+"<br>"
-		sections.Remove(global.CTgame_ticker.mode.config_tag)
+		if(isnotnull(sections[global.CTticker.mode.config_tag]))
+			out += sections[global.CTticker.mode.config_tag]+"<br>"
+		sections.Remove(global.CTticker.mode.config_tag)
 	for(var/i in sections)
 		if(sections[i])
 			out += sections[i]+"<br>"
 
 
-	if(((src in global.CTgame_ticker.mode.head_revolutionaries) || (src in global.CTgame_ticker.mode.traitors) || (src in global.CTgame_ticker.mode.syndicates)) && ishuman(current))
+	if(((src in global.CTticker.mode.head_revolutionaries) || (src in global.CTticker.mode.traitors) || (src in global.CTticker.mode.syndicates)) && ishuman(current))
 		text = "Uplink: <a href='?src=\ref[src];common=uplink'>give</a>"
 		var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
 		var/crystals

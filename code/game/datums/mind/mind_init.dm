@@ -5,8 +5,8 @@
 	else
 		mind = new /datum/mind(key)
 		mind.original = src
-		if(isnotnull(global.CTgame_ticker))
-			global.CTgame_ticker.minds.Add(mind)
+		if(isnotnull(global.CTticker))
+			global.CTticker.minds.Add(mind)
 		else
 			world.log << "## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn"
 	if(isnull(mind.name))

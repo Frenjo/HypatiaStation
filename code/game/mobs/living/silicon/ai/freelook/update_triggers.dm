@@ -9,7 +9,7 @@
 	var/image/obscured
 
 /turf/proc/visibilityChanged()
-	if(global.CTgame_ticker)
+	if(global.CTticker)
 		global.CTcameranet.updateVisibility(src)
 
 /turf/simulated/New()
@@ -23,22 +23,22 @@
 // STRUCTURES
 /obj/structure/New()
 	..()
-	if(global.CTgame_ticker)
+	if(global.CTticker)
 		global.CTcameranet.updateVisibility(src)
 
 /obj/structure/Destroy()
-	if(global.CTgame_ticker)
+	if(global.CTticker)
 		global.CTcameranet.updateVisibility(src)
 	return ..()
 
 // EFFECTS
 /obj/effect/New()
 	..()
-	if(global.CTgame_ticker)
+	if(global.CTticker)
 		global.CTcameranet.updateVisibility(src)
 
 /obj/effect/Destroy()
-	if(global.CTgame_ticker)
+	if(global.CTticker)
 		global.CTcameranet.updateVisibility(src)
 	return ..()
 

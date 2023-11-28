@@ -249,7 +249,7 @@
 					O.show_message(SPAN_WARNING("[M] [response_harm] [src]."))
 
 /mob/living/simple_animal/attack_slime(mob/living/carbon/slime/M as mob)
-	if(isnull(global.CTgame_ticker))
+	if(isnull(global.CTticker))
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
 

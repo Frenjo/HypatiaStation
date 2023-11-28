@@ -101,7 +101,7 @@
 /obj/item/dnainjector/attack(mob/M as mob, mob/user as mob)
 	if (!istype(M, /mob))
 		return
-	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
+	if(!(ishuman(usr) || global.CTticker) && global.CTticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
 

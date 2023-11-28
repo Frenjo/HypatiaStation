@@ -457,7 +457,7 @@
 
 	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-	if(!(ishuman(user) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
+	if(!(ishuman(user) || global.CTticker) && global.CTticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
 
@@ -468,10 +468,10 @@
 		return
 
 	if(M.stat != DEAD)
-		if(M.mind in global.CTgame_ticker.mode.cult && prob(33))
+		if(M.mind in global.CTticker.mode.cult && prob(33))
 			to_chat(M, SPAN_WARNING("The power of [src] clears your mind of the cult's influence!"))
 			to_chat(user, SPAN_WARNING("You wave [src] over [M]'s head and see their eyes become clear, their mind returning to normal."))
-			global.CTgame_ticker.mode.remove_cultist(M.mind)
+			global.CTticker.mode.remove_cultist(M.mind)
 			M.visible_message(SPAN_WARNING("[user] waves [src] over [M]'s head."))
 		else if(prob(10))
 			to_chat(user, SPAN_WARNING("The rod slips in your hand."))

@@ -90,7 +90,7 @@
 	I.part = affected
 
 	if(IS_GAME_MODE(/datum/game_mode/heist))
-		var/datum/game_mode/heist/M = global.CTgame_ticker.mode
+		var/datum/game_mode/heist/M = global.CTticker.mode
 		M.cortical_stacks.Add(I)
 		M.raiders[H.mind] = I
 

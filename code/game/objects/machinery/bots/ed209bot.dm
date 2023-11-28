@@ -219,7 +219,7 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 			continue
 		if(ishuman(C))
 			threatlevel = assess_perp(C)
-		else if(ismonkey(C) && isnotnull(C.client) && global.CTgame_ticker.mode.name == "monkey")
+		else if(ismonkey(C) && isnotnull(C.client) && global.CTticker.mode.name == "monkey")
 			threatlevel = 4
 		//speak(C.real_name + text(": threat: []", threatlevel))
 		if(threatlevel < 4)
@@ -597,7 +597,7 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 
 		if(ishuman(C))
 			threatlevel = assess_perp(C)
-		else if(ismonkey(C) && C.client && global.CTgame_ticker.mode.name == "monkey")
+		else if(ismonkey(C) && C.client && global.CTticker.mode.name == "monkey")
 			threatlevel = 4
 
 		if(!threatlevel)

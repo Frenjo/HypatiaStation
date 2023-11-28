@@ -199,7 +199,7 @@
 				to_chat(user, SPAN_WARNING("Sticking a dead [W] into the frame would sort of defeat the purpose."))
 				return
 
-			if(M.brainmob.mind in global.CTgame_ticker.mode.head_revolutionaries)
+			if(M.brainmob.mind in global.CTticker.mode.head_revolutionaries)
 				to_chat(user, SPAN_WARNING("The frame's firmware lets out a shrill sound, and flashes 'Abnormal Memory Engram'. It refuses to accept the [W]."))
 				return
 

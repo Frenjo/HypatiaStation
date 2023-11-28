@@ -344,7 +344,7 @@
 	return
 
 /obj/effect/equip_e/New()
-	if(!global.CTgame_ticker)
+	if(!global.CTticker)
 		qdel(src)
 	spawn(100)
 		qdel(src)

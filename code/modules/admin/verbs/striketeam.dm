@@ -4,7 +4,7 @@ var/const/commandos_possible = 6 //if more Commandos are needed in the future
 GLOBAL_GLOBL_INIT(sent_strike_team, 0)
 
 /client/proc/strike_team()
-	if(!global.CTgame_ticker)
+	if(!global.CTticker)
 		usr << "<font color='red'>The game hasn't started yet!</font>"
 		return
 	if(world.time < 6000)
@@ -117,6 +117,6 @@ GLOBAL_GLOBL_INIT(sent_strike_team, 0)
 	new_commando.mind_initialize()
 	new_commando.mind.assigned_role = "MODE"
 	new_commando.mind.special_role = "Death Commando"
-	global.CTgame_ticker.mode.traitors |= new_commando.mind//Adds them to current traitor list. Which is really the extra antagonist list.
+	global.CTticker.mode.traitors |= new_commando.mind//Adds them to current traitor list. Which is really the extra antagonist list.
 	new_commando.equip_outfit(leader_selected ? /decl/hierarchy/outfit/death_commando/leader : /decl/hierarchy/outfit/death_commando/standard)
 	return new_commando

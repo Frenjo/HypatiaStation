@@ -152,7 +152,7 @@
 
 	inertial_drift(A)
 
-	if(isnotnull(global.CTgame_ticker?.mode))
+	if(isnotnull(global.CTticker?.mode))
 		// Okay, so let's make it so that people can travel z levels but not nuke disks!
 		// if(IS_GAME_MODE(/datum/game_mode/nuclear))
 		//	return

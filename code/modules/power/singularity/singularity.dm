@@ -537,7 +537,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 
 /obj/singularity/narsie/proc/pickcultist() //Narsie rewards his cultists with being devoured first, then picks a ghost to follow. --NEO
 	var/list/cultists = list()
-	for(var/datum/mind/cult_nh_mind in global.CTgame_ticker.mode.cult)
+	for(var/datum/mind/cult_nh_mind in global.CTticker.mode.cult)
 		if(!cult_nh_mind.current)
 			continue
 		if(cult_nh_mind.current.stat)

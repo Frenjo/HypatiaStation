@@ -28,7 +28,7 @@ CONTROLLER_DEF(vote)
 	if(isnotnull(mode))
 		// No more change mode votes after the game has started.
 		// 3 is GAME_STATE_PLAYING, but that #define is undefined for some reason
-		if(mode == "gamemode" && global.CTgame_ticker.current_state >= 2)
+		if(mode == "gamemode" && global.CTticker.current_state >= 2)
 			to_world("<b>Voting aborted due to game start.</b>")
 			src.reset()
 			return
@@ -95,10 +95,10 @@ CONTROLLER_DEF(vote)
 				if(choices["Continue Playing"] >= greatest_votes)
 					greatest_votes = choices["Continue Playing"]
 			else if(mode == "gamemode")
-				if(global.CTgame_ticker.master_mode in choices)
-					choices[global.CTgame_ticker.master_mode] += non_voters
-					if(choices[global.CTgame_ticker.master_mode] >= greatest_votes)
-						greatest_votes = choices[global.CTgame_ticker.master_mode]
+				if(global.CTticker.master_mode in choices)
+					choices[global.CTticker.master_mode] += non_voters
+					if(choices[global.CTticker.master_mode] >= greatest_votes)
+						greatest_votes = choices[global.CTticker.master_mode]
 			else if(mode == "crew_transfer")
 				var/factor = 0.5
 				switch(world.time / (10 * 60)) // minutes
@@ -129,7 +129,7 @@ CONTROLLER_DEF(vote)
 	var/text
 	if(length(winners))
 		if(length(winners) > 1)
-			if(mode != "gamemode" || !global.CTgame_ticker.hide_mode) // Here we are making sure we don't announce potential game modes
+			if(mode != "gamemode" || !global.CTticker.hide_mode) // Here we are making sure we don't announce potential game modes
 				text = "<b>Vote Tied Between:</b>\n"
 				for(var/option in winners)
 					text += "\t[option]\n"
@@ -138,7 +138,7 @@ CONTROLLER_DEF(vote)
 		for(var/key in current_votes)
 			if(choices[current_votes[key]] == .)
 				round_voters += key // Keep track of who voted for the winning round.
-		if((mode == "gamemode" && . == "extended") || !global.CTgame_ticker.hide_mode) // Announce Extended gamemode, but not other gamemodes
+		if((mode == "gamemode" && . == "extended") || !global.CTticker.hide_mode) // Announce Extended gamemode, but not other gamemodes
 			text += "<b>Vote Result: [.]</b>"
 		else
 			if(mode != "gamemode")
@@ -161,19 +161,19 @@ CONTROLLER_DEF(vote)
 				if(. == "Restart Round")
 					restart = 1
 			if("gamemode")
-				if(global.CTgame_ticker.master_mode != .)
+				if(global.CTticker.master_mode != .)
 					world.save_mode(.)
-					if(isnotnull(global.CTgame_ticker?.mode))
+					if(isnotnull(global.CTticker?.mode))
 						restart = 1
 					else
-						global.CTgame_ticker.master_mode = .
+						global.CTticker.master_mode = .
 			if("crew_transfer")
 				if(. == "Initiate Crew Transfer")
 					init_shift_change(null, 1)
 
 	if(mode == "gamemode") //fire this even if the vote fails.
-		if(!global.CTgame_ticker.roundstart_progressing)
-			global.CTgame_ticker.roundstart_progressing = TRUE
+		if(!global.CTticker.roundstart_progressing)
+			global.CTticker.roundstart_progressing = TRUE
 			to_world("<font color='red'><b>The round will start soon.</b></font>")
 
 	if(restart)
@@ -211,7 +211,7 @@ CONTROLLER_DEF(vote)
 			if("restart")
 				choices.Add("Restart Round", "Continue Playing")
 			if("gamemode")
-				if(global.CTgame_ticker.current_state >= GAME_STATE_SETTING_UP)
+				if(global.CTticker.current_state >= GAME_STATE_SETTING_UP)
 					return 0
 				choices.Add(CONFIG_GET_OLD(votable_modes))
 			if("crew_transfer")
@@ -222,7 +222,7 @@ CONTROLLER_DEF(vote)
 					if(!GLOBL.security_level.can_call_transfer)
 						to_chat(initiator_key, "The current alert status is too high to call for a crew transfer!")
 						return 0
-					if(global.CTgame_ticker.current_state <= GAME_STATE_SETTING_UP)
+					if(global.CTticker.current_state <= GAME_STATE_SETTING_UP)
 						to_chat(initiator_key, "The crew transfer button has been disabled!")
 						return 0
 					question = "End the shift?"
@@ -254,8 +254,8 @@ CONTROLLER_DEF(vote)
 				world << sound('sound/ambience/alarm4.ogg')
 			if("custom")
 				world << sound('sound/ambience/alarm4.ogg')
-		if(mode == "gamemode" && global.CTgame_ticker.roundstart_progressing)
-			global.CTgame_ticker.roundstart_progressing = FALSE
+		if(mode == "gamemode" && global.CTticker.roundstart_progressing)
+			global.CTticker.roundstart_progressing = FALSE
 			to_world(SPAN_DANGER("Round start has been delayed."))
 	/*
 		if(mode == "crew_transfer" && ooc_allowed)

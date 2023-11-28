@@ -130,8 +130,8 @@
 					return
 
 				if(mmi.brainmob.mind)
-					global.CTgame_ticker.mode.remove_cultist(mmi.brainmob.mind, 1)
-					global.CTgame_ticker.mode.remove_revolutionary(mmi.brainmob.mind, 1)
+					global.CTticker.mode.remove_cultist(mmi.brainmob.mind, 1)
+					global.CTticker.mode.remove_revolutionary(mmi.brainmob.mind, 1)
 
 				user.drop_item()
 				mmi.loc = src
@@ -198,7 +198,7 @@ That prevents a few funky behaviors.
 							to_chat(user, "\red <b>Transfer failed</b>: \black Existing AI found on this terminal. Remove existing AI to install a new one.")
 						else
 							if(IS_GAME_MODE(/datum/game_mode/malfunction))
-								var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
+								var/datum/game_mode/malfunction/malf = global.CTticker.mode
 								for(var/datum/mind/malfai in malf.malf_ai)
 									if(target_ai.mind == malfai)
 										to_chat(user, "\red <b>ERROR</b>: \black Remote transfer interface disabled.") //Do ho ho ho~
@@ -221,7 +221,7 @@ That prevents a few funky behaviors.
 							to_chat(user, "\red <b>Transfer failed</b>: \black Existing AI found on this terminal. Remove existing AI to install a new one.")
 						else
 							if(IS_GAME_MODE(/datum/game_mode/malfunction))
-								var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
+								var/datum/game_mode/malfunction/malf = global.CTticker.mode
 								for(var/datum/mind/malfai in malf.malf_ai)
 									if(target_ai.mind == malfai)
 										to_chat(user, "\red <b>ERROR</b>: \black Remote transfer interface disabled.")

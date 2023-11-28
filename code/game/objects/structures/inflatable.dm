@@ -34,9 +34,9 @@
 	return ..()
 
 /obj/structure/inflatable/proc/update_nearby_tiles(need_rebuild) //Copypasta from airlock code
-	if(!global.CTair_system)
+	if(!global.CTair)
 		return 0
-	global.CTair_system.mark_for_update(get_turf(src))
+	global.CTair.mark_for_update(get_turf(src))
 	return 1
 
 /obj/structure/inflatable/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)

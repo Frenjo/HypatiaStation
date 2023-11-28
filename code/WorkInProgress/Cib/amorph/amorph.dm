@@ -147,7 +147,7 @@
 	stat(null, "Intent: [a_intent]")
 	stat(null, "Move Mode: [m_intent]")
 	if(IS_GAME_MODE(/datum/game_mode/malfunction))
-		var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
+		var/datum/game_mode/malfunction/malf = global.CTticker.mode
 		if(malf.malf_mode_declared)
 			stat(null, "Time left: [max(malf.AI_win_timeleft / (malf.apcs / 3), 0)]")
 	if(emergency_shuttle)

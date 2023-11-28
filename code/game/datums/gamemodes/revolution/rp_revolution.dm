@@ -171,10 +171,10 @@
 		src << "\red There doesn't appear to be anyone available for you to convert here."
 		return
 	var/mob/living/carbon/human/M = input("Select a person to convert", "Viva la revolution!", null) as mob in Possible
-	if(((src.mind in global.CTgame_ticker.mode:head_revolutionaries) || (src.mind in global.CTgame_ticker.mode:revolutionaries)))
-		if((M.mind in global.CTgame_ticker.mode:head_revolutionaries) || (M.mind in global.CTgame_ticker.mode:revolutionaries))
+	if(((src.mind in global.CTticker.mode:head_revolutionaries) || (src.mind in global.CTticker.mode:revolutionaries)))
+		if((M.mind in global.CTticker.mode:head_revolutionaries) || (M.mind in global.CTticker.mode:revolutionaries))
 			src << "\red <b>[M] is already be a revolutionary!</b>"
-		else if(!global.CTgame_ticker.mode:is_convertible(M))
+		else if(!global.CTticker.mode:is_convertible(M))
 			src << "\red <b>[M] is implanted with a loyalty implant - Remove it first!</b>"
 		else
 			if(world.time < M.mind.rev_cooldown)
@@ -185,7 +185,7 @@
 			message_admins("\red [src]([src.ckey]) attempted to convert [M].")
 			var/choice = alert(M,"Asked by [src]: Do you want to join the revolution?","Align Thyself with the Revolution!","No!","Yes!")
 			if(choice == "Yes!")
-				global.CTgame_ticker.mode:add_revolutionary(M.mind)
+				global.CTticker.mode:add_revolutionary(M.mind)
 				M << "\blue You join the revolution!"
 				src << "\blue <b>[M] joins the revolution!</b>"
 			else if(choice == "No!")

@@ -54,7 +54,7 @@
 	stat("Intent:", "[a_intent]")
 	stat("Move Mode:", "[move_intent.name]")
 	if(IS_GAME_MODE(/datum/game_mode/malfunction))
-		var/datum/game_mode/malfunction/malf = global.CTgame_ticker.mode
+		var/datum/game_mode/malfunction/malf = global.CTticker.mode
 		if(malf.malf_mode_declared)
 			stat(null, "Time left: [max(malf.AI_win_timeleft / (malf.apcs / 3), 0)]")
 	if(global.CTemergency)
@@ -424,7 +424,7 @@
 		unset_machine()
 		src << browse(null, t1)
 
-	if(href_list["item"] && !usr.stat && usr.canmove && !usr.restrained() && in_range(src, usr) && global.CTgame_ticker) //if game hasn't started, can't make an equip_e
+	if(href_list["item"] && !usr.stat && usr.canmove && !usr.restrained() && in_range(src, usr) && global.CTticker) //if game hasn't started, can't make an equip_e
 		var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human()
 		O.source = usr
 		O.target = src

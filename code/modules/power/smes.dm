@@ -316,7 +316,7 @@
 	if(usr.stat || usr.restrained())
 		return
 
-	if(!(ishuman(usr) || global.CTgame_ticker) && global.CTgame_ticker.mode.name != "monkey")
+	if(!(ishuman(usr) || global.CTticker) && global.CTticker.mode.name != "monkey")
 		if(!isAI(usr))
 			FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 			return

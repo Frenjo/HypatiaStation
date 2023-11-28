@@ -152,12 +152,12 @@
 			qdel(F)
 			continue
 		else
-			global.CTgame_ticker.factions.Add(F)
-			global.CTgame_ticker.availablefactions.Add(F)
+			global.CTticker.factions.Add(F)
+			global.CTticker.availablefactions.Add(F)
 
 	// Populate the syndicate coalition:
-	for(var/datum/faction/syndicate/S in global.CTgame_ticker.factions)
-		global.CTgame_ticker.syndicate_coalition.Add(S)
+	for(var/datum/faction/syndicate/S in global.CTticker.factions)
+		global.CTticker.syndicate_coalition.Add(S)
 
 
 /* This was used for something before, I think, but is not worth the effort to process now.

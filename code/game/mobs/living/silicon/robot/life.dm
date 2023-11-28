@@ -211,7 +211,7 @@
 
 	if(syndicate && isnotnull(client))
 		if(IS_GAME_MODE(/datum/game_mode/traitor))
-			for(var/datum/mind/tra in global.CTgame_ticker.mode.traitors)
+			for(var/datum/mind/tra in global.CTticker.mode.traitors)
 				if(isnotnull(tra.current))
 					var/I = image('icons/mob/mob.dmi', loc = tra.current, icon_state = "traitor")
 					client.images.Add(I)
@@ -221,7 +221,7 @@
 		if(isnotnull(mind))
 			if(isnull(mind.special_role))
 				mind.special_role = "traitor"
-				global.CTgame_ticker.mode.traitors += mind
+				global.CTticker.mode.traitors += mind
 
 	if(isnotnull(cells))
 		if(isnotnull(cell))

@@ -31,11 +31,11 @@
 	if(isnull(partner))
 		return 0
 
-	if(!global.CTair_system || global.CTair_system.current_cycle <= update_cycle)
+	if(!global.CTair || global.CTair.current_cycle <= update_cycle)
 		return 0
 
-	update_cycle = global.CTair_system.current_cycle
-	partner.update_cycle = global.CTair_system.current_cycle
+	update_cycle = global.CTair.current_cycle
+	partner.update_cycle = global.CTair.current_cycle
 
 	var/air_heat_capacity = air_contents.heat_capacity()
 	var/other_air_heat_capacity = partner.air_contents.heat_capacity()

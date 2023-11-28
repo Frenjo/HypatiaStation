@@ -1,7 +1,7 @@
 /*
- * Job "Occupations" Controller
+ * Job Controller
  */
-CONTROLLER_DEF(occupations)
+CONTROLLER_DEF(jobs)
 	name = "Jobs"
 
 	// List of all jobs
@@ -11,7 +11,7 @@ CONTROLLER_DEF(occupations)
 	// Debug info
 	var/list/job_debug = list()
 
-/datum/controller/occupations/proc/setup_occupations(faction = "Station")
+/datum/controller/jobs/proc/setup_occupations(faction = "Station")
 	occupations = list()
 	var/list/all_jobs = SUBTYPESOF(/datum/job)
 	if(!length(all_jobs))
@@ -26,13 +26,13 @@ CONTROLLER_DEF(occupations)
 		occupations.Add(job)
 	return 1
 
-/datum/controller/occupations/proc/debug(text)
+/datum/controller/jobs/proc/debug(text)
 	if(!GLOBL.debug2)
 		return 0
 	job_debug.Add(text)
 	return 1
 
-/datum/controller/occupations/proc/get_job(rank)
+/datum/controller/jobs/proc/get_job(rank)
 	if(isnull(rank))
 		return null
 	for(var/datum/job/J in occupations)
@@ -42,10 +42,10 @@ CONTROLLER_DEF(occupations)
 			return J
 	return null
 
-/datum/controller/occupations/proc/get_player_alt_title(mob/new_player/player, rank)
+/datum/controller/jobs/proc/get_player_alt_title(mob/new_player/player, rank)
 	return player.client.prefs.GetPlayerAltTitle(get_job(rank))
 
-/datum/controller/occupations/proc/assign_role(mob/new_player/player, rank, latejoin = 0)
+/datum/controller/jobs/proc/assign_role(mob/new_player/player, rank, latejoin = 0)
 	debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
 	if(isnotnull(player?.mind) && isnotnull(rank))
 		var/datum/job/job = get_job(rank)
@@ -68,14 +68,14 @@ CONTROLLER_DEF(occupations)
 	debug("AR has failed, Player: [player], Rank: [rank]")
 	return 0
 
-/datum/controller/occupations/proc/free_role(rank)	//making additional slot on the fly
+/datum/controller/jobs/proc/free_role(rank)	//making additional slot on the fly
 	var/datum/job/job = get_job(rank)
 	if(isnotnull(job) && job.current_positions >= job.total_positions && job.total_positions != -1)
 		job.total_positions++
 		return 1
 	return 0
 
-/datum/controller/occupations/proc/find_occupation_candidates(datum/job/job, level, flag)
+/datum/controller/jobs/proc/find_occupation_candidates(datum/job/job, level, flag)
 	debug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
 	var/list/candidates = list()
 	for(var/mob/new_player/player in unassigned)
@@ -93,7 +93,7 @@ CONTROLLER_DEF(occupations)
 			candidates.Add(player)
 	return candidates
 
-/datum/controller/occupations/proc/give_random_job(mob/new_player/player)
+/datum/controller/jobs/proc/give_random_job(mob/new_player/player)
 	debug("GRJ Giving random job, Player: [player]")
 	for(var/datum/job/job in shuffle(occupations))
 		if(isnull(job))
@@ -119,7 +119,7 @@ CONTROLLER_DEF(occupations)
 			unassigned.Remove(player)
 			break
 
-/datum/controller/occupations/proc/reset_occupations()
+/datum/controller/jobs/proc/reset_occupations()
 	for(var/mob/new_player/player in GLOBL.player_list)
 		if(isnotnull(player?.mind))
 			player.mind.assigned_role = null
@@ -128,7 +128,7 @@ CONTROLLER_DEF(occupations)
 	unassigned = list()
 
 //This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check
-/datum/controller/occupations/proc/fill_head_position()
+/datum/controller/jobs/proc/fill_head_position()
 	for(var/level = 1 to 3)
 		for(var/command_position in GLOBL.command_positions)
 			var/datum/job/job = get_job(command_position)
@@ -177,7 +177,7 @@ CONTROLLER_DEF(occupations)
 		return 0
 
 //This proc is called at the start of the level loop of DivideOccupations() and will cause head jobs to be checked before any other jobs of the same level
-/datum/controller/occupations/proc/check_head_positions(level)
+/datum/controller/jobs/proc/check_head_positions(level)
 	for(var/command_position in GLOBL.command_positions)
 		var/datum/job/job = get_job(command_position)
 		if(isnull(job))
@@ -188,7 +188,7 @@ CONTROLLER_DEF(occupations)
 		var/mob/new_player/candidate = pick(candidates)
 		assign_role(candidate, command_position)
 
-/datum/controller/occupations/proc/fill_ai_position()
+/datum/controller/jobs/proc/fill_ai_position()
 	var/ai_selected = 0
 	var/datum/job/job = get_job("AI")
 	if(isnull(job))
@@ -225,13 +225,13 @@ CONTROLLER_DEF(occupations)
  *  fills var "assigned_role" for all ready players.
  *  This proc must not have any side effect besides of modifying "assigned_role".
  **/
-/datum/controller/occupations/proc/divide_occupations()
+/datum/controller/jobs/proc/divide_occupations()
 	//Setup new player list and get the jobs list
 	debug("Running DO")
 	setup_occupations()
 
 	// Holder for Triumvirate is stored in the ticker, this just processes it.
-	if(isnotnull(global.CTgame_ticker) && global.CTgame_ticker.triai)
+	if(isnotnull(global.CTticker) && global.CTticker.triai)
 		for(var/datum/job/ai/A in occupations)
 			A.spawn_positions = 3
 
@@ -330,7 +330,7 @@ CONTROLLER_DEF(occupations)
 			unassigned.Remove(player)
 	return 1
 
-/datum/controller/occupations/proc/equip_rank(mob/living/carbon/human/H, rank, joined_late = FALSE)
+/datum/controller/jobs/proc/equip_rank(mob/living/carbon/human/H, rank, joined_late = FALSE)
 	if(isnull(H))
 		return 0
 
@@ -430,7 +430,7 @@ CONTROLLER_DEF(occupations)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 	return 1
 
-/datum/controller/occupations/proc/load_jobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
+/datum/controller/jobs/proc/load_jobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
 	if(!CONFIG_GET(load_jobs_from_txt))
 		return 0
 
@@ -464,7 +464,7 @@ CONTROLLER_DEF(occupations)
 				J.total_positions = 0
 	return 1
 
-/datum/controller/occupations/proc/handle_feedback_gathering()
+/datum/controller/jobs/proc/handle_feedback_gathering()
 	for(var/datum/job/job in occupations)
 		var/tmp_str = "|[job.title]|"
 

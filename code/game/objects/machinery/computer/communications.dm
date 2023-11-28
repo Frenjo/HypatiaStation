@@ -446,7 +446,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 */
 
 /proc/call_shuttle_proc(mob/user)
-	if(!global.CTgame_ticker || !global.CTemergency.location())
+	if(!global.CTticker || !global.CTemergency.location())
 		return
 
 	if(GLOBL.sent_strike_team)
@@ -465,7 +465,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 		to_chat(user, "The emergency shuttle is already on its way.")
 		return
 
-	if(global.CTgame_ticker.mode.name == "blob")
+	if(global.CTticker.mode.name == "blob")
 		to_chat(user, "Under directive 7-10, [station_name()] is quarantined until further notice.")
 		return
 
@@ -476,7 +476,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 	return
 
 /proc/init_shift_change(mob/user, force = 0)
-	if(!global.CTgame_ticker || !global.CTemergency.location())
+	if(!global.CTticker || !global.CTemergency.location())
 		return
 
 	if(global.CTemergency.going_to_centcom())
@@ -501,11 +501,11 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 			to_chat(user, "It is not crew transfer time. [round((135000 - world.time) / 600)] minutes before trying again.") //may need to change "/600"
 			return
 
-		if(IS_GAME_MODE(/datum/game_mode/revolution) || IS_GAME_MODE(/datum/game_mode/malfunction) || global.CTgame_ticker.mode.name == "sandbox")
+		if(IS_GAME_MODE(/datum/game_mode/revolution) || IS_GAME_MODE(/datum/game_mode/malfunction) || global.CTticker.mode.name == "sandbox")
 			// New version pretends to call the shuttle but cause the shuttle to return after a random duration.
 			global.CTemergency.auto_recall = TRUE
 
-		if(global.CTgame_ticker.mode.name == "blob" || global.CTgame_ticker.mode.name == "epidemic")
+		if(global.CTticker.mode.name == "blob" || global.CTticker.mode.name == "epidemic")
 			to_chat(user, "Under directive 7-10, [station_name()] is quarantined until further notice.")
 			return
 
@@ -518,9 +518,9 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 	return
 
 /proc/cancel_call_proc(mob/user)
-	if(!global.CTgame_ticker || !global.CTemergency.can_recall())
+	if(!global.CTticker || !global.CTemergency.can_recall())
 		return
-	if(global.CTgame_ticker.mode.name == "blob" || global.CTgame_ticker.mode.name == "meteor")
+	if(global.CTticker.mode.name == "blob" || global.CTticker.mode.name == "meteor")
 		return
 
 	if(!global.CTemergency.going_to_centcom() && global.CTemergency.online()) //check that shuttle isn't already heading to centcom

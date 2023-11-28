@@ -3,7 +3,7 @@
  * (Job-related preference procs.)
  */
 /datum/preferences/proc/SetChoices(mob/user, limit = 17, list/splitJobs = list("Chief Medical Officer"), width = 550, height = 550)
-	if(isnull(global.CToccupations))
+	if(isnull(global.CTjobs))
 		return
 
 	//limit		- The amount of jobs allowed per column. Defaults to 17 to make it look nice.
@@ -21,7 +21,7 @@
 
 	// The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
 	var/datum/job/lastJob
-	for(var/datum/job/job in global.CToccupations.occupations)
+	for(var/datum/job/job in global.CTjobs.occupations)
 		index += 1
 		if(index >= limit || (job.title in splitJobs))
 			if(index < limit && isnotnull(lastJob))
@@ -106,7 +106,7 @@
 		player_alt_titles[job.title] = new_title
 
 /datum/preferences/proc/SetJob(mob/user, role)
-	var/datum/job/job = global.CToccupations.get_job(role)
+	var/datum/job/job = global.CTjobs.get_job(role)
 	if(isnull(job))
 		user << browse(null, "window=mob_occupation")
 		ShowChoices(user)

@@ -28,7 +28,7 @@
 	output +="<hr>"
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character</A></p>"
 
-	if(!global.CTgame_ticker || global.CTgame_ticker.current_state <= GAME_STATE_PREGAME)
+	if(!global.CTticker || global.CTticker.current_state <= GAME_STATE_PREGAME)
 		if(!ready)
 			output += "<p><a href='byond://?src=\ref[src];ready=1'>Declare Ready</A></p>"
 		else
@@ -68,19 +68,19 @@
 	..()
 
 	statpanel("Status")
-	if(client.statpanel == "Status" && global.CTgame_ticker)
-		if(global.CTgame_ticker.current_state != GAME_STATE_PREGAME)
+	if(client.statpanel == "Status" && global.CTticker)
+		if(global.CTticker.current_state != GAME_STATE_PREGAME)
 			stat("Station Time:", "[worldtime2text()]")
 	statpanel("Lobby")
-	if(client.statpanel == "Lobby" && global.CTgame_ticker)
-		if(global.CTgame_ticker.hide_mode)
+	if(client.statpanel == "Lobby" && global.CTticker)
+		if(global.CTticker.hide_mode)
 			stat("Game Mode:", "Secret")
 		else
-			if(!global.CTgame_ticker.hide_mode)
-				stat("Game Mode:", "[global.CTgame_ticker.master_mode]") // Old setting for showing the game mode
+			if(!global.CTticker.hide_mode)
+				stat("Game Mode:", "[global.CTticker.master_mode]") // Old setting for showing the game mode
 
-		if(global.CTgame_ticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[global.CTgame_ticker.pregame_timeleft][global.CTgame_ticker.roundstart_progressing ? "" : " (DELAYED)"]")
+		if(global.CTticker.current_state == GAME_STATE_PREGAME)
+			stat("Time To Start:", "[global.CTticker.pregame_timeleft][global.CTticker.roundstart_progressing ? "" : " (DELAYED)"]")
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
@@ -99,7 +99,7 @@
 		return 1
 
 	if(href_list["ready"])
-		if(!global.CTgame_ticker || global.CTgame_ticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
+		if(!global.CTticker || global.CTticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
 			ready = !ready
 		else
 			ready = FALSE
@@ -140,7 +140,7 @@
 			return 1
 
 	if(href_list["late_join"])
-		if(!global.CTgame_ticker || global.CTgame_ticker.current_state != GAME_STATE_PLAYING)
+		if(!global.CTticker || global.CTticker.current_state != GAME_STATE_PLAYING)
 			to_chat(usr, SPAN_WARNING("The round is either not ready, or has already finished..."))
 			return
 
@@ -264,7 +264,7 @@
 						vote_on_poll(pollid, optionid, 1)
 
 /mob/new_player/proc/IsJobAvailable(rank)
-	var/datum/job/job = global.CToccupations.get_job(rank)
+	var/datum/job/job = global.CTjobs.get_job(rank)
 	if(!job)
 		return 0
 	if((job.current_positions >= job.total_positions) && job.total_positions != -1)
@@ -279,7 +279,7 @@
 /mob/new_player/proc/AttemptLateSpawn(rank, spawning_at)
 	if(src != usr)
 		return 0
-	if(!global.CTgame_ticker || global.CTgame_ticker.current_state != GAME_STATE_PLAYING)
+	if(!global.CTticker || global.CTticker.current_state != GAME_STATE_PLAYING)
 		to_chat(usr, SPAN_WARNING("The round is either not ready, or has already finished..."))
 		return 0
 	if(!GLOBL.enter_allowed)
@@ -292,10 +292,10 @@
 	spawning = TRUE
 	close_spawn_windows()
 
-	global.CToccupations.assign_role(src, rank, 1)
+	global.CTjobs.assign_role(src, rank, 1)
 
 	var/mob/living/carbon/human/character = create_character()	//creates the human and transfers vars and mind
-	global.CToccupations.equip_rank(character, rank, TRUE)				//equips the human
+	global.CTjobs.equip_rank(character, rank, TRUE)				//equips the human
 	EquipCustomItems(character)
 
 	//Find our spawning point.
@@ -314,13 +314,13 @@
 
 	character.lastarea = get_area(loc)
 
-	global.CTgame_ticker.mode.latespawn(character)
+	global.CTticker.mode.latespawn(character)
 
 	//ticker.mode.latespawn(character)
 
 	if(character.mind.assigned_role != "Cyborg")
 		GLOBL.data_core.manifest_inject(character)
-		global.CTgame_ticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
+		global.CTticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 		AnnounceArrival(character, rank, join_message)
 
 	else
@@ -328,7 +328,7 @@
 	qdel(src)
 
 /mob/new_player/proc/AnnounceArrival(mob/living/carbon/human/character, rank, join_message)
-	if(global.CTgame_ticker.current_state == GAME_STATE_PLAYING)
+	if(global.CTticker.current_state == GAME_STATE_PLAYING)
 		var/obj/item/device/radio/intercom/a = new /obj/item/device/radio/intercom(null)// BS12 EDIT Arrivals Announcement Computer, rather than the AI.
 		if(isnotnull(character.mind.role_alt_title))
 			rank = character.mind.role_alt_title
@@ -357,7 +357,7 @@
 				dat += "<font color='red'>The station is currently undergoing crew transfer procedures.</font><br>"
 
 	dat += "Choose from the following open positions:<br>"
-	for(var/datum/job/job in global.CToccupations.occupations)
+	for(var/datum/job/job in global.CTjobs.occupations)
 		if(job && IsJobAvailable(job.title))
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
@@ -394,7 +394,7 @@
 		if(is_alien_whitelisted(src, client.prefs.secondary_language) || !CONFIG_GET(usealienwhitelist) || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 			new_character.add_language("[client.prefs.secondary_language]")
 
-	if(global.CTgame_ticker.random_players)
+	if(global.CTticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)
 		client.prefs.real_name = random_name(new_character.gender)
 		client.prefs.randomize_appearance_for(new_character)
