@@ -55,7 +55,7 @@
 			spawn_area_type = /area/storage/tech
 			locstring = "technical storage"
 		if(LOC_ASSEMBLY)
-			spawn_area_type = /area/assembly/assembly_line
+			spawn_area_type = /area/abandoned/assembly_line
 			locstring = "the unused assembly line"
 
 	//to_world("looking for [spawn_area_type]")

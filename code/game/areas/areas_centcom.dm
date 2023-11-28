@@ -52,10 +52,10 @@
 
 /*
  * Rescue Shuttle
- *	(That little white ship next to CentCom where the escape pods dock at.)
+ *	(That little white ship next to CentCom where the escape pods dock.)
  *
  * This used to use the same area as the old /area/centcom/evac (now /area/centcom/shuttle_dock/emergency)...
- * ... So was just labelled as "CentCom Emergency Shuttle", I think "Rescue Shuttle" makes more sense as it's for rescuing escape pods...
+ * ... So was just labelled as "CentCom Emergency Shuttle". I think "Rescue Shuttle" makes more sense as it's for rescuing escape pods...
  * ... And is less confusing, otherwise we'd have "CentCom Emergency Shuttle", "CentCom Emergency Shuttle Dock" and "Emergency Shuttle CentCom".
  */
 /area/centcom/rescue_shuttle

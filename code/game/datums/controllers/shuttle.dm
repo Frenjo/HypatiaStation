@@ -200,8 +200,8 @@ CONTROLLER_DEF(shuttle)
 	shuttle = new /datum/shuttle/ferry()
 	shuttle.location = 1
 	shuttle.warmup_time = 7
-	shuttle.area_offsite = locate(/area/shuttle/transport1/centcom)
-	shuttle.area_station = locate(/area/shuttle/transport1/station)
+	shuttle.area_offsite = locate(/area/shuttle/transport/centcom)
+	shuttle.area_station = locate(/area/shuttle/transport/station)
 	shuttle.docking_controller_tag = "centcom_shuttle"
 	shuttle.dock_target_station = "centcomshuttle_dock_airlock"
 	shuttle.dock_target_offsite = "centcomshuttle_bay"

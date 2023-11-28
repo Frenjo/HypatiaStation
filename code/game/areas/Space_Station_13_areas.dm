@@ -115,7 +115,7 @@ GLOBAL_GLOBL_LIST_INIT(centcom_areas, list(
 	/area/shuttle/escape_pod2/centcom,
 	/area/shuttle/escape_pod3/centcom,
 	/area/shuttle/escape_pod5/centcom,
-	/area/shuttle/transport1/centcom,
+	/area/shuttle/transport/centcom,
 	/area/shuttle/administration/centcom,
 	/area/shuttle/specops/centcom,
 ))

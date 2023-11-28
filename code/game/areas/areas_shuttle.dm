@@ -162,12 +162,12 @@
 /*
  * Transport.
  */
-/area/shuttle/transport1/centcom
+/area/shuttle/transport/centcom
 	name = "\improper Transport Shuttle CentCom"
 	icon_state = "shuttle"
 	base_turf = /turf/unsimulated/floor
 
-/area/shuttle/transport1/station
+/area/shuttle/transport/station
 	name = "\improper Transport Shuttle Station"
 	icon_state = "shuttle"
 
