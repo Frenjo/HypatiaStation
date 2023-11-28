@@ -20,13 +20,13 @@
 	name = "\improper CentCom Special Ops"
 
 /area/centcom/creed
-	name = "Creed's Office"
+	name = "CentCom Creed's Office"
 
 /area/centcom/holding
-	name = "\improper Holding Facility"
+	name = "\improper CentCom Holding Facility"
 
 /area/centcom/solitary
-	name = "Solitary Confinement"
+	name = "CentCom Solitary Confinement"
 	icon_state = "brig"
 
 /*

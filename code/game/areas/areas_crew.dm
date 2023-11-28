@@ -90,4 +90,3 @@
 
 /area/crew/vacant_office
 	name = "\improper Vacant Office"
-	icon_state = "Sleep"

@@ -10,10 +10,6 @@
 /*
  * Arrival.
  */
-// This one seems unused?
-/area/shuttle/arrival/pre_game
-	icon_state = "shuttle2"
-
 /area/shuttle/arrival/station
 	name = "\improper Arrival Shuttle Station"
 	icon_state = "shuttle"

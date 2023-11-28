@@ -25,6 +25,7 @@
 	icon_state = "tcomsatlounge"
 
 /area/turret_protected/tcomsat
+	name = "\improper Telecommunications Satellite"
 	icon_state = "tcomsatlob"
 	ambience = list(
 		'sound/ambience/ambisin2.ogg',
@@ -36,12 +37,6 @@
 /area/turret_protected/tcomsat/foyer
 	name = "\improper Telecommunications Satellite Foyer"
 	icon_state = "tcomsatentrance"
-	ambience = list(
-		'sound/ambience/ambisin2.ogg',
-		'sound/ambience/signal.ogg',
-		'sound/ambience/signal.ogg',
-		'sound/ambience/ambigen10.ogg'
-	)
 
 /*
 /area/turret_protected/tcomwest

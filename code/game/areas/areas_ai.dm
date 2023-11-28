@@ -28,14 +28,6 @@
 	name = "EVA Storage"
 	icon_state = "eva"
 
-/area/ai_monitored/storage/secure
-	name = "Secure Storage"
-	icon_state = "storage"
-
-/area/ai_monitored/storage/emergency
-	name = "Emergency Storage"
-	icon_state = "storage"
-
 /area/turret_protected
 	name = "Turret Protected Area"
 	icon_state = "ai"

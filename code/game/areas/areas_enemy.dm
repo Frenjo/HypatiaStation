@@ -1,4 +1,5 @@
-//SYNDICATES
+// Syndicate
+// Names are used.
 /area/syndicate_mothership
 	name = "\improper Syndicate Mothership"
 	icon_state = "syndie-ship"
@@ -15,9 +16,7 @@
 	icon_state = "syndie-elite"
 	dynamic_lighting = FALSE
 
-
-//ENEMY
-//names are used
+// Shuttle
 /area/syndicate_station
 	name = "\improper Syndicate Station"
 	icon_state = "yellow"
@@ -64,12 +63,14 @@
 	icon_state = "shuttle"
 	base_turf = /turf/space/transit/north
 
+// Wizard
 /area/wizard_station
 	name = "\improper Wizard's Den"
 	icon_state = "yellow"
 	requires_power = FALSE
 	dynamic_lighting = FALSE
 
+// Vox
 /area/vox_station/transit
 	name = "\improper Hyperspace"
 	icon_state = "shuttle"
