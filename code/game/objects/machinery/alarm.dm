@@ -1176,6 +1176,31 @@ FIRE ALARM
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 
+/obj/machinery/firealarm/New(loc, dir, building)
+	name = "fire alarm"
+	. = ..()
+	if(isnotnull(loc))
+		src.loc = loc
+
+	if(isnotnull(dir))
+		set_dir(dir)
+
+	if(building)
+		buildstage = 0
+		wiresexposed = 1
+		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
+		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
+
+/obj/machinery/firealarm/initialize()
+	. = ..()
+	if(isContactLevel(z))
+		if(isnotnull(GLOBL.security_level))
+			overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_[GLOBL.security_level.name]"))
+		else
+			overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_green"))
+
+	update_icon()
+
 /obj/machinery/firealarm/update_icon()
 	if(wiresexposed)
 		switch(buildstage)
@@ -1396,30 +1421,6 @@ FIRE ALARM
 	A.fire_alert()
 	update_icon()
 	//playsound(src, 'sound/ambience/signal.ogg', 75, 0)
-
-/obj/machinery/firealarm/New(loc, dir, building)
-	. = ..()
-	if(isnotnull(loc))
-		src.loc = loc
-
-	if(isnotnull(dir))
-		set_dir(dir)
-
-	if(building)
-		buildstage = 0
-		wiresexposed = 1
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
-		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
-
-/obj/machinery/firealarm/initialize()
-	. = ..()
-	if(isContactLevel(z))
-		if(isnotnull(GLOBL.security_level))
-			overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_[GLOBL.security_level.name]"))
-		else
-			overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_green"))
-
-	update_icon()
 
 /*
 FIRE ALARM CIRCUIT
