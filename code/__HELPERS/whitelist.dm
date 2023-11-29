@@ -47,9 +47,9 @@ GLOBAL_GLOBL_LIST_NEW(alien_whitelist)
 		return TRUE
 	if(check_rights(R_ADMIN, 0))
 		return TRUE
-	if(!GLOBL.alien_whitelist)
+	if(isnull(GLOBL.alien_whitelist))
 		return FALSE
-	if(M && species)
+	if(isnotnull(M) && isnotnull(species))
 		for(var/s in GLOBL.alien_whitelist)
 			if(findtext(s, "[M.ckey] - [species]"))
 				return TRUE

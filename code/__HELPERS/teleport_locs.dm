@@ -11,7 +11,7 @@ GLOBAL_GLOBL_LIST_NEW(ghostteleportlocs)
 			continue
 		var/turf/picked = pick(get_area_turfs(a.type))
 		if(isStationLevel(picked.z))
-			GLOBL.teleportlocs += a.name
+			GLOBL.teleportlocs.Add(a.name)
 			GLOBL.teleportlocs[a.name] = a
 	GLOBL.teleportlocs = sortAssoc(GLOBL.teleportlocs)
 	return 1
@@ -21,11 +21,11 @@ GLOBAL_GLOBL_LIST_NEW(ghostteleportlocs)
 		if(GLOBL.ghostteleportlocs.Find(a.name))
 			continue
 		if(/*istype(a, /area/turret_protected/aisat) ||*/ istype(a, /area/derelict) || istype(a, /area/tdome))
-			GLOBL.ghostteleportlocs += a.name
+			GLOBL.ghostteleportlocs.Add(a.name)
 			GLOBL.ghostteleportlocs[a.name] = a
 		var/turf/picked = pick(get_area_turfs(a.type))
 		if(isPlayerLevel(picked.z))
-			GLOBL.ghostteleportlocs += a.name
+			GLOBL.ghostteleportlocs.Add(a.name)
 			GLOBL.ghostteleportlocs[a.name] = a
 	GLOBL.ghostteleportlocs = sortAssoc(GLOBL.ghostteleportlocs)
 	return 1

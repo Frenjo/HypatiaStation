@@ -45,11 +45,11 @@
 
 //Returns the hex value of a number given a value assumed to be a base-ten value
 /proc/num2hex(num, placeholder)
-	if(placeholder == null)
+	if(isnull(placeholder))
 		placeholder = 2
-	if(!(isnum(num)))
+	if(!isnum(num))
 		return
-	if(!(num))
+	if(!num)
 		return "0"
 	var/hex = ""
 	var/i = 0
@@ -84,7 +84,7 @@
 /proc/text2numlist(text, delimiter = "\n")
 	var/list/num_list = list()
 	for(var/x in splittext(text, delimiter))
-		num_list += text2num(x)
+		num_list.Add(text2num(x))
 	return num_list
 
 //Splits the text of a file at seperator and returns them in a list.
@@ -94,13 +94,13 @@
 //Turns a direction into text
 /proc/num2dir(direction)
 	switch(direction)
-		if(1.0)
+		if(1)
 			return NORTH
-		if(2.0)
+		if(2)
 			return SOUTH
-		if(4.0)
+		if(4)
 			return EAST
-		if(8.0)
+		if(8)
 			return WEST
 		else
 			world.log << "UNKNOWN DIRECTION: [direction]"
@@ -108,23 +108,22 @@
 //Turns a direction into text
 /proc/dir2text(direction)
 	switch(direction)
-		if(1.0)
+		if(1)
 			return "north"
-		if(2.0)
+		if(2)
 			return "south"
-		if(4.0)
+		if(4)
 			return "east"
-		if(8.0)
+		if(8)
 			return "west"
-		if(5.0)
+		if(5)
 			return "northeast"
-		if(6.0)
+		if(6)
 			return "southeast"
-		if(9.0)
+		if(9)
 			return "northwest"
-		if(10.0)
+		if(10)
 			return "southwest"
-		else
 	return
 
 //Turns text into proper directions
@@ -146,7 +145,6 @@
 			return 6
 		if("SOUTHWEST")
 			return 10
-		else
 	return
 
 //Converts an angle (degrees) into an ss13 direction

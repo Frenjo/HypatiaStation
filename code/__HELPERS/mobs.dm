@@ -148,14 +148,14 @@
 		if(uninterruptible)
 			continue
 
-		if(isnull(user) || user.incapacitated() || user.loc != user_loc)
+		if(user.incapacitated() || user.loc != user_loc)
 			. = 0
 			break
 
 		if(target.loc != target_loc || user.get_active_hand() != holding)
 			. = 0
 			break
-	if(progbar)
+	if(isnotnull(progbar))
 		qdel(progbar)
 
 /proc/do_after(mob/user, delay, atom/target = null, needhand = 1, progress = 1)
@@ -204,7 +204,7 @@
 				. = 0
 				break
 
-	if(progbar)
+	if(isnotnull(progbar))
 		qdel(progbar)
 
 /proc/FindNameFromID(mob/living/carbon/human/H)

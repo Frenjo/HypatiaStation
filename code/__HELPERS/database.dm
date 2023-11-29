@@ -3,7 +3,7 @@
 	if(GLOBL.failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 
-	if(!GLOBL.dbcon)
+	if(isnull(GLOBL.dbcon))
 		GLOBL.dbcon = new /DBConnection()
 
 	var/user = CONFIG_GET(sql_fdbk_login)
@@ -27,7 +27,7 @@
 	if(GLOBL.failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
-	if(!GLOBL.dbcon || !GLOBL.dbcon.IsConnected())
+	if(!GLOBL.dbcon?.IsConnected())
 		return setup_database_connection()
 	else
 		return 1
@@ -37,7 +37,7 @@
 	if(GLOBL.failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 
-	if(!GLOBL.dbcon_old)
+	if(isnull(GLOBL.dbcon_old))
 		GLOBL.dbcon_old = new /DBConnection()
 
 	var/user = CONFIG_GET(sql_login)
@@ -61,7 +61,7 @@
 	if(GLOBL.failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
-	if(!GLOBL.dbcon_old || !GLOBL.dbcon_old.IsConnected())
+	if(!GLOBL.dbcon_old?.IsConnected())
 		return setup_old_database_connection()
 	else
 		return 1

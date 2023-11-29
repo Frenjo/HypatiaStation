@@ -78,7 +78,7 @@ length to avoid portals or something i guess?? Not that they're counted right no
 	while(child <= length(L))
 		if(child + 1 <= length(L) && call(cmp)(L[child], L[child + 1]) > 0)
 			child++
-		if(call(cmp)(item,L[child]) > 0)
+		if(call(cmp)(item, L[child]) > 0)
 			L[i] = L[child]
 			i = child
 		else

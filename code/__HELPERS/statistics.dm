@@ -141,7 +141,7 @@
 		while(max_query.NextRow())
 			newroundid = max_query.item[1]
 
-		if(!(isnum(newroundid)))
+		if(!isnum(newroundid))
 			newroundid = text2num(newroundid)
 
 		if(isnum(newroundid))

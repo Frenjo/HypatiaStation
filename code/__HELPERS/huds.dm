@@ -74,6 +74,8 @@ the HUD updates properly! */
 	GLOBL.sec_hud_users.Remove(src)
 
 /mob/proc/in_view(turf/T)
+	RETURN_TYPE(/list)
+
 	return view(T)
 
 /mob/aiEye/in_view(turf/T)

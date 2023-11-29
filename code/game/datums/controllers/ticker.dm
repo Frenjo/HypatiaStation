@@ -19,7 +19,7 @@ CONTROLLER_DEF(ticker)
 	var/event_time = null
 	var/event = 0
 
-	var/login_music							// The music file played in the pregame lobby.
+	var/login_music = null					// The music file played in the pregame lobby.
 	var/list/possible_login_music = list(	// The list of all possible login music files to play.
 		'sound/music/space.ogg',
 		'sound/music/traitor.ogg',

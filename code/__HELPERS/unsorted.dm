@@ -158,14 +158,14 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/LinkBlocked(turf/A, turf/B)
 	if(isnull(A) || isnull(B))
 		return 1
-	var/adir = get_dir(A,B)
-	var/rdir = get_dir(B,A)
-	if((adir & (NORTH|SOUTH)) && (adir & (EAST|WEST)))	//	diagonal
-		var/iStep = get_step(A, adir & (NORTH|SOUTH))
+	var/adir = get_dir(A, B)
+	var/rdir = get_dir(B, A)
+	if((adir & (NORTH | SOUTH)) && (adir & (EAST | WEST)))	//	diagonal
+		var/iStep = get_step(A, adir & (NORTH | SOUTH))
 		if(!LinkBlocked(A, iStep) && !LinkBlocked(iStep, B))
 			return 0
 
-		var/pStep = get_step(A, adir & (EAST|WEST))
+		var/pStep = get_step(A, adir & (EAST | WEST))
 		if(!LinkBlocked(A, pStep) && !LinkBlocked(pStep, B))
 			return 0
 		return 1
@@ -189,9 +189,9 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		if(!D.density)
 			continue
 		if(istype(D, /obj/machinery/door/window))
-			if((dir & SOUTH) && (D.dir & (EAST|WEST)))
+			if((dir & SOUTH) && (D.dir & (EAST | WEST)))
 				return 1
-			if((dir & EAST) && (D.dir & (NORTH|SOUTH)))
+			if((dir & EAST) && (D.dir & (NORTH | SOUTH)))
 				return 1
 		else
 			return 1	// it's a real, air blocking door
@@ -202,9 +202,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		if(O.density && !istype(O, /obj/structure/window))
 			return 1
 	return 0
-
-/proc/sign(x)
-	return x != 0 ? x / abs(x) : 0
 
 /proc/getline(atom/M, atom/N)//Ultra-Fast Bresenham Line-Drawing Algorithm
 	var/px = M.x		//starting x
@@ -362,7 +359,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	for(var/mob/living/silicon/ai/A in GLOBL.living_mob_list)
 		if(A.stat == DEAD)
 			continue
-		if(A.control_disabled == 1)
+		if(A.control_disabled)
 			continue
 		. += A
 	return .
@@ -529,7 +526,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		. += "*no key*"
 
 	if(include_name && isnotnull(M))
-		if(M.real_name)
+		if(isnotnull(M.real_name))
 			. += "/([M.real_name])"
 		else if(M.name)
 			. += "/([M.name])"
@@ -1029,7 +1026,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		return "left foot"
 	else if(zone == "r_foot")
 		return "right foot"
-	else return zone
+	else
+		return zone
 
 //gets the turf the atom is located in (or itself, if it is a turf).
 //returns null if the atom is not in a turf.
@@ -1115,17 +1113,20 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 			else
 				return 0
 		if(/obj/item/lighter)
-			if(W:lit)
+			var/obj/item/lighter/L = W
+			if(L.lit)
 				return 1500
 			else
 				return 0
 		if(/obj/item/match)
-			if(W:lit)
+			var/obj/item/match/M = W
+			if(M.lit)
 				return 1000
 			else
 				return 0
 		if(/obj/item/clothing/mask/cigarette)
-			if(W:lit)
+			var/obj/item/clothing/mask/cigarette/C = W
+			if(C.lit)
 				return 1000
 			else
 				return 0
