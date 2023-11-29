@@ -78,7 +78,6 @@
 	generate_default("dbconfig.txt")
 	generate_default("forumdbconfig.txt")
 
-	load_gamemodes()
 	load("config.txt")
 	load("game_options.txt")
 	load("dbconfig.txt")
