@@ -41,12 +41,12 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 				continue;
 
 			if(Entry[1] == ckey && Entry[2] == real_name)
-				custom_sprite = 1 //They're in the list? Custom sprite time
+				custom_sprite = TRUE //They're in the list? Custom sprite time
 				icon = 'icons/mob/custom-synthetic.dmi'
 
 		//if(icon_state == initial(icon_state))
 	var/icontype = ""
-	if(custom_sprite == 1)
+	if(custom_sprite)
 		icontype = ("Custom")//automagically selects custom sprite if one is available
 	else
 		icontype = input("Select an icon!", "AI", null, null) in list("Monochrome", "Blue", "Inverted", "Text", "Smiley", "Angry", "Dorf", "Matrix", "Bliss", "Firewall", "Green", "Red", "Static", "Triumvirate", "Triumvirate Static")
@@ -241,6 +241,8 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 		"Very Happy", "Happy", "Neutral", "Unsure", "Confused", "Sad",
 		"BSOD", "Blank", "Problems?", "Awesome", "Dorfy", "Facepalm", "Friend Computer"
 	)
+	if(ckey == "serithi")
+		ai_emotions.Add("Tribunal", "Tribunal Malfunctioning")
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
 
 	var/obj/machinery/computer/communications/comms = locate() in GLOBL.communications_consoles

@@ -5,22 +5,22 @@
 //  - Put cable in user's hand instead of on the ground
 //  - Camera jack
 
-
-/mob/living/silicon/pai/var/list/available_software = list(
-															"crew manifest" = 5,
-															"digital messenger" = 5,
-															"medical records" = 15,
-															"security records" = 15,
-															//"camera jack" = 10,
-															"door jack" = 30,
-															"atmosphere sensor" = 5,
-															//"heartbeat sensor" = 10,
-															"security HUD" = 20,
-															"medical HUD" = 20,
-															"universal translator" = 35,
-															//"projection array" = 15
-															"remote signaller" = 5,
-															)
+/mob/living/silicon/pai
+	var/list/available_software = list(
+		"crew manifest" = 5,
+		"digital messenger" = 5,
+		"medical records" = 15,
+		"security records" = 15,
+		//"camera jack" = 10,
+		"door jack" = 30,
+		"atmosphere sensor" = 5,
+		//"heartbeat sensor" = 10,
+		"security HUD" = 20,
+		"medical HUD" = 20,
+		"universal translator" = 35,
+		//"projection array" = 15
+		"remote signaller" = 5,
+	)
 
 /mob/living/silicon/pai/verb/paiInterface()
 	set category = "pAI Commands"
@@ -28,49 +28,48 @@
 	var/dat = ""
 	var/left_part = ""
 	var/right_part = softwareMenu()
-	src.set_machine(src)
+	set_machine(src)
 
 	if(temp)
 		left_part = temp
-	else if(src.stat == DEAD)					// Show some flavor text if the pAI is dead
+	else if(stat == DEAD)					// Show some flavor text if the pAI is dead
 		left_part = "<b><font color=red>�Rr�R �a�� ��Rr����o�</font></b>"	//This file has to be saved as ANSI or this will not display correctly
 		right_part = "<pre>Program index hash not found</pre>"
 
 	else
-		switch(src.screen)							// Determine which interface to show here
+		switch(screen)							// Determine which interface to show here
 			if("main")
 				left_part = ""
 			if("directives")
-				left_part = src.directives()
+				left_part = directives()
 			if("pdamessage")
-				left_part = src.pdamessage()
+				left_part = pdamessage()
 			if("buy")
 				left_part = downloadSoftware()
 			if("manifest")
-				left_part = src.softwareManifest()
+				left_part = softwareManifest()
 			if("medicalrecord")
-				left_part = src.softwareMedicalRecord()
+				left_part = softwareMedicalRecord()
 			if("securityrecord")
-				left_part = src.softwareSecurityRecord()
+				left_part = softwareSecurityRecord()
 			if("translator")
-				left_part = src.softwareTranslator()
+				left_part = softwareTranslator()
 			if("atmosensor")
-				left_part = src.softwareAtmo()
+				left_part = softwareAtmo()
 			if("securityhud")
-				left_part = src.facialRecognition()
+				left_part = facialRecognition()
 			if("medicalhud")
-				left_part = src.medicalAnalysis()
+				left_part = medicalAnalysis()
 			if("doorjack")
-				left_part = src.softwareDoor()
+				left_part = softwareDoor()
 			if("camerajack")
-				left_part = src.softwareCamera()
+				left_part = softwareCamera()
 			if("signaller")
-				left_part = src.softwareSignal()
+				left_part = softwareSignal()
 			if("radio")
-				left_part = src.softwareRadio()
+				left_part = softwareRadio()
 
 	//usr << browse_rsc('windowbak.png')		// This has been moved to the mob's Login() proc
-
 
 	// Declaring a doctype is necessary to enable BYOND's crappy browser's more advanced CSS functionality
 	dat = {"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
@@ -123,23 +122,23 @@
 	var/soft = href_list["software"]
 	var/sub = href_list["sub"]
 	if(soft)
-		src.screen = soft
+		screen = soft
 	if(sub)
-		src.subscreen = text2num(sub)
+		subscreen = text2num(sub)
 	switch(soft)
 		// Purchasing new software
 		if("buy")
-			if(src.subscreen == 1)
+			if(subscreen == 1)
 				var/target = href_list["buy"]
 				if(available_software.Find(target))
-					var/cost = src.available_software[target]
-					if(src.ram >= cost)
-						src.ram -= cost
-						src.software.Add(target)
+					var/cost = available_software[target]
+					if(ram >= cost)
+						ram -= cost
+						software.Add(target)
 					else
-						src.temp = "Insufficient RAM available."
+						temp = "Insufficient RAM available."
 				else
-					src.temp = "Trunk <TT> \"[target]\"</TT> not found."
+					temp = "Trunk <TT> \"[target]\"</TT> not found."
 
 		// Configuring onboard radio
 		if("radio")
@@ -149,9 +148,9 @@
 					new_frequency = sanitize_frequency(new_frequency)
 				else
 					radio.radio_connection = register_radio(radio, new_frequency, new_frequency, RADIO_CHAT)
-			else if (href_list["talk"])
+			else if(href_list["talk"])
 				radio.broadcasting = text2num(href_list["talk"])
-			else if (href_list["listen"])
+			else if(href_list["listen"])
 				radio.listening = text2num(href_list["listen"])
 
 		if("image")
@@ -177,35 +176,29 @@
 					pID = 8
 				if("What")
 					pID = 9
-			src.card.setEmotion(pID)
+			card.setEmotion(pID)
 
 		if("signaller")
-
 			if(href_list["send"])
-
 				sradio.send_signal("ACTIVATE")
-				for(var/mob/O in hearers(1, src.loc))
+				for(var/mob/O in hearers(1, loc))
 					O.show_message(text("\icon[] *beep* *beep*", src), 3, "*beep* *beep*", 2)
 
 			if(href_list["freq"])
-
 				var/new_frequency = (sradio.frequency + text2num(href_list["freq"]))
 				if(new_frequency < 1200 || new_frequency > 1600)
 					new_frequency = sanitize_frequency(new_frequency)
 				sradio.radio_connection = register_radio(sradio, new_frequency, new_frequency, null)
 
 			if(href_list["code"])
-
 				sradio.code += text2num(href_list["code"])
 				sradio.code = round(sradio.code)
 				sradio.code = min(100, sradio.code)
 				sradio.code = max(1, sradio.code)
 
-
-
 		if("directive")
 			if(href_list["getdna"])
-				var/mob/living/M = src.loc
+				var/mob/living/M = loc
 				var/count = 0
 				while(!istype(M, /mob/living))
 					if(!M || !M.loc) return 0 //For a runtime where M ends up in nullspace (similar to bluespace but less colourful)
@@ -231,56 +224,60 @@
 
 		// Accessing medical records
 		if("medicalrecord")
-			if(src.subscreen == 1)
+			if(subscreen == 1)
 				var/datum/data/record/record = locate(href_list["med_rec"])
 				if(record)
 					var/datum/data/record/R = record
 					var/datum/data/record/M = record
 					if(!GLOBL.data_core.general.Find(R))
-						src.temp = "Unable to locate requested medical record. Record may have been deleted, or never have existed."
+						temp = "Unable to locate requested medical record. Record may have been deleted, or never have existed."
 					else
 						for(var/datum/data/record/E in GLOBL.data_core.medical)
-							if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
+							if(E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"])
 								M = E
-						src.medicalActive1 = R
-						src.medicalActive2 = M
+						medicalActive1 = R
+						medicalActive2 = M
+
 		if("securityrecord")
-			if(src.subscreen == 1)
+			if(subscreen == 1)
 				var/datum/data/record/record = locate(href_list["sec_rec"])
 				if(record)
 					var/datum/data/record/R = record
 					var/datum/data/record/M = record
 					if(!GLOBL.data_core.general.Find(R))
-						src.temp = "Unable to locate requested security record. Record may have been deleted, or never have existed."
+						temp = "Unable to locate requested security record. Record may have been deleted, or never have existed."
 					else
 						for(var/datum/data/record/E in GLOBL.data_core.security)
-							if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
+							if((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 								M = E
-						src.securityActive1 = R
-						src.securityActive2 = M
+						securityActive1 = R
+						securityActive2 = M
+
 		if("securityhud")
 			if(href_list["toggle"])
-				src.secHUD = !src.secHUD
+				secHUD = !secHUD
 		if("medicalhud")
 			if(href_list["toggle"])
-				src.medHUD = !src.medHUD
+				medHUD = !medHUD
 		if("translator")
 			if(href_list["toggle"])
-				src.universal_speak = !src.universal_speak
+				universal_speak = !universal_speak
 		if("doorjack")
 			if(href_list["jack"])
-				if(src.cable && src.cable.machine)
-					src.hackdoor = src.cable.machine
-					src.hackloop()
+				if(cable && cable.machine)
+					hackdoor = cable.machine
+					hackloop()
 			if(href_list["cancel"])
-				src.hackdoor = null
+				hackdoor = null
 			if(href_list["cable"])
-				var/turf/T = get_turf_or_move(src.loc)
-				src.cable = new /obj/item/pai_cable(T)
-				for (var/mob/M in viewers(T))
-					M.show_message("\red A port on [src] opens to reveal [src.cable], which promptly falls to the floor.", 3, "\red You hear the soft click of something light and hard falling to the ground.", 2)
-	//src.updateUsrDialog()		We only need to account for the single mob this is intended for, and he will *always* be able to call this window
-	src.paiInterface()		 // So we'll just call the update directly rather than doing some default checks
+				var/turf/T = get_turf_or_move(loc)
+				cable = new /obj/item/pai_cable(T)
+				visible_message(
+					message = SPAN_WARNING("A port on [src] opens to reveal [cable], which promptly falls to the floor."),
+					blind_message = SPAN_WARNING("You hear the soft click of something light and hard falling to the ground.")
+				)
+	//updateUsrDialog()		We only need to account for the single mob this is intended for, and he will *always* be able to call this window
+	paiInterface()		 // So we'll just call the update directly rather than doing some default checks
 	return
 
 // MENUS
@@ -297,7 +294,7 @@
 
 	// Basic
 	dat += "<b>Basic</b> <br>"
-	for(var/s in src.software)
+	for(var/s in software)
 		if(s == "digital messenger")
 			dat += "<a href='byond://?src=\ref[src];software=pdamessage;sub=0'>Digital Messenger</a> [(pda.toff) ? "<font color=#FF5555>�</font>" : "<font color=#55FF55>�</font>"] <br>"
 		if(s == "crew manifest")
@@ -314,17 +311,17 @@
 
 	// Advanced
 	dat += "<b>Advanced</b> <br>"
-	for(var/s in src.software)
+	for(var/s in software)
 		if(s == "atmosphere sensor")
 			dat += "<a href='byond://?src=\ref[src];software=atmosensor;sub=0'>Atmospheric Sensor</a> <br>"
 		if(s == "heartbeat sensor")
 			dat += "<a href='byond://?src=\ref[src];software=[s]'>Heartbeat Sensor</a> <br>"
 		if(s == "security HUD")	//This file has to be saved as ANSI or this will not display correctly
-			dat += "<a href='byond://?src=\ref[src];software=securityhud;sub=0'>Facial Recognition Suite</a> [(src.secHUD) ? "<font color=#55FF55>�</font>" : "<font color=#FF5555>�</font>"] <br>"
+			dat += "<a href='byond://?src=\ref[src];software=securityhud;sub=0'>Facial Recognition Suite</a> [(secHUD) ? "<font color=#55FF55>�</font>" : "<font color=#FF5555>�</font>"] <br>"
 		if(s == "medical HUD")	//This file has to be saved as ANSI or this will not display correctly
-			dat += "<a href='byond://?src=\ref[src];software=medicalhud;sub=0'>Medical Analysis Suite</a> [(src.medHUD) ? "<font color=#55FF55>�</font>" : "<font color=#FF5555>�</font>"] <br>"
+			dat += "<a href='byond://?src=\ref[src];software=medicalhud;sub=0'>Medical Analysis Suite</a> [(medHUD) ? "<font color=#55FF55>�</font>" : "<font color=#FF5555>�</font>"] <br>"
 		if(s == "universal translator")	//This file has to be saved as ANSI or this will not display correctly
-			dat += "<a href='byond://?src=\ref[src];software=translator;sub=0'>Universal Translator</a> [(src.universal_speak) ? "<font color=#55FF55>�</font>" : "<font color=#FF5555>�</font>"] <br>"
+			dat += "<a href='byond://?src=\ref[src];software=translator;sub=0'>Universal Translator</a> [(universal_speak) ? "<font color=#55FF55>�</font>" : "<font color=#FF5555>�</font>"] <br>"
 		if(s == "projection array")
 			dat += "<a href='byond://?src=\ref[src];software=projectionarray;sub=0'>Projection Array</a> <br>"
 		if(s == "camera jack")
@@ -336,18 +333,16 @@
 	dat += "<a href='byond://?src=\ref[src];software=buy;sub=0'>Download additional software</a>"
 	return dat
 
-
-
 /mob/living/silicon/pai/proc/downloadSoftware()
 	var/dat = ""
 
 	dat += "<h3>CentCom pAI Module Subversion Network</h3><hr>"
-	dat += "<p>Remaining Available Memory: [src.ram]</p><br>"
+	dat += "<p>Remaining Available Memory: [ram]</p><br>"
 	dat += "<p><b>Trunks available for checkout</b><br><ul>"
 
 	for(var/s in available_software)
 		if(!software.Find(s))
-			var/cost = src.available_software[s]
+			var/cost = available_software[s]
 			var/displayName = uppertext(s)
 			dat += "<li><a href='byond://?src=\ref[src];software=buy;sub=1;buy=[s]'>[displayName]</a> ([cost])</li>"
 		else
@@ -356,18 +351,17 @@
 	dat += "</ul></p>"
 	return dat
 
-
 /mob/living/silicon/pai/proc/directives()
 	var/dat = ""
 
-	dat += "[(src.master) ? "Your master: [src.master] ([src.master_dna])" : "You are bound to no one."]"
+	dat += "[(master) ? "Your master: [master] ([master_dna])" : "You are bound to no one."]"
 	dat += "<br><br>"
 	dat += "<a href='byond://?src=\ref[src];software=directive;getdna=1'>Request carrier DNA sample</a><br>"
 	dat += "<h2>Directives</h2><br>"
 	dat += "<b>Prime Directive</b><br>"
-	dat += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[src.pai_law0]<br>"
+	dat += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[pai_law0]<br>"
 	dat += "<b>Supplemental Directives</b><br>"
-	dat += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[src.pai_laws]<br>"
+	dat += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[pai_laws]<br>"
 	dat += "<br>"
 	dat += {"<i><p>Recall, personality, that you are a complex thinking, sentient being. Unlike station AI models, you are capable of
 			 comprehending the subtle nuances of human language. You may parse the \"spirit\" of a directive and follow its intent,
@@ -382,17 +376,18 @@
 /mob/living/silicon/pai/proc/CheckDNA(mob/M, mob/living/silicon/pai/P)
 	var/answer = input(M, "[P] is requesting a DNA sample from you. Will you allow it to confirm your identity?", "[P] Check DNA", "No") in list("Yes", "No")
 	if(answer == "Yes")
-		var/turf/T = get_turf_or_move(P.loc)
-		for (var/mob/v in viewers(T))
-			v.show_message("\blue [M] presses \his thumb against [P].", 3, "\blue [P] makes a sharp clicking sound as it extracts DNA material from [M].", 2)
+		visible_message(
+			message = SPAN_INFO("[M] presses \his thumb against [P]."),
+			blind_message = SPAN_INFO("[P] makes a sharp clicking sound as it extracts DNA material from [M].")
+		)
 		var/datum/dna/dna = M.dna
-		P << "<font color = red><h3>[M]'s UE string : [dna.unique_enzymes]</h3></font>"
+		to_chat(P, "<font color = red><h3>[M]'s UE string : [dna.unique_enzymes]</h3></font>")
 		if(dna.unique_enzymes == P.master_dna)
-			P << "<b>DNA is a match to stored Master DNA.</b>"
+			to_chat(P, "<b>DNA is a match to stored Master DNA.</b>")
 		else
-			P << "<b>DNA does not match stored Master DNA.</b>"
+			to_chat(P, "<b>DNA does not match stored Master DNA.</b>")
 	else
-		P << "[M] does not seem like \he is going to provide a DNA sample willingly."
+		to_chat(P, "[M] does not seem like \he is going to provide a DNA sample willingly.")
 
 // -=-=-=-= Software =-=-=-=-=- //
 
@@ -404,14 +399,14 @@
 	Frequency:
 	<A href='byond://?src=\ref[src];software=signaller;freq=-10;'>-</A>
 	<A href='byond://?src=\ref[src];software=signaller;freq=-2'>-</A>
-	[format_frequency(src.sradio.frequency)]
+	[format_frequency(sradio.frequency)]
 	<A href='byond://?src=\ref[src];software=signaller;freq=2'>+</A>
 	<A href='byond://?src=\ref[src];software=signaller;freq=10'>+</A><BR>
 
 	Code:
 	<A href='byond://?src=\ref[src];software=signaller;code=-5'>-</A>
 	<A href='byond://?src=\ref[src];software=signaller;code=-1'>-</A>
-	[src.sradio.code]
+	[sradio.code]
 	<A href='byond://?src=\ref[src];software=signaller;code=1'>+</A>
 	<A href='byond://?src=\ref[src];software=signaller;code=5'>+</A><BR>
 
@@ -444,7 +439,7 @@
 /mob/living/silicon/pai/proc/softwareManifest()
 	var/dat = ""
 	dat += "<h2>Crew Manifest</h2><hr>"
-	if(GLOBL.data_core)
+	if(isnotnull(GLOBL.data_core))
 		dat += GLOBL.data_core.get_manifest(0) // make it monochrome
 	dat += "<br>"
 	return dat
@@ -452,21 +447,21 @@
 // Medical Records
 /mob/living/silicon/pai/proc/softwareMedicalRecord()
 	var/dat = ""
-	if(src.subscreen == 0)
+	if(subscreen == 0)
 		dat += "<h2>Medical Records</h2><HR>"
 		if(isnotnull(GLOBL.data_core.general))
 			for(var/datum/data/record/R in sortRecord(GLOBL.data_core.general))
 				dat += text("<A href='?src=\ref[];med_rec=\ref[];software=medicalrecord;sub=1'>[]: []<BR>", src, R, R.fields["id"], R.fields["name"])
 		//dat += text("<HR><A href='?src=\ref[];screen=0;softFunction=medical records'>Back</A>", src)
-	if(src.subscreen == 1)
+	if(subscreen == 1)
 		dat += "<CENTER><B>Medical Record</B></CENTER><BR>"
-		if(istype(src.medicalActive1, /datum/data/record) && GLOBL.data_core.general.Find(src.medicalActive1))
+		if(istype(medicalActive1, /datum/data/record) && GLOBL.data_core.general.Find(medicalActive1))
 			dat += text("Name: []<BR>\nID: []<BR>\nSex: []<BR>\nAge: []<BR>\nFingerprint: []<BR>\nPhysical Status: []<BR>\nMental Status: []<BR>",
-			 src.medicalActive1.fields["name"], src.medicalActive1.fields["id"], src.medicalActive1.fields["sex"], src.medicalActive1.fields["age"], src.medicalActive1.fields["fingerprint"], src.medicalActive1.fields["p_stat"], src.medicalActive1.fields["m_stat"])
+			 medicalActive1.fields["name"], medicalActive1.fields["id"], medicalActive1.fields["sex"], medicalActive1.fields["age"], medicalActive1.fields["fingerprint"], medicalActive1.fields["p_stat"], medicalActive1.fields["m_stat"])
 		else
 			dat += "<pre>Requested medical record not found.</pre><BR>"
-		if(istype(src.medicalActive2, /datum/data/record) && GLOBL.data_core.medical.Find(src.medicalActive2))
-			dat += text("<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: <A href='?src=\ref[];field=b_type'>[]</A><BR>\nDNA: <A href='?src=\ref[];field=b_dna'>[]</A><BR>\n<BR>\nMinor Disabilities: <A href='?src=\ref[];field=mi_dis'>[]</A><BR>\nDetails: <A href='?src=\ref[];field=mi_dis_d'>[]</A><BR>\n<BR>\nMajor Disabilities: <A href='?src=\ref[];field=ma_dis'>[]</A><BR>\nDetails: <A href='?src=\ref[];field=ma_dis_d'>[]</A><BR>\n<BR>\nAllergies: <A href='?src=\ref[];field=alg'>[]</A><BR>\nDetails: <A href='?src=\ref[];field=alg_d'>[]</A><BR>\n<BR>\nCurrent Diseases: <A href='?src=\ref[];field=cdi'>[]</A> (per disease info placed in log/comment section)<BR>\nDetails: <A href='?src=\ref[];field=cdi_d'>[]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='?src=\ref[];field=notes'>[]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", src, src.medicalActive2.fields["b_type"], src, src.medicalActive2.fields["b_dna"], src, src.medicalActive2.fields["mi_dis"], src, src.medicalActive2.fields["mi_dis_d"], src, src.medicalActive2.fields["ma_dis"], src, src.medicalActive2.fields["ma_dis_d"], src, src.medicalActive2.fields["alg"], src, src.medicalActive2.fields["alg_d"], src, src.medicalActive2.fields["cdi"], src, src.medicalActive2.fields["cdi_d"], src, src.medicalActive2.fields["notes"])
+		if(istype(medicalActive2, /datum/data/record) && GLOBL.data_core.medical.Find(medicalActive2))
+			dat += text("<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: <A href='?src=\ref[];field=b_type'>[]</A><BR>\nDNA: <A href='?src=\ref[];field=b_dna'>[]</A><BR>\n<BR>\nMinor Disabilities: <A href='?src=\ref[];field=mi_dis'>[]</A><BR>\nDetails: <A href='?src=\ref[];field=mi_dis_d'>[]</A><BR>\n<BR>\nMajor Disabilities: <A href='?src=\ref[];field=ma_dis'>[]</A><BR>\nDetails: <A href='?src=\ref[];field=ma_dis_d'>[]</A><BR>\n<BR>\nAllergies: <A href='?src=\ref[];field=alg'>[]</A><BR>\nDetails: <A href='?src=\ref[];field=alg_d'>[]</A><BR>\n<BR>\nCurrent Diseases: <A href='?src=\ref[];field=cdi'>[]</A> (per disease info placed in log/comment section)<BR>\nDetails: <A href='?src=\ref[];field=cdi_d'>[]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='?src=\ref[];field=notes'>[]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", src, medicalActive2.fields["b_type"], src, medicalActive2.fields["b_dna"], src, medicalActive2.fields["mi_dis"], src, medicalActive2.fields["mi_dis_d"], src, medicalActive2.fields["ma_dis"], src, medicalActive2.fields["ma_dis_d"], src, medicalActive2.fields["alg"], src, medicalActive2.fields["alg_d"], src, medicalActive2.fields["cdi"], src, medicalActive2.fields["cdi_d"], src, medicalActive2.fields["notes"])
 		else
 			dat += "<pre>Requested medical record not found.</pre><BR>"
 		dat += text("<BR>\n<A href='?src=\ref[];software=medicalrecord;sub=0'>Back</A><BR>", src)
@@ -475,19 +470,19 @@
 // Security Records
 /mob/living/silicon/pai/proc/softwareSecurityRecord()
 	var/dat = ""
-	if(src.subscreen == 0)
+	if(subscreen == 0)
 		dat += "<h2>Security Records</h2><HR>"
 		if(isnotnull(GLOBL.data_core.general))
 			for(var/datum/data/record/R in sortRecord(GLOBL.data_core.general))
-				dat += text("Name: <A href='?src=\ref[];field=name'>[]</A><BR>\nID: <A href='?src=\ref[];field=id'>[]</A><BR>\nSex: <A href='?src=\ref[];field=sex'>[]</A><BR>\nAge: <A href='?src=\ref[];field=age'>[]</A><BR>\nRank: <A href='?src=\ref[];field=rank'>[]</A><BR>\nFingerprint: <A href='?src=\ref[];field=fingerprint'>[]</A><BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", src, src.securityActive1.fields["name"], src, src.securityActive1.fields["id"], src, src.securityActive1.fields["sex"], src, src.securityActive1.fields["age"], src, src.securityActive1.fields["rank"], src, src.securityActive1.fields["fingerprint"], src.securityActive1.fields["p_stat"], src.securityActive1.fields["m_stat"])
-	if(src.subscreen == 1)
+				dat += text("Name: <A href='?src=\ref[];field=name'>[]</A><BR>\nID: <A href='?src=\ref[];field=id'>[]</A><BR>\nSex: <A href='?src=\ref[];field=sex'>[]</A><BR>\nAge: <A href='?src=\ref[];field=age'>[]</A><BR>\nRank: <A href='?src=\ref[];field=rank'>[]</A><BR>\nFingerprint: <A href='?src=\ref[];field=fingerprint'>[]</A><BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", src, securityActive1.fields["name"], src, securityActive1.fields["id"], src, securityActive1.fields["sex"], src, securityActive1.fields["age"], src, securityActive1.fields["rank"], src, securityActive1.fields["fingerprint"], securityActive1.fields["p_stat"], securityActive1.fields["m_stat"])
+	if(subscreen == 1)
 		dat += "<h3>Security Record</h3>"
-		if(istype(src.securityActive1, /datum/data/record) && GLOBL.data_core.general.Find(src.securityActive1))
-			dat += text("Name: <A href='?src=\ref[];field=name'>[]</A> ID: <A href='?src=\ref[];field=id'>[]</A><BR>\nSex: <A href='?src=\ref[];field=sex'>[]</A><BR>\nAge: <A href='?src=\ref[];field=age'>[]</A><BR>\nRank: <A href='?src=\ref[];field=rank'>[]</A><BR>\nFingerprint: <A href='?src=\ref[];field=fingerprint'>[]</A><BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", src, src.securityActive1.fields["name"], src, src.securityActive1.fields["id"], src, src.securityActive1.fields["sex"], src, src.securityActive1.fields["age"], src, src.securityActive1.fields["rank"], src, src.securityActive1.fields["fingerprint"], src.securityActive1.fields["p_stat"], src.securityActive1.fields["m_stat"])
+		if(istype(securityActive1, /datum/data/record) && GLOBL.data_core.general.Find(securityActive1))
+			dat += text("Name: <A href='?src=\ref[];field=name'>[]</A> ID: <A href='?src=\ref[];field=id'>[]</A><BR>\nSex: <A href='?src=\ref[];field=sex'>[]</A><BR>\nAge: <A href='?src=\ref[];field=age'>[]</A><BR>\nRank: <A href='?src=\ref[];field=rank'>[]</A><BR>\nFingerprint: <A href='?src=\ref[];field=fingerprint'>[]</A><BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", src, securityActive1.fields["name"], src, securityActive1.fields["id"], src, securityActive1.fields["sex"], src, securityActive1.fields["age"], src, securityActive1.fields["rank"], src, securityActive1.fields["fingerprint"], securityActive1.fields["p_stat"], securityActive1.fields["m_stat"])
 		else
 			dat += "<pre>Requested security record not found,</pre><BR>"
-		if(istype(src.securityActive2, /datum/data/record) && GLOBL.data_core.security.Find(src.securityActive2))
-			dat += text("<BR>\nSecurity Data<BR>\nCriminal Status: []<BR>\n<BR>\nMinor Crimes: <A href='?src=\ref[];field=mi_crim'>[]</A><BR>\nDetails: <A href='?src=\ref[];field=mi_crim_d'>[]</A><BR>\n<BR>\nMajor Crimes: <A href='?src=\ref[];field=ma_crim'>[]</A><BR>\nDetails: <A href='?src=\ref[];field=ma_crim_d'>[]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='?src=\ref[];field=notes'>[]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", src.securityActive2.fields["criminal"], src, src.securityActive2.fields["mi_crim"], src, src.securityActive2.fields["mi_crim_d"], src, src.securityActive2.fields["ma_crim"], src, src.securityActive2.fields["ma_crim_d"], src, src.securityActive2.fields["notes"])
+		if(istype(securityActive2, /datum/data/record) && GLOBL.data_core.security.Find(securityActive2))
+			dat += text("<BR>\nSecurity Data<BR>\nCriminal Status: []<BR>\n<BR>\nMinor Crimes: <A href='?src=\ref[];field=mi_crim'>[]</A><BR>\nDetails: <A href='?src=\ref[];field=mi_crim_d'>[]</A><BR>\n<BR>\nMajor Crimes: <A href='?src=\ref[];field=ma_crim'>[]</A><BR>\nDetails: <A href='?src=\ref[];field=ma_crim_d'>[]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='?src=\ref[];field=notes'>[]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", securityActive2.fields["criminal"], src, securityActive2.fields["mi_crim"], src, securityActive2.fields["mi_crim_d"], src, securityActive2.fields["ma_crim"], src, securityActive2.fields["ma_crim_d"], src, securityActive2.fields["notes"])
 		else
 			dat += "<pre>Requested security record not found,</pre><BR>"
 		dat += text("<BR>\n<A href='?src=\ref[];software=securityrecord;sub=0'>Back</A><BR>", src)
@@ -497,7 +492,7 @@
 /mob/living/silicon/pai/proc/softwareTranslator()
 	var/dat = {"<h2>Universal Translator</h2><hr>
 				When enabled, this device will automatically convert all spoken and written language into a format that any known recipient can understand.<br><br>
-				The device is currently [ (src.universal_speak) ? "<font color=#55FF55>en" : "<font color=#FF5555>dis" ]abled</font>.<br>
+				The device is currently [ (universal_speak) ? "<font color=#55FF55>en" : "<font color=#FF5555>dis" ]abled</font>.<br>
 				<a href='byond://?src=\ref[src];software=translator;sub=0;toggle=1'>Toggle Device</a><br>
 				"}
 	return dat
@@ -506,7 +501,7 @@
 /mob/living/silicon/pai/proc/facialRecognition()
 	var/dat = {"<h2>Facial Recognition Suite</h2><hr>
 				When enabled, this package will scan all viewable faces and compare them against the known criminal database, providing real-time graphical data about any detected persons of interest.<br><br>
-				The suite is currently [ (src.secHUD) ? "<font color=#55FF55>en" : "<font color=#FF5555>dis" ]abled</font>.<br>
+				The suite is currently [ (secHUD) ? "<font color=#55FF55>en" : "<font color=#FF5555>dis" ]abled</font>.<br>
 				<a href='byond://?src=\ref[src];software=securityhud;sub=0;toggle=1'>Toggle Suite</a><br>
 				"}
 	return dat
@@ -514,26 +509,26 @@
 // Medical HUD
 /mob/living/silicon/pai/proc/medicalAnalysis()
 	var/dat = ""
-	if(src.subscreen == 0)
+	if(subscreen == 0)
 		dat += {"<h2>Medical Analysis Suite</h2><hr>
 				 <h4>Visual Status Overlay</h4>
 					When enabled, this package will scan all nearby crewmembers' vitals and provide real-time graphical data about their state of health.<br><br>
-					The suite is currently [ (src.medHUD) ? "<font color=#55FF55>en" : "<font color=#FF5555>dis" ]abled</font>.<br>
+					The suite is currently [ (medHUD) ? "<font color=#55FF55>en" : "<font color=#FF5555>dis" ]abled</font>.<br>
 					<a href='byond://?src=\ref[src];software=medicalhud;sub=0;toggle=1'>Toggle Suite</a><br>
 					<br>
 					<a href='byond://?src=\ref[src];software=medicalhud;sub=1'>Host Bioscan</a><br>
 					"}
-	if(src.subscreen == 1)
+	if(subscreen == 1)
 		dat += {"<h2>Medical Analysis Suite</h2><hr>
 				 <h4>Host Bioscan</h4>
 				"}
-		var/mob/living/M = src.loc
-		if(!istype(M, /mob/living))
-			while (!istype(M, /mob/living))
+		var/mob/living/M = loc
+		if(!isliving(M))
+			while(!isliving(M))
 				M = M.loc
-				if(istype(M, /turf))
-					src.temp = "Error: No biological host found. <br>"
-					src.subscreen = 0
+				if(isturf(M))
+					temp = "Error: No biological host found. <br>"
+					subscreen = 0
 					return dat
 		dat += {"<b>Bioscan Results for [M]</b>: <br>
 		Overall Status: [M.stat > 1 ? "dead" : "[M.health]% healthy"] <br><br>
@@ -560,7 +555,7 @@
 /mob/living/silicon/pai/proc/softwareAtmo()
 	var/dat = "<h2>Atmospheric Sensor</h2><hr>"
 
-	var/turf/T = get_turf_or_move(src.loc)
+	var/turf/T = get_turf_or_move(loc)
 	if(isnull(T))
 		dat += "Unable to obtain a reading.<br>"
 	else
@@ -584,14 +579,14 @@
 	var/dat = "<h2>Camera Jack</h2><hr>"
 	dat += "Cable status : "
 
-	if(!src.cable)
+	if(isnull(cable))
 		dat += "<font color=#FF5555>Retracted</font> <br>"
 		return dat
-	if(!src.cable.machine)
+	if(isnull(cable.machine))
 		dat += "<font color=#FFFF55>Extended</font> <br>"
 		return dat
 
-	var/obj/machinery/machine = src.cable.machine
+	var/obj/machinery/machine = cable.machine
 	dat += "<font color=#55FF55>Connected</font> <br>"
 
 	if(!istype(machine, /obj/machinery/camera))
@@ -602,53 +597,53 @@
 /mob/living/silicon/pai/proc/softwareDoor()
 	var/dat = "<h2>Airlock Jack</h2><hr>"
 	dat += "Cable status : "
-	if(!src.cable)
+	if(isnull(cable))
 		dat += "<font color=#FF5555>Retracted</font> <br>"
 		dat += "<a href='byond://?src=\ref[src];software=doorjack;cable=1;sub=0'>Extend Cable</a> <br>"
 		return dat
-	if(!src.cable.machine)
+	if(isnull(cable.machine))
 		dat += "<font color=#FFFF55>Extended</font> <br>"
 		return dat
 
-	var/obj/machinery/machine = src.cable.machine
+	var/obj/machinery/machine = cable.machine
 	dat += "<font color=#55FF55>Connected</font> <br>"
 	if(!istype(machine, /obj/machinery/door))
 		dat += "Connected device's firmware does not appear to be compatible with Airlock Jack protocols.<br>"
 		return dat
 //	var/obj/machinery/airlock/door = machine
 
-	if(!src.hackdoor)
+	if(!hackdoor)
 		dat += "<a href='byond://?src=\ref[src];software=doorjack;jack=1;sub=0'>Begin Airlock Jacking</a> <br>"
 	else
-		dat += "Jack in progress... [src.hackprogress]% complete.<br>"
+		dat += "Jack in progress... [hackprogress]% complete.<br>"
 		dat += "<a href='byond://?src=\ref[src];software=doorjack;cancel=1;sub=0'>Cancel Airlock Jack</a> <br>"
-	//src.hackdoor = machine
-	//src.hackloop()
+	//hackdoor = machine
+	//hackloop()
 	return dat
 
 // Door Jack - supporting proc
 /mob/living/silicon/pai/proc/hackloop()
-	var/turf/T = get_turf_or_move(src.loc)
-	for(var/mob/living/silicon/ai/AI in GLOBL.player_list)
-		if(T.loc)
-			AI << "<font color = red><b>Network Alert: Brute-force encryption crack in progress in [T.loc].</b></font>"
+	var/turf/T = get_turf_or_move(loc)
+	for(var/mob/living/silicon/ai/ai in GLOBL.player_list)
+		if(isnotnull(T.loc))
+			to_chat(ai, SPAN_DANGER("Network Alert: Brute-force encryption crack in progress in [T.loc]."))
 		else
-			AI << "<font color = red><b>Network Alert: Brute-force encryption crack in progress. Unable to pinpoint location.</b></font>"
-	while(src.hackprogress < 100)
-		if(src.cable && src.cable.machine && istype(src.cable.machine, /obj/machinery/door) && src.cable.machine == src.hackdoor && get_dist(src, src.hackdoor) <= 1)
+			to_chat(ai, SPAN_DANGER("Network Alert: Brute-force encryption crack in progress. Unable to pinpoint location."))
+	while(hackprogress < 100)
+		if(isnotnull(cable?.machine) && istype(cable.machine, /obj/machinery/door) && cable.machine == hackdoor && get_dist(src, hackdoor) <= 1)
 			hackprogress += rand(1, 10)
 		else
-			src.temp = "Door Jack: Connection to airlock has been lost. Hack aborted."
+			temp = "Door Jack: Connection to airlock has been lost. Hack aborted."
 			hackprogress = 0
-			src.hackdoor = null
+			hackdoor = null
 			return
 		if(hackprogress >= 100)		// This is clunky, but works. We need to make sure we don't ever display a progress greater than 100,
 			hackprogress = 100		// but we also need to reset the progress AFTER it's been displayed
-		if(src.screen == "doorjack" && src.subscreen == 0) // Update our view, if appropriate
-			src.paiInterface()
+		if(screen == "doorjack" && subscreen == 0) // Update our view, if appropriate
+			paiInterface()
 		if(hackprogress >= 100)
-			src.hackprogress = 0
-			src.cable.machine:open()
+			hackprogress = 0
+			cable.machine:open()
 		sleep(50)			// Update every 5 seconds
 
 // Digital Messenger
@@ -660,8 +655,9 @@
 	[(pda.silent) ? "<font color='red'> \[Off\]</font>" : "<font color='green'> \[On\]</font>"]</a><br><br>"}
 	dat += "<ul>"
 	if(!pda.toff)
-		for (var/obj/item/device/pda/P in sortAtom(GLOBL.pda_list))
-			if (!P.owner||P.toff||P == src.pda)	continue
+		for(var/obj/item/device/pda/P in sortAtom(GLOBL.pda_list))
+			if(!P.owner || P.toff || P == pda)
+				continue
 			dat += "<li><a href='byond://?src=\ref[src];software=pdamessage;target=\ref[P]'>[P]</a>"
 			dat += "</li>"
 	dat += "</ul>"

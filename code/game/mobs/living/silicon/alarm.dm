@@ -9,44 +9,44 @@
 	cameras = cameralist
 
 /mob/living/silicon
-	var/alarms = list("Motion"=list(), "Fire"=list(), "Atmosphere"=list(), "Power"=list(), "Camera"=list())	//each sublist stores alarms keyed by the area name
+	var/alarms = list("Motion" = list(), "Fire" = list(), "Atmosphere" = list(), "Power" = list(), "Camera" = list())	//each sublist stores alarms keyed by the area name
 	var/list/alarms_to_show = list()
 	var/list/alarms_to_clear = list()
 	var/list/alarm_types_show = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
 	var/list/alarm_types_clear = list("Motion" = 0, "Fire" = 0, "Atmosphere" = 0, "Power" = 0, "Camera" = 0)
 
-/mob/living/silicon/proc/triggerAlarm(var/class, area/A, list/cameralist, var/source)
+/mob/living/silicon/proc/triggerAlarm(class, area/A, list/cameralist, source)
 	var/list/alarmlist = alarms[class]
 
 	//see if there is already an alarm of this class for this area
-	if (A.name in alarmlist)
+	if(A.name in alarmlist)
 		var/datum/alarm/existing = alarmlist[A.name]
-		existing.sources += source
+		existing.sources.Add(source)
 		existing.cameras |= cameralist
 	else
 		alarmlist[A.name] = new /datum/alarm(A, list(source), cameralist)
 
-/mob/living/silicon/proc/cancelAlarm(var/class, area/A as area, var/source)
-	var/cleared = 0
+/mob/living/silicon/proc/cancelAlarm(class, area/A as area, source)
+	var/cleared = FALSE
 	var/list/alarmlist = alarms[class]
 
-	if (A.name in alarmlist)
+	if(A.name in alarmlist)
 		var/datum/alarm/alarm = alarmlist[A.name]
-		alarm.sources -= source
+		alarm.sources.Remove(source)
 
 		if(!length(alarm.sources))
-			cleared = 1
+			cleared = TRUE
 			alarmlist -= A.name
 
 	return !cleared
 
-/mob/living/silicon/proc/queueAlarm(var/message, var/type, var/incoming = 1)
+/mob/living/silicon/proc/queueAlarm(message, type, incoming = 1)
 	var/in_cooldown = length(alarms_to_show) || length(alarms_to_clear)
 	if(incoming)
-		alarms_to_show += message
+		alarms_to_show.Add(message)
 		alarm_types_show[type] += 1
 	else
-		alarms_to_clear += message
+		alarms_to_clear.Add(message)
 		alarm_types_clear[type] += 1
 
 	if(!in_cooldown)
@@ -54,9 +54,8 @@
 
 			if(length(alarms_to_show) < 5)
 				for(var/msg in alarms_to_show)
-					src << msg
+					to_chat(src, msg)
 			else if(length(alarms_to_show))
-
 				var/msg = "--- "
 
 				if(alarm_types_show["Motion"])
@@ -75,11 +74,11 @@
 					msg += "CAMERA: [alarm_types_show["Power"]] alarms detected. - "
 
 				msg += "<A href=?src=\ref[src];showalerts=1'>\[Show Alerts\]</a>"
-				src << msg
+				to_chat(src, msg)
 
 			if(length(alarms_to_clear) < 3)
 				for(var/msg in alarms_to_clear)
-					src << msg
+					to_chat(src, msg)
 
 			else if(length(alarms_to_clear))
 				var/msg = "--- "
@@ -100,8 +99,7 @@
 					msg += "CAMERA: [alarm_types_show["Power"]] alarms detected. - "
 
 				msg += "<A href=?src=\ref[src];showalerts=1'>\[Show Alerts\]</a>"
-				src << msg
-
+				to_chat(src, msg)
 
 			alarms_to_show = list()
 			alarms_to_clear = list()

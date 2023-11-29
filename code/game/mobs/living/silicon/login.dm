@@ -1,5 +1,5 @@
 /mob/living/silicon/Login()
-	if(mind && global.CTticker && global.CTticker.mode)
+	if(isnotnull(mind) && isnotnull(global.CTticker?.mode))
 		global.CTticker.mode.remove_cultist(mind, 1)
 		global.CTticker.mode.remove_revolutionary(mind, 1)
-	..()
+	. = ..()

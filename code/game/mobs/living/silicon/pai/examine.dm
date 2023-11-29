@@ -24,4 +24,3 @@
 
 	usr << msg
 	*/
-	return

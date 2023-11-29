@@ -11,11 +11,12 @@
 
 /mob/living/silicon/ai
 	name = "AI"
-	icon = 'icons/mob/AI.dmi'//
+	icon = 'icons/mob/AI.dmi'
 	icon_state = "ai"
 	anchored = TRUE // -- TLE
+	canmove = FALSE
 	density = TRUE
-	status_flags = CANSTUN|CANPARALYSE
+	status_flags = CANSTUN | CANPARALYSE
 
 	var/list/network = list("SS13")
 	var/obj/machinery/camera/current = null
@@ -25,10 +26,10 @@
 	var/viewalerts = 0
 	var/lawcheck[1]
 	var/ioncheck[1]
-	var/icon/holo_icon//Default is assigned when AI is created.
+	var/icon/holo_icon //Default is assigned when AI is created.
 	var/obj/item/device/pda/ai/aiPDA = null
 	var/obj/item/device/multitool/aiMulti = null
-	var/custom_sprite = 0 //For our custom sprites
+	var/custom_sprite = FALSE //For our custom sprites
 //Hud stuff
 
 	//MALFUNCTION
@@ -37,15 +38,15 @@
 	var/list/datum/AI_Module/current_modules = list()
 	var/fire_res_on_core = 0
 
-	var/control_disabled = 0 // Set to 1 to stop AI from interacting via Click() -- TLE
+	var/control_disabled = FALSE // Set to TRUE to stop AI from interacting via Click() -- TLE
 	var/malfhacking = 0 // More or less a copy of the above var, so that malf AIs can hack and still get new cyborgs -- NeoFite
 
 	var/obj/machinery/power/apc/malfhack = null
-	var/explosive = 0 //does the AI explode when it dies?
+	var/explosive = FALSE //does the AI explode when it dies?
 
 	var/mob/living/silicon/ai/parent = null
 
-	var/camera_light_on = 0	//Defines if the AI toggled the light on the camera it's looking through.
+	var/camera_light_on = FALSE	//Defines if the AI toggled the light on the camera it's looking through.
 	var/datum/trackable/track = null
 	var/last_announcement = ""
 
@@ -53,34 +54,28 @@
 	. = ..()
 	var/list/possibleNames = GLOBL.ai_names
 
-	var/pickedName = null
-	while(isnull(pickedName))
-		pickedName = pick(GLOBL.ai_names)
+	var/picked_name = null
+	while(isnull(picked_name))
+		picked_name = pick(GLOBL.ai_names)
 		for(var/mob/living/silicon/ai/A in GLOBL.mob_list)
-			if(A.real_name == pickedName && length(possibleNames) > 1) //fixing the theoretically possible infinite loop
-				possibleNames -= pickedName
-				pickedName = null
+			if(A.real_name == picked_name && length(possibleNames) > 1) //fixing the theoretically possible infinite loop
+				possibleNames -= picked_name
+				picked_name = null
 
-	real_name = pickedName
-	name = real_name
-	anchored = TRUE
-	canmove = FALSE
-	density = TRUE
+	fully_replace_character_name(newname = picked_name)
 	src.loc = loc
 
 	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
 
 	proc_holder_list = list()
 
-	if(isnotnull(L))
-		if(istype(L, /datum/ai_laws))
-			laws = L
+	if(istype(L))
+		laws = L
 	else
 		laws = new BASE_LAW_TYPE()
 
 	aiPDA = new /obj/item/device/pda/ai(src)
 	aiPDA.set_name_and_job(name, "AI")
-
 	aiMulti = new /obj/item/device/multitool(src)
 
 	if(isturf(loc))
@@ -104,7 +99,7 @@
 
 	if(!safety) // Only used by AIize() to successfully spawn an AI.
 		if(isnull(B)) // If there is no player/brain inside.
-			new/obj/structure/ai_core/deactivated(loc) // New empty terminal.
+			new /obj/structure/ai_core/deactivated(loc) // New empty terminal.
 			qdel(src) // Delete AI.
 			return
 		else
@@ -147,7 +142,7 @@
 		for(var/datum/mind/malfai in malf.malf_ai)
 			if(mind == malfai) // are we the evil one?
 				if(malf.apcs >= 3)
-					stat(null, "Time until station control secured: [max(malf.AI_win_timeleft / (malf.apcs / 3), 0)] seconds")
+					stat(null, "Time until station control secured: [max(malf.AI_win_timeleft / (malf.apcs / 3), 0)] seconds.")
 
 /mob/living/silicon/ai/check_eye(mob/user as mob)
 	if(isnull(current))

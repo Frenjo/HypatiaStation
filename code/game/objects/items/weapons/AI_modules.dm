@@ -36,7 +36,7 @@ AI MODULES
 			usr << "Law uploads have been disabled by NanoTrasen!"
 			return
 
-		if(comp.current.stat == DEAD || comp.current.control_disabled == 1)
+		if(comp.current.stat == DEAD || comp.current.control_disabled)
 			usr << "Upload failed. No signal is being detected from the AI."
 		else if (comp.current.see_in_dark == 0)
 			usr << "Upload failed. Only a faint signal is being detected from the AI, and it is not responding to our requests. It may be low on power."

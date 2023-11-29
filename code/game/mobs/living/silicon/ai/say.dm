@@ -1,5 +1,5 @@
 /mob/living/silicon/ai/say(message)
-	if(parent && istype(parent) && parent.stat != DEAD)
+	if(isnotnull(parent) && istype(parent) && parent.stat != DEAD)
 		parent.say(message)
 		return
 		//If there is a defined "parent" AI, it is actually an AI, and it is alive, anything the AI tries to say is said by the parent instead.
@@ -41,21 +41,20 @@ var/const/VOX_DELAY = 100 // 10 seconds
 
 	src << browse(dat, "window=announce_help;size=500x400")
 
-
 /mob/living/silicon/ai/verb/announcement()
 	set name = "Announcement"
 	set desc = "Create a vocal announcement by typing in the available words to create a sentence."
 	set category = "AI Commands"
 
 	if(announcing_vox > world.time)
-		src << "<span class='notice'>Please wait [round((announcing_vox - world.time) / 10)] seconds.</span>"
+		to_chat(src, SPAN_NOTICE("Please wait [round((announcing_vox - world.time) / 10)] seconds."))
 		return
 
 	var/message = input(src, "WARNING: Misuse of this verb can result in you being job banned. More help is available in 'Announcement Help'", "Announcement", src.last_announcement) as text
 
 	last_announcement = message
 
-	if(!message || announcing_vox > world.time)
+	if(isnull(message) || announcing_vox > world.time)
 		return
 
 	var/list/words = splittext(trim(message), " ")
@@ -74,7 +73,7 @@ var/const/VOX_DELAY = 100 // 10 seconds
 			incorrect_words += word
 
 	if(length(incorrect_words))
-		src << "<span class='notice'>These words are not available on the announcement system: [english_list(incorrect_words)].</span>"
+		to_chat(src, SPAN_NOTICE("These words are not available on the announcement system: [english_list(incorrect_words)]."))
 		return
 
 	announcing_vox = world.time + VOX_DELAY
@@ -84,12 +83,10 @@ var/const/VOX_DELAY = 100 // 10 seconds
 	for(var/word in words)
 		play_vox_word(word, src.z, null)
 
-
 /proc/play_vox_word(word, z_level, mob/only_listener)
 	word = lowertext(word)
 
 	if(vox_word_exists(word))
-
 		var/sound_file = get_vox_file(word)
 		var/sound/voice = sound(sound_file, wait = 1, channel = VOX_CHANNEL)
 		voice.status = SOUND_STREAM
@@ -98,7 +95,7 @@ var/const/VOX_DELAY = 100 // 10 seconds
 		if(!only_listener)
 			// Play voice for all mobs in the z level
 			for(var/mob/M in GLOBL.player_list)
-				if(M.client)
+				if(isnotnull(M.client))
 					var/turf/T = get_turf(M)
 					if(T.z == z_level)
 						M << voice
@@ -106,7 +103,6 @@ var/const/VOX_DELAY = 100 // 10 seconds
 			only_listener << voice
 		return 1
 	return 0
-
 
 /proc/vox_word_exists(word)
 	return fexists("[VOX_PATH][word].wav")
@@ -117,7 +113,6 @@ var/const/VOX_DELAY = 100 // 10 seconds
 
 // Dynamically loading it has bad results with sounds overtaking each other, even with the wait variable.
 // We send the file to the user when they login.
-
 /client/proc/preload_vox()
 	var/list/vox_files = flist(VOX_PATH)
 	for(var/file in vox_files)

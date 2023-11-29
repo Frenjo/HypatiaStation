@@ -2,7 +2,7 @@
 	gender = NEUTER
 	voice_name = "synthesized voice"
 
-	immune_to_ssd = 1
+	immune_to_ssd = TRUE
 
 	var/syndicate = 0
 	var/datum/ai_laws/laws = null	//Now... THEY ALL CAN ALL HAVE LAWS
@@ -42,10 +42,10 @@
 		return 1
 	return 0
 
-/mob/living/silicon/bullet_act(obj/item/projectile/Proj)
-	if(!Proj.nodamage)
-		adjustBruteLoss(Proj.damage)
-	Proj.on_hit(src, 2)
+/mob/living/silicon/bullet_act(obj/item/projectile/proj)
+	if(!proj.nodamage)
+		adjustBruteLoss(proj.damage)
+	proj.on_hit(src, 2)
 
 	updatehealth()
 	return 2
@@ -77,17 +77,17 @@
 		flick("flash", flash)
 
 	switch(severity)
-		if(1.0)
+		if(1)
 			if(stat != DEAD)
 				adjustBruteLoss(100)
 				adjustFireLoss(100)
 				if(!anchored)
 					gib()
-		if(2.0)
+		if(2)
 			if(stat != DEAD)
 				adjustBruteLoss(60)
 				adjustFireLoss(60)
-		if(3.0)
+		if(3)
 			if(stat != DEAD)
 				adjustBruteLoss(30)
 
@@ -116,7 +116,7 @@
 
 	for(var/datum/language/L in speech_synthesizer_langs)
 		if(L.name == rem_language)
-			speech_synthesizer_langs -= L
+			speech_synthesizer_langs.Remove(L)
 
 /mob/living/silicon/check_languages()
 	set name = "Check Known Languages"
@@ -167,11 +167,12 @@
 		var/timeleft = global.CTemergency.estimate_arrival_time()
 		if(timeleft)
 			stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
+
 // this function displays the stations manifest in a separate window
 /mob/living/silicon/proc/show_station_manifest()
 	var/dat
 	dat += "<h4>Crew Manifest</h4>"
-	if(GLOBL.data_core)
+	if(isnotnull(GLOBL.data_core))
 		dat += GLOBL.data_core.get_manifest(1) // make it monochrome
 	dat += "<br>"
 	src << browse(dat, "window=airoster")
@@ -180,6 +181,7 @@
 /mob/living/silicon/proc/toggle_sensor_mode()
 	set name = "Set Sensor Augmentation"
 	set desc = "Augment visual feed with internal sensor overlays."
+
 	var/sensor_type = input("Please select sensor type.", "Sensor Integration", null) in list("Security", "Medical", "Disable")
 	switch(sensor_type)
 		if("Security")

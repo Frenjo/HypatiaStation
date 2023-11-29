@@ -205,7 +205,7 @@ That prevents a few funky behaviors.
 										return
 							new /obj/structure/ai_core/deactivated(target_ai.loc) //Spawns a deactivated terminal at AI location.
 							target_ai.aiRestorePowerRoutine = 0 //So the AI initially has power.
-							target_ai.control_disabled = 1 //Can't control things remotely if you're stuck in a card!
+							target_ai.control_disabled = TRUE //Can't control things remotely if you're stuck in a card!
 							target_ai.loc = card //Throw AI into the card.
 							card.name = "inteliCard - [target_ai.name]"
 							if(target_ai.stat == DEAD)
@@ -231,7 +231,7 @@ That prevents a few funky behaviors.
 							else
 								new /obj/structure/ai_core/deactivated(target_ai.loc)
 								target_ai.aiRestorePowerRoutine = 0
-								target_ai.control_disabled = 1
+								target_ai.control_disabled = TRUE
 								target_ai.loc = ninja_suit
 								ninja_suit.AI = target_ai
 								target_ai.cancel_camera()
@@ -245,7 +245,7 @@ That prevents a few funky behaviors.
 						var/obj/item/device/aicard/card = src
 						var/mob/living/silicon/ai/card_ai = locate() in card //I love locate(). Best proc ever.
 						if(card_ai) //If AI exists on the card. Else nothing since both are empty.
-							card_ai.control_disabled = 0
+							card_ai.control_disabled = FALSE
 							card_ai.loc = target_core.loc //To replace the terminal.
 							card.icon_state = "aicard"
 							card.name = "inteliCard"
@@ -258,7 +258,7 @@ That prevents a few funky behaviors.
 						var/obj/item/clothing/suit/space/space_ninja/ninja_suit = src
 						var/mob/living/silicon/ai/suit_ai = ninja_suit.AI
 						if(suit_ai)
-							suit_ai.control_disabled = 0
+							suit_ai.control_disabled = FALSE
 							ninja_suit.AI = null
 							suit_ai.loc = target_core.loc
 							suit_ai.cancel_camera()
@@ -280,7 +280,7 @@ That prevents a few funky behaviors.
 								card.overlays.Cut()
 								A.loc = target_fixer
 								target_fixer.occupant = A
-								A.control_disabled = 1
+								A.control_disabled = TRUE
 								if(A.stat == DEAD)
 									target_fixer.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-404")
 								else
@@ -320,7 +320,7 @@ That prevents a few funky behaviors.
 								suit_ai.loc = target_fixer
 								target_fixer.occupant = suit_ai
 								ninja_suit.AI = null
-								suit_ai.control_disabled = 1
+								suit_ai.control_disabled = TRUE
 								target_fixer.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-full")
 								target_fixer.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-empty")
 								suit_ai.cancel_camera()

@@ -84,15 +84,15 @@
 		listeners |= src
 
 		for(var/mob/living/silicon/D in listeners)
-			if(D.client && istype(D, type))
-				D << "<b>[src]</b> transmits, \"[message]\""
+			if(isnotnull(D.client) && istype(D, type))
+				to_chat(D, "<b>[src]</b> transmits, \"[message]\"")
 
 		for(var/mob/M in GLOBL.player_list)
 			if(isnewplayer(M))
 				continue
 			else if(M.stat == DEAD && M.client.prefs.toggles & CHAT_GHOSTEARS)
 				if(isnotnull(M.client))
-					M << "<b>[src]</b> transmits, \"[message]\""
+					to_chat(M, "<b>[src]</b> transmits, \"[message]\"")
 		return
 
 	if(message_mode && bot_type == IS_ROBOT && !R.is_component_functioning("radio"))
@@ -148,7 +148,7 @@
 	if(!message)
 		return
 
-	var/obj/machinery/hologram/holopad/T = src.current
+	var/obj/machinery/hologram/holopad/T = current
 	if(istype(T) && T.hologram && T.master == src)//If there is a hologram and its master is the user.
 		var/verbage = say_quote(message)
 

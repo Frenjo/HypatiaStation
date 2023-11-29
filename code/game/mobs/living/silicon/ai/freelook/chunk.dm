@@ -1,4 +1,4 @@
-#define UPDATE_BUFFER 25 // 2.5 seconds
+#define UPDATE_BUFFER (2.5 SECONDS)
 
 // CAMERA CHUNK
 //
@@ -11,9 +11,11 @@
 	var/list/cameras = list()
 	var/list/turfs = list()
 	var/list/seenby = list()
+
 	var/visible = 0
-	var/changed = 0
-	var/updating = 0
+	var/changed = FALSE
+	var/updating = FALSE
+
 	var/x = 0
 	var/y = 0
 	var/z = 0
@@ -30,7 +32,7 @@
 
 	for(var/obj/machinery/camera/c in range(16, locate(x + 8, y + 8, z)))
 		if(c.can_use())
-			cameras += c
+			cameras.Add(c)
 
 	for(var/turf/t in range(10, locate(x + 8, y + 8, z)))
 		if(t.x >= x && t.y >= y && t.x < x + 16 && t.y < y + 16)
@@ -38,7 +40,7 @@
 
 	for(var/camera in cameras)
 		var/obj/machinery/camera/c = camera
-		if(!c)
+		if(isnull(c))
 			continue
 
 		if(!c.can_use())
@@ -57,34 +59,36 @@
 		if(!t.obscured)
 			t.obscured = image('icons/effects/cameravis.dmi', t, "black", 15)
 			t.obscured.plane = OBSCURITY_PLANE
-		obscured += t.obscured
+		obscured.Add(t.obscured)
 
 // Add an AI eye to the chunk, then update if changed.
 /datum/camerachunk/proc/add(mob/aiEye/ai)
-	if(!ai.ai)
+	if(isnull(ai.ai))
 		return
-	ai.visibleCameraChunks += src
-	if(ai.ai.client)
-		ai.ai.client.images += obscured
+
+	ai.visibleCameraChunks.Add(src)
+	if(isnotnull(ai.ai.client))
+		ai.ai.client.images.Add(obscured)
 	visible++
-	seenby += ai
+	seenby.Add(ai)
 	if(changed && !updating)
 		update()
 
 // Remove an AI eye from the chunk, then update if changed.
 /datum/camerachunk/proc/remove(mob/aiEye/ai)
-	if(!ai.ai)
+	if(isnull(ai.ai))
 		return
-	ai.visibleCameraChunks -= src
-	if(ai.ai.client)
-		ai.ai.client.images -= obscured
+
+	ai.visibleCameraChunks.Remove(src)
+	if(isnotnull(ai.ai.client))
+		ai.ai.client.images.Remove(obscured)
 	seenby -= ai
 	if(visible > 0)
 		visible--
 
 // Called when a chunk has changed. I.E: A wall was deleted.
 /datum/camerachunk/proc/visibilityChanged(turf/loc)
-	if(!visibleTurfs[loc])
+	if(isnull(visibleTurfs[loc]))
 		return
 	hasChanged()
 
@@ -93,12 +97,12 @@
 /datum/camerachunk/proc/hasChanged(update_now = 0)
 	if(visible || update_now)
 		if(!updating)
-			updating = 1
+			updating = TRUE
 			spawn(UPDATE_BUFFER) // Batch large changes, such as many doors opening or closing at once
 				update()
-				updating = 0
+				updating = FALSE
 	else
-		changed = 1
+		changed = TRUE
 
 // The actual updating. It gathers the visible turfs from cameras and puts them into the appropiate lists.
 /datum/camerachunk/proc/update()
@@ -109,7 +113,7 @@
 	for(var/camera in cameras)
 		var/obj/machinery/camera/c = camera
 
-		if(!c)
+		if(isnull(c))
 			continue
 
 		if(!c.can_use())
@@ -134,28 +138,28 @@
 	for(var/turf in visAdded)
 		var/turf/t = turf
 		if(t.obscured)
-			obscured -= t.obscured
+			obscured.Remove(t.obscured)
 			for(var/eye in seenby)
 				var/mob/aiEye/m = eye
-				if(!m || !m.ai)
+				if(isnull(m?.ai))
 					continue
-				if(m.ai.client)
-					m.ai.client.images -= t.obscured
+				if(isnotnull(m.ai.client))
+					m.ai.client.images.Remove(t.obscured)
 
 	for(var/turf in visRemoved)
 		var/turf/t = turf
-		if(obscuredTurfs[t])
+		if(isnotnull(obscuredTurfs[t]))
 			if(!t.obscured)
 				t.obscured = image('icons/effects/cameravis.dmi', t, "black", 15)
 				t.obscured.plane = OBSCURITY_PLANE
 
-			obscured += t.obscured
+			obscured.Add(t.obscured)
 			for(var/eye in seenby)
 				var/mob/aiEye/m = eye
-				if(!m || !m.ai)
-					seenby -= m
+				if(isnull(m?.ai))
+					seenby.Remove(m)
 					continue
-				if(m.ai.client)
-					m.ai.client.images += t.obscured
+				if(isnotnull(m.ai.client))
+					m.ai.client.images.Add(t.obscured)
 
 #undef UPDATE_BUFFER

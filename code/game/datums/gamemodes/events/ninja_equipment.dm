@@ -669,7 +669,7 @@ ________________________________________________________________________________
 								if(3)
 									to_chat(A, "Connecting to kernel...")
 									to_chat(U, SPAN_WARNING("<b>WARNING</b>: �R�r�R_404"))
-									A.control_disabled = 0
+									A.control_disabled = FALSE
 								if(4)
 									to_chat(A, "Connection established and secured. Menu updated.")
 									to_chat(U, "\red <b>W�r#nING</b>: #%@!!WȆ|_4�54@ \nUn�B88l3 T� L�-�o-L�CaT2 ##$!�RN�0..%..")

@@ -1,5 +1,8 @@
 /mob/living/silicon/ai/Login()	//ThisIsDumb(TM) TODO: tidy this up �_� ~Carn
 	. = ..()
+	if(isnotnull(eyeobj))
+		client.eye = eyeobj
+
 	for(var/obj/effect/rune/rune in world)
 		var/image/blood = image(loc = rune)
 		blood.override = 1
