@@ -1501,7 +1501,7 @@
 "ZS" = (/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/turf/unsimulated/floor{icon_state = "floor"},/area/centcom/control)
 "ZV" = (/obj/machinery/camera{c_tag = "Red Team"; network = list("thunder"); pixel_x = 11; pixel_y = -9},/obj/effect/landmark{name = "tdome2"},/turf/unsimulated/floor,/area/tdome/team_two)
 "ZX" = (/obj/structure/rack,/obj/item/clothing/under/color/green,/obj/item/clothing/shoes/brown,/obj/item/clothing/suit/armor/tdome/green,/obj/item/clothing/head/helmet/thunderdome,/obj/item/melee/baton,/obj/item/melee/energy/sword/green,/turf/unsimulated/floor{icon_state = "dark"},/area/tdome)
-"ZZ" = (/obj/machinery/door/airlock/centcom{frequency = 1379; id_tag = "adminshuttle_airlock_interior"; name = "General Access"; opacity = 1; req_access = list(101); use_power = 0},/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/shuttle/administration/centcom)
+"ZZ" = (/obj/machinery/door/airlock/centcom{frequency = 1379; id_tag = "adminshuttle_airlock_interior"; name = "General Access"; opacity = 1; req_access = list(101)},/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/shuttle/administration/centcom)
 
 (1,1,1) = {"
 uauauauauauauauauauauauauauauauauauauauauauauauauauauaDADADADADADADAuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaYtrprprprprpVDrprprprprpVDrprprprprpVDrprprprprpVDrprprprprpVDrprprprprpVDrprprprprpeU

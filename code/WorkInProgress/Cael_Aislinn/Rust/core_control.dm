@@ -68,9 +68,9 @@
 			<a href='?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=1000'>\[++++\]</a><br>"
 
 			var/power_stat = "Good"
-			if(cur_viewed_device.cached_power_avail < cur_viewed_device.active_power_usage)
+			if(cur_viewed_device.cached_power_avail < cur_viewed_device.power_usage[USE_POWER_ACTIVE])
 				power_stat = "Insufficient"
-			else if(cur_viewed_device.cached_power_avail < cur_viewed_device.active_power_usage * 2)
+			else if(cur_viewed_device.cached_power_avail < cur_viewed_device.power_usage[USE_POWER_ACTIVE] * 2)
 				power_stat = "Check"
 			dat += "<b>Power status:</b> [power_stat]<br>"
 		else

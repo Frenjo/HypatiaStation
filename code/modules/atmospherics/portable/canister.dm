@@ -7,7 +7,8 @@
 
 	pressure_resistance = 7 * ONE_ATMOSPHERE
 	volume = 1000
-	use_power = FALSE
+
+	power_state = USE_POWER_OFF
 
 	var/health = 100.0
 

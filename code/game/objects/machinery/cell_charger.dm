@@ -6,10 +6,12 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "ccharger0"
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 5
-	active_power_usage = 60
-	power_channel = EQUIP
+
+	power_usage = list(
+		USE_POWER_IDLE = 5,
+		USE_POWER_ACTIVE = 60
+	)
+
 	var/obj/item/cell/charging = null
 	var/chargelevel = -1
 	var/power_rating = 40000	//40 kW. A measure of how powerful this charger is for charging cells (this the power drawn when charging)

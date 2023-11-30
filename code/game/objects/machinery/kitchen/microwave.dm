@@ -6,10 +6,13 @@
 	layer = 2.9
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 5
-	active_power_usage = 100
 	flags = OPENCONTAINER | NOREACT
+
+	power_usage = list(
+		USE_POWER_IDLE = 5,
+		USE_POWER_ACTIVE = 100
+	)
+
 	var/operating = 0 // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
 	var/broken = 0 // ={0,1,2} How broken is it???

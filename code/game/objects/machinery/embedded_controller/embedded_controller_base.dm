@@ -6,8 +6,9 @@
 	name = "Embedded Controller"
 	anchored = TRUE
 
-	use_power = 1
-	idle_power_usage = 10
+	power_usage = list(
+		USE_POWER_IDLE = 10
+	)
 
 	var/datum/computer/file/embedded_program/program	//the currently executing program
 
@@ -46,8 +47,9 @@
 /obj/machinery/embedded_controller/radio
 	icon = 'icons/obj/machines/airlock_machines.dmi'
 	icon_state = "airlock_control_standby"
-	power_channel = ENVIRON
 	density = FALSE
+
+	power_channel = ENVIRON
 
 	var/id_tag
 	//var/radio_power_use = 50 //power used to xmit signals

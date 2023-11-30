@@ -126,11 +126,12 @@
 	desc = "A remote control switch for a mounted flasher."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "launcherbtt"
-
 	anchored = TRUE
-	use_power = TRUE
-	idle_power_usage = 2
-	active_power_usage = 4
+
+	power_usage = list(
+		USE_POWER_IDLE = 2,
+		USE_POWER_ACTIVE = 4
+	)
 
 	var/id = null
 	var/active = FALSE

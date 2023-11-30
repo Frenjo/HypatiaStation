@@ -35,10 +35,13 @@
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "alarm0"
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 4
-	active_power_usage = 8
+
 	power_channel = ENVIRON
+	power_usage = list(
+		USE_POWER_IDLE = 4,
+		USE_POWER_ACTIVE = 8
+	)
+
 	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_ENGINE_EQUIP)
 
 	var/frequency = 1439
@@ -1159,12 +1162,13 @@ FIRE ALARM
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "fire0"
-
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 2
-	active_power_usage = 6
+
 	power_channel = ENVIRON
+	power_usage = list(
+		USE_POWER_IDLE = 2,
+		USE_POWER_ACTIVE = 6
+	)
 
 	var/detecting = 1.0
 	var/working = 1.0
@@ -1440,11 +1444,12 @@ Just a object used in constructing fire alarms
 	desc = "Cuban Pete is in the house!"
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "fire0"
-
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 2
-	active_power_usage = 6
+
+	power_usage = list(
+		USE_POWER_IDLE = 2,
+		USE_POWER_ACTIVE = 6
+	)
 
 	var/detecting = 1.0
 	var/working = 1.0

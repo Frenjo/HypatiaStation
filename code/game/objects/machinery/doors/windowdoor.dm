@@ -3,15 +3,20 @@
 	desc = "A strong door."
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "left"
-	var/base_state = "left"
-	var/health = 150.0 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
-	visible = 0.0
-	use_power = 0
-	flags = ON_BORDER
+
 	opacity = FALSE
-	var/obj/item/airlock_electronics/electronics = null
+	visible = FALSE
+	flags = ON_BORDER
+
+	power_state = USE_POWER_OFF
+
 	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
+
+	var/obj/item/airlock_electronics/electronics = null
+
+	var/base_state = "left"
+	var/health = 150.0 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
 
 /obj/machinery/door/window/update_nearby_tiles(need_rebuild)
 	if(!global.CTair)

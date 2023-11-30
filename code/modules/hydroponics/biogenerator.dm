@@ -5,8 +5,11 @@
 	icon_state = "biogen-stand"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 40
+
+	power_usage = list(
+		USE_POWER_IDLE = 40
+	)
+
 	var/processing = 0
 	var/obj/item/reagent_containers/glass/beaker = null
 	var/points = 0

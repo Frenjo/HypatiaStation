@@ -328,7 +328,12 @@
 		icon_state = "Shield_Gen"
 		anchored = FALSE
 		density = TRUE
+		flags = CONDUCT
+
+		power_state = USE_POWER_OFF
+
 		req_access = list(ACCESS_TELEPORTER)
+
 		var/active = 0
 		var/power = 0
 		var/state = 0
@@ -342,8 +347,6 @@
 //		var/maxshieldload = 200
 		var/obj/structure/cable/attached		// the attached cable
 		var/storedpower = 0
-		flags = CONDUCT
-		use_power = 0
 
 /obj/machinery/shieldwallgen/proc/power()
 	if(!anchored)

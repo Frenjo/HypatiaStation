@@ -20,8 +20,10 @@ log transactions
 	icon = 'icons/obj/machines/terminals.dmi'
 	icon_state = "atm"
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 10
+
+	power_usage = list(
+		USE_POWER_IDLE = 10
+	)
 
 	var/datum/money_account/authenticated_account
 	var/number_incorrect_tries = 0

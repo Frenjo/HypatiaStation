@@ -96,51 +96,54 @@ Class Procs:
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
 
+	// Unique IDs.
+	var/static/gl_uid = 1
+	var/uid
+
+	// Power.
+	var/power_channel = EQUIP // This can be either EQUIP, LIGHT or ENVIRON.
+	var/power_state = USE_POWER_IDLE // This one used to be called use_power.
+	var/list/power_usage = list(
+		USE_POWER_IDLE = 0, // Power usage while in the USE_POWER_IDLE state.
+		USE_POWER_ACTIVE = 0 // Power usage while in the USE_POWER_ACTIVE state.
+	)
+
 	var/stat = 0
 	var/emagged = 0
-	var/use_power = 1
-		//0 = dont run the auto
-		//1 = run auto, use idle
-		//2 = run auto, use active
-	var/idle_power_usage = 0
-	var/active_power_usage = 0
-	//EQUIP, ENVIRON or LIGHT
-	var/power_channel = EQUIP
+
 	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
-	var/uid
 	var/manual = 0
-	var/static/gl_uid = 1
 
 /obj/machinery/initialize()
 	. = ..()
-	if(!GLOBL.machinery_sort_required && global.CTticker)
+	if(!GLOBL.machinery_sort_required && isnotnull(global.CTticker))
 		dd_insertObjectList(GLOBL.machines, src)
 	else
-		GLOBL.machines += src
+		GLOBL.machines.Add(src)
 		GLOBL.machinery_sort_required = TRUE
 
 /obj/machinery/Destroy()
-	GLOBL.machines -= src
+	GLOBL.machines.Remove(src)
 	if(component_parts)
 		for(var/atom/A in component_parts)
 			if(A.loc == src) // If the components are inside the machine, delete them.
 				qdel(A)
 			else // Otherwise we assume they were dropped to the ground during deconstruction, and were not removed from the component_parts list by deconstruction code.
-				component_parts -= A
+				component_parts.Remove(A)
 	if(contents) // The same for contents.
 		for(var/atom/A in contents)
 			qdel(A)
 	return ..()
 
-/obj/machinery/process()//If you dont use process or power why are you here
-	if(!(use_power || idle_power_usage || active_power_usage))
+/obj/machinery/process() // If you don't use process or power, why are you here?
+	if(!(power_state || power_usage[USE_POWER_IDLE] || power_usage[USE_POWER_ACTIVE]))
 		return PROCESS_KILL
 
 /obj/machinery/emp_act(severity)
-	if(use_power && stat == 0)
+	if(power_state && stat == 0)
 		use_power(7500 / severity)
 
-		var/obj/effect/overlay/pulse2 = PoolOrNew(/obj/effect/overlay, src.loc)
+		var/obj/effect/overlay/pulse2 = PoolOrNew(/obj/effect/overlay, loc)
 		pulse2.icon = 'icons/effects/effects.dmi'
 		pulse2.icon_state = "empdisable"
 		pulse2.name = "emp sparks"
@@ -153,36 +156,31 @@ Class Procs:
 
 /obj/machinery/ex_act(severity)
 	switch(severity)
-		if(1.0)
+		if(1)
 			qdel(src)
 			return
-		if(2.0)
+		if(2)
 			if(prob(50))
 				qdel(src)
 				return
-		if(3.0)
+		if(3)
 			if(prob(25))
 				qdel(src)
 				return
-		else
-	return
 
 /obj/machinery/blob_act()
 	if(prob(50))
 		qdel(src)
 
-//sets the use_power var and then forces an area power update
-/obj/machinery/proc/update_use_power(new_use_power)
-	use_power = new_use_power
-	use_power(0) //force area power update
+// Sets the power_state var and then forces an area power update.
+/obj/machinery/proc/update_power_state(new_power_state)
+	power_state = new_power_state
+	use_power(0) // Force area power update.
 
 /obj/machinery/proc/auto_use_power()
-	if(!powered(power_channel))
+	if(!powered(power_channel) || power_state == USE_POWER_OFF)
 		return 0
-	if(src.use_power == 1)
-		use_power(idle_power_usage, power_channel, 1)
-	else if(src.use_power >= 2)
-		use_power(active_power_usage, power_channel, 1)
+	use_power(power_usage[power_state], power_channel, 1)
 	return 1
 
 /obj/machinery/Topic(href, href_list)
@@ -191,7 +189,7 @@ Class Procs:
 		return 1
 	if(usr.restrained() || usr.lying || usr.stat)
 		return 1
-	if(!(ishuman(usr) || issilicon(usr) || ismonkey(usr) && global.CTticker && global.CTticker.mode.name == "monkey"))
+	if(!ishuman(usr) || !issilicon(usr) || (ismonkey(usr) && global.CTticker?.mode.name != "monkey"))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return 1
 
@@ -204,10 +202,10 @@ Class Procs:
 			norange = 1
 
 	if(!norange)
-		if((!in_range(src, usr) || !isturf(src.loc)) && !issilicon(usr))
+		if((!in_range(src, usr) || !isturf(loc)) && !issilicon(usr))
 			return 1
 
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 	return 0
 
 /obj/machinery/attack_ai(mob/user as mob)
@@ -215,12 +213,12 @@ Class Procs:
 		// For some reason attack_robot doesn't work
 		// This is to stop robots from using cameras to remotely control machines.
 		if(user.client && user.client.eye == user)
-			return src.attack_hand(user)
+			return attack_hand(user)
 	else
-		return src.attack_hand(user)
+		return attack_hand(user)
 
 /obj/machinery/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/attack_hand(mob/user as mob)
 	if(stat & (NOPOWER | BROKEN | MAINT))
@@ -232,7 +230,7 @@ Class Procs:
 		return 1
 /*
 	//distance checks are made by atom/proc/DblClick
-	if ((get_dist(src, user) > 1 || !istype(src.loc, /turf)) && !issilicon(user))
+	if ((get_dist(src, user) > 1 || !istype(loc, /turf)) && !issilicon(user))
 		return 1
 */
 	if(ishuman(user))
@@ -244,7 +242,7 @@ Class Procs:
 			to_chat(H, SPAN_WARNING("You momentarily forget how to use [src]."))
 			return 1
 
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	return 0
 
 /obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.

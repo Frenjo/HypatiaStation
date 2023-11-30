@@ -41,12 +41,18 @@
 	name = "turret"
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "grey_target_prism"
-	var/raised = 0
-	var/enabled = 1
+	density = TRUE
 	anchored = TRUE
 	layer = 3
 	invisibility = INVISIBILITY_LEVEL_TWO
-	density = TRUE
+
+	power_usage = list(
+		USE_POWER_IDLE = 50,
+		USE_POWER_ACTIVE = 300
+	)
+
+	var/raised = 0
+	var/enabled = 1
 	var/lasers = 0
 	var/lasertype = 1
 		// 1 = lasers
@@ -62,9 +68,6 @@
 	var/lastfired = 0
 	var/shot_delay = 30 //3 seconds between shots
 	var/datum/effect/system/spark_spread/spark_system
-	use_power = 1
-	idle_power_usage = 50
-	active_power_usage = 300
 //	var/list/targets
 	var/atom/movable/cur_target
 	var/targeting_active = 0
@@ -206,7 +209,7 @@
 		if(!isPopping())
 			if(isDown())
 				popUp()
-				use_power = 2
+				update_power_state(USE_POWER_ACTIVE)
 			else
 				spawn()
 					if(!targeting_active)
@@ -222,7 +225,7 @@
 	else if(!isPopping())	//else, pop down
 		if(!isDown())
 			popDown()
-			use_power = 1
+			update_power_state(USE_POWER_IDLE)
 	return
 
 

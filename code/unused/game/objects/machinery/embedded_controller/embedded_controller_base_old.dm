@@ -39,8 +39,9 @@
 /obj/machinery/embedded_controller/radio
 	icon = 'icons/obj/machines/airlock_machines.dmi'
 	icon_state = "airlock_control_standby"
-	power_channel = ENVIRON
 	density = FALSE
+
+	power_channel = ENVIRON
 
 	// Setup parameters only
 	var/id_tag

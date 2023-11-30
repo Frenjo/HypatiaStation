@@ -1,7 +1,6 @@
 /obj/machinery/atmospherics/trinary
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH|WEST
-	use_power = 1
 
 	var/datum/gas_mixture/air1
 	var/datum/gas_mixture/air2

@@ -3,9 +3,11 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 300
-	active_power_usage = 300
+
+	power_usage = list(
+		USE_POWER_IDLE = 300,
+		USE_POWER_ACTIVE = 300
+	)
 
 	var/obj/item/circuitboard/circuit = null //if circuit==null, computer can't disassembly
 	var/processing = 0

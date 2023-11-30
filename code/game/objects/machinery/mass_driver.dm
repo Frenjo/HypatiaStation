@@ -6,9 +6,11 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "mass_driver"
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 2
-	active_power_usage = 50
+
+	power_usage = list(
+		USE_POWER_IDLE = 2,
+		USE_POWER_ACTIVE = 50
+	)
 
 	var/power = 1.0
 	var/code = 1.0

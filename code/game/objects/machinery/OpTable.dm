@@ -5,9 +5,12 @@
 	icon_state = "table2-idle"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 1
-	active_power_usage = 5
+
+	power_usage = list(
+		USE_POWER_IDLE = 1,
+		USE_POWER_ACTIVE = 5
+	)
+
 	var/mob/living/carbon/human/victim = null
 	var/strapped = 0.0
 

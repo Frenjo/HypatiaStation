@@ -6,9 +6,17 @@
 
 	density = TRUE
 	anchored = FALSE
+
+	power_state = USE_POWER_IDLE
+	power_usage = list(
+		USE_POWER_IDLE = 10,
+		USE_POWER_ACTIVE = 500
+	)
+
+	req_access = list(ACCESS_ENGINE)
+
 	var/state = 0
 	var/locked = 0
-	req_access = list(ACCESS_ENGINE)
 
 	var/obj/item/fuel_assembly/cur_assembly
 	var/fuel_usage = 0.0001			//percentage of available fuel to use per cycle
@@ -16,9 +24,6 @@
 	var/injecting = 0
 	var/trying_to_swap_fuel = 0
 
-	use_power = 1
-	idle_power_usage = 10
-	active_power_usage = 500
 	var/remote_access_enabled = 1
 	var/cached_power_avail = 0
 	var/emergency_insert_ready = 0
@@ -156,6 +161,7 @@
 		else
 			dat += "<a href='?src=\ref[src];emergency_fuel_assembly=1'>\[[emergency_insert_ready ? "Cancel emergency insertion" : "Emergency insert"]\]</a><br>"
 		var/font_colour = "green"
+		var/active_power_usage = power_usage[USE_POWER_ACTIVE]
 		if(cached_power_avail < active_power_usage)
 			font_colour = "red"
 		else if(cached_power_avail < active_power_usage * 2)
@@ -205,7 +211,7 @@
 		new_usage = max(new_usage, 0.01)
 		new_usage = min(new_usage, 100)
 		fuel_usage = new_usage / 100
-		active_power_usage = 500 + 1000 * fuel_usage
+		power_usage[USE_POWER_ACTIVE] = 500 + 1000 * fuel_usage
 
 	if( href_list["update_extern"] )
 		var/obj/machinery/computer/rust_fuel_control/C = locate(href_list["update_extern"])
@@ -222,13 +228,13 @@
 	if(!injecting && cur_assembly)
 		icon_state = "injector1"
 		injecting = 1
-		use_power = 1
+		update_power_state(USE_POWER_IDLE)
 
 /obj/machinery/power/rust_fuel_injector/proc/StopInjecting()
 	if(injecting)
 		injecting = 0
 		icon_state = "injector0"
-		use_power = 0
+		update_power_state(USE_POWER_OFF)
 
 /obj/machinery/power/rust_fuel_injector/proc/Inject()
 	if(!injecting)

@@ -10,7 +10,7 @@
 	icon_state = "smes"
 	density = TRUE
 	anchored = TRUE
-	use_power = 0
+
 	var/output = 50000
 
 	var/capacity = 5e6 // maximum charge

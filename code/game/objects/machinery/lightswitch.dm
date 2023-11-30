@@ -7,9 +7,12 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "light1"
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 20
+
 	power_channel = LIGHT
+	power_usage = list(
+		USE_POWER_IDLE = 20
+	)
+
 	var/on = 1
 	var/area/connected_area = null
 	var/other_area = null

@@ -250,7 +250,7 @@
 						heat_capacity = 1
 					removed.temperature = min((removed.temperature*heat_capacity + heating_power)/heat_capacity, 1000)
 					*/
-					var/heat_produced = min(removed.get_thermal_energy_change(new_temperature), idle_power_usage)	//obviously can't produce more heat than the machine draws from it's power source
+					var/heat_produced = min(removed.get_thermal_energy_change(new_temperature), power_usage[USE_POWER_IDLE])	//obviously can't produce more heat than the machine draws from it's power source
 					removed.add_thermal_energy(heat_produced)
 
 				env.merge(removed)
@@ -270,9 +270,11 @@
 	desc = "This machine has a dish-like shape and green lights. It is designed to detect and process subspace radio activity."
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	//idle_power_usage = 30
-	idle_power_usage = 600
+
+	power_usage = list(
+		USE_POWER_IDLE = 600
+	)
+
 	machinetype = 1
 	//heatgen = 0
 	operating_temperature = null
@@ -324,9 +326,11 @@
 	desc = "A mighty piece of hardware used to send/receive massive amounts of data."
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	//idle_power_usage = 80
-	idle_power_usage = 1600
+
+	power_usage = list(
+		USE_POWER_IDLE = 1600
+	)
+
 	machinetype = 7
 	//heatgen = 40
 	operating_temperature = 40 + T0C
@@ -359,9 +363,11 @@
 	desc = "A mighty piece of hardware used to send massive amounts of data far away."
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	//idle_power_usage = 30
-	idle_power_usage = 600
+
+	power_usage = list(
+		USE_POWER_IDLE = 600
+	)
+
 	machinetype = 8
 	//heatgen = 0
 	operating_temperature = null
@@ -412,9 +418,11 @@
 	desc = "A mighty piece of hardware used to send massive amounts of data quickly."
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	//idle_power_usage = 50
-	idle_power_usage = 1000
+
+	power_usage = list(
+		USE_POWER_IDLE = 1000
+	)
+
 	machinetype = 2
 	//heatgen = 20
 	operating_temperature = 20 + T0C
@@ -463,9 +471,11 @@
 	desc = "This machine is used to process large quantities of information."
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	//idle_power_usage = 30
-	idle_power_usage = 600
+
+	power_usage = list(
+		USE_POWER_IDLE = 600
+	)
+
 	machinetype = 3
 	//heatgen = 100
 	operating_temperature = 100 + T0C
@@ -501,9 +511,11 @@
 	desc = "A machine used to store data and network statistics."
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	//idle_power_usage = 15
-	idle_power_usage = 300
+
+	power_usage = list(
+		USE_POWER_IDLE = 300
+	)
+
 	machinetype = 4
 	//heatgen = 50
 	operating_temperature = 50 + T0C

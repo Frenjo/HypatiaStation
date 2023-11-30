@@ -7,20 +7,21 @@
 	desc = "Machine that charges a shield generator."
 	icon = 'code/WorkInProgress/Cael_Aislinn/ShieldGen/shielding.dmi'
 	icon_state = "capacitor"
-	var/active = 1
 	density = TRUE
 	anchored = TRUE
+
+	power_usage = list(
+		USE_POWER_IDLE = 10,
+		USE_POWER_ACTIVE = 100
+	)
+
+	var/active = 1
 	var/stored_charge = 0
 	var/time_since_fail = 100
 	var/max_charge = 5e6
 	var/charge_limit = 200000
 	var/locked = 0
-	//
-	use_power = 1			//0 use nothing
-							//1 use idle power
-							//2 use active power
-	idle_power_usage = 10
-	active_power_usage = 100
+
 	var/charge_rate = 100
 	var/obj/machinery/shield_gen/owned_gen
 
@@ -112,17 +113,17 @@
 /obj/machinery/shield_capacitor/process()
 	//
 	if(active)
-		use_power = 2
+		update_power_state(USE_POWER_ACTIVE)
 		if(stored_charge + charge_rate > max_charge)
-			active_power_usage = max_charge - stored_charge
+			power_usage[USE_POWER_ACTIVE] = max_charge - stored_charge
 		else
-			active_power_usage = charge_rate
-		stored_charge += active_power_usage
+			power_usage[USE_POWER_ACTIVE] = charge_rate
+		stored_charge += power_usage[USE_POWER_ACTIVE]
 	else
-		use_power = 1
+		update_power_state(USE_POWER_IDLE)
 
 	time_since_fail++
-	if(stored_charge < active_power_usage * 1.5)
+	if(stored_charge < power_usage[USE_POWER_ACTIVE] * 1.5)
 		time_since_fail = 0
 
 /obj/machinery/shield_capacitor/Topic(href, list/href_list)
@@ -134,9 +135,9 @@
 	if( href_list["toggle"] )
 		active = !active
 		if(active)
-			use_power = 2
+			update_power_state(USE_POWER_ACTIVE)
 		else
-			use_power = 1
+			update_power_state(USE_POWER_IDLE)
 	if( href_list["charge_rate"] )
 		charge_rate += text2num(href_list["charge_rate"])
 		if(charge_rate > charge_limit)

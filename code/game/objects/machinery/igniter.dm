@@ -4,9 +4,11 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "igniter1"
 	anchored = TRUE
-	use_power = TRUE
-	idle_power_usage = 2
-	active_power_usage = 4
+
+	power_usage = list(
+		USE_POWER_IDLE = 2,
+		USE_POWER_ACTIVE = 4
+	)
 
 	var/id = null
 	var/on = TRUE
@@ -132,9 +134,11 @@
 	icon_state = "launcherbtt"
 	desc = "A remote control switch for a mounted igniter."
 	anchored = TRUE
-	use_power = TRUE
-	idle_power_usage = 2
-	active_power_usage = 4
+
+	power_usage = list(
+		USE_POWER_IDLE = 2,
+		USE_POWER_ACTIVE = 4
+	)
 
 	var/id = null
 	var/active = FALSE

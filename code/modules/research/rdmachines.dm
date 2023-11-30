@@ -7,7 +7,6 @@
 	icon = 'icons/obj/machines/research.dmi'
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
 
 	var/busy = FALSE
 	var/hacked = FALSE
@@ -67,7 +66,7 @@
 
 	if(shocked)
 		shock(user, 50)
-	
+
 	return 0
 
 /obj/machinery/r_n_d/Topic(href, href_list)

@@ -4,12 +4,13 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "doorctrl0"
 	desc = "A remote control-switch for a door."
-	power_channel = ENVIRON
-
 	anchored = TRUE
-	use_power = TRUE
-	idle_power_usage = 2
-	active_power_usage = 4
+
+	power_channel = ENVIRON
+	power_usage = list(
+		USE_POWER_IDLE = 2,
+		USE_POWER_ACTIVE = 4
+	)
 
 	var/id = null
 	var/range = 10
@@ -143,9 +144,11 @@
 	icon_state = "launcherbtt"
 	desc = "A remote control switch for a mass driver."
 	anchored = TRUE
-	use_power = TRUE
-	idle_power_usage = 2
-	active_power_usage = 4
+
+	power_usage = list(
+		USE_POWER_IDLE = 2,
+		USE_POWER_ACTIVE = 4
+	)
 
 	var/id = null
 	var/active = FALSE

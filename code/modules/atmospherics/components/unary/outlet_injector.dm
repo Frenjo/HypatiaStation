@@ -1,7 +1,6 @@
 /obj/machinery/atmospherics/unary/outlet_injector
 	icon = 'icons/obj/atmospherics/outlet_injector.dmi'
 	icon_state = "off"
-	use_power = TRUE
 
 	name = "Air Injector (Off)"
 	desc = "Has a valve and pump attached to it"

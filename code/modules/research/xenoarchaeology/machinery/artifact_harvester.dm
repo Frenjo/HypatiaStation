@@ -4,9 +4,11 @@
 	icon_state = "incubator"	//incubator_on
 	anchored = TRUE
 	density = TRUE
-	idle_power_usage = 50
-	active_power_usage = 750
-	use_power = 1
+
+	power_usage = list(
+		USE_POWER_IDLE = 50,
+		USE_POWER_ACTIVE = 750
+	)
 
 	var/harvesting = 0
 	var/obj/item/anobattery/inserted_battery
@@ -79,7 +81,7 @@
 
 		//check if we've finished
 		if(inserted_battery.stored_charge >= inserted_battery.capacity)
-			use_power = 1
+			update_power_state(USE_POWER_IDLE)
 			harvesting = 0
 			cur_artifact.anchored = FALSE
 			cur_artifact.being_used = 0
@@ -103,7 +105,7 @@
 
 		//if there's no charge left, finish
 		if(inserted_battery.stored_charge <= 0)
-			use_power = 1
+			update_power_state(USE_POWER_IDLE)
 			inserted_battery.stored_charge = 0
 			harvesting = 0
 			if(inserted_battery.battery_effect && inserted_battery.battery_effect.activated)
@@ -154,7 +156,7 @@
 					matching_effecttype = (inserted_battery.battery_effect.type == cur_artifact.my_effect.type)
 				if(!inserted_battery.battery_effect || (matching_id && matching_effecttype))
 					harvesting = 1
-					use_power = 2
+					update_power_state(USE_POWER_ACTIVE)
 					cur_artifact.anchored = TRUE
 					cur_artifact.being_used = 1
 					icon_state = "incubator_on"
@@ -202,7 +204,7 @@
 					if(!inserted_battery.battery_effect.activated)
 						inserted_battery.battery_effect.ToggleActivate(0)
 					harvesting = -1
-					use_power = 2
+					update_power_state(USE_POWER_ACTIVE)
 					icon_state = "incubator_on"
 					visible_message("<b>[src]</b> states, \"Warning, battery charge dump commencing.\"")
 			else

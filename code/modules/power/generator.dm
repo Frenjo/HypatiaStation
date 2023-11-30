@@ -6,8 +6,10 @@
 	density = TRUE
 	anchored = FALSE
 
-	use_power = 1
-	idle_power_usage = 100 //Watts, I hope.  Just enough to do the computer and display things.
+	power_state = USE_POWER_IDLE
+	power_usage = list(
+		USE_POWER_IDLE = 100 //Watts, I hope.  Just enough to do the computer and display things.
+	)
 
 	var/obj/machinery/atmospherics/binary/circulator/circ1
 	var/obj/machinery/atmospherics/binary/circulator/circ2
@@ -126,7 +128,7 @@
 		anchored = !anchored
 		to_chat(user, SPAN_INFO("You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."))
 
-		use_power = anchored
+		update_power_state(anchored)
 		if(anchored) // Powernet connection stuff.
 			connect_to_network()
 		else

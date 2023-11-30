@@ -2,13 +2,16 @@
 	name = "Crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
 	icon_state = "crew"
-	use_power = 1
-	idle_power_usage = 250
-	active_power_usage = 500
 	circuit = /obj/item/circuitboard/crew
-	var/list/tracked = list(  )
+
+	power_usage = list(
+		USE_POWER_IDLE = 250,
+		USE_POWER_ACTIVE = 500
+	)
 
 	light_color = "#315ab4"
+
+	var/list/tracked = list()
 
 /obj/machinery/computer/crew/New()
 	tracked = list()

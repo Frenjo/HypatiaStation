@@ -5,9 +5,10 @@
 	icon_state = "borgcharger0(old)"
 	density = TRUE
 
-	idle_power_usage = 100
-	active_power_usage = 1000
-	use_power = 1
+	power_usage = list(
+		USE_POWER_IDLE = 100,
+		USE_POWER_ACTIVE = 1000
+	)
 
 	var/spawn_progress = 0
 	var/max_spawn_ticks = 5
@@ -85,7 +86,7 @@
 			max_spawn_ticks = rand(5, 30)
 
 			if(!length(spawning_types))
-				use_power = 1
+				update_power_state(USE_POWER_IDLE)
 				icon_state = "borgcharger0(old)"
 
 		else if(prob(5))
@@ -113,5 +114,5 @@
 
 			spawning_types.Add(construction[construction[index]])
 			spawn_progress = 0
-			use_power = 2
+			update_power_state(USE_POWER_ACTIVE)
 			icon_state = "borgcharger1(old)"

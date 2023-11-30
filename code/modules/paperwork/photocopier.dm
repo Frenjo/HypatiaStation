@@ -4,10 +4,12 @@
 	icon_state = "bigscanner"
 	anchored = TRUE
 	density = TRUE
-	use_power = 1
-	idle_power_usage = 30
-	active_power_usage = 200
-	power_channel = EQUIP
+
+	power_usage = list(
+		USE_POWER_IDLE = 30,
+		USE_POWER_ACTIVE = 200
+	)
+
 	var/obj/item/paper/copy = null	//what's in the copier!
 	var/obj/item/photo/photocopy = null
 	var/copies = 1	//how many copies to print!

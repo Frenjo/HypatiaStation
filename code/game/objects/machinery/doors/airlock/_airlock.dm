@@ -20,6 +20,7 @@
 	name = "Airlock"
 	icon = 'icons/obj/doors/interior.dmi'
 	icon_state = "door_closed"
+
 	power_channel = ENVIRON
 
 	secondsElectrified = 0 //How many seconds remain until the door is no longer electrified. -1 if it is permanently electrified until someone fixes it.

@@ -3,10 +3,10 @@
 	desc = "You're not so sure about this, anymore..."
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "syndbeacon"
-
-	use_power = 0
 	anchored = TRUE
 	density = TRUE
+
+	power_state = USE_POWER_OFF
 
 	var/charges = 1
 	var/insisting = 0

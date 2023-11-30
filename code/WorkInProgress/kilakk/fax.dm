@@ -8,10 +8,11 @@ var/list/alldepartments = list("Central Command")
 	req_one_access = list(ACCESS_LAWYER, ACCESS_BRIDGE)
 	anchored = TRUE
 	density = TRUE
-	use_power = 1
-	idle_power_usage = 30
-	active_power_usage = 200
-	power_channel = EQUIP
+
+	power_usage = list(
+		USE_POWER_IDLE = 30,
+		USE_POWER_ACTIVE = 200
+	)
 
 	var/obj/item/card/id/scan = null // identification
 	var/authenticated = 0

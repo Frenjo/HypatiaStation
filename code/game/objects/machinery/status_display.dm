@@ -31,8 +31,9 @@
 	anchored = TRUE
 	density = FALSE
 
-	use_power = TRUE
-	idle_power_usage = 10
+	power_usage = list(
+		USE_POWER_IDLE = 10
+	)
 
 	var/mode = STATUS_MODE_EVAC_SHUTTLE
 	var/last_mode

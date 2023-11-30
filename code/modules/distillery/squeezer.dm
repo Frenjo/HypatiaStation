@@ -5,9 +5,11 @@
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 10
-	active_power_usage = 500
+
+	power_usage = list(
+		USE_POWER_IDLE = 10,
+		USE_POWER_ACTIVE = 500
+	)
 
 	var/list/obj/item/reagent_containers/food/input = list()
 	var/obj/item/reagent_containers/food/squeezed_item

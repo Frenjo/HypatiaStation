@@ -1,12 +1,10 @@
 #define SIPHONING 0
 #define SCRUBBING 1
 /obj/machinery/atmospherics/unary/vent_scrubber
-	icon = 'icons/obj/atmospherics/vent_scrubber.dmi'
-	icon_state = "off"
-
 	name = "Air Scrubber (Off)"
 	desc = "Has a valve and pump attached to it"
-	use_power = TRUE
+	icon = 'icons/obj/atmospherics/vent_scrubber.dmi'
+	icon_state = "off"
 
 	level = 1
 

@@ -4,10 +4,12 @@
 	icon_state = "borgcharger0"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 5 //internal circuitry
-	//active_power_usage = 1000
-	active_power_usage = 75000	//75 kW charging station
+
+	power_usage = list(
+		USE_POWER_IDLE = 5, // Internal circuitry.
+		USE_POWER_ACTIVE = 75000 // 75 kW charging station.
+	)
+
 	var/mob/occupant = null
 
 /obj/machinery/recharge_station/New()
@@ -67,7 +69,7 @@
 				R.cell.charge = min(R.cell.charge + 200, R.cell.maxcharge)
 				return
 			*/
-			R.cell.give(active_power_usage * CELLRATE)
+			R.cell.give(power_usage[USE_POWER_ACTIVE] * CELLRATE)
 
 /obj/machinery/recharge_station/proc/go_out()
 	if(!(src.occupant))
@@ -80,10 +82,7 @@
 	src.occupant.loc = src.loc
 	src.occupant = null
 	build_icon()
-	src.use_power = 1
-	use_power(0)	//update area power usage
-	return
-
+	update_power_state(USE_POWER_IDLE) //update area power usage
 
 /obj/machinery/recharge_station/verb/move_eject()
 	set category = "Object"
@@ -125,6 +124,4 @@
 		O.loc = src.loc*/
 	add_fingerprint(R)
 	build_icon()
-	src.use_power = 2
-	use_power(0)	//update area power usage
-	return
+	update_power_state(USE_POWER_ACTIVE) //update area power usage

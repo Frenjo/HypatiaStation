@@ -5,9 +5,12 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "recharger0"
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 4
-	//active_power_usage = 250
+
+	power_usage = list(
+		USE_POWER_IDLE = 4,
+		USE_POWER_ACTIVE = 250
+	)
+
 	var/power_rating = 15000	//15 kW
 	var/obj/item/charging = null
 
@@ -36,7 +39,7 @@
 		user.drop_item()
 		G.loc = src
 		charging = G
-		use_power = 2
+		update_power_state(USE_POWER_ACTIVE)
 		update_icon()
 
 	else if(istype(G, /obj/item/wrench))
@@ -54,7 +57,7 @@
 		charging.update_icon()
 		charging.loc = loc
 		charging = null
-		use_power = 1
+		update_power_state(USE_POWER_IDLE)
 		update_icon()
 
 /obj/machinery/recharger/attack_paw(mob/user as mob)

@@ -5,9 +5,11 @@
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 10
-	active_power_usage = 10000
+
+	power_usage = list(
+		USE_POWER_IDLE = 10,
+		USE_POWER_ACTIVE = 10000
+	)
 
 	var/list/obj/item/reagent_containers/food/input = list()
 	var/list/obj/item/reagent_containers/food/output = list()
@@ -39,13 +41,13 @@
 		return
 
 	if(!busy)
-		use_power = 1
+		update_power_state(USE_POWER_IDLE)
 		if(length(input))
 			centrifuging_item = input[1]
 			input -= centrifuging_item
 			progress = 0
 			busy = 1
-			use_power = 2
+			update_power_state(USE_POWER_ACTIVE)
 		return
 
 	progress++

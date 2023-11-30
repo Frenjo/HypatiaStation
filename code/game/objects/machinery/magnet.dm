@@ -12,8 +12,10 @@
 	level = 1		// underfloor
 	layer = 2.5
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 50
+
+	power_usage = list(
+		USE_POWER_IDLE = 50
+	)
 
 	var/freq = 1449		// radio frequency
 	var/electricity_level = 1 // intensity of the magnetic pull
@@ -81,10 +83,10 @@
 
 	// Update power usage:
 	if(on)
-		use_power = 2
-		active_power_usage = electricity_level*15
+		power_usage[USE_POWER_ACTIVE] = electricity_level * 15
+		update_power_state(USE_POWER_ACTIVE)
 	else
-		use_power = 0
+		update_power_state(USE_POWER_OFF)
 
 
 	// Overload conditions:
@@ -194,8 +196,10 @@
 	icon_state = "airlock_control_standby"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 45
+
+	power_usage = list(
+		USE_POWER_IDLE = 45
+	)
 
 	var/frequency = 1449
 	var/code = 0

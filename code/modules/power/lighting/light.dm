@@ -12,10 +12,13 @@
 	desc = "A lighting fixture."
 	anchored = TRUE
 	layer = 5					// They were appearing under mobs which is a little weird - Ostaf
-	use_power = 2
-	idle_power_usage = 2
-	active_power_usage = 20
-	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
+
+	power_channel = LIGHT // Lights are calc'd via area so they dont need to be in the machine list.
+	power_state = USE_POWER_ACTIVE
+	power_usage = list(
+		USE_POWER_IDLE = 2,
+		USE_POWER_ACTIVE = 20
+	)
 
 	var/base_state = "tube"		// base description and icon_state
 	var/on = FALSE				// TRUE if on, FALSE if off
@@ -279,7 +282,7 @@
 /obj/machinery/light/proc/update(trigger = 1)
 	update_icon()
 	if(on)
-		use_power = 2
+		update_power_state(USE_POWER_ACTIVE)
 		var/changed = 0
 		if(isnotnull(current_mode) && (current_mode in lighting_modes))
 			changed = set_light(arglist(lighting_modes[current_mode]))
@@ -289,10 +292,10 @@
 		if(trigger && changed)
 			switch_check()
 	else
-		use_power = 0
+		update_power_state(USE_POWER_OFF)
 		set_light(0)
 
-	active_power_usage = ((light_range + light_power) * 10)
+	power_usage[USE_POWER_ACTIVE] = ((light_range + light_power) * 10)
 
 /obj/machinery/light/proc/switch_check()
 	if(status != LIGHT_OK)

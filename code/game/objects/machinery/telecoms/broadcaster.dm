@@ -17,8 +17,11 @@
 	desc = "A dish-shaped machine used to broadcast processed subspace signals."
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 25
+
+	power_usage = list(
+		USE_POWER_IDLE = 25
+	)
+
 	machinetype = 5
 	//heatgen = 0
 	operating_temperature = null
@@ -113,8 +116,9 @@
 	desc = "A compact machine used for portable subspace telecommuniations processing."
 	density = TRUE
 	anchored = TRUE
-	use_power = 0
-	idle_power_usage = 0
+
+	power_state = USE_POWER_OFF
+
 	machinetype = 6
 	//heatgen = 0
 	operating_temperature = null

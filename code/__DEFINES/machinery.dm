@@ -6,17 +6,22 @@
 // Doors!
 #define DOOR_CRUSH_DAMAGE 10
 
-// channel numbers for power
-#define EQUIP	1
-#define LIGHT	2
-#define ENVIRON	3
-#define TOTAL	4	//for total power used only
+// Values for the power_state variable.
+#define USE_POWER_OFF		0 // Don't run the auto.
+#define USE_POWER_IDLE		1 // Run auto, use idle.
+#define USE_POWER_ACTIVE	2 // Run auto, use active.
+
+// Values for the power_channel variable.
+#define EQUIP	1 // Use the equipment power channel.
+#define LIGHT	2 // Use the lighting power channel.
+#define ENVIRON	3 // Use the environment power channel.
+#define TOTAL	4 // For total power used only.
 
 // bitflags for machine stat variable
 #define BROKEN		1
 #define NOPOWER		2
 #define POWEROFF	4		// tbd
-#define MAINT		8			// under maintaince
+#define MAINT		8		// under maintaince
 #define EMPED		16		// temporary broken by EMP pulse
 
 //bitflags for door switches.

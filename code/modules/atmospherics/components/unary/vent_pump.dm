@@ -10,12 +10,10 @@
 //3: Do not pass either
 
 /obj/machinery/atmospherics/unary/vent_pump
-	icon = 'icons/obj/atmospherics/vent_pump.dmi'
-	icon_state = "off"
-
 	name = "Air Vent (Off)"
 	desc = "Has a valve and pump attached to it"
-	use_power = TRUE
+	icon = 'icons/obj/atmospherics/vent_pump.dmi'
+	icon_state = "off"
 
 	level = 1
 

@@ -9,9 +9,10 @@
 	density = TRUE
 	req_access = list(ACCESS_ENGINE_EQUIP)
 
-	use_power = 0
-	idle_power_usage = 10
-	active_power_usage = 300
+	power_usage = list(
+		USE_POWER_IDLE = 10,
+		USE_POWER_ACTIVE = 300
+	)
 
 	var/active = 0
 	var/powered = 0
@@ -60,6 +61,7 @@
 	return 1
 
 /obj/machinery/power/emitter/update_icon()
+	var/active_power_usage = power_usage[USE_POWER_ACTIVE]
 	if(active && powernet && avail((fire_mode == GUN_MODE_BEAM) ? active_power_usage : active_power_usage / 2))
 		icon_state = "emitter_+a"
 	else
@@ -108,6 +110,7 @@
 	if(stat & BROKEN)
 		return
 
+	var/active_power_usage = power_usage[USE_POWER_ACTIVE]
 	if(src.state != 2 || (!powernet && active_power_usage))
 		src.active = 0
 		update_icon()

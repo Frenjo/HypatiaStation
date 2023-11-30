@@ -5,12 +5,14 @@
 	layer = 2.9
 	density = TRUE
 	anchored = TRUE
+
+	power_usage = list(
+		USE_POWER_IDLE = 5,
+		USE_POWER_ACTIVE = 50
+	)
+
 	var/broken = 0
 	var/processing = 0
-	use_power = 1
-	idle_power_usage = 5
-	active_power_usage = 50
-
 
 /datum/food_processor_process
 	var/input
@@ -67,7 +69,7 @@
 /datum/food_processor_process/mob/slime
 		input = /mob/living/carbon/slime
 		output = /obj/item/reagent_containers/glass/beaker/slime
-	
+
 /datum/food_processor_process/mob/monkey
 	input = /mob/living/carbon/monkey
 	output = null

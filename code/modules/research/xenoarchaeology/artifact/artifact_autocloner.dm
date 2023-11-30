@@ -5,9 +5,10 @@
 	icon_state = "cellold0"
 	density = TRUE
 
-	use_power = 1
-	active_power_usage = 2000
-	idle_power_usage = 1000
+	power_usage = list(
+		USE_POWER_IDLE = 1000,
+		USE_POWER_ACTIVE = 2000
+	)
 
 	var/spawn_type
 	var/current_ticks_spawning = 0
@@ -64,7 +65,7 @@
 		//if we've finished growing...
 		if(current_ticks_spawning >= ticks_required_to_spawn)
 			current_ticks_spawning = 0
-			use_power = 1
+			update_power_state(USE_POWER_IDLE)
 			visible_message(SPAN_INFO("\icon[src] [src] pings!"))
 			icon_state = "cellold1"
 			desc = "It's full of a bubbling viscous liquid, and is lit by a mysterious glow."
@@ -73,11 +74,11 @@
 
 		//if we're getting close to finished, kick into overdrive power usage
 		if(current_ticks_spawning / ticks_required_to_spawn > 0.75)
-			use_power = 2
+			update_power_state(USE_POWER_ACTIVE)
 			icon_state = "cellold2"
 			desc = "It's full of a bubbling viscous liquid, and is lit by a mysterious glow. A dark shape appears to be forming inside..."
 		else
-			use_power = 1
+			update_power_state(USE_POWER_IDLE)
 			icon_state = "cellold1"
 			desc = "It's full of a bubbling viscous liquid, and is lit by a mysterious glow."
 	else

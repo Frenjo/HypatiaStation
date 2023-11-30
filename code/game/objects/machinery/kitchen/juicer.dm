@@ -6,9 +6,12 @@
 	layer = 2.9
 	density = FALSE
 	anchored = FALSE
-	use_power = 1
-	idle_power_usage = 5
-	active_power_usage = 100
+
+	power_usage = list(
+		USE_POWER_IDLE = 5,
+		USE_POWER_ACTIVE = 100
+	)
+
 	var/obj/item/reagent_containers/beaker = null
 	var/static/list/allowed_items = list (
 		/obj/item/reagent_containers/food/snacks/grown/tomato = "tomatojuice",

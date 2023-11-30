@@ -9,9 +9,12 @@
 	desc = "Nothing is being built."
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 20
-	active_power_usage = 5000
+
+	power_usage = list(
+		USE_POWER_IDLE = 20,
+		USE_POWER_ACTIVE = 5000
+	)
+
 	req_access = list(ACCESS_ROBOTICS)
 
 	var/time_coeff = 1.5 //can be upgraded with research
@@ -357,10 +360,10 @@
 	desc = "It's building [being_built]."
 	remove_resources(part)
 	overlays += "fab-active"
-	use_power = 2
+	update_power_state(USE_POWER_ACTIVE)
 	updateUsrDialog()
 	sleep(get_construction_time_w_coeff(part))
-	use_power = 1
+	update_power_state(USE_POWER_IDLE)
 	overlays -= "fab-active"
 	desc = initial(desc)
 	if(being_built)

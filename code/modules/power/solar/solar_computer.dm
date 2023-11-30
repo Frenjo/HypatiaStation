@@ -15,8 +15,11 @@
 	icon_state = "solar"
 	anchored = TRUE
 	density = TRUE
-	use_power = TRUE
-	idle_power_usage = 250
+
+	power_state = USE_POWER_IDLE
+	power_usage = list(
+		USE_POWER_IDLE = 250
+	)
 
 	var/id = 0
 	var/cdir = 0

@@ -13,9 +13,11 @@
 	name = "AI Power Supply"
 	invisibility = INVISIBILITY_MAXIMUM
 
-	power_channel = EQUIP
-	use_power = 2
-	active_power_usage = 1000
+	power_state = USE_POWER_ACTIVE
+	power_usage = list(
+		USE_POWER_IDLE = 0,
+		USE_POWER_ACTIVE = 1000
+	)
 
 	var/mob/living/silicon/ai/powered_ai = null
 
@@ -31,10 +33,10 @@
 	powered_ai = null
 	return ..()
 
-/obj/machinery/ai_power_supply/proc/update_power_status()
-	update_use_power(get_power_status())
+/obj/machinery/ai_power_supply/proc/update_power()
+	update_power_state(get_power_state())
 
-/obj/machinery/ai_power_supply/proc/get_power_status()
+/obj/machinery/ai_power_supply/proc/get_power_state()
 	if(powered_ai.stat == DEAD || isitem(powered_ai.loc) || !powered_ai.anchored)
-		return 0
-	return 2
+		return USE_POWER_OFF
+	return USE_POWER_ACTIVE

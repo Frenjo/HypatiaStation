@@ -8,7 +8,9 @@
 	anchored = TRUE
 	density = FALSE
 	unacidable = 1
-	use_power = 0
+
+	power_state = USE_POWER_OFF
+
 	//luminosity = 4
 	light_range = 4
 	var/obj/machinery/field_generator/FG1 = null

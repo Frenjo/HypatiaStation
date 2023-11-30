@@ -29,7 +29,7 @@ PROCESS_DEF(machinery)
 				GLOBL.machines.Remove(M)
 				continue
 
-			if(M?.use_power)
+			if(M?.power_state)
 				M.auto_use_power()
 
 		SCHECK

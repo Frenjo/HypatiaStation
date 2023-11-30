@@ -48,7 +48,6 @@ display round(lastgen) and plasmatank amount
 	icon_state = "portgen0"
 	density = TRUE
 	anchored = FALSE
-	use_power = 0
 
 	var/active = 0
 	var/power_gen = 5000

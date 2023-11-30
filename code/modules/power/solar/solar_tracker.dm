@@ -10,7 +10,6 @@
 	icon_state = "tracker"
 	anchored = TRUE
 	density = TRUE
-	use_power = FALSE
 
 	var/id = 0
 	var/sun_angle = 0		// sun angle as set by sun datum

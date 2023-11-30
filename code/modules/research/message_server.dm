@@ -51,9 +51,11 @@ GLOBAL_GLOBL_LIST_NEW(message_servers)
 	name = "Messaging Server"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 10
-	active_power_usage = 100
+
+	power_usage = list(
+		USE_POWER_IDLE = 10,
+		USE_POWER_ACTIVE = 100
+	)
 
 	var/list/datum/data_pda_msg/pda_msgs = list()
 	var/list/datum/data_rc_msg/rc_msgs = list()
@@ -176,9 +178,11 @@ GLOBAL_GLOBL_LIST_NEW(message_servers)
 	name = "Blackbox Recorder"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 10
-	active_power_usage = 100
+
+	power_usage = list(
+		USE_POWER_IDLE = 10,
+		USE_POWER_ACTIVE = 100
+	)
 
 	var/list/messages = list()		//Stores messages of non-standard frequencies
 	var/list/messages_admin = list()

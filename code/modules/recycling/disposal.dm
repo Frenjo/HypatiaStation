@@ -14,8 +14,11 @@
 	icon_state = "disposal"
 	anchored = TRUE
 	density = TRUE
-	active_power_usage = 600
-	idle_power_usage = 100
+
+	power_usage = list(
+		USE_POWER_IDLE = 100,
+		USE_POWER_ACTIVE = 600
+	)
 
 	var/datum/gas_mixture/air_contents	// internal reservoir
 	var/mode = 1	// item mode 0=off 1=charging 2=charged
@@ -343,7 +346,7 @@
 // timed process
 // charge the gas reservoir and perform flush if ready
 /obj/machinery/disposal/process()
-	use_power = 0
+	update_power_state(USE_POWER_OFF)
 	if(stat & BROKEN)			// nothing can happen if broken
 		return
 
@@ -367,13 +370,13 @@
 	if(stat & NOPOWER)			// won't charge if no power
 		return
 
-	use_power = 1
+	update_power_state(USE_POWER_IDLE)
 
 	if(mode != 1)		// if off or ready, no need to charge
 		return
 
 	// otherwise charge
-	use_power = 2
+	update_power_state(USE_POWER_ACTIVE)
 
 	var/atom/L = loc						// recharging from loc turf
 

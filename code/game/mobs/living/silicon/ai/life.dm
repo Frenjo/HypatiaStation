@@ -31,7 +31,7 @@
 		// Gain Power
 		adjustOxyLoss(-1)
 
-	power_supply?.update_power_status()
+	power_supply?.update_power()
 	check_power_status()
 
 	regular_hud_updates()

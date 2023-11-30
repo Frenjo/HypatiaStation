@@ -5,9 +5,11 @@
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "pad-idle"
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 200
-	active_power_usage = 5000
+
+	power_usage = list(
+		USE_POWER_IDLE = 200,
+		USE_POWER_ACTIVE = 5000
+	)
 
 //CARGO TELEPAD//
 /obj/machinery/telepad_cargo
@@ -16,9 +18,12 @@
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "pad-idle"
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 20
-	active_power_usage = 500
+
+	power_usage = list(
+		USE_POWER_IDLE = 20,
+		USE_POWER_ACTIVE = 500
+	)
+
 	var/stage = 0
 
 /obj/machinery/telepad_cargo/attackby(obj/item/W as obj, mob/user as mob)

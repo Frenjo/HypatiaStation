@@ -1,19 +1,19 @@
 /obj/machinery/drone_fabricator
 	name = "drone fabricator"
 	desc = "A large automated factory for producing maintenance drones."
-
+	icon = 'icons/obj/machines/drone_fab.dmi'
+	icon_state = "drone_fab_idle"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 20
-	active_power_usage = 5000
+
+	power_usage = list(
+		USE_POWER_IDLE = 20,
+		USE_POWER_ACTIVE = 5000
+	)
 
 	var/drone_progress = 0
 	var/produce_drones = 0
 	var/time_last_drone = 500
-
-	icon = 'icons/obj/machines/drone_fab.dmi'
-	icon_state = "drone_fab_idle"
 
 /obj/machinery/drone_fabricator/New()
 	..()

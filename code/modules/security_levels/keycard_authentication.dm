@@ -4,10 +4,12 @@
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "auth_off"
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 2
-	active_power_usage = 6
+
 	power_channel = ENVIRON
+	power_usage = list(
+		USE_POWER_IDLE = 2,
+		USE_POWER_ACTIVE = 6
+	)
 
 	var/active = FALSE				// This gets set to TRUE on all devices except the one where the initial request was made.
 	var/event = ""

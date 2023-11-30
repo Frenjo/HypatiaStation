@@ -54,18 +54,23 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	desc = "Enormous solenoid for generating extremely high power electromagnetic fields"
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
 	icon_state = "core0"
+	anchored = FALSE
 	density = TRUE
+
+	power_state = USE_POWER_IDLE
+	power_usage = list(
+		USE_POWER_IDLE = 50,
+		USE_POWER_ACTIVE = 500 //multiplied by field strength
+	)
+
+	req_access = list(ACCESS_ENGINE)
+
 	var/obj/effect/rust_em_field/owned_field
 	var/field_strength = 1//0.01
 	var/field_frequency = 1
 	var/id_tag = "allan, don't forget to set the ID of this one too"
-	req_access = list(ACCESS_ENGINE)
-	//
-	use_power = 1
-	idle_power_usage = 50
-	active_power_usage = 500	//multiplied by field strength
+
 	var/cached_power_avail = 0
-	anchored = FALSE
 
 	var/state = RUST_STATE_ZERO
 	var/locked = 1
@@ -223,6 +228,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 		<a href='?src=\ref[src];freq=1000'>\[++++\]</a><br>"
 
 		var/font_colour = "green"
+		var/active_power_usage = power_usage[USE_POWER_ACTIVE]
 		if(cached_power_avail < active_power_usage)
 			font_colour = "red"
 		else if(cached_power_avail < active_power_usage * 2)
@@ -237,7 +243,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	if(href_list["str"])
 		var/dif = text2num(href_list["str"])
 		field_strength = min(max(field_strength + dif, MIN_FIELD_STR), MAX_FIELD_STR)
-		active_power_usage = 5 * field_strength	//change to 500 later
+		power_usage[USE_POWER_ACTIVE] = 5 * field_strength	//change to 500 later
 		if(owned_field)
 			owned_field.ChangeFieldStrength(field_strength)
 
@@ -278,7 +284,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	icon_state = "core1"
 	//luminosity = 1
 	light_range = 1
-	use_power = 2
+	update_power_state(USE_POWER_ACTIVE)
 	return 1
 
 /obj/machinery/power/rust_core/proc/Shutdown()
@@ -288,7 +294,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 		qdel(owned_field)
 		//luminosity = 0
 		light_range = 0
-		use_power = 1
+		update_power_state(USE_POWER_IDLE)
 
 /obj/machinery/power/rust_core/proc/AddParticles(name, quantity = 1)
 	if(owned_field)

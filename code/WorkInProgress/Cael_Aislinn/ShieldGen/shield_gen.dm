@@ -10,11 +10,18 @@
 	desc = "Machine that generates an impenetrable field of energy when activated."
 	icon = 'code/WorkInProgress/Cael_Aislinn/ShieldGen/shielding.dmi'
 	icon_state = "generator0"
+	density = TRUE
+	anchored = TRUE
+
+	power_usage = list(
+		USE_POWER_IDLE = 20,
+		USE_POWER_ACTIVE = 100
+	)
+
 	var/active = 0
 	var/field_radius = 3
 	var/list/field
-	density = TRUE
-	anchored = TRUE
+
 	var/locked = 0
 	var/average_field_strength = 0
 	var/strengthen_rate = 0.2
@@ -25,12 +32,6 @@
 	var/max_field_strength = 10
 	var/time_since_fail = 100
 	var/energy_conversion_rate = 0.01	//how many renwicks per watt?
-	//
-	use_power = 1			//0 use nothing
-							//1 use idle power
-							//2 use active power
-	idle_power_usage = 20
-	active_power_usage = 100
 
 /obj/machinery/shield_gen/New()
 	field = list()

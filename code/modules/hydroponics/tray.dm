@@ -944,7 +944,8 @@
 	icon = 'icons/obj/flora/hydroponics.dmi'
 	icon_state = "soil"
 	density = FALSE
-	use_power = 0
+
+	power_state = USE_POWER_OFF
 
 /obj/machinery/hydroponics/soil/updateicon() // Same as normal but with the overlays removed - Cheridan.
 	overlays.Cut()

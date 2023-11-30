@@ -2,7 +2,11 @@
 	name = "R&D Server"
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "server"
-	idle_power_usage = 600
+
+	power_usage = list(
+		USE_POWER_IDLE = 600
+	)
+
 	req_access = list(ACCESS_RD) //Only the R&D can change server settings.
 	light_color = "#a97faa"
 
@@ -37,7 +41,7 @@
 		tot_rating += SP.rating
 	//heat_gen /= max(1, tot_rating)
 	operating_temperature /= max(1, tot_rating)
-	idle_power_usage /= max(1, tot_rating)
+	power_usage[USE_POWER_IDLE] /= max(1, tot_rating)
 
 /obj/machinery/r_n_d/server/initialize()
 	. = ..()
@@ -119,7 +123,7 @@
 						heat_capacity = 1
 					removed.temperature = min((removed.temperature*heat_capacity + heating_power)/heat_capacity, 1000)
 					*/
-					var/heat_produced = min(removed.get_thermal_energy_change(new_temperature), idle_power_usage)	//obviously can't produce more heat than the machine draws from it's power source
+					var/heat_produced = min(removed.get_thermal_energy_change(new_temperature), power_usage[USE_POWER_IDLE])	//obviously can't produce more heat than the machine draws from it's power source
 					removed.add_thermal_energy(heat_produced)
 
 				env.merge(removed)

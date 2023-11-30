@@ -6,7 +6,8 @@
 	icon_state = "box_0"
 	density = TRUE
 	anchored = TRUE
-	use_power = 0
+
+	power_state = USE_POWER_OFF
 
 	var/obj/item/circuitboard/circuit = null
 	var/list/components = null

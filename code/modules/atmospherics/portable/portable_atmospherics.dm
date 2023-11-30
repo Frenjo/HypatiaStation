@@ -1,6 +1,7 @@
 /obj/machinery/portable_atmospherics
 	name = "atmoalter"
-	use_power = FALSE
+
+	power_state = USE_POWER_OFF
 
 	var/datum/gas_mixture/air_contents
 

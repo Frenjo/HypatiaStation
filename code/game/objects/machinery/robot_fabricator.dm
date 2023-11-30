@@ -5,9 +5,10 @@
 	density = TRUE
 	anchored = TRUE
 
-	use_power = 1
-	idle_power_usage = 20
-	active_power_usage = 5000
+	power_usage = list(
+		USE_POWER_IDLE = 20,
+		USE_POWER_ACTIVE = 5000
+	)
 
 	var/metal_amount = 0
 	var/operating = 0
@@ -128,7 +129,7 @@ Please wait until completion...</TT><BR>
 			if(isnotnull(building))
 				if(src.metal_amount >= build_cost)
 					src.operating = 1
-					src.use_power = 2
+					update_power_state(USE_POWER_ACTIVE)
 
 					src.metal_amount = max(0, src.metal_amount - build_cost)
 
@@ -141,7 +142,7 @@ Please wait until completion...</TT><BR>
 						if(isnotnull(src.being_built))
 							src.being_built.loc = get_turf(src)
 							src.being_built = null
-						src.use_power = 1
+						update_power_state(USE_POWER_IDLE)
 						src.operating = 0
 						src.overlays -= "fab-active"
 		return

@@ -5,8 +5,12 @@
 	icon = 'icons/obj/machines/holosign.dmi'
 	icon_state = "sign_off"
 	layer = 4
-	idle_power_usage = 2
-	active_power_usage = 4
+
+	power_usage = list(
+		USE_POWER_IDLE = 2,
+		USE_POWER_ACTIVE = 4
+	)
+
 	var/lit = 0
 	var/id = null
 	var/on_icon = "sign_on"
@@ -46,11 +50,14 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "light0"
 	desc = "A remote control switch for a holosign."
+	anchored = TRUE
+
+	power_usage = list(
+		USE_POWER_IDLE = 2
+	)
+
 	var/id = null
 	var/active = 0
-	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 2
 
 /obj/machinery/holosign_switch/attack_ai(mob/user as mob)
 	return src.attack_hand(user)

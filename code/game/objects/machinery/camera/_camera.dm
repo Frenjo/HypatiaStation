@@ -3,10 +3,13 @@
 	desc = "It's used to monitor rooms."
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "camera"
-	use_power = 2
-	idle_power_usage = 5
-	active_power_usage = 10
 	layer = 5
+
+	power_state = USE_POWER_ACTIVE
+	power_usage = list(
+		USE_POWER_IDLE = 5,
+		USE_POWER_ACTIVE = 10
+	)
 
 	var/list/network = list("SS13")
 	var/c_tag = null

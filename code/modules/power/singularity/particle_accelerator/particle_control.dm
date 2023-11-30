@@ -8,9 +8,12 @@
 	reference = "control_box"
 	anchored = FALSE
 	density = TRUE
-	use_power = 0
-	idle_power_usage = 500
-	active_power_usage = 10000
+
+	power_usage = list(
+		USE_POWER_IDLE = 500,
+		USE_POWER_ACTIVE = 10000
+	)
+
 	construction_state = 0
 	active = 0
 	dir = 1
@@ -41,7 +44,7 @@
 
 /obj/machinery/particle_accelerator/control_box/update_state()
 	if(construction_state < 3)
-		use_power = 0
+		update_power_state(USE_POWER_OFF)
 		assembled = 0
 		active = 0
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
@@ -51,7 +54,7 @@
 		connected_parts = list()
 		return
 	if(!part_scan())
-		use_power = 1
+		update_power_state(USE_POWER_IDLE)
 		active = 0
 		connected_parts = list()
 
@@ -61,7 +64,7 @@
 	if(active)
 		icon_state = "[reference]p1"
 	else
-		if(use_power)
+		if(power_state)
 			if(assembled)
 				icon_state = "[reference]p"
 			else
@@ -141,10 +144,9 @@
 	..()
 	if(stat & NOPOWER)
 		active = 0
-		use_power = 0
+		update_power_state(USE_POWER_OFF)
 	else if(!stat && construction_state == 3)
-		use_power = 1
-	return
+		update_power_state(USE_POWER_IDLE)
 
 /obj/machinery/particle_accelerator/control_box/process()
 	if(src.active)
@@ -213,13 +215,13 @@
 	log_game("PA Control Computer turned [active ?"ON":"OFF"] by [usr.ckey]([usr]) in ([x],[y],[z])")
 
 	if(src.active)
-		src.use_power = 2
+		update_power_state(USE_POWER_ACTIVE)
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
 			part.strength = src.strength
 			part.powered = 1
 			part.update_icon()
 	else
-		src.use_power = 1
+		update_power_state(USE_POWER_IDLE)
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
 			part.strength = null
 			part.powered = 0

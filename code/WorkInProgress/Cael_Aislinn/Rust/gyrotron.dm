@@ -9,12 +9,13 @@
 	anchored = TRUE
 	density = FALSE
 	layer = 4
-	//
+
+	power_usage = list(
+		USE_POWER_IDLE = 10,
+		USE_POWER_ACTIVE = 300
+	)
+
 	req_access = list(ACCESS_ENGINE)
-	//
-	use_power = 1
-	idle_power_usage = 10
-	active_power_usage = 300
 
 	var/frequency = 1
 	var/emitting = 0

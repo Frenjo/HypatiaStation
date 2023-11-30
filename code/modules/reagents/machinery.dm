@@ -7,8 +7,12 @@
 	anchored = TRUE
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "dispenser"
-	use_power = 0
-	idle_power_usage = 40
+
+	power_state = USE_POWER_OFF
+	power_usage = list(
+		USE_POWER_IDLE = 40
+	)
+
 	var/ui_title = "Chem Dispenser 5000"
 	var/energy = 100
 	var/max_energy = 100
@@ -281,8 +285,11 @@
 	anchored = TRUE
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
-	use_power = 1
-	idle_power_usage = 20
+
+	power_usage = list(
+		USE_POWER_IDLE = 20
+	)
+
 	var/beaker = null
 	var/obj/item/storage/pill_bottle/loaded_pill_bottle = null
 	var/mode = 0
@@ -857,9 +864,12 @@
 	layer = 2.9
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 5
-	active_power_usage = 100
+
+	power_usage = list(
+		USE_POWER_IDLE = 5,
+		USE_POWER_ACTIVE = 100
+	)
+
 	var/inuse = 0
 	var/obj/item/reagent_containers/beaker = null
 	var/limit = 10

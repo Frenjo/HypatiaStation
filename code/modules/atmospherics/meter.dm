@@ -4,10 +4,12 @@
 	icon = 'icons/obj/atmospherics/meter.dmi'
 	icon_state = "meterX"
 	anchored = TRUE
+
 	power_channel = ENVIRON
-	use_power = TRUE
-	idle_power_usage = 2
-	active_power_usage = 5
+	power_usage = list(
+		USE_POWER_IDLE = 2,
+		USE_POWER_ACTIVE = 5
+	)
 
 	var/obj/machinery/atmospherics/pipe/target = null
 	var/frequency = 0

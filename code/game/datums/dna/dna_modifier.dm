@@ -41,9 +41,12 @@
 	icon_state = "scanner_0"
 	density = TRUE
 	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 50
-	active_power_usage = 300
+
+	power_usage = list(
+		USE_POWER_IDLE = 50,
+		USE_POWER_ACTIVE = 300
+	)
+
 	var/locked = 0
 	var/mob/living/carbon/occupant = null
 	var/obj/item/reagent_containers/glass/beaker = null
@@ -216,7 +219,13 @@
 	desc = "Scand DNA."
 	icon_state = "scanner"
 	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/circuitboard/scan_consolenew
+
+	power_usage = list(
+		USE_POWER_IDLE = 10,
+		USE_POWER_ACTIVE = 400
+	)
 
 	var/selected_ui_block = 1.0
 	var/selected_ui_subblock = 1.0
@@ -232,10 +241,6 @@
 	var/obj/machinery/dna_scannernew/connected = null
 	var/obj/item/disk/data/disk = null
 	var/selected_menu_key = null
-	anchored = TRUE
-	use_power = 1
-	idle_power_usage = 10
-	active_power_usage = 400
 	var/waiting_for_user_input = 0 // Fix for #274 (Mash create block injector without answering dialog to make unlimited injectors) - N3X
 
 /obj/machinery/computer/scan_consolenew/attackby(obj/item/I as obj, mob/user as mob)

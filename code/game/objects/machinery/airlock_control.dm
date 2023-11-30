@@ -113,6 +113,7 @@
 	name = "airlock sensor"
 
 	anchored = TRUE
+
 	power_channel = ENVIRON
 
 	var/id_tag
@@ -184,6 +185,7 @@
 	name = "access button"
 
 	anchored = TRUE
+
 	power_channel = ENVIRON
 
 	var/master_tag

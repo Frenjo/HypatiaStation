@@ -6,13 +6,16 @@
 	icon_state = "grinder"
 	density = TRUE
 	anchored = TRUE
+
+	power_usage = list(
+		USE_POWER_IDLE = 2,
+		USE_POWER_ACTIVE = 500
+	)
+
 	var/operating = 0 //Is it on?
 	var/dirty = 0 // Does it need cleaning?
 	var/gibtime = 40 // Time from starting until meat appears
 	var/mob/living/occupant // Mob who has been put inside
-	use_power = 1
-	idle_power_usage = 2
-	active_power_usage = 500
 
 //auto-gibs anything that bumps into it
 /obj/machinery/gibber/autogibber
@@ -221,5 +224,3 @@
 				new /obj/effect/decal/cleanable/blood/gibs(Tx,i)
 		src.operating = 0
 		update_icon()
-
-

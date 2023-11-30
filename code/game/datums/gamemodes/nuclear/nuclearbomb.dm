@@ -6,6 +6,9 @@ var/bomb_set
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nuclearbomb0"
 	density = TRUE
+
+	power_state = USE_POWER_OFF
+
 	var/deployable = 0.0
 	var/extended = 0.0
 	var/lighthack = 0
@@ -23,8 +26,6 @@ var/bomb_set
 	var/timing_wire
 	var/removal_stage = 0	// 0 is no removal, 1 is covers removed, 2 is covers open,
 							// 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
-	use_power = 0
-
 
 /obj/machinery/nuclearbomb/New()
 	..()

@@ -146,10 +146,13 @@
 	name = "teleporter hub"
 	desc = "It's the hub of a teleporting machine."
 	icon_state = "tele0"
+
+	power_usage = list(
+		USE_POWER_IDLE = 10,
+		USE_POWER_ACTIVE = 2000
+	)
+
 	var/accurate = 0
-	use_power = 1
-	idle_power_usage = 10
-	active_power_usage = 2000
 
 /obj/machinery/teleport/hub/Bumped(M as mob|obj)
 	spawn()
@@ -274,11 +277,14 @@
 	name = "station"
 	desc = "It's the station thingy of a teleport thingy." //seriously, wtf.
 	icon_state = "controller"
+
+	power_usage = list(
+		USE_POWER_IDLE = 10,
+		USE_POWER_ACTIVE = 2000
+	)
+
 	var/active = 0
 	var/engaged = 0
-	use_power = 1
-	idle_power_usage = 10
-	active_power_usage = 2000
 
 /obj/machinery/teleport/station/attackby(obj/item/W)
 	src.attack_hand()

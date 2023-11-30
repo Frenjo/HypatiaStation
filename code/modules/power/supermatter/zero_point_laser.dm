@@ -11,9 +11,10 @@
 	density = TRUE
 	req_access = list(ACCESS_ENGINE)
 
-	use_power = 1
-	idle_power_usage = 10
-	active_power_usage = 300
+	power_usage = list(
+		USE_POWER_IDLE = 10,
+		USE_POWER_ACTIVE = 300
+	)
 
 	var/active = FALSE
 	var/fire_delay = 100

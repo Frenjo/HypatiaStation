@@ -70,9 +70,10 @@
 	density = TRUE
 	anchored = TRUE
 
-	use_power = 1
-	idle_power_usage = 10
-	active_power_usage = 100
+	power_usage = list(
+		USE_POWER_IDLE = 10,
+		USE_POWER_ACTIVE = 100
+	)
 
 	var/list/stored_materials = list(MATERIAL_METAL = 0, MATERIAL_GLASS = 0)
 	var/list/storage_capacity = list(MATERIAL_METAL = 150000, MATERIAL_GLASS = 75000)

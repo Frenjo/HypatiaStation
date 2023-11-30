@@ -112,9 +112,12 @@
 	icon_state = "TheSingGen"
 	anchored = TRUE
 	density = TRUE
-	use_power = 1
-	idle_power_usage = 200
-	active_power_usage = 1000
+
+	power_usage = list(
+		USE_POWER_IDLE = 200,
+		USE_POWER_ACTIVE = 1000
+	)
+
 	var/on = 1
 	var/list/localareas = list()
 	var/effectiverange = 25

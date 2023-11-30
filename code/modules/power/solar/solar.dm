@@ -5,9 +5,6 @@
 	icon_state = "sp_base"
 	anchored = TRUE
 	density = TRUE
-	use_power = FALSE
-	idle_power_usage = 0
-	active_power_usage = 0
 
 	var/id = 0
 	var/health = 10

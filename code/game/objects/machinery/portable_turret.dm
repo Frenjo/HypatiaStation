@@ -16,11 +16,15 @@
 	layer = 3
 	invisibility = INVISIBILITY_LEVEL_TWO		// the turret is invisible if it's inside its cover
 	density = TRUE
-	use_power = 1			// this turret uses and requires power
-	idle_power_usage = 50	// when inactive, this turret takes up constant 50 Equipment power
-	active_power_usage = 300// when active, this turret takes up constant 300 Equipment power
+
+	// This turret uses and requires power.
+	// Drains power from the EQUIP channel.
+	power_usage = list(
+		USE_POWER_IDLE = 50, // When inactive, this turret takes up constant 50 equipment power.
+		USE_POWER_ACTIVE = 300 // When active, this turret takes up constant 300 equipment power.
+	)
+
 	req_access = list(ACCESS_SECURITY)
-	power_channel = EQUIP	// drains power from the EQUIPMENT channel
 
 	var/lasercolor = ""		// Something to do with lasertag turrets, blame Sieve for not adding a comment.
 	var/raised = 0			// if the turret cover is "open" and the turret is raised
