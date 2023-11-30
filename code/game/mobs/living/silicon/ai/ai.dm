@@ -18,6 +18,8 @@
 	density = TRUE
 	status_flags = CANSTUN | CANPARALYSE
 
+	var/obj/machinery/ai_power_supply/power_supply = null // The connected power supply.
+
 	var/list/network = list("SS13")
 	var/obj/machinery/camera/current = null
 	var/list/connected_robots = list()
@@ -117,8 +119,7 @@
 
 			job = "AI"
 
-	spawn(5)
-		new /obj/machinery/ai_power_supply(src)
+	create_power_supply()
 
 	hud_list[HEALTH_HUD]		= image('icons/mob/screen/hud.dmi', src, "hudblank")
 	hud_list[STATUS_HUD]		= image('icons/mob/screen/hud.dmi', src, "hudblank")
@@ -133,6 +134,10 @@
 
 /mob/living/silicon/ai/Destroy()
 	GLOBL.ai_list.Remove(src)
+
+	qdel(power_supply)
+	power_supply = null
+
 	return ..()
 
 // displays the malf_ai information if the AI is the malf

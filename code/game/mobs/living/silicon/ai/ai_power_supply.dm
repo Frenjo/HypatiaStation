@@ -1,3 +1,8 @@
+/mob/living/silicon/ai/proc/create_power_supply()
+	if(isnotnull(power_supply))
+		qdel(power_supply)
+	power_supply = new /obj/machinery/ai_power_supply(src)
+
 /*
  * AI Power Supply
  *
@@ -8,6 +13,7 @@
 	name = "AI Power Supply"
 	invisibility = INVISIBILITY_MAXIMUM
 
+	power_channel = EQUIP
 	use_power = 2
 	active_power_usage = 1000
 
@@ -19,14 +25,16 @@
 		qdel(src)
 
 	powered_ai = ai
-	loc = powered_ai.loc
-	use_power(1) // Just in case we need to wake up the power system.
+	loc = powered_ai
 
-/obj/machinery/ai_power_supply/process()
-	if(isnull(powered_ai) || powered_ai.stat & DEAD)
-		qdel(src)
-	if(!powered_ai.anchored)
-		loc = powered_ai.loc
-		use_power = 0
-	if(powered_ai.anchored)
-		use_power = 2
+/obj/machinery/ai_power_supply/Destroy()
+	powered_ai = null
+	return ..()
+
+/obj/machinery/ai_power_supply/proc/update_power_status()
+	update_use_power(get_power_status())
+
+/obj/machinery/ai_power_supply/proc/get_power_status()
+	if(powered_ai.stat == DEAD || isitem(powered_ai.loc) || !powered_ai.anchored)
+		return 0
+	return 2

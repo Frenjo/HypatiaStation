@@ -31,6 +31,7 @@
 		// Gain Power
 		adjustOxyLoss(-1)
 
+	power_supply?.update_power_status()
 	check_power_status()
 
 	regular_hud_updates()
@@ -94,6 +95,8 @@
 		handle_power_loss()
 
 /mob/living/silicon/ai/proc/handle_power_loss()
+	set waitfor = FALSE
+
 	var/area/current_area = get_area(src)
 	var/turf/current_turf = get_turf(src)
 	if(current_area.power_equip || isspace(current_turf) || isitem(loc))
