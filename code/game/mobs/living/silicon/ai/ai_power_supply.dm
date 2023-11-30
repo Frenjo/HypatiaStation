@@ -15,7 +15,6 @@
 
 	power_state = USE_POWER_ACTIVE
 	power_usage = list(
-		USE_POWER_IDLE = 0,
 		USE_POWER_ACTIVE = 1000
 	)
 

@@ -19,7 +19,7 @@
 		return
 
 	if(istype(G, /obj/item/gun/energy) || istype(G, /obj/item/melee/baton) || istype(G, /obj/item/cell))
-		if(charging)
+		if(isnotnull(charging))
 			return
 
 		// Checks to make sure he's not in space doing it, and that the area got proper power.
@@ -43,7 +43,7 @@
 		update_icon()
 
 	else if(istype(G, /obj/item/wrench))
-		if(charging)
+		if(isnotnull(charging))
 			to_chat(user, SPAN_WARNING("Remove [charging] first!"))
 			return
 		anchored = !anchored
@@ -53,7 +53,7 @@
 /obj/machinery/recharger/attack_hand(mob/user as mob)
 	add_fingerprint(user)
 
-	if(charging)
+	if(isnotnull(charging))
 		charging.update_icon()
 		charging.loc = loc
 		charging = null
@@ -64,16 +64,16 @@
 	return attack_hand(user)
 
 /obj/machinery/recharger/process()
-	if(stat & (NOPOWER|BROKEN) || !anchored)
+	if(stat & (BROKEN | NOPOWER) || !anchored)
 		return
 
-	if(charging)
+	if(isnotnull(charging))
 		if(istype(charging, /obj/item/gun/energy))
 			var/obj/item/gun/energy/E = charging
 			if(!E.power_supply.fully_charged()) //Because otherwise it takes two minutes to fully charge due to 15k cells. - Neerti
 				icon_state = "recharger1"
 				var/charge_used = E.power_supply.give(power_rating * CELLRATE)
-				use_power(charge_used/CELLRATE)
+				use_power(charge_used / CELLRATE)
 			else
 				icon_state = "recharger2"
 			return
@@ -97,7 +97,7 @@
 			return
 
 /obj/machinery/recharger/emp_act(severity)
-	if(stat & (NOPOWER|BROKEN) || !anchored)
+	if(stat & (BROKEN | NOPOWER) || !anchored)
 		..(severity)
 		return
 
@@ -115,7 +115,7 @@
 
 //we have an update_icon() in addition to the stuff in process to make it feel a tiny bit snappier.
 /obj/machinery/recharger/update_icon()
-	if(charging)
+	if(isnotnull(charging))
 		icon_state = "recharger1"
 	else
 		icon_state = "recharger0"
@@ -127,10 +127,10 @@
 	power_rating = 25000	//25 kW, It's more specialized than the standalone recharger but more powerful
 
 /obj/machinery/recharger/wallcharger/process()
-	if(stat & (NOPOWER|BROKEN) || !anchored)
+	if(stat & (BROKEN | NOPOWER) || !anchored)
 		return
 
-	if(charging)
+	if(isnotnull(charging))
 		if(istype(charging, /obj/item/gun/energy))
 			var/obj/item/gun/energy/E = charging
 			if(!E.power_supply.fully_charged()) //Because otherwise it takes two minutes to fully charge due to 15k cells. - Neerti
@@ -150,7 +150,7 @@
 				icon_state = "wrecharger2"
 
 /obj/machinery/recharger/wallcharger/update_icon()
-	if(charging)
+	if(isnotnull(charging))
 		icon_state = "wrecharger1"
 	else
 		icon_state = "wrecharger0"
