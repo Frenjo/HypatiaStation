@@ -7,9 +7,10 @@
 #define DOOR_CRUSH_DAMAGE 10
 
 // Values for the power_state variable.
-#define USE_POWER_OFF		0 // Don't run the auto.
-#define USE_POWER_IDLE		1 // Run auto, use idle.
-#define USE_POWER_ACTIVE	2 // Run auto, use active.
+// These must be in string form as they're keys in an associative list.
+#define USE_POWER_OFF		"0" // Don't run the auto.
+#define USE_POWER_IDLE		"1" // Run auto, use idle.
+#define USE_POWER_ACTIVE	"2" // Run auto, use active.
 
 // Values for the power_channel variable.
 #define EQUIP	1 // Use the equipment power channel.
