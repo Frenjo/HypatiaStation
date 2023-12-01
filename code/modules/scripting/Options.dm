@@ -76,21 +76,21 @@ associated values are <nS_Keyword> types of which the <n_Keyword.Parse()> proc w
 	)
 
 	var/list/unary_operators = list(
-		"!" = /node/expression/operator/unary/LogicalNot,
-		"~" = /node/expression/operator/unary/BitwiseNot,
-		"-" = /node/expression/operator/unary/Minus
+		"!" = /node/expression/_operator/unary/LogicalNot,
+		"~" = /node/expression/_operator/unary/BitwiseNot,
+		"-" = /node/expression/_operator/unary/Minus
 	)
 
 	var/list/binary_operators = list(
-		"=="	= /node/expression/operator/binary/Equal,			"!="	= /node/expression/operator/binary/NotEqual,
-		">"		= /node/expression/operator/binary/Greater,			"<"		= /node/expression/operator/binary/Less,
-		">="	= /node/expression/operator/binary/GreaterOrEqual,	"<="	= /node/expression/operator/binary/LessOrEqual,
-		"&&"	= /node/expression/operator/binary/LogicalAnd,		"||"	= /node/expression/operator/binary/LogicalOr,
-		"&"		= /node/expression/operator/binary/BitwiseAnd,		"|"		= /node/expression/operator/binary/BitwiseOr,
-		"`"		= /node/expression/operator/binary/BitwiseXor,		"+"		= /node/expression/operator/binary/Add,
-		"-"		= /node/expression/operator/binary/Subtract,		"*"		= /node/expression/operator/binary/Multiply,
-		"/"		= /node/expression/operator/binary/Divide,			"^"		= /node/expression/operator/binary/Power,
-		"%"		= /node/expression/operator/binary/Modulo
+		"=="	= /node/expression/_operator/binary/Equal,			"!="	= /node/expression/_operator/binary/NotEqual,
+		">"		= /node/expression/_operator/binary/Greater,			"<"		= /node/expression/_operator/binary/Less,
+		">="	= /node/expression/_operator/binary/GreaterOrEqual,	"<="	= /node/expression/_operator/binary/LessOrEqual,
+		"&&"	= /node/expression/_operator/binary/LogicalAnd,		"||"	= /node/expression/_operator/binary/LogicalOr,
+		"&"		= /node/expression/_operator/binary/BitwiseAnd,		"|"		= /node/expression/_operator/binary/BitwiseOr,
+		"`"		= /node/expression/_operator/binary/BitwiseXor,		"+"		= /node/expression/_operator/binary/Add,
+		"-"		= /node/expression/_operator/binary/Subtract,		"*"		= /node/expression/_operator/binary/Multiply,
+		"/"		= /node/expression/_operator/binary/Divide,			"^"		= /node/expression/_operator/binary/Power,
+		"%"		= /node/expression/_operator/binary/Modulo
 	)
 
 /n_scriptOptions/nS_Options/New()
