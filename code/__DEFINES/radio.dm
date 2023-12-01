@@ -1,61 +1,45 @@
 /*
-### TODO: Update this comment to match the definitions below and figure out what changed. -Frenjo ###
-
-Frequency range: 1200 to 1600
-Radiochat range: 1441 to 1489 (most devices refuse to be tune to other frequency, even during mapmaking)
-
-Radio:
-1459 - standard radio chat
-1351 - Science
-1353 - Command
-1355 - Medical
-1357 - Engineering
-1359 - Security
-1441 - death squad
-1443 - Confession Intercom
-1347 - Cargo techs
-1349 - Mining
-
-Devices:
-1451 - tracking implant
-1457 - RSD default
-
-On the map:
-1311 for prison shuttle console (in fact, it is not used)
-1435 for status displays
-1437 for atmospherics/fire alerts
-1439 for engine components
-1439 for air pumps, air scrubbers, atmo control
-1441 for atmospherics - supply tanks
-1443 for atmospherics - distribution loop/mixed air tank
-1445 for bot nav beacons
-1447 for mulebot, secbot and ed209 control
-1449 for airlock controls, electropack, magnets
-1451 for toxin lab access
-1453 for engineering access
-1455 for AI access
-*/
-
-/*
-All frequencies in order:
-	RADIO_MINIMUM	- 120.0
-	SYNDICATE		- 121.3
-	DEATHSQUAD		- 134.1
-	RESPONSETEAM	- 134.5
-	SUPPLY			- 134.7
-	SERVICE			- 134.9
-	SCIENCE			- 135.1
-	COMMAND			- 135.3
-	MEDICAL			- 135.5
-	ENGINEERING		- 135.7
-	SECURITY		- 135.9
-	MINING			- 136.1
-	FREE_MINIMUM	- 144.1
-	AI				- 144.7
-	COMMON			- 145.9
-	FREE_MAXIMUM	- 148.9
-	RADIO_MAXIMUM	- 160.0
-*/
+ * Radio Frequencies
+ * Originally compiled and formatted by an unknown author, edited and updated by Frenjo.
+ *
+ * Frequency Range: 1200 to 1600
+ * Radiochat Range: 1441 to 1489
+ *	(Most devices refuse to be tuned to other frequencies, even during mapmaking.)
+ *
+ * Radio:
+ *	1200 (120.0) - Radio Minimum Frequency
+ *	1213 (121.3) - Syndicate
+ *	1341 (134.1) - Deathsquad
+ *	1345 (134.5) - Response Team (ERT)
+ *	1347 (134.7) - Supply (Cargo)
+ *	1349 (134.9) - Service
+ *	1351 (135.1) - Science
+ *	1353 (135.3) - Command
+ *	1355 (135.5) - Medical
+ *	1357 (135.7) - Engineering
+ *	1359 (135.9) - Security
+ *	1361 (136.1) - Mining
+ *	1441 (144.1) - Free Minimum Frequency
+ *	1447 (144.7) - AI Private
+ *	1459 (145.9) - Common (Standard radio chat)
+ *	1489 (148.9) - Free Maximum Frequency
+ *	1600 (160.0) - Radio Maximum Frequency
+ *
+ * Devices:
+ *	1451 (145.1) - Tracking Implants
+ *	1457 (145.7) - Remote Signalling Devices (default)
+ *
+ * On the map:
+ *	1311 (131.1) - Prison Shuttle Console (unused)
+ *	1435 (143.5) - Status Displays
+ *	1437 (143.7) - Atmospherics and Fire Alerts
+ *	1439 (143.9) - Engine Components, Air Pumps/Scrubbers and Atmos Controls
+ *	1441 (144.1) - Atmospherics Supply Tanks
+ *	1443 (144.3) - Atmospherics Distribution Loop and Mix Tank
+ *	1445 (144.5) - Bot Navigation Beacons
+ *	1447 (144.7) - Mulebot, Secbot and ED-209 Controls
+ *	1449 (144.9) - Airlock Controls, Electropacks and Magnets
+ */
 
 // Radio frequencies.
 #define FREQUENCY_SYNDICATE		1213
