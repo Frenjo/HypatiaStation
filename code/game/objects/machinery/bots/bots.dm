@@ -228,7 +228,7 @@
 		if(!D.density)
 			continue
 		if(istype(D, /obj/machinery/door/window))
-			if(isnotnull(dir) & isnotnull(D.dir))
+			if(isnotnull(dir) && isnotnull(D.dir))
 				return !D.check_access(card)
 
 			//if((dir & SOUTH) && (D.dir & (EAST|WEST)))		return !D.check_access(card)
