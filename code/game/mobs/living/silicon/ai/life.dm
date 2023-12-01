@@ -20,7 +20,7 @@
 		death()
 		return
 
-	if(!machine?.check_eye(src))
+	if(isnotnull(machine) && !machine.check_eye(src))
 		reset_view(null)
 
 	// Handle power damage (oxy)
