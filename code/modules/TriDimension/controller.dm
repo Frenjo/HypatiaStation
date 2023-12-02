@@ -16,7 +16,7 @@
 	var/fast_time
 
 /obj/effect/landmark/zcontroller/New()
-	..()
+	. = ..()
 	for(var/turf/T in world)
 		if(T.z == z)
 			fast += T
@@ -51,35 +51,35 @@
 	while(length(L))
 		var/turf/T = pick(L)
 
-		L -= T
-		slow -= T
-		normal -= T
-		fast -= T
+		L.Remove(T)
+		slow.Remove(T)
+		normal.Remove(T)
+		fast.Remove(T)
 
-		if(!T || !isturf(T))
+		if(isnull(T) || !isturf(T))
 			continue
 
 		switch(I)
 			if(1)
-				slow += T
+				slow.Add(T)
 			if(2)
-				normal += T
+				normal.Add(T)
 			if(3)
-				fast += T
+				fast.Add(T)
 
 		if(transfer > 0)
 			if(up)
 				var/turf/controller_up = locate(1, 1, up_target)
 				for(var/obj/effect/landmark/zcontroller/c_up in controller_up)
 					var/list/temp = list()
-					temp += locate(T.x, T.y, up_target)
+					temp.Add(locate(T.x, T.y, up_target))
 					c_up.add(temp, I, transfer - 1)
 
 			if(down)
 				var/turf/controller_down = locate(1, 1, down_target)
 				for(var/obj/effect/landmark/zcontroller/c_down in controller_down)
 					var/list/temp = list()
-					temp += locate(T.x, T.y, down_target)
+					temp.Add(locate(T.x, T.y, down_target))
 					c_down.add(temp, I, transfer - 1)
 	return
 
@@ -93,30 +93,30 @@
 		var/turf/T = pick(L)
 		new_list = 0
 
-		if(!T || !isturf(T))
-			L -= T
+		if(isnull(T) || !isturf(T))
+			L.Remove(T)
 			continue
 
-		T.overlays -= T.z_overlays
-		T.z_overlays -= T.z_overlays
+		T.overlays.Remove(T.z_overlays)
+		T.z_overlays.Remove(T.z_overlays)
 
 		if(down && (isspace(T) || isopenspace(T)))
 			var/turf/below = locate(T.x, T.y, down_target)
 			if(below)
 				if(!isspace(below) || !isopenspace(below))
-					var/image/t_img = list()
+					var/list/image/t_img = list()
 					new_list = 1
 
 					var/image/temp = image(below, dir = below.dir, layer = TURF_LAYER + 0.04)
 
 					temp.color = rgb(127, 127, 127)
-					temp.overlays += below.overlays
-					t_img += temp
-					T.overlays += t_img
-					T.z_overlays += t_img
+					temp.overlays.Add(below.overlays)
+					t_img.Add(temp)
+					T.overlays.Add(t_img)
+					T.z_overlays.Add(t_img)
 
 				// get objects
-				var/image/o_img = list()
+				var/list/image/o_img = list()
 				for(var/obj/o in below)
 					// ingore objects that have any form of invisibility
 					if(o.invisibility)
@@ -124,14 +124,14 @@
 					new_list = 2
 					var/image/temp2 = image(o, dir = o.dir, layer = TURF_LAYER + 0.05 * o.layer)
 					temp2.color = rgb(127, 127, 127)
-					temp2.overlays += o.overlays
-					o_img += temp2
+					temp2.overlays.Add(o.overlays)
+					o_img.Add(temp2)
 					// you need to add a list to .overlays or it will not display any because space
-				T.overlays += o_img
-				T.z_overlays += o_img
+				T.overlays.Add(o_img)
+				T.z_overlays.Add(o_img)
 
 				// get mobs
-				var/image/m_img = list()
+				var/list/image/m_img = list()
 				for(var/mob/m in below)
 					// ingore mobs that have any form of invisibility
 					if(m.invisibility)
@@ -141,14 +141,14 @@
 						new_list = 3
 					var/image/temp2 = image(m, dir = m.dir, layer = TURF_LAYER + 0.05 * m.layer)
 					temp2.color = rgb(127, 127, 127)
-					temp2.overlays += m.overlays
-					m_img += temp2
+					temp2.overlays.Add(m.overlays)
+					m_img.Add(temp2)
 					// you need to add a list to .overlays or it will not display any because space
-				T.overlays += m_img
-				T.z_overlays += m_img
+				T.overlays.Add(m_img)
+				T.z_overlays.Add(m_img)
 
-				T.overlays -= below.z_overlays
-				T.z_overlays -= below.z_overlays
+				T.overlays.Remove(below.z_overlays)
+				T.z_overlays.Remove(below.z_overlays)
 
 		// this is sadly impossible to use right now
 		// the overlay is always opaque to mouseclicks and thus prevents interactions with everything except the turf
@@ -214,55 +214,54 @@
 					T.overlays -= above.z_overlays
 					T.z_overlays -= above.z_overlays*/
 
-		L -= T
+		L.Remove(T)
 
 		if(new_list == 1)
-			slowholder += T
+			slowholder.Add(T)
 		if(new_list == 2)
-			normalholder += T
+			normalholder.Add(T)
 		if(new_list == 3)
-			fastholder += T
+			fastholder.Add(T)
 			for(var/d in GLOBL.cardinal)
 				var/turf/mT = get_step(T, d)
 				if(!(mT in fastholder))
-					fastholder += mT
+					fastholder.Add(mT)
 				for(var/f in GLOBL.cardinal)
 					var/turf/nT = get_step(mT, f)
 					if(!(nT in fastholder))
-						fastholder += nT
+						fastholder.Add(nT)
 
 	add(slowholder, 1, 0)
 	add(normalholder, 2, 0)
 	add(fastholder, 3, 0)
-	return
 
 // Overrides
 /turf
 	var/list/z_overlays = list()
 
 /turf/New()
-	..()
+	. = ..()
 	var/turf/controller = locate(1, 1, z)
 	for(var/obj/effect/landmark/zcontroller/c in controller)
 		if(c.initialized)
 			var/list/turf = list()
-			turf += src
+			turf.Add(src)
 			c.add(turf, 3, 1)
 
 /turf/space/New()
-	..()
+	. = ..()
 	var/turf/controller = locate(1, 1, z)
 	for(var/obj/effect/landmark/zcontroller/c in controller)
 		if(c.initialized)
 			var/list/turf = list()
-			turf += src
+			turf.Add(src)
 			c.add(turf, 3, 1)
 
 /atom/movable/Move() //Hackish
 	. = ..()
-	var/turf/controllerlocation = locate(1, 1, src.z)
+	var/turf/controllerlocation = locate(1, 1, z)
 	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
 		if(controller.up || controller.down)
 			var/list/temp = list()
-			temp += locate(src.x, src.y, src.z)
+			temp.Add(locate(x, y, z))
 			controller.add(temp, 3, 1)

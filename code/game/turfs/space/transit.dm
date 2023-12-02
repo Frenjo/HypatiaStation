@@ -1,7 +1,7 @@
 /turf/space/transit
 	var/pushdirection // push things that get caught in the transit tile this direction
 
-//Overwrite because we dont want people building rods in space.
+// Override because we dont want people building rods on space transit tiles.
 /turf/space/transit/attackby(obj/O as obj, mob/user as mob)
 	return
 

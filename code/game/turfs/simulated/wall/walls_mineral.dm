@@ -3,9 +3,6 @@
 	desc = "This shouldn't exist"
 	icon_state = ""
 
-	var/last_event = 0
-	var/active = null
-
 /turf/simulated/wall/mineral/gold
 	name = "gold wall"
 	desc = "A wall with gold plating. Swag!"
@@ -31,6 +28,9 @@
 	walltype = "diamond"
 	mineral = MATERIAL_DIAMOND
 
+/turf/simulated/wall/mineral/diamond/thermitemelt(mob/user as mob)
+	return
+
 /turf/simulated/wall/mineral/bananium
 	name = "bananium wall"
 	desc = "A wall with bananium plating. Honk!"
@@ -52,8 +52,12 @@
 	walltype = "uranium"
 	mineral = MATERIAL_URANIUM
 
-// Mostly replaced but kept for posterity reasons.
-// Replaced by /turf/proc/process() and /turf/simulated/wall/proc/radiate().
+	var/last_event = 0
+	var/active = null
+
+/turf/simulated/wall/mineral/uranium/process()
+	radiate()
+
 // Instead of only being triggered on bump, this now also happens every 3 seconds. -Frenjo
 /turf/simulated/wall/mineral/uranium/radiate(bumped)
 	if(bumped && !active)
@@ -100,7 +104,7 @@
 /turf/simulated/wall/mineral/plasma/proc/PlasmaBurn(temperature)
 	spawn(2)
 	new /obj/structure/girder(src)
-	src.ChangeTurf(/turf/simulated/floor)
+	ChangeTurf(/turf/simulated/floor)
 	for(var/turf/simulated/floor/target_tile in range(0, src))
 		target_tile.assume_gas(/decl/xgm_gas/plasma, 20, 400 + T0C)
 		spawn(0)

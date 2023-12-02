@@ -2,8 +2,8 @@
  * Airless
  */
 /turf/simulated/floor/airless
-	icon_state = "floor"
 	name = "airless floor"
+	icon_state = "floor"
 	initial_gases = null
 	temperature = TCMB
 
@@ -18,18 +18,16 @@
  * Light
  */
 /turf/simulated/floor/light
-	name = "Light floor"
+	name = "light floor"
 	light_range = 5
 	icon_state = "light_on"
 	floor_type = /obj/item/stack/tile/light
 
-/turf/simulated/floor/light/New()
-	var/n = name //just in case commands rename it in the ..() call
+/turf/simulated/floor/light/initialize()
 	. = ..()
-	spawn(4)
-		if(isnotnull(src))
-			update_icon()
-			name = n
+	if(isnotnull(src))
+		update_icon()
+		name = initial(name) // Just in case commands rename it in the ..() call.
 
 /*
  * Wood
@@ -143,8 +141,8 @@
 	intact = 0
 
 /turf/simulated/floor/plating/airless
-	icon_state = "plating"
 	name = "airless plating"
+	icon_state = "plating"
 	initial_gases = null
 	temperature = TCMB
 
@@ -211,20 +209,20 @@
  * Beach
  */
 /turf/simulated/floor/beach
-	name = "Beach"
+	name = "beach"
 	icon = 'icons/misc/beach.dmi'
 
 /turf/simulated/floor/beach/sand
-	name = "Sand"
+	name = "sand"
 	icon_state = "sand"
 
 /turf/simulated/floor/beach/coastline
-	name = "Coastline"
+	name = "coastline"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "sandwater"
 
 /turf/simulated/floor/beach/water
-	name = "Water"
+	name = "water"
 	icon_state = "water"
 
 /turf/simulated/floor/beach/water/New()
@@ -235,7 +233,7 @@
  * Grass
  */
 /turf/simulated/floor/grass
-	name = "Grass patch"
+	name = "grass patch"
 	icon_state = "grass1"
 	floor_type = /obj/item/stack/tile/grass
 
@@ -254,7 +252,7 @@
  * Carpet
  */
 /turf/simulated/floor/carpet
-	name = "Carpet"
+	name = "carpet"
 	icon_state = "carpet"
 	floor_type = /obj/item/stack/tile/carpet
 
@@ -262,20 +260,22 @@
 	if(!icon_state)
 		icon_state = "carpet"
 	. = ..()
-	spawn(4)
-		if(isnotnull(src))
-			update_icon()
-			for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
-				if(istype(get_step(src, direction), /turf/simulated/floor))
-					var/turf/simulated/floor/FF = get_step(src, direction)
-					FF.update_icon() //so siding get updated properly
+
+/turf/simulated/floor/carpet/initialize()
+	. = ..()
+	if(isnotnull(src))
+		update_icon()
+		for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
+			if(istype(get_step(src, direction), /turf/simulated/floor))
+				var/turf/simulated/floor/FF = get_step(src, direction)
+				FF.update_icon() //so siding get updated properly
 
 /*
  * Iron Sand
  */
 /turf/simulated/floor/plating/ironsand/New()
 	. = ..()
-	name = "Iron Sand"
+	name = "iron sand"
 	icon_state = "ironsand[rand(1, 15)]"
 
 /*

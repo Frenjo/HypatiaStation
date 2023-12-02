@@ -1,5 +1,5 @@
 /turf/simulated
-	var/zone/zone
+	var/zone/zone = null
 	var/open_directions
 	var/gas_graphic
 

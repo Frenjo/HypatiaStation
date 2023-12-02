@@ -50,6 +50,67 @@ var/list/wood_icons = list("wood", "wood-broken")
 	var/floor_type = /obj/item/stack/tile/plasteel
 	var/lightfloor_state // for light floors, this is the state of the tile. 0-7, 0x4 is on-bit - use the helper procs below
 
+/turf/simulated/floor/New()
+	. = ..()
+	if(icon_state in icons_to_ignore_at_floor_init) //so damaged/burned tiles or plating icons aren't saved as the default
+		icon_regular_floor = "floor"
+	else
+		icon_regular_floor = icon_state
+
+//turf/simulated/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+//	if ((istype(mover, /obj/machinery/vehicle) && !(src.burnt)))
+//		if (!( locate(/obj/machinery/mass_driver, src) ))
+//			return 0
+//	return ..()
+
+/turf/simulated/floor/return_siding_icon_state()
+	. = ..()
+	if(is_grass_floor())
+		var/dir_sum = 0
+		for(var/direction in GLOBL.cardinal)
+			var/turf/T = get_step(src, direction)
+			if(!(T.is_grass_floor()))
+				dir_sum += direction
+		if(dir_sum)
+			return "wood_siding[dir_sum]"
+		else
+			return 0
+
+/turf/simulated/floor/is_plasteel_floor()
+	if(ispath(floor_type, /obj/item/stack/tile/plasteel))
+		return 1
+	else
+		return 0
+
+/turf/simulated/floor/is_light_floor()
+	if(ispath(floor_type, /obj/item/stack/tile/light))
+		return 1
+	else
+		return 0
+
+/turf/simulated/floor/is_grass_floor()
+	if(ispath(floor_type, /obj/item/stack/tile/grass))
+		return 1
+	else
+		return 0
+
+/turf/simulated/floor/is_wood_floor()
+	if(ispath(floor_type, /obj/item/stack/tile/wood))
+		return 1
+	else
+		return 0
+
+/turf/simulated/floor/is_carpet_floor()
+	if(ispath(floor_type, /obj/item/stack/tile/carpet))
+		return 1
+	else
+		return 0
+
+/turf/simulated/floor/is_plating()
+	if(!floor_type)
+		return 1
+	return 0
+
 /turf/simulated/floor/proc/get_lightfloor_state()
 	return lightfloor_state & LIGHTFLOOR_STATE_BITS
 
@@ -67,63 +128,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 
 /turf/simulated/floor/proc/toggle_lightfloor_on()
 	lightfloor_state ^= LIGHTFLOOR_ON_BIT
-
-
-/turf/simulated/floor/New()
-	. = ..()
-	if(icon_state in icons_to_ignore_at_floor_init) //so damaged/burned tiles or plating icons aren't saved as the default
-		icon_regular_floor = "floor"
-	else
-		icon_regular_floor = icon_state
-
-//turf/simulated/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-//	if ((istype(mover, /obj/machinery/vehicle) && !(src.burnt)))
-//		if (!( locate(/obj/machinery/mass_driver, src) ))
-//			return 0
-//	return ..()
-
-/turf/simulated/floor/ex_act(severity)
-	//set src in oview(1)
-	switch(severity)
-		if(1.0)
-			ChangeTurf(get_base_turf_by_area(src))
-		if(2.0)
-			switch(pick(1, 2;75, 3))
-				if(1)
-					ReplaceWithLattice()
-					if(prob(33))
-						new /obj/item/stack/sheet/metal(src)
-				if(2)
-					ChangeTurf(get_base_turf_by_area(src))
-				if(3)
-					if(prob(80))
-						break_tile_to_plating()
-					else
-						break_tile()
-					hotspot_expose(1000, CELL_VOLUME)
-					if(prob(33))
-						new /obj/item/stack/sheet/metal(src)
-		if(3.0)
-			if(prob(50))
-				break_tile()
-				hotspot_expose(1000, CELL_VOLUME)
-
-/turf/simulated/floor/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(!burnt && prob(5))
-		burn_tile()
-	else if(prob(1) && !is_plating())
-		make_plating()
-		burn_tile()
-
-/turf/simulated/floor/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
-	var/dir_to = get_dir(src, adj_turf)
-
-	for(var/obj/structure/window/W in src)
-		if(W.dir == dir_to || W.is_fulltile()) //Same direction or diagonal (full tile)
-			W.fire_act(adj_air, adj_temp, adj_volume)
-
-/turf/simulated/floor/blob_act()
-	return
 
 /turf/simulated/floor/proc/update_icon()
 	if(lava)
@@ -211,46 +215,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 			if(air)
 				update_visuals(air)*/
 
-/turf/simulated/floor/return_siding_icon_state()
-	. = ..()
-	if(is_grass_floor())
-		var/dir_sum = 0
-		for(var/direction in GLOBL.cardinal)
-			var/turf/T = get_step(src, direction)
-			if(!(T.is_grass_floor()))
-				dir_sum += direction
-		if(dir_sum)
-			return "wood_siding[dir_sum]"
-		else
-			return 0
-
-/turf/simulated/floor/attack_paw(mob/user as mob)
-	return attack_hand(user)
-
-/turf/simulated/floor/attack_hand(mob/user as mob)
-	if(is_light_floor())
-		toggle_lightfloor_on()
-		update_icon()
-	if(!user.canmove || user.restrained() || !user.pulling)
-		return
-	if(user.pulling.anchored || !isturf(user.pulling.loc))
-		return
-	if((user.pulling.loc != user.loc && get_dist(user, user.pulling) > 1))
-		return
-	if(ismob(user.pulling))
-		var/mob/M = user.pulling
-
-//		if(M==user)					//temporary hack to stop runtimes. ~Carn
-//			user.stop_pulling()		//but...fixed the root of the problem
-//			return					//shoudn't be needed now, unless somebody fucks with pulling again.
-
-		var/mob/t = M.pulling
-		M.stop_pulling()
-		step(user.pulling, get_dir(user.pulling.loc, src))
-		M.start_pulling(t)
-	else
-		step(user.pulling, get_dir(user.pulling.loc, src))
-
 /turf/simulated/floor/proc/gets_drilled()
 	return
 
@@ -258,41 +222,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	if(!is_plating())
 		make_plating()
 	break_tile()
-
-/turf/simulated/floor/is_plasteel_floor()
-	if(ispath(floor_type, /obj/item/stack/tile/plasteel))
-		return 1
-	else
-		return 0
-
-/turf/simulated/floor/is_light_floor()
-	if(ispath(floor_type, /obj/item/stack/tile/light))
-		return 1
-	else
-		return 0
-
-/turf/simulated/floor/is_grass_floor()
-	if(ispath(floor_type, /obj/item/stack/tile/grass))
-		return 1
-	else
-		return 0
-
-/turf/simulated/floor/is_wood_floor()
-	if(ispath(floor_type, /obj/item/stack/tile/wood))
-		return 1
-	else
-		return 0
-
-/turf/simulated/floor/is_carpet_floor()
-	if(ispath(floor_type, /obj/item/stack/tile/carpet))
-		return 1
-	else
-		return 0
-
-/turf/simulated/floor/is_plating()
-	if(!floor_type)
-		return 1
-	return 0
 
 /turf/simulated/floor/proc/break_tile()
 	if(istype(src, /turf/simulated/floor/engine))
@@ -476,123 +405,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 
 	update_icon()
 	levelupdate()
-
-/turf/simulated/floor/attackby(obj/item/C as obj, mob/user as mob)
-	if(isnull(C) || isnull(user))
-		return 0
-
-	if(istype(C, /obj/item/light/bulb)) //only for light tiles
-		if(is_light_floor())
-			if(get_lightfloor_state())
-				user.drop_item(C)
-				qdel(C)
-				set_lightfloor_state(0) //fixing it by bashing it with a light bulb, fun eh?
-				update_icon()
-				to_chat(user, SPAN_INFO("You replace the light bulb."))
-			else
-				to_chat(user, SPAN_INFO("The lightbulb seems fine, no need to replace it."))
-
-	if(istype(C, /obj/item/crowbar) && (!(is_plating())))
-		if(broken || burnt)
-			to_chat(user, SPAN_WARNING("You remove the broken plating."))
-		else
-			if(is_wood_floor())
-				to_chat(user, SPAN_WARNING("You forcefully pry off the planks, destroying them in the process."))
-			else
-				var/obj/item/I = new floor_type(src)
-				if(is_light_floor())
-					var/obj/item/stack/tile/light/L = I
-					L.on = get_lightfloor_on()
-					L.state = get_lightfloor_state()
-				to_chat(user, SPAN_WARNING("You remove the [I.name]."))
-
-		make_plating()
-		playsound(src, 'sound/items/Crowbar.ogg', 80, 1)
-		return
-
-	if(istype(C, /obj/item/screwdriver) && is_wood_floor())
-		if(broken || burnt)
-			return
-		else
-			if(is_wood_floor())
-				to_chat(user, SPAN_WARNING("You unscrew the planks."))
-				new floor_type(src)
-
-		make_plating()
-		playsound(src, 'sound/items/Screwdriver.ogg', 80, 1)
-		return
-
-	if(istype(C, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = C
-		if(is_plating())
-			if(R.amount >= 2)
-				to_chat(user, SPAN_INFO("Reinforcing the floor..."))
-				if(do_after(user, 30) && R && R.amount >= 2 && is_plating())
-					ChangeTurf(/turf/simulated/floor/engine)
-					playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
-					R.use(2)
-					return
-			else
-				to_chat(user, SPAN_WARNING("You need more rods."))
-		else
-			to_chat(user, SPAN_WARNING("You must remove the plating first."))
-		return
-
-	if(istype(C, /obj/item/stack/tile))
-		if(is_plating())
-			if(!broken && !burnt)
-				var/obj/item/stack/tile/T = C
-				floor_type = T.type
-				intact = 1
-				if(istype(T, /obj/item/stack/tile/light))
-					var/obj/item/stack/tile/light/L = T
-					set_lightfloor_state(L.state)
-					set_lightfloor_on(L.on)
-				if(istype(T, /obj/item/stack/tile/grass))
-					for(var/direction in GLOBL.cardinal)
-						if(istype(get_step(src, direction), /turf/simulated/floor))
-							var/turf/simulated/floor/FF = get_step(src, direction)
-							FF.update_icon() //so siding gets updated properly
-				else if(istype(T, /obj/item/stack/tile/carpet))
-					for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
-						if(istype(get_step(src, direction), /turf/simulated/floor))
-							var/turf/simulated/floor/FF = get_step(src, direction)
-							FF.update_icon() //so siding gets updated properly
-				T.use(1)
-				update_icon()
-				levelupdate()
-				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-			else
-				to_chat(user, SPAN_INFO("This section is too damaged to support a tile. Use a welder to fix the damage."))
-
-	if(istype(C, /obj/item/stack/cable_coil))
-		if(is_plating())
-			var/obj/item/stack/cable_coil/coil = C
-			coil.turf_place(src, user)
-		else
-			to_chat(user, SPAN_WARNING("You must remove the plating first."))
-
-	if(istype(C, /obj/item/shovel))
-		if(is_grass_floor())
-			new /obj/item/ore/glass(src)
-			new /obj/item/ore/glass(src) //Make some sand if you shovel grass
-			to_chat(user, SPAN_INFO("You shovel the grass."))
-			make_plating()
-		else
-			to_chat(user, SPAN_WARNING("You cannot shovel this."))
-
-	if(istype(C, /obj/item/weldingtool))
-		var/obj/item/weldingtool/welder = C
-		if(welder.isOn() && (is_plating()))
-			if(broken || burnt)
-				if(welder.remove_fuel(0, user))
-					to_chat(user, SPAN_WARNING("You fix some dents on the broken plating."))
-					playsound(src, 'sound/items/Welder.ogg', 80, 1)
-					icon_state = "plating"
-					burnt = 0
-					broken = 0
-				else
-					to_chat(user, SPAN_INFO("You need more welding fuel to complete this task."))
 
 #undef LIGHTFLOOR_STATE_OK
 #undef LIGHTFLOOR_STATE_FLICKER

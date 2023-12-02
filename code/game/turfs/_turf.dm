@@ -15,7 +15,7 @@
 	// Properties for both
 	var/temperature = T20C
 
-	var/blocks_air = 0
+	var/blocks_air = FALSE
 	var/icon_old = null
 	var/pathweight = 1
 
@@ -23,10 +23,11 @@
 	. = ..()
 	GLOBL.processing_turfs.Add(src)
 
+/turf/initialize()
+	. = ..()
 	for(var/atom/movable/AM as mob|obj in src)
 		spawn(0)
 			Entered(AM)
-			return
 
 /turf/Destroy()
 	GLOBL.processing_turfs.Remove(src)
@@ -34,112 +35,6 @@
 
 /turf/proc/process()
 	return PROCESS_KILL
-
-/turf/ex_act(severity)
-	return 0
-
-/turf/bullet_act(obj/item/projectile/proj)
-	if(istype(proj, /obj/item/projectile/energy/beam/pulse))
-		ex_act(2)
-	. = ..()
-
-/turf/bullet_act(obj/item/projectile/proj)
-	if(istype(proj, /obj/item/projectile/bullet/gyro))
-		explosion(src, -1, 0, 2)
-	. = ..()
-
-/turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
-	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		FEEDBACK_MOVEMENT_ADMIN_DISABLED(usr) // This is to identify lag problems.
-		return
-
-	if(isnull(mover) || !isturf(mover.loc))
-		return TRUE
-
-	// First, check objects to block exit that are not on the border.
-	for(var/obj/obstacle in mover.loc)
-		if(!(obstacle.flags & ON_BORDER) && mover != obstacle && forget != obstacle)
-			if(!obstacle.CheckExit(mover, src))
-				mover.Bump(obstacle, 1)
-				return FALSE
-
-	// Now, check objects to block exit that are on the border.
-	for(var/obj/border_obstacle in mover.loc)
-		if((border_obstacle.flags & ON_BORDER) && mover != border_obstacle && forget != border_obstacle)
-			if(!border_obstacle.CheckExit(mover, src))
-				mover.Bump(border_obstacle, 1)
-				return FALSE
-
-	// Next, check objects to block entry that are on the border.
-	for(var/obj/border_obstacle in src)
-		if(border_obstacle.flags & ON_BORDER)
-			if(!border_obstacle.CanPass(mover, mover.loc, 1, 0) && forget != border_obstacle)
-				mover.Bump(border_obstacle, 1)
-				return FALSE
-
-	// Then, check the turf itself.
-	if(!CanPass(mover, src))
-		mover.Bump(src, 1)
-		return FALSE
-
-	// Finally, check objects/mobs to block entry that are not on the border.
-	for(var/atom/movable/obstacle in src)
-		if(!(obstacle.flags & ON_BORDER))
-			if(!obstacle.CanPass(mover, mover.loc, 1, 0) && forget != obstacle)
-				mover.Bump(obstacle, 1)
-				return FALSE
-
-	return TRUE // Nothing found to block so return success!
-
-/turf/Entered(atom/atom as mob|obj)
-	if(movement_disabled)
-		FEEDBACK_MOVEMENT_ADMIN_DISABLED(usr) // This is to identify lag problems.
-		return
-	..()
-//vvvvv Infared beam stuff vvvvv
-
-	if(atom && atom.density && !istype(atom, /obj/effect/beam))
-		for(var/obj/effect/beam/i_beam/I in src)
-			spawn(0)
-				if(I)
-					I.hit()
-				break
-
-//^^^^^ Infared beam stuff ^^^^^
-
-	if(!ismovable(atom))
-		return
-
-	var/atom/movable/M = atom
-
-	var/loopsanity = 100
-	if(ismob(M))
-		var/mob/mob = M
-		if(isnull(mob.lastarea))
-			mob.lastarea = get_area(M.loc)
-		if(!mob.lastarea.has_gravity)
-			inertial_drift(M)
-
-	/*
-		if(M.flags & NOGRAV)
-			inertial_drift(M)
-	*/
-
-		else if(!isspace(src))
-			M:inertia_dir = 0
-	..()
-	var/objects = 0
-	for(var/atom/A as mob|obj|turf|area in range(1))
-		if(objects > loopsanity)
-			break
-		objects++
-		spawn(0)
-			if(A && M)
-				A.HasProximity(M, 1)
-			return
-
-/turf/proc/adjacent_fire_act(turf/simulated/floor/source, temperature, volume)
-	return
 
 /turf/proc/is_plating()
 	return 0
@@ -219,7 +114,7 @@
 	var/old_lighting_overlay = lighting_overlay
 	var/old_corners = corners
 
-	if(connections)
+	if(isnotnull(connections))
 		connections.erase_all()
 
 	if(istype(src, /turf/simulated))
@@ -227,7 +122,7 @@
 		//Despite this being called a bunch during explosions,
 		//the zone will only really do heavy lifting once.
 		var/turf/simulated/S = src
-		if(S.zone)
+		if(isnotnull(S.zone))
 			S.zone.rebuild()
 
 	if(ispath(N, /turf/simulated/floor))

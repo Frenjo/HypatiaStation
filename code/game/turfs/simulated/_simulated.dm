@@ -14,12 +14,6 @@
 	. = ..()
 	levelupdate()
 
-/turf/simulated/proc/AddTracks(typepath, bloodDNA, comingdir, goingdir, bloodcolor = "#A10808")
-	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
-	if(isnull(tracks))
-		tracks = new typepath(src)
-	tracks.AddTracks(bloodDNA, comingdir, goingdir, bloodcolor)
-
 /turf/simulated/Entered(atom/A, atom/OL)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
 		FEEDBACK_MOVEMENT_ADMIN_DISABLED(usr) // This is to identify lag problems.
@@ -33,7 +27,7 @@
 		var/obj/effect/decal/cleanable/dirt/dirtoverlay = locate(/obj/effect/decal/cleanable/dirt, src)
 		if(dirt >= 50)
 			if(isnull(dirtoverlay))
-				dirtoverlay = new/obj/effect/decal/cleanable/dirt(src)
+				dirtoverlay = new /obj/effect/decal/cleanable/dirt(src)
 				dirtoverlay.alpha = 15
 			else if(dirt > 50)
 				dirtoverlay.alpha = min(dirtoverlay.alpha + 5, 255)
@@ -172,6 +166,11 @@
 
 	return 1 //we bloodied the floor
 
+/turf/simulated/proc/AddTracks(typepath, bloodDNA, comingdir, goingdir, bloodcolor = "#A10808")
+	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
+	if(isnull(tracks))
+		tracks = new typepath(src)
+	tracks.AddTracks(bloodDNA, comingdir, goingdir, bloodcolor)
 
 // Only adds blood on the floor -- Skie
 /turf/simulated/proc/add_blood_floor(mob/living/carbon/M as mob)

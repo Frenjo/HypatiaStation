@@ -30,7 +30,7 @@
 
 	to_chat(user, SPAN_INFO("You push the wall but nothing happens!"))
 	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 
 /turf/simulated/wall/r_wall/attackby(obj/item/W as obj, mob/user as mob)
 	if(!(ishuman(user) || global.CTticker) && global.CTticker.mode.name != "monkey")
@@ -53,10 +53,10 @@
 				return
 		else if(!is_sharp(W) && W.force >= 10 || W.force >= 20)
 			to_chat(user, SPAN_NOTICE("\The [src] crumbles away under the force of your [W.name]."))
-			src.dismantle_wall()
+			dismantle_wall()
 			return
 
-	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
+	//THERMITE related stuff. Calls thermitemelt() which handles melting simulated walls and the relevant effects
 	if(thermite)
 		if(istype(W, /obj/item/weldingtool))
 			var/obj/item/weldingtool/WT = W
@@ -103,8 +103,8 @@
 		if(0)
 			if(istype(W, /obj/item/wirecutters))
 				playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
-				src.d_state = 1
-				src.icon_state = "r_wall-1"
+				d_state = 1
+				icon_state = "r_wall-1"
 				new /obj/item/stack/rods(src)
 				to_chat(user, SPAN_NOTICE("You cut the outer grille."))
 				return
@@ -119,16 +119,16 @@
 					return
 
 				if(d_state == 1 && user.loc == T && user.get_active_hand() == W)
-					src.d_state = 2
-					src.icon_state = "r_wall-2"
+					d_state = 2
+					icon_state = "r_wall-2"
 					to_chat(user, SPAN_NOTICE("You remove the support lines."))
 				return
 
 			//REPAIRING (replacing the outer grille for cosmetic damage)
 			else if(istype(W, /obj/item/stack/rods))
 				var/obj/item/stack/O = W
-				src.d_state = 0
-				src.icon_state = "r_wall"
+				d_state = 0
+				icon_state = "r_wall"
 				relativewall_neighbours()	//call smoothwall stuff
 				to_chat(user, SPAN_NOTICE("You replace the outer grille."))
 				if(O.amount > 1)
@@ -149,8 +149,8 @@
 						return
 
 					if(d_state == 2 && user.loc == T && user.get_active_hand() == WT)
-						src.d_state = 3
-						src.icon_state = "r_wall-3"
+						d_state = 3
+						icon_state = "r_wall-3"
 						to_chat(user, SPAN_NOTICE("You press firmly on the cover, dislodging it."))
 				else
 					to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
@@ -165,8 +165,8 @@
 					return
 
 				if(d_state == 2 && user.loc == T && user.get_active_hand() == W)
-					src.d_state = 3
-					src.icon_state = "r_wall-3"
+					d_state = 3
+					icon_state = "r_wall-3"
 					to_chat(user, SPAN_NOTICE("You press firmly on the cover, dislodging it."))
 				return
 
@@ -180,8 +180,8 @@
 					return
 
 				if(d_state == 3 && user.loc == T && user.get_active_hand() == W)
-					src.d_state = 4
-					src.icon_state = "r_wall-4"
+					d_state = 4
+					icon_state = "r_wall-4"
 					to_chat(user, SPAN_NOTICE("You pry off the cover."))
 				return
 
@@ -195,8 +195,8 @@
 					return
 
 				if(d_state == 4 && user.loc == T && user.get_active_hand() == W)
-					src.d_state = 5
-					src.icon_state = "r_wall-5"
+					d_state = 5
+					icon_state = "r_wall-5"
 					to_chat(user, SPAN_NOTICE("You remove the bolts anchoring the support rods."))
 				return
 
@@ -212,8 +212,8 @@
 						return
 
 					if(d_state == 5 && user.loc == T && user.get_active_hand() == WT)
-						src.d_state = 6
-						src.icon_state = "r_wall-6"
+						d_state = 6
+						icon_state = "r_wall-6"
 						new /obj/item/stack/rods(src)
 						to_chat(user, SPAN_NOTICE("The support rods drop out as you cut them loose from the frame."))
 				else
@@ -229,8 +229,8 @@
 					return
 
 				if(d_state == 5 && user.loc == T && user.get_active_hand() == W)
-					src.d_state = 6
-					src.icon_state = "r_wall-6"
+					d_state = 6
+					icon_state = "r_wall-6"
 					new /obj/item/stack/rods(src)
 					to_chat(user, SPAN_NOTICE("The support rods drop out as you cut them loose from the frame."))
 				return
@@ -274,8 +274,8 @@
 			return
 
 		if(user.loc == T && user.get_active_hand() == MS && d_state)
-			src.d_state = 0
-			src.icon_state = "r_wall"
+			d_state = 0
+			icon_state = "r_wall"
 			relativewall_neighbours()	//call smoothwall stuff
 			to_chat(user, SPAN_NOTICE("You repair the last of the damage."))
 			if (MS.amount > 1)
