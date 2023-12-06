@@ -6,10 +6,10 @@
 
 	var/list/lines = list()
 
-	if(holder)
+	if(isnotnull(holder))
 		for(var/client/C in GLOBL.clients)
 			var/entry = "\t[C.key]"
-			if(C.holder && C.holder.fakekey)
+			if(isnotnull(C.holder?.fakekey))
 				entry += " <i>(as [C.holder.fakekey])</i>"
 			entry += " - Playing as [C.mob.real_name]"
 			switch(C.mob.stat)
@@ -27,20 +27,19 @@
 			if(is_special_character(C.mob))
 				entry += " - <b><font color='red'>Antagonist</font></b>"
 			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
-			lines += entry
+			lines.Add(entry)
 	else
 		for(var/client/C in GLOBL.clients)
-			if(C.holder && C.holder.fakekey)
-				lines += C.holder.fakekey
+			if(isnotnull(C.holder?.fakekey))
+				lines.Add(C.holder.fakekey)
 			else
-				lines += C.key
+				lines.Add(C.key)
 
 	for(var/line in sortList(lines))
 		msg += "[line]\n"
 
 	msg += "<b>Total Players: [length(lines)]</b>"
 	to_chat(src, msg)
-
 
 /client/verb/staffwho()
 	set name = "Staffwho"
@@ -50,12 +49,12 @@
 	var/modmsg = ""
 	var/num_mods_online = 0
 	var/num_admins_online = 0
-	if(holder)
+	if(isnotnull(holder))
 		for(var/client/C in GLOBL.admins)
 			if(R_ADMIN & C.holder.rights || !(R_MOD & C.holder.rights))
 				msg += "\t[C] is a [C.holder.rank]"
 
-				if(C.holder.fakekey)
+				if(isnotnull(C.holder.fakekey))
 					msg += " <i>(as [C.holder.fakekey])</i>"
 
 				if(isobserver(C.mob))
@@ -87,7 +86,7 @@
 	else
 		for(var/client/C in GLOBL.admins)
 			if(R_ADMIN & C.holder.rights || !(R_MOD & C.holder.rights))
-				if(!C.holder.fakekey)
+				if(isnull(C.holder.fakekey))
 					msg += "\t[C] is a [C.holder.rank]\n"
 					num_admins_online++
 			else

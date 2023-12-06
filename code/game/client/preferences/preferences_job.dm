@@ -11,12 +11,12 @@
 	//width		- Screen' width. Defaults to 550 to make it look nice.
 	//height	- Screen's height. Defaults to 500 to make it look nice.
 
-	var/HTML = "<body>"
-	HTML += "<tt><center>"
-	HTML += "<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br><br>"
-	HTML += "<center><a href='?_src_=prefs;preference=job;task=close'>\[Done\]</a></center><br>" // Easier to press up here.
-	HTML += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more colomns.
-	HTML += "<table width='100%' cellpadding='1' cellspacing='0'>"
+	var/dat = "<body>"
+	dat += "<tt><center>"
+	dat += "<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br><br>"
+	dat += "<center><a href='?_src_=prefs;preference=job;task=close'>\[Done\]</a></center><br>" // Easier to press up here.
+	dat += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more colomns.
+	dat += "<table width='100%' cellpadding='1' cellspacing='0'>"
 	var/index = -1
 
 	// The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
@@ -28,71 +28,71 @@
 				//If the cells were broken up by a job in the splitJob list then it will fill in the rest of the cells with
 				// the last job's selection color. Creating a rather nice effect.
 				for(var/i = 0, i < (limit - index), i += 1)
-					HTML += "<tr bgcolor='[lastJob.selection_color]'><td width='60%' align='right'><a>&nbsp</a></td><td><a>&nbsp</a></td></tr>"
-			HTML += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
+					dat += "<tr bgcolor='[lastJob.selection_color]'><td width='60%' align='right'><a>&nbsp</a></td><td><a>&nbsp</a></td></tr>"
+			dat += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
 			index = 0
 
-		HTML += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
+		dat += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
 		var/rank = job.title
 		lastJob = job
 		if(jobban_isbanned(user, rank))
-			HTML += "<del>[rank]</del></td><td><b> \[BANNED]</b></td></tr>"
+			dat += "<del>[rank]</del></td><td><b> \[BANNED]</b></td></tr>"
 			continue
 		if(!job.player_old_enough(user.client))
 			var/available_in_days = job.available_in_days(user.client)
-			HTML += "<del>[rank]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
+			dat += "<del>[rank]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
 			continue
 		if((job_civilian_low & JOB_ASSISTANT) && rank != "Assistant")
-			HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
+			dat += "<font color=orange>[rank]</font></td><td></td></tr>"
 			continue
 		if((rank in GLOBL.command_positions) || rank == "AI") // Bold head jobs and AI.
-			HTML += "<b>[rank]</b>"
+			dat += "<b>[rank]</b>"
 		else
-			HTML += "[rank]"
+			dat += "[rank]"
 
-		HTML += "</td><td width='40%'>"
+		dat += "</td><td width='40%'>"
 
-		HTML += "<a href='?_src_=prefs;preference=job;task=input;text=[rank]'>"
+		dat += "<a href='?_src_=prefs;preference=job;task=input;text=[rank]'>"
 
 		if(rank == "Assistant") // Assistant is special.
 			if(job_civilian_low & JOB_ASSISTANT)
-				HTML += " <font color=green>\[Yes]</font>"
+				dat += " <font color=green>\[Yes]</font>"
 			else
-				HTML += " <font color=red>\[No]</font>"
+				dat += " <font color=red>\[No]</font>"
 			if(job.alt_titles)
-				HTML += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'><a>&nbsp</a></td><td><a href=\"byond://?src=\ref[user];preference=job;task=alt_title;job=\ref[job]\">\[[GetPlayerAltTitle(job)]\]</a></td></tr>"
-			HTML += "</a></td></tr>"
+				dat += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'><a>&nbsp</a></td><td><a href=\"byond://?src=\ref[user];preference=job;task=alt_title;job=\ref[job]\">\[[GetPlayerAltTitle(job)]\]</a></td></tr>"
+			dat += "</a></td></tr>"
 			continue
 
 		if(GetJobDepartment(job, 1) & job.flag)
-			HTML += " <font color=blue>\[High]</font>"
+			dat += " <font color=blue>\[High]</font>"
 		else if(GetJobDepartment(job, 2) & job.flag)
-			HTML += " <font color=green>\[Medium]</font>"
+			dat += " <font color=green>\[Medium]</font>"
 		else if(GetJobDepartment(job, 3) & job.flag)
-			HTML += " <font color=orange>\[Low]</font>"
+			dat += " <font color=orange>\[Low]</font>"
 		else
-			HTML += " <font color=red>\[NEVER]</font>"
+			dat += " <font color=red>\[NEVER]</font>"
 		if(job.alt_titles)
-			HTML += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'><a>&nbsp</a></td><td><a href=\"byond://?src=\ref[user];preference=job;task=alt_title;job=\ref[job]\">\[[GetPlayerAltTitle(job)]\]</a></td></tr>"
-		HTML += "</a></td></tr>"
+			dat += "</a></td></tr><tr bgcolor='[lastJob.selection_color]'><td width='60%' align='center'><a>&nbsp</a></td><td><a href=\"byond://?src=\ref[user];preference=job;task=alt_title;job=\ref[job]\">\[[GetPlayerAltTitle(job)]\]</a></td></tr>"
+		dat += "</a></td></tr>"
 
-	HTML += "</td'></tr></table>"
+	dat += "</td'></tr></table>"
 
-	HTML += "</center></table>"
+	dat += "</center></table>"
 
 	switch(alternate_option)
 		if(GET_RANDOM_JOB)
-			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=green>Get random job if preferences unavailable</font></a></u></center><br>"
+			dat += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=green>Get random job if preferences unavailable</font></a></u></center><br>"
 		if(BE_ASSISTANT)
-			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=red>Be assistant if preference unavailable</font></a></u></center><br>"
+			dat += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=red>Be assistant if preference unavailable</font></a></u></center><br>"
 		if(RETURN_TO_LOBBY)
-			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=purple>Return to lobby if preference unavailable</font></a></u></center><br>"
+			dat += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=purple>Return to lobby if preference unavailable</font></a></u></center><br>"
 
-	HTML += "<center><a href='?_src_=prefs;preference=job;task=reset'>\[Reset\]</a></center>"
-	HTML += "</tt>"
+	dat += "<center><a href='?_src_=prefs;preference=job;task=reset'>\[Reset\]</a></center>"
+	dat += "</tt>"
 
 	user << browse(null, "window=preferences")
-	user << browse(HTML, "window=mob_occupation;size=[width]x[height]")
+	user << browse(dat, "window=mob_occupation;size=[width]x[height]")
 
 /datum/preferences/proc/GetPlayerAltTitle(datum/job/job)
 	return player_alt_titles.Find(job.title) > 0 ? player_alt_titles[job.title] : job.title

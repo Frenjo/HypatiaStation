@@ -2,7 +2,7 @@
  * Disconnect
  */
 /client/Del()
-	if(holder)
+	if(isnotnull(holder))
 		holder.owner = null
 		GLOBL.admins.Remove(src)
 	GLOBL.directory.Remove(ckey)

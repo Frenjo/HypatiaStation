@@ -74,8 +74,8 @@
 	var/related_accounts_cid = "Requires database"
 
 // Checks if a client is afk.
-// 3000 frames = 5 minutes
-/client/proc/is_afk(duration = 3000)
+// Default is 3000 frames, or 5 minutes.
+/client/proc/is_afk(duration = 5 MINUTES)
 	if(inactivity > duration)
 		return inactivity
 	return 0

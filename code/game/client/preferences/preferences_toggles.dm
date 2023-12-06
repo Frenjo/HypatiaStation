@@ -181,15 +181,15 @@
 	var/mob/living/carbon/human/user = usr
 
 	var/UI_style_new = input(user, "Select a style, we recommend White for customization.") in list("White", "Midnight", "Orange", "old")
-	if(!UI_style_new)
+	if(isnull(UI_style_new))
 		return
 
 	var/UI_style_alpha_new = input(user, "Select a new alpha(transparency) parameter for UI, between 50 and 255.") as num
-	if(!UI_style_alpha_new || !(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50))
+	if(isnull(UI_style_alpha_new) || !(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50))
 		return
 
 	var/UI_style_color_new = input(user, "Choose your UI color, dark colors are not recommended!") as color|null
-	if(!UI_style_color_new)
+	if(isnull(UI_style_color_new))
 		return
 
 	//update UI

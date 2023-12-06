@@ -277,7 +277,7 @@
 	dat += "<br><br>"
 	if(jobban_isbanned(user, "Syndicate"))
 		dat += "<b>You are banned from antagonist roles.</b>"
-		src.be_special = 0
+		be_special = 0
 	else
 		var/n = 0
 		for(var/i in GLOBL.special_roles)
@@ -288,7 +288,7 @@
 					if(jobban_isbanned(user, "pAI"))
 						dat += "<b>Be [i]:</b> <font color=red><b> \[BANNED]</b></font><br>"
 				else
-					dat += "<b>Be [i]:</b> <a href='?_src_=prefs;preference=be_special;num=[n]'><b>[src.be_special&(1<<n) ? "Yes" : "No"]</b></a><br>"
+					dat += "<b>Be [i]:</b> <a href='?_src_=prefs;preference=be_special;num=[n]'><b>[be_special & (1 << n) ? "Yes" : "No"]</b></a><br>"
 			n++
 	dat += "</td></tr></table><hr><center>"
 
@@ -302,73 +302,74 @@
 	user << browse(dat, "window=preferences;size=560x580")
 
 /datum/preferences/proc/SetDisabilities(mob/user)
-	var/HTML = "<body>"
-	HTML += "<tt><center>"
-	HTML += "<b>Choose disabilities</b><br>"
+	var/dat = "<body>"
+	dat += "<tt><center>"
+	dat += "<b>Choose disabilities</b><br>"
 
-	HTML += "Need Glasses? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=0\">[disabilities & (1<<0) ? "Yes" : "No"]</a><br>"
-	HTML += "Seizures? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=1\">[disabilities & (1<<1) ? "Yes" : "No"]</a><br>"
-	HTML += "Coughing? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=2\">[disabilities & (1<<2) ? "Yes" : "No"]</a><br>"
-	HTML += "Tourettes/Twitching? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=3\">[disabilities & (1<<3) ? "Yes" : "No"]</a><br>"
-	HTML += "Nervousness? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=4\">[disabilities & (1<<4) ? "Yes" : "No"]</a><br>"
-	HTML += "Deafness? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=5\">[disabilities & (1<<5) ? "Yes" : "No"]</a><br>"
+	dat += "Need Glasses? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=0\">[disabilities & (1<<0) ? "Yes" : "No"]</a><br>"
+	dat += "Seizures? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=1\">[disabilities & (1<<1) ? "Yes" : "No"]</a><br>"
+	dat += "Coughing? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=2\">[disabilities & (1<<2) ? "Yes" : "No"]</a><br>"
+	dat += "Tourettes/Twitching? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=3\">[disabilities & (1<<3) ? "Yes" : "No"]</a><br>"
+	dat += "Nervousness? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=4\">[disabilities & (1<<4) ? "Yes" : "No"]</a><br>"
+	dat += "Deafness? <a href=\"byond://?src=\ref[user];preferences=1;disabilities=5\">[disabilities & (1<<5) ? "Yes" : "No"]</a><br>"
 
-	HTML += "<br>"
-	HTML += "<a href=\"byond://?src=\ref[user];preferences=1;disabilities=-2\">\[Done\]</a>"
-	HTML += "</center></tt>"
+	dat += "<br>"
+	dat += "<a href=\"byond://?src=\ref[user];preferences=1;disabilities=-2\">\[Done\]</a>"
+	dat += "</center></tt>"
 
 	user << browse(null, "window=preferences")
-	user << browse(HTML, "window=disabil;size=350x300")
+	user << browse(dat, "window=disabil;size=350x300")
 
 /datum/preferences/proc/SetRecords(mob/user)
-	var/HTML = "<body>"
-	HTML += "<tt><center>"
-	HTML += "<b>Set Character Records</b><br>"
+	var/dat = "<body>"
+	dat += "<tt><center>"
+	dat += "<b>Set Character Records</b><br>"
 
-	HTML += "<a href=\"byond://?src=\ref[user];preference=records;task=med_record\">Medical Records</a><br>"
+	dat += "<a href=\"byond://?src=\ref[user];preference=records;task=med_record\">Medical Records</a><br>"
 
 	if(length(med_record) <= 40)
-		HTML += "[med_record]"
+		dat += "[med_record]"
 	else
-		HTML += "[copytext(med_record, 1, 37)]..."
+		dat += "[copytext(med_record, 1, 37)]..."
 
-	HTML += "<br><br><a href=\"byond://?src=\ref[user];preference=records;task=gen_record\">Employment Records</a><br>"
+	dat += "<br><br><a href=\"byond://?src=\ref[user];preference=records;task=gen_record\">Employment Records</a><br>"
 
 	if(length(gen_record) <= 40)
-		HTML += "[gen_record]"
+		dat += "[gen_record]"
 	else
-		HTML += "[copytext(gen_record, 1, 37)]..."
+		dat += "[copytext(gen_record, 1, 37)]..."
 
-	HTML += "<br><br><a href=\"byond://?src=\ref[user];preference=records;task=sec_record\">Security Records</a><br>"
+	dat += "<br><br><a href=\"byond://?src=\ref[user];preference=records;task=sec_record\">Security Records</a><br>"
 
 	if(length(sec_record) <= 40)
-		HTML += "[sec_record]<br>"
+		dat += "[sec_record]<br>"
 	else
-		HTML += "[copytext(sec_record, 1, 37)]...<br>"
+		dat += "[copytext(sec_record, 1, 37)]...<br>"
 
-	HTML += "<br>"
-	HTML += "<a href=\"byond://?src=\ref[user];preference=records;records=-1\">\[Done\]</a>"
-	HTML += "</center></tt>"
+	dat += "<br>"
+	dat += "<a href=\"byond://?src=\ref[user];preference=records;records=-1\">\[Done\]</a>"
+	dat += "</center></tt>"
 
 	user << browse(null, "window=preferences")
-	user << browse(HTML, "window=records;size=350x300")
+	user << browse(dat, "window=records;size=350x300")
 
 /datum/preferences/proc/SetAntagoptions(mob/user)
 	if(uplinklocation == "")
 		uplinklocation = "PDA"
-	var/HTML = "<body>"
-	HTML += "<tt><center>"
-	HTML += "<b>Antagonist Options</b> <hr />"
-	HTML += "<br>"
-	HTML +="Uplink Type : <b><a href='?src=\ref[user];preference=antagoptions;antagtask=uplinktype;active=1'>[uplinklocation]</a></b>"
-	HTML +="<br>"
-	HTML +="<hr />"
-	HTML +="<a href='?src=\ref[user];preference=antagoptions;antagtask=done;active=1'>\[Done\]</a>"
 
-	HTML += "</center></tt>"
+	var/dat = "<body>"
+	dat += "<tt><center>"
+	dat += "<b>Antagonist Options</b> <hr />"
+	dat += "<br>"
+	dat +="Uplink Type : <b><a href='?src=\ref[user];preference=antagoptions;antagtask=uplinktype;active=1'>[uplinklocation]</a></b>"
+	dat +="<br>"
+	dat +="<hr />"
+	dat +="<a href='?src=\ref[user];preference=antagoptions;antagtask=done;active=1'>\[Done\]</a>"
+
+	dat += "</center></tt>"
 
 	user << browse(null, "window=preferences")
-	user << browse(HTML, "window=antagoptions")
+	user << browse(dat, "window=antagoptions")
 
 /datum/preferences/proc/process_link(mob/user, list/href_list)
 	if(isnull(user))

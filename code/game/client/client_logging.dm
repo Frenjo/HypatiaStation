@@ -1,12 +1,12 @@
 /client/proc/log_client_to_db()
-	if(IsGuestKey(src.key))
+	if(IsGuestKey(key))
 		return
 
 	establish_db_connection()
 	if(!GLOBL.dbcon.IsConnected())
 		return
 
-	var/sql_ckey = sql_sanitize_text(src.ckey)
+	var/sql_ckey = sql_sanitize_text(ckey)
 
 	var/DBQuery/query = GLOBL.dbcon.NewQuery("SELECT id, datediff(Now(),firstseen) as age FROM erro_player WHERE ckey = '[sql_ckey]'")
 	query.Execute()
@@ -38,11 +38,11 @@
 			return
 
 	var/admin_rank = "Player"
-	if(isnotnull(src.holder))
-		admin_rank = src.holder.rank
+	if(isnotnull(holder))
+		admin_rank = holder.rank
 
-	var/sql_ip = sql_sanitize_text(src.address)
-	var/sql_computerid = sql_sanitize_text(src.computer_id)
+	var/sql_ip = sql_sanitize_text(address)
+	var/sql_computerid = sql_sanitize_text(computer_id)
 	var/sql_admin_rank = sql_sanitize_text(admin_rank)
 
 	if(sql_id)

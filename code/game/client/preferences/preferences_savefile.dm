@@ -27,7 +27,7 @@
 	return FALSE
 
 /datum/preferences/proc/load_path(ckey, filename = "preferences.sav")
-	if(!ckey)
+	if(isnull(ckey))
 		return
 	path = "data/player_saves/[copytext(ckey, 1, 2)]/[ckey]/[filename]"
 	savefile_version = SAVEFILE_VERSION_MAX
