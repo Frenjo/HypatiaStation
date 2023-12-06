@@ -402,7 +402,7 @@
 					eye_blurry = 10
 		if(getBrainLoss() >= 35)
 			if(7 <= rn && rn <= 9)
-				if(hand && equipped())
+				if(hand && get_active_hand())
 					to_chat(src, "Your hand won't respond properly, you drop what you're holding.")
 					drop_item()
 		if(getBrainLoss() >= 50)

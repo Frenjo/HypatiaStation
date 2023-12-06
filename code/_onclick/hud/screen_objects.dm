@@ -306,7 +306,7 @@
 		if("Allow Walking")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(), /obj/item/gun))
+			if(!istype(usr.get_active_hand(), /obj/item/gun))
 				FEEDBACK_GUN_NOT_ACTIVE_HAND(usr)
 				return
 			usr.client.AllowTargetMove()
@@ -315,7 +315,7 @@
 		if("Disallow Walking")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(), /obj/item/gun))
+			if(!istype(usr.get_active_hand(), /obj/item/gun))
 				FEEDBACK_GUN_NOT_ACTIVE_HAND(usr)
 				return
 			usr.client.AllowTargetMove()
@@ -324,7 +324,7 @@
 		if("Allow Running")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(), /obj/item/gun))
+			if(!istype(usr.get_active_hand(), /obj/item/gun))
 				FEEDBACK_GUN_NOT_ACTIVE_HAND(usr)
 				return
 			usr.client.AllowTargetRun()
@@ -333,7 +333,7 @@
 		if("Disallow Running")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(), /obj/item/gun))
+			if(!istype(usr.get_active_hand(), /obj/item/gun))
 				FEEDBACK_GUN_NOT_ACTIVE_HAND(usr)
 				return
 			usr.client.AllowTargetRun()
@@ -342,7 +342,7 @@
 		if("Allow Item Use")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(), /obj/item/gun))
+			if(!istype(usr.get_active_hand(), /obj/item/gun))
 				FEEDBACK_GUN_NOT_ACTIVE_HAND(usr)
 				return
 			usr.client.AllowTargetClick()
@@ -351,7 +351,7 @@
 		if("Disallow Item Use")
 			if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 				return
-			if(!istype(usr.equipped(), /obj/item/gun))
+			if(!istype(usr.get_active_hand(), /obj/item/gun))
 				FEEDBACK_GUN_NOT_ACTIVE_HAND(usr)
 				return
 			usr.client.AllowTargetClick()

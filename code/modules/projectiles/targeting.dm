@@ -79,7 +79,7 @@
 		return
 	if(!istype(M))
 		return
-	if(src != M.equipped())
+	if(src != M.get_active_hand())
 		stop_aim()
 		return
 

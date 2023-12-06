@@ -1024,7 +1024,7 @@ table tr:first-child th:first-child { border: none;}
 
 	if(href_list["AAlarmwires"])
 		var/t1 = text2num(href_list["AAlarmwires"])
-		if(!(istype(usr.equipped(), /obj/item/wirecutters)))
+		if(!(istype(usr.get_active_hand(), /obj/item/wirecutters)))
 			to_chat(usr, "You need wirecutters!")
 			return
 		if(isWireColorCut(t1))
@@ -1039,7 +1039,7 @@ table tr:first-child th:first-child { border: none;}
 
 	else if(href_list["pulse"])
 		var/t1 = text2num(href_list["pulse"])
-		if(!istype(usr.equipped(), /obj/item/device/multitool))
+		if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
 			to_chat(usr, "You need a multitool!")
 			return
 		if(isWireColorCut(t1))
