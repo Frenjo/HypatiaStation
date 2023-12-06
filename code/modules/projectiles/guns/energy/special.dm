@@ -161,9 +161,10 @@ modules/mob/mob_movement.dm if you move you will be zoomed out
 modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
 /obj/item/gun/energy/sniperrifle/verb/zoom()
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set name = "Use Sniper Scope"
 	set popup_menu = 0
+
 	if(usr.stat || !ishuman(usr))
 		to_chat(usr, "You are unable to focus down the scope of the rifle.")
 		return

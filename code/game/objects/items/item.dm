@@ -88,8 +88,8 @@
 	return
 
 /obj/item/verb/move_to_top()
+	set category = PANEL_OBJECT
 	set name = "Move To Top"
-	set category = "Object"
 	set src in oview(1)
 
 	if(!isturf(src.loc) || usr.stat || usr.restrained())
@@ -439,8 +439,8 @@
 		//END MONKEY
 
 /obj/item/verb/verb_pickup()
+	set category = PANEL_OBJECT
 	set src in oview(1)
-	set category = "Object"
 	set name = "Pick up"
 
 	if(!(usr)) //BS12 EDIT
@@ -600,8 +600,8 @@
 		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>", 1)
 
 /mob/living/carbon/verb/showoff()
+	set category = PANEL_OBJECT
 	set name = "Show Held Item"
-	set category = "Object"
 
 	var/obj/item/I = get_active_hand()
 	if(I && !I.abstract)

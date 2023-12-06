@@ -8,8 +8,8 @@ GLOBAL_GLOBL_INIT(ert_base_chance, 10)	// Default base chance. Will be increment
 GLOBAL_GLOBL(can_call_ert)
 
 /client/proc/response_team()
+	set category = PANEL_SPECIAL_VERBS
 	set name = "Dispatch Emergency Response Team"
-	set category = "Special Verbs"
 	set desc = "Send an emergency response team to the station"
 
 	if(isnull(holder))
@@ -40,7 +40,7 @@ GLOBAL_GLOBL(can_call_ert)
 
 
 /client/verb/JoinResponseTeam()
-	set category = "IC"
+	set category = PANEL_IC
 
 	if(isobserver(usr) || isnewplayer(usr))
 		if(!GLOBL.send_emergency_team)
@@ -281,6 +281,8 @@ GLOBAL_GLOBL(can_call_ert)
 
 //debug verb (That is horribly coded, LEAVE THIS OFF UNLESS PRIVATELY TESTING. Seriously.
 /*client/verb/ResponseTeam()
-	set category = "Admin"
+	set category = PANEL_ADMIN
+
 	if(!send_emergency_team)
-		send_emergency_team = 1*/
+		send_emergency_team = 1
+*/

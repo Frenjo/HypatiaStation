@@ -1,5 +1,5 @@
 /client/proc/ZoneTick()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Process Atmos"
 
 	var/result = global.CTair.process()
@@ -10,7 +10,8 @@
 		to_chat(src, "Failed to process! ([global.CTair.tick_progress])")
 
 /client/proc/Zone_Info(turf/T as null|turf)
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(T)
 		if(istype(T,/turf/simulated) && T:zone)
 			T:zone:dbg_data(src)
@@ -29,7 +30,8 @@
 /client/var/list/zone_debug_images
 
 /client/proc/Test_ZAS_Connection(turf/simulated/T as turf)
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(!istype(T))
 		return
 
@@ -150,7 +152,8 @@
 
 
 /*client/proc/TestZASRebuild()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 //	var/turf/turf = get_turf(mob)
 	var/zone/current_zone = mob.loc:zone
 	if(!current_zone)
@@ -230,6 +233,6 @@
 	return final_arrangement*/
 
 /client/proc/ZASSettings()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 
 	global.vsc.SetDefault(mob)

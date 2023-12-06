@@ -8,9 +8,10 @@ var/engwords = list(
 )
 
 /client/proc/check_words() // -- Urist
-	set category = "Special Verbs"
+	set category = PANEL_SPECIAL_VERBS
 	set name = "Check Rune Words"
 	set desc = "Check the rune-word meaning"
+
 	if(!cultwords["travel"])
 		runerandom()
 	for(var/word in engwords)

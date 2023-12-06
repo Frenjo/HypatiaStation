@@ -350,8 +350,8 @@
 	return
 
 /obj/machinery/sleeper/verb/eject()
+	set category = PANEL_OBJECT
 	set name = "Eject Sleeper"
-	set category = "Object"
 	set src in oview(1)
 
 	if(usr.stat != CONSCIOUS)
@@ -364,8 +364,8 @@
 	return
 
 /obj/machinery/sleeper/verb/remove_beaker()
+	set category = PANEL_OBJECT
 	set name = "Remove Beaker"
-	set category = "Object"
 	set src in oview(1)
 
 	if(usr.stat != CONSCIOUS)
@@ -378,8 +378,8 @@
 	return
 
 /obj/machinery/sleeper/verb/move_inside()
+	set category = PANEL_OBJECT
 	set name = "Enter Sleeper"
-	set category = "Object"
 	set src in oview(1)
 
 	if(usr.stat != CONSCIOUS || !(ishuman(usr) || ismonkey(usr)))

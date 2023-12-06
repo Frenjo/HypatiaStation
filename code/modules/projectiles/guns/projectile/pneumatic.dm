@@ -28,8 +28,8 @@
 	tank_container = new /obj/item/storage(src)
 
 /obj/item/storage/pneumatic/verb/set_pressure() //set amount of tank pressure.
+	set category = PANEL_OBJECT
 	set name = "Set valve pressure"
-	set category = "Object"
 	set src in range(0)
 
 	var/N = input("Percentage of tank used per shot:", "[src]") as null | anything in possible_pressure_amounts
@@ -38,8 +38,8 @@
 		to_chat(usr, "You dial the pressure valve to [pressure_setting]%.")
 
 /obj/item/storage/pneumatic/verb/eject_tank() //Remove the tank.
+	set category = PANEL_OBJECT
 	set name = "Eject tank"
-	set category = "Object"
 	set src in range(0)
 
 	if(isnotnull(tank))

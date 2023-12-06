@@ -3,9 +3,10 @@
 var/const/syndicate_commandos_possible = 6 //if more Commandos are needed in the future
 GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 /client/proc/syndicate_strike_team()
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Spawn Syndicate Strike Team"
 	set desc = "Spawns a squad of commandos in the Syndicate Mothership if you want to run an admin event."
+
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return

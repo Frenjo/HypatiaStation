@@ -30,8 +30,8 @@
 	var/id
 
 /obj/machinery/zero_point_emitter/verb/rotate()
+	set category = PANEL_OBJECT
 	set name = "Rotate"
-	set category = "Object"
 	set src in oview(1)
 
 	if(anchored || usr:stat)

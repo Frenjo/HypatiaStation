@@ -114,13 +114,13 @@
 /mob/living/carbon/slime/Stat()
 	..()
 
-	statpanel("Status")
+	statpanel(PANEL_STATUS)
 	if(isslimeadult(src))
 		stat(null, "Health: [round((health / 200) * 100)]%")
 	else
 		stat(null, "Health: [round((health / 150) * 100)]%")
 
-	if(client.statpanel == "Status")
+	if(client.statpanel == PANEL_STATUS)
 		if(isslimeadult(src))
 			stat(null, "Nutrition: [nutrition]/1200")
 			if(amount_grown >= 10)

@@ -377,7 +377,7 @@ CONTROLLER_DEF(vote)
 	usr.vote()
 
 /mob/verb/vote()
-	set category = "OOC"
+	set category = PANEL_OOC
 	set name = "Vote"
 
 	if(isnotnull(global.CTvote))

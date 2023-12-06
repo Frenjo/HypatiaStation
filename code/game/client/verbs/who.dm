@@ -1,6 +1,6 @@
 /client/verb/who()
+	set category = PANEL_OOC
 	set name = "Who"
-	set category = "OOC"
 
 	var/msg = "<b>Current Players:</b>\n"
 
@@ -42,8 +42,8 @@
 	to_chat(src, msg)
 
 /client/verb/staffwho()
+	set category = PANEL_ADMIN
 	set name = "Staffwho"
-	set category = "Admin"
 
 	var/msg = ""
 	var/modmsg = ""

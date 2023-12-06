@@ -173,7 +173,7 @@
 
 ///mob/proc/Blobize()
 /client/proc/Blobcount()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "blobreport"
 	set desc = "blob report."
 	set hidden = 1
@@ -188,7 +188,7 @@
 		to_chat(src, "nodes: [length(GLOBL.blob_nodes)]")
 
 /client/proc/Blobize()//Mostly stolen from the respawn command
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Ghostblob"
 	set desc = "Ghost into blobthing."
 	set hidden = 1

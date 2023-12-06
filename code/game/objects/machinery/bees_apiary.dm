@@ -228,9 +228,9 @@
 		bees_in_hive -= spawn_strength
 
 /obj/machinery/apiary/verb/harvest_honeycomb()
+	set category = PANEL_OBJECT
 	set src in oview(1)
 	set name = "Harvest honeycomb"
-	set category = "Object"
 
 	while(health > 15)
 		health -= 15

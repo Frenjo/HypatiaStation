@@ -384,8 +384,8 @@
 	suit.calc_breach_damage()
 
 /obj/machinery/suit_cycler/verb/leave()
+	set category = PANEL_OBJECT
 	set name = "Eject Cycler"
-	set category = "Object"
 	set src in oview(1)
 
 	if(usr.stat != CONSCIOUS)

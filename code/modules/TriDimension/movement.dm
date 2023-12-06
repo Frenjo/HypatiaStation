@@ -1,6 +1,6 @@
 /obj/item/tank/jetpack/verb/moveup()
+	set category = PANEL_OBJECT
 	set name = "Move Upwards"
-	set category = "Object"
 
 	if(allow_thrust(0.01, usr))
 		var/turf/controllerlocation = locate(1, 1, usr.z)
@@ -26,8 +26,8 @@
 	return 1
 
 /obj/item/tank/jetpack/verb/movedown()
+	set category = PANEL_OBJECT
 	set name = "Move Downwards"
-	set category = "Object"
 
 	if(allow_thrust(0.01, usr))
 		var/turf/controllerlocation = locate(1, 1, usr.z)

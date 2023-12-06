@@ -1,7 +1,7 @@
 /client/proc/one_click_antag()
+	set category = PANEL_ADMIN
 	set name = "Create Antagonist"
 	set desc = "Auto-create an antagonist of your choice"
-	set category = "Admin"
 
 	if(isnotnull(holder))
 		holder.one_click_antag()

@@ -112,7 +112,7 @@
 	spawn(5) .()
 
 /obj/item/pinpointer/advpinpointer/verb/toggle_mode()
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set name = "Toggle Pinpointer Mode"
 	set src in view(1)
 

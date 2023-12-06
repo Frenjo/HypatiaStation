@@ -1,5 +1,5 @@
 /client/proc/atmosscan()
-	set category = "Mapping"
+	set category = PANEL_MAPPING
 	set name = "Check Plumbing"
 
 	if(!src.holder)
@@ -24,7 +24,7 @@
 			to_chat(usr, "Unconnected [pipe.name] located at [pipe.x], [pipe.y], [pipe.z] ([get_area(pipe.loc)])")
 
 /client/proc/powerdebug()
-	set category = "Mapping"
+	set category = PANEL_MAPPING
 	set name = "Check Power"
 
 	if(!src.holder)

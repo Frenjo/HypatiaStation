@@ -163,8 +163,8 @@
 				stat |= NOPOWER
 
 /obj/machinery/shield_capacitor/verb/rotate()
+	set category = PANEL_OBJECT
 	set name = "Rotate capacitor clockwise"
-	set category = "Object"
 	set src in oview(1)
 
 	if(src.anchored)

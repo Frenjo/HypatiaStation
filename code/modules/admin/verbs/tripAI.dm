@@ -1,5 +1,5 @@
 /client/proc/triple_ai()
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Create AI Triumvirate"
 
 	if(global.CTticker.current_state > GAME_STATE_PREGAME)

@@ -200,9 +200,10 @@
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/armor/tactical/verb/holster()
+	set category = PANEL_OBJECT
 	set name = "Holster"
-	set category = "Object"
 	set src in usr
+
 	if(!isliving(usr))
 		return
 	if(usr.stat)

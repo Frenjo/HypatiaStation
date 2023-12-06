@@ -92,9 +92,11 @@ proc/GetMapInfo()
 	//to_world(M.name)
 	//to_world(M.mapname)
 client/proc/ChangeMap(var/X as text)
+	set category = PANEL_ADMIN
 	set name = "Change Map"
-	set category  = "Admin"
+
 	switchmap(X,X)
+
 proc/send2adminirc(channel,msg)
 	to_world(channel << " "<< msg)
 	shell("python nudge.py '[channel]' [msg]")

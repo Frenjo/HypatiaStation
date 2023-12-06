@@ -159,7 +159,7 @@ PROCESS_DEF(garbage)
 /client/var/running_find_references
 
 /mob/verb/create_thing()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Create Thing"
 
 	var/path = input("Enter path")
@@ -167,7 +167,7 @@ PROCESS_DEF(garbage)
 	thing.find_references()
 
 /atom/verb/find_references()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Find References"
 	set background = BACKGROUND_ENABLED
 	set src in world
@@ -210,7 +210,8 @@ PROCESS_DEF(garbage)
 	usr.client.running_find_references = null
 
 /client/verb/purge_all_destroyed_objects()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(global.garbage_collector)
 		while(length(global.garbage_collector.destroyed))
 			var/datum/o = locate(global.garbage_collector.destroyed[1])

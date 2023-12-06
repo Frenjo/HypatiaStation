@@ -86,8 +86,8 @@
 
 /mob/living/silicon/pai/Stat()
 	. = ..()
-	statpanel("Status")
-	if(client.statpanel == "Status")
+	statpanel(PANEL_STATUS)
+	if(client.statpanel == PANEL_STATUS)
 		show_silenced()
 
 	if(length(proc_holder_list)) //Generic list for proc_holder objects.

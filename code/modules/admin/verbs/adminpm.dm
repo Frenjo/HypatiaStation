@@ -17,8 +17,9 @@
 
 //shows a list of clients we could send PMs to, then forwards our choice to cmd_admin_pm
 /client/proc/cmd_admin_pm_panel()
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Admin PM"
+
 	if(!holder)
 		// This hasn't been converted to use FEEDBACK_COMMAND_ADMIN_ONLY because I'm debating whether or not...
 		// ... I want to convert all generic feedback to include the name of the command you tried to execute...

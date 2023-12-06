@@ -368,9 +368,9 @@
 	return T.straight_table_check(direction)
 
 /obj/structure/table/verb/do_flip()
+	set category = PANEL_OBJECT
 	set name = "Flip table"
 	set desc = "Flips a non-reinforced table"
-	set category = "Object"
 	set src in oview(1)
 
 	if(!can_touch(usr) || ismouse(usr))
@@ -405,9 +405,9 @@
 	return 1
 
 /obj/structure/table/proc/do_put()
+	set category = PANEL_OBJECT
 	set name = "Put table back"
 	set desc = "Puts flipped table back"
-	set category = "Object"
 	set src in oview(1)
 
 	if(!can_touch(usr))

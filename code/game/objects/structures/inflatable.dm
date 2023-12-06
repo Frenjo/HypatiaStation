@@ -132,8 +132,8 @@
 			qdel(src)
 
 /obj/structure/inflatable/verb/hand_deflate()
+	set category = PANEL_OBJECT
 	set name = "Deflate"
-	set category = "Object"
 	set src in oview(1)
 
 	if(isobserver(usr)) //to stop ghosts from deflating

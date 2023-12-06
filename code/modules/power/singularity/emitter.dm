@@ -50,8 +50,8 @@
 */
 
 /obj/machinery/power/emitter/verb/rotate()
+	set category = PANEL_OBJECT
 	set name = "Rotate"
-	set category = "Object"
 	set src in oview(1)
 
 	if(src.anchored || usr.stat)

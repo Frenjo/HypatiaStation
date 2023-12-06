@@ -143,7 +143,7 @@ GLOBAL_GLOBL_LIST_INIT(robot_verbs_default, list(
  * Activate Held Object
  */
 /mob/living/silicon/robot/mode()
-	set category = "IC"
+	set category = PANEL_IC
 	set name = "Activate Held Object"
 	set src = usr
 
@@ -155,7 +155,7 @@ GLOBAL_GLOBL_LIST_INIT(robot_verbs_default, list(
  * Set Pose
  */
 /mob/living/silicon/robot/verb/pose()
-	set category = "IC"
+	set category = PANEL_IC
 	set name = "Set Pose"
 	set desc = "Sets a description which will be shown when someone examines you."
 
@@ -165,7 +165,7 @@ GLOBAL_GLOBL_LIST_INIT(robot_verbs_default, list(
  * Set Flavour Text
  */
 /mob/living/silicon/robot/verb/set_flavour()
-	set category = "IC"
+	set category = PANEL_IC
 	set name = "Set Flavour Text"
 	set desc = "Sets an extended description of your character's features."
 

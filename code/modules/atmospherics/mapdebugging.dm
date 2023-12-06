@@ -1,6 +1,6 @@
 client/verb/discon_pipes()
+	set category = PANEL_DEBUG
 	set name = "Show Disconnected Pipes"
-	set category = "Debug"
 
 	for(var/obj/machinery/atmospherics/pipe/simple/P in world)
 		if(!P.node1 || !P.node2)

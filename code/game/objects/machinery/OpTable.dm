@@ -118,8 +118,8 @@
 		icon_state = "table2-idle"
 
 /obj/machinery/optable/verb/climb_on()
+	set category = PANEL_OBJECT
 	set name = "Climb On Table"
-	set category = "Object"
 	set src in oview(1)
 
 	if(usr.stat || !ishuman(usr) || usr.buckled || usr.restrained())

@@ -195,7 +195,7 @@
 	updateicon()
 
 /obj/machinery/power/generator/verb/rotate_clock()
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set name = "Rotate Generator (Clockwise)"
 	set src in view(1)
 
@@ -205,7 +205,7 @@
 	src.set_dir(turn(src.dir, 90))
 
 /obj/machinery/power/generator/verb/rotate_anticlock()
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set name = "Rotate Generator (Counterclockwise)"
 	set src in view(1)
 

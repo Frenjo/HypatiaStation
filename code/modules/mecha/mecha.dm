@@ -964,7 +964,7 @@
 	return
 
 /obj/mecha/verb/move_inside()
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set name = "Enter Exosuit"
 	set src in oview(1)
 
@@ -1106,9 +1106,10 @@
 
 /*
 /obj/mecha/verb/force_eject()
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set name = "Force Eject"
 	set src in view(5)
+
 	src.go_out()
 	return
 */

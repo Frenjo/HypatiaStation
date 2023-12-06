@@ -49,7 +49,7 @@
 
 /mob/living/carbon/human/Stat()
 	..()
-	statpanel("Status")
+	statpanel(PANEL_STATUS)
 
 	stat("Intent:", "[a_intent]")
 	stat("Move Mode:", "[move_intent.name]")
@@ -67,7 +67,7 @@
 				timeleft = global.CTemergency.estimate_launch_time()
 				stat(null, "ETD-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 
-	if(client.statpanel == "Status")
+	if(client.statpanel == PANEL_STATUS)
 		if(internal)
 			if(!internal.air_contents)
 				qdel(internal)
@@ -1075,7 +1075,7 @@
 					src.adjustToxLoss(rand(1, 3))
 
 /mob/living/carbon/human/verb/check_pulse()
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set name = "Check pulse"
 	set desc = "Approximately count somebody's pulse. Requires you to stand still at least 6 seconds."
 	set src in view(1)
@@ -1151,7 +1151,7 @@
 		return 0
 
 /mob/living/carbon/human/proc/bloody_doodle()
-	set category = "IC"
+	set category = PANEL_IC
 	set name = "Write in blood"
 	set desc = "Use blood on your hands to write a short message on the floor or a wall, murder mystery style."
 

@@ -1,5 +1,5 @@
 /client/proc/Debug2()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Debug-Game"
 
 	if(!check_rights(R_DEBUG))
@@ -25,7 +25,7 @@ Because if you select a player mob as owner it tries to do the proc for
 But you can call procs that are of type /mob/living/carbon/human/proc/ for that player.
 */
 /client/proc/callproc()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Advanced ProcCall"
 
 	if(!check_rights(R_DEBUG))
@@ -130,7 +130,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		feedback_add_details("admin_verb", "APC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/Cell()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Cell"
 
 	if(!mob)
@@ -153,7 +153,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 
 /client/proc/cmd_admin_robotize(mob/M in GLOBL.mob_list)
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Make Robot"
 
 	if(!global.CTticker)
@@ -168,7 +168,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Invalid mob")
 
 /client/proc/cmd_admin_animalize(mob/M in GLOBL.mob_list)
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Make Simple Animal"
 
 	if(!global.CTticker)
@@ -188,7 +188,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		M.Animalize()
 
 /client/proc/makepAI(turf/T in GLOBL.mob_list)
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Make pAI"
 	set desc = "Specify a location to spawn a pAI device, then specify a key to play that pAI"
 
@@ -215,7 +215,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	feedback_add_details("admin_verb", "MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_alienize(mob/M in GLOBL.mob_list)
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Make Alien"
 
 	if(!global.CTticker)
@@ -232,7 +232,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Invalid mob")
 
 /client/proc/cmd_admin_slimeize(mob/M in GLOBL.mob_list)
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Make slime"
 
 	if(!global.CTticker)
@@ -250,7 +250,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 /*
 /client/proc/cmd_admin_monkeyize(var/mob/M in world)
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Make Monkey"
 
 	if(!ticker)
@@ -265,7 +265,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Invalid mob")
 
 /client/proc/cmd_admin_changelinginize(var/mob/M in world)
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Make Changeling"
 
 	if(!ticker)
@@ -300,9 +300,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 */
 /*
 /client/proc/make_cultist(var/mob/M in world) // -- TLE, modified by Urist
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Make Cultist"
 	set desc = "Makes target a cultist"
+
 	if(!cultwords["travel"])
 		runerandom()
 	if(M)
@@ -341,7 +342,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Del-All"
 
 	// to prevent REALLY stupid deletions
@@ -356,15 +357,16 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	feedback_add_details("admin_verb", "DELA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_debug_make_powernets()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Make Powernets"
+
 	makepowernets()
 	log_admin("[key_name(src)] has remade the powernet. makepowernets() called.")
 	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.", 0)
 	feedback_add_details("admin_verb", "MPWN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_grantfullaccess(mob/M in GLOBL.mob_list)
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Grant Full Access"
 
 	if(!global.CTticker)
@@ -395,7 +397,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	message_admins(SPAN_INFO("[key_name_admin(usr)] has granted [M.key] full access."), 1)
 
 /client/proc/cmd_assume_direct_control(mob/M in GLOBL.mob_list)
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Assume direct control"
 	set desc = "Direct intervention"
 
@@ -416,7 +418,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	feedback_add_details("admin_verb", "ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_switch_radio()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Switch Radio Mode"
 	set desc = "Toggle between normal radios and experimental radios. Have a coder present if you do this."
 
@@ -426,7 +428,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	feedback_add_details("admin_verb","SRM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_areatest()
-	set category = "Mapping"
+	set category = PANEL_MAPPING
 	set name = "Test areas"
 
 	var/list/areas_all = list()
@@ -514,7 +516,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		to_world("* [areatype]")
 
 /client/proc/cmd_admin_dress(mob/living/carbon/human/target in GLOBL.mob_list)
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Select Equipment"
 
 	if(!check_rights(R_FUN))
@@ -542,7 +544,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	feedback_add_details("admin_verb", "SEQ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/startSinglo()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Start Singularity"
 	set desc = "Sets up the singularity and all machines to get power flowing through the station"
 
@@ -592,7 +594,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			SMES.input_attempt = 1
 
 /client/proc/cmd_debug_mob_lists()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Debug Mob Lists"
 	set desc = "For when you just gotta know"
 

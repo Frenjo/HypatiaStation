@@ -2,7 +2,7 @@
 GLOBAL_GLOBL_LIST_INIT(adminhelp_ignored_words, list("unknown", "the", "a", "an", "of", "monkey", "alien", "as"))
 
 /client/verb/adminhelp(msg as text)
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Adminhelp"
 
 	if(say_disabled)

@@ -12,7 +12,7 @@
 	return get_base_turf(T.z)
 
 /client/proc/set_base_turf()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Set Base Turf"
 	set desc = "Set the base turf for a z-level."
 

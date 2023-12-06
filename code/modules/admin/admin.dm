@@ -24,7 +24,7 @@ var/global/floorIsLava = 0
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
 /datum/admins/proc/show_player_panel(var/mob/M in GLOBL.mob_list)
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Show Player Panel"
 	set desc="Edit player (respawn, ban, heal, etc)"
 
@@ -186,8 +186,9 @@ var/global/floorIsLava = 0
 
 #define PLAYER_NOTES_ENTRIES_PER_PAGE 50
 /datum/admins/proc/PlayerNotes()
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Player Notes"
+
 	if (!istype(src,/datum/admins))
 		src = usr.client.holder
 	if (!istype(src,/datum/admins))
@@ -245,8 +246,9 @@ var/global/floorIsLava = 0
 
 
 /datum/admins/proc/show_player_info(var/key as text)
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Show Player Info"
+
 	if (!istype(src,/datum/admins))
 		src = usr.client.holder
 	if (!istype(src,/datum/admins))
@@ -286,7 +288,7 @@ var/global/floorIsLava = 0
 
 
 /datum/admins/proc/access_news_network() //MARKER
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Access Newscaster Network"
 	set desc = "Allows you to view, add and edit news feeds."
 
@@ -679,9 +681,10 @@ var/global/floorIsLava = 0
 
 
 /datum/admins/proc/restart()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set name = "Restart"
 	set desc="Restarts the world"
+
 	if (!usr.client.holder)
 		return
 	var/confirm = alert("Restart the game world?", "Restart", "Yes", "Cancel")
@@ -702,9 +705,10 @@ var/global/floorIsLava = 0
 
 
 /datum/admins/proc/announce()
-	set category = "Special Verbs"
+	set category = PANEL_SPECIAL_VERBS
 	set name = "Announce"
 	set desc="Announce your desires to the world"
+
 	if(!check_rights(0))	return
 
 	var/message = input("Global message to send:", "Admin Announce", null, null)  as message
@@ -716,7 +720,7 @@ var/global/floorIsLava = 0
 	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_ooc()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set name = "Toggle OOC"
 	set desc = "Toggle whether non-admins can use OOC chat."
 
@@ -727,7 +731,7 @@ var/global/floorIsLava = 0
 	feedback_add_details("admin_verb", "TOOC") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_dead_ooc()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set name = "Toggle Dead OOC"
 	set desc = "Toggle whether dead, non-admin players can use OOC chat."
 
@@ -738,7 +742,7 @@ var/global/floorIsLava = 0
 	feedback_add_details("admin_verb", "TDOOC") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_dsay()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set name = "Toggle Deadchat"
 	set desc = "Toggle whether non-admins can use deadchat."
 
@@ -749,18 +753,20 @@ var/global/floorIsLava = 0
 	feedback_add_details("admin_verb", "TDSAY") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
 /datum/admins/proc/toggletraitorscaling()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set desc="Toggle traitor scaling"
 	set name="Toggle Traitor Scaling"
+
 	CONFIG_SET(traitor_scaling, !CONFIG_GET(traitor_scaling))
 	log_admin("[key_name(usr)] toggled Traitor Scaling to [CONFIG_GET(traitor_scaling)].")
 	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [CONFIG_GET(traitor_scaling) ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/startnow()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set desc="Start the round RIGHT NOW"
 	set name="Start Now"
+
 	if(!global.CTticker)
 		alert("Unable to start the game as it is not set up.")
 		return
@@ -775,9 +781,10 @@ var/global/floorIsLava = 0
 		return 0
 
 /datum/admins/proc/toggleenter()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set desc="People can't enter"
 	set name="Toggle Entering"
+
 	GLOBL.enter_allowed = !GLOBL.enter_allowed
 	if(!GLOBL.enter_allowed)
 		to_world("<B>New players may no longer enter the game.</B>")
@@ -789,9 +796,10 @@ var/global/floorIsLava = 0
 	feedback_add_details("admin_verb","TE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleAI()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set desc="People can't be AI"
 	set name="Toggle AI"
+
 	CONFIG_SET(allow_ai, !CONFIG_GET(allow_ai))
 	if(!CONFIG_GET(allow_ai))
 		to_world("<B>The AI job is no longer chooseable.</B>")
@@ -802,7 +810,7 @@ var/global/floorIsLava = 0
 	feedback_add_details("admin_verb","TAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_respawn()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set name = "Toggle Respawn"
 	set desc = "Toggle whether dead players can respawn."
 
@@ -817,7 +825,7 @@ var/global/floorIsLava = 0
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_aliens()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set name = "Toggle Aliens"
 	set desc = "Toggle whether aliens are allowed."
 
@@ -827,16 +835,17 @@ var/global/floorIsLava = 0
 	feedback_add_details("admin_verb", "TA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_space_ninja()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set desc="Toggle space ninjas spawning."
 	set name="Toggle Space Ninjas"
+
 	GLOBL.toggle_space_ninja = !GLOBL.toggle_space_ninja
 	log_admin("[key_name(usr)] toggled Space Ninjas to [GLOBL.toggle_space_ninja].")
 	message_admins("[key_name_admin(usr)] toggled Space Ninjas [GLOBL.toggle_space_ninja ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TSN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/delay()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set desc="Delay the game start/end"
 	set name="Delay"
 
@@ -857,33 +866,37 @@ var/global/floorIsLava = 0
 	feedback_add_details("admin_verb", "DELAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/adjump()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set desc="Toggle admin jumping"
 	set name="Toggle Jump"
+
 	CONFIG_SET(allow_admin_jump, !CONFIG_GET(allow_admin_jump))
 	message_admins("\blue Toggled admin jumping to [CONFIG_GET(allow_admin_jump)].")
 	feedback_add_details("admin_verb","TJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/adspawn()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set desc="Toggle admin spawning"
 	set name="Toggle Spawn"
+
 	CONFIG_SET(allow_admin_spawning, !CONFIG_GET(allow_admin_spawning))
 	message_admins("\blue Toggled admin item spawning to [CONFIG_GET(allow_admin_spawning)].")
 	feedback_add_details("admin_verb","TAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/adrev()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set desc="Toggle admin revives"
 	set name="Toggle Revive"
+
 	CONFIG_SET(allow_admin_rev, !CONFIG_GET(allow_admin_rev))
 	message_admins("\blue Toggled reviving to [CONFIG_GET(allow_admin_rev)].")
 	feedback_add_details("admin_verb","TAR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/immreboot()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set desc="Reboots the server post haste"
 	set name="Immediate Reboot"
+
 	if(!usr.client.holder)	return
 	if( alert("Reboot server?",,"Yes","No") == "No")
 		return
@@ -899,8 +912,9 @@ var/global/floorIsLava = 0
 	world.Reboot()
 
 /datum/admins/proc/unprison(var/mob/M in GLOBL.mob_list)
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Unprison"
+
 	if (M.z == 2)
 		if(CONFIG_GET(allow_admin_jump))
 			M.loc = pick(GLOBL.latejoin)
@@ -977,7 +991,7 @@ var/global/floorIsLava = 0
 			return "Error: Invalid sabotage target: [target]"
 */
 /datum/admins/proc/spawn_atom(object as text)
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set desc = "(atom path) Spawn an atom"
 	set name = "Spawn"
 
@@ -1013,7 +1027,7 @@ var/global/floorIsLava = 0
 
 
 /datum/admins/proc/show_traitor_panel(mob/M in GLOBL.mob_list)
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"
 
@@ -1029,7 +1043,7 @@ var/global/floorIsLava = 0
 
 
 /datum/admins/proc/toggle_welding_protection_tint()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Toggle Welding Protection Tint"
 	set desc = "Toggles whether welding protection reduces view range."
 
@@ -1040,9 +1054,10 @@ var/global/floorIsLava = 0
 	feedback_add_details("admin_verb", "TWPT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleguests()
-	set category = "Server"
+	set category = PANEL_SERVER
 	set desc="Guests can't enter"
 	set name="Toggle guests"
+
 	CONFIG_SET(guests_allowed, !CONFIG_GET(guests_allowed))
 	if(!CONFIG_GET(guests_allowed))
 		to_world("<B>Guests may no longer enter the game.</B>")
@@ -1074,7 +1089,7 @@ var/global/floorIsLava = 0
 		usr << "<b>No AIs located</b>" //Just so you know the thing is actually working and not just ignoring you.
 
 /datum/admins/proc/show_skills(mob/living/carbon/human/M as mob in world)
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Show Skills"
 
 	if(!istype(src, /datum/admins))
@@ -1088,7 +1103,7 @@ var/global/floorIsLava = 0
 	return
 
 /client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite update errors."
 
@@ -1101,26 +1116,26 @@ var/global/floorIsLava = 0
 
 
 /client/proc/cmd_mob_weaken(mob/living/carbon/human/M in GLOBL.mob_list)  // Copy Pasta from the old code, sadly :(
-    set category = "Admin"
-    set name = "Weaken"
-    set desc = "Anti griffin', weaken!"
+	set category = PANEL_ADMIN
+	set name = "Weaken"
+	set desc = "Anti griffin', weaken!"
 
-    M.SetWeakened(200)
+	M.SetWeakened(200)
 
-    log_admin("[key_name(usr)] weakened [key_name(M)].")
-    message_admins("\blue [key_name(usr)] weakened [key_name(M)].",1)
-    return
+	log_admin("[key_name(usr)] weakened [key_name(M)].")
+	message_admins("\blue [key_name(usr)] weakened [key_name(M)].",1)
+	return
 
 /client/proc/cmd_mob_unweaken(mob/living/carbon/human/M in GLOBL.mob_list)  // Copy Pasta from the old code, sadly :(
-    set category = "Admin"
-    set name = "Unweaken"
-    set desc = "No griffin' let's get out."
+	set category = PANEL_ADMIN
+	set name = "Unweaken"
+	set desc = "No griffin' let's get out."
 
-    M.SetWeakened(0)
+	M.SetWeakened(0)
 
-    log_admin("[key_name(usr)] unweakened [key_name(M)].")
-    message_admins("\blue [key_name(usr)] unweakened [key_name(M)].",1)
-    return
+	log_admin("[key_name(usr)] unweakened [key_name(M)].")
+	message_admins("\blue [key_name(usr)] unweakened [key_name(M)].",1)
+	return
 
 //
 //

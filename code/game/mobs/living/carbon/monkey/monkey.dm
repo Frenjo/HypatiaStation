@@ -336,19 +336,20 @@
 
 /mob/living/carbon/monkey/Stat()
 	..()
-	statpanel("Status")
+	statpanel(PANEL_STATUS)
 	stat("Intent: ", "[a_intent]")
 	stat("Move Mode: ", "[move_intent.name]")
 	if(client && mind)
-		if(client.statpanel == "Status")
+		if(client.statpanel == PANEL_STATUS)
 			if(mind.changeling)
 				stat("Chemical Storage", mind.changeling.chem_charges)
 				stat("Genetic Damage Time", mind.changeling.geneticdamage)
 	return
 
 /mob/living/carbon/monkey/verb/removeinternal()
+	set category = PANEL_IC
 	set name = "Remove Internals"
-	set category = "IC"
+
 	internal = null
 	return
 

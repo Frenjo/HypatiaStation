@@ -313,7 +313,7 @@
 
 /mob/living/simple_animal/Stat()
 	..()
-	statpanel("Status")
+	statpanel(PANEL_STATUS)
 	stat("Health:", "[round((health / maxHealth) * 100)]%")
 
 /mob/living/simple_animal/proc/Die()

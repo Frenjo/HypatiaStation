@@ -1,9 +1,10 @@
 //#define AMAP
 
 /obj/machinery/computer/security/verb/station_map()
+	set category = PANEL_OBJECT
 	set name = ".map"
-	set category = "Object"
 	set src in view(1)
+
 	usr.set_machine(src)
 	if(!mapping)	return
 

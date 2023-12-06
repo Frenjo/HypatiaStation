@@ -33,9 +33,10 @@ datum/book_manager/proc/freeid()
 	return id
 
 /client/proc/delbook()
+	set category = PANEL_ADMIN
 	set name = "Delete Book"
 	set desc = "Permamently deletes a book from the database."
-	set category = "Admin"
+
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return

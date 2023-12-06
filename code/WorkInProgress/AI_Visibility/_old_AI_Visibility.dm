@@ -95,7 +95,8 @@
 		cameranet.minimap_viewers += src
 
 /client/proc/Open_Minimap()
-	set category = "Admin"
+	set category = PANEL_ADMIN
+
 	winshow(src, "minimapwindow", 1)
 	screen |= cameranet.minimap
 
@@ -550,8 +551,9 @@ var/datum/cameranet/cameranet = new()
 	return
 
 /mob/living/silicon/ai/cancel_camera()
+	set category = PANEL_OOC
 	set name = "Cancel Camera View"
-	set category = "OOC"
+
 	reset_view(null)
 	machine = null
 

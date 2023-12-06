@@ -61,6 +61,7 @@
 #include "code\__DEFINES\tick.dm"
 #include "code\__DEFINES\time.dm"
 #include "code\__DEFINES\turfs.dm"
+#include "code\__DEFINES\ui.dm"
 #include "code\__DEFINES\atmospherics\air_alarm.dm"
 #include "code\__DEFINES\atmospherics\atmos.dm"
 #include "code\__DEFINES\atmospherics\XGM.dm"

@@ -197,8 +197,8 @@ REAGENT SCANNER
 	return
 
 /obj/item/device/healthanalyzer/verb/toggle_mode()
+	set category = PANEL_OBJECT
 	set name = "Switch Verbosity"
-	set category = "Object"
 
 	mode = !mode
 	switch (mode)

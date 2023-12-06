@@ -356,13 +356,13 @@ obj/machinery/atmospherics
 mob
 	verb
 		flag_all_pipe_networks()
-			set category = "Debug"
+			set category = PANEL_DEBUG
 
 			for(var/datum/pipe_network/network in pipe_networks)
 				network.update = 1
 
 		mark_pipe_networks()
-			set category = "Debug"
+			set category = PANEL_DEBUG
 
 			for(var/datum/pipe_network/network in pipe_networks)
 				network.marker = rand(1,4)
@@ -494,7 +494,8 @@ mob
 
 	verb
 		update_indicators()
-			set category = "Debug"
+			set category = PANEL_DEBUG
+
 			if(!air_master)
 				usr << "Cannot find air_system"
 				return
@@ -502,7 +503,8 @@ mob
 			for(var/obj/indicator/T in world)
 				T.process()
 		change_indicators()
-			set category = "Debug"
+			set category = PANEL_DEBUG
+
 			if(!air_master)
 				usr << "Cannot find air_system"
 				return
@@ -514,13 +516,15 @@ mob
 				T.process()
 
 		fire_report()
-			set category = "Debug"
+			set category = PANEL_DEBUG
+
 			usr << "\b \red Fire Report"
 			for(var/obj/effect/hotspot/flame in world)
 				usr << "[flame.x],[flame.y]: [flame.temperature]K, [flame.volume] L - [flame.loc:air:temperature]"
 
 		process_cycle()
-			set category = "Debug"
+			set category = PANEL_DEBUG
+
 			if(!master_controller)
 				usr << "Cannot find master_controller"
 				return
@@ -529,7 +533,8 @@ mob
 			update_indicators()
 
 		process_cycles(amount as num)
-			set category = "Debug"
+			set category = PANEL_DEBUG
+
 			if(!master_controller)
 				usr << "Cannot find master_controller"
 				return
@@ -544,7 +549,8 @@ mob
 			update_indicators()
 
 		process_updates_early()
-			set category = "Debug"
+			set category = PANEL_DEBUG
+
 			if(!air_master)
 				usr << "Cannot find air_system"
 				return
@@ -553,7 +559,8 @@ mob
 			air_master.process_rebuild_select_groups()
 
 		mark_group_delay()
-			set category = "Debug"
+			set category = PANEL_DEBUG
+
 			if(!air_master)
 				usr << "Cannot find air_system"
 				return
@@ -599,7 +606,8 @@ mob
 
 
 		mark_groups()
-			set category = "Debug"
+			set category = PANEL_DEBUG
+
 			if(!air_master)
 				usr << "Cannot find air_system"
 				return
@@ -627,12 +635,14 @@ mob
 						S.icon_state = "individual_off"
 
 		get_broken_icons()
-			set category = "Debug"
+			set category = PANEL_DEBUG
+
 			getbrokeninhands()
 
 
 /*		jump_to_dead_group() Currently in the normal admin commands but fits here
-			set category = "Debug"
+			set category = PANEL_DEBUG
+
 			if(!air_master)
 				usr << "Cannot find air_system"
 				return

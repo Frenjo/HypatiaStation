@@ -279,8 +279,8 @@
 
 //For the holster hotkey
 /obj/item/clothing/tie/holster/verb/holster_verb()
+	set category = PANEL_OBJECT
 	set name = "Holster"
-	set category = "Object"
 	set src in usr
 
 	if(!isliving(usr))

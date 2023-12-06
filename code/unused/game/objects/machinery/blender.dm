@@ -81,9 +81,10 @@ the blender or the processor: Processor items are solid objects and Blender resu
 
 
 /obj/machinery/blender/verb/blend()		//Blend shit. Note: In the actual blending loop, make sure it can't include the jug.
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set name = "Turn Blender On"
 	set src in oview(1)					// Otherwise, it'll try to blend it too.
+
 	if (usr.stat != 0)
 		return
 	if (src.stat != 0) //NOPOWER etc
@@ -116,9 +117,10 @@ the blender or the processor: Processor items are solid objects and Blender resu
 	return
 
 /obj/machinery/blender/verb/detach()		//Transfers the contents of the Blender to the Blender Jug and then ejects the jug.
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set name = "Detach Blender Jug"
 	set src in oview(1)
+
 	if (usr.stat != 0)
 		return
 	if(src.processing)
@@ -138,9 +140,10 @@ the blender or the processor: Processor items are solid objects and Blender resu
 	return
 
 /obj/machinery/blender/verb/eject()			//Ejects the non-reagent contents of the blender besides the jug.
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set name = "Empty Blender Jug"
 	set src in oview(1)
+
 	if (usr.stat != 0)
 		return
 	if(src.processing)
@@ -153,4 +156,3 @@ the blender or the processor: Processor items are solid objects and Blender resu
 				O.loc = get_turf(src)
 				O = null
 	return
-

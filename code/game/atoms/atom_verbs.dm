@@ -17,17 +17,18 @@
 	return distance == -1 || (get_dist(src, user) <= distance)
 
 /atom/movable/verb/pull()
+	set category = PANEL_OBJECT
 	set name = "Pull"
-	set category = "Object"
 	set src in oview(1)
 
 	if(Adjacent(usr))
 		usr.start_pulling(src)
 
 /atom/verb/point()
+	set category = PANEL_OBJECT
 	set name = "Point To"
-	set category = "Object"
 	set src in oview()
+
 	var/atom/this = src//detach proc from src
 	//qdel(src) // Trying to fix pointing deleting whatever you point at. -Frenjo
 

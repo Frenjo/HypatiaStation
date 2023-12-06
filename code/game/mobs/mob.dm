@@ -218,8 +218,8 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 
 //mob verbs are faster than object verbs. See http://www.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
 /mob/verb/examinate(atom/A as mob|obj|turf in view())
+	set category = PANEL_IC
 	set name = "Examine"
-	set category = "IC"
 
 	if(is_blind(src) || usr.stat)
 		to_chat(src, SPAN_NOTICE("Something is there but you can't see it."))
@@ -229,8 +229,8 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	A.examine(src)
 
 /mob/verb/pointed(atom/A as mob|obj|turf in view())
+	set category = PANEL_OBJECT
 	set name = "Point To"
-	set category = "Object"
 
 	if(isnull(src) || !isturf(src.loc) || !(A in view(src.loc)))
 		return 0
@@ -284,8 +284,8 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 				return L.container
 
 /mob/verb/mode()
+	set category = PANEL_OBJECT
 	set name = "Activate Held Object"
-	set category = "Object"
 	set src = usr
 
 	if(ismecha(loc))
@@ -316,16 +316,17 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 */
 
 /mob/verb/memory()
+	set category = PANEL_IC
 	set name = "Notes"
-	set category = "IC"
+
 	if(isnotnull(mind))
 		mind.show_memory(src)
 	else
 		to_chat(src, "The game appears to have misplaced your mind datum, so we can't show you your notes.")
 
 /mob/verb/add_memory(msg as message)
+	set category = PANEL_IC
 	set name = "Add Note"
-	set category = "IC"
 
 	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
 	msg = sanitize(msg)
@@ -382,8 +383,8 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 */
 
 /mob/verb/abandon_mob()
+	set category = PANEL_OOC
 	set name = "Respawn"
-	set category = "OOC"
 
 	if(!CONFIG_GET(respawn))
 		to_chat(usr, SPAN_INFO("Respawn is disabled."))
@@ -440,8 +441,9 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 //	M.Login()	//wat
 
 /client/verb/changes()
+	set category = PANEL_OOC
 	set name = "Changelog"
-	set category = "OOC"
+
 	getFiles(
 		'html/postcardsmall.jpg',
 		'html/somerights20.png',
@@ -470,8 +472,9 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 		winset(src, "rpane.changelog", "background-color=none;font-style=;")
 
 /mob/verb/observe()
+	set category = PANEL_OOC
 	set name = "Observe"
-	set category = "OOC"
+
 	var/is_admin = FALSE
 
 	if(client.holder?.rights & R_ADMIN)
@@ -551,8 +554,9 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 				client.adminobs = FALSE
 
 /mob/verb/cancel_camera()
+	set category = PANEL_OOC
 	set name = "Cancel Camera View"
-	set category = "OOC"
+
 	reset_view(null)
 	unset_machine()
 	if(isliving(src))
@@ -596,8 +600,8 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	show_inv(usr)
 
 /mob/verb/stop_pulling()
+	set category = PANEL_IC
 	set name = "Stop Pulling"
-	set category = "IC"
 
 	if(isnotnull(pulling))
 		pulling.pulledby = null
@@ -727,13 +731,13 @@ note dizziness decrements automatically in the mob's Life() proc.
 	. = ..()
 
 	if(client?.holder)
-		if(statpanel("Status"))
+		if(statpanel(PANEL_STATUS))
 			stat("Location:", "([x], [y], [z]) [loc]")
 			stat("CPU:", "[world.cpu]")
 			stat("Instances:", "[length(world.contents)]")
-		if(statpanel("Controllers"))
+		if(statpanel(PANEL_CONTROLLERS))
 			global.CTmaster?.stat_controllers()
-		if(statpanel("Processes"))
+		if(statpanel(PANEL_PROCESSES))
 			global.process_scheduler?.stat_processes()
 
 	if(listed_turf && client)
@@ -941,7 +945,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	return visible_implants
 
 /mob/proc/yank_out_object()
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set name = "Yank out object"
 	set desc = "Remove an embedded item at the cost of bleeding and pain."
 	set src in view(1)

@@ -31,7 +31,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	layer = 2.44 //Just below unary stuff, which is at 2.45 and above pipes, which are at 2.4
 
 	var/datum/powernet/powernet
-	
+
 	var/d1 = 0
 	var/d2 = 1
 
@@ -536,8 +536,8 @@ By design, d1 is the smallest direction and d2 is the highest
 		to_chat(usr, "A coil of power cable. There are [amount] lengths of cable in the coil.")
 
 /obj/item/stack/cable_coil/verb/make_restraint()
+	set category = PANEL_OBJECT
 	set name = "Make Cable Restraints"
-	set category = "Object"
 	var/mob/M = usr
 
 	if(ishuman(M) && !M.restrained() && !M.stat && !M.paralysis && ! M.stunned)

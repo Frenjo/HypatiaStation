@@ -57,8 +57,8 @@
 	return
 
 /client/verb/hotkeys_help()
+	set category = PANEL_OOC
 	set name = "hotkeys-help"
-	set category = "OOC"
 
 	var/hotkey_mode = {"<font color='purple'>
 Hotkey-Mode: (hotkey-mode must be on)

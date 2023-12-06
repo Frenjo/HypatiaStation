@@ -153,8 +153,8 @@
 	body_parts_covered = UPPER_TORSO | ARMS
 
 /obj/item/clothing/suit/storage/internalaffairs/verb/toggle()
+	set category = PANEL_OBJECT
 	set name = "Toggle Coat Buttons"
-	set category = "Object"
 	set src in usr
 
 	if(!usr.canmove || usr.stat || usr.restrained())
@@ -186,8 +186,8 @@
 	)
 
 /obj/item/clothing/suit/storage/fr_jacket/verb/toggle()
+	set category = PANEL_OBJECT
 	set name = "Toggle Jacket Buttons"
-	set category = "Object"
 	set src in usr
 
 	if(!usr.canmove || usr.stat || usr.restrained())

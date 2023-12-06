@@ -1,7 +1,8 @@
 /mob/living/carbon/verb/give()
-	set category = "IC"
+	set category = PANEL_IC
 	set name = "Give"
 	set src in view(1)
+
 	if(src.stat == DEAD || usr.stat == DEAD || src.client == null)
 		return
 	if(src == usr)

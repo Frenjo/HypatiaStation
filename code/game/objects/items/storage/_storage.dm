@@ -412,8 +412,8 @@
 	add_fingerprint(user)
 
 /obj/item/storage/verb/toggle_gathering_mode()
+	set category = PANEL_OBJECT
 	set name = "Switch Gathering Method"
-	set category = "Object"
 
 	collection_mode = !collection_mode
 	switch(collection_mode)
@@ -423,8 +423,8 @@
 			usr << "[src] now picks up one item at a time."
 
 /obj/item/storage/verb/quick_empty()
+	set category = PANEL_OBJECT
 	set name = "Empty Contents"
-	set category = "Object"
 
 	if((!ishuman(usr) && (loc != usr)) || usr.stat || usr.restrained())
 		return

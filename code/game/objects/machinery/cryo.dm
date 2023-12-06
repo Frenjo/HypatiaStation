@@ -293,8 +293,8 @@
 	return 1
 
 /obj/machinery/atmospherics/unary/cryo_cell/verb/move_eject()
+	set category = PANEL_OBJECT
 	set name = "Eject occupant"
-	set category = "Object"
 	set src in oview(1)
 
 	if(usr == occupant)//If the user is inside the tube...
@@ -313,9 +313,10 @@
 	return
 
 /obj/machinery/atmospherics/unary/cryo_cell/verb/move_inside()
+	set category = PANEL_OBJECT
 	set name = "Move Inside"
-	set category = "Object"
 	set src in oview(1)
+
 	for(var/mob/living/carbon/slime/M in range(1, usr))
 		if(M.Victim == usr)
 			to_chat(usr, "You're too busy getting your life sucked out of you.")

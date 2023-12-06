@@ -1,6 +1,7 @@
 /proc/togglebuildmode(mob/M as mob in GLOBL.player_list)
+	set category = PANEL_SPECIAL_VERBS
 	set name = "Toggle Build Mode"
-	set category = "Special Verbs"
+
 	if(M.client)
 		if(M.client.buildmode)
 			log_admin("[key_name(usr)] has left build mode.")

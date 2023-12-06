@@ -74,8 +74,8 @@
 	return
 
 /obj/machinery/dna_scannernew/verb/eject()
+	set category = PANEL_OBJECT
 	set src in oview(1)
-	set category = "Object"
 	set name = "Eject DNA Scanner"
 
 	if(usr.stat != CONSCIOUS)
@@ -96,8 +96,8 @@
 			M.loc = get_turf(src)
 
 /obj/machinery/dna_scannernew/verb/move_inside()
+	set category = PANEL_OBJECT
 	set src in oview(1)
-	set category = "Object"
 	set name = "Enter DNA Scanner"
 
 	if(usr.stat != CONSCIOUS)

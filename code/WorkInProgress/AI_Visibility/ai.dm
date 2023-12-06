@@ -84,8 +84,9 @@
 	return
 
 /mob/living/silicon/ai/cancel_camera()
+	set category = PANEL_OOC
 	set name = "Cancel Camera View"
-	set category = "OOC"
+
 	reset_view(null)
 	machine = null
 

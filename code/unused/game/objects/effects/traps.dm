@@ -12,9 +12,10 @@
 	refresh()
 
 /obj/effect/pressure_plate/verb/refresh()
+	set category = PANEL_OBJECT
 	set name = "Refresh Pressure Plate Links"
-	set category = "Object"
 	set src in view()
+
 	connected_traps = list() //emptying the list first
 	for(var/trap_name in connected_traps_names)
 		for(var/obj/effect/trap/the_trap in world)

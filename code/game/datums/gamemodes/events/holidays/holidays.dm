@@ -158,9 +158,10 @@ GLOBAL_GLOBL_INIT(eventchance, 10)	//% per 5 mins
 
 //Allows GA and GM to set the Holiday variable
 /client/proc/set_holiday(T as text|null)
+	set category = PANEL_FUN
 	set name = "Set Holiday"
-	set category = "Fun"
 	set desc = "Force-set the Holiday variable to make the game think it's a certain day."
+
 	if(!check_rights(R_SERVER))
 		return
 

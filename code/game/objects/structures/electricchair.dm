@@ -24,8 +24,8 @@
 	return
 
 /obj/structure/stool/bed/chair/e_chair/verb/toggle()
+	set category = PANEL_OBJECT
 	set name = "Toggle Electric Chair"
-	set category = "Object"
 	set src in oview(1)
 
 	if(on)

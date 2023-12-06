@@ -73,8 +73,8 @@
 	return
 
 /obj/item/paper/verb/rename()
+	set category = PANEL_OBJECT
 	set name = "Rename paper"
-	set category = "Object"
 	set src in usr
 
 	if((CLUMSY in usr.mutations) && prob(50))

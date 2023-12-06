@@ -7,8 +7,9 @@
 #define SDEBUG 1
 
 /client/verb/Debug()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Debug-Debug"
+
 	if(src.holder.rank == "Game Admin")
 		Debug = !Debug
 
@@ -18,8 +19,9 @@
 		return
 
 /turf/verb/Flow()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	//set hidden = 1
+
 	if(Debug)
 		for(var/turf/T in range(5))
 
@@ -87,8 +89,9 @@ Doing this because FindTurfs() isn't even used
 		return
 
 /turf/verb/Clear()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	//set hidden = 1
+
 	if(Debug)
 		for(var/obj/effect/mark/O in world)
 			del(O)
@@ -129,7 +132,8 @@ Doing this because FindTurfs() isn't even used
 		return
 
 /*/turf/verb/Stats()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	for(var/turf/T in range(5))
 
 		var/obj/effect/mark/O = locate(/obj/effect/mark/, T)
@@ -151,7 +155,7 @@ Doing this because FindTurfs() isn't even used
 */
 /*
 /turf/verb/Pipes()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 
 	for(var/turf/T in range(6))
 
@@ -188,7 +192,8 @@ Doing this because FindTurfs() isn't even used
 				break
 */
 /turf/verb/Cables()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 		for(var/turf/T in range(6))
 
@@ -230,7 +235,8 @@ Doing this because FindTurfs() isn't even used
 
 
 /turf/verb/Solar()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 
 		for(var/turf/T in range(6))
@@ -262,7 +268,8 @@ Doing this because FindTurfs() isn't even used
 
 
 /mob/verb/Showports()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 		var/turf/T
 		var/obj/machinery/pipes/P
@@ -297,8 +304,9 @@ Doing this because FindTurfs() isn't even used
 		return
 
 /atom/verb/delete()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set src in view()
+
 	if(Debug)
 		del(src)
 	else
@@ -307,7 +315,8 @@ Doing this because FindTurfs() isn't even used
 
 
 /area/verb/dark()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 		if(src.icon_state == "dark")
 			icon_state = null
@@ -318,7 +327,8 @@ Doing this because FindTurfs() isn't even used
 		return
 
 /area/verb/power()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 		power_equip = !power_equip
 		power_environ = !power_environ
@@ -336,7 +346,8 @@ Doing this because FindTurfs() isn't even used
 
 
 /mob/verb/ShowPlasma()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 		Plasma()
 	else
@@ -344,7 +355,8 @@ Doing this because FindTurfs() isn't even used
 		return
 
 /mob/verb/Blobcount()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 		to_world("Blob count: [blobs.len]")
 	else
@@ -353,7 +365,8 @@ Doing this because FindTurfs() isn't even used
 
 
 /mob/verb/Blobkill()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 		blobs = list()
 		to_world("Blob killed.")
@@ -362,7 +375,8 @@ Doing this because FindTurfs() isn't even used
 		return
 
 /mob/verb/Blobmode()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 		to_world("Event=[ticker.event]")
 		to_world("Time =[(ticker.event_time - world.realtime)/10]s")
@@ -371,7 +385,8 @@ Doing this because FindTurfs() isn't even used
 		return
 
 /mob/verb/Blobnext()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 		ticker.event_time = world.realtime
 	else
@@ -380,7 +395,8 @@ Doing this because FindTurfs() isn't even used
 
 
 /mob/verb/callshuttle()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 		ticker.timeleft = 300
 		ticker.timing = 1
@@ -389,7 +405,8 @@ Doing this because FindTurfs() isn't even used
 		return
 
 /mob/verb/apcs()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 		for(var/obj/machinery/power/apc/APC in world)
 			to_world(APC.report())
@@ -398,7 +415,8 @@ Doing this because FindTurfs() isn't even used
 		return
 
 /mob/verb/Globals()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 		debugobj = new()
 
@@ -418,7 +436,8 @@ Doing this because FindTurfs() isn't even used
 
 
 /mob/verb/Mach()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 		var/n = 0
 		for(var/obj/machinery/M in world)
@@ -433,7 +452,7 @@ Doing this because FindTurfs() isn't even used
 
 
 /*/mob/verb/air()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 
 	Air()
 
@@ -467,7 +486,8 @@ Doing this because FindTurfs() isn't even used
 	diary << "A=[num2text(atot,10)] P=[num2text(ptot,10)] V=[num2text(vtot,10)] C=[num2text(ctot,10)] :  Total=[num2text(tot,10)]"
 */
 /mob/verb/Revive()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 		adjustFireLoss(0 - getBruteLoss())
 		setToxLoss(0)
@@ -499,7 +519,8 @@ Doing this because FindTurfs() isn't even used
 		return
 
 /mob/verb/Smoke()
-	set category = "Debug"
+	set category = PANEL_DEBUG
+
 	if(Debug)
 		var/obj/effect/smoke/O = new /obj/effect/smoke( src.loc )
 		O.dir = pick(NORTH, SOUTH, EAST, WEST)
@@ -510,8 +531,9 @@ Doing this because FindTurfs() isn't even used
 		return
 
 /mob/verb/revent(number as num)
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Change event %"
+
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
@@ -522,8 +544,9 @@ Doing this because FindTurfs() isn't even used
 
 /* Does nothing but blow up the station.
 /mob/verb/funbutton()
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Random Expl.(REMOVE ME)"
+
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
@@ -546,8 +569,9 @@ Doing this because FindTurfs() isn't even used
 */
 
 /mob/verb/removeplasma()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Stabilize Atmos."
+
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
@@ -573,8 +597,9 @@ Doing this because FindTurfs() isn't even used
 			T.ttemp = 293.15
 
 /mob/verb/fire(turf/T as turf in world)
-	set category = "Special Verbs"
+	set category = PANEL_SPECIAL_VERBS
 	set name = "Create Fire"
+
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
@@ -584,8 +609,9 @@ Doing this because FindTurfs() isn't even used
 		T.firelevel = T.poison
 
 /mob/verb/co2(turf/T as turf in world)
-	set category = "Special Verbs"
+	set category = PANEL_SPECIAL_VERBS
 	set name = "Create CO2"
+
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
@@ -594,8 +620,9 @@ Doing this because FindTurfs() isn't even used
 		T.co2 += 300000000
 
 /mob/verb/n2o(turf/T as turf in world)
-	set category = "Special Verbs"
+	set category = PANEL_SPECIAL_VERBS
 	set name = "Create N2O"
+
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
@@ -604,8 +631,9 @@ Doing this because FindTurfs() isn't even used
 		T.sl_gas += 30000000
 
 /mob/verb/explosion(T as obj|mob|turf in world)
-	set category = "Special Verbs"
+	set category = PANEL_SPECIAL_VERBS
 	set name = "Create Explosion"
+
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return

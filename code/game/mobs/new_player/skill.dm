@@ -201,7 +201,7 @@
 	return
 
 /mob/living/carbon/human/verb/show_skills()
-	set category = "IC"
+	set category = PANEL_IC
 	set name = "Show Own Skills"
 
 	show_skill_window(src, src)

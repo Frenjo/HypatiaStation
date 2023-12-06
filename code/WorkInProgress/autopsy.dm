@@ -72,9 +72,10 @@
 			chemtraces += V
 
 /obj/item/autopsy_scanner/verb/print_data()
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set src in view(usr, 1)
 	set name = "Print Data"
+
 	if(usr.stat || !(ishuman(usr)))
 		usr << "No."
 		return

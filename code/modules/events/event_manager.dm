@@ -54,8 +54,8 @@ GLOBAL_GLOBL_INIT(scheduledEvent, null)
 */
 
 /client/proc/forceEvent(var/type in GLOBL.allEvents)
+	set category = PANEL_DEBUG
 	set name = "Trigger Event (Debug Only)"
-	set category = "Debug"
 
 	if(!holder)
 		return

@@ -142,7 +142,7 @@
 
 /mob/living/carbon/amorph/Stat()
 	..()
-	statpanel("Status")
+	statpanel(PANEL_STATUS)
 
 	stat(null, "Intent: [a_intent]")
 	stat(null, "Move Mode: [m_intent]")
@@ -156,7 +156,7 @@
 			if (timeleft)
 				stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 
-	if (client.statpanel == "Status")
+	if (client.statpanel == PANEL_STATUS)
 		if (internal)
 			if (!internal.air_contents)
 				del(internal)

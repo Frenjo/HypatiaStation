@@ -34,9 +34,10 @@
 		to_chat(usr, SPAN_INFO("Nothing."))
 
 /obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
+	set category = PANEL_OBJECT
 	set name = "Set transfer amount"
-	set category = "Object"
 	set src in view(1)
+
 	var/N = input("Amount per transfer from this:", "[src]") as null | anything in possible_transfer_amounts
 	if(N)
 		amount_per_transfer_from_this = N
@@ -72,7 +73,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
-	
+
 /obj/structure/reagent_dispensers/watertank/New()
 	..()
 	reagents.add_reagent("water", 1000)
@@ -86,7 +87,7 @@
 	amount_per_transfer_from_this = 10
 	var/modded = 0
 	var/obj/item/device/assembly_holder/rig = null
-	
+
 /obj/structure/reagent_dispensers/fueltank/New()
 	..()
 	reagents.add_reagent("fuel", 1000)
@@ -202,7 +203,7 @@
 	anchored = TRUE
 	density = FALSE
 	amount_per_transfer_from_this = 45
-	
+
 /obj/structure/reagent_dispensers/peppertank/New()
 	..()
 	reagents.add_reagent("condensedcapsaicin", 1000)
@@ -216,7 +217,7 @@
 	icon_state = "water_cooler"
 	possible_transfer_amounts = null
 	anchored = TRUE
-	
+
 /obj/structure/reagent_dispensers/water_cooler/New()
 	..()
 	reagents.add_reagent("water", 500)
@@ -228,7 +229,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "beertankTEMP"
 	amount_per_transfer_from_this = 10
-	
+
 /obj/structure/reagent_dispensers/beerkeg/New()
 	..()
 	reagents.add_reagent("beer", 1000)

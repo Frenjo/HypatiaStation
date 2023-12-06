@@ -27,8 +27,9 @@
 
 //ADMINVERBS
 /client/proc/investigate_show( subject in list("hrefs","notes","singulo","telesci") )
+	set category = PANEL_ADMIN
 	set name = "Investigate"
-	set category = "Admin"
+
 	if(!holder)	return
 	switch(subject)
 		if("singulo", "telesci")			//general one-round-only stuff

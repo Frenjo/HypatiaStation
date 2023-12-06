@@ -23,8 +23,8 @@
 	var/obj/crayon
 
 /obj/machinery/washing_machine/verb/start()
+	set category = PANEL_OBJECT
 	set name = "Start Washing"
-	set category = "Object"
 	set src in oview(1)
 
 	if(!istype(usr, /mob/living)) //ew ew ew usr, but it's the only way to check.
@@ -181,8 +181,8 @@
 	update_icon()
 
 /obj/machinery/washing_machine/verb/climb_out()
+	set category = PANEL_OBJECT
 	set name = "Climb out"
-	set category = "Object"
 	set src in usr.loc
 
 	sleep(20)

@@ -44,7 +44,7 @@
 
 
 /client/proc/Open_Minimap()
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	cameranet.show_minimap(src)
 
 

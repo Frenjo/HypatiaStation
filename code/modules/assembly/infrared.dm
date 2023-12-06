@@ -138,8 +138,8 @@
 	return
 
 /obj/item/device/assembly/infra/verb/rotate() //This could likely be better
+	set category = PANEL_OBJECT
 	set name = "Rotate Infrared Laser"
-	set category = "Object"
 	set src in usr
 
 	set_dir(turn(dir, 90))

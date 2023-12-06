@@ -312,8 +312,8 @@ var/list/admin_verbs_donor = list(
 	)
 
 /client/proc/hide_most_verbs()//Allows you to keep some functionality while hiding some verbs
+	set category = PANEL_ADMIN
 	set name = "Adminverbs - Hide Most"
-	set category = "Admin"
 
 	verbs.Remove(/client/proc/hide_most_verbs, admin_verbs_hideable)
 	verbs += /client/proc/show_verbs
@@ -323,8 +323,8 @@ var/list/admin_verbs_donor = list(
 	return
 
 /client/proc/hide_verbs()
+	set category = PANEL_ADMIN
 	set name = "Adminverbs - Hide All"
-	set category = "Admin"
 
 	remove_admin_verbs()
 	verbs += /client/proc/show_verbs
@@ -334,8 +334,8 @@ var/list/admin_verbs_donor = list(
 	return
 
 /client/proc/show_verbs()
+	set category = PANEL_ADMIN
 	set name = "Adminverbs - Show"
-	set category = "Admin"
 
 	verbs -= /client/proc/show_verbs
 	add_admin_verbs()
@@ -348,7 +348,7 @@ var/list/admin_verbs_donor = list(
 
 
 /client/proc/admin_ghost()
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Aghost"
 
 	if(isnull(holder))
@@ -371,9 +371,10 @@ var/list/admin_verbs_donor = list(
 
 
 /client/proc/invisimin()
+	set category = PANEL_ADMIN
 	set name = "Invisimin"
-	set category = "Admin"
 	set desc = "Toggles ghost-like invisibility (Don't abuse this)"
+
 	if(holder && mob)
 		if(mob.invisibility == INVISIBILITY_OBSERVER)
 			mob.invisibility = initial(mob.invisibility)
@@ -386,24 +387,27 @@ var/list/admin_verbs_donor = list(
 
 
 /client/proc/player_panel()
+	set category = PANEL_ADMIN
 	set name = "Player Panel"
-	set category = "Admin"
+
 	if(holder)
 		holder.player_panel_old()
 	feedback_add_details("admin_verb","PP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
 /client/proc/player_panel_new()
+	set category = PANEL_ADMIN
 	set name = "Player Panel New"
-	set category = "Admin"
+
 	if(holder)
 		holder.player_panel_new()
 	feedback_add_details("admin_verb","PPN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
 /client/proc/check_antagonists()
+	set category = PANEL_ADMIN
 	set name = "Check Antagonists"
-	set category = "Admin"
+
 	if(holder)
 		holder.check_antagonists()
 		log_admin("[key_name(usr)] checked antagonists.")	//for tsar~
@@ -411,8 +415,9 @@ var/list/admin_verbs_donor = list(
 	return
 
 /client/proc/jobbans()
+	set category = PANEL_ADMIN
 	set name = "Display Job bans"
-	set category = "Admin"
+
 	if(holder)
 		if(CONFIG_GET(ban_legacy_system))
 			holder.Jobbans()
@@ -422,8 +427,9 @@ var/list/admin_verbs_donor = list(
 	return
 
 /client/proc/unban_panel()
+	set category = PANEL_ADMIN
 	set name = "Unban Panel"
-	set category = "Admin"
+
 	if(holder)
 		if(CONFIG_GET(ban_legacy_system))
 			holder.unbanpanel()
@@ -433,24 +439,27 @@ var/list/admin_verbs_donor = list(
 	return
 
 /client/proc/game_panel()
+	set category = PANEL_ADMIN
 	set name = "Game Panel"
-	set category = "Admin"
+
 	if(holder)
 		holder.Game()
 	feedback_add_details("admin_verb","GP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
 /client/proc/secrets()
+	set category = PANEL_ADMIN
 	set name = "Secrets"
-	set category = "Admin"
+
 	if (holder)
 		holder.Secrets()
 	feedback_add_details("admin_verb","S") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
 /client/proc/colorooc()
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "OOC Text Color"
+
 	if(!holder)	return
 	var/new_ooccolor = input(src, "Please select your OOC colour.", "OOC colour") as color|null
 	if(new_ooccolor)
@@ -460,8 +469,9 @@ var/list/admin_verbs_donor = list(
 	return
 
 /client/proc/stealth()
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Stealth Mode"
+
 	if(holder)
 		if(holder.fakekey)
 			holder.fakekey = null
@@ -518,7 +528,7 @@ var/list/admin_verbs_donor = list(
 #undef AUTOBANTIME
 
 /client/proc/drop_bomb() // Some admin dickery that can probably be done better -- TLE
-	set category = "Special Verbs"
+	set category = PANEL_SPECIAL_VERBS
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
@@ -544,9 +554,10 @@ var/list/admin_verbs_donor = list(
 	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/give_spell(mob/T as mob in GLOBL.mob_list) // -- Urist
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Give Spell"
 	set desc = "Gives a spell to a mob."
+
 	var/obj/effect/proc_holder/spell/S = input("Choose the spell to give to that guy", "ABRAKADABRA") as null|anything in spells
 	if(!S) return
 	T.spell_list += new S
@@ -555,9 +566,10 @@ var/list/admin_verbs_donor = list(
 	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] the spell [S].", 1)
 
 /client/proc/give_disease(mob/T as mob in GLOBL.mob_list) // -- Giacom
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Give Disease"
 	set desc = "Gives a Disease to a mob."
+
 	var/datum/disease/D = input("Choose the disease to give to that guy", "ACHOO") as null | anything in GLOBL.diseases
 	if(!D) return
 	T.contract_disease(new D, 1)
@@ -566,9 +578,10 @@ var/list/admin_verbs_donor = list(
 	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] the disease [D].", 1)
 
 /client/proc/make_sound(var/obj/O in world) // -- TLE
-	set category = "Special Verbs"
+	set category = PANEL_SPECIAL_VERBS
 	set name = "Make Sound"
 	set desc = "Display a message to everyone who can hear the target"
+
 	if(O)
 		var/message = input("What do you want the message to be?", "Make Sound") as text|null
 		if(!message)
@@ -581,16 +594,18 @@ var/list/admin_verbs_donor = list(
 
 
 /client/proc/togglebuildmodeself()
+	set category = PANEL_SPECIAL_VERBS
 	set name = "Toggle Build Mode Self"
-	set category = "Special Verbs"
+
 	if(src.mob)
 		togglebuildmode(src.mob)
 	feedback_add_details("admin_verb","TBMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/object_talk(var/msg as text) // -- TLE
-	set category = "Special Verbs"
+	set category = PANEL_SPECIAL_VERBS
 	set name = "oSay"
 	set desc = "Display a message to everyone who can hear the target"
+
 	if(mob.control_object)
 		if(!msg)
 			return
@@ -599,9 +614,10 @@ var/list/admin_verbs_donor = list(
 	feedback_add_details("admin_verb","OT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/kill_air() // -- TLE
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Kill Air"
 	set desc = "Toggle Air Processing"
+
 	if(air_processing_killed)
 		air_processing_killed = 0
 		usr << "<b>Enabled air processing.</b>"
@@ -613,8 +629,8 @@ var/list/admin_verbs_donor = list(
 	message_admins("\blue [key_name_admin(usr)] used 'kill air'.", 1)
 
 /client/proc/deadmin_self()
+	set category = PANEL_ADMIN
 	set name = "De-admin self"
-	set category = "Admin"
 
 	if(holder)
 		if(alert("Confirm self-deadmin for the round? You can't re-admin yourself without someont promoting you.",,"Yes","No") == "Yes")
@@ -625,8 +641,9 @@ var/list/admin_verbs_donor = list(
 	feedback_add_details("admin_verb","DAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/toggle_log_hrefs()
+	set category = PANEL_SERVER
 	set name = "Toggle href logging"
-	set category = "Server"
+
 	if(!holder)	return
 	if(CONFIG_GET(log_hrefs))
 		CONFIG_SET(log_hrefs, FALSE)
@@ -636,8 +653,9 @@ var/list/admin_verbs_donor = list(
 		src << "<b>Started logging hrefs</b>"
 
 /client/proc/check_ai_laws()
+	set category = PANEL_ADMIN
 	set name = "Check AI Laws"
-	set category = "Admin"
+
 	if(holder)
 		src.holder.output_ai_laws()
 
@@ -645,16 +663,17 @@ var/list/admin_verbs_donor = list(
 //---- bs12 verbs ----
 
 /client/proc/mod_panel()
+	set category = PANEL_ADMIN
 	set name = "Moderator Panel"
-	set category = "Admin"
+
 /*	if(holder)
 		holder.mod_panel()*/
 //	feedback_add_details("admin_verb","MP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
 /client/proc/editappear(mob/living/carbon/human/M as mob in world)
+	set category = PANEL_FUN
 	set name = "Edit Appearance"
-	set category = "Fun"
 
 	if(!check_rights(R_FUN))	return
 
@@ -715,15 +734,17 @@ var/list/admin_verbs_donor = list(
 	M.check_dna(M)
 
 /client/proc/playernotes()
+	set category = PANEL_ADMIN
 	set name = "Show Player Info"
-	set category = "Admin"
+
 	if(holder)
 		holder.PlayerNotes()
 	return
 
 /client/proc/free_slot()
+	set category = PANEL_ADMIN
 	set name = "Free Job Slot"
-	set category = "Admin"
+
 	if(holder)
 		var/list/jobs = list()
 		for(var/datum/job/J in global.CTjobs.occupations)
@@ -738,8 +759,8 @@ var/list/admin_verbs_donor = list(
 	return
 
 /client/proc/toggleattacklogs()
+	set category = PANEL_PREFERENCES
 	set name = "Toggle Attack Log Messages"
-	set category = "Preferences"
 
 	prefs.toggles ^= CHAT_ATTACKLOGS
 	if(prefs.toggles & CHAT_ATTACKLOGS)
@@ -749,8 +770,9 @@ var/list/admin_verbs_donor = list(
 
 
 /client/proc/toggleghostwriters()
+	set category = PANEL_SERVER
 	set name = "Toggle ghost writers"
-	set category = "Server"
+
 	if(!holder)	return
 	if(CONFIG_GET(cult_ghostwriter))
 		CONFIG_SET(cult_ghostwriter, FALSE)
@@ -763,8 +785,8 @@ var/list/admin_verbs_donor = list(
 
 
 /client/proc/toggledebuglogs()
+	set category = PANEL_PREFERENCES
 	set name = "Toggle Debug Log Messages"
-	set category = "Preferences"
 
 	prefs.toggles ^= CHAT_DEBUGLOGS
 	if (prefs.toggles & CHAT_DEBUGLOGS)
@@ -774,7 +796,7 @@ var/list/admin_verbs_donor = list(
 
 
 /client/proc/man_up(mob/T as mob in GLOBL.mob_list)
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Man Up"
 	set desc = "Tells mob to man up and deal with it."
 
@@ -785,7 +807,7 @@ var/list/admin_verbs_donor = list(
 	message_admins("\blue [key_name_admin(usr)] told [key_name(T)] to man up and deal with it.", 1)
 
 /client/proc/global_man_up()
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Man Up Global"
 	set desc = "Tells everyone to man up and deal with it."
 

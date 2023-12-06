@@ -78,8 +78,8 @@
 		to_chat(usr, "\A [hastie] is clipped to it.")
 
 /obj/item/clothing/under/verb/toggle()
+	set category = PANEL_OBJECT
 	set name = "Toggle Suit Sensors"
-	set category = "Object"
 	set src in usr
 
 	var/mob/M = usr
@@ -120,8 +120,8 @@
 		H.update_inv_w_uniform()
 
 /obj/item/clothing/under/verb/removetie()
+	set category = PANEL_OBJECT
 	set name = "Remove Accessory"
-	set category = "Object"
 	set src in usr
 
 	if(!isliving(usr))

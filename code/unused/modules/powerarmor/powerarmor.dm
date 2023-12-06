@@ -35,7 +35,7 @@
 		verbs += /obj/item/clothing/suit/powered/proc/poweron
 
 	proc/poweron()
-		set category = "Object"
+		set category = PANEL_OBJECT
 		set name = "Activate armor systems"
 
 		var/mob/living/carbon/human/user = usr
@@ -106,8 +106,9 @@
 
 
 	proc/poweroff()
-		set category = "Object"
+		set category = PANEL_OBJECT
 		set name = "Deactivate armor systems"
+
 		powerdown() //BYOND doesn't seem to like it if you try using a proc with vars in it as a verb, hence this. --NEO
 
 	proc/powerdown(sudden = 0)
@@ -203,7 +204,7 @@
 	var/obj/item/clothing/suit/powered/parent
 
 	proc/atmotoggle()
-		set category = "Object"
+		set category = PANEL_OBJECT
 		set name = "Toggle helmet seals"
 
 		var/mob/living/carbon/human/user = usr

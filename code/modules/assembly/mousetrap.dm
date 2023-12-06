@@ -117,9 +117,9 @@
 	armed = 1
 
 /obj/item/device/assembly/mousetrap/verb/hide_under()
+	set category = PANEL_OBJECT
 	set src in oview(1)
 	set name = "Hide"
-	set category = "Object"
 
 	if(usr.stat)
 		return

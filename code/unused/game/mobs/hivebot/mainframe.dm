@@ -21,8 +21,8 @@
 
 /mob/living/silicon/hive_mainframe/Stat()
 	..()
-	statpanel("Status")
-	if (src.client.statpanel == "Status")
+	statpanel(PANEL_STATUS)
+	if (src.client.statpanel == PANEL_STATUS)
 		if(emergency_shuttle.online && emergency_shuttle.location < 2)
 			var/timeleft = emergency_shuttle.timeleft()
 			if (timeleft)

@@ -84,7 +84,7 @@
 	update_power_state(USE_POWER_IDLE) //update area power usage
 
 /obj/machinery/recharge_station/verb/move_eject()
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set src in oview(1)
 
 	if(usr.stat != 0)
@@ -93,7 +93,7 @@
 	add_fingerprint(usr)
 
 /obj/machinery/recharge_station/verb/move_inside(mob/user = usr)
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set src in oview(1)
 
 	if(isnull(user))

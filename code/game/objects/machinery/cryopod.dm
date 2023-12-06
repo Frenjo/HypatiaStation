@@ -316,9 +316,10 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 			src.add_fingerprint(M)
 
 /obj/machinery/cryopod/verb/eject()
+	set category = PANEL_OBJECT
 	set name = "Eject Pod"
-	set category = "Object"
 	set src in oview(1)
+
 	if(usr.stat != 0)
 		return
 
@@ -332,8 +333,8 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 	return
 
 /obj/machinery/cryopod/verb/move_inside()
+	set category = PANEL_OBJECT
 	set name = "Enter Pod"
-	set category = "Object"
 	set src in oview(1)
 
 	if(usr.stat != 0 || !(ishuman(usr) || ismonkey(usr)))

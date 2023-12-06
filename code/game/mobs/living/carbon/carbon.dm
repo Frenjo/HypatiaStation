@@ -390,8 +390,8 @@
 //			output for machines^	^^^^^^^output for people^^^^^^^^^
 
 /mob/living/carbon/verb/mob_sleep()
+	set category = PANEL_IC
 	set name = "Sleep"
-	set category = "IC"
 
 	if(usr.sleeping)
 		to_chat(usr, SPAN_WARNING("You are already sleeping."))

@@ -66,8 +66,8 @@
 	return
 
 /obj/item/device/taperecorder/verb/record()
+	set category = PANEL_OBJECT
 	set name = "Start Recording"
-	set category = "Object"
 
 	if(usr.stat)
 		return
@@ -92,8 +92,8 @@
 		to_chat(usr, SPAN_NOTICE("Either your tape recorder's memory is full, or it is currently playing back its memory."))
 
 /obj/item/device/taperecorder/verb/stop()
+	set category = PANEL_OBJECT
 	set name = "Stop"
-	set category = "Object"
 
 	if(usr.stat)
 		return
@@ -115,8 +115,8 @@
 		return
 
 /obj/item/device/taperecorder/verb/clear_memory()
+	set category = PANEL_OBJECT
 	set name = "Clear Memory"
-	set category = "Object"
 
 	if(usr.stat)
 		return
@@ -136,8 +136,8 @@
 		return
 
 /obj/item/device/taperecorder/verb/playback_memory()
+	set category = PANEL_OBJECT
 	set name = "Playback Memory"
-	set category = "Object"
 
 	if(usr.stat)
 		return
@@ -194,8 +194,8 @@
 		explode()
 
 /obj/item/device/taperecorder/verb/print_transcript()
+	set category = PANEL_OBJECT
 	set name = "Print Transcript"
-	set category = "Object"
 
 	if(usr.stat)
 		return

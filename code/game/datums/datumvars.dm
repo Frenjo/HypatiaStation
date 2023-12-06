@@ -1,6 +1,6 @@
 // reference: /client/proc/modify_variables(var/atom/O, var/param_var_name = null, var/autodetect_class = 0)
 /client/proc/debug_variables(datum/D in world)
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "View Variables"
 	//set src in world
 

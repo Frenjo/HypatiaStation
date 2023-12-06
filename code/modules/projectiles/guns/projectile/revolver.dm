@@ -22,8 +22,8 @@
 	return 1
 
 /obj/item/gun/projectile/detective/verb/rename_gun()
+	set category = PANEL_OBJECT
 	set name = "Name Gun"
-	set category = "Object"
 	set desc = "Click to rename your gun. If you're the detective."
 
 	var/mob/M = usr

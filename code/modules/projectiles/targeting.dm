@@ -1,5 +1,5 @@
 /obj/item/gun/verb/toggle_firerate()
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set name = "Toggle Firerate"
 
 	firerate = !firerate
@@ -9,7 +9,7 @@
 		to_chat(loc, "You will now only fire once, then lower your aim, when your target moves.")
 
 /obj/item/gun/verb/lower_aim()
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set name = "Lower Aim"
 
 	if(isnotnull(target))

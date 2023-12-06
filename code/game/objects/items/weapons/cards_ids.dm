@@ -30,8 +30,8 @@
 	item_state = "card-id"
 
 /obj/item/card/data/verb/label(t as text)
+	set category = PANEL_OBJECT
 	set name = "Label Disk"
-	set category = "Object"
 	set src in usr
 
 	if(t)
@@ -169,8 +169,8 @@
 		return
 
 /obj/item/card/id/verb/read()
+	set category = PANEL_OBJECT
 	set name = "Read ID Card"
-	set category = "Object"
 	set src in usr
 
 	to_chat(usr, "\icon[src] [name]: The current assignment on the card is [assignment].")

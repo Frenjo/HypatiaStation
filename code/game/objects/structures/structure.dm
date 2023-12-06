@@ -56,9 +56,9 @@
 	qdel(src)
 
 /obj/structure/proc/do_climb()
+	set category = PANEL_OBJECT
 	set name = "Climb structure"
 	set desc = "Climbs onto a structure."
-	set category = "Object"
 	set src in oview(1)
 
 	if(!can_touch(usr) || !climbable)

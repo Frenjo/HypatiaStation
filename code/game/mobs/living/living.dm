@@ -1,7 +1,7 @@
 //mob verbs are faster than object verbs. See mob/verb/examine.
 /mob/living/verb/pulled(atom/movable/AM as mob|obj in oview(1))
+	set category = PANEL_OBJECT
 	set name = "Pull"
-	set category = "Object"
 
 	if(AM.Adjacent(src))
 		src.start_pulling(AM)
@@ -472,8 +472,8 @@ default behaviour is:
 
 
 /mob/living/proc/Examine_OOC()
+	set category = PANEL_OOC
 	set name = "Examine Meta-Info (OOC)"
-	set category = "OOC"
 	set src in view()
 
 	if(CONFIG_GET(allow_Metadata))
@@ -582,8 +582,8 @@ default behaviour is:
 			M.UpdateFeed(src)
 
 /mob/living/verb/resist()
+	set category = PANEL_IC
 	set name = "Resist"
-	set category = "IC"
 
 	if(!isliving(usr) || usr.next_move > world.time)
 		return
@@ -839,8 +839,8 @@ default behaviour is:
 						CM.update_inv_legcuffed()
 
 /mob/living/verb/lay_down()
+	set category = PANEL_IC
 	set name = "Rest"
-	set category = "IC"
 
 	resting = !resting
 	to_chat(src, SPAN_INFO("You are now [resting ? "resting" : "getting up"]."))

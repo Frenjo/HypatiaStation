@@ -1,7 +1,7 @@
 /client/proc/Jump(area/A in return_sorted_areas())
+	set category = PANEL_ADMIN
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
-	set category = "Admin"
 
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
@@ -17,8 +17,8 @@
 		alert("Admin jumping disabled")
 
 /client/proc/jumptoturf(turf/T in world)
+	set category = PANEL_ADMIN
 	set name = "Jump to Turf"
-	set category = "Admin"
 
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
@@ -34,7 +34,7 @@
 	return
 
 /client/proc/jumptomob(mob/M in GLOBL.mob_list)
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Jump to Mob"
 
 	if(!src.holder)
@@ -56,7 +56,7 @@
 		alert("Admin jumping disabled")
 
 /client/proc/jumptocoord(tx as num, ty as num, tz as num)
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Jump to Coordinate"
 
 	if(!holder)
@@ -76,7 +76,7 @@
 		alert("Admin jumping disabled")
 
 /client/proc/jumptokey()
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Jump to Key"
 
 	if(!src.holder)
@@ -100,7 +100,7 @@
 		alert("Admin jumping disabled")
 
 /client/proc/Getmob(mob/M in GLOBL.mob_list)
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
 
@@ -117,7 +117,7 @@
 		alert("Admin jumping disabled")
 
 /client/proc/Getkey()
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Get Key"
 	set desc = "Key to teleport"
 
@@ -145,7 +145,7 @@
 		alert("Admin jumping disabled")
 
 /client/proc/sendmob(mob/M in sortmobs())
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Send Mob"
 
 	if(!src.holder)

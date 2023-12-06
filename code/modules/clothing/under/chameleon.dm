@@ -45,8 +45,8 @@
 	..()
 
 /obj/item/clothing/under/chameleon/verb/change()
+	set category = PANEL_OBJECT
 	set name = "Change Color"
-	set category = "Object"
 	set src in usr
 
 	if(icon_state == "psyche")

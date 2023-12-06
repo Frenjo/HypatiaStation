@@ -1,6 +1,6 @@
 /proc/possess(obj/O as obj in world)
+	set category = PANEL_OBJECT
 	set name = "Possess Obj"
-	set category = "Object"
 
 	if(istype(O, /obj/singularity))
 		if(CONFIG_GET(forbid_singulo_possession))
@@ -27,8 +27,8 @@
 	feedback_add_details("admin_verb", "PO") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /proc/release(obj/O as obj in world)
+	set category = PANEL_OBJECT
 	set name = "Release Obj"
-	set category = "Object"
 	//usr.loc = get_turf(usr)
 
 	if(usr.control_object && usr.name_archive) //if you have a name archived and if you are actually relassing an object
@@ -45,9 +45,10 @@
 	feedback_add_details("admin_verb", "RO") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /proc/givetestverbs(mob/M as mob in GLOBL.mob_list)
+	set category = PANEL_DEBUG
 	set desc = "Give this guy possess/release verbs"
-	set category = "Debug"
 	set name = "Give Possessing Verbs"
+
 	M.verbs += /proc/possess
 	M.verbs += /proc/release
 	feedback_add_details("admin_verb", "GPV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

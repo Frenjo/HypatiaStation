@@ -231,8 +231,8 @@ GLOBAL_GLOBL_INIT(syndicate_code_response, null)	// Code response for traitors.
 /*
 //This proc tests the gen above.
 /client/verb/test_code_phrase()
+	set category = PANEL_DEBUG
 	set name = "Generate Code Phrase"
-	set category = "Debug"
 
 	to_world("\red Code Phrase is: \black [generate_code_phrase()]")
 	return

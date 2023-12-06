@@ -84,9 +84,10 @@
 	item_color = "polsuit"
 
 /obj/item/clothing/under/det/slob/verb/rollup()
+	set category = PANEL_OBJECT
 	set name = "Roll suit sleeves"
-	set category = "Object"
 	set src in usr
+
 	item_color = item_color == "polsuit" ? "polsuit_rolled" : "polsuit"
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc

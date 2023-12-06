@@ -576,11 +576,11 @@ mob/living/parasite/meme/verb/Show_Points()
 /mob/living/parasite/meme/Stat()
 	..()
 
-	statpanel("Status")
+	statpanel(PANEL_STATUS)
 	if (client && client.holder)
 		stat(null, "([x], [y], [z])")
 
-	if (client && client.statpanel == "Status")
+	if (client && client.statpanel == PANEL_STATUS)
 		stat(null, "Meme Points: [src.meme_points]")
 
 // Game mode helpers, used for theft objectives

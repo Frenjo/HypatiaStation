@@ -91,8 +91,9 @@ client/proc/is_reported()
 
 // display only the reports that haven't been handled
 client/proc/display_admin_reports()
-	set category = "Admin"
+	set category = PANEL_ADMIN
 	set name = "Display Admin Reports"
+
 	if(!src.holder) return
 
 	var/list/reports = load_reports()
@@ -119,7 +120,8 @@ client/proc/display_admin_reports()
 
 
 client/proc/Report(mob/M as mob in world)
-	set category = "Admin"
+	set category = PANEL_ADMIN
+
 	if(!src.holder)
 		return
 

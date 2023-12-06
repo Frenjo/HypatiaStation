@@ -2,7 +2,7 @@
  * Controller Verbs
  */
 /client/proc/restart_controller(controller in list("Supply"))
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Restart Controller"
 	set desc = "Restart one of the various periodic loop controllers for the game (be careful!)"
 
@@ -16,7 +16,7 @@
 	return
 
 /client/proc/debug_configuration()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Debug Configuration"
 	set desc = "Debug the global configuration object for the game (be careful!)"
 

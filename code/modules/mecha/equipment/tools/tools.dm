@@ -1202,7 +1202,7 @@
 #define OCCUPIED 2
 
 /obj/mecha/proc/move_inside_passenger()
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set name = "Enter Passenger Compartment"
 	set src in oview(1)
 

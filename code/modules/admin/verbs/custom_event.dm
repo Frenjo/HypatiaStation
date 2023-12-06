@@ -1,6 +1,6 @@
 // verb for admins to set custom event
 /client/proc/cmd_admin_change_custom_event()
-	set category = "Fun"
+	set category = PANEL_FUN
 	set name = "Change Custom Event"
 
 	if(!holder)
@@ -26,7 +26,7 @@
 
 // normal verb for players to view info
 /client/verb/cmd_view_custom_event()
-	set category = "OOC"
+	set category = PANEL_OOC
 	set name = "Custom Event Info"
 
 	if(!GLOBL.custom_event_msg || GLOBL.custom_event_msg == "")

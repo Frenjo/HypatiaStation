@@ -129,8 +129,8 @@
 	brightness_on = 5
 
 /obj/item/device/flashlight/lamp/verb/toggle_light()
+	set category = PANEL_OBJECT
 	set name = "Toggle light"
-	set category = "Object"
 	set src in oview(1)
 
 	if(!usr.stat)

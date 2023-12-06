@@ -161,8 +161,9 @@
 	return 1
 
 /mob/living/carbon/human/proc/RevConvert()
+	set category = PANEL_IC
 	set name = "Rev-Convert"
-	set category = "IC"
+
 	var/list/Possible = list()
 	for (var/mob/living/carbon/human/P in oview(src))
 		if(!stat && P.client && P.mind && !P.mind.special_role)

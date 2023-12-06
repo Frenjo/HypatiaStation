@@ -37,13 +37,13 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 	return 0
 
 /client/proc/do_not_use_these()
-	set category = "Mapping"
+	set category = PANEL_MAPPING
 	set name = "-None of these are for ingame use!!"
 
 	return
 
 /client/proc/camera_view()
-	set category = "Mapping"
+	set category = PANEL_MAPPING
 	set name = "Camera Range Display"
 
 	if(GLOBL.camera_range_display_status)
@@ -60,7 +60,7 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 	feedback_add_details("admin_verb", "mCRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/sec_camera_report()
-	set category = "Mapping"
+	set category = PANEL_MAPPING
 	set name = "Camera Report"
 
 	if(!global.CTmaster)
@@ -100,7 +100,7 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 	feedback_add_details("admin_verb", "mCRP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/intercom_view()
-	set category = "Mapping"
+	set category = PANEL_MAPPING
 	set name = "Intercom Range Display"
 
 	if(GLOBL.intercom_range_display_status)
@@ -158,7 +158,7 @@ var/list/debug_verbs = list(
 )
 
 /client/proc/enable_debug_verbs()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Debug verbs"
 
 	if(!check_rights(R_DEBUG))
@@ -169,7 +169,7 @@ var/list/debug_verbs = list(
 	feedback_add_details("admin_verb", "mDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/hide_debug_verbs()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set name = "Hide Debug verbs"
 
 	if(!check_rights(R_DEBUG))
@@ -200,7 +200,7 @@ var/list/debug_verbs = list(
 		recurse_zone(connected, recurse_level + 1)
 
 /client/proc/testZAScolors()
-	set category = "ZAS"
+	set category = PANEL_ZAS
 	set name = "Check ZAS connections"
 
 	if(!check_rights(R_DEBUG))
@@ -250,7 +250,7 @@ var/list/debug_verbs = list(
 		testZAScolors_turfs += T
 
 /client/proc/testZAScolors_remove()
-	set category = "ZAS"
+	set category = PANEL_ZAS
 	set name = "Remove ZAS connection colors"
 
 	testZAScolors_turfs.Cut()
@@ -262,7 +262,7 @@ var/list/debug_verbs = list(
 				images.Remove(i)
 
 /client/proc/rebootAirMaster()
-	set category = "ZAS"
+	set category = PANEL_ZAS
 	set name = "Reboot ZAS"
 
 	if(alert("This will destroy and remake all zone geometry on the whole map.", "Reboot ZAS", "Reboot ZAS", "Nevermind") == "Reboot ZAS")
@@ -274,8 +274,9 @@ var/list/debug_verbs = list(
 		global.CTair.setup()
 
 /client/proc/count_objects_on_z_level()
-	set category = "Mapping"
+	set category = PANEL_MAPPING
 	set name = "Count Objects On Level"
+
 	var/level = input("Which z-level?", "Level?") as text
 	if(!level)
 		return
@@ -322,7 +323,7 @@ var/list/debug_verbs = list(
 	feedback_add_details("admin_verb", "mOBJZ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/count_objects_all()
-	set category = "Mapping"
+	set category = PANEL_MAPPING
 	set name = "Count Objects All"
 
 	var/type_text = input("Which type path?", "") as text
@@ -352,7 +353,7 @@ var/list/debug_verbs = list(
 
 var/global/prevent_airgroup_regroup = 0
 /client/proc/break_all_air_groups()
-	set category = "Mapping"
+	set category = PANEL_MAPPING
 	set name = "Break All Airgroups"
 
 	to_chat(usr, SPAN_WARNING("Proc disabled."))
@@ -363,7 +364,7 @@ var/global/prevent_airgroup_regroup = 0
 	message_admins("[src.ckey] used 'Break All Airgroups'")*/
 
 /client/proc/regroup_all_air_groups()
-	set category = "Mapping"
+	set category = PANEL_MAPPING
 	set name = "Regroup All Airgroups Attempt"
 
 	to_chat(usr, SPAN_WARNING("Proc disabled."))
@@ -374,7 +375,7 @@ var/global/prevent_airgroup_regroup = 0
 	message_admins("[src.ckey] used 'Regroup All Airgroups Attempt'")*/
 
 /client/proc/kill_pipe_processing()
-	set category = "Mapping"
+	set category = PANEL_MAPPING
 	set name = "Kill pipe processing"
 
 	pipe_processing_killed = !pipe_processing_killed
@@ -384,7 +385,7 @@ var/global/prevent_airgroup_regroup = 0
 		message_admins("[src.ckey] used 'kill pipe processing', restoring all pipe processing.")
 
 /client/proc/kill_air_processing()
-	set category = "Mapping"
+	set category = PANEL_MAPPING
 	set name = "Kill air processing"
 
 	air_processing_killed = !air_processing_killed
@@ -396,7 +397,7 @@ var/global/prevent_airgroup_regroup = 0
 //This proc is intended to detect lag problems relating to communication procs
 var/global/say_disabled = 0
 /client/proc/disable_communication()
-	set category = "Mapping"
+	set category = PANEL_MAPPING
 	set name = "Disable all communication verbs"
 
 	say_disabled = !say_disabled
@@ -409,7 +410,7 @@ var/global/say_disabled = 0
 var/global/movement_disabled = 0
 var/global/movement_disabled_exception //This is the client that calls the proc, so he can continue to run around to gauge any change to lag.
 /client/proc/disable_movement()
-	set category = "Mapping"
+	set category = PANEL_MAPPING
 	set name = "Disable all movement"
 
 	movement_disabled = !movement_disabled

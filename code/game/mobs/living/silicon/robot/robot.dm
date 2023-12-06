@@ -202,8 +202,8 @@
 // update the status screen display
 /mob/living/silicon/robot/Stat()
 	. = ..()
-	statpanel("Status")
-	if(client.statpanel == "Status")
+	statpanel(PANEL_STATUS)
+	if(client.statpanel == PANEL_STATUS)
 		show_cell_power()
 		show_jetpack_pressure()
 

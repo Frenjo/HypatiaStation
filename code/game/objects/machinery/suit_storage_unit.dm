@@ -474,8 +474,8 @@
 	return
 
 /obj/machinery/suit_storage_unit/verb/get_out()
+	set category = PANEL_OBJECT
 	set name = "Eject Suit Storage Unit"
-	set category = "Object"
 	set src in oview(1)
 
 	if(usr.stat != CONSCIOUS)
@@ -487,8 +487,8 @@
 	return
 
 /obj/machinery/suit_storage_unit/verb/move_inside()
+	set category = PANEL_OBJECT
 	set name = "Hide in Suit Storage Unit"
-	set category = "Object"
 	set src in oview(1)
 
 	if(usr.stat != 0)

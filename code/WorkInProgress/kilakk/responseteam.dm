@@ -7,8 +7,8 @@ var/global/admin_emergency_team = 0 // Used for admin-spawned response teams
 // 'sent_response_team' for automagic response teams
 
 /client/proc/response_team()
+	set category = PANEL_SPECIAL_VERBS
 	set name = "Dispatch Emergency Response Team"
-	set category = "Special Verbs"
 	set desc = "Send an emergency response team to the station"
 
 	if(!holder)

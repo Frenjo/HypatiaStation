@@ -45,8 +45,9 @@
 		return
 
 /client/proc/ToRban(task in list("update", "toggle", "show", "remove", "remove all", "find"))
+	set category = PANEL_SERVER
 	set name = "ToRban"
-	set category = "Server"
+
 	if(!holder)
 		return
 	switch(task)

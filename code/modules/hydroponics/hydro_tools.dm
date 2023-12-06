@@ -301,8 +301,8 @@
 	interact(user)
 
 /obj/item/seedbag/verb/toggle_mode()
+	set category = PANEL_OBJECT
 	set name = "Switch Bagging Method"
-	set category = "Object"
 
 	mode = !mode
 	switch (mode)

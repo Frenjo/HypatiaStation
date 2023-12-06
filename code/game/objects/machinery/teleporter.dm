@@ -114,7 +114,7 @@
 	return
 
 /obj/machinery/computer/teleporter/verb/set_id(t as text)
-	set category = "Object"
+	set category = PANEL_OBJECT
 	set name = "Set teleporter ID"
 	set src in oview(1)
 	set desc = "ID Tag:"
@@ -331,8 +331,8 @@
 	return
 
 /obj/machinery/teleport/station/verb/testfire()
+	set category = PANEL_OBJECT
 	set name = "Test Fire Teleporter"
-	set category = "Object"
 	set src in oview(1)
 
 	if(stat & (BROKEN|NOPOWER) || !isliving(usr))

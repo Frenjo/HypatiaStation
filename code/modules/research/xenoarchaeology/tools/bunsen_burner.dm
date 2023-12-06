@@ -47,9 +47,9 @@
 			try_heating()
 
 /obj/machinery/bunsen_burner/verb/toggle()
+	set category = PANEL_IC
 	set src in view(1)
 	set name = "Toggle bunsen burner"
-	set category = "IC"
 
 	heating = !heating
 	icon_state = "bunsen[heating]"

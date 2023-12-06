@@ -96,8 +96,8 @@
 // This adds the basic clock, shuttle recall timer, and malf_ai info to all silicon lifeforms
 /mob/living/silicon/Stat()
 	. = ..()
-	statpanel("Status")
-	if(client.statpanel == "Status")
+	statpanel(PANEL_STATUS)
+	if(client.statpanel == PANEL_STATUS)
 		show_station_time()
 		show_emergency_shuttle_eta()
 		show_system_integrity()
@@ -119,8 +119,8 @@
 			speech_synthesizer_langs.Remove(L)
 
 /mob/living/silicon/check_languages()
+	set category = PANEL_IC
 	set name = "Check Known Languages"
-	set category = "IC"
 	set src = usr
 
 	var/dat = "<b><font size = 5>Known Languages</font></b><br/><br/>"

@@ -191,8 +191,8 @@
 
 //Blue suit jacket toggle
 /obj/item/clothing/suit/suit/verb/toggle()
+	set category = PANEL_OBJECT
 	set name = "Toggle Jacket Buttons"
-	set category = "Object"
 	set src in usr
 
 	if(!usr.canmove || usr.stat || usr.restrained())

@@ -47,8 +47,8 @@
 		buckled_mob.set_dir(dir)
 
 /obj/structure/stool/bed/chair/verb/rotate()
+	set category = PANEL_OBJECT
 	set name = "Rotate Chair"
-	set category = "Object"
 	set src in oview(1)
 
 	if(CONFIG_GET(ghost_interaction))

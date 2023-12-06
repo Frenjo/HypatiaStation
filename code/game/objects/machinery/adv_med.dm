@@ -20,8 +20,8 @@
 	return
 
 /obj/machinery/bodyscanner/verb/eject()
+	set category = PANEL_OBJECT
 	set src in oview(1)
-	set category = "Object"
 	set name = "Eject Body Scanner"
 
 	if(usr.stat != CONSCIOUS)
@@ -31,8 +31,8 @@
 	return
 
 /obj/machinery/bodyscanner/verb/move_inside()
+	set category = PANEL_OBJECT
 	set src in oview(1)
-	set category = "Object"
 	set name = "Enter Body Scanner"
 
 	if(usr.stat != CONSCIOUS)

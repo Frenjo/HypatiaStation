@@ -206,7 +206,7 @@
 		greet_head(character.mind)
 
 /mob/proc/ResignFromHeadPosition()
-	set category = "IC"
+	set category = PANEL_IC
 	set name = "Resign From Head Position"
 
 	if(!istype(ticker.mode, /datum/game_mode/anti_revolution))

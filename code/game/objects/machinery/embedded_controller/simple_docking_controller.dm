@@ -138,13 +138,15 @@
 /*** DEBUG VERBS ***
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/verb/view_state()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set src in view(1)
+
 	src.program:print_state()
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/verb/spoof_signal(var/command as text, var/sender as text)
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set src in view(1)
+
 	var/datum/signal/signal = new
 	signal.data["tag"] = sender
 	signal.data["command"] = command
@@ -153,13 +155,14 @@
 	src.program:receive_signal(signal)
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/verb/debug_init_dock(var/target as text)
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set src in view(1)
+
 	src.program:initiate_docking(target)
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/verb/debug_init_undock()
-	set category = "Debug"
+	set category = PANEL_DEBUG
 	set src in view(1)
-	src.program:initiate_undocking()
 
+	src.program:initiate_undocking()
 */

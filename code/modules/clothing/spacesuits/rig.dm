@@ -134,9 +134,10 @@
 
 /*
 /obj/item/clothing/suit/space/rig/verb/get_mounted_device()
+	set category = PANEL_OBJECT
 	set name = "Deploy Mounted Device"
-	set category = "Object"
 	set src in usr
+
 	if(!can_mount)
 		verbs -= /obj/item/clothing/suit/space/rig/verb/get_mounted_device
 		verbs -= /obj/item/clothing/suit/space/rig/verb/stow_mounted_device
@@ -150,9 +151,10 @@
 		usr << "You do not have any devices mounted on \the [src]."
 		return
 /obj/item/clothing/suit/space/rig/verb/stow_mounted_device()
+	set category = PANEL_OBJECT
 	set name = "Stow Mounted Device"
-	set category = "Object"
 	set src in usr
+
 	if(!can_mount)
 		verbs -= /obj/item/clothing/suit/space/rig/verb/get_mounted_device
 		verbs -= /obj/item/clothing/suit/space/rig/verb/stow_mounted_device
@@ -165,8 +167,8 @@
 */
 
 /obj/item/clothing/suit/space/rig/verb/toggle_helmet()
+	set category = PANEL_OBJECT
 	set name = "Toggle Helmet"
-	set category = "Object"
 	set src in usr
 
 	if(!isliving(src.loc))

@@ -1,5 +1,5 @@
 /mob/verb/pray(msg as text)
-	set category = "IC"
+	set category = PANEL_IC
 	set name = "Pray"
 
 	if(say_disabled)

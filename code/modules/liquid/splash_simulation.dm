@@ -29,6 +29,8 @@ var/list/datum/puddle/puddles = list()
 	return ..()
 
 /client/proc/splash()
+	set category = PANEL_DEBUG
+
 	var/volume = input("Volume?","Volume?", 0 ) as num
 	if(!isnum(volume)) return
 	if(volume <= LIQUID_TRANSFER_THRESHOLD) return

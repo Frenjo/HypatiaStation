@@ -418,7 +418,7 @@
 			radio:code = min(100, radio:code)
 			radio:code = max(1, radio:code)
 
-		if("Status")
+		if(PANEL_STATUS)
 			switch(href_list["statdisp"])
 				if("message")
 					post_status("message", message1, message2)

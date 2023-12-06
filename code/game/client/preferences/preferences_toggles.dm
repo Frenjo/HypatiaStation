@@ -1,7 +1,7 @@
 //toggles
 /client/verb/toggle_ghost_ears()
+	set category = PANEL_PREFERENCES
 	set name = "Show/Hide GhostEars"
-	set category = "Preferences"
 	set desc = "Toggle Between seeing all mob speech, and only speech of nearby mobs."
 
 	prefs.toggles ^= CHAT_GHOSTEARS
@@ -10,8 +10,8 @@
 	feedback_add_details("admin_verb", "TGE") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_ghost_sight()
+	set category = PANEL_PREFERENCES
 	set name = "Show/Hide GhostSight"
-	set category = "Preferences"
 	set desc = "Toggle Between seeing all mob emotes, and only emotes of nearby mobs."
 
 	prefs.toggles ^= CHAT_GHOSTSIGHT
@@ -20,8 +20,8 @@
 	feedback_add_details("admin_verb", "TGS") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_ghost_radio()
+	set category = PANEL_PREFERENCES
 	set name = "Enable/Disable GhostRadio"
-	set category = "Preferences"
 	set desc = "Toggle between hearing all radio chatter, or only from nearby speakers."
 
 	prefs.toggles ^= CHAT_GHOSTRADIO
@@ -30,8 +30,8 @@
 	feedback_add_details("admin_verb", "TGR")
 
 /client/proc/toggle_hear_radio()
+	set category = PANEL_PREFERENCES
 	set name = "Show/Hide RadioChatter"
-	set category = "Preferences"
 	set desc = "Toggle seeing radiochatter from radios and speakers."
 
 	if(isnull(holder))
@@ -43,8 +43,8 @@
 	feedback_add_details("admin_verb", "THR") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/toggleadminhelpsound()
+	set category = PANEL_PREFERENCES
 	set name = "Hear/Silence Adminhelps"
-	set category = "Preferences"
 	set desc = "Toggle hearing a notification when admin PMs are recieved."
 
 	if(isnull(holder))
@@ -56,8 +56,8 @@
 	feedback_add_details("admin_verb", "AHS") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/deadchat() // Deadchat toggle is usable by anyone.
+	set category = PANEL_PREFERENCES
 	set name = "Show/Hide Deadchat"
-	set category = "Preferences"
 	set desc = "Toggles seeing deadchat."
 
 	prefs.toggles ^= CHAT_DEAD
@@ -71,8 +71,8 @@
 	feedback_add_details("admin_verb", "TDV") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/toggleprayers()
+	set category = PANEL_PREFERENCES
 	set name = "Show/Hide Prayers"
-	set category = "Preferences"
 	set desc = "Toggles seeing prayers."
 
 	prefs.toggles ^= CHAT_PRAYER
@@ -82,8 +82,8 @@
 	feedback_add_details("admin_verb", "TP") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggletitlemusic()
+	set category = PANEL_PREFERENCES
 	set name = "Hear/Silence LobbyMusic"
-	set category = "Preferences"
 	set desc = "Toggles hearing the GameLobby music."
 
 	prefs.toggles ^= SOUND_LOBBY
@@ -100,8 +100,8 @@
 	feedback_add_details("admin_verb", "TLobby") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/togglemidis()
+	set category = PANEL_PREFERENCES
 	set name = "Hear/Silence Midis"
-	set category = "Preferences"
 	set desc = "Toggles hearing sounds uploaded by admins."
 
 	prefs.toggles ^= SOUND_MIDI
@@ -117,8 +117,8 @@
 	feedback_add_details("admin_verb", "TMidi") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/listen_ooc()
+	set category = PANEL_PREFERENCES
 	set name = "Show/Hide OOC"
-	set category = "Preferences"
 	set desc = "Toggles seeing OutOfCharacter chat."
 
 	prefs.toggles ^= CHAT_OOC
@@ -128,8 +128,8 @@
 	feedback_add_details("admin_verb", "TOOC") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/listen_looc()
+	set category = PANEL_PREFERENCES
 	set name = "Show/Hide LOOC"
-	set category = "Preferences"
 	set desc = "Toggles seeing Local OutOfCharacter chat."
 
 	prefs.toggles ^= CHAT_LOOC
@@ -139,8 +139,8 @@
 	feedback_add_details("admin_verb", "TLOOC") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_soundscape() //All new ambience should be added here so it works with this verb until someone better at things comes up with a fix that isn't awful
+	set category = PANEL_PREFERENCES
 	set name = "Hear/Silence Ambience"
-	set category = "Preferences"
 	set desc = "Toggles hearing ambient sound effects."
 
 	prefs.toggles ^= SOUND_AMBIENCE
@@ -156,8 +156,8 @@
 
 //be special
 /client/verb/toggle_be_special(role in GLOBL.be_special_flags)
+	set category = PANEL_PREFERENCES
 	set name = "Toggle SpecialRole Candidacy"
-	set category = "Preferences"
 	set desc = "Toggles which special roles you would like to be a candidate for, during events."
 
 	var/role_flag = GLOBL.be_special_flags[role]
@@ -171,8 +171,8 @@
 	feedback_add_details("admin_verb", "TBeSpecial") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/change_ui()
+	set category = PANEL_PREFERENCES
 	set name = "Change UI"
-	set category = "Preferences"
 	set desc = "Configure your user interface."
 
 	if(!ishuman(usr))

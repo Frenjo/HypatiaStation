@@ -712,8 +712,8 @@
 
 //Suit roll-down toggle.
 /obj/item/clothing/under/fluff/jane_sidsuit/verb/toggle_zipper()
+	set category = PANEL_OBJECT
 	set name = "Toggle Jumpsuit Zipper"
-	set category = "Object"
 	set src in usr
 
 	if(!usr.canmove || usr.stat || usr.restrained())

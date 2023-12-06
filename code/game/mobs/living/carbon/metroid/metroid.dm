@@ -169,14 +169,14 @@
 /mob/living/carbon/metroid/Stat()
 	..()
 
-	statpanel("Status")
+	statpanel(PANEL_STATUS)
 	if(istype(src, /mob/living/carbon/metroid/adult))
 		stat(null, "Health: [round((health / 200) * 100)]%")
 	else
 		stat(null, "Health: [round((health / 150) * 100)]%")
 
 
-	if (client.statpanel == "Status")
+	if (client.statpanel == PANEL_STATUS)
 		if(istype(src,/mob/living/carbon/metroid/adult))
 			stat(null, "Nutrition: [nutrition]/1200")
 			if(amount_grown >= 10)
