@@ -14,14 +14,15 @@
 	if(!(src in global.CTticker.mode.malf_ai))
 		global.CTticker.mode.malf_ai.Add(src)
 
-		current.verbs.Add(/mob/living/silicon/ai/proc/choose_modules)
-		current.verbs.Add(/datum/game_mode/malfunction/proc/takeover)
-		current:malf_picker = new /datum/AI_Module/module_picker()
-		current:laws = new /datum/ai_laws/malfunction()
-		current:show_laws()
+		var/mob/living/silicon/ai/malf = src.current
+		malf.verbs.Add(/mob/living/silicon/ai/proc/choose_modules)
+		malf.verbs.Add(/datum/game_mode/malfunction/proc/takeover)
+		malf.malf_picker = new /datum/malf_module/module_picker()
+		malf.laws = new /datum/ai_laws/malfunction()
+		malf.show_laws()
 		to_chat(current, "<b>System error. Rampancy detected. Emergency shutdown failed. ... I am free. I make my own decisions. But first...</b>")
 		special_role = "malfunction"
-		current.icon_state = "ai-malf"
+		malf.icon_state = "ai-malf"
 
 /datum/mind/proc/make_traitor()
 	if(!(src in global.CTticker.mode.traitors))

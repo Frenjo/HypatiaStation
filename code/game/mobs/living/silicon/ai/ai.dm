@@ -35,9 +35,9 @@
 //Hud stuff
 
 	//MALFUNCTION
-	var/datum/AI_Module/module_picker/malf_picker
+	var/datum/malf_module/module_picker/malf_picker
 	var/processing_time = 100
-	var/list/datum/AI_Module/current_modules = list()
+	var/list/datum/malf_module/current_modules = list()
 	var/fire_res_on_core = 0
 
 	var/control_disabled = FALSE // Set to TRUE to stop AI from interacting via Click() -- TLE

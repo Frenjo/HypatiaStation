@@ -552,7 +552,8 @@
 					global.CTticker.mode.malf_ai.Remove(src)
 					special_role = null
 
-					current.verbs.Remove(
+					var/mob/living/silicon/ai/malf = src.current
+					malf.verbs.Remove(
 						/mob/living/silicon/ai/proc/choose_modules,
 						/datum/game_mode/malfunction/proc/takeover,
 						/datum/game_mode/malfunction/proc/ai_win,
@@ -565,9 +566,9 @@
 						/client/proc/reactivate_camera
 					)
 
-					current:laws = new /datum/ai_laws/nanotrasen()
-					qdel(current:malf_picker)
-					current:show_laws()
+					malf.laws = new /datum/ai_laws/nanotrasen()
+					qdel(malf.malf_picker)
+					malf.show_laws()
 					current.icon_state = "ai"
 
 					to_chat(current, SPAN_DANGER("<font size=3>You have been patched! You are no longer malfunctioning!</font>"))
