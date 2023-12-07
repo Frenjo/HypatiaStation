@@ -52,10 +52,9 @@ VOX HEIST ROUNDTYPE
 		raider.special_role = "Vox Raider"
 	return 1
 
-/datum/game_mode/heist/pre_setup()
-	return 1
-
 /datum/game_mode/heist/post_setup()
+	. = ..()
+
 	//Build a list of spawn points.
 	var/list/turf/raider_spawn = list()
 

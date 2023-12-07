@@ -9,7 +9,9 @@
 	var/num_players = 0
 
 /datum/game_mode/traitor/autotraitor/announce()
-	..()
+	SHOULD_CALL_PARENT(TRUE)
+
+	. = ..()
 	to_world("<B>Game mode is AutoTraitor. Traitors will be added to the round automagically as needed.</B>")
 
 /datum/game_mode/traitor/autotraitor/pre_setup()
@@ -142,7 +144,7 @@
 		traitorcheckloop()
 
 /datum/game_mode/traitor/autotraitor/latespawn(mob/living/carbon/human/character)
-	..()
+	. = ..()
 	if(global.CTemergency.departed)
 		return
 	//message_admins("Late Join Check")

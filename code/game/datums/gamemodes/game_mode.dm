@@ -73,7 +73,13 @@ Implants;
 /obj/item/cloaking_device:4:Cloaking Device;	//Replacing cloakers with thermals.	-Pete
 */
 
+/datum/game_mode/New()
+	. = ..()
+	newscaster_announcements = pick(GLOBL.newscaster_standard_feeds)
+
 /datum/game_mode/proc/announce() //to be calles when round starts
+	SHOULD_CALL_PARENT(FALSE)
+
 	to_world("<B>Notice</B>: [src] did not define announce()")
 
 ///can_start()
@@ -100,6 +106,8 @@ Implants;
 ///post_setup()
 ///Everyone should now be on the station and have their normal gear.  This is the place to give the special roles extra things
 /datum/game_mode/proc/post_setup()
+	SHOULD_CALL_PARENT(TRUE)
+
 	spawn(ROUNDSTART_LOGOUT_REPORT_TIME)
 		display_roundstart_logout_report()
 
@@ -117,11 +125,15 @@ Implants;
 	return 0
 
 /datum/game_mode/proc/check_finished() //to be called by ticker
+	SHOULD_CALL_PARENT(TRUE)
+
 	if(global.CTemergency.returned() || station_was_nuked)
 		return 1
 	return 0
 
 /datum/game_mode/proc/declare_completion()
+	SHOULD_CALL_PARENT(TRUE)
+
 	var/clients = 0
 	var/surviving_humans = 0
 	var/surviving_total = 0
@@ -252,7 +264,6 @@ Implants;
 	if(security_level < SEC_LEVEL_BLUE)
 		set_security_level(SEC_LEVEL_BLUE)*/
 
-
 /datum/game_mode/proc/get_players_for_role(role, override_jobbans = 0)
 	var/list/players = list()
 	var/list/candidates = list()
@@ -369,6 +380,7 @@ Implants;
 
 
 /datum/game_mode/proc/latespawn(mob)
+	return
 
 /*
 /datum/game_mode/proc/check_player_role_pref(var/role, var/mob/new_player/player)
@@ -383,7 +395,6 @@ Implants;
 		if(isnotnull(P.client) && P.ready)
 			. ++
 
-
 ///////////////////////////////////
 //Keeps track of all living heads//
 ///////////////////////////////////
@@ -394,7 +405,6 @@ Implants;
 			heads.Add(player.mind)
 	return heads
 
-
 ////////////////////////////
 //Keeps track of all heads//
 ////////////////////////////
@@ -404,9 +414,6 @@ Implants;
 		if((player.mind?.assigned_role in GLOBL.command_positions))
 			heads.Add(player.mind)
 	return heads
-
-/datum/game_mode/New()
-	newscaster_announcements = pick(GLOBL.newscaster_standard_feeds)
 
 //////////////////////////
 //Reports player logouts//

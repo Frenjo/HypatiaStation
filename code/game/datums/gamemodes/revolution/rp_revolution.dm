@@ -54,6 +54,8 @@
 
 
 /datum/game_mode/revolution/rp_revolution/post_setup()
+	. = ..()
+
 	heads = get_living_heads()
 	for(var/datum/mind/rev_mind in head_revolutionaries)
 		if(!CONFIG_GET(objectives_disabled))
@@ -138,7 +140,6 @@
 /datum/game_mode/revolution/rp_revolution/announce()
 	to_world("<B>The current game mode is - Revolution!</B>")
 	to_world("<B>Some crewmembers are attempting to start a revolution!</B>")
-
 
 //////////////////////////////////////////////////////////////////////
 //Announces the end of the game with all relavent information stated//
@@ -255,6 +256,7 @@
 	world << sound('sound/AI/commandreport.ogg')
 
 /datum/game_mode/revolution/rp_revolution/latespawn(mob/M)
+	. = ..()
 	if(M.mind.assigned_role in GLOBL.command_positions)
 		log_debug("Adding head kill/capture/convert objective for [M.name]")
 		heads += M
