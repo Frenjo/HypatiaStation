@@ -180,7 +180,7 @@
 	updateUsrDialog()
 
 /obj/machinery/bot/medbot/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(allowed(user) && !open && !emagged)
 			locked = !locked
 			FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
@@ -459,8 +459,8 @@
 
 	var/turf/T = get_turf(src)
 	new /obj/item/storage/firstaid(T)
-	new /obj/item/device/assembly/prox_sensor(T)
-	new /obj/item/device/healthanalyzer(T)
+	new /obj/item/assembly/prox_sensor(T)
+	new /obj/item/healthanalyzer(T)
 
 	if(isnotnull(reagent_glass))
 		reagent_glass.loc = T
@@ -560,7 +560,7 @@
 	else
 		switch(build_step)
 			if(0)
-				if(istype(W, /obj/item/device/healthanalyzer))
+				if(istype(W, /obj/item/healthanalyzer))
 					user.drop_item()
 					qdel(W)
 					build_step++

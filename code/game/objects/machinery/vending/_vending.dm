@@ -113,7 +113,7 @@
 			overlays.Add(image(icon, "[initial(icon_state)]-panel"))
 		updateUsrDialog()
 		return
-	else if(istype(W, /obj/item/device/multitool) || istype(W, /obj/item/wirecutters))
+	else if(istype(W, /obj/item/multitool) || istype(W, /obj/item/wirecutters))
 		if(panel_open)
 			attack_hand(user)
 		return
@@ -308,7 +308,7 @@
 
 		else if((href_list["pulsewire"]) && (panel_open))
 			var/twire = text2num(href_list["pulsewire"])
-			if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if(!istype(usr.get_active_hand(), /obj/item/multitool))
 				to_chat(usr, "You need a multitool!")
 				return
 			if(isWireColorCut(twire))

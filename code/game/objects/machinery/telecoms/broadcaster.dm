@@ -221,24 +221,24 @@
 		The frequency of the signal
 
 **/
-/proc/Broadcast_Message(datum/radio_frequency/connection, mob/M, vmask, vmessage, obj/item/device/radio/radio,
+/proc/Broadcast_Message(datum/radio_frequency/connection, mob/M, vmask, vmessage, obj/item/radio/radio,
 						message, name, job, realname, vname, data, compression, list/level, freq,
 						verbage = "says", datum/language/speaking = null)
 
   /* ###### Prepare the radio connection ###### */
 	var/display_freq = freq
-	var/list/obj/item/device/radio/radios = list()
+	var/list/obj/item/radio/radios = list()
 
 	// --- Broadcast only to intercom devices ---
 	if(data == 1)
-		for(var/obj/item/device/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
+		for(var/obj/item/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
 			if(R.receive_range(display_freq, level) > -1)
 				radios += R
 
 	// --- Broadcast only to intercoms and station-bounced radios ---
 	else if(data == 2)
-		for(var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
-			if(istype(R, /obj/item/device/radio/headset))
+		for(var/obj/item/radio/R in connection.devices["[RADIO_CHAT]"])
+			if(istype(R, /obj/item/radio/headset))
 				continue
 
 			if(R.receive_range(display_freq, level) > -1)
@@ -247,13 +247,13 @@
 	// --- Broadcast to syndicate radio! ---
 	else if(data == 3)
 		var/datum/radio_frequency/syndicateconnection = global.CTradio.return_frequency(FREQUENCY_SYNDICATE)
-		for(var/obj/item/device/radio/R in syndicateconnection.devices["[RADIO_CHAT]"])
+		for(var/obj/item/radio/R in syndicateconnection.devices["[RADIO_CHAT]"])
 			if(R.receive_range(FREQUENCY_SYNDICATE, level) > -1)
 				radios += R
 
 	// --- Broadcast to ALL radio devices ---
 	else
-		for(var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
+		for(var/obj/item/radio/R in connection.devices["[RADIO_CHAT]"])
 			if(R.receive_range(display_freq, level) > -1)
 				radios += R
 
@@ -475,15 +475,15 @@
 
 	// --- Broadcast only to intercom devices ---
 	if(data == 1)
-		for(var/obj/item/device/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
+		for(var/obj/item/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
 			var/turf/position = get_turf(R)
 			if(position && position.z == level)
 				receive |= R.send_hear(display_freq, level)
 
 	// --- Broadcast only to intercoms and station-bounced radios ---
 	else if(data == 2)
-		for(var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
-			if(istype(R, /obj/item/device/radio/headset))
+		for(var/obj/item/radio/R in connection.devices["[RADIO_CHAT]"])
+			if(istype(R, /obj/item/radio/headset))
 				continue
 			var/turf/position = get_turf(R)
 			if(position && position.z == level)
@@ -493,14 +493,14 @@
 	else if(data == 3)
 		var/datum/radio_frequency/syndicateconnection = global.CTradio.return_frequency(FREQUENCY_SYNDICATE)
 
-		for(var/obj/item/device/radio/R in syndicateconnection.devices["[RADIO_CHAT]"])
+		for(var/obj/item/radio/R in syndicateconnection.devices["[RADIO_CHAT]"])
 			var/turf/position = get_turf(R)
 			if(position && position.z == level)
 				receive |= R.send_hear(FREQUENCY_SYNDICATE)
 
 	// --- Broadcast to ALL radio devices ---
 	else
-		for(var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"])
+		for(var/obj/item/radio/R in connection.devices["[RADIO_CHAT]"])
 			var/turf/position = get_turf(R)
 			if(position && position.z == level)
 				receive |= R.send_hear(display_freq)
@@ -570,7 +570,7 @@
 			part_b_extra = " <i>(Intercepted)</i>"
 
 		// Create a radio headset for the sole purpose of using its icon
-		var/obj/item/device/radio/headset/radio = new
+		var/obj/item/radio/headset/radio = new
 
 		var/part_b = "</span><b> \icon[radio]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_c = "</span></span>"

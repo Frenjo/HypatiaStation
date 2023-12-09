@@ -20,7 +20,7 @@
 	flags = STOPSPRESSUREDAMAGE
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
 	allowed = list(
-		/obj/item/tank/emergency/oxygen, /obj/item/device/flashlight, /obj/item/gun/energy,
+		/obj/item/tank/emergency/oxygen, /obj/item/flashlight, /obj/item/gun/energy,
 		/obj/item/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton, /obj/item/handcuffs
 	)
@@ -96,7 +96,7 @@
 	desc = "A pressure resistant spacesuit in the colours of the clown. HONK!"
 	icon_state = "clownspace_suit"
 	item_state = "clownspace_suit"
-	allowed = list(/obj/item/device/flashlight, /obj/item/tank)
+	allowed = list(/obj/item/flashlight, /obj/item/tank)
 
 /obj/item/clothing/head/helmet/space/clown
 	name = "Clown's EVA Helmet"
@@ -110,7 +110,7 @@
 	desc = "A pressure resistant spacesuit in the colours of the mime. ..."
 	icon_state = "mimespace_suit"
 	item_state = "mimespace_suit"
-	allowed = list(/obj/item/device/flashlight, /obj/item/tank)
+	allowed = list(/obj/item/flashlight, /obj/item/tank)
 
 /obj/item/clothing/head/helmet/space/mime
 	name = "Mime's EVA Helmet"

@@ -528,7 +528,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 		qdel(shoes)
 		qdel(gloves)
 
-	var/obj/item/device/radio/R = new /obj/item/device/radio/headset(src)
+	var/obj/item/radio/R = new /obj/item/radio/headset(src)
 	equip_to_slot_or_del(R, SLOT_ID_L_EAR)
 	if(gender == FEMALE)
 		equip_to_slot_or_del(new /obj/item/clothing/under/color/blackf(src), SLOT_ID_W_UNIFORM)
@@ -539,7 +539,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	equip_to_slot_or_del(new /obj/item/clothing/gloves/space_ninja(src), SLOT_ID_GLOVES)
 	equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/space_ninja(src), SLOT_ID_HEAD)
 	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/voice/space_ninja(src), SLOT_ID_WEAR_MASK)
-	equip_to_slot_or_del(new /obj/item/device/flashlight(src), SLOT_ID_BELT)
+	equip_to_slot_or_del(new /obj/item/flashlight(src), SLOT_ID_BELT)
 	equip_to_slot_or_del(new /obj/item/plastique(src), SLOT_ID_R_STORE)
 	equip_to_slot_or_del(new /obj/item/plastique(src), SLOT_ID_L_STORE)
 	equip_to_slot_or_del(new /obj/item/tank/oxygen(src), SLOT_ID_S_STORE)

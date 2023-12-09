@@ -57,7 +57,7 @@
 	//How much hallucination should it produce per unit of power?
 	var/config_hallucination_power = 0.1
 
-	var/obj/item/device/radio/radio
+	var/obj/item/radio/radio
 
 /obj/machinery/power/supermatter/shard //Small subtype, less efficient and more sensitive, but less boom.
 	name = "Supermatter Shard"
@@ -76,7 +76,7 @@
 
 /obj/machinery/power/supermatter/New()
 	. = ..()
-	radio = new /obj/item/device/radio(src)
+	radio = new /obj/item/radio(src)
 
 /obj/machinery/power/supermatter/Destroy()
 	qdel(radio)

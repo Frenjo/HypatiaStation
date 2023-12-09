@@ -301,7 +301,7 @@
 			user << "\blue You secure the [src] to the floor!"
 			anchored = TRUE
 
-	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))
+	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(src.allowed(user))
 			src.locked = !src.locked
 			user << "The controls are now [src.locked ? "locked." : "unlocked."]"
@@ -507,7 +507,7 @@
 			src.anchored = FALSE
 			return
 
-	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(src.allowed(user))
 			src.locked = !src.locked
 			user << "Controls are now [src.locked ? "locked." : "unlocked."]"

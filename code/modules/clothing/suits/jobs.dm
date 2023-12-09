@@ -11,7 +11,7 @@
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO
 	allowed = list(
-		/obj/item/reagent_containers/spray/plantbgone, /obj/item/device/analyzer/plant_analyzer, /obj/item/seeds,
+		/obj/item/reagent_containers/spray/plantbgone, /obj/item/analyzer/plant_analyzer, /obj/item/seeds,
 		/obj/item/nutrient, /obj/item/minihoe
 	)
 
@@ -78,10 +78,10 @@
 	blood_overlay_type = "coat"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 	allowed = list(
-		/obj/item/tank/emergency/oxygen, /obj/item/device/flashlight, /obj/item/gun/energy,
+		/obj/item/tank/emergency/oxygen, /obj/item/flashlight, /obj/item/gun/energy,
 		/obj/item/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/storage/fancy/cigarettes,
-		/obj/item/lighter, /obj/item/device/detective_scanner, /obj/item/device/taperecorder
+		/obj/item/lighter, /obj/item/detective_scanner, /obj/item/taperecorder
 	)
 	armor = list(melee = 50, bullet = 10, laser = 25, energy = 10, bomb = 0, bio = 0, rad = 0)
 
@@ -95,10 +95,10 @@
 	item_state = "det_suit"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | ARMS
 	allowed = list(
-		/obj/item/tank/emergency/oxygen, /obj/item/device/flashlight, /obj/item/gun/energy,
+		/obj/item/tank/emergency/oxygen, /obj/item/flashlight, /obj/item/gun/energy,
 		/obj/item/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing,
-		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/device/detective_scanner,
-		/obj/item/device/taperecorder
+		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/detective_scanner,
+		/obj/item/taperecorder
 	)
 	armor = list(melee = 10, bullet = 10, laser = 15, energy = 10, bomb = 0, bio = 0, rad = 0)
 
@@ -120,8 +120,8 @@
 	item_state = "hazard"
 	blood_overlay_type = "armor"
 	allowed = list(
-		/obj/item/device/analyzer, /obj/item/device/flashlight, /obj/item/device/multitool, /obj/item/device/pipe_painter,
-		/obj/item/device/radio, /obj/item/device/t_scanner, /obj/item/crowbar, /obj/item/screwdriver,
+		/obj/item/analyzer, /obj/item/flashlight, /obj/item/multitool, /obj/item/pipe_painter,
+		/obj/item/radio, /obj/item/t_scanner, /obj/item/crowbar, /obj/item/screwdriver,
 		/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/wrench, /obj/item/tank/emergency/oxygen,
 		/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering
 	)
@@ -181,8 +181,8 @@
 	blood_overlay_type = "armor"
 	allowed = list(
 		/obj/item/stack/medical, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/hypospray,
-		/obj/item/reagent_containers/syringe, /obj/item/device/healthanalyzer, /obj/item/device/flashlight,
-		/obj/item/device/radio, /obj/item/tank/emergency/oxygen
+		/obj/item/reagent_containers/syringe, /obj/item/healthanalyzer, /obj/item/flashlight,
+		/obj/item/radio, /obj/item/tank/emergency/oxygen
 	)
 
 /obj/item/clothing/suit/storage/fr_jacket/verb/toggle()

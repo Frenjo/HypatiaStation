@@ -118,7 +118,7 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 				to_chat(L, SPAN_ERROR("You need wirecutters!"))
 
 		else if(href_list["pulse"])
-			if(istype(I, /obj/item/device/multitool))
+			if(istype(I, /obj/item/multitool))
 				var/colour = href_list["pulse"]
 				PulseColour(colour)
 			else
@@ -134,7 +134,7 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 
 			// Attach
 			else
-				if(istype(I, /obj/item/device/assembly/signaler))
+				if(istype(I, /obj/item/assembly/signaler))
 					L.drop_item()
 					Attach(colour, I)
 				else
@@ -216,7 +216,7 @@ var/const/POWER = 8
 		return signallers[colour]
 	return null
 
-/datum/wires/proc/Attach(colour, obj/item/device/assembly/signaler/S)
+/datum/wires/proc/Attach(colour, obj/item/assembly/signaler/S)
 	if(colour && S)
 		if(!IsAttached(colour))
 			signallers[colour] = S
@@ -226,14 +226,14 @@ var/const/POWER = 8
 
 /datum/wires/proc/Detach(colour)
 	if(colour)
-		var/obj/item/device/assembly/signaler/S = GetAttached(colour)
+		var/obj/item/assembly/signaler/S = GetAttached(colour)
 		if(S)
 			signallers -= colour
 			S.connected = null
 			S.loc = holder.loc
 			return S
 
-/datum/wires/proc/Pulse(obj/item/device/assembly/signaler/S)
+/datum/wires/proc/Pulse(obj/item/assembly/signaler/S)
 	for(var/colour in signallers)
 		if(S == signallers[colour])
 			PulseColour(colour)

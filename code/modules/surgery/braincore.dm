@@ -120,7 +120,7 @@
 
 	var/obj/item/brain/B
 	if(H && H.species && H.species.flags & IS_SYNTHETIC)
-		var/obj/item/device/mmi/posibrain/P = new(target.loc)
+		var/obj/item/mmi/posibrain/P = new(target.loc)
 		P.transfer_identity(target)
 	else
 		B = new(target.loc)
@@ -221,7 +221,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/slime
-	
+
 /datum/surgery_step/slime/can_use(mob/living/user, mob/living/carbon/slime/target, target_zone, obj/item/tool)
 	return isslime(target) && target.stat == DEAD
 

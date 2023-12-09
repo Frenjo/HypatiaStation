@@ -4,14 +4,14 @@
 	icon = 'icons/obj/items/module.dmi'
 	icon_state = "power_mod"
 
-	var/obj/item/device/pda/hostpda = null
+	var/obj/item/pda/hostpda = null
 
-	var/on = FALSE //Are we currently active??
+	on = FALSE //Are we currently active??
 	var/menu_message = ""
 
 /obj/item/radio/integrated/New()
 	..()
-	if(istype(loc.loc, /obj/item/device/pda))
+	if(istype(loc.loc, /obj/item/pda))
 		hostpda = loc.loc
 
 /obj/item/radio/integrated/proc/post_signal(freq, key, value, key2, value2, key3, value3, s_filter)
@@ -57,7 +57,7 @@
 	// create/populate list as they are recvd
 
 /obj/item/radio/integrated/beepsky/receive_signal(datum/signal/signal)
-//	var/obj/item/device/pda/P = src.loc
+//	var/obj/item/pda/P = src.loc
 
 	/*
 	to_world("recvd:[P] : [signal.source]")
@@ -79,7 +79,7 @@
 
 /obj/item/radio/integrated/beepsky/Topic(href, href_list)
 	..()
-	var/obj/item/device/pda/PDA = src.hostpda
+	var/obj/item/pda/PDA = src.hostpda
 
 	switch(href_list["op"])
 		if("control")
@@ -124,7 +124,7 @@
 // create/populate lists as they are recvd
 
 /obj/item/radio/integrated/mule/receive_signal(datum/signal/signal)
-//	var/obj/item/device/pda/P = src.loc
+//	var/obj/item/pda/P = src.loc
 
 	/*
 	to_world("recvd:[P] : [signal.source]")
@@ -201,10 +201,8 @@
  *	Radio Cartridge, essentially a signaler.
  */
 /obj/item/radio/integrated/signal
-	var/frequency = 1457
+	frequency = 1457
 	var/code = 30.0
-	var/last_transmission
-	var/datum/radio_frequency/radio_connection
 
 /obj/item/radio/integrated/signal/initialize()
 	. = ..()

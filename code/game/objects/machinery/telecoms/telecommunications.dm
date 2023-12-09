@@ -536,7 +536,7 @@
 	var/salt = "null"		// encryption salt: ie "123comsat"
 							// would add up to md5("password123comsat")
 	var/language = "human"
-	var/obj/item/device/radio/headset/server_radio = null
+	var/obj/item/radio/headset/server_radio = null
 
 /obj/machinery/telecoms/server/New()
 	..()

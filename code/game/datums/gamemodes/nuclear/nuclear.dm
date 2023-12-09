@@ -205,7 +205,7 @@
 /datum/game_mode/proc/equip_syndicate(mob/living/carbon/human/synd_mob)
 	var/radio_freq = FREQUENCY_SYNDICATE
 
-	var/obj/item/device/radio/R = new /obj/item/device/radio/headset/syndicate(synd_mob)
+	var/obj/item/radio/R = new /obj/item/radio/headset/syndicate(synd_mob)
 	R.radio_connection = register_radio(R, null, radio_freq, RADIO_CHAT)
 	synd_mob.equip_to_slot_or_del(R, SLOT_ID_L_EAR)
 

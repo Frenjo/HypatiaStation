@@ -76,7 +76,7 @@
 	add_fingerprint(usr)
 	if(href_list["pulse"])
 		var/temp_wire = href_list["wire"]
-		if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+		if(!istype(usr.get_active_hand(), /obj/item/multitool))
 			to_chat(usr, "You need a multitool!")
 		else
 			if(wires[temp_wire])

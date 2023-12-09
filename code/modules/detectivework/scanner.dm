@@ -1,8 +1,9 @@
 //CONTAINS: Detective's Scanner
 
-/obj/item/device/detective_scanner
+/obj/item/detective_scanner
 	name = "Scanner"
 	desc = "Used to scan objects for DNA and fingerprints."
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "forensic1"
 	var/amount = 20.0
 	var/list/stored = list()
@@ -11,7 +12,7 @@
 	flags = CONDUCT | NOBLUDGEON
 	slot_flags = SLOT_BELT
 
-/obj/item/device/detective_scanner/attackby(obj/item/f_card/W as obj, mob/user as mob)
+/obj/item/detective_scanner/attackby(obj/item/f_card/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/f_card))
 		if(W.fingerprints)
@@ -30,7 +31,7 @@
 			W.add_fingerprint(user)
 	return
 
-/obj/item/device/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	if(!ishuman(M))
 		to_chat(user, SPAN_WARNING("[M] is not human and cannot have fingerprints."))
 		flick("forensic0", src)
@@ -63,7 +64,7 @@
 				to_chat(user, SPAN_INFO("Blood type: [M.blood_DNA[blood]]\nDNA: [blood]"))
 	return
 
-/obj/item/device/detective_scanner/afterattack(atom/A as obj|turf|area, mob/user as mob, proximity)
+/obj/item/detective_scanner/afterattack(atom/A as obj|turf|area, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if(loc != user)
@@ -147,7 +148,7 @@
 		flick("forensic2", src)
 		return 0
 
-/obj/item/device/detective_scanner/proc/add_data(atom/A as mob|obj|turf|area)
+/obj/item/detective_scanner/proc/add_data(atom/A as mob|obj|turf|area)
 	//I love associative lists.
 	var/list/data_entry = stored["\ref [A]"]
 	if(islist(data_entry)) //Yay, it was already stored!

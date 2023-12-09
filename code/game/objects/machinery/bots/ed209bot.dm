@@ -167,7 +167,7 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 			updateUsrDialog()
 
 /obj/machinery/bot/ed209/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(allowed(user) && !open && !emagged)
 			locked = !locked
 			FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
@@ -722,7 +722,7 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 	Sa.build_step = 1
 	Sa.overlays.Add(image('icons/obj/aibots.dmi', "hs_hole"))
 	Sa.created_name = name
-	new /obj/item/device/assembly/prox_sensor(T)
+	new /obj/item/assembly/prox_sensor(T)
 
 	if(!lasercolor)
 		var/obj/item/gun/energy/taser/G = new /obj/item/gun/energy/taser(T)

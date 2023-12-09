@@ -6,7 +6,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 */
 
-/obj/item/device/uplink
+/obj/item/uplink
 	var/welcome 					// Welcoming menu message
 	var/items						// List of items
 	var/valid_items = list()
@@ -17,7 +17,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	// List of items not to shove in their hands.
 	var/list/NotInHand = list(/obj/machinery/singularity_beacon/syndicate)
 
-/obj/item/device/uplink/New()
+/obj/item/uplink/New()
 	welcome = global.CTticker.mode.uplink_welcome
 	if(!item_data)
 		items = replacetext(global.CTticker.mode.uplink_items, "\n", "")	// Getting the text string of items
@@ -36,7 +36,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	Built the Items List for use with NanoUI
 */
 
-/obj/item/device/uplink/proc/generate_nanoui_items()
+/obj/item/uplink/proc/generate_nanoui_items()
 	var/items_nano[0]
 	for(var/D in ItemList)
 		var/list/O = splittext(D, ":")
@@ -61,7 +61,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	return items_nano
 
 //Let's build a menu!
-/obj/item/device/uplink/proc/generate_menu()
+/obj/item/uplink/proc/generate_menu()
 	var/dat = "<B>[src.welcome]</B><BR>"
 	dat += "Tele-Crystals left: [src.uses]<BR>"
 	dat += "<HR>"
@@ -112,7 +112,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	return dat
 
 //If 'random' was selected
-/obj/item/device/uplink/proc/chooseRandomItem()
+/obj/item/uplink/proc/chooseRandomItem()
 	var/list/randomItems = list()
 
 	//Sorry for all the ifs, but it makes it 1000 times easier for other people/servers to add or remove items from this list
@@ -130,19 +130,19 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 	if(uses > 6)
 		randomItems.Add("/obj/item/aiModule/syndicate") //Hacked AI Upload Module
-		randomItems.Add("/obj/item/device/radio/beacon/syndicate") //Singularity Beacon
+		randomItems.Add("/obj/item/radio/beacon/syndicate") //Singularity Beacon
 
 	if(uses > 5)
 		randomItems.Add("/obj/item/gun/projectile") //Revolver
 
 	if(uses > 4)
 		randomItems.Add("/obj/item/gun/energy/crossbow") //Energy Crossbow
-		randomItems.Add("/obj/item/device/powersink") //Powersink
+		randomItems.Add("/obj/item/powersink") //Powersink
 
 	if(uses > 3)
 		randomItems.Add("/obj/item/melee/energy/sword") //Energy Sword
 		randomItems.Add("/obj/item/clothing/mask/gas/voice") //Voice Changer
-		randomItems.Add("/obj/item/device/chameleon") //Chameleon Projector
+		randomItems.Add("/obj/item/chameleon") //Chameleon Projector
 
 	if(uses > 2)
 		randomItems.Add("/obj/item/storage/box/emps") //EMP Grenades
@@ -152,7 +152,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		randomItems.Add("/obj/item/card/id/syndicate") //Agent ID Card
 		randomItems.Add("/obj/item/card/emag") //Cryptographic Sequencer
 		randomItems.Add("/obj/item/storage/box/syndie_kit/space") //Syndicate Space Suit
-		randomItems.Add("/obj/item/device/encryptionkey/binary") //Binary Translator Key
+		randomItems.Add("/obj/item/encryptionkey/binary") //Binary Translator Key
 		randomItems.Add("/obj/item/storage/box/syndie_kit/imp_freedom") //Freedom Implant
 		randomItems.Add("/obj/item/clothing/glasses/thermal/syndi") //Thermal Imaging Goggles
 
@@ -185,16 +185,16 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 				uses -= 20
 			if("/obj/item/toy/syndicateballoon", "/obj/item/storage/box/syndie_kit/imp_uplink", "/obj/item/storage/box/syndicate")
 				uses -= 10
-			if("/obj/item/aiModule/syndicate", "/obj/item/device/radio/beacon/syndicate")
+			if("/obj/item/aiModule/syndicate", "/obj/item/radio/beacon/syndicate")
 				uses -= 7
 			if("/obj/item/gun/projectile")
 				uses -= 6
-			if("/obj/item/gun/energy/crossbow", "/obj/item/device/powersink")
+			if("/obj/item/gun/energy/crossbow", "/obj/item/powersink")
 				uses -= 5
-			if("/obj/item/melee/energy/sword", "/obj/item/clothing/mask/gas/voice", "/obj/item/device/chameleon")
+			if("/obj/item/melee/energy/sword", "/obj/item/clothing/mask/gas/voice", "/obj/item/chameleon")
 				uses -= 4
 			if("/obj/item/storage/box/emps", "/obj/item/pen/paralysis", "/obj/item/cartridge/syndicate", "/obj/item/clothing/under/chameleon", \
-			"/obj/item/card/emag", "/obj/item/storage/box/syndie_kit/space", "/obj/item/device/encryptionkey/binary", \
+			"/obj/item/card/emag", "/obj/item/storage/box/syndie_kit/space", "/obj/item/encryptionkey/binary", \
 			"/obj/item/storage/box/syndie_kit/imp_freedom", "/obj/item/clothing/glasses/thermal/syndi")
 				uses -= 3
 			if("/obj/item/ammo_magazine/a357", "/obj/item/clothing/shoes/syndigaloshes", "/obj/item/plastique", "/obj/item/card/id/syndicate")
@@ -204,7 +204,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		qdel(randomItems)
 		return buyItem
 
-/obj/item/device/uplink/proc/handleStatTracking(boughtItem)
+/obj/item/uplink/proc/handleStatTracking(boughtItem)
 //For stat tracking, sorry for making it so ugly
 	if(!boughtItem)
 		return
@@ -220,19 +220,19 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			feedback_add_details("traitor_uplink_items_bought", "BU")
 		if("/obj/item/aiModule/syndicate")
 			feedback_add_details("traitor_uplink_items_bought", "AI")
-		if("/obj/item/device/radio/beacon/syndicate")
+		if("/obj/item/radio/beacon/syndicate")
 			feedback_add_details("traitor_uplink_items_bought", "SB")
 		if("/obj/item/gun/projectile")
 			feedback_add_details("traitor_uplink_items_bought", "RE")
 		if("/obj/item/gun/energy/crossbow")
 			feedback_add_details("traitor_uplink_items_bought", "XB")
-		if("/obj/item/device/powersink")
+		if("/obj/item/powersink")
 			feedback_add_details("traitor_uplink_items_bought", "PS")
 		if("/obj/item/melee/energy/sword")
 			feedback_add_details("traitor_uplink_items_bought", "ES")
 		if("/obj/item/clothing/mask/gas/voice")
 			feedback_add_details("traitor_uplink_items_bought", "VC")
-		if("/obj/item/device/chameleon")
+		if("/obj/item/chameleon")
 			feedback_add_details("traitor_uplink_items_bought", "CP")
 		if("/obj/item/storage/box/emps")
 			feedback_add_details("traitor_uplink_items_bought", "EM")
@@ -248,7 +248,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			feedback_add_details("traitor_uplink_items_bought", "EC")
 		if("/obj/item/storage/box/syndie_kit/space")
 			feedback_add_details("traitor_uplink_items_bought", "SS")
-		if("/obj/item/device/encryptionkey/binary")
+		if("/obj/item/encryptionkey/binary")
 			feedback_add_details("traitor_uplink_items_bought", "BT")
 		if("/obj/item/storage/box/syndie_kit/imp_freedom")
 			feedback_add_details("traitor_uplink_items_bought", "FI")
@@ -265,7 +265,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		if("/obj/item/storage/toolbox/syndicate")
 			feedback_add_details("traitor_uplink_items_bought", "ST")
 
-/obj/item/device/uplink/Topic(href, href_list)
+/obj/item/uplink/Topic(href, href_list)
 	if(href_list["buy_item"])
 		if(href_list["buy_item"] == "random")
 			var/boughtItem = chooseRandomItem()
@@ -299,24 +299,24 @@ A list of items and costs is stored under the datum of every game mode, alongsid
  Then check if it's true, if true return. This will stop the normal menu appearing and will instead show the uplink menu.
 */
 
-/obj/item/device/uplink/hidden
+/obj/item/uplink/hidden
 	name = "Hidden Uplink."
 	desc = "There is something wrong if you're examining this."
 	var/active = 0
 	var/list/purchase_log = list()
 
 // The hidden uplink MUST be inside an obj/item's contents.
-/obj/item/device/uplink/hidden/initialize()
+/obj/item/uplink/hidden/initialize()
 	. = ..()
 	if(!isitem(src.loc))
 		qdel(src)
 
 // Toggles the uplink on and off. Normally this will bypass the item's normal functions and go to the uplink menu, if activated.
-/obj/item/device/uplink/hidden/proc/toggle()
+/obj/item/uplink/hidden/proc/toggle()
 	active = !active
 
 // Directly trigger the uplink. Turn on if it isn't already.
-/obj/item/device/uplink/hidden/proc/trigger(mob/user as mob)
+/obj/item/uplink/hidden/proc/trigger(mob/user as mob)
 	if(!active)
 		toggle()
 	interact(user)
@@ -324,7 +324,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 // Checks to see if the value meets the target. Like a frequency being a traitor_frequency, in order to unlock a headset.
 // If true, it accesses trigger() and returns 1. If it fails, it returns false. Use this to see if you need to close the
 // current item's menu.
-/obj/item/device/uplink/hidden/proc/check_trigger(mob/user as mob, value, target)
+/obj/item/uplink/hidden/proc/check_trigger(mob/user as mob, value, target)
 	if(value == target)
 		trigger(user)
 		return 1
@@ -333,7 +333,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 /*
 	NANO UI FOR UPLINK WOOP WOOP
 */
-/obj/item/device/uplink/hidden/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
+/obj/item/uplink/hidden/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	var/title = "Syndicate Uplink"
 	var/list/data = list()
 
@@ -353,11 +353,11 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		ui.open()
 
 // Interaction code. Gathers a list of items purchasable from the paren't uplink and displays it. It also adds a lock button.
-/obj/item/device/uplink/hidden/interact(mob/user)
+/obj/item/uplink/hidden/interact(mob/user)
 	ui_interact(user)
 
 // The purchasing code.
-/obj/item/device/uplink/hidden/Topic(href, href_list)
+/obj/item/uplink/hidden/Topic(href, href_list)
 	if(usr.stat || usr.restrained())
 		return
 
@@ -405,25 +405,25 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 // Includes normal radio uplink, multitool uplink,
 // implant uplink (not the implant tool) and a preset headset uplink.
 
-/obj/item/device/radio/uplink/New()
+/obj/item/radio/uplink/New()
 	hidden_uplink = new(src)
 	icon_state = "radio"
 
-/obj/item/device/radio/uplink/attack_self(mob/user as mob)
+/obj/item/radio/uplink/attack_self(mob/user as mob)
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 
-/obj/item/device/multitool/uplink/New()
+/obj/item/multitool/uplink/New()
 	hidden_uplink = new(src)
 
-/obj/item/device/multitool/uplink/attack_self(mob/user as mob)
+/obj/item/multitool/uplink/attack_self(mob/user as mob)
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 
-/obj/item/device/radio/headset/uplink
+/obj/item/radio/headset/uplink
 	traitor_frequency = 1445
 
-/obj/item/device/radio/headset/uplink/New()
+/obj/item/radio/headset/uplink/New()
 	..()
 	hidden_uplink = new(src)
 	hidden_uplink.uses = 10

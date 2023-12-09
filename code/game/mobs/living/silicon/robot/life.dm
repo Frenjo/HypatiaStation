@@ -289,7 +289,7 @@
 	if(isnotnull(client))
 		client.screen.Remove(contents)
 		for(var/obj/I in contents)
-			if(isnotnull(I) && !(istype(I, /obj/item/cell) || isradio(I) || istype(I, /obj/machinery/camera) || istype(I, /obj/item/device/mmi)))
+			if(isnotnull(I) && !(istype(I, /obj/item/cell) || isradio(I) || istype(I, /obj/machinery/camera) || istype(I, /obj/item/mmi)))
 				client.screen.Add(I)
 	if(isnotnull(module_state_1))
 		module_state_1:screen_loc = UI_INV1

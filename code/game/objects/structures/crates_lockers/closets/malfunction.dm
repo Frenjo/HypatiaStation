@@ -14,5 +14,5 @@
 		/obj/item/clothing/suit/space/nasavoid,
 		/obj/item/crowbar,
 		/obj/item/cell,
-		/obj/item/device/multitool
+		/obj/item/multitool
 	)

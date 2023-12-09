@@ -111,7 +111,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(S.active)
 			light(SPAN_WARNING("[user] swings their [W], barely missing their nose. They light their [name] in the process."))
 
-	else if(istype(W, /obj/item/device/assembly/igniter))
+	else if(istype(W, /obj/item/assembly/igniter))
 		light(SPAN_NOTICE("[user] fiddles with [W], and manages to light their [name]."))
 
 	//can't think of any other way to update the overlays :<
@@ -275,7 +275,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(S.active)
 			light("<span class='warning'>[user] swings their [W], barely missing their nose. They light their [name] in the process.</span>")
 
-	else if(istype(W, /obj/item/device/assembly/igniter))
+	else if(istype(W, /obj/item/assembly/igniter))
 		light(SPAN_NOTICE("[user] fiddles with [W], and manages to light their [name] with the power of science."))
 
 /////////////////
@@ -350,7 +350,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(M.lit)
 			light(SPAN_NOTICE("[user] lights their [name] with their [W]."))
 
-	else if(istype(W, /obj/item/device/assembly/igniter))
+	else if(istype(W, /obj/item/assembly/igniter))
 		light(SPAN_NOTICE("[user] fiddles with [W], and manages to light their [name] with the power of science."))
 
 /obj/item/clothing/mask/cigarette/pipe/cobpipe

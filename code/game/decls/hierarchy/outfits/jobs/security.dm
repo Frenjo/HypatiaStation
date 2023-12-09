@@ -4,7 +4,7 @@
 /decl/hierarchy/outfit/job/security
 	shoes = /obj/item/clothing/shoes/jackboots
 
-	l_ear = /obj/item/device/radio/headset/sec
+	l_ear = /obj/item/radio/headset/sec
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 
@@ -22,7 +22,7 @@
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	gloves = /obj/item/clothing/gloves/black
 
-	l_ear = /obj/item/device/radio/headset/heads/hos
+	l_ear = /obj/item/radio/headset/heads/hos
 
 	suit_store = /obj/item/gun/energy/gun
 
@@ -31,7 +31,7 @@
 	)
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/device/pda/heads/hos
+	pda_type = /obj/item/pda/heads/hos
 
 /*
  * Warden
@@ -44,13 +44,13 @@
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
 	gloves = /obj/item/clothing/gloves/black
 
-	l_pocket = /obj/item/device/flash
+	l_pocket = /obj/item/flash
 
 	backpack_contents = list(
 		/obj/item/handcuffs
 	)
 
-	pda_type = /obj/item/device/pda/warden
+	pda_type = /obj/item/pda/warden
 
 /*
  * Detective
@@ -70,10 +70,10 @@
 
 	backpack_contents = list(
 		/obj/item/storage/box/evidence,
-		/obj/item/device/detective_scanner
+		/obj/item/detective_scanner
 	)
 
-	pda_type = /obj/item/device/pda/detective
+	pda_type = /obj/item/pda/detective
 
 	backpack = /obj/item/storage/backpack
 	satchel_one = /obj/item/storage/satchel/norm
@@ -94,14 +94,14 @@
 
 	uniform = /obj/item/clothing/under/rank/security
 
-	l_pocket = /obj/item/device/flash
+	l_pocket = /obj/item/flash
 	r_pocket = /obj/item/handcuffs
 
 	backpack_contents = list(
 		/obj/item/handcuffs
 	)
 
-	pda_type = /obj/item/device/pda/security
+	pda_type = /obj/item/pda/security
 
 /*
  * Security Paramedic
@@ -112,11 +112,11 @@
 	uniform = /obj/item/clothing/under/rank/security2
 	suit = /obj/item/clothing/suit/storage/labcoat
 
-	l_ear = /obj/item/device/radio/headset/sec_para
+	l_ear = /obj/item/radio/headset/sec_para
 
 	l_hand = /obj/item/storage/firstaid/regular
 
-	pda_type = /obj/item/device/pda/medical
+	pda_type = /obj/item/pda/medical
 
 	backpack = /obj/item/storage/backpack/medic
 	satchel_one = /obj/item/storage/satchel/med

@@ -18,11 +18,11 @@
 		/obj/item/weldingtool,
 		/obj/item/wirecutters,
 		/obj/item/wrench,
-		/obj/item/device/multitool,
-		/obj/item/device/flashlight,
+		/obj/item/multitool,
+		/obj/item/flashlight,
 		/obj/item/stack/cable_coil,
-		/obj/item/device/t_scanner,
-		/obj/item/device/analyzer,
+		/obj/item/t_scanner,
+		/obj/item/analyzer,
 		/obj/item/taperoll/engineering
 	)
 
@@ -46,7 +46,7 @@
 		/obj/item/weldingtool,
 		/obj/item/crowbar,
 		/obj/item/wirecutters,
-		/obj/item/device/t_scanner
+		/obj/item/t_scanner
 	)
 
 /obj/item/storage/belt/medical
@@ -55,7 +55,7 @@
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	can_hold = list(
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/dnainjector,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/glass/beaker,
@@ -67,7 +67,7 @@
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
-		/obj/item/device/flashlight/pen,
+		/obj/item/flashlight/pen,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/reagent_containers/hypospray
@@ -85,7 +85,7 @@
 		/obj/item/grenade/flashbang,
 		/obj/item/reagent_containers/spray/pepper,
 		/obj/item/handcuffs,
-		/obj/item/device/flash,
+		/obj/item/flash,
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/ammo_magazine,
@@ -96,9 +96,9 @@
 		/obj/item/lighter/zippo,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/clothing/glasses/hud/security,
-		/obj/item/device/flashlight,
-		/obj/item/device/pda,
-		/obj/item/device/radio/headset,
+		/obj/item/flashlight,
+		/obj/item/pda,
+		/obj/item/radio/headset,
 		/obj/item/melee,
 		/obj/item/taperoll/police,
 		/obj/item/gun/energy/taser
@@ -111,12 +111,12 @@
 	item_state = "soulstonebelt"
 	storage_slots = 6
 	can_hold = list(
-		/obj/item/device/soulstone
+		/obj/item/soulstone
 	)
 
 /obj/item/storage/belt/soulstone/full
 	starts_with = list(
-		/obj/item/device/soulstone = 6
+		/obj/item/soulstone = 6
 	)
 
 /obj/item/storage/belt/champion
@@ -147,7 +147,7 @@
 		/obj/item/grenade/flashbang,
 		/obj/item/reagent_containers/spray/pepper,
 		/obj/item/handcuffs,
-		/obj/item/device/flash,
+		/obj/item/flash,
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/ammo_magazine,
@@ -158,8 +158,8 @@
 		/obj/item/lighter/zippo,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/clothing/glasses/hud/security,
-		/obj/item/device/flashlight,
-		/obj/item/device/pda,
-		/obj/item/device/radio/headset,
+		/obj/item/flashlight,
+		/obj/item/pda,
+		/obj/item/radio/headset,
 		/obj/item/melee
 	)

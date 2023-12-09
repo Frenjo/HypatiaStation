@@ -21,7 +21,7 @@
 	flags = STOPSPRESSUREDAMAGE
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
 	allowed = list(
-		/obj/item/tank/emergency/oxygen, /obj/item/device/flashlight, /obj/item/gun/energy,
+		/obj/item/tank/emergency/oxygen, /obj/item/flashlight, /obj/item/gun/energy,
 		/obj/item/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton,/obj/item/handcuffs
 	)

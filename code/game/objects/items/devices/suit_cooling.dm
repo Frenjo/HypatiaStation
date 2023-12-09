@@ -1,7 +1,8 @@
-/obj/item/device/suit_cooling_unit
+/obj/item/suit_cooling_unit
 	name = "portable suit cooling unit"
 	desc = "A portable heat sink and liquid cooled radiator that can be hooked up to a space suit's existing temperature controls to provide industrial levels of cooling."
 	w_class = 4
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "suitcooler0"
 	slot_flags = SLOT_BACK	//you can carry it on your back if you want, but it won't do anything unless attached to suit storage
 
@@ -23,13 +24,13 @@
 
 	//TODO: make it heat up the surroundings when not in space
 
-/obj/item/device/suit_cooling_unit/New()
+/obj/item/suit_cooling_unit/New()
 	GLOBL.processing_objects |= src
 
 	cell = new/obj/item/cell()	//comes with the crappy default power cell - high-capacity ones shouldn't be hard to find
 	cell.loc = src
 
-/obj/item/device/suit_cooling_unit/process()
+/obj/item/suit_cooling_unit/process()
 	if(!on || !cell)
 		return
 
@@ -58,7 +59,7 @@
 	if(cell.charge <= 0)
 		turn_off()
 
-/obj/item/device/suit_cooling_unit/proc/get_environment_temperature()
+/obj/item/suit_cooling_unit/proc/get_environment_temperature()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/H = loc
 		if(ismecha(H.loc))
@@ -78,7 +79,7 @@
 
 	return environment.temperature
 
-/obj/item/device/suit_cooling_unit/proc/attached_to_suit(mob/M)
+/obj/item/suit_cooling_unit/proc/attached_to_suit(mob/M)
 	if(!ishuman(M))
 		return 0
 
@@ -89,7 +90,7 @@
 
 	return 1
 
-/obj/item/device/suit_cooling_unit/proc/turn_on()
+/obj/item/suit_cooling_unit/proc/turn_on()
 	if(!cell)
 		return
 	if(cell.charge <= 0)
@@ -98,14 +99,14 @@
 	on = 1
 	updateicon()
 
-/obj/item/device/suit_cooling_unit/proc/turn_off()
+/obj/item/suit_cooling_unit/proc/turn_off()
 	if(ismob(src.loc))
 		var/mob/M = src.loc
 		M.show_message("\The [src] clicks and whines as it powers down.", 2)	//let them know in case it's run out of power.
 	on = 0
 	updateicon()
 
-/obj/item/device/suit_cooling_unit/attack_self(mob/user as mob)
+/obj/item/suit_cooling_unit/attack_self(mob/user as mob)
 	if(cover_open && cell)
 		if(ishuman(user))
 			user.put_in_hands(cell)
@@ -128,7 +129,7 @@
 		if(on)
 			to_chat(user, "You switch on the [src].")
 
-/obj/item/device/suit_cooling_unit/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/suit_cooling_unit/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/screwdriver))
 		if(cover_open)
 			cover_open = 0
@@ -153,7 +154,7 @@
 
 	return ..()
 
-/obj/item/device/suit_cooling_unit/proc/updateicon()
+/obj/item/suit_cooling_unit/proc/updateicon()
 	if(cover_open)
 		if(cell)
 			icon_state = "suitcooler1"
@@ -162,7 +163,7 @@
 	else
 		icon_state = "suitcooler0"
 
-/obj/item/device/suit_cooling_unit/examine()
+/obj/item/suit_cooling_unit/examine()
 	set src in view(1)
 	..()
 

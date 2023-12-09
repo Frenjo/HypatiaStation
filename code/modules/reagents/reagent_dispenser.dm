@@ -86,7 +86,7 @@
 	icon_state = "weldtank"
 	amount_per_transfer_from_this = 10
 	var/modded = 0
-	var/obj/item/device/assembly_holder/rig = null
+	var/obj/item/assembly_holder/rig = null
 
 /obj/structure/reagent_dispensers/fueltank/New()
 	..()
@@ -126,7 +126,7 @@
 		modded = modded ? 0 : 1
 		if(modded)
 			leak_fuel(amount_per_transfer_from_this)
-	if(istype(W, /obj/item/device/assembly_holder))
+	if(istype(W, /obj/item/assembly_holder))
 		if(rig)
 			to_chat(user, SPAN_WARNING("There is another device in the way."))
 			return ..()
@@ -140,8 +140,8 @@
 				SPAN_INFO("You rig [W] to \the [src].")
 			)
 
-			var/obj/item/device/assembly_holder/H = W
-			if(istype(H.a_left, /obj/item/device/assembly/igniter) || istype(H.a_right, /obj/item/device/assembly/igniter))
+			var/obj/item/assembly_holder/H = W
+			if(istype(H.a_left, /obj/item/assembly/igniter) || istype(H.a_right, /obj/item/assembly/igniter))
 				message_admins("[key_name_admin(user)] rigged fueltank at ([loc.x],[loc.y],[loc.z]) for explosion.")
 				log_game("[key_name(user)] rigged fueltank at ([loc.x],[loc.y],[loc.z]) for explosion.")
 

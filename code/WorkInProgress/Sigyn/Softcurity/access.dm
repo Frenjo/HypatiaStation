@@ -127,7 +127,7 @@
 	else if(istype(M, /mob/living/carbon/monkey) || istype(M, /mob/living/carbon/alien/humanoid))
 		var/mob/living/carbon/george = M
 		//they can only hold things :(
-		if(george.get_active_hand() && (istype(george.get_active_hand(), /obj/item/card/id) || istype(george.get_active_hand(), /obj/item/device/pda)) && src.check_access(george.get_active_hand()))
+		if(george.get_active_hand() && (istype(george.get_active_hand(), /obj/item/card/id) || istype(george.get_active_hand(), /obj/item/pda)) && src.check_access(george.get_active_hand()))
 			return 1
 	return 0
 
@@ -139,8 +139,8 @@
 
 /obj/proc/check_access(obj/item/card/id/I)
 
-	if (istype(I, /obj/item/device/pda))
-		var/obj/item/device/pda/pda = I
+	if (istype(I, /obj/item/pda))
+		var/obj/item/pda/pda = I
 		I = pda.id
 
 	if(!src.req_access && !src.req_one_access) //no requirements
@@ -505,12 +505,12 @@
 	return list("VIP Guest","Custodian","Thunderdome Overseer","Intel Officer","Medical Officer","Death Commando","Research Officer","BlackOps Commander","Supreme Commander")
 
 /obj/proc/GetJobName()
-	if (!istype(src, /obj/item/device/pda) && !istype(src,/obj/item/card/id))
+	if (!istype(src, /obj/item/pda) && !istype(src,/obj/item/card/id))
 		return
 
 	var/jobName
 
-	if(istype(src, /obj/item/device/pda))
+	if(istype(src, /obj/item/pda))
 		if(src:id)
 			jobName = src:id:assignment
 	if(istype(src, /obj/item/card/id))

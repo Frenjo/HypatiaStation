@@ -417,11 +417,11 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 						scan_data += "Fibers/Materials Found:<br>"
 						for(var/data in scanning.suit_fibers)
 							scan_data += "- [data]<br>"
-					if(istype(scanning, /obj/item/device/detective_scanner))
+					if(istype(scanning, /obj/item/detective_scanner))
 						scan_data += "<br><b>Data transfered from \the [scanning] to Database.</b><br>"
 						add_data_scanner(scanning)
-					if(istype(scanning, /obj/item/device/pda))
-						var/obj/item/device/pda/scanning_pda = scanning
+					if(istype(scanning, /obj/item/pda))
+						var/obj/item/pda/scanning_pda = scanning
 						if(scanning_pda.cartridge && scanning_pda.cartridge.access_security)
 							scan_data += "<br><b>Data transfered from \the [scanning] to Database.</b><br>"
 							add_data_scanner(scanning)
@@ -462,16 +462,16 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 	return
 
 
-/obj/machinery/computer/forensic_scanning/proc/add_data_scanner(obj/item/device/W)
-	if(istype(W, /obj/item/device/detective_scanner))
-		var/obj/item/device/detective_scanner/D = W
+/obj/machinery/computer/forensic_scanning/proc/add_data_scanner(obj/item/W)
+	if(istype(W, /obj/item/detective_scanner))
+		var/obj/item/detective_scanner/D = W
 		if(D.stored)
 			for(var/atom in D.stored)
 				var/list/data = D.stored[atom]
 				add_data_master(atom, data[1], data[2], data[3], data[4])
 		D.stored = list()
-	else if(istype(W, /obj/item/device/pda))
-		var/obj/item/device/pda/pda = W
+	else if(istype(W, /obj/item/pda))
+		var/obj/item/pda/pda = W
 		if(pda.cartridge && pda.cartridge.access_security)
 			if(pda.cartridge.stored_data)
 				for(var/atom in pda.cartridge.stored_data)

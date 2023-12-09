@@ -19,12 +19,12 @@
 		/obj/item/clothing/gloves/yellow,
 		/obj/item/clothing/shoes/brown,
 		/obj/item/cartridge/ce,
-		/obj/item/device/radio/headset/heads/ce,
+		/obj/item/radio/headset/heads/ce,
 		/obj/item/storage/toolbox/mechanical,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/mask/gas,
-		/obj/item/device/multitool,
-		/obj/item/device/flash,
+		/obj/item/multitool,
+		/obj/item/flash,
 		/obj/item/taperoll/engineering
 	)
 
@@ -61,9 +61,9 @@
 		/obj/item/module/power_control,
 		/obj/item/module/power_control,
 		/obj/item/module/power_control,
-		/obj/item/device/multitool,
-		/obj/item/device/multitool,
-		/obj/item/device/multitool,
+		/obj/item/multitool,
+		/obj/item/multitool,
+		/obj/item/multitool,
 
 		/obj/item/storage/box/circuits,
 		/obj/item/storage/box/circuits
@@ -109,7 +109,7 @@
 
 	starts_with = list(
 		/obj/item/storage/toolbox/mechanical,
-		/obj/item/device/radio/headset/engi,
+		/obj/item/radio/headset/engi,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/glasses/meson,
@@ -143,9 +143,9 @@
 
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/extinguisher,
-		/obj/item/device/radio/headset/engi,
+		/obj/item/radio/headset/engi,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/mask/gas,
 		/obj/item/cartridge/atmos,

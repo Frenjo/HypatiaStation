@@ -23,7 +23,7 @@
 		/obj/item/crowbar/red,
 		/obj/item/cell/high,
 		/obj/item/card/id/syndicate,
-		/obj/item/device/multitool,
+		/obj/item/multitool,
 		/obj/item/shield/energy,
 		/obj/item/clothing/shoes/magboots
 	)
@@ -52,12 +52,12 @@
 		/obj/item/pinpointer/nukeop,
 		/obj/item/pinpointer/nukeop,
 		/obj/item/pinpointer/nukeop,
-		/obj/item/device/pda/syndicate
+		/obj/item/pda/syndicate
 	)
 
 /obj/structure/closet/syndicate/nuclear/New()
 	. = ..()
-	var/obj/item/device/radio/uplink/U = new(src)
+	var/obj/item/radio/uplink/U = new(src)
 	U.hidden_uplink.uses = 40
 
 /*

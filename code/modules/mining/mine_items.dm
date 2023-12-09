@@ -22,13 +22,13 @@
 	icon_off = "miningsecoff"
 
 	starts_with = list(
-		/obj/item/device/radio/headset/mining,
+		/obj/item/radio/headset/mining,
 		/obj/item/clothing/under/rank/miner,
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/shoes/black,
-		/obj/item/device/analyzer,
+		/obj/item/analyzer,
 		/obj/item/storage/bag/ore,
-		/obj/item/device/flashlight/lantern,
+		/obj/item/flashlight/lantern,
 		/obj/item/shovel,
 		/obj/item/pickaxe,
 		/obj/item/clothing/glasses/meson
@@ -49,7 +49,7 @@
 /*
  * Lantern
  */
-/obj/item/device/flashlight/lantern
+/obj/item/flashlight/lantern
 	name = "lantern"
 	icon_state = "lantern"
 	desc = "A mining lantern."

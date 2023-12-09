@@ -61,7 +61,7 @@
 	if(istype(src, /obj/machinery/atmospherics/pipe/vent))
 		return ..()
 
-	if(istype(W, /obj/item/device/pipe_painter))
+	if(istype(W, /obj/item/pipe_painter))
 		return 0
 
 	if(!iswrench(W))

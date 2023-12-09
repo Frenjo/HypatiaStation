@@ -124,8 +124,8 @@
 		auth_name = "[ID.registered_name] ([ID.assignment])"
 		dna_hash = ID.dna_hash
 
-	if(istype(ident, /obj/item/device/pda))
-		var/obj/item/device/pda/PDA = ident
+	if(istype(ident, /obj/item/pda))
+		var/obj/item/pda/PDA = ident
 		access = PDA.id.access
 		auth_name = "[PDA.id.registered_name] ([PDA.id.assignment])"
 		dna_hash = PDA.id.dna_hash

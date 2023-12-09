@@ -22,10 +22,10 @@
 		/obj/item/clothing/shoes/white,
 		/obj/item/clothing/shoes/leather,
 		/obj/item/clothing/gloves/latex,
-		/obj/item/device/radio/headset/heads/rd,
+		/obj/item/radio/headset/heads/rd,
 		/obj/item/tank/air,
 		/obj/item/clothing/mask/gas,
-		/obj/item/device/flash
+		/obj/item/flash
 	)
 
 /*
@@ -47,7 +47,7 @@
 		/obj/item/clothing/suit/storage/labcoat,
 		/obj/item/clothing/shoes/white,
 	//	/obj/item/cartridge/signal/toxins,
-		/obj/item/device/radio/headset/sci,
+		/obj/item/radio/headset/sci,
 		/obj/item/tank/air,
 		/obj/item/clothing/mask/gas
 	)

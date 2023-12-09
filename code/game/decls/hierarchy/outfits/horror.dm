@@ -15,7 +15,7 @@
 	gloves = /obj/item/clothing/gloves/black
 	shoes = /obj/item/clothing/shoes/clown_shoes
 
-	l_ear = /obj/item/device/radio/headset
+	l_ear = /obj/item/radio/headset
 
 	r_pocket = /obj/item/bikehorn
 	l_pocket = /obj/item/reagent_containers/food/snacks/grown/banana
@@ -41,7 +41,7 @@
 	gloves = /obj/item/clothing/gloves/latex
 	shoes = /obj/item/clothing/shoes/white
 
-	l_ear = /obj/item/device/radio/headset
+	l_ear = /obj/item/radio/headset
 
 	r_pocket = /obj/item/scalpel
 	l_pocket = /obj/item/kitchenknife
@@ -67,7 +67,7 @@
 	gloves = /obj/item/clothing/gloves/black
 	shoes = /obj/item/clothing/shoes/black
 
-	l_ear = /obj/item/device/radio/headset
+	l_ear = /obj/item/radio/headset
 
 	r_pocket = /obj/item/cloaking_device
 	l_pocket = /obj/item/melee/energy/sword
@@ -77,7 +77,7 @@
 	id_slot = SLOT_ID_WEAR_ID
 	id_type = /obj/item/card/id/syndicate/station_access
 	pda_slot = SLOT_ID_BELT
-	pda_type = /obj/item/device/pda/heads
+	pda_type = /obj/item/pda/heads
 	id_pda_assignment = "Reaper"
 
 /decl/hierarchy/outfit/assassin/post_equip(mob/living/carbon/human/user)

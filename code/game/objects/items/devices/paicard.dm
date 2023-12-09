@@ -1,4 +1,4 @@
-/obj/item/device/paicard
+/obj/item/paicard
 	name = "personal AI device"
 	icon = 'icons/obj/items/devices/pda.dmi'
 	icon_state = "pai"
@@ -6,21 +6,21 @@
 	w_class = 2.0
 	slot_flags = SLOT_BELT
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
-	var/obj/item/device/radio/radio
+	var/obj/item/radio/radio
 	var/looking_for_personality = 0
 	var/mob/living/silicon/pai/pai
 
-/obj/item/device/paicard/New()
+/obj/item/paicard/New()
 	..()
 	overlays += "pai-off"
 
-/obj/item/device/paicard/Destroy()
+/obj/item/paicard/Destroy()
 	//Will stop people throwing friend pAIs into the singularity so they can respawn
 	if(isnotnull(pai))
 		pai.death(0)
 	return ..()
 
-/obj/item/device/paicard/attack_self(mob/user)
+/obj/item/paicard/attack_self(mob/user)
 	if(!in_range(src, user))
 		return
 	user.set_machine(src)
@@ -219,7 +219,7 @@
 	onclose(user, "paicard")
 	return
 
-/obj/item/device/paicard/Topic(href, href_list)
+/obj/item/paicard/Topic(href, href_list)
 	if(!usr || usr.stat)
 		return
 
@@ -266,16 +266,16 @@
 //		WIRE_RECEIVE = 2
 //		WIRE_TRANSMIT = 4
 
-/obj/item/device/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
+/obj/item/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
 	src.pai = personality
 	src.overlays += "pai-happy"
 
-/obj/item/device/paicard/proc/removePersonality()
+/obj/item/paicard/proc/removePersonality()
 	src.pai = null
 	src.overlays.Cut()
 	src.overlays += "pai-off"
 
-/obj/item/device/paicard/proc/setEmotion(emotion)
+/obj/item/paicard/proc/setEmotion(emotion)
 	if(pai)
 		src.overlays.Cut()
 		switch(emotion)
@@ -298,7 +298,7 @@
 			if(9)
 				src.overlays += "pai-what"
 
-/obj/item/device/paicard/proc/alertUpdate()
+/obj/item/paicard/proc/alertUpdate()
 	var/turf/T = get_turf_or_move(src.loc)
 	for(var/mob/M in viewers(T))
 		M.show_message(
@@ -306,7 +306,7 @@
 			SPAN_INFO("[src] bleeps electronically."), 2
 		)
 
-/obj/item/device/paicard/emp_act(severity)
+/obj/item/paicard/emp_act(severity)
 	for(var/mob/M in src)
 		M.emp_act(severity)
 	..()

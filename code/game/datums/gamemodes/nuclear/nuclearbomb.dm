@@ -88,7 +88,7 @@ var/bomb_set
 
 		return
 
-	if(istype(O, /obj/item/wirecutters) || istype(O, /obj/item/device/multitool))
+	if(istype(O, /obj/item/wirecutters) || istype(O, /obj/item/multitool))
 		if(src.opened == 1)
 			nukehack_win(user)
 		return
@@ -285,7 +285,7 @@ var/bomb_set
 		if(href_list["act"])
 			var/temp_wire = href_list["wire"]
 			if(href_list["act"] == "pulse")
-				if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+				if(!istype(usr.get_active_hand(), /obj/item/multitool))
 					to_chat(usr, "You need a multitool!")
 				else
 					if(src.wires[temp_wire])

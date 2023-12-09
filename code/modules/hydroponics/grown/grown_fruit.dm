@@ -16,7 +16,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/chili/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+	if(istype(O, /obj/item/analyzer/plant_analyzer))
 		to_chat(user, SPAN_INFO("- Capsaicin: <i>[reagents.get_reagent_amount("capsaicin")]%</i>"))
 
 /*
@@ -29,7 +29,7 @@
 	icon_state = "icepepper"
 	potency = 20
 	filling_color = "#66CEED"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/icepepper/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
@@ -38,7 +38,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/icepepper/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+	if(istype(O, /obj/item/analyzer/plant_analyzer))
 		to_chat(user, SPAN_INFO("- Frostoil: <i>[reagents.get_reagent_amount("frostoil")]%</i>"))
 
 /*
@@ -83,7 +83,7 @@
 	desc = "Nutritious!"
 	icon_state = "berrypile"
 	filling_color = "#C2C9FF"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/berries/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
@@ -100,7 +100,7 @@
 	var/brightness_on = 2 //luminosity when on
 	filling_color = "#D3FF9E"
 	icon_state = "glowberrypile"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/glowberries/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", round((potency / 10), 1))
@@ -131,7 +131,7 @@
 	gender = PLURAL
 	potency = 15
 	filling_color = "#B422C7"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/poisonberries/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1)
@@ -149,7 +149,7 @@
 	gender = PLURAL
 	potency = 50
 	filling_color = "#4E0957"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/deathberries/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1)
@@ -189,7 +189,7 @@
 	desc = "Maybe there's a chicken inside?"
 	icon_state = "eggplant"
 	filling_color = "#550F5C"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/eggplant/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
@@ -205,7 +205,7 @@
 	icon_state = "apple"
 	potency = 15
 	filling_color = "#DFE88B"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/apple/initialize()
 	. = ..()
 	reagents.maximum_volume = 20
@@ -222,7 +222,7 @@
 	icon_state = "apple"
 	potency = 15
 	filling_color = "#B3BD5E"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/apple/poisoned/initialize()
 	. = ..()
 	reagents.maximum_volume = 20
@@ -239,7 +239,7 @@
 	icon_state = "goldapple"
 	potency = 15
 	filling_color = "#F5CB42"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/goldapple/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
@@ -258,7 +258,7 @@
 	filling_color = "#FA2863"
 	slice_path = /obj/item/reagent_containers/food/snacks/watermelonslice
 	slices_num = 5
-	
+
 /obj/item/reagent_containers/food/snacks/grown/watermelon/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 6), 1))
@@ -274,7 +274,7 @@
 	icon_state = "pumpkin"
 	potency = 10
 	filling_color = "#FAB728"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/pumpkin/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 6), 1))
@@ -300,7 +300,7 @@
 	icon_state = "lime"
 	potency = 20
 	filling_color = "#28FA59"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/lime/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
@@ -316,7 +316,7 @@
 	icon_state = "lemon"
 	potency = 20
 	filling_color = "#FAF328"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/lemon/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
@@ -332,7 +332,7 @@
 	icon_state = "orange"
 	potency = 20
 	filling_color = "#FAAD28"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/orange/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
@@ -348,7 +348,7 @@
 	icon_state = "cocoapod"
 	potency = 50
 	filling_color = "#9C8E54"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/cocoapod/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))

@@ -1,4 +1,4 @@
-/obj/item/device/assembly/mousetrap
+/obj/item/assembly/mousetrap
 	name = "mousetrap"
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
 	icon_state = "mousetrap"
@@ -7,12 +7,12 @@
 
 	var/armed = 0
 
-/obj/item/device/assembly/mousetrap/examine()
+/obj/item/assembly/mousetrap/examine()
 	..()
 	if(armed)
 		to_chat(usr, "It looks like it's armed.")
 
-/obj/item/device/assembly/mousetrap/update_icon()
+/obj/item/assembly/mousetrap/update_icon()
 	if(armed)
 		icon_state = "mousetraparmed"
 	else
@@ -20,7 +20,7 @@
 	if(holder)
 		holder.update_icon()
 
-/obj/item/device/assembly/mousetrap/proc/triggered(mob/target as mob, type = "feet")
+/obj/item/assembly/mousetrap/proc/triggered(mob/target as mob, type = "feet")
 	if(!armed)
 		return
 	var/datum/organ/external/affecting = null
@@ -49,7 +49,7 @@
 	update_icon()
 	pulse(0)
 
-/obj/item/device/assembly/mousetrap/attack_self(mob/living/user as mob)
+/obj/item/assembly/mousetrap/attack_self(mob/living/user as mob)
 	if(!armed)
 		to_chat(user, SPAN_NOTICE("You arm [src]."))
 	else
@@ -68,7 +68,7 @@
 	update_icon()
 	playsound(user.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -3)
 
-/obj/item/device/assembly/mousetrap/attack_hand(mob/living/user as mob)
+/obj/item/assembly/mousetrap/attack_hand(mob/living/user as mob)
 	if(armed)
 		if(((user.getBrainLoss() >= 60 || (CLUMSY in user.mutations))) && prob(50))
 			var/which_hand = "l_hand"
@@ -82,7 +82,7 @@
 			return
 	..()
 
-/obj/item/device/assembly/mousetrap/Crossed(AM as mob|obj)
+/obj/item/assembly/mousetrap/Crossed(AM as mob|obj)
 	if(armed)
 		if(ishuman(AM))
 			var/mob/living/carbon/H = AM
@@ -96,7 +96,7 @@
 			triggered(AM)
 	..()
 
-/obj/item/device/assembly/mousetrap/on_found(mob/finder as mob)
+/obj/item/assembly/mousetrap/on_found(mob/finder as mob)
 	if(armed)
 		finder.visible_message(
 			SPAN_WARNING("[finder] accidentally sets off [src], breaking their fingers."),
@@ -106,17 +106,17 @@
 		return 1	//end the search!
 	return 0
 
-/obj/item/device/assembly/mousetrap/hitby(A as mob|obj)
+/obj/item/assembly/mousetrap/hitby(A as mob|obj)
 	if(!armed)
 		return ..()
 	visible_message(SPAN_WARNING("[src] is triggered by [A]."))
 	triggered(null)
 
-/obj/item/device/assembly/mousetrap/armed
+/obj/item/assembly/mousetrap/armed
 	icon_state = "mousetraparmed"
 	armed = 1
 
-/obj/item/device/assembly/mousetrap/verb/hide_under()
+/obj/item/assembly/mousetrap/verb/hide_under()
 	set category = PANEL_OBJECT
 	set src in oview(1)
 	set name = "Hide"

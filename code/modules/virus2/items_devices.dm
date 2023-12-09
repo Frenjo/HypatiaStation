@@ -4,16 +4,17 @@
 
 ///////////////ANTIBODY SCANNER///////////////
 
-/obj/item/device/antibody_scanner
+/obj/item/antibody_scanner
 	name = "Antibody Scanner"
 	desc = "Used to scan living beings for antibodies in their blood."
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "health"
 	w_class = 2.0
 	item_state = "electronic"
 	flags = CONDUCT
 
 
-/obj/item/device/antibody_scanner/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/antibody_scanner/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(!istype(M))
 		to_chat(user, SPAN_NOTICE("Incompatible object, scan aborted."))
 		return

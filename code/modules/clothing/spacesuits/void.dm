@@ -19,7 +19,7 @@
 	desc = "A pressure resistant voidsuit in the colours of the mailman, designed to allow them to traverse the disposal system safely."
 	icon_state = "mailspace_suit"
 	item_state = "mailspace_suit"
-	allowed = list(/obj/item/device/flashlight, /obj/item/tank)
+	allowed = list(/obj/item/flashlight, /obj/item/tank)
 	slowdown = 1
 
 /obj/item/clothing/head/helmet/space/mailmanvoid

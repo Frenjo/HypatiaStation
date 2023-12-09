@@ -16,13 +16,13 @@
 			starts_with = list(
 				/obj/item/gun/energy/crossbow,
 				/obj/item/pen/paralysis,
-				/obj/item/device/chameleon
+				/obj/item/chameleon
 			)
 
 		if("screwed")
 			starts_with = list(
 				/obj/effect/spawner/newbomb/timer/syndicate = 2,
-				/obj/item/device/powersink,
+				/obj/item/powersink,
 				/obj/item/clothing/suit/space/syndicate,
 				/obj/item/clothing/head/helmet/space/syndicate
 			)
@@ -53,12 +53,12 @@
 			starts_with = list(
 				/obj/item/aiModule/syndicate,
 				/obj/item/card/emag,
-				/obj/item/device/encryptionkey/binary
+				/obj/item/encryptionkey/binary
 			)
 
 		if("lordsingulo")
 			starts_with = list(
-				/obj/item/device/radio/beacon/syndicate,
+				/obj/item/radio/beacon/syndicate,
 				/obj/item/clothing/suit/space/syndicate,
 				/obj/item/clothing/head/helmet/space/syndicate,
 				/obj/item/card/emag

@@ -44,7 +44,7 @@
 					M.gloves.layer = 20
 					M.glasses = new /obj/item/clothing/glasses/thermal(M)
 					M.glasses.layer = 20
-					var/obj/item/device/radio/headset/H = new /obj/item/device/radio/headset(M)
+					var/obj/item/radio/headset/H = new /obj/item/radio/headset(M)
 					H.set_frequency(1465)
 					M.w_radio = H
 					M.w_radio.layer = 20
@@ -84,7 +84,7 @@
 					M.gloves.layer = 20
 					M.glasses = new /obj/item/clothing/glasses/thermal(M)
 					M.glasses.layer = 20
-					var/obj/item/device/radio/headset/H = new /obj/item/device/radio/headset(M)
+					var/obj/item/radio/headset/H = new /obj/item/radio/headset(M)
 					H.set_frequency(1449)
 					M.w_radio = H
 					M.w_radio.layer = 20

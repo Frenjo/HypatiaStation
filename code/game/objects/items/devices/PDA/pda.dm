@@ -1,5 +1,5 @@
 //The advanced pea-green monochrome lcd of tomorrow.
-/obj/item/device/pda
+/obj/item/pda
 	name = "PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
 	icon = 'icons/obj/items/devices/pda.dmi'
@@ -46,12 +46,12 @@
 	var/obj/item/card/id/id = null	//Making it possible to slot an ID card into the PDA so it can function as both.
 	var/ownjob = null						//related to above
 
-	var/obj/item/device/paicard/pai = null	// A slot for a personal AI device
+	var/obj/item/paicard/pai = null	// A slot for a personal AI device
 
 /*
  *	The Actual PDA
  */
-/obj/item/device/pda/New()
+/obj/item/pda/New()
 	..()
 	GLOBL.pda_list += src
 	GLOBL.pda_list = sortAtom(GLOBL.pda_list)
@@ -59,17 +59,17 @@
 		cartridge = new default_cartridge(src)
 	new /obj/item/pen(src)
 
-/obj/item/device/pda/pickup(mob/user)
+/obj/item/pda/pickup(mob/user)
 	if(fon)
 		set_light(0)
 		user.set_light(user.luminosity + f_lum)
 
-/obj/item/device/pda/dropped(mob/user)
+/obj/item/pda/dropped(mob/user)
 	if(fon)
 		user.set_light(user.luminosity - f_lum)
 		set_light(f_lum)
 
-/obj/item/device/pda/proc/can_use()
+/obj/item/pda/proc/can_use()
 	if(!ismob(loc))
 		return 0
 
@@ -81,19 +81,19 @@
 	else
 		return 0
 
-/obj/item/device/pda/get_access()
+/obj/item/pda/get_access()
 	return isnotnull(id) ? id.get_access() : ..()
 
-/obj/item/device/pda/get_id()
+/obj/item/pda/get_id()
 	return id
 
-/obj/item/device/pda/MouseDrop(obj/over_object as obj, src_location, over_location)
+/obj/item/pda/MouseDrop(obj/over_object as obj, src_location, over_location)
 	var/mob/M = usr
 	if(!istype(over_object, /obj/screen) && can_use())
 		return attack_self(M)
 	return
 
-/obj/item/device/pda/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
+/obj/item/pda/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	ui_tick++
 	var/datum/nanoui/old_ui = nanomanager.get_open_ui(user, src, "main")
 	var/auto_update = TRUE
@@ -168,7 +168,7 @@
 		var/list/convopdas = list()
 		var/list/pdas = list()
 		var/count = 0
-		for(var/obj/item/device/pda/P in GLOBL.pda_list)
+		for(var/obj/item/pda/P in GLOBL.pda_list)
 			if(!P.owner || P.toff || P == src || P.hidden)
 				continue
 			if(conversations.Find("\ref[P]"))
@@ -238,7 +238,7 @@
 	ui.set_auto_update(auto_update)
 
 //NOTE: graphic resources are loaded on client login
-/obj/item/device/pda/attack_self(mob/user as mob)
+/obj/item/pda/attack_self(mob/user as mob)
 	user.set_machine(src)
 
 	if(active_uplink_check(user))
@@ -247,7 +247,7 @@
 	ui_interact(user) //NanoUI requires this proc
 	return
 
-/obj/item/device/pda/Topic(href, href_list)
+/obj/item/pda/Topic(href, href_list)
 	if(href_list["cartmenu"] && isnotnull(cartridge))
 		cartridge.Topic(href, href_list)
 		return 1
@@ -414,7 +414,7 @@
 				return 0
 
 		if("Message")
-			var/obj/item/device/pda/P = locate(href_list["target"])
+			var/obj/item/pda/P = locate(href_list["target"])
 			src.create_message(U, P)
 			if(mode == 2)
 				if(href_list["target"] in conversations)			// Need to make sure the message went through, if not welp.
@@ -430,7 +430,7 @@
 
 		if("Send Honk")//Honk virus
 			if(istype(cartridge, /obj/item/cartridge/clown))//Cartridge checks are kind of unnecessary since everything is done through switch.
-				var/obj/item/device/pda/P = locate(href_list["target"])//Leaving it alone in case it may do something useful, I guess.
+				var/obj/item/pda/P = locate(href_list["target"])//Leaving it alone in case it may do something useful, I guess.
 				if(isnotnull(P))
 					if(!P.toff && cartridge.charges > 0)
 						cartridge.charges--
@@ -444,7 +444,7 @@
 
 		if("Send Silence")//Silent virus
 			if(istype(cartridge, /obj/item/cartridge/mime))
-				var/obj/item/device/pda/P = locate(href_list["target"])
+				var/obj/item/pda/P = locate(href_list["target"])
 				if(isnotnull(P))
 					if(!P.toff && cartridge.charges > 0)
 						cartridge.charges--
@@ -496,7 +496,7 @@
 				if(useTC != 2) // Does our recepient have a broadcaster on their level?
 					U.show_message(SPAN_WARNING("An error flashes on your [src]: Recipient unavailable."), 1)
 					return
-				var/obj/item/device/pda/P = locate(href_list["target"])
+				var/obj/item/pda/P = locate(href_list["target"])
 				if(isnotnull(P))
 					if(!P.toff && cartridge.charges > 0)
 						cartridge.charges--
@@ -560,7 +560,7 @@
 
 	return 1 // return 1 tells it to refresh the UI in NanoUI
 
-/obj/item/device/pda/proc/detonate_act(obj/item/device/pda/P)
+/obj/item/pda/proc/detonate_act(obj/item/pda/P)
 	//TODO: sometimes these attacks show up on the message server
 	var/i = rand(1, 100)
 	var/j = rand(0, 1) //Possibility of losing the PDA after the detonation
@@ -623,7 +623,7 @@
 	if(M && isliving(M))
 		M.show_message(SPAN_WARNING(message), 1)
 
-/obj/item/device/pda/proc/remove_id()
+/obj/item/pda/proc/remove_id()
 	if(id)
 		if(ismob(loc))
 			var/mob/M = loc
@@ -633,7 +633,7 @@
 			id.loc = get_turf(src)
 		id = null
 
-/obj/item/device/pda/proc/create_message(mob/living/U = usr, obj/item/device/pda/P)
+/obj/item/pda/proc/create_message(mob/living/U = usr, obj/item/pda/P)
 	var/t = input(U, "Please enter message", name, null) as text
 	t = copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
 	if(!t || !istype(P))
@@ -727,7 +727,7 @@
 	else
 		to_chat(U, SPAN_NOTICE("ERROR: Messaging server is not responding."))
 
-/obj/item/device/pda/verb/verb_remove_id()
+/obj/item/pda/verb/verb_remove_id()
 	set category = PANEL_OBJECT
 	set name = "Remove id"
 	set src in usr
@@ -743,7 +743,7 @@
 	else
 		to_chat(usr, SPAN_NOTICE("You cannot do this while restrained."))
 
-/obj/item/device/pda/verb/verb_remove_pen()
+/obj/item/pda/verb/verb_remove_pen()
 	set category = PANEL_OBJECT
 	set name = "Remove pen"
 	set src in usr
@@ -766,7 +766,7 @@
 	else
 		to_chat(usr, SPAN_NOTICE("You cannot do this while restrained."))
 
-/obj/item/device/pda/proc/id_check(mob/user as mob, choice as num)//To check for IDs; 1 for in-pda use, 2 for out of pda use.
+/obj/item/pda/proc/id_check(mob/user as mob, choice as num)//To check for IDs; 1 for in-pda use, 2 for out of pda use.
 	if(choice == 1)
 		if(id)
 			remove_id()
@@ -787,7 +787,7 @@
 	return
 
 // access to status display signals
-/obj/item/device/pda/attackby(obj/item/C as obj, mob/user as mob)
+/obj/item/pda/attackby(obj/item/C as obj, mob/user as mob)
 	..()
 	if(istype(C, /obj/item/cartridge) && !cartridge)
 		cartridge = C
@@ -814,7 +814,7 @@
 				updateSelfDialog()//Update self dialog on success.
 			return	//Return in case of failed check or when successful.
 		updateSelfDialog()//For the non-input related code.
-	else if(istype(C, /obj/item/device/paicard) && !src.pai)
+	else if(istype(C, /obj/item/paicard) && !src.pai)
 		user.drop_item()
 		C.loc = src
 		pai = C
@@ -830,7 +830,7 @@
 			to_chat(user, SPAN_NOTICE("You slide \the [C] into \the [src]."))
 	return
 
-/obj/item/device/pda/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/pda/attack(mob/living/M as mob, mob/living/user as mob)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		switch(scanmode)
@@ -888,7 +888,7 @@
 				else
 					user.show_message(SPAN_INFO("No radiation detected."))
 
-/obj/item/device/pda/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+/obj/item/pda/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	switch(scanmode)
@@ -957,7 +957,7 @@
 			note = P.info
 			to_chat(user, SPAN_INFO("Paper scanned.")) //concept of scanning paper copyright brainoblivion 2009
 
-/obj/item/device/pda/proc/explode() //This needs tuning. //Sure did.
+/obj/item/pda/proc/explode() //This needs tuning. //Sure did.
 	if(!src.detonate)
 		return
 	var/turf/T = get_turf(src.loc)
@@ -966,13 +966,13 @@
 		explosion(T, 0, 0, 1, rand(1, 2))
 	return
 
-/obj/item/device/pda/Destroy()
+/obj/item/pda/Destroy()
 	GLOBL.pda_list -= src
 	if(src.id && prob(90)) //IDs are kept in 90% of the cases
 		src.id.loc = get_turf(src.loc)
 	return ..()
 
-/obj/item/device/pda/proc/available_pdas()
+/obj/item/pda/proc/available_pdas()
 	var/list/names = list()
 	var/list/plist = list()
 	var/list/namecounts = list()
@@ -981,7 +981,7 @@
 		to_chat(usr, "Turn on your receiver in order to send messages.")
 		return
 
-	for(var/obj/item/device/pda/P in GLOBL.pda_list)
+	for(var/obj/item/pda/P in GLOBL.pda_list)
 		if(!P.owner)
 			continue
 		else if(P.hidden)
@@ -1004,31 +1004,31 @@
 
 // Access-related overrides.
 // These just forward the calls to the inserted ID card if it exists.
-/obj/item/device/pda/get_job_real_name()
+/obj/item/pda/get_job_real_name()
 	return isnotnull(id) ? id.get_job_real_name() : "Unknown"
 
-/obj/item/device/pda/get_job_display_name()
+/obj/item/pda/get_job_display_name()
 	return isnotnull(id) ? id.get_job_display_name() : "Unknown"
 
-/obj/item/device/pda/get_job_name()
+/obj/item/pda/get_job_name()
 	return isnotnull(id) ? id.get_job_name() : "Unknown"
 // End access-related overrides.
 
 // Owner and job helpers.
-/obj/item/device/pda/proc/set_owner(owner)
+/obj/item/pda/proc/set_owner(owner)
 	src.owner = owner
 	update_label()
 
-/obj/item/device/pda/proc/set_job(job)
+/obj/item/pda/proc/set_job(job)
 	ownjob = job
 	update_label()
 
-/obj/item/device/pda/proc/set_owner_and_job(owner, job)
+/obj/item/pda/proc/set_owner_and_job(owner, job)
 	set_owner(owner)
 	set_job(job)
 	update_label()
 
-/obj/item/device/pda/proc/update_label()
+/obj/item/pda/proc/update_label()
 	name = "PDA - [owner] ([ownjob])"
 // End owner and job helpers.
 
@@ -1040,7 +1040,7 @@
 	icon_state = "pdabox"
 
 	starts_with = list(
-		/obj/item/device/pda = 4,
+		/obj/item/pda = 4,
 		/obj/item/cartridge/head
 	)
 
@@ -1056,6 +1056,6 @@
 	return ..()
 
 // Pass along the pulse to atoms in contents, largely added so pAIs are vulnerable to EMP
-/obj/item/device/pda/emp_act(severity)
+/obj/item/pda/emp_act(severity)
 	for(var/atom/A in src)
 		A.emp_act(severity)

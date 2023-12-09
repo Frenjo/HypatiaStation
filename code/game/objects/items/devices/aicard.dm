@@ -1,4 +1,4 @@
-/obj/item/device/aicard
+/obj/item/aicard
 	name = "inteliCard"
 	icon = 'icons/obj/items/devices/pda.dmi'
 	icon_state = "aicard" // aicard-full
@@ -8,7 +8,7 @@
 	var/flush = null
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MATERIALS = 4)
 
-/obj/item/device/aicard/attack(mob/living/silicon/ai/M as mob, mob/user as mob)
+/obj/item/aicard/attack(mob/living/silicon/ai/M as mob, mob/user as mob)
 	if(!isAI(M))//If target is not an AI.
 		return ..()
 
@@ -19,14 +19,14 @@
 	transfer_ai("AICORE", "AICARD", M, user)
 	return
 
-/obj/item/device/aicard/attack(mob/living/silicon/decoy/M as mob, mob/user as mob)
+/obj/item/aicard/attack(mob/living/silicon/decoy/M as mob, mob/user as mob)
 	if(!istype (M, /mob/living/silicon/decoy))
 		return ..()
 	else
 		M.death()
 		user << "<b>ERROR ERROR ERROR</b>"
 
-/obj/item/device/aicard/attack_self(mob/user)
+/obj/item/aicard/attack_self(mob/user)
 	if(!in_range(src, user))
 		return
 	user.set_machine(src)
@@ -74,7 +74,7 @@
 	onclose(user, "aicard")
 	return
 
-/obj/item/device/aicard/Topic(href, href_list)
+/obj/item/aicard/Topic(href, href_list)
 	var/mob/U = usr
 	if(!in_range(src, U) || U.machine != src)//If they are not in range of 1 or less or their machine is not the card (ie, clicked on something else).
 		U << browse(null, "window=aicard")

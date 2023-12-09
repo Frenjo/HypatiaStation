@@ -280,8 +280,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 						break
 					search_id = FALSE
 
-			else if(search_pda && istype(A, /obj/item/device/pda))
-				var/obj/item/device/pda/PDA = A
+			else if(search_pda && istype(A, /obj/item/pda))
+				var/obj/item/pda/PDA = A
 				if(PDA.owner == oldname)
 					PDA.owner = newname
 					PDA.name = "PDA - [newname] ([PDA.ownjob])" // Edited this to space out the dash. -Frenjo
@@ -1055,7 +1055,7 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 	/obj/item/weldingtool,
 	/obj/item/screwdriver,
 	/obj/item/wirecutters,
-	/obj/item/device/multitool,
+	/obj/item/multitool,
 	/obj/item/crowbar
 ))
 
@@ -1090,7 +1090,7 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 	return FALSE
 
 /proc/ismultitool(O)
-	if(istype(O, /obj/item/device/multitool))
+	if(istype(O, /obj/item/multitool))
 		return TRUE
 	return FALSE
 
@@ -1212,7 +1212,7 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 Checks if that loc and dir has a item on the wall
 */
 GLOBAL_GLOBL_LIST_INIT(wall_items, list(
-	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/device/radio/intercom,
+	/obj/machinery/power/apc, /obj/machinery/alarm, /obj/item/radio/intercom,
 	/obj/structure/extinguisher_cabinet, /obj/structure/reagent_dispensers/peppertank,
 	/obj/machinery/status_display, /obj/machinery/requests_console, /obj/machinery/light_switch, /obj/effect/sign,
 	/obj/machinery/newscaster, /obj/machinery/firealarm, /obj/structure/noticeboard, /obj/machinery/door_control,

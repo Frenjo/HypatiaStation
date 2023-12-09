@@ -175,7 +175,7 @@
 
 					var/list/allowed_types = list(
 						/obj/item/clothing/suit/armor/vest,
-						/obj/item/device/radio
+						/obj/item/radio
 					)
 
 					if( ! ( item_to_add.type in allowed_types ) )

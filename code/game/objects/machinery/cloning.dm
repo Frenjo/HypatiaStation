@@ -290,7 +290,7 @@
 
 //Let's unlock this early I guess.  Might be too early, needs tweaking.
 /obj/machinery/clonepod/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(!src.check_access(W))
 			FEEDBACK_ACCESS_DENIED(user)
 			return

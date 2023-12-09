@@ -104,7 +104,7 @@
 	if(istype(loc, /obj/item/assembly))
 		icon = loc
 
-	if((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
+	if((istype(W, /obj/item/analyzer)) && get_dist(user, src) <= 1)
 		visible_message(SPAN_WARNING("[user] has used [W] on \icon[icon] [src]."))
 
 		var/pressure = air_contents.return_pressure()
@@ -125,7 +125,7 @@
 		LB.blow(src)
 		add_fingerprint(user)
 
-	if(istype(W, /obj/item/device/assembly_holder))
+	if(istype(W, /obj/item/assembly_holder))
 		bomb_assemble(W, user)
 
 /obj/item/tank/attack_self(mob/user as mob)
@@ -234,7 +234,7 @@
 
 	var/pressure = air_contents.return_pressure()
 	if(pressure > TANK_FRAGMENT_PRESSURE)
-		if(!istype(loc, /obj/item/device/transfer_valve))
+		if(!istype(loc, /obj/item/transfer_valve))
 			message_admins("Explosive tank rupture! last key to touch the tank was [last_fingerprints].")
 			log_game("Explosive tank rupture! last key to touch the tank was [last_fingerprints].")
 		//to_world("\blue[x],[y] tank is exploding: [pressure] kPa")

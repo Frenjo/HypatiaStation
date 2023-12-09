@@ -298,7 +298,7 @@ Status: []<BR>"},
 					Gun.update_icon()
 					lasercolor = null
 				if(prob(50)) new /obj/item/stack/sheet/metal( loc, rand(1,4))
-				if(prob(50)) new /obj/item/device/assembly/prox_sensor(locate(x,y,z))
+				if(prob(50)) new /obj/item/assembly/prox_sensor(locate(x,y,z))
 			else
 				user << "You remove the turret but did not manage to salvage anything."
 			qdel(src)
@@ -335,7 +335,7 @@ Status: []<BR>"},
 			invisibility = 0
 			qdel(cover) // deletes the cover, and the turret instance itself becomes its own cover.
 
-	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
+	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		// Behavior lock/unlock mangement
 		if (allowed(user))
 			locked = !src.locked
@@ -854,7 +854,7 @@ Status: []<BR>"},
 
 		if(5)
 			user << "You remove the prox sensor from the turret frame."
-			new/obj/item/device/assembly/prox_sensor(locate(x,y,z))
+			new/obj/item/assembly/prox_sensor(locate(x,y,z))
 			build_step = 4
 
 
@@ -1016,7 +1016,7 @@ Status: []<BR>"},
 			Parent_Turret.invisibility = 0
 			qdel(src)
 
-	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
+	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if (Parent_Turret.allowed(user))
 			Parent_Turret.locked = !Parent_Turret.locked
 			user << "Controls are now [Parent_Turret.locked ? "locked." : "unlocked."]"

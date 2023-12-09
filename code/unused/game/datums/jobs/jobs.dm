@@ -169,7 +169,7 @@ proc/setup_jobs()
 	JOB.admin_only = 0
 	JOB.description = "Engineers are tasked with the maintenance of the station. Be it maintaining the power grid or rebuilding damaged sections."
 	JOB.guides = ""
-	JOB.equipment_ears = list(/obj/item/device/radio/headset/headset_eng)
+	JOB.equipment_ears = list(/obj/item/radio/headset/headset_eng)
 	JOB.equipment_glasses = list()
 	JOB.equipment_gloves = list()
 	JOB.equipment_head = list(/obj/item/clothing/head/helmet/hardhat)
@@ -179,7 +179,7 @@ proc/setup_jobs()
 	JOB.equipment_under = list(/obj/item/clothing/under/rank/engineer,/obj/item/clothing/under/color/yellow)
 	JOB.equipment_belt = list(/obj/item/storage/belt/utility/full)
 	JOB.equipment_back = list(/obj/item/storage/backpack/industrial,/obj/item/storage/backpack)
-	JOB.equipment_pda = /obj/item/device/pda/engineering
+	JOB.equipment_pda = /obj/item/pda/engineering
 	JOB.equipment_id = /obj/item/card/id
 
 	jobs.all_jobs += JOB
@@ -201,14 +201,14 @@ proc/dress_for_job_default(var/mob/living/carbon/human/employee as mob, var/job_
 		/*
 	src.equip_to_slot_or_del(new /obj/item/storage/backpack/industrial (src), SLOT_ID_BACK)
 	src.equip_to_slot_or_del(new /obj/item/storage/box/engineer(src), SLOT_ID_IN_BACKPACK)
-	src.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_eng (src), slot_ears) // -- TLE
-	src.equip_to_slot_or_del(new /obj/item/device/pda/engineering(src), SLOT_ID_BELT)
+	src.equip_to_slot_or_del(new /obj/item/radio/headset/headset_eng (src), slot_ears) // -- TLE
+	src.equip_to_slot_or_del(new /obj/item/pda/engineering(src), SLOT_ID_BELT)
 	src.equip_to_slot_or_del(new /obj/item/clothing/under/rank/engineer(src), SLOT_ID_W_UNIFORM)
 	src.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(src), SLOT_ID_SHOES)
 	src.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/hardhat(src), SLOT_ID_HEAD)
 	src.equip_to_slot_or_del(new /obj/item/storage/utilitybelt/full(src), SLOT_ID_L_HAND) //currently spawns in hand due to traitor assignment requiring a PDA to be on the belt. --Errorage
 	//src.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(src), SLOT_ID_GLOVES) removed as part of Dangercon 2011, approved by Urist_McDorf --Errorage
-	src.equip_to_slot_or_del(new /obj/item/device/t_scanner(src), SLOT_ID_R_STORE)
+	src.equip_to_slot_or_del(new /obj/item/t_scanner(src), SLOT_ID_R_STORE)
 	*/
 
 

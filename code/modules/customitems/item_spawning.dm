@@ -69,8 +69,8 @@
 							M.belt=null
 						ok = M.equip_if_possible(I, SLOT_ID_BELT, 0)
 						break
-					if(istype(M.belt,/obj/item/device/pda))
-						for(var/obj/item/device/pda/Pda in M)
+					if(istype(M.belt,/obj/item/pda))
+						for(var/obj/item/pda/Pda in M)
 							M.belt=null
 							M.equip_if_possible(Pda, SLOT_ID_L_STORE, 0)
 						ok = M.equip_if_possible(I, SLOT_ID_BELT, 0)

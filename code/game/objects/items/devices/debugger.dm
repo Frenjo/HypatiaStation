@@ -3,7 +3,7 @@
  * TO-DO -- Using it as a power measurement tool for cables etc. Nannek.
  *
  */
-/obj/item/device/debugger
+/obj/item/debugger
 	icon = 'icons/obj/items/devices/hacktool.dmi'
 	name = "debugger"
 	desc = "Used to debug electronic equipment."
@@ -20,7 +20,7 @@
 
 	var/obj/machinery/telecoms/buffer // simple machine buffer for device linkage
 
-/obj/item/device/debugger/is_used_on(obj/O, mob/user)
+/obj/item/debugger/is_used_on(obj/O, mob/user)
 	if(istype(O, /obj/machinery/power/apc))
 		var/obj/machinery/power/apc/A = O
 		if(A.emagged || A.malfhack)

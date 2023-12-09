@@ -66,8 +66,8 @@ GLOBAL_GLOBL_LIST_INIT(department_radio_keys, list(
 
 	var/mob/living/carbon/human/H = src
 	if(isnotnull(H.l_ear) || isnotnull(H.r_ear))
-		var/obj/item/device/radio/headset/dongle
-		if(istype(H.l_ear, /obj/item/device/radio/headset))
+		var/obj/item/radio/headset/dongle
+		if(istype(H.l_ear, /obj/item/radio/headset))
 			dongle = H.l_ear
 		else
 			dongle = H.r_ear

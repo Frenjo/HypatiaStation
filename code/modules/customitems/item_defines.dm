@@ -258,7 +258,7 @@
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "special_cane"
 
-/obj/item/device/camera/fluff/orange //chinsky: Summer Springfield
+/obj/item/camera/fluff/orange //chinsky: Summer Springfield
 	name = "orange camera"
 	icon = 'icons/obj/custom_items.dmi'
 	desc = "A modified detective's camera, painted in bright orange. On the back you see \"Have fun\" written in small accurate letters with something black."
@@ -267,7 +267,7 @@
 	icon_off = "camera_off"
 	pictures_left = 30
 
-/obj/item/device/camera/fluff/oldcamera //magmaram: Maria Crash
+/obj/item/camera/fluff/oldcamera //magmaram: Maria Crash
 	name = "Old Camera"
 	icon = 'icons/obj/custom_items.dmi'
 	desc = "An old, slightly beat-up digital camera, with a cheap photo printer taped on. It's a nice shade of blue."
@@ -425,7 +425,7 @@
 	icon_state = "mcreary_journal"
 	item_state = "mcreary_journal"
 
-/obj/item/device/flashlight/fluff/thejesster14_1 //thejesster14: Rosa Wolff
+/obj/item/flashlight/fluff/thejesster14_1 //thejesster14: Rosa Wolff
 	name = "old red flashlight"
 	desc = "A very old, childlike flashlight."
 	icon = 'icons/obj/custom_items.dmi'
@@ -944,7 +944,7 @@
 	new /obj/item/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 17, "Dexalin Plus")
 	new /obj/item/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 18, "Tricordrazine")
 	new /obj/item/reagent_containers/syringe/(src)
-	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/healthanalyzer(src)
 
 /obj/item/reagent_containers/glass/bottle/fluff/nashi_bottle
 	icon = 'icons/obj/chemical.dmi'

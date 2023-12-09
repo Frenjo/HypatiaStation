@@ -146,7 +146,7 @@
 		to_chat(src, SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and his commands."))
 		return
 
-	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
+	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(stat == DEAD)
 			to_chat(user, SPAN_WARNING("You swipe your ID card through [src], attempting to reboot it."))
 			if(!CONFIG_GET(allow_drone_spawn) || emagged || health < -35) // It's dead, Dave.

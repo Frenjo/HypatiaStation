@@ -23,8 +23,8 @@
 	. = ..()
 
 /obj/item/robot_module/New()
-	modules.Add(new /obj/item/device/flashlight(src))
-	modules.Add(new /obj/item/device/flash(src))
+	modules.Add(new /obj/item/flashlight(src))
+	modules.Add(new /obj/item/flash(src))
 	emag = new /obj/item/toy/sword(src)
 	emag.name = "Placeholder Emag Item"
 //	jetpack = new /obj/item/toy/sword(src)
@@ -65,7 +65,7 @@
 	modules.Add(new /obj/item/extinguisher(src))
 	modules.Add(new /obj/item/wrench(src))
 	modules.Add(new /obj/item/crowbar(src))
-	modules.Add(new /obj/item/device/healthanalyzer(src))
+	modules.Add(new /obj/item/healthanalyzer(src))
 	emag = new /obj/item/melee/energy/sword(src)
 
 ///obj/item/robot_module/standard/respawn_consumable(mob/living/silicon/robot/R)
@@ -82,8 +82,8 @@
 /obj/item/robot_module/medical/New()
 	. = ..()
 	modules.Add(new /obj/item/borg/sight/hud/med(src))
-	modules.Add(new /obj/item/device/healthanalyzer(src))
-	modules.Add(new /obj/item/device/reagent_scanner/adv(src))
+	modules.Add(new /obj/item/healthanalyzer(src))
+	modules.Add(new /obj/item/reagent_scanner/adv(src))
 	modules.Add(new /obj/item/reagent_containers/borghypo(src))
 	modules.Add(new /obj/item/reagent_containers/glass/beaker/large(src))
 	modules.Add(new /obj/item/reagent_containers/robodropper(src))
@@ -117,15 +117,15 @@
 	emag = new /obj/item/borg/stun(src)
 	modules.Add(new /obj/item/rcd/borg(src))
 	modules.Add(new /obj/item/extinguisher(src))
-//	modules.Add(new /obj/item/device/flashlight(src))
+//	modules.Add(new /obj/item/flashlight(src))
 	modules.Add(new /obj/item/weldingtool/largetank(src))
 	modules.Add(new /obj/item/screwdriver(src))
 	modules.Add(new /obj/item/wrench(src))
 	modules.Add(new /obj/item/crowbar(src))
 	modules.Add(new /obj/item/wirecutters(src))
-	modules.Add(new /obj/item/device/multitool(src))
-	modules.Add(new /obj/item/device/t_scanner(src))
-	modules.Add(new /obj/item/device/analyzer(src))
+	modules.Add(new /obj/item/multitool(src))
+	modules.Add(new /obj/item/t_scanner(src))
+	modules.Add(new /obj/item/analyzer(src))
 	modules.Add(new /obj/item/taperoll/engineering(src))
 
 	var/obj/item/stack/sheet/metal/cyborg/M = new /obj/item/stack/sheet/metal/cyborg(src)
@@ -174,7 +174,7 @@
 	emag = new /obj/item/gun/energy/laser/cyborg(src)
 
 /obj/item/robot_module/security/respawn_consumable(mob/living/silicon/robot/R)
-	var/obj/item/device/flash/F = locate() in modules
+	var/obj/item/flash/F = locate() in modules
 	if(F.broken)
 		F.broken = 0
 		F.times_used = 0
@@ -202,14 +202,14 @@
 	modules.Add(new /obj/item/soap/nanotrasen(src))
 	modules.Add(new /obj/item/storage/bag/trash(src))
 	modules.Add(new /obj/item/mop(src))
-	modules.Add(new /obj/item/device/lightreplacer(src))
+	modules.Add(new /obj/item/lightreplacer(src))
 
 	emag = new /obj/item/reagent_containers/spray(src)
 	emag.reagents.add_reagent("lube", 250)
 	emag.name = "Lube spray"
 
 /obj/item/robot_module/janitor/respawn_consumable(mob/living/silicon/robot/R)
-	var/obj/item/device/lightreplacer/LR = locate() in modules
+	var/obj/item/lightreplacer/LR = locate() in modules
 	LR.Charge(R)
 	if(emag)
 		var/obj/item/reagent_containers/spray/S = emag
@@ -320,8 +320,8 @@
 	modules.Add(new /obj/item/wrench(src))
 	modules.Add(new /obj/item/crowbar(src))
 	modules.Add(new /obj/item/wirecutters(src))
-	modules.Add(new /obj/item/device/multitool(src))
-	modules.Add(new /obj/item/device/lightreplacer(src))
+	modules.Add(new /obj/item/multitool(src))
+	modules.Add(new /obj/item/lightreplacer(src))
 	modules.Add(new /obj/item/reagent_containers/spray/cleaner(src))
 	modules.Add(new /obj/item/gripper(src))
 	modules.Add(new /obj/item/matter_decompiler(src))
@@ -372,5 +372,5 @@
 		if(S?.amount < 15)
 			S.amount++
 
-	var/obj/item/device/lightreplacer/LR = locate() in modules
+	var/obj/item/lightreplacer/LR = locate() in modules
 	LR.Charge(R)

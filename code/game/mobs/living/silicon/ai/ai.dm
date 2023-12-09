@@ -29,8 +29,8 @@
 	var/lawcheck[1]
 	var/ioncheck[1]
 	var/icon/holo_icon //Default is assigned when AI is created.
-	var/obj/item/device/pda/ai/aiPDA = null
-	var/obj/item/device/multitool/aiMulti = null
+	var/obj/item/pda/ai/aiPDA = null
+	var/obj/item/multitool/aiMulti = null
 	var/custom_sprite = FALSE //For our custom sprites
 //Hud stuff
 
@@ -52,7 +52,7 @@
 	var/datum/trackable/track = null
 	var/last_announcement = ""
 
-/mob/living/silicon/ai/New(loc, datum/ai_laws/L, obj/item/device/mmi/B, safety = 0)
+/mob/living/silicon/ai/New(loc, datum/ai_laws/L, obj/item/mmi/B, safety = 0)
 	. = ..()
 	var/list/possibleNames = GLOBL.ai_names
 
@@ -76,9 +76,9 @@
 	else
 		laws = new BASE_LAW_TYPE()
 
-	aiPDA = new /obj/item/device/pda/ai(src)
+	aiPDA = new /obj/item/pda/ai(src)
 	aiPDA.set_name_and_job(name, "AI")
-	aiMulti = new /obj/item/device/multitool(src)
+	aiMulti = new /obj/item/multitool(src)
 
 	if(isturf(loc))
 		add_ai_verbs()

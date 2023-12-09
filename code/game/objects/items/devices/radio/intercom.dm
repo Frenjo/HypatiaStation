@@ -1,4 +1,4 @@
-/obj/item/device/radio/intercom
+/obj/item/radio/intercom
 	name = "station intercom"
 	desc = "Talk through this."
 	icon_state = "intercom"
@@ -11,29 +11,29 @@
 	var/mob/living/silicon/ai/ai = list()
 	var/last_tick //used to delay the powercheck
 
-/obj/item/device/radio/intercom/New()
+/obj/item/radio/intercom/New()
 	..()
 	GLOBL.processing_objects += src
 
-/obj/item/device/radio/intercom/Destroy()
+/obj/item/radio/intercom/Destroy()
 	GLOBL.processing_objects -= src
 	return ..()
 
-/obj/item/device/radio/intercom/attack_ai(mob/user as mob)
+/obj/item/radio/intercom/attack_ai(mob/user as mob)
 	src.add_fingerprint(user)
 	spawn(0)
 		attack_self(user)
 
-/obj/item/device/radio/intercom/attack_paw(mob/user as mob)
+/obj/item/radio/intercom/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
 
-/obj/item/device/radio/intercom/attack_hand(mob/user as mob)
+/obj/item/radio/intercom/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
 	spawn(0)
 		attack_self(user)
 
-/obj/item/device/radio/intercom/receive_range(freq, level)
+/obj/item/radio/intercom/receive_range(freq, level)
 	if(!on)
 		return -1
 	if(wires.IsIndexCut(WIRE_RECEIVE))
@@ -50,12 +50,12 @@
 
 	return canhear_range
 
-/obj/item/device/radio/intercom/hear_talk(mob/M as mob, msg)
+/obj/item/radio/intercom/hear_talk(mob/M as mob, msg)
 	if(!src.anyai && !(M in src.ai))
 		return
 	..()
 
-/obj/item/device/radio/intercom/process()
+/obj/item/radio/intercom/process()
 	if((world.timeofday - last_tick) > 30 || (world.timeofday - last_tick) < 0)
 		last_tick = world.timeofday
 

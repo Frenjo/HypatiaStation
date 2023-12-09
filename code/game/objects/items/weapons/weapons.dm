@@ -239,7 +239,7 @@
 	var/selfdestruct = 0.0
 	var/traitor_frequency = 0.0
 	var/mob/currentUser = null
-	var/obj/item/device/radio/origradio = null
+	var/obj/item/radio/origradio = null
 	flags = FPRINT | TABLEPASS | CONDUCT | ONBELT
 	w_class = 2.0
 	item_state = "radio"
@@ -287,7 +287,7 @@
 	var/uses = 4.0
 	var/selfdestruct = 0.0
 	var/traitor_frequency = 0.0
-	var/obj/item/device/radio/origradio = null
+	var/obj/item/radio/origradio = null
 
 /obj/item/table_parts
 	name = "table parts"
@@ -329,8 +329,9 @@
 	viewers(user) << SPAN_DANGER("[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide.")
 	return (OXYLOSS)
 
-/obj/item/device/camera_bug
+/obj/item/camera_bug
 	name = "camera bug"
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "flash"
 	w_class = 1.0
 	item_state = "electronic"

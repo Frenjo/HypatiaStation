@@ -14,9 +14,10 @@ effective or pretty fucking useless.
 
 */
 
-/obj/item/device/batterer
+/obj/item/batterer
 	name = "mind batterer"
 	desc = "A strange device with twin antennas."
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "batterer"
 	throwforce = 5
 	w_class = 1.0
@@ -29,7 +30,7 @@ effective or pretty fucking useless.
 	var/times_used = 0 //Number of times it's been used.
 	var/max_uses = 2
 
-/obj/item/device/batterer/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/batterer/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
 	if(!user)
 		return
 	if(times_used >= max_uses)

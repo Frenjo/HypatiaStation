@@ -91,7 +91,7 @@
 		// remove traitor uplinks
 		var/list/L = current.get_contents()
 		for (var/t in L)
-			if (istype(t, /obj/item/device/pda))
+			if (istype(t, /obj/item/pda))
 				if (t:uplink) del(t:uplink)
 				t:uplink = null
 			else if(isradio(t))
@@ -100,7 +100,7 @@
 				t:traitor_frequency = 0.0
 			else if (istype(t, /obj/item/SWF_uplink) || istype(t, /obj/item/syndicate_uplink))
 				if (t:origradio)
-					var/obj/item/device/radio/R = t:origradio
+					var/obj/item/radio/R = t:origradio
 					R.loc = current.loc
 					R.traitorradio = null
 					R.traitor_frequency = 0.0

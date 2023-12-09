@@ -3,9 +3,10 @@
  * TO-DO -- Using it as a power measurement tool for cables etc. Nannek.
  *
  */
-/obj/item/device/multitool
+/obj/item/multitool
 	name = "multitool"
 	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors."
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "multitool"
 	flags = CONDUCT
 	force = 5.0

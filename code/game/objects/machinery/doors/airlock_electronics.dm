@@ -69,8 +69,8 @@
 			last_configurator = usr.name
 		else
 			var/obj/item/I = usr.get_active_hand()
-			if(istype(I, /obj/item/device/pda))
-				var/obj/item/device/pda/pda = I
+			if(istype(I, /obj/item/pda))
+				var/obj/item/pda/pda = I
 				I = pda.id
 			if(isnotnull(I) && check_access(I))
 				locked = FALSE

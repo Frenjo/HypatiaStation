@@ -68,8 +68,8 @@
 #define ismecha(X)	istype(X, /obj/mecha)
 
 #define isitem(X)	istype(X, /obj/item)
-#define isradio(X)	istype(X, /obj/item/device/radio)
-#define isMMI(X) istype(X, /obj/item/device/mmi)
+#define isradio(X)	istype(X, /obj/item/radio)
+#define isMMI(X) istype(X, /obj/item/mmi)
 
 #define isrune(X) istype(X, /obj/effect/rune)
 

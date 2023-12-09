@@ -7,7 +7,7 @@
 
 	starts_with = list(
 		/obj/item/wardrobe/chef,
-		/obj/item/device/radio/headset
+		/obj/item/radio/headset
 	)
 
 /obj/structure/closet/secure_closet/chef_personal/New()
@@ -45,7 +45,7 @@
 
 	starts_with = list(
 		/obj/item/wardrobe/bartender,
-		/obj/item/device/radio/headset
+		/obj/item/radio/headset
 	)
 
 /obj/structure/closet/secure_closet/barman_personal/New()
@@ -67,8 +67,8 @@
 
 	starts_with = list(
 		/obj/item/wardrobe/hydro,
-		/obj/item/device/analyzer/plant_analyzer,
-		/obj/item/device/radio/headset
+		/obj/item/analyzer/plant_analyzer,
+		/obj/item/radio/headset
 	)
 
 /obj/structure/closet/secure_closet/hydro_personal/New()
@@ -86,7 +86,7 @@
 
 	starts_with = list(
 		/obj/item/wardrobe/janitor,
-		/obj/item/device/pda/janitor
+		/obj/item/pda/janitor
 	)
 
 /obj/structure/closet/secure_closet/janitor_personal/New()
@@ -104,8 +104,8 @@
 
 	starts_with = list(
 		/obj/item/wardrobe/lawyer,
-		/obj/item/device/pda/lawyer,
-		/obj/item/device/detective_scanner,
+		/obj/item/pda/lawyer,
+		/obj/item/detective_scanner,
 		/obj/item/storage/briefcase
 	)
 
@@ -144,8 +144,8 @@
 		/obj/item/wardrobe/chaplain,
 		/obj/item/storage/backpack/cultpack,
 		/obj/item/storage/bible,
-		/obj/item/device/pda/chaplain,
-		/obj/item/device/radio/headset,
+		/obj/item/pda/chaplain,
+		/obj/item/radio/headset,
 		/obj/item/candlepack,
 		/obj/item/candlepack
 	)

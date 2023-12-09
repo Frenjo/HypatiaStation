@@ -130,7 +130,7 @@
 			updateUsrDialog()
 		else
 			to_chat(user, SPAN_NOTICE("There is already something in \the [src]."))
-	else if(istype(O, /obj/item/device/toner))
+	else if(istype(O, /obj/item/toner))
 		if(toner == 0)
 			user.drop_item()
 			qdel(O)
@@ -172,6 +172,7 @@
 			toner = 0
 	return
 
-/obj/item/device/toner
+/obj/item/toner
 	name = "toner cartridge"
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "tonercartridge"

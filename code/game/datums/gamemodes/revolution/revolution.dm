@@ -141,7 +141,7 @@
 			to_chat(mob, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
 			mob.mutations.Remove(CLUMSY)
 
-	var/obj/item/device/flash/T = new(mob)
+	var/obj/item/flash/T = new(mob)
 
 	var/list/slots = list (
 		"backpack" = SLOT_ID_IN_BACKPACK,

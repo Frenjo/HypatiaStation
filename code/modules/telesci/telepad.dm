@@ -53,7 +53,7 @@
 		qdel(src)
 
 ///TELEPAD CALLER///
-/obj/item/device/telepad_beacon
+/obj/item/telepad_beacon
 	name = "telepad beacon"
 	desc = "Use to warp in a cargo telepad."
 	icon = 'icons/obj/items/devices/radio.dmi'
@@ -61,7 +61,7 @@
 	item_state = "signaler"
 	origin_tech = list(RESEARCH_TECH_BLUESPACE = 3)
 
-/obj/item/device/telepad_beacon/attack_self(mob/user as mob)
+/obj/item/telepad_beacon/attack_self(mob/user as mob)
 	if(user)
 		to_chat(user, SPAN_CAUTION("Locked In"))
 		new /obj/machinery/telepad_cargo(user.loc)

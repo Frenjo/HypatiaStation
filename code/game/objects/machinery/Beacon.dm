@@ -8,12 +8,12 @@
 	layer = 2.5
 	anchored = TRUE
 
-	var/obj/item/device/radio/beacon/Beacon
+	var/obj/item/radio/beacon/Beacon
 
 /obj/machinery/bluespace_beacon/New()
 	..()
 	var/turf/T = loc
-	Beacon = new /obj/item/device/radio/beacon
+	Beacon = new /obj/item/radio/beacon
 	Beacon.invisibility = INVISIBILITY_MAXIMUM
 	Beacon.loc = T
 
@@ -42,7 +42,7 @@
 /obj/machinery/bluespace_beacon/process()
 	if(!Beacon)
 		var/turf/T = loc
-		Beacon = new /obj/item/device/radio/beacon
+		Beacon = new /obj/item/radio/beacon
 		Beacon.invisibility = INVISIBILITY_MAXIMUM
 		Beacon.loc = T
 	if(Beacon)

@@ -12,7 +12,7 @@
 	gloves = /obj/item/clothing/gloves/swat
 	shoes = /obj/item/clothing/shoes/swat
 
-	l_ear = /obj/item/device/radio/headset/ert
+	l_ear = /obj/item/radio/headset/ert
 
 	id_slot = SLOT_ID_WEAR_ID
 	id_type = /obj/item/card/id/centcom/station
@@ -32,7 +32,7 @@
 	gloves = /obj/item/clothing/gloves/combat
 	shoes = /obj/item/clothing/shoes/combat
 
-	l_ear = /obj/item/device/radio/headset/heads/captain
+	l_ear = /obj/item/radio/headset/heads/captain
 
 	r_pocket = /obj/item/lighter/zippo
 
@@ -54,7 +54,7 @@
 	gloves = /obj/item/clothing/gloves/swat
 	shoes = /obj/item/clothing/shoes/swat
 
-	l_ear = /obj/item/device/radio/headset
+	l_ear = /obj/item/radio/headset
 
 	suit_store = /obj/item/tank/emergency/oxygen
 	l_pocket = /obj/item/melee/energy/sword
@@ -71,14 +71,14 @@
 		/obj/item/ammo_magazine/a357,
 		/obj/item/storage/firstaid/regular,
 		/obj/item/storage/box/flashbangs,
-		/obj/item/device/flashlight
+		/obj/item/flashlight
 	)
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 
 /decl/hierarchy/outfit/death_commando/post_equip(mob/living/carbon/human/user)
 	. = ..()
-	var/obj/item/device/radio/headset/radio = locate(/obj/item/device/radio/headset) in user
+	var/obj/item/radio/headset/radio = locate(/obj/item/radio/headset) in user
 	if(isnotnull(radio))
 		radio.radio_connection = register_radio(radio, null, FREQUENCY_DEATHSQUAD, RADIO_CHAT)
 
@@ -127,7 +127,7 @@
 	l_pocket = /obj/item/melee/energy/sword
 	r_pocket = /obj/item/grenade/empgrenade
 
-	l_ear = /obj/item/device/radio/headset/syndicate
+	l_ear = /obj/item/radio/headset/syndicate
 
 	r_hand = /obj/item/gun/energy/pulse_rifle // Will change to something different at a later time -- Superxpdude
 
@@ -140,7 +140,7 @@
 		/obj/item/storage/box = 1,
 		/obj/item/ammo_magazine/c45 = 1,
 		/obj/item/storage/firstaid/regular = 1,
-		/obj/item/device/flashlight = 1
+		/obj/item/flashlight = 1
 	)
 
 /*

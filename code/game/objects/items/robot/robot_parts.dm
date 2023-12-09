@@ -60,8 +60,8 @@
 	construction_time = 350
 	construction_cost = list(MATERIAL_METAL = 25000)
 
-	var/obj/item/device/flash/flash1 = null
-	var/obj/item/device/flash/flash2 = null
+	var/obj/item/flash/flash1 = null
+	var/obj/item/flash/flash2 = null
 
 /obj/item/robot_parts/robot_suit
 	name = "robot endoskeleton"
@@ -176,7 +176,7 @@
 			to_chat(user, SPAN_INFO("You need to attach a flash to it first!"))
 
 	if(isMMI(W))
-		var/obj/item/device/mmi/M = W
+		var/obj/item/mmi/M = W
 		if(check_completion())
 			if(!isturf(loc))
 				to_chat(user, SPAN_WARNING("You can't put the [W] in, the frame has to be standing on the ground to be perfectly precise."))
@@ -274,7 +274,7 @@
 
 /obj/item/robot_parts/head/attackby(obj/item/W as obj, mob/user as mob)
 	. = ..()
-	if(istype(W, /obj/item/device/flash))
+	if(istype(W, /obj/item/flash))
 		if(isnotnull(flash1) && isnotnull(flash2))
 			to_chat(user, SPAN_INFO("You have already inserted the eyes!"))
 			return

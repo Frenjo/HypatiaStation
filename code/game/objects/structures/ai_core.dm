@@ -8,7 +8,7 @@
 	var/state = 0
 	var/datum/ai_laws/laws = new /datum/ai_laws/nanotrasen
 	var/obj/item/circuitboard/circuit = null
-	var/obj/item/device/mmi/brain = null
+	var/obj/item/mmi/brain = null
 
 /obj/structure/ai_core/attackby(obj/item/object as obj, mob/user as mob)
 	switch(state)
@@ -116,8 +116,8 @@
 				laws.add_inherent_law(M.newFreeFormLaw)
 				to_chat(user, "Added a freeform law.")
 
-			if(istype(object, /obj/item/device/mmi) || istype(object, /obj/item/device/mmi/posibrain))
-				var/obj/item/device/mmi/mmi = object
+			if(istype(object, /obj/item/mmi) || istype(object, /obj/item/mmi/posibrain))
+				var/obj/item/mmi/mmi = object
 				if(!mmi.brainmob)
 					to_chat(user, SPAN_WARNING("Sticking an empty [mmi] into the frame would sort of defeat the purpose."))
 					return
@@ -175,8 +175,8 @@
 	anchored = TRUE
 	state = 20 // So it doesn't interact based on the above. Not really necessary.
 
-/obj/structure/ai_core/deactivated/attackby(obj/item/device/aicard/card as obj, mob/user as mob)
-	if(istype(card, /obj/item/device/aicard)) //Is it?
+/obj/structure/ai_core/deactivated/attackby(obj/item/aicard/card as obj, mob/user as mob)
+	if(istype(card, /obj/item/aicard)) //Is it?
 		card.transfer_ai("INACTIVE", "AICARD", src, user)
 	return
 
@@ -193,7 +193,7 @@ That prevents a few funky behaviors.
 				var/mob/living/silicon/ai/target_ai = target
 				switch(interaction)
 					if("AICARD")
-						var/obj/item/device/aicard/card = src
+						var/obj/item/aicard/card = src
 						if(length(card.contents)) //If there is an AI on card.
 							to_chat(user, "\red <b>Transfer failed</b>: \black Existing AI found on this terminal. Remove existing AI to install a new one.")
 						else
@@ -242,7 +242,7 @@ That prevents a few funky behaviors.
 				var/obj/structure/ai_core/deactivated/target_core = target
 				switch(interaction)
 					if("AICARD")
-						var/obj/item/device/aicard/card = src
+						var/obj/item/aicard/card = src
 						var/mob/living/silicon/ai/card_ai = locate() in card //I love locate(). Best proc ever.
 						if(card_ai) //If AI exists on the card. Else nothing since both are empty.
 							card_ai.control_disabled = FALSE
@@ -270,7 +270,7 @@ That prevents a few funky behaviors.
 				var/obj/machinery/computer/aifixer/target_fixer = target
 				switch(interaction)
 					if("AICARD")
-						var/obj/item/device/aicard/card = src
+						var/obj/item/aicard/card = src
 						if(!length(target_fixer.contents))
 							if(!length(card.contents))
 								to_chat(user, "No AI to copy over!") //Well duh
@@ -349,7 +349,7 @@ That prevents a few funky behaviors.
 				var/obj/item/clothing/suit/space/space_ninja/target_ninja = target
 				switch(interaction)
 					if("AICARD")
-						var/obj/item/device/aicard/card = src
+						var/obj/item/aicard/card = src
 						if(target_ninja.s_initialized && user == target_ninja.affecting) //If the suit is initialized and the actor is the user.
 							var/mob/living/silicon/ai/ai_target = locate() in card //Determine if there is an AI on target card. Saves time when checking later.
 							var/mob/living/silicon/ai/ninja_ai = target_ninja.AI //Deterine if there is an AI in suit.

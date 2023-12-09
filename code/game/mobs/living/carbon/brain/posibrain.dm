@@ -1,4 +1,4 @@
-/obj/item/device/mmi/posibrain
+/obj/item/mmi/posibrain
 	name = "positronic brain"
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves."
 	icon = 'icons/obj/items/assemblies/assemblies.dmi'
@@ -21,7 +21,7 @@
 	var/searching = 0
 	var/askDelay = 10 * 60 * 1
 
-/obj/item/device/mmi/posibrain/New()
+/obj/item/mmi/posibrain/New()
 	src.brainmob = new(src)
 	src.brainmob.name = "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
 	src.brainmob.real_name = src.brainmob.name
@@ -34,7 +34,7 @@
 
 	..()
 
-/obj/item/device/mmi/posibrain/attack_self(mob/user as mob)
+/obj/item/mmi/posibrain/attack_self(mob/user as mob)
 	if(brainmob && !brainmob.key && searching == 0)
 		//Start the process of searching for a new user.
 		user << "\blue You carefully locate the manual activation switch and start the positronic brain's boot process."
@@ -44,7 +44,7 @@
 		spawn(600)
 			reset_search()
 
-/obj/item/device/mmi/posibrain/proc/request_player()
+/obj/item/mmi/posibrain/proc/request_player()
 	for(var/mob/dead/observer/O in GLOBL.player_list)
 		if(O.has_enabled_antagHUD == 1 && CONFIG_GET(antag_hud_restricted))
 			continue
@@ -54,7 +54,7 @@
 			if(O.client.prefs.be_special & BE_PAI)
 				question(O.client)
 
-/obj/item/device/mmi/posibrain/proc/question(var/client/C)
+/obj/item/mmi/posibrain/proc/question(var/client/C)
 	spawn(0)
 		if(!C)	return
 		var/response = alert(C, "Someone is requesting a personality for a positronic brain. Would you like to play as one?", "Positronic brain request", "Yes", "No", "Never for this round")
@@ -64,7 +64,7 @@
 		else if (response == "Never for this round")
 			C.prefs.be_special ^= BE_PAI
 
-/obj/item/device/mmi/posibrain/transfer_identity(mob/living/carbon/H)
+/obj/item/mmi/posibrain/transfer_identity(mob/living/carbon/H)
 	name = "positronic brain ([H])"
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
@@ -78,7 +78,7 @@
 	icon_state = "posibrain-occupied"
 	return
 
-/obj/item/device/mmi/posibrain/proc/transfer_personality(mob/candidate)
+/obj/item/mmi/posibrain/proc/transfer_personality(mob/candidate)
 	src.searching = 0
 	src.brainmob.mind = candidate.mind
 	//src.brainmob.key = candidate.key
@@ -96,7 +96,7 @@
 		M.show_message("\blue The positronic brain chimes quietly.")
 	icon_state = "posibrain-occupied"
 
-/obj/item/device/mmi/posibrain/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
+/obj/item/mmi/posibrain/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
 	if(src.brainmob && src.brainmob.key) return
 
 	src.searching = 0
@@ -106,7 +106,7 @@
 	for (var/mob/M in viewers(T))
 		M.show_message("\blue The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?")
 
-/obj/item/device/mmi/posibrain/examine()
+/obj/item/mmi/posibrain/examine()
 	set src in oview()
 
 	if(!usr || !src)	return
@@ -129,7 +129,7 @@
 	usr << msg
 	return
 
-/obj/item/device/mmi/posibrain/emp_act(severity)
+/obj/item/mmi/posibrain/emp_act(severity)
 	if(!src.brainmob)
 		return
 	else

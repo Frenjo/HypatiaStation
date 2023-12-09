@@ -62,7 +62,7 @@
 	var/list/available_channels = list()
 
 	//Headset for Poly to yell at engineers :)
-	var/obj/item/device/radio/headset/ears = null
+	var/obj/item/radio/headset/ears = null
 
 	//The thing the parrot is currently interested in. This gets used for items the parrot wants to pick up, mobs it wants to steal from,
 	//mobs it wants to attack or mobs that have attacked it
@@ -87,11 +87,11 @@
 	..()
 	if(!ears)
 		var/headset = pick( \
-			/obj/item/device/radio/headset/sec, \
-			/obj/item/device/radio/headset/engi, \
-			/obj/item/device/radio/headset/med, \
-			/obj/item/device/radio/headset/sci, \
-			/obj/item/device/radio/headset/cargo \
+			/obj/item/radio/headset/sec, \
+			/obj/item/radio/headset/engi, \
+			/obj/item/radio/headset/med, \
+			/obj/item/radio/headset/sci, \
+			/obj/item/radio/headset/cargo \
 		)
 		ears = new headset(src)
 
@@ -174,11 +174,11 @@
 						if(!item_to_add)
 							return
 
-						if( !istype(item_to_add,  /obj/item/device/radio/headset) )
+						if( !istype(item_to_add,  /obj/item/radio/headset) )
 							usr << "\red This object won't fit."
 							return
 
-						var/obj/item/device/radio/headset/headset_to_add = item_to_add
+						var/obj/item/radio/headset/headset_to_add = item_to_add
 
 						usr.drop_item()
 						headset_to_add.loc = src
@@ -704,7 +704,7 @@
 	)
 
 /mob/living/simple_animal/parrot/Poly/New()
-	ears = new /obj/item/device/radio/headset/engi(src)
+	ears = new /obj/item/radio/headset/engi(src)
 	available_channels = list(":e")
 	..()
 

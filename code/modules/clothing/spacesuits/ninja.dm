@@ -16,7 +16,7 @@
 	allowed = list(
 		/obj/item/gun, /obj/item/ammo_magazine, /obj/item/ammo_casing,
 		/obj/item/melee/baton, /obj/item/handcuffs, /obj/item/tank,
-		/obj/item/cell, /obj/item/device/suit_cooling_unit
+		/obj/item/cell, /obj/item/suit_cooling_unit
 	)
 	slowdown = 0
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
@@ -28,7 +28,7 @@
 	var/obj/item/cell/cell						//Starts out with a high-capacity cell using New().
 	var/datum/effect/system/spark_spread/spark_system	//To create sparks.
 	var/list/reagent_list = list(							//The reagents ids which are added to the suit at New().
-		"tricordrazine", "dexalinp", "spaceacillin", 
+		"tricordrazine", "dexalinp", "spaceacillin",
 		"anti_toxin", "nutriment", "radium", "hyronalin"
 	)
 
@@ -64,7 +64,7 @@
 
 		//Onboard AI related variables.
 	var/mob/living/silicon/ai/AI	//If there is an AI inside the suit.
-	var/obj/item/device/paicard/pai	//A slot for a pAI device
+	var/obj/item/paicard/pai	//A slot for a pAI device
 	var/obj/effect/overlay/hologram	//Is the AI hologram on or off? Visible only to the wearer of the suit. This works by attaching an image to a blank overlay.
 	var/flush = 0					//If an AI purge is in progress.
 	var/s_control = 1				//If user in control of the suit.

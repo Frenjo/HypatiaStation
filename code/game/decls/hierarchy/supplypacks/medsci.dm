@@ -74,15 +74,15 @@
 		/obj/item/tank/plasma,
 		/obj/item/tank/plasma,
 		/obj/item/tank/plasma,
-		/obj/item/device/assembly/igniter,
-		/obj/item/device/assembly/igniter,
-		/obj/item/device/assembly/igniter,
-		/obj/item/device/assembly/prox_sensor,
-		/obj/item/device/assembly/prox_sensor,
-		/obj/item/device/assembly/prox_sensor,
-		/obj/item/device/assembly/timer,
-		/obj/item/device/assembly/timer,
-		/obj/item/device/assembly/timer
+		/obj/item/assembly/igniter,
+		/obj/item/assembly/igniter,
+		/obj/item/assembly/igniter,
+		/obj/item/assembly/prox_sensor,
+		/obj/item/assembly/prox_sensor,
+		/obj/item/assembly/prox_sensor,
+		/obj/item/assembly/timer,
+		/obj/item/assembly/timer,
+		/obj/item/assembly/timer
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/plasma

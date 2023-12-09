@@ -12,8 +12,8 @@
 	name = "Health-Analyzer/Igniter/Armor Assembly"
 	desc = "A health-analyzer, igniter and armor assembly."
 	icon_state = "armor-igniter-analyzer"
-	var/obj/item/device/healthanalyzer/part1 = null
-	var/obj/item/device/igniter/part2 = null
+	var/obj/item/healthanalyzer/part1 = null
+	var/obj/item/igniter/part2 = null
 	var/obj/item/clothing/suit/armor/vest/part3 = null
 	status = null
 	flags = FPRINT | TABLEPASS| CONDUCT
@@ -22,8 +22,8 @@
 	desc = "A very intricate igniter and proximity sensor electrical assembly mounted onto top of a plasma tank."
 	name = "Proximity/Igniter/Plasma Tank Assembly"
 	icon_state = "prox-igniter-tank0"
-	var/obj/item/device/prox_sensor/part1 = null
-	var/obj/item/device/igniter/part2 = null
+	var/obj/item/prox_sensor/part1 = null
+	var/obj/item/igniter/part2 = null
 	var/obj/item/tank/plasma/part3 = null
 	status = 0.0
 	flags = FPRINT | TABLEPASS| CONDUCT
@@ -32,8 +32,8 @@
 	name = "Proximity/Igniter Assembly"
 	desc = "A proximity-activated igniter assembly."
 	icon_state = "prox-igniter0"
-	var/obj/item/device/prox_sensor/part1 = null
-	var/obj/item/device/igniter/part2 = null
+	var/obj/item/prox_sensor/part1 = null
+	var/obj/item/igniter/part2 = null
 	status = null
 	flags = FPRINT | TABLEPASS| CONDUCT
 
@@ -41,8 +41,8 @@
 	desc = "A very intricate igniter and signaller electrical assembly mounted onto top of a plasma tank."
 	name = "Radio/Igniter/Plasma Tank Assembly"
 	icon_state = "radio-igniter-tank"
-	var/obj/item/device/radio/signaler/part1 = null
-	var/obj/item/device/igniter/part2 = null
+	var/obj/item/radio/signaler/part1 = null
+	var/obj/item/igniter/part2 = null
 	var/obj/item/tank/plasma/part3 = null
 	status = 0.0
 	flags = FPRINT | TABLEPASS| CONDUCT
@@ -51,8 +51,8 @@
 	name = "Health-Analyzer/Igniter Assembly"
 	desc = "A health-analyzer igniter assembly."
 	icon_state = "timer-igniter0"
-	var/obj/item/device/healthanalyzer/part1 = null
-	var/obj/item/device/igniter/part2 = null
+	var/obj/item/healthanalyzer/part1 = null
+	var/obj/item/igniter/part2 = null
 	status = null
 	flags = FPRINT | TABLEPASS| CONDUCT
 	item_state = "electronic"
@@ -61,8 +61,8 @@
 	name = "Timer/Igniter Assembly"
 	desc = "A timer-activated igniter assembly."
 	icon_state = "timer-igniter0"
-	var/obj/item/device/timer/part1 = null
-	var/obj/item/device/igniter/part2 = null
+	var/obj/item/timer/part1 = null
+	var/obj/item/igniter/part2 = null
 	status = null
 	flags = FPRINT | TABLEPASS| CONDUCT
 
@@ -70,8 +70,8 @@
 	desc = "A very intricate igniter and timer assembly mounted onto top of a plasma tank."
 	name = "Timer/Igniter/Plasma Tank Assembly"
 	icon_state = "timer-igniter-tank0"
-	var/obj/item/device/timer/part1 = null
-	var/obj/item/device/igniter/part2 = null
+	var/obj/item/timer/part1 = null
+	var/obj/item/igniter/part2 = null
 	var/obj/item/tank/plasma/part3 = null
 	status = 0.0
 	flags = FPRINT | TABLEPASS| CONDUCT
@@ -80,8 +80,8 @@
 	name = "Radio/Igniter Assembly"
 	desc = "A radio-activated igniter assembly."
 	icon_state = "radio-igniter"
-	var/obj/item/device/radio/signaler/part1 = null
-	var/obj/item/device/igniter/part2 = null
+	var/obj/item/radio/signaler/part1 = null
+	var/obj/item/igniter/part2 = null
 	status = null
 	flags = FPRINT | TABLEPASS| CONDUCT
 
@@ -89,8 +89,8 @@
 	name = "Signaller/Infrared Assembly"
 	desc = "An infrared-activated radio signaller"
 	icon_state = "infrared-radio0"
-	var/obj/item/device/radio/signaler/part1 = null
-	var/obj/item/device/infra/part2 = null
+	var/obj/item/radio/signaler/part1 = null
+	var/obj/item/infra/part2 = null
 	status = null
 	flags = FPRINT | TABLEPASS| CONDUCT
 
@@ -98,8 +98,8 @@
 	name = "Signaller/Prox Sensor Assembly"
 	desc = "A proximity-activated radio signaller."
 	icon_state = "prox-radio0"
-	var/obj/item/device/radio/signaler/part1 = null
-	var/obj/item/device/prox_sensor/part2 = null
+	var/obj/item/radio/signaler/part1 = null
+	var/obj/item/prox_sensor/part2 = null
 	status = null
 	flags = FPRINT | TABLEPASS| CONDUCT
 
@@ -107,8 +107,8 @@
 	name = "Signaller/Timer Assembly"
 	desc = "A radio signaller activated by a count-down timer."
 	icon_state = "timer-radio0"
-	var/obj/item/device/radio/signaler/part1 = null
-	var/obj/item/device/timer/part2 = null
+	var/obj/item/radio/signaler/part1 = null
+	var/obj/item/timer/part2 = null
 	status = null
 	flags = FPRINT | TABLEPASS| CONDUCT
 */
@@ -242,7 +242,7 @@
 		src.add_fingerprint(user)
 */
 	return
-/*	else if ((istype(W, /obj/item/device/timer) && !( src.status )))
+/*	else if ((istype(W, /obj/item/timer) && !( src.status )))
 
 		var/obj/item/assembly/time_ignite/R = new /obj/item/assembly/time_ignite( user )
 		W.loc = R
@@ -677,7 +677,7 @@
 
 /obj/item/assembly/m_i_ptank/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if (istype(W, /obj/item/device/analyzer))
+	if (istype(W, /obj/item/analyzer))
 		src.part3.attackby(W, user)
 		return
 	if ((istype(W, /obj/item/wrench) && !( src.status )))
@@ -766,7 +766,7 @@
 /obj/item/assembly/t_i_ptank/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
-	if (istype(W, /obj/item/device/analyzer))
+	if (istype(W, /obj/item/analyzer))
 		src.part3.attackby(W, user)
 		return
 	if ((istype(W, /obj/item/wrench) && !( src.status )))
@@ -845,7 +845,7 @@
 /obj/item/assembly/r_i_ptank/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
-	if (istype(W, /obj/item/device/analyzer))
+	if (istype(W, /obj/item/analyzer))
 		src.part3.attackby(W, user)
 		return
 	if ((istype(W, /obj/item/wrench) && !( src.status )))
@@ -889,7 +889,7 @@
 
 /obj/item/clothing/suit/armor/a_i_a_ptank/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if (istype(W, /obj/item/device/analyzer))
+	if (istype(W, /obj/item/analyzer))
 		src.part4.attackby(W, user)
 		return
 	if ((istype(W, /obj/item/wrench) && !( src.status )))

@@ -69,7 +69,7 @@
 
 /obj/machinery/camera/proc/isMotion()
 	if(assembly && assembly.upgrades)
-		return (locate(/obj/item/device/assembly/prox_sensor) in assembly.upgrades)
+		return (locate(/obj/item/assembly/prox_sensor) in assembly.upgrades)
 	else
 		return 0
 
@@ -86,4 +86,4 @@
 // If you are upgrading Motion, and it isn't in the camera's New(), add it to the machines list.
 /obj/machinery/camera/proc/upgradeMotion()
 	if(assembly && assembly.upgrades)
-		assembly.upgrades.Add(new /obj/item/device/assembly/prox_sensor(assembly))
+		assembly.upgrades.Add(new /obj/item/assembly/prox_sensor(assembly))

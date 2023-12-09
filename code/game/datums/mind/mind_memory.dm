@@ -63,7 +63,7 @@
 			text += "<br>Flash: <a href='?src=\ref[src];revolution=flash'>give</a>"
 
 			var/list/L = current.get_contents()
-			var/obj/item/device/flash/flash = locate() in L
+			var/obj/item/flash/flash = locate() in L
 			if(isnotnull(flash))
 				if(!flash.broken)
 					text += "|<a href='?src=\ref[src];revolution=takeflash'>take</a>."
@@ -231,7 +231,7 @@
 
 	if(((src in global.CTticker.mode.head_revolutionaries) || (src in global.CTticker.mode.traitors) || (src in global.CTticker.mode.syndicates)) && ishuman(current))
 		text = "Uplink: <a href='?src=\ref[src];common=uplink'>give</a>"
-		var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
+		var/obj/item/uplink/hidden/suplink = find_syndicate_uplink()
 		var/crystals
 		if(suplink)
 			crystals = suplink.uses

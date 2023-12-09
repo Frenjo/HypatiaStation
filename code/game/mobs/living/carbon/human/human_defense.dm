@@ -80,8 +80,8 @@ emp_act
 			to_chat(src, SPAN_INFO("Your [C.name] was disrupted!"))
 			Stun(2)
 
-		if(istype(get_active_hand(), /obj/item/device/assembly/signaler))
-			var/obj/item/device/assembly/signaler/signaler = get_active_hand()
+		if(istype(get_active_hand(), /obj/item/assembly/signaler))
+			var/obj/item/assembly/signaler/signaler = get_active_hand()
 			if(signaler.deadman && prob(80))
 				src.visible_message(SPAN_WARNING("[src] triggers their deadman's switch!"))
 				signaler.signal()

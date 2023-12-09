@@ -7,11 +7,11 @@
 	maxbodytemp = 500
 	pass_flags = 1 // Pass through tables!
 
-	var/obj/item/device/radio/borg/radio = null
+	var/obj/item/radio/borg/radio = null
 	var/mob/living/silicon/ai/connected_ai = null
 	var/obj/item/cell/cell = null
 	var/obj/machinery/camera/camera = null
-	var/obj/item/device/mmi/mmi = null
+	var/obj/item/mmi/mmi = null
 	var/list/req_access = list(ACCESS_ROBOTICS) //Access needed to pop out the brain.
 
 	name = "Spider-bot"
@@ -44,8 +44,8 @@
 
 /mob/living/simple_animal/spiderbot/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
-	if(istype(O, /obj/item/device/mmi) || istype(O, /obj/item/device/mmi/posibrain))
-		var/obj/item/device/mmi/B = O
+	if(istype(O, /obj/item/mmi) || istype(O, /obj/item/mmi/posibrain))
+		var/obj/item/mmi/B = O
 		if(src.mmi) //There's already a brain in it.
 			user << "\red There's already a brain in [src]!"
 			return
@@ -96,7 +96,7 @@
 		else
 			user << "Need more welding fuel!"
 			return
-	else if(istype(O, /obj/item/card/id)||istype(O, /obj/item/device/pda))
+	else if(istype(O, /obj/item/card/id)||istype(O, /obj/item/pda))
 		if (!mmi)
 			user << "\red There's no reason to swipe your ID - the spiderbot has no brain to remove."
 			return 0
@@ -106,7 +106,7 @@
 		if(istype(O, /obj/item/card/id))
 			id_card = O
 		else
-			var/obj/item/device/pda/pda = O
+			var/obj/item/pda/pda = O
 			id_card = pda.id
 
 		if(ACCESS_ROBOTICS in id_card.access)
@@ -149,7 +149,7 @@
 				if ((M.client && !( M.blinded )))
 					M.show_message("\red [user] gently taps [src] with the [O]. ")
 
-/mob/living/simple_animal/spiderbot/proc/transfer_personality(var/obj/item/device/mmi/M as obj)
+/mob/living/simple_animal/spiderbot/proc/transfer_personality(var/obj/item/mmi/M as obj)
 
 		src.mind = M.brainmob.mind
 		src.mind.key = M.brainmob.key
@@ -166,10 +166,10 @@
 
 /mob/living/simple_animal/spiderbot/proc/update_icon()
 	if(mmi)
-		if(istype(mmi,/obj/item/device/mmi))
+		if(istype(mmi,/obj/item/mmi))
 			icon_state = "spiderbot-chassis-mmi"
 			icon_living = "spiderbot-chassis-mmi"
-		if(istype(mmi, /obj/item/device/mmi/posibrain))
+		if(istype(mmi, /obj/item/mmi/posibrain))
 			icon_state = "spiderbot-chassis-posi"
 			icon_living = "spiderbot-chassis-posi"
 
@@ -193,7 +193,7 @@
 
 /mob/living/simple_animal/spiderbot/New()
 
-	radio = new /obj/item/device/radio/borg(src)
+	radio = new /obj/item/radio/borg(src)
 	camera = new /obj/machinery/camera(src)
 	camera.c_tag = "Spiderbot-[real_name]"
 	camera.network = list("SS13")

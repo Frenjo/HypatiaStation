@@ -210,11 +210,11 @@
 /proc/FindNameFromID(mob/living/carbon/human/H)
 	ASSERT(istype(H))
 	var/obj/item/card/id/C = H.get_active_hand()
-	if(istype(C) || istype(C, /obj/item/device/pda))
+	if(istype(C) || istype(C, /obj/item/pda))
 		var/obj/item/card/id/ID = C
 
-		if(istype(C, /obj/item/device/pda))
-			var/obj/item/device/pda/pda = C
+		if(istype(C, /obj/item/pda))
+			var/obj/item/pda/pda = C
 			ID = pda.id
 		if(!istype(ID))
 			ID = null
@@ -224,11 +224,11 @@
 
 	C = H.wear_id
 
-	if(istype(C) || istype(C, /obj/item/device/pda))
+	if(istype(C) || istype(C, /obj/item/pda))
 		var/obj/item/card/id/ID = C
 
-		if(istype(C, /obj/item/device/pda))
-			var/obj/item/device/pda/pda = C
+		if(istype(C, /obj/item/pda))
+			var/obj/item/pda/pda = C
 			ID = pda.id
 		if(!istype(ID))
 			ID = null

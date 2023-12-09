@@ -29,7 +29,7 @@
 	var/module_state_2 = null
 	var/module_state_3 = null
 
-	var/obj/item/device/radio/borg/radio = null
+	var/obj/item/radio/borg/radio = null
 	var/mob/living/silicon/ai/connected_ai = null
 	var/obj/item/cell/cell = null
 	var/obj/machinery/camera/camera = null
@@ -37,9 +37,9 @@
 	// Components are basically robot organs.
 	var/list/components = list()
 
-	var/obj/item/device/mmi/mmi = null
+	var/obj/item/mmi/mmi = null
 
-	var/obj/item/device/pda/ai/rbPDA = null
+	var/obj/item/pda/ai/rbPDA = null
 
 	var/opened = FALSE
 	var/emagged = FALSE
@@ -124,7 +124,7 @@
 		else
 			lawupdate = FALSE
 
-	radio = new /obj/item/device/radio/borg(src)
+	radio = new /obj/item/radio/borg(src)
 	if(!scrambledcodes && isnull(camera))
 		camera = new /obj/machinery/camera(src)
 		camera.c_tag = real_name
@@ -342,7 +342,7 @@
 			C.wrapped = W
 			C.install()
 
-	else if(istype(W, /obj/item/wirecutters) || istype(W, /obj/item/device/multitool))
+	else if(istype(W, /obj/item/wirecutters) || istype(W, /obj/item/multitool))
 		if(wiresexposed)
 			interact(user)
 		else
@@ -360,13 +360,13 @@
 			to_chat(user, "Unable to locate a radio.")
 		updateicon()
 
-	else if(istype(W, /obj/item/device/encryptionkey/) && opened)
+	else if(istype(W, /obj/item/encryptionkey/) && opened)
 		if(isnotnull(radio))//sanityyyyyy
 			radio.attackby(W, user)//GTFO, you have your own procs
 		else
 			to_chat(user, "Unable to locate a radio.")
 
-	else if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))			// trying to unlock the interface with an ID card
+	else if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))			// trying to unlock the interface with an ID card
 		if(emagged)//still allow them to open the cover
 			to_chat(user, "The interface seems slightly damaged.")
 		if(opened)
@@ -459,7 +459,7 @@
 				to_chat(usr, "Upgrade error!")
 
 	else
-		if(!(istype(W, /obj/item/device/robotanalyzer) || istype(W, /obj/item/device/healthanalyzer)))
+		if(!(istype(W, /obj/item/robotanalyzer) || istype(W, /obj/item/healthanalyzer)))
 			spark_system.start()
 		return ..()
 
@@ -634,7 +634,7 @@
 // setup the PDA and its name
 /mob/living/silicon/robot/proc/setup_PDA()
 	if(isnull(rbPDA))
-		rbPDA = new /obj/item/device/pda/ai(src)
+		rbPDA = new /obj/item/pda/ai(src)
 	rbPDA.set_name_and_job(custom_name, "[modtype] [braintype]")
 
 /mob/living/silicon/robot/proc/pick_module()
@@ -733,7 +733,7 @@
 /mob/living/silicon/robot/proc/updatename(prefix as text)
 	if(prefix)
 		modtype = prefix
-	if(istype(mmi, /obj/item/device/mmi/posibrain))
+	if(istype(mmi, /obj/item/mmi/posibrain))
 		braintype = "Android"
 	else
 		braintype = "Cyborg"

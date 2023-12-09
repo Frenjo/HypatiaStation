@@ -331,7 +331,7 @@ ________________________________________________________________________________
 			dat += "<h4><img src=sos_6.png> Detected PDAs:</h4>"
 			dat += "<ul>"
 			var/count = 0
-			for (var/obj/item/device/pda/P in world)
+			for (var/obj/item/pda/P in world)
 				if (!P.owner||P.toff)
 					continue
 				dat += "<li><a href='byond://?src=\ref[src];choice=Message;target=\ref[P]'>[P]</a>"
@@ -517,7 +517,7 @@ ________________________________________________________________________________
 				to_chat(A, "\red <b>ERROR</b>: \black Not enough energy remaining.")
 
 		if("Message")
-			var/obj/item/device/pda/P = locate(href_list["target"])
+			var/obj/item/pda/P = locate(href_list["target"])
 			var/t = input(U, "Please enter untraceable message.") as text
 			t = copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
 			if(!t||U.stat||U.wear_suit!=src||!s_initialized)//Wow, another one of these. Man...
@@ -789,13 +789,13 @@ ________________________________________________________________________________
 
 /obj/item/clothing/suit/space/space_ninja/attackby(obj/item/I, mob/U)
 	if(U==affecting)//Safety, in case you try doing this without wearing the suit/being the person with the suit.
-		if(istype(I, /obj/item/device/aicard))//If it's an AI card.
+		if(istype(I, /obj/item/aicard))//If it's an AI card.
 			if(s_control)
 				I:transfer_ai("NINJASUIT","AICARD",src,U)
 			else
 				to_chat(U, "\red <b>ERROR</b>: \black Remote access channel disabled.")
 			return//Return individually so that ..() can run properly at the end of the proc.
-		else if(istype(I, /obj/item/device/paicard) && !pai)//If it's a pai card.
+		else if(istype(I, /obj/item/paicard) && !pai)//If it's a pai card.
 			U:drop_item()
 			I.loc = src
 			pai = I

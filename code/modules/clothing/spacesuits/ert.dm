@@ -29,9 +29,9 @@
 	item_state = "suit-command"
 	w_class = 3
 	allowed = list(
-		/obj/item/device/flashlight, /obj/item/tank, /obj/item/device/t_scanner, /obj/item/rcd, /obj/item/crowbar,
-		/obj/item/screwdriver, /obj/item/weldingtool, /obj/item/wirecutters, /obj/item/wrench, /obj/item/device/multitool,
-		/obj/item/device/radio, /obj/item/device/analyzer, /obj/item/gun/energy/laser, /obj/item/gun/energy/pulse_rifle,
+		/obj/item/flashlight, /obj/item/tank, /obj/item/t_scanner, /obj/item/rcd, /obj/item/crowbar,
+		/obj/item/screwdriver, /obj/item/weldingtool, /obj/item/wirecutters, /obj/item/wrench, /obj/item/multitool,
+		/obj/item/radio, /obj/item/analyzer, /obj/item/gun/energy/laser, /obj/item/gun/energy/pulse_rifle,
 		/obj/item/gun/energy/taser, /obj/item/melee/baton, /obj/item/gun/energy/gun
 	)
 	slowdown = 1

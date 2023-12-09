@@ -13,10 +13,10 @@
 
 	starts_with = list(
 		/obj/item/wardrobe/scientist,
-		/obj/item/device/pda/toxins,
+		/obj/item/pda/toxins,
 		/obj/item/tank/oxygen,
 		/obj/item/clothing/mask/gas,
-		/obj/item/device/radio/headset/headset_sci
+		/obj/item/radio/headset/headset_sci
 	)
 
 /obj/structure/closet/secure_closet/scientist/New()
@@ -37,14 +37,14 @@
 	icon_opened = "rdsecureopen"
 	icon_broken = "rdsecurebroken"
 	icon_off = "rdsecureoff"
-	
+
 	starts_with = list(
 		/obj/item/wardrobe/rd,
 		/obj/item/clipboard,
 		/obj/item/tank/air,
 		/obj/item/clothing/mask/gas,
-		/obj/item/device/flash,
-		/obj/item/device/radio/headset/heads/rd
+		/obj/item/flash,
+		/obj/item/radio/headset/heads/rd
 	)
 
 /obj/structure/closet/secure_closet/rd/New()

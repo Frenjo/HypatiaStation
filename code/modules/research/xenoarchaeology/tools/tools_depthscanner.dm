@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Depth scanner - scans rock turfs / boulders and tells players if there is anything interesting inside, logs all finds + coordinates + times
 //also known as the x-ray diffractor
-/obj/item/device/depth_scanner
+/obj/item/depth_scanner
 	name = "depth analysis scanner"
 	desc = "Used to check spatial depth and density of rock outcroppings."
 	icon = 'icons/obj/items/devices/pda.dmi'
@@ -22,7 +22,7 @@
 	var/dissonance_spread = 1
 	var/material = "unknown"
 
-/obj/item/device/depth_scanner/proc/scan_atom(mob/user, atom/A)
+/obj/item/depth_scanner/proc/scan_atom(mob/user, atom/A)
 	user.visible_message(SPAN_INFO("[user] scans [A], the air around them humming gently."))
 	if(istype(A, /turf/simulated/mineral))
 		var/turf/simulated/mineral/M = A
@@ -65,10 +65,10 @@
 			for(var/mob/L in range(src, 1))
 				to_chat(L, SPAN_INFO("\icon[src] [src] pings [pick("madly", "wildly", "excitedly", "crazily")]!."))
 
-/obj/item/device/depth_scanner/attack_self(mob/user as mob)
+/obj/item/depth_scanner/attack_self(mob/user as mob)
 	return src.interact(user)
 
-/obj/item/device/depth_scanner/interact(mob/user as mob)
+/obj/item/depth_scanner/interact(mob/user as mob)
 	var/dat = "<b>Co-ordinates with positive matches</b><br>"
 	dat += "<A href='?src=\ref[src];clear=0'>== Clear all ==</a><br>"
 	if(current)
@@ -102,7 +102,7 @@
 	user << browse(dat,"window=depth_scanner;size=300x500")
 	onclose(user, "depth_scanner")
 
-/obj/item/device/depth_scanner/Topic(href, href_list)
+/obj/item/depth_scanner/Topic(href, href_list)
 	..()
 	usr.set_machine(src)
 

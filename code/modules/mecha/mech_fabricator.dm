@@ -199,8 +199,8 @@
 	return 0
 
 /obj/machinery/mecha_part_fabricator/check_access(obj/item/card/id/I)
-	if(istype(I, /obj/item/device/pda))
-		var/obj/item/device/pda/pda = I
+	if(istype(I, /obj/item/pda))
+		var/obj/item/pda/pda = I
 		I = pda.id
 	if(!istype(I) || !I.access) //not ID or no access
 		return 0

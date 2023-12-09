@@ -1,6 +1,6 @@
 GLOBAL_GLOBL_LIST_NEW(gps_list)
 
-/obj/item/device/gps
+/obj/item/gps
 	name = "global positioning system"
 	desc = "Helping lost spacemen find their way through the planets since 2016."
 	icon = 'icons/obj/telescience.dmi'
@@ -12,17 +12,17 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 	var/gpstag = "COM0"
 	var/emped = FALSE
 
-/obj/item/device/gps/New()
+/obj/item/gps/New()
 	. = ..()
 	GLOBL.gps_list.Add(src)
 	name = "global positioning system ([gpstag])"
 	overlays += "working"
 
-/obj/item/device/gps/Destroy()
+/obj/item/gps/Destroy()
 	GLOBL.gps_list.Remove(src)
 	return ..()
 
-/obj/item/device/gps/emp_act(severity)
+/obj/item/gps/emp_act(severity)
 	emped = TRUE
 	overlays.Remove("working")
 	overlays.Add("emp")
@@ -31,7 +31,7 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 		overlays.Remove("emp")
 		overlays.Add("working")
 
-/obj/item/device/gps/attack_self(mob/user as mob)
+/obj/item/gps/attack_self(mob/user as mob)
 	var/html
 	if(emped)
 		html += "ERROR"
@@ -39,7 +39,7 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 		html += "<BR><A href='?src=\ref[src];tag=1'>Set Tag</A> "
 		html += "<BR>Tag: [gpstag]"
 
-		for(var/obj/item/device/gps/G in GLOBL.gps_list)
+		for(var/obj/item/gps/G in GLOBL.gps_list)
 			var/turf/pos = get_turf(G)
 			var/area/gps_area = get_area(G)
 			var/tracked_gpstag = G.gpstag
@@ -53,7 +53,7 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
 	popup.open()
 
-/obj/item/device/gps/Topic(href, href_list)
+/obj/item/gps/Topic(href, href_list)
 	..()
 	if(href_list["tag"] )
 		var/a = input("Please enter desired tag.", name, gpstag) as text
@@ -63,10 +63,10 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 			name = "global positioning system ([gpstag])"
 			attack_self(usr)
 
-/obj/item/device/gps/science
+/obj/item/gps/science
 	icon_state = "gps-s"
 	gpstag = "SCI0"
 
-/obj/item/device/gps/engineering
+/obj/item/gps/engineering
 	icon_state = "gps-e"
 	gpstag = "ENG0"

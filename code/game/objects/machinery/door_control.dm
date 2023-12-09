@@ -57,7 +57,7 @@
 		return
 	}
 	*/
-	if(istype(W, /obj/item/device/detective_scanner))
+	if(istype(W, /obj/item/detective_scanner))
 		return
 	if(istype(W, /obj/item/card/emag))
 		req_access = list()
@@ -160,7 +160,7 @@
 	return src.attack_hand(user)
 
 /obj/machinery/driver_button/attackby(obj/item/W, mob/user as mob)
-	if(istype(W, /obj/item/device/detective_scanner))
+	if(istype(W, /obj/item/detective_scanner))
 		return
 	return src.attack_hand(user)
 

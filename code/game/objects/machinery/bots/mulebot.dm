@@ -871,7 +871,7 @@
 	visible_message(SPAN_DANGER("[src] blows apart!"), 1)
 	var/turf/T = get_turf(src)
 
-	new /obj/item/device/assembly/prox_sensor(T)
+	new /obj/item/assembly/prox_sensor(T)
 	new /obj/item/stack/rods(T)
 	new /obj/item/stack/rods(T)
 	new /obj/item/stack/cable_coil/cut(T)

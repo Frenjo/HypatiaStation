@@ -1103,7 +1103,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 				msg_admin_attack("[user] ([user.ckey]) debrained [brainmob] ([brainmob.ckey]) (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 				if(istype(src, /obj/item/organ/head/posi))
-					var/obj/item/device/mmi/posibrain/B = new(loc)
+					var/obj/item/mmi/posibrain/B = new(loc)
 					user.put_in_hands(B)
 					B.transfer_identity(brainmob)
 				else

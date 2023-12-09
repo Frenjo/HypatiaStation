@@ -1,4 +1,4 @@
-/obj/item/device/assembly/prox_sensor
+/obj/item/assembly/prox_sensor
 	name = "proximity sensor"
 	desc = "Used for scanning and alerting when someone enters a certain proximity."
 	icon_state = "prox"
@@ -15,14 +15,14 @@
 
 	var/range = 2
 
-/obj/item/device/assembly/prox_sensor/activate()
+/obj/item/assembly/prox_sensor/activate()
 	if(!..())
 		return 0 //Cooldown check
 	timing = !timing
 	update_icon()
 	return 0
 
-/obj/item/device/assembly/prox_sensor/toggle_secure()
+/obj/item/assembly/prox_sensor/toggle_secure()
 	secured = !secured
 	if(secured)
 		GLOBL.processing_objects.Add(src)
@@ -33,14 +33,14 @@
 	update_icon()
 	return secured
 
-/obj/item/device/assembly/prox_sensor/HasProximity(atom/movable/AM as mob|obj)
+/obj/item/assembly/prox_sensor/HasProximity(atom/movable/AM as mob|obj)
 	if(istype(AM, /obj/effect/beam))
 		return
 	if(AM.move_speed < 12)
 		sense()
 	return
 
-/obj/item/device/assembly/prox_sensor/proc/sense()
+/obj/item/assembly/prox_sensor/proc/sense()
 	var/turf/mainloc = get_turf(src)
 //	if(scanning && cooldown <= 0)
 //		mainloc.visible_message("\icon[src] *boop* *boop*", "*boop* *boop*")
@@ -54,7 +54,7 @@
 		process_cooldown()
 	return
 
-/obj/item/device/assembly/prox_sensor/process()
+/obj/item/assembly/prox_sensor/process()
 	if(scanning)
 		var/turf/mainloc = get_turf(src)
 		for(var/mob/living/A in range(range,mainloc))
@@ -69,20 +69,20 @@
 		time = 10
 	return
 
-/obj/item/device/assembly/prox_sensor/dropped()
+/obj/item/assembly/prox_sensor/dropped()
 	spawn(0)
 		sense()
 		return
 	return
 
-/obj/item/device/assembly/prox_sensor/proc/toggle_scan()
+/obj/item/assembly/prox_sensor/proc/toggle_scan()
 	if(!secured)
 		return 0
 	scanning = !scanning
 	update_icon()
 	return
 
-/obj/item/device/assembly/prox_sensor/update_icon()
+/obj/item/assembly/prox_sensor/update_icon()
 	overlays.Cut()
 	attached_overlays = list()
 	if(timing)
@@ -98,12 +98,12 @@
 		grenade.primed(scanning)
 	return
 
-/obj/item/device/assembly/prox_sensor/Move()
+/obj/item/assembly/prox_sensor/Move()
 	..()
 	sense()
 	return
 
-/obj/item/device/assembly/prox_sensor/interact(mob/user as mob) //TODO: Change this to the wires thingy
+/obj/item/assembly/prox_sensor/interact(mob/user as mob) //TODO: Change this to the wires thingy
 	if(!secured)
 		user.show_message(SPAN_WARNING("The [name] is unsecured!"))
 		return 0
@@ -118,7 +118,7 @@
 	onclose(user, "prox")
 	return
 
-/obj/item/device/assembly/prox_sensor/Topic(href, href_list)
+/obj/item/assembly/prox_sensor/Topic(href, href_list)
 	..()
 	if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 		usr << browse(null, "window=prox")

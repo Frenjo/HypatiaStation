@@ -27,14 +27,14 @@
 	starts_with = list(
 		/obj/item/crowbar/red,
 		/obj/item/extinguisher/mini,
-		/obj/item/device/radio
+		/obj/item/radio
 	)
 
 /obj/item/storage/toolbox/emergency/New()
 	if(prob(50))
-		starts_with.Add(/obj/item/device/flashlight)
+		starts_with.Add(/obj/item/flashlight)
 	else
-		starts_with.Add(/obj/item/device/flashlight/flare)
+		starts_with.Add(/obj/item/flashlight/flare)
 	. = ..()
 
 /obj/item/storage/toolbox/mechanical
@@ -47,7 +47,7 @@
 		/obj/item/wrench,
 		/obj/item/weldingtool,
 		/obj/item/crowbar,
-		/obj/item/device/analyzer,
+		/obj/item/analyzer,
 		/obj/item/wirecutters
 	)
 
@@ -59,7 +59,7 @@
 	starts_with = list(
 		/obj/item/screwdriver,
 		/obj/item/wirecutters,
-		/obj/item/device/t_scanner,
+		/obj/item/t_scanner,
 		/obj/item/crowbar
 	)
 
@@ -86,7 +86,7 @@
 		/obj/item/weldingtool,
 		/obj/item/crowbar,
 		/obj/item/wirecutters,
-		/obj/item/device/multitool
+		/obj/item/multitool
 	)
 
 /obj/item/storage/toolbox/syndicate/New()

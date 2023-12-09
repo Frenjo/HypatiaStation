@@ -33,7 +33,7 @@
 	//var/datum/gas_mixture/cabin_air
 	//var/obj/machinery/atmospherics/unary/portables_connector/connected_port = null
 
-	var/obj/item/device/radio/radio = null
+	var/obj/item/radio/radio = null
 
 	var/max_temperature = 2500
 	//var/internal_damage_threshold = 50 //health percentage below which internal damage is possible

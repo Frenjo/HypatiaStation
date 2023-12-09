@@ -253,14 +253,14 @@
 /decl/hierarchy/supply_pack/engineering/robotics
 	name = "Robotics assembly crate"
 	contains = list(
-		/obj/item/device/assembly/prox_sensor,
-		/obj/item/device/assembly/prox_sensor,
-		/obj/item/device/assembly/prox_sensor,
+		/obj/item/assembly/prox_sensor,
+		/obj/item/assembly/prox_sensor,
+		/obj/item/assembly/prox_sensor,
 		/obj/item/storage/toolbox/electrical,
-		/obj/item/device/flash,
-		/obj/item/device/flash,
-		/obj/item/device/flash,
-		/obj/item/device/flash,
+		/obj/item/flash,
+		/obj/item/flash,
+		/obj/item/flash,
+		/obj/item/flash,
 		/obj/item/cell/high,
 		/obj/item/cell/high
 	)

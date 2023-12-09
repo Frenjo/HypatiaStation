@@ -10,23 +10,24 @@
 	w_class = 1.0
 	m_amt = 80
 /*
-/obj/item/device/jammer
+/obj/item/jammer
 	name = "strange device"
 	desc = "It blinks and has an antenna on it.  Weird."
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "t-ray0"
 	var/on = 0
 	flags = FPRINT|TABLEPASS
 	w_class = 1
-	var/list/obj/item/device/radio/Old = list()
-	var/list/obj/item/device/radio/Curr = list()
+	var/list/obj/item/radio/Old = list()
+	var/list/obj/item/radio/Curr = list()
 	var/time_remaining = 5
 
-/obj/item/device/jammer/New()
+/obj/item/jammer/New()
 	..()
 	time_remaining = rand(10,20) // ~2-4 BYOND seconds of use.
 	return
 
-/obj/item/device/jammer/attack_self(mob/user)
+/obj/item/jammer/attack_self(mob/user)
 
 	if(time_remaining > 0)
 		on = !on
@@ -39,13 +40,13 @@
 		icon_state = "t-ray0"
 		user << "It's fried itself from overuse!"
 		if(Old)
-			for(var/obj/item/device/radio/T in Old)
+			for(var/obj/item/radio/T in Old)
 				T.scrambleoverride = 0
 			Old = null
 			Curr = null
 
 
-/obj/item/device/jammer/process()
+/obj/item/jammer/process()
 	if(!on)
 		processing_objects.Remove(src)
 		return null
@@ -53,16 +54,16 @@
 	Old = Curr
 	Curr = list()
 
-	for(var/obj/item/device/radio/T in range(3, src.loc) )
+	for(var/obj/item/radio/T in range(3, src.loc) )
 
 		T.scrambleoverride = 1
 		Curr |= T
-		for(var/obj/item/device/radio/V in Old)
+		for(var/obj/item/radio/V in Old)
 			if(V == T)
 				Old -= V
 				break
 
-	for(var/obj/item/device/radio/T in Old)
+	for(var/obj/item/radio/T in Old)
 		T.scrambleoverride = 0
 
 	time_remaining--

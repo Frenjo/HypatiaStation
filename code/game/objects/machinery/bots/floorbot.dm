@@ -107,7 +107,7 @@
 		amount += loaded
 		to_chat(user, SPAN_INFO("You load [loaded] tiles into the floorbot. He now contains [amount] tiles."))
 		updateicon()
-	else if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
+	else if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(allowed(usr) && !open && !emagged)
 			locked = !locked
 			FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
@@ -374,7 +374,7 @@
 	var/obj/item/storage/toolbox/mechanical/N = new /obj/item/storage/toolbox/mechanical(T)
 	N.contents = list()
 
-	new /obj/item/device/assembly/prox_sensor(T)
+	new /obj/item/assembly/prox_sensor(T)
 
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(T)

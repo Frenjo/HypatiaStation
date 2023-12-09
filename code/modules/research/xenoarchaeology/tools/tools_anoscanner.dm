@@ -1,4 +1,4 @@
-/obj/item/device/ano_scanner
+/obj/item/ano_scanner
 	name = "Alden-Saraspova counter"
 	desc = "Aids in triangulation of exotic particles."
 	icon = 'icons/obj/xenoarchaeology.dmi'
@@ -12,15 +12,15 @@
 	var/last_scan_time = 0
 	var/scan_delay = 25
 
-/obj/item/device/ano_scanner/New()
+/obj/item/ano_scanner/New()
 	..()
 	spawn(0)
 		scan()
 
-/obj/item/device/ano_scanner/attack_self(mob/user as mob)
+/obj/item/ano_scanner/attack_self(mob/user as mob)
 	return src.interact(user)
 
-/obj/item/device/ano_scanner/interact(mob/user as mob)
+/obj/item/ano_scanner/interact(mob/user as mob)
 	var/message = "Background radiation levels detected."
 	if(nearest_artifact_distance >= 0)
 		message = "Exotic energy detected on wavelength '[nearest_artifact_id]' in a radius of [nearest_artifact_distance]m"
@@ -29,7 +29,7 @@
 		spawn(0)
 			scan()
 
-/obj/item/device/ano_scanner/proc/scan()
+/obj/item/ano_scanner/proc/scan()
 	set background = BACKGROUND_ENABLED
 
 	last_scan_time = world.time

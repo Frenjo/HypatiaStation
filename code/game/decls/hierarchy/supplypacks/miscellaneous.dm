@@ -109,7 +109,7 @@
 
 
 /decl/hierarchy/supply_pack/miscellaneous/eftpos
-	contains = list(/obj/item/device/eftpos)
+	contains = list(/obj/item/eftpos)
 	name = "EFTPOS scanner"
 	cost = 10
 	containertype = /obj/structure/closet/crate

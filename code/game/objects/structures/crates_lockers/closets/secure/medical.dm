@@ -71,7 +71,7 @@
 		/obj/item/clothing/suit/storage/fr_jacket,
 		/obj/item/clothing/shoes/white,
 	//	/obj/item/cartridge/medical,
-		/obj/item/device/radio/headset/med,
+		/obj/item/radio/headset/med,
 		/obj/item/storage/belt/medical
 	)
 
@@ -126,9 +126,9 @@
 		/obj/item/cartridge/cmo,
 		/obj/item/clothing/gloves/latex,
 		/obj/item/clothing/shoes/brown,
-		/obj/item/device/radio/headset/heads/cmo,
+		/obj/item/radio/headset/heads/cmo,
 		/obj/item/storage/belt/medical,
-		/obj/item/device/flash,
+		/obj/item/flash,
 		/obj/item/reagent_containers/hypospray
 	)
 
@@ -158,10 +158,10 @@
 	req_access = list(ACCESS_SURGERY)
 
 	starts_with = list(
-		/obj/item/device/assembly/signaler,
-		/obj/item/device/radio/electropack,
-		/obj/item/device/radio/electropack,
-		/obj/item/device/radio/electropack
+		/obj/item/assembly/signaler,
+		/obj/item/radio/electropack,
+		/obj/item/radio/electropack,
+		/obj/item/radio/electropack
 	)
 
 /*

@@ -8,12 +8,12 @@
 
 	shoes = /obj/item/clothing/shoes/black
 
-	l_ear = /obj/item/device/radio/headset
+	l_ear = /obj/item/radio/headset
 
 	id_slot = SLOT_ID_WEAR_ID
 	id_type = /obj/item/card/id
 	pda_slot = SLOT_ID_BELT
-	pda_type = /obj/item/device/pda
+	pda_type = /obj/item/pda
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 

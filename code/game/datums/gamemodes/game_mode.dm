@@ -46,18 +46,18 @@ Stealth and Camouflage Items;
 /obj/item/clothing/shoes/syndigaloshes:2:No-Slip Syndicate Shoes;
 /obj/item/card/id/syndicate:2:Agent ID card;
 /obj/item/clothing/mask/gas/voice:4:Voice Changer;
-/obj/item/device/chameleon:4:Chameleon-Projector;
+/obj/item/chameleon:4:Chameleon-Projector;
 Whitespace:Seperator;
 Devices and Tools;
 /obj/item/card/emag:3:Cryptographic Sequencer;
 /obj/item/storage/toolbox/syndicate:1:Fully Loaded Toolbox;
 /obj/item/storage/box/syndie_kit/space:3:Space Suit;
 /obj/item/clothing/glasses/thermal/syndi:3:Thermal Imaging Glasses;
-/obj/item/device/encryptionkey/binary:3:Binary Translator Key;
+/obj/item/encryptionkey/binary:3:Binary Translator Key;
 /obj/item/aiModule/syndicate:7:Hacked AI Upload Module;
 /obj/item/plastique:2:C-4 (Destroys walls);
-/obj/item/device/powersink:5:Powersink (DANGER!);
-/obj/item/device/radio/beacon/syndicate:7:Singularity Beacon (DANGER!);
+/obj/item/powersink:5:Powersink (DANGER!);
+/obj/item/radio/beacon/syndicate:7:Singularity Beacon (DANGER!);
 /obj/item/circuitboard/teleporter:20:Teleporter Circuit Board;
 Whitespace:Seperator;
 Implants;
@@ -228,7 +228,7 @@ Implants;
 				suspects.Add(man)
 
 				// If they're a traitor or likewise, give them extra TC in exchange.
-				var/obj/item/device/uplink/hidden/suplink = man.mind.find_syndicate_uplink()
+				var/obj/item/uplink/hidden/suplink = man.mind.find_syndicate_uplink()
 				if(isnotnull(suplink))
 					var/extra = 4
 					suplink.uses += extra

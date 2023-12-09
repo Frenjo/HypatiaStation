@@ -8,7 +8,7 @@
 	icon_state = "reishi"
 	potency = 10
 	filling_color = "#FF4800"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/mushroom/reishi/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1)
@@ -18,7 +18,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/reishi/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+	if(istype(O, /obj/item/analyzer/plant_analyzer))
 		to_chat(user, SPAN_INFO("- Sleep Toxin: <i>[reagents.get_reagent_amount("stoxin")]%</i>"))
 		to_chat(user, SPAN_INFO("- Space Drugs: <i>[reagents.get_reagent_amount("space_drugs")]%</i>"))
 
@@ -32,7 +32,7 @@
 	icon_state = "amanita"
 	potency = 10
 	filling_color = "#FF0000"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/mushroom/amanita/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1)
@@ -42,7 +42,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/amanita/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+	if(istype(O, /obj/item/analyzer/plant_analyzer))
 		to_chat(user, SPAN_INFO("- Amatoxins: <i>[reagents.get_reagent_amount("amatoxin")]%</i>"))
 		to_chat(user, SPAN_INFO("- Psilocybin: <i>[reagents.get_reagent_amount("psilocybin")]%</i>"))
 
@@ -56,7 +56,7 @@
 	icon_state = "angel"
 	potency = 35
 	filling_color = "#FFDEDE"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/mushroom/angel/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
@@ -66,7 +66,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/angel/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+	if(istype(O, /obj/item/analyzer/plant_analyzer))
 		to_chat(user, SPAN_INFO("- Amatoxins: <i>[reagents.get_reagent_amount("amatoxin")]%</i>"))
 		to_chat(user, SPAN_INFO("- Psilocybin: <i>[reagents.get_reagent_amount("psilocybin")]%</i>"))
 
@@ -80,7 +80,7 @@
 	icon_state = "libertycap"
 	potency = 15
 	filling_color = "#F714BE"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
@@ -89,7 +89,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+	if(istype(O, /obj/item/analyzer/plant_analyzer))
 		to_chat(user, SPAN_INFO("- Psilocybin: <i>[reagents.get_reagent_amount("psilocybin")]%</i>"))
 		to_chat(user, SPAN_INFO("- Mineral Content: <i>[reagents.get_reagent_amount("gold")]%</i>"))
 
@@ -102,7 +102,7 @@
 	desc = "<I>Cantharellus Cibarius</I>: These jolly yellow little shrooms sure look tasty!"
 	icon_state = "chanterelle"
 	filling_color = "#FFE991"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 25), 1))
@@ -125,7 +125,7 @@
 	yield = 3
 	potency = 30
 	plant_type = 2
-	
+
 /obj/item/reagent_containers/food/snacks/grown/mushroom/glowshroom/initialize()
 	. = ..()
 	reagents.add_reagent("radium", 1 + round((potency / 20), 1))
@@ -170,7 +170,7 @@
 	desc = "<I>Plumus Hellmus</I>: Plump, soft and s-so inviting~"
 	icon_state = "plumphelmet"
 	filling_color = "#F714BE"
-	
+
 /obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet/initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 2 + round((potency / 10), 1))

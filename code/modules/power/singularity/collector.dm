@@ -49,7 +49,7 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 	..()
 
 /obj/machinery/power/rad_collector/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/device/analyzer))
+	if(istype(W, /obj/item/analyzer))
 		to_chat(user, SPAN_INFO("The [W.name] detects that [last_power]W were recently produced."))
 		return 1
 	else if(istype(W, /obj/item/tank/plasma))
@@ -82,7 +82,7 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 			connect_to_network()
 		else
 			disconnect_from_network()
-	else if(istype(W, /obj/item/card/id)||istype(W, /obj/item/device/pda))
+	else if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(src.allowed(user))
 			if(active)
 				src.locked = !src.locked

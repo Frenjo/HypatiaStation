@@ -140,7 +140,7 @@ nanoui is used to open and update nano browser uis
 			set_status(STATUS_DISABLED, push_update) // no updates, completely disabled (red visibility)
 		else if(user.restrained() || user.lying)
 			set_status(STATUS_UPDATE, push_update) // update only (orange visibility)
-		else if(istype(src_object, /obj/item/device/uplink/hidden)) // You know what if they have the uplink open let them use the UI
+		else if(istype(src_object, /obj/item/uplink/hidden)) // You know what if they have the uplink open let them use the UI
 			set_status(STATUS_INTERACTIVE, push_update)		// Will build in distance checks on the topics for sanity.
 		else if(!(src_object in view(4, user))) // If the src object is not in visable, set status to 0
 			set_status(STATUS_DISABLED, push_update) // interactive (green visibility)

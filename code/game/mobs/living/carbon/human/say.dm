@@ -68,16 +68,16 @@
 	switch(message_mode)
 		if("headset")
 			if(l_ear && isradio(l_ear))
-				var/obj/item/device/radio/R = l_ear
+				var/obj/item/radio/R = l_ear
 				R.talk_into(src,message,null, verbage, speaking)
 				used_radios += l_ear
 			else if(r_ear && isradio(r_ear))
-				var/obj/item/device/radio/R = r_ear
+				var/obj/item/radio/R = r_ear
 				R.talk_into(src,message,null, verbage, speaking)
 				used_radios += r_ear
 
 		if("right ear")
-			var/obj/item/device/radio/R
+			var/obj/item/radio/R
 			var/has_radio = 0
 			if(r_ear && isradio(r_ear))
 				R = r_ear
@@ -90,7 +90,7 @@
 				used_radios += R
 
 		if("left ear")
-			var/obj/item/device/radio/R
+			var/obj/item/radio/R
 			var/has_radio = 0
 			if(l_ear && isradio(l_ear))
 				R = l_ear
@@ -103,7 +103,7 @@
 				used_radios += R
 
 		if("intercom")
-			for(var/obj/item/device/radio/intercom/I in view(1, null))
+			for(var/obj/item/radio/intercom/I in view(1, null))
 				I.talk_into(src, message, verbage, speaking)
 				used_radios += I
 		if("whisper")

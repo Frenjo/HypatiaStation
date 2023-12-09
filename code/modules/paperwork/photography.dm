@@ -9,7 +9,7 @@
 /*******
 * film *
 *******/
-/obj/item/device/camera_film
+/obj/item/camera_film
 	name = "film cartridge"
 	icon = 'icons/obj/items.dmi'
 	desc = "A camera film cartridge. Insert it into a camera to reload it."
@@ -106,7 +106,7 @@
 /*********
 * camera *
 *********/
-/obj/item/device/camera
+/obj/item/camera
 	name = "camera"
 	icon = 'icons/obj/items.dmi'
 	desc = "A polaroid camera. 10 photos left."
@@ -123,10 +123,10 @@
 	var/icon_on = "camera"
 	var/icon_off = "camera_off"
 
-/obj/item/device/camera/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/camera/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	return
 
-/obj/item/device/camera/attack_self(mob/user as mob)
+/obj/item/camera/attack_self(mob/user as mob)
 	on = !on
 	if(on)
 		src.icon_state = icon_on
@@ -135,8 +135,8 @@
 	user << "You switch the camera [on ? "on" : "off"]."
 	return
 
-/obj/item/device/camera/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/device/camera_film))
+/obj/item/camera/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I, /obj/item/camera_film))
 		if(pictures_left)
 			to_chat(user, SPAN_NOTICE("[src] still has some film in it!"))
 			return
@@ -147,7 +147,7 @@
 		return
 	..()
 
-/obj/item/device/camera/proc/get_icon(turf/the_turf as turf)
+/obj/item/camera/proc/get_icon(turf/the_turf as turf)
 	//Bigger icon base to capture those icons that were shifted to the next tile
 	//i.e. pretty much all wall-mounted machinery
 	var/icon/res = icon('icons/effects/96x96.dmi', "")
@@ -185,7 +185,7 @@
 				res.Blend(new/icon(img, "", A.dir), ICON_OVERLAY, 33 + A.pixel_x, 33 + A.pixel_y)
 	return res
 
-/obj/item/device/camera/proc/get_mobs(turf/the_turf as turf)
+/obj/item/camera/proc/get_mobs(turf/the_turf as turf)
 	var/mob_detail
 	for(var/mob/living/carbon/A in the_turf)
 		if(A.invisibility)
@@ -206,7 +206,7 @@
 			mob_detail += "You can also see [A] on the photo[A:health < 75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]."
 	return mob_detail
 
-/obj/item/device/camera/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
+/obj/item/camera/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 	if(!on || !pictures_left || ismob(target.loc))
 		return
 

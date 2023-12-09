@@ -40,7 +40,7 @@
 	gloves = /obj/item/clothing/gloves/combat
 	shoes = /obj/item/clothing/shoes/combat
 
-	l_ear = /obj/item/device/radio/headset/heads/captain
+	l_ear = /obj/item/radio/headset/heads/captain
 
 	id_slot = SLOT_ID_WEAR_ID
 	id_type = /obj/item/card/id/centcom/station

@@ -58,8 +58,8 @@
 		if (0)
 			var/obj/item/assembly/r_i_ptank/R = new /obj/item/assembly/r_i_ptank(src.loc)
 			var/obj/item/tank/plasma/p3 = new /obj/item/tank/plasma(R)
-			var/obj/item/device/radio/signaler/p1 = new /obj/item/device/radio/signaler(R)
-			var/obj/item/device/igniter/p2 = new /obj/item/device/igniter(R)
+			var/obj/item/radio/signaler/p1 = new /obj/item/radio/signaler(R)
+			var/obj/item/igniter/p2 = new /obj/item/igniter(R)
 			R.part1 = p1
 			R.part2 = p2
 			R.part3 = p3
@@ -75,8 +75,8 @@
 		if (1)
 			var/obj/item/assembly/m_i_ptank/R = new /obj/item/assembly/m_i_ptank(src.loc)
 			var/obj/item/tank/plasma/p3 = new /obj/item/tank/plasma(R)
-			var/obj/item/device/prox_sensor/p1 = new /obj/item/device/prox_sensor(R)
-			var/obj/item/device/igniter/p2 = new /obj/item/device/igniter(R)
+			var/obj/item/prox_sensor/p1 = new /obj/item/prox_sensor(R)
+			var/obj/item/igniter/p2 = new /obj/item/igniter(R)
 			R.part1 = p1
 			R.part2 = p2
 			R.part3 = p3
@@ -97,8 +97,8 @@
 		if (2)
 			var/obj/item/assembly/t_i_ptank/R = new /obj/item/assembly/t_i_ptank(src.loc)
 			var/obj/item/tank/plasma/p3 = new /obj/item/tank/plasma(R)
-			var/obj/item/device/timer/p1 = new /obj/item/device/timer(R)
-			var/obj/item/device/igniter/p2 = new /obj/item/device/igniter(R)
+			var/obj/item/timer/p1 = new /obj/item/timer(R)
+			var/obj/item/igniter/p2 = new /obj/item/igniter(R)
 			R.part1 = p1
 			R.part2 = p2
 			R.part3 = p3
@@ -113,8 +113,8 @@
 		if(3)
 			var/obj/item/clothing/suit/armor/a_i_a_ptank/R = new /obj/item/clothing/suit/armor/a_i_a_ptank(src.loc)
 			var/obj/item/tank/plasma/p4 = new /obj/item/tank/plasma(R)
-			var/obj/item/device/healthanalyzer/p1 = new /obj/item/device/healthanalyzer(R)
-			var/obj/item/device/igniter/p2 = new /obj/item/device/igniter(R)
+			var/obj/item/healthanalyzer/p1 = new /obj/item/healthanalyzer(R)
+			var/obj/item/igniter/p2 = new /obj/item/igniter(R)
 			var/obj/item/clothing/suit/armor/vest/p3 = new /obj/item/clothing/suit/armor/vest(R)
 			R.part1 = p1
 			R.part2 = p2
@@ -139,11 +139,11 @@
 		// radio
 		if (0)
 
-			var/obj/item/device/transfer_valve/V = new(src.loc)
+			var/obj/item/transfer_valve/V = new(src.loc)
 			var/obj/item/tank/plasma/PT = new(V)
 			var/obj/item/tank/oxygen/OT = new(V)
 
-			var/obj/item/device/radio/signaler/S = new(V)
+			var/obj/item/radio/signaler/S = new(V)
 
 			V.tank_one = PT
 			V.tank_two = OT
@@ -163,11 +163,11 @@
 		// proximity
 		if (1)
 
-			var/obj/item/device/transfer_valve/V = new(src.loc)
+			var/obj/item/transfer_valve/V = new(src.loc)
 			var/obj/item/tank/plasma/PT = new(V)
 			var/obj/item/tank/oxygen/OT = new(V)
 
-			var/obj/item/device/prox_sensor/P = new(V)
+			var/obj/item/prox_sensor/P = new(V)
 
 			V.tank_one = PT
 			V.tank_two = OT
@@ -186,11 +186,11 @@
 
 		// timer
 		if (2)
-			var/obj/item/device/transfer_valve/V = new(src.loc)
+			var/obj/item/transfer_valve/V = new(src.loc)
 			var/obj/item/tank/plasma/PT = new(V)
 			var/obj/item/tank/oxygen/OT = new(V)
 
-			var/obj/item/device/timer/T = new(V)
+			var/obj/item/timer/T = new(V)
 
 			V.tank_one = PT
 			V.tank_two = OT

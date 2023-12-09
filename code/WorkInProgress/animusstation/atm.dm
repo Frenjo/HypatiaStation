@@ -127,8 +127,8 @@ log transactions
 					if(istype(H.wear_id, /obj/item/card/id))
 						card = H.wear_id
 						return 1
-					if(istype(H.wear_id,/obj/item/device/pda))
-						var/obj/item/device/pda/P = H.wear_id
+					if(istype(H.wear_id,/obj/item/pda))
+						var/obj/item/pda/P = H.wear_id
 						if(istype(P.id,/obj/item/card/id))
 							card = P.id
 							return 1

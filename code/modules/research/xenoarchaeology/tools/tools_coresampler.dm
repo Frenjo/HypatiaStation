@@ -15,9 +15,10 @@
 	)
 
 //////////////////////////////////////////////////////////////////
-/obj/item/device/core_sampler
+/obj/item/core_sampler
 	name = "core sampler"
 	desc = "Used to extract geological core samples."
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "sampler0"
 	item_state = "screwdriver_brown"
 	w_class = 1.0
@@ -27,7 +28,7 @@
 	var/num_stored_bags = 10
 	var/obj/item/evidencebag/sample/filled_bag
 
-/obj/item/device/core_sampler/examine()
+/obj/item/core_sampler/examine()
 	set src in orange(1)
 	if(!usr)
 		return
@@ -37,7 +38,7 @@
 	else
 		return ..()
 
-/obj/item/device/core_sampler/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/core_sampler/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/evidencebag/sample))
 		if(num_stored_bags < 10)
 			qdel(W)
@@ -48,7 +49,7 @@
 	else
 		return ..()
 
-/obj/item/device/core_sampler/proc/sample_item(item_to_sample, mob/user as mob)
+/obj/item/core_sampler/proc/sample_item(item_to_sample, mob/user as mob)
 	var/datum/geosample/geo_data
 	if(istype(item_to_sample, /turf/simulated/mineral))
 		var/turf/simulated/mineral/T = item_to_sample
@@ -85,7 +86,7 @@
 	else
 		to_chat(user, SPAN_WARNING("You are unable to take a sample of [item_to_sample]."))
 
-/obj/item/device/core_sampler/attack_self()
+/obj/item/core_sampler/attack_self()
 	if(isnotnull(filled_bag))
 		to_chat(usr, SPAN_INFO("You eject the full sample bag."))
 		var/success = 0

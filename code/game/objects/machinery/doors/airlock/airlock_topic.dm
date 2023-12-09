@@ -23,7 +23,7 @@
 				cut(t1)
 		else if(href_list["pulse"])
 			var/t1 = text2num(href_list["pulse"])
-			if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if(!istype(usr.get_active_hand(), /obj/item/multitool))
 				to_chat(usr, "You need a multitool!")
 				return
 			if(isWireColorCut(t1))
@@ -33,13 +33,13 @@
 				pulse(t1)
 		else if(href_list["signaler"])
 			var/wirenum = text2num(href_list["signaler"])
-			if(!istype(usr.get_active_hand(), /obj/item/device/assembly/signaler))
+			if(!istype(usr.get_active_hand(), /obj/item/assembly/signaler))
 				to_chat(usr, "You need a signaller!")
 				return
 			if(isWireColorCut(wirenum))
 				to_chat(usr, "You can't attach a signaller to a cut wire.")
 				return
-			var/obj/item/device/assembly/signaler/R = usr.get_active_hand()
+			var/obj/item/assembly/signaler/R = usr.get_active_hand()
 			if(R.secured)
 				to_chat(usr, "This radio can't be attached!")
 				return
@@ -53,7 +53,7 @@
 			if(!(signalers[wirenum]))
 				to_chat(usr, "There's no signaller attached to that wire!")
 				return
-			var/obj/item/device/assembly/signaler/R = signalers[wirenum]
+			var/obj/item/assembly/signaler/R = signalers[wirenum]
 			R.loc = usr.loc
 			R.airlock_wire = null
 			signalers[wirenum] = null
@@ -111,7 +111,7 @@
 						close()
 					else
 						open()
-				
+
 				if(8)
 					// Safeties! We don't need no stinking safeties!
 					if(isWireCut(AIRLOCK_WIRE_SAFETY))

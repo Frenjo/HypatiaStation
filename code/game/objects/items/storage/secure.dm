@@ -61,7 +61,7 @@
 				open =! open
 				user.show_message(text("\blue You [] the service panel.", (open ? "open" : "close")))
 			return
-		if((istype(W, /obj/item/device/multitool)) && (open == 1)&& (!l_hacking))
+		if((istype(W, /obj/item/multitool)) && (open == 1)&& (!l_hacking))
 			user.show_message(text("\red Now attempting to reset internal memory, please hold."), 1)
 			l_hacking = 1
 			if (do_after(usr, 100))

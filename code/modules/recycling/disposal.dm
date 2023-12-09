@@ -1107,8 +1107,8 @@
 	if(..())
 		return
 
-	if(istype(I, /obj/item/device/dest_tagger))
-		var/obj/item/device/dest_tagger/O = I
+	if(istype(I, /obj/item/dest_tagger))
+		var/obj/item/dest_tagger/O = I
 
 		if(O.currTag > 0)// Tag set
 			sortType = O.currTag

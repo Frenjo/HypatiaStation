@@ -414,7 +414,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	var/area/t = get_area(M)
 	switch(cause)
 		if("death")
-			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
+			var/obj/item/radio/headset/a = new /obj/item/radio/headset(null)
 			if(istype(t, /area/syndicate_station) || istype(t, /area/syndicate_mothership) || istype(t, /area/shuttle/syndicate_elite))
 				//give the syndies a bit of stealth
 				a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm")
@@ -423,12 +423,12 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			qdel(a)
 			GLOBL.processing_objects.Remove(src)
 		if("emp")
-			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
+			var/obj/item/radio/headset/a = new /obj/item/radio/headset(null)
 			var/name = prob(50) ? t.name : pick(GLOBL.teleportlocs)
 			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm")
 			qdel(a)
 		else
-			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
+			var/obj/item/radio/headset/a = new /obj/item/radio/headset(null)
 			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm")
 			qdel(a)
 			GLOBL.processing_objects.Remove(src)

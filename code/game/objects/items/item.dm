@@ -38,7 +38,7 @@
 	var/canremove = 1 //Mostly for Ninja code at this point but basically will not allow the item to be removed if set to 0. /N
 	var/armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	var/list/allowed = null //suit storage stuff.
-	var/obj/item/device/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
+	var/obj/item/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
 	sprite_sheets = list(
@@ -54,9 +54,6 @@
 		var/mob/M = loc
 		M.drop_from_inventory(src)
 	return ..()
-
-/obj/item/device
-	icon = 'icons/obj/items/devices/device.dmi'
 
 /obj/item/ex_act(severity)
 	switch(severity)
@@ -386,7 +383,7 @@
 					if(!disable_warning)
 						to_chat(usr, "You somehow have a suit with no defined allowed items for suit storage, stop that.")
 					return 0
-				if(istype(src, /obj/item/device/pda) || istype(src, /obj/item/pen) || is_type_in_list(src, H.wear_suit.allowed))
+				if(istype(src, /obj/item/pda) || istype(src, /obj/item/pen) || is_type_in_list(src, H.wear_suit.allowed))
 					return 1
 				return 0
 			if(SLOT_ID_HANDCUFFED)

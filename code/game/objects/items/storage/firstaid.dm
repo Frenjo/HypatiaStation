@@ -31,7 +31,7 @@
 
 /obj/item/storage/firstaid/regular
 	starts_with = list(
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack = 3,
 		/obj/item/stack/medical/ointment = 2
@@ -45,7 +45,7 @@
 	possible_icon_states = list("fire", "fire2")
 
 	starts_with = list(
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/ointment = 3,
 		/obj/item/reagent_containers/pill/kelotane = 2 // Replaced ointment with these since they actually work --Errorage
@@ -59,7 +59,7 @@
 	possible_icon_states = list("toxin", "toxin2", "toxin3", "toxin4")
 
 	starts_with = list(
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/syringe/antitoxin = 3,
 		/obj/item/reagent_containers/pill/antitox = 3
 	)
@@ -71,7 +71,7 @@
 	item_state = "firstaid-o2"
 
 	starts_with = list(
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/reagent_containers/syringe/inaprovaline,
 		/obj/item/reagent_containers/pill/dexalin = 4
@@ -99,7 +99,7 @@
 	possible_icon_states = list("radiation", "radiation2", "radiation3")
 
 	starts_with = list(
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/hypospray/autoinjector,
 		/obj/item/reagent_containers/syringe/hyronalin,
 		/obj/item/reagent_containers/syringe/antitoxin,

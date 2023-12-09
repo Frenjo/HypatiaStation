@@ -234,7 +234,7 @@ GLOBAL_GLOBL(can_call_ert)
 
 /mob/living/carbon/human/proc/equip_strike_team(leader_selected = 0)
 	//Special radio setup
-	equip_to_slot_or_del(new /obj/item/device/radio/headset/ert(src), SLOT_ID_L_EAR)
+	equip_to_slot_or_del(new /obj/item/radio/headset/ert(src), SLOT_ID_L_EAR)
 
 	//Replaced with new ERT uniform
 	equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(src), SLOT_ID_W_UNIFORM)
@@ -247,7 +247,7 @@ GLOBAL_GLOBL(can_call_ert)
 	//Old ERT Uniform
 	//Basic Uniform
 	equip_to_slot_or_del(new /obj/item/clothing/under/syndicate/tacticool(src), SLOT_ID_W_UNIFORM)
-	equip_to_slot_or_del(new /obj/item/device/flashlight(src), SLOT_ID_L_STORE)
+	equip_to_slot_or_del(new /obj/item/flashlight(src), SLOT_ID_L_STORE)
 	equip_to_slot_or_del(new /obj/item/clipboard(src), SLOT_ID_R_STORE)
 	equip_to_slot_or_del(new /obj/item/gun/energy/gun(src), SLOT_ID_BELT)
 	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/swat(src), SLOT_ID_WEAR_MASK)

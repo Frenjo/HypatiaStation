@@ -1,4 +1,4 @@
-/obj/item/device/flashlight
+/obj/item/flashlight
 	name = "flashlight"
 	desc = "A hand-held emergency light."
 	icon = 'icons/obj/lighting.dmi'
@@ -13,7 +13,7 @@
 	var/on = 0
 	var/brightness_on = 4 //luminosity when on
 
-/obj/item/device/flashlight/initialize()
+/obj/item/flashlight/initialize()
 	. = ..()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
@@ -22,7 +22,7 @@
 		icon_state = initial(icon_state)
 		set_light(0)
 
-/obj/item/device/flashlight/proc/update_brightness(mob/user = null)
+/obj/item/flashlight/proc/update_brightness(mob/user = null)
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 		if(loc == user)
@@ -36,7 +36,7 @@
 		else if(isturf(loc))
 			set_light(0)
 
-/obj/item/device/flashlight/attack_self(mob/user)
+/obj/item/flashlight/attack_self(mob/user)
 	if(!isturf(user.loc))
 		to_chat(user, "You cannot turn the light on while in this [user.loc].") //To prevent some lighting anomalies.
 		return 0
@@ -44,7 +44,7 @@
 	update_brightness(user)
 	return 1
 
-/obj/item/device/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/flashlight/attack(mob/living/M as mob, mob/living/user as mob)
 	add_fingerprint(user)
 	if(on && user.zone_sel.selecting == "eyes")
 		if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
@@ -91,17 +91,17 @@
 	else
 		return ..()
 
-/obj/item/device/flashlight/pickup(mob/user)
+/obj/item/flashlight/pickup(mob/user)
 	if(on)
 		user.set_light(user.luminosity + brightness_on)
 		set_light(0)
 
-/obj/item/device/flashlight/dropped(mob/user)
+/obj/item/flashlight/dropped(mob/user)
 	if(on)
 		user.set_light(user.luminosity - brightness_on)
 		set_light(brightness_on)
 
-/obj/item/device/flashlight/pen
+/obj/item/flashlight/pen
 	name = "penlight"
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"
@@ -110,7 +110,7 @@
 	brightness_on = 2
 
 // the desk lamps are a bit special
-/obj/item/device/flashlight/lamp
+/obj/item/flashlight/lamp
 	name = "desk lamp"
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
@@ -122,13 +122,13 @@
 	on = 1
 
 // green-shaded desk lamp
-/obj/item/device/flashlight/lamp/green
+/obj/item/flashlight/lamp/green
 	desc = "A classic green-shaded desk lamp."
 	icon_state = "lampgreen"
 	item_state = "lampgreen"
 	brightness_on = 5
 
-/obj/item/device/flashlight/lamp/verb/toggle_light()
+/obj/item/flashlight/lamp/verb/toggle_light()
 	set category = PANEL_OBJECT
 	set name = "Toggle light"
 	set src in oview(1)
@@ -137,7 +137,7 @@
 		attack_self(usr)
 
 // FLARES
-/obj/item/device/flashlight/flare
+/obj/item/flashlight/flare
 	name = "flare"
 	desc = "A red NanoTrasen issued flare. There are instructions on the side, it reads 'pull cord, make light'."
 	w_class = 2.0
@@ -150,11 +150,11 @@
 	var/on_damage = 7
 	var/produce_heat = 1500
 
-/obj/item/device/flashlight/flare/New()
+/obj/item/flashlight/flare/New()
 	..()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
-/obj/item/device/flashlight/flare/process()
+/obj/item/flashlight/flare/process()
 	var/turf/pos = get_turf(src)
 	if(pos)
 		pos.hotspot_expose(produce_heat, 5)
@@ -165,7 +165,7 @@
 			src.icon_state = "[initial(icon_state)]-empty"
 		GLOBL.processing_objects -= src
 
-/obj/item/device/flashlight/flare/proc/turn_off()
+/obj/item/flashlight/flare/proc/turn_off()
 	on = 0
 	src.force = initial(src.force)
 	src.damtype = initial(src.damtype)
@@ -175,7 +175,7 @@
 	else
 		update_brightness(null)
 
-/obj/item/device/flashlight/flare/attack_self(mob/user)
+/obj/item/flashlight/flare/attack_self(mob/user)
 	// Usual checks
 	if(!fuel)
 		to_chat(user, SPAN_NOTICE("It's out of fuel."))
@@ -194,7 +194,7 @@
 		src.damtype = "fire"
 		GLOBL.processing_objects += src
 
-/obj/item/device/flashlight/slime
+/obj/item/flashlight/slime
 	gender = PLURAL
 	name = "glowing slime extract"
 	desc = "A glowing ball of what appears to be amber."
@@ -206,15 +206,15 @@
 	brightness_on = 6
 	on = 1 //Bio-luminesence has one setting, on.
 
-/obj/item/device/flashlight/slime/New()
+/obj/item/flashlight/slime/New()
 	set_light(brightness_on)
 
-/obj/item/device/flashlight/slime/initialize()
+/obj/item/flashlight/slime/initialize()
 	SHOULD_CALL_PARENT(FALSE) // TODO: Refactor this.
 
 	spawn(1) //Might be sloppy, but seems to be necessary to prevent further runtimes and make these work as intended... don't judge me!
 		update_brightness()
 		icon_state = initial(icon_state)
 
-/obj/item/device/flashlight/slime/attack_self(mob/user)
+/obj/item/flashlight/slime/attack_self(mob/user)
 	return //Bio-luminescence does not toggle.

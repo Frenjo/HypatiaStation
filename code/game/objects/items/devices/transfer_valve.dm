@@ -1,21 +1,21 @@
-/obj/item/device/transfer_valve
+/obj/item/transfer_valve
 	icon = 'icons/obj/items/assemblies/assemblies.dmi'
 	name = "tank transfer valve"
 	icon_state = "valve_1"
 	desc = "Regulates the transfer of air between two tanks"
 	var/obj/item/tank/tank_one
 	var/obj/item/tank/tank_two
-	var/obj/item/device/attached_device
+	var/obj/item/attached_device
 	var/mob/attacher = null
 	var/valve_open = 0
 	var/toggle = 1
 
-/obj/item/device/transfer_valve/proc/process_activation(obj/item/device/D)
+/obj/item/transfer_valve/proc/process_activation(obj/item/D)
 
-/obj/item/device/transfer_valve/IsAssemblyHolder()
+/obj/item/transfer_valve/IsAssemblyHolder()
 	return 1
 
-/obj/item/device/transfer_valve/attackby(obj/item/item, mob/user)
+/obj/item/transfer_valve/attackby(obj/item/item, mob/user)
 	if(istype(item, /obj/item/tank))
 		if(tank_one && tank_two)
 			to_chat(user, SPAN_WARNING("There are already two tanks attached, remove one first."))
@@ -36,7 +36,7 @@
 		nanomanager.update_uis(src) // update all UIs attached to src
 //TODO: Have this take an assemblyholder
 	else if(isassembly(item))
-		var/obj/item/device/assembly/A = item
+		var/obj/item/assembly/A = item
 		if(A.secured)
 			to_chat(user, SPAN_NOTICE("The device is secured."))
 			return
@@ -57,16 +57,16 @@
 		nanomanager.update_uis(src) // update all UIs attached to src
 	return
 
-/obj/item/device/transfer_valve/HasProximity(atom/movable/AM as mob|obj)
+/obj/item/transfer_valve/HasProximity(atom/movable/AM as mob|obj)
 	if(!attached_device)
 		return
 	attached_device.HasProximity(AM)
 	return
 
-/obj/item/device/transfer_valve/attack_self(mob/user as mob)
+/obj/item/transfer_valve/attack_self(mob/user as mob)
 	ui_interact(user)
 
-/obj/item/device/transfer_valve/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
+/obj/item/transfer_valve/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	// this is the data which will be sent to the ui
 	var/list/data = list()
 	data["attachmentOne"] = tank_one ? tank_one.name : null
@@ -87,7 +87,7 @@
 		// auto update every Master Controller tick
 		//ui.set_auto_update(1)
 
-/obj/item/device/transfer_valve/Topic(href, href_list)
+/obj/item/transfer_valve/Topic(href, href_list)
 	..()
 	if(usr.stat || usr.restrained())
 		return 0
@@ -118,14 +118,14 @@
 	src.add_fingerprint(usr)
 	return 1 // Returning 1 sends an update to attached UIs
 
-/obj/item/device/transfer_valve/process_activation(obj/item/device/D)
+/obj/item/transfer_valve/process_activation(obj/item/D)
 	if(toggle)
 		toggle = 0
 		toggle_valve()
 		spawn(50) // To stop a signal being spammed from a proxy sensor constantly going off or whatever
 			toggle = 1
 
-/obj/item/device/transfer_valve/update_icon()
+/obj/item/transfer_valve/update_icon()
 	overlays.Cut()
 	underlays = null
 
@@ -143,13 +143,13 @@
 	if(attached_device)
 		overlays += "device"
 
-/obj/item/device/transfer_valve/proc/merge_gases()
+/obj/item/transfer_valve/proc/merge_gases()
 	tank_two.air_contents.volume += tank_one.air_contents.volume
 	var/datum/gas_mixture/temp
 	temp = tank_one.air_contents.remove_ratio(1)
 	tank_two.air_contents.merge(temp)
 
-/obj/item/device/transfer_valve/proc/split_gases()
+/obj/item/transfer_valve/proc/split_gases()
 	if(!valve_open || !tank_one || !tank_two)
 		return
 	var/ratio1 = tank_one.air_contents.volume/tank_two.air_contents.volume
@@ -163,7 +163,7 @@
 	it explodes properly when it gets a signal (and it does).
 	*/
 
-/obj/item/device/transfer_valve/proc/toggle_valve()
+/obj/item/transfer_valve/proc/toggle_valve()
 	if(valve_open == 0 && (tank_one && tank_two))
 		valve_open = 1
 		var/turf/bombturf = get_turf(src)
@@ -204,5 +204,5 @@
 
 // this doesn't do anything but the timer etc. expects it to be here
 // eventually maybe have it update icon to show state (timer, prox etc.) like old bombs
-/obj/item/device/transfer_valve/proc/c_state()
+/obj/item/transfer_valve/proc/c_state()
 	return

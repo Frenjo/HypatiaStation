@@ -18,17 +18,17 @@
 	glasses = /obj/item/clothing/glasses/sunglasses/big
 	shoes = /obj/item/clothing/shoes/brown
 
-	l_ear = /obj/item/device/radio/headset/sec
+	l_ear = /obj/item/radio/headset/sec
 
 	l_hand = /obj/item/storage/briefcase
 
-	pda_type = /obj/item/device/pda/lawyer
+	pda_type = /obj/item/pda/lawyer
 
 /*
  * Service
  */
 /decl/hierarchy/outfit/job/service
-	l_ear = /obj/item/device/radio/headset/service
+	l_ear = /obj/item/radio/headset/service
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 
@@ -40,7 +40,7 @@
 
 	uniform = /obj/item/clothing/under/rank/bartender
 
-	pda_type = /obj/item/device/pda/bar
+	pda_type = /obj/item/pda/bar
 
 /*
  * Chef
@@ -53,7 +53,7 @@
 
 	head = /obj/item/clothing/head/chefhat
 
-	pda_type = /obj/item/device/pda/chef
+	pda_type = /obj/item/pda/chef
 
 /*
  * Botanist
@@ -66,9 +66,9 @@
 
 	gloves = /obj/item/clothing/gloves/botanic_leather
 
-	suit_store = /obj/item/device/analyzer/plant_analyzer
+	suit_store = /obj/item/analyzer/plant_analyzer
 
-	pda_type = /obj/item/device/pda/botanist
+	pda_type = /obj/item/pda/botanist
 
 	satchel_one = /obj/item/storage/satchel/hyd
 
@@ -93,7 +93,7 @@
 		/obj/item/toy/waterflower
 	)
 
-	pda_type = /obj/item/device/pda/clown
+	pda_type = /obj/item/pda/clown
 
 /*
  * Mime
@@ -113,7 +113,7 @@
 		/obj/item/reagent_containers/food/drinks/bottle/nothing
 	)
 
-	pda_type = /obj/item/device/pda/mime
+	pda_type = /obj/item/pda/mime
 
 /*
  * Janitor
@@ -123,7 +123,7 @@
 
 	uniform = /obj/item/clothing/under/rank/janitor
 
-	pda_type = /obj/item/device/pda/janitor
+	pda_type = /obj/item/pda/janitor
 
 /*
  * Librarian
@@ -135,7 +135,7 @@
 
 	l_hand = /obj/item/barcodescanner
 
-	pda_type = /obj/item/device/pda/librarian
+	pda_type = /obj/item/pda/librarian
 
 /*
  * Chaplain
@@ -147,4 +147,4 @@
 
 	l_hand = /obj/item/storage/bible
 
-	pda_type = /obj/item/device/pda/chaplain
+	pda_type = /obj/item/pda/chaplain

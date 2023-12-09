@@ -1,6 +1,7 @@
-/obj/item/device/eftpos
+/obj/item/eftpos
 	name = "EFTPOS scanner"
 	desc = "Swipe your ID card to make purchases electronically."
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "eftpos"
 
 	var/machine_id = ""
@@ -12,7 +13,7 @@
 	var/access_code = 0
 	var/datum/money_account/linked_account
 
-/obj/item/device/eftpos/New()
+/obj/item/eftpos/New()
 	..()
 	machine_id = "[station_name()] EFTPOS #[num_financial_terminals++]"
 	access_code = rand(1111, 111111)
@@ -57,7 +58,7 @@
 	//the user of the EFTPOS device can change the target account though, and no-one will be the wiser (except whoever's being charged)
 	linked_account = station_account
 
-/obj/item/device/eftpos/proc/print_reference()
+/obj/item/eftpos/proc/print_reference()
 	var/obj/item/paper/R = new(src.loc)
 	R.name = "Reference: [eftpos_name]"
 	R.info = "<b>[eftpos_name] reference</b><br><br>"
@@ -77,7 +78,7 @@
 	D.wrapped = R
 	D.name = "small parcel - 'EFTPOS access code'"
 
-/obj/item/device/eftpos/attack_self(mob/user as mob)
+/obj/item/eftpos/attack_self(mob/user as mob)
 	if(get_dist(src, user) <= 1)
 		var/dat = "<b>[eftpos_name]</b><br>"
 		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting NanoTrasen IT Support</i><br>"
@@ -105,7 +106,7 @@
 	else
 		user << browse(null, "window=eftpos")
 
-/obj/item/device/eftpos/attackby(O as obj, user as mob)
+/obj/item/eftpos/attackby(O as obj, user as mob)
 	if(istype(O, /obj/item/card))
 		if(linked_account)
 			var/obj/item/card/I = O
@@ -144,7 +145,7 @@
 	else
 		..()
 
-/obj/item/device/eftpos/Topic(href, href_list)
+/obj/item/eftpos/Topic(href, href_list)
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("change_code")
@@ -215,7 +216,7 @@
 
 	src.attack_self(usr)
 
-/obj/item/device/eftpos/proc/scan_card(obj/item/card/I)
+/obj/item/eftpos/proc/scan_card(obj/item/card/I)
 	if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/C = I
 		visible_message(SPAN_INFO("[usr] swipes a card through [src]."))

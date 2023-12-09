@@ -29,7 +29,7 @@
 	var/optioncount = 7
 	// Custom Message Properties
 	var/customsender = "System Administrator"
-	var/obj/item/device/pda/customrecepient = null
+	var/obj/item/pda/customrecepient = null
 	var/customjob		= "Admin"
 	var/custommessage 	= "This is a test, please ignore."
 
@@ -406,8 +406,8 @@
 					//Select Receiver
 					if("Recepient")
 						//Get out list of viable PDAs
-						var/list/obj/item/device/pda/sendPDAs = list()
-						for(var/obj/item/device/pda/P in GLOBL.pda_list)
+						var/list/obj/item/pda/sendPDAs = list()
+						for(var/obj/item/pda/P in GLOBL.pda_list)
 							if(!P.owner || P.toff || P.hidden) continue
 							sendPDAs += P
 						if(length(GLOBL.pda_list))
@@ -438,8 +438,8 @@
 							message = SPAN_NOTICE("NOTICE: No message entered!")
 							return src.attack_hand(usr)
 
-						var/obj/item/device/pda/PDARec = null
-						for (var/obj/item/device/pda/P in GLOBL.pda_list)
+						var/obj/item/pda/PDARec = null
+						for (var/obj/item/pda/P in GLOBL.pda_list)
 							if (!P.owner || P.toff || P.hidden)
 								continue
 							if(P.owner == customsender)

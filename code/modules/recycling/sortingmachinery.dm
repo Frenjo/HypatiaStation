@@ -31,8 +31,8 @@
 	return
 
 /obj/structure/big_delivery/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/dest_tagger))
-		var/obj/item/device/dest_tagger/O = W
+	if(istype(W, /obj/item/dest_tagger))
+		var/obj/item/dest_tagger/O = W
 
 		if(src.sortTag != O.currTag)
 			var/tag = uppertext(GLOBL.tagger_locations[O.currTag])
@@ -72,8 +72,8 @@
 	return
 
 /obj/item/small_delivery/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/dest_tagger))
-		var/obj/item/device/dest_tagger/O = W
+	if(istype(W, /obj/item/dest_tagger))
+		var/obj/item/dest_tagger/O = W
 
 		if(src.sortTag != O.currTag)
 			var/tag = uppertext(GLOBL.tagger_locations[O.currTag])
@@ -166,9 +166,10 @@
 	return
 
 
-/obj/item/device/dest_tagger
+/obj/item/dest_tagger
 	name = "destination tagger"
 	desc = "Used to set the destination of properly wrapped packages."
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "dest_tagger"
 	w_class = 1
 	item_state = "electronic"
@@ -182,7 +183,7 @@
 	//If you don't want to fuck up disposals, add to this list, and don't change the order.
 	//If you insist on changing the order, you'll have to change every sort junction to reflect the new order. --Pete
 
-/obj/item/device/dest_tagger/proc/openwindow(mob/user as mob)
+/obj/item/dest_tagger/proc/openwindow(mob/user as mob)
 	var/dat = "<tt><center><h1><b>TagMaster 2.2</b></h1></center>"
 
 	dat += "<table style='width:100%; padding:4px;'><tr>"
@@ -197,11 +198,11 @@
 	user << browse(dat, "window=destTagScreen;size=450x350")
 	onclose(user, "destTagScreen")
 
-/obj/item/device/dest_tagger/attack_self(mob/user as mob)
+/obj/item/dest_tagger/attack_self(mob/user as mob)
 	openwindow(user)
 	return
 
-/obj/item/device/dest_tagger/Topic(href, href_list)
+/obj/item/dest_tagger/Topic(href, href_list)
 	src.add_fingerprint(usr)
 	if(href_list["nextTag"])
 		var/n = text2num(href_list["nextTag"])

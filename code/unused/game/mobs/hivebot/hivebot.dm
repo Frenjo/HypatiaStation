@@ -10,7 +10,7 @@
 		src.real_name = "Robot [pick(rand(1, 999))]"
 		src.name = src.real_name
 
-	src.radio = new /obj/item/device/radio(src)
+	src.radio = new /obj/item/radio(src)
 	..()
 
 

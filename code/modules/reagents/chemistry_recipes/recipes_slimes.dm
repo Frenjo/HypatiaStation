@@ -211,7 +211,7 @@
 /datum/chemical_reaction/slimeglow/on_reaction(datum/reagents/holder)
 	var/turf/location = get_turf(holder.my_atom)
 	holder.my_atom.visible_message(SPAN_WARNING("The slime begins to emit a soft light."))
-	new /obj/item/device/flashlight/slime(location)
+	new /obj/item/flashlight/slime(location)
 
 //Purple
 /datum/chemical_reaction/slimepsteroid
@@ -447,9 +447,9 @@
 
 /datum/chemical_reaction/slimeteleport/on_reaction(var/datum/reagents/holder, var/created_volume)
 	// Calculate new position (searches through beacons in world)
-	var/obj/item/device/radio/beacon/chosen
+	var/obj/item/radio/beacon/chosen
 	var/list/possible = list()
-	for(var/obj/item/device/radio/beacon/W in world)
+	for(var/obj/item/radio/beacon/W in world)
 		possible += W
 
 	if(length(possible))
@@ -471,7 +471,7 @@
 		var/y_distance = TO.y - FROM.y
 		var/x_distance = TO.x - FROM.x
 		for (var/atom/movable/A in range(2, FROM )) // iterate thru list of mobs in the area
-			if(istype(A, /obj/item/device/radio/beacon))
+			if(istype(A, /obj/item/radio/beacon))
 				continue // don't teleport beacons because that's just insanely stupid
 			if(A.anchored && !istype(A, /mob/dead/observer))
 				continue // don't teleport anchored things (computers, tables, windows, grilles, etc) because this causes problems!

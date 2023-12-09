@@ -31,7 +31,7 @@
 			to_chat(user, SPAN_INFO("You [locked ? "" : "un"]lock the circuit controls."))
 		else
 			FEEDBACK_ACCESS_DENIED(user)
-	else if(istype(I, /obj/item/device/multitool))
+	else if(istype(I, /obj/item/multitool))
 		if(locked)
 			to_chat(user, SPAN_WARNING("The circuit controls are locked."))
 			return

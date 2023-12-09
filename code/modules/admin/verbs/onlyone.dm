@@ -33,7 +33,7 @@
 			qdel(I)
 
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(H), SLOT_ID_W_UNIFORM)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/captain(H), SLOT_ID_L_EAR)
+		H.equip_to_slot_or_del(new /obj/item/radio/headset/heads/captain(H), SLOT_ID_L_EAR)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret(H), SLOT_ID_HEAD)
 		H.equip_to_slot_or_del(new /obj/item/claymore(H), SLOT_ID_L_HAND)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(H), SLOT_ID_SHOES)

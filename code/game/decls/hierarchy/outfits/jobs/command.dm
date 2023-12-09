@@ -17,14 +17,14 @@
 	head = /obj/item/clothing/head/caphat
 	glasses = /obj/item/clothing/glasses/sunglasses
 
-	l_ear = /obj/item/device/radio/headset/heads/captain
+	l_ear = /obj/item/radio/headset/heads/captain
 
 	backpack_contents = list(
 		/obj/item/storage/box/ids
 	)
 
 	id_type = /obj/item/card/id/gold
-	pda_type = /obj/item/device/pda/captain
+	pda_type = /obj/item/pda/captain
 
 	backpack = /obj/item/storage/backpack/captain
 	satchel_one = /obj/item/storage/satchel/cap
@@ -44,11 +44,11 @@
 
 	uniform = /obj/item/clothing/under/rank/head_of_personnel
 
-	l_ear = /obj/item/device/radio/headset/heads/hop
+	l_ear = /obj/item/radio/headset/heads/hop
 
 	backpack_contents = list(
 		/obj/item/storage/box/ids
 	)
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/device/pda/heads/hop
+	pda_type = /obj/item/pda/heads/hop

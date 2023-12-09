@@ -27,12 +27,12 @@
 /decl/hierarchy/supply_pack/supply/toner
 	name = "Toner cartridges"
 	contains = list(
-		/obj/item/device/toner,
-		/obj/item/device/toner,
-		/obj/item/device/toner,
-		/obj/item/device/toner,
-		/obj/item/device/toner,
-		/obj/item/device/toner
+		/obj/item/toner,
+		/obj/item/toner,
+		/obj/item/toner,
+		/obj/item/toner,
+		/obj/item/toner,
+		/obj/item/toner
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate

@@ -185,7 +185,7 @@
 /* oh right, not a machine :(
 /obj/item/circuitboard/intercom
 	name = "circuit board (Intercom)"
-	build_path = "/obj/item/device/radio/intercom"
+	build_path = "/obj/item/radio/intercom"
 	board_type = "wallmount"
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2)
 	frame_desc = "Requires 1 Console Screen, and 2 piece of cable."
@@ -204,7 +204,7 @@
 	frame_desc = "Requires 1 radio, 1 Console Screen, and 1 piece of cable."
 	contain_parts = 0
 	req_components = list(
-							"/obj/item/device/radio" = 1,
+							"/obj/item/radio" = 1,
 							"/obj/item/stock_part/console_screen" = 1
 							"/obj/item/cable_coil" = 1)
 */

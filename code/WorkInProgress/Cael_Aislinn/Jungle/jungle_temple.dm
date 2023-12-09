@@ -46,7 +46,7 @@
 /obj/effect/landmark/glowshroom_spawn
 	icon_state = "x3"
 	invisibility = INVISIBILITY_MAXIMUM
-	
+
 /obj/effect/landmark/glowshroom_spawn/New()
 	if(prob(10))
 		new /obj/effect/glowshroom(src.loc)
@@ -56,7 +56,7 @@
 	name = "loot spawner"
 	icon_state = "grabbed1"
 	var/low_probability = 0
-	
+
 /obj/effect/landmark/loot_spawn/New()
 	switch(pick( \
 	low_probability * 1000;"nothing", \
@@ -236,7 +236,7 @@
 			var/obj/structure/closet/crate/secure/gear/C = new(src.loc)
 			var/num = rand(2, 6)
 			for(var/i = 0, i < num, i++)
-				var/spawn_type = pick(/obj/item/device/flashlight/flare, /obj/item/trash/candle, /obj/item/candle/, /obj/item/storage/box/matches)
+				var/spawn_type = pick(/obj/item/flashlight/flare, /obj/item/trash/candle, /obj/item/candle/, /obj/item/storage/box/matches)
 				new spawn_type(C)
 		if("engineering")
 			var/obj/structure/closet/crate/secure/gear/C = new(src.loc)

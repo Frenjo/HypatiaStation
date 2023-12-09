@@ -417,7 +417,7 @@
 /mob/living/silicon/pai/proc/softwareRadio()
 	var/dat = ""
 	dat += "<h2>Station Bounced Radio</h2><hr>"
-	if(!istype(src, /obj/item/device/radio/headset)) //Headsets don't get a mic button
+	if(!istype(src, /obj/item/radio/headset)) //Headsets don't get a mic button
 		dat += "Microphone: [radio.broadcasting ? "<A href='byond://?src=\ref[src];software=radio;talk=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];software=radio;talk=1'>Disengaged</A>"]<BR>"
 	dat += {"
 		Speaker: [radio.listening ? "<A href='byond://?src=\ref[src];software=radio;listen=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];software=radio;listen=1'>Disengaged</A>"]<BR>
@@ -655,7 +655,7 @@
 	[(pda.silent) ? "<font color='red'> \[Off\]</font>" : "<font color='green'> \[On\]</font>"]</a><br><br>"}
 	dat += "<ul>"
 	if(!pda.toff)
-		for(var/obj/item/device/pda/P in sortAtom(GLOBL.pda_list))
+		for(var/obj/item/pda/P in sortAtom(GLOBL.pda_list))
 			if(!P.owner || P.toff || P == pda)
 				continue
 			dat += "<li><a href='byond://?src=\ref[src];software=pdamessage;target=\ref[P]'>[P]</a>"

@@ -1,24 +1,25 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // GPS Locater - locks into a radio frequency and tracks it
-/obj/item/device/beacon_locator
+/obj/item/beacon_locator
 	name = "locater device"
 	desc = "Used to scan and locate signals on a particular frequency according ."
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "pinoff"	//pinonfar, pinonmedium, pinonclose, pinondirect, pinonnull
 	item_state = "electronic"
 
 	var/frequency = FREQUENCY_COMMON
 	var/scan_ticks = 0
-	var/obj/item/device/radio/target_radio
+	var/obj/item/radio/target_radio
 
-/obj/item/device/beacon_locator/New()
+/obj/item/beacon_locator/New()
 	..()
 	GLOBL.processing_objects.Add(src)
 
-/obj/item/device/beacon_locator/Destroy()
+/obj/item/beacon_locator/Destroy()
 	GLOBL.processing_objects.Remove(src)
 	return ..()
 
-/obj/item/device/beacon_locator/process()
+/obj/item/beacon_locator/process()
 	if(target_radio)
 		dir = get_dir(src, target_radio)
 		switch(get_dist(src, target_radio))
@@ -40,7 +41,7 @@
 					if(GLOBL.processing_objects.Find(src))
 						//scan radios in the world to try and find one
 						var/cur_dist = 999
-						for(var/obj/item/device/radio/beacon/R in world)
+						for(var/obj/item/radio/beacon/R in world)
 							if(R.z == src.z && R.frequency == src.frequency)
 								var/check_dist = get_dist(src,R)
 								if(check_dist < cur_dist)
@@ -56,10 +57,10 @@
 		else
 			icon_state = "pinoff"
 
-/obj/item/device/beacon_locator/attack_self(mob/user as mob)
+/obj/item/beacon_locator/attack_self(mob/user as mob)
 	return src.interact(user)
 
-/obj/item/device/beacon_locator/interact(mob/user as mob)
+/obj/item/beacon_locator/interact(mob/user as mob)
 	var/dat = "<b>Radio frequency tracker</b><br>"
 	dat += {"
 				<A href='byond://?src=\ref[src];reset_tracking=1'>Reset tracker</A><BR>
@@ -75,7 +76,7 @@
 	user << browse(dat,"window=locater;size=300x150")
 	onclose(user, "locater")
 
-/obj/item/device/beacon_locator/Topic(href, href_list)
+/obj/item/beacon_locator/Topic(href, href_list)
 	..()
 	usr.set_machine(src)
 

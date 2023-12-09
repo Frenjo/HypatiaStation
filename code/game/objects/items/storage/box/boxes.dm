@@ -241,7 +241,7 @@
 	icon_state = "mousetraps"
 
 	starts_with = list(
-		/obj/item/device/assembly/mousetrap = 6
+		/obj/item/assembly/mousetrap = 6
 	)
 
 // Pill Bottles

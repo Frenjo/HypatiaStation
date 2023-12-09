@@ -6,7 +6,7 @@
 /datum/surgery_step/face
 	priority = 2
 	can_infect = 0
-	
+
 /datum/surgery_step/face/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!hasorgans(target))
 		return 0
@@ -57,7 +57,7 @@
 	allowed_tools = list(
 		/obj/item/hemostat = 100,
 		/obj/item/stack/cable_coil = 75,
-		/obj/item/device/assembly/mousetrap = 10	//I don't know. Don't ask me. But I'm leaving it because hilarity.
+		/obj/item/assembly/mousetrap = 10	//I don't know. Don't ask me. But I'm leaving it because hilarity.
 	)
 
 	min_duration = 70

@@ -14,7 +14,7 @@
 	name = "HiveBot engineering robot module"
 
 /obj/item/hive_module/New()//Shit all the mods have
-	src.modules += new /obj/item/device/flash(src)
+	src.modules += new /obj/item/flash(src)
 
 
 /obj/item/hive_module/standard/New()
@@ -32,17 +32,17 @@
 	src.modules += new /obj/item/screwdriver(src)
 	src.modules += new /obj/item/weldingtool(src)
 	src.modules += new /obj/item/wrench(src)
-	src.modules += new /obj/item/device/analyzer(src)
-	src.modules += new /obj/item/device/flashlight(src)
+	src.modules += new /obj/item/analyzer(src)
+	src.modules += new /obj/item/flashlight(src)
 
 	var/obj/item/rcd/R = new /obj/item/rcd(src)
 	R.matter = 30
 	src.modules += R
 
-	src.modules += new /obj/item/device/t_scanner(src)
+	src.modules += new /obj/item/t_scanner(src)
 	src.modules += new /obj/item/crowbar(src)
 	src.modules += new /obj/item/wirecutters(src)
-	src.modules += new /obj/item/device/multitool(src)
+	src.modules += new /obj/item/multitool(src)
 
 	var/obj/item/stack/sheet/metal/M = new /obj/item/stack/sheet/metal(src)
 	M.amount = 50

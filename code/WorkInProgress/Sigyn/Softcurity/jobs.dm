@@ -14,10 +14,10 @@
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
 		H.equip_to_slot_or_del(new /obj/item/storage/satchel_sec(H), SLOT_ID_BACK)
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/hos(H), slot_ears)
+		H.equip_to_slot_or_del(new /obj/item/radio/headset/heads/hos(H), slot_ears)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/administrator(H), SLOT_ID_W_UNIFORM)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots(H), SLOT_ID_SHOES)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/heads/hos(H), SLOT_ID_BELT)
+		H.equip_to_slot_or_del(new /obj/item/pda/heads/hos(H), SLOT_ID_BELT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), SLOT_ID_GLASSES)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest(H), SLOT_ID_WEAR_SUIT)
 		H.equip_to_slot_or_del(new /obj/item/gun/energy/taser(H), SLOT_ID_S_STORE)
@@ -43,13 +43,13 @@
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec(H), slot_ears)
+		H.equip_to_slot_or_del(new /obj/item/radio/headset/headset_sec(H), slot_ears)
 		H.equip_to_slot_or_del(new /obj/item/storage/satchel_sec(H), SLOT_ID_BACK)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/advisor(H), SLOT_ID_W_UNIFORM)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots(H), SLOT_ID_SHOES)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/warden(H), SLOT_ID_BELT)
+		H.equip_to_slot_or_del(new /obj/item/pda/warden(H), SLOT_ID_BELT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(H), SLOT_ID_GLASSES)
-		H.equip_to_slot_or_del(new /obj/item/device/flash(H), SLOT_ID_L_STORE)
+		H.equip_to_slot_or_del(new /obj/item/flash(H), SLOT_ID_L_STORE)
 		H.equip_to_slot_or_del(new /obj/item/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/handcuffs(H), SLOT_ID_IN_BACKPACK)
 		var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(H)
@@ -72,11 +72,11 @@
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec(H), slot_ears)
+		H.equip_to_slot_or_del(new /obj/item/radio/headset/headset_sec(H), slot_ears)
 		H.equip_to_slot_or_del(new /obj/item/storage/satchel_norm(H), SLOT_ID_BACK)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/det(H), SLOT_ID_W_UNIFORM)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), SLOT_ID_SHOES)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/detective(H), SLOT_ID_BELT)
+		H.equip_to_slot_or_del(new /obj/item/pda/detective(H), SLOT_ID_BELT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/det_hat(H), SLOT_ID_HEAD)
 		var/obj/item/clothing/mask/cigarette/CIG = new /obj/item/clothing/mask/cigarette(H)
 		CIG.light("")
@@ -87,7 +87,7 @@
 
 		H.equip_to_slot_or_del(new /obj/item/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/storage/box/evidence(H), SLOT_ID_IN_BACKPACK)
-		H.equip_to_slot_or_del(new /obj/item/device/detective_scanner(H), SLOT_ID_IN_BACKPACK)
+		H.equip_to_slot_or_del(new /obj/item/detective_scanner(H), SLOT_ID_IN_BACKPACK)
 
 		var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(H)
 		L.imp_in = H
@@ -109,13 +109,13 @@
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/headset_sec(H), slot_ears)
+		H.equip_to_slot_or_del(new /obj/item/radio/headset/headset_sec(H), slot_ears)
 		H.equip_to_slot_or_del(new /obj/item/storage/satchel_sec(H), SLOT_ID_BACK)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/supervisor(H), SLOT_ID_W_UNIFORM)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots(H), SLOT_ID_SHOES)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/security(H), SLOT_ID_BELT)
+		H.equip_to_slot_or_del(new /obj/item/pda/security(H), SLOT_ID_BELT)
 		H.equip_to_slot_or_del(new /obj/item/handcuffs(H), SLOT_ID_R_STORE)
-		H.equip_to_slot_or_del(new /obj/item/device/flash(H), SLOT_ID_L_STORE)
+		H.equip_to_slot_or_del(new /obj/item/flash(H), SLOT_ID_L_STORE)
 		H.equip_to_slot_or_del(new /obj/item/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/handcuffs(H), SLOT_ID_IN_BACKPACK)
 		var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(H)
@@ -138,13 +138,13 @@
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/heads/hop(H), slot_ears)
+		H.equip_to_slot_or_del(new /obj/item/radio/headset/heads/hop(H), slot_ears)
 		if(H.backbag == 2) H.equip_to_slot_or_del(new /obj/item/storage/backpack(H), SLOT_ID_BACK)
 		if(H.backbag == 3) H.equip_to_slot_or_del(new /obj/item/storage/satchel_norm(H), SLOT_ID_BACK)
 		H.equip_to_slot_or_del(new /obj/item/storage/box/survival(H.back), SLOT_ID_IN_BACKPACK)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/head_of_personnel(H), SLOT_ID_W_UNIFORM)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/brown(H), SLOT_ID_SHOES)
-		H.equip_to_slot_or_del(new /obj/item/device/pda/heads/hop(H), SLOT_ID_BELT)
+		H.equip_to_slot_or_del(new /obj/item/pda/heads/hop(H), SLOT_ID_BELT)
 		if(H.backbag == 1)
 			H.equip_to_slot_or_del(new /obj/item/storage/id_kit(H), SLOT_ID_R_HAND)
 		else

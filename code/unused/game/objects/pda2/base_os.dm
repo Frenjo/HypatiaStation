@@ -113,7 +113,7 @@
 						var/count = 0
 
 						if (src.message_on)
-							for (var/obj/item/device/pda2/P in src.detected_pdas)
+							for (var/obj/item/pda2/P in src.detected_pdas)
 								if (!P.owner)
 									src.detected_pdas -= P
 									continue
@@ -259,7 +259,7 @@
 
 
 					if("message")
-						var/obj/item/device/pda2/P = locate(href_list["target"])
+						var/obj/item/pda2/P = locate(href_list["target"])
 						if(!P || !istype(P))
 							return
 

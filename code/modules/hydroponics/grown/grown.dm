@@ -28,7 +28,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/O as obj, mob/user as mob)
 	..()
-	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+	if(istype(O, /obj/item/analyzer/plant_analyzer))
 		var/msg
 		msg = "*---------*\n This is \a <span class='name'>[src]</span>\n"
 		switch(plant_type)
@@ -87,7 +87,7 @@
 
 /obj/item/grown/attackby(obj/item/O as obj, mob/user as mob)
 	..()
-	if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+	if(istype(O, /obj/item/analyzer/plant_analyzer))
 		var/msg
 		msg = "*---------*\n This is \a <span class='name'>[src]</span>\n"
 		switch(plant_type)

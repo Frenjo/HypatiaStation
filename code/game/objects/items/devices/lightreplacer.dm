@@ -37,7 +37,7 @@
 #define LIGHT_BROKEN 2
 #define LIGHT_BURNED 3
 
-/obj/item/device/lightreplacer
+/obj/item/lightreplacer
 	name = "light replacer"
 	desc = "A device to automatically replace lights. Refill with working lightbulbs."
 
@@ -59,17 +59,17 @@
 	var/decrement = 1
 	var/charge = 1
 
-/obj/item/device/lightreplacer/New()
+/obj/item/lightreplacer/New()
 	uses = max_uses / 2
 	failmsg = "The [name]'s refill light blinks red."
 	..()
 
-/obj/item/device/lightreplacer/examine()
+/obj/item/lightreplacer/examine()
 	set src in view(2)
 	..()
 	to_chat(usr, "It has [uses] lights remaining.")
 
-/obj/item/device/lightreplacer/attackby(obj/item/W, mob/user)
+/obj/item/lightreplacer/attackby(obj/item/W, mob/user)
 	if(istype(W,  /obj/item/card/emag) && emagged == 0)
 		Emag()
 		return
@@ -103,7 +103,7 @@
 			return
 
 
-/obj/item/device/lightreplacer/attack_self(mob/user)
+/obj/item/lightreplacer/attack_self(mob/user)
 	/* // This would probably be a bit OP. If you want it though, uncomment the code.
 	if(isrobot(user))
 		var/mob/living/silicon/robot/R = user
@@ -114,26 +114,26 @@
 	*/
 	to_chat(usr, "It has [uses] lights remaining.")
 
-/obj/item/device/lightreplacer/update_icon()
+/obj/item/lightreplacer/update_icon()
 	icon_state = "lightreplacer[emagged]"
 
 
-/obj/item/device/lightreplacer/proc/Use(mob/user)
+/obj/item/lightreplacer/proc/Use(mob/user)
 	playsound(src, 'sound/machines/click.ogg', 50, 1)
 	AddUses(-1)
 	return 1
 
 // Negative numbers will subtract
-/obj/item/device/lightreplacer/proc/AddUses(amount = 1)
+/obj/item/lightreplacer/proc/AddUses(amount = 1)
 	uses = min(max(uses + amount, 0), max_uses)
 
-/obj/item/device/lightreplacer/proc/Charge(mob/user)
+/obj/item/lightreplacer/proc/Charge(mob/user)
 	charge += 1
 	if(charge > 7)
 		AddUses(1)
 		charge = 1
 
-/obj/item/device/lightreplacer/proc/ReplaceLight(obj/machinery/light/target, mob/living/U)
+/obj/item/lightreplacer/proc/ReplaceLight(obj/machinery/light/target, mob/living/U)
 	if(target.status == LIGHT_OK)
 		to_chat(U, "There is a working [target.get_fitting_name()] already inserted.")
 	else if(!CanUse(U))
@@ -146,7 +146,7 @@
 		var/obj/item/light/L = new target.light_type()
 		target.insert_bulb(L)
 
-/obj/item/device/lightreplacer/proc/Emag()
+/obj/item/lightreplacer/proc/Emag()
 	emagged = !emagged
 	playsound(src, "sparks", 100, 1)
 	if(emagged)
@@ -156,7 +156,7 @@
 	update_icon()
 
 //Can you use it?
-/obj/item/device/lightreplacer/proc/CanUse(mob/living/user)
+/obj/item/lightreplacer/proc/CanUse(mob/living/user)
 	src.add_fingerprint(user)
 	//Not sure what else to check for. Maybe if clumsy?
 	if(uses > 0)

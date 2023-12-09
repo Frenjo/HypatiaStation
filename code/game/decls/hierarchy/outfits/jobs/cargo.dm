@@ -18,11 +18,11 @@
 	gloves = /obj/item/clothing/gloves/black
 	shoes = /obj/item/clothing/shoes/brown
 
-	l_ear = /obj/item/device/radio/headset/qm
+	l_ear = /obj/item/radio/headset/qm
 
 	l_hand = /obj/item/clipboard
 
-	pda_type = /obj/item/device/pda/cargo/quartermaster
+	pda_type = /obj/item/pda/cargo/quartermaster
 
 /*
  * Cargo Technician
@@ -34,9 +34,9 @@
 
 	//gloves = /obj/item/clothing/gloves/black
 
-	l_ear = /obj/item/device/radio/headset/cargo
+	l_ear = /obj/item/radio/headset/cargo
 
-	pda_type = /obj/item/device/pda/cargo
+	pda_type = /obj/item/pda/cargo
 
 /*
  * Mailman
@@ -49,9 +49,9 @@
 	head = /obj/item/clothing/head/mailman
 	gloves = /obj/item/clothing/gloves/blue
 
-	l_ear = /obj/item/device/radio/headset/cargo
+	l_ear = /obj/item/radio/headset/cargo
 
-	pda_type = /obj/item/device/pda/cargo/mailman
+	pda_type = /obj/item/pda/cargo/mailman
 
 /*
  * Mining
@@ -62,7 +62,7 @@
 		/obj/item/storage/bag/ore
 	)
 
-	pda_type = /obj/item/device/pda/shaftminer
+	pda_type = /obj/item/pda/shaftminer
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 
@@ -79,7 +79,7 @@
 
 	gloves = /obj/item/clothing/gloves/black
 
-	l_ear = /obj/item/device/radio/headset/mining_foreman
+	l_ear = /obj/item/radio/headset/mining_foreman
 
 /*
  * Shaft Miner
@@ -91,4 +91,4 @@
 
 	//gloves = /obj/item/clothing/gloves/black
 
-	l_ear = /obj/item/device/radio/headset/mining
+	l_ear = /obj/item/radio/headset/mining

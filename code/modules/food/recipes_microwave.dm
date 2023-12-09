@@ -6,7 +6,7 @@
 /datum/recipe/telebacon
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meat,
-		/obj/item/device/assembly/signaler
+		/obj/item/assembly/signaler
 	)
 	result = /obj/item/reagent_containers/food/snacks/telebacon
 
@@ -15,7 +15,7 @@ I said no!
 /datum/recipe/syntitelebacon
 	items = list(
 		/obj/item/syntiflesh,
-		/obj/item/device/assembly/signaler
+		/obj/item/assembly/signaler
 	)
 	result = /obj/item/reagent_containers/food/snacks/telebacon
 */
@@ -51,7 +51,7 @@ I said no!
 	reagents = list("psilocybin" = 5) //Trippin' balls, man.
 	items = list(
 		/obj/item/reagent_containers/food/snacks/grown/banana,
-		/obj/item/device/radio
+		/obj/item/radio
 	)
 	result = /obj/item/reagent_containers/food/snacks/bananaphone
 */

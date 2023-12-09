@@ -1,5 +1,5 @@
 //May expand later, but right now it just repairs lights.
-/obj/item/device/portalathe
+/obj/item/portalathe
 	name = "portable autolathe"
 	desc = "A device which can repair broken lights instantly. Must be advanced."
 	icon = 'icons/obj/janitor.dmi'

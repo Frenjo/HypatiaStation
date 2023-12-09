@@ -27,7 +27,7 @@
 			src.read_only = 1
 
 
-/obj/item/device/pda2
+/obj/item/pda2
 	name = "PDA"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by an EEPROM cartridge."
 	icon = 'icons/obj/items/devices/pda.dmi'
@@ -58,17 +58,17 @@
 	var/setup_system_os_path = /datum/computer/file/pda_program/os/main_os //Needs an operating system to...operate!!
 
 
-/obj/item/device/pda2/pickup(mob/user)
+/obj/item/pda2/pickup(mob/user)
 	if (src.fon)
 		src.sd_SetLuminosity(0)
 		user.sd_SetLuminosity(user.luminosity + src.f_lum)
 
-/obj/item/device/pda2/dropped(mob/user)
+/obj/item/pda2/dropped(mob/user)
 	if (src.fon)
 		user.sd_SetLuminosity(user.luminosity - src.f_lum)
 		src.sd_SetLuminosity(src.f_lum)
 
-/obj/item/device/pda2/New()
+/obj/item/pda2/New()
 	..()
 	spawn(5)
 		src.hd = new /obj/item/disk/data/fixed_disk(src)
@@ -92,7 +92,7 @@
 //	if(src.owner)
 //		processing_items.Add(src)
 
-/obj/item/device/pda2/attack_self(mob/user as mob)
+/obj/item/pda2/attack_self(mob/user as mob)
 	user.machine = src
 
 	var/dat = "<html><head><title>Personal Data Assistant</title></head><body>"
@@ -123,7 +123,7 @@
 	onclose(user,"pda2")
 	return
 
-/obj/item/device/pda2/Topic(href, href_list)
+/obj/item/pda2/Topic(href, href_list)
 	..()
 
 	if (usr.contents.Find(src) || usr.contents.Find(src.master) || (istype(src.loc, /turf) && get_dist(src, usr) <= 1))
@@ -152,7 +152,7 @@
 		src.updateSelfDialog()
 		return
 
-/obj/item/device/pda2/attackby(obj/item/C as obj, mob/user as mob)
+/obj/item/pda2/attackby(obj/item/C as obj, mob/user as mob)
 	if (istype(C, /obj/item/disk/data/cartridge) && isnull(src.cartridge))
 		user.drop_item()
 		C.loc = src
@@ -166,7 +166,7 @@
 		user << "\blue Card scanned."
 		src.updateSelfDialog()
 
-/obj/item/device/pda2/receive_signal(datum/signal/signal)
+/obj/item/pda2/receive_signal(datum/signal/signal)
 	if(!signal || signal.encryption || !src.owner) return
 
 	if(signal.data["tag"] && signal.data["tag"] != "\ref[src]") return
@@ -179,13 +179,13 @@
 
 	return
 
-/obj/item/device/pda2/attack(mob/M as mob, mob/user as mob)
+/obj/item/pda2/attack(mob/M as mob, mob/user as mob)
 	if(src.scan_program)
 		return
 	else
 		..()
 
-/obj/item/device/pda2/afterattack(atom/A as mob|obj|turf|area, mob/user as mob)
+/obj/item/pda2/afterattack(atom/A as mob|obj|turf|area, mob/user as mob)
 	var/scan_dat = null
 	if(src.scan_program && istype(src.scan_program))
 		scan_dat = src.scan_program.scan_atom(A)
@@ -197,7 +197,7 @@
 	return
 
 
-/obj/item/device/pda2/proc
+/obj/item/pda2/proc
 
 	post_signal(datum/signal/signal,var/newfreq)
 		if(!signal)

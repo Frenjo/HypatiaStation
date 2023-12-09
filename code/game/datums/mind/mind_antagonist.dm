@@ -6,7 +6,7 @@
 	return null
 
 /datum/mind/proc/take_uplink()
-	var/obj/item/device/uplink/hidden/H = find_syndicate_uplink()
+	var/obj/item/uplink/hidden/H = find_syndicate_uplink()
 	if(isnotnull(H))
 		qdel(H)
 
@@ -146,7 +146,7 @@
 	global.CTticker.mode.greet_revolutionary(src, 0)
 
 	var/list/L = current.get_contents()
-	var/obj/item/device/flash/flash = locate() in L
+	var/obj/item/flash/flash = locate() in L
 	qdel(flash)
 	take_uplink()
 	var/fail = FALSE
@@ -168,7 +168,7 @@
 		for(var/obj/item/card/id/card in current)
 			is_currently_brigged = FALSE
 			break // if they still have ID they're not brigged
-		for(var/obj/item/device/pda/P in current)
+		for(var/obj/item/pda/P in current)
 			if(isnotnull(P.id))
 				is_currently_brigged = FALSE
 				break // if they still have ID they're not brigged

@@ -9,6 +9,6 @@
 	var/password = "" // blank for no password.
 	var/operator = "" // name of the operator
 
-/datum/chatroom/proc/attempt_connect(obj/item/device/pda/device, obj/password)
+/datum/chatroom/proc/attempt_connect(obj/item/pda/device, obj/password)
 	if(!device)
 		return

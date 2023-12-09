@@ -14,7 +14,7 @@
 	var/quick_create_object_html = null
 	var/pathtext = null
 
-	pathtext = input("Select the path of the object you wish to create.", "Path", "/obj") in list("/obj","/obj/structure","/obj/item","/obj/item","/obj/machinery")
+	pathtext = input("Select the path of the object you wish to create.", "Path", "/obj") in list("/obj","/obj/structure","/obj/item","/obj/machinery")
 
 	var path = text2path(pathtext)
 

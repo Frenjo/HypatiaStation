@@ -110,7 +110,7 @@
 				to_chat(user, SPAN_INFO("Nothing happens."))
 				return
 
-	else if(istype(W, /obj/item/device/analyzer) && get_dist(user, src) <= 1)
+	else if(istype(W, /obj/item/analyzer) && get_dist(user, src) <= 1)
 		visible_message("\red [user] has used [W] on \icon[icon]")
 		if(isnotnull(air_contents))
 			var/pressure = air_contents.return_pressure()

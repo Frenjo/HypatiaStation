@@ -560,7 +560,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MATERIALS = 4)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_GLASS = 1000, MATERIAL_GOLD = 200)
-	build_path = /obj/item/device/aicard
+	build_path = /obj/item/aicard
 
 /datum/design/paicard
 	name = "Personal Artificial Intelligence Card"
@@ -569,7 +569,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_GLASS = 500, MATERIAL_METAL = 500)
-	build_path = /obj/item/device/paicard
+	build_path = /obj/item/paicard
 
 /datum/design/posibrain
 	name = "Positronic Brain"
@@ -579,7 +579,7 @@ other types of metals and chemistry for reagents).
 
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 2000, MATERIAL_GLASS = 1000, MATERIAL_SILVER = 1000, MATERIAL_GOLD = 500, MATERIAL_PLASMA = 500, MATERIAL_DIAMOND = 100)
-	build_path = /obj/item/device/mmi/posibrain
+	build_path = /obj/item/mmi/posibrain
 
 ///////////////////////////////////
 //////////Mecha Module Disks///////
@@ -1196,7 +1196,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_MATERIALS = 4)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 1500, MATERIAL_SILVER = 150, MATERIAL_GLASS = 3000)
-	build_path = /obj/item/device/lightreplacer
+	build_path = /obj/item/lightreplacer
 
 ////////////////////////////////////////
 //////////////MISC Boards///////////////
@@ -1308,7 +1308,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 20)
 	reliability_base = 76
-	build_path = /obj/item/device/mass_spectrometer
+	build_path = /obj/item/mass_spectrometer
 
 /datum/design/adv_mass_spectrometer
 	name = "Advanced Mass-Spectrometer"
@@ -1318,7 +1318,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 20)
 	reliability_base = 74
-	build_path = /obj/item/device/mass_spectrometer/adv
+	build_path = /obj/item/mass_spectrometer/adv
 
 /datum/design/reagent_scanner
 	name = "Reagent Scanner"
@@ -1328,7 +1328,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 20)
 	reliability_base = 76
-	build_path = /obj/item/device/reagent_scanner
+	build_path = /obj/item/reagent_scanner
 
 /datum/design/adv_reagent_scanner
 	name = "Advanced Reagent Scanner"
@@ -1338,7 +1338,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 20)
 	reliability_base = 74
-	build_path = /obj/item/device/reagent_scanner/adv
+	build_path = /obj/item/reagent_scanner/adv
 
 /datum/design/mmi
 	name = "Man-Machine Interface"
@@ -1348,7 +1348,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(MATERIAL_METAL = 1000, MATERIAL_GLASS = 500)
 	reliability_base = 76
-	build_path = /obj/item/device/mmi
+	build_path = /obj/item/mmi
 	category = "Misc"
 
 /datum/design/mmi_radio
@@ -1359,7 +1359,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE | MECHFAB
 	materials = list(MATERIAL_METAL = 1200, MATERIAL_GLASS = 500)
 	reliability_base = 74
-	build_path = /obj/item/device/mmi/radio_enabled
+	build_path = /obj/item/mmi/radio_enabled
 	category = "Misc"
 
 /datum/design/synthetic_flash
@@ -1370,7 +1370,7 @@ other types of metals and chemistry for reagents).
 	build_type = MECHFAB
 	materials = list(MATERIAL_METAL = 750, MATERIAL_GLASS = 750)
 	reliability_base = 76
-	build_path = /obj/item/device/flash/synthetic
+	build_path = /obj/item/flash/synthetic
 	category = "Misc"
 
 /datum/design/nanopaste
@@ -1694,7 +1694,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_BLUESPACE = 1)
 	build_type = PROTOLATHE
 	materials = list (MATERIAL_METAL = 20, MATERIAL_GLASS = 10)
-	build_path = /obj/item/device/radio/beacon
+	build_path = /obj/item/radio/beacon
 
 /datum/design/bag_holding
 	name = "Bag of Holding"
@@ -1800,7 +1800,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_SYNDICATE = 2)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 300, MATERIAL_GLASS = 300)
-	build_path = /obj/item/device/encryptionkey/binary
+	build_path = /obj/item/encryptionkey/binary
 
 /datum/design/pda
 	name = "PDA"
@@ -1809,7 +1809,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_POWERSTORAGE = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
-	build_path = /obj/item/device/pda
+	build_path = /obj/item/pda
 
 /datum/design/cart_basic
 	name = "Generic Cartridge"

@@ -135,15 +135,15 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 	//var/time_till_despawn = 9000 // 15 minutes-ish safe period before being despawned.
 	var/time_till_despawn = 3000 // Lowered this to 5 minutes for reasons. -Frenjo
 	var/time_entered = 0		// Used to keep track of the safe period.
-	var/obj/item/device/radio/intercom/announce //
+	var/obj/item/radio/intercom/announce //
 
 	// These items are preserved when the process() despawn proc occurs.
 	var/list/preserve_items = list(
 		/obj/item/hand_tele,
 		/obj/item/card/id/captains_spare,
-		/obj/item/device/aicard,
-		/obj/item/device/mmi,
-		/obj/item/device/paicard,
+		/obj/item/aicard,
+		/obj/item/mmi,
+		/obj/item/paicard,
 		/obj/item/gun,
 		/obj/item/pinpointer,
 		/obj/item/clothing/suit,
@@ -157,7 +157,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 	icon_state = "body_scanner_0-r"
 
 /obj/machinery/cryopod/New()
-	announce = new /obj/item/device/radio/intercom(src)
+	announce = new /obj/item/radio/intercom(src)
 
 	if(orient_right)
 		icon_state = "body_scanner_0-r"

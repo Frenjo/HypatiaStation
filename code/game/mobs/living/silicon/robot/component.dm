@@ -160,8 +160,9 @@
 //
 //Robotic Component Analyser, basically a health analyser for robots
 //
-/obj/item/device/robotanalyzer
+/obj/item/robotanalyzer
 	name = "cyborg analyzer"
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "robotanalyzer"
 	item_state = "analyzer"
 	desc = "A hand-held scanner able to diagnose robotic injuries."
@@ -176,7 +177,7 @@
 
 	var/mode = 1
 
-/obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
 	if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
 		user << "\red You try to analyze the floor's vitals!"
 		for(var/mob/O in viewers(M, null))

@@ -14,7 +14,7 @@
 	starts_with = list(
 		/obj/item/clothing/under/rank/cargotech,
 		/obj/item/clothing/shoes/black,
-		/obj/item/device/radio/headset/cargo,
+		/obj/item/radio/headset/cargo,
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/head/soft
 	)
@@ -35,12 +35,12 @@
 	starts_with = list(
 		/obj/item/clothing/under/rank/mailman,
 		/obj/item/clothing/shoes/black,
-		/obj/item/device/radio/headset/cargo,
+		/obj/item/radio/headset/cargo,
 		/obj/item/clothing/gloves/blue,
 		/obj/item/clothing/head/mailman,
 		/obj/item/tank/air,
 		/obj/item/clothing/mask/gas,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/clothing/suit/space/mailmanvoid,
 		/obj/item/clothing/head/helmet/space/mailmanvoid,
 		/obj/item/clothing/glasses/science
@@ -62,9 +62,9 @@
 	starts_with = list(
 		/obj/item/clothing/under/rank/cargo,
 		/obj/item/clothing/shoes/brown,
-		/obj/item/device/radio/headset/cargo,
+		/obj/item/radio/headset/cargo,
 		/obj/item/clothing/gloves/black,
-		/obj/item/device/radio/headset/qm,
+		/obj/item/radio/headset/qm,
 		/obj/item/cartridge/quartermaster,
 		/obj/item/clothing/suit/fire/firefighter,
 		/obj/item/tank/emergency/oxygen,

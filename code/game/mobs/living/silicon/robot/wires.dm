@@ -128,7 +128,7 @@
 				src.cut(t1)
 		else if (href_list["pulse"])
 			var/t1 = text2num(href_list["pulse"])
-			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if (!istype(usr.get_active_hand(), /obj/item/multitool))
 				usr << "You need a multitool!"
 				return
 			if (src.isWireColorCut(t1))

@@ -23,9 +23,9 @@
 	name = "Arts and Crafts supplies"
 	contains = list(
 		/obj/item/storage/fancy/crayons,
-		/obj/item/device/camera,
-		/obj/item/device/camera_film,
-		/obj/item/device/camera_film,
+		/obj/item/camera,
+		/obj/item/camera_film,
+		/obj/item/camera_film,
 		/obj/item/storage/photo_album,
 		/obj/item/package_wrap,
 		/obj/item/reagent_containers/glass/paint/red,

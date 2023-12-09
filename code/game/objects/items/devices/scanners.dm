@@ -8,9 +8,10 @@ PLANT ANALYZER
 MASS SPECTROMETER
 REAGENT SCANNER
 */
-/obj/item/device/t_scanner
+/obj/item/t_scanner
 	name = "T-ray scanner"
 	desc = "A terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "t-ray0"
 
 	slot_flags = SLOT_BELT
@@ -21,14 +22,14 @@ REAGENT SCANNER
 
 	var/on = 0
 
-/obj/item/device/t_scanner/attack_self(mob/user)
+/obj/item/t_scanner/attack_self(mob/user)
 	on = !on
 	icon_state = "t-ray[on]"
 
 	if(on)
 		GLOBL.processing_objects.Add(src)
 
-/obj/item/device/t_scanner/process()
+/obj/item/t_scanner/process()
 	if(!on)
 		GLOBL.processing_objects.Remove(src)
 		return null
@@ -56,8 +57,9 @@ REAGENT SCANNER
 					M.invisibility = INVISIBILITY_LEVEL_TWO
 
 
-/obj/item/device/healthanalyzer
+/obj/item/healthanalyzer
 	name = "Health Analyzer"
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "health"
 	item_state = "analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
@@ -72,7 +74,7 @@ REAGENT SCANNER
 
 	var/mode = 1
 
-/obj/item/device/healthanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/healthanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
 	if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
 		to_chat(user, SPAN_WARNING("You try to analyze the floor's vitals!"))
 		for(var/mob/O in viewers(M, null))
@@ -196,7 +198,7 @@ REAGENT SCANNER
 	src.add_fingerprint(user)
 	return
 
-/obj/item/device/healthanalyzer/verb/toggle_mode()
+/obj/item/healthanalyzer/verb/toggle_mode()
 	set category = PANEL_OBJECT
 	set name = "Switch Verbosity"
 
@@ -207,7 +209,7 @@ REAGENT SCANNER
 		if(0)
 			to_chat(usr, "The scanner no longer shows limb damage.")
 
-/obj/item/device/healthanalyzer/proc/output_error(mob/living/user, mob/living/target)
+/obj/item/healthanalyzer/proc/output_error(mob/living/user, mob/living/target)
 	user.show_message("\blue Analyzing Results for ERROR:\n\t Overall Status: ERROR")
 	user.show_message("\t Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>", 1)
 	user.show_message("\t Damage Specifics: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
@@ -216,9 +218,10 @@ REAGENT SCANNER
 	user.show_message("\blue Subject's pulse: <font color='red'>-- bpm.</font>")
 
 
-/obj/item/device/analyzer
+/obj/item/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	name = "analyzer"
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "atmos"
 	item_state = "analyzer"
 	w_class = 2.0
@@ -230,7 +233,7 @@ REAGENT SCANNER
 	matter_amounts = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 20)
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_ENGINEERING = 1)
 
-/obj/item/device/analyzer/attack_self(mob/user as mob)
+/obj/item/analyzer/attack_self(mob/user as mob)
 	if(user.stat)
 		return
 	if(!(ishuman(usr) || global.CTticker) && global.CTticker.mode.name != "monkey")
@@ -261,9 +264,10 @@ REAGENT SCANNER
 	return
 
 
-/obj/item/device/mass_spectrometer
+/obj/item/mass_spectrometer
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
 	name = "mass-spectrometer"
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "spectrometer"
 	item_state = "analyzer"
 	w_class = 2.0
@@ -278,19 +282,19 @@ REAGENT SCANNER
 	var/details = 0
 	var/recent_fail = 0
 
-/obj/item/device/mass_spectrometer/New()
+/obj/item/mass_spectrometer/New()
 	..()
 	var/datum/reagents/R = new/datum/reagents(5)
 	reagents = R
 	R.my_atom = src
 
-/obj/item/device/mass_spectrometer/on_reagent_change()
+/obj/item/mass_spectrometer/on_reagent_change()
 	if(reagents.total_volume)
 		icon_state = initial(icon_state) + "_s"
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/device/mass_spectrometer/attack_self(mob/user as mob)
+/obj/item/mass_spectrometer/attack_self(mob/user as mob)
 	if(user.stat)
 		return
 	if(crit_fail)
@@ -328,16 +332,17 @@ REAGENT SCANNER
 		reagents.clear_reagents()
 	return
 
-/obj/item/device/mass_spectrometer/adv
+/obj/item/mass_spectrometer/adv
 	name = "advanced mass-spectrometer"
 	icon_state = "adv_spectrometer"
 	details = 1
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_BIOTECH = 2)
 
 
-/obj/item/device/reagent_scanner
+/obj/item/reagent_scanner
 	name = "reagent scanner"
 	desc = "A hand-held reagent scanner which identifies chemical agents."
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "spectrometer"
 	item_state = "analyzer"
 	w_class = 2.0
@@ -352,7 +357,7 @@ REAGENT SCANNER
 	var/details = 0
 	var/recent_fail = 0
 
-/obj/item/device/reagent_scanner/afterattack(obj/O, mob/user as mob)
+/obj/item/reagent_scanner/afterattack(obj/O, mob/user as mob)
 	if(user.stat)
 		return
 	if(!(ishuman(usr) || global.CTticker) && global.CTticker.mode.name != "monkey")
@@ -387,7 +392,7 @@ REAGENT SCANNER
 
 	return
 
-/obj/item/device/reagent_scanner/adv
+/obj/item/reagent_scanner/adv
 	name = "advanced reagent scanner"
 	icon_state = "adv_spectrometer"
 	details = 1

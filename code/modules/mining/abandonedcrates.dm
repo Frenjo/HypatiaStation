@@ -26,7 +26,7 @@
 		if(2)
 			starts_with = list(
 				/obj/item/pickaxe/drill,
-				/obj/item/device/taperecorder,
+				/obj/item/taperecorder,
 				/obj/item/clothing/suit/space,
 				/obj/item/clothing/head/helmet/space
 			)
@@ -107,7 +107,7 @@
 		if(istype(W, /obj/item/card/emag))
 			to_chat(user, SPAN_NOTICE("The crate unlocks!"))
 			locked = 0
-		if(istype(W, /obj/item/device/multitool))
+		if(istype(W, /obj/item/multitool))
 			to_chat(user, SPAN_NOTICE("DECA-CODE LOCK REPORT:"))
 			if(attempts == 1)
 				to_chat(user, SPAN_WARNING("* Anti-Tamper Bomb will activate on next failed access attempt."))

@@ -9,7 +9,7 @@
 	id_slot = SLOT_ID_WEAR_ID
 	id_type = /obj/item/card/id/centcom/station
 	pda_slot = SLOT_ID_R_STORE
-	pda_type = /obj/item/device/pda/heads
+	pda_type = /obj/item/pda/heads
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 
@@ -22,7 +22,7 @@
 	uniform = /obj/item/clothing/under/rank/centcom/representative
 	belt = /obj/item/clipboard
 
-	l_ear = /obj/item/device/radio/headset/heads/hop
+	l_ear = /obj/item/radio/headset/heads/hop
 
 	id_pda_assignment = "NanoTrasen Navy Representative"
 
@@ -37,7 +37,7 @@
 
 	head = /obj/item/clothing/head/beret/centcom/officer
 
-	l_ear = /obj/item/device/radio/headset/heads/captain
+	l_ear = /obj/item/radio/headset/heads/captain
 
 	id_pda_assignment = "NanoTrasen Navy Officer"
 
@@ -52,6 +52,6 @@
 
 	head = /obj/item/clothing/head/beret/centcom/captain
 
-	l_ear = /obj/item/device/radio/headset/heads/captain
+	l_ear = /obj/item/radio/headset/heads/captain
 
 	id_pda_assignment = "NanoTrasen Navy Captain"

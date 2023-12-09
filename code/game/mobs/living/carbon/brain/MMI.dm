@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-/obj/item/device/mmi
+/obj/item/mmi
 	name = "Man-Machine Interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
 	icon = 'icons/obj/items/assemblies/assemblies.dmi'
@@ -21,7 +21,7 @@
 	var/mob/living/silicon/robot = null//Appears unused.
 	var/obj/mecha = null//This does not appear to be used outside of reference in mecha.dm.
 
-/obj/item/device/mmi/Destroy()
+/obj/item/mmi/Destroy()
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/borg = loc
 		borg.mmi = null
@@ -30,7 +30,7 @@
 		brainmob = null
 	return ..()
 
-/obj/item/device/mmi/attackby(obj/item/O as obj, mob/user as mob)
+/obj/item/mmi/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/brain) && !brainmob) //Time to stick a brain in it --NEO
 		if(!O:brainmob)
 			user << "\red You aren't sure where this brain came from, but you're pretty sure it's a useless brain."
@@ -58,7 +58,7 @@
 
 		return
 
-	if((istype(O, /obj/item/card/id)||istype(O, /obj/item/device/pda)) && brainmob)
+	if((istype(O, /obj/item/card/id)||istype(O, /obj/item/pda)) && brainmob)
 		if(allowed(user))
 			locked = !locked
 			user << "\blue You [locked ? "lock" : "unlock"] the brain holder."
@@ -70,7 +70,7 @@
 		return
 	..()
 
-/obj/item/device/mmi/attack_self(mob/user as mob)
+/obj/item/mmi/attack_self(mob/user as mob)
 	if(!brainmob)
 		user << "\red You upend the MMI, but there's nothing in it."
 	else if(locked)
@@ -87,7 +87,7 @@
 		icon_state = "mmi_empty"
 		name = "Man-Machine Interface"
 
-/obj/item/device/mmi/proc/transfer_identity(mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->robot people.
+/obj/item/mmi/proc/transfer_identity(mob/living/carbon/human/H)//Same deal as the regular brain proc. Used for human-->robot people.
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
@@ -99,20 +99,20 @@
 	locked = 1
 	return
 
-/obj/item/device/mmi/radio_enabled
+/obj/item/mmi/radio_enabled
 	name = "Radio-enabled Man-Machine Interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio."
 	origin_tech = list(RESEARCH_TECH_BIOTECH = 4)
 
-	var/obj/item/device/radio/radio = null//Let's give it a radio.
+	var/obj/item/radio/radio = null//Let's give it a radio.
 
-/obj/item/device/mmi/radio_enabled/New()
+/obj/item/mmi/radio_enabled/New()
 	..()
 	radio = new(src)//Spawns a radio inside the MMI.
 	radio.broadcasting = 1//So it's broadcasting from the start.
 
 //Allows the brain to toggle the radio functions.
-/obj/item/device/mmi/radio_enabled/verb/Toggle_Broadcasting()
+/obj/item/mmi/radio_enabled/verb/Toggle_Broadcasting()
 	set name = "Toggle Broadcasting"
 	set desc = "Toggle broadcasting channel on or off."
 	set category = "MMI"
@@ -125,7 +125,7 @@
 	radio.broadcasting = radio.broadcasting == 1 ? 0 : 1
 	brainmob << "\blue Radio is [radio.broadcasting==1 ? "now" : "no longer"] broadcasting."
 
-/obj/item/device/mmi/radio_enabled/verb/Toggle_Listening()
+/obj/item/mmi/radio_enabled/verb/Toggle_Listening()
 	set name = "Toggle Listening"
 	set desc = "Toggle listening channel on or off."
 	set category = "MMI"
@@ -138,7 +138,7 @@
 	radio.listening = radio.listening == 1 ? 0 : 1
 	brainmob << "\blue Radio is [radio.listening==1 ? "now" : "no longer"] receiving broadcast."
 
-/obj/item/device/mmi/emp_act(severity)
+/obj/item/mmi/emp_act(severity)
 	if(!brainmob)
 		return
 	else

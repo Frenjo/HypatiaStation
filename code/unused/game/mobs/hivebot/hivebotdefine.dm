@@ -19,7 +19,7 @@
 	var/module_state_2 = null
 	var/module_state_3 = null
 
-	var/obj/item/device/radio/radio = null
+	var/obj/item/radio/radio = null
 
 	var/list/req_access = list(ACCESS_ROBOTICS)
 	var/energy = 4000

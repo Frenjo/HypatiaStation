@@ -17,7 +17,7 @@
 /datum/computer/file/pda_program
 	name = "blank program"
 	extension = "PPROG"
-	var/obj/item/device/pda2/master = null
+	var/obj/item/pda2/master = null
 	var/id_tag = null
 
 	os
@@ -32,7 +32,7 @@
 		if(holding)
 			src.holder = holding
 
-			if(istype(src.holder.loc,/obj/item/device/pda2))
+			if(istype(src.holder.loc,/obj/item/pda2))
 				src.master = src.holder.loc
 
 	proc
@@ -123,7 +123,7 @@
 
 			newfolder.add_file(src)
 
-			if(istype(newholder.loc,/obj/item/device/pda2))
+			if(istype(newholder.loc,/obj/item/pda2))
 				src.master = newholder.loc
 
 			//to_world("Setting [src.holder] to [newholder]")

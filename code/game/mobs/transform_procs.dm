@@ -108,7 +108,7 @@
 				loc_landmark = sloc
 
 	O.loc = loc_landmark.loc
-	for(var/obj/item/device/radio/intercom/comm in O.loc)
+	for(var/obj/item/radio/intercom/comm in O.loc)
 		comm.ai += O
 
 	to_chat(O, "<B>You are playing the station's AI. The AI cannot move, but can interact with many objects while viewing them (through cameras).</B>")
@@ -171,11 +171,11 @@
 	O.job = "Cyborg"
 	if(O.mind.assigned_role == "Cyborg")
 		if(O.mind.role_alt_title == "Android")
-			O.mmi = new /obj/item/device/mmi/posibrain(O)
+			O.mmi = new /obj/item/mmi/posibrain(O)
 		if(O.mind.role_alt_title == "Robot")
-			O.mmi = new /obj/item/device/mmi/posibrain(O)	//Ravensdale wants a circuit based brain for another robot class, this is a placeholder.
+			O.mmi = new /obj/item/mmi/posibrain(O)	//Ravensdale wants a circuit based brain for another robot class, this is a placeholder.
 	else
-		O.mmi = new /obj/item/device/mmi(O)
+		O.mmi = new /obj/item/mmi(O)
 		O.mmi.transfer_identity(src)	//Does not transfer key/client.
 
 	O.namepick()

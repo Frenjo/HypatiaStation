@@ -15,7 +15,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 */
 
-/obj/item/device/uplink
+/obj/item/uplink
 	var/welcome 					// Welcoming menu message
 	var/menu_message = "" 			// The actual menu text
 	var/items						// List of items
@@ -100,19 +100,19 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 				if(uses > 6)
 					randomItems.Add("/obj/item/aiModule/syndicate") //Hacked AI Upload Module
-					randomItems.Add("/obj/item/device/radio/beacon/syndicate") //Singularity Beacon
+					randomItems.Add("/obj/item/radio/beacon/syndicate") //Singularity Beacon
 
 				if(uses > 5)
 					randomItems.Add("/obj/item/gun/projectile") //Revolver
 
 				if(uses > 4)
 					randomItems.Add("/obj/item/gun/energy/crossbow") //Energy Crossbow
-					randomItems.Add("/obj/item/device/powersink") //Powersink
+					randomItems.Add("/obj/item/powersink") //Powersink
 
 				if(uses > 3)
 					randomItems.Add("/obj/item/melee/energy/sword") //Energy Sword
 					randomItems.Add("/obj/item/clothing/mask/gas/voice") //Voice Changer
-					randomItems.Add("/obj/item/device/chameleon") //Chameleon Projector
+					randomItems.Add("/obj/item/chameleon") //Chameleon Projector
 
 				if(uses > 2)
 					randomItems.Add("/obj/item/storage/emp_kit") //EMP Grenades
@@ -122,7 +122,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 					randomItems.Add("/obj/item/card/id/syndicate") //Agent ID Card
 					randomItems.Add("/obj/item/card/emag") //Cryptographic Sequencer
 					randomItems.Add("/obj/item/storage/syndie_kit/space") //Syndicate Space Suit
-					randomItems.Add("/obj/item/device/encryptionkey/binary") //Binary Translator Key
+					randomItems.Add("/obj/item/encryptionkey/binary") //Binary Translator Key
 					randomItems.Add("/obj/item/storage/syndie_kit/imp_freedom") //Freedom Implant
 					randomItems.Add("/obj/item/clothing/glasses/thermal") //Thermal Imaging Goggles
 
@@ -155,16 +155,16 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 							uses -= 20
 						if("/obj/item/toy/syndicateballoon" , "/obj/item/storage/syndie_kit/imp_uplink" , "/obj/item/storage/box/syndicate")
 							uses -= 10
-						if("/obj/item/aiModule/syndicate" , "/obj/item/device/radio/beacon/syndicate")
+						if("/obj/item/aiModule/syndicate" , "/obj/item/radio/beacon/syndicate")
 							uses -= 7
 						if("/obj/item/gun/projectile")
 							uses -= 6
-						if("/obj/item/gun/energy/crossbow" , "/obj/item/device/powersink")
+						if("/obj/item/gun/energy/crossbow" , "/obj/item/powersink")
 							uses -= 5
-						if("/obj/item/melee/energy/sword" , "/obj/item/clothing/mask/gas/voice" , "/obj/item/device/chameleon")
+						if("/obj/item/melee/energy/sword" , "/obj/item/clothing/mask/gas/voice" , "/obj/item/chameleon")
 							uses -= 4
 						if("/obj/item/storage/emp_kit" , "/obj/item/pen/paralysis" , "/obj/item/cartridge/syndicate" , "/obj/item/clothing/under/chameleon" , \
-						"/obj/item/card/id/syndicate" , "/obj/item/card/emag" , "/obj/item/storage/syndie_kit/space" , "/obj/item/device/encryptionkey/binary" , \
+						"/obj/item/card/id/syndicate" , "/obj/item/card/emag" , "/obj/item/storage/syndie_kit/space" , "/obj/item/encryptionkey/binary" , \
 						"/obj/item/storage/syndie_kit/imp_freedom" , "/obj/item/clothing/glasses/thermal")
 							uses -= 3
 						if("/obj/item/ammo_magazine/a357" , "/obj/item/clothing/shoes/syndigaloshes" , "/obj/item/plastique")
@@ -196,12 +196,12 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 //Syndicate uplink hidden inside a traitor PDA
 //Communicate with traitor through the PDA's note function.
 
-/obj/item/device/uplink/pda
+/obj/item/uplink/pda
 	name = "uplink module"
 	desc = "An electronic uplink system of unknown origin."
 	icon = 'icons/obj/items/module.dmi'
 	icon_state = "power_mod"
-	var/obj/item/device/pda/hostpda = null
+	var/obj/item/pda/hostpda = null
 
 	var/orignote = null 		//Restore original notes when locked.
 	var/active = 0 				//Are we currently active?
@@ -287,7 +287,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
  */
 
 //A Syndicate uplink disguised as a portable radio
-/obj/item/device/uplink/radio/implanted
+/obj/item/uplink/radio/implanted
 	New()
 		..()
 		uses = 5
@@ -310,13 +310,13 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		return
 
 
-/obj/item/device/uplink/radio
+/obj/item/uplink/radio
 	name = "ship bounced radio"
 	icon = 'icons/obj/items/devices/radio.dmi'
 	icon_state = "radio"
 	var/temp = null 			//Temporary storage area for a message offering the option to destroy the radio
 	var/selfdestruct = 0		//Set to 1 while the radio is self destructing itself.
-	var/obj/item/device/radio/origradio = null
+	var/obj/item/radio/origradio = null
 	flags = FPRINT | TABLEPASS | CONDUCT
 	slot_flags = SLOT_BELT
 	w_class = 2.0
@@ -385,8 +385,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 				// presto chango, a regular radio again! (reset the freq too...)
 				usr.machine = null
 				usr << browse(null, "window=radio")
-				var/obj/item/device/radio/T = src.origradio
-				var/obj/item/device/uplink/radio/R = src
+				var/obj/item/radio/T = src.origradio
+				var/obj/item/uplink/radio/R = src
 				R.loc = T
 				T.loc = usr
 				// R.reset_plane_and_layer()
@@ -446,8 +446,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 				M << browse(null, "window=radio")
 				M.machine = null
 
-		var/obj/item/device/radio/T = src.origradio
-		var/obj/item/device/uplink/radio/R = src
+		var/obj/item/radio/T = src.origradio
+		var/obj/item/uplink/radio/R = src
 		var/mob/L = src.loc
 		R.loc = T
 		T.loc = L

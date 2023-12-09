@@ -78,7 +78,7 @@
 		/obj/item/clothing/suit/storage/labcoat,
 		/obj/item/clothing/shoes/white,
 		/obj/item/clothing/glasses/science,
-		/obj/item/device/radio/headset/xenoarch,
+		/obj/item/radio/headset/xenoarch,
 		/obj/item/storage/belt/archaeology,
 		/obj/item/storage/box/excavation
 	)
@@ -92,16 +92,16 @@
 	starts_with = list(
 		/obj/item/storage/belt/archaeology,
 		/obj/item/storage/box/excavation,
-		/obj/item/device/flashlight/lantern,
-		/obj/item/device/ano_scanner,
-		/obj/item/device/depth_scanner,
-		/obj/item/device/core_sampler,
-		/obj/item/device/gps,
-		/obj/item/device/beacon_locator,
-		/obj/item/device/radio/beacon,
+		/obj/item/flashlight/lantern,
+		/obj/item/ano_scanner,
+		/obj/item/depth_scanner,
+		/obj/item/core_sampler,
+		/obj/item/gps,
+		/obj/item/beacon_locator,
+		/obj/item/radio/beacon,
 		/obj/item/clothing/glasses/meson,
 		/obj/item/pickaxe,
-		/obj/item/device/measuring_tape,
+		/obj/item/measuring_tape,
 		/obj/item/pickaxe/hand
 	)
 

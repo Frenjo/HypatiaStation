@@ -266,14 +266,14 @@
 
 			if("takeflash")
 				var/list/L = current.get_contents()
-				var/obj/item/device/flash/flash = locate() in L
+				var/obj/item/flash/flash = locate() in L
 				if(isnull(flash))
 					to_chat(usr, SPAN_WARNING("Deleting flash failed!"))
 				qdel(flash)
 
 			if("repairflash")
 				var/list/L = current.get_contents()
-				var/obj/item/device/flash/flash = locate() in L
+				var/obj/item/flash/flash = locate() in L
 				if(isnull(flash))
 					to_chat(usr, SPAN_WARNING("Repairing flash failed!"))
 				else
@@ -281,7 +281,7 @@
 
 			if("reequip")
 				var/list/L = current.get_contents()
-				var/obj/item/device/flash/flash = locate() in L
+				var/obj/item/flash/flash = locate() in L
 				qdel(flash)
 				take_uplink()
 				var/fail = FALSE
@@ -624,7 +624,7 @@
 				memory = null // Remove any memory they may have had.
 			if("crystals")
 				if(usr.client.holder.rights & R_FUN)
-					var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
+					var/obj/item/uplink/hidden/suplink = find_syndicate_uplink()
 					var/crystals = suplink?.uses
 					crystals = input("Amount of telecrystals for [key]", "Syndicate uplink", crystals) as null | num
 					if(isnotnull(crystals))

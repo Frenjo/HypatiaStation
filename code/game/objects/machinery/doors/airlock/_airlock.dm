@@ -173,7 +173,7 @@
 		if(isElectrified())
 			if(shock(user, 75))
 				return
-	if(istype(C, /obj/item/device/detective_scanner) || istype(C, /obj/item/taperoll))
+	if(istype(C, /obj/item/detective_scanner) || istype(C, /obj/item/taperoll))
 		return
 
 	add_fingerprint(user)
@@ -193,9 +193,9 @@
 		update_icon()
 	else if(istype(C, /obj/item/wirecutters))
 		return attack_hand(user)
-	else if(istype(C, /obj/item/device/multitool))
+	else if(istype(C, /obj/item/multitool))
 		return attack_hand(user)
-	else if(istype(C, /obj/item/device/assembly/signaler))
+	else if(istype(C, /obj/item/assembly/signaler))
 		return attack_hand(user)
 	else if(istype(C, /obj/item/pai_cable))	// -- TLE
 		var/obj/item/pai_cable/cable = C

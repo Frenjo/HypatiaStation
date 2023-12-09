@@ -96,7 +96,7 @@
 		/obj/item/tome,
 		/obj/item/melee/cultblade,
 		/obj/item/tank/emergency/oxygen,
-		/obj/item/device/suit_cooling_unit
+		/obj/item/suit_cooling_unit
 	)
 	slowdown = 1
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)

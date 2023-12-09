@@ -97,7 +97,7 @@
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,
 		/obj/item/clothing/mask/gas,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/tank/oxygen/red,
 		/obj/item/extinguisher,
 		/obj/item/clothing/head/hardhat/red
@@ -123,7 +123,7 @@
 	if(prob(40))
 		starts_with.Add(/obj/item/clothing/suit/storage/hazardvest)
 	if(prob(70))
-		starts_with.Add(/obj/item/device/flashlight)
+		starts_with.Add(/obj/item/flashlight)
 	if(prob(70))
 		starts_with.Add(/obj/item/screwdriver)
 	if(prob(70))
@@ -135,7 +135,7 @@
 	if(prob(70))
 		starts_with.Add(/obj/item/wirecutters)
 	if(prob(70))
-		starts_with.Add(/obj/item/device/t_scanner)
+		starts_with.Add(/obj/item/t_scanner)
 	if(prob(20))
 		starts_with.Add(/obj/item/storage/belt/utility)
 	if(prob(30))
@@ -145,7 +145,7 @@
 	if(prob(30))
 		starts_with.Add(/obj/item/stack/cable_coil/random)
 	if(prob(20))
-		starts_with.Add(/obj/item/device/multitool)
+		starts_with.Add(/obj/item/multitool)
 	if(prob(5))
 		starts_with.Add(/obj/item/clothing/gloves/yellow)
 	if(prob(40))
@@ -216,7 +216,7 @@
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,
 		/obj/item/clothing/mask/gas,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/tank/oxygen/red,
 		/obj/item/extinguisher,
 		/obj/item/clothing/head/hardhat/red

@@ -670,7 +670,7 @@
 		else
 			to_chat(user, SPAN_WARNING("The [src] already has seeds in it!"))
 
-	else if(istype(O, /obj/item/device/analyzer/plant_analyzer))
+	else if(istype(O, /obj/item/analyzer/plant_analyzer))
 		if(planted && myseed)
 			to_chat(user, "*** <B>[myseed.plantname]</B> ***") //Carn: now reports the plants growing, not the seeds.
 			to_chat(user, "-Plant Age: \blue [age]")

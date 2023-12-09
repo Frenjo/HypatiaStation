@@ -216,14 +216,14 @@
 	return hear
 
 
-/proc/get_mobs_in_radio_ranges(list/obj/item/device/radio/radios)
+/proc/get_mobs_in_radio_ranges(list/obj/item/radio/radios)
 	set background = BACKGROUND_ENABLED
 
 	. = list()
 	// Returns a list of mobs who can hear any of the radios given in @radios
 	var/list/speaker_coverage = list()
 	for(var/i = 1; i <= length(radios); i++)
-		var/obj/item/device/radio/R = radios[i]
+		var/obj/item/radio/R = radios[i]
 		if(isnotnull(R))
 			var/turf/speaker = get_turf(R)
 			if(speaker)

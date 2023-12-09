@@ -67,7 +67,7 @@
 /obj/effect/landmark/corpse/alien/cargo
 	name = "Cargo Technician"
 	corpseuniform = /obj/item/clothing/under/rank/cargo
-	corpseradio = /obj/item/device/radio/headset/headset_cargo
+	corpseradio = /obj/item/radio/headset/headset_cargo
 	corpseid = 1
 	corpseidjob = "Cargo Technician"
 	corpseidaccess = "Quartermaster"
@@ -75,7 +75,7 @@
 /obj/effect/landmark/corpse/alien/laborer
 	name = "Laborer"
 	corpseuniform = /obj/item/clothing/under/overalls
-	corpseradio = /obj/item/device/radio/headset/headset_eng
+	corpseradio = /obj/item/radio/headset/headset_eng
 	corpseback = /obj/item/storage/backpack/industrial
 	corpsebelt = /obj/item/storage/belt/utility/full
 	corpsehelmet = /obj/item/clothing/head/hardhat
@@ -92,7 +92,7 @@
 	name = "Overseer"
 	corpseuniform = /obj/item/clothing/under/rank/navyhead_of_security
 	corpsesuit = /obj/item/clothing/suit/armor/hosnavycoat
-	corpseradio = /obj/item/device/radio/headset/heads/captain
+	corpseradio = /obj/item/radio/headset/heads/captain
 	corpsegloves = /obj/item/clothing/gloves/black/hos
 	corpseshoes = /obj/item/clothing/shoes/swat
 	corpsehelmet = /obj/item/clothing/head/beret/navyhos
@@ -105,7 +105,7 @@
 	name = "Security Officer"
 	corpseuniform = /obj/item/clothing/under/rank/navysecurity
 	corpsesuit = /obj/item/clothing/suit/armor/navysecvest
-	corpseradio = /obj/item/device/radio/headset/headset_sec
+	corpseradio = /obj/item/radio/headset/headset_sec
 	corpseshoes = /obj/item/clothing/shoes/swat
 	corpsehelmet = /obj/item/clothing/head/beret/navysec
 	corpseid = 1

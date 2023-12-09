@@ -140,10 +140,10 @@
 			qdel(src)
 
 	// OTHER
-	else if((istype(W, /obj/item/paper) || istype(W, /obj/item/device/pda)) && isliving(user))
+	else if((istype(W, /obj/item/paper) || istype(W, /obj/item/pda)) && isliving(user))
 		var/mob/living/U = user
 		var/obj/item/paper/X = null
-		var/obj/item/device/pda/P = null
+		var/obj/item/pda/P = null
 
 		var/itemname = ""
 		var/info = ""

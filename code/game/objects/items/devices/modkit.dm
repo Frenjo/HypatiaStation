@@ -2,9 +2,10 @@
 #define MODKIT_SUIT 2
 #define MODKIT_FULL 3
 
-/obj/item/device/modkit
+/obj/item/modkit
 	name = "hardsuit modification kit"
 	desc = "A kit containing all the needed tools and parts to modify a hardsuit for another user."
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "modkit"
 	var/parts = MODKIT_FULL
 	var/list/target_species = list(SPECIES_HUMAN, SPECIES_SKRELL)
@@ -14,7 +15,7 @@
 		/obj/item/clothing/suit/space/rig
 	)
 
-/obj/item/device/modkit/afterattack(obj/O, mob/user as mob)
+/obj/item/modkit/afterattack(obj/O, mob/user as mob)
 	if(!parts)
 		to_chat(user, SPAN_WARNING("This kit has no parts for this modification left."))
 		user.drop_from_inventory(src)
@@ -46,12 +47,12 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 
-/obj/item/device/modkit/tajaran
+/obj/item/modkit/tajaran
 	name = "tajara hardsuit modification kit"
 	desc = "A kit containing all the needed tools and parts to modify a hardsuit for another user. This one looks like it's meant for Tajara."
 	target_species = list(SPECIES_TAJARAN)
 
-/obj/item/device/modkit/examine()
+/obj/item/modkit/examine()
 	..()
 	to_chat(usr, "It looks as though it modifies hardsuits to fit the following users:")
 	for(var/species in target_species)

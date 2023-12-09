@@ -158,7 +158,7 @@
 	updateUsrDialog()
 
 /obj/machinery/bot/farmbot/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(allowed(user))
 			locked = !locked
 			FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
@@ -203,8 +203,8 @@
 
 	new /obj/item/minihoe(T)
 	new /obj/item/reagent_containers/glass/bucket(T)
-	new /obj/item/device/assembly/prox_sensor(T)
-	new /obj/item/device/analyzer/plant_analyzer(T)
+	new /obj/item/assembly/prox_sensor(T)
+	new /obj/item/analyzer/plant_analyzer(T)
 
 	if(isnotnull(tank))
 		tank.loc = T
@@ -539,7 +539,7 @@
 
 /obj/item/farmbot_arm_assembly/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/device/analyzer/plant_analyzer) && !build_step)
+	if(istype(W, /obj/item/analyzer/plant_analyzer) && !build_step)
 		build_step++
 		to_chat(user, SPAN_INFO("You add the plant analyzer to [src]!"))
 		name = "farmbot assembly"

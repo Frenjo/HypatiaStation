@@ -1,8 +1,9 @@
 // Powersink - used to drain station power
 
-/obj/item/device/powersink
+/obj/item/powersink
 	desc = "A nulling power sink which drains energy from electrical systems."
 	name = "power sink"
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "powersink0"
 	item_state = "electronic"
 	w_class = 4.0
@@ -20,12 +21,12 @@
 
 	var/obj/structure/cable/attached		// the attached cable
 
-/obj/item/device/powersink/Destroy()
+/obj/item/powersink/Destroy()
 	GLOBL.processing_objects.Remove(src)
 	GLOBL.processing_power_items.Remove(src)
 	return ..()
 
-/obj/item/device/powersink/attackby(obj/item/I, mob/user)
+/obj/item/powersink/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/screwdriver))
 		if(mode == 0)
 			var/turf/T = loc
@@ -64,13 +65,13 @@
 	else
 		..()
 
-/obj/item/device/powersink/attack_paw()
+/obj/item/powersink/attack_paw()
 	return
 
-/obj/item/device/powersink/attack_ai()
+/obj/item/powersink/attack_ai()
 	return
 
-/obj/item/device/powersink/attack_hand(mob/user)
+/obj/item/powersink/attack_hand(mob/user)
 	switch(mode)
 		if(0)
 			..()
@@ -98,7 +99,7 @@
 			GLOBL.processing_objects.Remove(src)
 			GLOBL.processing_power_items.Remove(src)
 
-/obj/item/device/powersink/pwr_drain()
+/obj/item/powersink/pwr_drain()
 	if(!attached)
 		return 0
 
@@ -123,7 +124,7 @@
 
 	return 1
 
-/obj/item/device/powersink/process()
+/obj/item/powersink/process()
 	if(power_drained > max_power * 0.95)
 		playsound(src, 'sound/effects/screech.ogg', 100, 1, 1)
 	if(power_drained >= max_power)

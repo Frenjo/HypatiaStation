@@ -1,7 +1,7 @@
 // A laser pointer. Emits a (tunable) low-power laser beam
 // Used for alignment and testing of the optics system
 
-/obj/item/device/laser_pointer
+/obj/item/laser_pointer
 	name = "laser pointer"
 	desc = "A portable low-power laser used for optical system alignment. The label reads: 'Danger: Class IIIa laser device. Avoid direct eye exposure."
 	icon = 'optics.dmi'

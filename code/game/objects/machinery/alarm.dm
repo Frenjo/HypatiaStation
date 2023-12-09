@@ -1039,7 +1039,7 @@ table tr:first-child th:first-child { border: none;}
 
 	else if(href_list["pulse"])
 		var/t1 = text2num(href_list["pulse"])
-		if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+		if(!istype(usr.get_active_hand(), /obj/item/multitool))
 			to_chat(usr, "You need a multitool!")
 			return
 		if(isWireColorCut(t1))
@@ -1070,10 +1070,10 @@ table tr:first-child th:first-child { border: none;}
 				update_icon()
 				return
 
-			if(wiresexposed && (istype(W, /obj/item/device/multitool) || istype(W, /obj/item/wirecutters)))
+			if(wiresexposed && (istype(W, /obj/item/multitool) || istype(W, /obj/item/wirecutters)))
 				return attack_hand(user)
 
-			if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
+			if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))// trying to unlock the interface with an ID card
 				if(stat & (NOPOWER|BROKEN))
 					to_chat(user, "It does nothing.")
 					return
@@ -1256,7 +1256,7 @@ FIRE ALARM
 	if(wiresexposed)
 		switch(buildstage)
 			if(2)
-				if(istype(W, /obj/item/device/multitool))
+				if(istype(W, /obj/item/multitool))
 					detecting = !detecting
 					if(detecting)
 						user.visible_message(

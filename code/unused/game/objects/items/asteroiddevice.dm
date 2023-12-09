@@ -1,5 +1,6 @@
-/obj/item/device/gps
+/obj/item/gps
 	name = "GPS"
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "pinoff"
 	flags = FPRINT | TABLEPASS| CONDUCT
 	slot_flags = SLOT_BELT
@@ -74,9 +75,9 @@
 
 /obj/item/storage/explorers_box/New()
 	..()
-	new /obj/item/device/radio/beacon(src)
-	new /obj/item/device/gps(src)
-	new /obj/item/device/flashlight(src)
+	new /obj/item/radio/beacon(src)
+	new /obj/item/gps(src)
+	new /obj/item/flashlight(src)
 	new /obj/item/reagent_containers/food/drinks/beer(src)
 	new /obj/item/reagent_containers/food/snacks/chips(src)
 	new /obj/item/storage/fancy/cigarettes(src)

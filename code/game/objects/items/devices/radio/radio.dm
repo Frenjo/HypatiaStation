@@ -2,7 +2,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	// 0 = old radios
 	// 1 = new radios (subspace technology)
 
-/obj/item/device/radio
+/obj/item/radio
 	icon = 'icons/obj/items/devices/radio.dmi'
 	name = "station bounced radio"
 	suffix = "\[3\]"
@@ -21,7 +21,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	var/frequency = FREQUENCY_COMMON //common chat
 	var/traitor_frequency = 0 //tune to frequency to unlock traitor supplies
 	var/canhear_range = 3 // the range which mobs can hear this radio from
-	var/obj/item/device/radio/patch_link = null
+	var/obj/item/radio/patch_link = null
 	var/datum/wires/radio/wires = null
 	var/b_stat = 0
 	var/broadcasting = 0
@@ -39,11 +39,11 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	var/datum/radio_frequency/radio_connection
 	var/list/datum/radio_frequency/secure_radio_connections = new
 
-/obj/item/device/radio/New()
+/obj/item/radio/New()
 	..()
 	wires = new(src)
 
-/obj/item/device/radio/Destroy()
+/obj/item/radio/Destroy()
 	qdel(wires)
 	wires = null
 	unregister_radio(src, frequency)
@@ -51,7 +51,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		unregister_radio(src, GLOBL.radio_channels[ch_name])
 	return ..()
 
-/obj/item/device/radio/initialize()
+/obj/item/radio/initialize()
 	. = ..()
 	if(freerange)
 		if(frequency < 1200 || frequency > 1600)
@@ -66,11 +66,11 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = register_radio(src, null, GLOBL.radio_channels[ch_name], RADIO_CHAT)
 
-/obj/item/device/radio/attack_self(mob/user as mob)
+/obj/item/radio/attack_self(mob/user as mob)
 	user.set_machine(src)
 	interact(user)
 
-/obj/item/device/radio/interact(mob/user as mob)
+/obj/item/radio/interact(mob/user as mob)
 	if(!on)
 		return
 
@@ -79,7 +79,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 	var/dat = "<html><head><title>[src]</title></head><body><TT>"
 
-	if(!istype(src, /obj/item/device/radio/headset)) //Headsets dont get a mic button
+	if(!istype(src, /obj/item/radio/headset)) //Headsets dont get a mic button
 		dat += "Microphone: [broadcasting ? "<A href='byond://?src=\ref[src];talk=0'>Engaged</A>" : "<A href='byond://?src=\ref[src];talk=1'>Disengaged</A>"]<BR>"
 
 	dat += {"
@@ -99,19 +99,19 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	onclose(user, "radio")
 	return
 
-/obj/item/device/radio/proc/text_wires()
+/obj/item/radio/proc/text_wires()
 	if(b_stat)
 		return wires.GetInteractWindow()
 	return
 
-/obj/item/device/radio/proc/text_sec_channel(chan_name, chan_stat)
+/obj/item/radio/proc/text_sec_channel(chan_name, chan_stat)
 	var/list = !!(chan_stat & FREQ_LISTENING) != 0
 	return {"
 			<B>[chan_name]</B><br>
 			Speaker: <A href='byond://?src=\ref[src];ch_name=[chan_name];listen=[!list]'>[list ? "Engaged" : "Disengaged"]</A><BR>
 			"}
 
-/obj/item/device/radio/Topic(href, href_list)
+/obj/item/radio/Topic(href, href_list)
 	//..()
 	if(usr.stat || !on)
 		return
@@ -176,7 +176,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			updateDialog()
 	add_fingerprint(usr)
 
-/obj/item/device/radio/proc/autosay(message, from, channel) //BS12 EDIT
+/obj/item/radio/proc/autosay(message, from, channel) //BS12 EDIT
 	var/datum/radio_frequency/connection = null
 	if(channel && length(channels))
 		if(channel == "department")
@@ -201,7 +201,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	qdel(A)
 	return
 
-/obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, verbage = "says", datum/language/speaking = null)
+/obj/item/radio/talk_into(mob/living/M as mob, message, channel, verbage = "says", datum/language/speaking = null)
 	if(!on)
 		return // the device has to be on
 	// Fix for permacell radios, but kinda eh about actually fixing them.
@@ -355,7 +355,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		var/filter_type = 2
 
 		/* --- Intercoms can only broadcast to other intercoms, but bounced radios can broadcast to bounced radios and intercoms --- */
-		if(istype(src, /obj/item/device/radio/intercom))
+		if(istype(src, /obj/item/radio/intercom))
 			filter_type = 1
 
 
@@ -451,8 +451,8 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 		var/list/receive = list()
 
-		//for (var/obj/item/device/radio/R in radio_connection.devices)
-		for(var/obj/item/device/radio/R in connection.devices["[RADIO_CHAT]"]) // Modified for security headset code -- TLE
+		//for (var/obj/item/radio/R in radio_connection.devices)
+		for(var/obj/item/radio/R in connection.devices["[RADIO_CHAT]"]) // Modified for security headset code -- TLE
 			//if(R.accept_rad(src, message))
 			receive |= R.send_hear(display_freq, 0)
 
@@ -585,12 +585,12 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 					else
 						R.show_message(rendered, 2)
 
-/obj/item/device/radio/hear_talk(mob/M as mob, msg, verbage = "says", datum/language/speaking = null)
+/obj/item/radio/hear_talk(mob/M as mob, msg, verbage = "says", datum/language/speaking = null)
 	if(broadcasting)
 		if(get_dist(src, M) <= canhear_range)
 			talk_into(M, msg, null, verbage, speaking)
 /*
-/obj/item/device/radio/proc/accept_rad(obj/item/device/radio/R as obj, message)
+/obj/item/radio/proc/accept_rad(obj/item/radio/R as obj, message)
 
 	if ((R.frequency == frequency && message))
 		return 1
@@ -601,7 +601,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	return
 */
 
-/obj/item/device/radio/proc/receive_range(freq, level)
+/obj/item/radio/proc/receive_range(freq, level)
 	// check if this radio can receive on the given frequency, and if so,
 	// what the range is in which mobs will hear the radio
 	// returns: -1 if can't receive, range otherwise
@@ -635,13 +635,13 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			return -1
 	return canhear_range
 
-/obj/item/device/radio/proc/send_hear(freq, level)
+/obj/item/radio/proc/send_hear(freq, level)
 	var/range = receive_range(freq, level)
 	if(range > -1)
 		return get_mobs_in_view(canhear_range, src)
 
 
-/obj/item/device/radio/examine()
+/obj/item/radio/examine()
 	set src in view()
 
 	..()
@@ -652,13 +652,13 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			usr.show_message(SPAN_INFO("\the [src] can not be modified or attached!"))
 	return
 
-/obj/item/device/radio/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/radio/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	user.set_machine(src)
 	if(!(istype(W, /obj/item/screwdriver)))
 		return
 	b_stat = !(b_stat)
-	if(!istype(src, /obj/item/device/radio/beacon))
+	if(!istype(src, /obj/item/radio/beacon))
 		if (b_stat)
 			user.show_message(SPAN_INFO("The radio can now be attached and modified!"))
 		else
@@ -669,7 +669,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		return
 	else return
 
-/obj/item/device/radio/emp_act(severity)
+/obj/item/radio/emp_act(severity)
 	broadcasting = 0
 	listening = 0
 	for (var/ch_name in channels)
@@ -681,13 +681,13 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 ///////////////////////////////
 //Giving borgs their own radio to have some more room to work with -Sieve
 
-/obj/item/device/radio/borg
-	var/obj/item/device/encryptionkey/keyslot = null//Borg radios can handle a single encryption key
+/obj/item/radio/borg
+	var/obj/item/encryptionkey/keyslot = null//Borg radios can handle a single encryption key
 
-/obj/item/device/radio/borg/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/radio/borg/attackby(obj/item/W as obj, mob/user as mob)
 //	..()
 	user.set_machine(src)
-	if(!(istype(W, /obj/item/screwdriver) || (istype(W, /obj/item/device/encryptionkey/))))
+	if(!(istype(W, /obj/item/screwdriver) || (istype(W, /obj/item/encryptionkey/))))
 		return
 
 	if(istype(W, /obj/item/screwdriver))
@@ -707,7 +707,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		else
 			to_chat(user, "This radio doesn't have any encryption keys!")
 
-	if(istype(W, /obj/item/device/encryptionkey/))
+	if(istype(W, /obj/item/encryptionkey/))
 		if(keyslot)
 			to_chat(user, "The radio can't hold another key!")
 			return
@@ -721,7 +721,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 	return
 
-/obj/item/device/radio/borg/proc/recalculateChannels()
+/obj/item/radio/borg/proc/recalculateChannels()
 	src.channels = list()
 	src.syndie = 0
 
@@ -753,7 +753,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 	return
 
-/obj/item/device/radio/borg/Topic(href, href_list)
+/obj/item/radio/borg/Topic(href, href_list)
 	if(usr.stat || !on)
 		return
 	if(href_list["mode"])
@@ -769,7 +769,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			recalculateChannels()
 	..()
 
-/obj/item/device/radio/borg/interact(mob/user as mob)
+/obj/item/radio/borg/interact(mob/user as mob)
 	if(!on)
 		return
 
@@ -793,7 +793,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	onclose(user, "radio")
 	return
 
-/obj/item/device/radio/proc/config(op)
+/obj/item/radio/proc/config(op)
 	for(var/ch_name in channels)
 		unregister_radio(src, GLOBL.radio_channels[ch_name])
 	secure_radio_connections = new
@@ -802,5 +802,5 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		secure_radio_connections[ch_name] = register_radio(src, null, GLOBL.radio_channels[ch_name], RADIO_CHAT)
 	return
 
-/obj/item/device/radio/off
+/obj/item/radio/off
 	listening = 0

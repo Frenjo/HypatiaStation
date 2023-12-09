@@ -65,7 +65,7 @@
 		/obj/item/gun/energy/taser,
 		/obj/item/storage/belt/utility/full,
 		/obj/item/storage/backpack/industrial/full,
-		/obj/item/device/t_scanner,
+		/obj/item/t_scanner,
 		/obj/item/clothing/glasses/meson
 	)
 

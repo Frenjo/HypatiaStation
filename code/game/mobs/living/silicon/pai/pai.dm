@@ -11,8 +11,8 @@
 	var/ram = 100	// Used as currency to purchase different abilities
 	var/list/software = list()
 	var/userDNA		// The DNA string of our assigned user
-	var/obj/item/device/paicard/card	// The card we inhabit
-	var/obj/item/device/radio/radio		// Our primary radio
+	var/obj/item/paicard/card	// The card we inhabit
+	var/obj/item/radio/radio		// Our primary radio
 
 	var/speakStatement = "states"
 	var/speakExclamation = "declares"
@@ -34,7 +34,7 @@
 	var/screen				// Which screen our main window displays
 	var/subscreen			// Which specific function of the main screen is being displayed
 
-	var/obj/item/device/pda/ai/pai/pda = null
+	var/obj/item/pda/ai/pai/pda = null
 
 	var/secHUD = FALSE		// Toggles whether the Security HUD is active or not
 	var/medHUD = FALSE		// Toggles whether the Medical  HUD is active or not
@@ -50,14 +50,14 @@
 
 	var/obj/item/radio/integrated/signal/sradio // AI's signaller
 
-/mob/living/silicon/pai/New(obj/item/device/paicard)
+/mob/living/silicon/pai/New(obj/item/paicard)
 	canmove = FALSE
 	loc = paicard
 	card = paicard
 	sradio = new /obj/item/radio/integrated/signal(src)
 	if(isnotnull(card))
 		if(isnull(card.radio))
-			card.radio = new /obj/item/device/radio(card)
+			card.radio = new /obj/item/radio(card)
 		radio = card.radio
 
 	//Default languages without universal translator software
@@ -66,7 +66,7 @@
 	add_language("Gutter")
 
 	//PDA
-	pda = new /obj/item/device/pda/ai/pai(src)
+	pda = new /obj/item/pda/ai/pai(src)
 	spawn(5)
 		pda.ownjob = "Personal Assistant"
 		pda.owner = "[src]"
@@ -206,7 +206,7 @@
 /*
 // Debug command - Maybe should be added to admin verbs later
 /mob/verb/makePAI(var/turf/t in view())
-	var/obj/item/device/paicard/card = new(t)
+	var/obj/item/paicard/card = new(t)
 	var/mob/living/silicon/pai/pai = new(card)
 	pai.key = key
 	card.setPersonality(pai)

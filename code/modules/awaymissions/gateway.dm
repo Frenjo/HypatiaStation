@@ -128,8 +128,8 @@
 			use_power(5000)
 		return
 
-/obj/machinery/gateway/centerstation/attackby(obj/item/device/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/device/multitool))
+/obj/machinery/gateway/centerstation/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/multitool))
 		to_chat(user, "\black The gate is already calibrated, there is no work for you to do here.")
 		return
 
@@ -221,8 +221,8 @@
 	M.set_dir(SOUTH)
 
 
-/obj/machinery/gateway/centeraway/attackby(obj/item/device/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/multitool))
+/obj/machinery/gateway/centeraway/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/multitool))
 		if(calibrated)
 			to_chat(user, "\black The gate is already calibrated, there is no work for you to do here.")
 			return

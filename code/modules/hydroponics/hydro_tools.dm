@@ -1,12 +1,13 @@
 /*
  * Plant Analyzer
  */
-/obj/item/device/analyzer/plant_analyzer
+/obj/item/analyzer/plant_analyzer
 	name = "plant analyzer"
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "hydro"
 	item_state = "analyzer"
 
-/obj/item/device/analyzer/plant_analyzer/attack_self(mob/user as mob)
+/obj/item/analyzer/plant_analyzer/attack_self(mob/user as mob)
 	return 0
 
 /*

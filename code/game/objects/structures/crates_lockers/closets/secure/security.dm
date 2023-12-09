@@ -20,7 +20,7 @@
 		/obj/item/cartridge/captain,
 		/obj/item/clothing/head/helmet/swat,
 		/obj/item/clothing/shoes/brown,
-		/obj/item/device/radio/headset/heads/captain,
+		/obj/item/radio/headset/heads/captain,
 		/obj/item/clothing/gloves/captain,
 		/obj/item/gun/energy/gun,
 		/obj/item/clothing/suit/armor/captain,
@@ -53,11 +53,11 @@
 		/obj/item/clothing/suit/armor/vest,
 		/obj/item/clothing/head/helmet,
 		/obj/item/cartridge/hop,
-		/obj/item/device/radio/headset/heads/hop,
+		/obj/item/radio/headset/heads/hop,
 		/obj/item/storage/box/ids,
 		/obj/item/storage/box/ids,
 		/obj/item/gun/energy/gun,
-		/obj/item/device/flash
+		/obj/item/flash
 	)
 
 /*
@@ -110,14 +110,14 @@
 		/obj/item/clothing/suit/armor/hos,
 		/obj/item/clothing/head/helmet/HoS/dermal,
 		/obj/item/cartridge/hos,
-		/obj/item/device/radio/headset/heads/hos,
+		/obj/item/radio/headset/heads/hos,
 		/obj/item/clothing/glasses/sunglasses/sechud,
 		/obj/item/taperoll/police,
 		/obj/item/shield/riot,
 		/obj/item/storage/lockbox/loyalty,
 		/obj/item/storage/box/flashbangs,
 		/obj/item/storage/belt/security,
-		/obj/item/device/flash,
+		/obj/item/flash,
 		/obj/item/melee/baton,
 		/obj/item/gun/energy/gun,
 		/obj/item/clothing/tie/holster/waist,
@@ -151,7 +151,7 @@
 		/obj/item/clothing/suit/armor/vest/warden,
 		/obj/item/clothing/head/helmet/warden,
 	//	/obj/item/cartridge/security,
-		/obj/item/device/radio/headset/sec,
+		/obj/item/radio/headset/sec,
 		/obj/item/clothing/glasses/sunglasses/sechud,
 		/obj/item/taperoll/police,
 		/obj/item/storage/box/flashbangs,
@@ -186,16 +186,16 @@
 		/obj/item/clothing/suit/armor/vest/security,
 		/obj/item/clothing/head/helmet,
 	//	/obj/item/cartridge/security,
-		/obj/item/device/radio/headset/sec,
+		/obj/item/radio/headset/sec,
 		/obj/item/storage/belt/security,
-		/obj/item/device/flash,
+		/obj/item/flash,
 		/obj/item/reagent_containers/spray/pepper,
 		/obj/item/grenade/flashbang,
 		/obj/item/melee/baton,
 		/obj/item/gun/energy/taser,
 		/obj/item/clothing/glasses/sunglasses/sechud,
 		/obj/item/taperoll/police,
-		/obj/item/device/hailer,
+		/obj/item/hailer,
 		/obj/item/clothing/tie/storage/black_vest,
 		/obj/item/clothing/head/soft/sec/corp,
 		/obj/item/clothing/under/rank/security/corp
@@ -210,22 +210,22 @@
 
 /obj/structure/closet/secure_closet/security/cargo/New()
 	starts_with.Add(/obj/item/clothing/tie/armband/cargo)
-	starts_with.Add(/obj/item/device/encryptionkey/cargo)
+	starts_with.Add(/obj/item/encryptionkey/cargo)
 	. = ..()
 
 /obj/structure/closet/secure_closet/security/engine/New()
 	starts_with.Add(/obj/item/clothing/tie/armband/engine)
-	starts_with.Add(/obj/item/device/encryptionkey/engi)
+	starts_with.Add(/obj/item/encryptionkey/engi)
 	. = ..()
 
 /obj/structure/closet/secure_closet/security/science/New()
 	starts_with.Add(/obj/item/clothing/tie/armband/science)
-	starts_with.Add(/obj/item/device/encryptionkey/sci)
+	starts_with.Add(/obj/item/encryptionkey/sci)
 	. = ..()
 
 /obj/structure/closet/secure_closet/security/med/New()
 	starts_with.Add(/obj/item/clothing/tie/armband/medgreen)
-	starts_with.Add(/obj/item/device/encryptionkey/med)
+	starts_with.Add(/obj/item/encryptionkey/med)
 	. = ..()
 
 /*
@@ -254,8 +254,8 @@
 		/obj/item/clothing/head/det_hat/black,
 		/obj/item/clothing/shoes/brown,
 		/obj/item/storage/box/evidence,
-		/obj/item/device/radio/headset/sec,
-		/obj/item/device/detective_scanner,
+		/obj/item/radio/headset/sec,
+		/obj/item/detective_scanner,
 		/obj/item/clothing/suit/armor/det_suit,
 		/obj/item/ammo_magazine/c45r,
 		/obj/item/ammo_magazine/c45r,

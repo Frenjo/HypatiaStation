@@ -124,7 +124,7 @@ if(isnotnull(VAR)) \
 		identification.update_name()
 		user.equip_to_slot_or_del(identification, id_slot)
 	if(isnotnull(pda_slot))
-		var/obj/item/device/pda/pda = new pda_type(user)
+		var/obj/item/pda/pda = new pda_type(user)
 		pda.set_owner_and_job(user.real_name, isnotnull(id_pda_assignment) ? id_pda_assignment : name)
 		user.equip_to_slot_or_del(pda, pda_slot)
 

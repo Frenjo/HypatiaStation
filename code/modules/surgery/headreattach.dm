@@ -3,7 +3,7 @@
 
 /datum/surgery_step/head
 	can_infect = 0
-	
+
 /datum/surgery_step/head/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(!hasorgans(target))
 		return 0
@@ -62,7 +62,7 @@
 	allowed_tools = list(
 		/obj/item/FixOVein = 100,
 		/obj/item/stack/cable_coil = 75,
-		/obj/item/device/assembly/mousetrap = 10
+		/obj/item/assembly/mousetrap = 10
 	) //ok chinsky
 
 	min_duration = 80

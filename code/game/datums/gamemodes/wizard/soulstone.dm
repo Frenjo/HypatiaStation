@@ -1,4 +1,4 @@
-/obj/item/device/soulstone
+/obj/item/soulstone
 	name = "Soul Stone Shard"
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "soulstone"
@@ -11,7 +11,7 @@
 
 //////////////////////////////Capturing////////////////////////////////////////////////////////
 
-/obj/item/device/soulstone/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/soulstone/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	if(!ishuman(M))//If target is not a human.
 		return ..()
 	if(istype(M, /mob/living/carbon/human/dummy))
@@ -37,7 +37,7 @@
 		return*/
 ///////////////////Options for using captured souls///////////////////////////////////////
 
-/obj/item/device/soulstone/attack_self(mob/user)
+/obj/item/soulstone/attack_self(mob/user)
 	if(!in_range(src, user))
 		return
 	user.set_machine(src)
@@ -51,7 +51,7 @@
 	onclose(user, "aicard")
 	return
 
-/obj/item/device/soulstone/Topic(href, href_list)
+/obj/item/soulstone/Topic(href, href_list)
 	var/mob/U = usr
 	if(!in_range(src, U) || U.machine != src)
 		U << browse(null, "window=aicard")
@@ -86,7 +86,7 @@
 	desc = "A wicked machine used by those skilled in magical arts. It is inactive"
 
 /obj/structure/constructshell/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/device/soulstone))
+	if(istype(O, /obj/item/soulstone))
 		O.transfer_soul("CONSTRUCT", src, user)
 
 
@@ -95,7 +95,7 @@
 	switch(choice)
 		if("VICTIM")
 			var/mob/living/carbon/human/T = target
-			var/obj/item/device/soulstone/C = src
+			var/obj/item/soulstone/C = src
 			if(C.imprinted != "empty")
 				to_chat(U, "\red <b>Capture failed!</b>: \black The soul stone has already been imprinted with [C.imprinted]'s mind!")
 			else
@@ -136,7 +136,7 @@
 							qdel(T)
 		if("SHADE")
 			var/mob/living/simple_animal/shade/T = target
-			var/obj/item/device/soulstone/C = src
+			var/obj/item/soulstone/C = src
 			if(T.stat == DEAD)
 				to_chat(U, "\red <b>Capture failed!</b>: \black The shade has already been banished!")
 			else
@@ -155,7 +155,7 @@
 						to_chat(U, "\blue <b>Capture successful!</b>: \black [T.name]'s has been recaptured and stored within the soul stone.")
 		if("CONSTRUCT")
 			var/obj/structure/constructshell/T = target
-			var/obj/item/device/soulstone/C = src
+			var/obj/item/soulstone/C = src
 			var/mob/living/simple_animal/shade/A = locate() in C
 			if(A)
 				var/construct_class = alert(U, "Please choose which type of construct you wish to create.", , "Juggernaut", "Wraith", "Artificer")

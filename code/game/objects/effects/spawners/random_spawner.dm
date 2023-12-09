@@ -38,7 +38,7 @@
 		/obj/item/weldingtool, \
 		/obj/item/crowbar, \
 		/obj/item/wrench, \
-		/obj/item/device/flashlight \
+		/obj/item/flashlight \
 	)
 
 // Technology Scanner
@@ -50,9 +50,9 @@
 
 /obj/effect/random_spawner/technology_scanner/item_to_spawn()
 	return pick( \
-		prob(5); /obj/item/device/t_scanner, \
-		prob(2); /obj/item/device/radio, \
-		prob(5); /obj/item/device/analyzer \
+		prob(5); /obj/item/t_scanner, \
+		prob(2); /obj/item/radio, \
+		prob(5); /obj/item/analyzer \
 	)
 
 // Power Cell
@@ -80,10 +80,10 @@
 
 /obj/effect/random_spawner/bomb_supply/item_to_spawn()
 	return pick( \
-		/obj/item/device/assembly/igniter, \
-		/obj/item/device/assembly/prox_sensor, \
-		/obj/item/device/assembly/signaler, \
-		/obj/item/device/multitool \
+		/obj/item/assembly/igniter, \
+		/obj/item/assembly/prox_sensor, \
+		/obj/item/assembly/signaler, \
+		/obj/item/multitool \
 	)
 
 // Toolbox

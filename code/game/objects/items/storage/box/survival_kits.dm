@@ -49,9 +49,9 @@
 	// I had no idea what to put in here so they get these items.
 	// Thanks Techhead from the Nebula SS13 discord for the idea of the flare!
 	starts_with = list(
-		/obj/item/device/flashlight,
-		/obj/item/device/flashlight/pen,
-		/obj/item/device/flashlight/flare
+		/obj/item/flashlight,
+		/obj/item/flashlight/pen,
+		/obj/item/flashlight/flare
 	)
 
 // Machine survival kit containing (temporarily) a flashlight.
@@ -62,5 +62,5 @@
 	desc = "A machine-issue survival kit for use in emergencies."
 
 	starts_with = list(
-		/obj/item/device/flashlight
+		/obj/item/flashlight
 	)

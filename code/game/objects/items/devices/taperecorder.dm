@@ -1,6 +1,7 @@
-/obj/item/device/taperecorder
+/obj/item/taperecorder
 	desc = "A device that can record up to an hour of dialogue and play it back. It automatically translates the content in playback."
 	name = "universal recorder"
+	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "taperecorderidle"
 	item_state = "analyzer"
 	w_class = 1.0
@@ -20,7 +21,7 @@
 	var/list/timestamp = list()
 	var/canprint = 1
 
-/obj/item/device/taperecorder/hear_talk(mob/living/M as mob, msg, verbage = "says")
+/obj/item/taperecorder/hear_talk(mob/living/M as mob, msg, verbage = "says")
 	if(recording)
 		//var/ending = copytext(msg, length(msg))
 		timestamp+= timerecorded
@@ -43,7 +44,7 @@
 
 		return
 
-/obj/item/device/taperecorder/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/taperecorder/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/card/emag))
 		if(emagged == 0)
@@ -54,7 +55,7 @@
 		else
 			to_chat(user, SPAN_WARNING("It is already emagged!"))
 
-/obj/item/device/taperecorder/proc/explode()
+/obj/item/taperecorder/proc/explode()
 	var/turf/T = get_turf(loc)
 	if(ismob(loc))
 		var/mob/M = loc
@@ -65,7 +66,7 @@
 	qdel(src)
 	return
 
-/obj/item/device/taperecorder/verb/record()
+/obj/item/taperecorder/verb/record()
 	set category = PANEL_OBJECT
 	set name = "Start Recording"
 
@@ -91,7 +92,7 @@
 	else
 		to_chat(usr, SPAN_NOTICE("Either your tape recorder's memory is full, or it is currently playing back its memory."))
 
-/obj/item/device/taperecorder/verb/stop()
+/obj/item/taperecorder/verb/stop()
 	set category = PANEL_OBJECT
 	set name = "Stop"
 
@@ -114,7 +115,7 @@
 		icon_state = "taperecorderidle"
 		return
 
-/obj/item/device/taperecorder/verb/clear_memory()
+/obj/item/taperecorder/verb/clear_memory()
 	set category = PANEL_OBJECT
 	set name = "Clear Memory"
 
@@ -135,7 +136,7 @@
 		to_chat(usr, SPAN_NOTICE("Memory cleared."))
 		return
 
-/obj/item/device/taperecorder/verb/playback_memory()
+/obj/item/taperecorder/verb/playback_memory()
 	set category = PANEL_OBJECT
 	set name = "Playback Memory"
 
@@ -193,7 +194,7 @@
 		sleep(10)
 		explode()
 
-/obj/item/device/taperecorder/verb/print_transcript()
+/obj/item/taperecorder/verb/print_transcript()
 	set category = PANEL_OBJECT
 	set name = "Print Transcript"
 
@@ -219,7 +220,7 @@
 	sleep(300)
 	canprint = 1
 
-/obj/item/device/taperecorder/attack_self(mob/user)
+/obj/item/taperecorder/attack_self(mob/user)
 	if(recording == 0 && playing == 0)
 		if(usr.stat)
 			return

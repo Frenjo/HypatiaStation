@@ -24,7 +24,7 @@
 	if(!src.can_open())
 		return 0
 
-	if(rigged && locate(/obj/item/device/radio/electropack) in src)
+	if(rigged && locate(/obj/item/radio/electropack) in src)
 		if(isliving(usr))
 			var/mob/living/L = usr
 			if(L.electrocute_act(17, src))
@@ -86,7 +86,7 @@
 		qdel(W)
 		rigged = 1
 		return
-	else if(istype(W, /obj/item/device/radio/electropack))
+	else if(istype(W, /obj/item/radio/electropack))
 		if(rigged)
 			to_chat(user, SPAN_NOTICE("You attach [W] to [src]."))
 			user.drop_item()

@@ -63,7 +63,7 @@
 		src.toggle(user)
 
 /obj/structure/closet/crate/secure/attackby(obj/item/W as obj, mob/user as mob)
-	if(is_type_in_list(W, list(/obj/item/package_wrap, /obj/item/stack/cable_coil, /obj/item/device/radio/electropack, /obj/item/wirecutters)))
+	if(is_type_in_list(W, list(/obj/item/package_wrap, /obj/item/stack/cable_coil, /obj/item/radio/electropack, /obj/item/wirecutters)))
 		return ..()
 	if(locked && (istype(W, /obj/item/card/emag) || istype(W, /obj/item/melee/energy/blade)))
 		overlays.Cut()

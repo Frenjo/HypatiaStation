@@ -7,7 +7,7 @@
 
 	shoes = /obj/item/clothing/shoes/sandal
 
-	l_ear = /obj/item/device/radio/headset
+	l_ear = /obj/item/radio/headset
 
 	r_pocket = /obj/item/teleportation_scroll
 

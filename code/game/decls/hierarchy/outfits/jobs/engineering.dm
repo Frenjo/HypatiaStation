@@ -6,7 +6,7 @@
 
 	pda_slot = SLOT_ID_L_STORE
 
-	l_ear = /obj/item/device/radio/headset/engi
+	l_ear = /obj/item/radio/headset/engi
 
 	flags = OUTFIT_HIDE_IF_CATEGORY
 
@@ -25,10 +25,10 @@
 	gloves = /obj/item/clothing/gloves/black
 	shoes = /obj/item/clothing/shoes/brown
 
-	l_ear = /obj/item/device/radio/headset/heads/ce
+	l_ear = /obj/item/radio/headset/heads/ce
 
 	id_type = /obj/item/card/id/silver
-	pda_type = /obj/item/device/pda/heads/ce
+	pda_type = /obj/item/pda/heads/ce
 
 /*
  * Station Engineer
@@ -41,9 +41,9 @@
 	head = /obj/item/clothing/head/hardhat
 	shoes = /obj/item/clothing/shoes/orange
 
-	r_pocket = /obj/item/device/t_scanner
+	r_pocket = /obj/item/t_scanner
 
-	pda_type = /obj/item/device/pda/engineering
+	pda_type = /obj/item/pda/engineering
 
 /*
  * Atmospheric Technician
@@ -56,7 +56,7 @@
 
 	shoes = /obj/item/clothing/shoes/black
 
-	pda_type = /obj/item/device/pda/atmos
+	pda_type = /obj/item/pda/atmos
 
 	backpack = /obj/item/storage/backpack
 	satchel_one = /obj/item/storage/satchel/norm

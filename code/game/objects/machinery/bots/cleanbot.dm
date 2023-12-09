@@ -140,7 +140,7 @@ Weird button pressed: ["<A href='?src=\ref[src];operation=oddbutton'>[oddbutton 
 			updateUsrDialog()
 
 /obj/machinery/bot/cleanbot/attackby(obj/item/W, mob/user as mob)
-	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(allowed(usr) && !open && !emagged)
 			locked = !locked
 			FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
@@ -334,7 +334,7 @@ Weird button pressed: ["<A href='?src=\ref[src];operation=oddbutton'>[oddbutton 
 
 	var/turf/T = get_turf(src)
 	new /obj/item/reagent_containers/glass/bucket(T)
-	new /obj/item/device/assembly/prox_sensor(T)
+	new /obj/item/assembly/prox_sensor(T)
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(T)
 

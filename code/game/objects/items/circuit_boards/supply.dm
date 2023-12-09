@@ -18,7 +18,7 @@
 	var/contraband_enabled = FALSE
 
 /obj/item/circuitboard/supplycomp/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/device/multitool))
+	if(istype(I, /obj/item/multitool))
 		var/catastasis = contraband_enabled
 		var/opposite_catastasis
 		if(catastasis)

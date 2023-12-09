@@ -44,8 +44,8 @@
 
 	flash_weak_pain()
 
-	if(istype(get_active_hand(), /obj/item/device/assembly/signaler))
-		var/obj/item/device/assembly/signaler/signaler = get_active_hand()
+	if(istype(get_active_hand(), /obj/item/assembly/signaler))
+		var/obj/item/assembly/signaler/signaler = get_active_hand()
 		if(signaler.deadman && prob(80))
 			src.visible_message(SPAN_WARNING("[src] triggers their deadman's switch!"))
 			signaler.signal()

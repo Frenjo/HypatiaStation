@@ -51,7 +51,7 @@
 
 /obj/structure/closet/secure_closet/personal/standard
 	starts_with = list(
-		/obj/item/device/radio/headset
+		/obj/item/radio/headset
 	)
 
 /obj/structure/closet/secure_closet/personal/standard/New()
@@ -79,7 +79,7 @@
 
 	starts_with = list(
 		/obj/item/storage/satchel/withwallet,
-		/obj/item/device/radio/headset
+		/obj/item/radio/headset
 	)
 
 /obj/structure/closet/secure_closet/personal/cabinet/update_icon()

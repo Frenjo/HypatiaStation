@@ -364,8 +364,8 @@
 			return "Tell who that you what?"
 
 		// find PDA
-		var/obj/item/device/pda/pda
-		for (var/obj/item/device/pda/P in world)
+		var/obj/item/pda/pda
+		for (var/obj/item/pda/P in world)
 			if (!P.owner)
 				continue
 			else if (P.toff)
@@ -380,7 +380,7 @@
 			return "I couldn't find [name]'s PDA."
 
 		// send message
-		if(!istype(eliza.speaker.loc.loc, /obj/item/device/pda))//Looking if we are in a PDA
+		if(!istype(eliza.speaker.loc.loc, /obj/item/pda))//Looking if we are in a PDA
 			pda.tnote += "<i><b>&larr; From [eliza.callsign]:</b></i><br>[object]<br>"
 
 			if(prob(15) && eliza.speaker) //Give the AI a chance of intercepting the message
@@ -403,7 +403,7 @@
 			href_list["choice"] = "Message"
 			href_list["target"] = "\ref[pda]"
 			href_list["pAI_mess"] = "\"[object]\" \[Via pAI Unit\]"
-			var/obj/item/device/pda/pda_im_in = eliza.speaker.loc.loc
+			var/obj/item/pda/pda_im_in = eliza.speaker.loc.loc
 			pda_im_in.Topic("src=\ref[eliza.speaker.loc.loc];choice=Message;target=\ref[pda];pAI_mess=\"[object] \[Via pAI Unit\]",href_list)
 		return "Told [name], [object]."
 
