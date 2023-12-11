@@ -10,6 +10,7 @@ PROCESS_DEF(air)
 	if(isnull(global.CTair))
 		global.CTair = new /datum/controller/air()
 		global.CTair.setup()
+	. = ..()
 
 /datum/process/air/do_work()
 	if(!global.air_processing_killed)

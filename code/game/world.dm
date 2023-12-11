@@ -47,10 +47,9 @@
 
 	global.CTmaster = new /datum/controller/master()
 	global.process_scheduler = new /datum/controller/process_scheduler()
-	spawn(1)
-		global.process_scheduler.defer_setup_for(/datum/process/ticker)
-		global.process_scheduler.setup()
-		global.CTmaster.setup()
+	global.process_scheduler.defer_setup_for(/datum/process/ticker)
+	global.process_scheduler.setup()
+	global.CTmaster.setup()
 
 	spawn(5 MINUTES) // Delay by 5 minutes (300 seconds/3000 deciseconds) so we aren't adding to the round-start lag.
 		if(CONFIG_GET(ToRban))

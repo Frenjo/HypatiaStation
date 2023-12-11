@@ -79,6 +79,9 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 		del(src)
 		return 0
 
+	// Store the time we started setting up processes.
+	var/start_time = world.timeofday
+
 	var/process
 	// Add all the processes we can find, except those deferred until later.
 	for(process in SUBTYPESOF(/datum/process))
@@ -87,6 +90,9 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 
 	for(process in deferred_setup_list)
 		add_process(new process(src))
+
+	// Report how long full process initialisation took.
+	to_world(SPAN_DANGER("Initialised all processes in [(world.timeofday - start_time) / 10] second\s."))
 
 /datum/controller/process_scheduler/proc/start()
 	is_running = TRUE
@@ -146,14 +152,15 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 		run_process(p)
 
 /datum/controller/process_scheduler/proc/add_process(datum/process/process)
-	// Report that we're initialising a process.
+	var/start_time = world.timeofday
+	// Reports that we're initialising a process.
 	to_world(SPAN_DANGER("Initialising [process.name] process."))
 
 	processes.Add(process)
 	process.idle()
 	idle.Add(process)
 
-	// init recordkeeping vars
+	// Inits recordkeeping vars.
 	last_start.Add(process)
 	last_start[process] = 0
 	last_run_time.Add(process)
@@ -163,18 +170,22 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 	highest_run_time.Add(process)
 	highest_run_time[process] = 0
 
-	// init starts and stops record starts
+	// Inits starts and stops record starts.
 	record_start(process, 0)
 	record_end(process, 0)
 
-	// Set up process
+	// Sets up the process.
 	process.setup()
 
-	// Save process in the name -> process map
+	// Saves process in the name -> process map.
 	processes_by_name[process.name] = process
 
-	// Wait until setup is done.
+	// Waits until setup is done.
 	sleep(-1)
+
+	// Reports successful initialisation.
+	to_world(SPAN_DANGER("↪ Processing every [process.schedule_interval / 10] second\s."))
+	to_world(SPAN_DANGER("↪ Initialised in [(world.timeofday - start_time) / 10] second\s."))
 
 /datum/controller/process_scheduler/proc/replace_process(datum/process/oldProcess, datum/process/newProcess)
 	processes.Remove(oldProcess)

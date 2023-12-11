@@ -133,9 +133,9 @@
 
 	on_finish()
 
-/datum/process/proc/do_work()
-
 /datum/process/proc/setup()
+
+/datum/process/proc/do_work()
 
 /datum/process/proc/process()
 	started()

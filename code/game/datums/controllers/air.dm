@@ -94,9 +94,7 @@ CONTROLLER_DEF(air)
 	set background = BACKGROUND_ENABLED
 	#endif
 
-	to_world(SPAN_DANGER("Processing geometry..."))
-
-	var/start_time = world.timeofday
+	to_world(SPAN_DANGER("↪ Processing geometry..."))
 
 	var/simulated_turf_count = 0
 
@@ -105,13 +103,12 @@ CONTROLLER_DEF(air)
 		S.update_air_properties()
 		CHECK_TICK
 
-	world << {"<span class='danger'>Geometry initialised in [round(0.1 * (world.timeofday - start_time), 0.1)] seconds.</b></span>
-<span class='info'>
-Total Simulated Turfs: [simulated_turf_count]
-Total Zones: [length(zones)]
-Total Edges: [length(edges)]
-Total Active Edges: [length(active_edges) ? SPAN_DANGER(length(active_edges)) : "None"]
-Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_count]</font>
+	world << {"<span class='info'>
+↪ Total Simulated Turfs: [simulated_turf_count]
+↪ Total Zones: [length(zones)]
+↪ Total Edges: [length(edges)]
+↪ Total Active Edges: [length(active_edges) ? SPAN_DANGER(length(active_edges)) : "None"]
+↪ Total Unsimulated Turfs: [world.maxx * world.maxy * world.maxz - simulated_turf_count]</font>
 </span>"}
 
 /datum/controller/air/process()
