@@ -357,7 +357,7 @@ var/list/non_fakeattack_weapons = list(
 	/obj/item/clothing/shoes/syndigaloshes, /obj/item/card/id/syndicate,
 	/obj/item/clothing/mask/gas/voice, /obj/item/clothing/glasses/thermal,
 	/obj/item/chameleon, /obj/item/card/emag,
-	/obj/item/storage/toolbox/syndicate, /obj/item/aiModule,
+	/obj/item/storage/toolbox/syndicate, /obj/item/ai_module,
 	/obj/item/radio/headset/syndicate,	/obj/item/plastique,
 	/obj/item/powersink, /obj/item/storage/box/syndie_kit,
 	/obj/item/toy/syndicateballoon, /obj/item/gun/energy/laser/captain,

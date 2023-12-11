@@ -363,7 +363,7 @@
 "kl" = (/turf/simulated/floor/holofloor{icon_state = "asteroid7"},/area/holodeck/source/desert)
 "kn" = (/obj/machinery/door/window/northleft{name = "Cockpit"; req_access = list(150)},/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/syndicate_station/start)
 "kp" = (/obj/machinery/teleport/station,/turf/unsimulated/floor{icon_state = "engine"},/area/centcom/control)
-"kv" = (/obj/item/clothing/head/collectable/xenom,/obj/item/clothing/head/chicken,/obj/item/aiModule/syndicate,/turf/simulated/shuttle/floor4,/area/shuttle/vox/station)
+"kv" = (/obj/item/clothing/head/collectable/xenom,/obj/item/clothing/head/chicken,/obj/item/ai_module/syndicate,/turf/simulated/shuttle/floor4,/area/shuttle/vox/station)
 "kw" = (/obj/machinery/computer/station_alert,/turf/simulated/shuttle/floor/vox,/area/shuttle/vox/station)
 "kz" = (/obj/structure/table/reinforced,/obj/item/storage/belt/security,/obj/item/storage/belt/security,/obj/item/storage/belt/security,/obj/item/flash,/obj/item/flash,/obj/item/melee/baton,/obj/item/melee/baton,/obj/item/melee/baton,/obj/item/melee/baton,/obj/item/melee/baton,/obj/item/melee/baton,/obj/item/melee/baton,/turf/unsimulated/floor{dir = 1; icon_state = "vault"},/area/centcom)
 "kC" = (/obj/machinery/vending/coffee,/turf/unsimulated/floor{icon_state = "dark"},/area/centcom/control)

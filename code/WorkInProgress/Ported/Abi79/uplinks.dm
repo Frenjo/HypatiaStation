@@ -99,7 +99,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 				//if(uses > 7)	//Nothing... yet.
 
 				if(uses > 6)
-					randomItems.Add("/obj/item/aiModule/syndicate") //Hacked AI Upload Module
+					randomItems.Add("/obj/item/ai_module/syndicate") //Hacked AI Upload Module
 					randomItems.Add("/obj/item/radio/beacon/syndicate") //Singularity Beacon
 
 				if(uses > 5)
@@ -155,7 +155,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 							uses -= 20
 						if("/obj/item/toy/syndicateballoon" , "/obj/item/storage/syndie_kit/imp_uplink" , "/obj/item/storage/box/syndicate")
 							uses -= 10
-						if("/obj/item/aiModule/syndicate" , "/obj/item/radio/beacon/syndicate")
+						if("/obj/item/ai_module/syndicate" , "/obj/item/radio/beacon/syndicate")
 							uses -= 7
 						if("/obj/item/gun/projectile")
 							uses -= 6

@@ -27,8 +27,8 @@
 	if (user.z > 6)
 		user << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
 		return
-	if(istype(O, /obj/item/aiModule))
-		var/obj/item/aiModule/M = O
+	if(istype(O, /obj/item/ai_module))
+		var/obj/item/ai_module/M = O
 		M.install(src)
 	else
 		..()
@@ -57,8 +57,8 @@
 	circuit = /obj/item/circuitboard/borgupload
 	var/mob/living/silicon/robot/current = null
 
-/obj/machinery/computer/borgupload/attackby(obj/item/aiModule/module as obj, mob/user as mob)
-	if(istype(module, /obj/item/aiModule))
+/obj/machinery/computer/borgupload/attackby(obj/item/ai_module/module as obj, mob/user as mob)
+	if(istype(module, /obj/item/ai_module))
 		module.install(src)
 	else
 		return ..()

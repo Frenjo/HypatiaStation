@@ -51,7 +51,7 @@
 
 		if("hacker")
 			starts_with = list(
-				/obj/item/aiModule/syndicate,
+				/obj/item/ai_module/syndicate,
 				/obj/item/card/emag,
 				/obj/item/encryptionkey/binary
 			)

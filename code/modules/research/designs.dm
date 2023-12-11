@@ -374,7 +374,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_GOLD = 100)
-	build_path = /obj/item/aiModule/safeguard
+	build_path = /obj/item/ai_module/safeguard
 
 /datum/design/onehuman_module
 	name = "Module Design (OneHuman)"
@@ -383,7 +383,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_DIAMOND = 100)
-	build_path = /obj/item/aiModule/oneHuman
+	build_path = /obj/item/ai_module/oneHuman
 
 /datum/design/protectstation_module
 	name = "Module Design (ProtectStation)"
@@ -392,7 +392,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_GOLD = 100)
-	build_path = /obj/item/aiModule/protectStation
+	build_path = /obj/item/ai_module/protectStation
 
 /datum/design/notele_module
 	name = "Module Design (TeleporterOffline Module)"
@@ -401,7 +401,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_GOLD = 100)
-	build_path = /obj/item/aiModule/teleporterOffline
+	build_path = /obj/item/ai_module/teleporterOffline
 
 /datum/design/quarantine_module
 	name = "Module Design (Quarantine)"
@@ -410,7 +410,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BIOTECH = 2, RESEARCH_TECH_MATERIALS = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_GOLD = 100)
-	build_path = /obj/item/aiModule/quarantine
+	build_path = /obj/item/ai_module/quarantine
 
 /datum/design/oxygen_module
 	name = "Module Design (OxygenIsToxicToHumans)"
@@ -419,7 +419,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_BIOTECH = 2, RESEARCH_TECH_MATERIALS = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_GOLD = 100)
-	build_path = /obj/item/aiModule/oxygen
+	build_path = /obj/item/ai_module/oxygen
 
 /datum/design/freeform_module
 	name = "Module Design (Freeform)"
@@ -428,7 +428,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MATERIALS = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_GOLD = 100)
-	build_path = /obj/item/aiModule/freeform
+	build_path = /obj/item/ai_module/freeform
 
 /datum/design/reset_module
 	name = "Module Design (Reset)"
@@ -437,7 +437,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_GOLD = 100)
-	build_path = /obj/item/aiModule/reset
+	build_path = /obj/item/ai_module/reset
 
 /datum/design/purge_module
 	name = "Module Design (Purge)"
@@ -446,7 +446,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_DIAMOND = 100)
-	build_path = /obj/item/aiModule/purge
+	build_path = /obj/item/ai_module/purge
 
 /datum/design/freeformcore_module
 	name = "Core Module Design (Freeform)"
@@ -455,7 +455,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_DIAMOND = 100)
-	build_path = /obj/item/aiModule/freeformcore
+	build_path = /obj/item/ai_module/freeformcore
 
 /datum/design/asimov
 	name = "Core Module Design (Asimov)"
@@ -464,7 +464,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_DIAMOND = 100)
-	build_path = /obj/item/aiModule/asimov
+	build_path = /obj/item/ai_module/asimov
 
 /datum/design/paladin_module
 	name = "Core Module Design (P.A.L.A.D.I.N.)"
@@ -473,7 +473,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_DIAMOND = 100)
-	build_path = /obj/item/aiModule/paladin
+	build_path = /obj/item/ai_module/paladin
 
 /datum/design/tyrant_module
 	name = "Core Module Design (T.Y.R.A.N.T.)"
@@ -482,7 +482,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_SYNDICATE = 2, RESEARCH_TECH_MATERIALS = 6)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_DIAMOND = 100)
-	build_path = /obj/item/aiModule/tyrant
+	build_path = /obj/item/ai_module/tyrant
 
 ///////////////////////////////////
 /////Subspace Telecoms////////////

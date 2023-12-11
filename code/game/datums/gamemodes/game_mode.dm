@@ -54,7 +54,7 @@ Devices and Tools;
 /obj/item/storage/box/syndie_kit/space:3:Space Suit;
 /obj/item/clothing/glasses/thermal/syndi:3:Thermal Imaging Glasses;
 /obj/item/encryptionkey/binary:3:Binary Translator Key;
-/obj/item/aiModule/syndicate:7:Hacked AI Upload Module;
+/obj/item/ai_module/syndicate:7:Hacked AI Upload Module;
 /obj/item/plastique:2:C-4 (Destroys walls);
 /obj/item/powersink:5:Powersink (DANGER!);
 /obj/item/radio/beacon/syndicate:7:Singularity Beacon (DANGER!);
