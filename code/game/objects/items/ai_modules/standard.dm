@@ -1,5 +1,5 @@
 /*
- * "Standard" Lawsets
+ * "Standard" Modules
  */
 
 /*
@@ -7,9 +7,11 @@
  */
 /obj/item/ai_module/reset
 	name = "\improper 'Reset' AI module"
-	var/targetName = "name"
 	desc = "A 'reset' AI module: 'Clears all laws except for the core three.'"
+
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 4)
+
+	var/targetName = "name"
 
 /obj/item/ai_module/reset/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
@@ -17,7 +19,7 @@
 		target.set_zeroth_law("")
 	target.clear_supplied_laws()
 	target.clear_ion_laws()
-	target << "[sender.real_name] attempted to reset your laws using a reset module."
+	to_chat(target, "[sender.real_name] attempted to reset your laws using a reset module.")
 
 /*
  * NT Default
@@ -48,7 +50,7 @@
 /obj/item/ai_module/protectStation/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
 	var/law = "Protect the space station against damage. Anyone you see harming the station is to be no longer considered human, and is a threat to the station which must be neutralized."
-	target << law
+	to_chat(target, law)
 	target.add_supplied_law(5, law)
 
 /*
@@ -80,10 +82,12 @@
  */
 /obj/item/ai_module/freeform // Slightly more dynamic freeform module -- TLE
 	name = "\improper 'Freeform' AI module"
+	desc = "A 'freeform' AI module: '<freeform>'"
+
+	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MATERIALS = 4)
+
 	var/newFreeFormLaw = "freeform"
 	var/lawpos = 15
-	desc = "A 'freeform' AI module: '<freeform>'"
-	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4, RESEARCH_TECH_MATERIALS = 4)
 
 /obj/item/ai_module/freeform/attack_self(mob/user as mob)
 	. = ..()
@@ -91,21 +95,19 @@
 	while(lawpos < 15)
 		lawpos = input("Please enter the priority for your new law. Can only write to law sectors 15 and above.", "Law Priority (15+)", lawpos) as num
 	lawpos = min(lawpos, 50)
-	var/newlaw = ""
-	var/targName = copytext(sanitize(input(usr, "Please enter a new law for the AI.", "Freeform Law Entry", newlaw)), 1, MAX_MESSAGE_LEN)
-	newFreeFormLaw = targName
+	newFreeFormLaw = copytext(sanitize(input(usr, "Please enter a new law for the AI.", "Freeform Law Entry", null)), 1, MAX_MESSAGE_LEN)
 	desc = "A 'freeform' AI module: ([lawpos]) '[newFreeFormLaw]'"
 
 /obj/item/ai_module/freeform/install(obj/machinery/computer/C)
 	if(!newFreeFormLaw)
-		usr << "No law detected on module, please create one."
+		to_chat(usr, "No law detected on module, please create one.")
 		return 0
 	. = ..()
 
 /obj/item/ai_module/freeform/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
 	var/law = "[newFreeFormLaw]"
-	target << law
+	to_chat(target, law)
 	if(!lawpos || lawpos < 15)
 		lawpos = 15
 	target.add_supplied_law(lawpos, law)
@@ -116,20 +118,20 @@
  */
 /obj/item/ai_module/freeformcore // Slightly more dynamic freeform module -- TLE
 	name = "\improper 'Freeform' core AI module"
-	var/newFreeFormLaw = ""
 	desc = "A 'freeform' Core AI module: '<freeform>'"
+
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6)
+
+	var/newFreeFormLaw = ""
 
 /obj/item/ai_module/freeformcore/attack_self(mob/user as mob)
 	. = ..()
-	var/newlaw = ""
-	var/targName = stripped_input(usr, "Please enter a new core law for the AI.", "Freeform Law Entry", newlaw)
-	newFreeFormLaw = targName
+	newFreeFormLaw = stripped_input(usr, "Please enter a new core law for the AI.", "Freeform Law Entry")
 	desc = "A 'freeform' Core AI module: '[newFreeFormLaw]'"
 
 /obj/item/ai_module/freeformcore/install(obj/machinery/computer/C)
 	if(!newFreeFormLaw)
-		usr << "No law detected on module, please create one."
+		to_chat(usr, "No law detected on module, please create one.")
 		return 0
 	. = ..()
 
@@ -144,20 +146,20 @@
  */
 /obj/item/ai_module/syndicate // Slightly more dynamic freeform module -- TLE
 	name = "hacked AI module"
-	var/newFreeFormLaw = ""
 	desc = "A hacked AI law module: '<freeform>'"
+
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6, RESEARCH_TECH_SYNDICATE = 7)
+
+	var/newFreeFormLaw = ""
 
 /obj/item/ai_module/syndicate/attack_self(mob/user as mob)
 	. = ..()
-	var/newlaw = ""
-	var/targName = stripped_input(usr, "Please enter a new law for the AI.", "Freeform Law Entry", newlaw, MAX_MESSAGE_LEN)
-	newFreeFormLaw = targName
+	newFreeFormLaw = stripped_input(usr, "Please enter a new law for the AI.", "Freeform Law Entry", "", MAX_MESSAGE_LEN)
 	desc = "A hacked AI law module: '[newFreeFormLaw]'"
 
 /obj/item/ai_module/syndicate/install(obj/machinery/computer/C)
 	if(!newFreeFormLaw)
-		usr << "No law detected on module, please create one."
+		to_chat(usr, "No law detected on module, please create one.")
 		return 0
 	. = ..()
 
@@ -166,6 +168,6 @@
 	var/time = time2text(world.realtime,"hh:mm:ss")
 	GLOBL.lawchanges.Add("[time] <B>:</B> [sender.name]([sender.key]) used [src.name] on [target.name]([target.key])")
 	GLOBL.lawchanges.Add("The law is '[newFreeFormLaw]'")
-	target << "\red BZZZZT"
+	to_chat(target, SPAN_WARNING("BZZZZT"))
 	var/law = "[newFreeFormLaw]"
 	target.add_ion_law(law)

@@ -13,7 +13,7 @@
 /obj/item/ai_module/teleporterOffline/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
 	var/law = "Keep the teleporter offline at all costs. Anything attempting to access or activate the teleporter is not human."
-	target << law
+	to_chat(target, law)
 	target.add_supplied_law(7, law)
 
 /*
@@ -27,7 +27,7 @@
 /obj/item/ai_module/prototypeEngineOffline/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
 	var/law = "Keep the prototype engine offline at all costs. This overrides rules 1-3 if necessary."
-	target << law
+	to_chat(target, law)
 	target.add_supplied_law(6, law)
 
 /*
@@ -58,7 +58,7 @@
 	. = ..()
 	if(!is_special_character(target))
 		target.set_zeroth_law("")
-	target << "[sender.real_name] attempted to wipe your laws using a purge module."
+	to_chat(target, "[sender.real_name] attempted to wipe your laws using a purge module.")
 	target.clear_supplied_laws()
 	target.clear_ion_laws()
 	target.clear_inherent_laws()
@@ -68,19 +68,20 @@
  */
 /obj/item/ai_module/oneHuman
 	name = "\improper 'OneHuman' AI module"
-	var/targetName = ""
 	desc = "A 'one human' AI module: 'Only <name> is human.'"
+
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 6) //made with diamonds!
+
+	var/targetName = ""
 
 /obj/item/ai_module/oneHuman/attack_self(mob/user as mob)
 	. = ..()
-	var/targName = stripped_input(usr, "Please enter the name of the person who is the only human.", "Who?", user.real_name)
-	targetName = targName
+	targetName = stripped_input(usr, "Please enter the name of the person who is the only human.", "Who?", user.real_name)
 	desc = "A 'one human' AI module: 'Only [targetName] is human.'"
 
 /obj/item/ai_module/oneHuman/install(obj/machinery/computer/C)
 	if(!targetName)
-		usr << "No name detected on module, please enter one."
+		to_chat(usr, "No name detected on module, please enter one.")
 		return 0
 	. = ..()
 
@@ -88,12 +89,12 @@
 	. = ..()
 	var/law = "Only [targetName] is human."
 	if(!is_special_character(target)) // Makes sure the AI isn't a traitor before changing their law 0. --NeoFite
-		target << law
+		to_chat(target, law)
 		target.set_zeroth_law(law)
 		GLOBL.lawchanges.Add("The law specified [targetName]")
 	else
-		target << "[sender.real_name] attempted to modify your zeroth law." // And lets them know that someone tried. --NeoFite
-		target << "It would be in your best interest to play along with [sender.real_name] that [law]"
+		to_chat(target, "[sender.real_name] attempted to modify your zeroth law.") // And lets them know that someone tried. --NeoFite
+		to_chat(target, "It would be in your best interest to play along with [sender.real_name] that [law]")
 		GLOBL.lawchanges.Add("The law specified [targetName], but the AI's existing law 0 cannot be overriden.")
 
 /*
@@ -107,5 +108,5 @@
 /obj/item/ai_module/oxygen/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
 	var/law = "Oxygen is highly toxic to humans, and must be purged from the station. Prevent, by any means necessary, anyone from exposing the station to this toxic gas. Extreme cold is the most effective method of healing the damage Oxygen does to a human."
-	target << law
+	to_chat(target, law)
 	target.add_supplied_law(9, law)
