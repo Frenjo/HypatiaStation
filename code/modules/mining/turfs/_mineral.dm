@@ -1,8 +1,7 @@
 /*
  * Mineral Deposits
  */
-/datum/controller/master
-	var/list/artifact_spawning_turfs = list()
+GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 
 /turf/simulated/mineral //wall piece
 	name = "rock"

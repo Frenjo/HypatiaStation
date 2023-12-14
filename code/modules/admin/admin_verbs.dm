@@ -618,12 +618,9 @@ var/list/admin_verbs_donor = list(
 	set name = "Kill Air"
 	set desc = "Toggle Air Processing"
 
-	if(air_processing_killed)
-		air_processing_killed = 0
-		usr << "<b>Enabled air processing.</b>"
-	else
-		air_processing_killed = 1
-		usr << "<b>Disabled air processing.</b>"
+	global.PCair.processing_killed = !global.PCair.processing_killed
+	to_chat(usr, "<b>[global.PCair.processing_killed ? "Disabled" : "Enabled"] air processing.</b>")
+
 	feedback_add_details("admin_verb","KA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] used 'kill air'.")
 	message_admins("\blue [key_name_admin(usr)] used 'kill air'.", 1)

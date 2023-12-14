@@ -1,9 +1,6 @@
 /*
  * Master Controller
  */
-GLOBAL_BYOND_INIT(air_processing_killed, FALSE)
-GLOBAL_BYOND_INIT(pipe_processing_killed, FALSE)
-
 CONTROLLER_DEF(master)
 	name = "Master"
 

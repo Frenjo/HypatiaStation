@@ -7,7 +7,12 @@ PROCESS_DEF(pipenet)
 	name = "PipeNet"
 	schedule_interval = 2 SECONDS
 
+	var/processing_killed = FALSE
+
 /datum/process/pipenet/do_work()
+	if(processing_killed)
+		return
+
 	for(var/datum/pipe_network/pipeNetwork in GLOBL.pipe_networks)
 		if(!GC_DESTROYED(pipeNetwork))
 			pipeNetwork.process()

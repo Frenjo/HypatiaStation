@@ -378,21 +378,15 @@ var/global/prevent_airgroup_regroup = 0
 	set category = PANEL_MAPPING
 	set name = "Kill pipe processing"
 
-	pipe_processing_killed = !pipe_processing_killed
-	if(pipe_processing_killed)
-		message_admins("[src.ckey] used 'kill pipe processing', stopping all pipe processing.")
-	else
-		message_admins("[src.ckey] used 'kill pipe processing', restoring all pipe processing.")
+	global.PCpipenet.processing_killed = !global.PCpipenet.processing_killed
+	message_admins("[src.ckey] used 'kill pipe processing', [global.PCpipenet.processing_killed ? "stopping" : "restoring"] all pipe processing.")
 
 /client/proc/kill_air_processing()
 	set category = PANEL_MAPPING
 	set name = "Kill air processing"
 
-	air_processing_killed = !air_processing_killed
-	if(air_processing_killed)
-		message_admins("[src.ckey] used 'kill air processing', stopping all air processing.")
-	else
-		message_admins("[src.ckey] used 'kill air processing', restoring all air processing.")
+	global.PCair.processing_killed = !global.PCair.processing_killed
+	message_admins("[src.ckey] used 'kill air processing', [global.PCair.processing_killed ? "stopping" : "restoring"] all air processing.")
 
 //This proc is intended to detect lag problems relating to communication procs
 var/global/say_disabled = 0

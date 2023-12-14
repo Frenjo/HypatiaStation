@@ -6,6 +6,8 @@ PROCESS_DEF(air)
 	schedule_interval = 2 SECONDS
 	start_delay = 4
 
+	var/processing_killed = FALSE
+
 /datum/process/air/setup()
 	if(isnull(global.CTair))
 		global.CTair = new /datum/controller/air()
@@ -13,16 +15,18 @@ PROCESS_DEF(air)
 	. = ..()
 
 /datum/process/air/do_work()
-	if(!global.air_processing_killed)
-		if(!global.CTair.process()) //Runtimed.
-			global.CTair.failed_ticks++
+	if(processing_killed)
+		return
 
-			if(global.CTair.failed_ticks > 5)
-				to_world(SPAN_DANGER("RUNTIMES IN ATMOS TICKER. Killing air simulation!"))
-				world.log << "### ZAS SHUTDOWN"
+	if(!global.CTair.process()) //Runtimed.
+		global.CTair.failed_ticks++
 
-				message_admins("ZASALERT: Shutting down! status: [global.CTair.tick_progress]")
-				log_admin("ZASALERT: Shutting down! status: [global.CTair.tick_progress]")
+		if(global.CTair.failed_ticks > 5)
+			to_world(SPAN_DANGER("RUNTIMES IN ATMOS TICKER. Killing air simulation!"))
+			world.log << "### ZAS SHUTDOWN"
 
-				global.air_processing_killed = TRUE
-				global.CTair.failed_ticks = 0
+			message_admins("ZASALERT: Shutting down! status: [global.CTair.tick_progress]")
+			log_admin("ZASALERT: Shutting down! status: [global.CTair.tick_progress]")
+
+			processing_killed = TRUE
+			global.CTair.failed_ticks = 0
