@@ -271,11 +271,11 @@
 			if("6")
 				if(!bibledelay)
 					var/obj/item/storage/bible/B = new /obj/item/storage/bible(src.loc)
-					if(global.CTticker && (global.CTticker.Bible_icon_state && global.CTticker.Bible_item_state))
-						B.icon_state = global.CTticker.Bible_icon_state
-						B.item_state = global.CTticker.Bible_item_state
-						B.name = global.CTticker.Bible_name
-						B.deity_name = global.CTticker.Bible_deity_name
+					if(isnotnull(GLOBL.religion.bible_icon_state) && isnotnull(GLOBL.religion.bible_item_state))
+						B.deity_name = GLOBL.religion.deity_name
+						B.name = GLOBL.religion.bible_name
+						B.icon_state = GLOBL.religion.bible_icon_state
+						B.item_state = GLOBL.religion.bible_item_state
 
 					bibledelay = 1
 					spawn(60)

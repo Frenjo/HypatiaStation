@@ -187,6 +187,7 @@
 #include "code\game\datums\progressbar.dm"
 #include "code\game\datums\radio.dm"
 #include "code\game\datums\recipe.dm"
+#include "code\game\datums\religion.dm"
 #include "code\game\datums\sun.dm"
 #include "code\game\datums\access\_access.dm"
 #include "code\game\datums\access\access_helpers.dm"

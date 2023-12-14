@@ -152,11 +152,11 @@
 						to_chat(H, "Welp, out of time, buddy. You're stuck. Next time choose faster.")
 						accepted = TRUE
 
-		if(isnotnull(global.CTticker))
-			global.CTticker.Bible_icon_state = B.icon_state
-			global.CTticker.Bible_item_state = B.item_state
-			global.CTticker.Bible_name = B.name
-			global.CTticker.Bible_deity_name = B.deity_name
+		if(isnotnull(GLOBL.religion))
+			GLOBL.religion.deity_name = B.deity_name
+			GLOBL.religion.bible_name = B.name
+			GLOBL.religion.bible_icon_state = B.icon_state
+			GLOBL.religion.bible_item_state = B.item_state
 		feedback_set_details("religion_deity", "[new_deity]")
 		feedback_set_details("religion_book", "[new_book_style]")
 
