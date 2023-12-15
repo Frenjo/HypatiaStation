@@ -1554,7 +1554,6 @@
 #include "code\modules\research\xenoarchaeology\geosample.dm"
 #include "code\modules\research\xenoarchaeology\manuals.dm"
 #include "code\modules\research\xenoarchaeology\misc.dm"
-#include "code\modules\research\xenoarchaeology\setup.dm"
 #include "code\modules\research\xenoarchaeology\artifact\_artifact_defines.dm"
 #include "code\modules\research\xenoarchaeology\artifact\artifact.dm"
 #include "code\modules\research\xenoarchaeology\artifact\artifact_autocloner.dm"

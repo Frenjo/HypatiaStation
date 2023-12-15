@@ -79,8 +79,9 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 		del(src)
 		return 0
 
-	// Store the time we started setting up processes.
+	// Stores the time we started setting up processes.
 	var/start_time = world.timeofday
+	to_world(SPAN_DANGER("Initialising processes."))
 
 	var/process
 	// Add all the processes we can find, except those deferred until later.

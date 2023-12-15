@@ -16,7 +16,9 @@
 	//testing("[name] assigned to block #[assigned].")
 	return assigned
 
-/proc/setup_genetics()
+/datum/controller/master/proc/setup_genetics()
+	to_world(SPAN_DANGER("↪ Setting up DNA2."))
+
 	if(prob(50))
 		// Currently unused. Will revisit. - N3X
 		BLOCKADD = rand(-300, 300)
@@ -142,23 +144,6 @@
 
 		global_mutations += mut// add to global mutations list!
 	*/
-
-
-/proc/setup_factions()
-	// Populate the factions list:
-	for(var/x in typesof(/datum/faction))
-		var/datum/faction/F = new x
-		if(!F.name)
-			qdel(F)
-			continue
-		else
-			global.CTticker.factions.Add(F)
-			global.CTticker.availablefactions.Add(F)
-
-	// Populate the syndicate coalition:
-	for(var/datum/faction/syndicate/S in global.CTticker.factions)
-		global.CTticker.syndicate_coalition.Add(S)
-
 
 /* This was used for something before, I think, but is not worth the effort to process now.
 /proc/setupcorpses()

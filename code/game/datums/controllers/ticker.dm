@@ -32,10 +32,6 @@ CONTROLLER_DEF(ticker)
 
 	var/random_players = FALSE	// if set to true, ALL players who latejoin or declare-ready join will have random appearances/genders
 
-	var/list/syndicate_coalition = list()	// list of traitor-compatible factions
-	var/list/factions = list()				// list of all factions
-	var/list/availablefactions = list()		// list of factions with openings
-
 	var/pregame_timeleft = 0
 
 	var/delay_end = FALSE	//if set to true, the round will not restart on it's own
@@ -137,17 +133,7 @@ CONTROLLER_DEF(ticker)
 	setup_economy()
 	global.CTshuttle.setup_shuttle_docks() // Updated to reflect 'shuttles' port. -Frenjo
 
-	spawn(0)//Forking here so we dont have to wait for this to finish
-		mode.post_setup()
-		//Cleanup some stuff
-		for(var/obj/effect/landmark/start/S in GLOBL.landmarks_list)
-			//Deleting Startpoints but we need the ai point to AI-ize people later
-			if(S.name != "AI")
-				qdel(S)
-		to_world(SPAN_INFO_B("Enjoy the game!"))
-		world << sound('sound/AI/welcome.ogg') // Skie
-		//Holiday Round-start stuff	~Carn
-		holiday_game_start()
+	post_setup() // This forks off and doesn't need to be waited on.
 
 	//start_events() //handles random events and space dust.
 	//new random event system is handled from the MC.
@@ -169,6 +155,20 @@ CONTROLLER_DEF(ticker)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
 
 	return 1
+
+/datum/controller/ticker/proc/post_setup()
+	set waitfor = FALSE // This forks off and doesn't need to be waited on.
+
+	mode.post_setup()
+	// Cleans up some stuff.
+	for(var/obj/effect/landmark/start/S in GLOBL.landmarks_list)
+		// Deletes startpoints, but we need the ai point to AI-ize people later.
+		if(S.name != "AI")
+			qdel(S)
+	to_world(SPAN_INFO_B("Enjoy the game!"))
+	world << sound('sound/AI/welcome.ogg') // Skie
+	// Holiday Round-start stuff	~Carn
+	holiday_game_start()
 
 //Plus it provides an easy way to make cinematics for other events. Just use this as a template :)
 /datum/controller/ticker/proc/station_explosion_cinematic(station_missed = 0, override = null)
@@ -339,7 +339,7 @@ CONTROLLER_DEF(ticker)
 	return 1
 
 /datum/controller/ticker/proc/getfactionbyname(name)
-	for(var/datum/faction/F in factions)
+	for(var/datum/faction/F in GLOBL.factions)
 		if(F.name == name)
 			return F
 

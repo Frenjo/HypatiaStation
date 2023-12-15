@@ -9,3 +9,10 @@ GLOBAL_GLOBL_LIST_NEW(surgery_steps)	// List of all surgery steps. |BS12
 GLOBAL_GLOBL_LIST_NEW(blobs)
 GLOBAL_GLOBL_LIST_NEW(blob_cores)
 GLOBAL_GLOBL_LIST_NEW(blob_nodes)
+
+// Faction related lists.
+// These were moved from the game ticker controller due to initialisation order changes.
+// TODO: Move these somewhere more proper later.
+GLOBAL_GLOBL_LIST_NEW(factions)				// list of all factions
+GLOBAL_GLOBL_LIST_NEW(available_factions)	// list of factions with openings
+GLOBAL_GLOBL_LIST_NEW(syndicate_coalition)	// list of traitor-compatible factions
