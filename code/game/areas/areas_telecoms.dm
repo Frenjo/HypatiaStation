@@ -8,6 +8,11 @@
 		'sound/ambience/ambigen10.ogg'
 	)
 
+/area/tcomsat/exterior
+	name = "\improper Telecommunications Satellite Exterior"
+	icon_state = "tcomsatcham"
+	requires_power = FALSE
+
 /area/tcomsat/entrance
 	name = "\improper Telecommunications Satellite Teleporter"
 	icon_state = "tcomsatentrance"

@@ -23,5 +23,5 @@
 
 	station_levels = list(1)
 	admin_levels = list(2)
-	contact_levels = list(1, 5)
+	contact_levels = list(1, 3, 5)
 	player_levels = list(1, 3, 4, 5, 6)
