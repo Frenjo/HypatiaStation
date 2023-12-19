@@ -14,3 +14,8 @@
 #define PANEL_SERVER "Server"
 #define PANEL_SPECIAL_VERBS "Special Verbs"
 #define PANEL_ZAS "ZAS"
+
+// These are special.
+#define PANEL_AI_COMMANDS "AI Commands"
+#define PANEL_AI_IM "AI IM"
+#define PANEL_MALFUNCTION "Malfunction" // This is for malf AIs not a malfunctioning panel.

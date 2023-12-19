@@ -39,7 +39,7 @@
 
 
 /mob/living/silicon/ai/verb/Open_Minimap()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	cameranet.show_minimap(client)
 
 

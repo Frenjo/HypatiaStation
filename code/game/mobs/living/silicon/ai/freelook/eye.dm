@@ -107,7 +107,7 @@
 
 // Return to the Core.
 /mob/living/silicon/ai/verb/core()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "AI Core"
 
 	view_core()
@@ -131,7 +131,7 @@
 		c.remove(eyeobj)
 
 /mob/living/silicon/ai/verb/toggle_acceleration()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "Toggle Camera Acceleration"
 
 	acceleration = !acceleration

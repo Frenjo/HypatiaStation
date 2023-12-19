@@ -20,8 +20,9 @@
 	return ..(gibbed)
 
 /mob/living/silicon/ai/verb/freelook()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "freelook"
+
 	current = null	//cancel camera view first, it causes problems
 	cameraFollow = null
 	if(!eyeobj)	//if it got deleted somehow (like an admin trying to fix things <.<')

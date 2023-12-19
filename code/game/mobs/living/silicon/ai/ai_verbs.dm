@@ -21,7 +21,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
  * Set AI Core Display
  */
 /mob/living/silicon/ai/verb/pick_icon()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "Set AI Core Display"
 
 	if(stat || aiRestorePowerRoutine)
@@ -77,7 +77,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
  * Show Alerts
  */
 /mob/living/silicon/ai/proc/ai_alerts()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "Show Alerts"
 
 	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
@@ -111,7 +111,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
  * This verb lets the AI see the station's manifest.
  */
 /mob/living/silicon/ai/proc/ai_roster()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "Show Crew Manifest"
 
 	show_station_manifest()
@@ -120,7 +120,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
  * Call Emergency Shuttle
  */
 /mob/living/silicon/ai/proc/ai_call_shuttle()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "Call Emergency Shuttle"
 
 	if(stat == DEAD)
@@ -144,7 +144,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
  * This one appears to be unimplemented as it's name is missing.
  */
 /mob/living/silicon/ai/proc/ai_cancel_call()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 
 	if(stat == DEAD)
 		to_chat(src, "You can't send the shuttle back because you are dead!")
@@ -162,7 +162,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
  * Cancel Camera View
  */
 /mob/living/silicon/ai/cancel_camera()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "Cancel Camera View"
 
 	//cameraFollow = null
@@ -176,7 +176,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
  * Addition by Mord_Sith to define AI's network change ability.
  */
 /mob/living/silicon/ai/proc/ai_network_change()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "Jump To Network"
 
 	unset_machine()
@@ -221,7 +221,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
  * Choose Module (Malfunction)
  */
 /mob/living/silicon/ai/proc/choose_modules()
-	set category = "Malfunction"
+	set category = PANEL_MALFUNCTION
 	set name = "Choose Module"
 
 	malf_picker.use(src)
@@ -230,7 +230,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
  * AI Status
  */
 /mob/living/silicon/ai/proc/ai_statuschange()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "AI Status"
 
 	if(usr.stat == DEAD)
@@ -256,7 +256,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
  */
 //I am the icon meister. Bow fefore me.	//>fefore
 /mob/living/silicon/ai/proc/ai_hologram_change()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "Change Hologram"
 	set desc = "Change the default hologram available to AI to something else."
 
@@ -294,7 +294,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
  * Return To Main Core (Malfunction)
  */
 /mob/living/silicon/ai/proc/corereturn()
-	set category = "Malfunction"
+	set category = PANEL_MALFUNCTION
 	set name = "Return To Main Core"
 
 	var/obj/machinery/power/apc/apc = loc
@@ -310,7 +310,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
  * Toggles the luminosity and applies it by re-entereing the camera.
  */
 /mob/living/silicon/ai/proc/toggle_camera_light()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "Toggle Camera Light"
 	set desc = "Toggles the light on the camera the AI is looking through."
 
@@ -355,7 +355,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
  * Set Sensor Augmentation
  */
 /mob/living/silicon/ai/proc/sensor_mode()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "Set Sensor Augmentation"
 	set desc = "Augment visual feed with internal sensor overlays."
 

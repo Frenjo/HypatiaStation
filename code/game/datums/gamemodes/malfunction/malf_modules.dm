@@ -32,7 +32,7 @@ rcd light flash thingy on matter drain
 	mod_pick_name = "coreup"
 
 /client/proc/fireproof_core()
-	set category = "Malfunction"
+	set category = PANEL_MALFUNCTION
 	set name = "Fireproof Core"
 
 	for(var/mob/living/silicon/ai/ai in GLOBL.player_list)
@@ -48,7 +48,7 @@ rcd light flash thingy on matter drain
 	mod_pick_name = "turret"
 
 /client/proc/upgrade_turrets()
-	set category = "Malfunction"
+	set category = PANEL_MALFUNCTION
 	set name = "Upgrade Turrets"
 
 	usr.verbs -= /client/proc/upgrade_turrets
@@ -64,7 +64,7 @@ rcd light flash thingy on matter drain
 	mod_pick_name = "rcd"
 
 /client/proc/disable_rcd()
-	set category = "Malfunction"
+	set category = PANEL_MALFUNCTION
 	set name = "Disable RCDs"
 
 	if(!isAI(usr))
@@ -91,8 +91,8 @@ rcd light flash thingy on matter drain
 	uses = 2
 
 /client/proc/overload_machine(obj/machinery/M as obj in world)
+	set category = PANEL_MALFUNCTION
 	set name = "Overload Machine"
-	set category = "Malfunction"
 
 	if(!isAI(usr))
 		return
@@ -121,7 +121,7 @@ rcd light flash thingy on matter drain
 	uses = 3
 
 /client/proc/blackout()
-	set category = "Malfunction"
+	set category = PANEL_MALFUNCTION
 	set name = "Blackout"
 
 	if(!isAI(usr))
@@ -146,7 +146,7 @@ rcd light flash thingy on matter drain
 	mod_pick_name = "interhack"
 
 /client/proc/interhack()
-	set category = "Malfunction"
+	set category = PANEL_MALFUNCTION
 	set name = "Hack Intercept"
 
 	if(!isAI(usr))
@@ -169,7 +169,7 @@ rcd light flash thingy on matter drain
 	uses = 10
 
 /client/proc/reactivate_camera(obj/machinery/camera/C as obj in global.CTcameranet.cameras)
-	set category = "Malfunction"
+	set category = PANEL_MALFUNCTION
 	set name = "Reactivate Camera"
 
 	if(!isAI(usr))
@@ -199,7 +199,7 @@ rcd light flash thingy on matter drain
 	uses = 10
 
 /client/proc/upgrade_camera(obj/machinery/camera/C as obj in global.CTcameranet.cameras)
-	set category = "Malfunction"
+	set category = PANEL_MALFUNCTION
 	set name = "Upgrade Camera"
 
 	if(!isAI(usr))

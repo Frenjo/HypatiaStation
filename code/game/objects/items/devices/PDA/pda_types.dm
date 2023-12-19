@@ -192,9 +192,10 @@
 
 // AI verb and proc for sending PDA messages.
 /obj/item/pda/ai/verb/cmd_send_pdamesg()
-	set category = "AI IM"
+	set category = PANEL_AI_IM
 	set name = "Send Message"
 	set src in usr
+
 	if(usr.stat == DEAD)
 		to_chat(usr, "You can't send PDA messages because you are dead!")
 		return
@@ -207,9 +208,10 @@
 		create_message(usr, selected)
 
 /obj/item/pda/ai/verb/cmd_toggle_pda_receiver()
-	set category = "AI IM"
+	set category = PANEL_AI_IM
 	set name = "Toggle Sender/Receiver"
 	set src in usr
+
 	if(usr.stat == DEAD)
 		to_chat(usr, "You can't do that because you are dead!")
 		return
@@ -217,9 +219,10 @@
 	to_chat(usr, SPAN_NOTICE("PDA sender/receiver toggled [(toff ? "Off" : "On")]!"))
 
 /obj/item/pda/ai/verb/cmd_toggle_pda_silent()
-	set category = "AI IM"
+	set category = PANEL_AI_IM
 	set name = "Toggle Ringer"
 	set src in usr
+
 	if(usr.stat == DEAD)
 		to_chat(usr, "You can't do that because you are dead!")
 		return
@@ -227,9 +230,10 @@
 	to_chat(usr, SPAN_NOTICE("PDA ringer toggled [(silent ? "Off" : "On")]!"))
 
 /obj/item/pda/ai/verb/cmd_show_message_log()
-	set category = "AI IM"
+	set category = PANEL_AI_IM
 	set name = "Show Message Log"
 	set src in usr
+
 	if(usr.stat == DEAD)
 		to_chat(usr, "You can't do that because you are dead!")
 		return

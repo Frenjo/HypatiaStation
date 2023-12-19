@@ -1,5 +1,5 @@
 /mob/living/silicon/ai/proc/ai_statuschange()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "AI status"
 
 	if(usr.stat == DEAD)

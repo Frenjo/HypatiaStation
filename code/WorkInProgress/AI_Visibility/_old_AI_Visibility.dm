@@ -87,7 +87,7 @@
 		cameranet.minimap_viewers += src
 
 /mob/living/silicon/ai/verb/Open_Minimap()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	winshow(src, "minimapwindow", 1)
 	client.screen |= cameranet.minimap
 
@@ -443,8 +443,9 @@ var/datum/cameranet/cameranet = new()
 	return ..(gibbed)
 
 /mob/living/silicon/ai/verb/freelook()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "freelook"
+
 	current = null	//cancel camera view first, it causes problems
 	cameraFollow = null
 //	machine = null

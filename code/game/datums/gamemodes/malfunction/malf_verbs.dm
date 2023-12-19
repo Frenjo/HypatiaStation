@@ -2,7 +2,7 @@
  * AI Takeover (System Override)
  */
 /datum/game_mode/malfunction/proc/takeover()
-	set category = "Malfunction"
+	set category = PANEL_MALFUNCTION
 	set name = "System Override"
 	set desc = "Start the victory timer."
 
@@ -34,7 +34,7 @@
  * AI Win (Explode)
  */
 /datum/game_mode/malfunction/proc/ai_win()
-	set category = "Malfunction"
+	set category = PANEL_MALFUNCTION
 	set name = "Explode"
 	set desc = "Destroy the station."
 

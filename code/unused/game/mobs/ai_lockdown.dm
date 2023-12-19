@@ -1,5 +1,5 @@
 /mob/living/silicon/ai/proc/lockdown()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "Lockdown"
 
 	if(usr.stat == 2)
@@ -33,7 +33,7 @@
 */
 
 /mob/living/silicon/ai/proc/disablelockdown()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "Disable Lockdown"
 
 	if(usr.stat == 2)

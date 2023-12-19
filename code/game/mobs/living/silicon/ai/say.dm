@@ -20,9 +20,9 @@ var/const/VOX_DELAY = 100 // 10 seconds
 #define VOX_PATH "sound/vox/"
 
 /mob/living/silicon/ai/verb/announcement_help()
+	set category = PANEL_AI_COMMANDS
 	set name = "Announcement Help"
 	set desc = "Display a list of vocal words to announce to the crew."
-	set category = "AI Commands"
 
 	var/dat = "Here is a list of words you can type into the 'Announcement' button to create sentences to vocally announce to everyone on the same level at you.<BR> \
 	<UL><LI>You can also click on the word to preview it.</LI>\
@@ -42,9 +42,9 @@ var/const/VOX_DELAY = 100 // 10 seconds
 	src << browse(dat, "window=announce_help;size=500x400")
 
 /mob/living/silicon/ai/verb/announcement()
+	set category = PANEL_AI_COMMANDS
 	set name = "Announcement"
 	set desc = "Create a vocal announcement by typing in the available words to create a sentence."
-	set category = "AI Commands"
 
 	if(announcing_vox > world.time)
 		to_chat(src, SPAN_NOTICE("Please wait [round((announcing_vox - world.time) / 10)] seconds."))

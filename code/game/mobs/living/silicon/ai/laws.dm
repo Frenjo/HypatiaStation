@@ -1,5 +1,5 @@
 /mob/living/silicon/ai/proc/show_laws_verb()
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "Show Laws"
 
 	show_laws()
@@ -87,7 +87,7 @@
 				number++
 
 /mob/living/silicon/ai/verb/checklaws() //Gives you a link-driven interface for deciding what laws the statelaws() proc will share with the crew. --NeoFite
-	set category = "AI Commands"
+	set category = PANEL_AI_COMMANDS
 	set name = "State Laws"
 
 	var/list = "<b>Which laws do you want to include when stating them for the crew?</b><br><br>"
