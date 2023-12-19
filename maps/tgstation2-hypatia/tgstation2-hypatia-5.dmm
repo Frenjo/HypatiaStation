@@ -315,7 +315,7 @@
 "mP" = (/turf/simulated/wall/r_wall,/area/research_outpost/isolation_three)
 "mQ" = (/obj/machinery/access_button{command = "cycle_exterior"; master_tag = "mining_west_outpost_airlock"; name = "exterior access button"; pixel_x = -25; pixel_y = -25},/turf/simulated/floor/airless{dir = 4; icon_state = "asteroidwarning"},/area/mine/explored)
 "mR" = (/obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap,/turf/simulated/floor/plating/airless/asteroid,/area/mine/unexplored)
-"mT" = (/obj/machinery/suit_storage_unit/excavation_unit,/turf/simulated/floor,/area/research_outpost/expedition_prep)
+"mT" = (/obj/machinery/suit_storage_unit/excavation,/turf/simulated/floor,/area/research_outpost/expedition_prep)
 "mU" = (/turf/simulated/wall,/area/mine/storage)
 "mV" = (/obj/structure/transit_tube{icon_state = "NE-SW"},/turf/simulated/floor/plating/airless{icon_state = "asteroidplating"},/area/mine/unexplored)
 "mX" = (/obj/structure/rack,/obj/item/storage/box/monkeycubes,/obj/item/storage/box/monkeycubes,/obj/item/storage/box/monkeycubes,/obj/item/reagent_containers/spray/cleaner,/turf/simulated/floor/plating,/area/research_outpost/maintenance_storage)
