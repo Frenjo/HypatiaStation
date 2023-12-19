@@ -23,24 +23,24 @@
 #define AIR_DAMAGE_MODIFIER		2.025 //More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
 
 //I hate adding defines like this but I'd much rather deal with bitflags than lists and string searches
-#define BRUTELOSS	1
-#define FIRELOSS	2
-#define TOXLOSS		4
-#define OXYLOSS		8
+#define BRUTELOSS	BITFLAG(0)
+#define FIRELOSS	BITFLAG(1)
+#define TOXLOSS		BITFLAG(2)
+#define OXYLOSS		BITFLAG(3)
 
 ///////////////////ORGAN DEFINES///////////////////
 
-#define ORGAN_CUT_AWAY 1
-#define ORGAN_GAUZED 2
-#define ORGAN_ATTACHABLE 4
-#define ORGAN_BLEEDING 8
-#define ORGAN_BROKEN 32
-#define ORGAN_DESTROYED 64
-#define ORGAN_ROBOT 128
-#define ORGAN_SPLINTED 256
-#define SALVED 512
-#define ORGAN_DEAD 1024
-#define ORGAN_MUTATED 2048
+#define ORGAN_CUT_AWAY		BITFLAG(0)
+#define ORGAN_GAUZED		BITFLAG(1)
+#define ORGAN_ATTACHABLE	BITFLAG(2)
+#define ORGAN_BLEEDING		BITFLAG(3)
+#define ORGAN_BROKEN		BITFLAG(4)
+#define ORGAN_DESTROYED		BITFLAG(5)
+#define ORGAN_ROBOT			BITFLAG(6)
+#define ORGAN_SPLINTED		BITFLAG(7)
+#define SALVED				BITFLAG(8)
+#define ORGAN_DEAD			BITFLAG(9)
+#define ORGAN_MUTATED		BITFLAG(10)
 
 //Germs and infection
 #define GERM_LEVEL_AMBIENT		110		//maximum germ level you can reach by standing still

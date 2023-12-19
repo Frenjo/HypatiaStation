@@ -57,21 +57,23 @@
 #define BLOCKHAIR		BITFLAG(18)	// temporarily removes the user's hair, facial and otherwise.
 
 //flags for pass_flags
-#define PASSTABLE	1
-#define PASSGLASS	2
-#define PASSGRILLE	4
-#define PASSBLOB	8
+#define PASSTABLE	BITFLAG(0)
+#define PASSGLASS	BITFLAG(1)
+#define PASSGRILLE	BITFLAG(2)
+#define PASSBLOB	BITFLAG(3)
 
 //Bit flags for the flags_inv variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
-#define HIDEGLOVES		1	//APPLIES ONLY TO THE EXTERIOR SUIT!!
-#define HIDESUITSTORAGE	2	//APPLIES ONLY TO THE EXTERIOR SUIT!!
-#define HIDEJUMPSUIT	4	//APPLIES ONLY TO THE EXTERIOR SUIT!!
-#define HIDESHOES		8	//APPLIES ONLY TO THE EXTERIOR SUIT!!
-#define HIDETAIL 		16	//APPLIES ONLY TO THE EXTERIOR SUIT!!
-#define HIDEMASK	1	//APPLIES ONLY TO HELMETS/MASKS!!
-#define HIDEEARS	2	//APPLIES ONLY TO HELMETS/MASKS!! (ears means headsets and such)
-#define HIDEEYES	4	//APPLIES ONLY TO HELMETS/MASKS!! (eyes means glasses)
-#define HIDEFACE	8	//APPLIES ONLY TO HELMETS/MASKS!! Dictates whether we appear as unknown.
+// These apply only to the exterior suit:
+#define HIDEGLOVES		BITFLAG(0)
+#define HIDESUITSTORAGE	BITFLAG(1)
+#define HIDEJUMPSUIT	BITFLAG(2)
+#define HIDESHOES		BITFLAG(3)
+#define HIDETAIL 		BITFLAG(4)
+// These apply only to helmets/masks:
+#define HIDEMASK	BITFLAG(0)
+#define HIDEEARS	BITFLAG(1)	// Ears means headsets and such.
+#define HIDEEYES	BITFLAG(2)	// Eyes means glasses.
+#define HIDEFACE	BITFLAG(3)	// Dictates whether we appear as unknown.
 
 // Slot ID defines.
 #define SLOT_ID_BACK		1
@@ -99,22 +101,22 @@
 //Cant seem to find a mob bitflags area other than the powers one
 
 // bitflags for clothing parts
-#define HEAD			1
-#define UPPER_TORSO		2
-#define LOWER_TORSO		4
-#define LEG_LEFT		8
-#define LEG_RIGHT		16
-#define LEGS			24
-#define FOOT_LEFT		32
-#define FOOT_RIGHT		64
-#define FEET			96
-#define ARM_LEFT		128
-#define ARM_RIGHT		256
-#define ARMS			384
-#define HAND_LEFT		512
-#define HAND_RIGHT		1024
-#define HANDS			1536
-#define FULL_BODY		2047
+#define HEAD			BITFLAG(0)
+#define UPPER_TORSO		BITFLAG(1)
+#define LOWER_TORSO		BITFLAG(2)
+#define LEG_LEFT		BITFLAG(3)
+#define LEG_RIGHT		BITFLAG(4)
+#define LEGS			(LEG_LEFT | LEG_RIGHT)
+#define FOOT_LEFT		BITFLAG(5)
+#define FOOT_RIGHT		BITFLAG(6)
+#define FEET			(FOOT_LEFT | FOOT_RIGHT)
+#define ARM_LEFT		BITFLAG(7)
+#define ARM_RIGHT		BITFLAG(8)
+#define ARMS			(ARM_LEFT | ARM_RIGHT)
+#define HAND_LEFT		BITFLAG(9)
+#define HAND_RIGHT		BITFLAG(10)
+#define HANDS			(HAND_LEFT | HAND_RIGHT)
+#define FULL_BODY		(HEAD | UPPER_TORSO | LEGS | FEET | ARMS | HANDS)
 
 // bitflags for the percentual amount of protection a piece of clothing which covers the body part offers.
 // Used with human/proc/get_heat_protection() and human/proc/get_cold_protection()

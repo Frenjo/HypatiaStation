@@ -47,14 +47,14 @@
 #define mShock			109		// insulated hands
 #define mSmallsize		110		// table climbing
 
-//disabilities
-#define NEARSIGHTED	1
-#define EPILEPSY	2
-#define COUGHING	4
-#define TOURETTES	8
-#define NERVOUS		16
+// Disabilities.
+#define NEARSIGHTED	BITFLAG(0)
+#define EPILEPSY	BITFLAG(1)
+#define COUGHING	BITFLAG(2)
+#define TOURETTES	BITFLAG(3)
+#define NERVOUS		BITFLAG(4)
 
-//sdisabilities
-#define BLIND	1
-#define MUTE	2
-#define DEAF	4
+// sdisabilities.
+#define BLIND	BITFLAG(0)
+#define MUTE	BITFLAG(1)
+#define DEAF	BITFLAG(2)

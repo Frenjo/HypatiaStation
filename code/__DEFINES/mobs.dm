@@ -6,15 +6,15 @@
 #define DEAD		2
 
 //Bitflags defining which status effects could be or are inflicted on a mob
-#define CANSTUN		1
-#define CANWEAKEN	2
-#define CANPARALYSE	4
-#define CANPUSH		8
-#define LEAPING		16
-#define GODMODE		4096
-#define FAKEDEATH	8192	//Replaces stuff like changeling.changeling_fakedeath
-#define DISFIGURED	16384	//I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
-#define XENO_HOST	32768	//Tracks whether we're gonna be a baby alien's mummy.
+#define CANSTUN		BITFLAG(0)
+#define CANWEAKEN	BITFLAG(1)
+#define CANPARALYSE	BITFLAG(2)
+#define CANPUSH		BITFLAG(3)
+#define LEAPING		BITFLAG(4)
+#define GODMODE		BITFLAG(5)
+#define FAKEDEATH	BITFLAG(6) // Replaces stuff like changeling.changeling_fakedeath
+#define DISFIGURED	BITFLAG(7) // I'll probably move this elsewhere if I ever get wround to writing a bitflag mob-damage system
+#define XENO_HOST	BITFLAG(8) // Tracks whether we're gonna be a baby alien's mummy.
 
 //Grab levels
 #define GRAB_PASSIVE	1
@@ -25,9 +25,9 @@
 
 #define AI_CAMERA_LUMINOSITY 6
 
-#define BORGMESON	1
-#define BORGTHERM	2
-#define BORGXRAY	4
+#define BORGMESON	BITFLAG(0)
+#define BORGTHERM	BITFLAG(1)
+#define BORGXRAY	BITFLAG(2)
 
 #define HOSTILE_STANCE_IDLE			1
 #define HOSTILE_STANCE_ALERT		2
@@ -51,12 +51,12 @@
 #define GETPULSE_TOOL	1	//more accurate (med scanner, sleeper, etc)
 
 //These are used Bump() code for living mobs, in the mob_bump_flag, mob_swap_flags, and mob_push_flags vars to determine whom can bump/swap with whom.
-#define HUMAN			1
-#define MONKEY			2
-#define ALIEN			4
-#define ROBOT			8
-#define SLIME			16
-#define SIMPLE_ANIMAL	32
+#define HUMAN			BITFLAG(0)
+#define MONKEY			BITFLAG(1)
+#define ALIEN			BITFLAG(2)
+#define ROBOT			BITFLAG(3)
+#define SLIME			BITFLAG(4)
+#define SIMPLE_ANIMAL	BITFLAG(5)
 #define ALLMOBS			(HUMAN | MONKEY | ALIEN | ROBOT | SLIME | SIMPLE_ANIMAL)
 
 #define AGE_MIN 17			//youngest a character can be

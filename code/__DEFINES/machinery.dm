@@ -5,6 +5,8 @@
 
 // Doors!
 #define DOOR_CRUSH_DAMAGE 10
+#define DOOR_OPEN 1
+#define DOOR_CLOSED 2
 
 // Values for the power_state variable.
 // These must be in string form as they're keys in an associative list.
@@ -19,21 +21,17 @@
 #define TOTAL	4 // For total power used only.
 
 // bitflags for machine stat variable
-#define BROKEN		1
-#define NOPOWER		2
-#define POWEROFF	4		// tbd
-#define MAINT		8		// under maintaince
-#define EMPED		16		// temporary broken by EMP pulse
+#define BROKEN		BITFLAG(0)
+#define NOPOWER		BITFLAG(1)
+#define POWEROFF	BITFLAG(2) // tbd
+#define MAINT		BITFLAG(3) // under maintaince
+#define EMPED		BITFLAG(4) // temporary broken by EMP pulse
 
 //bitflags for door switches.
-#define OPEN	1
-#define IDSCAN	2
-#define BOLTS	4
-#define SHOCK	8
-#define SAFE	16
+#define OPEN	BITFLAG(0)
+#define IDSCAN	BITFLAG(1)
+#define BOLTS	BITFLAG(2)
+#define SHOCK	BITFLAG(3)
+#define SAFE	BITFLAG(4)
 
 #define ENGINE_EJECT_Z	3
-
-// Door stuff.
-#define DOOR_OPEN 1
-#define DOOR_CLOSED 2
