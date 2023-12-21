@@ -94,7 +94,7 @@
 		var/obj/item/projectile/beam/emitter/A = new /obj/item/projectile/beam/emitter( src.loc )
 		playsound(src.loc, 'sound/weapons/emitter.ogg', 25, 1)
 		if(prob(35))
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 			s.set_up(5, 1, src)
 			s.start()
 		A.dir = src.dir
@@ -125,7 +125,7 @@
 	playsound(src.loc, 'sound/weapons/emitter.ogg', 25, 1)
 	use_power(100 * mega_energy + 500)
 	/*if(prob(35))
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 		s.set_up(5, 1, src)
 		s.start()*/
 	A.set_dir(src.dir)

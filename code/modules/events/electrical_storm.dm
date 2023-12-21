@@ -68,7 +68,7 @@
 						spark.set_up(5, 1, apc)
 						spark.start()
 						explosion(apc.loc, -1, -1, 2)
-						//var/datum/effect/effect/system/smoke_spread/smoke = new
+						//var/datum/effect/system/smoke_spread/smoke = new
 						//smoke.set_up(2, 0, apc.loc, null)
 						//smoke.start()
 						apc.overload_lighting()

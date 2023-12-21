@@ -101,7 +101,7 @@
 	usr.verbs -= /client/proc/smokecloud
 	spawn(120)
 		usr.verbs += /client/proc/smokecloud
-	var/datum/effect/effect/system/bad_smoke_spread/smoke = new /datum/effect/effect/system/bad_smoke_spread()
+	var/datum/effect/system/bad_smoke_spread/smoke = new /datum/effect/system/bad_smoke_spread()
 	smoke.set_up(10, 0, usr.loc)
 	smoke.start()
 
@@ -276,7 +276,7 @@
 
 	usr.say("EI NATH")
 
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 	s.set_up(4, 1, M)
 	s.start()
 
@@ -319,7 +319,7 @@
 		if(T.y>world.maxy-4 || T.y<4)	continue
 		turfs += T
 	if(!turfs.len) turfs += pick(/turf in orange(6))
-	var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
+	var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
 	smoke.set_up(10, 0, usr.loc)
 	smoke.start()
 	var/turf/picked = pick(turfs)
@@ -361,7 +361,7 @@
 
 	usr.say("SCYAR NILA [uppertext(A)]")
 
-	var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
+	var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
 	smoke.set_up(5, 0, usr.loc)
 	smoke.attach(usr)
 	smoke.start()
@@ -422,7 +422,7 @@
 		flick("liquify",animation)
 		H.loc = holder
 		H.client.eye = holder
-		var/datum/effect/effect/system/steam_spread/steam = new /datum/effect/effect/system/steam_spread()
+		var/datum/effect/system/steam_spread/steam = new /datum/effect/system/steam_spread()
 		steam.set_up(10, 0, mobloc)
 		steam.start()
 		sleep(time)

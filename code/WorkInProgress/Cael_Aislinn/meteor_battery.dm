@@ -54,7 +54,7 @@
 	var/wasvalid = 0
 	var/lastfired = 0
 	var/shot_delay = 50
-	var/datum/effect/effect/system/spark_spread/spark_system
+	var/datum/effect/system/spark_spread/spark_system
 	use_power = 1
 	idle_power_usage = 50
 	active_power_usage = 300
@@ -65,7 +65,7 @@
 	var/list/fired_missiles
 
 /obj/machinery/meteor_battery/New()
-	spark_system = new /datum/effect/effect/system/spark_spread
+	spark_system = new /datum/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	fired_missiles = list()

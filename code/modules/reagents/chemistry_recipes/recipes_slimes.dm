@@ -367,7 +367,7 @@
 
 /datum/chemical_reaction/slime_explosion/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
-	var/datum/effect/effect/system/reagents_explosion/e = new()
+	var/datum/effect/system/reagents_explosion/e = new()
 	e.set_up(round (created_volume/10, 1), location, 0, 0)
 	e.start()
 
@@ -609,7 +609,7 @@
 	//for(var/datum/reagent/R in holder.reagent_list)
 		//to_world("[R.name] = [R.volume]")
 
-	var/datum/effect/effect/system/foam_spread/s = new()
+	var/datum/effect/system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 0)
 	s.start()
 	holder.clear_reagents()

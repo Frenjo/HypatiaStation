@@ -8,7 +8,7 @@
 	equip_cooldown = 5
 	energy_drain = 50
 	var/wait = 0
-	var/datum/effect/effect/system/ion_trail_follow/ion_trail
+	var/datum/effect/system/ion_trail_follow/ion_trail
 
 /obj/item/mecha_parts/mecha_equipment/jetpack/can_attach(obj/mecha/M as obj)
 	if(!(locate(src.type) in M.equipment) && !M.proc_res["dyndomove"])
