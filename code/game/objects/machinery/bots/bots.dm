@@ -16,7 +16,7 @@
 
 	power_state = USE_POWER_OFF
 
-	var/obj/item/card/id/botcard			// the ID card that the bot "holds"
+	var/obj/item/card/id/botcard	// the ID card that the bot "holds"
 	var/on = TRUE
 	var/health = 0 //do not forget to set health for your bot!
 	var/maxhealth = 0
@@ -24,7 +24,6 @@
 	var/brute_dam_coeff = 1
 	var/open = FALSE //Maint panel
 	var/locked = TRUE
-	//var/emagged = 0 //Urist: Moving that var to the general /bot tree as it's used by most bots
 
 /obj/machinery/bot/proc/turn_on()
 	if(stat)
@@ -38,6 +37,8 @@
 	set_light(0)
 
 /obj/machinery/bot/proc/explode()
+	SHOULD_CALL_PARENT(TRUE)
+
 	qdel(src)
 
 /obj/machinery/bot/proc/healthcheck()
@@ -54,7 +55,7 @@
 
 /obj/machinery/bot/examine()
 	set src in view()
-	..()
+	. = ..()
 	if(health < maxhealth)
 		if(health > maxhealth / 3)
 			to_chat(usr, SPAN_WARNING("[src]'s parts look loose."))
@@ -170,7 +171,6 @@
 // Navigation procs
 // Used for A-star pathfinding
 
-
 // Returns the surrounding cardinal turfs with open links
 // Including through doors openable with the ID
 /turf/proc/CardinalTurfsWithAccess(obj/item/card/id/card)
@@ -182,7 +182,6 @@
 			if(!LinkBlockedWithAccess(src, T, card))
 				L.Add(T)
 	return L
-
 
 // Returns true if a link between A and B is blocked
 // Movement through doors allowed if ID has access

@@ -87,7 +87,7 @@
 	updateUsrDialog()
 
 /obj/machinery/bot/medbot/turn_off()
-	..()
+	. = ..()
 	patient = null
 	oldpatient = null
 	oldloc = null
@@ -471,7 +471,7 @@
 	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
+	return ..()
 
 /obj/machinery/bot/medbot/Bump(M as mob|obj) //Leave no door unopened!
 	if(istype(M, /obj/machinery/door) && isnotnull(botcard))

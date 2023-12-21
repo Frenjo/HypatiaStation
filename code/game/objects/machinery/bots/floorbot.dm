@@ -392,7 +392,7 @@
 	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
+	return ..()
 
 /obj/item/storage/toolbox/mechanical/attackby(obj/item/stack/tile/plasteel/T, mob/user as mob)
 	if(!istype(T, /obj/item/stack/tile/plasteel))

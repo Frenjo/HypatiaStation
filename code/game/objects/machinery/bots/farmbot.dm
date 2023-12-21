@@ -219,7 +219,7 @@
 	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
+	return ..()
 
 /obj/machinery/bot/farmbot/process()
 	set background = BACKGROUND_ENABLED

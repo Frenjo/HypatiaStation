@@ -70,7 +70,7 @@
 	updateUsrDialog()
 
 /obj/machinery/bot/cleanbot/turn_off()
-	..()
+	. = ..()
 	if(isnotnull(target))
 		target.targeted_by = null
 	target = null
@@ -341,7 +341,7 @@ Weird button pressed: ["<A href='?src=\ref[src];operation=oddbutton'>[oddbutton 
 	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
+	return ..()
 
 /obj/item/bucket_sensor/attackby(obj/item/W, mob/user as mob)
 	..()

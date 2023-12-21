@@ -12,6 +12,7 @@
 	brute_dam_coeff = 0.5
 //	weight = 1.0E7
 	req_one_access = list(ACCESS_SECURITY, ACCESS_FORENSICS_LOCKERS)
+
 	var/mob/target
 	var/oldtarget_name
 	var/threatlevel = 0
@@ -72,7 +73,7 @@
 	var/created_name = "Securitron" //To preserve the name if it's a unique securitron I guess
 
 /obj/machinery/bot/secbot/New()
-	..()
+	. = ..()
 	icon_state = "secbot[on]"
 
 /obj/machinery/bot/secbot/initialize()
@@ -91,12 +92,12 @@
 	return ..()
 
 /obj/machinery/bot/secbot/turn_on()
-	..()
+	. = ..()
 	icon_state = "secbot[on]"
 	updateUsrDialog()
 
 /obj/machinery/bot/secbot/turn_off()
-	..()
+	. = ..()
 	target = null
 	oldtarget_name = null
 	anchored = FALSE
@@ -691,7 +692,7 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 	s.start()
 
 	new /obj/effect/decal/cleanable/blood/oil(loc)
-	qdel(src)
+	return ..()
 
 //Secbot Construction
 /obj/item/clothing/head/helmet/attackby(obj/item/assembly/signaler/S, mob/user as mob)

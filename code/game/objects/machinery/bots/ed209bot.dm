@@ -98,7 +98,7 @@
 	updateUsrDialog()
 
 /obj/machinery/bot/ed209/turn_off()
-	..()
+	. = ..()
 	target = null
 	oldtarget_name = null
 	anchored = FALSE
@@ -754,7 +754,7 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 	s.start()
 
 	new /obj/effect/decal/cleanable/blood/oil(loc)
-	qdel(src)
+	return ..()
 
 /obj/machinery/bot/ed209/proc/shootAt(mob/target)
 	if(lastfired && world.time - lastfired < shot_delay)
