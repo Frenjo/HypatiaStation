@@ -55,7 +55,7 @@
 /obj/machinery/ai_slipper/attack_hand(mob/user as mob)
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if(get_dist(src, user) > 1)
+	if(!in_range(src, user))
 		if(!issilicon(user))
 			to_chat(user, "Too far away.")
 			user.unset_machine()

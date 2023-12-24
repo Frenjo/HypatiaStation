@@ -64,7 +64,7 @@
 #undef TURBGENG
 
 /obj/machinery/power/turbine/interact(mob/user)
-	if((get_dist(src, user) > 1) || (stat & (NOPOWER|BROKEN)) && (!istype(user, /mob/living/silicon/ai)) )
+	if(!in_range(src, user) || (stat & (NOPOWER|BROKEN)) && !issilicon(user))
 		user.machine = null
 		user << browse(null, "window=turbine")
 		return
@@ -98,7 +98,7 @@
 			FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 			return
 
-	if((usr.machine == src && (get_dist(src, usr) <= 1 && isturf(src.loc))) || isAI(usr))
+	if((usr.machine == src && (in_range(src, usr) && isturf(loc))) || issilicon(usr))
 		if(href_list["close"])
 			usr << browse(null, "window=turbine")
 			usr.machine = null

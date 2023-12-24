@@ -267,7 +267,7 @@ display round(lastgen) and plasmatank amount
 
 // Commented this out due to NanoUI port. -Frenjo
 /*/obj/machinery/power/port_gen/pacman/interact(mob/user)
-	if (get_dist(src, user) > 1 )
+	if(!in_range(src, user))
 		if (!istype(user, /mob/living/silicon/ai))
 			user.unset_machine()
 			user << browse(null, "window=port_gen")

@@ -221,7 +221,7 @@
 		buckled_mob.loc = loc
 
 /obj/structure/stool/bed/chair/janicart/buckle_mob(mob/M, mob/user)
-	if(M != user || !ismob(M) || get_dist(src, user) > 1 || user.restrained() || user.lying || user.stat || M.buckled || issilicon(user))
+	if(M != user || !ismob(M) || !in_range(src, user) || user.restrained() || user.lying || user.stat || M.buckled || issilicon(user))
 		return
 
 	unbuckle()

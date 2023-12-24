@@ -19,7 +19,7 @@
 	machine_id = "[station_name()] Acc. DB #[num_financial_terminals++]"
 
 /obj/machinery/account_database/attack_hand(mob/user as mob)
-	if(get_dist(src, user) <= 1)
+	if(in_range(src, user))
 		var/dat = "<b>Accounts Database</b><br>"
 		dat += "<i>[machine_id]</i><br>"
 		dat += "Confirm identity: <a href='?src=\ref[src];choice=insert_card'>[held_card ? held_card : "-----"]</a><br>"

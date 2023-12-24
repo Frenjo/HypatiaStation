@@ -26,7 +26,7 @@
 		user.unset_machine()
 		user << browse(null, "window=core_control")
 		return
-	if (!issilicon(user) && (get_dist(src, user) > 1 ))
+	if(!issilicon(user) && !in_range(src, user))
 		user.unset_machine()
 		user << browse(null, "window=core_control")
 		return

@@ -45,7 +45,7 @@
 	onclose(user, "implant")
 
 /obj/machinery/implantchair/Topic(href, href_list)
-	if((get_dist(src, usr) <= 1) || istype(usr, /mob/living/silicon/ai))
+	if(in_range(src, usr) || issilicon(usr))
 		if(href_list["implant"])
 			if(src.occupant)
 				injecting = 1

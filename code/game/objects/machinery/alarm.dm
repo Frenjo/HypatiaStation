@@ -606,7 +606,7 @@
 	if(buildstage != 2)
 		return
 
-	if(get_dist(src, user) > 1)
+	if(!in_range(src, user))
 		if(!issilicon(user))
 			user.machine = null
 			user << browse(null, "window=air_alarm")
@@ -912,7 +912,7 @@ table tr:first-child th:first-child { border: none;}
 	if(href_list["rcon"])
 		rcon_setting = text2num(href_list["rcon"])
 
-	if(get_dist(src, usr) > 1)
+	if(!in_range(src, usr))
 		if(!issilicon(usr))
 			usr.unset_machine()
 			usr << browse(null, "window=air_alarm")
@@ -1383,7 +1383,7 @@ FIRE ALARM
 	if(buildstage != 2)
 		return
 
-	if((usr.contents.Find(src) || (get_dist(src, usr) <= 1 && isturf(loc))) || issilicon(usr))
+	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(loc))) || issilicon(usr))
 		usr.set_machine(src)
 		if(href_list["reset"])
 			reset()
@@ -1522,7 +1522,7 @@ Just a object used in constructing fire alarms
 	..()
 	if(usr.stat || stat & (BROKEN|NOPOWER))
 		return
-	if((usr.contents.Find(src) || (get_dist(src, usr) <= 1 && isturf(loc))) || issilicon(usr))
+	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(loc))) || issilicon(usr))
 		usr.machine = src
 		if(href_list["reset"])
 			reset()

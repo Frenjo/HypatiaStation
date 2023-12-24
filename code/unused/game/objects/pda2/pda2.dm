@@ -126,7 +126,7 @@
 /obj/item/pda2/Topic(href, href_list)
 	..()
 
-	if (usr.contents.Find(src) || usr.contents.Find(src.master) || (istype(src.loc, /turf) && get_dist(src, usr) <= 1))
+	if(usr.contents.Find(src) || usr.contents.Find(src.master) || (isturf(src.loc) && in_range(src, usr)))
 		if (usr.stat || usr.restrained())
 			return
 

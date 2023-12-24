@@ -141,7 +141,7 @@ log transactions
 				inserted = 0
 
 	Topic(href,href_list)
-		if (usr.machine==src && get_dist(src, usr) <= 1 || istype(usr, /mob/living/silicon/ai))
+		if(usr.machine == src && in_range(src, usr) || issilicon(usr))
 			if(href_list["eca"])
 				if(accepted)
 					for(var/obj/item/spacecash/M in cashes)

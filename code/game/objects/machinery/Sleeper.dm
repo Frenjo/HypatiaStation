@@ -101,7 +101,7 @@
 /obj/machinery/sleep_console/Topic(href, href_list)
 	if(..())
 		return
-	if((usr.contents.Find(src) || (get_dist(src, usr) <= 1 && isturf(src.loc))) || isAI(usr))
+	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(loc))) || issilicon(usr))
 		usr.set_machine(src)
 		if(href_list["chemical"])
 			if(src.connected)

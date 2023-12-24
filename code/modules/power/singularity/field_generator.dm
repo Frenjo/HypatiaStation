@@ -77,7 +77,7 @@ field_generator power level display
 
 /obj/machinery/field_generator/attack_hand(mob/user as mob)
 	if(state == 2)
-		if(get_dist(src, user) <= 1)//Need to actually touch the thing to turn it on
+		if(in_range(src, user))//Need to actually touch the thing to turn it on
 			if(src.active >= 1)
 				to_chat(user, "You are unable to turn off the [src.name] once it is online.")
 				return 1

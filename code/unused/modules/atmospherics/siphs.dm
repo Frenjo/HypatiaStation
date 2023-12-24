@@ -421,7 +421,7 @@
 		return
 	if ((!( src.alterable )) && (!istype(usr, /mob/living/silicon/ai)))
 		return
-	if (((get_dist(src, usr) <= 1 || usr.telekinesis == 1) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon/ai)))
+	if(((in_range(src, usr) || usr.telekinesis == 1) && isturf(loc)) || issilicon(usr))
 		usr.machine = src
 		if (href_list["c"])
 			var/c = text2num(href_list["c"])
@@ -511,5 +511,3 @@
 				else
 					user << "\blue You lock the interface!"
 	return
-
-

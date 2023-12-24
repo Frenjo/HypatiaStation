@@ -262,8 +262,8 @@
 
 
 /obj/machinery/power/am_control_unit/interact(mob/user)
-	if((get_dist(src, user) > 1) || (stat & (BROKEN|NOPOWER)))
-		if(!istype(user, /mob/living/silicon/ai))
+	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
+		if(!issilicon(user))
 			user.unset_machine()
 			user << browse(null, "window=AMcontrol")
 			return
@@ -302,8 +302,8 @@
 
 /obj/machinery/power/am_control_unit/Topic(href, href_list)
 	..()
-	//Ignore input if we are broken or guy is not touching us, AI can control from a ways away
-	if(stat & (BROKEN|NOPOWER) || (get_dist(src, usr) > 1 && !istype(usr, /mob/living/silicon/ai)))
+	// Ignore input if we are broken or a non-silicon guy is not touching us, robots/AIs can control from a ways away.
+	if(stat & (BROKEN|NOPOWER) || (!in_range(src, usr) && !issilicon(usr)))
 		usr.unset_machine()
 		usr << browse(null, "window=AMcontrol")
 		return

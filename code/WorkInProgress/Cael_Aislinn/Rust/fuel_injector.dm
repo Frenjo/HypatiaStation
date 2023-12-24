@@ -140,8 +140,8 @@
 		user.unset_machine()
 		user << browse(null, "window=fuel_injector")
 		return
-	if(get_dist(src, user) > 1 )
-		if (!issilicon(user))
+	if(!in_range(src, user))
+		if(!issilicon(user))
 			user.unset_machine()
 			user << browse(null, "window=fuel_injector")
 			return

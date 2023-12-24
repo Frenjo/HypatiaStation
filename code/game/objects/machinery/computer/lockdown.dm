@@ -67,7 +67,7 @@
 		if(stat & (BROKEN|NOPOWER))
 			return
 
-		if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
+		if((!in_range(src, user)) || (stat & (BROKEN|NOPOWER)))
 			if (!issilicon(user))
 				user.machine = null
 				user << browse(null, "window=lockdown")

@@ -54,7 +54,7 @@
 		return
 	if(user.stat || user.lying)
 		return
-	if ((get_dist(src, user) > 1 || !istype(src.loc, /turf)) && !istype(user, /mob/living/silicon/ai))
+	if((!in_range(src, user) || !isturf(loc)) && !issilicon(user))
 		return 0
 
 	var/list/gases = list("O2", "N2", "Plasma", "CO2", "N2O")
@@ -92,7 +92,7 @@
 		return	//Who cares if we're dead or whatever let us close the fucking window
 	if(..())
 		return
-	if ((((get_dist(src, usr) <= 1 || usr.telekinesis == 1) || istype(usr, /mob/living/silicon/ai)) && istype(src.loc, /turf)))
+	if(((in_range(src, usr) || usr.telekinesis == 1) || issilicon(usr)) && isturf(loc))
 		usr.machine = src
 		if (src.allowed(usr) || src.emagged && !(stat & BROKEN))
 			if (href_list["tg"])	//someone modified the html so I added a check here

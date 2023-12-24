@@ -190,7 +190,7 @@
 	..()
 	if(usr.restrained() || usr.lying)
 		return
-	if ((((get_dist(src, usr) <= 1 || usr.telekinesis == 1) || istype(usr, /mob/living/silicon/ai)) && istype(src.loc, /turf)))
+	if(((in_range(src, usr) || usr.telekinesis == 1) || issilicon(usr)) && isturf(loc))
 		usr.machine = src
 		if (href_list["close"])
 			usr << browse(null, "window=pipefilter;")

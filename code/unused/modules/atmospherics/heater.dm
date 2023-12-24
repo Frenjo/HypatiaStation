@@ -108,7 +108,7 @@
 		return
 	if (usr.stat || usr.restrained())
 		return
-	if (((get_dist(src, usr) <= 1 || usr.telekinesis == 1) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon/ai)))
+	if(((in_range(src, usr) || usr.telekinesis == 1) && isturf(loc)) || issilicon(usr))
 		usr.machine = src
 		if (href_list["c"])
 			var/c = text2num(href_list["c"])
@@ -198,4 +198,3 @@
 				else
 					user.show_message("\blue There is no connector here to attach the heater to.", 1)
 	return
-

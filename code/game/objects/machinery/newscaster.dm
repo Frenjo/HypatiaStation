@@ -426,7 +426,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 /obj/machinery/newscaster/Topic(href, href_list)
 	if(..())
 		return
-	if((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && isturf(src.loc))) || issilicon(usr))
+	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(loc))) || issilicon(usr))
 		usr.set_machine(src)
 		if(href_list["set_channel_name"])
 			src.channel_name = sanitizeSQL(strip_html_simple(input(usr, "Provide a Feed Channel Name", "Network Channel Handler", "")))

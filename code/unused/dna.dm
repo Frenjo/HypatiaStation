@@ -44,7 +44,7 @@
 /obj/machinery/computer/dna/Topic(href, href_list)
 	if(..())
 		return
-	if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1 || usr.telekinesis == 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
+	if ((usr.contents.Find(src) || ((in_range(src, usr) || usr.telekinesis == 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
 		usr.machine = src
 		if (href_list["modify"])
 			if (src.modify)
@@ -136,7 +136,7 @@
 							var/m = src.modify
 							if ((usr.stat || usr.restrained() || src.modify != m || src.scan != s))
 								return
-							if (((get_dist(src, usr) <= 1 || usr.telekinesis == 1) && istype(src.loc, /turf)))
+							if (((in_range(src, usr) || usr.telekinesis == 1) && istype(src.loc, /turf)))
 								src.modify.data = dat
 						else
 							src.temp = "Disk Failure: Cannot read target disk!"
@@ -645,7 +645,7 @@
 /obj/machinery/scan_console/Topic(href, href_list)
 	if(..())
 		return
-	if ((usr.contents.Find(src) || (get_dist(src, usr) <= 1 || usr.telekinesis == 1) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon/ai)))
+	if((usr.contents.Find(src) || (in_range(src, usr) || usr.telekinesis == 1) && isturf(loc)) || issilicon(usr))
 		usr.machine = src
 		if (href_list["locked"])
 			if ((src.connected && src.connected.occupant))

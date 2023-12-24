@@ -72,8 +72,7 @@
 	return
 
 /obj/machinery/power/monitor/interact(mob/user)
-
-	if ( (get_dist(src, user) > 1 ) || (stat & (BROKEN|NOPOWER)) )
+	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
 		if (!issilicon(user))
 			user.unset_machine()
 			user << browse(null, "window=powcomp")

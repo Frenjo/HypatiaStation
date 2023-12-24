@@ -120,7 +120,7 @@ log transactions
 	if(issilicon(user))
 		to_chat(user, SPAN_WARNING("\icon[src] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per NanoTrasen regulation #1005."))
 		return
-	if(get_dist(src, user) <= 1)
+	if(in_range(src, user))
 		//js replicated from obj/machinery/computer/card
 		var/dat = "<h1>NanoTrasen Automatic Teller Machine</h1>"
 		dat += "For all your monetary needs!<br>"

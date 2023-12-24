@@ -144,7 +144,7 @@
 	interact(user)
 
 /obj/machinery/power/generator/interact(mob/user)
-	if(get_dist(src, user) > 1 && !isAI(user))
+	if(!in_range(src, user) && !issilicon(user))
 		user.unset_machine()
 		user << browse(null, "window=teg")
 		return

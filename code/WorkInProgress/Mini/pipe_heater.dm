@@ -64,7 +64,7 @@
 		onclose(user, "freezer")
 
 	Topic(href, href_list)
-		if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
+		if((usr.contents.Find(src) || ((in_range(src, usr)) && isturf(loc))) || issilicon(usr))
 			usr.machine = src
 			if (href_list["start"])
 				src.on = !src.on

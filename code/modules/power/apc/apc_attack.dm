@@ -58,7 +58,7 @@
 
 //attack with an item - open/close cover, insert cell, or (un)lock interface
 /obj/machinery/power/apc/attackby(obj/item/W, mob/user)
-	if(issilicon(user) && get_dist(src, user) > 1)
+	if(issilicon(user) && !in_range(src, user))
 		return src.attack_hand(user)
 	src.add_fingerprint(user)
 	if(istype(W, /obj/item/crowbar) && opened)

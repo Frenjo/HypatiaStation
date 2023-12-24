@@ -193,7 +193,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 		user.unset_machine()
 		user << browse(null, "window=core_gen")
 		return
-	if(!issilicon(user) && get_dist(src, user) > 1)
+	if(!issilicon(user) && !in_range(src, user))
 		user.unset_machine()
 		user << browse(null, "window=core_gen")
 		return

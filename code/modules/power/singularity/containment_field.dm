@@ -25,7 +25,7 @@
 	return ..()
 
 /obj/machinery/containment_field/attack_hand(mob/user as mob)
-	if(get_dist(src, user) > 1)
+	if(!in_range(src, user))
 		return 0
 	else
 		shock(user)

@@ -170,7 +170,7 @@
 	pixel_y = -pixel_y
 
 /obj/machinery/rust/gyrotron/control_panel/interact(mob/user)
-	if((get_dist(src, user) > 1) || (stat & (BROKEN|NOPOWER)))
+	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))
 		if(!issilicon(user))
 			user.machine = null
 			user << browse(null, "window=gyro_monitor")

@@ -181,7 +181,7 @@
 		else if(istype(wear_id, /obj/item/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
 			var/obj/item/card/id/idcard = wear_id
 			id = idcard.registered_name
-		if(id && (id != real_name) && (get_dist(src, usr) <= 1) && prob(10))
+		if(id && (id != real_name) && in_range(src, usr) && prob(10))
 			msg += "<span class='warning'>[t_He] [t_is] wearing \icon[wear_id] \a [wear_id] yet something doesn't seem right...</span>\n"
 		else*/
 		msg += "[t_He] [t_is] wearing \icon[wear_id] \a [wear_id].\n"

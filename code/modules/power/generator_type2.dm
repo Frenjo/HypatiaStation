@@ -100,7 +100,7 @@
 
 
 /obj/machinery/power/generator_type2/interact(mob/user)
-	if ( (get_dist(src, user) > 1 ) && (!istype(user, /mob/living/silicon/ai)))
+	if(!in_range(src, user) && !issilicon(user))
 		user.unset_machine()
 		user << browse(null, "window=teg")
 		return

@@ -51,7 +51,7 @@
 	pixel_y = (dir & 3) ? (dir == 1 ? 32 : -32) : 0
 
 /obj/machinery/rust_fuel_compressor/attackby(obj/item/W, mob/user)
-	if(issilicon(user) && get_dist(src, user) > 1)
+	if(issilicon(user) && !in_range(src, user))
 		return src.attack_hand(user)
 	if(istype(W, /obj/item/crowbar))
 		if(opened)
