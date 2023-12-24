@@ -268,7 +268,7 @@
 		return 0
 	if(!user.client)
 		return 0
-	if(!(ishuman(user) || issilicon(user) || ismonkey(user) /*&& ticker && ticker.mode.name == "monkey"*/))
+	if(!(ishuman(user) || issilicon(user) || ismonkey(user) && IS_GAME_MODE(/datum/game_mode/monkey)))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return 0
 	if(user.restrained())

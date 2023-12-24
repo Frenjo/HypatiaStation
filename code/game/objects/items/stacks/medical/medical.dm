@@ -16,7 +16,7 @@
 		to_chat(user, SPAN_WARNING("\The [src] cannot be applied to [M]!"))
 		return 1
 
-	if(!(ishuman(user) || issilicon(user) || ismonkey(user) && global.CTticker && global.CTticker.mode.name == "monkey"))
+	if(!(ishuman(user) || issilicon(user) || ismonkey(user) && IS_GAME_MODE(/datum/game_mode/monkey)))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return 1
 

@@ -81,7 +81,7 @@
 	can_hold = list(/obj/item/photo)
 
 /obj/item/storage/photo_album/MouseDrop(obj/over_object as obj)
-	if((ishuman(usr) || (global.CTticker && global.CTticker.mode.name == "monkey")))
+	if((ishuman(usr) || IS_GAME_MODE(/datum/game_mode/monkey)))
 		var/mob/M = usr
 		if(!(istype(over_object, /obj/screen)))
 			return ..()

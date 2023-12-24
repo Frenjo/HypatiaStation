@@ -205,7 +205,7 @@
 		return 1
 	if(user.lying || user.stat)
 		return 1
-	if(!(ishuman(usr) || issilicon(usr) || ismonkey(usr) && global.CTticker?.mode.name == "monkey"))
+	if(!(ishuman(usr) || issilicon(usr) || ismonkey(usr) && IS_GAME_MODE(/datum/game_mode/monkey)))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return 1
 /*

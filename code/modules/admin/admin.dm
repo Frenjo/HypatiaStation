@@ -960,7 +960,7 @@ var/global/floorIsLava = 0
 
 	for(var/datum/disease/D in M.viruses)
 		if(istype(D, /datum/disease/jungle_fever))
-			if(global.CTticker.mode.config_tag == "monkey")
+			if(IS_GAME_MODE(/datum/game_mode/monkey))
 				return 2
 			return 1
 	if(isrobot(M))

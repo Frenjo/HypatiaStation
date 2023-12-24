@@ -400,7 +400,7 @@
 /mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
 	if(!global.CTticker)
 		return 0
-	if(!global.CTticker.mode.name == "monkey")
+	if(!IS_GAME_MODE(/datum/game_mode/monkey))
 		return 0
 	return 1
 

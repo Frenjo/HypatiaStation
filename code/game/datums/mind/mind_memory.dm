@@ -170,7 +170,7 @@
 	/*** MONKEY ***/
 	if(iscarbon(current))
 		text = "monkey"
-		if(global.CTticker.mode.config_tag == "monkey")
+		if(IS_GAME_MODE(/datum/game_mode/monkey))
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
 		if(ishuman(current))
