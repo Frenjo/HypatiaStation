@@ -61,7 +61,7 @@
 	board_type = "machine"
 	build_path = /obj/machinery/shield_capacitor
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_POWERSTORAGE = 4)
-	frame_desc = "Requires 2 Pico Manipulators, 1 Subspace Filter, 5 Pieces of cable, 1 Subspace Treatment disk, 1 Subspace Analyzer and 1 Console Screen."
+	frame_desc = "Requires 2 Pico Manipulators, 1 Subspace Filter, 5 Pieces of cable, 1 Subspace Treatment disk, 1 Subspace Analyser and 1 Console Screen."
 	req_components = list(
 		/obj/item/stock_part/manipulator/pico = 2,
 		/obj/item/stock_part/subspace/filter = 1,

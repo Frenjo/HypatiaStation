@@ -460,7 +460,7 @@
 	var/turf/T = get_turf(src)
 	new /obj/item/storage/firstaid(T)
 	new /obj/item/assembly/prox_sensor(T)
-	new /obj/item/healthanalyzer(T)
+	new /obj/item/health_analyser(T)
 
 	if(isnotnull(reagent_glass))
 		reagent_glass.loc = T
@@ -560,12 +560,12 @@
 	else
 		switch(build_step)
 			if(0)
-				if(istype(W, /obj/item/healthanalyzer))
+				if(istype(W, /obj/item/health_analyser))
 					user.drop_item()
 					qdel(W)
 					build_step++
 					to_chat(user, SPAN_INFO("You add the health sensor to [src]."))
-					name = "First aid/robot arm/health analyzer assembly"
+					name = "First aid/robot arm/health analyser assembly"
 					overlays.Add(image('icons/obj/aibots.dmi', "na_scanner"))
 
 			if(1)

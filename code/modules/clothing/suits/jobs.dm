@@ -11,7 +11,7 @@
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO
 	allowed = list(
-		/obj/item/reagent_containers/spray/plantbgone, /obj/item/analyzer/plant_analyzer, /obj/item/seeds,
+		/obj/item/reagent_containers/spray/plantbgone, /obj/item/plant_analyser, /obj/item/seeds,
 		/obj/item/nutrient, /obj/item/minihoe
 	)
 
@@ -120,7 +120,7 @@
 	item_state = "hazard"
 	blood_overlay_type = "armor"
 	allowed = list(
-		/obj/item/analyzer, /obj/item/flashlight, /obj/item/multitool, /obj/item/pipe_painter,
+		/obj/item/gas_analyser, /obj/item/flashlight, /obj/item/multitool, /obj/item/pipe_painter,
 		/obj/item/radio, /obj/item/t_scanner, /obj/item/crowbar, /obj/item/screwdriver,
 		/obj/item/weldingtool, /obj/item/wirecutters, /obj/item/wrench, /obj/item/tank/emergency/oxygen,
 		/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering
@@ -181,7 +181,7 @@
 	blood_overlay_type = "armor"
 	allowed = list(
 		/obj/item/stack/medical, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/hypospray,
-		/obj/item/reagent_containers/syringe, /obj/item/healthanalyzer, /obj/item/flashlight,
+		/obj/item/reagent_containers/syringe, /obj/item/health_analyser, /obj/item/flashlight,
 		/obj/item/radio, /obj/item/tank/emergency/oxygen
 	)
 

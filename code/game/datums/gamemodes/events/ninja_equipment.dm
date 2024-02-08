@@ -846,7 +846,7 @@ ________________________________________________________________________________
 								current_data.level=TD.stored.level
 							break
 					TD.stored = null
-					to_chat(U, SPAN_INFO("Data analyzed and updated. Disk erased."))
+					to_chat(U, SPAN_INFO("Data analysed and updated. Disk erased."))
 				else
 					to_chat(U, "\red <b>ERROR</b>: \black Procedure interrupted. Process terminated.")
 			else
@@ -1076,7 +1076,7 @@ ________________________________________________________________________________
 									break //Move on to next.
 						else
 							break //Otherwise, quit processing.
-			to_chat(U, SPAN_INFO("Data analyzed. Process finished."))
+			to_chat(U, SPAN_INFO("Data analysed. Process finished."))
 
 		if("WIRE")
 			var/obj/structure/cable/A = target

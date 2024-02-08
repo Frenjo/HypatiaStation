@@ -32,7 +32,7 @@
 	src.modules += new /obj/item/screwdriver(src)
 	src.modules += new /obj/item/weldingtool(src)
 	src.modules += new /obj/item/wrench(src)
-	src.modules += new /obj/item/analyzer(src)
+	src.modules += new /obj/item/gas_analyser(src)
 	src.modules += new /obj/item/flashlight(src)
 
 	var/obj/item/rcd/R = new /obj/item/rcd(src)

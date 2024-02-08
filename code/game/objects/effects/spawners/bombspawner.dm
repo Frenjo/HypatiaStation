@@ -86,7 +86,7 @@
 		if(3)
 			var/obj/item/clothing/suit/armor/a_i_a_ptank/R = new /obj/item/clothing/suit/armor/a_i_a_ptank(src.loc)
 			var/obj/item/tank/plasma/p4 = new /obj/item/tank/plasma(R)
-			var/obj/item/healthanalyzer/p1 = new /obj/item/healthanalyzer(R)
+			var/obj/item/health_analyser/p1 = new /obj/item/health_analyser(R)
 			var/obj/item/igniter/p2 = new /obj/item/igniter(R)
 			var/obj/item/clothing/suit/armor/vest/p3 = new /obj/item/clothing/suit/armor/vest(R)
 			R.part1 = p1

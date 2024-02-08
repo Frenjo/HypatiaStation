@@ -137,7 +137,7 @@
 "jx" = (/obj/item/stack/cable_coil/cut,/turf/simulated/floor/airless{icon_state = "damaged3"},/area/derelict/singularity_engine)
 "jA" = (/obj/structure/table,/obj/machinery/light/small,/turf/simulated/floor,/area/derelict/bridge)
 "jD" = (/obj/structure/table,/obj/item/flashlight/lamp,/turf/simulated/floor{icon_state = "grimy"},/area/djstation)
-"jH" = (/obj/structure/table,/obj/item/healthanalyzer,/turf/simulated/floor/airless,/area/derelict/hallway/primary)
+"jH" = (/obj/structure/table,/obj/item/health_analyser,/turf/simulated/floor/airless,/area/derelict/hallway/primary)
 "jK" = (/obj/structure/grille,/turf/space,/area/space)
 "jQ" = (/obj/structure/closet/crate,/obj/item/ore/bananium,/obj/item/ore/bananium,/obj/item/ore/bananium,/obj/item/ore/bananium,/turf/simulated/floor/airless,/area/space)
 "jR" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/plating,/area/derelict/bridge/access)

@@ -1,40 +1,40 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
 /*
-Destructive Analyzer
+Destructive Analyser
 
 It is used to destroy hand-held objects and advance technological research. Controls are in the linked R&D console.
 
 Note: Must be placed within 3 tiles of the R&D Console
 */
-/obj/machinery/r_n_d/destructive_analyzer
-	name = "Destructive Analyzer"
-	icon_state = "d_analyzer"
+/obj/machinery/r_n_d/destructive_analyser
+	name = "Destructive Analyser"
+	icon_state = "d_analyser"
 
 	var/obj/item/loaded_item = null
 	var/decon_mod = 1
 
-/obj/machinery/r_n_d/destructive_analyzer/New()
+/obj/machinery/r_n_d/destructive_analyser/New()
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/destructive_analyzer(src)
+	component_parts += new /obj/item/circuitboard/destructive_analyser(src)
 	component_parts += new /obj/item/stock_part/scanning_module(src)
 	component_parts += new /obj/item/stock_part/manipulator(src)
 	component_parts += new /obj/item/stock_part/micro_laser(src)
 	RefreshParts()
 
-/obj/machinery/r_n_d/destructive_analyzer/RefreshParts()
+/obj/machinery/r_n_d/destructive_analyser/RefreshParts()
 	var/T = 0
 	for(var/obj/item/stock_part/S in src)
 		T += S.rating * 0.1
 	T = between (0, T, 1)
 	decon_mod = T
 
-/obj/machinery/r_n_d/destructive_analyzer/meteorhit()
+/obj/machinery/r_n_d/destructive_analyser/meteorhit()
 	qdel(src)
 	return
 
-/obj/machinery/r_n_d/destructive_analyzer/attackby(obj/O as obj, mob/user as mob)
+/obj/machinery/r_n_d/destructive_analyser/attackby(obj/O as obj, mob/user as mob)
 	if(..())
 		return 1
 
@@ -44,10 +44,10 @@ Note: Must be placed within 3 tiles of the R&D Console
 			if(linked_console)
 				linked_console.linked_destroy = null
 				linked_console = null
-			icon_state = "d_analyzer_t"
+			icon_state = "d_analyser_t"
 		else
 			opened = FALSE
-			icon_state = "d_analyzer"
+			icon_state = "d_analyser"
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, opened)
 		return 1
@@ -90,9 +90,9 @@ Note: Must be placed within 3 tiles of the R&D Console
 	user.drop_item()
 	O.loc = src
 	to_chat(user, SPAN_INFO("You add the [O.name] to the [src.name]!"))
-	flick("d_analyzer_la", src)
+	flick("d_analyser_la", src)
 	spawn(10)
-		icon_state = "d_analyzer_l"
+		icon_state = "d_analyser_l"
 		busy = FALSE
 	return 1
 

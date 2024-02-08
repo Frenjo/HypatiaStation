@@ -23,7 +23,7 @@
 
 		return 0
 
-	//Health analyzer program
+	//Health analyser program
 	health_scan
 		name = "Health Scan"
 		size = 8.0

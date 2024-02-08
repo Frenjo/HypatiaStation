@@ -18,7 +18,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/reishi/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if(istype(O, /obj/item/analyzer/plant_analyzer))
+	if(istype(O, /obj/item/plant_analyser))
 		to_chat(user, SPAN_INFO("- Sleep Toxin: <i>[reagents.get_reagent_amount("stoxin")]%</i>"))
 		to_chat(user, SPAN_INFO("- Space Drugs: <i>[reagents.get_reagent_amount("space_drugs")]%</i>"))
 
@@ -42,7 +42,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/amanita/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if(istype(O, /obj/item/analyzer/plant_analyzer))
+	if(istype(O, /obj/item/plant_analyser))
 		to_chat(user, SPAN_INFO("- Amatoxins: <i>[reagents.get_reagent_amount("amatoxin")]%</i>"))
 		to_chat(user, SPAN_INFO("- Psilocybin: <i>[reagents.get_reagent_amount("psilocybin")]%</i>"))
 
@@ -66,7 +66,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/angel/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if(istype(O, /obj/item/analyzer/plant_analyzer))
+	if(istype(O, /obj/item/plant_analyser))
 		to_chat(user, SPAN_INFO("- Amatoxins: <i>[reagents.get_reagent_amount("amatoxin")]%</i>"))
 		to_chat(user, SPAN_INFO("- Psilocybin: <i>[reagents.get_reagent_amount("psilocybin")]%</i>"))
 
@@ -89,7 +89,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if(istype(O, /obj/item/analyzer/plant_analyzer))
+	if(istype(O, /obj/item/plant_analyser))
 		to_chat(user, SPAN_INFO("- Psilocybin: <i>[reagents.get_reagent_amount("psilocybin")]%</i>"))
 		to_chat(user, SPAN_INFO("- Mineral Content: <i>[reagents.get_reagent_amount("gold")]%</i>"))
 

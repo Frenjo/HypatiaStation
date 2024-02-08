@@ -2,7 +2,7 @@
 // A new type of buildable aiBot that helps out in hydroponics
 
 // Made by using a robot arm on a water tank and then adding:
-// A plant analyzer, a bucket, a mini-hoe and then a proximity sensor (in that order)
+// A plant analyser, a bucket, a mini-hoe and then a proximity sensor (in that order)
 
 // Will water, weed and fertilize plants that need it
 // When emagged, it will "water", "weed" and "fertilize" humans instead
@@ -204,7 +204,7 @@
 	new /obj/item/minihoe(T)
 	new /obj/item/reagent_containers/glass/bucket(T)
 	new /obj/item/assembly/prox_sensor(T)
-	new /obj/item/analyzer/plant_analyzer(T)
+	new /obj/item/plant_analyser(T)
 
 	if(isnotnull(tank))
 		tank.loc = T
@@ -539,9 +539,9 @@
 
 /obj/item/farmbot_arm_assembly/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/analyzer/plant_analyzer) && !build_step)
+	if(istype(W, /obj/item/plant_analyser) && !build_step)
 		build_step++
-		to_chat(user, SPAN_INFO("You add the plant analyzer to [src]!"))
+		to_chat(user, SPAN_INFO("You add the plant analyser to [src]!"))
 		name = "farmbot assembly"
 		qdel(W)
 

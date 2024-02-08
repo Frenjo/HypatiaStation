@@ -394,14 +394,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set hidden = 1
 	to_chat(src, SPAN_WARNING("You are dead! You have no mind to store memory!"))
 
-/mob/dead/observer/verb/analyze_air()
-	set name = "Analyze Air"
+/mob/dead/observer/verb/analyse_air()
+	set name = "Analyse Air"
 	set category = "Ghost"
 
 	if(!istype(usr, /mob/dead/observer))
 		return
 
-	// Shamelessly copied from the Gas Analyzers
+	// Shamelessly copied from the Gas Analysers
 	if(!isturf(usr.loc))
 		return
 

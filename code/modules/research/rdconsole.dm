@@ -3,7 +3,7 @@
 /*
 Research and Development (R&D) Console
 
-This is the main work horse of the R&D system. It contains the menus/controls for the Destructive Analyzer, Protolathe, and Circuit
+This is the main work horse of the R&D system. It contains the menus/controls for the Destructive Analyser, Protolathe, and Circuit
 imprinter. It also contains the /datum/research holder with all the known/possible technology paths and device designs.
 
 Basic use: When it first is created, it will attempt to link up to related devices within 3 squares. It'll only link up if they
@@ -42,7 +42,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	var/obj/item/disk/tech_disk/t_disk = null	//Stores the technology disk.
 	var/obj/item/disk/design_disk/d_disk = null	//Stores the design disk.
 
-	var/obj/machinery/r_n_d/destructive_analyzer/linked_destroy = null	//Linked Destructive Analyzer
+	var/obj/machinery/r_n_d/destructive_analyser/linked_destroy = null	//Linked Destructive Analyser
 	var/obj/machinery/r_n_d/protolathe/linked_lathe = null				//Linked Protolathe
 	var/obj/machinery/r_n_d/circuit_imprinter/linked_imprinter = null	//Linked Circuit Imprinter
 
@@ -54,7 +54,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	for(var/obj/machinery/r_n_d/D in oview(3, src))
 		if(isnotnull(D.linked_console) || D.disabled || D.opened)
 			continue
-		if(istype(D, /obj/machinery/r_n_d/destructive_analyzer))
+		if(istype(D, /obj/machinery/r_n_d/destructive_analyser))
 			if(isnull(linked_destroy))
 				linked_destroy = D
 				D.linked_console = src
@@ -183,21 +183,21 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				break
 		screen = 1.4
 
-	else if(href_list["eject_item"]) //Eject the item inside the destructive analyzer.
+	else if(href_list["eject_item"]) //Eject the item inside the destructive analyser.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				to_chat(usr, SPAN_WARNING("The destructive analyzer is busy at the moment."))
+				to_chat(usr, SPAN_WARNING("The destructive analyser is busy at the moment."))
 
 			else if(linked_destroy.loaded_item)
 				linked_destroy.loaded_item.loc = linked_destroy.loc
 				linked_destroy.loaded_item = null
-				linked_destroy.icon_state = "d_analyzer"
+				linked_destroy.icon_state = "d_analyser"
 				screen = 2.1
 
-	else if(href_list["deconstruct"]) //Deconstruct the item in the destructive analyzer and update the research holder.
+	else if(href_list["deconstruct"]) //Deconstruct the item in the destructive analyser and update the research holder.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				to_chat(usr, SPAN_WARNING("The destructive analyzer is busy at the moment."))
+				to_chat(usr, SPAN_WARNING("The destructive analyser is busy at the moment."))
 			else
 				var/choice = input("Proceeding will destroy loaded item.") in list("Proceed", "Cancel")
 				if(choice == "Cancel" || !linked_destroy)
@@ -205,13 +205,13 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				linked_destroy.busy = 1
 				screen = 0.1
 				updateUsrDialog()
-				flick("d_analyzer_process", linked_destroy)
+				flick("d_analyser_process", linked_destroy)
 				spawn(24)
 					if(linked_destroy)
 						linked_destroy.busy = 0
 						if(!linked_destroy.hacked)
 							if(!linked_destroy.loaded_item)
-								to_chat(usr, SPAN_WARNING("The destructive analyzer appears to be empty."))
+								to_chat(usr, SPAN_WARNING("The destructive analyser appears to be empty."))
 								screen = 1.0
 								return
 							if(linked_destroy.loaded_item.reliability >= 90)
@@ -234,11 +234,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 									linked_destroy.loaded_item = S
 								else
 									qdel(S)
-									linked_destroy.icon_state = "d_analyzer"
+									linked_destroy.icon_state = "d_analyser"
 							else
 								if(!(I in linked_destroy.component_parts))
 									qdel(I)
-									linked_destroy.icon_state = "d_analyzer"
+									linked_destroy.icon_state = "d_analyser"
 						use_power(250)
 						screen = 1.0
 						updateUsrDialog()
@@ -475,7 +475,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			else
 				dat += "(Please Insert Disk)<BR>"
 			if(isnotnull(linked_destroy))
-				dat += "<A href='?src=\ref[src];menu=2.2'>Destructive Analyzer Menu</A><BR>"
+				dat += "<A href='?src=\ref[src];menu=2.2'>Destructive Analyser Menu</A><BR>"
 			if(isnotnull(linked_lathe))
 				dat += "<A href='?src=\ref[src];menu=3.1'>Protolathe Construction Menu</A><BR>"
 			if(isnotnull(linked_imprinter))
@@ -565,9 +565,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<A href='?src=\ref[src];find_device=1'>Re-sync with Nearby Devices</A><BR>"
 			dat += "Linked Devices:<BR>"
 			if(linked_destroy)
-				dat += "* Destructive Analyzer <A href='?src=\ref[src];disconnect=destroy'>(Disconnect)</A><BR>"
+				dat += "* Destructive Analyser <A href='?src=\ref[src];disconnect=destroy'>(Disconnect)</A><BR>"
 			else
-				dat += "* (No Destructive Analyzer Linked)<BR>"
+				dat += "* (No Destructive Analyser Linked)<BR>"
 			if(linked_lathe)
 				dat += "* Protolathe <A href='?src=\ref[src];disconnect=lathe'>(Disconnect)</A><BR>"
 			else
@@ -577,9 +577,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			else
 				dat += "* (No Circuit Imprinter Linked)<BR>"
 
-		////////////////////DESTRUCTIVE ANALYZER SCREENS////////////////////////////
+		////////////////////DESTRUCTIVE ANALYSER SCREENS////////////////////////////
 		if(2.0)
-			dat += "NO DESTRUCTIVE ANALYZER LINKED TO CONSOLE<BR><BR>"
+			dat += "NO DESTRUCTIVE ANALYSER LINKED TO CONSOLE<BR><BR>"
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A>"
 
 		if(2.1)

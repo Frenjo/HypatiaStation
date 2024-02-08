@@ -836,7 +836,7 @@
 		switch(scanmode)
 			if(1)
 				for(var/mob/O in viewers(C, null))
-					O.show_message(SPAN_WARNING("[user] has analyzed [C]'s vitals!"), 1)
+					O.show_message(SPAN_WARNING("[user] has analysed [C]'s vitals!"), 1)
 
 				user.show_message(SPAN_INFO("Analyzing Results for [C]:"))
 				user.show_message("\blue \t Overall Status: [C.stat > 1 ? "dead" : "[C.health - C.halloss]% healthy"]", 1)
@@ -880,7 +880,7 @@
 
 			if(4)
 				for(var/mob/O in viewers(C, null))
-					O.show_message(SPAN_WARNING("[user] has analyzed [C]'s radiation levels!"), 1)
+					O.show_message(SPAN_WARNING("[user] has analysed [C]'s radiation levels!"), 1)
 
 				user.show_message(SPAN_INFO("Analyzing Results for [C]:"))
 				if(C.radiation)

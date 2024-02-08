@@ -47,7 +47,7 @@
 		/obj/item/wrench,
 		/obj/item/weldingtool,
 		/obj/item/crowbar,
-		/obj/item/analyzer,
+		/obj/item/gas_analyser,
 		/obj/item/wirecutters
 	)
 

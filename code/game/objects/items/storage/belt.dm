@@ -22,7 +22,7 @@
 		/obj/item/flashlight,
 		/obj/item/stack/cable_coil,
 		/obj/item/t_scanner,
-		/obj/item/analyzer,
+		/obj/item/gas_analyser,
 		/obj/item/taperoll/engineering
 	)
 
@@ -55,7 +55,7 @@
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	can_hold = list(
-		/obj/item/healthanalyzer,
+		/obj/item/health_analyser,
 		/obj/item/dnainjector,
 		/obj/item/reagent_containers/dropper,
 		/obj/item/reagent_containers/glass/beaker,

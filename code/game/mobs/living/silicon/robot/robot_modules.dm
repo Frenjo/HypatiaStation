@@ -65,7 +65,7 @@
 	modules.Add(new /obj/item/extinguisher(src))
 	modules.Add(new /obj/item/wrench(src))
 	modules.Add(new /obj/item/crowbar(src))
-	modules.Add(new /obj/item/healthanalyzer(src))
+	modules.Add(new /obj/item/health_analyser(src))
 	emag = new /obj/item/melee/energy/sword(src)
 
 ///obj/item/robot_module/standard/respawn_consumable(mob/living/silicon/robot/R)
@@ -82,7 +82,7 @@
 /obj/item/robot_module/medical/New()
 	. = ..()
 	modules.Add(new /obj/item/borg/sight/hud/med(src))
-	modules.Add(new /obj/item/healthanalyzer(src))
+	modules.Add(new /obj/item/health_analyser(src))
 	modules.Add(new /obj/item/reagent_scanner/adv(src))
 	modules.Add(new /obj/item/reagent_containers/borghypo(src))
 	modules.Add(new /obj/item/reagent_containers/glass/beaker/large(src))
@@ -125,7 +125,7 @@
 	modules.Add(new /obj/item/wirecutters(src))
 	modules.Add(new /obj/item/multitool(src))
 	modules.Add(new /obj/item/t_scanner(src))
-	modules.Add(new /obj/item/analyzer(src))
+	modules.Add(new /obj/item/gas_analyser(src))
 	modules.Add(new /obj/item/taperoll/engineering(src))
 
 	var/obj/item/stack/sheet/metal/cyborg/M = new /obj/item/stack/sheet/metal/cyborg(src)

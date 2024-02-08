@@ -66,7 +66,7 @@
 
 	gloves = /obj/item/clothing/gloves/botanic_leather
 
-	suit_store = /obj/item/analyzer/plant_analyzer
+	suit_store = /obj/item/plant_analyser
 
 	pda_type = /obj/item/pda/botanist
 

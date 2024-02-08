@@ -171,7 +171,7 @@
 			G.clean_blood()
 
 /obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.type == /obj/item/analyzer)
+	if(I.type == /obj/item/gas_analyser)
 		to_chat(user, SPAN_NOTICE("The water temperature seems to be [watertemp]."))
 	if(istype(I, /obj/item/wrench))
 		to_chat(user, SPAN_NOTICE("You begin to adjust the temperature valve with \the [I]."))

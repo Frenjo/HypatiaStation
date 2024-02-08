@@ -50,9 +50,9 @@
 /*
  * Machines
  */
-/obj/item/circuitboard/destructive_analyzer
-	name = "circuit board (Destructive Analyzer)"
-	build_path = /obj/machinery/r_n_d/destructive_analyzer
+/obj/item/circuitboard/destructive_analyser
+	name = "circuit board (Destructive Analyser)"
+	build_path = /obj/machinery/r_n_d/destructive_analyser
 	board_type = "machine"
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_ENGINEERING = 2, RESEARCH_TECH_PROGRAMMING = 2)
 	frame_desc = "Requires 1 Scanning Module, 1 Micro Manipulator, and 1 Micro-Laser."

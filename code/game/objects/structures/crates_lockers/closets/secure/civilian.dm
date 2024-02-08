@@ -67,7 +67,7 @@
 
 	starts_with = list(
 		/obj/item/wardrobe/hydro,
-		/obj/item/analyzer/plant_analyzer,
+		/obj/item/plant_analyser,
 		/obj/item/radio/headset
 	)
 

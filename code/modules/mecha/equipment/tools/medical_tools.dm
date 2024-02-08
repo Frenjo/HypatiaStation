@@ -395,7 +395,7 @@
 	var/max_volume = 75 //max reagent volume
 	var/synth_speed = 5 //[num] reagent units per cycle
 	energy_drain = 10
-	var/mode = 0 //0 - fire syringe, 1 - analyze reagents.
+	var/mode = 0 //0 - fire syringe, 1 - analyse reagents.
 	var/datum/global_iterator/mech_synth/synth
 	range = MELEE|RANGED
 	equip_cooldown = 10
@@ -436,7 +436,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/get_equip_info()
 	var/output = ..()
 	if(output)
-		return "[output] \[<a href=\"?src=\ref[src];toggle_mode=1\">[mode? "Analyze" : "Launch"]</a>\]<br />\[Syringes: [length(syringes)]/[max_syringes] | Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br /><a href='?src=\ref[src];show_reagents=1'>Reagents list</a>"
+		return "[output] \[<a href=\"?src=\ref[src];toggle_mode=1\">[mode? "Analyse" : "Launch"]</a>\]<br />\[Syringes: [length(syringes)]/[max_syringes] | Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br /><a href='?src=\ref[src];show_reagents=1'>Reagents list</a>"
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/action(atom/movable/target)
@@ -449,7 +449,7 @@
 			load_syringe(S)
 		return
 	if(mode)
-		return analyze_reagents(target)
+		return analyse_reagents(target)
 	if(!syringes.len)
 		occupant_message(SPAN_ALERT("No syringes loaded."))
 		return
@@ -617,7 +617,7 @@
 	occupant_message("The [src] syringe chamber is full.")
 	return 0
 
-/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/proc/analyze_reagents(atom/A)
+/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/proc/analyse_reagents(atom/A)
 	if(get_dist(src, A) >= 4)
 		occupant_message("The object is too far away.")
 		return 0
@@ -627,7 +627,7 @@
 	occupant_message("Analyzing reagents...")
 	for(var/datum/reagent/R in A.reagents.reagent_list)
 		if(R.reagent_state == 2 && add_known_reagent(R.id, R.name))
-			occupant_message("Reagent analyzed, identified as [R.name] and added to database.")
+			occupant_message("Reagent analysed, identified as [R.name] and added to database.")
 			send_byjax(chassis.occupant, "msyringegun.browser", "reagents_form", get_reagents_form())
 	occupant_message("Analyzis complete.")
 	return 1

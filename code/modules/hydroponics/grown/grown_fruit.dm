@@ -16,7 +16,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/chili/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if(istype(O, /obj/item/analyzer/plant_analyzer))
+	if(istype(O, /obj/item/plant_analyser))
 		to_chat(user, SPAN_INFO("- Capsaicin: <i>[reagents.get_reagent_amount("capsaicin")]%</i>"))
 
 /*
@@ -38,7 +38,7 @@
 
 /obj/item/reagent_containers/food/snacks/grown/icepepper/attackby(obj/item/O as obj, mob/user as mob)
 	. = ..()
-	if(istype(O, /obj/item/analyzer/plant_analyzer))
+	if(istype(O, /obj/item/plant_analyser))
 		to_chat(user, SPAN_INFO("- Frostoil: <i>[reagents.get_reagent_amount("frostoil")]%</i>"))
 
 /*

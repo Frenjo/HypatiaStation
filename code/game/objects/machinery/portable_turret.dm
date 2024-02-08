@@ -473,7 +473,7 @@ Status: []<BR>"},
 						targets += C
 						continue
 
-				if(ishuman(C)) // if the target is a human, analyze threat level
+				if(ishuman(C)) // if the target is a human, analyse threat level
 					if(src.assess_perp(C)<4)
 						continue // if threat level < 4, keep going
 

@@ -944,7 +944,7 @@
 	new /obj/item/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 17, "Dexalin Plus")
 	new /obj/item/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 18, "Tricordrazine")
 	new /obj/item/reagent_containers/syringe/(src)
-	new /obj/item/healthanalyzer(src)
+	new /obj/item/health_analyser(src)
 
 /obj/item/reagent_containers/glass/bottle/fluff/nashi_bottle
 	icon = 'icons/obj/chemical.dmi'

@@ -52,7 +52,7 @@
 	return pick( \
 		prob(5); /obj/item/t_scanner, \
 		prob(2); /obj/item/radio, \
-		prob(5); /obj/item/analyzer \
+		prob(5); /obj/item/gas_analyser \
 	)
 
 // Power Cell

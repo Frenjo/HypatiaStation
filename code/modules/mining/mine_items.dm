@@ -26,7 +26,7 @@
 		/obj/item/clothing/under/rank/miner,
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/shoes/black,
-		/obj/item/analyzer,
+		/obj/item/gas_analyser,
 		/obj/item/storage/bag/ore,
 		/obj/item/flashlight/lantern,
 		/obj/item/shovel,

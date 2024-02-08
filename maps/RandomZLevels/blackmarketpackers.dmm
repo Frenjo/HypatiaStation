@@ -116,7 +116,7 @@
 "co" = (/obj/effect/decal/floor/industrial/warning/border,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
 "cp" = (/obj/machinery/light/small,/obj/effect/decal/floor/industrial/warning/border,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
 "cq" = (/obj/structure/kitchenspike,/obj/effect/decal/floor/industrial/warning/border,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
-"cr" = (/obj/structure/closet/crate,/obj/item/analyzer,/obj/item/spacecash/c10,/obj/effect/decal/floor/industrial/warning/border,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
+"cr" = (/obj/structure/closet/crate,/obj/item/gas_analyser,/obj/item/spacecash/c10,/obj/effect/decal/floor/industrial/warning/border,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
 "cs" = (/obj/structure/closet/crate,/obj/item/spacecash/c1000,/obj/item/spacecash/c200,/obj/item/spacecash/c500,/obj/effect/decal/floor/industrial/warning/border,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
 "ct" = (/obj/structure/closet/crate/freezer,/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/hugemushroomslice,/obj/item/reagent_containers/food/snacks/appendix,/obj/effect/decal/floor/industrial/warning/border,/turf/simulated/floor/plating,/area/awaymission/BMPship1)
 "cu" = (/obj/machinery/door_control{id = "packerCargo"; pixel_y = -24},/obj/machinery/light/small,/obj/effect/decal/floor/industrial/warning/border,/turf/simulated/floor/plating,/area/awaymission/BMPship1)

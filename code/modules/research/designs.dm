@@ -1128,7 +1128,7 @@ other types of metals and chemistry for reagents).
 
 /datum/design/subspace_crystal
 	name = "Ansible Crystal"
-	desc = "A sophisticated analyzer capable of analyzing cryptic subspace wavelengths."
+	desc = "A sophisticated analyser capable of analyzing cryptic subspace wavelengths."
 	id = "s-crystal"
 	req_tech = list(RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2)
 	build_type = PROTOLATHE
@@ -1201,14 +1201,14 @@ other types of metals and chemistry for reagents).
 ////////////////////////////////////////
 //////////////MISC Boards///////////////
 ////////////////////////////////////////
-/datum/design/destructive_analyzer
-	name = "Destructive Analyzer Board"
-	desc = "The circuit board for a destructive analyzer."
-	id = "destructive_analyzer"
+/datum/design/destructive_analyser
+	name = "Destructive Analyser Board"
+	desc = "The circuit board for a destructive analyser."
+	id = "destructive_analyser"
 	req_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_ENGINEERING = 2)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
-	build_path = /obj/item/circuitboard/destructive_analyzer
+	build_path = /obj/item/circuitboard/destructive_analyser
 
 /datum/design/protolathe
 	name = "Protolathe Board"

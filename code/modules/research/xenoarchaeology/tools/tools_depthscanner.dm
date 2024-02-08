@@ -6,7 +6,7 @@
 	desc = "Used to check spatial depth and density of rock outcroppings."
 	icon = 'icons/obj/items/devices/pda.dmi'
 	icon_state = "crap"
-	item_state = "analyzer"
+	item_state = "analyser"
 	w_class = 1.0
 	slot_flags = SLOT_BELT
 

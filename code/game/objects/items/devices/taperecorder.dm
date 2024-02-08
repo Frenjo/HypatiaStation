@@ -3,7 +3,7 @@
 	name = "universal recorder"
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "taperecorderidle"
-	item_state = "analyzer"
+	item_state = "analyser"
 	w_class = 1.0
 	matter_amounts = list(MATERIAL_METAL = 60, MATERIAL_GLASS = 30)
 

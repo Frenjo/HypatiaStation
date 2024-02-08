@@ -111,9 +111,9 @@
 		update_icon()
 		return
 
-	if(istype(W, /obj/item/analyzer) && ptank)
+	if(istype(W, /obj/item/gas_analyser) && ptank)
 		var/obj/item/icon = src
-		user.visible_message(SPAN_NOTICE("[user] has used the analyzer on \icon[icon]"))
+		user.visible_message(SPAN_NOTICE("[user] has used the analyser on \icon[icon]"))
 		var/pressure = ptank.air_contents.return_pressure()
 		var/total_moles = ptank.air_contents.total_moles
 

@@ -25,7 +25,7 @@
 		overlays += "bomb_assembly"
 
 /obj/item/onetankbomb/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/analyzer))
+	if(istype(W, /obj/item/gas_analyser))
 		bombtank.attackby(W, user)
 		return
 

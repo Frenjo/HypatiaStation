@@ -24,7 +24,7 @@
 	var/integrity = 3
 	var/volume = 70
 	var/manipulated_by = null	// Used by _onclick/hud/screen_objects.dm internals to determine if someone has messed with our tank or not.
-								// If they have and we haven't scanned it with the PDA or gas analyzer then we might just breath whatever they put in it.
+								// If they have and we haven't scanned it with the PDA or gas analyser then we might just breath whatever they put in it.
 
 	// The /decl/xgm_gas/X typepath of the gas which should trigger low air warnings.
 	var/alert_gas_type = null
@@ -104,7 +104,7 @@
 	if(istype(loc, /obj/item/assembly))
 		icon = loc
 
-	if((istype(W, /obj/item/analyzer)) && get_dist(user, src) <= 1)
+	if((istype(W, /obj/item/gas_analyser)) && get_dist(user, src) <= 1)
 		visible_message(SPAN_WARNING("[user] has used [W] on \icon[icon] [src]."))
 
 		var/pressure = air_contents.return_pressure()

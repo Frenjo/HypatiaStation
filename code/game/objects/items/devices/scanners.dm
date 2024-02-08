@@ -2,9 +2,9 @@
 CONTAINS:
 T-RAY
 DETECTIVE SCANNER
-HEALTH ANALYZER
-GAS ANALYZER
-PLANT ANALYZER
+HEALTH ANALYSER
+GAS ANALYSER
+PLANT ANALYSER
 MASS SPECTROMETER
 REAGENT SCANNER
 */
@@ -57,11 +57,11 @@ REAGENT SCANNER
 					M.invisibility = INVISIBILITY_LEVEL_TWO
 
 
-/obj/item/healthanalyzer
-	name = "Health Analyzer"
+/obj/item/health_analyser
+	name = "Health Analyser"
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "health"
-	item_state = "analyzer"
+	item_state = "health_analyser"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -74,11 +74,11 @@ REAGENT SCANNER
 
 	var/mode = 1
 
-/obj/item/healthanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/health_analyser/attack(mob/living/M as mob, mob/living/user as mob)
 	if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
-		to_chat(user, SPAN_WARNING("You try to analyze the floor's vitals!"))
+		to_chat(user, SPAN_WARNING("You try to analyse the floor's vitals!"))
 		for(var/mob/O in viewers(M, null))
-			O.show_message(SPAN_WARNING("[user] has analyzed the floor's vitals!"), 1)
+			O.show_message(SPAN_WARNING("[user] has analysed the floor's vitals!"), 1)
 		user.show_message("\blue Analyzing Results for The floor:\n\t Overall Status: Healthy", 1)
 		user.show_message("\blue \t Damage Specifics: [0]-[0]-[0]-[0]", 1)
 		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
@@ -88,8 +88,8 @@ REAGENT SCANNER
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 	user.visible_message(
-		SPAN_NOTICE("[user] has analyzed [M]'s vitals."),
-		SPAN_NOTICE("You have analyzed [M]'s vitals.")
+		SPAN_NOTICE("[user] has analysed [M]'s vitals."),
+		SPAN_NOTICE("You have analysed [M]'s vitals.")
 	)
 
 	if(!iscarbon(M))
@@ -198,7 +198,7 @@ REAGENT SCANNER
 	src.add_fingerprint(user)
 	return
 
-/obj/item/healthanalyzer/verb/toggle_mode()
+/obj/item/health_analyser/verb/toggle_mode()
 	set category = PANEL_OBJECT
 	set name = "Switch Verbosity"
 
@@ -209,7 +209,7 @@ REAGENT SCANNER
 		if(0)
 			to_chat(usr, "The scanner no longer shows limb damage.")
 
-/obj/item/healthanalyzer/proc/output_error(mob/living/user, mob/living/target)
+/obj/item/health_analyser/proc/output_error(mob/living/user, mob/living/target)
 	user.show_message("\blue Analyzing Results for ERROR:\n\t Overall Status: ERROR")
 	user.show_message("\t Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>", 1)
 	user.show_message("\t Damage Specifics: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
@@ -218,12 +218,12 @@ REAGENT SCANNER
 	user.show_message("\blue Subject's pulse: <font color='red'>-- bpm.</font>")
 
 
-/obj/item/analyzer
+/obj/item/gas_analyser
+	name = "gas analyser"
 	desc = "A hand-held environmental scanner which reports current gas levels."
-	name = "analyzer"
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "atmos"
-	item_state = "analyzer"
+	item_state = "analyser"
 	w_class = 2.0
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -233,7 +233,7 @@ REAGENT SCANNER
 	matter_amounts = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 20)
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_ENGINEERING = 1)
 
-/obj/item/analyzer/attack_self(mob/user as mob)
+/obj/item/gas_analyser/attack_self(mob/user as mob)
 	if(user.stat)
 		return
 	if(!(ishuman(usr) || global.CTticker) && global.CTticker.mode.name != "monkey")
@@ -269,7 +269,7 @@ REAGENT SCANNER
 	name = "mass-spectrometer"
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "spectrometer"
-	item_state = "analyzer"
+	item_state = "analyser"
 	w_class = 2.0
 	flags = CONDUCT | OPENCONTAINER
 	slot_flags = SLOT_BELT
@@ -344,7 +344,7 @@ REAGENT SCANNER
 	desc = "A hand-held reagent scanner which identifies chemical agents."
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "spectrometer"
-	item_state = "analyzer"
+	item_state = "analyser"
 	w_class = 2.0
 	flags = CONDUCT
 	slot_flags = SLOT_BELT

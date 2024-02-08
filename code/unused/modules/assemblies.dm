@@ -9,10 +9,10 @@
 	throw_range = 10
 
 /obj/item/assembly/a_i_a
-	name = "Health-Analyzer/Igniter/Armor Assembly"
-	desc = "A health-analyzer, igniter and armor assembly."
-	icon_state = "armor-igniter-analyzer"
-	var/obj/item/healthanalyzer/part1 = null
+	name = "Health-Analyser/Igniter/Armor Assembly"
+	desc = "A health-analyser, igniter and armor assembly."
+	icon_state = "armor-igniter-analyser"
+	var/obj/item/health_analyser/part1 = null
 	var/obj/item/igniter/part2 = null
 	var/obj/item/clothing/suit/armor/vest/part3 = null
 	status = null
@@ -48,10 +48,10 @@
 	flags = FPRINT | TABLEPASS| CONDUCT
 
 /obj/item/assembly/anal_ignite
-	name = "Health-Analyzer/Igniter Assembly"
-	desc = "A health-analyzer igniter assembly."
+	name = "Health-Analyser/Igniter Assembly"
+	desc = "A health-analyser igniter assembly."
 	icon_state = "timer-igniter0"
-	var/obj/item/healthanalyzer/part1 = null
+	var/obj/item/health_analyser/part1 = null
 	var/obj/item/igniter/part2 = null
 	status = null
 	flags = FPRINT | TABLEPASS| CONDUCT
@@ -195,9 +195,9 @@
 	if (( istype(W, /obj/item/screwdriver) ))
 		src.status = !( src.status )
 		if (src.status)
-			user.show_message("\blue The analyzer is now secured!", 1)
+			user.show_message("\blue The analyser is now secured!", 1)
 		else
-			user.show_message("\blue The analyzer is now unsecured!", 1)
+			user.show_message("\blue The analyser is now unsecured!", 1)
 		src.part2.secured = src.status
 		src.add_fingerprint(user)
 	if(( istype(W, /obj/item/clothing/suit/armor/vest) ) && src.status)
@@ -677,7 +677,7 @@
 
 /obj/item/assembly/m_i_ptank/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if (istype(W, /obj/item/analyzer))
+	if (istype(W, /obj/item/gas_analyser))
 		src.part3.attackby(W, user)
 		return
 	if ((istype(W, /obj/item/wrench) && !( src.status )))
@@ -766,7 +766,7 @@
 /obj/item/assembly/t_i_ptank/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
-	if (istype(W, /obj/item/analyzer))
+	if (istype(W, /obj/item/gas_analyser))
 		src.part3.attackby(W, user)
 		return
 	if ((istype(W, /obj/item/wrench) && !( src.status )))
@@ -845,7 +845,7 @@
 /obj/item/assembly/r_i_ptank/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 
-	if (istype(W, /obj/item/analyzer))
+	if (istype(W, /obj/item/gas_analyser))
 		src.part3.attackby(W, user)
 		return
 	if ((istype(W, /obj/item/wrench) && !( src.status )))
@@ -889,7 +889,7 @@
 
 /obj/item/clothing/suit/armor/a_i_a_ptank/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if (istype(W, /obj/item/analyzer))
+	if (istype(W, /obj/item/gas_analyser))
 		src.part4.attackby(W, user)
 		return
 	if ((istype(W, /obj/item/wrench) && !( src.status )))

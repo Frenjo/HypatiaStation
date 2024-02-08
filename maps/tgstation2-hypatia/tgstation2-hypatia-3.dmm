@@ -202,7 +202,7 @@
 "xC" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor{dir = 5; icon_state = "vault"},/area/turret_protected/tcomsat)
 "xE" = (/obj/machinery/telecoms/broadcaster/preset_right,/turf/simulated/floor/mainframe{dir = 4; icon_state = "vault"},/area/tcomsat/chamber)
 "xL" = (/turf/simulated/floor/mainframe,/area/tcomsat/chamber)
-"xM" = (/obj/structure/table,/obj/item/analyzer,/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/abandoned/ship)
+"xM" = (/obj/structure/table,/obj/item/gas_analyser,/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/abandoned/ship)
 "xP" = (/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/turf/space,/area/turret_protected/tcomsat)
 "xU" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor,/area/tcomsat/computer)
 "ya" = (/turf/simulated/shuttle/wall/corner/exterior/smoothwhite/ne,/area/space)

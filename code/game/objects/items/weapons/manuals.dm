@@ -445,15 +445,15 @@
 				<h1>Science For Dummies</h1>
 				So you want to further SCIENCE? Good man/woman/thing! However, SCIENCE is a complicated process even though it's quite easy. For the most part, it's a three step process:
 				<ol>
-					<li> 1) Deconstruct items in the Destructive Analyzer to advance technology or improve the design.</li>
+					<li> 1) Deconstruct items in the Destructive Analyser to advance technology or improve the design.</li>
 					<li> 2) Build unlocked designs in the Protolathe and Circuit Imprinter</li>
 					<li> 3) Repeat!</li>
 				</ol>
 
-				Those are the basic steps to furthing science. What do you do science with, however? Well, you have four major tools: R&D Console, the Destructive Analyzer, the Protolathe, and the Circuit Imprinter.
+				Those are the basic steps to furthing science. What do you do science with, however? Well, you have four major tools: R&D Console, the Destructive Analyser, the Protolathe, and the Circuit Imprinter.
 
 				<h2>The R&D Console</h2>
-				The R&D console is the cornerstone of any research lab. It is the central system from which the Destructive Analyzer, Protolathe, and Circuit Imprinter (your R&D systems) are controled. More on those systems in their own sections.
+				The R&D console is the cornerstone of any research lab. It is the central system from which the Destructive Analyser, Protolathe, and Circuit Imprinter (your R&D systems) are controled. More on those systems in their own sections.
 				On its own, the R&D console acts as a database for all your technological gains and new devices you discover. So long as the R&D console remains intact, you'll retain all that SCIENCE you've discovered. Protect it though,
 				because if it gets damaged, you'll lose your data!
 				In addition to this important purpose, the R&D console has a disk menu that lets you transfer data from the database onto disk or from the disk into the database.
@@ -461,10 +461,10 @@
 				upload the data to all other R&D consoles in the network (all R&D consoles are networked by default), connect/disconnect from the network, and purge all data from the database.
 				<b>NOTE:</b> The technology list screen, circuit imprinter, and protolathe menus are accessible by non-scientists. This is intended to allow 'public' systems for the plebians to utilize some new devices.
 
-				<h2>Destructive Analyzer</h2>
-				This is the source of all technology. Whenever you put a handheld object in it, it analyzes it and determines what sort of technological advancements you can discover from it. If the technology of the object is equal or higher then your current knowledge,
+				<h2>Destructive Analyser</h2>
+				This is the source of all technology. Whenever you put a handheld object in it, it analyses it and determines what sort of technological advancements you can discover from it. If the technology of the object is equal or higher then your current knowledge,
 				you can destroy the object to further those sciences.
-				Some devices (notably, some devices made from the protolathe and circuit imprinter) aren't 100% reliable when you first discover them. If these devices break down, you can put them into the Destructive Analyzer and improve their reliability rather then futher science.
+				Some devices (notably, some devices made from the protolathe and circuit imprinter) aren't 100% reliable when you first discover them. If these devices break down, you can put them into the Destructive Analyser and improve their reliability rather then futher science.
 				If their reliability is high enough ,it'll also advance their related technologies.
 
 				<h2>Circuit Imprinter</h2>
@@ -476,8 +476,8 @@
 
 				<h1>Reliability and You</h1>
 				As it has been stated, many devices when they're first discovered do not have a 100% reliablity when you first discover them. Instead,
-				the reliablity of the device is dependent upon a base reliability value, whatever improvements to the design you've discovered through the Destructive Analyzer,
-				and any advancements you've made with the device's source technologies. To be able to improve the reliability of a device, you have to use the device until it breaks beyond repair. Once that happens, you can analyze it in a Destructive Analyzer.
+				the reliablity of the device is dependent upon a base reliability value, whatever improvements to the design you've discovered through the Destructive Analyser,
+				and any advancements you've made with the device's source technologies. To be able to improve the reliability of a device, you have to use the device until it breaks beyond repair. Once that happens, you can analyse it in a Destructive Analyser.
 				Once the device reachs a certain minimum reliability, you'll gain tech advancements from it.
 
 				<h1>Building a Better Machine</h1>
@@ -543,7 +543,7 @@
 				<ul>
 				  <li>Crowbar</li>
 				  <li>Stun Baton</li>
-				  <li>Health Analyzer</li>
+				  <li>Health Analyser</li>
 				  <li>Fire Extinguisher</li>
 				</ul>
 

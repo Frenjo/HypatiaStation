@@ -49,7 +49,7 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 	..()
 
 /obj/machinery/power/rad_collector/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/analyzer))
+	if(istype(W, /obj/item/gas_analyser))
 		to_chat(user, SPAN_INFO("The [W.name] detects that [last_power]W were recently produced."))
 		return 1
 	else if(istype(W, /obj/item/tank/plasma))

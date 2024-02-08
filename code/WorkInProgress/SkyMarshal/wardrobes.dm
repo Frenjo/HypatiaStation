@@ -254,7 +254,7 @@
 		new /obj/item/clothing/shoes/brown(src)
 		new /obj/item/radio/headset/heads/cmo(src)
 		new /obj/item/clothing/under/rank/chief_medical_officer(src)
-		new /obj/item/healthanalyzer(src)
+		new /obj/item/health_analyser(src)
 
 /obj/item/wardrobe/doctor
 	name = "\improper Medical Doctor Wardrobe"
@@ -275,7 +275,7 @@
 		new /obj/item/radio/headset/headset_med(src)
 		new /obj/item/clothing/under/rank/nursesuit (src)
 		new /obj/item/clothing/under/rank/medical(src)
-		new /obj/item/healthanalyzer(src)
+		new /obj/item/health_analyser(src)
 
 /obj/item/wardrobe/geneticist
 	name = "\improper Geneticist Wardrobe"
@@ -505,7 +505,7 @@
 		var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
 		new /obj/item/storage/box(BPK)
 		new /obj/item/pen(src)
-		new /obj/item/analyzer/plant_analyzer(src)
+		new /obj/item/plant_analyser(src)
 		new /obj/item/clothing/suit/storage/apron(src)
 		new /obj/item/clothing/gloves/botanic_leather(src)
 		new /obj/item/radio/headset(src)
@@ -552,7 +552,7 @@
 		var/obj/item/storage/backpack/industrial/BPK = new /obj/item/storage/backpack/industrial(src)
 		new /obj/item/storage/box(BPK)
 		new /obj/item/pen(src)
-		new /obj/item/analyzer(src)
+		new /obj/item/gas_analyser(src)
 		new /obj/item/satchel(src)
 		new /obj/item/flashlight/lantern(src)
 		new /obj/item/shovel(src)

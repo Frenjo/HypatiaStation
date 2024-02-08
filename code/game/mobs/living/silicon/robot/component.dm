@@ -160,11 +160,11 @@
 //
 //Robotic Component Analyser, basically a health analyser for robots
 //
-/obj/item/robotanalyzer
-	name = "cyborg analyzer"
+/obj/item/robot_analyser
+	name = "cyborg analyser"
 	icon = 'icons/obj/items/devices/device.dmi'
-	icon_state = "robotanalyzer"
-	item_state = "analyzer"
+	icon_state = "robot"
+	item_state = "analyser"
 	desc = "A hand-held scanner able to diagnose robotic injuries."
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
@@ -177,11 +177,11 @@
 
 	var/mode = 1
 
-/obj/item/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/robot_analyser/attack(mob/living/M as mob, mob/living/user as mob)
 	if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
-		user << "\red You try to analyze the floor's vitals!"
+		user << "\red You try to analyse the floor's vitals!"
 		for(var/mob/O in viewers(M, null))
-			O.show_message("\red [user] has analyzed the floor's vitals!", 1)
+			O.show_message("\red [user] has analysed the floor's vitals!", 1)
 		user.show_message("\blue Analyzing Results for The floor:\n\t Overall Status: Healthy", 1)
 		user.show_message("\blue \t Damage Specifics: [0]-[0]-[0]-[0]", 1)
 		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
@@ -191,15 +191,15 @@
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
 	if(!isrobot(M))
-		user << "\red You can't analyze non-robotic things!"
+		user << "\red You can't analyse non-robotic things!"
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!(H.species.flags & IS_SYNTHETIC))
-			to_chat(user, SPAN_WARNING("You can't analyze non-robotic things!"))
+			to_chat(user, SPAN_WARNING("You can't analyse non-robotic things!"))
 			return
 
-	user.visible_message("<span class='notice'> [user] has analyzed [M]'s components.","<span class='notice'> You have analyzed [M]'s components.")
+	user.visible_message("<span class='notice'> [user] has analysed [M]'s components.","<span class='notice'> You have analysed [M]'s components.")
 	var/BU = M.getFireLoss() > 50 	? 	"<b>[M.getFireLoss()]</b>" 		: M.getFireLoss()
 	var/BR = M.getBruteLoss() > 50 	? 	"<b>[M.getBruteLoss()]</b>" 	: M.getBruteLoss()
 	user.show_message("\blue Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "fully disabled" : "[M.health - M.halloss]% functional"]")

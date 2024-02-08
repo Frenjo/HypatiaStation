@@ -391,7 +391,7 @@
 	item_state = "medical_hardsuit"
 	allowed = list(
 		/obj/item/flashlight, /obj/item/tank, /obj/item/storage/firstaid,
-		/obj/item/healthanalyzer, /obj/item/stack/medical, /obj/item/suit_cooling_unit
+		/obj/item/health_analyser, /obj/item/stack/medical, /obj/item/suit_cooling_unit
 	)
 	sprite_sheets = list(
 		SPECIES_SOGHUN = 'icons/mob/species/soghun/suit.dmi',

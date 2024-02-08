@@ -51,7 +51,7 @@
 		/obj/item/reagent_containers/glass/bottle/ammonia,
 		/obj/item/hatchet,
 		/obj/item/minihoe,
-		/obj/item/analyzer/plant_analyzer,
+		/obj/item/plant_analyser,
 		/obj/item/clothing/gloves/botanic_leather,
 		/obj/item/clothing/suit/apron
 	) // Updated with new things
