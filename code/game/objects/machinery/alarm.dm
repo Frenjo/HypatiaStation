@@ -57,14 +57,14 @@
 	var/shorted = FALSE
 
 	var/static/list/available_modes = list(
-		AIR_ALARM_MODE_SCRUBBING = /decl/air_alarm_mode/scrubbing,
-		AIR_ALARM_MODE_REPLACEMENT = /decl/air_alarm_mode/replacement,
-		AIR_ALARM_MODE_PANIC = /decl/air_alarm_mode/panic,
-		AIR_ALARM_MODE_CYCLE = /decl/air_alarm_mode/cycle,
-		AIR_ALARM_MODE_FILL = /decl/air_alarm_mode/fill,
-		AIR_ALARM_MODE_OFF = /decl/air_alarm_mode/off
+		/decl/air_alarm_mode/scrubbing,
+		/decl/air_alarm_mode/replacement,
+		/decl/air_alarm_mode/panic,
+		/decl/air_alarm_mode/cycle,
+		/decl/air_alarm_mode/fill,
+		/decl/air_alarm_mode/off
 	)
-	var/mode = AIR_ALARM_MODE_SCRUBBING
+	var/decl/air_alarm_mode/mode // The current mode of the air alarm. Set to scrubbing by default.
 	var/screen = AIR_ALARM_SCREEN_MAIN
 	var/area_uid
 	var/area/alarm_area
@@ -98,6 +98,7 @@
 
 /obj/machinery/alarm/New(loc, dir, building = 0)
 	. = ..()
+	mode = GET_DECL_INSTANCE(/decl/air_alarm_mode/scrubbing) // Sets the alarm to scrubbing by default.
 	if(building)
 		if(isnotnull(loc))
 			src.loc = loc
@@ -209,9 +210,8 @@
 		refresh_danger_level()
 		update_icon()
 
-	if(mode == AIR_ALARM_MODE_CYCLE && environment.return_pressure() < ONE_ATMOSPHERE * 0.05)
-		mode = AIR_ALARM_MODE_FILL
-		apply_mode()
+	if(istype(mode, /decl/air_alarm_mode/cycle) && environment.return_pressure() < ONE_ATMOSPHERE * 0.05)
+		apply_mode(/decl/air_alarm_mode/fill)
 
 
 	//atmos computer remote controll stuff
@@ -359,11 +359,11 @@
 
 	return TRUE
 
-/obj/machinery/alarm/proc/apply_mode()
+/obj/machinery/alarm/proc/apply_mode(mode_type)
 	var/current_pressures = TLV["pressure"]
 	var/target_pressure = (current_pressures[2] + current_pressures[3]) / 2
-	var/decl/air_alarm_mode/chosen_mode = GET_DECL_INSTANCE(available_modes[mode])
-	chosen_mode.apply(src, alarm_area, target_pressure)
+	mode = GET_DECL_INSTANCE(mode_type)
+	mode.apply(src, alarm_area, target_pressure)
 
 /obj/machinery/alarm/proc/apply_danger_level(new_danger_level)
 	if(alarm_area.atmos_alert(new_danger_level))
@@ -503,8 +503,7 @@
 				aidisabled = TRUE
 
 		if(AIR_ALARM_WIRE_SYPHON)
-			mode = AIR_ALARM_MODE_PANIC
-			apply_mode()
+			apply_mode(/decl/air_alarm_mode/panic)
 
 		if(AIR_ALARM_WIRE_AALARM)
 			if(alarm_area.atmos_alert(2))
@@ -563,8 +562,7 @@
 				updateDialog()
 
 		if(AIR_ALARM_WIRE_SYPHON)
-			mode = AIR_ALARM_MODE_REPLACEMENT
-			apply_mode()
+			apply_mode(/decl/air_alarm_mode/replacement)
 
 		if(AIR_ALARM_WIRE_AALARM)
 			if(alarm_area.atmos_alert(0))
@@ -766,10 +764,10 @@ Toxins: <span class='dl[plasma_dangerlevel]'>[plasma_percent]</span>%<br>
 <a href='?src=\ref[src];screen=[AIR_ALARM_SCREEN_SENSORS]'>Sensor Settings</a><br>
 <HR>
 "}
-			if(mode == AIR_ALARM_MODE_PANIC)
-				output += "<font color='red'><B>PANIC SYPHON ACTIVE</B></font><br><A href='?src=\ref[src];mode=[AIR_ALARM_MODE_SCRUBBING]'>Turn syphoning off</A>"
+			if(istype(mode, /decl/air_alarm_mode/panic))
+				output += "<font color='red'><B>PANIC SYPHON ACTIVE</B></font><br><A href='?src=\ref[src];mode=[/decl/air_alarm_mode/scrubbing]'>Turn syphoning off</A>"
 			else
-				output += "<A href='?src=\ref[src];mode=[AIR_ALARM_MODE_PANIC]'><font color='red'>ACTIVATE PANIC SYPHON IN AREA</font></A>"
+				output += "<A href='?src=\ref[src];mode=[/decl/air_alarm_mode/panic]'><font color='red'>ACTIVATE PANIC SYPHON IN AREA</font></A>"
 
 
 		if(AIR_ALARM_SCREEN_VENT)
@@ -855,8 +853,8 @@ Nitrous Oxide
 		if(AIR_ALARM_SCREEN_MODE)
 			output += "<a href='?src=\ref[src];screen=[AIR_ALARM_SCREEN_MAIN]'>Main menu</a><br><b>Air machinery mode for the area:</b><ul>"
 			for(var/mode_type in available_modes)
-				var/decl/air_alarm_mode/iterated_mode = GET_DECL_INSTANCE(available_modes[mode_type])
-				if(mode == mode_type)
+				var/decl/air_alarm_mode/iterated_mode = GET_DECL_INSTANCE(mode_type)
+				if(istype(mode, mode_type))
 					output += "<li><A href='?src=\ref[src];mode=[mode_type]'><b>[iterated_mode.description]</b></A> (selected)</li>"
 				else
 					output += "<li><A href='?src=\ref[src];mode=[mode_type]'>[iterated_mode.description]</A></li>"
@@ -1009,8 +1007,7 @@ table tr:first-child th:first-child { border: none;}
 		update_icon()
 
 	if(href_list["mode"])
-		mode = href_list["mode"]
-		apply_mode()
+		apply_mode(text2path(href_list["mode"]))
 
 	if(href_list["temperature"])
 		var/list/selected = TLV["temperature"]

@@ -178,8 +178,7 @@
 			return
 
 		if(href_list["mode"])
-			current.mode = href_list["mode"]
-			current.apply_mode()
+			current.apply_mode(text2path(href_list["mode"]))
 			spawn(5)
 				src.updateUsrDialog()
 			return
@@ -205,10 +204,10 @@
 <a href='?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_SENSORS]'>Sensor Control</a><br>
 <HR>
 "}
-			if(current.mode == AIR_ALARM_MODE_PANIC)
-				output += "<font color='red'><B>PANIC SYPHON ACTIVE</B></font><br><A href='?src=\ref[src];alarm=\ref[current];mode=[AIR_ALARM_MODE_SCRUBBING]'>turn syphoning off</A>"
+			if(istype(current.mode, /decl/air_alarm_mode/panic))
+				output += "<font color='red'><B>PANIC SYPHON ACTIVE</B></font><br><A href='?src=\ref[src];alarm=\ref[current];mode=[/decl/air_alarm_mode/scrubbing]'>turn syphoning off</A>"
 			else
-				output += "<A href='?src=\ref[src];alarm=\ref[current];mode=[AIR_ALARM_MODE_PANIC]'><font color='red'><B>ACTIVATE PANIC SYPHON IN AREA</B></font></A>"
+				output += "<A href='?src=\ref[src];alarm=\ref[current];mode=[/decl/air_alarm_mode/panic]'><font color='red'><B>ACTIVATE PANIC SYPHON IN AREA</B></font></A>"
 
 			output += "<br><br>Atmospheric Lockdown: <a href='?src=\ref[src];alarm=\ref[current];atmos_unlock=[current.alarm_area.air_doors_activated]'>[current.alarm_area.air_doors_activated ? "<b>ENABLED</b>" : "Disabled"]</a>"
 		if(AIR_ALARM_SCREEN_VENT)
@@ -300,8 +299,8 @@ Nitrous Oxide
 <a href='?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MAIN]'>Main menu</a><br>
 <b>Air machinery mode for the area:</b><ul>"}
 			for(var/mode_type in current.available_modes)
-				var/decl/air_alarm_mode/iterated_mode = GET_DECL_INSTANCE(current.available_modes[mode_type])
-				if(current.mode == mode_type)
+				var/decl/air_alarm_mode/iterated_mode = GET_DECL_INSTANCE(mode_type)
+				if(istype(current.mode, mode_type))
 					output += {"<li><A href='?src=\ref[src];alarm=\ref[current];mode=[mode_type]'><b>[iterated_mode.description]</b></A> (selected)</li>"}
 				else
 					output += {"<li><A href='?src=\ref[src];alarm=\ref[current];mode=[mode_type]'>[iterated_mode.description]</A></li>"}

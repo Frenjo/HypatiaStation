@@ -9,13 +9,6 @@
 #define AIR_ALARM_WIRE_AI_CONTROL 4
 #define AIR_ALARM_WIRE_AALARM 5
 
-#define AIR_ALARM_MODE_SCRUBBING "scrubbing"
-#define AIR_ALARM_MODE_REPLACEMENT "replacement"
-#define AIR_ALARM_MODE_PANIC "panic"
-#define AIR_ALARM_MODE_CYCLE "cycle"
-#define AIR_ALARM_MODE_FILL "fill"
-#define AIR_ALARM_MODE_OFF "off"
-
 #define AIR_ALARM_SCREEN_MAIN 1
 #define AIR_ALARM_SCREEN_VENT 2
 #define AIR_ALARM_SCREEN_SCRUB 3
