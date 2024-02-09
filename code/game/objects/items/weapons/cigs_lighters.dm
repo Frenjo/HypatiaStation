@@ -370,7 +370,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/lighter
 	name = "cheap lighter"
 	desc = "A cheap-as-free lighter."
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/items/lighters.dmi'
 	icon_state = "lighter-g"
 	item_state = "lighter-g"
 	var/icon_on = "lighter-g-on"

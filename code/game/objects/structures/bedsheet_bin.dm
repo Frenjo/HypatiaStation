@@ -6,8 +6,8 @@ LINEN BINS
 /obj/item/bedsheet
 	name = "bedsheet"
 	desc = "A surprisingly soft linen bedsheet."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "sheet"
+	icon = 'icons/obj/items/bedsheets.dmi'
+	icon_state = "white"
 	item_state = "bedsheet"
 	layer = 4.0
 	throwforce = 1
@@ -26,67 +26,67 @@ LINEN BINS
 	return
 
 /obj/item/bedsheet/blue
-	icon_state = "sheetblue"
+	icon_state = "blue"
 	item_color = "blue"
 
 /obj/item/bedsheet/green
-	icon_state = "sheetgreen"
+	icon_state = "green"
 	item_color = "green"
 
 /obj/item/bedsheet/orange
-	icon_state = "sheetorange"
+	icon_state = "orange"
 	item_color = "orange"
 
 /obj/item/bedsheet/purple
-	icon_state = "sheetpurple"
+	icon_state = "purple"
 	item_color = "purple"
 
 /obj/item/bedsheet/rainbow
-	icon_state = "sheetrainbow"
+	icon_state = "rainbow"
 	item_color = "rainbow"
 
 /obj/item/bedsheet/red
-	icon_state = "sheetred"
+	icon_state = "red"
 	item_color = "red"
 
 /obj/item/bedsheet/yellow
-	icon_state = "sheetyellow"
+	icon_state = "yellow"
 	item_color = "yellow"
 
 /obj/item/bedsheet/mime
-	icon_state = "sheetmime"
+	icon_state = "mime"
 	item_color = "mime"
 
 /obj/item/bedsheet/clown
-	icon_state = "sheetclown"
+	icon_state = "clown"
 	item_color = "clown"
 
 /obj/item/bedsheet/captain
-	icon_state = "sheetcaptain"
+	icon_state = "captain"
 	item_color = "captain"
 
 /obj/item/bedsheet/rd
-	icon_state = "sheetrd"
+	icon_state = "rd"
 	item_color = "director"
 
 /obj/item/bedsheet/medical
-	icon_state = "sheetmedical"
+	icon_state = "medical"
 	item_color = "medical"
 
 /obj/item/bedsheet/hos
-	icon_state = "sheethos"
+	icon_state = "hos"
 	item_color = "hosred"
 
 /obj/item/bedsheet/hop
-	icon_state = "sheethop"
+	icon_state = "hop"
 	item_color = "hop"
 
 /obj/item/bedsheet/ce
-	icon_state = "sheetce"
+	icon_state = "ce"
 	item_color = "chief"
 
 /obj/item/bedsheet/brown
-	icon_state = "sheetbrown"
+	icon_state = "brown"
 	item_color = "brown"
 
 #define STARTING_LINEN_AMOUNT 20

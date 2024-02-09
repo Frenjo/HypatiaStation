@@ -5,8 +5,8 @@
 /obj/item/autopsy_scanner
 	name = "autopsy scanner"
 	desc = "Extracts information on wounds."
-	icon = 'icons/obj/items/devices/autopsy_scanner.dmi'
-	icon_state = ""
+	icon = 'icons/obj/items/devices/scanner.dmi'
+	icon_state = "autopsy"
 	flags = CONDUCT
 	w_class = 1.0
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)

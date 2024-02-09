@@ -4,8 +4,8 @@ GLOBAL_GLOBL_LIST_NEW(cached_icons)
 /obj/item/reagent_containers/glass/paint
 	desc = "It's a paint bucket."
 	name = "paint bucket"
-	icon = 'icons/obj/items.dmi'
-	icon_state = "paint_neutral"
+	icon = 'icons/obj/items/paints.dmi'
+	icon_state = "neutral"
 	item_state = "paintcan"
 	matter_amounts = list(MATERIAL_METAL = 200)
 	w_class = 3.0
@@ -41,31 +41,31 @@ GLOBAL_GLOBL_LIST_NEW(cached_icons)
 		P.color = mixedcolor
 
 /obj/item/reagent_containers/glass/paint/red
-	icon_state = "paint_red"
+	icon_state = "red"
 	paint_type = "red"
 
 /obj/item/reagent_containers/glass/paint/green
-	icon_state = "paint_green"
+	icon_state = "green"
 	paint_type = "green"
 
 /obj/item/reagent_containers/glass/paint/blue
-	icon_state = "paint_blue"
+	icon_state = "blue"
 	paint_type = "blue"
 
 /obj/item/reagent_containers/glass/paint/yellow
-	icon_state = "paint_yellow"
+	icon_state = "yellow"
 	paint_type = "yellow"
 
 /obj/item/reagent_containers/glass/paint/violet
-	icon_state = "paint_violet"
+	icon_state = "violet"
 	paint_type = "violet"
 
 /obj/item/reagent_containers/glass/paint/black
-	icon_state = "paint_black"
+	icon_state = "black"
 	paint_type = "black"
 
 /obj/item/reagent_containers/glass/paint/white
-	icon_state = "paint_white"
+	icon_state = "white"
 	paint_type = "white"
 
 /obj/item/reagent_containers/glass/paint/remover

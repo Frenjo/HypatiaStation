@@ -3,7 +3,7 @@
  */
 /obj/item/plant_analyser
 	name = "plant analyser"
-	icon = 'icons/obj/items/devices/device.dmi'
+	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "hydro"
 	item_state = "analyser"
 

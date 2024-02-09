@@ -1,7 +1,7 @@
 /obj/item/stack/medical
 	name = "medical pack"
 	singular_name = "medical pack"
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/items/stacks/medical.dmi'
 	amount = 5
 	max_amount = 5
 	w_class = 1

@@ -11,7 +11,7 @@ REAGENT SCANNER
 /obj/item/t_scanner
 	name = "T-ray scanner"
 	desc = "A terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
-	icon = 'icons/obj/items/devices/device.dmi'
+	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "t-ray0"
 
 	slot_flags = SLOT_BELT
@@ -59,7 +59,7 @@ REAGENT SCANNER
 
 /obj/item/health_analyser
 	name = "Health Analyser"
-	icon = 'icons/obj/items/devices/device.dmi'
+	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "health"
 	item_state = "health_analyser"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
@@ -221,7 +221,7 @@ REAGENT SCANNER
 /obj/item/gas_analyser
 	name = "gas analyser"
 	desc = "A hand-held environmental scanner which reports current gas levels."
-	icon = 'icons/obj/items/devices/device.dmi'
+	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "atmos"
 	item_state = "analyser"
 	w_class = 2.0
@@ -267,7 +267,7 @@ REAGENT SCANNER
 /obj/item/mass_spectrometer
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
 	name = "mass-spectrometer"
-	icon = 'icons/obj/items/devices/device.dmi'
+	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "spectrometer"
 	item_state = "analyser"
 	w_class = 2.0
@@ -342,7 +342,7 @@ REAGENT SCANNER
 /obj/item/reagent_scanner
 	name = "reagent scanner"
 	desc = "A hand-held reagent scanner which identifies chemical agents."
-	icon = 'icons/obj/items/devices/device.dmi'
+	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "spectrometer"
 	item_state = "analyser"
 	w_class = 2.0

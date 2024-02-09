@@ -7,7 +7,7 @@
 /obj/item/antibody_scanner
 	name = "Antibody Scanner"
 	desc = "Used to scan living beings for antibodies in their blood."
-	icon = 'icons/obj/items/devices/device.dmi'
+	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "health"
 	w_class = 2.0
 	item_state = "electronic"

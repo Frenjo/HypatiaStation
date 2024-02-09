@@ -3,7 +3,7 @@
 /obj/item/detective_scanner
 	name = "Scanner"
 	desc = "Used to scan objects for DNA and fingerprints."
-	icon = 'icons/obj/items/devices/device.dmi'
+	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "forensic1"
 	var/amount = 20.0
 	var/list/stored = list()

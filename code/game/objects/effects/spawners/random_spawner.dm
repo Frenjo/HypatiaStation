@@ -45,7 +45,7 @@
 /obj/effect/random_spawner/technology_scanner
 	name = "random scanner spawner"
 	desc = "This spawns a random technology scanner."
-	icon = 'icons/obj/items/devices/device.dmi'
+	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "atmos"
 
 /obj/effect/random_spawner/technology_scanner/item_to_spawn()

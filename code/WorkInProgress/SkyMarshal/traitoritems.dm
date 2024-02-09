@@ -4,7 +4,7 @@
 	name = "eraser"
 	desc = "It looks like some kind of eraser."
 	flags = FPRINT | TABLEPASS
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/items/lighters.dmi'
 	icon_state = "zippo"
 	item_state = "zippo"
 	w_class = 1.0
@@ -13,7 +13,7 @@
 /obj/item/jammer
 	name = "strange device"
 	desc = "It blinks and has an antenna on it.  Weird."
-	icon = 'icons/obj/items/devices/device.dmi'
+	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "t-ray0"
 	var/on = 0
 	flags = FPRINT|TABLEPASS
