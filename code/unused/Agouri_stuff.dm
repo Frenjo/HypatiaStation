@@ -568,7 +568,7 @@
 /turf/proc/ReplaceWithEngineFloor()
 	var/old_dir = dir
 
-	var/turf/simulated/floor/engine/E = new /turf/simulated/floor/engine( locate(src.x, src.y, src.z) )
+	var/turf/simulated/floor/reinforced/E = new /turf/simulated/floor/reinforced( locate(src.x, src.y, src.z) )
 
 	E.dir = old_dir
 	E.icon_state = "engine"
@@ -1228,18 +1228,18 @@ var/list/plating_icons = list("plating","platingdmg1","platingdmg2","platingdmg3
 		..()
 		icon_state = "[type]vault"
 
-/turf/simulated/floor/engine
+/turf/simulated/floor/reinforced
 	name = "reinforced floor"
 	icon_state = "engine"
 	thermal_conductivity = 0.025
 	heat_capacity = 325000
 
-/turf/simulated/floor/engine/cult
+/turf/simulated/floor/reinforced/cult
 	name = "engraved floor"
 	icon_state = "cult"
 
 
-/turf/simulated/floor/engine/n20
+/turf/simulated/floor/reinforced/n20
 	New()
 		..()
 		var/datum/gas_mixture/adding = new
@@ -1251,7 +1251,7 @@ var/list/plating_icons = list("plating","platingdmg1","platingdmg2","platingdmg3
 
 		assume_air(adding)
 
-/turf/simulated/floor/engine/vacuum
+/turf/simulated/floor/reinforced/vacuum
 	name = "vacuum floor"
 	icon_state = "engine"
 	oxygen = 0
@@ -1394,7 +1394,7 @@ turf/simulated/floor/return_siding_icon_state()
 		step(user.pulling, get_dir(user.pulling.loc, src))
 	return
 
-/turf/simulated/floor/engine/attackby(obj/item/C as obj, mob/user as mob)
+/turf/simulated/floor/reinforced/attackby(obj/item/C as obj, mob/user as mob)
 	if(!C)
 		return
 	if(!user)
@@ -1441,7 +1441,7 @@ turf/simulated/floor/return_siding_icon_state()
 	return 0
 
 /turf/simulated/floor/proc/break_tile()
-	if(istype(src,/turf/simulated/floor/engine)) return
+	if(istype(src,/turf/simulated/floor/reinforced)) return
 	if(istype(src,/turf/simulated/floor/mech_bay_recharge_floor))
 		src.ReplaceWithPlating()
 	if(broken) return
@@ -1459,7 +1459,7 @@ turf/simulated/floor/return_siding_icon_state()
 		broken = 1
 
 /turf/simulated/floor/proc/burn_tile()
-	if(istype(src,/turf/simulated/floor/engine)) return
+	if(istype(src,/turf/simulated/floor/reinforced)) return
 	if(broken || burnt) return
 	if(is_plasteel_floor())
 		src.icon_state = "damaged[pick(1,2,3,4,5)]"
@@ -1477,7 +1477,7 @@ turf/simulated/floor/return_siding_icon_state()
 //This proc will delete the floor_tile and the update_iocn() proc will then change the icon_state of the turf
 //This proc auto corrects the grass tiles' siding.
 /turf/simulated/floor/proc/make_plating()
-	if(istype(src,/turf/simulated/floor/engine)) return
+	if(istype(src,/turf/simulated/floor/reinforced)) return
 
 	if(is_grass_floor())
 		for(var/direction in cardinal)

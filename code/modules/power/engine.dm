@@ -1,7 +1,7 @@
-/turf/simulated/floor/engine/attack_paw(mob/user as mob)
+/turf/simulated/floor/reinforced/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/turf/simulated/floor/engine/attack_hand(mob/user as mob)
+/turf/simulated/floor/reinforced/attack_hand(mob/user as mob)
 	if(!user.canmove || user.restrained() || !user.pulling)
 		return
 	if(user.pulling.anchored)
@@ -18,7 +18,7 @@
 		step(user.pulling, get_dir(user.pulling.loc, src))
 	return
 
-/turf/simulated/floor/engine/ex_act(severity)
+/turf/simulated/floor/reinforced/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			ChangeTurf(/turf/space)
@@ -32,7 +32,7 @@
 		else
 	return
 
-/turf/simulated/floor/engine/blob_act()
+/turf/simulated/floor/reinforced/blob_act()
 	if(prob(25))
 		ChangeTurf(/turf/space)
 		qdel(src)

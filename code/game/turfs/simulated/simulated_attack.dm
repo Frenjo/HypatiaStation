@@ -76,7 +76,7 @@
 			if(R.amount >= 2)
 				to_chat(user, SPAN_INFO("Reinforcing the floor..."))
 				if(do_after(user, 30) && R && R.amount >= 2 && is_plating())
-					ChangeTurf(/turf/simulated/floor/engine)
+					ChangeTurf(/turf/simulated/floor/reinforced)
 					playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 					R.use(2)
 					return

@@ -256,7 +256,7 @@
 	invocation = "none"
 	invocation_type = "none"
 	range = 0
-	summon_type = list(/turf/simulated/floor/engine/cult)
+	summon_type = list(/turf/simulated/floor/reinforced/cult)
 	centcom_cancast = 0 //Stop crashing the server by spawning turfs on transit tiles
 
 

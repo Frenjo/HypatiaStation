@@ -22,7 +22,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 	if(isnull(wall))
 		wall = pick(/turf/simulated/wall/r_wall, /turf/simulated/wall, /obj/effect/alien/resin)
 	if(isnull(floor))
-		floor = pick(/turf/simulated/floor, /turf/simulated/floor/engine)
+		floor = pick(/turf/simulated/floor, /turf/simulated/floor/reinforced)
 
 	for(var/x = 0, x < x_size, x++)
 		for(var/y = 0, y < y_size, y++)
@@ -75,7 +75,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 		if("Regular floor")
 			floor = /turf/simulated/floor
 		if("Reinforced floor")
-			floor = /turf/simulated/floor/engine
+			floor = /turf/simulated/floor/reinforced
 	if(isnotnull(x) && isnotnull(y) && isnotnull(z) && isnotnull(wall) && isnotnull(floor) && isnotnull(x_len) && isnotnull(y_len))
 		spawn_room(locate(x, y, z), x_len, y_len, wall, floor, clean)
 
