@@ -2,8 +2,10 @@
 	layer = 3
 	glide_size = 4
 
-	var/last_move = null
+	// Can this atom currently be moved?
 	var/anchored = FALSE
+	// The last direction the atom moved in.
+	var/last_move = null
 	// var/elevation = 2    - not used anywhere
 	var/move_speed = 10
 	var/l_move_time = 1

@@ -18,6 +18,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 
 	var/list/fingerprints
 	var/list/hidden_fingerprints
+	// The last fingerprints that touched this atom.
 	var/last_fingerprints = null
 
 	var/list/blood_DNA
@@ -26,15 +27,13 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 	var/last_bumped = 0
 	var/pass_flags = 0
 	var/throwpass = 0
-	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
+	// The higher the germ level, the more germ on this atom.
+	var/germ_level = GERM_LEVEL_AMBIENT
 	var/simulated = TRUE //filter for actions - used by lighting overlays
 
-	///Chemistry.
+	// The atom's holder for chemistry reagents.
 	var/datum/reagents/reagents = null
-
-	//var/chem_is_open_container = 0
-	// replaced by OPENCONTAINER flags and atom/proc/is_open_container()
-	///Chemistry.
+	// var/chem_is_open_container has been replaced by the OPENCONTAINER flag and /atom/proc/is_open_container().
 
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom

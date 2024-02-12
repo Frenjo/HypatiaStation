@@ -3,7 +3,8 @@
 
 	//var/datum/module/mod		//not used
 
-	var/list/matter_amounts = list() // Associative list of the materials this object recycles into. list(MATERIAL_METAL = 500, "waste" = 100) etc.
+	// Associative list of the materials this object recycles into. list(MATERIAL_METAL = 500, "waste" = 100) etc.
+	var/list/matter_amounts = list()
 
 	var/origin_tech = list()	//Used by R&D to determine what research bonuses it grants.
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.

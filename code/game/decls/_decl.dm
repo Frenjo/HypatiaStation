@@ -1,4 +1,5 @@
 /decl
+	// Has this /decl instance been initialised?
 	var/initialised = FALSE
 
 // Subtypes should probably always call parent, otherwise why are you inheriting?

@@ -3,9 +3,12 @@
 	layer = 4.0
 	animate_movement = 2
 //	flags = NOREACT
-	var/datum/mind/mind
 
-	var/stat = 0 //Whether a mob is alive or dead. TODO: Move this to living - Nodrak
+	// The mind attached to this mob.
+	var/datum/mind/mind = null
+
+	// Whether this mob is conscious, unconscious or dead.
+	var/stat = CONSCIOUS // TODO: Move this to living - Nodrak
 
 	//Not in use yet
 	var/obj/effect/organstructure/organStructure = null
