@@ -1,87 +1,116 @@
 /*
- * Robotic Component Analyser, basically a health analyser for robots
+ * Robotic Component Analyser
+ * Basically a health analyser for robots.
  */
 /obj/item/robot_analyser
-	name = "cyborg analyser"
+	name = "robot analyser"
 	desc = "A handheld scanner able to diagnose robotic injuries."
 	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "robot"
 	item_state = "analyser"
+
+	w_class = 1
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
+
 	throwforce = 3
-	w_class = 1.0
 	throw_speed = 5
 	throw_range = 10
+
 	matter_amounts = list(MATERIAL_METAL = 200)
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_BIOTECH = 1)
 
-	var/mode = 1
-
 /obj/item/robot_analyser/attack(mob/living/M as mob, mob/living/user as mob)
-	if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
-		user << "\red You try to analyse the floor's vitals!"
-		for(var/mob/O in viewers(M, null))
-			O.show_message("\red [user] has analysed the floor's vitals!", 1)
-		user.show_message("\blue Analyzing Results for The floor:\n\t Overall Status: Healthy", 1)
-		user.show_message("\blue \t Damage Specifics: [0]-[0]-[0]-[0]", 1)
-		user.show_message("\blue Key: Suffocation/Toxin/Burns/Brute", 1)
-		user.show_message("\blue Body Temperature: ???", 1)
+	if(user.stat)
 		return
-	if(!(ishuman(user) || global.CTticker) && global.CTticker.mode.name != "monkey")
+	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
-	if(!isrobot(M))
-		user << "\red You can't analyse non-robotic things!"
+
+	if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
+		user.visible_message(
+			SPAN_WARNING("[user] tries to analyse the floor's vitals!"),
+			SPAN_WARNING("You try to analyse the floor's vitals!")
+		)
+		user.show_message(SPAN_INFO("Analysing results for the floor:"), 1)
+		user.show_message("\t [SPAN_INFO("Overall Status: Functional")]")
+		user.show_message("\t Key: <font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>", 1)
+		user.show_message("\t Damage Specifics: <font color='#FFA500'>[0]</font> - <font color='red'>[0]</font>", 1)
+		user.show_message(SPAN_INFO("Operating Temperature: ???"), 1)
 		return
+
+	user.visible_message(
+		SPAN_NOTICE("[user] analyses [M]'s components."),
+		SPAN_NOTICE("You analyse [M]'s components.")
+	)
+
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!(H.species.flags & IS_SYNTHETIC))
-			to_chat(user, SPAN_WARNING("You can't analyse non-robotic things!"))
+			user.show_message(SPAN_WARNING("You can't analyse non-robotic things!"), 1)
 			return
+	else if(!isrobot(M))
+		user.show_message(SPAN_WARNING("You can't analyse non-robotic things!"), 1)
+		return
 
-	user.visible_message("<span class='notice'> [user] has analysed [M]'s components.","<span class='notice'> You have analysed [M]'s components.")
-	var/BU = M.getFireLoss() > 50 	? 	"<b>[M.getFireLoss()]</b>" 		: M.getFireLoss()
-	var/BR = M.getBruteLoss() > 50 	? 	"<b>[M.getBruteLoss()]</b>" 	: M.getBruteLoss()
-	user.show_message("\blue Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "fully disabled" : "[M.health - M.halloss]% functional"]")
-	user.show_message("\t Key: <font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>", 1)
-	user.show_message("\t Damage Specifics: <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font>")
-	if(M.tod && M.stat == DEAD)
-		user.show_message("\blue Time of Disable: [M.tod]")
+	output_scan(user, M)
+	add_fingerprint(user)
 
-	if(isrobot(M))
-		var/mob/living/silicon/robot/H = M
-		var/list/damaged = H.get_damaged_components(1, 1, 1)
-		user.show_message("\blue Localized Damage:",1)
-		if(length(damaged)>0)
-			for(var/datum/robot_component/org in damaged)
-				user.show_message(text("\blue \t []: [][] - [] - [] - []",	\
-				capitalize(org.name),					\
-				(org.installed == -1)	?	"<font color='red'><b>DESTROYED</b></font> "							:"",\
-				(org.electronics_damage > 0)	?	"<font color='#FFA500'>[org.electronics_damage]</font>"	:0,	\
-				(org.brute_damage > 0)	?	"<font color='red'>[org.brute_damage]</font>"							:0,		\
-				(org.toggled)	?	"Toggled ON"	:	"<font color='red'>Toggled OFF</font>",\
-				(org.powered)	?	"Power ON"		:	"<font color='red'>Power OFF</font>"),1)
+/obj/item/robot_analyser/proc/output_scan(mob/living/user, mob/living/target)
+	// The text to output.
+	var/list/output = list()
+
+	// Individual damage values.
+	var/fire_loss = target.getFireLoss()
+	var/brute_loss = target.getBruteLoss()
+	var/target_status = (target.stat == DEAD ? "fully disabled" : "[target.health - target.halloss]% functional")
+
+	// Formatted strings for individual damage values.
+	var/burn_string = fire_loss > 50 ? "<b>[fire_loss]</b>" : fire_loss
+	var/brute_string = brute_loss > 50 ? "<b>[brute_loss]</b>" : brute_loss
+
+	// Handles basic health data.
+	output.Add("[SPAN_INFO("Analysing results for [target]:")]\n")
+	output.Add("\t [SPAN_INFO("Overall Status: [target_status]")]\n")
+	output.Add("\t Key: <font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>\n")
+	output.Add("\t Damage Specifics: <font color='#FFA500'>[burn_string]</font> - <font color='red'>[brute_string]</font>\n")
+
+	// Handles time of death.
+	if(isnotnull(target.tod) && target.stat == DEAD)
+		output.Add("[SPAN_INFO("Time of Disable: [target.tod]")]\n")
+
+	// Handles robot components and emagging.
+	if(isrobot(target))
+		var/mob/living/silicon/robot/H = target
+		var/list/damaged_components = H.get_damaged_components(TRUE, TRUE, TRUE)
+		output.Add(SPAN_INFO("Localised Damage (<font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>):\n"))
+		if(length(damaged_components) > 0)
+			for(var/datum/robot_component/component in damaged_components)
+				var/component_destroyed = (component.installed == -1) ? SPAN_DANGER("\[DESTROYED\] -") : ""
+				var/component_toggle = (component.toggled) ? "Toggled ON" : "<font color='red'>Toggled OFF</font>"
+				var/component_power = (component.powered) ? "Power ON" : "<font color='red'>Power OFF</font>"
+				output.Add("\t [SPAN_INFO(capitalize(component.name))]: [component_destroyed] <font color='#FFA500'>[component.electronics_damage]</font> - <font color='red'>[component.brute_damage]</font> - [component_toggle] - [component_power]\n")
 		else
-			user.show_message("\blue \t Components are OK.",1)
+			output.Add("\t [SPAN_INFO("Components are OK.")]\n")
+
 		if(H.emagged && prob(5))
-			user.show_message("\red \t ERROR: INTERNAL SYSTEMS COMPROMISED",1)
+			output.Add("\t [SPAN_WARNING("ERROR: INTERNAL SYSTEMS COMPROMISED")]\n")
 
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+	// Handles synthetic species organ damage.
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
 		if(!(H.species.flags & IS_SYNTHETIC))
 			return
-		var/list/damaged = H.get_damaged_organs(1, 1)
-		user.show_message("\blue Localized Damage, Brute/Electronics:",1)
-		if(length(damaged) > 0)
-			for(var/datum/organ/external/org in damaged)
-				user.show_message(text("\blue \t []: [] - []",	\
-				capitalize(org.display_name),					\
-				(org.brute_dam > 0)	?	"\red [org.brute_dam]"							:0,		\
-				(org.burn_dam > 0)	?	"<font color='#FFA500'>[org.burn_dam]</font>"	:0),1)
+		var/list/damaged_organs = H.get_damaged_organs(TRUE, TRUE)
+		output.Add(SPAN_INFO("Localised Damage (<font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>):\n"))
+		if(length(damaged_organs) > 0)
+			for(var/datum/organ/external/organ in damaged_organs)
+				output.Add("\t [SPAN_INFO(capitalize(organ.display_name))]: <font color='#FFA500'>[organ.burn_dam]</font> - <font color='red'>[organ.brute_dam]</font>\n")
 		else
-			user.show_message("\blue \t Components are OK.",1)
+			output.Add("\t [SPAN_INFO("Components are OK.")]\n")
 
-	user.show_message("\blue Operating Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)", 1)
-	src.add_fingerprint(user)
-	return
+	// Handles operating temperature.
+	output.Add(SPAN_INFO("Operating Temperature: [target.bodytemperature - T0C]&deg;C ([target.bodytemperature * 1.8-459.67]&deg;F)")) // No /n needed here.
+
+	// Outputs the joined text.
+	user.show_message(jointext(output, ""), 1)

@@ -36,7 +36,7 @@
 			SPAN_WARNING("[user] tries to analyse the floor's vitals!"),
 			SPAN_WARNING("You try to analyse the floor's vitals!")
 		)
-		user.show_message("[SPAN_INFO("Analysing results for the floor:")]", 1)
+		user.show_message(SPAN_INFO("Analysing results for the floor:"), 1)
 		user.show_message("\t [SPAN_INFO("Overall Status: Healthy")]")
 		user.show_message("\t Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>")
 		user.show_message("\t Damage Specifics: <font color='blue'>[0]</font> - <font color='green'>[0]</font> - <font color='#FFA500'>[0]</font> - <font color='red'>[0]</font>", 1)
@@ -73,7 +73,7 @@
 			to_chat(usr, "The scanner no longer shows limb damage.")
 
 /obj/item/health_analyser/proc/output_error(mob/living/user, mob/living/target)
-	user.show_message(SPAN_INFO("Analyzing results for ERROR:"))
+	user.show_message(SPAN_INFO("Analysing results for ERROR:"))
 	user.show_message("\t [SPAN_INFO("Overall Status: ERROR")]")
 	user.show_message("\t Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>", 1)
 	user.show_message("\t Damage Specifics: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
@@ -121,10 +121,8 @@
 		var/list/damaged_organs = H.get_damaged_organs(TRUE, TRUE)
 		if(length(damaged_organs) > 0)
 			for(var/datum/organ/external/organ in damaged_organs)
-				var/organ_brute = (organ.brute_dam > 0) ? organ.brute_dam : 0
 				var/organ_bleeding = (organ.status & ORGAN_BLEEDING) ? SPAN_DANGER("\[Bleeding\]") : ""
-				var/organ_burn = (organ.burn_dam > 0) ? organ.burn_dam : 0
-				output.Add("\t [SPAN_INFO(capitalize(organ.display_name))]: [SPAN_WARNING(organ_brute)][organ_bleeding] [SPAN_INFO("-")] <font color='#FFA500'>[organ_burn]</font>\n")
+				output.Add("\t [SPAN_INFO(capitalize(organ.display_name))]: [SPAN_WARNING(organ.brute_dam)][organ_bleeding] [SPAN_INFO("-")] <font color='#FFA500'>[organ.burn_dam]</font>\n")
 		else
 			output.Add("\t [SPAN_INFO("Limbs are OK.")]\n")
 
@@ -220,7 +218,7 @@
 		output.Add("[SPAN_INFO("Subject's pulse:")] [pulse_string]") // No /n needed here.
 
 	// Outputs the joined text.
-	to_chat(user, jointext(output, ""))
+	user.show_message(jointext(output, ""), 1)
 
 #undef MODE_SHOW_LIMB_DAMAGE
 #undef MODE_HIDE_LIMB_DAMAGE
