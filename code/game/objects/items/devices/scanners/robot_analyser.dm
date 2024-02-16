@@ -47,14 +47,27 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!(H.species.flags & IS_SYNTHETIC))
-			user.show_message(SPAN_WARNING("You can't analyse non-robotic things!"), 1)
+			output_error(user, M)
 			return
 	else if(!isrobot(M))
-		user.show_message(SPAN_WARNING("You can't analyse non-robotic things!"), 1)
+		output_error(user, M)
 		return
 
 	output_scan(user, M)
 	add_fingerprint(user)
+
+/obj/item/robot_analyser/proc/output_error(mob/living/user, mob/living/target)
+	// The text to output.
+	var/list/output = list()
+
+	output.Add("[SPAN_INFO("Analysing results for ERROR:")]\n")
+	output.Add("\t [SPAN_INFO("Overall Status: ERROR")]\n")
+	output.Add("\t Key: <font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>\n")
+	output.Add("\t Damage Specifics: <font color='#FFA500'>?</font> - <font color='red'>?</font>\n")
+	output.Add(SPAN_INFO("Operating Temperature: [target.bodytemperature - T0C]&deg;C ([target.bodytemperature * 1.8-459.67]&deg;F)")) // No /n needed here.
+
+	// Outputs the joined text.
+	user.show_message(jointext(output, ""), 1)
 
 /obj/item/robot_analyser/proc/output_scan(mob/living/user, mob/living/target)
 	// The text to output.
@@ -83,7 +96,7 @@
 	if(isrobot(target))
 		var/mob/living/silicon/robot/H = target
 		var/list/damaged_components = H.get_damaged_components(TRUE, TRUE, TRUE)
-		output.Add(SPAN_INFO("Localised Damage (<font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>):\n"))
+		output.Add("[SPAN_INFO("Localised Damage (<font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>):")]\n")
 		if(length(damaged_components) > 0)
 			for(var/datum/robot_component/component in damaged_components)
 				var/component_destroyed = (component.installed == -1) ? SPAN_DANGER("\[DESTROYED\] -") : ""
@@ -102,7 +115,7 @@
 		if(!(H.species.flags & IS_SYNTHETIC))
 			return
 		var/list/damaged_organs = H.get_damaged_organs(TRUE, TRUE)
-		output.Add(SPAN_INFO("Localised Damage (<font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>):\n"))
+		output.Add("[SPAN_INFO("Localised Damage (<font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>):")]\n")
 		if(length(damaged_organs) > 0)
 			for(var/datum/organ/external/organ in damaged_organs)
 				output.Add("\t [SPAN_INFO(capitalize(organ.display_name))]: <font color='#FFA500'>[organ.burn_dam]</font> - <font color='red'>[organ.brute_dam]</font>\n")

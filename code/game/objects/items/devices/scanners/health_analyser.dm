@@ -73,13 +73,19 @@
 			to_chat(usr, "The scanner no longer shows limb damage.")
 
 /obj/item/health_analyser/proc/output_error(mob/living/user, mob/living/target)
-	user.show_message(SPAN_INFO("Analysing results for ERROR:"))
-	user.show_message("\t [SPAN_INFO("Overall Status: ERROR")]")
-	user.show_message("\t Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>", 1)
-	user.show_message("\t Damage Specifics: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
-	user.show_message(SPAN_INFO("Body Temperature: [target.bodytemperature - T0C]&deg;C ([target.bodytemperature * 1.8-459.67]&deg;F)"), 1)
-	user.show_message("[SPAN_DANGER("Warning: Blood Level ERROR: --% --cl.")] [SPAN_INFO("Type: ERROR")]")
-	user.show_message("[SPAN_INFO("Subject's pulse:")] <font color='red'>-- bpm.</font>")
+	// The text to output.
+	var/list/output = list()
+
+	output.Add("[SPAN_INFO("Analysing results for ERROR:")]\n")
+	output.Add("\t [SPAN_INFO("Overall Status: ERROR")]\n")
+	output.Add("\t Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burn</font>/<font color='red'>Brute</font>\n")
+	output.Add("\t Damage Specifics: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>\n")
+	output.Add("[SPAN_INFO("Body Temperature: [target.bodytemperature - T0C]&deg;C ([target.bodytemperature * 1.8-459.67]&deg;F)")]\n")
+	output.Add("[SPAN_DANGER("Warning: Blood Level ERROR: --% --cl.")] [SPAN_INFO("Type: ERROR")]\n")
+	output.Add("[SPAN_INFO("Subject's pulse:")] <font color='red'>-- bpm.</font>")
+
+	// Outputs the joined text.
+	user.show_message(jointext(output, ""), 1)
 
 /obj/item/health_analyser/proc/output_health(mob/living/user, mob/living/target)
 	// The text to output.
@@ -108,7 +114,7 @@
 	output.Add("\t [SPAN_INFO("Overall Status: [target_status]")]\n")
 	output.Add("\t Key: <font color='blue'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burn</font>/<font color='red'>Brute</font>\n")
 	output.Add("\t Damage Specifics: <font color='blue'>[oxy_string]</font> - <font color='green'>[tox_string]</font> - <font color='#FFA500'>[burn_string]</font> - <font color='red'>[brute_string]</font>\n")
-	output.Add(SPAN_INFO("Body Temperature: [target.bodytemperature - T0C]&deg;C ([target.bodytemperature * 1.8-459.67]&deg;F)\n"))
+	output.Add("[SPAN_INFO("Body Temperature: [target.bodytemperature - T0C]&deg;C ([target.bodytemperature * 1.8-459.67]&deg;F)")]\n")
 
 	// Handles time of death.
 	if(isnotnull(target.tod) && (target.stat == DEAD || (target.status_flags & FAKEDEATH)))
@@ -117,7 +123,7 @@
 	// Handles limb damage.
 	if(ishuman(target) && mode == MODE_SHOW_LIMB_DAMAGE)
 		var/mob/living/carbon/human/H = target
-		output.Add(SPAN_INFO("Localised Damage (<font color='red'>Brute</font>/<font color='#FFA500'>Burn</font>):\n"))
+		output.Add("[SPAN_INFO("Localised Damage (<font color='red'>Brute</font>/<font color='#FFA500'>Burn</font>):")]\n")
 		var/list/damaged_organs = H.get_damaged_organs(TRUE, TRUE)
 		if(length(damaged_organs) > 0)
 			for(var/datum/organ/external/organ in damaged_organs)
