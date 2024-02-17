@@ -181,7 +181,7 @@ CONFIG_ENTRY(allow_drone_spawn, TRUE, list("If enabled, allows the spawning of m
 CONFIG_ENTRY(max_maint_drones, 5, list("The maximum number of maintenance drones that can spawn, assuming they're allowed to."), CATEGORY_MOBS, TYPE_NUMERIC)
 CONFIG_ENTRY(drone_build_time, 1200, list("The time in ticks between new maintenance drones becoming available.",\
 "Default is 2 minutes."), CATEGORY_MOBS, TYPE_NUMERIC)
-CONFIG_ENTRY(humans_need_surnames, TRUE, list("If true, forces all humans to have a second name."), CATEGORY_MOBS, TYPE_BOOLEAN)
+CONFIG_ENTRY(humans_need_surnames, FALSE, list("If true, forces all player controlled mobs to have a second name."), CATEGORY_MOBS, TYPE_BOOLEAN)
 CONFIG_ENTRY(jobs_have_minimal_access, TRUE, list("Determines whether jobs use minimal or expanded access.",\
 "This is intended for servers with low populations - where there are not enough players to fill all roles, so players need to do more than just one job.",\
 "Also for servers where they don't want people to hide in their own departments."), CATEGORY_MOBS, TYPE_BOOLEAN)

@@ -339,8 +339,8 @@ MAX_MAINT_DRONES 5
 ## Default is 2 minutes.
 DRONE_BUILD_TIME 1200
 
-## If true, forces all humans to have a second name.
-HUMANS_NEED_SURNAMES 1
+## If true, forces all player controlled mobs to have a second name.
+HUMANS_NEED_SURNAMES 0
 
 ## Determines whether jobs use minimal or expanded access.
 ## This is intended for servers with low populations - where there are not enough players to fill all roles, so players need to do more than just one job.
