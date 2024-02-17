@@ -46,7 +46,7 @@
 						O.process()
 				return
 			return
-		if(!(ishuman(user) || global.CTticker) && global.CTticker.mode.name != "monkey")
+		if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
 			FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 			return
 		if(ishuman(C))

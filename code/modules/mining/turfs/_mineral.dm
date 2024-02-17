@@ -84,8 +84,8 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 
 // Not even going to touch this pile of spaghetti.
 /turf/simulated/mineral/attackby(obj/item/W as obj, mob/user as mob)
-	if((!ishuman(usr) || isnull(global.CTticker)) && global.CTticker.mode.name != "monkey")
-		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
+	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
 
 	if(istype(W, /obj/item/core_sampler))

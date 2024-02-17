@@ -458,7 +458,7 @@
 
 	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-	if(!(ishuman(user) || global.CTticker) && global.CTticker.mode.name != "monkey")
+	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
 

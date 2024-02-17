@@ -268,9 +268,12 @@
 		return 0
 	if(!user.client)
 		return 0
-	if(!(ishuman(user) || issilicon(user) || ismonkey(user) && IS_GAME_MODE(/datum/game_mode/monkey)))
+	if(ismonkey(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
-		return 0
+		return 1
+	else if(!ishuman(user) && !issilicon(user))
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
+		return 1
 	if(user.restrained())
 		to_chat(user, SPAN_WARNING("You must have free hands to use [src]."))
 		return 0

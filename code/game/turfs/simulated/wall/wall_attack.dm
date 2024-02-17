@@ -54,7 +54,7 @@
 	add_fingerprint(user)
 
 /turf/simulated/wall/attackby(obj/item/W as obj, mob/user as mob)
-	if(!(ishuman(user) || isnotnull(global.CTticker)) && global.CTticker.mode.name != "monkey")
+	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
 

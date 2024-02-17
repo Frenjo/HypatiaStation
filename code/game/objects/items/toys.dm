@@ -158,7 +158,7 @@
 /obj/item/toy/gun/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 	if(flag)
 		return
-	if(!(ishuman(usr) || global.CTticker) && global.CTticker.mode.name != "monkey")
+	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
 	src.add_fingerprint(user)

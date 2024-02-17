@@ -169,7 +169,10 @@
 		return 1
 	if(usr.restrained() || usr.lying || usr.stat)
 		return 1
-	if(!ishuman(usr) || !issilicon(usr) || (ismonkey(usr) && global.CTticker?.mode.name != "monkey"))
+	if(ismonkey(usr) && !IS_GAME_MODE(/datum/game_mode/monkey))
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
+		return 1
+	else if(!ishuman(usr) && !issilicon(usr))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return 1
 
@@ -205,7 +208,10 @@
 		return 1
 	if(user.lying || user.stat)
 		return 1
-	if(!(ishuman(usr) || issilicon(usr) || ismonkey(usr) && IS_GAME_MODE(/datum/game_mode/monkey)))
+	if(ismonkey(usr) && !IS_GAME_MODE(/datum/game_mode/monkey))
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
+		return 1
+	else if(!ishuman(usr) && !issilicon(usr))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return 1
 /*
