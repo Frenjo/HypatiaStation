@@ -5,8 +5,7 @@
 //
 // Gene is always activated.
 /////////////////////
-
-/datum/dna/gene/disability
+/decl/gene/disability
 	name = "DISABILITY"
 
 	// Mutation to give (or 0)
@@ -24,10 +23,10 @@
 	// Yay, you're no longer growing 3 arms
 	var/deactivation_message = ""
 
-/datum/dna/gene/disability/can_activate(mob/M, flags)
-	return 1 // Always set!
+/decl/gene/disability/can_activate(mob/M, flags)
+	return TRUE // Always set!
 
-/datum/dna/gene/disability/activate(mob/M, connected, flags)
+/decl/gene/disability/activate(mob/M, connected, flags)
 	if(mutation && !(mutation in M.mutations))
 		M.mutations.Add(mutation)
 	if(disability)
@@ -39,7 +38,7 @@
 	else
 		testing("[name] has no activation message.")
 
-/datum/dna/gene/disability/deactivate(mob/M, connected, flags)
+/decl/gene/disability/deactivate(mob/M, connected, flags)
 	if(mutation && (mutation in M.mutations))
 		M.mutations.Remove(mutation)
 	if(disability)
@@ -51,88 +50,97 @@
 	else
 		testing("[name] has no deactivation message.")
 
-
+// Hallucinate
 // Note: Doesn't seem to do squat, at the moment.
-/datum/dna/gene/disability/hallucinate
+/decl/gene/disability/hallucinate
 	name = "Hallucinate"
 	activation_message = "Your mind says 'Hello'."
 	mutation = mHallucination
 
-/datum/dna/gene/disability/hallucinate/New()
+/decl/gene/disability/hallucinate/New()
+	. = ..()
 	block = HALLUCINATIONBLOCK
 
-
-/datum/dna/gene/disability/epilepsy
+// Epilepsy
+/decl/gene/disability/epilepsy
 	name = "Epilepsy"
 	activation_message = "You get a headache."
 	disability = EPILEPSY
 
-/datum/dna/gene/disability/epilepsy/New()
+/decl/gene/disability/epilepsy/New()
+	. = ..()
 	block = HEADACHEBLOCK
 
-
-/datum/dna/gene/disability/cough
+// Cough
+/decl/gene/disability/cough
 	name = "Coughing"
 	activation_message = "You start coughing."
 	disability = COUGHING
 
-/datum/dna/gene/disability/cough/New()
+/decl/gene/disability/cough/New()
+	. = ..()
 	block = COUGHBLOCK
 
-
-/datum/dna/gene/disability/clumsy
+// Clumsiness
+/decl/gene/disability/clumsy
 	name = "Clumsiness"
 	activation_message = "You feel lightheaded."
 	mutation = CLUMSY
 
-/datum/dna/gene/disability/clumsy/New()
+/decl/gene/disability/clumsy/New()
+	. = ..()
 	block = CLUMSYBLOCK
 
-
-/datum/dna/gene/disability/tourettes
+// Tourettes
+/decl/gene/disability/tourettes
 	name = "Tourettes"
 	activation_message = "You twitch."
 	disability = TOURETTES
 
-/datum/dna/gene/disability/tourettes/New()
+/decl/gene/disability/tourettes/New()
+	. = ..()
 	block = TWITCHBLOCK
 
-
-/datum/dna/gene/disability/nervousness
+// Nervousness
+/decl/gene/disability/nervousness
 	name = "Nervousness"
 	activation_message = "You feel nervous."
 	disability = NERVOUS
 
-/datum/dna/gene/disability/nervousness/New()
+/decl/gene/disability/nervousness/New()
+	. = ..()
 	block = NERVOUSBLOCK
 
-
-/datum/dna/gene/disability/blindness
+// Blindness
+/decl/gene/disability/blindness
 	name = "Blindness"
 	activation_message = "You can't seem to see anything."
 	sdisability = BLIND
 
-/datum/dna/gene/disability/blindness/New()
+/decl/gene/disability/blindness/New()
+	. = ..()
 	block = BLINDBLOCK
 
-
-/datum/dna/gene/disability/deaf
+// Deafness
+/decl/gene/disability/deaf
 	name = "Deafness"
 	activation_message = "It's kinda quiet."
 	sdisability = DEAF
 
-/datum/dna/gene/disability/deaf/New()
+/decl/gene/disability/deaf/New()
+	. = ..()
 	block = DEAFBLOCK
 
-/datum/dna/gene/disability/deaf/activate(mob/M, connected, flags)
+/decl/gene/disability/deaf/activate(mob/M, connected, flags)
 	..(M,connected, flags)
 	M.ear_deaf = 1
 
-
-/datum/dna/gene/disability/nearsighted
+// Nearsightedness
+/decl/gene/disability/nearsighted
 	name = "Nearsightedness"
 	activation_message = "Your eyes feel weird..."
 	disability = NEARSIGHTED
 
-/datum/dna/gene/disability/nearsighted/New()
+/decl/gene/disability/nearsighted/New()
+	. = ..()
 	block = GLASSESBLOCK

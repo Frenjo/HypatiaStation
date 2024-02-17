@@ -154,3 +154,10 @@
 				. += "    has: [t]\n"
 	to_world(.)
 */
+
+/hook/global_init/proc/init_genes()
+	// Genes - Initialises all /decl/gene into a list, indexed by typepath.
+	for(var/path in SUBTYPESOF(/decl/gene))
+		var/decl/gene/gene = GET_DECL_INSTANCE(path)
+		GLOBL.all_dna_genes[path] = gene
+	return 1

@@ -425,13 +425,14 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 	if(gender == FEMALE)
 		g = "f"
 	// DNA2 - Drawing underlays.
-	for(var/datum/dna/gene/gene in dna_genes)
+	for(var/gene_type in GLOBL.all_dna_genes)
+		var/decl/gene/gene = GLOBL.all_dna_genes[gene_type]
 		if(!gene.block)
 			continue
 		if(gene.is_active(src))
 			var/underlay = gene.OnDrawUnderlays(src, g, fat)
-			if(underlay)
-				standing.underlays += underlay
+			if(isnotnull(underlay))
+				standing.underlays.Add(underlay)
 				add_image = 1
 	for(var/mut in mutations)
 		switch(mut)
@@ -450,7 +451,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 				add_image = 1
 			*/
 			if(LASER)
-				standing.overlays	+= "lasereyes_s"
+				standing.overlays.Add("lasereyes_s")
 				add_image = 1
 	if(add_image)
 		overlays_standing[MUTATIONS_LAYER]	= standing

@@ -141,7 +141,8 @@
 
 	// DNA2 - Gene processing.
 	// The HULK stuff that was here is now in the hulk gene.
-	for(var/datum/dna/gene/gene in dna_genes)
+	for(var/gene_type in GLOBL.all_dna_genes)
+		var/decl/gene/gene = GLOBL.all_dna_genes[gene_type]
 		if(!gene.block)
 			continue
 		if(gene.is_active(src))

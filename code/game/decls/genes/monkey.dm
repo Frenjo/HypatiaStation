@@ -1,13 +1,17 @@
-/datum/dna/gene/monkey
+/*
+ * Monkey
+ */
+/decl/gene/monkey
 	name = "Monkey"
 
-/datum/dna/gene/monkey/New()
+/decl/gene/monkey/New()
+	. = ..()
 	block = MONKEYBLOCK
 
-/datum/dna/gene/monkey/can_activate(mob/M, flags)
+/decl/gene/monkey/can_activate(mob/M, flags)
 	return ishuman(M) || ismonkey(M)
 
-/datum/dna/gene/monkey/activate(mob/living/M, connected, flags)
+/decl/gene/monkey/activate(mob/living/M, connected, flags)
 	if(!ishuman(M))
 		//testing("Cannot monkey-ify [M], type is [M.type].")
 		return
@@ -15,7 +19,7 @@
 	H.monkeyizing = 1
 	var/list/implants = list() //Try to preserve implants.
 	for(var/obj/item/implant/W in H)
-		implants += W
+		implants.Add(W)
 		W.loc = null
 
 	if(!connected)
@@ -27,7 +31,7 @@
 		M.canmove = FALSE
 		M.icon = null
 		M.invisibility = INVISIBILITY_MAXIMUM
-		var/atom/movable/overlay/animation = new(M.loc)
+		var/atom/movable/overlay/animation = new /atom/movable/overlay(M.loc)
 		animation.icon_state = "blank"
 		animation.icon = 'icons/mob/mob.dmi'
 		animation.master = src
@@ -36,17 +40,16 @@
 		qdel(animation)
 
 	var/mob/living/carbon/monkey/O = null
-	if(H.species.primitive)
+	if(isnotnull(H.species.primitive))
 		O = new H.species.primitive(src)
 	else
 		H.gib() //Trying to change the species of a creature with no primitive var set is messy.
 		return
 
-	if(M)
-		if(M.dna)
+	if(isnotnull(M))
+		if(isnotnull(M.dna))
 			O.dna = M.dna.Clone()
 			M.dna = null
-
 		if(M.suiciding)
 			O.suiciding = M.suiciding
 			M.suiciding = null
@@ -61,8 +64,7 @@
 
 	O.loc = M.loc
 
-	if(M.mind)
-		M.mind.transfer_to(O)	//transfer our mind to the cute little monkey
+	M.mind?.transfer_to(O) //transfer our mind to the cute little monkey
 
 	if(connected) //inside dna thing
 		var/obj/machinery/dna_scannernew/C = connected
@@ -80,9 +82,8 @@
 		I.implanted = O
 //		O.update_icon = 1	//queue a full icon update at next life() call
 	qdel(M)
-	return
 
-/datum/dna/gene/monkey/deactivate(mob/living/M, connected, flags)
+/decl/gene/monkey/deactivate(mob/living/M, connected, flags)
 	if(!ismonkey(M))
 		//testing("Cannot humanize [M], type is [M.type].")
 		return
@@ -90,7 +91,7 @@
 	Mo.monkeyizing = 1
 	var/list/implants = list() //Still preserving implants
 	for(var/obj/item/implant/W in Mo)
-		implants += W
+		implants.Add(W)
 		W.loc = null
 	if(!connected)
 		for(var/obj/item/W in (Mo.contents - implants))
@@ -109,20 +110,19 @@
 
 	var/mob/living/carbon/human/O
 	if(Mo.greaterform)
-		O = new(src, Mo.greaterform)
+		O = new /mob/living/carbon/human(src, Mo.greaterform)
 	else
-		O = new(src)
+		O = new /mob/living/carbon/human(src)
 
 	if(M.dna.GetUIState(DNA_UI_GENDER))
 		O.gender = FEMALE
 	else
 		O.gender = MALE
 
-	if(M)
-		if(M.dna)
+	if(isnotnull(M))
+		if(isnotnull(M.dna))
 			O.dna = M.dna.Clone()
 			M.dna = null
-
 		if(M.suiciding)
 			O.suiciding = M.suiciding
 			M.suiciding = null
@@ -137,8 +137,7 @@
 
 	O.loc = M.loc
 
-	if(M.mind)
-		M.mind.transfer_to(O)	//transfer our mind to the human
+	M.mind?.transfer_to(O) //transfer our mind to the human
 
 	if(connected) //inside dna thing
 		var/obj/machinery/dna_scannernew/C = connected
@@ -168,4 +167,3 @@
 		I.implanted = O
 //		O.update_icon = 1	//queue a full icon update at next life() call
 	qdel(M)
-	return
