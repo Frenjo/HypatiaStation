@@ -28,7 +28,7 @@ FLOOR SAFES
 	tumbler_2_pos = rand(0, 72)
 	tumbler_2_open = rand(0, 72)
 
-/obj/structure/safe/initialize()
+/obj/structure/safe/initialise()
 	. = ..()
 	for(var/obj/item/I in loc)
 		if(space >= maxspace)
@@ -171,7 +171,7 @@ FLOOR SAFES
 	level = 1	//underfloor
 	layer = 2.5
 
-/obj/structure/safe/floor/initialize()
+/obj/structure/safe/floor/initialise()
 	..()
 	var/turf/T = loc
 	hide(T.intact)

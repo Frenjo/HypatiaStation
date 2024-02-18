@@ -17,7 +17,7 @@
 /obj/effect/window_spawner/CanPass()
 	return FALSE
 
-/obj/effect/window_spawner/initialize()
+/obj/effect/window_spawner/initialise()
 	. = ..()
 	if(!ispath(win_path))
 		return

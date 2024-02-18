@@ -54,7 +54,7 @@
 // new display
 // register for radio system
 // must wait for map loading to finish
-/obj/machinery/status_display/initialize()
+/obj/machinery/status_display/initialise()
 	. = ..()
 	register_radio(src, null, frequency, null)
 

@@ -11,7 +11,7 @@
 	var/id
 	//var/advanced = 0
 
-/obj/machinery/computer/lasercon/initialize()
+/obj/machinery/computer/lasercon/initialise()
 	. = ..()
 	for(var/obj/machinery/zero_point_emitter/laser in world)
 		if(laser.id == id)

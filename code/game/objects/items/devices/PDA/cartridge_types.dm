@@ -50,7 +50,7 @@
 	name = "generic signaler cartridge"
 	desc = "A data cartridge with an integrated radio signaler module."
 
-/obj/item/cartridge/signal/initialize()
+/obj/item/cartridge/signal/initialise()
 	. = ..()
 	radio = new /obj/item/radio/integrated/signal(src)
 
@@ -82,7 +82,7 @@
 	icon_state = "cart-s"
 	access_security = TRUE
 
-/obj/item/cartridge/security/initialize()
+/obj/item/cartridge/security/initialise()
 	. = ..()
 	radio = new /obj/item/radio/integrated/beepsky(src)
 
@@ -99,7 +99,7 @@
 	icon_state = "cart-q"
 	access_quartermaster = TRUE
 
-/obj/item/cartridge/quartermaster/initialize()
+/obj/item/cartridge/quartermaster/initialise()
 	. = ..()
 	radio = new /obj/item/radio/integrated/mule(src)
 
@@ -130,7 +130,7 @@
 	access_janitor = TRUE
 	access_security = TRUE
 
-/obj/item/cartridge/hop/initialize()
+/obj/item/cartridge/hop/initialise()
 	. = ..()
 	radio = new /obj/item/radio/integrated/mule(src)
 
@@ -140,7 +140,7 @@
 	access_status_display = TRUE
 	access_security = TRUE
 
-/obj/item/cartridge/hos/initialize()
+/obj/item/cartridge/hos/initialise()
 	. = ..()
 	radio = new /obj/item/radio/integrated/beepsky(src)
 
@@ -165,7 +165,7 @@
 	access_reagent_scanner = TRUE
 	access_atmos = TRUE
 
-/obj/item/cartridge/rd/initialize()
+/obj/item/cartridge/rd/initialise()
 	. = ..()
 	radio = new /obj/item/radio/integrated/signal(src)
 

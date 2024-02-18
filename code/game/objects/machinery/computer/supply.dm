@@ -14,7 +14,7 @@
 	var/can_order_contraband = 0
 	var/decl/hierarchy/supply_pack/current_category
 
-/obj/machinery/computer/supplycomp/initialize()
+/obj/machinery/computer/supplycomp/initialise()
 	. = ..()
 	current_category = GET_DECL_INSTANCE(/decl/hierarchy/supply_pack)
 
@@ -33,7 +33,7 @@
 	var/reqtime = 0 //Cooldown for requisitions - Quarxink
 	var/decl/hierarchy/supply_pack/current_category
 
-/obj/machinery/computer/ordercomp/initialize()
+/obj/machinery/computer/ordercomp/initialise()
 	. = ..()
 	current_category = GET_DECL_INSTANCE(/decl/hierarchy/supply_pack)
 

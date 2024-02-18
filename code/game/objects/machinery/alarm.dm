@@ -115,7 +115,7 @@
 
 	first_run()
 
-/obj/machinery/alarm/initialize()
+/obj/machinery/alarm/initialise()
 	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_TO_AIRALARM)
 	if(!master_is_operating())
@@ -1192,7 +1192,7 @@ FIRE ALARM
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 
-/obj/machinery/firealarm/initialize()
+/obj/machinery/firealarm/initialise()
 	. = ..()
 	if(isContactLevel(z))
 		if(isnotnull(GLOBL.security_level))

@@ -56,8 +56,8 @@
 	var/building_terminal = 0 //Suggestions about how to avoid clickspam building several terminals accepted!
 	var/obj/machinery/power/terminal/terminal = null
 
-/obj/machinery/power/smes/initialize()
-	..()
+/obj/machinery/power/smes/initialise()
+	. = ..()
 	if(!powernet)
 		connect_to_network()
 

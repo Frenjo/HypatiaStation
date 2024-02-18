@@ -24,7 +24,7 @@
 		beaker.loc = get_step(loc, SOUTH) //Beaker is carefully ejected from the wreckage of the cryotube
 	return ..()
 
-/obj/machinery/atmospherics/unary/cryo_cell/initialize()
+/obj/machinery/atmospherics/unary/cryo_cell/initialise()
 	. = ..()
 	if(node)
 		return

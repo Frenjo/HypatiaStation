@@ -23,7 +23,7 @@
 	. = ..()
 	GLOBL.processing_turfs.Add(src)
 
-/turf/initialize()
+/turf/initialise()
 	. = ..()
 	for(var/atom/movable/AM as mob|obj in src)
 		spawn(0)

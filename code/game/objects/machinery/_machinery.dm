@@ -105,7 +105,7 @@
 
 	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
 
-/obj/machinery/initialize()
+/obj/machinery/initialise()
 	. = ..()
 	if(!GLOBL.machinery_sort_required && isnotnull(global.CTticker))
 		dd_insertObjectList(GLOBL.machines, src)

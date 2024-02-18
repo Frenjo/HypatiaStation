@@ -40,15 +40,15 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 
 /atom/New()
 	. = ..()
-	// If the game is already underway, initialize will no longer be called for us.
+	// If the game is already underway, initialise will no longer be called for us.
 	if(global.CTmaster?.initialised)
 		queue_for_initialisation(src)
 
-/atom/proc/initialize()
+/atom/proc/initialise()
 	SHOULD_CALL_PARENT(TRUE)
 
 	if(GC_DESTROYED(src))
-		CRASH("GC: -- [type] had initialize() called after qdel() --")
+		CRASH("GC: -- [type] had initialise() called after qdel() --")
 
 /atom/Del()
 	if(!GC_DESTROYED(src) && isnotnull(loc))

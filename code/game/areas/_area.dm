@@ -88,7 +88,7 @@
 
 	. = ..()
 
-/area/initialize()
+/area/initialise()
 	. = ..()
 	if(!requires_power || isnull(apc))
 		power_light = FALSE		//rastaf0

@@ -11,7 +11,7 @@
 	trash = /obj/item/corncob
 
 //So potency can be set in the proc that creates these crops
-/obj/item/reagent_containers/food/snacks/grown/corn/initialize()
+/obj/item/reagent_containers/food/snacks/grown/corn/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -27,7 +27,7 @@
 	icon_state = "wheat"
 	filling_color = "#F7E186"
 
-/obj/item/reagent_containers/food/snacks/grown/wheat/initialize()
+/obj/item/reagent_containers/food/snacks/grown/wheat/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 25), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -42,8 +42,8 @@
 	gender = PLURAL
 	icon_state = "rice"
 	filling_color = "#FFF8DB"
-	
-/obj/item/reagent_containers/food/snacks/grown/ricestalk/initialize()
+
+/obj/item/reagent_containers/food/snacks/grown/ricestalk/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 25), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)

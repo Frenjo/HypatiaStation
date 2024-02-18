@@ -59,7 +59,7 @@
 	. = ..()
 	GLOBL.airlocks_list.Add(src)
 
-/obj/machinery/door/airlock/initialize()
+/obj/machinery/door/airlock/initialise()
 	. = ..()
 	if(isnotnull(closeOtherId))
 		for(var/obj/machinery/door/airlock/A in GLOBL.airlocks_list)

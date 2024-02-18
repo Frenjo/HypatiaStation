@@ -136,7 +136,7 @@
 	var/list/animal_spawners = list()
 
 
-/obj/machinery/jungle_controller/initialize()
+/obj/machinery/jungle_controller/initialise()
 	. = ..()
 	to_world(SPAN_DANGER("Setting up jungle, this may take a bleeding eternity..."))
 

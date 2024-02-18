@@ -43,7 +43,7 @@
 	operating_temperature /= max(1, tot_rating)
 	power_usage[USE_POWER_IDLE] /= max(1, tot_rating)
 
-/obj/machinery/r_n_d/server/initialize()
+/obj/machinery/r_n_d/server/initialise()
 	. = ..()
 	if(!files)
 		files = new /datum/research(src)
@@ -168,7 +168,7 @@
 	name = "CentCom Central R&D Database"
 	server_id = -1
 
-/obj/machinery/r_n_d/server/centcom/initialize()
+/obj/machinery/r_n_d/server/centcom/initialise()
 	. = ..()
 	var/list/no_id_servers = list()
 	var/list/server_ids = list()

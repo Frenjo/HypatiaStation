@@ -130,7 +130,7 @@ steam.start() -- spawns the effect
 	if(isturf(T))
 		T.hotspot_expose(1000,100)
 
-/obj/effect/sparks/initialize()
+/obj/effect/sparks/initialise()
 	. = ..()
 	spawn(100)
 		qdel(src)
@@ -204,7 +204,7 @@ steam.start() -- spawns the effect
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/smoke/initialize()
+/obj/effect/smoke/initialise()
 	. = ..()
 	spawn(time_to_live)
 		qdel(src)

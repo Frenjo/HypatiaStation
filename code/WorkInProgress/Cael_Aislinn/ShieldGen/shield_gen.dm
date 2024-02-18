@@ -37,7 +37,7 @@
 	field = list()
 	..()
 
-/obj/machinery/shield_gen/initialize()
+/obj/machinery/shield_gen/initialise()
 	. = ..()
 	for(var/obj/machinery/shield_capacitor/possible_cap in range(1, src))
 		if(get_dir(possible_cap, src) == possible_cap.dir)

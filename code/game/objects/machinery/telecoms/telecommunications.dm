@@ -48,7 +48,7 @@
 		var/turf/position = get_turf(src)
 		listening_level = position.z
 
-/obj/machinery/telecoms/initialize()
+/obj/machinery/telecoms/initialise()
 	. = ..()
 	if(length(autolinkers))
 		// Links nearby machines

@@ -26,7 +26,7 @@
 
 	return 1
 
-/obj/machinery/door/window/initialize()
+/obj/machinery/door/window/initialise()
 	. = ..()
 	if(length(req_access))
 		icon_state = "[icon_state]"

@@ -433,7 +433,7 @@ update_flag
 	air_contents.gas[/decl/xgm_gas/sleeping_agent] = 9 * 4000
 	update_icon()
 
-/obj/machinery/portable_atmospherics/canister/sleep_agent/roomfiller/initialize()
+/obj/machinery/portable_atmospherics/canister/sleep_agent/roomfiller/initialise()
 	. = ..()
 	var/turf/simulated/location = loc
 	if(istype(loc))

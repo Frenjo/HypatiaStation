@@ -8,7 +8,7 @@
 	icon_state = "chilipepper"
 	filling_color = "#FF0000"
 
-/obj/item/reagent_containers/food/snacks/grown/chili/initialize()
+/obj/item/reagent_containers/food/snacks/grown/chili/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 25), 1))
 	reagents.add_reagent("capsaicin", 3 + round(potency / 5, 1))
@@ -30,7 +30,7 @@
 	potency = 20
 	filling_color = "#66CEED"
 
-/obj/item/reagent_containers/food/snacks/grown/icepepper/initialize()
+/obj/item/reagent_containers/food/snacks/grown/icepepper/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
 	reagents.add_reagent("frostoil", 3 + round(potency / 5, 1))
@@ -51,7 +51,7 @@
 	icon_state = "grapes"
 	filling_color = "#A332AD"
 
-/obj/item/reagent_containers/food/snacks/grown/grapes/initialize()
+/obj/item/reagent_containers/food/snacks/grown/grapes/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	reagents.add_reagent("sugar", 1 + round((potency / 5), 1))
@@ -68,7 +68,7 @@
 	potency = 25
 	filling_color = "#A6FFA3"
 
-/obj/item/reagent_containers/food/snacks/grown/greengrapes/initialize()
+/obj/item/reagent_containers/food/snacks/grown/greengrapes/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	reagents.add_reagent("kelotane", 3 + round((potency / 5), 1))
@@ -84,7 +84,7 @@
 	icon_state = "berrypile"
 	filling_color = "#C2C9FF"
 
-/obj/item/reagent_containers/food/snacks/grown/berries/initialize()
+/obj/item/reagent_containers/food/snacks/grown/berries/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -101,7 +101,7 @@
 	filling_color = "#D3FF9E"
 	icon_state = "glowberrypile"
 
-/obj/item/reagent_containers/food/snacks/grown/glowberries/initialize()
+/obj/item/reagent_containers/food/snacks/grown/glowberries/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", round((potency / 10), 1))
 	reagents.add_reagent("uranium", 3 + round(potency / 5, 1))
@@ -132,7 +132,7 @@
 	potency = 15
 	filling_color = "#B422C7"
 
-/obj/item/reagent_containers/food/snacks/grown/poisonberries/initialize()
+/obj/item/reagent_containers/food/snacks/grown/poisonberries/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1)
 	reagents.add_reagent("toxin", 3 + round(potency / 5, 1))
@@ -150,7 +150,7 @@
 	potency = 50
 	filling_color = "#4E0957"
 
-/obj/item/reagent_containers/food/snacks/grown/deathberries/initialize()
+/obj/item/reagent_containers/food/snacks/grown/deathberries/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1)
 	reagents.add_reagent("toxin", 3 + round(potency / 3, 1))
@@ -175,7 +175,7 @@
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
 
-/obj/item/reagent_containers/food/snacks/grown/banana/initialize()
+/obj/item/reagent_containers/food/snacks/grown/banana/initialise()
 	. = ..()
 	reagents.add_reagent("banana", 1 + round((potency / 10), 1))
 	bitesize = 5
@@ -190,7 +190,7 @@
 	icon_state = "eggplant"
 	filling_color = "#550F5C"
 
-/obj/item/reagent_containers/food/snacks/grown/eggplant/initialize()
+/obj/item/reagent_containers/food/snacks/grown/eggplant/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -206,7 +206,7 @@
 	potency = 15
 	filling_color = "#DFE88B"
 
-/obj/item/reagent_containers/food/snacks/grown/apple/initialize()
+/obj/item/reagent_containers/food/snacks/grown/apple/initialise()
 	. = ..()
 	reagents.maximum_volume = 20
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
@@ -223,7 +223,7 @@
 	potency = 15
 	filling_color = "#B3BD5E"
 
-/obj/item/reagent_containers/food/snacks/grown/apple/poisoned/initialize()
+/obj/item/reagent_containers/food/snacks/grown/apple/poisoned/initialise()
 	. = ..()
 	reagents.maximum_volume = 20
 	reagents.add_reagent("cyanide", 1 + round((potency / 5), 1))
@@ -240,7 +240,7 @@
 	potency = 15
 	filling_color = "#F5CB42"
 
-/obj/item/reagent_containers/food/snacks/grown/goldapple/initialize()
+/obj/item/reagent_containers/food/snacks/grown/goldapple/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	reagents.add_reagent("gold", 1 + round((potency / 5), 1))
@@ -259,7 +259,7 @@
 	slice_path = /obj/item/reagent_containers/food/snacks/watermelonslice
 	slices_num = 5
 
-/obj/item/reagent_containers/food/snacks/grown/watermelon/initialize()
+/obj/item/reagent_containers/food/snacks/grown/watermelon/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 6), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -275,7 +275,7 @@
 	potency = 10
 	filling_color = "#FAB728"
 
-/obj/item/reagent_containers/food/snacks/grown/pumpkin/initialize()
+/obj/item/reagent_containers/food/snacks/grown/pumpkin/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 6), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -301,7 +301,7 @@
 	potency = 20
 	filling_color = "#28FA59"
 
-/obj/item/reagent_containers/food/snacks/grown/lime/initialize()
+/obj/item/reagent_containers/food/snacks/grown/lime/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -317,7 +317,7 @@
 	potency = 20
 	filling_color = "#FAF328"
 
-/obj/item/reagent_containers/food/snacks/grown/lemon/initialize()
+/obj/item/reagent_containers/food/snacks/grown/lemon/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -333,7 +333,7 @@
 	potency = 20
 	filling_color = "#FAAD28"
 
-/obj/item/reagent_containers/food/snacks/grown/orange/initialize()
+/obj/item/reagent_containers/food/snacks/grown/orange/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -349,7 +349,7 @@
 	potency = 50
 	filling_color = "#9C8E54"
 
-/obj/item/reagent_containers/food/snacks/grown/cocoapod/initialize()
+/obj/item/reagent_containers/food/snacks/grown/cocoapod/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	reagents.add_reagent("coco", 4 + round((potency / 5), 1))
@@ -366,7 +366,7 @@
 	filling_color = "#FF0000"
 	gender = PLURAL
 
-/obj/item/reagent_containers/food/snacks/grown/cherries/initialize()
+/obj/item/reagent_containers/food/snacks/grown/cherries/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 15), 1))
 	reagents.add_reagent("sugar", 1 + round((potency / 15), 1))

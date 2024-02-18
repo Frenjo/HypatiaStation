@@ -31,7 +31,7 @@
 
 // create a new disposal
 // find the attached trunk (if present) and init gas resvr.
-/obj/machinery/disposal/initialize()
+/obj/machinery/disposal/initialise()
 	. = ..()
 	trunk = locate() in src.loc
 	if(!trunk)
@@ -1346,8 +1346,8 @@
 	var/turf/target	// this will be where the output objects are 'thrown' to.
 	var/mode = 0
 
-/obj/structure/disposaloutlet/initialize()
-	..()
+/obj/structure/disposaloutlet/initialise()
+	. = ..()
 	target = get_ranged_target_turf(src, dir, 10)
 
 	var/obj/structure/disposalpipe/trunk/trunk = locate() in src.loc

@@ -15,7 +15,7 @@
 	var/frequency = 0
 	var/id
 
-/obj/machinery/meter/initialize()
+/obj/machinery/meter/initialise()
 	. = ..()
 	if(isnull(target))
 		target = locate(/obj/machinery/atmospherics/pipe) in loc
@@ -116,7 +116,7 @@
 
 
 // TURF METER - REPORTS A TILE'S AIR CONTENTS
-/obj/machinery/meter/turf/initialize()
+/obj/machinery/meter/turf/initialise()
 	. = ..()
 	if(isnull(target))
 		target = loc

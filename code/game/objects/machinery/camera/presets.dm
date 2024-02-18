@@ -38,7 +38,7 @@
 	..()
 
 //This camera type automatically sets it's name to whatever the area that it's in is called.
-/obj/machinery/camera/autoname/initialize()
+/obj/machinery/camera/autoname/initialise()
 	. = ..()
 
 	number = 1

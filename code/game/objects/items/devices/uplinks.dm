@@ -306,7 +306,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/list/purchase_log = list()
 
 // The hidden uplink MUST be inside an obj/item's contents.
-/obj/item/uplink/hidden/initialize()
+/obj/item/uplink/hidden/initialise()
 	. = ..()
 	if(!isitem(src.loc))
 		qdel(src)

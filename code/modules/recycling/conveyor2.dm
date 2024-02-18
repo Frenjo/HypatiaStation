@@ -184,7 +184,7 @@
 	..()
 	update()
 
-/obj/machinery/conveyor_switch/initialize()		// allow map load
+/obj/machinery/conveyor_switch/initialise()		// allow map load
 	. = ..()
 	conveyors = list()
 	for(var/obj/machinery/conveyor/C in GLOBL.conveyors_list)

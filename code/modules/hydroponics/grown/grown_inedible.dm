@@ -35,7 +35,7 @@
 	icon_state = "plastellium"
 	filling_color = "#C4C4C4"
 
-/obj/item/reagent_containers/food/snacks/grown/plastellium/initialize()
+/obj/item/reagent_containers/food/snacks/grown/plastellium/initialise()
 	. = ..()
 	reagents.add_reagent("plasticide", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -85,7 +85,7 @@
 	icon_state = "kudzupod"
 	filling_color = "#59691B"
 
-/obj/item/reagent_containers/food/snacks/grown/kudzupod/initialize()
+/obj/item/reagent_containers/food/snacks/grown/kudzupod/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
 	reagents.add_reagent("anti_toxin", 1 + round((potency / 25), 1))
@@ -110,7 +110,7 @@
 	seed = /obj/item/seeds/nettleseed
 
 //So potency can be set in the proc that creates these crops
-/obj/item/grown/nettle/initialize()
+/obj/item/grown/nettle/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
 	reagents.add_reagent("sacid", round(potency, 1))
@@ -161,7 +161,7 @@
 	attack_verb = list("stung")
 
 //So potency can be set in the proc that creates these crops
-/obj/item/grown/deathnettle/initialize()
+/obj/item/grown/deathnettle/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
 	reagents.add_reagent("pacid", round(potency, 1))
@@ -230,7 +230,7 @@
 	potency = 50
 	filling_color = "#C0C9AD"
 
-/obj/item/reagent_containers/food/snacks/grown/sugarcane/initialize()
+/obj/item/reagent_containers/food/snacks/grown/sugarcane/initialise()
 	. = ..()
 	reagents.add_reagent("sugar", 4 + round((potency / 5), 1))
 
@@ -270,7 +270,7 @@
 			new /obj/item/spacecash/c1000(src.loc)
 
 //Workaround to keep harvesting from working weirdly.
-/obj/item/reagent_containers/food/snacks/grown/money/initialize()
+/obj/item/reagent_containers/food/snacks/grown/money/initialise()
 	. = ..()
 	qdel(src)
 
@@ -290,7 +290,7 @@
 	new/obj/item/stack/tile/grass(src.loc)
 
 //Workaround to keep harvesting from working weirdly.
-/obj/item/reagent_containers/food/snacks/grown/grass/initialize()
+/obj/item/reagent_containers/food/snacks/grown/grass/initialise()
 	..()
 	qdel(src)
 */

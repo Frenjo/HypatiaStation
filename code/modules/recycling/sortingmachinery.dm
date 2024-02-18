@@ -218,7 +218,7 @@
 
 	var/c_mode = 0
 
-/obj/machinery/disposal/delivery_chute/initialize()
+/obj/machinery/disposal/delivery_chute/initialise()
 	. = ..()
 	trunk = locate() in src.loc
 	if(trunk)

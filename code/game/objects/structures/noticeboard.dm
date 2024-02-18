@@ -7,7 +7,7 @@
 	anchored = TRUE
 	var/notices = 0
 
-/obj/structure/noticeboard/initialize()
+/obj/structure/noticeboard/initialise()
 	. = ..()
 	for(var/obj/item/I in loc)
 		if(notices > 4) break

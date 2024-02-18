@@ -38,7 +38,7 @@
 	..()
 	to_chat(usr, "There are [length(crystals)] bluespace crystals in the crystal ports.")
 
-/obj/machinery/computer/telescience/initialize()
+/obj/machinery/computer/telescience/initialise()
 	. = ..()
 	link_telepad()
 	for(var/i = 1; i <= starting_crystals; i++)

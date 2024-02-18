@@ -71,7 +71,7 @@
 		if(prob(L.broken_chance))
 			broken(1)
 
-/obj/machinery/light/initialize()
+/obj/machinery/light/initialise()
 	. = ..()
 	on = powered()
 	update(0)

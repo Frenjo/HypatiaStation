@@ -56,7 +56,7 @@
 	. = ..()
 	icon_state = "farmbot[on]"
 
-/obj/machinery/bot/farmbot/initialize()
+/obj/machinery/bot/farmbot/initialise()
 	. = ..()
 
 	botcard = new /obj/item/card/id(src)
@@ -515,7 +515,7 @@
 /obj/item/farmbot_arm_assembly/New()
 	. = ..()
 
-/obj/item/farmbot_arm_assembly/initialize()
+/obj/item/farmbot_arm_assembly/initialise()
 	. = ..()
 	// If an admin spawned it, it won't have a watertank in it, so lets make one for em!
 	var/tank = locate(/obj/structure/reagent_dispensers/watertank) in contents

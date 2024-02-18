@@ -17,7 +17,7 @@
 	var/obj/machinery/mineral/processing_unit/machine = null
 	var/machinedir = EAST
 
-/obj/machinery/mineral/processing_unit_console/initialize()
+/obj/machinery/mineral/processing_unit_console/initialise()
 	. = ..()
 	machine = locate(/obj/machinery/mineral/processing_unit, get_step(src, machinedir))
 	if(isnotnull(machine))
@@ -214,7 +214,7 @@
 */
 	var/on = FALSE // This should be fairly self-explanatory.
 
-/obj/machinery/mineral/processing_unit/initialize()
+/obj/machinery/mineral/processing_unit/initialise()
 	. = ..()
 	for(var/dir in GLOBL.cardinal)
 		input = locate(/obj/machinery/mineral/input, get_step(src, dir))

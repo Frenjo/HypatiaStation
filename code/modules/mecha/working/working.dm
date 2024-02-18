@@ -3,7 +3,7 @@
 	var/list/cargo = new
 	var/cargo_capacity = 5
 
-/obj/mecha/working/initialize()
+/obj/mecha/working/initialise()
 	. = ..()
 	var/turf/T = get_turf(src)
 	if(T.z != 2)

@@ -30,7 +30,7 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 	. = ..()
 	update_and_spread_mineral()
 
-/turf/simulated/mineral/initialize()
+/turf/simulated/mineral/initialise()
 	. = ..()
 	// I've tidied this up but I still hate it.
 	var/turf/T = get_step(src, NORTH)

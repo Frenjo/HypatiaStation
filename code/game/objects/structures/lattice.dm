@@ -7,7 +7,7 @@
 	layer = 2.3 //under pipes
 	//	flags = CONDUCT
 
-/obj/structure/lattice/initialize()
+/obj/structure/lattice/initialise()
 	. = ..()
 ///// Z-Level Stuff
 	if(!(isspace(src.loc) || isopenspace(src.loc)))

@@ -26,7 +26,7 @@
 	for(var/type in starts_with)
 		new type(src)
 
-/obj/structure/closet/initialize()
+/obj/structure/closet/initialise()
 	. = ..()
 	// If closed, any item at the crate's loc is put in the contents.
 	if(!opened)

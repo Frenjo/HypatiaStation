@@ -32,7 +32,7 @@
 	var/obj/machinery/power/tracker/connected_tracker = null
 	var/list/connected_panels = list()
 
-/obj/machinery/power/solar_control/initialize()
+/obj/machinery/power/solar_control/initialise()
 	. = ..()
 	if(isnull(powernet))
 		return

@@ -11,7 +11,7 @@
 	density = FALSE
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 
-/obj/machinery/sleep_console/initialize()
+/obj/machinery/sleep_console/initialise()
 	. = ..()
 	if(orient == "RIGHT")
 		icon_state = "sleeperconsole-r"
@@ -159,7 +159,7 @@
 	..()
 	beaker = new /obj/item/reagent_containers/glass/beaker/large(src)
 
-/obj/machinery/sleeper/initialize()
+/obj/machinery/sleeper/initialise()
 	. = ..()
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"

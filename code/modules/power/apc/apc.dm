@@ -88,7 +88,7 @@
 		stat |= MAINT
 		src.update_icon()
 
-/obj/machinery/power/apc/initialize()
+/obj/machinery/power/apc/initialise()
 	. = ..()
 	src.update()
 

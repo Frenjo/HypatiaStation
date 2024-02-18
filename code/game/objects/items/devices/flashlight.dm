@@ -13,7 +13,7 @@
 	var/on = 0
 	var/brightness_on = 4 //luminosity when on
 
-/obj/item/flashlight/initialize()
+/obj/item/flashlight/initialise()
 	. = ..()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
@@ -209,7 +209,7 @@
 /obj/item/flashlight/slime/New()
 	set_light(brightness_on)
 
-/obj/item/flashlight/slime/initialize()
+/obj/item/flashlight/slime/initialise()
 	SHOULD_CALL_PARENT(FALSE) // TODO: Refactor this.
 
 	spawn(1) //Might be sloppy, but seems to be necessary to prevent further runtimes and make these work as intended... don't judge me!

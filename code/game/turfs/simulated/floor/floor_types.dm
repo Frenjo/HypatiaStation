@@ -23,7 +23,7 @@
 	icon_state = "light_on"
 	floor_type = /obj/item/stack/tile/light
 
-/turf/simulated/floor/light/initialize()
+/turf/simulated/floor/light/initialise()
 	. = ..()
 	if(isnotnull(src))
 		update_icon()
@@ -261,7 +261,7 @@
 		icon_state = "carpet"
 	. = ..()
 
-/turf/simulated/floor/carpet/initialize()
+/turf/simulated/floor/carpet/initialise()
 	. = ..()
 	if(isnotnull(src))
 		update_icon()

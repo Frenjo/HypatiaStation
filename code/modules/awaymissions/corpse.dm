@@ -25,7 +25,7 @@
 	var/corpseidicon = null //For setting it to be a gold, silver, centcom etc ID
 	var/mutantrace = "human"
 
-/obj/effect/landmark/corpse/initialize()
+/obj/effect/landmark/corpse/initialise()
 	. = ..()
 	createCorpse()
 

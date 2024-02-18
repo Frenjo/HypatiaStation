@@ -17,7 +17,7 @@
 	var/datum/radio_frequency/radio_connection
 	var/deadman = 0
 
-/obj/item/assembly/signaler/initialize()
+/obj/item/assembly/signaler/initialise()
 	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_CHAT)
 

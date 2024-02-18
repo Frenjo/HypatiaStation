@@ -6,7 +6,7 @@
 	..()
 	charge = maxcharge
 
-/obj/item/cell/initialize()
+/obj/item/cell/initialise()
 	. = ..()
 	updateicon()
 

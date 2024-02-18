@@ -59,7 +59,7 @@
 	var/created_name = "Medibot" //To preserve the name if it's a unique medbot I guess
 	var/skin = null //Same as medbot, set to tox or ointment for the respective kits.
 
-/obj/item/firstaid_arm_assembly/initialize()
+/obj/item/firstaid_arm_assembly/initialise()
 	. = ..()
 	if(isnotnull(skin))
 		overlays.Add(image('icons/obj/aibots.dmi', "kit_skin_[skin]"))
@@ -68,7 +68,7 @@
 	. = ..()
 	icon_state = "medibot[on]"
 
-/obj/machinery/bot/medbot/initialize()
+/obj/machinery/bot/medbot/initialise()
 	. = ..()
 
 	if(isnotnull(skin))

@@ -71,7 +71,7 @@
 		lasercolor = created_lasercolor
 	icon_state = "[lasercolor]ed209[on]"
 
-/obj/machinery/bot/ed209/initialize()
+/obj/machinery/bot/ed209/initialise()
 	. = ..()
 
 	botcard = new /obj/item/card/id(src)

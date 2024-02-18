@@ -100,7 +100,7 @@
 	GLOBL.landmarks_list += src
 	return
 
-/obj/effect/landmark/initialize()
+/obj/effect/landmark/initialise()
 	. = ..()
 	if(delete_me)
 		qdel(src)

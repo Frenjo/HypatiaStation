@@ -27,7 +27,7 @@
 	hide(T.intact)
 
 // must wait for map loading to finish
-/obj/machinery/navbeacon/initialize()
+/obj/machinery/navbeacon/initialise()
 	. = ..()
 	register_radio(src, null, freq, RADIO_NAVBEACONS)
 

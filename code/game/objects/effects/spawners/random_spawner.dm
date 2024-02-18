@@ -11,7 +11,7 @@
 	if(!prob(spawn_nothing_percentage))
 		spawn_item()
 
-/obj/effect/random_spawner/initialize()
+/obj/effect/random_spawner/initialise()
 	. = ..()
 	qdel(src)
 

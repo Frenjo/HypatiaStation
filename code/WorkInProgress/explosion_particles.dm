@@ -6,7 +6,7 @@
 	anchored = TRUE
 	mouse_opacity = FALSE
 
-/obj/effect/expl_particles/initialize()
+/obj/effect/expl_particles/initialise()
 	. = ..()
 	spawn(15)
 		qdel(src)
@@ -38,7 +38,7 @@
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/explosion/initialize()
+/obj/effect/explosion/initialise()
 	. = ..()
 	spawn(10)
 		qdel(src)

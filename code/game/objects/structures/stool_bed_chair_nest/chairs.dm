@@ -12,7 +12,7 @@
 		src.verbs -= /atom/movable/verb/pull
 	..()
 
-/obj/structure/stool/bed/chair/initialize()
+/obj/structure/stool/bed/chair/initialise()
 	. = ..()
 	handle_rotation()
 

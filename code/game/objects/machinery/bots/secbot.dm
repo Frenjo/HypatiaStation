@@ -76,7 +76,7 @@
 	. = ..()
 	icon_state = "secbot[on]"
 
-/obj/machinery/bot/secbot/initialize()
+/obj/machinery/bot/secbot/initialise()
 	. = ..()
 
 	botcard = new /obj/item/card/id(src)

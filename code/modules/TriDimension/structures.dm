@@ -225,7 +225,7 @@
 			if(isspace(O))
 				O.ChangeTurf(/turf/simulated/floor/open)
 
-/obj/multiz/stairs/initialize()
+/obj/multiz/stairs/initialise()
 	. = ..()
 	for(var/dir in GLOBL.cardinal)
 		var/turf/T = get_step(src.loc, dir)

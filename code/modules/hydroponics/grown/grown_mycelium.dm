@@ -9,7 +9,7 @@
 	potency = 10
 	filling_color = "#FF4800"
 
-/obj/item/reagent_containers/food/snacks/grown/mushroom/reishi/initialize()
+/obj/item/reagent_containers/food/snacks/grown/mushroom/reishi/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1)
 	reagents.add_reagent("stoxin", 3 + round(potency / 3, 1))
@@ -33,7 +33,7 @@
 	potency = 10
 	filling_color = "#FF0000"
 
-/obj/item/reagent_containers/food/snacks/grown/mushroom/amanita/initialize()
+/obj/item/reagent_containers/food/snacks/grown/mushroom/amanita/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1)
 	reagents.add_reagent("amatoxin", 3 + round(potency / 3, 1))
@@ -57,7 +57,7 @@
 	potency = 35
 	filling_color = "#FFDEDE"
 
-/obj/item/reagent_containers/food/snacks/grown/mushroom/angel/initialize()
+/obj/item/reagent_containers/food/snacks/grown/mushroom/angel/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
 	reagents.add_reagent("amatoxin", 13 + round(potency / 3, 1))
@@ -81,7 +81,7 @@
 	potency = 15
 	filling_color = "#F714BE"
 
-/obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap/initialize()
+/obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
 	reagents.add_reagent("psilocybin", 3 + round(potency / 5, 1))
@@ -103,7 +103,7 @@
 	icon_state = "chanterelle"
 	filling_color = "#FFE991"
 
-/obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle/initialize()
+/obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 25), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -126,7 +126,7 @@
 	potency = 30
 	plant_type = 2
 
-/obj/item/reagent_containers/food/snacks/grown/mushroom/glowshroom/initialize()
+/obj/item/reagent_containers/food/snacks/grown/mushroom/glowshroom/initialise()
 	. = ..()
 	reagents.add_reagent("radium", 1 + round((potency / 20), 1))
 	if(ismob(src.loc))
@@ -171,7 +171,7 @@
 	icon_state = "plumphelmet"
 	filling_color = "#F714BE"
 
-/obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet/initialize()
+/obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 2 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -194,7 +194,7 @@
 	potency = 30
 	plant_type = 2
 
-/obj/item/reagent_containers/food/snacks/grown/mushroom/walkingmushroom/initialize()
+/obj/item/reagent_containers/food/snacks/grown/mushroom/walkingmushroom/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 2 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)

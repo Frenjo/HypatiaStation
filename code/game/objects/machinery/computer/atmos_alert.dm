@@ -14,7 +14,7 @@
 
 	light_color = "#e6ffff"
 
-/obj/machinery/computer/atmos_alert/initialize()
+/obj/machinery/computer/atmos_alert/initialise()
 	. = ..()
 	radio_connection = register_radio(src, null, receive_frequency, RADIO_ATMOSIA)
 

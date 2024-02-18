@@ -15,7 +15,7 @@
 	var/light_range_on = 3
 	var/light_power_on = 1
 
-/obj/machinery/computer/initialize()
+/obj/machinery/computer/initialise()
 	. = ..()
 	power_change()
 

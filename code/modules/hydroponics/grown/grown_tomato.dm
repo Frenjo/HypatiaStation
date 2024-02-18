@@ -12,7 +12,7 @@
 	filling_color = "#FF0000"
 	potency = 10
 
-/obj/item/reagent_containers/food/snacks/grown/tomato/initialize()
+/obj/item/reagent_containers/food/snacks/grown/tomato/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -35,7 +35,7 @@
 	potency = 10
 	filling_color = "#FF0000"
 
-/obj/item/reagent_containers/food/snacks/grown/bloodtomato/initialize()
+/obj/item/reagent_containers/food/snacks/grown/bloodtomato/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	reagents.add_reagent("blood", 1 + round((potency / 5), 1))
@@ -70,7 +70,7 @@
 	potency = 30
 	plant_type = 2
 
-/obj/item/reagent_containers/food/snacks/grown/killertomato/initialize()
+/obj/item/reagent_containers/food/snacks/grown/killertomato/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -97,7 +97,7 @@
 	potency = 10
 	filling_color = "#586CFC"
 
-/obj/item/reagent_containers/food/snacks/grown/bluetomato/initialize()
+/obj/item/reagent_containers/food/snacks/grown/bluetomato/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	reagents.add_reagent("lube", 1 + round((potency / 5), 1))
@@ -142,7 +142,7 @@
 	origin_tech = list(RESEARCH_TECH_BLUESPACE = 3)
 	filling_color = "#91F8FF"
 
-/obj/item/reagent_containers/food/snacks/grown/bluespacetomato/initialize()
+/obj/item/reagent_containers/food/snacks/grown/bluespacetomato/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	reagents.add_reagent("singulo", 1 + round((potency / 5), 1))

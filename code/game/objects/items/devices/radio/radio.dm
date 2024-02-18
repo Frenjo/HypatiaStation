@@ -51,7 +51,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		unregister_radio(src, GLOBL.radio_channels[ch_name])
 	return ..()
 
-/obj/item/radio/initialize()
+/obj/item/radio/initialise()
 	. = ..()
 	if(freerange)
 		if(frequency < 1200 || frequency > 1600)

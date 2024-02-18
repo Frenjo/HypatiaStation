@@ -14,7 +14,7 @@
 
 	outturf = get_step(src, dir)
 
-/obj/machinery/power/turbine/initialize()
+/obj/machinery/power/turbine/initialise()
 	. = ..()
 	compressor = locate() in get_step(src, get_dir(outturf, src))
 	if(!compressor)

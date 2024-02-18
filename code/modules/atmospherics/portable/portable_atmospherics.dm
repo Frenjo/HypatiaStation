@@ -19,7 +19,7 @@
 	air_contents.volume = volume
 	air_contents.temperature = T20C
 
-/obj/machinery/portable_atmospherics/initialize()
+/obj/machinery/portable_atmospherics/initialise()
 	. = ..()
 	var/obj/machinery/atmospherics/unary/portables_connector/port = locate() in loc
 	if(isnotnull(port))

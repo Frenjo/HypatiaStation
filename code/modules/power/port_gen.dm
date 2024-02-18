@@ -114,7 +114,7 @@ display round(lastgen) and plasmatank amount
 	sheet_name = lowertext(get_material_name_by_type(sheet_path))
 	RefreshParts()
 
-/obj/machinery/power/port_gen/pacman/initialize()
+/obj/machinery/power/port_gen/pacman/initialise()
 	. = ..()
 	if(anchored)
 		connect_to_network()

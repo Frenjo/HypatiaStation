@@ -3,7 +3,7 @@
 	icon = 'icons/turf/floor_decals.dmi'
 	layer = TURF_LAYER
 
-/obj/effect/decal/floor/initialize()
+/obj/effect/decal/floor/initialise()
 	. = ..()
 	spawn(10)
 		loc.set_dir(src.dir)

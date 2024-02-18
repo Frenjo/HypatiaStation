@@ -97,7 +97,7 @@
 			radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
 	return
 
-/obj/machinery/door/airlock/initialize()
+/obj/machinery/door/airlock/initialise()
 	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_AIRLOCK)
 
@@ -165,7 +165,7 @@
 
 			update_icon()
 
-/obj/machinery/airlock_sensor/initialize()
+/obj/machinery/airlock_sensor/initialise()
 	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_AIRLOCK)
 
@@ -218,7 +218,7 @@
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
 	flick("access_button_cycle", src)
 
-/obj/machinery/access_button/initialize()
+/obj/machinery/access_button/initialise()
 	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_AIRLOCK)
 

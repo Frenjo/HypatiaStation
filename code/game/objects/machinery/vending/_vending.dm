@@ -57,7 +57,7 @@
 	var/const/WIRE_SHOCK = 3
 	var/const/WIRE_SHOOTINV = 4
 
-/obj/machinery/vending/initialize()
+/obj/machinery/vending/initialise()
 	. = ..()
 	// So not all machines speak at the exact same time.
 	// The first time this machine says something will be at slogantime + this random value,

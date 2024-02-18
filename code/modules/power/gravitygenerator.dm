@@ -10,7 +10,7 @@
 	var/obj/machinery/gravity_generator = null
 
 // Borrows code from cloning computer
-/obj/machinery/computer/gravity_control_computer/initialize()
+/obj/machinery/computer/gravity_control_computer/initialise()
 	. = ..()
 	updatemodules()
 
@@ -122,7 +122,7 @@
 	var/list/localareas = list()
 	var/effectiverange = 25
 
-/obj/machinery/gravity_generator/initialize()
+/obj/machinery/gravity_generator/initialise()
 	. = ..()
 	locatelocalareas()
 

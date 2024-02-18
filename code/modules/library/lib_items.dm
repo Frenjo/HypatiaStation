@@ -17,7 +17,7 @@
 	density = TRUE
 	opacity = TRUE
 
-/obj/structure/bookcase/initialize()
+/obj/structure/bookcase/initialise()
 	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/book))

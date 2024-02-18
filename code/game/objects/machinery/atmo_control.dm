@@ -83,7 +83,7 @@
 		signal.data["sigtype"] = "status"
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
-/obj/machinery/air_sensor/initialize()
+/obj/machinery/air_sensor/initialise()
 	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 
@@ -112,7 +112,7 @@
 	var/list/sensor_information = list()
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/computer/general_air_control/initialize()
+/obj/machinery/computer/general_air_control/initialise()
 	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_ATMOSIA)
 

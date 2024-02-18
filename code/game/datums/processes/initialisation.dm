@@ -11,7 +11,7 @@ PROCESS_DEF(initialisation)
 	for(var/last_object in GLOBL.queued_initialisations)
 		var/atom/A = last_object
 		dequeue_for_initialisation(A)
-		A.initialize()
+		A.initialise()
 		SCHECK
 
 	if(!length(GLOBL.queued_initialisations))

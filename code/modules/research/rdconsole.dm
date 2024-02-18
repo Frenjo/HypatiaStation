@@ -82,10 +82,10 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	files = new /datum/research(src) //Setup the research data holder.
 	if(!id)
 		for(var/obj/machinery/r_n_d/server/centcom/S in GLOBL.machines)
-			S.initialize()
+			S.initialise()
 			break
 
-/obj/machinery/computer/rdconsole/initialize()
+/obj/machinery/computer/rdconsole/initialise()
 	. = ..()
 	SyncRDevices()
 

@@ -22,7 +22,7 @@
 	var/chosen = MATERIAL_METAL	//which material will be used to make coins
 	var/coinsToProduce = 10
 
-/obj/machinery/mineral/mint/initialize()
+/obj/machinery/mineral/mint/initialise()
 	. = ..()
 	for(var/dir in GLOBL.cardinal)
 		input = locate(/obj/machinery/mineral/input, get_step(src, dir))

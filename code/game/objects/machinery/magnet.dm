@@ -36,7 +36,7 @@
 	hide(T.intact)
 	center = T
 
-/obj/machinery/magnetic_module/initialize()
+/obj/machinery/magnetic_module/initialise()
 	. = ..()
 	spawn(10)	// must wait for map loading to finish
 		register_radio(src, null, freq, RADIO_MAGNETS)
@@ -228,7 +228,7 @@
 	if(path) // check for default path
 		filter_path() // renders rpath
 
-/obj/machinery/magnetic_controller/initialize()
+/obj/machinery/magnetic_controller/initialise()
 	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_MAGNETS)
 
