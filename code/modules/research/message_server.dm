@@ -173,7 +173,7 @@ GLOBAL_GLOBL_LIST_NEW(message_servers)
 /var/obj/machinery/blackbox_recorder/blackbox
 
 /obj/machinery/blackbox_recorder
-	icon = 'icons/obj/stationobjs.dmi'
+	icon = 'icons/obj/machines/telecoms.dmi'
 	icon_state = "blackbox"
 	name = "Blackbox Recorder"
 	density = TRUE

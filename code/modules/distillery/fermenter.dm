@@ -2,6 +2,7 @@
 /obj/machinery/fermenter
 	name = "\improper Fermenter"
 	desc = "It is a machine that ferments produce into alcoholic drinks."
+	icon = 'icons/obj/machines/fabricators.dmi'
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE

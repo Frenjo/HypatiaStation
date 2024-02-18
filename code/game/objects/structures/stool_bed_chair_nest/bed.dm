@@ -10,6 +10,7 @@
 /obj/structure/stool/bed
 	name = "bed"
 	desc = "This is used to lie in, sleep in or strap on."
+	icon = 'icons/obj/structures/beds.dmi'
 	icon_state = "bed"
 	var/mob/living/buckled_mob
 
@@ -107,15 +108,14 @@
  */
 /obj/structure/stool/bed/roller
 	name = "roller bed"
-	icon = 'icons/obj/rollerbed.dmi'
-	icon_state = "down"
+	icon_state = "roller_down"
 	anchored = FALSE
 
 /obj/item/roller
 	name = "roller bed"
 	desc = "A collapsed roller bed that can be carried around."
-	icon = 'icons/obj/rollerbed.dmi'
-	icon_state = "folded"
+	icon = 'icons/obj/structures/beds.dmi'
+	icon_state = "roller_folded"
 	w_class = 4.0 // Can't be put in backpacks. Oh well.
 
 /obj/item/roller/attack_self(mob/user)
@@ -136,7 +136,7 @@
 		return
 	M.pixel_y = 6
 	density = TRUE
-	icon_state = "up"
+	icon_state = "roller_up"
 	..()
 	return
 
@@ -149,7 +149,7 @@
 			buckled_mob.update_canmove()
 			buckled_mob = null
 	density = FALSE
-	icon_state = "down"
+	icon_state = "roller_down"
 	..()
 	return
 

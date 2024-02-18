@@ -2,7 +2,7 @@
 
 /obj/machinery/recharger
 	name = "recharger"
-	icon = 'icons/obj/stationobjs.dmi'
+	icon = 'icons/obj/machines/rechargers.dmi'
 	icon_state = "recharger0"
 	anchored = TRUE
 
@@ -122,7 +122,7 @@
 
 /obj/machinery/recharger/wallcharger
 	name = "wall recharger"
-	icon = 'icons/obj/stationobjs.dmi'
+	icon = 'icons/obj/machines/rechargers.dmi'
 	icon_state = "wrecharger0"
 	power_rating = 25000	//25 kW, It's more specialized than the standalone recharger but more powerful
 

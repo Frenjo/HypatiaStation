@@ -66,6 +66,7 @@
 /obj/machinery/autolathe
 	name = "\improper autolathe"
 	desc = "It produces items using metal and glass."
+	icon = 'icons/obj/machines/fabricators.dmi'
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE

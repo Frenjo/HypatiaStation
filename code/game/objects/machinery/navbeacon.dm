@@ -2,10 +2,10 @@
 // Functions as a transponder: looks for incoming signal matching
 
 /obj/machinery/navbeacon
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "navbeacon0-f"
 	name = "navigation beacon"
 	desc = "A radio beacon used for bot navigation."
+	icon = 'icons/obj/machines/beacons.dmi'
+	icon_state = "navbeacon0-f"
 	level = 1		// underfloor
 	layer = 2.5
 	anchored = TRUE

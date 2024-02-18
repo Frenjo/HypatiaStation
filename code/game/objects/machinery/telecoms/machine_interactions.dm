@@ -9,6 +9,7 @@
 #define TELECOMM_Z 3
 
 /obj/machinery/telecoms
+	icon = 'icons/obj/machines/telecoms.dmi'
 	var/temp = "" // output message
 	var/construct_op = 0
 

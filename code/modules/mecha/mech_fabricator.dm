@@ -3,10 +3,10 @@
 /////////////////////////////
 
 /obj/machinery/mecha_part_fabricator
-	icon = 'icons/obj/robotics.dmi'
-	icon_state = "fab-idle"
 	name = "Exosuit Fabricator"
 	desc = "Nothing is being built."
+	icon = 'icons/obj/machines/fabricators.dmi'
+	icon_state = "fab-idle"
 	density = TRUE
 	anchored = TRUE
 

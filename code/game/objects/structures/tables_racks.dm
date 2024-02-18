@@ -522,7 +522,7 @@
 /obj/structure/rack
 	name = "rack"
 	desc = "Different from the Middle Ages version."
-	icon = 'icons/obj/objects.dmi'
+	icon = 'icons/obj/structures/tables.dmi'
 	icon_state = "rack"
 	density = TRUE
 	anchored = TRUE

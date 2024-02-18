@@ -2,6 +2,7 @@
 /obj/machinery/mill
 	name = "\improper Mill"
 	desc = "It is a machine that grinds produce."
+	icon = 'icons/obj/machines/fabricators.dmi'
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE

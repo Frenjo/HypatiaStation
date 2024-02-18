@@ -2,6 +2,7 @@
 /obj/machinery/squeezer
 	name = "\improper Squeezer"
 	desc = "It is a machine that squeezes extracts from produce."
+	icon = 'icons/obj/machines/fabricators.dmi'
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE

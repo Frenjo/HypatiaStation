@@ -1,6 +1,7 @@
 /obj/structure/stool/bed/chair	//YES, chairs are a type of bed, which are a type of stool. This works, believe me.	-Pete
 	name = "chair"
 	desc = "You sit in this. Either by will or force."
+	icon = 'icons/obj/structures/chairs.dmi'
 	icon_state = "chair"
 
 /obj/structure/stool/MouseDrop(atom/over_object)
@@ -74,15 +75,15 @@
 	return
 
 // Chair types
-/obj/structure/stool/bed/chair/wood/normal
-	icon_state = "wooden_chair"
+/obj/structure/stool/bed/chair/wood
 	name = "wooden chair"
 	desc = "Old is never too old to not be in fashion."
 
+/obj/structure/stool/bed/chair/wood/normal
+	icon_state = "wooden_chair"
+
 /obj/structure/stool/bed/chair/wood/wings
 	icon_state = "wooden_chair_wings"
-	name = "wooden chair"
-	desc = "Old is never too old to not be in fashion."
 
 /obj/structure/stool/bed/chair/wood/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/wrench))
@@ -105,14 +106,14 @@
 /obj/structure/stool/bed/chair/comfy/teal
 	icon_state = "comfychair_teal"
 
-/obj/structure/stool/bed/chair/office
-	anchored = FALSE
-
 /obj/structure/stool/bed/chair/comfy/black
 	icon_state = "comfychair_black"
 
 /obj/structure/stool/bed/chair/comfy/lime
 	icon_state = "comfychair_lime"
+
+/obj/structure/stool/bed/chair/office
+	anchored = FALSE
 
 /obj/structure/stool/bed/chair/office/Move()
 	..()

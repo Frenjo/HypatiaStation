@@ -48,7 +48,7 @@
 /obj/structure/holostool
 	name = "stool"
 	desc = "Apply butt."
-	icon = 'icons/obj/objects.dmi'
+	icon = 'icons/obj/structures/chairs.dmi'
 	icon_state = "stool"
 	anchored = TRUE
 	pressure_resistance = 15
@@ -69,7 +69,7 @@
 /obj/structure/rack/holorack
 	name = "rack"
 	desc = "Different from the Middle Ages version."
-	icon = 'icons/obj/objects.dmi'
+	icon = 'icons/obj/structures/tables.dmi'
 	icon_state = "rack"
 
 /obj/structure/rack/holorack/attack_hand(mob/user as mob)

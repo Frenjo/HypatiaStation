@@ -2,6 +2,7 @@
 /obj/machinery/centrifuge
 	name = "\improper Centrifuge"
 	desc = "It is a machine that spins produce."
+	icon = 'icons/obj/machines/fabricators.dmi'
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE

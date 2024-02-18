@@ -1,7 +1,7 @@
 /obj/structure/stool
 	name = "stool"
 	desc = "Apply butt."
-	icon = 'icons/obj/objects.dmi'
+	icon = 'icons/obj/structures/chairs.dmi'
 	icon_state = "stool"
 	anchored = TRUE
 	pressure_resistance = 15
@@ -49,7 +49,7 @@
 /obj/item/stool
 	name = "stool"
 	desc = "Uh-hoh, bar is heating up."
-	icon = 'icons/obj/objects.dmi'
+	icon = 'icons/obj/structures/chairs.dmi'
 	icon_state = "stool"
 	force = 10
 	throwforce = 10

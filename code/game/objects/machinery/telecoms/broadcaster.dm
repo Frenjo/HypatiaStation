@@ -12,7 +12,6 @@
 
 /obj/machinery/telecoms/broadcaster
 	name = "Subspace Broadcaster"
-	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "broadcaster"
 	desc = "A dish-shaped machine used to broadcast processed subspace signals."
 	density = TRUE
@@ -111,7 +110,6 @@
 */
 /obj/machinery/telecoms/allinone
 	name = "Telecommunications Mainframe"
-	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "comm_server"
 	desc = "A compact machine used for portable subspace telecommuniations processing."
 	density = TRUE
