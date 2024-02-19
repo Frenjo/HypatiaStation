@@ -2,7 +2,7 @@
  * Reishi
  */
 /obj/item/reagent_containers/food/snacks/grown/mushroom/reishi
-	seed = /obj/item/seeds/reishimycelium
+	seed = /obj/item/seeds/reishi
 	name = "reishi"
 	desc = "<I>Ganoderma lucidum</I>: A special fungus believed to help relieve stress."
 	icon_state = "reishi"
@@ -26,7 +26,7 @@
  * Fly Amanita
  */
 /obj/item/reagent_containers/food/snacks/grown/mushroom/amanita
-	seed = /obj/item/seeds/amanitamycelium
+	seed = /obj/item/seeds/amanita
 	name = "fly amanita"
 	desc = "<I>Amanita Muscaria</I>: Learn poisonous mushrooms by heart. Only pick mushrooms you know."
 	icon_state = "amanita"
@@ -50,7 +50,7 @@
  * Destroying Angel
  */
 /obj/item/reagent_containers/food/snacks/grown/mushroom/angel
-	seed = /obj/item/seeds/angelmycelium
+	seed = /obj/item/seeds/angel
 	name = "destroying angel"
 	desc = "<I>Amanita Virosa</I>: Deadly poisonous basidiomycete fungus filled with alpha amatoxins."
 	icon_state = "angel"
@@ -74,7 +74,7 @@
  * Liberty Cap
  */
 /obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap
-	seed = /obj/item/seeds/libertymycelium
+	seed = /obj/item/seeds/libertycap
 	name = "liberty-cap"
 	desc = "<I>Psilocybe Semilanceata</I>: Liberate yourself!"
 	icon_state = "libertycap"
@@ -97,7 +97,7 @@
  * Chanterelle
  */
 /obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle
-	seed = /obj/item/seeds/chantermycelium
+	seed = /obj/item/seeds/chanterelle
 	name = "chanterelle cluster"
 	desc = "<I>Cantharellus Cibarius</I>: These jolly yellow little shrooms sure look tasty!"
 	icon_state = "chanterelle"
@@ -165,7 +165,7 @@
  * Plump-Helmet
  */
 /obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet
-	seed = /obj/item/seeds/plumpmycelium
+	seed = /obj/item/seeds/plumphelmet
 	name = "plump-helmet"
 	desc = "<I>Plumus Hellmus</I>: Plump, soft and s-so inviting~"
 	icon_state = "plumphelmet"
@@ -180,7 +180,7 @@
  * Walking Mushroom
  */
 /obj/item/reagent_containers/food/snacks/grown/mushroom/walkingmushroom
-	seed = /obj/item/seeds/walkingmushroommycelium
+	seed = /obj/item/seeds/walkingmushroom
 	name = "walking mushroom"
 	desc = "<I>Plumus Locomotus</I>: The beginning of the great walk."
 	icon_state = "walkingmushroom"

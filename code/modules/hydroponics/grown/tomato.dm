@@ -5,7 +5,7 @@
  * Tomato
  */
 /obj/item/reagent_containers/food/snacks/grown/tomato
-	seed = /obj/item/seeds/tomatoseed
+	seed = /obj/item/seeds/tomato
 	name = "tomato"
 	desc = "I say to-mah-to, you say tom-mae-to."
 	icon_state = "tomato"
@@ -28,7 +28,7 @@
  * Blood Tomato
  */
 /obj/item/reagent_containers/food/snacks/grown/bloodtomato
-	seed = /obj/item/seeds/bloodtomatoseed
+	seed = /obj/item/seeds/tomato/blood
 	name = "blood-tomato"
 	desc = "So bloody...so...very...bloody....AHHHH!!!!"
 	icon_state = "bloodtomato"
@@ -55,7 +55,7 @@
  * Killer Tomato
  */
 /obj/item/reagent_containers/food/snacks/grown/killertomato
-	seed = /obj/item/seeds/killertomatoseed
+	seed = /obj/item/seeds/tomato/killer
 	name = "killer-tomato"
 	desc = "I say to-mah-to, you say tom-mae-to... OH GOD IT'S EATING MY LEGS!!"
 	icon_state = "killertomato"
@@ -90,7 +90,7 @@
  * Blue Tomato
  */
 /obj/item/reagent_containers/food/snacks/grown/bluetomato
-	seed = /obj/item/seeds/bluetomatoseed
+	seed = /obj/item/seeds/tomato/blue
 	name = "blue-tomato"
 	desc = "I say blue-mah-to, you say blue-mae-to."
 	icon_state = "bluetomato"
@@ -134,7 +134,7 @@
  * Bluespace Tomato
  */
 /obj/item/reagent_containers/food/snacks/grown/bluespacetomato
-	seed = /obj/item/seeds/bluespacetomatoseed
+	seed = /obj/item/seeds/tomato/bluespace
 	name = "blue-space tomato"
 	desc = "So lubricated, you might slip through space-time."
 	icon_state = "bluespacetomato"

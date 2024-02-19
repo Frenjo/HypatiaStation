@@ -1,11 +1,10 @@
 /*
  * Poppy
  */
-/obj/item/seeds/poppyseed
+/obj/item/seeds/poppy
 	name = "pack of poppy seeds"
 	desc = "These seeds grow into poppies."
 	icon_state = "seed-poppy"
-	mypath = /obj/item/seeds/poppyseed
 	species = "poppy"
 	plantname = "Poppy Plants"
 	productname = /obj/item/reagent_containers/food/snacks/grown/poppy
@@ -26,7 +25,6 @@
 	name = "pack of harebell seeds"
 	desc = "These seeds grow into pretty little flowers."
 	icon_state = "seed-harebell"
-	mypath = /obj/item/seeds/harebell
 	species = "harebell"
 	plantname = "Harebells"
 	productname = /obj/item/reagent_containers/food/snacks/grown/harebell
@@ -43,11 +41,10 @@
 /*
  * Sunflower
  */
-/obj/item/seeds/sunflowerseed
+/obj/item/seeds/sunflower
 	name = "pack of sunflower seeds"
 	desc = "These seeds grow into sunflowers."
 	icon_state = "seed-sunflower"
-	mypath = /obj/item/seeds/sunflowerseed
 	species = "sunflower"
 	plantname = "Sunflowers"
 	productname = /obj/item/grown/sunflower

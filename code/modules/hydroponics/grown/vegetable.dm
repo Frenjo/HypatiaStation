@@ -2,7 +2,7 @@
  * Cabbage
  */
 /obj/item/reagent_containers/food/snacks/grown/cabbage
-	seed = /obj/item/seeds/cabbageseed
+	seed = /obj/item/seeds/cabbage
 	name = "cabbage"
 	desc = "Ewwwwwwwwww. Cabbage."
 	icon_state = "cabbage"
@@ -18,7 +18,7 @@
  * Potato
  */
 /obj/item/reagent_containers/food/snacks/grown/potato
-	seed = /obj/item/seeds/potatoseed
+	seed = /obj/item/seeds/potato
 	name = "potato"
 	desc = "Boil 'em! Mash 'em! Stick 'em in a stew!"
 	icon_state = "potato"
@@ -48,7 +48,7 @@
  * Soybean
  */
 /obj/item/reagent_containers/food/snacks/grown/soybeans
-	seed = /obj/item/seeds/soyaseed
+	seed = /obj/item/seeds/soya
 	name = "soybeans"
 	desc = "It's pretty bland, but oh the possibilities..."
 	gender = PLURAL
@@ -64,7 +64,7 @@
  * Carrot
  */
 /obj/item/reagent_containers/food/snacks/grown/carrot
-	seed = /obj/item/seeds/carrotseed
+	seed = /obj/item/seeds/carrot
 	name = "carrot"
 	desc = "It's good for the eyes!"
 	icon_state = "carrot"
@@ -81,7 +81,7 @@
  * White Beet
  */
 /obj/item/reagent_containers/food/snacks/grown/whitebeet
-	seed = /obj/item/seeds/whitebeetseed
+	seed = /obj/item/seeds/whitebeet
 	name = "white-beet"
 	desc = "You can't beat white-beet."
 	icon_state = "whitebeet"

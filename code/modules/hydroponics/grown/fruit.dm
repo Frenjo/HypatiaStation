@@ -2,7 +2,7 @@
  * Chili Pepper
  */
 /obj/item/reagent_containers/food/snacks/grown/chili
-	seed = /obj/item/seeds/chiliseed
+	seed = /obj/item/seeds/chili
 	name = "chili"
 	desc = "It's spicy! Wait... IT'S BURNING ME!!"
 	icon_state = "chilipepper"
@@ -23,7 +23,7 @@
  * Ice Pepper
  */
 /obj/item/reagent_containers/food/snacks/grown/icepepper
-	seed = /obj/item/seeds/icepepperseed
+	seed = /obj/item/seeds/icepepper
 	name = "ice-pepper"
 	desc = "It's a mutant strain of chili"
 	icon_state = "icepepper"
@@ -45,7 +45,7 @@
  * Grape
  */
 /obj/item/reagent_containers/food/snacks/grown/grapes
-	seed = /obj/item/seeds/grapeseed
+	seed = /obj/item/seeds/grape
 	name = "bunch of grapes"
 	desc = "Nutritious!"
 	icon_state = "grapes"
@@ -61,7 +61,7 @@
  * Green Grape
  */
 /obj/item/reagent_containers/food/snacks/grown/greengrapes
-	seed = /obj/item/seeds/greengrapeseed
+	seed = /obj/item/seeds/grape/green
 	name = "bunch of green grapes"
 	desc = "Nutritious!"
 	icon_state = "greengrapes"
@@ -78,7 +78,7 @@
  * Berry
  */
 /obj/item/reagent_containers/food/snacks/grown/berries
-	seed = /obj/item/seeds/berryseed
+	seed = /obj/item/seeds/berry
 	name = "bunch of berries"
 	desc = "Nutritious!"
 	icon_state = "berrypile"
@@ -93,7 +93,7 @@
  * Glow Berry
  */
 /obj/item/reagent_containers/food/snacks/grown/glowberries
-	seed = /obj/item/seeds/glowberryseed
+	seed = /obj/item/seeds/berry/glow
 	name = "bunch of glow-berries"
 	desc = "Nutritious!"
 	var/light_on = 1
@@ -124,7 +124,7 @@
  * Poison Berry
  */
 /obj/item/reagent_containers/food/snacks/grown/poisonberries
-	seed = /obj/item/seeds/poisonberryseed
+	seed = /obj/item/seeds/berry/poison
 	name = "bunch of poison-berries"
 	desc = "Taste so good, you could die!"
 	icon_state = "poisonberrypile"
@@ -142,7 +142,7 @@
  * Death Berry
  */
 /obj/item/reagent_containers/food/snacks/grown/deathberries
-	seed = /obj/item/seeds/deathberryseed
+	seed = /obj/item/seeds/berry/death
 	name = "bunch of death-berries"
 	desc = "Taste so good, you could die!"
 	icon_state = "deathberrypile"
@@ -161,7 +161,7 @@
  * Banana
  */
 /obj/item/reagent_containers/food/snacks/grown/banana
-	seed = /obj/item/seeds/bananaseed
+	seed = /obj/item/seeds/banana
 	name = "banana"
 	desc = "It's an excellent prop for a comedy."
 	icon = 'icons/obj/items.dmi'
@@ -184,7 +184,7 @@
  * Eggplant (Aubergine)
  */
 /obj/item/reagent_containers/food/snacks/grown/eggplant
-	seed = /obj/item/seeds/eggplantseed
+	seed = /obj/item/seeds/eggplant
 	name = "eggplant"
 	desc = "Maybe there's a chicken inside?"
 	icon_state = "eggplant"
@@ -199,7 +199,7 @@
  * Apple
  */
 /obj/item/reagent_containers/food/snacks/grown/apple
-	seed = /obj/item/seeds/appleseed
+	seed = /obj/item/seeds/apple
 	name = "apple"
 	desc = "It's a little piece of Eden."
 	icon_state = "apple"
@@ -216,7 +216,7 @@
  * Poisoned Apple
  */
 /obj/item/reagent_containers/food/snacks/grown/apple/poisoned
-	seed = /obj/item/seeds/poisonedappleseed
+	seed = /obj/item/seeds/apple/poisoned
 	name = "apple"
 	desc = "It's a little piece of Eden."
 	icon_state = "apple"
@@ -233,7 +233,7 @@
  * Golden Apple
  */
 /obj/item/reagent_containers/food/snacks/grown/goldapple
-	seed = /obj/item/seeds/goldappleseed
+	seed = /obj/item/seeds/apple/golden
 	name = "golden apple"
 	desc = "Emblazoned upon the apple is the word 'Kallisti'."
 	icon_state = "goldapple"
@@ -250,7 +250,7 @@
  * Watermelon
  */
 /obj/item/reagent_containers/food/snacks/grown/watermelon
-	seed = /obj/item/seeds/watermelonseed
+	seed = /obj/item/seeds/watermelon
 	name = "watermelon"
 	desc = "It's full of watery goodness."
 	icon_state = "watermelon"
@@ -268,7 +268,7 @@
  * Pumpkin
  */
 /obj/item/reagent_containers/food/snacks/grown/pumpkin
-	seed = /obj/item/seeds/pumpkinseed
+	seed = /obj/item/seeds/pumpkin
 	name = "pumpkin"
 	desc = "It's large and scary."
 	icon_state = "pumpkin"
@@ -294,7 +294,7 @@
  * Lime
  */
 /obj/item/reagent_containers/food/snacks/grown/lime
-	seed = /obj/item/seeds/limeseed
+	seed = /obj/item/seeds/lime
 	name = "lime"
 	desc = "It's so sour, your face will twist."
 	icon_state = "lime"
@@ -310,7 +310,7 @@
  * Lemon
  */
 /obj/item/reagent_containers/food/snacks/grown/lemon
-	seed = /obj/item/seeds/lemonseed
+	seed = /obj/item/seeds/lemon
 	name = "lemon"
 	desc = "When life gives you lemons, be grateful they aren't limes."
 	icon_state = "lemon"
@@ -326,7 +326,7 @@
  * Orange
  */
 /obj/item/reagent_containers/food/snacks/grown/orange
-	seed = /obj/item/seeds/orangeseed
+	seed = /obj/item/seeds/orange
 	name = "orange"
 	desc = "It's an tangy fruit."
 	icon_state = "orange"
@@ -342,7 +342,7 @@
  * Cocoa Pod
  */
 /obj/item/reagent_containers/food/snacks/grown/cocoapod
-	seed = /obj/item/seeds/cocoapodseed
+	seed = /obj/item/seeds/cocoapod
 	name = "cocoa pod"
 	desc = "Fattening... Mmmmm... chucklate."
 	icon_state = "cocoapod"
@@ -359,7 +359,7 @@
  * Cherry
  */
 /obj/item/reagent_containers/food/snacks/grown/cherries
-	seed = /obj/item/seeds/cherryseed
+	seed = /obj/item/seeds/cherry
 	name = "cherries"
 	desc = "Great for toppings!"
 	icon_state = "cherry"

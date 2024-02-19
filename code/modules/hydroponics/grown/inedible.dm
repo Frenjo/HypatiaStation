@@ -29,7 +29,7 @@
  * Plastellium
  */
 /obj/item/reagent_containers/food/snacks/grown/plastellium
-	seed = /obj/item/seeds/plastiseed
+	seed = /obj/item/seeds/plastellium
 	name = "clump of plastellium"
 	desc = "Hmm, needs some processing"
 	icon_state = "plastellium"
@@ -55,7 +55,7 @@
 	throw_range = 3
 	plant_type = 2
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
-	seed = /obj/item/seeds/towermycelium
+	seed = /obj/item/seeds/towercap
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
 /obj/item/grown/log/attackby(obj/item/W as obj, mob/user as mob)
@@ -79,7 +79,7 @@
  * Kudzu
  */
 /obj/item/reagent_containers/food/snacks/grown/kudzupod
-	seed = /obj/item/seeds/kudzuseed
+	seed = /obj/item/seeds/kudzu
 	name = "kudzu pod"
 	desc = "<I>Pueraria Virallis</I>: An invasive species with vines that rapidly creep and wrap around whatever they contact."
 	icon_state = "kudzupod"
@@ -107,7 +107,7 @@
 	throw_range = 3
 	plant_type = 1
 	origin_tech = list(RESEARCH_TECH_COMBAT = 1)
-	seed = /obj/item/seeds/nettleseed
+	seed = /obj/item/seeds/nettle
 
 //So potency can be set in the proc that creates these crops
 /obj/item/grown/nettle/initialise()
@@ -244,7 +244,7 @@
  */
 //This object is just a transition object. All it does is make dosh and delete itself. -Cheridan
 /obj/item/reagent_containers/food/snacks/grown/money
-	seed = /obj/item/seeds/cashseed
+	seed = /obj/item/seeds/cash
 	name = "dosh"
 	desc = "Green and lush."
 	icon_state = "spawner"
@@ -280,7 +280,7 @@
 /*
 //This object is just a transition object. All it does is make a grass tile and delete itself.
 /obj/item/reagent_containers/food/snacks/grown/grass
-	seed = /obj/item/seeds/grassseed
+	seed = /obj/item/seeds/grass
 	name = "grass"
 	desc = "Green and lush."
 	icon_state = "spawner"

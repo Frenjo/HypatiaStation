@@ -180,7 +180,7 @@
 
 				//flowers give us pollen (nutrients)
 /* - All plants should be giving nutrients to the hive.
-				if(H.myseed.type == /obj/item/seeds/harebell || H.myseed.type == /obj/item/seeds/sunflowerseed)
+				if(H.myseed.type == /obj/item/seeds/harebell || H.myseed.type == /obj/item/seeds/sunflower)
 					src.nutrilevel++
 					H.nutrilevel++
 */

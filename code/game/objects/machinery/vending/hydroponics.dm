@@ -30,19 +30,19 @@
 	icon_state = "seeds"
 
 	products = list(
-		/obj/item/seeds/bananaseed = 3, /obj/item/seeds/berryseed = 3, /obj/item/seeds/carrotseed = 3, /obj/item/seeds/chantermycelium = 3,
-		/obj/item/seeds/chiliseed = 3, /obj/item/seeds/cornseed = 3, /obj/item/seeds/eggplantseed = 3, /obj/item/seeds/potatoseed = 3,
-		/obj/item/seeds/replicapod = 3, /obj/item/seeds/soyaseed = 3, /obj/item/seeds/sunflowerseed = 3, /obj/item/seeds/tomatoseed = 3,
-		/obj/item/seeds/towermycelium = 3, /obj/item/seeds/wheatseed = 3, /obj/item/seeds/appleseed = 3, /obj/item/seeds/poppyseed = 3,
-		/obj/item/seeds/sugarcaneseed = 3, /obj/item/seeds/ambrosiavulgarisseed = 3, /obj/item/seeds/peanutseed = 3, /obj/item/seeds/whitebeetseed = 3,
-		/obj/item/seeds/watermelonseed = 3, /obj/item/seeds/limeseed = 3, /obj/item/seeds/lemonseed = 3, /obj/item/seeds/orangeseed = 3,
-		/obj/item/seeds/grassseed = 3, /obj/item/seeds/cocoapodseed = 3, /obj/item/seeds/plumpmycelium = 2, /obj/item/seeds/cabbageseed = 3,
-		/obj/item/seeds/grapeseed = 3, /obj/item/seeds/pumpkinseed = 3, /obj/item/seeds/cherryseed = 3, /obj/item/seeds/plastiseed = 3,
-		/obj/item/seeds/riceseed = 3
+		/obj/item/seeds/banana = 3, /obj/item/seeds/berry = 3, /obj/item/seeds/carrot = 3, /obj/item/seeds/chanterelle = 3,
+		/obj/item/seeds/chili = 3, /obj/item/seeds/corn = 3, /obj/item/seeds/eggplant = 3, /obj/item/seeds/potato = 3,
+		/obj/item/seeds/replicapod = 3, /obj/item/seeds/soya = 3, /obj/item/seeds/sunflower = 3, /obj/item/seeds/tomato = 3,
+		/obj/item/seeds/towercap = 3, /obj/item/seeds/wheat = 3, /obj/item/seeds/apple = 3, /obj/item/seeds/poppy = 3,
+		/obj/item/seeds/sugarcaneseed = 3, /obj/item/seeds/ambrosiavulgaris = 3, /obj/item/seeds/peanut = 3, /obj/item/seeds/whitebeet = 3,
+		/obj/item/seeds/watermelon = 3, /obj/item/seeds/lime = 3, /obj/item/seeds/lemon = 3, /obj/item/seeds/orange = 3,
+		/obj/item/seeds/grass = 3, /obj/item/seeds/cocoapod = 3, /obj/item/seeds/plumphelmet = 2, /obj/item/seeds/cabbage = 3,
+		/obj/item/seeds/grape = 3, /obj/item/seeds/pumpkin = 3, /obj/item/seeds/cherry = 3, /obj/item/seeds/plastellium = 3,
+		/obj/item/seeds/rice = 3
 	)
 	contraband = list(
-		/obj/item/seeds/amanitamycelium = 2, /obj/item/seeds/glowshroom = 2, /obj/item/seeds/libertymycelium = 2, /obj/item/seeds/mtearseed = 2,
-		/obj/item/seeds/nettleseed = 2, /obj/item/seeds/reishimycelium = 2, /obj/item/seeds/reishimycelium = 2, /obj/item/seeds/shandseed = 2
+		/obj/item/seeds/amanita = 2, /obj/item/seeds/glowshroom = 2, /obj/item/seeds/libertycap = 2, /obj/item/seeds/mtear = 2,
+		/obj/item/seeds/nettle = 2, /obj/item/seeds/reishi = 2, /obj/item/seeds/reishi = 2, /obj/item/seeds/shand = 2
 	)
 	premium = list(/obj/item/toy/waterflower = 1)
 

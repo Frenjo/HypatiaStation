@@ -1,11 +1,10 @@
 /*
  * Plastellium
  */
-/obj/item/seeds/plastiseed
+/obj/item/seeds/plastellium
 	name = "plastellium mycelium"
 	desc = "This mycelium grows into Plastellium"
 	icon_state = "mycelium-plast"
-	mypath = /obj/item/seeds/plastiseed
 	species = "plastellium"
 	plantname = "Plastellium"
 	productname = /obj/item/reagent_containers/food/snacks/grown/plastellium
@@ -22,11 +21,10 @@
 /*
  * Tower Cap
  */
-/obj/item/seeds/towermycelium
+/obj/item/seeds/towercap
 	name = "pack of tower-cap mycelium"
 	desc = "This mycelium grows into tower-cap mushrooms."
 	icon_state = "mycelium-tower"
-	mypath = /obj/item/seeds/towermycelium
 	species = "towercap"
 	plantname = "Tower Caps"
 	productname = /obj/item/grown/log
@@ -47,7 +45,6 @@
 	name = "pack of brown mold"
 	desc = "Eww.. moldy."
 	icon_state = "seed"
-	mypath = /obj/item/seeds/brownmold
 	species = "mold"
 	plantname = "Brown Mold"
 	productname = null
@@ -64,11 +61,10 @@
 /*
  * "Cash" Money Tree
  */
-/obj/item/seeds/cashseed
+/obj/item/seeds/cash
 	name = "pack of money seeds"
 	desc = "When life gives you lemons, mutate them into cash."
 	icon_state = "seed-cash"
-	mypath = /obj/item/seeds/cashseed
 	species = "cashtree"
 	plantname = "Money Tree"
 	productname = /obj/item/reagent_containers/food/snacks/grown/money
@@ -84,11 +80,10 @@
 /*
  * Grass
  */
-/obj/item/seeds/grassseed
+/obj/item/seeds/grass
 	name = "pack of grass seeds"
 	desc = "These seeds grow into grass. Yummy!"
 	icon_state = "seed-grass"
-	mypath = /obj/item/seeds/grassseed
 	species = "grass"
 	plantname = "Grass"
 	//productname = /obj/item/reagent_containers/food/snacks/grown/grass
@@ -104,11 +99,10 @@
 /*
  * Kudzu
  */
-/obj/item/seeds/kudzuseed
+/obj/item/seeds/kudzu
 	name = "pack of kudzu seeds"
 	desc = "These seeds grow into a weed that grows incredibly fast."
 	icon_state = "seed-kudzu"
-	mypath = /obj/item/seeds/kudzuseed
 	species = "kudzu"
 	plantname = "Kudzu"
 	productname = /obj/item/reagent_containers/food/snacks/grown/kudzupod
@@ -121,7 +115,7 @@
 	growthstages = 4
 	plant_type = 1
 
-/obj/item/seeds/kudzuseed/attack_self(mob/user as mob)
+/obj/item/seeds/kudzu/attack_self(mob/user as mob)
 	if(isspace(user.loc))
 		return
 	to_chat(user, SPAN_NOTICE("You plant the kudzu. You monster."))
@@ -131,11 +125,10 @@
 /*
  * Nettle
  */
-/obj/item/seeds/nettleseed
+/obj/item/seeds/nettle
 	name = "pack of nettle seeds"
 	desc = "These seeds grow into nettles."
 	icon_state = "seed-nettle"
-	mypath = /obj/item/seeds/nettleseed
 	species = "nettle"
 	plantname = "Nettles"
 	productname = /obj/item/grown/nettle
@@ -156,7 +149,6 @@
 	name = "pack of death-nettle seeds"
 	desc = "These seeds grow into death-nettles."
 	icon_state = "seed-deathnettle"
-	mypath = /obj/item/seeds/deathnettleseed
 	species = "deathnettle"
 	plantname = "Death Nettles"
 	productname = /obj/item/grown/deathnettle
@@ -177,7 +169,6 @@
 	name = "pack of weed seeds"
 	desc = "Yo mang, want some weeds?"
 	icon_state = "seed"
-	mypath = /obj/item/seeds/weeds
 	species = "weeds"
 	plantname = "Starthistle"
 	productname = null
@@ -201,7 +192,6 @@
 	name = "pack of sugarcane seeds"
 	desc = "These seeds grow into sugarcane."
 	icon_state = "seed-sugarcane"
-	mypath = /obj/item/seeds/sugarcaneseed
 	species = "sugarcane"
 	plantname = "Sugarcane"
 	productname = /obj/item/reagent_containers/food/snacks/grown/sugarcane

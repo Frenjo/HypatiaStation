@@ -89,22 +89,22 @@
 /decl/hierarchy/supply_pack/hydroponics/seeds
 	name = "Seeds crate"
 	contains = list(
-		/obj/item/seeds/chiliseed,
-		/obj/item/seeds/berryseed,
-		/obj/item/seeds/cornseed,
-		/obj/item/seeds/eggplantseed,
-		/obj/item/seeds/tomatoseed,
-		/obj/item/seeds/appleseed,
-		/obj/item/seeds/soyaseed,
-		/obj/item/seeds/wheatseed,
-		/obj/item/seeds/carrotseed,
+		/obj/item/seeds/chili,
+		/obj/item/seeds/berry,
+		/obj/item/seeds/corn,
+		/obj/item/seeds/eggplant,
+		/obj/item/seeds/tomato,
+		/obj/item/seeds/apple,
+		/obj/item/seeds/soya,
+		/obj/item/seeds/wheat,
+		/obj/item/seeds/carrot,
 		/obj/item/seeds/harebell,
-		/obj/item/seeds/lemonseed,
-		/obj/item/seeds/orangeseed,
-		/obj/item/seeds/grassseed,
-		/obj/item/seeds/sunflowerseed,
-		/obj/item/seeds/chantermycelium,
-		/obj/item/seeds/potatoseed,
+		/obj/item/seeds/lemon,
+		/obj/item/seeds/orange,
+		/obj/item/seeds/grass,
+		/obj/item/seeds/sunflower,
+		/obj/item/seeds/chanterelle,
+		/obj/item/seeds/potato,
 		/obj/item/seeds/sugarcaneseed
 	)
 	cost = 10
@@ -130,20 +130,20 @@
 /decl/hierarchy/supply_pack/hydroponics/exoticseeds
 	name = "Exotic seeds crate"
 	contains = list(
-		/obj/item/seeds/nettleseed,
+		/obj/item/seeds/nettle,
 		/obj/item/seeds/replicapod,
 		/obj/item/seeds/replicapod,
 		/obj/item/seeds/replicapod,
-		/obj/item/seeds/plumpmycelium,
-		/obj/item/seeds/libertymycelium,
-		/obj/item/seeds/amanitamycelium,
-		/obj/item/seeds/reishimycelium,
-		/obj/item/seeds/bananaseed,
-		/obj/item/seeds/riceseed,
-		/obj/item/seeds/eggplantseed,
-		/obj/item/seeds/limeseed,
-		/obj/item/seeds/grapeseed,
-		/obj/item/seeds/eggyseed
+		/obj/item/seeds/plumphelmet,
+		/obj/item/seeds/libertycap,
+		/obj/item/seeds/amanita,
+		/obj/item/seeds/reishi,
+		/obj/item/seeds/banana,
+		/obj/item/seeds/rice,
+		/obj/item/seeds/eggplant,
+		/obj/item/seeds/lime,
+		/obj/item/seeds/grape,
+		/obj/item/seeds/eggy
 	)
 	cost = 15
 	containertype = /obj/structure/closet/crate/hydroponics

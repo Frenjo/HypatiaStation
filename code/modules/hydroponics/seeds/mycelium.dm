@@ -1,11 +1,10 @@
 /*
  * Reishi
  */
-/obj/item/seeds/reishimycelium
+/obj/item/seeds/reishi
 	name = "pack of reishi mycelium"
 	desc = "This mycelium grows into something relaxing."
 	icon_state = "mycelium-reishi"
-	mypath = /obj/item/seeds/reishimycelium
 	species = "reishi"
 	plantname = "Reishi"
 	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/reishi
@@ -22,11 +21,10 @@
 /*
  * Fly Amanita
  */
-/obj/item/seeds/amanitamycelium
+/obj/item/seeds/amanita
 	name = "pack of fly amanita mycelium"
 	desc = "This mycelium grows into something horrible."
 	icon_state = "mycelium-amanita"
-	mypath = /obj/item/seeds/amanitamycelium
 	species = "amanita"
 	plantname = "Fly Amanitas"
 	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/amanita
@@ -43,11 +41,10 @@
 /*
  * Destroying Angel
  */
-/obj/item/seeds/angelmycelium
+/obj/item/seeds/angel
 	name = "pack of destroying angel mycelium"
 	desc = "This mycelium grows into something devestating."
 	icon_state = "mycelium-angel"
-	mypath = /obj/item/seeds/angelmycelium
 	species = "angel"
 	plantname = "Destroying Angels"
 	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/angel
@@ -64,11 +61,10 @@
 /*
  * Liberty Cap
  */
-/obj/item/seeds/libertymycelium
+/obj/item/seeds/libertycap
 	name = "pack of liberty-cap mycelium"
 	desc = "This mycelium grows into liberty-cap mushrooms."
 	icon_state = "mycelium-liberty"
-	mypath = /obj/item/seeds/libertymycelium
 	species = "liberty"
 	plantname = "Liberty-Caps"
 	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap
@@ -85,11 +81,10 @@
 /*
  * Chanterelle
  */
-/obj/item/seeds/chantermycelium
+/obj/item/seeds/chanterelle
 	name = "pack of chanterelle mycelium"
 	desc = "This mycelium grows into chanterelle mushrooms."
 	icon_state = "mycelium-chanter"
-	mypath = /obj/item/seeds/chantermycelium
 	species = "chanter"
 	plantname = "Chanterelle Mushrooms"
 	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle
@@ -110,7 +105,6 @@
 	name = "pack of glowshroom mycelium"
 	desc = "This mycelium -glows- into mushrooms!"
 	icon_state = "mycelium-glowshroom"
-	mypath = /obj/item/seeds/glowshroom
 	species = "glowshroom"
 	plantname = "Glowshrooms"
 	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/glowshroom
@@ -127,11 +121,10 @@
 /*
  * Plump-Helmet
  */
-/obj/item/seeds/plumpmycelium
+/obj/item/seeds/plumphelmet
 	name = "pack of plump-helmet mycelium"
 	desc = "This mycelium grows into helmets... maybe."
 	icon_state = "mycelium-plump"
-	mypath = /obj/item/seeds/plumpmycelium
 	species = "plump"
 	plantname = "Plump-Helmet Mushrooms"
 	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet
@@ -148,11 +141,10 @@
 /*
  * Walking Mushroom
  */
-/obj/item/seeds/walkingmushroommycelium
+/obj/item/seeds/walkingmushroom
 	name = "pack of walking mushroom mycelium"
 	desc = "This mycelium will grow into huge stuff!"
 	icon_state = "mycelium-walkingmushroom"
-	mypath = /obj/item/seeds/walkingmushroommycelium
 	species = "walkingmushroom"
 	plantname = "Walking Mushrooms"
 	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/walkingmushroom

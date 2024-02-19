@@ -1,11 +1,10 @@
 /*
  * S'Rendarr's Hand
  */
-/obj/item/seeds/shandseed
+/obj/item/seeds/shand
 	name = "pack of s'rendarr's hand seeds"
 	desc = "These seeds grow into a helpful herb called S'Rendarr's Hand, native to Ahdomai."
 	icon_state = "seed-shand"
-	mypath = /obj/item/seeds/shandseed
 	species = "shand"
 	plantname = "S'Rendarr's Hand"
 	productname = /obj/item/reagent_containers/food/snacks/grown/shand
@@ -21,11 +20,10 @@
 /*
  * Messa's Tear
  */
-/obj/item/seeds/mtearseed
+/obj/item/seeds/mtear
 	name = "pack of messa's tear seeds"
 	desc = "These seeds grow into a helpful herb called Messa's Tear, native to Ahdomai."
 	icon_state = "seed-mtear"
-	mypath = /obj/item/seeds/mtearseed
 	species = "mtear"
 	plantname = "Messa's Tear"
 	productname = /obj/item/reagent_containers/food/snacks/grown/mtear

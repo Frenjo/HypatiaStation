@@ -49,7 +49,7 @@
 /decl/hierarchy/supply_pack/operations/contraband
 	name = "Contraband crate"
 	contains = list(
-		/obj/item/seeds/bloodtomatoseed,
+		/obj/item/seeds/tomato/blood,
 		/obj/item/storage/pill_bottle/zoom,
 		/obj/item/storage/pill_bottle/happy,
 		/obj/item/reagent_containers/food/drinks/bottle/pwine

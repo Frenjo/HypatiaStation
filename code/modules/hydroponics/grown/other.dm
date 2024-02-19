@@ -2,7 +2,7 @@
  * Ambrosia Vulgaris
  */
 /obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris
-	seed = /obj/item/seeds/ambrosiavulgarisseed
+	seed = /obj/item/seeds/ambrosiavulgaris
 	name = "ambrosia vulgaris branch"
 	desc = "This is a plant containing various healing chemicals."
 	icon_state = "ambrosiavulgaris"
@@ -22,7 +22,7 @@
  * Ambrosia Deus
  */
 /obj/item/reagent_containers/food/snacks/grown/ambrosiadeus
-	seed = /obj/item/seeds/ambrosiadeusseed
+	seed = /obj/item/seeds/ambrosiadeus
 	name = "ambrosia deus branch"
 	desc = "Eating this makes you feel immortal!"
 	icon_state = "ambrosiadeus"
@@ -42,7 +42,7 @@
  * Peanut
  */
 /obj/item/reagent_containers/food/snacks/grown/peanut
-	seed = /obj/item/seeds/peanutseed
+	seed = /obj/item/seeds/peanut
 	name = "peanut"
 	desc = "Nuts!"
 	icon_state = "peanut"

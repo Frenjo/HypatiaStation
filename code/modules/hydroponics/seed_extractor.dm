@@ -49,6 +49,6 @@
 		var/obj/item/stack/tile/grass/S = O
 		to_chat(user, SPAN_NOTICE("You extract some seeds from the [S.name]."))
 		S.use(1)
-		new /obj/item/seeds/grassseed(loc)
+		new /obj/item/seeds/grass(loc)
 
 	return

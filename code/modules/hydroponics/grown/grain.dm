@@ -2,7 +2,7 @@
  * Corn
  */
 /obj/item/reagent_containers/food/snacks/grown/corn
-	seed = /obj/item/seeds/cornseed
+	seed = /obj/item/seeds/corn
 	name = "ear of corn"
 	desc = "Needs some butter!"
 	icon_state = "corn"
@@ -20,7 +20,7 @@
  * Wheat
  */
 /obj/item/reagent_containers/food/snacks/grown/wheat
-	seed = /obj/item/seeds/wheatseed
+	seed = /obj/item/seeds/wheat
 	name = "wheat"
 	desc = "Sigh... wheat... a-grain?"
 	gender = PLURAL
@@ -36,7 +36,7 @@
  * Rice
  */
 /obj/item/reagent_containers/food/snacks/grown/ricestalk
-	seed = /obj/item/seeds/riceseed
+	seed = /obj/item/seeds/rice
 	name = "rice stalk"
 	desc = "Rice to see you."
 	gender = PLURAL

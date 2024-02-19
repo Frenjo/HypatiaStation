@@ -2,7 +2,7 @@
  * Poppy
  */
 /obj/item/reagent_containers/food/snacks/grown/poppy
-	seed = /obj/item/seeds/poppyseed
+	seed = /obj/item/seeds/poppy
 	name = "poppy"
 	desc = "Long-used as a symbol of rest, peace, and death."
 	icon_state = "poppy"
@@ -49,7 +49,7 @@
 	throw_speed = 1
 	throw_range = 3
 	plant_type = 1
-	seed = /obj/item/seeds/sunflowerseed
+	seed = /obj/item/seeds/sunflower
 
 /obj/item/grown/sunflower/attack(mob/M as mob, mob/user as mob)
 	to_chat(M, "<font color='green'><b>[user] smacks you with a sunflower!</font><font color='yellow'><b>FLOWER POWER<b></font>")

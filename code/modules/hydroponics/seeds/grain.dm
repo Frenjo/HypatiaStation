@@ -1,11 +1,10 @@
 /*
  * Corn
  */
-/obj/item/seeds/cornseed
+/obj/item/seeds/corn
 	name = "pack of corn seeds"
 	desc = "I don't mean to sound corny..."
 	icon_state = "seed-corn"
-	mypath = /obj/item/seeds/cornseed
 	species = "corn"
 	plantname = "Corn Stalks"
 	productname = /obj/item/reagent_containers/food/snacks/grown/corn
@@ -22,11 +21,10 @@
 /*
  * Wheat
  */
-/obj/item/seeds/wheatseed
+/obj/item/seeds/wheat
 	name = "pack of wheat seeds"
 	desc = "These may, or may not, grow into weed."
 	icon_state = "seed-wheat"
-	mypath = /obj/item/seeds/wheatseed
 	species = "wheat"
 	plantname = "Wheat Stalks"
 	productname = /obj/item/reagent_containers/food/snacks/grown/wheat
@@ -43,11 +41,10 @@
 /*
  * Rice
  */
-/obj/item/seeds/riceseed
+/obj/item/seeds/rice
 	name = "pack of rice seeds"
 	desc = "These seeds grow into rice stalks."
 	icon_state = "seed-rice"
-	mypath = /obj/item/seeds/riceseed
 	species = "rice"
 	plantname = "Rice Stalks"
 	productname = /obj/item/reagent_containers/food/snacks/grown/ricestalk

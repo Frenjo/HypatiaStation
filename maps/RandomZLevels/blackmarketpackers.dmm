@@ -191,7 +191,7 @@
 "dN" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor{icon_state = "carpet"; tag = "icon-carpet"},/area/awaymission/BMPship3)
 "dO" = (/obj/machinery/hydroponics,/obj/effect/decal/floor/coloured/green{dir = 10},/turf/simulated/floor,/area/awaymission/BMPship2)
 "dP" = (/obj/effect/decal/floor/coloured/green,/turf/simulated/floor,/area/awaymission/BMPship2)
-"dQ" = (/obj/machinery/seed_extractor,/obj/item/seeds/walkingmushroommycelium,/obj/effect/decal/floor/coloured/green,/turf/simulated/floor,/area/awaymission/BMPship2)
+"dQ" = (/obj/machinery/seed_extractor,/obj/item/seeds/walkingmushroom,/obj/effect/decal/floor/coloured/green,/turf/simulated/floor,/area/awaymission/BMPship2)
 "dR" = (/obj/machinery/hydroponics,/obj/effect/decal/floor/coloured/green{dir = 6},/turf/simulated/floor,/area/awaymission/BMPship2)
 "dS" = (/turf/simulated/shuttle/wall{icon_state = "swall2"; tag = "icon-swall2"},/area/awaymission/BMPship2)
 "dT" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor{icon_state = "bar"},/area/awaymission/BMPship2)

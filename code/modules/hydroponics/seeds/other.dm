@@ -1,11 +1,10 @@
 /*
  * Ambrosia Vulgaris
  */
-/obj/item/seeds/ambrosiavulgarisseed
+/obj/item/seeds/ambrosiavulgaris
 	name = "pack of ambrosia vulgaris seeds"
 	desc = "These seeds grow into common ambrosia, a plant grown by and from medicine."
 	icon_state = "seed-ambrosiavulgaris"
-	mypath = /obj/item/seeds/ambrosiavulgarisseed
 	species = "ambrosiavulgaris"
 	plantname = "Ambrosia Vulgaris"
 	productname = /obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris
@@ -21,11 +20,10 @@
 /*
  * Ambrosia Deus
  */
-/obj/item/seeds/ambrosiadeusseed
+/obj/item/seeds/ambrosiadeus
 	name = "pack of ambrosia deus seeds"
 	desc = "These seeds grow into ambrosia deus. Could it be the food of the gods..?"
 	icon_state = "seed-ambrosiadeus"
-	mypath = /obj/item/seeds/ambrosiadeusseed
 	species = "ambrosiadeus"
 	plantname = "Ambrosia Deus"
 	productname = /obj/item/reagent_containers/food/snacks/grown/ambrosiadeus
@@ -41,11 +39,10 @@
 /*
  * Peanut
  */
-/obj/item/seeds/peanutseed
+/obj/item/seeds/peanut
 	name = "pack of peanut seeds"
 	desc = "These seeds grow into peanut vines."
 	icon_state = "seed-peanut"
-	mypath = /obj/item/seeds/peanutseed
 	species = "peanut"
 	plantname = "Peanuts"
 	productname = /obj/item/reagent_containers/food/snacks/grown/peanut
@@ -61,11 +58,10 @@
 /*
  * Eggplant (Eggs)
  */
-/obj/item/seeds/eggyseed
+/obj/item/seeds/eggy
 	name = "pack of eggplant seeds"
 	desc = "These seeds grow to produce berries that look a lot like eggs."
 	icon_state = "seed-eggy"
-	mypath = /obj/item/seeds/eggyseed
 	species = "eggy"
 	plantname = "Eggplants"
 	productname = /obj/item/reagent_containers/food/snacks/egg

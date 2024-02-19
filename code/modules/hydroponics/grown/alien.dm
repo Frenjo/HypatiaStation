@@ -2,7 +2,7 @@
  * S'Rendarr's Hand
  */
 /obj/item/reagent_containers/food/snacks/grown/shand
-	seed = /obj/item/seeds/shandseed
+	seed = /obj/item/seeds/shand
 	name = "S'rendarr's Hand leaf"
 	desc = "A leaf sample from a lowland thicket shrub, often hid in by prey and predator to staunch their wounds and conceal their scent, allowing the plant to spread far on its native Ahdomai. Smells strongly like wax."
 	icon_state = "shand"
@@ -28,7 +28,7 @@
  * Messa's Tear
  */
 /obj/item/reagent_containers/food/snacks/grown/mtear
-	seed = /obj/item/seeds/mtearseed
+	seed = /obj/item/seeds/mtear
 	name = "sprig of Messa's Tear"
 	desc = "A mountain climate herb with a soft, cold blue flower, known to contain an abundance of chemicals in it's flower useful to treating burns- Bad for the allergic to pollen."
 	icon_state = "mtear"

@@ -202,19 +202,19 @@
 		qdel(myseed)
 	switch(rand(1,18))		// randomly pick predominative weed
 		if(16 to 18)
-			myseed = new /obj/item/seeds/reishimycelium
+			myseed = new /obj/item/seeds/reishi
 		if(14 to 15)
-			myseed = new /obj/item/seeds/nettleseed
+			myseed = new /obj/item/seeds/nettle
 		if(12 to 13)
 			myseed = new /obj/item/seeds/harebell
 		if(10 to 11)
-			myseed = new /obj/item/seeds/amanitamycelium
+			myseed = new /obj/item/seeds/amanita
 		if(8 to 9)
-			myseed = new /obj/item/seeds/chantermycelium
+			myseed = new /obj/item/seeds/chanterelle
 		if(6 to 7) // implementation for tower caps still kinda missing ~ Not Anymore! -Cheridan
-			myseed = new /obj/item/seeds/towermycelium
+			myseed = new /obj/item/seeds/towercap
 		if(4 to 5)
-			myseed = new /obj/item/seeds/plumpmycelium
+			myseed = new /obj/item/seeds/plumphelmet
 		else
 			myseed = new /obj/item/seeds/weeds
 	planted = 1
@@ -302,71 +302,71 @@
 	return
 
 /obj/machinery/hydroponics/proc/mutatespecie() // Mutagent produced a new plant!
-	if(istype(myseed, /obj/item/seeds/nettleseed))
+	if(istype(myseed, /obj/item/seeds/nettle))
 		qdel(myseed)
 		myseed = new /obj/item/seeds/deathnettleseed
 
-	else if(istype(myseed, /obj/item/seeds/amanitamycelium))
+	else if(istype(myseed, /obj/item/seeds/amanita))
 		qdel(myseed)
-		myseed = new /obj/item/seeds/angelmycelium
+		myseed = new /obj/item/seeds/angel
 
-	else if(istype(myseed, /obj/item/seeds/lemonseed))
+	else if(istype(myseed, /obj/item/seeds/lemon))
 		qdel(myseed)
-		myseed = new /obj/item/seeds/cashseed
+		myseed = new /obj/item/seeds/cash
 
-	else if(istype(myseed, /obj/item/seeds/ambrosiavulgarisseed))
+	else if(istype(myseed, /obj/item/seeds/ambrosiavulgaris))
 		qdel(myseed)
-		myseed = new /obj/item/seeds/ambrosiadeusseed
+		myseed = new /obj/item/seeds/ambrosiadeus
 
-	else if(istype(myseed, /obj/item/seeds/plumpmycelium))
+	else if(istype(myseed, /obj/item/seeds/plumphelmet))
 		qdel(myseed)
-		myseed = new /obj/item/seeds/walkingmushroommycelium
+		myseed = new /obj/item/seeds/walkingmushroom
 
-	else if(istype(myseed, /obj/item/seeds/chiliseed))
+	else if(istype(myseed, /obj/item/seeds/chili))
 		qdel(myseed)
-		myseed = new /obj/item/seeds/icepepperseed
+		myseed = new /obj/item/seeds/icepepper
 
-	else if(istype(myseed, /obj/item/seeds/appleseed))
+	else if(istype(myseed, /obj/item/seeds/apple))
 		qdel(myseed)
-		myseed = new /obj/item/seeds/goldappleseed
+		myseed = new /obj/item/seeds/apple/golden
 
-	else if(istype(myseed, /obj/item/seeds/berryseed))
+	else if(istype(myseed, /obj/item/seeds/berry))
 		qdel(myseed)
 		switch(rand(1, 100))
 			if(1 to 50)
-				myseed = new /obj/item/seeds/poisonberryseed
+				myseed = new /obj/item/seeds/berry/poison
 			if(51 to 100)
-				myseed = new /obj/item/seeds/glowberryseed
+				myseed = new /obj/item/seeds/berry/glow
 
-	else if(istype(myseed, /obj/item/seeds/poisonberryseed))
+	else if(istype(myseed, /obj/item/seeds/berry/poison))
 		qdel(myseed)
-		myseed = new /obj/item/seeds/deathberryseed
+		myseed = new /obj/item/seeds/berry/death
 
-	else if(istype(myseed, /obj/item/seeds/tomatoseed))
+	else if(istype(myseed, /obj/item/seeds/tomato))
 		qdel(myseed)
 		switch(rand(1, 100))
 			if(1 to 35)
-				myseed = new /obj/item/seeds/bluetomatoseed
+				myseed = new /obj/item/seeds/tomato/blue
 			if(36 to 70)
-				myseed = new /obj/item/seeds/bloodtomatoseed
+				myseed = new /obj/item/seeds/tomato/blood
 			if(71 to 100)
-				myseed = new /obj/item/seeds/killertomatoseed
+				myseed = new /obj/item/seeds/tomato/killer
 
-	else if(istype(myseed, /obj/item/seeds/bluetomatoseed))
+	else if(istype(myseed, /obj/item/seeds/tomato/blue))
 		qdel(myseed)
-		myseed = new /obj/item/seeds/bluespacetomatoseed
+		myseed = new /obj/item/seeds/tomato/bluespace
 
-	else if(istype(myseed, /obj/item/seeds/grapeseed))
+	else if(istype(myseed, /obj/item/seeds/grape))
 		qdel(myseed)
-		myseed = new /obj/item/seeds/greengrapeseed
+		myseed = new /obj/item/seeds/grape/green
 /*
-	else if(istype(myseed, /obj/item/seeds/tomatoseed))
+	else if(istype(myseed, /obj/item/seeds/tomato))
 		del(myseed)
-		myseed = new /obj/item/seeds/gibtomatoseed
+		myseed = new /obj/item/seeds/tomato/gib
 */
-	else if(istype(myseed, /obj/item/seeds/eggplantseed))
+	else if(istype(myseed, /obj/item/seeds/eggplant))
 		qdel(myseed)
-		myseed = new /obj/item/seeds/eggyseed
+		myseed = new /obj/item/seeds/eggy
 
 	else
 		return
@@ -389,7 +389,7 @@
 /obj/machinery/hydroponics/proc/mutateweed() // If the weeds gets the mutagent instead. Mind you, this pretty much destroys the old plant
 	if(weedlevel > 5)
 		qdel(myseed)
-		var/newWeed = pick(/obj/item/seeds/libertymycelium, /obj/item/seeds/angelmycelium, /obj/item/seeds/deathnettleseed, /obj/item/seeds/kudzuseed)
+		var/newWeed = pick(/obj/item/seeds/libertycap, /obj/item/seeds/angel, /obj/item/seeds/deathnettleseed, /obj/item/seeds/kudzu)
 		myseed = new newWeed
 		dead = 0
 		hardmutate()
@@ -831,7 +831,7 @@
 		var/obj/item/reagent_containers/food/snacks/grown/t_prod = new produce(user.loc, potency) // User gets a consumable
 		if(!t_prod)
 			return
-		t_prod.seed = mypath
+		t_prod.seed = type
 		t_prod.species = species
 		t_prod.lifespan = lifespan
 		t_prod.endurance = endurance
@@ -844,7 +844,7 @@
 
 	parent.update_tray()
 
-/obj/item/seeds/grassseed/harvest(mob/user = usr)
+/obj/item/seeds/grass/harvest(mob/user = usr)
 	var/obj/machinery/hydroponics/parent = loc //for ease of access
 	var/t_yield = round(yield * parent.yieldmod)
 
@@ -861,7 +861,7 @@
 
 	while(t_amount < (yield * parent.yieldmod))
 		var/obj/item/reagent_containers/food/snacks/grown/t_prod = new produce(user.loc, potency) // User gets a consumable
-		t_prod.seed = mypath
+		t_prod.seed = type
 		t_prod.species = species
 		t_prod.lifespan = lifespan
 		t_prod.endurance = endurance
@@ -874,14 +874,14 @@
 
 	parent.update_tray()
 
-/obj/item/seeds/nettleseed/harvest(mob/user = usr)
+/obj/item/seeds/nettle/harvest(mob/user = usr)
 	var/produce = productname
 	var/obj/machinery/hydroponics/parent = loc //for ease of access
 	var/t_amount = 0
 
 	while(t_amount < (yield * parent.yieldmod))
 		var/obj/item/grown/t_prod = new produce(user.loc, potency) // User gets a consumable -QualityVan
-		t_prod.seed = mypath
+		t_prod.seed = type
 		t_prod.species = species
 		t_prod.lifespan = lifespan
 		t_prod.endurance = endurance
@@ -901,7 +901,7 @@
 
 	while(t_amount < (yield * parent.yieldmod))
 		var/obj/item/grown/t_prod = new produce(user.loc, potency) // User gets a consumable -QualityVan
-		t_prod.seed = mypath
+		t_prod.seed = type
 		t_prod.species = species
 		t_prod.lifespan = lifespan
 		t_prod.endurance = endurance
@@ -914,7 +914,7 @@
 
 	parent.update_tray()
 
-/obj/item/seeds/eggyseed/harvest(mob/user = usr)
+/obj/item/seeds/eggy/harvest(mob/user = usr)
 	var/produce = productname
 	var/obj/machinery/hydroponics/parent = loc //for ease of access
 	var/t_amount = 0
