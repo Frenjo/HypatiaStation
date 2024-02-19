@@ -1,13 +1,13 @@
 /turf/space/transit
 	var/pushdirection // push things that get caught in the transit tile this direction
 
-// Override because we dont want people building rods on space transit tiles.
-/turf/space/transit/attackby(obj/O as obj, mob/user as mob)
-	return
-
 /turf/space/transit/New()
 	. = ..()
 	toggle_transit(GLOBL.reverse_dir[pushdirection])
+
+// Override because we dont want people building rods on space transit tiles.
+/turf/space/transit/attackby(obj/O as obj, mob/user as mob)
+	return
 
 /turf/space/transit/north // moving to the north
 	pushdirection = SOUTH  // south because the space tile is scrolling south
