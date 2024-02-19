@@ -1,6 +1,6 @@
 /obj/machinery/bot/ed209
 	name = "ED-209 Security Robot"
-	desc = "A security robot.  He looks less than thrilled."
+	desc = "A security robot. He looks less than thrilled."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "ed2090"
 	layer = 5.0
@@ -51,17 +51,6 @@
 
 	var/nearest_beacon			// the nearest beacon's tag
 	var/turf/nearest_beacon_loc	// the nearest beacon's location
-
-/obj/item/ed209_assembly
-	name = "ED-209 assembly"
-	desc = "Some sort of bizarre assembly."
-	icon = 'icons/obj/aibots.dmi'
-	icon_state = "ed209_frame"
-	item_state = "ed209_frame"
-
-	var/build_step = 0
-	var/created_name = "ED-209 Security Robot" //To preserve the name if it's a unique securitron I guess
-	var/lasercolor = ""
 
 /obj/machinery/bot/ed209/New(loc, created_name, created_lasercolor)
 	. = ..()
@@ -716,8 +705,8 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 /obj/machinery/bot/ed209/explode()
 	walk_to(src, 0)
 	visible_message(SPAN_DANGER("[src] blows apart!"), 1)
-	var/turf/T = get_turf(src)
 
+	var/turf/T = get_turf(src)
 	var/obj/item/ed209_assembly/Sa = new /obj/item/ed209_assembly(T)
 	Sa.build_step = 1
 	Sa.overlays.Add(image('icons/obj/aibots.dmi', "hs_hole"))
@@ -834,9 +823,48 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 						target = toarrest
 						mode = SECBOT_HUNT
 
-/obj/item/ed209_assembly/attackby(obj/item/W as obj, mob/user as mob)
-	..()
+/obj/machinery/bot/ed209/bullet_act(obj/item/projectile/proj)
+	if(lasercolor == "b" && !disabled)
+		if(istype(proj, /obj/item/projectile/energy/beam/laser/tag/red))
+			disabled = TRUE
+			qdel(proj)
+			sleep(100)
+			disabled = FALSE
+		else
+			..()
+	else if(lasercolor == "r" && !disabled)
+		if(istype(proj, /obj/item/projectile/energy/beam/laser/tag/blue))
+			disabled = TRUE
+			qdel(proj)
+			sleep(100)
+			disabled = FALSE
+		else
+			..()
+	else
+		..()
 
+/obj/machinery/bot/ed209/bluetag/New()//If desired, you spawn red and bluetag bots easily
+	new /obj/machinery/bot/ed209(get_turf(src), null, "b")
+	qdel(src)
+
+/obj/machinery/bot/ed209/redtag/New()
+	new /obj/machinery/bot/ed209(get_turf(src), null, "r")
+	qdel(src)
+
+// ED-209 Assembly
+/obj/item/ed209_assembly
+	name = "ED-209 assembly"
+	desc = "Some sort of bizarre assembly."
+	icon = 'icons/obj/aibots.dmi'
+	icon_state = "ed209_frame"
+	item_state = "ed209_frame"
+
+	var/build_step = 0
+	var/created_name = "ED-209 Security Robot" //To preserve the name if it's a unique securitron I guess
+	var/lasercolor = ""
+
+/obj/item/ed209_assembly/attackby(obj/item/W as obj, mob/user as mob)
+	. = ..()
 	if(istype(W, /obj/item/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", name, created_name), 1, MAX_NAME_LEN)
 		if(isnull(t))
@@ -963,31 +991,3 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 				qdel(W)
 				user.drop_from_inventory(src)
 				qdel(src)
-
-/obj/machinery/bot/ed209/bullet_act(obj/item/projectile/proj)
-	if(lasercolor == "b" && !disabled)
-		if(istype(proj, /obj/item/projectile/energy/beam/laser/tag/red))
-			disabled = TRUE
-			qdel(proj)
-			sleep(100)
-			disabled = FALSE
-		else
-			..()
-	else if(lasercolor == "r" && !disabled)
-		if(istype(proj, /obj/item/projectile/energy/beam/laser/tag/blue))
-			disabled = TRUE
-			qdel(proj)
-			sleep(100)
-			disabled = FALSE
-		else
-			..()
-	else
-		..()
-
-/obj/machinery/bot/ed209/bluetag/New()//If desired, you spawn red and bluetag bots easily
-	new /obj/machinery/bot/ed209(get_turf(src), null, "b")
-	qdel(src)
-
-/obj/machinery/bot/ed209/redtag/New()
-	new /obj/machinery/bot/ed209(get_turf(src), null, "r")
-	qdel(src)

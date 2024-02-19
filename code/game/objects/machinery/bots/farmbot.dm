@@ -25,7 +25,7 @@
 
 /obj/machinery/bot/farmbot
 	name = "Farmbot"
-	desc = "The botanist's best friend."
+	desc = "A little farming robot. The botanist's best friend."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "farmbot0"
 	layer = 5
@@ -199,8 +199,8 @@
 /obj/machinery/bot/farmbot/explode()
 	on = FALSE
 	visible_message(SPAN_DANGER("[src] blows apart!"), 1)
-	var/turf/T = get_turf(src)
 
+	var/turf/T = get_turf(src)
 	new /obj/item/minihoe(T)
 	new /obj/item/reagent_containers/glass/bucket(T)
 	new /obj/item/assembly/prox_sensor(T)
@@ -501,8 +501,20 @@
 		tank.reagents.add_reagent("water", tank.reagents.maximum_volume - tank.reagents.total_volume )
 		playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 
+// Farmbot Assembly
+/obj/structure/reagent_dispensers/watertank/attackby(obj/item/W, mob/user as mob)
+	if(!istype(W, /obj/item/robot_parts/l_arm) && !istype(W, /obj/item/robot_parts/r_arm))
+		return ..()
 
-/obj/item/farmbot_arm_assembly
+	// Making a farmbot!
+	var/obj/item/farmbot_assembly/assembly = new /obj/item/farmbot_assembly()
+	assembly.loc = loc
+	assembly.layer = 20
+	to_chat(user, SPAN_INFO("You add the robot arm to the [src]!"))
+	loc = assembly //Place the water tank into the assembly, it will be needed for the finished bot
+	qdel(W)
+
+/obj/item/farmbot_assembly
 	name = "water tank/robot arm assembly"
 	desc = "A water tank with a robot arm permanently grafted to it."
 	icon = 'icons/obj/aibots.dmi'
@@ -512,52 +524,47 @@
 	var/build_step = 0
 	var/created_name = "Farmbot" //To preserve the name if it's a unique farmbot I guess
 
-/obj/item/farmbot_arm_assembly/New()
-	. = ..()
-
-/obj/item/farmbot_arm_assembly/initialise()
+/obj/item/farmbot_assembly/initialise()
 	. = ..()
 	// If an admin spawned it, it won't have a watertank in it, so lets make one for em!
 	var/tank = locate(/obj/structure/reagent_dispensers/watertank) in contents
 	if(isnull(tank))
 		new /obj/structure/reagent_dispensers/watertank(src)
 
-/obj/structure/reagent_dispensers/watertank/attackby(obj/item/robot_parts/S, mob/user as mob)
-	if(!istype(S, /obj/item/robot_parts/l_arm) && !istype(S, /obj/item/robot_parts/r_arm))
-		..()
+/obj/item/farmbot_assembly/attackby(obj/item/W as obj, mob/user as mob)
+	. = ..()
+	if(istype(W, /obj/item/pen))
+		var/t = input(user, "Enter new robot name", name, created_name) as text
+		t = copytext(sanitize(t), 1, MAX_NAME_LEN)
+		if(isnull(t))
+			return
+		if(!in_range(src, usr) && loc != usr)
+			return
+		created_name = t
 		return
 
-	//Making a farmbot!
-	var/obj/item/farmbot_arm_assembly/A = new /obj/item/farmbot_arm_assembly()
-
-	A.loc = loc
-	A.layer = 20
-	to_chat(user, SPAN_INFO("You add the robot arm to the [src]!"))
-	loc = A //Place the water tank into the assembly, it will be needed for the finished bot
-
-	qdel(S)
-
-/obj/item/farmbot_arm_assembly/attackby(obj/item/W as obj, mob/user as mob)
-	..()
 	if(istype(W, /obj/item/plant_analyser) && !build_step)
 		build_step++
 		to_chat(user, SPAN_INFO("You add the plant analyser to [src]!"))
 		name = "farmbot assembly"
 		qdel(W)
+		return
 
-	else if(istype(W, /obj/item/reagent_containers/glass/bucket) && build_step == 1)
+	if(istype(W, /obj/item/reagent_containers/glass/bucket) && build_step == 1)
 		build_step++
 		to_chat(user, SPAN_INFO("You add a bucket to [src]!"))
 		name = "farmbot assembly with bucket"
 		qdel(W)
+		return
 
-	else if(istype(W, /obj/item/minihoe) && build_step == 2)
+	if(istype(W, /obj/item/minihoe) && build_step == 2)
 		build_step++
 		to_chat(user, SPAN_INFO("You add a minihoe to [src]!"))
 		name = "farmbot assembly with bucket and minihoe"
 		qdel(W)
+		return
 
-	else if(isprox(W) && build_step == 3)
+	if(isprox(W) && build_step == 3)
 		build_step++
 		to_chat(user, SPAN_INFO("You complete the Farmbot! Beep boop."))
 		var/obj/machinery/bot/farmbot/S = new /obj/machinery/bot/farmbot(get_turf(src))
@@ -567,16 +574,7 @@
 		S.name = created_name
 		qdel(W)
 		qdel(src)
-
-	else if(istype(W, /obj/item/pen))
-		var/t = input(user, "Enter new robot name", name, created_name) as text
-		t = copytext(sanitize(t), 1, MAX_NAME_LEN)
-		if(isnull(t))
-			return
-		if(!in_range(src, usr) && loc != usr)
-			return
-
-		created_name = t
+		return
 
 #undef FARMBOT_MODE_NONE
 #undef FARMBOT_MODE_WATER

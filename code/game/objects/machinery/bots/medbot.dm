@@ -2,7 +2,6 @@
 //MEDBOT PATHFINDING
 //MEDBOT ASSEMBLY
 
-
 /obj/machinery/bot/medbot
 	name = "Medibot"
 	desc = "A little medical robot. He looks somewhat underwhelmed."
@@ -47,22 +46,6 @@
 	treatment_brute = "bicaridine"
 	treatment_fire = "kelotane"
 	treatment_tox = "anti_toxin"
-
-/obj/item/firstaid_arm_assembly
-	name = "first aid/robot arm assembly"
-	desc = "A first aid kit with a robot arm permanently grafted to it."
-	icon = 'icons/obj/aibots.dmi'
-	icon_state = "firstaid_arm"
-	w_class = 3.0
-
-	var/build_step = 0
-	var/created_name = "Medibot" //To preserve the name if it's a unique medbot I guess
-	var/skin = null //Same as medbot, set to tox or ointment for the respective kits.
-
-/obj/item/firstaid_arm_assembly/initialise()
-	. = ..()
-	if(isnotnull(skin))
-		overlays.Add(image('icons/obj/aibots.dmi', "kit_skin_[skin]"))
 
 /obj/machinery/bot/medbot/New()
 	. = ..()
@@ -524,32 +507,46 @@
 /*
  *	Medbot Assembly -- Can be made out of all three medkits.
  */
-/obj/item/storage/firstaid/attackby(obj/item/robot_parts/S, mob/user as mob)
-	if(!istype(S, /obj/item/robot_parts/l_arm) && !istype(S, /obj/item/robot_parts/r_arm))
-		..()
-		return
-
-	//Making a medibot!
+/obj/item/storage/firstaid/attackby(obj/item/W, mob/user as mob)
+	if(!istype(W, /obj/item/robot_parts/l_arm) && !istype(W, /obj/item/robot_parts/r_arm))
+		return ..()
+	// Making a medibot!
 	if(length(contents))
 		to_chat(user, SPAN_NOTICE("You need to empty [src] out first."))
 		return
 
-	var/obj/item/firstaid_arm_assembly/A = new /obj/item/firstaid_arm_assembly
+	var/obj/item/medbot_assembly/assembly = new /obj/item/medbot_assembly()
 	if(istype(src, /obj/item/storage/firstaid/fire))
-		A.skin = "ointment"
+		assembly.skin = "ointment"
 	else if(istype(src, /obj/item/storage/firstaid/toxin))
-		A.skin = "tox"
+		assembly.skin = "tox"
 	else if(istype(src, /obj/item/storage/firstaid/o2))
-		A.skin = "o2"
+		assembly.skin = "o2"
 
-	qdel(S)
-	user.put_in_hands(A)
+	qdel(W)
+	user.put_in_hands(assembly)
 	to_chat(user, SPAN_INFO("You add the robot arm to the first aid kit."))
 	user.drop_from_inventory(src)
 	qdel(src)
 
-/obj/item/firstaid_arm_assembly/attackby(obj/item/W as obj, mob/user as mob)
-	..()
+/obj/item/medbot_assembly
+	name = "first aid/robot arm assembly"
+	desc = "A first aid kit with a robot arm permanently grafted to it."
+	icon = 'icons/obj/aibots.dmi'
+	icon_state = "firstaid_arm"
+	w_class = 3.0
+
+	var/build_step = 0
+	var/created_name = "Medibot" // To preserve the name if it's a unique medbot I guess
+	var/skin = null // Same as medbot, set to tox or ointment for the respective kits.
+
+/obj/item/medbot_assembly/initialise()
+	. = ..()
+	if(isnotnull(skin))
+		overlays.Add(image('icons/obj/aibots.dmi', "kit_skin_[skin]"))
+
+/obj/item/medbot_assembly/attackby(obj/item/W as obj, mob/user as mob)
+	. = ..()
 	if(istype(W, /obj/item/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", name, created_name), 1, MAX_NAME_LEN)
 		if(isnull(t))
@@ -557,25 +554,28 @@
 		if(!in_range(src, usr) && loc != usr)
 			return
 		created_name = t
-	else
-		switch(build_step)
-			if(0)
-				if(istype(W, /obj/item/health_analyser))
-					user.drop_item()
-					qdel(W)
-					build_step++
-					to_chat(user, SPAN_INFO("You add the health sensor to [src]."))
-					name = "First aid/robot arm/health analyser assembly"
-					overlays.Add(image('icons/obj/aibots.dmi', "na_scanner"))
+		return
 
-			if(1)
-				if(isprox(W))
-					user.drop_item()
-					qdel(W)
-					build_step++
-					to_chat(user, SPAN_INFO("You complete the Medibot! Beep boop."))
-					var/obj/machinery/bot/medbot/S = new /obj/machinery/bot/medbot(get_turf(src))
-					S.skin = skin
-					S.name = created_name
-					user.drop_from_inventory(src)
-					qdel(src)
+	switch(build_step)
+		if(0)
+			if(istype(W, /obj/item/health_analyser))
+				user.drop_item()
+				qdel(W)
+				build_step++
+				to_chat(user, SPAN_INFO("You add the health sensor to [src]."))
+				name = "first aid/robot arm/health analyser assembly"
+				overlays.Add(image('icons/obj/aibots.dmi', "na_scanner"))
+				return
+
+		if(1)
+			if(isprox(W))
+				user.drop_item()
+				qdel(W)
+				build_step++
+				to_chat(user, SPAN_INFO("You complete the Medibot! Beep boop."))
+				var/obj/machinery/bot/medbot/S = new /obj/machinery/bot/medbot(get_turf(src))
+				S.skin = skin
+				S.name = created_name
+				user.drop_from_inventory(src)
+				qdel(src)
+				return

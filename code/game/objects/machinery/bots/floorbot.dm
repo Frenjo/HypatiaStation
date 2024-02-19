@@ -1,34 +1,7 @@
-//Floorbot assemblies
-/obj/item/toolbox_tiles
-	desc = "It's a toolbox with tiles sticking out the top"
-	name = "tiles and toolbox"
-	icon = 'icons/obj/aibots.dmi'
-	icon_state = "toolbox_tiles"
-	force = 3.0
-	throwforce = 10.0
-	throw_speed = 2
-	throw_range = 5
-	w_class = 3.0
-
-	var/created_name = "Floorbot"
-
-/obj/item/toolbox_tiles_sensor
-	desc = "It's a toolbox with tiles sticking out the top and a sensor attached"
-	name = "tiles, toolbox and sensor arrangement"
-	icon = 'icons/obj/aibots.dmi'
-	icon_state = "toolbox_tiles_sensor"
-	force = 3.0
-	throwforce = 10.0
-	throw_speed = 2
-	throw_range = 5
-	w_class = 3.0
-
-	var/created_name = "Floorbot"
-
-//Floorbot
+// Floorbot
 /obj/machinery/bot/floorbot
 	name = "Floorbot"
-	desc = "A little floor repairing robot, he looks so excited!"
+	desc = "A little floor repairing robot. He looks so excited!"
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "floorbot0"
 	layer = 5
@@ -369,13 +342,11 @@
 /obj/machinery/bot/floorbot/explode()
 	on = FALSE
 	visible_message(SPAN_DANGER("[src] blows apart!"))
-	var/turf/T = get_turf(src)
 
+	var/turf/T = get_turf(src)
 	var/obj/item/storage/toolbox/mechanical/N = new /obj/item/storage/toolbox/mechanical(T)
 	N.contents = list()
-
 	new /obj/item/assembly/prox_sensor(T)
-
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(T)
 
@@ -394,58 +365,64 @@
 	s.start()
 	return ..()
 
-/obj/item/storage/toolbox/mechanical/attackby(obj/item/stack/tile/plasteel/T, mob/user as mob)
-	if(!istype(T, /obj/item/stack/tile/plasteel))
-		..()
-		return
+// Floorbot Assembly
+/obj/item/storage/toolbox/mechanical/attackby(obj/item/W, mob/user as mob)
+	if(!istype(W, /obj/item/stack/tile/plasteel))
+		return ..()
 	if(length(contents))
 		to_chat(user, SPAN_NOTICE("They won't fit as there is already stuff inside."))
 		return
 	if(user.s_active)
 		user.s_active.close(user)
-	qdel(T)
-	var/obj/item/toolbox_tiles/B = new /obj/item/toolbox_tiles()
-	user.put_in_hands(B)
+	qdel(W)
+	var/obj/item/floorbot_assembly/assembly = new /obj/item/floorbot_assembly()
+	user.put_in_hands(assembly)
 	to_chat(user, SPAN_INFO("You add the tiles into the empty toolbox. They protrude from the top."))
 	user.drop_from_inventory(src)
 	qdel(src)
 
-/obj/item/toolbox_tiles/attackby(obj/item/W, mob/user as mob)
-	..()
-	if(isprox(W))
-		qdel(W)
-		var/obj/item/toolbox_tiles_sensor/B = new /obj/item/toolbox_tiles_sensor()
-		B.created_name = created_name
-		user.put_in_hands(B)
-		to_chat(user, SPAN_INFO("You add the sensor to the toolbox and tiles!"))
-		user.drop_from_inventory(src)
-		qdel(src)
+/obj/item/floorbot_assembly
+	name = "tiles and toolbox"
+	desc = "It's a toolbox with tiles sticking out of the top."
+	icon = 'icons/obj/aibots.dmi'
+	icon_state = "toolbox_tiles"
 
-	else if(istype(W, /obj/item/pen))
+	w_class = 3
+
+	force = 3
+	throwforce = 10
+	throw_speed = 2
+	throw_range = 5
+
+	var/created_name = "Floorbot"
+	var/has_sensor = FALSE
+
+/obj/item/floorbot_assembly/attackby(obj/item/W, mob/user as mob)
+	. = ..()
+	if(istype(W, /obj/item/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", name, created_name), 1, MAX_NAME_LEN)
 		if(isnull(t))
 			return
 		if(!in_range(src, usr) && loc != usr)
 			return
-
 		created_name = t
+		return
 
-/obj/item/toolbox_tiles_sensor/attackby(obj/item/W, mob/user as mob)
-	..()
-	if(istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm))
+	if(!has_sensor && isprox(W))
 		qdel(W)
-		var/turf/T = get_turf(user.loc)
-		var/obj/machinery/bot/floorbot/A = new /obj/machinery/bot/floorbot(T)
-		A.name = created_name
+		has_sensor = TRUE
+		name = "tiles, toolbox and sensor arrangement"
+		desc = "It's a toolbox with tiles sticking out of the top and a sensor attached."
+		icon_state = "toolbox_tiles_sensor"
+		to_chat(user, SPAN_INFO("You add the sensor to the toolbox and tiles!"))
+		user.put_in_hands(src)
+		return
+
+	if(has_sensor && (istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm)))
+		qdel(W)
+		var/obj/machinery/bot/floorbot/bot = new /obj/machinery/bot/floorbot(get_turf(user.loc))
+		bot.name = created_name
 		to_chat(user, SPAN_INFO("You add the robot arm to the odd looking toolbox assembly! Boop beep!"))
 		user.drop_from_inventory(src)
 		qdel(src)
-
-	else if(istype(W, /obj/item/pen))
-		var/t = stripped_input(user, "Enter new robot name", name, created_name)
-		if(isnull(t))
-			return
-		if(!in_range(src, usr) && loc != usr)
-			return
-
-		created_name = t
+		return

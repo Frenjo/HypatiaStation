@@ -286,14 +286,6 @@
 	volume = 70
 	flags = OPENCONTAINER
 
-/obj/item/reagent_containers/glass/bucket/attackby(obj/D, mob/user as mob)
-	if(isprox(D))
-		to_chat(user, "You add [D] to [src].")
-		qdel(D)
-		user.put_in_hands(new /obj/item/bucket_sensor)
-		user.drop_from_inventory(src)
-		qdel(src)
-
 /obj/item/reagent_containers/glass/bucket/update_icon()
 	overlays.Cut()
 	if(!is_open_container())

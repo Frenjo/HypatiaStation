@@ -242,7 +242,7 @@
 "rw" = (/obj/structure/rack,/obj/machinery/light/small{dir = 1},/turf/simulated/floor,/area/derelict/bridge/access)
 "rx" = (/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/airless{icon_state = "damaged4"},/area/derelict/singularity_engine)
 "rD" = (/obj/structure/cable,/obj/structure/cable{d2 = 4; icon_state = "0-4"},/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/plating/airless,/area/derelict/solar/aft)
-"rF" = (/obj/item/firstaid_arm_assembly,/turf/simulated/floor/airless{icon_state = "white"},/area/derelict/medical)
+"rF" = (/obj/item/medbot_assembly,/turf/simulated/floor/airless{icon_state = "white"},/area/derelict/medical)
 "rG" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/wall,/area/djstation)
 "rI" = (/obj/structure/stool/bed/chair{dir = 1},/turf/simulated/floor,/area/derelict/arrival)
 "rN" = (/turf/simulated/floor/plating/airless,/area/derelict/medical)

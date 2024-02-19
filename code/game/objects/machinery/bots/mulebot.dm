@@ -4,9 +4,8 @@
 // Navigates via floor navbeacons
 // Remote Controlled from QM's PDA
 
-
 /obj/machinery/bot/mulebot
-	name = "Mulebot"
+	name = "MULEbot"
 	desc = "A Multiple Utility Load Effector bot."
 	icon_state = "mulebot0"
 	layer = MOB_LAYER
@@ -869,8 +868,8 @@
 
 /obj/machinery/bot/mulebot/explode()
 	visible_message(SPAN_DANGER("[src] blows apart!"), 1)
-	var/turf/T = get_turf(src)
 
+	var/turf/T = get_turf(src)
 	new /obj/item/assembly/prox_sensor(T)
 	new /obj/item/stack/rods(T)
 	new /obj/item/stack/rods(T)

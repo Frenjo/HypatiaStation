@@ -1,21 +1,7 @@
-//Cleanbot assembly
-/obj/item/bucket_sensor
-	desc = "It's a bucket. With a sensor attached."
-	name = "proxy bucket"
-	icon = 'icons/obj/aibots.dmi'
-	icon_state = "bucket_proxy"
-	force = 3
-	throwforce = 10
-	throw_speed = 2
-	throw_range = 5
-	w_class = 3
-
-	var/created_name = "Cleanbot"
-
-//Cleanbot
+// Cleanbot
 /obj/machinery/bot/cleanbot
 	name = "Cleanbot"
-	desc = "A little cleaning robot, he looks so excited!"
+	desc = "A little cleaning robot. He looks so excited!"
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "cleanbot0"
 	layer = 5
@@ -343,22 +329,49 @@ Weird button pressed: ["<A href='?src=\ref[src];operation=oddbutton'>[oddbutton 
 	s.start()
 	return ..()
 
-/obj/item/bucket_sensor/attackby(obj/item/W, mob/user as mob)
-	..()
-	if(istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm))
-		user.drop_item()
-		qdel(W)
-		var/turf/T = get_turf(loc)
-		var/obj/machinery/bot/cleanbot/A = new /obj/machinery/bot/cleanbot(T)
-		A.name = created_name
-		to_chat(user, SPAN_INFO("You add the robot arm to the bucket and sensor assembly. Beep boop!"))
+// Cleanbot Assembly
+/obj/item/reagent_containers/glass/bucket/attackby(obj/item/D, mob/user as mob)
+	. = ..()
+	if(isprox(D))
+		to_chat(user, "You add [D] to [src].")
+		qdel(D)
+		user.put_in_hands(new /obj/item/cleanbot_assembly())
 		user.drop_from_inventory(src)
 		qdel(src)
+		return
 
-	else if(istype(W, /obj/item/pen))
+/obj/item/cleanbot_assembly
+	name = "proxy bucket"
+	desc = "It's a bucket with a sensor attached."
+	icon = 'icons/obj/aibots.dmi'
+	icon_state = "bucket_proxy"
+
+	w_class = 3
+
+	force = 3
+	throwforce = 10
+	throw_speed = 2
+	throw_range = 5
+
+	var/created_name = "Cleanbot"
+
+/obj/item/cleanbot_assembly/attackby(obj/item/W, mob/user as mob)
+	. = ..()
+	if(istype(W, /obj/item/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", name, created_name), 1, MAX_NAME_LEN)
 		if(isnull(t))
 			return
 		if(!in_range(src, usr) && loc != usr)
 			return
 		created_name = t
+		return
+
+	if(istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm))
+		user.drop_item()
+		qdel(W)
+		var/obj/machinery/bot/cleanbot/bot = new /obj/machinery/bot/cleanbot(get_turf(loc))
+		bot.name = created_name
+		to_chat(user, SPAN_INFO("You add the robot arm to the bucket and sensor assembly. Beep boop!"))
+		user.drop_from_inventory(src)
+		qdel(src)
+		return

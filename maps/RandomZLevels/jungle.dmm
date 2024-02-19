@@ -147,7 +147,7 @@
 "cQ" = (/turf/unsimulated/floor,/area/jungle)
 "cR" = (/obj/item/trash/chips,/turf/unsimulated/jungle/clear,/area/jungle)
 "cS" = (/obj/item/trash/pistachios,/turf/unsimulated/jungle/clear,/area/jungle)
-"cT" = (/obj/item/firstaid_arm_assembly,/turf/unsimulated/jungle/clear,/area/jungle)
+"cT" = (/obj/item/medbot_assembly,/turf/unsimulated/jungle/clear,/area/jungle)
 "cU" = (/obj/structure/barricade/wooden,/obj/structure/sign/redcross,/turf/unsimulated/floor,/area/jungle)
 "cV" = (/obj/machinery/gateway{dir = 9; tag = "icon-off (NORTHWEST)"},/turf/unsimulated/floor,/area/jungle)
 "cW" = (/obj/machinery/gateway{dir = 1; tag = "icon-off (NORTH)"},/turf/unsimulated/floor,/area/jungle)
