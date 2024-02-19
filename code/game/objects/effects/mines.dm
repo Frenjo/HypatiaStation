@@ -50,7 +50,7 @@
 	//example: n2o triggerproc
 	//note: im lazy
 	for(var/turf/simulated/floor/target in range(1, src))
-		if(!target.blocks_air)
+		if(!HAS_TURF_FLAGS(target, TURF_BLOCKS_AIR))
 			target.assume_gas(/decl/xgm_gas/sleeping_agent, 30)
 
 	spawn(0)
@@ -58,9 +58,8 @@
 
 /obj/effect/mine/proc/triggerplasma(obj)
 	for(var/turf/simulated/floor/target in range(1, src))
-		if(!target.blocks_air)
+		if(!HAS_TURF_FLAGS(target, TURF_BLOCKS_AIR))
 			target.assume_gas(/decl/xgm_gas/plasma, 30)
-
 			target.hotspot_expose(1000, CELL_VOLUME)
 
 	spawn(0)

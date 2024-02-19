@@ -48,7 +48,7 @@
 		var/environment_temperature = 0
 		if(istype(loc, /turf/simulated))
 			var/turf/simulated/T = loc
-			if(T.blocks_air)
+			if(HAS_TURF_FLAGS(T, TURF_BLOCKS_AIR))
 				environment_temperature = T.temperature
 			else
 				var/datum/gas_mixture/environment = loc.return_air()

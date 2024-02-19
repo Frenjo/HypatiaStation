@@ -44,11 +44,11 @@
 	. = ..()
 	var/turf/T = get_turf(loc)
 	if(isnotnull(T))
-		T.blocks_air = TRUE
+		SET_TURF_FLAGS(T, TURF_BLOCKS_AIR)
 
 /obj/structure/plasticflaps/mining/Destroy() //lazy hack to set the turf to allow air to pass if it's a simulated floor
 	var/turf/T = get_turf(loc)
 	if(isnotnull(T))
 		if(istype(T, /turf/simulated/floor))
-			T.blocks_air = FALSE
+			UNSET_TURF_FLAGS(T, TURF_BLOCKS_AIR)
 	return ..()

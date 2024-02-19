@@ -97,7 +97,7 @@
 	if(!src.canmove)
 		return
 	var/turf/newLoc = get_step(src, direction)
-	if(!(newLoc.flags & NOJAUNT))
+	if(!HAS_TURF_FLAGS(newLoc, TURF_NO_JAUNT))
 		loc = newLoc
 	else
 		to_chat(user, SPAN_WARNING("Some strange aura is blocking the way!"))

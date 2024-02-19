@@ -7,10 +7,12 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock"
-	initial_gases = null
+
 	opacity = TRUE
 	density = TRUE
-	blocks_air = TRUE
+	flags = TURF_BLOCKS_AIR
+
+	initial_gases = null
 	temperature = T0C
 
 	var/decl/mineral/mineral = null

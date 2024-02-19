@@ -141,7 +141,7 @@
 	if(istype(target, /turf/simulated))
 		var/turf/simulated/modeled_location = target
 
-		if(modeled_location.blocks_air)
+		if(HAS_TURF_FLAGS(modeled_location, TURF_BLOCKS_AIR))
 			if(modeled_location.heat_capacity > 0 && partial_heat_capacity > 0)
 				var/delta_temperature = air.temperature - modeled_location.temperature
 

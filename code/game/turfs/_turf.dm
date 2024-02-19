@@ -15,7 +15,6 @@
 	// Properties for both
 	var/temperature = T20C
 
-	var/blocks_air = FALSE
 	var/icon_old = null
 	var/pathweight = 1
 
@@ -264,9 +263,9 @@
 			M.take_damage(100, "brute")
 
 /turf/proc/Bless()
-	if(flags & NOJAUNT)
+	if(HAS_TURF_FLAGS(src, TURF_NO_JAUNT))
 		return
-	flags |= NOJAUNT
+	SET_TURF_FLAGS(src, TURF_NO_JAUNT)
 
 /turf/proc/AdjacentTurfs()
 	var/list/list = list()
