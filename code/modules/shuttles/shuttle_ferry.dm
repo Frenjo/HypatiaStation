@@ -27,9 +27,9 @@
 	if(isnull(location))
 		return
 
-	if(!destination)
+	if(isnull(destination))
 		destination = get_location_area(!location)
-	if(!origin)
+	if(isnull(origin))
 		origin = get_location_area(location)
 
 	direction = !location
@@ -65,7 +65,7 @@
 	if(isnull(location_id))
 		location_id = location
 
-	if(isnull(location_id))
+	if(!location_id)
 		return area_station
 	return area_offsite
 
