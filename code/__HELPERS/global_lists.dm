@@ -134,8 +134,8 @@
 		GLOBL.all_artifact_effect_types.Add(path)
 	return 1
 
+// Outfits - Initialises all /decl/outfit into a list, indexed by name.
 /hook/global_init/proc/init_outfits()
-	// Outfits - Initialises all /decl/outfit into a list, indexed by name.
 	for(var/path in SUBTYPESOF(/decl/hierarchy/outfit))
 		var/decl/hierarchy/outfit/O = GET_DECL_INSTANCE(path)
 		if(O.is_hidden())
@@ -155,9 +155,41 @@
 	to_world(.)
 */
 
+// Genes - Initialises all /decl/gene into a list, indexed by typepath.
 /hook/global_init/proc/init_genes()
-	// Genes - Initialises all /decl/gene into a list, indexed by typepath.
 	for(var/path in SUBTYPESOF(/decl/gene))
 		var/decl/gene/gene = GET_DECL_INSTANCE(path)
 		GLOBL.all_dna_genes[path] = gene
+	return 1
+
+// Dreams - Initialises various categories of dream text into the GLOBL.all_dreams list.
+// This is really just for organisational purposes so things are categorised and can be changed easily.
+/hook/global_init/proc/init_dreams()
+	var/list/things = list(
+		"an ID card", "a bottle", "a familiar face", "a toolbox", "voices from all around",
+		"a traitor", "an ally", "darkness", "light", "a catastrophe", "a loved one", "a gun",
+		"warmth", "freezing", "a hat", "plasma", "air", "blinking lights", "a blue light",
+		"NanoTrasen", "The Syndicate", "blood", "healing", "power", "respect", "riches",
+		"a crash", "happiness", "pride", "a fall", "water", "flames", "ice", "melons",
+		"flying", "the eggs", "money", "a voice", "the cold", "an operating table",
+		"the rain", "a beaker of strange liquid"
+	)
+	var/list/jobs = list(
+		"a crewmember", "a security officer", "the captain", "a doctor", "a scientist",
+		"the head of personnel", "the head of security", "a chief engineer", "a research director",
+		"a chief medical officer", "the detective", "the warden", "a member of the internal affairs",
+		"a station engineer", "the janitor", "an atmospheric technician", "the quartermaster",
+		"a cargo technician", "the botanist", "a shaft miner", "the psychologist", "the chemist",
+		"the geneticist", "the virologist", "the roboticist", "the chef", "the bartender", "the chaplain",
+		"the librarian", "an ert member"
+	)
+	var/list/locations = list(
+		"deep space", "the engine", "the sun", "the Luna", "a ruined station", "a planet", "the medical bay",
+		"the bridge", "an abandoned laboratory", "space", "a beach", "the holodeck", "a smokey room", "the bar",
+		"the ai core", "the mining station", "the research station"
+	)
+	var/list/species = list(
+		"a monkey", "a mouse", "a skrell", "a soghun", "a tajaran"
+	)
+	GLOBL.all_dreams.Add(things, jobs, locations, species)
 	return 1

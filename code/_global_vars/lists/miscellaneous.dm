@@ -16,3 +16,5 @@ GLOBAL_GLOBL_LIST_NEW(blob_nodes)
 GLOBAL_GLOBL_LIST_NEW(factions)				// list of all factions
 GLOBAL_GLOBL_LIST_NEW(available_factions)	// list of factions with openings
 GLOBAL_GLOBL_LIST_NEW(syndicate_coalition)	// list of traitor-compatible factions
+
+GLOBAL_GLOBL_LIST_NEW(all_dreams)
