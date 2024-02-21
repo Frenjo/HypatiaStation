@@ -203,7 +203,6 @@
 #include "code\game\datums\controllers\pai.dm"
 #include "code\game\datums\controllers\process_scheduler.dm"
 #include "code\game\datums\controllers\radio.dm"
-#include "code\game\datums\controllers\supply.dm"
 #include "code\game\datums\controllers\ticker.dm"
 #include "code\game\datums\controllers\transfer.dm"
 #include "code\game\datums\controllers\verbs.dm"

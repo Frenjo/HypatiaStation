@@ -1,6 +1,7 @@
 /*
  * Controller Verbs
  */
+/*
 /client/proc/restart_controller(controller in list("Supply"))
 	set category = PANEL_DEBUG
 	set name = "Restart Controller"
@@ -10,10 +11,11 @@
 		return
 	switch(controller)
 		if("Supply")
-			global.CTsupply.process()
+			global.PCsupply.process()
 			feedback_add_details("admin_verb", "RSupply")
 	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
 	return
+*/
 
 /client/proc/debug_configuration()
 	set category = PANEL_DEBUG

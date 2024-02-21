@@ -262,7 +262,7 @@
 	if(mode == 47)
 		var/supplyData[0]
 
-		var/datum/shuttle/ferry/supply/supply_shuttle = global.CTsupply.shuttle
+		var/datum/shuttle/ferry/supply/supply_shuttle = global.PCsupply.shuttle
 		if(supply_shuttle)
 			supplyData["shuttle_moving"] = supply_shuttle.has_arrive_time()
 			supplyData["shuttle_eta"] = supply_shuttle.eta_minutes()
@@ -270,7 +270,7 @@
 
 		var/supplyOrderCount = 0
 		var/supplyOrderData[0]
-		for(var/S in global.CTsupply.shoppinglist)
+		for(var/S in global.PCsupply.shoppinglist)
 			var/datum/supply_order/SO = S
 			supplyOrderData[++supplyOrderData.len] = list(
 				"Number" = SO.ordernum,
@@ -286,7 +286,7 @@
 
 		var/requestCount = 0
 		var/requestData[0]
-		for(var/S in global.CTsupply.requestlist)
+		for(var/S in global.PCsupply.requestlist)
 			var/datum/supply_order/SO = S
 			requestCount++
 			requestData[++requestData.len] = list(

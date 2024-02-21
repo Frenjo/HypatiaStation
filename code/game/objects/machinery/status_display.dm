@@ -214,7 +214,7 @@
 
 	var/line1 = "SUPPLY"
 	var/line2
-	var/datum/shuttle/ferry/supply/supply_shuttle = global.CTsupply.shuttle
+	var/datum/shuttle/ferry/supply/supply_shuttle = global.PCsupply.shuttle
 	if(supply_shuttle.has_arrive_time())
 		line2 = get_supply_shuttle_timer()
 		if(length(line2) > CHARS_PER_LINE)
@@ -234,7 +234,7 @@
 	update_display(line1, line2)
 
 /obj/machinery/status_display/supply/proc/get_supply_shuttle_timer()
-	var/datum/shuttle/ferry/supply/supply_shuttle = global.CTsupply.shuttle
+	var/datum/shuttle/ferry/supply/supply_shuttle = global.PCsupply.shuttle
 	if(supply_shuttle.has_arrive_time())
 		var/timeleft = round((supply_shuttle.arrive_time - world.time) / 10, 1)
 		if(timeleft < 0)
