@@ -205,7 +205,6 @@
 #include "code\game\datums\controllers\radio.dm"
 #include "code\game\datums\controllers\ticker.dm"
 #include "code\game\datums\controllers\verbs.dm"
-#include "code\game\datums\controllers\vote.dm"
 #include "code\game\datums\diseases\_disease.dm"
 #include "code\game\datums\diseases\appendicitis.dm"
 #include "code\game\datums\diseases\beesease.dm"

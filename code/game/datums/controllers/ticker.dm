@@ -58,7 +58,7 @@ CONTROLLER_DEF(ticker)
 		while(current_state == GAME_STATE_PREGAME)
 			for(var/i = 0, i < 10, i++)
 				sleep(1)
-				global.CTvote.process()
+				global.PCvote.process()
 			if(roundstart_progressing)
 				pregame_timeleft--
 /*			if(pregame_timeleft == config.vote_autogamemode_timeleft)
