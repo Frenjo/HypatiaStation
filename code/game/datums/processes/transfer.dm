@@ -5,5 +5,14 @@ PROCESS_DEF(transfer)
 	name = "Transfer"
 	schedule_interval = 2 SECONDS
 
+	var/timerbuffer = 0 // Buffer for time check.
+	var/currenttick = 0
+
+/datum/process/transfer/setup()
+	timerbuffer = CONFIG_GET(vote_autotransfer_initial)
+
 /datum/process/transfer/do_work()
-	global.CTtransfer.process()
+	currenttick++
+	if(world.time >= timerbuffer - 600)
+		global.CTvote.autotransfer()
+		timerbuffer = timerbuffer + CONFIG_GET(vote_autotransfer_interval)
