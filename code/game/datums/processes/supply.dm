@@ -5,32 +5,32 @@ PROCESS_DEF(supply)
 	name = "Supply"
 	schedule_interval = 30 SECONDS
 
-	var/processing = 1
-	var/processing_interval = 300
-	var/iteration = 0
-	//supply points
+	// Supply points
 	var/points = 50
 	var/points_per_process = 1
 	var/points_per_slip = 2
 	var/points_per_crate = 5
-	var/plasma_per_point = 2 // 2 plasma for 1 point
-	//control
+	var/plasma_per_point = 2 // 2 plasma for 1 point.
+
+	// Control
 	var/ordernum
 	var/list/shoppinglist = list()
 	var/list/requestlist = list()
-	//shuttle movement
-	var/movetime = 1200
+
+	// Shuttle movement
+	var/movetime = 2 MINUTES
 	var/datum/shuttle/ferry/supply/shuttle
 
 /datum/process/supply/setup()
 	ordernum = rand(1, 9000)
 	shuttle = global.PCshuttle.shuttles["Supply"]
 
-//Supply shuttle ticker - handles supply point regenertion and shuttle travelling between centcom and the station
+// Handles supply point regeneration.
 /datum/process/supply/do_work()
 	points += points_per_process
 
-//To stop things being sent to centcom which should not be sent to centcom. Recursively checks for these types.
+// To stop things being sent to centcom which should not be sent to centcom.
+// Recursively checks for these types.
 /datum/process/supply/proc/forbidden_atoms_check(atom/A)
 	if(isliving(A))
 		return 1
@@ -46,7 +46,7 @@ PROCESS_DEF(supply)
 		if(.(B))
 			return 1
 
-//Sellin
+// Selling.
 /datum/process/supply/proc/sell()
 	var/area/area_shuttle = shuttle.get_location_area()
 	if(isnull(area_shuttle))
@@ -85,7 +85,7 @@ PROCESS_DEF(supply)
 	if(plasma_count)
 		points += Floor(plasma_count / plasma_per_point)
 
-//Buyin
+// Buying.
 /datum/process/supply/proc/buy()
 	if(!length(shoppinglist))
 		return
@@ -124,7 +124,6 @@ PROCESS_DEF(supply)
 		O.name = "[SP.containername] [SO.comment ? "([SO.comment])":"" ]"
 
 		//supply manifest generation begin
-
 		var/obj/item/paper/manifest/slip = new /obj/item/paper/manifest(O)
 		slip.info = "<h3>[command_name()] Shipping Manifest</h3><hr><br>"
 		slip.info +="Order #[SO.ordernum]<br>"
