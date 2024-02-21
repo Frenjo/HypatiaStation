@@ -94,7 +94,7 @@
 	else if(T == "status")
 		var/list/s = list()
 		s["version"] = GLOBL.game_version
-		s["mode"] = global.CTticker.master_mode
+		s["mode"] = global.PCticker.master_mode
 		s["respawn"] = CONFIG_GET(respawn)
 		s["enter"] = GLOBL.enter_allowed
 		s["vote"] = CONFIG_GET(allow_vote_mode)
@@ -128,8 +128,8 @@
 	var/list/lines = file2list("data/mode.txt")
 	if(length(lines))
 		if(lines[1])
-			global.CTticker.master_mode = lines[1]
-			log_misc("Saved mode is '[global.CTticker.master_mode]'")
+			global.PCticker.master_mode = lines[1]
+			log_misc("Saved mode is '[global.PCticker.master_mode]'")
 
 /world/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
@@ -185,8 +185,8 @@
 
 	var/list/features = list()
 
-	if(isnotnull(global.CTticker?.master_mode))
-		features.Add(global.CTticker.master_mode)
+	if(isnotnull(global.PCticker?.master_mode))
+		features.Add(global.PCticker.master_mode)
 	else
 		features.Add("<b>STARTING</b>")
 

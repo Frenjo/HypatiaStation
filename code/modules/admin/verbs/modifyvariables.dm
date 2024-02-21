@@ -17,10 +17,10 @@ var/list/forbidden_varedit_object_types = list(
 	set category = PANEL_DEBUG
 	set name = "Edit Ticker Variables"
 
-	if(global.CTticker == null)
+	if(global.PCticker == null)
 		to_chat(src, "Game hasn't started yet.")
 	else
-		src.modify_variables(global.CTticker)
+		src.modify_variables(global.PCticker)
 		feedback_add_details("admin_verb", "ETV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/mod_list_add_ass() //haha

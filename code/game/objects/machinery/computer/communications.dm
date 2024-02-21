@@ -446,7 +446,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 */
 
 /proc/call_shuttle_proc(mob/user)
-	if(!global.CTticker || !global.PCemergency.location())
+	if(!global.PCticker || !global.PCemergency.location())
 		return
 
 	if(GLOBL.sent_strike_team)
@@ -465,7 +465,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 		to_chat(user, "The emergency shuttle is already on its way.")
 		return
 
-	if(global.CTticker.mode.name == "blob")
+	if(global.PCticker.mode.name == "blob")
 		to_chat(user, "Under directive 7-10, [station_name()] is quarantined until further notice.")
 		return
 
@@ -476,7 +476,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 	return
 
 /proc/init_shift_change(mob/user, force = 0)
-	if(!global.CTticker || !global.PCemergency.location())
+	if(!global.PCticker || !global.PCemergency.location())
 		return
 
 	if(global.PCemergency.going_to_centcom())
@@ -501,11 +501,11 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 			to_chat(user, "It is not crew transfer time. [round((135000 - world.time) / 600)] minutes before trying again.") //may need to change "/600"
 			return
 
-		if(IS_GAME_MODE(/datum/game_mode/revolution) || IS_GAME_MODE(/datum/game_mode/malfunction) || global.CTticker.mode.name == "sandbox")
+		if(IS_GAME_MODE(/datum/game_mode/revolution) || IS_GAME_MODE(/datum/game_mode/malfunction) || global.PCticker.mode.name == "sandbox")
 			// New version pretends to call the shuttle but cause the shuttle to return after a random duration.
 			global.PCemergency.auto_recall = TRUE
 
-		if(global.CTticker.mode.name == "blob" || global.CTticker.mode.name == "epidemic")
+		if(global.PCticker.mode.name == "blob" || global.PCticker.mode.name == "epidemic")
 			to_chat(user, "Under directive 7-10, [station_name()] is quarantined until further notice.")
 			return
 
@@ -518,9 +518,9 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 	return
 
 /proc/cancel_call_proc(mob/user)
-	if(!global.CTticker || !global.PCemergency.can_recall())
+	if(!global.PCticker || !global.PCemergency.can_recall())
 		return
-	if(global.CTticker.mode.name == "blob" || global.CTticker.mode.name == "meteor")
+	if(global.PCticker.mode.name == "blob" || global.PCticker.mode.name == "meteor")
 		return
 
 	if(!global.PCemergency.going_to_centcom() && global.PCemergency.online()) //check that shuttle isn't already heading to centcom

@@ -268,7 +268,7 @@ emp_act
 					apply_effect(20, PARALYZE, armor)
 					visible_message(SPAN_DANGER("[src] has been knocked unconscious!"))
 					if(src != user && I.damtype == BRUTE)
-						global.CTticker.mode.remove_revolutionary(mind)
+						global.PCticker.mode.remove_revolutionary(mind)
 
 				if(bloody)//Apply blood
 					if(wear_mask)

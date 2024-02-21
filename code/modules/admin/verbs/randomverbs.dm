@@ -434,11 +434,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	switch(new_character.mind.special_role)
 		if("traitor")
 			global.CTjobs.equip_rank(new_character, new_character.mind.assigned_role, TRUE)
-			global.CTticker.mode.equip_traitor(new_character)
+			global.PCticker.mode.equip_traitor(new_character)
 		if("Wizard")
 			new_character.loc = pick(GLOBL.wizardstart)
 			//ticker.mode.learn_basic_spells(new_character)
-			global.CTticker.mode.equip_wizard(new_character)
+			global.PCticker.mode.equip_wizard(new_character)
 		if("Syndicate")
 			var/obj/effect/landmark/synd_spawn = locate("landmark*Syndicate-Spawn")
 			if(synd_spawn)
@@ -812,7 +812,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = PANEL_ADMIN
 	set name = "Call Shuttle"
 
-	if(!global.CTticker || !global.PCemergency.location())
+	if(!global.PCticker || !global.PCemergency.location())
 		return
 
 	if(!check_rights(R_ADMIN))	return
@@ -820,7 +820,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm != "Yes") return
 
-	if(IS_GAME_MODE(/datum/game_mode/revolution) || IS_GAME_MODE(/datum/game_mode/malfunction) || global.CTticker.mode.name == "confliction")
+	if(IS_GAME_MODE(/datum/game_mode/revolution) || IS_GAME_MODE(/datum/game_mode/malfunction) || global.PCticker.mode.name == "confliction")
 		var/choice = input("The shuttle will just return if you call it. Call anyway?") in list("Confirm", "Cancel")
 		if(choice == "Confirm")
 			global.PCemergency.auto_recall = TRUE
@@ -841,7 +841,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
 
-	if(!global.CTticker || !global.PCemergency.can_recall())
+	if(!global.PCticker || !global.PCemergency.can_recall())
 		return
 
 	global.PCemergency.recall()
@@ -855,7 +855,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = PANEL_ADMIN
 	set name = "Toggle Deny Shuttle"
 
-	if(!global.CTticker)
+	if(!global.PCticker)
 		return
 
 	if(!check_rights(R_ADMIN))	return
@@ -882,12 +882,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!check_rights(R_FUN))	return
 
-	if(global.CTticker && global.CTticker.mode)
+	if(global.PCticker && global.PCticker.mode)
 		usr << "Nope you can't do this, the game's already started. This only works before rounds!"
 		return
 
-	if(global.CTticker.random_players)
-		global.CTticker.random_players = FALSE
+	if(global.PCticker.random_players)
+		global.PCticker.random_players = FALSE
 		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.", 1)
 		usr << "Disabled."
 		return
@@ -905,7 +905,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	usr << "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>."
 
-	global.CTticker.random_players = TRUE
+	global.PCticker.random_players = TRUE
 	feedback_add_details("admin_verb","MER") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 

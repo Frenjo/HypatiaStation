@@ -53,7 +53,7 @@
 					sleep(50)
 					close()
 		return
-	if(!global.CTticker)
+	if(!global.PCticker)
 		return
 	if(operating)
 		return
@@ -87,7 +87,7 @@
 /obj/machinery/door/window/open()
 	if(operating == 1) //doors can still open when emag-disabled
 		return 0
-	if(!global.CTticker)
+	if(!global.PCticker)
 		return 0
 	if(!operating) //in case of emag
 		operating = 1

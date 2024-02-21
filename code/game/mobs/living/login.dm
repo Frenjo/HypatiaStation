@@ -6,18 +6,18 @@
 	mind.active = TRUE	//indicates that the mind is currently synced with a client
 
 	//Round specific stuff like hud updates
-	if(isnotnull(global.CTticker?.mode))
-		switch(global.CTticker.mode.type)
+	if(isnotnull(global.PCticker?.mode))
+		switch(global.PCticker.mode.type)
 			if(/datum/game_mode/revolution)
-				var/datum/game_mode/revolution/revolution = global.CTticker.mode
+				var/datum/game_mode/revolution/revolution = global.PCticker.mode
 				if((mind in revolution.revolutionaries) || (mind in revolution.head_revolutionaries))
 					revolution.update_rev_icons_added(mind)
 			if(/datum/game_mode/cult)
-				var/datum/game_mode/cult/cult = global.CTticker.mode
+				var/datum/game_mode/cult/cult = global.PCticker.mode
 				if(mind in cult.cult)
 					cult.update_cult_icons_added(mind)
 			if(/datum/game_mode/nuclear)
-				var/datum/game_mode/nuclear/nuclear = global.CTticker.mode
+				var/datum/game_mode/nuclear/nuclear = global.PCticker.mode
 				if(mind in nuclear.syndicates)
 					nuclear.update_all_synd_icons()
 	return .

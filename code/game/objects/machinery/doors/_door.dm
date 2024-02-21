@@ -202,7 +202,7 @@
 		return 1
 	if(operating > 0)
 		return
-	if(!global.CTticker)
+	if(!global.PCticker)
 		return 0
 	if(!operating)
 		operating = 1

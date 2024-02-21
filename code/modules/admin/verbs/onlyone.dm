@@ -1,5 +1,5 @@
 /client/proc/only_one()
-	if(!global.CTticker)
+	if(!global.PCticker)
 		alert("The game hasn't started yet!")
 		return
 
@@ -9,7 +9,7 @@
 		if(is_special_character(H))
 			continue
 
-		global.CTticker.mode.traitors += H.mind
+		global.PCticker.mode.traitors += H.mind
 		H.mind.special_role = "traitor"
 
 		var/datum/objective/steal/steal_objective = new

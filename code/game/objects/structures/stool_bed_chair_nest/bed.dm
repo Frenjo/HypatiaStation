@@ -72,7 +72,7 @@
 	return
 
 /obj/structure/stool/bed/proc/buckle_mob(mob/M as mob, mob/user as mob)
-	if(!global.CTticker)
+	if(!global.PCticker)
 		to_chat(user, "You can't buckle anyone in before the game starts.")
 	if(!ismob(M) || !in_range(src, user) || M.loc != src.loc || user.restrained() || user.lying || user.stat || M.buckled || ispAI(user))
 		return

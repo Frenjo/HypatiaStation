@@ -35,7 +35,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 
 	var/dat
 
-	if(!global.CTticker)
+	if(!global.PCticker)
 		return
 
 	dat += "<hr/><br/><b>Cryogenic Oversight Control</b><br/>"
@@ -226,8 +226,8 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 				qdel(occupant.mind.objectives)
 				occupant.mind.special_role = null
 			else
-				if(global.CTticker.mode.name == "AutoTraitor")
-					var/datum/game_mode/traitor/autotraitor/current_mode = global.CTticker.mode
+				if(global.PCticker.mode.name == "AutoTraitor")
+					var/datum/game_mode/traitor/autotraitor/current_mode = global.PCticker.mode
 					current_mode.possible_traitors.Remove(occupant)
 
 			// Delete them from datacore.

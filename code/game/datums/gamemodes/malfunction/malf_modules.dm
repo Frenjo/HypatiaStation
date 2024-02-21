@@ -155,7 +155,7 @@ rcd light flash thingy on matter drain
 
 	if(!IS_GAME_MODE(/datum/game_mode/malfunction))
 		return
-	var/datum/game_mode/malfunction/malfunction = global.CTticker.mode
+	var/datum/game_mode/malfunction/malfunction = global.PCticker.mode
 
 	malf.verbs.Remove(/client/proc/interhack)
 	malfunction.hack_intercept()

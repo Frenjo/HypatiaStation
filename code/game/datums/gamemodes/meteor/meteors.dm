@@ -5,7 +5,7 @@
 /var/const/meteors_in_small_wave = 10
 
 /proc/meteor_wave(number = meteors_in_wave)
-	if(!global.CTticker || GLOBL.wavesecret)
+	if(!global.PCticker || GLOBL.wavesecret)
 		return
 
 	GLOBL.wavesecret = TRUE

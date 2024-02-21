@@ -177,7 +177,7 @@
 	return
 
 /mob/living/carbon/monkey/attack_hand(mob/living/carbon/human/M as mob)
-	if(!global.CTticker)
+	if(!global.PCticker)
 		M << "You cannot attack people before the game has started."
 		return
 
@@ -275,7 +275,7 @@
 		updatehealth()
 
 /mob/living/carbon/monkey/attack_slime(mob/living/carbon/slime/M as mob)
-	if(!global.CTticker)
+	if(!global.PCticker)
 		M << "You cannot attack people before the game has started."
 		return
 
@@ -398,7 +398,7 @@
 		return
 
 /mob/living/carbon/monkey/IsAdvancedToolUser()//Unless its monkey mode monkeys cant use advanced tools
-	if(!global.CTticker)
+	if(!global.PCticker)
 		return 0
 	if(!IS_GAME_MODE(/datum/game_mode/monkey))
 		return 0

@@ -130,20 +130,20 @@ Growing it to term with nothing injected will grab a ghost from the observers. *
 	podman.dna.real_name = podman.real_name
 
 	// Update mode specific HUD icons.
-	switch(global.CTticker.mode.name)
+	switch(global.PCticker.mode.name)
 		if("revolution")
-			if(podman.mind in global.CTticker.mode:revolutionaries)
-				global.CTticker.mode:add_revolutionary(podman.mind)
-				global.CTticker.mode:update_all_rev_icons() //So the icon actually appears
-			if(podman.mind in global.CTticker.mode:head_revolutionaries)
-				global.CTticker.mode:update_all_rev_icons()
+			if(podman.mind in global.PCticker.mode:revolutionaries)
+				global.PCticker.mode:add_revolutionary(podman.mind)
+				global.PCticker.mode:update_all_rev_icons() //So the icon actually appears
+			if(podman.mind in global.PCticker.mode:head_revolutionaries)
+				global.PCticker.mode:update_all_rev_icons()
 		if("nuclear emergency")
-			if(podman.mind in global.CTticker.mode:syndicates)
-				global.CTticker.mode:update_all_synd_icons()
+			if(podman.mind in global.PCticker.mode:syndicates)
+				global.PCticker.mode:update_all_synd_icons()
 		if("cult")
-			if(podman.mind in global.CTticker.mode:cult)
-				global.CTticker.mode:add_cultist(podman.mind)
-				global.CTticker.mode:update_all_cult_icons() //So the icon actually appears
+			if(podman.mind in global.PCticker.mode:cult)
+				global.PCticker.mode:add_cultist(podman.mind)
+				global.PCticker.mode:update_all_cult_icons() //So the icon actually appears
 		// -- End mode specific stuff
 
 	to_chat(podman, SPAN_RADIOACTIVE("You awaken slowly, feeling your sap stir into sluggish motion as the warm air caresses your bark."))

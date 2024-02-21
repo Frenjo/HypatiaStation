@@ -90,7 +90,7 @@ Implants;
 		if(isnotnull(player.client) && player.ready)
 			playerC++
 
-	if(global.CTticker.master_mode == "secret")
+	if(global.PCticker.master_mode == "secret")
 		if(playerC >= required_players_secret)
 			return 1
 	else
@@ -112,8 +112,8 @@ Implants;
 		display_roundstart_logout_report()
 
 	feedback_set_details("round_start", "[time2text(world.realtime)]")
-	if(isnotnull(global.CTticker?.mode))
-		feedback_set_details("game_mode", "[global.CTticker.mode]")
+	if(isnotnull(global.PCticker?.mode))
+		feedback_set_details("game_mode", "[global.PCticker.mode]")
 	if(global.revdata)
 		feedback_set_details("revision", "[global.revdata.revision]")
 	feedback_set_details("server_ip", "[world.internet_address]:[world.port]")

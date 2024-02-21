@@ -190,7 +190,7 @@
 /mob/living/silicon/robot/show_malf_ai()
 	. = ..()
 	if(IS_GAME_MODE(/datum/game_mode/malfunction))
-		var/datum/game_mode/malfunction/malf = global.CTticker.mode
+		var/datum/game_mode/malfunction/malf = global.PCticker.mode
 		for(var/datum/mind/malfai in malf.malf_ai)
 			if(connected_ai?.mind == malfai)
 				if(malf.apcs >= 3)
@@ -464,7 +464,7 @@
 		return ..()
 
 /mob/living/silicon/robot/attack_slime(mob/living/carbon/slime/M as mob)
-	if(isnull(global.CTticker))
+	if(isnull(global.PCticker))
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
 

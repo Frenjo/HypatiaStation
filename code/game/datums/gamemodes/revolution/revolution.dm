@@ -102,7 +102,7 @@
 	checkwin_counter++
 	if(checkwin_counter >= 5)
 		if(!finished)
-			global.CTticker.mode.check_win()
+			global.PCticker.mode.check_win()
 		checkwin_counter = 0
 	return 0
 

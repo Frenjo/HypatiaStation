@@ -11,8 +11,8 @@
 		qdel(H)
 
 /datum/mind/proc/make_ai_malfunction()
-	if(!(src in global.CTticker.mode.malf_ai))
-		global.CTticker.mode.malf_ai.Add(src)
+	if(!(src in global.PCticker.mode.malf_ai))
+		global.PCticker.mode.malf_ai.Add(src)
 
 		var/mob/living/silicon/ai/malf = src.current
 		malf.verbs.Add(/mob/living/silicon/ai/proc/choose_modules)
@@ -25,27 +25,27 @@
 		malf.icon_state = "ai-malf"
 
 /datum/mind/proc/make_traitor()
-	if(!(src in global.CTticker.mode.traitors))
-		global.CTticker.mode.traitors.Add(src)
+	if(!(src in global.PCticker.mode.traitors))
+		global.PCticker.mode.traitors.Add(src)
 		special_role = "traitor"
 		if(!CONFIG_GET(objectives_disabled))
-			global.CTticker.mode.forge_traitor_objectives(src)
-		global.CTticker.mode.finalize_traitor(src)
-		global.CTticker.mode.greet_traitor(src)
+			global.PCticker.mode.forge_traitor_objectives(src)
+		global.PCticker.mode.finalize_traitor(src)
+		global.PCticker.mode.greet_traitor(src)
 
 /datum/mind/proc/make_nuclear_operative()
-	if(!(src in global.CTticker.mode.syndicates))
-		global.CTticker.mode.syndicates.Add(src)
-		global.CTticker.mode.update_synd_icons_added(src)
-		if(length(global.CTticker.mode.syndicates) == 1)
-			global.CTticker.mode.prepare_syndicate_leader(src)
+	if(!(src in global.PCticker.mode.syndicates))
+		global.PCticker.mode.syndicates.Add(src)
+		global.PCticker.mode.update_synd_icons_added(src)
+		if(length(global.PCticker.mode.syndicates) == 1)
+			global.PCticker.mode.prepare_syndicate_leader(src)
 		else
-			current.real_name = "[syndicate_name()] Operative #[length(global.CTticker.mode.syndicates) - 1]"
+			current.real_name = "[syndicate_name()] Operative #[length(global.PCticker.mode.syndicates) - 1]"
 		special_role = "Syndicate"
 		assigned_role = "MODE"
 		to_chat(current, SPAN_INFO("You are a [syndicate_name()] agent!"))
-		global.CTticker.mode.forge_syndicate_objectives(src)
-		global.CTticker.mode.greet_syndicate(src)
+		global.PCticker.mode.forge_syndicate_objectives(src)
+		global.PCticker.mode.greet_syndicate(src)
 
 		current.loc = get_turf(locate("landmark*Syndicate-Spawn"))
 
@@ -61,20 +61,20 @@
 		qdel(H.wear_suit)
 		qdel(H.w_uniform)
 
-		global.CTticker.mode.equip_syndicate(current)
+		global.PCticker.mode.equip_syndicate(current)
 
 /datum/mind/proc/make_changeling()
-	if(!(src in global.CTticker.mode.changelings))
-		global.CTticker.mode.changelings.Add(src)
-		global.CTticker.mode.grant_changeling_powers(current)
+	if(!(src in global.PCticker.mode.changelings))
+		global.PCticker.mode.changelings.Add(src)
+		global.PCticker.mode.grant_changeling_powers(current)
 		special_role = "Changeling"
 		if(!CONFIG_GET(objectives_disabled))
-			global.CTticker.mode.forge_changeling_objectives(src)
-		global.CTticker.mode.greet_changeling(src)
+			global.PCticker.mode.forge_changeling_objectives(src)
+		global.PCticker.mode.greet_changeling(src)
 
 /datum/mind/proc/make_wizard()
-	if(!(src in global.CTticker.mode.wizards))
-		global.CTticker.mode.wizards.Add(src)
+	if(!(src in global.PCticker.mode.wizards))
+		global.PCticker.mode.wizards.Add(src)
 		special_role = "Wizard"
 		assigned_role = "MODE"
 		//ticker.mode.learn_basic_spells(current)
@@ -84,21 +84,21 @@
 		else
 			current.loc = pick(GLOBL.wizardstart)
 
-		global.CTticker.mode.equip_wizard(current)
+		global.PCticker.mode.equip_wizard(current)
 		for(var/obj/item/spellbook/S in current.contents)
 			S.op = 0
-		global.CTticker.mode.name_wizard(current)
-		global.CTticker.mode.forge_wizard_objectives(src)
-		global.CTticker.mode.greet_wizard(src)
+		global.PCticker.mode.name_wizard(current)
+		global.PCticker.mode.forge_wizard_objectives(src)
+		global.PCticker.mode.greet_wizard(src)
 
 /datum/mind/proc/make_cultist()
-	if(!(src in global.CTticker.mode.cult))
-		global.CTticker.mode.cult.Add(src)
-		global.CTticker.mode.update_cult_icons_added(src)
+	if(!(src in global.PCticker.mode.cult))
+		global.PCticker.mode.cult.Add(src)
+		global.PCticker.mode.update_cult_icons_added(src)
 		special_role = "Cultist"
 		to_chat(current, "<font color=\"purple\"><b><i>You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie.</b></i></font>")
 		to_chat(current, "<font color=\"purple\"><b><i>Assist your new compatriots in their dark dealings. Their goal is yours, and yours is theirs. You serve the Dark One above all else. Bring It back.</b></i></font>")
-		var/datum/game_mode/cult/cult = global.CTticker.mode
+		var/datum/game_mode/cult/cult = global.PCticker.mode
 		if(istype(cult))
 			cult.memoize_cult_objectives(src)
 		else
@@ -123,13 +123,13 @@
 		else
 			to_chat(H, "A tome, a message from your new master, appears in your [where].")
 
-	if(!global.CTticker.mode.equip_cultist(current))
+	if(!global.PCticker.mode.equip_cultist(current))
 		to_chat(H, "Spawning an amulet from your Master failed.")
 
 /datum/mind/proc/make_revolutionary()
-	if(length(global.CTticker.mode.head_revolutionaries))
+	if(length(global.PCticker.mode.head_revolutionaries))
 		// copy targets
-		var/datum/mind/valid_head = locate() in global.CTticker.mode.head_revolutionaries
+		var/datum/mind/valid_head = locate() in global.PCticker.mode.head_revolutionaries
 		if(isnotnull(valid_head))
 			for(var/datum/objective/mutiny/O in valid_head.objectives)
 				var/datum/objective/mutiny/rev_obj = new /datum/objective/mutiny()
@@ -137,13 +137,13 @@
 				rev_obj.target = O.target
 				rev_obj.explanation_text = "Assassinate [O.target.current.real_name], the [O.target.assigned_role]."
 				objectives.Add(rev_obj)
-			global.CTticker.mode.greet_revolutionary(src, 0)
-	global.CTticker.mode.head_revolutionaries.Add(src)
-	global.CTticker.mode.update_rev_icons_added(src)
+			global.PCticker.mode.greet_revolutionary(src, 0)
+	global.PCticker.mode.head_revolutionaries.Add(src)
+	global.PCticker.mode.update_rev_icons_added(src)
 	special_role = "Head Revolutionary"
 
-	global.CTticker.mode.forge_revolutionary_objectives(src)
-	global.CTticker.mode.greet_revolutionary(src, 0)
+	global.PCticker.mode.forge_revolutionary_objectives(src)
+	global.PCticker.mode.greet_revolutionary(src, 0)
 
 	var/list/L = current.get_contents()
 	var/obj/item/flash/flash = locate() in L
@@ -151,7 +151,7 @@
 	take_uplink()
 	var/fail = FALSE
 //	fail |= !ticker.mode.equip_traitor(current, 1)
-	fail |= !global.CTticker.mode.equip_revolutionary(current)
+	fail |= !global.PCticker.mode.equip_revolutionary(current)
 
 // check whether this mind's mob has been brigged for the given duration
 // have to call this periodically for the duration to work properly

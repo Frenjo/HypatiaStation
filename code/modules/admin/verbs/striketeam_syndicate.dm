@@ -10,7 +10,7 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 	if(!src.holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
-	if(!global.CTticker)
+	if(!global.PCticker)
 		alert("The game hasn't started yet!")
 		return
 //	if(world.time < 6000)
@@ -123,7 +123,7 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 	new_syndicate_commando.mind_initialize()
 	new_syndicate_commando.mind.assigned_role = "MODE"
 	new_syndicate_commando.mind.special_role = "Syndicate Commando"
-	global.CTticker.mode.traitors |= new_syndicate_commando.mind	//Adds them to current traitor list. Which is really the extra antagonist list.
+	global.PCticker.mode.traitors |= new_syndicate_commando.mind	//Adds them to current traitor list. Which is really the extra antagonist list.
 	new_syndicate_commando.equip_outfit(syndicate_leader_selected ? /decl/hierarchy/outfit/syndicate_commando/leader : /decl/hierarchy/outfit/syndicate_commando/standard)
 	qdel(spawn_location)
 	return new_syndicate_commando

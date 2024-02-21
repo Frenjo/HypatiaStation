@@ -184,9 +184,9 @@
 
 /datum/reagent/water/holy/on_mob_life(mob/living/M)
 	if(ishuman(M))
-		if((M.mind in global.CTticker.mode.cult) && prob(10))
+		if((M.mind in global.PCticker.mode.cult) && prob(10))
 			to_chat(M, SPAN_INFO("A cooling sensation from inside you brings you an untold calmness."))
-			global.CTticker.mode.remove_cultist(M.mind)
+			global.PCticker.mode.remove_cultist(M.mind)
 			M.visible_message(SPAN_INFO("[M]'s eyes blink and become clearer.")) // So observers know it worked.
 	holder.remove_reagent(id, 10 * REAGENTS_METABOLISM) //high metabolism to prevent extended uncult rolls.
 
