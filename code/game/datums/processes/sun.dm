@@ -20,7 +20,7 @@ PROCESS_DEF(sun)
 	if(prob(50))
 		rate = -rate
 
-// calculate the sun's position given the time of day
+// Calculates the sun's position given the time of day.
 /datum/process/sun/do_work()
 /*	counter++
 	if(counter<50)		// count 50 pticks (50 seconds, roughly - about a 5deg change)
@@ -30,8 +30,8 @@ PROCESS_DEF(sun)
 	angle = ((rate * world.time / 100) % 360 + 360) % 360
 
 	/*
-		Yields a 45 - 75 IC minute rotational period
-		Rotation rate can vary from 4.8 deg/min to 8 deg/min (288 to 480 deg/hr)
+	 * Yields a 45 - 75 IC minute rotational period
+	 * Rotation rate can vary from 4.8 deg/min to 8 deg/min (288 to 480 deg/hr)
 	*/
 
 	if(lastAngleUpdate != angle)
@@ -47,7 +47,6 @@ PROCESS_DEF(sun)
 	nexttime = nexttime + 600	// 600 world.time ticks = 1 minute
 
 	// now calculate and cache the (dx,dy) increments for line drawing
-
 	var/s = sin(angle)
 	var/c = cos(angle)
 
@@ -68,7 +67,7 @@ PROCESS_DEF(sun)
 		if(isnotnull(S.control))
 			occlusion(S)
 
-// for a solar panel, trace towards sun to see if we're in shadow
+// For a solar panel, trace towards sun to see if we're in shadow.
 /datum/process/sun/proc/occlusion(obj/machinery/power/solar/S)
 	var/ax = S.x		// start at the solar panel
 	var/ay = S.y
