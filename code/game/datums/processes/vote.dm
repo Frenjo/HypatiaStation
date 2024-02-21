@@ -39,7 +39,7 @@ PROCESS_DEF(vote)
 		else
 			for(var/client/C in voting)
 				if(C)
-					C << browse(global.PCvote.interface(C), "window=vote;can_close=0")
+					C << browse(interface(C), "window=vote;can_close=0")
 			voting.Cut()
 
 /datum/process/vote/proc/autotransfer()
