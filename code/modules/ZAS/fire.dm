@@ -45,7 +45,7 @@ Attach to transfer valve and open. BOOM.
 		fire_tiles.Cut()
 
 	if(!length(fire_tiles))
-		global.CTair.active_fire_zones.Remove(src)
+		global.PCair.active_fire_zones.Remove(src)
 		return
 
 	var/datum/gas_mixture/burn_gas = air.remove_ratio(global.vsc.fire_consuption_rate, length(fire_tiles))
@@ -78,7 +78,7 @@ Attach to transfer valve and open. BOOM.
 
 	fire = new(src, fl)
 	zone.fire_tiles |= src
-	global.CTair.active_fire_zones |= zone
+	global.PCair.active_fire_zones |= zone
 	return 0
 
 /obj/fire
@@ -170,14 +170,14 @@ Attach to transfer valve and open. BOOM.
 	set_light(3, 1, color)
 
 	firelevel = fl
-	global.CTair.active_hotspots.Add(src)
+	global.PCair.active_hotspots.Add(src)
 
 /obj/fire/Destroy()
 	if(istype(loc, /turf/simulated))
 		set_light(0)
 
 		loc = null
-	global.CTair.active_hotspots.Remove(src)
+	global.PCair.active_hotspots.Remove(src)
 
 	return ..()
 
@@ -185,7 +185,7 @@ Attach to transfer valve and open. BOOM.
 	if(isturf(loc))
 		set_light(0)
 		loc = null
-	global.CTair.active_hotspots.Remove(src)
+	global.PCair.active_hotspots.Remove(src)
 
 /turf/simulated
 	var/fire_protection = 0 //Protects newly extinguished tiles from being overrun again.

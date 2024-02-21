@@ -151,7 +151,7 @@ var/list/debug_verbs = list(
 	/client/proc/Zone_Info,
 	/client/proc/Test_ZAS_Connection,
 	/client/proc/ZoneTick,
-	/client/proc/rebootAirMaster,
+	///client/proc/rebootAirMaster,
 	/client/proc/hide_debug_verbs,
 	/client/proc/testZAScolors,
 	/client/proc/testZAScolors_remove
@@ -261,17 +261,19 @@ var/list/debug_verbs = list(
 			if(i.icon_state == "zasdebug")
 				images.Remove(i)
 
+/*
 /client/proc/rebootAirMaster()
 	set category = PANEL_ZAS
 	set name = "Reboot ZAS"
 
 	if(alert("This will destroy and remake all zone geometry on the whole map.", "Reboot ZAS", "Reboot ZAS", "Nevermind") == "Reboot ZAS")
-		var/datum/controller/air/old_air = global.CTair
+		var/datum/controller/air/old_air = global.PCair
 		for(var/zone/zone in old_air.zones)
 			zone.c_invalidate()
 		qdel(old_air)
-		global.CTair = new /datum/controller/air()
-		global.CTair.setup()
+		global.PCair = new /datum/controller/air()
+		global.PCair.setup()
+*/
 
 /client/proc/count_objects_on_z_level()
 	set category = PANEL_MAPPING
