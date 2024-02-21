@@ -134,26 +134,26 @@ PROCESS_DEF(emergency)
 
 /datum/process/emergency/proc/can_call()
 	if(deny_shuttle)
-		return 0
+		return FALSE
 	if(shuttle.moving_status != SHUTTLE_IDLE || !shuttle.location)	//must be idle at centcom
-		return 0
+		return FALSE
 	if(wait_for_launch)	//already launching
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /*
- * Only returns 0 if it would absolutely make no sense to recall...
+ * Only returns FALSE if it would absolutely make no sense to recall...
  * ... e.g. the shuttle is already at the station or wasn't called to begin with.
  * Other reasons for the shuttle not being recallable should be handled elsewhere
  */
 /datum/process/emergency/proc/can_recall()
 	if(shuttle.moving_status == SHUTTLE_INTRANSIT)	//if the shuttle is already in transit then it's too late
-		return 0
+		return FALSE
 	if(!shuttle.location)	//already at the station.
-		return 0
+		return FALSE
 	if(!wait_for_launch)	//we weren't going anywhere, anyways...
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /datum/process/emergency/proc/get_shuttle_prep_time()
 	// During mutiny rounds, the shuttle takes twice as long.
@@ -174,7 +174,7 @@ PROCESS_DEF(emergency)
 // Helper proc so we don't have emergency_controller.shuttle.location everywhere.
 /datum/process/emergency/proc/location()
 	if(isnull(shuttle))
-		return 1	//if we dont have a shuttle datum, just act like it's at centcom
+		return TRUE // If we dont have a shuttle datum, just act like it's at CentCom.
 	return shuttle.location
 
 // Returns the time left until the shuttle arrives at it's destination, in seconds.

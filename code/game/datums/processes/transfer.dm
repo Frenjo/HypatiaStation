@@ -13,6 +13,6 @@ PROCESS_DEF(transfer)
 
 /datum/process/transfer/do_work()
 	currenttick++
-	if(world.time >= timerbuffer - 600)
+	if(world.time >= timerbuffer - (1 MINUTE))
 		global.PCvote.autotransfer()
 		timerbuffer = timerbuffer + CONFIG_GET(vote_autotransfer_interval)

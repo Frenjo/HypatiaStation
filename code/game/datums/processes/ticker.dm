@@ -8,7 +8,7 @@ PROCESS_DEF(ticker)
 	var/lastTickerTimeDuration
 	var/lastTickerTime
 
-	var/const/restart_timeout = 600
+	var/const/restart_timeout = 1 MINUTE
 	var/current_state = GAME_STATE_PREGAME
 
 	// Whether or not the lobby timer is counting down.

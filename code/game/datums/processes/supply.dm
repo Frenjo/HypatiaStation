@@ -31,20 +31,22 @@ PROCESS_DEF(supply)
 
 // To stop things being sent to centcom which should not be sent to centcom.
 // Recursively checks for these types.
+// Returns TRUE if there's a forbidden atom.
 /datum/process/supply/proc/forbidden_atoms_check(atom/A)
 	if(isliving(A))
-		return 1
+		return TRUE
 	if(istype(A, /obj/item/disk/nuclear))
-		return 1
+		return TRUE
 	if(istype(A, /obj/machinery/nuclearbomb))
-		return 1
+		return TRUE
 	if(istype(A, /obj/item/radio/beacon))
-		return 1
+		return TRUE
 
 	for(var/i = 1, i <= length(A.contents), i++)
 		var/atom/B = A.contents[i]
 		if(.(B))
-			return 1
+			return TRUE
+	return FALSE
 
 // Selling.
 /datum/process/supply/proc/sell()

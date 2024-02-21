@@ -337,6 +337,8 @@ PROCESS_DEF(air)
 	return A.air.compare(B.air)
 
 /datum/process/air/proc/get_edge(zone/A, zone/B)
+	RETURN_TYPE(/connection_edge)
+
 	if(istype(B))
 		for(var/connection_edge/zone/edge in A.edges)
 			if(edge.contains_zone(B))

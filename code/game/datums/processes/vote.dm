@@ -61,7 +61,6 @@ PROCESS_DEF(vote)
 	voted.Cut()
 	voting.Cut()
 	current_votes.Cut()
-
 /*
 	if(auto_muted && !ooc_allowed)
 		auto_muted = 0
