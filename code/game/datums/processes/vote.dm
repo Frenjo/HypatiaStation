@@ -30,7 +30,6 @@ PROCESS_DEF(vote)
 		// Calculate how much time is remaining by comparing current time, to time of vote start,
 		// plus vote duration
 		time_remaining = round((started_time + CONFIG_GET(vote_period) - world.time) / 10)
-
 		if(time_remaining < 0)
 			result()
 			for(var/client/C in voting)
@@ -41,16 +40,17 @@ PROCESS_DEF(vote)
 			for(var/client/C in voting)
 				if(C)
 					C << browse(global.PCvote.interface(C), "window=vote;can_close=0")
-
 			voting.Cut()
 
 /datum/process/vote/proc/autotransfer()
 	initiate_vote("crew_transfer", "the server")
 	log_debug("The server has called a crew transfer vote")
 
-/*	proc/autogamemode() //This is here for whoever can figure out how to make this work
-		initiate_vote("gamemode","the server")
-		log_debug("The server has called a gamemode vote")*/
+/*
+/datum/process/vote/proc/autogamemode() //This is here for whoever can figure out how to make this work
+	initiate_vote("gamemode","the server")
+	log_debug("The server has called a gamemode vote")
+*/
 
 /datum/process/vote/proc/reset()
 	initiator = null
