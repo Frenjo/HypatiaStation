@@ -158,7 +158,7 @@
 
 /obj/machinery/computer/shuttle_control/emergency/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
 	var/list/data
-	var/datum/shuttle/ferry/emergency/shuttle = global.CTshuttle.shuttles[shuttle_tag]
+	var/datum/shuttle/ferry/emergency/shuttle = global.PCshuttle.shuttles[shuttle_tag]
 	if(!istype(shuttle))
 		return
 

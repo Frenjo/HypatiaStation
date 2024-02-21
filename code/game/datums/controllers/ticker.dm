@@ -131,7 +131,7 @@ CONTROLLER_DEF(ticker)
 
 	//here to initialize the random events nicely at round start
 	setup_economy()
-	global.CTshuttle.setup_shuttle_docks() // Updated to reflect 'shuttles' port. -Frenjo
+	global.PCshuttle.setup_shuttle_docks() // Updated to reflect 'shuttles' port. -Frenjo
 
 	post_setup() // This forks off and doesn't need to be waited on.
 

@@ -8,7 +8,7 @@ PROCESS_DEF(supply)
 /datum/process/supply/setup()
 	if(isnull(global.CTsupply))
 		global.CTsupply = new /datum/controller/supply()
-		global.CTsupply.shuttle = global.CTshuttle.shuttles["Supply"]
+		global.CTsupply.shuttle = global.PCshuttle.shuttles["Supply"]
 
 /datum/process/supply/do_work()
 	global.CTsupply.process()

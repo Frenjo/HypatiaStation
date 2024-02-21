@@ -1957,7 +1957,7 @@
 				message_admins("\blue [key_name_admin(usr)] used everyone is a traitor secret. Objective is [objective]", 1)
 				log_admin("[key_name(usr)] used everyone is a traitor secret. Objective is [objective]")
 			if("moveminingshuttle")
-				var/datum/shuttle/ferry/mining_shuttle = global.CTshuttle.shuttles["Mining"]
+				var/datum/shuttle/ferry/mining_shuttle = global.PCshuttle.shuttles["Mining"]
 				if(!mining_shuttle.can_launch())
 					return
 				message_admins(SPAN_INFO("[key_name_admin(usr)] moved mining shuttle"), 1)
@@ -1966,7 +1966,7 @@
 				feedback_inc("admin_secrets_fun_used", 1)
 				feedback_add_details("admin_secrets_fun_used", "ShM")
 			if("moveresearchshuttle")
-				var/datum/shuttle/ferry/research_shuttle = global.CTshuttle.shuttles["Research"]
+				var/datum/shuttle/ferry/research_shuttle = global.PCshuttle.shuttles["Research"]
 				if(!research_shuttle.can_launch())
 					return
 				message_admins(SPAN_INFO("[key_name_admin(usr)] moved research shuttle"), 1)
@@ -1975,7 +1975,7 @@
 				feedback_inc("admin_secrets_fun_used", 1)
 				feedback_add_details("admin_secrets_fun_used", "ShR")
 			if("moveadminshuttle")
-				var/datum/shuttle/ferry/admin_shuttle = global.CTshuttle.shuttles["Administration"]
+				var/datum/shuttle/ferry/admin_shuttle = global.PCshuttle.shuttles["Administration"]
 				if(!admin_shuttle.can_launch())
 					return
 				message_admins(SPAN_INFO("[key_name_admin(usr)] moved the centcom administration shuttle"), 1)
@@ -1984,7 +1984,7 @@
 				feedback_inc("admin_secrets_fun_used", 1)
 				feedback_add_details("admin_secrets_fun_used", "ShA")
 			if("moveferry")
-				var/datum/shuttle/ferry/centcom_ferry = global.CTshuttle.shuttles["CentCom"]
+				var/datum/shuttle/ferry/centcom_ferry = global.PCshuttle.shuttles["CentCom"]
 				if(!centcom_ferry.can_launch())
 					return
 				message_admins(SPAN_INFO("[key_name_admin(usr)] moved the centcom ferry"), 1)
@@ -1993,7 +1993,7 @@
 				feedback_inc("admin_secrets_fun_used", 1)
 				feedback_add_details("admin_secrets_fun_used", "ShF")
 			if("movealienship")
-				var/datum/shuttle/ferry/alien_ship = global.CTshuttle.shuttles["Alien"]
+				var/datum/shuttle/ferry/alien_ship = global.PCshuttle.shuttles["Alien"]
 				if(!alien_ship.can_launch())
 					return
 				message_admins(SPAN_INFO("[key_name_admin(usr)] moved the alien dinghy"), 1)

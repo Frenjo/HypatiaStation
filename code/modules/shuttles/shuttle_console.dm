@@ -22,7 +22,7 @@
 
 /obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
 	var/list/data
-	var/datum/shuttle/ferry/shuttle = global.CTshuttle.shuttles[shuttle_tag]
+	var/datum/shuttle/ferry/shuttle = global.PCshuttle.shuttles[shuttle_tag]
 	if(!istype(shuttle))
 		return
 
@@ -76,7 +76,7 @@
 	usr.set_machine(src)
 	add_fingerprint(usr)
 
-	var/datum/shuttle/ferry/shuttle = global.CTshuttle.shuttles[shuttle_tag]
+	var/datum/shuttle/ferry/shuttle = global.PCshuttle.shuttles[shuttle_tag]
 	if(!istype(shuttle))
 		return
 
