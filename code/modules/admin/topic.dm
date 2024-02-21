@@ -210,23 +210,23 @@
 
 		switch(href_list["call_shuttle"])
 			if("1")
-				if(!global.CTticker || !global.CTemergency.location())
+				if(!global.CTticker || !global.PCemergency.location())
 					return
-				global.CTemergency.call_evac()
-				captain_announce("The emergency shuttle has been called. It will arrive in [round(global.CTemergency.estimate_arrival_time() / 60)] minutes.")
+				global.PCemergency.call_evac()
+				captain_announce("The emergency shuttle has been called. It will arrive in [round(global.PCemergency.estimate_arrival_time() / 60)] minutes.")
 				log_admin("[key_name(usr)] called the Emergency Shuttle")
 				message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
 
 			if("2")
-				if(!global.CTticker || !global.CTemergency.location())
+				if(!global.CTticker || !global.PCemergency.location())
 					return
-				if(global.CTemergency.can_call())
-					global.CTemergency.call_evac()
-					captain_announce("The emergency shuttle has been called. It will arrive in [round(global.CTemergency.estimate_arrival_time() / 60)] minutes.")
+				if(global.PCemergency.can_call())
+					global.PCemergency.call_evac()
+					captain_announce("The emergency shuttle has been called. It will arrive in [round(global.PCemergency.estimate_arrival_time() / 60)] minutes.")
 					log_admin("[key_name(usr)] called the Emergency Shuttle")
 					message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
 				else
-					global.CTemergency.recall()
+					global.PCemergency.recall()
 					log_admin("[key_name(usr)] sent the Emergency Shuttle back")
 					message_admins("\blue [key_name_admin(usr)] sent the Emergency Shuttle back", 1)
 

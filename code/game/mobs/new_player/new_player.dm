@@ -344,13 +344,13 @@
 	var/dat = "<html><body><center>"
 	dat += "Round Duration: [round(hours)]h [round(mins)]m<br>"
 
-	if(global.CTemergency) //In case Nanotrasen decides reposess CentCom's shuttles.
+	if(global.PCemergency) //In case Nanotrasen decides reposess CentCom's shuttles.
 		//Shuttle is going to centcom, not recalled
-		if(global.CTemergency.going_to_centcom())
+		if(global.PCemergency.going_to_centcom())
 			dat += "<font color='red'><b>The station has been evacuated.</b></font><br>"
 		// Emergency shuttle is past the point of no recall
-		if(global.CTemergency.online())
-			if(global.CTemergency.evac)
+		if(global.PCemergency.online())
+			if(global.PCemergency.evac)
 				dat += "<font color='red'>The station is currently undergoing evacuation procedures.</font><br>"
 			else
 				// Crew transfer initiated

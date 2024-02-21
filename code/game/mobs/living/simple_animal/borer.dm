@@ -139,9 +139,9 @@
 	..()
 	statpanel(PANEL_STATUS)
 
-	if(global.CTemergency)
-		if(global.CTemergency.online() && !global.CTemergency.returned())
-			var/timeleft = global.CTemergency.estimate_arrival_time()
+	if(global.PCemergency)
+		if(global.PCemergency.online() && !global.PCemergency.returned())
+			var/timeleft = global.PCemergency.estimate_arrival_time()
 			if(timeleft)
 				stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 

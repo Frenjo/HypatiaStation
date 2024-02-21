@@ -289,7 +289,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 /datum/objective/hijack/check_completion()
 	if(isnull(owner.current) || owner.current.stat)
 		return 0
-	if(!global.CTemergency.returned())
+	if(!global.PCemergency.returned())
 		return 0
 	if(issilicon(owner.current))
 		return 0
@@ -311,7 +311,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 /datum/objective/block/check_completion()
 	if(!issilicon(owner.current))
 		return 0
-	if(!global.CTemergency.returned())
+	if(!global.PCemergency.returned())
 		return 0
 	if(isnull(owner.current))
 		return 0
@@ -331,7 +331,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	explanation_text = "Do not allow anyone to escape the station.  Only allow the shuttle to be called when everyone is dead and your story is the only one left."
 
 /datum/objective/silence/check_completion()
-	if(!global.CTemergency.returned())
+	if(!global.PCemergency.returned())
 		return 0
 
 	for(var/mob/living/player in GLOBL.player_list)
@@ -357,7 +357,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 		return 0
 	if(isbrain(owner.current))
 		return 0
-	if(!global.CTemergency.returned())
+	if(!global.PCemergency.returned())
 		return 0
 	if(isnull(owner.current) || owner.current.stat == DEAD)
 		return 0

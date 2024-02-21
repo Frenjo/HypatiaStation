@@ -30,8 +30,8 @@ GLOBAL_GLOBL_INIT(sent_strike_team, 0)
 
 	GLOBL.sent_strike_team = 1
 
-	if(global.CTemergency.can_recall() && global.CTemergency.online())
-		global.CTemergency.recall()
+	if(global.PCemergency.can_recall() && global.PCemergency.online())
+		global.PCemergency.recall()
 
 	var/commando_number = commandos_possible //for selecting a leader
 	var/leader_selected = 0 //when the leader is chosen. The last person spawned.

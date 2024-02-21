@@ -36,8 +36,8 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 
 	GLOBL.sent_syndicate_strike_team = 1
 
-	if(global.CTemergency.can_recall() && global.CTemergency.online())
-		global.CTemergency.recall()
+	if(global.PCemergency.can_recall() && global.PCemergency.online())
+		global.PCemergency.recall()
 
 	var/syndicate_commando_number = syndicate_commandos_possible //for selecting a leader
 	var/syndicate_leader_selected = 0 //when the leader is chosen. The last person spawned.

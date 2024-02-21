@@ -273,7 +273,7 @@
 		if(!is_type_in_list(disk_area, GLOBL.centcom_areas))
 			disk_rescued = 0
 			break
-	var/crew_evacuated = global.CTemergency.returned()
+	var/crew_evacuated = global.PCemergency.returned()
 	//var/operatives_are_dead = is_operatives_are_dead()
 
 

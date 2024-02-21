@@ -50,7 +50,7 @@ CONTROLLER_DEF(shuttle)
 	//escape pod arming controllers
 	var/datum/shuttle/ferry/escape_pod/pod
 	var/list/pod_controller_map = list()
-	for(var/datum/shuttle/ferry/escape_pod/P in global.CTemergency.escape_pods)
+	for(var/datum/shuttle/ferry/escape_pod/P in global.PCemergency.escape_pods)
 		if(isnotnull(P.dock_target_station))
 			pod_controller_map[P.dock_target_station] = P
 
@@ -184,8 +184,8 @@ CONTROLLER_DEF(shuttle)
 	process_shuttles.Add(shuttle)
 
 	// Gives the emergency shuttle controller it's shuttle and pods.
-	global.CTemergency.shuttle = shuttles["Escape"]
-	global.CTemergency.escape_pods = list(
+	global.PCemergency.shuttle = shuttles["Escape"]
+	global.PCemergency.escape_pods = list(
 		shuttles["Escape Pod 1"],
 		shuttles["Escape Pod 2"],
 		shuttles["Escape Pod 3"],

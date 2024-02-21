@@ -64,7 +64,7 @@
 			if(alert(ai_mind.current,"Do you want to use an alternative sprite for your real core?",,"Yes","No")=="Yes")
 				ai_mind.current.icon_state = "ai-malf2"
 */
-	global.CTemergency?.auto_recall = TRUE
+	global.PCemergency?.auto_recall = TRUE
 	spawn(rand(waittime_l, waittime_h))
 		send_intercept()
 	. = ..()
@@ -90,7 +90,7 @@
 		return 1
 	if(is_malf_ai_dead())
 		if(CONFIG_GET(continous_rounds))
-			global.CTemergency?.auto_recall = TRUE
+			global.PCemergency?.auto_recall = TRUE
 			malf_mode_declared = 0
 		else
 			return 1
@@ -103,7 +103,7 @@
 
 /datum/game_mode/malfunction/declare_completion()
 	var/malf_dead = is_malf_ai_dead()
-	var/crew_evacuated = global.CTemergency.returned()
+	var/crew_evacuated = global.PCemergency.returned()
 
 	if(station_captured && station_was_nuked)
 		feedback_set_details("round_end_result", "win - AI win - nuke")

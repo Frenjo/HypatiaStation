@@ -57,14 +57,14 @@
 		var/datum/game_mode/malfunction/malf = global.CTticker.mode
 		if(malf.malf_mode_declared)
 			stat(null, "Time left: [max(malf.AI_win_timeleft / (malf.apcs / 3), 0)]")
-	if(global.CTemergency)
+	if(global.PCemergency)
 		var/timeleft
-		if(global.CTemergency.online())
-			if(global.CTemergency.has_eta())
-				timeleft = global.CTemergency.estimate_arrival_time()
+		if(global.PCemergency.online())
+			if(global.PCemergency.has_eta())
+				timeleft = global.PCemergency.estimate_arrival_time()
 				stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 			else
-				timeleft = global.CTemergency.estimate_launch_time()
+				timeleft = global.PCemergency.estimate_launch_time()
 				stat(null, "ETD-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 
 	if(client.statpanel == PANEL_STATUS)

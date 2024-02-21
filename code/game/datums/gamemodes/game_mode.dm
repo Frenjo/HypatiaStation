@@ -127,7 +127,7 @@ Implants;
 /datum/game_mode/proc/check_finished() //to be called by ticker
 	SHOULD_CALL_PARENT(TRUE)
 
-	if(global.CTemergency.returned() || station_was_nuked)
+	if(global.PCemergency.returned() || station_was_nuked)
 		return 1
 	return 0
 

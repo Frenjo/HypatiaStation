@@ -91,8 +91,8 @@
 	for(var/datum/mind/rev_mind in head_revolutionaries)
 		greet_revolutionary(rev_mind)
 	modePlayer += head_revolutionaries
-	if(global.CTemergency)
-		global.CTemergency.auto_recall = TRUE
+	if(global.PCemergency)
+		global.PCemergency.auto_recall = TRUE
 	spawn(rand(waittime_l, waittime_h))
 		send_intercept()
 	..()
@@ -174,8 +174,8 @@
 /datum/game_mode/revolution/check_finished()
 	if(CONFIG_GET(continous_rounds))
 		if(finished != 0)
-			if(global.CTemergency)
-				global.CTemergency.auto_recall = TRUE
+			if(global.PCemergency)
+				global.PCemergency.auto_recall = TRUE
 		return ..()
 	if(finished != 0)
 		return 1

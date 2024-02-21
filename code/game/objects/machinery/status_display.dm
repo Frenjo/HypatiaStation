@@ -96,7 +96,7 @@
 			mode = STATUS_MODE_EVAC_SHUTTLE
 			// 50% chance of the screen displaying either the shuttle ETA or the evacuation alert.
 			// This doesn't apply to crew transfers.
-			evac_countdown = global.CTemergency.evac ? prob(50) : TRUE
+			evac_countdown = global.PCemergency.evac ? prob(50) : TRUE
 
 		if("message")
 			mode = STATUS_MODE_MESSAGE
@@ -110,13 +110,13 @@
 /obj/machinery/status_display/proc/update()
 	switch(mode)
 		if(STATUS_MODE_EVAC_SHUTTLE)
-			if(global.CTemergency.online())
+			if(global.PCemergency.online())
 				if(!evac_countdown)
 					set_picture("evacalert")
 				else
 					var/line1
 					var/line2 = get_shuttle_timer()
-					if(!global.CTemergency.has_eta())
+					if(!global.PCemergency.has_eta())
 						line1 = "-ETD-"
 					else
 						line1 = "-ETA-"
@@ -182,10 +182,10 @@
 
 /obj/machinery/status_display/proc/get_shuttle_timer()
 	var/timeleft
-	if(global.CTemergency.has_eta())
-		timeleft = global.CTemergency.estimate_arrival_time()
+	if(global.PCemergency.has_eta())
+		timeleft = global.PCemergency.estimate_arrival_time()
 	else
-		timeleft = global.CTemergency.estimate_launch_time()
+		timeleft = global.PCemergency.estimate_launch_time()
 
 	if(timeleft)
 		return "[add_zero(num2text((timeleft / 60) % 60), 2)]:[add_zero(num2text(timeleft % 60), 2)]"

@@ -381,11 +381,11 @@
 		dat += "Current Game Mode: <B>[global.CTticker.mode.name]</B><BR>"
 		dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
 		dat += "<B>Emergency shuttle</B><BR>"
-		if(!global.CTemergency.online())
+		if(!global.PCemergency.online())
 			dat += "<a href='?src=\ref[src];call_shuttle=1'>Call Shuttle</a><br>"
 		else
-			var/timeleft = global.CTemergency.estimate_arrival_time()
-			switch(global.CTemergency.location())
+			var/timeleft = global.PCemergency.estimate_arrival_time()
+			switch(global.PCemergency.location())
 				if(0)
 					dat += "ETA: <a href='?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
 					dat += "<a href='?src=\ref[src];call_shuttle=2'>Send Back</a><br>"

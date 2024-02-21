@@ -812,7 +812,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = PANEL_ADMIN
 	set name = "Call Shuttle"
 
-	if(!global.CTticker || !global.CTemergency.location())
+	if(!global.CTticker || !global.PCemergency.location())
 		return
 
 	if(!check_rights(R_ADMIN))	return
@@ -823,11 +823,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(IS_GAME_MODE(/datum/game_mode/revolution) || IS_GAME_MODE(/datum/game_mode/malfunction) || global.CTticker.mode.name == "confliction")
 		var/choice = input("The shuttle will just return if you call it. Call anyway?") in list("Confirm", "Cancel")
 		if(choice == "Confirm")
-			global.CTemergency.auto_recall = TRUE
+			global.PCemergency.auto_recall = TRUE
 		else
 			return
 
-	global.CTemergency.call_evac()
+	global.PCemergency.call_evac()
 	feedback_add_details("admin_verb","CSHUT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-called the emergency shuttle.")
 	message_admins("\blue [key_name_admin(usr)] admin-called the emergency shuttle.", 1)
@@ -841,10 +841,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
 
-	if(!global.CTticker || !global.CTemergency.can_recall())
+	if(!global.CTticker || !global.PCemergency.can_recall())
 		return
 
-	global.CTemergency.recall()
+	global.PCemergency.recall()
 	feedback_add_details("admin_verb","CCSHUT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-recalled the emergency shuttle.")
 	message_admins("\blue [key_name_admin(usr)] admin-recalled the emergency shuttle.", 1)
@@ -860,10 +860,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!check_rights(R_ADMIN))	return
 
-	global.CTemergency.deny_shuttle = !global.CTemergency.deny_shuttle
+	global.PCemergency.deny_shuttle = !global.PCemergency.deny_shuttle
 
-	log_admin("[key_name(src)] has [global.CTemergency.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
-	message_admins("[key_name_admin(usr)] has [global.CTemergency.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
+	log_admin("[key_name(src)] has [global.PCemergency.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
+	message_admins("[key_name_admin(usr)] has [global.PCemergency.deny_shuttle ? "denied" : "allowed"] the shuttle to be called.")
 
 /client/proc/cmd_admin_attack_log(mob/M as mob in GLOBL.mob_list)
 	set category = PANEL_SPECIAL_VERBS

@@ -307,7 +307,7 @@ CONTROLLER_DEF(ticker)
 
 	mode.process()
 
-	var/mode_finished = mode.check_finished() || (global.CTemergency.returned() && global.CTemergency.evac)
+	var/mode_finished = mode.check_finished() || (global.PCemergency.returned() && global.PCemergency.evac)
 	if(!mode.explosion_in_progress && mode_finished)
 		current_state = GAME_STATE_FINISHED
 

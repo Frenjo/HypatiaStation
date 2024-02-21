@@ -218,9 +218,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				//to_world("DEBUG: malf mode ticker test")
 				if(malf.malf_mode_declared)
 					stat(null, "Time left: [max(malf.AI_win_timeleft / (malf.apcs / 3), 0)]")
-		if(isnotnull(global.CTemergency))
-			if(global.CTemergency.online() && !global.CTemergency.returned())
-				var/timeleft = global.CTemergency.estimate_arrival_time()
+		if(isnotnull(global.PCemergency))
+			if(global.PCemergency.online() && !global.PCemergency.returned())
+				var/timeleft = global.PCemergency.estimate_arrival_time()
 				if(timeleft)
 					stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 
