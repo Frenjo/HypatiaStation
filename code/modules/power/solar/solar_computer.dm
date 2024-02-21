@@ -182,7 +182,7 @@
 		track = text2num(href_list["track"])
 		if(track == TRACKING_AUTO)
 			if(connected_tracker)
-				connected_tracker.set_angle(global.sun.angle)
+				connected_tracker.set_angle(global.PCsun.angle)
 				set_panels(cdir)
 		else if(track == TRACKING_MANUAL) //begin manual tracking
 			src.targetdir = src.cdir
@@ -193,7 +193,7 @@
 	if(href_list["search_connected"])
 		src.search_for_connected()
 		if(connected_tracker && track == TRACKING_AUTO)
-			connected_tracker.set_angle(global.sun.angle)
+			connected_tracker.set_angle(global.PCsun.angle)
 		src.set_panels(cdir)
 
 	interact(usr)
@@ -247,7 +247,7 @@
 			if(trackrate)	//we're manual tracking. If we set a rotation speed...
 				cdir = targetdir	//...the current direction is the targetted one (and rotates panels to it)
 		if(TRACKING_AUTO) // auto-tracking
-			connected_tracker?.set_angle(global.sun.angle)
+			connected_tracker?.set_angle(global.PCsun.angle)
 
 	set_panels(cdir)
 	updateDialog()

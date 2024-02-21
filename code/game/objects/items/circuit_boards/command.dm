@@ -27,7 +27,7 @@
 	if(IS_GAME_MODE(/datum/game_mode/revolution) || IS_GAME_MODE(/datum/game_mode/malfunction) || GLOBL.sent_strike_team)
 		return .
 
-	global.CTemergency.call_evac()
+	global.PCemergency.call_evac()
 	log_game("All the AIs, comm consoles and boards are destroyed. Shuttle called.")
 	message_admins("All the AIs, comm consoles and boards are destroyed. Shuttle called.", 1)
 

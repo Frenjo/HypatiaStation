@@ -31,7 +31,7 @@
 			return
 
 		//if(IS_GAME_MODE(/datum/game_mode/blob))
-		if(global.CTticker?.mode?.name == "blob")
+		if(global.PCticker?.mode?.name == "blob")
 			to_chat(usr, "Law uploads have been disabled by NanoTrasen!")
 			return
 

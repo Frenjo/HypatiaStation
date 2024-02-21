@@ -91,7 +91,6 @@
 
 	updateicon()
 
-	if(global.CTticker && global.CTticker.mode)
-		global.CTticker.mode.check_win()
+	global.PCticker?.mode?.check_win()
 
 	return 1

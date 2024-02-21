@@ -219,7 +219,7 @@
 
 
 /mob/living/carbon/slime/attack_slime(mob/living/carbon/slime/M as mob)
-	if(!global.CTticker)
+	if(!global.PCticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
 
@@ -265,7 +265,7 @@
 	if(!ismonkey(M))
 		return//Fix for aliens receiving double messages when attacking other aliens.
 
-	if(!global.CTticker)
+	if(!global.PCticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
 
@@ -290,7 +290,7 @@
 
 
 /mob/living/carbon/slime/attack_hand(mob/living/carbon/human/M as mob)
-	if(!global.CTticker)
+	if(!global.PCticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
 

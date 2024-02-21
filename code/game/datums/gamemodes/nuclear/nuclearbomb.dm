@@ -424,8 +424,7 @@ var/bomb_set
 	if(!src.lighthack)
 		src.icon_state = "nuclearbomb3"
 	playsound(src,'sound/machines/Alarm.ogg', 100, 0, 5)
-	if(global.CTticker && global.CTticker.mode)
-		global.CTticker.mode.explosion_in_progress = 1
+	global.PCticker?.mode?.explosion_in_progress = 1
 	sleep(100)
 
 	GLOBL.enter_allowed = FALSE
@@ -438,26 +437,26 @@ var/bomb_set
 	else
 		off_station = 2
 
-	if(global.CTticker)
+	if(global.PCticker)
 		if(IS_GAME_MODE(/datum/game_mode/nuclear))
-			var/datum/game_mode/nuclear/nuclear = global.CTticker.mode
+			var/datum/game_mode/nuclear/nuclear = global.PCticker.mode
 			var/obj/machinery/computer/shuttle_control/multi/syndicate/syndie_location = locate(/obj/machinery/computer/shuttle_control/multi/syndicate)
 			if(syndie_location)
 				nuclear.syndies_didnt_escape = (syndie_location.z > 1 ? 0 : 1)	//muskets will make me change this, but it will do for now
 			nuclear.nuke_off_station = off_station
-		global.CTticker.station_explosion_cinematic(off_station, null)
-		if(isnotnull(global.CTticker.mode))
-			global.CTticker.mode.explosion_in_progress = 0
+		global.PCticker.station_explosion_cinematic(off_station, null)
+		if(isnotnull(global.PCticker.mode))
+			global.PCticker.mode.explosion_in_progress = 0
 			if(IS_GAME_MODE(/datum/game_mode/nuclear))
-				var/datum/game_mode/nuclear/nuclear = global.CTticker.mode
+				var/datum/game_mode/nuclear/nuclear = global.PCticker.mode
 				nuclear.nukes_left --
 			else
 				to_world("<B>The station was destoyed by the nuclear blast!</B>")
 
-			global.CTticker.mode.station_was_nuked = (off_station < 2)	//offstation == 1 is a draw. the station becomes irradiated and needs to be evacuated.
+			global.PCticker.mode.station_was_nuked = (off_station < 2)	//offstation == 1 is a draw. the station becomes irradiated and needs to be evacuated.
 																//kinda shit but I couldn't  get permission to do what I wanted to do.
 
-			if(!global.CTticker.mode.check_finished())//If the mode does not deal with the nuke going off so just reboot because everyone is stuck as is
+			if(!global.PCticker.mode.check_finished())//If the mode does not deal with the nuke going off so just reboot because everyone is stuck as is
 				to_world("<B>Resetting in 30 seconds!</B>")
 
 				feedback_set_details("end_error", "nuke - unhandled ending")

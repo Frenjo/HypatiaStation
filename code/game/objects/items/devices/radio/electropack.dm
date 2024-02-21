@@ -43,7 +43,7 @@
 	//..()
 	if(usr.stat || usr.restrained())
 		return
-	if(((ishuman(usr) && ((!global.CTticker || (global.CTticker && global.CTticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && isturf(loc)))))
+	if(((ishuman(usr) && ((!global.PCticker || (global.PCticker && global.PCticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && isturf(loc)))))
 		usr.set_machine(src)
 		if(href_list["freq"])
 			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))

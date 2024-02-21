@@ -107,7 +107,7 @@
 
 /obj/machinery/initialise()
 	. = ..()
-	if(!GLOBL.machinery_sort_required && isnotnull(global.CTticker))
+	if(!GLOBL.machinery_sort_required && isnotnull(global.PCticker))
 		dd_insertObjectList(GLOBL.machines, src)
 	else
 		GLOBL.machines.Add(src)

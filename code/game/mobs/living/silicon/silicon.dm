@@ -163,8 +163,8 @@
 
 // this function displays the shuttles ETA in the status panel if the shuttle has been called
 /mob/living/silicon/proc/show_emergency_shuttle_eta()
-	if(global.CTemergency.online() && !global.CTemergency.returned())
-		var/timeleft = global.CTemergency.estimate_arrival_time()
+	if(global.PCemergency.online() && !global.PCemergency.returned())
+		var/timeleft = global.PCemergency.estimate_arrival_time()
 		if(timeleft)
 			stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 

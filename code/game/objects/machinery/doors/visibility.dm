@@ -4,5 +4,5 @@
 	. = ..(need_rebuild)
 	// Glass door glass = 1
 	// don't check then?
-	if(!glass && global.CTcameranet)
-		global.CTcameranet.updateVisibility(src, 0)
+	if(!glass)
+		global.CTcameranet?.updateVisibility(src, 0)

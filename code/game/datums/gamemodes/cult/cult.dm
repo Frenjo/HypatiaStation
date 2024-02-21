@@ -8,7 +8,7 @@
 	)
 
 /proc/iscultist(mob/living/M as mob)
-	return istype(M) && M.mind && global.CTticker && global.CTticker.mode && (M.mind in global.CTticker.mode.cult)
+	return istype(M) && M.mind && (M.mind in global.PCticker?.mode?.cult)
 
 /proc/is_convertable_to_cult(datum/mind/mind)
 	if(!istype(mind))

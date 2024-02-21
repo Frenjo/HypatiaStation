@@ -56,8 +56,8 @@
 			return
 		if(ishuman(M))
 			var/mob/living/carbon/human/N = M
-			global.CTticker.mode.equip_traitor(N)
-			global.CTticker.mode.traitors += N.mind
+			global.PCticker.mode.equip_traitor(N)
+			global.PCticker.mode.traitors += N.mind
 			N.mind.special_role = "traitor"
 			var/objective = "Free Objective"
 			switch(rand(1,100))

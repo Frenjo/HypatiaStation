@@ -265,7 +265,7 @@
 	if(malfai && operating)
 		if(IS_GAME_MODE(/datum/game_mode/malfunction))
 			if(isStationLevel(src.z))
-				var/datum/game_mode/malfunction/malf = global.CTticker.mode
+				var/datum/game_mode/malfunction/malf = global.PCticker.mode
 				malf.apcs--
 	stat |= BROKEN
 	operating = 0
@@ -279,7 +279,7 @@
 	if(malfai)
 		if(IS_GAME_MODE(/datum/game_mode/malfunction))
 			if(isStationLevel(src.z))
-				var/datum/game_mode/malfunction/malf = global.CTticker.mode
+				var/datum/game_mode/malfunction/malf = global.PCticker.mode
 				operating ? malf.apcs++ : malf.apcs--
 
 	src.update()

@@ -344,7 +344,7 @@
 	return
 
 /obj/effect/equip_e/New()
-	if(!global.CTticker)
+	if(!global.PCticker)
 		qdel(src)
 	spawn(100)
 		qdel(src)

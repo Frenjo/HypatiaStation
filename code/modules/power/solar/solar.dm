@@ -61,7 +61,7 @@
 /obj/machinery/power/solar/process()//TODO: remove/add this from machines to save on processing as needed ~Carn PRIORITY
 	if(stat & BROKEN)
 		return
-	if(!global.sun || !control) //if there's no sun or the panel is not linked to a solar control computer, no need to proceed
+	if(!global.PCsun || !control) //if there's no sun or the panel is not linked to a solar control computer, no need to proceed
 		return
 
 	if(adir != ndir)
@@ -139,14 +139,14 @@
 
 //calculates the fraction of the sunlight that the panel recieves
 /obj/machinery/power/solar/proc/update_solar_exposure()
-	if(!global.sun)
+	if(!global.PCsun)
 		return
 	if(obscured)
 		sunfrac = 0
 		return
 
 	//find the smaller angle between the direction the panel is facing and the direction of the sun (the sign is not important here)
-	var/p_angle = min(abs(adir - global.sun.angle), 360 - abs(adir - global.sun.angle))
+	var/p_angle = min(abs(adir - global.PCsun.angle), 360 - abs(adir - global.PCsun.angle))
 
 	if(p_angle > 90)			// if facing more than 90deg from sun, zero output
 		sunfrac = 0
@@ -168,8 +168,8 @@
 	var/turf/T = null
 
 	for(var/i = 1 to 20)		// 20 steps is enough
-		ax += global.sun.dx	// do step
-		ay += global.sun.dy
+		ax += global.PCsun.dx	// do step
+		ay += global.PCsun.dy
 
 		T = locate(round(ax, 0.5), round(ay, 0.5), z)
 

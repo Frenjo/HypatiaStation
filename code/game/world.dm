@@ -50,6 +50,7 @@
 	global.process_scheduler.defer_setup_for(/datum/process/ticker)
 	global.process_scheduler.setup()
 	global.CTmaster.setup()
+	global.PCticker.pregame() // This was moved here to avoid unnecessary while() and sleep().
 
 	spawn(5 MINUTES) // Delay by 5 minutes (300 seconds/3000 deciseconds) so we aren't adding to the round-start lag.
 		if(CONFIG_GET(ToRban))
@@ -94,7 +95,7 @@
 	else if(T == "status")
 		var/list/s = list()
 		s["version"] = GLOBL.game_version
-		s["mode"] = global.CTticker.master_mode
+		s["mode"] = global.PCticker.master_mode
 		s["respawn"] = CONFIG_GET(respawn)
 		s["enter"] = GLOBL.enter_allowed
 		s["vote"] = CONFIG_GET(allow_vote_mode)
@@ -128,8 +129,8 @@
 	var/list/lines = file2list("data/mode.txt")
 	if(length(lines))
 		if(lines[1])
-			global.CTticker.master_mode = lines[1]
-			log_misc("Saved mode is '[global.CTticker.master_mode]'")
+			global.PCticker.master_mode = lines[1]
+			log_misc("Saved mode is '[global.PCticker.master_mode]'")
 
 /world/proc/save_mode(the_mode)
 	var/F = file("data/mode.txt")
@@ -185,8 +186,8 @@
 
 	var/list/features = list()
 
-	if(isnotnull(global.CTticker?.master_mode))
-		features.Add(global.CTticker.master_mode)
+	if(isnotnull(global.PCticker?.master_mode))
+		features.Add(global.PCticker.master_mode)
 	else
 		features.Add("<b>STARTING</b>")
 

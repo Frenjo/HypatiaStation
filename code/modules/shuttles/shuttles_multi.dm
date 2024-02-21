@@ -53,7 +53,7 @@
 		return
 	add_fingerprint(user)
 
-	var/datum/shuttle/multi_shuttle/shuttle = global.CTshuttle.shuttles[shuttle_tag]
+	var/datum/shuttle/multi_shuttle/shuttle = global.PCshuttle.shuttles[shuttle_tag]
 	if(!istype(shuttle))
 		return
 
@@ -84,7 +84,7 @@
 	usr.set_machine(src)
 	add_fingerprint(usr)
 
-	var/datum/shuttle/multi_shuttle/shuttle = global.CTshuttle.shuttles[shuttle_tag]
+	var/datum/shuttle/multi_shuttle/shuttle = global.PCshuttle.shuttles[shuttle_tag]
 	if(!istype(shuttle))
 		return
 

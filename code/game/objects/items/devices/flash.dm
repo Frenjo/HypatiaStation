@@ -73,7 +73,7 @@
 			flick("e_flash", M.flash)
 
 			if(ishuman(M) && ishuman(user) && M.stat != DEAD)
-				if(user.mind && (user.mind in global.CTticker.mode.head_revolutionaries) && IS_GAME_MODE(/datum/game_mode/revolution))
+				if(user.mind && (user.mind in global.PCticker.mode.head_revolutionaries) && IS_GAME_MODE(/datum/game_mode/revolution))
 					var/revsafe = 0
 					for(var/obj/item/implant/loyalty/L in M)
 						if(L && L.implanted)
@@ -84,7 +84,7 @@
 						revsafe = 2
 					if(!revsafe)
 						M.mind.has_been_rev = 1
-						global.CTticker.mode.add_revolutionary(M.mind)
+						global.PCticker.mode.add_revolutionary(M.mind)
 					else if(revsafe == 1)
 						to_chat(user, SPAN_WARNING("Something seems to be blocking the flash!"))
 					else

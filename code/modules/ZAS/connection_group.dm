@@ -81,7 +81,7 @@ Class Procs:
 /connection_edge/proc/contains_zone(zone/Z)
 
 /connection_edge/proc/erase()
-	global.CTair.remove_edge(src)
+	global.PCair.remove_edge(src)
 	//to_world("[type] Erased.")
 
 /connection_edge/proc/tick()
@@ -181,18 +181,18 @@ Class Procs:
 	if(equiv)
 		if(direct)
 			erase()
-			global.CTair.merge(A, B)
+			global.PCair.merge(A, B)
 			return
 		else
 			A.air.equalize(B.air)
-			global.CTair.mark_edge_sleeping(src)
+			global.PCair.mark_edge_sleeping(src)
 
-	global.CTair.mark_zone_update(A)
-	global.CTair.mark_zone_update(B)
+	global.PCair.mark_zone_update(A)
+	global.PCair.mark_zone_update(B)
 
 /connection_edge/zone/recheck()
 	if(!A.air.compare(B.air))
-		global.CTair.mark_edge_active(src)
+		global.PCair.mark_edge_active(src)
 
 //Helper proc to get connections for a zone.
 /connection_edge/zone/proc/get_connected_zone(zone/from)
@@ -242,13 +242,13 @@ Class Procs:
 
 	if(equiv)
 		A.air.copy_from(air)
-		global.CTair.mark_edge_sleeping(src)
+		global.PCair.mark_edge_sleeping(src)
 
-	global.CTair.mark_zone_update(A)
+	global.PCair.mark_zone_update(A)
 
 /connection_edge/unsimulated/recheck()
 	if(!A.air.compare(air))
-		global.CTair.mark_edge_active(src)
+		global.PCair.mark_edge_active(src)
 
 /proc/ShareHeat(datum/gas_mixture/A, datum/gas_mixture/B, connecting_tiles)
 	//This implements a simplistic version of the Stefan-Boltzmann law.

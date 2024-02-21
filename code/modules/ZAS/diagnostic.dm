@@ -2,12 +2,12 @@
 	set category = PANEL_DEBUG
 	set name = "Process Atmos"
 
-	var/result = global.CTair.process()
+	var/result = global.PCair.process()
 	if(result)
 		to_chat(src, "Sucessfully Processed.")
 
 	else
-		to_chat(src, "Failed to process! ([global.CTair.tick_progress])")
+		to_chat(src, "Failed to process! ([global.PCair.tick_progress])")
 
 /client/proc/Zone_Info(turf/T as null|turf)
 	set category = PANEL_DEBUG

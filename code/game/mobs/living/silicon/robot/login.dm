@@ -3,5 +3,5 @@
 	regenerate_icons()
 	show_laws(0)
 	if(mind)
-		global.CTticker.mode.remove_revolutionary(mind)
+		global.PCticker.mode.remove_revolutionary(mind)
 	return

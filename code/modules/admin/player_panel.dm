@@ -376,25 +376,25 @@
 
 
 /datum/admins/proc/check_antagonists()
-	if(global.CTticker && global.CTticker.current_state >= GAME_STATE_PLAYING)
+	if(global.PCticker?.current_state >= GAME_STATE_PLAYING)
 		var/dat = "<html><head><title>Round Status</title></head><body><h1><B>Round Status</B></h1>"
-		dat += "Current Game Mode: <B>[global.CTticker.mode.name]</B><BR>"
+		dat += "Current Game Mode: <B>[global.PCticker.mode.name]</B><BR>"
 		dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
 		dat += "<B>Emergency shuttle</B><BR>"
-		if(!global.CTemergency.online())
+		if(!global.PCemergency.online())
 			dat += "<a href='?src=\ref[src];call_shuttle=1'>Call Shuttle</a><br>"
 		else
-			var/timeleft = global.CTemergency.estimate_arrival_time()
-			switch(global.CTemergency.location())
+			var/timeleft = global.PCemergency.estimate_arrival_time()
+			switch(global.PCemergency.location())
 				if(0)
 					dat += "ETA: <a href='?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
 					dat += "<a href='?src=\ref[src];call_shuttle=2'>Send Back</a><br>"
 				if(1)
 					dat += "ETA: <a href='?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
-		dat += "<a href='?src=\ref[src];delay_round_end=1'>[global.CTticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
-		if(length(global.CTticker.mode.syndicates))
+		dat += "<a href='?src=\ref[src];delay_round_end=1'>[global.PCticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
+		if(length(global.PCticker.mode.syndicates))
 			dat += "<br><table cellspacing=5><tr><td><B>Syndicates</B></td><td></td></tr>"
-			for(var/datum/mind/N in global.CTticker.mode.syndicates)
+			for(var/datum/mind/N in global.PCticker.mode.syndicates)
 				var/mob/M = N.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -416,22 +416,22 @@
 				dat += "in [disk_loc.loc] at ([disk_loc.x], [disk_loc.y], [disk_loc.z])</td></tr>"
 			dat += "</table>"
 
-		if(length(global.CTticker.mode.head_revolutionaries) || length(global.CTticker.mode.revolutionaries))
+		if(length(global.PCticker.mode.head_revolutionaries) || length(global.PCticker.mode.revolutionaries))
 			dat += "<br><table cellspacing=5><tr><td><B>Revolutionaries</B></td><td></td></tr>"
-			for(var/datum/mind/N in global.CTticker.mode.head_revolutionaries)
+			for(var/datum/mind/N in global.PCticker.mode.head_revolutionaries)
 				var/mob/M = N.current
 				if(!M)
 					dat += "<tr><td><i>Head Revolutionary not found!</i></td></tr>"
 				else
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a> <b>(Leader)</b>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 					dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
-			for(var/datum/mind/N in global.CTticker.mode.revolutionaries)
+			for(var/datum/mind/N in global.PCticker.mode.revolutionaries)
 				var/mob/M = N.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 					dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
 			dat += "</table><table cellspacing=5><tr><td><B>Target(s)</B></td><td></td><td><B>Location</B></td></tr>"
-			for(var/datum/mind/N in global.CTticker.mode.get_living_heads())
+			for(var/datum/mind/N in global.PCticker.mode.get_living_heads())
 				var/mob/M = N.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -442,9 +442,9 @@
 					dat += "<tr><td><i>Head not found!</i></td></tr>"
 			dat += "</table>"
 
-		if(length(global.CTticker.mode.changelings))
+		if(length(global.PCticker.mode.changelings))
 			dat += "<br><table cellspacing=5><tr><td><B>Changelings</B></td><td></td><td></td></tr>"
-			for(var/datum/mind/changeling in global.CTticker.mode.changelings)
+			for(var/datum/mind/changeling in global.PCticker.mode.changelings)
 				var/mob/M = changeling.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -454,9 +454,9 @@
 					dat += "<tr><td><i>Changeling not found!</i></td></tr>"
 			dat += "</table>"
 
-		if(length(global.CTticker.mode.wizards))
+		if(length(global.PCticker.mode.wizards))
 			dat += "<br><table cellspacing=5><tr><td><B>Wizards</B></td><td></td><td></td></tr>"
-			for(var/datum/mind/wizard in global.CTticker.mode.wizards)
+			for(var/datum/mind/wizard in global.PCticker.mode.wizards)
 				var/mob/M = wizard.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -466,9 +466,9 @@
 					dat += "<tr><td><i>Wizard not found!</i></td></tr>"
 			dat += "</table>"
 
-		if(length(global.CTticker.mode.raiders))
+		if(length(global.PCticker.mode.raiders))
 			dat += "<br><table cellspacing=5><tr><td><B>Raiders</B></td><td></td><td></td></tr>"
-			for(var/datum/mind/raider in global.CTticker.mode.raiders)
+			for(var/datum/mind/raider in global.PCticker.mode.raiders)
 				var/mob/M = raider.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -476,9 +476,9 @@
 					dat += "<td><A HREF='?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
 			dat += "</table>"
 
-		if(length(global.CTticker.mode.ninjas))
+		if(length(global.PCticker.mode.ninjas))
 			dat += "<br><table cellspacing=5><tr><td><B>Ninjas</B></td><td></td><td></td></tr>"
-			for(var/datum/mind/ninja in global.CTticker.mode.ninjas)
+			for(var/datum/mind/ninja in global.PCticker.mode.ninjas)
 				var/mob/M = ninja.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -488,9 +488,9 @@
 					dat += "<tr><td><i>Ninja not found!</i></td></tr>"
 			dat += "</table>"
 
-		if(length(global.CTticker.mode.cult))
+		if(length(global.PCticker.mode.cult))
 			dat += "<br><table cellspacing=5><tr><td><B>Cultists</B></td><td></td></tr>"
-			for(var/datum/mind/N in global.CTticker.mode.cult)
+			for(var/datum/mind/N in global.PCticker.mode.cult)
 				var/mob/M = N.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -506,9 +506,9 @@
 					dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
 			dat += "</table>"
 */
-		if(length(global.CTticker.mode.traitors))
+		if(length(global.PCticker.mode.traitors))
 			dat += "<br><table cellspacing=5><tr><td><B>Traitors</B></td><td></td><td></td></tr>"
-			for(var/datum/mind/traitor in global.CTticker.mode.traitors)
+			for(var/datum/mind/traitor in global.PCticker.mode.traitors)
 				var/mob/M = traitor.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"

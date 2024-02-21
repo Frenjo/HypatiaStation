@@ -107,7 +107,7 @@ GLOBAL_GLOBL_LIST_INIT(newscaster_standard_feeds, list(
 ))
 
 /proc/process_newscaster()
-	check_for_newscaster_updates(global.CTticker.mode.newscaster_announcements)
+	check_for_newscaster_updates(global.PCticker.mode.newscaster_announcements)
 
 /var/global/tmp/announced_news_types = list()
 /proc/check_for_newscaster_updates(type)

@@ -9,7 +9,7 @@
 	if(!IS_GAME_MODE(/datum/game_mode/malfunction))
 		to_chat(usr, "You cannot begin a takeover in this round type!.")
 		return
-	var/datum/game_mode/malfunction/malf = global.CTticker.mode
+	var/datum/game_mode/malfunction/malf = global.PCticker.mode
 	if(malf.malf_mode_declared)
 		to_chat(usr, "You've already begun your takeover.")
 		return
@@ -42,7 +42,7 @@
 		to_chat(usr, "You cannot blow up the station in this round type!.")
 		return
 
-	var/datum/game_mode/malfunction/malf = global.CTticker.mode
+	var/datum/game_mode/malfunction/malf = global.PCticker.mode
 	if(!malf.to_nuke_or_not_to_nuke)
 		return
 	malf.to_nuke_or_not_to_nuke = FALSE
@@ -57,6 +57,6 @@
 		to_world(i + "...")
 	sleep(10)
 	GLOBL.enter_allowed = FALSE
-	global.CTticker.station_explosion_cinematic(0, null)
+	global.PCticker.station_explosion_cinematic(0, null)
 	malf.station_was_nuked = TRUE
 	malf.explosion_in_progress = FALSE

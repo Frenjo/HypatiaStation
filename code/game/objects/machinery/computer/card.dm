@@ -49,7 +49,7 @@
 
 	user.set_machine(src)
 	var/dat
-	if(!global.CTticker)
+	if(!global.PCticker)
 		return
 	if (mode) // accessing crew manifest
 

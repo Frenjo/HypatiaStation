@@ -231,7 +231,7 @@ CONTROLLER_DEF(jobs)
 	setup_occupations()
 
 	// Holder for Triumvirate is stored in the ticker, this just processes it.
-	if(isnotnull(global.CTticker) && global.CTticker.triai)
+	if(global.PCticker?.triai)
 		for(var/datum/job/ai/A in occupations)
 			A.spawn_positions = 3
 

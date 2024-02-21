@@ -19,10 +19,10 @@
 	var/health = 150.0 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
 
 /obj/machinery/door/window/update_nearby_tiles(need_rebuild)
-	if(!global.CTair)
+	if(!global.PCair)
 		return 0
 
-	global.CTair.mark_for_update(get_turf(src))
+	global.PCair.mark_for_update(get_turf(src))
 
 	return 1
 
@@ -53,7 +53,7 @@
 					sleep(50)
 					close()
 		return
-	if(!global.CTticker)
+	if(!global.PCticker)
 		return
 	if(operating)
 		return
@@ -87,7 +87,7 @@
 /obj/machinery/door/window/open()
 	if(operating == 1) //doors can still open when emag-disabled
 		return 0
-	if(!global.CTticker)
+	if(!global.PCticker)
 		return 0
 	if(!operating) //in case of emag
 		operating = 1

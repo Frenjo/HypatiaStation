@@ -261,7 +261,7 @@ VOX HEIST ROUNDTYPE
 	to_world(text)
 
 /datum/game_mode/heist/check_finished()
-	var/datum/shuttle/multi_shuttle/vox_shuttle = global.CTshuttle.shuttles["Vox Skipjack"]
+	var/datum/shuttle/multi_shuttle/vox_shuttle = global.PCshuttle.shuttles["Vox Skipjack"]
 	if(!is_raider_crew_alive() || vox_shuttle?.returned_home)
 		return TRUE
 	return ..()

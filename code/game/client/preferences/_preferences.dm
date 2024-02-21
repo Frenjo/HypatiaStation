@@ -892,7 +892,7 @@
 				if("lobby_music")
 					toggles ^= SOUND_LOBBY
 					if(toggles & SOUND_LOBBY)
-						user << sound(global.CTticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1)
+						user << sound(global.PCticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1)
 					else
 						user << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
 

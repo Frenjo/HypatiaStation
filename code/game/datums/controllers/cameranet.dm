@@ -61,7 +61,7 @@ CONTROLLER_DEF(cameranet)
 
 // Updates the chunks that the turf is located in. Use this when obstacles are destroyed or	when doors open.
 /datum/controller/cameranet/proc/updateVisibility(atom/A, opacity_check = 1)
-	if(isnull(global.CTticker) || (opacity_check && !A.opacity))
+	if(isnull(global.PCticker) || (opacity_check && !A.opacity))
 		return
 	majorChunkChange(A, 2)
 

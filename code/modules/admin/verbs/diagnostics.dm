@@ -2,12 +2,12 @@
 	set category = PANEL_DEBUG
 	set name = "Show Air Report"
 
-	if(!global.CTmaster || !global.CTair)
+	if(!global.CTmaster || !global.PCair)
 		alert(usr, "Master_controller or air_master not found.", "Air Report")
 		return
 
-	var/active_groups = global.CTair.active_zones
-	var/inactive_groups = length(global.CTair.zones) - active_groups
+	var/active_groups = global.PCair.active_zones
+	var/inactive_groups = length(global.PCair.zones) - active_groups
 
 	var/hotspots = 0
 	for(var/obj/fire/hotspot in world)
@@ -15,7 +15,7 @@
 
 	var/active_on_main_station = 0
 	var/inactive_on_main_station = 0
-	for(var/zone/zone in global.CTair.zones)
+	for(var/zone/zone in global.PCair.zones)
 		var/turf/simulated/turf = locate() in zone.contents
 		if(turf && isStationLevel(turf.z))
 			if(zone.needs_update)
@@ -25,8 +25,8 @@
 
 	var/output = {"<B>AIR SYSTEMS REPORT</B><HR>
 <B>General Processing Data</B><BR>
-	Cycle: [global.CTair.current_cycle]<br>
-	Groups: [length(global.CTair.zones)]<BR>
+	Cycle: [global.PCair.current_cycle]<br>
+	Groups: [length(global.PCair.zones)]<BR>
 ---- <I>Active:</I> [active_groups]<BR>
 ---- <I>Inactive:</I> [inactive_groups]<BR><br>
 ---- <I>Active on station:</i> [active_on_main_station]<br>
@@ -36,7 +36,7 @@
 	Hotspot Processing: [hotspots]<BR>
 <br>
 <B>Geometry Processing Data</B><BR>
-	Tile Update: [length(global.CTair.tiles_to_update)]<BR>
+	Tile Update: [length(global.PCair.tiles_to_update)]<BR>
 "}
 
 	usr << browse(output,"window=airreport")

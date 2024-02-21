@@ -7,8 +7,7 @@
 	var/image/obscured
 
 /turf/proc/visibilityChanged()
-	if(isnotnull(global.CTticker))
-		global.CTcameranet.updateVisibility(src)
+	global.CTcameranet?.updateVisibility(src)
 
 /turf/simulated/New()
 	. = ..()
@@ -21,23 +20,19 @@
 // STRUCTURES
 /obj/structure/New()
 	. = ..()
-	if(isnotnull(global.CTticker))
-		global.CTcameranet.updateVisibility(src)
+	global.CTcameranet?.updateVisibility(src)
 
 /obj/structure/Destroy()
-	if(isnotnull(global.CTticker))
-		global.CTcameranet.updateVisibility(src)
+	global.CTcameranet?.updateVisibility(src)
 	return ..()
 
 // EFFECTS
 /obj/effect/New()
 	. = ..()
-	if(isnotnull(global.CTticker))
-		global.CTcameranet.updateVisibility(src)
+	global.CTcameranet?.updateVisibility(src)
 
 /obj/effect/Destroy()
-	if(isnotnull(global.CTticker))
-		global.CTcameranet.updateVisibility(src)
+	global.CTcameranet?.updateVisibility(src)
 	return ..()
 
 // ROBOT MOVEMENT

@@ -469,10 +469,10 @@
 		return
 
 	if(M.stat != DEAD)
-		if(M.mind in global.CTticker.mode.cult && prob(33))
+		if(M.mind in global.PCticker.mode.cult && prob(33))
 			to_chat(M, SPAN_WARNING("The power of [src] clears your mind of the cult's influence!"))
 			to_chat(user, SPAN_WARNING("You wave [src] over [M]'s head and see their eyes become clear, their mind returning to normal."))
-			global.CTticker.mode.remove_cultist(M.mind)
+			global.PCticker.mode.remove_cultist(M.mind)
 			M.visible_message(SPAN_WARNING("[user] waves [src] over [M]'s head."))
 		else if(prob(10))
 			to_chat(user, SPAN_WARNING("The rod slips in your hand."))

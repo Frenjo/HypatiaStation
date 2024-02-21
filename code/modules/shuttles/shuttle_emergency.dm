@@ -10,7 +10,7 @@
 		var/obj/machinery/computer/shuttle_control/emergency/C = in_use
 		C.reset_authorisation()
 
-	global.CTemergency.shuttle_arrived()
+	global.PCemergency.shuttle_arrived()
 
 /datum/shuttle/ferry/emergency/long_jump(area/departing, area/destination, area/interim, travel_time, direction)
 	//to_world("shuttle/ferry/emergency/long_jump: departing=[departing], destination=[destination], interim=[interim], travel_time=[travel_time]")
@@ -21,7 +21,7 @@
 
 	//update move_time and launch_time so we get correct ETAs
 	move_time = travel_time
-	global.CTemergency.launch_time = world.time
+	global.PCemergency.launch_time = world.time
 
 	..()
 
@@ -29,12 +29,12 @@
 	..(origin, destination)
 
 	if(origin == area_station)	//leaving the station
-		global.CTemergency.departed = TRUE
+		global.PCemergency.departed = TRUE
 
-		if(global.CTemergency.evac)
-			captain_announce("The emergency shuttle has left the station. Estimate [round(global.CTemergency.estimate_arrival_time() / 60, 1)] minutes until the shuttle docks at Central Command.")
+		if(global.PCemergency.evac)
+			captain_announce("The emergency shuttle has left the station. Estimate [round(global.PCemergency.estimate_arrival_time() / 60, 1)] minutes until the shuttle docks at Central Command.")
 		else
-			captain_announce("The crew transfer shuttle has left the station. Estimate [round(global.CTemergency.estimate_arrival_time() / 60, 1)] minutes until the shuttle docks at Central Command.")
+			captain_announce("The crew transfer shuttle has left the station. Estimate [round(global.PCemergency.estimate_arrival_time() / 60, 1)] minutes until the shuttle docks at Central Command.")
 
 /datum/shuttle/ferry/emergency/can_launch(user)
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))
@@ -65,8 +65,8 @@
 		return
 
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
-		if(global.CTemergency.autopilot)
-			global.CTemergency.autopilot = FALSE
+		if(global.PCemergency.autopilot)
+			global.PCemergency.autopilot = FALSE
 			to_world(SPAN_INFO_B("Alert: The shuttle autopilot has been overridden. Launch sequence initiated!"))
 
 	..(user)
@@ -76,8 +76,8 @@
 		return
 
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
-		if(global.CTemergency.autopilot)
-			global.CTemergency.autopilot = FALSE
+		if(global.PCemergency.autopilot)
+			global.PCemergency.autopilot = FALSE
 			to_world(SPAN_INFO_B("Alert: The shuttle autopilot has been overridden. Bluespace drive engaged!"))
 
 	..(user)
@@ -87,8 +87,8 @@
 		return
 
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))	//if we were given a command by an emergency shuttle console
-		if(global.CTemergency.autopilot)
-			global.CTemergency.autopilot = FALSE
+		if(global.PCemergency.autopilot)
+			global.PCemergency.autopilot = FALSE
 			to_world(SPAN_INFO_B("Alert: The shuttle autopilot has been overridden. Launch sequence aborted!"))
 
 	..(user)
@@ -158,7 +158,7 @@
 
 /obj/machinery/computer/shuttle_control/emergency/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
 	var/list/data
-	var/datum/shuttle/ferry/emergency/shuttle = global.CTshuttle.shuttles[shuttle_tag]
+	var/datum/shuttle/ferry/emergency/shuttle = global.PCshuttle.shuttles[shuttle_tag]
 	if(!istype(shuttle))
 		return
 

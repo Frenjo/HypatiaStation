@@ -296,8 +296,8 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 
 	user.set_machine(src)
 	var/dat = "<head><title>Communications Console</title></head><body>"
-	if(global.CTemergency.online() && !global.CTemergency.location())
-		var/timeleft = global.CTemergency.estimate_arrival_time()
+	if(global.PCemergency.online() && !global.PCemergency.location())
+		var/timeleft = global.PCemergency.estimate_arrival_time()
 		dat += "<B>Emergency shuttle</B>\n<BR>\nETA: [timeleft / 60 % 60]:[add_zero(num2text(timeleft % 60), 2)]<BR>"
 
 	if(issilicon(user))
@@ -321,8 +321,8 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=RestoreBackup'>Restore Backup Routing Data</A> \]"
 
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=changeseclevel'>Change alert level</A> \]"
-				if(!global.CTemergency.location())
-					if(global.CTemergency.online())
+				if(!global.PCemergency.location())
+					if(global.PCemergency.online())
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=cancelshuttle'>Cancel Shuttle Call</A> \]"
 					else
 						dat += "<BR>\[ <A HREF='?src=\ref[src];operation=callshuttle'>Call Emergency Shuttle</A> \]"
@@ -392,7 +392,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 	var/dat = ""
 	switch(src.aistate)
 		if(STATE_DEFAULT)
-			if(global.CTemergency.location() && !global.CTemergency.online())
+			if(global.PCemergency.location() && !global.PCemergency.online())
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-callshuttle'>Call Emergency Shuttle</A> \]"
 				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-crewtransfer'>Initiate Crew Transfer</A> \]"
 			dat += "<BR>\[ <A HREF='?src=\ref[src];operation=ai-messagelist'>Message List</A> \]"
@@ -446,7 +446,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 */
 
 /proc/call_shuttle_proc(mob/user)
-	if(!global.CTticker || !global.CTemergency.location())
+	if(!global.PCticker || !global.PCemergency.location())
 		return
 
 	if(GLOBL.sent_strike_team)
@@ -457,39 +457,39 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 		to_chat(user, "The emergency shuttle is refueling. Please wait another [round((6000 - world.time) / 600)] minutes before trying again.")
 		return
 
-	if(global.CTemergency.going_to_centcom())
+	if(global.PCemergency.going_to_centcom())
 		to_chat(user, "The emergency shuttle may not be called while returning to CentCom.")
 		return
 
-	if(global.CTemergency.online())
+	if(global.PCemergency.online())
 		to_chat(user, "The emergency shuttle is already on its way.")
 		return
 
-	if(global.CTticker.mode.name == "blob")
+	if(global.PCticker.mode.name == "blob")
 		to_chat(user, "Under directive 7-10, [station_name()] is quarantined until further notice.")
 		return
 
-	global.CTemergency.call_evac()
+	global.PCemergency.call_evac()
 	log_game("[key_name(user)] has called the shuttle.")
 	message_admins("[key_name_admin(user)] has called the shuttle.", 1)
 
 	return
 
 /proc/init_shift_change(mob/user, force = 0)
-	if(!global.CTticker || !global.CTemergency.location())
+	if(!global.PCticker || !global.PCemergency.location())
 		return
 
-	if(global.CTemergency.going_to_centcom())
+	if(global.PCemergency.going_to_centcom())
 		to_chat(user, "The shuttle may not be called while returning to CentCom.")
 		return
 
-	if(global.CTemergency.online())
+	if(global.PCemergency.online())
 		to_chat(user, "The shuttle is already on its way.")
 		return
 
 	// if force is 0, some things may stop the shuttle call
 	if(!force)
-		if(global.CTemergency.deny_shuttle)
+		if(global.PCemergency.deny_shuttle)
 			to_chat(user, "CentCom does not currently have a shuttle available in your sector. Please try again later.")
 			return
 
@@ -501,30 +501,30 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 			to_chat(user, "It is not crew transfer time. [round((135000 - world.time) / 600)] minutes before trying again.") //may need to change "/600"
 			return
 
-		if(IS_GAME_MODE(/datum/game_mode/revolution) || IS_GAME_MODE(/datum/game_mode/malfunction) || global.CTticker.mode.name == "sandbox")
+		if(IS_GAME_MODE(/datum/game_mode/revolution) || IS_GAME_MODE(/datum/game_mode/malfunction) || global.PCticker.mode.name == "sandbox")
 			// New version pretends to call the shuttle but cause the shuttle to return after a random duration.
-			global.CTemergency.auto_recall = TRUE
+			global.PCemergency.auto_recall = TRUE
 
-		if(global.CTticker.mode.name == "blob" || global.CTticker.mode.name == "epidemic")
+		if(global.PCticker.mode.name == "blob" || global.PCticker.mode.name == "epidemic")
 			to_chat(user, "Under directive 7-10, [station_name()] is quarantined until further notice.")
 			return
 
-	global.CTemergency.call_transfer()
+	global.PCemergency.call_transfer()
 	log_game("[key_name(user)] has called the shuttle.")
 	message_admins("[key_name_admin(user)] has called the shuttle.", 1)
-	captain_announce("A crew transfer has been initiated. The shuttle has been called. It will arrive in [round(global.CTemergency.estimate_arrival_time() / 60)] minutes.")
+	captain_announce("A crew transfer has been initiated. The shuttle has been called. It will arrive in [round(global.PCemergency.estimate_arrival_time() / 60)] minutes.")
 	world << sound('sound/AI/crewtransfer2.ogg')
 
 	return
 
 /proc/cancel_call_proc(mob/user)
-	if(!global.CTticker || !global.CTemergency.can_recall())
+	if(!global.PCticker || !global.PCemergency.can_recall())
 		return
-	if(global.CTticker.mode.name == "blob" || global.CTticker.mode.name == "meteor")
+	if(global.PCticker.mode.name == "blob" || global.PCticker.mode.name == "meteor")
 		return
 
-	if(!global.CTemergency.going_to_centcom() && global.CTemergency.online()) //check that shuttle isn't already heading to centcom
-		global.CTemergency.recall()
+	if(!global.PCemergency.going_to_centcom() && global.PCemergency.online()) //check that shuttle isn't already heading to centcom
+		global.PCemergency.recall()
 		log_game("[key_name(user)] has recalled the shuttle.")
 		message_admins("[key_name_admin(user)] has recalled the shuttle.", 1)
 	return
@@ -568,7 +568,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 	if(IS_GAME_MODE(/datum/game_mode/revolution) || IS_GAME_MODE(/datum/game_mode/malfunction) || GLOBL.sent_strike_team)
 		return ..()
 
-	global.CTemergency.call_evac()
+	global.PCemergency.call_evac()
 	log_game("All the AIs, comm consoles and boards are destroyed. Shuttle called.")
 	message_admins("All the AIs, comm consoles and boards are destroyed. Shuttle called.", 1)
 

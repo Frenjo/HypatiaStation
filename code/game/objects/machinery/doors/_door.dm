@@ -202,7 +202,7 @@
 		return 1
 	if(operating > 0)
 		return
-	if(!global.CTticker)
+	if(!global.PCticker)
 		return 0
 	if(!operating)
 		operating = 1
@@ -259,12 +259,12 @@
 	return 1
 
 /obj/machinery/door/proc/update_nearby_tiles(need_rebuild)
-	if(!global.CTair)
+	if(!global.PCair)
 		return 0
 
 	for(var/turf/simulated/turf in locs)
 		update_heat_protection(turf)
-		global.CTair.mark_for_update(turf)
+		global.PCair.mark_for_update(turf)
 
 	return 1
 

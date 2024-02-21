@@ -204,29 +204,29 @@
 	else if(href_list["call_shuttle"])
 		if(!check_rights(R_ADMIN))	return
 
-		if(global.CTticker.mode.name == "blob")
+		if(global.PCticker.mode.name == "blob")
 			alert("You can't call the shuttle during blob!")
 			return
 
 		switch(href_list["call_shuttle"])
 			if("1")
-				if(!global.CTticker || !global.CTemergency.location())
+				if(!global.PCticker || !global.PCemergency.location())
 					return
-				global.CTemergency.call_evac()
-				captain_announce("The emergency shuttle has been called. It will arrive in [round(global.CTemergency.estimate_arrival_time() / 60)] minutes.")
+				global.PCemergency.call_evac()
+				captain_announce("The emergency shuttle has been called. It will arrive in [round(global.PCemergency.estimate_arrival_time() / 60)] minutes.")
 				log_admin("[key_name(usr)] called the Emergency Shuttle")
 				message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
 
 			if("2")
-				if(!global.CTticker || !global.CTemergency.location())
+				if(!global.PCticker || !global.PCemergency.location())
 					return
-				if(global.CTemergency.can_call())
-					global.CTemergency.call_evac()
-					captain_announce("The emergency shuttle has been called. It will arrive in [round(global.CTemergency.estimate_arrival_time() / 60)] minutes.")
+				if(global.PCemergency.can_call())
+					global.PCemergency.call_evac()
+					captain_announce("The emergency shuttle has been called. It will arrive in [round(global.PCemergency.estimate_arrival_time() / 60)] minutes.")
 					log_admin("[key_name(usr)] called the Emergency Shuttle")
 					message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
 				else
-					global.CTemergency.recall()
+					global.PCemergency.recall()
 					log_admin("[key_name(usr)] sent the Emergency Shuttle back")
 					message_admins("\blue [key_name_admin(usr)] sent the Emergency Shuttle back", 1)
 
@@ -245,9 +245,9 @@
 	else if(href_list["delay_round_end"])
 		if(!check_rights(R_SERVER))	return
 
-		global.CTticker.delay_end = !global.CTticker.delay_end
-		log_admin("[key_name(usr)] [global.CTticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins("\blue [key_name(usr)] [global.CTticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
+		global.PCticker.delay_end = !global.PCticker.delay_end
+		log_admin("[key_name(usr)] [global.PCticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
+		message_admins("\blue [key_name(usr)] [global.PCticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
 		href_list["secretsadmin"] = "check_antagonist"
 
 	else if(href_list["simplemake"])
@@ -959,53 +959,53 @@
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN))	return
 
-		if(global.CTticker && global.CTticker.mode)
+		if(global.PCticker?.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
 		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
 		for(var/mode in CONFIG_GET_OLD(modes))
 			dat += {"<A href='?src=\ref[src];c_mode2=[mode]'>[CONFIG_GET_OLD(mode_names)[mode]]</A><br>"}
 		dat += {"<A href='?src=\ref[src];c_mode2=secret'>Secret</A><br>"}
 		dat += {"<A href='?src=\ref[src];c_mode2=random'>Random</A><br>"}
-		dat += {"Now: [global.CTticker.master_mode]"}
+		dat += {"Now: [global.PCticker.master_mode]"}
 		usr << browse(dat, "window=c_mode")
 
 	else if(href_list["f_secret"])
 		if(!check_rights(R_ADMIN))	return
 
-		if(global.CTticker && global.CTticker.mode)
+		if(global.PCticker?.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
-		if(global.CTticker.master_mode != "secret")
+		if(global.PCticker.master_mode != "secret")
 			return alert(usr, "The game mode has to be secret!", null, null, null, null)
 		var/dat = {"<B>What game mode do you want to force secret to be? Use this if you want to change the game mode, but want the players to believe it's secret. This will only work if the current game mode is secret.</B><HR>"}
 		for(var/mode in CONFIG_GET_OLD(modes))
 			dat += {"<A href='?src=\ref[src];f_secret2=[mode]'>[CONFIG_GET_OLD(mode_names)[mode]]</A><br>"}
 		dat += {"<A href='?src=\ref[src];f_secret2=secret'>Random (default)</A><br>"}
-		dat += {"Now: [global.CTticker.secret_force_mode]"}
+		dat += {"Now: [global.PCticker.secret_force_mode]"}
 		usr << browse(dat, "window=f_secret")
 
 	else if(href_list["c_mode2"])
 		if(!check_rights(R_ADMIN|R_SERVER))	return
 
-		if(global.CTticker && global.CTticker.mode)
+		if(global.PCticker?.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
-		global.CTticker.master_mode = href_list["c_mode2"]
-		log_admin("[key_name(usr)] set the mode as [global.CTticker.master_mode].")
-		message_admins("\blue [key_name_admin(usr)] set the mode as [global.CTticker.master_mode].", 1)
-		to_world("\blue <b>The mode is now: [global.CTticker.master_mode]</b>")
+		global.PCticker.master_mode = href_list["c_mode2"]
+		log_admin("[key_name(usr)] set the mode as [global.PCticker.master_mode].")
+		message_admins("\blue [key_name_admin(usr)] set the mode as [global.PCticker.master_mode].", 1)
+		to_world("\blue <b>The mode is now: [global.PCticker.master_mode]</b>")
 		Game() // updates the main game menu
-		world.save_mode(global.CTticker.master_mode)
+		world.save_mode(global.PCticker.master_mode)
 		.(href, list("c_mode"=1))
 
 	else if(href_list["f_secret2"])
 		if(!check_rights(R_ADMIN|R_SERVER))	return
 
-		if(global.CTticker && global.CTticker.mode)
+		if(global.PCticker?.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
-		if(global.CTticker.master_mode != "secret")
+		if(global.PCticker.master_mode != "secret")
 			return alert(usr, "The game mode has to be secret!", null, null, null, null)
-		global.CTticker.secret_force_mode = href_list["f_secret2"]
-		log_admin("[key_name(usr)] set the forced secret mode as [global.CTticker.secret_force_mode].")
-		message_admins("\blue [key_name_admin(usr)] set the forced secret mode as [global.CTticker.secret_force_mode].", 1)
+		global.PCticker.secret_force_mode = href_list["f_secret2"]
+		log_admin("[key_name(usr)] set the forced secret mode as [global.PCticker.secret_force_mode].")
+		message_admins("\blue [key_name_admin(usr)] set the forced secret mode as [global.PCticker.secret_force_mode].", 1)
 		Game() // updates the main game menu
 		.(href, list("f_secret"=1))
 
@@ -1583,7 +1583,7 @@
 	else if(href_list["traitor"])
 		if(!check_rights(R_ADMIN|R_MOD))	return
 
-		if(!global.CTticker || !global.CTticker.mode)
+		if(!global.PCticker || !global.PCticker.mode)
 			alert("The game hasn't started yet!")
 			return
 
@@ -1792,7 +1792,7 @@
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","TriAI")
 			if("gravity")
-				if(!(global.CTticker && global.CTticker.mode))
+				if(!(global.PCticker && global.PCticker.mode))
 					usr << "Please wait until the game starts!  Not sure how it will work otherwise."
 					return
 				GLOBL.gravity_is_on = !GLOBL.gravity_is_on
@@ -1923,7 +1923,7 @@
 					prisonwarped += H
 			*/
 			if("traitor_all")
-				if(!global.CTticker)
+				if(!global.PCticker)
 					alert("The game hasn't started yet!")
 					return
 				var/objective = copytext(sanitize(input("Enter an objective")), 1, MAX_MESSAGE_LEN)
@@ -1936,28 +1936,28 @@
 						continue
 					if(is_special_character(H)) continue
 					//traitorize(H, objective, 0)
-					global.CTticker.mode.traitors += H.mind
+					global.PCticker.mode.traitors += H.mind
 					H.mind.special_role = "traitor"
 					var/datum/objective/new_objective = new
 					new_objective.owner = H
 					new_objective.explanation_text = objective
 					H.mind.objectives += new_objective
-					global.CTticker.mode.greet_traitor(H.mind)
+					global.PCticker.mode.greet_traitor(H.mind)
 					//ticker.mode.forge_traitor_objectives(H.mind)
-					global.CTticker.mode.finalize_traitor(H.mind)
+					global.PCticker.mode.finalize_traitor(H.mind)
 				for(var/mob/living/silicon/A in GLOBL.player_list)
-					global.CTticker.mode.traitors += A.mind
+					global.PCticker.mode.traitors += A.mind
 					A.mind.special_role = "traitor"
 					var/datum/objective/new_objective = new
 					new_objective.owner = A
 					new_objective.explanation_text = objective
 					A.mind.objectives += new_objective
-					global.CTticker.mode.greet_traitor(A.mind)
-					global.CTticker.mode.finalize_traitor(A.mind)
+					global.PCticker.mode.greet_traitor(A.mind)
+					global.PCticker.mode.finalize_traitor(A.mind)
 				message_admins("\blue [key_name_admin(usr)] used everyone is a traitor secret. Objective is [objective]", 1)
 				log_admin("[key_name(usr)] used everyone is a traitor secret. Objective is [objective]")
 			if("moveminingshuttle")
-				var/datum/shuttle/ferry/mining_shuttle = global.CTshuttle.shuttles["Mining"]
+				var/datum/shuttle/ferry/mining_shuttle = global.PCshuttle.shuttles["Mining"]
 				if(!mining_shuttle.can_launch())
 					return
 				message_admins(SPAN_INFO("[key_name_admin(usr)] moved mining shuttle"), 1)
@@ -1966,7 +1966,7 @@
 				feedback_inc("admin_secrets_fun_used", 1)
 				feedback_add_details("admin_secrets_fun_used", "ShM")
 			if("moveresearchshuttle")
-				var/datum/shuttle/ferry/research_shuttle = global.CTshuttle.shuttles["Research"]
+				var/datum/shuttle/ferry/research_shuttle = global.PCshuttle.shuttles["Research"]
 				if(!research_shuttle.can_launch())
 					return
 				message_admins(SPAN_INFO("[key_name_admin(usr)] moved research shuttle"), 1)
@@ -1975,7 +1975,7 @@
 				feedback_inc("admin_secrets_fun_used", 1)
 				feedback_add_details("admin_secrets_fun_used", "ShR")
 			if("moveadminshuttle")
-				var/datum/shuttle/ferry/admin_shuttle = global.CTshuttle.shuttles["Administration"]
+				var/datum/shuttle/ferry/admin_shuttle = global.PCshuttle.shuttles["Administration"]
 				if(!admin_shuttle.can_launch())
 					return
 				message_admins(SPAN_INFO("[key_name_admin(usr)] moved the centcom administration shuttle"), 1)
@@ -1984,7 +1984,7 @@
 				feedback_inc("admin_secrets_fun_used", 1)
 				feedback_add_details("admin_secrets_fun_used", "ShA")
 			if("moveferry")
-				var/datum/shuttle/ferry/centcom_ferry = global.CTshuttle.shuttles["CentCom"]
+				var/datum/shuttle/ferry/centcom_ferry = global.PCshuttle.shuttles["CentCom"]
 				if(!centcom_ferry.can_launch())
 					return
 				message_admins(SPAN_INFO("[key_name_admin(usr)] moved the centcom ferry"), 1)
@@ -1993,7 +1993,7 @@
 				feedback_inc("admin_secrets_fun_used", 1)
 				feedback_add_details("admin_secrets_fun_used", "ShF")
 			if("movealienship")
-				var/datum/shuttle/ferry/alien_ship = global.CTshuttle.shuttles["Alien"]
+				var/datum/shuttle/ferry/alien_ship = global.PCshuttle.shuttles["Alien"]
 				if(!alien_ship.can_launch())
 					return
 				message_admins(SPAN_INFO("[key_name_admin(usr)] moved the alien dinghy"), 1)
@@ -2381,10 +2381,10 @@
 			if("showailaws")
 				output_ai_laws()
 			if("showgm")
-				if(!global.CTticker)
+				if(!global.PCticker)
 					alert("The game hasn't started yet!")
-				else if(global.CTticker.mode)
-					alert("The game mode is [global.CTticker.mode.name]")
+				else if(global.PCticker.mode)
+					alert("The game mode is [global.PCticker.mode.name]")
 				else alert("For some reason there's a ticker, but not a game mode")
 			if("manifest")
 				var/dat = "<B>Showing Crew Manifest.</B><HR>"

@@ -28,7 +28,7 @@
 	output +="<hr>"
 	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character</A></p>"
 
-	if(!global.CTticker || global.CTticker.current_state <= GAME_STATE_PREGAME)
+	if(!global.PCticker || global.PCticker.current_state <= GAME_STATE_PREGAME)
 		if(!ready)
 			output += "<p><a href='byond://?src=\ref[src];ready=1'>Declare Ready</A></p>"
 		else
@@ -68,19 +68,19 @@
 	..()
 
 	statpanel(PANEL_STATUS)
-	if(client.statpanel == PANEL_STATUS && global.CTticker)
-		if(global.CTticker.current_state != GAME_STATE_PREGAME)
+	if(client.statpanel == PANEL_STATUS && global.PCticker)
+		if(global.PCticker.current_state != GAME_STATE_PREGAME)
 			stat("Station Time:", "[worldtime2text()]")
 	statpanel(PANEL_LOBBY)
-	if(client.statpanel == PANEL_LOBBY && global.CTticker)
-		if(global.CTticker.hide_mode)
+	if(client.statpanel == PANEL_LOBBY && global.PCticker)
+		if(global.PCticker.hide_mode)
 			stat("Game Mode:", "Secret")
 		else
-			if(!global.CTticker.hide_mode)
-				stat("Game Mode:", "[global.CTticker.master_mode]") // Old setting for showing the game mode
+			if(!global.PCticker.hide_mode)
+				stat("Game Mode:", "[global.PCticker.master_mode]") // Old setting for showing the game mode
 
-		if(global.CTticker.current_state == GAME_STATE_PREGAME)
-			stat("Time To Start:", "[global.CTticker.pregame_timeleft][global.CTticker.roundstart_progressing ? "" : " (DELAYED)"]")
+		if(global.PCticker.current_state == GAME_STATE_PREGAME)
+			stat("Time To Start:", "[global.PCticker.pregame_timeleft][global.PCticker.roundstart_progressing ? "" : " (DELAYED)"]")
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
@@ -99,7 +99,7 @@
 		return 1
 
 	if(href_list["ready"])
-		if(!global.CTticker || global.CTticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
+		if(!global.PCticker || global.PCticker.current_state <= GAME_STATE_PREGAME) // Make sure we don't ready up after the round has started
 			ready = !ready
 		else
 			ready = FALSE
@@ -140,7 +140,7 @@
 			return 1
 
 	if(href_list["late_join"])
-		if(!global.CTticker || global.CTticker.current_state != GAME_STATE_PLAYING)
+		if(!global.PCticker || global.PCticker.current_state != GAME_STATE_PLAYING)
 			to_chat(usr, SPAN_WARNING("The round is either not ready, or has already finished..."))
 			return
 
@@ -279,7 +279,7 @@
 /mob/new_player/proc/AttemptLateSpawn(rank, spawning_at)
 	if(src != usr)
 		return 0
-	if(!global.CTticker || global.CTticker.current_state != GAME_STATE_PLAYING)
+	if(!global.PCticker || global.PCticker.current_state != GAME_STATE_PLAYING)
 		to_chat(usr, SPAN_WARNING("The round is either not ready, or has already finished..."))
 		return 0
 	if(!GLOBL.enter_allowed)
@@ -314,13 +314,13 @@
 
 	character.lastarea = get_area(loc)
 
-	global.CTticker.mode.latespawn(character)
+	global.PCticker.mode.latespawn(character)
 
 	//ticker.mode.latespawn(character)
 
 	if(character.mind.assigned_role != "Cyborg")
 		GLOBL.data_core.manifest_inject(character)
-		global.CTticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
+		global.PCticker.minds += character.mind//Cyborgs and AIs handle this in the transform proc.	//TODO!!!!! ~Carn
 		AnnounceArrival(character, rank, join_message)
 
 	else
@@ -328,7 +328,7 @@
 	qdel(src)
 
 /mob/new_player/proc/AnnounceArrival(mob/living/carbon/human/character, rank, join_message)
-	if(global.CTticker.current_state == GAME_STATE_PLAYING)
+	if(global.PCticker.current_state == GAME_STATE_PLAYING)
 		var/obj/item/radio/intercom/a = new /obj/item/radio/intercom(null)// BS12 EDIT Arrivals Announcement Computer, rather than the AI.
 		if(isnotnull(character.mind.role_alt_title))
 			rank = character.mind.role_alt_title
@@ -344,13 +344,13 @@
 	var/dat = "<html><body><center>"
 	dat += "Round Duration: [round(hours)]h [round(mins)]m<br>"
 
-	if(global.CTemergency) //In case Nanotrasen decides reposess CentCom's shuttles.
+	if(global.PCemergency) //In case Nanotrasen decides reposess CentCom's shuttles.
 		//Shuttle is going to centcom, not recalled
-		if(global.CTemergency.going_to_centcom())
+		if(global.PCemergency.going_to_centcom())
 			dat += "<font color='red'><b>The station has been evacuated.</b></font><br>"
 		// Emergency shuttle is past the point of no recall
-		if(global.CTemergency.online())
-			if(global.CTemergency.evac)
+		if(global.PCemergency.online())
+			if(global.PCemergency.evac)
 				dat += "<font color='red'>The station is currently undergoing evacuation procedures.</font><br>"
 			else
 				// Crew transfer initiated
@@ -394,7 +394,7 @@
 		if(is_alien_whitelisted(src, client.prefs.secondary_language) || !CONFIG_GET(usealienwhitelist) || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 			new_character.add_language("[client.prefs.secondary_language]")
 
-	if(global.CTticker.random_players)
+	if(global.PCticker.random_players)
 		new_character.gender = pick(MALE, FEMALE)
 		client.prefs.real_name = random_name(new_character.gender)
 		client.prefs.randomize_appearance_for(new_character)

@@ -389,10 +389,10 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	if(!CONFIG_GET(respawn))
 		to_chat(usr, SPAN_INFO("Respawn is disabled."))
 		return
-	if(stat != DEAD || isnull(global.CTticker))
+	if(stat != DEAD || isnull(global.PCticker))
 		to_chat(usr, SPAN_INFO_B("You must be dead to use this!"))
 		return
-	if(global.CTticker.mode.name == "meteor" || global.CTticker.mode.name == "epidemic")	//BS12 EDIT
+	if(global.PCticker.mode.name == "meteor" || global.PCticker.mode.name == "epidemic")	//BS12 EDIT
 		to_chat(usr, SPAN_INFO("Respawn is disabled for this roundtype."))
 		return
 	else

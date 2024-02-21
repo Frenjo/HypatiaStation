@@ -195,17 +195,17 @@
 
 	// -- Mode/mind specific stuff goes here
 
-	switch(global.CTticker.mode.name)
+	switch(global.PCticker.mode.name)
 		if("revolution")
-			if((H.mind in global.CTticker.mode:revolutionaries) || (H.mind in global.CTticker.mode:head_revolutionaries))
-				global.CTticker.mode.update_all_rev_icons() //So the icon actually appears
+			if((H.mind in global.PCticker.mode:revolutionaries) || (H.mind in global.PCticker.mode:head_revolutionaries))
+				global.PCticker.mode.update_all_rev_icons() //So the icon actually appears
 		if("nuclear emergency")
-			if(H.mind in global.CTticker.mode.syndicates)
-				global.CTticker.mode.update_all_synd_icons()
+			if(H.mind in global.PCticker.mode.syndicates)
+				global.PCticker.mode.update_all_synd_icons()
 		if("cult")
-			if(H.mind in global.CTticker.mode.cult)
-				global.CTticker.mode.add_cultist(src.occupant.mind)
-				global.CTticker.mode.update_all_cult_icons() //So the icon actually appears
+			if(H.mind in global.PCticker.mode.cult)
+				global.PCticker.mode.add_cultist(src.occupant.mind)
+				global.PCticker.mode.update_all_cult_icons() //So the icon actually appears
 
 	// -- End mode specific stuff
 

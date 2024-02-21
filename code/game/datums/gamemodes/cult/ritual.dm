@@ -395,7 +395,7 @@ var/engwords = list(
 			to_chat(user, SPAN_WARNING("You do not have enough space to write a proper rune."))
 			return
 
-		if(C >= 26 + runedec + length(global.CTticker.mode.cult)) //including the useless rune at the secret room, shouldn't count against the limit of 25 runes - Urist
+		if(C >= 26 + runedec + length(global.PCticker.mode.cult)) //including the useless rune at the secret room, shouldn't count against the limit of 25 runes - Urist
 			alert("The cloth of reality can't take that much of a strain. Remove some runes first!")
 			return
 		else
