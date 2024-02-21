@@ -23,8 +23,10 @@ PROCESS_DEF(ticker)
 	var/event_time = null
 	var/event = 0
 
-	var/login_music = null					// The music file played in the pregame lobby.
-	var/list/possible_login_music = list(	// The list of all possible login music files to play.
+	// The music file played in the pregame lobby.
+	var/login_music = null
+	// The list of all possible login music files to play.
+	var/list/possible_login_music = list(
 		'sound/music/space.ogg',
 		'sound/music/traitor.ogg',
 		'sound/music/title2.ogg',
@@ -32,23 +34,26 @@ PROCESS_DEF(ticker)
 		'sound/music/space_oddity.ogg'	// Ground Control to Major Tom, this song is cool, what's going on?
 	)
 
-	var/list/datum/mind/minds = list()	//The people in the game. Used for objective tracking.
+	// The people in the game. Used for objective tracking.
+	var/list/datum/mind/minds = list()
 
-	var/random_players = FALSE	// if set to true, ALL players who latejoin or declare-ready join will have random appearances/genders
+	// If set to TRUE, ALL players who latejoin or declare-ready join will have random appearances/genders.
+	var/random_players = FALSE
 
 	var/pregame_timeleft = 0
 
-	var/delay_end = FALSE	//if set to true, the round will not restart on it's own
+	// If set to TRUE, the round will not restart on its own.
+	var/delay_end = FALSE
 
-	var/triai = 0//Global holder for Triumvirate
+	// Global holder for Triumvirate.
+	var/triai = 0
 
-	//station_explosion used to be a variable for every mob's hud. Which was a waste!
-	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
+	// station_explosion used to be a variable for every mob's hud, which was a waste!
+	// Now we have a general cinematic centrally held within the gameticker, which is far more efficient!
 	var/obj/screen/cinematic = null
 
 /datum/process/ticker/setup()
 	lastTickerTime = world.timeofday
-	wait_for_pregame()
 
 /datum/process/ticker/do_work()
 	var/currentTime = world.timeofday
@@ -60,15 +65,7 @@ PROCESS_DEF(ticker)
 
 	lastTickerTime = currentTime
 
-	global.PCticker.process_internal()
-
-/datum/process/ticker/proc/wait_for_pregame()
-	set waitfor = FALSE
-	// This seems really, really wrong but I don't want to rearrange the entire initialisation order just yet.
-	// It's going to be one of those "temporary fixes" they find is still in the code two decades later.
-	while(!global.CTmaster.initialised)
-		sleep(1)
-	global.PCticker?.pregame()
+	process_internal()
 
 /datum/process/ticker/proc/getLastTickerTimeDuration()
 	return lastTickerTimeDuration
@@ -104,7 +101,7 @@ PROCESS_DEF(ticker)
 	while(!setup_internal())
 
 /datum/process/ticker/proc/setup_internal()
-	//Create and announce mode
+	// Creates and announces mode.
 	if(master_mode == "secret")
 		hide_mode = TRUE
 	var/list/datum/game_mode/runnable_modes
@@ -132,9 +129,9 @@ PROCESS_DEF(ticker)
 		global.CTjobs.reset_occupations()
 		return 0
 
-	//Configure mode and assign player to special mode stuff
-	global.CTjobs.divide_occupations() //Distribute jobs
-	var/can_continue = mode.pre_setup()//Setup special modes
+	// Configures mode and assigns players to special mode stuff.
+	global.CTjobs.divide_occupations() // Distributes jobs.
+	var/can_continue = mode.pre_setup() // Sets up special modes.
 	if(!can_continue)
 		qdel(mode)
 		current_state = GAME_STATE_PREGAME
@@ -153,14 +150,14 @@ PROCESS_DEF(ticker)
 		mode.announce()
 
 	current_state = GAME_STATE_PLAYING
-	create_characters() //Create player characters and transfer them
+	create_characters() // Creates player characters and transfers them.
 	collect_minds()
 	equip_characters()
 	GLOBL.data_core.manifest()
 
 	callHook("roundstart")
 
-	//here to initialize the random events nicely at round start
+	// Here to initialize the random events nicely at round start.
 	setup_economy()
 	global.PCshuttle.setup_shuttle_docks() // Updated to reflect 'shuttles' port. -Frenjo
 
@@ -314,7 +311,7 @@ PROCESS_DEF(ticker)
 /datum/process/ticker/proc/collect_minds()
 	for(var/mob/living/player in GLOBL.player_list)
 		if(isnotnull(player.mind))
-			global.PCticker.minds.Add(player.mind)
+			minds.Add(player.mind)
 
 /datum/process/ticker/proc/equip_characters()
 	var/captainless = TRUE
