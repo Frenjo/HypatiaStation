@@ -11,15 +11,15 @@ PROCESS_DEF(emergency)
 	var/datum/shuttle/ferry/emergency/shuttle
 	var/list/escape_pods
 
-	var/launch_time			//the time at which the shuttle will be launched
-	var/auto_recall = FALSE	//if true, the shuttle will be auto-recalled
-	var/auto_recall_time	//the time at which the shuttle will be auto-recalled
-	var/evac = FALSE		//true = emergency evacuation, false = crew transfer
-	var/wait_for_launch = 0	//if the shuttle is waiting to launch
-	var/autopilot = TRUE		//set to false to disable the shuttle automatically launching
+	var/launch_time				// The time at which the shuttle will be launched.
+	var/auto_recall = FALSE		// Whether the shuttle will be auto-recalled.
+	var/auto_recall_time		// The time at which the shuttle will be auto-recalled.
+	var/evac = FALSE			// Whether it's an evacuation or a crew transfer.
+	var/wait_for_launch = FALSE	// Whether the shuttle is waiting to launch.
+	var/autopilot = TRUE		// Whether the shuttle will automatically launch.
 
-	var/deny_shuttle = FALSE	//allows admins to prevent the shuttle from being called
-	var/departed = FALSE		//if the shuttle has left the station at least once
+	var/deny_shuttle = FALSE	// Allows admins to prevent the shuttle from being called.
+	var/departed = FALSE		// If the shuttle has left the station at least once.
 
 	/*var/datum/announcement/priority/emergency_shuttle_docked = new(0, new_sound = sound('sound/AI/shuttledock.ogg'))
 	var/datum/announcement/priority/emergency_shuttle_called = new(0, new_sound = sound('sound/AI/shuttlecalled.ogg'))
@@ -41,7 +41,7 @@ PROCESS_DEF(emergency)
 			if(autopilot)
 				shuttle.launch(src)
 
-//called when the shuttle has arrived.
+// Called when the shuttle has arrived.
 /datum/process/emergency/proc/shuttle_arrived()
 	if(!shuttle.location)	//at station
 		if(autopilot)
@@ -59,15 +59,15 @@ PROCESS_DEF(emergency)
 			for(var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
 				pod.arming_controller?.arm()
 
-//begins the launch countdown and sets the amount of time left until launch
+// Begins the launch countdown and sets the amount of time left until launch.
 /datum/process/emergency/proc/set_launch_countdown(seconds)
-	wait_for_launch = 1
+	wait_for_launch = TRUE
 	launch_time = world.time + seconds * 10
 
 /datum/process/emergency/proc/stop_launch_countdown()
-	wait_for_launch = 0
+	wait_for_launch = FALSE
 
-//calls the shuttle for an emergency evacuation
+// Calls the shuttle for an emergency evacuation.
 /datum/process/emergency/proc/call_evac()
 	if(!can_call())
 		return
@@ -88,7 +88,7 @@ PROCESS_DEF(emergency)
 
 	set_status_displays()
 
-//calls the shuttle for a routine crew transfer
+// Calls the shuttle for a routine crew transfer.
 /datum/process/emergency/proc/call_transfer()
 	if(!can_call())
 		return
@@ -106,12 +106,12 @@ PROCESS_DEF(emergency)
 
 	set_status_displays()
 
-//recalls the shuttle
+// Recalls the shuttle.
 /datum/process/emergency/proc/recall()
 	if(!can_recall())
 		return
 
-	wait_for_launch = 0
+	wait_for_launch = FALSE
 	shuttle.cancel_launch(src)
 
 	if(evac)
@@ -141,9 +141,11 @@ PROCESS_DEF(emergency)
 		return 0
 	return 1
 
-//this only returns 0 if it would absolutely make no sense to recall
-//e.g. the shuttle is already at the station or wasn't called to begin with
-//other reasons for the shuttle not being recallable should be handled elsewhere
+/*
+ * Only returns 0 if it would absolutely make no sense to recall...
+ * ... e.g. the shuttle is already at the station or wasn't called to begin with.
+ * Other reasons for the shuttle not being recallable should be handled elsewhere
+ */
 /datum/process/emergency/proc/can_recall()
 	if(shuttle.moving_status == SHUTTLE_INTRANSIT)	//if the shuttle is already in transit then it's too late
 		return 0
@@ -160,22 +162,22 @@ PROCESS_DEF(emergency)
 	return SHUTTLE_PREPTIME
 
 /*
- * These procs are not really used by the controller itself, but are for other parts of the
- * game whose logic depends on the emergency shuttle.
+ * These procs are not really used by the process itself, but are for other parts of the...
+ * ... game whose logic depends on the emergency shuttle.
  */
-//returns 1 if the shuttle is docked at the station and waiting to leave
+// Returns TRUE if the shuttle is docked at the station and waiting to leave.
 /datum/process/emergency/proc/waiting_to_leave()
 	if(shuttle.location)
-		return 0	//not at station
+		return FALSE	//not at station
 	return (wait_for_launch || shuttle.moving_status != SHUTTLE_INTRANSIT)
 
-//so we don't have emergency_controller.shuttle.location everywhere
+// Helper proc so we don't have emergency_controller.shuttle.location everywhere.
 /datum/process/emergency/proc/location()
 	if(isnull(shuttle))
 		return 1	//if we dont have a shuttle datum, just act like it's at centcom
 	return shuttle.location
 
-//returns the time left until the shuttle arrives at it's destination, in seconds
+// Returns the time left until the shuttle arrives at it's destination, in seconds.
 /datum/process/emergency/proc/estimate_arrival_time()
 	var/eta
 	if(shuttle.has_arrive_time())
@@ -186,31 +188,31 @@ PROCESS_DEF(emergency)
 		eta = launch_time + shuttle.move_time * 10 + shuttle.warmup_time * 10
 	return (eta - world.time) / 10
 
-//returns the time left until the shuttle launches, in seconds
+// Returns the time left until the shuttle launches, in seconds.
 /datum/process/emergency/proc/estimate_launch_time()
 	return (launch_time - world.time) / 10
 
 /datum/process/emergency/proc/has_eta()
 	return (wait_for_launch || shuttle.moving_status != SHUTTLE_IDLE)
 
-//returns 1 if the shuttle has gone to the station and come back at least once,
-//used for game completion checking purposes
+// Returns TRUE if the shuttle has gone to the station and come back at least once.
+// Used for game completion checking purposes.
 /datum/process/emergency/proc/returned()
 	return (departed && shuttle.moving_status == SHUTTLE_IDLE && shuttle.location)	//we've gone to the station at least once, no longer in transit and are idle back at centcom
 
-//returns 1 if the shuttle is not idle at centcom
+// Returns TRUE if the shuttle is not idle at centcom.
 /datum/process/emergency/proc/online()
 	if(!shuttle.location)	//not at centcom
-		return 1
+		return TRUE
 	if(wait_for_launch || shuttle.moving_status != SHUTTLE_IDLE)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
-//returns 1 if the shuttle is currently in transit (or just leaving) to the station
+// Returns TRUE if the shuttle is currently in transit (or just leaving) to the station.
 /datum/process/emergency/proc/going_to_station()
 	return (!shuttle.direction && shuttle.moving_status != SHUTTLE_IDLE)
 
-//returns 1 if the shuttle is currently in transit (or just leaving) to centcom
+// Returns TRUE if the shuttle is currently in transit (or just leaving) to centcom.
 /datum/process/emergency/proc/going_to_centcom()
 	return (shuttle.direction && shuttle.moving_status != SHUTTLE_IDLE)
 
