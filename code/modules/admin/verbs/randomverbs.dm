@@ -882,7 +882,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!check_rights(R_FUN))	return
 
-	if(global.PCticker && global.PCticker.mode)
+	if(global.PCticker?.mode)
 		usr << "Nope you can't do this, the game's already started. This only works before rounds!"
 		return
 

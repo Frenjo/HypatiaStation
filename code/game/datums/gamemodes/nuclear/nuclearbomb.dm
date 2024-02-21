@@ -424,8 +424,7 @@ var/bomb_set
 	if(!src.lighthack)
 		src.icon_state = "nuclearbomb3"
 	playsound(src,'sound/machines/Alarm.ogg', 100, 0, 5)
-	if(global.PCticker && global.PCticker.mode)
-		global.PCticker.mode.explosion_in_progress = 1
+	global.PCticker?.mode?.explosion_in_progress = 1
 	sleep(100)
 
 	GLOBL.enter_allowed = FALSE

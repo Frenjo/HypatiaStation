@@ -3,7 +3,7 @@
 	GLOBL.player_list -= src
 	log_access("Logout: [key_name(src)]")
 	if(GLOBL.admin_datums[src.ckey])
-		if(global.PCticker && global.PCticker.current_state == GAME_STATE_PLAYING) //Only report this stuff if we are currently playing.
+		if(global.PCticker?.current_state == GAME_STATE_PLAYING) //Only report this stuff if we are currently playing.
 			var/admins_number = length(GLOBL.admins)
 
 			message_admins("Admin logout: [key_name(src)]")

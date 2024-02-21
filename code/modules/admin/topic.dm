@@ -959,7 +959,7 @@
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN))	return
 
-		if(global.PCticker && global.PCticker.mode)
+		if(global.PCticker?.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
 		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
 		for(var/mode in CONFIG_GET_OLD(modes))
@@ -972,7 +972,7 @@
 	else if(href_list["f_secret"])
 		if(!check_rights(R_ADMIN))	return
 
-		if(global.PCticker && global.PCticker.mode)
+		if(global.PCticker?.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
 		if(global.PCticker.master_mode != "secret")
 			return alert(usr, "The game mode has to be secret!", null, null, null, null)
@@ -986,7 +986,7 @@
 	else if(href_list["c_mode2"])
 		if(!check_rights(R_ADMIN|R_SERVER))	return
 
-		if(global.PCticker && global.PCticker.mode)
+		if(global.PCticker?.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
 		global.PCticker.master_mode = href_list["c_mode2"]
 		log_admin("[key_name(usr)] set the mode as [global.PCticker.master_mode].")
@@ -999,7 +999,7 @@
 	else if(href_list["f_secret2"])
 		if(!check_rights(R_ADMIN|R_SERVER))	return
 
-		if(global.PCticker && global.PCticker.mode)
+		if(global.PCticker?.mode)
 			return alert(usr, "The game has already started.", null, null, null, null)
 		if(global.PCticker.master_mode != "secret")
 			return alert(usr, "The game mode has to be secret!", null, null, null, null)

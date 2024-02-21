@@ -1,5 +1,5 @@
 /obj/machinery/power/apc/proc/get_malf_status(mob/user)
-	if(global.PCticker && global.PCticker.mode && (user.mind in global.PCticker.mode.malf_ai) && isAI(user))
+	if((user.mind in global.PCticker?.mode?.malf_ai) && isAI(user))
 		if(src.malfai == (user:parent ? user:parent : user))
 			if(src.occupant == user)
 				return 3 // 3 = User is shunted in this APC

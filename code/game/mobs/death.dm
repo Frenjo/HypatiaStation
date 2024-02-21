@@ -91,7 +91,6 @@
 
 	updateicon()
 
-	if(global.PCticker && global.PCticker.mode)
-		global.PCticker.mode.check_win()
+	global.PCticker?.mode?.check_win()
 
 	return 1
