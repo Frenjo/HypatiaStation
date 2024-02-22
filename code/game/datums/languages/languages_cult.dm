@@ -9,7 +9,7 @@
 	//exclaim_verb = "chants"
 	colour = "cult"
 	key = "n"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 	//space_chance = 100
 	/*syllables = list("ire","ego","nahlizet","certum","veri","jatkaa","mgar","balaq", "karazet", "geeri", \
 		"orkan", "allaq", "sas'so", "c'arta", "forbici", "tarem", "n'ath", "reth", "sh'yro", "eth", "d'raggathnor", \
@@ -26,4 +26,4 @@
 	//exclaim_verb = "chants"
 	colour = "cult"
 	key = "m"
-	flags = RESTRICTED | HIVEMIND
+	flags = LANGUAGE_FLAG_RESTRICTED | LANGUAGE_FLAG_HIVEMIND

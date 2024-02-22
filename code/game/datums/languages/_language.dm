@@ -9,7 +9,9 @@
 	var/speech_verb = "says"			// 'says', 'hisses', 'farts'.
 	var/colour = "body"					// CSS style to use for strings in this language.
 	var/key = "x"						// Character used to speak in language eg. :o for Soghun.
-	var/flags = 0						// Various language flags.
+	// Stores language-specific bitflag values.
+	// Overridden on subtypes and checked with the HAS_LANGUAGE_FLAGS(LANGUAGE, FLAGS) macro.
+	var/flags
 	var/native							// If set, non-native speakers will have trouble speaking.
 
 /datum/language/proc/broadcast(mob/living/speaker, message, speaker_mask)

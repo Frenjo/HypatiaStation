@@ -392,7 +392,8 @@
 	if(client.prefs.secondary_language)
 		chosen_language = GLOBL.all_languages["[client.prefs.secondary_language]"]
 	if(chosen_language)
-		if(is_alien_whitelisted(src, client.prefs.secondary_language) || !CONFIG_GET(usealienwhitelist) || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
+		if(is_alien_whitelisted(src, client.prefs.secondary_language) || !CONFIG_GET(usealienwhitelist) \
+		|| !HAS_LANGUAGE_FLAGS(chosen_language, LANGUAGE_FLAG_WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 			new_character.add_language("[client.prefs.secondary_language]")
 
 	if(global.PCticker.random_players)

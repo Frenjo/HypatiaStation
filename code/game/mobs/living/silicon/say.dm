@@ -74,7 +74,7 @@
 	if(isnotnull(speaking))
 		verbage = speaking.speech_verb
 		message = copytext(message, 3)
-		if(speaking.flags & HIVEMIND)
+		if(HAS_LANGUAGE_FLAGS(speaking, LANGUAGE_FLAG_HIVEMIND))
 			speaking.broadcast(src, trim(message))
 			return
 

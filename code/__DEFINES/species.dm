@@ -15,10 +15,3 @@
 #define SPECIES_XENOMORPH_SENTINEL "Xenomorph Sentinel"
 #define SPECIES_XENOMORPH_HUNTER "Xenomorph Hunter"
 #define SPECIES_XENOMORPH_QUEEN "Xenomorph Queen"
-
-// Language flags.
-#define WHITELISTED	BITFLAG(0) // Language is available if the speaker is whitelisted.
-#define RESTRICTED	BITFLAG(1) // Language can only be accquired by spawning or an admin.
-#define NONVERBAL	BITFLAG(2) // Language has a significant non-verbal component.
-#define SIGNLANG	BITFLAG(3) // Language is completely non-verbal. Speech is displayed through emotes for those who can understand.
-#define HIVEMIND	BITFLAG(4) // Broadcast to all mobs with this language.

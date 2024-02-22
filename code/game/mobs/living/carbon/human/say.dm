@@ -41,7 +41,7 @@
 
 		// This is broadcast to all mobs with the language,
 		// irrespective of distance or anything else.
-		if(speaking.flags & HIVEMIND)
+		if(HAS_LANGUAGE_FLAGS(speaking, LANGUAGE_FLAG_HIVEMIND))
 			speaking.broadcast(src,trim(message))
 			return
 

@@ -6,7 +6,7 @@
 	desc = "A bastardized hybrid of informal English and elements of Mandarin Chinese; the common language of the Sol system."
 	colour = "rough"
 	key = "1"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 
 /datum/language/soghun
 	name = "Sinta'unathi"
@@ -14,7 +14,7 @@
 	speech_verb = "hisses"
 	colour = "soghun"
 	key = "o"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 
 /datum/language/tajaran
 	name = "Siik'maas"
@@ -22,7 +22,7 @@
 	speech_verb = "mrowls"
 	colour = "tajaran"
 	key = "j"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 
 /datum/language/tajaran_sign
 	name = "Siik'tajr"
@@ -30,7 +30,7 @@
 	speech_verb = "mrowls"
 	colour = "tajaran_signlang"
 	key = "y"
-	flags = RESTRICTED | NONVERBAL
+	flags = LANGUAGE_FLAG_RESTRICTED | LANGUAGE_FLAG_NONVERBAL
 
 /datum/language/skrell
 	name = "Skrellian"
@@ -38,7 +38,7 @@
 	speech_verb = "warbles"
 	colour = "skrell"
 	key = "k"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 
 /datum/language/vox
 	name = "Vox-Pidgin"
@@ -46,7 +46,7 @@
 	speech_verb = "shrieks"
 	colour = "vox"
 	key = "v"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 
 /datum/language/diona
 	name = "Rootspeak"
@@ -54,7 +54,7 @@
 	speech_verb = "creaks and rustles"
 	colour = "soghun"
 	key = "q"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 
 /datum/language/obsedai
 	name = "Obsedaian"
@@ -62,7 +62,7 @@
 	speech_verb = "rumbles"
 	colour = "vox"
 	key = "r"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 
 /datum/language/plasmalin
 	name = "Plasmalin"
@@ -70,7 +70,7 @@
 	speech_verb = "rattles"
 	colour = "vox"
 	key = "p"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED
 
 /datum/language/machine
 	name = "Binary Audio Language"
@@ -78,4 +78,4 @@
 	speech_verb = "emits"
 	colour = "vox"
 	key = "l"
-	flags = RESTRICTED
+	flags = LANGUAGE_FLAG_RESTRICTED

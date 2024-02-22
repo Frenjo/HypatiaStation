@@ -7,7 +7,7 @@
 	speech_verb = "hisses"
 	colour = "alien"
 	key = "a"
-	flags = RESTRICTED | HIVEMIND
+	flags = LANGUAGE_FLAG_RESTRICTED | LANGUAGE_FLAG_HIVEMIND
 
 /datum/language/ling
 	name = "Changeling"
@@ -15,7 +15,7 @@
 	speech_verb = "says"
 	colour = "changeling"
 	key = "g"
-	flags = RESTRICTED | HIVEMIND
+	flags = LANGUAGE_FLAG_RESTRICTED | LANGUAGE_FLAG_HIVEMIND
 
 /datum/language/ling/broadcast(mob/living/speaker, message, speaker_mask)
 	if(speaker.mind?.changeling)
@@ -29,7 +29,7 @@
 	speech_verb = "transmits"
 	colour = "say_quote"
 	key = "b"
-	flags = RESTRICTED | HIVEMIND
+	flags = LANGUAGE_FLAG_RESTRICTED | LANGUAGE_FLAG_HIVEMIND
 
 	var/drone_only
 
@@ -70,6 +70,6 @@
 	speech_verb = "transmits"
 	colour = "say_quote"
 	key = "d"
-	flags = RESTRICTED | HIVEMIND
+	flags = LANGUAGE_FLAG_RESTRICTED | LANGUAGE_FLAG_HIVEMIND
 
 	drone_only = TRUE

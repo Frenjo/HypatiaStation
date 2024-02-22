@@ -615,7 +615,8 @@
 					if(CONFIG_GET(usealienwhitelist))
 						for(var/L in GLOBL.all_languages)
 							var/datum/language/lang = GLOBL.all_languages[L]
-							if((!(lang.flags & RESTRICTED)) && (is_alien_whitelisted(user, L) || (!(lang.flags & WHITELISTED)) || (S && (L in S.secondary_langs))))
+							if(!HAS_LANGUAGE_FLAGS(lang, LANGUAGE_FLAG_RESTRICTED) && (is_alien_whitelisted(user, L) \
+							|| !HAS_LANGUAGE_FLAGS(lang, LANGUAGE_FLAG_WHITELISTED) || (S && (L in S.secondary_langs))))
 								new_languages += lang
 								languages_available = 1
 
@@ -624,7 +625,7 @@
 					else
 						for(var/L in GLOBL.all_languages)
 							var/datum/language/lang = GLOBL.all_languages[L]
-							if(!(lang.flags & RESTRICTED))
+							if(!HAS_LANGUAGE_FLAGS(lang, LANGUAGE_FLAG_RESTRICTED))
 								new_languages += lang.name
 
 					secondary_language = input("Please select a secondary language", "Character Generation", null) in new_languages
