@@ -66,6 +66,8 @@
 #include "code\__DEFINES\atmospherics\atmos.dm"
 #include "code\__DEFINES\atmospherics\XGM.dm"
 #include "code\__DEFINES\atmospherics\ZAS.dm"
+#include "code\__DEFINES\flags\_flags.dm"
+#include "code\__DEFINES\flags\turf.dm"
 #include "code\__HELPERS\AStar.dm"
 #include "code\__HELPERS\captain_announce.dm"
 #include "code\__HELPERS\command_alert.dm"

@@ -2,6 +2,10 @@
 	icon = 'icons/turf/floors.dmi'
 	level = 1.0
 
+	// Stores turf-specific bitflag values.
+	// Overridden on subtypes or manipulated with *_TURF_FLAGS(TURF, FLAGS) macros.
+	var/turf_flags
+
 	// For floors, use is_plating(), is_plasteel_floor() and is_light_floor().
 	var/intact = 1
 

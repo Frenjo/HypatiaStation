@@ -186,7 +186,7 @@
 	icon_state = "wall1"
 	opacity = TRUE
 	density = TRUE
-	flags = TURF_BLOCKS_AIR
+	turf_flags = TURF_BLOCKS_AIR
 
 /turf/simulated/shuttle/floor
 	name = "floor"
