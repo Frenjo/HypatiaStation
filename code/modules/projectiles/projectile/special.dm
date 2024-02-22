@@ -79,7 +79,7 @@
 //	if(ishuman(target) && M.dna && M.dna.mutantrace == "plant") //Plantmen possibly get mutated and damaged by the rays.
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = M
-		if((H.species.flags & IS_PLANT) && M.nutrition < 500)
+		if(HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_PLANT) && M.nutrition < 500)
 			if(prob(15))
 				M.apply_effect(rand(30, 80), IRRADIATE)
 				M.Weaken(5)
@@ -119,7 +119,7 @@
 	var/mob/M = target
 	if(ishuman(target)) //These rays make plantmen fat.
 		var/mob/living/carbon/human/H = M
-		if((H.species.flags & IS_PLANT) && M.nutrition < 500)
+		if(HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_PLANT) && M.nutrition < 500)
 			M.nutrition += 30
 	else if(iscarbon(target))
 		M.show_message(SPAN_INFO("The radiation beam dissipates harmlessly through your body."))

@@ -245,7 +245,7 @@
 	else if(getBrainLoss() >= 60)
 		msg += "[t_He] [t_has] a stupid expression on [t_his] face.\n"
 
-	if(!(species.flags & IS_SYNTHETIC))
+	if(!HAS_SPECIES_FLAGS(species, SPECIES_FLAG_IS_SYNTHETIC))
 		if(!(species.has_organ["brain"] || has_brain()) && stat != DEAD)
 			msg += "<span class='deadsay'>[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.</span>\n"
 		else if(!client && brain_op_stage != 4 && stat != DEAD)
@@ -262,7 +262,7 @@
 				continue
 			if(temp.status & ORGAN_ROBOT)
 				if(!(temp.brute_dam + temp.burn_dam))
-					if(!(species.flags & IS_SYNTHETIC))
+					if(!HAS_SPECIES_FLAGS(species, SPECIES_FLAG_IS_SYNTHETIC))
 						wound_flavor_text["[temp.display_name]"] = "[SPAN_WARNING("[t_He] has a robot [temp.display_name]!")]\n"
 						continue
 				else

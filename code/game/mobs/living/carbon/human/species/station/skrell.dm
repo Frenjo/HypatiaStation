@@ -5,7 +5,7 @@
 	language = "Skrellian"
 	primitive = /mob/living/carbon/monkey/skrell
 
-	flags = IS_WHITELISTED | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+	species_flags = SPECIES_FLAG_HAS_SKIN_COLOUR | SPECIES_FLAG_HAS_EYE_COLOUR | SPECIES_FLAG_HAS_LIPS | SPECIES_FLAG_HAS_UNDERWEAR | SPECIES_FLAG_IS_WHITELISTED
 
 	reagent_tag = IS_SKRELL
 

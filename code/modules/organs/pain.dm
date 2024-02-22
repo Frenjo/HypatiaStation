@@ -57,7 +57,7 @@
 /mob/living/carbon/human/proc/custom_pain(message, flash_strength)
 	if(stat >= 1)
 		return
-	if(species && species.flags & NO_PAIN)
+	if(isnotnull(species) && HAS_SPECIES_FLAGS(species, SPECIES_FLAG_NO_PAIN))
 		return
 	if(reagents.has_reagent("tramadol"))
 		return
@@ -77,7 +77,7 @@
 
 /mob/living/carbon/human/proc/handle_pain()
 	// not when sleeping
-	if(species && species.flags & NO_PAIN)
+	if(isnotnull(species) && HAS_SPECIES_FLAGS(species, SPECIES_FLAG_NO_PAIN))
 		return
 	if(stat >= 2)
 		return

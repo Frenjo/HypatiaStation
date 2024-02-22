@@ -569,7 +569,7 @@
 				var/mob/living/carbon/human/H
 				if(ishuman(C))
 					H = C
-				if(isnull(H) || !(H.species?.flags & RAD_ABSORB))
+				if(isnull(H) || (isnotnull(H.species) && !HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_RAD_ABSORB)))
 					M.adjustToxLoss(100)
 			M:antibodies |= V.antigen
 	. = ..()

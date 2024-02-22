@@ -102,7 +102,7 @@
 		S.race_key = rkey //Used in mob icon caching.
 		GLOBL.all_species[S.name] = S
 
-		if(S.flags & IS_WHITELISTED)
+		if(HAS_SPECIES_FLAGS(S, SPECIES_FLAG_IS_WHITELISTED))
 			GLOBL.whitelisted_species.Add(S.name)
 	return 1
 

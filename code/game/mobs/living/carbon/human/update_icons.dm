@@ -331,7 +331,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 
 		//Skin tone.
 		if(!husk && !hulk)
-			if(species.flags & HAS_SKIN_TONE)
+			if(HAS_SPECIES_FLAGS(species, SPECIES_FLAG_HAS_SKIN_TONE))
 				if(s_tone >= 0)
 					base_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
 				else
@@ -344,23 +344,24 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 	stand_icon.Blend(base_icon, ICON_OVERLAY)
 
 	//Skin colour. Not in cache because highly variable (and relatively benign).
-	if(species.flags & HAS_SKIN_COLOR)
+	if(HAS_SPECIES_FLAGS(species, SPECIES_FLAG_HAS_SKIN_COLOUR))
 		stand_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 
 	if(has_head)
 		//Eyes
 		if(!skeleton)
 			var/icon/eyes = new/icon('icons/mob/on_mob/human_face.dmi', species.eyes)
-			if(species.flags & HAS_EYE_COLOR)
+			if(HAS_SPECIES_FLAGS(species, SPECIES_FLAG_HAS_EYE_COLOUR))
 				eyes.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
 			stand_icon.Blend(eyes, ICON_OVERLAY)
 
 		//Mouth	(lipstick!)
-		if(lip_style && (species && species.flags & HAS_LIPS))	//skeletons are allowed to wear lipstick no matter what you think, agouri.
+		//skeletons are allowed to wear lipstick no matter what you think, agouri.
+		if(lip_style && (isnotnull(species) && HAS_SPECIES_FLAGS(species, SPECIES_FLAG_HAS_LIPS)))
 			stand_icon.Blend(new/icon('icons/mob/on_mob/human_face.dmi', "lips_[lip_style]_s"), ICON_OVERLAY)
 
 	//Underwear
-	if(underwear >0 && underwear < 12 && species.flags & HAS_UNDERWEAR)
+	if(underwear > 0 && underwear < 12 && HAS_SPECIES_FLAGS(species, SPECIES_FLAG_HAS_UNDERWEAR))
 		if(!fat && !skeleton)
 			stand_icon.Blend(new /icon('icons/mob/human.dmi', "underwear[underwear]_[g]_s"), ICON_OVERLAY)
 
@@ -918,7 +919,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 /mob/living/carbon/human/proc/update_tail_showing(update_icons = 1)
 	overlays_standing[TAIL_LAYER] = null
 
-	if(species.tail && species.flags & HAS_TAIL)
+	if(isnotnull(species.tail) && HAS_SPECIES_FLAGS(species, SPECIES_FLAG_HAS_TAIL))
 		if(!wear_suit || !(wear_suit.flags_inv & HIDETAIL) && !istype(wear_suit, /obj/item/clothing/suit/space))
 			var/icon/tail_s = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
 			tail_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)

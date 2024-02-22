@@ -73,7 +73,7 @@
 
 /mob/living/carbon/human/Process_Spaceslipping(prob_slip = 5)
 	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
-	if(species.flags & NO_SLIP)
+	if(HAS_SPECIES_FLAGS(species, SPECIES_FLAG_NO_SLIP))
 		return
 
 	if(stat)

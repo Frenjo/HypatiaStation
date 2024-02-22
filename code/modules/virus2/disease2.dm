@@ -39,7 +39,7 @@
 	var/list/res = list()
 	for (var/specie in GLOBL.all_species)
 		var/datum/species/S = GLOBL.all_species[specie]
-		if(!(S.flags & IS_SYNTHETIC))
+		if(!HAS_SPECIES_FLAGS(S, SPECIES_FLAG_IS_SYNTHETIC))
 			meat += S.name
 	if(length(meat))
 		var/num = rand(1, length(meat))

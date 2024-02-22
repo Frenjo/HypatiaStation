@@ -62,7 +62,10 @@
 	var/brute_mod = null	// Physical damage reduction/malus.
 	var/burn_mod = null		// Burn damage reduction/malus.
 
-	var/flags = 0		// Various specific features.
+	// Stores species-specific bitflag values.
+	// Overridden on subtypes or manipulated with *_SPECIES_FLAGS(SPECIES, FLAGS) macros.
+	// Various specific features.
+	var/species_flags
 
 	var/list/abilities = list()	// For species-derived or admin-given powers
 
@@ -140,7 +143,7 @@
 	for(var/datum/organ/external/O in H.organs)
 		O.owner = H
 
-	if(flags & IS_SYNTHETIC)
+	if(HAS_SPECIES_FLAGS(src, SPECIES_FLAG_IS_SYNTHETIC))
 		for(var/datum/organ/external/E in H.organs)
 			if(E.status & ORGAN_CUT_AWAY || E.status & ORGAN_DESTROYED)
 				continue
@@ -166,7 +169,7 @@
 
 // Handles any species-specific death events (such as dionaea nymph spawns).
 /datum/species/proc/handle_death(mob/living/carbon/human/H)
-	if(flags & IS_SYNTHETIC)
+	if(HAS_SPECIES_FLAGS(src, SPECIES_FLAG_IS_SYNTHETIC))
 		//H.make_jittery(200) //S-s-s-s-sytem f-f-ai-i-i-i-i-lure-ure-ure-ure
 		H.h_style = ""
 		spawn(100)

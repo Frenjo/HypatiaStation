@@ -211,23 +211,23 @@
 		preview_icon.Blend(temp, ICON_OVERLAY)
 
 	//Tail
-	if(current_species && (current_species.flags & HAS_TAIL))
+	if(isnotnull(current_species) && HAS_SPECIES_FLAGS(current_species, SPECIES_FLAG_HAS_TAIL))
 		var/icon/temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[current_species.tail]_s")
 		preview_icon.Blend(temp, ICON_OVERLAY)
 
 	// Skin color
-	if(current_species && (current_species.flags & HAS_SKIN_COLOR))
+	if(isnotnull(current_species) && HAS_SPECIES_FLAGS(current_species, SPECIES_FLAG_HAS_SKIN_COLOUR))
 		preview_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 
 	// Skin tone
-	if(current_species && (current_species.flags & HAS_SKIN_TONE))
+	if(isnotnull(current_species) && HAS_SPECIES_FLAGS(current_species, SPECIES_FLAG_HAS_SKIN_TONE))
 		if(s_tone >= 0)
 			preview_icon.Blend(rgb(s_tone, s_tone, s_tone), ICON_ADD)
 		else
 			preview_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 
 	var/icon/eyes_s = new/icon("icon" = 'icons/mob/on_mob/human_face.dmi', "icon_state" = current_species ? current_species.eyes : "eyes_s")
-	if((current_species && (current_species.flags & HAS_EYE_COLOR)))
+	if(isnotnull(current_species) && HAS_SPECIES_FLAGS(current_species, SPECIES_FLAG_HAS_EYE_COLOUR))
 		eyes_s.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
 
 	var/datum/sprite_accessory/hair_style = GLOBL.hair_styles_list[h_style]
@@ -243,7 +243,7 @@
 		eyes_s.Blend(facial_s, ICON_OVERLAY)
 
 	var/icon/underwear_s = null
-	if(underwear > 0 && underwear < 7 && current_species.flags & HAS_UNDERWEAR)
+	if(underwear > 0 && underwear < 7 && HAS_SPECIES_FLAGS(current_species, SPECIES_FLAG_HAS_UNDERWEAR))
 		underwear_s = new/icon("icon" = 'icons/mob/human.dmi', "icon_state" = "underwear[underwear]_[g]_s")
 
 	var/icon/clothes_s = null

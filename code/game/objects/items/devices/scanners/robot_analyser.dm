@@ -46,7 +46,7 @@
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(!(H.species.flags & IS_SYNTHETIC))
+		if(!HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_SYNTHETIC))
 			output_error(user, M)
 			return
 	else if(!isrobot(M))
@@ -112,7 +112,7 @@
 	// Handles synthetic species organ damage.
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if(!(H.species.flags & IS_SYNTHETIC))
+		if(!HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_SYNTHETIC))
 			return
 		var/list/damaged_organs = H.get_damaged_organs(TRUE, TRUE)
 		output.Add("[SPAN_INFO("Localised Damage (<font color='#FFA500'>Electronics</font>/<font color='red'>Brute</font>):")]\n")

@@ -3,7 +3,7 @@
 	language = "Sol Common"
 	primitive = /mob/living/carbon/monkey
 
-	flags = HAS_SKIN_TONE | HAS_LIPS | HAS_UNDERWEAR | HAS_EYE_COLOR
+	species_flags = SPECIES_FLAG_HAS_SKIN_TONE | SPECIES_FLAG_HAS_EYE_COLOUR | SPECIES_FLAG_HAS_LIPS | SPECIES_FLAG_HAS_UNDERWEAR
 
 	reagent_tag = IS_HUMAN
 

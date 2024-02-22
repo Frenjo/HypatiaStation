@@ -7,7 +7,7 @@
 	//Synthetic human mob goes here.
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.species.flags & IS_SYNTHETIC && H.a_intent == "grab")
+		if(HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_SYNTHETIC) && H.a_intent == "grab")
 			if(emagged || stat & BROKEN)
 				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
 				s.set_up(3, 1, src)

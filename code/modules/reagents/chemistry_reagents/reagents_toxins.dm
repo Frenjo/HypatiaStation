@@ -250,7 +250,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(isnotnull(H.dna))
-				if(H.species.flags & IS_PLANT) //plantmen take a LOT of damage
+				if(HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_PLANT)) //plantmen take a LOT of damage
 					H.adjustToxLoss(50)
 
 /datum/reagent/toxin/chloralhydrate

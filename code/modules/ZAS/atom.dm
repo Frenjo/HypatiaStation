@@ -17,7 +17,7 @@
 		return !density
 
 	else // Now, doing more detailed checks for air movement and air group formation
-		if(HAS_TURF_FLAGS(target, TURF_BLOCKS_AIR) || HAS_TURF_FLAGS(src, TURF_BLOCKS_AIR))
+		if(HAS_TURF_FLAGS(target, TURF_FLAG_BLOCKS_AIR) || HAS_TURF_FLAGS(src, TURF_FLAG_BLOCKS_AIR))
 			return 0
 
 		for(var/obj/obstacle in src)
@@ -46,7 +46,7 @@
 	#ifdef ZASDBG
 	ASSERT(isturf(other))
 	#endif
-	if(HAS_TURF_FLAGS(src, TURF_BLOCKS_AIR))
+	if(HAS_TURF_FLAGS(src, TURF_FLAG_BLOCKS_AIR))
 		return BLOCKED
 
 	//Z-level handling code. Always block if there isn't an open space.

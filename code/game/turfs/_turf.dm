@@ -267,9 +267,9 @@
 			M.take_damage(100, "brute")
 
 /turf/proc/Bless()
-	if(HAS_TURF_FLAGS(src, TURF_NO_JAUNT))
+	if(HAS_TURF_FLAGS(src, TURF_FLAG_NO_JAUNT))
 		return
-	SET_TURF_FLAGS(src, TURF_NO_JAUNT)
+	SET_TURF_FLAGS(src, TURF_FLAG_NO_JAUNT)
 
 /turf/proc/AdjacentTurfs()
 	var/list/list = list()

@@ -31,6 +31,9 @@
 	/*
 	 * Misc
 	 */
+	// Stores area-specific bitflag values.
+	// Overridden on subtypes or manipulated with *_AREA_FLAGS(AREA, FLAGS) macros.
+	var/area_flags
 	var/turf/base_turf // The base turf type of the area, which can be used to override the z-level's base turf.
 
 	/*

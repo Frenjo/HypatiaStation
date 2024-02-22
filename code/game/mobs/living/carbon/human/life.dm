@@ -130,7 +130,7 @@
 		G.process()
 
 /mob/living/carbon/human/handle_mutations_and_radiation()
-	if(species.flags & IS_SYNTHETIC) //Robots don't suffer from mutations or radloss.
+	if(HAS_SPECIES_FLAGS(species, SPECIES_FLAG_IS_SYNTHETIC)) //Robots don't suffer from mutations or radloss.
 		return
 	if(in_stasis)
 		return
@@ -160,7 +160,7 @@
 			radiation = 0
 
 		else
-			if(species.flags & RAD_ABSORB)
+			if(HAS_SPECIES_FLAGS(species, SPECIES_FLAG_RAD_ABSORB))
 				var/rads = radiation / 25
 				radiation -= rads
 				nutrition += rads
@@ -427,7 +427,7 @@
 		return
 	if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 		return
-	if(isnotnull(species) && (species.flags & NO_BREATHE || species.flags & IS_SYNTHETIC))
+	if(isnotnull(species) && (HAS_SPECIES_FLAGS(species, SPECIES_FLAG_NO_BREATHE) || HAS_SPECIES_FLAGS(species, SPECIES_FLAG_IS_SYNTHETIC)))
 		return
 
 	var/datum/gas_mixture/environment = loc.return_air()
@@ -754,7 +754,7 @@
 */
 
 /mob/living/carbon/human/proc/stabilize_body_temperature()
-	if(species.flags & IS_SYNTHETIC)
+	if(HAS_SPECIES_FLAGS(species, SPECIES_FLAG_IS_SYNTHETIC))
 		bodytemperature += species.synth_temp_gain		//just keep putting out heat.
 		return
 
@@ -958,7 +958,7 @@
 */
 
 /mob/living/carbon/human/proc/handle_chemicals_in_body()
-	if(isnotnull(reagents) && !(species.flags & IS_SYNTHETIC)) //Synths don't process reagents.
+	if(isnotnull(reagents) && !HAS_SPECIES_FLAGS(species, SPECIES_FLAG_IS_SYNTHETIC)) //Synths don't process reagents.
 		var/alien = 0 //Not the best way to handle it, but neater than checking this for every single reagent proc.
 		if(species?.reagent_tag)
 			alien = species.reagent_tag
@@ -973,7 +973,7 @@
 			return 0	//godmode
 		adjustToxLoss(total_plasmaloss)
 
-	if(species.flags & REQUIRE_LIGHT)
+	if(HAS_SPECIES_FLAGS(species, SPECIES_FLAG_REQUIRE_LIGHT))
 		var/light_amount = 0 //how much light there is in the place, affects receiving nutrition and healing
 		if(isturf(loc)) //else, there's considered to be no light
 			var/turf/T = loc
@@ -984,7 +984,7 @@
 		nutrition += light_amount
 		traumatic_shock -= light_amount
 
-		if(species.flags & IS_PLANT)
+		if(HAS_SPECIES_FLAGS(species, SPECIES_FLAG_IS_PLANT))
 			if(nutrition > 500)
 				nutrition = 500
 			if(light_amount >= 3) //if there's enough light, heal
@@ -1037,7 +1037,7 @@
 		if(overeatduration > 1)
 			overeatduration -= 2 //doubled the unfat rate
 
-	if(species.flags & REQUIRE_LIGHT)
+	if(HAS_SPECIES_FLAGS(species, SPECIES_FLAG_REQUIRE_LIGHT))
 		if(nutrition < 200)
 			take_overall_damage(2, 0)
 			traumatic_shock++
@@ -1058,7 +1058,7 @@
 		dizziness = max(0, dizziness - 3)
 		jitteriness = max(0, jitteriness - 3)
 
-	if(!(species.flags & IS_SYNTHETIC))
+	if(!HAS_SPECIES_FLAGS(species, SPECIES_FLAG_IS_SYNTHETIC))
 		handle_trace_chems()
 
 	updatehealth()
@@ -1357,7 +1357,10 @@
 						healths.icon_state = "health7"
 					else
 						//switch(health - halloss)
-						switch(100 - ((species?.flags & NO_PAIN & !IS_SYNTHETIC) ? 0 : traumatic_shock))
+						var/temp_shock = traumatic_shock
+						if(isnotnull(species) && HAS_SPECIES_FLAGS(species, (SPECIES_FLAG_NO_PAIN & !SPECIES_FLAG_IS_SYNTHETIC)))
+							temp_shock = 0
+						switch(100 - temp_shock)
 							if(100 to INFINITY)
 								healths.icon_state = "health0"
 							if(80 to 100)
@@ -1614,7 +1617,7 @@
 	..()
 	if(status_flags & GODMODE)
 		return 0	//godmode
-	if(analgesic || (species?.flags & NO_PAIN))
+	if(analgesic || HAS_SPECIES_FLAGS(species, SPECIES_FLAG_NO_PAIN))
 		return // analgesic avoids all traumatic shock temporarily
 
 	if(health < CONFIG_GET(health_threshold_softcrit))// health 0 makes you immediately collapse
@@ -1674,7 +1677,7 @@
 	if(life_tick % 5)
 		return pulse	//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
 
-	if(species?.flags & NO_BLOOD)
+	if(isnotnull(species) && HAS_SPECIES_FLAGS(species, SPECIES_FLAG_NO_BLOOD))
 		return PULSE_NONE //No blood, no pulse.
 
 	if(stat == DEAD)

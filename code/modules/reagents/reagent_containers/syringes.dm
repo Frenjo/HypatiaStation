@@ -92,7 +92,7 @@
 					var/datum/reagent/B
 					if(ishuman(T))
 						var/mob/living/carbon/human/H = T
-						if(H.species && H.species.flags & NO_BLOOD)
+						if(isnotnull(H.species) && HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_NO_BLOOD))
 							H.reagents.trans_to(src, amount)
 						else
 							B = T.take_blood(src, amount)

@@ -20,7 +20,7 @@
 	breath_type = /decl/xgm_gas/nitrogen
 	poison_type = /decl/xgm_gas/oxygen
 
-	flags = IS_WHITELISTED | NO_SCAN | HAS_EYE_COLOR
+	species_flags = SPECIES_FLAG_NO_SCAN | SPECIES_FLAG_HAS_EYE_COLOUR | SPECIES_FLAG_IS_WHITELISTED
 
 	reagent_tag = IS_VOX
 
@@ -64,7 +64,7 @@
 	breath_type = /decl/xgm_gas/nitrogen
 	poison_type = /decl/xgm_gas/oxygen
 
-	flags = NO_SCAN | NO_BLOOD | HAS_TAIL | NO_PAIN | IS_WHITELISTED
+	species_flags = SPECIES_FLAG_NO_BLOOD | SPECIES_FLAG_NO_SCAN | SPECIES_FLAG_NO_PAIN | SPECIES_FLAG_HAS_TAIL | SPECIES_FLAG_IS_WHITELISTED
 
 	blood_color = "#2299FC"
 	flesh_color = "#808D11"

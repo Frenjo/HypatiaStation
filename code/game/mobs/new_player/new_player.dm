@@ -379,7 +379,8 @@
 	if(client.prefs.species)
 		chosen_species = GLOBL.all_species[client.prefs.species]
 	if(chosen_species)
-		if(is_alien_whitelisted(src, client.prefs.species) || !CONFIG_GET(usealienwhitelist) || !(chosen_species.flags & IS_WHITELISTED) || (client.holder.rights & R_ADMIN))// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
+		if(is_alien_whitelisted(src, client.prefs.species) || !CONFIG_GET(usealienwhitelist) || !HAS_SPECIES_FLAGS(chosen_species, SPECIES_FLAG_IS_WHITELISTED) \
+		|| (client.holder.rights & R_ADMIN))// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
 			new_character = new(loc, client.prefs.species)
 
 		if(!new_character)

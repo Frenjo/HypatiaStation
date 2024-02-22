@@ -82,7 +82,7 @@
 
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
-			if(H.species && H.species.flags & IS_SYNTHETIC)
+			if(isnotnull(H.species) && HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_SYNTHETIC))
 				brmod = H.species.brute_mod
 				bumod = H.species.burn_mod
 
@@ -573,7 +573,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 			if(LOWER_TORSO)
 				to_chat(owner, SPAN_WARNING("You are now sterile."))
 			if(HEAD)
-				if(owner.species.flags & IS_SYNTHETIC)
+				if(HAS_SPECIES_FLAGS(owner.species, SPECIES_FLAG_IS_SYNTHETIC))
 					organ= new /obj/item/organ/head/posi(owner.loc, owner)
 				else
 					organ= new /obj/item/organ/head(owner.loc, owner)
@@ -700,7 +700,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 		SPAN_DANGER("Something feels like it shattered in your [display_name]!"),\
 		"You hear a sickening crack.")
 
-	if(owner.species && !(owner.species.flags & NO_PAIN))
+	if(isnotnull(owner.species) && !HAS_SPECIES_FLAGS(owner.species, SPECIES_FLAG_NO_PAIN))
 		owner.emote("scream")
 
 	status |= ORGAN_BROKEN
@@ -742,7 +742,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	return 0
 
 /datum/organ/external/get_icon(gender = "")
-	if(status & ORGAN_ROBOT && !(owner.species && owner.species.flags & IS_SYNTHETIC))
+	if(status & ORGAN_ROBOT && !(owner.species && HAS_SPECIES_FLAGS(owner.species, SPECIES_FLAG_IS_SYNTHETIC)))
 		return new /icon('icons/mob/human_races/robotic.dmi', "[icon_name][gender ? "_[gender]" : ""]")
 
 	if(status & ORGAN_MUTATED)
@@ -768,7 +768,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 	if(is_broken())
 		owner.u_equip(c_hand)
 		var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
-		owner.emote("me", 1, "[(owner.species && owner.species.flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [hand_name]!")
+		owner.emote("me", 1, "[(isnotnull(owner.species) && HAS_SPECIES_FLAGS(owner.species, SPECIES_FLAG_NO_PAIN)) ? "" : emote_scream ] drops what they were holding in their [hand_name]!")
 	if(is_malfunctioning())
 		owner.u_equip(c_hand)
 		owner.emote("me", 1, "drops what they were holding, their [hand_name] malfunctioning!")
@@ -962,7 +962,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 
 	if(base)
 		//Changing limb's skin tone to match owner
-		if(!H.species || H.species.flags & HAS_SKIN_TONE)
+		if(isnull(H.species) || HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_HAS_SKIN_TONE))
 			if(H.s_tone >= 0)
 				base.Blend(rgb(H.s_tone, H.s_tone, H.s_tone), ICON_ADD)
 			else
@@ -970,7 +970,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 
 	if(base)
 		//Changing limb's skin color to match owner
-		if(!H.species || H.species.flags & HAS_SKIN_COLOR)
+		if(isnull(H.species) || HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_HAS_SKIN_COLOUR))
 			base.Blend(rgb(H.r_skin, H.g_skin, H.b_skin), ICON_ADD)
 
 	icon = base

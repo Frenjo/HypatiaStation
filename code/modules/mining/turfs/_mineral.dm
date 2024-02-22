@@ -10,7 +10,7 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 
 	opacity = TRUE
 	density = TRUE
-	turf_flags = TURF_BLOCKS_AIR
+	turf_flags = TURF_FLAG_BLOCKS_AIR
 
 	initial_gases = null
 	temperature = T0C

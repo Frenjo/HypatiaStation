@@ -775,7 +775,7 @@
 	return
 
 /mob/living/carbon/human/proc/vomit()
-	if(species.flags & IS_SYNTHETIC)
+	if(HAS_SPECIES_FLAGS(species, SPECIES_FLAG_IS_SYNTHETIC))
 		return //Machines don't throw up.
 
 	if(!lastpuke)
@@ -957,7 +957,7 @@
 	var/datum/organ/external/head/h = organs_by_name["head"]
 	h.disfigured = 0
 
-	if(species && !(species.flags & NO_BLOOD))
+	if(isnotnull(species) && !HAS_SPECIES_FLAGS(species, SPECIES_FLAG_NO_BLOOD))
 		vessel.add_reagent("blood", 560 - vessel.total_volume)
 		fixblood()
 
@@ -1137,7 +1137,7 @@
 
 	spawn(0)
 		update_icons()
-		if(!(species.flags & NO_BLOOD))
+		if(!HAS_SPECIES_FLAGS(species, SPECIES_FLAG_NO_BLOOD))
 			vessel.add_reagent("blood", 560 - vessel.total_volume)
 
 	mob_bump_flag = species.bump_flag
@@ -1206,12 +1206,12 @@
 		W.add_fingerprint(src)
 
 /mob/living/carbon/human/getDNA()
-	if(species.flags & NO_SCAN)
+	if(HAS_SPECIES_FLAGS(species, SPECIES_FLAG_NO_SCAN))
 		return null
 	..()
 
 /mob/living/carbon/human/setDNA()
-	if(species.flags & NO_SCAN)
+	if(HAS_SPECIES_FLAGS(species, SPECIES_FLAG_NO_SCAN))
 		return
 	..()
 

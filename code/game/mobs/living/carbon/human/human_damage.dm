@@ -10,8 +10,8 @@
 		total_brute	+= O.brute_dam
 		total_burn	+= O.burn_dam
 
-	var/oxy_l = (species.flags & NO_BREATHE ? 0 : getOxyLoss())
-	var/tox_l = (species.flags & NO_POISON ? 0 : getToxLoss())
+	var/oxy_l = (HAS_SPECIES_FLAGS(species, SPECIES_FLAG_NO_BREATHE) ? 0 : getOxyLoss())
+	var/tox_l = (HAS_SPECIES_FLAGS(species, SPECIES_FLAG_NO_POISON) ? 0 : getToxLoss())
 	var/clone_l = getCloneLoss() //TODO: link this to RAD_ABSORB or NO_SCAN
 
 	health = species.total_health - oxy_l - tox_l - clone_l - total_burn - total_brute
@@ -113,7 +113,7 @@
 /mob/living/carbon/human/adjustCloneLoss(amount)
 	..()
 
-	if(species.flags & IS_SYNTHETIC)
+	if(HAS_SPECIES_FLAGS(species, SPECIES_FLAG_IS_SYNTHETIC))
 		return
 
 	var/heal_prob = max(0, 80 - getCloneLoss())
@@ -243,7 +243,7 @@
 This function restores the subjects blood to max.
 */
 /mob/living/carbon/human/proc/restore_blood()
-	if(!(species.flags & NO_BLOOD))
+	if(!HAS_SPECIES_FLAGS(species, SPECIES_FLAG_NO_BLOOD))
 		var/blood_volume = vessel.get_reagent_amount("blood")
 		vessel.add_reagent("blood", 560.0 - blood_volume)
 
