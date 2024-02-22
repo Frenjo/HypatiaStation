@@ -7,7 +7,7 @@
 	anchored = TRUE
 	density = FALSE
 	layer = 5
-	pass_flags = PASSTABLE | PASSGRILLE
+	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GRILLE
 
 	var/energy = 0
 	var/obj/effect/biomass_controller/master = null

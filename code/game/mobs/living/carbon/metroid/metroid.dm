@@ -2,7 +2,7 @@
 	name = "baby metroid"
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "baby metroid"
-	pass_flags = PASSTABLE
+	pass_flags = PASS_FLAG_TABLE
 	//voice_message = "skree!"
 	//say_message = "hums"
 

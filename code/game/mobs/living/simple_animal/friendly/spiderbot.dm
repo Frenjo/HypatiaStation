@@ -38,7 +38,7 @@
 	var/emagged = 0               //IS WE EXPLODEN?
 	var/syndie = 0                //IS WE SYNDICAT? (currently unused)
 	speed = -1                    //Spiderbots gotta go fast.
-	//pass_flags = PASSTABLE      //Maybe griefy?
+	//pass_flags = PASS_FLAG_TABLE      //Maybe griefy?
 	small = 1
 	speak_emote = list("beeps","clicks","chirps")
 

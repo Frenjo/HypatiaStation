@@ -13,7 +13,7 @@ var/list/beam_master = list()
 	icon_state = "laser"
 
 	invisibility = INVISIBILITY_MAXIMUM
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
 
 	damage = 40
 	damage_type = BURN
@@ -85,7 +85,7 @@ var/list/beam_master = list()
 /obj/item/projectile/energy/beam/laser
 	name = "laser beam"
 	icon_state = "laser"
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
 
 /obj/item/projectile/energy/beam/laser/practice
 	name = "laser"

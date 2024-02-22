@@ -84,12 +84,12 @@
 	anchored = TRUE
 	var/hits = 1
 	var/dest
-	pass_flags = PASSTABLE
+	pass_flags = PASS_FLAG_TABLE
 
 /obj/effect/meteor/small
 	name = "small meteor"
 	icon_state = "smallf"
-	pass_flags = PASSTABLE | PASSGRILLE
+	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GRILLE
 
 /obj/effect/meteor/Move()
 	var/turf/T = src.loc

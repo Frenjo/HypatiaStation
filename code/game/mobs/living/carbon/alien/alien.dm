@@ -3,7 +3,7 @@
 	desc = "What IS that?"
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "alien"
-	pass_flags = PASSTABLE
+	pass_flags = PASS_FLAG_TABLE
 	melee_damage_lower = 1
 	melee_damage_upper = 3
 	attacktext = "bites"

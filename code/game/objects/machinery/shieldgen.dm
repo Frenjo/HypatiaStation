@@ -635,7 +635,7 @@
 	if(air_group || (height == 0))
 		return 1
 
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if(istype(mover) && mover.checkpass(PASS_FLAG_GLASS))
 		return prob(20)
 	else
 		if(istype(mover, /obj/item/projectile))

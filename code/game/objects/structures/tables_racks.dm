@@ -246,7 +246,7 @@
 		return 1
 	if(istype(mover, /obj/item/projectile))
 		return (check_cover(mover, target))
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && mover.checkpass(PASS_FLAG_TABLE))
 		return 1
 	if(flipped)
 		if(get_dir(loc, target) == dir)
@@ -283,7 +283,7 @@
 	return 1
 
 /obj/structure/table/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSTABLE))
+	if(istype(O) && O.checkpass(PASS_FLAG_TABLE))
 		return 1
 	if(flipped)
 		if(get_dir(loc, target) == dir)
@@ -535,7 +535,7 @@
 		return 1
 	if(src.density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
 		return 1
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && mover.checkpass(PASS_FLAG_TABLE))
 		return 1
 	else
 		return 0

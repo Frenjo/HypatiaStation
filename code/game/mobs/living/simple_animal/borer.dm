@@ -43,7 +43,7 @@
 	attacktext = "nips"
 	friendly = "prods"
 	wander = 0
-	pass_flags = PASSTABLE
+	pass_flags = PASS_FLAG_TABLE
 
 	var/used_dominate
 	var/chemicals = 10						// Chemicals used for reproduction and spitting neurotoxin.

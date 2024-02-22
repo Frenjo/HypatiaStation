@@ -56,12 +56,6 @@
 #define BLOCKHEADHAIR	BITFLAG(17)	// temporarily removes the user's hair overlay. Leaves facial hair.
 #define BLOCKHAIR		BITFLAG(18)	// temporarily removes the user's hair, facial and otherwise.
 
-//flags for pass_flags
-#define PASSTABLE	BITFLAG(0)
-#define PASSGLASS	BITFLAG(1)
-#define PASSGRILLE	BITFLAG(2)
-#define PASSBLOB	BITFLAG(3)
-
 //Bit flags for the flags_inv variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
 // These apply only to the exterior suit:
 #define HIDEGLOVES		BITFLAG(0)

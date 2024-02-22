@@ -7,7 +7,7 @@
 	icon_state = "full"
 	density = FALSE
 	mouse_opacity = FALSE
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
 	flags = TABLEPASS
 	var/wavelength 		// the (vaccuum) wavelength of the beam
 	var/width = 1		// 1=thin, 2=medium, 3=wide

@@ -2,7 +2,7 @@
 	name = "laser"
 	icon_state = "laser"
 
-	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
 
 	damage = 40
 	flag = "laser"

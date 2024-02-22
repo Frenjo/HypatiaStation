@@ -21,7 +21,7 @@
 /obj/effect/beam
 	name = "beam"
 	unacidable = 1 //Just to be sure.
-	pass_flags = PASSTABLE
+	pass_flags = PASS_FLAG_TABLE
 
 	var/def_zone
 

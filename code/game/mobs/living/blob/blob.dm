@@ -3,7 +3,7 @@
 	real_name = "blob fragment"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_spore_temp"
-	pass_flags = PASSBLOB
+	pass_flags = PASS_FLAG_BLOB
 	see_in_dark = 8
 	see_invisible = SEE_INVISIBLE_LEVEL_TWO
 	var/ghost_name = "Unknown"

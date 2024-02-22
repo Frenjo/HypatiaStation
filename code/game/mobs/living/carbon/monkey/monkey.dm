@@ -5,7 +5,7 @@
 	icon_state = "monkey1"
 	icon = 'icons/mob/monkey.dmi'
 	gender = NEUTER
-	pass_flags = PASSTABLE
+	pass_flags = PASS_FLAG_TABLE
 	update_icon = 0		///no need to call regenerate_icon
 
 	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL

@@ -1,0 +1,7 @@
+/*
+ * Pass Flags
+ */
+#define PASS_FLAG_TABLE		BITFLAG(0)
+#define PASS_FLAG_GLASS		BITFLAG(1)
+#define PASS_FLAG_GRILLE	BITFLAG(2)
+#define PASS_FLAG_BLOB		BITFLAG(3)

@@ -171,7 +171,7 @@
 	attacktext = "kicks"
 	health = 1
 	var/amount_grown = 0
-	pass_flags = PASSTABLE | PASSGRILLE
+	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GRILLE
 	small = 1
 
 /mob/living/simple_animal/chick/New()
@@ -213,7 +213,7 @@ GLOBAL_GLOBL_INIT(chicken_count, 0)
 	health = 10
 	var/eggsleft = 0
 	var/body_color
-	pass_flags = PASSTABLE
+	pass_flags = PASS_FLAG_TABLE
 	small = 1
 
 /mob/living/simple_animal/chicken/New()

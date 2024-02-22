@@ -16,6 +16,6 @@
 		qdel(src)
 
 /obj/effect/blob/shield/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(istype(mover) && mover.checkpass(PASSBLOB))
+	if(istype(mover) && mover.checkpass(PASS_FLAG_BLOB))
 		return 1
 	return 0

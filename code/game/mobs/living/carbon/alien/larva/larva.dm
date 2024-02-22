@@ -2,7 +2,7 @@
 	name = "alien larva"
 	real_name = "alien larva"
 	icon_state = "larva0"
-	pass_flags = PASSTABLE
+	pass_flags = PASS_FLAG_TABLE
 	adult_form = /mob/living/carbon/human
 	speak_emote = list("hisses")
 	icon_state = "larva"

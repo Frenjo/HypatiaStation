@@ -131,7 +131,7 @@
 /obj/effect/alien/resin/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group)
 		return 0
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if(istype(mover) && mover.checkpass(PASS_FLAG_GLASS))
 		return !opacity
 	return !density
 

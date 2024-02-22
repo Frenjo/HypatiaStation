@@ -70,7 +70,7 @@
 	if(air_group || (height == 0))
 		return 1
 
-	if(istype(mover) && mover.checkpass(PASSTABLE))
+	if(istype(mover) && mover.checkpass(PASS_FLAG_TABLE))
 		return 1
 	else
 		return 0

@@ -80,7 +80,7 @@
 /obj/structure/grille/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || (height == 0))
 		return 1
-	if(istype(mover) && mover.checkpass(PASSGRILLE))
+	if(istype(mover) && mover.checkpass(PASS_FLAG_GRILLE))
 		return 1
 	else
 		if(istype(mover, /obj/item/projectile))
