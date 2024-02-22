@@ -1,3 +1,6 @@
+// TODO: Possibly split the new radiation storm-esque functionality into a "severe/large ion storm" event...
+// ... and restore the original functionality to "standard" ion storms.
+
 /datum/event/ionstorm
 	startWhen = 1
 	announceWhen = 1
@@ -24,7 +27,7 @@
 			continue
 		if(isNotStationLevel(T.z))
 			continue
-		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew))
+		if(HAS_AREA_FLAGS(get_area(T), AREA_FLAG_IS_SHIELDED))
 			continue
 
 		if(ishuman(H))
@@ -80,7 +83,7 @@
 			continue
 		if(isNotStationLevel(T.z))
 			continue
-		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew))
+		if(HAS_AREA_FLAGS(get_area(T), AREA_FLAG_IS_SHIELDED))
 			if(H.client)
 				H.client.screen.Remove(GLOBL.global_hud.ion_storm)
 			continue

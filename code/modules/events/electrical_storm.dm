@@ -1,3 +1,6 @@
+// TODO: Split the new radiation storm-esque functionality into a "severe/large electrical storm" event...
+// ... and restore the original functionality to "standard" electrical storms.
+
 /datum/event/electrical_storm
 	startWhen = 1
 	announceWhen = 1
@@ -28,7 +31,7 @@
 			continue
 		if(isNotStationLevel(T.z))
 			continue
-		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew))
+		if(HAS_AREA_FLAGS(get_area(T), AREA_FLAG_IS_SHIELDED))
 			if(H.client)
 				H.client.screen.Remove(GLOBL.global_hud.electrical_storm)
 			continue
@@ -59,20 +62,21 @@
 		var/obj/effect/landmark/epicentre = pick(possibleEpicentres)
 		possibleEpicentres -= epicentre
 		for(var/obj/machinery/power/apc/apc in range(epicentre, lightsoutRange))
+			// If the area's shielded, then skip it.
+			if(HAS_AREA_FLAGS(apc.area, AREA_FLAG_IS_SHIELDED))
+				continue
 			// Has a 2% chance to flat out detonate APCs instead of just blowing lights. -Frenjo
-			if(prob(2))
-				// Exploding APCs in AI areas could be REALLY bad, so let's not do that. -Frenjo
-				if(!istype(apc.area, /area/turret_protected/ai) && !istype(apc.area, /area/turret_protected/ai_upload) && !istype(apc.area, /area/turret_protected/ai_upload_foyer))
-					if(!istype(apc.area, /area/engineering/engine/supermatter) && !istype(apc.area, /area/engineering/engine/singularity) && !istype(apc.area, /area/engineering/engine/thermoelectric))
-						var/datum/effect/system/spark_spread/spark = new
-						spark.set_up(5, 1, apc)
-						spark.start()
-						explosion(apc.loc, -1, -1, 2)
-						//var/datum/effect/system/smoke_spread/smoke = new
-						//smoke.set_up(2, 0, apc.loc, null)
-						//smoke.start()
-						apc.overload_lighting()
-						apc.set_broken()
+			// This won't blow certain APCs (IE AI and engine areas) because that would be very bad.
+			if(prob(2) && !HAS_AREA_FLAGS(apc.area, AREA_FLAG_IS_SURGE_PROTECTED))
+				var/datum/effect/system/spark_spread/spark = new
+				spark.set_up(5, 1, apc)
+				spark.start()
+				explosion(apc.loc, -1, -1, 2)
+				//var/datum/effect/system/smoke_spread/smoke = new
+				//smoke.set_up(2, 0, apc.loc, null)
+				//smoke.start()
+				apc.overload_lighting()
+				apc.set_broken()
 			else
 				apc.overload_lighting()
 			sleep(4)
@@ -86,7 +90,7 @@
 			continue
 		if(isNotStationLevel(T.z))
 			continue
-		if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew))
+		if(HAS_AREA_FLAGS(get_area(T), AREA_FLAG_IS_SHIELDED))
 			if(H.client)
 				H.client.screen.Remove(GLOBL.global_hud.electrical_storm)
 			continue

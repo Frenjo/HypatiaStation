@@ -51,6 +51,9 @@
 
 // Added separate engine rooms for the three engines I mapped...
 // Just using instances of /area/engine makes the APCs break. -Frenjo
+/area/engineering/engine
+	area_flags = AREA_FLAG_IS_SURGE_PROTECTED
+
 /area/engineering/engine/supermatter
 	name = "\improper Supermatter Engine Room"
 	icon_state = "engine_sm"

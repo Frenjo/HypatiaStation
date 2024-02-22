@@ -1,4 +1,6 @@
 // Maintenance
+/area/maintenance
+	area_flags = AREA_FLAG_IS_SHIELDED
 
 // Fore
 /area/maintenance/fore

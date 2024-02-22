@@ -1,6 +1,7 @@
 // Crew
 /area/crew
 	icon_state = "crew_quarters"
+	area_flags = AREA_FLAG_IS_SHIELDED
 
 // Dormitories
 /area/crew/dormitories

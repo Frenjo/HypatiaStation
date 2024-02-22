@@ -8,6 +8,8 @@
 	return null
 
 /proc/get_area(O)
+	RETURN_TYPE(/area)
+
 	var/atom/location = O
 	for(var/i = 1, i <= 20, i++)
 		if(isarea(location))
