@@ -2,8 +2,7 @@
 	name = "gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
-	item_flags = ITEM_FLAG_AIRTIGHT | ITEM_FLAG_BLOCK_GAS_SMOKE_EFFECT
-	flags = MASKCOVERSMOUTH | MASKCOVERSEYES
+	item_flags = ITEM_FLAG_AIRTIGHT | ITEM_FLAG_BLOCK_GAS_SMOKE_EFFECT | ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
 	flags_inv = HIDEEARS | HIDEEYES | HIDEFACE
 	w_class = 3.0
 	item_state = "gas_alt"

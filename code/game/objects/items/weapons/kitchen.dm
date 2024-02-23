@@ -342,10 +342,7 @@
 				O.show_message(text("\red <B>[] slams [] with the tray!</B>", user, M), 1)
 			return
 
-
-
-
-	if(istype(M, /mob/living/carbon/human) && ((H.head && H.head.flags & HEADCOVERSEYES) || (H.wear_mask && H.wear_mask.flags & MASKCOVERSEYES) || (H.glasses && H.glasses.flags & GLASSESCOVERSEYES)))
+	if(ishuman(M) && M.are_eyes_covered())
 		M << "\red You get slammed in the face with the tray, against your mask!"
 		if(prob(33))
 			src.add_blood(H)

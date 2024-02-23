@@ -45,7 +45,8 @@
 	name = "hastur's hood"
 	desc = "It's unspeakably stylish"
 	icon_state = "hasturhood"
-	flags = HEADCOVERSEYES | BLOCKHAIR
+	flags = BLOCKHAIR
+	item_flags = ITEM_FLAG_COVERS_EYES
 
 /obj/item/clothing/head/nursehat
 	name = "nurse's hat"
@@ -66,7 +67,8 @@
 	name = "cueball helmet"
 	desc = "A large, featureless white orb meant to be worn on your head. How do you even see out of this thing?"
 	icon_state = "cueball"
-	flags = HEADCOVERSEYES | HEADCOVERSMOUTH | BLOCKHAIR
+	flags = BLOCKHAIR
+	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
 	item_state="cueball"
 	flags_inv = 0
 
@@ -89,7 +91,7 @@
 	desc = "A helmet made out of a box."
 	icon_state = "cardborg_h"
 	item_state = "cardborg_h"
-	flags = HEADCOVERSEYES | HEADCOVERSMOUTH
+	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
 	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE
 
 /obj/item/clothing/head/justice
@@ -97,7 +99,8 @@
 	desc = "Fight for what's righteous!"
 	icon_state = "justicered"
 	item_state = "justicered"
-	flags = HEADCOVERSEYES | HEADCOVERSMOUTH | BLOCKHAIR
+	flags = BLOCKHAIR
+	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
 
 /obj/item/clothing/head/justice/blue
 	icon_state = "justiceblue"

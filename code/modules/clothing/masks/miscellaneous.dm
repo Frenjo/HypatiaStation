@@ -3,7 +3,7 @@
 	desc = "To stop that awful noise."
 	icon_state = "muzzle"
 	item_state = "muzzle"
-	flags = MASKCOVERSMOUTH
+	item_flags = ITEM_FLAG_COVERS_MOUTH
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
@@ -21,7 +21,7 @@
 	icon_state = "sterile"
 	item_state = "sterile"
 	w_class = 1
-	flags = MASKCOVERSMOUTH
+	item_flags = ITEM_FLAG_COVERS_MOUTH
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 25, rad = 0)
@@ -44,7 +44,7 @@
 	desc = "A blue neck scarf."
 	icon_state = "blueneckscarf"
 	item_state = "blueneckscarf"
-	flags = MASKCOVERSMOUTH
+	item_flags = ITEM_FLAG_COVERS_MOUTH
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
@@ -53,7 +53,7 @@
 	desc = "A red and white checkered neck scarf."
 	icon_state = "redwhite_scarf"
 	item_state = "redwhite_scarf"
-	flags = MASKCOVERSMOUTH
+	item_flags = ITEM_FLAG_COVERS_MOUTH
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
@@ -62,7 +62,7 @@
 	desc = "A green neck scarf."
 	icon_state = "green_scarf"
 	item_state = "green_scarf"
-	flags = MASKCOVERSMOUTH
+	item_flags = ITEM_FLAG_COVERS_MOUTH
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
@@ -71,7 +71,7 @@
 	desc = "A stealthy, dark scarf."
 	icon_state = "ninja_scarf"
 	item_state = "ninja_scarf"
-	flags = MASKCOVERSMOUTH
+	item_flags = ITEM_FLAG_COVERS_MOUTH
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 	siemens_coefficient = 0

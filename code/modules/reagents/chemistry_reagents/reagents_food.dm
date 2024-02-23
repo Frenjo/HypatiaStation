@@ -157,17 +157,17 @@
 		var/eyes_covered = 0
 		var/obj/item/safe_thing = null
 		if(isnotnull(victim.wear_mask))
-			if(victim.wear_mask.flags & MASKCOVERSEYES)
+			if(HAS_ITEM_FLAGS(victim.wear_mask, ITEM_FLAG_COVERS_EYES))
 				eyes_covered = TRUE
 				safe_thing = victim.wear_mask
-			if(victim.wear_mask.flags & MASKCOVERSMOUTH)
+			if(HAS_ITEM_FLAGS(victim.wear_mask, ITEM_FLAG_COVERS_MOUTH))
 				mouth_covered = TRUE
 				safe_thing = victim.wear_mask
 		if(isnotnull(victim.head))
-			if(victim.head.flags & MASKCOVERSEYES)
+			if(HAS_ITEM_FLAGS(victim.head, ITEM_FLAG_COVERS_EYES))
 				eyes_covered = TRUE
 				safe_thing = victim.head
-			if(victim.head.flags & MASKCOVERSMOUTH)
+			if(HAS_ITEM_FLAGS(victim.head, ITEM_FLAG_COVERS_MOUTH))
 				mouth_covered = TRUE
 				safe_thing = victim.head
 		if(isnotnull(victim.glasses))

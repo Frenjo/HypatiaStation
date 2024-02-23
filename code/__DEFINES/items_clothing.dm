@@ -11,13 +11,6 @@
 #define ON_BORDER	BITFLAG(6)	// item has priority to check when entering or leaving
 #define NOBLOODY	BITFLAG(8)	// used to items if they don't want to get a blood overlay
 
-// TODO: Possibly merge these down into generic COVERSEYES and COVERSMOUTH.
-#define GLASSESCOVERSEYES	BITFLAG(9)
-#define MASKCOVERSEYES		BITFLAG(9)	// get rid of some of the other retardation in these flags
-#define HEADCOVERSEYES		BITFLAG(9)	// feel free to realloc these numbers for other purposes
-#define MASKCOVERSMOUTH		BITFLAG(10)	// on other items, these are just for mask/head
-#define HEADCOVERSMOUTH		BITFLAG(10)
-
 // TODO: Move OPENCONTAINER to ATOM_FLAG_OPEN_CONTAINER.
 #define OPENCONTAINER	BITFLAG(12)	// is an open container for chemistry purposes
 // TODO: Move NOREACT to ATOM_FLAG_NO_REACT.

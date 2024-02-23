@@ -8,8 +8,8 @@
 	name = "Space helmet"
 	icon_state = "space"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
-	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
-	flags = HEADCOVERSEYES | BLOCKHAIR | HEADCOVERSMOUTH
+	flags = BLOCKHAIR
+	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE | ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
 	item_state = "space"
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 100, rad = 50)

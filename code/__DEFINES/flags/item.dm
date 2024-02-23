@@ -13,7 +13,8 @@
 #define ITEM_FLAG_NO_SHIELD					BITFLAG(4) // Weapon not affected by shields.
 #define ITEM_FLAG_NO_BLUDGEON				BITFLAG(5) // When an item has this it produces no "X has been hit by Y with Z" message with the default handler.
 #define ITEM_FLAG_NO_SLIP					BITFLAG(6) // Prevents slipping on wet floors, in space etc.
-// --- Generic forms of COVERSEYES and COVERSMOUTH would go here. ---
+#define ITEM_FLAG_COVERS_EYES				BITFLAG(7) // The item covers the eyes when worn.
+#define ITEM_FLAG_COVERS_MOUTH				BITFLAG(8) // The item covers the mouth when worn.
 #define ITEM_FLAG_BLOCK_GAS_SMOKE_EFFECT	BITFLAG(9) // Blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY!
 #define ITEM_FLAG_ONE_SIZE_FITS_ALL			BITFLAG(10)
 #define ITEM_FLAG_PLASMAGUARD				BITFLAG(11) // Does not get contaminated by plasma.

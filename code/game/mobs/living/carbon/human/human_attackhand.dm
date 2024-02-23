@@ -66,10 +66,10 @@
 				return 1
 //			if(M.health < -75)	return 0
 
-			if((M.head && (M.head.flags & HEADCOVERSMOUTH)) || (M.wear_mask && (M.wear_mask.flags & MASKCOVERSMOUTH)))
+			if(M.is_mouth_covered())
 				to_chat(M, SPAN_INFO_B("Remove their mask!"))
 				return 0
-			if((head && (head.flags & HEADCOVERSMOUTH)) || (wear_mask && (wear_mask.flags & MASKCOVERSMOUTH)))
+			if(is_mouth_covered())
 				to_chat(M, SPAN_INFO_B("Remove your mask!"))
 				return 0
 

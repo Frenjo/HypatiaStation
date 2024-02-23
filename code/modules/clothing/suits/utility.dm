@@ -44,7 +44,8 @@
 	name = "bomb hood"
 	desc = "Use in case of bomb."
 	icon_state = "bombsuit"
-	flags = HEADCOVERSEYES | HEADCOVERSMOUTH | BLOCKHAIR
+	flags = BLOCKHAIR
+	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 100, bio = 0, rad = 0)
 	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES
 	siemens_coefficient = 0
@@ -81,7 +82,8 @@
 	name = "Radiation Hood"
 	icon_state = "rad"
 	desc = "A hood with radiation protective properties. Label: Made with lead, do not eat insulation"
-	flags = HEADCOVERSEYES | HEADCOVERSMOUTH | BLOCKHAIR
+	flags = BLOCKHAIR
+	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 60, rad = 100)
 
 /obj/item/clothing/suit/radiation

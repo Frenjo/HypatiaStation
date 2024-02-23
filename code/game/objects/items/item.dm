@@ -482,19 +482,13 @@
 
 /obj/item/proc/eyestab(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	var/mob/living/carbon/human/H = M
-	if(istype(H) && ( \
-			(H.head && H.head.flags & HEADCOVERSEYES) || \
-			(H.wear_mask && H.wear_mask.flags & MASKCOVERSEYES) || \
-			(H.glasses && H.glasses.flags & GLASSESCOVERSEYES) \
-		))
+	if(istype(H) && H.are_eyes_covered())
 		// you can't stab someone in the eyes wearing a mask!
 		to_chat(user, SPAN_WARNING("You're going to need to remove the eye covering first."))
 		return
 
-	var/mob/living/carbon/monkey/Mo = M
-	if(istype(Mo) && ( \
-			(Mo.wear_mask && Mo.wear_mask.flags & MASKCOVERSEYES) \
-		))
+	var/mob/living/carbon/monkey/mo = M
+	if(istype(mo) && mo.are_eyes_covered())
 		// you can't stab someone in the eyes wearing a mask!
 		to_chat(user, SPAN_WARNING("You're going to need to remove the eye covering first."))
 		return

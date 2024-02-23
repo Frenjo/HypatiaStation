@@ -120,8 +120,7 @@
 
 /obj/item/clothing/head/helmet/space/vox
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
-	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
-	flags = HEADCOVERSEYES
+	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE | ITEM_FLAG_COVERS_EYES
 	species_restricted = list(SPECIES_VOX, SPECIES_VOX_ARMALIS)
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/head.dmi',

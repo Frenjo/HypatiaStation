@@ -15,7 +15,7 @@
 	name = "welding helmet"
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
 	icon_state = "welding"
-	flags = HEADCOVERSEYES | HEADCOVERSMOUTH
+	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
 	item_state = "welding"
 	matter_amounts = list(MATERIAL_METAL = 3000, MATERIAL_GLASS = 1000)
 
@@ -31,13 +31,13 @@
 	if(user.canmove && !user.stat && !user.restrained())
 		if(up)
 			up = !up
-			flags |= (HEADCOVERSEYES | HEADCOVERSMOUTH)
+			SET_ITEM_FLAGS(src, (ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH))
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = initial(icon_state)
 			to_chat(user, "You flip the [src] down to protect your eyes.")
 		else
 			up = !up
-			flags &= ~(HEADCOVERSEYES | HEADCOVERSMOUTH)
+			UNSET_ITEM_FLAGS(src, (ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH))
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[initial(icon_state)]up"
 			to_chat(user, "You push the [src] up out of your face.")
@@ -50,7 +50,7 @@
 	name = "cake-hat"
 	desc = "It's tasty looking!"
 	icon_state = "cake0"
-	flags = HEADCOVERSEYES
+	item_flags = ITEM_FLAG_COVERS_EYES
 	var/onfire = 0
 	var/status = 0
 	var/fire_resist = T0C + 1300	//this is the max temp it can stand before you start to cook. although it might not burn away, you take damage
@@ -114,7 +114,8 @@
 	icon_state = "hardhat0_pumpkin" //Could stand to be renamed
 	item_state = "hardhat0_pumpkin"
 	item_color = "pumpkin"
-	flags = HEADCOVERSEYES | HEADCOVERSMOUTH | BLOCKHAIR
+	flags = BLOCKHAIR
+	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
 	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE
 	var/brightness_on = 2 //luminosity when on
 	var/on = 0

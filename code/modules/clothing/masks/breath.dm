@@ -4,8 +4,7 @@
 	icon_state = "breath"
 	item_state = "breath"
 	icon_action_button = "action_mask"
-	item_flags = ITEM_FLAG_AIRTIGHT
-	flags = MASKCOVERSMOUTH
+	item_flags = ITEM_FLAG_AIRTIGHT | ITEM_FLAG_COVERS_MOUTH
 	w_class = 2
 	gas_transfer_coefficient = 0.10
 	permeability_coefficient = 0.50
@@ -16,16 +15,14 @@
 		if(!hanging)
 			hanging = !hanging
 			gas_transfer_coefficient = 1 //gas is now escaping to the turf and vice versa
-			UNSET_ITEM_FLAGS(src, ITEM_FLAG_AIRTIGHT)
-			flags &= ~(MASKCOVERSMOUTH)
+			UNSET_ITEM_FLAGS(src, (ITEM_FLAG_AIRTIGHT | ITEM_FLAG_COVERS_MOUTH))
 			icon_state = "breathdown"
 			to_chat(user, "Your mask is now hanging on your neck.")
 
 		else
 			hanging = !hanging
 			gas_transfer_coefficient = 0.10
-			SET_ITEM_FLAGS(src, ITEM_FLAG_AIRTIGHT)
-			flags |= MASKCOVERSMOUTH
+			SET_ITEM_FLAGS(src, (ITEM_FLAG_AIRTIGHT | ITEM_FLAG_COVERS_MOUTH))
 			icon_state = "breath"
 			to_chat(user, "You pull the mask up to cover your face.")
 		user.update_inv_wear_mask()

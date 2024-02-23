@@ -30,7 +30,8 @@
 	name = "chaplain's hood"
 	desc = "It's hood that covers the head. It keeps you warm during the space winters."
 	icon_state = "chaplain_hood"
-	flags = HEADCOVERSEYES | BLOCKHAIR
+	flags = BLOCKHAIR
+	item_flags = ITEM_FLAG_COVERS_EYES
 	siemens_coefficient = 0.9
 
 //Chaplain
@@ -38,7 +39,8 @@
 	name = "nun hood"
 	desc = "Maximum piety in this star system."
 	icon_state = "nun_hood"
-	flags = HEADCOVERSEYES | BLOCKHAIR
+	flags = BLOCKHAIR
+	item_flags = ITEM_FLAG_COVERS_EYES
 	siemens_coefficient = 0.9
 
 //Mime

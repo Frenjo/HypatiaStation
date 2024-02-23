@@ -45,8 +45,8 @@
 	desc = "An armored beret commonly used by special operations officers."
 	icon_state = "beret_badge"
 	armor = list(melee = 65, bullet = 55, laser = 35, energy = 20, bomb = 30, bio = 30, rad = 30)
-	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
-	flags = HEADCOVERSEYES | BLOCKHAIR
+	flags = BLOCKHAIR
+	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE | ITEM_FLAG_COVERS_EYES
 	siemens_coefficient = 0.9
 
 //Space santa outfit suit
@@ -54,8 +54,8 @@
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas!"
 	icon_state = "santahat"
-	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
-	flags = HEADCOVERSEYES | BLOCKHAIR
+	flags = BLOCKHAIR
+	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE | ITEM_FLAG_COVERS_EYES
 
 /obj/item/clothing/suit/space/santa
 	name = "Santa's suit"
@@ -74,8 +74,8 @@
 	icon_state = "pirate"
 	item_state = "pirate"
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
-	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
-	flags = HEADCOVERSEYES | BLOCKHAIR
+	flags = BLOCKHAIR
+	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE | ITEM_FLAG_COVERS_EYES
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/suit/space/pirate

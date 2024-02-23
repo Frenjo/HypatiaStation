@@ -15,8 +15,7 @@ var/const/MAX_ACTIVE_TIME = 400
 	icon_state = "facehugger"
 	item_state = "facehugger"
 	w_class = 1 //note: can be picked up by aliens unlike most other items of w_class below 4
-	item_flags = ITEM_FLAG_AIRTIGHT
-	flags = MASKCOVERSMOUTH | MASKCOVERSEYES
+	item_flags = ITEM_FLAG_AIRTIGHT | ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
 	throw_range = 5
 
 	var/stat = CONSCIOUS //UNCONSCIOUS is the idle state in this case
@@ -132,7 +131,7 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		if(H.head && H.head.flags & HEADCOVERSMOUTH)
+		if(isnotnull(H.head) && HAS_ITEM_FLAGS(H.head, ITEM_FLAG_COVERS_MOUTH))
 			H.visible_message("\red \b [src] smashes against [H]'s [H.head]!")
 			Die()
 			return
@@ -240,6 +239,6 @@ var/const/MAX_ACTIVE_TIME = 400
 	var/mob/living/carbon/C = M
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
-		if(H.head && H.head.flags & HEADCOVERSMOUTH)
+		if(isnotnull(H.head) && HAS_ITEM_FLAGS(H.head, ITEM_FLAG_COVERS_MOUTH))
 			return 0
 	return 1

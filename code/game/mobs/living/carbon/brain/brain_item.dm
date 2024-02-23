@@ -61,8 +61,7 @@
 	if(!(locate(/obj/machinery/optable, M.loc) && M.resting) && (!(locate(/obj/structure/table/, M.loc) && M.lying) && prob(50)))
 		return ..()
 
-	var/mob/living/carbon/human/H = M
-	if(istype(M, /mob/living/carbon/human) && ((H.head && H.head.flags & HEADCOVERSEYES) || (H.wear_mask && H.wear_mask.flags & MASKCOVERSEYES) || (H.glasses && H.glasses.flags & GLASSESCOVERSEYES)))
+	if(ishuman(M) && M.are_eyes_covered())
 		// you can't stab someone in the eyes wearing a mask!
 		user << "\blue You're going to need to remove their head cover first."
 		return

@@ -101,14 +101,14 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 			if(!wear_mask)
 				burn_eyes()
 			else
-				if(!(wear_mask.flags & MASKCOVERSEYES))
+				if(!HAS_ITEM_FLAGS(wear_mask, ITEM_FLAG_COVERS_EYES))
 					burn_eyes()
 		else
-			if(!(head.flags & HEADCOVERSEYES))
+			if(!HAS_ITEM_FLAGS(head, ITEM_FLAG_COVERS_EYES))
 				if(!wear_mask)
 					burn_eyes()
 				else
-					if(!(wear_mask.flags & MASKCOVERSEYES))
+					if(!HAS_ITEM_FLAGS(wear_mask, ITEM_FLAG_COVERS_EYES))
 						burn_eyes()
 
 	//Genetic Corruption
@@ -135,7 +135,7 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 		if(global.vsc.plc.PLASMAGUARD_ONLY)
 			if(HAS_ITEM_FLAGS(head, ITEM_FLAG_PLASMAGUARD))
 				return 1
-		else if(head.flags & HEADCOVERSEYES)
+		else if(HAS_ITEM_FLAGS(head, ITEM_FLAG_COVERS_EYES))
 			return 1
 	return 0
 

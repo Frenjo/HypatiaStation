@@ -55,8 +55,10 @@
 			return
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
-		if(ishuman(M) && ((H.head && H.head.flags & HEADCOVERSEYES) || (H.wear_mask && H.wear_mask.flags & MASKCOVERSEYES) || (H.glasses && H.glasses.flags & GLASSESCOVERSEYES)))
-			to_chat(user, SPAN_NOTICE("You're going to need to remove that [(H.head && H.head.flags & HEADCOVERSEYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags & MASKCOVERSEYES) ? "mask": "glasses"] first."))
+		if(ishuman(M) && H.are_eyes_covered())
+			var/is_helmet = isnotnull(H.head) && HAS_ITEM_FLAGS(H.head, ITEM_FLAG_COVERS_EYES)
+			var/is_mask = isnotnull(H.wear_mask) && HAS_ITEM_FLAGS(H.wear_mask, ITEM_FLAG_COVERS_EYES)
+			to_chat(user, SPAN_NOTICE("You're going to need to remove that [is_helmet ? "helmet" : is_mask ? "mask": "glasses"] first."))
 			return
 
 		if(M == user)	//they're using it on themselves

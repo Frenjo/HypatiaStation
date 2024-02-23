@@ -5,7 +5,7 @@
 	name = "glasses"
 	icon = 'icons/obj/items/clothing/glasses.dmi'
 	w_class = 2.0
-	flags = GLASSESCOVERSEYES
+	item_flags = ITEM_FLAG_COVERS_EYES
 	slot_flags = SLOT_EYES
 
 	var/vision_flags = 0
@@ -190,12 +190,12 @@
 /obj/item/clothing/glasses/welding/attack_self(mob/user)
 	if(user.canmove && !user.stat && !user.restrained())
 		if(up)
-			flags |= GLASSESCOVERSEYES
+			SET_ITEM_FLAGS(src, ITEM_FLAG_COVERS_EYES)
 			flags_inv |= HIDEEYES
 			icon_state = initial(icon_state)
 			to_chat(user, "You flip \the [src] down to protect your eyes.")
 		else
-			flags &= ~HEADCOVERSEYES
+			UNSET_ITEM_FLAGS(src, ITEM_FLAG_COVERS_EYES)
 			flags_inv &= ~HIDEEYES
 			icon_state = "[initial(icon_state)]up"
 			to_chat(user, "You push \the [src] up out of your face.")
