@@ -193,3 +193,10 @@
 	)
 	GLOBL.all_dreams.Add(things, jobs, locations, species)
 	return 1
+
+// Posters - Initialises all /decl/poster_design into a list.
+/hook/global_init/proc/init_poster_designs()
+	for(var/path in SUBTYPESOF(/decl/poster_design))
+		var/decl/poster_design/design = GET_DECL_INSTANCE(path)
+		GLOBL.all_poster_designs.Add(design)
+	return 1

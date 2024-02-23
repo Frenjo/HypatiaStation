@@ -2,7 +2,7 @@ GLOBAL_GLOBL_LIST_NEW(cable_list)	//Index for all cables, so that powernets don'
 GLOBAL_GLOBL_LIST_NEW(mechas_list)	//list of all mechs. Used by hostile mobs target tracking.
 
 // Posters
-GLOBAL_GLOBL_LIST_INIT(poster_designs, SUBTYPESOF(/datum/poster))
+GLOBAL_GLOBL_LIST_NEW(all_poster_designs)
 
 // These networks can only be accessed by preexisting terminals. AIs and new terminals can't use them.
 GLOBAL_GLOBL_LIST_INIT(restricted_camera_networks, list(

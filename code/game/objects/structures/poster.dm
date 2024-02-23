@@ -1,31 +1,4 @@
-
-//########################## CONTRABAND ;3333333333333333333 -Agouri ###################################################
-
-/obj/item/contraband
-	name = "contraband item"
-	desc = "You probably shouldn't be holding this."
-	icon = 'icons/obj/contraband.dmi'
-	force = 0
-
-
-/obj/item/contraband/poster
-	name = "rolled-up poster"
-	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface."
-	icon_state = "rolled_poster"
-
-	var/serial_number = 0
-
-
-/obj/item/contraband/poster/New(turf/loc, given_serial = 0)
-	if(given_serial == 0)
-		serial_number = rand(1, length(GLOBL.poster_designs))
-	else
-		serial_number = given_serial
-	name += " - No. [serial_number]"
-	..(loc)
-
 //############################## THE ACTUAL DECALS ###########################
-
 /obj/structure/sign/poster
 	name = "poster"
 	desc = "A large piece of space-resistant printed paper. "
@@ -39,14 +12,13 @@
 	serial_number = serial
 
 	if(serial_number == loc)
-		serial_number = rand(1, length(GLOBL.poster_designs))	//This is for the mappers that want individual posters without having to use rolled posters.
+		serial_number = rand(1, length(GLOBL.all_poster_designs)) // This is for the mappers that want individual posters without having to use rolled posters.
 
-	var/designtype = GLOBL.poster_designs[serial_number]
-	var/datum/poster/design = new designtype
+	var/decl/poster_design/design = GLOBL.all_poster_designs[serial_number]
 	name += " - [design.name]"
 	desc += " [design.desc]"
 	icon_state = design.icon_state // poster[serial_number]
-	..()
+	. = ..()
 
 /obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/wirecutters))
@@ -120,10 +92,3 @@
 	else
 		D.roll_and_drop(temp_loc)
 	return
-
-/datum/poster
-	// Name suffix. Poster - [name]
-	var/name = ""
-	// Description suffix
-	var/desc = ""
-	var/icon_state = ""
