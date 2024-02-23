@@ -2,6 +2,15 @@
 /obj/item/proc/attack_self(mob/user)
 	return
 
+/*
+ * This proc is the hopeful foundation of a new interaction system.
+ * Eventually, things will be split up into different procs for different interactions.
+ * We might have attack_tool(), attack_emag(), attack_user(), etc.
+ * Returns TRUE if the attack was handled successfully.
+ */
+/obj/item/proc/handle_attack(atom/thing, mob/source)
+	return thing.attackby(src, source)
+
 // No comment
 /atom/proc/attackby(obj/item/W, mob/user)
 	return
@@ -10,9 +19,13 @@
 	if(!HAS_ITEM_FLAGS(W, ITEM_FLAG_NO_BLUDGEON))
 		visible_message(SPAN_DANGER("[src] has been hit by [user] with [W]."))
 
-/mob/living/attackby(obj/item/I, mob/user)
-	if(istype(I) && ismob(user))
-		I.attack(src, user)
+/mob/living/attackby(obj/item/item, mob/user)
+	if(!ismob(user))
+		return FALSE
+	if(can_operate(src) && do_surgery(src, user, item))
+		return TRUE
+	if(istype(item))
+		return item.attack(src, user)
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
@@ -23,12 +36,6 @@
 	if(!istype(M)) // not sure if this is the right thing...
 		return
 
-	var/messagesource = M
-	if(can_operate(M))		//Checks if mob is lying down on table for surgery
-		if(do_surgery(M, user, src))
-			return
-	if(isbrain(M))
-		messagesource = M:container
 	if(hitsound)
 		playsound(loc, hitsound, 50, 1, -1)
 	/////////////////////////
@@ -124,11 +131,10 @@
 		if(!(user in viewers(M, null)))
 			showname = "."
 
-		for(var/mob/O in viewers(messagesource, null))
-			if(length(attack_verb))
-				O.show_message(SPAN_DANGER("[M] has been [pick(attack_verb)] with [src][showname]."), 1)
-			else
-				O.show_message(SPAN_DANGER("[M] has been attacked with [src][showname]."), 1)
+		if(length(attack_verb))
+			M.visible_message(SPAN_DANGER("[M] has been [pick(attack_verb)] with [src][showname]."))
+		else
+			M.visible_message(SPAN_DANGER("[M] has been attacked with [src][showname]."))
 
 		if(!showname)
 			if(isnotnull(user?.client))
