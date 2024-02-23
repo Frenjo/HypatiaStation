@@ -12,7 +12,7 @@
 	item_state = "health_analyser"
 
 	w_class = 1
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 
 	throwforce = 3

@@ -9,7 +9,8 @@
 	item_state = "analyser"
 
 	w_class = 2
-	flags = CONDUCT | OPENCONTAINER
+	flags = OPENCONTAINER
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 
 	throwforce = 5

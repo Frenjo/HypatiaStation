@@ -6,7 +6,7 @@
 	item_state = "pneumatic"
 
 	w_class = 5
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 
 	max_w_class = 3

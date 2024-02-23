@@ -79,7 +79,7 @@
 	icon = 'icons/obj/items/coins.dmi'
 	name = "coin"
 	icon_state = "coin"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	force = 0
 	throwforce = 0
 	w_class = 1

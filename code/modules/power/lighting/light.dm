@@ -143,7 +143,7 @@
 				"You hit the light, and it smashes!",
 				"You hear the tinkle of breaking glass."
 			)
-			if(on && (W.flags & CONDUCT))
+			if(on && HAS_OBJ_FLAGS(W, OBJ_FLAG_CONDUCT))
 				//if(!user.mutations & COLD_RESISTANCE)
 				if(prob(12))
 					electrocute_mob(user, get_area(src), src, 0.3)
@@ -166,7 +166,7 @@
 			return
 
 		to_chat(user, "You stick \the [W] into the light socket!")
-		if(powered() && (W.flags & CONDUCT))
+		if(powered() && HAS_OBJ_FLAGS(W, OBJ_FLAG_CONDUCT))
 			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
 			s.set_up(3, 1, src)
 			s.start()

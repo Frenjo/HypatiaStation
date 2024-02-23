@@ -45,7 +45,7 @@
 	icon_state = "lightreplacer0"
 	item_state = "electronic"
 
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_MATERIALS = 2)
 

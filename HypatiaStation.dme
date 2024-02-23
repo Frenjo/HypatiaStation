@@ -70,6 +70,7 @@
 #include "code\__DEFINES\flags\area.dm"
 #include "code\__DEFINES\flags\item.dm"
 #include "code\__DEFINES\flags\language.dm"
+#include "code\__DEFINES\flags\object.dm"
 #include "code\__DEFINES\flags\pass.dm"
 #include "code\__DEFINES\flags\species.dm"
 #include "code\__DEFINES\flags\turf.dm"

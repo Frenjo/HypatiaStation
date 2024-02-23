@@ -4,7 +4,7 @@
 	icon_state = "electropack0"
 	item_state = "electropack"
 	frequency = 1449
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BACK
 	w_class = 5.0
 	matter_amounts = list(MATERIAL_METAL = 10000, MATERIAL_GLASS = 2500)

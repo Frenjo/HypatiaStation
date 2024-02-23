@@ -5,7 +5,7 @@
 	icon_state = "s-casing"
 
 	w_class = 1
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 
 	throwforce = 1
@@ -50,7 +50,7 @@
 	icon_state = "357"
 	item_state = "syringe_kit"
 
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	matter_amounts = list(MATERIAL_METAL = 50000)
 

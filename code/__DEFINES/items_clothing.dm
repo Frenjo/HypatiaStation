@@ -6,10 +6,8 @@
 #define CANDLE_LUM 3 //For how bright candles are
 
 //FLAGS BITMASK
-// TODO: Move CONDUCT to OBJ_FLAG_CONDUCT.
 // TODO: Move ON_BORDER to ATOM_FLAG_ON_BORDER.
 // TODO: Move NOBLOODY to ATOM_FLAG_NO_BLOODY.
-#define CONDUCT		BITFLAG(5)	// conducts electricity (metal etc.)
 #define ON_BORDER	BITFLAG(6)	// item has priority to check when entering or leaving
 #define NOBLOODY	BITFLAG(8)	// used to items if they don't want to get a blood overlay
 

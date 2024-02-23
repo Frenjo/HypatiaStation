@@ -5,8 +5,8 @@
 	item_state = "rocket"
 
 	w_class = 4
+	obj_flags = OBJ_FLAG_CONDUCT
 	item_flags = ITEM_FLAG_HAS_USE_DELAY
-	flags = CONDUCT
 	slot_flags = null
 	origin_tech = list(RESEARCH_TECH_COMBAT = 8, RESEARCH_TECH_MATERIALS = 5)
 

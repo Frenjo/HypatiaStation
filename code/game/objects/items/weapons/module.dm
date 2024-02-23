@@ -3,7 +3,7 @@
 	icon_state = "std_module"
 	w_class = 2.0
 	item_state = "electronic"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 
 	var/mtype = 1						// 1=electronic 2=hardware
 

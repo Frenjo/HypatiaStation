@@ -113,7 +113,7 @@
 	icon_state = "camera"
 	item_state = "electropack"
 	w_class = 2.0
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	matter_amounts = list(MATERIAL_METAL = 2000)
 

@@ -5,7 +5,7 @@
 	icon = 'icons/obj/storage/storage.dmi'
 	name = "money bag"
 	icon_state = "moneybag"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	force = 10.0
 	throwforce = 2.0
 	w_class = 4.0

@@ -170,7 +170,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		shock(user, 5, 0.2)
 
 	else
-		if(W.flags & CONDUCT)
+		if(HAS_OBJ_FLAGS(W, OBJ_FLAG_CONDUCT))
 			shock(user, 50, 0.7)
 
 	src.add_fingerprint(user)
@@ -463,7 +463,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	throw_speed = 2
 	throw_range = 5
 	matter_amounts = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20)
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")

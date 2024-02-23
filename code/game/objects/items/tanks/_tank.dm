@@ -8,7 +8,7 @@
 	name = "tank"
 	icon = 'icons/obj/atmospherics/tank.dmi'
 
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	pressure_resistance = ONE_ATMOSPHERE * 5
 
 	w_class = 3

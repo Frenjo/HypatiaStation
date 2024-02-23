@@ -3,7 +3,7 @@
 	desc = "Used for building machines."
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "alarm_bitem"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	var/build_machine_type
 	var/refund_amt = 2
 	var/refund_type = /obj/item/stack/sheet/metal

@@ -13,7 +13,7 @@
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "locator"
 
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 2.0
 	item_state = "electronic"
 	throw_speed = 4

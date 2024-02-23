@@ -5,7 +5,7 @@
 	icon_state = "megaphone"
 	item_state = "radio"
 	w_class = 1.0
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 
 	var/spamcheck = 0
 	var/emagged = 0

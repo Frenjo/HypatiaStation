@@ -5,7 +5,7 @@
 	icon_state = "flashlight"
 	item_state = "flashlight"
 	w_class = 2
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	matter_amounts = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20)
 	icon_action_button = "action_flashlight"
@@ -106,7 +106,6 @@
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"
 	item_state = ""
-	flags = CONDUCT
 	brightness_on = 2
 
 // the desk lamps are a bit special
@@ -117,7 +116,6 @@
 	item_state = "lamp"
 	brightness_on = 5
 	w_class = 4
-	flags = CONDUCT
 	matter_amounts = list()
 	on = 1
 

@@ -5,7 +5,7 @@
 	icon_state = "voice0"
 	item_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
 	w_class = 1.0
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 
 	var/spamcheck = 0
 	var/emagged = 0

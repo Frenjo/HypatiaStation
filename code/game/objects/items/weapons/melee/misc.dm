@@ -4,7 +4,7 @@
 	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "chain"
 	item_state = "chain"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	force = 10
 	throwforce = 7

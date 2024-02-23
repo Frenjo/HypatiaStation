@@ -9,7 +9,7 @@
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	max_amount = 60
 
 /obj/item/stack/tile/plasteel/New(loc, amount = null)

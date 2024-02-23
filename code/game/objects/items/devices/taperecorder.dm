@@ -7,7 +7,7 @@
 	w_class = 1.0
 	matter_amounts = list(MATERIAL_METAL = 60, MATERIAL_GLASS = 30)
 
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	throwforce = 2
 	throw_speed = 4
 	throw_range = 20

@@ -19,8 +19,8 @@
 	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "hoe"
 	item_state = "hoe"
+	obj_flags = OBJ_FLAG_CONDUCT
 	item_flags = ITEM_FLAG_NO_BLUDGEON
-	flags = CONDUCT
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
@@ -35,7 +35,7 @@
 	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
 	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "hatchet"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	force = 12.0
 	sharp = 1
 	edge = 1

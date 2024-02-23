@@ -23,7 +23,7 @@ effective or pretty fucking useless.
 	w_class = 1.0
 	throw_speed = 4
 	throw_range = 10
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	item_state = "electronic"
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_SYNDICATE = 3)
 

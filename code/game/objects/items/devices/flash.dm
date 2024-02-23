@@ -8,7 +8,7 @@
 	w_class = 1.0
 	throw_speed = 4
 	throw_range = 10
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_COMBAT = 1)
 
 	var/times_used = 0	//Number of times it's been used.

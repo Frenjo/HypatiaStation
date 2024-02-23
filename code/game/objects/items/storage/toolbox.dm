@@ -4,7 +4,7 @@
 	icon = 'icons/obj/storage/toolbox.dmi'
 	icon_state = "red"
 	item_state = "toolbox_red"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	force = 5.0
 	throwforce = 10.0
 	throw_speed = 1

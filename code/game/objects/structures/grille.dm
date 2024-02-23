@@ -4,7 +4,7 @@
 	icon_state = "grille"
 	density = TRUE
 	anchored = TRUE
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	layer = 2.9
 	explosion_resistance = 5

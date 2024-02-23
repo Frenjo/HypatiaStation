@@ -2,7 +2,7 @@
 	name = "pinpointer"
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "pinoff"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	w_class = 2.0
 	item_state = "electronic"

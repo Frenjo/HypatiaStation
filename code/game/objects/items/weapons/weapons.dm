@@ -8,7 +8,7 @@
 	desc = "Should anything ever go wrong..."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "red_phone"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	force = 3.0
 	throwforce = 2.0
 	throw_speed = 1
@@ -83,7 +83,7 @@
 	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "cane"
 	item_state = "stick"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
@@ -131,7 +131,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "handcuff"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	throwforce = 0
 	w_class = 3.0
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
@@ -203,7 +203,7 @@
 	desc = "Parts of a rack."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "rack_parts"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	matter_amounts = list(MATERIAL_METAL = 3750)
 
 /obj/item/shard
@@ -273,7 +273,7 @@
 	desc = "used to communicate it appears."
 	icon = 'icons/obj/items/devices/radio.dmi'
 	icon_state = "radio"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	item_state = "radio"
 	throwforce = 5
@@ -296,7 +296,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "table_parts"
 	matter_amounts = list(MATERIAL_METAL = 3750)
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	attack_verb = list("slammed", "bashed", "battered", "bludgeoned", "thrashed", "whacked")
 
 /obj/item/table_parts/reinforced
@@ -305,7 +305,6 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "reinf_tableparts"
 	matter_amounts = list(MATERIAL_METAL = 7500)
-	flags = CONDUCT
 
 /obj/item/table_parts/wood
 	name = "wooden table parts"
@@ -369,7 +368,7 @@
 	desc = "Meat that appears... strange..."
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "meat"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 1.0
 	origin_tech = list(RESEARCH_TECH_BIOTECH = 2)
 
@@ -514,7 +513,7 @@
 	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "claymore"
 	item_state = "claymore"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	force = 40
 	throwforce = 10
@@ -539,7 +538,7 @@
 	desc = "Woefully underpowered in D20"
 	icon_state = "katana"
 	item_state = "katana"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT | SLOT_BACK
 	force = 40
 	throwforce = 10

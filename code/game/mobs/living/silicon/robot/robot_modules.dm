@@ -7,7 +7,7 @@
 	icon_state = "std_module"
 	w_class = 100.0
 	item_state = "electronic"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 
 	var/channels = list()
 	var/list/modules = list()

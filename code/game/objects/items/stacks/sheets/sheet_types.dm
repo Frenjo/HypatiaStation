@@ -78,7 +78,7 @@ var/global/list/datum/stack_recipe/metal_recipes = list(
 	icon_state = "sheet-metal"
 	matter_amounts = list(MATERIAL_METAL = 3750)
 	throwforce = 14.0
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
 
 /obj/item/stack/sheet/metal/cyborg
@@ -88,7 +88,6 @@ var/global/list/datum/stack_recipe/metal_recipes = list(
 	icon_state = "sheet-metal"
 	matter_amounts = list()
 	throwforce = 14.0
-	flags = CONDUCT
 
 /obj/item/stack/sheet/metal/New(loc, amount = null)
 	recipes = metal_recipes
@@ -112,7 +111,7 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list(
 	item_state = "sheet-metal"
 	matter_amounts = list(MATERIAL_METAL = 7500)
 	throwforce = 15.0
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
 
 /obj/item/stack/sheet/plasteel/New(loc, amount = null)

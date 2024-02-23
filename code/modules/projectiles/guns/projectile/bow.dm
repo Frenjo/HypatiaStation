@@ -42,7 +42,7 @@
 	// w_class is here twice, which one should this be?
 	w_class = 5
 	w_class = 3
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT | SLOT_BACK
 
 	var/tension = 0						// Current draw on the bow.

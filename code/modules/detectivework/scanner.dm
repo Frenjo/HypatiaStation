@@ -9,8 +9,8 @@
 	var/list/stored = list()
 	w_class = 3.0
 	item_state = "electronic"
+	obj_flags = OBJ_FLAG_CONDUCT
 	item_flags = ITEM_FLAG_NO_BLUDGEON
-	flags = CONDUCT
 	slot_flags = SLOT_BELT
 
 /obj/item/detective_scanner/attackby(obj/item/f_card/W as obj, mob/user as mob)

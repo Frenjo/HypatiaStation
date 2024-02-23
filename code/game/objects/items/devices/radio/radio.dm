@@ -9,7 +9,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
 
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	throw_speed = 2
 	throw_range = 9

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/storage/briefcase.dmi'
 	icon_state = "briefcase"
 	item_state = "briefcase"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	force = 8.0
 	throw_speed = 1
 	throw_range = 4

@@ -6,7 +6,7 @@
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
 	icon_state = "fuel_compressor0"
 	w_class = 4
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 
 /obj/item/rust_fuel_compressor_frame/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/wrench))

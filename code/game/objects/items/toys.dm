@@ -121,7 +121,7 @@
 	icon = 'icons/obj/weapons/gun.dmi'
 	icon_state = "revolver"
 	item_state = "gun"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	w_class = 3.0
 	matter_amounts = list(MATERIAL_METAL = 10, MATERIAL_GLASS = 10)
@@ -178,7 +178,7 @@
 	desc = "There are 7 caps left! Make sure to recyle the box in an autolathe when it gets empty."
 	icon = 'icons/obj/weapons/ammo.dmi'
 	icon_state = "357-7"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 1.0
 	matter_amounts = list(MATERIAL_METAL = 10, MATERIAL_GLASS = 10)
 
@@ -351,7 +351,7 @@
 	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "katana"
 	item_state = "katana"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT | SLOT_BACK
 	force = 5
 	throwforce = 5

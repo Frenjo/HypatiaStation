@@ -3,7 +3,7 @@
 	icon = 'icons/obj/atmospherics/canister.dmi'
 	icon_state = "yellow"
 	density = TRUE
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 
 	pressure_resistance = 7 * ONE_ATMOSPHERE
 	volume = 1000

@@ -172,7 +172,7 @@
 	icon_state = "dest_tagger"
 	w_class = 1
 	item_state = "electronic"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 
 	var/currTag = 0

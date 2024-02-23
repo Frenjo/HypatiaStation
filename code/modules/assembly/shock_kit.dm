@@ -6,7 +6,7 @@
 	var/obj/item/radio/electropack/part2 = null
 	var/status = 0
 	w_class = 5.0
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 
 /obj/item/assembly/shock_kit/Destroy()
 	qdel(part1)

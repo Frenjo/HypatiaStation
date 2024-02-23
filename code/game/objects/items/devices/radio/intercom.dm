@@ -5,7 +5,8 @@
 	anchored = TRUE
 	w_class = 4.0
 	canhear_range = 2
-	flags = CONDUCT | NOBLOODY
+	flags = NOBLOODY
+	obj_flags = OBJ_FLAG_CONDUCT
 	var/number = 0
 	var/anyai = 1
 	var/mob/living/silicon/ai/ai = list()

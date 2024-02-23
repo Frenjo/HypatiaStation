@@ -1,6 +1,10 @@
 /obj
 	animate_movement = 2
 
+	// Stores object-specific bitflag values.
+	// Overridden on subtypes or manipulated with *_OBJ_FLAGS(OBJECT, FLAGS) macros.
+	var/obj_flags
+
 	//var/datum/module/mod		//not used
 
 	// Associative list of the materials this object recycles into. list(MATERIAL_METAL = 500, "waste" = 100) etc.

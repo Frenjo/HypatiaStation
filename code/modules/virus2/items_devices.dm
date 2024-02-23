@@ -11,7 +11,7 @@
 	icon_state = "health"
 	w_class = 2.0
 	item_state = "electronic"
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 
 
 /obj/item/antibody_scanner/attack(mob/living/carbon/M as mob, mob/user as mob)

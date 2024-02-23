@@ -5,7 +5,7 @@
 	icon_state = "detective"
 	item_state = "gun"
 
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	matter_amounts = list(MATERIAL_METAL = 2000)
 	origin_tech = list(RESEARCH_TECH_COMBAT = 1)

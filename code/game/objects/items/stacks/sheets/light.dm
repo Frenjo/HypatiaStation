@@ -8,7 +8,7 @@
 	throwforce = 5.0
 	throw_speed = 5
 	throw_range = 20
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	max_amount = 60
 
 /obj/item/stack/light_w/attackby(obj/item/O as obj, mob/user as mob)

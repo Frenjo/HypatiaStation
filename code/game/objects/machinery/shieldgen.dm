@@ -328,7 +328,7 @@
 		icon_state = "Shield_Gen"
 		anchored = FALSE
 		density = TRUE
-		flags = CONDUCT
+		obj_flags = OBJ_FLAG_CONDUCT
 
 		power_state = USE_POWER_OFF
 

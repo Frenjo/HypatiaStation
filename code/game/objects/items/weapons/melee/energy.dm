@@ -18,8 +18,9 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 3.0
+	flags = NOBLOODY
+	obj_flags = OBJ_FLAG_CONDUCT
 	item_flags = ITEM_FLAG_NO_SHIELD
-	flags = CONDUCT | NOBLOODY
 	origin_tech = list(RESEARCH_TECH_COMBAT = 3)
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	sharp = 1

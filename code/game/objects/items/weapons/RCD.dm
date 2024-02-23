@@ -15,7 +15,7 @@ RCD
 	opacity = FALSE
 	density = FALSE
 	anchored = FALSE
-	flags = CONDUCT
+	obj_flags = OBJ_FLAG_CONDUCT
 	force = 10.0
 	throwforce = 10.0
 	throw_speed = 1
