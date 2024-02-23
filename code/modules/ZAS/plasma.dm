@@ -42,7 +42,7 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 
 /obj/item/proc/can_contaminate()
 	//Clothing and backpacks can be contaminated.
-	if(flags & PLASMAGUARD)
+	if(HAS_ITEM_FLAGS(src, ITEM_FLAG_PLASMAGUARD))
 		return 0
 	else if(istype(src, /obj/item/storage/backpack))
 		return 0 //Cannot be washed :(
@@ -133,7 +133,7 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 	//Checks if the head is adequately sealed.
 	if(head)
 		if(global.vsc.plc.PLASMAGUARD_ONLY)
-			if(head.flags & PLASMAGUARD)
+			if(HAS_ITEM_FLAGS(head, ITEM_FLAG_PLASMAGUARD))
 				return 1
 		else if(head.flags & HEADCOVERSEYES)
 			return 1
@@ -143,7 +143,7 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 	//Checks if the suit is adequately sealed.
 	if(wear_suit)
 		if(global.vsc.plc.PLASMAGUARD_ONLY)
-			if(wear_suit.flags & PLASMAGUARD)
+			if(HAS_ITEM_FLAGS(wear_suit, ITEM_FLAG_PLASMAGUARD))
 				return 1
 		else
 			if(wear_suit.flags_inv & HIDEJUMPSUIT)

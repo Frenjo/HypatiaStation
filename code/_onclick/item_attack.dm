@@ -7,7 +7,7 @@
 	return
 
 /atom/movable/attackby(obj/item/W, mob/user)
-	if(!(W.flags & NOBLUDGEON))
+	if(!HAS_ITEM_FLAGS(W, ITEM_FLAG_NO_BLUDGEON))
 		visible_message(SPAN_DANGER("[src] has been hit by [user] with [W]."))
 
 /mob/living/attackby(obj/item/I, mob/user)

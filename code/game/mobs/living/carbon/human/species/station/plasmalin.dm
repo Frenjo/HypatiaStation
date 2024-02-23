@@ -49,7 +49,8 @@
 	if(isnull(H.loc))
 		return
 
-	var/atmos_sealed = (H.wear_suit && H.wear_suit.flags & STOPSPRESSUREDAMAGE) && (H.head && H.head.flags & STOPSPRESSUREDAMAGE)
+	var/clothed = isnotnull(H.wear_suit) && isnotnull(H.head)
+	var/atmos_sealed = clothed && HAS_ITEM_FLAGS(H.wear_suit, ITEM_FLAG_STOPS_PRESSURE_DAMAGE) && HAS_ITEM_FLAGS(H.head, ITEM_FLAG_STOPS_PRESSURE_DAMAGE)
 	if(!atmos_sealed && (!istype(H.w_uniform, /obj/item/clothing/under/plasmalin) || !istype(H.head, /obj/item/clothing/head/helmet/space/plasmalin) || !istype(H.gloves, /obj/item/clothing/gloves)))
 		var/datum/gas_mixture/environment = H.loc.return_air()
 		if(environment.total_moles > 0)

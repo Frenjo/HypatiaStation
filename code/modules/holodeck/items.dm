@@ -20,7 +20,7 @@
 	throw_range = 5
 	throwforce = 0
 	w_class = 2.0
-	flags = NOSHIELD
+	item_flags = ITEM_FLAG_NO_SHIELD
 
 	var/active = 0
 

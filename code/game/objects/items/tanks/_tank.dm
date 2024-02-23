@@ -152,7 +152,7 @@
 	data["maskConnected"] = FALSE
 	if(iscarbon(loc))
 		var/mob/living/carbon/carbon = loc
-		if(carbon.internal == src || (carbon.wear_mask && (carbon.wear_mask.flags & AIRTIGHT)))
+		if(carbon.internal == src || (isnotnull(carbon.wear_mask) && HAS_ITEM_FLAGS(carbon.wear_mask, ITEM_FLAG_AIRTIGHT)))
 			data["maskConnected"] = TRUE
 
 	// update the ui if it exists, returns null if no ui is passed/found
@@ -193,7 +193,7 @@
 				to_chat(usr, SPAN_INFO("You close the tank release valve."))
 				carbon.internals?.icon_state = "internal0"
 			else
-				if(carbon.wear_mask && (carbon.wear_mask.flags & AIRTIGHT))
+				if(isnotnull(carbon.wear_mask) && HAS_ITEM_FLAGS(carbon.wear_mask, ITEM_FLAG_AIRTIGHT))
 					carbon.internal = src
 					to_chat(usr, SPAN_INFO("You open \the [src] valve."))
 					carbon.internals?.icon_state = "internal1"

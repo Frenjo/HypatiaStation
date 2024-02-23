@@ -374,7 +374,7 @@
 		if(ishuman(src))	// Only humans can wear magboots, so we give them a chance to.
 			var/mob/living/carbon/human/H = src
 			if(istype(turf, /turf/simulated/floor) && !lastarea.has_gravity)
-				if(!(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes:flags & NOSLIP)))
+				if(!(istype(H.shoes, /obj/item/clothing/shoes/magboots) && HAS_ITEM_FLAGS(H.shoes, ITEM_FLAG_NO_SLIP)))
 					continue
 
 		else

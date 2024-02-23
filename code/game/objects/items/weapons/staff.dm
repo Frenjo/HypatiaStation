@@ -8,7 +8,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2.0
-	flags = NOSHIELD
+	item_flags = ITEM_FLAG_NO_SHIELD
 	attack_verb = list("bludgeoned", "whacked", "disciplined")
 
 /obj/item/staff/broom
@@ -34,4 +34,4 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2.0
-	flags = NOSHIELD
+	item_flags = ITEM_FLAG_NO_SHIELD

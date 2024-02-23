@@ -20,7 +20,7 @@
 	allowed = list(/obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/extinguisher)
 	slowdown = 1.0
 	flags_inv = HIDEGLOVES | HIDESHOES | HIDEJUMPSUIT | HIDETAIL
-	flags = STOPSPRESSUREDAMAGE
+	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
 	heat_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET| ARMS | HANDS
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS

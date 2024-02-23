@@ -317,7 +317,7 @@
 	icon_state = "sword0"
 	item_state = "sword0"
 	w_class = 2.0
-	flags = NOSHIELD
+	item_flags = ITEM_FLAG_NO_SHIELD
 	attack_verb = list("attacked", "struck", "hit")
 
 	var/active = 0

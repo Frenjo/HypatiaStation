@@ -296,7 +296,7 @@
 	if(internal)
 		if (!contents.Find(internal))
 			internal = null
-		if(!wear_mask || !(wear_mask.flags & AIRTIGHT))
+		if(isnull(wear_mask) || !HAS_ITEM_FLAGS(wear_mask, ITEM_FLAG_AIRTIGHT))
 			internal = null
 		if(internal)
 			if (internals)

@@ -165,7 +165,7 @@
 
 	if(ishuman(mob)) // Only humans can wear magboots, so we give them a chance to.
 		var/mob/living/carbon/human/human = mob
-		if(istype(human.shoes, /obj/item/clothing/shoes/magboots) && (human.shoes.flags & NOSLIP))
+		if(istype(human.shoes, /obj/item/clothing/shoes/magboots) && HAS_ITEM_FLAGS(human.shoes, ITEM_FLAG_NO_SLIP))
 			return
 		if(IS_RUNNING(human)) // Only clumsy humans can fall on their asses.
 			human.AdjustStunned(5)

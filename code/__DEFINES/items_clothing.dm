@@ -5,35 +5,12 @@
 //Object specific defines
 #define CANDLE_LUM 3 //For how bright candles are
 
-//ITEM INVENTORY SLOT BITMASKS
-// These are used by /obj/item/var/slot_flags.
-#define SLOT_OCLOTHING	BITFLAG(1)
-#define SLOT_ICLOTHING	BITFLAG(2)
-#define SLOT_GLOVES		BITFLAG(3)
-#define SLOT_EYES		BITFLAG(4)
-#define SLOT_EARS		BITFLAG(5)
-#define SLOT_MASK		BITFLAG(6)
-#define SLOT_HEAD		BITFLAG(7)
-#define SLOT_FEET		BITFLAG(8)
-#define SLOT_ID			BITFLAG(9)
-#define SLOT_BELT		BITFLAG(10)
-#define SLOT_BACK		BITFLAG(11)
-#define SLOT_POCKET		BITFLAG(12)	//this is to allow items with a w_class of 3 or 4 to fit in pockets.
-#define SLOT_DENYPOCKET	BITFLAG(13)	//this is to deny items with a w_class of 2 or 1 to fit in pockets.
-#define SLOT_TWOEARS	BITFLAG(14)
-#define SLOT_LEGS		BITFLAG(15)
-
 //FLAGS BITMASK
-#define STOPSPRESSUREDAMAGE BITFLAG(0)	//This flag is used on the flags variable for SUIT and HEAD items which stop pressure damage.
-										//To successfully stop you taking all pressure damage you must have both a suit and head item with this flag.
-
-#define USEDELAY	BITFLAG(1)	// 1 second extra delay on use (Can be used once every 2s)
-#define NODELAY		BITFLAG(2)	// 1 second attackby delay skipped (Can be used once every 0.2s). Most objects have a 1s attackby delay, which doesn't require a flag.
-#define AIRTIGHT	BITFLAG(3)	// mask allows internals
-#define NOSHIELD	BITFLAG(4)	// weapon not affected by shield
+// TODO: Move CONDUCT to OBJ_FLAG_CONDUCT.
+// TODO: Move ON_BORDER to ATOM_FLAG_ON_BORDER.
+// TODO: Move NOBLOODY to ATOM_FLAG_NO_BLOODY.
 #define CONDUCT		BITFLAG(5)	// conducts electricity (metal etc.)
 #define ON_BORDER	BITFLAG(6)	// item has priority to check when entering or leaving
-#define NOBLUDGEON	BITFLAG(7)	// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
 #define NOBLOODY	BITFLAG(8)	// used to items if they don't want to get a blood overlay
 
 // TODO: Possibly merge these down into generic COVERSEYES and COVERSMOUTH.
@@ -43,31 +20,13 @@
 #define MASKCOVERSMOUTH		BITFLAG(10)	// on other items, these are just for mask/head
 #define HEADCOVERSMOUTH		BITFLAG(10)
 
-#define NOSLIP	BITFLAG(11)	//prevents from slipping on wet floors, in space etc
-
+// TODO: Move OPENCONTAINER to ATOM_FLAG_OPEN_CONTAINER.
 #define OPENCONTAINER	BITFLAG(12)	// is an open container for chemistry purposes
-
-#define BLOCK_GAS_SMOKE_EFFECT	BITFLAG(13)	// blocks the effect that chemical clouds would have on a mob --glasses, mask and helmets ONLY!
-#define ONESIZEFITSALL			BITFLAG(14)
-#define PLASMAGUARD				BITFLAG(15)	//Does not get contaminated by plasma.
-
+// TODO: Move NOREACT to ATOM_FLAG_NO_REACT.
 #define	NOREACT	BITFLAG(16)	//Reagents dont' react inside this container.
 
 #define BLOCKHEADHAIR	BITFLAG(17)	// temporarily removes the user's hair overlay. Leaves facial hair.
 #define BLOCKHAIR		BITFLAG(18)	// temporarily removes the user's hair, facial and otherwise.
-
-//Bit flags for the flags_inv variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
-// These apply only to the exterior suit:
-#define HIDEGLOVES		BITFLAG(0)
-#define HIDESUITSTORAGE	BITFLAG(1)
-#define HIDEJUMPSUIT	BITFLAG(2)
-#define HIDESHOES		BITFLAG(3)
-#define HIDETAIL 		BITFLAG(4)
-// These apply only to helmets/masks:
-#define HIDEMASK	BITFLAG(0)
-#define HIDEEARS	BITFLAG(1)	// Ears means headsets and such.
-#define HIDEEYES	BITFLAG(2)	// Eyes means glasses.
-#define HIDEFACE	BITFLAG(3)	// Dictates whether we appear as unknown.
 
 // Slot ID defines.
 #define SLOT_ID_BACK		1

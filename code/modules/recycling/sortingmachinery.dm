@@ -4,7 +4,6 @@
 	icon = 'icons/obj/storage/delivery.dmi'
 	icon_state = "deliverycloset"
 	density = TRUE
-	flags = NOBLUDGEON
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
 	var/obj/wrapped = null

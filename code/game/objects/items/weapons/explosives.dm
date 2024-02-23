@@ -5,7 +5,7 @@
 	icon = 'icons/obj/items/assemblies/assemblies.dmi'
 	icon_state = "plastic-explosive0"
 	item_state = "plasticx"
-	flags = NOBLUDGEON
+	item_flags = ITEM_FLAG_NO_BLUDGEON
 	w_class = 2.0
 	origin_tech = list(RESEARCH_TECH_SYNDICATE = 2)
 

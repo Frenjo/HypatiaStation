@@ -82,7 +82,7 @@
 
 	if(W == A)
 		next_move = world.time + 6
-		if(W.flags & USEDELAY)
+		if(HAS_ITEM_FLAGS(W, ITEM_FLAG_HAS_USE_DELAY))
 			next_move += 5
 		W.attack_self(src)
 		if(hand)
@@ -103,7 +103,7 @@
 
 		// No adjacency needed
 		if(isnotnull(W))
-			if(W.flags & USEDELAY)
+			if(HAS_ITEM_FLAGS(W, ITEM_FLAG_HAS_USE_DELAY))
 				next_move += 5
 
 			var/resolved = A.attackby(W, src)
@@ -123,7 +123,7 @@
 
 		if(A.Adjacent(src)) // see adjacent.dm
 			if(isnotnull(W))
-				if(W.flags & USEDELAY)
+				if(HAS_ITEM_FLAGS(W, ITEM_FLAG_HAS_USE_DELAY))
 					next_move += 5
 
 				// Return 1 in attackby() to prevent afterattack() effects (when safely moving items for example)

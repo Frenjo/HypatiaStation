@@ -209,7 +209,7 @@
 					hit(50)
 			return
 
-	if(W.flags & NOBLUDGEON)
+	if(HAS_ITEM_FLAGS(W, ITEM_FLAG_NO_BLUDGEON))
 		return
 
 	if(istype(W, /obj/item/screwdriver))

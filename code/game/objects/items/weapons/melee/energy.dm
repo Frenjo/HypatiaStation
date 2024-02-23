@@ -18,7 +18,8 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 3.0
-	flags = CONDUCT | NOSHIELD | NOBLOODY
+	item_flags = ITEM_FLAG_NO_SHIELD
+	flags = CONDUCT | NOBLOODY
 	origin_tech = list(RESEARCH_TECH_COMBAT = 3)
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
 	sharp = 1
@@ -39,7 +40,8 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2.0
-	flags = NOSHIELD | NOBLOODY
+	item_flags = ITEM_FLAG_NO_SHIELD
+	flags = NOBLOODY
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_SYNDICATE = 4)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = 1
@@ -62,6 +64,7 @@
 	throw_speed = 1
 	throw_range = 1
 	w_class = 4.0//So you can't hide it in your pocket or some such.
-	flags = NOSHIELD | NOBLOODY
+	item_flags = ITEM_FLAG_NO_SHIELD
+	flags = NOBLOODY
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	var/datum/effect/system/spark_spread/spark_system

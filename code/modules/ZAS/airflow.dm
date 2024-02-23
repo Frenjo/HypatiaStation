@@ -29,9 +29,8 @@ Contains helper procs for airflow, handled in /connection_group.
 		return 0
 	if(buckled)
 		return 0
-	if(shoes)
-		if(shoes.flags & NOSLIP)
-			return 0
+	if(isnotnull(shoes) && HAS_ITEM_FLAGS(shoes, ITEM_FLAG_NO_SLIP))
+		return 0
 	if(!(status_flags & CANSTUN) && !(status_flags & CANWEAKEN))
 		to_chat(src, SPAN_INFO("You stay upright as the air rushes past you."))
 		return 0
@@ -165,10 +164,8 @@ Contains helper procs for airflow, handled in /connection_group.
 			var/mob/living/carbon/human/human = mob
 			if(human.buckled)
 				return
-			if(human.shoes)
-				if(istype(human.shoes, /obj/item/clothing/shoes/magboots))
-					if(human.shoes.flags & NOSLIP)
-						return
+			if(isnotnull(human.shoes) && istype(human.shoes, /obj/item/clothing/shoes/magboots) && HAS_ITEM_FLAGS(human.shoes, ITEM_FLAG_NO_SLIP))
+				return
 		to_chat(src, SPAN_WARNING("You are pushed away by airflow!"))
 		last_airflow = world.time
 	var/airflow_falloff = 9 - ul_FalloffAmount(airflow_dest) //It's a fast falloff calc.  Very useful.

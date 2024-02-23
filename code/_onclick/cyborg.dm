@@ -57,7 +57,7 @@
 
 	if(W == A)
 		next_move = world.time + 8
-		if(W.flags & USEDELAY)
+		if(HAS_ITEM_FLAGS(W, ITEM_FLAG_HAS_USE_DELAY))
 			next_move += 5
 
 		W.attack_self(src)
@@ -67,7 +67,7 @@
 	if(A == loc || (A in loc) || (A in contents))
 		// No adjacency checks
 		next_move = world.time + 8
-		if(W.flags & USEDELAY)
+		if(HAS_ITEM_FLAGS(W, ITEM_FLAG_HAS_USE_DELAY))
 			next_move += 5
 
 		var/resolved = A.attackby(W, src)
@@ -82,7 +82,7 @@
 	if(isturf(A) || isturf(A.loc))
 		if(A.Adjacent(src)) // see adjacent.dm
 			next_move = world.time + 10
-			if(W.flags & USEDELAY)
+			if(HAS_ITEM_FLAGS(W, ITEM_FLAG_HAS_USE_DELAY))
 				next_move += 5
 
 			var/resolved = A.attackby(W, src)

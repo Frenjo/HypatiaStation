@@ -320,10 +320,10 @@
 	var/pressure_difference = abs(pressure - ONE_ATMOSPHERE)
 	var/pressure_adjustment_coefficient = 1	//Determins how much the clothing you are wearing protects you in percent.
 
-	if(head?.flags & STOPSPRESSUREDAMAGE)
+	if(isnotnull(head) && HAS_ITEM_FLAGS(head, ITEM_FLAG_STOPS_PRESSURE_DAMAGE))
 		pressure_adjustment_coefficient -= PRESSURE_HEAD_REDUCTION_COEFFICIENT
 
-	if(wear_suit?.flags & STOPSPRESSUREDAMAGE)
+	if(isnotnull(wear_suit) && HAS_ITEM_FLAGS(wear_suit, ITEM_FLAG_STOPS_PRESSURE_DAMAGE))
 		pressure_adjustment_coefficient -= PRESSURE_SUIT_REDUCTION_COEFFICIENT
 
 		//Handles breaches in your space suit. 10 suit damage equals a 100% loss of pressure reduction.
@@ -478,11 +478,11 @@
 
 				// Handle filtering
 				var/block = FALSE
-				if(wear_mask?.flags & BLOCK_GAS_SMOKE_EFFECT)
+				if(isnotnull(wear_mask) && HAS_ITEM_FLAGS(wear_mask, ITEM_FLAG_BLOCK_GAS_SMOKE_EFFECT))
 					block = TRUE
-				if(glasses?.flags & BLOCK_GAS_SMOKE_EFFECT)
+				if(isnotnull(glasses) && HAS_ITEM_FLAGS(glasses, ITEM_FLAG_BLOCK_GAS_SMOKE_EFFECT))
 					block = TRUE
-				if(head?.flags & BLOCK_GAS_SMOKE_EFFECT)
+				if(isnotnull(head) && HAS_ITEM_FLAGS(head, ITEM_FLAG_BLOCK_GAS_SMOKE_EFFECT))
 					block = TRUE
 
 				if(!block)
@@ -516,7 +516,7 @@
 	if(isnotnull(internal))
 		if(!contents.Find(internal))
 			internal = null
-		if(!wear_mask || !(wear_mask.flags & AIRTIGHT))
+		if(isnull(wear_mask) || !HAS_ITEM_FLAGS(wear_mask, ITEM_FLAG_AIRTIGHT))
 			internal = null
 		if(internal)
 			return internal.remove_air_volume(volume_needed)

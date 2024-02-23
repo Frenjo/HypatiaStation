@@ -8,7 +8,8 @@
 	name = "Space helmet"
 	icon_state = "space"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
-	flags = HEADCOVERSEYES | BLOCKHAIR | HEADCOVERSMOUTH | STOPSPRESSUREDAMAGE
+	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
+	flags = HEADCOVERSEYES | BLOCKHAIR | HEADCOVERSMOUTH
 	item_state = "space"
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 100, rad = 50)
@@ -26,7 +27,7 @@
 	w_class = 4//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.02
-	flags = STOPSPRESSUREDAMAGE
+	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	allowed = list(/obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/suit_cooling_unit)
 	slowdown = 3

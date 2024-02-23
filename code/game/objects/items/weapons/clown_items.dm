@@ -13,7 +13,7 @@
 		var/mob/M =	AM
 		if(ishuman(M))
 			var/mob/living/carbon/human/human = M
-			if(isobj(human.shoes) && (human.shoes.flags & NOSLIP))
+			if(isobj(human.shoes) && HAS_ITEM_FLAGS(human.shoes, ITEM_FLAG_NO_SLIP))
 				return
 
 		M.stop_pulling()
@@ -31,7 +31,7 @@
 		var/mob/M =	AM
 		if(ishuman(M))
 			var/mob/living/carbon/human/human = M
-			if(isobj(human.shoes) && (human.shoes.flags & NOSLIP))
+			if(isobj(human.shoes) && HAS_ITEM_FLAGS(human.shoes, ITEM_FLAG_NO_SLIP))
 				return
 
 		M.stop_pulling()

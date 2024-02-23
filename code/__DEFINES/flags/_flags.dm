@@ -15,6 +15,11 @@
 #define UNSET_TURF_FLAGS(TURF, FLAGS) TURF.turf_flags &= ~FLAGS
 #define HAS_TURF_FLAGS(TURF, FLAGS) (TURF.turf_flags & FLAGS)
 
+// Item
+#define SET_ITEM_FLAGS(ITEM, FLAGS) ITEM.item_flags |= FLAGS
+#define UNSET_ITEM_FLAGS(ITEM, FLAGS) ITEM.item_flags &= ~FLAGS
+#define HAS_ITEM_FLAGS(ITEM, FLAGS) (ITEM.item_flags & FLAGS)
+
 // Species
 #define SET_SPECIES_FLAGS(SPECIES, FLAGS) SPECIES.species_flags |= FLAGS
 #define UNSET_SPECIES_FLAGS(SPECIES, FLAGS) SPECIES.species_flags &= ~FLAGS

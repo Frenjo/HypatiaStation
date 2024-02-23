@@ -681,7 +681,7 @@
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS | HEAD
 	slowdown = 1.0
 	flags_inv = HIDEGLOVES | HIDESHOES | HIDEJUMPSUIT
-	flags = ONESIZEFITSALL | STOPSPRESSUREDAMAGE
+	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE | ITEM_FLAG_ONE_SIZE_FITS_ALL
 	heat_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS | HEAD
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS | HEAD
@@ -696,7 +696,7 @@
 	icon_state = "golem"
 	item_state = null
 	canremove = 0
-	flags = NOSLIP
+	item_flags = ITEM_FLAG_NO_SLIP
 	slowdown = SHOES_SLOWDOWN + 1
 
 
@@ -727,7 +727,7 @@
 	desc = "a golem's head"
 	canremove = 0
 	unacidable = 1
-	flags = STOPSPRESSUREDAMAGE
+	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	armor = list(melee = 80, bullet = 20, laser = 20, energy = 10, bomb = 0, bio = 0, rad = 0)

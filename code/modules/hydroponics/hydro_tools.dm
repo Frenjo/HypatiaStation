@@ -19,7 +19,8 @@
 	icon = 'icons/obj/weapons/weapons.dmi'
 	icon_state = "hoe"
 	item_state = "hoe"
-	flags = CONDUCT | NOBLUDGEON
+	item_flags = ITEM_FLAG_NO_BLUDGEON
+	flags = CONDUCT
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
@@ -65,7 +66,7 @@
 	throw_speed = 1
 	throw_range = 3
 	w_class = 4.0
-	flags = NOSHIELD
+	item_flags = ITEM_FLAG_NO_SHIELD
 	slot_flags = SLOT_BACK
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_COMBAT = 2)
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
@@ -88,7 +89,8 @@
 	name = "weed-spray"
 	icon_state = "weedspray"
 	item_state = "spray"
-	flags = OPENCONTAINER | NOBLUDGEON
+	item_flags = ITEM_FLAG_NO_BLUDGEON
+	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	throwforce = 4
 	w_class = 2.0
@@ -111,7 +113,8 @@
 	name = "pest-spray"
 	icon_state = "pestspray"
 	item_state = "spray"
-	flags = OPENCONTAINER | NOBLUDGEON
+	item_flags = ITEM_FLAG_NO_BLUDGEON
+	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	throwforce = 4
 	w_class = 2.0

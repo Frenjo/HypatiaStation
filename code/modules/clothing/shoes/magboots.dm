@@ -10,13 +10,13 @@
 
 /obj/item/clothing/shoes/magboots/attack_self(mob/user)
 	if(magpulse)
-		flags &= ~NOSLIP
+		UNSET_ITEM_FLAGS(src, ITEM_FLAG_NO_SLIP)
 		slowdown = SHOES_SLOWDOWN
 		magpulse = 0
 		icon_state = "magboots0"
 		to_chat(user, "You disable the mag-pulse traction system.")
 	else
-		flags |= NOSLIP
+		SET_ITEM_FLAGS(src, ITEM_FLAG_NO_SLIP)
 		slowdown = 2
 		magpulse = 1
 		icon_state = "magboots1"
@@ -27,7 +27,7 @@
 	set src in view()
 	..()
 	var/state = "disabled"
-	if(src.flags & NOSLIP)
+	if(HAS_ITEM_FLAGS(src, ITEM_FLAG_NO_SLIP))
 		state = "enabled"
 	to_chat(usr, "Its mag-pulse traction system appears to be [state].")
 
@@ -39,13 +39,13 @@
 
 /obj/item/clothing/shoes/magboots/advanced/attack_self(mob/user)
 	if(magpulse)
-		flags &= ~NOSLIP
+		UNSET_ITEM_FLAGS(src, ITEM_FLAG_NO_SLIP)
 		slowdown = SHOES_SLOWDOWN
 		magpulse = 0
 		icon_state = "advmagboots0"
 		to_chat(user, "You disable the advanced mag-pulse traction system.")
 	else
-		flags |= NOSLIP
+		SET_ITEM_FLAGS(src, ITEM_FLAG_NO_SLIP)
 		slowdown = 1
 		magpulse = 1
 		icon_state = "advmagboots1"
@@ -56,6 +56,6 @@
 	set src in view()
 	..()
 	var/state = "disabled"
-	if(src.flags & NOSLIP)
+	if(HAS_ITEM_FLAGS(src, ITEM_FLAG_NO_SLIP))
 		state = "enabled"
 	to_chat(usr, "Its advanced mag-pulse traction system appears to be [state].")

@@ -5,6 +5,10 @@
 	pass_flags = PASS_FLAG_TABLE
 	pressure_resistance = 5
 
+	// Stores item-specific bitflag values.
+	// Overridden on subtypes or manipulated with *_ITEM_FLAGS(ITEM, FLAGS) macros.
+	var/item_flags
+
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/abstract = 0
 	var/item_state = null

@@ -120,7 +120,8 @@
 
 /obj/item/clothing/head/helmet/space/vox
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 30, rad = 30)
-	flags = HEADCOVERSEYES | STOPSPRESSUREDAMAGE
+	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
+	flags = HEADCOVERSEYES
 	species_restricted = list(SPECIES_VOX, SPECIES_VOX_ARMALIS)
 	sprite_sheets = list(
 		SPECIES_VOX = 'icons/mob/species/vox/head.dmi',
@@ -220,11 +221,11 @@
 
 /obj/item/clothing/shoes/magboots/vox/attack_self(mob/user)
 	if(magpulse)
-		flags &= ~NOSLIP
+		UNSET_ITEM_FLAGS(src, ITEM_FLAG_NO_SLIP)
 		magpulse = 0
 		to_chat(user, "You relax your deathgrip on the flooring.")
 	else
-		flags |= NOSLIP
+		SET_ITEM_FLAGS(src, ITEM_FLAG_NO_SLIP)
 		magpulse = 1
 		to_chat(user, "You dig your claws deeply into the flooring, bracing yourself.")
 

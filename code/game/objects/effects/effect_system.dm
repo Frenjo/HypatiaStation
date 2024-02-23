@@ -217,7 +217,7 @@ steam.start() -- spawns the effect
 /obj/effect/smoke/proc/affect(mob/living/carbon/M)
 	if(istype(M))
 		return 0
-	if(M.internal != null && M.wear_mask && (M.wear_mask.flags & AIRTIGHT))
+	if(M.internal != null && isnotnull(M.wear_mask) && HAS_ITEM_FLAGS(M.wear_mask, ITEM_FLAG_AIRTIGHT))
 		return 0
 	return 1
 
@@ -538,7 +538,7 @@ steam.start() -- spawns the effect
 		var/mob/M =	AM
 		if(ishuman(M))
 			var/mob/living/carbon/human/human = M
-			if(istype(human.shoes, /obj/item/clothing/shoes) && (human.shoes.flags & NOSLIP))
+			if(istype(human.shoes, /obj/item/clothing/shoes) && HAS_ITEM_FLAGS(human.shoes, ITEM_FLAG_NO_SLIP))
 				return
 
 		M.stop_pulling()

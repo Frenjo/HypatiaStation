@@ -3,7 +3,7 @@
 
 /obj/item/grab
 	name = "grab"
-	flags = NOBLUDGEON
+	item_flags = ITEM_FLAG_NO_BLUDGEON
 
 	layer = 21
 	abstract = 1
