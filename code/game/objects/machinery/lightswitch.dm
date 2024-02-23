@@ -29,7 +29,7 @@
 	if(!name)
 		name = "light switch ([connected_area.name])"
 
-	src.on = src.connected_area.lightswitch
+	on = connected_area.lightswitch
 	update_icon()
 
 /obj/machinery/light_switch/update_icon()

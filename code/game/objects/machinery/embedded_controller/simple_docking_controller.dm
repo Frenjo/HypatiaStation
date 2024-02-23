@@ -10,7 +10,7 @@
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/initialise()
 	. = ..()
-	docking_program = new/datum/computer/file/embedded_program/docking/simple(src)
+	docking_program = new /datum/computer/file/embedded_program/docking/simple(src)
 	program = docking_program
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)

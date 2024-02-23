@@ -11,8 +11,8 @@
 
 /obj/machinery/embedded_controller/radio/airlock/docking_port/initialise()
 	. = ..()
-	airlock_program = new/datum/computer/file/embedded_program/airlock/docking(src)
-	docking_program = new/datum/computer/file/embedded_program/docking/airlock(src, airlock_program)
+	airlock_program = new /datum/computer/file/embedded_program/airlock/docking(src)
+	docking_program = new /datum/computer/file/embedded_program/docking/airlock(src, airlock_program)
 	program = docking_program
 
 /obj/machinery/embedded_controller/radio/airlock/docking_port/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)

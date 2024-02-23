@@ -100,7 +100,6 @@
 /obj/machinery/door/airlock/initialise()
 	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_AIRLOCK)
-
 	update_icon()
 
 /obj/machinery/door/airlock/Destroy()

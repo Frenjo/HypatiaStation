@@ -219,7 +219,7 @@
 
 /obj/machinery/disposal/delivery_chute/initialise()
 	. = ..()
-	trunk = locate() in src.loc
+	trunk = locate() in loc
 	if(trunk)
 		trunk.linked = src	// link the pipe trunk to self
 

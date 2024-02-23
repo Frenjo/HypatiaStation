@@ -31,7 +31,6 @@
 	if(length(req_access))
 		icon_state = "[icon_state]"
 		base_state = icon_state
-	return
 
 /obj/machinery/door/window/Destroy()
 	density = FALSE

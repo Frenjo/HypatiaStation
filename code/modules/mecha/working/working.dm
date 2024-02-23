@@ -8,7 +8,6 @@
 	var/turf/T = get_turf(src)
 	if(T.z != 2)
 		new /obj/item/mecha_parts/mecha_tracking(src)
-	return
 
 /*
 /obj/mecha/working/melee_action(atom/target as obj|mob|turf)

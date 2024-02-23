@@ -19,7 +19,7 @@
 		doors = list()
 		for(var/obj/machinery/door/poddoor/P in GLOBL.machines)
 			if(P.id == id)
-				doors += P
+				doors.Add(P)
 
 /*
 /obj/machinery/computer/turbine_control/attackby(I as obj, user as mob)

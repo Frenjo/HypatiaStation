@@ -172,7 +172,7 @@ FLOOR SAFES
 	layer = 2.5
 
 /obj/structure/safe/floor/initialise()
-	..()
+	. = ..()
 	var/turf/T = loc
 	hide(T.intact)
 

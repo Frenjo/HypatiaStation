@@ -1199,7 +1199,6 @@ FIRE ALARM
 			overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_[GLOBL.security_level.name]"))
 		else
 			overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_green"))
-
 	update_icon()
 
 /obj/machinery/firealarm/update_icon()

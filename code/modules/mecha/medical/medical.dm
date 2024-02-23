@@ -3,7 +3,6 @@
 	var/turf/T = get_turf(src)
 	if(isPlayerLevel(T.z))
 		new /obj/item/mecha_parts/mecha_tracking(src)
-	return
 
 /obj/mecha/medical/mechturn(direction)
 	set_dir(direction)

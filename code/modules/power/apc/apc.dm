@@ -90,7 +90,7 @@
 
 /obj/machinery/power/apc/initialise()
 	. = ..()
-	src.update()
+	update()
 
 /obj/machinery/power/apc/Destroy()
 	if(malfai && operating)

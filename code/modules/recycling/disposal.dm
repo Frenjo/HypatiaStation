@@ -33,7 +33,7 @@
 // find the attached trunk (if present) and init gas resvr.
 /obj/machinery/disposal/initialise()
 	. = ..()
-	trunk = locate() in src.loc
+	trunk = locate() in loc
 	if(!trunk)
 		mode = 0
 		flush = 0
@@ -1350,7 +1350,7 @@
 	. = ..()
 	target = get_ranged_target_turf(src, dir, 10)
 
-	var/obj/structure/disposalpipe/trunk/trunk = locate() in src.loc
+	var/obj/structure/disposalpipe/trunk/trunk = locate() in loc
 	if(trunk)
 		trunk.linked = src	// link the pipe trunk to self
 

@@ -52,12 +52,12 @@
 		temp_list = list()
 		temp_list = splittext(id_with_upload_string, ";")
 		for(var/N in temp_list)
-			id_with_upload += text2num(N)
+			id_with_upload.Add(text2num(N))
 	if(!length(id_with_download))
 		temp_list = list()
 		temp_list = splittext(id_with_download_string, ";")
 		for(var/N in temp_list)
-			id_with_download += text2num(N)
+			id_with_download.Add(text2num(N))
 
 /obj/machinery/r_n_d/server/process()
 	var/datum/gas_mixture/environment = loc.return_air()
@@ -177,9 +177,9 @@
 			if(-1)
 				continue
 			if(0)
-				no_id_servers += S
+				no_id_servers.Add(S)
 			else
-				server_ids += S.server_id
+				server_ids.Add(S.server_id)
 
 	for(var/obj/machinery/r_n_d/server/S in no_id_servers)
 		var/num = 1
@@ -188,8 +188,8 @@
 				num++
 			else
 				S.server_id = num
-				server_ids += num
-		no_id_servers -= S
+				server_ids.Add(num)
+		no_id_servers.Remove(S)
 
 /obj/machinery/r_n_d/server/centcom/process()
 	return PROCESS_KILL	//don't need process()

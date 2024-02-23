@@ -62,7 +62,7 @@
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/initialise()
 	. = ..()
-	docking_program = new/datum/computer/file/embedded_program/docking/simple/escape_pod(src)
+	docking_program = new /datum/computer/file/embedded_program/docking/simple/escape_pod(src)
 	program = docking_program
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)

@@ -169,8 +169,7 @@
 
 /obj/machinery/body_scanconsole/initialise()
 	. = ..()
-	src.connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
-	return
+	connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
 
 /*
 

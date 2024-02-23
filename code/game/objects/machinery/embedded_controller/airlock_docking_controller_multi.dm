@@ -15,7 +15,7 @@
 
 /obj/machinery/embedded_controller/radio/docking_port_multi/initialise()
 	. = ..()
-	docking_program = new/datum/computer/file/embedded_program/docking/multi(src)
+	docking_program = new /datum/computer/file/embedded_program/docking/multi(src)
 	program = docking_program
 
 	var/list/names = splittext(child_names_txt, ";")
@@ -24,7 +24,6 @@
 	if(length(names) == length(tags))
 		for(var/i = 1; i <= length(tags); i++)
 			child_names[tags[i]] = names[i]
-
 
 /obj/machinery/embedded_controller/radio/docking_port_multi/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
 	var/list/data = list()
@@ -60,7 +59,7 @@
 
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi/initialise()
 	. = ..()
-	airlock_program = new/datum/computer/file/embedded_program/airlock/multi_docking(src)
+	airlock_program = new /datum/computer/file/embedded_program/airlock/multi_docking(src)
 	program = airlock_program
 
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)

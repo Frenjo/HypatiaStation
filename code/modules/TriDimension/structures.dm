@@ -228,21 +228,21 @@
 /obj/multiz/stairs/initialise()
 	. = ..()
 	for(var/dir in GLOBL.cardinal)
-		var/turf/T = get_step(src.loc, dir)
+		var/turf/T = get_step(loc, dir)
 		for(var/obj/multiz/stairs/S in T)
-			if(S && S.icon_state == "rampbottom" && !S.connected)
+			if(isnotnull(S) && S.icon_state == "rampbottom" && !S.connected)
 				S.set_dir(dir)
-				src.set_dir(dir)
+				set_dir(dir)
 				S.connected = src
-				src.connected = S
-				src.icon_state = "ramptop"
-				src.density = TRUE
-				var/turf/controllerlocation = locate(1, 1, src.z)
+				connected = S
+				icon_state = "ramptop"
+				density = TRUE
+				var/turf/controllerlocation = locate(1, 1, z)
 				for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
 					if(controller.up)
-						var/turf/above = locate(src.x, src.y, controller.up_target)
+						var/turf/above = locate(x, y, controller.up_target)
 						if(isspace(above) || isopenspace(above))
-							src.target = above
+							target = above
 				break
 		if(target)
 			break

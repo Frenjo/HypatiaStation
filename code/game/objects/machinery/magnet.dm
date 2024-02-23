@@ -38,8 +38,7 @@
 
 /obj/machinery/magnetic_module/initialise()
 	. = ..()
-	spawn(10)	// must wait for map loading to finish
-		register_radio(src, null, freq, RADIO_MAGNETS)
+	register_radio(src, null, freq, RADIO_MAGNETS)
 
 	spawn()
 		magnetic_process()
