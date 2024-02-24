@@ -1,7 +1,7 @@
 /*
  * Booze Cabinet
  */
-/obj/structure/closet/secure_closet/bar
+/obj/structure/closet/secure/bar
 	name = "Booze"
 	req_access = list(ACCESS_BAR)
 	icon_state = "cabinetdetective_locked"
@@ -24,7 +24,7 @@
 		/obj/item/reagent_containers/food/drinks/cans/beer
 	)
 
-/obj/structure/closet/secure_closet/bar/update_icon()
+/obj/structure/closet/secure/bar/update_icon()
 	if(broken)
 		icon_state = icon_broken
 	else

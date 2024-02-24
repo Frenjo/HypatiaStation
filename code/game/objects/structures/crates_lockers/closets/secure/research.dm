@@ -1,7 +1,7 @@
 /*
  * Scientist
  */
-/obj/structure/closet/secure_closet/scientist
+/obj/structure/closet/secure/scientist
 	name = "Scientist's Locker"
 	req_access = list(ACCESS_RESEARCH)
 	icon_state = "secureres1"
@@ -19,7 +19,7 @@
 		/obj/item/radio/headset/headset_sci
 	)
 
-/obj/structure/closet/secure_closet/scientist/New()
+/obj/structure/closet/secure/scientist/New()
 	. = ..()
 	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
 	var/obj/item/storage/box/B = new(BPK)
@@ -28,7 +28,7 @@
 /*
  * Research Director
  */
-/obj/structure/closet/secure_closet/rd
+/obj/structure/closet/secure/rd
 	name = "Research Director's Locker"
 	req_access = list(ACCESS_RD)
 	icon_state = "rdsecure1"
@@ -47,7 +47,7 @@
 		/obj/item/radio/headset/heads/rd
 	)
 
-/obj/structure/closet/secure_closet/rd/New()
+/obj/structure/closet/secure/rd/New()
 	. = ..()
 	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
 	var/obj/item/storage/box/B = new(BPK)

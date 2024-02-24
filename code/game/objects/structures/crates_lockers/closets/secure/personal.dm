@@ -1,11 +1,11 @@
-/obj/structure/closet/secure_closet/personal
+/obj/structure/closet/secure/personal
 	desc = "It's a secure locker for personnel. The first card swiped gains control."
 	name = "personal closet"
 	req_access = list(ACCESS_ALL_PERSONAL_LOCKERS)
 
 	var/registered_name = null
 
-/obj/structure/closet/secure_closet/personal/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/closet/secure/personal/attackby(obj/item/W as obj, mob/user as mob)
 	if(src.opened)
 		if(istype(W, /obj/item/grab))
 			src.MouseDrop_T(W:affecting, user)      //act like they were dragged onto the closet
@@ -49,19 +49,19 @@
 		FEEDBACK_ACCESS_DENIED(user)
 	return
 
-/obj/structure/closet/secure_closet/personal/standard
+/obj/structure/closet/secure/personal/standard
 	starts_with = list(
 		/obj/item/radio/headset
 	)
 
-/obj/structure/closet/secure_closet/personal/standard/New()
+/obj/structure/closet/secure/personal/standard/New()
 	if(prob(50))
 		starts_with.Add(/obj/item/storage/backpack)
 	else
 		starts_with.Add(/obj/item/storage/satchel/norm)
 	. = ..()
 
-/obj/structure/closet/secure_closet/personal/patient
+/obj/structure/closet/secure/personal/patient
 	name = "patient's closet"
 
 	starts_with = list(
@@ -69,7 +69,7 @@
 		/obj/item/clothing/shoes/white
 	)
 
-/obj/structure/closet/secure_closet/personal/cabinet
+/obj/structure/closet/secure/personal/cabinet
 	icon_state = "cabinetdetective_locked"
 	icon_closed = "cabinetdetective"
 	icon_locked = "cabinetdetective_locked"
@@ -82,7 +82,7 @@
 		/obj/item/radio/headset
 	)
 
-/obj/structure/closet/secure_closet/personal/cabinet/update_icon()
+/obj/structure/closet/secure/personal/cabinet/update_icon()
 	if(broken)
 		icon_state = icon_broken
 	else

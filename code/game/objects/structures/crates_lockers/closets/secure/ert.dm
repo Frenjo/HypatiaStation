@@ -1,7 +1,7 @@
 /*
  * ERT Commander
  */
-/obj/structure/closet/secure_closet/ert/commander
+/obj/structure/closet/secure/ert/commander
 	name = "\improper ERT commander locker"
 	req_access = list(ACCESS_SECURITY)
 	icon_state = "capsecure1"
@@ -26,7 +26,7 @@
 /*
  * ERT Security
  */
-/obj/structure/closet/secure_closet/ert/security
+/obj/structure/closet/secure/ert/security
 	name = "\improper ERT security locker"
 	req_access = list(ACCESS_SECURITY)
 	icon_state = "sec1"
@@ -49,7 +49,7 @@
 /*
  * ERT Engineer
  */
-/obj/structure/closet/secure_closet/ert/engineer
+/obj/structure/closet/secure/ert/engineer
 	name = "\improper ERT engineer locker"
 	req_access = list(ACCESS_ENGINE)
 	icon_state = "secureeng1"
@@ -72,7 +72,7 @@
 /*
  * ERT Medical
  */
-/obj/structure/closet/secure_closet/ert/medical
+/obj/structure/closet/secure/ert/medical
 	name = "\improper ERT medical locker"
 	req_access = list(ACCESS_MEDICAL)
 	icon_state = "securemed1"

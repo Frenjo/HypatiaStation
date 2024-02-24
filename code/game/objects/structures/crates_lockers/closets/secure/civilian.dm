@@ -1,7 +1,7 @@
 /*
  * Chef
  */
-/obj/structure/closet/secure_closet/chef_personal
+/obj/structure/closet/secure/chef_personal
 	name = "Chef's Locker"
 	req_access = list(ACCESS_KITCHEN)
 
@@ -10,7 +10,7 @@
 		/obj/item/radio/headset
 	)
 
-/obj/structure/closet/secure_closet/chef_personal/New()
+/obj/structure/closet/secure/chef_personal/New()
 	. = ..()
 	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
 	var/obj/item/storage/box/B = new(BPK)
@@ -19,7 +19,7 @@
 /*
  * Booze Closet
  */
-/obj/structure/closet/secure_closet/bar
+/obj/structure/closet/secure/bar
 	name = "Booze"
 	req_access = list(ACCESS_BAR)
 
@@ -39,7 +39,7 @@
 /*
  * Bartender
  */
-/obj/structure/closet/secure_closet/barman_personal
+/obj/structure/closet/secure/barman_personal
 	name = "Barman's Locker"
 	req_access = list(ACCESS_BAR)
 
@@ -48,7 +48,7 @@
 		/obj/item/radio/headset
 	)
 
-/obj/structure/closet/secure_closet/barman_personal/New()
+/obj/structure/closet/secure/barman_personal/New()
 	. = ..()
 	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
 	new /obj/item/ammo_casing/shotgun/beanbag(BPK)
@@ -61,7 +61,7 @@
 /*
  * Botanist
  */
-/obj/structure/closet/secure_closet/hydro_personal
+/obj/structure/closet/secure/hydro_personal
 	name = "Botanist's Locker"
 	req_access = list(ACCESS_HYDROPONICS)
 
@@ -71,7 +71,7 @@
 		/obj/item/radio/headset
 	)
 
-/obj/structure/closet/secure_closet/hydro_personal/New()
+/obj/structure/closet/secure/hydro_personal/New()
 	. = ..()
 	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
 	var/obj/item/storage/box/B = new(BPK)
@@ -80,7 +80,7 @@
 /*
  * Janitor
  */
-/obj/structure/closet/secure_closet/janitor_personal
+/obj/structure/closet/secure/janitor_personal
 	name = "Janitor's Locker"
 	req_access = list(ACCESS_JANITOR)
 
@@ -89,7 +89,7 @@
 		/obj/item/pda/janitor
 	)
 
-/obj/structure/closet/secure_closet/janitor_personal/New()
+/obj/structure/closet/secure/janitor_personal/New()
 	. = ..()
 	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
 	var/obj/item/storage/box/B = new(BPK)
@@ -98,7 +98,7 @@
 /*
  * Lawyer
  */
-/obj/structure/closet/secure_closet/lawyer_personal
+/obj/structure/closet/secure/lawyer_personal
 	name = "Lawyer's Locker"
 	req_access = list(ACCESS_LAWYER)
 
@@ -109,7 +109,7 @@
 		/obj/item/storage/briefcase
 	)
 
-/obj/structure/closet/secure_closet/lawyer_personal/New()
+/obj/structure/closet/secure/lawyer_personal/New()
 	. = ..()
 	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
 	var/obj/item/storage/box/B = new(BPK)
@@ -118,7 +118,7 @@
 /*
  * Librarian
  */
-/obj/structure/closet/secure_closet/librarian_personal
+/obj/structure/closet/secure/librarian_personal
 	name = "Librarian's Locker"
 	req_access = list(ACCESS_LIBRARY)
 
@@ -127,7 +127,7 @@
 		/obj/item/barcodescanner
 	)
 
-/obj/structure/closet/secure_closet/librarian_personal/New()
+/obj/structure/closet/secure/librarian_personal/New()
 	. = ..()
 	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
 	var/obj/item/storage/box/B = new(BPK)
@@ -136,7 +136,7 @@
 /*
  * Counselor
  */
-/obj/structure/closet/secure_closet/counselor_personal
+/obj/structure/closet/secure/counselor_personal
 	name = "Counselor's Locker"
 	req_access = list(ACCESS_CHAPEL_OFFICE)
 
@@ -150,7 +150,7 @@
 		/obj/item/candlepack
 	)
 
-/obj/structure/closet/secure_closet/counselor_personal/New()
+/obj/structure/closet/secure/counselor_personal/New()
 	. = ..()
 	var/obj/item/storage/backpack/BPK = new /obj/item/storage/backpack(src)
 	var/obj/item/storage/box/B = new(BPK)

@@ -63,7 +63,7 @@
 /*
  * Lockers and Closets
  */
-/obj/structure/closet/secure_closet/xenoarchaeologist
+/obj/structure/closet/secure/xenoarchaeologist
 	name = "Xenoarchaeologist's Locker" // Renamed to match other lockers. -Frenjo
 	req_access = list(ACCESS_TOX_STORAGE)
 	icon_state = "secureres1"

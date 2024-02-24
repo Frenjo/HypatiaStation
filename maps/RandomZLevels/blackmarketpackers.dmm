@@ -177,7 +177,7 @@
 "dz" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/simulated/floor{icon_state = "barber"; tag = "icon-barber"},/area/awaymission/BMPship2)
 "dA" = (/obj/item/reagent_containers/food/drinks/cans/beer,/turf/simulated/floor{icon_state = "bar"},/area/awaymission/BMPship2)
 "dB" = (/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 1},/turf/simulated/floor{icon_state = "showroomfloor"},/area/awaymission/BMPship1)
-"dC" = (/obj/structure/closet/secure_closet/freezer/meat{opened = 1},/turf/simulated/floor{icon_state = "white"},/area/awaymission/BMPship1)
+"dC" = (/obj/structure/closet/secure/freezer/meat{opened = 1},/turf/simulated/floor{icon_state = "white"},/area/awaymission/BMPship1)
 "dD" = (/obj/structure/closet/crate/freezer,/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/turf/simulated/floor{icon_state = "white"},/area/awaymission/BMPship1)
 "dE" = (/obj/effect/landmark{name = "awaystart"},/obj/effect/decal/cleanable/blood/splatter,/turf/simulated/floor{icon_state = "white"},/area/awaymission/BMPship1)
 "dF" = (/obj/item/crowbar,/turf/simulated/floor{icon_state = "white"},/area/awaymission/BMPship1)

@@ -1064,7 +1064,7 @@
 		var/turf/prison_cell = pick(GLOBL.prisonwarp)
 		if(!prison_cell)	return
 
-		var/obj/structure/closet/secure_closet/brig/locker = new /obj/structure/closet/secure_closet/brig(prison_cell)
+		var/obj/structure/closet/secure/brig/locker = new /obj/structure/closet/secure/brig(prison_cell)
 		locker.opened = 0
 		locker.locked = 1
 

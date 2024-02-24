@@ -1,4 +1,4 @@
-/obj/structure/closet/secure_closet/captains
+/obj/structure/closet/secure/captains
 	name = "Captain's Locker"
 	req_access = list(access_captain)
 	icon_state = "capsecure1"
@@ -29,7 +29,7 @@
 
 
 
-/obj/structure/closet/secure_closet/hop
+/obj/structure/closet/secure/hop
 	name = "Head of Personnel's Locker"
 	req_access = list(access_hop)
 	icon_state = "hopsecure1"
@@ -55,7 +55,7 @@
 
 
 
-/obj/structure/closet/secure_closet/hos
+/obj/structure/closet/secure/hos
 	name = "Safety Administrator's Locker"
 	req_access = list(access_hos)
 	icon_state = "hossecure1"
@@ -81,7 +81,7 @@
 
 
 
-/obj/structure/closet/secure_closet/warden
+/obj/structure/closet/secure/warden
 	name = "Correctional Advisor's Locker"
 	req_access = list(access_armoury)
 	icon_state = "wardensecure1"
@@ -107,7 +107,7 @@
 
 
 
-/obj/structure/closet/secure_closet/security
+/obj/structure/closet/secure/security
 	name = "Crew Supervisor's Locker"
 	req_access = list(access_security)
 	icon_state = "sec1"
@@ -130,7 +130,7 @@
 
 
 
-/obj/structure/closet/secure_closet/detective
+/obj/structure/closet/secure/detective
 	name = "Detective's Cabinet"
 	req_access = list(access_forensics_lockers)
 	icon_state = "cabinetdetective_locked"
@@ -155,7 +155,7 @@
 		new /obj/item/storage/box/evidence(src)
 		return
 
-/obj/structure/closet/secure_closet/detective/update_icon()
+/obj/structure/closet/secure/detective/update_icon()
 	if(broken)
 		icon_state = icon_broken
 	else
@@ -167,7 +167,7 @@
 		else
 			icon_state = icon_opened
 
-/obj/structure/closet/secure_closet/injection
+/obj/structure/closet/secure/injection
 	name = "Lethal Injections"
 	req_access = list(access_hos)
 
@@ -180,7 +180,7 @@
 
 
 
-/obj/structure/closet/secure_closet/brig
+/obj/structure/closet/secure/brig
 	name = "Brig Locker"
 	req_access = list(access_brig)
 	anchored = TRUE
@@ -192,7 +192,7 @@
 
 
 
-/obj/structure/closet/secure_closet/courtroom
+/obj/structure/closet/secure/courtroom
 	name = "Courtroom Locker"
 	req_access = list(access_court)
 
@@ -208,7 +208,7 @@
 		new /obj/item/storage/briefcase(src)
 		return
 
-/obj/structure/closet/secure_closet/wall
+/obj/structure/closet/secure/wall
 	name = "wall locker"
 	req_access = list(access_security)
 	icon_state = "wall-locker1"
@@ -222,7 +222,7 @@
 	//too small to put a man in
 	large = 0
 
-/obj/structure/closet/secure_closet/wall/update_icon()
+/obj/structure/closet/secure/wall/update_icon()
 	if(broken)
 		icon_state = icon_broken
 	else

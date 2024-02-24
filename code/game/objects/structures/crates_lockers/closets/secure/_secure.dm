@@ -1,4 +1,4 @@
-/obj/structure/closet/secure_closet
+/obj/structure/closet/secure
 	name = "secure locker"
 	desc = "It's an immobile card-locked storage unit."
 	icon = 'icons/obj/closets/closet.dmi'
@@ -20,12 +20,12 @@
 	var/icon_broken = "securebroken"
 	var/icon_off = "secureoff"
 
-/obj/structure/closet/secure_closet/can_open()
+/obj/structure/closet/secure/can_open()
 	if(src.locked)
 		return 0
 	return ..()
 
-/obj/structure/closet/secure_closet/close()
+/obj/structure/closet/secure/close()
 	if(..())
 		if(broken)
 			icon_state = src.icon_off
@@ -33,7 +33,7 @@
 	else
 		return 0
 
-/obj/structure/closet/secure_closet/emp_act(severity)
+/obj/structure/closet/secure/emp_act(severity)
 	for(var/obj/O in src)
 		O.emp_act(severity)
 	if(!broken)
@@ -48,7 +48,7 @@
 				src.req_access.Add(pick(get_all_station_access()))
 	..()
 
-/obj/structure/closet/secure_closet/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/closet/secure/attackby(obj/item/W as obj, mob/user as mob)
 	if(src.opened)
 		if(istype(W, /obj/item/grab))
 			if(src.large)
@@ -82,17 +82,17 @@
 	else
 		togglelock(user)
 
-/obj/structure/closet/secure_closet/attack_hand(mob/user as mob)
+/obj/structure/closet/secure/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
 	if(src.locked)
 		src.togglelock(user)
 	else
 		src.toggle(user)
 
-/obj/structure/closet/secure_closet/attack_paw(mob/user as mob)
+/obj/structure/closet/secure/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/structure/closet/secure_closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
+/obj/structure/closet/secure/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()
 	if(!opened)
 		if(locked)
@@ -104,7 +104,7 @@
 	else
 		icon_state = icon_opened
 
-/obj/structure/closet/secure_closet/proc/togglelock(mob/user as mob)
+/obj/structure/closet/secure/proc/togglelock(mob/user as mob)
 	if(src.opened)
 		to_chat(user, SPAN_NOTICE("Close the locker first."))
 		return
@@ -123,7 +123,7 @@
 	else
 		FEEDBACK_ACCESS_DENIED(user)
 
-/obj/structure/closet/secure_closet/verb/verb_togglelock()
+/obj/structure/closet/secure/verb/verb_togglelock()
 	set category = PANEL_OBJECT
 	set src in oview(1) // One square distance
 	set name = "Toggle Lock"

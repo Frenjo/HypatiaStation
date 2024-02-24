@@ -1,4 +1,4 @@
-/obj/structure/closet/secure_closet/guncabinet
+/obj/structure/closet/secure/guncabinet
 	name = "gun cabinet"
 	req_access = list(ACCESS_ARMOURY)
 	icon = 'icons/obj/closets/guncabinet.dmi'
@@ -9,15 +9,15 @@
 	icon_closed = "base"
 	icon_opened = "base"
 
-/obj/structure/closet/secure_closet/guncabinet/New()
+/obj/structure/closet/secure/guncabinet/New()
 	. = ..()
 	update_icon()
 
-/obj/structure/closet/secure_closet/guncabinet/toggle()
+/obj/structure/closet/secure/guncabinet/toggle()
 	..()
 	update_icon()
 
-/obj/structure/closet/secure_closet/guncabinet/update_icon()
+/obj/structure/closet/secure/guncabinet/update_icon()
 	overlays.Cut()
 	if(opened)
 		overlays.Add(icon(icon, "door_open"))

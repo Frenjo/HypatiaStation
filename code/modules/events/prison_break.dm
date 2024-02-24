@@ -36,7 +36,7 @@
 				for(var/obj/machinery/power/apc/temp_apc in A)
 					temp_apc.overload_lighting()
 
-				for(var/obj/structure/closet/secure_closet/brig/temp_closet in A)
+				for(var/obj/structure/closet/secure/brig/temp_closet in A)
 					temp_closet.locked = 0
 					temp_closet.icon_state = temp_closet.icon_closed
 

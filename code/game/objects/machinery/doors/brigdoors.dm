@@ -46,7 +46,7 @@
 			if(F.id == id)
 				targets += F
 
-		for(var/obj/structure/closet/secure_closet/brig/C in world)
+		for(var/obj/structure/closet/secure/brig/C in world)
 			if(C.id == id)
 				targets += C
 
@@ -103,7 +103,7 @@
 		spawn(0)
 			door.close()
 
-	for(var/obj/structure/closet/secure_closet/brig/C in targets)
+	for(var/obj/structure/closet/secure/brig/C in targets)
 		if(C.broken)
 			continue
 		if(C.opened && !C.close())
@@ -126,7 +126,7 @@
 		spawn(0)
 			door.open()
 
-	for(var/obj/structure/closet/secure_closet/brig/C in targets)
+	for(var/obj/structure/closet/secure/brig/C in targets)
 		if(C.broken)
 			continue
 		if(C.opened)

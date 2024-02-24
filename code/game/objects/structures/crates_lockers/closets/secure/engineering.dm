@@ -1,7 +1,7 @@
 /*
  * Chief Engineer
  */
-/obj/structure/closet/secure_closet/engineering_chief
+/obj/structure/closet/secure/engineering_chief
 	name = "Chief Engineer's Locker"
 	req_access = list(ACCESS_CE)
 	icon_state = "securece1"
@@ -28,7 +28,7 @@
 		/obj/item/taperoll/engineering
 	)
 
-/obj/structure/closet/secure_closet/engineering_chief/New()
+/obj/structure/closet/secure/engineering_chief/New()
 	if(prob(50))
 		starts_with.Add(/obj/item/storage/backpack/industrial)
 	else
@@ -42,7 +42,7 @@
 /*
  * Electrical
  */
-/obj/structure/closet/secure_closet/engineering_electrical
+/obj/structure/closet/secure/engineering_electrical
 	name = "Electrical Supplies"
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	icon_state = "secureengelec1"
@@ -72,7 +72,7 @@
 /*
  * Welding
  */
-/obj/structure/closet/secure_closet/engineering_welding
+/obj/structure/closet/secure/engineering_welding
 	name = "Welding Supplies"
 	req_access = list(ACCESS_CONSTRUCTION)
 	icon_state = "secureengweld1"
@@ -97,7 +97,7 @@
 /*
  * Engineer
  */
-/obj/structure/closet/secure_closet/engineering_personal
+/obj/structure/closet/secure/engineering_personal
 	name = "Engineer's Locker"
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	icon_state = "secureeng1"
@@ -117,7 +117,7 @@
 		/obj/item/taperoll/engineering
 	)
 
-/obj/structure/closet/secure_closet/engineering_personal/New()
+/obj/structure/closet/secure/engineering_personal/New()
 	if(prob(50))
 		starts_with.Add(/obj/item/storage/backpack/industrial)
 	else
@@ -131,7 +131,7 @@
 /*
  * Atmospheric Technician
  */
-/obj/structure/closet/secure_closet/atmos_personal
+/obj/structure/closet/secure/atmos_personal
 	name = "Technician's Locker"
 	req_access = list(ACCESS_ATMOSPHERICS)
 	icon_state = "secureatm1"
@@ -152,7 +152,7 @@
 		/obj/item/taperoll/engineering
 	)
 
-/obj/structure/closet/secure_closet/atmos_personal/New()
+/obj/structure/closet/secure/atmos_personal/New()
 	if(prob(50))
 		starts_with.Add(/obj/item/storage/backpack/industrial)
 	else

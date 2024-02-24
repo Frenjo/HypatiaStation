@@ -1,7 +1,7 @@
 /*
  * Captain
  */
-/obj/structure/closet/secure_closet/captains
+/obj/structure/closet/secure/captains
 	name = "Captain's Locker"
 	req_access = list(ACCESS_CAPTAIN)
 	icon_state = "capsecure1"
@@ -28,7 +28,7 @@
 		/obj/item/clothing/under/dress/dress_cap
 	)
 
-/obj/structure/closet/secure_closet/captains/New()
+/obj/structure/closet/secure/captains/New()
 	if(prob(50))
 		starts_with.Add(/obj/item/storage/backpack/captain)
 	else
@@ -38,7 +38,7 @@
 /*
  * Head of Personnel
  */
-/obj/structure/closet/secure_closet/hop
+/obj/structure/closet/secure/hop
 	name = "Head of Personnel's Locker"
 	req_access = list(ACCESS_HOP)
 	icon_state = "hopsecure1"
@@ -63,7 +63,7 @@
 /*
  * Head of Personnel Attire
  */
-/obj/structure/closet/secure_closet/hop2
+/obj/structure/closet/secure/hop2
 	name = "Head of Personnel's Attire"
 	req_access = list(ACCESS_HOP)
 	icon_state = "hopsecure1"
@@ -91,7 +91,7 @@
 /*
  * Head of Security
  */
-/obj/structure/closet/secure_closet/hos
+/obj/structure/closet/secure/hos
 	name = "Head of Security's Locker"
 	req_access = list(ACCESS_HOS)
 	icon_state = "hossecure1"
@@ -124,7 +124,7 @@
 		/obj/item/melee/telebaton
 	)
 
-/obj/structure/closet/secure_closet/hos/New()
+/obj/structure/closet/secure/hos/New()
 	if(prob(50))
 		starts_with.Add(/obj/item/storage/backpack/security)
 	else
@@ -134,7 +134,7 @@
 /*
  * Warden
  */
-/obj/structure/closet/secure_closet/warden
+/obj/structure/closet/secure/warden
 	name = "Warden's Locker"
 	req_access = list(ACCESS_ARMOURY)
 	icon_state = "wardensecure1"
@@ -162,7 +162,7 @@
 		/obj/item/storage/box/holobadge
 	)
 
-/obj/structure/closet/secure_closet/warden/New()
+/obj/structure/closet/secure/warden/New()
 	if(prob(50))
 		starts_with.Add(/obj/item/storage/backpack/security)
 	else
@@ -172,7 +172,7 @@
 /*
  * Security Officer
  */
-/obj/structure/closet/secure_closet/security
+/obj/structure/closet/secure/security
 	name = "Security Officer's Locker"
 	req_access = list(ACCESS_SECURITY)
 	icon_state = "sec1"
@@ -201,29 +201,29 @@
 		/obj/item/clothing/under/rank/security/corp
 	)
 
-/obj/structure/closet/secure_closet/security/New()
+/obj/structure/closet/secure/security/New()
 	if(prob(50))
 		starts_with.Add(/obj/item/storage/backpack/security)
 	else
 		starts_with.Add(/obj/item/storage/satchel/sec)
 	. = ..()
 
-/obj/structure/closet/secure_closet/security/cargo/New()
+/obj/structure/closet/secure/security/cargo/New()
 	starts_with.Add(/obj/item/clothing/tie/armband/cargo)
 	starts_with.Add(/obj/item/encryptionkey/cargo)
 	. = ..()
 
-/obj/structure/closet/secure_closet/security/engine/New()
+/obj/structure/closet/secure/security/engine/New()
 	starts_with.Add(/obj/item/clothing/tie/armband/engine)
 	starts_with.Add(/obj/item/encryptionkey/engi)
 	. = ..()
 
-/obj/structure/closet/secure_closet/security/science/New()
+/obj/structure/closet/secure/security/science/New()
 	starts_with.Add(/obj/item/clothing/tie/armband/science)
 	starts_with.Add(/obj/item/encryptionkey/sci)
 	. = ..()
 
-/obj/structure/closet/secure_closet/security/med/New()
+/obj/structure/closet/secure/security/med/New()
 	starts_with.Add(/obj/item/clothing/tie/armband/medgreen)
 	starts_with.Add(/obj/item/encryptionkey/med)
 	. = ..()
@@ -231,7 +231,7 @@
 /*
  * Detective
  */
-/obj/structure/closet/secure_closet/detective
+/obj/structure/closet/secure/detective
 	name = "Detective's Cabinet"
 	req_access = list(ACCESS_FORENSICS_LOCKERS)
 	icon_state = "cabinetdetective_locked"
@@ -264,7 +264,7 @@
 		/obj/item/clothing/tie/holster/armpit
 	)
 
-/obj/structure/closet/secure_closet/detective/update_icon()
+/obj/structure/closet/secure/detective/update_icon()
 	if(broken)
 		icon_state = icon_broken
 	else
@@ -279,7 +279,7 @@
 /*
  * Lethal Injections
  */
-/obj/structure/closet/secure_closet/injection
+/obj/structure/closet/secure/injection
 	name = "Lethal Injections"
 	req_access = list(ACCESS_CAPTAIN)
 
@@ -291,7 +291,7 @@
 /*
  * Brig
  */
-/obj/structure/closet/secure_closet/brig
+/obj/structure/closet/secure/brig
 	name = "Brig Locker"
 	req_access = list(ACCESS_BRIG)
 	anchored = TRUE
@@ -306,7 +306,7 @@
 /*
  * Courtroom
  */
-/obj/structure/closet/secure_closet/courtroom
+/obj/structure/closet/secure/courtroom
 	name = "Courtroom Locker"
 	req_access = list(ACCESS_COURT)
 
@@ -324,7 +324,7 @@
 /*
  * Wall Locker
  */
-/obj/structure/closet/secure_closet/wall
+/obj/structure/closet/secure/wall
 	name = "wall locker"
 	req_access = list(ACCESS_SECURITY)
 	icon_state = "wall-locker1"
@@ -338,7 +338,7 @@
 	//too small to put a man in
 	large = 0
 
-/obj/structure/closet/secure_closet/wall/update_icon()
+/obj/structure/closet/secure/wall/update_icon()
 	if(broken)
 		icon_state = icon_broken
 	else

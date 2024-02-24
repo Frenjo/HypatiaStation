@@ -688,8 +688,8 @@ default behaviour is:
 		var/obj/structure/closet/C = L.loc
 		if(C.opened)
 			return //Door's open... wait, why are you in it's contents then?
-		if(istype(L.loc, /obj/structure/closet/secure_closet))
-			var/obj/structure/closet/secure_closet/SC = L.loc
+		if(istype(L.loc, /obj/structure/closet/secure))
+			var/obj/structure/closet/secure/SC = L.loc
 			if(!SC.locked && !SC.welded)
 				return //It's a secure closet, but isn't locked. Easily escapable from, no need to 'resist'
 		else
@@ -711,8 +711,8 @@ default behaviour is:
 					return
 
 				//Perform the same set of checks as above for weld and lock status to determine if there is even still a point in 'resisting'...
-				if(istype(L.loc, /obj/structure/closet/secure_closet))
-					var/obj/structure/closet/secure_closet/SC = L.loc
+				if(istype(L.loc, /obj/structure/closet/secure))
+					var/obj/structure/closet/secure/SC = L.loc
 					if(!SC.locked && !SC.welded)
 						return
 				else
@@ -720,8 +720,8 @@ default behaviour is:
 						return
 
 				//Well then break it!
-				if(istype(usr.loc, /obj/structure/closet/secure_closet))
-					var/obj/structure/closet/secure_closet/SC = L.loc
+				if(istype(usr.loc, /obj/structure/closet/secure))
+					var/obj/structure/closet/secure/SC = L.loc
 					SC.desc = "It appears to be broken."
 					SC.icon_state = SC.icon_off
 					flick(SC.icon_broken, SC)

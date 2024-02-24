@@ -1,4 +1,4 @@
-/obj/structure/closet/secure_closet/freezer/update_icon()
+/obj/structure/closet/secure/freezer/update_icon()
 	if(broken)
 		icon_state = icon_broken
 	else
@@ -13,7 +13,7 @@
 /*
  * Kitchen
  */
-/obj/structure/closet/secure_closet/freezer/kitchen
+/obj/structure/closet/secure/freezer/kitchen
 	name = "Kitchen Cabinet"
 	req_access = list(ACCESS_KITCHEN)
 
@@ -30,13 +30,13 @@
 		/obj/item/reagent_containers/food/snacks/meat/monkey
 	)
 
-/obj/structure/closet/secure_closet/freezer/kitchen/mining
+/obj/structure/closet/secure/freezer/kitchen/mining
 	req_access = list()
 
 /*
  * Meat
  */
-/obj/structure/closet/secure_closet/freezer/meat
+/obj/structure/closet/secure/freezer/meat
 	name = "Meat Fridge"
 	icon_state = "fridge1"
 	icon_closed = "fridge"
@@ -55,7 +55,7 @@
 /*
  * Fridge
  */
-/obj/structure/closet/secure_closet/freezer/fridge
+/obj/structure/closet/secure/freezer/fridge
 	name = "Refrigerator"
 	icon_state = "fridge1"
 	icon_closed = "fridge"
@@ -80,7 +80,7 @@
 /*
  * Money
  */
-/obj/structure/closet/secure_closet/freezer/money
+/obj/structure/closet/secure/freezer/money
 	name = "Freezer"
 	icon_state = "fridge1"
 	icon_closed = "fridge"

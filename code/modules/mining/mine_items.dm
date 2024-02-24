@@ -11,7 +11,7 @@
 /*
  * Miner Lockers
  */
-/obj/structure/closet/secure_closet/miner
+/obj/structure/closet/secure/miner
 	name = "miner's equipment"
 	req_access = list(ACCESS_MINING)
 	icon_state = "miningsec1"
@@ -34,7 +34,7 @@
 		/obj/item/clothing/glasses/meson
 	)
 
-/obj/structure/closet/secure_closet/miner/New()
+/obj/structure/closet/secure/miner/New()
 	if(prob(50))
 		starts_with.Add(/obj/item/storage/backpack/industrial)
 	else

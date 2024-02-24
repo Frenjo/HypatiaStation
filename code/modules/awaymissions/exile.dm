@@ -32,7 +32,7 @@
 	src.imp = new /obj/item/implant/exile(src)
 
 
-/obj/structure/closet/secure_closet/exile
+/obj/structure/closet/secure/exile
 	name = "Exile Implants"
 	req_access = list(ACCESS_HOS)
 

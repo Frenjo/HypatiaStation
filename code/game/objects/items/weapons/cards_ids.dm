@@ -82,7 +82,7 @@
 		/obj/item/megaphone,
 		/obj/item/clothing/tie/holobadge,
 		/obj/structure/closet/crate/secure,
-		/obj/structure/closet/secure_closet,
+		/obj/structure/closet/secure,
 		/obj/machinery/librarycomp,
 		/obj/machinery/computer,
 		/obj/machinery/power,

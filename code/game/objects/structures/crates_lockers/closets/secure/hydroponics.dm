@@ -1,4 +1,4 @@
-/obj/structure/closet/secure_closet/hydroponics
+/obj/structure/closet/secure/hydroponics
 	name = "Botanist's locker"
 	req_access = list(ACCESS_HYDROPONICS)
 	icon_state = "hydrosecure1"
@@ -18,7 +18,7 @@
 		/obj/item/bee_net
 	)
 
-/obj/structure/closet/secure_closet/hydroponics/New()
+/obj/structure/closet/secure/hydroponics/New()
 	if(prob(50))
 		starts_with.Add(/obj/item/clothing/suit/apron)
 	else
