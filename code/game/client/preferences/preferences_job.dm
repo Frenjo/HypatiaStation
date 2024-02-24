@@ -21,7 +21,7 @@
 
 	// The job before the current job. I only use this to get the previous jobs color when I'm filling in blank rows.
 	var/datum/job/lastJob
-	for(var/datum/job/job in global.CTjobs.occupations)
+	for_no_type_check(var/datum/job/job, global.CTjobs.occupations)
 		index += 1
 		if(index >= limit || (job.title in splitJobs))
 			if(index < limit && isnotnull(lastJob))

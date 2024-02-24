@@ -73,11 +73,11 @@ PROCESS_DEF(air)
 	var/list/edges = list()
 
 	// Geometry updates lists
-	var/list/tiles_to_update = list()
-	var/list/zones_to_update = list()
-	var/list/active_fire_zones = list()
-	var/list/active_hotspots = list()
-	var/list/active_edges = list()
+	var/list/turf/tiles_to_update = list()
+	var/list/zone/zones_to_update = list()
+	var/list/zone/active_fire_zones = list()
+	var/list/obj/fire/active_hotspots = list()
+	var/list/connection_edge/active_edges = list()
 
 	var/active_zones = 0
 
@@ -152,7 +152,7 @@ PROCESS_DEF(air)
 		#ifdef ZASDBG
 		var/updated = 0
 		#endif
-		for(var/turf/T in updating)
+		for_no_type_check(var/turf/T, updating)
 			T.update_air_properties()
 			T.post_update_air_properties()
 			T.needs_air_update = FALSE
@@ -173,7 +173,7 @@ PROCESS_DEF(air)
 	if(.)
 		tick_progress = "processing edges"
 
-	for(var/connection_edge/edge in active_edges)
+	for_no_type_check(var/connection_edge/edge, active_edges)
 		edge.tick()
 		CHECK_TICK
 
@@ -181,7 +181,7 @@ PROCESS_DEF(air)
 	if(.)
 		tick_progress = "processing fire zones"
 
-	for(var/zone/Z in active_fire_zones)
+	for_no_type_check(var/zone/Z, active_fire_zones)
 		Z.process_fire()
 		CHECK_TICK
 
@@ -189,7 +189,7 @@ PROCESS_DEF(air)
 	if(.)
 		tick_progress = "processing hotspots"
 
-	for(var/obj/fire/fire in active_hotspots)
+	for_no_type_check(var/obj/fire/fire, active_hotspots)
 		fire.process()
 		CHECK_TICK
 
@@ -201,7 +201,7 @@ PROCESS_DEF(air)
 	if(length(zones_to_update))
 		updating = zones_to_update
 		zones_to_update = list()
-		for(var/zone/zone in updating)
+		for_no_type_check(var/zone/zone, updating)
 			zone.tick()
 			zone.needs_update = FALSE
 			CHECK_TICK

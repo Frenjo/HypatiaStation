@@ -9,13 +9,13 @@
 
 GLOBAL_GLOBL_INIT(lighting_overlays_initialised, FALSE)
 
-GLOBAL_GLOBL_LIST_NEW(lighting_update_lights)	// List of lighting sources queued for update.
-GLOBAL_GLOBL_LIST_NEW(lighting_update_corners)	// List of lighting corners queued for update.
-GLOBAL_GLOBL_LIST_NEW(lighting_update_overlays)	// List of lighting overlays queued for update.
+GLOBAL_GLOBL_LIST_NEW(datum/light_source/lighting_update_lights)				// List of lighting sources queued for update.
+GLOBAL_GLOBL_LIST_NEW(datum/lighting_corner/lighting_update_corners)			// List of lighting corners queued for update.
+GLOBAL_GLOBL_LIST_NEW(atom/movable/lighting_overlay/lighting_update_overlays)	// List of lighting overlays queued for update.
 
-GLOBAL_GLOBL_LIST_NEW(lighting_update_lights_old)	// List of lighting sources currently being updated.
-GLOBAL_GLOBL_LIST_NEW(lighting_update_corners_old)	// List of lighting corners currently being updated.
-GLOBAL_GLOBL_LIST_NEW(lighting_update_overlays_old)	// List of lighting overlays currently being updated.
+GLOBAL_GLOBL_LIST_NEW(datum/light_source/lighting_update_lights_old)				// List of lighting sources currently being updated.
+GLOBAL_GLOBL_LIST_NEW(datum/lighting_corner/lighting_update_corners_old)			// List of lighting corners currently being updated.
+GLOBAL_GLOBL_LIST_NEW(atom/movable/lighting_overlay/lighting_update_overlays_old)	// List of lighting overlays currently being updated.
 
 PROCESS_DEF(lighting)
 	name = "Lighting"
@@ -40,7 +40,7 @@ PROCESS_DEF(lighting)
 
 	GLOBL.lighting_update_lights_old = GLOBL.lighting_update_lights // We use a different list so any additions to the update lists during a delay from scheck() don't cause things to be cut from the list without being updated.
 	GLOBL.lighting_update_lights = list()
-	for(var/datum/light_source/L in GLOBL.lighting_update_lights_old)
+	for_no_type_check(var/datum/light_source/L, GLOBL.lighting_update_lights_old)
 		if(light_updates >= MAX_LIGHT_UPDATES_PER_WORK && !roundstart)
 			GLOBL.lighting_update_lights.Add(L)
 			continue // DON'T break, we're adding stuff back into the update queue.
@@ -63,12 +63,10 @@ PROCESS_DEF(lighting)
 
 	GLOBL.lighting_update_corners_old = GLOBL.lighting_update_corners // Same as above.
 	GLOBL.lighting_update_corners = list()
-	for(var/A in GLOBL.lighting_update_corners_old)
+	for_no_type_check(var/datum/lighting_corner/C, GLOBL.lighting_update_corners_old)
 		if(corner_updates >= MAX_CORNER_UPDATES_PER_WORK && !roundstart)
-			GLOBL.lighting_update_corners.Add(A)
+			GLOBL.lighting_update_corners.Add(C)
 			continue // DON'T break, we're adding stuff back into the update queue.
-
-		var/datum/lighting_corner/C = A
 
 		C.update_overlays()
 
@@ -80,8 +78,7 @@ PROCESS_DEF(lighting)
 
 	GLOBL.lighting_update_overlays_old = GLOBL.lighting_update_overlays //Same as above.
 	GLOBL.lighting_update_overlays = list()
-
-	for(var/atom/movable/lighting_overlay/O in GLOBL.lighting_update_overlays_old)
+	for_no_type_check(var/atom/movable/lighting_overlay/O, GLOBL.lighting_update_overlays_old)
 		if(overlay_updates >= MAX_OVERLAY_UPDATES_PER_WORK && !roundstart)
 			GLOBL.lighting_update_overlays.Add(O)
 			continue // DON'T break, we're adding stuff back into the update queue.

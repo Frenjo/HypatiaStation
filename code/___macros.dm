@@ -1,5 +1,11 @@
+/*
+ * Core Macros
+ */
 // This just exists to make !isnull(X) clearer in what it does.
 #define isnotnull(X) !isnull(X)
+// This makes use of a BYOND quirk for massive performance increases with typed lists.
+// Documented here: https://hackmd.io/@goonstation/code#typecheckless-for-loops
+#define for_no_type_check(THING, LIST) for(##THING as anything in LIST)
 
 // Used to determine if an object has been destroyed by qdel.
 #define GC_DESTROYED(X) isnotnull(X?.gc_destroyed)

@@ -9,7 +9,7 @@ PROCESS_DEF(inactivity)
 
 /datum/process/inactivity/do_work()
 	if(CONFIG_GET(kick_inactive))
-		for(var/client/C in GLOBL.clients)
+		for_no_type_check(var/client/C, GLOBL.clients)
 			if(C.is_afk(INACTIVITY_KICK))
 				if(!istype(C.mob, /mob/dead))
 					log_access("AFK: [key_name(C)]")

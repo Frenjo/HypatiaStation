@@ -5,7 +5,7 @@ CONTROLLER_DEF(jobs)
 	name = "Jobs"
 
 	// List of all jobs
-	var/list/occupations = list()
+	var/list/datum/job/occupations = list()
 	// Players who need jobs
 	var/list/unassigned = list()
 	// Debug info
@@ -35,7 +35,7 @@ CONTROLLER_DEF(jobs)
 /datum/controller/jobs/proc/get_job(rank)
 	if(isnull(rank))
 		return null
-	for(var/datum/job/J in occupations)
+	for_no_type_check(var/datum/job/J, occupations)
 		if(isnull(J))
 			continue
 		if(J.title == rank)
@@ -465,7 +465,7 @@ CONTROLLER_DEF(jobs)
 	return 1
 
 /datum/controller/jobs/proc/handle_feedback_gathering()
-	for(var/datum/job/job in occupations)
+	for_no_type_check(var/datum/job/job, occupations)
 		var/tmp_str = "|[job.title]|"
 
 		var/level1 = 0 //high

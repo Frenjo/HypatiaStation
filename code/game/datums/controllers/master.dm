@@ -129,8 +129,8 @@ CONTROLLER_DEF(master)
 
 		var/digsite = get_random_digsite_type()
 		var/list/processed_turfs = list()
-		var/list/turfs_to_process = list(M)
-		for(var/turf/simulated/mineral/archeo_turf in turfs_to_process)
+		var/list/turf/simulated/mineral/turfs_to_process = list(M)
+		for_no_type_check(var/turf/simulated/mineral/archeo_turf, turfs_to_process)
 			for(var/turf/simulated/mineral/T in orange(1, archeo_turf))
 				if(T.finds)
 					continue

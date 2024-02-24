@@ -2374,7 +2374,7 @@
 					for(var/line in global.CTjobs.job_debug)
 						dat += "[line]<BR>"
 					dat+= "*******<BR><BR>"
-					for(var/datum/job/job in global.CTjobs.occupations)
+					for_no_type_check(var/datum/job/job, global.CTjobs.occupations)
 						if(!job)	continue
 						dat += "job: [job.title], current_positions: [job.current_positions], total_positions: [job.total_positions] <BR>"
 					usr << browse(dat, "window=jobdebug;size=600x500")

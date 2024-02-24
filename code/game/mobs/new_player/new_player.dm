@@ -357,7 +357,7 @@
 				dat += "<font color='red'>The station is currently undergoing crew transfer procedures.</font><br>"
 
 	dat += "Choose from the following open positions:<br>"
-	for(var/datum/job/job in global.CTjobs.occupations)
+	for_no_type_check(var/datum/job/job, global.CTjobs.occupations)
 		if(job && IsJobAvailable(job.title))
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active

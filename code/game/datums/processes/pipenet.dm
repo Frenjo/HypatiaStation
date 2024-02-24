@@ -1,7 +1,7 @@
 /*
  * Pipe Network Process
  */
-GLOBAL_GLOBL_LIST_NEW(pipe_networks)
+GLOBAL_GLOBL_LIST_NEW(datum/pipe_network/pipe_networks)
 
 PROCESS_DEF(pipenet)
 	name = "PipeNet"
@@ -13,13 +13,16 @@ PROCESS_DEF(pipenet)
 	if(processing_killed)
 		return
 
-	for(var/datum/pipe_network/pipeNetwork in GLOBL.pipe_networks)
-		if(!GC_DESTROYED(pipeNetwork))
-			pipeNetwork.process()
+	for_no_type_check(var/datum/pipe_network/pipenet, GLOBL.pipe_networks)
+		if(!GC_DESTROYED(pipenet))
+			try
+				pipenet.process()
+			catch(var/exception/e)
+				catch_exception(e, pipenet)
 			SCHECK
-			continue
-
-		GLOBL.pipe_networks.Remove(pipeNetwork)
+		else
+			catch_bad_type(pipenet)
+			GLOBL.pipe_networks.Remove(pipenet)
 
 /datum/process/pipenet/stat_entry()
 	return list("[length(GLOBL.pipe_networks)] pipenets")

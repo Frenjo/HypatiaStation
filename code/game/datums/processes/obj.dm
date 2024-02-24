@@ -1,7 +1,7 @@
 /*
  * Object Process
  */
-GLOBAL_GLOBL_LIST_NEW(processing_objects)
+GLOBAL_GLOBL_LIST_NEW(obj/processing_objects)
 
 PROCESS_DEF(obj)
 	name = "Obj"
@@ -9,8 +9,7 @@ PROCESS_DEF(obj)
 	start_delay = 8
 
 /datum/process/obj/do_work()
-	for(var/last_object in GLOBL.processing_objects)
-		var/obj/O = last_object
+	for_no_type_check(var/obj/O, GLOBL.processing_objects)
 		if(!GC_DESTROYED(O))
 			try
 				if(O.process() == PROCESS_KILL)

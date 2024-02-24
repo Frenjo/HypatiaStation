@@ -8,16 +8,16 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 	name = "Process Scheduler"
 
 	// Processes known by the scheduler
-	var/tmp/list/processes = list()
+	var/tmp/list/datum/process/processes = list()
 
 	// Processes that are currently running
-	var/tmp/list/running = list()
+	var/tmp/list/datum/process/running = list()
 
 	// Processes that are idle
-	var/tmp/list/idle = list()
+	var/tmp/list/datum/process/idle = list()
 
 	// Processes that are queued to run
-	var/tmp/list/queued = list()
+	var/tmp/list/datum/process/queued = list()
 
 	// Process name -> process object map
 	// TODO: Probably update this to index by typepath instead of name.
@@ -120,7 +120,7 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 	is_running = FALSE
 
 /datum/controller/process_scheduler/proc/check_running_processes()
-	for(var/datum/process/p in running)
+	for_no_type_check(var/datum/process/p, running)
 		p.update()
 
 		if(isnull(p)) // Process was killed
@@ -149,7 +149,7 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 			set_queued_process_state(p)
 
 /datum/controller/process_scheduler/proc/run_queued_processes()
-	for(var/datum/process/p in queued)
+	for_no_type_check(var/datum/process/p, queued)
 		run_process(p)
 
 /datum/controller/process_scheduler/proc/add_process(datum/process/process)
@@ -220,7 +220,7 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 	processes_by_name[newProcess.name] = newProcess
 
 /datum/controller/process_scheduler/proc/update_start_delays()
-	for(var/datum/process/p in processes)
+	for_no_type_check(var/datum/process/p, processes)
 		if(p.start_delay)
 			last_queued[p] = world.time - p.start_delay
 
@@ -324,7 +324,7 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 /datum/controller/process_scheduler/proc/get_status_data()
 	var/list/data = list()
 
-	for(var/datum/process/p in processes)
+	for_no_type_check(var/datum/process/p, processes)
 		data.len++
 		data[length(data)] = p.get_context_data()
 
@@ -386,5 +386,5 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 		return
 	stat("Processes:", "[length(processes)] (R [length(running)] / Q [length(queued)] / I [length(idle)])")
 	stat(null, "[round(cpu_average, 0.1)] CPU, [round(time_allowance, 0.1) / 10] TA")
-	for(var/datum/process/p in processes)
+	for_no_type_check(var/datum/process/p, processes)
 		p.stat_process()

@@ -48,16 +48,14 @@ CONTROLLER_DEF(cameranet)
 		for(var/y = y1; y <= y2; y += 16)
 			visibleChunks.Add(getCameraChunk(x, y, ai.z))
 
-	var/list/remove = ai.visibleCameraChunks - visibleChunks
-	var/list/add = visibleChunks - ai.visibleCameraChunks
+	var/list/datum/camerachunk/remove = ai.visibleCameraChunks - visibleChunks
+	var/list/datum/camerachunk/add = visibleChunks - ai.visibleCameraChunks
 
-	for(var/chunk in remove)
-		var/datum/camerachunk/c = chunk
-		c.remove(ai)
+	for_no_type_check(var/datum/camerachunk/to_remove, remove)
+		to_remove.remove(ai)
 
-	for(var/chunk in add)
-		var/datum/camerachunk/c = chunk
-		c.add(ai)
+	for_no_type_check(var/datum/camerachunk/to_add, add)
+		to_add.add(ai)
 
 // Updates the chunks that the turf is located in. Use this when obstacles are destroyed or	when doors open.
 /datum/controller/cameranet/proc/updateVisibility(atom/A, opacity_check = 1)

@@ -7,8 +7,7 @@ PROCESS_DEF(mob)
 	start_delay = 16
 
 /datum/process/mob/do_work()
-	for(var/last_object in GLOBL.mob_list)
-		var/mob/M = last_object
+	for_no_type_check(var/mob/M, GLOBL.mob_list)
 		if(!GC_DESTROYED(M))
 			try
 				M.Life()

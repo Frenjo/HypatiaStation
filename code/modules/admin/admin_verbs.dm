@@ -744,7 +744,7 @@ var/list/admin_verbs_donor = list(
 
 	if(holder)
 		var/list/jobs = list()
-		for(var/datum/job/J in global.CTjobs.occupations)
+		for_no_type_check(var/datum/job/J, global.CTjobs.occupations)
 			if(J.current_positions >= J.total_positions && J.total_positions != -1)
 				jobs += J.title
 		if(!length(jobs))

@@ -600,7 +600,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	if(global.CTjobs)
-		for(var/datum/job/job in global.CTjobs.occupations)
+		for_no_type_check(var/datum/job/job, global.CTjobs.occupations)
 			src << "[job.title]: [job.total_positions]"
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
