@@ -6,10 +6,11 @@ GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 	return 1
 
 /datum/datacore
-	var/list/medical = list()
-	var/list/general = list()
-	var/list/security = list()
-	var/list/locked = list() // This list tracks characters spawned in the world and cannot be modified in-game. Currently referenced by respawn_character().
+	var/list/datum/data/record/general = list()
+	var/list/datum/data/record/medical = list()
+	var/list/datum/data/record/security = list()
+	// This list tracks characters spawned in the world and cannot be modified in-game. Currently referenced by respawn_character().
+	var/list/datum/data/record/locked = list()
 
 /datum/datacore/proc/get_manifest(monochrome, OOC)
 	var/list/heads = list()
@@ -36,7 +37,7 @@ GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 	var/even = FALSE
 
 	// sort mobs
-	for(var/datum/data/record/t in GLOBL.data_core.general)
+	for_no_type_check(var/datum/data/record/t, GLOBL.data_core.general)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
 		var/real_rank = t.fields["real_rank"]
@@ -144,7 +145,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	var/list/bot = list()
 	var/list/misc = list()
 
-	for(var/datum/data/record/t in GLOBL.data_core.general)
+	for_no_type_check(var/datum/data/record/t, GLOBL.data_core.general)
 		var/name = sanitize(t.fields["name"])
 		var/rank = sanitize(t.fields["rank"])
 		var/real_rank = t.fields["real_rank"]
@@ -217,7 +218,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 
 	var/datum/data/record/foundrecord
 	var/real_title = assignment
-	for(var/datum/data/record/t in GLOBL.data_core.general)
+	for_no_type_check(var/datum/data/record/t, GLOBL.data_core.general)
 		if(isnotnull(t))
 			if(t.fields["name"] == name)
 				foundrecord = t

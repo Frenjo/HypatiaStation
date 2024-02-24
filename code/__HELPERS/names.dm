@@ -153,7 +153,7 @@ GLOBAL_GLOBL_INIT(syndicate_code_response, null)	// Code response for traitors.
 	var/list/locations = length(GLOBL.teleportlocs) ? GLOBL.teleportlocs : drinks//if null, defaults to drinks instead.
 
 	var/list/names = list()
-	for(var/datum/data/record/t in GLOBL.data_core.general) // Picks from crew manifest.
+	for_no_type_check(var/datum/data/record/t, GLOBL.data_core.general) // Picks from crew manifest.
 		names.Add(t.fields["name"])
 
 	var/maxwords = words//Extra var to check for duplicates.

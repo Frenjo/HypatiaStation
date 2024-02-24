@@ -7,7 +7,7 @@ CONTROLLER_DEF(jobs)
 	// List of all jobs
 	var/list/datum/job/occupations = list()
 	// Players who need jobs
-	var/list/unassigned = list()
+	var/list/mob/new_player/unassigned = list()
 	// Debug info
 	var/list/job_debug = list()
 
@@ -78,7 +78,7 @@ CONTROLLER_DEF(jobs)
 /datum/controller/jobs/proc/find_occupation_candidates(datum/job/job, level, flag)
 	debug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
 	var/list/candidates = list()
-	for(var/mob/new_player/player in unassigned)
+	for_no_type_check(var/mob/new_player/player, unassigned)
 		if(jobban_isbanned(player, job.title))
 			debug("FOC isbanned failed, Player: [player]")
 			continue
@@ -211,7 +211,7 @@ CONTROLLER_DEF(jobs)
 		//Malf NEEDS an AI so force one if we didn't get a player who wanted it
 		if(IS_GAME_MODE(/datum/game_mode/malfunction) && !ai_selected)
 			unassigned = shuffle(unassigned)
-			for(var/mob/new_player/player in unassigned)
+			for_no_type_check(var/mob/new_player/player, unassigned)
 				if(jobban_isbanned(player, "AI"))
 					continue
 				if(assign_role(player, "AI"))
@@ -278,15 +278,15 @@ CONTROLLER_DEF(jobs)
 	// Hopefully this will add more randomness and fairness to job giving.
 
 	// Loop through all levels from high to low
-	var/list/shuffledoccupations = shuffle(occupations)
+	var/list/datum/job/shuffledoccupations = shuffle(occupations)
 	for(var/level = 1 to 3)
 		//Check the head jobs first each level
 		check_head_positions(level)
 
 		// Loop through all unassigned players
-		for(var/mob/new_player/player in unassigned)
+		for_no_type_check(var/mob/new_player/player, unassigned)
 			// Loop through all jobs
-			for(var/datum/job/job in shuffledoccupations) // SHUFFLE ME BABY
+			for_no_type_check(var/datum/job/job, shuffledoccupations) // SHUFFLE ME BABY
 				if(isnull(job))
 					continue
 
@@ -309,7 +309,7 @@ CONTROLLER_DEF(jobs)
 
 	// Hand out random jobs to the people who didn't get any in the last check
 	// Also makes sure that they got their preference correct
-	for(var/mob/new_player/player in unassigned)
+	for_no_type_check(var/mob/new_player/player, unassigned)
 		if(player.client.prefs.alternate_option == GET_RANDOM_JOB)
 			give_random_job(player)
 
@@ -318,13 +318,13 @@ CONTROLLER_DEF(jobs)
 	debug("DO, Running AC2")
 
 	// For those who wanted to be assistant if their preferences were filled, here you go.
-	for(var/mob/new_player/player in unassigned)
+	for_no_type_check(var/mob/new_player/player, unassigned)
 		if(player.client.prefs.alternate_option == BE_ASSISTANT)
 			debug("AC2 Assistant located, Player: [player]")
 			assign_role(player, "Assistant")
 
 	//For ones returning to lobby
-	for(var/mob/new_player/player in unassigned)
+	for_no_type_check(var/mob/new_player/player, unassigned)
 		if(player.client.prefs.alternate_option == RETURN_TO_LOBBY)
 			player.ready = FALSE
 			unassigned.Remove(player)

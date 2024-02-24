@@ -1,7 +1,7 @@
 /*
  * Base Controller Datum
  */
-GLOBAL_GLOBL_LIST_NEW(controllers)
+GLOBAL_GLOBL_LIST_NEW(datum/controller/controllers)
 
 /datum/controller
 	// The controller's name.

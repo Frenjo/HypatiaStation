@@ -621,7 +621,7 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 			threatcount -= 2
 
 	if(check_records)
-		for(var/datum/data/record/E in GLOBL.data_core.general)
+		for_no_type_check(var/datum/data/record/E, GLOBL.data_core.general)
 			var/perpname = perp.name
 			if(isnotnull(perp.wear_id))
 				var/obj/item/card/id/id = perp.wear_id.get_id()
@@ -629,7 +629,7 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 					perpname = id.registered_name
 
 			if(E.fields["name"] == perpname)
-				for(var/datum/data/record/R in GLOBL.data_core.security)
+				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.security)
 					if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
 						threatcount = 4
 						break

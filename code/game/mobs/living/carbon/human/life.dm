@@ -1783,9 +1783,9 @@
 			if(isnotnull(I))
 				perpname = I.registered_name
 
-		for(var/datum/data/record/E in GLOBL.data_core.general)
+		for_no_type_check(var/datum/data/record/E, GLOBL.data_core.general)
 			if(E.fields["name"] == perpname)
-				for(var/datum/data/record/R in GLOBL.data_core.security)
+				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.security)
 					if((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
 						holder.icon_state = "hudwanted"
 						break

@@ -13,7 +13,7 @@
 CONTROLLER_DEF(pai)
 	name = "pAI"
 
-	var/list/pAI_candidates = list()
+	var/list/datum/pAI_candidate/candidates = list()
 	var/list/asked = list()
 
 	var/askDelay = 10 * 60 * 1	// One minute [ms * sec * min]
@@ -39,7 +39,7 @@ CONTROLLER_DEF(pai)
 			global.PCticker.mode.update_cult_icons_removed(card.pai.mind)
 			global.PCticker.mode.update_rev_icons_removed(card.pai.mind)
 
-			pAI_candidates.Remove(candidate)
+			candidates.Remove(candidate)
 			usr << browse(null, "window=findPai")
 
 	if(href_list["new"])
@@ -91,7 +91,7 @@ CONTROLLER_DEF(pai)
 
 /datum/controller/pai/proc/recruit_window(mob/M as mob)
 	var/datum/pAI_candidate/candidate
-	for(var/datum/pAI_candidate/c in pAI_candidates)
+	for_no_type_check(var/datum/pAI_candidate/c, candidates)
 		if(!istype(c) || !istype(M))
 			break
 		if(c.key == M.key)
@@ -99,7 +99,7 @@ CONTROLLER_DEF(pai)
 	if(isnull(candidate))
 		candidate = new /datum/pAI_candidate()
 		candidate.key = M.key
-		pAI_candidates.Add(candidate)
+		candidates.Add(candidate)
 
 	var/dat = ""
 	dat += {"
@@ -218,7 +218,7 @@ CONTROLLER_DEF(pai)
 /datum/controller/pai/proc/find_pAI(obj/item/paicard/p, mob/user)
 	request_recruits()
 	var/list/available = list()
-	for(var/datum/pAI_candidate/c in global.CTpai.pAI_candidates)
+	for_no_type_check(var/datum/pAI_candidate/c, candidates)
 		if(c.ready)
 			var/found = 0
 			for(var/mob/dead/observer/o in GLOBL.player_list)
@@ -344,7 +344,7 @@ CONTROLLER_DEF(pai)
 				asked.Remove(O.key)
 		if(isnotnull(O.client))
 			var/hasSubmitted = 0
-			for(var/datum/pAI_candidate/c in global.CTpai.pAI_candidates)
+			for_no_type_check(var/datum/pAI_candidate/c, candidates)
 				if(c.key == O.key)
 					hasSubmitted = 1
 			if(!hasSubmitted && (O.client.prefs.be_special & BE_PAI))

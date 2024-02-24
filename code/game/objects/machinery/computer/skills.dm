@@ -72,8 +72,8 @@
 <th><A href='?src=\ref[src];choice=Sorting;sort=fingerprint'>Fingerprints</A></th>
 </tr>"}
 					if(isnotnull(GLOBL.data_core.general))
-						for(var/datum/data/record/R in sortRecord(GLOBL.data_core.general, sortBy, order))
-							for(var/datum/data/record/E in GLOBL.data_core.security)
+						for_no_type_check(var/datum/data/record/R, sortRecord(GLOBL.data_core.general, sortBy, order))
+							for_no_type_check(var/datum/data/record/E, GLOBL.data_core.security)
 							var/background
 							dat += text("<tr style=[]><td><A href='?src=\ref[];choice=Browse Record;d_rec=\ref[]'>[]</a></td>", background, src, R, R.fields["name"])
 							dat += text("<td>[]</td>", R.fields["id"])
@@ -225,7 +225,7 @@ What a mess.*/
 				var/list/components = splittext(t1, " ")
 				if(length(components) > 5)
 					return //Lets not let them search too greedily.
-				for(var/datum/data/record/R in GLOBL.data_core.general)
+				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.general)
 					var/temptext = R.fields["name"] + " " + R.fields["id"] + " " + R.fields["fingerprint"] + " " + R.fields["rank"]
 					for(var/i = 1, i <= length(components), i++)
 						if(findtext(temptext,components[i]))
@@ -233,7 +233,7 @@ What a mess.*/
 							prelist[1] = R
 							Perp += prelist
 				for(var/i = 1, i <= length(Perp), i += 2)
-					for(var/datum/data/record/E in GLOBL.data_core.security)
+					for_no_type_check(var/datum/data/record/E, GLOBL.data_core.security)
 						var/datum/data/record/R = Perp[i]
 						if ((E.fields["name"] == R.fields["name"] && E.fields["id"] == R.fields["id"]))
 							Perp[i+1] = E
@@ -249,7 +249,7 @@ What a mess.*/
 				if(!GLOBL.data_core.general.Find(R))
 					temp = "Record Not Found!"
 				else
-					for(var/datum/data/record/E in GLOBL.data_core.security)
+					for_no_type_check(var/datum/data/record/E, GLOBL.data_core.security)
 					active1 = R
 					screen = 3
 
@@ -292,7 +292,7 @@ What a mess.*/
 			if ("Purge All Records")
 				if(length(GLOBL.pda_manifest))
 					GLOBL.pda_manifest.Cut()
-				for(var/datum/data/record/R in GLOBL.data_core.security)
+				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.security)
 					qdel(R)
 				temp = "All Employment records deleted."
 
@@ -388,7 +388,7 @@ What a mess.*/
 						if (active1)
 							if(length(GLOBL.pda_manifest))
 								GLOBL.pda_manifest.Cut()
-							for(var/datum/data/record/R in GLOBL.data_core.medical)
+							for_no_type_check(var/datum/data/record/R, GLOBL.data_core.medical)
 								if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
 									qdel(R)
 								else
@@ -405,7 +405,7 @@ What a mess.*/
 		..(severity)
 		return
 
-	for(var/datum/data/record/R in GLOBL.data_core.security)
+	for_no_type_check(var/datum/data/record/R, GLOBL.data_core.security)
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)

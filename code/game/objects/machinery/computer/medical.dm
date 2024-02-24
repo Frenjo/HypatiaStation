@@ -48,7 +48,7 @@
 				if(2.0)
 					dat += "<B>Record List</B>:<HR>"
 					if(isnotnull(GLOBL.data_core.general))
-						for(var/datum/data/record/R in sortRecord(GLOBL.data_core.general))
+						for_no_type_check(var/datum/data/record/R, sortRecord(GLOBL.data_core.general))
 							dat += text("<A href='?src=\ref[];d_rec=\ref[]'>[]: []<BR>", src, R, R.fields["id"], R.fields["name"])
 							//Foreach goto(132)
 					dat += text("<HR><A href='?src=\ref[];screen=1'>Back</A>", src)
@@ -218,7 +218,7 @@
 				src.temp = text("Are you sure you wish to delete all records?<br>\n\t<A href='?src=\ref[];temp=1;del_all2=1'>Yes</A><br>\n\t<A href='?src=\ref[];temp=1'>No</A><br>", src, src)
 
 			if(href_list["del_all2"])
-				for(var/datum/data/record/R in GLOBL.data_core.medical)
+				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.medical)
 					//R = null
 					qdel(R)
 					//Foreach goto(494)
@@ -394,7 +394,7 @@
 				if(!GLOBL.data_core.general.Find(R))
 					src.temp = "Record Not Found!"
 					return
-				for(var/datum/data/record/E in GLOBL.data_core.medical)
+				for_no_type_check(var/datum/data/record/E, GLOBL.data_core.medical)
 					if((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 						M = E
 					else
@@ -447,7 +447,7 @@
 				src.active1 = null
 				src.active2 = null
 				t1 = lowertext(t1)
-				for(var/datum/data/record/R in GLOBL.data_core.medical)
+				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.medical)
 					if ((lowertext(R.fields["name"]) == t1 || t1 == lowertext(R.fields["id"]) || t1 == lowertext(R.fields["b_dna"])))
 						src.active2 = R
 					else
@@ -455,7 +455,7 @@
 				if (!( src.active2 ))
 					src.temp = text("Could not locate record [].", t1)
 				else
-					for(var/datum/data/record/E in GLOBL.data_core.general)
+					for_no_type_check(var/datum/data/record/E, GLOBL.data_core.general)
 						if ((E.fields["name"] == src.active2.fields["name"] || E.fields["id"] == src.active2.fields["id"]))
 							src.active1 = E
 						else
@@ -493,7 +493,7 @@
 		..(severity)
 		return
 
-	for(var/datum/data/record/R in GLOBL.data_core.medical)
+	for_no_type_check(var/datum/data/record/R, GLOBL.data_core.medical)
 		if(prob(10/severity))
 			switch(rand(1,6))
 				if(1)

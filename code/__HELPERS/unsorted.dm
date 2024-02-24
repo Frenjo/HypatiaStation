@@ -259,8 +259,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	if(oldname)
 		//update the datacore records! This is goig to be a bit costly.
-		for(var/list/L in list(GLOBL.data_core.general, GLOBL.data_core.medical, GLOBL.data_core.security, GLOBL.data_core.locked))
-			for(var/datum/data/record/R in L)
+		for_no_type_check(var/list/L, list(GLOBL.data_core.general, GLOBL.data_core.medical, GLOBL.data_core.security, GLOBL.data_core.locked))
+			for_no_type_check(var/datum/data/record/R, L)
 				if(R.fields["name"] == oldname)
 					R.fields["name"] = newname
 					break
@@ -767,8 +767,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	if(isnull(A) || isnull(src))
 		return 0
 
-	var/list/turfs_src = get_area_turfs(src.type)
-	var/list/turfs_trg = get_area_turfs(A.type)
+	var/list/turf/turfs_src = get_area_turfs(src.type)
+	var/list/turf/turfs_trg = get_area_turfs(A.type)
 
 	if(!length(turfs_src) || !length(turfs_trg))
 		return 0
@@ -777,7 +777,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	//might be worth doing this with a shuttle core object instead of areas, in the future
 	var/src_min_x = 0
 	var/src_min_y = 0
-	for(var/turf/T in turfs_src)
+	for_no_type_check(var/turf/T, turfs_src)
 		if(T.x < src_min_x || !src_min_x)
 			src_min_x	= T.x
 		if(T.y < src_min_y || !src_min_y)
@@ -786,7 +786,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/trg_z = 0 //multilevel shuttles are not supported, unfortunately
 	var/trg_min_x = 0
 	var/trg_min_y = 0
-	for(var/turf/T in turfs_trg)
+	for_no_type_check(var/turf/T, turfs_trg)
 		if(!trg_z)
 			trg_z = T.z
 		if(T.x < trg_min_x || !trg_min_x)
@@ -796,7 +796,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	//obtain all the source turfs and their relative coords,
 	//then use that to find corresponding targets
-	for(var/turf/source in turfs_src)
+	for_no_type_check(var/turf/source, turfs_src)
 		//var/datum/coords/C = new/datum/coords
 		var/x_pos = (source.x - src_min_x)
 		var/y_pos = (source.y - src_min_y)
@@ -808,7 +808,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		transport_turf_contents(source, target, direction)
 
 	//change the old turfs
-	for(var/turf/source in turfs_src)
+	for_no_type_check(var/turf/source, turfs_src)
 		if(turftoleave)
 			source.ChangeTurf(turftoleave, 1, 1)
 		else
@@ -864,12 +864,12 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	if(isnull(A) || isnull(src))
 		return 0
 
-	var/list/turfs_src = get_area_turfs(src.type)
-	var/list/turfs_trg = get_area_turfs(A.type)
+	var/list/turf/turfs_src = get_area_turfs(src.type)
+	var/list/turf/turfs_trg = get_area_turfs(A.type)
 
 	var/src_min_x = 0
 	var/src_min_y = 0
-	for(var/turf/T in turfs_src)
+	for_no_type_check(var/turf/T, turfs_src)
 		if(T.x < src_min_x || !src_min_x)
 			src_min_x	= T.x
 		if(T.y < src_min_y || !src_min_y)
@@ -877,14 +877,14 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	var/trg_min_x = 0
 	var/trg_min_y = 0
-	for(var/turf/T in turfs_trg)
+	for_no_type_check(var/turf/T, turfs_trg)
 		if(T.x < trg_min_x || !trg_min_x)
 			trg_min_x	= T.x
 		if(T.y < trg_min_y || !trg_min_y)
 			trg_min_y	= T.y
 
 	var/list/refined_src = list()
-	for(var/turf/T in turfs_src)
+	for_no_type_check(var/turf/T, turfs_src)
 		refined_src.Add(T)
 		refined_src[T] = new /datum/coords()
 		var/datum/coords/C = refined_src[T]
@@ -892,7 +892,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		C.y_pos = (T.y - src_min_y)
 
 	var/list/refined_trg = list()
-	for(var/turf/T in turfs_trg)
+	for_no_type_check(var/turf/T, turfs_trg)
 		refined_trg.Add(T)
 		refined_trg[T] = new /datum/coords()
 		var/datum/coords/C = refined_trg[T]
@@ -904,9 +904,9 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/copiedobjs = list()
 
 	moving:
-		for(var/turf/T in refined_src)
+		for_no_type_check(var/turf/T, refined_src)
 			var/datum/coords/C_src = refined_src[T]
-			for(var/turf/B in refined_trg)
+			for_no_type_check(var/turf/B, refined_trg)
 				var/datum/coords/C_trg = refined_trg[B]
 				if(C_src.x_pos == C_trg.x_pos && C_src.y_pos == C_trg.y_pos)
 					var/old_dir1 = T.dir

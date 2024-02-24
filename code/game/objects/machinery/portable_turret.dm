@@ -586,7 +586,7 @@ Status: []<BR>"},
 			threatcount += 2
 
 	if (src.check_records) // if the turret can check the records, check if they are set to *Arrest* on records
-		for(var/datum/data/record/E in GLOBL.data_core.general)
+		for_no_type_check(var/datum/data/record/E, GLOBL.data_core.general)
 
 			var/perpname = perp.name
 			if(isnotnull(perp.wear_id))
@@ -595,7 +595,7 @@ Status: []<BR>"},
 					perpname = id.registered_name
 
 			if (E.fields["name"] == perpname)
-				for(var/datum/data/record/R in GLOBL.data_core.security)
+				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.security)
 					if ((R.fields["id"] == E.fields["id"]) && (R.fields["criminal"] == "*Arrest*"))
 						threatcount = 4
 						break

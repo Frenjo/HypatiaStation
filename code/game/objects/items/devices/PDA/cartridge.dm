@@ -133,7 +133,7 @@
 	/*		Medical Records (Mode: 44 / 441)	*/
 	if(mode == 44 || mode == 441)
 		var/medData[0]
-		for(var/datum/data/record/R in sortRecord(GLOBL.data_core.general))
+		for_no_type_check(var/datum/data/record/R, sortRecord(GLOBL.data_core.general))
 			medData[++medData.len] = list(Name = R.fields["name"], "ref" = "\ref[R]")
 		values["medical_records"] = medData
 
@@ -147,7 +147,7 @@
 	/*		Security Records (Mode: 45 / 451)	*/
 	if(mode == 45 || mode == 451)
 		var/secData[0]
-		for(var/datum/data/record/R in sortRecord(GLOBL.data_core.general))
+		for_no_type_check(var/datum/data/record/R, sortRecord(GLOBL.data_core.general))
 			secData[++secData.len] = list(Name = R.fields["name"], "ref" = "\ref[R]")
 		values["security_records"] = secData
 
@@ -383,7 +383,7 @@
 			loc:mode = 441
 			mode = 441
 			if(R in GLOBL.data_core.general)
-				for(var/datum/data/record/E in GLOBL.data_core.medical)
+				for_no_type_check(var/datum/data/record/E, GLOBL.data_core.medical)
 					if(E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"])
 						M = E
 						break
@@ -396,7 +396,7 @@
 			loc:mode = 451
 			mode = 451
 			if(R in GLOBL.data_core.general)
-				for(var/datum/data/record/E in GLOBL.data_core.security)
+				for_no_type_check(var/datum/data/record/E, GLOBL.data_core.security)
 					if(E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"])
 						S = E
 						break

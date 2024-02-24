@@ -232,7 +232,7 @@
 					if(!GLOBL.data_core.general.Find(R))
 						temp = "Unable to locate requested medical record. Record may have been deleted, or never have existed."
 					else
-						for(var/datum/data/record/E in GLOBL.data_core.medical)
+						for_no_type_check(var/datum/data/record/E, GLOBL.data_core.medical)
 							if(E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"])
 								M = E
 						medicalActive1 = R
@@ -247,7 +247,7 @@
 					if(!GLOBL.data_core.general.Find(R))
 						temp = "Unable to locate requested security record. Record may have been deleted, or never have existed."
 					else
-						for(var/datum/data/record/E in GLOBL.data_core.security)
+						for_no_type_check(var/datum/data/record/E, GLOBL.data_core.security)
 							if((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 								M = E
 						securityActive1 = R
@@ -450,7 +450,7 @@
 	if(subscreen == 0)
 		dat += "<h2>Medical Records</h2><HR>"
 		if(isnotnull(GLOBL.data_core.general))
-			for(var/datum/data/record/R in sortRecord(GLOBL.data_core.general))
+			for_no_type_check(var/datum/data/record/R, sortRecord(GLOBL.data_core.general))
 				dat += text("<A href='?src=\ref[];med_rec=\ref[];software=medicalrecord;sub=1'>[]: []<BR>", src, R, R.fields["id"], R.fields["name"])
 		//dat += text("<HR><A href='?src=\ref[];screen=0;softFunction=medical records'>Back</A>", src)
 	if(subscreen == 1)
@@ -473,7 +473,7 @@
 	if(subscreen == 0)
 		dat += "<h2>Security Records</h2><HR>"
 		if(isnotnull(GLOBL.data_core.general))
-			for(var/datum/data/record/R in sortRecord(GLOBL.data_core.general))
+			for_no_type_check(var/datum/data/record/R, sortRecord(GLOBL.data_core.general))
 				dat += text("Name: <A href='?src=\ref[];field=name'>[]</A><BR>\nID: <A href='?src=\ref[];field=id'>[]</A><BR>\nSex: <A href='?src=\ref[];field=sex'>[]</A><BR>\nAge: <A href='?src=\ref[];field=age'>[]</A><BR>\nRank: <A href='?src=\ref[];field=rank'>[]</A><BR>\nFingerprint: <A href='?src=\ref[];field=fingerprint'>[]</A><BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", src, securityActive1.fields["name"], src, securityActive1.fields["id"], src, securityActive1.fields["sex"], src, securityActive1.fields["age"], src, securityActive1.fields["rank"], src, securityActive1.fields["fingerprint"], securityActive1.fields["p_stat"], securityActive1.fields["m_stat"])
 	if(subscreen == 1)
 		dat += "<h3>Security Record</h3>"

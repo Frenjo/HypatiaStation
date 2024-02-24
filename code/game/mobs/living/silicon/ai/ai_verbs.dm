@@ -264,7 +264,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 	if(alert("Would you like to select a hologram based on a crew member or switch to unique avatar?", , "Crew Member", "Unique") == "Crew Member")
 		var/list/personnel_list = list()
 
-		for(var/datum/data/record/t in GLOBL.data_core.locked) // Look in data core locked.
+		for_no_type_check(var/datum/data/record/t, GLOBL.data_core.locked) // Look in data core locked.
 			personnel_list["[t.fields["name"]]: [t.fields["rank"]]"] = t.fields["image"] // Pull names, rank, and image.
 
 		if(length(personnel_list))

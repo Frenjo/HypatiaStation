@@ -46,7 +46,7 @@ CONTROLLER_DEF(master)
 
 /datum/controller/master/proc/stat_controllers()
 	stat("Controllers:", length(GLOBL.controllers))
-	for(var/datum/controller/controller in GLOBL.controllers)
+	for_no_type_check(var/datum/controller/controller, GLOBL.controllers)
 		controller.stat_controller()
 
 /datum/controller/master/proc/setup_objects()
