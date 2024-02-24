@@ -5,10 +5,11 @@
 
 /obj/effect/decal/floor/initialise()
 	. = ..()
-	spawn(10) // This is necessary or they all implode for some reason.
-		loc.set_dir(dir)
-		loc.overlays.Add(src)
-		qdel(src)
+	if(!isturf(loc))
+		CRASH("Attempted to create a [type] at a non-turf location!")
+
+	loc.overlays.Add(image(icon, loc, icon_state, layer, dir))
+	qdel(src)
 
 // Chapel floor pattern
 /obj/effect/decal/floor/chapel
