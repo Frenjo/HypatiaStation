@@ -202,8 +202,8 @@
 
 /mob/living/simple_animal/spiderbot/Die()
 
-	GLOBL.living_mob_list -= src
-	GLOBL.dead_mob_list += src
+	GLOBL.living_mob_list.Remove(src)
+	GLOBL.dead_mob_list.Add(src)
 
 	if(camera)
 		camera.status = 0

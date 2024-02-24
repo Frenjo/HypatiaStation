@@ -18,8 +18,11 @@ GLOBAL_GLOBL_LIST_INIT(accessible_z_levels, list("1" = 5, "3" = 10, "4" = 15, "5
 // Spacing should be a reliable method of getting rid of a body -- Urist.
 // Go away Urist, I'm restoring this to the longer list. ~Errorage
 
+// Areas
+GLOBAL_GLOBL_LIST_NEW(area/area_list) // A list of all areas in the world.
+
 // Landmarks
-GLOBAL_GLOBL_LIST_NEW(landmarks_list)	// A list of all created landmarks.
+GLOBAL_GLOBL_LIST_NEW(obj/effect/landmark/landmark_list) // A list of all created landmarks.
 
 // Starts
 GLOBAL_GLOBL_LIST_NEW(newplayer_start)

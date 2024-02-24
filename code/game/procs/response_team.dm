@@ -56,7 +56,7 @@ GLOBAL_GLOBL(can_call_ert)
 		if(length(GLOBL.response_team_members) > 5)
 			to_chat(usr, "The emergency response team is already full!")
 
-		for(var/obj/effect/landmark/L in GLOBL.landmarks_list)
+		for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
 			if(L.name == "Commando")
 				L.name = null//Reserving the place.
 				var/new_name = input(usr, "Pick a name", "Name") as null|text
@@ -152,7 +152,7 @@ GLOBAL_GLOBL(can_call_ert)
 	var/obj/item/paper/P = new
 	P.info = "Your orders, Commander, are to use all means necessary to return the station to a survivable condition.<br>To this end, you have been provided with the best tools we can give in the three areas of Medicine, Engineering, and Security. The nuclear authorisation code is: <b>[ nuke ? nuke.r_code : "AHH, THE NUKE IS GONE!"]</b>. Be warned, if you detonate this without good reason, we will hold you to account for damages. Memorise this code, and then burn this message."
 	P.name = "Emergency Nuclear Code, and ERT Orders"
-	for (var/obj/effect/landmark/A in world)
+	for_no_type_check(var/obj/effect/landmark/A, GLOBL.landmark_list)
 		if (A.name == "nukecode")
 			P.loc = A.loc
 			del(A)

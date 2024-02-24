@@ -1289,7 +1289,7 @@
 
 	if (href_list["l_players"])
 		var/dat = "<B>Name/Real Name/Key/IP:</B><HR>"
-		for(var/mob/M in world)
+		for_no_type_check(var/mob/M, GLOBL.mob_list)
 			var/foo = ""
 			if (ismob(M) && M.client)
 				if(!M.client.authenticated && !M.client.authenticating)
@@ -1796,7 +1796,7 @@
 					usr << "Please wait until the game starts!  Not sure how it will work otherwise."
 					return
 				GLOBL.gravity_is_on = !GLOBL.gravity_is_on
-				for(var/area/A in world)
+				for_no_type_check(var/area/A, GLOBL.area_list)
 					A.gravitychange(GLOBL.gravity_is_on, A)
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","Grav")
@@ -2056,7 +2056,7 @@
 				sleep(80)
 				to_world("\red <B><big>ALERT: STATION STRUCTURAL STRESS CRITICAL. SAFETY MECHANISMS FAILED!</big></B>")
 				sleep(40)
-				for(var/mob/M in world)
+				for_no_type_check(var/mob/M, GLOBL.mob_list)
 					shake_camera(M, 400, 1)
 				for(var/obj/structure/window/W in world)
 					spawn(0)

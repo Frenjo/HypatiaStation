@@ -29,7 +29,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/epidemic/pre_setup()
 	doctors = 0
-	for(var/mob/new_player/player in world)
+	for(var/mob/new_player/player in GLOBL.mob_list)
 		if(player.mind.assigned_role in list("Chief Medical Officer","Medical Doctor"))
 			doctors++
 			break
@@ -72,7 +72,7 @@
 
 	// add an extra law to the AI to make sure it cooperates with the heads
 	var/extra_law = "Crew authorized to know of pathogen [virus_name]'s existence are: Heads of command, any crew member with loyalty implant. Do not allow unauthorized personnel to gain knowledge of [virus_name]. Aid authorized personnel in quarantining and neutrlizing the outbreak. This law overrides all other laws."
-	for(var/mob/living/silicon/ai/M in world)
+	for_no_type_check(var/mob/living/silicon/ai/M, GLOBL.ai_list)
 		M.add_ion_law(extra_law)
 		M << "\red " + extra_law
 
@@ -98,7 +98,7 @@
 
 	// scan the crew for possible infectees
 	var/list/crew = list()
-	for(var/mob/living/carbon/human/H in world) if(H.client)
+	for(var/mob/living/carbon/human/H in GLOBL.mob_list) if(H.client)
 		// heads should not be infected
 		if(H.mind.assigned_role in command_positions) continue
 		crew += H
@@ -168,7 +168,7 @@
 /datum/game_mode/epidemic/check_win()
 	var/alive = 0
 	var/sick = 0
-	for(var/mob/living/carbon/human/H in world)
+	for(var/mob/living/carbon/human/H in GLOBL.mob_list)
 		if(H.key && H.stat != 2) alive++
 		if(length(H.virus2) && H.stat != DEAD)
 			sick++
@@ -193,7 +193,7 @@
 ///////////////////////////////////////////
 /datum/game_mode/epidemic/proc/crew_lose()
 	ticker.mode:explosion_in_progress = 1
-	for(var/mob/M in world)
+	for_no_type_check(var/mob/M, GLOBL.mob_list)
 		if(M.client)
 			M << 'sound/machines/Alarm.ogg'
 	to_world("\blue<b>Incoming missile detected.. Impact in 10..</b>")

@@ -21,7 +21,7 @@
 
 		var/obj/L = null
 
-		for(var/obj/effect/landmark/sloc in GLOBL.landmarks_list)
+		for_no_type_check(var/obj/effect/landmark/sloc, GLOBL.landmark_list)
 			if(sloc.name != C.data)
 				continue
 			if(locate(/mob/living) in sloc.loc)

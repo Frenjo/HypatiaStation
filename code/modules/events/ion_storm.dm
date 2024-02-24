@@ -12,7 +12,7 @@
 /datum/event/ionstorm/setup()
 	endWhen = rand(10, 20)
 
-	for(var/mob/living/carbon/human/player in world)
+	for(var/mob/living/carbon/human/player in GLOBL.mob_list)
 		if(player.client)
 			players += player.real_name
 
@@ -66,7 +66,7 @@
 
 	var/law = pick(laws)
 
-	for(var/mob/living/silicon/ai/target in world)
+	for_no_type_check(var/mob/living/silicon/ai/target, GLOBL.ai_list)
 		if(target.mind.special_role == "traitor")
 			continue
 		to_chat(target, SPAN_DANGER("You have detected a change in your laws information:"))

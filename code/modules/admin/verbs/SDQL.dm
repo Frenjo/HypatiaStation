@@ -86,7 +86,7 @@
 			else
 				var/f2 = text2path(f)
 				if(text_starts_with(f, "/mob"))
-					for(var/mob/m in world)
+					for_no_type_check(var/mob/m, GLOBL.mob_list)
 						if(istype(m, f2))
 							from_objs += m
 
@@ -111,7 +111,7 @@
 							from_objs += m
 
 				else if(text_starts_with(f, "/area"))
-					for(var/area/m in world)
+					for_no_type_check(var/area/m, GLOBL.area_list)
 						if(istype(m, f2))
 							from_objs += m
 

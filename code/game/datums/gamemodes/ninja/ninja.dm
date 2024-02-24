@@ -34,7 +34,7 @@
 	*/
 
 	//Until such a time as people want to place ninja spawn points, carpspawn will do fine.
-	for(var/obj/effect/landmark/L in GLOBL.landmarks_list)
+	for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
 		if(L.name == "carpspawn")
 			GLOBL.ninjastart.Add(L)
 	if(!length(GLOBL.ninjastart) && length(GLOBL.latejoin))

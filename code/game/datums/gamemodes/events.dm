@@ -254,7 +254,7 @@
 //Changing this to affect the main station. Blame Urist. --Pete
 /proc/prison_break() // -- Callagan
 	var/list/area/areas = list()
-	for(var/area/A in world)
+	for_no_type_check(var/area/A, GLOBL.area_list)
 		if(istype(A, /area/security/brig) || istype(A, /area/prison))
 			areas += A
 
@@ -290,7 +290,7 @@
 		world.log << "ERROR: Could not initate grey-tide. Unable find prison or brig area."
 
 /proc/carp_migration() // -- Darem
-	for(var/obj/effect/landmark/C in GLOBL.landmarks_list)
+	for_no_type_check(var/obj/effect/landmark/C, GLOBL.landmark_list)
 		if(C.name == "carpspawn")
 			new /mob/living/simple_animal/hostile/carp(C.loc)
 	//sleep(100)
@@ -308,7 +308,7 @@
 
 		for(var/i = 1, i <= lightsoutAmount, i++)
 			var/list/possibleEpicentres = list()
-			for(var/obj/effect/landmark/newEpicentre in GLOBL.landmarks_list)
+			for_no_type_check(var/obj/effect/landmark/newEpicentre, GLOBL.landmark_list)
 				if(newEpicentre.name == "lightsout" && !(newEpicentre in epicentreList))
 					possibleEpicentres += newEpicentre
 			if(length(possibleEpicentres))
@@ -319,7 +319,7 @@
 		if(!length(epicentreList))
 			return
 
-		for(var/obj/effect/landmark/epicentre in epicentreList)
+		for_no_type_check(var/obj/effect/landmark/epicentre, epicentreList)
 			for(var/obj/machinery/power/apc/apc in range(epicentre,lightsoutRange))
 				apc.overload_lighting()
 
@@ -337,7 +337,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 */
 
 	//AI laws
-	for(var/mob/living/silicon/ai/M in GLOBL.living_mob_list)
+	for_no_type_check(var/mob/living/silicon/ai/M, GLOBL.ai_list)
 		if(M.stat != DEAD && M.see_in_dark != 0)
 			var/who2 = pick("ALIENS", "BEARS", "CLOWNS", "XENOS", "PETES", "BOMBS", "FETISHES", "WIZARDS", "SYNDICATE AGENTS", "CENTCOM OFFICERS", "SPACE PIRATES", "TRAITORS", "MONKEYS",  "BEES", "CARP", "CRABS", "EELS", "BANDITS", "LIGHTS")
 			var/what2 = pick("BOLTERS", "STAVES", "DICE", "SINGULARITIES", "TOOLBOXES", "NETTLES", "AIRLOCKS", "CLOTHES", "WEAPONS", "MEDKITS", "BOMBS", "CANISTERS", "CHAIRS", "BBQ GRILLS", "ID CARDS", "CAPTAINS")

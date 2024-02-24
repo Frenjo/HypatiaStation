@@ -20,7 +20,7 @@
 		kill()
 
 /datum/event/prison_break/start()
-	for(var/area/A in world)
+	for_no_type_check(var/area/A, GLOBL.area_list)
 		if(istype(A, /area/security/brig) || istype(A, /area/prison))
 			prisonAreas += A
 

@@ -142,7 +142,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 
 	//Here we pick a location and spawn the ninja.
 	if(!length(GLOBL.ninjastart))
-		for(var/obj/effect/landmark/L in GLOBL.landmarks_list)
+		for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
 			if(L.name == "carpspawn")
 				GLOBL.ninjastart.Add(L)
 

@@ -43,8 +43,8 @@
 		brainmob.loc = src
 		brainmob.container = src
 		brainmob.stat = 0
-		GLOBL.dead_mob_list -= brainmob//Update dem lists
-		GLOBL.living_mob_list += brainmob
+		GLOBL.dead_mob_list.Remove(brainmob)//Update dem lists
+		GLOBL.living_mob_list.Add(brainmob)
 
 		user.drop_item()
 		qdel(O)
@@ -80,7 +80,7 @@
 		var/obj/item/brain/brain = new(user.loc)
 		brainmob.container = null//Reset brainmob mmi var.
 		brainmob.loc = brain//Throw mob into brain.
-		GLOBL.living_mob_list -= brainmob//Get outta here
+		GLOBL.living_mob_list.Remove(brainmob)//Get outta here
 		brain.brainmob = brainmob//Set the brain to use the brainmob
 		brainmob = null//Set mmi brainmob var to null
 

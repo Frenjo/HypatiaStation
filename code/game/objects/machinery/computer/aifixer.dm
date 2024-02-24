@@ -91,8 +91,8 @@
 			if(src.occupant.health >= 0 && src.occupant.stat == DEAD)
 				src.occupant.stat = 0
 				src.occupant.lying = 0
-				GLOBL.dead_mob_list -= src.occupant
-				GLOBL.living_mob_list += src.occupant
+				GLOBL.dead_mob_list.Remove(src.occupant)
+				GLOBL.living_mob_list.Add(src.occupant)
 				src.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-404")
 				src.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-full")
 			src.updateUsrDialog()

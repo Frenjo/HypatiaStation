@@ -1064,7 +1064,7 @@ datum
 							for(var/mob/living/silicon/ai/M in C)
 								if(istype(M, /mob/living/silicon/ai) && M.stat != 2)
 									return 1
-						for(var/mob/living/silicon/ai/M in world)
+						for_no_type_check(var/mob/living/silicon/ai/M, GLOBL.ai_list)
 							if(istype(M.loc, /turf))
 								if(istype(get_area(M), /area/shuttle/escape))
 									return 1

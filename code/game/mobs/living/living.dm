@@ -453,8 +453,8 @@ default behaviour is:
 
 	// remove the character from the list of the dead
 	if(stat == DEAD)
-		GLOBL.dead_mob_list -= src
-		GLOBL.living_mob_list += src
+		GLOBL.dead_mob_list.Remove(src)
+		GLOBL.living_mob_list.Add(src)
 		tod = null
 
 	// restore us to conciousness

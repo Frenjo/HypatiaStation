@@ -30,7 +30,7 @@
 	src.brainmob.stat = 0
 	src.brainmob.silent = 0
 	src.brainmob.brain_op_stage = 4.0
-	GLOBL.dead_mob_list -= src.brainmob
+	GLOBL.dead_mob_list.Remove(src.brainmob)
 
 	..()
 

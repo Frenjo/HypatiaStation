@@ -7,7 +7,7 @@
 /datum/event/rogue_drone/start()
 	//spawn them at the same place as carp
 	var/list/possible_spawns = list()
-	for(var/obj/effect/landmark/C in GLOBL.landmarks_list)
+	for_no_type_check(var/obj/effect/landmark/C, GLOBL.landmark_list)
 		if(C.name == "carpspawn")
 			possible_spawns.Add(C)
 

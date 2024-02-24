@@ -192,8 +192,8 @@
 
 	spawn(rand(800, 1200))
 		if(C.stat == DEAD)
-			GLOBL.dead_mob_list -= C
-			GLOBL.living_mob_list += C
+			GLOBL.dead_mob_list.Remove(C)
+			GLOBL.living_mob_list.Add(C)
 		C.stat = CONSCIOUS
 		C.tod = null
 		C.setToxLoss(0)

@@ -130,7 +130,7 @@ datum/controller/game_controller/proc/process()
 			sleep(breather_ticks)
 
 			spawn(0)
-				for(var/mob/living/M in world)	//only living mobs have life processes
+				for(var/mob/living/M in GLOBL.mob_list)	//only living mobs have life processes
 					M.Life()
 				mobs_ready = 1
 			sleep(breather_ticks)

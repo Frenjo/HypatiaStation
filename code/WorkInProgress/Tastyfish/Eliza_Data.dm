@@ -387,7 +387,7 @@
 				var/who = eliza.speaker
 				if(prob(50))
 					who = "[eliza.speaker:master] via [eliza.speaker]"
-				for(var/mob/living/silicon/ai/ai in world)
+				for_no_type_check(var/mob/living/silicon/ai/ai, GLOBL.ai_list)
 					ai.show_message("<i>Intercepted message from <b>[who]</b>: [object]</i>")
 
 			if (!pda.silent)

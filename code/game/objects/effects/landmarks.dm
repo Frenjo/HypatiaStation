@@ -97,7 +97,7 @@
 			delete_me = TRUE
 			return
 
-	GLOBL.landmarks_list += src
+	GLOBL.landmark_list.Add(src)
 	return
 
 /obj/effect/landmark/initialise()
@@ -106,7 +106,7 @@
 		qdel(src)
 
 /obj/effect/landmark/Destroy()
-	GLOBL.landmarks_list -= src
+	GLOBL.landmark_list.Remove(src)
 	return ..()
 
 /obj/effect/landmark/proc/delete()

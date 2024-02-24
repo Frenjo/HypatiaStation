@@ -158,10 +158,10 @@
 		sleep(10)
 
 		var/list/spawn_marauder = list()
-		for(var/obj/effect/landmark/L in world)
+		for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
 			if(L.name == "Marauder Entry")
 				spawn_marauder.Add(L)
-		for(var/obj/effect/landmark/L in world)
+		for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
 			if(L.name == "Marauder Exit")
 				var/obj/effect/portal/P = new(L.loc)
 				P.invisibility = INVISIBILITY_MAXIMUM//So it is not seen by anyone.

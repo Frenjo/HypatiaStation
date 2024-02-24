@@ -104,7 +104,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 				if("client")
 					var/list/keys = list()
-					for(var/mob/M in world)
+					for_no_type_check(var/mob/M, GLOBL.mob_list)
 						keys += M.client
 					lst[i] = input("Please, select a player!", "Selection", null, null) as null | anything in keys
 
@@ -440,7 +440,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	var/list/areas_with_intercom = list()
 	var/list/areas_with_camera = list()
 
-	for(var/area/A in world)
+	for_no_type_check(var/area/A, GLOBL.area_list)
 		if(!(A.type in areas_all))
 			areas_all.Add(A.type)
 

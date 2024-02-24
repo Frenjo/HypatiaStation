@@ -356,7 +356,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //When a borg is activated, it can choose which AI it wants to be slaved to
 /proc/active_ais()
 	. = list()
-	for(var/mob/living/silicon/ai/A in GLOBL.living_mob_list)
+	for_no_type_check(var/mob/living/silicon/ai/A, GLOBL.ai_list)
 		if(A.stat == DEAD)
 			continue
 		if(A.control_disabled)
@@ -694,16 +694,9 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		return 1
 	else return 0
 
-//Returns: all the areas in the world
-/proc/return_areas()
-	var/list/area/areas = list()
-	for(var/area/A in world)
-		areas.Add(A)
-	return areas
-
 //Returns: all the areas in the world, sorted.
 /proc/return_sorted_areas()
-	return sortAtom(return_areas())
+	return sortAtom(GLOBL.area_list.Copy())
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all areas of that type in the world.
@@ -717,7 +710,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		areatype = areatemp.type
 
 	var/list/areas = list()
-	for(var/area/N in world)
+	for_no_type_check(var/area/N, GLOBL.area_list)
 		if(istype(N, areatype))
 			areas.Add(N)
 	return areas
@@ -734,7 +727,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		areatype = areatemp.type
 
 	var/list/turfs = list()
-	for(var/area/N in world)
+	for_no_type_check(var/area/N, GLOBL.area_list)
 		if(istype(N, areatype))
 			for(var/turf/T in N)
 				turfs.Add(T)
@@ -752,7 +745,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		areatype = areatemp.type
 
 	var/list/atoms = list()
-	for(var/area/N in world)
+	for_no_type_check(var/area/N, GLOBL.area_list)
 		if(istype(N, areatype))
 			for(var/atom/A in N)
 				atoms.Add(A)

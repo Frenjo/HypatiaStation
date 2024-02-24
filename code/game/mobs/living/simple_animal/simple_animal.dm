@@ -71,8 +71,8 @@
 	if(stat == DEAD)
 		if(health > 0)
 			icon_state = icon_living
-			GLOBL.dead_mob_list -= src
-			GLOBL.living_mob_list += src
+			GLOBL.dead_mob_list.Remove(src)
+			GLOBL.living_mob_list.Add(src)
 			stat = CONSCIOUS
 			density = TRUE
 		return 0

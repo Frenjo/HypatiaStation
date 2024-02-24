@@ -55,7 +55,7 @@
 		S.power_change()
 
 	/*
-	for(var/area/A in world)
+	for_no_type_check(var/area/A, GLOBL.area_list)
 		if(A.name != "Space" && A.name != "Engine Walls" && A.name != "Chemical Lab Test Chamber" && A.name != "space" && A.name != "Escape Shuttle" && A.name != "Arrival Area" && A.name != "Arrival Shuttle" && A.name != "start area" && A.name != "Engine Combustion Chamber")
 			A.power_light = 1
 			A.power_equip = 1

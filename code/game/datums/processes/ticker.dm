@@ -189,7 +189,7 @@ PROCESS_DEF(ticker)
 
 	mode.post_setup()
 	// Cleans up some stuff.
-	for(var/obj/effect/landmark/start/S in GLOBL.landmarks_list)
+	for(var/obj/effect/landmark/start/S in GLOBL.landmark_list)
 		// Deletes startpoints, but we need the ai point to AI-ize people later.
 		if(S.name != "AI")
 			qdel(S)

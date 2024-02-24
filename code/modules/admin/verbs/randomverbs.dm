@@ -451,7 +451,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			if(!length(GLOBL.ninjastart))
 				new_character << "<B>\red A proper starting location for you could not be found, please report this bug!</B>"
 				new_character << "<B>\red Attempting to place at a carpspawn.</B>"
-				for(var/obj/effect/landmark/L in GLOBL.landmarks_list)
+				for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
 					if(L.name == "carpspawn")
 						GLOBL.ninjastart.Add(L)
 				if(!length(GLOBL.ninjastart) && length(GLOBL.latejoin))
@@ -701,7 +701,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	switch(alert("How would you like to ban someone today?", "Manual Ban", "Key List", "Enter Manually", "Cancel"))
 		if("Key List")
 			var/list/keys = list()
-			for(var/mob/M in world)
+			for_no_type_check(var/mob/M, GLOBL.mob_list)
 				keys += M.client
 			var/selection = input("Please, select a player!", "Admin Jumping", null, null) as null|anything in keys
 			if(!selection)

@@ -590,7 +590,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 				if(isnotnull(S.AI) && S.AI.stat != DEAD)
 					return 1
 
-			for(var/mob/living/silicon/ai/ai in world)
+			for_no_type_check(var/mob/living/silicon/ai/ai, GLOBL.ai_list)
 				if(isturf(ai.loc))
 					var/area/check_area = get_area(ai)
 					if(istype(check_area, /area/shuttle/escape/centcom))

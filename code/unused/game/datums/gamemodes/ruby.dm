@@ -34,7 +34,7 @@
 			var/starting_loc = pick(wizardstart)
 			wizard.current.loc = starting_loc
 
-	for (var/obj/effect/landmark/A in world)
+	for_no_type_check(var/obj/effect/landmark/A, GLOBL.landmark_list)
 		if (A.name == "Teleport-Scroll")
 			new /obj/item/teleportation_scroll(A.loc)
 			del(A)

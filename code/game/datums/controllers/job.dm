@@ -344,7 +344,7 @@ CONTROLLER_DEF(jobs)
 
 	if(!joined_late)
 		var/obj/S = null
-		for(var/obj/effect/landmark/start/sloc in GLOBL.landmarks_list)
+		for(var/obj/effect/landmark/start/sloc in GLOBL.landmark_list)
 			if(sloc.name != rank)
 				continue
 			if(locate(/mob/living) in sloc.loc)

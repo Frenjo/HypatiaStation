@@ -479,11 +479,11 @@ var/list/forbidden_varedit_object_types = list(
 				if(var_new == null)
 					return
 				if(O.vars[variable] == DEAD && var_new < DEAD)//Bringing the dead back to life
-					GLOBL.dead_mob_list -= O
-					GLOBL.living_mob_list += O
+					GLOBL.dead_mob_list.Remove(O)
+					GLOBL.living_mob_list.Add(O)
 				if(O.vars[variable] < DEAD && var_new == DEAD)//Kill he
-					GLOBL.living_mob_list -= O
-					GLOBL.dead_mob_list += O
+					GLOBL.living_mob_list.Remove(O)
+					GLOBL.dead_mob_list.Add(O)
 				O.vars[variable] = var_new
 			else
 				var/var_new = input("Enter new number:", "Num", O.vars[variable]) as null | num

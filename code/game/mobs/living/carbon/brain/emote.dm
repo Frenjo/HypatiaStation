@@ -67,7 +67,7 @@
 	if (message)
 		log_emote("[name]/[key] : [message]")
 
-		for(var/mob/M in GLOBL.dead_mob_list)
+		for_no_type_check(var/mob/M, GLOBL.dead_mob_list)
 			if(!M.client || isnewplayer(M))
 				continue //skip monkeys, leavers, and new_players
 			if(M.stat == DEAD && (M.client.prefs.toggles & CHAT_GHOSTSIGHT) && !(M in viewers(src,null)))

@@ -51,7 +51,7 @@ CONTROLLER_DEF(master)
 
 /datum/controller/master/proc/setup_objects()
 	to_world(SPAN_DANGER("↪ Initialising areas."))
-	for(var/area/area in world)
+	for_no_type_check(var/area/area, GLOBL.area_list)
 		if(!GC_DESTROYED(area))
 			area.initialise()
 	sleep(-1)

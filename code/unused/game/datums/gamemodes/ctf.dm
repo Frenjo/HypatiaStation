@@ -13,7 +13,7 @@
 	CONFIG_SET(allow_ai, FALSE)
 	var/list/mobs = list()
 	var/total_mobs
-	for(var/mob/living/carbon/human/M in world)
+	for(var/mob/living/carbon/human/M in GLOBL.mob_list)
 		if (M.client)
 			mobs += M
 			total_mobs++

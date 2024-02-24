@@ -156,7 +156,7 @@
 			itemname = P.name
 			info = P.notehtml
 		to_chat(U, "You hold \a [itemname] up to the camera...")
-		for(var/mob/living/silicon/ai/O in GLOBL.living_mob_list)
+		for_no_type_check(var/mob/living/silicon/ai/O, GLOBL.ai_list)
 			if(!O.client)
 				continue
 			if(U.name == "Unknown")

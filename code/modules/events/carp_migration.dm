@@ -13,7 +13,7 @@
 	command_alert("Unknown biological entities have been detected near [station_name()], please stand-by.", "Lifesign Alert")
 
 /datum/event/carp_migration/start()
-	for(var/obj/effect/landmark/C in GLOBL.landmarks_list)
+	for_no_type_check(var/obj/effect/landmark/C, GLOBL.landmark_list)
 		if(C.name == "carpspawn")
 			spawned_carp.Add(new /mob/living/simple_animal/hostile/carp(C.loc))
 

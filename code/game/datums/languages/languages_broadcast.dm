@@ -42,7 +42,7 @@
 	var/message_start = "<i><span class='game say'>[name], <span class='name'>[speaker.name]</span>"
 	var/message_body = "<span class='message'>[speaker.say_quote(message)], \"[message]\"</span></span></i>"
 
-	for(var/mob/M in GLOBL.dead_mob_list)
+	for_no_type_check(var/mob/M, GLOBL.dead_mob_list)
 		if(!isnewplayer(M) && !isbrain(M)) //No meta-evesdropping
 			M.show_message("[message_start] [message_body]", 2)
 

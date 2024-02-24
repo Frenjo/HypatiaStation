@@ -90,6 +90,7 @@
 	uid = ++static_uid
 
 	. = ..()
+	GLOBL.area_list.Add(src)
 
 /area/initialise()
 	. = ..()

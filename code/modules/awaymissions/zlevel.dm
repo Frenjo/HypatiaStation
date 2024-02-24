@@ -44,7 +44,7 @@
 			GLOBL.maploader.load_map(file)
 			world.log << "away mission loaded: [map]"
 
-		for(var/obj/effect/landmark/L in GLOBL.landmarks_list)
+		for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
 			if(L.name != "awaystart")
 				continue
 			GLOBL.awaydestinations.Add(L)

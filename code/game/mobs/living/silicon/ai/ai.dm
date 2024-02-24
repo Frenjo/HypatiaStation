@@ -2,8 +2,7 @@
 /proc/AutoUpdateAI(obj/subject)
 	var/is_in_use = FALSE
 	if(isnotnull(subject))
-		for(var/A in GLOBL.ai_list)
-			var/mob/living/silicon/ai/M = A
+		for_no_type_check(var/mob/living/silicon/ai/M, GLOBL.ai_list)
 			if(isnotnull(M.client) && M.machine == subject)
 				is_in_use = TRUE
 				subject.attack_ai(M)

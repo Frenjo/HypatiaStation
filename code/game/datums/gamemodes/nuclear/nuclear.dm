@@ -112,7 +112,7 @@
 /datum/game_mode/nuclear/post_setup()
 	var/list/turf/synd_spawn = list()
 
-	for(var/obj/effect/landmark/A in GLOBL.landmarks_list)
+	for_no_type_check(var/obj/effect/landmark/A, GLOBL.landmark_list)
 		if(A.name == "Syndicate-Spawn")
 			synd_spawn += get_turf(A)
 			qdel(A)

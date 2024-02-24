@@ -401,7 +401,7 @@
 		var/max_raiders = 1
 		var/raiders = max_raiders
 		//Spawns vox raiders and equips them.
-		for(var/obj/effect/landmark/L in world)
+		for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
 			if(L.name == "voxstart")
 				if(raiders <= 0)
 					break

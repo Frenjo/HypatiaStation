@@ -362,7 +362,7 @@
 		//	control_area = CA
 		control_area = CA
 	else if(istext(control_area))
-		for(var/area/A in world)
+		for_no_type_check(var/area/A, GLOBL.area_list)
 			if(A.name && A.name == control_area)
 				control_area = A
 				break

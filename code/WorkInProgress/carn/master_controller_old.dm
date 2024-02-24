@@ -129,7 +129,7 @@ datum/controller/game_controller
 					sleep(-1)
 
 					spawn(0)
-						for(var/mob/M in world)
+						for(var/mob/M in GLOBL.mob_list)
 							last_mob_processed = M
 							M.Life()
 						mobs_ready = 1

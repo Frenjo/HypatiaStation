@@ -4,7 +4,7 @@ GLOBAL_GLOBL_LIST_NEW(teleportlocs)
 GLOBAL_GLOBL_LIST_NEW(ghostteleportlocs)
 
 /hook/startup/proc/setup_teleport_locs()
-	for(var/area/a in world)
+	for_no_type_check(var/area/a, GLOBL.area_list)
 		if(istype(a, /area/shuttle) || istype(a, /area/syndicate_station) || istype(a, /area/wizard_station))
 			continue
 		if(GLOBL.teleportlocs.Find(a.name))
@@ -17,7 +17,7 @@ GLOBAL_GLOBL_LIST_NEW(ghostteleportlocs)
 	return 1
 
 /hook/startup/proc/setup_ghost_teleport_locs()
-	for(var/area/a in world)
+	for_no_type_check(var/area/a, GLOBL.area_list)
 		if(GLOBL.ghostteleportlocs.Find(a.name))
 			continue
 		if(/*istype(a, /area/turret_protected/aisat) ||*/ istype(a, /area/derelict) || istype(a, /area/tdome))

@@ -14,7 +14,7 @@
 	var/list/possibleEpicentres = list()
 
 /datum/event/electrical_storm/setup()
-	for(var/obj/effect/landmark/newEpicentre in GLOBL.landmarks_list)
+	for_no_type_check(var/obj/effect/landmark/newEpicentre, GLOBL.landmark_list)
 		if(newEpicentre.name == "lightsout" && !(newEpicentre in epicentreList))
 			possibleEpicentres += newEpicentre
 
