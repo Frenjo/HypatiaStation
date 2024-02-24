@@ -8,9 +8,9 @@ GLOBAL_BYOND_NEW(dummy_lighting_corner, /datum/lighting_corner/dummy)
 GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUTHWEST, NORTHWEST))
 
 /datum/lighting_corner
-	var/list/turf/masters					= list()
-	var/list/datum/light_source/affecting	= list()	// Light sources affecting us.
-	var/active								= FALSE		// TRUE if one of our masters has dynamic lighting.
+	var/list/turf/masters
+	var/list/datum/light_source/affecting // Light sources affecting us.
+	var/active = FALSE // TRUE if one of our masters has dynamic lighting.
 
 	var/x = 0
 	var/y = 0
@@ -30,6 +30,8 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 	var/update_gen = 0
 
 /datum/lighting_corner/New(turf/new_turf, diagonal)
+	masters = list()
+	affecting = list()
 	. = ..()
 
 	global.all_lighting_corners.Add(src)

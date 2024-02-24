@@ -8,14 +8,14 @@
 	//var/datum/module/mod		//not used
 
 	// Associative list of the materials this object recycles into. list(MATERIAL_METAL = 500, "waste" = 100) etc.
-	var/list/matter_amounts = list()
+	var/list/matter_amounts
 
-	var/origin_tech = list()	//Used by R&D to determine what research bonuses it grants.
+	var/origin_tech //Used by R&D to determine what research bonuses it grants.
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
 	var/crit_fail = 0
 	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
 	var/throwforce = 1
-	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
+	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/sharp = 0	// whether this object cuts
 	var/edge = 0	// whether this object is more likely to dismember
 	var/in_use = FALSE 	// If we have a user using us, this will be set to TRUE.
@@ -23,6 +23,12 @@
 
 	var/damtype = "brute"
 	var/force = 0
+
+/obj/New()
+	matter_amounts = list()
+	origin_tech = list()
+	attack_verb = list()
+	. = ..()
 
 /obj/assume_air(datum/gas_mixture/giver)
 	return isnotnull(loc) ? loc.assume_air(giver) : null

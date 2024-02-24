@@ -69,8 +69,8 @@ PROCESS_DEF(air)
 	var/processing_killed = FALSE
 
 	// Geometry lists
-	var/list/zones = list()
-	var/list/edges = list()
+	var/list/zone/zones = list()
+	var/list/connection_edge/edges = list()
 
 	// Geometry updates lists
 	var/list/turf/tiles_to_update = list()

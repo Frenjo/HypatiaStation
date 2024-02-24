@@ -41,16 +41,21 @@ Class Procs:
 /zone
 	var/name
 	var/invalid = 0
-	var/list/contents = list()
-	var/list/fire_tiles = list()
+	var/list/contents
+	var/list/fire_tiles
 
 	var/needs_update = FALSE
 
-	var/list/edges = list()
+	var/list/edges
 
-	var/datum/gas_mixture/air = new /datum/gas_mixture()
+	var/datum/gas_mixture/air
 
 /zone/New()
+	contents = list()
+	fire_tiles = list()
+	edges = list()
+	air = new /datum/gas_mixture()
+
 	global.PCair.add_zone(src)
 	air.temperature = TCMB
 	air.group_multiplier = 1

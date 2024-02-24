@@ -59,7 +59,7 @@ Class Procs:
 /connection_edge
 	var/zone/A
 
-	var/list/connecting_turfs = list()
+	var/list/connecting_turfs
 
 	var/sleeping = TRUE
 
@@ -130,6 +130,8 @@ Class Procs:
 	var/direct = 0
 
 /connection_edge/zone/New(zone/A, zone/B)
+	connecting_turfs = list()
+
 	src.A = A
 	src.B = B
 	A.edges.Add(src)
@@ -204,6 +206,8 @@ Class Procs:
 	var/datum/gas_mixture/air
 
 /connection_edge/unsimulated/New(zone/A, turf/B)
+	connecting_turfs = list()
+
 	src.A = A
 	src.B = B
 	A.edges.Add(src)

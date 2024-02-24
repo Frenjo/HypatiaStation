@@ -1,7 +1,12 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 /obj
-	var/list/req_access = list()
-	var/list/req_one_access = list()
+	var/list/req_access
+	var/list/req_one_access
+
+/obj/New()
+	req_access = list()
+	req_one_access = list()
+	. = ..()
 
 //returns 1 if this mob has sufficient access to use this object
 /obj/proc/allowed(mob/M)

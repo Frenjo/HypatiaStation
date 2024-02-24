@@ -1,14 +1,17 @@
 /datum/pipe_network
-	var/list/datum/gas_mixture/gases = list() //All of the gas_mixtures continuously connected in this network
+	var/list/datum/gas_mixture/gases //All of the gas_mixtures continuously connected in this network
 
-	var/list/obj/machinery/atmospherics/normal_members = list()
-	var/list/datum/pipeline/line_members = list()
+	var/list/obj/machinery/atmospherics/normal_members
+	var/list/datum/pipeline/line_members
 	//membership roster to go through for updates and what not
 
 	var/update = TRUE
 	//var/datum/gas_mixture/air_transient = null
 
 /datum/pipe_network/New()
+	gases = list()
+	normal_members = list()
+	line_members = list()
 	//air_transient = new()
 	. = ..()
 

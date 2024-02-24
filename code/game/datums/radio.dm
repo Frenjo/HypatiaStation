@@ -11,7 +11,11 @@
 */
 /datum/radio_frequency
 	var/frequency as num
-	var/list/list/obj/devices = list()
+	var/list/list/obj/devices
+
+/datum/radio_frequency/New()
+	devices = list()
+	. = ..()
 
 /datum/radio_frequency/proc/post_signal(obj/source as obj|null, datum/signal/signal, filter = null as text|null, range = null as num|null)
 //	log_admin("DEBUG \[[world.timeofday]\]: post_signal {source=\"[source]\", [signal.debug_print()], filter=[filter]}")
@@ -110,10 +114,14 @@
 
 	var/transmission_method = TRANSMISSION_WIRE
 
-	var/data = list()
+	var/data
 	var/encryption
 
 	var/frequency = 0
+
+/datum/signal/New()
+	data = list()
+	. = ..()
 
 /datum/signal/proc/copy_from(datum/signal/model)
 	source = model.source

@@ -44,9 +44,10 @@
 	//
 	//var/source_mineral
 	//all potential finds are initialised to null, so nullcheck before you access them
-	var/list/find_presence = list()
+	var/list/find_presence
 
 /datum/geosample/New(turf/simulated/mineral/container)
+	find_presence = list()
 	UpdateTurf(container)
 
 //this should only need to be called once
@@ -128,7 +129,7 @@
 		artifact_id = container.artifact_find.artifact_id
 	else
 		if(isnotnull(global.CTmaster)) //Sanity check due to runtimes ~Z
-			for(var/turf/simulated/mineral/T in GLOBL.artifact_spawning_turfs)
+			for_no_type_check(var/turf/simulated/mineral/T, GLOBL.artifact_spawning_turfs)
 				if(isnotnull(T.artifact_find))
 					var/cur_dist = get_dist(container, T) * 2
 					if((artifact_distance < 0 || cur_dist < artifact_distance) && cur_dist <= T.artifact_find.artifact_detect_range)
