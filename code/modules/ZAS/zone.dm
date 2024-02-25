@@ -40,7 +40,7 @@ Class Procs:
 */
 /zone
 	var/name
-	var/invalid = 0
+	var/invalid = FALSE
 	var/list/contents
 	var/list/fire_tiles
 
@@ -108,7 +108,7 @@ Class Procs:
 		#endif
 
 /zone/proc/c_invalidate()
-	invalid = 1
+	invalid = TRUE
 	global.PCair.remove_zone(src)
 	#ifdef ZASDBG
 	for(var/turf/simulated/T in contents)

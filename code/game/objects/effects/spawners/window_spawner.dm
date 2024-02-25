@@ -19,8 +19,6 @@
 
 /obj/effect/window_spawner/initialise()
 	. = ..()
-	if(!ispath(win_path))
-		return
 	if(global.PCticker?.current_state < GAME_STATE_PLAYING)
 		activate()
 
@@ -29,7 +27,7 @@
 		return
 
 	if(!locate(/obj/structure/grille) in get_turf(src))
-		var/obj/structure/grille/G = PoolOrNew(/obj/structure/grille, loc)
+		var/obj/structure/grille/G = new /obj/structure/grille(loc)
 		handle_grille_spawn(G)
 
 	var/list/neighbours = list()
@@ -44,7 +42,7 @@
 						found_connection = TRUE
 						qdel(W)
 			if(!found_connection)
-				var/obj/structure/window/new_win = PoolOrNew(win_path, loc)
+				var/obj/structure/window/new_win = new win_path(loc)
 				new_win.set_dir(dir)
 				handle_window_spawn(new_win)
 		else

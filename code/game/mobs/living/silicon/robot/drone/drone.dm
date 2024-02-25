@@ -154,7 +154,7 @@
 				return
 
 			var/drones = 0
-			for(var/mob/living/silicon/robot/drone/D in world)
+			for(var/mob/living/silicon/robot/drone/D in GLOBL.mob_list)
 				if(D.key && isnotnull(D.client))
 					drones++
 			if(drones < CONFIG_GET(max_maint_drones))

@@ -47,7 +47,7 @@
 				global.PCair.connect(sim, src)
 
 /turf/simulated/update_air_properties()
-	if(zone && zone.invalid)
+	if(isnotnull(zone) && zone.invalid)
 		c_copy_air()
 		zone = null //Easier than iterating through the list at the zone.
 
@@ -179,8 +179,7 @@
 		global.PCair.connect(src, T)
 
 /turf/proc/post_update_air_properties()
-	if(connections)
-		connections.update_all()
+	connections?.update_all()
 
 /turf/assume_air(datum/gas_mixture/giver) //use this for machines to adjust air
 	return 0

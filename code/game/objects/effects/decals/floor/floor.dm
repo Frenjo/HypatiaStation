@@ -5,9 +5,6 @@
 
 /obj/effect/decal/floor/initialise()
 	. = ..()
-	if(!isturf(loc))
-		CRASH("Attempted to create a [type] at a non-turf location!")
-
 	loc.overlays.Add(image(icon, loc, icon_state, layer, dir))
 	qdel(src)
 

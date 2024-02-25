@@ -57,7 +57,7 @@ CONTROLLER_DEF(master)
 	sleep(-1)
 
 	to_world(SPAN_DANGER("↪ Initialising turfs."))
-	for(var/turf/simulated/turf in world)
+	for_no_type_check(var/turf/simulated/turf, GLOBL.simulated_turf_list)
 		if(!GC_DESTROYED(turf))
 			turf.initialise()
 	sleep(-1)

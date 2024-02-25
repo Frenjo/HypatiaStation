@@ -12,7 +12,12 @@
 
 /turf/simulated/New()
 	. = ..()
+	GLOBL.simulated_turf_list.Add(src)
 	levelupdate()
+
+/turf/simulated/Destroy()
+	GLOBL.simulated_turf_list.Remove(src)
+	return ..()
 
 /turf/simulated/Entered(atom/A, atom/OL)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)

@@ -568,7 +568,7 @@ mob
 			for(var/datum/air_group/group in air_master.air_groups)
 				group.marker = 0
 
-			for(var/turf/simulated/floor/S in world)
+			for(var/turf/simulated/floor/S in GLOBL.simulated_turf_list)
 				S.icon = 'icons/Testing/turf_analysis.dmi'
 				if(S.parent)
 					if(S.parent.group_processing)
@@ -615,7 +615,7 @@ mob
 			for(var/datum/air_group/group in air_master.air_groups)
 				group.marker = 0
 
-			for(var/turf/simulated/floor/S in world)
+			for(var/turf/simulated/floor/S in GLOBL.simulated_turf_list)
 				S.icon = 'icons/Testing/turf_analysis.dmi'
 				if(S.parent)
 					if(S.parent.group_processing)

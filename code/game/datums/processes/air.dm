@@ -103,10 +103,8 @@ PROCESS_DEF(air)
 
 	to_world(SPAN_DANGER("↪ Processing geometry..."))
 
-	var/simulated_turf_count = 0
-
-	for(var/turf/simulated/S in world)
-		simulated_turf_count++
+	var/simulated_turf_count = length(GLOBL.simulated_turf_list)
+	for_no_type_check(var/turf/simulated/S, GLOBL.simulated_turf_list)
 		S.update_air_properties()
 		CHECK_TICK
 

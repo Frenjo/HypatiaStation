@@ -96,7 +96,7 @@
 							from_objs += m
 
 				else if(text_starts_with(f, "/turf/simulated"))
-					for(var/turf/simulated/m in world)
+					for_no_type_check(var/turf/simulated/m, GLOBL.simulated_turf_list)
 						if(istype(m, f2))
 							from_objs += m
 

@@ -56,7 +56,7 @@
 			world << sound('sound/AI/spanomalies.ogg')
 			var/list/turfs = new
 			var/turf/picked
-			for(var/turf/simulated/floor/T in world)
+			for(var/turf/simulated/floor/T in GLOBL.simulated_turf_list)
 				if(T.z == 1)
 					turfs += T
 			for(var/turf/simulated/floor/T in turfs)

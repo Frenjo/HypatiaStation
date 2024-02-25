@@ -2210,7 +2210,7 @@
 
 				message_admins("[key_name_admin(usr)] made the floor LAVA! It'll last [length] seconds and it will deal [damage] damage to everyone.", 1)
 
-				for(var/turf/simulated/floor/F in world)
+				for(var/turf/simulated/floor/F in GLOBL.simulated_turf_list)
 					if(isStationLevel(F.z))
 						F.name = "lava"
 						F.desc = "The floor is LAVA!"
@@ -2235,7 +2235,7 @@
 
 						sleep(10)
 
-					for(var/turf/simulated/floor/F in world) // Reset everything.
+					for(var/turf/simulated/floor/F in GLOBL.simulated_turf_list) // Reset everything.
 						if(isStationLevel(F.z))
 							F.name = initial(F.name)
 							F.desc = initial(F.desc)
