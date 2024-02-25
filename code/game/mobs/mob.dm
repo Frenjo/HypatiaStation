@@ -738,7 +738,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		if(statpanel(PANEL_CONTROLLERS))
 			global.CTmaster?.stat_controllers()
 		if(statpanel(PANEL_PROCESSES))
-			global.process_scheduler?.stat_processes()
+			global.CTmaster?.stat_processes()
 
 	if(listed_turf && client)
 		if(get_dist(listed_turf, src) > 1)

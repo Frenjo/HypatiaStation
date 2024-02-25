@@ -206,7 +206,6 @@
 #include "code\game\datums\controllers\job.dm"
 #include "code\game\datums\controllers\master.dm"
 #include "code\game\datums\controllers\pai.dm"
-#include "code\game\datums\controllers\process_scheduler.dm"
 #include "code\game\datums\controllers\radio.dm"
 #include "code\game\datums\controllers\verbs.dm"
 #include "code\game\datums\diseases\_disease.dm"
