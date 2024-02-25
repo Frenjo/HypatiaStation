@@ -1,7 +1,8 @@
 /*
  * Base Controller Datum
  */
-GLOBAL_GLOBL_LIST_NEW(datum/controller/controllers)
+// If this list is explicitly typed as /datum/controller/controllers then the whole game breaks.
+GLOBAL_GLOBL_LIST_NEW(controllers)
 
 /datum/controller
 	// The controller's name.
