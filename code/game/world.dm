@@ -44,9 +44,7 @@
 	WAIT_FOR_BACKLOG
 
 	global.CTmaster = new /datum/controller/master()
-	global.process_scheduler = new /datum/controller/process_scheduler()
-	global.process_scheduler.defer_setup_for(/datum/process/ticker)
-	global.process_scheduler.setup()
+	global.CTmaster.defer_setup_for(/datum/process/ticker)
 	global.CTmaster.setup()
 	global.PCticker.pregame() // This was moved here to avoid unnecessary while() and sleep().
 
@@ -64,7 +62,8 @@
 	spawn(0)
 		world << sound(pick('sound/AI/newroundsexy.ogg', 'sound/misc/apcdestroyed.ogg', 'sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 
-	global.process_scheduler.stop()
+	// Stops the master controller's process scheduling.
+	global.CTmaster.stop()
 
 	for(var/client/C in GLOBL.clients)
 		if(isnotnull(CONFIG_GET(server)))	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite

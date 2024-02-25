@@ -173,7 +173,8 @@ PROCESS_DEF(ticker)
 	if(admins_number == 0)
 		send2adminirc("Round has started with no admins online.")
 
-	global.process_scheduler.start()
+	// Starts the master controller's process scheduling.
+	global.CTmaster.start()
 
 	for(var/obj/multiz/ladder/L in world)
 		L.connect() //Lazy hackfix for ladders. TODO: move this to an actual controller. ~ Z
