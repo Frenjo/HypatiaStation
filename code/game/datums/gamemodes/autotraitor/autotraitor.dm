@@ -25,8 +25,8 @@
 			if(player.assigned_role == job)
 				possible_traitors -= player
 
-	for(var/mob/new_player/P in world)
-		if(P.client && P.ready)
+	for(var/mob/new_player/P in GLOBL.mob_list)
+		if(isnotnull(P.client) && P.ready)
 			num_players++
 
 	//var/r = rand(5)

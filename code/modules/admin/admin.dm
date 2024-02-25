@@ -981,7 +981,7 @@ var/global/floorIsLava = 0
 			return "Destroy the AI"
 		if(3)
 			var/count = 0
-			for(var/mob/living/carbon/monkey/Monkey in world)
+			for(var/mob/living/carbon/monkey/Monkey in GLOBL.mob_list)
 				if(Monkey.z == 1)
 					count++
 			return "Kill all [count] of the monkeys on the station"
@@ -1088,7 +1088,7 @@ var/global/floorIsLava = 0
 	if(!ai_number)
 		usr << "<b>No AIs located</b>" //Just so you know the thing is actually working and not just ignoring you.
 
-/datum/admins/proc/show_skills(mob/living/carbon/human/M as mob in world)
+/datum/admins/proc/show_skills(mob/living/carbon/human/M as mob in GLOBL.mob_list)
 	set category = PANEL_ADMIN
 	set name = "Show Skills"
 

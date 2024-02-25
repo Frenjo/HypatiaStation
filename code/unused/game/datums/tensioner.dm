@@ -319,8 +319,8 @@ var/global/datum/tension/tension_master
 		if(BE_CULTIST)		roletext="cultist"
 
 
-	for(var/mob/new_player/player in world)
-		if(player.client && player.ready)
+	for(var/mob/new_player/player in GLOBL.mob_list)
+		if(isnotnull(player.client) && player.ready)
 			if(player.preferences.be_special & role)
 */
 

@@ -668,7 +668,7 @@ var/list/admin_verbs_donor = list(
 //	feedback_add_details("admin_verb","MP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
-/client/proc/editappear(mob/living/carbon/human/M as mob in world)
+/client/proc/editappear(mob/living/carbon/human/M as mob in GLOBL.mob_list)
 	set category = PANEL_FUN
 	set name = "Edit Appearance"
 

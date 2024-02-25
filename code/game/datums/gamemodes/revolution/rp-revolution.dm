@@ -179,14 +179,14 @@
 /datum/game_mode/rp_revolution/proc/get_possible_revolutionaries()
 	var/list/candidates = list()
 
-	for(var/mob/living/carbon/human/player in world)
-		if(player.client)
+	for(var/mob/living/carbon/human/player in GLOBL.mob_list)
+		if(isnotnull(player.client))
 			if(player.client.be_syndicate & BE_REV)
 				candidates += player.mind
 
 	if(!length(candidates))
-		for(var/mob/living/carbon/human/player in world)
-			if(player.client)
+		for(var/mob/living/carbon/human/player in GLOBL.mob_list)
+			if(isnotnull(player.client))
 				candidates += player.mind
 
 	var/list/uncons = get_unconvertables()
@@ -200,8 +200,8 @@
 
 /datum/game_mode/rp_revolution/proc/get_unconvertables()
 	var/list/ucs = list()
-	for(var/mob/living/carbon/human/player in world)
-		if(player.mind)
+	for(var/mob/living/carbon/human/player in GLOBL.mob_list)
+		if(isnotnull(player.mind))
 			var/role = player.mind.assigned_role
 			if(role in list("Captain", "Head of Security", "Head of Personnel", "Chief Engineer", "Research Director", "Security Officer", "Forensic Technician", "AI"))
 				ucs += player.mind

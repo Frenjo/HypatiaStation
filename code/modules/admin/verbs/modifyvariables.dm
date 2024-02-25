@@ -57,7 +57,7 @@ var/list/forbidden_varedit_object_types = list(
 			var_value = input("Select reference:", "Reference") as null | mob | obj | turf | area in world
 
 		if("mob reference")
-			var_value = input("Select reference:", "Reference") as null | mob in world
+			var_value = input("Select reference:", "Reference") as null | mob in GLOBL.mob_list
 
 		if("file")
 			var_value = input("Pick file:","File") as null | file
@@ -107,7 +107,7 @@ var/list/forbidden_varedit_object_types = list(
 			var_value = input("Select reference:", "Reference") as mob | obj | turf | area in world
 
 		if("mob reference")
-			var_value = input("Select reference:", "Reference") as mob in world
+			var_value = input("Select reference:", "Reference") as mob in GLOBL.mob_list
 
 		if("file")
 			var_value = input("Pick file:", "File") as file
@@ -266,7 +266,7 @@ var/list/forbidden_varedit_object_types = list(
 			L[L.Find(variable)] = input("Select reference:", "Reference") as mob | obj | turf | area in world
 
 		if("mob reference")
-			L[L.Find(variable)] = input("Select reference:", "Reference") as mob in world
+			L[L.Find(variable)] = input("Select reference:", "Reference") as mob in GLOBL.mob_list
 
 		if("file")
 			L[L.Find(variable)] = input("Pick file:", "File") as file

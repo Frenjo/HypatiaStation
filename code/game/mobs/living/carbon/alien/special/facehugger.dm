@@ -195,11 +195,12 @@ var/const/MAX_ACTIVE_TIME = 400
 	stat = CONSCIOUS
 	icon_state = "[initial(icon_state)]"
 
-/*		for(var/mob/living/carbon/alien/alien in world)
+/*
+	for(var/mob/living/carbon/alien/alien in GLOBL.mob_list)
 		var/image/activeIndicator = image('icons/mob/alien.dmi', loc = src, icon_state = "facehugger_active")
 		activeIndicator.override = 1
-		if(alien && alien.client)
-			alien.client.images += activeIndicator	*/
+		alien?.client?.images += activeIndicator
+*/
 
 	return
 

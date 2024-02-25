@@ -7,7 +7,7 @@
 
 	Announce()
 		if(!virus)
-			for(var/mob/living/carbon/human/H in world)
+			for(var/mob/living/carbon/human/H in GLOBL.mob_list)
 				if(length(H.virus2) || H.stat == DEAD || prob(30))
 					continue
 				if(prob(100))	// no lethal diseases outside virus mode!
@@ -45,7 +45,7 @@
 //						virus_type = /datum/disease/t_virus
 					if("pierrot's throat")
 						virus_type = /datum/disease/pierrot_throat
-			for(var/mob/living/carbon/human/H in world)
+			for(var/mob/living/carbon/human/H in GLOBL.mob_list)
 
 				var/foundAlready = 0 // don't infect someone that already has the virus
 				for(var/datum/disease/D in H.viruses)
@@ -77,4 +77,3 @@
 				world << sound('sound/AI/outbreak7.ogg')
 	Tick()
 		ActiveFor = Lifetime //killme
-

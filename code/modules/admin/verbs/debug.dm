@@ -47,7 +47,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 					if("Obj")
 						target = input("Enter target:", "Target", usr) as obj in world
 					if("Mob")
-						target = input("Enter target:", "Target", usr) as mob in world
+						target = input("Enter target:", "Target", usr) as mob in GLOBL.mob_list
 					if("Area or Turf")
 						target = input("Enter target:", "Target", usr.loc) as area | turf in world
 					if("Client")
@@ -94,7 +94,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 					lst[i] = input("Select reference:", "Reference", src) as mob | obj | turf | area in world
 
 				if("mob reference")
-					lst[i] = input("Select reference:", "Reference", usr) as mob in world
+					lst[i] = input("Select reference:", "Reference", usr) as mob in GLOBL.mob_list
 
 				if("file")
 					lst[i] = input("Pick file:", "File") as file
@@ -109,7 +109,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 					lst[i] = input("Please, select a player!", "Selection", null, null) as null | anything in keys
 
 				if("mob's area")
-					var/mob/temp = input("Select mob", "Selection", usr) as mob in world
+					var/mob/temp = input("Select mob", "Selection", usr) as mob in GLOBL.mob_list
 					lst[i] = temp.loc
 
 		if(targetselected)
@@ -249,7 +249,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Invalid mob")
 
 /*
-/client/proc/cmd_admin_monkeyize(var/mob/M in world)
+/client/proc/cmd_admin_monkeyize(var/mob/M in GLOBL.mob_list)
 	set category = PANEL_FUN
 	set name = "Make Monkey"
 
@@ -264,7 +264,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		alert("Invalid mob")
 
-/client/proc/cmd_admin_changelinginize(var/mob/M in world)
+/client/proc/cmd_admin_changelinginize(var/mob/M in GLOBL.mob_list)
 	set category = PANEL_FUN
 	set name = "Make Changeling"
 
@@ -282,7 +282,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Invalid mob")
 */
 /*
-/client/proc/cmd_admin_abominize(var/mob/M in world)
+/client/proc/cmd_admin_abominize(var/mob/M in GLOBL.mob_list)
 	set category = null
 	set name = "Make Abomination"
 
@@ -299,7 +299,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 */
 /*
-/client/proc/make_cultist(var/mob/M in world) // -- TLE, modified by Urist
+/client/proc/make_cultist(var/mob/M in GLOBL.mob_list) // -- TLE, modified by Urist
 	set category = PANEL_FUN
 	set name = "Make Cultist"
 	set desc = "Makes target a cultist"
