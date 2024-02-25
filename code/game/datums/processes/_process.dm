@@ -134,8 +134,10 @@
 	on_finish()
 
 /datum/process/proc/setup()
+	return
 
 /datum/process/proc/do_work()
+	return
 
 /datum/process/proc/process()
 	started()
@@ -236,9 +238,6 @@
 /datum/process/proc/get_elapsed_time()
 	return TimeOfGame - run_start
 
-/datum/process/proc/tick_detail()
-	return
-
 /datum/process/proc/get_context()
 	return "<tr><td>[name]</td><td>[main.average_run_time(src)]</td><td>[main.last_run_time[src]]</td><td>[main.highest_run_time[src]]</td><td>[ticks]</td></tr>\n"
 
@@ -304,12 +303,16 @@
 	copy_state_from(target)
 
 /datum/process/proc/copy_state_from(datum/process/target)
+	return
 
 /datum/process/proc/on_kill()
+	return
 
 /datum/process/proc/on_start()
+	return
 
 /datum/process/proc/on_finish()
+	return
 
 /datum/process/proc/disable()
 	disabled = TRUE
@@ -317,25 +320,13 @@
 /datum/process/proc/enable()
 	disabled = FALSE
 
-/datum/process/proc/get_average_run_time()
-	return main.average_run_time(src)
-
-/datum/process/proc/get_last_run_time()
-	return main.get_process_last_run_time(src)
-
-/datum/process/proc/get_highest_run_time()
-	return main.get_process_highest_run_time(src)
-
-/datum/process/proc/get_ticks()
-	return ticks
-
 /datum/process/proc/stat_process()
 	SHOULD_NOT_OVERRIDE(TRUE)
 
-	var/average_run_time = round(get_average_run_time(), 0.1) / 10
-	var/last_run_time = round(get_last_run_time(), 0.1) / 10
-	var/highest_run_time = round(get_highest_run_time(), 0.1) / 10
-	var/list/stats = list("T#[get_ticks()] | AR [average_run_time] | LR [last_run_time] | HR [highest_run_time] | D [cpu_defer_count]")
+	var/average_run_time = round(main.average_run_time(src), 0.1) / 10
+	var/last_run_time = round(main.last_run_time[src], 0.1) / 10
+	var/highest_run_time = round(main.highest_run_time[src], 0.1) / 10
+	var/list/stats = list("T#[ticks] | AR [average_run_time] | LR [last_run_time] | HR [highest_run_time] | D [cpu_defer_count]")
 	stats.Add(stat_entry())
 	stat_click.name = jointext(stats, "\n")
 	stat(name, stat_click)

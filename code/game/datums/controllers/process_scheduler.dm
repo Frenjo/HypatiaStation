@@ -84,15 +84,16 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 	to_world(SPAN_DANGER("Initialising processes."))
 
 	var/process
-	// Add all the processes we can find, except those deferred until later.
+	// Adds all the processes we can find, except those deferred until later.
 	for(process in SUBTYPESOF(/datum/process))
 		if(!(process in deferred_setup_list))
 			add_process(new process(src))
 
+	// Adds all deferred processes.
 	for(process in deferred_setup_list)
 		add_process(new process(src))
 
-	// Report how long full process initialisation took.
+	// Reports how long full process initialisation took.
 	to_world(SPAN_DANGER("Initialised all processes in [(world.timeofday - start_time) / 10] second\s."))
 
 /datum/controller/process_scheduler/proc/start()
@@ -100,6 +101,9 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 	update_start_delays()
 	spawn(0)
 		process()
+
+/datum/controller/process_scheduler/proc/stop()
+	is_running = FALSE
 
 /datum/controller/process_scheduler/process()
 	update_current_tick_data()
@@ -115,9 +119,6 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 		queue_processes()
 		run_queued_processes()
 		sleep(scheduler_sleep_interval)
-
-/datum/controller/process_scheduler/proc/stop()
-	is_running = FALSE
 
 /datum/controller/process_scheduler/proc/check_running_processes()
 	for_no_type_check(var/datum/process/p, running)
@@ -140,17 +141,18 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 
 /datum/controller/process_scheduler/proc/queue_processes()
 	for(var/datum/process/p in processes)
-		// Don't double-queue, don't queue running processes
+		// Doesn't double-queue or queue running processes
 		if(p.disabled || p.running || p.queued || !p.idle)
 			continue
 
-		// If the process should be running by now, go ahead and queue it
+		// If the process should be running by now, goes ahead and queues it
 		if(world.time >= last_queued[p] + p.schedule_interval)
 			set_queued_process_state(p)
 
 /datum/controller/process_scheduler/proc/run_queued_processes()
 	for_no_type_check(var/datum/process/p, queued)
-		run_process(p)
+		spawn(0)
+			p.process()
 
 /datum/controller/process_scheduler/proc/add_process(datum/process/process)
 	var/start_time = world.timeofday
@@ -223,10 +225,6 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 	for_no_type_check(var/datum/process/p, processes)
 		if(p.start_delay)
 			last_queued[p] = world.time - p.start_delay
-
-/datum/controller/process_scheduler/proc/run_process(datum/process/process)
-	spawn(0)
-		process.process()
 
 /datum/controller/process_scheduler/proc/process_started(datum/process/process)
 	set_running_process_state(process)
@@ -315,12 +313,6 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 		return t / c
 	return c
 
-/datum/controller/process_scheduler/proc/get_process_last_run_time(datum/process/process)
-	return last_run_time[process]
-
-/datum/controller/process_scheduler/proc/get_process_highest_run_time(datum/process/process)
-	return highest_run_time[process]
-
 /datum/controller/process_scheduler/proc/get_status_data()
 	var/list/data = list()
 
@@ -330,32 +322,25 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 
 	return data
 
-/datum/controller/process_scheduler/proc/get_process_count()
-	return length(processes)
+/datum/controller/process_scheduler/proc/has_process(process_name)
+	return isnotnull(processes_by_name[process_name])
 
-/datum/controller/process_scheduler/proc/has_process(processName as text)
-	if(processes_by_name[processName])
-		return 1
-
-/datum/controller/process_scheduler/proc/kill_process(processName as text)
-	restart_process(processName)
-
-/datum/controller/process_scheduler/proc/restart_process(processName as text)
-	if(has_process(processName))
-		var/datum/process/oldInstance = processes_by_name[processName]
+/datum/controller/process_scheduler/proc/restart_process(process_name)
+	if(has_process(process_name))
+		var/datum/process/oldInstance = processes_by_name[process_name]
 		var/datum/process/newInstance = new oldInstance.type(src)
 		newInstance._copy_state_from(oldInstance)
 		replace_process(oldInstance, newInstance)
 		oldInstance.kill()
 
-/datum/controller/process_scheduler/proc/enable_process(processName as text)
-	if(has_process(processName))
-		var/datum/process/process = processes_by_name[processName]
+/datum/controller/process_scheduler/proc/enable_process(process_name)
+	if(has_process(process_name))
+		var/datum/process/process = processes_by_name[process_name]
 		process.enable()
 
-/datum/controller/process_scheduler/proc/disable_process(processName as text)
-	if(has_process(processName))
-		var/datum/process/process = processes_by_name[processName]
+/datum/controller/process_scheduler/proc/disable_process(process_name)
+	if(has_process(process_name))
+		var/datum/process/process = processes_by_name[process_name]
 		process.disable()
 
 /datum/controller/process_scheduler/proc/get_current_tick_elapsed_time()
