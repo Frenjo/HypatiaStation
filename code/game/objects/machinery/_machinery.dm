@@ -134,7 +134,7 @@
 	if(power_state && stat == 0)
 		use_power(7500 / severity)
 
-		var/obj/effect/overlay/pulse2 = PoolOrNew(/obj/effect/overlay, loc)
+		var/obj/effect/overlay/pulse2 = new /obj/effect/overlay(loc)
 		pulse2.icon = 'icons/effects/effects.dmi'
 		pulse2.icon_state = "empdisable"
 		pulse2.name = "emp sparks"

@@ -158,7 +158,7 @@
 	if(isnull(focus))
 		return
 
-	var/obj/effect/overlay/O = PoolOrNew(/obj/effect/overlay, locate(focus.x, focus.y, focus.z))
+	var/obj/effect/overlay/O = new /obj/effect/overlay(locate(focus.x, focus.y, focus.z))
 	O.name = "sparkles"
 	O.anchored = TRUE
 	O.density = FALSE

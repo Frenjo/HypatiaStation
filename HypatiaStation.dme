@@ -78,7 +78,6 @@
 #include "code\__HELPERS\captain_announce.dm"
 #include "code\__HELPERS\command_alert.dm"
 #include "code\__HELPERS\database.dm"
-#include "code\__HELPERS\datum_pool.dm"
 #include "code\__HELPERS\debugging.dm"
 #include "code\__HELPERS\dview.dm"
 #include "code\__HELPERS\files.dm"

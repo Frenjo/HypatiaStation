@@ -341,7 +341,7 @@ proc/check_panel(mob/M)
 	updateimage()
 
 /proc/fake_blood(mob/target)
-	var/obj/effect/overlay/O = PoolOrNew(/obj/effect/overlay, target.loc)
+	var/obj/effect/overlay/O = new /obj/effect/overlay(target.loc)
 	O.name = "blood"
 	var/image/I = image('icons/effects/blood.dmi', O, "floor[rand(1, 7)]", O.dir, 1)
 	target << I

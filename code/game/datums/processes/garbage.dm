@@ -120,19 +120,13 @@ PROCESS_DEF(garbage)
 			A.finalize_qdel()
 
 /datum/proc/finalize_qdel()
-	if(IsPooled(src))
-		PlaceInPool(src)
-	else
-		del(src)
+	del(src)
 
 /atom/finalize_qdel()
-	if(IsPooled(src))
-		PlaceInPool(src)
+	if(isnotnull(global.PCgarbage))
+		global.PCgarbage.AddTrash(src)
 	else
-		if(global.PCgarbage)
-			global.PCgarbage.AddTrash(src)
-		else
-			global.delayed_garbage |= src
+		global.delayed_garbage |= src
 
 /icon/finalize_qdel()
 	del(src)

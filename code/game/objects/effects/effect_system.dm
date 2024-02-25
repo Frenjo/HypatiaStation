@@ -96,7 +96,7 @@ steam.start() -- spawns the effect
 		spawn(0)
 			if(holder)
 				src.location = get_turf(holder)
-			var/obj/effect/steam/steam = PoolOrNew(/obj/effect/steam, src.location)
+			var/obj/effect/steam/steam = new /obj/effect/steam(location)
 			var/direction
 			if(src.cardinals)
 				direction = pick(GLOBL.cardinal)
@@ -168,7 +168,7 @@ steam.start() -- spawns the effect
 		spawn(0)
 			if(holder)
 				src.location = get_turf(holder)
-			var/obj/effect/sparks/sparks = PoolOrNew(/obj/effect/sparks, src.location)
+			var/obj/effect/sparks/sparks = new /obj/effect/sparks(location)
 			src.total_sparks++
 			var/direction
 			if(src.cardinals)
@@ -330,7 +330,7 @@ steam.start() -- spawns the effect
 		spawn(0)
 			if(holder)
 				src.location = get_turf(holder)
-			var/obj/effect/smoke/smoke = PoolOrNew(smoke_type, src.location)
+			var/obj/effect/smoke/smoke = new smoke_type(location)
 			src.total_smoke++
 			var/direction = src.direction
 			if(!direction)
@@ -386,7 +386,7 @@ steam.start() -- spawns the effect
 			var/turf/T = get_turf(src.holder)
 			if(T != src.oldposition)
 				if(isspace(T))
-					var/obj/effect/ion_trails/I = PoolOrNew(/obj/effect/ion_trails, src.oldposition)
+					var/obj/effect/ion_trails/I = new /obj/effect/ion_trails(oldposition)
 					src.oldposition = T
 					I.set_dir(src.holder.dir)
 					flick("ion_fade", I)
@@ -429,7 +429,7 @@ steam.start() -- spawns the effect
 		src.processing = FALSE
 		spawn(0)
 			if(src.number < 3)
-				var/obj/effect/steam/I = PoolOrNew(/obj/effect/steam, src.oldposition)
+				var/obj/effect/steam/I = new /obj/effect/steam(oldposition)
 				src.number++
 				src.oldposition = get_turf(holder)
 				I.set_dir(src.holder.dir)
