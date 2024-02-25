@@ -44,7 +44,7 @@
 	WAIT_FOR_BACKLOG
 
 	global.CTmaster = new /datum/controller/master()
-	global.CTmaster.defer_setup_for(/datum/process/ticker)
+	//global.CTmaster.defer_setup_for(/datum/process/ticker) // This should no longer be needed, but I'm leaving it commented just in case.
 	global.CTmaster.setup()
 	global.PCticker.pregame() // This was moved here to avoid unnecessary while() and sleep().
 

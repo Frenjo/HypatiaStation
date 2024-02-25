@@ -3,6 +3,18 @@
  *
  * This is an unholy abomination of GoonPS, CarnMC and StonedMC.
  *
+ * Takes over after global initialisation happens and the world has been created:
+ *	Generates syndicate code phrases and responses.
+ *	Initialises job and radio controllers.
+ *	Sets up processes.
+ *	Calls initialise() on all areas, simulated turfs and movable atoms.
+ *	Calls atmos_initialise() and post_status() on all pipe networks and atmospherics machinery.
+ *	Populates latejoin spawn points.
+ *	Creates the space parallax background.
+ *	Calls setup_genetics() to initialise DNA2.
+ *	Sets up factions.
+ *	Sets up xenoarchaeological finds and artifacts.
+ *
  * A leader is best when people barely know he exists, when his work is done, his aim fulfilled, they will say: we did it ourselves. ~ Lao Tzu
  */
 CONTROLLER_DEF(master)
@@ -89,6 +101,7 @@ CONTROLLER_DEF(master)
 		GLOBL.syndicate_code_response = generate_code_phrase()
 
 /datum/controller/master/setup()
+	// Stores the time we started setting up the master controller.
 	var/start_time = world.timeofday
 	to_world(SPAN_DANGER("Initialising Master controller."))
 
@@ -98,13 +111,12 @@ CONTROLLER_DEF(master)
 		global.CTjobs.load_jobs("config/jobs.txt")
 		to_world(SPAN_DANGER("↪ Job setup complete."))
 
+	// This must be initialised before processes to avoid runtimes.
 	if(isnull(global.CTradio))
 		global.CTradio = new /datum/controller/radio()
 		to_world(SPAN_DANGER("↪ Radio setup complete."))
 
-	// Sets up all processes.
 	setup_processes()
-
 	setup_objects()
 	setup_genetics()
 	setup_factions()
