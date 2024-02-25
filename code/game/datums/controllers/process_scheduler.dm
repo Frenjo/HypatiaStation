@@ -182,7 +182,7 @@ GLOBAL_BYOND_TYPED(process_scheduler, /datum/controller/process_scheduler) // Se
 	processes_by_name[process.name] = process
 
 	// Waits until setup is done.
-	sleep(-1)
+	WAIT_FOR_BACKLOG
 
 	// Reports successful initialisation.
 	to_world(SPAN_DANGER("↪ Processing every [process.schedule_interval / 10] second\s."))

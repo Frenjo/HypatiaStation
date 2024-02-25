@@ -39,7 +39,6 @@ CONTROLLER_DEF(master)
 	setup_genetics()
 	setup_factions()
 	setup_xenoarch()
-	sleep(-1)
 
 	to_world(SPAN_DANGER("Initialisation completed in [(world.timeofday - start_time) / 10] second\s."))
 	initialised = TRUE
@@ -54,26 +53,28 @@ CONTROLLER_DEF(master)
 	for_no_type_check(var/area/area, GLOBL.area_list)
 		if(!GC_DESTROYED(area))
 			area.initialise()
-	sleep(-1)
+	WAIT_FOR_BACKLOG
 
 	to_world(SPAN_DANGER("↪ Initialising turfs."))
 	for_no_type_check(var/turf/simulated/turf, GLOBL.simulated_turf_list)
 		if(!GC_DESTROYED(turf))
 			turf.initialise()
-	sleep(-1)
+	WAIT_FOR_BACKLOG
 
 	to_world(SPAN_DANGER("↪ Initialising objects."))
+	// In future there will be a GLOBL.movable_atoms_list when the parent calls (and lack of)...
+	// ... in various New() overrides on /atom/movable subtypes have been fixed.
 	for(var/atom/movable/object in world)
 		if(!GC_DESTROYED(object))
 			object.initialise()
-	sleep(-1)
+	WAIT_FOR_BACKLOG
 
 	to_world(SPAN_DANGER("↪ Initialising pipe networks."))
 	for(var/obj/machinery/atmospherics/machine in GLOBL.machines)
 		machine.atmos_initialise()
 	for(var/obj/machinery/atmospherics/machine in GLOBL.machines)
 		machine.build_network()
-	sleep(-1)
+	WAIT_FOR_BACKLOG
 
 	to_world(SPAN_DANGER("↪ Initialising atmos machinery."))
 	for(var/obj/machinery/atmospherics/unary/U in GLOBL.machines)
@@ -83,17 +84,17 @@ CONTROLLER_DEF(master)
 		else if(istype(U, /obj/machinery/atmospherics/unary/vent_scrubber))
 			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
 			T.broadcast_status()
-	sleep(-1)
+	WAIT_FOR_BACKLOG
 
 	// Sets up spawn points.
 	to_world(SPAN_DANGER("↪ Populating spawn points."))
 	populate_spawn_points()
-	sleep(-1)
+	WAIT_FOR_BACKLOG
 
 	// Creates the space parallax background.
 	to_world(SPAN_DANGER("↪ Creating space parallax."))
 	create_parallax()
-	sleep(-1)
+	WAIT_FOR_BACKLOG
 
 /datum/controller/master/proc/setup_factions()
 	to_world(SPAN_DANGER("↪ Setting up factions."))
@@ -112,7 +113,7 @@ CONTROLLER_DEF(master)
 	for(var/datum/faction/syndicate/S in GLOBL.factions)
 		GLOBL.syndicate_coalition.Add(S)
 
-	sleep(-1)
+	WAIT_FOR_BACKLOG
 
 #define XENOARCH_SPAWN_CHANCE 0.5
 #define XENOARCH_SPREAD_CHANCE 15
@@ -161,6 +162,8 @@ CONTROLLER_DEF(master)
 		//dont create artifact machinery in animal or plant digsites, or if we already have one
 		if(!M.artifact_find && digsite != 1 && digsite != 2 && prob(ARTIFACT_SPAWN_CHANCE))
 			M.artifact_find = new /datum/artifact_find()
+
+	WAIT_FOR_BACKLOG
 #undef XENOARCH_SPAWN_CHANCE
 #undef XENOARCH_SPREAD_CHANCE
 #undef ARTIFACT_SPAWN_CHANCE

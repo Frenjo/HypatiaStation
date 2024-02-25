@@ -41,9 +41,7 @@
 	createRandomZlevel()
 	for(var/i = 0, i < GLOBL.max_secret_rooms, i++)
 		make_mining_asteroid_secret()
-	sleep(-1)
-
-	sleep_offline = TRUE
+	WAIT_FOR_BACKLOG
 
 	global.CTmaster = new /datum/controller/master()
 	global.process_scheduler = new /datum/controller/process_scheduler()
