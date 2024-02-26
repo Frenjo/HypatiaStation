@@ -389,7 +389,7 @@ var/engwords = list(
 		runerandom()
 	if(iscultist(user))
 		var/C = 0
-		for(var/obj/effect/rune/N in world)
+		for(var/obj/effect/rune/N in GLOBL.movable_atom_list)
 			C++
 		if(!isturf(user.loc))
 			to_chat(user, SPAN_WARNING("You do not have enough space to write a proper rune."))

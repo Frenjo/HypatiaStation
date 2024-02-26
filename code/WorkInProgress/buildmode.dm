@@ -171,7 +171,7 @@
 					if("mob-reference")
 						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as mob in GLOBL.mob_list
 					if("obj-reference")
-						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as obj in world
+						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as obj in GLOBL.movable_atom_list
 					if("turf-reference")
 						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as turf in world
 	return 1

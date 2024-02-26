@@ -1,5 +1,5 @@
 /proc/christmas_game_start()
-	for(var/obj/structure/flora/tree/pine/xmas in world)
+	for(var/obj/structure/flora/tree/pine/xmas in GLOBL.movable_atom_list)
 		if(isNotStationLevel(xmas.z))
 			continue
 		for(var/turf/simulated/floor/T in orange(1, xmas))
@@ -9,7 +9,7 @@
 	//	Ian.place_on_head(new /obj/item/clothing/head/helmet/space/santahat(Ian))
 
 /proc/christmas_event()
-	for(var/obj/structure/flora/tree/pine/xmas in world)
+	for(var/obj/structure/flora/tree/pine/xmas in GLOBL.movable_atom_list)
 		var/mob/living/simple_animal/hostile/tree/evil_tree = new /mob/living/simple_animal/hostile/tree(xmas.loc)
 		evil_tree.icon_state = xmas.icon_state
 		evil_tree.icon_living = evil_tree.icon_state
@@ -60,4 +60,3 @@
 	desc = "A crappy paper hat that you are REQUIRED to wear."
 	flags_inv = 0
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-

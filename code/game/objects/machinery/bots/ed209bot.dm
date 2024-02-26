@@ -844,10 +844,14 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 		..()
 
 /obj/machinery/bot/ed209/bluetag/New()//If desired, you spawn red and bluetag bots easily
+	SHOULD_CALL_PARENT(FALSE)
+
 	new /obj/machinery/bot/ed209(get_turf(src), null, "b")
 	qdel(src)
 
 /obj/machinery/bot/ed209/redtag/New()
+	SHOULD_CALL_PARENT(FALSE)
+
 	new /obj/machinery/bot/ed209(get_turf(src), null, "r")
 	qdel(src)
 

@@ -10,7 +10,7 @@
 	var/inactive_groups = length(global.PCair.zones) - active_groups
 
 	var/hotspots = 0
-	for(var/obj/fire/hotspot in world)
+	for(var/obj/fire/hotspot in GLOBL.movable_atom_list)
 		hotspots++
 
 	var/active_on_main_station = 0

@@ -50,7 +50,7 @@
 	var/list/datum/mind/possible_headrevs = get_players_for_role(BE_REV)
 
 	var/head_check = 0
-	for(var/mob/new_player/player in GLOBL.player_list)
+	for(var/mob/new_player/player in GLOBL.dead_mob_list)
 		if(player.mind.assigned_role in GLOBL.command_positions)
 			head_check = 1
 			break

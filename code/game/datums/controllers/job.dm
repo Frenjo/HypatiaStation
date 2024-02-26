@@ -120,7 +120,7 @@ CONTROLLER_DEF(jobs)
 			break
 
 /datum/controller/jobs/proc/reset_occupations()
-	for(var/mob/new_player/player in GLOBL.player_list)
+	for(var/mob/new_player/player in GLOBL.dead_mob_list)
 		if(isnotnull(player?.mind))
 			player.mind.assigned_role = null
 			player.mind.special_role = null
@@ -236,7 +236,7 @@ CONTROLLER_DEF(jobs)
 			A.spawn_positions = 3
 
 	//Get the players who are ready
-	for(var/mob/new_player/player in GLOBL.player_list)
+	for(var/mob/new_player/player in GLOBL.dead_mob_list)
 		if(player.ready && isnotnull(player.mind) && !player.mind.assigned_role)
 			unassigned.Add(player)
 
@@ -474,7 +474,7 @@ CONTROLLER_DEF(jobs)
 		var/level4 = 0 //never
 		var/level5 = 0 //banned
 		var/level6 = 0 //account too young
-		for(var/mob/new_player/player in GLOBL.player_list)
+		for(var/mob/new_player/player in GLOBL.dead_mob_list)
 			if(!player.ready || isnull(player.mind) || player.mind.assigned_role)
 				continue //This player is not ready
 			if(jobban_isbanned(player, job.title))

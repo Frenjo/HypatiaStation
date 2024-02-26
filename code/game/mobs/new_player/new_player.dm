@@ -16,9 +16,6 @@
 	var/totalPlayers = 0		//Player counts for the Lobby tab
 	var/totalPlayersReady = 0
 
-/mob/new_player/New()
-	GLOBL.mob_list += src
-
 /mob/new_player/verb/new_player_panel()
 	set src = usr
 	new_player_panel_proc()
@@ -84,7 +81,7 @@
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
-			for(var/mob/new_player/player in GLOBL.player_list)
+			for(var/mob/new_player/player in GLOBL.dead_mob_list)
 				stat("[player.key]", player.ready ? "(Playing)" : null)
 				totalPlayers++
 				if(player.ready)

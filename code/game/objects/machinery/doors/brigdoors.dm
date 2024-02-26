@@ -46,7 +46,7 @@
 			if(F.id == id)
 				targets += F
 
-		for(var/obj/structure/closet/secure/brig/C in world)
+		for(var/obj/structure/closet/secure/brig/C in GLOBL.movable_atom_list)
 			if(C.id == id)
 				targets += C
 

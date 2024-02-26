@@ -24,10 +24,10 @@
 	return
 
 /obj/effect/portal/New()
+	. = ..()
 	spawn(300)
 		qdel(src)
 		return
-	return
 
 /obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
 	if(istype(M, /obj/effect)) //sparks don't teleport

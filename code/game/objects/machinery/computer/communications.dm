@@ -557,7 +557,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 		if(isturf(commconsole.loc) && commconsole != src)
 			return ..()
 
-	for(var/obj/item/circuitboard/communications/commboard in world)
+	for(var/obj/item/circuitboard/communications/commboard in GLOBL.movable_atom_list)
 		if(isturf(commboard.loc) || istype(commboard.loc, /obj/item/storage))
 			return ..()
 

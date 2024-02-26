@@ -10,7 +10,7 @@
 
 /obj/structure/ladder/initialise()
 	. = ..()
-	for(var/obj/structure/ladder/L in world)
+	for(var/obj/structure/ladder/L in GLOBL.movable_atom_list)
 		if(L.id == id)
 			if(L.height == (height - 1))
 				down = L

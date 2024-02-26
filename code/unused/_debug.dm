@@ -93,7 +93,7 @@ Doing this because FindTurfs() isn't even used
 	//set hidden = 1
 
 	if(Debug)
-		for(var/obj/effect/mark/O in world)
+		for(var/obj/effect/mark/O in GLOBL.movable_atom_list)
 			del(O)
 	else
 		alert("Debugging off")

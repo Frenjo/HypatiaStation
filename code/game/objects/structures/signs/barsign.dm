@@ -4,8 +4,8 @@
 	anchored = TRUE
 
 /obj/structure/sign/double/barsign/New()
+	. = ..()
 	ChangeSign(pick("pinkflamingo", "magmasea", "limbo", "rustyaxe", "armokbar", "brokendrum", "meadbay", "thedamnwall", "thecavern", "cindikate", "theorchard", "thesaucyclown", "theclownshead"))
-	return
 
 /obj/structure/sign/double/barsign/proc/ChangeSign(var/Text)
 	src.icon_state = "[Text]"

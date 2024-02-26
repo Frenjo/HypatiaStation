@@ -20,6 +20,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	. = ..()
+	GLOBL.movable_atom_list.Add(src)
 
 /atom/movable/Destroy()
 	var/turf/un_opaque = null
@@ -33,6 +34,7 @@
 			pulledby.pulling = null
 		pulledby = null
 
+	GLOBL.movable_atom_list.Remove(src)
 	return ..()
 
 /atom/movable/Move()

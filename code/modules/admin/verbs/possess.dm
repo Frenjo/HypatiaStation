@@ -1,4 +1,4 @@
-/proc/possess(obj/O as obj in world)
+/proc/possess(obj/O as obj in GLOBL.movable_atom_list)
 	set category = PANEL_OBJECT
 	set name = "Possess Obj"
 
@@ -26,7 +26,7 @@
 	usr.control_object = O
 	feedback_add_details("admin_verb", "PO") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/proc/release(obj/O as obj in world)
+/proc/release(obj/O as obj in GLOBL.movable_atom_list)
 	set category = PANEL_OBJECT
 	set name = "Release Obj"
 	//usr.loc = get_turf(usr)

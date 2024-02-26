@@ -18,7 +18,7 @@
 
 	connected_traps = list() //emptying the list first
 	for(var/trap_name in connected_traps_names)
-		for(var/obj/effect/trap/the_trap in world)
+		for(var/obj/effect/trap/the_trap in GLOBL.movable_atom_list)
 			if(the_trap.name == trap_name)
 				connected_traps += the_trap //adding the trap with the matching name
 

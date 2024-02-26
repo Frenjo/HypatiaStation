@@ -41,7 +41,7 @@
 					if(GLOBL.processing_objects.Find(src))
 						//scan radios in the world to try and find one
 						var/cur_dist = 999
-						for(var/obj/item/radio/beacon/R in world)
+						for(var/obj/item/radio/beacon/R in GLOBL.movable_atom_list)
 							if(R.z == src.z && R.frequency == src.frequency)
 								var/check_dist = get_dist(src,R)
 								if(check_dist < cur_dist)

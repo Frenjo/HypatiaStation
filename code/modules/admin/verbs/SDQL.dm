@@ -116,7 +116,7 @@
 							from_objs += m
 
 				else if(text_starts_with(f, "/obj/item"))
-					for(var/obj/item/m in world)
+					for(var/obj/item/m in GLOBL.movable_atom_list)
 						if(istype(m, f2))
 							from_objs += m
 
@@ -126,7 +126,7 @@
 							from_objs += m
 
 				else if(text_starts_with(f, "/obj"))
-					for(var/obj/m in world)
+					for(var/obj/m in GLOBL.movable_atom_list)
 						if(istype(m, f2))
 							from_objs += m
 

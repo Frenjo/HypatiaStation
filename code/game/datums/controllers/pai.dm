@@ -82,7 +82,7 @@ CONTROLLER_DEF(pai)
 				if(isnotnull(candidate))
 					return
 				candidate.ready = TRUE
-				for(var/obj/item/paicard/p in world)
+				for(var/obj/item/paicard/p in GLOBL.movable_atom_list)
 					if(p.looking_for_personality == 1)
 						p.alertUpdate()
 				usr << browse(null, "window=paiRecruit")

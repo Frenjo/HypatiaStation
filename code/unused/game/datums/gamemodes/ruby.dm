@@ -155,7 +155,7 @@
 	set name = "Summon Weapon"
 	set category = "Abomination"
 
-	for(var/obj/item/rubyweapon/w in world)
+	for(var/obj/item/rubyweapon/w in GLOBL.movable_atom_list)
 		if(istype(w, /obj/item/rubyweapon))
 			if(istype(w.loc, /mob))
 				var/mob/M = w.loc

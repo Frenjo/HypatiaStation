@@ -82,7 +82,7 @@
 				else
 					src.r_wall += 1
 
-		for(var/obj/O in world)
+		for(var/obj/O in GLOBL.movable_atom_list)
 			if(isNotStationLevel(O.z))
 				continue
 

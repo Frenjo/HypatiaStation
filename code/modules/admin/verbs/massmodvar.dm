@@ -141,7 +141,7 @@
 						if(istype(M, O.type))
 							M.vars[variable] = O.vars[variable]
 				else if(isobj(O))
-					for(var/obj/A in world)
+					for(var/obj/A in GLOBL.movable_atom_list)
 						if(istype(A, O.type))
 							A.vars[variable] = O.vars[variable]
 				else if(isturf(O))
@@ -154,7 +154,7 @@
 						if(M.type == O.type)
 							M.vars[variable] = O.vars[variable]
 				else if(isobj(O))
-					for(var/obj/A in world)
+					for(var/obj/A in GLOBL.movable_atom_list)
 						if(A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 				else if(isturf(O))
@@ -177,7 +177,7 @@
 						if(istype(M, O.type))
 							M.vars[variable] = O.vars[variable]
 				else if(isobj(O))
-					for(var/obj/A in world)
+					for(var/obj/A in GLOBL.movable_atom_list)
 						if(istype(A, O.type))
 							A.vars[variable] = O.vars[variable]
 				else if(isturf(O))
@@ -190,7 +190,7 @@
 						if(M.type == O.type)
 							M.vars[variable] = O.vars[variable]
 				else if(isobj(O))
-					for(var/obj/A in world)
+					for(var/obj/A in GLOBL.movable_atom_list)
 						if(A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 				else if(isturf(O))
@@ -217,7 +217,7 @@
 							else
 								M.vars[variable] = O.vars[variable]
 				else if(isobj(O))
-					for(var/obj/A in world)
+					for(var/obj/A in GLOBL.movable_atom_list)
 						if(istype(A, O.type))
 							if(variable == "light_range")
 								A.set_light(new_value)
@@ -239,7 +239,7 @@
 							else
 								M.vars[variable] = O.vars[variable]
 				else if(isobj(O))
-					for(var/obj/A in world)
+					for(var/obj/A in GLOBL.movable_atom_list)
 						if(A.type == O.type)
 							if(variable == "light_range")
 								A.set_light(new_value)
@@ -265,7 +265,7 @@
 						if(istype(M, O.type))
 							M.vars[variable] = O.vars[variable]
 				else if(isobj(O))
-					for(var/obj/A in world)
+					for(var/obj/A in GLOBL.movable_atom_list)
 						if(istype(A , O.type))
 							A.vars[variable] = O.vars[variable]
 				else if(isturf(O))
@@ -278,7 +278,7 @@
 						if(M.type == O.type)
 							M.vars[variable] = O.vars[variable]
 				else if(isobj(O))
-					for(var/obj/A in world)
+					for(var/obj/A in GLOBL.movable_atom_list)
 						if(A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 				else if(isturf(O))
@@ -298,7 +298,7 @@
 						if(istype(M, O.type))
 							M.vars[variable] = O.vars[variable]
 				else if(istype(O.type, /obj))
-					for(var/obj/A in world)
+					for(var/obj/A in GLOBL.movable_atom_list)
 						if(istype(A, O.type))
 							A.vars[variable] = O.vars[variable]
 				else if(istype(O.type, /turf))
@@ -311,7 +311,7 @@
 						if(M.type == O.type)
 							M.vars[variable] = O.vars[variable]
 				else if(istype(O.type, /obj))
-					for(var/obj/A in world)
+					for(var/obj/A in GLOBL.movable_atom_list)
 						if(A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 				else if(istype(O.type, /turf))
@@ -330,7 +330,7 @@
 						if(istype(M, O.type))
 							M.vars[variable] = O.vars[variable]
 				else if(isobj(O))
-					for(var/obj/A in world)
+					for(var/obj/A in GLOBL.movable_atom_list)
 						if(istype(A, O.type))
 							A.vars[variable] = O.vars[variable]
 				else if(isturf(O))
@@ -343,7 +343,7 @@
 						if(M.type == O.type)
 							M.vars[variable] = O.vars[variable]
 				else if(isobj(O))
-					for(var/obj/A in world)
+					for(var/obj/A in GLOBL.movable_atom_list)
 						if(A.type == O.type)
 							A.vars[variable] = O.vars[variable]
 				else if(isturf(O))

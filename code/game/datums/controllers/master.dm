@@ -246,9 +246,7 @@ CONTROLLER_DEF(master)
 	WAIT_FOR_BACKLOG
 
 	to_world(SPAN_DANGER("↪ Initialising objects."))
-	// In future there will be a GLOBL.movable_atoms_list when the parent calls (and lack of)...
-	// ... in various New() overrides on /atom/movable subtypes have been fixed.
-	for(var/atom/movable/object in world)
+	for_no_type_check(var/atom/movable/object, GLOBL.movable_atom_list)
 		if(!GC_DESTROYED(object))
 			object.initialise()
 	WAIT_FOR_BACKLOG

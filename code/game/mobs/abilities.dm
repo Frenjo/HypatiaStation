@@ -83,5 +83,5 @@ Creature-level abilities.
 
 	mob.show_message(SPAN_INFO("You project your words into [target.real_name]: [say]"))
 
-	for(var/mob/dead/observer/G in world)
+	for(var/mob/dead/observer/G in GLOBL.mob_list)
 		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")

@@ -1,7 +1,7 @@
 /mob/living/silicon/ai/Login()	//ThisIsDumb(TM) TODO: tidy this up �_� ~Carn
 	. = ..()
 
-	for(var/obj/effect/rune/rune in world)
+	for(var/obj/effect/rune/rune in GLOBL.movable_atom_list)
 		var/image/blood = image(loc = rune)
 		blood.override = 1
 		client.images.Add(blood)

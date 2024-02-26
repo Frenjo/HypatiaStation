@@ -684,7 +684,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	if(isnotnull(global.PCticker))
 		var/n_p = 1 //autowin
 		if(global.PCticker.current_state == GAME_STATE_SETTING_UP)
-			for(var/mob/new_player/P in GLOBL.player_list)
+			for(var/mob/new_player/P in GLOBL.dead_mob_list)
 				if(isnotnull(P.client) && P.ready && P.mind != owner)
 					n_p ++
 		else if(global.PCticker.current_state == GAME_STATE_PLAYING)

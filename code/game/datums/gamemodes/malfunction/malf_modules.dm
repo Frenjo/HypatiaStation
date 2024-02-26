@@ -74,9 +74,9 @@ rcd light flash thingy on matter drain
 	for(var/datum/malf_module/large/disable_rcd/rcdmod in malf.current_modules)
 		if(rcdmod.uses > 0)
 			rcdmod.uses --
-			for(var/obj/item/rcd/rcd in world)
+			for(var/obj/item/rcd/rcd in GLOBL.movable_atom_list)
 				rcd.disabled = TRUE
-			for(var/obj/item/mecha_parts/mecha_equipment/tool/rcd/rcd in world)
+			for(var/obj/item/mecha_parts/mecha_equipment/tool/rcd/rcd in GLOBL.movable_atom_list)
 				rcd.disabled = TRUE
 			to_chat(usr, "RCD-disabling pulse emitted.")
 		else

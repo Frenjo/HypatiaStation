@@ -28,6 +28,7 @@
 	var/corpseidicon = null //For setting it to be a gold, silver, centcom etc ID
 
 /obj/effect/landmark/mobcorpse/New()
+	. = ..()
 	createCorpse()
 
 /obj/effect/landmark/mobcorpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.

@@ -45,7 +45,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				class = input("Proc owned by...", "Owner", null) as null | anything in list("Obj", "Mob", "Area or Turf", "Client")
 				switch(class)
 					if("Obj")
-						target = input("Enter target:", "Target", usr) as obj in world
+						target = input("Enter target:", "Target", usr) as obj in GLOBL.movable_atom_list
 					if("Mob")
 						target = input("Enter target:", "Target", usr) as mob in GLOBL.mob_list
 					if("Area or Turf")
@@ -469,7 +469,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if(!(A.type in areas_with_LS))
 			areas_with_LS.Add(A.type)
 
-	for(var/obj/item/radio/intercom/I in world)
+	for(var/obj/item/radio/intercom/I in GLOBL.movable_atom_list)
 		var/area/A = get_area(I)
 		if(!(A.type in areas_with_intercom))
 			areas_with_intercom.Add(A.type)

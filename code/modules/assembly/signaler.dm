@@ -106,7 +106,7 @@ Code:
 	radio_connection.post_signal(src, signal)
 	return
 /*
-	for(var/obj/item/assembly/signaler/S in world)
+	for(var/obj/item/assembly/signaler/S in GLOBL.movable_atom_list)
 		if(!S)	continue
 		if(S == src)	continue
 		if((S.frequency == src.frequency) && (S.code == src.code))

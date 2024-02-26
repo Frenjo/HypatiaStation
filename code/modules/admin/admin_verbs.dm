@@ -577,7 +577,7 @@ var/list/admin_verbs_donor = list(
 	log_admin("[key_name(usr)] gave [key_name(T)] the disease [D].")
 	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] the disease [D].", 1)
 
-/client/proc/make_sound(var/obj/O in world) // -- TLE
+/client/proc/make_sound(var/obj/O in GLOBL.movable_atom_list) // -- TLE
 	set category = PANEL_SPECIAL_VERBS
 	set name = "Make Sound"
 	set desc = "Display a message to everyone who can hear the target"

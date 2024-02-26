@@ -1,3 +1,5 @@
+GLOBAL_GLOBL_LIST_NEW(atom/movable/movable_atom_list) // A list of all movable atoms in the world.
+
 GLOBAL_GLOBL_LIST_NEW(cable_list)	//Index for all cables, so that powernets don't have to look through the entire world all the time
 GLOBAL_GLOBL_LIST_NEW(mechas_list)	//list of all mechs. Used by hostile mobs target tracking.
 

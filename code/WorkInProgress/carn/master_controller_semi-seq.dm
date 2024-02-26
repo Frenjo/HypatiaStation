@@ -70,7 +70,7 @@ datum/controller/game_controller/proc/setup()
 datum/controller/game_controller/proc/setup_objects()
 	to_world("\red \b Initializing objects")
 	sleep(-1)
-	for(var/obj/object in world)
+	for(var/obj/object in GLOBL.movable_atom_list)
 		object.initialize()
 
 	to_world("\red \b Initializing pipe networks")

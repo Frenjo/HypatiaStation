@@ -73,7 +73,7 @@
 	var/list/L = list()
 	var/list/areaindex = list()
 
-	for(var/obj/item/radio/beacon/R in world)
+	for(var/obj/item/radio/beacon/R in GLOBL.movable_atom_list)
 		var/turf/T = get_turf(R)
 		if(!T)
 			continue
@@ -86,7 +86,7 @@
 			areaindex[tmpname] = 1
 		L[tmpname] = R
 
-	for(var/obj/item/implant/tracking/I in world)
+	for(var/obj/item/implant/tracking/I in GLOBL.movable_atom_list)
 		if(!I.implanted || !ismob(I.loc))
 			continue
 		else

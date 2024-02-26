@@ -1068,7 +1068,7 @@ datum
 							if(istype(M.loc, /turf))
 								if(istype(get_area(M), /area/shuttle/escape))
 									return 1
-						for(var/obj/structure/ai_core/M in world)
+						for(var/obj/structure/ai_core/M in GLOBL.movable_atom_list)
 							if(istype(M.loc, /turf) && M.state == 4)
 								if(istype(get_area(M), /area/shuttle/escape))
 									return 1
@@ -1281,7 +1281,7 @@ datum
 				if (ticker)
 					var/n_p = 1 //autowin
 					if(ticker.current_state == GAME_STATE_SETTING_UP)
-						for(var/mob/new_player/P in GLOBL.mob_list)
+						for(var/mob/new_player/P in GLOBL.dead_mob_list)
 							if(isnotnull(P.client) && P.ready && P.mind != owner)
 								n_p ++
 					else if(ticker.current_state == GAME_STATE_PLAYING)

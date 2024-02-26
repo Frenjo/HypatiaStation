@@ -67,6 +67,7 @@
 	//meaning if you get the biomasssss..s' size to something less than 20 plots, it won't grow anymore.
 
 /obj/effect/biomass_controller/New()
+	. = ..()
 	if(!istype(src.loc, /turf/simulated/floor))
 		qdel(src)
 

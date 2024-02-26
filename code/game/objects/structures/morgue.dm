@@ -403,7 +403,7 @@
 
 /obj/machinery/crema_switch/attack_hand(mob/user as mob)
 	if(src.allowed(user))
-		for(var/obj/structure/crematorium/C in world)
+		for(var/obj/structure/crematorium/C in GLOBL.movable_atom_list)
 			if(C.id == id)
 				if(!C.cremating)
 					C.cremate(user)

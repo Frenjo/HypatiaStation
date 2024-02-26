@@ -365,7 +365,7 @@
 
 		// find PDA
 		var/obj/item/pda/pda
-		for (var/obj/item/pda/P in world)
+		for (var/obj/item/pda/P in GLOBL.movable_atom_list)
 			if (!P.owner)
 				continue
 			else if (P.toff)

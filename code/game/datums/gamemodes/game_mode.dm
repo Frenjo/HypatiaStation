@@ -86,7 +86,7 @@ Implants;
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.
 /datum/game_mode/proc/can_start()
 	var/playerC = 0
-	for(var/mob/new_player/player in GLOBL.player_list)
+	for(var/mob/new_player/player in GLOBL.dead_mob_list)
 		if(isnotnull(player.client) && player.ready)
 			playerC++
 
@@ -290,7 +290,7 @@ Implants;
 			roletext = "raider"
 
 	// Assemble a list of active players without jobbans.
-	for(var/mob/new_player/player in GLOBL.player_list)
+	for(var/mob/new_player/player in GLOBL.dead_mob_list)
 		if(player.client && player.ready)
 			if(!jobban_isbanned(player, "Syndicate") && !jobban_isbanned(player, roletext))
 				players.Add(player)
@@ -391,7 +391,7 @@ Implants;
 
 /datum/game_mode/proc/num_players()
 	. = 0
-	for(var/mob/new_player/P in GLOBL.player_list)
+	for(var/mob/new_player/P in GLOBL.dead_mob_list)
 		if(isnotnull(P.client) && P.ready)
 			. ++
 

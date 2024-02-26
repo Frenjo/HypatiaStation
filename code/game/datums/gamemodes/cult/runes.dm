@@ -7,7 +7,7 @@ var/list/sacrificed = list()
 	var/list/allrunesloc = list()
 	var/index = 0
 //	var/tempnum = 0
-	for(var/obj/effect/rune/R in world)
+	for(var/obj/effect/rune/R in GLOBL.movable_atom_list)
 		if(R == src)
 			continue
 		if(R.word1 == cultwords["travel"] && R.word2 == cultwords["self"] && R.word3 == key && isPlayerLevel(R.z))
@@ -44,7 +44,7 @@ var/list/sacrificed = list()
 	var/runecount = 0
 	var/obj/effect/rune/IP = null
 	var/mob/living/user = usr
-	for(var/obj/effect/rune/R in world)
+	for(var/obj/effect/rune/R in GLOBL.movable_atom_list)
 		if(R == src)
 			continue
 		if(R.word1 == cultwords["travel"] && R.word2 == cultwords["other"] && R.word3 == key)
@@ -157,7 +157,7 @@ var/list/sacrificed = list()
 /////////////////////////////////////////SIXTH RUNE
 /obj/effect/rune/proc/drain()
 	var/drain = 0
-	for(var/obj/effect/rune/R in world)
+	for(var/obj/effect/rune/R in GLOBL.movable_atom_list)
 		if(R.word1 == cultwords["travel"] && R.word2 == cultwords["blood"] && R.word3 == cultwords["self"])
 			for(var/mob/living/carbon/D in R.loc)
 				if(D.stat != DEAD)
@@ -242,7 +242,7 @@ var/list/sacrificed = list()
 
 	is_sacrifice_target = 0
 	find_sacrifice:
-		for(var/obj/effect/rune/R in world)
+		for(var/obj/effect/rune/R in GLOBL.movable_atom_list)
 			if(R.word1 == cultwords["blood"] && R.word2 == cultwords["join"] && R.word3 == cultwords["hell"])
 				for(var/mob/living/carbon/human/N in R.loc)
 					if(IS_GAME_MODE(/datum/game_mode/cult))
@@ -974,7 +974,7 @@ var/list/sacrificed = list()
 		if(iscultist(C) && !C.stat)
 			culcount++
 	if(culcount >= 5)
-		for(var/obj/effect/rune/R in world)
+		for(var/obj/effect/rune/R in GLOBL.movable_atom_list)
 			if(R.blood_DNA == src.blood_DNA)
 				for(var/mob/living/M in orange(2, R))
 					M.take_overall_damage(0, 15)
@@ -984,7 +984,7 @@ var/list/sacrificed = list()
 						to_chat(M, SPAN_WARNING("Rune suddenly ignites, burning you!"))
 					var/turf/T = get_turf(R)
 					T.hotspot_expose(700, 125)
-		for(var/obj/effect/decal/cleanable/blood/B in world)
+		for(var/obj/effect/decal/cleanable/blood/B in GLOBL.movable_atom_list)
 			if(B.blood_DNA == src.blood_DNA)
 				for(var/mob/living/M in orange(1, B))
 					M.take_overall_damage(0, 5)

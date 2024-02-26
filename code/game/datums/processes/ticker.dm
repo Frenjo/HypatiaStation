@@ -176,7 +176,7 @@ PROCESS_DEF(ticker)
 	// Starts the master controller's process scheduling.
 	global.CTmaster.start()
 
-	for(var/obj/multiz/ladder/L in world)
+	for(var/obj/multiz/ladder/L in GLOBL.movable_atom_list)
 		L.connect() //Lazy hackfix for ladders. TODO: move this to an actual controller. ~ Z
 
 	if(CONFIG_GET(sql_enabled))
@@ -297,7 +297,7 @@ PROCESS_DEF(ticker)
 	return
 
 /datum/process/ticker/proc/create_characters()
-	for(var/mob/new_player/player in GLOBL.player_list)
+	for(var/mob/new_player/player in GLOBL.dead_mob_list)
 		if(!player.ready || isnull(player.mind))
 			continue
 		if(player.mind.assigned_role == "AI")

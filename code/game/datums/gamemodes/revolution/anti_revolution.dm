@@ -33,7 +33,7 @@
 //Gets the round setup, cancelling if there's not enough players at the start//
 ///////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/anti_revolution/pre_setup()
-	for(var/mob/new_player/player in GLOBL.mob_list)
+	for(var/mob/new_player/player in GLOBL.dead_mob_list)
 		if(player.mind?.assigned_role in command_positions)
 			heads += player.mind
 		else

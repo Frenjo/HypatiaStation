@@ -500,7 +500,7 @@ mob
 				usr << "Cannot find air_system"
 				return
 
-			for(var/obj/indicator/T in world)
+			for(var/obj/indicator/T in GLOBL.movable_atom_list)
 				T.process()
 		change_indicators()
 			set category = PANEL_DEBUG
@@ -511,7 +511,7 @@ mob
 
 			var/str = input("Select") in list("oxygen", "nitrogen","plasma","all","temperature")
 
-			for(var/obj/indicator/T in world)
+			for(var/obj/indicator/T in GLOBL.movable_atom_list)
 				T.measure = str
 				T.process()
 
@@ -519,7 +519,7 @@ mob
 			set category = PANEL_DEBUG
 
 			usr << "\b \red Fire Report"
-			for(var/obj/effect/hotspot/flame in world)
+			for(var/obj/effect/hotspot/flame in GLOBL.movable_atom_list)
 				usr << "[flame.x],[flame.y]: [flame.temperature]K, [flame.volume] L - [flame.loc:air:temperature]"
 
 		process_cycle()

@@ -268,7 +268,7 @@
 	if(CONFIG_GET(objectives_disabled))
 		return
 	var/disk_rescued = 1
-	for(var/obj/item/disk/nuclear/D in world)
+	for(var/obj/item/disk/nuclear/D in GLOBL.movable_atom_list)
 		var/disk_area = get_area(D)
 		if(!is_type_in_list(disk_area, GLOBL.centcom_areas))
 			disk_rescued = 0

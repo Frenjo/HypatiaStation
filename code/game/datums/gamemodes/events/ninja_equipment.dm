@@ -331,7 +331,7 @@ ________________________________________________________________________________
 			dat += "<h4><img src=sos_6.png> Detected PDAs:</h4>"
 			dat += "<ul>"
 			var/count = 0
-			for (var/obj/item/pda/P in world)
+			for (var/obj/item/pda/P in GLOBL.movable_atom_list)
 				if (!P.owner||P.toff)
 					continue
 				dat += "<li><a href='byond://?src=\ref[src];choice=Message;target=\ref[P]'>[P]</a>"

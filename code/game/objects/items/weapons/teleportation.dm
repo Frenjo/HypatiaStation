@@ -63,7 +63,7 @@ Frequency:
 			if(sr)
 				src.temp += "<B>Located Beacons:</B><BR>"
 
-				for(var/obj/item/radio/beacon/W in world)
+				for(var/obj/item/radio/beacon/W in GLOBL.movable_atom_list)
 					if(W.frequency == src.frequency)
 						var/turf/tr = get_turf(W)
 						if(tr.z == sr.z && tr)
@@ -81,7 +81,7 @@ Frequency:
 							src.temp += "[W.code]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
 
 				src.temp += "<B>Extraneous Signals:</B><BR>"
-				for(var/obj/item/implant/tracking/W in world)
+				for(var/obj/item/implant/tracking/W in GLOBL.movable_atom_list)
 					if(!W.implanted || !(istype(W.loc, /datum/organ/external) || ismob(W.loc)))
 						continue
 					else
@@ -163,7 +163,7 @@ Frequency:
 	if((user.get_active_hand() != src || user.stat || user.restrained()))
 		return
 	var/count = 0	//num of portals from this teleport in world
-	for(var/obj/effect/portal/PO in world)
+	for(var/obj/effect/portal/PO in GLOBL.movable_atom_list)
 		if(PO.creator == src)
 			count++
 	if(count >= 3)

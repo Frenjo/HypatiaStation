@@ -961,7 +961,7 @@
 		vessel.add_reagent("blood", 560 - vessel.total_volume)
 		fixblood()
 
-	for(var/obj/item/organ/head/H in world)
+	for(var/obj/item/organ/head/H in GLOBL.movable_atom_list)
 		if(H.brainmob)
 			if(H.brainmob.real_name == src.real_name)
 				if(H.brainmob.mind)

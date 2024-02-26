@@ -119,6 +119,8 @@
 	max_shells = 6
 
 /obj/item/gun/projectile/russian/New()
+	SHOULD_CALL_PARENT(FALSE)
+
 	Spin()
 	update_icon()
 

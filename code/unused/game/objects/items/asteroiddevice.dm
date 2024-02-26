@@ -25,7 +25,7 @@
 	proc/work()
 		while(active)
 			if(!beacon)
-				for(var/obj/effect/ship_landing_beacon/B in world)
+				for(var/obj/effect/ship_landing_beacon/B in GLOBL.movable_atom_list)
 					if(B.name == "Beacon - SS13")
 						beacon = B
 						break

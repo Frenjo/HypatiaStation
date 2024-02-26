@@ -208,7 +208,7 @@ GLOBAL_GLOBL_INIT(eventchance, 10)	//% per 5 mins
 			else			Egg = new(F)
 */
 /*			var/list/obj/containers = list()
-			for(var/obj/item/storage/S in world)
+			for(var/obj/item/storage/S in GLOBL.movable_atom_list)
 				if(S.z != 1)	continue
 				containers += S
 

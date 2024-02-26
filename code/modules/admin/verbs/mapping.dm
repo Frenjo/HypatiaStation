@@ -26,6 +26,7 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 	icon_state = "25percent"
 
 /obj/effect/debugging/camera_range/New()
+	. = ..()
 	pixel_x = -224
 	pixel_y = -224
 
@@ -51,7 +52,7 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 	else
 		GLOBL.camera_range_display_status = 1
 
-	for(var/obj/effect/debugging/camera_range/C in world)
+	for(var/obj/effect/debugging/camera_range/C in GLOBL.movable_atom_list)
 		qdel(C)
 
 	if(GLOBL.camera_range_display_status)
@@ -108,11 +109,11 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 	else
 		GLOBL.intercom_range_display_status = 1
 
-	for(var/obj/effect/debugging/marker/M in world)
+	for(var/obj/effect/debugging/marker/M in GLOBL.movable_atom_list)
 		qdel(M)
 
 	if(GLOBL.intercom_range_display_status)
-		for(var/obj/item/radio/intercom/I in world)
+		for(var/obj/item/radio/intercom/I in GLOBL.movable_atom_list)
 			for(var/turf/T in orange(7, I))
 				var/obj/effect/debugging/marker/F = new/obj/effect/debugging/marker(T)
 				if(!(F in view(7, I.loc)))

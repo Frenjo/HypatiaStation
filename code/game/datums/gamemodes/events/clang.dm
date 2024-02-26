@@ -82,7 +82,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 		if(immrod.loc == end)
 			qdel(immrod)
 		sleep(10)
-	for(var/obj/effect/immovablerod/imm in world)
+	for(var/obj/effect/immovablerod/imm in GLOBL.movable_atom_list)
 		return
 	sleep(50)
 	command_alert("What the fuck was that?!", "General Alert")

@@ -449,7 +449,7 @@
 	// Calculate new position (searches through beacons in world)
 	var/obj/item/radio/beacon/chosen
 	var/list/possible = list()
-	for(var/obj/item/radio/beacon/W in world)
+	for(var/obj/item/radio/beacon/W in GLOBL.movable_atom_list)
 		possible += W
 
 	if(length(possible))
