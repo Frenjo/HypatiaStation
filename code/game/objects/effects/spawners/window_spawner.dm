@@ -13,14 +13,14 @@
 	var/win_path = /obj/structure/window/basic
 	var/activated = FALSE
 
-// Stops ZAS expanding zones past us, the windows will block the zone anyway.
-/obj/effect/window_spawner/CanPass()
-	return FALSE
-
 /obj/effect/window_spawner/initialise()
 	. = ..()
 	if(global.PCticker?.current_state < GAME_STATE_PLAYING)
 		activate()
+
+// Stops ZAS expanding zones past us, the windows will block the zone anyway.
+/obj/effect/window_spawner/CanPass()
+	return FALSE
 
 /obj/effect/window_spawner/proc/activate()
 	if(activated)
@@ -30,7 +30,7 @@
 		var/obj/structure/grille/G = new /obj/structure/grille(loc)
 		handle_grille_spawn(G)
 
-	var/list/neighbours = list()
+	var/list/obj/effect/window_spawner/neighbours = list()
 	for(var/dir in GLOBL.cardinal)
 		var/turf/T = get_step(src, dir)
 		var/obj/effect/window_spawner/other = locate(/obj/effect/window_spawner) in T
@@ -50,7 +50,7 @@
 
 	activated = TRUE
 
-	for(var/obj/effect/window_spawner/other in neighbours)
+	for_no_type_check(var/obj/effect/window_spawner/other, neighbours)
 		if(!other.activated)
 			other.activate()
 	qdel(src)
