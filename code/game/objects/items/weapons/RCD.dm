@@ -32,11 +32,11 @@ RCD
 	var/disabled = 0
 
 /obj/item/rcd/New()
-	desc = "An RCD. It currently holds [matter]/30 matter-units."
-	src.spark_system = new /datum/effect/system/spark_spread
+	spark_system = new /datum/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
-	return
+	. = ..()
+	desc = "An RCD. It currently holds [matter]/30 matter-units."
 
 /obj/item/rcd/Destroy()
 	qdel(spark_system)

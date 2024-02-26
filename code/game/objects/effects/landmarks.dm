@@ -8,7 +8,7 @@
 	var/delete_me = FALSE
 
 /obj/effect/landmark/New()
-	..()
+	. = ..()
 	tag = "landmark*[name]"
 	invisibility = INVISIBILITY_MAXIMUM
 
@@ -98,7 +98,6 @@
 			return
 
 	GLOBL.landmark_list.Add(src)
-	return
 
 /obj/effect/landmark/initialise()
 	. = ..()
@@ -120,10 +119,9 @@
 	anchored = TRUE
 
 /obj/effect/landmark/start/New()
-	..()
+	. = ..()
 	tag = "start*[name]"
 	invisibility = INVISIBILITY_MAXIMUM
-	return 1
 
 
 // Costume spawner landmarks.

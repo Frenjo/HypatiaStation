@@ -13,6 +13,7 @@
 	var/mopcount = 0
 
 /obj/item/mop/New()
+	. = ..()
 	create_reagents(5)
 
 /obj/item/mop/proc/clean(turf/simulated/A)

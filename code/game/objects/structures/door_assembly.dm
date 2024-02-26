@@ -15,6 +15,7 @@
 	var/created_name = null
 
 /obj/structure/door_assembly/New()
+	. = ..()
 	update_state()
 
 /obj/structure/door_assembly/door_assembly_com
@@ -121,7 +122,7 @@
 	else
 		bound_width = world.icon_size
 		bound_height = width * world.icon_size
-	update_state()
+	. = ..()
 
 /obj/structure/door_assembly/multi_tile/Move()
 	. = ..()

@@ -7,6 +7,6 @@
 	var/filling_color = "#FFFFFF" //Used by sandwiches.
 
 /obj/item/reagent_containers/food/New()
-		..()
-		src.pixel_x = rand(-10.0, 10) //Randomizes postion
-		src.pixel_y = rand(-10.0, 10)
+	. = ..()
+	pixel_x = rand(-10.0, 10) //Randomizes postion
+	pixel_y = rand(-10.0, 10)

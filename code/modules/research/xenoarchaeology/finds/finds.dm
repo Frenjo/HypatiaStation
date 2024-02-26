@@ -86,6 +86,7 @@
 	var/find_type = 0
 
 /obj/item/archaeological_find/New(loc, new_item_type)
+	. = ..()
 	if(new_item_type)
 		find_type = new_item_type
 	else

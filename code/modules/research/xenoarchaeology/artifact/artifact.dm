@@ -43,8 +43,9 @@
 	var/last_act = 0
 
 /obj/structure/boulder/New()
-	icon_state = "boulder[rand(1,4)]"
-	excavation_level = rand(5,50)
+	. = ..()
+	icon_state = "boulder[rand(1, 4)]"
+	excavation_level = rand(5, 50)
 
 /obj/structure/boulder/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/core_sampler))

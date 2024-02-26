@@ -14,6 +14,7 @@
 	var/stump = 0
 
 /obj/structure/bush/New()
+	. = ..()
 	if(prob(20))
 		set_opacity(1)
 
@@ -86,6 +87,7 @@ var/jungle_plants_init = 0
 
 
 /obj/structure/jungle_plant/New()
+	. = ..()
 	if(!jungle_plants_init)
 		init_jungle_plants()
 

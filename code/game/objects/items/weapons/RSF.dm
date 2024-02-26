@@ -22,8 +22,8 @@ RSF
 	w_class = 3.0
 
 /obj/item/rsf/New()
+	. = ..()
 	desc = "An RSF. It currently holds [matter]/30 fabrication-units."
-	return
 
 /obj/item/rsf/attackby(obj/item/W as obj, mob/user as mob)
 	..()

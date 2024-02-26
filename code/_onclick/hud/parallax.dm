@@ -41,6 +41,7 @@ GLOBAL_GLOBL_LIST_NEW(atom/movable/space_star/bluespace/parallax_bluespace_stars
 	simulated = FALSE
 
 /atom/movable/space_star/New()
+	. = ..()
 	pixel_x = rand(-50, 530)
 	pixel_y = rand(-50, 530)
 

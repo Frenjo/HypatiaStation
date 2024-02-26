@@ -25,6 +25,7 @@
 	return 0
 
 /obj/item/melee/energy/sword/New()
+	. = ..()
 	item_color = pick("red", "blue", "green", "purple")
 
 /obj/item/melee/energy/sword/attack_self(mob/living/user as mob)
@@ -198,16 +199,18 @@
  */
 //Most of the other special functions are handled in their own files.
 /obj/item/melee/energy/sword/green/New()
+	. = ..()
 	item_color = "green"
 
 /obj/item/melee/energy/sword/red/New()
+	. = ..()
 	item_color = "red"
 
 /obj/item/melee/energy/blade/New()
 	spark_system = new /datum/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
-	return
+	. = ..()
 
 /obj/item/melee/energy/blade/dropped()
 	qdel(src)

@@ -1775,8 +1775,9 @@ other types of metals and chemistry for reagents).
 	var/datum/design/blueprint
 
 /obj/item/disk/design_disk/New()
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
+	. = ..()
+	pixel_x = rand(-5.0, 5)
+	pixel_y = rand(-5.0, 5)
 
 /////////////////////////////////////////
 //////////////Borg Upgrades//////////////

@@ -16,6 +16,11 @@
 	var/moved_recently = FALSE
 	var/mob/pulledby = null
 
+/atom/movable/New()
+	SHOULD_CALL_PARENT(TRUE)
+
+	. = ..()
+
 /atom/movable/Destroy()
 	var/turf/un_opaque = null
 	if(opacity && isturf(loc))

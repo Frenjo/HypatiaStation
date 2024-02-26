@@ -261,5 +261,6 @@ research holder datum.
 	var/datum/tech/stored
 
 /obj/item/disk/tech_disk/New()
+	. = ..()
 	pixel_x = rand(-5.0, 5)
 	pixel_y = rand(-5.0, 5)

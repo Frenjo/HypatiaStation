@@ -1242,29 +1242,30 @@ ________________________________________________________________________________
 
 /datum/ninja_vision/scouter
 	mode = "Scouter"
-	glasses = new/obj/item/clothing/glasses/hud/ninja
+	glasses = new /obj/item/clothing/glasses/hud/ninja()
 
 /datum/ninja_vision/nvg
 	mode = "Night Vision"
-	glasses = new/obj/item/clothing/glasses/night
+	glasses = new /obj/item/clothing/glasses/night()
 
 /datum/ninja_vision/thermal
 	mode = "Thermal Scanner"
-	glasses = new/obj/item/clothing/glasses/thermal
+	glasses = new /obj/item/clothing/glasses/thermal()
 
 /datum/ninja_vision/meson
 	mode = "Meson Scanner"
-	glasses = new/obj/item/clothing/glasses/meson
+	glasses = new /obj/item/clothing/glasses/meson()
 
 /obj/item/clothing/mask/gas/voice/space_ninja
 	var/datum/ninja_vision/ninja_vision
 	var/list/datum/ninja_vision/ninja_visions
 
 /obj/item/clothing/mask/gas/voice/space_ninja/New()
-	ninja_visions = list(new/datum/ninja_vision/scouter, new/datum/ninja_vision/nvg, new/datum/ninja_vision/thermal, new/datum/ninja_vision/meson)
+	. = ..()
+	ninja_visions = list(new /datum/ninja_vision/scouter(), new /datum/ninja_vision/nvg(), new /datum/ninja_vision/thermal(), new /datum/ninja_vision/meson())
 	ninja_vision = ninja_visions[1]
-	verbs += /obj/item/clothing/mask/gas/voice/space_ninja/proc/togglev
-	verbs += /obj/item/clothing/mask/gas/voice/space_ninja/proc/switchm
+	verbs.Add(/obj/item/clothing/mask/gas/voice/space_ninja/proc/togglev)
+	verbs.Add(/obj/item/clothing/mask/gas/voice/space_ninja/proc/switchm)
 
 /obj/item/clothing/mask/gas/voice/space_ninja/proc/togglev()
 	set name = "Toggle Voice"

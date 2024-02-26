@@ -186,8 +186,7 @@
 	icon_state = "blobidle0"
 
 /obj/effect/blob/idle/New(loc, h = 10)
-	health = h
-	set_dir(pick(1, 2, 4, 8))
+	. = ..(loc, h)
 	update_idle()
 
 /obj/effect/blob/idle/proc/update_idle()

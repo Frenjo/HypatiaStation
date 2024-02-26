@@ -76,7 +76,8 @@
 	var/stage = 1
 
 /obj/item/diseasedisk/premade/New()
-	name = "Blank GNA disk (stage: [5-stage])"
-	effect = new /datum/disease2/effectholder
-	effect.effect = new /datum/disease2/effect/invisible
+	effect = new /datum/disease2/effectholder()
+	effect.effect = new /datum/disease2/effect/invisible()
 	effect.stage = stage
+	. = ..()
+	name = "Blank GNA disk (stage: [5-stage])"

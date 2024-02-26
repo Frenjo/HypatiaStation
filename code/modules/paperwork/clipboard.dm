@@ -12,6 +12,7 @@
 	slot_flags = SLOT_BELT
 
 /obj/item/clipboard/New()
+	. = ..()
 	update_icon()
 
 /obj/item/clipboard/MouseDrop(obj/over_object as obj) //Quick clipboard fix. -Agouri

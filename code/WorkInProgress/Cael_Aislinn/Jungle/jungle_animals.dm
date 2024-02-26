@@ -7,6 +7,7 @@
 	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/effect/landmark/animal_spawner/New()
+	. = ..()
 	if(!spawn_type)
 		var/new_type = pick(SUBTYPESOF(/obj/effect/landmark/animal_spawner))
 		new new_type(get_turf(src))

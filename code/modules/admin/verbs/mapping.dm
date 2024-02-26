@@ -26,8 +26,8 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 	icon_state = "25percent"
 
 /obj/effect/debugging/camera_range/New()
-	src.pixel_x = -224
-	src.pixel_y = -224
+	pixel_x = -224
+	pixel_y = -224
 
 /obj/effect/debugging/marker
 	icon = 'icons/turf/areas.dmi'

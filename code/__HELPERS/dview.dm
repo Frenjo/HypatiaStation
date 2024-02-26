@@ -22,4 +22,5 @@ GLOBAL_BYOND_NEW(dview_mob, /mob/dview)
 	see_in_dark = 1e6
 
 /mob/dview/New()
-	// do nothing. we don't want to be in any mob lists; we're a dummy not a mob.
+	SHOULD_CALL_PARENT(FALSE)
+	return // do nothing. we don't want to be in any mob lists; we're a dummy not a mob.

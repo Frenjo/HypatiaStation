@@ -22,9 +22,9 @@
 /obj/item/reagent_containers/food/snacks/grown/New(newloc, newpotency)
 	if(isnotnull(newpotency))
 		potency = newpotency
-	..()
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
+	. = ..()
+	pixel_x = rand(-5.0, 5)
+	pixel_y = rand(-5.0, 5)
 
 /obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/O as obj, mob/user as mob)
 	..()

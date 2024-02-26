@@ -19,13 +19,14 @@
 	var/value=0
 
 /obj/item/dnainjector/New()
+	. = ..()
 	if(datatype && block)
-		buf=new
-		buf.dna=new
+		buf = new /datum/dna2/record()
+		buf.dna = new /datum/dna()
 		buf.types = datatype
 		buf.dna.ResetSE()
 		//testing("[name]: DNA2 SE blocks prior to SetValue: [english_list(buf.dna.SE)]")
-		SetValue(src.value)
+		SetValue(value)
 		//testing("[name]: DNA2 SE blocks after SetValue: [english_list(buf.dna.SE)]")
 
 /obj/item/dnainjector/attack_paw(mob/user as mob)

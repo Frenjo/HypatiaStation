@@ -14,7 +14,7 @@
 	var/mob/living/buckled_mob
 
 /obj/effect/spacevine/New()
-	return
+	SHOULD_CALL_PARENT(FALSE)
 
 /obj/effect/spacevine/Destroy()
 	if(master)
@@ -108,6 +108,7 @@
 	//meaning if you get the spacevines' size to something less than 20 plots, it won't grow anymore.
 
 /obj/effect/spacevine_controller/New()
+	. = ..()
 	if(!istype(src.loc, /turf/simulated/floor))
 		qdel(src)
 

@@ -96,4 +96,4 @@
 	gender = FEMALE
 
 /obj/item/clothing/mask/facehugger/lamarr/New()//to prevent deleting it if aliums are disabled
-	return
+	SHOULD_CALL_PARENT(FALSE)

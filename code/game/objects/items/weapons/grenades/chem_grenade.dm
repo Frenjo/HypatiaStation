@@ -15,9 +15,8 @@
 	var/affected_area = 3
 
 /obj/item/grenade/chemical/New()
-	var/datum/reagents/R = new /datum/reagents(1000)
-	reagents = R
-	R.my_atom = src
+	. = ..()
+	create_reagents(1000)
 
 /obj/item/grenade/chemical/attack_self(mob/user as mob)
 	if(!stage || stage==1)

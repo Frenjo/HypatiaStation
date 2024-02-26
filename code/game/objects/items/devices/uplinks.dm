@@ -18,6 +18,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	var/list/NotInHand = list(/obj/machinery/singularity_beacon/syndicate)
 
 /obj/item/uplink/New()
+	. = ..()
 	welcome = global.PCticker.mode.uplink_welcome
 	if(!item_data)
 		items = replacetext(global.PCticker.mode.uplink_items, "\n", "")	// Getting the text string of items
@@ -406,7 +407,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 // implant uplink (not the implant tool) and a preset headset uplink.
 
 /obj/item/radio/uplink/New()
-	hidden_uplink = new(src)
+	. = ..()
+	hidden_uplink = new /obj/item/uplink/hidden(src)
 	icon_state = "radio"
 
 /obj/item/radio/uplink/attack_self(mob/user as mob)
@@ -414,7 +416,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		hidden_uplink.trigger(user)
 
 /obj/item/multitool/uplink/New()
-	hidden_uplink = new(src)
+	. = ..()
+	hidden_uplink = new /obj/item/uplink/hidden(src)
 
 /obj/item/multitool/uplink/attack_self(mob/user as mob)
 	if(hidden_uplink)
@@ -424,6 +427,6 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	traitor_frequency = 1445
 
 /obj/item/radio/headset/uplink/New()
-	..()
-	hidden_uplink = new(src)
+	. = ..()
+	hidden_uplink = new /obj/item/uplink/hidden(src)
 	hidden_uplink.uses = 10

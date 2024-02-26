@@ -18,9 +18,8 @@
 	var/plant_type = 0
 
 /obj/item/grown/New()
-	var/datum/reagents/R = new/datum/reagents(50)
-	reagents = R
-	R.my_atom = src
+	. = ..()
+	create_reagents(50)
 
 /obj/item/grown/proc/changePotency(newValue) //-QualityVan
 	potency = newValue
@@ -250,24 +249,26 @@
 	icon_state = "spawner"
 	potency = 10
 
-/obj/item/reagent_containers/food/snacks/grown/money/New()
-	switch(rand(1, 100))//(potency) //It wants to use the default potency instead of the new, so it was always 10. Will try to come back to this later - Cheridan
+/obj/item/reagent_containers/food/snacks/grown/money/New(new_loc, new_potency)
+	. = ..(new_loc, new_potency)
+	// TODO: Investigate this, it might still be broken. Previous comment said:
+	switch(new_potency) //(potency) //It wants to use the default potency instead of the new, so it was always 10. Will try to come back to this later - Cheridan
 		if(0 to 10)
-			new /obj/item/spacecash/(src.loc)
+			new /obj/item/spacecash/(new_loc)
 		if(11 to 20)
-			new /obj/item/spacecash/c10(src.loc)
+			new /obj/item/spacecash/c10(new_loc)
 		if(21 to 30)
-			new /obj/item/spacecash/c20(src.loc)
+			new /obj/item/spacecash/c20(new_loc)
 		if(31 to 40)
-			new /obj/item/spacecash/c50(src.loc)
+			new /obj/item/spacecash/c50(new_loc)
 		if(41 to 50)
-			new /obj/item/spacecash/c100(src.loc)
+			new /obj/item/spacecash/c100(new_loc)
 		if(51 to 60)
-			new /obj/item/spacecash/c200(src.loc)
+			new /obj/item/spacecash/c200(new_loc)
 		if(61 to 80)
-			new /obj/item/spacecash/c500(src.loc)
+			new /obj/item/spacecash/c500(new_loc)
 		else
-			new /obj/item/spacecash/c1000(src.loc)
+			new /obj/item/spacecash/c1000(new_loc)
 
 //Workaround to keep harvesting from working weirdly.
 /obj/item/reagent_containers/food/snacks/grown/money/initialise()

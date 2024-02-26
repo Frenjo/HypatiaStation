@@ -10,6 +10,7 @@
 
 /obj/item/fuel_assembly/New()
 	rod_quantities = list()
+	. = ..()
 
 //these can be abstracted away for now
 /*

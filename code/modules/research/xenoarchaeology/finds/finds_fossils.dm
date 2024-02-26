@@ -8,6 +8,7 @@
 	desc = "It's a fossil."
 
 /obj/item/fossil/base/New()
+	. = ..()
 	var/list/l = list(
 		/obj/item/fossil/bone = 9,
 		/obj/item/fossil/skull = 3,
@@ -55,6 +56,7 @@
 	var/plaque_contents = "Unnamed alien creature"
 
 /obj/skeleton/New()
+	. = ..()
 	breq = rand(6) + 3
 	desc = "An incomplete skeleton, looks like it could use [breq - bnum] more bones."
 
@@ -104,4 +106,5 @@
 	desc = "It's fossilised plant remains."
 
 /obj/item/fossil/plant/New()
+	. = ..()
 	icon_state = "plant[rand(1, 4)]"

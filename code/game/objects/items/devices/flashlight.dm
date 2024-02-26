@@ -207,6 +207,7 @@
 	on = 1 //Bio-luminesence has one setting, on.
 
 /obj/item/flashlight/slime/New()
+	. = ..()
 	set_light(brightness_on)
 
 /obj/item/flashlight/slime/initialise()

@@ -391,6 +391,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_off = "zippo"
 
 /obj/item/lighter/random/New()
+	. = ..()
 	var/color = pick("r","c","y","g")
 	icon_on = "lighter-[color]-on"
 	icon_off = "lighter-[color]"

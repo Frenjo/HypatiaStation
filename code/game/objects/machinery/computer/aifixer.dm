@@ -10,7 +10,8 @@
 	light_color = "#a97faa"
 
 /obj/machinery/computer/aifixer/New()
-	src.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-empty")
+	. = ..()
+	overlays.Add(image('icons/obj/machines/computer.dmi', "ai-fixer-empty"))
 
 /obj/machinery/computer/aifixer/attackby(I as obj, user as mob)
 	if(istype(I, /obj/item/aicard))

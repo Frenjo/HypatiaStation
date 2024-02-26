@@ -6,4 +6,5 @@
 	canmove = FALSE
 
 /mob/living/silicon/decoy/New()
+	SHOULD_CALL_PARENT(FALSE)
 	return

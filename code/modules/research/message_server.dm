@@ -206,6 +206,7 @@ GLOBAL_GLOBL_LIST_NEW(message_servers)
 		if(istype(blackbox, /obj/machinery/blackbox_recorder))
 			qdel(src)
 	blackbox = src
+	. = ..()
 
 /obj/machinery/blackbox_recorder/Destroy()
 	var/turf/T = locate(1, 1, 2)

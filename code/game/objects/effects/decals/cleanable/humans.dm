@@ -212,6 +212,7 @@
 	var/dry = FALSE // Keeps the lag down
 
 /obj/effect/decal/cleanable/mucus/New()
+	. = ..()
 	spawn(DRYING_TIME * 2)
 		dry = TRUE
 

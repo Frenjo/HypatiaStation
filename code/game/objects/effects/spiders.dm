@@ -56,8 +56,9 @@
 
 /obj/effect/spider/stickyweb
 	icon_state = "stickyweb1"
-	
+
 /obj/effect/spider/stickyweb/New()
+	. = ..()
 	if(prob(50))
 		icon_state = "stickyweb2"
 
@@ -81,8 +82,9 @@
 	icon_state = "eggs"
 
 	var/amount_grown = 0
-	
+
 /obj/effect/spider/eggcluster/New()
+	. = ..()
 	pixel_x = rand(3, -3)
 	pixel_y = rand(3, -3)
 	GLOBL.processing_objects.Add(src)
@@ -107,8 +109,9 @@
 	var/amount_grown = -1
 	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent
 	var/travelling_in_vent = FALSE
-	
+
 /obj/effect/spider/spiderling/New()
+	. = ..()
 	pixel_x = rand(6, -6)
 	pixel_y = rand(6, -6)
 	GLOBL.processing_objects.Add(src)
@@ -215,6 +218,7 @@
 	health = 60
 
 /obj/effect/spider/cocoon/New()
+	. = ..()
 	icon_state = pick("cocoon1", "cocoon2", "cocoon3")
 
 /obj/effect/spider/cocoon/Destroy()

@@ -8,6 +8,7 @@
 	density = FALSE
 
 /obj/machinery/mineral/input/New()
+	. = ..()
 	icon_state = "blank"
 
 /obj/machinery/mineral/output
@@ -17,4 +18,5 @@
 	density = FALSE
 
 /obj/machinery/mineral/output/New()
+	. = ..()
 	icon_state = "blank"

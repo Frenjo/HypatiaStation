@@ -19,6 +19,7 @@
 	item_color = "yellow"
 
 /obj/item/clothing/gloves/fyellow/New()
+	. = ..()
 	siemens_coefficient = pick(0, 0.5, 0.5, 0.5, 0.5, 0.75, 1.5)
 
 

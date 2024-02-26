@@ -26,6 +26,7 @@
 	name = "lipstick"
 
 /obj/item/lipstick/random/New()
+	. = ..()
 	colour = pick("red","purple","jade","black")
 	name = "[colour] lipstick"
 

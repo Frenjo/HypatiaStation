@@ -11,6 +11,7 @@
 	var/triggered = FALSE
 
 /obj/effect/mine/New()
+	. = ..()
 	icon_state = "uglyminearmed"
 
 /obj/effect/mine/Crossed(AM as mob|obj)

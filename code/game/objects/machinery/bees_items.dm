@@ -68,8 +68,9 @@
 	icon_state = "bottle17"
 
 /obj/item/beezeez/New()
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
+	. = ..()
+	pixel_x = rand(-5.0, 5)
+	pixel_y = rand(-5.0, 5)
 
 /obj/item/reagent_containers/food/snacks/honeycomb
 	name = "honeycomb"

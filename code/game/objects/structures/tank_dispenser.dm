@@ -17,6 +17,7 @@
 	oxygentanks = 0
 
 /obj/structure/dispenser/New()
+	. = ..()
 	update_icon()
 
 /obj/structure/dispenser/update_icon()

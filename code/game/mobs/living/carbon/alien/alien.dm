@@ -21,6 +21,7 @@
 	var/language
 
 /mob/living/carbon/alien/New()
+	. = ..()
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
 

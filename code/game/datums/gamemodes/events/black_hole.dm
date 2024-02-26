@@ -9,6 +9,7 @@
 	anchored = TRUE
 
 /obj/effect/bhole/New()
+	. = ..()
 	spawn(4)
 		controller()
 

@@ -13,7 +13,7 @@
 	var/obj/effect/biomass_controller/master = null
 
 /obj/effect/biomass/New()
-	return
+	SHOULD_CALL_PARENT(FALSE)
 
 /obj/effect/biomass/Destroy()
 	if(master)

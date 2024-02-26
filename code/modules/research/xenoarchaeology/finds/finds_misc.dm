@@ -8,6 +8,7 @@
 	edge = 1
 
 /obj/item/shard/plasma/New()
+	. = ..()
 	icon_state = pick("plasmalarge", "plasmamedium", "plasmasmall")
 	switch(icon_state)
 		if("plasmasmall")
@@ -19,8 +20,6 @@
 		if("plasmalarge")
 			pixel_x = rand(-5, 5)
 			pixel_y = rand(-5, 5)
-		else
-	return
 
 /obj/item/shard/plasma/attackby(obj/item/W as obj, mob/user as mob)
 	..()
@@ -47,6 +46,7 @@
 	icon_state = "crystal"
 
 /obj/machinery/crystal/New()
+	. = ..()
 	if(prob(50))
 		icon_state = "crystal2"
 

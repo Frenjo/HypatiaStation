@@ -141,8 +141,9 @@
 	var/strength = 0
 
 /obj/item/pestkiller/New()
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
+	. = ..()
+	pixel_x = rand(-5.0, 5)
+	pixel_y = rand(-5.0, 5)
 
 // Carbaryl
 /obj/item/pestkiller/carbaryl
@@ -218,8 +219,9 @@
 	var/yieldmod = 0
 
 /obj/item/nutrient/New()
-	src.pixel_x = rand(-5.0, 5)
-	src.pixel_y = rand(-5.0, 5)
+	. = ..()
+	pixel_x = rand(-5.0, 5)
+	pixel_y = rand(-5.0, 5)
 
 // E-Z-Nutrient
 /obj/item/nutrient/ez
