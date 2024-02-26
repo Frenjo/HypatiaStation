@@ -1000,7 +1000,7 @@
 "PD" = (/obj/structure/sign/science{desc = "A warning sign which reads 'ANOMALOUS MATERIALS'"; name = "\improper ANOMALOUS MATERIALS"; pixel_x = 32},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/mains_pipe/simple/hidden,/turf/simulated/floor{dir = 8; icon_state = "barber"},/area/research_outpost/hallway)
 "PI" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating/airless,/area/mine/abandoned)
 "PK" = (/obj/machinery/atmospherics/unary/vent_scrubber{dir = 1; scrub_CO2 = 0},/turf/simulated/floor{dir = 5; icon_state = "vault"},/area/research_outpost/isolation_one)
-"PL" = (/obj/structure/shuttle/engine/propulsion{dir = 4},/obj/structure/window/reinforced/tinted{dir = 4},/turf/simulated/floor/plating/airless,/area/shuttle/alien/mine)
+"PL" = (/obj/structure/shuttle/engine/propulsion{dir = 4},/obj/structure/window/reinforced/tinted{dir = 4},/turf/simulated/shuttle/plating/airless,/area/shuttle/alien/mine)
 "PM" = (/obj/structure/stool/bed/chair{dir = 8},/turf/simulated/floor/wood,/area/research_outpost/hallway)
 "PN" = (/obj/structure/transit_tube{icon_state = "D-NE"},/obj/effect/window_spawner/reinforced,/turf/simulated/floor/plating,/area/mine/explored)
 "PO" = (/obj/structure/stool/bed/chair{dir = 1},/obj/effect/decal/floor/industrial/vault/right,/turf/simulated/floor{icon_state = "dark"},/area/research_outpost/isolation_two)
