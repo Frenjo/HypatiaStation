@@ -385,6 +385,7 @@
 #include "code\game\decls\gases.dm"
 #include "code\game\decls\minerals.dm"
 #include "code\game\decls\move_intent.dm"
+#include "code\game\decls\music_track.dm"
 #include "code\game\decls\security_level.dm"
 #include "code\game\decls\genes\_gene.dm"
 #include "code\game\decls\genes\basic.dm"

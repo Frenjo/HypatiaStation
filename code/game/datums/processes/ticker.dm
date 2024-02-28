@@ -23,16 +23,8 @@ PROCESS_DEF(ticker)
 	var/event_time = null
 	var/event = 0
 
-	// The music file played in the pregame lobby.
-	var/login_music = null
-	// The list of all possible login music files to play.
-	var/list/possible_login_music = list(
-		'sound/music/space.ogg',
-		'sound/music/traitor.ogg',
-		'sound/music/title2.ogg',
-		'sound/music/clouds.s3m',
-		'sound/music/space_oddity.ogg'	// Ground Control to Major Tom, this song is cool, what's going on?
-	)
+	// The music track played in the pregame lobby.
+	var/decl/music_track/lobby_music = null
 
 	// The people in the game. Used for objective tracking.
 	var/list/datum/mind/minds = list()
@@ -71,13 +63,20 @@ PROCESS_DEF(ticker)
 	return lastTickerTimeDuration
 
 /datum/process/ticker/proc/pregame()
+	var/list/possible_lobby_music = list(
+		/decl/music_track/endless_space,
+		/decl/music_track/absconditus,
+		/decl/music_track/robocop,
+		/decl/music_track/clouds_of_fire,
+		/decl/music_track/space_oddity
+	)
 	if(CONFIG_GET(holiday_name) == "Halloween")
-		possible_login_music.Add(list(
-			'sound/music/halloween/skeletons.ogg',
-			'sound/music/halloween/halloween.ogg',
-			'sound/music/halloween/ghosts.ogg'
+		possible_lobby_music.Add(list(
+			/decl/music_track/spooky_scary_skeletons,
+			/decl/music_track/this_is_halloween,
+			/decl/music_track/ghostbusters
 		))
-	login_music = pick(possible_login_music)
+	lobby_music = GET_DECL_INSTANCE(pick(possible_lobby_music))
 
 	do
 		pregame_timeleft = 180

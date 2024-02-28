@@ -893,9 +893,9 @@
 				if("lobby_music")
 					toggles ^= SOUND_LOBBY
 					if(toggles & SOUND_LOBBY)
-						user << sound(global.PCticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1)
+						global.PCticker.lobby_music.play(user)
 					else
-						user << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1)
+						global.PCticker.lobby_music.stop(user)
 
 				if("ghost_ears")
 					toggles ^= CHAT_GHOSTEARS

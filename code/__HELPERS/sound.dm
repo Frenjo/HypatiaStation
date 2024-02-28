@@ -88,10 +88,9 @@ var/const/SURROUND_CAP = 255
 	src << S
 
 /client/proc/playtitlemusic()
-	if(isnull(global.PCticker?.login_music))
+	if(isnull(global.PCticker?.lobby_music) || !(prefs.toggles & SOUND_LOBBY))
 		return
-	if(prefs.toggles & SOUND_LOBBY)
-		src << sound(global.PCticker.login_music, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS
+	global.PCticker.lobby_music.play(src) // MAD JAMS
 
 /proc/get_rand_frequency()
 	return rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.
