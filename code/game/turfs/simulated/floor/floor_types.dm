@@ -170,6 +170,11 @@
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "gcircuit"
 
+/turf/simulated/floor/greengrid/airless
+	name = "floor" // This doesn't seem to inherit properly for some reason.
+	initial_gases = null
+	temperature = TCMB
+
 /*
  * Shuttle
  */
