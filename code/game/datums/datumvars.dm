@@ -908,7 +908,7 @@ body
 			to_chat(usr, "This can only be done on mobs with clients.")
 			return
 
-		nanomanager.send_resources(H.client)
+		global.PCnanoui.send_resources(H.client)
 
 		to_chat(usr, "Resource files sent.")
 		to_chat(H, "Your NanoUI Resource files have been refreshed.")

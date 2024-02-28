@@ -35,7 +35,7 @@
 		"is_armed" = pod.arming_controller.armed,
 	)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(isnull(ui))
 		ui = new(user, src, ui_key, "escape_pod_console.tmpl", name, 470, 290)
 		ui.set_initial_data(data)
@@ -79,7 +79,7 @@
 		"armed" = armed,
 	)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(isnull(ui))
 		ui = new(user, src, ui_key, "escape_pod_berth_console.tmpl", name, 470, 290)
 		ui.set_initial_data(data)

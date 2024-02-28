@@ -95,7 +95,7 @@
 
 /obj/item/pda/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	ui_tick++
-	var/datum/nanoui/old_ui = nanomanager.get_open_ui(user, src, "main")
+	var/datum/nanoui/old_ui = global.PCnanoui.get_open_ui(user, src, "main")
 	var/auto_update = TRUE
 	if(mode in no_auto_update)
 		auto_update = FALSE
@@ -225,7 +225,7 @@
 			data["aircontents"] = list("reading" = 0)
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
+	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -257,7 +257,7 @@
 
 	..()
 	var/mob/user = usr
-	var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
+	var/datum/nanoui/ui = global.PCnanoui.get_open_ui(user, src, "main")
 	var/mob/living/U = usr
 	//Looking for master was kind of pointless since PDAs don't appear to have one.
 	//if ((src in U.contents) || ( isturf(loc) && in_range(src, U) ) )
@@ -716,9 +716,9 @@
 
 		if(L)
 			to_chat(L, "\icon[P] <b>Message from [src.owner] ([ownjob]), </b>\"[t]\" (<a href='byond://?src=\ref[P];choice=Message;skiprefresh=1;target=\ref[src]'>Reply</a>)")
-			nanomanager.update_user_uis(L, P) // Update the recieving user's PDA UI so that they can see the new message
+			global.PCnanoui.update_user_uis(L, P) // Update the recieving user's PDA UI so that they can see the new message
 
-		nanomanager.update_user_uis(U, P) // Update the sending user's PDA UI so that they can see the new message
+		global.PCnanoui.update_user_uis(U, P) // Update the sending user's PDA UI so that they can see the new message
 
 		log_pda("[usr] (PDA: [src.name]) sent \"[t]\" to [P.name]")
 		P.overlays.Cut()
@@ -794,7 +794,7 @@
 		user.drop_item()
 		cartridge.loc = src
 		to_chat(user, SPAN_NOTICE("You insert [cartridge] into [src]."))
-		nanomanager.update_uis(src) // update all UIs attached to src
+		global.PCnanoui.update_uis(src) // update all UIs attached to src
 		if(cartridge.radio)
 			cartridge.radio.hostpda = src
 
@@ -819,7 +819,7 @@
 		C.loc = src
 		pai = C
 		to_chat(user, SPAN_NOTICE("You slot \the [C] into [src]."))
-		nanomanager.update_uis(src) // update all UIs attached to src
+		global.PCnanoui.update_uis(src) // update all UIs attached to src
 	else if(istype(C, /obj/item/pen))
 		var/obj/item/pen/O = locate() in src
 		if(O)

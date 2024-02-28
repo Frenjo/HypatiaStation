@@ -343,7 +343,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	data["welcome"] = welcome
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
+	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -366,7 +366,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		return 0
 
 	var/mob/user = usr
-	var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
+	var/datum/nanoui/ui = global.PCnanoui.get_open_ui(user, src, "main")
 	if((usr.contents.Find(src.loc) || (in_range(src.loc, usr) && isturf(src.loc.loc))))
 		usr.set_machine(src)
 		if(href_list["lock"])

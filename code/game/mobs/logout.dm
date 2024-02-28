@@ -1,5 +1,5 @@
 /mob/Logout()
-	nanomanager.user_logout(src) // this is used to clean up (remove) this user's Nano UIs
+	global.PCnanoui.user_logout(src) // this is used to clean up (remove) this user's Nano UIs
 	GLOBL.player_list -= src
 	log_access("Logout: [key_name(src)]")
 	if(GLOBL.admin_datums[src.ckey])

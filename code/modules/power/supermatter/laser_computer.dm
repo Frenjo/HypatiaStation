@@ -201,7 +201,7 @@
 	data["laser_number"] = lasers.len
 
 	// Ported most of this by studying SMES code. -Frenjo
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
+	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
 		ui = new /datum/nanoui(user, src, ui_key, "laser_ctrl.tmpl", "Zero-Point Laser Status Monitor", 480, 360)
 		ui.set_initial_data(data)

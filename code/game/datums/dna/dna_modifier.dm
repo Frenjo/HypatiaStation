@@ -250,7 +250,7 @@
 			I.loc = src
 			src.disk = I
 			to_chat(user, "You insert [I].")
-			nanomanager.update_uis(src) // update all UIs attached to src
+			global.PCnanoui.update_uis(src) // update all UIs attached to src
 			return
 	else
 		..()
@@ -423,7 +423,7 @@
 				data["beakerVolume"] += R.volume
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
+	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
@@ -460,7 +460,7 @@
 		irradiating = src.radiation_duration
 		var/lock_state = src.connected.locked
 		src.connected.locked = 1//lock it
-		nanomanager.update_uis(src) // update all UIs attached to src
+		global.PCnanoui.update_uis(src) // update all UIs attached to src
 
 		sleep(10 * src.radiation_duration) // sleep for radiation_duration seconds
 
@@ -561,7 +561,7 @@
 		irradiating = src.radiation_duration
 		var/lock_state = src.connected.locked
 		src.connected.locked = 1//lock it
-		nanomanager.update_uis(src) // update all UIs attached to src
+		global.PCnanoui.update_uis(src) // update all UIs attached to src
 
 		sleep(10 * src.radiation_duration) // sleep for radiation_duration seconds
 
@@ -620,7 +620,7 @@
 		irradiating = src.radiation_duration
 		var/lock_state = src.connected.locked
 		src.connected.locked = 1 //lock it
-		nanomanager.update_uis(src) // update all UIs attached to src
+		global.PCnanoui.update_uis(src) // update all UIs attached to src
 
 		sleep(10 * src.radiation_duration) // sleep for radiation_duration seconds
 
@@ -747,7 +747,7 @@
 			irradiating = 2
 			var/lock_state = src.connected.locked
 			src.connected.locked = 1//lock it
-			nanomanager.update_uis(src) // update all UIs attached to src
+			global.PCnanoui.update_uis(src) // update all UIs attached to src
 
 			sleep(10 * 2) // sleep for 2 seconds
 

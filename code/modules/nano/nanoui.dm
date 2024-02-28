@@ -339,7 +339,7 @@ nanoui is used to open and update nano browser uis
 	winset(user, "mapwindow.map", "focus=true") // return keyboard focus to map
 	on_close_winset()
 	//onclose(user, window_id)
-	nanomanager.ui_opened(src)
+	global.PCnanoui.ui_opened(src)
 
  /**
   * Close this UI
@@ -348,7 +348,7 @@ nanoui is used to open and update nano browser uis
   */
 /datum/nanoui/proc/close()
 	is_auto_updating = FALSE
-	nanomanager.ui_closed(src)
+	global.PCnanoui.ui_closed(src)
 	user << browse(null, "window=[window_id]")
 
  /**
@@ -391,7 +391,7 @@ nanoui is used to open and update nano browser uis
 		return
 
 	if(isnotnull(src_object) && src_object.Topic(href, href_list))
-		nanomanager.update_uis(src_object) // update all UIs attached to src_object
+		global.PCnanoui.update_uis(src_object) // update all UIs attached to src_object
 
  /**
   * Process this UI, updating the entire UI or just the status (aka visibility)

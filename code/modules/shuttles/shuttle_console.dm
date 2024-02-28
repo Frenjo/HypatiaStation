@@ -62,7 +62,7 @@
 		"can_force" = shuttle.can_force(),
 	)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(isnull(ui))
 		ui = new(user, src, ui_key, "shuttle_control_console.tmpl", "[shuttle_tag] Shuttle Control", 470, 310)
 		ui.set_initial_data(data)

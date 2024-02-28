@@ -33,7 +33,7 @@
 			to_chat(user, SPAN_NOTICE("You attach the tank to the transfer valve."))
 
 		update_icon()
-		nanomanager.update_uis(src) // update all UIs attached to src
+		global.PCnanoui.update_uis(src) // update all UIs attached to src
 //TODO: Have this take an assemblyholder
 	else if(isassembly(item))
 		var/obj/item/assembly/A = item
@@ -54,7 +54,7 @@
 		message_admins("[key_name_admin(user)] attached a [item] to a transfer valve.")
 		log_game("[key_name_admin(user)] attached a [item] to a transfer valve.")
 		attacher = user
-		nanomanager.update_uis(src) // update all UIs attached to src
+		global.PCnanoui.update_uis(src) // update all UIs attached to src
 	return
 
 /obj/item/transfer_valve/HasProximity(atom/movable/AM as mob|obj)
@@ -75,7 +75,7 @@
 	data["valveOpen"] = valve_open ? 1 : 0
 
 	// update the ui if it exists, returns null if no ui is passed/found
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
+	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm

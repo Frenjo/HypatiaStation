@@ -51,4 +51,4 @@
 		client.perspective = MOB_PERSPECTIVE
 
 	// Send NanoUI resources to this client
-	nanomanager.send_resources(src)
+	global.PCnanoui.send_resources(src)

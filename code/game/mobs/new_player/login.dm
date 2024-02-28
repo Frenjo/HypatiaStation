@@ -21,6 +21,6 @@
 	new_player_panel()
 	spawn(40)
 		if(client)
-			nanomanager.send_resources(client)
+			global.PCnanoui.send_resources(client)
 			handle_privacy_poll()
 			client.playtitlemusic()

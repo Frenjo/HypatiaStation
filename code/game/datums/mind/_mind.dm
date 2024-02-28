@@ -74,7 +74,7 @@
 
 	new_character.mind?.current = null // Remove any mind currently in our new body's mind variable.
 
-	nanomanager.user_transferred(current, new_character) // transfer active NanoUI instances to new user
+	global.PCnanoui.user_transferred(current, new_character) // transfer active NanoUI instances to new user
 
 	current = new_character		// Link ourself to our new body.
 	new_character.mind = src	// And link our new body to ourself.

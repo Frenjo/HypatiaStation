@@ -47,7 +47,7 @@
 		return 0
 	if(href_list["close"])
 		var/mob/user = usr
-		var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
+		var/datum/nanoui/ui = global.PCnanoui.get_open_ui(user, src, "main")
 		usr.unset_machine()
 		ui.close()
 		return 0
@@ -94,7 +94,7 @@
 
 	data["crewmembers"] = crewmembers
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
+	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
 		ui = new(user, src, ui_key, "crew_monitor.tmpl", "Crew Monitoring Computer", 900, 600)
 		ui.set_initial_data(data)

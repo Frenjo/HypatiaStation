@@ -74,7 +74,7 @@
 	data["event"] = event
 
 	// Ported most of this by studying SMES code. -Frenjo
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data)
+	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
 		ui = new(user, src, ui_key, "keycard_auth.tmpl", "Keycard Authentication Device", 460, 360)
 		ui.set_initial_data(data)

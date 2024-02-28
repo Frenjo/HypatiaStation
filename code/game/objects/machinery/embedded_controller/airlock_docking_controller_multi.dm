@@ -38,7 +38,7 @@
 		"airlocks" = airlocks,
 	)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(isnull(ui))
 		ui = new(user, src, ui_key, "multi_docking_console.tmpl", name, 470, 290)
 		ui.set_initial_data(data)
@@ -73,7 +73,7 @@
 		"override_enabled" = airlock_program.override_enabled,
 	)
 
-	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(isnull(ui))
 		ui = new(user, src, ui_key, "docking_airlock_console.tmpl", name, 470, 290)
 		ui.set_initial_data(data)
