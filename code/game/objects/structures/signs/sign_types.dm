@@ -33,6 +33,17 @@
 	desc = "A warning sign which reads 'HARD VACUUM AHEAD'."
 	icon_state = "space"
 
+/obj/structure/sign/vacuum/New()
+	. = ..()
+	if(prob(50)) // Since I couldn't decide which I liked better, it's a 50% chance.
+		name = "\improper EXTERNAL AIRLOCK"
+		desc = "A warning sign which reads 'EXTERNAL AIRLOCK'."
+
+	if(prob(7.5)) // 7.5% chance for something special, thanks Chinsky!
+		name = "\improper SUS"
+		desc = "A warning sign which reads 'SUS'."
+		icon_state = "space_sus"
+
 /obj/structure/sign/deathsposal
 	name = "\improper DISPOSAL LEADS TO SPACE"
 	desc = "A warning sign which reads 'DISPOSAL LEADS TO SPACE'."
@@ -57,11 +68,6 @@
 	name = "\improper NO SMOKING"
 	desc = "A warning sign which reads 'NO SMOKING'."
 	icon_state = "nosmoking2"
-
-/obj/structure/sign/redcross
-	name = "medbay"
-	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
-	icon_state = "redcross"
 
 /obj/structure/sign/greencross
 	name = "medbay"

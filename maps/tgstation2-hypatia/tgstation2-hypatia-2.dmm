@@ -1091,7 +1091,7 @@
 "LZ" = (/obj/machinery/chem_dispenser,/obj/machinery/light/small{dir = 4},/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/shuttle/administration/centcom)
 "Mb" = (/obj/machinery/optable,/obj/machinery/light/small{dir = 8},/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/shuttle/administration/centcom)
 "Mc" = (/obj/machinery/atmospherics/unary/vent_pump/high_volume{frequency = 1331; id_tag = "vox_east_vent"},/turf/simulated/shuttle/plating,/area/shuttle/vox/station)
-"Me" = (/obj/structure/sign/redcross{pixel_y = -32},/obj/effect/decal/floor/industrial/bot/vault,/turf/simulated/floor{icon_state = "dark"},/area/centcom/specops)
+"Me" = (/obj/structure/sign/greencross{pixel_y = -32},/obj/effect/decal/floor/industrial/bot/vault,/turf/simulated/floor{icon_state = "dark"},/area/centcom/specops)
 "Mf" = (/obj/machinery/bodyscanner,/turf/simulated/shuttle/floor/vox,/area/shuttle/vox/station)
 "Mg" = (/turf/simulated/floor{icon_state = "freezerfloor"},/area/syndicate_mothership)
 "Mh" = (/obj/structure/rack,/obj/item/bodybag,/obj/item/bodybag,/obj/item/bodybag,/obj/item/bodybag,/obj/item/bodybag,/obj/item/bodybag,/obj/effect/decal/floor/industrial/vault,/turf/simulated/floor{icon_state = "dark"},/area/centcom/specops)
