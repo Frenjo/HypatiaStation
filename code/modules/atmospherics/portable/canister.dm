@@ -426,18 +426,3 @@ update_flag
 	. = ..()
 	air_contents.adjust_gas(/decl/xgm_gas/sleeping_agent, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	update_icon()
-
-//Dirty way to fill room with gas. However it is a bit easier to do than creating some floor/engine/n2o -rastaf0
-/obj/machinery/portable_atmospherics/canister/sleeping_agent/roomfiller/New()
-	. = ..()
-	air_contents.gas[/decl/xgm_gas/sleeping_agent] = 9 * 4000
-	update_icon()
-
-/obj/machinery/portable_atmospherics/canister/sleep_agent/roomfiller/initialise()
-	. = ..()
-	var/turf/simulated/location = loc
-	if(istype(loc))
-		while(!location.air)
-			sleep(10)
-		location.assume_air(air_contents)
-		air_contents = new /datum/gas_mixture()
