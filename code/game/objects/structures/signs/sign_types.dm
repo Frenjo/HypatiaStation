@@ -39,7 +39,7 @@
 		name = "\improper EXTERNAL AIRLOCK"
 		desc = "A warning sign which reads 'EXTERNAL AIRLOCK'."
 
-	if(prob(7.5)) // 7.5% chance for something special, thanks Chinsky!
+	if(prob(5)) // 5% chance for something special, thanks Chinsky!
 		name = "\improper SUS"
 		desc = "A warning sign which reads 'SUS'."
 		icon_state = "space_sus"
