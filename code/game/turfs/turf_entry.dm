@@ -8,21 +8,21 @@
 
 	// First, check objects to block exit that are not on the border.
 	for(var/obj/obstacle in mover.loc)
-		if(!(obstacle.flags & ON_BORDER) && mover != obstacle && forget != obstacle)
+		if(!HAS_ATOM_FLAGS(obstacle, ATOM_FLAG_ON_BORDER) && mover != obstacle && forget != obstacle)
 			if(!obstacle.CheckExit(mover, src))
 				mover.Bump(obstacle, 1)
 				return FALSE
 
 	// Now, check objects to block exit that are on the border.
 	for(var/obj/border_obstacle in mover.loc)
-		if((border_obstacle.flags & ON_BORDER) && mover != border_obstacle && forget != border_obstacle)
+		if(HAS_ATOM_FLAGS(border_obstacle, ATOM_FLAG_ON_BORDER) && mover != border_obstacle && forget != border_obstacle)
 			if(!border_obstacle.CheckExit(mover, src))
 				mover.Bump(border_obstacle, 1)
 				return FALSE
 
 	// Next, check objects to block entry that are on the border.
 	for(var/obj/border_obstacle in src)
-		if(border_obstacle.flags & ON_BORDER)
+		if(HAS_ATOM_FLAGS(border_obstacle, ATOM_FLAG_ON_BORDER))
 			if(!border_obstacle.CanPass(mover, mover.loc, 1, 0) && forget != border_obstacle)
 				mover.Bump(border_obstacle, 1)
 				return FALSE
@@ -34,7 +34,7 @@
 
 	// Finally, check objects/mobs to block entry that are not on the border.
 	for(var/atom/movable/obstacle in src)
-		if(!(obstacle.flags & ON_BORDER))
+		if(!HAS_ATOM_FLAGS(obstacle, ATOM_FLAG_ON_BORDER))
 			if(!obstacle.CanPass(mover, mover.loc, 1, 0) && forget != obstacle)
 				mover.Bump(obstacle, 1)
 				return FALSE

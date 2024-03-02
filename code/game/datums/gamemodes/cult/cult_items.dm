@@ -32,7 +32,7 @@
 	icon_state = "culthood"
 	desc = "A hood worn by the followers of Nar-Sie."
 	item_flags = ITEM_FLAG_COVERS_EYES
-	flags_inv = HIDEFACE
+	inv_flags = INV_FLAG_HIDE_FACE
 	armor = list(melee = 30, bullet = 10, laser = 5, energy = 5, bomb = 0, bio = 0, rad = 0)
 	cold_protection = HEAD
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
@@ -54,7 +54,7 @@
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
 	armor = list(melee = 50, bullet = 30, laser = 50, energy = 20, bomb = 25, bio = 10, rad = 0)
-	flags_inv = HIDEJUMPSUIT
+	inv_flags = INV_FLAG_HIDE_JUMPSUIT
 	siemens_coefficient = 0
 
 /obj/item/clothing/head/magus
@@ -62,9 +62,8 @@
 	icon_state = "magus"
 	item_state = "magus"
 	desc = "A helm worn by the followers of Nar-Sie."
-	flags = BLOCKHAIR
 	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
-	flags_inv = HIDEFACE
+	inv_flags = INV_FLAG_HIDE_FACE | INV_FLAG_BLOCK_HAIR
 	armor = list(melee = 30, bullet = 30, laser = 30, energy = 20, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0
 
@@ -76,7 +75,7 @@
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
 	allowed = list(/obj/item/tome, /obj/item/melee/cultblade)
 	armor = list(melee = 50, bullet = 30, laser = 50, energy = 20, bomb = 25, bio = 10, rad = 0)
-	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
+	inv_flags = INV_FLAG_HIDE_GLOVES | INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES
 	siemens_coefficient = 0
 
 /obj/item/clothing/head/helmet/space/cult

@@ -25,11 +25,14 @@
 	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>)")
 
 	if(M.stat < 2 && M.health < 50 && prob(90))
+		/*
 		var/mob/H = M
 		// ******* Check
+		// I don't even know what flag this was supposed to be checking?? Were they checking NO_BLUDGEON but for the wrong reason?
 		if((ishuman(H) && istype(H, /obj/item/clothing/head) && H.flags & 8 && prob(80)))
 			to_chat(M, SPAN_WARNING("The helmet protects you from being hit hard in the head!"))
 			return
+		*/
 		var/time = rand(2, 6)
 		if(prob(75))
 			M.Paralyse(time)

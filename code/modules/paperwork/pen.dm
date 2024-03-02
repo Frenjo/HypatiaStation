@@ -58,7 +58,7 @@
  */
 /obj/item/pen/sleepypen
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
-	flags = OPENCONTAINER
+	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	slot_flags = SLOT_BELT
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_SYNDICATE = 5)
 
@@ -85,7 +85,7 @@
  * Parapens
  */
 /obj/item/pen/paralysis
-	flags = OPENCONTAINER
+	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	slot_flags = SLOT_BELT
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_SYNDICATE = 5)
 

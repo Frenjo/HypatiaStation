@@ -1,7 +1,7 @@
 /obj/item/clothing/glasses/hud
 	name = "HUD"
 	desc = "A heads-up display that provides important info in (almost) real time."
-	flags = null //doesn't protect eyes because it's a monocle, duh
+	item_flags = null //doesn't protect eyes because it's a monocle, duh
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_BIOTECH = 2)
 	var/list/icon/current = list() //the current hud icons
 

@@ -1,3 +1,10 @@
+#define CANISTER_FLAG_NONE				BITFLAG(0) // No update needed.
+#define CANISTER_FLAG_HOLDING			BITFLAG(1) // holding
+#define CANISTER_FLAG_CONNECTED			BITFLAG(2) // connected_port
+#define CANISTER_FLAG_PRESSURE_10		BITFLAG(3) // tank_pressure < 10
+#define CANISTER_FLAG_PRESSURE_ATMOS	BITFLAG(4) // tank_pressure < ONE_ATMOS
+#define CANISTER_FLAG_PRESSURE_15_ATMOS	BITFLAG(5) // tank_pressure < (15 * ONE_ATMOS)
+#define CANISTER_FLAG_PRESSURE_BOOM		BITFLAG(6) // tank_pressure go boom.
 /obj/machinery/portable_atmospherics/canister
 	name = "canister"
 	icon = 'icons/obj/atmospherics/canister.dmi'
@@ -20,66 +27,64 @@
 	var/filled = 0.5
 	var/temperature_resistance = 1000 + T0C
 	var/release_log = ""
-	var/update_flag = 0
+	var/update_flags = CANISTER_FLAG_NONE
 
 /obj/machinery/portable_atmospherics/canister/proc/check_change()
-	var/old_flag = update_flag
-	update_flag = 0
+	var/old_flag = update_flags
+	update_flags = CANISTER_FLAG_NONE
 	if(isnotnull(holding))
-		update_flag |= 1
+		update_flags |= CANISTER_FLAG_HOLDING
 	if(connected_port)
-		update_flag |= 2
+		update_flags |= CANISTER_FLAG_CONNECTED
 
 	var/tank_pressure = air_contents.return_pressure()
 	if(tank_pressure < 10)
-		update_flag |= 4
+		update_flags |= CANISTER_FLAG_PRESSURE_10
 	else if(tank_pressure < ONE_ATMOSPHERE)
-		update_flag |= 8
-	else if(tank_pressure < 15 * ONE_ATMOSPHERE)
-		update_flag |= 16
+		update_flags |= CANISTER_FLAG_PRESSURE_ATMOS
+	else if(tank_pressure < (15 * ONE_ATMOSPHERE))
+		update_flags |= CANISTER_FLAG_PRESSURE_15_ATMOS
 	else
-		update_flag |= 32
+		update_flags |= CANISTER_FLAG_PRESSURE_BOOM
 
-	if(update_flag == old_flag)
-		return 1
+	if(update_flags == old_flag)
+		return FALSE
 	else
-		return 0
+		return TRUE
 
 /obj/machinery/portable_atmospherics/canister/update_icon()
-/*
-update_flag
-1 = holding
-2 = connected_port
-4 = tank_pressure < 10
-8 = tank_pressure < ONE_ATMOS
-16 = tank_pressure < 15*ONE_ATMOS
-32 = tank_pressure go boom.
-*/
-
 	if(destroyed)
-		overlays = 0
+		overlays.Cut()
 		icon_state = "[canister_color]-1"
+		return
 
 	if(icon_state != "[canister_color]")
 		icon_state = "[canister_color]"
 
-	if(check_change()) //Returns 1 if no change needed to icons.
+	if(!check_change()) // Returns FALSE if no change to icons is needed.
 		return
 
-	overlays = 0
+	overlays.Cut()
 
-	if(update_flag & 1)
+	if(update_flags & CANISTER_FLAG_HOLDING)
 		overlays.Add("can-open")
-	if(update_flag & 2)
+	if(update_flags & CANISTER_FLAG_CONNECTED)
 		overlays.Add("can-connector")
-	if(update_flag & 4)
+	if(update_flags & CANISTER_FLAG_PRESSURE_10)
 		overlays.Add("can-o0")
-	if(update_flag & 8)
+	if(update_flags & CANISTER_FLAG_PRESSURE_ATMOS)
 		overlays.Add("can-o1")
-	else if(update_flag & 16)
+	else if(update_flags & CANISTER_FLAG_PRESSURE_15_ATMOS)
 		overlays.Add("can-o2")
-	else if(update_flag & 32)
+	else if(update_flags & CANISTER_FLAG_PRESSURE_BOOM)
 		overlays.Add("can-o3")
+#undef CANISTER_FLAG_PRESSURE_BOOM
+#undef CANISTER_FLAG_PRESSURE_15_ATMOS
+#undef CANISTER_FLAG_PRESSURE_ATMOS
+#undef CANISTER_FLAG_PRESSURE_10
+#undef CANISTER_FLAG_CONNECTED
+#undef CANISTER_FLAG_HOLDING
+#undef CANISTER_FLAG_NONE
 
 /obj/machinery/portable_atmospherics/canister/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > temperature_resistance)
@@ -88,10 +93,10 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/proc/healthcheck()
 	if(destroyed)
-		return 1
+		return
 
 	if(health <= 10)
-		var/atom/location = src.loc
+		var/atom/location = loc
 		location.assume_air(air_contents)
 
 		destroyed = TRUE
@@ -103,13 +108,9 @@ update_flag
 			holding.loc = loc
 			holding = null
 
-		return 1
-	else
-		return 1
-
 /obj/machinery/portable_atmospherics/canister/process()
 	if(destroyed)
-		return
+		return PROCESS_KILL
 
 	..()
 
@@ -199,13 +200,13 @@ update_flag
 	global.PCnanoui.update_uis(src) // Update all NanoUIs attached to src
 
 /obj/machinery/portable_atmospherics/canister/attack_ai(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/portable_atmospherics/canister/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/portable_atmospherics/canister/attack_hand(mob/user as mob)
-	return src.ui_interact(user)
+	return ui_interact(user)
 
 /obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	if(destroyed)
@@ -241,7 +242,7 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/Topic(href, href_list)
 	//Do not use "if(..()) return" here, canisters will stop working in unpowered areas like space or on the derelict.
-	if(!isturf(src.loc))
+	if(!isturf(loc))
 		return 0
 
 	if(href_list["toggle"])

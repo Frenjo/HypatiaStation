@@ -14,7 +14,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 	layer = 2
 
 	var/level = 2
-	var/flags
+	var/atom_flags
 
 	var/list/fingerprints
 	var/list/hidden_fingerprints
@@ -119,7 +119,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 // returns true if open
 // false if closed
 /atom/proc/is_open_container()
-	return flags & OPENCONTAINER
+	return HAS_ATOM_FLAGS(src, ATOM_FLAG_OPEN_CONTAINER)
 
 /*//Convenience proc to see whether a container can be accessed in a certain way.
 
@@ -371,7 +371,7 @@ Maxdistance is the longest range the beam will persist before it gives up.
 
 // Returns TRUE if made bloody, returns FALSE otherwise.
 /atom/proc/add_blood(mob/living/carbon/human/M as mob)
-	if(flags & NOBLOODY)
+	if(HAS_ATOM_FLAGS(src, ATOM_FLAG_NO_BLOODY))
 		return FALSE
 	if(!ishuman(M))
 		return FALSE

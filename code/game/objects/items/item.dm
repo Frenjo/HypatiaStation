@@ -8,6 +8,10 @@
 	// Stores item-specific bitflag values.
 	// Overridden on subtypes or manipulated with *_ITEM_FLAGS(ITEM, FLAGS) macros.
 	var/item_flags
+	// Stores inventory-specific bitflag values.
+	// Overridden on subtypes or manipulated with *_INV_FLAGS(ITEM, FLAGS) macros.
+	// This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	var/inv_flags
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/abstract = 0
@@ -31,7 +35,6 @@
 	var/action_button_name = null //This is the text which gets displayed on the action button. If not set it defaults to 'Use [name]'. Note that icon_action_button needs to be set in order for the action button to appear.
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
-	var/flags_inv //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 	var/item_color = null
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible

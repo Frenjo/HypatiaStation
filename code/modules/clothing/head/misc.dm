@@ -45,8 +45,8 @@
 	name = "hastur's hood"
 	desc = "It's unspeakably stylish"
 	icon_state = "hasturhood"
-	flags = BLOCKHAIR
 	item_flags = ITEM_FLAG_COVERS_EYES
+	inv_flags = INV_FLAG_BLOCK_HAIR
 
 /obj/item/clothing/head/nursehat
 	name = "nurse's hat"
@@ -59,32 +59,28 @@
 	icon_state = "syndicate"
 	item_state = "syndicate"
 	desc = "A plastic replica of a syndicate agent's space helmet, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
-	flags = BLOCKHAIR
-	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE
+	inv_flags = INV_FLAG_HIDE_MASK | INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_HIDE_FACE | INV_FLAG_BLOCK_HAIR
 	siemens_coefficient = 2.0
 
 /obj/item/clothing/head/cueball
 	name = "cueball helmet"
 	desc = "A large, featureless white orb meant to be worn on your head. How do you even see out of this thing?"
 	icon_state = "cueball"
-	flags = BLOCKHAIR
+	item_state = "cueball"
 	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
-	item_state="cueball"
-	flags_inv = 0
+	inv_flags = INV_FLAG_BLOCK_HAIR
 
 /obj/item/clothing/head/that
 	name = "sturdy top-hat"
 	desc = "It's an amish looking armored top hat."
 	icon_state = "tophat"
 	item_state = "that"
-	flags_inv = 0
 
 /obj/item/clothing/head/greenbandana
 	name = "green bandana"
 	desc = "It's a green bandana with some fine nanotech lining."
 	icon_state = "greenbandana"
 	item_state = "greenbandana"
-	flags_inv = 0
 
 /obj/item/clothing/head/cardborg
 	name = "cardborg helmet"
@@ -92,15 +88,15 @@
 	icon_state = "cardborg_h"
 	item_state = "cardborg_h"
 	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
-	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE
+	inv_flags = INV_FLAG_HIDE_MASK | INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_HIDE_FACE
 
 /obj/item/clothing/head/justice
 	name = "justice hat"
 	desc = "Fight for what's righteous!"
 	icon_state = "justicered"
 	item_state = "justicered"
-	flags = BLOCKHAIR
 	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
+	inv_flags = INV_FLAG_BLOCK_HAIR
 
 /obj/item/clothing/head/justice/blue
 	icon_state = "justiceblue"
@@ -197,7 +193,7 @@
 	desc = "Eeeee~heheheheheheh!"
 	icon_state = "witch"
 	item_state = "witch"
-	flags = BLOCKHAIR
+	inv_flags = INV_FLAG_BLOCK_HAIR
 	siemens_coefficient = 2.0
 
 /obj/item/clothing/head/chicken
@@ -205,7 +201,7 @@
 	desc = "Bkaw!"
 	icon_state = "chickenhead"
 	item_state = "chickensuit"
-	flags = BLOCKHAIR
+	inv_flags = INV_FLAG_BLOCK_HAIR
 	siemens_coefficient = 2.0
 
 /obj/item/clothing/head/bearpelt
@@ -213,7 +209,7 @@
 	desc = "Fuzzy."
 	icon_state = "bearpelt"
 	item_state = "bearpelt"
-	flags = BLOCKHAIR
+	inv_flags = INV_FLAG_BLOCK_HAIR
 	siemens_coefficient = 2.0
 
 /obj/item/clothing/head/xenos
@@ -221,8 +217,7 @@
 	icon_state = "xenos"
 	item_state = "xenos_helm"
 	desc = "A helmet made out of chitinous alien hide."
-	flags = BLOCKHAIR
-	flags_inv = HIDEMASK | HIDEEARS| HIDEEYES | HIDEFACE
+	inv_flags = INV_FLAG_HIDE_MASK | INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_HIDE_FACE | INV_FLAG_BLOCK_HAIR
 	siemens_coefficient = 2.0
 
 // Added the legendary purple beret, why was this missing? -Frenjo

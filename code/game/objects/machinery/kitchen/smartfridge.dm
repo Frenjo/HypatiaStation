@@ -7,7 +7,7 @@
 	layer = 2.9
 	density = TRUE
 	anchored = TRUE
-	flags = NOREACT
+	atom_flags = ATOM_FLAG_NO_REACT
 
 	power_usage = list(
 		USE_POWER_IDLE = 5,

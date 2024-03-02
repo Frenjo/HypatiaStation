@@ -51,7 +51,7 @@
 	body_parts_covered = FULL_BODY //It's magic, I ain't gotta explain shit. --NEO
 	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 20, bio = 20, rad = 20)
 	allowed = list(/obj/item/teleportation_scroll)
-	flags_inv = HIDEJUMPSUIT
+	inv_flags = INV_FLAG_HIDE_JUMPSUIT
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/suit/wizrobe/red
@@ -115,4 +115,3 @@
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | ARMS | LEGS
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 1.0
-

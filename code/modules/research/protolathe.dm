@@ -10,7 +10,7 @@ Note: Must be placed west/left of and R&D console to function.
 /obj/machinery/r_n_d/protolathe
 	name = "Protolathe"
 	icon_state = "protolathe"
-	flags = OPENCONTAINER
+	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 
 	accepted_materials = list(
 		MATERIAL_METAL, MATERIAL_GLASS, MATERIAL_GOLD, MATERIAL_SILVER,

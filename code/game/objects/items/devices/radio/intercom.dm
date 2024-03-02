@@ -5,7 +5,7 @@
 	anchored = TRUE
 	w_class = 4.0
 	canhear_range = 2
-	flags = NOBLOODY
+	atom_flags = ATOM_FLAG_NO_BLOODY
 	obj_flags = OBJ_FLAG_CONDUCT
 	var/number = 0
 	var/anyai = 1

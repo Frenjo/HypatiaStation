@@ -20,7 +20,7 @@
 	matter_amounts = list(MATERIAL_METAL = 3000, MATERIAL_GLASS = 1000)
 
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE
+	inv_flags = INV_FLAG_HIDE_MASK | INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_HIDE_FACE
 	icon_action_button = "action_welding"
 	siemens_coefficient = 0.9
 	w_class = 3
@@ -32,13 +32,13 @@
 		if(up)
 			up = !up
 			SET_ITEM_FLAGS(src, (ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH))
-			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
+			SET_INV_FLAGS(src, (INV_FLAG_HIDE_MASK | INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_HIDE_FACE))
 			icon_state = initial(icon_state)
 			to_chat(user, "You flip the [src] down to protect your eyes.")
 		else
 			up = !up
 			UNSET_ITEM_FLAGS(src, (ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH))
-			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
+			UNSET_INV_FLAGS(src, (INV_FLAG_HIDE_MASK | INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_HIDE_FACE))
 			icon_state = "[initial(icon_state)]up"
 			to_chat(user, "You push the [src] up out of your face.")
 		user.update_inv_head()	//so our mob-overlays update
@@ -93,7 +93,7 @@
 	desc = "Perfect for winter in Siberia, da?"
 	icon_state = "ushankadown"
 	item_state = "ushankadown"
-	flags_inv = HIDEEARS
+	inv_flags = INV_FLAG_HIDE_EARS
 
 /obj/item/clothing/head/ushanka/attack_self(mob/user as mob)
 	if(icon_state == "ushankadown")
@@ -114,9 +114,8 @@
 	icon_state = "hardhat0_pumpkin" //Could stand to be renamed
 	item_state = "hardhat0_pumpkin"
 	item_color = "pumpkin"
-	flags = BLOCKHAIR
 	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
-	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES | HIDEFACE
+	inv_flags = INV_FLAG_HIDE_MASK | INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_HIDE_FACE | INV_FLAG_BLOCK_HAIR
 	var/brightness_on = 2 //luminosity when on
 	var/on = 0
 	w_class = 3

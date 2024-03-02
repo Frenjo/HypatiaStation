@@ -42,16 +42,19 @@
 /*
  * Inventory Hiding Flags
  * These determine when a piece of clothing hides another. IE a helmet hiding glasses.
- * Used by /obj/item/var/flags_inv.
+ * Used by /obj/item/var/inv_flags.
  */
 // These apply only to the exterior suit:
-#define HIDEGLOVES		BITFLAG(0)
-#define HIDESUITSTORAGE	BITFLAG(1)
-#define HIDEJUMPSUIT	BITFLAG(2)
-#define HIDESHOES		BITFLAG(3)
-#define HIDETAIL 		BITFLAG(4)
+#define INV_FLAG_HIDE_GLOVES		BITFLAG(0)
+#define INV_FLAG_HIDE_SUIT_STORAGE	BITFLAG(1)
+#define INV_FLAG_HIDE_JUMPSUIT		BITFLAG(2)
+#define INV_FLAG_HIDE_SHOES			BITFLAG(3)
+#define INV_FLAG_HIDE_TAIL 			BITFLAG(4)
 // These apply only to helmets/masks:
-#define HIDEMASK	BITFLAG(0)
-#define HIDEEARS	BITFLAG(1)	// Ears means headsets and such.
-#define HIDEEYES	BITFLAG(2)	// Eyes means glasses.
-#define HIDEFACE	BITFLAG(3)	// Dictates whether we appear as unknown.
+#define INV_FLAG_HIDE_MASK	BITFLAG(5)
+#define INV_FLAG_HIDE_EARS	BITFLAG(6)	// Ears means headsets and such.
+#define INV_FLAG_HIDE_EYES	BITFLAG(7)	// Eyes means glasses.
+#define INV_FLAG_HIDE_FACE	BITFLAG(8)	// Dictates whether we appear as unknown.
+
+#define INV_FLAG_BLOCK_HEAD_HAIR	BITFLAG(9)	// temporarily removes the user's hair overlay. Leaves facial hair.
+#define INV_FLAG_BLOCK_HAIR			BITFLAG(10)	// temporarily removes the user's hair, facial and otherwise.

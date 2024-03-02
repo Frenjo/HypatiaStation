@@ -70,12 +70,12 @@
 	desc = "A small, open-topped glass container for delicate research samples. It sports a re-useable strip for labelling with a pen."
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "solution_tray"
+	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	matter_amounts = list(MATERIAL_GLASS = 5)
 	w_class = 1.0
 	amount_per_transfer_from_this = 1
 	possible_transfer_amounts = list(1, 2)
 	volume = 2
-	flags = OPENCONTAINER
 
 /obj/item/reagent_containers/glass/solution_tray/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(istype(W, /obj/item/pen))

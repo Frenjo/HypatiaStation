@@ -236,7 +236,7 @@
 	update_total()
 
 /datum/reagents/proc/handle_reactions()
-	if(my_atom.flags & NOREACT)
+	if(HAS_ATOM_FLAGS(my_atom, ATOM_FLAG_NO_REACT))
 		return // Yup, no reactions here. No siree.
 
 	var/reaction_occured = 0

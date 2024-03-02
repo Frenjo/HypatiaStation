@@ -116,7 +116,8 @@
 	if(air_group || height == 0)
 		return 1
 
-	if(mover.flags & 2 || istype(mover, /obj/effect/meteor) || mover.throwing)
+	// I don't even know what flag this was supposed to be checking.
+	if(/*mover.flags & 2 || */istype(mover, /obj/effect/meteor) || mover.throwing)
 		return 1
 	else
 		return 0
@@ -164,5 +165,3 @@
 
 	qdel(src)
 	return
-
-

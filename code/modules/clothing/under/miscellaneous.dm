@@ -336,35 +336,35 @@
 	desc = "A big and puffy orange dress."
 	icon_state = "bride_orange"
 	item_color = "bride_orange"
-	flags_inv = HIDESHOES
+	inv_flags = INV_FLAG_HIDE_SHOES
 
 /obj/item/clothing/under/wedding/bride_purple
 	name = "purple wedding dress"
 	desc = "A big and puffy purple dress."
 	icon_state = "bride_purple"
 	item_color = "bride_purple"
-	flags_inv = HIDESHOES
+	inv_flags = INV_FLAG_HIDE_SHOES
 
 /obj/item/clothing/under/wedding/bride_blue
 	name = "blue wedding dress"
 	desc = "A big and puffy blue dress."
 	icon_state = "bride_blue"
 	item_color = "bride_blue"
-	flags_inv = HIDESHOES
+	inv_flags = INV_FLAG_HIDE_SHOES
 
 /obj/item/clothing/under/wedding/bride_red
 	name = "red wedding dress"
 	desc = "A big and puffy red dress."
 	icon_state = "bride_red"
 	item_color = "bride_red"
-	flags_inv = HIDESHOES
+	inv_flags = INV_FLAG_HIDE_SHOES
 
 /obj/item/clothing/under/wedding/bride_white
 	name = "silky wedding dress"
 	desc = "A white wedding gown made from the finest silk."
 	icon_state = "bride_white"
 	item_color = "bride_white"
-	flags_inv = HIDESHOES
+	inv_flags = INV_FLAG_HIDE_SHOES
 
 /obj/item/clothing/under/sundress
 	name = "sundress"
@@ -382,7 +382,7 @@
 	item_state = "plasmalin"
 	item_color = "plasmalin"
 	species_restricted = list(SPECIES_PLASMALIN)
-	flags_inv = HIDESHOES
+	inv_flags = INV_FLAG_HIDE_SHOES
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS
 
 /obj/item/clothing/under/plasmalin/proc/extinguish(mob/living/carbon/human/H)

@@ -22,7 +22,7 @@
 	icon_state = "captunic"
 	item_state = "bio_suit"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
-	flags_inv = HIDEJUMPSUIT
+	inv_flags = INV_FLAG_HIDE_JUMPSUIT
 
 /obj/item/clothing/suit/captunic/capjacket
 	name = "captain's uniform jacket"
@@ -30,7 +30,7 @@
 	icon_state = "capjacket"
 	item_state = "bio_suit"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS
-	flags_inv = HIDEJUMPSUIT
+	inv_flags = INV_FLAG_HIDE_JUMPSUIT
 
 //Chaplain
 /obj/item/clothing/suit/chaplain_hoodie
@@ -47,7 +47,7 @@
 	icon_state = "nun"
 	item_state = "nun"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | ARMS | HANDS
-	flags_inv = HIDESHOES | HIDEJUMPSUIT
+	inv_flags = INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES
 
 //Chef
 /obj/item/clothing/suit/chef

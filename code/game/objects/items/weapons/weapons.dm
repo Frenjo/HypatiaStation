@@ -309,7 +309,7 @@
 	name = "wooden table parts"
 	desc = "Keep away from fire."
 	icon_state = "wood_tableparts"
-	flags = null
+	atom_flags = null
 
 /obj/item/wire
 	desc = "This is just a simple piece of regular insulated wire."

@@ -10,7 +10,7 @@
 	desc = "Just your average condiment container."
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "emptycondiment"
-	flags = OPENCONTAINER
+	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	possible_transfer_amounts = list(1, 5, 10)
 	volume = 50
 

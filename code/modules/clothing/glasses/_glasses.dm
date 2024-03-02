@@ -191,12 +191,12 @@
 	if(user.canmove && !user.stat && !user.restrained())
 		if(up)
 			SET_ITEM_FLAGS(src, ITEM_FLAG_COVERS_EYES)
-			flags_inv |= HIDEEYES
+			SET_INV_FLAGS(src, INV_FLAG_HIDE_EYES)
 			icon_state = initial(icon_state)
 			to_chat(user, "You flip \the [src] down to protect your eyes.")
 		else
 			UNSET_ITEM_FLAGS(src, ITEM_FLAG_COVERS_EYES)
-			flags_inv &= ~HIDEEYES
+			UNSET_INV_FLAGS(src, INV_FLAG_HIDE_EYES)
 			icon_state = "[initial(icon_state)]up"
 			to_chat(user, "You push \the [src] up out of your face.")
 		up = !up
@@ -249,7 +249,7 @@
 	name = "Thermoncle"
 	desc = "A monocle thermal."
 	icon_state = "thermoncle"
-	flags = null //doesn't protect eyes because it's a monocle, duh
+	item_flags = null //doesn't protect eyes because it's a monocle, duh
 	toggleable = FALSE
 
 /obj/item/clothing/glasses/thermal/eyepatch

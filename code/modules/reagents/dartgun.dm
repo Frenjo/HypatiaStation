@@ -155,7 +155,7 @@
 		qdel(S)
 		D.icon_state = "syringeproj"
 		D.name = "syringe"
-		D.flags |= NOREACT
+		SET_ATOM_FLAGS(D, ATOM_FLAG_NO_REACT)
 		playsound(user.loc, 'sound/items/syringeproj.ogg', 50, 1)
 
 		for(var/i = 0, i < 6, i++)

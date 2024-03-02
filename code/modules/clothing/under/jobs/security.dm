@@ -128,8 +128,7 @@
 	icon_state = "hoscap"
 	item_flags = ITEM_FLAG_COVERS_EYES
 	armor = list(melee = 80, bullet = 60, laser = 50, energy = 10, bomb = 25, bio = 10, rad = 0)
-	flags_inv = 0
-	flags_inv = HIDEEARS
+	inv_flags = INV_FLAG_HIDE_EARS
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/suit/armor/hos
@@ -139,7 +138,7 @@
 	item_state = "hos"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | ARMS | LEGS
 	armor = list(melee = 65, bullet = 30, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
-	flags_inv = HIDEJUMPSUIT
+	inv_flags = INV_FLAG_HIDE_JUMPSUIT
 	siemens_coefficient = 0.6
 
 
@@ -164,5 +163,5 @@
 	desc = "A trenchcoat augmented with a special alloy for some protection and style."
 	icon_state = "jensencoat"
 	item_state = "jensencoat"
-	flags_inv = 0
+	inv_flags = null
 	siemens_coefficient = 0.6

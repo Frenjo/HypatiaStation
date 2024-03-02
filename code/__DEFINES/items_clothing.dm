@@ -5,20 +5,6 @@
 //Object specific defines
 #define CANDLE_LUM 3 //For how bright candles are
 
-//FLAGS BITMASK
-// TODO: Move ON_BORDER to ATOM_FLAG_ON_BORDER.
-// TODO: Move NOBLOODY to ATOM_FLAG_NO_BLOODY.
-#define ON_BORDER	BITFLAG(6)	// item has priority to check when entering or leaving
-#define NOBLOODY	BITFLAG(8)	// used to items if they don't want to get a blood overlay
-
-// TODO: Move OPENCONTAINER to ATOM_FLAG_OPEN_CONTAINER.
-#define OPENCONTAINER	BITFLAG(12)	// is an open container for chemistry purposes
-// TODO: Move NOREACT to ATOM_FLAG_NO_REACT.
-#define	NOREACT	BITFLAG(16)	//Reagents dont' react inside this container.
-
-#define BLOCKHEADHAIR	BITFLAG(17)	// temporarily removes the user's hair overlay. Leaves facial hair.
-#define BLOCKHAIR		BITFLAG(18)	// temporarily removes the user's hair, facial and otherwise.
-
 // Slot ID defines.
 #define SLOT_ID_BACK		1
 #define SLOT_ID_WEAR_MASK	2

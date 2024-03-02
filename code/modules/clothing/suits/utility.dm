@@ -19,7 +19,7 @@
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	allowed = list(/obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/extinguisher)
 	slowdown = 1.0
-	flags_inv = HIDEGLOVES | HIDESHOES | HIDEJUMPSUIT | HIDETAIL
+	inv_flags = INV_FLAG_HIDE_GLOVES | INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES | INV_FLAG_HIDE_TAIL
 	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
 	heat_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET| ARMS | HANDS
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
@@ -44,10 +44,9 @@
 	name = "bomb hood"
 	desc = "Use in case of bomb."
 	icon_state = "bombsuit"
-	flags = BLOCKHAIR
 	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 100, bio = 0, rad = 0)
-	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES
+	inv_flags = INV_FLAG_HIDE_MASK | INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_BLOCK_HAIR
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/bomb_suit
@@ -61,7 +60,7 @@
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	slowdown = 2
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 100, bio = 0, rad = 0)
-	flags_inv = HIDEJUMPSUIT | HIDETAIL
+	inv_flags = INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_TAIL
 	heat_protection = UPPER_TORSO | LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
@@ -82,8 +81,8 @@
 	name = "Radiation Hood"
 	icon_state = "rad"
 	desc = "A hood with radiation protective properties. Label: Made with lead, do not eat insulation"
-	flags = BLOCKHAIR
 	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
+	inv_flags = INV_FLAG_BLOCK_HAIR
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 60, rad = 100)
 
 /obj/item/clothing/suit/radiation
@@ -98,4 +97,4 @@
 	allowed = list(/obj/item/flashlight, /obj/item/tank/emergency/oxygen, /obj/item/clothing/head/radiation, /obj/item/clothing/mask/gas)
 	slowdown = 1.5
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 60, rad = 100)
-	flags_inv = HIDEJUMPSUIT | HIDETAIL
+	inv_flags = INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_TAIL

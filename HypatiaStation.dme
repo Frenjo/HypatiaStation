@@ -68,6 +68,7 @@
 #include "code\__DEFINES\atmospherics\ZAS.dm"
 #include "code\__DEFINES\flags\_flags.dm"
 #include "code\__DEFINES\flags\area.dm"
+#include "code\__DEFINES\flags\atom.dm"
 #include "code\__DEFINES\flags\item.dm"
 #include "code\__DEFINES\flags\language.dm"
 #include "code\__DEFINES\flags\object.dm"

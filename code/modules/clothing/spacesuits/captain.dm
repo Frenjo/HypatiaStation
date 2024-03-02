@@ -4,9 +4,8 @@
 	icon_state = "capspace"
 	item_state = "capspacehelmet"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Only for the most fashionable of military figureheads."
-	flags = BLOCKHAIR
 	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE | ITEM_FLAG_COVERS_EYES
-	flags_inv = HIDEFACE
+	inv_flags = INV_FLAG_HIDE_FACE | INV_FLAG_BLOCK_HAIR
 	permeability_coefficient = 0.01
 	armor = list(melee = 65, bullet = 50, laser = 50,energy = 25, bomb = 50, bio = 100, rad = 50)
 
@@ -28,7 +27,7 @@
 	)
 	slowdown = 1.5
 	armor = list(melee = 65, bullet = 50, laser = 50, energy = 25, bomb = 50, bio = 100, rad = 50)
-	flags_inv = HIDEGLOVES | HIDESHOES | HIDEJUMPSUIT | HIDETAIL
+	inv_flags = INV_FLAG_HIDE_GLOVES| INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES | INV_FLAG_HIDE_TAIL
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7

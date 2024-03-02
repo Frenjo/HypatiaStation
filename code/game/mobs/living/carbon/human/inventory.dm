@@ -86,7 +86,7 @@
 		if(W)
 			success = 1
 		wear_suit = null
-		if(W.flags_inv & HIDESHOES)
+		if(HAS_INV_FLAGS(W, INV_FLAG_HIDE_SHOES))
 			update_inv_shoes(0)
 		update_inv_wear_suit()
 	else if(W == w_uniform)
@@ -111,7 +111,7 @@
 		update_inv_glasses()
 	else if(W == head)
 		head = null
-		if((W.flags & BLOCKHAIR) || (W.flags & BLOCKHEADHAIR)|| (W.flags_inv & HIDEMASK))
+		if(HAS_INV_FLAGS(W, INV_FLAG_BLOCK_HAIR) || HAS_INV_FLAGS(W, INV_FLAG_BLOCK_HEAD_HAIR) || HAS_INV_FLAGS(W, INV_FLAG_HIDE_MASK))
 			update_hair(0)	//rebuild hair
 			update_inv_ears(0)
 			update_inv_wear_mask(0)
@@ -136,7 +136,7 @@
 	else if (W == wear_mask)
 		wear_mask = null
 		success = 1
-		if((W.flags & BLOCKHAIR) || (W.flags & BLOCKHEADHAIR))
+		if(HAS_ATOM_FLAGS(W, INV_FLAG_BLOCK_HAIR) || HAS_ATOM_FLAGS(W, INV_FLAG_BLOCK_HEAD_HAIR))
 			update_hair(0)	//rebuild hair
 			update_inv_ears(0)
 		if(internal)
@@ -219,7 +219,7 @@
 			update_inv_back(redraw_mob)
 		if(SLOT_ID_WEAR_MASK)
 			src.wear_mask = W
-			if((wear_mask.flags & BLOCKHAIR) || (wear_mask.flags & BLOCKHEADHAIR))
+			if(HAS_ATOM_FLAGS(wear_mask, INV_FLAG_BLOCK_HAIR) || HAS_ATOM_FLAGS(wear_mask, INV_FLAG_BLOCK_HEAD_HAIR))
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 			W.equipped(src, slot)
@@ -275,7 +275,7 @@
 			update_inv_gloves(redraw_mob)
 		if(SLOT_ID_HEAD)
 			src.head = W
-			if((head.flags & BLOCKHAIR) || (head.flags & BLOCKHEADHAIR) || (head.flags_inv & HIDEMASK))
+			if(HAS_ATOM_FLAGS(head, INV_FLAG_BLOCK_HAIR) || HAS_ATOM_FLAGS(head, INV_FLAG_BLOCK_HEAD_HAIR) || HAS_INV_FLAGS(head, INV_FLAG_HIDE_MASK))
 				update_hair(redraw_mob)	//rebuild hair
 				update_inv_ears(0)
 				update_inv_wear_mask(0)
@@ -289,7 +289,7 @@
 			update_inv_shoes(redraw_mob)
 		if(SLOT_ID_WEAR_SUIT)
 			src.wear_suit = W
-			if(wear_suit.flags_inv & HIDESHOES)
+			if(HAS_INV_FLAGS(wear_suit, INV_FLAG_HIDE_SHOES))
 				update_inv_shoes(0)
 			W.equipped(src, slot)
 			update_inv_wear_suit(redraw_mob)

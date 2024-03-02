@@ -408,7 +408,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/New()
 	..()
-	flags |= NOREACT
+	SET_ATOM_FLAGS(src, ATOM_FLAG_NO_REACT)
 	syringes = new
 	known_reagents = list(
 		"inaprovaline" = "Inaprovaline",
@@ -424,7 +424,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/critfail()
 	..()
-	flags &= ~NOREACT
+	UNSET_ATOM_FLAGS(src, ATOM_FLAG_NO_REACT)
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/can_attach(obj/mecha/medical/M)

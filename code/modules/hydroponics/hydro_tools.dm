@@ -89,8 +89,8 @@
 	name = "weed-spray"
 	icon_state = "weedspray"
 	item_state = "spray"
+	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	item_flags = ITEM_FLAG_NO_BLUDGEON
-	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	throwforce = 4
 	w_class = 2.0
@@ -113,8 +113,8 @@
 	name = "pest-spray"
 	icon_state = "pestspray"
 	item_state = "spray"
+	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	item_flags = ITEM_FLAG_NO_BLUDGEON
-	flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	throwforce = 4
 	w_class = 2.0

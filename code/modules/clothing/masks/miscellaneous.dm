@@ -30,13 +30,13 @@
 	name = "fake moustache"
 	desc = "Warning: moustache is fake."
 	icon_state = "fake-moustache"
-	flags_inv = HIDEFACE
+	inv_flags = INV_FLAG_HIDE_FACE
 
 /obj/item/clothing/mask/snorkel
 	name = "Snorkel"
 	desc = "For the Swimming Savant."
 	icon_state = "snorkel"
-	flags_inv = HIDEFACE
+	inv_flags = INV_FLAG_HIDE_FACE
 
 //scarves (fit in in mask slot)
 /obj/item/clothing/mask/bluescarf
@@ -81,8 +81,7 @@
 	desc = "A rubber pig mask."
 	icon_state = "pig"
 	item_state = "pig"
-	flags = BLOCKHAIR
-	flags_inv = HIDEFACE
+	inv_flags = INV_FLAG_HIDE_FACE | INV_FLAG_BLOCK_HAIR
 	w_class = 2
 	siemens_coefficient = 0.9
 
@@ -91,8 +90,7 @@
 	desc = "A mask made of soft vinyl and latex, representing the head of a horse."
 	icon_state = "horsehead"
 	item_state = "horsehead"
-	flags = BLOCKHAIR
-	flags_inv = HIDEFACE
+	inv_flags = INV_FLAG_HIDE_FACE | INV_FLAG_BLOCK_HAIR
 	w_class = 2
 	var/voicechange = 0
 	siemens_coefficient = 0.9

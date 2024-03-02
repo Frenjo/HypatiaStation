@@ -371,9 +371,9 @@
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
 /mob/living/carbon/human/proc/get_visible_name()
-	if(wear_mask && (wear_mask.flags_inv & HIDEFACE))	//Wearing a mask which hides our face, use id-name if possible
+	if(wear_mask && HAS_INV_FLAGS(wear_mask, INV_FLAG_HIDE_FACE))	//Wearing a mask which hides our face, use id-name if possible
 		return get_id_name("Unknown")
-	if(head && (head.flags_inv & HIDEFACE))
+	if(head && HAS_INV_FLAGS(head, INV_FLAG_HIDE_FACE))
 		return get_id_name("Unknown")		//Likewise for hats
 	var/face_name = get_face_name()
 	var/id_name = get_id_name("")
@@ -931,7 +931,7 @@
 		reset_view(0)
 
 /mob/living/carbon/human/proc/get_visible_gender()
-	if(wear_suit && wear_suit.flags_inv & HIDEJUMPSUIT && ((head && head.flags_inv & HIDEMASK) || wear_mask))
+	if(wear_suit && HAS_INV_FLAGS(wear_suit, INV_FLAG_HIDE_JUMPSUIT) && ((head && HAS_INV_FLAGS(head, INV_FLAG_HIDE_MASK)) || wear_mask))
 		return NEUTER
 	return gender
 

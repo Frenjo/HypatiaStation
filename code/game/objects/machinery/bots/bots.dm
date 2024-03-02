@@ -207,7 +207,7 @@
 		return 1
 
 	for(var/obj/O in B)
-		if(O.density && !istype(O, /obj/machinery/door) && !(O.flags & ON_BORDER))
+		if(O.density && !istype(O, /obj/machinery/door) && !HAS_ATOM_FLAGS(O, ATOM_FLAG_ON_BORDER))
 			return 1
 
 	return 0

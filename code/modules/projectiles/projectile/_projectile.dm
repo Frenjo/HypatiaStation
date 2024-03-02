@@ -71,7 +71,10 @@
 
 	var/obj/item/projectile/test/in_chamber = new /obj/item/projectile/test(get_step_to(user, target)) //Making the test....
 	in_chamber.target = target
-	in_chamber.flags = flags //Set the flags...
+	// Sets the flags.
+	in_chamber.atom_flags = atom_flags
+	in_chamber.obj_flags = obj_flags
+	in_chamber.item_flags = item_flags
 	in_chamber.pass_flags = pass_flags //And the pass flags to that of the real projectile...
 	in_chamber.firer = user
 	var/output = in_chamber.process() //Test it!

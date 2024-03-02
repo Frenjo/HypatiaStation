@@ -4,10 +4,9 @@
 	icon_state = "bio"
 	desc = "A hood that protects the head and face from biological contaminants."
 	permeability_coefficient = 0.01
-	flags = BLOCKHAIR
 	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 100, rad = 20)
-	flags_inv = HIDEMASK | HIDEEARS | HIDEEYES
+	inv_flags = INV_FLAG_HIDE_MASK | INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_BLOCK_HAIR
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/suit/bio_suit
@@ -22,7 +21,7 @@
 	slowdown = 1.0
 	allowed = list(/obj/item/tank/emergency/oxygen, /obj/item/pen, /obj/item/flashlight/pen)
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 100, rad = 20)
-	flags_inv = HIDEGLOVES | HIDESHOES | HIDEJUMPSUIT | HIDETAIL
+	inv_flags = INV_FLAG_HIDE_GLOVES | INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES | INV_FLAG_HIDE_TAIL
 	siemens_coefficient = 0.9
 
 // Standard biosuit, white with orange biohazard symbol on the back.

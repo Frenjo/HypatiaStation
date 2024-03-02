@@ -42,7 +42,7 @@
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	slowdown = 1
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
-	flags_inv = HIDEJUMPSUIT
+	inv_flags = INV_FLAG_HIDE_JUMPSUIT
 	siemens_coefficient = 0.5
 
 
@@ -78,7 +78,7 @@
 	)
 	slowdown = 1
 	armor = list(melee = 80, bullet = 60, laser = 50, energy = 25, bomb = 50, bio = 0, rad = 0)
-	flags_inv = HIDEGLOVES | HIDESHOES | HIDEJUMPSUIT
+	inv_flags = INV_FLAG_HIDE_GLOVES | INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
@@ -90,7 +90,7 @@
 	icon_state = "detective"
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
-	flags_inv = 0
+	inv_flags = null
 
 
 /obj/item/clothing/suit/armor/det_suit
@@ -153,7 +153,7 @@
 		/obj/item/gun/energy, /obj/item/melee/baton, /obj/item/handcuffs,
 		/obj/item/tank/emergency/oxygen
 	)
-	flags_inv = HIDEGLOVES | HIDESHOES | HIDEJUMPSUIT
+	inv_flags = INV_FLAG_HIDE_GLOVES | INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
@@ -167,12 +167,12 @@
 	gas_transfer_coefficient = 0.90
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	slowdown = 3
-	flags_inv = HIDEGLOVES | HIDESHOES | HIDEJUMPSUIT
+	inv_flags = INV_FLAG_HIDE_GLOVES | INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/armor/tdome
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
-	flags_inv = HIDEGLOVES | HIDESHOES | HIDEJUMPSUIT
+	inv_flags = INV_FLAG_HIDE_GLOVES | INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES
 
 /obj/item/clothing/suit/armor/tdome/red
 	name = "Thunderdome suit (red)"

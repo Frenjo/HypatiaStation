@@ -146,9 +146,9 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 			if(HAS_ITEM_FLAGS(wear_suit, ITEM_FLAG_PLASMAGUARD))
 				return 1
 		else
-			if(wear_suit.flags_inv & HIDEJUMPSUIT)
+			if(HAS_INV_FLAGS(wear_suit, INV_FLAG_HIDE_JUMPSUIT))
 				return 1
-		//should check HIDETAIL as well, but for the moment tails are not a part that can be damaged separately
+		//should check INV_FLAG_HIDE_TAIL as well, but for the moment tails are not a part that can be damaged separately
 	return 0
 
 /mob/living/carbon/human/proc/suit_contamination()

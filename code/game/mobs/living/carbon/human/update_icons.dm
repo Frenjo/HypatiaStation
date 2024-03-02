@@ -384,7 +384,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 		return
 
 	//masks and helmets can obscure our hair.
-	if((head && (head.flags & BLOCKHAIR)) || (wear_mask && (wear_mask.flags & BLOCKHAIR)))
+	if((isnotnull(head) && HAS_ATOM_FLAGS(head, INV_FLAG_BLOCK_HAIR)) || (isnotnull(wear_mask) && HAS_ATOM_FLAGS(wear_mask, INV_FLAG_BLOCK_HAIR)))
 		if(update_icons)
 			update_icons()
 		return
@@ -401,7 +401,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
-	if(h_style && !(head && (head.flags & BLOCKHEADHAIR)))
+	if(h_style && !(isnotnull(head) && HAS_ATOM_FLAGS(head, INV_FLAG_BLOCK_HEAD_HAIR)))
 		var/datum/sprite_accessory/hair_style = GLOBL.hair_styles_list[h_style]
 		if(hair_style && (src.species.name in hair_style.species_allowed))
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
@@ -670,7 +670,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 		update_icons()
 
 /mob/living/carbon/human/update_inv_shoes(update_icons = 1)
-	if(shoes && !(wear_suit && wear_suit.flags_inv & HIDESHOES))
+	if(shoes && !(wear_suit && HAS_INV_FLAGS(wear_suit, INV_FLAG_HIDE_SHOES)))
 		var/image/standing
 		if(shoes.icon_override)
 			standing = image("icon" = shoes.icon_override, "icon_state" = "[shoes.icon_state]")
@@ -800,7 +800,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 		update_icons()
 
 /mob/living/carbon/human/update_inv_wear_mask(update_icons = 1)
-	if(wear_mask && (istype(wear_mask, /obj/item/clothing/mask) || istype(wear_mask, /obj/item/clothing/tie)) && !(head && head.flags_inv & HIDEMASK))
+	if(wear_mask && (istype(wear_mask, /obj/item/clothing/mask) || istype(wear_mask, /obj/item/clothing/tie)) && !(head && HAS_INV_FLAGS(head, INV_FLAG_HIDE_MASK)))
 		wear_mask.screen_loc = UI_MASK	//TODO
 
 		var/image/standing
@@ -920,7 +920,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 	overlays_standing[TAIL_LAYER] = null
 
 	if(isnotnull(species.tail) && HAS_SPECIES_FLAGS(species, SPECIES_FLAG_HAS_TAIL))
-		if(!wear_suit || !(wear_suit.flags_inv & HIDETAIL) && !istype(wear_suit, /obj/item/clothing/suit/space))
+		if(!wear_suit || !HAS_INV_FLAGS(wear_suit, INV_FLAG_HIDE_TAIL) && !istype(wear_suit, /obj/item/clothing/suit/space))
 			var/icon/tail_s = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[species.tail]_s")
 			tail_s.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 			overlays_standing[TAIL_LAYER] = image(tail_s)

@@ -112,7 +112,7 @@
 				help_shake_act(M)
 			else
 				if (M.health >= -75.0)
-					if ((M.head && M.head.flags & 4) || (M.wear_mask && !( M.wear_mask.flags & 32 )) )
+					if(M.is_mouth_covered())
 						M << "\blue <B>Remove that mask!</B>"
 						return
 					var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human(  )

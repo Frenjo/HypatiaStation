@@ -77,7 +77,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 /obj/item/clothing/mask/cigarette/New()
 	..()
-	flags |= NOREACT // so it doesn't react until you light it
+	SET_ATOM_FLAGS(src, ATOM_FLAG_NO_REACT) // so it doesn't react until you light it
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
 
 /obj/item/clothing/mask/cigarette/Destroy()
@@ -150,7 +150,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			e.start()
 			qdel(src)
 			return
-		flags &= ~NOREACT // allowing reagents to react after being lit
+		UNSET_ATOM_FLAGS(src, ATOM_FLAG_NO_REACT) // allowing reagents to react after being lit
 		reagents.handle_reactions()
 		icon_state = icon_on
 		item_state = icon_on

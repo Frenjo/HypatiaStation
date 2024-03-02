@@ -9,10 +9,10 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "null"
 	item_state = "null"
+	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 25, 30, 50)
 	volume = 50
-	flags = OPENCONTAINER
 
 	var/label_text = ""
 
@@ -64,10 +64,10 @@
 	..()
 	if(is_open_container())
 		to_chat(usr, SPAN_NOTICE("You put the lid on \the [src]."))
-		flags ^= OPENCONTAINER
+		UNSET_ATOM_FLAGS(src, ATOM_FLAG_OPEN_CONTAINER)
 	else
 		to_chat(usr, SPAN_NOTICE("You take the lid off \the [src]."))
-		flags |= OPENCONTAINER
+		SET_ATOM_FLAGS(src, ATOM_FLAG_OPEN_CONTAINER)
 	update_icon()
 
 /obj/item/reagent_containers/glass/afterattack(obj/target, mob/user, flag)
@@ -218,7 +218,6 @@
 	volume = 100
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 25, 30, 50, 100)
-	flags = OPENCONTAINER
 
 
 /obj/item/reagent_containers/glass/beaker/noreact
@@ -227,7 +226,7 @@
 	icon_state = "beakernoreact"
 	volume = 50
 	amount_per_transfer_from_this = 10
-	flags = OPENCONTAINER | NOREACT
+	atom_flags = ATOM_FLAG_OPEN_CONTAINER | ATOM_FLAG_NO_REACT
 
 
 /obj/item/reagent_containers/glass/beaker/bluespace
@@ -238,7 +237,6 @@
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 25, 30, 50, 100, 300)
-	flags = OPENCONTAINER
 
 
 /obj/item/reagent_containers/glass/beaker/vial
@@ -249,7 +247,6 @@
 	volume = 25
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 25)
-	flags = OPENCONTAINER
 
 
 /obj/item/reagent_containers/glass/beaker/cryoxadone
@@ -284,7 +281,6 @@
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10, 20, 30, 50, 70)
 	volume = 70
-	flags = OPENCONTAINER
 
 /obj/item/reagent_containers/glass/bucket/update_icon()
 	overlays.Cut()

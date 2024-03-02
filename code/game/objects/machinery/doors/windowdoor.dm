@@ -6,7 +6,7 @@
 
 	opacity = FALSE
 	visible = FALSE
-	flags = ON_BORDER
+	atom_flags = ATOM_FLAG_ON_BORDER
 
 	power_state = USE_POWER_OFF
 

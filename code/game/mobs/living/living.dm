@@ -71,7 +71,7 @@ default behaviour is:
 				if(A == src)
 					continue
 				if(A.density)
-					if(A.flags & ON_BORDER)
+					if(HAS_ATOM_FLAGS(A, ATOM_FLAG_ON_BORDER))
 						dense = !A.CanPass(src, src.loc)
 					else
 						dense = 1

@@ -59,11 +59,11 @@
 	icon = 'icons/obj/structures/windows.dmi'
 	icon_state = "rwindow"
 	desc = "A window."
+	atom_flags = ATOM_FLAG_ON_BORDER
 	density = TRUE
 	layer = 3.2 // Just above doors
 	pressure_resistance = 4 * ONE_ATMOSPHERE
 	anchored = TRUE
-	flags = ON_BORDER
 
 // Rack
 /obj/structure/rack/holorack

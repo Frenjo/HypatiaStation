@@ -10,7 +10,7 @@
 	amount_per_transfer_from_this = 5
 	volume = 30
 	possible_transfer_amounts = null
-	flags = OPENCONTAINER
+	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	slot_flags = SLOT_BELT
 
 /obj/item/reagent_containers/hypospray/attack_paw(mob/user as mob)
@@ -65,7 +65,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/attack(mob/M as mob, mob/user as mob)
 	..()
 	if(reagents.total_volume <= 0) //Prevents autoinjectors to be refilled.
-		flags &= ~OPENCONTAINER
+		UNSET_ITEM_FLAGS(src, ATOM_FLAG_OPEN_CONTAINER)
 	update_icon()
 	return
 

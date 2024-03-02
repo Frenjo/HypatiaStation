@@ -235,9 +235,12 @@
 			var/mob/living/carbon/human/H = M
 			if(H.stat < 2 && H.health < 50 && prob(90))
 				// ******* Check
+				/*
+				// I don't even know what flag this was supposed to be checking?? Were they checking NO_BLUDGEON but for the wrong reason?
 				if(istype(H, /obj/item/clothing/head) && H.flags & 8 && prob(80))
 					H << "\red The helmet protects you from being hit hard in the head!"
 					return
+				*/
 				var/time = rand(2, 6)
 				if(prob(75))
 					H.Paralyse(time)
