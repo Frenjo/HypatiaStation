@@ -81,7 +81,7 @@
 			step_towards(M, src)
 
 	//Destroying the turf
-	if(T && istype(T, /turf/simulated) && prob(turf_removal_chance))
+	if(T && issimulated(T) && prob(turf_removal_chance))
 		var/turf/simulated/ST = T
 		ST.ChangeTurf(/turf/space)
 	return

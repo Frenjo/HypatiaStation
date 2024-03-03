@@ -45,21 +45,21 @@
 /obj/machinery/atmospherics/binary/dp_vent_pump/update_icon()
 	if(on)
 		if(pump_direction)
-			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
+			icon_state = "[level == 1 && issimulated(loc) ? "h" : "" ]out"
 		else
-			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
+			icon_state = "[level == 1 && issimulated(loc) ? "h" : "" ]in"
 	else
-		icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
+		icon_state = "[level == 1 && issimulated(loc) ? "h" : "" ]off"
 		on = FALSE
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/hide(i) //to make the little pipe section invisible, the icon changes.
 	if(on)
 		if(pump_direction)
-			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
+			icon_state = "[i == 1 && issimulated(loc) ? "h" : "" ]out"
 		else
-			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
+			icon_state = "[i == 1 && issimulated(loc) ? "h" : "" ]in"
 	else
-		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
+		icon_state = "[i == 1 && issimulated(loc) ? "h" : "" ]off"
 		on = FALSE
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/process()

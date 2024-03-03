@@ -41,7 +41,7 @@
 		if(r_block & AIR_BLOCKED)
 			continue
 
-		if(istype(unsim, /turf/simulated))
+		if(issimulated(unsim))
 			var/turf/simulated/sim = unsim
 			if(global.PCair.has_valid_zone(sim))
 				global.PCair.connect(sim, src)
@@ -102,7 +102,7 @@
 
 			//Check that our zone hasn't been cut off recently.
 			//This happens when windows move or are constructed. We need to rebuild.
-			if((previously_open & d) && istype(unsim, /turf/simulated))
+			if((previously_open & d) && issimulated(unsim))
 				var/turf/simulated/sim = unsim
 				if(sim.zone == zone)
 					zone.rebuild()
@@ -112,7 +112,7 @@
 
 		open_directions |= d
 
-		if(istype(unsim, /turf/simulated))
+		if(issimulated(unsim))
 			var/turf/simulated/sim = unsim
 			sim.open_directions |= GLOBL.reverse_dir[d]
 

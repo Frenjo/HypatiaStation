@@ -13,7 +13,7 @@
 	set category = PANEL_DEBUG
 
 	if(T)
-		if(istype(T,/turf/simulated) && T:zone)
+		if(issimulated(T) && T:zone)
 			T:zone:dbg_data(src)
 		else
 			to_chat(mob, "No zone here.")

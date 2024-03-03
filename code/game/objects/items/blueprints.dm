@@ -199,7 +199,7 @@ move an amendment</a> to the drawing.</p>
 		return BORDER_BETWEEN
 	if(istype(T2, /turf/simulated/wall))
 		return BORDER_2NDTILE
-	if(!istype(T2, /turf/simulated))
+	if(!issimulated(T2))
 		return BORDER_BETWEEN
 
 	for(var/obj/structure/window/W in T2)

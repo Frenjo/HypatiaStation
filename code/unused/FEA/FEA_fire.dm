@@ -143,7 +143,7 @@
 
 /obj/effect/hotspot/proc/Kill()
 	DestroyTurf()
-	if(istype(loc, /turf/simulated))
+	if(issimulated(loc))
 		var/turf/simulated/T = loc
 		if(T.active_hotspot == src)
 			T.active_hotspot = null
@@ -151,7 +151,7 @@
 
 /obj/effect/hotspot/proc/DestroyTurf()
 
-	if(istype(loc, /turf/simulated))
+	if(issimulated(loc))
 		var/turf/simulated/T = loc
 		if(T.to_be_destroyed)
 			var/chance_of_deletion
@@ -172,7 +172,7 @@
 
 /*
 /obj/effect/hotspot/Del()
-	if (istype(loc, /turf/simulated))
+	if(issimulated(loc))
 		DestroyTurf()
 	..()
 */

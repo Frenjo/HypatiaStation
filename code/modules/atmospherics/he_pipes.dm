@@ -46,7 +46,7 @@
 		..()
 	else
 		var/environment_temperature = 0
-		if(istype(loc, /turf/simulated))
+		if(issimulated(loc))
 			var/turf/simulated/T = loc
 			if(HAS_TURF_FLAGS(T, TURF_FLAG_BLOCKS_AIR))
 				environment_temperature = T.temperature

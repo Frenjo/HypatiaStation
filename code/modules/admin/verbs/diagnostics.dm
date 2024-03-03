@@ -159,7 +159,7 @@
 		return
 
 	var/turf/T = get_turf(usr)
-	if(istype(T, /turf/simulated))
+	if(issimulated(T))
 		var/datum/air_group/AG = T:parent
 		AG.next_check = 30
 		AG.group_processing = 0

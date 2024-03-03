@@ -331,7 +331,7 @@
 					qdel(S)
 				M.emote("scream")
 			var/turf/location = loc
-			if(istype(location, /turf/simulated))
+			if(issimulated(location))
 				location.add_blood(M)
 
 	//use_power(50)

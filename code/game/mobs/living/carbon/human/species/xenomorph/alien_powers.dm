@@ -140,7 +140,7 @@
 			return
 
 	// TURF CHECK
-	else if(istype(O, /turf/simulated))
+	else if(issimulated(O))
 		var/turf/T = O
 		// R WALL
 		if(istype(T, /turf/simulated/wall/r_wall))

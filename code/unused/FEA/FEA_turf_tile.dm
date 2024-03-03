@@ -403,7 +403,7 @@ turf/simulated
 				if(conductivity_directions&direction)
 					var/turf/neighbor = get_step(src,direction)
 
-					if(istype(neighbor, /turf/simulated)) //anything under this subtype will share in the exchange
+					if(issimulated(neighbor)) //anything under this subtype will share in the exchange
 						var/turf/simulated/modeled_neighbor = neighbor
 
 						if(modeled_neighbor.archived_cycle < air_master.current_cycle)

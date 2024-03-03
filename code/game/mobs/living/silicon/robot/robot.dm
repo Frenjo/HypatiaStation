@@ -603,7 +603,7 @@
 			var/turf/tile = loc
 			if(isturf(tile))
 				tile.clean_blood()
-				if(istype(tile, /turf/simulated))
+				if(issimulated(tile))
 					var/turf/simulated/S = tile
 					S.dirt = 0
 				for(var/A in tile)

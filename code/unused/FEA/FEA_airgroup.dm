@@ -47,7 +47,7 @@ datum/air_group
 	proc/update_tiles_from_group()
 		for(var/member in members)
 			member:air.copy_from(air)
-			if (istype(member,/turf/simulated))
+			if(issimulated(member))
 				var/turf/simulated/turfmem=member
 				turfmem.reset_delay()
 
@@ -164,7 +164,7 @@ datum/air_group
 				var/connection_difference = 0
 				var/turf/simulated/floor/self_border = self_tile_borders[border_index]
 
-				if(istype(enemy_tile, /turf/simulated))
+				if(issimulated(enemy_tile))
 					if(enemy_tile:archived_cycle < archived_cycle) //archive tile information if not already done
 						enemy_tile:archive()
 					if(enemy_tile:current_cycle < current_cycle)
@@ -264,7 +264,7 @@ datum/air_group
 
 		if(!abort_group)
 			for(var/enemy_tile in border_individual)
-				if(istype(enemy_tile, /turf/simulated))
+				if(issimulated(enemy_tile))
 					if(enemy_tile:archived_cycle < archived_cycle) //archive tile information if not already done
 						enemy_tile:archive()
 					if(enemy_tile:current_cycle < current_cycle)

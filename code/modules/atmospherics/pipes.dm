@@ -172,7 +172,7 @@
 	return ..()
 
 /obj/machinery/atmospherics/pipe/simple/hide(i)
-	if(level == 1 && istype(loc, /turf/simulated))
+	if(level == 1 && issimulated(loc))
 		invisibility = i ? 101 : 0
 	update_icon()
 
@@ -451,7 +451,7 @@
 	return ..()
 
 /obj/machinery/atmospherics/pipe/manifold/hide(i)
-	if(level == 1 && istype(loc, /turf/simulated))
+	if(level == 1 && issimulated(loc))
 		invisibility = i ? 101 : 0
 	update_icon()
 
@@ -673,7 +673,7 @@
 	return ..()
 
 /obj/machinery/atmospherics/pipe/manifold4w/hide(i)
-	if(level == 1 && istype(loc, /turf/simulated))
+	if(level == 1 && issimulated(loc))
 		invisibility = i ? 101 : 0
 	update_icon()
 
@@ -883,7 +883,7 @@
 	return ..()
 
 /obj/machinery/atmospherics/pipe/cap/hide(i)
-	if(level == 1 && istype(loc, /turf/simulated))
+	if(level == 1 && issimulated(loc))
 		invisibility = i ? 101 : 0
 	update_icon()
 

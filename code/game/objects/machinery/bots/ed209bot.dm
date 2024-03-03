@@ -381,7 +381,7 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 			path -= next
 			return
 
-		if(istype(next, /turf/simulated))
+		if(issimulated(next))
 			var/moved = step_towards(src, next)	// attempt to move
 			if(moved)	// successful move
 				blockcount = 0

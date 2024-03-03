@@ -524,7 +524,7 @@
 					path -= next
 					return
 
-				if(istype(next, /turf/simulated))
+				if(issimulated(next))
 					//to_world("at ([x],[y]) moving to ([next.x],[next.y])")
 					if(bloodiness)
 						var/obj/effect/decal/cleanable/blood/tracks/B = new /obj/effect/decal/cleanable/blood/tracks(loc)

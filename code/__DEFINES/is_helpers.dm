@@ -80,6 +80,7 @@
  */
 //#define isturf(X)		istype(X, /turf) // This built-in has slightly different behaviour but as long as nobody instantiates /atom it'll be fine.
 #define isspace(X)		istype(X, /turf/space)
+#define issimulated(X)	istype(X, /turf/simulated)
 #define isopenspace(X)	istype(X, /turf/simulated/floor/open)
 
 /*

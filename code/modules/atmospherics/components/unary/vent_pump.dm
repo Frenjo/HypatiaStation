@@ -61,15 +61,15 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/update_icon()
 	if(welded)
-		icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]weld"
+		icon_state = "[level == 1 && issimulated(loc) ? "h" : "" ]weld"
 		return
 	if(on && !(stat & (NOPOWER|BROKEN)))
 		if(pump_direction)
-			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
+			icon_state = "[level == 1 && issimulated(loc) ? "h" : "" ]out"
 		else
-			icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
+			icon_state = "[level == 1 && issimulated(loc) ? "h" : "" ]in"
 	else
-		icon_state = "[level == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
+		icon_state = "[level == 1 && issimulated(loc) ? "h" : "" ]off"
 
 /obj/machinery/atmospherics/unary/vent_pump/process()
 	..()
@@ -231,15 +231,15 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/hide(i) //to make the little pipe section invisible, the icon changes.
 	if(welded)
-		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]weld"
+		icon_state = "[i == 1 && issimulated(loc) ? "h" : "" ]weld"
 		return
 	if(on && isnotnull(node))
 		if(pump_direction)
-			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]out"
+			icon_state = "[i == 1 && issimulated(loc) ? "h" : "" ]out"
 		else
-			icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]in"
+			icon_state = "[i == 1 && issimulated(loc) ? "h" : "" ]in"
 	else
-		icon_state = "[i == 1 && istype(loc, /turf/simulated) ? "h" : "" ]off"
+		icon_state = "[i == 1 && issimulated(loc) ? "h" : "" ]off"
 		on = FALSE
 
 /obj/machinery/atmospherics/unary/vent_pump/attackby(obj/item/W, mob/user)

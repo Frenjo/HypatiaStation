@@ -29,7 +29,7 @@
 /obj/item/mop/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
-	if(istype(A, /turf/simulated) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || isrune(A))
+	if(issimulated(A) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || isrune(A))
 		if(reagents.total_volume < 1)
 			to_chat(user, SPAN_NOTICE("Your mop is dry!"))
 			return
