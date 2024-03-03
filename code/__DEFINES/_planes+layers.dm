@@ -27,15 +27,28 @@
 #define GAME_PLANE 0
 
 /*
- * Obscurity
- */
-#define OBSCURITY_PLANE 2
-
-/*
  * Lighting/Effects
  */
-#define LIGHTING_PLANE 15
-#define UNLIT_EFFECTS_PLANE 16
+#define LIGHTING_PLANE 1
+#define UNLIT_EFFECTS_PLANE 2
+
+/*
+ * Obscurity
+ */
+#define OBSCURITY_PLANE 3
+
+/*
+ * Fullscreen
+ */
+#define FULLSCREEN_PLANE 4
+
+/*
+ * HUD
+ */
+#define HUD_PLANE 5
+	#define HUD_BASE_LAYER 0
+	#define HUD_ITEM_LAYER 1
+	#define HUD_ABOVE_ITEM_LAYER 2
 
 /*
  * Helper Functions
@@ -47,3 +60,7 @@
 /atom/proc/copy_initial_plane_and_layer(atom/to_copy)
 	plane = initial(to_copy.plane)
 	layer = initial(to_copy.layer)
+
+/atom/proc/layer_to_hud()
+	plane = HUD_PLANE
+	layer = HUD_ITEM_LAYER

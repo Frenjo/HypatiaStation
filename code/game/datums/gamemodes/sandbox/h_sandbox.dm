@@ -65,27 +65,23 @@ datum/hSB
 						P.wear_suit.loc = P.loc
 						P.wear_suit.reset_plane_and_layer()
 						P.wear_suit = null
-					P.wear_suit = new/obj/item/clothing/suit/space(P)
-					P.wear_suit.layer = 20
+					P.equip_to_slot_if_possible(new /obj/item/clothing/suit/space(P), SLOT_ID_WEAR_SUIT, FALSE, TRUE)
 					if(P.head)
 						P.head.loc = P.loc
 						P.head.reset_plane_and_layer()
 						P.head = null
-					P.head = new/obj/item/clothing/head/helmet/space(P)
-					P.head.layer = 20
+					P.equip_to_slot_if_possible(new /obj/item/clothing/head/helmet/space(P), SLOT_HEAD, FALSE, TRUE)
 					if(P.wear_mask)
 						P.wear_mask.loc = P.loc
 						P.wear_mask.reset_plane_and_layer()
 						P.wear_mask = null
-					P.wear_mask = new/obj/item/clothing/mask/gas(P)
-					P.wear_mask.layer = 20
+					P.equip_to_slot_if_possible(new /obj/item/clothing/mask/gas(P), SLOT_ID_WEAR_MASK, FALSE, TRUE)
 					if(P.back)
 						P.back.loc = P.loc
 						P.back.reset_plane_and_layer()
 						P.back = null
-					P.back = new/obj/item/tank/jetpack(P)
-					P.back.layer = 20
-					P.internal = P.back
+					P.equip_to_slot_if_possible(new /obj/item/tank/jetpack(P), SLOT_ID_BACK, FALSE, TRUE)
+					P.ui_toggle_internals()
 				if("hsbmetal")
 					var/obj/item/stack/sheet/hsb = new/obj/item/stack/sheet/metal
 					hsb.amount = 50

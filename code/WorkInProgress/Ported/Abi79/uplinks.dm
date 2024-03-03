@@ -262,14 +262,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			var/mob/A = src.hostpda.loc
 			var/item = new path_obj(get_turf(src.hostpda))
 			if(ismob(A) && !(locate(item) in NotInHand)) //&& !istype(item, /obj/spawner))
-				if(!A.r_hand)
-					item:loc = A
-					A.r_hand = item
-					item:layer = 20
-				else if(!A.l_hand)
-					item:loc = A
-					A.l_hand = item
-					item:layer = 20
+				A.put_in_hands(item)
 			else
 				item:loc = get_turf(A)
 			usr.update_clothing()
@@ -365,14 +358,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 						var/obj/item/implant/uplink/U = src.loc
 						A = U.imp_in
 					if(ismob(A) && !(locate(item) in NotInHand)) //&& !istype(item, /obj/spawner))
-						if(!A.r_hand)
-							item:loc = A
-							A.r_hand = item
-							item:layer = 20
-						else if(!A.l_hand)
-							item:loc = A
-							A.l_hand = item
-							item:layer = 20
+						A.put_in_hands(item)
 					else
 						item:loc = get_turf(A)
 	/*				if(istype(item, /obj/spawner)) // Spawners need to have del called on them to avoid leaving a marker behind
@@ -401,7 +387,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 					usr.u_equip(R)
 					usr.l_hand = T
 				R.loc = T
-				T.layer = 20
+				T.layer_to_hud()
 				T.set_frequency(initial(T.frequency))
 				T.attack_self(usr)
 				return
@@ -462,6 +448,6 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			else
 				L.u_equip(R)
 				L.l_hand = T
-			T.layer = 20
+			T.layer_to_hud()
 		T.set_frequency(initial(T.frequency))
 		return

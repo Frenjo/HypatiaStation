@@ -42,7 +42,8 @@
 	src.station_explosion = new src.h_type( src )
 	src.station_explosion.icon = 'icons/effects/station_explosion.dmi'
 	src.station_explosion.icon_state = "start"
-	src.station_explosion.layer = 20
+	src.station_explosion.plane = HUD_PLANE
+	src.station_explosion.layer = HUD_ABOVE_ITEM_LAYER
 	src.station_explosion.mouse_opacity = FALSE
 	src.station_explosion.screen_loc = "1,3"
 
@@ -56,7 +57,6 @@
 	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = "radio"
 	using.screen_loc = ui_movi_old
-	using.layer = 20
 	src.adding += using
 
 //Generic overlays
@@ -65,21 +65,18 @@
 	using.dir = SOUTH
 	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.screen_loc = "EAST+1,SOUTH to EAST+1,NORTH"
-	using.layer = 19
 	src.adding += using
 
 	using = new src.h_type(src) //Lower hud bar
 	using.dir = EAST
 	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.screen_loc = "WEST,SOUTH-1 to EAST,SOUTH-1"
-	using.layer = 19
 	src.adding += using
 
 	using = new src.h_type(src) //Corner Button
 	using.dir = NORTHWEST
 	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.screen_loc = "EAST+1,SOUTH-1"
-	using.layer = 19
 	src.adding += using
 
 
@@ -91,7 +88,6 @@
 	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = "inv1"
 	using.screen_loc = ui_inv1
-	using.layer = 20
 	src.adding += using
 	mymob:inv1 = using
 
@@ -101,7 +97,6 @@
 	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = "inv2"
 	using.screen_loc = ui_inv2
-	using.layer = 20
 	src.adding += using
 	mymob:inv2 = using
 
@@ -111,7 +106,6 @@
 	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = "inv3"
 	using.screen_loc = ui_inv3
-	using.layer = 20
 	src.adding += using
 	mymob:inv3 = using
 
@@ -124,7 +118,6 @@
 	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
 	using.screen_loc = ui_acti
-	using.layer = 20
 	src.adding += using
 	action_intent = using
 
@@ -134,7 +127,6 @@
 	using.icon_state = "s_arrow"
 	using.dir = WEST
 	using.screen_loc = ui_iarrowleft
-	using.layer = 19
 	src.adding += using
 
 	using = new src.h_type( src )
@@ -143,7 +135,6 @@
 	using.icon_state = "s_arrow"
 	using.dir = EAST
 	using.screen_loc = ui_iarrowright
-	using.layer = 19
 	src.adding += using
 //End of Intent
 
@@ -174,7 +165,6 @@
 	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = "panel"
 	using.screen_loc = ui_throw
-	using.layer = 19
 	src.adding += using
 
 //Store

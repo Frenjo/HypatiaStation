@@ -93,7 +93,6 @@
 					M.l_hand = G
 				else
 					M.r_hand = G
-				G.layer = 20
 				G.affecting = src
 				grabbed_by += G
 				G.synch()
@@ -148,7 +147,6 @@
 				M.l_hand = G
 			else
 				M.r_hand = G
-			G.layer = 20
 			G.affecting = src
 			grabbed_by += G
 			G.synch()

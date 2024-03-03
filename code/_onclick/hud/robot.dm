@@ -11,7 +11,6 @@
 	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = "radio"
 	using.screen_loc = UI_MOVI
-	using.layer = 20
 	adding.Add(using)
 
 //Module select
@@ -21,7 +20,6 @@
 	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = "inv1"
 	using.screen_loc = UI_INV1
-	using.layer = 20
 	adding.Add(using)
 	mymob:inv1 = using
 
@@ -31,7 +29,6 @@
 	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = "inv2"
 	using.screen_loc = UI_INV2
-	using.layer = 20
 	adding.Add(using)
 	mymob:inv2 = using
 
@@ -41,7 +38,6 @@
 	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = "inv3"
 	using.screen_loc = UI_INV3
-	using.layer = 20
 	adding.Add(using)
 	mymob:inv3 = using
 
@@ -54,7 +50,6 @@
 	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
 	using.screen_loc = UI_ACTI
-	using.layer = 20
 	adding.Add(using)
 	action_intent = using
 
@@ -86,7 +81,6 @@
 	using.icon = 'icons/mob/screen/screen1_robot.dmi'
 	using.icon_state = "panel"
 	using.screen_loc = UI_BORG_PANEL
-	using.layer = 19
 	adding.Add(using)
 
 //Store
@@ -133,7 +127,7 @@
 	mymob.flash.icon_state = "blank"
 	mymob.flash.name = "flash"
 	mymob.flash.screen_loc = "1,1 to 15,15"
-	mymob.flash.layer = 17
+	mymob.flash.plane = FULLSCREEN_PLANE
 
 	mymob.zone_sel = new /obj/screen/zone_sel()
 	mymob.zone_sel.icon = 'icons/mob/screen/screen1_robot.dmi'

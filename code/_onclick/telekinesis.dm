@@ -64,10 +64,11 @@
 	desc = "Magic"
 	icon = 'icons/obj/magic.dmi'//Needs sprites
 	icon_state = "2"
+	plane = HUD_PLANE
+	layer = HUD_ITEM_LAYER
 	item_flags = ITEM_FLAG_NO_BLUDGEON
 	//item_state = null
 	w_class = 10.0
-	layer = 20
 
 	var/last_throw = 0
 	var/atom/movable/focus = null
@@ -82,6 +83,7 @@
 
 //stops TK grabs being equipped anywhere but into hands
 /obj/item/tk_grab/equipped(mob/user, slot)
+	. = ..()
 	if(slot == SLOT_ID_L_HAND || slot == SLOT_ID_R_HAND)
 		return
 	qdel(src)

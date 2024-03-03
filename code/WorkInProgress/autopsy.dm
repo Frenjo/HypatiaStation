@@ -158,14 +158,8 @@
 
 	if(iscarbon(usr))
 		// place the item in the usr's hand if possible
-		if(!usr.r_hand)
-			P.loc = usr
-			usr.r_hand = P
-			P.layer = 20
-		else if(!usr.l_hand)
-			P.loc = usr
-			usr.l_hand = P
-			P.layer = 20
+		var/mob/living/carbon/C = usr
+		C.put_in_hands(P)
 
 	if(ishuman(usr))
 		usr:update_inv_l_hand()

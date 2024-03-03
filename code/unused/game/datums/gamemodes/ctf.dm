@@ -30,37 +30,33 @@
 			spawn()
 				if(M.client)
 					M << "You are in the Red Team!"
-					del(M.wear_suit)
-					M.w_uniform = new /obj/item/clothing/under/color/red(M)
-					M.w_uniform.layer = 20
-					del(M.shoes)
-					M.wear_suit = new /obj/item/clothing/suit/armor/tdome/red(M)
-					M.wear_suit.layer = 20
-					M.shoes = new /obj/item/clothing/shoes/black(M)
-					M.shoes.layer = 20
-					M.wear_mask = new /obj/item/clothing/mask/gas/emergency(M)
-					M.wear_mask.layer = 20
-					M.gloves = new /obj/item/clothing/gloves/swat(M)
-					M.gloves.layer = 20
-					M.glasses = new /obj/item/clothing/glasses/thermal(M)
-					M.glasses.layer = 20
+					qdel(M.w_uniform)
+					M.equip_to_slot_if_possible(new /obj/item/clothing/under/color/red(M), SLOT_ID_W_UNIFORM, FALSE, TRUE)
+					qdel(M.wear_suit)
+					M.equip_to_slot_if_possible(new /obj/item/clothing/suit/armor/tdome/red(M), SLOT_ID_WEAR_SUIT, FALSE, TRUE)
+					qdel(M.shoes)
+					M.equip_to_slot_if_possible(new /obj/item/clothing/shoes/black(M), SLOT_ID_SHOES, FALSE, TRUE)
+					qdel(M.wear_mask)
+					M.equip_to_slot_if_possible(new /obj/item/clothing/mask/gas/emergency(M), SLOT_ID_WEAR_MASK, FALSE, TRUE)
+					qdel(M.gloves)
+					M.equip_to_slot_if_possible(new /obj/item/clothing/gloves/swat(M), SLOT_ID_GLOVES, FALSE, TRUE)
+					qdel(M.glasses)
+					M.equip_to_slot_if_possible(new /obj/item/clothing/glasses/thermal(M), SLOT_ID_GLASSES, FALSE, TRUE)
+					qdel(M.l_ear)
 					var/obj/item/radio/headset/H = new /obj/item/radio/headset(M)
 					H.set_frequency(1465)
-					M.w_radio = H
-					M.w_radio.layer = 20
-					var/obj/item/tank/air/O = new /obj/item/tank/air(M)
-					M.back = O
-					M.back.layer = 20
-					M.internal = O
+					M.equip_to_slot_if_possible(H, SLOT_ID_L_EAR, FALSE, TRUE)
+					qdel(M.back)
+					M.equip_to_slot_if_possible(new /obj/item/tank/air(M), SLOT_ID_BACK, FALSE, TRUE)
+					M.ui_toggle_internals()
 
-					del(M.wear_id)
-					var/obj/item/card/id/W = new(M)
+					qdel(M.wear_id)
+					var/obj/item/card/id/W = new /obj/item/card/id(M)
 					W.name = "[M.real_name]'s ID card (Red Team)"
 					W.access = access_red
 					W.assignment = "Red Team"
 					W.registered_name = M.real_name
-					M.wear_id = W
-					M.wear_id.layer = 20
+					M.equip_to_slot_if_possible(W, SLOT_ID_WEAR_ID, FALSE, TRUE)
 					if(R)
 						M.loc = R.loc
 					else
@@ -70,37 +66,33 @@
 			spawn()
 				if(M.client)
 					M << "You are in the Green Team!"
-					del(M.wear_suit)
-					M.w_uniform = new /obj/item/clothing/under/color/green(M)
-					M.w_uniform.layer = 20
-					del(M.shoes)
-					M.wear_suit = new /obj/item/clothing/suit/armor/tdome/green(M)
-					M.wear_suit.layer = 20
-					M.shoes = new /obj/item/clothing/shoes/black(M)
-					M.shoes.layer = 20
-					M.wear_mask = new /obj/item/clothing/mask/gas/emergency(M)
-					M.wear_mask.layer = 20
-					M.gloves = new /obj/item/clothing/gloves/swat(M)
-					M.gloves.layer = 20
-					M.glasses = new /obj/item/clothing/glasses/thermal(M)
-					M.glasses.layer = 20
+					qdel(M.w_uniform)
+					M.equip_to_slot_if_possible(new /obj/item/clothing/under/color/green(M), SLOT_ID_W_UNIFORM, FALSE, TRUE)
+					qdel(M.wear_suit)
+					M.equip_to_slot_if_possible(new /obj/item/clothing/suit/armor/tdome/green(M), SLOT_ID_WEAR_SUIT, FALSE, TRUE)
+					qdel(M.shoes)
+					M.equip_to_slot_if_possible(new /obj/item/clothing/shoes/black(M), SLOT_ID_SHOES, FALSE, TRUE)
+					qdel(M.wear_mask)
+					M.equip_to_slot_if_possible(new /obj/item/clothing/mask/gas/emergency(M), SLOT_ID_WEAR_MASK, FALSE, TRUE)
+					qdel(M.gloves)
+					M.equip_to_slot_if_possible(new /obj/item/clothing/gloves/swat(M), SLOT_ID_GLOVES, FALSE, TRUE)
+					qdel(M.glasses)
+					M.equip_to_slot_if_possible(new /obj/item/clothing/glasses/thermal(M), SLOT_ID_GLASSES, FALSE, TRUE)
+					qdel(M.l_ear)
 					var/obj/item/radio/headset/H = new /obj/item/radio/headset(M)
 					H.set_frequency(1449)
-					M.w_radio = H
-					M.w_radio.layer = 20
-					var/obj/item/tank/air/O = new /obj/item/tank/air(M)
-					M.back = O
-					M.back.layer = 20
-					M.internal = O
+					M.equip_to_slot_if_possible(H, SLOT_ID_L_EAR, FALSE, TRUE)
+					qdel(M.back)
+					M.equip_to_slot_if_possible(new /obj/item/tank/air(M), SLOT_ID_BACK, FALSE, TRUE)
+					M.ui_toggle_internals()
 
-					del(M.wear_id)
-					var/obj/item/card/id/W = new(M)
+					qdel(M.wear_id)
+					var/obj/item/card/id/W = new /obj/item/card/id(M)
 					W.name = "[M.real_name]'s ID card (Green Team)"
-					W.access = access_green
+					W.access = access_red
 					W.assignment = "Green Team"
 					W.registered_name = M.real_name
-					M.wear_id = W
-					M.wear_id.layer = 20
+					M.equip_to_slot_if_possible(W, SLOT_ID_WEAR_ID, FALSE, TRUE)
 					if(G)
 						M.loc = G.loc
 					else

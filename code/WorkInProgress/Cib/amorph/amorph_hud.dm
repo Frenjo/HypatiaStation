@@ -50,7 +50,6 @@
 	using.icon = ui_style
 	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
 	using.screen_loc = ui_acti
-	using.layer = 20
 	src.adding += using
 	action_intent = using
 
@@ -64,7 +63,6 @@
 	using.name = "help"
 	using.icon = ico
 	using.screen_loc = ui_acti
-	using.layer = 21
 	src.adding += using
 	help_intent = using
 
@@ -75,7 +73,6 @@
 	using.name = "disarm"
 	using.icon = ico
 	using.screen_loc = ui_acti
-	using.layer = 21
 	src.adding += using
 	disarm_intent = using
 
@@ -86,7 +83,6 @@
 	using.name = "grab"
 	using.icon = ico
 	using.screen_loc = ui_acti
-	using.layer = 21
 	src.adding += using
 	grab_intent = using
 
@@ -97,7 +93,6 @@
 	using.name = "harm"
 	using.icon = ico
 	using.screen_loc = ui_acti
-	using.layer = 21
 	src.adding += using
 	hurt_intent = using
 
@@ -109,7 +104,6 @@
 	using.icon = ui_style
 	using.icon_state = (mymob.m_intent == "run" ? "running" : "walking")
 	using.screen_loc = ui_movi
-	using.layer = 20
 	src.adding += using
 	move_intent = using
 
@@ -118,7 +112,6 @@
 	using.icon = ui_style
 	using.icon_state = "act_drop"
 	using.screen_loc = ui_dropbutton
-	using.layer = 19
 	src.adding += using
 
 	using = new /obj/screen( src )
@@ -129,7 +122,6 @@
 	if(mymob && !mymob.hand)	//This being 0 or null means the right hand is in use
 		using.icon_state = "hand_active"
 	using.screen_loc = ui_rhand
-	using.layer = 19
 	src.r_hand_hud_object = using
 	src.adding += using
 
@@ -141,7 +133,6 @@
 	if(mymob && mymob.hand)	//This being 1 means the left hand is in use
 		using.icon_state = "hand_active"
 	using.screen_loc = ui_lhand
-	using.layer = 19
 	src.l_hand_hud_object = using
 	src.adding += using
 
@@ -151,7 +142,6 @@
 	using.icon = ui_style
 	using.icon_state = "hand1"
 	using.screen_loc = ui_swaphand1
-	using.layer = 19
 	src.adding += using
 
 	using = new /obj/screen( src )
@@ -160,7 +150,6 @@
 	using.icon = ui_style
 	using.icon_state = "hand2"
 	using.screen_loc = ui_swaphand2
-	using.layer = 19
 	src.adding += using
 
 	using = new /obj/screen( src )
@@ -169,7 +158,6 @@
 	using.icon = ui_style
 	using.icon_state = "equip"
 	using.screen_loc = ui_monkey_mask
-	using.layer = 19
 	src.adding += using
 
 	using = new /obj/screen( src )
@@ -178,7 +166,6 @@
 	using.icon = ui_style
 	using.icon_state = "equip"
 	using.screen_loc = ui_back
-	using.layer = 19
 	src.adding += using
 
 	using = new /obj/screen( src )
@@ -186,7 +173,7 @@
 	using.icon = ui_style
 	using.icon_state = "dither50"
 	using.screen_loc = "1,1 to 5,15"
-	using.layer = 17
+	using.plane = FULLSCREEN_PLANE
 	using.mouse_opacity = FALSE
 	src.vimpaired += using
 	using = new /obj/screen( src )
@@ -194,7 +181,7 @@
 	using.icon = ui_style
 	using.icon_state = "dither50"
 	using.screen_loc = "5,1 to 10,5"
-	using.layer = 17
+	using.plane = FULLSCREEN_PLANE
 	using.mouse_opacity = FALSE
 	src.vimpaired += using
 	using = new /obj/screen( src )
@@ -202,7 +189,7 @@
 	using.icon = ui_style
 	using.icon_state = "dither50"
 	using.screen_loc = "6,11 to 10,15"
-	using.layer = 17
+	using.plane = FULLSCREEN_PLANE
 	using.mouse_opacity = FALSE
 	src.vimpaired += using
 	using = new /obj/screen( src )
@@ -210,7 +197,7 @@
 	using.icon = ui_style
 	using.icon_state = "dither50"
 	using.screen_loc = "11,1 to 15,15"
-	using.layer = 17
+	using.plane = FULLSCREEN_PLANE
 	using.mouse_opacity = FALSE
 	src.vimpaired += using
 

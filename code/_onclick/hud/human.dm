@@ -21,7 +21,6 @@
 	for(var/gear_slot in hud_data.gear)
 		inv_box = new /obj/screen/inventory()
 		inv_box.icon = ui_style
-		inv_box.layer = 19
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
 
@@ -46,7 +45,6 @@
 		using.icon = ui_style
 		using.icon_state = "other"
 		using.screen_loc = UI_INVENTORY
-		using.layer = 20
 		using.color = ui_color
 		using.alpha = ui_alpha
 		adding.Add(using)
@@ -61,7 +59,6 @@
 		using.screen_loc = UI_ACTI
 		using.color = ui_color
 		using.alpha = ui_alpha
-		using.layer = 20
 		adding.Add(using)
 		action_intent = using
 
@@ -78,7 +75,6 @@
 		using.icon = ico
 		using.screen_loc = UI_ACTI
 		using.alpha = ui_alpha
-		using.layer = 21
 		adding.Add(using)
 		intent_buttons["help"] = using
 
@@ -90,7 +86,6 @@
 		using.icon = ico
 		using.screen_loc = UI_ACTI
 		using.alpha = ui_alpha
-		using.layer = 21
 		adding.Add(using)
 		intent_buttons["disarm"] = using
 
@@ -102,7 +97,6 @@
 		using.icon = ico
 		using.screen_loc = UI_ACTI
 		using.alpha = ui_alpha
-		using.layer = 21
 		adding.Add(using)
 		intent_buttons["grab"] = using
 
@@ -114,7 +108,6 @@
 		using.icon = ico
 		using.screen_loc = UI_ACTI
 		using.alpha = ui_alpha
-		using.layer = 21
 		adding.Add(using)
 		intent_buttons["harm"] = using
 		//end intent small hud objects
@@ -126,7 +119,6 @@
 		using.icon = ui_style
 		using.icon_state = mymob.move_intent.hud_icon_state
 		using.screen_loc = UI_MOVI
-		using.layer = 20
 		using.color = ui_color
 		using.alpha = ui_alpha
 		adding.Add(using)
@@ -138,7 +130,6 @@
 		using.icon = ui_style
 		using.icon_state = "act_drop"
 		using.screen_loc = UI_DROP_THROW
-		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
 		hotkeybuttons.Add(using)
@@ -149,7 +140,6 @@
 		using.icon = ui_style
 		using.icon_state = "act_equip"
 		using.screen_loc = UI_EQUIP
-		using.layer = 20
 		using.color = ui_color
 		using.alpha = ui_alpha
 		adding.Add(using)
@@ -163,7 +153,6 @@
 			inv_box.icon_state = "hand_active"
 		inv_box.screen_loc = UI_RHAND
 		inv_box.slot_id = SLOT_ID_R_HAND
-		inv_box.layer = 19
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
 
@@ -179,7 +168,6 @@
 			inv_box.icon_state = "hand_active"
 		inv_box.screen_loc = UI_LHAND
 		inv_box.slot_id = SLOT_ID_L_HAND
-		inv_box.layer = 19
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
 		l_hand_hud_object = inv_box
@@ -191,7 +179,6 @@
 		using.icon = ui_style
 		using.icon_state = "hand1"
 		using.screen_loc = UI_SWAPHAND1
-		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
 		adding.Add(using)
@@ -202,7 +189,6 @@
 		using.icon = ui_style
 		using.icon_state = "hand2"
 		using.screen_loc = UI_SWAPHAND2
-		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
 		adding.Add(using)
@@ -213,7 +199,6 @@
 		using.icon = ui_style
 		using.icon_state = "act_resist"
 		using.screen_loc = UI_PULL_RESIST
-		using.layer = 19
 		using.color = ui_color
 		using.alpha = ui_alpha
 		hotkeybuttons.Add(using)
@@ -322,7 +307,7 @@
 	mymob.flash.name = "flash"
 	mymob.flash.screen_loc = "1,1 to 15,15"
 	mymob.flash.mouse_opacity = FALSE
-	mymob.flash.layer = 17
+	mymob.flash.plane = FULLSCREEN_PLANE
 	hud_elements |= mymob.flash
 
 	mymob.pain = new /obj/screen(null)

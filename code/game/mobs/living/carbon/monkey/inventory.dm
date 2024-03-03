@@ -93,7 +93,7 @@
 				if (istype(item, /obj/item/clothing/mask))
 					source.drop_item()
 					loc = target
-					item.layer = 20
+					item.layer_to_hud()
 					target.wear_mask = item
 					item.loc = target
 		if("l_hand")
@@ -111,11 +111,9 @@
 				if(isitem(item))
 					source.drop_item()
 					loc = target
-					item.layer = 20
 					target.l_hand = item
-					item.loc = target
 					item.dropped(source)
-					item.equipped(target,target.l_hand)
+					item.equipped(target, target.l_hand)
 		if("r_hand")
 			if (target.r_hand)
 				var/obj/item/W = target.r_hand
@@ -131,11 +129,9 @@
 				if(isitem(item))
 					source.drop_item()
 					loc = target
-					item.layer = 20
 					target.r_hand = item
-					item.loc = target
 					item.dropped(source)
-					item.equipped(target,target.r_hand)
+					item.equipped(target, target.r_hand)
 		if("back")
 			if (target.back)
 				var/obj/item/W = target.back
@@ -151,7 +147,7 @@
 				if(isitem(item) && (item.slot_flags & SLOT_BACK))
 					source.drop_item()
 					loc = target
-					item.layer = 20
+					item.layer_to_hud()
 					target.back = item
 					item.loc = target
 		if("handcuff")
@@ -229,10 +225,9 @@
 			update_inv_r_hand(redraw_mob)
 		if(SLOT_ID_IN_BACKPACK)
 			W.loc = src.back
+			W.layer_to_hud()
 		else
 			usr << "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."
 			return
-
-	W.layer = 20
 
 	return

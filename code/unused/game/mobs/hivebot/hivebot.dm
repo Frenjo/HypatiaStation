@@ -204,7 +204,6 @@
 			M.l_hand = G
 		else
 			M.r_hand = G
-		G.layer = 20
 		G.affecting = src
 		src.grabbed_by += G
 		G.synch()
@@ -336,15 +335,15 @@
 			return
 		if(!src.module_state_1)
 			src.module_state_1 = O
-			O.layer = 20
+			O.layer_to_hud()
 			src.contents += O
 		else if(!src.module_state_2)
 			src.module_state_2 = O
-			O.layer = 20
+			O.layer_to_hud()
 			src.contents += O
 		else if(!src.module_state_3)
 			src.module_state_3 = O
-			O.layer = 20
+			O.layer_to_hud()
 			src.contents += O
 		else
 			src << "You need to disable a module first!"

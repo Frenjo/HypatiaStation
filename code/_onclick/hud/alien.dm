@@ -11,7 +11,6 @@
 	using.icon = 'icons/mob/screen/screen1_alien.dmi'
 	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
 	using.screen_loc = UI_ACTI
-	using.layer = 20
 	adding.Add(using)
 	action_intent = using
 
@@ -25,7 +24,6 @@
 	using.name = "help"
 	using.icon = ico
 	using.screen_loc = UI_ACTI
-	using.layer = 21
 	adding.Add(using)
 	intent_buttons["help"] = using
 
@@ -36,7 +34,6 @@
 	using.name = "disarm"
 	using.icon = ico
 	using.screen_loc = UI_ACTI
-	using.layer = 21
 	adding.Add(using)
 	intent_buttons["disarm"] = using
 
@@ -47,7 +44,6 @@
 	using.name = "grab"
 	using.icon = ico
 	using.screen_loc = UI_ACTI
-	using.layer = 21
 	adding.Add(using)
 	intent_buttons["grab"] = using
 
@@ -58,7 +54,6 @@
 	using.name = "harm"
 	using.icon = ico
 	using.screen_loc = UI_ACTI
-	using.layer = 21
 	adding.Add(using)
 	intent_buttons["harm"] = using
 
@@ -70,7 +65,6 @@
 	using.icon = 'icons/mob/screen/screen1_alien.dmi'
 	using.icon_state = mymob.move_intent.hud_icon_state
 	using.screen_loc = UI_MOVI
-	using.layer = 20
 	adding.Add(using)
 	move_intent = using
 
@@ -79,7 +73,6 @@
 	using.icon = 'icons/mob/screen/screen1_alien.dmi'
 	using.icon_state = "act_drop"
 	using.screen_loc = UI_DROP_THROW
-	using.layer = 19
 	adding.Add(using)
 
 //equippable shit
@@ -91,7 +84,6 @@
 	inv_box.icon_state = "equip"
 	inv_box.screen_loc = UI_ALIEN_OCLOTHING
 	inv_box.slot_id = SLOT_ID_WEAR_SUIT
-	inv_box.layer = 19
 	adding.Add(inv_box)
 
 	inv_box = new /obj/screen/inventory()
@@ -102,7 +94,6 @@
 	if(isnotnull(mymob) && !mymob.hand)	//This being 0 or null means the right hand is in use
 		using.icon_state = "hand_active"
 	inv_box.screen_loc = UI_RHAND
-	inv_box.layer = 19
 	r_hand_hud_object = inv_box
 	inv_box.slot_id = SLOT_ID_R_HAND
 	adding.Add(inv_box)
@@ -115,7 +106,6 @@
 	if(isnotnull(mymob) && mymob.hand)	//This being 1 means the left hand is in use
 		inv_box.icon_state = "hand_active"
 	inv_box.screen_loc = UI_LHAND
-	inv_box.layer = 19
 	inv_box.slot_id = SLOT_ID_L_HAND
 	l_hand_hud_object = inv_box
 	adding.Add(inv_box)
@@ -126,7 +116,6 @@
 	using.icon = 'icons/mob/screen/screen1_alien.dmi'
 	using.icon_state = "hand1"
 	using.screen_loc = UI_SWAPHAND1
-	using.layer = 19
 	adding.Add(using)
 
 	using = new /obj/screen/inventory()
@@ -135,7 +124,6 @@
 	using.icon = 'icons/mob/screen/screen1_alien.dmi'
 	using.icon_state = "hand2"
 	using.screen_loc = UI_SWAPHAND2
-	using.layer = 19
 	adding.Add(using)
 
 	//pocket 1
@@ -145,7 +133,6 @@
 	inv_box.icon_state = "pocket"
 	inv_box.screen_loc = UI_STORAGE1
 	inv_box.slot_id = SLOT_ID_L_STORE
-	inv_box.layer = 19
 	adding.Add(inv_box)
 
 	//pocket 2
@@ -155,7 +142,6 @@
 	inv_box.icon_state = "pocket"
 	inv_box.screen_loc = UI_STORAGE2
 	inv_box.slot_id = SLOT_ID_R_STORE
-	inv_box.layer = 19
 	adding.Add(inv_box)
 
 	//head
@@ -165,7 +151,6 @@
 	inv_box.icon_state = "hair"
 	inv_box.screen_loc = UI_ALIEN_HEAD
 	inv_box.slot_id = SLOT_ID_HEAD
-	inv_box.layer = 19
 	adding.Add(inv_box)
 //end of equippable shit
 
@@ -175,7 +160,6 @@
 	using.icon = 'icons/mob/screen/screen1_alien.dmi'
 	using.icon_state = "act_resist"
 	using.screen_loc = ui_resist
-	using.layer = 19
 	adding.Add(using
 */
 
@@ -227,7 +211,7 @@
 	mymob.flash.icon_state = "blank"
 	mymob.flash.name = "flash"
 	mymob.flash.screen_loc = "1,1 to 15,15"
-	mymob.flash.layer = 17
+	mymob.flash.plane = FULLSCREEN_PLANE
 
 	mymob.zone_sel = new /obj/screen/zone_sel()
 	mymob.zone_sel.icon = 'icons/mob/screen/screen1_alien.dmi'

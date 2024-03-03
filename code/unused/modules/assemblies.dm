@@ -237,7 +237,7 @@
 			user.client.screen -= src
 		src.loc = R
 		R.part3 = src
-		R.layer = 20
+		R.layer_to_hud()
 		R.loc = user
 		src.add_fingerprint(user)
 */
@@ -264,7 +264,7 @@
 			user.client.screen -= src
 		src.loc = R
 		R.part2 = src
-		R.layer = 20
+		R.layer_to_hud()
 		R.loc = user
 		src.add_fingerprint(user)
 */

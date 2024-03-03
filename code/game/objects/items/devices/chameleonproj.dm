@@ -21,6 +21,7 @@
 	disrupt()
 
 /obj/item/chameleon/equipped()
+	. = ..()
 	disrupt()
 
 /obj/item/chameleon/attack_self()

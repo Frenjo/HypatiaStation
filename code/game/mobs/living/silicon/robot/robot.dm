@@ -887,21 +887,21 @@
 			return
 		if(isnull(module_state_1))
 			module_state_1 = O
-			O.layer = 20
+			O.layer_to_hud()
 			contents.Add(O)
 			if(istype(module_state_1, /obj/item/borg/sight))
 				var/obj/item/borg/sight/sight = module_state_1
 				sight_mode |= sight.sight_mode
 		else if(isnull(module_state_2))
 			module_state_2 = O
-			O.layer = 20
+			O.layer_to_hud()
 			contents.Add(O)
 			if(istype(module_state_2, /obj/item/borg/sight))
 				var/obj/item/borg/sight/sight = module_state_2
 				sight_mode |= sight.sight_mode
 		else if(isnull(module_state_3))
 			module_state_3 = O
-			O.layer = 20
+			O.layer_to_hud()
 			contents.Add(O)
 			if(istype(module_state_3, /obj/item/borg/sight))
 				var/obj/item/borg/sight/sight = module_state_3

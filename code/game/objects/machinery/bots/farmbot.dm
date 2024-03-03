@@ -509,7 +509,6 @@
 	// Making a farmbot!
 	var/obj/item/farmbot_assembly/assembly = new /obj/item/farmbot_assembly()
 	assembly.loc = loc
-	assembly.layer = 20
 	to_chat(user, SPAN_INFO("You add the robot arm to the [src]!"))
 	loc = assembly //Place the water tank into the assembly, it will be needed for the finished bot
 	qdel(W)

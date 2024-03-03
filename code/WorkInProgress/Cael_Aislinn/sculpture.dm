@@ -24,7 +24,6 @@
 	if(target && target != src && ishuman(target))
 		G = new /obj/item/grab(target)
 		G.assailant = src
-		G.layer = 20
 		G.affecting = target
 		target.grabbed_by += G
 		G.synch()

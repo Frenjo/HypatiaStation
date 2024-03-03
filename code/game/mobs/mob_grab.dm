@@ -3,9 +3,10 @@
 
 /obj/item/grab
 	name = "grab"
+	plane = HUD_PLANE
+	layer = HUD_ITEM_LAYER
 	item_flags = ITEM_FLAG_NO_BLUDGEON
 
-	layer = 21
 	abstract = 1
 	item_state = "nothing"
 	w_class = 5.0

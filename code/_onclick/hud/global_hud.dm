@@ -36,7 +36,7 @@ GLOBAL_GLOBL_NEW(global_hud, /datum/global_hud)
 	screen.screen_loc = "1,1"
 	screen.icon = 'icons/obj/hud_full.dmi'
 	screen.icon_state = icon_state
-	screen.layer = 17
+	screen.plane = FULLSCREEN_PLANE
 	screen.mouse_opacity = FALSE
 
 	return screen
@@ -53,7 +53,7 @@ GLOBAL_GLOBL_NEW(global_hud, /datum/global_hud)
 	screen.icon_state = icon_state
 	screen.color = colour
 	screen.alpha = 65
-	screen.layer = 17
+	screen.plane = FULLSCREEN_PLANE
 	screen.blend_mode = BLEND_SUBTRACT
 	screen.mouse_opacity = FALSE
 
@@ -66,14 +66,14 @@ GLOBAL_GLOBL_NEW(global_hud, /datum/global_hud)
 	druggy = new /obj/screen()
 	druggy.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	druggy.icon_state = "druggy"
-	druggy.layer = 17
+	druggy.plane = FULLSCREEN_PLANE
 	druggy.mouse_opacity = FALSE
 
 	// That white blurry effect you get when your eyes are damaged.
 	blurry = new /obj/screen()
 	blurry.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	blurry.icon_state = "blurry"
-	blurry.layer = 17
+	blurry.plane = FULLSCREEN_PLANE
 	blurry.mouse_opacity = FALSE
 
 	// Goggle effects.
@@ -108,14 +108,14 @@ GLOBAL_GLOBL_NEW(global_hud, /datum/global_hud)
 	var/i
 	for(i = 1, i <= 4, i++)
 		vimpaired[i].icon_state = "dither50"
-		vimpaired[i].layer = 17
+		vimpaired[i].plane = FULLSCREEN_PLANE
 		vimpaired[i].mouse_opacity = FALSE
 
 		darkMask[i].icon_state = "dither50"
-		darkMask[i].layer = 17
+		darkMask[i].plane = FULLSCREEN_PLANE
 		darkMask[i].mouse_opacity = FALSE
 
 	for(i = 5, i <= 8, i++)
 		darkMask[i].icon_state = "black"
-		darkMask[i].layer = 17
+		darkMask[i].plane = FULLSCREEN_PLANE
 		darkMask[i].mouse_opacity = FALSE

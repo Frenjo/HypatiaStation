@@ -45,7 +45,7 @@
 					else
 						src.l_hand = I
 				I.loc = src
-				I.layer = 20
+				I.layer_to_hud()
 				I.add_fingerprint(src)
 				src.update_inv_l_hand()
 				src.update_inv_r_hand()

@@ -10,7 +10,6 @@
 	using.icon = 'icons/mob/screen/screen1_alien.dmi'
 	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
 	using.screen_loc = UI_ACTI
-	using.layer = 20
 	adding.Add(using)
 	action_intent = using
 
@@ -20,7 +19,6 @@
 	using.icon = 'icons/mob/screen/screen1_alien.dmi'
 	using.icon_state = mymob.move_intent.hud_icon_state
 	using.screen_loc = UI_MOVI
-	using.layer = 20
 	adding.Add(using)
 	move_intent = using
 
@@ -68,7 +66,7 @@
 	mymob.flash.icon_state = "blank"
 	mymob.flash.name = "flash"
 	mymob.flash.screen_loc = "1,1 to 15,15"
-	mymob.flash.layer = 17
+	mymob.flash.plane = FULLSCREEN_PLANE
 
 	mymob.zone_sel = new /obj/screen/zone_sel()
 	mymob.zone_sel.update_icon()

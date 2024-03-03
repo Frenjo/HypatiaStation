@@ -48,12 +48,10 @@
 	boxes.master = src
 	boxes.icon_state = "block"
 	boxes.screen_loc = "7,7 to 10,8"
-	boxes.layer = 19
 
 	closer = new /obj/screen/close()
 	closer.master = src
 	closer.icon_state = "x"
-	closer.layer = 20
 	orient2hud()
 
 	// Spawns the items in the starts_with list.
@@ -172,7 +170,7 @@
 	boxes.screen_loc = "[tx]:,[ty] to [mx],[my]"
 	for(var/obj/O in contents)
 		O.screen_loc = "[cx],[cy]"
-		O.layer = 20
+		O.layer_to_hud()
 		cx++
 		if(cx > mx)
 			cx = tx
@@ -189,7 +187,7 @@
 		for(var/datum/numbered_display/ND in display_contents)
 			ND.sample_object.screen_loc = "[cx]:16,[cy]:16"
 			ND.sample_object.maptext = "<font color='white'>[(ND.number > 1)? "[ND.number]" : ""]</font>"
-			ND.sample_object.layer = 20
+			ND.sample_object.layer_to_hud()
 			cx++
 			if(cx > (4 + cols))
 				cx = 4
@@ -198,7 +196,7 @@
 		for(var/obj/O in contents)
 			O.screen_loc = "[cx]:16,[cy]:16"
 			O.maptext = ""
-			O.layer = 20
+			O.layer_to_hud()
 			cx++
 			if(cx > (4 + cols))
 				cx = 4
@@ -344,7 +342,7 @@
 		if(ismob(loc))
 			W.dropped(usr)
 		if(ismob(new_location))
-			W.layer = 20
+			W.layer_to_hud()
 		else
 			W.reset_plane_and_layer()
 		W.loc = new_location

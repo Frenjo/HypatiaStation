@@ -32,9 +32,7 @@
 		return FALSE
 
 	if(isnull(l_hand))
-		W.loc = src		//TODO: move to equipped?
 		l_hand = W
-		W.layer = 20	//TODO: move to equipped?
 //		l_hand.screen_loc = ui_lhand
 		W.equipped(src, SLOT_ID_L_HAND)
 		client?.screen |= W
@@ -54,9 +52,7 @@
 		return FALSE
 
 	if(isnull(r_hand))
-		W.loc = src
 		r_hand = W
-		W.layer = 20
 //		r_hand.screen_loc = ui_rhand
 		W.equipped(src, SLOT_ID_R_HAND)
 		client?.screen |= W
@@ -299,7 +295,7 @@ if(isnull(SLOT)) \
 					equipped = TRUE
 
 	if(equipped)
-		W.layer = 20
+		W.layer_to_hud()
 		if(isnotnull(back) && W.loc != back)
 			W.loc = src
 	else

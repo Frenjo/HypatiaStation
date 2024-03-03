@@ -253,7 +253,7 @@
 				var/obj/item/clothing/ears/offear/O = new(W)
 				O.loc = src
 				src.r_ear = O
-				O.layer = 20
+				O.layer_to_hud()
 			W.equipped(src, slot)
 			update_inv_ears(redraw_mob)
 		if(SLOT_ID_R_EAR)
@@ -262,7 +262,7 @@
 				var/obj/item/clothing/ears/offear/O = new(W)
 				O.loc = src
 				src.l_ear = O
-				O.layer = 20
+				O.layer_to_hud()
 			W.equipped(src, slot)
 			update_inv_ears(redraw_mob)
 		if(SLOT_ID_GLASSES)
@@ -313,11 +313,10 @@
 			if(src.get_active_hand() == W)
 				src.u_equip(W)
 			W.loc = src.back
+			W.layer_to_hud()
 		else
 			src << "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."
 			return
-
-	W.layer = 20
 
 	return
 
