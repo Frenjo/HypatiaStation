@@ -256,7 +256,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/target = M
 		log_admin("[key_name(src)] is attempting to monkeyize [M.key].")
 		spawn(10)
@@ -271,7 +271,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		log_admin("[key_name(src)] has made [M.key] a changeling.")
 		spawn(10)
 			M.absorbed_dna[M.real_name] = M.dna.Clone()
@@ -291,7 +291,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!ticker)
 		alert("Wait until the game starts.")
 		return
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		log_admin("[key_name(src)] has made [M.key] an abomination.")
 
 	//	spawn(10)

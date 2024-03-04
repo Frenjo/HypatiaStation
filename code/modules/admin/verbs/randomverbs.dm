@@ -24,7 +24,7 @@
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 	if (ismob(M))
-		if(istype(M, /mob/living/silicon/ai))
+		if(isAI(M))
 			alert("The AI can't be sent to prison you jerk!", null, null, null, null, null)
 			return
 		//strip their stuff before they teleport into a cell :downs:
@@ -34,7 +34,7 @@
 		M.Paralyse(5)
 		sleep(5)	//so they black out before warping
 		M.loc = pick(GLOBL.prisonwarp)
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/prisoner = M
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), SLOT_ID_W_UNIFORM)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), SLOT_ID_SHOES)
@@ -668,7 +668,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("[key_name(usr)] has gibbed [key_name(M)]")
 	message_admins("[key_name_admin(usr)] has gibbed [key_name_admin(M)]", 1)
 
-	if(istype(M, /mob/dead/observer))
+	if(isobserver(M))
 		gibs(M.loc, M.viruses)
 		return
 
@@ -681,7 +681,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm == "Yes")
-		if (istype(mob, /mob/dead/observer)) // so they don't spam gibs everywhere
+		if(isobserver(mob)) // so they don't spam gibs everywhere
 			return
 		else
 			mob.gib()

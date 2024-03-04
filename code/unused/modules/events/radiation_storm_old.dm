@@ -28,7 +28,7 @@
 				if(istype(T.loc, /area/maintenance) || istype(T.loc, /area/crew_quarters))
 					continue
 
-				if(istype(H,/mob/living/carbon/human))
+				if(ishuman(H))
 					H.apply_effect((rand(15,35)),IRRADIATE,0)
 					if(prob(5))
 						H.apply_effect((rand(40,70)),IRRADIATE,0)

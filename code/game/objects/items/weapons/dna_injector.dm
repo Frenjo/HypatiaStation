@@ -67,7 +67,7 @@
 		return buf.dna.SetUIValue(real_block,val)
 
 /obj/item/dnainjector/proc/inject(mob/M as mob, mob/user as mob)
-	if(istype(M,/mob/living))
+	if(isliving(M))
 		M.radiation += rand(5,20)
 
 	if (!(NOCLONE in M.mutations)) // prevents drained people from having their DNA changed
@@ -100,7 +100,7 @@
 	return uses
 
 /obj/item/dnainjector/attack(mob/M as mob, mob/user as mob)
-	if (!istype(M, /mob))
+	if(!ismob(M))
 		return
 	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)

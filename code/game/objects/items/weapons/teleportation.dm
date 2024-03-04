@@ -82,7 +82,7 @@ Frequency:
 
 				src.temp += "<B>Extraneous Signals:</B><BR>"
 				for(var/obj/item/implant/tracking/W in GLOBL.movable_atom_list)
-					if(!W.implanted || !(istype(W.loc, /datum/organ/external) || ismob(W.loc)))
+					if(!W.implanted || !(isorgan(W.loc) || ismob(W.loc)))
 						continue
 					else
 						var/mob/M = W.loc

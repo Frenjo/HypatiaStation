@@ -60,11 +60,11 @@
 	return absorb
 
 /mob/living/hitby(atom/movable/AM as mob|obj, speed = 5) //Standardization and logging -Sieve
-	if(istype(AM, /obj))
+	if(isobj(AM))
 		var/obj/O = AM
 		var/zone = ran_zone("chest", 75) //Hits a random part of the body, geared towards the chest
 		var/dtype = BRUTE
-		if(istype(O, /obj/item))
+		if(isitem(O))
 			var/obj/item/W = O
 			dtype = W.damtype
 		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))

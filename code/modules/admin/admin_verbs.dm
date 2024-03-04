@@ -353,7 +353,7 @@ var/list/admin_verbs_donor = list(
 
 	if(isnull(holder))
 		return
-	if(istype(mob, /mob/dead/observer))
+	if(isobserver(mob))
 		//re-enter
 		var/mob/dead/observer/ghost = mob
 		ghost.can_reenter_corpse = TRUE			//just in-case.

@@ -41,7 +41,7 @@
 
 	log_attack("<font color='red'>[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>")
 
-	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
 	if(!chaplain)
@@ -66,7 +66,7 @@
 			M << "\red The power of [src.deity_name] clears your mind of heresy!"
 			user << "\red You see how [M]'s eyes become clear, the cult no longer holds control over him!"
 			ticker.mode.remove_cultist(M.mind)*/
-		if ((istype(M, /mob/living/carbon/human) && prob(60)))
+		if(ishuman(M) && prob(60))
 			bless(M)
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("\red <B>[] heals [] with the power of [src.deity_name]!</B>", user, M), 1)

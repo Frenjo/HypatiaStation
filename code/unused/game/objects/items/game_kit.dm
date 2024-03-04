@@ -71,7 +71,7 @@ Which I am commenting out /N
 	if ((usr.stat || usr.restrained()))
 		return
 
-	if (usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf)))
+	if(usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc)))
 		if (href_list["s_piece"])
 			src.selected = href_list["s_piece"]
 		else if (href_list["mode"])

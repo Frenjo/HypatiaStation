@@ -157,11 +157,11 @@
 	if (usr.stat)
 		return
 
-	if (((istype(usr, /mob/living/carbon/human)) && (!(ticker) || (ticker && ticker.mode != "monkey"))))
+	if(((ishuman(usr)) && (!(ticker) || (ticker && ticker.mode != "monkey"))))
 		var/mob/living/carbon/human/H = usr
 
 		if ((H.pulling && !(H.pulling.anchored)))
-			if (src.one_person_only && !(istype(H.pulling, /obj/item)))
+			if(src.one_person_only && !isitem(H.pulling))
 				usr << "You may only place items in."
 			else
 				H.pulling.loc = src

@@ -26,7 +26,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 
 /obj/effect/water/Move(turf/newloc)
 	//var/turf/T = src.loc
-	//if (istype(T, /turf))
+	//if(isturf(T))
 	//	T.firelevel = 0 //TODO: FIX
 	if(--src.life < 1)
 		//SN src = null

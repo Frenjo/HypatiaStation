@@ -313,6 +313,6 @@
 	) //, mymob.hands, mymob.rest, mymob.sleep, mymob.mach, mymob.hands, )
 	mymob.client.screen += src.adding + src.other
 
-	//if(istype(mymob,/mob/living/carbon/monkey)) mymob.client.screen += src.mon_blo
+	//if(ismonkey(mymob)) mymob.client.screen += src.mon_blo
 
 	return

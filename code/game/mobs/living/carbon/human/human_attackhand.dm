@@ -54,7 +54,7 @@
 
 			return
 	else
-		if(istype(M,/mob/living/carbon))
+		if(iscarbon(M))
 //			log_debug("No gloves, [M] is truing to infect [src]")
 			M.spread_disease_to(src, "Contact")
 

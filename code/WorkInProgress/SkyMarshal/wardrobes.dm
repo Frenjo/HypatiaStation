@@ -42,7 +42,7 @@
 	afterattack(atom/A as obj|turf, mob/user as mob)
 		if(A in user)
 			return
-		if(!istype(A.loc,/turf))
+		if(!isturf(A.loc))
 			user << "It's got to be on the ground to do that!"
 			return
 		var/could_fill = 1

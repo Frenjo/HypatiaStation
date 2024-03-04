@@ -158,7 +158,7 @@
 		else
 			M.make_jittery(500)
 		/* //else the mousetraps are useless
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(isobj(H.shoes))
 				var/thingy = H.shoes

@@ -116,15 +116,15 @@
 	//check if it doesn't require any access at all
 	if(src.check_access(null))
 		return 1
-	if(istype(M, /mob/living/silicon))
+	if(issilicon(M))
 		//AI can do whatever he wants
 		return 1
-	else if(istype(M, /mob/living/carbon/human))
+	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		//if they are holding or wearing a card that has access, that works
 		if(src.check_access(H.get_active_hand()) || src.check_access(H.wear_id))
 			return 1
-	else if(istype(M, /mob/living/carbon/monkey) || istype(M, /mob/living/carbon/alien/humanoid))
+	else if(ismonkey(M) || istype(M, /mob/living/carbon/alien/humanoid))
 		var/mob/living/carbon/george = M
 		//they can only hold things :(
 		if(george.get_active_hand() && (istype(george.get_active_hand(), /obj/item/card/id) || istype(george.get_active_hand(), /obj/item/pda)) && src.check_access(george.get_active_hand()))

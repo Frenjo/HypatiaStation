@@ -121,7 +121,7 @@ log transactions
 					return
 
 		scan(var/mob/user)
-			if(istype(user,/mob/living/carbon/human))
+			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
 				if(H.wear_id)
 					if(istype(H.wear_id, /obj/item/card/id))

@@ -199,7 +199,7 @@ default behaviour is:
 		temperature -= change
 		if(actual < desired)
 			temperature = desired
-//	if(istype(src, /mob/living/carbon/human))
+//	if(ishuman(src))
 		//to_world("[src] ~ [src.bodytemperature] ~ [temperature]")
 	return temperature
 

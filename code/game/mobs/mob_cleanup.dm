@@ -172,7 +172,7 @@ Put (mob/proc)s here that are in dire need of a code cleanup.
 
 /*
 	var/score = 0
-	if(istype(src, /mob/living/carbon/human))
+	if(ishuman(src))
 		if(src:gloves) score += 5
 		if(istype(src:wear_suit, /obj/item/clothing/suit/space)) score += 10
 		if(istype(src:wear_suit, /obj/item/clothing/suit/bio_suit)) score += 10

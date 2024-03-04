@@ -50,12 +50,12 @@
 		usr << "This one seems particularly lifeless. Perhaps it will regain some of its luster later.."
 
 /obj/item/brain/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	if(!istype(M, /mob))
+	if(!ismob(M))
 		return
 
 	add_fingerprint(user)
 
-	if(!(user.zone_sel.selecting == ("head")) || !istype(M, /mob/living/carbon/human))
+	if(!(user.zone_sel.selecting == ("head")) || !ishuman(M))
 		return ..()
 
 	if(!(locate(/obj/machinery/optable, M.loc) && M.resting) && (!(locate(/obj/structure/table/, M.loc) && M.lying) && prob(50)))

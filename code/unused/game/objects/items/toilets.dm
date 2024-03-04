@@ -51,7 +51,7 @@ TOILET
 	if (!ticker)
 		user << "You can't help relieve anyone before the game starts."
 		return
-	if ((!( istype(M, /mob) ) || get_dist(src, user) > 1 || M.loc != src.loc || user.restrained() || usr.stat))
+	if((!ismob(M) || get_dist(src, user) > 1 || M.loc != src.loc || user.restrained() || usr.stat))
 		return
 	if (M == usr)
 		for(var/mob/O in viewers(user, null))

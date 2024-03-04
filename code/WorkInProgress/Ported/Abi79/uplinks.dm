@@ -343,10 +343,10 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		if (usr.stat || usr.restrained())
 			return
 
-		if (!( istype(usr, /mob/living/carbon/human)))
+		if(!ishuman(usr))
 			return 1
 
-		if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf)) || istype(src.loc,/obj/item/implant/uplink)))
+		if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc)) || istype(src.loc,/obj/item/implant/uplink)))
 			usr.machine = src
 
 			if(href_list["buy_item"])
@@ -405,7 +405,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 				src.temp = null
 
 			attack_self(usr)
-//			if (istype(src.loc, /mob))
+//			if(ismob(src.loc))
 //				attack_self(src.loc)
 //			else
 //				for(var/mob/M in viewers(1, src))

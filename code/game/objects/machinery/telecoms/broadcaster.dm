@@ -278,7 +278,7 @@
 			continue
 
 		// Ghosts hearing all radio chat don't want to hear syndicate intercepts, they're duplicates
-		if(data == 3 && istype(R, /mob/dead/observer) && R.client && (R.client.prefs.toggles & CHAT_GHOSTRADIO))
+		if(data == 3 && isobserver(R) && R.client && (R.client.prefs.toggles & CHAT_GHOSTRADIO))
 			continue
 
 		// --- Check for compression ---

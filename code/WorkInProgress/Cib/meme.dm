@@ -361,7 +361,7 @@ mob/living/parasite/meme/verb/SubtleJump(mob/living/carbon/human/target as mob i
 	set name	 = "Subtle Jump(350)"
 	set desc     = "Move to a closeby human through a whisper."
 
-	if(!istype(target, /mob/living/carbon/human) || !target.mind)
+	if(!ishuman(target) || !target.mind)
 		src << "<b>You can't jump to this creature..</b>"
 		return
 	if(!(target in view(1, host)+src))
@@ -400,7 +400,7 @@ mob/living/parasite/meme/verb/ObviousJump(mob/living/carbon/human/target as mob 
 	set name	 = "Obvious Jump(750)"
 	set desc     = "Move to any mob in view through a shout."
 
-	if(!istype(target, /mob/living/carbon/human) || !target.mind)
+	if(!ishuman(target) || !target.mind)
 		src << "<b>You can't jump to this creature..</b>"
 		return
 	if(!(target in view(host)))
@@ -439,7 +439,7 @@ mob/living/parasite/meme/verb/AttunedJump(mob/living/carbon/human/target as mob 
 	set name	 = "Attuned Jump(0)"
 	set desc     = "Move to a mob in sight that you have already attuned."
 
-	if(!istype(target, /mob/living/carbon/human) || !target.mind)
+	if(!ishuman(target) || !target.mind)
 		src << "<b>You can't jump to this creature..</b>"
 		return
 	if(!(target in view(host)))

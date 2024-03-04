@@ -211,7 +211,7 @@ var/global/datum/tension/tension_master
 		if (!M) return
 		deaths++
 
-		if (istype(M,/mob/living/carbon/human))
+		if(ishuman(M))
 			score += HUMAN_DEATH
 			human_deaths++
 		else

@@ -4,7 +4,7 @@
 	var/datum/camerachunk/chunk
 
 /obj/minimap_obj/Click(location, control, params)
-	if(!istype(usr, /mob/dead) && !istype(usr, /mob/living/silicon/ai) && !(usr.client && usr.client.holder && usr.client.holder.level >= 4))
+	if(!istype(usr, /mob/dead) && !isAI(usr) && !(usr.client && usr.client.holder && usr.client.holder.level >= 4))
 		return
 
 	var/list/par = params2list(params)
@@ -24,7 +24,7 @@
 	var/y = chunk.y
 	y += round((text2num(copytext(y_text, findtext(y_text, ":") + 1)) + 1) / 2)
 
-	if(istype(usr, /mob/living/silicon/ai))
+	if(isAI(usr))
 		var/mob/living/silicon/ai/ai = usr
 		ai.freelook()
 		ai.eyeobj.loc = locate(max(1, x - 1), max(1, y - 1), usr.client.minimap_view_z)
@@ -51,7 +51,7 @@
 /mob/verb/Open_Minimap_Z()
 	set hidden = 1
 
-	if(!istype(src, /mob/dead) && !istype(src, /mob/living/silicon/ai) && !(client && client.holder && client.holder.level >= 4))
+	if(!istype(src, /mob/dead) && !isAI(src) && !(client && client.holder && client.holder.level >= 4))
 		return
 
 	var/level = input("Select a Z level", "Z select", null) as null | anything in cameranet.minimap
@@ -62,7 +62,7 @@
 
 
 /datum/cameranet/proc/show_minimap(client/client, z_level = "z-1")
-	if(!istype(client.mob, /mob/dead) && !istype(client.mob, /mob/living/silicon/ai) && !(client.holder && client.holder.level >= 4))
+	if(!istype(client.mob, /mob/dead) && !isAI(client.mob) && !(client.holder && client.holder.level >= 4))
 		return
 
 	if(z_level in cameranet.minimap)

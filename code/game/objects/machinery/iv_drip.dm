@@ -136,7 +136,7 @@
 	set name = "Toggle Mode"
 	set src in view(1)
 
-	if(!istype(usr, /mob/living))
+	if(!isliving(usr))
 		usr << "\red You can't do that."
 		return
 

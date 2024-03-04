@@ -38,13 +38,13 @@
 
 
 	// ------- AI -------
-	else if (istype(usr, /mob/living/silicon/ai))
+	else if(isAI(usr))
 		var/mob/living/silicon/ai/ai = usr
 		if (ai.control_disabled)
 			return
 
 	// ------- CYBORG -------
-	else if (istype(usr, /mob/living/silicon/robot))
+	else if(isrobot(usr))
 		var/mob/living/silicon/robot/bot = usr
 		if (bot.lockcharge) return
 	..()
@@ -99,7 +99,7 @@
 	var/obj/item/W = usr.get_active_hand()
 /*	Now handled by get_active_hand()
 	// ------- ROBOT -------
-	if(istype(usr, /mob/living/silicon/robot))
+	if(isrobot(usr))
 		if(isnotnull(usr:module_active))
 			W = usr:module_active
 		else
@@ -115,12 +115,12 @@
 		return
 
 	// ------- PARALYSIS, STUN, WEAKENED, DEAD, (And not AI) -------
-	if (((usr.paralysis || usr.stunned || usr.weakened) && !istype(usr, /mob/living/silicon/ai)) || usr.stat != 0)
+	if(((usr.paralysis || usr.stunned || usr.weakened) && !isAI(usr)) || usr.stat != 0)
 		return
 
 	// ------- CLICKING STUFF IN CONTAINERS -------
 	if ((!( src in usr.contents ) && (((!( isturf(src) ) && (!( isturf(src.loc) ) && (src.loc && !( isturf(src.loc.loc) )))) || !( isturf(usr.loc) )) && (src.loc != usr.loc && (!( istype(src, /obj/screen) ) && !( usr.contents.Find(src.loc) ))))))
-		if (istype(usr, /mob/living/silicon/ai))
+		if(isAI(usr))
 			var/mob/living/silicon/ai/ai = usr
 			if (ai.control_disabled || ai.malfhacking)
 				return
@@ -130,10 +130,10 @@
 	// ------- 1 TILE AWAY -------
 	var/t5
 	// ------- AI CAN CLICK ANYTHING -------
-	if(istype(usr, /mob/living/silicon/ai))
+	if(isAI(usr))
 		t5 = 1
 	// ------- CYBORG CAN CLICK ANYTHING WHEN NOT HOLDING STUFF -------
-	else if(istype(usr, /mob/living/silicon/robot) && !W)
+	else if(isrobot(usr) && !W)
 		t5 = 1
 	else
 		t5 = in_range(src, usr) || src.loc == usr
@@ -276,12 +276,12 @@
 
 			else
 				// ------- YOU DO NOT HAVE AN ITEM IN YOUR HAND -------
-				if (istype(usr, /mob/living/carbon/human))
+				if(ishuman(usr))
 					// ------- YOU ARE HUMAN -------
 					src.attack_hand(usr, usr.hand)
 				else
 					// ------- YOU ARE NOT HUMAN. WHAT ARE YOU - DETERMINED HERE AND PROPER ATTACK_MOBTYPE CALLED -------
-					if (istype(usr, /mob/living/carbon/monkey))
+					if(ismonkey(usr))
 						src.attack_paw(usr, usr.hand)
 					else if (istype(usr, /mob/living/carbon/alien/humanoid))
 						if(usr.m_intent == "walk" && istype(usr, /mob/living/carbon/alien/humanoid/hunter))
@@ -289,23 +289,23 @@
 							usr.hud_used.move_intent.icon_state = "running"
 							usr.update_icons()
 						src.attack_alien(usr, usr.hand)
-					else if (istype(usr, /mob/living/carbon/alien/larva))
+					else if(islarva(usr))
 						src.attack_larva(usr)
-					else if (istype(usr, /mob/living/silicon/ai) || istype(usr, /mob/living/silicon/robot))
+					else if(isAI(usr) || isrobot(usr))
 						src.attack_ai(usr, usr.hand)
-					else if(istype(usr, /mob/living/carbon/slime))
+					else if(isslime(usr))
 						src.attack_slime(usr)
-					else if(istype(usr, /mob/living/simple_animal))
+					else if(isanimal(usr))
 						src.attack_animal(usr)
 		else
 			// ------- YOU ARE RESTRAINED. DETERMINE WHAT YOU ARE AND ATTACK WITH THE PROPER HAND_X PROC -------
-			if (istype(usr, /mob/living/carbon/human))
+			if(ishuman(usr))
 				src.hand_h(usr, usr.hand)
-			else if (istype(usr, /mob/living/carbon/monkey))
+			else if(ismonkey(usr))
 				src.hand_p(usr, usr.hand)
 			else if (istype(usr, /mob/living/carbon/alien/humanoid))
 				src.hand_al(usr, usr.hand)
-			else if (istype(usr, /mob/living/silicon/ai) || istype(usr, /mob/living/silicon/robot))
+			else if(isAI(usr) || isrobot(usr))
 				src.hand_a(usr, usr.hand)
 
 	else
@@ -331,17 +331,17 @@
 						W.afterattack(src, usr,, params)
 				else
 					// ------- YOU ARE NOT RESTRAINED, AND ARE CLICKING A HUD OBJECT -------
-					if (istype(usr, /mob/living/carbon/human))
+					if(ishuman(usr))
 						src.attack_hand(usr, usr.hand)
-					else if (istype(usr, /mob/living/carbon/monkey))
+					else if(ismonkey(usr))
 						src.attack_paw(usr, usr.hand)
 					else if (istype(usr, /mob/living/carbon/alien/humanoid))
 						src.attack_alien(usr, usr.hand)
 			else
 				// ------- YOU ARE RESTRAINED CLICKING ON A HUD OBJECT -------
-				if (istype(usr, /mob/living/carbon/human))
+				if(ishuman(usr))
 					src.hand_h(usr, usr.hand)
-				else if (istype(usr, /mob/living/carbon/monkey))
+				else if(ismonkey(usr))
 					src.hand_p(usr, usr.hand)
 				else if (istype(usr, /mob/living/carbon/alien/humanoid))
 					src.hand_al(usr, usr.hand)
@@ -354,7 +354,7 @@
 				var/turf/U = get_turf(src)
 
 
-				if(istype(usr, /mob/living/carbon/human))
+				if(ishuman(usr))
 					usr:nutrition -= rand(1,5)
 					usr:handle_regular_hud_updates()
 

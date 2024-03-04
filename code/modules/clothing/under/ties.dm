@@ -228,7 +228,7 @@
 	if(!holstered)
 		return
 
-	if(istype(user.get_active_hand(), /obj) && istype(user.get_inactive_hand(), /obj))
+	if(isobj(user.get_active_hand()) && isobj(user.get_inactive_hand()))
 		to_chat(user, SPAN_WARNING("You need an empty hand to draw the [holstered]!"))
 	else
 		if(user.a_intent == "hurt")

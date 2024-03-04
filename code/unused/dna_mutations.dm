@@ -26,10 +26,10 @@ This system could be expanded to migrate all of our current mutations to. Maybe.
 	proc/check_mutation(var/mob/living/carbon/M) // Called in dna.dm, when a target's SE is modified
 
 		if(! ("all" in races)) // "all" means it affects everyone!
-			if(istype(M, /mob/living/carbon/human))
+			if(ishuman(M))
 				if(! ("Human" in races))
 					return
-			if(istype(M, /mob/living/carbon/monkey))
+			if(ismonkey(M))
 				if(! ("monkey" in races))
 					return
 			// TODO: add more races maybe??

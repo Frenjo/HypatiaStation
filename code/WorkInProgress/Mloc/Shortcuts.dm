@@ -1,7 +1,7 @@
 /mob/verb/shortcut_changeintent(var/changeto as num)
 	set name = "_changeintent"
 	set hidden = 1
-	if(istype(usr,/mob/living/carbon))
+	if(iscarbon(usr))
 		if(changeto == 1)
 			switch(usr.a_intent)
 				if("help")

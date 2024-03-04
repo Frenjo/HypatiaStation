@@ -710,7 +710,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 		for(var/mob/O in hearers(5, src.loc))
 			O.show_message("<EM>[user.name]</EM> further abuses the shattered [src.name].")
 	else
-		if(istype(I, /obj/item))
+		if(isitem(I))
 			var/obj/item/W = I
 			if(W.force < 15)
 				for(var/mob/O in hearers(5, src.loc))
@@ -877,7 +877,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 			src.curr_page--
 			playsound(src, "pageturn", 50, 1)
 
-		if(istype(src.loc, /mob))
+		if(ismob(src.loc))
 			src.attack_self(src.loc)
 
 /obj/item/newspaper/attackby(obj/item/W as obj, mob/user as mob)

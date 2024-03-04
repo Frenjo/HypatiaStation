@@ -65,13 +65,13 @@
 /mob/living/silicon/hive_mainframe/say_understands(var/other)
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if(!speaking)
-		if(istype(other, /mob/living/carbon/human))
+		if(ishuman(other))
 			return 1
-		if(istype(other, /mob/living/silicon/robot))
+		if(isrobot(other))
 			return 1
 		if(istype(other, /mob/living/silicon/hivebot))
 			return 1
-		if(istype(other, /mob/living/silicon/ai))
+		if(isAI(other))
 			return 1
 	return ..()
 

@@ -15,7 +15,7 @@
 	return
 
 /mob/living/carbon/alien/attack_animal(mob/living/M as mob)
-	if(istype(M,/mob/living/simple_animal))
+	if(isanimal(M))
 		var/mob/living/simple_animal/S = M
 		if(S.melee_damage_upper == 0)
 			S.emote("[S.friendly] [src]")
@@ -29,7 +29,7 @@
 			updatehealth()
 
 /mob/living/carbon/alien/attack_paw(mob/living/carbon/monkey/M as mob)
-	if(!(istype(M, /mob/living/carbon/monkey)))	return//Fix for aliens receiving double messages when attacking other aliens.
+	if(!ismonkey(M))	return//Fix for aliens receiving double messages when attacking other aliens.
 
 	if(!global.PCticker)
 		M << "You cannot attack people before the game has started."
@@ -67,7 +67,7 @@
 
 		var/damage = rand(1, 3)
 
-		if(istype(M, /mob/living/carbon/slime/adult))
+		if(isslimeadult(M))
 			damage = rand(20, 40)
 		else
 			damage = rand(5, 35)

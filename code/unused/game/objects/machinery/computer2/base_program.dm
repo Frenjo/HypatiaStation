@@ -190,15 +190,15 @@
 			//check if it doesn't require any access at all
 			if(src.check_access(null))
 				return 1
-			if(istype(M, /mob/living/silicon))
+			if(issilicon(M))
 				//AI can do whatever he wants
 				return 1
-			else if(istype(M, /mob/living/carbon/human))
+			else if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 				//if they are holding or wearing a card that has access, that works
 				if(src.check_access(H.equipped()) || src.check_access(H.wear_id))
 					return 1
-			else if(istype(M, /mob/living/carbon/monkey))
+			else if(ismonkey(M))
 				var/mob/living/carbon/monkey/george = M
 				//they can only hold things :(
 				if(george.equipped() && istype(george.equipped(), /obj/item/card/id) && src.check_access(george.equipped()))
@@ -234,7 +234,7 @@
 		if(src.master.active_program != src)
 			return 1
 
-		if ((!usr.contents.Find(src.master) && (!in_range(src.master, usr) || !istype(src.master.loc, /turf))) && (!istype(usr, /mob/living/silicon)))
+		if((!usr.contents.Find(src.master) && (!in_range(src.master, usr) || !isturf(src.master.loc))) && (!issilicon(usr)))
 			return 1
 
 		if(!(holder in src.master.contents))

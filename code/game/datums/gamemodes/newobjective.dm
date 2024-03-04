@@ -23,7 +23,7 @@
 	var/list/datum/objective/assassinate/missions = list()
 
 	for(var/datum/mind/target in ticker.minds)
-		if((target != traitor) && istype(target.current, /mob/living/carbon/human))
+		if((target != traitor) && ishuman(target.current))
 			if(target && target.current)
 				var/datum/objective/target_obj = new /datum/objective/assassinate(null,job,target)
 				missions += target_obj
@@ -34,7 +34,7 @@
 	var/list/datum/objective/frame/missions = list()
 
 	for(var/datum/mind/target in ticker.minds)
-		if((target != traitor) && istype(target.current, /mob/living/carbon/human))
+		if((target != traitor) && ishuman(target.current))
 			if(target && target.current)
 				var/datum/objective/target_obj = new /datum/objective/frame(null,job,target)
 				missions += target_obj
@@ -45,7 +45,7 @@
 	var/list/datum/objective/frame/missions = list()
 
 	for(var/datum/mind/target in ticker.minds)
-		if((target != traitor) && istype(target.current, /mob/living/carbon/human))
+		if((target != traitor) && ishuman(target.current))
 			if(target && target.current)
 				var/datum/objective/target_obj = new /datum/objective/protection(null,job,target)
 				missions += target_obj
@@ -388,7 +388,7 @@ datum
 
 			find_target_by_role(var/role)
 				for(var/datum/mind/possible_target in ticker.minds)
-					if((possible_target != owner) && istype(possible_target.current, /mob/living/carbon/human) && (possible_target.assigned_role == role))
+					if((possible_target != owner) && ishuman(possible_target.current) && (possible_target.assigned_role == role))
 						target = possible_target
 						break
 
@@ -404,7 +404,7 @@ datum
 				var/list/possible_targets = list()
 
 				for(var/datum/mind/possible_target in ticker.minds)
-					if((possible_target != owner) && istype(possible_target.current, /mob/living/carbon/human))
+					if((possible_target != owner) && ishuman(possible_target.current))
 						possible_targets += possible_target
 
 				if(length(possible_targets))
@@ -439,7 +439,7 @@ datum
 
 			find_target_by_role(var/role)
 				for(var/datum/mind/possible_target in ticker.minds)
-					if((possible_target != owner) && istype(possible_target.current, /mob/living/carbon/human) && (possible_target.assigned_role == role))
+					if((possible_target != owner) && ishuman(possible_target.current) && (possible_target.assigned_role == role))
 						target = possible_target
 						break
 
@@ -1062,14 +1062,14 @@ datum
 					if(steal_target)
 						for(var/obj/item/aicard/C in owner.current.get_contents())
 							for(var/mob/living/silicon/ai/M in C)
-								if(istype(M, /mob/living/silicon/ai) && M.stat != 2)
+								if(isAI(M) && M.stat != 2)
 									return 1
 						for_no_type_check(var/mob/living/silicon/ai/M, GLOBL.ai_list)
-							if(istype(M.loc, /turf))
+							if(isturf(M.loc))
 								if(istype(get_area(M), /area/shuttle/escape))
 									return 1
 						for(var/obj/structure/ai_core/M in GLOBL.movable_atom_list)
-							if(istype(M.loc, /turf) && M.state == 4)
+							if(isturf(M.loc) && M.state == 4)
 								if(istype(get_area(M), /area/shuttle/escape))
 									return 1
 						return 0
@@ -1222,7 +1222,7 @@ datum
 
 
 			check_completion()
-				if(!istype(owner.current, /mob/living/silicon))
+				if(!issilicon(owner.current))
 					return 0
 				if(emergency_shuttle.location<2)
 					return 0

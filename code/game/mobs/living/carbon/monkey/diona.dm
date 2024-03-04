@@ -21,7 +21,7 @@
 
 /obj/item/holder/Destroy()
 	//Hopefully this will stop the icon from remaining on human mobs.
-	if(istype(loc,/mob/living))
+	if(isliving(loc))
 		var/mob/living/A = src.loc
 		src.loc = null
 		A.update_icons()

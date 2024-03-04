@@ -383,7 +383,7 @@
 
 
 /*/turf/DblClick()
-	if(istype(usr, /mob/living/silicon/ai))
+	if(isAI(usr))
 		return move_camera_by_click()
 	if(usr.stat || usr.restrained() || usr.lying)
 		return ..()
@@ -574,10 +574,10 @@
 	E.icon_state = "engine"
 
 /turf/simulated/Entered(atom/A, atom/OL)
-	if (istype(A,/mob/living/carbon))
+	if(iscarbon(A))
 		var/mob/living/carbon/M = A
 		if(M.lying)	return
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(istype(H.shoes, /obj/item/clothing/shoes/clown_shoes))
 				if(H.m_intent == "run")
@@ -592,7 +592,7 @@
 
 		switch (src.wet)
 			if(1)
-				if(istype(M, /mob/living/carbon/human)) // Added check since monkeys don't have shoes
+				if(ishuman(M)) // Added check since monkeys don't have shoes
 					if ((M.m_intent == "run") && !(istype(M:shoes, /obj/item/clothing/shoes) && M:shoes.flags&NOSLIP))
 						M.stop_pulling()
 						step(M, M.dir)
@@ -603,7 +603,7 @@
 					else
 						M.inertia_dir = 0
 						return
-				else if(!istype(M, /mob/living/carbon/slime))
+				else if(!isslime(M))
 					if (M.m_intent == "run")
 						M.stop_pulling()
 						step(M, M.dir)
@@ -616,7 +616,7 @@
 						return
 
 			if(2) //lube
-				if(!istype(M, /mob/living/carbon/slime))
+				if(!isslime(M))
 					M.stop_pulling()
 					step(M, M.dir)
 					spawn(1) step(M, M.dir)
@@ -772,13 +772,13 @@
 
 /turf/simulated/wall/attackby(obj/item/W as obj, mob/user as mob)
 
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if(!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 
 	if (istype(W, /obj/item/weldingtool) && W:welding)
 		var/turf/T = get_turf(user)
-		if (!( istype(T, /turf) ))
+		if(!isturf(T))
 			return
 
 		if (thermite)
@@ -814,7 +814,7 @@
 
 	else if (istype(W, /obj/item/pickaxe/plasmacutter))
 		var/turf/T = user.loc
-		if (!( istype(T, /turf) ))
+		if(!isturf(T))
 			return
 
 		if (thermite)
@@ -919,7 +919,7 @@
 
 /turf/simulated/wall/r_wall/attackby(obj/item/W as obj, mob/user as mob)
 
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if(!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 
@@ -930,7 +930,7 @@
 	if (istype(W, /obj/item/weldingtool) && W:welding)
 		W:eyecheck(user)
 		var/turf/T = user.loc
-		if (!( istype(T, /turf) ))
+		if(!isturf(T))
 			return
 
 		if (thermite)
@@ -973,7 +973,7 @@
 
 	else if(istype(W, /obj/item/pickaxe/plasmacutter))
 		var/turf/T = user.loc
-		if (!( istype(T, /turf) ))
+		if(!isturf(T))
 			return
 
 		if (thermite)
@@ -1755,7 +1755,7 @@ turf/simulated/floor/return_siding_icon_state()
 					return
 
 				if(!isemptylist(A.search_contents_for(/obj/item/disk/nuclear)))
-					if(istype(A, /mob/living))
+					if(isliving(A))
 						var/mob/living/MM = A
 						if(MM.client)
 							MM << "\red Something you are carrying is preventing you from leaving. Don't play stupid; you know exactly what it is."

@@ -36,7 +36,7 @@
 					icon_state = "pinonnull"
 					return
 
-			if(!istype(src.loc, /turf) && !istype(src.loc, /mob))
+			if(!isturf(src.loc) && !ismob(src.loc))
 				usr << "\red Too much interference. Please hold the device in hand or place it on belt."
 				active = 0
 				icon_state = "pinonnull"

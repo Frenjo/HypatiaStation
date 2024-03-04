@@ -289,7 +289,7 @@
 
 		var/damage = rand(1, 3)
 
-		if(istype(src, /mob/living/carbon/slime/adult))
+		if(isslimeadult(src))
 			damage = rand(20, 40)
 		else
 			damage = rand(5, 35)

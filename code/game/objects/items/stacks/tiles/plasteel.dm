@@ -23,7 +23,7 @@
 	if (usr.stat)
 		return
 	var/T = user.loc
-	if (!( istype(T, /turf) ))
+	if(!isturf(T))
 		user << "\red You must be on the ground!"
 		return
 	if(!(isspace(T)))

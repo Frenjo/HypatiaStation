@@ -148,7 +148,7 @@ var/list/possible_changeling_IDs = list(
 /*/datum/game_mode/changeling/check_finished()
 	var/changelings_alive = 0
 	for(var/datum/mind/changeling in changelings)
-		if(!istype(changeling.current,/mob/living/carbon))
+		if(!iscarbon(changeling.current))
 			continue
 		if(changeling.current.stat==2)
 			continue

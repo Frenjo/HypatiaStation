@@ -289,7 +289,7 @@ var/specops_shuttle_timeleft = 0
 	if(..())
 		return
 
-	if ((usr.contents.Find(src) || (in_range(src, usr) && isturf(loc))) || (istype(usr, /mob/living/silicon)))
+	if ((usr.contents.Find(src) || (in_range(src, usr) && isturf(loc))) || (issilicon(usr)))
 		usr.machine = src
 
 	if (href_list["sendtodock"])
@@ -551,7 +551,7 @@ var/specops_shuttle_timeleft = 0
 	if(..())
 		return
 
-	if ((usr.contents.Find(src) || (in_range(src, usr) && isturf(loc))) || (istype(usr, /mob/living/silicon)))
+	if ((usr.contents.Find(src) || (in_range(src, usr) && isturf(loc))) || (issilicon(usr)))
 		usr.set_machine(src)
 
 	if (href_list["sendtodock"])

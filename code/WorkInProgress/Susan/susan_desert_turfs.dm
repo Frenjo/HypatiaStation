@@ -440,7 +440,7 @@ Alien plants should do something if theres a lot of poison
 
 		if(!A)	return
 
-		if (!istype(target, /turf))
+		if(!isturf(target))
 			del(A)
 			return
 		A.current = target

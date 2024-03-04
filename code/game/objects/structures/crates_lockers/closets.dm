@@ -111,7 +111,7 @@
 	for(var/mob/M in src.loc)
 		if(itemcount >= storage_capacity)
 			break
-		if(istype (M, /mob/dead/observer))
+		if(isobserver(M))
 			continue
 		if(M.buckled)
 			continue
@@ -243,7 +243,7 @@
 		return
 	if(user.loc == null) // just in case someone manages to get a closet into the blue light dimension, as unlikely as that seems
 		return
-	if(!istype(user.loc, /turf)) // are you in a container/closet/pod/etc?
+	if(!isturf(user.loc)) // are you in a container/closet/pod/etc?
 		return
 	if(!src.opened)
 		return

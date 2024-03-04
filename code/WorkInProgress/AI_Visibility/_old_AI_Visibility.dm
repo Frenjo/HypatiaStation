@@ -49,7 +49,7 @@
 	var/obj/minimap_obj/minimap_obj = new()
 
 /obj/minimap_obj/Click(location, control, params)
-	if(!istype(usr, /mob/dead) && !istype(usr, /mob/living/silicon/ai) && !(usr.client && usr.client.holder && usr.client.holder.level >= 4))
+	if(!istype(usr, /mob/dead) && !isAI(usr) && !(usr.client && usr.client.holder && usr.client.holder.level >= 4))
 		return
 
 	var/list/par = params2list(params)
@@ -69,7 +69,7 @@
 	var/y = (text2num(copytext(y_text, 1, findtext(y_text, ":"))) - 1) * 16
 	y += round((text2num(copytext(y_text, findtext(y_text, ":") + 1)) + 1) / 2)
 
-	if(istype(usr, /mob/living/silicon/ai))
+	if(isAI(usr))
 		var/mob/living/silicon/ai/ai = usr
 		ai.freelook()
 		ai.eyeobj.loc = locate(max(1, x - 1), max(1, y - 1), ai.eyeobj.z)
@@ -485,7 +485,7 @@ var/datum/cameranet/cameranet = new()
 */
 
 /turf/move_camera_by_click()
-	if(istype(usr, /mob/living/silicon/ai))
+	if(isAI(usr))
 		var/mob/living/silicon/ai/AI = usr
 		if(AI.client.eye == AI.eyeobj)
 			return

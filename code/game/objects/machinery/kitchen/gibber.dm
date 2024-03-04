@@ -89,7 +89,7 @@
 		user << "\red This item is not suitable for the gibber!"
 		return
 
-	if( !(istype(G.affecting, /mob/living/carbon)) && !(istype(G.affecting, /mob/living/simple_animal)) )
+	if(!iscarbon(G.affecting) && !isanimal(G.affecting))
 		user << "\red This item is not suitable for the gibber!"
 		return
 

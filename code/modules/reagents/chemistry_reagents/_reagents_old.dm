@@ -31,7 +31,7 @@ datum
 
 		proc
 			reaction_mob(var/mob/M, var/method=TOUCH, var/volume) //By default we have a chance to transfer some
-				if(!istype(M, /mob/living))	return 0
+				if(!isliving(M))	return 0
 				var/datum/reagent/self = src
 				del(src)										  //of the reagent to the mob on TOUCHING it.
 
@@ -74,7 +74,7 @@ datum
 				return
 
 			on_mob_life(var/mob/living/M as mob, var/alien)
-				if(!istype(M, /mob/living))
+				if(!isliving(M))
 					return //Noticed runtime errors from pacid trying to damage ghosts, this should fix. --NEO
 				if( (overdose > 0) && (volume >= overdose))//Overdosing, wooo
 					M.adjustToxLoss(overdose_dam)
@@ -117,12 +117,12 @@ datum
 							M.contract_disease(D)
 						else //injected
 							M.contract_disease(D, 1, 0)
-				if(self.data && self.data["virus2"] && istype(M, /mob/living/carbon))//infecting...
+				if(self.data && self.data["virus2"] && iscarbon(M))//infecting...
 					if(method == TOUCH)
 						infect_virus2(M,self.data["virus2"])
 					else
 						infect_virus2(M,self.data["virus2"],1) //injected, force infection!
-				if(self.data && self.data["antibodies"] && istype(M, /mob/living/carbon))//... and curing
+				if(self.data && self.data["antibodies"] && iscarbon(M))//... and curing
 					var/mob/living/carbon/C = M
 					C.antibodies |= self.data["antibodies"]
 
@@ -135,7 +135,7 @@ datum
 				del(src)
 				if(!(volume >= 3)) return
 				//var/datum/disease/D = self.data["virus"]
-				if(!self.data["donor"] || istype(self.data["donor"], /mob/living/carbon/human))
+				if(!self.data["donor"] || ishuman(self.data["donor"]))
 					var/obj/effect/decal/cleanable/blood/blood_prop = locate() in T //find some blood here
 					if(!blood_prop) //first blood!
 						blood_prop = new(T)
@@ -147,7 +147,7 @@ datum
 						newVirus.holder = blood_prop
 
 
-				else if(istype(self.data["donor"], /mob/living/carbon/monkey))
+				else if(ismonkey(self.data["donor"]))
 					var/obj/effect/decal/cleanable/blood/blood_prop = locate() in T
 					if(!blood_prop)
 						blood_prop = new(T)
@@ -157,7 +157,7 @@ datum
 						blood_prop.viruses += newVirus
 						newVirus.holder = blood_prop
 
-				else if(istype(self.data["donor"], /mob/living/carbon/alien))
+				else if(isalien(self.data["donor"]))
 					var/obj/effect/decal/cleanable/blood/xeno/blood_prop = locate() in T
 					if(!blood_prop)
 						blood_prop = new(T)
@@ -337,7 +337,7 @@ datum
 
 			on_mob_life(var/mob/living/M as mob)
 				if(!M) M = holder.my_atom
-				if(istype(M, /mob/living/carbon) && M.stat != DEAD)
+				if(iscarbon(M) && M.stat != DEAD)
 					M << "\red Your flesh rapidly mutates!"
 					if(M.monkeyizing)	return
 					M.monkeyizing = 1
@@ -694,7 +694,7 @@ datum
 				if(!M) M = holder.my_atom
 				M.apply_effect(2*REM,IRRADIATE,0)
 				// radium may increase your chances to cure a disease
-				if(istype(M,/mob/living/carbon)) // make sure to only use it on carbon mobs
+				if(iscarbon(M)) // make sure to only use it on carbon mobs
 					var/mob/living/carbon/C = M
 					if(C.virus2.len)
 						for (var/ID in C.virus2)
@@ -703,7 +703,7 @@ datum
 								if(prob(50))
 									M.radiation += 50 // curing it that way may kill you instead
 									var/mob/living/carbon/human/H
-									if(istype(C,/mob/living/carbon/human))
+									if(ishuman(C))
 										H = C
 									if(!H || (H.species && !(H.species.flags & RAD_ABSORB))) M.adjustToxLoss(100)
 								M:antibodies |= V.antigen
@@ -828,7 +828,7 @@ datum
 	/*		reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)
 				del(src)
 				if (method==TOUCH)
-					if(istype(M, /mob/living/carbon/human))
+					if(ishuman(M))
 						if(M.health >= -100 && M.health <= 0)
 							M.crit_op_stage = 0.0
 				if (method==INGEST)
@@ -1873,7 +1873,7 @@ datum
 				return
 
 			reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)//magic numbers everywhere
-				if(!istype(M, /mob/living))
+				if(!isliving(M))
 					return
 				if(method == TOUCH)
 					if(ishuman(M))
@@ -1917,7 +1917,7 @@ datum
 							return
 
 					if(!M.unacidable)
-						if(istype(M, /mob/living/carbon/human) && volume >= 10)
+						if(ishuman(M) && volume >= 10)
 							var/mob/living/carbon/human/H = M
 							var/datum/organ/external/affecting = H.get_organ("head")
 							if(affecting)
@@ -2030,15 +2030,15 @@ datum
 						M.bodytemperature += 5 * TEMPERATURE_DAMAGE_COEFFICIENT
 						if(holder.has_reagent("frostoil"))
 							holder.remove_reagent("frostoil", 5)
-						if(istype(M, /mob/living/carbon/slime))
+						if(isslime(M))
 							M.bodytemperature += rand(5,20)
 					if(15 to 25)
 						M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
-						if(istype(M, /mob/living/carbon/slime))
+						if(isslime(M))
 							M.bodytemperature += rand(10,20)
 					if(25 to INFINITY)
 						M.bodytemperature += 15 * TEMPERATURE_DAMAGE_COEFFICIENT
-						if(istype(M, /mob/living/carbon/slime))
+						if(isslime(M))
 							M.bodytemperature += rand(15,20)
 				holder.remove_reagent(src.id, FOOD_METABOLISM)
 				data++
@@ -2053,10 +2053,10 @@ datum
 			color = "#B31008" // rgb: 179, 16, 8
 
 			reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)
-				if(!istype(M, /mob/living))
+				if(!isliving(M))
 					return
 				if(method == TOUCH)
-					if(istype(M, /mob/living/carbon/human))
+					if(ishuman(M))
 						var/mob/living/carbon/human/victim = M
 						var/mouth_covered = 0
 						var/eyes_covered = 0
@@ -2126,16 +2126,16 @@ datum
 						M.bodytemperature -= 5 * TEMPERATURE_DAMAGE_COEFFICIENT
 						if(holder.has_reagent("capsaicin"))
 							holder.remove_reagent("capsaicin", 5)
-						if(istype(M, /mob/living/carbon/slime))
+						if(isslime(M))
 							M.bodytemperature -= rand(5,20)
 					if(15 to 25)
 						M.bodytemperature -= 10 * TEMPERATURE_DAMAGE_COEFFICIENT
-						if(istype(M, /mob/living/carbon/slime))
+						if(isslime(M))
 							M.bodytemperature -= rand(10,20)
 					if(25 to INFINITY)
 						M.bodytemperature -= 15 * TEMPERATURE_DAMAGE_COEFFICIENT
 						if(prob(1)) M.emote("shiver")
-						if(istype(M, /mob/living/carbon/slime))
+						if(isslime(M))
 							M.bodytemperature -= rand(15,20)
 				data++
 				holder.remove_reagent(src.id, FOOD_METABOLISM)
@@ -2233,7 +2233,7 @@ datum
 
 			on_mob_life(var/mob/living/M as mob)
 				M.nutrition += nutriment_factor
-				/*if(istype(M, /mob/living/carbon/human) && M.job in list("Security Officer", "Head of Security", "Detective", "Warden"))
+				/*if(ishuman(M) && M.job in list("Security Officer", "Head of Security", "Detective", "Warden"))
 					if(!M) M = holder.my_atom
 					M.heal_organ_damage(1,1)
 					M.nutrition += nutriment_factor
@@ -2252,7 +2252,7 @@ datum
 
 			on_mob_life(var/mob/living/M as mob)
 				M.nutrition += nutriment_factor
-				if(istype(M, /mob/living/carbon/human) && M.mind)
+				if(ishuman(M) && M.mind)
 					if(M.mind.special_role)
 						if(!M) M = holder.my_atom
 						M.heal_organ_damage(1,1)
@@ -2769,16 +2769,16 @@ datum
 						M.bodytemperature -= 5 * TEMPERATURE_DAMAGE_COEFFICIENT
 						if(holder.has_reagent("capsaicin"))
 							holder.remove_reagent("capsaicin", 5)
-						if(istype(M, /mob/living/carbon/slime))
+						if(isslime(M))
 							M.bodytemperature -= rand(5,20)
 					if(15 to 25)
 						M.bodytemperature -= 10 * TEMPERATURE_DAMAGE_COEFFICIENT
-						if(istype(M, /mob/living/carbon/slime))
+						if(isslime(M))
 							M.bodytemperature -= rand(10,20)
 					if(25 to INFINITY)
 						M.bodytemperature -= 15 * TEMPERATURE_DAMAGE_COEFFICIENT
 						if(prob(1)) M.emote("shiver")
-						if(istype(M, /mob/living/carbon/slime))
+						if(isslime(M))
 							M.bodytemperature -= rand(15,20)
 				data++
 				holder.remove_reagent(src.id, FOOD_METABOLISM)

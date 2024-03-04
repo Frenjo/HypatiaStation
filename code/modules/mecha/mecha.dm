@@ -331,7 +331,7 @@
 
 /obj/mecha/Bump(atom/obstacle)
 //	src.inertia_dir = null
-	if(istype(obstacle, /obj))
+	if(isobj(obstacle))
 		var/obj/O = obstacle
 		if(istype(O, /obj/effect/portal)) //derpfix
 			src.anchored = FALSE
@@ -342,7 +342,7 @@
 			step(obstacle, src.dir)
 		else //I have no idea why I disabled this
 			obstacle.Bumped(src)
-	else if(istype(obstacle, /mob))
+	else if(ismob(obstacle))
 		step(obstacle,src.dir)
 	else
 		obstacle.Bumped(src)
@@ -480,14 +480,14 @@
 		A.forceMove(src)
 		src.visible_message("The [A] fastens firmly to [src].")
 		return
-	if(prob(src.deflect_chance) || istype(A, /mob))
+	if(prob(src.deflect_chance) || ismob(A))
 		src.occupant_message("\blue The [A] bounces off the armor.")
 		src.visible_message("The [A] bounces off the [src.name] armor")
 		src.log_append_to_last("Armor saved.")
-		if(istype(A, /mob/living))
+		if(isliving(A))
 			var/mob/living/M = A
 			M.take_organ_damage(10)
-	else if(istype(A, /obj))
+	else if(isobj(A))
 		var/obj/O = A
 		if(O.throwforce)
 			src.take_damage(O.throwforce)
@@ -805,7 +805,7 @@
 
 /*
 /obj/mecha/attack_ai(var/mob/living/silicon/ai/user as mob)
-	if(!istype(user, /mob/living/silicon/ai))
+	if(!isAI(user))
 		return
 	var/output = {"<b>Assume direct control over [src]?</b>
 						<a href='?src=\ref[src];ai_take_control=\ref[user];duration=3000'>Yes</a><br>
@@ -1590,7 +1590,7 @@
 	if(href_list["dna_lock"])
 		if(usr != src.occupant)
 			return
-		if(istype(occupant, /mob/living/carbon/brain))
+		if(isbrain(occupant))
 			occupant_message("You are a brain. No.")
 			return
 		if(src.occupant)

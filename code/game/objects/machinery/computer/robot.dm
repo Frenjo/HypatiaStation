@@ -40,12 +40,12 @@
 			dat += "<A href='?src=\ref[src];screen=2'>2. Emergency Full Destruct</A><BR>"
 		if(screen == 1)
 			for(var/mob/living/silicon/robot/R in GLOBL.mob_list)
-				if(istype(R, /mob/living/silicon/robot/drone))
+				if(isdrone(R))
 					continue //There's a specific console for drones.
-				if(istype(user, /mob/living/silicon/ai))
+				if(isAI(user))
 					if (R.connected_ai != user)
 						continue
-				if(istype(user, /mob/living/silicon/robot))
+				if(isrobot(user))
 					if (R != user)
 						continue
 				if(R.scrambledcodes)
@@ -103,7 +103,7 @@
 /obj/machinery/computer/robotics/Topic(href, href_list)
 	if(..())
 		return
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
+	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc))) || (issilicon(usr)))
 		usr.set_machine(src)
 
 		if (href_list["eject"])
@@ -219,7 +219,7 @@
 	while(src.timeleft)
 
 	for(var/mob/living/silicon/robot/R in GLOBL.mob_list)
-		if(!R.scrambledcodes && !istype(R, /mob/living/silicon/robot/drone))
+		if(!R.scrambledcodes && !isdrone(R))
 			R.self_destruct()
 
 	return

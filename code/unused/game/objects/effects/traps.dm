@@ -23,12 +23,12 @@
 				connected_traps += the_trap //adding the trap with the matching name
 
 /obj/effect/pressure_plate/HasEntered(atom/victim as mob|obj)
-	if(victim.density && (trigger_type == "mob and obj" || (trigger_type == "mob" && istype(victim,/mob)) || (trigger_type == "obj" && istype(victim,/obj))))
+	if(victim.density && (trigger_type == "mob and obj" || (trigger_type == "mob" && ismob(victim)) || (trigger_type == "obj" && isobj(victim))))
 		for(var/obj/effect/trap/T in connected_traps)
 			T.trigger(victim)
 
 /obj/effect/pressure_plate/Bumped(atom/victim as mob|obj)
-	if(victim.density && (trigger_type == "mob and obj" || (trigger_type == "mob" && istype(victim,/mob)) || (trigger_type == "obj" && istype(victim,/obj))))
+	if(victim.density && (trigger_type == "mob and obj" || (trigger_type == "mob" && ismob(victim)) || (trigger_type == "obj" && isobj(victim))))
 		for(var/obj/effect/trap/T in connected_traps)
 			T.trigger(victim)
 
@@ -46,11 +46,11 @@
 	src:visibility = 0 //seriously, it keeps saying "undefined var" when I try to do it in the define
 
 /obj/effect/trap/HasEntered(victim as mob|obj)
-	if(trigger_type == "mob and obj" || (trigger_type == "mob" && istype(victim,/mob)) || (trigger_type == "obj" && istype(victim,/obj)))
+	if(trigger_type == "mob and obj" || (trigger_type == "mob" && ismob(victim)) || (trigger_type == "obj" && isobj(victim)))
 		trigger(victim)
 
 /obj/effect/trap/Bumped(victim as mob|obj)
-	if(trigger_type == "mob and obj" || (trigger_type == "mob" && istype(victim,/mob)) || (trigger_type == "obj" && istype(victim,/obj)))
+	if(trigger_type == "mob and obj" || (trigger_type == "mob" && ismob(victim)) || (trigger_type == "obj" && isobj(victim)))
 		trigger(victim)
 
 /obj/effect/trap/proc/trigger(victim)
@@ -192,7 +192,7 @@
 	var/obj/item/ore/rock = new rock_type(victim:loc)
 	if (istype(victim) && prob(rock_hit_chance))
 		var/dmg = rand(rock_min_dmg,rock_max_dmg)
-		if(istype(victim, /mob/living/carbon/human))
+		if(ishuman(victim))
 			var/mob/living/carbon/human/H = victim
 			var/datum/organ/external/affecting = H.organs["head"]
 			affecting.take_damage(dmg)

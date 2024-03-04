@@ -8,5 +8,5 @@
 	invisibility = INVISIBILITY_MAXIMUM
 
 /obj/effect/admin_log_trap/HasEntered(AM as mob|obj)
-	if(istype(AM,/mob))
+	if(ismob(AM))
 		message_admins("[AM] ([AM:ckey]) stepped on an alerted tile in [get_area(src)]. <a href=\"byond://?src=%admin_ref%;teleto=\ref[src.loc]\">Jump</a>", admin_ref = 1)

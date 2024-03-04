@@ -112,7 +112,7 @@
 		if(do_after(user, digTool.digspeed * hardness) && src)
 			to_chat(user, "You finished digging.")
 			Dismantle()
-	else if(istype(W,/obj/item)) //not sure, can't not just weapons get passed to this proc?
+	else if(isitem(W)) //not sure, can't not just weapons get passed to this proc?
 		hardness -= W.force / 100
 		to_chat(user, "You hit the [name] with your [W.name]!")
 		CheckHardness()

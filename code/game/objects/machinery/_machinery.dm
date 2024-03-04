@@ -216,7 +216,7 @@
 		return 1
 /*
 	//distance checks are made by atom/proc/DblClick
-	if ((get_dist(src, user) > 1 || !istype(loc, /turf)) && !issilicon(user))
+	if((get_dist(src, user) > 1 || !isturf(loc)) && !issilicon(user))
 		return 1
 */
 	if(ishuman(user))

@@ -90,7 +90,7 @@
 		return 0 //something is terribly wrong
 
 	var/deathtime = world.time - src.timeofdeath
-	if(istype(src,/mob/dead/observer))
+	if(isobserver(src))
 		var/mob/dead/observer/G = src
 		if(G.has_enabled_antagHUD == 1 && CONFIG_GET(antag_hud_restricted))
 			usr << "\blue <B>Upon using the antagHUD you forfeighted the ability to join the round.</B>"

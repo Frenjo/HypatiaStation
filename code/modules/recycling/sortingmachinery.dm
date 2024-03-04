@@ -118,7 +118,7 @@
 		var/obj/item/O = target
 		if(src.amount > 1)
 			var/obj/item/small_delivery/P = new /obj/item/small_delivery(get_turf(O.loc))	//Aaannd wrap it up!
-			if(!istype(O.loc, /turf))
+			if(!isturf(O.loc))
 				if(user.client)
 					user.client.screen -= O
 			P.wrapped = O

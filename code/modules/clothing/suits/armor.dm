@@ -222,7 +222,7 @@
 		holstered.loc = src
 		usr.visible_message(SPAN_INFO("\The [usr] holsters \the [holstered]."), "You holster \the [holstered].")
 	else
-		if(istype(usr.get_active_hand(), /obj) && istype(usr.get_inactive_hand(), /obj))
+		if(isobj(usr.get_active_hand()) && isobj(usr.get_inactive_hand()))
 			to_chat(usr, SPAN_WARNING("You need an empty hand to draw the gun!"))
 		else
 			if(usr.a_intent == "hurt")

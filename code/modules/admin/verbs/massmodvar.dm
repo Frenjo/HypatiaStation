@@ -297,11 +297,11 @@
 					for(var/mob/M in GLOBL.mob_list)
 						if(istype(M, O.type))
 							M.vars[variable] = O.vars[variable]
-				else if(istype(O.type, /obj))
+				else if(isobj(O.type))
 					for(var/obj/A in GLOBL.movable_atom_list)
 						if(istype(A, O.type))
 							A.vars[variable] = O.vars[variable]
-				else if(istype(O.type, /turf))
+				else if(isturf(O.type))
 					for(var/turf/A in world)
 						if(istype(A, O.type))
 							A.vars[variable] = O.vars[variable]
@@ -310,11 +310,11 @@
 					for(var/mob/M in GLOBL.mob_list)
 						if(M.type == O.type)
 							M.vars[variable] = O.vars[variable]
-				else if(istype(O.type, /obj))
+				else if(isobj(O.type))
 					for(var/obj/A in GLOBL.movable_atom_list)
 						if(A.type == O.type)
 							A.vars[variable] = O.vars[variable]
-				else if(istype(O.type, /turf))
+				else if(isturf(O.type))
 					for(var/turf/A in world)
 						if(A.type == O.type)
 							A.vars[variable] = O.vars[variable]

@@ -44,7 +44,7 @@
 
 //BubbleWrap - Should stop you pushing a restrained person out of the way
 
-		if(istype(tmob, /mob/living/carbon/human))
+		if(ishuman(tmob))
 
 			for(var/mob/M in range(tmob, 1))
 				if( ((M.pulling == tmob && ( tmob.restrained() && !( M.restrained() ) && M.stat == 0)) || locate(/obj/item/grab, tmob.grabbed_by.len)) )
@@ -514,7 +514,7 @@
 			return
 
 	if (href_list["criminal"])
-		if(istype(usr, /mob/living/carbon/human))
+		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			if(istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.glasses, /obj/item/clothing/glasses/sunglasses/sechud))
 				var/perpname = "wot"

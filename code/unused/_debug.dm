@@ -510,7 +510,7 @@ Doing this because FindTurfs() isn't even used
 			e.destroyed = 0
 			e.perma_injury = 0
 			e.update_icon()
-		if(src.type == /mob/living/carbon/human)
+		if(ishuman(src))
 			var/mob/living/carbon/human/H = src
 			H.update_body()
 			H.UpdateDamageIcon()

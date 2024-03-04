@@ -156,7 +156,7 @@
 		if(src.master.active_program != src)
 			return 1
 
-		if ((!usr.contents.Find(src.master) && (!in_range(src.master, usr) || !istype(src.master.loc, /turf))) && (!istype(usr, /mob/living/silicon)))
+		if((!usr.contents.Find(src.master) && (!in_range(src.master, usr) || !isturf(src.master.loc))) && (!issilicon(usr)))
 			return 1
 
 		if(!(holder in src.master.contents))

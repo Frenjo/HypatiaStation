@@ -18,7 +18,7 @@
 	if(!M) return
 	if(M in view(1, src))
 
-		if(!istype(src, /mob/living/carbon/brain))
+		if(!isbrain(src))
 			if(!istype(M, /mob/living/carbon/metroid))
 				if(stat != 2)
 					if(health > -70)
@@ -60,7 +60,7 @@
 		if(M in view(1, src))
 			loc = M.loc
 
-			if(prob(15) && M.client && istype(M, /mob/living/carbon))
+			if(prob(15) && M.client && iscarbon(M))
 				M << "\red [pick("You can feel your body becoming weak!", \
 				"You feel like you're about to die!", \
 				"You feel every part of your body screaming in agony!", \
@@ -69,7 +69,7 @@
 				"You feel extremely weak!", \
 				"A sharp, deep pain bathes every inch of your body!")]"
 
-			if(istype(M, /mob/living/carbon))
+			if(iscarbon(M))
 				victim.adjustCloneLoss(rand(1,10))
 				victim.adjustToxLoss(rand(1,2))
 				if(victim.health <= 0)
@@ -139,7 +139,7 @@
 						if(!(victim.LAssailant in Friends))
 							Friends.Add(victim.LAssailant) // no idea why i was using the |= operator
 
-		if(M.client && istype(src, /mob/living/carbon/human))
+		if(M.client && ishuman(src))
 			if(prob(85))
 				rabid = 1 // UUUNNBGHHHH GONNA EAT JUUUUUU
 

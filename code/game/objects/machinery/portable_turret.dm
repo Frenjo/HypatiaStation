@@ -447,7 +447,7 @@ Status: []<BR>"},
 				targets += C
 
 	for (var/mob/living/carbon/C in view(7,src)) // loops through all living carbon-based lifeforms in view(12)
-		if(istype(C, /mob/living/carbon/alien) && src.check_anomalies) // git those fukken xenos
+		if(isalien(C) && src.check_anomalies) // git those fukken xenos
 			if(!C.stat) // if it's dead/dying, there's no need to keep shooting at it.
 				targets += C
 
@@ -490,7 +490,7 @@ Status: []<BR>"},
 
 		var/atom/t = pick(targets) // pick a perp from the list of targets. Targets go first because they are the most important
 
-		if (istype(t, /mob/living)) // if a mob
+		if(isliving(t)) // if a mob
 			var/mob/living/M = t // simple typecasting
 			if (M.stat!=2) // if the target is not dead
 				spawn() popUp() // pop the turret up if it's not already up.
@@ -500,7 +500,7 @@ Status: []<BR>"},
 	else
 		if(length(secondarytargets)) // if there are no primary targets, go for secondary targets
 			var/mob/t = pick(secondarytargets)
-			if (istype(t, /mob/living))
+			if(isliving(t))
 				if (t.stat!=2)
 					spawn() popUp()
 					dir=get_dir(src,t)

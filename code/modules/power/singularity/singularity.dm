@@ -271,7 +271,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 		spawn()
 			A:gib()
 		sleep(1)
-	else if(istype(A, /obj))
+	else if(isobj(A))
 		if(istype(A, /obj/item/storage/backpack/holding))
 			var/dist = max((current_size - 2), 1)
 			explosion(src.loc, (dist), (dist * 2), (dist * 4))
@@ -513,7 +513,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 		return 0
 	if(isliving(A))//Mobs get gibbed
 		A:gib()
-	else if(istype(A, /obj))
+	else if(isobj(A))
 		var/obj/O = A
 		GLOBL.machines -= O
 		GLOBL.processing_objects -= O

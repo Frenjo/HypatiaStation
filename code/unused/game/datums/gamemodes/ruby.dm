@@ -143,7 +143,7 @@
 /client/proc/defile_corpse(var/mob/living/carbon/human/H in view())
 	set name = "Defile Corpse"
 	set category = "Abomination"
-	if(istype(H, /mob/living/carbon/human))
+	if(ishuman(H))
 		var/datum/game_mode/ruby/rmode = ticker.mode
 		rmode.killed.Add(H)
 		ticker.mode:respawns += 1
@@ -157,7 +157,7 @@
 
 	for(var/obj/item/rubyweapon/w in GLOBL.movable_atom_list)
 		if(istype(w, /obj/item/rubyweapon))
-			if(istype(w.loc, /mob))
+			if(ismob(w.loc))
 				var/mob/M = w.loc
 				M.drop_item()
 				w.loc = usr.loc

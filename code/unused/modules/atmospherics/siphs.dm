@@ -30,7 +30,7 @@
 /obj/machinery/atmoalter/siphs/proc/release(amount, flag)
 	/*
 	var/T = src.loc
-	if (!( istype(T, /turf) ))
+	if(!isturf(T))
 		return
 	if (locate(/obj/move, T))
 		T = locate(/obj/move, T)
@@ -45,7 +45,7 @@
 /obj/machinery/atmoalter/siphs/proc/siphon(amount, flag)
 	/*
 	var/T = src.loc
-	if (!( istype(T, /turf) ))
+	if(!isturf(T))
 		return
 	if (locate(/obj/move, T))
 		T = locate(/obj/move, T)
@@ -143,7 +143,7 @@
 
 	if (src.t_status != 3)
 		var/turf/T = src.loc
-		if (istype(T, /turf))
+		if(!isturf(T))
 			if (locate(/obj/move, T))
 				T = locate(/obj/move, T)
 			if (T.firelevel < 900000.0)
@@ -299,7 +299,7 @@
 
 	if (src.t_status != 3)
 		var/turf/T = src.loc
-		if (istype(T, /turf))
+		if(!isturf(T))
 			if (locate(/obj/move, T))
 				T = locate(/obj/move, T)
 		else
@@ -382,7 +382,7 @@
 
 	if(stat & NOPOWER) return
 
-	if(src.portable() && istype(user, /mob/living/silicon/ai)) //AI can't use portable siphons
+	if(src.portable() && isAI(user)) //AI can't use portable siphons
 		return
 
 	user.machine = src
@@ -419,7 +419,7 @@
 
 	if (usr.stat || usr.restrained())
 		return
-	if ((!( src.alterable )) && (!istype(usr, /mob/living/silicon/ai)))
+	if(!src.alterable && !isAI(usr))
 		return
 	if(((in_range(src, usr) || usr.telekinesis == 1) && isturf(loc)) || issilicon(usr))
 		usr.machine = src

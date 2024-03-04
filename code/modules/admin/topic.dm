@@ -1057,7 +1057,7 @@
 		if(!ismob(M))
 			usr << "This can only be used on instances of type /mob"
 			return
-		if(istype(M, /mob/living/silicon/ai))
+		if(isAI(M))
 			usr << "This cannot be used on instances of type /mob/living/silicon/ai"
 			return
 
@@ -1102,7 +1102,7 @@
 		if(!ismob(M))
 			usr << "This can only be used on instances of type /mob"
 			return
-		if(istype(M, /mob/living/silicon/ai))
+		if(isAI(M))
 			usr << "This cannot be used on instances of type /mob/living/silicon/ai"
 			return
 
@@ -1131,7 +1131,7 @@
 		if(!ismob(M))
 			usr << "This can only be used on instances of type /mob"
 			return
-		if(istype(M, /mob/living/silicon/ai))
+		if(isAI(M))
 			usr << "This cannot be used on instances of type /mob/living/silicon/ai"
 			return
 
@@ -1160,7 +1160,7 @@
 		if(!ismob(M))
 			usr << "This can only be used on instances of type /mob"
 			return
-		if(istype(M, /mob/living/silicon/ai))
+		if(isAI(M))
 			usr << "This cannot be used on instances of type /mob/living/silicon/ai"
 			return
 
@@ -1182,7 +1182,7 @@
 		if(!ismob(M))
 			usr << "This can only be used on instances of type /mob"
 			return
-		if(istype(M, /mob/living/silicon/ai))
+		if(isAI(M))
 			usr << "This cannot be used on instances of type /mob/living/silicon/ai"
 			return
 
@@ -1297,11 +1297,11 @@
 				else
 					foo += text("\[ <B>Authorized</B> | ")
 				if(M.start)
-					if(!istype(M, /mob/living/carbon/monkey))
+					if(!ismonkey(M))
 						foo += text("<A HREF='?src=\ref[];monkeyone=\ref[]'>Monkeyize</A> | ", src, M)
 					else
 						foo += text("<B>Monkeyized</B> | ")
-					if(istype(M, /mob/living/silicon/ai))
+					if(isAI(M))
 						foo += text("<B>Is an AI</B> | ")
 					else
 						foo += text("<A HREF='?src=\ref[];makeai=\ref[]'>Make AI</A> | ", src, M)
@@ -1719,7 +1719,7 @@
 							O.set_dir(obj_dir)
 							if(obj_name)
 								O.name = obj_name
-								if(istype(O,/mob))
+								if(ismob(O))
 									var/mob/M = O
 									M.real_name = obj_name
 
@@ -1903,7 +1903,7 @@
 					if(!security)
 						//strip their stuff before they teleport into a cell :downs:
 						for(var/obj/item/W in H)
-							if(istype(W, /datum/organ/external))
+							if(isorgan(W))
 								continue
 								//don't strip organs
 							H.u_equip(W)

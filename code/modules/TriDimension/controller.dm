@@ -202,7 +202,7 @@
 						// ingore mobs that have any form of invisibility
 						if(m.invisibility) continue
 						// only add this tile to fastprocessing if there is a living mob, not a dead one
-						if(istype(m, /mob/living) && new_list < 3) new_list = 3
+						if(isliving(m) && new_list < 3) new_list = 3
 						var/image/temp2 = image(m, dir=m.dir, layer = 5+0.05*m.layer)
 						temp2.alpha = 100
 						temp2.overlays += m.overlays

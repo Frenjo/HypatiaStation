@@ -73,7 +73,7 @@
 	if(M.reagents.has_reagent("spaceacillin"))
 		return
 
-	if(istype(M, /mob/living/carbon/monkey))
+	if(ismonkey(M))
 		var/mob/living/carbon/monkey/chimp = M
 		if(!(chimp.greaterform in disease.affected_species))
 			return

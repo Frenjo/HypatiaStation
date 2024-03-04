@@ -242,7 +242,7 @@ obj/machinery/computer/airtunnel/attack_ai(user as mob)
 	if(..())
 		return
 
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon))))
+	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc)) || (issilicon(usr))))
 		usr.machine = src
 		if (href_list["retract"])
 			SS13_airtunnel.retract()
@@ -312,7 +312,7 @@ obj/machinery/computer/airtunnel/attack_ai(user as mob)
 	if ((!( src.d1 ) || !( src.d2 )))
 		usr << "\red Error: Cannot interface with door security!"
 		return
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf)) || (istype(usr, /mob/living/silicon))))
+	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc)) || (issilicon(usr))))
 		usr.machine = src
 		if (href_list["card"])
 			if (src.scan)

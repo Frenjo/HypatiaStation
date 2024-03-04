@@ -96,7 +96,7 @@
 		return
 
 ///// Z-Level Stuff ///// This makes sure that turfs are not changed to space when one side is part of a zone
-	if(N == /turf/space)
+	if(isspace(N))
 		var/turf/controller = locate(1, 1, src.z)
 		for(var/obj/effect/landmark/zcontroller/c in controller)
 			if(c.down)

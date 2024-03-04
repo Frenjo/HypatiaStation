@@ -503,7 +503,7 @@
 						H.head.add_blood(H)
 					if (H.glasses && prob(33))
 						H.glasses.add_blood(H)
-					if (istype(user, /mob/living/carbon/human))
+					if(ishuman(user))
 						var/mob/living/carbon/human/user2 = user
 						if (user2.gloves)
 							user2.gloves.add_blood(H)

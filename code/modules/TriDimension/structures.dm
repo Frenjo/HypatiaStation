@@ -173,7 +173,7 @@
 	green_overlay = image(icon, "green-ladderlight")
 
 /obj/multiz/ladder/hatch/attack_hand(var/mob/M)
-	if(!target || !istype(target.loc, /turf))
+	if(!target || !isturf(target.loc))
 		del src
 
 	if(active)
@@ -191,7 +191,7 @@
 	bottom_hatch.overlays += green_overlay
 
 	spawn(7)
-		if(!target || !istype(target.loc, /turf))
+		if(!target || !isturf(target.loc))
 			del src
 		if(M.z == z && get_dist(src, M) <= 1)
 			var/list/adjacent_to_me = global_adjacent_z_levels["[z]"]

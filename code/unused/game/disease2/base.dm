@@ -12,7 +12,7 @@
 		else
 			var/score = 0
 			if(!forced)
-				if(istype(M, /mob/living/carbon/human))
+				if(ishuman(M))
 					if(M:gloves)
 						score += 5
 					if(istype(M:wear_suit, /obj/item/clothing/suit/space)) score += 10
@@ -241,7 +241,7 @@
 	name = "Monkism syndrome"
 	stage = 4
 	activate(var/mob/living/carbon/mob,var/multiplier)
-		if(istype(mob,/mob/living/carbon/human))
+		if(ishuman(mob))
 			var/mob/living/carbon/human/h = mob
 			h.monkeyize()
 

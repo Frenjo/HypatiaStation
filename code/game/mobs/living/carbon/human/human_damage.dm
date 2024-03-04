@@ -257,7 +257,7 @@ This function restores all organs.
 
 /mob/living/carbon/human/proc/HealDamage(zone, brute, burn)
 	var/datum/organ/external/E = get_organ(zone)
-	if(istype(E, /datum/organ/external))
+	if(isorgan(E))
 		if(E.heal_damage(brute, burn))
 			UpdateDamageIcon()
 			BITSET(hud_updateflag, HEALTH_HUD)
@@ -317,7 +317,7 @@ This function restores all organs.
 	//Embedded projectile code.
 	if(!organ)
 		return
-	if(istype(used_weapon, /obj/item))
+	if(isitem(used_weapon))
 		var/obj/item/W = used_weapon  //Sharp objects will always embed if they do enough damage.
 		/*if( (damage > (10*W.w_class)) && ( (sharp && !ismob(W.loc)) || prob(damage/W.w_class) ) )
 			organ.implants += W

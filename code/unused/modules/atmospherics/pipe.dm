@@ -479,7 +479,7 @@ var/linenums = 0
 		return
 
 	var/turf/T = src.loc
-	while(!( istype(T, /turf) ))
+	while(!isturf(T))
 		T = T.loc
 
 	for(var/mob/M in range(T))

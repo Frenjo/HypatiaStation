@@ -115,7 +115,7 @@
 
 /mob/living/silicon/robot/Topic(href, href_list)
 	..()
-	if (((in_range(src, usr) && istype(src.loc, /turf))) && !istype(usr, /mob/living/silicon))
+	if(((in_range(src, usr) && isturf(src.loc))) && !issilicon(usr))
 		usr.set_machine(src)
 		if (href_list["borgwires"])
 			var/t1 = text2num(href_list["borgwires"])

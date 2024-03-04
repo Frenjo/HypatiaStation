@@ -184,7 +184,7 @@
 //	if ((src.connected && src.connected.occupant)) //connected & occupant ok
 //		M = src.connected.occupant
 //	else
-//		if (istype(M, /mob))
+//		if(ismob(M))
 //		//do stuff
 //		else
 ///			src.temphtml = "Process terminated due to lack of occupant in scanning chamber."

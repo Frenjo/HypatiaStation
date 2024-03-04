@@ -15,7 +15,7 @@
 
 	var/list/choices = list()
 	for(var/mob/living/M in view(6,src))
-		if(!istype(M,/mob/living/silicon))
+		if(!issilicon(M))
 			choices += M
 	choices -= src
 
@@ -63,7 +63,7 @@
 
 	var/list/choices = list()
 	for(var/mob/living/M in view(6, src))
-		if(!istype(M,/mob/living/silicon))
+		if(!issilicon(M))
 			choices += M
 	choices -= src
 
@@ -173,14 +173,14 @@
 
 	var/mob/M = targets[target]
 
-	if(istype(M, /mob/dead/observer) || M.stat == DEAD)
+	if(isobserver(M) || M.stat == DEAD)
 		src << "Not even a [src.species.name] can speak to the dead."
 		return
 
 	log_say("[key_name(src)] communed to [key_name(M)]: [text]")
 
 	M << "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"
-	if(istype(M,/mob/living/carbon/human))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name == src.species.name)
 			return

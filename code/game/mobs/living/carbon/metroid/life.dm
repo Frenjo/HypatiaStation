@@ -126,7 +126,7 @@
 
 					if(Target in view(1,src))
 
-						if(istype(Target, /mob/living/silicon))
+						if(issilicon(Target))
 							if(!Atkcool)
 								spawn()
 									Atkcool = 1
@@ -425,7 +425,7 @@
 
 							else if(iscarbon(L))
 
-								if(istype(L, /mob/living/carbon/human)) //Ignore metroid(wo)men
+								if(ishuman(L)) //Ignore metroid(wo)men
 									var/mob/living/carbon/human/H = L
 									if(H.dna)
 										if(H.dna.mutantrace == "metroid")

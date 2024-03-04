@@ -337,7 +337,7 @@
 
 			on_mob_life(var/mob/living/M)
 				M.nutrition += nutriment_factor
-				if(istype(M, /mob/living/carbon/human) && M.mind)
+				if(ishuman(M) && M.mind)
 					if(M.mind.special_role)
 						if(!M) M = holder.my_atom
 						M.heal_organ_damage(1,1)

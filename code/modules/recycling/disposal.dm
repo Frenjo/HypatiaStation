@@ -1366,7 +1366,7 @@
 		for(var/atom/movable/AM in H)
 			AM.loc = src.loc
 			AM.pipe_eject(dir)
-			if(!istype(AM,/mob/living/silicon/robot/drone)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
+			if(!isdrone(AM)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
 				spawn(5)
 					AM.throw_at(target, 3, 1)
 		H.vent_gas(src.loc)

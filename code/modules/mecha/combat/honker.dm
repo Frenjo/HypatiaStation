@@ -30,7 +30,7 @@
 /obj/mecha/combat/honker/melee_action(target)
 	if(!melee_can_hit)
 		return
-	else if(istype(target, /mob))
+	else if(ismob(target))
 		step_away(target, src, 15)
 	return
 

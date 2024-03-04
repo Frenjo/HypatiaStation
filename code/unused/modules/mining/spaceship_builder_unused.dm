@@ -120,7 +120,7 @@
 		user << "The machine is processing"
 		return
 
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if(!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 

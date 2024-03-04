@@ -27,7 +27,7 @@
 	if(..())
 		return
 	user.machine = src
-	if (istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon/ai))
+	if(ishuman(user) || isAI(user))
 		var/dat = text("<I>Please Insert the cards into the slots</I><BR>\n\t\t\t\tFunction Disk: <A href='?src=\ref[];scan=1'>[]</A><BR>\n\t\t\t\tTarget Disk: <A href='?src=\ref[];modify=1'>[]</A><BR>\n\t\t\t\tAux. Data Disk: <A href='?src=\ref[];modify2=1'>[]</A><BR>\n\t\t\t\t\t(Not always used!)<BR>\n\t\t\t\t[]", src, (src.scan ? text("[]", src.scan.name) : "----------"), src, (src.modify ? text("[]", src.modify.name) : "----------"), src, (src.modify2 ? text("[]", src.modify2.name) : "----------"), (src.scan ? text("<A href='?src=\ref[];execute=1'>Execute Function</A>", src) : "No function disk inserted!"))
 		if (src.temp)
 			dat = text("[]<BR><BR><A href='?src=\ref[];clear=1'>Clear Message</A>", src.temp, src)
@@ -44,7 +44,7 @@
 /obj/machinery/computer/dna/Topic(href, href_list)
 	if(..())
 		return
-	if ((usr.contents.Find(src) || ((in_range(src, usr) || usr.telekinesis == 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
+	if((usr.contents.Find(src) || ((in_range(src, usr) || usr.telekinesis == 1) && isturf(src.loc))) || isAI(usr))
 		usr.machine = src
 		if (href_list["modify"])
 			if (src.modify)
@@ -136,7 +136,7 @@
 							var/m = src.modify
 							if ((usr.stat || usr.restrained() || src.modify != m || src.scan != s))
 								return
-							if (((in_range(src, usr) || usr.telekinesis == 1) && istype(src.loc, /turf)))
+							if(((in_range(src, usr) || usr.telekinesis == 1) && isturf(src.loc)))
 								src.modify.data = dat
 						else
 							src.temp = "Disk Failure: Cannot read target disk!"
@@ -409,7 +409,7 @@
 			if("dna_scan")
 				if (src.special)
 					if (src.scan)
-						if (istype(M, /mob))
+						if(ismob(M))
 							switch(src.special)
 								if("UI")
 									src.temp = text("Scan Complete:<BR>Data downloaded to disk!<BR>Unique Identifier: []", M.primary.uni_identity)
@@ -454,7 +454,7 @@
 				src.status = null
 	else
 		if (src.status == "dna_trun")
-			if (istype(M, /mob))
+			if(ismob(M))
 				var/t = null
 				switch(src.prog_p3)
 					if("UI")
@@ -523,7 +523,7 @@
 				src.status = null
 		else
 			if (src.status == "dna_replace")
-				if (istype(M, /mob))
+				if(ismob(M))
 					var/t = null
 					switch(src.prog_p1)
 						if("UI")
@@ -560,7 +560,7 @@
 					src.status = null
 			else
 				if (src.status == "dna_add")
-					if (istype(M, /mob))
+					if(ismob(M))
 						var/t = null
 						switch(src.prog_p1)
 							if("UI")
@@ -707,7 +707,7 @@
 	if ((src.occupant && src.occupant.primary))
 		switch(src.occupant.primary.spec_identity)
 			if("5BDFE293BA5500F9FFFD500AAFFE")
-				if (!istype(src.occupant, /mob/living/carbon/human))
+				if(!ishuman(src.occupant))
 					for(var/obj/O in src.occupant)
 						del(O)
 
@@ -736,7 +736,7 @@
 					src.occupant = O
 					src.occupant << "Done!"
 			if("2B6696D2B127E5A4")
-				if (!istype(src.occupant, /mob/living/carbon/monkey))
+				if(!ismonkey(src.occupant))
 					for(var/obj/O in src.occupant)
 						del(O)
 					var/mob/living/carbon/monkey/O = new /mob/living/carbon/monkey(src)
@@ -759,7 +759,7 @@
 					O.name = text("monkey ([])", copytext(md5(src.occupant.primary.uni_identity), 2, 6))
 					src.occupant << "Done!"
 			else
-		if (istype(src.occupant, /mob/living/carbon/human))
+		if(ishuman(src.occupant))
 			var/mob/living/carbon/human/H = src.occupant
 
 			var/speak = (length(H.primary.struc_enzyme) >= 25 ? hex2num(copytext(H.primary.struc_enzyme, 22, 25)) : 9999)

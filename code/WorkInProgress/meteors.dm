@@ -93,7 +93,7 @@
 
 /obj/effect/meteor/Move()
 	var/turf/T = src.loc
-	if (istype(T, /turf))
+	if(isturf(T))
 		T.hotspot_expose(METEOR_TEMPERATURE, 1000)
 	..()
 	return
@@ -101,7 +101,7 @@
 /obj/effect/meteor/Bump(atom/A)
 	spawn(0)
 		for(var/mob/M in range(10, src))
-			if(!M.stat && !istype(M, /mob/living/silicon/ai)) //bad idea to shake an ai's view
+			if(!M.stat && !isAI(M)) //bad idea to shake an ai's view
 				shake_camera(M, 3, 1)
 		if (A)
 			A.meteorhit(src)
@@ -129,7 +129,7 @@
 	Bump(atom/A)
 		spawn(0)
 			for(var/mob/M in range(10, src))
-				if(!M.stat && !istype(M, /mob/living/silicon/ai)) //bad idea to shake an ai's view
+				if(!M.stat && !isAI(M)) //bad idea to shake an ai's view
 					shake_camera(M, 3, 1)
 			if (A)
 				if(isobj(A))

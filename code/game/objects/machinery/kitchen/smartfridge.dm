@@ -411,7 +411,7 @@
 
 /obj/machinery/smartfridge/secure/Topic(href, href_list)
 	usr.set_machine(src)
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
+	if((usr.contents.Find(src) || (in_range(src, usr) && isturf(src.loc))))
 		if ((!src.allowed(usr)) && (!src.emagged) && (src.locked != -1) && href_list["vend"]) //For SECURE VENDING MACHINES YEAH
 			FEEDBACK_ACCESS_DENIED(usr) // Unless emagged of course.
 			return

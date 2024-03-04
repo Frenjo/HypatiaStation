@@ -200,7 +200,7 @@
 			if(href_list["getdna"])
 				var/mob/living/M = loc
 				var/count = 0
-				while(!istype(M, /mob/living))
+				while(!isliving(M))
 					if(!M || !M.loc) return 0 //For a runtime where M ends up in nullspace (similar to bluespace but less colourful)
 					M = M.loc
 					count++

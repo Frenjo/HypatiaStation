@@ -56,7 +56,7 @@
 				return
 			var/dat = null
 
-			if(istype(A,/mob/living/carbon/human))
+			if(ishuman(A))
 				var/mob/living/carbon/human/H = A
 				if (!istype(H.dna, /datum/dna) || isnotnull(H.gloves))
 					dat += "\blue Unable to scan [A]'s fingerprints.\n"

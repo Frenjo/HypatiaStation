@@ -293,7 +293,7 @@
 	return 1
 
 /obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
-	if(!istype(O, /obj/item) || user.get_active_hand() != O)
+	if(!isitem(O) || user.get_active_hand() != O)
 		return
 	if(isrobot(user))
 		return
@@ -307,7 +307,7 @@
 		return
 	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
 		var/obj/item/grab/G = W
-		if(istype(G.affecting, /mob/living))
+		if(isliving(G.affecting))
 			var/mob/living/M = G.affecting
 			if(G.state < 2)
 				if(user.a_intent == "hurt")
@@ -541,7 +541,7 @@
 		return 0
 
 /obj/structure/rack/MouseDrop_T(obj/O as obj, mob/user as mob)
-	if(!istype(O, /obj/item) || user.get_active_hand() != O)
+	if(!isitem(O) || user.get_active_hand() != O)
 		return
 	if(isrobot(user))
 		return

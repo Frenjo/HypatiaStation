@@ -135,12 +135,12 @@
 			var/mob/tmob = AM
 
 			if(istype(src, /mob/living/carbon/metroid/adult))
-				if(istype(tmob, /mob/living/carbon/human))
+				if(ishuman(tmob))
 					if(prob(90))
 						now_pushing = 0
 						return
 			else
-				if(istype(tmob, /mob/living/carbon/human))
+				if(ishuman(tmob))
 					now_pushing = 0
 					return
 
@@ -377,13 +377,13 @@
 		updatehealth()
 
 /mob/living/carbon/metroid/attack_paw(mob/living/carbon/monkey/M as mob)
-	if(!(istype(M, /mob/living/carbon/monkey)))	return//Fix for aliens receiving double messages when attacking other aliens.
+	if(!ismonkey(M))	return//Fix for aliens receiving double messages when attacking other aliens.
 
 	if (!ticker)
 		M << "You cannot attack people before the game has started."
 		return
 
-	if (istype(loc, /turf) && istype(loc.loc, /area/start))
+	if(isturf(loc) && istype(loc.loc, /area/start))
 		M << "No attacking people at spawn, you jackass."
 		return
 	..()
@@ -411,7 +411,7 @@
 		M << "You cannot attack people before the game has started."
 		return
 
-	if (istype(loc, /turf) && istype(loc.loc, /area/start))
+	if(isturf(loc) && istype(loc.loc, /area/start))
 		M << "No attacking people at spawn, you jackass."
 		return
 
@@ -558,7 +558,7 @@
 		M << "You cannot attack people before the game has started."
 		return
 
-	if (istype(loc, /turf) && istype(loc.loc, /area/start))
+	if(isturf(loc) && istype(loc.loc, /area/start))
 		M << "No attacking people at spawn, you jackass."
 		return
 

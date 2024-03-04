@@ -404,7 +404,7 @@
 				return
 
 		if(!M.unacidable)
-			if(istype(M, /mob/living/carbon/human) && volume >= 10)
+			if(ishuman(M) && volume >= 10)
 				var/mob/living/carbon/human/H = M
 				var/datum/organ/external/affecting = H.get_organ("head")
 				if(affecting)

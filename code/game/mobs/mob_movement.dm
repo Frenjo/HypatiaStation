@@ -361,7 +361,7 @@
 		return FALSE
 
 	/*
-	if(istype(src,/mob/living/carbon))
+	if(iscarbon(src))
 		if(src.l_hand && src.r_hand)
 			return FALSE
 	*/

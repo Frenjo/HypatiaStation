@@ -593,7 +593,7 @@
 	/*		reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)
 				del(src)
 				if (method==TOUCH)
-					if(istype(M, /mob/living/carbon/human))
+					if(ishuman(M))
 						if(M.health >= -100 && M.health <= 0)
 							M.crit_op_stage = 0.0
 				if (method==INGEST)

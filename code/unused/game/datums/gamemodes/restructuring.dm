@@ -57,13 +57,13 @@
 /datum/game_mode/restructuring/proc/get_mob_list()
 	var/list/mobs = list()
 	for_no_type_check(var/mob/M, GLOBL.mob_list)
-		if (M.stat<2 && M.client && istype(M, /mob/living/carbon/human))
+		if(M.stat<2 && M.client && ishuman(M))
 			mobs += M
 	return mobs
 
 /datum/game_mode/restructuring/proc/the_winner()
 	for_no_type_check(var/mob/M, GLOBL.mob_list)
-		if (M.stat<2 && M.client && istype(M, /mob/living/carbon/human))
+		if(M.stat<2 && M.client && ishuman(M))
 			return M.name
 
 /datum/game_mode/restructuring/proc/get_target_desc(mob/target) //return a useful string describing the target

@@ -16,7 +16,7 @@
 	use_power(5)
 
 	var/turf/T = src.loc
-	if (istype(T, /turf))
+	if(isturf(T))
 		if (locate(/obj/move, T))
 			T = locate(/obj/move, T)
 	else
