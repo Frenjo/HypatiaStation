@@ -1,5 +1,5 @@
 
-/turf/unsimulated/jungle
+/turf/simulated/jungle
 	var/bushes_spawn = 1
 	var/plants_spawn = 1
 	name = "wet grass"
@@ -10,7 +10,7 @@
 	//luminosity = 3
 	light_range = 3
 
-/turf/unsimulated/jungle/New()
+/turf/simulated/jungle/New()
 	icon_state = icon_spawn_state
 
 	if(plants_spawn && prob(40))
@@ -37,13 +37,13 @@
 	if(bushes_spawn && prob(90))
 		new /obj/structure/bush(src)
 
-/turf/unsimulated/jungle/clear
+/turf/simulated/jungle/clear
 	bushes_spawn = 0
 	plants_spawn = 0
 	icon_state = "grass_clear"
 	icon_spawn_state = "grass3"
 
-/turf/unsimulated/jungle/path
+/turf/simulated/jungle/path
 	bushes_spawn = 0
 	name = "wet grass"
 	desc = "thick, long wet grass"
@@ -51,21 +51,21 @@
 	icon_state = "grass_path"
 	icon_spawn_state = "grass2"
 
-/turf/unsimulated/jungle/path/New()
+/turf/simulated/jungle/path/New()
 	..()
 	for(var/obj/structure/bush/B in src)
 		qdel(B)
 
-/turf/unsimulated/jungle/proc/Spread(probability, prob_loss = 50)
+/turf/simulated/jungle/proc/Spread(probability, prob_loss = 50)
 	if(probability <= 0)
 		return
 
 	//to_world("\blue Spread([probability])")
-	for(var/turf/unsimulated/jungle/J in orange(1, src))
+	for(var/turf/simulated/jungle/J in orange(1, src))
 		if(!J.bushes_spawn)
 			continue
 
-		var/turf/unsimulated/jungle/P = null
+		var/turf/simulated/jungle/P = null
 		if(J.type == src.type)
 			P = J
 		else
@@ -74,18 +74,18 @@
 		if(P && prob(probability))
 			P.Spread(probability - prob_loss)
 
-/turf/unsimulated/jungle/impenetrable
+/turf/simulated/jungle/impenetrable
 	bushes_spawn = 0
 	icon_state = "grass_impenetrable"
 	icon_spawn_state = "grass1"
 
-/turf/unsimulated/jungle/impenetrable/New()
+/turf/simulated/jungle/impenetrable/New()
 	..()
 	var/obj/structure/bush/B = new(src)
 	B.indestructable = 1
 
 //copy paste from asteroid mineral turfs
-/turf/unsimulated/jungle/rock
+/turf/simulated/jungle/rock
 	bushes_spawn = 0
 	plants_spawn = 0
 	density = TRUE
@@ -94,27 +94,27 @@
 	icon_state = "rock"
 	icon_spawn_state = "rock"
 
-/turf/unsimulated/jungle/rock/New()
+/turf/simulated/jungle/rock/New()
 	spawn(1)
 		var/turf/T
-		if(!istype(get_step(src, NORTH), /turf/unsimulated/jungle/rock) && !istype(get_step(src, NORTH), /turf/simulated/wall/r_wall/riveted))
+		if(!istype(get_step(src, NORTH), /turf/simulated/jungle/rock) && !istype(get_step(src, NORTH), /turf/simulated/wall/r_wall/riveted))
 			T = get_step(src, NORTH)
 			if(T)
 				T.overlays += image('icons/turf/walls.dmi', "rock_side_s")
-		if(!istype(get_step(src, SOUTH), /turf/unsimulated/jungle/rock) && !istype(get_step(src, SOUTH), /turf/simulated/wall/r_wall/riveted))
+		if(!istype(get_step(src, SOUTH), /turf/simulated/jungle/rock) && !istype(get_step(src, SOUTH), /turf/simulated/wall/r_wall/riveted))
 			T = get_step(src, SOUTH)
 			if(T)
 				T.overlays += image('icons/turf/walls.dmi', "rock_side_n", layer = 6)
-		if(!istype(get_step(src, EAST), /turf/unsimulated/jungle/rock) && !istype(get_step(src, EAST), /turf/simulated/wall/r_wall/riveted))
+		if(!istype(get_step(src, EAST), /turf/simulated/jungle/rock) && !istype(get_step(src, EAST), /turf/simulated/wall/r_wall/riveted))
 			T = get_step(src, EAST)
 			if(T)
 				T.overlays += image('icons/turf/walls.dmi', "rock_side_w", layer = 6)
-		if(!istype(get_step(src, WEST), /turf/unsimulated/jungle/rock) && !istype(get_step(src, WEST), /turf/simulated/wall/r_wall/riveted))
+		if(!istype(get_step(src, WEST), /turf/simulated/jungle/rock) && !istype(get_step(src, WEST), /turf/simulated/wall/r_wall/riveted))
 			T = get_step(src, WEST)
 			if(T)
 				T.overlays += image('icons/turf/walls.dmi', "rock_side_e", layer = 6)
 
-/turf/unsimulated/jungle/water
+/turf/simulated/jungle/water
 	bushes_spawn = 0
 	name = "murky water"
 	desc = "thick, murky water"
@@ -122,12 +122,12 @@
 	icon_state = "water"
 	icon_spawn_state = "water"
 
-/turf/unsimulated/jungle/water/New()
+/turf/simulated/jungle/water/New()
 	..()
 	for(var/obj/structure/bush/B in src)
 		qdel(B)
 
-/turf/unsimulated/jungle/water/Entered(atom/movable/O)
+/turf/simulated/jungle/water/Entered(atom/movable/O)
 	..()
 	if(isliving(O))
 		var/mob/living/M = O
@@ -143,35 +143,35 @@
 			if(prob(50))
 				spawn(rand(25, 50))
 					var/turf/T = get_turf(M)
-					if(istype(T, /turf/unsimulated/jungle/water))
+					if(istype(T, /turf/simulated/jungle/water))
 						to_chat(M, pick(SPAN_WARNING("Something sharp bites you!"), SPAN_WARNING("Sharp teeth grab hold of you!"), SPAN_WARNING("You feel something take a chunk out of your leg!")))
 						M.apply_damage(rand(0, 1), BRUTE, sharp = 1)
 			if(prob(50))
 				spawn(rand(25, 50))
 					var/turf/T = get_turf(M)
-					if(istype(T, /turf/unsimulated/jungle/water))
+					if(istype(T, /turf/simulated/jungle/water))
 						to_chat(M, pick(SPAN_WARNING("Something sharp bites you!"), SPAN_WARNING("Sharp teeth grab hold of you!"), SPAN_WARNING("You feel something take a chunk out of your leg!")))
 						M.apply_damage(rand(0, 1), BRUTE, sharp = 1)
 			if(prob(50))
 				spawn(rand(25, 50))
 					var/turf/T = get_turf(M)
-					if(istype(T, /turf/unsimulated/jungle/water))
+					if(istype(T, /turf/simulated/jungle/water))
 						to_chat(M, pick(SPAN_WARNING("Something sharp bites you!"), SPAN_WARNING("Sharp teeth grab hold of you!"), SPAN_WARNING("You feel something take a chunk out of your leg!")))
 						M.apply_damage(rand(0, 1), BRUTE, sharp = 1)
 			if(prob(50))
 				spawn(rand(25, 50))
 					var/turf/T = get_turf(M)
-					if(istype(T, /turf/unsimulated/jungle/water))
+					if(istype(T, /turf/simulated/jungle/water))
 						to_chat(M, pick(SPAN_WARNING("Something sharp bites you!"), SPAN_WARNING("Sharp teeth grab hold of you!"), SPAN_WARNING("You feel something take a chunk out of your leg!")))
 						M.apply_damage(rand(0, 1), BRUTE, sharp = 1)
 
-/turf/unsimulated/jungle/water/deep
+/turf/simulated/jungle/water/deep
 	plants_spawn = 0
 	density = TRUE
 	icon_state = "water2"
 	icon_spawn_state = "water2"
 
-/turf/unsimulated/jungle/temple_wall
+/turf/simulated/jungle/temple_wall
 	name = "temple wall"
 	desc = ""
 	density = TRUE

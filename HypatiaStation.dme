@@ -1080,8 +1080,6 @@
 #include "code\game\turfs\space\space_attack.dm"
 #include "code\game\turfs\space\space_entry.dm"
 #include "code\game\turfs\space\transit.dm"
-#include "code\game\turfs\unsimulated\_unsimulated.dm"
-#include "code\game\turfs\unsimulated\floor.dm"
 #include "code\modules\spawnpoints.dm"
 #include "code\modules\admin\admin.dm"
 #include "code\modules\admin\admin_investigate.dm"
