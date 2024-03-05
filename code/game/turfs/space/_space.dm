@@ -2,6 +2,7 @@
 	icon = 'icons/turf/space.dmi'
 	name = "\proper space"
 	icon_state = ""
+	plane = SPACE_PLANE
 
 	temperature = TCMB
 	thermal_conductivity = OPEN_HEAT_TRANSFER_COEFFICIENT
@@ -9,8 +10,6 @@
 
 	dynamic_lighting = FALSE
 	luminosity = 1
-
-	plane = SPACE_PLANE
 
 	var/static/list/dust_cache
 	var/static/list/speedspace_cache

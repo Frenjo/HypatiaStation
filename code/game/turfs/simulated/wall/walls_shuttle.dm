@@ -80,8 +80,9 @@
 	if(isnotnull(corner_overlay))
 		overlays.Remove(corner_overlay)
 	else
-		corner_overlay = image(icon = 'icons/turf/shuttle.dmi', icon_state = corner_overlay_state, layer = src.layer, dir = src.dir)
-		corner_overlay.plane = GAME_PLANE
+		corner_overlay = image(icon = 'icons/turf/shuttle.dmi', icon_state = corner_overlay_state)
+		corner_overlay.plane = TURF_PLANE
+		corner_overlay.layer = TURF_BASE_LAYER
 	overlays.Add(corner_overlay)
 
 // Predefined Shuttle Exterior Corners

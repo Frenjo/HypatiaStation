@@ -22,9 +22,15 @@
 #define SPACE_PLANE_ABOVE_PARALLAX -95
 
 /*
- * Game
+ * Turf
  */
-#define GAME_PLANE 0
+#define TURF_PLANE -1
+	#define TURF_BASE_LAYER -999
+
+/*
+ * Default
+ */
+#define DEFAULT_PLANE 0
 
 /*
  * Lighting/Effects

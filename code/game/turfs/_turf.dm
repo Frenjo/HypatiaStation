@@ -1,5 +1,8 @@
 /turf
 	icon = 'icons/turf/floors.dmi'
+	plane = TURF_PLANE
+	layer = TURF_BASE_LAYER
+
 	level = 1.0
 
 	// Stores turf-specific bitflag values.

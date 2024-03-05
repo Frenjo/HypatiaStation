@@ -17,4 +17,7 @@
 
 /turf/unsimulated/beach/water/New()
 	. = ..()
-	overlays.Add(image("icon" = 'icons/misc/beach.dmi', "icon_state" = "water2", "layer" = MOB_LAYER + 0.1))
+	var/image/water = image(icon = 'icons/misc/beach.dmi', icon_state = "water2")
+	water.plane = DEFAULT_PLANE
+	water.layer = MOB_LAYER + 0.1
+	overlays.Add(water)
