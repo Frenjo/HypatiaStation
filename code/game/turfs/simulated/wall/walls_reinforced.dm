@@ -315,3 +315,17 @@
 	//Finally, CHECKING FOR FALSE WALLS if it isn't damaged
 	else if(!d_state)
 		return attack_hand(user)
+
+// These replace the old /turf/unsimulated/wall, they're immune to basically everything.
+/turf/simulated/wall/r_wall/riveted
+	name = "riveted reinforced wall"
+	icon_state = "riveted"
+
+	damage_cap = INFINITY
+	max_temperature = INFINITY
+
+/turf/simulated/wall/r_wall/riveted/attack_hand(mob/user as mob)
+	return
+
+/turf/simulated/wall/r_wall/riveted/attackby(obj/item/W as obj, mob/user as mob)
+	return

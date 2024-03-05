@@ -87,7 +87,7 @@
 			new spawn_type(D.loc)
 			qdel(D)
 
-	for(var/turf/unsimulated/wall/T in temple_turfs)
+	for(var/turf/simulated/wall/r_wall/riveted/T in temple_turfs)
 		if(mineral != MATERIAL_PLASMA)
 			T.icon_state = replacetext(T.icon_state, MATERIAL_PLASMA, mineral)
 

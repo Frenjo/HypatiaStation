@@ -52,7 +52,7 @@
 			continue
 		else if(istype(thisturf, /turf/simulated/shuttle/wall))
 			continue
-		else if(istype(thisturf, /turf/unsimulated/wall))
+		else if(istype(thisturf, /turf/simulated/wall/r_wall/riveted))
 			continue
 		turfs += thisturf
 	var/turf/target_turf = pick(turfs)
@@ -215,7 +215,7 @@
 						continue
 					else if(istype(thisturf, /turf/simulated/shuttle/wall))
 						continue
-					else if(istype(thisturf, /turf/unsimulated/wall))
+					else if(istype(thisturf, /turf/simulated/wall/r_wall/riveted))
 						continue
 					turfs += thisturf
 				var/turf/target_turf = pick(turfs)
