@@ -21,22 +21,11 @@
 /*
  * Shuttle Plating
  */
-/turf/simulated/shuttle/plating
-	name = "plating"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "plating"
-	plane = PLATING_PLANE
+/turf/simulated/floor/plating/shuttle
+	explosion_resistance = 1
 
-	intact = FALSE
-
-/turf/simulated/shuttle/plating/airless
-	name = "airless plating"
-	initial_gases = null
-	temperature = TCMB
-
-/turf/simulated/shuttle/plating/airless/New()
-	. = ..()
-	name = "plating"
+/turf/simulated/floor/plating/airless/shuttle
+	explosion_resistance = 1
 
 /*
  * Iron Sand
