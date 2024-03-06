@@ -40,6 +40,8 @@ var/list/wood_icons = list("wood", "wood-broken")
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
 
+	explosion_resistance = 1
+
 	var/icon_regular_floor = "floor" //used to remember what icon the tile should have by default
 	var/icon_plating = "plating"
 

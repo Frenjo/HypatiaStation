@@ -1,6 +1,14 @@
-/turf/simulated/shuttle/wall/corner/interior
+/turf/simulated/shuttle/wall
+	name = "wall"
+	icon_state = "wall1"
+	opacity = TRUE
+	density = TRUE
+	turf_flags = TURF_FLAG_BLOCKS_AIR
 
-// Predefined Shuttle Interior Corners
+/*
+ * Interior Corners
+ */
+// Smooth white.
 /turf/simulated/shuttle/wall/corner/interior/smoothwhite
 	icon_state = "swall_floor" //for mapping preview
 /turf/simulated/shuttle/wall/corner/interior/smoothwhite/ne
@@ -12,6 +20,7 @@
 /turf/simulated/shuttle/wall/corner/interior/smoothwhite/sw
 	dir = SOUTH|WEST
 
+// Smooth inverted.
 /turf/simulated/shuttle/wall/corner/interior/smoothinverted
 	icon_state = "swall_inv_floor" //for mapping preview
 /turf/simulated/shuttle/wall/corner/interior/smoothinverted/ne
@@ -23,6 +32,7 @@
 /turf/simulated/shuttle/wall/corner/interior/smoothinverted/sw
 	dir = SOUTH|WEST
 
+// Blocky white.
 /turf/simulated/shuttle/wall/corner/interior/blockwhite
 	icon_state = "wall_floor"
 /turf/simulated/shuttle/wall/corner/interior/blockwhite/ne
@@ -34,6 +44,7 @@
 /turf/simulated/shuttle/wall/corner/interior/blockwhite/sw
 	dir = SOUTH|WEST
 
+// Blocky orange.
 /turf/simulated/shuttle/wall/corner/interior/blockorange
 	icon_state = "wall2_floor"
 /turf/simulated/shuttle/wall/corner/interior/blockorange/ne
@@ -45,18 +56,21 @@
 /turf/simulated/shuttle/wall/corner/interior/blockorange/sw
 	dir = SOUTH|WEST
 
-/turf/simulated/shuttle/wall/corner/exterior/dark
+// Dark.
+/turf/simulated/shuttle/wall/corner/interior/dark
 	icon_state = "gwall_floor"
-/turf/simulated/shuttle/wall/corner/exterior/dark/ne
+/turf/simulated/shuttle/wall/corner/interior/dark/ne
 	dir = NORTH|EAST
-/turf/simulated/shuttle/wall/corner/exterior/dark/nw
+/turf/simulated/shuttle/wall/corner/interior/dark/nw
 	dir = NORTH|WEST
-/turf/simulated/shuttle/wall/corner/exterior/dark/se
+/turf/simulated/shuttle/wall/corner/interior/dark/se
 	dir = SOUTH|EAST
-/turf/simulated/shuttle/wall/corner/exterior/dark/sw
+/turf/simulated/shuttle/wall/corner/interior/dark/sw
 	dir = SOUTH|WEST
 
-
+/*
+ * Exterior Corners
+ */
 /turf/simulated/shuttle/wall/corner/exterior
 	var/corner_overlay_state = "diagonalWall"
 	var/image/corner_overlay
@@ -85,7 +99,7 @@
 		corner_overlay.layer = TURF_BASE_LAYER
 	overlays.Add(corner_overlay)
 
-// Predefined Shuttle Exterior Corners
+// Smooth white.
 /turf/simulated/shuttle/wall/corner/exterior/smoothwhite
 	icon_state = "swall_c" //for mapping preview
 	corner_overlay_state = "swall_c"
@@ -98,6 +112,7 @@
 /turf/simulated/shuttle/wall/corner/exterior/smoothwhite/sw
 	dir = SOUTH|WEST
 
+// Smooth inverted.
 /turf/simulated/shuttle/wall/corner/exterior/smoothinverted
 	icon_state = "swall_cinv" //for mapping preview
 	corner_overlay_state = "swall_cinv"
@@ -110,6 +125,7 @@
 /turf/simulated/shuttle/wall/corner/exterior/smoothinverted/sw
 	dir = SOUTH|WEST
 
+// Blocky white.
 /turf/simulated/shuttle/wall/corner/exterior/blockwhite
 	icon_state = "diagonalWall"
 	corner_overlay_state = "diagonalWall"
@@ -122,6 +138,7 @@
 /turf/simulated/shuttle/wall/corner/exterior/blockwhite/sw
 	dir = SOUTH|WEST
 
+// Blocky orange.
 /turf/simulated/shuttle/wall/corner/exterior/blockorange
 	icon_state = "diagonalWall2"
 	corner_overlay_state = "diagonalWall2"
@@ -134,6 +151,7 @@
 /turf/simulated/shuttle/wall/corner/exterior/blockorange/sw
 	dir = SOUTH|WEST
 
+// Dark.
 /turf/simulated/shuttle/wall/corner/exterior/dark
 	icon_state = "diagonalWall3"
 	corner_overlay_state = "diagonalWall3"

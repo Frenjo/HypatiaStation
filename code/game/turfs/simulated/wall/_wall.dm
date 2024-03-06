@@ -10,6 +10,8 @@
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick, 312500 for 1m by 2.5m by 0.25m plasteel wall
 
+	explosion_resistance = 5
+
 	var/mineral = MATERIAL_METAL
 	var/rotting = FALSE
 

@@ -11,6 +11,8 @@
 	dynamic_lighting = FALSE
 	luminosity = 1
 
+	explosion_resistance = 10
+
 	var/static/list/dust_cache
 	var/static/list/speedspace_cache
 	var/static/list/phase_shift_by_x

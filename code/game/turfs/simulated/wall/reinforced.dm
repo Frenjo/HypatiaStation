@@ -11,6 +11,8 @@
 
 	walltype = "rwall"
 
+	explosion_resistance = 25
+
 	var/d_state = 0
 
 /turf/simulated/wall/r_wall/attack_hand(mob/user as mob)
@@ -323,6 +325,7 @@
 
 	damage_cap = INFINITY
 	max_temperature = INFINITY
+	explosion_resistance = INFINITY
 
 /turf/simulated/wall/r_wall/riveted/attack_hand(mob/user as mob)
 	return

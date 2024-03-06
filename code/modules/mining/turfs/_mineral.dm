@@ -15,6 +15,8 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 	initial_gases = null
 	temperature = T0C
 
+	explosion_resistance = 2
+
 	var/decl/mineral/mineral = null
 	var/mined_ore = 0
 	var/last_act = 0
