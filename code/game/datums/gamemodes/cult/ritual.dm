@@ -177,12 +177,10 @@ var/engwords = list(
 			"Firjji prhiv mazenhor.", "Tanah eh wakantahe.", \
 			"Obliyae na oraie.", "Miyf hon vnor'c.", \
 			"Wakabai hij fen juswix."))
-	for(var/mob/V in viewers(src))
-		V.show_message(
-			SPAN_WARNING("The markings pulse with a small burst of light, then fall dark."), 3,
-			SPAN_WARNING("You hear a faint fizzle."), 2
-		)
-	return
+	visible_message(
+		SPAN_WARNING("The markings pulse with a small burst of light, then fall dark."),
+		SPAN_WARNING("You hear a faint fizzle.")
+	)
 
 /obj/effect/rune/proc/check_icon()
 	icon = get_uristrune_cult(word1, word2, word3)
@@ -454,11 +452,10 @@ var/engwords = list(
 		if(usr.get_active_hand() != src)
 			return
 
-		for(var/mob/V in viewers(src))
-			V.show_message(
-				SPAN_WARNING("[user] slices open a finger and begins to chant and paint symbols on the floor."), 3,
-				SPAN_WARNING("You hear chanting."), 2
-			)
+		visible_message(
+			SPAN_WARNING("[user] slices open a finger and begins to chant and paint symbols on the floor."),
+			SPAN_WARNING("You hear chanting.")
+		)
 		to_chat(user, SPAN_WARNING("You slice open one of your fingers and begin drawing a rune on the floor whilst chanting the ritual that binds your life essence with the dark arcane energies flowing through the surrounding world."))
 		user.take_overall_damage((rand(9) + 1) / 10) // 0.1 to 1.0 damage
 		if(do_after(user, 50))

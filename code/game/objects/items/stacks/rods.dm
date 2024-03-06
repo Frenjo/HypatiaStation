@@ -25,8 +25,10 @@
 		if(WT.remove_fuel(0, user))
 			var/obj/item/stack/sheet/metal/new_item = new(usr.loc)
 			new_item.add_to_stacks(usr)
-			for(var/mob/M in viewers(src))
-				M.show_message(SPAN_WARNING("[src] is shaped into metal by [user.name] with the weldingtool."), 3, SPAN_WARNING("You hear welding."), 2)
+			visible_message(
+				SPAN_WARNING("[src] is shaped into metal by [user.name] with the weldingtool."),
+				SPAN_WARNING("You hear welding.")
+			)
 			var/obj/item/stack/rods/R = src
 			qdel(src)
 			var/replace = (user.get_inactive_hand() == R)

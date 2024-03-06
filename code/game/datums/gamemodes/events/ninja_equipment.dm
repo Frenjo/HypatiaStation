@@ -1346,11 +1346,10 @@ It is possible to destroy the net by the occupant or someone else.
 		if(affecting)
 			var/mob/living/carbon/M = affecting
 			M.anchored = FALSE
-			for(var/mob/O in viewers(src, 3))
-				O.show_message(
-					"[M.name] was recovered from the energy net!", 1,
-					"You hear a grunt.", 2
-				)
+			visible_message(
+				"[M.name] was recovered from the energy net!",
+				"You hear a grunt."
+			)
 			if(isnotnull(master))//As long as they still exist.
 				to_chat(master, "\red <b>ERROR</b>: \black unable to initiate transport protocol. Procedure terminated.")
 		qdel(src)
@@ -1398,11 +1397,10 @@ It is possible to destroy the net by the occupant or someone else.
 			anim(M.loc,M,'icons/mob/mob.dmi',,"phasein",,M.dir)
 			qdel(src)//Wait for everything to finish, delete the net. Else it will stop everything once net is deleted, including the spawn(0).
 
-		for(var/mob/O in viewers(src, 3))
-			O.show_message(
-				"[M] vanished!", 1,
-				"You hear sparks flying!", 2
-			)
+		visible_message(
+			"[M] vanishes!",
+			"You hear sparks flying!"
+		)
 
 		if(isnotnull(master))//As long as they still exist.
 			to_chat(master, "\blue <b>SUCCESS</b>: \black transport procedure of \the [affecting] complete.")
@@ -1442,8 +1440,7 @@ It is possible to destroy the net by the occupant or someone else.
 
 /obj/effect/energy_net/hitby(AM as mob|obj)
 	..()
-	for(var/mob/O in viewers(src, null))
-		O.show_message(SPAN_DANGER("[src] was hit by [AM]."), 1)
+	visible_message(SPAN_DANGER("[src] was hit by [AM]."))
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 10

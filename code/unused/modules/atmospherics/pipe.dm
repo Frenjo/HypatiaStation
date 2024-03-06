@@ -396,9 +396,10 @@ var/linenums = 0
 		W:weldfuel -= 2
 		stat &= ~BROKEN
 		update()
-		for (var/mob/M in viewers(src))
-			M.show_message("\red The pipe has been mended by [user.name] with the weldingtool.", 3, "\red You hear welding.", 2)
-		return
+		visible_message(
+			SPAN_WARNING("The pipe has been mended by [user.name] with the weldingtool.")
+			SPAN_WARNING("You hear welding.")
+		)
 
 /obj/machinery/pipes/ex_act(severity)
 	switch(severity)

@@ -155,7 +155,7 @@
 					user.visible_message(
 						"[user.name] starts to weld the [name] to the floor.",
 						"You start to weld the [src] to the floor.",
-						"You hear welding."
+						SPAN_WARNING("You hear welding.")
 					)
 					if(do_after(user, 20))
 						if(isnull(src) || !WT.isOn())
@@ -170,7 +170,7 @@
 					user.visible_message(
 						"[user.name] starts to cut the [name] free from the floor.",
 						"You start to cut the [src] free from the floor.",
-						"You hear welding."
+						SPAN_WARNING("You hear welding.")
 					)
 					if(do_after(user, 20))
 						if(isnull(src) || !WT.isOn())

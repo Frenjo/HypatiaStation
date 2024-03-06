@@ -73,9 +73,11 @@
 			if(1)
 				if (WT.remove_fuel(0,user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
-					user.visible_message("[user.name] starts to weld the [src.name] to the floor.", \
-						"You start to weld the [src] to the floor.", \
-						"You hear welding")
+					user.visible_message(
+						"[user.name] starts to weld the [name] to the floor.",
+						"You start to weld the [src] to the floor.",
+						SPAN_WARNING("You hear welding.")
+					)
 					if (do_after(user,20))
 						if(!src || !WT.isOn()) return
 						state = 2
@@ -87,9 +89,11 @@
 			if(2)
 				if (WT.remove_fuel(0,user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
-					user.visible_message("[user.name] starts to cut the [src.name] free from the floor.", \
-						"You start to cut the [src] free from the floor.", \
-						"You hear welding")
+					user.visible_message(
+						"[user.name] starts to cut the [name] free from the floor.",
+						"You start to cut the [src] free from the floor.",
+						SPAN_WARNING("You hear welding.")
+					)
 					if (do_after(user,20))
 						if(!src || !WT.isOn()) return
 						state = 1

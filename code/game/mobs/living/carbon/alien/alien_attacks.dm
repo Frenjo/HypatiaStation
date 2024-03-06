@@ -4,9 +4,7 @@
 	return
 
 /mob/living/carbon/alien/meteorhit(O as obj)
-	for(var/mob/M in viewers(src, null))
-		if ((M.client && !(M.blinded)))
-			M.show_message(text("\red [] has been hit by []", src, O), 1)
+	visible_message(SPAN_WARNING("[src] has been hit by [O]!"))
 	if (health > 0)
 		adjustBruteLoss((istype(O, /obj/effect/meteor/small) ? 10 : 25))
 		adjustFireLoss(30)
@@ -20,8 +18,7 @@
 		if(S.melee_damage_upper == 0)
 			S.emote("[S.friendly] [src]")
 		else
-			for(var/mob/O in viewers(src, null))
-				O.show_message("\red <B>[S]</B> [S.attacktext] [src]!", 1)
+			visible_message(SPAN_WARNING("<B>[S]</B> [S.attacktext] [src]!"))
 			var/damage = rand(S.melee_damage_lower, S.melee_damage_upper)
 			adjustBruteLoss(damage)
 			S.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
@@ -44,9 +41,7 @@
 				return
 			if (health > 0)
 				playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[M.name] has bit [src]!</B>"), 1)
+				visible_message(SPAN_DANGER("[M.name] has bitten [src]!"))
 				adjustBruteLoss(rand(1, 3))
 				updatehealth()
 	return
@@ -61,9 +56,7 @@
 
 	if (health > -100)
 
-		for(var/mob/O in viewers(src, null))
-			if ((O.client && !( O.blinded )))
-				O.show_message(text("\red <B>The [M.name] glomps []!</B>", src), 1)
+		visible_message(SPAN_DANGER("The [M.name] glomps [src]!"))
 
 		var/damage = rand(1, 3)
 
@@ -98,9 +91,10 @@
 						stuttering = 5
 					Stun(5)
 
-					for(var/mob/O in viewers(src, null))
-						if ((O.client && !( O.blinded )))
-							O.show_message("\red <B>[src] has been touched with the stun gloves by [M]!</B>", 1, "\red You hear someone fall.", 2)
+					visible_message(
+						SPAN_DANGER("[src] has been touched with the stun gloves by [M]!"),
+						SPAN_WARNING("You hear someone fall.")
+					)
 					return
 				else
 					M << "\red Not enough charge! "
@@ -139,9 +133,7 @@
 			LAssailant = M
 
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			for(var/mob/O in viewers(src, null))
-				if ((O.client && !( O.blinded )))
-					O.show_message(text("\red [] has grabbed [] passively!", M, src), 1)
+			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
 
 		else
 			var/damage = rand(1, 9)
@@ -154,19 +146,16 @@
 						sleep(3)
 						step_away(src,M,15)
 				playsound(loc, "punch", 25, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has punched []!</B>", M, src), 1)
+				visible_message(SPAN_DANGER("[M] has punched [src]!"))
 				if (damage > 4.9)
 					Weaken(rand(10,15))
-					for(var/mob/O in viewers(M, null))
-						if ((O.client && !( O.blinded )))
-							O.show_message(text("\red <B>[] has weakened []!</B>", M, src), 1, "\red You hear someone fall.", 2)
+					visible_message(
+						SPAN_DANGER("[M] has weakened [src]!"),
+						SPAN_WARNING("You hear someone fall.")
+					)
 				adjustBruteLoss(damage)
 				updatehealth()
 			else
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
-						O.show_message(text("\red <B>[] has attempted to punch []!</B>", M, src), 1)
+				visible_message(SPAN_DANGER("[M] has attempted to punch [src]!"))
 	return

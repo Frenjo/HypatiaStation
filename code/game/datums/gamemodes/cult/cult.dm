@@ -188,8 +188,7 @@
 		cult_mind.memory = ""
 		update_cult_icons_removed(cult_mind)
 		if(show_message)
-			for(var/mob/M in viewers(cult_mind.current))
-				to_chat(M, "<FONT size = 3>[cult_mind.current] looks like they just reverted to their old faith!</FONT>")
+			cult_mind.current.visible_message("<FONT size = 3>[cult_mind.current] looks like they just reverted to their old faith!</FONT>")
 
 /datum/game_mode/proc/update_all_cult_icons()
 	spawn(0)

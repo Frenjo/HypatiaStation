@@ -526,8 +526,7 @@ default behaviour is:
 						if(prob(75))
 							var/obj/item/grab/G = pick(M.grabbed_by)
 							if(istype(G, /obj/item/grab))
-								for(var/mob/O in viewers(M, null))
-									O.show_message(SPAN_WARNING("[G.affecting] has been pulled from [G.assailant]'s grip by [src]"), 1)
+								M.visible_message(SPAN_WARNING("[G.affecting] has been pulled from [G.assailant]'s grip by [src]!"))
 								//G = null
 								qdel(G)
 						else
@@ -667,16 +666,18 @@ default behaviour is:
 			if(C.handcuffed)
 				C.next_move = world.time + 100
 				C.last_special = world.time + 100
-				to_chat(C, SPAN_WARNING("You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)"))
-				for(var/mob/O in viewers(L))
-					O.show_message(SPAN_DANGER("[usr] attempts to unbuckle themself!"), 1)
+				C.visible_message(
+					SPAN_DANGER("[usr] attempts to unbuckle themselves!"),
+					SPAN_WARNING("You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still.)")
+				)
 				spawn(0)
 					if(do_after(usr, 1200))
 						if(!C.buckled)
 							return
-						for(var/mob/O in viewers(C))
-							O.show_message(SPAN_DANGER("[usr] manages to unbuckle themself!"), 1)
-						to_chat(C, SPAN_INFO("You successfully unbuckle yourself."))
+						C.visible_message(
+							SPAN_DANGER("[usr] manages to unbuckle themselves!"),
+							SPAN_INFO("You successfully unbuckle yourself.")
+						)
 						C.buckled.manual_unbuckle(C)
 		else
 			L.buckled.manual_unbuckle(L)
@@ -701,9 +702,10 @@ default behaviour is:
 		//okay, so the closet is either welded or locked... resist!!!
 		usr.next_move = world.time + 100
 		L.last_special = world.time + 100
-		to_chat(L, SPAN_WARNING("You lean on the back of \the [C] and start pushing the door open. (this will take about [breakout_time] minutes)"))
-		for(var/mob/O in viewers(usr.loc))
-			O.show_message(SPAN_DANGER("The [L.loc] begins to shake violently!"), 1)
+		L.visible_message(
+			SPAN_DANGER("The [L.loc] begins to shake violently!"),
+			SPAN_WARNING("You lean on the back of \the [C] and start pushing the door open. (This will take about [breakout_time] minutes.)")
+		)
 
 		spawn(0)
 			if(do_after(usr, (breakout_time * 60 * 10))) //minutes * 60seconds * 10deciseconds
@@ -730,18 +732,20 @@ default behaviour is:
 					sleep(10)
 					SC.broken = 1
 					SC.locked = 0
-					to_chat(usr, SPAN_WARNING("You successfully break out!"))
-					for(var/mob/O in viewers(L.loc))
-						O.show_message(SPAN_DANGER("\the [usr] successfully broke out of \the [SC]!"), 1)
+					usr.visible_message(
+						SPAN_DANGER("\the [usr] successfully broke out of \the [SC]!"),
+						SPAN_WARNING("You successfully break out!")
+					)
 					if(istype(SC.loc, /obj/structure/big_delivery)) //Do this to prevent contents from being opened into nullspace (read: bluespace)
 						var/obj/structure/big_delivery/BD = SC.loc
 						BD.attack_hand(usr)
 					SC.open()
 				else
 					C.welded = 0
-					to_chat(usr, SPAN_WARNING("You successfully break out!"))
-					for(var/mob/O in viewers(L.loc))
-						O.show_message(SPAN_DANGER("\the [usr] successfully broke out of \the [C]!"), 1)
+					usr.visible_message(
+						SPAN_DANGER("\the [usr] successfully broke out of \the [C]!"),
+						SPAN_WARNING("You successfully break out!")
+					)
 					if(istype(C.loc, /obj/structure/big_delivery)) //nullspace ect.. read the comment above
 						var/obj/structure/big_delivery/BD = C.loc
 						BD.attack_hand(usr)
@@ -754,28 +758,34 @@ default behaviour is:
 			CM.fire_stacks -= 5
 			CM.Weaken(3)
 			CM.spin(32, 2)
-			CM.visible_message(SPAN_DANGER("[CM] rolls on the floor, trying to put themselves out!"), \
-								SPAN_NOTICE("You stop, drop, and roll!"))
+			CM.visible_message(
+				SPAN_DANGER("[CM] rolls on the floor, trying to put themselves out!"),
+				SPAN_NOTICE("You stop, drop, and roll!")
+			)
 			sleep(30)
 			if(fire_stacks <= 0)
-				CM.visible_message(SPAN_DANGER("[CM] has successfully extinguished themselves!"), \
-									SPAN_NOTICE("You extinguish yourself."))
+				CM.visible_message(
+					SPAN_DANGER("[CM] has successfully extinguished themselves!"),
+					SPAN_NOTICE("You extinguish yourself.")
+				)
 				ExtinguishMob()
 			return
 		if(CM.handcuffed && CM.canmove && (CM.last_special <= world.time))
 			CM.next_move = world.time + 100
 			CM.last_special = world.time + 100
 			if(HULK in usr.mutations) //Don't want to do a lot of logic gating here.
-				to_chat(usr, SPAN_WARNING("You attempt to break your handcuffs. (This will take around 5 seconds and you need to stand still)"))
-				for(var/mob/O in viewers(CM))
-					O.show_message(SPAN_DANGER("[CM] is trying to break the handcuffs!"), 1)
+				CM.visible_message(
+					SPAN_DANGER("[CM] is trying to break the handcuffs!"),
+					SPAN_WARNING("You attempt to break your handcuffs. (This will take around 5 seconds and you need to stand still.)")
+				)
 				spawn(0)
 					if(do_after(CM, 50))
 						if(!CM.handcuffed || CM.buckled)
 							return
-						for(var/mob/O in viewers(CM))
-							O.show_message(SPAN_DANGER("[CM] manages to break the handcuffs!</B>"), 1)
-						to_chat(CM, SPAN_WARNING("You successfully break your handcuffs."))
+						CM.visible_message(
+							SPAN_DANGER("[CM] manages to break the handcuffs!"),
+							SPAN_WARNING("You successfully break your handcuffs.")
+						)
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
 						qdel(CM.handcuffed)
 						CM.handcuffed = null
@@ -787,32 +797,36 @@ default behaviour is:
 				if(istype(HC)) //If you are handcuffed with actual handcuffs... Well what do I know, maybe someone will want to handcuff you with toilet paper in the future...
 					breakouttime = HC.breakouttime
 					displaytime = breakouttime / 600 //Minutes
-				to_chat(CM, SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)"))
-				for(var/mob/O in viewers(CM))
-					O.show_message(SPAN_DANGER("[usr] attempts to remove \the [HC]!"), 1)
+				CM.visible_message(
+					SPAN_DANGER("[usr] attempts to remove \the [HC]!"),
+					SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still.)")
+				)
 				spawn(0)
 					if(do_after(CM, breakouttime))
 						if(!CM.handcuffed || CM.buckled)
-							return // time leniency for lag which also might make this whole thing pointless but the server
-						for(var/mob/O in viewers(CM))											//lags so hard that 40s isn't lenient enough - Quarxink
-							O.show_message(SPAN_DANGER("[CM] manages to remove the handcuffs!"), 1)
-						to_chat(CM, SPAN_INFO("You successfully remove \the [CM.handcuffed]."))
+							return // time leniency for lag which also might make this whole thing pointless but the server lags so hard that 40s isn't lenient enough - Quarxink
+						CM.visible_message(
+							SPAN_DANGER("[CM] manages to remove the handcuffs!"),
+							SPAN_INFO("You successfully remove \the [CM.handcuffed].")
+						)
 						CM.drop_from_inventory(CM.handcuffed)
 
 		else if(CM.legcuffed && CM.canmove && (CM.last_special <= world.time))
 			CM.next_move = world.time + 100
 			CM.last_special = world.time + 100
 			if(HULK in usr.mutations) //Don't want to do a lot of logic gating here.
-				to_chat(usr, SPAN_WARNING("You attempt to break your legcuffs. (This will take around 5 seconds and you need to stand still)"))
-				for(var/mob/O in viewers(CM))
-					O.show_message(SPAN_DANGER("[CM] is trying to break the legcuffs!"), 1)
+				CM.visible_message(
+					SPAN_DANGER("[CM] is trying to break the legcuffs!"),
+					SPAN_WARNING("You attempt to break your legcuffs. (This will take around 5 seconds and you need to stand still.)")
+				)
 				spawn(0)
 					if(do_after(CM, 50))
 						if(!CM.legcuffed || CM.buckled)
 							return
-						for(var/mob/O in viewers(CM))
-							O.show_message(SPAN_DANGER("[CM] manages to break the legcuffs!"), 1)
-						to_chat(CM, SPAN_WARNING("You successfully break your legcuffs."))
+						CM.visible_message(
+							SPAN_DANGER("[CM] manages to break the legcuffs!"),
+							SPAN_WARNING("You successfully break your legcuffs.")
+						)
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
 						qdel(CM.legcuffed)
 						CM.legcuffed = null
@@ -824,16 +838,18 @@ default behaviour is:
 				if(istype(HC)) //If you are legcuffed with actual legcuffs... Well what do I know, maybe someone will want to legcuff you with toilet paper in the future...
 					breakouttime = HC.breakouttime
 					displaytime = breakouttime / 600 //Minutes
-				to_chat(CM, SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still)"))
-				for(var/mob/O in viewers(CM))
-					O.show_message(SPAN_DANGER("[usr] attempts to remove \the [HC]!"), 1)
+				CM.visible_message(
+					SPAN_DANGER("[usr] attempts to remove \the [HC]!"),
+					SPAN_WARNING("You attempt to remove \the [HC]. (This will take around [displaytime] minutes and you need to stand still.)")
+				)
 				spawn(0)
 					if(do_after(CM, breakouttime))
 						if(!CM.legcuffed || CM.buckled)
-							return // time leniency for lag which also might make this whole thing pointless but the server
-						for(var/mob/O in viewers(CM))											//lags so hard that 40s isn't lenient enough - Quarxink
-							O.show_message(SPAN_DANGER("[CM] manages to remove the legcuffs!"), 1)
-						to_chat(CM, SPAN_INFO("You successfully remove \the [CM.legcuffed]."))
+							return // time leniency for lag which also might make this whole thing pointless but the server lags so hard that 40s isn't lenient enough - Quarxink
+						CM.visible_message(
+							SPAN_DANGER("[CM] manages to remove the legcuffs!"),
+							SPAN_INFO("You successfully remove \the [CM.legcuffed].")
+						)
 						CM.drop_from_inventory(CM.legcuffed)
 						CM.legcuffed = null
 						CM.update_inv_legcuffed()
@@ -922,8 +938,7 @@ default behaviour is:
 	if(!target_vent)
 		return
 
-	for(var/mob/O in viewers(src, null))
-		O.show_message("<B>[src] scrambles into the ventilation ducts!</B>", 1)
+	visible_message("<B>[src] scrambles into the ventilation ducts!</B>")
 	loc = target_vent
 
 	var/travel_time = round(get_dist(loc, target_vent.loc) / 2)

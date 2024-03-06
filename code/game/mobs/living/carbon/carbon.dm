@@ -38,9 +38,7 @@
 					H.updatehealth()
 				else
 					take_organ_damage(d)
-				for(var/mob/M in viewers(user, null))
-					if(isnotnull(M.client))
-						M.show_message(SPAN_DANGER("[user] attacks [src]'s stomach wall with the [I.name]!"), 2)
+				user.visible_message(SPAN_DANGER("[user] attacks [src]'s stomach wall with the [I.name]!"))
 				playsound(user.loc, 'sound/effects/attackblob.ogg', 50, 1)
 
 				if(prob(getBruteLoss() - 50))
@@ -54,9 +52,7 @@
 		if(M in stomach_contents)
 			stomach_contents.Remove(M)
 		M.loc = src.loc
-		for(var/mob/N in viewers(src, null))
-			if(isnotnull(N.client))
-				N.show_message(SPAN_DANGER("[M] bursts out of [src]!"), 2)
+		visible_message(SPAN_DANGER("[M] bursts out of [src]!"))
 	. = ..(null, 1)
 
 /mob/living/carbon/attack_hand(mob/M as mob)

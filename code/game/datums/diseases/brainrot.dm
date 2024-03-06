@@ -58,9 +58,10 @@
 				if(prob(2))
 					to_chat(affected_mob, SPAN_WARNING("Strange buzzing fills your head, removing all thoughts."))
 			if(prob(3))
-				to_chat(affected_mob, SPAN_WARNING("You lose consciousness..."))
-				for(var/mob/O in viewers(affected_mob, null))
-					O.show_message("[affected_mob] suddenly collapses", 1)
+				affected_mob.visible_message(
+					"[affected_mob] suddenly collapses!",
+					SPAN_WARNING("You lose consciousness...")
+				)
 				affected_mob.Paralyse(rand(5, 10))
 				if(prob(1))
 					affected_mob.emote("snore")

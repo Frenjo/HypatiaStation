@@ -202,11 +202,10 @@
 				to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
 				return
 			new /obj/item/stack/sheet/metal(src.loc)
-			for(var/mob/M in viewers(src))
-				M.show_message(
-					SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [WT]."), 3,
-					"You hear welding.", 2
-				)
+			visible_message(
+				SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [WT]."),
+				SPAN_WARNING("You hear welding.")
+			)
 			qdel(src)
 			return
 		if(isrobot(user))
@@ -223,11 +222,10 @@
 			return
 		src.welded = !src.welded
 		src.update_icon()
-		for(var/mob/M in viewers(src))
-			M.show_message(
-				SPAN_WARNING("[src] has been [welded ? "welded shut" : "unwelded"] by [user.name]."), 3,
-				"You hear welding.", 2
-			)
+		visible_message(
+			SPAN_WARNING("[src] has been [welded ? "welded shut" : "unwelded"] by [user.name]."),
+			SPAN_WARNING("You hear welding.")
+		)
 	else
 		src.attack_hand(user)
 	return

@@ -314,8 +314,7 @@ var/list/sacrificed = list()
 	if(S)
 		if(isrune(src))
 			usr.say("Kla[pick("'", "`")]atu barada nikt'o!")
-			for(var/mob/V in viewers(src))
-				V.show_message(SPAN_WARNING("The rune turns into gray dust, veiling the surrounding runes."), 3)
+			visible_message(SPAN_WARNING("The rune turns into gray dust, veiling the surrounding runes."))
 			qdel(src)
 		else
 			usr.whisper("Kla[pick("'", "`")]atu barada nikt'o!")
@@ -495,8 +494,7 @@ var/list/sacrificed = list()
 			imbued_from = R
 			break
 	if(imbued_from)
-		for(var/mob/V in viewers(src))
-			V.show_message(SPAN_WARNING("The runes turn into dust, which then forms into an arcane image on the paper."), 3)
+		visible_message(SPAN_WARNING("The runes turn into dust, which then forms into an arcane image on the paper."))
 		usr.say("H'drak v[pick("'", "`")]loso, mir'kanas verbot!")
 		qdel(imbued_from)
 		qdel(newtalisman)
@@ -729,8 +727,7 @@ var/list/sacrificed = list()
 			return
 		if(isrune(W))
 			usr.say("Nikt[pick("'", "`")]o barada kla'atu!")
-			for(var/mob/V in viewers(src))
-				V.show_message(SPAN_WARNING("The rune turns into red dust, reveaing the surrounding runes."), 3)
+			visible_message(SPAN_WARNING("The rune turns into red dust, reveaing the surrounding runes."))
 			qdel(src)
 			return
 		if(istype(W, /obj/item/paper/talisman))
@@ -1018,11 +1015,9 @@ var/list/sacrificed = list()
 		usr.say("Dream sign ''Evil sealing talisman'[pick("'","`")]!")
 		var/obj/item/nullrod/N = locate() in T
 		if(N)
-			for(var/mob/O in viewers(T, null))
-				O.show_message(SPAN_DANGER("[usr] invokes a talisman at [T], but they are unaffected!"), 1)
+			T.visible_message(SPAN_DANGER("[usr] invokes a talisman at [T], but they are unaffected!"))
 		else
-			for(var/mob/O in viewers(T, null))
-				O.show_message(SPAN_DANGER("[usr] invokes a talisman at [T]!"), 1)
+			T.visible_message(SPAN_DANGER("[usr] invokes a talisman at [T]!"))
 
 			if(issilicon(T))
 				T.Weaken(15)

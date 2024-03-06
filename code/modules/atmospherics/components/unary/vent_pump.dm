@@ -255,7 +255,7 @@
 					user.visible_message(
 						"[user] welds the vent shut.",
 						"You weld the vent shut.",
-						"You hear welding."
+						SPAN_WARNING("You hear welding.")
 					)
 					welded = TRUE
 					update_icon()
@@ -263,7 +263,7 @@
 					user.visible_message(
 						"[user] unwelds the vent.",
 						"You unweld the vent.",
-						"You hear welding."
+						SPAN_WARNING("You hear welding.")
 					)
 					welded = FALSE
 					update_icon()

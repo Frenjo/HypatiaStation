@@ -134,7 +134,7 @@ field_generator power level display
 					user.visible_message(
 						"[user.name] starts to weld the [src.name] to the floor.",
 						"You start to weld the [src] to the floor.",
-						"You hear welding."
+						SPAN_WARNING("You hear welding.")
 					)
 					if(do_after(user, 20))
 						if(!src || !WT.isOn())
@@ -149,7 +149,7 @@ field_generator power level display
 					user.visible_message(
 						"[user.name] starts to cut the [src.name] free from the floor.",
 						"You start to cut the [src] free from the floor.",
-						"You hear welding."
+						SPAN_WARNING("You hear welding.")
 					)
 					if(do_after(user, 20))
 						if(!src || !WT.isOn())
@@ -218,8 +218,7 @@ field_generator power level display
 	if(draw_power(round(power_draw / 2, 1)))
 		return 1
 	else
-		for(var/mob/M in viewers(src))
-			M.show_message(SPAN_WARNING("The [src.name] shuts down!"))
+		visible_message(SPAN_WARNING("The [name] shuts down!"))
 		turn_off()
 		investigate_log("ran out of power and <font color='red'>deactivated</font>", "singulo")
 		src.power = 0

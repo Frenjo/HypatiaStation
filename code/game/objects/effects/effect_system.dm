@@ -647,9 +647,7 @@ steam.start() -- spawns the effect
 	if(istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
 		G.affecting.loc = src.loc
-		for(var/mob/O in viewers(src))
-			if(O.client)
-				to_chat(O, SPAN_WARNING("[G.assailant] smashes [G.affecting] through the foamed metal wall."))
+		visible_message(SPAN_WARNING("[G.assailant] smashes [G.affecting] through the foamed metal wall."))
 		qdel(I)
 		qdel(src)
 		return

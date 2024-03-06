@@ -160,9 +160,7 @@
 	H.verbs.Remove(/client/proc/mimewall)
 	spawn(300)
 		H.verbs.Add(/client/proc/mimewall)
-	for(var/mob/V in viewers(H))
-		if(V != usr)
-			V.show_message("[H] looks as if a wall is in front of them.", 3, "", 2)
+	H.visible_message("[H] looks as if a wall is in front of them.", "")
 	to_chat(usr, "You form a wall in front of yourself.")
 	new /obj/effect/forcefield/mime(locate(usr.x, usr.y, usr.z))
 

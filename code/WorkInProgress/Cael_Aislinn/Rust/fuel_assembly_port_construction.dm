@@ -123,10 +123,11 @@
 		if(do_after(user, 50))
 			if(!src || !WT.remove_fuel(3, user)) return
 			new /obj/item/rust_fuel_assembly_port_frame(loc)
-			user.visible_message(\
-				"\red [src] has been cut away from the wall by [user.name].",\
-				"You detached the port frame.",\
-				"\red You hear welding.")
+			user.visible_message(
+				SPAN_WARNING("[src] has been cut away from the wall by [user.name]."),
+				"You detached the port frame.",
+				SPAN_WARNING("You hear welding.")
+			)
 			qdel(src)
 		return
 

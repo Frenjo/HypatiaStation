@@ -235,7 +235,7 @@
 		user.visible_message(
 			SPAN_WARNING("[user.name] welds [src]."),
 			"You start welding the APC frame...",
-			"You hear welding."
+			SPAN_WARNING("You hear welding.")
 		)
 		playsound(src, 'sound/items/Welder.ogg', 50, 1)
 		if(do_after(user, 50))
@@ -246,14 +246,14 @@
 				user.visible_message(
 					SPAN_WARNING("[src] has been cut apart by [user.name] with the weldingtool."),
 					SPAN_NOTICE("You disassembled the broken APC frame.</span>"),
-					"You hear welding."
+					SPAN_WARNING("You hear welding.")
 				)
 			else
 				new /obj/item/apc_frame(loc)
 				user.visible_message(
 					SPAN_WARNING("[src] has been cut from the wall by [user.name] with the weldingtool."),
 					SPAN_NOTICE("You cut the APC frame from the wall.</span>"),
-					"You hear welding."
+					SPAN_WARNING("You hear welding.")
 				)
 			qdel(src)
 			return
