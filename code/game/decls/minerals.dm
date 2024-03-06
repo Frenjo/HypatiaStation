@@ -1,6 +1,4 @@
 /decl/mineral
-	// What is my MATERIAL_X define?
-	var/id
 	// What am I called?
 	var/name
 
@@ -15,7 +13,6 @@
 	var/ore
 
 /decl/mineral/iron
-	id = MATERIAL_METAL
 	name = "Iron"
 
 	result_amount = 5
@@ -24,7 +21,6 @@
 	ore = /obj/item/ore/iron
 
 /decl/mineral/gold
-	id = MATERIAL_GOLD
 	name = "Gold"
 
 	result_amount = 5
@@ -33,7 +29,6 @@
 	ore = /obj/item/ore/gold
 
 /decl/mineral/silver
-	id = MATERIAL_SILVER
 	name = "Silver"
 
 	result_amount = 5
@@ -42,7 +37,6 @@
 	ore = /obj/item/ore/silver
 
 /decl/mineral/diamond
-	id = MATERIAL_DIAMOND
 	name = "Diamond"
 
 	result_amount = 5
@@ -51,7 +45,6 @@
 	ore = /obj/item/ore/diamond
 
 /decl/mineral/plasma
-	id = MATERIAL_PLASMA
 	name = "Plasma"
 
 	result_amount = 5
@@ -60,7 +53,6 @@
 	ore = /obj/item/ore/plasma
 
 /decl/mineral/uranium
-	id = MATERIAL_URANIUM
 	name = "Uranium"
 
 	result_amount = 5
@@ -69,7 +61,6 @@
 	ore = /obj/item/ore/uranium
 
 /decl/mineral/bananium
-	id = MATERIAL_BANANIUM
 	name = "Bananium"
 
 	result_amount = 3

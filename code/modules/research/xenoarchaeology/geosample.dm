@@ -60,40 +60,40 @@
 	age = rand(1, 999)
 
 	if(isnotnull(container.mineral))
-		switch(container.mineral.id)
-			if(MATERIAL_METAL)
+		switch(container.mineral.type)
+			if(/decl/mineral/iron)
 				age_thousand = rand(1, 999)
 				age_million = rand(1, 999)
 				find_presence["iron"] = rand(1, 1000) / 100
 				source_mineral = "iron"
-			if(MATERIAL_GOLD)
+			if(/decl/mineral/gold)
 				age_thousand = rand(1, 999)
 				age_million = rand(1, 999)
 				age_billion = rand(3,4)
 				find_presence["iron"] = rand(1, 1000) / 100
 				source_mineral = "iron"
-			if(MATERIAL_SILVER)
+			if(/decl/mineral/silver)
 				age_thousand = rand(1, 999)
 				age_million = rand(1, 999)
 				find_presence["iron"] = rand(1, 1000) / 100
 				source_mineral = "iron"
-			if(MATERIAL_DIAMOND)
+			if(/decl/mineral/diamond)
 				age_thousand = rand(1, 999)
 				age_million = rand(1, 999)
 				find_presence["nitrogen"] = rand(1, 1000) / 100
 				source_mineral = "nitrogen"
-			if(MATERIAL_PLASMA)
+			if(/decl/mineral/plasma)
 				age_thousand = rand(1, 999)
 				age_million = rand(1, 999)
 				age_billion = rand(10, 13)
 				find_presence["plasma"] = rand(1, 1000) / 100
 				source_mineral = "plasma"
-			if(MATERIAL_URANIUM)
+			if(/decl/mineral/uranium)
 				age_million = rand(1, 704)
 				age_thousand = rand(1, 999)
 				find_presence["potassium"] = rand(1, 1000) / 100
 				source_mineral = "potassium"
-			if(MATERIAL_BANANIUM)
+			if(/decl/mineral/bananium)
 				age = rand(-1, -999)			//thats the joke
 				age_thousand = rand(-1, -999)
 				find_presence["plasma"] = rand(1, 1000) / 100

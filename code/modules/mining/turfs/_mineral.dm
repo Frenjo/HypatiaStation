@@ -232,8 +232,9 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 	if(isnull(mineral))
 		return
 
-	name = "\improper [lowertext(mineral.name)] deposit"
-	icon_state = "rock_[mineral.id]"
+	var/lower_name = lowertext(mineral.name)
+	name = "\improper [lower_name] deposit"
+	icon_state = "rock_[lower_name]"
 
 	if(!mineral.spread || !mineral.spread_chance)
 		return
