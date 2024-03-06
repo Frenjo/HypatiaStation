@@ -132,24 +132,6 @@
 // END ATMOSPHERICS TANK FLOORS
 
 /*
- * Plating
- */
-/turf/simulated/floor/plating
-	name = "plating"
-	icon_state = "plating"
-	floor_type = null
-	intact = FALSE
-
-/turf/simulated/floor/plating/airless
-	name = "airless plating"
-	initial_gases = null
-	temperature = TCMB
-
-/turf/simulated/floor/plating/airless/New()
-	. = ..()
-	name = "plating"
-
-/*
  * Coloured Grids
  */
 /turf/simulated/floor/bluegrid
@@ -203,21 +185,6 @@
 	name = "brig floor"			// Also added it into the 2x3 brig area of the shuttle.
 	icon_state = "floor4"
 
-/turf/simulated/shuttle/plating
-	name = "plating"
-	icon = 'icons/turf/floors.dmi'
-	icon_state = "plating"
-	intact = FALSE
-
-/turf/simulated/shuttle/plating/airless
-	name = "airless plating"
-	initial_gases = null
-	temperature = TCMB
-
-/turf/simulated/shuttle/plating/airless/New()
-	. = ..()
-	name = "plating"
-
 /*
  * Grass
  */
@@ -258,25 +225,6 @@
 			if(istype(get_step(src, direction), /turf/simulated/floor))
 				var/turf/simulated/floor/FF = get_step(src, direction)
 				FF.update_icon() //so siding get updated properly
-
-/*
- * Iron Sand
- */
-/turf/simulated/floor/plating/ironsand/New()
-	. = ..()
-	name = "iron sand"
-	icon_state = "ironsand[rand(1, 15)]"
-
-/*
- * Snow
- */
-/turf/simulated/floor/plating/snow
-	name = "snow"
-	icon = 'icons/turf/snow.dmi'
-	icon_state = "snow"
-
-/turf/simulated/floor/plating/snow/ex_act(severity)
-	return
 
 /*
  * Server

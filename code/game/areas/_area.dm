@@ -18,7 +18,8 @@
 	name = "Unknown"
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "unknown"
-	layer = 10
+	plane = DEFAULT_PLANE
+	layer = DEFAULT_AREA_LAYER
 	mouse_opacity = FALSE
 	level = null
 

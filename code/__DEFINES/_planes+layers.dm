@@ -22,6 +22,12 @@
 #define SPACE_PLANE_ABOVE_PARALLAX -95
 
 /*
+ * Plating
+ */
+#define PLATING_PLANE -3
+#define ABOVE_PLATING_PLANE -2
+
+/*
  * Turf
  */
 #define TURF_PLANE -1
@@ -31,6 +37,7 @@
  * Default
  */
 #define DEFAULT_PLANE 0
+	#define DEFAULT_AREA_LAYER 999
 
 /*
  * Lighting/Effects
