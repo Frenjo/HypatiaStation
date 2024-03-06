@@ -122,7 +122,7 @@
 	//pr_give_air = new /datum/global_iterator/vehicle_tank_give_air(list(src)            //Same here -Agouri
 
 /obj/vehicle/proc/check_for_support()
-	if(locate(/obj/structure/grille, orange(1, src)) || locate(/obj/structure/lattice, orange(1, src)) || locate(/turf/simulated, orange(1, src)) || locate(/turf/unsimulated, orange(1, src)))
+	if(locate(/obj/structure/grille, orange(1, src)) || locate(/obj/structure/lattice, orange(1, src)) || locate(/turf/simulated, orange(1, src)))
 		return 1
 	else
 		return 0

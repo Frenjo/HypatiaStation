@@ -124,6 +124,3 @@
 		var/turf/T = get_step(src, direction)
 		T.explosion_spread(spread_power)
 	*/
-
-/turf/unsimulated/explosion_spread(power)
-	return //So it doesn't get to the parent proc, which simulates explosions

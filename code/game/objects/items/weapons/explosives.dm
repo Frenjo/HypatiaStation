@@ -39,7 +39,7 @@
 /obj/item/plastique/afterattack(atom/movable/target, mob/user, flag)
 	if(!flag)
 		return
-	if (ismob(target) || istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/storage/))
+	if(ismob(target) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/storage))
 		return
 
 	user << "Planting explosives..."
