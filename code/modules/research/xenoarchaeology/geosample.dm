@@ -60,44 +60,18 @@
 	age = rand(1, 999)
 
 	if(isnotnull(container.mineral))
-		switch(container.mineral.type)
-			if(/decl/mineral/iron)
-				age_thousand = rand(1, 999)
-				age_million = rand(1, 999)
-				find_presence["iron"] = rand(1, 1000) / 100
-				source_mineral = "iron"
-			if(/decl/mineral/gold)
-				age_thousand = rand(1, 999)
-				age_million = rand(1, 999)
-				age_billion = rand(3,4)
-				find_presence["iron"] = rand(1, 1000) / 100
-				source_mineral = "iron"
-			if(/decl/mineral/silver)
-				age_thousand = rand(1, 999)
-				age_million = rand(1, 999)
-				find_presence["iron"] = rand(1, 1000) / 100
-				source_mineral = "iron"
-			if(/decl/mineral/diamond)
-				age_thousand = rand(1, 999)
-				age_million = rand(1, 999)
-				find_presence["nitrogen"] = rand(1, 1000) / 100
-				source_mineral = "nitrogen"
-			if(/decl/mineral/plasma)
-				age_thousand = rand(1, 999)
-				age_million = rand(1, 999)
-				age_billion = rand(10, 13)
-				find_presence["plasma"] = rand(1, 1000) / 100
-				source_mineral = "plasma"
-			if(/decl/mineral/uranium)
-				age_million = rand(1, 704)
-				age_thousand = rand(1, 999)
-				find_presence["potassium"] = rand(1, 1000) / 100
-				source_mineral = "potassium"
-			if(/decl/mineral/bananium)
-				age = rand(-1, -999)			//thats the joke
-				age_thousand = rand(-1, -999)
-				find_presence["plasma"] = rand(1, 1000) / 100
-				source_mineral = "plasma"
+		var/decl/mineral/mineral = container.mineral
+		if(isnotnull(mineral.xenoarch_age_range))
+			age = rand(mineral.xenoarch_age_range[0], mineral.xenoarch_age_range[1])
+		if(isnotnull(mineral.xenoarch_age_range_thousand))
+			age_thousand = rand(mineral.xenoarch_age_range_thousand[0], mineral.xenoarch_age_range_thousand[1])
+		if(isnotnull(mineral.xenoarch_age_range_million))
+			age_million = rand(mineral.xenoarch_age_range_million[0], mineral.xenoarch_age_range_million[1])
+		if(isnotnull(mineral.xenoarch_age_range_billion))
+			age_billion = rand(mineral.xenoarch_age_range_billion[0], mineral.xenoarch_age_range_billion[1])
+		if(isnotnull(mineral.xenoarch_source_mineral))
+			find_presence[mineral.xenoarch_source_mineral] = rand(1, 1000) / 100
+			source_mineral = mineral.xenoarch_source_mineral
 
 	if(prob(75))
 		find_presence["phosphorus"] = rand(1, 500) / 100

@@ -1,69 +1,107 @@
 /decl/mineral
-	// What am I called?
+	// The mineral's name.
 	var/name
 
-	// How much ore?
-	var/result_amount
-	// Does this type of deposit spread?
-	var/spread = TRUE
-	// Chance of spreading in any direction.
-	var/spread_chance
+	/*
+	 * Ore
+	 */
+	// The path to the associated ore item.
+	// Must be a subtype of /obj/item/ore!
+	var/ore_path
+	// How much ore a deposit of this mineral gives.
+	var/ore_result_amount
+	// Whether a deposit of this type spreads.
+	var/ore_spread = TRUE
+	// The chance a deposit of this type will spread.
+	var/ore_spread_chance
 
-	// Path to the resultant ore. Must be a subtype of /obj/item/ore!
-	var/ore
+	/*
+	 * Xenoarchaeology
+	 */
+	// The minimum and maximum age ranges for each increment.
+	var/list/xenoarch_age_range // This one is apparently special as it's only used by bananium.
+	var/list/xenoarch_age_range_thousand
+	var/list/xenoarch_age_range_million
+	var/list/xenoarch_age_range_billion
+	// The listed source mineral.
+	var/xenoarch_source_mineral
 
 /decl/mineral/iron
 	name = "Iron"
 
-	result_amount = 5
-	spread_chance = 20
+	ore_path = /obj/item/ore/iron
+	ore_result_amount = 5
+	ore_spread_chance = 20
 
-	ore = /obj/item/ore/iron
+	xenoarch_age_range_thousand = list(1, 999)
+	xenoarch_age_range_million = list(1, 999)
+	xenoarch_source_mineral = "iron"
 
 /decl/mineral/gold
 	name = "Gold"
 
-	result_amount = 5
-	spread_chance = 10
+	ore_path = /obj/item/ore/gold
+	ore_result_amount = 5
+	ore_spread_chance = 10
 
-	ore = /obj/item/ore/gold
+	xenoarch_age_range_thousand = list(1, 999)
+	xenoarch_age_range_million = list(1, 999)
+	xenoarch_age_range_billion = list(3, 4)
+	xenoarch_source_mineral = "iron"
 
 /decl/mineral/silver
 	name = "Silver"
 
-	result_amount = 5
-	spread_chance = 10
+	ore_path = /obj/item/ore/silver
+	ore_result_amount = 5
+	ore_spread_chance = 10
 
-	ore = /obj/item/ore/silver
+	xenoarch_age_range_thousand = list(1, 999)
+	xenoarch_age_range_million = list(1, 999)
+	xenoarch_source_mineral = "iron"
 
 /decl/mineral/diamond
 	name = "Diamond"
 
-	result_amount = 5
-	spread_chance = 10
+	ore_path = /obj/item/ore/diamond
+	ore_result_amount = 5
+	ore_spread_chance = 10
 
-	ore = /obj/item/ore/diamond
+	xenoarch_age_range_thousand = list(1, 999)
+	xenoarch_age_range_million = list(1, 999)
+	xenoarch_source_mineral = "nitrogen"
 
 /decl/mineral/plasma
 	name = "Plasma"
 
-	result_amount = 5
-	spread_chance = 20
+	ore_path = /obj/item/ore/plasma
+	ore_result_amount = 5
+	ore_spread_chance = 20
 
-	ore = /obj/item/ore/plasma
+	xenoarch_age_range_thousand = list(1, 999)
+	xenoarch_age_range_million = list(1, 999)
+	xenoarch_age_range_billion = list(10, 13)
+	xenoarch_source_mineral = "plasma"
 
 /decl/mineral/uranium
 	name = "Uranium"
 
-	result_amount = 5
-	spread_chance = 10
+	ore_path = /obj/item/ore/uranium
+	ore_result_amount = 5
+	ore_spread_chance = 10
 
-	ore = /obj/item/ore/uranium
+	xenoarch_age_range_thousand = list(1, 999)
+	xenoarch_age_range_million = list(1, 704)
+	xenoarch_source_mineral = "potassium"
 
 /decl/mineral/bananium
 	name = "Bananium"
 
-	result_amount = 3
-	spread_chance = 1
+	ore_path = /obj/item/ore/bananium
+	ore_result_amount = 3
+	ore_spread_chance = 1
 
-	ore = /obj/item/ore/bananium
+	// This is the joke.
+	xenoarch_age_range = list(-1, -999)
+	xenoarch_age_range_thousand = list(-1, -999)
+	xenoarch_source_mineral = "plasma"

@@ -236,11 +236,11 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 	name = "\improper [lower_name] deposit"
 	icon_state = "rock_[lower_name]"
 
-	if(!mineral.spread || !mineral.spread_chance)
+	if(!mineral.ore_spread || !mineral.ore_spread_chance)
 		return
 
 	for(var/trydir in GLOBL.cardinal)
-		if(prob(mineral.spread_chance))
+		if(prob(mineral.ore_spread_chance))
 			var/turf/simulated/mineral/random/target_turf = get_step(src, trydir)
 			if(istype(target_turf) && !target_turf.mineral)
 				target_turf.mineral = mineral
@@ -249,10 +249,10 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 /turf/simulated/mineral/proc/DropMineral()
 	if(isnull(mineral))
 		return
-	if(!ispath(mineral.ore, /obj/item/ore))
+	if(!ispath(mineral.ore_path, /obj/item/ore))
 		return
 
-	var/obj/item/ore/O = new mineral.ore(src)
+	var/obj/item/ore/O = new mineral.ore_path(src)
 	if(istype(O))
 		geologic_data.UpdateNearbyArtifactInfo(src)
 		O.geologic_data = geologic_data
@@ -260,9 +260,9 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 
 /turf/simulated/mineral/proc/GetDrilled(artifact_fail = 0)
 	//var/destroyed = 0 //used for breaking strange rocks
-	if(mineral && mineral.result_amount)
+	if(mineral && mineral.ore_result_amount)
 		//if the turf has already been excavated, some of it's ore has been removed
-		for(var/i = 1 to mineral.result_amount - mined_ore)
+		for(var/i = 1 to mineral.ore_result_amount - mined_ore)
 			DropMineral()
 
 	//destroyed artifacts have weird, unpleasant effects
