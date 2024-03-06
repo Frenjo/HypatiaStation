@@ -40,25 +40,30 @@
 	#define DEFAULT_AREA_LAYER 999
 
 /*
+ * Ghost
+ */
+#define GHOST_PLANE 1
+
+/*
  * Lighting/Effects
  */
-#define LIGHTING_PLANE 1
-#define UNLIT_EFFECTS_PLANE 2
+#define LIGHTING_PLANE 2
+#define UNLIT_EFFECTS_PLANE 3
 
 /*
  * Obscurity
  */
-#define OBSCURITY_PLANE 3
+#define OBSCURITY_PLANE 4
 
 /*
  * Fullscreen
  */
-#define FULLSCREEN_PLANE 4
+#define FULLSCREEN_PLANE 5
 
 /*
  * HUD
  */
-#define HUD_PLANE 5
+#define HUD_PLANE 6
 	#define HUD_BASE_LAYER 0
 	#define HUD_ITEM_LAYER 1
 	#define HUD_ABOVE_ITEM_LAYER 2
