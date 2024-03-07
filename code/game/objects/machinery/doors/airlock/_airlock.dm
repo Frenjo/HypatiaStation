@@ -62,7 +62,7 @@
 /obj/machinery/door/airlock/initialise()
 	. = ..()
 	if(isnotnull(closeOtherId))
-		for(var/obj/machinery/door/airlock/A in GLOBL.airlocks_list)
+		for_no_type_check(var/obj/machinery/door/airlock/A, GLOBL.airlocks_list)
 			if(A.closeOtherId == closeOtherId && A != src)
 				closeOther = A
 				break

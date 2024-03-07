@@ -406,7 +406,7 @@
 					if("Recepient")
 						//Get out list of viable PDAs
 						var/list/obj/item/pda/sendPDAs = list()
-						for(var/obj/item/pda/P in GLOBL.pda_list)
+						for_no_type_check(var/obj/item/pda/P, GLOBL.pda_list)
 							if(!P.owner || P.toff || P.hidden) continue
 							sendPDAs += P
 						if(length(GLOBL.pda_list))
@@ -438,7 +438,7 @@
 							return src.attack_hand(usr)
 
 						var/obj/item/pda/PDARec = null
-						for (var/obj/item/pda/P in GLOBL.pda_list)
+						for_no_type_check(var/obj/item/pda/P, GLOBL.pda_list)
 							if (!P.owner || P.toff || P.hidden)
 								continue
 							if(P.owner == customsender)

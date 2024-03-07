@@ -7,7 +7,7 @@
 	var/list/lines = list()
 
 	if(isnotnull(holder))
-		for(var/client/C in GLOBL.clients)
+		for_no_type_check(var/client/C, GLOBL.clients)
 			var/entry = "\t[C.key]"
 			if(isnotnull(C.holder?.fakekey))
 				entry += " <i>(as [C.holder.fakekey])</i>"
@@ -29,7 +29,7 @@
 			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
 			lines.Add(entry)
 	else
-		for(var/client/C in GLOBL.clients)
+		for_no_type_check(var/client/C, GLOBL.clients)
 			if(isnotnull(C.holder?.fakekey))
 				lines.Add(C.holder.fakekey)
 			else
@@ -50,7 +50,7 @@
 	var/num_mods_online = 0
 	var/num_admins_online = 0
 	if(isnotnull(holder))
-		for(var/client/C in GLOBL.admins)
+		for_no_type_check(var/client/C, GLOBL.admins)
 			if(R_ADMIN & C.holder.rights || !(R_MOD & C.holder.rights))
 				msg += "\t[C] is a [C.holder.rank]"
 
@@ -84,7 +84,7 @@
 				modmsg += "\n"
 				num_mods_online++
 	else
-		for(var/client/C in GLOBL.admins)
+		for_no_type_check(var/client/C, GLOBL.admins)
 			if(R_ADMIN & C.holder.rights || !(R_MOD & C.holder.rights))
 				if(isnull(C.holder.fakekey))
 					msg += "\t[C] is a [C.holder.rank]\n"

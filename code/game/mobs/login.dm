@@ -5,7 +5,7 @@
 	computer_id	= client.computer_id
 	log_access("Login: [key_name(src)] from [lastKnownIP ? lastKnownIP : "localhost"]-[computer_id] || BYOND v[client.byond_version]")
 	if(CONFIG_GET(log_access))
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if(M == src)
 				continue
 			if(isnotnull(M.key) && M.key != key)

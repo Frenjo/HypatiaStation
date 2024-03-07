@@ -2,7 +2,7 @@
 	if(!CONFIG_GET(sql_logging))
 		return
 	var/playercount = 0
-	for(var/mob/M in GLOBL.player_list)
+	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(isnotnull(M.client))
 			playercount++
 	establish_db_connection()

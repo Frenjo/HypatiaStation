@@ -17,7 +17,7 @@
 /datum/language/proc/broadcast(mob/living/speaker, message, speaker_mask)
 	log_say("[key_name(speaker)] : ([name]) [message]")
 
-	for(var/mob/player in GLOBL.player_list)
+	for_no_type_check(var/mob/player, GLOBL.player_list)
 		var/understood = FALSE
 		if(istype(player, /mob/dead))
 			understood = TRUE

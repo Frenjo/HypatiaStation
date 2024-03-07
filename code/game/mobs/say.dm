@@ -57,7 +57,7 @@
 	message = src.say_quote(message)
 	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span>[alt_name] <span class='message'>[message]</span></span>"
 
-	for(var/mob/M in GLOBL.player_list)
+	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(isnewplayer(M))
 			continue
 		if((M.client?.holder.rights & R_ADMIN|R_MOD) && (M.client?.prefs.toggles & CHAT_DEAD)) // Show the message to admins/mods with deadchat toggled on

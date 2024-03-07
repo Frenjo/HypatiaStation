@@ -26,7 +26,7 @@
 	malf.malf_mode_declared = TRUE
 	for(var/datum/mind/ai_mind in malf.malf_ai)
 		ai_mind.current.verbs.Remove(/datum/game_mode/malfunction/proc/takeover)
-	for(var/mob/M in GLOBL.player_list)
+	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(!isnewplayer(M))
 			M << sound('sound/AI/aimalf.ogg')
 
@@ -49,7 +49,7 @@
 	for(var/datum/mind/ai_mind in malf.malf_ai)
 		ai_mind.current.verbs.Remove(/datum/game_mode/malfunction/proc/ai_win)
 	malf.explosion_in_progress = TRUE
-	for(var/mob/M in GLOBL.player_list)
+	for_no_type_check(var/mob/M, GLOBL.player_list)
 		M << 'sound/machines/Alarm.ogg'
 	to_world("Self-destructing in 10...")
 	for(var/i = 9 to 1 step -1)

@@ -14,7 +14,7 @@ GLOBAL_GLOBL_INIT(blobevent, FALSE)
 		GLOBL.blobevent = FALSE
 	spawn(rand(1000, 2000)) //Delayed announcements to keep the crew on their toes.
 		command_alert("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert")
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if(!isnewplayer(M))
 				M << sound('sound/AI/outbreak5.ogg')
 

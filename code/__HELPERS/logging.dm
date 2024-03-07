@@ -27,7 +27,7 @@ GLOBAL_BYOND_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "") // P
 	if(CONFIG_GET(log_debug))
 		GLOBL.diary << "\[[time_stamp()]]DEBUG: [text][global.log_end]"
 
-	for(var/client/C in GLOBL.admins)
+	for_no_type_check(var/client/C, GLOBL.admins)
 		if(C.prefs.toggles & CHAT_DEBUGLOGS)
 			to_chat(C, "DEBUG: [text]")
 

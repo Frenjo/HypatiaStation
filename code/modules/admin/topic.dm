@@ -98,7 +98,7 @@
 
 		var/mob/playermob
 
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if(M.ckey == banckey)
 				playermob = M
 				break
@@ -2022,7 +2022,7 @@
 				feedback_add_details("admin_secrets_fun_used","FL")
 				while(!usr.stat)
 //knock yourself out to stop the ghosts
-					for(var/mob/M in GLOBL.player_list)
+					for_no_type_check(var/mob/M, GLOBL.player_list)
 						if(M.stat != DEAD && prob(25))
 							var/area/AffectedArea = get_area(M)
 							if(AffectedArea.name != "Space" && AffectedArea.name != "Engine Walls" && AffectedArea.name != "Chemical Lab Test Chamber" && AffectedArea.name != "Escape Shuttle" && AffectedArea.name != "Arrival Area" && AffectedArea.name != "Arrival Shuttle" && AffectedArea.name != "start area" && AffectedArea.name != "Engine Combustion Chamber")
@@ -2045,7 +2045,7 @@
 									if(prob(25) && !W.anchored)
 										step_rand(W)
 					sleep(rand(100,1000))
-				for(var/mob/M in GLOBL.player_list)
+				for_no_type_check(var/mob/M, GLOBL.player_list)
 					if(M.stat != DEAD)
 						M.show_message(text("\blue The chilling wind suddenly stops..."), 1)
 /*				if("shockwave")
@@ -2283,7 +2283,7 @@
 			if("eagles")//SCRAW
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","EgL")
-				for(var/obj/machinery/door/airlock/W in GLOBL.airlocks_list)
+				for_no_type_check(var/obj/machinery/door/airlock/W, GLOBL.airlocks_list)
 					if(isStationLevel(W.z) && !istype(get_area(W), /area/command) && !istype(get_area(W), /area/crew) && !istype(get_area(W), /area/prison))
 						W.req_access = list()
 				message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
@@ -2435,12 +2435,12 @@
 					dat += "No-one has done anything this round!"
 				usr << browse(dat, "window=admin_log")
 			if("maint_access_brig")
-				for(var/obj/machinery/door/airlock/maintenance/M in GLOBL.maintenance_airlocks_list)
+				for_no_type_check(var/obj/machinery/door/airlock/maintenance/M, GLOBL.maintenance_airlocks_list)
 					if(ACCESS_MAINT_TUNNELS in M.req_access)
 						M.req_access = list(ACCESS_BRIG)
 				message_admins("[key_name_admin(usr)] made all maint doors brig access-only.")
 			if("maint_access_engiebrig")
-				for(var/obj/machinery/door/airlock/maintenance/M in GLOBL.maintenance_airlocks_list)
+				for_no_type_check(var/obj/machinery/door/airlock/maintenance/M, GLOBL.maintenance_airlocks_list)
 					if(ACCESS_MAINT_TUNNELS in M.req_access)
 						M.req_access = list()
 						M.req_one_access = list(ACCESS_BRIG, ACCESS_ENGINE)

@@ -24,8 +24,7 @@ GLOBAL_GLOBL_LIST_INIT(page_sound, list('sound/effects/pageturn1.ogg', 'sound/ef
 	var/turf/turf_source = get_turf(source)
 
  	// Looping through the player list has the added bonus of working for mobs inside containers
-	for(var/P in GLOBL.player_list)
-		var/mob/M = P
+	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(isnull(M?.client))
 			continue
 

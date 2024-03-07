@@ -217,7 +217,7 @@
 		qdel(PN)
 	GLOBL.powernets.Cut()
 
-	for(var/obj/structure/cable/PC in GLOBL.cable_list)
+	for_no_type_check(var/obj/structure/cable/PC, GLOBL.cable_list)
 		if(isnull(PC.powernet))
 			var/datum/powernet/NewPN = new /datum/powernet()
 			NewPN.add_cable(PC)

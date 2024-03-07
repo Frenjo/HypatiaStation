@@ -99,7 +99,7 @@
 	var/list/lines = list()
 	for(var/category in categories_by_file_name[file_name])
 		lines.Add("### [uppertext(category)] ###\n\n")
-		for(var/datum/configuration_entry/entry in entries_by_category[category])
+		for_no_type_check(var/datum/configuration_entry/entry, entries_by_category[category])
 			if(isnotnull(entry.description))
 				for(var/desc_line in entry.description)
 					lines.Add("## [desc_line]\n")
@@ -141,7 +141,7 @@
 		if(isnull(value))
 			continue
 		for(var/category in categories_by_file_name[file_name])
-			for(var/datum/configuration_entry/entry in entries_by_category[category])
+			for_no_type_check(var/datum/configuration_entry/entry, entries_by_category[category])
 				if(option != entry.name)
 					continue
 				switch(entry.value_type)

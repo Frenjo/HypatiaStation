@@ -15,7 +15,7 @@
 		src << "You whisper silently, \"[message]\""
 		B.host << "The captive mind of [src] whispers, \"[message]\""
 
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if(isnewplayer(M))
 				continue
 			else if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)
@@ -128,7 +128,7 @@
 	src << "You drop words into [host]'s mind: \"[message]\""
 	host << "Your own thoughts speak: \"[message]\""
 
-	for(var/mob/M in GLOBL.player_list)
+	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(isnewplayer(M))
 			continue
 		else if(M.stat == DEAD &&  M.client.prefs.toggles & CHAT_GHOSTEARS)

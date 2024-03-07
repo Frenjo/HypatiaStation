@@ -85,7 +85,7 @@
 
 	if(CONFIG_GET(allow_admin_jump))
 		var/list/keys = list()
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			keys += M.client
 		var/selection = input("Please, select a player!", "Admin Jumping", null, null) as null | anything in sortKey(keys)
 		if(!selection)
@@ -127,7 +127,7 @@
 
 	if(CONFIG_GET(allow_admin_jump))
 		var/list/keys = list()
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			keys += M.client
 		var/selection = input("Please, select a player!", "Admin Jumping", null, null) as null | anything in sortKey(keys)
 		if(!selection)

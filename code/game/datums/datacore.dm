@@ -43,7 +43,7 @@ GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 		var/real_rank = t.fields["real_rank"]
 		if(OOC)
 			var/active = FALSE
-			for(var/mob/M in GLOBL.player_list)
+			for_no_type_check(var/mob/M, GLOBL.player_list)
 				if(M.real_name == name && isnotnull(M.client) && M.client.inactivity <= 10 * 60 * 10)
 					active = TRUE
 					break

@@ -24,7 +24,7 @@
  //Hearing gasp and such every five seconds is not good emotes were not global for a reason.
  // Maybe some people are okay with that.
 
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if(!M.client)
 				continue //skip monkeys and leavers
 			if(isnewplayer(M))
@@ -76,7 +76,7 @@
 	if(message)
 		log_emote("Ghost/[src.key] : [message]")
 
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if(isnewplayer(M))
 				continue
 

@@ -6,6 +6,6 @@
 
 	command += "<br>[SPAN_ALERT(html_encode(text))]<br>"
 	command += "<br>"
-	for(var/mob/M in GLOBL.player_list)
+	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(!isnewplayer(M))
 			to_chat(M, command)

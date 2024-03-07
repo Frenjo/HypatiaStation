@@ -197,7 +197,7 @@
 	for(var/obj/O in range)				//Get a list of objects in hearing range.  We'll check to see if any clients have their "eye" set to the object
 		objects.Add(O)
 
-	for(var/client/C in GLOBL.clients)
+	for_no_type_check(var/client/C, GLOBL.clients)
 		if(!istype(C) || !C.eye)
 			continue		//I have no idea when this client check would be needed, but if this runtimes people won't hear anything
 							//So kinda paranoid about runtime avoidance.

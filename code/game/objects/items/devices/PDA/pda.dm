@@ -53,7 +53,7 @@
  */
 /obj/item/pda/New()
 	..()
-	GLOBL.pda_list += src
+	GLOBL.pda_list.Add(src)
 	GLOBL.pda_list = sortAtom(GLOBL.pda_list)
 	if(default_cartridge)
 		cartridge = new default_cartridge(src)
@@ -168,7 +168,7 @@
 		var/list/convopdas = list()
 		var/list/pdas = list()
 		var/count = 0
-		for(var/obj/item/pda/P in GLOBL.pda_list)
+		for_no_type_check(var/obj/item/pda/P, GLOBL.pda_list)
 			if(!P.owner || P.toff || P == src || P.hidden)
 				continue
 			if(conversations.Find("\ref[P]"))
@@ -681,7 +681,7 @@
 		useMS.send_pda_message("[P.owner]","[owner]","[t]")
 		tnote.Add(list(list("sent" = 1, "owner" = "[P.owner]", "job" = "[P.ownjob]", "message" = "[t]", "target" = "\ref[P]")))
 		P.tnote.Add(list(list("sent" = 0, "owner" = "[owner]", "job" = "[ownjob]", "message" = "[t]", "target" = "\ref[src]")))
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if(M.stat == DEAD && M.client && (M.client.prefs.toggles & CHAT_GHOSTEARS)) // src.client is so that ghosts don't have to listen to mice
 				if(isnewplayer(M))
 					continue
@@ -967,7 +967,7 @@
 	return
 
 /obj/item/pda/Destroy()
-	GLOBL.pda_list -= src
+	GLOBL.pda_list.Remove(src)
 	if(src.id && prob(90)) //IDs are kept in 90% of the cases
 		src.id.loc = get_turf(src.loc)
 	return ..()
@@ -981,7 +981,7 @@
 		to_chat(usr, "Turn on your receiver in order to send messages.")
 		return
 
-	for(var/obj/item/pda/P in GLOBL.pda_list)
+	for_no_type_check(var/obj/item/pda/P, GLOBL.pda_list)
 		if(!P.owner)
 			continue
 		else if(P.hidden)

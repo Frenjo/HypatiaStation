@@ -326,7 +326,7 @@ PROCESS_DEF(ticker)
 				global.CTjobs.equip_rank(player, player.mind.assigned_role, FALSE)
 				EquipCustomItems(player)
 	if(captainless)
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if(!isnewplayer(M))
 				to_chat(M, "Captainship not forced on anyone.")
 

@@ -1,7 +1,7 @@
 /proc/power_failure(announce = TRUE)
 	if(announce)
 		command_alert("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Critical Power Failure")
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			M << sound('sound/AI/poweroff.ogg')
 
 	var/list/skipped_areas = list(/area/engineering/engine, /area/turret_protected/ai)
@@ -35,7 +35,7 @@
 /proc/power_restore(announce = TRUE)
 	if(announce)
 		command_alert("Power has been restored to [station_name()]. We apologize for the inconvenience.", "Power Systems Nominal")
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			M << sound('sound/AI/poweron.ogg')
 
 	var/list/skipped_areas = list(/area/engineering/engine, /area/turret_protected/ai)
@@ -66,7 +66,7 @@
 /proc/power_restore_quick(announce = TRUE)
 	if(announce)
 		command_alert("All SMESs on [station_name()] have been recharged. We apologize for the inconvenience.", "Power Systems Nominal")
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			M << sound('sound/AI/poweron.ogg')
 
 	for(var/obj/machinery/power/smes/S in world)

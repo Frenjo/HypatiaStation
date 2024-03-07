@@ -94,7 +94,7 @@ var/const/VOX_DELAY = 100 // 10 seconds
  		// If there is no single listener, broadcast to everyone in the same z level
 		if(!only_listener)
 			// Play voice for all mobs in the z level
-			for(var/mob/M in GLOBL.player_list)
+			for_no_type_check(var/mob/M, GLOBL.player_list)
 				if(isnotnull(M.client))
 					var/turf/T = get_turf(M)
 					if(T.z == z_level)

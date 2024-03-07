@@ -87,7 +87,7 @@
 			if(isnotnull(D.client) && istype(D, type))
 				to_chat(D, "<b>[src]</b> transmits, \"[message]\"")
 
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if(isnewplayer(M))
 				continue
 			else if(M.stat == DEAD && M.client.prefs.toggles & CHAT_GHOSTEARS)

@@ -64,14 +64,14 @@
 		a_ip = src.owner:address
 
 	var/who
-	for(var/client/C in GLOBL.clients)
+	for_no_type_check(var/client/C, GLOBL.clients)
 		if(!who)
 			who = "[C]"
 		else
 			who += ", [C]"
 
 	var/adminwho
-	for(var/client/C in GLOBL.admins)
+	for_no_type_check(var/client/C, GLOBL.admins)
 		if(!adminwho)
 			adminwho = "[C]"
 		else

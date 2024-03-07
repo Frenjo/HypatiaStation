@@ -62,7 +62,7 @@ GLOBAL_GLOBL_LIST_NEW(admin_ranks)	//list of all ranks with associated rights
 /proc/load_admins()
 	//clear the datums references
 	GLOBL.admin_datums.Cut()
-	for(var/client/C in GLOBL.admins)
+	for_no_type_check(var/client/C, GLOBL.admins)
 		C.remove_admin_verbs()
 		C.holder = null
 	GLOBL.admins.Cut()

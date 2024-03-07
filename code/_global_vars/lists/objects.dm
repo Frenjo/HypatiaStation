@@ -1,6 +1,6 @@
 GLOBAL_GLOBL_LIST_NEW(atom/movable/movable_atom_list) // A list of all movable atoms in the world.
 
-GLOBAL_GLOBL_LIST_NEW(cable_list)	//Index for all cables, so that powernets don't have to look through the entire world all the time
+GLOBAL_GLOBL_LIST_NEW(obj/structure/cable/cable_list)	// Index for all cables, so that powernets don't have to look through the entire world all the time
 GLOBAL_GLOBL_LIST_NEW(mechas_list)	//list of all mechs. Used by hostile mobs target tracking.
 
 // Posters
@@ -28,10 +28,10 @@ GLOBAL_GLOBL_LIST_INIT(tagger_locations, list(
 GLOBAL_GLOBL_LIST_NEW(light_type_cache)
 GLOBAL_GLOBL_LIST_NEW(solars_list)
 
-GLOBAL_GLOBL_LIST_NEW(pda_list)
+GLOBAL_GLOBL_LIST_NEW(obj/item/pda/pda_list)
 GLOBAL_GLOBL_LIST_NEW(pda_chatrooms)
 
-GLOBAL_GLOBL_LIST_NEW(airlocks_list)
-GLOBAL_GLOBL_LIST_NEW(maintenance_airlocks_list)
+GLOBAL_GLOBL_LIST_NEW(obj/machinery/door/airlock/airlocks_list)
+GLOBAL_GLOBL_LIST_NEW(obj/machinery/door/airlock/maintenance/maintenance_airlocks_list)
 
-GLOBAL_GLOBL_LIST_NEW(conveyors_list)
+GLOBAL_GLOBL_LIST_NEW(obj/machinery/conveyor/conveyors_list)

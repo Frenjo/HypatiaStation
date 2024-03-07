@@ -244,7 +244,7 @@
 		reaction_occured = 0
 		for(var/datum/reagent/R in reagent_list) // Usually a small list
 			// Was a big list but now it should be smaller since we filtered it with our reagent id.
-			for(var/datum/chemical_reaction/C in GLOBL.chemical_reactions_list[R.id])
+			for_no_type_check(var/datum/chemical_reaction/C, GLOBL.chemical_reactions_list[R.id])
 				if(isnull(C))
 					continue
 

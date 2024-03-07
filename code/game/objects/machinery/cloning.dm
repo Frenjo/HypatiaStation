@@ -81,7 +81,7 @@
 		return
 
 	var/mob/selected = null
-	for(var/mob/M in GLOBL.player_list)
+	for_no_type_check(var/mob/M, GLOBL.player_list)
 		//Dead people only thanks!
 		if((M.stat != DEAD) || (!M.client))
 			continue

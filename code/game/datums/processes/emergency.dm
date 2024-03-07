@@ -83,7 +83,7 @@ PROCESS_DEF(emergency)
 	evac = TRUE
 	captain_announce("An emergency evacuation shuttle has been called. It will arrive in approximately [round(estimate_arrival_time() / 60)] minutes.")
 	world << sound('sound/AI/shuttlecalled.ogg')
-	for(var/area/hallway/hall in GLOBL.contactable_hallway_areas)
+	for_no_type_check(var/area/hallway/hall, GLOBL.contactable_hallway_areas)
 		hall.evac_alert()
 
 	set_status_displays()
@@ -118,7 +118,7 @@ PROCESS_DEF(emergency)
 		captain_announce("The emergency shuttle has been recalled.")
 		world << sound('sound/AI/shuttlerecalled.ogg')
 
-		for(var/area/hallway/hall in GLOBL.contactable_hallway_areas)
+		for_no_type_check(var/area/hallway/hall, GLOBL.contactable_hallway_areas)
 			hall.evac_reset()
 		evac = FALSE
 	else

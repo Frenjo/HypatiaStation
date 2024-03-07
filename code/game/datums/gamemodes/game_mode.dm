@@ -151,7 +151,7 @@ Implants;
 		/area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom, /area/shuttle/arrival/centcom
 	)
 
-	for(var/mob/M in GLOBL.player_list)
+	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(isnotnull(M.client))
 			clients++
 			if(ishuman(M))
@@ -423,7 +423,7 @@ Implants;
 	for(var/mob/living/L in GLOBL.mob_list)
 		if(isnotnull(L.ckey))
 			var/found = 0
-			for(var/client/C in GLOBL.clients)
+			for_no_type_check(var/client/C, GLOBL.clients)
 				if(C.ckey == L.ckey)
 					found = 1
 					break

@@ -93,7 +93,7 @@ GLOBAL_GLOBL_LIST_INIT(adminhelp_ignored_words, list("unknown", "the", "a", "an"
 
 	//send this msg to all admins
 	var/admin_number_afk = 0
-	for(var/client/X in GLOBL.admins)
+	for_no_type_check(var/client/X, GLOBL.admins)
 		if((R_ADMIN|R_MOD) & X.holder.rights)
 			if(X.is_afk())
 				admin_number_afk++

@@ -187,7 +187,7 @@
 /obj/machinery/conveyor_switch/initialise()		// allow map load
 	. = ..()
 	conveyors = list()
-	for(var/obj/machinery/conveyor/C in GLOBL.conveyors_list)
+	for_no_type_check(var/obj/machinery/conveyor/C, GLOBL.conveyors_list)
 		if(C.id == id)
 			conveyors.Add(C)
 

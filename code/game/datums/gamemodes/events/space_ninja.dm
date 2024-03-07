@@ -174,7 +174,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 
 
 	if(!candidate_mob)
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if((M.key == ninja_key || M.ckey == ninja_key) && M.client)
 				candidate_mob = M
 				break

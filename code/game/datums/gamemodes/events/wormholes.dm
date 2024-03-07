@@ -8,7 +8,7 @@
 		if(length(pick_turfs))
 			//All ready. Announce that bad juju is afoot.
 			command_alert("Space-time anomalies detected on the station. There is no additional data.", "Anomaly Alert")
-			for(var/mob/M in GLOBL.player_list)
+			for_no_type_check(var/mob/M, GLOBL.player_list)
 				if(!isnewplayer(M))
 					M << sound('sound/AI/spanomalies.ogg')
 

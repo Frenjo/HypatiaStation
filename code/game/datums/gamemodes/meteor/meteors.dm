@@ -131,7 +131,7 @@
 				qdel(src) //Dont blow up singularity containment if we get stuck there.
 
 		if(A)
-			for(var/mob/M in GLOBL.player_list)
+			for_no_type_check(var/mob/M, GLOBL.player_list)
 				var/turf/T = get_turf(M)
 				if(!T || T.z != src.z)
 					continue

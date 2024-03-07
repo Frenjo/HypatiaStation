@@ -135,13 +135,13 @@
 /decl/security_level/red/on_change_to()
 	. = ..()
 	// Turns all of the blue grids red.
-	for(var/turf/simulated/floor/bluegrid/grid in GLOBL.contactable_blue_grid_turfs)
+	for_no_type_check(var/turf/simulated/floor/bluegrid/grid, GLOBL.contactable_blue_grid_turfs)
 		grid.icon_state = "rcircuit"
 
 /decl/security_level/red/on_change_from()
 	. = ..()
 	// Turns all of the blue grids back to blue again.
-	for(var/turf/simulated/floor/bluegrid/grid in GLOBL.contactable_blue_grid_turfs)
+	for_no_type_check(var/turf/simulated/floor/bluegrid/grid, GLOBL.contactable_blue_grid_turfs)
 		grid.icon_state = "bcircuit"
 
 /*
@@ -167,19 +167,19 @@
 /decl/security_level/delta/on_change_to()
 	. = ..()
 	// Turns all of the blue grids red and makes them flash.
-	for(var/turf/simulated/floor/bluegrid/grid in GLOBL.contactable_blue_grid_turfs)
+	for_no_type_check(var/turf/simulated/floor/bluegrid/grid, GLOBL.contactable_blue_grid_turfs)
 		grid.icon_state = "rcircuit_flash"
 	// Updates all hallway areas so they flash.
-	for(var/area/hallway/hall in GLOBL.contactable_hallway_areas)
+	for_no_type_check(var/area/hallway/hall, GLOBL.contactable_hallway_areas)
 		hall.destruct_alert()
 
 /decl/security_level/delta/on_change_from()
 	. = ..()
 	// Turns all of the blue grids back to blue again.
-	for(var/turf/simulated/floor/bluegrid/grid in GLOBL.contactable_blue_grid_turfs)
+	for_no_type_check(var/turf/simulated/floor/bluegrid/grid, GLOBL.contactable_blue_grid_turfs)
 		grid.icon_state = "bcircuit"
 	// Resets all hallway areas so they stop flashing.
-	for(var/area/hallway/hall in GLOBL.contactable_hallway_areas)
+	for_no_type_check(var/area/hallway/hall, GLOBL.contactable_hallway_areas)
 		hall.destruct_reset()
 
 /decl/security_level/delta/on_elevate_to()

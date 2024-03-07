@@ -65,7 +65,7 @@
 	// Stops the master controller's process scheduling.
 	global.CTmaster.stop()
 
-	for(var/client/C in GLOBL.clients)
+	for_no_type_check(var/client/C, GLOBL.clients)
 		if(isnotnull(CONFIG_GET(server)))	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[CONFIG_GET(server)]")
 		else
@@ -84,7 +84,7 @@
 
 	else if(T == "players")
 		var/n = 0
-		for(var/mob/M in GLOBL.player_list)
+		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if(M.client)
 				n++
 		return n
@@ -102,7 +102,7 @@
 		var/n = 0
 		var/admins = 0
 
-		for(var/client/C in GLOBL.clients)
+		for_no_type_check(var/client/C, GLOBL.clients)
 			if(C.holder)
 				if(C.holder.fakekey)
 					continue	//so stealthmins aren't revealed by the hub
@@ -200,7 +200,7 @@
 		features.Add("AI allowed")
 
 	var/n = 0
-	for(var/mob/M in GLOBL.player_list)
+	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(isnotnull(M.client))
 			n++
 

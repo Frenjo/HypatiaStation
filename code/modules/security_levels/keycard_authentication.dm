@@ -165,7 +165,7 @@
 	to_world("<font color='red'>The maintenance access requirement has been revoked on all maintenance airlocks.</font>")
 
 	// Update all maintenance door icons so they start flashing immediately. -Frenjo
-	for(var/obj/machinery/door/airlock/maintenance/M in GLOBL.maintenance_airlocks_list)
+	for_no_type_check(var/obj/machinery/door/airlock/maintenance/M, GLOBL.maintenance_airlocks_list)
 		if(isStationLevel(M.z))
 			M.update_icon()
 
@@ -175,7 +175,7 @@
 	to_world("<font color='red'>The maintenance access requirement has been readded on all maintenance airlocks.</font>")
 
 	// Update all maintenance door icons so they stop flashing immediately. -Frenjo
-	for(var/obj/machinery/door/airlock/maintenance/M in GLOBL.maintenance_airlocks_list)
+	for_no_type_check(var/obj/machinery/door/airlock/maintenance/M, GLOBL.maintenance_airlocks_list)
 		if(isStationLevel(M.z))
 			M.update_icon()
 

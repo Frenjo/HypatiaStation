@@ -192,7 +192,7 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 	active_with_role["Janitor"] = 0
 	active_with_role["Botanist"] = 0
 
-	for(var/mob/M in GLOBL.player_list)
+	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(!M.mind || !M.client || M.client.inactivity > 10 * 10 * 60) // longer than 10 minutes AFK counts them as inactive
 			continue
 
