@@ -85,7 +85,7 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 
 /datum/lighting_corner/proc/update_active()
 	active = FALSE
-	for(var/turf/T in masters)
+	for_no_type_check(var/turf/T, masters)
 		if(isnotnull(T.lighting_overlay))
 			active = TRUE
 
@@ -114,8 +114,7 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 	cache_b = lum_b * . || LIGHTING_SOFT_THRESHOLD
 	cache_mx = mx
 
-	for(var/TT in masters)
-		var/turf/T = TT
+	for_no_type_check(var/turf/T, masters)
 		if(isnotnull(T.lighting_overlay))
 			if(!T.lighting_overlay.needs_update)
 				T.lighting_overlay.needs_update = TRUE

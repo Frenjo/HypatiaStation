@@ -6,7 +6,7 @@
 /proc/create_lighting_overlays_zlevel(zlevel)
 	ASSERT(zlevel)
 
-	for(var/turf/T in block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel)))
+	for_no_type_check(var/turf/T, block(locate(1, 1, zlevel), locate(world.maxx, world.maxy, zlevel)))
 		if(!T.dynamic_lighting)
 			continue
 

@@ -4,7 +4,7 @@
 	var/light_color		// Hexadecimal RGB string representing the colour of the light
 
 	var/datum/light_source/light
-	var/list/light_sources
+	var/list/datum/light_source/light_sources
 
 // Nonsensical value for l_color default, so we can detect if it gets set to null.
 #define NONSENSICAL_VALUE -99999
@@ -41,7 +41,6 @@
 
 /atom/New()
 	. = ..()
-
 	if(light_power && light_range)
 		update_light()
 
@@ -55,26 +54,17 @@
 		light = null
 	return ..()
 
+/atom/Entered(atom/movable/mover, atom/old_loc)
+	. = ..()
+	if(isnotnull(mover) && old_loc != src)
+		for_no_type_check(var/datum/light_source/L, mover.light_sources)
+			L.source_atom.update_light()
+
 /atom/movable/Destroy()
 	var/turf/T = loc
 	if(opacity && istype(T))
 		T.reconsider_lights()
 	return ..()
-
-/atom/movable/Move()
-	var/turf/old_loc = loc
-	. = ..()
-
-	if(loc != old_loc)
-		for(var/datum/light_source/L in light_sources)
-			L.source_atom.update_light()
-
-	var/turf/new_loc = loc
-	if(istype(old_loc) && opacity)
-		old_loc.reconsider_lights()
-
-	if(istype(new_loc) && opacity)
-		new_loc.reconsider_lights()
 
 /atom/proc/set_opacity(new_opacity)
 	if(new_opacity == opacity)

@@ -31,7 +31,7 @@ atom: (lighting_atom.dm)
   - var/light_color; hex string representing the RGB colour of the light
 
   - var/datum/light_source/light; light source datum for this atom, only present if light_range && light_power
-  - var/list/light_sources; light sources in contents that are shining through this object, including this object
+  - var/list/datum/light_source/light_sources; light sources in contents that are shining through this object, including this object
 
   - proc/set_light(l_range, l_power, l_color):
 	  - Sets light_range/power/color to non-null args and calls update_light()

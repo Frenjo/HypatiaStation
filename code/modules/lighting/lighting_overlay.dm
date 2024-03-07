@@ -19,16 +19,19 @@ GLOBAL_GLOBL_LIST_NEW(all_lighting_overlays) // Global list of lighting overlays
 	var/needs_update = FALSE
 
 /atom/movable/lighting_overlay/New(atom/loc, no_update = FALSE)
-	. = ..()
-	verbs.Cut()
-	GLOBL.all_lighting_overlays.Add(src)
+	var/turf/T = loc // If this runtimes atleast we'll know what's creating overlays outside of turfs.
+	if(T.dynamic_lighting) // Only put lighting overlays on turfs with dynamic lighting enabled.
+		. = ..()
+		verbs.Cut()
+		GLOBL.all_lighting_overlays.Add(src)
 
-	var/turf/T = loc //If this runtimes atleast we'll know what's creating overlays outside of turfs.
-	T.lighting_overlay = src
-	T.luminosity = FALSE
-	if(no_update)
-		return
-	update_overlay()
+		T.lighting_overlay = src
+		T.luminosity = FALSE
+		if(no_update)
+			return
+		update_overlay()
+	else
+		qdel(src)
 
 /atom/movable/lighting_overlay/Destroy()
 	GLOBL.all_lighting_overlays.Remove(src)
@@ -42,10 +45,20 @@ GLOBAL_GLOBL_LIST_NEW(all_lighting_overlays) // Global list of lighting overlays
 
 	return ..()
 
+// Lighting overlays should not be moving.
+/atom/movable/lighting_overlay/Move()
+	return
+/atom/movable/lighting_overlay/forceMove(atom/destination)
+	if(GC_DESTROYED(src))
+		return ..() // Unless they're being deleted for some strange reason.
+	return 0
+// Lighting overlays should not get exploded either.
+/atom/movable/lighting_overlay/ex_act()
+	return
+
 /atom/movable/lighting_overlay/proc/update_overlay()
 	set waitfor = FALSE
 	var/turf/T = loc
-
 	if(!istype(T))
 		if(isnotnull(loc))
 			log_debug("A lighting overlay realised its loc was NOT a turf (actual loc: [loc][loc ? ", " + loc.type : "null"]) in update_overlay() and got qdel'ed!")

@@ -69,12 +69,11 @@
 
 // Call it dirty, I don't care.
 // This is here so there's no performance loss on non-instant updates from the fact that the engine can also do instant updates.
-// If you're wondering what's with the "BYOND" argument: BYOND won't let me have a() macro that has no arguments :|.
-#define effect_update(BYOND)			\
-	if(!needs_update)					\
-	{									\
+#define EFFECT_UPDATE	\
+	if(!needs_update)		\
+	{						\
 		GLOBL.lighting_update_lights.Add(src);	\
-		needs_update = TRUE;			\
+		needs_update = TRUE;	\
 	}
 
 // This proc will cause the light source to update the top atom, and add itself to the update queue.
@@ -92,19 +91,19 @@
 
 			top_atom.light_sources.Add(src) // Add ourselves to the light sources of our new top atom.
 
-	effect_update(null)
+	EFFECT_UPDATE
 
 // Will force an update without checking if it's actually needed.
 /datum/light_source/proc/force_update()
 	force_update = TRUE
 
-	effect_update(null)
+	EFFECT_UPDATE
 
 // Will cause the light source to recalculate turfs that were removed or added to visibility only.
 /datum/light_source/proc/vis_update()
 	vis_update = TRUE
 
-	effect_update(null)
+	EFFECT_UPDATE
 
 // Will check if we actually need to update, and update any variables that may need to be updated.
 /datum/light_source/proc/check()
@@ -197,7 +196,7 @@
 		if(!T.lighting_corners_initialised)
 			T.generate_missing_corners()
 
-		for(var/datum/lighting_corner/C in T.get_corners())
+		for_no_type_check(var/datum/lighting_corner/C, T.get_corners())
 			if(C.update_gen == update_gen)
 				continue
 
@@ -222,7 +221,7 @@
 /datum/light_source/proc/remove_lum()
 	applied = FALSE
 
-	for(var/turf/T in affecting_turfs)
+	for_no_type_check(var/turf/T, affecting_turfs)
 		if(isnull(T.affecting_lights))
 			T.affecting_lights = list()
 		else
@@ -230,7 +229,7 @@
 
 	affecting_turfs.Cut()
 
-	for(var/datum/lighting_corner/C in effect_str)
+	for_no_type_check(var/datum/lighting_corner/C, effect_str)
 		REMOVE_CORNER(C)
 
 		C.affecting.Remove(src)
@@ -253,9 +252,9 @@
 		turfs.Add(T)
 	END_FOR_DVIEW
 
-	var/list/L = turfs - affecting_turfs // New turfs, add us to the affecting lights of them.
+	var/list/turf/L = turfs - affecting_turfs // New turfs, add us to the affecting lights of them.
 	affecting_turfs.Add(L)
-	for(var/turf/T in L)
+	for_no_type_check(var/turf/T, L)
 		if(isnull(T.affecting_lights))
 			T.affecting_lights = list(src)
 		else
@@ -263,10 +262,10 @@
 
 	L = affecting_turfs - turfs // Now-gone turfs, remove us from the affecting lights.
 	affecting_turfs.Remove(L)
-	for(var/turf/T in L)
+	for_no_type_check(var/turf/T, L)
 		T.affecting_lights.Remove(src)
 
-	for(var/datum/lighting_corner/C in corners - effect_str) // New corners
+	for_no_type_check(var/datum/lighting_corner/C, corners - effect_str) // New corners
 		C.affecting.Add(src)
 		if(!C.active)
 			effect_str[C] = 0
@@ -274,12 +273,12 @@
 
 		APPLY_CORNER(C)
 
-	for(var/datum/lighting_corner/C in effect_str - corners) // Old, now gone, corners.
+	for_no_type_check(var/datum/lighting_corner/C, effect_str - corners) // Old, now gone, corners.
 		REMOVE_CORNER(C)
 		C.affecting.Remove(src)
 		effect_str.Remove(C)
 
-#undef effect_update
+#undef EFFECT_UPDATE
 #undef LUM_FALLOFF
 #undef REMOVE_CORNER
 #undef APPLY_CORNER

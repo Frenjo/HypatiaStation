@@ -12,23 +12,19 @@
 
 /turf/New()
 	. = ..()
-
-	if(dynamic_lighting)
-		luminosity = FALSE
-
 	if(opacity)
 		has_opaque_atom = TRUE
 
 // Causes any affecting light sources to be queued for a visibility update, for example a door got opened.
 /turf/proc/reconsider_lights()
-	for(var/datum/light_source/L in affecting_lights)
+	for_no_type_check(var/datum/light_source/L, affecting_lights)
 		L.vis_update()
 
 /turf/proc/lighting_clear_overlay()
 	if(isnotnull(lighting_overlay))
 		qdel(lighting_overlay)
 
-	for(var/datum/lighting_corner/C in corners)
+	for_no_type_check(var/datum/lighting_corner/C, corners)
 		C.update_active()
 
 // Builds a lighting overlay for us, but only if our area is dynamic.
@@ -43,11 +39,10 @@
 
 		new /atom/movable/lighting_overlay(src)
 
-		for(var/datum/lighting_corner/C in corners)
+		for_no_type_check(var/datum/lighting_corner/C, corners)
 			if(!C.active) // We would activate the corner, calculate the lighting for it.
-				for(var/L in C.affecting)
-					var/datum/light_source/S = L
-					S.recalc_corner(C)
+				for_no_type_check(var/datum/light_source/L, C.affecting)
+					L.recalc_corner(C)
 
 				C.active = TRUE
 
@@ -57,7 +52,7 @@
 		return 1
 
 	var/total_lums = 0
-	for(var/datum/lighting_corner/L in corners)
+	for_no_type_check(var/datum/lighting_corner/L, corners)
 		total_lums += max(L.lum_r, L.lum_g, L.lum_b)
 
 	total_lums /= 4 // 4 corners, max channel selected, return the average
@@ -76,19 +71,19 @@
 // If an opaque movable atom moves around we need to potentially update visibility.
 /turf/Entered(atom/movable/mover, atom/OldLoc)
 	. = ..()
-
 	if(mover?.opacity)
 		has_opaque_atom = TRUE // Make sure to do this before reconsider_lights(), incase we're on instant updates. Guaranteed to be on in this case.
 		reconsider_lights()
 
 /turf/Exited(atom/movable/mover, atom/newloc)
 	. = ..()
-
 	if(mover?.opacity)
 		recalc_atom_opacity() // Make sure to do this before reconsider_lights(), incase we're on instant updates.
 		reconsider_lights()
 
 /turf/proc/get_corners()
+	RETURN_TYPE(/list/datum/lighting_corner)
+
 	if(has_opaque_atom)
 		return null // Since this proc gets used in a for loop, null won't be looped though.
 
