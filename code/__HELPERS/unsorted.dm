@@ -1025,6 +1025,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //gets the turf the atom is located in (or itself, if it is a turf).
 //returns null if the atom is not in a turf.
 /proc/get_turf(atom/location)
+	RETURN_TYPE(/turf)
+
 	while(location)
 		if(isturf(location))
 			return location

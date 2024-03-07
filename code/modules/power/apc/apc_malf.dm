@@ -49,7 +49,7 @@
 				for(var/datum/mind/AI_mind in global.PCticker.mode.malf_ai)
 					var/mob/living/silicon/ai/A = AI_mind.current // the current mob the mind owns
 					if(A.stat != DEAD)
-						point.the_disk = A //The pinpointer tracks the AI back into its core.
+						point.thing_to_find = A //The pinpointer tracks the AI back into its core.
 	else
 		to_chat(src.occupant, SPAN_WARNING("Primary core damaged, unable to return core processes."))
 		if(forced)
@@ -57,4 +57,4 @@
 			src.occupant.death()
 			src.occupant.gib()
 			for(var/obj/item/pinpointer/point in GLOBL.movable_atom_list)
-				point.the_disk = null //the pinpointer will go back to pointing at the nuke disc.
+				point.thing_to_find = null //the pinpointer will go back to pointing at the nuke disc.
