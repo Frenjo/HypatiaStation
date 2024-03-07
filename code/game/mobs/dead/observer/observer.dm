@@ -226,7 +226,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 					stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 
 /mob/dead/observer/verb/reenter_corpse()
-	set category = "Ghost"
+	set category = PANEL_GHOST
 	set name = "Re-enter Corpse"
 
 	if(isnull(client))
@@ -254,7 +254,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return 1
 
 /mob/dead/observer/verb/toggle_medHUD()
-	set category = "Ghost"
+	set category = PANEL_GHOST
 	set name = "Toggle MedicHUD"
 	set desc = "Toggles Medical HUD allowing you to see how everyone is doing"
 
@@ -265,7 +265,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	to_chat(src, SPAN_INFO_B("Medical HUD [medHUD ? "Enabled" : "Disabled"]"))
 
 /mob/dead/observer/verb/toggle_antagHUD()
-	set category = "Ghost"
+	set category = PANEL_GHOST
 	set name = "Toggle AntagHUD"
 	set desc = "Toggles AntagHUD allowing you to see who is the antagonist"
 
@@ -291,7 +291,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	to_chat(src, SPAN_INFO_B("AntagHUD [M.antagHUD ? "Enabled" : "Disabled"]"))
 
 /mob/dead/observer/proc/dead_tele()
-	set category = "Ghost"
+	set category = PANEL_GHOST
 	set name = "Teleport"
 	set desc = "Teleport to a location"
 
@@ -318,7 +318,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	usr.loc = pick(L)
 
 /mob/dead/observer/verb/follow()
-	set category = "Ghost"
+	set category = PANEL_GHOST
 	set name = "Follow" // "Haunt"
 	set desc = "Follow and haunt a mob."
 
@@ -348,7 +348,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			following = null
 
 /mob/dead/observer/verb/jumptomob() // Moves the ghost instead of just changing the ghosts's eye -Nodrak
-	set category = "Ghost"
+	set category = PANEL_GHOST
 	set name = "Jump to Mob"
 	set desc = "Teleport to a mob"
 
@@ -373,7 +373,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /*
 /mob/dead/observer/verb/boo()
-	set category = "Ghost"
+	set category = PANEL_GHOST
 	set name = "Boo!"
 	set desc= "Scare your crew members because of boredom!"
 
@@ -396,8 +396,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	to_chat(src, SPAN_WARNING("You are dead! You have no mind to store memory!"))
 
 /mob/dead/observer/verb/analyse_air()
+	set category = PANEL_GHOST
 	set name = "Analyse Air"
-	set category = "Ghost"
 
 	if(!isobserver(usr))
 		return
@@ -423,8 +423,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, SPAN_INFO("Heat Capacity: [round(environment.heat_capacity(), 0.1)]"))
 
 /mob/dead/observer/verb/toggle_darkness()
+	set category = PANEL_GHOST
 	set name = "Toggle Darkness"
-	set category = "Ghost"
 
 	if(see_invisible == SEE_INVISIBLE_OBSERVER_NOLIGHTING)
 		see_invisible = SEE_INVISIBLE_OBSERVER
@@ -432,8 +432,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 
 /mob/dead/observer/verb/become_mouse()
-	set name = "Become mouse"
-	set category = "Ghost"
+	set category = PANEL_GHOST
+	set name = "Become Mouse"
 
 	if(CONFIG_GET(disable_player_mice))
 		to_chat(src, SPAN_WARNING("Spawning as a mouse is currently disabled."))
@@ -475,9 +475,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		host.ckey = src.ckey
 		to_chat(host, SPAN_INFO("You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent."))
 
-/mob/dead/observer/verb/view_manfiest()
+/mob/dead/observer/verb/view_manifest()
+	set category = PANEL_GHOST
 	set name = "View Crew Manifest"
-	set category = "Ghost"
 
 	var/dat
 	dat += "<h4>Crew Manifest</h4>"
@@ -487,7 +487,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 // Used for drawing on walls with blood puddles as a spooky ghost.
 /mob/dead/verb/bloody_doodle()
-	set category = "Ghost"
+	set category = PANEL_GHOST
 	set name = "Write in blood"
 	set desc = "If the round is sufficiently spooky, write a short message in blood on the floor or a wall. Remember, no IC in OOC or OOC in IC."
 

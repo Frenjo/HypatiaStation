@@ -70,7 +70,7 @@
 //Absorbs the victim's DNA making them uncloneable. Requires a strong grip on the victim.
 //Doesn't cost anything as it's the most basic ability.
 /mob/proc/changeling_absorb_dna()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Absorb DNA"
 
 	var/datum/changeling/changeling = changeling_power(0, 0, 100)
@@ -170,7 +170,7 @@
 
 //Change our DNA to that of somebody we've absorbed.
 /mob/proc/changeling_transform()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Transform (5)"
 
 	var/datum/changeling/changeling = changeling_power(5, 1, 0)
@@ -208,7 +208,7 @@
 
 //Transform into a monkey.
 /mob/proc/changeling_lesser_form()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Lesser Form (1)"
 
 	var/datum/changeling/changeling = changeling_power(1, 0, 0)
@@ -277,7 +277,7 @@
 
 //Transform into a human
 /mob/proc/changeling_lesser_transform()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Transform (1)"
 
 	var/datum/changeling/changeling = changeling_power(1, 1, 0)
@@ -364,7 +364,7 @@
 
 //Fake our own death and fully heal. You will appear to be dead but regenerate fully after a short delay.
 /mob/proc/changeling_fakedeath()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Regenerative Stasis (20)"
 
 	var/datum/changeling/changeling = changeling_power(20, 1, 100, DEAD)
@@ -411,7 +411,7 @@
 
 //Boosts the range of your next sting attack by 1
 /mob/proc/changeling_boost_range()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Ranged Sting (10)"
 	set desc = "Your next sting ability can be used against targets 2 squares away."
 
@@ -430,7 +430,7 @@
 
 //Recover from stuns.
 /mob/proc/changeling_unstun()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Epinephrine Sacs (45)"
 	set desc = "Removes all stuns"
 
@@ -467,9 +467,9 @@
 
 //Prevents AIs tracking you but makes you easily detectable to the human-eye.
 /mob/proc/changeling_digitalcamo()
-	set category = "Changeling"
-	set name = "Toggle Digital Camoflague"
-	set desc = "The AI can no longer track us, but we will look different if examined.  Has a constant cost while active."
+	set category = PANEL_CHANGELING
+	set name = "Toggle Digital Camouflage"
+	set desc = "The AI can no longer track us, but we will look different if examined. Has a constant cost while active."
 
 	var/datum/changeling/changeling = changeling_power()
 	if(!changeling)
@@ -496,9 +496,9 @@
 
 //Starts healing you every second for 10 seconds. Can be used whilst unconscious.
 /mob/proc/changeling_rapidregen()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Rapid Regeneration (30)"
-	set desc = "Begins rapidly regenerating.  Does not effect stuns or chemicals."
+	set desc = "Begin rapidly regenerating. Does not affect stuns or chemicals."
 
 	var/datum/changeling/changeling = changeling_power(30, 0, 100, UNCONSCIOUS)
 	if(!changeling)
@@ -526,7 +526,7 @@
 var/list/datum/dna/hivemind_bank = list()
 
 /mob/proc/changeling_hiveupload()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Hive Channel (10)"
 	set desc = "Allows you to channel DNA in the airwaves to allow other changelings to absorb it."
 
@@ -558,7 +558,7 @@ var/list/datum/dna/hivemind_bank = list()
 	return 1
 
 /mob/proc/changeling_hivedownload()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Hive Absorb (20)"
 	set desc = "Allows you to absorb DNA that is being channeled in the airwaves."
 
@@ -591,7 +591,7 @@ var/list/datum/dna/hivemind_bank = list()
 // Fake Voice
 
 /mob/proc/changeling_mimicvoice()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Mimic Voice"
 	set desc = "Shape our vocal glands to form a voice of someone we choose. We cannot regenerate chemicals when mimicing."
 
@@ -670,7 +670,7 @@ var/list/datum/dna/hivemind_bank = list()
 
 
 /mob/proc/changeling_lsdsting()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Hallucination Sting (15)"
 	set desc = "Causes terror in the target."
 
@@ -684,7 +684,7 @@ var/list/datum/dna/hivemind_bank = list()
 	return 1
 
 /mob/proc/changeling_silence_sting()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Silence Sting (10)"
 	set desc = "Silences the target."
 
@@ -696,7 +696,7 @@ var/list/datum/dna/hivemind_bank = list()
 	return 1
 
 /mob/proc/changeling_blind_sting()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Blind Sting (20)"
 	set desc = "Blinds the target."
 
@@ -713,7 +713,7 @@ var/list/datum/dna/hivemind_bank = list()
 	return 1
 
 /mob/proc/changeling_deaf_sting()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Deaf Sting (5)"
 	set desc = "Deafens the target."
 
@@ -728,7 +728,7 @@ var/list/datum/dna/hivemind_bank = list()
 	return 1
 
 /mob/proc/changeling_paralysis_sting()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Paralysis Sting (30)"
 	set desc = "Paralyses the target."
 
@@ -741,7 +741,7 @@ var/list/datum/dna/hivemind_bank = list()
 	return 1
 
 /mob/proc/changeling_transformation_sting()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Transformation Sting (40)"
 	set desc = "Causes the target to transform into the chosen form."
 
@@ -776,7 +776,7 @@ var/list/datum/dna/hivemind_bank = list()
 	return 1
 
 /mob/proc/changeling_unfat_sting()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Unfat Sting (5)"
 	set desc = "Causes weight loss in the target."
 
@@ -789,12 +789,12 @@ var/list/datum/dna/hivemind_bank = list()
 	feedback_add_details("changeling_powers", "US")
 	return 1
 
-/mob/proc/changeling_DEATHsting()
-	set category = "Changeling"
+/mob/proc/changeling_deathsting()
+	set category = PANEL_CHANGELING
 	set name = "Death Sting (40)"
-	set desc = "Causes spasms onto death."
+	set desc = "Causes fatal spasms in the target."
 
-	var/mob/living/carbon/T = changeling_sting(40, /mob/proc/changeling_DEATHsting)
+	var/mob/living/carbon/T = changeling_sting(40, /mob/proc/changeling_deathsting)
 	if(!T)
 		return 0
 	to_chat(T, SPAN_DANGER("You feel a tiny prick and your chest becomes tight."))
@@ -807,7 +807,7 @@ var/list/datum/dna/hivemind_bank = list()
 	return 1
 
 /mob/proc/changeling_extract_dna_sting()
-	set category = "Changeling"
+	set category = PANEL_CHANGELING
 	set name = "Extract DNA Sting (40)"
 	set desc = "Stealthily sting a target to extract their DNA."
 

@@ -2,7 +2,7 @@
 	var/inquisitive_ghost = TRUE
 
 /mob/dead/observer/verb/toggle_inquisition() // warning: unexpected inquisition
-	set category = "Ghost"
+	set category = PANEL_GHOST
 	set name = "Toggle Inquisitiveness"
 	set desc = "Sets whether your ghost examines everything on click by default"
 

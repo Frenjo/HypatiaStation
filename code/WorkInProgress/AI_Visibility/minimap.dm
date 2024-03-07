@@ -34,7 +34,7 @@
 		usr.loc = locate(max(1, x - 1), max(1, y - 1), usr.client.minimap_view_z)
 
 /mob/dead/verb/Open_Minimap()
-	set category = "Ghost"
+	set category = PANEL_GHOST
 	cameranet.show_minimap(client)
 
 
