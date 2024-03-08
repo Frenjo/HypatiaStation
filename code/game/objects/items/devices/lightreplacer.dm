@@ -69,11 +69,16 @@
 	..()
 	to_chat(usr, "It has [uses] lights remaining.")
 
-/obj/item/lightreplacer/attackby(obj/item/W, mob/user)
-	if(istype(W,  /obj/item/card/emag) && emagged == 0)
-		Emag()
-		return
+/obj/item/lightreplacer/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(emagged)
+		return FALSE
+	emagged = TRUE
+	playsound(src, "sparks", 100, 1)
+	name = "short-circuited [initial(name)]"
+	icon_state = "lightreplacer[emagged]"
+	return TRUE
 
+/obj/item/lightreplacer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/sheet/glass))
 		var/obj/item/stack/sheet/glass/G = W
 		if(G.amount - decrement >= 0 && uses < max_uses)
@@ -114,10 +119,6 @@
 	*/
 	to_chat(usr, "It has [uses] lights remaining.")
 
-/obj/item/lightreplacer/update_icon()
-	icon_state = "lightreplacer[emagged]"
-
-
 /obj/item/lightreplacer/proc/Use(mob/user)
 	playsound(src, 'sound/machines/click.ogg', 50, 1)
 	AddUses(-1)
@@ -145,15 +146,6 @@
 
 		var/obj/item/light/L = new target.light_type()
 		target.insert_bulb(L)
-
-/obj/item/lightreplacer/proc/Emag()
-	emagged = !emagged
-	playsound(src, "sparks", 100, 1)
-	if(emagged)
-		name = "Shortcircuited [initial(name)]"
-	else
-		name = initial(name)
-	update_icon()
 
 //Can you use it?
 /obj/item/lightreplacer/proc/CanUse(mob/living/user)

@@ -99,12 +99,16 @@
 			qdel(src)
 		return
 
+/obj/machinery/vending/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(emagged)
+		to_chat(user, SPAN_WARNING("[src]'s product lock is already shorted!"))
+		return FALSE
+	to_chat(user, SPAN_WARNING("You short out the product lock on [src]."))
+	emagged = TRUE
+	return TRUE
+
 /obj/machinery/vending/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/card/emag))
-		emagged = TRUE
-		to_chat(user, "You short out the product lock on [src]")
-		return
-	else if(istype(W, /obj/item/screwdriver))
+	if(istype(W, /obj/item/screwdriver))
 		panel_open = !panel_open
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panel_open)

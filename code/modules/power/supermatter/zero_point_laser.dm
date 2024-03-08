@@ -113,6 +113,18 @@
 				A.xo = 0
 		A.process()	//TODO: Carn: check this out
 
+/obj/machinery/zero_point_emitter/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(emagged)
+		to_chat(user, SPAN_WARNING("\The [src]'s lock has already been shorted!"))
+		return FALSE
+	user.visible_message(
+		SPAN_WARNING("[user.name] emags the [name]."),
+		SPAN_WARNING("You short out the lock.")
+	)
+	emagged = TRUE
+	locked = FALSE
+	return TRUE
+
 /obj/machinery/zero_point_emitter/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/wrench))
 		if(active)
@@ -194,15 +206,6 @@
 				to_chat(user, SPAN_WARNING("The controls can only be locked when the [src] is online."))
 		else
 			FEEDBACK_ACCESS_DENIED(user)
-		return
-
-	if(istype(W, /obj/item/card/emag) && !emagged)
-		locked = FALSE
-		emagged = TRUE
-		user.visible_message(
-			"[user.name] emags the [name].",
-			SPAN_WARNING("You short out the lock.")
-		)
 		return
 
 	..()

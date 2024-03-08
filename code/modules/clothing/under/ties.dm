@@ -417,17 +417,16 @@
 			SPAN_WARNING("You display your NanoTrasen Internal Security Legal Authorisation Badge.\nIt reads: [stored_name], NT Security.")
 		)
 
-/obj/item/clothing/tie/holobadge/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/card/emag))
-		if(emagged)
-			to_chat(user, SPAN_WARNING("[src] is already cracked."))
-			return
-		else
-			emagged = 1
-			to_chat(user, SPAN_WARNING("You swipe [O] and crack the holobadge security checks."))
-			return
+/obj/item/clothing/tie/holobadge/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(emagged)
+		to_chat(user, SPAN_WARNING("[src] is already cracked!"))
+		return FALSE
+	to_chat(user, SPAN_WARNING("You swipe [emag] and crack the holobadge security checks."))
+	emagged = TRUE
+	return TRUE
 
-	else if(istype(O, /obj/item/card/id) || istype(O, /obj/item/pda))
+/obj/item/clothing/tie/holobadge/attackby(obj/item/O as obj, mob/user as mob)
+	if(istype(O, /obj/item/card/id) || istype(O, /obj/item/pda))
 		var/obj/item/card/id/id_card = null
 
 		if(istype(O, /obj/item/card/id))

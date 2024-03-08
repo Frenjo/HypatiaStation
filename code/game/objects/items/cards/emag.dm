@@ -12,17 +12,12 @@
 
 	var/uses = 10
 	// List of devices that cost a use to emag.
+	// TODO: Gradually convert these to use attack_emag and remove them from the list as they're converted.
 	var/static/list/devices = list(
-		/obj/item/robot_parts,
 		/obj/item/storage/lockbox,
 		/obj/item/storage/secure,
 		/obj/item/circuitboard,
 		/obj/item/eftpos,
-		/obj/item/lightreplacer,
-		/obj/item/taperecorder,
-		/obj/item/hailer,
-		/obj/item/megaphone,
-		/obj/item/clothing/tie/holobadge,
 		/obj/structure/closet/crate/secure,
 		/obj/structure/closet/secure,
 		/obj/machinery/librarycomp,
@@ -31,20 +26,33 @@
 		/obj/machinery/suspension_gen,
 		/obj/machinery/shield_capacitor,
 		/obj/machinery/shield_gen,
-		/obj/machinery/zero_point_emitter,
 		/obj/machinery/clonepod,
 		/obj/machinery/deployable,
 		/obj/machinery/door_control,
 		/obj/machinery/porta_turret,
 		/obj/machinery/shieldgen,
 		/obj/machinery/turretid,
-		/obj/machinery/vending,
 		/obj/machinery/bot,
 		/obj/machinery/door,
 		/obj/machinery/telecoms,
 		/obj/machinery/mecha_part_fabricator
 	)
 
+// This is the new way.
+/obj/item/card/emag/handle_attack(atom/thing, mob/source)
+	var/successful = thing.attack_emag(uses, source, src)
+	if(!successful)
+		return ..(thing, source)
+
+	uses--
+	if(uses < 1)
+		source.visible_message(SPAN_WARNING("[src] fizzles and sparks - it seems it's been used once too often, and is now broken."))
+		source.drop_item()
+		var/obj/item/card/emag_broken/junk = new /obj/item/card/emag_broken(source.loc)
+		junk.add_fingerprint(source)
+		qdel(src)
+
+// This needs to be replaced with the new system.
 /obj/item/card/emag/afterattack(obj/item/O as obj, mob/user as mob)
 	for(var/type in devices)
 		if(istype(O, type))

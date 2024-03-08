@@ -11,6 +11,10 @@
 /obj/item/proc/handle_attack(atom/thing, mob/source)
 	return thing.attackby(src, source)
 
+// Returns TRUE if emagged successfully, FALSE if not.
+/atom/proc/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	return FALSE
+
 // No comment
 /atom/proc/attackby(obj/item/W, mob/user)
 	return

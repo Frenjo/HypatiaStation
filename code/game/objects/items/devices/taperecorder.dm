@@ -44,16 +44,15 @@
 
 		return
 
-/obj/item/taperecorder/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if(istype(W, /obj/item/card/emag))
-		if(emagged == 0)
-			emagged = 1
-			recording = 0
-			to_chat(user, SPAN_WARNING("PZZTTPFFFT"))
-			icon_state = "taperecorderidle"
-		else
-			to_chat(user, SPAN_WARNING("It is already emagged!"))
+/obj/item/taperecorder/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(emagged)
+		to_chat(user, SPAN_WARNING("It is already emagged!"))
+		return FALSE
+	to_chat(user, SPAN_WARNING("PZZTTPFFFT"))
+	emagged = TRUE
+	recording = FALSE
+	icon_state = "taperecorderidle"
+	return TRUE
 
 /obj/item/taperecorder/proc/explode()
 	var/turf/T = get_turf(loc)

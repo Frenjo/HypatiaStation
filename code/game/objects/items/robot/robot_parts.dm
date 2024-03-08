@@ -11,6 +11,15 @@
 	var/list/part = null
 	var/sabotaged = 0 // Emagging limbs can have repercussions when installed as prosthetics.
 
+/obj/item/robot_parts/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(sabotaged)
+		to_chat(user, SPAN_WARNING("[src] is already sabotaged!"))
+		return FALSE
+
+	to_chat(user, SPAN_WARNING("You slide [emag] into the dataport on [src] and short out the safeties."))
+	sabotaged = TRUE
+	return TRUE
+
 /obj/item/robot_parts/l_arm
 	name = "robot left arm"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
@@ -294,13 +303,3 @@
 		user.drop_item()
 		qdel(W)
 		qdel(src)
-
-/obj/item/robot_parts/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/card/emag))
-		if(sabotaged)
-			to_chat(user, SPAN_WARNING("[src] is already sabotaged!"))
-		else
-			to_chat(user, SPAN_WARNING("You slide [W] into the dataport on [src] and short out the safeties."))
-			sabotaged = TRUE
-		return
-	. = ..()

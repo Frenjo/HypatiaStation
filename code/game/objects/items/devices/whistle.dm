@@ -31,10 +31,11 @@
 	spawn(20)
 		spamcheck = 0
 
-/obj/item/hailer/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/card/emag) && !emagged)
-		to_chat(user, SPAN_WARNING("You overload \the [src]'s voice synthesizer."))
-		emagged = 1
-		insults = rand(1, 3)//to prevent dickflooding
-		return
-	return
+/obj/item/hailer/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(emagged)
+		to_chat(user, SPAN_WARNING("\The [src]'s voice synthesiser is already overloaded!"))
+		return FALSE
+	to_chat(user, SPAN_WARNING("You overload \the [src]'s voice synthesiser."))
+	emagged = TRUE
+	insults = rand(1, 3)//to prevent dickflooding
+	return TRUE
