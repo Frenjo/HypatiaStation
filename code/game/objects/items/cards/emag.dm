@@ -31,7 +31,6 @@
 		/obj/machinery/turretid,
 		/obj/machinery/bot,
 		/obj/machinery/door,
-		/obj/machinery/telecoms,
 		/obj/machinery/mecha_part_fabricator
 	)
 
