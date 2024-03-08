@@ -342,14 +342,19 @@
 	onclose(user, "server_control")
 	return
 
-/obj/machinery/computer/rdservercontrol/attackby(obj/item/D as obj, mob/user as mob)
-	if(istype(D, /obj/item/card/emag) && !emagged)
-		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
-		emagged = 1
-		to_chat(user, SPAN_INFO("You you disable the security protocols."))
+/obj/machinery/computer/rdservercontrol/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
 
-	src.updateUsrDialog()
-	return ..()
+	if(emagged)
+		to_chat(user, SPAN_WARNING("\The [src]'s security protocols have already been disabled!"))
+		return FALSE
+	to_chat(user, SPAN_WARNING("You disable \the [src]'s security protocols."))
+	playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
+	emagged = TRUE
+	updateUsrDialog()
+	return TRUE
 #undef RDSCONTROL_SCREEN_MAIN_MENU
 #undef RDSCONTROL_SCREEN_ACCESS_MENU
 #undef RDSCONTROL_SCREEN_DATA_MENU

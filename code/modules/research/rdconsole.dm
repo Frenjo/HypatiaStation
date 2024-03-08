@@ -94,6 +94,20 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	griefProtection()
 */
 
+/obj/machinery/computer/rdconsole/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
+
+	if(emagged)
+		to_chat(user, SPAN_WARNING("\The [src]'s security protocols have already been disabled!"))
+		return FALSE
+	to_chat(user, SPAN_WARNING("You disable \the [src]'s security protocols."))
+	playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
+	emagged = TRUE
+	updateUsrDialog()
+	return TRUE
+
 /obj/machinery/computer/rdconsole/attackby(obj/item/D as obj, mob/user as mob)
 	//Loading a disk into it.
 	if(istype(D, /obj/item/disk))
@@ -112,10 +126,6 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		user.drop_item()
 		D.loc = src
 		to_chat(user, SPAN_INFO("You add the disk to the machine!"))
-	else if(istype(D, /obj/item/card/emag) && !emagged)
-		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
-		emagged = 1
-		to_chat(user, SPAN_INFO("You you disable the security protocols."))
 	else
 		//The construction/deconstruction of the console code.
 		..()

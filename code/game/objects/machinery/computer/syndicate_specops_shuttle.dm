@@ -180,6 +180,14 @@ var/syndicate_elite_shuttle_timeleft = 0
 	if(syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership) return 0
 	else return 1
 
+/obj/machinery/computer/syndicate_elite_shuttle/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
+
+	to_chat(user, SPAN_WARNING("The electronic systems in this console are far too advanced for your primitive hacking peripherals."))
+	return FALSE
+
 /obj/machinery/computer/syndicate_elite_shuttle/attackby(I as obj, user as mob)
 	return attack_hand(user)
 
@@ -188,12 +196,6 @@ var/syndicate_elite_shuttle_timeleft = 0
 
 /obj/machinery/computer/syndicate_elite_shuttle/attack_paw(var/mob/user as mob)
 	return attack_hand(user)
-
-/obj/machinery/computer/syndicate_elite_shuttle/attackby(I as obj, user as mob)
-	if(istype(I,/obj/item/card/emag))
-		user << "\blue The electronic systems in this console are far too advanced for your primitive hacking peripherals."
-	else
-		return attack_hand(user)
 
 /obj/machinery/computer/syndicate_elite_shuttle/attack_hand(var/mob/user as mob)
 	if(!allowed(user))

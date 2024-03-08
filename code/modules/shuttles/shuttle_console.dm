@@ -87,14 +87,18 @@
 	else if(href_list["cancel"])
 		shuttle.cancel_launch(src)
 
-/obj/machinery/computer/shuttle_control/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/card/emag))
-		req_access = list()
-		req_one_access = list()
-		hacked = TRUE
-		to_chat(usr, "You short out the console's ID checking system. It's now available to everyone!")
-	else
-		..()
+/obj/machinery/computer/shuttle_control/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
+
+	if(hacked)
+		to_chat(user, SPAN_WARNING("\The [src]'s ID checking system has already been shorted!"))
+		return FALSE
+	to_chat(user, SPAN_WARNING("You short out \the [src]'s ID checking system. It's now available to everyone!"))
+	hacked = TRUE
+	req_access = list()
+	req_one_access = list()
 
 /obj/machinery/computer/shuttle_control/bullet_act(obj/item/projectile/Proj)
 	visible_message("[Proj] ricochets off [src]!")

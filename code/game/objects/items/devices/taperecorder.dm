@@ -46,7 +46,7 @@
 
 /obj/item/taperecorder/attack_emag(uses, mob/user, obj/item/card/emag/emag)
 	if(emagged)
-		to_chat(user, SPAN_WARNING("It is already emagged!"))
+		FEEDBACK_ALREADY_EMAGGED(user)
 		return FALSE
 	to_chat(user, SPAN_WARNING("PZZTTPFFFT"))
 	emagged = TRUE

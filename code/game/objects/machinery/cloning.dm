@@ -288,6 +288,19 @@
 
 	return
 
+/obj/machinery/clonepod/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
+
+	if(isnull(occupant))
+		to_chat(user, SPAN_WARNING("There's nobody inside to eject!"))
+		return FALSE
+	to_chat(user, SPAN_WARNING("You force an emergency ejection."))
+	locked = FALSE
+	go_out()
+	return TRUE
+
 //Let's unlock this early I guess.  Might be too early, needs tweaking.
 /obj/machinery/clonepod/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
@@ -302,13 +315,6 @@
 		else
 			src.locked = 0
 			to_chat(user, "System unlocked.")
-	else if(istype(W, /obj/item/card/emag))
-		if(isnull(src.occupant))
-			return
-		to_chat(user, "You force an emergency ejection.")
-		src.locked = 0
-		src.go_out()
-		return
 	else if(istype(W, /obj/item/cloning/charge))
 		to_chat(user, SPAN_INFO("\The [src] processes \the [W]."))
 		biomass += 1

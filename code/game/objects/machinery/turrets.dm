@@ -369,22 +369,27 @@
 	//don't have to check if control_area is path, since get_area_all_atoms can take path.
 	return
 
+/obj/machinery/turretid/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
+
+	if(emagged)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+	to_chat(user, SPAN_WARNING("You short out the turret control's access analysis module."))
+	emagged = TRUE
+	locked = FALSE
+	updateUsrDialog()
+	return TRUE
+
 /obj/machinery/turretid/attackby(obj/item/W, mob/user)
 	if(stat & BROKEN)
 		return
 	if(issilicon(user))
 		return src.attack_hand(user)
 
-	if(istype(W, /obj/item/card/emag) && !emagged)
-		to_chat(user, SPAN_WARNING("You short out the turret controls' access analysis module."))
-		emagged = 1
-		locked = 0
-		if(user.machine == src)
-			src.attack_hand(user)
-
-		return
-
-	else if(get_dist(src, user) == 0)		// trying to unlock the interface
+	if(get_dist(src, user) == 0)		// trying to unlock the interface
 		if(src.allowed(usr))
 			if(emagged)
 				to_chat(user, SPAN_NOTICE("The turret control is unresponsive."))

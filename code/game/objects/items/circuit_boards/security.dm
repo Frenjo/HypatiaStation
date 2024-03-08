@@ -14,15 +14,17 @@
 	var/locked = TRUE
 	var/emagged = FALSE
 
+/obj/item/circuitboard/security/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(emagged)
+		to_chat(user, SPAN_WARNING("The circuit lock has already been removed!"))
+		return FALSE
+	to_chat(user, SPAN_WARNING("You override the circuit lock and open the controls."))
+	emagged = TRUE
+	locked = FALSE
+	return TRUE
+
 /obj/item/circuitboard/security/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/card/emag))
-		if(emagged)
-			to_chat(user, "The circuit lock has already been removed.")
-			return
-		to_chat(user, SPAN_INFO("You override the circuit lock and open the controls."))
-		emagged = TRUE
-		locked = FALSE
-	else if(istype(I, /obj/item/card/id))
+	if(istype(I, /obj/item/card/id))
 		if(emagged)
 			to_chat(user, SPAN_WARNING("The circuit lock does not respond."))
 			return

@@ -275,11 +275,17 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 
 	src.updateUsrDialog()
 
-/obj/machinery/computer/communications/attackby(obj/I as obj, mob/user as mob)
-	if(istype(I,/obj/item/card/emag))
-		src.emagged = TRUE
-		to_chat(user, "You scramble the communication routing circuits!")
-	..()
+/obj/machinery/computer/communications/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
+
+	if(emagged)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+	to_chat(user, SPAN_WARNING("You scramble the communication routing circuits!"))
+	emagged = TRUE
+	return TRUE
 
 /obj/machinery/computer/communications/attack_ai(mob/user as mob)
 	return src.attack_hand(user)

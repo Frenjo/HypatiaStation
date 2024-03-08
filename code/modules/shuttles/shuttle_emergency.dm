@@ -147,14 +147,21 @@
 		to_world(SPAN_INFO_B("Alert: [req_authorisations - length(authorized)] authorisation\s needed to override the shuttle autopilot."))
 	return 1
 
-/obj/machinery/computer/shuttle_control/emergency/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/card/emag) && !emagged)
-		to_chat(user, SPAN_INFO("You short out the [src]'s authorisation protocols."))
-		emagged = 1
-		return
+/obj/machinery/computer/shuttle_control/emergency/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
 
+	if(emagged)
+		to_chat(user, SPAN_WARNING("\The [src]'s authorisation protocols have already been shorted!"))
+		return FALSE
+	to_chat(user, SPAN_WARNING("You short out \the [src]'s authorisation protocols."))
+	emagged = TRUE
+	return TRUE
+
+/obj/machinery/computer/shuttle_control/emergency/attackby(obj/item/W as obj, mob/user as mob)
 	read_authorisation(W)
-	..()
+	. = ..()
 
 /obj/machinery/computer/shuttle_control/emergency/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
 	var/list/data

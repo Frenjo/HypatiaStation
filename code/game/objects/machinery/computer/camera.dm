@@ -113,7 +113,6 @@
 				qdel(src)
 	else
 		attack_hand(user)
-	return
 
 //Camera control: moving.
 /obj/machinery/computer/security/proc/jump_on_click(mob/user, A)

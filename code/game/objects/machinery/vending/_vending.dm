@@ -100,6 +100,10 @@
 		return
 
 /obj/machinery/vending/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
+
 	if(emagged)
 		to_chat(user, SPAN_WARNING("[src]'s product lock is already shorted!"))
 		return FALSE

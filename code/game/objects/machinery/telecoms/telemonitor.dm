@@ -107,6 +107,20 @@
 	updateUsrDialog()
 	return
 
+/obj/machinery/computer/telecoms/monitor/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
+
+	if(emagged)
+		to_chat(user, SPAN_WARNING("\The [src]'s security protocols have already been disabled!"))
+		return FALSE
+	to_chat(user, SPAN_WARNING("You disable \the [src]'s security protocols."))
+	playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
+	emagged = TRUE
+	updateUsrDialog()
+	return TRUE
+
 /obj/machinery/computer/telecoms/monitor/attackby(obj/item/D as obj, mob/user as mob)
 	if(istype(D, /obj/item/screwdriver))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
@@ -134,12 +148,7 @@
 				A.icon_state = "4"
 				A.anchored = TRUE
 				qdel(src)
-	else if(istype(D, /obj/item/card/emag) && !emagged)
-		playsound(src, 'sound/effects/sparks4.ogg', 75, 1)
-		emagged = 1
-		to_chat(user, SPAN_INFO("You disable the security protocols."))
-	src.updateUsrDialog()
-	return
+	updateUsrDialog()
 
 #undef MONITOR_SCREEN_MAIN_MENU
 #undef MONITOR_SCREEN_VIEWING_MACHINE

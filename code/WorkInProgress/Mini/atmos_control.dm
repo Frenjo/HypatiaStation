@@ -46,15 +46,22 @@
 			dat += "[alarm]</font></a><br/>"
 	user << browse(dat, "window=atmoscontrol")
 
-/obj/machinery/computer/atmoscontrol/attackby(var/obj/item/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/card/emag) && !emagged)
-		user.visible_message("\red \The [user] swipes \a [I] through \the [src], causing the screen to flash!",\
-			"\red You swipe your [I] through \the [src], the screen flashing as you gain full control.",\
-			"You hear the swipe of a card through a reader, and an electronic warble.")
-		emagged = 1
-		overridden = 1
-		return
-	return ..()
+/obj/machinery/computer/atmoscontrol/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
+
+	if(emagged)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+	user.visible_message(
+		SPAN_WARNING("\The [user] swipes \a [emag] through \the [src], causing the screen to flash!"),
+		SPAN_WARNING("You swipe your [emag] through \the [src], the screen flashing as you gain full control."),
+		SPAN_INFO("You hear the swipe of a card through a reader, and an electronic warble.")
+	)
+	emagged = TRUE
+	overridden = TRUE
+	return TRUE
 
 /obj/machinery/computer/atmoscontrol/proc/specific()
 	if(!current)

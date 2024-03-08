@@ -162,7 +162,6 @@
 				qdel(src)
 	else
 		src.attack_hand(user)
-	return
 
 /obj/machinery/computer/general_air_control/receive_signal(datum/signal/signal)
 	if(!signal || signal.encryption)

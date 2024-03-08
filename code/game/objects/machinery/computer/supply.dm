@@ -215,14 +215,17 @@
 	onclose(user, "computer")
 	return
 
-/obj/machinery/computer/supplycomp/attackby(I as obj, user as mob)
-	if(istype(I,/obj/item/card/emag) && !hacked)
-		to_chat(user, SPAN_INFO("Special supplies unlocked."))
-		hacked = 1
-		return
-	else
-		..()
-	return
+/obj/machinery/computer/supplycomp/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
+
+	if(hacked)
+		to_chat(user, SPAN_WARNING("Special supplies are already unlocked!"))
+		return FALSE
+	to_chat(user, SPAN_WARNING("Special supplies unlocked."))
+	hacked = TRUE
+	return TRUE
 
 /obj/machinery/computer/supplycomp/Topic(href, href_list)
 	if(!global.PCsupply) // Edited this to reflect 'shuttles' port. -Frenjo

@@ -220,25 +220,29 @@
 	src.blocked = 0
 	return
 
+/obj/machinery/computer/arcade/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
 
-/obj/machinery/computer/arcade/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/card/emag) && !emagged)
-		temp = "If you die in the game, you die for real!"
-		player_hp = 30
-		player_mp = 10
-		enemy_hp = 45
-		enemy_mp = 20
-		gameover = 0
-		blocked = 0
+	if(emagged)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+	temp = "If you die in the game, you die for real!"
+	player_hp = 30
+	player_mp = 10
+	enemy_hp = 45
+	enemy_mp = 20
+	gameover = 0
+	blocked = 0
 
-		emagged = 1
+	emagged = TRUE
 
-		enemy_name = "Cuban Pete"
-		name = "Outbomb Cuban Pete"
+	enemy_name = "Cuban Pete"
+	name = "Outbomb Cuban Pete"
 
-		src.updateUsrDialog()
-	else
-		..()
+	updateUsrDialog()
+	return TRUE
 
 /obj/machinery/computer/arcade/emp_act(severity)
 	if(stat & (NOPOWER|BROKEN))
