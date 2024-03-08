@@ -36,8 +36,7 @@
 
 // This is the new way.
 /obj/item/card/emag/handle_attack(atom/thing, mob/source)
-	var/successful = thing.attack_emag(uses, source, src)
-	if(!successful)
+	if(!thing.attack_emag(uses, source, src))
 		return ..(thing, source)
 
 	uses--
