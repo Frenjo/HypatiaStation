@@ -1,133 +1,15 @@
-/* Cards
- * Contains:
- *		DATA CARD
- *		ID CARD
- *		FINGERPRINT CARD HOLDER
- *		FINGERPRINT CARD
- */
-
-
-
 /*
- * DATA CARDS - Used for the teleporter
+ * ID Cards
  */
-/obj/item/card
-	name = "card"
-	desc = "Does card things."
-	icon = 'icons/obj/items/card.dmi'
-	w_class = 1.0
-	var/associated_account_number = 0
-
-	var/list/files = list()
-
-/obj/item/card/data
-	name = "data disk"
-	desc = "A disk of data."
-	icon_state = "data"
-	var/function = "storage"
-	var/data = "null"
-	var/special = null
-	item_state = "card-id"
-
-/obj/item/card/data/verb/label(t as text)
-	set category = PANEL_OBJECT
-	set name = "Label Disk"
-	set src in usr
-
-	if(t)
-		src.name = text("data disk- '[]'", t)
-	else
-		src.name = "data disk"
-	src.add_fingerprint(usr)
-	return
-
-/obj/item/card/data/clown
-	name = "\proper the coordinates to clown planet"
-	icon_state = "data"
-	item_state = "card-id"
-	layer = 3
-	level = 2
-	desc = "This card contains coordinates to the fabled Clown Planet. Handle with care."
-	function = "teleporter"
-	data = "Clown Land"
-
-/*
- * ID CARDS
- */
-
-/obj/item/card/emag_broken
-	desc = "It's a card with a magnetic strip attached to some circuitry. It looks too busted to be used for anything but salvage."
-	name = "broken cryptographic sequencer"
-	icon_state = "emag"
-	item_state = "card-id"
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_SYNDICATE = 2)
-
-/obj/item/card/emag
-	desc = "It's a card with a magnetic strip attached to some circuitry."
-	name = "cryptographic sequencer"
-	icon_state = "emag"
-	item_state = "card-id"
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_SYNDICATE = 2)
-	var/uses = 10
-	// List of devices that cost a use to emag.
-	var/list/devices = list(
-		/obj/item/robot_parts,
-		/obj/item/storage/lockbox,
-		/obj/item/storage/secure,
-		/obj/item/circuitboard,
-		/obj/item/eftpos,
-		/obj/item/lightreplacer,
-		/obj/item/taperecorder,
-		/obj/item/hailer,
-		/obj/item/megaphone,
-		/obj/item/clothing/tie/holobadge,
-		/obj/structure/closet/crate/secure,
-		/obj/structure/closet/secure,
-		/obj/machinery/librarycomp,
-		/obj/machinery/computer,
-		/obj/machinery/power,
-		/obj/machinery/suspension_gen,
-		/obj/machinery/shield_capacitor,
-		/obj/machinery/shield_gen,
-		/obj/machinery/zero_point_emitter,
-		/obj/machinery/clonepod,
-		/obj/machinery/deployable,
-		/obj/machinery/door_control,
-		/obj/machinery/porta_turret,
-		/obj/machinery/shieldgen,
-		/obj/machinery/turretid,
-		/obj/machinery/vending,
-		/obj/machinery/bot,
-		/obj/machinery/door,
-		/obj/machinery/telecoms,
-		/obj/machinery/mecha_part_fabricator
-		)
-
-
-/obj/item/card/emag/afterattack(obj/item/O as obj, mob/user as mob)
-	for(var/type in devices)
-		if(istype(O, type))
-			uses--
-			break
-
-	if(uses < 1)
-		user.visible_message("[src] fizzles and sparks - it seems it's been used once too often, and is now broken.")
-		user.drop_item()
-		var/obj/item/card/emag_broken/junk = new(user.loc)
-		junk.add_fingerprint(user)
-		qdel(src)
-		return
-
-	..()
-
 /obj/item/card/id
 	name = "identification card"
 	desc = "A card used to provide ID and determine access across the station."
 	icon_state = "id"
 	item_state = "card-id"
+	slot_flags = SLOT_ID
+
 	var/list/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
-	slot_flags = SLOT_ID
 
 	var/blood_type = "\[UNSET\]"
 	var/dna_hash = "\[UNSET\]"
@@ -138,9 +20,8 @@
 	var/rank = null			//actual job
 	var/dorm = 0		// determines if this ID has claimed a dorm already
 
-/obj/item/card/id/New()
+/obj/item/card/id/initialise()
 	. = ..()
-	spawn(30)
 	if(ishuman(loc))
 		var/mob/living/carbon/human/human = loc
 		blood_type = human.dna.b_type
@@ -148,7 +29,7 @@
 		fingerprint_hash = md5(human.dna.uni_identity)
 
 /obj/item/card/id/attack_self(mob/user as mob)
-	visible_message("[user] shows you: \icon[src] [src.name]: assignment: [src.assignment]")
+	visible_message("[user] shows you: \icon[src] [name]: assignment: [assignment]")
 	add_fingerprint(user)
 
 /obj/item/card/id/get_access()
@@ -158,13 +39,13 @@
 	return src
 
 /obj/item/card/id/attackby(obj/item/W as obj, mob/user as mob)
-	..()
+	. = ..()
 	if(istype(W, /obj/item/id_wallet))
-		user << "You slip [src] into [W]."
-		src.name = "[src.registered_name]'s [W.name] ([src.assignment])"
-		src.desc = W.desc
-		src.icon = W.icon
-		src.icon_state = W.icon_state
+		to_chat(user, "You slip [src] into [W].")
+		name = "[registered_name]'s [W.name] ([assignment])"
+		desc = W.desc
+		icon = W.icon
+		icon_state = W.icon_state
 		qdel(W)
 		return
 
@@ -206,7 +87,9 @@
 /obj/item/card/id/proc/update_name()
 	name = isnotnull(assignment) ? "[registered_name]'s ID Card ([assignment])" : "[registered_name]'s ID Card"
 
-
+/*
+ * Variants
+ */
 /obj/item/card/id/silver
 	name = "identification card"
 	desc = "A silver card which shows honour and dedication."
@@ -249,7 +132,7 @@
 			to_chat(usr, SPAN_INFO("The card's microscanners activate as you pass it over the ID, copying its access."))
 
 /obj/item/card/id/syndicate/attack_self(mob/user as mob)
-	if(!src.registered_name)
+	if(!registered_name)
 		//Stop giving the players unsanitized unputs! You are giving ways for players to intentionally crash clients! -Nodrak
 		var/t = reject_bad_name(input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name))
 		if(!t) //Same as mob/new_player/prefrences.dm
@@ -291,14 +174,12 @@
 	else
 		..()
 
-
 /obj/item/card/id/syndicate_command
 	name = "syndicate ID card"
 	desc = "An ID straight from the Syndicate."
 	registered_name = "Syndicate"
 	assignment = "Syndicate Overlord"
 	access = list(ACCESS_SYNDICATE, ACCESS_EXTERNAL_AIRLOCKS)
-
 
 /obj/item/card/id/captains_spare
 	name = "captain's spare ID"
@@ -309,10 +190,9 @@
 	assignment = "Captain"
 
 /obj/item/card/id/captains_spare/New()
-	. = ..()
-	var/datum/job/captain/J = new/datum/job/captain
+	var/datum/job/captain/J = GLOBL.all_jobs["Captain"]
 	access = J.get_access()
-
+	. = ..()
 
 /obj/item/card/id/centcom
 	name = "\improper CentCom. ID"
@@ -322,9 +202,9 @@
 	assignment = "General"
 
 /obj/item/card/id/centcom/New()
-	. = ..()
 	access = get_all_centcom_access()
+	. = ..()
 
 /obj/item/card/id/centcom/station/New()
-	. = ..()
 	access.Add(get_all_station_access())
+	. = ..()
