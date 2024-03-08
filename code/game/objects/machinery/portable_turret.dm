@@ -282,6 +282,23 @@ Status: []<BR>"},
 				src.icon_state = "[lasercolor]grey_target_prism"
 				stat |= NOPOWER
 
+/obj/machinery/porta_turret/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
+	if(emagged)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+
+	// Emagging the turret makes it go bonkers and stun everyone. It also makes the turret shoot much, much faster.
+	to_chat(user, SPAN_WARNING("You short out the [src]'s threat assessment circuits."))
+	visible_message(SPAN_WARNING("[src] hums oddly..."))
+	emagged = TRUE
+	on = FALSE // Temporarily turns the turret off.
+	spawn(6 SECONDS) // 6 seconds for the traitor to gtfo of the area before the turret decides to ruin his shit.
+		on = TRUE // Turns it back on. The cover popUp() popDown() are automatically called in process(), no need to call them here.
+	return TRUE
+
 /obj/machinery/porta_turret/attackby(obj/item/W as obj, mob/user as mob)
 	if(stat & BROKEN)
 		if(istype(W, /obj/item/crowbar))
@@ -303,21 +320,7 @@ Status: []<BR>"},
 				user << "You remove the turret but did not manage to salvage anything."
 			qdel(src)
 
-
-	if((istype(W, /obj/item/card/emag)) && (!src.emagged))
-		// Emagging the turret makes it go bonkers and stun everyone. It also makes
-		// the turret shoot much, much faster.
-
-		user << "\red You short out [src]'s threat assessment circuits."
-		spawn(0)
-			for(var/mob/O in hearers(src, null))
-				O.show_message("\red [src] hums oddly...", 1)
-		emagged = 1
-		src.on = 0 // turns off the turret temporarily
-		sleep(60) // 6 seconds for the traitor to gtfo of the area before the turret decides to ruin his shit
-		on = 1 // turns it back on. The cover popUp() popDown() are automatically called in process(), no need to define it here
-
-	else if((istype(W, /obj/item/wrench)) && (!on))
+	if((istype(W, /obj/item/wrench)) && (!on))
 		if(raised) return
 		// This code handles moving the turret around. After all, it's a portable turret!
 

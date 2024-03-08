@@ -56,6 +56,31 @@
 	// do APC interaction
 	src.interact(user)
 
+/obj/machinery/power/apc/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if((stat & (BROKEN | NOPOWER | MAINT)) || malfhack)
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
+	if(emagged)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+
+	if(opened)
+		to_chat(user, SPAN_WARNING("You must close the cover to swipe an ID card."))
+		return FALSE
+	if(wiresexposed)
+		to_chat(user, "You must close the panel first.")
+		return FALSE
+
+	flick("apc-spark", src)
+	if(!do_after(user, 6) || !prob(50)) // Currently this doesn't take a charge per attempt, but it could in future. TODO: Balance!
+		to_chat(user, SPAN_WARNING("You fail to [locked ? "unlock" : "lock"] the APC interface."))
+		return FALSE
+	to_chat(user, SPAN_WARNING("You emag the APC interface."))
+	emagged = TRUE
+	locked = FALSE
+	update_icon()
+	return TRUE
+
 //attack with an item - open/close cover, insert cell, or (un)lock interface
 /obj/machinery/power/apc/attackby(obj/item/W, mob/user)
 	if(issilicon(user) && !in_range(src, user))
@@ -138,7 +163,7 @@
 			to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"].")
 			update_icon()
 
-	else if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))			// trying to unlock the interface with an ID card
+	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))			// trying to unlock the interface with an ID card
 		if(emagged)
 			to_chat(user, "The interface is broken.")
 		else if(opened)
@@ -154,23 +179,6 @@
 				update_icon()
 			else
 				FEEDBACK_ACCESS_DENIED(user)
-	else if(istype(W, /obj/item/card/emag) && !(emagged || malfhack))		// trying to unlock with an emag card
-		if(opened)
-			to_chat(user, "You must close the cover to swipe an ID card.")
-		else if(wiresexposed)
-			to_chat(user, "You must close the panel first.")
-		else if(stat & (BROKEN|MAINT))
-			to_chat(user, "Nothing happens.")
-		else
-			flick("apc-spark", src)
-			if(do_after(user, 6))
-				if(prob(50))
-					emagged = 1
-					locked = 0
-					to_chat(user, "You emag the APC interface.")
-					update_icon()
-				else
-					to_chat(user, SPAN_WARNING("You fail to [locked ? "unlock" : "lock"] the APC interface."))
 	else if(istype(W, /obj/item/stack/cable_coil) && !terminal && opened && has_electronics != 2)
 		if(src.loc:intact)
 			to_chat(user, SPAN_WARNING("You must remove the floor plating in front of the APC first."))

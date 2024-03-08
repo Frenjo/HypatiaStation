@@ -36,9 +36,12 @@
 #define FEEDBACK_ERROR_GENERIC(T)			to_chat(T, SPAN_DANGER("ERROR"))
 #define FEEDBACK_ACCESS_DENIED(T)			to_chat(T, SPAN_WARNING("Access denied."))
 #define FEEDBACK_NOT_ENOUGH_DEXTERITY(T)	to_chat(T, SPAN_WARNING("You don't have the dexterity to use \the [src]!"))
-// This is a generic one for things that don't have a custom message.
-#define FEEDBACK_ALREADY_EMAGGED(T)			to_chat(T, SPAN_WARNING("\The [src] is already emagged!"))
+
+// These are some emag-related messages.
+// FEEDBACK_ALREADY_EMAGGED and FEEDBACK_EMAG_GENERIC are for objects that don't have their own custom messages.
 #define FEEDBACK_MACHINE_UNRESPONSIVE(T)	to_chat(T, SPAN_INFO("\The [src] is unresponsive."))
+#define FEEDBACK_ALREADY_EMAGGED(T)			to_chat(T, SPAN_WARNING("\The [src] is already emagged!"))
+#define FEEDBACK_EMAG_GENERIC(T)			to_chat(T, SPAN_WARNING("You emag \the [src]."))
 
 // These will (hopefully) be removed when I get around to a construction overhaul...
 // Because once that's done, this stuff will be more centralised and not all over the place.

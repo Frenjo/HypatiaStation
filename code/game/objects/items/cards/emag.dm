@@ -8,7 +8,9 @@
 	desc = "It's a card with a magnetic strip attached to some circuitry."
 	icon_state = "emag"
 	item_state = "card-id"
+
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_SYNDICATE = 2)
+	item_flags = ITEM_FLAG_NO_BLUDGEON
 
 	var/uses = 10
 	// List of devices that cost a use to emag.
@@ -19,15 +21,11 @@
 		/obj/item/eftpos,
 		/obj/structure/closet/crate/secure,
 		/obj/structure/closet/secure,
-		/obj/machinery/librarycomp,
-		/obj/machinery/power,
 		/obj/machinery/suspension_gen,
 		/obj/machinery/shield_capacitor,
 		/obj/machinery/shield_gen,
 		/obj/machinery/deployable,
 		/obj/machinery/door_control,
-		/obj/machinery/porta_turret,
-		/obj/machinery/shieldgen,
 		/obj/machinery/turretid,
 		/obj/machinery/bot,
 		/obj/machinery/door,

@@ -37,6 +37,22 @@
 
 	cached_power_avail = avail()
 
+/obj/machinery/power/rust_fuel_injector/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
+	if(emagged)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+
+	user.visible_message(
+		SPAN_WARNING("[user] emags \the [src]."),
+		SPAN_WARNING("You short out the lock on \the [src].")
+	)
+	emagged = TRUE
+	locked = FALSE
+	return TRUE
+
 /obj/machinery/power/rust_fuel_injector/attackby(obj/item/W, mob/user)
 
 	if(istype(W, /obj/item/wrench))
@@ -115,12 +131,6 @@
 			FEEDBACK_ACCESS_DENIED(user)
 		return
 
-	if(istype(W, /obj/item/card/emag) && !emagged)
-		locked = 0
-		emagged = 1
-		user.visible_message("[user.name] emags the [src.name].","\red You short out the lock.")
-		return
-
 	if(istype(W, /obj/item/fuel_assembly) && !cur_assembly)
 		if(emergency_insert_ready)
 			cur_assembly = W
@@ -129,8 +139,7 @@
 			emergency_insert_ready = 0
 			return
 
-	..()
-	return
+	. = ..()
 
 /obj/machinery/power/rust_fuel_injector/attack_ai(mob/user)
 	attack_hand(user)

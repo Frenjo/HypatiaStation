@@ -69,7 +69,6 @@
 				qdel(src)
 	else
 		src.attack_hand(user)
-	return
 
 /obj/machinery/power/monitor/interact(mob/user)
 	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))

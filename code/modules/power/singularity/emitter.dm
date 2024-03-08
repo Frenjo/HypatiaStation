@@ -168,6 +168,22 @@
 				A.xo = 0
 		A.process()	//TODO: Carn: check this out
 
+/obj/machinery/power/emitter/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
+	if(emagged)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+
+	user.visible_message(
+		SPAN_WARNING("[user] emags \the [src]."),
+		SPAN_WARNING("You short out the lock on \the [src].")
+	)
+	emagged = TRUE
+	locked = FALSE
+	return TRUE
+
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/wrench))
 		if(active)
@@ -253,14 +269,4 @@
 			FEEDBACK_ACCESS_DENIED(user)
 		return
 
-	if(istype(W, /obj/item/card/emag) && !emagged)
-		locked = 0
-		emagged = 1
-		user.visible_message(
-			"[user.name] emags the [src.name].",
-			SPAN_WARNING("You short out the lock.")
-		)
-		return
-
-	..()
-	return
+	. = ..()

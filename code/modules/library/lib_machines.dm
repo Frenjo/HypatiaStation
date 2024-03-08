@@ -236,9 +236,19 @@
 	user << browse(dat, "window=library")
 	onclose(user, "library")
 
+/obj/machinery/librarycomp/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(stat & (BROKEN | NOPOWER))
+		FEEDBACK_MACHINE_UNRESPONSIVE(user)
+		return FALSE
+	if(emagged)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+
+	FEEDBACK_EMAG_GENERIC(user)
+	emagged = TRUE
+	return TRUE
+
 /obj/machinery/librarycomp/attackby(obj/item/W as obj, mob/user as mob)
-	if(src.density && istype(W, /obj/item/card/emag))
-		src.emagged = 1
 	if(istype(W, /obj/item/barcodescanner))
 		var/obj/item/barcodescanner/scanner = W
 		scanner.computer = src

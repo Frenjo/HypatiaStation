@@ -38,16 +38,14 @@
 	if(stat & (BROKEN | NOPOWER))
 		FEEDBACK_MACHINE_UNRESPONSIVE(user)
 		return FALSE
-
 	if(emagged)
 		FEEDBACK_ALREADY_EMAGGED(user)
 		return FALSE
-
 	if(isnull(linkedServer))
 		to_chat(user, SPAN_WARNING("A \[NO SERVER\] error appears on the screen."))
 		return FALSE
 
-	to_chat(user, SPAN_WARNING("You emag \the [src]."))
+	FEEDBACK_EMAG_GENERIC(user)
 	var/datum/effect/system/spark_spread/sparks = new /datum/effect/system/spark_spread()
 	sparks.set_up(5, 0, src)
 	sparks.start()

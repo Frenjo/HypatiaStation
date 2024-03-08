@@ -257,12 +257,18 @@
 			user << "The device must first be secured to the floor."
 	return
 
-/obj/machinery/shieldgen/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/card/emag))
-		malfunction = 1
-		update_icon()
+/obj/machinery/shieldgen/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+	if(malfunction)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
 
-	else if(istype(W, /obj/item/screwdriver))
+	FEEDBACK_EMAG_GENERIC(user)
+	malfunction = TRUE
+	update_icon()
+	return TRUE
+
+/obj/machinery/shieldgen/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/screwdriver))
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		if(is_open)
 			user << "\blue You close the panel."
