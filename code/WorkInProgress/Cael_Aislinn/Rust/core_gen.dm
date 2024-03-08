@@ -84,7 +84,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	//luminosity = round(owned_field.field_strength/10)
 	//luminosity = max(luminosity,1)
 
-/obj/machinery/power/rust_core/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/machinery/power/rust_core/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(stat & (BROKEN | NOPOWER))
 		FEEDBACK_MACHINE_UNRESPONSIVE(user)
 		return FALSE

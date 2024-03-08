@@ -282,7 +282,7 @@ Status: []<BR>"},
 				src.icon_state = "[lasercolor]grey_target_prism"
 				stat |= NOPOWER
 
-/obj/machinery/porta_turret/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/machinery/porta_turret/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(stat & (BROKEN | NOPOWER))
 		FEEDBACK_MACHINE_UNRESPONSIVE(user)
 		return FALSE

@@ -275,7 +275,7 @@ GLOBAL_GLOBL_LIST_NEW(communications_consoles)
 
 	src.updateUsrDialog()
 
-/obj/machinery/computer/communications/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/machinery/computer/communications/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(stat & (BROKEN | NOPOWER))
 		FEEDBACK_MACHINE_UNRESPONSIVE(user)
 		return FALSE

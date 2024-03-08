@@ -87,7 +87,7 @@
 	else if(href_list["cancel"])
 		shuttle.cancel_launch(src)
 
-/obj/machinery/computer/shuttle_control/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/machinery/computer/shuttle_control/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(stat & (BROKEN | NOPOWER))
 		FEEDBACK_MACHINE_UNRESPONSIVE(user)
 		return FALSE

@@ -46,7 +46,7 @@
 			dat += "[alarm]</font></a><br/>"
 	user << browse(dat, "window=atmoscontrol")
 
-/obj/machinery/computer/atmoscontrol/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/machinery/computer/atmoscontrol/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(stat & (BROKEN | NOPOWER))
 		FEEDBACK_MACHINE_UNRESPONSIVE(user)
 		return FALSE

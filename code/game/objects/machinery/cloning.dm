@@ -288,7 +288,7 @@
 
 	return
 
-/obj/machinery/clonepod/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/machinery/clonepod/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(stat & (BROKEN | NOPOWER))
 		FEEDBACK_MACHINE_UNRESPONSIVE(user)
 		return FALSE

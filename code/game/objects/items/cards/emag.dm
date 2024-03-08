@@ -34,7 +34,8 @@
 
 // This is the new way.
 /obj/item/card/emag/handle_attack(atom/thing, mob/source)
-	if(!thing.attack_emag(uses, source, src))
+	. = thing.attack_emag(src, source, uses)
+	if(!.) // If the thing isn't emaggable, pass down the attack chain.
 		return ..(thing, source)
 
 	uses--

@@ -417,7 +417,7 @@
 			SPAN_WARNING("You display your NanoTrasen Internal Security Legal Authorisation Badge.\nIt reads: [stored_name], NT Security.")
 		)
 
-/obj/item/clothing/tie/holobadge/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/item/clothing/tie/holobadge/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(emagged)
 		to_chat(user, SPAN_WARNING("[src] is already cracked!"))
 		return FALSE

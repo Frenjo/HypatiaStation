@@ -69,7 +69,7 @@
 	..()
 	to_chat(usr, "It has [uses] lights remaining.")
 
-/obj/item/lightreplacer/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/item/lightreplacer/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(emagged)
 		return FALSE
 	emagged = TRUE

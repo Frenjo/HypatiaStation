@@ -11,7 +11,7 @@
 	var/list/part = null
 	var/sabotaged = 0 // Emagging limbs can have repercussions when installed as prosthetics.
 
-/obj/item/robot_parts/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/item/robot_parts/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(sabotaged)
 		to_chat(user, SPAN_WARNING("[src] is already sabotaged!"))
 		return FALSE

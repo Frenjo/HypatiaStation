@@ -147,7 +147,7 @@
 		to_world(SPAN_INFO_B("Alert: [req_authorisations - length(authorized)] authorisation\s needed to override the shuttle autopilot."))
 	return 1
 
-/obj/machinery/computer/shuttle_control/emergency/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/machinery/computer/shuttle_control/emergency/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(stat & (BROKEN | NOPOWER))
 		FEEDBACK_MACHINE_UNRESPONSIVE(user)
 		return FALSE

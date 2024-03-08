@@ -34,7 +34,7 @@
 
 // Will create sparks and print out the console's password. You will then have to wait a while for the console to be back online.
 // It'll take more time if there's more characters in the password.
-/obj/machinery/computer/message_monitor/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/machinery/computer/message_monitor/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(stat & (BROKEN | NOPOWER))
 		FEEDBACK_MACHINE_UNRESPONSIVE(user)
 		return FALSE

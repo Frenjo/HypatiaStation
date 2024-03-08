@@ -257,7 +257,7 @@
 			user << "The device must first be secured to the floor."
 	return
 
-/obj/machinery/shieldgen/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/machinery/shieldgen/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(malfunction)
 		FEEDBACK_ALREADY_EMAGGED(user)
 		return FALSE

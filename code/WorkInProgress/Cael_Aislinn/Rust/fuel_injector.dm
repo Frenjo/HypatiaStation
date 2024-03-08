@@ -37,7 +37,7 @@
 
 	cached_power_avail = avail()
 
-/obj/machinery/power/rust_fuel_injector/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/machinery/power/rust_fuel_injector/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(stat & (BROKEN | NOPOWER))
 		FEEDBACK_MACHINE_UNRESPONSIVE(user)
 		return FALSE

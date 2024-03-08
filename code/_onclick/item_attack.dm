@@ -9,15 +9,41 @@
  * Returns TRUE if the attack was handled successfully.
  */
 /obj/item/proc/handle_attack(atom/thing, mob/source)
-	return thing.attackby(src, source)
+	// I think the general order of checks in this proc will be something like...
+	// attack_tool() -> hypothetical attack_weapon() -> default attackby() -> whack someone with it.
+	. = thing.attack_tool(src, source) // First, checks for tool attacks.
+	if(!.)
+		. = thing.attackby(src, source) // Secondly, checks the default attackby().
 
-// Returns TRUE if emagged successfully, FALSE if not.
-/atom/proc/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/*
+ * attack_tool()
+ *
+ * Called as the first part of handle_attack()'s attack chain.
+ * Overridden on subtypes which have interactions with various tool types.
+ * Returns TRUE if the interaction was handled, FALSE if not.
+ */
+/atom/proc/attack_tool(obj/item/tool, mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+
+	return FALSE
+
+/mob/living/attack_tool(obj/item/tool, mob/user)
+	if(can_operate(src) && do_surgery(src, user, tool))
+		return TRUE
+	return ..()
+
+/*
+ * attack_emag()
+ *
+ * Called by /obj/item/card/emag/handle_attack().
+ * Returns TRUE if emagged successfully, FALSE if not.
+ */
+/atom/proc/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	return FALSE
 
 // No comment
 /atom/proc/attackby(obj/item/W, mob/user)
-	return
+	return FALSE
 
 /atom/movable/attackby(obj/item/W, mob/user)
 	if(!HAS_ITEM_FLAGS(W, ITEM_FLAG_NO_BLUDGEON))
@@ -26,8 +52,6 @@
 /mob/living/attackby(obj/item/item, mob/user)
 	if(!ismob(user))
 		return FALSE
-	if(can_operate(src) && do_surgery(src, user, item))
-		return TRUE
 	if(istype(item))
 		return item.attack(src, user)
 

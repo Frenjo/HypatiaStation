@@ -107,7 +107,7 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/telecoms/monitor/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/machinery/computer/telecoms/monitor/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(stat & (BROKEN | NOPOWER))
 		FEEDBACK_MACHINE_UNRESPONSIVE(user)
 		return FALSE

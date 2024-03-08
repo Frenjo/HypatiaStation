@@ -56,7 +56,7 @@
 	// do APC interaction
 	src.interact(user)
 
-/obj/machinery/power/apc/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/machinery/power/apc/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if((stat & (BROKEN | NOPOWER | MAINT)) || malfhack)
 		FEEDBACK_MACHINE_UNRESPONSIVE(user)
 		return FALSE

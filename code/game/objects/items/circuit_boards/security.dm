@@ -14,7 +14,7 @@
 	var/locked = TRUE
 	var/emagged = FALSE
 
-/obj/item/circuitboard/security/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/item/circuitboard/security/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(emagged)
 		to_chat(user, SPAN_WARNING("The circuit lock has already been removed!"))
 		return FALSE

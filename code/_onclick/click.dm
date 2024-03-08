@@ -126,7 +126,7 @@
 				if(HAS_ITEM_FLAGS(W, ITEM_FLAG_HAS_USE_DELAY))
 					next_move += 5
 
-				// Return TRUE in attackby() to prevent afterattack() effects (when safely moving items for example)
+				// Return TRUE in handle_attack() to prevent afterattack() effects (when safely moving items for example)
 				var/resolved = W.handle_attack(A, src)
 				if(!resolved && isnotnull(A) && isnotnull(W))
 					W.afterattack(A, src, 1, params) // 1: clicking something Adjacent

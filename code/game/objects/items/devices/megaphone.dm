@@ -47,7 +47,7 @@
 			spamcheck = 0
 		return
 
-/obj/item/megaphone/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/item/megaphone/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(emagged)
 		to_chat(user, SPAN_WARNING("\The [src]'s voice synthesiser is already overloaded!"))
 		return FALSE

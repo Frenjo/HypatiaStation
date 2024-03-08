@@ -44,7 +44,7 @@
 
 		return
 
-/obj/item/taperecorder/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/item/taperecorder/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(emagged)
 		FEEDBACK_ALREADY_EMAGGED(user)
 		return FALSE

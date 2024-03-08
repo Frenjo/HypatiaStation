@@ -31,7 +31,7 @@
 	spawn(20)
 		spamcheck = 0
 
-/obj/item/hailer/attack_emag(uses, mob/user, obj/item/card/emag/emag)
+/obj/item/hailer/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(emagged)
 		to_chat(user, SPAN_WARNING("\The [src]'s voice synthesiser is already overloaded!"))
 		return FALSE
