@@ -23,29 +23,3 @@
 
 	if(Adjacent(usr))
 		usr.start_pulling(src)
-
-/atom/verb/point()
-	set category = PANEL_OBJECT
-	set name = "Point To"
-	set src in oview()
-
-	var/atom/this = src//detach proc from src
-	//qdel(src) // Trying to fix pointing deleting whatever you point at. -Frenjo
-
-	if(isnull(usr) || !isturf(usr.loc))
-		return
-	if(usr.stat || usr.restrained())
-		return
-	if(usr.status_flags & FAKEDEATH)
-		return
-
-	var/tile = get_turf(this)
-	if(isnull(tile))
-		return
-
-	var/P = new /obj/effect/decal/point(tile)
-	spawn(20)
-		if(isnotnull(P))
-			qdel(P)
-
-	usr.visible_message("<b>[usr]</b> points to [this].") // Added a full stop here. -Frenjo

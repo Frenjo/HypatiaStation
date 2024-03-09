@@ -6,11 +6,6 @@
 	plane = UNLIT_EFFECTS_PLANE
 	anchored = TRUE
 
-/obj/effect/decal/point/point()
-	set src in oview()
-	set hidden = TRUE
-	return
-
 // Used for spray that you spray at walls, tables, hydrovats etc
 /obj/effect/decal/spraystill
 	density = FALSE

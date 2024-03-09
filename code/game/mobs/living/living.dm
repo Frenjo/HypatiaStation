@@ -8,7 +8,7 @@
 	return
 
 //mob verbs are faster than object verbs. See above.
-/mob/living/pointed(atom/A as mob|obj|turf in view())
+/mob/living/point(atom/A as mob|obj|turf in view())
 	if(src.stat || !src.canmove || src.restrained())
 		return 0
 	if(src.status_flags & FAKEDEATH)
@@ -16,7 +16,7 @@
 	if(!..())
 		return 0
 
-	usr.visible_message("<b>[src]</b> points to [A]")
+	usr.visible_message("<b>[src]</b> points to [A].")
 	return 1
 
 

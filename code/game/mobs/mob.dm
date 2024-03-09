@@ -228,19 +228,19 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	face_atom(A)
 	A.examine(src)
 
-/mob/verb/pointed(atom/A as mob|obj|turf in view())
+/mob/verb/point(atom/A as mob|obj|turf in view())
 	set category = PANEL_OBJECT
 	set name = "Point To"
 
-	if(isnull(src) || !isturf(src.loc) || !(A in view(src.loc)))
-		return 0
+	if(isnull(src) || !isturf(loc) || !(A in view(loc)))
+		return FALSE
 
 	if(istype(A, /obj/effect/decal/point))
-		return 0
+		return FALSE
 
 	var/tile = get_turf(A)
 	if(isnull(tile))
-		return 0
+		return FALSE
 
 	var/obj/P = new /obj/effect/decal/point(tile)
 	P.invisibility = invisibility
@@ -248,7 +248,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 		if(isnotnull(P))
 			qdel(P)
 
-	return 1
+	return TRUE
 
 /mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
 	if(!istype(l_hand, /obj/item/grab) && !istype(r_hand, /obj/item/grab))
