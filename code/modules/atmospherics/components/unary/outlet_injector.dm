@@ -2,7 +2,7 @@
 	icon = 'icons/obj/atmospherics/outlet_injector.dmi'
 	icon_state = "off"
 
-	name = "Air Injector (Off)"
+	name = "air injector (off)"
 	desc = "Has a valve and pump attached to it"
 
 	level = 1
@@ -18,7 +18,7 @@
 
 /obj/machinery/atmospherics/unary/outlet_injector/New()
 	. = ..()
-	name = "Air Injector"
+	name = "air injector"
 
 /obj/machinery/atmospherics/unary/outlet_injector/atmos_initialise()
 	. = ..()
@@ -143,21 +143,21 @@
 
 // Switched on variant.
 /obj/machinery/atmospherics/unary/outlet_injector/on
-	name = "Air Injector (On)"
+	name = "air injector (on)"
 	icon_state = "on"
 	on = TRUE
 
 // Acid proof variant.
 /obj/machinery/atmospherics/unary/outlet_injector/acid_proof
-	name = "Acid-Proof Air Injector (Off)"
+	name = "acid-proof air injector (off)"
 	unacidable = TRUE
 
 /obj/machinery/atmospherics/unary/outlet_injector/New()
 	. = ..()
-	name = "Acid-Proof Air Injector"
+	name = "acid-proof air injector"
 
 // Switched on acid proof variant.
 /obj/machinery/atmospherics/unary/outlet_injector/acid_proof/on
-	name = "Acid-Proof Air Injector (On)"
+	name = "acid-proof air injector (on)"
 	icon_state = "on"
 	on = TRUE

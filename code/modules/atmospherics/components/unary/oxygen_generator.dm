@@ -3,7 +3,7 @@
 	icon_state = "intact_off"
 	density = TRUE
 
-	name = "Oxygen Generator"
+	name = "oxygen generator"
 	desc = ""
 
 	dir = SOUTH

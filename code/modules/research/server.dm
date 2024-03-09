@@ -1,5 +1,5 @@
 /obj/machinery/r_n_d/server
-	name = "R&D Server"
+	name = "\improper R&D server"
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "server"
 
@@ -165,7 +165,7 @@
 
 
 /obj/machinery/r_n_d/server/centcom
-	name = "CentCom Central R&D Database"
+	name = "\improper CentCom central R&D database"
 	server_id = -1
 
 /obj/machinery/r_n_d/server/centcom/initialise()
@@ -200,7 +200,7 @@
 #define RDSCONTROL_SCREEN_DATA_MENU 2
 #define RDSCONTROL_SCREEN_TRANSFER_MENU 3
 /obj/machinery/computer/rdservercontrol
-	name = "R&D Server Controller"
+	name = "\improper R&D server controller"
 	icon_state = "rdcomp"
 	circuit = /obj/item/circuitboard/rdservercontrol
 
@@ -362,13 +362,13 @@
 
 
 /obj/machinery/r_n_d/server/robotics
-	name = "Robotics R&D Server"
+	name = "robotics R&D server"
 	id_with_upload_string = "1;2"
 	id_with_download_string = "1;2"
 	server_id = 2
 
 /obj/machinery/r_n_d/server/core
-	name = "Core R&D Server"
+	name = "core R&D server"
 	id_with_upload_string = "1"
 	id_with_download_string = "1"
 	server_id = 1

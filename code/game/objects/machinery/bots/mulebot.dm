@@ -5,7 +5,7 @@
 // Remote Controlled from QM's PDA
 
 /obj/machinery/bot/mulebot
-	name = "MULEbot"
+	name = "\improper MULEbot"
 	desc = "A Multiple Utility Load Effector bot."
 	icon_state = "mulebot0"
 	layer = MOB_LAYER

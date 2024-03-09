@@ -1,5 +1,5 @@
 /obj/machinery/computer/aifixer
-	name = "AI System Integrity Restorer"
+	name = "\improper AI system integrity restorer"
 	icon_state = "ai-fixer"
 	circuit = /obj/item/circuitboard/aifixer
 	req_access = list(ACCESS_CAPTAIN, ACCESS_ROBOTICS, ACCESS_BRIDGE)

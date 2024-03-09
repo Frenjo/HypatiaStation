@@ -1,5 +1,5 @@
 /obj/item/aicard
-	name = "inteliCard"
+	name = "\improper InteliCard"
 	icon = 'icons/obj/items/devices/pda.dmi'
 	icon_state = "aicard" // aicard-full
 	item_state = "electronic"

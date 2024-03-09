@@ -1,7 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 /obj/machinery/computer/operating
-	name = "Operating Computer"
+	name = "operating computer"
 	density = TRUE
 	anchored = TRUE
 	icon_state = "operating"

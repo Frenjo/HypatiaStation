@@ -24,7 +24,7 @@
 
 // This one's from bay12.
 /obj/machinery/vending/cart
-	name = "PTech"
+	name = "\improper PTech"
 	desc = "Cartridges for PDAs."
 	icon_state = "cart"
 	icon_deny = "cart-deny"
@@ -38,7 +38,7 @@
 	slogan_list = list("Carts to go!")
 
 /obj/machinery/vending/cigarette
-	name = "Cigarette machine" // OCD had to be uppercase to look nice with the new formating
+	name = "cigarette machine"
 	desc = "If you want to get cancer, might as well do it in style!"
 	icon_state = "cigs"
 
@@ -60,7 +60,7 @@
 	vend_delay = 34
 
 /obj/machinery/vending/magivend
-	name = "MagiVend"
+	name = "\improper MagiVend"
 	desc = "A magic vending machine."
 	icon_state = "MagiVend"
 
@@ -83,7 +83,7 @@
 	vend_reply = "Have an enchanted evening!"
 
 /obj/machinery/vending/dinnerware
-	name = "Dinnerware"
+	name = "dinnerware"
 	desc = "A kitchen and restaurant equipment vendor."
 	icon_state = "dinnerware"
 

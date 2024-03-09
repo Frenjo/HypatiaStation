@@ -5,7 +5,7 @@
 ///////////////ANTIBODY SCANNER///////////////
 
 /obj/item/antibody_scanner
-	name = "Antibody Scanner"
+	name = "antibody scanner"
 	desc = "Used to scan living beings for antibodies in their blood."
 	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "health"
@@ -28,7 +28,7 @@
 ///////////////VIRUS DISH///////////////
 
 /obj/item/virusdish
-	name = "Virus containment/growth dish"
+	name = "virus containment/growth dish"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-b"
 	var/datum/disease2/disease/virus2 = null
@@ -39,7 +39,7 @@
 	reagents = list()
 
 /obj/item/virusdish/random
-	name = "Virus Sample"
+	name = "virus sample"
 
 /obj/item/virusdish/random/New()
 	..()
@@ -69,7 +69,7 @@
 ///////////////GNA DISK///////////////
 
 /obj/item/diseasedisk
-	name = "Blank GNA disk"
+	name = "blank GNA disk"
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk0"
 	var/datum/disease2/effectholder/effect = null
@@ -80,4 +80,4 @@
 	effect.effect = new /datum/disease2/effect/invisible()
 	effect.stage = stage
 	. = ..()
-	name = "Blank GNA disk (stage: [5-stage])"
+	name = "blank GNA disk (stage: [5-stage])"

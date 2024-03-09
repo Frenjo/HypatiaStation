@@ -33,7 +33,7 @@
 	inv_flags = INV_FLAG_HIDE_FACE
 
 /obj/item/clothing/mask/snorkel
-	name = "Snorkel"
+	name = "snorkel"
 	desc = "For the Swimming Savant."
 	icon_state = "snorkel"
 	inv_flags = INV_FLAG_HIDE_FACE

@@ -1,7 +1,7 @@
 // It.. uses a lot of power.  Everything under power is engineering stuff, at least.
 
 /obj/machinery/computer/gravity_control_computer
-	name = "Gravity Generator Control"
+	name = "gravity generator control"
 	desc = "A computer to control a local gravity generator. Qualified personnel only."
 	icon_state = "airtunnel0e"
 	anchored = TRUE
@@ -106,7 +106,7 @@
 
 
 /obj/machinery/gravity_generator
-	name = "Gravitational Generator"
+	name = "gravitational generator"
 	desc = "A device which produces a graviton field when set up."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "TheSingGen"

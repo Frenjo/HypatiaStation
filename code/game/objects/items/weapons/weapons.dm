@@ -18,7 +18,7 @@
 	hitsound = 'sound/weapons/ring.ogg'
 
 /obj/item/rsp
-	name = "\improper Rapid-Seed-Producer (RSP)"
+	name = "rapid-seed-producer (RSP)"
 	desc = "A device used to rapidly deploy seeds."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "rcd"

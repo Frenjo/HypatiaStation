@@ -1,5 +1,5 @@
 /obj/structure/walllocker
-	name = "Wall Locker"
+	name = "wall locker"
 	icon = 'icons/obj/closets/lockwall.dmi'
 	icon_state = "emerg"
 	var/list/spawnitems = list()
@@ -20,7 +20,7 @@
 
 
 /obj/structure/walllocker/emerglocker
-	name = "Emergency Locker"
+	name = "emergency locker"
 	spawnitems = list(/obj/item/tank/emergency/oxygen, /obj/item/clothing/mask/breath, /obj/item/crowbar)
 
 /obj/structure/walllocker/emerglocker/north

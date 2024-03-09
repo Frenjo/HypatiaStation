@@ -1,8 +1,8 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 /obj/machinery/computer/pod
-	name = "Pod Launch Control"
-	desc = "A controll for launching pods. Some people prefer firing Mechas."
+	name = "pod launch control"
+	desc = "A control for launching pods. Some people prefer firing mechas."
 	icon_state = "computer_generic"
 	circuit = /obj/item/circuitboard/pod
 	var/id = 1.0

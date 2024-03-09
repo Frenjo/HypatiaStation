@@ -1,7 +1,7 @@
 //CONTAINS: Detective's Scanner
 
 /obj/item/detective_scanner
-	name = "Scanner"
+	name = "forensic scanner"
 	desc = "Used to scan objects for DNA and fingerprints."
 	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "forensic1"

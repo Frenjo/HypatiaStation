@@ -3,7 +3,7 @@
 // Ported this from an old Heaven's Gate - Eternal github I found, 22/11/2019. -Frenjo
 
 /obj/machinery/embedded_controller
-	name = "Embedded Controller"
+	name = "embedded controller"
 	anchored = TRUE
 
 	power_usage = list(

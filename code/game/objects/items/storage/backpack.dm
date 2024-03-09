@@ -75,7 +75,7 @@
 		icon_state = "brokenpack"
 
 /obj/item/storage/backpack/santabag
-	name = "Santa's Gift Bag"
+	name = "santa's gift bag"
 	desc = "Space Santa uses this to deliver toys to all the nice children in space in Christmas! Wow, it's pretty big!"
 	icon_state = "giftbag0"
 	item_state = "giftbag"

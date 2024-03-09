@@ -1,5 +1,5 @@
 /obj/item/anobattery
-	name = "Anomaly power battery"
+	name = "anomaly power battery"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "anobattery0"
 
@@ -19,7 +19,7 @@
 
 
 /obj/item/anodevice
-	name = "Anomaly power utilizer"
+	name = "anomaly power utilizer"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "anodev"
 

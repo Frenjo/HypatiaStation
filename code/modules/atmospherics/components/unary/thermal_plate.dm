@@ -6,7 +6,7 @@
 	icon = 'icons/obj/atmospherics/cold_sink.dmi'
 	icon_state = "intact_off"
 
-	name = "Thermal Transfer Plate"
+	name = "thermal transfer plate"
 	desc = "Transfers heat to and from an area"
 
 /obj/machinery/atmospherics/unary/thermal_plate/update_icon()

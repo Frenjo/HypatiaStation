@@ -2,7 +2,7 @@
 GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 
 /obj/machinery/power/rad_collector
-	name = "Radiation Collector Array"
+	name = "radiation collector array"
 	desc = "A device which uses Hawking Radiation and plasma to produce power."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "ca"

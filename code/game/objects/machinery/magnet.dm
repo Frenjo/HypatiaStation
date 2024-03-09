@@ -7,7 +7,7 @@
 /obj/machinery/magnetic_module
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "floor_magnet-f"
-	name = "Electromagnetic Generator"
+	name = "electromagnetic generator"
 	desc = "A device that uses station power to create points of magnetic energy."
 	level = 1		// underfloor
 	layer = 2.5
@@ -190,7 +190,7 @@
 
 
 /obj/machinery/magnetic_controller
-	name = "Magnetic Control Console"
+	name = "magnetic control console"
 	icon = 'icons/obj/machines/airlock_machines.dmi' // uses an airlock machine icon, THINK GREEN HELP THE ENVIRONMENT - RECYCLING!
 	icon_state = "airlock_control_standby"
 	density = TRUE

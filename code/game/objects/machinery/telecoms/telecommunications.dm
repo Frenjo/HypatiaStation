@@ -264,7 +264,7 @@
 	Link to Processor Units in case receiver can't send to bus units.
 */
 /obj/machinery/telecoms/receiver
-	name = "Subspace Receiver"
+	name = "subspace receiver"
 	icon_state = "broadcast receiver"
 	desc = "This machine has a dish-like shape and green lights. It is designed to detect and process subspace radio activity."
 	density = TRUE
@@ -319,7 +319,7 @@
 	from Servers/Buses and sends that back to the relay, to then be broadcasted.
 */
 /obj/machinery/telecoms/hub
-	name = "Telecommunication Hub"
+	name = "telecommunications hub"
 	icon_state = "hub"
 	desc = "A mighty piece of hardware used to send/receive massive amounts of data."
 	density = TRUE
@@ -355,7 +355,7 @@
 	with a HUB, the only other machine that can send/receive pass Z levels.
 */
 /obj/machinery/telecoms/relay
-	name = "Telecommunication Relay"
+	name = "telecommunications relay"
 	icon_state = "relay"
 	desc = "A mighty piece of hardware used to send massive amounts of data far away."
 	density = TRUE
@@ -409,7 +409,7 @@
 	Link to a subspace hub if it can't send to a server.
 */
 /obj/machinery/telecoms/bus
-	name = "Bus Mainframe"
+	name = "bus mainframe"
 	icon_state = "bus"
 	desc = "A mighty piece of hardware used to send massive amounts of data quickly."
 	density = TRUE
@@ -461,7 +461,7 @@
 	Link to servers if bus is not present
 */
 /obj/machinery/telecoms/processor
-	name = "Processor Unit"
+	name = "processor unit"
 	icon_state = "processor"
 	desc = "This machine is used to process large quantities of information."
 	density = TRUE
@@ -500,7 +500,7 @@
 	Store a maximum of 100 logs and then deletes them.
 */
 /obj/machinery/telecoms/server
-	name = "Telecommunication Server"
+	name = "telecommunications server"
 	icon_state = "comm_server"
 	desc = "A machine used to store data and network statistics."
 	density = TRUE

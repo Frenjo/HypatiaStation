@@ -313,7 +313,7 @@
 // Edited canister icon names to be more consistent, and added a few more. -Frenjo
 // Oxygen
 /obj/machinery/portable_atmospherics/canister/oxygen
-	name = "Canister: \[O2\]"
+	name = "canister: \[O2\]"
 	icon_state = "bluews"
 	canister_color = "bluews"
 	can_label = FALSE
@@ -325,7 +325,7 @@
 
 // Nitrogen
 /obj/machinery/portable_atmospherics/canister/nitrogen
-	name = "Canister: \[N2\]"
+	name = "canister: \[N2\]"
 	icon_state = "red"
 	canister_color = "red"
 	can_label = FALSE
@@ -337,7 +337,7 @@
 
 // Mixed Air
 /obj/machinery/portable_atmospherics/canister/air
-	name = "Canister \[Air\]"
+	name = "canister \[Air\]"
 	icon_state = "grey"
 	canister_color = "grey"
 	can_label = FALSE
@@ -352,7 +352,7 @@
 
 // Hydrogen
 /obj/machinery/portable_atmospherics/canister/hydrogen
-	name = "Canister: \[H2\]"
+	name = "canister: \[H2\]"
 	icon_state = "green"
 	canister_color = "green"
 	can_label = FALSE
@@ -364,7 +364,7 @@
 
 // Carbon Dioxide
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide
-	name = "Canister \[CO2\]"
+	name = "canister \[CO2\]"
 	icon_state = "black"
 	canister_color = "black"
 	can_label = FALSE
@@ -376,7 +376,7 @@
 
 // Plasma
 /obj/machinery/portable_atmospherics/canister/toxins
-	name = "Canister \[Toxin (Bio)\]"
+	name = "canister \[Toxin (Bio)\]"
 	icon_state = "orange"
 	canister_color = "orange"
 	can_label = FALSE
@@ -389,7 +389,7 @@
 // Oxygen + Plasma Mix
 // Added this because of updated atmos stuff. -Frenjo
 /obj/machinery/portable_atmospherics/canister/oxygen_toxins
-	name = "Canister \[O2/TOX\]"
+	name = "canister \[O2/TOX\]"
 	icon_state = "orangews2"
 	canister_color = "orangews2"
 	can_label = FALSE
@@ -406,7 +406,7 @@
 // Oxygen Agent-B
 // Added this because I'm curious. -Frenjo
 /obj/machinery/portable_atmospherics/canister/oxygen_agent_b
-	name = "Canister \[Oxygen Agent-B\]"
+	name = "canister \[Oxygen Agent-B\]"
 	icon_state = "orangebs"
 	canister_color = "orangebs"
 	can_label = FALSE
@@ -418,7 +418,7 @@
 
 // Nitrous Oxide
 /obj/machinery/portable_atmospherics/canister/sleeping_agent
-	name = "Canister: \[N2O\]"
+	name = "canister: \[N2O\]"
 	icon_state = "redws2"
 	canister_color = "redws2"
 	can_label = FALSE

@@ -15,7 +15,7 @@
 
 // Launcher.
 /obj/item/spikethrower
-	name = "Vox spike thrower"
+	name = "\improper Vox spike thrower"
 	desc = "A vicious alien projectile weapon. Parts of it quiver gelatinously, as though the thing is insectile and alive."
 	icon = 'icons/obj/weapons/gun.dmi'
 	icon_state = "spikethrower3"

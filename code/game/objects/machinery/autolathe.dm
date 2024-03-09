@@ -64,7 +64,7 @@
 )
 
 /obj/machinery/autolathe
-	name = "\improper autolathe"
+	name = "autolathe"
 	desc = "It produces items using metal and glass."
 	icon = 'icons/obj/machines/fabricators.dmi'
 	icon_state = "autolathe"

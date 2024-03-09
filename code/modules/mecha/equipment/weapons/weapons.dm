@@ -62,12 +62,12 @@
 	P.process()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy
-	name = "General Energy Weapon"
+	name = "general energy weapon"
 	auto_rearm = 1
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
 	equip_cooldown = 8
-	name = "CH-PS \"Immolator\" Laser"
+	name = "\improper CH-PS \"Immolator\" laser"
 	icon_state = "mecha_laser"
 	energy_drain = 30
 	projectile = /obj/item/projectile/energy/beam/laser
@@ -75,7 +75,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
 	equip_cooldown = 15
-	name = "CH-LC \"Solaris\" Laser Cannon"
+	name = "\improper CH-LC \"Solaris\" laser cannon"
 	icon_state = "mecha_laser"
 	energy_drain = 60
 	projectile = /obj/item/projectile/energy/beam/laser/heavy
@@ -83,7 +83,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/ion
 	equip_cooldown = 40
-	name = "mkIV Ion Heavy Cannon"
+	name = "mkIV ion heavy cannon"
 	icon_state = "mecha_ion"
 	energy_drain = 120
 	projectile = /obj/item/projectile/ion
@@ -91,7 +91,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/pulse
 	equip_cooldown = 30
-	name = "eZ-13 mk2 Heavy pulse rifle"
+	name = "eZ-13 mk2 heavy pulse rifle"
 	icon_state = "mecha_pulse"
 	energy_drain = 120
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_COMBAT = 6, RESEARCH_TECH_POWERSTORAGE = 4)
@@ -111,7 +111,7 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser
-	name = "PBT \"Pacifier\" Mounted Taser"
+	name = "PBT \"Pacifier\" mounted taser"
 	icon_state = "mecha_taser"
 	energy_drain = 20
 	equip_cooldown = 8
@@ -119,7 +119,7 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/weapon/honker
-	name = "HoNkER BlAsT 5000"
+	name = "\improper HoNkER BlAsT 5000"
 	icon_state = "mecha_honker"
 	energy_drain = 200
 	equip_cooldown = 150
@@ -174,7 +174,7 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic
-	name = "General Ballisic Weapon"
+	name = "general ballisic weapon"
 	var/projectile_energy_cost
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/get_equip_info()
@@ -198,7 +198,7 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
-	name = "LBX AC 10 \"Scattershot\""
+	name = "\improper LBX AC 10 \"Scattershot\""
 	icon_state = "mecha_scatter"
 	equip_cooldown = 20
 	projectile = /obj/item/projectile/bullet/midbullet
@@ -210,7 +210,7 @@
 	projectile_energy_cost = 25
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg
-	name = "Ultra AC 2"
+	name = "\improper Ultra AC 2"
 	icon_state = "mecha_uac2"
 	equip_cooldown = 10
 	projectile = /obj/item/projectile/bullet/weakbullet
@@ -229,7 +229,7 @@
 	AM.throw_at(target, missile_range, missile_speed)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive
-	name = "SRM-8 Missile Rack"
+	name = "\improper SRM-8 missile rack"
 	icon_state = "mecha_missilerack"
 	projectile = /obj/item/missile
 	fire_sound = 'sound/effects/bang.ogg'
@@ -257,7 +257,7 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang
-	name = "SGL-6 Grenade Launcher"
+	name = "\improper SGL-6 grenade launcher"
 	icon_state = "mecha_grenadelnchr"
 	projectile = /obj/item/grenade/flashbang
 	fire_sound = 'sound/effects/bang.ogg'
@@ -274,7 +274,7 @@
 		F.prime()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang//Because I am a heartless bastard -Sieve
-	name = "SOP-6 Grenade Launcher"
+	name = "\improper SOP-6 grenade launcher"
 	projectile = /obj/item/grenade/flashbang/clusterbang
 	construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_GOLD = 6000, MATERIAL_URANIUM = 6000)
 
@@ -285,7 +285,7 @@
 	return//Extra bit of security
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar
-	name = "Banana Mortar"
+	name = "banana mortar"
 	icon_state = "mecha_bananamrtr"
 	projectile = /obj/item/bananapeel
 	fire_sound = 'sound/items/bikehorn.ogg'
@@ -302,7 +302,7 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar
-	name = "Mousetrap Mortar"
+	name = "mousetrap mortar"
 	icon_state = "mecha_mousetrapmrtr"
 	projectile = /obj/item/assembly/mousetrap
 	equip_cooldown = 10

@@ -41,7 +41,7 @@
 
 //legacy crystal
 /obj/machinery/crystal
-	name = "Crystal"
+	name = "crystal"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "crystal"
 

@@ -1,6 +1,6 @@
 /obj/mecha/working/ripley
 	desc = "Autonomous Power Loader Unit. The workhorse of the exosuit world."
-	name = "APLU \"Ripley\""
+	name = "\improper APLU \"Ripley\""
 	icon_state = "ripley"
 	initial_icon = "ripley"
 	step_in = 6
@@ -16,8 +16,8 @@
 */
 
 /obj/mecha/working/ripley/firefighter
-	desc = "Standart APLU chassis was refitted with additional thermal protection and cistern."
-	name = "APLU \"Firefighter\""
+	desc = "Standard APLU chassis refitted with additional thermal protection and cistern."
+	name = "\improper APLU \"Firefighter\""
 	icon_state = "firefighter"
 	initial_icon = "firefighter"
 	max_temperature = 65000
@@ -28,7 +28,7 @@
 
 /obj/mecha/working/ripley/deathripley
 	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE"
-	name = "DEATH-RIPLEY"
+	name = "\improper DEATH-RIPLEY"
 	icon_state = "deathripley"
 	step_in = 2
 	opacity = FALSE
@@ -44,7 +44,7 @@
 
 /obj/mecha/working/ripley/mining
 	desc = "An old, dusty mining ripley."
-	name = "APLU \"Miner\""
+	name = "\improper APLU \"Miner\""
 
 /obj/mecha/working/ripley/mining/New()
 	..()

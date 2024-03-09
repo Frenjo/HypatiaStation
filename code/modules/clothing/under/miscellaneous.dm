@@ -13,7 +13,7 @@
 	item_state = "w_suit"
 
 /obj/item/clothing/under/captain_fly
-	name = "rogue captains uniform"
+	name = "rogue captain's uniform"
 	desc = "For the man who doesn't care because he's still free."
 	icon_state = "captain_fly"
 	item_state = "captain_fly"
@@ -198,7 +198,7 @@
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | ARMS
 
 /obj/item/clothing/under/overalls
-	name = "laborer's overalls"
+	name = "labourer's overalls"
 	desc = "A set of durable overalls for getting the job done."
 	icon_state = "overalls"
 	item_state = "lb_suit"

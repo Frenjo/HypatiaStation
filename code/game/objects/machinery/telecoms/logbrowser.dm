@@ -4,7 +4,7 @@
 #define SERVER_SCREEN_VIEWING_SERVER 1
 
 /obj/machinery/computer/telecoms/server
-	name = "Telecommunications Server Monitor"
+	name = "telecommunications server monitor"
 	icon_state = "comm_logs"
 	req_access = list(ACCESS_TCOMSAT)
 

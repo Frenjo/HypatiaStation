@@ -4,7 +4,7 @@
  * These are hydroponics vendors.
  */
 /obj/machinery/vending/hydronutrients
-	name = "NutriMax"
+	name = "\improper NutriMax"
 	desc = "A plant nutrients vendor."
 	icon_state = "nutri"
 	icon_deny = "nutri-deny"
@@ -25,7 +25,7 @@
 	)
 
 /obj/machinery/vending/hydroseeds
-	name = "MegaSeed Servitor"
+	name = "\improper MegaSeed Servitor"
 	desc = "When you need seeds fast!"
 	icon_state = "seeds"
 

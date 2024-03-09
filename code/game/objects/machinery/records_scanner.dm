@@ -1,6 +1,6 @@
 //not a computer
 obj/machinery/scanner
-	name = "Identity Analyser"
+	name = "identity analyser"
 	var/outputdir = 0
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "scanner_idle"
@@ -138,5 +138,3 @@ obj/machinery/scanner/attack_hand(mob/living/carbon/human/user)
 	global.data_core.medical += M
 	global.data_core.security += S
 	global.data_core.locked += L
-
-

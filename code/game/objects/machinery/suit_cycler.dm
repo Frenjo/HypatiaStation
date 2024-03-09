@@ -39,14 +39,14 @@
 	var/obj/item/clothing/head/helmet/space/helmet = null
 
 /obj/machinery/suit_cycler/engineering
-	name = "Engineering suit cycler"
+	name = "suit cycler (Engineering)"
 	model_text = "Engineering"
 	req_access = list(ACCESS_CONSTRUCTION)
 	departments = list("Engineering", "Atmos")
 	species = list(SPECIES_HUMAN, SPECIES_TAJARAN)
 
 /obj/machinery/suit_cycler/mining
-	name = "Mining suit cycler"
+	name = "suit cycler (Mining)"
 	model_text = "Mining"
 	req_access = list(ACCESS_MINING)
 	departments = list("Mining")
@@ -54,7 +54,7 @@
 	target_department = "Mining"
 
 /obj/machinery/suit_cycler/security
-	name = "Security suit cycler"
+	name = "suit cycler (Security)"
 	model_text = "Security"
 	req_access = list(ACCESS_SECURITY)
 	departments = list("Security")

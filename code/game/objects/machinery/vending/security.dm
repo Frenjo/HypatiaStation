@@ -4,7 +4,7 @@
  * These contain Security things.
  */
 /obj/machinery/vending/security
-	name = "SecTech"
+	name = "\improper SecTech"
 	desc = "A security equipment vendor."
 	icon_state = "sec"
 	icon_deny = "sec-deny"

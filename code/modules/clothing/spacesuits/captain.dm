@@ -11,8 +11,8 @@
 
 //Captain's space suit This is not the proper path but I don't currently know enough about how this all works to mess with it.
 /obj/item/clothing/suit/armor/captain
-	name = "Captain's armor"
-	desc = "A bulky, heavy-duty piece of exclusive NanoTrasen armor. YOU are in charge!"
+	name = "captain's armour"
+	desc = "A bulky, heavy-duty piece of exclusive NanoTrasen armour. YOU are in charge!"
 	icon_state = "caparmor"
 	item_state = "capspacesuit"
 	w_class = 4

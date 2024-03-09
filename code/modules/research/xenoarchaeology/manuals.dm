@@ -1,5 +1,5 @@
 /obj/item/book/manual/excavation
-	name = "Out on the dig"
+	name = "Out On The Dig"
 	icon_state = "excavation"
 	author = "Professor Patrick Mason, Curator of the Antiquities Museum on Ichar VII"
 	title = "Out on the dig"

@@ -109,7 +109,7 @@
  * Head of Security
  */
 /obj/item/clothing/under/rank/head_of_security
-	desc = "It's a jumpsuit worn by those few with the dedication to achieve the position of \"Head of Security\". It has additional armor to protect the wearer."
+	desc = "It's a jumpsuit worn by those few with the dedication to achieve the position of \"Head of Security\". It has additional armour to protect the wearer."
 	name = "head of security's jumpsuit"
 	icon_state = "hos"
 	item_state = "r_suit"
@@ -123,7 +123,7 @@
 	item_color = "hos_corporate"
 
 /obj/item/clothing/head/helmet/HoS
-	name = "Head of Security Hat"
+	name = "head of security's hat"
 	desc = "The hat of the Head of Security. For showing the officers who's in charge."
 	icon_state = "hoscap"
 	item_flags = ITEM_FLAG_COVERS_EYES
@@ -132,7 +132,7 @@
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/suit/armor/hos
-	name = "armored coat"
+	name = "armoured coat"
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
 	icon_state = "hos"
 	item_state = "hos"
@@ -143,7 +143,7 @@
 
 
 /obj/item/clothing/head/helmet/HoS/dermal
-	name = "Dermal Armour Patch"
+	name = "dermal armour patch"
 	desc = "You're not quite sure how you manage to take it on and off, but it implants nicely in your head."
 	icon_state = "dermal"
 	item_state = "dermal"
@@ -159,7 +159,7 @@
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/suit/armor/hos/jensen
-	name = "armored trenchcoat"
+	name = "armoured trenchcoat"
 	desc = "A trenchcoat augmented with a special alloy for some protection and style."
 	icon_state = "jensencoat"
 	item_state = "jensencoat"

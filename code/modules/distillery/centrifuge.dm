@@ -1,6 +1,6 @@
 // V. The centrifuge spins inserted food items. It is intended to squeeze out the reagents that are common food catalysts (enzymes currently)
 /obj/machinery/centrifuge
-	name = "\improper Centrifuge"
+	name = "centrifuge"
 	desc = "It is a machine that spins produce."
 	icon = 'icons/obj/machines/fabricators.dmi'
 	icon_state = "autolathe"

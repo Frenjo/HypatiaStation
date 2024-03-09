@@ -22,7 +22,7 @@
 
 //Advanced airlock controller for when you want a more versatile airlock controller - useful for turning simple access control rooms into airlocks
 /obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller
-	name = "Advanced Airlock Controller"
+	name = "advanced airlock controller"
 
 /obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
 	var/list/data = list(
@@ -73,7 +73,7 @@
 
 //Airlock controller for airlock control - most airlocks on the station use this
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller
-	name = "Airlock Controller"
+	name = "airlock controller"
 	tag_secure = 1
 
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
@@ -122,7 +122,7 @@
 	icon = 'icons/obj/machines/airlock_machines.dmi'
 	icon_state = "access_control_standby"
 
-	name = "Access Controller"
+	name = "access controller"
 	tag_secure = 1
 
 

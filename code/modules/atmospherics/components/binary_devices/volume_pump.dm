@@ -16,7 +16,7 @@ Thus, the two variables affect pump operation are set in New():
 	icon = 'icons/obj/atmospherics/volume_pump.dmi'
 	icon_state = "intact_off"
 
-	name = "Volumetric gas pump"
+	name = "volumetric gas pump"
 	desc = "A volumetric pump"
 
 	var/on = FALSE

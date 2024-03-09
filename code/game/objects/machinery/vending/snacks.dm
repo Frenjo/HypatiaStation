@@ -4,7 +4,7 @@
  * These have lots of yummy(?) snacks.
  */
 /obj/machinery/vending/snack
-	name = "Getmore Chocolate Corp"
+	name = "\improper Getmore Chocolate Corp"
 	desc = "A snack machine courtesy of the Getmore Chocolate Corporation, based out of Mars."
 	icon_state = "snack"
 

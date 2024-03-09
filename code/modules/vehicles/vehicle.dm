@@ -1,5 +1,5 @@
 /obj/vehicle
-	name = "Vehicle"
+	name = "vehicle"
 	icon = 'icons/vehicles/vehicles.dmi'
 	density = TRUE
 	anchored = TRUE

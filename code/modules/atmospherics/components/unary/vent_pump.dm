@@ -10,7 +10,7 @@
 //3: Do not pass either
 
 /obj/machinery/atmospherics/unary/vent_pump
-	name = "Air Vent (Off)"
+	name = "air vent (off)"
 	desc = "Has a valve and pump attached to it"
 	icon = 'icons/obj/atmospherics/vent_pump.dmi'
 	icon_state = "off"
@@ -333,25 +333,25 @@
 
 // Switched on variant.
 /obj/machinery/atmospherics/unary/vent_pump/on
-	name = "Air Vent (On)"
+	name = "air vent (on)"
 	on = TRUE
 	icon_state = "out"
 
 // Siphon variant.
 /obj/machinery/atmospherics/unary/vent_pump/siphon
-	name = "Air Vent (Siphon/Off)"
+	name = "air vent (siphon/off)"
 	pump_direction = SIPHONING
 	icon_state = "off"
 
 // Switched on siphon variant.
 /obj/machinery/atmospherics/unary/vent_pump/siphon/on
-	name = "Air Vent (Siphon/On)"
+	name = "air vent (siphon/on)"
 	on = TRUE
 	icon_state = "in"
 
 // Large variant.
 /obj/machinery/atmospherics/unary/vent_pump/high_volume
-	name = "Large Air Vent (Off)"
+	name = "large air vent (off)"
 	power_channel = EQUIP
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/New()
@@ -360,18 +360,18 @@
 
 // Large switched on variant.
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/on
-	name = "Large Air Vent (On)"
+	name = "large air vent (on)"
 	on = TRUE
 	icon_state = "out"
 
 // Large siphon variant.
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/siphon
-	name = "Large Air Vent (Siphon/Off)"
+	name = "large air vent (siphon/off)"
 	pump_direction = SIPHONING
 
 // Large switched on siphon variant.
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/siphon/on
-	name = "Large Air Vent (Siphon/On)"
+	name = "large air vent (siphon/on)"
 	on = TRUE
 	icon_state = "in"
 

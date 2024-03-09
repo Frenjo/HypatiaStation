@@ -4,7 +4,7 @@
 #define TRAFFIC_SCREEN_VIEWING_SERVER 1
 
 /obj/machinery/computer/telecoms/traffic
-	name = "Telecommunications Traffic Control"
+	name = "telecommunications traffic control"
 	icon_state = "computer_generic"
 	req_access = list(ACCESS_TCOMSAT)
 

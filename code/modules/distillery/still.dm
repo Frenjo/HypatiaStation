@@ -1,6 +1,6 @@
 // III. The still is a machine that is loaded with food items and returns hard liquor, such as vodka.
 /obj/machinery/still
-	name = "\improper Still"
+	name = "still"
 	desc = "It is a machine that produces hard liquor from alcoholic drinks."
 	icon = 'icons/obj/machines/fabricators.dmi'
 	icon_state = "autolathe"

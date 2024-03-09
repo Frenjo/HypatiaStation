@@ -1,6 +1,6 @@
 /obj/structure/closet/crate/secure
 	desc = "A secure crate."
-	name = "Secure crate"
+	name = "secure crate"
 	icon_state = "securecrate"
 	icon_opened = "securecrateopen"
 	icon_closed = "securecrate"

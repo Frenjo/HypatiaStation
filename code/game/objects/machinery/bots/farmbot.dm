@@ -24,7 +24,7 @@
 #define FARMBOT_ACTION_DELAY		35 //How long of a delay after doing one of the normal actions
 
 /obj/machinery/bot/farmbot
-	name = "Farmbot"
+	name = "farmbot"
 	desc = "A little farming robot. The botanist's best friend."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "farmbot0"

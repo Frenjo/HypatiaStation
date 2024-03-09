@@ -102,7 +102,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed
-	name = "\improper cryogenic feed"
+	name = "cryogenic feed"
 	desc = "A bewildering tangle of machinery and pipes."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "cryo_rear"
@@ -123,7 +123,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 
 //Cryopods themselves.
 /obj/machinery/cryopod
-	name = "\improper cryogenic freezer"
+	name = "cryogenic freezer"
 	desc = "A man-sized pod for entering suspended animation."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scanner_0"

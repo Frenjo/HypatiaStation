@@ -4,7 +4,7 @@
  * These contain drinks.
  */
 /obj/machinery/vending/boozeomat
-	name = "Booze-O-Mat"
+	name = "\improper Booze-O-Mat"
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	icon_state = "boozeomat"		//////////////18 drink entities below, plus the glasses, in case someone wants to edit the number of bottles
 	icon_deny = "boozeomat-deny"
@@ -54,7 +54,7 @@
 	vend_delay = 15
 
 /obj/machinery/vending/coffee
-	name = "Hot Drinks machine"
+	name = "hot drinks machine"
 	desc = "A vending machine which dispenses hot drinks."
 	icon_state = "coffee"
 	icon_vend = "coffee-vend"
@@ -79,7 +79,7 @@
 	vend_delay = 34
 
 /obj/machinery/vending/cola
-	name = "Robust Softdrinks"
+	name = "\improper Robust Softdrinks"
 	desc = "A softdrink vendor provided by Robust Industries, LLC."
 	icon_state = "Cola_Machine"
 
@@ -121,7 +121,7 @@
 	)
 
 /obj/machinery/vending/sovietsoda
-	name = "BODA"
+	name = "\improper BODA"
 	desc = "An old sweet water vending machine, how did this end up here?"
 	icon_state = "sovietsoda"
 

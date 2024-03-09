@@ -5,43 +5,43 @@
 
 // Civilian
 /obj/item/cartridge/lawyer
-	name = "P.R.O.V.E. Cartridge"
+	name = "\improper P.R.O.V.E. cartridge"
 	icon_state = "cart-s"
 	access_security = TRUE
 
 /*
 /obj/item/cartridge/botanist
-	name = "Green Thumb v4.20"
+	name = "\improper Green Thumb v4.20 cartridge"
 	icon_state = "cart-b"
 	access_flora = TRUE
 */
 
 /obj/item/cartridge/janitor
-	name = "CustodiPRO Cartridge"
+	name = "\improper CustodiPRO cartridge"
 	desc = "The ultimate in clean-room design."
 	icon_state = "cart-j"
 	access_janitor = TRUE
 
 /obj/item/cartridge/clown
-	name = "Honkworks 5.0"
+	name = "\improper Honkworks 5.0 cartridge"
 	icon_state = "cart-clown"
 	access_clown = TRUE
 	charges = 5
 
 /obj/item/cartridge/mime
-	name = "Gestur-O 1000"
+	name = "\improper Gestur-O 1000 cartridge"
 	icon_state = "cart-mi"
 	access_mime = TRUE
 	charges = 5
 
 // Medical
 /obj/item/cartridge/medical
-	name = "Med-U Cartridge"
+	name = "\improper Med-U cartridge"
 	icon_state = "cart-m"
 	access_medical = TRUE
 
 /obj/item/cartridge/chemistry
-	name = "ChemWhiz Cartridge"
+	name = "\improper ChemWhiz cartridge"
 	icon_state = "cart-chem"
 	access_reagent_scanner = TRUE
 
@@ -59,7 +59,7 @@
 	return ..()
 
 /obj/item/cartridge/signal/toxins
-	name = "Signal Ace 2"
+	name = "\improper Signal Ace 2 cartridge"
 	desc = "Complete with integrated radio signaler!"
 	icon_state = "cart-tox"
 	access_reagent_scanner = TRUE
@@ -67,18 +67,18 @@
 
 // Engineering
 /obj/item/cartridge/engineering
-	name = "Power-ON Cartridge"
+	name = "\improper Power-ON cartridge"
 	icon_state = "cart-e"
 	access_engine = TRUE
 
 /obj/item/cartridge/atmos
-	name = "BreatheDeep Cartridge"
+	name = "\improper BreatheDeep cartridge"
 	icon_state = "cart-a"
 	access_atmos = TRUE
 
 // Security
 /obj/item/cartridge/security
-	name = "R.O.B.U.S.T. Cartridge"
+	name = "\improper R.O.B.U.S.T. cartridge"
 	icon_state = "cart-s"
 	access_security = TRUE
 
@@ -87,14 +87,14 @@
 	radio = new /obj/item/radio/integrated/beepsky(src)
 
 /obj/item/cartridge/detective
-	name = "D.E.T.E.C.T. Cartridge"
+	name = "\improper D.E.T.E.C.T. cartridge"
 	icon_state = "cart-s"
 	access_security = TRUE
 	access_medical = TRUE
 
 // Cargo
 /obj/item/cartridge/quartermaster
-	name = "Space Parts & Space Vendors Cartridge"
+	name = "\improper Space Parts & Space Vendors cartridge"
 	desc = "Perfect for the Quartermaster on the go!"
 	icon_state = "cart-q"
 	access_quartermaster = TRUE
@@ -105,12 +105,12 @@
 
 // Heads
 /obj/item/cartridge/head
-	name = "Easy-Record DELUXE"
+	name = "\improper Easy-Record DELUXE cartridge"
 	icon_state = "cart-h"
 	access_status_display = TRUE
 
 /obj/item/cartridge/captain
-	name = "Value-PAK Cartridge"
+	name = "\improper Value-PAK cartridge"
 	desc = "Now with 200% more value!"
 	icon_state = "cart-c"
 	access_quartermaster = TRUE
@@ -123,7 +123,7 @@
 	access_atmos = TRUE
 
 /obj/item/cartridge/hop
-	name = "HumanResources9001"
+	name = "\improper HumanResources9001 cartridge"
 	icon_state = "cart-h"
 	access_status_display = TRUE
 	access_quartermaster = TRUE
@@ -135,7 +135,7 @@
 	radio = new /obj/item/radio/integrated/mule(src)
 
 /obj/item/cartridge/hos
-	name = "R.O.B.U.S.T. DELUXE"
+	name = "\improper R.O.B.U.S.T. DELUXE cartridge"
 	icon_state = "cart-hos"
 	access_status_display = TRUE
 	access_security = TRUE
@@ -145,21 +145,21 @@
 	radio = new /obj/item/radio/integrated/beepsky(src)
 
 /obj/item/cartridge/ce
-	name = "Power-On DELUXE"
+	name = "\improper Power-On DELUXE cartridge"
 	icon_state = "cart-ce"
 	access_status_display = TRUE
 	access_engine = TRUE
 	access_atmos = TRUE
 
 /obj/item/cartridge/cmo
-	name = "Med-U DELUXE"
+	name = "\improper Med-U DELUXE cartridge"
 	icon_state = "cart-cmo"
 	access_status_display = TRUE
 	access_reagent_scanner = TRUE
 	access_medical = TRUE
 
 /obj/item/cartridge/rd
-	name = "Signal Ace DELUXE"
+	name = "\improper Signal Ace DELUXE cartridge"
 	icon_state = "cart-rd"
 	access_status_display = TRUE
 	access_reagent_scanner = TRUE
@@ -171,7 +171,7 @@
 
 // Syndicate
 /obj/item/cartridge/syndicate
-	name = "Detomatix Cartridge"
+	name = "\improper Detomatix cartridge"
 	icon_state = "cart"
 	access_remote_door = TRUE
 	remote_door_id = "smindicate" //Make sure this matches the syndicate shuttle's shield/door id!!	//don't ask about the name, testing.

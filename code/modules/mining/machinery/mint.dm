@@ -2,7 +2,7 @@
  * Mint
  */
 /obj/machinery/mineral/mint
-	name = "Coin press"
+	name = "coin press"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "coinpress0"
 

@@ -5,7 +5,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 
 */
 /obj/machinery/r_n_d/circuit_imprinter
-	name = "Circuit Imprinter"
+	name = "circuit imprinter"
 	icon_state = "circuit_imprinter"
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 

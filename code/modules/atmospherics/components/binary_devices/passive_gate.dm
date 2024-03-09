@@ -4,7 +4,7 @@
 	icon = 'icons/obj/atmospherics/passive_gate.dmi'
 	icon_state = "intact_off"
 
-	name = "Passive gate"
+	name = "passive gate"
 	desc = "A one-way air valve that does not require power"
 
 	var/on = FALSE

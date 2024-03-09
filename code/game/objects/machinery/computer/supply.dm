@@ -3,7 +3,7 @@
 // Well technically it was from /code/game/supplyshuttle_old.dm but I haven't finished the new one yet. -Frenjo
 
 /obj/machinery/computer/supplycomp
-	name = "Supply shuttle console"
+	name = "supply shuttle console"
 	icon_state = "supply"
 	req_access = list(ACCESS_CARGO)
 	circuit = /obj/item/circuitboard/supplycomp
@@ -25,7 +25,7 @@
 	return attack_hand(user)
 
 /obj/machinery/computer/ordercomp
-	name = "Supply ordering console"
+	name = "supply ordering console"
 	icon_state = "request"
 	circuit = /obj/item/circuitboard/ordercomp
 

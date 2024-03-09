@@ -1,6 +1,6 @@
 //Skrell space gear. Sleek like a wetsuit.
 /obj/item/clothing/head/helmet/space/skrell
-	name = "Skrellian helmet"
+	name = "\improper Skrellian helmet"
 	desc = "Smoothly contoured and polished to a shine. Still looks like a fishbowl."
 	armor = list(melee = 20, bullet = 20, laser = 50, energy = 50, bomb = 50, bio = 100, rad = 100)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
@@ -21,7 +21,7 @@
 	item_color = "skrell_helmet_black"
 
 /obj/item/clothing/suit/space/skrell
-	name = "Skrellian hardsuit"
+	name = "\improper Skrellian hardsuit"
 	desc = "Seems like a wetsuit with reinforced plating seamlessly attached to it. Very chic."
 	armor = list(melee = 20, bullet = 20, laser = 50, energy = 50, bomb = 50, bio = 100, rad = 100)
 	allowed = list(
@@ -58,7 +58,7 @@
 	)
 
 /obj/item/clothing/head/helmet/space/soghun/helmet_cheap
-	name = "NT breacher helmet"
+	name = "\improper NT breacher helmet"
 	desc = "Hey! Watch it with that thing! It's a knock-off of a Soghun battle-helm, and that spike could put someone's eye out."
 	icon_state = "soghun_helm_cheap"
 	item_state = "soghun_helm_cheap"
@@ -78,7 +78,7 @@
 	)
 
 /obj/item/clothing/suit/space/soghun/rig_cheap
-	name = "NT breacher chassis"
+	name = "\improper NT breacher chassis"
 	desc = "A cheap NT knock-off of a Soghun battle-rig. Looks like a fish, moves like a fish, steers like a cow."
 	icon_state = "rig-soghun-cheap"
 	item_state = "rig-soghun-cheap"

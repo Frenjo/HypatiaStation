@@ -248,7 +248,7 @@
 /obj/machinery/status_display/ai
 	icon = 'icons/obj/machines/status_display.dmi'
 	icon_state = "frame"
-	name = "AI display"
+	name = "\improper AI display"
 	anchored = TRUE
 	density = FALSE
 

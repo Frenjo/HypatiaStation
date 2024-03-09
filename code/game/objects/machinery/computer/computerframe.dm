@@ -3,7 +3,7 @@
  * Computer Frame
  */
 /obj/structure/computerframe
-	name = "computer-frame"
+	name = "computer frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "0"
 

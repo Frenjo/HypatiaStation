@@ -42,7 +42,7 @@
 	var/sight_mode = null
 
 /obj/item/borg/sight/xray
-	name = "\proper x-ray Vision"
+	name = "\proper x-ray vision"
 	sight_mode = BORGXRAY
 
 /obj/item/borg/sight/thermal

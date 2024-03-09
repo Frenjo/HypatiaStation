@@ -1,5 +1,5 @@
 /obj/item/eftpos
-	name = "EFTPOS scanner"
+	name = "\improper EFTPOS scanner"
 	desc = "Swipe your ID card to make purchases electronically."
 	icon = 'icons/obj/items/devices/scanner.dmi'
 	icon_state = "eftpos"

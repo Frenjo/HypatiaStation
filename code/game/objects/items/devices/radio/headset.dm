@@ -124,42 +124,42 @@
 	ks2type = /obj/item/encryptionkey/com
 
 /obj/item/radio/headset/heads/captain
-	name = "captain's headset"
+	name = "captain radio headset"
 	desc = "The headset of the boss. Channels are as follows: :c - Command, :s - Security, :e - Engineering, :u - Supply, :v - Service, :m - Medical, :n - Science, :x - Mining."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/encryptionkey/heads/captain
 
 /obj/item/radio/headset/heads/rd
-	name = "Research Director's headset"
+	name = "research director radio headset"
 	desc = "Headset of the researching God. To access the science channel, use :n. For command, use :c."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/encryptionkey/heads/rd
 
 /obj/item/radio/headset/heads/hos
-	name = "head of security's headset"
+	name = "head of security radio headset"
 	desc = "The headset of the man who protects your worthless lives. To access the security channel, use :s. For command, use :c."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/encryptionkey/heads/hos
 
 /obj/item/radio/headset/heads/ce
-	name = "chief engineer's headset"
+	name = "chief engineer radio headset"
 	desc = "The headset of the guy who is in charge of morons. To access the engineering channel, use :e. For command, use :c."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/encryptionkey/heads/ce
 
 /obj/item/radio/headset/heads/cmo
-	name = "chief medical officer's headset"
+	name = "chief medical officer radio headset"
 	desc = "The headset of the highly trained medical chief. To access the medical channel, use :m. For command, use :c."
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/encryptionkey/heads/cmo
 
 /obj/item/radio/headset/heads/hop
-	name = "head of personnel's headset"
+	name = "head of personnel radio headset"
 	desc = "The headset of the guy who will one day be Captain. Channels are as follows: :c - Command, :v - Service, :u - Supply, :x - Mining."
 	icon_state = "com_headset"
 	item_state = "headset"
@@ -174,7 +174,7 @@
 	ks2type = /obj/item/encryptionkey/mining
 
 /obj/item/radio/headset/mining_foreman
-	name = "mining foreman's radio headset"
+	name = "mining foreman radio headset"
 	desc = "Headset used by the Mining Foreman. How slightly less useless. To access the mining channel, use :x. For supply, use :u."
 	icon_state = "mine_headset"
 	item_state = "headset"
@@ -182,7 +182,7 @@
 
 // Cargo
 /obj/item/radio/headset/qm
-	name = "quartermaster's headset"
+	name = "quartermaster radio headset"
 	desc = "The headset of the man who controls your toilet paper supply. To access the mining channel, use :x. For supply, use :u."
 	icon_state = "cargo_headset"
 	item_state = "headset"
@@ -205,7 +205,7 @@
 
 // Response Team
 /obj/item/radio/headset/ert
-	name = "CentCom Response Team headset"
+	name = "\improper CentCom response team radio headset"
 	desc = "The headset of the boss's boss. Channels are as follows: :h - Response Team :c - Command, :s - Security, :e - Engineering, :x - Mining, :u - Supply, :v - Service, :m - Medical, :n - Science."
 	icon_state = "com_headset"
 	item_state = "headset"

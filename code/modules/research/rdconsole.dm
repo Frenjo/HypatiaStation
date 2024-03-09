@@ -30,7 +30,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 */
 
 /obj/machinery/computer/rdconsole
-	name = "R&D Console"
+	name = "\improper R&D console"
 	icon_state = "rdcomp"
 	circuit = /obj/item/circuitboard/rdconsole
 

@@ -1,5 +1,5 @@
 /obj/machinery/atmospherics/unary/portables_connector
-	name = "Connector Port"
+	name = "connector port"
 	desc = "For connecting portables devices related to atmospherics control."
 	icon = 'icons/obj/atmospherics/portables_connector.dmi'
 	icon_state = "intact"

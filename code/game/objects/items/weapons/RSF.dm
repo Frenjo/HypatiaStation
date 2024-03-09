@@ -10,7 +10,7 @@ RSF
 #define MODE_DICE_PACK 4
 #define MODE_CIGARETTE 5
 /obj/item/rsf
-	name = "\improper Rapid-Service-Fabricator"
+	name = "rapid-service-fabricator (RSF)"
 	desc = "A device used to rapidly deploy service items."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "rcd"

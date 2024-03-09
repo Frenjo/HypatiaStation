@@ -1,5 +1,5 @@
 /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp
-	name = "Hydraulic Clamp"
+	name = "hydraulic clamp"
 	icon_state = "mecha_clamp"
 	equip_cooldown = 15
 	energy_drain = 10
@@ -75,7 +75,7 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/tool/drill
-	name = "Drill"
+	name = "drill"
 	desc = "This is the drill that'll pierce the heavens! (Can be attached to: Combat and Engineering Exosuits)"
 	icon_state = "mecha_drill"
 	equip_cooldown = 30
@@ -134,7 +134,7 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill
-	name = "Diamond Drill"
+	name = "diamond drill"
 	desc = "This is an upgraded version of the drill that'll pierce the heavens! (Can be attached to: Combat and Engineering Exosuits)"
 	icon_state = "mecha_diamond_drill"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_ENGINEERING = 3)
@@ -194,7 +194,7 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/tool/extinguisher
-	name = "Extinguisher"
+	name = "extinguisher"
 	desc = "Exosuit-mounted extinguisher (Can be attached to: Engineering exosuits)"
 	icon_state = "mecha_exting"
 	equip_cooldown = 5
@@ -268,8 +268,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/tool/rcd
-	name = "Mounted RCD"
-	desc = "An exosuit-mounted Rapid Construction Device. (Can be attached to: Any exosuit)"
+	name = "mounted RCD"
+	desc = "An exosuit-mounted rapid-construction-device. (Can be attached to: Any exosuit)"
 	icon_state = "mecha_rcd"
 	origin_tech = list(
 		RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 3, RESEARCH_TECH_MAGNETS = 4,
@@ -380,7 +380,7 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/teleporter
-	name = "Teleporter"
+	name = "teleporter"
 	desc = "An exosuit module that allows exosuits to teleport to any position in view."
 	icon_state = "mecha_teleport"
 	origin_tech = list(RESEARCH_TECH_BLUESPACE = 10)
@@ -401,7 +401,7 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/wormhole_generator
-	name = "Wormhole Generator"
+	name = "wormhole generator"
 	desc = "An exosuit module that allows generating of small quasi-stable wormholes."
 	icon_state = "mecha_wholegen"
 	origin_tech = list(RESEARCH_TECH_BLUESPACE = 3)
@@ -453,7 +453,7 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult
-	name = "Gravitational Catapult"
+	name = "gravitational catapult"
 	desc = "An exosuit mounted Gravitational Catapult."
 	icon_state = "mecha_teleport"
 	origin_tech = list(RESEARCH_TECH_BLUESPACE = 2, RESEARCH_TECH_MAGNETS = 3)
@@ -530,8 +530,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster //what is that noise? A BAWWW from TK mutants.
-	name = "Armor Booster Module (Close Combat Weaponry)"
-	desc = "Boosts exosuit armor against armed melee attacks. Requires energy to operate."
+	name = "armour booster module (close combat weaponry)"
+	desc = "Boosts exosuit armour against armed melee attacks. Requires energy to operate."
 	icon_state = "mecha_abooster_ccw"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 3)
 	equip_cooldown = 10
@@ -583,8 +583,8 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster
-	name = "Armor Booster Module (Ranged Weaponry)"
-	desc = "Boosts exosuit armor against ranged attacks. Completely blocks taser shots. Requires energy to operate."
+	name = "armour booster module (ranged weaponry)"
+	desc = "Boosts exosuit armour against ranged attacks. Completely blocks taser shots. Requires energy to operate."
 	icon_state = "mecha_abooster_proj"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 4)
 	equip_cooldown = 10
@@ -657,7 +657,7 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid
-	name = "Repair Droid"
+	name = "repair droid"
 	desc = "Automated repair droid. Scans exosuit for damage and repairs it. Can fix almost all types of external or internal damage."
 	icon_state = "repair_droid"
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_PROGRAMMING = 3)
@@ -746,7 +746,7 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay
-	name = "Energy Relay"
+	name = "energy relay"
 	desc = "Wirelessly drains energy from any available power channel in area. The performance index is quite low."
 	icon_state = "tesla"
 	origin_tech = list(RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_SYNDICATE = 2)
@@ -862,7 +862,7 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/generator
-	name = "Plasma Converter"
+	name = "plasma converter"
 	desc = "Generates power using solid plasma as fuel. Pollutes the environment."
 	icon_state = "tesla"
 	origin_tech = list(RESEARCH_TECH_PLASMATECH = 2, RESEARCH_TECH_POWERSTORAGE = 2, RESEARCH_TECH_ENGINEERING = 1)
@@ -998,7 +998,7 @@
 
 
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear
-	name = "ExoNuclear Reactor"
+	name = "\improper ExoNuclear reactor"
 	desc = "Generates power using uranium. Pollutes the environment."
 	icon_state = "tesla"
 	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 3, RESEARCH_TECH_ENGINEERING = 3)
@@ -1034,7 +1034,7 @@
 
 //This is pretty much just for the death-ripley so that it is harmless
 /obj/item/mecha_parts/mecha_equipment/tool/safety_clamp
-	name = "KILL CLAMP"
+	name = "kill clamp"
 	icon_state = "mecha_clamp"
 	equip_cooldown = 15
 	energy_drain = 0

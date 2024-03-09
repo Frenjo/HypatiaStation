@@ -1,5 +1,5 @@
 /obj/machinery/radiocarbon_spectrometer
-	name = "Radiocarbon spectrometer"
+	name = "radiocarbon spectrometer"
 	desc = "A specialised, complex scanner for gleaning information on all manner of small things."
 	anchored = TRUE
 	density = TRUE

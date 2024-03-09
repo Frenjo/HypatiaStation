@@ -10,8 +10,8 @@
 
 //Captain's space suit This is not the proper path but I don't currently know enough about how this all works to mess with it.
 /obj/item/clothing/suit/armor/captain
-	name = "Captain's armor"
-	desc = "A bulky, heavy-duty piece of exclusive NanoTrasen armor. YOU are in charge!"
+	name = "captain's armour"
+	desc = "A bulky, heavy-duty piece of exclusive NanoTrasen armour. YOU are in charge!"
 	icon_state = "caparmor"
 	item_state = "capspacesuit"
 	w_class = 4
@@ -51,14 +51,14 @@
 
 //Space santa outfit suit
 /obj/item/clothing/head/helmet/space/santahat
-	name = "Santa's hat"
+	name = "\improper Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas!"
 	icon_state = "santahat"
 	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE | ITEM_FLAG_COVERS_EYES
 	inv_flags = INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_BLOCK_HAIR
 
 /obj/item/clothing/suit/space/santa
-	name = "Santa's suit"
+	name = "\improper Santa's suit"
 	desc = "Festive!"
 	icon_state = "santa"
 	item_state = "santa"
@@ -95,28 +95,28 @@
 // Re-added spacesuits for the clown and mime, literally renamed/edited copies of the anomaly/mailman suits.
 // Half of this stuff is preserved thanks to TehFlaminTaco, his github had all the OG stuff, code + sprites. -Frenjo
 /obj/item/clothing/suit/space/clown
-	name = "Clown's EVA Suit"
+	name = "clown's EVA suit"
 	desc = "A pressure resistant spacesuit in the colours of the clown. HONK!"
 	icon_state = "clownspace_suit"
 	item_state = "clownspace_suit"
 	allowed = list(/obj/item/flashlight, /obj/item/tank)
 
 /obj/item/clothing/head/helmet/space/clown
-	name = "Clown's EVA Helmet"
+	name = "clown's EVA helmet"
 	desc = "A pressure resistant spacesuit helmet in the colours of the clown. HONK!"
 	icon_state = "clownspace_helmet"
 	item_state = "clownspace_helmet"
 
 
 /obj/item/clothing/suit/space/mime
-	name = "Mime's EVA Suit"
+	name = "mime's EVA suit"
 	desc = "A pressure resistant spacesuit in the colours of the mime. ..."
 	icon_state = "mimespace_suit"
 	item_state = "mimespace_suit"
 	allowed = list(/obj/item/flashlight, /obj/item/tank)
 
 /obj/item/clothing/head/helmet/space/mime
-	name = "Mime's EVA Helmet"
+	name = "mime's EVA helmet"
 	desc = "A pressure resistant spacesuit helmet in the colours of the mime. ..."
 	icon_state = "mimespace_helmet"
 	item_state = "mimespace_helmet"

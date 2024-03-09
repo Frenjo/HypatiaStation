@@ -7,7 +7,7 @@ the valuable stem cells used to clone people on board the station \
 inside the genetics lab. Designed to hold stem cells for very long \
 periods of time. There is some small print on top, \n \
 <B><FONT COLOR=RED>\"Warning: The contents of this Biological Suspension Unit (BSU) are incredibly valuable. Waste of these stem cells will result in termination and you will be expected to compensate.\"</B></FONT>"
-	name = "Biological Suspension Unit (BSU)"
+	name = "biological suspension unit (BSU)"
 	density = TRUE
 	icon_state = "bio"
 	icon_opened = "bioopen"
@@ -18,7 +18,7 @@ periods of time. There is some small print on top, \n \
  */
 /obj/structure/closet/crate/secure/weapon
 	desc = "A secure weapons crate."
-	name = "Weapons crate"
+	name = "weapons crate"
 	icon_state = "weaponcrate"
 	icon_opened = "weaponcrateopen"
 	icon_closed = "weaponcrate"
@@ -28,7 +28,7 @@ periods of time. There is some small print on top, \n \
  */
 /obj/structure/closet/crate/secure/plasma
 	desc = "A secure plasma crate."
-	name = "Plasma crate"
+	name = "plasma crate"
 	icon_state = "plasmacrate"
 	icon_opened = "plasmacrateopen"
 	icon_closed = "plasmacrate"
@@ -38,7 +38,7 @@ periods of time. There is some small print on top, \n \
  */
 /obj/structure/closet/crate/secure/gear
 	desc = "A secure gear crate."
-	name = "Gear crate"
+	name = "gear crate"
 	icon_state = "secgearcrate"
 	icon_opened = "secgearcrateopen"
 	icon_closed = "secgearcrate"
@@ -58,7 +58,7 @@ periods of time. There is some small print on top, \n \
  */
 /obj/structure/closet/crate/secure/bin
 	desc = "A secure bin."
-	name = "Secure bin"
+	name = "secure bin"
 	icon_state = "largebins"
 	icon_opened = "largebinsopen"
 	icon_closed = "largebins"

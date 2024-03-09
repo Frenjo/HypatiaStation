@@ -1,6 +1,6 @@
 // I. The mill is intended to be loaded with produce and returns ground up items. For example: Wheat should become flour and grapes should become raisins.
 /obj/machinery/mill
-	name = "\improper Mill"
+	name = "mill"
 	desc = "It is a machine that grinds produce."
 	icon = 'icons/obj/machines/fabricators.dmi'
 	icon_state = "autolathe"

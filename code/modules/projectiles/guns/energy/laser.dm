@@ -98,7 +98,7 @@
 	return 0
 
 /obj/item/gun/energy/xray
-	name = "xray laser gun"
+	name = "x-ray laser gun"
 	desc = "A high-power laser gun capable of expelling concentrated xray blasts."
 	icon_state = "xray"
 

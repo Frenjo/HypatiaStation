@@ -1,7 +1,7 @@
 // Ported this from NSS Eternal's code, the hoverpod is literally my old favourite. -Frenjo
 /obj/mecha/working/hoverpod
 	desc = "Stubby and round, this space-capable craft is an ancient favorite."
-	name = "Hover Pod"
+	name = "\improper HoverPod"
 	icon_state = "engineering_pod"
 	initial_icon = "engineering_pod"
 	internal_damage_threshold = 80

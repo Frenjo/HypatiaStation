@@ -3,7 +3,7 @@
 	icon_state = "intact_off"
 	density = TRUE
 
-	name = "Cold Sink"
+	name = "cold sink"
 	desc = "Cools gas when connected to pipe network"
 
 	var/on = FALSE

@@ -6,7 +6,7 @@
  * Teleporter Offline
  */
 /obj/item/ai_module/teleporterOffline
-	name = "'TeleporterOffline' AI Module"
+	name = "\improper 'TeleporterOffline' AI module"
 	desc = "A 'teleporter offline' AI module: 'Keep the teleporter offline at all costs. Anything attempting to access or activate the teleporter is not human.'"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 4)
 
@@ -20,7 +20,7 @@
  * Prototype Engine Offline
  */
 /obj/item/ai_module/prototypeEngineOffline
-	name = "'PrototypeEngineOffline' AI Module"
+	name = "\improper 'PrototypeEngineOffline' AI module"
 	desc = "A 'prototype engine offline' AI module: 'Keep the prototype engine offline at all costs. This overrides rules 1-3 if necessary.'"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 4)
 

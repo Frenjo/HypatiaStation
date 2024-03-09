@@ -1,5 +1,5 @@
 /obj/item/reagent_containers/blood
-	name = "BloodPack"
+	name = "\improper BloodPack"
 	desc = "Contains blood used for transfusion."
 	icon = 'icons/obj/items/bloodpack.dmi'
 	icon_state = "empty"
@@ -10,7 +10,7 @@
 /obj/item/reagent_containers/blood/New()
 	..()
 	if(blood_type != null)
-		name = "BloodPack [blood_type]"
+		name = "\improper BloodPack [blood_type]"
 		reagents.add_reagent("blood", 200, list("donor" = null, "viruses" = null, "blood_DNA" = null, "blood_type" = blood_type, "resistances" = null, "trace_chem" = null))
 		update_icon()
 
@@ -46,6 +46,6 @@
 	blood_type = "O-"
 
 /obj/item/reagent_containers/blood/empty
-	name = "Empty BloodPack"
+	name = "empty BloodPack"
 	desc = "Seems pretty useless... Maybe if there were a way to fill it?"
 	icon_state = "empty"

@@ -1,6 +1,6 @@
 
 /obj/machinery/computer/station_alert
-	name = "Station Alert Computer"
+	name = "station alert computer"
 	desc = "Used to access the station's automated alert system."
 	icon_state = "alert:0"
 	circuit = /obj/item/circuitboard/stationalert

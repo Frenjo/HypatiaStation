@@ -1,5 +1,5 @@
 /obj/machinery/computer/mecha
-	name = "Exosuit Control"
+	name = "exosuit control"
 	icon_state = "mecha"
 	req_access = list(ACCESS_ROBOTICS)
 	circuit = /obj/item/circuitboard/mecha_control
@@ -67,7 +67,7 @@
 
 
 /obj/item/mecha_parts/mecha_tracking
-	name = "Exosuit tracking beacon"
+	name = "exosuit tracking beacon"
 	desc = "Device used to transmit exosuit data."
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "motion2"

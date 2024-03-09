@@ -1,7 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 /obj/machinery/computer/aiupload
-	name = "AI Upload"
+	name = "\improper AI upload"
 	desc = "Used to upload laws to the AI."
 	icon_state = "command"
 	circuit = /obj/item/circuitboard/aiupload
@@ -51,7 +51,7 @@
 
 
 /obj/machinery/computer/borgupload
-	name = "Cyborg Upload"
+	name = "cyborg upload"
 	desc = "Used to upload laws to Cyborgs."
 	icon_state = "command"
 	circuit = /obj/item/circuitboard/borgupload

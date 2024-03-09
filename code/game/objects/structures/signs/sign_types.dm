@@ -71,21 +71,21 @@
 
 /obj/structure/sign/greencross
 	name = "medbay"
-	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
+	desc = "The interstellar symbol of medical institutions. You'll probably get help here."
 	icon_state = "greencross"
 
 /obj/structure/sign/goldenplaque
-	name = "The Most Robust Men Award for Robustness"
+	name = "\improper The Most Robust Men Award for Robustness"
 	desc = "To be Robust is not an action or a way of life, but a mental state. Only those with the force of Will strong enough to act during a crisis, saving friend from foe, are truly Robust. Stay Robust my friends."
 	icon_state = "goldenplaque"
 
 /obj/structure/sign/kiddieplaque
-	name = "AI developers plaque"
+	name = "\improper AI developers plaque"
 	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. The child appears to be retarded. Beneath the image, someone has scratched the word \"PACKETS\""
 	icon_state = "kiddieplaque"
 
 /obj/structure/sign/rogueai
-	name = "AI warning sign"
+	name = "\improper AI warning sign"
 	desc = "A sign detailing the indicators of a rampant artificial intelligence."
 	icon_state = "rogueai"
 
@@ -95,7 +95,7 @@
 	icon_state = "atmosplaque"
 
 /obj/structure/sign/double/maltesefalcon	//The sign is 64x32, so it needs two tiles. ;3
-	name = "The Maltese Falcon"
+	name = "\improper The Maltese Falcon"
 	desc = "The Maltese Falcon, Space Bar and Grill."
 
 /obj/structure/sign/double/maltesefalcon/left

@@ -1,7 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 /obj/item/implantcase
-	name = "Glass Case"
+	name = "glass case"
 	desc = "A case containing an implant."
 	icon_state = "implantcase-0"
 	item_state = "implantcase"
@@ -27,9 +27,9 @@
 			return
 		t = copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
 		if(t)
-			src.name = "Glass Case - '[t]'"
+			src.name = "glass case - '[t]'"
 		else
-			src.name = "Glass Case"
+			src.name = "glass case"
 	else if(istype(I, /obj/item/reagent_containers/syringe))
 		if(!src.imp)
 			return
@@ -64,7 +64,7 @@
 
 
 /obj/item/implantcase/tracking
-	name = "Glass Case - 'Tracking'"
+	name = "glass case - 'tracking'"
 	desc = "A case containing a tracking implant."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-b"
@@ -76,7 +76,7 @@
 
 
 /obj/item/implantcase/explosive
-	name = "Glass Case - 'Explosive'"
+	name = "glass case - 'explosive'"
 	desc = "A case containing an explosive implant."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-r"
@@ -88,7 +88,7 @@
 
 
 /obj/item/implantcase/chem
-	name = "Glass Case - 'Chem'"
+	name = "glass case - 'chem'"
 	desc = "A case containing a chemical implant."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-b"
@@ -100,7 +100,7 @@
 
 
 /obj/item/implantcase/loyalty
-	name = "Glass Case - 'Loyalty'"
+	name = "glass case - 'loyalty'"
 	desc = "A case containing a loyalty implant."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-r"
@@ -112,7 +112,7 @@
 
 
 /obj/item/implantcase/death_alarm
-	name = "Glass Case - 'Death Alarm'"
+	name = "glass case - 'death alarm'"
 	desc = "A case containing a death alarm implant."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantcase-b"

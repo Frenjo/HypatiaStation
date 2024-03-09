@@ -3,7 +3,7 @@
  */
 //this item is intended to give the effect of entering the mine, so that light gradually fades
 /obj/effect/light_emitter
-	name = "Light-emtter"
+	name = "light-emtter"
 	anchored = TRUE
 	unacidable = 1
 	light_range = 8
@@ -190,7 +190,7 @@
  */
 /obj/structure/closet/crate/miningcar
 	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
-	name = "Mining car (not for rails)"
+	name = "mining car (not for rails)"
 	icon = 'icons/obj/storage/crate.dmi'
 	icon_state = "miningcar"
 	density = TRUE

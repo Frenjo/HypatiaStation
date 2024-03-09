@@ -2,7 +2,7 @@
 	icon = 'icons/obj/atmospherics/pipe_tank.dmi'
 	icon_state = "intact"
 
-	name = "Pressure Tank"
+	name = "pressure tank"
 	desc = "A large vessel containing pressurized gas."
 
 	volume = 2000 //in liters, 1 meters by 1 meters by 2 meters
@@ -85,7 +85,7 @@
 			to_chat(user, SPAN_INFO("Tank is empty!"))
 
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide
-	name = "Pressure Tank (Carbon Dioxide)"
+	name = "pressure tank (Carbon Dioxide)"
 
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide/New()
 	air_temporary = new /datum/gas_mixture()
@@ -98,7 +98,7 @@
 
 /obj/machinery/atmospherics/pipe/tank/toxins
 	icon = 'icons/obj/atmospherics/orange_pipe_tank.dmi'
-	name = "Pressure Tank (Plasma)"
+	name = "pressure tank (Plasma)"
 
 /obj/machinery/atmospherics/pipe/tank/toxins/New()
 	air_temporary = new /datum/gas_mixture()
@@ -111,7 +111,7 @@
 
 /obj/machinery/atmospherics/pipe/tank/oxygen_agent_b
 	icon = 'icons/obj/atmospherics/red_orange_pipe_tank.dmi'
-	name = "Pressure Tank (Oxygen + Plasma)"
+	name = "pressure tank (Oxygen + Plasma)"
 
 /obj/machinery/atmospherics/pipe/tank/oxygen_agent_b/New()
 	air_temporary = new /datum/gas_mixture()
@@ -124,7 +124,7 @@
 
 /obj/machinery/atmospherics/pipe/tank/oxygen
 	icon = 'icons/obj/atmospherics/blue_pipe_tank.dmi'
-	name = "Pressure Tank (Oxygen)"
+	name = "pressure tank (Oxygen)"
 
 /obj/machinery/atmospherics/pipe/tank/oxygen/New()
 	air_temporary = new /datum/gas_mixture()
@@ -137,7 +137,7 @@
 
 /obj/machinery/atmospherics/pipe/tank/nitrogen
 	icon = 'icons/obj/atmospherics/red_pipe_tank.dmi'
-	name = "Pressure Tank (Nitrogen)"
+	name = "pressure tank (Nitrogen)"
 
 /obj/machinery/atmospherics/pipe/tank/nitrogen/New()
 	air_temporary = new /datum/gas_mixture()
@@ -150,7 +150,7 @@
 
 /obj/machinery/atmospherics/pipe/tank/air
 	icon = 'icons/obj/atmospherics/red_pipe_tank.dmi'
-	name = "Pressure Tank (Air)"
+	name = "pressure tank (Air)"
 
 /obj/machinery/atmospherics/pipe/tank/air/New()
 	air_temporary = new /datum/gas_mixture()

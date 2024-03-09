@@ -1,7 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
 /obj/machinery/computer/card
-	name = "Identification Computer"
+	name = "identification computer"
 	desc = "You can use this to change ID's."
 	icon_state = "id"
 	req_access = list(ACCESS_CHANGE_IDS)

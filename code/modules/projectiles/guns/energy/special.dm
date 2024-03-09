@@ -133,7 +133,7 @@
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/plasma)
 
 /obj/item/gun/energy/sniperrifle
-	name = "L.W.A.P. Sniper Rifle"
+	name = "\improper L.W.A.P. Sniper Rifle"
 	desc = "A rifle constructed of lightweight materials, fitted with a SMART aiming-system scope."
 	icon_state = "sniper"
 

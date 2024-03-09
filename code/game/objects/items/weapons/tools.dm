@@ -431,20 +431,20 @@
 #undef WELDING_TOOL_WELDING
 
 /obj/item/weldingtool/largetank
-	name = "Industrial Welding Tool"
+	name = "industrial welding tool"
 	max_fuel = 40
 	matter_amounts = list(MATERIAL_METAL = 70, MATERIAL_GLASS = 60)
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 2)
 
 /obj/item/weldingtool/hugetank
-	name = "Upgraded Welding Tool"
+	name = "upgraded welding tool"
 	max_fuel = 80
 	w_class = 3.0
 	matter_amounts = list(MATERIAL_METAL = 70, MATERIAL_GLASS = 120)
 	origin_tech = list(RESEARCH_TECH_ENGINEERING = 3)
 
 /obj/item/weldingtool/experimental
-	name = "Experimental Welding Tool"
+	name = "experimental welding tool"
 	max_fuel = 40
 	w_class = 3.0
 	matter_amounts = list(MATERIAL_METAL = 70, MATERIAL_GLASS = 120)

@@ -4,7 +4,7 @@
 	//density = TRUE
 	density = FALSE // Made filters and mixers not-dense so you can walk over them. -Frenjo
 
-	name = "Gas mixer"
+	name = "gas mixer"
 
 	var/on = FALSE
 

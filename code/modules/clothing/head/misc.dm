@@ -1,5 +1,5 @@
 /obj/item/clothing/head/centhat
-	name = "\improper CentCom. hat"
+	name = "\improper CentCom hat"
 	icon_state = "centcom"
 	desc = "It's good to be emperor."
 	item_state = "centhat"
@@ -170,19 +170,19 @@
 	desc = "The ultimate in summer fashion."
 
 /obj/item/clothing/head/fedora
-	name = "\improper fedora"
+	name = "fedora"
 	icon_state = "fedora"
 	item_state = "fedora"
 	desc = "A sharp, stylish hat."
 
 /obj/item/clothing/head/feathertrilby
-	name = "\improper feather trilby"
+	name = "feather trilby"
 	icon_state = "feather_trilby"
 	item_state = "feather_trilby"
 	desc = "A sharp, stylish hat with a feather."
 
 /obj/item/clothing/head/fez
-	name = "\improper fez"
+	name = "fez"
 	icon_state = "fez"
 	item_state = "fez"
 	desc = "You should wear a fez. Fezzes are cool."

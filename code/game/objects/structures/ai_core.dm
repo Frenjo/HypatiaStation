@@ -1,7 +1,7 @@
 /obj/structure/ai_core
 	density = TRUE
 	anchored = FALSE
-	name = "AI core"
+	name = "\improper AI core"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "0"
 
@@ -169,7 +169,7 @@
 
 
 /obj/structure/ai_core/deactivated
-	name = "Inactive AI"
+	name = "inactive AI"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "ai-empty"
 	anchored = TRUE

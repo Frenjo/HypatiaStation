@@ -1,7 +1,7 @@
 #define SIPHONING 0
 #define SCRUBBING 1
 /obj/machinery/atmospherics/unary/vent_scrubber
-	name = "Air Scrubber (Off)"
+	name = "air scrubber (off)"
 	desc = "Has a valve and pump attached to it"
 	icon = 'icons/obj/atmospherics/vent_scrubber.dmi'
 	icon_state = "off"
@@ -268,19 +268,19 @@
 
 // Switched on variant.
 /obj/machinery/atmospherics/unary/vent_scrubber/on
-	name = "Air Scrubber (On)"
+	name = "air scrubber (on)"
 	on = TRUE
 	icon_state = "on"
 
 // Siphon variant.
 /obj/machinery/atmospherics/unary/vent_scrubber/siphon
-	name = "Air Scrubber (Siphon/Off)"
+	name = "air scrubber (siphon/off)"
 	scrubbing = SIPHONING
 	icon_state = "off"
 
 // Switched on siphon variant.
 /obj/machinery/atmospherics/unary/vent_scrubber/siphon/on
-	name = "Air Scrubber (Siphon/On)"
+	name = "air scrubber (siphon/on)"
 	on = TRUE
 	icon_state = "in"
 

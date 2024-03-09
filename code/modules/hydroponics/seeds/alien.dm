@@ -2,7 +2,7 @@
  * S'Rendarr's Hand
  */
 /obj/item/seeds/shand
-	name = "pack of s'rendarr's hand seeds"
+	name = "pack of S'Rendarr's Hand seeds"
 	desc = "These seeds grow into a helpful herb called S'Rendarr's Hand, native to Ahdomai."
 	icon_state = "seed-shand"
 	species = "shand"
@@ -21,7 +21,7 @@
  * Messa's Tear
  */
 /obj/item/seeds/mtear
-	name = "pack of messa's tear seeds"
+	name = "pack of Messa's Tear seeds"
 	desc = "These seeds grow into a helpful herb called Messa's Tear, native to Ahdomai."
 	icon_state = "seed-mtear"
 	species = "mtear"

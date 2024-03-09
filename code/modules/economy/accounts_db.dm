@@ -1,5 +1,5 @@
 /obj/machinery/account_database
-	name = "Accounts uplink console"
+	name = "accounts uplink console"
 	desc = "Access transaction logs, account data and all kinds of other financial records."
 	icon = 'icons/obj/machines/computer.dmi'
 	//icon_state = "aiupload"

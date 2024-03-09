@@ -1,5 +1,5 @@
 /obj/machinery/computer/holodeck_control
-	name = "Holodeck Control Computer"
+	name = "holodeck control computer"
 	desc = "A computer used to control a nearby holodeck."
 	icon_state = "holocontrol"
 

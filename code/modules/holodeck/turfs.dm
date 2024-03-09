@@ -14,7 +14,7 @@
 
 // Grass
 /turf/simulated/floor/holofloor/grass
-	name = "Lush Grass"
+	name = "lush grass"
 	icon_state = "grass1"
 	floor_type = /obj/item/stack/tile/grass
 

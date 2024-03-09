@@ -1,6 +1,6 @@
 // II. The fermenter is intended to be loaded with food items and returns medium-strength alcohol items, sucha s wine and beer.
 /obj/machinery/fermenter
-	name = "\improper Fermenter"
+	name = "fermenter"
 	desc = "It is a machine that ferments produce into alcoholic drinks."
 	icon = 'icons/obj/machines/fabricators.dmi'
 	icon_state = "autolathe"

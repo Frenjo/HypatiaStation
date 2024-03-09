@@ -1,6 +1,6 @@
 // Cleanbot
 /obj/machinery/bot/cleanbot
-	name = "Cleanbot"
+	name = "cleanbot"
 	desc = "A little cleaning robot. He looks so excited!"
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "cleanbot0"

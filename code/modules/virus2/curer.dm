@@ -1,5 +1,5 @@
 /obj/machinery/computer/curer
-	name = "Cure Research Machine"
+	name = "cure research machine"
 	icon_state = "dna"
 	circuit = /obj/item/circuitboard/curefab
 

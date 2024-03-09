@@ -3,7 +3,7 @@
 /////////////////////////////////////////
 
 /obj/machinery/sleep_console
-	name = "Sleeper Console"
+	name = "sleeper console"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/connected = null
@@ -137,7 +137,7 @@
 /////////////////////////////////////////
 
 /obj/machinery/sleeper
-	name = "Sleeper"
+	name = "sleeper"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_0"
 	density = TRUE

@@ -1,5 +1,5 @@
 /obj/machinery/compressor
-	name = "compressor"
+	name = "gas turbine compressor"
 	desc = "The compressor stage of a gas turbine generator."
 	icon = 'icons/obj/pipes/pipes.dmi'
 	icon_state = "compressor"

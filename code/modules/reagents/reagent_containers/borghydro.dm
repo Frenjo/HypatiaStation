@@ -1,5 +1,5 @@
 /obj/item/reagent_containers/borghypo
-	name = "Cyborg Hypospray"
+	name = "cyborg hypospray"
 	desc = "An advanced chemical synthesizer and injection system, designed for heavy-duty medical equipment."
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "hypo"

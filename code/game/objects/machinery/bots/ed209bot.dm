@@ -1,5 +1,5 @@
 /obj/machinery/bot/ed209
-	name = "ED-209 Security Robot"
+	name = "\improper ED-209 security robot"
 	desc = "A security robot. He looks less than thrilled."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "ed2090"

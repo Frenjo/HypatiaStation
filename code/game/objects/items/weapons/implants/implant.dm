@@ -92,7 +92,7 @@ Implant Specifics:<BR>"}
 
 
 /obj/item/implant/dexplosive
-	name = "explosive"
+	name = "explosive implant"
 	desc = "And boom goes the weasel."
 	icon_state = "implant_evil"
 
@@ -347,7 +347,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 
 /obj/item/implant/adrenalin
-	name = "adrenalin"
+	name = "adrenalin implant"
 	desc = "Removes all stuns and knockdowns."
 	var/uses
 

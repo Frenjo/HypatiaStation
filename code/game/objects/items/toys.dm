@@ -106,7 +106,7 @@
  * Fake singularity
  */
 /obj/item/toy/spinningtoy
-	name = "Gravitational Singularity"
+	name = "gravitational singularity"
 	desc = "\"Singulo\" brand spinning toy."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "singularity_s1"
@@ -414,7 +414,7 @@
  * Water flower
  */
 /obj/item/toy/waterflower
-	name = "Water Flower"
+	name = "water flower"
 	desc = "A seemingly innocent sunflower...with a twist."
 	icon = 'icons/obj/flora/harvest.dmi'
 	icon_state = "sunflower"

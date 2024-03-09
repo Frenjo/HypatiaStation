@@ -3,7 +3,7 @@
  */
 /obj/item/reagent_containers/food/snacks/grown/shand
 	seed = /obj/item/seeds/shand
-	name = "S'rendarr's Hand leaf"
+	name = "\improper S'Rendarr's Hand leaf"
 	desc = "A leaf sample from a lowland thicket shrub, often hid in by prey and predator to staunch their wounds and conceal their scent, allowing the plant to spread far on its native Ahdomai. Smells strongly like wax."
 	icon_state = "shand"
 	filling_color = "#70C470"

@@ -12,7 +12,7 @@
  *	Health Analysers -> Autoinjectors -> Syringes -> Anything Else.
  */
 /obj/item/storage/firstaid
-	name = "first-aid kit"
+	name = "first aid kit"
 	desc = "It's an emergency medical kit for those serious boo-boos."
 	icon = 'icons/obj/storage/firstaid.dmi'
 	icon_state = "regular"
@@ -38,7 +38,7 @@
 	)
 
 /obj/item/storage/firstaid/fire
-	name = "fire first-aid kit"
+	name = "fire first aid kit"
 	desc = "It's an emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
 	icon_state = "fire"
 	item_state = "firstaid-ointment"
@@ -78,7 +78,7 @@
 	)
 
 /obj/item/storage/firstaid/adv
-	name = "advanced first-aid kit"
+	name = "advanced first aid kit"
 	desc = "Contains advanced medical treatments."
 	icon_state = "advanced"
 	item_state = "firstaid-advanced"
@@ -150,7 +150,7 @@
 	)
 
 /obj/item/storage/pill_bottle/antitox
-	name = "Dylovene pills"
+	name = "bottle of dylovene pills"
 	desc = "Contains pills used to counter toxins."
 
 	starts_with = list(
@@ -158,7 +158,7 @@
 	)
 
 /obj/item/storage/pill_bottle/inaprovaline
-	name = "Inaprovaline pills"
+	name = "bottle of inaprovaline pills"
 	desc = "Contains pills used to stabilize patients."
 
 	starts_with = list(
@@ -166,7 +166,7 @@
 	)
 
 /obj/item/storage/pill_bottle/tramadol
-	name = "Tramadol pills"
+	name = "bottle of tramadol pills"
 	desc = "Contains pills used to relieve pain."
 
 	starts_with = list(
@@ -175,7 +175,7 @@
 
 // Added this to go with the radiation first aid kit. -Frenjo
 /obj/item/storage/pill_bottle/hyronalin
-	name = "Hyronalin pills"
+	name = "bottle of hyronalin pills"
 	desc = "Contains pills used to lower radiation levels."
 
 	starts_with = list(
@@ -184,7 +184,7 @@
 
 // Added this along with stokaline for survival boxes. -Frenjo
 /obj/item/storage/pill_bottle/stokaline
-	name = "Stokaline pills"
+	name = "bottle of stokaline pills"
 	desc = "Contains pills used to provide essential nutrients in emergency situations."
 
 	starts_with = list(

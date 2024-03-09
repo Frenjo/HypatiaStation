@@ -13,7 +13,7 @@
 	icon_state = "intact_off"
 	density = FALSE // Made filters and mixers not-dense so you can walk over them. -Frenjo
 
-	name = "Gas filter"
+	name = "gas filter"
 
 	var/on = FALSE
 	var/temp = null // -- TLE

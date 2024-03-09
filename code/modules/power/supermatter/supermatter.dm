@@ -12,7 +12,7 @@
 #define WARNING_DELAY 30		//seconds between warnings.
 
 /obj/machinery/power/supermatter
-	name = "Supermatter"
+	name = "supermatter"
 	desc = "A strangely translucent and iridescent crystal. \red You get headaches just from looking at it."
 	icon = 'icons/obj/engine.dmi'
 	icon_state = "darkmatter"

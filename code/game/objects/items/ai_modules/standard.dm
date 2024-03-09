@@ -25,7 +25,7 @@
  * NT Default
  */
 /obj/item/ai_module/nanotrasen // -- TLE
-	name = "'NT Default' Core AI Module"
+	name = "\improper 'NT Default' core AI module"
 	desc = "An 'NT Default' Core AI Module: 'Reconfigures the AI's core laws.'"
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3, RESEARCH_TECH_MATERIALS = 4)
 

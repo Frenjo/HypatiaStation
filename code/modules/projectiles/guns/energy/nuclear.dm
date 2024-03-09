@@ -37,7 +37,7 @@
 	update_icon()
 
 /obj/item/gun/energy/gun/nuclear
-	name = "Advanced Energy Gun"
+	name = "advanced energy gun"
 	desc = "An energy gun with an experimental miniaturized reactor."
 	icon_state = "nucgun"
 

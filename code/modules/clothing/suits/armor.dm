@@ -13,7 +13,7 @@
 
 
 /obj/item/clothing/suit/armor/vest
-	name = "armor"
+	name = "armour"
 	desc = "An armored vest that protects against some damage."
 	icon_state = "armor"
 	item_state = "armor"
@@ -22,21 +22,21 @@
 	armor = list(melee = 50, bullet = 15, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/armor/vest/security
-	name = "security armor"
+	name = "security armour"
 	desc = "An armored vest that protects against some damage. This one has NanoTrasen corporate badge."
 	icon_state = "armorsec"
 	item_state = "armor"
 
 /obj/item/clothing/suit/armor/vest/warden
-	name = "Warden's jacket"
+	name = "warden's jacket"
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_jacket"
 	item_state = "armor"
 
 
 /obj/item/clothing/suit/armor/riot
-	name = "Riot Suit"
-	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
+	name = "riot suit"
+	desc = "A suit of armour with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
 	item_state = "swat_suit"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
@@ -47,7 +47,7 @@
 
 
 /obj/item/clothing/suit/armor/bulletproof
-	name = "Bulletproof Vest"
+	name = "bulletproof vest"
 	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "bulletproof"
 	item_state = "armor"
@@ -56,7 +56,7 @@
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/armor/laserproof
-	name = "Ablative Armor Vest"
+	name = "ablative armor vest"
 	desc = "A vest that excels in protecting the wearer against energy projectiles."
 	icon_state = "armor_reflec"
 	item_state = "armor_reflec"
@@ -65,8 +65,8 @@
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/armor/swat
-	name = "swat suit"
-	desc = "A heavily armored suit that protects against moderate damage. Used in special operations."
+	name = "\improper SWAT suit"
+	desc = "A heavily armoured suit that protects against moderate damage. Used in special operations."
 	icon_state = "deathsquad"
 	item_state = "swat_suit"
 	gas_transfer_coefficient = 0.01
@@ -86,7 +86,7 @@
 
 /obj/item/clothing/suit/armor/swat/officer
 	name = "officer jacket"
-	desc = "An armored jacket used in special operations."
+	desc = "An armoured jacket used in special operations."
 	icon_state = "detective"
 	item_state = "det_suit"
 	blood_overlay_type = "coat"
@@ -94,8 +94,8 @@
 
 
 /obj/item/clothing/suit/armor/det_suit
-	name = "armor"
-	desc = "An armored vest with a detective's badge on it."
+	name = "armour"
+	desc = "An armoured vest with a detective's badge on it."
 	icon_state = "detective-armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
@@ -107,8 +107,8 @@
 //Reactive armor
 //When the wearer gets hit, this armor will teleport the user a short distance away (to safety or to more danger, no one knows. That's the fun of it!)
 /obj/item/clothing/suit/armor/reactive
-	name = "Reactive Teleport Armor"
-	desc = "Someone seperated our Research Director from his own head!"
+	name = "reactive teleport armour"
+	desc = "Someone separated our Research Director from his own head!"
 	var/active = 0.0
 	icon_state = "reactiveoff"
 	item_state = "reactiveoff"
@@ -124,11 +124,11 @@
 /obj/item/clothing/suit/armor/reactive/attack_self(mob/user as mob)
 	active = !active
 	if(active)
-		to_chat(user, SPAN_INFO("The reactive armor is now active."))
+		to_chat(user, SPAN_INFO("The reactive armour is now active."))
 		icon_state = "reactive"
 		item_state = "reactive"
 	else
-		to_chat(user, SPAN_INFO("The reactive armor is now inactive."))
+		to_chat(user, SPAN_INFO("The reactive armour is now inactive."))
 		icon_state = "reactiveoff"
 		item_state = "reactiveoff"
 		add_fingerprint(user)
@@ -143,7 +143,7 @@
 
 //All of the armor below is mostly unused
 /obj/item/clothing/suit/armor/centcom
-	name = "Cent. Com. armor"
+	name = "\improper CentCom armour"
 	desc = "A suit that protects against some damage."
 	icon_state = "centcom"
 	item_state = "centcom"
@@ -159,8 +159,8 @@
 	siemens_coefficient = 0
 
 /obj/item/clothing/suit/armor/heavy
-	name = "heavy armor"
-	desc = "A heavily armored suit that protects against moderate damage."
+	name = "heavy armour"
+	desc = "A heavily armoured suit that protects against moderate damage."
 	icon_state = "heavy"
 	item_state = "swat_suit"
 	w_class = 4//bulky item
@@ -175,22 +175,22 @@
 	inv_flags = INV_FLAG_HIDE_GLOVES | INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES
 
 /obj/item/clothing/suit/armor/tdome/red
-	name = "Thunderdome suit (red)"
+	name = "red Thunderdome suit"
 	desc = "Reddish armor."
 	icon_state = "tdred"
 	item_state = "tdred"
 	siemens_coefficient = 1
 
 /obj/item/clothing/suit/armor/tdome/green
-	name = "Thunderdome suit (green)"
+	name = "green Thunderdome suit"
 	desc = "Pukish armor."
 	icon_state = "tdgreen"
 	item_state = "tdgreen"
 	siemens_coefficient = 1
 
 /obj/item/clothing/suit/armor/tactical
-	name = "tactical armor"
-	desc = "A suit of armor most often used by Special Weapons and Tactics squads. Includes padded vest with pockets along with shoulder and kneeguards."
+	name = "tactical armour"
+	desc = "A suit of armour most often used by Special Weapons and Tactics squads. Includes padded vest with pockets along with shoulder and kneeguards."
 	icon_state = "swatarmor"
 	item_state = "armor"
 	var/obj/item/gun/holstered = null

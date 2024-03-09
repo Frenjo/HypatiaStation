@@ -11,7 +11,7 @@
  * Void
  */
 /obj/item/tank/jetpack/void
-	name = "Void Jetpack (Oxygen)"
+	name = "void jetpack (oxygen)"
 	desc = "It works well in a void."
 	icon_state = "jetpack-void"
 	item_state = "jetpack-void"
@@ -26,7 +26,7 @@
  * Oxygen
  */
 /obj/item/tank/jetpack/oxygen
-	name = "Jetpack (Oxygen)"
+	name = "jetpack (oxygen)"
 	desc = "A tank of compressed oxygen for use as propulsion in zero-gravity areas. Use with caution."
 
 	alert_gas_type = /decl/xgm_gas/oxygen
@@ -39,7 +39,7 @@
  * Carbon Dioxide
  */
 /obj/item/tank/jetpack/carbon_dioxide
-	name = "Jetpack (Carbon Dioxide)"
+	name = "jetpack (carbon dioxide)"
 	desc = "A tank of compressed carbon dioxide for use as propulsion in zero-gravity areas. Painted black to indicate that it should not be used as a source for internals."
 	icon_state = "jetpack-black"
 	item_state = "jetpack-black"

@@ -5,7 +5,7 @@
  */
 // This one's from bay12.
 /obj/machinery/vending/plasmaresearch
-	name = "Toximate 3000"
+	name = "\improper Toximate 3000"
 	desc = "All the fine parts you need in one vending machine!"
 
 	products = list(
@@ -16,7 +16,7 @@
 
 // This one's from bay12.
 /obj/machinery/vending/robotics
-	name = "Robotech Deluxe"
+	name = "\improper Robotech Deluxe"
 	desc = "All the tools you need to create your own robot army."
 	icon_state = "robotics"
 	icon_deny = "robotics-deny"

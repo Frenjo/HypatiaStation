@@ -1,5 +1,5 @@
 /obj/machinery/artifact_harvester
-	name = "Exotic Particle Harvester"
+	name = "exotic particle harvester"
 	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "incubator"	//incubator_on
 	anchored = TRUE

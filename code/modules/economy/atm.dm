@@ -15,7 +15,7 @@ log transactions
 /obj/item/card/id/var/money = 2000
 
 /obj/machinery/atm
-	name = "NanoTrasen Automatic Teller Machine"
+	name = "\improper NanoTrasen automatic teller machine"
 	desc = "For all your monetary needs!"
 	icon = 'icons/obj/machines/terminals.dmi'
 	icon_state = "atm"

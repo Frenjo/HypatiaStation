@@ -1,5 +1,5 @@
 /obj/machinery/computer/cloning
-	name = "Cloning console"
+	name = "cloning console"
 	icon_state = "dna"
 	circuit = /obj/item/circuitboard/cloning
 	req_access = list(ACCESS_BRIDGE) //Only used for record deletion right now.

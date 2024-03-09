@@ -2,7 +2,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // fossils
 /obj/item/fossil
-	name = "Fossil"
+	name = "fossil"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "bone"
 	desc = "It's a fossil."
@@ -22,12 +22,12 @@
 	qdel(src)
 
 /obj/item/fossil/bone
-	name = "Fossilised bone"
+	name = "fossilised bone"
 	icon_state = "bone"
 	desc = "It's a fossilised bone."
 
 /obj/item/fossil/skull
-	name = "Fossilised skull"
+	name = "fossilised skull"
 	icon_state = "skull"
 	desc = "It's a fossilised skull."
 
@@ -46,7 +46,7 @@
 		qdel(src)
 
 /obj/skeleton
-	name = "Incomplete skeleton"
+	name = "incomplete skeleton"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "uskel"
 	desc = "Incomplete skeleton."
@@ -96,12 +96,12 @@
 
 //shells and plants do not make skeletons
 /obj/item/fossil/shell
-	name = "Fossilised shell"
+	name = "fossilised shell"
 	icon_state = "shell"
 	desc = "It's a fossilised shell."
 
 /obj/item/fossil/plant
-	name = "Fossilised plant"
+	name = "fossilised plant"
 	icon_state = "plant1"
 	desc = "It's fossilised plant remains."
 

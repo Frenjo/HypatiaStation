@@ -49,7 +49,7 @@
 
 
 /obj/item/cell/apc
-	name = "APC power cell"
+	name = "\improper APC power cell"
 	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 1)
 	maxcharge = 5000
 	matter_amounts = list(MATERIAL_METAL = 750, MATERIAL_GLASS = 50)

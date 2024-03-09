@@ -9,7 +9,7 @@
 #define MONITOR_SCREEN_VIEWING_MACHINE 1
 
 /obj/machinery/computer/telecoms/monitor
-	name = "Telecommunications Monitor"
+	name = "telecommunications monitor"
 	icon_state = "comm_monitor"
 
 	var/screen = MONITOR_SCREEN_MAIN_MENU	// the screen number:

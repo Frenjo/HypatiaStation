@@ -8,7 +8,7 @@ Note: Must be placed west/left of and R&D console to function.
 
 */
 /obj/machinery/r_n_d/protolathe
-	name = "Protolathe"
+	name = "protolathe"
 	icon_state = "protolathe"
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 

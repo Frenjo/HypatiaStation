@@ -1,6 +1,6 @@
 // IV. The squeezer is intended to destroy inserted food items, but return some of the reagents they contain.
 /obj/machinery/squeezer
-	name = "\improper Squeezer"
+	name = "squeezer"
 	desc = "It is a machine that squeezes extracts from produce."
 	icon = 'icons/obj/machines/fabricators.dmi'
 	icon_state = "autolathe"

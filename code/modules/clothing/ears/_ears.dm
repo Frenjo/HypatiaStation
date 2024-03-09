@@ -43,7 +43,7 @@
 		qdel(src)
 
 /obj/item/clothing/ears/offear
-	name = "Other ear"
+	name = "other ear"
 	w_class = 5.0
 	icon = 'icons/mob/screen/screen1_Midnight.dmi'
 	icon_state = "block"

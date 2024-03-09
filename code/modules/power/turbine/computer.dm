@@ -1,5 +1,5 @@
 /obj/machinery/computer/turbine_control
-	name = "Gas turbine control computer"
+	name = "gas turbine control computer"
 	desc = "A computer to remotely control a gas turbine"
 	icon_state = "airtunnel0e"
 	circuit = /obj/item/circuitboard/turbine_control

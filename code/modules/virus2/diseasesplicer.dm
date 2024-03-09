@@ -1,5 +1,5 @@
 /obj/machinery/computer/diseasesplicer
-	name = "Disease Splicer"
+	name = "disease splicer"
 	icon_state = "crew"
 
 	var/datum/disease2/effectholder/memorybank = null

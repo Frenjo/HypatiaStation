@@ -104,7 +104,7 @@
 
 // Death Alarm Kit
 /obj/item/storage/box/cdeathalarm_kit
-	name = "Death Alarm Kit"
+	name = "death alarm kit"
 	desc = "Box of stuff used to implant death alarms."
 	icon_state = "implant"
 	item_state = "syringe_kit"

@@ -4,7 +4,7 @@
 	icon_state = "intact_off"
 	density = TRUE
 
-	name = "Heat Reservoir"
+	name = "heat reservoir"
 	desc = "Heats gas when connected to pipe network"
 
 	var/on = FALSE

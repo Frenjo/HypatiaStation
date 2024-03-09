@@ -869,7 +869,7 @@
 #include "code\game\objects\machinery\mass_driver.dm"
 #include "code\game\objects\machinery\navbeacon.dm"
 #include "code\game\objects\machinery\newscaster.dm"
-#include "code\game\objects\machinery\OpTable.dm"
+#include "code\game\objects\machinery\optable.dm"
 #include "code\game\objects\machinery\overview.dm"
 #include "code\game\objects\machinery\portable_turret.dm"
 #include "code\game\objects\machinery\recharger.dm"

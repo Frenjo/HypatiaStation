@@ -6,7 +6,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 ))
 
 /obj/singularity
-	name = "Gravitational Singularity"
+	name = "gravitational singularity"
 	desc = "A Gravitational Singularity."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "singularity_s1"

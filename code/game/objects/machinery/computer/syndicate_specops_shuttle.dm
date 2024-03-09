@@ -11,7 +11,7 @@ var/syndicate_elite_shuttle_time = 0
 var/syndicate_elite_shuttle_timeleft = 0
 
 /obj/machinery/computer/syndicate_elite_shuttle
-	name = "Elite Syndicate Squad Shuttle Console"
+	name = "elite syndicate squad shuttle console"
 	icon_state = "syndishuttle"
 	req_access = list(ACCESS_CENT_SPECOPS)
 

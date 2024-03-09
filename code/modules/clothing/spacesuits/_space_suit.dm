@@ -5,7 +5,7 @@
  *	Meaning the suit is defined directly after the corresponding helmet. Just like below!
  */
 /obj/item/clothing/head/helmet/space
-	name = "Space helmet"
+	name = "space helmet"
 	icon_state = "space"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment."
 	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE | ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
@@ -19,7 +19,7 @@
 	species_restricted = list("exclude", SPECIES_DIONA, SPECIES_VOX)
 
 /obj/item/clothing/suit/space
-	name = "Space suit"
+	name = "space suit"
 	desc = "A suit that protects against low pressure environments. Has a big 13 on the back."
 	icon_state = "space"
 	item_state = "s_suit"

@@ -24,7 +24,7 @@
 
 //have all strange rocks be cleared away using welders for now
 /obj/item/ore/strangerock
-	name = "Strange rock"
+	name = "strange rock"
 	desc = "Seems to have some unusal strata evident throughout it."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "strange"
