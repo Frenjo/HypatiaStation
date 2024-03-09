@@ -315,7 +315,7 @@
 			adjustBruteLoss(-30)
 			updatehealth()
 			add_fingerprint(user)
-			visible_message(SPAN_INFO("[user] has fixed some of the dents on [src]!"))
+			visible_message(SPAN_NOTICE("[user] has fixed some of the dents on [src]!"))
 		else
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 		return TRUE
@@ -328,7 +328,7 @@
 		if(wire.use(1))
 			adjustFireLoss(-30)
 			updatehealth()
-			visible_message(SPAN_INFO("[user] has fixed some of the burnt wires in [src]!"))
+			visible_message(SPAN_NOTICE("[user] has fixed some of the burnt wires in [src]!"))
 		return TRUE
 
 	if(iswirecutter(tool) || ismultitool(tool))

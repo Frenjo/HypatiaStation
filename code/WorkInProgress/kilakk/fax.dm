@@ -149,8 +149,16 @@ var/list/alldepartments = list("Central Command")
 
 	updateUsrDialog()
 
-/obj/machinery/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/faxmachine/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool))
+		anchored = !anchored
+		to_chat(user, SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src]."))
+		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
+		return TRUE
 
+	return ..()
+
+/obj/machinery/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/paper))
 		if(!tofax)
 			user.drop_item()
@@ -163,18 +171,11 @@ var/list/alldepartments = list("Central Command")
 			to_chat(user, SPAN_NOTICE("There is already something in \the [src]."))
 
 	else if(istype(O, /obj/item/card/id))
-
 		var/obj/item/card/id/idcard = O
 		if(!scan)
 			usr.drop_item()
 			idcard.loc = src
 			scan = idcard
-
-	else if(istype(O, /obj/item/wrench))
-		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-		anchored = !anchored
-		to_chat(user, SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src]."))
-	return
 
 /proc/centcom_fax(var/sent, var/sentname, var/mob/Sender)
 

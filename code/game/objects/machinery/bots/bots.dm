@@ -87,7 +87,7 @@
 					SPAN_INFO("You repair [src]!")
 				)
 			else
-				to_chat(user, SPAN_NOTICE("You must open the maintenance panel first."))
+				to_chat(user, SPAN_WARNING("You must open the maintenance panel first."))
 		else
 			to_chat(user, SPAN_NOTICE("[src] does not need repairs."))
 	else if(istype(W, /obj/item/card/emag) && emagged < 2)

@@ -42,6 +42,16 @@
 /obj/machinery/door_control/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
+/obj/machinery/door_control/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(emagged)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+	req_access = list()
+	req_one_access = list()
+	playsound(src, "sparks", 100, 1)
+	emagged = TRUE
+	return TRUE
+
 /obj/machinery/door_control/attackby(obj/item/W, mob/user as mob)
 	/* For later implementation
 	if (istype(W, /obj/item/screwdriver))
@@ -59,11 +69,8 @@
 	*/
 	if(istype(W, /obj/item/detective_scanner))
 		return
-	if(istype(W, /obj/item/card/emag))
-		req_access = list()
-		req_one_access = list()
-		playsound(src, "sparks", 100, 1)
-	return src.attack_hand(user)
+
+	return attack_hand(user)
 
 /obj/machinery/door_control/attack_hand(mob/user as mob)
 	src.add_fingerprint(usr)
@@ -162,7 +169,7 @@
 /obj/machinery/driver_button/attackby(obj/item/W, mob/user as mob)
 	if(istype(W, /obj/item/detective_scanner))
 		return
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/driver_button/attack_hand(mob/user as mob)
 	src.add_fingerprint(usr)

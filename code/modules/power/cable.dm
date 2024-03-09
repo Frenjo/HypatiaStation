@@ -600,13 +600,11 @@ By design, d1 is the smallest direction and d2 is the highest
 /obj/item/stack/cable_coil/use(used)
 	. = ..()
 	update_icon()
-	return
 
 //add cables to the stack
 /obj/item/stack/cable_coil/add(extra)
 	. = ..()
 	update_icon()
-	return
 
 ///////////////////////////////////////////////
 // Cable laying procedures

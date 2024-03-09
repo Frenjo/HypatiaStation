@@ -24,23 +24,27 @@
 	unset_control() //remove from control computer
 	return ..()
 
-/obj/machinery/power/solar/attackby(obj/item/W, mob/user)
-	if(iscrowbar(W))
+/obj/machinery/power/solar/attack_tool(obj/item/tool, mob/user)
+	if(iscrowbar(tool))
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 		user.visible_message(SPAN_NOTICE("[user] begins to take the glass off the solar panel."))
-		if(do_after(user, 50))
-			var/obj/item/solar_assembly/S = locate() in src
-			if(S)
-				S.loc = src.loc
-				S.give_glass()
+		if(do_after(user, 5 SECONDS))
+			var/obj/item/solar_assembly/assembly = locate() in src
+			if(isnotnull(assembly))
+				assembly.loc = loc
+				assembly.give_glass()
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message(SPAN_NOTICE("[user] takes the glass off the solar panel."))
 			qdel(src)
-		return
-	else if(W)
-		src.add_fingerprint(user)
-		src.health -= W.force
-		src.healthcheck()
+		return TRUE
+
+	return ..()
+
+/obj/machinery/power/solar/attackby(obj/item/W, mob/user)
+	if(isnotnull(W))
+		add_fingerprint(user)
+		health -= W.force
+		healthcheck()
 	..()
 
 /obj/machinery/power/solar/blob_act()

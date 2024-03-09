@@ -45,13 +45,13 @@
 
 // These will (hopefully) be removed when I get around to a construction overhaul...
 // Because once that's done, this stuff will be more centralised and not all over the place.
-#define FEEDBACK_DISCONNECT_MONITOR(T)				to_chat(T, SPAN_INFO("You disconnect the monitor."))
-#define FEEDBACK_BROKEN_GLASS_FALLS(T)				to_chat(T, SPAN_INFO("The broken glass falls out."))
-#define FEEDBACK_TOGGLE_CONTROLS_LOCK(USER, LOCKED)	to_chat(USER, SPAN_INFO("You [LOCKED ? "lock" : "unlock"] the controls on \the [src]."))
+#define FEEDBACK_DISCONNECT_MONITOR(T)				to_chat(T, SPAN_NOTICE("You disconnect the monitor."))
+#define FEEDBACK_BROKEN_GLASS_FALLS(T)				to_chat(T, SPAN_NOTICE("The broken glass falls out."))
+#define FEEDBACK_TOGGLE_CONTROLS_LOCK(USER, LOCKED)	to_chat(USER, SPAN_NOTICE("You [LOCKED ? "lock" : "unlock"] the controls on \the [src]."))
 #define FEEDBACK_TOGGLE_MAINTENANCE_PANEL(USER, OPENED) \
 USER.visible_message( \
-	SPAN_INFO("[USER] [OPENED ? "open" : "close"]s the maintenance panel on \the [src]."), \
-	SPAN_INFO("You [OPENED ? "open" : "close"] the maintenance panel on \the [src]."), \
+	SPAN_NOTICE("[USER] [OPENED ? "open" : "close"]s the maintenance panel on \the [src]."), \
+	SPAN_NOTICE("You [OPENED ? "open" : "close"] the maintenance panel on \the [src]."), \
 	SPAN_INFO("You hear someone using a screwdriver.") \
 )
 #define FEEDBACK_NOT_ENOUGH_WELDING_FUEL(T)			to_chat(T, SPAN_WARNING("You need more welding fuel to complete this task."))

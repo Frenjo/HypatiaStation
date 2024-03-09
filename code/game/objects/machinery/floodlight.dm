@@ -63,27 +63,29 @@
 
 	updateicon()
 
-/obj/machinery/floodlight/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/screwdriver))
+/obj/machinery/floodlight/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
 		if(!open)
+			unlocked = !unlocked
 			if(unlocked)
-				unlocked = 0
-				to_chat(user, "You screw the battery panel in place.")
+				to_chat(user, SPAN_NOTICE("You unscrew the battery panel."))
 			else
-				unlocked = 1
-				to_chat(user, "You unscrew the battery panel.")
+				to_chat(user, SPAN_NOTICE("You screw the battery panel into place."))
+		return TRUE
 
-	if(istype(W, /obj/item/crowbar))
+	if(iscrowbar(tool))
 		if(unlocked)
+			open = !open
 			if(open)
-				open = 0
-				overlays = null
-				to_chat(user, "You crowbar the battery panel in place.")
+				to_chat(user, SPAN_INFO("You remove the battery panel."))
 			else
-				if(unlocked)
-					open = 1
-					to_chat(user, "You remove the battery panel.")
+				to_chat(user, SPAN_INFO("You crowbar the battery panel into place."))
+				overlays.Cut()
+		return TRUE
 
+	return ..()
+
+/obj/machinery/floodlight/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/cell))
 		if(open)
 			if(cell)

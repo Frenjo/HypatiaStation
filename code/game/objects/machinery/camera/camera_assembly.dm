@@ -25,74 +25,79 @@
 				4 = Screwdriver panel closed and is fully built (you cannot attach upgrades)
 	*/
 
-/obj/item/camera_assembly/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/item/camera_assembly/attack_tool(obj/item/tool, mob/user)
 	switch(state)
 		if(0)
 			// State 0
-			if(iswrench(W) && isturf(loc))
+			if(iswrench(tool) && isturf(loc))
+				to_chat(user, SPAN_NOTICE("You wrench the assembly into place."))
 				playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
-				user << "You wrench the assembly into place."
 				anchored = TRUE
 				state = 1
 				update_icon()
 				auto_turn()
-				return
+				return TRUE
 
 		if(1)
 			// State 1
-			if(iswelder(W))
-				if(weld(W, user))
-					user << "You weld the assembly securely into place."
-					anchored = TRUE
-					state = 2
-				return
-
-			else if(iswrench(W))
+			if(iswrench(tool))
+				to_chat(user, SPAN_NOTICE("You unwrench the assembly from its place."))
 				playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
-				user << "You unattach the assembly from it's place."
 				anchored = FALSE
 				update_icon()
 				state = 0
-				return
+				return TRUE
+
+			if(iswelder(tool))
+				if(weld(tool, user))
+					to_chat(user, SPAN_NOTICE("You weld the assembly securely into place."))
+					anchored = TRUE
+					state = 2
+				return TRUE
 
 		if(2)
 			// State 2
-			if(iscoil(W))
-				var/obj/item/stack/cable_coil/C = W
-				if(C.amount >= 2)
-					playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-					user << "You add wires to the assembly."
-					C.use(2)
-					state = 3
-				return
-
-			else if(iswelder(W))
-				if(weld(W, user))
-					user << "You unweld the assembly from it's place."
+			if(iswelder(tool))
+				if(weld(tool, user))
+					to_chat(user, SPAN_NOTICE("You unweld the assembly from its place."))
 					state = 1
 					anchored = TRUE
-				return
+				return TRUE
+
+			if(iscoil(tool))
+				var/obj/item/stack/cable_coil/coil = tool
+				if(coil.use(2))
+					to_chat(user, SPAN_NOTICE("You add wires to the assembly."))
+					playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
+					state = 3
+				return TRUE
 
 		if(3)
 			// State 3
-			if(isscrewdriver(W))
-				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
+			if(iswirecutter(tool))
+				new /obj/item/stack/cable_coil(get_turf(src), 2)
+				playsound(src, 'sound/items/Wirecutter.ogg', 50, 1)
+				to_chat(user, SPAN_NOTICE("You cut the wires from the circuits."))
+				state = 2
+				return TRUE
 
-				var/input = strip_html(input(usr, "Which networks would you like to connect this camera to? Seperate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret ", "Set Network", "SS13"))
-				if(!input)
-					usr << "No input found please hang up and try your call again."
-					return
+			if(isscrewdriver(tool))
+				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
+				var/input = strip_html(input(user, "Which networks would you like to connect this camera to? Seperate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret.", "Set Network", "SS13"))
+				if(isnull(input))
+					to_chat(user, SPAN_WARNING("No input found please hang up and try your call again."))
+					return TRUE
 
 				var/list/tempnetwork = splittext(input, ",")
 				if(!length(tempnetwork))
-					usr << "No network found please hang up and try your call again."
-					return
+					to_chat(user, SPAN_WARNING("No network found please hang up and try your call again."))
+					return TRUE
 
 				var/temptag = "[get_area(src)] ([rand(1, 999)])"
-				input = strip_html(input(usr, "How would you like to name the camera?", "Set Camera Name", temptag))
+				input = strip_html(input(user, "How would you like to name the camera?", "Set Camera Name", temptag))
 
 				state = 4
-				var/obj/machinery/camera/C = new(loc)
+				var/obj/machinery/camera/C = new /obj/machinery/camera(loc)
 				loc = C
 				C.assembly = src
 
@@ -113,32 +118,29 @@
 						var/confirm = alert(user, "Is this what you want? Chances Remaining: [i]", "Confirmation", "Yes", "No")
 						if(confirm == "Yes")
 							break
-				return
+				return TRUE
 
-			else if(iswirecutter(W))
-
-				new/obj/item/stack/cable_coil(get_turf(src), 2)
-				playsound(src, 'sound/items/Wirecutter.ogg', 50, 1)
-				user << "You cut the wires from the circuits."
-				state = 2
-				return
-
-	// Upgrades!
-	if(is_type_in_list(W, possible_upgrades) && !is_type_in_list(W, upgrades)) // Is a possible upgrade and isn't in the camera already.
-		user << "You attach the [W] into the assembly inner circuits."
-		upgrades += W
-		user.drop_item(W)
-		W.loc = src
-		return
-
-	// Taking out upgrades
-	else if(iscrowbar(W) && length(upgrades))
+	// Taking out upgrades.
+	if(iscrowbar(tool) && length(upgrades))
 		var/obj/U = locate(/obj) in upgrades
-		if(U)
-			user << "You unattach an upgrade from the assembly."
+		if(isnotnull(U))
+			to_chat(user, SPAN_NOTICE("You unattach an upgrade from the assembly."))
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 			U.loc = get_turf(src)
-			upgrades -= U
+			upgrades.Remove(U)
+		else
+			to_chat(user, SPAN_WARNING("There are no upgrades to unattach."))
+		return TRUE
+
+	return ..()
+
+/obj/item/camera_assembly/attackby(obj/item/W as obj, mob/living/user as mob)
+	// Upgrades!
+	if(is_type_in_list(W, possible_upgrades) && !is_type_in_list(W, upgrades)) // Is a possible upgrade and isn't in the camera already.
+		to_chat(user, SPAN_NOTICE("You attach \the [W] into the assembly inner circuits."))
+		upgrades.Add(W)
+		user.drop_item(W)
+		W.loc = src
 		return
 
 	..()

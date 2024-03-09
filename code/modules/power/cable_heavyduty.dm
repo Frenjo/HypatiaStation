@@ -9,19 +9,23 @@
 	desc = "This cable is tough. It cannot be cut with simple hand tools."
 	layer = 2.39 //Just below pipes, which are at 2.4
 
+/obj/structure/cable/heavyduty/attack_tool(obj/item/tool, mob/user)
+	if(iswirecutter(tool))
+		to_chat(user, SPAN_WARNING("These cables are too tough to be cut with those [tool]."))
+		return TRUE
+
+	if(iswire(tool))
+		to_chat(user, SPAN_WARNING("You will need heavier cables to connect to these."))
+		return TRUE
+
+	return ..()
+
 /obj/structure/cable/heavyduty/attackby(obj/item/W, mob/user)
-	var/turf/T = src.loc
+	var/turf/T = get_turf(src)
 	if(T.intact)
 		return
 
-	if(istype(W, /obj/item/wirecutters))
-		to_chat(usr, SPAN_INFO("These cables are too tough to be cut with those [W.name]."))
-		return
-	else if(istype(W, /obj/item/stack/cable_coil))
-		to_chat(usr, SPAN_INFO("You will need heavier cables to connect to these."))
-		return
-	else
-		..()
+	return ..()
 
 /obj/structure/cable/heavyduty/cableColor(colorC)
 	return

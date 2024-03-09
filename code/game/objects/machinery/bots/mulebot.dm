@@ -106,7 +106,7 @@
 		updateDialog()
 	else if(istype(I, /obj/item/screwdriver))
 		if(locked)
-			to_chat(user, SPAN_INFO("The maintenance panel cannot be opened or closed while the controls are locked."))
+			to_chat(user, SPAN_WARNING("The maintenance panel cannot be opened or closed while the controls are locked."))
 			return
 
 		open = !open
@@ -123,11 +123,11 @@
 		if(health < maxhealth)
 			health = min(maxhealth, health + 25)
 			user.visible_message(
-				SPAN_WARNING("[user] repairs [src]!"),
-				SPAN_INFO("You repair [src]!")
+				SPAN_NOTICE("[user] repairs [src]!"),
+				SPAN_NOTICE("You repair [src]!")
 			)
 		else
-			to_chat(user, SPAN_INFO("[src] does not need repairs!"))
+			to_chat(user, SPAN_WARNING("[src] does not need repairs!"))
 	else if(load && ismob(load))  // chance to knock off rider
 		if(prob(1 + I.force * 2))
 			unload(0)

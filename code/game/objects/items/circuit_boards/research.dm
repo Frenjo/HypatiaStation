@@ -17,17 +17,17 @@
 /obj/item/circuitboard/rdconsole/attack_tool(obj/item/tool, mob/user)
 	if(isscrewdriver(tool))
 		user.visible_message(
-			SPAN_INFO("\the [user] adjusts the jumper on \the [src]'s access protocol pins."),
-			SPAN_INFO("You adjust the jumper on the access protocol pins.")
+			SPAN_NOTICE("[user] adjusts the jumper on \the [src]'s access protocol pins."),
+			SPAN_NOTICE("You adjust the jumper on the access protocol pins.")
 		)
 		if(ispath(build_path, /obj/machinery/computer/rdconsole/core))
 			name = "circuit board (RD Console - Robotics)"
 			build_path = /obj/machinery/computer/rdconsole/robotics
-			to_chat(user, SPAN_INFO("Access protocols set to robotics."))
+			to_chat(user, SPAN_NOTICE("Access protocols set to robotics."))
 		else
 			name = "circuit board (RD Console)"
 			build_path = /obj/machinery/computer/rdconsole/core
-			to_chat(user, SPAN_INFO("Access protocols defaulted."))
+			to_chat(user, SPAN_NOTICE("Access protocols defaulted."))
 		return TRUE
 
 	return ..()

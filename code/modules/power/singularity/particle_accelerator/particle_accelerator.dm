@@ -112,25 +112,23 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 /obj/structure/particle_accelerator/examine()
 	switch(src.construction_state)
 		if(0)
-			src.desc = "A [name], looks like it's not attached to the flooring."
+			src.desc = "A [src], looks like it's not attached to the flooring."
 		if(1)
-			src.desc = "A [name], it is missing some cables."
+			src.desc = "A [src], it is missing some cables."
 		if(2)
-			src.desc = "A [name], the panel is open."
+			src.desc = "A [src], the panel is open."
 		if(3)
-			src.desc = "The [name] is assembled."
+			src.desc = "The [src] is assembled."
 			if(powered)
 				src.desc = src.desc_holder
 	..()
 	return
 
-/obj/structure/particle_accelerator/attackby(obj/item/W, mob/user)
-	if(istool(W))
-		if(src.process_tool_hit(W, user))
-			return
-	else
-		..()
-	return
+/obj/structure/particle_accelerator/attack_tool(obj/item/tool, mob/user)
+	if(istool(tool))
+		return process_tool_hit(tool, user)
+
+	return ..()
 
 /obj/structure/particle_accelerator/Move()
 	..()
@@ -202,20 +200,20 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 /obj/structure/particle_accelerator/proc/process_tool_hit(obj/O, mob/user)
 	if(!O || !user)
-		return 0
+		return FALSE
 	if(!ismob(user) || !isobj(O))
-		return 0
+		return FALSE
 
-	var/temp_state = src.construction_state
+	var/temp_state = construction_state
 
-	switch(src.construction_state)//TODO:Might be more interesting to have it need several parts rather than a single list of steps
+	switch(construction_state)//TODO:Might be more interesting to have it need several parts rather than a single list of steps
 		if(0)
 			if(iswrench(O))
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				src.anchored = TRUE
 				user.visible_message(
-					"[user.name] secures the [src.name] to the floor.",
-					"You secure the external bolts."
+					SPAN_INFO("[user] secures \the [src] to the floor."),
+					SPAN_INFO("You secure the external bolts.")
 				)
 				temp_state++
 		if(1)
@@ -223,8 +221,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				src.anchored = FALSE
 				user.visible_message(
-					"[user.name] detaches the [src.name] from the floor.",
-					"You remove the external bolts."
+					SPAN_INFO("[user] detaches \the [src] from the floor."),
+					SPAN_INFO("You remove the external bolts.")
 				)
 				temp_state--
 
@@ -233,41 +231,43 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 				if(C.amount >= 5)
 					playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 					user.visible_message(
-						"[user.name] adds wires to the [src.name].",
-						"You add some wires."
+						SPAN_INFO("[user] adds wires to \the [src]."),
+						SPAN_INFO("You add some wires.")
 					)
 					C.use(5)
 					temp_state++
 		if(2)
 			if(iswirecutter(O))//TODO:Shock user if its on?
 				user.visible_message(
-					"[user.name] removes some wires from the [src.name].",
-					"You remove some wires."
+					SPAN_INFO("[user] removes some wires from \the [src]."),
+					SPAN_INFO("You remove some wires.")
 				)
 				temp_state--
 
 			if(isscrewdriver(O))
 				user.visible_message(
-					"[user.name] closes the [src.name]'s access panel.",
-					"You close the access panel."
+					SPAN_INFO("[user] closes \the [src]'s access panel."),
+					SPAN_INFO("You close the access panel."),
+					SPAN_INFO("You hear someone using a screwdriver.")
 				)
 				temp_state++
 		if(3)
 			if(isscrewdriver(O))
 				user.visible_message(
-					"[user.name] opens the [src.name]'s access panel.",
-					"You open the access panel."
+					SPAN_INFO("[user] opens \the [src]'s access panel."),
+					SPAN_INFO("You open the access panel."),
+					SPAN_INFO("You hear someone using a screwdriver.")
 				)
 				temp_state--
 
-	if(temp_state == src.construction_state)//Nothing changed
-		return 0
+	if(temp_state == construction_state)//Nothing changed
+		return FALSE
 	else
-		src.construction_state = temp_state
-		if(src.construction_state < 3)//Was taken apart, update state
+		construction_state = temp_state
+		if(construction_state < 3)//Was taken apart, update state
 			update_state()
 		update_icon()
-		return 1
+		return TRUE
 
 /obj/machinery/particle_accelerator
 	name = "Particle Accelerator"
@@ -314,24 +314,23 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 /obj/machinery/particle_accelerator/examine()
 	switch(src.construction_state)
 		if(0)
-			src.desc = "A [name], looks like it's not attached to the flooring."
+			src.desc = "A [src], looks like it's not attached to the flooring."
 		if(1)
-			src.desc = "A [name], it is missing some cables."
+			src.desc = "A [src], it is missing some cables."
 		if(2)
-			src.desc = "A [name], the panel is open."
+			src.desc = "A [src], the panel is open."
 		if(3)
-			src.desc = "The [name] is assembled."
+			src.desc = "The [src] is assembled."
 			if(powered)
 				src.desc = src.desc_holder
 	..()
 	return
 
-/obj/machinery/particle_accelerator/attackby(obj/item/W, mob/user)
-	if(istool(W))
-		if(src.process_tool_hit(W, user))
-			return
-	..()
-	return
+/obj/machinery/particle_accelerator/attack_tool(obj/item/tool, mob/user)
+	if(istool(tool))
+		return process_tool_hit(tool, user)
+
+	return ..()
 
 /obj/machinery/particle_accelerator/ex_act(severity)
 	switch(severity)
@@ -364,28 +363,28 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 
 /obj/machinery/particle_accelerator/proc/process_tool_hit(obj/O, mob/user)
 	if(!O || !user)
-		return 0
+		return FALSE
 	if(!ismob(user) || !isobj(O))
-		return 0
+		return FALSE
 
-	var/temp_state = src.construction_state
-	switch(src.construction_state)//TODO:Might be more interesting to have it need several parts rather than a single list of steps
+	var/temp_state = construction_state
+	switch(construction_state)//TODO:Might be more interesting to have it need several parts rather than a single list of steps
 		if(0)
 			if(iswrench(O))
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-				src.anchored = TRUE
+				anchored = TRUE
 				user.visible_message(
-					"[user.name] secures the [src.name] to the floor.",
-					"You secure the external bolts."
+					SPAN_NOTICE("[user] secures \the [src] to the floor."),
+					SPAN_NOTICE("You secure the external bolts.")
 				)
 				temp_state++
 		if(1)
 			if(iswrench(O))
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-				src.anchored = FALSE
+				anchored = FALSE
 				user.visible_message(
-					"[user.name] detaches the [src.name] from the floor.",
-					"You remove the external bolts."
+					SPAN_NOTICE("[user] detaches \the [src] from the floor."),
+					SPAN_NOTICE("You remove the external bolts.")
 				)
 				temp_state--
 
@@ -394,8 +393,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 				if(C.amount >= 5)
 					playsound(src, 'sound/items/Deconstruct.ogg', 75, 1)
 					user.visible_message(
-						"[user.name] adds wires to the [src.name].",
-						"You add some wires."
+						SPAN_NOTICE("[user] adds wires to \the [src]."),
+						SPAN_NOTICE("You add some wires.")
 					)
 					C.use(5)
 					temp_state++
@@ -403,37 +402,39 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 			if(iswirecutter(O))//TODO:Shock user if its on?
 				playsound(src, 'sound/items/Deconstruct.ogg', 75, 1)
 				user.visible_message(
-					"[user.name] removes some wires from the [src.name].",
-					"You remove some wires."
+					SPAN_NOTICE("[user] removes some wires from \the [src]."),
+					SPAN_NOTICE("You remove some wires.")
 				)
 				temp_state--
 
 			if(isscrewdriver(O))
 				playsound(src, 'sound/items/Screwdriver.ogg', 75, 1)
 				user.visible_message(
-					"[user.name] closes the [src.name]'s access panel.",
-					"You close the access panel."
+					SPAN_NOTICE("[user] closes \the [src]'s access panel."),
+					SPAN_NOTICE("You close the access panel."),
+					SPAN_INFO("You hear someone using a screwdriver.")
 				)
 				temp_state++
 		if(3)
 			if(isscrewdriver(O))
 				playsound(src, 'sound/items/Screwdriver.ogg', 75, 1)
 				user.visible_message(
-					"[user.name] opens the [src.name]'s access panel.",
-					"You open the access panel."
+					SPAN_NOTICE("[user] opens \the [src]'s access panel."),
+					SPAN_NOTICE("You open the access panel."),
+					SPAN_INFO("You hear someone using a screwdriver.")
 				)
 				temp_state--
 				active = 0
 
-	if(temp_state == src.construction_state)//Nothing changed
+	if(temp_state == construction_state)//Nothing changed
 		return 0
 	else
-		if(src.construction_state < 3)//Was taken apart, update state
+		if(construction_state < 3)//Was taken apart, update state
 			update_state()
 			if(power_state)
 				update_power_state(USE_POWER_OFF)
-		src.construction_state = temp_state
-		if(src.construction_state >= 3)
+		construction_state = temp_state
+		if(construction_state >= 3)
 			update_power_state(USE_POWER_IDLE)
 		update_icon()
 		return 1

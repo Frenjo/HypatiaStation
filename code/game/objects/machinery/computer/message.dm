@@ -61,17 +61,13 @@
 	message = rebootmsg
 	return TRUE
 
-/obj/machinery/computer/message_monitor/attackby(obj/item/O as obj, mob/living/user as mob)
-	if(stat & (NOPOWER|BROKEN))
-		return ..()
-	if(!istype(user))
-		return
-	if(isscrewdriver(O) && emagged)
+/obj/machinery/computer/message_monitor/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool) && emagged)
 		// Stops people from just unscrewing the monitor and putting it back to get the console working again.
 		to_chat(user, SPAN_WARNING("It is too hot to mess with!"))
-		return
+		return TRUE
 
-	. = ..()
+	return ..()
 
 /obj/machinery/computer/message_monitor/update_icon()
 	..()

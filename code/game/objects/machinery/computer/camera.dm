@@ -82,37 +82,41 @@
 			use_power(50)
 		return 1
 
-/obj/machinery/computer/security/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/screwdriver))
+/obj/machinery/computer/security/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
+		if(do_after(user, 2 SECONDS))
 			if(stat & BROKEN)
 				FEEDBACK_BROKEN_GLASS_FALLS(user)
-				var/obj/structure/computerframe/CF = new /obj/structure/computerframe(loc)
+				var/obj/structure/computerframe/frame = new /obj/structure/computerframe(loc)
 				new /obj/item/shard(loc)
-				var/obj/item/circuitboard/security/CB = new /obj/item/circuitboard/security(CF)
-				CB.network = network
-				for (var/obj/C in src)
+				var/obj/item/circuitboard/security/board = new /obj/item/circuitboard/security(frame)
+				board.network = network
+				for(var/obj/C in src)
 					C.loc = loc
-				CF.circuit = CB
-				CF.state = 3
-				CF.icon_state = "3"
-				CF.anchored = TRUE
+				frame.circuit = board
+				frame.state = 3
+				frame.icon_state = "3"
+				frame.anchored = TRUE
 				qdel(src)
 			else
 				FEEDBACK_DISCONNECT_MONITOR(user)
-				var/obj/structure/computerframe/CF = new /obj/structure/computerframe( loc )
-				var/obj/item/circuitboard/security/CB = new /obj/item/circuitboard/security(CF)
-				CB.network = network
-				for (var/obj/C in src)
+				var/obj/structure/computerframe/frame = new /obj/structure/computerframe(loc)
+				var/obj/item/circuitboard/security/board = new /obj/item/circuitboard/security(frame)
+				board.network = network
+				for(var/obj/C in src)
 					C.loc = loc
-				CF.circuit = CB
-				CF.state = 4
-				CF.icon_state = "4"
-				CF.anchored = TRUE
+				frame.circuit = board
+				frame.state = 4
+				frame.icon_state = "4"
+				frame.anchored = TRUE
 				qdel(src)
-	else
-		attack_hand(user)
+		return TRUE
+
+	return ..()
+
+/obj/machinery/computer/security/attackby(I as obj, user as mob)
+	return attack_hand(user)
 
 //Camera control: moving.
 /obj/machinery/computer/security/proc/jump_on_click(mob/user, A)

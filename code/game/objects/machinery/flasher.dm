@@ -38,15 +38,18 @@
 		icon_state = "[base_state]1-p"
 //		src.sd_SetLuminosity(0)
 
-//Don't want to render prison breaks impossible
-/obj/machinery/flasher/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/wirecutters))
+// Don't want to render prison breaks impossible.
+/obj/machinery/flasher/attack_tool(obj/item/tool, mob/user)
+	if(iswirecutter(tool))
 		add_fingerprint(user)
-		src.disable = !src.disable
-		if(src.disable)
-			user.visible_message(SPAN_WARNING("[user] has disconnected the [src]'s flashbulb!"), SPAN_WARNING("\red You disconnect the [src]'s flashbulb!"))
-		if(!src.disable)
-			user.visible_message(SPAN_WARNING("[user] has connected the [src]'s flashbulb!"), SPAN_WARNING("You connect the [src]'s flashbulb!"))
+		disable = !disable
+		user.visible_message(
+			SPAN_WARNING("[user] has [disable ? "disconnected" : "connected"] \the [src]'s flashbulb!"),
+			SPAN_WARNING("You [disable ? "disconnect" : "connect"] \the [src]'s flashbulb!")
+		)
+		return TRUE
+
+	return ..()
 
 //Let the AI trigger them directly.
 /obj/machinery/flasher/attack_ai()
@@ -108,18 +111,19 @@
 		if(!IS_WALKING(M) && src.anchored)
 			src.flash()
 
-/obj/machinery/flasher/portable/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/wrench))
+/obj/machinery/flasher/portable/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool))
 		add_fingerprint(user)
-		src.anchored = !src.anchored
+		anchored = !anchored
+		if(!anchored)
+			to_chat(user, SPAN_NOTICE("[src] can now be moved."))
+			overlays.Cut()
+		else
+			to_chat(user, SPAN_NOTICE("[src] is now secured."))
+			overlays.Add("[base_state]-s")
+		return TRUE
 
-		if(!src.anchored)
-			user.show_message(SPAN_WARNING("[src] can now be moved."))
-			src.overlays.Cut()
-
-		else if(src.anchored)
-			user.show_message(SPAN_WARNING("[src] is now secured."))
-			src.overlays += "[base_state]-s"
+	return ..()
 
 /obj/machinery/flasher_button
 	name = "flasher button"

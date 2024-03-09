@@ -109,6 +109,15 @@
 			copies++
 			updateUsrDialog()
 
+/obj/machinery/photocopier/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool))
+		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
+		anchored = !anchored
+		to_chat(user, SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src]."))
+		return TRUE
+
+	return ..()
+
 /obj/machinery/photocopier/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/paper))
 		if(!copy && !photocopy)
@@ -139,11 +148,6 @@
 			updateUsrDialog()
 		else
 			to_chat(user, SPAN_NOTICE("This cartridge is not yet ready for replacement! Use up the rest of the toner."))
-	else if(istype(O, /obj/item/wrench))
-		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-		anchored = !anchored
-		to_chat(user, SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src]."))
-	return
 
 /obj/machinery/photocopier/ex_act(severity)
 	switch(severity)

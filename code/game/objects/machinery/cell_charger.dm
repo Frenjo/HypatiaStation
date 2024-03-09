@@ -37,6 +37,18 @@
 	if(isnotnull(charging))
 		to_chat(usr, "Current charge: [charging.charge].")
 
+/obj/machinery/cell_charger/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool))
+		if(isnotnull(charging))
+			to_chat(user, SPAN_WARNING("Remove the cell first!"))
+			return TRUE
+		anchored = !anchored
+		to_chat(user, SPAN_NOTICE("You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground."))
+		playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
+		return TRUE
+
+	return ..()
+
 /obj/machinery/cell_charger/attackby(obj/item/W, mob/user)
 	if(stat & BROKEN)
 		return
@@ -62,14 +74,6 @@
 			)
 			chargelevel = -1
 		updateicon()
-	else if(istype(W, /obj/item/wrench))
-		if(isnotnull(charging))
-			to_chat(user, SPAN_WARNING("Remove the cell first!"))
-			return
-
-		anchored = !anchored
-		to_chat(user, "You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground.")
-		playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 
 /obj/machinery/cell_charger/attack_hand(mob/user)
 	if(isnotnull(charging))

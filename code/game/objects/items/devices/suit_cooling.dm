@@ -133,9 +133,9 @@
 	if(isscrewdriver(tool))
 		cover_open = !cover_open
 		if(cover_open)
-			to_chat(user, SPAN_INFO("You unscrew the panel."))
+			to_chat(user, SPAN_NOTICE("You unscrew the panel."))
 		else
-			to_chat(user, SPAN_INFO("You screw the panel into place."))
+			to_chat(user, SPAN_NOTICE("You screw the panel into place."))
 		updateicon()
 		return TRUE
 

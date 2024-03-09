@@ -240,7 +240,7 @@
 	if(O && O.loc == src)
 		qdel(O)
 	busy = 0
-	src.updateUsrDialog()
+	updateUsrDialog()
 
 /obj/machinery/autolathe/attack_paw(mob/user as mob)
 	return src.attack_hand(user)

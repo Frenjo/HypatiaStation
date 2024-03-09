@@ -33,6 +33,15 @@
 		if(istype(I, /obj/item/paper) || istype(I, /obj/item/folder) || istype(I, /obj/item/photo))
 			I.loc = src
 
+/obj/structure/filingcabinet/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool))
+		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
+		anchored = !anchored
+		to_chat(user, SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src]."))
+		return TRUE
+
+	return ..()
+
 /obj/structure/filingcabinet/attackby(obj/item/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/paper) || istype(P, /obj/item/folder) || istype(P, /obj/item/photo))
 		to_chat(user, SPAN_NOTICE("You put [P] in [src]."))
@@ -42,13 +51,8 @@
 		sleep(5)
 		icon_state = initial(icon_state)
 		updateUsrDialog()
-	else if(istype(P, /obj/item/wrench))
-		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-		anchored = !anchored
-		to_chat(user, SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src]."))
 	else
 		to_chat(user, SPAN_NOTICE("You can't put [P] in [src]!"))
-
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)
 	if(!length(contents))

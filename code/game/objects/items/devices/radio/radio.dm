@@ -656,9 +656,9 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	if(isscrewdriver(tool))
 		b_stat = !b_stat
 		if(b_stat)
-			to_chat(user, SPAN_INFO("The radio can now be attached and modified!"))
+			to_chat(user, SPAN_NOTICE("The radio can now be attached and modified!"))
 		else
-			to_chat(user, SPAN_INFO("The radio can no longer be modified or attached!"))
+			to_chat(user, SPAN_NOTICE("The radio can no longer be modified or attached!"))
 		add_fingerprint(user)
 		updateDialog()
 		return TRUE

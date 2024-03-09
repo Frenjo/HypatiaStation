@@ -72,17 +72,17 @@ var/bomb_set
 			opened = !opened
 			if(opened)
 				overlays.Add(image(icon, "npanel_open"))
-				to_chat(user, SPAN_INFO("You unscrew the control panel of \the [src]."))
+				to_chat(user, SPAN_NOTICE("You unscrew the control panel of \the [src]."))
 			else
 				overlays.Remove(image(icon, "npanel_open"))
-				to_chat(user, SPAN_INFO("You screw the control panel of \the [src] back on."))
+				to_chat(user, SPAN_NOTICE("You screw the control panel of \the [src] back on."))
 		else
 			if(!opened)
 				to_chat(user, SPAN_WARNING("The [src] emits a buzzing noise and the panel stays locked in."))
 			else
 				opened = FALSE
 				overlays.Remove(image(icon, "npanel_open"))
-				to_chat(user, SPAN_INFO("You screw the control panel of \the [src] back on."))
+				to_chat(user, SPAN_NOTICE("You screw the control panel of \the [src] back on."))
 			flick("nuclearbombc", src)
 		return TRUE
 

@@ -169,7 +169,7 @@
 
 /obj/item/stack/proc/use(used)
 	if(amount < used)
-		return 0
+		return FALSE
 	amount -= used
 
 	if(amount <= 0)
@@ -178,7 +178,7 @@
 		if(usr)
 			usr.before_take_item(oldsrc)
 		qdel(oldsrc)
-		return 1
+		return TRUE
 
 /obj/item/stack/proc/add(extra)
 	if(amount + extra > max_amount)

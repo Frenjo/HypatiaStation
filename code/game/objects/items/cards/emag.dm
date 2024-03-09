@@ -25,7 +25,6 @@
 		/obj/machinery/shield_capacitor,
 		/obj/machinery/shield_gen,
 		/obj/machinery/deployable,
-		/obj/machinery/door_control,
 		/obj/machinery/turretid,
 		/obj/machinery/bot,
 		/obj/machinery/door,

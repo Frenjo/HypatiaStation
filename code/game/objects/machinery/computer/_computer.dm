@@ -93,25 +93,29 @@
 	stat |= BROKEN
 	update_icon()
 
-/obj/machinery/computer/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/screwdriver) && isnotnull(circuit))
+/obj/machinery/computer/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool) && isnotnull(circuit))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			var/obj/structure/computerframe/A = new /obj/structure/computerframe(loc)
-			var/obj/item/circuitboard/M = new circuit(A)
-			A.circuit = M
-			A.anchored = TRUE
+		if(do_after(user, 2 SECONDS))
+			var/obj/structure/computerframe/frame = new /obj/structure/computerframe(loc)
+			var/obj/item/circuitboard/board = new circuit(frame)
+			frame.circuit = board
+			frame.anchored = TRUE
 			for(var/obj/C in src)
 				C.loc = loc
 			if(stat & BROKEN)
 				FEEDBACK_BROKEN_GLASS_FALLS(user)
 				new /obj/item/shard(loc)
-				A.state = 3
-				A.icon_state = "3"
+				frame.state = 3
+				frame.icon_state = "3"
 			else
 				FEEDBACK_DISCONNECT_MONITOR(user)
-				A.state = 4
-				A.icon_state = "4"
+				frame.state = 4
+				frame.icon_state = "4"
 			qdel(src)
-	else
-		attack_hand(user)
+		return TRUE
+
+	return ..()
+
+/obj/machinery/computer/attackby(I as obj, user as mob)
+	return attack_hand(user)

@@ -304,17 +304,17 @@
 /mob/living/silicon/ai/attack_tool(obj/item/tool, mob/user)
 	if(iswrench(tool))
 		if(anchored)
-			user.visible_message(SPAN_INFO("\The [user] starts to unbolt \the [src] from the plating..."))
+			user.visible_message(SPAN_NOTICE("\The [user] starts to unbolt \the [src] from the plating..."))
 			if(!do_after(user, 4 SECONDS))
-				user.visible_message(SPAN_INFO("\The [user] decides not to unbolt \the [src]."))
+				user.visible_message(SPAN_NOTICE("\The [user] decides not to unbolt \the [src]."))
 				return TRUE
-			user.visible_message(SPAN_INFO("\The [user] finishes unfastening \the [src]!"))
+			user.visible_message(SPAN_NOTICE("\The [user] finishes unfastening \the [src]!"))
 		else
-			user.visible_message(SPAN_INFO("\The [user] starts to bolt \the [src] to the plating..."))
+			user.visible_message(SPAN_NOTICE("\The [user] starts to bolt \the [src] to the plating..."))
 			if(!do_after(user, 4 SECONDS))
-				user.visible_message(SPAN_INFO("\The [user] decides not to bolt \the [src]."))
+				user.visible_message(SPAN_NOTICE("\The [user] decides not to bolt \the [src]."))
 				return TRUE
-			user.visible_message(SPAN_INFO("\The [user] finishes fastening down \the [src]!"))
+			user.visible_message(SPAN_NOTICE("\The [user] finishes fastening down \the [src]!"))
 		anchored = !anchored
 		return TRUE
 

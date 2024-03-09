@@ -40,35 +40,39 @@
 		return
 	interact(user)
 
-/obj/machinery/power/monitor/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/screwdriver))
+/obj/machinery/power/monitor/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			if (src.stat & BROKEN)
+		if(do_after(user, 2 SECONDS))
+			if(stat & BROKEN)
 				FEEDBACK_BROKEN_GLASS_FALLS(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				new /obj/item/shard( src.loc )
-				var/obj/item/circuitboard/powermonitor/M = new /obj/item/circuitboard/powermonitor( A )
-				for (var/obj/C in src)
-					C.loc = src.loc
-				A.circuit = M
-				A.state = 3
-				A.icon_state = "3"
-				A.anchored = TRUE
+				var/obj/structure/computerframe/frame = new /obj/structure/computerframe(loc)
+				new /obj/item/shard(loc)
+				var/obj/item/circuitboard/powermonitor/board = new /obj/item/circuitboard/powermonitor(frame)
+				for(var/obj/C in src)
+					C.loc = loc
+				frame.circuit = board
+				frame.state = 3
+				frame.icon_state = "3"
+				frame.anchored = TRUE
 				qdel(src)
 			else
 				FEEDBACK_DISCONNECT_MONITOR(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/circuitboard/powermonitor/M = new /obj/item/circuitboard/powermonitor( A )
+				var/obj/structure/computerframe/frame = new /obj/structure/computerframe(loc)
+				var/obj/item/circuitboard/powermonitor/board = new /obj/item/circuitboard/powermonitor(frame)
 				for (var/obj/C in src)
-					C.loc = src.loc
-				A.circuit = M
-				A.state = 4
-				A.icon_state = "4"
-				A.anchored = TRUE
+					C.loc = loc
+				frame.circuit = board
+				frame.state = 4
+				frame.icon_state = "4"
+				frame.anchored = TRUE
 				qdel(src)
-	else
-		src.attack_hand(user)
+		return TRUE
+
+	return ..()
+
+/obj/machinery/power/monitor/attackby(I as obj, user as mob)
+	return attack_hand(user)
 
 /obj/machinery/power/monitor/interact(mob/user)
 	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))

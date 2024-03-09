@@ -123,10 +123,10 @@
 		return
 	interact(user)
 
-/obj/machinery/power/generator/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/wrench))
+/obj/machinery/power/generator/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool))
 		anchored = !anchored
-		to_chat(user, SPAN_INFO("You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."))
+		to_chat(user, SPAN_NOTICE("You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."))
 
 		update_power_state(anchored)
 		if(anchored) // Powernet connection stuff.
@@ -134,8 +134,9 @@
 		else
 			disconnect_from_network()
 		reconnect()
-	else
-		..()
+		return TRUE
+
+	return ..()
 
 /obj/machinery/power/generator/attack_hand(mob/user)
 	add_fingerprint(user)

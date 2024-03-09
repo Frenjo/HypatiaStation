@@ -145,8 +145,9 @@
 			qdel(src)
 	return
 
-/obj/effect/meteor/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/pickaxe))
+/obj/effect/meteor/attack_tool(obj/item/tool, mob/user)
+	if(istype(tool, /obj/item/pickaxe))
 		qdel(src)
-		return
-	..()
+		return TRUE
+
+	return ..()

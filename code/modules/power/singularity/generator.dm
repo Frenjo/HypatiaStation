@@ -18,21 +18,22 @@
 		if(src)
 			qdel(src)
 
-/obj/machinery/the_singularitygen/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench))
+/obj/machinery/the_singularitygen/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool))
 		anchored = !anchored
-		playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 		if(anchored)
 			user.visible_message(
-				"[user.name] secures [src.name] to the floor.",
-				"You secure the [src.name] to the floor.",
-				"You hear a ratchet."
+				SPAN_NOTICE("[user] secures [src] to the floor."),
+				SPAN_NOTICE("You secure \the [src] to the floor."),
+				SPAN_INFO("You hear a ratchet.")
 			)
 		else
 			user.visible_message(
-				"[user.name] unsecures [src.name] from the floor.",
-				"You unsecure the [src.name] from the floor.",
-				"You hear a ratchet."
+				SPAN_NOTICE("[user] unsecures [src] from the floor."),
+				SPAN_NOTICE("You unsecure \the [src] from the floor."),
+				SPAN_INFO("You hear a ratchet.")
 			)
-		return
+		playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
+		return TRUE
+
 	return ..()

@@ -186,9 +186,9 @@
 			return TRUE
 		status = !status
 		if(status)
-			to_chat(user, SPAN_INFO("You resecure the welder."))
+			to_chat(user, SPAN_NOTICE("You resecure the welder."))
 		else
-			to_chat(user, SPAN_INFO("The welder can now be attached and modified."))
+			to_chat(user, SPAN_NOTICE("The welder can now be attached and modified."))
 		add_fingerprint(user)
 		return TRUE
 

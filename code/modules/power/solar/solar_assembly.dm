@@ -18,20 +18,21 @@
 	if(!anchored && isturf(loc)) // You can't pick it up
 		..()
 
-/obj/item/solar_assembly/attackby(obj/item/W, mob/user)
-	if(!anchored && isturf(loc))
-		if(iswrench(W))
-			anchored = TRUE
-			user.visible_message(SPAN_NOTICE("[user] wrenches the solar assembly into place."))
-			playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-			return 1
-	else
-		if(iswrench(W))
-			anchored = FALSE
-			user.visible_message(SPAN_NOTICE("[user] unwrenches the solar assembly from it's place."))
-			playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-			return 1
+/obj/item/solar_assembly/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool) && isturf(loc))
+		anchored = !anchored
+		user.visible_message(
+			SPAN_NOTICE("[user] [anchored ? "wrenches" : "unwrenches"] the solar assembly [anchored ? "into" : "from its"] place."),
+			SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] the solar assembly [anchored ? "into" : "from its"] place."),
+			SPAN_INFO("You hear a ratchet.")
+		)
+		playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
+		return TRUE
 
+	return ..()
+
+/obj/item/solar_assembly/attackby(obj/item/W, mob/user)
+	if(anchored)
 		if(istype(W, /obj/item/stack/sheet/glass) || istype(W, /obj/item/stack/sheet/rglass))
 			var/obj/item/stack/sheet/S = W
 			if(S.amount >= 2)
@@ -57,7 +58,7 @@
 			return 1
 	else
 		if(iscrowbar(W))
-			new /obj/item/tracker_electronics(src.loc)
+			new /obj/item/tracker_electronics(loc)
 			tracker = FALSE
 			user.visible_message(SPAN_NOTICE("[user] takes out the electronics from the solar assembly."))
 			return 1

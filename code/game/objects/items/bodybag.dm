@@ -33,6 +33,15 @@
 	var/item_path = /obj/item/bodybag
 	density = FALSE
 
+/obj/structure/closet/body_bag/attack_tool(obj/item/tool, mob/user)
+	if(iswirecutter(tool) && name != "body bag")
+		to_chat(user, SPAN_NOTICE("You cut the tag off the body bag."))
+		name = "body bag"
+		overlays.Cut()
+		return TRUE
+
+	return ..()
+
 /obj/structure/closet/body_bag/attackby(W as obj, mob/user as mob)
 	if(istype(W, /obj/item/pen))
 		var/t = input(user, "What would you like the label to be?", src.name, null) as text
@@ -48,11 +57,6 @@
 		else
 			src.name = "body bag"
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
-		return
-	else if(istype(W, /obj/item/wirecutters))
-		to_chat(user, "You cut the tag off the bodybag.")
-		src.name = "body bag"
-		src.overlays.Cut()
 		return
 
 /obj/structure/closet/body_bag/close()

@@ -227,14 +227,16 @@
 	add_fingerprint(user)
 	ui_interact(user)
 
-/obj/machinery/power/smes/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/screwdriver))
-		if(!open_hatch)
-			open_hatch = TRUE
-		else
-			open_hatch = FALSE
+/obj/machinery/power/smes/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
+		open_hatch = !open_hatch
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, open_hatch)
+		return TRUE
+
+	return ..()
+
+/obj/machinery/power/smes/attackby(obj/item/W as obj, mob/user as mob)
 	if(open_hatch)
 		if(istype(W, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
 			building_terminal = 1
@@ -273,7 +275,7 @@
 							return
 						new /obj/item/stack/cable_coil(loc, 10)
 						user.visible_message(
-							SPAN_NOTICE("[user.name] cut the cables and dismantled the power terminal."),
+							SPAN_NOTICE("[user] cuts the cables and dismantles the power terminal."),
 							SPAN_NOTICE("You cut the cables and dismantle the power terminal.")
 						)
 						qdel(terminal)
