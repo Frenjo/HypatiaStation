@@ -101,7 +101,7 @@
 						connect_to_network()
 						//src.directwired = 1
 				else
-					user << "\red You need more welding fuel to complete this task."
+					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			if(2)
 				if (WT.remove_fuel(0,user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
@@ -117,7 +117,7 @@
 						disconnect_from_network()
 						//src.directwired = 0
 				else
-					user << "\red You need more welding fuel to complete this task."
+					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 		return
 
 	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))

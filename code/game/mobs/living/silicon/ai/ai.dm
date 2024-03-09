@@ -301,26 +301,24 @@
 
 	return has_alarm
 
-/mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/wrench))
+/mob/living/silicon/ai/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool))
 		if(anchored)
 			user.visible_message(SPAN_INFO("\The [user] starts to unbolt \the [src] from the plating..."))
-			if(!do_after(user, 40))
+			if(!do_after(user, 4 SECONDS))
 				user.visible_message(SPAN_INFO("\The [user] decides not to unbolt \the [src]."))
-				return
+				return TRUE
 			user.visible_message(SPAN_INFO("\The [user] finishes unfastening \the [src]!"))
-			anchored = FALSE
-			return
 		else
 			user.visible_message(SPAN_INFO("\The [user] starts to bolt \the [src] to the plating..."))
-			if(!do_after(user, 40))
+			if(!do_after(user, 4 SECONDS))
 				user.visible_message(SPAN_INFO("\The [user] decides not to bolt \the [src]."))
-				return
+				return TRUE
 			user.visible_message(SPAN_INFO("\The [user] finishes fastening down \the [src]!"))
-			anchored = TRUE
-			return
-	else
-		return ..()
+		anchored = !anchored
+		return TRUE
+
+	return ..()
 
 /mob/living/silicon/ai/proc/add_ai_verbs()
 	verbs |= GLOBL.ai_verbs_default

@@ -92,7 +92,7 @@
 			user << "<span class='notice'>You remove the ladder and close the hole.</span>"
 			Del()
 		else
-			user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 		return
 
 	else

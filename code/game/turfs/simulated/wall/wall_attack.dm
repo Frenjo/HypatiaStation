@@ -131,7 +131,7 @@
 					dismantle_wall()
 			return
 		else
-			to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 
 	else if(istype(W, /obj/item/pickaxe/plasmacutter))

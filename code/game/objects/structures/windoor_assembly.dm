@@ -78,7 +78,7 @@
 							new /obj/item/stack/rods(get_turf(src), 4)
 						qdel(src)
 				else
-					to_chat(user, SPAN_INFO("You need more welding fuel to dissassemble the windoor assembly."))
+					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 					return
 
 			//Wrenching an unsecure assembly anchors it in place. Step 4 complete

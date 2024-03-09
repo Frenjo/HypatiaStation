@@ -14,10 +14,10 @@
 	name = "circuit board (RD Console)"
 	build_path = /obj/machinery/computer/rdconsole/core
 
-/obj/item/circuitboard/rdconsole/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/screwdriver))
+/obj/item/circuitboard/rdconsole/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
 		user.visible_message(
-			SPAN_INFO("\the [user] adjusts the jumper on the [src]'s access protocol pins."),
+			SPAN_INFO("\the [user] adjusts the jumper on \the [src]'s access protocol pins."),
 			SPAN_INFO("You adjust the jumper on the access protocol pins.")
 		)
 		if(ispath(build_path, /obj/machinery/computer/rdconsole/core))
@@ -28,6 +28,9 @@
 			name = "circuit board (RD Console)"
 			build_path = /obj/machinery/computer/rdconsole/core
 			to_chat(user, SPAN_INFO("Access protocols defaulted."))
+		return TRUE
+
+	return ..()
 
 /obj/item/circuitboard/mecha_control
 	name = "circuit board (Exosuit Control Console)"

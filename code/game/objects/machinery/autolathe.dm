@@ -158,47 +158,43 @@
 
 	return
 
-/obj/machinery/autolathe/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/autolathe/attack_tool(obj/item/tool, mob/user)
 	if(stat)
-		return 1
-
+		return TRUE
 	if(busy)
 		to_chat(user, SPAN_WARNING("The autolathe is busy. Please wait for completion of previous operation."))
-		return 1
+		return TRUE
 
-	if(istype(O, /obj/item/screwdriver))
+	if(isscrewdriver(tool))
 		if(!panel_open)
 			icon_state = "autolathe_t"
 		else
 			icon_state = "autolathe"
 		panel_open = !panel_open
-		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panel_open)
-		return 1
+		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+		return TRUE
 
-	if(panel_open)
-		if(istype(O, /obj/item/crowbar))
+	if(iscrowbar(tool))
+		if(panel_open)
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
-			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
+			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(loc)
 			M.state = 2
 			M.icon_state = "box_1"
 			for(var/obj/I in component_parts)
+				I.loc = loc
 				if(I.reliability != 100 && crit_fail)
-					I.crit_fail = 1
-				I.loc = src.loc
+					I.crit_fail = TRUE
 			if(stored_materials[MATERIAL_METAL] >= 3750)
-				var/obj/item/stack/sheet/metal/G = new /obj/item/stack/sheet/metal(src.loc)
-				G.amount = round(stored_materials[MATERIAL_METAL] / 3750)
+				new /obj/item/stack/sheet/metal(loc, round(stored_materials[MATERIAL_METAL] / 3750))
 			if(stored_materials[MATERIAL_GLASS] >= 3750)
-				var/obj/item/stack/sheet/glass/G = new /obj/item/stack/sheet/glass(src.loc)
-				G.amount = round(stored_materials[MATERIAL_GLASS] / 3750)
+				new /obj/item/stack/sheet/glass(loc, round(stored_materials[MATERIAL_GLASS] / 3750))
 			qdel(src)
-			return 1
-		else
-			user.set_machine(src)
-			interact(user)
-			return 1
+			return TRUE
 
+	return ..()
+
+/obj/machinery/autolathe/attackby(obj/item/O as obj, mob/user as mob)
 	if(stored_materials[MATERIAL_METAL] + O.matter_amounts[MATERIAL_METAL] > storage_capacity[MATERIAL_METAL])
 		to_chat(user, SPAN_WARNING("The autolathe is full. Please remove metal from the autolathe in order to insert more."))
 		return 1

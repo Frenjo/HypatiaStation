@@ -235,7 +235,7 @@
 						to_chat(user, "You weld the [src] to the floor.")
 						connect_to_network()
 				else
-					to_chat(user, SPAN_WARNING("You need more welding fuel to complete this task."))
+					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			if(2)
 				if(WT.remove_fuel(0, user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
@@ -251,7 +251,7 @@
 						to_chat(user, "You cut the [src] free from the floor.")
 						disconnect_from_network()
 				else
-					to_chat(user, SPAN_WARNING("You need more welding fuel to complete this task."))
+					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 		return
 
 	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))

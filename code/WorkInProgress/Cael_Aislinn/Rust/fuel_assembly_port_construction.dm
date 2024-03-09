@@ -8,12 +8,13 @@
 	w_class = 4
 	obj_flags = OBJ_FLAG_CONDUCT
 
-/obj/item/rust_fuel_assembly_port_frame/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/wrench))
-		new /obj/item/stack/sheet/plasteel( get_turf(src.loc), 12 )
+/obj/item/rust_fuel_assembly_port_frame/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool))
+		new /obj/item/stack/sheet/plasteel(get_turf(src), 12)
 		qdel(src)
-		return
-	..()
+		return TRUE
+
+	return ..()
 
 /obj/item/rust_fuel_assembly_port_frame/proc/try_build(turf/on_wall)
 	if (get_dist(on_wall,usr)>1)
@@ -116,7 +117,7 @@
 	else if (istype(W, /obj/item/weldingtool) && opened && !has_electronics)
 		var/obj/item/weldingtool/WT = W
 		if (WT.get_fuel() < 3)
-			user << "\blue You need more welding fuel to complete this task."
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 		user << "You start welding the port frame..."
 		playsound(src, 'sound/items/Welder.ogg', 50, 1)

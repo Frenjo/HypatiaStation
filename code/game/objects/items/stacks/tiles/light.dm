@@ -25,12 +25,10 @@
 	else
 		state = 0 //fine
 
-/obj/item/stack/tile/light/attackby(obj/item/O as obj, mob/user as mob)
-	..()
-	if(istype(O, /obj/item/crowbar))
-		new/obj/item/stack/sheet/metal(user.loc)
-		amount--
-		new/obj/item/stack/light_w(user.loc)
-		if(amount <= 0)
-			user.drop_from_inventory(src)
-			qdel(src)
+/obj/item/stack/tile/light/attack_tool(obj/item/tool, mob/user)
+	if(iscrowbar(tool) && use(1))
+		new /obj/item/stack/sheet/metal(user.loc)
+		new /obj/item/stack/light_w(user.loc)
+		return TRUE
+
+	return ..()

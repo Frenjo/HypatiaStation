@@ -168,7 +168,7 @@
 					new /obj/item/stack/sheet/metal(src.loc, 4)
 					qdel (src)
 		else
-			user << "\blue You need more welding fuel."
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 
 	else if(istype(W, /obj/item/wrench) && state == 0)

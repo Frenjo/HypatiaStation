@@ -94,7 +94,7 @@
 					qdel(src)
 				return
 			else
-				to_chat(user, "You need more welding fuel to complete this task.")
+				FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 				return
 
 	if(istype(I, /obj/item/melee/energy/blade))
@@ -864,7 +864,7 @@
 			else
 				to_chat(user, "You must stay still while welding the pipe.")
 		else
-			to_chat(user, "You need more welding fuel to cut the pipe.")
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 
 // called when pipe is cut with welder
@@ -1282,7 +1282,7 @@
 			else
 				to_chat(user, "You must stay still while welding the pipe.")
 		else
-			to_chat(user, "You need more welding fuel to cut the pipe.")
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 
 // would transfer to next pipe segment, but we are in a trunk
@@ -1407,7 +1407,7 @@
 				qdel(src)
 			return
 		else
-			to_chat(user, "You need more welding fuel to complete this task.")
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 
 // called when movable is expelled from a disposal pipe or outlet

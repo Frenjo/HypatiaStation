@@ -145,7 +145,7 @@
 	else if(istype(W, /obj/item/weldingtool) && opened && !has_electronics)
 		var/obj/item/weldingtool/WT = W
 		if(WT.get_fuel() < 3)
-			to_chat(user, SPAN_INFO("You need more welding fuel to complete this task."))
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 		user << "You start welding the compressor frame..."
 		playsound(src, 'sound/items/Welder.ogg', 50, 1)

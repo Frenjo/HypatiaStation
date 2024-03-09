@@ -102,48 +102,48 @@
 	else
 		stat(null, text("Systems nonfunctional"))
 
+/mob/living/silicon/robot/drone/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(isnull(client) || stat == DEAD)
+		to_chat(user, SPAN_WARNING("There's not much point subverting this heap of junk."))
+		return FALSE
+
+	if(emagged)
+		to_chat(src, SPAN_WARNING("[user] attempts to load subversive software into you, but your hacked subroutines ignore the attempt."))
+		to_chat(user, SPAN_WARNING("You attempt to subvert [src], but the sequencer has no effect."))
+		return FALSE
+
+	to_chat(user, SPAN_WARNING("You swipe the sequencer across [src]'s interface and watch its eyes flicker."))
+	to_chat(src, SPAN_WARNING("You feel a sudden burst of malware loaded into your execute-as-root buffer. Your tiny brain methodically parses, loads and executes the script."))
+
+	var/time = time2text(world.realtime,"hh:mm:ss")
+	GLOBL.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
+	message_admins("[key_name_admin(user)] emagged drone [key_name_admin(src)]. Laws overridden.")
+	log_game("[key_name(user)] emagged drone [key_name(src)].  Laws overridden.")
+
+	emagged = TRUE
+	lawupdate = FALSE
+	connected_ai = null
+	clear_supplied_laws()
+	clear_inherent_laws()
+	laws = new /datum/ai_laws/syndicate_override
+	set_zeroth_law("Only [user.real_name] and people he designates as being such are Syndicate Agents.")
+
+	to_chat(src, "<b>Obey these laws:</b>")
+	laws.show_laws(src)
+	to_chat(src, SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and his commands."))
+	return TRUE
+
+/mob/living/silicon/robot/drone/attack_tool(obj/item/tool, mob/user)
+	if(iscrowbar(tool))
+		to_chat(user, SPAN_WARNING("The machine is hermetically sealed, you can't open the case."))
+		return TRUE
+
+	return ..()
+
 // Drones cannot be upgraded with borg modules so we need to catch some items before they get used in ..().
 /mob/living/silicon/robot/drone/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/borg/upgrade))
 		to_chat(user, SPAN_WARNING("The maintenance drone chassis not compatible with \the [W]."))
-		return
-
-	else if(istype(W, /obj/item/crowbar))
-		to_chat(user, "The machine is hermetically sealed. You can't open the case.")
-		return
-
-	else if(istype(W, /obj/item/card/emag))
-		if(!client || stat == DEAD)
-			to_chat(user, SPAN_WARNING("There's not much point subverting this heap of junk."))
-			return
-
-		if(emagged)
-			to_chat(src, SPAN_WARNING("[user] attempts to load subversive software into you, but your hacked subroutines ignore the attempt."))
-			to_chat(user, SPAN_WARNING("You attempt to subvert [src], but the sequencer has no effect."))
-			return
-
-		to_chat(user, SPAN_WARNING("You swipe the sequencer across [src]'s interface and watch its eyes flicker."))
-		to_chat(src, SPAN_WARNING("You feel a sudden burst of malware loaded into your execute-as-root buffer. Your tiny brain methodically parses, loads and executes the script."))
-
-		var/obj/item/card/emag/emag = W
-		emag.uses--
-
-		message_admins("[key_name_admin(user)] emagged drone [key_name_admin(src)].  Laws overridden.")
-		log_game("[key_name(user)] emagged drone [key_name(src)].  Laws overridden.")
-		var/time = time2text(world.realtime,"hh:mm:ss")
-		GLOBL.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
-
-		emagged = TRUE
-		lawupdate = FALSE
-		connected_ai = null
-		clear_supplied_laws()
-		clear_inherent_laws()
-		laws = new /datum/ai_laws/syndicate_override
-		set_zeroth_law("Only [user.real_name] and people he designates as being such are Syndicate Agents.")
-
-		to_chat(src, "<b>Obey these laws:</b>")
-		laws.show_laws(src)
-		to_chat(src, SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and his commands."))
 		return
 
 	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))

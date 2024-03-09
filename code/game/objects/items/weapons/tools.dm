@@ -179,19 +179,22 @@
 	to_chat(usr, "\icon[src] [src.name] contains [get_fuel()]/[src.max_fuel] units of fuel!")
 	return
 
-/obj/item/weldingtool/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/screwdriver))
+/obj/item/weldingtool/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
 		if(welding)
 			to_chat(user, SPAN_WARNING("Stop welding first!"))
-			return
+			return TRUE
 		status = !status
 		if(status)
 			to_chat(user, SPAN_INFO("You resecure the welder."))
 		else
 			to_chat(user, SPAN_INFO("The welder can now be attached and modified."))
-		src.add_fingerprint(user)
-		return
+		add_fingerprint(user)
+		return TRUE
 
+	return ..()
+
+/obj/item/weldingtool/attackby(obj/item/W as obj, mob/user as mob)
 	if(!status && istype(W, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = W
 		R.use(1)
@@ -296,7 +299,7 @@
 		return 1
 	else
 		if(M)
-			to_chat(M, SPAN_INFO("You need more welding fuel to complete this task."))
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(M)
 		return 0
 
 //Returns whether or not the welding tool is currently on.

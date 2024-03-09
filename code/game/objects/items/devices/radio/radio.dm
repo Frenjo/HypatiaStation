@@ -652,22 +652,18 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			usr.show_message(SPAN_INFO("\the [src] can not be modified or attached!"))
 	return
 
-/obj/item/radio/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	user.set_machine(src)
-	if(!(istype(W, /obj/item/screwdriver)))
-		return
-	b_stat = !(b_stat)
-	if(!istype(src, /obj/item/radio/beacon))
-		if (b_stat)
-			user.show_message(SPAN_INFO("The radio can now be attached and modified!"))
+/obj/item/radio/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
+		b_stat = !b_stat
+		if(b_stat)
+			to_chat(user, SPAN_INFO("The radio can now be attached and modified!"))
 		else
-			user.show_message(SPAN_INFO("The radio can no longer be modified or attached!"))
-		updateDialog()
-			//Foreach goto(83)
+			to_chat(user, SPAN_INFO("The radio can no longer be modified or attached!"))
 		add_fingerprint(user)
-		return
-	else return
+		updateDialog()
+		return TRUE
+
+	return ..()
 
 /obj/item/radio/emp_act(severity)
 	broadcasting = 0

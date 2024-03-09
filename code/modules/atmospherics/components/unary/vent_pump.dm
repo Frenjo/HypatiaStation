@@ -270,7 +270,7 @@
 			else
 				to_chat(user, SPAN_INFO("The welding tool needs to be on to start this task."))
 		else
-			to_chat(user, SPAN_INFO("You need more welding fuel to complete this task."))
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return 1
 
 /obj/machinery/atmospherics/unary/vent_pump/examine()

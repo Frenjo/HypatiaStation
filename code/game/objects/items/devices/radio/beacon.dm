@@ -3,8 +3,15 @@
 	desc = "A beacon used by a teleporter."
 	icon_state = "beacon"
 	item_state = "signaler"
-	var/code = "electronic"
 	origin_tech = list(RESEARCH_TECH_BLUESPACE = 1)
+
+	var/code = "electronic"
+
+// This subtype doesn't want to receive any tool interactions.
+/obj/item/radio/beacon/attack_tool(obj/item/tool, mob/user)
+	SHOULD_CALL_PARENT(FALSE)
+
+	return FALSE
 
 /obj/item/radio/beacon/hear_talk()
 	return

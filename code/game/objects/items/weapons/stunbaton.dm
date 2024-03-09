@@ -57,6 +57,18 @@
 	if(!bcell)
 		to_chat(usr, SPAN_WARNING("The baton does not have a power source installed."))
 
+/obj/item/melee/baton/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool) && isnotnull(bcell))
+		to_chat(user, SPAN_NOTICE("You remove the cell from \the [src]."))
+		bcell.loc = get_turf(loc)
+		bcell.updateicon()
+		bcell = null
+		status = 0
+		update_icon()
+		return TRUE
+
+	return ..()
+
 /obj/item/melee/baton/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/cell))
 		if(!bcell)
@@ -68,17 +80,7 @@
 		else
 			to_chat(user, SPAN_NOTICE("[src] already has a cell."))
 
-	else if(istype(W, /obj/item/screwdriver))
-		if(bcell)
-			bcell.updateicon()
-			bcell.loc = get_turf(src.loc)
-			bcell = null
-			to_chat(user, SPAN_NOTICE("You remove the cell from the [src]."))
-			status = 0
-			update_icon()
-			return
-		..()
-	return
+	..()
 
 /obj/item/melee/baton/attack_self(mob/user)
 	if(bcell && bcell.charge > hitcost)

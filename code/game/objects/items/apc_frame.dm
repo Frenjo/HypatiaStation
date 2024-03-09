@@ -6,11 +6,13 @@
 	icon_state = "apc_frame"
 	obj_flags = OBJ_FLAG_CONDUCT
 
-/obj/item/apc_frame/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if(istype(W, /obj/item/wrench))
-		new /obj/item/stack/sheet/metal(get_turf(src.loc), 2)
+/obj/item/apc_frame/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool))
+		new /obj/item/stack/sheet/metal(get_turf(loc), 2)
 		qdel(src)
+		return TRUE
+
+	return ..()
 
 /obj/item/apc_frame/proc/try_build(turf/on_wall)
 	if(get_dist(on_wall, usr) > 1)

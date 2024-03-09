@@ -809,7 +809,7 @@
 					dismantle_wall()
 				W:welding = 1
 		else
-			user << "\blue You need more welding fuel to complete this task."
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 
 	else if (istype(W, /obj/item/pickaxe/plasmacutter))
@@ -1657,7 +1657,7 @@ turf/simulated/floor/return_siding_icon_state()
 					burnt = 0
 					broken = 0
 				else
-					user << "\blue You need more welding fuel to complete this task."
+					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 
 /turf/unsimulated/floor/attack_paw(user as mob)
 	return src.attack_hand(user)

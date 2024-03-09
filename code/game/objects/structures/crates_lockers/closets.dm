@@ -199,7 +199,7 @@
 		if(istype(W, /obj/item/weldingtool))
 			var/obj/item/weldingtool/WT = W
 			if(!WT.remove_fuel(0, user))
-				to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
+				FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 				return
 			new /obj/item/stack/sheet/metal(src.loc)
 			visible_message(
@@ -218,7 +218,7 @@
 	else if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
 		if(!WT.remove_fuel(0,user))
-			to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 		src.welded = !src.welded
 		src.update_icon()

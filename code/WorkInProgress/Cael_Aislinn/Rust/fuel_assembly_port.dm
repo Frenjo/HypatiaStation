@@ -12,8 +12,8 @@
 	var/opened = 1 //0=closed, 1=opened
 	var/has_electronics = 0 // 0 - none, bit 1 - circuitboard, bit 2 - wires
 
-/obj/machinery/rust_fuel_assembly_port/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I,/obj/item/fuel_assembly) && !opened)
+/obj/machinery/rust_fuel_assembly_port/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/fuel_assembly) && !opened)
 		if(cur_assembly)
 			user << "\red There is already a fuel rod assembly in there!"
 		else

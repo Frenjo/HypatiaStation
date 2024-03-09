@@ -11,17 +11,16 @@
 	obj_flags = OBJ_FLAG_CONDUCT
 	max_amount = 60
 
+/obj/item/stack/light_w/attack_tool(obj/item/tool, mob/user)
+	if(iswirecutter(tool) && use(1))
+		new /obj/item/stack/cable_coil(user.loc, 5)
+		new /obj/item/stack/sheet/glass(user.loc)
+		return TRUE
+
+	return ..()
+
 /obj/item/stack/light_w/attackby(obj/item/O as obj, mob/user as mob)
 	..()
-	if(istype(O, /obj/item/wirecutters))
-		var/obj/item/stack/cable_coil/CC = new/obj/item/stack/cable_coil(user.loc)
-		CC.amount = 5
-		amount--
-		new/obj/item/stack/sheet/glass(user.loc)
-		if(amount <= 0)
-			user.drop_from_inventory(src)
-			qdel(src)
-
 	if(istype(O, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/M = O
 		M.amount--

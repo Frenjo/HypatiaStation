@@ -129,17 +129,19 @@
 		if(on)
 			to_chat(user, "You switch on the [src].")
 
-/obj/item/suit_cooling_unit/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/screwdriver))
+/obj/item/suit_cooling_unit/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
+		cover_open = !cover_open
 		if(cover_open)
-			cover_open = 0
-			to_chat(user, "You screw the panel into place.")
+			to_chat(user, SPAN_INFO("You unscrew the panel."))
 		else
-			cover_open = 1
-			to_chat(user, "You unscrew the panel.")
+			to_chat(user, SPAN_INFO("You screw the panel into place."))
 		updateicon()
-		return
+		return TRUE
 
+	return ..()
+
+/obj/item/suit_cooling_unit/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/cell))
 		if(cover_open)
 			if(cell)

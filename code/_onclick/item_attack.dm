@@ -1,6 +1,19 @@
-// Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
+/*
+ * attack_self()
+ *
+ * Called when the item is in the active hand, and clicked; alternatively, there is an 'activate held object' verb.
+ */
 /obj/item/proc/attack_self(mob/user)
 	return
+
+/*
+ * attack_emag()
+ *
+ * Called by /obj/item/card/emag/handle_attack().
+ * Returns TRUE if emagged successfully, FALSE if not.
+ */
+/atom/proc/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	return FALSE
 
 /*
  * This proc is the hopeful foundation of a new interaction system.
@@ -31,15 +44,6 @@
 	if(can_operate(src) && do_surgery(src, user, tool))
 		return TRUE
 	return ..()
-
-/*
- * attack_emag()
- *
- * Called by /obj/item/card/emag/handle_attack().
- * Returns TRUE if emagged successfully, FALSE if not.
- */
-/atom/proc/attack_emag(obj/item/card/emag/emag, mob/user, uses)
-	return FALSE
 
 // No comment
 /atom/proc/attackby(obj/item/W, mob/user)

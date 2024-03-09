@@ -54,6 +54,7 @@ USER.visible_message( \
 	SPAN_INFO("You [OPENED ? "open" : "close"] the maintenance panel on \the [src]."), \
 	SPAN_INFO("You hear someone using a screwdriver.") \
 )
+#define FEEDBACK_NOT_ENOUGH_WELDING_FUEL(T)			to_chat(T, SPAN_WARNING("You need more welding fuel to complete this task."))
 
 #define FEEDBACK_GUN_NOT_ACTIVE_HAND(T) to_chat(T, SPAN_WARNING("You need your gun in your active hand to do that!"))
 

@@ -94,7 +94,7 @@
 			else
 				user << "\blue [src] is undamaged!"
 		else
-			user << "Need more welding fuel!"
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 	else if(istype(O, /obj/item/card/id)||istype(O, /obj/item/pda))
 		if (!mmi)

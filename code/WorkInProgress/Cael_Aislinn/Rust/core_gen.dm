@@ -100,76 +100,79 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	locked = FALSE
 	return TRUE
 
-/obj/machinery/power/rust_core/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench))
-		if(owned_field)
-			user << "Turn off [src] first."
-			return
+/obj/machinery/power/rust_core/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool))
+		if(isnotnull(owned_field))
+			to_chat(user, SPAN_WARNING("Turn off [src] first."))
+			return TRUE
+
 		switch(state)
 			if(RUST_STATE_ZERO)
+				user.visible_message(
+					SPAN_INFO("[user] secures \the [src] to the floor."),
+					SPAN_INFO("You secure the external reinforcing bolts to the floor."),
+					SPAN_INFO("You hear a ratchet.")
+				)
+				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				state = RUST_STATE_ONE
-				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-				user.visible_message(
-					"[user.name] secures [src.name] to the floor.",
-					"You secure the external reinforcing bolts to the floor.",
-					"You hear a ratchet"
-				)
-				src.anchored = TRUE
+				anchored = TRUE
 			if(RUST_STATE_ONE)
-				state = RUST_STATE_ZERO
-				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				user.visible_message(
-					"[user.name] unsecures [src.name] reinforcing bolts from the floor.",
-					"You undo the external reinforcing bolts.",
-					"You hear a ratchet"
+					SPAN_INFO("[user] unsecures \the [src] reinforcing bolts from the floor."),
+					SPAN_INFO("You undo the external reinforcing bolts."),
+					SPAN_INFO("You hear a ratchet.")
 				)
-				src.anchored = FALSE
-			if(2)
-				user << "\red The [src.name] needs to be unwelded from the floor."
-		return
+				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
+				state = RUST_STATE_ZERO
+				anchored = FALSE
+			if(RUST_STATE_TWO)
+				to_chat(user, SPAN_WARNING("\The [src] needs to be unwelded from the floor."))
+		return TRUE
 
-	if(istype(W, /obj/item/weldingtool))
-		var/obj/item/weldingtool/WT = W
-		if(owned_field)
-			user << "Turn off the [src] first."
-			return
+	if(iswelder(tool))
+		var/obj/item/weldingtool/welder = tool
+		if(isnotnull(owned_field))
+			to_chat(user, SPAN_WARNING("Turn off [src] first."))
+			return TRUE
+
 		switch(state)
 			if(RUST_STATE_ZERO)
-				user << "\red The [src.name] needs to be wrenched to the floor."
+				to_chat(user, SPAN_WARNING("\The [src] needs to be wrenched to the floor."))
 			if(RUST_STATE_ONE)
-				if(WT.remove_fuel(0, user))
-					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
+				if(welder.remove_fuel(0, user))
 					user.visible_message(
-						"[user.name] starts to weld the [src.name] to the floor.",
-						"You start to weld the [src] to the floor.",
-						SPAN_WARNING("You hear welding.")
+						SPAN_INFO("[user] starts to weld \the [src] to the floor."),
+						SPAN_INFO("You start to weld \the [src] to the floor."),
+						SPAN_INFO(SPAN_WARNING("You hear welding."))
 					)
-					if(do_after(user, 20))
-						if(!src || !WT.isOn())
-							return
-						state = RUST_STATE_TWO
-						user << "You weld the [src] to the floor."
-						connect_to_network()
+					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
+					if(do_after(user, 2 SECONDS))
+						if(isnotnull(src) && welder.welding)
+							to_chat(user, SPAN_INFO("You weld \the [src] to the floor."))
+							state = RUST_STATE_TWO
+							connect_to_network()
 				else
-					user << "\red You need more welding fuel to complete this task."
+					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			if(RUST_STATE_TWO)
-				if(WT.remove_fuel(0, user))
-					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
+				if(welder.remove_fuel(0, user))
 					user.visible_message(
-						"[user.name] starts to cut the [src.name] free from the floor.",
-						"You start to cut the [src] free from the floor.",
+						SPAN_INFO("[user] starts to cut \the [src] free from the floor."),
+						SPAN_INFO("You start to cut \the [src] free from the floor."),
 						SPAN_WARNING("You hear welding.")
 					)
-					if(do_after(user, 20))
-						if(!src || !WT.isOn())
-							return
-						state = RUST_STATE_ONE
-						user << "You cut the [src] free from the floor."
-						disconnect_from_network()
+					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
+					if(do_after(user, 2 SECONDS))
+						if(isnotnull(src) && welder.welding)
+							to_chat(user, SPAN_INFO("You cut \the [src] free from the floor."))
+							state = RUST_STATE_ONE
+							disconnect_from_network()
 				else
-					user << "\red You need more welding fuel to complete this task."
-		return
+					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
+		return TRUE
 
+	return ..()
+
+/obj/machinery/power/rust_core/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(emagged)
 			user << "\red The lock seems to be broken"

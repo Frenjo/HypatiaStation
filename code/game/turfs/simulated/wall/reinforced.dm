@@ -95,7 +95,7 @@
 				take_damage(-damage)
 			return
 		else
-			to_chat(user, SPAN_WARNING("You need more welding fuel to complete this task."))
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 
 	var/turf/T = user.loc	//get user's location for delay checks
@@ -155,7 +155,7 @@
 						icon_state = "r_wall-3"
 						to_chat(user, SPAN_NOTICE("You press firmly on the cover, dislodging it."))
 				else
-					to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
+					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 				return
 
 			if(istype(W, /obj/item/pickaxe/plasmacutter))
@@ -219,7 +219,7 @@
 						new /obj/item/stack/rods(src)
 						to_chat(user, SPAN_NOTICE("The support rods drop out as you cut them loose from the frame."))
 				else
-					to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
+					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 				return
 
 			if(istype(W, /obj/item/pickaxe/plasmacutter))

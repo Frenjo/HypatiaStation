@@ -13,26 +13,25 @@
 	create_reagents(max_fuel)
 	reagents.add_reagent("fuel", max_fuel)
 
-/obj/item/weldpack/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weldingtool))
-		var/obj/item/weldingtool/T = W
-		if(T.welding & prob(50))
+/obj/item/weldpack/attack_tool(obj/item/tool, mob/user)
+	if(iswelder(tool))
+		var/obj/item/weldingtool/welder = tool
+		if(welder.welding && prob(50))
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion.")
 			log_game("[key_name(user)] triggered a fueltank explosion.")
 			to_chat(user, SPAN_WARNING("That was stupid of you."))
-			explosion(get_turf(src),-1,0,2)
-			if(src)
-				qdel(src)
-			return
+			explosion(get_turf(src), -1, 0, 2)
+			qdel(src)
 		else
-			if(T.welding)
+			if(welder.welding)
 				to_chat(user, SPAN_WARNING("That was close!"))
-			src.reagents.trans_to(W, T.max_fuel)
 			to_chat(user, SPAN_INFO("Welder refilled!"))
 			playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
-			return
-	to_chat(user, SPAN_INFO("The tank scoffs at your insolence.  It only provides services to welders."))
-	return
+			reagents.trans_to(welder, welder.max_fuel)
+		return TRUE
+
+	to_chat(user, SPAN_INFO("The tank scoffs at your insolence. It only provides services to welders."))
+	return ..()
 
 /obj/item/weldpack/afterattack(obj/O as obj, mob/user as mob)
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1 && src.reagents.total_volume < max_fuel)

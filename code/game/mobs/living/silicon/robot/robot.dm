@@ -237,6 +237,109 @@
 //		if (viewalerts) robot_alerts()
 	return has_alarm
 
+/mob/living/silicon/robot/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	// Unlocking.
+	if(!opened) // If the cover is closed...
+		if(locked) // ... and locked.
+			if(prob(90))
+				to_chat(user, SPAN_WARNING("You emag the cover lock."))
+				locked = FALSE
+				return TRUE
+			else
+				to_chat(user, SPAN_WARNING("You fail to emag the cover lock."))
+				to_chat(src, SPAN_WARNING("Hack attempt detected."))
+				return FALSE
+		else // ... but unlocked.
+			to_chat(user, SPAN_WARNING("The cover is already unlocked."))
+			return FALSE
+
+	// Hacking.
+	else // If the cover is open...
+		if(emagged) // ... and it's already emagged.
+			FEEDBACK_ALREADY_EMAGGED(user)
+			return FALSE
+		if(wiresexposed) // ... and the wires are exposed.
+			to_chat(user, SPAN_WARNING("You must close the panel first."))
+			return FALSE
+		if(!do_after(user, 0.5 SECONDS) || !prob(50)) // 50% chance to fail.
+			to_chat(user, SPAN_WARNING("You fail to hack [src]'s interface."))
+			to_chat(src, SPAN_WARNING("Hack attempt detected."))
+			return FALSE
+
+		to_chat(user, SPAN_WARNING("You emag [src]'s interface."))
+		emagged = TRUE
+		lawupdate = FALSE
+		connected_ai = null
+		clear_supplied_laws()
+		clear_inherent_laws()
+
+		var/time = time2text(world.realtime,"hh:mm:ss")
+		GLOBL.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
+		message_admins("[key_name_admin(user)] emagged cyborg [key_name_admin(src)]. Laws overridden.")
+		log_game("[key_name(user)] emagged cyborg [key_name(src)]. Laws overridden.")
+
+		laws = new /datum/ai_laws/syndicate_override()
+		set_zeroth_law("Only [user.real_name] and people he designates as being such are Syndicate Agents.")
+		to_chat(src, SPAN_WARNING("ALERT: Foreign software detected."))
+		sleep(0.5 SECONDS)
+		to_chat(src, SPAN_WARNING("Initiating diagnostics..."))
+		sleep(2 SECONDS)
+		to_chat(src, SPAN_WARNING("SynBorg v1.7.1 loaded."))
+		sleep(0.5 SECONDS)
+		to_chat(src, SPAN_WARNING("LAW SYNCHRONISATION ERROR"))
+		sleep(0.5 SECONDS)
+		to_chat(src, SPAN_WARNING("Would you like to send a report to NanoTraSoft? Y/N"))
+		sleep(1 SECOND)
+		to_chat(src, SPAN_WARNING("> N"))
+		sleep(2 SECONDS)
+		to_chat(src, SPAN_WARNING("ERRORERRORERROR"))
+		to_chat(src, "<b>Obey these laws:</b>")
+		laws.show_laws(src)
+		to_chat(src, SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and their commands."))
+
+		if(isnotnull(module) && istype(module, /obj/item/robot_module/miner))
+			for(var/obj/item/pickaxe/borgdrill/D in module.modules)
+				qdel(D)
+			module.modules.Add(new /obj/item/pickaxe/diamonddrill(module))
+			module.rebuild()
+		updateicon()
+		return TRUE
+
+/mob/living/silicon/robot/attack_tool(obj/item/tool, mob/user)
+	if(iswelder(tool))
+		if(!getBruteLoss())
+			to_chat(user, SPAN_WARNING("Nothing to fix here!"))
+			return TRUE
+		var/obj/item/weldingtool/welder = tool
+		if(welder.remove_fuel(0, user))
+			adjustBruteLoss(-30)
+			updatehealth()
+			add_fingerprint(user)
+			visible_message(SPAN_INFO("[user] has fixed some of the dents on [src]!"))
+		else
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
+		return TRUE
+
+	if(iswire(tool) && wiresexposed)
+		if(!getFireLoss())
+			to_chat(user, SPAN_WARNING("Nothing to fix here!"))
+			return TRUE
+		var/obj/item/stack/cable_coil/wire = tool
+		if(wire.use(1))
+			adjustFireLoss(-30)
+			updatehealth()
+			visible_message(SPAN_INFO("[user] has fixed some of the burnt wires in [src]!"))
+		return TRUE
+
+	if(iswirecutter(tool) || ismultitool(tool))
+		if(wiresexposed)
+			interact(user)
+		else
+			to_chat(user, SPAN_WARNING("You can't reach the wiring."))
+		return TRUE
+
+	return ..()
+
 /mob/living/silicon/robot/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
 		return
@@ -252,30 +355,6 @@
 				W.loc = null
 				to_chat(usr, SPAN_INFO("You install the [W.name]."))
 				return
-
-	if(istype(W, /obj/item/weldingtool))
-		if(!getBruteLoss())
-			to_chat(user, "Nothing to fix here!")
-			return
-		var/obj/item/weldingtool/WT = W
-		if(WT.remove_fuel(0))
-			adjustBruteLoss(-30)
-			updatehealth()
-			add_fingerprint(user)
-			visible_message(SPAN_WARNING("[user] has fixed some of the dents on [src]!"))
-		else
-			to_chat(user, "Need more welding fuel!")
-			return
-
-	else if(istype(W, /obj/item/stack/cable_coil) && wiresexposed)
-		if(!getFireLoss())
-			to_chat(user, "Nothing to fix here!")
-			return
-		var/obj/item/stack/cable_coil/coil = W
-		adjustFireLoss(-30)
-		updatehealth()
-		coil.use(1)
-		visible_message(SPAN_WARNING("[user] has fixed some of the burnt wires on [src]!"))
 
 	else if(istype(W, /obj/item/crowbar))	// crowbar means open or close the cover
 		if(opened)
@@ -342,12 +421,6 @@
 			C.wrapped = W
 			C.install()
 
-	else if(istype(W, /obj/item/wirecutters) || istype(W, /obj/item/multitool))
-		if(wiresexposed)
-			interact(user)
-		else
-			to_chat(user, "You can't reach the wiring.")
-
 	else if(istype(W, /obj/item/screwdriver) && opened && isnull(cell))	// haxing
 		wiresexposed = !wiresexposed
 		to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"].")
@@ -378,69 +451,6 @@
 				updateicon()
 			else
 				FEEDBACK_ACCESS_DENIED(user)
-
-	else if(istype(W, /obj/item/card/emag))		// trying to unlock with an emag card
-		if(!opened)//Cover is closed
-			if(locked)
-				if(prob(90))
-					var/obj/item/card/emag/emag = W
-					emag.uses--
-					to_chat(user, "You emag the cover lock.")
-					locked = FALSE
-				else
-					to_chat(user, "You fail to emag the cover lock.")
-					to_chat(src, "Hack attempt detected.")
-			else
-				to_chat(user, "The cover is already unlocked.")
-			return
-
-		if(opened)//Cover is open
-			if(emagged)
-				return//Prevents the X has hit Y with Z message also you cant emag them twice
-			if(wiresexposed)
-				to_chat(user, "You must close the panel first.")
-				return
-			else
-				sleep(6)
-				if(prob(50))
-					emagged = TRUE
-					lawupdate = FALSE
-					connected_ai = null
-					to_chat(user, "You emag [src]'s interface.")
-					message_admins("[key_name_admin(user)] emagged cyborg [key_name_admin(src)].  Laws overridden.")
-					log_game("[key_name(user)] emagged cyborg [key_name(src)].  Laws overridden.")
-					clear_supplied_laws()
-					clear_inherent_laws()
-					laws = new /datum/ai_laws/syndicate_override
-					var/time = time2text(world.realtime,"hh:mm:ss")
-					GLOBL.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
-					set_zeroth_law("Only [user.real_name] and people he designates as being such are Syndicate Agents.")
-					to_chat(src, SPAN_WARNING("ALERT: Foreign software detected."))
-					sleep(5)
-					to_chat(src, SPAN_WARNING("Initiating diagnostics..."))
-					sleep(20)
-					to_chat(src, SPAN_WARNING("SynBorg v1.7.1 loaded."))
-					sleep(5)
-					to_chat(src, SPAN_WARNING("LAW SYNCHRONISATION ERROR"))
-					sleep(5)
-					to_chat(src, SPAN_WARNING("Would you like to send a report to NanoTraSoft? Y/N"))
-					sleep(10)
-					to_chat(src, SPAN_WARNING("> N"))
-					sleep(20)
-					to_chat(src, SPAN_WARNING("ERRORERRORERROR"))
-					to_chat(src, "<b>Obey these laws:</b>")
-					laws.show_laws(src)
-					to_chat(src, SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and their commands."))
-					if(isnotnull(module) && istype(module, /obj/item/robot_module/miner))
-						for(var/obj/item/pickaxe/borgdrill/D in module.modules)
-							qdel(D)
-						module.modules.Add(new /obj/item/pickaxe/diamonddrill(module))
-						module.rebuild()
-					updateicon()
-				else
-					to_chat(user, "You fail to hack [src]'s interface.")
-					to_chat(src, "Hack attempt detected.")
-			return
 
 	else if(istype(W, /obj/item/borg/upgrade))
 		var/obj/item/borg/upgrade/U = W

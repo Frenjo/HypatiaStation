@@ -56,7 +56,7 @@
 			else
 				to_chat(user, "You failed to salvage anything valuable from [src].")
 		else
-			to_chat(user, SPAN_INFO("You need more welding fuel to complete this task."))
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 	if(istype(W, /obj/item/wirecutters))
 		if(salvage_num <= 0)

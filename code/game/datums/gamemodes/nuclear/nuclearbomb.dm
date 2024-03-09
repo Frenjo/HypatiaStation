@@ -65,34 +65,35 @@ var/bomb_set
 				src.attack_hand(M)
 	return
 
-/obj/machinery/nuclearbomb/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/screwdriver))
-		src.add_fingerprint(user)
-		if(src.auth)
-			if(src.opened == 0)
-				src.opened = 1
-				overlays += image(icon, "npanel_open")
-				to_chat(user, "You unscrew the control panel of [src].")
+/obj/machinery/nuclearbomb/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
+		add_fingerprint(user)
+		if(auth)
+			opened = !opened
+			if(opened)
+				overlays.Add(image(icon, "npanel_open"))
+				to_chat(user, SPAN_INFO("You unscrew the control panel of \the [src]."))
 			else
-				src.opened = 0
-				overlays -= image(icon, "npanel_open")
-				to_chat(user, "You screw the control panel of [src] back on.")
+				overlays.Remove(image(icon, "npanel_open"))
+				to_chat(user, SPAN_INFO("You screw the control panel of \the [src] back on."))
 		else
-			if(src.opened == 0)
-				to_chat(user, "The [src] emits a buzzing noise, the panel staying locked in.")
-			if(src.opened == 1)
-				src.opened = 0
-				overlays -= image(icon, "npanel_open")
-				to_chat(user, "You screw the control panel of [src] back on.")
+			if(!opened)
+				to_chat(user, SPAN_WARNING("The [src] emits a buzzing noise and the panel stays locked in."))
+			else
+				opened = FALSE
+				overlays.Remove(image(icon, "npanel_open"))
+				to_chat(user, SPAN_INFO("You screw the control panel of \the [src] back on."))
 			flick("nuclearbombc", src)
+		return TRUE
 
-		return
-
-	if(istype(O, /obj/item/wirecutters) || istype(O, /obj/item/multitool))
-		if(src.opened == 1)
+	if(iswirecutter(tool) || ismultitool(tool))
+		if(opened)
 			nukehack_win(user)
-		return
+			return TRUE
 
+	return ..()
+
+/obj/machinery/nuclearbomb/attackby(obj/item/O as obj, mob/user as mob)
 	if(src.extended)
 		if(istype(O, /obj/item/disk/nuclear))
 			usr.drop_item()

@@ -212,53 +212,45 @@
 	freerange = 1
 	ks2type = /obj/item/encryptionkey/ert
 
-/obj/item/radio/headset/attackby(obj/item/W as obj, mob/user as mob)
-//	..()
-	user.set_machine(src)
-	if(!(istype(W, /obj/item/screwdriver) || istype(W, /obj/item/encryptionkey)))
-		return
-
-	if(istype(W, /obj/item/screwdriver))
-		if(keyslot1 || keyslot2)
+/obj/item/radio/headset/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
+		if(isnotnull(keyslot1) || isnotnull(keyslot2))
+			to_chat(user, SPAN_INFO("You pop out the encryption keys from the headset!"))
 			for(var/ch_name in channels)
 				unregister_radio(src, GLOBL.radio_channels[ch_name])
 				secure_radio_connections[ch_name] = null
 
-			if(keyslot1)
-				var/turf/T = get_turf(user)
-				if(T)
-					keyslot1.loc = T
-					keyslot1 = null
-
-			if(keyslot2)
-				var/turf/T = get_turf(user)
-				if(T)
-					keyslot2.loc = T
-					keyslot2 = null
+			if(isnotnull(keyslot1))
+				keyslot1.loc = get_turf(user)
+				keyslot1 = null
+			if(isnotnull(keyslot2))
+				keyslot2.loc = get_turf(user)
+				keyslot2 = null
 
 			recalculateChannels()
-			to_chat(user, "You pop out the encryption keys in the headset!")
-
 		else
-			to_chat(user, "This headset doesn't have any encryption keys! How useless...")
+			to_chat(user, SPAN_WARNING("This headset doesn't have any encryption keys! How useless..."))
+		return TRUE
 
+	return ..()
+
+/obj/item/radio/headset/attackby(obj/item/W as obj, mob/user as mob)
+//	..()
+	user.set_machine(src)
 	if(istype(W, /obj/item/encryptionkey))
 		if(keyslot1 && keyslot2)
-			to_chat(user, "The headset can't hold another key!")
+			to_chat(user, SPAN_WARNING("The headset can't hold another key!"))
 			return
 
 		if(!keyslot1)
 			user.drop_item()
 			W.loc = src
 			keyslot1 = W
-
 		else
 			user.drop_item()
 			W.loc = src
 			keyslot2 = W
-
 		recalculateChannels()
-	return
 
 /obj/item/radio/headset/proc/recalculateChannels()
 	src.channels = list()

@@ -190,7 +190,7 @@
 			for(var/mob/O in viewers(user, null))
 				O.show_message(text("\red [user] has fixed some of the dents on [src]!"), 1)
 		else
-			user << "Need more welding fuel!"
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 
 /mob/living/silicon/hivebot/attack_alien(mob/living/carbon/alien/humanoid/M as mob)

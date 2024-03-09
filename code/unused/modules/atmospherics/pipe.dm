@@ -391,7 +391,7 @@ var/linenums = 0
 		if(!(stat & BROKEN))
 			return
 		if (W:weldfuel < 2)
-			user << "\blue You need more welding fuel to complete this task."
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 		W:weldfuel -= 2
 		stat &= ~BROKEN
