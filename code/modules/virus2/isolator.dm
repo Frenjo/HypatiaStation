@@ -1,32 +1,32 @@
-/obj/machinery/disease2/isolator/
+/obj/machinery/disease_isolator
 	name = "pathogenic isolator"
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "isolator"
+
 	var/datum/disease2/disease/virus2 = null
 	var/isolating = 0
 	var/beaker = null
 
-/obj/machinery/disease2/isolator/attackby(var/W as obj, var/mob/user)
-	if(!istype(W,/obj/item/reagent_containers/syringe))
-		return
-
-	var/obj/item/reagent_containers/syringe/B = W
-
-	if(src.beaker)
-		user << "A syringe is already loaded into the machine."
-		return
-
-	src.beaker =  B
+/obj/machinery/disease_isolator/attackby(obj/item/item, mob/user)
+	if(!istype(item, /obj/item/reagent_containers/syringe))
+		return ..()
+	if(isnotnull(beaker))
+		to_chat(user, SPAN_WARNING("A syringe is already loaded into the machine."))
+		return TRUE
+	beaker = item
 	user.drop_item()
-	B.loc = src
-	if(istype(B,/obj/item/reagent_containers/syringe))
-		user << "You add the syringe to the machine!"
-		src.updateUsrDialog()
-		icon_state = "isolator_in"
+	item.loc = src
+	user.visible_message(
+		SPAN_INFO("[user] adds the syringe to the machine."),
+		SPAN_INFO("You add the syringe to the machine.")
+	)
+	icon_state = "isolator_in"
+	updateUsrDialog()
+	return TRUE
 
-/obj/machinery/disease2/isolator/Topic(href, href_list)
+/obj/machinery/disease_isolator/Topic(href, href_list)
 	if(..()) return
 
 	usr.machine = src
@@ -59,7 +59,7 @@
 		src.updateUsrDialog()
 		return
 
-/obj/machinery/disease2/isolator/attack_hand(mob/user as mob)
+/obj/machinery/disease_isolator/attack_hand(mob/user as mob)
 	if(stat & BROKEN)
 		return
 	user.machine = src
@@ -87,7 +87,7 @@
 	onclose(user, "isolator")
 	return
 
-/obj/machinery/disease2/isolator/process()
+/obj/machinery/disease_isolator/process()
 	if(isolating > 0)
 		isolating -= 1
 		if(isolating == 0)

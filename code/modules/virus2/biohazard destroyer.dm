@@ -1,4 +1,4 @@
-/obj/machinery/disease2/biodestroyer
+/obj/machinery/biohazard_destroyer
 	name = "biohazard destroyer"
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "disposalbio"
@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 
-/obj/machinery/disease2/biodestroyer/attackby(var/obj/I as obj, var/mob/user as mob)
+/obj/machinery/biohazard_destroyer/attackby(var/obj/I as obj, var/mob/user as mob)
 	for(var/path in accepts)
 		if(I.type in typesof(path))
 			user.drop_item()

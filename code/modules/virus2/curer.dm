@@ -1,49 +1,47 @@
-/obj/machinery/computer/curer
+/obj/machinery/computer/disease_curer
 	name = "cure research machine"
 	icon_state = "dna"
-	circuit = /obj/item/circuitboard/curefab
+	circuit = /obj/item/circuitboard/cure_research_machine
 
 	var/curing
 	var/virusing
 
 	var/obj/item/reagent_containers/container = null
 
-/obj/machinery/computer/curer/attackby(var/obj/I as obj, var/mob/user as mob)
+/obj/machinery/computer/disease_curer/attackby(obj/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers))
-		var/mob/living/carbon/C = user
-		if(!container)
+		if(isnull(container))
 			container = I
-			C.drop_item()
+			user.drop_item()
 			I.loc = src
-		return
+		return TRUE
 
 	if(istype(I, /obj/item/virusdish))
 		if(virusing)
 			user << "<b>The pathogen materializer is still recharging.."
-			return
-		var/obj/item/reagent_containers/glass/beaker/product = new(src.loc)
+			return TRUE
+		var/obj/item/reagent_containers/glass/beaker/product = new /obj/item/reagent_containers/glass/beaker(loc)
 
 		var/list/data = list("donor" = null, "viruses" = null, "blood_DNA" = null, "blood_type" = null, "resistances" = null, "trace_chem" = null, "virus2" = list(), "antibodies" = 0)
 		data["virus2"] |= I:virus2
 		product.reagents.add_reagent("blood", 30, data)
 
-		virusing = 1
-		spawn(1200)
-			virusing = 0
+		virusing = TRUE
+		spawn(120 SECONDS)
+			virusing = FALSE
 
 		state("The [src.name] buzzes", "blue")
-		return
+		return TRUE
 
-	..()
-	return
+	return ..()
 
-/obj/machinery/computer/curer/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/disease_curer/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/curer/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/disease_curer/attack_paw(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/curer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/disease_curer/attack_hand(var/mob/user as mob)
 	if(..())
 		return
 	user.machine = src
@@ -74,7 +72,7 @@
 	onclose(user, "computer")
 	return
 
-/obj/machinery/computer/curer/process()
+/obj/machinery/computer/disease_curer/process()
 	..()
 	if(stat & (NOPOWER|BROKEN))
 		return
@@ -87,7 +85,7 @@
 				createcure(container)
 	return
 
-/obj/machinery/computer/curer/Topic(href, href_list)
+/obj/machinery/computer/disease_curer/Topic(href, href_list)
 	if(..())
 		return
 	usr.machine = src
@@ -103,7 +101,7 @@
 	return
 
 
-/obj/machinery/computer/curer/proc/createcure(var/obj/item/reagent_containers/container)
+/obj/machinery/computer/disease_curer/proc/createcure(var/obj/item/reagent_containers/container)
 	var/obj/item/reagent_containers/glass/beaker/product = new(src.loc)
 	var/datum/reagent/blood/B = locate() in container.reagents.reagent_list
 

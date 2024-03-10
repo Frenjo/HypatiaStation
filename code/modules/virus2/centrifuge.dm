@@ -1,34 +1,31 @@
-/obj/machinery/computer/centrifuge
+/obj/machinery/computer/disease_centrifuge
 	name = "isolation centrifuge"
 	desc = "Used to separate things with different weight. Spin 'em round, round, right round."
 	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "centrifuge"
+
 	var/curing
 	var/isolating
 
 	var/obj/item/reagent_containers/glass/beaker/vial/sample = null
 	var/datum/disease2/disease/virus2 = null
 
-/obj/machinery/computer/centrifuge/attackby(var/obj/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/screwdriver))
-		return ..(I,user)
-
-	if(istype(I,/obj/item/reagent_containers/glass/beaker/vial))
-		var/mob/living/carbon/C = user
-		if(!sample)
+/obj/machinery/computer/disease_centrifuge/attackby(obj/I, mob/user)
+	if(istype(I, /obj/item/reagent_containers/glass/beaker/vial))
+		if(isnull(sample))
 			sample = I
-			C.drop_item()
+			user.drop_item()
 			I.loc = src
+		return TRUE
 
-	src.attack_hand(user)
-	return
+	return ..()
 
-/obj/machinery/computer/centrifuge/update_icon()
+/obj/machinery/computer/disease_centrifuge/update_icon()
 	..()
 	if(! (stat & (BROKEN|NOPOWER)) && (isolating || curing))
 		icon_state = "centrifuge_moving"
 
-/obj/machinery/computer/centrifuge/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/disease_centrifuge/attack_hand(var/mob/user as mob)
 	if(..())
 		return
 	user.set_machine(src)
@@ -67,7 +64,7 @@
 	onclose(user, "computer")
 	return
 
-/obj/machinery/computer/centrifuge/process()
+/obj/machinery/computer/disease_centrifuge/process()
 	..()
 
 	if(stat & (NOPOWER|BROKEN))
@@ -90,7 +87,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/computer/centrifuge/Topic(href, href_list)
+/obj/machinery/computer/disease_centrifuge/Topic(href, href_list)
 	if(..())
 		return
 
@@ -135,7 +132,7 @@
 	return
 
 
-/obj/machinery/computer/centrifuge/proc/cure()
+/obj/machinery/computer/disease_centrifuge/proc/cure()
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in sample.reagents.reagent_list
 	if (!B)
 		return
@@ -147,7 +144,7 @@
 
 	state("\The [src.name] pings", "blue")
 
-/obj/machinery/computer/centrifuge/proc/isolate()
+/obj/machinery/computer/disease_centrifuge/proc/isolate()
 	var/obj/item/virusdish/dish = new/obj/item/virusdish(src.loc)
 	dish.virus2 = virus2
 

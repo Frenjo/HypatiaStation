@@ -1,9 +1,10 @@
-/obj/machinery/disease2/incubator/
+/obj/machinery/disease_incubator
 	name = "pathogenic incubator"
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "incubator"
+
 	var/obj/item/virusdish/dish
 	var/obj/item/reagent_containers/glass/beaker = null
 	var/radiation = 0
@@ -16,39 +17,39 @@
 
 	var/virusing
 
-/obj/machinery/disease2/incubator/attackby(var/obj/B as obj, var/mob/user as mob)
-	if(istype(B, /obj/item/reagent_containers/glass) || istype(B,/obj/item/reagent_containers/syringe))
-
-		if(src.beaker)
-			if(istype(beaker,/obj/item/reagent_containers/syringe))
-				user << "A syringe is already loaded into the machine."
-			else
-				user << "A beaker is already loaded into the machine."
-			return
-
-		src.beaker =  B
+/obj/machinery/disease_incubator/attackby(obj/item/item, mob/user)
+	if(istype(item, /obj/item/reagent_containers/glass) || istype(item, /obj/item/reagent_containers/syringe))
+		var/is_beaker = istype(item, /obj/item/reagent_containers/glass)
+		if(isnotnull(beaker))
+			to_chat(user, SPAN_WARNING("A [is_beaker ? "beaker" : "syringe"] is already loaded into the machine."))
+			return TRUE
+		beaker = item
 		user.drop_item()
-		B.loc = src
-		if(istype(B,/obj/item/reagent_containers/syringe))
-			user << "You add the syringe to the machine!"
-			src.updateUsrDialog()
-		else
-			user << "You add the beaker to the machine!"
-			src.updateUsrDialog()
-	else
-		if(istype(B,/obj/item/virusdish))
-			if(src.dish)
-				user << "A dish is already loaded into the machine."
-				return
+		item.loc = src
+		user.visible_message(
+			SPAN_INFO("[user] adds \the [is_beaker ? "beaker" : "syringe"] to the machine."),
+			SPAN_INFO("You add the [is_beaker ? "beaker" : "syringe"] to the machine.")
+		)
+		updateUsrDialog()
+		return TRUE
 
-			src.dish =  B
-			user.drop_item()
-			B.loc = src
-			if(istype(B,/obj/item/virusdish))
-				user << "You add the dish to the machine!"
-				src.updateUsrDialog()
+	if(istype(item, /obj/item/virusdish))
+		if(isnotnull(dish))
+			to_chat(user, SPAN_WARNING("A dish is already loaded into the machine."))
+			return TRUE
+		dish = item
+		user.drop_item()
+		item.loc = src
+		user.visible_message(
+			SPAN_INFO("[user] adds the virus dish to the machine."),
+			SPAN_INFO("You add the virus dish to the machine.")
+		)
+		updateUsrDialog()
+		return TRUE
 
-/obj/machinery/disease2/incubator/Topic(href, href_list)
+	return ..()
+
+/obj/machinery/disease_incubator/Topic(href, href_list)
 	if(..()) return
 
 	if(usr) usr.set_machine(src)
@@ -95,7 +96,7 @@
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 
-/obj/machinery/disease2/incubator/attack_hand(mob/user as mob)
+/obj/machinery/disease_incubator/attack_hand(mob/user as mob)
 	if(stat & BROKEN)
 		return
 	user.set_machine(src)
@@ -129,7 +130,7 @@
 	onclose(user, "incubator")
 	return
 
-/obj/machinery/disease2/incubator/process()
+/obj/machinery/disease_incubator/process()
 	if(dish && on && dish.virus2)
 		use_power(50,EQUIP)
 		if(!powered(EQUIP))

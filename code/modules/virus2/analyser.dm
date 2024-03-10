@@ -1,4 +1,4 @@
-/obj/machinery/disease2/diseaseanalyser
+/obj/machinery/disease_analyser
 	name = "disease analyser"
 	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "analyser"
@@ -10,22 +10,24 @@
 
 	var/obj/item/virusdish/dish = null
 
-/obj/machinery/disease2/diseaseanalyser/attackby(var/obj/I as obj, var/mob/user as mob)
-	if(istype(I,/obj/item/virusdish))
+/obj/machinery/disease_analyser/attackby(obj/I, mob/user)
+	if(istype(I, /obj/item/virusdish))
 		var/mob/living/carbon/c = user
-		if(!dish)
+		if(isnull(dish))
 			dish = I
 			c.drop_item()
 			I.loc = src
-			for(var/mob/M in viewers(src))
-				if(M == user)	continue
-				M.show_message("\blue [user.name] inserts the [dish.name] in the [src.name]", 3)
+			user.visible_message(
+				SPAN_INFO("[user] inserts \the [dish] into \the [src]."),
+				SPAN_INFO("You insert \the [dish] into \the [src].")
+			)
 		else
-			user << "There is already a dish inserted"
-	return
+			to_chat(user, SPAN_WARNING("There is already a dish inserted."))
+		return TRUE
 
+	return ..()
 
-/obj/machinery/disease2/diseaseanalyser/process()
+/obj/machinery/disease_analyser/process()
 	if(stat & (NOPOWER|BROKEN))
 		return
 

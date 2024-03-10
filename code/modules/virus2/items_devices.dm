@@ -13,7 +13,6 @@
 	item_state = "electronic"
 	obj_flags = OBJ_FLAG_CONDUCT
 
-
 /obj/item/antibody_scanner/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(!istype(M))
 		to_chat(user, SPAN_NOTICE("Incompatible object, scan aborted."))

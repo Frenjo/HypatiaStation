@@ -34,13 +34,13 @@
 	build_path = /obj/machinery/computer/operating
 	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_BIOTECH = 2)
 
-/obj/item/circuitboard/curefab
-	name = "circuit board (Cure fab)"
-	build_path = /obj/machinery/computer/curer
+/obj/item/circuitboard/cure_research_machine
+	name = "circuit board (Cure Research Machine)"
+	build_path = /obj/machinery/computer/disease_curer
 
 /obj/item/circuitboard/splicer
 	name = "circuit board (Disease Splicer)"
-	build_path = /obj/machinery/computer/diseasesplicer
+	build_path = /obj/machinery/computer/disease_splicer
 
 /*
  * Machines

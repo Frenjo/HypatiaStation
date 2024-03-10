@@ -1,4 +1,4 @@
-/obj/machinery/computer/diseasesplicer
+/obj/machinery/computer/disease_splicer
 	name = "disease splicer"
 	icon_state = "crew"
 
@@ -10,30 +10,28 @@
 	var/splicing = 0
 	var/scanning = 0
 
-/obj/machinery/computer/diseasesplicer/attackby(var/obj/I as obj, var/mob/user as mob)
-	if(istype(I, /obj/item/screwdriver))
-		return ..(I,user)
-	if(istype(I,/obj/item/virusdish))
-		var/mob/living/carbon/c = user
-		if(!dish)
-
+/obj/machinery/computer/disease_splicer/attackby(obj/I, mob/user)
+	if(istype(I, /obj/item/virusdish))
+		if(isnull(dish))
 			dish = I
-			c.drop_item()
+			user.drop_item()
 			I.loc = src
-	if(istype(I,/obj/item/diseasedisk))
-		user << "You upload the contents of the disk into the buffer"
+		return TRUE
+
+	if(istype(I, /obj/item/diseasedisk))
+		to_chat(user, SPAN_INFO("You upload the contents of the disk into the buffer."))
 		memorybank = I:effect
+		return TRUE
 
-	src.attack_hand(user)
-	return
+	return ..()
 
-/obj/machinery/computer/diseasesplicer/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/disease_splicer/attack_ai(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/diseasesplicer/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/disease_splicer/attack_paw(var/mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/diseasesplicer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/disease_splicer/attack_hand(var/mob/user as mob)
 	if(..())
 		return
 	user.set_machine(src)
@@ -84,7 +82,7 @@
 	onclose(user, "computer")
 	return
 
-/obj/machinery/computer/diseasesplicer/process()
+/obj/machinery/computer/disease_splicer/process()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	//use_power(500)
@@ -111,7 +109,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/computer/diseasesplicer/Topic(href, href_list)
+/obj/machinery/computer/disease_splicer/Topic(href, href_list)
 	if(..())
 		return
 
