@@ -1,6 +1,6 @@
 
 /obj/machinery/power/rust_fuel_injector
-	name = "Fuel Injector"
+	name = "fuel injector"
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
 	icon_state = "injector0"
 
@@ -129,18 +129,17 @@
 
 	return ..()
 
-
 /obj/machinery/power/rust_fuel_injector/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(emagged)
 			FEEDBACK_LOCK_SEEMS_BROKEN(user)
-			return
+			return TRUE
 		if(allowed(user))
 			locked = !locked
 			FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
 		else
 			FEEDBACK_ACCESS_DENIED(user)
-		return
+		return TRUE
 
 	if(istype(W, /obj/item/fuel_assembly) && !cur_assembly)
 		if(emergency_insert_ready)
@@ -148,9 +147,9 @@
 			user.drop_item()
 			W.loc = src
 			emergency_insert_ready = 0
-			return
+			return TRUE
 
-	. = ..()
+	return ..()
 
 /obj/machinery/power/rust_fuel_injector/attack_ai(mob/user)
 	attack_hand(user)

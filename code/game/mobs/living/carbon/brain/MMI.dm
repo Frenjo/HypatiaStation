@@ -30,16 +30,20 @@
 		brainmob = null
 	return ..()
 
-/obj/item/mmi/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/brain) && !brainmob) //Time to stick a brain in it --NEO
-		if(!O:brainmob)
-			user << "\red You aren't sure where this brain came from, but you're pretty sure it's a useless brain."
-			return
-		for(var/mob/V in viewers(src, null))
-			V.show_message(text("\blue [user] sticks \a [O] into \the [src]."))
+/obj/item/mmi/attackby(obj/item/O, mob/user)
+	if(isnull(brainmob) && istype(O, /obj/item/brain)) //Time to stick a brain in it --NEO
+		var/obj/item/brain/brain = O
+		if(isnull(brain.brainmob))
+			to_chat(user, SPAN_WARNING("You aren't sure where this brain came from, but you're pretty sure it's useless."))
+			return TRUE
 
-		brainmob = O:brainmob
-		O:brainmob = null
+		user.visible_message(
+			SPAN_INFO("[user] sticks \a [brain] into \the [src]."),
+			SPAN_INFO("You stick \the [brain] into \the [src].")
+		)
+
+		brainmob = brain.brainmob
+		brain.brainmob = null
 		brainmob.loc = src
 		brainmob.container = src
 		brainmob.stat = 0
@@ -47,28 +51,29 @@
 		GLOBL.living_mob_list.Add(brainmob)
 
 		user.drop_item()
-		qdel(O)
+		qdel(brain)
 
 		name = "Man-Machine Interface: [brainmob.real_name]"
 		icon_state = "mmi_full"
 
 		locked = 1
 
-		feedback_inc("cyborg_mmis_filled",1)
+		feedback_inc("cyborg_mmis_filled", 1)
+		return TRUE
 
-		return
-
-	if((istype(O, /obj/item/card/id)||istype(O, /obj/item/pda)) && brainmob)
+	if(isnotnull(brainmob) && (istype(O, /obj/item/card/id) || istype(O, /obj/item/pda)))
 		if(allowed(user))
 			locked = !locked
-			user << "\blue You [locked ? "lock" : "unlock"] the brain holder."
+			to_chat(user, SPAN_NOTICE("You [locked ? "lock" : "unlock"] the brain holder."))
 		else
 			FEEDBACK_ACCESS_DENIED(user)
-		return
-	if(brainmob)
-		O.attack(brainmob, user)//Oh noooeeeee
-		return
-	..()
+		return TRUE
+
+	if(isnotnull(brainmob))
+		O.attack(brainmob, user) //Oh noooeeeee
+		return TRUE
+
+	return ..()
 
 /obj/item/mmi/attack_self(mob/user as mob)
 	if(!brainmob)

@@ -324,18 +324,20 @@
 	name = "Corgi meat"
 	desc = "Tastes like... well you know..."
 
-/mob/living/simple_animal/corgi/attackby(obj/item/O as obj, mob/user as mob)  //Marker -Agouri
+/mob/living/simple_animal/corgi/attackby(obj/item/O, mob/user)  //Marker -Agouri
 	if(istype(O, /obj/item/newspaper))
 		if(!stat)
-			for(var/mob/M in viewers(user, null))
-				if((M.client && !(M.blinded)))
-					M.show_message("\blue [user] baps [name] on the nose with the rolled up [O]")
+			user.visible_message(
+				SPAN_INFO("[user] baps [name] on the nose with the rolled up [O]."),
+				SPAN_INFO("You bap [name] on the nose with the rolled up [O].")
+			)
 			spawn(0)
-				for(var/i in list(1,2,4,8,4,2,1,2))
-					dir = i
+				for(var/i in list(1, 2, 4, 8, 4, 2, 1, 2))
+					set_dir(i)
 					sleep(1)
-	else
-		..()
+			return TRUE
+
+	return ..()
 
 /mob/living/simple_animal/corgi/regenerate_icons()
 	overlays = list()

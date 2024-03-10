@@ -10,7 +10,8 @@
 	density = TRUE
 	anchored = TRUE
 	layer = 3.2
-	var/indestructable = 0
+
+	var/indestructible = 0
 	var/stump = 0
 
 /obj/structure/bush/New()
@@ -26,31 +27,37 @@
 		var/mob/living/carbon/monkey/A = M
 		A.loc = get_turf(src)
 
-/obj/structure/bush/attackby(obj/I as obj, mob/user as mob)
-	//hatchets can clear away undergrowth
-	if(istype(I, /obj/item/hatchet) && !stump)
-		if(indestructable)
-			//this bush marks the edge of the map, you can't destroy it
+/obj/structure/bush/attack_tool(obj/item/tool, mob/user)
+	// Hatchets can clear away undergrowth.
+	if(istype(tool, /obj/item/hatchet) && !stump)
+		if(indestructible) // You can't destroy bushes that mark the edge of the map.
 			to_chat(user, SPAN_WARNING("You flail away at the undergrowth, but it's too thick here."))
-		else
-			user.visible_message(SPAN_DANGER("[user] begins clearing away [src]."), SPAN_DANGER("You begin clearing away [src]."))
-			spawn(rand(15, 30))
-				if(get_dist(user, src) < 2)
-					user << "\blue You clear away [src]."
-					var/obj/item/stack/sheet/wood/W = new(src.loc)
-					W.amount = rand(3, 15)
-					if(prob(50))
-						icon_state = "stump[rand(1, 2)]"
-						name = "cleared foliage"
-						desc = "There used to be dense undergrowth here."
-						density = FALSE
-						stump = 1
-						pixel_x = rand(-6, 6)
-						pixel_y = rand(-6, 6)
-					else
-						qdel(src)
-	else
-		return ..()
+			return TRUE
+
+		user.visible_message(
+			SPAN_NOTICE("[user] begins clearing away \the [src]..."),
+			SPAN_NOTICE("You begin clearing away \the [src]...")
+		)
+		if(do_after(user, rand(1.5 SECONDS, 3 SECONDS)))
+			user.visible_message(
+				SPAN_NOTICE("[user] clears away \the [src]."),
+				SPAN_NOTICE("You clear away \the [src].")
+			)
+			new /obj/item/stack/sheet/wood(loc, rand(3, 15))
+			if(prob(50))
+				// TODO: Make this into a subtype or a new type entirely.
+				icon_state = "stump[rand(1, 2)]"
+				name = "cleared foliage"
+				desc = "There used to be dense undergrowth here."
+				density = FALSE
+				stump = 1
+				pixel_x = rand(-6, 6)
+				pixel_y = rand(-6, 6)
+			else
+				qdel(src)
+		return TRUE
+
+	return ..()
 
 //*******************************//
 // Strange, fruit-bearing plants //

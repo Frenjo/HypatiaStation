@@ -55,20 +55,23 @@
 	..()
 	uid = "[rand(100,999)]-G[rand(10,99)]"
 
-/obj/machinery/computer/guestpass/attackby(obj/O, mob/user)
-	if(istype(O, /obj/item/card/id))
+/obj/machinery/computer/guestpass/attackby(obj/item/item, mob/user)
+	if(istype(item, /obj/item/card/id))
 		user.drop_item()
-		O.loc = src
-		giver = O
+		item.loc = src
+		giver = item
 		updateUsrDialog()
+		return TRUE
 
-/obj/machinery/computer/guestpass/attack_ai(var/mob/user as mob)
+	return ..()
+
+/obj/machinery/computer/guestpass/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/guestpass/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/guestpass/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/computer/guestpass/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/guestpass/attack_hand(mob/user as mob)
 	if(..())
 		return
 

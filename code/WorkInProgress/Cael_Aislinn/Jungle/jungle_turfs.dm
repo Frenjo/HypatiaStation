@@ -81,8 +81,8 @@
 
 /turf/simulated/jungle/impenetrable/New()
 	..()
-	var/obj/structure/bush/B = new(src)
-	B.indestructable = 1
+	var/obj/structure/bush/B = new /obj/structure/bush(src)
+	B.indestructible = 1
 
 //copy paste from asteroid mineral turfs
 /turf/simulated/jungle/rock

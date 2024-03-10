@@ -1,27 +1,29 @@
-
-
 /obj/machinery/rust_fuel_assembly_port
-	name = "Fuel Assembly Port"
+	name = "fuel assembly port"
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
 	icon_state = "port2"
 	density = FALSE
+	anchored = TRUE
+
 	var/obj/item/fuel_assembly/cur_assembly
 	var/busy = 0
-	anchored = TRUE
 
 	var/opened = 1 //0=closed, 1=opened
 	var/has_electronics = 0 // 0 - none, bit 1 - circuitboard, bit 2 - wires
 
-/obj/machinery/rust_fuel_assembly_port/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/fuel_assembly) && !opened)
-		if(cur_assembly)
-			user << "\red There is already a fuel rod assembly in there!"
-		else
-			cur_assembly = I
-			user.drop_item()
-			I.loc = src
-			icon_state = "port1"
-			user << "\blue You insert [I] into [src]. Touch the panel again to insert [I] into the injector."
+/obj/machinery/rust_fuel_assembly_port/attackby(obj/item/item, mob/user)
+	if(istype(item, /obj/item/fuel_assembly) && !opened)
+		if(isnotnull(cur_assembly))
+			to_chat(user, SPAN_WARNING("There is already a fuel rod assembly inside!"))
+			return TRUE
+		cur_assembly = item
+		user.drop_item()
+		item.loc = src
+		icon_state = "port1"
+		to_chat(user, SPAN_INFO("You insert \the [item] into \the [src]. Touch the panel again to insert \the [item] into the injector."))
+		return TRUE
+
+	return ..()
 
 /obj/machinery/rust_fuel_assembly_port/attack_hand(mob/user)
 	add_fingerprint(user)

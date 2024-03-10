@@ -122,8 +122,8 @@
 	else
 		return 0
 
-/obj/item/tape/attackby(obj/item/W as obj, mob/user as mob)
-	breaktape(W, user)
+/obj/item/tape/attackby(obj/item/item, mob/user)
+	breaktape(item, user)
 
 /obj/item/tape/attack_hand(mob/user as mob)
 	if (user.a_intent == "help" && src.allowed(user))

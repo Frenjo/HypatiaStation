@@ -1,13 +1,14 @@
 var/const/max_assembly_amount = 300
 
 /obj/machinery/rust_fuel_compressor
+	name = "fuel compressor"
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
 	icon_state = "fuel_compressor1"
-	name = "Fuel Compressor"
-	var/list/new_assembly_quantities = list("Deuterium" = 150,"Tritium" = 150,"Rodinium-6" = 0,"Stravium-7" = 0, "Pergium" = 0, "Dilithium" = 0)
-	var/compressed_matter = 0
 	anchored = TRUE
 	layer = 2.9
+
+	var/list/new_assembly_quantities = list("Deuterium" = 150,"Tritium" = 150,"Rodinium-6" = 0,"Stravium-7" = 0, "Pergium" = 0, "Dilithium" = 0)
+	var/compressed_matter = 0
 
 	var/opened = 1 //0=closed, 1=opened
 	var/locked = 0
@@ -23,11 +24,12 @@ var/const/max_assembly_amount = 300
 	interact(user)
 
 /obj/machinery/rust_fuel_compressor/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/rcd_ammo))
+	if(istype(W, /obj/item/rcd_ammo))
 		compressed_matter += 10
 		qdel(W)
-		return
-	..()
+		return TRUE
+
+	return ..()
 
 /obj/machinery/rust_fuel_compressor/interact(mob/user)
 	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))

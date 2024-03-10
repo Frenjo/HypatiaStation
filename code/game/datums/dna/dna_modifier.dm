@@ -130,22 +130,24 @@
 		user.drop_item()
 		item.loc = src
 		user.visible_message("[user] adds \a [item] to \the [src]!", "You add \a [item] to \the [src]!")
-		return
-	else if (!istype(item, /obj/item/grab))
-		return
-	var/obj/item/grab/G = item
-	if(!ismob(G.affecting))
-		return
-	if(src.occupant)
-		to_chat(usr, SPAN_INFO_B("The scanner is already occupied!"))
-		return
-	if(G.affecting.abiotic())
-		to_chat(usr, SPAN_INFO_B("Subject cannot have abiotic items on."))
-		return
-	put_in(G.affecting)
-	src.add_fingerprint(user)
-	qdel(G)
-	return
+		return TRUE
+
+	if(istype(item, /obj/item/grab))
+		var/obj/item/grab/G = item
+		if(!ismob(G.affecting))
+			return TRUE
+		if(isnotnull(occupant))
+			to_chat(usr, SPAN_WARNING("The scanner is already occupied!"))
+			return TRUE
+		if(G.affecting.abiotic())
+			to_chat(usr, SPAN_WARNING("Subject cannot have abiotic items on."))
+			return TRUE
+		put_in(G.affecting)
+		add_fingerprint(user)
+		qdel(G)
+		return TRUE
+
+	return ..()
 
 /obj/machinery/dna_scannernew/proc/put_in(mob/M)
 	if(M.client)
@@ -243,18 +245,19 @@
 	var/selected_menu_key = null
 	var/waiting_for_user_input = 0 // Fix for #274 (Mash create block injector without answering dialog to make unlimited injectors) - N3X
 
-/obj/machinery/computer/scan_consolenew/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/computer/scan_consolenew/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/disk/data)) //INSERT SOME diskS
-		if(!src.disk)
-			user.drop_item()
-			I.loc = src
-			src.disk = I
-			to_chat(user, "You insert [I].")
-			global.PCnanoui.update_uis(src) // update all UIs attached to src
-			return
-	else
-		..()
-	return
+		if(isnotnull(disk))
+			to_chat(user, SPAN_WARNING("There is already a disk inserted."))
+			return TRUE
+		user.drop_item()
+		I.loc = src
+		disk = I
+		to_chat(user, "You insert [I].")
+		global.PCnanoui.update_uis(src) // update all UIs attached to src
+		return TRUE
+
+	return ..()
 
 /obj/machinery/computer/scan_consolenew/ex_act(severity)
 	switch(severity)

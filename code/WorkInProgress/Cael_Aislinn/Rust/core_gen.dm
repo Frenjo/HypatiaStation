@@ -182,7 +182,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(emagged)
 			FEEDBACK_LOCK_SEEMS_BROKEN(user)
-			return
+			return TRUE
 		if(allowed(user))
 			if(owned_field)
 				locked = !locked
@@ -192,9 +192,9 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 				to_chat(user, SPAN_WARNING("The controls can only be locked when \the [src] is online."))
 		else
 			FEEDBACK_ACCESS_DENIED(user)
-		return
+		return TRUE
 
-	. = ..()
+	return ..()
 
 /obj/machinery/power/rust_core/attack_ai(mob/user)
 	attack_hand(user)

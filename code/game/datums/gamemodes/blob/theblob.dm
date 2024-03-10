@@ -165,6 +165,7 @@
 
 	health -= damage
 	update_icon()
+	return TRUE
 
 /obj/effect/blob/proc/change_to(type = "Normal")
 	switch(type)

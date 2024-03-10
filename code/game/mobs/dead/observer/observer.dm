@@ -83,18 +83,20 @@
 
 /mob/dead/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tome))
-		var/mob/dead/M = src
 		if(invisibility != 0)
-			M.invisibility = 0
+			invisibility = 0
 			user.visible_message(
-				SPAN_WARNING("[user] drags ghost, [M], to our plane of reality!"),
-				SPAN_WARNING("You drag [M] to our plane of reality!")
+				SPAN_WARNING("[user] drags ghost, [src], to our plane of reality!"),
+				SPAN_WARNING("You drag [src] to our plane of reality!")
 			)
 		else
 			user.visible_message(
 				SPAN_WARNING("[user] just tried to smash his book into that ghost! It's not very effective."),
 				SPAN_WARNING("You get the feeling that the ghost can't become any more visible.")
 			)
+		return TRUE
+
+	return ..()
 
 /mob/dead/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	return 1

@@ -1482,5 +1482,4 @@ It is possible to destroy the net by the occupant or someone else.
 	var/aforce = W.force
 	health = max(0, health - aforce)
 	healthcheck()
-	..()
-	return
+	return TRUE

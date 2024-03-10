@@ -158,24 +158,28 @@ var/list/alldepartments = list("Central Command")
 
 	return ..()
 
-/obj/machinery/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/faxmachine/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/paper))
-		if(!tofax)
-			user.drop_item()
-			tofax = O
-			O.loc = src
-			to_chat(user, SPAN_NOTICE("You insert the paper into \the [src]."))
-			flick("faxsend", src)
-			updateUsrDialog()
-		else
-			to_chat(user, SPAN_NOTICE("There is already something in \the [src]."))
+		if(isnotnull(tofax))
+			to_chat(user, SPAN_WARNING("There is already something in \the [src]."))
+			return TRUE
+		user.drop_item()
+		tofax = O
+		O.loc = src
+		to_chat(user, SPAN_NOTICE("You insert the paper into \the [src]."))
+		flick("faxsend", src)
+		updateUsrDialog()
+		return TRUE
 
-	else if(istype(O, /obj/item/card/id))
-		var/obj/item/card/id/idcard = O
-		if(!scan)
+	if(istype(O, /obj/item/card/id))
+		var/obj/item/card/id/card = O
+		if(isnull(scan))
 			usr.drop_item()
-			idcard.loc = src
-			scan = idcard
+			card.loc = src
+			scan = card
+		return TRUE
+
+	return ..()
 
 /proc/centcom_fax(var/sent, var/sentname, var/mob/Sender)
 

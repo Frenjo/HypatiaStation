@@ -91,16 +91,18 @@ var/engwords = list(
 		to_chat(usr, "Explosive Runes inscription in blood. It reads: <i>[desc]</i>.")
 	return
 
-/obj/effect/rune/attackby(I as obj, user as mob)
+/obj/effect/rune/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/tome) && iscultist(user))
 		to_chat(user, "You retrace your steps, carefully undoing the lines of the rune.")
 		qdel(src)
-		return
-	else if(istype(I, /obj/item/nullrod))
+		return TRUE
+
+	if(istype(I, /obj/item/nullrod))
 		to_chat(user, SPAN_INFO("You disrupt the vile magic with the deadening field of the null rod!"))
 		qdel(src)
-		return
-	return
+		return TRUE
+
+	return ..()
 
 /obj/effect/rune/attack_hand(mob/living/user as mob)
 	if(!iscultist(user))
@@ -475,19 +477,23 @@ var/engwords = list(
 		to_chat(user, "The book seems full of illegible scribbles. Is this a joke?")
 		return
 
-/obj/item/tome/attackby(obj/item/tome/T as obj, mob/living/user as mob)
-	if(istype(T, /obj/item/tome)) // sanity check to prevent a runtime error
+/obj/item/tome/attackby(obj/item/item, mob/user)
+	if(istype(item, /obj/item/tome)) // sanity check to prevent a runtime error
+		var/obj/item/tome/tome = item
 		switch(alert("Copy the runes from your tome?", , "Copy", "Cancel"))
 			if("cancel")
 				return
 //		var/list/nearby = viewers(1,src) //- Fuck this as well. No clue why this doesnt work. -K0000
-//			if (T.loc != user)
+//			if(tome.loc != user)
 //				return
 //		for(var/mob/M in nearby)
 //			if(M == user)
 		for(var/w in words)
-			words[w] = T.words[w]
+			words[w] = tome.words[w]
 		to_chat(user, "You copy the translation notes from your tome.")
+		return TRUE
+
+	return ..()
 
 /obj/item/tome/examine()
 	set src in usr

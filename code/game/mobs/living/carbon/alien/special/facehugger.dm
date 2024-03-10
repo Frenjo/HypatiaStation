@@ -66,7 +66,7 @@ var/const/MAX_ACTIVE_TIME = 400
 
 /obj/item/clothing/mask/facehugger/attackby()
 	Die()
-	return
+	return TRUE
 
 /obj/item/clothing/mask/facehugger/bullet_act()
 	Die()

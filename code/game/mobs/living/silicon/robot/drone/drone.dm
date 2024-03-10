@@ -144,14 +144,14 @@
 /mob/living/silicon/robot/drone/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/borg/upgrade))
 		to_chat(user, SPAN_WARNING("The maintenance drone chassis not compatible with \the [W]."))
-		return
+		return TRUE
 
-	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
+	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(stat == DEAD)
 			to_chat(user, SPAN_WARNING("You swipe your ID card through [src], attempting to reboot it."))
 			if(!CONFIG_GET(allow_drone_spawn) || emagged || health < -35) // It's dead, Dave.
 				to_chat(user, SPAN_WARNING("The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one."))
-				return
+				return TRUE
 
 			var/drones = 0
 			for(var/mob/living/silicon/robot/drone/D in GLOBL.mob_list)
@@ -159,21 +159,21 @@
 					drones++
 			if(drones < CONFIG_GET(max_maint_drones))
 				request_player()
-			return
+			return TRUE
 
-		else
-			to_chat(src, SPAN_WARNING("[user] swipes an ID card through your card reader."))
-			to_chat(user, SPAN_WARNING("You swipe your ID card through [src], attempting to shut it down."))
+		to_chat(src, SPAN_WARNING("[user] swipes an ID card through your card reader."))
+		to_chat(user, SPAN_WARNING("You swipe your ID card through [src], attempting to shut it down."))
 
-			if(emagged)
-				return
+		if(emagged)
+			return TRUE
 
-			if(allowed(usr))
-				shut_down()
+		if(allowed(usr))
+			shut_down()
+			return TRUE
 
-		return
+		return TRUE
 
-	..()
+	return ..()
 
 // DRONE LIFE/DEATH
 
