@@ -28,7 +28,7 @@
 	if(istype(W, /obj/item/stack/rods))
 		if(W:amount >= 4)
 			new /obj/item/table_parts/reinforced(user.loc)
-			to_chat(user, SPAN_INFO("You reinforce the [name]."))
+			to_chat(user, SPAN_NOTICE("You reinforce \the [src]."))
 			W:use(4)
 			qdel(src)
 		else if(W:amount < 4)

@@ -23,13 +23,13 @@
 		anchored = !anchored
 		if(anchored)
 			user.visible_message(
-				SPAN_NOTICE("[user] secures [src] to the floor."),
+				SPAN_NOTICE("[user] secures \the [src] to the floor."),
 				SPAN_NOTICE("You secure \the [src] to the floor."),
 				SPAN_INFO("You hear a ratchet.")
 			)
 		else
 			user.visible_message(
-				SPAN_NOTICE("[user] unsecures [src] from the floor."),
+				SPAN_NOTICE("[user] unsecures \the [src] from the floor."),
 				SPAN_NOTICE("You unsecure \the [src] from the floor."),
 				SPAN_INFO("You hear a ratchet.")
 			)

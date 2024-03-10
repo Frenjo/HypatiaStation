@@ -18,7 +18,8 @@
 	if(isscrewdriver(tool))
 		user.visible_message(
 			SPAN_NOTICE("[user] adjusts the jumper on \the [src]'s access protocol pins."),
-			SPAN_NOTICE("You adjust the jumper on the access protocol pins.")
+			SPAN_NOTICE("You adjust the jumper on the access protocol pins."),
+			SPAN_INFO("You hear someone using a screwdriver.")
 		)
 		if(ispath(build_path, /obj/machinery/computer/rdconsole/core))
 			name = "circuit board (RD Console - Robotics)"

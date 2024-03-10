@@ -43,8 +43,8 @@
 		cell.add_fingerprint(user)
 		cell.updateicon()
 
-		src.cell = null
-		to_chat(user, "You remove the power cell.")
+		cell = null
+		to_chat(user, SPAN_NOTICE("You remove the power cell."))
 		updateicon()
 		return
 
@@ -77,9 +77,9 @@
 		if(unlocked)
 			open = !open
 			if(open)
-				to_chat(user, SPAN_INFO("You remove the battery panel."))
+				to_chat(user, SPAN_NOTICE("You remove the battery panel."))
 			else
-				to_chat(user, SPAN_INFO("You crowbar the battery panel into place."))
+				to_chat(user, SPAN_NOTICE("You crowbar the battery panel into place."))
 				overlays.Cut()
 		return TRUE
 
@@ -89,10 +89,10 @@
 	if(istype(W, /obj/item/cell))
 		if(open)
 			if(cell)
-				to_chat(user, "There is a power cell already installed.")
+				to_chat(user, SPAN_WARNING("There is a [cell] already installed."))
 			else
 				user.drop_item()
 				W.loc = src
 				cell = W
-				to_chat(user, "You insert the power cell.")
+				to_chat(user, SPAN_NOTICE("You insert the power cell."))
 	updateicon()

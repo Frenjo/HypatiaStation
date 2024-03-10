@@ -78,7 +78,7 @@ var/bomb_set
 				to_chat(user, SPAN_NOTICE("You screw the control panel of \the [src] back on."))
 		else
 			if(!opened)
-				to_chat(user, SPAN_WARNING("The [src] emits a buzzing noise and the panel stays locked in."))
+				to_chat(user, SPAN_WARNING("\The [src] emits a buzzing noise and the panel stays locked in."))
 			else
 				opened = FALSE
 				overlays.Remove(image(icon, "npanel_open"))
@@ -110,20 +110,21 @@ var/bomb_set
 					if(!WT.isOn())
 						return
 					if(WT.get_fuel() < 5) // uses up 5 fuel.
-						to_chat(user, SPAN_WARNING("You need more fuel to complete this task."))
+						FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 						return
 
 					user.visible_message(
-						"[user] starts cutting loose the anchoring bolt covers on [src].",
-						"You start cutting loose the anchoring bolt covers with [O]..."
+						SPAN_NOTICE("[user] starts cutting loose the anchoring bolt covers on \the [src]..."),
+						SPAN_NOTICE("You start cutting loose the anchoring bolt covers with \the [O]..."),
+						SPAN_WARNING("You hear welding.")
 					)
 
 					if(do_after(user, 40))
-						if(!src || !user || !WT.remove_fuel(5, user))
+						if(isnull(src) || isnull(user) || !WT.remove_fuel(5, user))
 							return
 						user.visible_message(
-							"[user] cuts through the bolt covers on [src].",
-							"You cut through the bolt cover."
+							SPAN_NOTICE("[user] cuts through the bolt covers on \the [src]."),
+							SPAN_NOTICE("You cut through the bolt cover.")
 						)
 						removal_stage = 1
 				return
@@ -131,16 +132,16 @@ var/bomb_set
 			if(1)
 				if(istype(O, /obj/item/crowbar))
 					user.visible_message(
-						"[user] starts forcing open the bolt covers on [src].",
-						"You start forcing open the anchoring bolt covers with [O]..."
+						SPAN_NOTICE("[user] starts forcing open the bolt covers on \the [src]..."),
+						SPAN_NOTICE("You start forcing open the anchoring bolt covers with \the [O]...")
 					)
 
 					if(do_after(user, 15))
 						if(!src || !user)
 							return
 						user.visible_message(
-							"[user] forces open the bolt covers on [src].",
-							"You force open the bolt covers."
+							SPAN_NOTICE("[user] forces open the bolt covers on \the [src]."),
+							SPAN_NOTICE("You force open the bolt covers.")
 						)
 						removal_stage = 2
 				return
@@ -151,20 +152,20 @@ var/bomb_set
 					if(!WT.isOn())
 						return
 					if(WT.get_fuel() < 5) // uses up 5 fuel.
-						to_chat(user, SPAN_WARNING("You need more fuel to complete this task."))
+						FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 						return
 
 					user.visible_message(
-						"[user] starts cutting apart the anchoring system sealant on [src].",
-						"You start cutting apart the anchoring system's sealant with [O]..."
+						SPAN_NOTICE("[user] starts cutting apart the anchoring system sealant on \the [src]..."),
+						SPAN_NOTICE("You start cutting apart the anchoring system's sealant with \the [O]...")
 					)
 
 					if(do_after(user, 40))
-						if(!src || !user || !WT.remove_fuel(5, user))
+						if(isnull(src) || isnull(user) || !WT.remove_fuel(5, user))
 							return
 						user.visible_message(
-							"[user] cuts apart the anchoring system sealant on [src].",
-							"You cut apart the anchoring system's sealant."
+							SPAN_NOTICE("[user] cuts apart the anchoring system sealant on \the [src]."),
+							SPAN_NOTICE("You cut apart the anchoring system's sealant.")
 						)
 						removal_stage = 3
 				return
@@ -172,16 +173,17 @@ var/bomb_set
 			if(3)
 				if(istype(O, /obj/item/wrench))
 					user.visible_message(
-						"[user] begins unwrenching the anchoring bolts on [src].",
-						"You begin unwrenching the anchoring bolts..."
+						SPAN_NOTICE("[user] begins unwrenching the anchoring bolts on \the [src]..."),
+						SPAN_NOTICE("You begin unwrenching the anchoring bolts..."),
+						SPAN_INFO("You hear a ratchet.")
 					)
 
 					if(do_after(user, 50))
 						if(!src || !user)
 							return
 						user.visible_message(
-							"[user] unwrenches the anchoring bolts on [src].",
-							"You unwrench the anchoring bolts."
+							SPAN_NOTICE("[user] unwrenches the anchoring bolts on \the [src]."),
+							SPAN_NOTICE("You unwrench the anchoring bolts.")
 						)
 						removal_stage = 4
 				return
@@ -189,16 +191,16 @@ var/bomb_set
 			if(4)
 				if(istype(O, /obj/item/crowbar))
 					user.visible_message(
-						"[user] begins lifting [src] off of the anchors.",
-						"You begin lifting the device off the anchors..."
+						SPAN_NOTICE("[user] begins lifting \the [src] off of the anchors..."),
+						SPAN_NOTICE("You begin lifting the device off the anchors...")
 					)
 
 					if(do_after(user, 80))
 						if(!src || !user)
 							return
 						user.visible_message(
-							"[user] crowbars [src] off of the anchors. It can now be moved.",
-							"You jam the crowbar under the nuclear device and lift it off its anchors. You can now move it!"
+							SPAN_NOTICE("[user] crowbars \the [src] off of the anchors. It can now be moved."),
+							SPAN_NOTICE("You jam the crowbar under the nuclear device and lift it off its anchors. You can now move it!")
 						)
 						anchored = FALSE
 						removal_stage = 5

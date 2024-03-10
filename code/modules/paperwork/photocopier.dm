@@ -113,7 +113,11 @@
 	if(iswrench(tool))
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		anchored = !anchored
-		to_chat(user, SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src]."))
+		user.visible_message(
+			SPAN_NOTICE("[user] [anchored ? "attaches" : "detaches"] \the [src] [anchored ? "to" : "from"] the ground."),
+			SPAN_NOTICE("You [anchored ? "attach" : "detach"] \the [src] [anchored ? "to" : "from"] the ground."),
+			SPAN_INFO("You hear a ratchet.")
+		)
 		return TRUE
 
 	return ..()
@@ -128,7 +132,7 @@
 			flick("bigscanner1", src)
 			updateUsrDialog()
 		else
-			to_chat(user, SPAN_NOTICE("There is already something in \the [src]."))
+			to_chat(user, SPAN_WARNING("There is already something in \the [src]."))
 	else if(istype(O, /obj/item/photo))
 		if(!copy && !photocopy)
 			user.drop_item()
@@ -138,7 +142,7 @@
 			flick("bigscanner1", src)
 			updateUsrDialog()
 		else
-			to_chat(user, SPAN_NOTICE("There is already something in \the [src]."))
+			to_chat(user, SPAN_WARNING("There is already something in \the [src]."))
 	else if(istype(O, /obj/item/toner))
 		if(toner == 0)
 			user.drop_item()
@@ -147,7 +151,7 @@
 			to_chat(user, SPAN_NOTICE("You insert the toner cartridge into \the [src]."))
 			updateUsrDialog()
 		else
-			to_chat(user, SPAN_NOTICE("This cartridge is not yet ready for replacement! Use up the rest of the toner."))
+			to_chat(user, SPAN_WARNING("This cartridge is not yet ready for replacement! Use up the rest of the toner."))
 
 /obj/machinery/photocopier/ex_act(severity)
 	switch(severity)

@@ -54,7 +54,7 @@
 	..()
 	if(bcell)
 		to_chat(usr, SPAN_NOTICE("The baton is [round(bcell.percent())]% charged."))
-	if(!bcell)
+	else
 		to_chat(usr, SPAN_WARNING("The baton does not have a power source installed."))
 
 /obj/item/melee/baton/attack_tool(obj/item/tool, mob/user)
@@ -75,10 +75,10 @@
 			user.drop_item()
 			W.loc = src
 			bcell = W
-			to_chat(user, SPAN_NOTICE("You install a cell in [src]."))
+			to_chat(user, SPAN_NOTICE("You install a cell in \the [src]."))
 			update_icon()
 		else
-			to_chat(user, SPAN_NOTICE("[src] already has a cell."))
+			to_chat(user, SPAN_WARNING("\The [src] already has a cell."))
 
 	..()
 

@@ -91,16 +91,16 @@
 		switch(det_time)
 			if(1)
 				det_time = 1 SECOND
-				to_chat(user, SPAN_NOTICE("You set the [name] for 1 second detonation time."))
+				to_chat(user, SPAN_NOTICE("You set \the [src] for 1 second detonation time."))
 			if(1 SECOND)
 				det_time = 3 SECONDS
-				to_chat(user, SPAN_NOTICE("You set the [name] for 3 second detonation time."))
+				to_chat(user, SPAN_NOTICE("You set \the [src] for 3 second detonation time."))
 			if(3 SECONDS)
 				det_time = 5 SECONDS
-				to_chat(user, SPAN_NOTICE("You set the [name] for 5 second detonation time."))
+				to_chat(user, SPAN_NOTICE("You set \the [src] for 5 second detonation time."))
 			if(5 SECONDS)
 				det_time = 1
-				to_chat(user, SPAN_NOTICE("You set the [name] for instant detonation."))
+				to_chat(user, SPAN_NOTICE("You set \the [src] for instant detonation."))
 		add_fingerprint(user)
 		return TRUE
 

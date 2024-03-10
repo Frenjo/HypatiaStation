@@ -27,14 +27,20 @@
 /obj/machinery/power/solar/attack_tool(obj/item/tool, mob/user)
 	if(iscrowbar(tool))
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
-		user.visible_message(SPAN_NOTICE("[user] begins to take the glass off the solar panel."))
+		user.visible_message(
+			SPAN_NOTICE("[user] begins to take the glass off the solar panel..."),
+			SPAN_NOTICE("You begin to take the glass off the solar panel...")
+		)
 		if(do_after(user, 5 SECONDS))
 			var/obj/item/solar_assembly/assembly = locate() in src
 			if(isnotnull(assembly))
 				assembly.loc = loc
 				assembly.give_glass()
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-			user.visible_message(SPAN_NOTICE("[user] takes the glass off the solar panel."))
+			user.visible_message(
+				SPAN_NOTICE("[user] takes the glass off the solar panel."),
+				SPAN_NOTICE("You take the glass off the solar panel.")
+			)
 			qdel(src)
 		return TRUE
 

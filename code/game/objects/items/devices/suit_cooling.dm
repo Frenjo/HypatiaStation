@@ -116,8 +116,8 @@
 		cell.add_fingerprint(user)
 		cell.updateicon()
 
-		to_chat(user, "You remove the [src.cell].")
-		src.cell = null
+		to_chat(user, "You remove the [cell].")
+		cell = null
 		updateicon()
 		return
 
@@ -127,7 +127,7 @@
 	else
 		turn_on()
 		if(on)
-			to_chat(user, "You switch on the [src].")
+			to_chat(user, SPAN_INFO("You switch on \the [src]."))
 
 /obj/item/suit_cooling_unit/attack_tool(obj/item/tool, mob/user)
 	if(isscrewdriver(tool))
@@ -145,12 +145,12 @@
 	if(istype(W, /obj/item/cell))
 		if(cover_open)
 			if(cell)
-				to_chat(user, "There is a [cell] already installed here.")
+				to_chat(user, SPAN_WARNING("There is a [cell] already installed here."))
 			else
 				user.drop_item()
 				W.loc = src
 				cell = W
-				to_chat(user, "You insert the [cell].")
+				to_chat(user, SPAN_NOTICE("You insert \the [cell]."))
 		updateicon()
 		return
 
@@ -179,7 +179,7 @@
 
 	if(cover_open)
 		if(cell)
-			to_chat(usr, "The panel is open, exposing the [cell].")
+			to_chat(usr, "The panel is open, exposing \the [cell].")
 		else
 			to_chat(usr, "The panel is open.")
 

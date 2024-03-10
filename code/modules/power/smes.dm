@@ -251,8 +251,8 @@
 			building_terminal = 0
 			CC.use(10)
 			user.visible_message(
-				SPAN_NOTICE("[user.name] has added cables to the [src]."),
-				SPAN_NOTICE("You added cables to the [src].")
+				SPAN_NOTICE("[user] adds cables to \the [src]."),
+				SPAN_NOTICE("You add cables to \the [src].")
 			)
 			terminal.connect_to_network()
 			stat = 0
@@ -264,11 +264,14 @@
 				if(tempTDir.intact)
 					to_chat(user, SPAN_WARNING("You must remove the floor plating first."))
 				else
-					to_chat(user, SPAN_NOTICE("You begin to cut the cables..."))
+					user.visible_message(
+						SPAN_NOTICE("[user] begins to cut the cables out of the power terminal..."),
+						SPAN_NOTICE("You begin to cut the cables out of the power terminal...")
+					)
 					playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
 					if(do_after(user, 50))
 						if(prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
-							var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
+							var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
 							s.set_up(5, 1, src)
 							s.start()
 							building_terminal = 0

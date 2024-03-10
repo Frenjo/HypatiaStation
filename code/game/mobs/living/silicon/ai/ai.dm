@@ -304,17 +304,37 @@
 /mob/living/silicon/ai/attack_tool(obj/item/tool, mob/user)
 	if(iswrench(tool))
 		if(anchored)
-			user.visible_message(SPAN_NOTICE("\The [user] starts to unbolt \the [src] from the plating..."))
+			user.visible_message(
+				SPAN_NOTICE("\The [user] starts to unbolt [src] from the plating..."),
+				SPAN_NOTICE("You start to unbolt [src] from the plating..."),
+				SPAN_INFO("You hear a ratchet.")
+			)
 			if(!do_after(user, 4 SECONDS))
-				user.visible_message(SPAN_NOTICE("\The [user] decides not to unbolt \the [src]."))
+				user.visible_message(
+					SPAN_NOTICE("\The [user] decides not to unbolt [src]."),
+					SPAN_NOTICE("You decide not to unbolt [src].")
+				)
 				return TRUE
-			user.visible_message(SPAN_NOTICE("\The [user] finishes unfastening \the [src]!"))
+			user.visible_message(
+				SPAN_NOTICE("\The [user] finishes unfastening [src]!"),
+				SPAN_NOTICE("You finish unfastening [src]!")
+			)
 		else
-			user.visible_message(SPAN_NOTICE("\The [user] starts to bolt \the [src] to the plating..."))
+			user.visible_message(
+				SPAN_NOTICE("\The [user] starts to bolt [src] to the plating..."),
+				SPAN_NOTICE("You start to bolt [src] to the plating..."),
+				SPAN_INFO("You hear a ratchet.")
+			)
 			if(!do_after(user, 4 SECONDS))
-				user.visible_message(SPAN_NOTICE("\The [user] decides not to bolt \the [src]."))
+				user.visible_message(
+					SPAN_NOTICE("\The [user] decides not to bolt [src]."),
+					SPAN_NOTICE("You decide not to unbolt [src].")
+				)
 				return TRUE
-			user.visible_message(SPAN_NOTICE("\The [user] finishes fastening down \the [src]!"))
+			user.visible_message(
+				SPAN_NOTICE("\The [user] finishes fastening down [src]!"),
+				SPAN_NOTICE("You finish fastening down [src]!")
+			)
 		anchored = !anchored
 		return TRUE
 

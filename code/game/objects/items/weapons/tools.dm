@@ -176,13 +176,13 @@
 
 /obj/item/weldingtool/examine()
 	set src in usr
-	to_chat(usr, "\icon[src] [src.name] contains [get_fuel()]/[src.max_fuel] units of fuel!")
+	to_chat(usr, "\icon[src] \The [src] contains [get_fuel()]/[max_fuel] units of fuel!")
 	return
 
 /obj/item/weldingtool/attack_tool(obj/item/tool, mob/user)
 	if(isscrewdriver(tool))
 		if(welding)
-			to_chat(user, SPAN_WARNING("Stop welding first!"))
+			FEEDBACK_TURN_OFF_FIRST(user)
 			return TRUE
 		status = !status
 		if(status)

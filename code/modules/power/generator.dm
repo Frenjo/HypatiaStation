@@ -126,7 +126,11 @@
 /obj/machinery/power/generator/attack_tool(obj/item/tool, mob/user)
 	if(iswrench(tool))
 		anchored = !anchored
-		to_chat(user, SPAN_NOTICE("You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."))
+		user.visible_message(
+			SPAN_NOTICE("[user] [anchored ? "attaches" : "detaches"] the bolts holding \the [src] [anchored ? "to" : "from"] the ground."),
+			SPAN_NOTICE("You [anchored ? "attach" : "detach"] the bolts holding \the [src] [anchored ? "to" : "from"] the ground."),
+			SPAN_INFO("You hear a ratchet.")
+		)
 
 		update_power_state(anchored)
 		if(anchored) // Powernet connection stuff.

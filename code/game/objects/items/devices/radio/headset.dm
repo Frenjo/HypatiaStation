@@ -215,7 +215,7 @@
 /obj/item/radio/headset/attack_tool(obj/item/tool, mob/user)
 	if(isscrewdriver(tool))
 		if(isnotnull(keyslot1) || isnotnull(keyslot2))
-			to_chat(user, SPAN_NOTICE("You pop out the encryption keys from the headset!"))
+			to_chat(user, SPAN_NOTICE("You pop the encryption keys out of the headset!"))
 			for(var/ch_name in channels)
 				unregister_radio(src, GLOBL.radio_channels[ch_name])
 				secure_radio_connections[ch_name] = null

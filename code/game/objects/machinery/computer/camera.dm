@@ -4,12 +4,15 @@
 	name = "security cameras"
 	desc = "Used to access the various cameras on the station."
 	icon_state = "cameras"
+
+	light_color = "#a91515"
+
+	circuit = /obj/item/circuitboard/security
+
 	var/obj/machinery/camera/current = null
 	var/last_pic = 1.0
 	var/list/network = list("SS13")
 	var/mapping = 0//For the overview file, interesting bit of code.
-
-	light_color = "#a91515"
 
 /obj/machinery/computer/security/attack_ai(var/mob/user as mob)
 	return attack_hand(user)
@@ -81,39 +84,6 @@
 			src.current = C
 			use_power(50)
 		return 1
-
-/obj/machinery/computer/security/attack_tool(obj/item/tool, mob/user)
-	if(isscrewdriver(tool))
-		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 2 SECONDS))
-			if(stat & BROKEN)
-				FEEDBACK_BROKEN_GLASS_FALLS(user)
-				var/obj/structure/computerframe/frame = new /obj/structure/computerframe(loc)
-				new /obj/item/shard(loc)
-				var/obj/item/circuitboard/security/board = new /obj/item/circuitboard/security(frame)
-				board.network = network
-				for(var/obj/C in src)
-					C.loc = loc
-				frame.circuit = board
-				frame.state = 3
-				frame.icon_state = "3"
-				frame.anchored = TRUE
-				qdel(src)
-			else
-				FEEDBACK_DISCONNECT_MONITOR(user)
-				var/obj/structure/computerframe/frame = new /obj/structure/computerframe(loc)
-				var/obj/item/circuitboard/security/board = new /obj/item/circuitboard/security(frame)
-				board.network = network
-				for(var/obj/C in src)
-					C.loc = loc
-				frame.circuit = board
-				frame.state = 4
-				frame.icon_state = "4"
-				frame.anchored = TRUE
-				qdel(src)
-		return TRUE
-
-	return ..()
 
 /obj/machinery/computer/security/attackby(I as obj, user as mob)
 	return attack_hand(user)

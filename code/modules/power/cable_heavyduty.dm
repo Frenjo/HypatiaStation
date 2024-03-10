@@ -11,7 +11,7 @@
 
 /obj/structure/cable/heavyduty/attack_tool(obj/item/tool, mob/user)
 	if(iswirecutter(tool))
-		to_chat(user, SPAN_WARNING("These cables are too tough to be cut with those [tool]."))
+		to_chat(user, SPAN_WARNING("The cables are too tough to be cut with \the [tool]."))
 		return TRUE
 
 	if(iswire(tool))

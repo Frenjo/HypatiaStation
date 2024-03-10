@@ -44,18 +44,17 @@
 
 /obj/structure/closet/body_bag/attackby(W as obj, mob/user as mob)
 	if(istype(W, /obj/item/pen))
-		var/t = input(user, "What would you like the label to be?", src.name, null) as text
+		var/t = input(user, "What would you like the label to be?", name, null) as text
 		if(user.get_active_hand() != W)
 			return
-		if(!in_range(src, user) && src.loc != user)
+		if(!in_range(src, user) && loc != user)
 			return
 		t = copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
-		if(t)
-			src.name = "body bag - "
-			src.name += t
-			src.overlays += image(src.icon, "bodybag_label")
+		if(isnotnull(t))
+			name = "body bag - [t]"
+			overlays.Add(image(icon, "bodybag_label"))
 		else
-			src.name = "body bag"
+			name = "body bag"
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
 		return
 

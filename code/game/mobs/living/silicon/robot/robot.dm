@@ -359,7 +359,7 @@
 	else if(istype(W, /obj/item/crowbar))	// crowbar means open or close the cover
 		if(opened)
 			if(isnotnull(cell))
-				to_chat(user, "You close the cover.")
+				to_chat(user, SPAN_NOTICE("You close the cover."))
 				opened = 0
 				updateicon()
 			else if(mmi && wiresexposed && isWireCut(1) && isWireCut(2) && isWireCut(3) && isWireCut(4) && isWireCut(5))

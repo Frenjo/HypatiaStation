@@ -199,7 +199,7 @@
 
 	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(emagged)
-			to_chat(user, SPAN_WARNING("The lock seems to be broken."))
+			FEEDBACK_LOCK_SEEMS_BROKEN(user)
 			return
 		if(allowed(user))
 			if(active)

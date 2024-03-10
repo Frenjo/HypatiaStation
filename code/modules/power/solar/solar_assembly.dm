@@ -39,7 +39,10 @@
 				glass_type = W.type
 				S.use(2)
 				playsound(src, 'sound/machines/click.ogg', 50, 1)
-				user.visible_message(SPAN_NOTICE("[user] places the glass on the solar assembly."))
+				user.visible_message(
+					SPAN_NOTICE("[user] places the glass on the solar assembly."),
+					SPAN_NOTICE("You place the glass on the solar assembly.")
+				)
 				if(tracker)
 					new /obj/machinery/power/tracker(get_turf(src), src)
 				else
@@ -54,13 +57,19 @@
 			tracker = TRUE
 			user.drop_item()
 			qdel(W)
-			user.visible_message(SPAN_NOTICE("[user] inserts the electronics into the solar assembly."))
+			user.visible_message(
+				SPAN_NOTICE("[user] inserts the electronics into the solar assembly."),
+				SPAN_NOTICE("You insert the electronics into the solar assembly.")
+			)
 			return 1
 	else
 		if(iscrowbar(W))
 			new /obj/item/tracker_electronics(loc)
 			tracker = FALSE
-			user.visible_message(SPAN_NOTICE("[user] takes out the electronics from the solar assembly."))
+			user.visible_message(
+				SPAN_NOTICE("[user] takes the electronics out of the solar assembly."),
+				SPAN_NOTICE("You take the electronics out of the solar assembly.")
+			)
 			return 1
 	..()
 

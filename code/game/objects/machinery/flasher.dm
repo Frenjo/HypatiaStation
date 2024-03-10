@@ -44,8 +44,8 @@
 		add_fingerprint(user)
 		disable = !disable
 		user.visible_message(
-			SPAN_WARNING("[user] has [disable ? "disconnected" : "connected"] \the [src]'s flashbulb!"),
-			SPAN_WARNING("You [disable ? "disconnect" : "connect"] \the [src]'s flashbulb!")
+			SPAN_NOTICE("[user] has [disable ? "disconnected" : "connected"] \the [src]'s flashbulb!"),
+			SPAN_NOTICE("You [disable ? "disconnect" : "connect"] \the [src]'s flashbulb!")
 		)
 		return TRUE
 
@@ -116,10 +116,10 @@
 		add_fingerprint(user)
 		anchored = !anchored
 		if(!anchored)
-			to_chat(user, SPAN_NOTICE("[src] can now be moved."))
+			to_chat(user, SPAN_NOTICE("\The [src] can now be moved."))
 			overlays.Cut()
 		else
-			to_chat(user, SPAN_NOTICE("[src] is now secured."))
+			to_chat(user, SPAN_NOTICE("\The [src] is now secured."))
 			overlays.Add("[base_state]-s")
 		return TRUE
 

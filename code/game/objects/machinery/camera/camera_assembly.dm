@@ -155,19 +155,23 @@
 	if(!anchored)
 		..()
 
-/obj/item/camera_assembly/proc/weld(var/obj/item/weldingtool/WT, var/mob/user)
+/obj/item/camera_assembly/proc/weld(obj/item/weldingtool/welder, mob/user)
 	if(busy)
 		return 0
-	if(!WT.isOn())
+	if(!welder.isOn())
 		return 0
 
-	user << "<span class='notice'>You start to weld the [src]..</span>"
+	user.visible_message(
+		SPAN_NOTICE("[user] starts to weld \the [src]..."),
+		SPAN_NOTICE("You start to weld \the [src]..."),
+		SPAN_WARNING("You hear welding.")
+	)
 	playsound(src, 'sound/items/Welder.ogg', 50, 1)
-	WT.eyecheck(user)
+	welder.eyecheck(user)
 	busy = 1
 	if(do_after(user, 20))
 		busy = 0
-		if(!WT.isOn())
+		if(!welder.isOn())
 			return 0
 		return 1
 	busy = 0

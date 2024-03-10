@@ -37,7 +37,11 @@
 	if(iswrench(tool))
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		anchored = !anchored
-		to_chat(user, SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src]."))
+		user.visible_message(
+			SPAN_NOTICE("[user] [anchored ? "attaches" : "detaches"] \the [src] [anchored ? "to" : "from"] the ground."),
+			SPAN_NOTICE("You [anchored ? "attach" : "detach"] \the [src] [anchored ? "to" : "from"] the ground."),
+			SPAN_INFO("You hear a ratchet.")
+		)
 		return TRUE
 
 	return ..()
@@ -52,7 +56,7 @@
 		icon_state = initial(icon_state)
 		updateUsrDialog()
 	else
-		to_chat(user, SPAN_NOTICE("You can't put [P] in [src]!"))
+		to_chat(user, SPAN_WARNING("You can't put [P] in [src]!"))
 
 /obj/structure/filingcabinet/attack_hand(mob/user as mob)
 	if(!length(contents))

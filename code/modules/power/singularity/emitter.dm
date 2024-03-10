@@ -187,12 +187,12 @@
 /obj/machinery/power/emitter/attack_tool(obj/item/tool, mob/user)
 	if(iswrench(tool))
 		if(active)
-			to_chat(user, SPAN_WARNING("Turn off \the [src] first."))
+			FEEDBACK_TURN_OFF_FIRST(user)
 			return TRUE
 		switch(state)
 			if(0)
 				user.visible_message(
-					SPAN_NOTICE("[user] secures [src] to the floor."),
+					SPAN_NOTICE("[user] secures \the [src] to the floor."),
 					SPAN_NOTICE("You secure the external reinforcing bolts to the floor."),
 					SPAN_INFO("You hear a ratchet.")
 				)
@@ -201,7 +201,7 @@
 				state = 1
 			if(1)
 				user.visible_message(
-					SPAN_NOTICE("[user] unsecures [src]'s reinforcing bolts from the floor."),
+					SPAN_NOTICE("[user] unsecures \the [src]'s reinforcing bolts from the floor."),
 					SPAN_NOTICE("You undo the external reinforcing bolts."),
 					SPAN_INFO("You hear a ratchet.")
 				)
@@ -215,7 +215,7 @@
 	if(iswelder(tool))
 		var/obj/item/weldingtool/welder = tool
 		if(active)
-			to_chat(user, SPAN_WARNING("Turn off \the [src] first."))
+			FEEDBACK_TURN_OFF_FIRST(user)
 			return TRUE
 		switch(state)
 			if(0)
@@ -230,7 +230,10 @@
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 					if(do_after(user, 2 SECONDS))
 						if(isnotnull(src) && welder.welding)
-							to_chat(user, SPAN_NOTICE("You weld \the [src] to the floor."))
+							user.visible_message(
+								SPAN_NOTICE("[user] welds \the [src] to the floor."),
+								SPAN_NOTICE("You weld \the [src] to the floor.")
+							)
 							state = 2
 							connect_to_network()
 				else
@@ -245,7 +248,10 @@
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 					if(do_after(user, 2 SECONDS))
 						if(isnotnull(src) && welder.welding)
-							to_chat(user, SPAN_NOTICE("You cut \the [src] free from the floor."))
+							user.visible_message(
+								SPAN_NOTICE("[user] cuts \the [src] free from the floor."),
+								SPAN_NOTICE("You cut \the [src] free from the floor.")
+							)
 							state = 1
 							disconnect_from_network()
 				else
@@ -257,12 +263,12 @@
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(emagged)
-			to_chat(user, SPAN_WARNING("The lock seems to be broken."))
+			FEEDBACK_LOCK_SEEMS_BROKEN(user)
 			return
-		if(src.allowed(user))
+		if(allowed(user))
 			if(active)
-				src.locked = !src.locked
-				to_chat(user, SPAN_NOTICE("The controls are now [locked ? "locked" : "unlocked"]."))
+				locked = !locked
+				FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
 			else
 				src.locked = 0 //just in case it somehow gets locked
 				to_chat(user, SPAN_WARNING("The controls can only be locked when the [src] is online."))

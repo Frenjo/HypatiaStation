@@ -210,10 +210,11 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 		if(0)
 			if(iswrench(O))
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-				src.anchored = TRUE
+				anchored = TRUE
 				user.visible_message(
-					SPAN_INFO("[user] secures \the [src] to the floor."),
-					SPAN_INFO("You secure the external bolts.")
+					SPAN_NOTICE("[user] secures \the [src] to the floor."),
+					SPAN_NOTICE("You secure \the [src] to the floor."),
+					SPAN_INFO("You hear a ratchet.")
 				)
 				temp_state++
 		if(1)
@@ -221,8 +222,9 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				src.anchored = FALSE
 				user.visible_message(
-					SPAN_INFO("[user] detaches \the [src] from the floor."),
-					SPAN_INFO("You remove the external bolts.")
+					SPAN_NOTICE("[user] detaches \the [src] from the floor."),
+					SPAN_NOTICE("You unsecure \the [src] from the floor."),
+					SPAN_INFO("You hear a ratchet.")
 				)
 				temp_state--
 
@@ -232,7 +234,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 					playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 					user.visible_message(
 						SPAN_INFO("[user] adds wires to \the [src]."),
-						SPAN_INFO("You add some wires.")
+						SPAN_INFO("You add some wires to \the [src].")
 					)
 					C.use(5)
 					temp_state++
@@ -240,14 +242,14 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 			if(iswirecutter(O))//TODO:Shock user if its on?
 				user.visible_message(
 					SPAN_INFO("[user] removes some wires from \the [src]."),
-					SPAN_INFO("You remove some wires.")
+					SPAN_INFO("You remove some wires from \the [src].")
 				)
 				temp_state--
 
 			if(isscrewdriver(O))
 				user.visible_message(
 					SPAN_INFO("[user] closes \the [src]'s access panel."),
-					SPAN_INFO("You close the access panel."),
+					SPAN_INFO("You close \the [src]'s access panel."),
 					SPAN_INFO("You hear someone using a screwdriver.")
 				)
 				temp_state++
@@ -255,7 +257,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 			if(isscrewdriver(O))
 				user.visible_message(
 					SPAN_INFO("[user] opens \the [src]'s access panel."),
-					SPAN_INFO("You open the access panel."),
+					SPAN_INFO("You open \the [src]'s access panel."),
 					SPAN_INFO("You hear someone using a screwdriver.")
 				)
 				temp_state--
@@ -375,7 +377,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 				anchored = TRUE
 				user.visible_message(
 					SPAN_NOTICE("[user] secures \the [src] to the floor."),
-					SPAN_NOTICE("You secure the external bolts.")
+					SPAN_NOTICE("You secure the \the [src]'s external bolts to the floor."),
+					SPAN_INFO("You hear a ratchet.")
 				)
 				temp_state++
 		if(1)
@@ -384,7 +387,8 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 				anchored = FALSE
 				user.visible_message(
 					SPAN_NOTICE("[user] detaches \the [src] from the floor."),
-					SPAN_NOTICE("You remove the external bolts.")
+					SPAN_NOTICE("You detach \the [src]'s external bolts from the floor."),
+					SPAN_INFO("You hear a ratchet.")
 				)
 				temp_state--
 
@@ -394,7 +398,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 					playsound(src, 'sound/items/Deconstruct.ogg', 75, 1)
 					user.visible_message(
 						SPAN_NOTICE("[user] adds wires to \the [src]."),
-						SPAN_NOTICE("You add some wires.")
+						SPAN_NOTICE("You add some wires to \the [src].")
 					)
 					C.use(5)
 					temp_state++
@@ -403,7 +407,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 				playsound(src, 'sound/items/Deconstruct.ogg', 75, 1)
 				user.visible_message(
 					SPAN_NOTICE("[user] removes some wires from \the [src]."),
-					SPAN_NOTICE("You remove some wires.")
+					SPAN_NOTICE("You remove some wires from \the [src].")
 				)
 				temp_state--
 
@@ -411,7 +415,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 				playsound(src, 'sound/items/Screwdriver.ogg', 75, 1)
 				user.visible_message(
 					SPAN_NOTICE("[user] closes \the [src]'s access panel."),
-					SPAN_NOTICE("You close the access panel."),
+					SPAN_NOTICE("You close \the [src]'s access panel."),
 					SPAN_INFO("You hear someone using a screwdriver.")
 				)
 				temp_state++
@@ -420,7 +424,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 				playsound(src, 'sound/items/Screwdriver.ogg', 75, 1)
 				user.visible_message(
 					SPAN_NOTICE("[user] opens \the [src]'s access panel."),
-					SPAN_NOTICE("You open the access panel."),
+					SPAN_NOTICE("You open \the [src]'s access panel."),
 					SPAN_INFO("You hear someone using a screwdriver.")
 				)
 				temp_state--

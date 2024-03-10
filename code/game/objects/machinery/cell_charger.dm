@@ -43,7 +43,11 @@
 			to_chat(user, SPAN_WARNING("Remove the cell first!"))
 			return TRUE
 		anchored = !anchored
-		to_chat(user, SPAN_NOTICE("You [anchored ? "attach" : "detach"] the cell charger [anchored ? "to" : "from"] the ground."))
+		user.visible_message(
+			SPAN_NOTICE("[user] [anchored ? "attaches" : "detaches"] \the [src] [anchored ? "to" : "from"] the ground."),
+			SPAN_NOTICE("You [anchored ? "attach" : "detach"] \the [src] [anchored ? "to" : "from"] the ground."),
+			SPAN_INFO("You hear a ratchet.")
+		)
 		playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 		return TRUE
 
@@ -62,29 +66,29 @@
 			if(!isarea(a))
 				return
 			if(!a.power_equip) // There's no APC in this area, don't try to cheat power!
-				to_chat(user, SPAN_WARNING("The [name] blinks red as you try to insert the cell!"))
+				to_chat(user, SPAN_WARNING("\The [src] blinks red as you try to insert the cell!"))
 				return
 
 			user.drop_item()
 			W.loc = src
 			charging = W
 			user.visible_message(
-				"[user] inserts a cell into the charger.",
-				"You insert a cell into the charger."
+				SPAN_INFO("[user] inserts a cell into \the [src]."),
+				SPAN_INFO("You insert a cell into \the [src].")
 			)
 			chargelevel = -1
 		updateicon()
 
 /obj/machinery/cell_charger/attack_hand(mob/user)
 	if(isnotnull(charging))
-		usr.put_in_hands(charging)
+		user.put_in_hands(charging)
 		charging.add_fingerprint(user)
 		charging.updateicon()
 
 		charging = null
 		user.visible_message(
-			"[user] removes the cell from the charger.",
-			"You remove the cell from the charger."
+			SPAN_INFO("[user] removes the cell from \the [src]."),
+			SPAN_INFO("You remove the cell from \the [src].")
 		)
 		chargelevel = -1
 		updateicon()
