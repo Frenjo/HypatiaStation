@@ -680,6 +680,25 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 /obj/item/radio/borg
 	var/obj/item/encryptionkey/keyslot = null//Borg radios can handle a single encryption key
 
+/obj/item/radio/borg/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
+		if(isnotnull(keyslot))
+			for(var/ch_name in channels)
+				unregister_radio(src, GLOBL.radio_channels[ch_name])
+				secure_radio_connections[ch_name] = null
+
+			var/turf/T = get_turf(user)
+			if(isnotnull(T))
+				keyslot.loc = T
+				keyslot = null
+
+			recalculateChannels()
+			to_chat(user, SPAN_NOTICE("You pop out the encryption key from the radio!"))
+		else
+			to_chat(user, SPAN_WARNING("This radio doesn't have any encryption keys!"))
+		return TRUE
+	return ..()
+
 /obj/item/radio/borg/attackby(obj/item/W as obj, mob/user as mob)
 //	..()
 	user.set_machine(src)

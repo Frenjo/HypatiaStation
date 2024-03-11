@@ -25,13 +25,14 @@
 
 	light_color = "#a91515"
 
-/obj/machinery/computer/secure_data/attackby(obj/item/O as obj, user as mob)
-	if(istype(O, /obj/item/card/id) && !scan)
-		usr.drop_item()
-		O.loc = src
-		scan = O
-		user << "You insert [O]."
-	..()
+/obj/machinery/computer/secure_data/attackby(obj/item/I, mob/user)
+	if(isnull(scan) && istype(I, /obj/item/card/id))
+		user.drop_item()
+		I.loc = src
+		scan = I
+		to_chat(user, SPAN_INFO("You insert \the [I]."))
+		return TRUE
+	return ..()
 
 /obj/machinery/computer/secure_data/attack_ai(mob/user as mob)
 	return attack_hand(user)

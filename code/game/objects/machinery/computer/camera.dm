@@ -85,7 +85,7 @@
 			use_power(50)
 		return 1
 
-/obj/machinery/computer/security/attackby(I as obj, user as mob)
+/obj/machinery/computer/security/attackby(obj/item/I, mob/user)
 	return attack_hand(user)
 
 //Camera control: moving.

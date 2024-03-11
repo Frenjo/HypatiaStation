@@ -152,17 +152,11 @@ proc/move_research_shuttle()
 		else
 			usr << "\blue Shuttle is already moving."
 
-/obj/machinery/computer/research_shuttle/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/card/emag))
-		var/obj/item/card/emag/E = W
-		if(E.uses)
-			E.uses--
-		else
-			return
-
-		src.req_access = list()
-		hacked = 1
-		usr << "You fried the consoles ID checking system. It's now available to everyone!"
-
-	else
-		..()
+/obj/machinery/computer/research_shuttle/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(hacked)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+	req_access = list()
+	hacked = TRUE
+	to_chat(user, SPAN_WARNING("You fry the console's ID checking system. It's now available to everyone!"))
+	return TRUE

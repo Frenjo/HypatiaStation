@@ -24,15 +24,17 @@
 	return ..()
 
 /obj/item/table_parts/attackby(obj/item/W as obj, mob/user as mob)
-	..()
 	if(istype(W, /obj/item/stack/rods))
-		if(W:amount >= 4)
-			new /obj/item/table_parts/reinforced(user.loc)
-			to_chat(user, SPAN_NOTICE("You reinforce \the [src]."))
-			W:use(4)
-			qdel(src)
-		else if(W:amount < 4)
+		var/obj/item/stack/rods/rods = W
+		if(rods.use(4))
 			to_chat(user, SPAN_WARNING("You need at least four rods to do this."))
+			return TRUE
+		new /obj/item/table_parts/reinforced(user.loc)
+		to_chat(user, SPAN_NOTICE("You reinforce \the [src]."))
+		qdel(src)
+		return TRUE
+
+	return ..()
 
 /*
  * Reinforced Table Parts

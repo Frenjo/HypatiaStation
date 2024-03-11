@@ -26,44 +26,42 @@
 	GLOBL.processing_power_items.Remove(src)
 	return ..()
 
-/obj/item/powersink/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/screwdriver))
-		if(mode == 0)
-			var/turf/T = loc
-			if(isturf(T) && !T.intact)
-				attached = locate() in T
-				if(!attached)
-					to_chat(user, "No exposed cable here to attach to.")
-					return
-				else
+/obj/item/powersink/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
+		switch(mode)
+			if(0)
+				var/turf/T = loc
+				if(isturf(T) && !T.intact)
+					attached = locate() in T
+					if(isnull(attached))
+						to_chat(user, SPAN_WARNING("No exposed cable here to attach to."))
+						return TRUE
 					anchored = TRUE
 					mode = 1
-					to_chat(user, "You attach the device to the cable.")
-					for(var/mob/M in viewers(user))
-						if(M == user)
-							continue
-						to_chat(M, "[user] attaches the power sink to the cable.")
-					return
-			else
-				to_chat(user, "Device must be placed over an exposed cable to attach to it.")
-				return
-		else
-			if(mode == 2)
+					user.visible_message(
+						SPAN_NOTICE("[user] attaches \the [src] to \the [attached]."),
+						SPAN_NOTICE("You attach \the [src] to \the [attached]."),
+						SPAN_INFO("You hear someone using a screwdriver.")
+					)
+					return TRUE
+				to_chat(user, SPAN_WARNING("\The [src] must be placed over an exposed cable to attach to it."))
+				return TRUE
+
+			if(2)
 				GLOBL.processing_objects.Remove(src) // Now the power sink actually stops draining the station's power if you unhook it. --NeoFite
 				GLOBL.processing_power_items.Remove(src)
-			anchored = FALSE
-			mode = 0
-			to_chat(user, "You detach the device from the cable.")
-			for(var/mob/M in viewers(user))
-				if(M == user)
-					continue
-				to_chat(M, "[user] detaches the power sink from the cable.")
-			set_light(0)
-			icon_state = "powersink0"
+				anchored = FALSE
+				mode = 0
+				user.visible_message(
+					SPAN_NOTICE("[user] detaches \the [src] from \the [attached]."),
+					SPAN_NOTICE("You detach \the [src] from \the [attached]."),
+					SPAN_INFO("You hear someone using a screwdriver.")
+				)
+				set_light(0)
+				icon_state = "powersink0"
+				return TRUE
 
-			return
-	else
-		..()
+	return ..()
 
 /obj/item/powersink/attack_paw()
 	return

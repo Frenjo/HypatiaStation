@@ -108,30 +108,27 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	updateUsrDialog()
 	return TRUE
 
-/obj/machinery/computer/rdconsole/attackby(obj/item/D as obj, mob/user as mob)
-	//Loading a disk into it.
-	if(istype(D, /obj/item/disk))
-		if(t_disk || d_disk)
-			to_chat(user, "A disk is already loaded into the machine.")
-			return
+/obj/machinery/computer/rdconsole/attackby(obj/item/I, mob/user)
+	// Loading a disk into it.
+	if(istype(I, /obj/item/disk))
+		if(isnotnull(t_disk) || isnotnull(d_disk))
+			to_chat(user, SPAN_WARNING("A disk is already loaded into the machine."))
+			return TRUE
 
-		if(istype(D, /obj/item/disk/tech_disk))
-			t_disk = D
-		else if(istype(D, /obj/item/disk/design_disk))
-			d_disk = D
+		if(istype(I, /obj/item/disk/tech_disk))
+			t_disk = I
+		else if(istype(I, /obj/item/disk/design_disk))
+			d_disk = I
 		else
 			to_chat(user, SPAN_WARNING("Machine cannot accept disks in that format."))
-			return
+			return TRUE
 
 		user.drop_item()
-		D.loc = src
+		I.loc = src
 		to_chat(user, SPAN_INFO("You add the disk to the machine!"))
-	else
-		//The construction/deconstruction of the console code.
-		..()
-
-	src.updateUsrDialog()
-	return
+		updateUsrDialog()
+		return TRUE
+	return ..()
 
 /obj/machinery/computer/rdconsole/Topic(href, href_list)
 	if(..())

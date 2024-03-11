@@ -253,7 +253,10 @@
 		user.drop_item()
 		I.loc = src
 		disk = I
-		to_chat(user, "You insert [I].")
+		user.visible_message(
+			SPAN_INFO("[user] inserts \the [I] into \the [src]."),
+			SPAN_INFO("You insert \the [I] into \the [src].")
+		)
 		global.PCnanoui.update_uis(src) // update all UIs attached to src
 		return TRUE
 

@@ -23,31 +23,39 @@
 	locked = FALSE
 	return TRUE
 
+/obj/item/circuitboard/security/attack_tool(obj/item/tool, mob/user)
+	if(ismultitool(tool))
+		if(locked)
+			to_chat(user, SPAN_WARNING("The circuit controls are locked."))
+			return TRUE
+		var/existing_networks = jointext(network, ",")
+		var/input = strip_html(input(usr, "Which networks would you like to connect this camera console circuit to? Separate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret ", "Multitool-Circuitboard Interface", existing_networks))
+		if(isnull(input))
+			to_chat(user, SPAN_WARNING("No input found. Please hang up and try your call again."))
+			return TRUE
+		var/list/tempnetwork = splittext(input, ",")
+		tempnetwork = difflist(tempnetwork, GLOBL.restricted_camera_networks, 1)
+		if(!length(tempnetwork))
+			to_chat(user, SPAN_WARNING("No network found. Please hang up and try your call again."))
+			return TRUE
+		network = tempnetwork
+		return TRUE
+
+	return ..()
+
 /obj/item/circuitboard/security/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/card/id))
 		if(emagged)
 			to_chat(user, SPAN_WARNING("The circuit lock does not respond."))
-			return
+			return TRUE
 		if(check_access(I))
 			locked = !locked
 			to_chat(user, SPAN_INFO("You [locked ? "" : "un"]lock the circuit controls."))
 		else
 			FEEDBACK_ACCESS_DENIED(user)
-	else if(istype(I, /obj/item/multitool))
-		if(locked)
-			to_chat(user, SPAN_WARNING("The circuit controls are locked."))
-			return
-		var/existing_networks = jointext(network,",")
-		var/input = strip_html(input(usr, "Which networks would you like to connect this camera console circuit to? Separate networks with a comma. No Spaces!\nFor example: SS13,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))
-		if(!input)
-			to_chat(user, "No input found. Please hang up and try your call again.")
-			return
-		var/list/tempnetwork = splittext(input, ",")
-		tempnetwork = difflist(tempnetwork, GLOBL.restricted_camera_networks, 1)
-		if(!length(tempnetwork))
-			to_chat(user, "No network found. Please hang up and try your call again.")
-			return
-		network = tempnetwork
+		return TRUE
+
+	return ..()
 
 /obj/item/circuitboard/secure_data
 	name = "circuit board (Security Records)"

@@ -63,17 +63,20 @@
 	to_chat(user, "You are too primitive to use this computer.")
 	return
 
-/obj/machinery/computer/telescience/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/bluespace_crystal))
+/obj/machinery/computer/telescience/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/bluespace_crystal))
 		if(length(crystals) >= length(power_options))
 			to_chat(user, SPAN_WARNING("There are not enough crystal ports."))
-			return
+			return TRUE
 		user.drop_item()
-		crystals.Add(W)
-		W.loc = null
-		user.visible_message(SPAN_NOTICE("[user] inserts a [W] into the [src]'s crystal port."))
-	else
-		..()
+		crystals.Add(I)
+		I.loc = src
+		user.visible_message(
+			SPAN_INFO("[user] inserts \a [I] into \the [src]'s crystal port."),
+			SPAN_INFO("You insert \a [I] into \the [src]'s crystal port.")
+		)
+		return TRUE
+	return ..()
 
 /obj/machinery/computer/telescience/attack_ai(mob/user)
 	src.attack_hand(user)

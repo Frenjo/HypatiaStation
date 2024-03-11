@@ -106,6 +106,8 @@
 
 	name = "Computer"
 
+	circuit = /obj/item/circuitboard/air_management
+
 	var/frequency = 1439
 	var/list/sensors = list()
 
@@ -130,38 +132,6 @@
 /obj/machinery/computer/general_air_control/process()
 	..()
 	src.updateUsrDialog()
-
-/obj/machinery/computer/general_air_control/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/screwdriver))
-		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			if(src.stat & BROKEN)
-				FEEDBACK_BROKEN_GLASS_FALLS(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				new /obj/item/shard(src.loc)
-				var/obj/item/circuitboard/air_management/M = new /obj/item/circuitboard/air_management(A)
-				for(var/obj/C in src)
-					C.loc = src.loc
-				M.frequency = src.frequency
-				A.circuit = M
-				A.state = 3
-				A.icon_state = "3"
-				A.anchored = TRUE
-				qdel(src)
-			else
-				FEEDBACK_DISCONNECT_MONITOR(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				var/obj/item/circuitboard/air_management/M = new /obj/item/circuitboard/air_management(A)
-				for(var/obj/C in src)
-					C.loc = src.loc
-				M.frequency = src.frequency
-				A.circuit = M
-				A.state = 4
-				A.icon_state = "4"
-				A.anchored = TRUE
-				qdel(src)
-	else
-		src.attack_hand(user)
 
 /obj/machinery/computer/general_air_control/receive_signal(datum/signal/signal)
 	if(!signal || signal.encryption)
@@ -323,6 +293,8 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 /obj/machinery/computer/general_air_control/fuel_injection
 	icon_state = "atmos"
 
+	circuit = /obj/item/circuitboard/injector_control
+
 	var/device_tag
 	var/list/device_info
 
@@ -330,39 +302,6 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 
 	var/cutoff_temperature = 2000
 	var/on_temperature = 1200
-
-/obj/machinery/computer/general_air_control/fuel_injection/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/screwdriver))
-		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			if(src.stat & BROKEN)
-				FEEDBACK_BROKEN_GLASS_FALLS(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				new /obj/item/shard(src.loc)
-				var/obj/item/circuitboard/injector_control/M = new /obj/item/circuitboard/injector_control(A)
-				for(var/obj/C in src)
-					C.loc = src.loc
-				M.frequency = src.frequency
-				A.circuit = M
-				A.state = 3
-				A.icon_state = "3"
-				A.anchored = TRUE
-				qdel(src)
-			else
-				FEEDBACK_DISCONNECT_MONITOR(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				var/obj/item/circuitboard/injector_control/M = new /obj/item/circuitboard/injector_control(A)
-				for(var/obj/C in src)
-					C.loc = src.loc
-				M.frequency = src.frequency
-				A.circuit = M
-				A.state = 4
-				A.icon_state = "4"
-				A.anchored = TRUE
-				qdel(src)
-	else
-		src.attack_hand(user)
-	return
 
 /obj/machinery/computer/general_air_control/fuel_injection/process()
 	if(automation)

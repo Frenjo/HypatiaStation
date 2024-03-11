@@ -12,6 +12,8 @@
 	name = "telecommunications monitor"
 	icon_state = "comm_monitor"
 
+	circuit = /obj/item/circuitboard/comm_monitor
+
 	var/screen = MONITOR_SCREEN_MAIN_MENU	// the screen number:
 	var/list/machinelist = list()			// the machines located by the computer
 	var/obj/machinery/telecoms/SelectedMachine
@@ -120,35 +122,6 @@
 	emagged = TRUE
 	updateUsrDialog()
 	return TRUE
-
-/obj/machinery/computer/telecoms/monitor/attackby(obj/item/D as obj, mob/user as mob)
-	if(istype(D, /obj/item/screwdriver))
-		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			if(src.stat & BROKEN)
-				FEEDBACK_BROKEN_GLASS_FALLS(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				new /obj/item/shard(src.loc)
-				var/obj/item/circuitboard/comm_monitor/M = new /obj/item/circuitboard/comm_monitor(A)
-				for(var/obj/C in src)
-					C.loc = src.loc
-				A.circuit = M
-				A.state = 3
-				A.icon_state = "3"
-				A.anchored = TRUE
-				qdel(src)
-			else
-				FEEDBACK_DISCONNECT_MONITOR(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				var/obj/item/circuitboard/comm_monitor/M = new /obj/item/circuitboard/comm_monitor(A)
-				for(var/obj/C in src)
-					C.loc = src.loc
-				A.circuit = M
-				A.state = 4
-				A.icon_state = "4"
-				A.anchored = TRUE
-				qdel(src)
-	updateUsrDialog()
 
 #undef MONITOR_SCREEN_MAIN_MENU
 #undef MONITOR_SCREEN_VIEWING_MACHINE

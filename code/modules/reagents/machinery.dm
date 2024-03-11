@@ -835,24 +835,23 @@
 	onclose(user, "pandemic")
 	return
 
-/obj/machinery/computer/pandemic/attackby(obj/I as obj, mob/user as mob)
+/obj/machinery/computer/pandemic/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers/glass))
-		if(stat & (NOPOWER|BROKEN))
-			return
-		if(src.beaker)
-			to_chat(user, "A beaker is already loaded into the machine.")
-			return
+		if(stat & (NOPOWER | BROKEN))
+			return TRUE
+		if(isnotnull(beaker))
+			to_chat(user, SPAN_WARNING("A beaker is already loaded into the machine."))
+			return TRUE
 
-		src.beaker =  I
+		beaker = I
 		user.drop_item()
 		I.loc = src
-		to_chat(user, "You add the beaker to the machine!")
-		src.updateUsrDialog()
+		to_chat(user, SPAN_INFO("You add the beaker to the machine!"))
+		updateUsrDialog()
 		icon_state = "mixer1"
+		return TRUE
 
-	else
-		..()
-	return
+	return ..()
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

@@ -30,13 +30,19 @@
 	// a stake's density to 0 meaning it can't be pushed anymore. Instead of pushing
 	// the stake now, we have to push the target.
 
-/obj/item/target/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weldingtool))
-		var/obj/item/weldingtool/WT = W
-		if(WT.remove_fuel(0, user))
+/obj/item/target/attack_tool(obj/item/tool, mob/user)
+	if(iswelder(tool))
+		var/obj/item/weldingtool/welder = tool
+		if(welder.remove_fuel(0, user))
+			user.visible_message(
+				SPAN_NOTICE("[user] slices uneven and scorched chunks of aluminium off \the [src]."),
+				SPAN_NOTICE("You slice uneven and scorched chunks of aluminium off \the [src]."),
+				SPAN_WARNING("You hear welding.")
+			)
 			overlays.Cut()
-			to_chat(usr, "You slice off [src]'s uneven chunks of aluminum and scorch marks.")
-			return
+		return TRUE
+
+	return ..()
 
 /obj/item/target/attack_hand(mob/user as mob)
 	// taking pinned targets off!

@@ -20,14 +20,21 @@
 	image_overlay = image('icons/obj/items/assemblies/assemblies.dmi', "plastic-explosive2")
 	..()
 
-/obj/item/plastique/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/screwdriver))
+/obj/item/plastique/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
 		open_panel = !open_panel
-		user << "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>"
-	else if(istype(I, /obj/item/wirecutters) || istype(I, /obj/item/multitool) || istype(I, /obj/item/assembly/signaler ))
+		user.visible_message(
+			SPAN_NOTICE("[user] [open_panel ? "opens" : "closes"] the wire panel on \the [src]."),
+			SPAN_NOTICE("You [open_panel ? "open" : "close"] the wire panel on \the [src]."),
+			SPAN_INFO("You hear someone using a screwdriver.")
+		)
+		return TRUE
+
+	if(iswirecutter(tool) || ismultitool(tool) || istype(tool, /obj/item/assembly/signaler))
 		wires.Interact(user)
-	else
-		..()
+		return TRUE
+
+	return ..()
 
 /obj/item/plastique/attack_self(mob/user as mob)
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num

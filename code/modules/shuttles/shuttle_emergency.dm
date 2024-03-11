@@ -159,9 +159,10 @@
 	emagged = TRUE
 	return TRUE
 
-/obj/machinery/computer/shuttle_control/emergency/attackby(obj/item/W as obj, mob/user as mob)
-	read_authorisation(W)
-	. = ..()
+/obj/machinery/computer/shuttle_control/emergency/attackby(obj/item/I, mob/user)
+	if(read_authorisation(I))
+		return TRUE
+	return ..()
 
 /obj/machinery/computer/shuttle_control/emergency/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
 	var/list/data

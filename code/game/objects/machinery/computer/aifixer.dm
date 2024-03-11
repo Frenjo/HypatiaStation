@@ -13,15 +13,16 @@
 	. = ..()
 	overlays.Add(image('icons/obj/machines/computer.dmi', "ai-fixer-empty"))
 
-/obj/machinery/computer/aifixer/attackby(I as obj, user as mob)
+/obj/machinery/computer/aifixer/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/aicard))
-		if(stat & (NOPOWER|BROKEN))
-			to_chat(user, "This terminal isn't functioning right now, get it working!")
-			return
-		I:transfer_ai("AIFIXER", "AICARD", src, user)
+		var/obj/item/aicard/card = I
+		if(stat & (NOPOWER | BROKEN))
+			to_chat(user, SPAN_WARNING("This terminal isn't functioning right now, get it working!"))
+			return TRUE
+		card.transfer_ai("AIFIXER", "AICARD", src, user)
+		return TRUE
 
-	..()
-	return
+	return ..()
 
 /obj/machinery/computer/aifixer/attack_ai(var/mob/user as mob)
 	return attack_hand(user)

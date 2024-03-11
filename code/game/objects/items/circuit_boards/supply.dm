@@ -17,8 +17,8 @@
 
 	var/contraband_enabled = FALSE
 
-/obj/item/circuitboard/supplycomp/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/multitool))
+/obj/item/circuitboard/supplycomp/attack_tool(obj/item/tool, mob/user)
+	if(ismultitool(tool))
 		var/catastasis = contraband_enabled
 		var/opposite_catastasis
 		if(catastasis)
@@ -28,15 +28,14 @@
 			opposite_catastasis = "BROAD"
 			catastasis = "STANDARD"
 
-		switch(alert("Current receiver spectrum is set to: [catastasis]", "Multitool-Circuitboard interface", "Switch to [opposite_catastasis]", "Cancel"))
-		//switch( alert("Current receiver spectrum is set to: " {(src.contraband_enabled) ? ("BROAD") : ("STANDARD")} , "Multitool-Circuitboard interface" , "Switch to " {(src.contraband_enabled) ? ("STANDARD") : ("BROAD")}, "Cancel") )
-			if("Switch to STANDARD", "Switch to BROAD")
-				contraband_enabled = !contraband_enabled
+		var/result = alert("Current receiver spectrum is set to: [catastasis]", "Multitool-Circuitboard Interface", "Switch to [opposite_catastasis]", "Cancel")
+		if(isnotnull(result))
+			switch(result)
+				if("Switch to STANDARD", "Switch to BROAD")
+					contraband_enabled = !contraband_enabled
+		return TRUE
 
-			if("Cancel")
-				return
-			else
-				to_chat(user, "DERP! BUG! Report this (And what you were doing to cause it) to Agouri")
+	return ..()
 
 /obj/item/circuitboard/mining_shuttle
 	name = "circuit board (Mining Shuttle)"

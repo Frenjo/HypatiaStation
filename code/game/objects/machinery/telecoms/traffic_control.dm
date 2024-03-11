@@ -8,6 +8,8 @@
 	icon_state = "computer_generic"
 	req_access = list(ACCESS_TCOMSAT)
 
+	circuit = /obj/item/circuitboard/comm_traffic
+
 	var/screen = TRAFFIC_SCREEN_MAIN_MENU	// the screen number:
 	var/list/servers = list()				// the servers located by the computer
 	var/mob/editingcode
@@ -155,35 +157,6 @@
 	emagged = TRUE
 	updateUsrDialog()
 	return TRUE
-
-/obj/machinery/computer/telecoms/traffic/attackby(obj/item/D as obj, mob/user as mob)
-	if(istype(D, /obj/item/screwdriver))
-		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			if(src.stat & BROKEN)
-				FEEDBACK_BROKEN_GLASS_FALLS(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				new /obj/item/shard(src.loc)
-				var/obj/item/circuitboard/comm_traffic/M = new /obj/item/circuitboard/comm_traffic(A)
-				for(var/obj/C in src)
-					C.loc = src.loc
-				A.circuit = M
-				A.state = 3
-				A.icon_state = "3"
-				A.anchored = TRUE
-				qdel(src)
-			else
-				FEEDBACK_DISCONNECT_MONITOR(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				var/obj/item/circuitboard/comm_traffic/M = new /obj/item/circuitboard/comm_traffic(A)
-				for(var/obj/C in src)
-					C.loc = src.loc
-				A.circuit = M
-				A.state = 4
-				A.icon_state = "4"
-				A.anchored = TRUE
-				qdel(src)
-	updateUsrDialog()
 
 /obj/machinery/computer/telecoms/traffic/proc/update_ide()
 	// loop if there's someone manning the keyboard

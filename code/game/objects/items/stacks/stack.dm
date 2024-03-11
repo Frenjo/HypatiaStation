@@ -178,7 +178,7 @@
 		if(usr)
 			usr.before_take_item(oldsrc)
 		qdel(oldsrc)
-		return TRUE
+	return TRUE
 
 /obj/item/stack/proc/add(extra)
 	if(amount + extra > max_amount)

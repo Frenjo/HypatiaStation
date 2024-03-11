@@ -21,41 +21,6 @@
 			if(P.id == id)
 				doors.Add(P)
 
-/*
-/obj/machinery/computer/turbine_control/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/screwdriver))
-		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			if (src.stat & BROKEN)
-				FEEDBACK_BROKEN_GLASS_FALLS(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				new /obj/item/shard( src.loc )
-				var/obj/item/circuitboard/turbine_control/M = new /obj/item/circuitboard/turbine_control( A )
-				for (var/obj/C in src)
-					C.loc = src.loc
-				M.id = src.id
-				A.circuit = M
-				A.state = 3
-				A.icon_state = "3"
-				A.anchored = TRUE
-				qdel(src)
-			else
-				FEEDBACK_DISCONNECT_MONITOR(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
-				var/obj/item/circuitboard/turbine_control/M = new /obj/item/circuitboard/turbine_control( A )
-				for (var/obj/C in src)
-					C.loc = src.loc
-				M.id = src.id
-				A.circuit = M
-				A.state = 4
-				A.icon_state = "4"
-				A.anchored = TRUE
-				qdel(src)
-	else
-		src.attack_hand(user)
-	return
-*/
-
 /obj/machinery/computer/turbine_control/attack_hand(mob/user as mob)
 	user.machine = src
 	ui_interact(user)

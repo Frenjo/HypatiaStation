@@ -184,36 +184,11 @@
 	updateUsrDialog()
 	return TRUE
 
-// Warning, uncommenting this can have consequences. For example, deconstructing the computer may cause holographic eswords to never derez!
-/*
-/obj/machinery/computer/holodeck_control/attackby(obj/item/D as obj, mob/user as mob)
-	if(istype(D, /obj/item/screwdriver))
-		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			if(stat & BROKEN)
-				FEEDBACK_BROKEN_GLASS_FALLS(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe(loc)
-				new /obj/item/shard(loc)
-				var/obj/item/circuitboard/comm_traffic/M = new /obj/item/circuitboard/comm_traffic(A)
-				for(var/obj/C in src)
-					C.loc = loc
-				A.circuit = M
-				A.state = 3
-				A.icon_state = "3"
-				A.anchored = TRUE
-				del(src)
-			else
-				FEEDBACK_DISCONNECT_MONITOR(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe(loc)
-				var/obj/item/circuitboard/comm_traffic/M = new /obj/item/circuitboard/comm_traffic(A)
-				for (var/obj/C in src)
-					C.loc = loc
-				A.circuit = M
-				A.state = 4
-				A.icon_state = "4"
-				A.anchored = TRUE
-				del(src)
-*/
+// Warning, commenting this can have consequences. For example, deconstructing the computer may cause holographic eswords to never derez!
+/obj/machinery/computer/holodeck_control/attack_tool(obj/item/tool, mob/user)
+	SHOULD_CALL_PARENT(FALSE)
+
+	return FALSE
 
 /obj/machinery/computer/holodeck_control/meteorhit(obj/O as obj)
 	emergencyShutdown()

@@ -14,25 +14,25 @@
 
 	light_color = "#0099ff"
 
-/obj/machinery/computer/card/attackby(O as obj, user as mob)//TODO:SANITY
-	if(istype(O, /obj/item/card/id))
-		var/obj/item/card/id/idcard = O
+/obj/machinery/computer/card/attackby(obj/item/I, mob/user)//TODO:SANITY
+	if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/idcard = I
 		if(ACCESS_CHANGE_IDS in idcard.access)
 			if(!scan)
-				usr.drop_item()
+				user.drop_item()
 				idcard.loc = src
 				scan = idcard
 			else if(!modify)
-				usr.drop_item()
+				user.drop_item()
 				idcard.loc = src
 				modify = idcard
 		else
 			if(!modify)
-				usr.drop_item()
+				user.drop_item()
 				idcard.loc = src
 				modify = idcard
-	else
-		..()
+		return TRUE
+	return ..()
 
 
 /obj/machinery/computer/card/attack_ai(var/mob/user as mob)

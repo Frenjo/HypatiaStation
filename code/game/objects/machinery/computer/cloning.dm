@@ -58,18 +58,21 @@
 
 	return podf
 
-/obj/machinery/computer/cloning/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/disk/data)) //INSERT SOME DISKETTES
-		if(!src.diskette)
-			user.drop_item()
-			W.loc = src
-			src.diskette = W
-			user << "You insert [W]."
-			src.updateUsrDialog()
-			return
-	else
-		..()
-	return
+/obj/machinery/computer/cloning/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/disk/data)) //INSERT SOME DISKETTES
+		if(isnotnull(diskette))
+			to_chat(user, SPAN_WARNING("There is already a disk inserted."))
+			return TRUE
+		user.drop_item()
+		I.loc = src
+		diskette = I
+		user.visible_message(
+			SPAN_INFO("[user] inserts \the [I] into \the [src]."),
+			SPAN_INFO("You insert \the [I] into \the [src].")
+		)
+		updateUsrDialog()
+		return TRUE
+	return ..()
 
 /obj/machinery/computer/cloning/attack_paw(mob/user as mob)
 	return attack_hand(user)

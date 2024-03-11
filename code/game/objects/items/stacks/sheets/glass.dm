@@ -25,31 +25,40 @@
 /obj/item/stack/sheet/glass/attack_self(mob/user as mob)
 	construct_window(user)
 
+/obj/item/stack/sheet/glass/attack_tool(obj/item/tool, mob/user)
+	if(iswire(tool))
+		var/obj/item/stack/cable_coil/cable = tool
+		if(!cable.use(5))
+			to_chat(user, SPAN_WARNING("There is not enough wire in this coil, you need 5 lengths!"))
+			return TRUE
+		if(!use(1))
+			to_chat(user, SPAN_WARNING("There is not enough glass in the stack."))
+			return TRUE
+		user.visible_message(
+			SPAN_NOTICE("[user] attaches some wire to \the [src]."),
+			SPAN_NOTICE("You attach some wire to \the [src].")
+		)
+		new /obj/item/stack/light_w(get_turf(loc))
+		return TRUE
+
+	return ..()
+
 /obj/item/stack/sheet/glass/attackby(obj/item/W, mob/user)
-	..()
-	if(istype(W, /obj/item/stack/cable_coil))
-		var/obj/item/stack/cable_coil/CC = W
-		if(CC.amount < 5)
-			to_chat(user, "\b There is not enough wire in this coil. You need 5 lengths.")
-			return
-		CC.use(5)
-		to_chat(user, SPAN_INFO("You attach wire to the [name]."))
-		new /obj/item/stack/light_w(user.loc)
-		src.use(1)
-	else if(istype(W, /obj/item/stack/rods))
-		var/obj/item/stack/rods/V  = W
-		var/obj/item/stack/sheet/rglass/RG = new(user.loc)
-		RG.add_fingerprint(user)
-		RG.add_to_stacks(user)
-		V.use(1)
-		var/obj/item/stack/sheet/glass/G = src
+	if(istype(W, /obj/item/stack/rods))
+		var/obj/item/stack/rods/rods = W
+		var/obj/item/stack/sheet/rglass/new_glass = new /obj/item/stack/sheet/rglass(get_turf(loc))
+		new_glass.add_fingerprint(user)
+		new_glass.add_to_stacks(user)
+		rods.use(1)
+		var/obj/item/stack/sheet/glass/glass = src
 		qdel(src)
-		var/replace = (user.get_inactive_hand() == G)
-		G.use(1)
-		if(!G && !RG && replace)
-			user.put_in_hands(RG)
-	else
-		return ..()
+		var/replace = (user.get_inactive_hand() == glass)
+		glass.use(1)
+		if(isnull(glass) && isnull(new_glass) && replace)
+			user.put_in_hands(new_glass)
+		return TRUE
+
+	return ..()
 
 /obj/item/stack/sheet/glass/proc/construct_window(mob/user as mob)
 	if(!user || !src)
@@ -268,22 +277,24 @@
 			pixel_x = rand(-5, 5)
 			pixel_y = rand(-5, 5)
 
-/obj/item/shard/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if(istype(W, /obj/item/weldingtool))
-		var/obj/item/weldingtool/WT = W
-		if(WT.remove_fuel(0, user))
-			var/obj/item/stack/sheet/glass/NG = new(user.loc)
-			for(var/obj/item/stack/sheet/glass/G in user.loc)
-				if(G == NG)
-					continue
-				if(G.amount >= G.max_amount)
-					continue
-				G.attackby(NG, user)
-				to_chat(usr, "You add the newly-formed glass to the stack. It now contains [NG.amount] sheets.")
+/obj/item/shard/attack_tool(obj/item/tool, mob/user)
+	if(iswelder(tool))
+		var/obj/item/weldingtool/welder = tool
+		if(!welder.remove_fuel(0, user))
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
+			return TRUE
+		var/turf/T = get_turf(loc)
+		var/obj/item/stack/sheet/glass/new_glass = new /obj/item/stack/sheet/glass(T)
+		for(var/obj/item/stack/sheet/glass/glass in T)
+			if(glass == new_glass)
+				continue
+			if(glass.amount >= glass.max_amount)
+				continue
+			glass.attackby(new_glass, user)
+			to_chat(usr, SPAN_INFO("You add the newly-formed glass to the stack. It now contains [new_glass.amount] sheets."))
+		qdel(src)
+		return TRUE
 
-			qdel(src)
-			return
 	return ..()
 
 /obj/item/shard/Crossed(AM as mob|obj)
@@ -325,21 +336,20 @@
 	construct_window(user)
 
 /obj/item/stack/sheet/glass/plasmaglass/attackby(obj/item/W, mob/user)
-	..()
 	if(istype(W, /obj/item/stack/rods))
-		var/obj/item/stack/rods/V = W
-		var/obj/item/stack/sheet/glass/plasmarglass/RG = new (user.loc)
-		RG.add_fingerprint(user)
-		RG.add_to_stacks(user)
-		V.use(1)
-		var/obj/item/stack/sheet/glass/G = src
+		var/obj/item/stack/rods/rods = W
+		var/obj/item/stack/sheet/glass/plasmarglass/new_glass = new (user.loc)
+		new_glass.add_fingerprint(user)
+		new_glass.add_to_stacks(user)
+		rods.use(1)
+		var/obj/item/stack/sheet/glass/glass = src
 		qdel(src)
-		var/replace = (user.get_inactive_hand() == G)
-		G.use(1)
-		if (!G && !RG && replace)
-			user.put_in_hands(RG)
-	else
-		return ..()
+		var/replace = (user.get_inactive_hand() == glass)
+		glass.use(1)
+		if(isnull(glass) && isnull(new_glass) && replace)
+			user.put_in_hands(new_glass)
+		return TRUE
+	return ..()
 
 /*
  * Reinforced plasma glass sheets

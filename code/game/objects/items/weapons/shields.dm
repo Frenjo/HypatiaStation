@@ -22,14 +22,18 @@
 /obj/item/shield/riot/IsShield()
 	return 1
 
-/obj/item/shield/riot/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/shield/riot/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/melee/baton))
-		if(cooldown < world.time - 25)
-			user.visible_message(SPAN_WARNING("[user] bashes [src] with [W]!"))
+		if(cooldown < (world.time - (2.5 SECONDS)))
+			user.visible_message(
+				SPAN_WARNING("[user] bashes \the [src] with \the [W]!"),
+				SPAN_WARNING("You bash \the [src] with \the [W]!")
+			)
 			playsound(user.loc, 'sound/effects/shieldbash.ogg', 50, 1)
 			cooldown = world.time
-	else
-		..()
+		return TRUE
+
+	return ..()
 
 /obj/item/shield/energy
 	name = "energy combat shield"

@@ -71,16 +71,16 @@
 
 /obj/item/melee/baton/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/cell))
-		if(!bcell)
-			user.drop_item()
-			W.loc = src
-			bcell = W
-			to_chat(user, SPAN_NOTICE("You install a cell in \the [src]."))
-			update_icon()
-		else
+		if(isnotnull(bcell))
 			to_chat(user, SPAN_WARNING("\The [src] already has a cell."))
-
-	..()
+			return TRUE
+		user.drop_item()
+		W.loc = src
+		bcell = W
+		to_chat(user, SPAN_NOTICE("You install \the [W] in \the [src]."))
+		update_icon()
+		return TRUE
+	return ..()
 
 /obj/item/melee/baton/attack_self(mob/user)
 	if(bcell && bcell.charge > hitcost)

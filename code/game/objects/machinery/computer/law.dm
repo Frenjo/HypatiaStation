@@ -23,15 +23,16 @@
 		usr << "\blue The access panel is now closed."
 	return
 
-/obj/machinery/computer/aiupload/attackby(obj/item/O as obj, mob/user as mob)
-	if (user.z > 6)
-		user << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
-		return
-	if(istype(O, /obj/item/ai_module))
-		var/obj/item/ai_module/M = O
+/obj/machinery/computer/aiupload/attackby(obj/item/I, mob/user)
+	if(isNotContactLevel(user.z))
+		to_chat(user, "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!")
+		return TRUE
+
+	if(istype(I, /obj/item/ai_module))
+		var/obj/item/ai_module/M = I
 		M.install(src)
-	else
-		..()
+		return TRUE
+	return ..()
 
 /obj/machinery/computer/aiupload/attack_hand(var/mob/user as mob)
 	if(src.stat & NOPOWER)

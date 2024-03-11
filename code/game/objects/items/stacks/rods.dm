@@ -13,30 +13,31 @@
 	max_amount = 60
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
-/obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
-	..()
-	if(istype(W, /obj/item/weldingtool))
-		var/obj/item/weldingtool/WT = W
-
+/obj/item/stack/rods/attack_tool(obj/item/tool, mob/user)
+	if(iswelder(tool))
+		var/obj/item/weldingtool/welder = tool
 		if(amount < 2)
 			to_chat(user, SPAN_WARNING("You need at least two rods to do this."))
-			return
+			return TRUE
+		if(!welder.remove_fuel(0, user))
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
+			return TRUE
+		var/obj/item/stack/sheet/metal/new_item = new /obj/item/stack/sheet/metal(get_turf(loc))
+		new_item.add_to_stacks(user)
+		visible_message(
+			SPAN_NOTICE("[user] shapes \the [src] into sheets with \the [welder]."),
+			SPAN_NOTICE("You shape \the [src] into sheets with \the [welder]."),
+			SPAN_WARNING("You hear welding.")
+		)
+		var/obj/item/stack/rods/R = src
+		qdel(src)
+		var/replace = (user.get_inactive_hand() == R)
+		R.use(2)
+		if(isnull(R) && replace)
+			user.put_in_hands(new_item)
+		return TRUE
 
-		if(WT.remove_fuel(0, user))
-			var/obj/item/stack/sheet/metal/new_item = new(usr.loc)
-			new_item.add_to_stacks(usr)
-			visible_message(
-				SPAN_WARNING("[src] is shaped into metal by [user.name] with the weldingtool."),
-				SPAN_WARNING("You hear welding.")
-			)
-			var/obj/item/stack/rods/R = src
-			qdel(src)
-			var/replace = (user.get_inactive_hand() == R)
-			R.use(2)
-			if(!R && replace)
-				user.put_in_hands(new_item)
-		return
-	..()
+	return ..()
 
 /obj/item/stack/rods/attack_self(mob/user as mob)
 	src.add_fingerprint(user)

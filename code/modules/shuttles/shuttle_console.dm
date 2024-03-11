@@ -99,6 +99,7 @@
 	hacked = TRUE
 	req_access = list()
 	req_one_access = list()
+	return TRUE
 
 /obj/machinery/computer/shuttle_control/bullet_act(obj/item/projectile/Proj)
 	visible_message("[Proj] ricochets off [src]!")
