@@ -641,12 +641,14 @@
 						b_type = new_b_type
 
 				if("hair")
-					if(species == SPECIES_HUMAN || species == SPECIES_SOGHUN || species == SPECIES_TAJARAN || species == SPECIES_SKRELL)
-						var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference") as color | null
-						if(new_hair)
-							r_hair = hex2num(copytext(new_hair, 2, 4))
-							g_hair = hex2num(copytext(new_hair, 4, 6))
-							b_hair = hex2num(copytext(new_hair, 6, 8))
+					var/datum/species/species_instance = GLOBL.all_species[species]
+					if(!HAS_SPECIES_FLAGS(species_instance, SPECIES_FLAG_HAS_HAIR_COLOUR))
+						return
+					var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference") as color | null
+					if(new_hair)
+						r_hair = hex2num(copytext(new_hair, 2, 4))
+						g_hair = hex2num(copytext(new_hair, 4, 6))
+						b_hair = hex2num(copytext(new_hair, 6, 8))
 
 				if("h_style")
 					var/list/valid_hairstyles = list()
@@ -705,19 +707,22 @@
 						b_eyes = hex2num(copytext(new_eyes, 6, 8))
 
 				if("s_tone")
-					if(!species == SPECIES_HUMAN || !species == SPECIES_TAJARAN)
+					var/datum/species/species_instance = GLOBL.all_species[species]
+					if(!HAS_SPECIES_FLAGS(species_instance, SPECIES_FLAG_HAS_SKIN_TONE))
 						return
 					var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference") as num | null
 					if(new_s_tone)
 						s_tone = 35 - max(min( round(new_s_tone), 220),1)
 
 				if("skin")
-					if(species == SPECIES_SOGHUN || species == SPECIES_TAJARAN || species == SPECIES_SKRELL)
-						var/new_skin = input(user, "Choose your character's skin colour: ", "Character Preference") as color | null
-						if(new_skin)
-							r_skin = hex2num(copytext(new_skin, 2, 4))
-							g_skin = hex2num(copytext(new_skin, 4, 6))
-							b_skin = hex2num(copytext(new_skin, 6, 8))
+					var/datum/species/species_instance = GLOBL.all_species[species]
+					if(!HAS_SPECIES_FLAGS(species_instance, SPECIES_FLAG_HAS_SKIN_COLOUR))
+						return
+					var/new_skin = input(user, "Choose your character's skin colour: ", "Character Preference") as color | null
+					if(new_skin)
+						r_skin = hex2num(copytext(new_skin, 2, 4))
+						g_skin = hex2num(copytext(new_skin, 4, 6))
+						b_skin = hex2num(copytext(new_skin, 6, 8))
 
 				if("ooccolor")
 					var/new_ooccolor = input(user, "Choose your OOC colour:", "Game Preference") as color | null

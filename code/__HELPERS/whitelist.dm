@@ -43,7 +43,7 @@ GLOBAL_GLOBL_LIST_NEW(alien_whitelist)
 /proc/is_alien_whitelisted(mob/M, species)
 	if(!CONFIG_GET(usealienwhitelist))
 		return TRUE
-	if(species == "human" || species == SPECIES_HUMAN)
+	if(species == SPECIES_HUMAN)
 		return TRUE
 	if(check_rights(R_ADMIN, 0))
 		return TRUE

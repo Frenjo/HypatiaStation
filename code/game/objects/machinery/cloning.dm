@@ -220,7 +220,7 @@
 	H.dna.UpdateUI()
 
 	H.f_style = "Shaved"
-	if(R.dna.species == "Human") //no more xenos losing ears/tentacles
+	if(R.dna.species == SPECIES_HUMAN) //no more xenos losing ears/tentacles
 		H.h_style = pick("Bedhead", "Bedhead 2", "Bedhead 3")
 
 	H.set_species(R.dna.species)
