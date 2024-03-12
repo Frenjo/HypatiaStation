@@ -6,13 +6,13 @@
 	icon = 'icons/obj/doors/interior.dmi'
 	icon_state = "door1"
 
-	layer = 2.7
-	var/open_layer = 2.7
-	var/closed_layer = 3.1
-
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
+
+	layer = 2.7
+	var/open_layer = 2.7
+	var/closed_layer = 3.1
 
 	var/secondsElectrified = 0
 	var/visible = TRUE

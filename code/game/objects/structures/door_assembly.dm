@@ -9,8 +9,8 @@
 	var/base_icon_state = ""
 	var/base_name = "Airlock"
 	var/obj/item/airlock_electronics/electronics = null
-	var/airlock_type = "" //the type path of the airlock once completed
-	var/glass_type = "/glass"
+	var/airlock_type = /obj/machinery/door/airlock //the type path of the airlock once completed
+	var/glass_type = /obj/machinery/door/airlock/glass
 	var/glass = 0 // 0 = glass can be installed. -1 = glass can't be installed. 1 = glass is already installed. Text = mineral plating is installed instead.
 	var/created_name = null
 
@@ -21,85 +21,85 @@
 /obj/structure/door_assembly/door_assembly_com
 	base_icon_state = "com"
 	base_name = "Command Airlock"
-	glass_type = "/glass_command"
-	airlock_type = "/command"
+	airlock_type = /obj/machinery/door/airlock/command
+	glass_type = /obj/machinery/door/airlock/glass/command
 
 /obj/structure/door_assembly/door_assembly_sec
 	base_icon_state = "sec"
 	base_name = "Security Airlock"
-	glass_type = "/glass_security"
-	airlock_type = "/security"
+	airlock_type = /obj/machinery/door/airlock/security
+	glass_type = /obj/machinery/door/airlock/glass/security
 
 /obj/structure/door_assembly/door_assembly_eng
 	base_icon_state = "eng"
 	base_name = "Engineering Airlock"
-	glass_type = "/glass_engineering"
-	airlock_type = "/engineering"
+	airlock_type = /obj/machinery/door/airlock/engineering
+	glass_type = /obj/machinery/door/airlock/glass/engineering
 
 /obj/structure/door_assembly/door_assembly_min
 	base_icon_state = "min"
 	base_name = "Mining Airlock"
-	glass_type = "/glass_mining"
-	airlock_type = "/mining"
+	airlock_type = /obj/machinery/door/airlock/mining
+	glass_type = /obj/machinery/door/airlock/glass/mining
 
 /obj/structure/door_assembly/door_assembly_atmo
 	base_icon_state = "atmo"
 	base_name = "Atmospherics Airlock"
-	glass_type = "/glass_atmos"
-	airlock_type = "/atmos"
+	airlock_type = /obj/machinery/door/airlock/atmos
+	glass_type = /obj/machinery/door/airlock/glass/atmos
 
 /obj/structure/door_assembly/door_assembly_research
 	base_icon_state = "res"
 	base_name = "Research Airlock"
-	glass_type = "/glass_research"
-	airlock_type = "/research"
+	airlock_type = /obj/machinery/door/airlock/research
+	glass_type = /obj/machinery/door/airlock/glass/research
 
 /obj/structure/door_assembly/door_assembly_science
 	base_icon_state = "sci"
 	base_name = "Science Airlock"
-	glass_type = "/glass_science"
-	airlock_type = "/science"
+	airlock_type = /obj/machinery/door/airlock/science
+	glass_type = /obj/machinery/door/airlock/glass/science
 
 /obj/structure/door_assembly/door_assembly_med
 	base_icon_state = "med"
 	base_name = "Medical Airlock"
-	glass_type = "/glass_medical"
-	airlock_type = "/medical"
+	airlock_type = /obj/machinery/door/airlock/medical
+	glass_type = /obj/machinery/door/airlock/glass/medical
 
 /obj/structure/door_assembly/door_assembly_mai
 	base_icon_state = "mai"
 	base_name = "Maintenance Airlock"
-	airlock_type = "/maintenance"
+	airlock_type = /obj/machinery/door/airlock/maintenance
 	glass = -1
 
 /obj/structure/door_assembly/door_assembly_ext
 	base_icon_state = "ext"
 	base_name = "External Airlock"
-	airlock_type = "/external"
+	airlock_type = /obj/machinery/door/airlock/external
 	glass = -1
 
 /obj/structure/door_assembly/door_assembly_fre
 	base_icon_state = "fre"
 	base_name = "Freezer Airlock"
-	airlock_type = "/freezer"
+	airlock_type = /obj/machinery/door/airlock/freezer
 	glass = -1
 
 /obj/structure/door_assembly/door_assembly_hatch
 	base_icon_state = "hatch"
 	base_name = "Airtight Hatch"
-	airlock_type = "/hatch"
+	airlock_type = /obj/machinery/door/airlock/hatch
 	glass = -1
 
 /obj/structure/door_assembly/door_assembly_mhatch
 	base_icon_state = "mhatch"
-	base_name = "Maintenance Hatch"
-	airlock_type = "/maintenance_hatch"
+	base_name = "Airtight Maintenance Hatch"
+	airlock_type = /obj/machinery/door/airlock/hatch/maintenance
 	glass = -1
 
 /obj/structure/door_assembly/door_assembly_highsecurity // Borrowing this until WJohnston makes sprites for the assembly
 	base_icon_state = "highsec"
-	base_name = "High Security Airlock"
-	airlock_type = "/highsecurity"
+	base_name = "High-Tech Security Airlock"
+	airlock_type = /obj/machinery/door/airlock/highsecurity
 	glass = -1
 
 /obj/structure/door_assembly/multi_tile
@@ -112,7 +112,7 @@
 	airlock_type = "/multi_tile/maint"
 	glass = 1*/
 	base_icon_state = "g" //Remember to delete this line when reverting "glass" var to 1.
-	airlock_type = "/multi_tile/glass"
+	airlock_type = /obj/machinery/door/airlock/multi_tile/glass
 	glass = -1 //To prevent bugs in deconstruction process.
 
 /obj/structure/door_assembly/multi_tile/New()
@@ -265,10 +265,10 @@
 			var/path
 			if(istext(glass))
 				path = text2path("/obj/machinery/door/airlock/[glass]")
-			else if (glass == 1)
-				path = text2path("/obj/machinery/door/airlock[glass_type]")
+			else if(glass == 1)
+				path = glass_type
 			else
-				path = text2path("/obj/machinery/door/airlock[airlock_type]")
+				path = airlock_type
 			var/obj/machinery/door/airlock/door = new path(src.loc)
 			door.assembly_type = type
 			door.electronics = src.electronics

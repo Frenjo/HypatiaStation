@@ -4,9 +4,10 @@
 	icon = 'icons/obj/doors/emergency/hazard.dmi'
 	icon_state = "door_open"
 	layer = 2
-	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_ENGINE_EQUIP)
 	opacity = FALSE
 	density = FALSE
+
+	req_one_access = list(ACCESS_ATMOSPHERICS, ACCESS_ENGINE_EQUIP)
 
 	//These are frequenly used with windows, so make sure zones can pass.
 	//Generally if a firedoor is at a place where there should be a zone boundery then there will be a regular door underneath it.

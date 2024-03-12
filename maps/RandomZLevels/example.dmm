@@ -36,7 +36,7 @@
 "aJ" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor/plating,/area/awaymission/example)
 "aK" = (/obj/machinery/door/airlock/command,/turf/simulated/floor,/area/awaymission/example)
 "aL" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor,/area/awaymission/example)
-"aM" = (/obj/machinery/door/airlock/maintenance_hatch,/turf/simulated/floor/plating,/area/awaymission/example)
+"aM" = (/obj/machinery/door/airlock/hatch/maintenance,/turf/simulated/floor/plating,/area/awaymission/example)
 "aN" = (/obj/effect/decal/floor/coloured/yellow/corner,/turf/simulated/floor,/area/awaymission/example)
 "aO" = (/obj/effect/decal/floor/coloured/yellow,/turf/simulated/floor,/area/awaymission/example)
 "aP" = (/obj/effect/decal/floor/coloured/yellow/corner{dir = 8},/turf/simulated/floor,/area/awaymission/example)
