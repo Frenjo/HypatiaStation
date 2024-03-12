@@ -225,3 +225,134 @@
 			aiHacking = FALSE
 			if(isnotnull(user))
 				attack_ai(user)
+
+/obj/machinery/door/airlock/attack_tool(obj/item/tool, mob/user)
+	add_fingerprint(user)
+	if(!issilicon(usr)) // If there's ever a handler that's before attack_tool, move this there.
+		if(isElectrified())
+			if(shock(user, 75))
+				return TRUE
+
+	if(istype(tool, /obj/item/taperoll))
+		return TRUE
+
+	if(iswelder(tool) && !(operating > 0) && density)
+		var/obj/item/weldingtool/welder = tool
+		if(!welder.remove_fuel(0, user))
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
+			return TRUE
+		user.visible_message(
+			SPAN_NOTICE("[user] starts to [welded ? "un" : ""]weld \the [src][welded ? "" : " shut"]."),
+			SPAN_NOTICE("You start to [welded ? "un" : ""]weld \the [src][welded ? "" : " shut"]."),
+			SPAN_WARNING("You hear welding.")
+		)
+		playsound(src, 'sound/items/Welder2.ogg', 50, 1)
+		if(do_after(user, 2 SECONDS))
+			welded = !welded
+			user.visible_message(
+				SPAN_NOTICE("[user] [welded ? "" : "un"]welds \the [src][welded ? " shut" : ""]."),
+				SPAN_NOTICE("You [welded ? "" : "un"]weld \the [src][welded ? " shut" : ""].")
+			)
+			update_icon()
+		return TRUE
+
+	if(isscrewdriver(tool))
+		p_open = !p_open
+		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, p_open)
+		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+		update_icon()
+		return TRUE
+
+	if(iswirecutter(tool) || ismultitool(tool) || istype(tool, /obj/item/assembly/signaler))
+		return attack_hand(user)
+
+	if(istype(tool, /obj/item/pai_cable))	// -- TLE
+		var/obj/item/pai_cable/cable = tool
+		cable.plugin(src, user)
+		return TRUE
+
+	return ..()
+
+/obj/machinery/door/airlock/attackby(C as obj, mob/user as mob)
+	if(iscrowbar(C) || istype(C, /obj/item/twohanded/fireaxe))
+		var/beingcrowbarred = iscrowbar(C) //derp, Agouri
+		if(beingcrowbarred && (operating == -1 || density && welded && operating != 1 && p_open && (!arePowerSystemsOn() || stat & NOPOWER) && !locked))
+			playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
+			user.visible_message(
+				SPAN_NOTICE("[user] starts to remove the electronics from the airlock assembly."),
+				SPAN_NOTICE("You start to remove the electronics from the airlock assembly.")
+			)
+			if(do_after(user, 4 SECONDS))
+				user.visible_message(
+					SPAN_NOTICE("[user] removes the electronics from the airlock assembly."),
+					SPAN_NOTICE("You remove the electronics from the airlock assembly.")
+				)
+				var/obj/structure/door_assembly/da = new assembly_type(loc)
+				da.anchored = TRUE
+				if(isnotnull(mineral))
+					da.glass = mineral
+				//else if(glass)
+				else if(glass && !da.glass)
+					da.glass = TRUE
+				da.state = 1
+				da.created_name = name
+				da.update_state()
+
+				var/obj/item/airlock_electronics/ae
+				if(isnull(electronics))
+					ae = new /obj/item/airlock_electronics(loc)
+					if(isnull(req_access))
+						check_access()
+					if(length(req_access))
+						ae.conf_access = req_access
+					else if(length(req_one_access))
+						ae.conf_access = req_one_access
+						ae.one_access = TRUE
+				else
+					ae = electronics
+					electronics = null
+					ae.loc = loc
+				if(operating == -1)
+					ae.icon_state = "door_electronics_smoked"
+					operating = 0
+
+				qdel(src)
+			return TRUE
+
+		if(arePowerSystemsOn() && !(stat & NOPOWER))
+			to_chat(user, SPAN_WARNING("The airlock's motors resist your efforts to force it."))
+			return TRUE
+		else if(locked)
+			to_chat(user, SPAN_WARNING("The airlock's bolts prevent it from being forced."))
+			return TRUE
+		else if(!welded && !operating)
+			if(density)
+				if(!beingcrowbarred) //being fireaxe'd
+					var/obj/item/twohanded/fireaxe/F = C
+					if(F.wielded)
+						spawn(0)
+							open(TRUE)
+					else
+						to_chat(user, SPAN_WARNING("You need to be wielding the fire axe to do that."))
+				else
+					spawn(0)
+						open(TRUE)
+			else
+				if(!beingcrowbarred)
+					var/obj/item/twohanded/fireaxe/F = C
+					if(F.wielded)
+						spawn(0)
+							close(TRUE)
+					else
+						to_chat(user, SPAN_WARNING("You need to be wielding the fire axe to do that."))
+				else
+					spawn(0)
+						close(TRUE)
+			return TRUE
+
+	return ..()
+
+/obj/machinery/door/airlock/plasma/attackby(C as obj, mob/user as mob)
+	if(isnotnull(C))
+		ignite(is_hot(C))
+	. = ..()

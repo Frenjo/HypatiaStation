@@ -124,9 +124,28 @@
 	if(requiresID() && !allowed(null))
 		return
 	..()
+
+/obj/machinery/door/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(operating == -1)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+	if(!density)
+		to_chat(user, SPAN_WARNING("The door must be closed for you to do that."))
+		return FALSE
+
+	FEEDBACK_EMAG_GENERIC(user)
+	flick("door_spark", src)
+	sleep(0.6 SECONDS)
+	open()
+	operating = -1
+	return TRUE
+
+/obj/machinery/door/attack_tool(obj/item/tool, mob/user)
+	if(istype(tool, /obj/item/detective_scanner))
+		return TRUE
+	return ..()
+
 /obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/detective_scanner))
-		return
 	if(operating || isrobot(user))
 		return //borgs can't attack doors open because it conflicts with their AI-like interaction with them.
 	add_fingerprint(user)
@@ -134,7 +153,7 @@
 		user = null
 	if(!requiresID())
 		user = null
-	if(density && (istype(I, /obj/item/card/emag) || istype(I, /obj/item/melee/energy/blade)))
+	if(density && istype(I, /obj/item/melee/energy/blade))
 		flick("door_spark", src)
 		sleep(6)
 		open()
