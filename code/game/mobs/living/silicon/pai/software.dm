@@ -273,8 +273,9 @@
 				var/turf/T = get_turf_or_move(loc)
 				cable = new /obj/item/pai_cable(T)
 				visible_message(
-					message = SPAN_WARNING("A port on [src] opens to reveal [cable], which promptly falls to the floor."),
-					blind_message = SPAN_WARNING("You hear the soft click of something light and hard falling to the ground.")
+					SPAN_NOTICE("A port on [src] opens to reveal \the [cable], which promptly falls to the floor."),
+					SPAN_NOTICE("You open your data port to reveal \the [cable], which promptly falls to the floor."),
+					SPAN_INFO("You hear the soft click of something light and hard falling to the ground.")
 				)
 	//updateUsrDialog()		We only need to account for the single mob this is intended for, and he will *always* be able to call this window
 	paiInterface()		 // So we'll just call the update directly rather than doing some default checks

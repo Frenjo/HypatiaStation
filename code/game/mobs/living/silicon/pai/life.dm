@@ -5,8 +5,9 @@
 	if(isnotnull(cable))
 		if(get_dist(src, cable) > 1)
 			visible_message(
-				message = SPAN_WARNING("The data cable rapidly retracts back into its spool."),
-				blind_message = SPAN_WARNING("You hear a click and the sound of wire spooling rapidly.")
+				SPAN_NOTICE("\The [cable] rapidly retracts back into its spool."),
+				SPAN_NOTICE("Your [cable] rapidly retracts back into its spool."),
+				SPAN_INFO("You hear a click and the sound of wire spooling rapidly.")
 			)
 			qdel(cable)
 
