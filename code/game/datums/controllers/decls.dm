@@ -7,6 +7,10 @@ CONTROLLER_DEF(decls)
 	// A list of all /decl instances, indexed by type path.
 	var/list/instances = list() // TODO: This list should probably be sorted in some way for efficiency.
 
+// The declarations controller should never be deleted or destroyed in any form.
+/datum/controller/decls/Destroy()
+	SHOULD_CALL_PARENT(FALSE)
+
 /datum/controller/decls/proc/get_decl_instance(decl/type_path)
 	RETURN_TYPE(type_path)
 
