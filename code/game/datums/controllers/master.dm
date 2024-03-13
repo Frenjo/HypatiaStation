@@ -282,17 +282,13 @@ CONTROLLER_DEF(master)
 	to_world(SPAN_DANGER("↪ Setting up factions."))
 
 	// Populates the factions list.
-	for(var/path in typesof(/datum/faction))
-		var/datum/faction/F = new path
-		if(!F.name)
-			qdel(F)
-			continue
-		else
-			GLOBL.factions.Add(F)
-			GLOBL.available_factions.Add(F)
+	for(var/path in SUBTYPESOF(/decl/faction))
+		var/decl/faction/F = GET_DECL_INSTANCE(path)
+		GLOBL.factions.Add(F)
+		GLOBL.available_factions.Add(F)
 
 	// Populates the syndicate coalition.
-	for(var/datum/faction/syndicate/S in GLOBL.factions)
+	for(var/decl/faction/syndicate/S in GLOBL.factions)
 		GLOBL.syndicate_coalition.Add(S)
 
 	WAIT_FOR_BACKLOG

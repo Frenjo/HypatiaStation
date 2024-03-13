@@ -367,8 +367,8 @@ PROCESS_DEF(ticker)
 
 	return 1
 
-/datum/process/ticker/proc/getfactionbyname(name)
-	for(var/datum/faction/F in GLOBL.factions)
+/datum/process/ticker/proc/get_faction_by_name(name)
+	for_no_type_check(var/decl/faction/F, GLOBL.factions)
 		if(F.name == name)
 			return F
 
