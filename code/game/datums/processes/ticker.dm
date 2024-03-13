@@ -226,7 +226,7 @@ PROCESS_DEF(ticker)
 			switch(M.z)
 				if(0)	//inside a crate or something
 					var/turf/T = get_turf(M)
-					if(T && isStationLevel(T.z))				//we don't use M.death(0) because it calls a for(/mob) loop and
+					if(T && isstationlevel(T.z))				//we don't use M.death(0) because it calls a for(/mob) loop and
 						M.health = 0
 						M.stat = DEAD
 				if(1)	//on a z-level 1 turf.
@@ -284,7 +284,7 @@ PROCESS_DEF(ticker)
 					world << sound('sound/effects/explosionfar.ogg')
 					cinematic.icon_state = "summary_selfdes"
 			for(var/mob/living/M in GLOBL.living_mob_list)
-				if(isStationLevel(M.loc.z))
+				if(isstationlevel(M.loc.z))
 					M.death()//No mercy
 	//If its actually the end of the round, wait for it to end.
 	//Otherwise if its a verb it will continue on afterwards.

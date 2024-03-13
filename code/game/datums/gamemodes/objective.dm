@@ -85,7 +85,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 		if(target.current.stat == DEAD || !ishuman(target.current) || !target.current.ckey)
 			return 1
 		var/turf/T = get_turf(target.current)
-		if(T && isNotStationLevel(T.z))			//If they leave the station they count as dead for this
+		if(T && isnotstationlevel(T.z))			//If they leave the station they count as dead for this
 			return 2
 		return 0
 	return 1
@@ -122,7 +122,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 			if(target in rev.head_revolutionaries)
 				return 1
 		var/turf/T = get_turf(target.current)
-		if(isnotnull(T) && isNotStationLevel(T.z)) // If they leave the station they count as dead for this.
+		if(isnotnull(T) && isnotstationlevel(T.z)) // If they leave the station they count as dead for this.
 			rval = 2
 		return 0
 	return rval

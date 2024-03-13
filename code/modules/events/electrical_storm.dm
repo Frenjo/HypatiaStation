@@ -29,7 +29,7 @@
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
-		if(isNotStationLevel(T.z))
+		if(isnotstationlevel(T.z))
 			continue
 		if(HAS_AREA_FLAGS(get_area(T), AREA_FLAG_IS_SHIELDED))
 			if(H.client)
@@ -88,7 +88,7 @@
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
-		if(isNotStationLevel(T.z))
+		if(isnotstationlevel(T.z))
 			continue
 		if(HAS_AREA_FLAGS(get_area(T), AREA_FLAG_IS_SHIELDED))
 			if(H.client)

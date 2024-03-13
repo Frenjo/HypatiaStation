@@ -166,7 +166,7 @@
 
 	// Update all maintenance door icons so they start flashing immediately. -Frenjo
 	for_no_type_check(var/obj/machinery/door/airlock/maintenance/M, GLOBL.maintenance_airlocks_list)
-		if(isStationLevel(M.z))
+		if(isstationlevel(M.z))
 			M.update_icon()
 
 /proc/revoke_maint_all_access()
@@ -176,10 +176,10 @@
 
 	// Update all maintenance door icons so they stop flashing immediately. -Frenjo
 	for_no_type_check(var/obj/machinery/door/airlock/maintenance/M, GLOBL.maintenance_airlocks_list)
-		if(isStationLevel(M.z))
+		if(isstationlevel(M.z))
 			M.update_icon()
 
 /obj/machinery/door/airlock/allowed(mob/M)
-	if((isStationLevel(M.z) && maint_all_access) || src.check_access_list(list(ACCESS_MAINT_TUNNELS)))
+	if((isstationlevel(M.z) && maint_all_access) || src.check_access_list(list(ACCESS_MAINT_TUNNELS)))
 		return 1
 	return ..(M)

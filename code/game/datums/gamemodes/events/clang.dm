@@ -77,7 +77,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 		walk_towards(immrod, end, 1)
 	sleep(1)
 	while(immrod)
-		if(isNotStationLevel(immrod.z))
+		if(isnotstationlevel(immrod.z))
 			immrod.z = pick(GLOBL.current_map.station_levels)
 		if(immrod.loc == end)
 			qdel(immrod)

@@ -61,7 +61,7 @@
 
 	proc/count()
 		for(var/turf/T in world)
-			if(isNotStationLevel(T.z)
+			if(isnotstationlevel(T.z)
 				continue
 
 			if(istype(T,/turf/simulated/floor))
@@ -83,7 +83,7 @@
 					src.r_wall += 1
 
 		for(var/obj/O in GLOBL.movable_atom_list)
-			if(isNotStationLevel(O.z))
+			if(isnotstationlevel(O.z))
 				continue
 
 			if(istype(O, /obj/structure/window))

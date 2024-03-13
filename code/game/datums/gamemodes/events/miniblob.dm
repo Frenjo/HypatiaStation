@@ -26,7 +26,7 @@ GLOBAL_GLOBL_INIT(blobevent, FALSE)
 				if(!length(GLOBL.blob_cores))
 					break
 				var/obj/effect/blob/B = pick(GLOBL.blob_cores)
-				if(isNotStationLevel(B.z))
+				if(isnotstationlevel(B.z))
 					continue
 				B.Life()
 		spawn(30)

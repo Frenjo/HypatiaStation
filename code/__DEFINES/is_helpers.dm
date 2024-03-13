@@ -87,3 +87,16 @@
  * Miscellaneous Helpers
 */
 #define hasorgans(X)	ishuman(X)
+
+// Z-level helpers.
+#define isstationlevel(LEVEL) (LEVEL in GLOBL.current_map.station_levels)
+#define isnotstationlevel(LEVEL) !isstationlevel(LEVEL)
+
+#define isplayerlevel(LEVEL) (LEVEL in GLOBL.current_map.player_levels)
+#define isnotplayerlevel(LEVEL) !isplayerlevel(LEVEL)
+
+#define isadminlevel(LEVEL) (LEVEL in GLOBL.current_map.admin_levels)
+#define isnotadminlevel(LEVEL) !isadminlevel(LEVEL)
+
+#define iscontactlevel(LEVEL) (LEVEL in GLOBL.current_map.contact_levels)
+#define isnotcontactlevel(LEVEL) !iscontactlevel(LEVEL)

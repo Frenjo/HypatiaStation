@@ -24,7 +24,7 @@
 	return
 
 /obj/machinery/computer/aiupload/attackby(obj/item/I, mob/user)
-	if(isNotContactLevel(user.z))
+	if(isnotcontactlevel(user.z))
 		to_chat(user, "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!")
 		return TRUE
 

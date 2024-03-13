@@ -37,7 +37,7 @@
 
 	// Updates all fire alarms to display the corresponding alert light.
 	for(var/obj/machinery/firealarm/fire_alarm in GLOBL.machines)
-		if(isContactLevel(fire_alarm.z))
+		if(iscontactlevel(fire_alarm.z))
 			fire_alarm.overlays.Cut()
 			fire_alarm.overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_[name]"))
 

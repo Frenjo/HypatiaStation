@@ -362,7 +362,7 @@
 	return 1
 
 /obj/machinery/power/smes/proc/ion_act()
-	if(isStationLevel(src.z))
+	if(isstationlevel(src.z))
 		if(prob(1)) //explosion
 			visible_message(
 				SPAN_WARNING("The [name] starts to make strange noises!"),

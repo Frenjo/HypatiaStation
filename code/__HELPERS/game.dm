@@ -45,30 +45,6 @@
 
 	return heard
 
-/proc/isStationLevel(level)
-	return level in GLOBL.current_map.station_levels
-
-/proc/isNotStationLevel(level)
-	return !isStationLevel(level)
-
-/proc/isPlayerLevel(level)
-	return level in GLOBL.current_map.player_levels
-
-/proc/isNotPlayerLevel(level)
-	return !isPlayerLevel(level)
-
-/proc/isAdminLevel(level)
-	return level in GLOBL.current_map.admin_levels
-
-/proc/isNotAdminLevel(level)
-	return !isAdminLevel(level)
-
-/proc/isContactLevel(level)
-	return level in GLOBL.current_map.contact_levels
-
-/proc/isNotContactLevel(level)
-	return !isContactLevel(level)
-
 //Magic constants obtained by using linear regression on right-angled triangles of sides 0<x<1, 0<y<1
 //They should approximate pythagoras theorem well enough for our needs.
 //#define k1 0.934

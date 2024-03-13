@@ -17,7 +17,7 @@
 	var/inactive_on_main_station = 0
 	for_no_type_check(var/zone/zone, global.PCair.zones)
 		var/turf/simulated/turf = locate() in zone.contents
-		if(turf && isStationLevel(turf.z))
+		if(turf && isstationlevel(turf.z))
 			if(zone.needs_update)
 				active_on_main_station++
 			else

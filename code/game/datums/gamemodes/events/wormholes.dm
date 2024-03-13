@@ -2,7 +2,7 @@
 	spawn()
 		var/list/pick_turfs = list()
 		for(var/turf/simulated/floor/T in GLOBL.simulated_turf_list)
-			if(isStationLevel(T.z))
+			if(isstationlevel(T.z))
 				pick_turfs += T
 
 		if(length(pick_turfs))

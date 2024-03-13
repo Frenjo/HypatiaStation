@@ -52,7 +52,7 @@
 				continue
 			var/loc_display = "Unknown"
 			var/mob/living/carbon/M = T.imp_in
-			if(isStationLevel(M.z) && !isspace(M.loc))
+			if(isstationlevel(M.z) && !isspace(M.loc))
 				var/turf/mob_loc = get_turf(M)
 				loc_display = mob_loc.loc
 			if(T.malfunction)

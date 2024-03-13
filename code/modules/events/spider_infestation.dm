@@ -18,7 +18,7 @@ GLOBAL_GLOBL_INIT(sent_spiders_to_station, FALSE)
 /datum/event/spider_infestation/start()
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in world)
-		if(!temp_vent.welded && temp_vent.network && isStationLevel(temp_vent.loc.z))
+		if(!temp_vent.welded && temp_vent.network && isstationlevel(temp_vent.loc.z))
 			if(length(temp_vent.network.normal_members) > 50)
 				vents += temp_vent
 

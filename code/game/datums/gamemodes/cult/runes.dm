@@ -10,7 +10,7 @@ var/list/sacrificed = list()
 	for(var/obj/effect/rune/R in GLOBL.movable_atom_list)
 		if(R == src)
 			continue
-		if(R.word1 == cultwords["travel"] && R.word2 == cultwords["self"] && R.word3 == key && isPlayerLevel(R.z))
+		if(R.word1 == cultwords["travel"] && R.word2 == cultwords["self"] && R.word3 == key && isplayerlevel(R.z))
 			index++
 			allrunesloc.len = index
 			allrunesloc[index] = R.loc

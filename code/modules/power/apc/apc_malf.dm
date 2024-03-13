@@ -18,7 +18,7 @@
 	if(istype(malf.loc, /obj/machinery/power/apc)) // Already in an APC
 		to_chat(malf, SPAN_WARNING("You must evacuate your current apc first."))
 		return
-	if(isNotStationLevel(src.z))
+	if(isnotstationlevel(src.z))
 		return
 	src.occupant = new /mob/living/silicon/ai(src, malf.laws, null, 1)
 	src.occupant.adjustOxyLoss(malf.getOxyLoss())

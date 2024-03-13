@@ -3,11 +3,11 @@
  */
 /area/hallway/New()
 	. = ..()
-	if(isContactLevel(z))
+	if(iscontactlevel(z))
 		GLOBL.contactable_hallway_areas.Add(src)
 
 /area/hallway/Destroy()
-	if(isContactLevel(z))
+	if(iscontactlevel(z))
 		GLOBL.contactable_hallway_areas.Remove(src)
 	return ..()
 

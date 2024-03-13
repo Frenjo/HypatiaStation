@@ -2211,7 +2211,7 @@
 				message_admins("[key_name_admin(usr)] made the floor LAVA! It'll last [length] seconds and it will deal [damage] damage to everyone.", 1)
 
 				for(var/turf/simulated/floor/F in GLOBL.simulated_turf_list)
-					if(isStationLevel(F.z))
+					if(isstationlevel(F.z))
 						F.name = "lava"
 						F.desc = "The floor is LAVA!"
 						F.overlays += "lava"
@@ -2236,7 +2236,7 @@
 						sleep(10)
 
 					for(var/turf/simulated/floor/F in GLOBL.simulated_turf_list) // Reset everything.
-						if(isStationLevel(F.z))
+						if(isstationlevel(F.z))
 							F.name = initial(F.name)
 							F.desc = initial(F.desc)
 							F.overlays.Cut()
@@ -2284,7 +2284,7 @@
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","EgL")
 				for_no_type_check(var/obj/machinery/door/airlock/W, GLOBL.airlocks_list)
-					if(isStationLevel(W.z) && !istype(get_area(W), /area/command) && !istype(get_area(W), /area/crew) && !istype(get_area(W), /area/prison))
+					if(isstationlevel(W.z) && !istype(get_area(W), /area/command) && !istype(get_area(W), /area/crew) && !istype(get_area(W), /area/prison))
 						W.req_access = list()
 				message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
 				command_alert("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.")

@@ -140,11 +140,11 @@
 
 /turf/simulated/floor/bluegrid/New()
 	. = ..()
-	if(isContactLevel(z))
+	if(iscontactlevel(z))
 		GLOBL.contactable_blue_grid_turfs.Add(src)
 
 /turf/simulated/floor/bluegrid/Destroy()
-	if(isContactLevel(z))
+	if(iscontactlevel(z))
 		GLOBL.contactable_blue_grid_turfs.Remove(src)
 	return ..()
 

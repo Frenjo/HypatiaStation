@@ -1,6 +1,6 @@
 /proc/christmas_game_start()
 	for(var/obj/structure/flora/tree/pine/xmas in GLOBL.movable_atom_list)
-		if(isNotStationLevel(xmas.z))
+		if(isnotstationlevel(xmas.z))
 			continue
 		for(var/turf/simulated/floor/T in orange(1, xmas))
 			for(var/i = 1, i <= rand(1, 5), i++)

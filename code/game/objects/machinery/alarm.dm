@@ -1194,7 +1194,7 @@ FIRE ALARM
 
 /obj/machinery/firealarm/initialise()
 	. = ..()
-	if(isContactLevel(z))
+	if(iscontactlevel(z))
 		if(isnotnull(GLOBL.security_level))
 			overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_[GLOBL.security_level.name]"))
 		else

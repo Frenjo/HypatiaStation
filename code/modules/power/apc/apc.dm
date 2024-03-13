@@ -95,7 +95,7 @@
 /obj/machinery/power/apc/Destroy()
 	if(malfai && operating)
 		if(IS_GAME_MODE(/datum/game_mode/malfunction))
-			if(isStationLevel(src.z))
+			if(isstationlevel(src.z))
 				var/datum/game_mode/malfunction/malf = global.PCticker.mode
 				malf.apcs--
 
@@ -205,7 +205,7 @@
 					malfai.malfhacking = 0
 					locked = 1
 					if(IS_GAME_MODE(/datum/game_mode/malfunction))
-						if(isStationLevel(src.z))
+						if(isstationlevel(src.z))
 							var/datum/game_mode/malfunction/malf = global.PCticker.mode
 							malf.apcs++
 					if(usr:parent)

@@ -264,7 +264,7 @@
 /obj/machinery/power/apc/proc/set_broken()
 	if(malfai && operating)
 		if(IS_GAME_MODE(/datum/game_mode/malfunction))
-			if(isStationLevel(src.z))
+			if(isstationlevel(src.z))
 				var/datum/game_mode/malfunction/malf = global.PCticker.mode
 				malf.apcs--
 	stat |= BROKEN
@@ -278,7 +278,7 @@
 	operating = !operating
 	if(malfai)
 		if(IS_GAME_MODE(/datum/game_mode/malfunction))
-			if(isStationLevel(src.z))
+			if(isstationlevel(src.z))
 				var/datum/game_mode/malfunction/malf = global.PCticker.mode
 				operating ? malf.apcs++ : malf.apcs--
 

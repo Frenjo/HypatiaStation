@@ -151,7 +151,7 @@
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
-		if(isNotStationLevel(T.z))
+		if(isnotstationlevel(T.z))
 			continue
 		for(var/datum/disease/D in H.viruses)
 			foundAlready = 1
@@ -187,7 +187,7 @@
 	//world << sound('sound/AI/aliens.ogg')
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in GLOBL.machines)
-		if(!temp_vent.welded && temp_vent.network && isStationLevel(temp_vent.loc.z))
+		if(!temp_vent.welded && temp_vent.network && isstationlevel(temp_vent.loc.z))
 			if(length(temp_vent.network.normal_members) > 50) // Stops Aliens getting stuck in small networks. See: Security, Virology
 				vents += temp_vent
 
@@ -224,7 +224,7 @@
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
-		if(isNotStationLevel(T.z))
+		if(isnotstationlevel(T.z))
 			continue
 		if(ishuman(H))
 			H.apply_effect((rand(15, 75)), IRRADIATE, 0)
@@ -241,7 +241,7 @@
 		var/turf/T = get_turf(M)
 		if(!T)
 			continue
-		if(isNotStationLevel(T.z))
+		if(isnotstationlevel(T.z))
 			continue
 		M.apply_effect((rand(15, 75)), IRRADIATE, 0)
 	sleep(100)
