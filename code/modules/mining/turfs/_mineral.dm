@@ -21,21 +21,19 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 	var/mined_ore = 0
 	var/last_act = 0
 
-	var/datum/geosample/geologic_data
+	var/datum/geosample/geologic_data = null
 	var/excavation_level = 0
-	var/list/finds
+	var/list/finds = null
 	var/next_rock = 0
 	var/archaeo_overlay = ""
 	var/excav_overlay = ""
 	var/obj/item/last_find
 	var/datum/artifact_find/artifact_find = null
 
-/turf/simulated/mineral/New()
+/turf/simulated/mineral/initialise()
 	. = ..()
 	update_and_spread_mineral()
 
-/turf/simulated/mineral/initialise()
-	. = ..()
 	// I've tidied this up but I still hate it.
 	var/turf/T = get_step(src, NORTH)
 	if(isnotnull(T))
@@ -86,33 +84,39 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 		if(istype(M.selected, /obj/item/mecha_parts/mecha_equipment/tool/drill))
 			M.selected.action(src)
 
+/turf/simulated/mineral/attack_tool(obj/item/tool, mob/user)
+	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey)) // If there's ever something pre-attack_tool(), then this should be moved there.
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
+		return TRUE
+
+	if(istype(tool, /obj/item/core_sampler))
+		geologic_data.UpdateNearbyArtifactInfo(src)
+		var/obj/item/core_sampler/sampler = tool
+		sampler.sample_item(src, user)
+		return TRUE
+
+	if(istype(tool, /obj/item/depth_scanner))
+		var/obj/item/depth_scanner/scanner = tool
+		scanner.scan_atom(user, src)
+		return TRUE
+
+	if(istype(tool, /obj/item/measuring_tape))
+		var/obj/item/measuring_tape/tape = tool
+		user.visible_message(
+			SPAN_INFO("[user] extends \the [tape] towards \the [src]."),
+			SPAN_INFO("You extend \the [tape] towards \the [src].")
+		)
+		if(do_after(user, 2.5 SECONDS))
+			user.visible_message(
+				SPAN_INFO("\icon[tape] [user] measures the excavation depth of \the [src]."),
+				SPAN_INFO("\icon[tape] [src] has been excavated to a depth of [2 * excavation_level]cm.")
+			)
+		return TRUE
+
+	return ..()
+
 // Not even going to touch this pile of spaghetti.
 /turf/simulated/mineral/attackby(obj/item/W as obj, mob/user as mob)
-	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
-		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
-		return
-
-	if(istype(W, /obj/item/core_sampler))
-		geologic_data.UpdateNearbyArtifactInfo(src)
-		var/obj/item/core_sampler/C = W
-		C.sample_item(src, user)
-		return
-
-	if(istype(W, /obj/item/depth_scanner))
-		var/obj/item/depth_scanner/C = W
-		C.scan_atom(user, src)
-		return
-
-	if(istype(W, /obj/item/measuring_tape))
-		var/obj/item/measuring_tape/P = W
-		user.visible_message(
-			SPAN_INFO("[user] extends [P] towards [src]."),
-			SPAN_INFO("You extend [P] towards [src].")
-		)
-		if(do_after(user, 25))
-			to_chat(user, SPAN_INFO("\icon[P] [src] has been excavated to a depth of [2 * excavation_level]cm."))
-		return
-
 	if(istype(W, /obj/item/pickaxe))
 		var/turf/T = user.loc
 		if(!(isturf(T)))
@@ -219,7 +223,7 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 			next_rock += P.excavation_amount * 10
 			while(next_rock > 100)
 				next_rock -= 100
-				var/obj/item/ore/O = new(src)
+				var/obj/item/ore/O = new /obj/item/ore(src)
 				geologic_data.UpdateNearbyArtifactInfo(src)
 				O.geologic_data = geologic_data
 	else
@@ -239,10 +243,10 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 	if(!mineral.ore_spread || !mineral.ore_spread_chance)
 		return
 
-	for(var/trydir in GLOBL.cardinal)
+	for(var/try_dir in GLOBL.cardinal)
 		if(prob(mineral.ore_spread_chance))
-			var/turf/simulated/mineral/random/target_turf = get_step(src, trydir)
-			if(istype(target_turf) && !target_turf.mineral)
+			var/turf/simulated/mineral/random/target_turf = get_step(src, try_dir)
+			if(istype(target_turf) && isnull(target_turf.mineral))
 				target_turf.mineral = mineral
 				target_turf.update_and_spread_mineral()
 

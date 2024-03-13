@@ -300,7 +300,7 @@ CONTROLLER_DEF(master)
 	to_world(SPAN_DANGER("↪ Setting up xenoarchaeology."))
 
 	for(var/turf/simulated/mineral/M in block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz)))
-		if(!M.geologic_data)
+		if(isnull(M.geologic_data))
 			M.geologic_data = new /datum/geosample(M)
 
 		if(!prob(XENOARCH_SPAWN_CHANCE))
@@ -311,7 +311,7 @@ CONTROLLER_DEF(master)
 		var/list/turf/simulated/mineral/turfs_to_process = list(M)
 		for_no_type_check(var/turf/simulated/mineral/archeo_turf, turfs_to_process)
 			for(var/turf/simulated/mineral/T in orange(1, archeo_turf))
-				if(T.finds)
+				if(isnotnull(T.finds))
 					continue
 				if(T in processed_turfs)
 					continue
@@ -319,7 +319,7 @@ CONTROLLER_DEF(master)
 					turfs_to_process.Add(T)
 
 			processed_turfs.Add(archeo_turf)
-			if(!archeo_turf.finds)
+			if(isnull(archeo_turf.finds))
 				archeo_turf.finds = list()
 				if(prob(50))
 					archeo_turf.finds.Add(new /datum/find(digsite, rand(5, 95)))
@@ -335,10 +335,10 @@ CONTROLLER_DEF(master)
 				var/datum/find/F = archeo_turf.finds[1]
 				if(F.excavation_required <= F.view_range)
 					archeo_turf.archaeo_overlay = "overlay_archaeo[rand(1, 3)]"
-					archeo_turf.overlays += archeo_turf.archaeo_overlay
+					archeo_turf.overlays.Add(archeo_turf.archaeo_overlay)
 
 		//dont create artifact machinery in animal or plant digsites, or if we already have one
-		if(!M.artifact_find && digsite != 1 && digsite != 2 && prob(ARTIFACT_SPAWN_CHANCE))
+		if(isnull(M.artifact_find) && digsite != 1 && digsite != 2 && prob(ARTIFACT_SPAWN_CHANCE))
 			M.artifact_find = new /datum/artifact_find()
 
 	WAIT_FOR_BACKLOG
