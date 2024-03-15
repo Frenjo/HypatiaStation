@@ -13,7 +13,7 @@
  *
  * Nothing happens until something moves. ~ Albert Einstein
 */
-#define RECOMMENDED_VERSION 514
+#define RECOMMENDED_VERSION 515
 /world/New()
 	name = "Space Station 13 - [GLOBL.game_version]: [GLOBL.current_map.station_name]"
 	tick_lag = CONFIG_GET(ticklag)
