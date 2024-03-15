@@ -5,4 +5,4 @@
 	// Glass door glass = 1
 	// don't check then?
 	if(!glass)
-		global.CTcameranet?.updateVisibility(src, 0)
+		global.CTcameranet?.update_visibility(src, 0)

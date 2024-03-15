@@ -13,7 +13,7 @@
 	else
 		camera = new /obj/machinery/camera(src)
 		camera.network = list("ERT")
-		global.CTcameranet.removeCamera(camera)
+		global.CTcameranet.remove_camera(camera)
 		camera.c_tag = user.name
 		to_chat(user, SPAN_INFO("User scanned as [camera.c_tag]. Camera activated."))
 

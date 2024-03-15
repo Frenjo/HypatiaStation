@@ -106,7 +106,7 @@
 				C.network = uniquelist(tempnetwork)
 				tempnetwork = difflist(C.network, GLOBL.restricted_camera_networks)
 				if(!length(tempnetwork))//Camera isn't on any open network - remove its chunk from AI visibility.
-					global.CTcameranet.removeCamera(C)
+					global.CTcameranet.remove_camera(C)
 
 				C.c_tag = input
 

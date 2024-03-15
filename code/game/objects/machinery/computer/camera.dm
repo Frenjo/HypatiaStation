@@ -36,7 +36,7 @@
 		user.set_machine(src)
 
 	var/list/L = list()
-	for (var/obj/machinery/camera/C in global.CTcameranet.cameras)
+	for_no_type_check(var/obj/machinery/camera/C, global.CTcameranet.cameras)
 		L.Add(C)
 
 	camera_sort(L)

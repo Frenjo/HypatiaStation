@@ -216,7 +216,7 @@ rcd light flash thingy on matter drain
 					if(!C.isXRay())
 						C.upgradeXRay()
 						//Update what it can see.
-						global.CTcameranet.updateVisibility(C)
+						global.CTcameranet.update_visibility(C)
 						upgraded = 1
 
 					if(!C.isEmpProof())

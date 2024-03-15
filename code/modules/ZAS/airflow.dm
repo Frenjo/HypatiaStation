@@ -265,6 +265,6 @@ Contains helper procs for airflow, handled in /connection_group.
 	. = list()
 	for(var/turf/T in contents)
 		for(var/atom/movable/A in T)
-			if(A.simulated || A.anchored || istype(A, /obj/effect) || istype(A, /mob/aiEye))
+			if(A.simulated || A.anchored || istype(A, /obj/effect) || istype(A, /mob/ai_eye))
 				continue
 			. += A

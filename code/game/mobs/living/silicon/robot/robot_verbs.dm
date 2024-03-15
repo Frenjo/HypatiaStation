@@ -137,7 +137,7 @@ GLOBAL_GLOBL_LIST_INIT(robot_verbs_default, list(
 	// Disconnect it's camera so it's not so easily tracked.
 	if(isnotnull(camera))
 		camera.network = list()
-		global.CTcameranet.removeCamera(camera)
+		global.CTcameranet.remove_camera(camera)
 
 /*
  * Activate Held Object

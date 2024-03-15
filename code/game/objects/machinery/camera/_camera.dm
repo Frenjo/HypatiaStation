@@ -66,7 +66,7 @@
 			icon_state = "[initial(icon_state)]emp"
 			var/list/previous_network = network
 			network = list()
-			global.CTcameranet.removeCamera(src)
+			global.CTcameranet.remove_camera(src)
 			stat |= EMPED
 			set_light(0)
 			triggerCameraAlarm()
@@ -76,7 +76,7 @@
 				stat &= ~EMPED
 				cancelCameraAlarm()
 				if(can_use())
-					global.CTcameranet.addCamera(src)
+					global.CTcameranet.add_camera(src)
 			for(var/mob/O in GLOBL.mob_list)
 				if(istype(O.machine, /obj/machinery/computer/security))
 					var/obj/machinery/computer/security/S = O.machine
@@ -98,7 +98,7 @@
 
 /obj/machinery/camera/proc/setViewRange(num = 7)
 	view_range = num
-	global.CTcameranet.updateVisibility(src, 0)
+	global.CTcameranet.update_visibility(src, 0)
 
 /obj/machinery/camera/proc/shock(mob/living/user)
 	if(!istype(user))

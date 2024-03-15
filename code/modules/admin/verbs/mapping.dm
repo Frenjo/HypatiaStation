@@ -56,7 +56,7 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 		qdel(C)
 
 	if(GLOBL.camera_range_display_status)
-		for(var/obj/machinery/camera/C in global.CTcameranet.cameras)
+		for_no_type_check(var/obj/machinery/camera/C, global.CTcameranet.cameras)
 			new/obj/effect/debugging/camera_range(C.loc)
 	feedback_add_details("admin_verb", "mCRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -70,7 +70,7 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 
 	var/list/obj/machinery/camera/CL = list()
 
-	for(var/obj/machinery/camera/C in global.CTcameranet.cameras)
+	for_no_type_check(var/obj/machinery/camera/C, global.CTcameranet.cameras)
 		CL += C
 
 	var/output = {"<B>CAMERA ANNOMALITIES REPORT</B><HR>

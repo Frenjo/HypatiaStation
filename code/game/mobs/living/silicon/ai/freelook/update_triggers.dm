@@ -7,7 +7,7 @@
 	var/image/obscured
 
 /turf/proc/visibilityChanged()
-	global.CTcameranet?.updateVisibility(src)
+	global.CTcameranet?.update_visibility(src)
 
 /turf/simulated/New()
 	. = ..()
@@ -20,19 +20,19 @@
 // STRUCTURES
 /obj/structure/New()
 	. = ..()
-	global.CTcameranet?.updateVisibility(src)
+	global.CTcameranet?.update_visibility(src)
 
 /obj/structure/Destroy()
-	global.CTcameranet?.updateVisibility(src)
+	global.CTcameranet?.update_visibility(src)
 	return ..()
 
 // EFFECTS
 /obj/effect/New()
 	. = ..()
-	global.CTcameranet?.updateVisibility(src)
+	global.CTcameranet?.update_visibility(src)
 
 /obj/effect/Destroy()
-	global.CTcameranet?.updateVisibility(src)
+	global.CTcameranet?.update_visibility(src)
 	return ..()
 
 // ROBOT MOVEMENT
@@ -51,6 +51,6 @@
 				camera_updating = TRUE
 				spawn(BORG_CAMERA_BUFFER)
 					if(oldLoc != loc)
-						global.CTcameranet.updatePortableCamera(src.camera)
+						global.CTcameranet.update_portable_camera(src.camera)
 					camera_updating = FALSE
 #undef BORG_CAMERA_BUFFER

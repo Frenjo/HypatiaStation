@@ -189,7 +189,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 
 	var/mob/living/silicon/ai/U = usr
 
-	for(var/obj/machinery/camera/C in global.CTcameranet.cameras)
+	for_no_type_check(var/obj/machinery/camera/C, global.CTcameranet.cameras)
 		if(!C.can_use())
 			continue
 
@@ -207,7 +207,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 	if(isnull(network))
 		network = old_network // If nothing is selected
 	else
-		for(var/obj/machinery/camera/C in global.CTcameranet.cameras)
+		for_no_type_check(var/obj/machinery/camera/C, global.CTcameranet.cameras)
 			if(!C.can_use())
 				continue
 			if(network in C.network)

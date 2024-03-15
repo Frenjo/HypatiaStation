@@ -2184,7 +2184,7 @@
 			if("friendai")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","FA")
-				for(var/mob/aiEye/aE in GLOBL.mob_list)
+				for(var/mob/ai_eye/aE in GLOBL.mob_list)
 					aE.icon_state = "ai_friend"
 				var/obj/machinery/computer/communications/comms = locate() in GLOBL.communications_consoles
 				comms?.post_status("friend_computer")

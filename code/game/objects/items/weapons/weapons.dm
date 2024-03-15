@@ -338,7 +338,7 @@
 
 /obj/item/camera_bug/attack_self(mob/usr as mob)
 	var/list/cameras = list()
-	for(var/obj/machinery/camera/C in global.CTcameranet.cameras)
+	for_no_type_check(var/obj/machinery/camera/C, global.CTcameranet.cameras)
 		if(C.bugged && C.status)
 			cameras.Add(C)
 	if(length(cameras) == 0)

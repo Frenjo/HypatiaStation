@@ -3,7 +3,7 @@
 		return
 
 	var/list/L = list()
-	for(var/obj/machinery/camera/C in global.CTcameranet.cameras)
+	for_no_type_check(var/obj/machinery/camera/C, global.CTcameranet.cameras)
 		L.Add(C)
 
 	camera_sort(L)
@@ -165,9 +165,9 @@
 		return 0
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
-		if(!(R.camera && R.camera.can_use()) && !global.CTcameranet.checkCameraVis(M))
+		if(!(R.camera && R.camera.can_use()) && !global.CTcameranet.is_on_viewable_turf(M))
 			return 0
-	else if(!global.CTcameranet.checkCameraVis(M))
+	else if(!global.CTcameranet.is_on_viewable_turf(M))
 		return 0
 	return 1
 

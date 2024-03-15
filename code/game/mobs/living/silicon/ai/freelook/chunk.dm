@@ -4,13 +4,13 @@
 //
 // A 16x16 grid of the map with a list of turfs that can be seen, are visible and are dimmed.
 // Allows the AI Eye to stream these chunks and know what it can and cannot see.
-/datum/camerachunk
-	var/list/obscuredTurfs = list()
-	var/list/visibleTurfs = list()
-	var/list/obscured = list()
-	var/list/cameras = list()
-	var/list/turfs = list()
-	var/list/seenby = list()
+/datum/camera_chunk
+	var/list/turf/obscured_turfs = list()
+	var/list/turf/visible_turfs = list()
+	var/list/image/obscured = list()
+	var/list/obj/machinery/camera/cameras = list()
+	var/list/turf/turfs = list()
+	var/list/mob/ai_eye/seen_by = list()
 
 	var/visible = 0
 	var/changed = FALSE
@@ -21,7 +21,7 @@
 	var/z = 0
 
 // Create a new camera chunk, since the chunks are made as they are needed.
-/datum/camerachunk/New(loc, x, y, z)
+/datum/camera_chunk/New(loc, x, y, z)
 	// 0xf = 15
 	x &= ~0xf
 	y &= ~0xf
@@ -38,8 +38,7 @@
 		if(t.x >= x && t.y >= y && t.x < x + 16 && t.y < y + 16)
 			turfs[t] = t
 
-	for(var/camera in cameras)
-		var/obj/machinery/camera/c = camera
+	for_no_type_check(var/obj/machinery/camera/c, cameras)
 		if(isnull(c))
 			continue
 
@@ -47,54 +46,53 @@
 			continue
 
 		for(var/turf/t in c.can_see())
-			visibleTurfs[t] = t
+			visible_turfs[t] = t
 
 	// Removes turf that isn't in turfs.
-	visibleTurfs &= turfs
+	visible_turfs &= turfs
 
-	obscuredTurfs = turfs - visibleTurfs
+	obscured_turfs = turfs - visible_turfs
 
-	for(var/turf in obscuredTurfs)
-		var/turf/t = turf
-		if(!t.obscured)
+	for_no_type_check(var/turf/t, obscured_turfs)
+		if(isnull(t.obscured))
 			t.obscured = image('icons/effects/cameravis.dmi', t, "black", 15)
 			t.obscured.plane = OBSCURITY_PLANE
 		obscured.Add(t.obscured)
 
 // Add an AI eye to the chunk, then update if changed.
-/datum/camerachunk/proc/add(mob/aiEye/ai)
+/datum/camera_chunk/proc/add(mob/ai_eye/ai)
 	if(isnull(ai.ai))
 		return
 
-	ai.visibleCameraChunks.Add(src)
+	ai.visible_camera_chunks.Add(src)
 	if(isnotnull(ai.ai.client))
 		ai.ai.client.images.Add(obscured)
 	visible++
-	seenby.Add(ai)
+	seen_by.Add(ai)
 	if(changed && !updating)
 		update()
 
 // Remove an AI eye from the chunk, then update if changed.
-/datum/camerachunk/proc/remove(mob/aiEye/ai)
+/datum/camera_chunk/proc/remove(mob/ai_eye/ai)
 	if(isnull(ai.ai))
 		return
 
-	ai.visibleCameraChunks.Remove(src)
+	ai.visible_camera_chunks.Remove(src)
 	if(isnotnull(ai.ai.client))
 		ai.ai.client.images.Remove(obscured)
-	seenby -= ai
+	seen_by.Remove(ai)
 	if(visible > 0)
 		visible--
 
 // Called when a chunk has changed. I.E: A wall was deleted.
-/datum/camerachunk/proc/visibilityChanged(turf/loc)
-	if(isnull(visibleTurfs[loc]))
+/datum/camera_chunk/proc/visibilityChanged(turf/loc)
+	if(isnull(visible_turfs[loc]))
 		return
 	hasChanged()
 
 // Updates the chunk, makes sure that it doesn't update too much. If the chunk isn't being watched it will
 // instead be flagged to update the next time an AI Eye moves near it.
-/datum/camerachunk/proc/hasChanged(update_now = 0)
+/datum/camera_chunk/proc/hasChanged(update_now = 0)
 	if(visible || update_now)
 		if(!updating)
 			updating = TRUE
@@ -105,14 +103,12 @@
 		changed = TRUE
 
 // The actual updating. It gathers the visible turfs from cameras and puts them into the appropiate lists.
-/datum/camerachunk/proc/update()
+/datum/camera_chunk/proc/update()
 	set background = BACKGROUND_ENABLED
 
-	var/list/newVisibleTurfs = list()
+	var/list/turf/new_visible_turfs = list()
 
-	for(var/camera in cameras)
-		var/obj/machinery/camera/c = camera
-
+	for_no_type_check(var/obj/machinery/camera/c, cameras)
 		if(isnull(c))
 			continue
 
@@ -124,40 +120,36 @@
 			continue
 
 		for(var/turf/t in c.can_see())
-			newVisibleTurfs[t] = t
+			new_visible_turfs[t] = t
 
 	// Removes turf that isn't in turfs.
-	newVisibleTurfs &= turfs
+	new_visible_turfs &= turfs
 
-	var/list/visAdded = newVisibleTurfs - visibleTurfs
-	var/list/visRemoved = visibleTurfs - newVisibleTurfs
+	var/list/turf/vis_added = new_visible_turfs - visible_turfs
+	var/list/turf/vis_removed = visible_turfs - new_visible_turfs
 
-	visibleTurfs = newVisibleTurfs
-	obscuredTurfs = turfs - newVisibleTurfs
+	visible_turfs = new_visible_turfs
+	obscured_turfs = turfs - new_visible_turfs
 
-	for(var/turf in visAdded)
-		var/turf/t = turf
-		if(t.obscured)
+	for_no_type_check(var/turf/t, vis_added)
+		if(isnotnull(t.obscured))
 			obscured.Remove(t.obscured)
-			for(var/eye in seenby)
-				var/mob/aiEye/m = eye
+			for_no_type_check(var/mob/ai_eye/m, seen_by)
 				if(isnull(m?.ai))
 					continue
 				if(isnotnull(m.ai.client))
 					m.ai.client.images.Remove(t.obscured)
 
-	for(var/turf in visRemoved)
-		var/turf/t = turf
-		if(isnotnull(obscuredTurfs[t]))
-			if(!t.obscured)
+	for_no_type_check(var/turf/t, vis_removed)
+		if(isnotnull(obscured_turfs[t]))
+			if(isnull(t.obscured))
 				t.obscured = image('icons/effects/cameravis.dmi', t, "black", 15)
 				t.obscured.plane = OBSCURITY_PLANE
 
 			obscured.Add(t.obscured)
-			for(var/eye in seenby)
-				var/mob/aiEye/m = eye
+			for_no_type_check(var/mob/ai_eye/m, seen_by)
 				if(isnull(m?.ai))
-					seenby.Remove(m)
+					seen_by.Remove(m)
 					continue
 				if(isnotnull(m.ai.client))
 					m.ai.client.images.Add(t.obscured)

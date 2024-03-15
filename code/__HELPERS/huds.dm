@@ -78,7 +78,7 @@ the HUD updates properly! */
 
 	return view(T)
 
-/mob/aiEye/in_view(turf/T)
+/mob/ai_eye/in_view(turf/T)
 	RETURN_TYPE(/list)
 
 	var/list/viewed = list()
