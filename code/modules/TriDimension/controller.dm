@@ -97,8 +97,11 @@
 			L.Remove(T)
 			continue
 
-		T.overlays.Remove(T.z_overlays)
-		T.z_overlays.Remove(T.z_overlays)
+		if(isnotnull(T.z_overlays))
+			T.overlays.Remove(T.z_overlays)
+			T.z_overlays.Remove(T.z_overlays)
+		else
+			T.z_overlays = list()
 
 		if(down && (isspace(T) || isopenspace(T)))
 			var/turf/below = locate(T.x, T.y, down_target)
@@ -237,7 +240,7 @@
 
 // Overrides
 /turf
-	var/list/z_overlays = list()
+	var/list/z_overlays
 
 /turf/New()
 	. = ..()
