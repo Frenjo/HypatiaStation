@@ -18,12 +18,10 @@
 		amount_per_transfer_from_this = N
 
 /obj/item/reagent_containers/New()
-	..()
+	. = ..()
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/item/reagent_containers/verb/set_APTFT
-	var/datum/reagents/R = new/datum/reagents(volume)
-	reagents = R
-	R.my_atom = src
+	create_reagents(volume)
 
 /obj/item/reagent_containers/attack_self(mob/user as mob)
 	return

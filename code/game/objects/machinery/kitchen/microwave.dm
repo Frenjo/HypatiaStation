@@ -26,9 +26,8 @@
 *   Initialising
 ********************/
 /obj/machinery/microwave/New()
-	..()
-	reagents = new/datum/reagents(100)
-	reagents.my_atom = src
+	. = ..()
+	create_reagents(100)
 	if(!available_recipes)
 		available_recipes = new
 		for(var/type in SUBTYPESOF(/datum/recipe))

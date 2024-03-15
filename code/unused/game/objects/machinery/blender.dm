@@ -24,9 +24,7 @@ the blender or the processor: Processor items are solid objects and Blender resu
 	var/container = 1			//Is there a jug attached? Could have been done with a for loop but it's less code this way.
 
 	New()
-		var/datum/reagents/R = new/datum/reagents(100)		//Its large since you only get one.
-		reagents = R
-		R.my_atom = src
+		create_reagents(100) // Its large since you only get one.
 		src.contents += new /obj/item/reagent_containers/glass/blender_jug(src)
 		src.container = "/obj/item/reagent_containers/glass/blender_jug"		//Loads a jug into the blender.
 

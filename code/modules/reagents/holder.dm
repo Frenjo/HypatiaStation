@@ -555,5 +555,5 @@
 // Convenience proc to create a reagents holder for an atom
 // Max vol is maximum volume of holder
 /atom/proc/create_reagents(max_vol)
-	reagents = new/datum/reagents(max_vol)
+	reagents = new /datum/reagents(max_vol)
 	reagents.my_atom = src

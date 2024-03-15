@@ -20,9 +20,7 @@
 		else
 			set_species()
 
-	var/datum/reagents/R = new/datum/reagents(1000)
-	reagents = R
-	R.my_atom = src
+	create_reagents(1000)
 
 	hud_list[HEALTH_HUD]		= image('icons/mob/screen/hud.dmi', src, "hudhealth100")
 	hud_list[STATUS_HUD]		= image('icons/mob/screen/hud.dmi', src, "hudhealthy")
@@ -34,7 +32,7 @@
 	hud_list[SPECIALROLE_HUD]	= image('icons/mob/screen/hud.dmi', src, "hudblank")
 	hud_list[STATUS_HUD_OOC]	= image('icons/mob/screen/hud.dmi', src, "hudhealthy")
 
-	..()
+	. = ..()
 
 	if(dna)
 		dna.real_name = real_name

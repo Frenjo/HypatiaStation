@@ -252,12 +252,10 @@
 	amount_per_transfer_from_this = 5
 
 	New()
-		var/datum/reagents/R = new/datum/reagents(20)
-		reagents = R
-		R.my_atom = src
+		create_reagents(20)
 		var/datum/disease/F = new /datum/disease/rhumba_beat
 		var/list/data = list("virus"= F)
-		R.add_reagent("blood", 20, data)
+		reagents.add_reagent("blood", 20, data)
 */
 
 /obj/item/reagent_containers/glass/bottle/brainrot

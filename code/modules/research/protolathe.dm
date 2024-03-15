@@ -35,9 +35,7 @@ Note: Must be placed west/left of and R&D console to function.
 	var/T = 0
 	for(var/obj/item/reagent_containers/glass/G in component_parts)
 		T += G.reagents.maximum_volume
-	var/datum/reagents/R = new/datum/reagents(T)		//Holder for the reagents used as materials.
-	reagents = R
-	R.my_atom = src
+	create_reagents(T) // Holder for the reagents used as materials.
 	T = 0
 	for(var/obj/item/stock_part/matter_bin/M in component_parts)
 		T += M.rating

@@ -26,9 +26,7 @@
 	..()
 
 	// Amorphs don't have a blood vessel, but they can have reagents in their body
-	var/datum/reagents/R = new/datum/reagents(1000)
-	reagents = R
-	R.my_atom = src
+	create_reagents(1000)
 
 	// Amorphs have no DNA(they're more like carbon-based machines)
 

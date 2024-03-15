@@ -242,10 +242,8 @@
 	modules.Add(new /obj/item/reagent_containers/food/drinks/shaker(src))
 
 	emag = new /obj/item/reagent_containers/food/drinks/cans/beer(src)
-	var/datum/reagents/R = new /datum/reagents(50)
-	emag.reagents = R
-	R.my_atom = emag
-	R.add_reagent("beer2", 50)
+	emag.create_reagents(50)
+	emag.reagents.add_reagent("beer2", 50)
 	emag.name = "Mickey Finn's Special Brew"
 
 /obj/item/robot_module/butler/add_languages(mob/living/silicon/robot/R)

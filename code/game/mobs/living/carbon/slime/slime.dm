@@ -66,9 +66,7 @@
 	nutrition = 800 // 1200 = max
 
 /mob/living/carbon/slime/New()
-	var/datum/reagents/R = new/datum/reagents(100)
-	reagents = R
-	R.my_atom = src
+	create_reagents(100)
 	if(name == "baby slime")
 		name = text("[colour] baby slime ([rand(1, 1000)])")
 	else
@@ -77,7 +75,7 @@
 	spawn(1)
 		regenerate_icons()
 		to_chat(src, SPAN_INFO("Your icons have been generated!"))
-	..()
+	. = ..()
 
 /mob/living/carbon/slime/adult/New()
 	//verbs.Remove(/mob/living/carbon/slime/verb/ventcrawl)
@@ -480,10 +478,8 @@
 	var/Uses = 1 // uses before it goes inert
 
 /obj/item/slime_extract/New()
-	..()
-	var/datum/reagents/R = new/datum/reagents(100)
-	reagents = R
-	R.my_atom = src
+	. = ..()
+	create_reagents(100)
 
 
 /obj/item/slime_extract/grey
@@ -814,10 +810,8 @@
 	var/Uses = 5 // uses before it goes inert
 
 /obj/item/slime_core/New()
-		..()
-		var/datum/reagents/R = new/datum/reagents(100)
-		reagents = R
-		R.my_atom = src
+		. = ..()
+		create_reagents(100)
 		POWERFLAG = rand(1,10)
 		Uses = rand(7, 25)
 		//flags |= NOREACT

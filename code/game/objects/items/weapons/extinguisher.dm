@@ -33,10 +33,8 @@
 	sprite_name = "miniFE"
 
 /obj/item/extinguisher/New()
-	var/datum/reagents/R = new/datum/reagents(max_water)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("water", max_water)
+	create_reagents(max_water)
+	reagents.add_reagent("water", max_water)
 	..()
 
 /obj/item/extinguisher/examine()
@@ -108,11 +106,9 @@
 			spawn(0)
 				var/obj/effect/water/W = new /obj/effect/water(get_turf(src))
 				var/turf/my_target = pick(the_targets)
-				var/datum/reagents/R = new/datum/reagents(5)
 				if(!W)
 					return
-				W.reagents = R
-				R.my_atom = W
+				W.create_reagents(5)
 				if(!W || !src)
 					return
 				src.reagents.trans_to(W, 1)

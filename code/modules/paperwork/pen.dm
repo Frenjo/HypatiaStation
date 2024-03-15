@@ -64,12 +64,9 @@
 
 
 /obj/item/pen/sleepypen/New()
-	var/datum/reagents/R = new/datum/reagents(30) //Used to be 300
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("chloralhydrate", 22)	//Used to be 100 sleep toxin//30 Chloral seems to be fatal, reducing it to 22./N
-	..()
-	return
+	create_reagents(30) // Used to be 300.
+	reagents.add_reagent("chloralhydrate", 22)	//Used to be 100 sleep toxin//30 Chloral seems to be fatal, reducing it to 22./N
+	. = ..()
 
 
 /obj/item/pen/sleepypen/attack(mob/M as mob, mob/user as mob)
@@ -100,11 +97,8 @@
 
 
 /obj/item/pen/paralysis/New()
-	var/datum/reagents/R = new/datum/reagents(50)
-	reagents = R
-	R.my_atom = src
-	R.add_reagent("zombiepowder", 10)
-	R.add_reagent("impedrezene", 25)
-	R.add_reagent("cryptobiolin", 15)
-	..()
-	return
+	create_reagents(50)
+	reagents.add_reagent("zombiepowder", 10)
+	reagents.add_reagent("impedrezene", 25)
+	reagents.add_reagent("cryptobiolin", 15)
+	. = ..()

@@ -278,10 +278,8 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	return dat
 
 /obj/item/implant/chem/New()
-	..()
-	var/datum/reagents/R = new/datum/reagents(50)
-	reagents = R
-	R.my_atom = src
+	. = ..()
+	create_reagents(50)
 
 /obj/item/implant/chem/trigger(emote, source as mob)
 	if(emote == "deathgasp")

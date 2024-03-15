@@ -16,10 +16,8 @@
 	var/menustat = "menu"
 
 /obj/machinery/biogenerator/New()
-	..()
-	var/datum/reagents/R = new/datum/reagents(1000)
-	reagents = R
-	R.my_atom = src
+	. = ..()
+	create_reagents(1000)
 	beaker = new /obj/item/reagent_containers/glass/beaker/large(src)
 
 /obj/machinery/biogenerator/on_reagent_change()			//When the reagents change, change the icon as well.

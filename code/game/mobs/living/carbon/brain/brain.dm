@@ -11,10 +11,8 @@
 	var/alert = null
 
 /mob/living/carbon/brain/New()
-	var/datum/reagents/R = new/datum/reagents(1000)
-	reagents = R
-	R.my_atom = src
-	..()
+	create_reagents(1000)
+	. = ..()
 
 /mob/living/carbon/brain/Destroy()
 	if(key)				//If there is a mob connected to this thing. Have to check key twice to avoid false death reporting.

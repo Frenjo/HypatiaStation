@@ -6,11 +6,9 @@
 	var/xcom_state
 
 	New()
-		..()
+		. = ..()
 		spawn (1)
-			var/datum/reagents/R = new/datum/reagents(100)
-			reagents = R
-			R.my_atom = src
+			create_reagents(100)
 
 			mind = new()
 			mind.key = key

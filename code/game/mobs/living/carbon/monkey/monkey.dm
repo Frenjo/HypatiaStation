@@ -41,9 +41,7 @@
 	uni_append = list(0x044, 0xC5D) // 044C5D
 
 /mob/living/carbon/monkey/New()
-	var/datum/reagents/R = new/datum/reagents(1000)
-	reagents = R
-	R.my_atom = src
+	create_reagents(1000)
 
 	if(name == initial(name)) //To stop Pun-Pun becoming generic.
 		name = "[name] ([rand(1, 1000)])"
@@ -76,9 +74,8 @@
 
 		update_muts=1
 
-	..()
+	. = ..()
 	update_icons()
-	return
 
 /mob/living/carbon/monkey/soghun/New()
 	..()

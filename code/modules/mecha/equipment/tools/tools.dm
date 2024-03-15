@@ -202,11 +202,9 @@
 	range = MELEE|RANGED
 
 /obj/item/mecha_parts/mecha_equipment/tool/extinguisher/New()
-	reagents = new/datum/reagents(200)
-	reagents.my_atom = src
+	create_reagents(200)
 	reagents.add_reagent("water", 200)
-	..()
-	return
+	. = ..()
 
 /obj/item/mecha_parts/mecha_equipment/tool/extinguisher/action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
 	if(!action_checks(target) || get_dist(chassis, target) > 3)
@@ -235,9 +233,7 @@
 						if(!W)
 							return
 						var/turf/my_target = pick(the_targets)
-						var/datum/reagents/R = new/datum/reagents(5)
-						W.reagents = R
-						R.my_atom = W
+						W.create_reagents(5)
 						src.reagents.trans_to(W, 1)
 						for(var/b = 0, b < 4, b++)
 							if(!W)

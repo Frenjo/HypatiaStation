@@ -25,8 +25,7 @@
 
 /obj/item/mass_spectrometer/New()
 	. = ..()
-	reagents = new /datum/reagents(5)
-	reagents.my_atom = src
+	create_reagents(5)
 
 /obj/item/mass_spectrometer/on_reagent_change()
 	if(reagents.total_volume)

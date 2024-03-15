@@ -53,9 +53,7 @@
 
 
 /mob/living/carbon/metroid/New()
-	var/datum/reagents/R = new/datum/reagents(100)
-	reagents = R
-	R.my_atom = src
+	create_reagents(100)
 	if(name == "baby metroid")
 		name = text("baby metroid ([rand(1, 1000)])")
 	else
@@ -64,7 +62,7 @@
 	spawn (1)
 		regenerate_icons()
 		src << "\blue Your icons have been generated!"
-	..()
+	. = ..()
 
 /mob/living/carbon/metroid/adult/New()
 	verbs.Remove(/mob/living/carbon/metroid/verb/ventcrawl)
