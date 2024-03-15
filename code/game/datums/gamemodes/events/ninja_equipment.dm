@@ -949,8 +949,6 @@ ________________________________________________________________________________
 		if("APC")
 			var/obj/machinery/power/apc/A = target
 			if(A.cell&&A.cell.charge)
-				var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
-				spark_system.set_up(5, 0, A.loc)
 				while(G.candrain&&A.cell.charge>0&&!maxcapacity)
 					drain = rand(G.mindrain,G.maxdrain)
 					if(A.cell.charge<drain)
@@ -959,7 +957,7 @@ ________________________________________________________________________________
 						drain = S.cell.maxcharge-S.cell.charge
 						maxcapacity = 1//Reached maximum battery capacity.
 					if (do_after(U,10))
-						spark_system.start()
+						make_sparks(5, FALSE, A.loc)
 						playsound(A.loc, "sparks", 50, 1)
 						A.cell.charge-=drain
 						S.cell.charge+=drain
@@ -977,8 +975,6 @@ ________________________________________________________________________________
 		if("SMES")
 			var/obj/machinery/power/smes/A = target
 			if(A.charge)
-				var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
-				spark_system.set_up(5, 0, A.loc)
 				while(G.candrain&&A.charge>0&&!maxcapacity)
 					drain = rand(G.mindrain,G.maxdrain)
 					if(A.charge<drain)
@@ -987,7 +983,7 @@ ________________________________________________________________________________
 						drain = S.cell.maxcharge-S.cell.charge
 						maxcapacity = 1
 					if (do_after(U,10))
-						spark_system.start()
+						make_sparks(5, FALSE, A.loc)
 						playsound(A.loc, "sparks", 50, 1)
 						A.charge-=drain
 						S.cell.charge+=drain
@@ -1018,10 +1014,6 @@ ________________________________________________________________________________
 		if("MACHINERY")//Can be applied to generically to all powered machinery. I'm leaving this alone for now.
 			var/obj/machinery/A = target
 			if(A.powered())//If powered.
-
-				var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
-				spark_system.set_up(5, 0, A.loc)
-
 				var/obj/machinery/power/apc/B = A.loc.loc:get_apc()//Object.turf.area find APC
 				if(B)//If APC exists. Might not if the area is unpowered like CentCom.
 					var/datum/powernet/PN = B.terminal.powernet
@@ -1046,7 +1038,7 @@ ________________________________________________________________________________
 							maxcapacity = 1
 						else
 							totaldrain += drained
-						spark_system.start()
+						make_sparks(5, FALSE, A.loc)
 						if(drained==0)	break
 					to_chat(U, SPAN_INFO("Gained <B>[totaldrain]</B> energy from the power network."))
 				else
@@ -1389,9 +1381,7 @@ It is possible to destroy the net by the occupant or someone else.
 		to_chat(M, SPAN_WARNING("You appear in a strange place!"))
 
 		spawn(0)
-			var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
-			spark_system.set_up(5, 0, M.loc)
-			spark_system.start()
+			make_sparks(5, FALSE, M.loc)
 			playsound(M.loc, 'sound/effects/phasein.ogg', 25, 1)
 			playsound(M.loc, 'sound/effects/sparks2.ogg', 50, 1)
 			anim(M.loc,M,'icons/mob/mob.dmi',,"phasein",,M.dir)

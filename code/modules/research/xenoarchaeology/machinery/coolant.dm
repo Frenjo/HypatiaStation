@@ -35,13 +35,8 @@
 	explode()
 
 /obj/structure/reagent_dispensers/coolanttank/proc/explode()
-	var/datum/effect/system/smoke_spread/S = new /datum/effect/system/smoke_spread
-	//S.attach(src)
-	S.set_up(5, 0, src.loc)
-
+	make_smoke(5, FALSE, loc)
 	playsound(src, 'sound/effects/smoke.ogg', 50, 1, -3)
-	spawn(0)
-		S.start()
 
 	var/datum/gas_mixture/env = src.loc.return_air()
 	if(env)

@@ -191,9 +191,7 @@
 				qdel(src)
 		if(3.0)
 			if(prob(80))
-				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-				s.set_up(2, 1, src)
-				s.start()
+				make_sparks(2, TRUE, src)
 
 /obj/machinery/door/update_icon()
 	if(density)

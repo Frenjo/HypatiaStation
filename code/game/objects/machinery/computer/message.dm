@@ -42,9 +42,7 @@
 		return FALSE
 
 	FEEDBACK_EMAG_GENERIC(user)
-	var/datum/effect/system/spark_spread/sparks = new /datum/effect/system/spark_spread()
-	sparks.set_up(5, 0, src)
-	sparks.start()
+	make_sparks(5, FALSE, src)
 	icon_state = hack_icon // An error screen I made in the computers.dmi
 	emagged = TRUE
 	screen = 2

@@ -48,10 +48,7 @@
 	if(!(user == loc || (in_range(src, user) && isturf(src.loc))))
 		return
 
-	var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
-	smoke.set_up(5, 0, user.loc)
-	smoke.attach(user)
-	smoke.start()
+	make_smoke(5, FALSE, user.loc, user)
 	var/list/L = list()
 	for(var/turf/T in get_area_turfs(thearea.type))
 		if(!T.density)
@@ -84,5 +81,5 @@
 	if(!success)
 		user.loc = pick(L)
 
-	smoke.start()
+	make_smoke(5, FALSE, user.loc, user)
 	src.uses -= 1

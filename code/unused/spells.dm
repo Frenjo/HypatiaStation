@@ -276,9 +276,7 @@
 
 	usr.say("EI NATH")
 
-	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-	s.set_up(4, 1, M)
-	s.start()
+	make_sparks(4, TRUE, M)
 
 	M.dust()
 
@@ -319,9 +317,7 @@
 		if(T.y>world.maxy-4 || T.y<4)	continue
 		turfs += T
 	if(!turfs.len) turfs += pick(/turf in orange(6))
-	var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
-	smoke.set_up(10, 0, usr.loc)
-	smoke.start()
+	make_smoke(10, FALSE, usr.loc)
 	var/turf/picked = pick(turfs)
 	if(!isturf(picked)) return
 	usr.loc = picked
@@ -361,10 +357,7 @@
 
 	usr.say("SCYAR NILA [uppertext(A)]")
 
-	var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
-	smoke.set_up(5, 0, usr.loc)
-	smoke.attach(usr)
-	smoke.start()
+	make_smoke(5, FALSE, usr.loc, usr)
 	var/list/L = list()
 	for(var/turf/T in get_area_turfs(thearea.type))
 		if(!T.density)
@@ -422,9 +415,7 @@
 		flick("liquify",animation)
 		H.loc = holder
 		H.client.eye = holder
-		var/datum/effect/system/steam_spread/steam = new /datum/effect/system/steam_spread()
-		steam.set_up(10, 0, mobloc)
-		steam.start()
+		make_steam(10, FALSE, mobloc)
 		sleep(time)
 		mobloc = get_turf(H.loc)
 		animation.loc = mobloc

@@ -46,9 +46,7 @@
 			overlays += image(icon, icon_locking)
 			locked = 0
 			if(istype(W, /obj/item/melee/energy/blade))
-				var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
-				spark_system.set_up(5, 0, loc)
-				spark_system.start()
+				make_sparks(5, FALSE, loc)
 				playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 				playsound(src, "sparks", 50, 1)
 				user << "You slice through the lock on [src]."

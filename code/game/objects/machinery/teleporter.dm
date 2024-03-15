@@ -180,9 +180,7 @@
 			com.one_time_use = 0
 			com.locked = null
 	else
-		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-		s.set_up(5, 1, src)
-		s.start()
+		make_sparks(5, TRUE, src)
 		for(var/mob/B in hearers(src, null))
 			B.show_message(SPAN_INFO("Test fire completed."))
 	return
@@ -267,9 +265,7 @@
 	M.loc = tmploc
 	sleep(2)
 
-	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-	s.set_up(5, 1, M)
-	s.start()
+	make_sparks(5, TRUE, M)
 	return
 */
 

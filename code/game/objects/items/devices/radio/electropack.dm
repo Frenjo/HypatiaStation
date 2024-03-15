@@ -92,9 +92,7 @@
 				if(M)
 					M.moved_recently = FALSE
 		to_chat(M, SPAN_DANGER("You feel a sharp shock!"))
-		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-		s.set_up(3, 1, M)
-		s.start()
+		make_sparks(3, TRUE, M)
 
 		M.Weaken(10)
 

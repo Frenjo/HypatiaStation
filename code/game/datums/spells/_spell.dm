@@ -165,18 +165,12 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 		if(isliving(target) && message)
 			to_chat(target, message)
 		if(sparks_spread)
-			var/datum/effect/system/spark_spread/sparks = new /datum/effect/system/spark_spread()
-			sparks.set_up(sparks_amt, 0, location) //no idea what the 0 is
-			sparks.start()
+			make_sparks(sparks_amt, FALSE, location)
 		if(smoke_spread)
 			if(smoke_spread == 1)
-				var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
-				smoke.set_up(smoke_amt, 0, location) //no idea what the 0 is
-				smoke.start()
+				make_smoke(smoke_amt, FALSE, location)
 			else if(smoke_spread == 2)
-				var/datum/effect/system/smoke_spread/bad/smoke = new /datum/effect/system/smoke_spread/bad()
-				smoke.set_up(smoke_amt, 0, location) //no idea what the 0 is
-				smoke.start()
+				make_bad_smoke(smoke_amt, FALSE, location)
 
 /obj/effect/proc_holder/spell/proc/cast(list/targets)
 	return

@@ -70,10 +70,7 @@
 
 /obj/item/chameleon/proc/disrupt(delete_dummy = 1)
 	if(active_dummy)
-		var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		spark_system.start()
+		make_sparks(5, FALSE, src, src)
 		eject_all()
 		if(delete_dummy)
 			qdel(active_dummy)

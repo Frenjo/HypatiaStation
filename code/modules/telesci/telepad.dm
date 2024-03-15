@@ -124,8 +124,6 @@
 /obj/item/rcs/attackby(obj/item/W, mob/user)
 	if(istype(W,  /obj/item/card/emag) && emagged == 0)
 		emagged = 1
-		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-		s.set_up(5, 1, src)
-		s.start()
+		make_sparks(5, TRUE, src)
 		to_chat(user, SPAN_CAUTION("You emag the RCS. Click on it to toggle between modes."))
 		return

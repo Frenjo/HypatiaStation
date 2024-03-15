@@ -28,9 +28,7 @@
 		call(src, triggerproc)(M)
 
 /obj/effect/mine/proc/triggerrad(obj)
-	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-	s.set_up(3, 1, src)
-	s.start()
+	make_sparks(3, TRUE, src)
 	obj:radiation += 50
 	randmutb(obj)
 	domutcheck(obj,null)
@@ -41,9 +39,7 @@
 	if(ismob(obj))
 		var/mob/M = obj
 		M.Stun(30)
-	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-	s.set_up(3, 1, src)
-	s.start()
+	make_sparks(3, TRUE, src)
 	spawn(0)
 		qdel(src)
 
@@ -67,9 +63,7 @@
 		qdel(src)
 
 /obj/effect/mine/proc/triggerkick(obj)
-	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-	s.set_up(3, 1, src)
-	s.start()
+	make_sparks(3, TRUE, src)
 	qdel(obj:client)
 	spawn(0)
 		qdel(src)

@@ -692,9 +692,7 @@ steam.start() -- spawns the effect
 
 /datum/effect/system/reagents_explosion/start()
 	if(amount <= 2)
-		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-		s.set_up(2, 1, location)
-		s.start()
+		make_sparks(2, TRUE, src)
 
 		for(var/mob/M in viewers(5, location))
 			to_chat(M, SPAN_WARNING("The solution violently explodes."))

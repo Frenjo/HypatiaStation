@@ -106,9 +106,7 @@
 
 	// update icon overlays and power usage only if displayed level has changed
 	if(lastgen > 250000 && prob(10))
-		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-		s.set_up(3, 1, src)
-		s.start()
+		make_sparks(3, TRUE, src)
 		lastgen *= 0.5
 	var/genlev = max(0, min(round(11 * lastgen / 250000), 11))
 	if(lastgen > 100 && genlev == 0)

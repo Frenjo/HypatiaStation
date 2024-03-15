@@ -28,9 +28,7 @@
 		if(isliving(usr))
 			var/mob/living/L = usr
 			if(L.electrocute_act(17, src))
-				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-				s.set_up(5, 1, src)
-				s.start()
+				make_sparks(5, TRUE, src)
 				return 2
 
 	playsound(src, 'sound/machines/click.ogg', 15, 1, -3)

@@ -271,9 +271,7 @@
 					playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
 					if(do_after(user, 50))
 						if(prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
-							var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
-							s.set_up(5, 1, src)
-							s.start()
+							make_sparks(5, TRUE, src)
 							building_terminal = 0
 							return
 						new /obj/item/stack/cable_coil(loc, 10)
@@ -369,28 +367,20 @@
 				SPAN_WARNING("You hear sizzling electronics.")
 			)
 			sleep(10 * pick(4, 5, 6, 7, 10, 14))
-			var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
-			smoke.set_up(3, 0, src.loc)
-			smoke.attach(src)
-			smoke.start()
+			make_smoke(3, FALSE, loc, src)
 			explosion(src.loc, -1, 0, 1, 3, 1, 0)
 			qdel(src)
 			return
 
 		if(prob(15)) //Power drain
-			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-			s.set_up(3, 1, src)
-			s.start()
+			make_sparks(3, TRUE, src)
 			if(prob(50))
 				emp_act(1)
 			else
 				emp_act(2)
 
 		if(prob(5)) //smoke only
-			var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
-			smoke.set_up(3, 0, src.loc)
-			smoke.attach(src)
-			smoke.start()
+			make_smoke(3, FALSE, loc, src)
 
 /obj/machinery/power/smes/emp_act(severity)
 	inputting = rand(0, 1)

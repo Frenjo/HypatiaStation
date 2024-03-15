@@ -42,9 +42,7 @@
 			qdel(D)
 
 	if(sparks)
-		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-		s.set_up(2, 1, location)
-		s.start()
+		make_sparks(2, TRUE, src)
 
 	for(var/i = 1, i <= length(gibtypes), i++)
 		if(gibamounts[i])

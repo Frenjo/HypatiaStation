@@ -39,9 +39,7 @@
 /datum/event/rogue_drone/end()
 	var/num_recovered = 0
 	for(var/mob/living/simple_animal/hostile/retaliate/malf_drone/D in drones_list)
-		var/datum/effect/system/spark_spread/sparks = new /datum/effect/system/spark_spread()
-		sparks.set_up(3, 0, D.loc)
-		sparks.start()
+		make_sparks(3, FALSE, D.loc)
 		D.z = GLOBL.current_map.admin_levels[1]
 		D.has_loot = 0
 

@@ -48,13 +48,8 @@
 				cell.corrupt()
 				src.malfhack = 1
 				update_icon()
-				var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
-				smoke.set_up(3, 0, src.loc)
-				smoke.attach(src)
-				smoke.start()
-				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-				s.set_up(3, 1, src)
-				s.start()
+				make_smoke(3, FALSE, loc, src)
+				make_sparks(3, TRUE, src)
 				visible_message(
 					SPAN_DANGER("The [src.name] suddenly lets out a blast of smoke and some sparks!"),
 					SPAN_DANGER("You hear sizzling electronics.")

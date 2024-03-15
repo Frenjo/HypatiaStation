@@ -337,9 +337,7 @@
 		return
 
 	if(istype(W, /obj/item/melee/energy/blade))
-		var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
-		spark_system.set_up(5, 0, src.loc)
-		spark_system.start()
+		make_sparks(5, FALSE, loc)
 		playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 		playsound(src, "sparks", 50, 1)
 		for(var/mob/O in viewers(user, 4))

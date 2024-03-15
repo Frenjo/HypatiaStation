@@ -149,9 +149,7 @@
 
 		playsound(src, 'sound/weapons/emitter.ogg', 25, 1)
 		if(prob(35))
-			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-			s.set_up(5, 1, src)
-			s.start()
+			make_sparks(5, TRUE, src)
 		A.set_dir(src.dir)
 		switch(dir)
 			if(NORTH)

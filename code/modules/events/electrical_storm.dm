@@ -68,13 +68,9 @@
 			// Has a 2% chance to flat out detonate APCs instead of just blowing lights. -Frenjo
 			// This won't blow certain APCs (IE AI and engine areas) because that would be very bad.
 			if(prob(2) && !HAS_AREA_FLAGS(apc.area, AREA_FLAG_IS_SURGE_PROTECTED))
-				var/datum/effect/system/spark_spread/spark = new
-				spark.set_up(5, 1, apc)
-				spark.start()
+				make_sparks(5, TRUE, apc)
 				explosion(apc.loc, -1, -1, 2)
-				//var/datum/effect/system/smoke_spread/smoke = new
-				//smoke.set_up(2, 0, apc.loc, null)
-				//smoke.start()
+				//make_smoke(2, FALSE, apc.loc)
 				apc.overload_lighting()
 				apc.set_broken()
 			else

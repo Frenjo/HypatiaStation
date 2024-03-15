@@ -28,9 +28,7 @@
 	for(var/x in verbs)
 		verbs.Remove(x)
 	set_broken()
-	var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
-	smoke.set_up(5, 0, src)
-	smoke.start()
+	make_smoke(5, FALSE, src)
 
 /obj/machinery/computer/emp_act(severity)
 	if(prob(20 / severity))

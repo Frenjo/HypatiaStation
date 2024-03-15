@@ -9,9 +9,7 @@
 		var/mob/living/carbon/human/H = user
 		if(HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_SYNTHETIC) && H.a_intent == "grab")
 			if(emagged || stat & BROKEN)
-				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-				s.set_up(3, 1, src)
-				s.start()
+				make_sparks(3, TRUE, src)
 				to_chat(H, SPAN_WARNING("The APC power currents surge eratically, damaging your chassis!"))
 				H.adjustFireLoss(10, 0)
 			else if(src.cell && src.cell.charge > 0)
@@ -194,9 +192,7 @@
 				var/turf/T = get_turf(src)
 				var/obj/structure/cable/N = T.get_cable_node()
 				if(prob(50) && electrocute_mob(usr, N, N))
-					var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-					s.set_up(5, 1, src)
-					s.start()
+					make_sparks(5, TRUE, src)
 					return
 				C.use(10)
 			user.visible_message(
@@ -214,9 +210,7 @@
 		if(do_after(user, 50))
 			if(terminal && opened && has_electronics != 2)
 				if(prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
-					var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-					s.set_up(5, 1, src)
-					s.start()
+					make_sparks(5, TRUE, src)
 					return
 				new /obj/item/stack/cable_coil(loc, 10)
 				to_chat(user, SPAN_NOTICE("You cut the cables and dismantle the power terminal."))

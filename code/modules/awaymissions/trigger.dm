@@ -22,22 +22,14 @@
 	M.Move(dest)
 
 	if(entersparks)
-		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-		s.set_up(4, 1, src)
-		s.start()
+		make_sparks(4, TRUE, src)
 	if(exitsparks)
-		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-		s.set_up(4, 1, dest)
-		s.start()
+		make_sparks(4, TRUE, dest)
 
 	if(entersmoke)
-		var/datum/effect/system/smoke_spread/s = new /datum/effect/system/smoke_spread
-		s.set_up(4, 1, src, 0)
-		s.start()
+		make_smoke(4, TRUE, src, 0)
 	if(exitsmoke)
-		var/datum/effect/system/smoke_spread/s = new /datum/effect/system/smoke_spread
-		s.set_up(4, 1, dest, 0)
-		s.start()
+		make_smoke(4, TRUE, dest, 0)
 
 	uses--
 	if(uses == 0)

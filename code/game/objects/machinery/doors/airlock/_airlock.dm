@@ -162,9 +162,7 @@
 		if(isitem(mover))
 			var/obj/item/i = mover
 			if(i.matter_amounts[MATERIAL_METAL])
-				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
-				s.set_up(5, 1, src)
-				s.start()
+				make_sparks(5, TRUE, src)
 	return ..()
 
 /obj/machinery/door/airlock/open(forced = FALSE)

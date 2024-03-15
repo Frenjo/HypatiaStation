@@ -46,9 +46,7 @@
 		return 0	//Already shocked someone recently?
 	if(!prob(prb))
 		return 0 //you lucked out, no shock for you
-	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
-	s.set_up(5, 1, src)
-	s.start() //sparks always.
+	make_sparks(5, TRUE, src)
 	if(electrocute_mob(user, get_area(src), src))
 		hasShocked = 1
 		sleep(10)

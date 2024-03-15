@@ -85,16 +85,12 @@
 	//repair a bit of damage
 	if(prob(1))
 		src.visible_message(SPAN_WARNING("\icon[src] [src] shudders and shakes as some of it's damaged systems come back online."))
-		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-		s.set_up(3, 1, src)
-		s.start()
+		make_sparks(3, TRUE, src)
 		health += rand(25,100)
 
 	//spark for no reason
 	if(prob(5))
-		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-		s.set_up(3, 1, src)
-		s.start()
+		make_sparks(3, TRUE, src)
 
 	//sometimes our targetting sensors malfunction, and we attack anyone nearby
 	if(prob(disabled ? 0 : 1))
@@ -134,9 +130,7 @@
 			src.visible_message(SPAN_WARNING("\icon[src] [src] begins to spark and shake violenty!"))
 		else
 			src.visible_message(SPAN_WARNING("\icon[src] [src] sparks and shakes like it's about to explode!"))
-		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-		s.set_up(3, 1, src)
-		s.start()
+		make_sparks(3, TRUE, src)
 
 	if(!exploding && !disabled && prob(explode_chance))
 		exploding = 1
@@ -163,9 +157,7 @@
 /mob/living/simple_animal/hostile/retaliate/malf_drone/Destroy()
 	//some random debris left behind
 	if(has_loot)
-		var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-		s.set_up(3, 1, src)
-		s.start()
+		make_sparks(3, TRUE, src)
 		var/obj/O
 
 		//shards

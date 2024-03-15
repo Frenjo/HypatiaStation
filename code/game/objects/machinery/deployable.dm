@@ -124,9 +124,7 @@
 					user << "Barrier lock toggled off."
 					return
 			else
-				var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-				s.set_up(2, 1, src)
-				s.start()
+				make_sparks(2, TRUE, src)
 				visible_message("\red BZZzZZzZZzZT")
 				return
 		return
@@ -136,17 +134,13 @@
 			src.req_access.Cut()
 			src.req_one_access.Cut()
 			user << "You break the ID authentication lock on \the [src]."
-			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-			s.set_up(2, 1, src)
-			s.start()
+			make_sparks(2, TRUE, src)
 			visible_message("\red BZZzZZzZZzZT")
 			return
 		else if (src.emagged == 1)
 			src.emagged = 2
 			user << "You short out the anchoring mechanism on \the [src]."
-			var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-			s.set_up(2, 1, src)
-			s.start()
+			make_sparks(2, TRUE, src)
 			visible_message("\red BZZzZZzZZzZT")
 			return
 	else if (istype(W, /obj/item/wrench))
@@ -217,9 +211,7 @@
 /*	var/obj/item/stack/rods/ =*/
 	new /obj/item/stack/rods(Tsec)
 
-	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-	s.set_up(3, 1, src)
-	s.start()
+	make_sparks(3, TRUE, src)
 
 	explosion(src.loc,-1,-1,0)
 	if(src)

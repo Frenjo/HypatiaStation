@@ -81,6 +81,7 @@
 #include "code\__HELPERS\database.dm"
 #include "code\__HELPERS\debugging.dm"
 #include "code\__HELPERS\dview.dm"
+#include "code\__HELPERS\effects.dm"
 #include "code\__HELPERS\files.dm"
 #include "code\__HELPERS\game.dm"
 #include "code\__HELPERS\global_lists.dm"

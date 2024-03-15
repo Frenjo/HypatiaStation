@@ -101,9 +101,7 @@
 /obj/machinery/atmospherics/pipe/zpipe/proc/burst()
 	src.visible_message(SPAN_DANGER("[src] bursts!"))
 	playsound(src, 'sound/effects/bang.ogg', 25, 1)
-	var/datum/effect/system/smoke_spread/smoke = new
-	smoke.set_up(1, 0, src.loc, 0)
-	smoke.start()
+	make_smoke(1, FALSE, loc, 0)
 	qdel(src)
 
 /obj/machinery/atmospherics/pipe/zpipe/proc/normalize_dir()

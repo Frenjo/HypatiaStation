@@ -37,9 +37,7 @@
 
 /datum/chemical_reaction/flash_powder/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
-	s.set_up(2, 1, location)
-	s.start()
+	make_sparks(2, TRUE, location)
 	for(var/mob/living/carbon/M in viewers(world.view, location))
 		switch(get_dist(M, location))
 			if(0 to 3)
@@ -109,12 +107,8 @@
 
 /datum/chemical_reaction/chemsmoke/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
-	var/datum/effect/system/smoke_spread/chem/S = new /datum/effect/system/smoke_spread/chem()
-	S.attach(location)
-	S.set_up(holder, created_volume, 0, location)
+	make_chem_smoke(created_volume, FALSE, location, holder, location)
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
-	spawn(0)
-		S.start()
 	holder.clear_reagents()
 
 /datum/chemical_reaction/plasmasolidification

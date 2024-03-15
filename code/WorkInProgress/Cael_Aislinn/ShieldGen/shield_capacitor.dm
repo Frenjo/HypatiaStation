@@ -38,9 +38,7 @@
 		locked = !locked
 		FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
 		updateDialog()
-	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread()
-	s.set_up(5, 1, src)
-	s.start()
+	make_sparks(5, TRUE, src)
 	return TRUE
 
 /obj/machinery/shield_capacitor/attack_tool(obj/item/tool, mob/user)

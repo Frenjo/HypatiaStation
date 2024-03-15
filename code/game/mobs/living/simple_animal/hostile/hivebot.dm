@@ -47,9 +47,7 @@
 	..()
 	visible_message("<b>[src]</b> blows apart!")
 	new /obj/effect/decal/cleanable/blood/gibs/robot(src.loc)
-	var/datum/effect/system/spark_spread/s = new /datum/effect/system/spark_spread
-	s.set_up(3, 1, src)
-	s.start()
+	make_sparks(3, TRUE, src)
 	qdel(src)
 	return
 
@@ -74,9 +72,7 @@
 
 /mob/living/simple_animal/hostile/hivebot/tele/New()
 	..()
-	var/datum/effect/system/smoke_spread/smoke = new /datum/effect/system/smoke_spread()
-	smoke.set_up(5, 0, src.loc)
-	smoke.start()
+	make_smoke(5, FALSE, loc)
 	visible_message("\red <B>The [src] warps in!</B>")
 	playsound(src, 'sound/effects/EMPulse.ogg', 25, 1)
 
