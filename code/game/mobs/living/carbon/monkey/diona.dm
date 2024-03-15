@@ -53,7 +53,7 @@
 /mob/living/carbon/monkey/diona/attack_hand(mob/living/carbon/human/M as mob)
 	//Let people pick the little buggers up.
 	if(M.a_intent == "help")
-		if(M.species && M.species.name == SPECIES_DIONA)
+		if(M.species && istype(M.species, /datum/species/diona))
 			M << "You feel your being twine with that of [src] as it merges with your biomass."
 			src << "You feel your being twine with that of [M] as you merge with its biomass."
 			src.verbs += /mob/living/carbon/monkey/diona/proc/split

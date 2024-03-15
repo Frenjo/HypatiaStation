@@ -101,7 +101,7 @@
 	M << "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species.name == SPECIES_VOX)
+		if(istype(H.species, /datum/species/vox))
 			return
 		H << "\red Your nose begins to bleed..."
 		H.drip(1)

@@ -351,7 +351,7 @@
 /datum/disease2/effect/hair/activate(var/mob/living/carbon/mob,var/multiplier)
 	if(ishuman(mob))
 		var/mob/living/carbon/human/H = mob
-		if(H.species.name == SPECIES_HUMAN && !(H.h_style == "Bald") && !(H.h_style == "Balding Hair"))
+		if(istype(H.species, /datum/species/human) && !(H.h_style == "Bald") && !(H.h_style == "Balding Hair"))
 			to_chat(H, SPAN_DANGER("Your hair starts to fall out in clumps..."))
 			spawn(50)
 				H.h_style = "Balding Hair"

@@ -20,7 +20,7 @@
 		var/mob/living/carbon/human/H = affected_mob
 		if(HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_PLANT) || HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_SYNTHETIC))
 			cure()
-		else if(H.species.name == SPECIES_VOX || H.species.name == SPECIES_VOX_ARMALIS || H.species.name == SPECIES_PLASMALIN)
+		else if(istype(H.species, /datum/species/vox) || istype(H.species, /datum/species/plasmalin))
 			cure()
 
 	if(stage == 1)

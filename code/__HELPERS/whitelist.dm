@@ -40,20 +40,21 @@ GLOBAL_GLOBL_LIST_NEW(alien_whitelist)
 		GLOBL.alien_whitelist = splittext(text, "\n")
 
 //todo: admin aliens
-/proc/is_alien_whitelisted(mob/M, species)
+// This is also used for languages.
+/proc/is_alien_whitelisted(mob/M, thing_name)
 	if(!CONFIG_GET(usealienwhitelist))
 		return TRUE
-	if(species == SPECIES_HUMAN)
+	if(thing_name == SPECIES_HUMAN)
 		return TRUE
 	if(check_rights(R_ADMIN, 0))
 		return TRUE
 	if(isnull(GLOBL.alien_whitelist))
 		return FALSE
-	if(isnotnull(M) && isnotnull(species))
-		for(var/s in GLOBL.alien_whitelist)
-			if(findtext(s, "[M.ckey] - [species]"))
+	if(isnotnull(M) && isnotnull(thing_name))
+		for(var/line in GLOBL.alien_whitelist)
+			if(findtext(line, "[M.ckey] - [thing_name]"))
 				return TRUE
-			if(findtext(s, "[M.ckey] - All"))
+			if(findtext(line, "[M.ckey] - All"))
 				return TRUE
 
 	return FALSE

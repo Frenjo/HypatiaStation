@@ -142,7 +142,7 @@
 	if(loc != user)
 		var/mob/living/carbon/human/H = user
 		if(istype(H))
-			if(H.species.name == SPECIES_VOX_ARMALIS)
+			if(istype(H.species, /datum/species/vox/armalis))
 				..()
 				return
 		to_chat(user, SPAN_WARNING("\The [src] is far too large for you to pick up."))

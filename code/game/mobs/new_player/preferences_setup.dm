@@ -249,7 +249,7 @@
 	var/icon/clothes_s = null
 	// Plasmalins just always wear one uniform, because I am way too lazy to port the others until the /decl/outfit system gets ported.
 	// I also happen to be too lazy to port the /decl/outfit system so deal with this until then. -Frenjo
-	if(current_species && current_species.name == SPECIES_PLASMALIN)
+	if(current_species && istype(current_species, /datum/species/plasmalin))
 		clothes_s = new /icon('icons/mob/on_mob/uniform.dmi', "plasmalin_s")
 		clothes_s.Blend(new /icon('icons/mob/on_mob/head.dmi', "rig0-standard-plasmalin"), ICON_OVERLAY)
 		clothes_s.Blend(new /icon('icons/mob/on_mob/feet.dmi', "black"), ICON_UNDERLAY)
