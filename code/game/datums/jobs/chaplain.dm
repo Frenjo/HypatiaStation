@@ -6,7 +6,6 @@
 	title = "Chaplain"
 	flag = JOB_CHAPLAIN
 	department_flag = DEPARTMENT_CIVILIAN
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1

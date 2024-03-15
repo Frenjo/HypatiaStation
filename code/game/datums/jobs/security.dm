@@ -5,7 +5,6 @@
 	title = "Head of Security"
 	flag = JOB_HOS
 	department_flag = DEPARTMENT_ENGSEC
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1
@@ -51,7 +50,6 @@
 	title = "Warden"
 	flag = JOB_WARDEN
 	department_flag = DEPARTMENT_ENGSEC
-	faction = "Station"
 
 	total_positions = 2
 	spawn_positions = 2
@@ -73,7 +71,6 @@
 	title = "Detective"
 	flag = JOB_DETECTIVE
 	department_flag = DEPARTMENT_ENGSEC
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1
@@ -96,7 +93,6 @@
 	title = "Security Officer"
 	flag = JOB_OFFICER
 	department_flag = DEPARTMENT_ENGSEC
-	faction = "Station"
 
 	total_positions = 5
 	spawn_positions = 5
@@ -118,7 +114,6 @@
 	title = "Security Paramedic"
 	flag = JOB_SECPARA
 	department_flag = DEPARTMENT_ENGSEC
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1

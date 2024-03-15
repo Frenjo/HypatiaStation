@@ -7,7 +7,6 @@
 	title = "Quartermaster"
 	flag = JOB_QUARTERMASTER
 	department_flag = DEPARTMENT_CIVILIAN
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1
@@ -35,7 +34,6 @@
 	title = "Cargo Technician"
 	flag = JOB_CARGOTECH
 	department_flag = DEPARTMENT_CIVILIAN
-	faction = "Station"
 
 	total_positions = 2
 	spawn_positions = 2
@@ -58,7 +56,6 @@
 	title = "Mining Foreman"
 	flag = JOB_MININGFOREMAN
 	department_flag = DEPARTMENT_CIVILIAN
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1
@@ -84,7 +81,6 @@
 	title = "Shaft Miner"
 	flag = JOB_MINER
 	department_flag = DEPARTMENT_CIVILIAN
-	faction = "Station"
 
 	total_positions = 3
 	spawn_positions = 3
@@ -114,7 +110,6 @@
 	title = "Mailman"
 	flag = JOB_MAILMAN
 	department_flag = DEPARTMENT_CIVILIAN
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1

@@ -5,7 +5,6 @@
 	title = "Research Director"
 	flag = JOB_RD
 	department_flag = DEPARTMENT_MEDSCI
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1
@@ -38,7 +37,6 @@
 	title = "Scientist"
 	flag = JOB_SCIENTIST
 	department_flag = DEPARTMENT_MEDSCI
-	faction = "Station"
 
 	total_positions = 5
 	spawn_positions = 3
@@ -59,7 +57,6 @@
 	title = "Xenobiologist"
 	flag = JOB_XENOBIOLOGIST
 	department_flag = DEPARTMENT_MEDSCI
-	faction = "Station"
 
 	total_positions = 2
 	spawn_positions = 2
@@ -79,7 +76,6 @@
 	title = "Roboticist"
 	flag = JOB_ROBOTICIST
 	department_flag = DEPARTMENT_MEDSCI
-	faction = "Station"
 
 	total_positions = 2
 	spawn_positions = 2

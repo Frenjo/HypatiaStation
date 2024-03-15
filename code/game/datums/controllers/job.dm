@@ -11,7 +11,7 @@ CONTROLLER_DEF(jobs)
 	// Debug info
 	var/list/job_debug = list()
 
-/datum/controller/jobs/proc/setup_occupations(faction = "Station")
+/datum/controller/jobs/proc/setup_occupations()
 	occupations = list()
 	var/list/all_jobs = SUBTYPESOF(/datum/job)
 	if(!length(all_jobs))
@@ -20,8 +20,6 @@ CONTROLLER_DEF(jobs)
 	for(var/J in all_jobs)
 		var/datum/job/job = new J()
 		if(isnull(job))
-			continue
-		if(job.faction != faction)
 			continue
 		occupations.Add(job)
 	return 1
@@ -251,8 +249,7 @@ CONTROLLER_DEF(jobs)
 
 	//People who wants to be assistants, sure, go on.
 	debug("DO, Running Assistant Check 1")
-	var/datum/job/assist = new /datum/job/assistant()
-	var/list/assistant_candidates = find_occupation_candidates(assist, 3)
+	var/list/assistant_candidates = find_occupation_candidates(GLOBL.all_jobs["Assistant"], 3)
 	debug("AC1, Candidates: [length(assistant_candidates)]")
 	for(var/mob/new_player/player in assistant_candidates)
 		debug("AC1 pass, Player: [player]")

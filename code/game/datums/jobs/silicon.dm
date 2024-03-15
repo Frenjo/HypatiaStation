@@ -5,7 +5,6 @@
 	title = "AI"
 	flag = JOB_AI
 	department_flag = DEPARTMENT_ENGSEC
-	faction = "Station"
 
 	total_positions = 0
 	spawn_positions = 1
@@ -23,7 +22,6 @@
 	title = "Cyborg"
 	flag = JOB_CYBORG
 	department_flag = DEPARTMENT_ENGSEC
-	faction = "Station"
 
 	total_positions = 0
 	spawn_positions = 2

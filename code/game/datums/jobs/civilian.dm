@@ -5,7 +5,6 @@
 	title = "Bartender"
 	flag = JOB_BARTENDER
 	department_flag = DEPARTMENT_CIVILIAN
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1
@@ -42,7 +41,6 @@
 	title = "Chef"
 	flag = JOB_CHEF
 	department_flag = DEPARTMENT_CIVILIAN
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1
@@ -63,7 +61,6 @@
 	title = "Botanist"
 	flag = JOB_BOTANIST
 	department_flag = DEPARTMENT_CIVILIAN
-	faction = "Station"
 
 	total_positions = 3
 	spawn_positions = 2
@@ -87,7 +84,6 @@
 	title = "Clown"
 	flag = JOB_CLOWN
 	department_flag = DEPARTMENT_CIVILIAN
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1
@@ -114,7 +110,6 @@
 	title = "Mime"
 	flag = JOB_MIME
 	department_flag = DEPARTMENT_CIVILIAN
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1
@@ -210,7 +205,6 @@
 	title = "Janitor"
 	flag = JOB_JANITOR
 	department_flag = DEPARTMENT_CIVILIAN
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1
@@ -232,7 +226,6 @@
 	title = "Librarian"
 	flag = JOB_LIBRARIAN
 	department_flag = DEPARTMENT_CIVILIAN
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1
@@ -254,7 +247,6 @@
 	title = "Internal Affairs Agent"
 	flag = JOB_LAWYER
 	department_flag = DEPARTMENT_CIVILIAN
-	faction = "Station"
 
 	total_positions = 2
 	spawn_positions = 2

@@ -5,7 +5,6 @@
 	title = "Chief Engineer"
 	flag = JOB_CHIEF
 	department_flag = DEPARTMENT_ENGSEC
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1
@@ -40,7 +39,6 @@
 	title = "Station Engineer"
 	flag = JOB_ENGINEER
 	department_flag = DEPARTMENT_ENGSEC
-	faction = "Station"
 
 	total_positions = 5
 	spawn_positions = 5
@@ -69,7 +67,6 @@
 	title = "Atmospheric Technician"
 	flag = JOB_ATMOSTECH
 	department_flag = DEPARTMENT_ENGSEC
-	faction = "Station"
 
 	total_positions = 3
 	spawn_positions = 2

@@ -5,7 +5,6 @@
 	title = "Captain"
 	flag = JOB_CAPTAIN
 	department_flag = DEPARTMENT_ENGSEC
-	faction = "Station"
 
 	total_positions = 1
 	spawn_positions = 1
@@ -41,9 +40,10 @@
 	title = "Head of Personnel"
 	flag = JOB_HOP
 	department_flag = DEPARTMENT_CIVILIAN
-	faction = "Station"
+
 	total_positions = 1
 	spawn_positions = 1
+
 	supervisors = "the Captain"
 	selection_color = "#ddddff"
 
