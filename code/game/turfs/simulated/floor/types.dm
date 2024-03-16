@@ -150,28 +150,6 @@
 	temperature = TCMB
 
 /*
- * Carpet
- */
-/turf/simulated/floor/carpet
-	name = "carpet"
-	icon_state = "carpet"
-	floor_type = /obj/item/stack/tile/carpet
-
-/turf/simulated/floor/carpet/New()
-	if(!icon_state)
-		icon_state = "carpet"
-	. = ..()
-
-/turf/simulated/floor/carpet/initialise()
-	. = ..()
-	if(isnotnull(src))
-		update_icon()
-		for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
-			if(istype(get_step(src, direction), /turf/simulated/floor))
-				var/turf/simulated/floor/FF = get_step(src, direction)
-				FF.update_icon() //so siding get updated properly
-
-/*
  * Server
  */
 /turf/simulated/floor/server

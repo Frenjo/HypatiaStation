@@ -77,12 +77,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	else
 		return 0
 
-/turf/simulated/floor/is_carpet_floor()
-	if(ispath(floor_type, /obj/item/stack/tile/carpet))
-		return 1
-	else
-		return 0
-
 /turf/simulated/floor/is_plating()
 	if(!floor_type)
 		return 1
@@ -110,7 +104,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	if(lava)
 		return
 
-	else if(is_plasteel_floor())
+	if(is_plasteel_floor())
 		if(!broken && !burnt)
 			icon_state = icon_regular_floor
 	else if(is_plating())
@@ -135,48 +129,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 		else
 			set_light(0)
 			icon_state = "light_off"
-	else if(is_carpet_floor())
-		if(!broken && !burnt)
-			if(icon_state != "carpetsymbol")
-				var/connectdir = 0
-				for(var/direction in GLOBL.cardinal)
-					if(istype(get_step(src, direction), /turf/simulated/floor))
-						var/turf/simulated/floor/FF = get_step(src, direction)
-						if(FF.is_carpet_floor())
-							connectdir |= direction
-
-				//Check the diagonal connections for corners, where you have, for example, connections both north and east. In this case it checks for a north-east connection to determine whether to add a corner marker or not.
-				var/diagonalconnect = 0 //1 = NE; 2 = SE; 4 = NW; 8 = SW
-
-				//Northeast
-				if(connectdir & NORTH && connectdir & EAST)
-					if(istype(get_step(src, NORTHEAST), /turf/simulated/floor))
-						var/turf/simulated/floor/FF = get_step(src, NORTHEAST)
-						if(FF.is_carpet_floor())
-							diagonalconnect |= 1
-
-				//Southeast
-				if(connectdir & SOUTH && connectdir & EAST)
-					if(istype(get_step(src, SOUTHEAST), /turf/simulated/floor))
-						var/turf/simulated/floor/FF = get_step(src, SOUTHEAST)
-						if(FF.is_carpet_floor())
-							diagonalconnect |= 2
-
-				//Northwest
-				if(connectdir & NORTH && connectdir & WEST)
-					if(istype(get_step(src, NORTHWEST), /turf/simulated/floor))
-						var/turf/simulated/floor/FF = get_step(src, NORTHWEST)
-						if(FF.is_carpet_floor())
-							diagonalconnect |= 4
-
-				//Southwest
-				if(connectdir & SOUTH && connectdir & WEST)
-					if(istype(get_step(src, SOUTHWEST), /turf/simulated/floor))
-						var/turf/simulated/floor/FF = get_step(src, SOUTHWEST)
-						if(FF.is_carpet_floor())
-							diagonalconnect |= 8
-
-				icon_state = "carpet[connectdir]-[diagonalconnect]"
 
 	/*spawn(1)
 		if(istype(src,/turf/simulated/floor)) //Was throwing runtime errors due to a chance of it changing to space halfway through.
@@ -207,9 +159,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	else if(is_plating())
 		icon_state = "platingdmg[pick(1,2,3)]"
 		broken = 1
-	else if(is_carpet_floor())
-		icon_state = "carpet-broken"
-		broken = 1
 
 /turf/simulated/floor/proc/burn_tile()
 	if(istype(src, /turf/simulated/floor/reinforced))
@@ -227,23 +176,12 @@ var/list/wood_icons = list("wood", "wood-broken")
 	else if(is_plating())
 		icon_state = "panelscorched"
 		burnt = 1
-	else if(is_carpet_floor())
-		icon_state = "carpet-broken"
-		burnt = 1
 
 //This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
 //This proc auto corrects the grass tiles' siding.
 /turf/simulated/floor/proc/make_plating()
 	if(istype(src, /turf/simulated/floor/reinforced))
 		return
-
-	if(is_carpet_floor())
-		spawn(5)
-			if(src)
-				for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
-					if(istype(get_step(src, direction), /turf/simulated/floor))
-						var/turf/simulated/floor/FF = get_step(src, direction)
-						FF.update_icon() //so siding get updated properly
 
 	if(!floor_type)
 		return
