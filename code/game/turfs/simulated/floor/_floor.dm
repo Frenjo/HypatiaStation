@@ -65,19 +65,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 //			return 0
 //	return ..()
 
-/turf/simulated/floor/return_siding_icon_state()
-	. = ..()
-	if(is_grass_floor())
-		var/dir_sum = 0
-		for(var/direction in GLOBL.cardinal)
-			var/turf/T = get_step(src, direction)
-			if(!(T.is_grass_floor()))
-				dir_sum += direction
-		if(dir_sum)
-			return "wood_siding[dir_sum]"
-		else
-			return 0
-
 /turf/simulated/floor/is_plasteel_floor()
 	if(ispath(floor_type, /obj/item/stack/tile/plasteel))
 		return 1
@@ -86,12 +73,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 
 /turf/simulated/floor/is_light_floor()
 	if(ispath(floor_type, /obj/item/stack/tile/light))
-		return 1
-	else
-		return 0
-
-/turf/simulated/floor/is_grass_floor()
-	if(ispath(floor_type, /obj/item/stack/tile/grass))
 		return 1
 	else
 		return 0
@@ -160,10 +141,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 		else
 			set_light(0)
 			icon_state = "light_off"
-	else if(is_grass_floor())
-		if(!broken && !burnt)
-			if(!(icon_state in list("grass1","grass2","grass3","grass4")))
-				icon_state = "grass[pick("1","2","3","4")]"
 	else if(is_carpet_floor())
 		if(!broken && !burnt)
 			if(icon_state != "carpetsymbol")
@@ -247,9 +224,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	else if(is_carpet_floor())
 		icon_state = "carpet-broken"
 		broken = 1
-	else if(is_grass_floor())
-		icon_state = "sand[pick("1","2","3")]"
-		broken = 1
 
 /turf/simulated/floor/proc/burn_tile()
 	if(istype(src, /turf/simulated/floor/reinforced))
@@ -273,9 +247,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	else if(is_carpet_floor())
 		icon_state = "carpet-broken"
 		burnt = 1
-	else if(is_grass_floor())
-		icon_state = "sand[pick("1","2","3")]"
-		burnt = 1
 
 //This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
 //This proc auto corrects the grass tiles' siding.
@@ -283,12 +254,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	if(istype(src, /turf/simulated/floor/reinforced))
 		return
 
-	if(is_grass_floor())
-		for(var/direction in GLOBL.cardinal)
-			if(istype(get_step(src, direction), /turf/simulated/floor))
-				var/turf/simulated/floor/FF = get_step(src, direction)
-				FF.update_icon() //so siding get updated properly
-	else if(is_carpet_floor())
+	if(is_carpet_floor())
 		spawn(5)
 			if(src)
 				for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))

@@ -121,13 +121,7 @@
 			to_chat(user, SPAN_WARNING("You must remove the plating first."))
 
 	if(istype(C, /obj/item/shovel))
-		if(is_grass_floor())
-			new /obj/item/ore/glass(src)
-			new /obj/item/ore/glass(src) //Make some sand if you shovel grass
-			to_chat(user, SPAN_INFO("You shovel the grass."))
-			make_plating()
-		else
-			to_chat(user, SPAN_WARNING("You cannot shovel this."))
+		to_chat(user, SPAN_WARNING("You cannot shovel this."))
 
 	if(istype(C, /obj/item/weldingtool))
 		var/obj/item/weldingtool/welder = C

@@ -158,25 +158,6 @@
 	temperature = TCMB
 
 /*
- * Grass
- */
-/turf/simulated/floor/grass
-	name = "grass patch"
-	icon_state = "grass1"
-	floor_type = /obj/item/stack/tile/grass
-
-/turf/simulated/floor/grass/New()
-	icon_state = "grass[pick("1","2","3","4")]"
-	. = ..()
-	spawn(4)
-		if(isnotnull(src))
-			update_icon()
-			for(var/direction in GLOBL.cardinal)
-				if(istype(get_step(src, direction), /turf/simulated/floor))
-					var/turf/simulated/floor/FF = get_step(src, direction)
-					FF.update_icon() //so siding get updated properly
-
-/*
  * Carpet
  */
 /turf/simulated/floor/carpet
