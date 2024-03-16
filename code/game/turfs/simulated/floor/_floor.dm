@@ -71,12 +71,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	else
 		return 0
 
-/turf/simulated/floor/is_light_floor()
-	if(ispath(floor_type, /obj/item/stack/tile/light))
-		return 1
-	else
-		return 0
-
 /turf/simulated/floor/is_plating()
 	if(!floor_type)
 		return 1
@@ -97,9 +91,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	else
 		lightfloor_state &= ~LIGHTFLOOR_ON_BIT
 
-/turf/simulated/floor/proc/toggle_lightfloor_on()
-	lightfloor_state ^= LIGHTFLOOR_ON_BIT
-
 /turf/simulated/floor/proc/update_icon()
 	if(lava)
 		return
@@ -110,25 +101,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	else if(is_plating())
 		if(!broken && !burnt)
 			icon_state = icon_plating //Because asteroids are 'platings' too.
-	else if(is_light_floor())
-		if(get_lightfloor_on())
-			switch(get_lightfloor_state())
-				if(LIGHTFLOOR_STATE_OK)
-					icon_state = "light_on"
-					set_light(5)
-				if(LIGHTFLOOR_STATE_FLICKER)
-					var/num = pick("1","2","3","4")
-					icon_state = "light_on_flicker[num]"
-					set_light(5)
-				if(LIGHTFLOOR_STATE_BREAKING)
-					icon_state = "light_on_broken"
-					set_light(5)
-				if(LIGHTFLOOR_STATE_BROKEN)
-					icon_state = "light_off"
-					set_light(0)
-		else
-			set_light(0)
-			icon_state = "light_off"
 
 	/*spawn(1)
 		if(istype(src,/turf/simulated/floor)) //Was throwing runtime errors due to a chance of it changing to space halfway through.
@@ -148,9 +120,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 		return
 	if(is_plasteel_floor())
 		icon_state = "damaged[pick(1,2,3,4,5)]"
-		broken = 1
-	else if(is_light_floor())
-		icon_state = "light_broken"
 		broken = 1
 	else if(is_plating())
 		icon_state = "platingdmg[pick(1,2,3)]"
@@ -283,11 +252,3 @@ var/list/wood_icons = list("wood", "wood-broken")
 
 	update_icon()
 	levelupdate()
-
-#undef LIGHTFLOOR_STATE_OK
-#undef LIGHTFLOOR_STATE_FLICKER
-#undef LIGHTFLOOR_STATE_BREAKING
-#undef LIGHTFLOOR_STATE_BROKEN
-#undef LIGHTFLOOR_STATE_BITS
-
-#undef LIGHTFLOOR_ON_BIT

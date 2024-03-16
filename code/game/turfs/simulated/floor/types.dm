@@ -15,21 +15,6 @@
 	icon_state = "rockvault"
 
 /*
- * Light
- */
-/turf/simulated/floor/light
-	name = "light floor"
-	light_range = 5
-	icon_state = "light_on"
-	floor_type = /obj/item/stack/tile/light
-
-/turf/simulated/floor/light/initialise()
-	. = ..()
-	if(isnotnull(src))
-		update_icon()
-		name = initial(name) // Just in case commands rename it in the ..() call.
-
-/*
  * Vault
  */
 /turf/simulated/floor/vault

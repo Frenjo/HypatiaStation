@@ -2,9 +2,6 @@
 	return attack_hand(user)
 
 /turf/simulated/floor/attack_hand(mob/user as mob)
-	if(is_light_floor())
-		toggle_lightfloor_on()
-		update_icon()
 	if(!user.canmove || user.restrained() || !user.pulling)
 		return
 	if(user.pulling.anchored || !isturf(user.pulling.loc))
@@ -29,23 +26,12 @@
 	if(isnull(C) || isnull(user))
 		return 0
 
-	if(istype(C, /obj/item/light/bulb)) //only for light tiles
-		if(is_light_floor())
-			if(get_lightfloor_state())
-				user.drop_item(C)
-				qdel(C)
-				set_lightfloor_state(0) //fixing it by bashing it with a light bulb, fun eh?
-				update_icon()
-				to_chat(user, SPAN_INFO("You replace the light bulb."))
-			else
-				to_chat(user, SPAN_INFO("The lightbulb seems fine, no need to replace it."))
-
-	if(istype(C, /obj/item/crowbar) && (!(is_plating())))
+	if(istype(C, /obj/item/crowbar) && !(is_plating()))
 		if(broken || burnt)
 			to_chat(user, SPAN_WARNING("You remove the broken plating."))
 		else
 			var/obj/item/I = new floor_type(src)
-			if(is_light_floor())
+			if(istype(src, /turf/simulated/floor/light))
 				var/obj/item/stack/tile/light/L = I
 				L.on = get_lightfloor_on()
 				L.state = get_lightfloor_state()

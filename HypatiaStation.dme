@@ -1080,6 +1080,7 @@
 #include "code\game\turfs\simulated\floor\floor_act.dm"
 #include "code\game\turfs\simulated\floor\floor_attack.dm"
 #include "code\game\turfs\simulated\floor\grass.dm"
+#include "code\game\turfs\simulated\floor\light.dm"
 #include "code\game\turfs\simulated\floor\plating.dm"
 #include "code\game\turfs\simulated\floor\reinforced.dm"
 #include "code\game\turfs\simulated\floor\types.dm"
