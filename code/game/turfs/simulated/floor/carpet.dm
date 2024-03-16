@@ -11,14 +11,12 @@
 		icon_state = "carpet"
 	. = ..()
 
-/turf/simulated/floor/carpet/initialise()
-	. = ..()
-	if(isnotnull(src))
-		update_icon()
-		for(var/direction in GLOBL.alldirs)
-			if(istype(get_step(src, direction), /turf/simulated/floor))
-				var/turf/simulated/floor/FF = get_step(src, direction)
-				FF.update_icon() //so siding get updated properly
+/turf/simulated/floor/carpet/update_special()
+	for(var/direction in GLOBL.alldirs)
+		var/turf/T = get_step(src, direction)
+		if(istype(T, /turf/simulated/floor))
+			var/turf/simulated/floor/F = T
+			F.update_icon() //so siding get updated properly
 
 /turf/simulated/floor/carpet/update_icon()
 	. = ..()
@@ -55,14 +53,6 @@
 			diagonalconnect |= 8
 
 	icon_state = "carpet[connectdir]-[diagonalconnect]"
-
-/turf/simulated/floor/carpet/make_plating()
-	for(var/direction in GLOBL.alldirs)
-		var/turf/T = get_step(src, direction)
-		if(istype(T, /turf/simulated/floor))
-			var/turf/simulated/floor/F = T
-			F.update_icon() //so siding get updated properly
-	return ..()
 
 /turf/simulated/floor/carpet/break_tile()
 	icon_state = "carpet-broken"

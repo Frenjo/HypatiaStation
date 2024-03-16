@@ -9,9 +9,7 @@
 
 /turf/simulated/floor/light/initialise()
 	. = ..()
-	if(isnotnull(src))
-		update_icon()
-		name = initial(name) // Just in case commands rename it in the ..() call.
+	name = initial(name) // Just in case commands rename it in the ..() call.
 
 /turf/simulated/floor/light/attack_hand(mob/user)
 	toggle_on()

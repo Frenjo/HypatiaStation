@@ -59,6 +59,11 @@ var/list/wood_icons = list("wood", "wood-broken")
 	else
 		icon_regular_floor = icon_state
 
+/turf/simulated/floor/initialise()
+	. = ..()
+	update_special()
+	update_icon()
+
 //turf/simulated/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 //	if ((istype(mover, /obj/machinery/vehicle) && !(src.burnt)))
 //		if (!( locate(/obj/machinery/mass_driver, src) ))
@@ -90,6 +95,13 @@ var/list/wood_icons = list("wood", "wood-broken")
 		lightfloor_state |= LIGHTFLOOR_ON_BIT
 	else
 		lightfloor_state &= ~LIGHTFLOOR_ON_BIT
+
+/*
+ * update_special()
+ * This is used for special floor functionality such as carpet connections and siding on grass.
+ */
+/turf/simulated/floor/proc/update_special()
+	return
 
 /turf/simulated/floor/proc/update_icon()
 	if(lava)
@@ -143,6 +155,9 @@ var/list/wood_icons = list("wood", "wood-broken")
 /turf/simulated/floor/proc/make_plating()
 	if(!floor_type)
 		return
+
+	update_special()
+
 	icon_plating = "plating"
 	set_light(0)
 	floor_type = null
