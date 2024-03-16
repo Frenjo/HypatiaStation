@@ -35,6 +35,9 @@
 			gets_dug()
 	return
 
+/turf/simulated/floor/plating/airless/asteroid/burn_tile()
+	return // Asteroid tiles don't burn.
+
 /turf/simulated/floor/plating/airless/asteroid/Entered(atom/movable/M as mob|obj)
 	. = ..()
 	if(isrobot(M))

@@ -144,8 +144,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	break_tile()
 
 /turf/simulated/floor/proc/break_tile()
-	if(istype(src, /turf/simulated/floor/reinforced))
-		return
 	if(istype(src, /turf/simulated/floor/mech_bay_recharge_floor))
 		ChangeTurf(/turf/simulated/floor/plating)
 	if(broken)
@@ -161,10 +159,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 		broken = 1
 
 /turf/simulated/floor/proc/burn_tile()
-	if(istype(src, /turf/simulated/floor/reinforced))
-		return
-	if(istype(src, /turf/simulated/floor/plating/airless/asteroid))
-		return//Asteroid tiles don't burn
 	if(broken || burnt)
 		return
 	if(is_plasteel_floor())
@@ -180,9 +174,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 //This proc will set floor_type to null and the update_icon() proc will then change the icon_state of the turf
 //This proc auto corrects the grass tiles' siding.
 /turf/simulated/floor/proc/make_plating()
-	if(istype(src, /turf/simulated/floor/reinforced))
-		return
-
 	if(!floor_type)
 		return
 	icon_plating = "plating"

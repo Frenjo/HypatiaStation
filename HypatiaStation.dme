@@ -1081,6 +1081,7 @@
 #include "code\game\turfs\simulated\floor\floor_attack.dm"
 #include "code\game\turfs\simulated\floor\grass.dm"
 #include "code\game\turfs\simulated\floor\plating.dm"
+#include "code\game\turfs\simulated\floor\reinforced.dm"
 #include "code\game\turfs\simulated\floor\types.dm"
 #include "code\game\turfs\simulated\floor\wood.dm"
 #include "code\game\turfs\simulated\shuttle\_shuttle.dm"
