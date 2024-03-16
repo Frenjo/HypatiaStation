@@ -1,4 +1,4 @@
-/turf/simulated/floor/mech_bay_recharge_floor
+/obj/machinery/mech_bay_recharge_floor
 	name = "mech bay recharge station"
 	icon = 'icons/mecha/mech_bay.dmi'
 	icon_state = "recharge_floor"
@@ -7,46 +7,43 @@
 	var/obj/machinery/computer/mech_bay_power_console/recharge_console
 	var/obj/mecha/recharging_mecha = null
 
-/turf/simulated/floor/mech_bay_recharge_floor/Entered(obj/mecha/mecha)
+/obj/machinery/mech_bay_recharge_floor/Crossed(atom/movable/mover)
 	. = ..()
-	if(istype(mecha))
-		mecha.occupant_message("<b>Initializing power control devices.</b>")
+	if(ismecha(mover))
+		var/obj/mecha/mecha = mover
+		mecha.occupant_message(SPAN_INFO_B("Initializing power control devices."))
 		init_devices()
-		if(recharge_console && recharge_port)
+		if(isnotnull(recharge_console) && isnotnull(recharge_port))
 			recharging_mecha = mecha
 			recharge_console.mecha_in(mecha)
 			return
-		else if(!recharge_console)
-			mecha.occupant_message("<font color='red'>Control console not found. Terminating.</font>")
-		else if(!recharge_port)
-			mecha.occupant_message("<font color='red'>Power port not found. Terminating.</font>")
-	return
 
-/turf/simulated/floor/mech_bay_recharge_floor/Exited(atom)
+		if(isnull(recharge_console))
+			mecha.occupant_message(SPAN_WARNING("Control console not found. Terminating."))
+		else if(isnull(recharge_port))
+			mecha.occupant_message(SPAN_WARNING("Power port not found. Terminating."))
+
+/obj/machinery/mech_bay_recharge_floor/Uncrossed(atom/movable/mover)
 	. = ..()
-	if(atom == recharging_mecha)
+	if(mover == recharging_mecha)
 		recharging_mecha = null
-		if(recharge_console)
+		if(isnotnull(recharge_console))
 			recharge_console.mecha_out()
-	return
 
-/turf/simulated/floor/mech_bay_recharge_floor/proc/init_devices()
+/obj/machinery/mech_bay_recharge_floor/proc/init_devices()
 	recharge_console = locate() in range(1, src)
 	recharge_port = locate(/obj/machinery/mech_bay_recharge_port, get_step(src, WEST))
-	if(recharge_console)
+	if(isnotnull(recharge_console))
 		recharge_console.recharge_floor = src
-		if(recharge_port)
+		if(isnotnull(recharge_port))
 			recharge_console.recharge_port = recharge_port
-	if(recharge_port)
+	if(isnotnull(recharge_port))
 		recharge_port.recharge_floor = src
-		if(recharge_console)
+		if(isnotnull(recharge_console))
 			recharge_port.recharge_console = recharge_console
-	return
 
-/turf/simulated/floor/mech_bay_recharge_floor/asteroid
+/obj/machinery/mech_bay_recharge_floor/asteroid
 	icon_state = "recharge_floor_asteroid"
-	initial_gases = null
-	temperature = TCMB
 
 /obj/machinery/mech_bay_recharge_port
 	name = "mech bay power port"
@@ -55,38 +52,32 @@
 	icon = 'icons/mecha/mech_bay.dmi'
 	icon_state = "recharge_port"
 
-	var/turf/simulated/floor/mech_bay_recharge_floor/recharge_floor
+	var/obj/machinery/mech_bay_recharge_floor/recharge_floor
 	var/obj/machinery/computer/mech_bay_power_console/recharge_console
 	var/datum/global_iterator/mech_bay_recharger/pr_recharger
 
 /obj/machinery/mech_bay_recharge_port/New()
-	..()
+	. = ..()
 	pr_recharger = new /datum/global_iterator/mech_bay_recharger(null, 0)
-	return
 
 /obj/machinery/mech_bay_recharge_port/proc/start_charge(obj/mecha/recharging_mecha)
 	if(stat & (NOPOWER | BROKEN))
-		recharging_mecha.occupant_message("<font color='red'>Power port not responding. Terminating.</font>")
-		return 0
+		recharging_mecha.occupant_message(SPAN_WARNING("Power port not responding. Terminating."))
+		return FALSE
 	else
-		if(recharging_mecha.cell)
-			recharging_mecha.occupant_message("Now charging...")
+		if(isnotnull(recharging_mecha.cell))
+			recharging_mecha.occupant_message(SPAN_INFO("Now charging..."))
 			pr_recharger.start(list(src, recharging_mecha))
-			return 1
-		else
-			return 0
+			return TRUE
+	return FALSE
 
 /obj/machinery/mech_bay_recharge_port/proc/stop_charge()
-	if(recharge_console && !recharge_console.stat)
+	if(isnotnull(recharge_console) && !recharge_console.stat)
 		recharge_console.icon_state = initial(recharge_console.icon_state)
 	pr_recharger.stop()
-	return
 
 /obj/machinery/mech_bay_recharge_port/proc/active()
-	if(pr_recharger.active())
-		return 1
-	else
-		return 0
+	return pr_recharger.active()
 
 /obj/machinery/mech_bay_recharge_port/power_change()
 	if(powered())
@@ -111,21 +102,20 @@
 	check_for_null = 0 //since port.stop_charge() must be called. The checks are made in process()
 
 /datum/global_iterator/mech_bay_recharger/process(obj/machinery/mech_bay_recharge_port/port, obj/mecha/mecha)
-	if(!port)
+	if(isnull(port))
 		return 0
-	if(mecha && (mecha in port.recharge_floor))
-		if(!mecha.cell)
+	if(isnotnull(mecha) && (mecha in port.recharge_floor))
+		if(isnull(mecha.cell))
 			return
 		var/delta = min(max_charge, mecha.cell.maxcharge - mecha.cell.charge)
 		if(delta > 0)
 			mecha.give_power(delta)
 			port.use_power(delta * 150)
 		else
-			mecha.occupant_message("<font color='blue'><b>Fully charged.</b></font>")
+			mecha.occupant_message(SPAN_INFO_B("Fully charged."))
 			port.stop_charge()
 	else
 		port.stop_charge()
-	return
 
 
 /obj/machinery/computer/mech_bay_power_console
@@ -137,32 +127,28 @@
 
 	var/autostart = 1
 	var/voltage = 45
-	var/turf/simulated/floor/mech_bay_recharge_floor/recharge_floor
+	var/obj/machinery/mech_bay_recharge_floor/recharge_floor
 	var/obj/machinery/mech_bay_recharge_port/recharge_port
 
 	light_color = "#a97faa"
 
 /obj/machinery/computer/mech_bay_power_console/proc/mecha_in(obj/mecha/mecha)
-	if(stat & (NOPOWER|BROKEN))
-		mecha.occupant_message("<font color='red'>Control console not responding. Terminating...</font>")
+	if(stat & (NOPOWER | BROKEN))
+		mecha.occupant_message(SPAN_WARNING("Control console not responding. Terminating..."))
 		return
-	if(recharge_port && autostart)
+	if(isnotnull(recharge_port) && autostart)
 		var/answer = recharge_port.start_charge(mecha)
 		if(answer)
 			recharge_port.set_voltage(voltage)
-			src.icon_state = initial(src.icon_state) + "_on"
-	return
+			icon_state = initial(icon_state) + "_on"
 
 /obj/machinery/computer/mech_bay_power_console/proc/mecha_out()
-	if(recharge_port)
-		recharge_port.stop_charge()
-	return
+	recharge_port?.stop_charge()
 
 /obj/machinery/computer/mech_bay_power_console/power_change()
 	if(stat & BROKEN)
 		icon_state = initial(icon_state) + "_broken"
-		if(recharge_port)
-			recharge_port.stop_charge()
+		recharge_port?.stop_charge()
 	else if(powered())
 		icon_state = initial(icon_state)
 		stat &= ~NOPOWER
@@ -170,14 +156,12 @@
 		spawn(rand(0, 15))
 			icon_state = initial(icon_state) + "_nopower"
 			stat |= NOPOWER
-			if(recharge_port)
-				recharge_port.stop_charge()
+			recharge_port?.stop_charge()
 
 /obj/machinery/computer/mech_bay_power_console/set_broken()
 	icon_state = initial(icon_state) + "_broken"
 	stat |= BROKEN
-	if(recharge_port)
-		recharge_port.stop_charge()
+	recharge_port?.stop_charge()
 
 /obj/machinery/computer/mech_bay_power_console/attack_hand(mob/user as mob)
 	if(..())
@@ -209,7 +193,6 @@
 	output += "</ body></html>"
 	user << browse(output, "window=mech_bay_console")
 	onclose(user, "mech_bay_console")
-	return
 
 /obj/machinery/computer/mech_bay_power_console/Topic(href, href_list)
 	if(href_list["autostart"])
@@ -219,4 +202,3 @@
 		if(recharge_port)
 			recharge_port.set_voltage(voltage)
 	updateUsrDialog()
-	return

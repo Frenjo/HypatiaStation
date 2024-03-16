@@ -373,7 +373,7 @@
 "bpW" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor,/area/hallway/secondary/escape)
 "bqd" = (/turf/simulated/wall/r_wall,/area/engineering/atmospherics/control)
 "bqe" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9},/turf/simulated/floor,/area/engineering/storage/emergency)
-"bqy" = (/turf/simulated/floor/mech_bay_recharge_floor,/area/robotics/chargebay)
+"bqy" = (/obj/machinery/mech_bay_recharge_floor,/turf/simulated/floor,/area/robotics/chargebay)
 "bqG" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 9},/obj/structure/cable{d2 = 8; icon_state = "0-8"},/obj/machinery/power/apc/standard/apc{dir = 4; name = "east bump"; pixel_x = 24},/turf/simulated/floor{icon_state = "dark"},/area/security/armoury)
 "bqQ" = (/obj/structure/disposalpipe/segment{dir = 8; icon_state = "pipe-c"},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/plating,/area/maintenance/aft/port)
 "bqT" = (/obj/effect/landmark{name = "blobstart"},/turf/simulated/floor/plating,/area/maintenance/fore/starboard)

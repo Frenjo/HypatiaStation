@@ -144,8 +144,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	break_tile()
 
 /turf/simulated/floor/proc/break_tile()
-	if(istype(src, /turf/simulated/floor/mech_bay_recharge_floor))
-		ChangeTurf(/turf/simulated/floor/plating)
 	if(broken)
 		return
 	if(is_plasteel_floor())
