@@ -30,14 +30,6 @@
 		name = initial(name) // Just in case commands rename it in the ..() call.
 
 /*
- * Wood
- */
-/turf/simulated/floor/wood
-	name = "floor"
-	icon_state = "wood"
-	floor_type = /obj/item/stack/tile/wood
-
-/*
  * Vault
  */
 /turf/simulated/floor/vault

@@ -77,12 +77,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	else
 		return 0
 
-/turf/simulated/floor/is_wood_floor()
-	if(ispath(floor_type, /obj/item/stack/tile/wood))
-		return 1
-	else
-		return 0
-
 /turf/simulated/floor/is_carpet_floor()
 	if(ispath(floor_type, /obj/item/stack/tile/carpet))
 		return 1
@@ -184,11 +178,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 
 				icon_state = "carpet[connectdir]-[diagonalconnect]"
 
-	else if(is_wood_floor())
-		if(!broken && !burnt)
-			if(!(icon_state in wood_icons))
-				icon_state = "wood"
-				//to_world("[icon_state]y's got [icon_state]")
 	/*spawn(1)
 		if(istype(src,/turf/simulated/floor)) //Was throwing runtime errors due to a chance of it changing to space halfway through.
 			if(air)
@@ -218,9 +207,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	else if(is_plating())
 		icon_state = "platingdmg[pick(1,2,3)]"
 		broken = 1
-	else if(is_wood_floor())
-		icon_state = "wood-broken"
-		broken = 1
 	else if(is_carpet_floor())
 		icon_state = "carpet-broken"
 		broken = 1
@@ -240,9 +226,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 		burnt = 1
 	else if(is_plating())
 		icon_state = "panelscorched"
-		burnt = 1
-	else if(is_wood_floor())
-		icon_state = "wood-broken"
 		burnt = 1
 	else if(is_carpet_floor())
 		icon_state = "carpet-broken"

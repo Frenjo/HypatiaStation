@@ -44,30 +44,15 @@
 		if(broken || burnt)
 			to_chat(user, SPAN_WARNING("You remove the broken plating."))
 		else
-			if(is_wood_floor())
-				to_chat(user, SPAN_WARNING("You forcefully pry off the planks, destroying them in the process."))
-			else
-				var/obj/item/I = new floor_type(src)
-				if(is_light_floor())
-					var/obj/item/stack/tile/light/L = I
-					L.on = get_lightfloor_on()
-					L.state = get_lightfloor_state()
-				to_chat(user, SPAN_WARNING("You remove the [I.name]."))
+			var/obj/item/I = new floor_type(src)
+			if(is_light_floor())
+				var/obj/item/stack/tile/light/L = I
+				L.on = get_lightfloor_on()
+				L.state = get_lightfloor_state()
+			to_chat(user, SPAN_WARNING("You remove the [I.name]."))
 
 		make_plating()
 		playsound(src, 'sound/items/Crowbar.ogg', 80, 1)
-		return
-
-	if(istype(C, /obj/item/screwdriver) && is_wood_floor())
-		if(broken || burnt)
-			return
-		else
-			if(is_wood_floor())
-				to_chat(user, SPAN_WARNING("You unscrew the planks."))
-				new floor_type(src)
-
-		make_plating()
-		playsound(src, 'sound/items/Screwdriver.ogg', 80, 1)
 		return
 
 	if(istype(C, /obj/item/stack/rods))
