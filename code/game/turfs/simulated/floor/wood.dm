@@ -4,7 +4,7 @@
 /turf/simulated/floor/wood
 	name = "floor"
 	icon_state = "wood"
-	floor_type = /obj/item/stack/tile/wood
+	tile_path = /obj/item/stack/tile/wood
 
 /turf/simulated/floor/wood/attack_tool(obj/item/tool, mob/user)
 	if(iscrowbar(tool))
@@ -16,7 +16,7 @@
 	if(isscrewdriver(tool))
 		to_chat(user, SPAN_INFO("You unscrew the planks."))
 		playsound(src, 'sound/items/Screwdriver.ogg', 80, 1)
-		new floor_type(src)
+		new tile_path(src)
 		make_plating()
 		return TRUE
 
@@ -27,7 +27,6 @@
 		if(!(icon_state in wood_icons))
 			icon_state = "wood"
 			//to_world("[icon_state]y's got [icon_state]")
-	return ..()
 
 /turf/simulated/floor/wood/break_tile()
 	icon_state = "wood-broken"

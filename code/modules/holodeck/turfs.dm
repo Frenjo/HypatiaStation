@@ -16,7 +16,7 @@
 /turf/simulated/floor/holofloor/grass
 	name = "lush grass"
 	icon_state = "grass1"
-	floor_type = /obj/item/stack/tile/grass
+	tile_path = /obj/item/stack/tile/grass
 
 /turf/simulated/floor/holofloor/grass/New()
 	icon_state = "grass[pick("1", "2", "3", "4")]"

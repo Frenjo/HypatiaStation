@@ -3,14 +3,13 @@
 	singular_name = "floor tile"
 	desc = "Those could work as a pretty decent throwing weapon"
 	icon_state = "tile"
-	w_class = 3.0
-	force = 6.0
+	force = 6
 	matter_amounts = list(MATERIAL_METAL = 937.5)
-	throwforce = 15.0
+	throwforce = 15
 	throw_speed = 5
 	throw_range = 20
 	obj_flags = OBJ_FLAG_CONDUCT
-	max_amount = 60
+	turf_path = /turf/simulated/floor
 
 /obj/item/stack/tile/plasteel/New(loc, amount = null)
 	..()

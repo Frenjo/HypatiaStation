@@ -4,7 +4,7 @@
 /turf/simulated/floor/carpet
 	name = "carpet"
 	icon_state = "carpet"
-	floor_type = /obj/item/stack/tile/carpet
+	tile_path = /obj/item/stack/tile/carpet
 
 /turf/simulated/floor/carpet/New()
 	if(!icon_state)
@@ -19,7 +19,6 @@
 			F.update_icon() //so siding get updated properly
 
 /turf/simulated/floor/carpet/update_icon()
-	. = ..()
 	if(broken || burnt)
 		return .
 	if(icon_state == "carpetsymbol" || icon_state == "carpetnoconnect")

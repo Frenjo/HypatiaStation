@@ -27,8 +27,8 @@
 /turf/simulated/floor/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(!burnt && prob(5))
 		burn_tile()
-	else if(prob(1) && !is_plating())
-		make_plating()
+	else if(prob(1))
+		make_plating() // Plating can't be made into plating so this is probably fine.
 		burn_tile()
 
 /turf/simulated/floor/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)

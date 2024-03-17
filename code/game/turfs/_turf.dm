@@ -42,8 +42,6 @@
 /turf/proc/process()
 	return PROCESS_KILL
 
-/turf/proc/is_plating()
-	return 0
 /turf/proc/is_plasteel_floor()
 	return 0
 /turf/proc/return_siding_icon_state()		//used for grass floors, which have siding.
@@ -84,12 +82,14 @@
 		qdel(L)
 
 //Creates a new turf
-/turf/proc/ChangeTurf(turf/N)
-	if(isnull(N))
+/turf/proc/ChangeTurf(turf/type_path)
+	RETURN_TYPE(/turf)
+
+	if(isnull(type_path))
 		return
 
 ///// Z-Level Stuff ///// This makes sure that turfs are not changed to space when one side is part of a zone
-	if(isspace(N))
+	if(type_path == /turf/space)
 		var/turf/controller = locate(1, 1, src.z)
 		for(var/obj/effect/landmark/zcontroller/c in controller)
 			if(c.down)
@@ -110,8 +110,7 @@
 	var/old_lighting_overlay = lighting_overlay
 	var/old_corners = corners
 
-	if(isnotnull(connections))
-		connections.erase_all()
+	connections?.erase_all()
 
 	if(issimulated(src))
 		//Yeah, we're just going to rebuild the whole thing.
@@ -121,35 +120,23 @@
 		if(isnotnull(S.zone))
 			S.zone.rebuild()
 
-	if(ispath(N, /turf/simulated/floor))
-		var/turf/simulated/W = new N(locate(src.x, src.y, src.z))
+	qdel(src) // Executes the Destroy() chain.
+	var/turf/new_turf = new type_path(src)
 
+	if(ispath(type_path, /turf/simulated/floor))
 		if(old_fire)
 			fire = old_fire
-
-		if(istype(W, /turf/simulated/floor))
-			W.RemoveLattice()
-
-		global.PCair?.mark_for_update(src)
-
-		for(var/turf/space/S in range(W, 1))
-			S.update_starlight()
-
-		W.levelupdate()
-		. = W
-
+		new_turf.RemoveLattice()
 	else
-		var/turf/W = new N(locate(src.x, src.y, src.z))
-		if(old_fire)
-			old_fire.RemoveFire()
+		old_fire?.RemoveFire()
 
-		global.PCair?.mark_for_update(src)
+	global.PCair?.mark_for_update(src)
 
-		for(var/turf/space/S in range(W, 1))
-			S.update_starlight()
+	for(var/turf/space/S in range(new_turf, 1))
+		S.update_starlight()
 
-		W.levelupdate()
-		. = W
+	new_turf.levelupdate()
+	. = new_turf
 
 	recalc_atom_opacity()
 

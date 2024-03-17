@@ -22,87 +22,36 @@
 	else
 		step(user.pulling, get_dir(user.pulling.loc, src))
 
-/turf/simulated/floor/attackby(obj/item/C as obj, mob/user as mob)
-	if(isnull(C) || isnull(user))
-		return 0
-
-	if(istype(C, /obj/item/crowbar) && !(is_plating()))
+/turf/simulated/floor/attack_tool(obj/item/tool, mob/user)
+	if(iscrowbar(tool))
 		if(broken || burnt)
 			to_chat(user, SPAN_WARNING("You remove the broken plating."))
 		else
-			var/obj/item/I = new floor_type(src)
+			var/obj/item/I = new tile_path(src)
 			if(istype(src, /turf/simulated/floor/light))
-				var/obj/item/stack/tile/light/L = I
-				L.on = get_lightfloor_on()
-				L.state = get_lightfloor_state()
-			to_chat(user, SPAN_WARNING("You remove the [I.name]."))
+				var/turf/simulated/floor/light/light_floor = src
+				var/obj/item/stack/tile/light/light_stack = I
+				light_stack.on = light_floor.get_on()
+				light_stack.state = light_floor.get_state()
+			to_chat(user, SPAN_WARNING("You remove \the [I]."))
 
 		make_plating()
 		playsound(src, 'sound/items/Crowbar.ogg', 80, 1)
-		return
+		return TRUE
 
-	if(istype(C, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = C
-		if(is_plating())
-			if(R.amount >= 2)
-				to_chat(user, SPAN_INFO("Reinforcing the floor..."))
-				if(do_after(user, 30) && R && R.amount >= 2 && is_plating())
-					ChangeTurf(/turf/simulated/floor/reinforced)
-					playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
-					R.use(2)
-					return
-			else
-				to_chat(user, SPAN_WARNING("You need more rods."))
-		else
-			to_chat(user, SPAN_WARNING("You must remove the plating first."))
-		return
+	if(iswire(tool))
+		to_chat(user, SPAN_WARNING("You must remove the plating first."))
+		return TRUE
 
-	if(istype(C, /obj/item/stack/tile))
-		if(is_plating())
-			if(!broken && !burnt)
-				var/obj/item/stack/tile/T = C
-				floor_type = T.type
-				intact = 1
-				if(istype(T, /obj/item/stack/tile/light))
-					var/obj/item/stack/tile/light/L = T
-					set_lightfloor_state(L.state)
-					set_lightfloor_on(L.on)
-				if(istype(T, /obj/item/stack/tile/grass))
-					for(var/direction in GLOBL.cardinal)
-						if(istype(get_step(src, direction), /turf/simulated/floor))
-							var/turf/simulated/floor/FF = get_step(src, direction)
-							FF.update_icon() //so siding gets updated properly
-				else if(istype(T, /obj/item/stack/tile/carpet))
-					for(var/direction in GLOBL.alldirs)
-						if(istype(get_step(src, direction), /turf/simulated/floor))
-							var/turf/simulated/floor/FF = get_step(src, direction)
-							FF.update_icon() //so siding gets updated properly
-				T.use(1)
-				update_icon()
-				levelupdate()
-				playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
-			else
-				to_chat(user, SPAN_INFO("This section is too damaged to support a tile. Use a welder to fix the damage."))
-
-	if(istype(C, /obj/item/stack/cable_coil))
-		if(is_plating())
-			var/obj/item/stack/cable_coil/coil = C
-			coil.turf_place(src, user)
-		else
-			to_chat(user, SPAN_WARNING("You must remove the plating first."))
-
-	if(istype(C, /obj/item/shovel))
+	if(istype(tool, /obj/item/shovel))
 		to_chat(user, SPAN_WARNING("You cannot shovel this."))
+		return TRUE
 
-	if(istype(C, /obj/item/weldingtool))
-		var/obj/item/weldingtool/welder = C
-		if(welder.isOn() && (is_plating()))
-			if(broken || burnt)
-				if(welder.remove_fuel(0, user))
-					to_chat(user, SPAN_WARNING("You fix some dents on the broken plating."))
-					playsound(src, 'sound/items/Welder.ogg', 80, 1)
-					icon_state = "plating"
-					burnt = 0
-					broken = 0
-				else
-					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
+	return ..()
+
+/turf/simulated/floor/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/stack/rods))
+		to_chat(user, SPAN_WARNING("You must remove the plating first."))
+		return TRUE
+
+	return ..()

@@ -4,7 +4,7 @@
 /turf/simulated/floor/grass
 	name = "grass patch"
 	icon_state = "grass1"
-	floor_type = /obj/item/stack/tile/grass
+	tile_path = /obj/item/stack/tile/grass
 
 /turf/simulated/floor/grass/New()
 	icon_state = "grass[pick("1","2","3","4")]"
@@ -29,7 +29,6 @@
 	if(!broken && !burnt)
 		if(!(icon_state in list("grass1","grass2","grass3","grass4")))
 			icon_state = "grass[pick("1","2","3","4")]"
-	return ..()
 
 /turf/simulated/floor/grass/break_tile()
 	icon_state = "sand[pick("1","2","3")]"

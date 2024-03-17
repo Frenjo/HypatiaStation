@@ -22,9 +22,10 @@
 				SPAN_INFO("You hear a ratchet.")
 			)
 			new /obj/item/stack/rods(src, 2)
-			ChangeTurf(/turf/simulated/floor)
-			var/turf/simulated/floor/F = src
-			F.make_plating()
+			make_floor(/turf/simulated/floor/plating)
+		return TRUE
+
+	if(iscrowbar(tool))
 		return TRUE
 	return ..()
 
