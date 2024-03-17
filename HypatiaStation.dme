@@ -1086,6 +1086,7 @@
 #include "code\game\turfs\simulated\floor\reinforced.dm"
 #include "code\game\turfs\simulated\floor\types.dm"
 #include "code\game\turfs\simulated\floor\wood.dm"
+#include "code\game\turfs\simulated\floor\types\linoleum.dm"
 #include "code\game\turfs\simulated\shuttle\_shuttle.dm"
 #include "code\game\turfs\simulated\shuttle\floor.dm"
 #include "code\game\turfs\simulated\shuttle\wall.dm"

@@ -27,13 +27,14 @@
 		if(broken || burnt)
 			to_chat(user, SPAN_WARNING("You remove the broken plating."))
 		else
-			var/obj/item/I = new tile_path(src)
-			if(istype(src, /turf/simulated/floor/light))
-				var/turf/simulated/floor/light/light_floor = src
-				var/obj/item/stack/tile/light/light_stack = I
-				light_stack.on = light_floor.get_on()
-				light_stack.state = light_floor.get_state()
-			to_chat(user, SPAN_WARNING("You remove \the [I]."))
+			if(isnotnull(tile_path))
+				var/obj/item/I = new tile_path(src)
+				if(istype(src, /turf/simulated/floor/light))
+					var/turf/simulated/floor/light/light_floor = src
+					var/obj/item/stack/tile/light/light_stack = I
+					light_stack.on = light_floor.get_on()
+					light_stack.state = light_floor.get_state()
+				to_chat(user, SPAN_WARNING("You remove \the [I]."))
 
 		make_plating()
 		playsound(src, 'sound/items/Crowbar.ogg', 80, 1)

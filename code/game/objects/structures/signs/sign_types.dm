@@ -84,6 +84,11 @@
 	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. The child appears to be retarded. Beneath the image, someone has scratched the word \"PACKETS\""
 	icon_state = "kiddieplaque"
 
+/obj/structure/sign/goonplaque
+	name = "Commemorative Plaque"
+	desc = "\"This is a plaque in honour of our comrades on the G4407 Stations. Hopefully TG4407 model can live up to your fame and fortune.\" Scratched in beneath that is a crude image of a meteor and a spaceman. The spaceman is laughing. The meteor is exploding."
+	icon_state = "goonplaque"
+
 /obj/structure/sign/rogueai
 	name = "\improper AI warning sign"
 	desc = "A sign detailing the indicators of a rampant artificial intelligence."
