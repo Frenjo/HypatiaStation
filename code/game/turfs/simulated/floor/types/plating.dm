@@ -61,16 +61,23 @@
 	return ..()
 
 /turf/simulated/floor/plating/update_icon()
-	if(!broken && !burnt)
-		icon_state = icon_plating // Because asteroids are 'platings' too.
+	. = ..()
+	if(!.)
+		return FALSE
+	if(broken || burnt)
+		return FALSE
+
+	icon_state = icon_plating // Because asteroids are 'platings' too.
 
 /turf/simulated/floor/plating/break_tile()
-	icon_state = "platingdmg[pick(1,2,3)]"
-	broken = 1
+	. = ..()
+	if(.)
+		icon_state = "platingdmg[pick(1, 2, 3)]"
 
 /turf/simulated/floor/plating/burn_tile()
-	icon_state = "panelscorched"
-	burnt = 1
+	. = ..()
+	if(.)
+		icon_state = "panelscorched"
 
 /turf/simulated/floor/plating/make_plating()
 	return // You can't make plating into plating.

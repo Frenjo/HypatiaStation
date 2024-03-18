@@ -39,6 +39,10 @@
 	return ..()
 
 /turf/simulated/floor/light/update_icon()
+	. = ..()
+	if(!.)
+		return FALSE
+
 	if(get_on())
 		switch(get_state())
 			if(LIGHTFLOOR_STATE_OK)
@@ -59,8 +63,9 @@
 		icon_state = "light_off"
 
 /turf/simulated/floor/light/break_tile()
-	icon_state = "light_broken"
-	broken = 1
+	. = ..()
+	if(.)
+		icon_state = "light_broken"
 
 /turf/simulated/floor/light/proc/get_state()
 	return state & LIGHTFLOOR_STATE_BITS

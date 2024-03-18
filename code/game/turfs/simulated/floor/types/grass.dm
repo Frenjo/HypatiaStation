@@ -26,17 +26,24 @@
 			FF.update_icon() //so siding get updated properly
 
 /turf/simulated/floor/grass/update_icon()
-	if(!broken && !burnt)
-		if(!(icon_state in list("grass1","grass2","grass3","grass4")))
-			icon_state = "grass[pick("1","2","3","4")]"
+	. = ..()
+	if(!.)
+		return FALSE
+	if(broken || burnt)
+		return FALSE
+
+	if(!(icon_state in list("grass1","grass2","grass3","grass4")))
+		icon_state = "grass[pick(1, 2, 3, 4)]"
 
 /turf/simulated/floor/grass/break_tile()
-	icon_state = "sand[pick("1","2","3")]"
-	broken = 1
+	. = ..()
+	if(.)
+		icon_state = "sand[pick(1, 2, 3)]"
 
 /turf/simulated/floor/grass/burn_tile()
-	icon_state = "sand[pick("1","2","3")]"
-	burnt = 1
+	. = ..()
+	if(.)
+		icon_state = "sand[pick(1, 2, 3)]"
 
 /turf/simulated/floor/grass/return_siding_icon_state()
 	. = ..()

@@ -19,10 +19,14 @@
 			F.update_icon() //so siding get updated properly
 
 /turf/simulated/floor/carpet/update_icon()
+	. = ..()
+	if(!.)
+		return FALSE
 	if(broken || burnt)
-		return .
+		return FALSE
 	if(icon_state == "carpetsymbol" || icon_state == "carpetnoconnect")
-		return .
+		return FALSE
+
 	var/connectdir = 0
 	for(var/direction in GLOBL.cardinal)
 		if(istype(get_step(src, direction), /turf/simulated/floor/carpet))
@@ -54,9 +58,11 @@
 	icon_state = "carpet[connectdir]-[diagonalconnect]"
 
 /turf/simulated/floor/carpet/break_tile()
-	icon_state = "carpet-broken"
-	broken = 1
+	. = ..()
+	if(.)
+		icon_state = "carpet-broken"
 
 /turf/simulated/floor/carpet/burn_tile()
-	icon_state = "carpet-broken"
-	burnt = 1
+	. = ..()
+	if(.)
+		icon_state = "carpet-broken"

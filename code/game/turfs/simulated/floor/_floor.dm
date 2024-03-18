@@ -68,8 +68,11 @@ var/list/wood_icons = list("wood", "wood-broken")
 	return
 
 /turf/simulated/floor/proc/update_icon()
+	SHOULD_CALL_PARENT(TRUE)
+
 	if(lava)
-		return
+		return FALSE
+	return TRUE
 
 /turf/simulated/floor/proc/gets_drilled()
 	return
@@ -79,12 +82,20 @@ var/list/wood_icons = list("wood", "wood-broken")
 	break_tile()
 
 /turf/simulated/floor/proc/break_tile()
+	SHOULD_CALL_PARENT(TRUE)
+
 	if(broken)
-		return
+		return FALSE
+	broken = TRUE
+	return TRUE
 
 /turf/simulated/floor/proc/burn_tile()
+	SHOULD_CALL_PARENT(TRUE)
+
 	if(broken || burnt)
-		return
+		return FALSE
+	burnt = TRUE
+	return TRUE
 
 /*
  * Wrapper for ChangeTurf() which handles various floor-specific updates.

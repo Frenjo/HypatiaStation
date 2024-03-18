@@ -30,10 +30,14 @@
 	return ..()
 
 /turf/simulated/floor/reinforced/break_tile()
-	return
+	SHOULD_CALL_PARENT(FALSE)
+
+	return FALSE
 
 /turf/simulated/floor/reinforced/burn_tile()
-	return
+	SHOULD_CALL_PARENT(FALSE)
+
+	return FALSE
 
 /turf/simulated/floor/reinforced/make_plating()
 	return

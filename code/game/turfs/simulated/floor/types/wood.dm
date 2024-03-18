@@ -23,15 +23,22 @@
 	return ..()
 
 /turf/simulated/floor/wood/update_icon()
-	if(!broken && !burnt)
-		if(!(icon_state in wood_icons))
-			icon_state = "wood"
-			//to_world("[icon_state]y's got [icon_state]")
+	. = ..()
+	if(!.)
+		return FALSE
+	if(broken || burnt)
+		return FALSE
+
+	if(!(icon_state in wood_icons))
+		icon_state = "wood"
+		//to_world("[icon_state]y's got [icon_state]")
 
 /turf/simulated/floor/wood/break_tile()
-	icon_state = "wood-broken"
-	broken = 1
+	. = ..()
+	if(.)
+		icon_state = "wood-broken"
 
 /turf/simulated/floor/wood/burn_tile()
-	icon_state = "wood-broken"
-	burnt = 1
+	. = ..()
+	if(.)
+		icon_state = "wood-broken"

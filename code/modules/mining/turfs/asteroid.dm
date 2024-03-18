@@ -36,7 +36,9 @@
 	return
 
 /turf/simulated/floor/plating/airless/asteroid/burn_tile()
-	return // Asteroid tiles don't burn.
+	SHOULD_CALL_PARENT(FALSE)
+
+	return FALSE // Asteroid tiles don't burn.
 
 /turf/simulated/floor/plating/airless/asteroid/Entered(atom/movable/M as mob|obj)
 	. = ..()
