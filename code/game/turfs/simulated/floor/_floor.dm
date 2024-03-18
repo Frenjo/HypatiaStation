@@ -27,7 +27,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	//Use the is_plating(), is_plasteel_floor() and is_light_floor() procs instead. --Errorage
 	name = "floor"
 	icon = 'icons/turf/floors.dmi'
-	icon_state = "floor"
 
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
@@ -41,7 +40,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	var/broken = 0
 	var/burnt = 0
 	var/mineral = MATERIAL_METAL
-	var/tile_path = /obj/item/stack/tile/plasteel
+	var/tile_path = null
 
 /turf/simulated/floor/New()
 	. = ..()
@@ -61,12 +60,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 //			return 0
 //	return ..()
 
-/turf/simulated/floor/is_plasteel_floor()
-	if(ispath(tile_path, /obj/item/stack/tile/plasteel))
-		return 1
-	else
-		return 0
-
 /*
  * update_special()
  * This is used for special floor functionality such as carpet connections and siding on grass.
@@ -78,15 +71,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	if(lava)
 		return
 
-	if(is_plasteel_floor())
-		if(!broken && !burnt)
-			icon_state = icon_regular_floor
-
-	/*spawn(1)
-		if(istype(src,/turf/simulated/floor)) //Was throwing runtime errors due to a chance of it changing to space halfway through.
-			if(air)
-				update_visuals(air)*/
-
 /turf/simulated/floor/proc/gets_drilled()
 	return
 
@@ -97,19 +81,10 @@ var/list/wood_icons = list("wood", "wood-broken")
 /turf/simulated/floor/proc/break_tile()
 	if(broken)
 		return
-	if(is_plasteel_floor())
-		icon_state = "damaged[pick(1,2,3,4,5)]"
-		broken = 1
 
 /turf/simulated/floor/proc/burn_tile()
 	if(broken || burnt)
 		return
-	if(is_plasteel_floor())
-		icon_state = "damaged[pick(1,2,3,4,5)]"
-		burnt = 1
-	else if(is_plasteel_floor())
-		icon_state = "floorscorched[pick(1,2)]"
-		burnt = 1
 
 /*
  * Wrapper for ChangeTurf() which handles various floor-specific updates.
