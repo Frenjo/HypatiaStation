@@ -62,13 +62,13 @@
 	if(isnotnull(container.mineral))
 		var/decl/mineral/mineral = container.mineral
 		if(isnotnull(mineral.xenoarch_age_range))
-			age = rand(mineral.xenoarch_age_range[0], mineral.xenoarch_age_range[1])
+			age = rand(mineral.xenoarch_age_range[1], mineral.xenoarch_age_range[2])
 		if(isnotnull(mineral.xenoarch_age_range_thousand))
-			age_thousand = rand(mineral.xenoarch_age_range_thousand[0], mineral.xenoarch_age_range_thousand[1])
+			age_thousand = rand(mineral.xenoarch_age_range_thousand[1], mineral.xenoarch_age_range_thousand[2])
 		if(isnotnull(mineral.xenoarch_age_range_million))
-			age_million = rand(mineral.xenoarch_age_range_million[0], mineral.xenoarch_age_range_million[1])
+			age_million = rand(mineral.xenoarch_age_range_million[1], mineral.xenoarch_age_range_million[2])
 		if(isnotnull(mineral.xenoarch_age_range_billion))
-			age_billion = rand(mineral.xenoarch_age_range_billion[0], mineral.xenoarch_age_range_billion[1])
+			age_billion = rand(mineral.xenoarch_age_range_billion[1], mineral.xenoarch_age_range_billion[2])
 		if(isnotnull(mineral.xenoarch_source_mineral))
 			find_presence[mineral.xenoarch_source_mineral] = rand(1, 1000) / 100
 			source_mineral = mineral.xenoarch_source_mineral

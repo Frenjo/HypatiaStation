@@ -266,6 +266,9 @@
 		T.affecting_lights.Remove(src)
 
 	for_no_type_check(var/datum/lighting_corner/C, corners - effect_str) // New corners
+		if(isnull(C))
+			corners.Remove(C)
+			continue
 		C.affecting.Add(src)
 		if(!C.active)
 			effect_str[C] = 0

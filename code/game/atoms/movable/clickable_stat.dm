@@ -16,7 +16,8 @@
 	var/is_controller = null
 
 /atom/movable/clickable_stat/New(loc, datum/target, name = null)
-	. = ..()
+	SHOULD_CALL_PARENT(FALSE)
+
 	src.target = target
 	if(isnotnull(name))
 		src.name = name
