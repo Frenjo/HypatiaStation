@@ -2,7 +2,7 @@
  * Wood
  */
 /turf/simulated/floor/wood
-	name = "floor"
+	name = "wood floor"
 	icon_state = "wood"
 	tile_path = /obj/item/stack/tile/wood
 
