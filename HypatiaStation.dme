@@ -1073,6 +1073,7 @@
 #include "code\game\procs\smoothwall.dm"
 #include "code\game\turfs\_turf.dm"
 #include "code\game\turfs\turf_act.dm"
+#include "code\game\turfs\turf_changing.dm"
 #include "code\game\turfs\turf_entry.dm"
 #include "code\game\turfs\simulated\_simulated.dm"
 #include "code\game\turfs\simulated\floor\_floor.dm"

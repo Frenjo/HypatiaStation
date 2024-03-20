@@ -48,11 +48,11 @@
 	return
 	*/
 
-/turf/simulated/wall/ChangeTurf(newtype)
+/turf/simulated/wall/ChangeTurf(turf/type_path)
 	for(var/obj/effect/E in src)
 		if(E.name == "Wallrot")
 			qdel(E)
-	..(newtype)
+	return ..(type_path)
 
 //Appearance
 /turf/simulated/wall/examine()

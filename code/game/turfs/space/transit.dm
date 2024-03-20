@@ -6,7 +6,7 @@
 	toggle_transit(GLOBL.reverse_dir[pushdirection])
 
 // Override because we dont want people building rods on space transit tiles.
-/turf/space/transit/attackby(obj/O as obj, mob/user as mob)
+/turf/space/transit/attackby(obj/item/I, mob/user)
 	return
 
 /turf/space/transit/north // moving to the north

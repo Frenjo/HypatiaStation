@@ -1,5 +1,5 @@
 // Ported from unstable r355
-/turf/space/Entered(atom/movable/A as mob|obj)
+/turf/space/Entered(atom/movable/A)
 	if(movement_disabled)
 		FEEDBACK_MOVEMENT_ADMIN_DISABLED(usr) // This is to identify lag problems.
 		return
