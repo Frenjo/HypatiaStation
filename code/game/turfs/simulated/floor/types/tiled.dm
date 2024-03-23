@@ -40,6 +40,16 @@
 /turf/simulated/floor/tiled/dark
 	icon_state = "dark"
 
+/turf/simulated/floor/tiled/dark/server
+	name = "server walkway"
+	initial_gases = list(/decl/xgm_gas/nitrogen = 500)
+	temperature = 80
+
+/turf/simulated/floor/tiled/dark/mainframe
+	name = "mainframe floor"
+	initial_gases = list(/decl/xgm_gas/nitrogen = 100)
+	temperature = 80
+
 // Dark Chapel Tiles - The religiously ominous ones.
 /turf/simulated/floor/tiled/dark_chapel
 	icon_state = "darkchapel"

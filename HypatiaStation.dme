@@ -1082,6 +1082,7 @@
 #include "code\game\turfs\simulated\floor\types.dm"
 #include "code\game\turfs\simulated\floor\types\beach.dm"
 #include "code\game\turfs\simulated\floor\types\carpet.dm"
+#include "code\game\turfs\simulated\floor\types\circuit_grid.dm"
 #include "code\game\turfs\simulated\floor\types\grass.dm"
 #include "code\game\turfs\simulated\floor\types\light.dm"
 #include "code\game\turfs\simulated\floor\types\linoleum.dm"
