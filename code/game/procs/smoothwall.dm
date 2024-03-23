@@ -128,9 +128,6 @@
 	..()*/
 
 /turf/simulated/wall/relativewall()
-	if(istype(src, /turf/simulated/wall/vault)) //HACK!!!
-		return
-
 	var/junction = 0 //will be used to determine from which side the wall is connected to other walls
 
 	for(var/turf/simulated/wall/W in orange(src, 1))
@@ -145,5 +142,4 @@
 		if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
 			if(mineral == W.mineral)
 				junction |= get_dir(src, W)
-	var/turf/simulated/wall/wall = src
-	wall.icon_state = "[wall.walltype][junction]"
+	icon_state = "[walltype][junction]"

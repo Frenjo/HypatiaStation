@@ -1,6 +1,7 @@
 /turf/simulated/wall/mineral
 	name = "mineral wall"
 	desc = "This shouldn't exist"
+	icon = 'icons/turf/walls/mineral.dmi'
 	icon_state = ""
 
 /turf/simulated/wall/mineral/gold
@@ -34,8 +35,8 @@
 /turf/simulated/wall/mineral/bananium
 	name = "bananium wall"
 	desc = "A wall with bananium plating. Honk!"
-	icon_state = "clown0"
-	walltype = "clown"
+	icon_state = "bananium0"
+	walltype = "bananium"
 	mineral = MATERIAL_BANANIUM
 
 /turf/simulated/wall/mineral/sandstone

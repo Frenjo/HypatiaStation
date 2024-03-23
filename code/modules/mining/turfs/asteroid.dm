@@ -129,13 +129,13 @@
 /turf/simulated/floor/plating/airless/asteroid/proc/update_mineral_overlays()
 	overlays.Cut()
 	if(istype(get_step(src, NORTH), /turf/simulated/mineral))
-		overlays.Add(image('icons/turf/walls.dmi', "rock_side_n"))
+		overlays.Add(image('icons/turf/walls/rocks_ores.dmi', "rock_side_n"))
 	if(istype(get_step(src, SOUTH), /turf/simulated/mineral))
-		overlays.Add(image('icons/turf/walls.dmi', "rock_side_s", layer = 6))
+		overlays.Add(image('icons/turf/walls/rocks_ores.dmi', "rock_side_s", layer = 6))
 	if(istype(get_step(src, EAST), /turf/simulated/mineral))
-		overlays.Add(image('icons/turf/walls.dmi', "rock_side_e", layer = 6))
+		overlays.Add(image('icons/turf/walls/rocks_ores.dmi', "rock_side_e", layer = 6))
 	if(istype(get_step(src, WEST), /turf/simulated/mineral))
-		overlays.Add(image('icons/turf/walls.dmi', "rock_side_w", layer = 6))
+		overlays.Add(image('icons/turf/walls/rocks_ores.dmi', "rock_side_w", layer = 6))
 
 /turf/simulated/floor/plating/airless/asteroid/proc/full_update_mineral_overlays()
 	var/turf/simulated/floor/plating/airless/asteroid/A

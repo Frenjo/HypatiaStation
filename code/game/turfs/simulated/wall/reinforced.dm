@@ -1,6 +1,7 @@
 /turf/simulated/wall/r_wall
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to seperate rooms."
+	icon = 'icons/turf/walls/reinforced.dmi'
 	icon_state = "r_wall"
 
 	damage_cap = 1000

@@ -4,8 +4,9 @@
 /obj/structure/falsewall
 	name = "wall"
 	desc = "A huge chunk of metal used to seperate rooms."
-	anchored = TRUE
 	icon = 'icons/turf/walls.dmi'
+	icon_state = "0"
+	anchored = TRUE
 	var/mineral = MATERIAL_METAL
 	var/opening = 0
 
@@ -162,7 +163,7 @@
 /obj/structure/falserwall
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to seperate rooms."
-	icon = 'icons/turf/walls.dmi'
+	icon = 'icons/turf/walls/reinforced.dmi'
 	icon_state = "r_wall"
 	density = TRUE
 	opacity = TRUE
@@ -273,7 +274,8 @@
 /obj/structure/falsewall/uranium
 	name = "uranium wall"
 	desc = "A wall with uranium plating. This is probably a bad idea."
-	icon_state = ""
+	icon = 'icons/turf/walls/mineral.dmi'
+	icon_state = "uranium0"
 	mineral = MATERIAL_URANIUM
 	var/active = null
 	var/last_event = 0
@@ -305,37 +307,43 @@
 /obj/structure/falsewall/gold
 	name = "gold wall"
 	desc = "A wall with gold plating. Swag!"
-	icon_state = ""
+	icon = 'icons/turf/walls/mineral.dmi'
+	icon_state = "gold0"
 	mineral = MATERIAL_GOLD
 
 /obj/structure/falsewall/silver
 	name = "silver wall"
 	desc = "A wall with silver plating. Shiny."
-	icon_state = ""
+	icon = 'icons/turf/walls/mineral.dmi'
+	icon_state = "silver0"
 	mineral = MATERIAL_SILVER
 
 /obj/structure/falsewall/diamond
 	name = "diamond wall"
 	desc = "A wall with diamond plating. You monster."
-	icon_state = ""
+	icon = 'icons/turf/walls/mineral.dmi'
+	icon_state = "diamond0"
 	mineral = MATERIAL_DIAMOND
 
 /obj/structure/falsewall/plasma
 	name = "plasma wall"
 	desc = "A wall with plasma plating. This is definately a bad idea."
-	icon_state = ""
+	icon = 'icons/turf/walls/mineral.dmi'
+	icon_state = "plasma0"
 	mineral = MATERIAL_PLASMA
 
 //-----------wtf?-----------start
-/obj/structure/falsewall/clown
+/obj/structure/falsewall/bananium
 	name = "bananium wall"
 	desc = "A wall with bananium plating. Honk!"
-	icon_state = ""
+	icon = 'icons/turf/walls/mineral.dmi'
+	icon_state = "bananium0"
 	mineral = MATERIAL_BANANIUM
 
 /obj/structure/falsewall/sandstone
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating."
-	icon_state = ""
+	icon = 'icons/turf/walls/mineral.dmi'
+	icon_state = "sandstone0"
 	mineral = MATERIAL_SANDSTONE
 //------------wtf?------------end

@@ -5,7 +5,7 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 
 /turf/simulated/mineral //wall piece
 	name = "rock"
-	icon = 'icons/turf/walls.dmi'
+	icon = 'icons/turf/walls/rocks_ores.dmi'
 	icon_state = "rock"
 
 	opacity = TRUE
@@ -38,22 +38,22 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 	var/turf/T = get_step(src, NORTH)
 	if(isnotnull(T))
 		if(istype(T, /turf/simulated/floor) || isspace(T) || istype(T, /turf/simulated/shuttle/floor))
-			T.overlays.Add(image('icons/turf/walls.dmi', "rock_side_s"))
+			T.overlays.Add(image(icon, "rock_side_s"))
 		T = null
 	T = get_step(src, SOUTH)
 	if(isnotnull(T))
 		if(istype(T, /turf/simulated/floor) || isspace(T) || istype(T, /turf/simulated/shuttle/floor))
-			T.overlays.Add(image('icons/turf/walls.dmi', "rock_side_n", layer = 6))
+			T.overlays.Add(image(icon, "rock_side_n", layer = 6))
 		T = null
 	T = get_step(src, EAST)
 	if(isnotnull(T))
 		if(istype(T, /turf/simulated/floor) || isspace(T) || istype(T, /turf/simulated/shuttle/floor))
-			T.overlays.Add(image('icons/turf/walls.dmi', "rock_side_w", layer = 6))
+			T.overlays.Add(image(icon, "rock_side_w", layer = 6))
 		T = null
 	T = get_step(src, WEST)
 	if(isnotnull(T))
 		if(istype(T, /turf/simulated/floor) || isspace(T) || istype(T, /turf/simulated/shuttle/floor))
-			T.overlays.Add(image('icons/turf/walls.dmi', "rock_side_e", layer = 6))
+			T.overlays.Add(image(icon, "rock_side_e", layer = 6))
 
 /turf/simulated/mineral/ex_act(severity)
 	switch(severity)

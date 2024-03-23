@@ -3,6 +3,7 @@
  */
 /turf/simulated/floor/grass
 	name = "grass patch"
+	icon = 'icons/turf/floors/grass.dmi'
 	icon_state = "grass1"
 	tile_path = /obj/item/stack/tile/grass
 
@@ -21,9 +22,10 @@
 
 /turf/simulated/floor/grass/update_special()
 	for(var/direction in GLOBL.cardinal)
-		if(istype(get_step(src, direction), /turf/simulated/floor))
-			var/turf/simulated/floor/FF = get_step(src, direction)
-			FF.update_icon() //so siding get updated properly
+		var/turf/T = get_step(src, direction)
+		if(istype(T, /turf/simulated/floor))
+			var/turf/simulated/floor/F = T
+			F.update_icon() //so siding get updated properly
 
 /turf/simulated/floor/grass/update_icon()
 	. = ..()

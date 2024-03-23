@@ -90,7 +90,7 @@
 	plants_spawn = 0
 	density = TRUE
 	name = "rock wall"
-	icon = 'icons/turf/walls.dmi'
+	icon = 'icons/turf/walls/rocks_ores.dmi'
 	icon_state = "rock"
 	icon_spawn_state = "rock"
 
@@ -100,19 +100,19 @@
 		if(!istype(get_step(src, NORTH), /turf/simulated/jungle/rock) && !istype(get_step(src, NORTH), /turf/simulated/wall/r_wall/riveted))
 			T = get_step(src, NORTH)
 			if(T)
-				T.overlays += image('icons/turf/walls.dmi', "rock_side_s")
+				T.overlays += image(icon, "rock_side_s")
 		if(!istype(get_step(src, SOUTH), /turf/simulated/jungle/rock) && !istype(get_step(src, SOUTH), /turf/simulated/wall/r_wall/riveted))
 			T = get_step(src, SOUTH)
 			if(T)
-				T.overlays += image('icons/turf/walls.dmi', "rock_side_n", layer = 6)
+				T.overlays += image(icon, "rock_side_n", layer = 6)
 		if(!istype(get_step(src, EAST), /turf/simulated/jungle/rock) && !istype(get_step(src, EAST), /turf/simulated/wall/r_wall/riveted))
 			T = get_step(src, EAST)
 			if(T)
-				T.overlays += image('icons/turf/walls.dmi', "rock_side_w", layer = 6)
+				T.overlays += image(icon, "rock_side_w", layer = 6)
 		if(!istype(get_step(src, WEST), /turf/simulated/jungle/rock) && !istype(get_step(src, WEST), /turf/simulated/wall/r_wall/riveted))
 			T = get_step(src, WEST)
 			if(T)
-				T.overlays += image('icons/turf/walls.dmi', "rock_side_e", layer = 6)
+				T.overlays += image(icon, "rock_side_e", layer = 6)
 
 /turf/simulated/jungle/water
 	bushes_spawn = 0
