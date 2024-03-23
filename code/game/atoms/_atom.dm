@@ -70,8 +70,6 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 	if(isnotnull(reagents))
 		qdel(reagents)
 		reagents = null
-	for(var/atom/movable/mover in contents)
-		qdel(mover)
 
 	return ..()
 

@@ -26,6 +26,7 @@
 	var/turf/un_opaque = null
 	if(opacity && isturf(loc))
 		un_opaque = loc
+
 	loc = null
 	un_opaque?.recalc_atom_opacity()
 
@@ -33,6 +34,9 @@
 		if(pulledby.pulling == src)
 			pulledby.pulling = null
 		pulledby = null
+
+	for(var/atom/movable/mover in contents)
+		qdel(mover)
 
 	GLOBL.movable_atom_list.Remove(src)
 	return ..()
