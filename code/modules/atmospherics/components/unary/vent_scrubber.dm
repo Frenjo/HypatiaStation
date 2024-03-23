@@ -101,7 +101,7 @@
 
 	if(scrubbing)
 		if(environment.gas[/decl/xgm_gas/plasma] > 0.001 || environment.gas[/decl/xgm_gas/carbon_dioxide] > 0.001 \
-		|| environment.gas[/decl/xgm_gas/oxygen_agent_b] > 0.001 || environment.gas[/decl/xgm_gas/sleeping_agent] > 0.001 \
+		|| environment.gas[/decl/xgm_gas/oxygen_agent_b] > 0.001 || environment.gas[/decl/xgm_gas/nitrous_oxide] > 0.001 \
 		|| environment.gas[/decl/xgm_gas/hydrogen] > 0.001)
 			var/transfer_moles = min(1, volume_rate / environment.volume) * environment.total_moles
 
@@ -120,8 +120,8 @@
 				filtered_out.gas[/decl/xgm_gas/carbon_dioxide] = removed.gas[/decl/xgm_gas/carbon_dioxide]
 				removed.gas[/decl/xgm_gas/carbon_dioxide] = 0
 			if(scrub_N2O)
-				filtered_out.gas[/decl/xgm_gas/sleeping_agent] = removed.gas[/decl/xgm_gas/sleeping_agent]
-				removed.gas[/decl/xgm_gas/sleeping_agent] = 0
+				filtered_out.gas[/decl/xgm_gas/nitrous_oxide] = removed.gas[/decl/xgm_gas/nitrous_oxide]
+				removed.gas[/decl/xgm_gas/nitrous_oxide] = 0
 			if(removed.gas[/decl/xgm_gas/oxygen_agent_b])
 				filtered_out.gas[/decl/xgm_gas/oxygen_agent_b] = removed.gas[/decl/xgm_gas/oxygen_agent_b]
 				removed.gas[/decl/xgm_gas/oxygen_agent_b] = 0

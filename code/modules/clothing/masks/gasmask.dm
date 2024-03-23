@@ -11,7 +11,7 @@
 	siemens_coefficient = 0.9
 
 	var/gas_filter_strength = 1		//For gas mask filters
-	var/list/filtered_gases = list(/decl/xgm_gas/plasma, /decl/xgm_gas/sleeping_agent, /decl/xgm_gas/oxygen_agent_b)
+	var/list/filtered_gases = list(/decl/xgm_gas/plasma, /decl/xgm_gas/nitrous_oxide, /decl/xgm_gas/oxygen_agent_b)
 
 /obj/item/clothing/mask/gas/filter_air(datum/gas_mixture/air)
 	var/datum/gas_mixture/filtered = new /datum/gas_mixture()

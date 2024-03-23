@@ -380,8 +380,8 @@
 	else
 		toxins_alert = 0
 
-	if(breath.gas[/decl/xgm_gas/sleeping_agent])
-		var/SA_pp = (breath.gas[/decl/xgm_gas/sleeping_agent] / breath.total_moles) * breath_pressure
+	if(breath.gas[/decl/xgm_gas/nitrous_oxide])
+		var/SA_pp = (breath.gas[/decl/xgm_gas/nitrous_oxide] / breath.total_moles) * breath_pressure
 		if(SA_pp > SA_para_min) // Enough to make us paralysed for a bit
 			Paralyse(3) // 3 gives them one second to wake up and run away a bit!
 			if(SA_pp > SA_sleep_min) // Enough to make us sleep as well

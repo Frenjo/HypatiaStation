@@ -29,6 +29,30 @@
 	var/release_log = ""
 	var/update_flags = CANISTER_FLAG_NONE
 
+	var/static/list/all_colours = list(
+		"\[O2\]" = "bluews",
+		"\[N2\]" = "red",
+		"\[Air\]" = "grey",
+		"\[H2\]" = "green",
+		"\[CO2\]" = "black",
+		"\[Toxin (Bio)\]" = "orange",
+		"\[O2/TOX\]" = "orangews2",
+		"\[O2-Agent-B\]" = "orangebs",
+		"\[N2O\]" = "redws2",
+		"\[CAUTION\]" = "yellow",
+		"\[Blue\]" = "blue",
+		"\[Blue 2Stripe\]" = "bluews2",
+		"\[Cyan\]" = "cyan",
+		"\[Cyan 1Stripe\]" = "cyanws",
+		"\[Red 1Stripe\]" = "redws",
+		"\[Orange 1Stripe\]" = "orangews",
+		"\[Orange 2Stripe-B\]" = "orangebs2",
+		"\[Light Purple\]" = "lightpurple",
+		"\[Medium Purple\]" = "medpurple",
+		"\[Dark Purple\]" = "darkpurple",
+		"\[Rainbow\]" = "rainbow",
+	)
+
 /obj/machinery/portable_atmospherics/canister/proc/check_change()
 	var/old_flag = update_flags
 	update_flags = CANISTER_FLAG_NONE
@@ -274,35 +298,10 @@
 
 	if(href_list["relabel"])
 		if(can_label)
-			// Edited these to be consistent with above changes.
-			// And add the new options. -Frenjo
-			var/list/colors = list(
-				"\[O2\]" = "bluews",
-				"\[N2\]" = "red",
-				"\[Air\]" = "grey",
-				"\[H2\]" = "green",
-				"\[CO2\]" = "black",
-				"\[Toxin (Bio)\]" = "orange",
-				"\[O2/TOX\]" = "orangews2",
-				"\[O2-Agent-B\]" = "orangebs",
-				"\[N2O\]" = "redws2",
-				"\[CAUTION\]" = "yellow",
-				"\[Blue\]" = "blue",
-				"\[Blue 2Stripe\]" = "bluews2",
-				"\[Cyan\]" = "cyan",
-				"\[Cyan 1Stripe\]" = "cyanws",
-				"\[Red 1Stripe\]" = "redws",
-				"\[Orange 1Stripe\]" = "orangews",
-				"\[Orange 2Stripe-B\]" = "orangebs2",
-				"\[Light Purple\]" = "lightpurple",
-				"\[Medium Purple\]" = "medpurple",
-				"\[Dark Purple\]" = "darkpurple",
-				"\[Rainbow\]" = "rainbow",
-			)
-			var/label = input("Choose canister label", "Gas Canister") as null | anything in colors
+			var/label = input("Choose canister label", "Gas Canister") as null | anything in all_colours
 			if(isnotnull(label))
-				canister_color = colors[label]
-				icon_state = colors[label]
+				canister_color = all_colours[label]
+				icon_state = all_colours[label]
 				name = "Canister: [label]"
 
 	add_fingerprint(usr)
@@ -417,13 +416,13 @@
 	update_icon()
 
 // Nitrous Oxide
-/obj/machinery/portable_atmospherics/canister/sleeping_agent
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide
 	name = "canister: \[N2O\]"
 	icon_state = "redws2"
 	canister_color = "redws2"
 	can_label = FALSE
 
-/obj/machinery/portable_atmospherics/canister/sleeping_agent/New()
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide/New()
 	. = ..()
-	air_contents.adjust_gas(/decl/xgm_gas/sleeping_agent, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
+	air_contents.adjust_gas(/decl/xgm_gas/nitrous_oxide, (maximum_pressure * filled) * air_contents.volume / (R_IDEAL_GAS_EQUATION * air_contents.temperature))
 	update_icon()

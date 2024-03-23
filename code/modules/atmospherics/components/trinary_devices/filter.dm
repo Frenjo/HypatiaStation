@@ -1,3 +1,15 @@
+/*
+ * Filter types:
+ *	-1: Nothing
+ *	0: Oxygen: Oxygen ONLY
+ *	1: Nitrogen: Nitrogen ONLY
+ *	2: Hydrogen: Hydrogen ONLY
+ *	3: Carbon Dioxide: Carbon Dioxide ONLY
+ *	4: Carbon Molecules: Plasma Toxin, Oxygen Agent B
+ *	5: Plasma: Plasma ONLY
+ *	6: Oxygen Agent B: Oxygen Agent B ONLY
+ *	7: Nitrous Oxide: Nitrous Oxide ONLY
+ */
 #define GAS_FILTER_NOTHING -1
 #define GAS_FILTER_OXYGEN 0
 #define GAS_FILTER_NITROGEN 1
@@ -6,7 +18,7 @@
 #define GAS_FILTER_CARBON_MOLECULES 4
 #define GAS_FILTER_PLASMA 5
 #define GAS_FILTER_OXYGEN_AGENT_B 6
-#define GAS_FILTER_SLEEPING_AGENT 7
+#define GAS_FILTER_NITROUS_OXIDE 7
 
 /obj/machinery/atmospherics/trinary/filter
 	icon = 'icons/obj/atmospherics/filter.dmi'
@@ -21,18 +33,6 @@
 	var/target_pressure = ONE_ATMOSPHERE
 
 	var/filter_type = GAS_FILTER_CARBON_MOLECULES
-/*
-Filter types:
--1: Nothing
- 0: Oxygen: Oxygen ONLY
- 1: Nitrogen: Nitrogen ONLY
- 2: Hydrogen: Hydrogen ONLY
- 3: Carbon Dioxide: Carbon Dioxide ONLY
- 4: Carbon Molecules: Plasma Toxin, Oxygen Agent B
- 5: Plasma: Plasma ONLY
- 6: Oxygen Agent B: Oxygen Agent B ONLY
- 7: Sleeping Agent (N2O)
-*/
 	var/frequency = 0
 	var/datum/radio_frequency/radio_connection
 
@@ -118,9 +118,9 @@ Filter types:
 				filtered_out.gas[/decl/xgm_gas/oxygen_agent_b] = removed.gas[/decl/xgm_gas/oxygen_agent_b]
 				removed.gas[/decl/xgm_gas/oxygen_agent_b] = 0
 
-			if(GAS_FILTER_SLEEPING_AGENT) //removing N2O
-				filtered_out.gas[/decl/xgm_gas/sleeping_agent] = removed.gas[/decl/xgm_gas/sleeping_agent]
-				removed.gas[/decl/xgm_gas/sleeping_agent] = 0
+			if(GAS_FILTER_NITROUS_OXIDE) //removing N2O
+				filtered_out.gas[/decl/xgm_gas/nitrous_oxide] = removed.gas[/decl/xgm_gas/nitrous_oxide]
+				removed.gas[/decl/xgm_gas/nitrous_oxide] = 0
 
 			else
 				filtered_out = null
@@ -226,7 +226,7 @@ Filter types:
 			current_filter_type = "Plasma"
 		if(GAS_FILTER_OXYGEN_AGENT_B)
 			current_filter_type = "Oxygen Agent-B"
-		if(GAS_FILTER_SLEEPING_AGENT)
+		if(GAS_FILTER_NITROUS_OXIDE)
 			current_filter_type = "Nitrous Oxide"
 		if(GAS_FILTER_HYDROGEN)
 			current_filter_type = "Hydrogen"
@@ -256,4 +256,4 @@ Filter types:
 #undef GAS_FILTER_CARBON_MOLECULES
 #undef GAS_FILTER_PLASMA
 #undef GAS_FILTER_OXYGEN_AGENT_B
-#undef GAS_FILTER_SLEEPING_AGENT
+#undef GAS_FILTER_NITROUS_OXIDE

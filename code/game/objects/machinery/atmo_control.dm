@@ -6,7 +6,7 @@
 #define AIR_SENSOR_CARBON_DIOXIDE 32
 #define AIR_SENSOR_PLASMA 64
 #define AIR_SENSOR_OXYGEN_AGENT_B 128
-#define AIR_SENSOR_SLEEPING_AGENT 256
+#define AIR_SENSOR_NITROUS_OXIDE 256
 
 /obj/machinery/air_sensor
 	icon = 'icons/obj/stationobjs.dmi'
@@ -22,7 +22,7 @@
 	var/on = 1
 	var/output = (
 		AIR_SENSOR_PRESSURE | AIR_SENSOR_TEMPERATURE | AIR_SENSOR_OXYGEN | AIR_SENSOR_NITROGEN | AIR_SENSOR_HYDROGEN \
-		| AIR_SENSOR_CARBON_DIOXIDE | AIR_SENSOR_PLASMA | AIR_SENSOR_OXYGEN_AGENT_B | AIR_SENSOR_SLEEPING_AGENT \
+		| AIR_SENSOR_CARBON_DIOXIDE | AIR_SENSOR_PLASMA | AIR_SENSOR_OXYGEN_AGENT_B | AIR_SENSOR_NITROUS_OXIDE \
 	)
 	//Flags:
 	// 1 for pressure
@@ -70,8 +70,8 @@
 					signal.data[/decl/xgm_gas/plasma] = round(100 * air_sample.gas[/decl/xgm_gas/plasma] / total_moles, 0.1)
 				if(output & AIR_SENSOR_OXYGEN_AGENT_B)
 					signal.data[/decl/xgm_gas/oxygen_agent_b] = round(100 * air_sample.gas[/decl/xgm_gas/oxygen_agent_b] / total_moles, 0.1)
-				if(output & AIR_SENSOR_SLEEPING_AGENT)
-					signal.data[/decl/xgm_gas/sleeping_agent] = round(100 * air_sample.gas[/decl/xgm_gas/sleeping_agent] / total_moles, 0.1)
+				if(output & AIR_SENSOR_NITROUS_OXIDE)
+					signal.data[/decl/xgm_gas/nitrous_oxide] = round(100 * air_sample.gas[/decl/xgm_gas/nitrous_oxide] / total_moles, 0.1)
 			else
 				signal.data[/decl/xgm_gas/oxygen] = 0
 				signal.data[/decl/xgm_gas/nitrogen] = 0
@@ -79,7 +79,7 @@
 				signal.data[/decl/xgm_gas/carbon_dioxide] = 0
 				signal.data[/decl/xgm_gas/plasma] = 0
 				signal.data[/decl/xgm_gas/oxygen_agent_b] = 0
-				signal.data[/decl/xgm_gas/sleeping_agent] = 0
+				signal.data[/decl/xgm_gas/nitrous_oxide] = 0
 		signal.data["sigtype"] = "status"
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
@@ -99,7 +99,7 @@
 #undef AIR_SENSOR_CARBON_DIOXIDE
 #undef AIR_SENSOR_PLASMA
 #undef AIR_SENSOR_OXYGEN_AGENT_B
-#undef AIR_SENSOR_SLEEPING_AGENT
+#undef AIR_SENSOR_NITROUS_OXIDE
 
 /obj/machinery/computer/general_air_control
 	icon_state = "tank"
@@ -157,7 +157,7 @@
 				if(data["temperature"])
 					sensor_part += "   <B>Temperature:</B> [data["temperature"]] K<BR>"
 				if(data[/decl/xgm_gas/oxygen] || data[/decl/xgm_gas/nitrogen] || data[/decl/xgm_gas/hydrogen] || data[/decl/xgm_gas/carbon_dioxide] \
-				|| data[/decl/xgm_gas/plasma] || data[/decl/xgm_gas/oxygen_agent_b] || data[/decl/xgm_gas/sleeping_agent])
+				|| data[/decl/xgm_gas/plasma] || data[/decl/xgm_gas/oxygen_agent_b] || data[/decl/xgm_gas/nitrous_oxide])
 					sensor_part += "   <B>Gas Composition: </B>"
 					if(data[/decl/xgm_gas/oxygen])
 						sensor_part += "<BR>"
@@ -177,9 +177,9 @@
 					if(data[/decl/xgm_gas/oxygen_agent_b])
 						sensor_part += "<BR>"
 						sensor_part += "[data[/decl/xgm_gas/oxygen_agent_b]]% O2A-B;"
-					if(data[/decl/xgm_gas/sleeping_agent])
+					if(data[/decl/xgm_gas/nitrous_oxide])
 						sensor_part += "<BR>"
-						sensor_part += "[data[/decl/xgm_gas/sleeping_agent]]% N2O;"
+						sensor_part += "[data[/decl/xgm_gas/nitrous_oxide]]% N2O;"
 				sensor_part += "<HR>"
 			else
 				sensor_part = "<FONT color='red'>[long_name] can not be found!</FONT><BR>"

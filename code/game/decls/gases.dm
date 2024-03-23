@@ -47,17 +47,18 @@
 	specific_heat = 300	// J/(mol*K)
 	molar_mass = 0.032	// kg/mol
 
-/decl/xgm_gas/sleeping_agent
-	name = "Sleeping Agent"
+/decl/xgm_gas/nitrous_oxide
+	name = "Nitrous Oxide"
 
 	specific_heat = 40	// J/(mol*K)
-	molar_mass = 0.044	// kg/mol. N2O
+	molar_mass = 0.044	// kg/mol.
 
-	tile_overlay = "sleeping_agent"
+	tile_overlay = "nitrous_oxide"
 	overlay_limit = 1
 
 	flags = XGM_GAS_OXIDIZER
 
+// What kind of gas even is this? I assume it's some kind of n-Octane but I can't find one which matches the provided specific heat and molar mass.
 /decl/xgm_gas/volatile_fuel
 	name = "Volatile Fuel"
 

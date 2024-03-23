@@ -48,7 +48,7 @@
 	//note: im lazy
 	for(var/turf/simulated/floor/target in range(1, src))
 		if(!HAS_TURF_FLAGS(target, TURF_FLAG_BLOCKS_AIR))
-			target.assume_gas(/decl/xgm_gas/sleeping_agent, 30)
+			target.assume_gas(/decl/xgm_gas/nitrous_oxide, 30)
 
 	spawn(0)
 		qdel(src)

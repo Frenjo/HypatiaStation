@@ -93,5 +93,5 @@
 // Nitrous Oxide
 /turf/simulated/floor/reinforced/n2o
 	name = "n2o floor"
-	initial_gases = list(/decl/xgm_gas/sleeping_agent = 2000)
+	initial_gases = list(/decl/xgm_gas/nitrous_oxide = 2000)
 // END ATMOSPHERICS TANK FLOORS

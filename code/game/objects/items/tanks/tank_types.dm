@@ -84,7 +84,7 @@
 	. = ..()
 	air_contents.adjust_multi(
 		/decl/xgm_gas/oxygen, (3 * ONE_ATMOSPHERE) * 70 / (R_IDEAL_GAS_EQUATION * T20C) * O2STANDARD,
-		/decl/xgm_gas/sleeping_agent, (3 * ONE_ATMOSPHERE) * 70 / (R_IDEAL_GAS_EQUATION * T20C) * N2STANDARD
+		/decl/xgm_gas/nitrous_oxide, (3 * ONE_ATMOSPHERE) * 70 / (R_IDEAL_GAS_EQUATION * T20C) * N2STANDARD
 	)
 
 /*

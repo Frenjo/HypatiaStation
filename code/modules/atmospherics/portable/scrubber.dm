@@ -59,8 +59,8 @@
 			filtered_out.gas[/decl/xgm_gas/oxygen_agent_b] = removed.gas[/decl/xgm_gas/oxygen_agent_b]
 			removed.gas[/decl/xgm_gas/oxygen_agent_b] = 0
 
-			filtered_out.gas[/decl/xgm_gas/sleeping_agent] = removed.gas[/decl/xgm_gas/sleeping_agent]
-			removed.gas[/decl/xgm_gas/sleeping_agent] = 0
+			filtered_out.gas[/decl/xgm_gas/nitrous_oxide] = removed.gas[/decl/xgm_gas/nitrous_oxide]
+			removed.gas[/decl/xgm_gas/nitrous_oxide] = 0
 
 			//Remix the resulting gases
 			air_contents.merge(filtered_out)
