@@ -17,7 +17,7 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 
 	explosion_resistance = 2
 
-	var/decl/mineral/mineral = null
+	var/decl/ore/ore = null
 	var/mined_ore = 0
 	var/last_act = 0
 
@@ -60,10 +60,10 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 		if(2)
 			if(prob(70))
 				mined_ore = 1 //some of the stuff gets blown up
-				GetDrilled()
+				get_drilled()
 		if(1)
 			mined_ore = 2 //some of the stuff gets blown up
-			GetDrilled()
+			get_drilled()
 
 /turf/simulated/mineral/Bumped(AM)
 	. = ..()
@@ -180,9 +180,9 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 					B = new(src)
 
 				if(B)
-					GetDrilled(0)
+					get_drilled(0)
 				else
-					GetDrilled(1)
+					get_drilled(1)
 				return
 
 			excavation_level += P.excavation_amount
@@ -229,45 +229,45 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 	else
 		return attack_hand(user)
 
-// Updates the turf's mineral and, if applicable, attempts to spread it.
+// Updates the turf's ore and, if applicable, attempts to spread it.
 /turf/simulated/mineral/proc/update_and_spread_mineral()
-	if(ispath(mineral, /decl/mineral))
-		mineral = GET_DECL_INSTANCE(mineral)
-	if(isnull(mineral))
+	if(ispath(ore, /decl/ore))
+		ore = GET_DECL_INSTANCE(ore)
+	if(isnull(ore))
 		return
 
-	var/lower_name = lowertext(mineral.name)
+	var/lower_name = lowertext(ore.name)
 	name = "\improper [lower_name] deposit"
 	icon_state = "rock_[lower_name]"
 
-	if(!mineral.ore_spread || !mineral.ore_spread_chance)
+	if(!ore.does_spread || !ore.spread_chance)
 		return
 
 	for(var/try_dir in GLOBL.cardinal)
-		if(prob(mineral.ore_spread_chance))
+		if(prob(ore.spread_chance))
 			var/turf/simulated/mineral/random/target_turf = get_step(src, try_dir)
-			if(istype(target_turf) && isnull(target_turf.mineral))
-				target_turf.mineral = mineral
+			if(istype(target_turf) && isnull(target_turf.ore))
+				target_turf.ore = ore
 				target_turf.update_and_spread_mineral()
 
-/turf/simulated/mineral/proc/DropMineral()
-	if(isnull(mineral))
+/turf/simulated/mineral/proc/drop_ore()
+	if(isnull(ore))
 		return
-	if(!ispath(mineral.ore_path, /obj/item/ore))
+	if(!ispath(ore.item_path, /obj/item/ore))
 		return
 
-	var/obj/item/ore/O = new mineral.ore_path(src)
+	var/obj/item/ore/O = new ore.item_path(src)
 	if(istype(O))
 		geologic_data.UpdateNearbyArtifactInfo(src)
 		O.geologic_data = geologic_data
 	return O
 
-/turf/simulated/mineral/proc/GetDrilled(artifact_fail = 0)
+/turf/simulated/mineral/proc/get_drilled(artifact_fail = 0)
 	//var/destroyed = 0 //used for breaking strange rocks
-	if(mineral && mineral.ore_result_amount)
+	if(isnotnull(ore) && ore.result_amount)
 		//if the turf has already been excavated, some of it's ore has been removed
-		for(var/i = 1 to mineral.ore_result_amount - mined_ore)
-			DropMineral()
+		for(var/i = 1 to ore.result_amount - mined_ore)
+			drop_ore()
 
 	//destroyed artifacts have weird, unpleasant effects
 	//make sure to destroy them before changing the turf though

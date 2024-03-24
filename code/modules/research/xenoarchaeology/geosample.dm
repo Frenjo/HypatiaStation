@@ -59,19 +59,19 @@
 
 	age = rand(1, 999)
 
-	if(isnotnull(container.mineral))
-		var/decl/mineral/mineral = container.mineral
-		if(isnotnull(mineral.xenoarch_age_range))
-			age = rand(mineral.xenoarch_age_range[1], mineral.xenoarch_age_range[2])
-		if(isnotnull(mineral.xenoarch_age_range_thousand))
-			age_thousand = rand(mineral.xenoarch_age_range_thousand[1], mineral.xenoarch_age_range_thousand[2])
-		if(isnotnull(mineral.xenoarch_age_range_million))
-			age_million = rand(mineral.xenoarch_age_range_million[1], mineral.xenoarch_age_range_million[2])
-		if(isnotnull(mineral.xenoarch_age_range_billion))
-			age_billion = rand(mineral.xenoarch_age_range_billion[1], mineral.xenoarch_age_range_billion[2])
-		if(isnotnull(mineral.xenoarch_source_mineral))
-			find_presence[mineral.xenoarch_source_mineral] = rand(1, 1000) / 100
-			source_mineral = mineral.xenoarch_source_mineral
+	if(isnotnull(container.ore))
+		var/decl/ore/ore = container.ore
+		if(isnotnull(ore.xenoarch_age_range))
+			age = rand(ore.xenoarch_age_range[1], ore.xenoarch_age_range[2])
+		if(isnotnull(ore.xenoarch_age_range_thousand))
+			age_thousand = rand(ore.xenoarch_age_range_thousand[1], ore.xenoarch_age_range_thousand[2])
+		if(isnotnull(ore.xenoarch_age_range_million))
+			age_million = rand(ore.xenoarch_age_range_million[1], ore.xenoarch_age_range_million[2])
+		if(isnotnull(ore.xenoarch_age_range_billion))
+			age_billion = rand(ore.xenoarch_age_range_billion[1], ore.xenoarch_age_range_billion[2])
+		if(isnotnull(ore.xenoarch_source_mineral))
+			find_presence[ore.xenoarch_source_mineral] = rand(1, 1000) / 100
+			source_mineral = ore.xenoarch_source_mineral
 
 	if(prob(75))
 		find_presence["phosphorus"] = rand(1, 500) / 100

@@ -29,7 +29,7 @@
 			anchored = TRUE
 			spawn(drill_time)
 				if(get_turf(src) == drilling_turf && active)
-					M.GetDrilled()
+					M.get_drilled()
 					src.loc = M
 				drilling_turf = null
 				anchored = FALSE
