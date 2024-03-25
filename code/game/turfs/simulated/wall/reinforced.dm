@@ -4,15 +4,16 @@
 	icon = 'icons/turf/walls/reinforced.dmi'
 	icon_state = "r_wall"
 
-	damage_cap = 1000
-	max_temperature = 6000
-
 	opacity = TRUE
 	density = TRUE
 
-	walltype = "rwall"
-
 	explosion_resistance = 25
+
+	mineral = MATERIAL_PLASTEEL // TODO: Add a "links_to" list to the eventual /decl/material system so that plasteel and metal walls can link together.
+
+	damage_cap = 1000
+
+	max_temperature = 6000
 
 	var/d_state = 0
 

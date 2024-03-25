@@ -8,7 +8,6 @@
 	name = "gold wall"
 	desc = "A wall with gold plating. Swag!"
 	icon_state = "gold0"
-	walltype = "gold"
 	mineral = MATERIAL_GOLD
 	//var/electro = 1
 	//var/shocked = null
@@ -17,7 +16,6 @@
 	name = "silver wall"
 	desc = "A wall with silver plating. Shiny!"
 	icon_state = "silver0"
-	walltype = "silver"
 	mineral = MATERIAL_SILVER
 	//var/electro = 0.75
 	//var/shocked = null
@@ -26,7 +24,6 @@
 	name = "diamond wall"
 	desc = "A wall with diamond plating. You monster."
 	icon_state = "diamond0"
-	walltype = "diamond"
 	mineral = MATERIAL_DIAMOND
 
 /turf/simulated/wall/mineral/diamond/thermitemelt(mob/user as mob)
@@ -36,21 +33,18 @@
 	name = "bananium wall"
 	desc = "A wall with bananium plating. Honk!"
 	icon_state = "bananium0"
-	walltype = "bananium"
 	mineral = MATERIAL_BANANIUM
 
 /turf/simulated/wall/mineral/sandstone
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating."
 	icon_state = "sandstone0"
-	walltype = "sandstone"
 	mineral = MATERIAL_SANDSTONE
 
 /turf/simulated/wall/mineral/uranium
 	name = "uranium wall"
 	desc = "A wall with uranium plating. This is probably a bad idea."
 	icon_state = "uranium0"
-	walltype = "uranium"
 	mineral = MATERIAL_URANIUM
 
 	var/last_event = 0
@@ -93,7 +87,6 @@
 	name = "plasma wall"
 	desc = "A wall with plasma plating. This is definately a bad idea."
 	icon_state = "plasma0"
-	walltype = "plasma"
 	mineral = MATERIAL_PLASMA
 
 /turf/simulated/wall/mineral/plasma/attackby(obj/item/W as obj, mob/user as mob)

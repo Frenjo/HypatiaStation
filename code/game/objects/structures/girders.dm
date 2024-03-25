@@ -115,7 +115,7 @@
 						return
 					S.use(2)
 					user << "\blue You create a false wall! Push on it to open or close the passage."
-					new /obj/structure/falserwall(src.loc)
+					new /obj/structure/falsewall/reinforced(src.loc)
 					qdel(src)
 				else
 					if(src.icon_state == "reinforced") //I cant believe someone would actually write this line of code...

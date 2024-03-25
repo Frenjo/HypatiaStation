@@ -5,6 +5,9 @@
 	density = TRUE
 	turf_flags = TURF_FLAG_BLOCKS_AIR
 
+/turf/simulated/shuttle/wall/relativewall()
+	return //or else we'd have wacky shuttle merging with walls action
+
 /*
  * Interior Corners
  */

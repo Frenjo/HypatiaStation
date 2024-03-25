@@ -24,8 +24,6 @@
 
 	var/max_temperature = 1800 //K, walls will take damage if they're next to a fire hotter than this
 
-	var/walltype = MATERIAL_METAL
-
 /turf/simulated/wall/Destroy()
 	for(var/obj/effect/E in src)
 		if(E.name == "Wallrot")

@@ -24,6 +24,9 @@
 	. = ..()
 	icon_state = "[type]vault"
 
+/turf/simulated/floor/vault/relativewall()
+	return
+
 /turf/simulated/wall/vault
 	icon_state = "rockvault"
 

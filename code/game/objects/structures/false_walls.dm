@@ -15,43 +15,30 @@
 	..()
 
 /obj/structure/falsewall/Destroy()
-
-	var/temploc = src.loc
-
-	spawn(10)
-		for(var/turf/simulated/wall/W in range(temploc,1))
-			W.relativewall()
-
-		for(var/obj/structure/falsewall/W in range(temploc,1))
-			W.relativewall()
-
-		for(var/obj/structure/falserwall/W in range(temploc,1))
-			W.relativewall()
+	var/list/range_list = orange(src, 1)
+	for(var/turf/simulated/wall/W in range_list)
+		W.relativewall()
+	for(var/obj/structure/falsewall/W in range_list)
+		W.relativewall()
 	return ..()
 
-
 /obj/structure/falsewall/relativewall()
-
 	if(!density)
 		icon_state = "[mineral]fwall_open"
 		return
 
 	var/junction = 0 //will be used to determine from which side the wall is connected to other walls
 
-	for(var/turf/simulated/wall/W in orange(src,1))
-		if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)//Only 'like' walls connect -Sieve
-				junction |= get_dir(src,W)
-	for(var/obj/structure/falsewall/W in orange(src,1))
-		if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)
-				junction |= get_dir(src,W)
-	for(var/obj/structure/falserwall/W in orange(src,1))
-		if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)
-				junction |= get_dir(src,W)
+	var/list/range_list = orange(src, 1)
+	for(var/turf/simulated/wall/W in range_list)
+		if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
+			if(mineral == W.mineral)//Only 'like' walls connect -Sieve
+				junction |= get_dir(src, W)
+	for(var/obj/structure/falsewall/W in range_list)
+		if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
+			if(mineral == W.mineral)
+				junction |= get_dir(src, W)
 	icon_state = "[mineral][junction]"
-	return
 
 /obj/structure/falsewall/attack_hand(mob/user as mob)
 	if(opening)
@@ -159,8 +146,7 @@
 /*
  * False R-Walls
  */
-
-/obj/structure/falserwall
+/obj/structure/falsewall/reinforced
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to seperate rooms."
 	icon = 'icons/turf/walls/reinforced.dmi'
@@ -168,63 +154,9 @@
 	density = TRUE
 	opacity = TRUE
 	anchored = TRUE
-	var/mineral = MATERIAL_METAL
-	var/opening = 0
+	mineral = MATERIAL_PLASTEEL
 
-/obj/structure/falserwall/New()
-	relativewall_neighbours()
-	..()
-
-
-/obj/structure/falserwall/attack_hand(mob/user as mob)
-	if(opening)
-		return
-
-	if(density)
-		opening = 1
-		// Open wall
-		icon_state = "frwall_open"
-		flick("frwall_opening", src)
-		sleep(15)
-		density = FALSE
-		set_opacity(0)
-		opening = 0
-	else
-		opening = 1
-		icon_state = "r_wall"
-		flick("frwall_closing", src)
-		density = TRUE
-		sleep(15)
-		set_opacity(1)
-		relativewall()
-		opening = 0
-
-/obj/structure/falserwall/relativewall()
-
-	if(!density)
-		icon_state = "frwall_open"
-		return
-
-	var/junction = 0 //will be used to determine from which side the wall is connected to other walls
-
-	for(var/turf/simulated/wall/W in orange(src,1))
-		if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)//Only 'like' walls connect -Sieve
-				junction |= get_dir(src,W)
-	for(var/obj/structure/falsewall/W in orange(src,1))
-		if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)
-				junction |= get_dir(src,W)
-	for(var/obj/structure/falserwall/W in orange(src,1))
-		if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
-			if(src.mineral == W.mineral)
-				junction |= get_dir(src,W)
-	icon_state = "rwall[junction]"
-	return
-
-
-
-/obj/structure/falserwall/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/falsewall/reinforced/attackby(obj/item/W as obj, mob/user as mob)
 	if(opening)
 		user << "\red You must wait until the door has stopped moving."
 		return
@@ -270,7 +202,6 @@
 /*
  * Uranium Falsewalls
  */
-
 /obj/structure/falsewall/uranium
 	name = "uranium wall"
 	desc = "A wall with uranium plating. This is probably a bad idea."
