@@ -357,5 +357,5 @@ GLOBAL_GLOBL_LIST_NEW(artifact_spawning_turfs)
 					new /obj/item/shard/plasma(src)
 
 			if(7)
-				var/obj/item/stack/sheet/mineral/uranium/R = new /obj/item/stack/sheet/mineral/uranium(src)
+				var/obj/item/stack/sheet/uranium/R = new /obj/item/stack/sheet/uranium(src)
 				R.amount = rand(5, 25)

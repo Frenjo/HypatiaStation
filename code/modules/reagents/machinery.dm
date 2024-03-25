@@ -66,11 +66,11 @@
 		options[/obj/item/stock_part/console_screen] = "Replace the console screen to fix it."
 		options[/obj/item/stock_part/manipulator/pico] = "Upgrade to a pico manipulator to fix it."
 		options[/obj/item/stock_part/matter_bin/adv] = "Give it an advanced matter bin to fix it."
-		options[/obj/item/stack/sheet/mineral/diamond] = "Line up a cut diamond with the nozzle to fix it."
-		options[/obj/item/stack/sheet/mineral/uranium] = "Position a uranium sheet inside to fix it."
-		options[/obj/item/stack/sheet/mineral/plasma] = "Enter a block of plasma to fix it."
-		options[/obj/item/stack/sheet/mineral/silver] = "Cover the internals with a silver lining to fix it."
-		options[/obj/item/stack/sheet/mineral/gold] = "Wire a golden filament to fix it."
+		options[/obj/item/stack/sheet/diamond] = "Line up a cut diamond with the nozzle to fix it."
+		options[/obj/item/stack/sheet/uranium] = "Position a uranium sheet inside to fix it."
+		options[/obj/item/stack/sheet/plasma] = "Enter a block of plasma to fix it."
+		options[/obj/item/stack/sheet/silver] = "Cover the internals with a silver lining to fix it."
+		options[/obj/item/stack/sheet/gold] = "Wire a golden filament to fix it."
 		options[/obj/item/stack/sheet/plasteel] = "Surround the outside with a plasteel cover to fix it."
 		options[/obj/item/stack/sheet/rglass] = "Insert a pane of reinforced glass to fix it."
 		stat |= BROKEN
@@ -873,11 +873,11 @@
 	var/limit = 10
 	var/list/blend_items = list (
 		//Sheets
-		/obj/item/stack/sheet/mineral/plasma = list("plasma" = 20),
-		/obj/item/stack/sheet/mineral/uranium = list("uranium" = 20),
-		/obj/item/stack/sheet/mineral/bananium = list("banana" = 20),
-		/obj/item/stack/sheet/mineral/silver = list("silver" = 20),
-		/obj/item/stack/sheet/mineral/gold = list("gold" = 20),
+		/obj/item/stack/sheet/plasma = list("plasma" = 20),
+		/obj/item/stack/sheet/uranium = list("uranium" = 20),
+		/obj/item/stack/sheet/bananium = list("banana" = 20),
+		/obj/item/stack/sheet/silver = list("silver" = 20),
+		/obj/item/stack/sheet/gold = list("gold" = 20),
 		/obj/item/grown/nettle = list("sacid" = 0),
 		/obj/item/grown/deathnettle = list("pacid" = 0),
 

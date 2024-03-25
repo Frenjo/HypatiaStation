@@ -131,7 +131,7 @@
 			for(var/i = 1, i <= oreAmount, i++)
 				new ore(get_turf(src))
 		else
-			var/ore = text2path("/obj/item/stack/sheet/mineral/[mineralType]")
+			var/ore = text2path("/obj/item/stack/sheet/[mineralType]")
 			for(var/i = 1, i <= oreAmount, i++)
 				new ore(get_turf(src))
 	else
@@ -140,7 +140,7 @@
 			for(var/i = 3, i <= oreAmount, i++)
 				new ore(get_turf(src))
 		else
-			var/ore = text2path("/obj/item/stack/sheet/mineral/[mineralType]")
+			var/ore = text2path("/obj/item/stack/sheet/[mineralType]")
 			for(var/i = 3, i <= oreAmount, i++)
 				new ore(get_turf(src))
 	qdel(src)

@@ -43,14 +43,14 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 	ADD_MATERIAL("Cloth", /obj/item/stack/sheet/cloth)
 	ADD_MATERIAL("Leather", /obj/item/stack/sheet/leather)
 
-	ADD_MATERIAL("Gold", /obj/item/stack/sheet/mineral/gold)
-	ADD_MATERIAL("Silver", /obj/item/stack/sheet/mineral/silver)
-	ADD_MATERIAL("Diamond", /obj/item/stack/sheet/mineral/diamond)
-	ADD_MATERIAL("Plasma", /obj/item/stack/sheet/mineral/plasma)
-	ADD_MATERIAL("Uranium", /obj/item/stack/sheet/mineral/uranium)
-	ADD_MATERIAL("Bananium", /obj/item/stack/sheet/mineral/bananium)
-	ADD_MATERIAL("Adamantine", /obj/item/stack/sheet/mineral/adamantine)
-	ADD_MATERIAL("Mythril", /obj/item/stack/sheet/mineral/mythril)
+	ADD_MATERIAL("Gold", /obj/item/stack/sheet/gold)
+	ADD_MATERIAL("Silver", /obj/item/stack/sheet/silver)
+	ADD_MATERIAL("Diamond", /obj/item/stack/sheet/diamond)
+	ADD_MATERIAL("Plasma", /obj/item/stack/sheet/plasma)
+	ADD_MATERIAL("Uranium", /obj/item/stack/sheet/uranium)
+	ADD_MATERIAL("Bananium", /obj/item/stack/sheet/bananium)
+	ADD_MATERIAL("Adamantine", /obj/item/stack/sheet/adamantine)
+	ADD_MATERIAL("Mythril", /obj/item/stack/sheet/mythril)
 
 	html += "<br>Stacking: [machine.max_stack_amount]<br><br>"
 
@@ -97,14 +97,14 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 		/obj/item/stack/sheet/cloth = 0,
 		/obj/item/stack/sheet/leather = 0,
 
-		/obj/item/stack/sheet/mineral/gold = 0,
-		/obj/item/stack/sheet/mineral/silver = 0,
-		/obj/item/stack/sheet/mineral/diamond = 0,
-		/obj/item/stack/sheet/mineral/plasma = 0,
-		/obj/item/stack/sheet/mineral/uranium = 0,
-		/obj/item/stack/sheet/mineral/bananium = 0,
-		/obj/item/stack/sheet/mineral/adamantine = 0,
-		/obj/item/stack/sheet/mineral/mythril = 0
+		/obj/item/stack/sheet/gold = 0,
+		/obj/item/stack/sheet/silver = 0,
+		/obj/item/stack/sheet/diamond = 0,
+		/obj/item/stack/sheet/plasma = 0,
+		/obj/item/stack/sheet/uranium = 0,
+		/obj/item/stack/sheet/bananium = 0,
+		/obj/item/stack/sheet/adamantine = 0,
+		/obj/item/stack/sheet/mythril = 0
 	)
 	var/max_stack_amount = 50	//ammount to stack before releassing
 

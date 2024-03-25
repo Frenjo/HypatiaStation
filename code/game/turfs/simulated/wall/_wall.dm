@@ -142,7 +142,7 @@
 				new /obj/item/stack/sheet/metal(src)
 				new /obj/item/stack/sheet/metal(src)
 			else
-				var/M = text2path("/obj/item/stack/sheet/mineral/[mineral]")
+				var/M = text2path("/obj/item/stack/sheet/[mineral]")
 				new M(src)
 				new M(src)
 		else
@@ -151,7 +151,7 @@
 				new /obj/item/stack/sheet/metal(src)
 				new /obj/item/stack/sheet/metal(src)
 			else
-				var/M = text2path("/obj/item/stack/sheet/mineral/[mineral]")
+				var/M = text2path("/obj/item/stack/sheet/[mineral]")
 				new M(src)
 				new M(src)
 				new /obj/item/stack/sheet/metal(src)

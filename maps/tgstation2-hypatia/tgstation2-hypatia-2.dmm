@@ -773,7 +773,7 @@
 "zZ" = (/turf/simulated/floor/holofloor/burnmix,/area/holodeck/source/burn_test)
 "Aa" = (/obj/structure/table,/obj/item/reagent_containers/food/drinks/cans/cola,/turf/simulated/floor/tiled/freezer,/area/centcom/holding)
 "Ac" = (/obj/effect/decal/floor/coloured/green{dir = 8},/turf/simulated/floor/holofloor,/area/holodeck/source/thunderdome_court)
-"Ae" = (/obj/structure/table,/obj/item/stack/sheet/mineral/plasma,/obj/item/stack/sheet/mineral/plasma,/obj/item/stack/sheet/mineral/plasma,/obj/item/stack/sheet/mineral/plasma,/obj/item/stack/sheet/mineral/plasma,/turf/simulated/shuttle/floor{icon_state = "floor2"},/area/shuttle/administration/centcom)
+"Ae" = (/obj/structure/table,/obj/item/stack/sheet/plasma,/obj/item/stack/sheet/plasma,/obj/item/stack/sheet/plasma,/obj/item/stack/sheet/plasma,/obj/item/stack/sheet/plasma,/turf/simulated/shuttle/floor{icon_state = "floor2"},/area/shuttle/administration/centcom)
 "Ah" = (/obj/machinery/door/airlock/centcom{name = "Teleporter Bay"; req_access = list(107)},/obj/effect/decal/floor/industrial/delivery,/turf/simulated/floor/reinforced,/area/centcom/control)
 "Ai" = (/turf/simulated/shuttle/wall{dir = 5; icon_state = "swall12inv"},/area/syndicate_station/start)
 "Ao" = (/obj/effect/overlay/palmtree_l,/obj/effect/overlay/coconut,/turf/simulated/floor/beach/sand{icon_state = "desert0"; tag = "icon-desert0"},/area/holodeck/source/beach)

@@ -78,8 +78,8 @@ PROCESS_DEF(supply)
 					continue
 
 				// Sell plasma
-				if(istype(A, /obj/item/stack/sheet/mineral/plasma))
-					var/obj/item/stack/sheet/mineral/plasma/P = A
+				if(istype(A, /obj/item/stack/sheet/plasma))
+					var/obj/item/stack/sheet/plasma/P = A
 					plasma_count += P.amount
 
 		qdel(MA)

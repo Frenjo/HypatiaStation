@@ -260,35 +260,35 @@
 				if(selected == ORE_PROC_GOLD)
 					if(ore_amounts[/obj/item/ore/gold] > 0)
 						ore_amounts[/obj/item/ore/gold]--
-						new /obj/item/stack/sheet/mineral/gold(output.loc)
+						new /obj/item/stack/sheet/gold(output.loc)
 					else
 						on = FALSE
 					continue
 				if(selected == ORE_PROC_SILVER)
 					if(ore_amounts[/obj/item/ore/silver] > 0)
 						ore_amounts[/obj/item/ore/silver]--
-						new /obj/item/stack/sheet/mineral/silver(output.loc)
+						new /obj/item/stack/sheet/silver(output.loc)
 					else
 						on = FALSE
 					continue
 				if(selected == ORE_PROC_DIAMOND)
 					if(ore_amounts[/obj/item/ore/diamond] > 0)
 						ore_amounts[/obj/item/ore/diamond]--
-						new /obj/item/stack/sheet/mineral/diamond(output.loc)
+						new /obj/item/stack/sheet/diamond(output.loc)
 					else
 						on = FALSE
 					continue
 				if(selected == ORE_PROC_PLASMA)
 					if(ore_amounts[/obj/item/ore/plasma] > 0)
 						ore_amounts[/obj/item/ore/plasma]--
-						new /obj/item/stack/sheet/mineral/plasma(output.loc)
+						new /obj/item/stack/sheet/plasma(output.loc)
 					else
 						on = FALSE
 					continue
 				if(selected == ORE_PROC_URANIUM)
 					if(ore_amounts[/obj/item/ore/uranium] > 0)
 						ore_amounts[/obj/item/ore/uranium]--
-						new /obj/item/stack/sheet/mineral/uranium(output.loc)
+						new /obj/item/stack/sheet/uranium(output.loc)
 					else
 						on = FALSE
 					continue
@@ -310,7 +310,7 @@
 				if(selected == ORE_PROC_BANANIUM)
 					if(ore_amounts[/obj/item/ore/bananium] > 0)
 						ore_amounts[/obj/item/ore/bananium]--
-						new /obj/item/stack/sheet/mineral/bananium(output.loc)
+						new /obj/item/stack/sheet/bananium(output.loc)
 					else
 						on = FALSE
 					continue
@@ -335,7 +335,7 @@
 					if(ore_amounts[/obj/item/ore/uranium] >= 2 && ore_amounts[/obj/item/ore/diamond] >= 1)
 						ore_amounts[/obj/item/ore/uranium] -= 2
 						ore_amounts[/obj/item/ore/diamond] -= 1
-						new /obj/item/stack/sheet/mineral/adamantine(output.loc)
+						new /obj/item/stack/sheet/adamantine(output.loc)
 					else
 						on = FALSE
 					continue
@@ -343,7 +343,7 @@
 					if(ore_amounts[/obj/item/ore/silver] >= 1 && ore_amounts[/obj/item/ore/plasma] >= 3)
 						ore_amounts[/obj/item/ore/silver] -= 1
 						ore_amounts[/obj/item/ore/plasma] -= 3
-						new /obj/item/stack/sheet/mineral/mythril(output.loc)
+						new /obj/item/stack/sheet/mythril(output.loc)
 					else
 						on = FALSE
 					continue

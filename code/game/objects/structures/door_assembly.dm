@@ -150,7 +150,7 @@
 				if(do_after(user, 40))
 					if(!src || !WT.isOn()) return
 					user << "\blue You welded the [glass] plating off!"
-					var/M = text2path("/obj/item/stack/sheet/mineral/[glass]")
+					var/M = text2path("/obj/item/stack/sheet/[glass]")
 					new M(src.loc, 2)
 					glass = 0
 			else if(glass == 1)
@@ -245,7 +245,7 @@
 						user << "\blue You installed reinforced glass windows into the airlock assembly!"
 						S.use(1)
 						glass = 1
-				else if(istype(S, /obj/item/stack/sheet/mineral) && S.sheettype)
+				else if(istype(S, /obj/item/stack/sheet) && S.sheettype)
 					var/M = S.sheettype
 					if(S.amount>=2)
 						playsound(src, 'sound/items/Crowbar.ogg', 100, 1)

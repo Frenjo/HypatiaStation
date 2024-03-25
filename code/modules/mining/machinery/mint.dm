@@ -39,31 +39,31 @@
 		var/obj/item/stack/sheet/O
 		O = locate(/obj/item/stack/sheet, input.loc)
 		if(isnotnull(O))
-			if(istype(O, /obj/item/stack/sheet/mineral/gold))
+			if(istype(O, /obj/item/stack/sheet/gold))
 				amt_gold += 100 * O.amount
 				qdel(O)
-			if(istype(O, /obj/item/stack/sheet/mineral/silver))
+			if(istype(O, /obj/item/stack/sheet/silver))
 				amt_silver += 100 * O.amount
 				qdel(O)
-			if(istype(O, /obj/item/stack/sheet/mineral/diamond))
+			if(istype(O, /obj/item/stack/sheet/diamond))
 				amt_diamond += 100 * O.amount
 				qdel(O)
-			if(istype(O, /obj/item/stack/sheet/mineral/plasma))
+			if(istype(O, /obj/item/stack/sheet/plasma))
 				amt_plasma += 100 * O.amount
 				qdel(O)
-			if(istype(O, /obj/item/stack/sheet/mineral/uranium))
+			if(istype(O, /obj/item/stack/sheet/uranium))
 				amt_uranium += 100 * O.amount
 				qdel(O)
 			if(istype(O, /obj/item/stack/sheet/metal))
 				amt_iron += 100 * O.amount
 				qdel(O)
-			if(istype(O, /obj/item/stack/sheet/mineral/bananium))
+			if(istype(O, /obj/item/stack/sheet/bananium))
 				amt_bananium += 100 * O.amount
 				qdel(O)
-			if(istype(O, /obj/item/stack/sheet/mineral/adamantine))
+			if(istype(O, /obj/item/stack/sheet/adamantine))
 				amt_adamantine += 100 * O.amount
 				qdel(O)
-			if(istype(O, /obj/item/stack/sheet/mineral/mythril))
+			if(istype(O, /obj/item/stack/sheet/mythril))
 				amt_mythril += 100 * O.amount
 				qdel(O)
 

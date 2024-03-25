@@ -26,7 +26,7 @@
 	var/obj/item/stack/sheet/metal/cyborg/stack_metal = null
 	var/obj/item/stack/sheet/wood/cyborg/stack_wood = null
 	var/obj/item/stack/sheet/glass/cyborg/stack_glass = null
-	var/obj/item/stack/sheet/mineral/plastic/cyborg/stack_plastic = null
+	var/obj/item/stack/sheet/plastic/cyborg/stack_plastic = null
 	var/obj/item/matter_decompiler/decompiler = null
 
 	// Used for self-mailing.
@@ -61,7 +61,7 @@
 	stack_metal = locate(/obj/item/stack/sheet/metal/cyborg) in module
 	stack_wood = locate(/obj/item/stack/sheet/wood/cyborg) in module
 	stack_glass = locate(/obj/item/stack/sheet/glass/cyborg) in module
-	stack_plastic = locate(/obj/item/stack/sheet/mineral/plastic/cyborg) in module
+	stack_plastic = locate(/obj/item/stack/sheet/plastic/cyborg) in module
 
 	// Grab decompiler.
 	decompiler = locate(/obj/item/matter_decompiler) in module

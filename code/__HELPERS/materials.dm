@@ -5,21 +5,21 @@
 			return MATERIAL_METAL
 		if(/obj/item/stack/sheet/glass)
 			return MATERIAL_GLASS
-		if(/obj/item/stack/sheet/mineral/gold)
+		if(/obj/item/stack/sheet/gold)
 			return MATERIAL_GOLD
-		if(/obj/item/stack/sheet/mineral/silver)
+		if(/obj/item/stack/sheet/silver)
 			return MATERIAL_SILVER
-		if(/obj/item/stack/sheet/mineral/diamond)
+		if(/obj/item/stack/sheet/diamond)
 			return MATERIAL_DIAMOND
-		if(/obj/item/stack/sheet/mineral/plasma)
+		if(/obj/item/stack/sheet/plasma)
 			return MATERIAL_PLASMA
-		if(/obj/item/stack/sheet/mineral/uranium)
+		if(/obj/item/stack/sheet/uranium)
 			return MATERIAL_URANIUM
-		if(/obj/item/stack/sheet/mineral/bananium)
+		if(/obj/item/stack/sheet/bananium)
 			return MATERIAL_BANANIUM
-		if(/obj/item/stack/sheet/mineral/adamantine)
+		if(/obj/item/stack/sheet/adamantine)
 			return MATERIAL_ADAMANTINE
-		if(/obj/item/stack/sheet/mineral/mythril)
+		if(/obj/item/stack/sheet/mythril)
 			return MATERIAL_MYTHRIL
 
 	return null
@@ -32,21 +32,21 @@
 		if(MATERIAL_GLASS)
 			return /obj/item/stack/sheet/glass
 		if(MATERIAL_GOLD)
-			return /obj/item/stack/sheet/mineral/gold
+			return /obj/item/stack/sheet/gold
 		if(MATERIAL_SILVER)
-			return /obj/item/stack/sheet/mineral/silver
+			return /obj/item/stack/sheet/silver
 		if(MATERIAL_DIAMOND)
-			return /obj/item/stack/sheet/mineral/diamond
+			return /obj/item/stack/sheet/diamond
 		if(MATERIAL_PLASMA)
-			return /obj/item/stack/sheet/mineral/plasma
+			return /obj/item/stack/sheet/plasma
 		if(MATERIAL_URANIUM)
-			return /obj/item/stack/sheet/mineral/uranium
+			return /obj/item/stack/sheet/uranium
 		if(MATERIAL_BANANIUM)
-			return /obj/item/stack/sheet/mineral/bananium
+			return /obj/item/stack/sheet/bananium
 		if(MATERIAL_ADAMANTINE)
-			return /obj/item/stack/sheet/mineral/adamantine
+			return /obj/item/stack/sheet/adamantine
 		if(MATERIAL_MYTHRIL)
-			return /obj/item/stack/sheet/mineral/mythril
+			return /obj/item/stack/sheet/mythril
 
 	return null
 

@@ -57,7 +57,7 @@
 
 /obj/machinery/camera/proc/isEmpProof()
 	if(assembly && assembly.upgrades)
-		return (locate(/obj/item/stack/sheet/mineral/plasma) in assembly.upgrades)
+		return (locate(/obj/item/stack/sheet/plasma) in assembly.upgrades)
 	else
 		return 0
 
@@ -77,7 +77,7 @@
 
 /obj/machinery/camera/proc/upgradeEmpProof()
 	if(assembly && assembly.upgrades)
-		assembly.upgrades.Add(new /obj/item/stack/sheet/mineral/plasma(assembly))
+		assembly.upgrades.Add(new /obj/item/stack/sheet/plasma(assembly))
 
 /obj/machinery/camera/proc/upgradeXRay()
 	if(assembly && assembly.upgrades)

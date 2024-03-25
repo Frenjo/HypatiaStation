@@ -337,7 +337,7 @@
 		/obj/item/stack/sheet/wood/cyborg = 1,
 		/obj/item/stack/cable_coil = 30,
 		/obj/item/stack/sheet/glass/cyborg = 10,
-		/obj/item/stack/sheet/mineral/plastic/cyborg = 1
+		/obj/item/stack/sheet/plastic/cyborg = 1
 	)
 
 	for(var/T in stacktypes)

@@ -26,9 +26,9 @@
 /obj/item/ore/glass/attack_self(mob/living/user as mob) //It's magic I ain't gonna explain how instant conversion with no tool works. -- Urist
 	var/location = get_turf(user)
 	for(var/obj/item/ore/glass/sand in location)
-		new /obj/item/stack/sheet/mineral/sandstone(location)
+		new /obj/item/stack/sheet/sandstone(location)
 		qdel(sand)
-	new /obj/item/stack/sheet/mineral/sandstone(location)
+	new /obj/item/stack/sheet/sandstone(location)
 	qdel(src)
 
 /obj/item/ore/plasma

@@ -171,7 +171,7 @@ GLOBAL_GLOBL_LIST_INIT(breach_burn_descriptors, list(
 
 //Handles repairs (and also upgrades).
 /obj/item/clothing/suit/space/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/stack/sheet/mineral/plastic) || istype(W, /obj/item/stack/sheet/metal))
+	if(istype(W, /obj/item/stack/sheet/plastic) || istype(W, /obj/item/stack/sheet/metal))
 		if(isliving(src.loc))
 			to_chat(user, SPAN_WARNING("How do you intend to patch a hardsuit while someone is wearing it?"))
 			return
@@ -183,10 +183,10 @@ GLOBAL_GLOBL_LIST_INIT(breach_burn_descriptors, list(
 		var/obj/item/stack/sheet/P = W
 		if(P.amount < 3)
 			P.use(P.amount)
-			repair_breaches(BURN, (istype(P, /obj/item/stack/sheet/mineral/plastic) ? P.amount : (P.amount * 2)), user)
+			repair_breaches(BURN, (istype(P, /obj/item/stack/sheet/plastic) ? P.amount : (P.amount * 2)), user)
 		else
 			P.use(3)
-			repair_breaches(BURN, (istype(P, /obj/item/stack/sheet/mineral/plastic) ? 3 : 5), user)
+			repair_breaches(BURN, (istype(P, /obj/item/stack/sheet/plastic) ? 3 : 5), user)
 		return
 
 	else if(istype(W, /obj/item/weldingtool))

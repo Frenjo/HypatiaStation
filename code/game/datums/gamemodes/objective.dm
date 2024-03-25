@@ -514,9 +514,9 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 		"diamond drill" = /obj/item/pickaxe/diamonddrill,
 		"bag of holding" = /obj/item/storage/backpack/holding,
 		"hyper-capacity cell" = /obj/item/cell/hyper,
-		"10 diamonds" = /obj/item/stack/sheet/mineral/diamond,
-		"50 gold bars" = /obj/item/stack/sheet/mineral/gold,
-		"25 refined uranium bars" = /obj/item/stack/sheet/mineral/uranium,
+		"10 diamonds" = /obj/item/stack/sheet/diamond,
+		"50 gold bars" = /obj/item/stack/sheet/gold,
+		"25 refined uranium bars" = /obj/item/stack/sheet/uranium,
 	)
 
 

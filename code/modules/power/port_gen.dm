@@ -96,7 +96,7 @@ display round(lastgen) and plasmatank amount
 	var/sheets = 0
 	var/max_sheets = 100
 	var/sheet_name = ""
-	var/sheet_path = /obj/item/stack/sheet/mineral/plasma
+	var/sheet_path = /obj/item/stack/sheet/plasma
 	var/board_path = /obj/item/circuitboard/pacman
 	var/sheet_left = 0 // How much is left of the sheet
 	var/time_per_sheet = 40
@@ -322,7 +322,7 @@ display round(lastgen) and plasmatank amount
 /obj/machinery/power/port_gen/pacman/super
 	name = "\improper S.U.P.E.R.P.A.C.M.A.N.-type portable generator"
 	icon_state = "portgen1"
-	sheet_path = /obj/item/stack/sheet/mineral/uranium
+	sheet_path = /obj/item/stack/sheet/uranium
 	power_gen = 15000
 	time_per_sheet = 65
 	board_path = /obj/item/circuitboard/pacman/super
@@ -333,7 +333,7 @@ display round(lastgen) and plasmatank amount
 /obj/machinery/power/port_gen/pacman/mrs
 	name = "\improper M.R.S.P.A.C.M.A.N.-type portable generator"
 	icon_state = "portgen2"
-	sheet_path = /obj/item/stack/sheet/mineral/diamond
+	sheet_path = /obj/item/stack/sheet/diamond
 	power_gen = 40000
 	time_per_sheet = 80
 	board_path = /obj/item/circuitboard/pacman/mrs

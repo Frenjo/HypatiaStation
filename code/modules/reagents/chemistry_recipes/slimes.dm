@@ -243,7 +243,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimeplasma/on_reaction(datum/reagents/holder)
-	new /obj/item/stack/sheet/mineral/plasma(get_turf(holder.my_atom), 10)
+	new /obj/item/stack/sheet/plasma(get_turf(holder.my_atom), 10)
 
 //Red
 /datum/chemical_reaction/slimeglycerol

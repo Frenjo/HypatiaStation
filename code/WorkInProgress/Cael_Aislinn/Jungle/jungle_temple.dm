@@ -98,21 +98,35 @@
 
 				var/amount = rand(2, 6)
 				var/quantity = rand(10, 50)
-				var/list/possible_spawns = list()
-				for(var/bar_type in SUBTYPESOF(/obj/item/stack/sheet/mineral) - /obj/item/stack/sheet/mineral/enruranium)
-					possible_spawns += bar_type
-
+				var/list/possible_spawns = list(
+					/obj/item/stack/sheet/sandstone,
+					/obj/item/stack/sheet/gold,
+					/obj/item/stack/sheet/silver,
+					/obj/item/stack/sheet/diamond,
+					/obj/item/stack/sheet/plasma,
+					/obj/item/stack/sheet/uranium,
+					/obj/item/stack/sheet/bananium,
+					/obj/item/stack/sheet/adamantine,
+					/obj/item/stack/sheet/mythril
+				)
 				var/bar_type = pick(possible_spawns)
 				for(var/i = 0, i < amount, i++)
-					var/obj/item/stack/sheet/mineral/M = new bar_type(C)
+					var/obj/item/stack/sheet/M = new bar_type(C)
 					M.amount = quantity
 			else
 				//credits
 
 				var/amount = rand(2, 6)
-				var/list/possible_spawns = list()
-				for(var/cash_type in typesof(/obj/item/stack/sheet/mineral))
-					possible_spawns += cash_type
+				var/list/possible_spawns = list(
+					/obj/item/stack/sheet/gold,
+					/obj/item/stack/sheet/silver,
+					/obj/item/stack/sheet/diamond,
+					/obj/item/stack/sheet/plasma,
+					/obj/item/stack/sheet/uranium,
+					/obj/item/stack/sheet/bananium,
+					/obj/item/stack/sheet/adamantine,
+					/obj/item/stack/sheet/mythril
+				)
 
 				var/cash_type = pick(possible_spawns)
 				for(var/i = 0,i < amount, i++)

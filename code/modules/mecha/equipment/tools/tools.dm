@@ -882,7 +882,7 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/generator/proc/init()
-	fuel = new /obj/item/stack/sheet/mineral/plasma(src)
+	fuel = new /obj/item/stack/sheet/plasma(src)
 	fuel.amount = 0
 	pr_mech_generator = new /datum/global_iterator/mecha_generator(list(src), 0)
 	pr_mech_generator.set_delay(equip_cooldown)
@@ -1008,7 +1008,7 @@
 	var/rad_per_cycle = 0.3
 
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear/init()
-	fuel = new /obj/item/stack/sheet/mineral/uranium(src)
+	fuel = new /obj/item/stack/sheet/uranium(src)
 	fuel.amount = 0
 	pr_mech_generator = new /datum/global_iterator/mecha_generator/nuclear(list(src), 0)
 	pr_mech_generator.set_delay(equip_cooldown)

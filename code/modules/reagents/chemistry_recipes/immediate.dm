@@ -118,7 +118,7 @@
 	result_amount = 1
 
 /datum/chemical_reaction/plasmasolidification/on_reaction(datum/reagents/holder, created_volume)
-	new /obj/item/stack/sheet/mineral/plasma(get_turf(holder.my_atom))
+	new /obj/item/stack/sheet/plasma(get_turf(holder.my_atom))
 
 /datum/chemical_reaction/plastication
 	name = "Plastic"
@@ -127,4 +127,4 @@
 	result_amount = 1
 
 /datum/chemical_reaction/plastication/on_reaction(datum/reagents/holder)
-	new /obj/item/stack/sheet/mineral/plastic(get_turf(holder.my_atom), 10)
+	new /obj/item/stack/sheet/plastic(get_turf(holder.my_atom), 10)
