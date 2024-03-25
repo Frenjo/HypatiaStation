@@ -35,10 +35,10 @@
 
 	if(istype(src, /turf/simulated/wall))
 		var/turf/simulated/wall/wall = src
-		wall.icon_state = "[wall.mineral][junction]"
+		wall.icon_state = "[wall.material.wall_icon_state][junction]"
 	else if(istype(src, /obj/structure/falsewall))
 		var/obj/structure/falsewall/fwall = src
-		fwall.icon_state = "[fwall.mineral][junction]"
+		fwall.icon_state = "[fwall.material.wall_icon_state][junction]"
 /*	else if(istype(src,/turf/simulated/shuttle/wall))
 		var/newicon = icon;
 		var/newiconstate = icon_state;
@@ -126,11 +126,11 @@
 
 	var/list/range_list = orange(src, 1)
 	for(var/turf/simulated/wall/W in range_list)
-		if(abs(x - W.x)-abs(y - W.y)) //doesn't count diagonal walls
-			if(mineral == W.mineral)//Only 'like' walls connect -Sieve
+		if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
+			if(W.material.type in material.wall_links_to) // Only 'like' walls connect -Sieve
 				junction |= get_dir(src, W)
 	for(var/obj/structure/falsewall/W in range_list)
 		if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
-			if(mineral == W.mineral)
+			if(W.material.type in material.wall_links_to)
 				junction |= get_dir(src, W)
-	icon_state = "[mineral][junction]"
+	icon_state = "[material.wall_icon_state][junction]"

@@ -13,7 +13,7 @@
 
 	explosion_resistance = 5
 
-	var/mineral = MATERIAL_METAL
+	var/decl/material/material = /decl/material/metal
 	var/rotting = FALSE
 
 	var/damage = 0
@@ -23,6 +23,11 @@
 	var/static/damage_overlays[8]
 
 	var/max_temperature = 1800 //K, walls will take damage if they're next to a fire hotter than this
+
+/turf/simulated/wall/New()
+	if(isnotnull(material))
+		material = GET_DECL_INSTANCE(material)
+	. = ..()
 
 /turf/simulated/wall/Destroy()
 	for(var/obj/effect/E in src)
@@ -138,23 +143,14 @@
 		if(!devastated)
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			new /obj/structure/girder(src)
-			if(mineral == MATERIAL_METAL)
-				new /obj/item/stack/sheet/metal(src)
-				new /obj/item/stack/sheet/metal(src)
-			else
-				var/M = text2path("/obj/item/stack/sheet/[mineral]")
-				new M(src)
-				new M(src)
+			if(isnotnull(material.sheet_path))
+				new material.sheet_path(src)
+				new material.sheet_path(src)
 		else
-			if(mineral == MATERIAL_METAL)
-				new /obj/item/stack/sheet/metal(src)
-				new /obj/item/stack/sheet/metal(src)
-				new /obj/item/stack/sheet/metal(src)
-			else
-				var/M = text2path("/obj/item/stack/sheet/[mineral]")
-				new M(src)
-				new M(src)
-				new /obj/item/stack/sheet/metal(src)
+			new /obj/item/stack/sheet/metal(src)
+			if(isnotnull(material.sheet_path))
+				new material.sheet_path(src)
+				new material.sheet_path(src)
 
 	for(var/obj/O in contents) //Eject contents!
 		if(istype(O, /obj/structure/sign/poster))

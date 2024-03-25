@@ -139,7 +139,7 @@
 		playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
 		sleep(60)
-		if(mineral == MATERIAL_DIAMOND)//Oh look, it's tougher
+		if(material.type == /decl/material/diamond) // Oh look, it's tougher
 			sleep(60)
 		if(!istype(src, /turf/simulated/wall) || !user || !W || !T)
 			return
@@ -159,7 +159,7 @@
 		to_chat(user, SPAN_NOTICE("You begin to drill though the wall."))
 
 		sleep(60)
-		if(mineral == MATERIAL_DIAMOND)
+		if(material.type == /decl/material/diamond)
 			sleep(60)
 		if(!istype(src, /turf/simulated/wall) || !user || !W || !T)
 			return
@@ -182,7 +182,7 @@
 		playsound(src, "sparks", 50, 1)
 
 		sleep(70)
-		if(mineral == MATERIAL_DIAMOND)
+		if(material.type == /decl/material/diamond)
 			sleep(70)
 		if(!istype(src, /turf/simulated/wall) || !user || !EB || !T)
 			return

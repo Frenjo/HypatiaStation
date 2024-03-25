@@ -8,7 +8,7 @@
 	name = "gold wall"
 	desc = "A wall with gold plating. Swag!"
 	icon_state = "gold0"
-	mineral = MATERIAL_GOLD
+	material = /decl/material/gold
 	//var/electro = 1
 	//var/shocked = null
 
@@ -16,7 +16,7 @@
 	name = "silver wall"
 	desc = "A wall with silver plating. Shiny!"
 	icon_state = "silver0"
-	mineral = MATERIAL_SILVER
+	material = /decl/material/silver
 	//var/electro = 0.75
 	//var/shocked = null
 
@@ -24,7 +24,7 @@
 	name = "diamond wall"
 	desc = "A wall with diamond plating. You monster."
 	icon_state = "diamond0"
-	mineral = MATERIAL_DIAMOND
+	material = /decl/material/diamond
 
 /turf/simulated/wall/mineral/diamond/thermitemelt(mob/user as mob)
 	return
@@ -33,19 +33,19 @@
 	name = "bananium wall"
 	desc = "A wall with bananium plating. Honk!"
 	icon_state = "bananium0"
-	mineral = MATERIAL_BANANIUM
+	material = /decl/material/bananium
 
 /turf/simulated/wall/mineral/sandstone
 	name = "sandstone wall"
 	desc = "A wall with sandstone plating."
 	icon_state = "sandstone0"
-	mineral = MATERIAL_SANDSTONE
+	material = /decl/material/sandstone
 
 /turf/simulated/wall/mineral/uranium
 	name = "uranium wall"
 	desc = "A wall with uranium plating. This is probably a bad idea."
 	icon_state = "uranium0"
-	mineral = MATERIAL_URANIUM
+	material = /decl/material/uranium
 
 	var/last_event = 0
 	var/active = null
@@ -87,7 +87,7 @@
 	name = "plasma wall"
 	desc = "A wall with plasma plating. This is definately a bad idea."
 	icon_state = "plasma0"
-	mineral = MATERIAL_PLASMA
+	material = /decl/material/plasma
 
 /turf/simulated/wall/mineral/plasma/attackby(obj/item/W as obj, mob/user as mob)
 	if(is_hot(W) > 300)//If the temperature of the object is over 300, then ignite

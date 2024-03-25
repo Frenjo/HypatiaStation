@@ -9,7 +9,7 @@
 
 	explosion_resistance = 25
 
-	mineral = MATERIAL_PLASTEEL // TODO: Add a "links_to" list to the eventual /decl/material system so that plasteel and metal walls can link together.
+	material = /decl/material/plasteel
 
 	damage_cap = 1000
 
