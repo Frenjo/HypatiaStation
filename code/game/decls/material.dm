@@ -25,63 +25,63 @@
 	name = "Metal"
 	sheet_path = /obj/item/stack/sheet/metal
 
-	wall_path = /turf/simulated/wall
+	wall_path = /turf/simulated/wall/steel
 	wall_links_to = list(/decl/material/metal, /decl/material/plasteel)
 
 /decl/material/plasteel
 	name = "Plasteel"
 	sheet_path = /obj/item/stack/sheet/plasteel
 
-	wall_path = /turf/simulated/wall/r_wall
+	wall_path = /turf/simulated/wall/reinforced
 	wall_links_to = list(/decl/material/metal, /decl/material/plasteel)
 
 /decl/material/sandstone
 	name = "Sandstone"
 	sheet_path = /obj/item/stack/sheet/sandstone
 
-	wall_path = /turf/simulated/wall/mineral/sandstone
+	wall_path = /turf/simulated/wall/sandstone
 	wall_links_to = list(/decl/material/sandstone)
 
 /decl/material/gold
 	name = "Gold"
 	sheet_path = /obj/item/stack/sheet/gold
 
-	wall_path = /turf/simulated/wall/mineral/gold
+	wall_path = /turf/simulated/wall/gold
 	wall_links_to = list(/decl/material/gold)
 
 /decl/material/silver
 	name = "Silver"
 	sheet_path = /obj/item/stack/sheet/silver
 
-	wall_path = /turf/simulated/wall/mineral/silver
+	wall_path = /turf/simulated/wall/silver
 	wall_links_to = list(/decl/material/silver)
 
 /decl/material/diamond
 	name = "Diamond"
 	sheet_path = /obj/item/stack/sheet/diamond
 
-	wall_path = /turf/simulated/wall/mineral/diamond
+	wall_path = /turf/simulated/wall/diamond
 	wall_links_to = list(/decl/material/diamond)
 
 /decl/material/plasma
 	name = "Plasma"
 	sheet_path = /obj/item/stack/sheet/plasma
 
-	wall_path = /turf/simulated/wall/mineral/plasma
+	wall_path = /turf/simulated/wall/plasma
 	wall_links_to = list(/decl/material/plasma)
 
 /decl/material/uranium
 	name = "Uranium"
 	sheet_path = /obj/item/stack/sheet/uranium
 
-	wall_path = /turf/simulated/wall/mineral/uranium
+	wall_path = /turf/simulated/wall/uranium
 	wall_links_to = list(/decl/material/uranium)
 
 /decl/material/bananium
 	name = "Bananium"
 	sheet_path = /obj/item/stack/sheet/bananium
 
-	wall_path = /turf/simulated/wall/mineral/bananium
+	wall_path = /turf/simulated/wall/bananium
 	wall_links_to = list(/decl/material/bananium)
 
 /decl/material/adamantine

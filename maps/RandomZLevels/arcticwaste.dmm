@@ -1,7 +1,7 @@
 "a" = (/turf/space,/area)
 "b" = (/turf/simulated/wall/impassable_rock,/area/awaymission)
 "c" = (/turf/simulated/floor/plating/snow,/area/awaymission)
-"d" = (/turf/simulated/wall/r_wall,/area/awaymission)
+"d" = (/turf/simulated/wall/reinforced,/area/awaymission)
 "e" = (/obj/structure/flora/tree/pine,/obj/structure/flora/tree/pine,/turf/simulated/floor/plating/snow,/area/awaymission)
 "f" = (/obj/structure/flora/tree/pine,/turf/simulated/floor/plating/snow,/area/awaymission)
 "g" = (/obj/structure/ladder{height = 0; id = "arcticwaste"},/turf/simulated/floor/plating/snow,/area/awaymission)

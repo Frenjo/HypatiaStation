@@ -287,7 +287,7 @@
 	centcom_cancast = 0 //Stop crashing the server by spawning turfs on transit tiles
 	delay = 50
 
-	summon_type = list(/turf/simulated/wall/r_wall)
+	summon_type = list(/turf/simulated/wall/reinforced)
 
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone

@@ -1,8 +1,7 @@
 /turf/simulated/wall
 	name = "wall"
-	desc = "A huge chunk of metal used to seperate rooms."
+	desc = "A huge thing used to separate rooms."
 	icon = 'icons/turf/walls.dmi'
-	icon_state = "0"
 
 	opacity = TRUE
 	density = TRUE
@@ -13,7 +12,7 @@
 
 	explosion_resistance = 5
 
-	var/decl/material/material = /decl/material/metal
+	var/decl/material/material
 	var/rotting = FALSE
 
 	var/damage = 0
@@ -44,7 +43,7 @@
 			active = 1
 			for(var/mob/living/L in range(3, src))
 				L.apply_effect(12, IRRADIATE, 0)
-			for(var/turf/simulated/wall/mineral/uranium/T in range(3, src))
+			for(var/turf/simulated/wall/uranium/T in range(3, src))
 				T.radiate()
 			last_event = world.time
 			active = null
@@ -120,37 +119,18 @@
 	else
 		update_icon()
 
-/turf/simulated/wall/proc/dismantle_wall(devastated = 0, explode = 0)
-	if(istype(src, /turf/simulated/wall/r_wall))
-		if(!devastated)
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			new /obj/structure/girder/reinforced(src)
-			new /obj/item/stack/sheet/plasteel(src)
-		else
-			new /obj/item/stack/sheet/metal(src)
-			new /obj/item/stack/sheet/metal(src)
-			new /obj/item/stack/sheet/plasteel(src)
-	else if(istype(src, /turf/simulated/wall/cult))
-		if(!devastated)
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			new /obj/effect/decal/cleanable/blood(src)
-			new /obj/structure/cultgirder(src)
-		else
-			new /obj/effect/decal/cleanable/blood(src)
-			new /obj/effect/decal/remains/human(src)
-
+/turf/simulated/wall/proc/dismantle_wall(devastated = FALSE, explode = FALSE)
+	if(!devastated)
+		playsound(src, 'sound/items/Welder.ogg', 100, 1)
+		new /obj/structure/girder(src)
+		if(isnotnull(material.sheet_path))
+			new material.sheet_path(src)
+			new material.sheet_path(src)
 	else
-		if(!devastated)
-			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			new /obj/structure/girder(src)
-			if(isnotnull(material.sheet_path))
-				new material.sheet_path(src)
-				new material.sheet_path(src)
-		else
-			new /obj/item/stack/sheet/metal(src)
-			if(isnotnull(material.sheet_path))
-				new material.sheet_path(src)
-				new material.sheet_path(src)
+		new /obj/item/stack/sheet/metal(src)
+		if(isnotnull(material.sheet_path))
+			new material.sheet_path(src)
+			new material.sheet_path(src)
 
 	for(var/obj/O in contents) //Eject contents!
 		if(istype(O, /obj/structure/sign/poster))

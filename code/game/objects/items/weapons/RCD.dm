@@ -111,7 +111,7 @@ RCD
 						if(!useResource(3, user))
 							return 0
 						activate()
-						A:ChangeTurf(/turf/simulated/wall)
+						A:ChangeTurf(/turf/simulated/wall/steel)
 						return 1
 				return 0
 
@@ -132,7 +132,7 @@ RCD
 
 		if(MODE_DECONSTRUCT)
 			if(istype(A, /turf/simulated/wall))
-				if(istype(A, /turf/simulated/wall/r_wall) && !canRwall)
+				if(istype(A, /turf/simulated/wall/reinforced) && !canRwall)
 					return 0
 				if(checkResource(5, user))
 					to_chat(user, "Deconstructing Wall...")

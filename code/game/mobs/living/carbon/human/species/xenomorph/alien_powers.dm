@@ -143,7 +143,7 @@
 	else if(issimulated(O))
 		var/turf/T = O
 		// R WALL
-		if(istype(T, /turf/simulated/wall/r_wall))
+		if(istype(T, /turf/simulated/wall/reinforced))
 			to_chat(src, SPAN_ALIUM("You cannot dissolve this object."))
 			return
 		// R FLOOR

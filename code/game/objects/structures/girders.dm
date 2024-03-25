@@ -102,7 +102,7 @@
 						S.use(2)
 						user << "\blue You added the plating!"
 						var/turf/Tsrc = get_turf(src)
-						Tsrc.ChangeTurf(/turf/simulated/wall)
+						Tsrc.ChangeTurf(/turf/simulated/wall/steel)
 						for(var/turf/simulated/wall/X in Tsrc.loc)
 							if(X)
 								X.add_hiddenprint(usr)
@@ -128,8 +128,8 @@
 							S.use(1)
 							user << "\blue Wall fully reinforced!"
 							var/turf/Tsrc = get_turf(src)
-							Tsrc.ChangeTurf(/turf/simulated/wall/r_wall)
-							for(var/turf/simulated/wall/r_wall/X in Tsrc.loc)
+							Tsrc.ChangeTurf(/turf/simulated/wall/reinforced)
+							for(var/turf/simulated/wall/reinforced/X in Tsrc.loc)
 								if(X)
 									X.add_hiddenprint(usr)
 							qdel(src)
@@ -167,8 +167,8 @@
 					S.use(2)
 					user << "\blue You added the plating!"
 					var/turf/Tsrc = get_turf(src)
-					Tsrc.ChangeTurf(text2path("/turf/simulated/wall/mineral/[M]"))
-					for(var/turf/simulated/wall/mineral/X in Tsrc.loc)
+					Tsrc.ChangeTurf(text2path("/turf/simulated/wall/[M]"))
+					for(var/turf/simulated/wall/X in Tsrc.loc)
 						if(X)
 							X.add_hiddenprint(usr)
 					qdel(src)

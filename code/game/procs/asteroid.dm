@@ -20,7 +20,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 
 	//to_world("Room spawned at [start_loc.x],[start_loc.y],[start_loc.z]")
 	if(isnull(wall))
-		wall = pick(/turf/simulated/wall/r_wall, /turf/simulated/wall, /obj/effect/alien/resin)
+		wall = pick(/turf/simulated/wall/reinforced, /turf/simulated/wall/steel, /obj/effect/alien/resin)
 	if(isnull(floor))
 		floor = pick(/turf/simulated/floor, /turf/simulated/floor/reinforced)
 
@@ -66,7 +66,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 	var/clean = input("Delete existing items in area?", "Clean area?", 0)
 	switch(alert("Wall type", null, "Reinforced wall", "Regular wall", "Resin wall"))
 		if("Reinforced wall")
-			wall = /turf/simulated/wall/r_wall
+			wall = /turf/simulated/wall/reinforced
 		if("Regular wall")
 			wall = /turf/simulated/wall
 		if("Resin wall")

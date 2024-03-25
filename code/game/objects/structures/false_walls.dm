@@ -3,7 +3,7 @@
  */
 /obj/structure/falsewall
 	name = "wall"
-	desc = "A huge chunk of metal used to seperate rooms."
+	desc = "A huge chunk of metal used to separate rooms."
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "0"
 	anchored = TRUE
@@ -136,7 +136,7 @@
  */
 /obj/structure/falsewall/reinforced
 	name = "reinforced wall"
-	desc = "A huge chunk of reinforced metal used to seperate rooms."
+	desc = "A huge chunk of reinforced metal used to separate rooms."
 	icon = 'icons/turf/walls/reinforced.dmi'
 	icon_state = "r_wall"
 	density = TRUE
@@ -152,21 +152,21 @@
 	if(istype(W, /obj/item/screwdriver))
 		var/turf/T = get_turf(src)
 		user.visible_message("[user] tightens some bolts on the r wall.", "You tighten the bolts on the wall.")
-		T.ChangeTurf(/turf/simulated/wall) //Intentionally makes a regular wall instead of an r-wall (no cheap r-walls for you).
+		T.ChangeTurf(/turf/simulated/wall/steel) //Intentionally makes a regular wall instead of an r-wall (no cheap r-walls for you).
 		qdel(src)
 
 	if( istype(W, /obj/item/weldingtool) )
 		var/obj/item/weldingtool/WT = W
 		if( WT.remove_fuel(0,user) )
 			var/turf/T = get_turf(src)
-			T.ChangeTurf(/turf/simulated/wall)
+			T.ChangeTurf(/turf/simulated/wall/steel)
 			T = get_turf(src)
 			T.attackby(W,user)
 			qdel(src)
 
 	else if( istype(W, /obj/item/pickaxe/plasmacutter) )
 		var/turf/T = get_turf(src)
-		T.ChangeTurf(/turf/simulated/wall)
+		T.ChangeTurf(/turf/simulated/wall/steel)
 		T = get_turf(src)
 		T.attackby(W,user)
 		qdel(src)
@@ -174,14 +174,14 @@
 	//DRILLING
 	else if (istype(W, /obj/item/pickaxe/diamonddrill))
 		var/turf/T = get_turf(src)
-		T.ChangeTurf(/turf/simulated/wall)
+		T.ChangeTurf(/turf/simulated/wall/steel)
 		T = get_turf(src)
 		T.attackby(W,user)
 		qdel(src)
 
 	else if( istype(W, /obj/item/melee/energy/blade) )
 		var/turf/T = get_turf(src)
-		T.ChangeTurf(/turf/simulated/wall)
+		T.ChangeTurf(/turf/simulated/wall/steel)
 		T = get_turf(src)
 		T.attackby(W,user)
 		qdel(src)
@@ -213,7 +213,7 @@
 			active = 1
 			for(var/mob/living/L in range(3,src))
 				L.apply_effect(12,IRRADIATE,0)
-			for(var/turf/simulated/wall/mineral/uranium/T in range(3,src))
+			for(var/turf/simulated/wall/uranium/T in range(3,src))
 				T.radiate()
 			last_event = world.time
 			active = null

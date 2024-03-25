@@ -97,7 +97,7 @@
 	var/C = target.loc	//why are these backwards? we may never know -Pete
 	if(do_after_cooldown(target))
 		if(T == chassis.loc && src == chassis.selected)
-			if(istype(target, /turf/simulated/wall/r_wall))
+			if(istype(target, /turf/simulated/wall/reinforced))
 				occupant_message("<font color='red'>[target] is too durable to drill through.</font>")
 			else if(istype(target, /turf/simulated/mineral))
 				for(var/turf/simulated/mineral/M in range(chassis, 1))
@@ -157,7 +157,7 @@
 	var/C = target.loc	//why are these backwards? we may never know -Pete
 	if(do_after_cooldown(target))
 		if(T == chassis.loc && src == chassis.selected)
-			if(istype(target, /turf/simulated/wall/r_wall))
+			if(istype(target, /turf/simulated/wall/reinforced))
 				if(do_after_cooldown(target))//To slow down how fast mechs can drill through the station
 					log_message("Drilled through [target]")
 					target.ex_act(3)
@@ -339,7 +339,7 @@
 				if(do_after_cooldown(target))
 					if(disabled)
 						return
-					target:ChangeTurf(/turf/simulated/wall)
+					target:ChangeTurf(/turf/simulated/wall/steel)
 					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
 					chassis.spark_system.start()
 					chassis.use_power(energy_drain * 2)

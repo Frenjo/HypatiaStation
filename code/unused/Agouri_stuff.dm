@@ -653,7 +653,7 @@
 
 /turf/proc/ReplaceWithRWall()
 	var/old_icon = icon_state
-	var/turf/simulated/wall/r_wall/S = new /turf/simulated/wall/r_wall( locate(src.x, src.y, src.z) )
+	var/turf/simulated/wall/reinforced/S = new /turf/simulated/wall/reinforced( locate(src.x, src.y, src.z) )
 	S.icon_old = old_icon
 	S.opacity = FALSE
 	S.sd_NewOpacity(1)
@@ -663,7 +663,7 @@
 	..()
 
 /turf/simulated/wall/proc/dismantle_wall(devastated=0, explode=0)
-	if(istype(src,/turf/simulated/wall/r_wall))
+	if(istype(src,/turf/simulated/wall/reinforced))
 		if(!devastated)
 			playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
 			new /obj/structure/girder/reinforced(src)
@@ -712,7 +712,7 @@
 				dismantle_wall(1,1)
 		if(3.0)
 			var/proba
-			if (istype(src, /turf/simulated/wall/r_wall))
+			if (istype(src, /turf/simulated/wall/reinforced))
 				proba = 15
 			else
 				proba = 40
@@ -740,7 +740,7 @@
 
 /turf/simulated/wall/attack_animal(mob/living/simple_animal/M as mob)
 	if(M.wall_smash)
-		if (istype(src, /turf/simulated/wall/r_wall))
+		if (istype(src, /turf/simulated/wall/reinforced))
 			M << text("\blue This wall is far too strong for you to destroy.")
 			return
 		else
@@ -917,13 +917,13 @@
 	return
 
 
-/turf/simulated/wall/r_wall/attackby(obj/item/W as obj, mob/user as mob)
+/turf/simulated/wall/reinforced/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 
-	if(!istype(src, /turf/simulated/wall/r_wall))
+	if(!istype(src, /turf/simulated/wall/reinforced))
 		return // this may seem stupid and redundant but apparently floors can call this attackby() proc, it was spamming shit up. -- Doohl
 
 

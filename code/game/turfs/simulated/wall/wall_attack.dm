@@ -16,7 +16,7 @@
 
 /turf/simulated/wall/attack_animal(mob/living/M as mob)
 	if(M.wall_smash)
-		if(istype(src, /turf/simulated/wall/r_wall) && !rotting)
+		if(istype(src, /turf/simulated/wall/reinforced) && !rotting)
 			to_chat(M, SPAN_INFO("This wall is far too strong for you to destroy."))
 			return
 		else

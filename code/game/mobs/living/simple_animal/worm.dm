@@ -137,7 +137,7 @@
 
 /mob/living/simple_animal/space_worm/proc/AttemptToEat(atom/target)
 	if(istype(target, /turf/simulated/wall))
-		if((!istype(target, /turf/simulated/wall/r_wall) && eatingDuration >= 100) || eatingDuration >= 200) //need 20 ticks to eat an rwall, 10 for a regular one
+		if((!istype(target, /turf/simulated/wall/reinforced) && eatingDuration >= 100) || eatingDuration >= 200) //need 20 ticks to eat an rwall, 10 for a regular one
 			var/turf/simulated/wall/wall = target
 			wall.ChangeTurf(/turf/simulated/floor)
 			new /obj/item/stack/sheet/metal(src, flatPlasmaValue)
