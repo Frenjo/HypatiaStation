@@ -90,7 +90,7 @@
 						return
 					S.use(2)
 					user << "\blue You create a false wall! Push on it to open or close the passage."
-					new /obj/structure/falsewall (src.loc)
+					new /obj/structure/falsewall/steel(loc)
 					qdel(src)
 				else
 					if(S.amount < 2)

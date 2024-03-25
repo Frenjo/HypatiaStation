@@ -3,12 +3,11 @@
  */
 /obj/structure/falsewall
 	name = "wall"
-	desc = "A huge chunk of metal used to separate rooms."
+	desc = "A huge thing used to separate rooms."
 	icon = 'icons/turf/walls.dmi'
-	icon_state = "0"
 	anchored = TRUE
 
-	var/decl/material/material = /decl/material/metal
+	var/decl/material/material
 	var/opening = 0
 
 /obj/structure/falsewall/New()
@@ -132,10 +131,19 @@
 		icon_state = "[material.wall_icon_state]fwall_open"
 
 /*
+ * False Steel Walls
+ */
+/obj/structure/falsewall/steel
+	name = "steel wall"
+	desc = "A huge chunk of steel used to separate rooms."
+	icon_state = "0"
+	material = /decl/material/metal
+
+/*
  * False R-Walls
  */
 /obj/structure/falsewall/reinforced
-	name = "reinforced wall"
+	name = "reinforced plasteel wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms."
 	icon = 'icons/turf/walls/reinforced.dmi'
 	icon_state = "r_wall"
@@ -186,7 +194,6 @@
 		T.attackby(W,user)
 		qdel(src)
 
-
 /*
  * Uranium Falsewalls
  */
@@ -222,7 +229,6 @@
 /*
  * Other misc falsewall types
  */
-
 /obj/structure/falsewall/gold
 	name = "gold wall"
 	desc = "A wall with gold plating. Swag!"

@@ -111,7 +111,7 @@
 "hJ" = (/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 1},/turf/simulated/floor/plating/airless,/area/space)
 "hK" = (/obj/structure/grille,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/turf/simulated/floor/plating,/area/derelict/bridge/access)
 "hP" = (/obj/machinery/power/terminal{dir = 1},/obj/structure/cable{d2 = 4; icon_state = "0-4"},/turf/simulated/floor,/area/derelict/solar_control)
-"hQ" = (/obj/structure/falsewall,/turf/simulated/floor{icon_state = "bar"},/area/derelict/hallway/secondary)
+"hQ" = (/obj/structure/falsewall/steel,/turf/simulated/floor{icon_state = "bar"},/area/derelict/hallway/secondary)
 "hX" = (/turf/simulated/wall/steel,/area/derelict/medical/chapel)
 "hY" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/airless{icon_state = "damaged2"},/area/derelict/medical)
 "hZ" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/wall/steel,/area/derelict/medical/chapel)
