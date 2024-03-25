@@ -72,7 +72,7 @@
 		options[/obj/item/stack/sheet/silver] = "Cover the internals with a silver lining to fix it."
 		options[/obj/item/stack/sheet/gold] = "Wire a golden filament to fix it."
 		options[/obj/item/stack/sheet/plasteel] = "Surround the outside with a plasteel cover to fix it."
-		options[/obj/item/stack/sheet/rglass] = "Insert a pane of reinforced glass to fix it."
+		options[/obj/item/stack/sheet/glass/reinforced] = "Insert a pane of reinforced glass to fix it."
 		stat |= BROKEN
 		while(amount > 0)
 			amount -= 1

@@ -19,7 +19,7 @@
 	new /obj/item/module/power_control(),
 	new /obj/item/stack/sheet/metal(),
 	new /obj/item/stack/sheet/glass(),
-	new /obj/item/stack/sheet/rglass(),
+	new /obj/item/stack/sheet/glass/reinforced(),
 	new /obj/item/stack/rods(),
 	new /obj/item/rcd_ammo(),
 	new /obj/item/kitchenknife(),

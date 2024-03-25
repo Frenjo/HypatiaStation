@@ -26,8 +26,8 @@
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
-			var/obj/item/stack/sheet/glass/plasmaglass/NG = new(user.loc)
-			for(var/obj/item/stack/sheet/glass/plasmaglass/G in user.loc)
+			var/obj/item/stack/sheet/glass/plasma/NG = new(user.loc)
+			for(var/obj/item/stack/sheet/glass/plasma/G in user.loc)
 				if(G == NG)
 					continue
 				if(G.amount >= G.max_amount)

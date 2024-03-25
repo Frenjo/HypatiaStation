@@ -132,7 +132,7 @@
 		S.glass_type = /obj/item/stack/sheet/glass
 		S.anchored = TRUE
 	S.loc = src
-	if(S.glass_type == /obj/item/stack/sheet/rglass)	//if the panel is in reinforced glass
+	if(S.glass_type == /obj/item/stack/sheet/glass/reinforced)	//if the panel is in reinforced glass
 		health *= 2										//this need to be placed here, because panels already on the map don't have an assembly linked to
 	update_icon()
 

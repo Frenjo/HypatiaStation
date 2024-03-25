@@ -253,7 +253,7 @@
 					if(ore_amounts[/obj/item/ore/glass] > 0 && ore_amounts[/obj/item/ore/iron] > 0)
 						ore_amounts[/obj/item/ore/glass]--
 						ore_amounts[/obj/item/ore/iron]--
-						new /obj/item/stack/sheet/rglass(output.loc)
+						new /obj/item/stack/sheet/glass/reinforced(output.loc)
 					else
 						on = FALSE
 					continue
@@ -318,7 +318,7 @@
 					if(ore_amounts[/obj/item/ore/glass] > 0 && ore_amounts[/obj/item/ore/plasma] > 0)
 						ore_amounts[/obj/item/ore/glass]--
 						ore_amounts[/obj/item/ore/plasma]--
-						new /obj/item/stack/sheet/glass/plasmaglass(output.loc)
+						new /obj/item/stack/sheet/glass/plasma(output.loc)
 					else
 						on = FALSE
 					continue
@@ -327,7 +327,7 @@
 						ore_amounts[/obj/item/ore/glass]--
 						ore_amounts[/obj/item/ore/iron]--
 						ore_amounts[/obj/item/ore/plasma]--
-						new /obj/item/stack/sheet/glass/plasmarglass(output.loc)
+						new /obj/item/stack/sheet/glass/plasma/reinforced(output.loc)
 					else
 						on = FALSE
 					continue

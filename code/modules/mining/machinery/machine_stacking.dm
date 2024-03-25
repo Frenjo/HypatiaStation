@@ -34,9 +34,9 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 	ADD_MATERIAL("Glass", /obj/item/stack/sheet/glass)
 
 	ADD_MATERIAL("Plasteel", /obj/item/stack/sheet/plasteel)
-	ADD_MATERIAL("Reinforced Glass", /obj/item/stack/sheet/rglass)
-	ADD_MATERIAL("Plasma Glass", /obj/item/stack/sheet/glass/plasmaglass)
-	ADD_MATERIAL("Reinforced Plasma Glass", /obj/item/stack/sheet/glass/plasmarglass)
+	ADD_MATERIAL("Reinforced Glass", /obj/item/stack/sheet/glass/reinforced)
+	ADD_MATERIAL("Plasma Glass", /obj/item/stack/sheet/glass/plasma)
+	ADD_MATERIAL("Reinforced Plasma Glass", /obj/item/stack/sheet/glass/plasma/reinforced)
 
 	ADD_MATERIAL("Wood", /obj/item/stack/sheet/wood)
 	ADD_MATERIAL("Cardboard", /obj/item/stack/sheet/cardboard)
@@ -88,9 +88,9 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 		/obj/item/stack/sheet/glass = 0,
 
 		/obj/item/stack/sheet/plasteel = 0,
-		/obj/item/stack/sheet/rglass = 0,
-		/obj/item/stack/sheet/glass/plasmaglass = 0,
-		/obj/item/stack/sheet/glass/plasmarglass = 0,
+		/obj/item/stack/sheet/glass/reinforced = 0,
+		/obj/item/stack/sheet/glass/plasma = 0,
+		/obj/item/stack/sheet/glass/plasma/reinforced = 0,
 
 		/obj/item/stack/sheet/wood = 0,
 		/obj/item/stack/sheet/cardboard = 0,

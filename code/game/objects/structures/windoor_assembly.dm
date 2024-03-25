@@ -73,7 +73,7 @@
 						if(!src || !WT.isOn())
 							return
 						to_chat(user, SPAN_INFO("You dissasembled the windoor assembly!"))
-						new /obj/item/stack/sheet/rglass(get_turf(src), 5)
+						new /obj/item/stack/sheet/glass/reinforced(get_turf(src), 5)
 						if(secure)
 							new /obj/item/stack/rods(get_turf(src), 4)
 						qdel(src)

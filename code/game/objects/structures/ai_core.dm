@@ -84,8 +84,8 @@
 					var/obj/item/stack/cable_coil/cable = new /obj/item/stack/cable_coil(loc)
 					cable.amount = 5
 
-			if(istype(object, /obj/item/stack/sheet/rglass))
-				var/obj/item/stack/sheet/rglass/glass = object
+			if(istype(object, /obj/item/stack/sheet/glass/reinforced))
+				var/obj/item/stack/sheet/glass/reinforced/glass = object
 				if(glass.amount >= 2)
 					playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
 					if(do_after(user, 20))
@@ -155,7 +155,7 @@
 					icon_state = "3b"
 				else
 					icon_state = "3"
-				new /obj/item/stack/sheet/rglass(loc, 2)
+				new /obj/item/stack/sheet/glass/reinforced(loc, 2)
 				return
 
 			if(istype(object, /obj/item/screwdriver))

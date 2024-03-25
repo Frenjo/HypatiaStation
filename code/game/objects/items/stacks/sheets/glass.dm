@@ -20,9 +20,9 @@
 	var/created_window = /obj/structure/window/basic
 
 /obj/item/stack/sheet/glass/cyborg
-	matter_amounts = list()
+	matter_amounts = null
 
-/obj/item/stack/sheet/glass/attack_self(mob/user as mob)
+/obj/item/stack/sheet/glass/attack_self(mob/user)
 	construct_window(user)
 
 /obj/item/stack/sheet/glass/attack_tool(obj/item/tool, mob/user)
@@ -46,7 +46,7 @@
 /obj/item/stack/sheet/glass/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/rods))
 		var/obj/item/stack/rods/rods = W
-		var/obj/item/stack/sheet/rglass/new_glass = new /obj/item/stack/sheet/rglass(get_turf(loc))
+		var/obj/item/stack/sheet/glass/reinforced/new_glass = new /obj/item/stack/sheet/glass/reinforced(get_turf(loc))
 		new_glass.add_fingerprint(user)
 		new_glass.add_to_stacks(user)
 		rods.use(1)
@@ -130,7 +130,7 @@
 /*
  * Reinforced glass sheets
  */
-/obj/item/stack/sheet/rglass
+/obj/item/stack/sheet/glass/reinforced
 	name = "reinforced glass"
 	desc = "Glass which seems to have rods or something stuck in them."
 	singular_name = "reinforced glass sheet"
@@ -138,13 +138,20 @@
 	matter_amounts = list(MATERIAL_METAL = 1875, MATERIAL_GLASS = 3750)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
 
-/obj/item/stack/sheet/rglass/cyborg
-	matter_amounts = list()
+/obj/item/stack/sheet/glass/reinforced/cyborg
+	matter_amounts = null
 
-/obj/item/stack/sheet/rglass/attack_self(mob/user as mob)
-	construct_window(user)
+/obj/item/stack/sheet/glass/reinforced/attack_tool(obj/item/tool, mob/user)
+	if(iswire(tool))
+		return TRUE
+	return ..()
 
-/obj/item/stack/sheet/rglass/proc/construct_window(mob/user as mob)
+/obj/item/stack/sheet/glass/reinforced/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/stack/rods))
+		return TRUE
+	return ..()
+
+/obj/item/stack/sheet/glass/reinforced/construct_window(mob/user)
 	if(!user || !src)
 		return 0
 	if(!isturf(user.loc))
@@ -323,7 +330,7 @@
 /*
  * Plasma Glass sheets
  */
-/obj/item/stack/sheet/glass/plasmaglass
+/obj/item/stack/sheet/glass/plasma
 	name = "plasma glass"
 	desc = "A very strong and very resistant sheet of a plasma-glass alloy."
 	singular_name = "plasma glass sheet"
@@ -332,13 +339,10 @@
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_PLASMATECH = 2)
 	created_window = /obj/structure/window/plasmabasic
 
-/obj/item/stack/sheet/glass/plasmaglass/attack_self(mob/user as mob)
-	construct_window(user)
-
-/obj/item/stack/sheet/glass/plasmaglass/attackby(obj/item/W, mob/user)
+/obj/item/stack/sheet/glass/plasma/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/rods))
 		var/obj/item/stack/rods/rods = W
-		var/obj/item/stack/sheet/glass/plasmarglass/new_glass = new (user.loc)
+		var/obj/item/stack/sheet/glass/plasma/reinforced/new_glass = new (user.loc)
 		new_glass.add_fingerprint(user)
 		new_glass.add_to_stacks(user)
 		rods.use(1)
@@ -354,7 +358,7 @@
 /*
  * Reinforced plasma glass sheets
  */
-/obj/item/stack/sheet/glass/plasmarglass
+/obj/item/stack/sheet/glass/plasma/reinforced
 	name = "reinforced plasma glass"
 	desc = "Plasma glass which seems to have rods or something stuck in them."
 	singular_name = "reinforced plasma glass sheet"
@@ -363,5 +367,7 @@
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_PLASMATECH = 2)
 	created_window = /obj/structure/window/plasmareinforced
 
-/obj/item/stack/sheet/glass/plasmarglass/attack_self(mob/user as mob)
-	construct_window(user)
+/obj/item/stack/sheet/glass/plasma/reinforced/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/stack/rods))
+		return TRUE
+	return ..()

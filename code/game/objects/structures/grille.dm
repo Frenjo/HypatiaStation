@@ -110,7 +110,7 @@
 			return
 
 //window placing begin
-	else if(istype(W, /obj/item/stack/sheet/rglass) || istype(W, /obj/item/stack/sheet/glass))
+	else if(istype(W, /obj/item/stack/sheet/glass))
 		var/dir_to_set = 1
 		if(loc == user.loc)
 			dir_to_set = user.dir
@@ -142,7 +142,7 @@
 					to_chat(user, SPAN_NOTICE("There is already a window facing this way there."))
 					return
 			var/obj/structure/window/WD
-			if(istype(W, /obj/item/stack/sheet/rglass))
+			if(istype(W, /obj/item/stack/sheet/glass/reinforced))
 				WD = new/obj/structure/window/reinforced(loc) //reinforced window
 			else
 				WD = new/obj/structure/window/basic(loc) //normal window

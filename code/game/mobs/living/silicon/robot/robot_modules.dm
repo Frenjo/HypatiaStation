@@ -133,7 +133,7 @@
 	M.amount = 50
 	modules.Add(M)
 
-	var/obj/item/stack/sheet/rglass/cyborg/G = new /obj/item/stack/sheet/rglass/cyborg(src)
+	var/obj/item/stack/sheet/glass/reinforced/cyborg/G = new /obj/item/stack/sheet/glass/reinforced/cyborg(src)
 	G.amount = 50
 	modules.Add(G)
 
@@ -144,7 +144,7 @@
 /obj/item/robot_module/engineering/respawn_consumable(mob/living/silicon/robot/R)
 	var/list/stacks = list(
 		/obj/item/stack/sheet/metal,
-		/obj/item/stack/sheet/rglass,
+		/obj/item/stack/sheet/glass/reinforced,
 		/obj/item/stack/cable_coil
 	)
 	for(var/T in stacks)

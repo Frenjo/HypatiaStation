@@ -33,7 +33,7 @@
 
 /obj/item/solar_assembly/attackby(obj/item/W, mob/user)
 	if(anchored)
-		if(istype(W, /obj/item/stack/sheet/glass) || istype(W, /obj/item/stack/sheet/rglass))
+		if(istype(W, /obj/item/stack/sheet/glass))
 			var/obj/item/stack/sheet/S = W
 			if(S.amount >= 2)
 				glass_type = W.type
