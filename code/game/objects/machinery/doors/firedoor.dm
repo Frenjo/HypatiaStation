@@ -1,5 +1,5 @@
 /obj/machinery/door/firedoor
-	name = "\improper Emergency Shutter"
+	name = "emergency shutter"
 	desc = "Emergency air-tight shutter, capable of sealing off breached areas."
 	icon = 'icons/obj/doors/emergency/hazard.dmi'
 	icon_state = "door_open"
