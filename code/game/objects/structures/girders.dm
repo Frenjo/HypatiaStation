@@ -80,101 +80,45 @@
 			qdel(src)
 
 	else if(istype(W, /obj/item/stack/sheet))
-
 		var/obj/item/stack/sheet/S = W
-		switch(S.type)
 
-			if(/obj/item/stack/sheet/metal, /obj/item/stack/sheet/metal/cyborg)
-				if(!anchored)
-					if(S.amount < 2)
-						return
-					S.use(2)
-					user << "\blue You create a false wall! Push on it to open or close the passage."
-					new /obj/structure/falsewall/steel(loc)
-					qdel(src)
-				else
-					if(S.amount < 2)
-						return ..()
-					user << "\blue Now adding plating..."
-					if(do_after(user,40))
-						if(!src || !S || S.amount < 2)
-							return
-						S.use(2)
-						user << "\blue You added the plating!"
-						var/turf/Tsrc = get_turf(src)
-						Tsrc.ChangeTurf(/turf/simulated/wall/steel)
-						for(var/turf/simulated/wall/X in Tsrc.loc)
-							if(X)
-								X.add_hiddenprint(usr)
-						qdel(src)
-					return
+		if(istype(S, /obj/item/stack/sheet/plasteel))
+			if(S.amount < 1)
+				return TRUE
+			user << "\blue Now reinforcing girders"
+			if(!do_after(user, 6 SECONDS))
+				return TRUE
+			S.use(1)
+			user << "\blue Girders reinforced!"
+			new /obj/structure/girder/reinforced(loc)
+			qdel(src)
+			return TRUE
 
-			if(/obj/item/stack/sheet/plasteel)
-				if(!anchored)
-					if(S.amount < 2)
-						return
-					S.use(2)
-					user << "\blue You create a false wall! Push on it to open or close the passage."
-					new /obj/structure/falsewall/reinforced(src.loc)
-					qdel(src)
-				else
-					if(src.icon_state == "reinforced") //I cant believe someone would actually write this line of code...
-						if(S.amount < 1)
-							return ..()
-						user << "\blue Now finalising reinforced wall."
-						if(do_after(user, 50))
-							if(!src || !S || S.amount < 1)
-								return
-							S.use(1)
-							user << "\blue Wall fully reinforced!"
-							var/turf/Tsrc = get_turf(src)
-							Tsrc.ChangeTurf(/turf/simulated/wall/reinforced)
-							for(var/turf/simulated/wall/reinforced/X in Tsrc.loc)
-								if(X)
-									X.add_hiddenprint(usr)
-							qdel(src)
-						return
-					else
-						if(S.amount < 1)
-							return ..()
-						user << "\blue Now reinforcing girders"
-						if(do_after(user,60))
-							if(!src || !S || S.amount < 1)
-								return
-							S.use(1)
-							user << "\blue Girders reinforced!"
-							new/obj/structure/girder/reinforced(src.loc)
-							qdel(src)
-						return
+		if(anchored && isnotnull(S.material.wall_path))
+			if(S.amount < 2)
+				to_chat(user, SPAN_WARNING("You require more [S.name] to do that!"))
+				return TRUE
+			user << "\blue Now adding plating..."
+			if(!do_after(user, 4 SECONDS))
+				return TRUE
+			S.use(2)
+			user << "\blue You added the plating!"
+			var/turf/T = get_turf(src)
+			T.ChangeTurf(S.material.wall_path)
+			for(var/turf/simulated/wall/X in T.loc)
+				X?.add_hiddenprint(usr)
+			qdel(src)
+			return TRUE
 
-		if(S.sheettype)
-			var/M = S.sheettype
-			if(!anchored)
-				if(S.amount < 2)
-					return
-				S.use(2)
-				user << "\blue You create a false wall! Push on it to open or close the passage."
-				var/F = text2path("/obj/structure/falsewall/[M]")
-				new F (src.loc)
-				qdel(src)
-			else
-				if(S.amount < 2)
-					return ..()
-				user << "\blue Now adding plating..."
-				if (do_after(user,40))
-					if(!src || !S || S.amount < 2)
-						return
-					S.use(2)
-					user << "\blue You added the plating!"
-					var/turf/Tsrc = get_turf(src)
-					Tsrc.ChangeTurf(text2path("/turf/simulated/wall/[M]"))
-					for(var/turf/simulated/wall/X in Tsrc.loc)
-						if(X)
-							X.add_hiddenprint(usr)
-					qdel(src)
-				return
-
-		add_hiddenprint(usr)
+		if(!anchored && isnotnull(S.material.wall_false_path))
+			if(S.amount < 2)
+				return TRUE
+			S.use(2)
+			user << "\blue You create a false wall! Push on it to open or close the passage."
+			var/obj/structure/falsewall/fake = new S.material.wall_false_path(loc)
+			fake.add_hiddenprint(usr)
+			qdel(src)
+			return TRUE
 
 	else if(istype(W, /obj/item/pipe))
 		var/obj/item/pipe/P = W
@@ -221,6 +165,23 @@
 	state = 2
 	health = 500
 
+/obj/structure/girder/reinforced/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/stack/sheet/plasteel))
+		var/obj/item/stack/sheet/plasteel/S = I
+		if(S.amount < 1)
+			return TRUE
+		user << "\blue Now finalising reinforced wall."
+		if(!do_after(user, 5 SECONDS))
+			return TRUE
+		S.use(1)
+		user << "\blue Wall fully reinforced!"
+		var/turf/T = get_turf(src)
+		T.ChangeTurf(/turf/simulated/wall/reinforced)
+		for(var/turf/simulated/wall/reinforced/X in T.loc)
+			X?.add_hiddenprint(usr)
+		qdel(src)
+		return TRUE
+	return ..()
 
 /obj/structure/cultgirder
 	icon = 'icons/obj/cult.dmi'

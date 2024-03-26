@@ -80,14 +80,10 @@ var/global/list/datum/stack_recipe/metal_recipes = list(
 	throwforce = 14.0
 	obj_flags = OBJ_FLAG_CONDUCT
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
+	material = /decl/material/steel
 
 /obj/item/stack/sheet/metal/cyborg
-	name = "metal"
-	desc = "Sheets made out off metal. It has been dubbed Metal Sheets."
-	singular_name = "metal sheet"
-	icon_state = "sheet-metal"
-	matter_amounts = list()
-	throwforce = 14.0
+	matter_amounts = null
 
 /obj/item/stack/sheet/metal/New(loc, amount = null)
 	recipes = metal_recipes
@@ -113,6 +109,7 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list(
 	throwforce = 15.0
 	obj_flags = OBJ_FLAG_CONDUCT
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
+	material = /decl/material/plasteel
 
 /obj/item/stack/sheet/plasteel/New(loc, amount = null)
 	recipes = plasteel_recipes
@@ -138,12 +135,9 @@ var/global/list/datum/stack_recipe/wood_recipes = list(
 	singular_name = "wood plank"
 	icon_state = "sheet-wood"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_BIOTECH = 1)
+	material = /decl/material/wood
 
 /obj/item/stack/sheet/wood/cyborg
-	name = "wooden plank"
-	desc = "One can only guess that this is a bunch of wood."
-	singular_name = "wood plank"
-	icon_state = "sheet-wood"
 
 /obj/item/stack/sheet/wood/New(loc, amount = null)
 	recipes = wood_recipes
@@ -158,6 +152,7 @@ var/global/list/datum/stack_recipe/wood_recipes = list(
 	singular_name = "cloth roll"
 	icon_state = "sheet-cloth"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
+	material = /decl/material/cloth
 
 /*
  * Cardboard
@@ -186,6 +181,7 @@ var/global/list/datum/stack_recipe/cardboard_recipes = list(
 	singular_name = "cardboard sheet"
 	icon_state = "sheet-card"
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
+	material = /decl/material/cardboard
 
 /obj/item/stack/sheet/cardboard/New(loc, amount = null)
 	recipes = cardboard_recipes

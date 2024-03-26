@@ -18,6 +18,12 @@
 	// THIS MUST INCLUDE ITS OWN TYPE IF THE WALLS CAN LINK TOGETHER.
 	var/list/wall_links_to
 
+	/*
+	 * Airlock
+	 */
+	// Whether this material can be made into airlocks.
+	var/can_make_airlock = FALSE
+
 /decl/material/New()
 	if(isnull(icon_prefix))
 		icon_prefix = lowertext(name)
@@ -99,6 +105,8 @@
 	wall_false_path = /obj/structure/falsewall/sandstone
 	wall_links_to = list(/decl/material/sandstone)
 
+	can_make_airlock = TRUE
+
 /decl/material/silver
 	name = "Silver"
 	sheet_path = /obj/item/stack/sheet/silver
@@ -106,6 +114,8 @@
 	wall_path = /turf/simulated/wall/silver
 	wall_false_path = /obj/structure/falsewall/silver
 	wall_links_to = list(/decl/material/silver)
+
+	can_make_airlock = TRUE
 
 /decl/material/gold
 	name = "Gold"
@@ -115,6 +125,8 @@
 	wall_false_path = /obj/structure/falsewall/gold
 	wall_links_to = list(/decl/material/gold)
 
+	can_make_airlock = TRUE
+
 /decl/material/diamond
 	name = "Diamond"
 	sheet_path = /obj/item/stack/sheet/diamond
@@ -123,6 +135,8 @@
 	wall_false_path = /obj/structure/falsewall/diamond
 	wall_links_to = list(/decl/material/diamond)
 
+	can_make_airlock = TRUE
+
 /decl/material/uranium
 	name = "Uranium"
 	sheet_path = /obj/item/stack/sheet/uranium
@@ -130,6 +144,8 @@
 	wall_path = /turf/simulated/wall/uranium
 	wall_false_path = /obj/structure/falsewall/uranium
 	wall_links_to = list(/decl/material/uranium)
+
+	can_make_airlock = TRUE
 
 /decl/material/enriched_uranium
 	name = "Enriched Uranium"
@@ -143,6 +159,8 @@
 	wall_false_path = /obj/structure/falsewall/plasma
 	wall_links_to = list(/decl/material/plasma)
 
+	can_make_airlock = TRUE
+
 /decl/material/bananium
 	name = "Bananium"
 	sheet_path = /obj/item/stack/sheet/bananium
@@ -150,6 +168,8 @@
 	wall_path = /turf/simulated/wall/bananium
 	wall_false_path = /obj/structure/falsewall/bananium
 	wall_links_to = list(/decl/material/bananium)
+
+	can_make_airlock = TRUE
 
 /decl/material/adamantine
 	name = "Adamantine"

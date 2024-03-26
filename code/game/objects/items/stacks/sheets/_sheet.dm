@@ -10,8 +10,15 @@
 	throw_range = 3
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "smashed")
 
+	var/decl/material/material
 	var/perunit = 3750
-	var/sheettype = null //this is used for girders in the creation of walls/false walls
+
+/obj/item/stack/sheet/New()
+	SHOULD_CALL_PARENT(TRUE)
+
+	if(isnotnull(material))
+		material = GET_DECL_INSTANCE(material)
+	. = ..()
 
 // Since the sheetsnatcher was consolidated into weapon/storage/bag we now use
 // item/attackby() properly, making this unnecessary

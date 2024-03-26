@@ -17,6 +17,7 @@
 	icon_state = "sheet-glass"
 	matter_amounts = list(MATERIAL_GLASS = 3750)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
+	material = /decl/material/glass
 	var/created_window = /obj/structure/window/basic
 
 /obj/item/stack/sheet/glass/cyborg
@@ -137,6 +138,7 @@
 	icon_state = "sheet-rglass"
 	matter_amounts = list(MATERIAL_METAL = 1875, MATERIAL_GLASS = 3750)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
+	material = /decl/material/reinforced_glass
 
 /obj/item/stack/sheet/glass/reinforced/cyborg
 	matter_amounts = null
@@ -337,6 +339,7 @@
 	icon_state = "sheet-plasmaglass"
 	matter_amounts = list(MATERIAL_GLASS = 7500)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_PLASMATECH = 2)
+	material = /decl/material/plasma_glass
 	created_window = /obj/structure/window/plasmabasic
 
 /obj/item/stack/sheet/glass/plasma/attackby(obj/item/W, mob/user)
@@ -365,6 +368,7 @@
 	icon_state = "sheet-plasmarglass"
 	matter_amounts = list(MATERIAL_METAL = 1875, MATERIAL_GLASS = 7500)
 	origin_tech = list(RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_PLASMATECH = 2)
+	material = /decl/material/reinforced_plasma_glass
 	created_window = /obj/structure/window/plasmareinforced
 
 /obj/item/stack/sheet/glass/plasma/reinforced/attackby(obj/item/I, mob/user)

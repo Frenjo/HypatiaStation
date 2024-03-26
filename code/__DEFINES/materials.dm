@@ -6,7 +6,6 @@
 // Material name types
 #define MATERIAL_METAL				"metal"
 #define MATERIAL_GLASS				"glass"
-#define MATERIAL_PLASTIC			"plastic"
 
 #define MATERIAL_PLASTEEL			"plasteel"
 #define MATERIAL_RGLASS				"rglass"

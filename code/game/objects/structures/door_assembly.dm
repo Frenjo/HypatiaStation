@@ -245,15 +245,17 @@
 						user << "\blue You installed reinforced glass windows into the airlock assembly!"
 						S.use(1)
 						glass = 1
-				else if(istype(S, /obj/item/stack/sheet) && S.sheettype)
-					var/M = S.sheettype
-					if(S.amount>=2)
+				else if(istype(S, /obj/item/stack/sheet) && S.material?.can_make_airlock)
+					if(S.amount >= 2)
 						playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
-						user.visible_message("[user] adds [S.name] to the airlock assembly.", "You start to install [S.name] into the airlock assembly.")
-						if(do_after(user, 40))
-							user << "\blue You installed [M] plating into the airlock assembly!"
+						user.visible_message(
+							"[user] adds [S.name] to the airlock assembly.",
+							"You start to install [S.name] into the airlock assembly."
+						)
+						if(do_after(user, 4 SECONDS))
+							user << "\blue You installed the [lowertext(S.material.name)] plating into the airlock assembly!"
 							S.use(2)
-							glass = "[M]"
+							glass = "[lowertext(S.material.name)]"
 
 	else if(istype(W, /obj/item/screwdriver) && state == 2 )
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
