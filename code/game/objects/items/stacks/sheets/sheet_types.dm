@@ -68,7 +68,7 @@ var/global/list/datum/stack_recipe/metal_recipes = list(
 	new/datum/stack_recipe("air alarm frame", /obj/item/frame/alarm, 2),
 	new/datum/stack_recipe("fire alarm frame", /obj/item/frame/firealarm, 2),
 	null,
-	new/datum/stack_recipe("iron door", /obj/structure/mineral_door/iron, 20, one_per_turf = 1, on_floor = 1),
+	new/datum/stack_recipe("steel door", /obj/structure/mineral_door/steel, 20, one_per_turf = 1, on_floor = 1),
 )
 
 /obj/item/stack/sheet/metal

@@ -35,10 +35,10 @@
 
 	if(istype(src, /turf/simulated/wall))
 		var/turf/simulated/wall/wall = src
-		wall.icon_state = "[wall.material.wall_icon_state][junction]"
+		wall.icon_state = "[wall.material.icon_prefix][junction]"
 	else if(istype(src, /obj/structure/falsewall))
 		var/obj/structure/falsewall/fwall = src
-		fwall.icon_state = "[fwall.material.wall_icon_state][junction]"
+		fwall.icon_state = "[fwall.material.icon_prefix][junction]"
 /*	else if(istype(src,/turf/simulated/shuttle/wall))
 		var/newicon = icon;
 		var/newiconstate = icon_state;
@@ -133,4 +133,4 @@
 		if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
 			if(W.material.type in material.wall_links_to)
 				junction |= get_dir(src, W)
-	icon_state = "[material.wall_icon_state][junction]"
+	icon_state = "[material.icon_prefix][junction]"

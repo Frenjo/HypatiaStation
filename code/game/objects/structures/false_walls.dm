@@ -4,7 +4,6 @@
 /obj/structure/falsewall
 	name = "wall"
 	desc = "A huge thing used to separate rooms."
-	icon = 'icons/turf/walls.dmi'
 	anchored = TRUE
 
 	var/decl/material/material
@@ -26,7 +25,7 @@
 
 /obj/structure/falsewall/relativewall()
 	if(!density)
-		icon_state = "[material.wall_icon_state]fwall_open"
+		icon_state = "[material.icon_prefix]fwall_open"
 		return
 
 	var/junction = 0 //will be used to determine from which side the wall is connected to other walls
@@ -40,7 +39,7 @@
 		if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
 			if(W.material.type in material.wall_links_to)
 				junction |= get_dir(src, W)
-	icon_state = "[material.wall_icon_state][junction]"
+	icon_state = "[material.icon_prefix][junction]"
 
 /obj/structure/falsewall/attack_hand(mob/user as mob)
 	if(opening)
@@ -48,16 +47,16 @@
 
 	if(density)
 		opening = 1
-		icon_state = "[material.wall_icon_state]fwall_open"
-		flick("[material.wall_icon_state]fwall_opening", src)
+		icon_state = "[material.icon_prefix]fwall_open"
+		flick("[material.icon_prefix]fwall_opening", src)
 		sleep(15)
 		src.density = FALSE
 		set_opacity(0)
 		opening = 0
 	else
 		opening = 1
-		flick("[material.wall_icon_state]fwall_closing", src)
-		icon_state = "[material.wall_icon_state]0"
+		flick("[material.icon_prefix]fwall_closing", src)
+		icon_state = "[material.icon_prefix]0"
 		density = TRUE
 		sleep(15)
 		set_opacity(1)
@@ -67,10 +66,10 @@
 /obj/structure/falsewall/update_icon()//Calling icon_update will refresh the smoothwalls if it's closed, otherwise it will make sure the icon is correct if it's open
 	..()
 	if(density)
-		icon_state = "[material.wall_icon_state]0"
+		icon_state = "[material.icon_prefix]0"
 		src.relativewall()
 	else
-		icon_state = "[material.wall_icon_state]fwall_open"
+		icon_state = "[material.icon_prefix]fwall_open"
 
 /obj/structure/falsewall/attackby(obj/item/W as obj, mob/user as mob)
 	if(opening)
@@ -125,10 +124,10 @@
 /obj/structure/falsewall/update_icon()//Calling icon_update will refresh the smoothwalls if it's closed, otherwise it will make sure the icon is correct if it's open
 	..()
 	if(density)
-		icon_state = "[material.wall_icon_state]0"
+		icon_state = "[material.icon_prefix]0"
 		src.relativewall()
 	else
-		icon_state = "[material.wall_icon_state]fwall_open"
+		icon_state = "[material.icon_prefix]fwall_open"
 
 /*
  * False Steel Walls
@@ -136,8 +135,9 @@
 /obj/structure/falsewall/steel
 	name = "steel wall"
 	desc = "A huge chunk of steel used to separate rooms."
-	icon_state = "0"
-	material = /decl/material/metal
+	icon = 'icons/turf/walls.dmi'
+	icon_state = "steel0"
+	material = /decl/material/steel
 
 /*
  * False R-Walls
@@ -146,7 +146,7 @@
 	name = "reinforced plasteel wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms."
 	icon = 'icons/turf/walls/reinforced.dmi'
-	icon_state = "r_wall"
+	icon_state = "plasteel0"
 	density = TRUE
 	opacity = TRUE
 	anchored = TRUE

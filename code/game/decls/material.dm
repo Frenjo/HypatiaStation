@@ -1,6 +1,9 @@
 /decl/material
 	// The material's name.
 	var/name
+	// The icon state prefix used for icons made of this material.
+	// Equivalent to lowertext(name) if unset.
+	var/icon_prefix
 	// The type path of the associated sheet item.
 	var/sheet_path
 
@@ -11,28 +14,25 @@
 	var/wall_path
 	// The type path of the false wall made of this material.
 	var/wall_false_path
-	// The icon state used for wall icons.
-	// Equivalent to lowertext(name) if unset.
-	var/wall_icon_state
 	// A list containing type paths of materials which we can "smoothwall" with.
 	// THIS MUST INCLUDE ITS OWN TYPE IF THE WALLS CAN LINK TOGETHER.
 	var/list/wall_links_to
 
 /decl/material/New()
-	if(isnull(wall_icon_state))
-		wall_icon_state = lowertext(name)
+	if(isnull(icon_prefix))
+		icon_prefix = lowertext(name)
 	. = ..()
 
 /*
  * Core Materials
  */
-/decl/material/metal
-	name = "Metal"
+/decl/material/steel
+	name = "Steel"
 	sheet_path = /obj/item/stack/sheet/metal
 
 	wall_path = /turf/simulated/wall/steel
 	wall_false_path = /obj/structure/falsewall/steel
-	wall_links_to = list(/decl/material/metal, /decl/material/plasteel)
+	wall_links_to = list(/decl/material/steel, /decl/material/plasteel)
 
 /decl/material/glass
 	name = "Glass"
@@ -51,7 +51,7 @@
 
 	wall_path = /turf/simulated/wall/reinforced
 	wall_false_path = /obj/structure/falsewall/reinforced
-	wall_links_to = list(/decl/material/metal, /decl/material/plasteel)
+	wall_links_to = list(/decl/material/steel, /decl/material/plasteel)
 
 /decl/material/reinforced_glass
 	name = "Reinforced Glass"

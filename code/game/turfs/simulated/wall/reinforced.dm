@@ -2,7 +2,7 @@
 	name = "reinforced plasteel wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms."
 	icon = 'icons/turf/walls/reinforced.dmi'
-	icon_state = "r_wall"
+	icon_state = "plasteel0"
 
 	opacity = TRUE
 	density = TRUE
