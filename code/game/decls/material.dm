@@ -9,6 +9,8 @@
 	 */
 	// The type path of the wall turf made of this material.
 	var/wall_path
+	// The type path of the false wall made of this material.
+	var/wall_false_path
 	// The icon state used for wall icons.
 	// Equivalent to lowertext(name) if unset.
 	var/wall_icon_state
@@ -21,67 +23,132 @@
 		wall_icon_state = lowertext(name)
 	. = ..()
 
+/*
+ * Core Materials
+ */
 /decl/material/metal
 	name = "Metal"
 	sheet_path = /obj/item/stack/sheet/metal
 
 	wall_path = /turf/simulated/wall/steel
+	wall_false_path = /obj/structure/falsewall/steel
 	wall_links_to = list(/decl/material/metal, /decl/material/plasteel)
 
+/decl/material/glass
+	name = "Glass"
+	sheet_path = /obj/item/stack/sheet/glass
+
+/decl/material/plastic
+	name = "Plastic"
+	sheet_path = /obj/item/stack/sheet/plastic
+
+/*
+ * Advanced Materials
+ */
 /decl/material/plasteel
 	name = "Plasteel"
 	sheet_path = /obj/item/stack/sheet/plasteel
 
 	wall_path = /turf/simulated/wall/reinforced
+	wall_false_path = /obj/structure/falsewall/reinforced
 	wall_links_to = list(/decl/material/metal, /decl/material/plasteel)
+
+/decl/material/reinforced_glass
+	name = "Reinforced Glass"
+	sheet_path = /obj/item/stack/sheet/glass/reinforced
+
+/decl/material/plasma_glass
+	name = "Plasma Glass"
+	sheet_path = /obj/item/stack/sheet/glass/plasma
+
+/decl/material/reinforced_plasma_glass
+	name = "Reinforced Plasma Glass"
+	sheet_path = /obj/item/stack/sheet/glass/plasma/reinforced
+
+/*
+ * Hydroponics Materials
+ */
+/decl/material/wood
+	name = "Wood"
+	sheet_path = /obj/item/stack/sheet/wood
+
+/decl/material/cardboard
+	name = "Cardboard"
+	sheet_path = /obj/item/stack/sheet/cardboard
+
+/decl/material/cloth
+	name = "Cloth"
+	sheet_path = /obj/item/stack/sheet/cloth
+
+/decl/material/leather
+	name = "Leather"
+	sheet_path = /obj/item/stack/sheet/leather
+
+/*
+ * Mining Materials
+ */
+/decl/material/slag
+	name = "Slag"
+	sheet_path = /obj/item/ore/slag
 
 /decl/material/sandstone
 	name = "Sandstone"
 	sheet_path = /obj/item/stack/sheet/sandstone
 
 	wall_path = /turf/simulated/wall/sandstone
+	wall_false_path = /obj/structure/falsewall/sandstone
 	wall_links_to = list(/decl/material/sandstone)
-
-/decl/material/gold
-	name = "Gold"
-	sheet_path = /obj/item/stack/sheet/gold
-
-	wall_path = /turf/simulated/wall/gold
-	wall_links_to = list(/decl/material/gold)
 
 /decl/material/silver
 	name = "Silver"
 	sheet_path = /obj/item/stack/sheet/silver
 
 	wall_path = /turf/simulated/wall/silver
+	wall_false_path = /obj/structure/falsewall/silver
 	wall_links_to = list(/decl/material/silver)
+
+/decl/material/gold
+	name = "Gold"
+	sheet_path = /obj/item/stack/sheet/gold
+
+	wall_path = /turf/simulated/wall/gold
+	wall_false_path = /obj/structure/falsewall/gold
+	wall_links_to = list(/decl/material/gold)
 
 /decl/material/diamond
 	name = "Diamond"
 	sheet_path = /obj/item/stack/sheet/diamond
 
 	wall_path = /turf/simulated/wall/diamond
+	wall_false_path = /obj/structure/falsewall/diamond
 	wall_links_to = list(/decl/material/diamond)
-
-/decl/material/plasma
-	name = "Plasma"
-	sheet_path = /obj/item/stack/sheet/plasma
-
-	wall_path = /turf/simulated/wall/plasma
-	wall_links_to = list(/decl/material/plasma)
 
 /decl/material/uranium
 	name = "Uranium"
 	sheet_path = /obj/item/stack/sheet/uranium
 
 	wall_path = /turf/simulated/wall/uranium
+	wall_false_path = /obj/structure/falsewall/uranium
 	wall_links_to = list(/decl/material/uranium)
+
+/decl/material/enriched_uranium
+	name = "Enriched Uranium"
+	sheet_path = /obj/item/stack/sheet/enruranium
+
+/decl/material/plasma
+	name = "Plasma"
+	sheet_path = /obj/item/stack/sheet/plasma
+
+	wall_path = /turf/simulated/wall/plasma
+	wall_false_path = /obj/structure/falsewall/plasma
+	wall_links_to = list(/decl/material/plasma)
 
 /decl/material/bananium
 	name = "Bananium"
 	sheet_path = /obj/item/stack/sheet/bananium
 
 	wall_path = /turf/simulated/wall/bananium
+	wall_false_path = /obj/structure/falsewall/bananium
 	wall_links_to = list(/decl/material/bananium)
 
 /decl/material/adamantine
@@ -92,8 +159,14 @@
 	name = "Mythril"
 	sheet_path = /obj/item/stack/sheet/mythril
 
+/*
+ * Alien/Strange Materials
+ */
 // Placeholder until I figure out what to do with this.
 /decl/material/cult
 	name = "Cult"
 
 	wall_path = /turf/simulated/wall/cult
+
+/decl/material/resin
+	name = "Resin"
