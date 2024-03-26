@@ -107,12 +107,11 @@
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "decompiler"
 
-	//Metal, glass, wood, plastic.
 	var/list/stored_comms = list(
-		MATERIAL_METAL		= 0,
-		MATERIAL_GLASS		= 0,
-		MATERIAL_WOOD		= 0,
-		MATERIAL_PLASTIC	= 0
+		/decl/material/steel = 0,
+		/decl/material/glass = 0,
+		/decl/material/plastic = 0,
+		/decl/material/wood = 0
 	)
 
 /obj/item/matter_decompiler/afterattack(atom/target, mob/user as mob)
@@ -126,13 +125,14 @@
 
 	for(var/mob/M in T)
 		if(istype(M, /mob/living/simple_animal/lizard) || istype(M, /mob/living/simple_animal/mouse))
-			src.loc.visible_message("\red [src.loc] sucks [M] into its decompiler. There's a horrible crunching noise.","\red It's a bit of a struggle, but you manage to suck [M] into your decompiler. It makes a series of visceral crunching noises.")
+			loc.visible_message(
+				"\red [loc] sucks [M] into its decompiler. There's a horrible crunching noise.",
+				"\red It's a bit of a struggle, but you manage to suck [M] into your decompiler. It makes a series of visceral crunching noises."
+			)
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
 			qdel(M)
-			stored_comms[MATERIAL_WOOD]++
-			stored_comms[MATERIAL_WOOD]++
-			stored_comms[MATERIAL_PLASTIC]++
-			stored_comms[MATERIAL_PLASTIC]++
+			stored_comms[/decl/material/wood] += 2
+			stored_comms[/decl/material/plastic] += 2
 			return
 		else
 			continue
@@ -140,48 +140,33 @@
 	for(var/obj/W in T)
 		//Different classes of items give different commodities.
 		if(istype(W, /obj/effect/spider/spiderling))
-			stored_comms[MATERIAL_WOOD]++
-			stored_comms[MATERIAL_WOOD]++
-			stored_comms[MATERIAL_PLASTIC]++
-			stored_comms[MATERIAL_PLASTIC]++
+			stored_comms[/decl/material/wood] +=2
+			stored_comms[/decl/material/plastic] += 2
 		else if(istype(W, /obj/item/light))
 			var/obj/item/light/L = W
 			if(L.status >= 2) //In before someone changes the inexplicably local defines. ~ Z
-				stored_comms[MATERIAL_METAL]++
-				stored_comms[MATERIAL_GLASS]++
+				stored_comms[/decl/material/steel]++
+				stored_comms[/decl/material/glass]++
 			else
 				continue
 		else if(istype(W, /obj/effect/decal/remains/robot))
-			stored_comms[MATERIAL_METAL]++
-			stored_comms[MATERIAL_METAL]++
-			stored_comms[MATERIAL_PLASTIC]++
-			stored_comms[MATERIAL_PLASTIC]++
-			stored_comms[MATERIAL_GLASS]++
+			stored_comms[/decl/material/steel] += 2
+			stored_comms[/decl/material/plastic] += 2
+			stored_comms[/decl/material/glass]++
 		else if(istype(W, /obj/item/trash))
-			stored_comms[MATERIAL_METAL]++
-			stored_comms[MATERIAL_PLASTIC]++
-			stored_comms[MATERIAL_PLASTIC]++
-			stored_comms[MATERIAL_PLASTIC]++
+			stored_comms[/decl/material/steel]++
+			stored_comms[/decl/material/plastic] += 3
 		else if(istype(W, /obj/effect/decal/cleanable/blood/gibs/robot))
-			stored_comms[MATERIAL_METAL]++
-			stored_comms[MATERIAL_GLASS]++
-			stored_comms[MATERIAL_METAL]++
-			stored_comms[MATERIAL_GLASS]++
+			stored_comms[/decl/material/steel] += 2
+			stored_comms[/decl/material/glass] += 2
 		else if(istype(W, /obj/item/ammo_casing))
-			stored_comms[MATERIAL_METAL]++
+			stored_comms[/decl/material/steel]++
 		else if(istype(W, /obj/item/shard/shrapnel))
-			stored_comms[MATERIAL_METAL]++
-			stored_comms[MATERIAL_METAL]++
-			stored_comms[MATERIAL_METAL]++
+			stored_comms[/decl/material/steel] += 3
 		else if(istype(W, /obj/item/shard))
-			stored_comms[MATERIAL_GLASS]++
-			stored_comms[MATERIAL_GLASS]++
-			stored_comms[MATERIAL_GLASS]++
+			stored_comms[/decl/material/glass] += 3
 		else if(istype(W, /obj/item/reagent_containers/food/snacks/grown))
-			stored_comms[MATERIAL_WOOD]++
-			stored_comms[MATERIAL_WOOD]++
-			stored_comms[MATERIAL_WOOD]++
-			stored_comms[MATERIAL_WOOD]++
+			stored_comms[/decl/material/wood] += 4
 		else
 			continue
 
@@ -259,26 +244,26 @@
 		if(decompiler.stored_comms[type] > 0)
 			var/obj/item/stack/sheet/stack
 			switch(type)
-				if(MATERIAL_METAL)
-					if(!stack_metal)
-						stack_metal = new(src.module)
+				if(/decl/material/steel)
+					if(isnull(stack_metal))
+						stack_metal = new /obj/item/stack/sheet/metal/cyborg(module)
 						stack_metal.amount = 1
 					stack = stack_metal
-				if(MATERIAL_GLASS)
-					if(!stack_glass)
-						stack_glass = new(src.module)
+				if(/decl/material/glass)
+					if(isnull(stack_glass))
+						stack_glass = new /obj/item/stack/sheet/glass/cyborg(module)
 						stack_glass.amount = 1
 					stack = stack_glass
-				if(MATERIAL_WOOD)
-					if(!stack_wood)
-						stack_wood = new(src.module)
-						stack_wood.amount = 1
-					stack = stack_wood
-				if(MATERIAL_PLASTIC)
-					if(!stack_plastic)
-						stack_plastic = new(src.module)
+				if(/decl/material/plastic)
+					if(isnull(stack_plastic))
+						stack_plastic = new /obj/item/stack/sheet/plastic/cyborg(module)
 						stack_plastic.amount = 1
 					stack = stack_plastic
+				if(/decl/material/wood)
+					if(isnull(stack_wood))
+						stack_wood = new /obj/item/stack/sheet/wood/cyborg(module)
+						stack_wood.amount = 1
+					stack = stack_wood
 
 			stack.amount++
 			decompiler.stored_comms[type]--;
