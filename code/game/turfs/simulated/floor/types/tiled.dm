@@ -30,15 +30,17 @@
 // Grey Tiles - The standard ones.
 /turf/simulated/floor/tiled/grey
 	icon_state = "floor"
-	tile_path = /obj/item/stack/tile/plasteel
+	tile_path = /obj/item/stack/tile/metal/grey
 
 // White Tiles - The medical and science ones.
 /turf/simulated/floor/tiled/white
 	icon_state = "white"
+	tile_path = /obj/item/stack/tile/metal/white
 
 // Dark Tiles - The ominous ones.
 /turf/simulated/floor/tiled/dark
 	icon_state = "dark"
+	tile_path = /obj/item/stack/tile/metal/dark
 
 /turf/simulated/floor/tiled/dark/server
 	name = "server walkway"
@@ -53,15 +55,19 @@
 // Dark Chapel Tiles - The religiously ominous ones.
 /turf/simulated/floor/tiled/dark_chapel
 	icon_state = "darkchapel"
+	tile_path = /obj/item/stack/tile/metal/dark_chapel
 
 // Freezer Tiles - The chilly ones.
 /turf/simulated/floor/tiled/freezer
 	icon_state = "freezerfloor"
+	tile_path = /obj/item/stack/tile/metal/freezer
 
 // Showroom Tiles - The fancy ones.
 /turf/simulated/floor/tiled/showroom
 	icon_state = "showroomfloor"
+	tile_path = /obj/item/stack/tile/metal/showroom
 
 // Hydroponics Tiles - The slightly green ones.
 /turf/simulated/floor/tiled/hydroponics
 	icon_state = "hydrofloor"
+	tile_path = /obj/item/stack/tile/metal/hydroponics

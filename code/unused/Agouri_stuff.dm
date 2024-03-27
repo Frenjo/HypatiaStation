@@ -1171,7 +1171,7 @@ var/list/plating_icons = list("plating","platingdmg1","platingdmg2","platingdmg3
 	heat_capacity = 10000
 	var/broken = 0
 	var/burnt = 0
-	var/obj/item/stack/tile/floor_tile = new/obj/item/stack/tile/plasteel
+	var/obj/item/stack/tile/floor_tile = new/obj/item/stack/tile/metal/grey
 
 	airless
 		icon_state = "floor"
@@ -1418,7 +1418,7 @@ turf/simulated/floor/return_siding_icon_state()
 	break_tile()
 
 /turf/simulated/floor/is_plasteel_floor()
-	if(istype(floor_tile,/obj/item/stack/tile/plasteel))
+	if(istype(floor_tile,/obj/item/stack/tile/metal/grey))
 		return 1
 	else
 		return 0
@@ -1500,13 +1500,13 @@ turf/simulated/floor/return_siding_icon_state()
 //This proc will make the turf a plasteel floor tile. The expected argument is the tile to make the turf with
 //If none is given it will make a new object. dropping or unequipping must be handled before or after calling
 //this proc.
-/turf/simulated/floor/proc/make_plasteel_floor(var/obj/item/stack/tile/plasteel/T = null)
+/turf/simulated/floor/proc/make_plasteel_floor(var/obj/item/stack/tile/metal/grey/T = null)
 	broken = 0
 	burnt = 0
 	intact = 1
 	sd_SetLuminosity(0)
 	if(T)
-		if(istype(T,/obj/item/stack/tile/plasteel))
+		if(istype(T,/obj/item/stack/tile/metal/grey))
 			floor_tile = T
 			if (icon_regular_floor)
 				icon_state = icon_regular_floor
@@ -1517,7 +1517,7 @@ turf/simulated/floor/return_siding_icon_state()
 			levelupdate()
 			return
 	//if you gave a valid parameter, it won't get thisf ar.
-	floor_tile = new/obj/item/stack/tile/plasteel
+	floor_tile = new/obj/item/stack/tile/metal/grey
 	icon_state = "floor"
 	icon_regular_floor = icon_state
 
@@ -1714,10 +1714,10 @@ turf/simulated/floor/return_siding_icon_state()
 		R.use(1)
 		return
 
-	if (istype(C, /obj/item/stack/tile/plasteel))
+	if (istype(C, /obj/item/stack/tile/metal/grey))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
-			var/obj/item/stack/tile/plasteel/S = C
+			var/obj/item/stack/tile/metal/grey/S = C
 			del(L)
 			playsound(src.loc, 'sound/weapons/Genhit.ogg', 50, 1)
 			S.build(src)

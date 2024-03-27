@@ -7,4 +7,4 @@
 /turf/simulated/floor/linoleum
 	name = "linoleum"
 	icon_state = "grimy"
-	tile_path = null
+	tile_path = /obj/item/stack/tile/linoleum

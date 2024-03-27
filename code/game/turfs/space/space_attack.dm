@@ -30,10 +30,10 @@
 		R.use(1)
 		return TRUE
 
-	if(istype(I, /obj/item/stack/tile/plasteel))
+	if(istype(I, /obj/item/stack/tile/metal/grey))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(isnotnull(L))
-			var/obj/item/stack/tile/plasteel/S = I
+			var/obj/item/stack/tile/metal/grey/S = I
 			qdel(L)
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
 			S.build(src)

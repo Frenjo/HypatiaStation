@@ -86,7 +86,7 @@
 	r_hand = /obj/item/mop
 	l_hand = /obj/item/reagent_containers/glass/bucket
 
-	backpack_contents = list(/obj/item/stack/tile/plasteel = 7)
+	backpack_contents = list(/obj/item/stack/tile/metal/grey = 7)
 
 /decl/hierarchy/outfit/tournament/janitor/post_equip(mob/living/carbon/human/user)
 	. = ..()

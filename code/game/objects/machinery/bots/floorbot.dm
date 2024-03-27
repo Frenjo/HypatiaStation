@@ -71,8 +71,8 @@
 	onclose(user, "autorepair")
 
 /obj/machinery/bot/floorbot/attackby(obj/item/W , mob/user as mob)
-	if(istype(W, /obj/item/stack/tile/plasteel))
-		var/obj/item/stack/tile/plasteel/T = W
+	if(istype(W, /obj/item/stack/tile/metal/grey))
+		var/obj/item/stack/tile/metal/grey/T = W
 		if(amount >= 50)
 			return
 		var/loaded = min(50 - amount, T.amount)
@@ -147,7 +147,7 @@
 	var/list/floorbottargets = list()
 	if(amount <= 0 && ((target == null) || !target))
 		if(eattiles)
-			for(var/obj/item/stack/tile/plasteel/T in view(7, src))
+			for(var/obj/item/stack/tile/metal/grey/T in view(7, src))
 				if(T != oldtarget && !(target in floorbottargets))
 					oldtarget = T
 					target = T
@@ -195,7 +195,7 @@
 					target = F
 					break
 		if((!target || target == null) && eattiles)
-			for(var/obj/item/stack/tile/plasteel/T in view(7, src))
+			for(var/obj/item/stack/tile/metal/grey/T in view(7, src))
 				if(!(T in floorbottargets) && T != oldtarget)
 					oldtarget = T
 					target = T
@@ -234,7 +234,7 @@
 		path = list()
 
 	if(loc == target || loc == target.loc)
-		if(istype(target, /obj/item/stack/tile/plasteel))
+		if(istype(target, /obj/item/stack/tile/metal/grey))
 			eattile(target)
 		else if(istype(target, /obj/item/stack/sheet/metal))
 			maketile(target)
@@ -274,7 +274,7 @@
 	icon_state = "floorbot-c"
 	if(isspace(target))
 		visible_message(SPAN_NOTICE("[src] begins to repair the hole."))
-		var/obj/item/stack/tile/plasteel/T = new /obj/item/stack/tile/plasteel()
+		var/obj/item/stack/tile/metal/grey/T = new /obj/item/stack/tile/metal/grey()
 		repairing = TRUE
 		spawn(50)
 			T.build(loc)
@@ -294,8 +294,8 @@
 			anchored = FALSE
 			target = null
 
-/obj/machinery/bot/floorbot/proc/eattile(obj/item/stack/tile/plasteel/T)
-	if(!istype(T, /obj/item/stack/tile/plasteel))
+/obj/machinery/bot/floorbot/proc/eattile(obj/item/stack/tile/metal/grey/T)
+	if(!istype(T, /obj/item/stack/tile/metal/grey))
 		return
 	visible_message(SPAN_NOTICE("[src] begins to collect tiles."))
 	repairing = TRUE
@@ -327,7 +327,7 @@
 			target = null
 			repairing = FALSE
 			return
-		var/obj/item/stack/tile/plasteel/T = new /obj/item/stack/tile/plasteel(M.loc)
+		var/obj/item/stack/tile/metal/grey/T = new /obj/item/stack/tile/metal/grey(M.loc)
 		T.amount = 4
 		qdel(M)
 		target = null
@@ -352,11 +352,11 @@
 
 	while(amount)//Dumps the tiles into the appropriate sized stacks
 		if(amount >= 16)
-			var/obj/item/stack/tile/plasteel/tile = new /obj/item/stack/tile/plasteel(T)
+			var/obj/item/stack/tile/metal/grey/tile = new /obj/item/stack/tile/metal/grey(T)
 			tile.amount = 16
 			amount -= 16
 		else
-			var/obj/item/stack/tile/plasteel/tile = new /obj/item/stack/tile/plasteel(T)
+			var/obj/item/stack/tile/metal/grey/tile = new /obj/item/stack/tile/metal/grey(T)
 			tile.amount = amount
 			amount = 0
 
@@ -365,7 +365,7 @@
 
 // Floorbot Assembly
 /obj/item/storage/toolbox/mechanical/attackby(obj/item/W, mob/user as mob)
-	if(!istype(W, /obj/item/stack/tile/plasteel))
+	if(!istype(W, /obj/item/stack/tile/metal/grey))
 		return ..()
 	if(length(contents))
 		to_chat(user, SPAN_NOTICE("They won't fit as there is already stuff inside."))

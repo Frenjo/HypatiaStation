@@ -33,7 +33,15 @@ var/global/list/datum/stack_recipe/metal_recipes = list(
 	null,
 	new/datum/stack_recipe("canister", /obj/machinery/portable_atmospherics/canister, 10, time = 15, one_per_turf = 1, on_floor = 1),
 	null,
-	new/datum/stack_recipe("floor tile", /obj/item/stack/tile/plasteel, 1, 4, 20),
+	new /datum/stack_recipe_list("floor tiles", list(
+		new /datum/stack_recipe("grey floor tiles", /obj/item/stack/tile/metal/grey, 1, 4, 20),
+		new /datum/stack_recipe("white floor tiles", /obj/item/stack/tile/metal/white, 1, 4, 20),
+		new /datum/stack_recipe("dark floor tiles", /obj/item/stack/tile/metal/dark, 1, 4, 20),
+		new /datum/stack_recipe("dark chapel floor tiles", /obj/item/stack/tile/metal/dark_chapel, 1, 4, 20),
+		new /datum/stack_recipe("freezer floor tiles", /obj/item/stack/tile/metal/freezer, 1, 4, 20),
+		new /datum/stack_recipe("showroom floor tiles", /obj/item/stack/tile/metal/showroom, 1, 4, 20),
+		new /datum/stack_recipe("hydroponics floor tiles", /obj/item/stack/tile/metal/hydroponics, 1, 4, 20)
+	)),
 	new/datum/stack_recipe("metal rod", /obj/item/stack/rods, 1, 2, 60),
 	null,
 	new/datum/stack_recipe("computer frame", /obj/structure/computerframe, 5, time = 25, one_per_turf = 1, on_floor = 1),

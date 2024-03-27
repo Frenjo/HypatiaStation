@@ -332,7 +332,7 @@
 
 	var/list/stacktypes = list(
 		/obj/item/stack/rods = 10,
-		/obj/item/stack/tile/plasteel = 10,
+		/obj/item/stack/tile/metal/grey = 10,
 		/obj/item/stack/sheet/metal/cyborg = 10,
 		/obj/item/stack/sheet/wood/cyborg = 1,
 		/obj/item/stack/cable_coil = 30,
@@ -357,7 +357,7 @@
 		/obj/item/stack/cable_coil,
 		/obj/item/stack/sheet/glass/cyborg,
 		/obj/item/stack/rods,
-		/obj/item/stack/tile/plasteel
+		/obj/item/stack/tile/metal/grey
 	)
 
 	for(var/T in stacks)
