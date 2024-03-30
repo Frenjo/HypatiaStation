@@ -85,14 +85,17 @@
 
 	return ..()
 
-/obj/machinery/floodlight/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/cell))
+/obj/machinery/floodlight/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/cell))
 		if(open)
-			if(cell)
+			if(isnotnull(cell))
 				to_chat(user, SPAN_WARNING("There is a [cell] already installed."))
-			else
-				user.drop_item()
-				W.loc = src
-				cell = W
-				to_chat(user, SPAN_NOTICE("You insert the power cell."))
-	updateicon()
+				updateicon()
+				return TRUE
+			user.drop_item()
+			I.loc = src
+			cell = I
+			to_chat(user, SPAN_NOTICE("You insert the power cell."))
+			updateicon()
+			return TRUE
+	return ..()

@@ -158,21 +158,21 @@ var/list/alldepartments = list("Central Command")
 
 	return ..()
 
-/obj/machinery/faxmachine/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/paper))
+/obj/machinery/faxmachine/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/paper))
 		if(isnotnull(tofax))
 			to_chat(user, SPAN_WARNING("There is already something in \the [src]."))
 			return TRUE
 		user.drop_item()
-		tofax = O
-		O.loc = src
+		tofax = I
+		I.loc = src
 		to_chat(user, SPAN_NOTICE("You insert the paper into \the [src]."))
 		flick("faxsend", src)
 		updateUsrDialog()
 		return TRUE
 
-	if(istype(O, /obj/item/card/id))
-		var/obj/item/card/id/card = O
+	if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/card = I
 		if(isnull(scan))
 			usr.drop_item()
 			card.loc = src

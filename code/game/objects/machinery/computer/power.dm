@@ -71,8 +71,10 @@
 
 	return ..()
 
-/obj/machinery/power/monitor/attackby(I as obj, user as mob)
-	return attack_hand(user)
+/obj/machinery/power/monitor/attack_by(obj/item/I, mob/user)
+	. = attack_hand(user)
+	if(!.)
+		. = ..()
 
 /obj/machinery/power/monitor/interact(mob/user)
 	if(!in_range(src, user) || (stat & (BROKEN|NOPOWER)))

@@ -129,8 +129,8 @@
 
 	return ..()
 
-/obj/machinery/power/rust_fuel_injector/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
+/obj/machinery/power/rust_fuel_injector/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/card/id) || istype(I, /obj/item/pda))
 		if(emagged)
 			FEEDBACK_LOCK_SEEMS_BROKEN(user)
 			return TRUE
@@ -141,11 +141,11 @@
 			FEEDBACK_ACCESS_DENIED(user)
 		return TRUE
 
-	if(istype(W, /obj/item/fuel_assembly) && !cur_assembly)
+	if(istype(I, /obj/item/fuel_assembly) && !cur_assembly)
 		if(emergency_insert_ready)
-			cur_assembly = W
+			cur_assembly = I
 			user.drop_item()
-			W.loc = src
+			I.loc = src
 			emergency_insert_ready = 0
 			return TRUE
 

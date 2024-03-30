@@ -91,7 +91,7 @@ var/engwords = list(
 		to_chat(usr, "Explosive Runes inscription in blood. It reads: <i>[desc]</i>.")
 	return
 
-/obj/effect/rune/attackby(obj/item/I, mob/user)
+/obj/effect/rune/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/tome) && iscultist(user))
 		to_chat(user, "You retrace your steps, carefully undoing the lines of the rune.")
 		qdel(src)
@@ -477,12 +477,12 @@ var/engwords = list(
 		to_chat(user, "The book seems full of illegible scribbles. Is this a joke?")
 		return
 
-/obj/item/tome/attackby(obj/item/item, mob/user)
-	if(istype(item, /obj/item/tome)) // sanity check to prevent a runtime error
-		var/obj/item/tome/tome = item
+/obj/item/tome/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/tome)) // sanity check to prevent a runtime error
+		var/obj/item/tome/tome = I
 		switch(alert("Copy the runes from your tome?", , "Copy", "Cancel"))
 			if("cancel")
-				return
+				return TRUE
 //		var/list/nearby = viewers(1,src) //- Fuck this as well. No clue why this doesnt work. -K0000
 //			if(tome.loc != user)
 //				return

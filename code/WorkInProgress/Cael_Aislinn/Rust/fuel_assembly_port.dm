@@ -11,18 +11,17 @@
 	var/opened = 1 //0=closed, 1=opened
 	var/has_electronics = 0 // 0 - none, bit 1 - circuitboard, bit 2 - wires
 
-/obj/machinery/rust_fuel_assembly_port/attackby(obj/item/item, mob/user)
-	if(istype(item, /obj/item/fuel_assembly) && !opened)
+/obj/machinery/rust_fuel_assembly_port/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/fuel_assembly) && !opened)
 		if(isnotnull(cur_assembly))
 			to_chat(user, SPAN_WARNING("There is already a fuel rod assembly inside!"))
 			return TRUE
-		cur_assembly = item
+		cur_assembly = I
 		user.drop_item()
-		item.loc = src
+		I.loc = src
 		icon_state = "port1"
-		to_chat(user, SPAN_INFO("You insert \the [item] into \the [src]. Touch the panel again to insert \the [item] into the injector."))
+		to_chat(user, SPAN_INFO("You insert \the [I] into \the [src]. Touch the panel again to insert \the [I] into the injector."))
 		return TRUE
-
 	return ..()
 
 /obj/machinery/rust_fuel_assembly_port/attack_hand(mob/user)

@@ -44,9 +44,9 @@
 
 	return ..()
 
-/obj/item/stack/sheet/glass/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/stack/rods))
-		var/obj/item/stack/rods/rods = W
+/obj/item/stack/sheet/glass/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/stack/rods))
+		var/obj/item/stack/rods/rods = I
 		var/obj/item/stack/sheet/glass/reinforced/new_glass = new /obj/item/stack/sheet/glass/reinforced(get_turf(loc))
 		new_glass.add_fingerprint(user)
 		new_glass.add_to_stacks(user)
@@ -148,7 +148,7 @@
 		return TRUE
 	return ..()
 
-/obj/item/stack/sheet/glass/reinforced/attackby(obj/item/I, mob/user)
+/obj/item/stack/sheet/glass/reinforced/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/rods))
 		return TRUE
 	return ..()
@@ -342,9 +342,9 @@
 	material = /decl/material/plasma_glass
 	created_window = /obj/structure/window/plasmabasic
 
-/obj/item/stack/sheet/glass/plasma/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/stack/rods))
-		var/obj/item/stack/rods/rods = W
+/obj/item/stack/sheet/glass/plasma/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/stack/rods))
+		var/obj/item/stack/rods/rods = I
 		var/obj/item/stack/sheet/glass/plasma/reinforced/new_glass = new (user.loc)
 		new_glass.add_fingerprint(user)
 		new_glass.add_to_stacks(user)

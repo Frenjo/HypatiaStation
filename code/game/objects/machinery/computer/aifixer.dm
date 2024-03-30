@@ -13,7 +13,7 @@
 	. = ..()
 	overlays.Add(image('icons/obj/machines/computer.dmi', "ai-fixer-empty"))
 
-/obj/machinery/computer/aifixer/attackby(obj/item/I, mob/user)
+/obj/machinery/computer/aifixer/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/aicard))
 		var/obj/item/aicard/card = I
 		if(stat & (NOPOWER | BROKEN))
@@ -21,7 +21,6 @@
 			return TRUE
 		card.transfer_ai("AIFIXER", "AICARD", src, user)
 		return TRUE
-
 	return ..()
 
 /obj/machinery/computer/aifixer/attack_ai(var/mob/user as mob)

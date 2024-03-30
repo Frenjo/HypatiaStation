@@ -30,9 +30,9 @@
 		brainmob = null
 	return ..()
 
-/obj/item/mmi/attackby(obj/item/O, mob/user)
-	if(isnull(brainmob) && istype(O, /obj/item/brain)) //Time to stick a brain in it --NEO
-		var/obj/item/brain/brain = O
+/obj/item/mmi/attack_by(obj/item/I, mob/user)
+	if(isnull(brainmob) && istype(I, /obj/item/brain)) //Time to stick a brain in it --NEO
+		var/obj/item/brain/brain = I
 		if(isnull(brain.brainmob))
 			to_chat(user, SPAN_WARNING("You aren't sure where this brain came from, but you're pretty sure it's useless."))
 			return TRUE
@@ -61,7 +61,7 @@
 		feedback_inc("cyborg_mmis_filled", 1)
 		return TRUE
 
-	if(isnotnull(brainmob) && (istype(O, /obj/item/card/id) || istype(O, /obj/item/pda)))
+	if(isnotnull(brainmob) && (istype(I, /obj/item/card/id) || istype(I, /obj/item/pda)))
 		if(allowed(user))
 			locked = !locked
 			to_chat(user, SPAN_NOTICE("You [locked ? "lock" : "unlock"] the brain holder."))
@@ -70,7 +70,7 @@
 		return TRUE
 
 	if(isnotnull(brainmob))
-		O.attack(brainmob, user) //Oh noooeeeee
+		I.attack(brainmob, user) //Oh noooeeeee
 		return TRUE
 
 	return ..()

@@ -245,7 +245,7 @@
 	var/selected_menu_key = null
 	var/waiting_for_user_input = 0 // Fix for #274 (Mash create block injector without answering dialog to make unlimited injectors) - N3X
 
-/obj/machinery/computer/scan_consolenew/attackby(obj/item/I, mob/user)
+/obj/machinery/computer/scan_consolenew/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/disk/data)) //INSERT SOME diskS
 		if(isnotnull(disk))
 			to_chat(user, SPAN_WARNING("There is already a disk inserted."))

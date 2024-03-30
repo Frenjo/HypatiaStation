@@ -43,7 +43,7 @@
 
 	return ..()
 
-/obj/item/circuitboard/security/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/circuitboard/security/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/id))
 		if(emagged)
 			to_chat(user, SPAN_WARNING("The circuit lock does not respond."))

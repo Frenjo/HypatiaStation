@@ -24,7 +24,7 @@
 	if(isscrewdriver(tool))
 		open_panel = !open_panel
 		user.visible_message(
-			SPAN_NOTICE("[user] [open_panel ? "opens" : "closes"] the wire panel on \the [src]."),
+			SPAN_NOTICE("[user] [open_panel ? "open" : "close"]s the wire panel on \the [src]."),
 			SPAN_NOTICE("You [open_panel ? "open" : "close"] the wire panel on \the [src]."),
 			SPAN_INFO("You hear someone using a screwdriver.")
 		)

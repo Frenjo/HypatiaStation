@@ -80,9 +80,9 @@
 
 	return ..()
 
-/obj/machinery/shield_gen/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/card/id))
-		var/obj/item/card/id/C = W
+/obj/machinery/shield_gen/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/C = I
 		if((ACCESS_CAPTAIN in C.access) || (ACCESS_SECURITY in C.access) || (ACCESS_ENGINE in C.access))
 			locked = !locked
 			FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)

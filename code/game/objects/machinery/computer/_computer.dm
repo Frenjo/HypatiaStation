@@ -115,5 +115,7 @@
 
 	return ..()
 
-/obj/machinery/computer/attackby(I as obj, user as mob)
-	return attack_hand(user)
+/obj/machinery/computer/attack_by(obj/item/I, mob/user)
+	. = attack_hand(user)
+	if(!.)
+		. = ..()

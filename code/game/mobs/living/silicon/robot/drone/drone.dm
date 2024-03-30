@@ -141,12 +141,12 @@
 	return ..()
 
 // Drones cannot be upgraded with borg modules so we need to catch some items before they get used in ..().
-/mob/living/silicon/robot/drone/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/borg/upgrade))
-		to_chat(user, SPAN_WARNING("The maintenance drone chassis not compatible with \the [W]."))
+/mob/living/silicon/robot/drone/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/borg/upgrade))
+		to_chat(user, SPAN_WARNING("The maintenance drone chassis not compatible with \the [I]."))
 		return TRUE
 
-	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
+	if(istype(I, /obj/item/card/id) || istype(I, /obj/item/pda))
 		if(stat == DEAD)
 			to_chat(user, SPAN_WARNING("You swipe your ID card through [src], attempting to reboot it."))
 			if(!CONFIG_GET(allow_drone_spawn) || emagged || health < -35) // It's dead, Dave.

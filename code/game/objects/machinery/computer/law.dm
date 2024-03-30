@@ -23,7 +23,7 @@
 		usr << "\blue The access panel is now closed."
 	return
 
-/obj/machinery/computer/aiupload/attackby(obj/item/I, mob/user)
+/obj/machinery/computer/aiupload/attack_by(obj/item/I, mob/user)
 	if(isnotcontactlevel(user.z))
 		to_chat(user, "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!")
 		return TRUE
@@ -58,11 +58,12 @@
 	circuit = /obj/item/circuitboard/borgupload
 	var/mob/living/silicon/robot/current = null
 
-/obj/machinery/computer/borgupload/attackby(obj/item/ai_module/module as obj, mob/user as mob)
-	if(istype(module, /obj/item/ai_module))
+/obj/machinery/computer/borgupload/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/ai_module))
+		var/obj/item/ai_module/module = I
 		module.install(src)
-	else
-		return ..()
+		return TRUE
+	return ..()
 
 /obj/machinery/computer/borgupload/attack_hand(var/mob/user as mob)
 	if(src.stat & NOPOWER)

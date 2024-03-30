@@ -191,12 +191,12 @@ var/bomb_set
 
 	return ..()
 
-/obj/machinery/nuclearbomb/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/disk/nuclear))
+/obj/machinery/nuclearbomb/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/disk/nuclear))
 		if(extended)
 			user.drop_item()
-			O.loc = src
-			auth = O
+			I.loc = src
+			auth = I
 			add_fingerprint(user)
 		return TRUE
 	return ..()

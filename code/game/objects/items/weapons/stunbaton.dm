@@ -69,15 +69,15 @@
 
 	return ..()
 
-/obj/item/melee/baton/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/cell))
+/obj/item/melee/baton/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/cell))
 		if(isnotnull(bcell))
 			to_chat(user, SPAN_WARNING("\The [src] already has a cell."))
 			return TRUE
 		user.drop_item()
-		W.loc = src
-		bcell = W
-		to_chat(user, SPAN_NOTICE("You install \the [W] in \the [src]."))
+		I.loc = src
+		bcell = I
+		to_chat(user, SPAN_NOTICE("You install \the [I] in \the [src]."))
 		update_icon()
 		return TRUE
 	return ..()

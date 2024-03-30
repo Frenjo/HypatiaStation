@@ -14,7 +14,7 @@
 
 	light_color = "#0099ff"
 
-/obj/machinery/computer/card/attackby(obj/item/I, mob/user)//TODO:SANITY
+/obj/machinery/computer/card/attack_by(obj/item/I, mob/user)//TODO:SANITY
 	if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/idcard = I
 		if(ACCESS_CHANGE_IDS in idcard.access)

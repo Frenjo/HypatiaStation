@@ -50,7 +50,7 @@
 
 	return ..()
 
-/turf/simulated/floor/attackby(obj/item/I, mob/user)
+/turf/simulated/floor/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/rods))
 		to_chat(user, SPAN_WARNING("You must remove the plating first."))
 		return TRUE

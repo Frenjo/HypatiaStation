@@ -58,7 +58,7 @@
 
 	return podf
 
-/obj/machinery/computer/cloning/attackby(obj/item/I, mob/user)
+/obj/machinery/computer/cloning/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/disk/data)) //INSERT SOME DISKETTES
 		if(isnotnull(diskette))
 			to_chat(user, SPAN_WARNING("There is already a disk inserted."))

@@ -30,7 +30,7 @@
 		return TRUE
 	return ..()
 
-/turf/simulated/floor/plating/attackby(obj/item/I, mob/user)
+/turf/simulated/floor/plating/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = I
 		if(R.amount >= 2)

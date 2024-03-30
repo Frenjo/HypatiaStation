@@ -85,9 +85,6 @@
 			use_power(50)
 		return 1
 
-/obj/machinery/computer/security/attackby(obj/item/I, mob/user)
-	return attack_hand(user)
-
 //Camera control: moving.
 /obj/machinery/computer/security/proc/jump_on_click(mob/user, A)
 	if(user.machine != src)

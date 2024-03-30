@@ -178,8 +178,8 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 
 	return ..()
 
-/obj/machinery/power/rust_core/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
+/obj/machinery/power/rust_core/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/card/id) || istype(I, /obj/item/pda))
 		if(emagged)
 			FEEDBACK_LOCK_SEEMS_BROKEN(user)
 			return TRUE

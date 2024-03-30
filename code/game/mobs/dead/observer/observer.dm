@@ -81,8 +81,8 @@
 		if(isnotnull(target))
 			ManualFollow(target)
 
-/mob/dead/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/tome))
+/mob/dead/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/tome))
 		if(invisibility != 0)
 			invisibility = 0
 			user.visible_message(
@@ -95,7 +95,6 @@
 				SPAN_WARNING("You get the feeling that the ghost can't become any more visible.")
 			)
 		return TRUE
-
 	return ..()
 
 /mob/dead/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)

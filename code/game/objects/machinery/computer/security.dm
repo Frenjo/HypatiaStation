@@ -25,7 +25,7 @@
 
 	light_color = "#a91515"
 
-/obj/machinery/computer/secure_data/attackby(obj/item/I, mob/user)
+/obj/machinery/computer/secure_data/attack_by(obj/item/I, mob/user)
 	if(isnull(scan) && istype(I, /obj/item/card/id))
 		user.drop_item()
 		I.loc = src

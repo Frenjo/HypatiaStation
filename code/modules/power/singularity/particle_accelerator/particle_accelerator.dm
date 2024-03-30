@@ -127,7 +127,6 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 /obj/structure/particle_accelerator/attack_tool(obj/item/tool, mob/user)
 	if(istool(tool))
 		return process_tool_hit(tool, user)
-
 	return ..()
 
 /obj/structure/particle_accelerator/Move()
@@ -331,7 +330,6 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 /obj/machinery/particle_accelerator/attack_tool(obj/item/tool, mob/user)
 	if(istool(tool))
 		return process_tool_hit(tool, user)
-
 	return ..()
 
 /obj/machinery/particle_accelerator/ex_act(severity)

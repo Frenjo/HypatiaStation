@@ -23,7 +23,7 @@
 
 	light_color = "#00b000"
 
-/obj/machinery/computer/skills/attackby(obj/item/I, mob/user)
+/obj/machinery/computer/skills/attack_by(obj/item/I, mob/user)
 	if(isnull(scan) && istype(I, /obj/item/card/id))
 		user.drop_item()
 		I.loc = src

@@ -258,20 +258,19 @@
 
 	return ..()
 
-/obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
+/obj/machinery/power/emitter/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/card/id) || istype(I, /obj/item/pda))
 		if(emagged)
 			FEEDBACK_LOCK_SEEMS_BROKEN(user)
-			return
+			return TRUE
 		if(allowed(user))
 			if(active)
 				locked = !locked
 				FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
 			else
-				src.locked = 0 //just in case it somehow gets locked
-				to_chat(user, SPAN_WARNING("The controls can only be locked when the [src] is online."))
+				locked = 0 //just in case it somehow gets locked
+				to_chat(user, SPAN_WARNING("The controls can only be locked when \the [src] is online."))
 		else
 			FEEDBACK_ACCESS_DENIED(user)
-		return
-
-	. = ..()
+		return TRUE
+	return ..()

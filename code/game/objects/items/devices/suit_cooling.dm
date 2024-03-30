@@ -141,18 +141,19 @@
 
 	return ..()
 
-/obj/item/suit_cooling_unit/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/cell))
+/obj/item/suit_cooling_unit/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/cell))
 		if(cover_open)
-			if(cell)
+			if(isnotnull(cell))
 				to_chat(user, SPAN_WARNING("There is a [cell] already installed here."))
-			else
-				user.drop_item()
-				W.loc = src
-				cell = W
-				to_chat(user, SPAN_NOTICE("You insert \the [cell]."))
-		updateicon()
-		return
+				return TRUE
+
+			user.drop_item()
+			I.loc = src
+			cell = I
+			to_chat(user, SPAN_NOTICE("You insert \the [cell]."))
+			updateicon()
+			return TRUE
 
 	return ..()
 

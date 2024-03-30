@@ -134,16 +134,15 @@
 
 	return ..()
 
-/obj/item/camera_assembly/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/item/camera_assembly/attack_by(obj/item/I, mob/living/user)
 	// Upgrades!
-	if(is_type_in_list(W, possible_upgrades) && !is_type_in_list(W, upgrades)) // Is a possible upgrade and isn't in the camera already.
-		to_chat(user, SPAN_NOTICE("You attach \the [W] into the assembly inner circuits."))
-		upgrades.Add(W)
-		user.drop_item(W)
-		W.loc = src
-		return
-
-	..()
+	if(is_type_in_list(I, possible_upgrades) && !is_type_in_list(I, upgrades)) // Is a possible upgrade and isn't in the camera already.
+		to_chat(user, SPAN_NOTICE("You attach \the [I] into the assembly inner circuits."))
+		upgrades.Add(I)
+		user.drop_item(I)
+		I.loc = src
+		return TRUE
+	return ..()
 
 /obj/item/camera_assembly/update_icon()
 	if(anchored)

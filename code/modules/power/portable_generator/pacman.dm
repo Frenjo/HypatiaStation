@@ -161,9 +161,9 @@
 
 	return ..()
 
-/obj/machinery/power/port_gen/pacman/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, fuel_material.sheet_path))
-		var/obj/item/stack/addstack = O
+/obj/machinery/power/port_gen/pacman/attack_by(obj/item/I, mob/user)
+	if(istype(I, fuel_material.sheet_path))
+		var/obj/item/stack/addstack = I
 		var/amount = min((max_sheets - sheets), addstack.amount)
 		if(amount < 1)
 			to_chat(user, SPAN_WARNING("\The [src] is full!"))

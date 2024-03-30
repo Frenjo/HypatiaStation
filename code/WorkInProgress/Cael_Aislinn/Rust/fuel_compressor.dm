@@ -23,12 +23,11 @@ var/const/max_assembly_amount = 300
 		return*/
 	interact(user)
 
-/obj/machinery/rust_fuel_compressor/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/rcd_ammo))
+/obj/machinery/rust_fuel_compressor/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/rcd_ammo))
 		compressed_matter += 10
-		qdel(W)
+		qdel(I)
 		return TRUE
-
 	return ..()
 
 /obj/machinery/rust_fuel_compressor/interact(mob/user)
