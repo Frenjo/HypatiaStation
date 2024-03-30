@@ -23,10 +23,12 @@
  */
 /obj/item/proc/handle_attack(atom/thing, mob/source)
 	// I think the general order of checks in this proc will be something like...
-	// attack_tool() -> hypothetical attack_weapon() -> default attackby() -> whack someone with it.
+	// attack_tool() -> attack_by() -> old-style attackby() -> whack someone with it.
 	. = thing.attack_tool(src, source) // First, checks for tool attacks.
 	if(!.)
-		. = thing.attackby(src, source) // Secondly, checks the default attackby().
+		. = thing.attack_by(src, source) // Secondly, checks the new-style attack_by().
+	if(!.)
+		. = thing.attackby(src, source) // Thirdly, checks the old-style attackby().
 
 /*
  * attack_tool()
@@ -44,6 +46,18 @@
 	if(can_operate(src) && do_surgery(src, user, tool))
 		return TRUE
 	return ..()
+
+/*
+ * attack_by()
+ *
+ * Called as the second part of handle_attack()'s attack chain.
+ * This is basically the replacement for the old attackby().
+ * Returns TRUE if the interaction was handled, FALSE if not.
+ */
+/atom/proc/attack_by(obj/item/I, mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+
+	return FALSE
 
 // No comment
 /atom/proc/attackby(obj/item/W, mob/user)
