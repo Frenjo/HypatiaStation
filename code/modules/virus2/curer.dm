@@ -8,7 +8,7 @@
 
 	var/obj/item/reagent_containers/container = null
 
-/obj/machinery/computer/disease_curer/attackby(obj/I, mob/user)
+/obj/machinery/computer/disease_curer/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers))
 		if(isnull(container))
 			container = I

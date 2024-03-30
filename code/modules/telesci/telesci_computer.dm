@@ -63,7 +63,7 @@
 	to_chat(user, "You are too primitive to use this computer.")
 	return
 
-/obj/machinery/computer/telescience/attackby(obj/item/I, mob/user)
+/obj/machinery/computer/telescience/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/bluespace_crystal))
 		if(length(crystals) >= length(power_options))
 			to_chat(user, SPAN_WARNING("There are not enough crystal ports."))

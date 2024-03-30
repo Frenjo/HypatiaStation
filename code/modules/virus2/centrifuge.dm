@@ -10,14 +10,13 @@
 	var/obj/item/reagent_containers/glass/beaker/vial/sample = null
 	var/datum/disease2/disease/virus2 = null
 
-/obj/machinery/computer/disease_centrifuge/attackby(obj/I, mob/user)
+/obj/machinery/computer/disease_centrifuge/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers/glass/beaker/vial))
 		if(isnull(sample))
 			sample = I
 			user.drop_item()
 			I.loc = src
 		return TRUE
-
 	return ..()
 
 /obj/machinery/computer/disease_centrifuge/update_icon()

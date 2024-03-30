@@ -10,7 +10,7 @@
 	var/splicing = 0
 	var/scanning = 0
 
-/obj/machinery/computer/disease_splicer/attackby(obj/I, mob/user)
+/obj/machinery/computer/disease_splicer/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/virusdish))
 		if(isnull(dish))
 			dish = I
@@ -20,7 +20,8 @@
 
 	if(istype(I, /obj/item/diseasedisk))
 		to_chat(user, SPAN_INFO("You upload the contents of the disk into the buffer."))
-		memorybank = I:effect
+		var/obj/item/diseasedisk/disk = I
+		memorybank = disk.effect
 		return TRUE
 
 	return ..()

@@ -35,16 +35,18 @@
 	..()
 	GLOBL.processing_objects.Add(src)
 
-/obj/item/anodevice/attackby(obj/I as obj, mob/user as mob)
+/obj/item/anodevice/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/anobattery))
-		if(!inserted_battery)
-			to_chat(user, SPAN_INFO("You insert the battery."))
-			user.drop_item()
-			I.loc = src
-			inserted_battery = I
-			UpdateSprite()
-	else
-		return ..()
+		if(isnotnull(inserted_battery))
+			to_chat(user, SPAN_WARNING("There is already a battery in \the [src]."))
+			return TRUE
+		to_chat(user, SPAN_INFO("You insert the battery."))
+		user.drop_item()
+		I.loc = src
+		inserted_battery = I
+		UpdateSprite()
+		return TRUE
+	return ..()
 
 /obj/item/anodevice/attack_self(mob/user as mob)
 	return src.interact(user)

@@ -121,9 +121,10 @@
 			playsound(src, 'sound/effects/pop.ogg', 50, 0)
 			to_chat(user, SPAN_CAUTION("You calibrate the telepad locator."))
 
-/obj/item/rcs/attackby(obj/item/W, mob/user)
-	if(istype(W,  /obj/item/card/emag) && emagged == 0)
-		emagged = 1
-		make_sparks(5, TRUE, src)
-		to_chat(user, SPAN_CAUTION("You emag the RCS. Click on it to toggle between modes."))
-		return
+/obj/item/rcs/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(emagged)
+		return FALSE
+	emagged = TRUE
+	make_sparks(5, TRUE, src)
+	to_chat(user, SPAN_CAUTION("You emag the RCS. Click on it to toggle between modes."))
+	return TRUE

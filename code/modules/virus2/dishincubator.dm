@@ -17,15 +17,15 @@
 
 	var/virusing
 
-/obj/machinery/disease_incubator/attackby(obj/item/item, mob/user)
-	if(istype(item, /obj/item/reagent_containers/glass) || istype(item, /obj/item/reagent_containers/syringe))
-		var/is_beaker = istype(item, /obj/item/reagent_containers/glass)
+/obj/machinery/disease_incubator/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/reagent_containers/glass) || istype(I, /obj/item/reagent_containers/syringe))
+		var/is_beaker = istype(I, /obj/item/reagent_containers/glass)
 		if(isnotnull(beaker))
 			to_chat(user, SPAN_WARNING("A [is_beaker ? "beaker" : "syringe"] is already loaded into the machine."))
 			return TRUE
-		beaker = item
+		beaker = I
 		user.drop_item()
-		item.loc = src
+		I.loc = src
 		user.visible_message(
 			SPAN_INFO("[user] adds \the [is_beaker ? "beaker" : "syringe"] to the machine."),
 			SPAN_INFO("You add the [is_beaker ? "beaker" : "syringe"] to the machine.")
@@ -33,13 +33,13 @@
 		updateUsrDialog()
 		return TRUE
 
-	if(istype(item, /obj/item/virusdish))
+	if(istype(I, /obj/item/virusdish))
 		if(isnotnull(dish))
 			to_chat(user, SPAN_WARNING("A dish is already loaded into the machine."))
 			return TRUE
-		dish = item
+		dish = I
 		user.drop_item()
-		item.loc = src
+		I.loc = src
 		user.visible_message(
 			SPAN_INFO("[user] adds the virus dish to the machine."),
 			SPAN_INFO("You add the virus dish to the machine.")

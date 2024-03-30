@@ -108,7 +108,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	updateUsrDialog()
 	return TRUE
 
-/obj/machinery/computer/rdconsole/attackby(obj/item/I, mob/user)
+/obj/machinery/computer/rdconsole/attack_by(obj/item/I, mob/user)
 	// Loading a disk into it.
 	if(istype(I, /obj/item/disk))
 		if(isnotnull(t_disk) || isnotnull(d_disk))

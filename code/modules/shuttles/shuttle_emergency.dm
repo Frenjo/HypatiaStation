@@ -159,7 +159,7 @@
 	emagged = TRUE
 	return TRUE
 
-/obj/machinery/computer/shuttle_control/emergency/attackby(obj/item/I, mob/user)
+/obj/machinery/computer/shuttle_control/emergency/attack_by(obj/item/I, mob/user)
 	if(read_authorisation(I))
 		return TRUE
 	return ..()

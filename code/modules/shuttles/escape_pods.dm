@@ -86,17 +86,16 @@
 		ui.open()
 		ui.set_auto_update()
 
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/card/emag) && !emagged)
-		to_chat(user, SPAN_INFO("You emag the [src], arming the escape pod!"))
-		emagged = 1
-		if(istype(docking_program, /datum/computer/file/embedded_program/docking/simple/escape_pod))
-			var/datum/computer/file/embedded_program/docking/simple/escape_pod/P = docking_program
-			if(!P.armed)
-				P.arm()
-		return
-
-	..()
+/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(emagged)
+		return FALSE
+	emagged = TRUE
+	to_chat(user, SPAN_INFO("You emag the [src], arming the escape pod!"))
+	if(istype(docking_program, /datum/computer/file/embedded_program/docking/simple/escape_pod))
+		var/datum/computer/file/embedded_program/docking/simple/escape_pod/P = docking_program
+		if(!P.armed)
+			P.arm()
+	return TRUE
 
 
 //A docking controller program for a simple door based docking port

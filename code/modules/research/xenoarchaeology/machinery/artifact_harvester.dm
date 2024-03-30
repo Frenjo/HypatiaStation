@@ -22,18 +22,18 @@
 	if(!owned_scanner)
 		owned_scanner = locate(/obj/machinery/artifact_scanpad) in orange(1, src)
 
-/obj/machinery/artifact_harvester/attackby(obj/I as obj, mob/user as mob)
+/obj/machinery/artifact_harvester/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/anobattery))
-		if(!inserted_battery)
-			to_chat(user, SPAN_INFO("You insert [I] into [src]."))
-			user.drop_item()
-			I.loc = src
-			src.inserted_battery = I
-			updateDialog()
-		else
-			to_chat(user, SPAN_WARNING("There is already a battery in [src]."))
-	else
-		return..()
+		if(isnotnull(inserted_battery))
+			to_chat(user, SPAN_WARNING("There is already a battery in \the [src]."))
+			return TRUE
+		to_chat(user, SPAN_INFO("You insert [I] into [src]."))
+		user.drop_item()
+		I.loc = src
+		inserted_battery = I
+		updateDialog()
+		return TRUE
+	return..()
 
 /obj/machinery/artifact_harvester/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)

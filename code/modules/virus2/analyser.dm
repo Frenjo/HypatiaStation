@@ -10,7 +10,7 @@
 
 	var/obj/item/virusdish/dish = null
 
-/obj/machinery/disease_analyser/attackby(obj/I, mob/user)
+/obj/machinery/disease_analyser/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/virusdish))
 		var/mob/living/carbon/c = user
 		if(isnull(dish))
@@ -24,7 +24,6 @@
 		else
 			to_chat(user, SPAN_WARNING("There is already a dish inserted."))
 		return TRUE
-
 	return ..()
 
 /obj/machinery/disease_analyser/process()

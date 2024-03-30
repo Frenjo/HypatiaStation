@@ -38,16 +38,16 @@
 	else
 		return ..()
 
-/obj/item/core_sampler/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/evidencebag/sample))
-		if(num_stored_bags < 10)
-			qdel(W)
-			num_stored_bags++
-			to_chat(user, SPAN_INFO("You insert the [W] into the core sampler."))
-		else
-			to_chat(user, SPAN_WARNING("The core sampler can not fit any more bags!"))
-	else
-		return ..()
+/obj/item/core_sampler/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/evidencebag/sample))
+		if(num_stored_bags >= 10)
+			to_chat(user, SPAN_WARNING("The core sampler cannot fit any more bags!"))
+			return TRUE
+		qdel(I)
+		num_stored_bags++
+		to_chat(user, SPAN_INFO("You insert \the [I] into the core sampler."))
+		return TRUE
+	return ..()
 
 /obj/item/core_sampler/proc/sample_item(item_to_sample, mob/user as mob)
 	var/datum/geosample/geo_data
