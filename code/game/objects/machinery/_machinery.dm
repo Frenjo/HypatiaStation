@@ -203,17 +203,17 @@
 /obj/machinery/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/machinery/attack_hand(mob/user as mob)
+/obj/machinery/attack_hand(mob/user)
 	if(stat & (NOPOWER | BROKEN | MAINT))
-		return 1
+		return TRUE
 	if(user.lying || user.stat)
-		return 1
+		return TRUE
 	if(ismonkey(usr) && !IS_GAME_MODE(/datum/game_mode/monkey))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
-		return 1
+		return TRUE
 	else if(!ishuman(usr) && !issilicon(usr))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
-		return 1
+		return TRUE
 /*
 	//distance checks are made by atom/proc/DblClick
 	if((get_dist(src, user) > 1 || !isturf(loc)) && !issilicon(user))
