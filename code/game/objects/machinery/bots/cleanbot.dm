@@ -328,15 +328,15 @@ Weird button pressed: ["<A href='?src=\ref[src];operation=oddbutton'>[oddbutton 
 	return ..()
 
 // Cleanbot Assembly
-/obj/item/reagent_containers/glass/bucket/attackby(obj/item/D, mob/user as mob)
-	. = ..()
-	if(isprox(D))
-		to_chat(user, "You add [D] to [src].")
-		qdel(D)
+/obj/item/reagent_containers/glass/bucket/attack_by(obj/item/I, mob/user)
+	if(isprox(I))
+		to_chat(user, SPAN_INFO("You add \the [I] to \the [src]."))
+		qdel(I)
 		user.put_in_hands(new /obj/item/cleanbot_assembly())
 		user.drop_from_inventory(src)
 		qdel(src)
-		return
+		return TRUE
+	return ..()
 
 /obj/item/cleanbot_assembly
 	name = "proxy bucket"
@@ -353,23 +353,24 @@ Weird button pressed: ["<A href='?src=\ref[src];operation=oddbutton'>[oddbutton 
 
 	var/created_name = "Cleanbot"
 
-/obj/item/cleanbot_assembly/attackby(obj/item/W, mob/user as mob)
-	. = ..()
-	if(istype(W, /obj/item/pen))
+/obj/item/cleanbot_assembly/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", name, created_name), 1, MAX_NAME_LEN)
 		if(isnull(t))
 			return
 		if(!in_range(src, usr) && loc != usr)
 			return
 		created_name = t
-		return
+		return TRUE
 
-	if(istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm))
+	if(istype(I, /obj/item/robot_parts/l_arm) || istype(I, /obj/item/robot_parts/r_arm))
 		user.drop_item()
-		qdel(W)
+		qdel(I)
 		var/obj/machinery/bot/cleanbot/bot = new /obj/machinery/bot/cleanbot(get_turf(loc))
 		bot.name = created_name
 		to_chat(user, SPAN_INFO("You add the robot arm to the bucket and sensor assembly. Beep boop!"))
 		user.drop_from_inventory(src)
 		qdel(src)
-		return
+		return TRUE
+
+	return ..()

@@ -15,47 +15,48 @@
 /obj/item/transfer_valve/IsAssemblyHolder()
 	return 1
 
-/obj/item/transfer_valve/attackby(obj/item/item, mob/user)
-	if(istype(item, /obj/item/tank))
-		if(tank_one && tank_two)
+/obj/item/transfer_valve/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/tank))
+		if(isnotnull(tank_one) && isnotnull(tank_two))
 			to_chat(user, SPAN_WARNING("There are already two tanks attached, remove one first."))
-			return
-
-		if(!tank_one)
-			tank_one = item
+			return TRUE
+		if(isnull(tank_one))
+			tank_one = I
 			user.drop_item()
-			item.loc = src
+			I.loc = src
 			to_chat(user, SPAN_NOTICE("You attach the tank to the transfer valve."))
-		else if(!tank_two)
-			tank_two = item
+		else if(isnull(tank_two))
+			tank_two = I
 			user.drop_item()
-			item.loc = src
+			I.loc = src
 			to_chat(user, SPAN_NOTICE("You attach the tank to the transfer valve."))
-
 		update_icon()
 		global.PCnanoui.update_uis(src) // update all UIs attached to src
-//TODO: Have this take an assemblyholder
-	else if(isassembly(item))
-		var/obj/item/assembly/A = item
+		return TRUE
+
+	if(isassembly(I)) //TODO: Have this take an assemblyholder
+		var/obj/item/assembly/A = I
 		if(A.secured)
 			to_chat(user, SPAN_NOTICE("The device is secured."))
-			return
-		if(attached_device)
+			return TRUE
+		if(isnotnull(attached_device))
 			to_chat(user, SPAN_WARNING("There is already a device attached to the valve, remove it first."))
-			return
-		user.remove_from_mob(item)
+			return TRUE
+		user.remove_from_mob(I)
 		attached_device = A
 		A.loc = src
-		to_chat(user, SPAN_NOTICE("You attach the [item] to the valve controls and secure it."))
+		to_chat(user, SPAN_NOTICE("You attach \the [I] to the valve controls and secure it."))
 		A.holder = src
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
 
-		GLOBL.bombers += "[key_name(user)] attached a [item] to a transfer valve."
-		message_admins("[key_name_admin(user)] attached a [item] to a transfer valve.")
-		log_game("[key_name_admin(user)] attached a [item] to a transfer valve.")
+		GLOBL.bombers += "[key_name(user)] attached \a [I] to a transfer valve."
+		message_admins("[key_name_admin(user)] attached \a [I] to a transfer valve.")
+		log_game("[key_name_admin(user)] attached \a [I] to a transfer valve.")
 		attacher = user
 		global.PCnanoui.update_uis(src) // update all UIs attached to src
-	return
+		return TRUE
+
+	return ..()
 
 /obj/item/transfer_valve/HasProximity(atom/movable/AM as mob|obj)
 	if(!attached_device)

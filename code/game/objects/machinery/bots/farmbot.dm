@@ -500,16 +500,17 @@
 		playsound(src, 'sound/effects/slosh.ogg', 25, 1)
 
 // Farmbot Assembly
-/obj/structure/reagent_dispensers/watertank/attackby(obj/item/W, mob/user as mob)
-	if(!istype(W, /obj/item/robot_parts/l_arm) && !istype(W, /obj/item/robot_parts/r_arm))
+/obj/structure/reagent_dispensers/watertank/attack_by(obj/item/I, mob/user)
+	if(!istype(I, /obj/item/robot_parts/l_arm) && !istype(I, /obj/item/robot_parts/r_arm))
 		return ..()
 
 	// Making a farmbot!
 	var/obj/item/farmbot_assembly/assembly = new /obj/item/farmbot_assembly()
 	assembly.loc = loc
-	to_chat(user, SPAN_INFO("You add the robot arm to the [src]!"))
+	to_chat(user, SPAN_INFO("You add the robot arm to \the [src]!"))
 	loc = assembly //Place the water tank into the assembly, it will be needed for the finished bot
-	qdel(W)
+	qdel(I)
+	return TRUE
 
 /obj/item/farmbot_assembly
 	name = "water tank/robot arm assembly"
@@ -528,9 +529,8 @@
 	if(isnull(tank))
 		new /obj/structure/reagent_dispensers/watertank(src)
 
-/obj/item/farmbot_assembly/attackby(obj/item/W as obj, mob/user as mob)
-	. = ..()
-	if(istype(W, /obj/item/pen))
+/obj/item/farmbot_assembly/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/pen))
 		var/t = input(user, "Enter new robot name", name, created_name) as text
 		t = copytext(sanitize(t), 1, MAX_NAME_LEN)
 		if(isnull(t))
@@ -538,30 +538,30 @@
 		if(!in_range(src, usr) && loc != usr)
 			return
 		created_name = t
-		return
+		return TRUE
 
-	if(istype(W, /obj/item/plant_analyser) && !build_step)
+	if(istype(I, /obj/item/plant_analyser) && !build_step)
 		build_step++
-		to_chat(user, SPAN_INFO("You add the plant analyser to [src]!"))
+		to_chat(user, SPAN_INFO("You add the plant analyser to \the [src]!"))
 		name = "farmbot assembly"
-		qdel(W)
-		return
+		qdel(I)
+		return TRUE
 
-	if(istype(W, /obj/item/reagent_containers/glass/bucket) && build_step == 1)
+	if(istype(I, /obj/item/reagent_containers/glass/bucket) && build_step == 1)
 		build_step++
-		to_chat(user, SPAN_INFO("You add a bucket to [src]!"))
+		to_chat(user, SPAN_INFO("You add a bucket to \the [src]!"))
 		name = "farmbot assembly with bucket"
-		qdel(W)
+		qdel(I)
 		return
 
-	if(istype(W, /obj/item/minihoe) && build_step == 2)
+	if(istype(I, /obj/item/minihoe) && build_step == 2)
 		build_step++
-		to_chat(user, SPAN_INFO("You add a minihoe to [src]!"))
+		to_chat(user, SPAN_INFO("You add a minihoe to \the [src]!"))
 		name = "farmbot assembly with bucket and minihoe"
-		qdel(W)
-		return
+		qdel(I)
+		return TRUE
 
-	if(isprox(W) && build_step == 3)
+	if(isprox(I) && build_step == 3)
 		build_step++
 		to_chat(user, SPAN_INFO("You complete the Farmbot! Beep boop."))
 		var/obj/machinery/bot/farmbot/S = new /obj/machinery/bot/farmbot(get_turf(src))
@@ -569,9 +569,11 @@
 			wTank.loc = S
 			S.tank = wTank
 		S.name = created_name
-		qdel(W)
+		qdel(I)
 		qdel(src)
-		return
+		return TRUE
+
+	return ..()
 
 #undef FARMBOT_MODE_NONE
 #undef FARMBOT_MODE_WATER

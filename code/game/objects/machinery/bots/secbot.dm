@@ -682,13 +682,13 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 	return ..()
 
 // Secbot Assembly
-/obj/item/clothing/head/helmet/attackby(obj/item/assembly/signaler/S, mob/user as mob)
-	. = ..()
-	if(!issignaler(S))
-		return .
+/obj/item/clothing/head/helmet/attack_by(obj/item/I, mob/user)
+	if(!issignaler(I))
+		return ..()
+	var/obj/item/assembly/signaler/S = I
 
 	if(type != /obj/item/clothing/head/helmet) //Eh, but we don't want people making secbots out of space helmets.
-		return
+		return ..()
 
 	if(S.secured)
 		qdel(S)
@@ -697,7 +697,9 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 		to_chat(user, SPAN_INFO("You add the signaler to the helmet."))
 		user.drop_from_inventory(src)
 		qdel(src)
-		return
+		return TRUE
+
+	return ..()
 
 /obj/item/secbot_assembly
 	name = "helmet/signaler assembly"
@@ -709,50 +711,51 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 	var/build_step = 0
 	var/created_name = "Securitron" // To preserve the name if it's a unique securitron I guess
 
-/obj/item/secbot_assembly/attackby(obj/item/W as obj, mob/user as mob)
-	. = ..()
-	if(istype(W, /obj/item/pen))
+/obj/item/secbot_assembly/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", name, created_name), 1, MAX_NAME_LEN)
 		if(isnull(t))
 			return
 		if(!in_range(src, usr) && loc != usr)
 			return
 		created_name = t
-		return
+		return TRUE
 
-	if(istype(W, /obj/item/weldingtool) && !build_step)
-		var/obj/item/weldingtool/WT = W
+	if(iswelder(I) && !build_step)
+		var/obj/item/weldingtool/WT = I
 		if(WT.remove_fuel(0, user))
 			build_step++
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			overlays.Add(image('icons/obj/aibots.dmi', "hs_hole"))
-			to_chat(user, SPAN_INFO("You weld a hole in [src]!"))
-		return
+			to_chat(user, SPAN_INFO("You weld a hole in \the [src]!"))
+		return TRUE
 
-	if(isprox(W) && build_step == 1)
+	if(isprox(I) && build_step == 1)
 		user.drop_item()
 		build_step++
 		name = "helmet/signaler/prox sensor assembly"
 		overlays.Add(image('icons/obj/aibots.dmi', "hs_eye"))
-		to_chat(user, SPAN_INFO("You add the prox sensor to [src]!"))
-		qdel(W)
-		return
+		to_chat(user, SPAN_INFO("You add the prox sensor to \the [src]!"))
+		qdel(I)
+		return TRUE
 
-	if((istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm)) && build_step == 2)
+	if((istype(I, /obj/item/robot_parts/l_arm) || istype(I, /obj/item/robot_parts/r_arm)) && build_step == 2)
 		user.drop_item()
 		build_step++
 		name = "helmet/signaler/prox sensor/robot arm assembly"
 		overlays.Add(image('icons/obj/aibots.dmi', "hs_arm"))
-		to_chat(user, SPAN_INFO("You add the robot arm to [src]!"))
-		qdel(W)
-		return
+		to_chat(user, SPAN_INFO("You add the robot arm to \the [src]!"))
+		qdel(I)
+		return TRUE
 
-	if(istype(W, /obj/item/melee/baton) && build_step >= 3)
+	if(istype(I, /obj/item/melee/baton) && build_step >= 3)
 		user.drop_item()
 		build_step++
 		var/obj/machinery/bot/secbot/bot = new /obj/machinery/bot/secbot(get_turf(src))
 		bot.name = created_name
 		to_chat(user, SPAN_INFO("You complete the Securitron! Beep boop."))
-		qdel(W)
+		qdel(I)
 		qdel(src)
-		return
+		return TRUE
+
+	return ..()

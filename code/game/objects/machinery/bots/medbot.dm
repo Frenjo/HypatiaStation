@@ -505,13 +505,14 @@
 /*
  *	Medbot Assembly -- Can be made out of all three medkits.
  */
-/obj/item/storage/firstaid/attackby(obj/item/W, mob/user as mob)
-	if(!istype(W, /obj/item/robot_parts/l_arm) && !istype(W, /obj/item/robot_parts/r_arm))
+/obj/item/storage/firstaid/attack_by(obj/item/I, mob/user)
+	if(!istype(I, /obj/item/robot_parts/l_arm) && !istype(I, /obj/item/robot_parts/r_arm))
 		return ..()
+
 	// Making a medibot!
 	if(length(contents))
-		to_chat(user, SPAN_NOTICE("You need to empty [src] out first."))
-		return
+		to_chat(user, SPAN_WARNING("You need to empty \the [src] out first."))
+		return TRUE
 
 	var/obj/item/medbot_assembly/assembly = new /obj/item/medbot_assembly()
 	if(istype(src, /obj/item/storage/firstaid/fire))
@@ -521,11 +522,12 @@
 	else if(istype(src, /obj/item/storage/firstaid/o2))
 		assembly.skin = "o2"
 
-	qdel(W)
+	qdel(I)
 	user.put_in_hands(assembly)
 	to_chat(user, SPAN_INFO("You add the robot arm to the first aid kit."))
 	user.drop_from_inventory(src)
 	qdel(src)
+	return TRUE
 
 /obj/item/medbot_assembly
 	name = "first aid/robot arm assembly"
@@ -543,32 +545,31 @@
 	if(isnotnull(skin))
 		overlays.Add(image('icons/obj/aibots.dmi', "kit_skin_[skin]"))
 
-/obj/item/medbot_assembly/attackby(obj/item/W as obj, mob/user as mob)
-	. = ..()
-	if(istype(W, /obj/item/pen))
+/obj/item/medbot_assembly/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", name, created_name), 1, MAX_NAME_LEN)
 		if(isnull(t))
 			return
 		if(!in_range(src, usr) && loc != usr)
 			return
 		created_name = t
-		return
+		return TRUE
 
 	switch(build_step)
 		if(0)
-			if(istype(W, /obj/item/health_analyser))
+			if(istype(I, /obj/item/health_analyser))
 				user.drop_item()
-				qdel(W)
+				qdel(I)
 				build_step++
 				to_chat(user, SPAN_INFO("You add the health sensor to [src]."))
 				name = "first aid/robot arm/health analyser assembly"
 				overlays.Add(image('icons/obj/aibots.dmi', "na_scanner"))
-				return
+				return TRUE
 
 		if(1)
-			if(isprox(W))
+			if(isprox(I))
 				user.drop_item()
-				qdel(W)
+				qdel(I)
 				build_step++
 				to_chat(user, SPAN_INFO("You complete the Medibot! Beep boop."))
 				var/obj/machinery/bot/medbot/S = new /obj/machinery/bot/medbot(get_turf(src))
@@ -576,4 +577,6 @@
 				S.name = created_name
 				user.drop_from_inventory(src)
 				qdel(src)
-				return
+				return TRUE
+
+	return ..()

@@ -134,25 +134,26 @@
 	..()
 	return
 
-/obj/item/toy/gun/attackby(obj/item/toy/ammo/gun/A as obj, mob/user as mob)
-	if(istype(A, /obj/item/toy/ammo/gun))
-		if(src.bullets >= 7)
-			to_chat(user, SPAN_INFO("It's already fully loaded!"))
-			return 1
+/obj/item/toy/gun/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/toy/ammo/gun))
+		var/obj/item/toy/ammo/gun/A = I
+		if(bullets >= 7)
+			to_chat(user, SPAN_WARNING("It's already fully loaded!"))
+			return TRUE
 		if(A.amount_left <= 0)
-			to_chat(user, SPAN_WARNING("There is no more caps!"))
-			return 1
-		if(A.amount_left < (7 - src.bullets))
-			src.bullets += A.amount_left
-			to_chat(user, SPAN_WARNING("You reload [A.amount_left] caps\s!"))
+			to_chat(user, SPAN_WARNING("There are no more caps!"))
+			return TRUE
+		if(A.amount_left < (7 - bullets))
+			bullets += A.amount_left
+			to_chat(user, SPAN_INFO("You reload [A.amount_left] caps\s!"))
 			A.amount_left = 0
 		else
-			to_chat(user, SPAN_WARNING("\red You reload [7 - src.bullets] caps\s!"))
-			A.amount_left -= 7 - src.bullets
-			src.bullets = 7
+			to_chat(user, SPAN_INFO("You reload [7 - bullets] caps\s!"))
+			A.amount_left -= 7 - bullets
+			bullets = 7
 		A.update_icon()
-		return 1
-	return
+		return TRUE
+	return ..()
 
 /obj/item/toy/gun/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
 	if(flag)
@@ -208,15 +209,17 @@
 	if(bullets)
 		to_chat(usr, SPAN_INFO("It is loaded with [bullets] foam darts!"))
 
-/obj/item/toy/crossbow/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/toy/crossbow/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/toy/ammo/crossbow))
-		if(bullets <= 4)
-			user.drop_item()
-			qdel(I)
-			bullets++
-			to_chat(user, SPAN_INFO("You load the foam dart into the crossbow."))
-		else
-			to_chat(usr, SPAN_WARNING("It's already fully loaded."))
+		if(bullets >= 5)
+			to_chat(user, SPAN_WARNING("It's already fully loaded."))
+			return TRUE
+		user.drop_item()
+		qdel(I)
+		bullets++
+		to_chat(user, SPAN_INFO("You load the foam dart into the crossbow."))
+		return TRUE
+	return ..()
 
 
 /obj/item/toy/crossbow/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)

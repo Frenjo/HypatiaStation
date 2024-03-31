@@ -87,18 +87,21 @@
 	unregister_radio(src, control_freq)
 	return ..()
 
+
 // attack by item
 // emag : lock/unlock,
 // screwdriver: open/close hatch
 // cell: insert it
 // other: chance to knock rider off bot
+/obj/machinery/bot/mulebot/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	locked = !locked
+	FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
+	flick("mulebot-emagged", src)
+	playsound(src, 'sound/effects/sparks1.ogg', 100, 0)
+	return TRUE
+
 /obj/machinery/bot/mulebot/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/card/emag))
-		locked = !locked
-		FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
-		flick("mulebot-emagged", src)
-		playsound(src, 'sound/effects/sparks1.ogg', 100, 0)
-	else if(istype(I, /obj/item/cell) && open && !cell)
+	if(istype(I, /obj/item/cell) && open && !cell)
 		var/obj/item/cell/C = I
 		user.drop_item()
 		C.loc = src

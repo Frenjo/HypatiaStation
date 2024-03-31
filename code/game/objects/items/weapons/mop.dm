@@ -41,7 +41,7 @@
 				clean(get_turf(A))
 			to_chat(user, SPAN_NOTICE("You have finished mopping!"))
 
-/obj/effect/attackby(obj/item/I, mob/user)
+/obj/effect/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/mop) || istype(I, /obj/item/soap))
-		return
-	..()
+		return TRUE
+	return ..()

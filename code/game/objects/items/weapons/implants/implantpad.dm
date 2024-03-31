@@ -33,17 +33,15 @@
 		return ..()
 	return
 
-/obj/item/implantpad/attackby(obj/item/implantcase/C as obj, mob/user as mob)
-	..()
-	if(istype(C, /obj/item/implantcase))
-		if(!src.case)
+/obj/item/implantpad/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/implantcase))
+		if(isnull(case))
 			user.drop_item()
-			C.loc = src
-			src.case = C
-	else
-		return
-	src.update()
-	return
+			I.loc = src
+			case = I
+			update()
+		return TRUE
+	return ..()
 
 /obj/item/implantpad/attack_self(mob/user as mob)
 	user.set_machine(src)
