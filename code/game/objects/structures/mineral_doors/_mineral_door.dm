@@ -45,7 +45,7 @@
 
 /obj/structure/mineral_door/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group)
-		return 0
+		return FALSE
 	if(istype(mover, /obj/effect/beam))
 		return !opacity
 	return !density

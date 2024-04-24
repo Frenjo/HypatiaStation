@@ -14,7 +14,13 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 	layer = 2
 
 	var/level = 2
+
+	// Stores atom-specific bitflag values.
+	// Overridden on subtypes or manipulated with *_ATOM_FLAGS(ATOM, FLAGS) macros.
 	var/atom_flags
+	// Stores pass bitflag values.
+	// Overriden on subtypes or manipulated with *_PASS_FLAGS(ATOM, FLAGS) macros.
+	var/pass_flags
 
 	var/list/fingerprints
 	var/list/hidden_fingerprints
@@ -25,7 +31,6 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 	var/blood_color
 
 	var/last_bumped = 0
-	var/pass_flags = 0
 	var/throwpass = 0
 	// The higher the germ level, the more germ on this atom.
 	var/germ_level = GERM_LEVEL_AMBIENT
@@ -112,21 +117,6 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 
 /atom/proc/Bumped(AM as mob|obj)
 	return
-
-// Convenience proc to see if a container is open for chemistry handling
-// returns true if open
-// false if closed
-/atom/proc/is_open_container()
-	return HAS_ATOM_FLAGS(src, ATOM_FLAG_OPEN_CONTAINER)
-
-/*//Convenience proc to see whether a container can be accessed in a certain way.
-
-	proc/can_subract_container()
-		return flags & EXTRACT_CONTAINER
-
-	proc/can_add_container()
-		return flags & INSERT_CONTAINER
-*/
 
 /atom/proc/meteorhit(obj/meteor as obj)
 	return
@@ -415,6 +405,3 @@ Maxdistance is the longest range the beam will persist before it gives up.
 		return list("x" = cur_x, "y" = cur_y)
 	else
 		return 0
-
-/atom/proc/checkpass(passflag)
-	return pass_flags & passflag

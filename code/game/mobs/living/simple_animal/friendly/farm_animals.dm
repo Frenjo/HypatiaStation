@@ -157,6 +157,7 @@
 	icon_living = "chick"
 	icon_dead = "chick_dead"
 	icon_gib = "chick_gib"
+	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GRILLE
 	speak = list("Cherp.","Cherp?","Chirrup.","Cheep!")
 	speak_emote = list("cheeps")
 	emote_hear = list("cheeps")
@@ -171,7 +172,6 @@
 	attacktext = "kicks"
 	health = 1
 	var/amount_grown = 0
-	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GRILLE
 	small = 1
 
 /mob/living/simple_animal/chick/New()
@@ -198,6 +198,7 @@ GLOBAL_GLOBL_INIT(chicken_count, 0)
 	icon_state = "chicken"
 	icon_living = "chicken"
 	icon_dead = "chicken_dead"
+	pass_flags = PASS_FLAG_TABLE
 	speak = list("Cluck!","BWAAAAARK BWAK BWAK BWAK!","Bwaak bwak.")
 	speak_emote = list("clucks","croons")
 	emote_hear = list("clucks")
@@ -213,7 +214,6 @@ GLOBAL_GLOBL_INIT(chicken_count, 0)
 	health = 10
 	var/eggsleft = 0
 	var/body_color
-	pass_flags = PASS_FLAG_TABLE
 	small = 1
 
 /mob/living/simple_animal/chicken/New()

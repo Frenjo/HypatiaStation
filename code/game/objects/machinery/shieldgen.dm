@@ -23,7 +23,7 @@
 
 /obj/machinery/shield/CanPass(atom/movable/mover, turf/target, height, air_group)
 	if(!height || air_group)
-		return 0
+		return FALSE
 	else
 		return ..()
 
@@ -638,15 +638,15 @@
 	return
 
 /obj/machinery/shieldwall/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0))
-		return 1
+	if(air_group || height == 0)
+		return TRUE
 
-	if(istype(mover) && mover.checkpass(PASS_FLAG_GLASS))
+	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_GLASS))
 		return prob(20)
 	else
 		if(istype(mover, /obj/item/projectile))
 			return prob(10)
 		else
-			return !src.density
+			return !density
 
 #undef SHIELD_GENERATOR_MAX_STORED_POWER

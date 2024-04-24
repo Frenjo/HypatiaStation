@@ -9,6 +9,10 @@
 #define SET_ATOM_FLAGS(ATOM, FLAGS) ATOM.atom_flags |= FLAGS
 #define UNSET_ATOM_FLAGS(ATOM, FLAGS) ATOM.atom_flags &= ~FLAGS
 #define HAS_ATOM_FLAGS(ATOM, FLAGS) (ATOM.atom_flags & FLAGS)
+// Pass
+#define SET_PASS_FLAGS(ATOM, FLAGS) ATOM.pass_flags |= FLAGS
+#define UNSET_PASS_FLAGS(ATOM, FLAGS) ATOM.pass_flags &= ~FLAGS
+#define HAS_PASS_FLAGS(ATOM, FLAGS) (ATOM.pass_flags & FLAGS)
 
 // Area
 #define SET_AREA_FLAGS(AREA, FLAGS) AREA.area_flags |= FLAGS

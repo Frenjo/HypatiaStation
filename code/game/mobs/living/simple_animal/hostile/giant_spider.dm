@@ -11,6 +11,7 @@
 	icon_state = "guard"
 	icon_living = "guard"
 	icon_dead = "guard_dead"
+	pass_flags = PASS_FLAG_TABLE
 	speak_emote = list("chitters")
 	emote_hear = list("chitters")
 	speak_chance = 5
@@ -31,7 +32,6 @@
 	var/poison_type = "toxin"
 	faction = "spiders"
 	var/busy = 0
-	pass_flags = PASS_FLAG_TABLE
 	move_to_delay = 6
 	speed = 3
 

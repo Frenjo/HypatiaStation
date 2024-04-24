@@ -5,7 +5,7 @@
 	max_co2 = 0
 	minbodytemp = 0
 	maxbodytemp = 500
-	pass_flags = 1 // Pass through tables!
+	pass_flags = PASS_FLAG_TABLE // Pass through tables!
 
 	var/obj/item/radio/borg/radio = null
 	var/mob/living/silicon/ai/connected_ai = null

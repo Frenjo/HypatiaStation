@@ -64,16 +64,16 @@
 
 /obj/effect/spider/stickyweb/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || height == 0)
-		return 1
+		return TRUE
 	if(istype(mover, /mob/living/simple_animal/hostile/giant_spider))
-		return 1
+		return TRUE
 	else if(isliving(mover))
 		if(prob(50))
 			to_chat(mover, SPAN_WARNING("You get stuck in \the [src] for a moment."))
-			return 0
+			return FALSE
 	else if(istype(mover, /obj/item/projectile))
 		return prob(30)
-	return 1
+	return TRUE
 
 
 /obj/effect/spider/eggcluster

@@ -76,13 +76,13 @@
 		qdel(src)
 	return
 
-/obj/structure/barricade/wooden/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
-	if(air_group || (height==0))
-		return 1
-	if(istype(mover) && mover.checkpass(PASS_FLAG_TABLE))
-		return 1
+/obj/structure/barricade/wooden/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0) //So bullets will fly over and stuff.
+	if(air_group || height == 0)
+		return TRUE
+	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_TABLE))
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 
 //Actual Deployable machinery stuff
@@ -196,13 +196,13 @@
 		src.explode()
 	return
 
-/obj/machinery/deployable/barrier/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)//So bullets will fly over and stuff.
-	if(air_group || (height==0))
-		return 1
-	if(istype(mover) && mover.checkpass(PASS_FLAG_TABLE))
-		return 1
+/obj/machinery/deployable/barrier/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0) //So bullets will fly over and stuff.
+	if(air_group || height == 0)
+		return TRUE
+	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_TABLE))
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/machinery/deployable/barrier/proc/explode()
 	visible_message("\red <B>[src] blows apart!</B>")

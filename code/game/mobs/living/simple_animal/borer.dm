@@ -36,6 +36,7 @@
 	icon_state = "brainslug"
 	icon_living = "brainslug"
 	icon_dead = "brainslug_dead"
+	pass_flags = PASS_FLAG_TABLE
 	speed = 5
 	a_intent = "harm"
 	stop_automated_movement = 1
@@ -43,7 +44,6 @@
 	attacktext = "nips"
 	friendly = "prods"
 	wander = 0
-	pass_flags = PASS_FLAG_TABLE
 
 	var/used_dominate
 	var/chemicals = 10						// Chemicals used for reproduction and spitting neurotoxin.

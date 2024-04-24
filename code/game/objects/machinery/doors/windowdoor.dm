@@ -66,17 +66,17 @@
 	return
 
 /obj/machinery/door/window/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(istype(mover) && mover.checkpass(PASS_FLAG_GLASS))
-		return 1
+	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_GLASS))
+		return TRUE
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
 		if(air_group)
-			return 0
+			return FALSE
 		return !density
 	else
-		return 1
+		return TRUE
 
-/obj/machinery/door/window/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
-	if(istype(mover) && mover.checkpass(PASS_FLAG_GLASS))
+/obj/machinery/door/window/CheckExit(atom/movable/mover, turf/target)
+	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_GLASS))
 		return 1
 	if(get_dir(loc, target) == dir)
 		return !density

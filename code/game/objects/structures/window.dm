@@ -97,19 +97,19 @@
 	shatter()
 
 /obj/structure/window/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(istype(mover) && mover.checkpass(PASS_FLAG_GLASS))
-		return 1
+	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_GLASS))
+		return TRUE
 	if(dir == SOUTHWEST || dir == SOUTHEAST || dir == NORTHWEST || dir == NORTHEAST)
-		return 0	//full tile window, you can't move into it!
+		return FALSE	//full tile window, you can't move into it!
 	if(get_dir(loc, target) == dir)
 		return !density
 	else
-		return 1
+		return TRUE
 
-/obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASS_FLAG_GLASS))
+/obj/structure/window/CheckExit(atom/movable/mover, turf/target)
+	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_GLASS))
 		return 1
-	if(get_dir(O.loc, target) == dir)
+	if(get_dir(mover.loc, target) == dir)
 		return 0
 	return 1
 

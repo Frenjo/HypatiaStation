@@ -243,17 +243,17 @@
 
 /obj/structure/table/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || height == 0)
-		return 1
+		return TRUE
 	if(istype(mover, /obj/item/projectile))
 		return (check_cover(mover, target))
-	if(istype(mover) && mover.checkpass(PASS_FLAG_TABLE))
-		return 1
+	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_TABLE))
+		return TRUE
 	if(flipped)
 		if(get_dir(loc, target) == dir)
 			return !density
 		else
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /obj/structure/table/proc/check_cover(obj/item/projectile/P, turf/from)
@@ -282,8 +282,8 @@
 				return 1
 	return 1
 
-/obj/structure/table/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASS_FLAG_TABLE))
+/obj/structure/table/CheckExit(atom/movable/mover, turf/target)
+	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_TABLE))
 		return 1
 	if(flipped)
 		if(get_dir(loc, target) == dir)
@@ -530,13 +530,13 @@
 
 /obj/structure/rack/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || height == 0)
-		return 1
-	if(src.density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
-		return 1
-	if(istype(mover) && mover.checkpass(PASS_FLAG_TABLE))
-		return 1
+		return TRUE
+	if(density == 0) //Because broken racks -Agouri |TODO: SPRITE!|
+		return TRUE
+	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_TABLE))
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/structure/rack/MouseDrop_T(obj/O as obj, mob/user as mob)
 	if(!isitem(O) || user.get_active_hand() != O)

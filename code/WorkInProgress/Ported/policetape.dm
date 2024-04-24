@@ -112,15 +112,15 @@
 
 /obj/item/tape/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(!density)
-		return 1
+		return TRUE
 	if(air_group || height == 0)
-		return 1
+		return TRUE
 
-	// I don't even know what flag this was supposed to be checking.
-	if(/*mover.flags & 2 || */istype(mover, /obj/effect/meteor) || mover.throwing)
-		return 1
+	// This was originally just checking flag "2". I have no idea what that was but based on context I assume it's PASS_FLAG_TABLE.
+	if(HAS_PASS_FLAGS(mover, PASS_FLAG_TABLE) || istype(mover, /obj/effect/meteor) || mover.throwing)
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/item/tape/attackby(obj/item/item, mob/user)
 	breaktape(item, user)

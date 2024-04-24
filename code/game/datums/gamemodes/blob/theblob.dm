@@ -35,11 +35,11 @@
 	return ..()
 
 /obj/effect/blob/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0))
-		return 1
-	if(istype(mover) && mover.checkpass(PASS_FLAG_BLOB))
-		return 1
-	return 0
+	if(air_group || height == 0)
+		return TRUE
+	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_BLOB))
+		return TRUE
+	return FALSE
 
 /obj/effect/blob/process()
 	spawn(-1)

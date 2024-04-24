@@ -71,11 +71,11 @@
 
 	var/obj/item/projectile/test/in_chamber = new /obj/item/projectile/test(get_step_to(user, target)) //Making the test....
 	in_chamber.target = target
-	// Sets the flags.
-	in_chamber.atom_flags = atom_flags
+	// Sets the flags to that of the real projectile.
+	SET_ATOM_FLAGS(in_chamber, atom_flags)
+	SET_PASS_FLAGS(in_chamber, pass_flags)
 	in_chamber.obj_flags = obj_flags
-	in_chamber.item_flags = item_flags
-	in_chamber.pass_flags = pass_flags //And the pass flags to that of the real projectile...
+	SET_ITEM_FLAGS(in_chamber, item_flags)
 	in_chamber.firer = user
 	var/output = in_chamber.process() //Test it!
 	qdel(in_chamber) //No need for it anymore

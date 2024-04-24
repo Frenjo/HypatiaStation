@@ -11,24 +11,24 @@
 
 /turf/CanPass(atom/movable/mover, turf/target, height = 1.5, air_group = 0)
 	if(!target)
-		return 0
+		return FALSE
 
 	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
 		return !density
 
 	else // Now, doing more detailed checks for air movement and air group formation
 		if(HAS_TURF_FLAGS(target, TURF_FLAG_BLOCKS_AIR) || HAS_TURF_FLAGS(src, TURF_FLAG_BLOCKS_AIR))
-			return 0
+			return FALSE
 
 		for(var/obj/obstacle in src)
 			if(!obstacle.CanPass(mover, target, height, air_group))
-				return 0
+				return FALSE
 		if(target != src)
 			for(var/obj/obstacle in target)
 				if(!obstacle.CanPass(mover, src, height, air_group))
-					return 0
+					return FALSE
 
-		return 1
+		return TRUE
 
 //Basically another way of calling CanPass(null, other, 0, 0) and CanPass(null, other, 1.5, 1).
 //Returns:

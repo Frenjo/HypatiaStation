@@ -67,13 +67,13 @@
 	return
 
 /obj/machinery/optable/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || (height == 0))
-		return 1
+	if(air_group || height == 0)
+		return TRUE
 
-	if(istype(mover) && mover.checkpass(PASS_FLAG_TABLE))
-		return 1
+	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_TABLE))
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/machinery/optable/MouseDrop_T(obj/O as obj, mob/user as mob)
 	if(!isitem(O) || user.get_active_hand() != O)

@@ -161,11 +161,11 @@
 
 /decl/gene/basic/midget/activate(mob/M, connected, flags)
 	..(M, connected, flags)
-	M.pass_flags |= 1
+	SET_PASS_FLAGS(M, PASS_FLAG_TABLE)
 
 /decl/gene/basic/midget/deactivate(mob/M, connected, flags)
 	..(M, connected, flags)
-	M.pass_flags &= ~1 //This may cause issues down the track, but offhand I can't think of any other way for humans to get passtable short of varediting so it should be fine. ~Z
+	UNSET_PASS_FLAGS(M, PASS_FLAG_TABLE) //This may cause issues down the track, but offhand I can't think of any other way for humans to get passtable short of varediting so it should be fine. ~Z
 
 // Hulk
 /decl/gene/basic/hulk

@@ -44,6 +44,6 @@
 			visible_message(SPAN_INFO("Swish! \the [I] lands in \the [src]."), 3)
 		else
 			visible_message(SPAN_WARNING("\the [I] bounces off of \the [src]'s rim!"), 3)
-		return 0
+		return FALSE
 	else
 		return ..(mover, target, height, air_group)

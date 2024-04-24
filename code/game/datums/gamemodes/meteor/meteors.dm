@@ -81,9 +81,10 @@
 	icon_state = "flaming"
 	density = TRUE
 	anchored = TRUE
+	pass_flags = PASS_FLAG_TABLE
+
 	var/hits = 1
 	var/dest
-	pass_flags = PASS_FLAG_TABLE
 
 /obj/effect/meteor/small
 	name = "small meteor"

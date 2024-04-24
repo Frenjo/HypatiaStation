@@ -11,16 +11,16 @@
 
 	light_color = "#b88b2e"
 
-/obj/structure/plasticflaps/CanPass(atom/A, turf/T)
-	if(istype(A) && A.checkpass(PASS_FLAG_GLASS))
+/obj/structure/plasticflaps/CanPass(atom/movable/mover, turf/T)
+	if(istype(mover) && HAS_PASS_FLAGS(mover, PASS_FLAG_GLASS))
 		return prob(60)
 
-	var/obj/structure/stool/bed/B = A
-	if(istype(A, /obj/structure/stool/bed) && B.buckled_mob)//if it's a bed/chair and someone is buckled, it will not pass
+	var/obj/structure/stool/bed/B = mover
+	if(istype(mover, /obj/structure/stool/bed) && B.buckled_mob)//if it's a bed/chair and someone is buckled, it will not pass
 		return FALSE
 
-	else if(isliving(A)) // You Shall Not Pass!
-		var/mob/living/M = A
+	else if(isliving(mover)) // You Shall Not Pass!
+		var/mob/living/M = mover
 		if(!M.lying && !ismonkey(M) && !isslime(M) && !ismouse(M) && !isdrone(M))  //If your not laying down, or a small creature, no pass.
 			return FALSE
 	return ..()

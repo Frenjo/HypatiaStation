@@ -85,7 +85,6 @@ var/list/beam_master = list()
 /obj/item/projectile/energy/beam/laser
 	name = "laser beam"
 	icon_state = "laser"
-	pass_flags = PASS_FLAG_TABLE | PASS_FLAG_GLASS | PASS_FLAG_GRILLE
 
 /obj/item/projectile/energy/beam/laser/practice
 	name = "laser"
