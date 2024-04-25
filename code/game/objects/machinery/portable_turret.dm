@@ -556,7 +556,7 @@ Status: []<BR>"},
 			return 10
 
 	if(auth_weapons) // check for weapon authorisation
-		if((isnull(perp.wear_id)) || (istype(perp.wear_id.get_id(), /obj/item/card/id/syndicate)))
+		if((isnull(perp.id_store)) || (istype(perp.id_store.get_id(), /obj/item/card/id/syndicate)))
 
 			if((src.allowed(perp)) && !(src.lasercolor)) // if the perp has security access, return 0
 				return 0
@@ -592,8 +592,8 @@ Status: []<BR>"},
 		for_no_type_check(var/datum/data/record/E, GLOBL.data_core.general)
 
 			var/perpname = perp.name
-			if(isnotnull(perp.wear_id))
-				var/obj/item/card/id/id = perp.wear_id.get_id()
+			if(isnotnull(perp.id_store))
+				var/obj/item/card/id/id = perp.id_store.get_id()
 				if(isnotnull(id))
 					perpname = id.registered_name
 

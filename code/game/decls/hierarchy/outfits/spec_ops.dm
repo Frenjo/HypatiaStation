@@ -14,7 +14,7 @@
 
 	l_ear = /obj/item/radio/headset/ert
 
-	id_slot = SLOT_ID_WEAR_ID
+	id_slot = SLOT_ID_ID_STORE
 	id_type = /obj/item/card/id/centcom/station
 	id_pda_assignment = "Emergency Response Team"
 
@@ -36,7 +36,7 @@
 
 	r_pocket = /obj/item/lighter/zippo
 
-	id_slot = SLOT_ID_WEAR_ID
+	id_slot = SLOT_ID_ID_STORE
 	id_type = /obj/item/card/id/centcom/station
 	id_pda_assignment = "Special Operations Officer"
 
@@ -62,7 +62,7 @@
 
 	r_hand = /obj/item/gun/energy/pulse_rifle
 
-	id_slot = SLOT_ID_WEAR_ID
+	id_slot = SLOT_ID_ID_STORE
 	id_type = /obj/item/card/id/centcom/station
 	id_pda_assignment = "Death Commando"
 
@@ -132,7 +132,7 @@
 	r_hand = /obj/item/gun/energy/pulse_rifle // Will change to something different at a later time -- Superxpdude
 
 	// They get full station access because obviously the syndicate has HAAAX, and can make special IDs for their most elite members.
-	id_slot = SLOT_ID_WEAR_ID
+	id_slot = SLOT_ID_ID_STORE
 	id_type = /obj/item/card/id/syndicate/station_access
 	id_pda_assignment = "Syndicate Commando"
 

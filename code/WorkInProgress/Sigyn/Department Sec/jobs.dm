@@ -8,27 +8,27 @@ proc/assign_sec_to_department(var/mob/living/carbon/human/H)
 		var/destination = null
 		switch(department)
 			if("supply")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/cargo(H), SLOT_ID_W_UNIFORM)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/cargo(H), SLOT_ID_WEAR_UNIFORM)
 				H.equip_to_slot_or_del(new /obj/item/radio/headset/headset_sec/department/supply(H), slot_ears)
 				access = list(access_mailsorting, access_mining)
 				destination = /area/security/checkpoint/supply
 			if("engineering")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/engine(H), SLOT_ID_W_UNIFORM)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/engine(H), SLOT_ID_WEAR_UNIFORM)
 				H.equip_to_slot_or_del(new /obj/item/radio/headset/headset_sec/department/engi(H), slot_ears)
 				access = list(access_construction, access_engine)
 				destination = /area/security/checkpoint/engineering
 			if("medical")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/med(H), SLOT_ID_W_UNIFORM)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/med(H), SLOT_ID_WEAR_UNIFORM)
 				H.equip_to_slot_or_del(new /obj/item/radio/headset/headset_sec/department/med(H), slot_ears)
 				access = list(access_medical)
 				destination = /area/security/checkpoint/medical
 			if("science")
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/science(H), SLOT_ID_W_UNIFORM)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/science(H), SLOT_ID_WEAR_UNIFORM)
 				H.equip_to_slot_or_del(new /obj/item/radio/headset/headset_sec/department/sci(H), slot_ears)
 				access = list(access_research)
 				destination = /area/security/checkpoint/science
 			else
-				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security(H), SLOT_ID_W_UNIFORM)
+				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security(H), SLOT_ID_WEAR_UNIFORM)
 				H.equip_to_slot_or_del(new /obj/item/radio/headset/headset_sec(H), slot_ears)
 
 
@@ -76,7 +76,7 @@ proc/assign_sec_to_department(var/mob/living/carbon/human/H)
 		H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/vest(H), SLOT_ID_WEAR_SUIT)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet(H), SLOT_ID_HEAD)
 		H.equip_to_slot_or_del(new /obj/item/handcuffs(H), SLOT_ID_S_STORE)
-		H.equip_to_slot_or_del(new /obj/item/flash(H), SLOT_ID_L_STORE)
+		H.equip_to_slot_or_del(new /obj/item/flash(H), SLOT_ID_L_POCKET)
 		if(H.backbag == 1)
 			H.equip_to_slot_or_del(new /obj/item/storage/box/survival(H), SLOT_ID_R_HAND)
 			H.equip_to_slot_or_del(new /obj/item/handcuffs(H), SLOT_ID_L_HAND)

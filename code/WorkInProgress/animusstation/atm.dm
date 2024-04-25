@@ -123,12 +123,12 @@ log transactions
 		scan(var/mob/user)
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
-				if(H.wear_id)
-					if(istype(H.wear_id, /obj/item/card/id))
-						card = H.wear_id
+				if(H.id_store)
+					if(istype(H.id_store, /obj/item/card/id))
+						card = H.id_store
 						return 1
-					if(istype(H.wear_id,/obj/item/pda))
-						var/obj/item/pda/P = H.wear_id
+					if(istype(H.id_store,/obj/item/pda))
+						var/obj/item/pda/P = H.id_store
 						if(istype(P.id,/obj/item/card/id))
 							card = P.id
 							return 1

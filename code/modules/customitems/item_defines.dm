@@ -728,7 +728,7 @@
 
 	src.icon_state = "[item_color]"
 	src.item_state = "[item_color]"
-	usr.update_inv_w_uniform()
+	usr.update_inv_wear_uniform()
 
 ////// Wyatt's Ex-Commander Jumpsuit - RawrTaicho
 /obj/item/clothing/under/fluff/wyatt_1

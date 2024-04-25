@@ -211,7 +211,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 		var/mob/living/carbon/human/new_ninja = create_space_ninja(pick(length(GLOBL.ninjastart) ? GLOBL.ninjastart : GLOBL.latejoin))
 		new_ninja.key = ninja_key
 		new_ninja.wear_suit:randomize_param()//Give them a random set of suit parameters.
-		new_ninja.internal = new_ninja.s_store //So the poor ninja has something to breath when they spawn in spess.
+		new_ninja.internal = new_ninja.suit_store //So the poor ninja has something to breath when they spawn in spess.
 		new_ninja.internals.icon_state = "internal1"
 
 		//Now for the rest of the stuff.
@@ -521,7 +521,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 
 /mob/living/carbon/human/proc/equip_space_ninja(safety = 0)//Safety in case you need to unequip stuff for existing characters.
 	if(safety)
-		qdel(w_uniform)
+		qdel(wear_uniform)
 		qdel(wear_suit)
 		qdel(wear_mask)
 		qdel(head)
@@ -531,18 +531,18 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	var/obj/item/radio/R = new /obj/item/radio/headset(src)
 	equip_to_slot_or_del(R, SLOT_ID_L_EAR)
 	if(gender == FEMALE)
-		equip_to_slot_or_del(new /obj/item/clothing/under/color/blackf(src), SLOT_ID_W_UNIFORM)
+		equip_to_slot_or_del(new /obj/item/clothing/under/color/blackf(src), SLOT_ID_WEAR_UNIFORM)
 	else
-		equip_to_slot_or_del(new /obj/item/clothing/under/color/black(src), SLOT_ID_W_UNIFORM)
+		equip_to_slot_or_del(new /obj/item/clothing/under/color/black(src), SLOT_ID_WEAR_UNIFORM)
 	equip_to_slot_or_del(new /obj/item/clothing/shoes/space_ninja(src), SLOT_ID_SHOES)
 	equip_to_slot_or_del(new /obj/item/clothing/suit/space/space_ninja(src), SLOT_ID_WEAR_SUIT)
 	equip_to_slot_or_del(new /obj/item/clothing/gloves/space_ninja(src), SLOT_ID_GLOVES)
 	equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/space_ninja(src), SLOT_ID_HEAD)
 	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/voice/space_ninja(src), SLOT_ID_WEAR_MASK)
 	equip_to_slot_or_del(new /obj/item/flashlight(src), SLOT_ID_BELT)
-	equip_to_slot_or_del(new /obj/item/plastique(src), SLOT_ID_R_STORE)
-	equip_to_slot_or_del(new /obj/item/plastique(src), SLOT_ID_L_STORE)
-	equip_to_slot_or_del(new /obj/item/tank/oxygen(src), SLOT_ID_S_STORE)
+	equip_to_slot_or_del(new /obj/item/plastique(src), SLOT_ID_R_POCKET)
+	equip_to_slot_or_del(new /obj/item/plastique(src), SLOT_ID_L_POCKET)
+	equip_to_slot_or_del(new /obj/item/tank/oxygen(src), SLOT_ID_SUIT_STORE)
 	return 1
 
 //=======//HELPER PROCS//=======//

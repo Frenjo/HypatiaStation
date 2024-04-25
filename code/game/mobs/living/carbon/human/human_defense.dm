@@ -59,7 +59,7 @@ emp_act
 //BEGIN BOOK'S TASER NERF.
 	if(istype(P, /obj/item/projectile/energy/electrode))
 		var/datum/organ/external/select_area = get_organ(def_zone) // We're checking the outside, buddy!
-		var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes) // What all are we checking?
+		var/list/body_parts = list(head, wear_mask, wear_suit, wear_uniform, gloves, shoes) // What all are we checking?
 		// var/deflectchance=90 //Is it a CRITICAL HIT with that taser?
 		for(var/bp in body_parts) //Make an unregulated var to pass around.
 			if(!bp)
@@ -127,7 +127,7 @@ emp_act
 	if(!type)
 		return 0
 	var/protection = 0
-	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform)
+	var/list/body_parts = list(head, wear_mask, wear_suit, wear_uniform)
 	for(var/bp in body_parts)
 		if(!bp)
 			continue
@@ -138,7 +138,7 @@ emp_act
 	return protection
 
 /mob/living/carbon/human/proc/check_head_coverage()
-	var/list/body_parts = list(head, wear_mask, wear_suit, w_uniform)
+	var/list/body_parts = list(head, wear_mask, wear_suit, wear_uniform)
 	for(var/bp in body_parts)
 		if(!bp)
 			continue
@@ -306,9 +306,9 @@ emp_act
 	if(wear_suit)
 		wear_suit.add_blood(source)
 		update_inv_wear_suit(0)
-	if(w_uniform)
-		w_uniform.add_blood(source)
-		update_inv_w_uniform(0)
+	if(wear_uniform)
+		wear_uniform.add_blood(source)
+		update_inv_wear_uniform(0)
 
 /mob/living/carbon/human/proc/handle_suit_punctures(damtype, damage)
 	if(!wear_suit)

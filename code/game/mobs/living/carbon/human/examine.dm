@@ -63,18 +63,18 @@
 	msg += "</EM>[src.name]</EM>, a </EM>[src.species]</EM>!\n" // Edited this a bit to show species alongside their name.
 
 	//uniform
-	if(w_uniform && !skipjumpsuit)
+	if(wear_uniform && !skipjumpsuit)
 		//Ties
 		var/tie_msg
-		if(istype(w_uniform, /obj/item/clothing/under))
-			var/obj/item/clothing/under/U = w_uniform
+		if(istype(wear_uniform, /obj/item/clothing/under))
+			var/obj/item/clothing/under/U = wear_uniform
 			if(U.hastie)
 				tie_msg += " with \icon[U.hastie] \a [U.hastie]"
 
-		if(w_uniform.blood_DNA)
-			msg += "[SPAN_WARNING("[t_He] [t_is] wearing \icon[w_uniform] [w_uniform.gender == PLURAL ? "some" : "a"] blood-stained [w_uniform.name][tie_msg]!")]\n"
+		if(wear_uniform.blood_DNA)
+			msg += "[SPAN_WARNING("[t_He] [t_is] wearing \icon[wear_uniform] [wear_uniform.gender == PLURAL ? "some" : "a"] blood-stained [wear_uniform.name][tie_msg]!")]\n"
 		else
-			msg += "[t_He] [t_is] wearing \icon[w_uniform] \a [w_uniform][tie_msg].\n"
+			msg += "[t_He] [t_is] wearing \icon[wear_uniform] \a [wear_uniform][tie_msg].\n"
 
 	//head
 	if(head)
@@ -91,11 +91,11 @@
 			msg += "[t_He] [t_is] wearing \icon[wear_suit] \a [wear_suit].\n"
 
 		//suit/armour storage
-		if(s_store && !skipsuitstorage)
-			if(s_store.blood_DNA)
-				msg += "[SPAN_WARNING("[t_He] [t_is] carrying \icon[s_store] [s_store.gender == PLURAL ? "some" : "a"] blood-stained [s_store.name] on [t_his] [wear_suit.name]!")]\n"
+		if(suit_store && !skipsuitstorage)
+			if(suit_store.blood_DNA)
+				msg += "[SPAN_WARNING("[t_He] [t_is] carrying \icon[suit_store] [suit_store.gender == PLURAL ? "some" : "a"] blood-stained [suit_store.name] on [t_his] [wear_suit.name]!")]\n"
 			else
-				msg += "[t_He] [t_is] carrying \icon[s_store] \a [s_store] on [t_his] [wear_suit.name].\n"
+				msg += "[t_He] [t_is] carrying \icon[suit_store] \a [suit_store] on [t_his] [wear_suit.name].\n"
 
 	//back
 	if(back)
@@ -173,18 +173,18 @@
 		msg += "[t_He] [t_has] \icon[r_ear] \a [r_ear] on [t_his] right ear.\n"
 
 	//ID
-	if(wear_id)
+	if(id_store)
 		/*var/id
-		if(istype(wear_id, /obj/item/pda))
-			var/obj/item/pda/pda = wear_id
+		if(istype(id_store, /obj/item/pda))
+			var/obj/item/pda/pda = id_store
 			id = pda.owner
-		else if(istype(wear_id, /obj/item/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
-			var/obj/item/card/id/idcard = wear_id
+		else if(istype(id_store, /obj/item/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
+			var/obj/item/card/id/idcard = id_store
 			id = idcard.registered_name
 		if(id && (id != real_name) && in_range(src, usr) && prob(10))
-			msg += "<span class='warning'>[t_He] [t_is] wearing \icon[wear_id] \a [wear_id] yet something doesn't seem right...</span>\n"
+			msg += "<span class='warning'>[t_He] [t_is] wearing \icon[id_store] \a [id_store] yet something doesn't seem right...</span>\n"
 		else*/
-		msg += "[t_He] [t_is] wearing \icon[wear_id] \a [wear_id].\n"
+		msg += "[t_He] [t_is] wearing \icon[id_store] \a [id_store].\n"
 
 	//Jitters
 	if(is_jittery)
@@ -345,11 +345,11 @@
 		msg += wound_flavor_text["head"]
 	else if(is_bleeding["head"])
 		msg += "[SPAN_WARNING("[src] has blood running down [t_his] face!")]\n"
-	if(wound_flavor_text["chest"] && !w_uniform && !skipjumpsuit) //No need.  A missing chest gibs you.
+	if(wound_flavor_text["chest"] && !wear_uniform && !skipjumpsuit) //No need.  A missing chest gibs you.
 		msg += wound_flavor_text["chest"]
 	else if(is_bleeding["chest"])
 		display_chest = 1
-	if(wound_flavor_text["left arm"] && (is_destroyed["left arm"] || (!w_uniform && !skipjumpsuit)))
+	if(wound_flavor_text["left arm"] && (is_destroyed["left arm"] || (!wear_uniform && !skipjumpsuit)))
 		msg += wound_flavor_text["left arm"]
 	else if(is_bleeding["left arm"])
 		display_chest = 1
@@ -357,7 +357,7 @@
 		msg += wound_flavor_text["left hand"]
 	else if(is_bleeding["left hand"])
 		display_gloves = 1
-	if(wound_flavor_text["right arm"] && (is_destroyed["right arm"] || (!w_uniform && !skipjumpsuit)))
+	if(wound_flavor_text["right arm"] && (is_destroyed["right arm"] || (!wear_uniform && !skipjumpsuit)))
 		msg += wound_flavor_text["right arm"]
 	else if(is_bleeding["right arm"])
 		display_chest = 1
@@ -365,11 +365,11 @@
 		msg += wound_flavor_text["right hand"]
 	else if(is_bleeding["right hand"])
 		display_gloves = 1
-	if(wound_flavor_text["groin"] && (is_destroyed["groin"] || (!w_uniform && !skipjumpsuit)))
+	if(wound_flavor_text["groin"] && (is_destroyed["groin"] || (!wear_uniform && !skipjumpsuit)))
 		msg += wound_flavor_text["groin"]
 	else if(is_bleeding["groin"])
 		display_chest = 1
-	if(wound_flavor_text["left leg"] && (is_destroyed["left leg"] || (!w_uniform && !skipjumpsuit)))
+	if(wound_flavor_text["left leg"] && (is_destroyed["left leg"] || (!wear_uniform && !skipjumpsuit)))
 		msg += wound_flavor_text["left leg"]
 	else if(is_bleeding["left leg"])
 		display_chest = 1
@@ -377,7 +377,7 @@
 		msg += wound_flavor_text["left foot"]
 	else if(is_bleeding["left foot"])
 		display_shoes = 1
-	if(wound_flavor_text["right leg"] && (is_destroyed["right leg"] || (!w_uniform && !skipjumpsuit)))
+	if(wound_flavor_text["right leg"] && (is_destroyed["right leg"] || (!wear_uniform && !skipjumpsuit)))
 		msg += wound_flavor_text["right leg"]
 	else if(is_bleeding["right leg"])
 		display_chest = 1
@@ -402,8 +402,8 @@
 		var/perpname = "wot"
 		var/criminal = "None"
 
-		if(isnotnull(wear_id))
-			var/obj/item/card/id/I = wear_id.get_id()
+		if(isnotnull(id_store))
+			var/obj/item/card/id/I = id_store.get_id()
 			perpname = isnotnull(I) ? I.registered_name : name
 		else
 			perpname = name
@@ -422,11 +422,11 @@
 		var/perpname = "wot"
 		var/medical = "None"
 
-		if(wear_id)
-			if(istype(wear_id,/obj/item/card/id))
-				perpname = wear_id:registered_name
-			else if(istype(wear_id,/obj/item/pda))
-				var/obj/item/pda/tempPda = wear_id
+		if(id_store)
+			if(istype(id_store,/obj/item/card/id))
+				perpname = id_store:registered_name
+			else if(istype(id_store,/obj/item/pda))
+				var/obj/item/pda/tempPda = id_store
 				perpname = tempPda.owner
 		else
 			perpname = src.name

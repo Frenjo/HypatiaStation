@@ -614,7 +614,7 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 	if(emagged == 2)
 		return 10 //Everyone is a criminal!
 
-	if(idcheck || isnull(perp.wear_id) || istype(perp.wear_id.get_id(), /obj/item/card/id/syndicate))
+	if(idcheck || isnull(perp.id_store) || istype(perp.id_store.get_id(), /obj/item/card/id/syndicate))
 		if((istype(perp.l_hand, /obj/item/gun) && !istype(perp.l_hand, /obj/item/gun/projectile/shotgun)) || istype(perp.l_hand, /obj/item/melee/baton))
 			if(!istype(perp.l_hand, /obj/item/gun/energy/laser/tag/blue) \
 			&& !istype(perp.l_hand, /obj/item/gun/energy/laser/tag/red) \
@@ -640,7 +640,7 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 			threatcount += 2
 
 //Agent cards lower threatlevel when normal idchecking is off.
-		if(istype(perp.wear_id?.get_id(), /obj/item/card/id/syndicate) && idcheck)
+		if(istype(perp.id_store?.get_id(), /obj/item/card/id/syndicate) && idcheck)
 			threatcount -= 2
 
 	if(lasercolor == "b")//Lasertag turrets target the opposing team, how great is that? -Sieve
@@ -664,8 +664,8 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 	if(check_records)
 		for_no_type_check(var/datum/data/record/E, GLOBL.data_core.general)
 			var/perpname = perp.name
-			if(isnotnull(perp.wear_id))
-				var/obj/item/card/id/id = perp.wear_id.get_id()
+			if(isnotnull(perp.id_store))
+				var/obj/item/card/id/id = perp.id_store.get_id()
 				if(isnotnull(id))
 					perpname = id.registered_name
 

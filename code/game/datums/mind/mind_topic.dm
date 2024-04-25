@@ -325,8 +325,8 @@
 
 					var/list/slots = list (
 						"backpack" = SLOT_ID_IN_BACKPACK,
-						"left pocket" = SLOT_ID_L_STORE,
-						"right pocket" = SLOT_ID_R_STORE,
+						"left pocket" = SLOT_ID_L_POCKET,
+						"right pocket" = SLOT_ID_R_POCKET,
 						"left hand" = SLOT_ID_L_HAND,
 						"right hand" = SLOT_ID_R_HAND,
 					)
@@ -444,9 +444,9 @@
 				qdel(H.gloves)
 				qdel(H.head)
 				qdel(H.shoes)
-				qdel(H.wear_id)
+				qdel(H.id_store)
 				qdel(H.wear_suit)
-				qdel(H.w_uniform)
+				qdel(H.wear_uniform)
 
 				if(!global.PCticker.mode.equip_syndicate(current))
 					to_chat(usr, SPAN_WARNING("Equipping a syndicate failed!"))

@@ -183,7 +183,7 @@
 				if(status == "")
 					status = "OK"
 				show_message("\t [status == "OK" ? "\blue " : "\red "]My [org.display_name] is [status].", 1)
-			if((SKELETON in H.mutations) && !H.w_uniform && !H.wear_suit)
+			if((SKELETON in H.mutations) && !H.wear_uniform && !H.wear_suit)
 				H.play_xylophone()
 		else
 			var/t_him = "it"
@@ -193,7 +193,7 @@
 				t_him = "her"
 			if(ishuman(src))
 				var/mob/living/carbon/human/H = src
-				H.w_uniform?.add_fingerprint(M)
+				H.wear_uniform?.add_fingerprint(M)
 			sleeping = max(0, src.sleeping - 5)
 			if(!sleeping)
 				resting = 0

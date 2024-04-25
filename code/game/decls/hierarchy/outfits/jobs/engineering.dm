@@ -4,7 +4,7 @@
 /decl/hierarchy/outfit/job/engineering
 	belt = /obj/item/storage/belt/utility/full
 
-	pda_slot = SLOT_ID_L_STORE
+	pda_slot = SLOT_ID_L_POCKET
 
 	l_ear = /obj/item/radio/headset/engi
 

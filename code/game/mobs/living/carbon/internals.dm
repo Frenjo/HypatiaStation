@@ -21,7 +21,7 @@
 				var/mob/living/carbon/human/H = C
 				breathes = H.species.breath_type
 				slot_names = list("suit", "back", "belt", "right hand", "left hand", "left pocket", "right pocket")
-				slots_to_check = list(H.s_store, C.back, H.belt, C.r_hand, C.l_hand, H.l_store, H.r_store)
+				slots_to_check = list(H.suit_store, C.back, H.belt, C.r_hand, C.l_hand, H.l_pocket, H.r_pocket)
 			else
 				slot_names = list("Right Hand", "Left Hand", "Back")
 				slots_to_check = list(C.r_hand, C.l_hand, C.back)

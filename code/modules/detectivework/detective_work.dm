@@ -20,8 +20,8 @@
 			//world.log << "Added fibertext: [fibertext]"
 			suit_fibers += fibertext
 		if(!(M.wear_suit.body_parts_covered & 32))
-			if(M.w_uniform)
-				fibertext = "Fibers from \a [M.w_uniform]."
+			if(M.wear_uniform)
+				fibertext = "Fibers from \a [M.wear_uniform]."
 				if(prob(12 * item_multiplier) && !(fibertext in suit_fibers)) //Wearing a suit means less of the uniform exposed.
 					//world.log << "Added fibertext: [fibertext]"
 					suit_fibers += fibertext
@@ -31,8 +31,8 @@
 				if(prob(20 * item_multiplier) && !(fibertext in suit_fibers))
 					//world.log << "Added fibertext: [fibertext]"
 					suit_fibers += fibertext
-	else if(M.w_uniform)
-		fibertext = "Fibers from \a [M.w_uniform]."
+	else if(M.wear_uniform)
+		fibertext = "Fibers from \a [M.wear_uniform]."
 		if(prob(15 * item_multiplier) && !(fibertext in suit_fibers))
 			// "Added fibertext: [fibertext]"
 			suit_fibers += fibertext

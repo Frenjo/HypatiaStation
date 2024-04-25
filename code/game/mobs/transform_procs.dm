@@ -2,7 +2,7 @@
 	if(monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		if(W == w_uniform) // will be torn
+		if(W == wear_uniform) // will be torn
 			continue
 		drop_from_inventory(W)
 	regenerate_icons()

@@ -30,8 +30,8 @@
 			spawn()
 				if(M.client)
 					M << "You are in the Red Team!"
-					qdel(M.w_uniform)
-					M.equip_to_slot_if_possible(new /obj/item/clothing/under/color/red(M), SLOT_ID_W_UNIFORM, FALSE, TRUE)
+					qdel(M.wear_uniform)
+					M.equip_to_slot_if_possible(new /obj/item/clothing/under/color/red(M), SLOT_ID_WEAR_UNIFORM, FALSE, TRUE)
 					qdel(M.wear_suit)
 					M.equip_to_slot_if_possible(new /obj/item/clothing/suit/armor/tdome/red(M), SLOT_ID_WEAR_SUIT, FALSE, TRUE)
 					qdel(M.shoes)
@@ -50,7 +50,7 @@
 					M.equip_to_slot_if_possible(new /obj/item/tank/air(M), SLOT_ID_BACK, FALSE, TRUE)
 					M.ui_toggle_internals()
 
-					qdel(M.wear_id)
+					qdel(M.id_store)
 					var/obj/item/card/id/W = new /obj/item/card/id(M)
 					W.name = "[M.real_name]'s ID card (Red Team)"
 					W.access = access_red
@@ -66,8 +66,8 @@
 			spawn()
 				if(M.client)
 					M << "You are in the Green Team!"
-					qdel(M.w_uniform)
-					M.equip_to_slot_if_possible(new /obj/item/clothing/under/color/green(M), SLOT_ID_W_UNIFORM, FALSE, TRUE)
+					qdel(M.wear_uniform)
+					M.equip_to_slot_if_possible(new /obj/item/clothing/under/color/green(M), SLOT_ID_WEAR_UNIFORM, FALSE, TRUE)
 					qdel(M.wear_suit)
 					M.equip_to_slot_if_possible(new /obj/item/clothing/suit/armor/tdome/green(M), SLOT_ID_WEAR_SUIT, FALSE, TRUE)
 					qdel(M.shoes)
@@ -86,7 +86,7 @@
 					M.equip_to_slot_if_possible(new /obj/item/tank/air(M), SLOT_ID_BACK, FALSE, TRUE)
 					M.ui_toggle_internals()
 
-					qdel(M.wear_id)
+					qdel(M.id_store)
 					var/obj/item/card/id/W = new /obj/item/card/id(M)
 					W.name = "[M.real_name]'s ID card (Green Team)"
 					W.access = access_red

@@ -207,7 +207,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/anti_revolution/demote/check_completion()
 	if(isnotnull(target?.current) && ishuman(target))
-		var/obj/item/card/id/I = target.current:wear_id
+		var/obj/item/card/id/I = target.current:id_store
 		if(istype(I, /obj/item/pda))
 			var/obj/item/pda/P = I
 			I = P.id

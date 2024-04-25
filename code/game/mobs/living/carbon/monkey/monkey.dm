@@ -11,7 +11,7 @@
 	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = MONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
 
-	var/obj/item/card/id/wear_id = null	// Fix for station bounced radios -- Skie
+	var/obj/item/card/id/id_store = null	// Fix for station bounced radios -- Skie
 	var/greaterform = SPECIES_HUMAN				// Used when humanizing a monkey.
 	icon_state = "monkey1"
 	//var/uni_append = "12C4E2"					// Small appearance modifier for different species.
@@ -352,7 +352,7 @@
 /mob/living/carbon/monkey/var/temperature_resistance = T0C + 75
 
 /mob/living/carbon/monkey/emp_act(severity)
-	if(wear_id) wear_id.emp_act(severity)
+	if(id_store) id_store.emp_act(severity)
 	..()
 
 /mob/living/carbon/monkey/ex_act(severity)

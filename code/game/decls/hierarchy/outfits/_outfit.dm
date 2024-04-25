@@ -86,7 +86,7 @@ if(isnotnull(VAR)) \
 	pre_equip(user)
 
 	// Starts with extra storage.
-	EQUIP_OUTFIT_ITEM(uniform, SLOT_ID_W_UNIFORM)
+	EQUIP_OUTFIT_ITEM(uniform, SLOT_ID_WEAR_UNIFORM)
 	EQUIP_OUTFIT_ITEM(suit, SLOT_ID_WEAR_SUIT)
 	EQUIP_OUTFIT_ITEM(back, SLOT_ID_BACK)
 	EQUIP_OUTFIT_ITEM(belt, SLOT_ID_BELT)
@@ -103,10 +103,10 @@ if(isnotnull(VAR)) \
 	EQUIP_OUTFIT_ITEM(r_ear, SLOT_ID_R_EAR)
 
 	// Then the misc storage.
-	EQUIP_OUTFIT_ITEM(suit_store, SLOT_ID_S_STORE)
-	EQUIP_OUTFIT_ITEM(id, SLOT_ID_WEAR_ID)
-	EQUIP_OUTFIT_ITEM(l_pocket, SLOT_ID_L_STORE)
-	EQUIP_OUTFIT_ITEM(r_pocket, SLOT_ID_R_STORE)
+	EQUIP_OUTFIT_ITEM(suit_store, SLOT_ID_SUIT_STORE)
+	EQUIP_OUTFIT_ITEM(id, SLOT_ID_ID_STORE)
+	EQUIP_OUTFIT_ITEM(l_pocket, SLOT_ID_L_POCKET)
+	EQUIP_OUTFIT_ITEM(r_pocket, SLOT_ID_R_POCKET)
 
 	// Then the hands.
 	if(isnotnull(l_hand))

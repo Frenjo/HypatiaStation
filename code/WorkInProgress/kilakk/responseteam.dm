@@ -215,7 +215,7 @@ var/global/admin_emergency_team = 0 // Used for admin-spawned response teams
 	equip_to_slot_or_del(new /obj/item/radio/headset/ert(src), slot_ears)
 
 	// Uniform
-	equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(src), SLOT_ID_W_UNIFORM)
+	equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(src), SLOT_ID_WEAR_UNIFORM)
 	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), SLOT_ID_SHOES)
 	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), SLOT_ID_GLOVES)
 	equip_to_slot_or_del(new /obj/item/gun/energy/gun(src), SLOT_ID_BELT)

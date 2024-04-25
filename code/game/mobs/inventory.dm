@@ -220,11 +220,11 @@
 	ADD_IF_SLOT_EXISTS(gloves)
 	ADD_IF_SLOT_EXISTS(head)
 	ADD_IF_SLOT_EXISTS(shoes)
-	ADD_IF_SLOT_EXISTS(wear_id)
+	ADD_IF_SLOT_EXISTS(id_store)
 	ADD_IF_SLOT_EXISTS(wear_mask)
 	ADD_IF_SLOT_EXISTS(wear_suit)
 	//ADD_IF_SLOT_EXISTS(w_radio) commenting this out since headsets go on your ears now PLEASE DON'T BE MAD KEELIN
-	ADD_IF_SLOT_EXISTS(w_uniform)
+	ADD_IF_SLOT_EXISTS(wear_uniform)
 
 	//ADD_IF_SLOT_EXISTS(l_hand)
 	//ADD_IF_SLOT_EXISTS(r_hand)
@@ -252,12 +252,12 @@ if(isnull(SLOT)) \
 		if(SLOT_ID_R_HAND)
 			EQUIP_IF_POSSIBLE(r_hand)
 		if(SLOT_ID_BELT)
-			if(isnull(belt) && isnotnull(w_uniform))
+			if(isnull(belt) && isnotnull(wear_uniform))
 				belt = W
 				equipped = 1
-		if(SLOT_ID_WEAR_ID)
-			if(isnull(wear_id) && isnotnull(w_uniform))
-				wear_id = W
+		if(SLOT_ID_ID_STORE)
+			if(isnull(id_store) && isnotnull(wear_uniform))
+				id_store = W
 				equipped = 1
 		if(SLOT_ID_L_EAR)
 			EQUIP_IF_POSSIBLE(l_ear)
@@ -273,19 +273,19 @@ if(isnull(SLOT)) \
 			EQUIP_IF_POSSIBLE(shoes)
 		if(SLOT_ID_WEAR_SUIT)
 			EQUIP_IF_POSSIBLE(wear_suit)
-		if(SLOT_ID_W_UNIFORM)
-			EQUIP_IF_POSSIBLE(w_uniform)
-		if(SLOT_ID_L_STORE)
-			if(isnull(l_store) && isnotnull(w_uniform))
-				l_store = W
+		if(SLOT_ID_WEAR_UNIFORM)
+			EQUIP_IF_POSSIBLE(wear_uniform)
+		if(SLOT_ID_L_POCKET)
+			if(isnull(l_pocket) && isnotnull(wear_uniform))
+				l_pocket = W
 				equipped = TRUE
-		if(SLOT_ID_R_STORE)
-			if(isnull(r_store) && isnotnull(w_uniform))
-				r_store = W
+		if(SLOT_ID_R_POCKET)
+			if(isnull(r_pocket) && isnotnull(wear_uniform))
+				r_pocket = W
 				equipped = TRUE
-		if(SLOT_ID_S_STORE)
-			if(isnull(s_store) && isnotnull(wear_suit))
-				s_store = W
+		if(SLOT_ID_SUIT_STORE)
+			if(isnull(suit_store) && isnotnull(wear_suit))
+				suit_store = W
 				equipped = TRUE
 		if(SLOT_ID_IN_BACKPACK)
 			if(isnotnull(back) && istype(back, /obj/item/storage/backpack))

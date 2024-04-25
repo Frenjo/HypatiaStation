@@ -36,7 +36,7 @@
 		M.loc = pick(GLOBL.prisonwarp)
 		if(ishuman(M))
 			var/mob/living/carbon/human/prisoner = M
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), SLOT_ID_W_UNIFORM)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), SLOT_ID_WEAR_UNIFORM)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), SLOT_ID_SHOES)
 		spawn(50)
 			M << "\red You have been sent to the prison station!"
@@ -446,7 +446,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			call(/datum/game_mode/proc/equip_syndicate)(new_character)
 		if("Ninja")
 			new_character.equip_space_ninja()
-			new_character.internal = new_character.s_store
+			new_character.internal = new_character.suit_store
 			new_character.internals.icon_state = "internal1"
 			if(!length(GLOBL.ninjastart))
 				new_character << "<B>\red A proper starting location for you could not be found, please report this bug!</B>"
@@ -462,7 +462,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 		if("Death Commando")//Leaves them at late-join spawn.
 			new_character.equip_outfit(/decl/hierarchy/outfit/death_commando/standard)
-			new_character.internal = new_character.s_store
+			new_character.internal = new_character.suit_store
 			new_character.internals.icon_state = "internal1"
 		else//They may also be a cyborg or AI.
 			switch(new_character.mind.assigned_role)

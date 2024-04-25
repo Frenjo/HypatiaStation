@@ -4,11 +4,11 @@
  *	The short version:
  *
  *	Everything is encoded as strings because apparently that's how Byond rolls.
- * 
+ *
  *	"1,1" is the bottom left square of the user's screen. This aligns perfectly with the turf grid.
  *	"1:2,3:4" is the square (1,3) with pixel offsets (+2, +4); slightly right and slightly above the turf grid.
  *	Pixel offsets are used so you don't perfectly hide the turf under them, that would be crappy.
- * 
+ *
  *	The size of the user's screen is defined by client.view (indirectly by world.view), in our case "15x15".
  *	Therefore, the top right corner (except during admin shenanigans) is at "15,15".
  */
@@ -27,7 +27,7 @@
 
 //Lower center, persistant menu
 #define UI_SSTORE1 "3:10,1:5"
-#define UI_ID "4:12,1:5"
+#define UI_ID_STORE "4:12,1:5"
 #define UI_BELT "5:14,1:5"
 #define UI_BACK "6:14,1:5"
 #define UI_RHAND "7:16,1:5"

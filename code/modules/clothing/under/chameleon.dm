@@ -66,7 +66,7 @@
 	icon_state = A.icon_state
 	item_state = A.item_state
 	item_color = A.item_color
-	usr.update_inv_w_uniform()	//so our overlays update.
+	usr.update_inv_wear_uniform()	//so our overlays update.
 
 
 /obj/item/clothing/under/chameleon/all/New()

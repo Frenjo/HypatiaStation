@@ -156,8 +156,8 @@
 //The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
 GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	SLOT_ID_BACK,
-	SLOT_ID_WEAR_ID,
-	SLOT_ID_W_UNIFORM,
+	SLOT_ID_ID_STORE,
+	SLOT_ID_WEAR_UNIFORM,
 	SLOT_ID_WEAR_SUIT,
 	SLOT_ID_WEAR_MASK,
 	SLOT_ID_HEAD,
@@ -167,9 +167,9 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	SLOT_ID_R_EAR,
 	SLOT_ID_GLASSES,
 	SLOT_ID_BELT,
-	SLOT_ID_S_STORE,
-	SLOT_ID_L_STORE,
-	SLOT_ID_R_STORE
+	SLOT_ID_SUIT_STORE,
+	SLOT_ID_L_POCKET,
+	SLOT_ID_R_POCKET
 ))
 
 // Puts the item "W" into an appropriate slot in a human's inventory.

@@ -374,10 +374,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.wear_id)
-			var/obj/item/card/id/id = H.wear_id
-			if(istype(H.wear_id, /obj/item/pda))
-				var/obj/item/pda/pda = H.wear_id
+		if(H.id_store)
+			var/obj/item/card/id/id = H.id_store
+			if(istype(H.id_store, /obj/item/pda))
+				var/obj/item/pda/pda = H.id_store
 				id = pda.id
 			id.icon_state = "gold"
 			id:access = get_all_access()
@@ -388,8 +388,8 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			id.registered_name = H.real_name
 			id.assignment = "Captain"
 			id.name = "[id.registered_name]'s ID Card ([id.assignment])"
-			H.equip_to_slot_or_del(id, SLOT_ID_WEAR_ID)
-			H.update_inv_wear_id()
+			H.equip_to_slot_or_del(id, SLOT_ID_ID_STORE)
+			H.update_inv_id_store()
 	else
 		alert("Invalid mob")
 	feedback_add_details("admin_verb", "GFA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

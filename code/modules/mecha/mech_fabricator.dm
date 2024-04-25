@@ -192,7 +192,7 @@
 		return 1
 	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
+		for(var/ID in list(H.get_active_hand(), H.id_store, H.belt))
 			if(check_access(ID))
 				return 1
 	FEEDBACK_ACCESS_DENIED(M)

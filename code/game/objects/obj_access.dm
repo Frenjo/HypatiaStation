@@ -19,7 +19,7 @@
 	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		//if they are holding or wearing a card that has access, that works
-		if(check_access(H.get_active_hand()) || check_access(H.wear_id))
+		if(check_access(H.get_active_hand()) || check_access(H.id_store))
 			return 1
 	else if(ismonkey(M))
 		var/mob/living/carbon/george = M

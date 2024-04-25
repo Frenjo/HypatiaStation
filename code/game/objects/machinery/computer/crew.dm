@@ -81,7 +81,7 @@
 				crewmemberData["tox"] = round(H.getToxLoss(), 1)
 				crewmemberData["fire"] = round(H.getFireLoss(), 1)
 				crewmemberData["brute"] = round(H.getBruteLoss(), 1)
-				crewmemberData["name"] = (H.wear_id ? H.wear_id.name : "Unknown")
+				crewmemberData["name"] = (H.id_store ? H.id_store.name : "Unknown")
 				crewmemberData["area"] = get_area(H)
 				crewmemberData["x"] = pos.x
 				crewmemberData["y"] = pos.y
@@ -104,8 +104,8 @@
 
 /obj/machinery/computer/crew/proc/scan()
 	for(var/mob/living/carbon/human/H in GLOBL.mob_list)
-		if(istype(H.w_uniform, /obj/item/clothing/under))
-			var/obj/item/clothing/under/C = H.w_uniform
+		if(istype(H.wear_uniform, /obj/item/clothing/under))
+			var/obj/item/clothing/under/C = H.wear_uniform
 			if(C.has_sensor)
 				tracked |= C
 	return 1

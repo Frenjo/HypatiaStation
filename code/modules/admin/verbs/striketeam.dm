@@ -68,7 +68,7 @@ GLOBAL_GLOBL_INIT(sent_strike_team, 0)
 			if(length(commandos))
 				new_commando.key = pick(commandos)
 				commandos -= new_commando.key
-				new_commando.internal = new_commando.s_store
+				new_commando.internal = new_commando.suit_store
 				new_commando.internals.icon_state = "internal1"
 
 			//So they don't forget their code or mission.

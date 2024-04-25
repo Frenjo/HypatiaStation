@@ -147,7 +147,7 @@
 		if(ishuman(victim))
 			var/mob/living/carbon/human/H = victim
 			var/datum/organ/external/select_area = H.get_organ(src.zone_sel.selecting)
-			var/list/clothes = list(H.head, H.wear_mask, H.wear_suit, H.w_uniform, H.gloves, H.shoes)
+			var/list/clothes = list(H.head, H.wear_mask, H.wear_suit, H.wear_uniform, H.gloves, H.shoes)
 			for(var/obj/item/clothing/C in clothes)
 				if(C && istype(C))
 					if(C.body_parts_covered & select_area.body_part)

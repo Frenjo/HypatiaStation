@@ -307,11 +307,11 @@
 	<BR><B>Head:</B> <A href='?src=\ref[src];item=head'>[(head ? head : "Nothing")]</A>
 	<BR><B>Shoes:</B> <A href='?src=\ref[src];item=shoes'>[(shoes ? shoes : "Nothing")]</A>
 	<BR><B>Belt:</B> <A href='?src=\ref[src];item=belt'>[(belt ? belt : "Nothing")]</A>
-	<BR><B>Uniform:</B> <A href='?src=\ref[src];item=uniform'>[(w_uniform ? w_uniform : "Nothing")]</A>
+	<BR><B>Uniform:</B> <A href='?src=\ref[src];item=uniform'>[(wear_uniform ? wear_uniform : "Nothing")]</A>
 	<BR><B>(Exo)Suit:</B> <A href='?src=\ref[src];item=suit'>[(wear_suit ? wear_suit : "Nothing")]</A>
 	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
-	<BR><B>ID:</B> <A href='?src=\ref[src];item=id'>[(wear_id ? wear_id : "Nothing")]</A>
-	<BR><B>Suit Storage:</B> <A href='?src=\ref[src];item=s_store'>[(s_store ? s_store : "Nothing")]</A>
+	<BR><B>ID:</B> <A href='?src=\ref[src];item=id'>[(id_store ? id_store : "Nothing")]</A>
+	<BR><B>Suit Storage:</B> <A href='?src=\ref[src];item=suit_store'>[(suit_store ? suit_store : "Nothing")]</A>
 	<BR>[(handcuffed ? text("<A href='?src=\ref[src];item=handcuff'>Handcuffed</A>") : text("<A href='?src=\ref[src];item=handcuff'>Not Handcuffed</A>"))]
 	<BR>[(legcuffed ? text("<A href='?src=\ref[src];item=legcuff'>Legcuffed</A>") : text(""))]
 	<BR>[(internal ? text("<A href='?src=\ref[src];item=internal'>Remove Internal</A>") : "")]
@@ -334,8 +334,8 @@
 //gets assignment from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_assignment(if_no_id = "No id", if_no_job = "No job")
-	var/obj/item/pda/pda = wear_id
-	var/obj/item/card/id/id = wear_id
+	var/obj/item/pda/pda = id_store
+	var/obj/item/card/id/id = id_store
 	if(istype(pda))
 		if(pda.id && istype(pda.id, /obj/item/card/id))
 			. = pda.id.assignment
@@ -352,8 +352,8 @@
 //gets name from ID or ID inside PDA or PDA itself
 //Useful when player do something with computers
 /mob/living/carbon/human/proc/get_authentification_name(if_no_id = "Unknown")
-	var/obj/item/pda/pda = wear_id
-	var/obj/item/card/id/id = wear_id
+	var/obj/item/pda/pda = id_store
+	var/obj/item/card/id/id = id_store
 	if(istype(pda))
 		if(pda.id)
 			. = pda.id.registered_name
@@ -388,18 +388,18 @@
 //Useful when player is being seen by other mobs
 /mob/living/carbon/human/proc/get_id_name(if_no_id = "Unknown")
 	. = if_no_id
-	if(istype(wear_id, /obj/item/pda))
-		var/obj/item/pda/P = wear_id
+	if(istype(id_store, /obj/item/pda))
+		var/obj/item/pda/P = id_store
 		return P.owner
-	if(isnotnull(wear_id))
-		var/obj/item/card/id/I = wear_id.get_id()
+	if(isnotnull(id_store))
+		var/obj/item/card/id/I = id_store.get_id()
 		if(isnotnull(I))
 			return I.registered_name
 
 //gets ID card object from special clothes slot or null.
 /mob/living/carbon/human/proc/get_idcard()
-	if(isnotnull(wear_id))
-		return wear_id.get_id()
+	if(isnotnull(id_store))
+		return id_store.get_id()
 
 //Added a safety check in case you want to shock a human mob directly through electrocute_act.
 /mob/living/carbon/human/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, safety = 0)
@@ -437,8 +437,8 @@
 		if(hasHUD(usr, "security"))
 			var/modified = 0
 			var/perpname = "wot"
-			if(isnotnull(wear_id))
-				var/obj/item/card/id/I = wear_id.get_id()
+			if(isnotnull(id_store))
+				var/obj/item/card/id/I = id_store.get_id()
 				perpname = isnotnull(I) ? I.registered_name : name
 			else
 				perpname = name
@@ -473,11 +473,11 @@
 			var/perpname = "wot"
 			var/read = 0
 
-			if(wear_id)
-				if(istype(wear_id, /obj/item/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id, /obj/item/pda))
-					var/obj/item/pda/tempPda = wear_id
+			if(id_store)
+				if(istype(id_store, /obj/item/card/id))
+					perpname = id_store:registered_name
+				else if(istype(id_store, /obj/item/pda))
+					var/obj/item/pda/tempPda = id_store
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -503,11 +503,11 @@
 			var/perpname = "wot"
 			var/read = 0
 
-			if(wear_id)
-				if(istype(wear_id, /obj/item/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id, /obj/item/pda))
-					var/obj/item/pda/tempPda = wear_id
+			if(id_store)
+				if(istype(id_store, /obj/item/card/id))
+					perpname = id_store:registered_name
+				else if(istype(id_store, /obj/item/pda))
+					var/obj/item/pda/tempPda = id_store
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -531,11 +531,11 @@
 	if(href_list["secrecordadd"])
 		if(hasHUD(usr, "security"))
 			var/perpname = "wot"
-			if(wear_id)
-				if(istype(wear_id, /obj/item/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id, /obj/item/pda))
-					var/obj/item/pda/tempPda = wear_id
+			if(id_store)
+				if(istype(id_store, /obj/item/card/id))
+					perpname = id_store:registered_name
+				else if(istype(id_store, /obj/item/pda))
+					var/obj/item/pda/tempPda = id_store
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -562,11 +562,11 @@
 			var/perpname = "wot"
 			var/modified = 0
 
-			if(wear_id)
-				if(istype(wear_id,/obj/item/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/pda))
-					var/obj/item/pda/tempPda = wear_id
+			if(id_store)
+				if(istype(id_store,/obj/item/card/id))
+					perpname = id_store:registered_name
+				else if(istype(id_store,/obj/item/pda))
+					var/obj/item/pda/tempPda = id_store
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -601,11 +601,11 @@
 			var/perpname = "wot"
 			var/read = 0
 
-			if(wear_id)
-				if(istype(wear_id,/obj/item/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/pda))
-					var/obj/item/pda/tempPda = wear_id
+			if(id_store)
+				if(istype(id_store,/obj/item/card/id))
+					perpname = id_store:registered_name
+				else if(istype(id_store,/obj/item/pda))
+					var/obj/item/pda/tempPda = id_store
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -632,11 +632,11 @@
 			var/perpname = "wot"
 			var/read = 0
 
-			if(wear_id)
-				if(istype(wear_id,/obj/item/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/pda))
-					var/obj/item/pda/tempPda = wear_id
+			if(id_store)
+				if(istype(id_store,/obj/item/card/id))
+					perpname = id_store:registered_name
+				else if(istype(id_store,/obj/item/pda))
+					var/obj/item/pda/tempPda = id_store
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -660,11 +660,11 @@
 	if(href_list["medrecordadd"])
 		if(hasHUD(usr, "medical"))
 			var/perpname = "wot"
-			if(wear_id)
-				if(istype(wear_id,/obj/item/card/id))
-					perpname = wear_id:registered_name
-				else if(istype(wear_id,/obj/item/pda))
-					var/obj/item/pda/tempPda = wear_id
+			if(id_store)
+				if(istype(id_store,/obj/item/card/id))
+					perpname = id_store:registered_name
+				else if(istype(id_store,/obj/item/pda))
+					var/obj/item/pda/tempPda = id_store
 					perpname = tempPda.owner
 			else
 				perpname = src.name
@@ -734,7 +734,7 @@
 
 
 /mob/living/carbon/human/abiotic(full_body = 0)
-	if(full_body && ((src.l_hand && !src.l_hand.abstract) || (src.r_hand && !src.r_hand.abstract) || (src.back || src.wear_mask || src.head || src.shoes || src.w_uniform || src.wear_suit || src.glasses || src.l_ear || src.r_ear || src.gloves)))
+	if(full_body && ((src.l_hand && !src.l_hand.abstract) || (src.r_hand && !src.r_hand.abstract) || (src.back || src.wear_mask || src.head || src.shoes || src.wear_uniform || src.wear_suit || src.glasses || src.l_ear || src.r_ear || src.gloves)))
 		return 1
 
 	if((src.l_hand && !src.l_hand.abstract) || (src.r_hand && !src.r_hand.abstract))

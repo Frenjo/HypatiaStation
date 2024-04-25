@@ -901,15 +901,15 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 /obj/machinery/newscaster/proc/scan_user(mob/living/user as mob)
 	if(ishuman(user))						//User is a human
 		var/mob/living/carbon/human/human_user = user
-		if(human_user.wear_id)										//Newscaster scans you
-			if(istype(human_user.wear_id, /obj/item/pda))	//autorecognition, woo!
-				var/obj/item/pda/P = human_user.wear_id
+		if(human_user.id_store)										//Newscaster scans you
+			if(istype(human_user.id_store, /obj/item/pda))	//autorecognition, woo!
+				var/obj/item/pda/P = human_user.id_store
 				if(P.id)
 					src.scanned_user = "[P.id.registered_name] ([P.id.assignment])"
 				else
 					src.scanned_user = "Unknown"
-			else if(istype(human_user.wear_id, /obj/item/card/id))
-				var/obj/item/card/id/ID = human_user.wear_id
+			else if(istype(human_user.id_store, /obj/item/card/id))
+				var/obj/item/card/id/ID = human_user.id_store
 				src.scanned_user ="[ID.registered_name] ([ID.assignment])"
 			else
 				src.scanned_user ="Unknown"

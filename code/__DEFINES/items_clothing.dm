@@ -5,28 +5,36 @@
 //Object specific defines
 #define CANDLE_LUM 3 //For how bright candles are
 
-// Slot ID defines.
-#define SLOT_ID_BACK		1
-#define SLOT_ID_WEAR_MASK	2
-#define SLOT_ID_HANDCUFFED	3
-#define SLOT_ID_L_HAND		4
-#define SLOT_ID_R_HAND		5
-#define SLOT_ID_BELT		6
-#define SLOT_ID_WEAR_ID		7
-#define SLOT_ID_L_EAR		8
-#define SLOT_ID_GLASSES		9
-#define SLOT_ID_GLOVES		10
-#define SLOT_ID_HEAD		11
-#define SLOT_ID_SHOES		12
+/*
+ * Slot ID defines
+ */
+// Common
+#define SLOT_ID_L_HAND		1
+#define SLOT_ID_R_HAND		2
+#define SLOT_ID_BACK		3
+#define SLOT_ID_WEAR_MASK	4
+// Head
+#define SLOT_ID_HEAD	5
+#define SLOT_ID_GLASSES 6
+#define SLOT_ID_L_EAR	7
+#define SLOT_ID_R_EAR	8
+// Uniform
+#define SLOT_ID_WEAR_UNIFORM	9
+#define SLOT_ID_ID_STORE		10
+#define SLOT_ID_L_POCKET		11
+#define SLOT_ID_R_POCKET		12
+// Suit
 #define SLOT_ID_WEAR_SUIT	13
-#define SLOT_ID_W_UNIFORM	14
-#define SLOT_ID_L_STORE		15
-#define SLOT_ID_R_STORE		16
-#define SLOT_ID_S_STORE		17
+#define SLOT_ID_SUIT_STORE	14
+// Other
+#define SLOT_ID_GLOVES		15
+#define SLOT_ID_BELT		16
+#define SLOT_ID_SHOES		17
+// Special
 #define SLOT_ID_IN_BACKPACK	18
-#define SLOT_ID_LEGCUFFED	19
-#define SLOT_ID_R_EAR		20
-#define SLOT_ID_LEGS		21
+#define SLOT_ID_HANDCUFFED	19
+#define SLOT_ID_LEGS		20
+#define SLOT_ID_LEGCUFFED	21
 
 //Cant seem to find a mob bitflags area other than the powers one
 

@@ -32,12 +32,12 @@
 				continue
 			qdel(I)
 
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(H), SLOT_ID_W_UNIFORM)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(H), SLOT_ID_WEAR_UNIFORM)
 		H.equip_to_slot_or_del(new /obj/item/radio/headset/heads/captain(H), SLOT_ID_L_EAR)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret(H), SLOT_ID_HEAD)
 		H.equip_to_slot_or_del(new /obj/item/claymore(H), SLOT_ID_L_HAND)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(H), SLOT_ID_SHOES)
-		H.equip_to_slot_or_del(new /obj/item/pinpointer(H.loc), SLOT_ID_L_STORE)
+		H.equip_to_slot_or_del(new /obj/item/pinpointer(H.loc), SLOT_ID_L_POCKET)
 
 		var/obj/item/card/id/W = new(H)
 		W.name = "[H.real_name]'s ID Card"
@@ -46,7 +46,7 @@
 		W.access += get_all_centcom_access()
 		W.assignment = "Highlander"
 		W.registered_name = H.real_name
-		H.equip_to_slot_or_del(W, SLOT_ID_WEAR_ID)
+		H.equip_to_slot_or_del(W, SLOT_ID_ID_STORE)
 
 	message_admins("\blue [key_name_admin(usr)] used THERE CAN BE ONLY ONE!", 1)
 	log_admin("[key_name(usr)] used there can be only one.")

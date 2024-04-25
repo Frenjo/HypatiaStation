@@ -46,7 +46,7 @@
 			return has_organ("r_hand")
 		if(SLOT_ID_BELT)
 			return has_organ("chest")
-		if(SLOT_ID_WEAR_ID)
+		if(SLOT_ID_ID_STORE)
 			// the only relevant check for this is the uniform check
 			return 1
 		if(SLOT_ID_L_EAR)
@@ -63,13 +63,13 @@
 			return has_organ("r_foot") && has_organ("l_foot")
 		if(SLOT_ID_WEAR_SUIT)
 			return has_organ("chest")
-		if(SLOT_ID_W_UNIFORM)
+		if(SLOT_ID_WEAR_UNIFORM)
 			return has_organ("chest")
-		if(SLOT_ID_L_STORE)
+		if(SLOT_ID_L_POCKET)
 			return has_organ("chest")
-		if(SLOT_ID_R_STORE)
+		if(SLOT_ID_R_POCKET)
 			return has_organ("chest")
-		if(SLOT_ID_S_STORE)
+		if(SLOT_ID_SUIT_STORE)
 			return has_organ("chest")
 		if(SLOT_ID_IN_BACKPACK)
 			return 1
@@ -81,26 +81,26 @@
 	var/success
 
 	if(W == wear_suit)
-		if(s_store)
-			drop_from_inventory(s_store)
+		if(suit_store)
+			drop_from_inventory(suit_store)
 		if(W)
 			success = 1
 		wear_suit = null
 		if(HAS_INV_FLAGS(W, INV_FLAG_HIDE_SHOES))
 			update_inv_shoes(0)
 		update_inv_wear_suit()
-	else if(W == w_uniform)
-		if(r_store)
-			drop_from_inventory(r_store)
-		if(l_store)
-			drop_from_inventory(l_store)
-		if(wear_id)
-			drop_from_inventory(wear_id)
+	else if(W == wear_uniform)
+		if(r_pocket)
+			drop_from_inventory(r_pocket)
+		if(l_pocket)
+			drop_from_inventory(l_pocket)
+		if(id_store)
+			drop_from_inventory(id_store)
 		if(belt)
 			drop_from_inventory(belt)
-		w_uniform = null
+		wear_uniform = null
 		success = 1
-		update_inv_w_uniform()
+		update_inv_wear_uniform()
 	else if(W == gloves)
 		gloves = null
 		success = 1
@@ -144,22 +144,22 @@
 				internals.icon_state = "internal0"
 			internal = null
 		update_inv_wear_mask()
-	else if(W == wear_id)
-		wear_id = null
+	else if(W == id_store)
+		id_store = null
 		success = 1
-		update_inv_wear_id()
-	else if (W == r_store)
-		r_store = null
-		success = 1
-		update_inv_pockets()
-	else if (W == l_store)
-		l_store = null
+		update_inv_id_store()
+	else if (W == r_pocket)
+		r_pocket = null
 		success = 1
 		update_inv_pockets()
-	else if (W == s_store)
-		s_store = null
+	else if (W == l_pocket)
+		l_pocket = null
 		success = 1
-		update_inv_s_store()
+		update_inv_pockets()
+	else if (W == suit_store)
+		suit_store = null
+		success = 1
+		update_inv_suit_store()
 	else if (W == back)
 		back = null
 		success = 1
@@ -243,10 +243,10 @@
 			src.belt = W
 			W.equipped(src, slot)
 			update_inv_belt(redraw_mob)
-		if(SLOT_ID_WEAR_ID)
-			src.wear_id = W
+		if(SLOT_ID_ID_STORE)
+			src.id_store = W
 			W.equipped(src, slot)
-			update_inv_wear_id(redraw_mob)
+			update_inv_id_store(redraw_mob)
 		if(SLOT_ID_L_EAR)
 			src.l_ear = W
 			if(l_ear.slot_flags & SLOT_TWOEARS)
@@ -293,22 +293,22 @@
 				update_inv_shoes(0)
 			W.equipped(src, slot)
 			update_inv_wear_suit(redraw_mob)
-		if(SLOT_ID_W_UNIFORM)
-			src.w_uniform = W
+		if(SLOT_ID_WEAR_UNIFORM)
+			src.wear_uniform = W
 			W.equipped(src, slot)
-			update_inv_w_uniform(redraw_mob)
-		if(SLOT_ID_L_STORE)
-			src.l_store = W
-			W.equipped(src, slot)
-			update_inv_pockets(redraw_mob)
-		if(SLOT_ID_R_STORE)
-			src.r_store = W
+			update_inv_wear_uniform(redraw_mob)
+		if(SLOT_ID_L_POCKET)
+			src.l_pocket = W
 			W.equipped(src, slot)
 			update_inv_pockets(redraw_mob)
-		if(SLOT_ID_S_STORE)
-			src.s_store = W
+		if(SLOT_ID_R_POCKET)
+			src.r_pocket = W
 			W.equipped(src, slot)
-			update_inv_s_store(redraw_mob)
+			update_inv_pockets(redraw_mob)
+		if(SLOT_ID_SUIT_STORE)
+			src.suit_store = W
+			W.equipped(src, slot)
+			update_inv_suit_store(redraw_mob)
 		if(SLOT_ID_IN_BACKPACK)
 			if(src.get_active_hand() == W)
 				src.u_equip(W)
@@ -368,7 +368,7 @@
 				if(!(target.wear_suit))
 					qdel(src)
 			if("uniform")
-				if(!(target.w_uniform))
+				if(!(target.wear_uniform))
 					qdel(src)
 			if("back")
 				if(!(target.back))
@@ -387,7 +387,7 @@
 				if(!(target.handcuffed))
 					qdel(src)
 			if("id")
-				if((!(target.wear_id) || !(target.w_uniform)))
+				if((!(target.id_store) || !(target.wear_uniform)))
 					qdel(src)
 			if("splints")
 				var/count = 0
@@ -509,24 +509,24 @@
 				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to unlegcuff [target.name]'s ([target.ckey])</font>")
 				message = "\red <B>[source] is trying to unlegcuff [target]!</B>"
 			if("uniform")
-				target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their uniform ([target.w_uniform]) removed by [source.name] ([source.ckey])</font>")
-				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) uniform ([target.w_uniform])</font>")
-				for(var/obj/item/I in list(target.l_store, target.r_store))
+				target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their uniform ([target.wear_uniform]) removed by [source.name] ([source.ckey])</font>")
+				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) uniform ([target.wear_uniform])</font>")
+				for(var/obj/item/I in list(target.l_pocket, target.r_pocket))
 					if(I.on_found(source))
 						return
-				if(target.w_uniform && !target.w_uniform.canremove)
-					message = "\red <B>[source] fails to take off \a [target.w_uniform] from [target]'s body!</B>"
+				if(target.wear_uniform && !target.wear_uniform.canremove)
+					message = "\red <B>[source] fails to take off \a [target.wear_uniform] from [target]'s body!</B>"
 					return
 				else
-					message = "\red <B>[source] is trying to take off \a [target.w_uniform] from [target]'s body!</B>"
-			if("s_store")
-				target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their suit storage item ([target.s_store]) removed by [source.name] ([source.ckey])</font>")
-				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) suit storage item ([target.s_store])</font>")
-				message = "\red <B>[source] is trying to take off \a [target.s_store] from [target]'s suit!</B>"
+					message = "\red <B>[source] is trying to take off \a [target.wear_uniform] from [target]'s body!</B>"
+			if("suit_store")
+				target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their suit storage item ([target.suit_store]) removed by [source.name] ([source.ckey])</font>")
+				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) suit storage item ([target.suit_store])</font>")
+				message = "\red <B>[source] is trying to take off \a [target.suit_store] from [target]'s suit!</B>"
 			if("pockets")
 				target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their pockets emptied by [source.name] ([source.ckey])</font>")
 				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to empty [target.name]'s ([target.ckey]) pockets</font>")
-				for(var/obj/item/I in list(target.l_store, target.r_store))
+				for(var/obj/item/I in list(target.l_pocket, target.r_pocket))
 					if(I.on_found(source))
 						return
 				message = "\red <B>[source] is trying to empty [target]'s pockets.</B>"
@@ -536,9 +536,9 @@
 				target.cpr_time = 0
 				message = "\red <B>[source] is trying perform CPR on [target]!</B>"
 			if("id")
-				target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their ID ([target.wear_id]) removed by [source.name] ([source.ckey])</font>")
-				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) ID ([target.wear_id])</font>")
-				message = "\red <B>[source] is trying to take off [target.wear_id] from [target]'s uniform!</B>"
+				target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their ID ([target.id_store]) removed by [source.name] ([source.ckey])</font>")
+				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) ID ([target.id_store])</font>")
+				message = "\red <B>[source] is trying to take off [target.id_store] from [target]'s uniform!</B>"
 			if("internal")
 				target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has had their internals toggled by [source.name] ([source.ckey])</font>")
 				source.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to toggle [target.name]'s ([target.ckey]) internals</font>")
@@ -595,10 +595,10 @@ It can still be worn/put on as normal.
 			slot_to_process = SLOT_ID_BELT
 			if (target.belt)
 				strip_item = target.belt
-		if("s_store")
-			slot_to_process = SLOT_ID_S_STORE
-			if (target.s_store)
-				strip_item = target.s_store
+		if("suit_store")
+			slot_to_process = SLOT_ID_SUIT_STORE
+			if (target.suit_store)
+				strip_item = target.suit_store
 		if("head")
 			slot_to_process = SLOT_ID_HEAD
 			if (target.head && target.head.canremove)
@@ -628,17 +628,17 @@ It can still be worn/put on as normal.
 			if (target.r_hand)
 				strip_item = target.r_hand
 		if("uniform")
-			slot_to_process = SLOT_ID_W_UNIFORM
-			if(target.w_uniform && target.w_uniform.canremove)
-				strip_item = target.w_uniform
+			slot_to_process = SLOT_ID_WEAR_UNIFORM
+			if(target.wear_uniform && target.wear_uniform.canremove)
+				strip_item = target.wear_uniform
 		if("suit")
 			slot_to_process = SLOT_ID_WEAR_SUIT
 			if (target.wear_suit && target.wear_suit.canremove)
 				strip_item = target.wear_suit
 		if("id")
-			slot_to_process = SLOT_ID_WEAR_ID
-			if (target.wear_id)
-				strip_item = target.wear_id
+			slot_to_process = SLOT_ID_ID_STORE
+			if (target.id_store)
+				strip_item = target.id_store
 		if("back")
 			slot_to_process = SLOT_ID_BACK
 			if (target.back)
@@ -686,8 +686,8 @@ It can still be worn/put on as normal.
 					O.show_message("\red [source] injects [target] with the DNA Injector!", 1)
 				S.inuse = 0
 		if("pockets")
-			slot_to_process = SLOT_ID_L_STORE
-			strip_item = target.l_store		//We'll do both
+			slot_to_process = SLOT_ID_L_POCKET
+			strip_item = target.l_pocket		//We'll do both
 		if("internal")
 			if (target.internal)
 				target.internal.add_fingerprint(source)
@@ -700,8 +700,8 @@ It can still be worn/put on as normal.
 				else
 					if (istype(target.back, /obj/item/tank))
 						target.internal = target.back
-					else if (istype(target.s_store, /obj/item/tank))
-						target.internal = target.s_store
+					else if (istype(target.suit_store, /obj/item/tank))
+						target.internal = target.suit_store
 					else if (istype(target.belt, /obj/item/tank))
 						target.internal = target.belt
 					if (target.internal)
@@ -721,9 +721,9 @@ It can still be worn/put on as normal.
 				W.reset_plane_and_layer()
 				W.dropped(target)
 			W.add_fingerprint(source)
-			if(slot_to_process == SLOT_ID_L_STORE) //pockets! Needs to process the other one too. Snowflake code, wooo! It's not like anyone will rewrite this anytime soon. If I'm wrong then... CONGRATULATIONS! ;)
-				if(target.r_store)
-					target.u_equip(target.r_store) //At this stage l_store is already processed by the code above, we only need to process r_store.
+			if(slot_to_process == SLOT_ID_L_POCKET) //pockets! Needs to process the other one too. Snowflake code, wooo! It's not like anyone will rewrite this anytime soon. If I'm wrong then... CONGRATULATIONS! ;)
+				if(target.r_pocket)
+					target.u_equip(target.r_pocket) //At this stage l_pocket is already processed by the code above, we only need to process r_pocket.
 		else
 			if(item && target.has_organ_for_slot(slot_to_process)) //Placing an item on the mob
 				if(item.mob_can_equip(target, slot_to_process, 0))

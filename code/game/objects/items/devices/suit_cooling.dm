@@ -85,7 +85,7 @@
 
 	var/mob/living/carbon/human/H = M
 
-	if(!H.wear_suit || H.s_store != src)
+	if(!H.wear_suit || H.suit_store != src)
 		return 0
 
 	return 1

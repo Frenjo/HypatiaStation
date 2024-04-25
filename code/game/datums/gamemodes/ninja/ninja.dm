@@ -62,7 +62,7 @@
 		else
 			FEEDBACK_ANTAGONIST_GREETING_GUIDE(ninja.current)
 		var/mob/living/carbon/human/N = ninja.current
-		N.internal = N.s_store
+		N.internal = N.suit_store
 		N.internals.icon_state = "internal1"
 		if(N.wear_suit && istype(N.wear_suit, /obj/item/clothing/suit/space/space_ninja))
 			var/obj/item/clothing/suit/space/space_ninja/S = N.wear_suit

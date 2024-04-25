@@ -237,7 +237,7 @@ GLOBAL_GLOBL(can_call_ert)
 	equip_to_slot_or_del(new /obj/item/radio/headset/ert(src), SLOT_ID_L_EAR)
 
 	//Replaced with new ERT uniform
-	equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(src), SLOT_ID_W_UNIFORM)
+	equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(src), SLOT_ID_WEAR_UNIFORM)
 	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), SLOT_ID_SHOES)
 	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), SLOT_ID_GLOVES)
 	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(src), SLOT_ID_GLASSES)
@@ -246,9 +246,9 @@ GLOBAL_GLOBL(can_call_ert)
 
 	//Old ERT Uniform
 	//Basic Uniform
-	equip_to_slot_or_del(new /obj/item/clothing/under/syndicate/tacticool(src), SLOT_ID_W_UNIFORM)
-	equip_to_slot_or_del(new /obj/item/flashlight(src), SLOT_ID_L_STORE)
-	equip_to_slot_or_del(new /obj/item/clipboard(src), SLOT_ID_R_STORE)
+	equip_to_slot_or_del(new /obj/item/clothing/under/syndicate/tacticool(src), SLOT_ID_WEAR_UNIFORM)
+	equip_to_slot_or_del(new /obj/item/flashlight(src), SLOT_ID_L_POCKET)
+	equip_to_slot_or_del(new /obj/item/clipboard(src), SLOT_ID_R_POCKET)
 	equip_to_slot_or_del(new /obj/item/gun/energy/gun(src), SLOT_ID_BELT)
 	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/swat(src), SLOT_ID_WEAR_MASK)
 
@@ -275,7 +275,7 @@ GLOBAL_GLOBL(can_call_ert)
 	W.icon_state = "centcom"
 	W.access = get_all_station_access()
 	W.access.Add(get_all_centcom_access())
-	equip_to_slot_or_del(W, SLOT_ID_WEAR_ID)
+	equip_to_slot_or_del(W, SLOT_ID_ID_STORE)
 
 	return 1
 

@@ -47,9 +47,9 @@ Gunshots/explosions/opening doors/less rare audio (done)
 						var/mob/living/carbon/human/H = src
 						if(!H.belt)
 							slots_free += UI_BELT
-						if(!H.l_store)
+						if(!H.l_pocket)
 							slots_free += UI_STORAGE1
-						if(!H.r_store)
+						if(!H.r_pocket)
 							slots_free += UI_STORAGE2
 					if(length(slots_free))
 						halitem.screen_loc = pick(slots_free)

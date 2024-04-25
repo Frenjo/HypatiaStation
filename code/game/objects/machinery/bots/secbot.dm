@@ -617,14 +617,14 @@ Auto Patrol: ["<A href='?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "
 			threatcount += 2
 
 		//Agent cards lower threatlevel.
-		if(istype(perp.wear_id?.get_id(), /obj/item/card/id/syndicate))
+		if(istype(perp.id_store?.get_id(), /obj/item/card/id/syndicate))
 			threatcount -= 2
 
 	if(check_records)
 		for_no_type_check(var/datum/data/record/E, GLOBL.data_core.general)
 			var/perpname = perp.name
-			if(isnotnull(perp.wear_id))
-				var/obj/item/card/id/id = perp.wear_id.get_id()
+			if(isnotnull(perp.id_store))
+				var/obj/item/card/id/id = perp.id_store.get_id()
 				if(isnotnull(id))
 					perpname = id.registered_name
 

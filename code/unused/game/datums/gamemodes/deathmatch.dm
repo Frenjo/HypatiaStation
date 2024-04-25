@@ -22,7 +22,7 @@
 		for(var/mob/living/carbon/human/M in mobs)
 			spawn()
 				if(M.client)
-					for(var/obj/item/W in list(M.wear_suit, M.w_uniform, M.r_store, M.l_store, M.wear_id, M.belt,
+					for(var/obj/item/W in list(M.wear_suit, M.wear_uniform, M.r_pocket, M.l_pocket, M.id_store, M.belt,
 					                              M.gloves, M.glasses, M.head, M.ears, M.shoes, M.wear_mask, M.back,
 					                              M.handcuffed, M.r_hand, M.l_hand))
 						M.u_equip(W)
@@ -40,15 +40,15 @@
 					M.real_name = newname
 					M.name = newname // there are WAY more things than this to change, I'm almost certain
 
-					M.equip_to_slot_or_del(new /obj/item/clothing/under/color/black(M), SLOT_ID_W_UNIFORM)
+					M.equip_to_slot_or_del(new /obj/item/clothing/under/color/black(M), SLOT_ID_WEAR_UNIFORM)
 					M.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(M), SLOT_ID_SHOES)
 					M.equip_to_slot_or_del(new /obj/item/clothing/suit/swat_suit/death_commando(M), SLOT_ID_WEAR_SUIT)
 					M.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/death_commando(M), SLOT_ID_WEAR_MASK)
 					M.equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(M), SLOT_ID_GLOVES)
 					M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal(M), SLOT_ID_GLASSES)
 					M.equip_to_slot_or_del(new /obj/item/gun/energy/pulse_rifle(M), SLOT_ID_L_HAND)
-					M.equip_to_slot_or_del(new /obj/item/m_pill/cyanide(M), SLOT_ID_L_STORE)
-					M.equip_to_slot_or_del(new /obj/item/flashbang(M), SLOT_ID_R_STORE)
+					M.equip_to_slot_or_del(new /obj/item/m_pill/cyanide(M), SLOT_ID_L_POCKET)
+					M.equip_to_slot_or_del(new /obj/item/flashbang(M), SLOT_ID_R_POCKET)
 
 					var/obj/item/tank/air/O = new(M)
 					M.equip_to_slot_or_del(O, SLOT_ID_BACK)

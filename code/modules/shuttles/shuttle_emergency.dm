@@ -245,4 +245,4 @@
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			if(!read_authorisation(H.get_active_hand()))	//try to read what's in their hand first
-				read_authorisation(H.wear_id)
+				read_authorisation(H.id_store)

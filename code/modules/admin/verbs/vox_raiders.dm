@@ -6,7 +6,7 @@ GLOBAL_GLOBL_INIT(vox_tick, 1)
 	R.radio_connection = register_radio(R, null, FREQUENCY_SYNDICATE, RADIO_CHAT) //Same frequency as the syndicate team in Nuke mode.
 	equip_to_slot_or_del(R, SLOT_ID_L_EAR)
 
-	equip_to_slot_or_del(new /obj/item/clothing/under/vox/vox_robes(src), SLOT_ID_W_UNIFORM)
+	equip_to_slot_or_del(new /obj/item/clothing/under/vox/vox_robes(src), SLOT_ID_WEAR_UNIFORM)
 	equip_to_slot_or_del(new /obj/item/clothing/shoes/magboots/vox(src), SLOT_ID_SHOES) // REPLACE THESE WITH CODED VOX ALTERNATIVES.
 	equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow/vox(src), SLOT_ID_GLOVES) // AS ABOVE.
 
@@ -16,7 +16,7 @@ GLOBAL_GLOBL_INIT(vox_tick, 1)
 			equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/vox/carapace(src), SLOT_ID_HEAD)
 			equip_to_slot_or_del(new /obj/item/melee/telebaton(src), SLOT_ID_BELT)
 			equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/monocle(src), SLOT_ID_GLASSES) // REPLACE WITH CODED VOX ALTERNATIVE.
-			equip_to_slot_or_del(new /obj/item/chameleon(src), SLOT_ID_L_STORE)
+			equip_to_slot_or_del(new /obj/item/chameleon(src), SLOT_ID_L_POCKET)
 
 			var/obj/item/crossbow/W = new(src)
 			W.cell = new /obj/item/cell/crap(W)
@@ -41,7 +41,7 @@ GLOBAL_GLOBL_INIT(vox_tick, 1)
 			equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/vox/stealth(src), SLOT_ID_HEAD)
 			equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(src), SLOT_ID_BELT)
 			equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/monocle(src), SLOT_ID_GLASSES) // REPLACE WITH CODED VOX ALTERNATIVE.
-			equip_to_slot_or_del(new /obj/item/card/emag(src), SLOT_ID_L_STORE)
+			equip_to_slot_or_del(new /obj/item/card/emag(src), SLOT_ID_L_POCKET)
 			equip_to_slot_or_del(new /obj/item/gun/dartgun/vox/raider(src), SLOT_ID_R_HAND)
 			equip_to_slot_or_del(new /obj/item/multitool(src), SLOT_ID_L_HAND)
 
@@ -50,12 +50,12 @@ GLOBAL_GLOBL_INIT(vox_tick, 1)
 			equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/vox/medic(src), SLOT_ID_HEAD)
 			equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(src), SLOT_ID_BELT) // Who needs actual surgical tools?
 			equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(src), SLOT_ID_GLASSES) // REPLACE WITH CODED VOX ALTERNATIVE.
-			equip_to_slot_or_del(new /obj/item/circular_saw(src), SLOT_ID_L_STORE)
+			equip_to_slot_or_del(new /obj/item/circular_saw(src), SLOT_ID_L_POCKET)
 			equip_to_slot_or_del(new /obj/item/gun/dartgun/vox/medical, SLOT_ID_R_HAND)
 
 	equip_to_slot_or_del(new /obj/item/clothing/mask/breath/vox(src), SLOT_ID_WEAR_MASK)
 	equip_to_slot_or_del(new /obj/item/tank/nitrogen(src), SLOT_ID_BACK)
-	equip_to_slot_or_del(new /obj/item/flashlight(src), SLOT_ID_R_STORE)
+	equip_to_slot_or_del(new /obj/item/flashlight(src), SLOT_ID_R_POCKET)
 
 	var/obj/item/card/id/syndicate/C = new(src)
 	C.name = "[real_name]'s Legitimate Human ID Card"
@@ -67,7 +67,7 @@ GLOBAL_GLOBL_INIT(vox_tick, 1)
 	var/obj/item/storage/wallet/W = new(src)
 	W.handle_item_insertion(C)
 	spawn_money(rand(50,150)*10,W)
-	equip_to_slot_or_del(W, SLOT_ID_WEAR_ID)
+	equip_to_slot_or_del(W, SLOT_ID_ID_STORE)
 	GLOBL.vox_tick++
 	if(GLOBL.vox_tick > 4)
 		GLOBL.vox_tick = 1

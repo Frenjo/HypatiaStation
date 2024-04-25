@@ -630,9 +630,9 @@
 							if(isnotnull(cleaned_human.wear_suit))
 								cleaned_human.wear_suit.clean_blood()
 								cleaned_human.update_inv_wear_suit(0)
-							else if(isnotnull(cleaned_human.w_uniform))
-								cleaned_human.w_uniform.clean_blood()
-								cleaned_human.update_inv_w_uniform(0)
+							else if(isnotnull(cleaned_human.wear_uniform))
+								cleaned_human.wear_uniform.clean_blood()
+								cleaned_human.update_inv_wear_uniform(0)
 							if(isnotnull(cleaned_human.shoes))
 								cleaned_human.shoes.clean_blood()
 								cleaned_human.update_inv_shoes(0)
@@ -808,7 +808,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		//if they are holding or wearing a card that has access, that works
-		if(check_access(H.get_active_hand()) || check_access(H.wear_id))
+		if(check_access(H.get_active_hand()) || check_access(H.id_store))
 			return 1
 	else if(ismonkey(M))
 		var/mob/living/carbon/monkey/george = M

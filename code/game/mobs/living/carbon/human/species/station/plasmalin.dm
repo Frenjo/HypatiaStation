@@ -30,7 +30,7 @@
 	H.gender = NEUTER
 
 	// Equips the standard Plasmalin clothing.
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/plasmalin(H), SLOT_ID_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/plasmalin(H), SLOT_ID_WEAR_UNIFORM)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/plasmalin(H), SLOT_ID_GLOVES)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/plasmalin(H), SLOT_ID_HEAD)
 
@@ -51,7 +51,7 @@
 
 	var/clothed = isnotnull(H.wear_suit) && isnotnull(H.head)
 	var/atmos_sealed = clothed && HAS_ITEM_FLAGS(H.wear_suit, ITEM_FLAG_STOPS_PRESSURE_DAMAGE) && HAS_ITEM_FLAGS(H.head, ITEM_FLAG_STOPS_PRESSURE_DAMAGE)
-	if(!atmos_sealed && (!istype(H.w_uniform, /obj/item/clothing/under/plasmalin) || !istype(H.head, /obj/item/clothing/head/helmet/space/plasmalin) || !istype(H.gloves, /obj/item/clothing/gloves)))
+	if(!atmos_sealed && (!istype(H.wear_uniform, /obj/item/clothing/under/plasmalin) || !istype(H.head, /obj/item/clothing/head/helmet/space/plasmalin) || !istype(H.gloves, /obj/item/clothing/gloves)))
 		var/datum/gas_mixture/environment = H.loc.return_air()
 		if(environment.total_moles > 0)
 			// TODO: Make this loop through all gases checking for an XGM_GAS_OXIDIZER flag.
@@ -65,7 +65,7 @@
 					)
 				H.IgniteMob()
 	else if(H.fire_stacks)
-		if(istype(H.w_uniform, /obj/item/clothing/under/plasmalin))
-			var/obj/item/clothing/under/plasmalin/P = H.w_uniform
+		if(istype(H.wear_uniform, /obj/item/clothing/under/plasmalin))
+			var/obj/item/clothing/under/plasmalin/P = H.wear_uniform
 			P.extinguish(H)
 	H.update_fire()

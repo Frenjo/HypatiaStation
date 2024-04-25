@@ -36,7 +36,7 @@
 	M.real_name = src.name
 	M.stat = 2 //Kills the new mob
 	if(src.corpseuniform)
-		M.equip_to_slot_or_del(new src.corpseuniform(M), SLOT_ID_W_UNIFORM)
+		M.equip_to_slot_or_del(new src.corpseuniform(M), SLOT_ID_WEAR_UNIFORM)
 	if(src.corpsesuit)
 		M.equip_to_slot_or_del(new src.corpsesuit(M), SLOT_ID_WEAR_SUIT)
 	if(src.corpseshoes)
@@ -54,9 +54,9 @@
 	if(src.corpsebelt)
 		M.equip_to_slot_or_del(new src.corpsebelt(M), SLOT_ID_BELT)
 	if(src.corpsepocket1)
-		M.equip_to_slot_or_del(new src.corpsepocket1(M), SLOT_ID_R_STORE)
+		M.equip_to_slot_or_del(new src.corpsepocket1(M), SLOT_ID_R_POCKET)
 	if(src.corpsepocket2)
-		M.equip_to_slot_or_del(new src.corpsepocket2(M), SLOT_ID_L_STORE)
+		M.equip_to_slot_or_del(new src.corpsepocket2(M), SLOT_ID_L_POCKET)
 	if(src.corpseback)
 		M.equip_to_slot_or_del(new src.corpseback(M), SLOT_ID_BACK)
 	if(src.corpseid == 1)
@@ -78,7 +78,7 @@
 		if(corpseidjob)
 			W.assignment = corpseidjob
 		W.registered_name = M.real_name
-		M.equip_to_slot_or_del(W, SLOT_ID_WEAR_ID)
+		M.equip_to_slot_or_del(W, SLOT_ID_ID_STORE)
 	qdel(src)
 
 

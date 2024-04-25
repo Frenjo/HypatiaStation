@@ -10,7 +10,7 @@
 
 	l_ear = /obj/item/radio/headset
 
-	id_slot = SLOT_ID_WEAR_ID
+	id_slot = SLOT_ID_ID_STORE
 	id_type = /obj/item/card/id
 	pda_slot = SLOT_ID_BELT
 	pda_type = /obj/item/pda

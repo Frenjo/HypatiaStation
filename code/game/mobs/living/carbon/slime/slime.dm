@@ -771,7 +771,7 @@
 	var/mob/living/carbon/human/G = new /mob/living/carbon/human
 	G.dna.mutantrace = "adamantine"
 	G.real_name = text("Adamantine Golem ([rand(1, 1000)])")
-	G.equip_to_slot_or_del(new /obj/item/clothing/under/golem(G), SLOT_ID_W_UNIFORM)
+	G.equip_to_slot_or_del(new /obj/item/clothing/under/golem(G), SLOT_ID_WEAR_UNIFORM)
 	G.equip_to_slot_or_del(new /obj/item/clothing/suit/golem(G), SLOT_ID_WEAR_SUIT)
 	G.equip_to_slot_or_del(new /obj/item/clothing/shoes/golem(G), SLOT_ID_SHOES)
 	G.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/golem(G), SLOT_ID_WEAR_MASK)

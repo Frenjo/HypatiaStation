@@ -518,11 +518,11 @@
 				var/perpname = "wot"
 				var/modified = 0
 
-				/*if(wear_id)
-					if(istype(wear_id,/obj/item/card/id))
-						perpname = wear_id:registered_name
-					else if(istype(wear_id,/obj/item/pda))
-						var/obj/item/pda/tempPda = wear_id
+				/*if(id_store)
+					if(istype(id_store,/obj/item/card/id))
+						perpname = id_store:registered_name
+					else if(istype(id_store,/obj/item/pda))
+						var/obj/item/pda/tempPda = id_store
 						perpname = tempPda.owner
 				else*/
 				perpname = src.name

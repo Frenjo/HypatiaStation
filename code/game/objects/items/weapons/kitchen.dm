@@ -515,5 +515,5 @@
 						if (prob(15))
 							if (user2.wear_suit)
 								user2.wear_suit.add_blood(H)
-							else if (user2.w_uniform)
-								user2.w_uniform.add_blood(H)*/
+							else if (user2.wear_uniform)
+								user2.wear_uniform.add_blood(H)*/

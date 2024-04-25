@@ -132,7 +132,7 @@
 	inv_box.icon = 'icons/mob/screen/screen1_alien.dmi'
 	inv_box.icon_state = "pocket"
 	inv_box.screen_loc = UI_STORAGE1
-	inv_box.slot_id = SLOT_ID_L_STORE
+	inv_box.slot_id = SLOT_ID_L_POCKET
 	adding.Add(inv_box)
 
 	//pocket 2
@@ -141,7 +141,7 @@
 	inv_box.icon = 'icons/mob/screen/screen1_alien.dmi'
 	inv_box.icon_state = "pocket"
 	inv_box.screen_loc = UI_STORAGE2
-	inv_box.slot_id = SLOT_ID_R_STORE
+	inv_box.slot_id = SLOT_ID_R_POCKET
 	adding.Add(inv_box)
 
 	//head

@@ -22,7 +22,7 @@
 
 	r_hand = /obj/item/twohanded/fireaxe
 
-	id_slot = SLOT_ID_WEAR_ID
+	id_slot = SLOT_ID_ID_STORE
 	id_type = /obj/item/card/id/centcom/station
 	id_pda_assignment = "Tunnel Clown!"
 
@@ -74,7 +74,7 @@
 
 	l_hand = /obj/item/storage/secure/briefcase
 
-	id_slot = SLOT_ID_WEAR_ID
+	id_slot = SLOT_ID_ID_STORE
 	id_type = /obj/item/card/id/syndicate/station_access
 	pda_slot = SLOT_ID_BELT
 	pda_type = /obj/item/pda/heads

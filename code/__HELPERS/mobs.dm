@@ -222,7 +222,7 @@
 		if(isnotnull(ID))
 			return ID.registered_name
 
-	C = H.wear_id
+	C = H.id_store
 
 	if(istype(C) || istype(C, /obj/item/pda))
 		var/obj/item/card/id/ID = C

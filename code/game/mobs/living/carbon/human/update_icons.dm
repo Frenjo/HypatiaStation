@@ -46,21 +46,21 @@ There are several things that need to be remembered:
 		update_inv_wear_suit()
 		update_inv_gloves()
 		update_inv_shoes()
-		update_inv_w_uniform()
+		update_inv_wear_uniform()
 		update_inv_glasse()
 		update_inv_l_hand()
 		update_inv_r_hand()
 		update_inv_belt()
-		update_inv_wear_id()
+		update_inv_id_store()
 		update_inv_ears()
-		update_inv_s_store()
+		update_inv_suit_store()
 		update_inv_pockets()
 		update_inv_back()
 		update_inv_handcuffed()
 		update_inv_wear_mask()
 
 	All of these are named after the variable they update from. They are defined at the mob/ level like
-	update_clothing was, so you won't cause undefined proc runtimes with usr.update_inv_wear_id() if the usr is a
+	update_clothing was, so you won't cause undefined proc runtimes with usr.update_inv_id_store() if the usr is a
 	slime etc. Instead, it'll just return without doing any work. So no harm in calling it for slimes and such.
 
 
@@ -146,7 +146,7 @@ Please contact me on #coderbus IRC. ~Carn x
 	overlays.Cut()
 
 	//cloaking devices. //TODO: get rid of this :<
-	for(var/obj/item/cloaking_device/S in list(l_hand, r_hand, belt, l_store, r_store))
+	for(var/obj/item/cloaking_device/S in list(l_hand, r_hand, belt, l_pocket, r_pocket))
 		if(S.active)
 			stealth = 1
 			break
@@ -511,13 +511,13 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 		return
 	update_mutations(0)
 	update_mutantrace(0)
-	update_inv_w_uniform(0)
-	update_inv_wear_id(0)
+	update_inv_wear_uniform(0)
+	update_inv_id_store(0)
 	update_inv_gloves(0)
 	update_inv_glasses(0)
 	update_inv_ears(0)
 	update_inv_shoes(0)
-	update_inv_s_store(0)
+	update_inv_suit_store(0)
 	update_inv_wear_mask(0)
 	update_inv_head(0)
 	update_inv_belt(0)
@@ -537,9 +537,9 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 /* --------------------------------------- */
 //vvvvvv UPDATE_INV PROCS vvvvvv
 
-/mob/living/carbon/human/update_inv_w_uniform(update_icons = 1)
-	if(w_uniform && istype(w_uniform, /obj/item/clothing/under))
-		var/obj/item/clothing/under/uniform = w_uniform
+/mob/living/carbon/human/update_inv_wear_uniform(update_icons = 1)
+	if(wear_uniform && istype(wear_uniform, /obj/item/clothing/under))
+		var/obj/item/clothing/under/uniform = wear_uniform
 		uniform.screen_loc = UI_ICLOTHING
 		var/t_color = uniform.item_color
 		if(!t_color)
@@ -569,7 +569,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 		overlays_standing[UNIFORM_LAYER] = null
 		// This really, really seems like it should not be mixed in the middle of display code...
 		// Automatically drop anything in store / id / belt if you're not wearing a uniform.	//CHECK IF NECESARRY
-		for(var/obj/item/thing in list(r_store, l_store, wear_id, belt))						//
+		for(var/obj/item/thing in list(r_pocket, l_pocket, id_store, belt))						//
 			if(thing)																			//
 				u_equip(thing)																	//
 				if(client)																		//
@@ -582,10 +582,10 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 	if(update_icons)
 		update_icons()
 
-/mob/living/carbon/human/update_inv_wear_id(update_icons = 1)
-	if(wear_id)
-		wear_id.screen_loc = UI_ID	//TODO
-		if(w_uniform && w_uniform:displays_id)
+/mob/living/carbon/human/update_inv_id_store(update_icons = 1)
+	if(id_store)
+		id_store.screen_loc = UI_ID_STORE	//TODO
+		if(wear_uniform && wear_uniform:displays_id)
 			overlays_standing[ID_LAYER]	= image("icon" = 'icons/mob/mob.dmi', "icon_state" = "id")
 		else
 			overlays_standing[ID_LAYER]	= null
@@ -697,13 +697,13 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 	if(update_icons)
 		update_icons()
 
-/mob/living/carbon/human/update_inv_s_store(update_icons = 1)
-	if(s_store)
-		var/t_state = s_store.item_state
+/mob/living/carbon/human/update_inv_suit_store(update_icons = 1)
+	if(suit_store)
+		var/t_state = suit_store.item_state
 		if(!t_state)
-			t_state = s_store.icon_state
+			t_state = suit_store.icon_state
 		overlays_standing[SUIT_STORE_LAYER] = image("icon" = 'icons/mob/on_mob/belt_mirror.dmi', "icon_state" = "[t_state]")
-		s_store.screen_loc = UI_SSTORE1		//TODO
+		suit_store.screen_loc = UI_SSTORE1		//TODO
 	else
 		overlays_standing[SUIT_STORE_LAYER] = null
 	if(update_icons)
@@ -792,10 +792,10 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 		update_icons()
 
 /mob/living/carbon/human/update_inv_pockets( update_icons = 1)
-	if(l_store)
-		l_store.screen_loc = UI_STORAGE1	//TODO
-	if(r_store)
-		r_store.screen_loc = UI_STORAGE2	//TODO
+	if(l_pocket)
+		l_pocket.screen_loc = UI_STORAGE1	//TODO
+	if(r_pocket)
+		r_pocket.screen_loc = UI_STORAGE2	//TODO
 	if(update_icons)
 		update_icons()
 

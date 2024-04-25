@@ -391,13 +391,13 @@
 /obj/item/storage/attack_hand(mob/user as mob)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
+		if(H.l_pocket == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(src)
-			H.l_store = null
+			H.l_pocket = null
 			return
-		if(H.r_store == src && !H.get_active_hand())
+		if(H.r_pocket == src && !H.get_active_hand())
 			H.put_in_hands(src)
-			H.r_store = null
+			H.r_pocket = null
 			return
 
 	if(loc == user)

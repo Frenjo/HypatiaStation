@@ -241,8 +241,8 @@ Contains helper procs for airflow, handled in /connection_group.
 	loc:add_blood(src)
 	if(src.wear_suit)
 		src.wear_suit.add_blood(src)
-	if(src.w_uniform)
-		src.w_uniform.add_blood(src)
+	if(src.wear_uniform)
+		src.wear_uniform.add_blood(src)
 	var/b_loss = airflow_speed * global.vsc.airflow_damage
 
 	var/blocked = run_armor_check("head", "melee")

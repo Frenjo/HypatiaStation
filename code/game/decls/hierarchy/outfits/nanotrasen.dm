@@ -6,9 +6,9 @@
 	gloves = /obj/item/clothing/gloves/white
 	shoes = /obj/item/clothing/shoes/centcom
 
-	id_slot = SLOT_ID_WEAR_ID
+	id_slot = SLOT_ID_ID_STORE
 	id_type = /obj/item/card/id/centcom/station
-	pda_slot = SLOT_ID_R_STORE
+	pda_slot = SLOT_ID_R_POCKET
 	pda_type = /obj/item/pda/heads
 
 	flags = OUTFIT_HIDE_IF_CATEGORY

@@ -42,6 +42,6 @@
 
 	l_ear = /obj/item/radio/headset/heads/captain
 
-	id_slot = SLOT_ID_WEAR_ID
+	id_slot = SLOT_ID_ID_STORE
 	id_type = /obj/item/card/id/centcom/station
 	id_pda_assignment = "Admiral"

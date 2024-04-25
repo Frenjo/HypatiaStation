@@ -24,7 +24,7 @@
 
 	if(!connected)
 		for(var/obj/item/W in (H.contents-implants))
-			if(W == H.w_uniform) // will be teared
+			if(W == H.wear_uniform) // will be teared
 				continue
 			H.drop_from_inventory(W)
 		M.monkeyizing = 1

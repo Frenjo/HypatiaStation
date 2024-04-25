@@ -32,7 +32,7 @@
 /decl/hierarchy/outfit/job/command/captain/post_equip(mob/living/carbon/human/user)
 	. = ..()
 	if(user.age > 49)
-		var/obj/item/clothing/under/uniform = user.w_uniform
+		var/obj/item/clothing/under/uniform = user.wear_uniform
 		if(isnotnull(uniform))
 			uniform.hastie = new /obj/item/clothing/tie/medal/gold/captain(uniform)
 

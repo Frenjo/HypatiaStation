@@ -56,25 +56,33 @@ if(isnotnull(VAR)) \
 	if(ishuman(mymob))
 		var/mob/living/carbon/human/H = mymob
 		if(inventory_shown && hud_shown)
-			SET_SCREEN_LOC(H.shoes, UI_SHOES)
-			SET_SCREEN_LOC(H.gloves, UI_GLOVES)
+			SET_SCREEN_LOC(H.wear_mask, UI_MASK)
+			// Head
+			SET_SCREEN_LOC(H.head, UI_HEAD)
+			SET_SCREEN_LOC(H.glasses, UI_GLASSES)
 			SET_SCREEN_LOC(H.l_ear, UI_L_EAR)
 			SET_SCREEN_LOC(H.r_ear, UI_R_EAR)
-			SET_SCREEN_LOC(H.glasses, UI_GLASSES)
-			SET_SCREEN_LOC(H.w_uniform, UI_ICLOTHING)
+			// Uniform
+			SET_SCREEN_LOC(H.wear_uniform, UI_ICLOTHING)
+			// Suit
 			SET_SCREEN_LOC(H.wear_suit, UI_OCLOTHING)
-			SET_SCREEN_LOC(H.wear_mask, UI_MASK)
-			SET_SCREEN_LOC(H.head, UI_HEAD)
+			// Other
+			SET_SCREEN_LOC(H.gloves, UI_GLOVES)
+			SET_SCREEN_LOC(H.shoes, UI_SHOES)
 		else
-			UNSET_SCREEN_LOC(H.shoes)
-			UNSET_SCREEN_LOC(H.gloves)
+			UNSET_SCREEN_LOC(H.wear_mask)
+			// Head
+			UNSET_SCREEN_LOC(H.head)
+			UNSET_SCREEN_LOC(H.glasses)
 			UNSET_SCREEN_LOC(H.l_ear)
 			UNSET_SCREEN_LOC(H.r_ear)
-			UNSET_SCREEN_LOC(H.glasses)
-			UNSET_SCREEN_LOC(H.w_uniform)
+			// Uniform
+			UNSET_SCREEN_LOC(H.wear_uniform)
+			// Suit
 			UNSET_SCREEN_LOC(H.wear_suit)
-			UNSET_SCREEN_LOC(H.wear_mask)
-			UNSET_SCREEN_LOC(H.head)
+			// Other
+			UNSET_SCREEN_LOC(H.gloves)
+			UNSET_SCREEN_LOC(H.shoes)
 
 /datum/hud/proc/persistent_inventory_update()
 	if(isnull(mymob))
@@ -83,19 +91,25 @@ if(isnotnull(VAR)) \
 	if(ishuman(mymob))
 		var/mob/living/carbon/human/H = mymob
 		if(hud_shown)
-			SET_SCREEN_LOC(H.s_store, UI_SSTORE1)
-			SET_SCREEN_LOC(H.wear_id, UI_ID)
-			SET_SCREEN_LOC(H.belt, UI_BELT)
 			SET_SCREEN_LOC(H.back, UI_BACK)
-			SET_SCREEN_LOC(H.l_store, UI_STORAGE1)
-			SET_SCREEN_LOC(H.r_store, UI_STORAGE2)
+			// Uniform
+			SET_SCREEN_LOC(H.id_store, UI_ID_STORE)
+			SET_SCREEN_LOC(H.l_pocket, UI_STORAGE1)
+			SET_SCREEN_LOC(H.r_pocket, UI_STORAGE2)
+			// Suit
+			SET_SCREEN_LOC(H.suit_store, UI_SSTORE1)
+			// Other
+			SET_SCREEN_LOC(H.belt, UI_BELT)
 		else
-			UNSET_SCREEN_LOC(H.s_store)
-			UNSET_SCREEN_LOC(H.wear_id)
-			UNSET_SCREEN_LOC(H.belt)
 			UNSET_SCREEN_LOC(H.back)
-			UNSET_SCREEN_LOC(H.l_store)
-			UNSET_SCREEN_LOC(H.r_store)
+			// Uniform
+			UNSET_SCREEN_LOC(H.id_store)
+			UNSET_SCREEN_LOC(H.l_pocket)
+			UNSET_SCREEN_LOC(H.r_pocket)
+			// Suit
+			UNSET_SCREEN_LOC(H.suit_store)
+			// Other
+			UNSET_SCREEN_LOC(H.belt)
 #undef UNSET_SCREEN_LOC
 #undef SET_SCREEN_LOC
 

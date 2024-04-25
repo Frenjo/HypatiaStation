@@ -87,8 +87,8 @@
 		if("grab")
 			if(M == src || anchored)
 				return 0
-			if(w_uniform)
-				w_uniform.add_fingerprint(M)
+			if(wear_uniform)
+				wear_uniform.add_fingerprint(M)
 
 			var/obj/item/grab/G = new /obj/item/grab(M, src)
 			if(buckled)
@@ -153,8 +153,8 @@
 
 			msg_admin_attack("[key_name(M)] disarmed [src.name] ([src.ckey])")
 
-			if(w_uniform)
-				w_uniform.add_fingerprint(M)
+			if(wear_uniform)
+				wear_uniform.add_fingerprint(M)
 			var/datum/organ/external/affecting = get_organ(ran_zone(M.zone_sel.selecting))
 
 			if(istype(r_hand, /obj/item/gun) || istype(l_hand, /obj/item/gun))

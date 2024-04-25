@@ -1085,7 +1085,7 @@
 		M.loc = prison_cell
 		if(ishuman(M))
 			var/mob/living/carbon/human/prisoner = M
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), SLOT_ID_W_UNIFORM)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), SLOT_ID_WEAR_UNIFORM)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), SLOT_ID_SHOES)
 
 		M << "\red You have been sent to the prison station!"
@@ -1195,7 +1195,7 @@
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/observer = M
-			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), SLOT_ID_W_UNIFORM)
+			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), SLOT_ID_WEAR_UNIFORM)
 			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), SLOT_ID_SHOES)
 		M.Paralyse(5)
 		sleep(5)
@@ -1895,7 +1895,7 @@
 						//don't warp them if they aren't ready or are already there
 						continue
 					H.Paralyse(5)
-					if(H.wear_id)
+					if(H.id_store)
 						var/obj/item/card/id/id = H.get_idcard()
 						for(var/A in id.access)
 							if(A == access_security)
@@ -1915,7 +1915,7 @@
 								W.reset_plane_and_layer()
 						//teleport person to cell
 						H.loc = pick(prisonwarp)
-						H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), SLOT_ID_W_UNIFORM)
+						H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), SLOT_ID_WEAR_UNIFORM)
 						H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), SLOT_ID_SHOES)
 					else
 						//teleport security person

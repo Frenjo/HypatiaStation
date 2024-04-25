@@ -304,7 +304,7 @@
 			if(SLOT_ID_BELT)
 				if(H.belt)
 					return 0
-				if(!H.w_uniform)
+				if(!H.wear_uniform)
 					if(!disable_warning)
 						to_chat(H, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
 					return 0
@@ -343,26 +343,26 @@
 				if((slot_flags & SLOT_TWOEARS) && H.l_ear)
 					return 0
 				return 1
-			if(SLOT_ID_W_UNIFORM)
-				if(H.w_uniform)
+			if(SLOT_ID_WEAR_UNIFORM)
+				if(H.wear_uniform)
 					return 0
 				if(!(slot_flags & SLOT_ICLOTHING))
 					return 0
 				return 1
-			if(SLOT_ID_WEAR_ID)
-				if(H.wear_id)
+			if(SLOT_ID_ID_STORE)
+				if(H.id_store)
 					return 0
-				if(!H.w_uniform)
+				if(!H.wear_uniform)
 					if(!disable_warning)
 						to_chat(H, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
 					return 0
 				if(!(slot_flags & SLOT_ID))
 					return 0
 				return 1
-			if(SLOT_ID_L_STORE)
-				if(H.l_store)
+			if(SLOT_ID_L_POCKET)
+				if(H.l_pocket)
 					return 0
-				if(!H.w_uniform)
+				if(!H.wear_uniform)
 					if(!disable_warning)
 						to_chat(H, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
 					return 0
@@ -370,10 +370,10 @@
 					return 0
 				if(w_class <= 2 || (slot_flags & SLOT_POCKET))
 					return 1
-			if(SLOT_ID_R_STORE)
-				if(H.r_store)
+			if(SLOT_ID_R_POCKET)
+				if(H.r_pocket)
 					return 0
-				if(!H.w_uniform)
+				if(!H.wear_uniform)
 					if(!disable_warning)
 						to_chat(H, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
 					return 0
@@ -382,8 +382,8 @@
 				if(w_class <= 2 || (slot_flags & SLOT_POCKET))
 					return 1
 				return 0
-			if(SLOT_ID_S_STORE)
-				if(H.s_store)
+			if(SLOT_ID_SUIT_STORE)
+				if(H.suit_store)
 					return 0
 				if(!H.wear_suit)
 					if(!disable_warning)

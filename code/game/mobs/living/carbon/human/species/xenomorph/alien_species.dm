@@ -245,7 +245,7 @@
 
 	gear = list(
 		"o_clothing" =	list("loc" = UI_BELT,		"slot" = SLOT_ID_WEAR_SUIT,	"state" = "equip",	"dir" = SOUTH),
-		"head" =		list("loc" = UI_ID,			"slot" = SLOT_ID_HEAD,		"state" = "hair"),
-		"storage1" =	list("loc" = UI_STORAGE1,	"slot" = SLOT_ID_L_STORE,	"state" = "pocket"),
-		"storage2" =	list("loc" = UI_STORAGE2,	"slot" = SLOT_ID_R_STORE,	"state" = "pocket"),
+		"head" =		list("loc" = UI_ID_STORE,	"slot" = SLOT_ID_HEAD,		"state" = "hair"),
+		"storage1" =	list("loc" = UI_STORAGE1,	"slot" = SLOT_ID_L_POCKET,	"state" = "pocket"),
+		"storage2" =	list("loc" = UI_STORAGE2,	"slot" = SLOT_ID_R_POCKET,	"state" = "pocket"),
 	)

@@ -171,7 +171,7 @@
 		else
 			var/mob/living/carbon/human/H = synd_mind.current
 			P.loc = H.loc
-			H.equip_to_slot_or_del(P, SLOT_ID_R_STORE, 0)
+			H.equip_to_slot_or_del(P, SLOT_ID_R_POCKET, 0)
 			H.update_icons()
 
 	else
@@ -209,10 +209,10 @@
 	R.radio_connection = register_radio(R, null, radio_freq, RADIO_CHAT)
 	synd_mob.equip_to_slot_or_del(R, SLOT_ID_L_EAR)
 
-	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(synd_mob), SLOT_ID_W_UNIFORM)
+	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(synd_mob), SLOT_ID_WEAR_UNIFORM)
 	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(synd_mob), SLOT_ID_SHOES)
 	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(synd_mob), SLOT_ID_GLOVES)
-	synd_mob.equip_to_slot_or_del(new /obj/item/card/id/syndicate(synd_mob), SLOT_ID_WEAR_ID)
+	synd_mob.equip_to_slot_or_del(new /obj/item/card/id/syndicate(synd_mob), SLOT_ID_ID_STORE)
 	if(synd_mob.backbag == 2)
 		synd_mob.equip_to_slot_or_del(new /obj/item/storage/backpack(synd_mob), SLOT_ID_BACK)
 	if(synd_mob.backbag == 3)

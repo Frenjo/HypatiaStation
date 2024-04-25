@@ -1369,7 +1369,7 @@ It is possible to destroy the net by the occupant or someone else.
 		health = INFINITY//Make the net invincible so that an explosion/something else won't kill it while, spawn() is running.
 		for(var/obj/item/W in M)
 			if(ishuman(M))
-				if(W==M:w_uniform)	continue//So all they're left with are shoes and uniform.
+				if(W==M:wear_uniform)	continue//So all they're left with are shoes and uniform.
 				if(W==M:shoes)	continue
 			M.drop_from_inventory(W)
 

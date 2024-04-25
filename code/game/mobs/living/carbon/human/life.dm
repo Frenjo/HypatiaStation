@@ -794,9 +794,9 @@
 	if(isnotnull(wear_suit))
 		if(wear_suit.max_heat_protection_temperature && wear_suit.max_heat_protection_temperature >= temperature)
 			thermal_protection_flags |= wear_suit.heat_protection
-	if(isnotnull(w_uniform))
-		if(w_uniform.max_heat_protection_temperature && w_uniform.max_heat_protection_temperature >= temperature)
-			thermal_protection_flags |= w_uniform.heat_protection
+	if(isnotnull(wear_uniform))
+		if(wear_uniform.max_heat_protection_temperature && wear_uniform.max_heat_protection_temperature >= temperature)
+			thermal_protection_flags |= wear_uniform.heat_protection
 	if(isnotnull(shoes))
 		if(shoes.max_heat_protection_temperature && shoes.max_heat_protection_temperature >= temperature)
 			thermal_protection_flags |= shoes.heat_protection
@@ -850,9 +850,9 @@
 	if(isnotnull(wear_suit))
 		if(wear_suit.min_cold_protection_temperature && wear_suit.min_cold_protection_temperature <= temperature)
 			thermal_protection_flags |= wear_suit.cold_protection
-	if(isnotnull(w_uniform))
-		if(w_uniform.min_cold_protection_temperature && w_uniform.min_cold_protection_temperature <= temperature)
-			thermal_protection_flags |= w_uniform.cold_protection
+	if(isnotnull(wear_uniform))
+		if(wear_uniform.min_cold_protection_temperature && wear_uniform.min_cold_protection_temperature <= temperature)
+			thermal_protection_flags |= wear_uniform.cold_protection
 	if(isnotnull(shoes))
 		if(shoes.min_cold_protection_temperature && shoes.min_cold_protection_temperature <= temperature)
 			thermal_protection_flags |= shoes.cold_protection
@@ -917,9 +917,9 @@
 	if(wear_suit)
 		if(wear_suit.protective_temperature > temp)
 			fire_prot += (wear_suit.protective_temperature/10)
-	if(w_uniform)
-		if(w_uniform.protective_temperature > temp)
-			fire_prot += (w_uniform.protective_temperature/10)
+	if(wear_uniform)
+		if(wear_uniform.protective_temperature > temp)
+			fire_prot += (wear_uniform.protective_temperature/10)
 	if(gloves)
 		if(gloves.protective_temperature > temp)
 			fire_prot += (gloves.protective_temperature/10)
@@ -1014,7 +1014,7 @@
 			mutations.Remove(FAT)
 			update_mutantrace(0)
 			update_mutations(0)
-			update_inv_w_uniform(0)
+			update_inv_wear_uniform(0)
 			update_inv_wear_suit()
 	else
 		if(overeatduration > 500)
@@ -1022,7 +1022,7 @@
 			mutations.Add(FAT)
 			update_mutantrace(0)
 			update_mutations(0)
-			update_inv_w_uniform(0)
+			update_inv_wear_uniform(0)
 			update_inv_wear_suit()
 */
 
@@ -1766,8 +1766,8 @@
 
 	if(BITTEST(hud_updateflag, ID_HUD))
 		var/image/holder = hud_list[ID_HUD]
-		if(isnotnull(wear_id))
-			var/obj/item/card/id/I = wear_id.get_id()
+		if(isnotnull(id_store))
+			var/obj/item/card/id/I = id_store.get_id()
 			holder.icon_state = isnotnull(I) ? "hud[ckey(I.get_job_name())]" : "hudunknown"
 		else
 			holder.icon_state = "hudunknown"
@@ -1778,8 +1778,8 @@
 		var/image/holder = hud_list[WANTED_HUD]
 		holder.icon_state = "hudblank"
 		var/perpname = name
-		if(isnotnull(wear_id))
-			var/obj/item/card/id/I = wear_id.get_id()
+		if(isnotnull(id_store))
+			var/obj/item/card/id/I = id_store.get_id()
 			if(isnotnull(I))
 				perpname = I.registered_name
 
