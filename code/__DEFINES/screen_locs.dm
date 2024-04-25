@@ -12,42 +12,52 @@
  *	The size of the user's screen is defined by client.view (indirectly by world.view), in our case "15x15".
  *	Therefore, the top right corner (except during admin shenanigans) is at "15,15".
  */
-// Space parallax
-#define UI_SPACE_PARALLAX "1:0,1:0"
+// Space Parallax
+#define UI_SPACE_PARALLAX "WEST:0, SOUTH:0"
 
-//Upper left action buttons, displayed when you pick up an item that has this enabled.
-#define UI_ACTION_SLOT1 "1:6,14:26"
-#define UI_ACTION_SLOT2 "2:8,14:26"
-#define UI_ACTION_SLOT3 "3:10,14:26"
-#define UI_ACTION_SLOT4 "4:12,14:26"
-#define UI_ACTION_SLOT5 "5:14,14:26"
+/*
+ * Upper Left Action Buttons
+ * Displayed when you pick up an item that has this enabled.
+ *
+ * These are in left-to-right order.
+ */
+#define UI_ACTION_SLOT1 "WEST:6, SOUTH+13:26"
+#define UI_ACTION_SLOT2 "WEST+1:8, SOUTH+13:26"
+#define UI_ACTION_SLOT3 "WEST+2:10, SOUTH+13:26"
+#define UI_ACTION_SLOT4 "WEST+3:12, SOUTH+13:26"
+#define UI_ACTION_SLOT5 "WEST+4:14, SOUTH+13:26"
 
-//Lower left, persistant menu
-#define UI_INVENTORY "1:6,1:5"
+// Lower Left (Persistent Menu)
+#define UI_INVENTORY "WEST:6, SOUTH:5"
 
-//Lower center, persistant menu
-#define UI_SSTORE1 "3:10,1:5"
-#define UI_ID_STORE "4:12,1:5"
-#define UI_BELT "5:14,1:5"
-#define UI_BACK "6:14,1:5"
-#define UI_RHAND "7:16,1:5"
-#define UI_LHAND "8:16,1:5"
-#define UI_EQUIP "7:16,2:5"
-#define UI_SWAPHAND1 "7:16,2:5"
-#define UI_SWAPHAND2 "8:16,2:5"
-#define UI_STORAGE1 "9:18,1:5"
-#define UI_STORAGE2 "10:20,1:5"
-//aliens
-#define UI_ALIEN_HEAD "4:12,1:5"
-#define UI_ALIEN_OCLOTHING "5:14,1:5"
-//borgs
-#define UI_INV1 "6:16,1:5"
-#define UI_INV2 "7:16,1:5"
-#define UI_INV3 "8:16,1:5"
-#define UI_BORG_STORE "9:16,1:5"
-//monkey
-#define UI_MONKEY_MASK "5:14,1:5"
-#define UI_MONKEY_BACK "6:14,1:5"
+/*
+ * Lower Centre
+ * (Persistent Menu)
+ *
+ * These are in left-to-right, bottom-to-top order.
+ */
+#define UI_SSTORE1 "WEST+2:10, SOUTH:5"
+#define UI_ID_STORE "WEST+3:12, SOUTH:5"
+#define UI_BELT "WEST+4:14, SOUTH:5"
+#define UI_BACK "WEST+5:14, SOUTH:5"
+#define UI_STORAGE1 "WEST+8:18, SOUTH:5"
+#define UI_STORAGE2 "WEST+9:20, SOUTH:5"
+#define UI_LHAND "WEST+7:16, SOUTH:5"
+#define UI_RHAND "WEST+6:16, SOUTH:5"
+#define UI_EQUIP "WEST+6:16, SOUTH+1:5"
+#define UI_SWAPHAND1 "WEST+6:16, SOUTH+1:5"
+#define UI_SWAPHAND2 "WEST+7:16, SOUTH+1:5"
+// Alien
+#define UI_ALIEN_HEAD "WEST+3:12, SOUTH:5"
+#define UI_ALIEN_OCLOTHING "WEST+4:14, SOUTH:5"
+// Cyborg
+#define UI_INV1 "WEST+5:16, SOUTH:5"
+#define UI_INV2 "WEST+6:16, SOUTH:5"
+#define UI_INV3 "WEST+7:16, SOUTH:5"
+#define UI_BORG_STORE "WEST+8:16, SOUTH:5"
+// Monkey
+#define UI_MONKEY_MASK "WEST+4:14, SOUTH:5"
+#define UI_MONKEY_BACK "WEST+5:14, SOUTH:5"
 
 //Lower right, persistant menu
 #define UI_DROPBUTTON "11:22,1:5"
@@ -86,19 +96,19 @@
 #define UI_BORG_HEALTH "14:28,6:13"		//borgs have the health display where humans have the pressure damage indicator.
 #define UI_ALIEN_HEALTH "14:28,6:13"	//aliens have the health display where humans have the pressure damage indicator.
 
-//Pop-up inventory
-#define UI_SHOES "2:8,1:5"
-
-#define UI_ICLOTHING "1:6,2:7"
-#define UI_OCLOTHING "2:8,2:7"
-#define UI_GLOVES "3:10,2:7"
-
-#define UI_GLASSES "1:6,3:9"
-#define UI_MASK "2:8,3:9"
-#define UI_L_EAR "3:10,3:9"
-#define UI_R_EAR "3:10,4:11"
-
-#define UI_HEAD "2:8,4:11"
+/*
+ * Pop-up Inventory
+ * These are in left-to-right, bottom-to-top order.
+ */
+#define UI_SHOES "WEST+1:8, SOUTH:5"
+#define UI_ICLOTHING "WEST:6, SOUTH+1:7"
+#define UI_OCLOTHING "WEST+1:8, SOUTH+1:7"
+#define UI_GLOVES "WEST+2:10, SOUTH+1:7"
+#define UI_R_EAR "WEST:6, SOUTH+2:9"
+#define UI_MASK "WEST+1:8, SOUTH+2:9"
+#define UI_L_EAR "WEST+2:10, SOUTH+2:9"
+#define UI_GLASSES "WEST:6, SOUTH+3:11"
+#define UI_HEAD "WEST+1:8, SOUTH+3:11"
 
 //Intent small buttons
 #define UI_HELP_SMALL "12:8,1:1"
