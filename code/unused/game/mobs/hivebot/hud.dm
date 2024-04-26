@@ -47,7 +47,7 @@
 	src.station_explosion.mouse_opacity = FALSE
 	src.station_explosion.screen_loc = "1,3"
 
-	var/obj/screen/using
+	var/atom/movable/screen/using
 
 
 //Radio
@@ -139,21 +139,21 @@
 //End of Intent
 
 //Cell
-	mymob:cells = new /obj/screen( null )
+	mymob:cells = new /atom/movable/screen( null )
 	mymob:cells.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob:cells.icon_state = "charge-empty"
 	mymob:cells.name = "cell"
 	mymob:cells.screen_loc = ui_toxin
 
 //Health
-	mymob.healths = new /obj/screen( null )
+	mymob.healths = new /atom/movable/screen( null )
 	mymob.healths.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.healths.icon_state = "health0"
 	mymob.healths.name = "health"
 	mymob.healths.screen_loc = ui_health
 
 //Installed Module
-	mymob.hands = new /obj/screen( null )
+	mymob.hands = new /atom/movable/screen( null )
 	mymob.hands.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.hands.icon_state = "nomod"
 	mymob.hands.name = "module"
@@ -168,26 +168,26 @@
 	src.adding += using
 
 //Store
-	mymob.throw_icon = new /obj/screen(null)
+	mymob.throw_icon = new /atom/movable/screen(null)
 	mymob.throw_icon.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.throw_icon.icon_state = "store"
 	mymob.throw_icon.name = "store"
 	mymob.throw_icon.screen_loc = ui_hand
 
 //Temp
-	mymob.bodytemp = new /obj/screen( null )
+	mymob.bodytemp = new /atom/movable/screen( null )
 	mymob.bodytemp.icon_state = "temp0"
 	mymob.bodytemp.name = "body temperature"
 	mymob.bodytemp.screen_loc = ui_temp
 
 //does nothing (fire and oxy)
-	mymob.oxygen = new /obj/screen( null )
+	mymob.oxygen = new /atom/movable/screen( null )
 	mymob.oxygen.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.oxygen.icon_state = "oxy0"
 	mymob.oxygen.name = "oxygen"
 	mymob.oxygen.screen_loc = ui_oxygen
 
-	mymob.fire = new /obj/screen( null )
+	mymob.fire = new /atom/movable/screen( null )
 	mymob.fire.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.fire.icon_state = "fire0"
 	mymob.fire.name = "fire"
@@ -195,13 +195,13 @@
 
 
 
-	mymob.pullin = new /obj/screen( null )
+	mymob.pullin = new /atom/movable/screen( null )
 	mymob.pullin.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.pullin.icon_state = "pull0"
 	mymob.pullin.name = "pull"
 	mymob.pullin.screen_loc = ui_pull
 
-	mymob.blind = new /obj/screen( null )
+	mymob.blind = new /atom/movable/screen( null )
 	mymob.blind.icon = 'icons/mob/screen/screen1_full.dmi''
 	mymob.blind.icon_state = "blackimageoverlay"
 	mymob.blind.name = " "
@@ -209,27 +209,27 @@
 	mymob.blind.layer = 0
 	mymob.blind.mouse_opacity = FALSE
 
-	mymob.flash = new /obj/screen( null )
+	mymob.flash = new /atom/movable/screen( null )
 	mymob.flash.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.flash.icon_state = "blank"
 	mymob.flash.name = "flash"
 	mymob.flash.screen_loc = "1,1 to 15,15"
 	mymob.flash.layer = 17
 
-	mymob.sleep = new /obj/screen( null )
+	mymob.sleep = new /atom/movable/screen( null )
 	mymob.sleep.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.sleep.icon_state = "sleep0"
 	mymob.sleep.name = "sleep"
 	mymob.sleep.screen_loc = ui_sleep
 
-	mymob.rest = new /obj/screen( null )
+	mymob.rest = new /atom/movable/screen( null )
 	mymob.rest.icon = 'icons/mob/screen/screen1_robot.dmi'
 	mymob.rest.icon_state = "rest0"
 	mymob.rest.name = "rest"
 	mymob.rest.screen_loc = ui_rest
 
 
-	mymob.zone_sel = new /obj/screen/zone_sel( null )
+	mymob.zone_sel = new /atom/movable/screen/zone_sel( null )
 	mymob.zone_sel.overlays.Cut()
 	mymob.zone_sel.overlays += image("icon" = 'icons/mob/screen/zone_sel.dmi', "icon_state" = text("[]", mymob.zone_sel.selecting))
 

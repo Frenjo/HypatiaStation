@@ -10,7 +10,7 @@
 	src.darkMask = list(  )
 	src.intent_small_hud_objects = list(  )
 
-	src.g_dither = new /obj/screen( src )
+	src.g_dither = new /atom/movable/screen( src )
 	src.g_dither.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	src.g_dither.name = "Mask"
 	src.g_dither.icon = ui_style
@@ -18,7 +18,7 @@
 	src.g_dither.layer = 18
 	src.g_dither.mouse_opacity = FALSE
 
-	src.alien_view = new /obj/screen(src)
+	src.alien_view = new /atom/movable/screen(src)
 	src.alien_view.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	src.alien_view.name = "Alien"
 	src.alien_view.icon = ui_style
@@ -26,7 +26,7 @@
 	src.alien_view.layer = 18
 	src.alien_view.mouse_opacity = FALSE
 
-	src.blurry = new /obj/screen( src )
+	src.blurry = new /atom/movable/screen( src )
 	src.blurry.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	src.blurry.name = "Blurry"
 	src.blurry.icon = ui_style
@@ -34,7 +34,7 @@
 	src.blurry.layer = 17
 	src.blurry.mouse_opacity = FALSE
 
-	src.druggy = new /obj/screen( src )
+	src.druggy = new /atom/movable/screen( src )
 	src.druggy.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	src.druggy.name = "Druggy"
 	src.druggy.icon = ui_style
@@ -42,9 +42,9 @@
 	src.druggy.layer = 17
 	src.druggy.mouse_opacity = FALSE
 
-	var/obj/screen/using
+	var/atom/movable/screen/using
 
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = "act_intent"
 	using.dir = SOUTHWEST
 	using.icon = ui_style
@@ -59,7 +59,7 @@
 	ico = new(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255,255,255,1),1,ico.Height()/2,ico.Width()/2,ico.Height())
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = "help"
 	using.icon = ico
 	using.screen_loc = ui_acti
@@ -69,7 +69,7 @@
 	ico = new(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,ico.Height()/2,ico.Width(),ico.Height())
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = "disarm"
 	using.icon = ico
 	using.screen_loc = ui_acti
@@ -79,7 +79,7 @@
 	ico = new(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255,255,255,1),ico.Width()/2,1,ico.Width(),ico.Height()/2)
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = "grab"
 	using.icon = ico
 	using.screen_loc = ui_acti
@@ -89,7 +89,7 @@
 	ico = new(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255,255,255,1),1,1,ico.Width()/2,ico.Height()/2)
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = "harm"
 	using.icon = ico
 	using.screen_loc = ui_acti
@@ -98,7 +98,7 @@
 
 //end intent small hud objects
 
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = "mov_intent"
 	using.dir = SOUTHWEST
 	using.icon = ui_style
@@ -107,14 +107,14 @@
 	src.adding += using
 	move_intent = using
 
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = "drop"
 	using.icon = ui_style
 	using.icon_state = "act_drop"
 	using.screen_loc = ui_dropbutton
 	src.adding += using
 
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = "r_hand"
 	using.dir = WEST
 	using.icon = ui_style
@@ -125,7 +125,7 @@
 	src.r_hand_hud_object = using
 	src.adding += using
 
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = "l_hand"
 	using.dir = EAST
 	using.icon = ui_style
@@ -136,7 +136,7 @@
 	src.l_hand_hud_object = using
 	src.adding += using
 
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = "hand"
 	using.dir = SOUTH
 	using.icon = ui_style
@@ -144,7 +144,7 @@
 	using.screen_loc = ui_swaphand1
 	src.adding += using
 
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = "hand"
 	using.dir = SOUTH
 	using.icon = ui_style
@@ -152,7 +152,7 @@
 	using.screen_loc = ui_swaphand2
 	src.adding += using
 
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = "mask"
 	using.dir = NORTH
 	using.icon = ui_style
@@ -160,7 +160,7 @@
 	using.screen_loc = ui_monkey_mask
 	src.adding += using
 
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = "back"
 	using.dir = NORTHEAST
 	using.icon = ui_style
@@ -168,7 +168,7 @@
 	using.screen_loc = ui_back
 	src.adding += using
 
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = null
 	using.icon = ui_style
 	using.icon_state = "dither50"
@@ -176,7 +176,7 @@
 	using.plane = FULLSCREEN_PLANE
 	using.mouse_opacity = FALSE
 	src.vimpaired += using
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = null
 	using.icon = ui_style
 	using.icon_state = "dither50"
@@ -184,7 +184,7 @@
 	using.plane = FULLSCREEN_PLANE
 	using.mouse_opacity = FALSE
 	src.vimpaired += using
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = null
 	using.icon = ui_style
 	using.icon_state = "dither50"
@@ -192,7 +192,7 @@
 	using.plane = FULLSCREEN_PLANE
 	using.mouse_opacity = FALSE
 	src.vimpaired += using
-	using = new /obj/screen( src )
+	using = new /atom/movable/screen( src )
 	using.name = null
 	using.icon = ui_style
 	using.icon_state = "dither50"
@@ -201,61 +201,61 @@
 	using.mouse_opacity = FALSE
 	src.vimpaired += using
 
-	mymob.throw_icon = new /obj/screen(null)
+	mymob.throw_icon = new /atom/movable/screen(null)
 	mymob.throw_icon.icon = ui_style
 	mymob.throw_icon.icon_state = "act_throw_off"
 	mymob.throw_icon.name = "throw"
 	mymob.throw_icon.screen_loc = ui_throw
 
-	mymob.oxygen = new /obj/screen( null )
+	mymob.oxygen = new /atom/movable/screen( null )
 	mymob.oxygen.icon = ui_style
 	mymob.oxygen.icon_state = "oxy0"
 	mymob.oxygen.name = "oxygen"
 	mymob.oxygen.screen_loc = ui_oxygen
 
-	mymob.pressure = new /obj/screen( null )
+	mymob.pressure = new /atom/movable/screen( null )
 	mymob.pressure.icon = ui_style
 	mymob.pressure.icon_state = "pressure0"
 	mymob.pressure.name = "pressure"
 	mymob.pressure.screen_loc = ui_pressure
 
-	mymob.toxin = new /obj/screen( null )
+	mymob.toxin = new /atom/movable/screen( null )
 	mymob.toxin.icon = ui_style
 	mymob.toxin.icon_state = "tox0"
 	mymob.toxin.name = "toxin"
 	mymob.toxin.screen_loc = ui_toxin
 
-	mymob.internals = new /obj/screen( null )
+	mymob.internals = new /atom/movable/screen( null )
 	mymob.internals.icon = ui_style
 	mymob.internals.icon_state = "internal0"
 	mymob.internals.name = "internal"
 	mymob.internals.screen_loc = ui_internal
 
-	mymob.fire = new /obj/screen( null )
+	mymob.fire = new /atom/movable/screen( null )
 	mymob.fire.icon = ui_style
 	mymob.fire.icon_state = "fire0"
 	mymob.fire.name = "fire"
 	mymob.fire.screen_loc = ui_fire
 
-	mymob.bodytemp = new /obj/screen( null )
+	mymob.bodytemp = new /atom/movable/screen( null )
 	mymob.bodytemp.icon = ui_style
 	mymob.bodytemp.icon_state = "temp1"
 	mymob.bodytemp.name = "body temperature"
 	mymob.bodytemp.screen_loc = ui_temp
 
-	mymob.healths = new /obj/screen( null )
+	mymob.healths = new /atom/movable/screen( null )
 	mymob.healths.icon = ui_style
 	mymob.healths.icon_state = "health0"
 	mymob.healths.name = "health"
 	mymob.healths.screen_loc = ui_health
 
-	mymob.pullin = new /obj/screen( null )
+	mymob.pullin = new /atom/movable/screen( null )
 	mymob.pullin.icon = ui_style
 	mymob.pullin.icon_state = "pull0"
 	mymob.pullin.name = "pull"
 	mymob.pullin.screen_loc = ui_pull
 
-	mymob.blind = new /obj/screen( null )
+	mymob.blind = new /atom/movable/screen( null )
 	mymob.blind.icon = ui_style
 	mymob.blind.icon_state = "blackanimate"
 	mymob.blind.name = " "
@@ -263,32 +263,32 @@
 	mymob.blind.layer = 0
 	mymob.blind.mouse_opacity = FALSE
 
-	mymob.flash = new /obj/screen( null )
+	mymob.flash = new /atom/movable/screen( null )
 	mymob.flash.icon = ui_style
 	mymob.flash.icon_state = "blank"
 	mymob.flash.name = "flash"
 	mymob.flash.screen_loc = "1,1 to 15,15"
 	mymob.flash.layer = 17
 
-	mymob.zone_sel = new /obj/screen/zone_sel( null )
+	mymob.zone_sel = new /atom/movable/screen/zone_sel( null )
 	mymob.zone_sel.overlays = null
 	mymob.zone_sel.overlays += image("icon" = 'icons/mob/screen/zone_sel.dmi', "icon_state" = text("[]", mymob.zone_sel.selecting))
 
 	//Handle the gun settings buttons
-	mymob.gun_setting_icon = new /obj/screen/gun/mode(null)
+	mymob.gun_setting_icon = new /atom/movable/screen/gun/mode(null)
 	if (mymob.client)
 		if (mymob.client.gun_mode) // If in aim mode, correct the sprite
 			mymob.gun_setting_icon.dir = 2
 	for(var/obj/item/gun/G in mymob) // If targeting someone, display other buttons
 		if (G.target)
-			mymob.item_use_icon = new /obj/screen/gun/item(null)
+			mymob.item_use_icon = new /atom/movable/screen/gun/item(null)
 			if (mymob.client.target_can_click)
 				mymob.item_use_icon.dir = 1
 			src.adding += mymob.item_use_icon
-			mymob.gun_move_icon = new /obj/screen/gun/move(null)
+			mymob.gun_move_icon = new /atom/movable/screen/gun/move(null)
 			if (mymob.client.target_can_move)
 				mymob.gun_move_icon.dir = 1
-				mymob.gun_run_icon = new /obj/screen/gun/run(null)
+				mymob.gun_run_icon = new /atom/movable/screen/gun/run(null)
 				if (mymob.client.target_can_run)
 					mymob.gun_run_icon.dir = 1
 				src.adding += mymob.gun_run_icon

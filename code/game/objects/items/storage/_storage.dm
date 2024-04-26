@@ -15,8 +15,8 @@
 	var/max_w_class = 2 //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_combined_w_class = 14 //The sum of the w_classes of all the items in this storage item.
 	var/storage_slots = 7 //The number of storage slots in this container.
-	var/obj/screen/storage/boxes = null
-	var/obj/screen/close/closer = null
+	var/atom/movable/screen/storage/boxes = null
+	var/atom/movable/screen/close/closer = null
 	var/use_to_pickup	//Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
 	var/display_contents_with_number	//Set this to make the storage item group contents of the same type and display them as a number.
 	var/allow_quick_empty	//Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
@@ -43,13 +43,13 @@
 	else
 		verbs.Remove(/obj/item/storage/verb/toggle_gathering_mode)
 
-	boxes = new /obj/screen/storage()
+	boxes = new /atom/movable/screen/storage()
 	boxes.name = "storage"
 	boxes.master = src
 	boxes.icon_state = "block"
 	boxes.screen_loc = "7,7 to 10,8"
 
-	closer = new /obj/screen/close()
+	closer = new /atom/movable/screen/close()
 	closer.master = src
 	closer.icon_state = "x"
 	orient2hud()
@@ -79,7 +79,7 @@
 		if(over_object == usr && Adjacent(usr)) // this must come before the screen objects only block
 			open(usr)
 
-		if(!(istype(over_object, /obj/screen)))
+		if(!(istype(over_object, /atom/movable/screen)))
 			return ..()
 
 		//makes sure that the storage is equipped, so that we can't drag it into our hand from miles away.

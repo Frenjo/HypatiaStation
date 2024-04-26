@@ -1,14 +1,14 @@
 /*
  * Zone Selector
  */
-/obj/screen/zone_sel
+/atom/movable/screen/zone_sel
 	name = "damage zone"
 	icon_state = "zone_sel"
 	screen_loc = UI_ZONESEL
 
 	var/selecting = "chest"
 
-/obj/screen/zone_sel/Click(location, control, params)
+/atom/movable/screen/zone_sel/Click(location, control, params)
 	var/list/PL = params2list(params)
 	var/icon_x = text2num(PL["icon-x"])
 	var/icon_y = text2num(PL["icon-y"])
@@ -69,6 +69,6 @@
 		update_icon()
 	return 1
 
-/obj/screen/zone_sel/update_icon()
+/atom/movable/screen/zone_sel/proc/update_icon()
 	overlays.Cut()
 	overlays.Add(image('icons/mob/screen/zone_sel.dmi', "[selecting]"))

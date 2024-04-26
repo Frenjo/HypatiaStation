@@ -5,7 +5,7 @@
 	return
 
 /datum/hud/proc/brain_hud(ui_style = 'icons/mob/screen/screen1_Midnight.dmi')
-	mymob.blind = new /obj/screen()
+	mymob.blind = new /atom/movable/screen()
 	mymob.blind.icon = 'icons/mob/screen/screen1_full.dmi'
 	mymob.blind.icon_state = "blackimageoverlay"
 	mymob.blind.name = " "
@@ -16,12 +16,12 @@
 	return
 
 /datum/hud/proc/blob_hud(ui_style = 'icons/mob/screen/screen1_Midnight.dmi')
-	blob_health_display = new /obj/screen()
+	blob_health_display = new /atom/movable/screen()
 	blob_health_display.name = "blob health"
 	blob_health_display.icon_state = "block"
 	blob_health_display.screen_loc = UI_INTERNAL
 
-	blob_power_display = new /obj/screen()
+	blob_power_display = new /atom/movable/screen()
 	blob_power_display.name = "blob power"
 	blob_power_display.icon_state = "block"
 	blob_power_display.screen_loc = UI_HEALTH

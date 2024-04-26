@@ -6,20 +6,19 @@
 	They are used with the client/screen list and the screen_loc var.
 	For more information, see the byond documentation on the screen_loc and screen vars.
 */
-/obj/screen
+/atom/movable/screen
 	name = ""
 	icon = 'icons/mob/screen/screen1.dmi'
 	plane = HUD_PLANE
 	layer = HUD_BASE_LAYER
-	unacidable = 1
 
-	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
+	var/obj/master = null // A reference to the object in the slot. Grabs or items, generally.
 
-/obj/screen/Destroy()
+/atom/movable/screen/Destroy()
 	master = null
 	return ..()
 
-/obj/screen/Click(location, control, params)
+/atom/movable/screen/Click(location, control, params)
 	if(isnull(usr))
 		return 1
 

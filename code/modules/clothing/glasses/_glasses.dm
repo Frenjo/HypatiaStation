@@ -14,7 +14,7 @@
 	var/prescription = FALSE
 	var/toggleable = FALSE
 	var/active = TRUE
-	var/obj/screen/overlay = null
+	var/atom/movable/screen/overlay = null
 
 /*
  * Values for vision_flags:

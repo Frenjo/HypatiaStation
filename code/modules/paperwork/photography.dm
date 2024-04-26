@@ -83,7 +83,7 @@
 /obj/item/storage/photo_album/MouseDrop(obj/over_object as obj)
 	if((ishuman(usr) || IS_GAME_MODE(/datum/game_mode/monkey)))
 		var/mob/M = usr
-		if(!(istype(over_object, /obj/screen)))
+		if(!(istype(over_object, /atom/movable/screen)))
 			return ..()
 		playsound(loc, "rustle", 50, 1, -5)
 		if((!(M.restrained()) && !(M.stat) && M.back == src))

@@ -11,7 +11,7 @@
 	item_state = "nothing"
 	w_class = 5.0
 
-	var/obj/screen/grab/hud = null
+	var/atom/movable/screen/grab/hud = null
 	var/mob/affecting = null
 	var/mob/assailant = null
 	var/state = GRAB_PASSIVE
@@ -31,7 +31,7 @@
 		qdel(src)
 		return
 
-	hud = new /obj/screen/grab(src)
+	hud = new /atom/movable/screen/grab(src)
 	hud.icon_state = "reinforce"
 	hud.name = "reinforce grab"
 	hud.master = src
@@ -121,7 +121,7 @@
 		affecting.Weaken(5)	//Should keep you down unless you get help.
 		affecting.losebreath = min(affecting.losebreath + 2, 3)
 
-/obj/item/grab/proc/s_click(obj/screen/S)
+/obj/item/grab/proc/s_click(atom/movable/screen/S)
 	if(isnull(affecting))
 		return
 	if(state == GRAB_UPGRADING)

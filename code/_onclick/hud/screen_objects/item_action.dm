@@ -1,15 +1,15 @@
-/obj/screen/item_action
+/atom/movable/screen/item_action
 	var/obj/item/owner
 
-/obj/screen/item_action/New(obj/item/O)
+/atom/movable/screen/item_action/New(obj/item/O)
 	. = ..()
 	owner = O
 
-/obj/screen/item_action/Destroy()
+/atom/movable/screen/item_action/Destroy()
 	owner = null
 	return ..()
 
-/obj/screen/item_action/Click()
+/atom/movable/screen/item_action/Click()
 	if(isnull(usr) || isnull(owner))
 		return 1
 	if(usr.next_move >= world.time)

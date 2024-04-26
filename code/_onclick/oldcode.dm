@@ -119,7 +119,7 @@
 		return
 
 	// ------- CLICKING STUFF IN CONTAINERS -------
-	if ((!( src in usr.contents ) && (((!( isturf(src) ) && (!( isturf(src.loc) ) && (src.loc && !( isturf(src.loc.loc) )))) || !( isturf(usr.loc) )) && (src.loc != usr.loc && (!( istype(src, /obj/screen) ) && !( usr.contents.Find(src.loc) ))))))
+	if ((!( src in usr.contents ) && (((!( isturf(src) ) && (!( isturf(src.loc) ) && (src.loc && !( isturf(src.loc.loc) )))) || !( isturf(usr.loc) )) && (src.loc != usr.loc && (!( istype(src, /atom/movable/screen) ) && !( usr.contents.Find(src.loc) ))))))
 		if(isAI(usr))
 			var/mob/living/silicon/ai/ai = usr
 			if (ai.control_disabled || ai.malfhacking)
@@ -141,7 +141,7 @@
 	//to_world("according to dblclick(), t5 is [t5]")
 
 	// ------- ACTUALLY DETERMINING STUFF -------
-	if (((t5 || (W && (W.flags & USEDELAY))) && !( istype(src, /obj/screen) )))
+	if (((t5 || (W && (W.flags & USEDELAY))) && !( istype(src, /atom/movable/screen) )))
 
 		// ------- ( CAN USE ITEM OR HAS 1 SECOND USE DELAY ) AND NOT CLICKING ON SCREEN -------
 
@@ -310,7 +310,7 @@
 
 	else
 		// ------- ITEM INACESSIBLE OR CLICKING ON SCREEN -------
-		if (istype(src, /obj/screen))
+		if (istype(src, /atom/movable/screen))
 			// ------- IT'S THE HUD YOU'RE CLICKING ON -------
 			usr.prev_move = usr.next_move
 			usr:lastDblClick = world.time + 2
@@ -324,8 +324,8 @@
 			if (!( usr.restrained() ))
 
 				// ------- YOU ARE NOT RESTRAINED -------
-				if ((W && !( istype(src, /obj/screen) )))
-					// ------- IT SHOULD NEVER GET TO HERE, DUE TO THE ISTYPE(SRC, /OBJ/SCREEN) FROM PREVIOUS IF-S - I TESTED IT WITH A DEBUG OUTPUT AND I COULDN'T GET THIST TO SHOW UP. -------
+				if ((W && !( istype(src, /atom/movable/screen) )))
+					// ------- IT SHOULD NEVER GET TO HERE, DUE TO THE ISTYPE(SRC, /ATOM/MOVABLE/SCREEN) FROM PREVIOUS IF-S - I TESTED IT WITH A DEBUG OUTPUT AND I COULDN'T GET THIST TO SHOW UP. -------
 					src.attackby(W, usr)
 					if (W)
 						W.afterattack(src, usr,, params)

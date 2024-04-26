@@ -261,7 +261,7 @@
 	throw_mode_off()
 	if(usr.stat || isnull(target))
 		return
-	if(target.type == /obj/screen)
+	if(target.type == /atom/movable/screen)
 		return
 
 	var/atom/movable/item = get_active_hand()

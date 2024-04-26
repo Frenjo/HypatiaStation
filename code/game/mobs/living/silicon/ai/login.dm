@@ -6,12 +6,12 @@
 		blood.override = 1
 		client.images.Add(blood)
 	regenerate_icons()
-	flash = new /obj/screen()
+	flash = new /atom/movable/screen()
 	flash.icon_state = "blank"
 	flash.name = "flash"
 	flash.screen_loc = "1,1 to 15,15"
 	flash.layer = 17
-	blind = new /obj/screen()
+	blind = new /atom/movable/screen()
 	blind.icon_state = "black"
 	blind.name = " "
 	blind.screen_loc = "1,1 to 15,15"

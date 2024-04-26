@@ -6,33 +6,33 @@
 GLOBAL_GLOBL_NEW(global_hud, /datum/global_hud)
 
 /datum/global_hud
-	var/obj/screen/druggy
-	var/obj/screen/blurry
-	var/list/obj/screen/vimpaired
-	var/list/obj/screen/darkMask
+	var/atom/movable/screen/druggy
+	var/atom/movable/screen/blurry
+	var/list/atom/movable/screen/vimpaired
+	var/list/atom/movable/screen/darkMask
 
 	/*
 	 * Overlays for effects from various types of goggles.
 	 */
-	var/obj/screen/nvg
-	var/obj/screen/science
-	var/obj/screen/thermal
-	var/obj/screen/meson
+	var/atom/movable/screen/nvg
+	var/atom/movable/screen/science
+	var/atom/movable/screen/thermal
+	var/atom/movable/screen/meson
 
 	/*
 	 * Overlays for effects from different types of storm events.
 	 */
-	var/obj/screen/rad_storm
-	var/obj/screen/ion_storm
-	var/obj/screen/electrical_storm
+	var/atom/movable/screen/rad_storm
+	var/atom/movable/screen/ion_storm
+	var/atom/movable/screen/electrical_storm
 
 /*
  * Factory proc for fullscreen overlay objects.
  */
 /datum/global_hud/proc/setup_overlay(icon_state)
-	RETURN_TYPE(/obj/screen)
+	RETURN_TYPE(/atom/movable/screen)
 
-	var/obj/screen/screen = new /obj/screen()
+	var/atom/movable/screen/screen = new /atom/movable/screen()
 	screen.screen_loc = "1,1"
 	screen.icon = 'icons/obj/hud_full.dmi'
 	screen.icon_state = icon_state
@@ -45,9 +45,9 @@ GLOBAL_GLOBL_NEW(global_hud, /datum/global_hud)
  * Factory proc for fullscreen storm overlay objects.
  */
 /datum/global_hud/proc/setup_storm_overlay(colour, icon_state = "mfoam")
-	RETURN_TYPE(/obj/screen)
+	RETURN_TYPE(/atom/movable/screen)
 
-	var/obj/screen/screen = new /obj/screen()
+	var/atom/movable/screen/screen = new /atom/movable/screen()
 	screen.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	screen.icon = 'icons/effects/effects.dmi'
 	screen.icon_state = icon_state
@@ -63,14 +63,14 @@ GLOBAL_GLOBL_NEW(global_hud, /datum/global_hud)
 	. = ..()
 
 	// 420erryday psychedellic colours screen overlay for when you are high.
-	druggy = new /obj/screen()
+	druggy = new /atom/movable/screen()
 	druggy.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	druggy.icon_state = "druggy"
 	druggy.plane = FULLSCREEN_PLANE
 	druggy.mouse_opacity = FALSE
 
 	// That white blurry effect you get when your eyes are damaged.
-	blurry = new /obj/screen()
+	blurry = new /atom/movable/screen()
 	blurry.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	blurry.icon_state = "blurry"
 	blurry.plane = FULLSCREEN_PLANE
@@ -88,14 +88,14 @@ GLOBAL_GLOBL_NEW(global_hud, /datum/global_hud)
 	electrical_storm = setup_storm_overlay("#00ffcc")
 
 	// That nasty looking dither you get when you're short-sighted.
-	vimpaired = newlist(/obj/screen, /obj/screen, /obj/screen, /obj/screen)
+	vimpaired = newlist(/atom/movable/screen, /atom/movable/screen, /atom/movable/screen, /atom/movable/screen)
 	vimpaired[1].screen_loc = "1,1 to 5,15"
 	vimpaired[2].screen_loc = "5,1 to 10,5"
 	vimpaired[3].screen_loc = "6,11 to 10,15"
 	vimpaired[4].screen_loc = "11,1 to 15,15"
 
 	// Welding mask overlay black/dither.
-	darkMask = newlist(/obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen, /obj/screen)
+	darkMask = newlist(/atom/movable/screen, /atom/movable/screen, /atom/movable/screen, /atom/movable/screen, /atom/movable/screen, /atom/movable/screen, /atom/movable/screen, /atom/movable/screen)
 	darkMask[1].screen_loc = "3,3 to 5,13"
 	darkMask[2].screen_loc = "5,3 to 10,5"
 	darkMask[3].screen_loc = "6,11 to 10,13"

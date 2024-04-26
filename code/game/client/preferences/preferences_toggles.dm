@@ -196,7 +196,7 @@
 	var/list/icons = user.hud_used.adding + user.hud_used.other + user.hud_used.hotkeybuttons
 	icons.Add(user.zone_sel)
 
-	for(var/obj/screen/I in icons)
+	for(var/atom/movable/screen/I in icons)
 		if(I.color && I.alpha)
 			I.icon = ui_style2icon(UI_style_new)
 			I.color = UI_style_color_new

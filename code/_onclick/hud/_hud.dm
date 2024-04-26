@@ -15,28 +15,28 @@
 	/*
 	 * Intents
 	 */
-	var/obj/screen/move_intent
-	var/obj/screen/action_intent
+	var/atom/movable/screen/move_intent
+	var/atom/movable/screen/action_intent
 	// An associative list containing the small action intent button objects, indexed by intent name.
-	var/list/obj/screen/intent_buttons = list()
+	var/list/atom/movable/screen/intent_buttons = list()
 
 	/*
 	 * Hands
 	 */
-	var/obj/screen/r_hand_hud_object
-	var/obj/screen/l_hand_hud_object
+	var/atom/movable/screen/r_hand_hud_object
+	var/atom/movable/screen/l_hand_hud_object
 
-	var/obj/screen/lingchemdisplay
+	var/atom/movable/screen/lingchemdisplay
 	// Blob health and power display objects.
-	var/obj/screen/blob_health_display
-	var/obj/screen/blob_power_display
+	var/atom/movable/screen/blob_health_display
+	var/atom/movable/screen/blob_power_display
 
 	var/list/adding
 	var/list/other
-	var/list/obj/screen/hotkeybuttons
+	var/list/atom/movable/screen/hotkeybuttons
 
 	// A list containing the item action button objects.
-	var/list/obj/screen/item_action/item_action_list = list()
+	var/list/atom/movable/screen/item_action/item_action_list = list()
 
 /datum/hud/New(mob/owner)
 	. = ..()

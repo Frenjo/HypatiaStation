@@ -1,7 +1,7 @@
-/obj/screen/inventory
+/atom/movable/screen/inventory
 	var/slot_id	//The indentifier for the slot. It has nothing to do with ID cards.
 
-/obj/screen/inventory/Click()
+/atom/movable/screen/inventory/Click()
 	// At this point in client Click() code we have passed the 1/10 sec check and little else
 	// We don't even know if it's a middle click
 	if(world.time <= usr.next_move)
@@ -32,13 +32,13 @@
 				usr.next_move = world.time + 6
 	return 1
 
-// The little button in the bottom left corner which hides the non-persistent inventory slots.
-/obj/screen/inventory_toggle
+// The little button in the bottom left corner which hides the pop-up inventory slots.
+/atom/movable/screen/inventory_toggle
 	name = "inventory toggle"
 	icon_state = "other"
 	screen_loc = UI_INVENTORY_TOGGLE
 
-/obj/screen/inventory_toggle/Click(location, control, params)
+/atom/movable/screen/inventory_toggle/Click(location, control, params)
 	if(isnull(usr))
 		return 1
 
@@ -55,27 +55,27 @@
 /*
  * Grabs
  */
-/obj/screen/grab
+/atom/movable/screen/grab
 	name = "grab"
 
-/obj/screen/grab/Click()
+/atom/movable/screen/grab/Click()
 	var/obj/item/grab/G = master
 	G.s_click(src)
 	return 1
 
-/obj/screen/grab/attack_hand()
+/atom/movable/screen/grab/attack_hand()
 	return
 
-/obj/screen/grab/attackby()
+/atom/movable/screen/grab/attackby()
 	return
 
 /*
  * Storage
  */
-/obj/screen/storage
+/atom/movable/screen/storage
 	name = "storage"
 
-/obj/screen/storage/Click()
+/atom/movable/screen/storage/Click()
 	if(world.time <= usr.next_move)
 		return 1
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
@@ -89,10 +89,10 @@
 			usr.next_move = world.time + 2
 	return 1
 
-/obj/screen/close
+/atom/movable/screen/close
 	name = "close"
 
-/obj/screen/close/Click()
+/atom/movable/screen/close/Click()
 	if(isnotnull(master))
 		if(istype(master, /obj/item/storage))
 			var/obj/item/storage/S = master

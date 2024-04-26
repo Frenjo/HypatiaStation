@@ -7,10 +7,10 @@
 	robot_talk_understand = 2
 
 //HUD
-	var/obj/screen/cells = null
-	var/obj/screen/inv1 = null
-	var/obj/screen/inv2 = null
-	var/obj/screen/inv3 = null
+	var/atom/movable/screen/cells = null
+	var/atom/movable/screen/inv1 = null
+	var/atom/movable/screen/inv2 = null
+	var/atom/movable/screen/inv3 = null
 
 //3 Modules can be activated at any one time.
 	var/obj/item/robot_module/module = null

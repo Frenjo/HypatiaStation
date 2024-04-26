@@ -42,7 +42,7 @@ PROCESS_DEF(ticker)
 
 	// station_explosion used to be a variable for every mob's hud, which was a waste!
 	// Now we have a general cinematic centrally held within the gameticker, which is far more efficient!
-	var/obj/screen/cinematic = null
+	var/atom/movable/screen/cinematic = null
 
 /datum/process/ticker/setup()
 	lastTickerTime = world.timeofday

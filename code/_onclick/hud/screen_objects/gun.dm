@@ -1,34 +1,33 @@
-/obj/screen/gun
+/atom/movable/screen/gun
 	name = "gun"
 	icon = 'icons/mob/screen/screen1.dmi'
-	master = null
 	dir = 2
 
 	var/gun_click_time = -100 //I'm lazy.
 
-/obj/screen/gun/Click(location, control, params)
+/atom/movable/screen/gun/Click(location, control, params)
 	if(isnull(usr))
 		return FALSE
 	return TRUE
 
-/obj/screen/gun/mode
+/atom/movable/screen/gun/mode
 	name = "Toggle Gun Mode"
 	icon_state = "gun0"
 	screen_loc = UI_GUN_SELECT
 	//dir = 1
 
-/obj/screen/gun/mode/Click(location, control, params)
+/atom/movable/screen/gun/mode/Click(location, control, params)
 	. = ..()
 	if(!.)
 		return .
 	usr.client.ToggleGunMode()
 
-/obj/screen/gun/move
+/atom/movable/screen/gun/move
 	name = "Allow Walking"
 	icon_state = "no_walk0"
 	screen_loc = UI_GUN2
 
-/obj/screen/gun/move/Click(location, control, params)
+/atom/movable/screen/gun/move/Click(location, control, params)
 	. = ..()
 	if(!.)
 		return .
@@ -41,12 +40,12 @@
 	usr.client.AllowTargetMove()
 	gun_click_time = world.time
 
-/obj/screen/gun/run
+/atom/movable/screen/gun/run
 	name = "Allow Running"
 	icon_state = "no_run0"
 	screen_loc = UI_GUN3
 
-/obj/screen/gun/run/Click(location, control, params)
+/atom/movable/screen/gun/run/Click(location, control, params)
 	. = ..()
 	if(!.)
 		return .
@@ -59,12 +58,12 @@
 	usr.client.AllowTargetRun()
 	gun_click_time = world.time
 
-/obj/screen/gun/item
+/atom/movable/screen/gun/item
 	name = "Allow Item Use"
 	icon_state = "no_item0"
 	screen_loc = UI_GUN1
 
-/obj/screen/gun/item/Click(location, control, params)
+/atom/movable/screen/gun/item/Click(location, control, params)
 	. = ..()
 	if(!.)
 		return .
