@@ -66,6 +66,7 @@ if(isnotnull(VAR)) \
 			SET_SCREEN_LOC(H.wear_uniform, UI_ICLOTHING)
 			// Suit
 			SET_SCREEN_LOC(H.wear_suit, UI_OCLOTHING)
+			SET_SCREEN_LOC(H.suit_store, UI_SSTORE1)
 			// Other
 			SET_SCREEN_LOC(H.gloves, UI_GLOVES)
 			SET_SCREEN_LOC(H.shoes, UI_SHOES)
@@ -80,6 +81,7 @@ if(isnotnull(VAR)) \
 			UNSET_SCREEN_LOC(H.wear_uniform)
 			// Suit
 			UNSET_SCREEN_LOC(H.wear_suit)
+			UNSET_SCREEN_LOC(H.suit_store)
 			// Other
 			UNSET_SCREEN_LOC(H.gloves)
 			UNSET_SCREEN_LOC(H.shoes)
@@ -96,8 +98,6 @@ if(isnotnull(VAR)) \
 			SET_SCREEN_LOC(H.id_store, UI_ID_STORE)
 			SET_SCREEN_LOC(H.l_pocket, UI_STORAGE1)
 			SET_SCREEN_LOC(H.r_pocket, UI_STORAGE2)
-			// Suit
-			SET_SCREEN_LOC(H.suit_store, UI_SSTORE1)
 			// Other
 			SET_SCREEN_LOC(H.belt, UI_BELT)
 		else
@@ -106,8 +106,6 @@ if(isnotnull(VAR)) \
 			UNSET_SCREEN_LOC(H.id_store)
 			UNSET_SCREEN_LOC(H.l_pocket)
 			UNSET_SCREEN_LOC(H.r_pocket)
-			// Suit
-			UNSET_SCREEN_LOC(H.suit_store)
 			// Other
 			UNSET_SCREEN_LOC(H.belt)
 #undef UNSET_SCREEN_LOC

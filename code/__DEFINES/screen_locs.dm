@@ -28,7 +28,7 @@
 #define UI_ACTION_SLOT5 "WEST+4:14, SOUTH+13:26"
 
 // Lower Left (Persistent Menu)
-#define UI_INVENTORY "WEST:6, SOUTH:5"
+#define UI_INVENTORY_TOGGLE "WEST:6, SOUTH:5"
 
 /*
  * Lower Centre
@@ -36,7 +36,6 @@
  *
  * These are in left-to-right, bottom-to-top order.
  */
-#define UI_SSTORE1 "WEST+2:10, SOUTH:5"
 #define UI_ID_STORE "WEST+3:12, SOUTH:5"
 #define UI_BELT "WEST+4:14, SOUTH:5"
 #define UI_BACK "WEST+5:14, SOUTH:5"
@@ -101,6 +100,7 @@
  * These are in left-to-right, bottom-to-top order.
  */
 #define UI_SHOES "WEST+1:8, SOUTH:5"
+#define UI_SSTORE1 "WEST+2:10, SOUTH:5"
 #define UI_ICLOTHING "WEST:6, SOUTH+1:7"
 #define UI_OCLOTHING "WEST+1:8, SOUTH+1:7"
 #define UI_GLOVES "WEST+2:10, SOUTH+1:7"

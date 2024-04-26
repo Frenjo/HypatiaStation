@@ -40,11 +40,8 @@
 			adding.Add(inv_box)
 
 	if(has_hidden_gear)
-		using = new /obj/screen()
-		using.name = "toggle"
+		using = new /obj/screen/inventory_toggle()
 		using.icon = ui_style
-		using.icon_state = "other"
-		using.screen_loc = UI_INVENTORY
 		using.color = ui_color
 		using.alpha = ui_alpha
 		adding.Add(using)
