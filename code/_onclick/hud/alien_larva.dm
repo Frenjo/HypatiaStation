@@ -13,12 +13,9 @@
 	adding.Add(using)
 	action_intent = using
 
-	using = new /atom/movable/screen()
-	using.name = "mov_intent"
-	using.set_dir(SOUTHWEST)
+	using = new /atom/movable/screen/move_intent()
 	using.icon = 'icons/mob/screen/screen1_alien.dmi'
 	using.icon_state = mymob.move_intent.hud_icon_state
-	using.screen_loc = UI_MOVI
 	adding.Add(using)
 	move_intent = using
 

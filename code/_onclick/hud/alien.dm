@@ -14,57 +14,27 @@
 	adding.Add(using)
 	action_intent = using
 
-//intent small hud objects
-	var/icon/ico
-
-	ico = new /icon('icons/mob/screen/screen1_alien.dmi', "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255, 255, 255, 1), 1, ico.Height() / 2, ico.Width() / 2, ico.Height())
-	using = new /atom/movable/screen(src)
-	using.name = "help"
-	using.icon = ico
-	using.screen_loc = UI_ACTI
+	// Small action intent boxes.
+	using = new /atom/movable/screen/action_intent/help(src, 'icons/mob/screen/screen1_alien.dmi')
 	adding.Add(using)
 	intent_buttons["help"] = using
 
-	ico = new /icon('icons/mob/screen/screen1_alien.dmi', "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255, 255, 255, 1),ico.Width() / 2, ico.Height() / 2, ico.Width(), ico.Height())
-	using = new /atom/movable/screen(src)
-	using.name = "disarm"
-	using.icon = ico
-	using.screen_loc = UI_ACTI
+	using = new /atom/movable/screen/action_intent/disarm(src, 'icons/mob/screen/screen1_alien.dmi')
 	adding.Add(using)
 	intent_buttons["disarm"] = using
 
-	ico = new /icon('icons/mob/screen/screen1_alien.dmi', "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255, 255, 255, 1), ico.Width() / 2, 1, ico.Width(), ico.Height() / 2)
-	using = new /atom/movable/screen(src)
-	using.name = "grab"
-	using.icon = ico
-	using.screen_loc = UI_ACTI
+	using = new /atom/movable/screen/action_intent/grab(src, 'icons/mob/screen/screen1_alien.dmi')
 	adding.Add(using)
 	intent_buttons["grab"] = using
 
-	ico = new /icon('icons/mob/screen/screen1_alien.dmi', "black")
-	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
-	ico.DrawBox(rgb(255, 255, 255, 1), 1, 1, ico.Width() / 2, ico.Height() / 2)
-	using = new /atom/movable/screen(src)
-	using.name = "harm"
-	using.icon = ico
-	using.screen_loc = UI_ACTI
+	using = new /atom/movable/screen/action_intent/harm(src, 'icons/mob/screen/screen1_alien.dmi')
 	adding.Add(using)
 	intent_buttons["harm"] = using
+	// End small action intent boxes.
 
-//end intent small hud objects
-
-	using = new /atom/movable/screen()
-	using.name = "mov_intent"
-	using.set_dir(SOUTHWEST)
+	using = new /atom/movable/screen/move_intent()
 	using.icon = 'icons/mob/screen/screen1_alien.dmi'
 	using.icon_state = mymob.move_intent.hud_icon_state
-	using.screen_loc = UI_MOVI
 	adding.Add(using)
 	move_intent = using
 

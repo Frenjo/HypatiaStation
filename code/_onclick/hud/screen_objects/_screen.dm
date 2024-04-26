@@ -35,16 +35,6 @@
 				var/mob/living/L = usr
 				L.resist()
 
-		if("mov_intent")
-			if(iscarbon(usr))
-				var/mob/living/carbon/C = usr
-				if(isnotnull(C.legcuffed))
-					to_chat(C, SPAN_NOTICE("You are legcuffed! You cannot run until you get [C.legcuffed] removed!"))
-					C.set_move_intent(/decl/move_intent/walk) // Just in case.
-					return 1
-				else
-					var/next_move_intent = next_in_list(C.move_intent.type, C.move_intents)
-					C.set_move_intent(next_move_intent)
 		if("Reset Machine")
 			usr.unset_machine()
 		if("internal")
@@ -53,18 +43,6 @@
 				L.ui_toggle_internals()
 		if("act_intent")
 			usr.a_intent_change("right")
-		if("help")
-			usr.a_intent = "help"
-			usr.hud_used.action_intent.icon_state = "intent_help"
-		if("harm")
-			usr.a_intent = "hurt"
-			usr.hud_used.action_intent.icon_state = "intent_hurt"
-		if("grab")
-			usr.a_intent = "grab"
-			usr.hud_used.action_intent.icon_state = "intent_grab"
-		if("disarm")
-			usr.a_intent = "disarm"
-			usr.hud_used.action_intent.icon_state = "intent_disarm"
 
 		if("pull")
 			usr.stop_pulling()
