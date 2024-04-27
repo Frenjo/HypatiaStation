@@ -179,6 +179,7 @@
 		to_chat(usr, "This is only for human mobs.")
 		return
 	var/mob/living/carbon/human/user = usr
+	var/datum/hud/human/human_hud = user.hud_used
 
 	var/UI_style_new = input(user, "Select a style, we recommend White for customization.") in list("White", "Midnight", "Orange", "old")
 	if(isnull(UI_style_new))
@@ -193,7 +194,7 @@
 		return
 
 	//update UI
-	var/list/icons = user.hud_used.adding + user.hud_used.other + user.hud_used.hotkeybuttons
+	var/list/icons = human_hud.adding + human_hud.other + human_hud.hotkey_buttons
 	icons.Add(user.zone_sel)
 
 	for(var/atom/movable/screen/I in icons)

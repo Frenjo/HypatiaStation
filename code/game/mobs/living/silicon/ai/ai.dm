@@ -17,6 +17,8 @@
 	density = TRUE
 	status_flags = CANSTUN | CANPARALYSE
 
+	hud_type = /datum/hud/ai
+
 	var/obj/machinery/ai_power_supply/power_supply = null // The connected power supply.
 
 	var/list/network = list("SS13")

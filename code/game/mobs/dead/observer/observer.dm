@@ -14,6 +14,8 @@
 	anchored = TRUE	//  don't get pushed around
 	invisibility = INVISIBILITY_OBSERVER
 
+	hud_type = /datum/hud/ghost
+
 	universal_speak = TRUE
 
 	var/can_reenter_corpse

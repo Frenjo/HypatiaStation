@@ -1,7 +1,5 @@
-/datum/hud/proc/robot_hud()
-	adding = list()
-	other = list()
-
+/datum/hud/robot/setup()
+	var/mob/living/silicon/robot/owner = mymob
 	var/atom/movable/screen/using
 
 //Radio
@@ -21,7 +19,7 @@
 	using.icon_state = "inv1"
 	using.screen_loc = UI_INV1
 	adding.Add(using)
-	mymob:inv1 = using
+	owner.inv1 = using
 
 	using = new /atom/movable/screen()
 	using.name = "module2"
@@ -30,7 +28,7 @@
 	using.icon_state = "inv2"
 	using.screen_loc = UI_INV2
 	adding.Add(using)
-	mymob:inv2 = using
+	owner.inv2 = using
 
 	using = new /atom/movable/screen()
 	using.name = "module3"
@@ -39,7 +37,7 @@
 	using.icon_state = "inv3"
 	using.screen_loc = UI_INV3
 	adding.Add(using)
-	mymob:inv3 = using
+	owner.inv3 = using
 
 //End of module select
 
@@ -54,12 +52,11 @@
 	action_intent = using
 
 //Cell
-	var/mob/living/silicon/robot/robot = mymob
-	robot.cells = new /atom/movable/screen()
-	robot.cells.icon = 'icons/mob/screen/screen1_robot.dmi'
-	robot.cells.icon_state = "charge-empty"
-	robot.cells.name = "cell"
-	robot.cells.screen_loc = UI_TOXIN
+	owner.cells = new /atom/movable/screen()
+	owner.cells.icon = 'icons/mob/screen/screen1_robot.dmi'
+	owner.cells.icon_state = "charge-empty"
+	owner.cells.name = "cell"
+	owner.cells.screen_loc = UI_TOXIN
 
 //Health
 	mymob.healths = new /atom/movable/screen()

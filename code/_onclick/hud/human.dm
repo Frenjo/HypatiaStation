@@ -1,16 +1,21 @@
-/datum/hud/proc/human_hud(ui_style = 'icons/mob/screen/screen1_White.dmi', ui_color = "#ffffff", ui_alpha = 255, mob/living/carbon/human/target)
-	var/datum/hud_data/hud_data
-	if(!istype(target))
-		hud_data = new /datum/hud_data()
-	else
-		hud_data = target.species.hud
+/datum/hud/human
+	var/hotkey_ui_hidden = FALSE	// This is to hide the buttons that can be used via hotkeys. (hotkey_buttons list of buttons)
+	var/list/atom/movable/screen/hotkey_buttons // These can be disabled for hotkey users.
 
+	// A list containing the item action button objects.
+	var/list/atom/movable/screen/item_action/item_actions
+
+/datum/hud/human/New(mob/living/carbon/human/owner)
+	hotkey_buttons = list()
+	item_actions = list()
+	. = ..(owner)
+
+// Pass the player UI style chosen in preferences.
+/datum/hud/human/setup(ui_style = 'icons/mob/screen/screen1_White.dmi', ui_colour = "#ffffff", ui_alpha = 255)
+	var/mob/living/carbon/human/owner = mymob
+	var/datum/hud_data/hud_data = owner.species.hud
 	if(hud_data.icon)
 		ui_style = hud_data.icon
-
-	adding = list()
-	other = list()
-	hotkeybuttons = list() //These can be disabled for hotkey usersx
 
 	var/list/hud_elements = list()
 	var/atom/movable/screen/using
@@ -21,7 +26,7 @@
 	for(var/gear_slot in hud_data.gear)
 		inv_box = new /atom/movable/screen/inventory()
 		inv_box.icon = ui_style
-		inv_box.color = ui_color
+		inv_box.color = ui_colour
 		inv_box.alpha = ui_alpha
 
 		var/list/slot_data = hud_data.gear[gear_slot]
@@ -42,7 +47,7 @@
 	if(has_hidden_gear)
 		using = new /atom/movable/screen/inventory_toggle()
 		using.icon = ui_style
-		using.color = ui_color
+		using.color = ui_colour
 		using.alpha = ui_alpha
 		adding.Add(using)
 
@@ -54,7 +59,7 @@
 		using.icon = ui_style
 		using.icon_state = "intent_" + mymob.a_intent
 		using.screen_loc = UI_ACTI
-		using.color = ui_color
+		using.color = ui_colour
 		using.alpha = ui_alpha
 		adding.Add(using)
 		action_intent = using
@@ -87,7 +92,7 @@
 		using = new /atom/movable/screen/move_intent()
 		using.icon = ui_style
 		using.icon_state = mymob.move_intent.hud_icon_state
-		using.color = ui_color
+		using.color = ui_colour
 		using.alpha = ui_alpha
 		adding.Add(using)
 		move_intent = using
@@ -98,9 +103,9 @@
 		using.icon = ui_style
 		using.icon_state = "act_drop"
 		using.screen_loc = UI_DROP_THROW
-		using.color = ui_color
+		using.color = ui_colour
 		using.alpha = ui_alpha
-		hotkeybuttons.Add(using)
+		hotkey_buttons.Add(using)
 
 	if(hud_data.has_hands)
 		using = new /atom/movable/screen()
@@ -108,7 +113,7 @@
 		using.icon = ui_style
 		using.icon_state = "act_equip"
 		using.screen_loc = UI_EQUIP
-		using.color = ui_color
+		using.color = ui_colour
 		using.alpha = ui_alpha
 		adding.Add(using)
 
@@ -121,7 +126,7 @@
 			inv_box.icon_state = "hand_active"
 		inv_box.screen_loc = UI_RHAND
 		inv_box.slot_id = SLOT_ID_R_HAND
-		inv_box.color = ui_color
+		inv_box.color = ui_colour
 		inv_box.alpha = ui_alpha
 
 		r_hand_hud_object = inv_box
@@ -136,7 +141,7 @@
 			inv_box.icon_state = "hand_active"
 		inv_box.screen_loc = UI_LHAND
 		inv_box.slot_id = SLOT_ID_L_HAND
-		inv_box.color = ui_color
+		inv_box.color = ui_colour
 		inv_box.alpha = ui_alpha
 		l_hand_hud_object = inv_box
 		adding.Add(inv_box)
@@ -147,7 +152,7 @@
 		using.icon = ui_style
 		using.icon_state = "hand1"
 		using.screen_loc = UI_SWAPHAND1
-		using.color = ui_color
+		using.color = ui_colour
 		using.alpha = ui_alpha
 		adding.Add(using)
 
@@ -157,7 +162,7 @@
 		using.icon = ui_style
 		using.icon_state = "hand2"
 		using.screen_loc = UI_SWAPHAND2
-		using.color = ui_color
+		using.color = ui_colour
 		using.alpha = ui_alpha
 		adding.Add(using)
 
@@ -167,9 +172,9 @@
 		using.icon = ui_style
 		using.icon_state = "act_resist"
 		using.screen_loc = UI_PULL_RESIST
-		using.color = ui_color
+		using.color = ui_colour
 		using.alpha = ui_alpha
-		hotkeybuttons.Add(using)
+		hotkey_buttons.Add(using)
 
 	if(hud_data.has_throw)
 		mymob.throw_icon = new /atom/movable/screen()
@@ -177,9 +182,9 @@
 		mymob.throw_icon.icon_state = "act_throw_off"
 		mymob.throw_icon.name = "throw"
 		mymob.throw_icon.screen_loc = UI_DROP_THROW
-		mymob.throw_icon.color = ui_color
+		mymob.throw_icon.color = ui_colour
 		mymob.throw_icon.alpha = ui_alpha
-		hotkeybuttons.Add(mymob.throw_icon)
+		hotkey_buttons.Add(mymob.throw_icon)
 		hud_elements |= mymob.throw_icon
 
 		mymob.pullin = new /atom/movable/screen()
@@ -187,7 +192,7 @@
 		mymob.pullin.icon_state = "pull0"
 		mymob.pullin.name = "pull"
 		mymob.pullin.screen_loc = UI_PULL_RESIST
-		hotkeybuttons.Add(mymob.pullin)
+		hotkey_buttons.Add(mymob.pullin)
 		hud_elements |= mymob.pullin
 
 	if(hud_data.has_internals)
@@ -282,7 +287,7 @@
 
 	mymob.zone_sel = new /atom/movable/screen/zone_sel()
 	mymob.zone_sel.icon = ui_style
-	mymob.zone_sel.color = ui_color
+	mymob.zone_sel.color = ui_colour
 	mymob.zone_sel.alpha = ui_alpha
 	mymob.zone_sel.update_icon()
 	hud_elements |= mymob.zone_sel
@@ -310,60 +315,146 @@
 
 	mymob.client.screen.Cut()
 	mymob.client.screen.Add(hud_elements)
-	mymob.client.screen.Add(adding + hotkeybuttons)
+	mymob.client.screen.Add(adding + hotkey_buttons)
 	inventory_shown = FALSE
+
+	return TRUE
+
+#define SET_SCREEN_LOC(VAR, LOC) \
+if(isnotnull(VAR)) \
+	VAR.screen_loc = LOC
+#define UNSET_SCREEN_LOC(VAR) \
+if(isnotnull(VAR)) \
+	VAR.screen_loc = null
+/datum/hud/human/hidden_inventory_update()
+	. = ..()
+	if(!.)
+		return .
+
+	var/mob/living/carbon/human/H = mymob
+	if(inventory_shown && hud_shown)
+		SET_SCREEN_LOC(H.wear_mask, UI_MASK)
+		// Head
+		SET_SCREEN_LOC(H.head, UI_HEAD)
+		SET_SCREEN_LOC(H.glasses, UI_GLASSES)
+		SET_SCREEN_LOC(H.l_ear, UI_L_EAR)
+		SET_SCREEN_LOC(H.r_ear, UI_R_EAR)
+		// Uniform
+		SET_SCREEN_LOC(H.wear_uniform, UI_ICLOTHING)
+		// Suit
+		SET_SCREEN_LOC(H.wear_suit, UI_OCLOTHING)
+		SET_SCREEN_LOC(H.suit_store, UI_SSTORE1)
+		// Other
+		SET_SCREEN_LOC(H.gloves, UI_GLOVES)
+		SET_SCREEN_LOC(H.shoes, UI_SHOES)
+	else
+		UNSET_SCREEN_LOC(H.wear_mask)
+		// Head
+		UNSET_SCREEN_LOC(H.head)
+		UNSET_SCREEN_LOC(H.glasses)
+		UNSET_SCREEN_LOC(H.l_ear)
+		UNSET_SCREEN_LOC(H.r_ear)
+		// Uniform
+		UNSET_SCREEN_LOC(H.wear_uniform)
+		// Suit
+		UNSET_SCREEN_LOC(H.wear_suit)
+		UNSET_SCREEN_LOC(H.suit_store)
+		// Other
+		UNSET_SCREEN_LOC(H.gloves)
+		UNSET_SCREEN_LOC(H.shoes)
+
+/datum/hud/human/persistent_inventory_update()
+	. = ..()
+	if(!.)
+		return .
+
+	var/mob/living/carbon/human/H = mymob
+	if(hud_shown)
+		SET_SCREEN_LOC(H.back, UI_BACK)
+		// Uniform
+		SET_SCREEN_LOC(H.id_store, UI_ID_STORE)
+		SET_SCREEN_LOC(H.l_pocket, UI_STORAGE1)
+		SET_SCREEN_LOC(H.r_pocket, UI_STORAGE2)
+		// Other
+		SET_SCREEN_LOC(H.belt, UI_BELT)
+	else
+		UNSET_SCREEN_LOC(H.back)
+		// Uniform
+		UNSET_SCREEN_LOC(H.id_store)
+		UNSET_SCREEN_LOC(H.l_pocket)
+		UNSET_SCREEN_LOC(H.r_pocket)
+		// Other
+		UNSET_SCREEN_LOC(H.belt)
+#undef UNSET_SCREEN_LOC
+#undef SET_SCREEN_LOC
 
 /mob/living/carbon/human/verb/toggle_hotkey_verbs()
 	set category = PANEL_OOC
 	set name = "Toggle hotkey buttons"
 	set desc = "This disables or enables the user interface buttons which can be used with hotkeys."
 
-	if(hud_used.hotkey_ui_hidden)
-		client.screen.Add(hud_used.hotkeybuttons)
+	var/datum/hud/human/human_hud = hud_used
+	if(human_hud.hotkey_ui_hidden)
+		client.screen.Add(human_hud.hotkey_buttons)
 	else
-		client.screen.Remove(hud_used.hotkeybuttons)
-	hud_used.hotkey_ui_hidden = !hud_used.hotkey_ui_hidden
+		client.screen.Remove(human_hud.hotkey_buttons)
+	human_hud.hotkey_ui_hidden = !human_hud.hotkey_ui_hidden
 
-/mob/living/carbon/human/update_action_buttons()
-	var/num = 1
-	if(isnull(hud_used))
-		return
+/mob/living/carbon/human/button_pressed_F12(full = FALSE as null)
+	set name = "F12"
+	set hidden = TRUE
+
 	if(isnull(client))
 		return
-	if(!hud_used.hud_shown)	//Hud toggled to minimal
+	if(client.view != world.view)
 		return
+	if(isnull(hud_used))
+		return
+	var/datum/hud/human/human_hud = hud_used
 
-	client.screen.Remove(hud_used.item_action_list)
+	human_hud.hud_shown = !human_hud.hud_shown
+	if(!human_hud.hud_shown)
+		if(isnotnull(human_hud.adding))
+			client.screen.Remove(human_hud.adding)
+		if(isnotnull(human_hud.other))
+			client.screen.Remove(human_hud.other)
+		if(isnotnull(human_hud.hotkey_buttons))
+			client.screen.Remove(human_hud.hotkey_buttons)
+		if(isnotnull(human_hud.item_actions))
+			client.screen.Remove(human_hud.item_actions)
 
-	hud_used.item_action_list = list()
-	for(var/obj/item/I in src)
-		if(isnotnull(I.icon_action_button))
-			var/atom/movable/screen/item_action/A = new /atom/movable/screen/item_action(I)
-			//A.icon = 'icons/mob/screen/screen1_action.dmi'
-			//A.icon_state = I.icon_action_button
-			A.icon = ui_style2icon(client.prefs.UI_style)
-			A.icon_state = "template"
-			var/image/img = image(I.icon, A, I.icon_state)
-			img.pixel_x = 0
-			img.pixel_y = 0
-			A.overlays.Add(img)
+		//Due to some poor coding some things need special treatment:
+		//These ones are a part of 'adding', 'other' or 'hotkey_buttons' but we want them to stay
+		if(!full)
+			client.screen.Add(human_hud.l_hand_hud_object)	//we want the hands to be visible
+			client.screen.Add(human_hud.r_hand_hud_object)	//we want the hands to be visible
+			client.screen.Add(human_hud.action_intent)		//we want the intent swticher visible
+			human_hud.action_intent.screen_loc = UI_ACTI_ALT	//move this to the alternative position, where zone_select usually is.
+		else
+			client.screen.Remove(healths)
+			client.screen.Remove(internals)
+			client.screen.Remove(gun_setting_icon)
 
-			if(isnotnull(I.action_button_name))
-				A.name = I.action_button_name
-			else
-				A.name = "Use [I.name]"
-			hud_used.item_action_list.Add(A)
-			switch(num)
-				if(1)
-					A.screen_loc = UI_ACTION_SLOT1
-				if(2)
-					A.screen_loc = UI_ACTION_SLOT2
-				if(3)
-					A.screen_loc = UI_ACTION_SLOT3
-				if(4)
-					A.screen_loc = UI_ACTION_SLOT4
-				if(5)
-					A.screen_loc = UI_ACTION_SLOT5
-					break //5 slots available, so no more can be added.
-			num++
-	client.screen.Add(hud_used.item_action_list)
+		//These ones are not a part of 'adding', 'other' or 'hotkey_buttons' but we want them gone.
+		client.screen.Remove(zone_sel)	//zone_sel is a mob variable for some reason.
+
+	else
+		if(isnotnull(human_hud.adding))
+			client.screen.Add(human_hud.adding)
+		if(isnotnull(human_hud.other) && human_hud.inventory_shown)
+			client.screen.Add(human_hud.other)
+		if(isnotnull(human_hud.hotkey_buttons) && !human_hud.hotkey_ui_hidden)
+			client.screen.Add(human_hud.hotkey_buttons)
+		if(isnotnull(healths))
+			client.screen |= healths
+		if(isnotnull(internals))
+			client.screen |= internals
+		if(isnotnull(gun_setting_icon))
+			client.screen |= gun_setting_icon
+
+		human_hud.action_intent.screen_loc = UI_ACTI //Restore intent selection to the original position
+		client.screen.Add(zone_sel)				//This one is a special snowflake
+
+	human_hud.hidden_inventory_update()
+	human_hud.persistent_inventory_update()
+	update_action_buttons()

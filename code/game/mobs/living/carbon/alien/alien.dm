@@ -11,6 +11,8 @@
 	friendly = "nuzzles"
 	wall_smash = 0
 
+	hud_type = /datum/hud/alien
+
 	var/adult_form
 	var/dead_icon
 	var/amount_grown = 0

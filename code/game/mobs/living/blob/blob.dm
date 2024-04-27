@@ -3,6 +3,9 @@
 	real_name = "blob fragment"
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blob_spore_temp"
+
+	hud_type = /datum/hud/blob
+
 	pass_flags = PASS_FLAG_BLOB
 	see_in_dark = 8
 	see_invisible = SEE_INVISIBLE_LEVEL_TWO

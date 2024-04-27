@@ -24,7 +24,7 @@
 			to_chat(src, "<b>No AI selected to sync laws with, disabling lawsync protocol.</b>")
 			lawupdate = 0
 
-	to_chat(who, who << "<b>Obey these laws:</b>")
+	to_chat(who, "<b>Obey these laws:</b>")
 	laws.show_laws(who)
 	if(isnotnull(mind) && (mind.special_role == "traitor" && mind.original == src) && isnotnull(connected_ai))
 		to_chat(who, "<b>Remember, [connected_ai.name] is technically your master, but your objective comes first.</b>")

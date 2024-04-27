@@ -1,7 +1,4 @@
-/datum/hud/proc/monkey_hud(ui_style = 'icons/mob/screen/screen1_old.dmi')
-	adding = list()
-	other = list()
-
+/datum/hud/monkey/setup(ui_style = 'icons/mob/screen/screen1_old.dmi')
 	var/atom/movable/screen/using
 	var/atom/movable/screen/inventory/inv_box
 

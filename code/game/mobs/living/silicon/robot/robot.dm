@@ -6,6 +6,8 @@
 	maxHealth = 200
 	health = 200
 
+	hud_type = /datum/hud/robot
+
 	mob_bump_flag = ROBOT
 	mob_swap_flags = ROBOT | MONKEY | SLIME | SIMPLE_ANIMAL
 	mob_push_flags = ALLMOBS //trundle trundle
@@ -792,7 +794,7 @@
 /mob/living/silicon/robot/proc/installed_jetpack()
 	if(isnotnull(module))
 		return (locate(/obj/item/tank/jetpack) in module.modules)
-	return 0
+	return null
 
 // this function displays the cyborgs current cell charge in the stat panel
 /mob/living/silicon/robot/proc/show_cell_power()

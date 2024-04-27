@@ -5,6 +5,8 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "brain1"
 
+	hud_type = /datum/hud/brain
+
 	var/obj/item/container = null
 	var/timeofhostdeath = 0
 	var/emp_damage = 0 //Handles a type of MMI damage

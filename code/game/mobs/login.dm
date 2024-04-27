@@ -35,7 +35,8 @@
 	client.screen = null	//remove hud items just in case
 	if(hud_used)
 		qdel(hud_used)		//remove the hud objects
-	hud_used = new /datum/hud(src)
+	if(isnotnull(hud_type))
+		hud_used = new hud_type(src)
 
 	client.apply_parallax()
 

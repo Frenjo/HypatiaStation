@@ -1,10 +1,8 @@
-/datum/hud/proc/unplayer_hud()
-	return
+/datum/hud/unplayer
 
-/datum/hud/proc/ghost_hud()
-	return
+/datum/hud/ghost
 
-/datum/hud/proc/brain_hud(ui_style = 'icons/mob/screen/screen1_Midnight.dmi')
+/datum/hud/brain/setup(ui_style = 'icons/mob/screen/screen1_Midnight.dmi')
 	mymob.blind = new /atom/movable/screen()
 	mymob.blind.icon = 'icons/mob/screen/screen1_full.dmi'
 	mymob.blind.icon_state = "blackimageoverlay"
@@ -12,10 +10,14 @@
 	mymob.blind.screen_loc = "1,1"
 	mymob.blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 
-/datum/hud/proc/ai_hud()
-	return
+/datum/hud/ai
 
-/datum/hud/proc/blob_hud(ui_style = 'icons/mob/screen/screen1_Midnight.dmi')
+/datum/hud/blob
+	// Blob health and power display objects.
+	var/atom/movable/screen/blob_health_display
+	var/atom/movable/screen/blob_power_display
+
+/datum/hud/blob/setup(ui_style = 'icons/mob/screen/screen1_Midnight.dmi')
 	blob_health_display = new /atom/movable/screen()
 	blob_health_display.name = "blob health"
 	blob_health_display.icon_state = "block"

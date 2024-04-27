@@ -1,7 +1,4 @@
-/datum/hud/proc/alien_hud()
-	adding = list()
-	other = list()
-
+/datum/hud/alien/setup()
 	var/atom/movable/screen/using
 	var/atom/movable/screen/inventory/inv_box
 

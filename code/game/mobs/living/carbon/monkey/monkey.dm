@@ -8,12 +8,13 @@
 	pass_flags = PASS_FLAG_TABLE
 	update_icon = 0		///no need to call regenerate_icon
 
+	hud_type = /datum/hud/monkey
+
 	mob_swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = MONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
 
 	var/obj/item/card/id/id_store = null	// Fix for station bounced radios -- Skie
 	var/greaterform = SPECIES_HUMAN				// Used when humanizing a monkey.
-	icon_state = "monkey1"
 	//var/uni_append = "12C4E2"					// Small appearance modifier for different species.
 	var/list/uni_append = list(0x12C, 0x4E2)	// Same as above for DNA2.
 	var/update_muts = 1							// Monkey gene must be set at start.

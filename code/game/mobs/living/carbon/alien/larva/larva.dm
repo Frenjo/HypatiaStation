@@ -10,6 +10,8 @@
 	melee_damage_lower = 3
 	melee_damage_upper = 6
 
+	hud_type = /datum/hud/alien_larva
+
 	amount_grown = 0
 	max_grown = 200
 

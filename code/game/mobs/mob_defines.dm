@@ -129,6 +129,10 @@
 	var/obj/item/tank/internal = null	//Human/Monkey
 	var/obj/item/storage/s_active = null	//Carbon
 
+	// The typepath of the HUD used by the mob.
+	// Must be a subtype of /datum/hud.
+	var/hud_type = null
+
 	/*
 	 * Equipment Slots
 	 */

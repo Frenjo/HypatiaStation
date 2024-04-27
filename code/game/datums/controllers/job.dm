@@ -332,10 +332,11 @@ CONTROLLER_DEF(jobs)
 		return 0
 
 	var/datum/job/job = get_job(rank)
-	if(isnotnull(job))
-		job.equip(H, H.mind.role_alt_title)
-	else
-		to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
+	if(!istype(job, /datum/job/ai) && !istype(job, /datum/job/cyborg)) // AI/Cyborg checking is a temporary fix.
+		if(isnotnull(job))
+			job.equip(H, H.mind.role_alt_title)
+		else
+			to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
 
 	H.job = rank
 

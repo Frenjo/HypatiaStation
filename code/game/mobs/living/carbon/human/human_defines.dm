@@ -1,4 +1,6 @@
 /mob/living/carbon/human
+	hud_type = /datum/hud/human
+
 	mob_bump_flag = HUMAN
 	mob_push_flags = ALLMOBS
 	mob_swap_flags = ALLMOBS

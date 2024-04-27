@@ -1,7 +1,4 @@
-/datum/hud/proc/larva_hud()
-	adding = list()
-	other = list()
-
+/datum/hud/alien_larva/setup()
 	var/atom/movable/screen/using
 
 	using = new /atom/movable/screen()

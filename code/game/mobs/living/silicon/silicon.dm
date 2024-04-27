@@ -7,14 +7,19 @@
 	var/syndicate = 0
 	var/datum/ai_laws/laws = null	//Now... THEY ALL CAN ALL HAVE LAWS
 
-	var/list/hud_list = list()
-	var/list/speech_synthesizer_langs = list()	//which languages can be vocalized by the speech synthesizer
+	var/list/hud_list
+	var/list/speech_synthesizer_langs //which languages can be vocalized by the speech synthesizer
 
 	var/local_transmit //If set, can only speak to others of the same type within a short range.
 
 	var/sensor_mode = 0 //Determines the current HUD.
 	#define SEC_HUD 1 //Security HUD mode
 	#define MED_HUD 2 //Medical HUD mode
+
+/mob/living/silicon/New()
+	hud_list = list()
+	speech_synthesizer_langs = list()
+	. = ..()
 
 /mob/living/silicon/drop_item()
 	return
