@@ -5,7 +5,7 @@
  * including inventories and item quick actions.
  */
 /datum/hud
-	var/mob/mymob = null
+	var/mob/owner = null
 
 	var/hud_shown = TRUE			// Used for the HUD toggle (F12).
 	var/inventory_shown = TRUE		// The inventory.
@@ -30,17 +30,31 @@
 	var/list/adding
 	var/list/other
 
-/datum/hud/New(mob/owner)
-	if(!ismob(owner))
+/datum/hud/New(mob/target)
+	if(!ismob(target))
 		return
-	if(isnull(owner.client))
+	if(isnull(target.client))
 		return
 
 	. = ..()
-	mymob = owner
+	owner = target
 	adding = list()
 	other = list()
-	setup(ui_style2icon(mymob.client.prefs.UI_style), mymob.client.prefs.UI_style_color, mymob.client.prefs.UI_style_alpha)
+	setup(ui_style2icon(owner.client.prefs.UI_style), owner.client.prefs.UI_style_color, owner.client.prefs.UI_style_alpha)
+
+/*
+ * Factory proc for generic screen objects.
+ */
+/datum/hud/proc/setup_screen_object(name, icon, icon_state, screen_loc)
+	RETURN_TYPE(/atom/movable/screen)
+
+	var/atom/movable/screen/screen = new /atom/movable/screen(src)
+	screen.name = name
+	screen.icon = icon
+	screen.icon_state = icon_state
+	screen.screen_loc = screen_loc
+
+	return screen
 
 // ui_colour and ui_alpha can be safely ignored if not needed.
 /datum/hud/proc/setup(ui_style, ui_colour, ui_alpha)
@@ -49,14 +63,14 @@
 /datum/hud/proc/hidden_inventory_update()
 	SHOULD_CALL_PARENT(TRUE)
 
-	if(isnull(mymob))
+	if(isnull(owner))
 		return FALSE
 	return TRUE
 
 /datum/hud/proc/persistent_inventory_update()
 	SHOULD_CALL_PARENT(TRUE)
 
-	if(isnull(mymob))
+	if(isnull(owner))
 		return FALSE
 	return TRUE
 

@@ -60,11 +60,6 @@
 			card.radio = new /obj/item/radio(card)
 		radio = card.radio
 
-	//Default languages without universal translator software
-	add_language("Sol Common")
-	add_language("Tradeband")
-	add_language("Gutter")
-
 	//PDA
 	pda = new /obj/item/pda/ai/pai(src)
 	spawn(5)
@@ -72,7 +67,13 @@
 		pda.owner = "[src]"
 		pda.name = pda.owner + " (" + pda.ownjob + ")"
 		pda.toff = TRUE
+
 	. = ..()
+
+	// Default languages without universal translator software.
+	add_language("Sol Common")
+	add_language("Tradeband")
+	add_language("Gutter")
 
 /mob/living/silicon/pai/Login()
 	. = ..()

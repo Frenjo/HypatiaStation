@@ -53,42 +53,6 @@
 		if("drop")
 			usr.drop_item_v()
 
-		if("module")
-			if(isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-				if(isnotnull(R.module))
-					return 1
-				R.pick_module()
-
-		if("radio")
-			if(isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-				R.radio_menu()
-		if("panel")
-			if(isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-				R.installed_modules()
-
-		if("store")
-			if(isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-				R.uneq_active()
-
-		if("module1")
-			if(isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-				R.toggle_module(1)
-
-		if("module2")
-			if(isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-				R.toggle_module(2)
-
-		if("module3")
-			if(isrobot(usr))
-				var/mob/living/silicon/robot/R = usr
-				R.toggle_module(3)
-
 		else
 			return 0
 	return 1

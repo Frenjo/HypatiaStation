@@ -84,7 +84,7 @@
 	if(isturf(loc))
 		add_ai_verbs()
 
-	//Languages
+	// Languages
 	add_language("Robot Talk")
 	add_language("Drone Talk", FALSE)
 

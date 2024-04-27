@@ -33,7 +33,7 @@ GLOBAL_GLOBL_NEW(global_hud, /datum/global_hud)
 	RETURN_TYPE(/atom/movable/screen)
 
 	var/atom/movable/screen/screen = new /atom/movable/screen()
-	screen.screen_loc = "1,1"
+	screen.screen_loc = "WEST,SOUTH"
 	screen.icon = 'icons/obj/hud_full.dmi'
 	screen.icon_state = icon_state
 	screen.plane = FULLSCREEN_PLANE
