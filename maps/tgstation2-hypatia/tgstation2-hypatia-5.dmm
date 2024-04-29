@@ -1,7 +1,7 @@
 "aa" = (/obj/machinery/atmospherics/unary/vent_scrubber/on,/turf/simulated/floor/tiled/grey,/area/research_outpost/auxiliary_storage)
 "ab" = (/turf/simulated/floor/plating/airless,/area/space)
 "ac" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/decal/floor/industrial/warning/border,/turf/simulated/floor/tiled/grey,/area/mine/port_wing)
-"ad" = (/obj/machinery/alarm{dir = 4; name = "west bump"; pixel_x = -24},/mob/living/carbon/monkey,/turf/simulated/floor/tiled/white,/area/research_outpost/hallway)
+"ad" = (/obj/machinery/alarm{dir = 4; name = "west bump"; pixel_x = -24},/turf/simulated/floor/tiled/white,/area/research_outpost/hallway)
 "ai" = (/turf/simulated/floor/airless{icon_state = "damaged5"},/area/mine/abandoned)
 "ak" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 4},/turf/simulated/floor{dir = 5; icon_state = "whitehall"},/area/research_outpost/hallway)
 "al" = (/obj/machinery/conveyor{dir = 4; id = "mining_external"},/turf/simulated/floor/plating/airless{icon_state = "asteroidplating"},/area/mine/explored)
@@ -18,7 +18,6 @@
 "aJ" = (/obj/machinery/light/small{dir = 1},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled/grey,/area/research_outpost/harvesting)
 "aL" = (/obj/structure/table,/obj/item/storage/toolbox/mechanical,/turf/simulated/floor/tiled/grey,/area/mine/west_outpost)
 "aO" = (/obj/structure/stool/bed/chair{dir = 1},/obj/machinery/computer/security/telescreen{desc = "Used for watching the isolation room cameras."; layer = 4; name = "Isolation Room Telescreen"; network = list("Anomaly Isolation"); pixel_x = -32},/obj/machinery/atmospherics/unary/vent_pump/on{dir = 4},/turf/simulated/floor/tiled/grey,/area/research_outpost/isolation_three)
-"aQ" = (/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/tiled/white,/area/research_outpost/hallway)
 "aS" = (/turf/simulated/mineral,/area/mine/explored)
 "aT" = (/obj/structure/transit_tube{icon_state = "S-NE"},/turf/simulated/floor/plating/airless/asteroid,/area/mine/explored)
 "aV" = (/obj/structure/table,/obj/item/lighter/random,/obj/item/crowbar,/turf/simulated/floor/tiled/white,/area/research_outpost/anomaly)
@@ -209,7 +208,6 @@
 "iv" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{dir = 1},/obj/effect/decal/floor/coloured/light_yellow{dir = 4},/turf/simulated/floor/tiled/white,/area/research_outpost/hallway)
 "iw" = (/turf/simulated/floor{icon_state = "cafeteria"},/area/research_outpost/hallway)
 "iz" = (/turf/simulated/wall/reinforced,/area/research_outpost/power)
-"iB" = (/obj/structure/window/reinforced{dir = 4},/mob/living/carbon/monkey,/turf/simulated/floor/tiled/white,/area/research_outpost/hallway)
 "iF" = (/obj/structure/sign/securearea{desc = "A warning sign which reads 'VACUUM'"; icon_state = "space"; layer = 4; name = "VACUUM"; pixel_y = 32},/obj/machinery/light/small{dir = 1},/obj/machinery/door/window/westright,/turf/simulated/floor/plating/airless{icon_state = "asteroidplating"},/area/mine/explored)
 "iH" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled/white,/area/research_outpost/hallway)
 "iI" = (/obj/machinery/door/airlock{id_tag = "miningdorm3"; name = "Room 3"},/obj/machinery/door/firedoor/border_only{icon = 'icons/obj/doors/emergency/fire2.dmi'; name = "Firelock West"},/turf/simulated/floor{icon_state = "carpet"},/area/mine/port_wing)
@@ -321,7 +319,6 @@
 "ne" = (/obj/structure/transit_tube,/turf/simulated/floor/plating/airless/asteroid,/area/research_outpost/auxiliary_storage)
 "nh" = (/turf/simulated/wall/steel,/area/mine/explored)
 "ni" = (/obj/effect/alien/weeds,/turf/simulated/floor/airless{icon_state = "damaged5"},/area/mine/abandoned)
-"nj" = (/mob/living/carbon/monkey,/turf/simulated/floor/tiled/white,/area/research_outpost/hallway)
 "nk" = (/obj/structure/transit_tube{icon_state = "D-NW"},/turf/simulated/wall/reinforced,/area/research_outpost/harvesting)
 "np" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/disposalpipe/segment,/turf/simulated/floor{dir = 5; icon_state = "whitehall"},/area/research_outpost/hallway)
 "ns" = (/obj/machinery/mineral/unloading_machine,/turf/simulated/floor{icon_state = "floorgrime"},/area/mine/west_outpost)
@@ -442,10 +439,11 @@
 "sG" = (/obj/effect/decal/floor/industrial/bot,/obj/machinery/atmospherics/mains_pipe/cap/hidden{dir = 8},/turf/simulated/floor/tiled/grey,/area/research_outpost/long_term_storage)
 "sH" = (/obj/structure/window/reinforced{dir = 1},/obj/effect/decal/floor/coloured/light_blue/corner{dir = 1},/turf/simulated/floor/tiled/grey,/area/research_outpost/sample)
 "sM" = (/obj/structure/lattice,/turf/space,/area/mine/explored)
+"sN" = (/obj/machinery/atmospherics/mains_pipe/simple/hidden,/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled/white,/area/research_outpost/hallway)
 "sO" = (/obj/machinery/alarm{name = "north bump"; pixel_y = 24},/turf/simulated/floor/grid/blue,/area/mine/communications)
 "sP" = (/obj/machinery/door/airlock/research{name = "Anomalous Materials Sample Preparation"; req_access = list(65)},/obj/machinery/door/firedoor/border_only{dir = 8; icon = 'icons/obj/doors/emergency/fire2.dmi'; name = "Firelock East"},/turf/simulated/floor/tiled/white,/area/research_outpost/anomaly)
 "sS" = (/obj/structure/stool,/turf/simulated/floor/tiled/white,/area/research_outpost/anomaly)
-"sU" = (/obj/structure/cable{d2 = 2; icon_state = "0-2"},/obj/structure/cable,/obj/machinery/power/apc/standard/apc{dir = 4; name = "east bump"; pixel_x = 24},/turf/simulated/floor/tiled/white,/area/research_outpost/hallway)
+"sU" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/tiled/white,/area/research_outpost/hallway)
 "sV" = (/obj/machinery/light/small,/obj/machinery/hologram/holopad,/turf/simulated/floor/tiled/white,/area/research_outpost/anomaly)
 "sW" = (/turf/simulated/floor/plating,/area/research_outpost/auxiliary_storage)
 "sX" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/atmospherics/mains_pipe/manifold/hidden,/turf/simulated/floor{dir = 8; icon_state = "barber"},/area/research_outpost/hallway)
@@ -579,6 +577,7 @@
 "xX" = (/obj/effect/alien/resin,/turf/simulated/floor/airless{icon_state = "floorgrime"},/area/mine/abandoned)
 "xZ" = (/obj/machinery/newscaster{pixel_y = -28},/turf/simulated/floor/wood,/area/research_outpost/hallway)
 "yd" = (/obj/structure/stool/bed/chair{dir = 1},/obj/machinery/computer/security/telescreen{desc = "Used for watching the isolation room cameras."; layer = 4; name = "Isolation Room Telescreen"; network = list("Anomaly Isolation"); pixel_x = -32},/obj/machinery/atmospherics/unary/vent_pump/on{dir = 4},/turf/simulated/floor/tiled/grey,/area/research_outpost/isolation_two)
+"ye" = (/obj/machinery/power/apc/standard/apc{dir = 1; name = "north bump"; pixel_y = 24},/obj/structure/cable{d2 = 4; icon_state = "0-4"},/turf/simulated/floor/tiled/white,/area/research_outpost/hallway)
 "yf" = (/turf/simulated/wall/reinforced,/area/research_outpost/auxiliary_storage)
 "yh" = (/obj/machinery/door/airlock/maintenance{name = "Mining Station Communications"; req_access = list(48)},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/firedoor/border_only{dir = 2; icon = 'icons/obj/doors/emergency/fire2.dmi'; name = "Firelock North"},/obj/machinery/atmospherics/mains_pipe/simple/hidden,/turf/simulated/floor{icon_state = "vault"},/area/mine/communications)
 "yi" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/machinery/atmospherics/pipe/manifold/hidden/supply{dir = 4},/turf/simulated/floor/tiled/grey,/area/mine/west_outpost)
@@ -946,8 +945,7 @@
 "Ni" = (/turf/simulated/wall/reinforced,/area/mine/explored)
 "Np" = (/obj/item/shard{icon_state = "small"},/turf/simulated/floor/plating/airless,/area/mine/abandoned)
 "Nr" = (/obj/machinery/alarm{name = "north bump"; pixel_y = 24},/obj/machinery/atmospherics/unary/vent_scrubber/on,/turf/simulated/floor/tiled/grey,/area/mine/starboard_wing)
-"Nz" = (/obj/machinery/door/window/eastleft{name = "Monkey Pen"; req_access = list(47)},/mob/living/carbon/monkey,/turf/simulated/floor/tiled/white,/area/research_outpost/hallway)
-"NA" = (/obj/machinery/door/window/southleft{name = "Monkey Pen"; req_access = list(47)},/turf/simulated/floor/tiled/white,/area/research_outpost/hallway)
+"NA" = (/obj/machinery/door/firedoor/border_only{dir = 1; icon = 'icons/obj/doors/emergency/fire2.dmi'; name = "\improper Firelock South"},/turf/simulated/floor/tiled/white,/area/research_outpost/hallway)
 "NB" = (/obj/structure/transit_tube{icon_state = "D-NW"},/obj/structure/lattice,/turf/space,/area/space)
 "NC" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/effect/decal/floor/industrial/warning/border{dir = 8},/obj/machinery/atmospherics/mains_pipe/simple/hidden{dir = 4},/turf/simulated/floor/tiled/grey,/area/mine/starboard_wing)
 "ND" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/mains_pipe/split/scrubbers/hidden{dir = 4},/turf/simulated/floor/plating,/area/research_outpost/maintenance_storage)
@@ -980,7 +978,7 @@
 "OI" = (/obj/structure/disposalpipe/segment,/turf/simulated/wall/steel,/area/mine/eva)
 "OJ" = (/obj/machinery/mineral/unloading_machine,/turf/simulated/floor{icon_state = "floorgrime"},/area/mine/starboard_wing)
 "ON" = (/obj/machinery/door/firedoor/border_only,/obj/effect/window_spawner/reinforced,/turf/simulated/floor/plating,/area/mine/west_outpost)
-"OO" = (/obj/structure/table,/obj/item/melee/baton,/turf/simulated/floor/tiled/white,/area/research_outpost/anomaly)
+"OO" = (/obj/structure/table,/obj/item/melee/baton,/obj/item/storage/box/monkeycubes,/turf/simulated/floor/tiled/white,/area/research_outpost/anomaly)
 "OQ" = (/obj/structure/disposalpipe/segment{dir = 4},/obj/machinery/atmospherics/mains_pipe/split/supply/hidden{dir = 1},/obj/machinery/firealarm{name = "south bump"; pixel_y = -24},/turf/simulated/floor/tiled/white,/area/research_outpost/hallway)
 "OW" = (/obj/machinery/light/small,/obj/effect/decal/floor/industrial/vault/right,/turf/simulated/floor/tiled/dark,/area/research_outpost/long_term_storage)
 "OX" = (/obj/machinery/door/firedoor/border_only,/obj/effect/window_spawner/reinforced,/turf/simulated/floor/plating,/area/research_outpost/harvesting)
@@ -1303,9 +1301,9 @@ MJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJ
 MJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJCxCxtImcYftnbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYZTMJMJKUEyEyEyEyEyEyEySZfSVcGOVcVcTNVcWFPpHbsXEuffseXhujuzNQrzMFQsQJizEzlKtwceizRPkgkgkgMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJuiuiuiuiuiMJMJMJMJMJMJMJuiuiuiuiuiMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJ
 MJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJCxCxudzNZrnitnbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYMJMJMJMJKUEyEyEyEyEyEyEySZAVbTNUhMfPfPPMKBWBvZCEPDxIWNusNWOOsVwDxICYivmjXubXpvRiiZkPLukgkgMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJ
 MJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJCxCxNOcYPItnfRhJtntntntnbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYMJMJMJMJMJMJKUEyEyEyEyEyEyEySZAVbTNUhMfgcjPMCtuSvZQAXgxIhIxIxIxIxIdgxImOpfizWZBJNJfJMRkfAbKzKzMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJ
-MJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJCxmxZsKdUJJMrDXnaizxtnaukltnbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYMJMJMJMJMJMJKUEyEyEyEyEyEyEyJkAVbTNUhMZuJCPMxZFavZakYHtEFFjGcncuvZnjNzvusUizDRVSXDwSMRkfkgkgkgMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJ
-MJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJCxqtcWZsMVTOzfLLXnzxeTklcaautnbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYMJMJMJMJMJMJArXqXqXqvMXqXqXqAGMIgeIOIOIOvZvZvZvZvZLcVfHjFFIwcnlXvZadiBvuiHizyEFZeVpdqGWyOEvZjlcCnInInInInInIWJyCMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJ
-MJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMpqtNpqtKdKdfRBwTOtnniAKtnklhltnbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYMJMJMJMJMJMJHxifZobjZoZyZoXqZympcVXUHkRRjscEfpZOjsMMAVFeTpZWxDjovZNAaQgUrmizizRNizizizeUIEXrxrnkaxaxOXaxaxaxEZuaMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJ
+MJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJCxmxZsKdUJJMrDXnaizxtnaukltnbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYMJMJMJMJMJMJKUEyEyEyEyEyEyEyJkAVbTNUhMZuJCPMxZFavZakYHtEFFjGcncuvZbTyesNsUizDRVSXDwSMRkfkgkgkgMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJ
+MJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJCxqtcWZsMVTOzfLLXnzxeTklcaautnbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYMJMJMJMJMJMJArXqXqXqvMXqXqXqAGMIgeIOIOIOvZvZvZvZvZLcVfHjFFIwcnlXvZadbTvuiHizyEFZeVpdqGWyOEvZjlcCnInInInInInIWJyCMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJ
+MJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMpqtNpqtKdKdfRBwTOtnniAKtnklhltnbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYMJMJMJMJMJMJHxifZobjZoZyZoXqZympcVXUHkRRjscEfpZOjsMMAVFeTpZWxDjovZNANAgUrmizizRNizizizeUIEXrxrnkaxaxOXaxaxaxEZuaMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJ
 MJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJCxCxTKCBKdMjGUKdYfRUzfxgVQTrtntntntntntnbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYkgkgkgkgkgkgkgkgkgkgkgkgkgMJMJMJMJMJlojkfDgdHqgyHcLfvgzwJjjgbpRpjsSnVPdZAHYucQoLrThfVcHpVcJrVcRmGOVcDFSptlKAcNiekJWmYSaJyraxVAvoPlllaxfHMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJ
 MJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJCxCxOiHBHZKdGUklMVZPTOwhtnvlYTtnpOzxMazatnbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYkgkgkgkgkgkgkgkgkgkgkgkgkgkgkgMJMJMJMJgmtTZoljZoZoZjXqZoInUMFAgOBbjsyBfZpazYmymyyxnpzcCnrUOoswAgrUOoOopnrUOofxIkOQoOvRvvApxmJKwLlymDbkaxfHMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJ
 MJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJCxCxCxbYbYtnrDPYHHauHZrvUPzfpOXnainitnpOnivlzatnbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYbYkgkgkgkgaSaSaSaSaSaSkgkgkgkgkgkgazbdMJMJMJXqUbZoQgrQcpfNXqHhwPAnXUSiHEjsyBcEctWSWSWSWSAcNXNXcHNXididqLidmPmPwQmPmPvCuLDyfsaxZJcmaxLWnAEdVOaxfHMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJMJ
