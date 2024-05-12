@@ -48,10 +48,10 @@
 
 	line_members |= giver.line_members
 
-	for(var/obj/machinery/atmospherics/normal_member in giver.normal_members)
+	for_no_type_check(var/obj/machinery/atmospherics/normal_member, giver.normal_members)
 		normal_member.reassign_network(giver, src)
 
-	for(var/datum/pipeline/line_member in giver.line_members)
+	for_no_type_check(var/datum/pipeline/line_member, giver.line_members)
 		line_member.network = src
 
 	update_network_gases()
@@ -61,12 +61,12 @@
 	//Go through membership roster and make sure gases is up to date
 	gases = list()
 
-	for(var/obj/machinery/atmospherics/normal_member in normal_members)
+	for_no_type_check(var/obj/machinery/atmospherics/normal_member, normal_members)
 		var/result = normal_member.return_network_air(src)
 		if(isnotnull(result))
 			gases.Add(result)
 
-	for(var/datum/pipeline/line_member in line_members)
+	for_no_type_check(var/datum/pipeline/line_member, line_members)
 		gases.Add(line_member.air)
 
 /datum/pipe_network/proc/reconcile_air()

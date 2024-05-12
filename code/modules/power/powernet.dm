@@ -1,6 +1,6 @@
 /datum/powernet
-	var/list/cables = list()	// all cables & junctions
-	var/list/nodes = list()		// all connected machines
+	var/list/obj/structure/cable/cables = list()	// all cables & junctions
+	var/list/obj/machinery/power/nodes = list()		// all connected machines
 
 	var/load = 0				// the current load on the powernet, increased by each machine at processing
 	var/newavail = 0			// what available power was gathered last tick, then becomes...
@@ -15,17 +15,17 @@
 	var/problem = 0				// If this is not 0 there is some sort of issue in the powernet. Monitors will display warnings.
 
 /datum/powernet/New()
-	GLOBL.powernets += src
-	..()
+	GLOBL.powernets.Add(src)
+	. = ..()
 
 /datum/powernet/Destroy()
-	for(var/obj/structure/cable/C in cables)
-		cables -= C
+	for_no_type_check(var/obj/structure/cable/C, cables)
+		cables.Remove(C)
 		C.powernet = null
-	for(var/obj/machinery/power/M in nodes)
-		nodes -= M
+	for_no_type_check(var/obj/machinery/power/M, nodes)
+		nodes.Remove(M)
 		M.powernet = null
-	GLOBL.powernets -= src
+	GLOBL.powernets.Remove(src)
 	return ..()
 
 //Returns the amount of excess power (before refunding to SMESs) from last tick.
@@ -45,7 +45,7 @@
 //if the powernet is then empty, delete it
 //Warning : this proc DON'T check if the cable exists
 /datum/powernet/proc/remove_cable(obj/structure/cable/C)
-	cables -= C
+	cables.Remove(C)
 	C.powernet = null
 	if(is_empty())	//the powernet is now empty...
 		qdel(src)	///... delete it
@@ -59,13 +59,13 @@
 		else
 			C.powernet.remove_cable(C)	//..remove it
 	C.powernet = src
-	cables += C
+	cables.Add(C)
 
 //remove a power machine from the current powernet
 //if the powernet is then empty, delete it
 //Warning : this proc DON'T check if the machine exists
 /datum/powernet/proc/remove_machine(obj/machinery/power/M)
-	nodes -= M
+	nodes.Remove(M)
 	M.powernet = null
 	if(is_empty())	//the powernet is now empty...
 		qdel(src)	///... delete it
