@@ -23,7 +23,7 @@
 
 		H << "<B>You are the traitor.</B>"
 		var/obj_count = 1
-		for(var/datum/objective/OBJ in H.mind.objectives)
+		for_no_type_check(var/datum/objective/OBJ, H.mind.objectives)
 			H << "<B>Objective #[obj_count]</B>: [OBJ.explanation_text]"
 			obj_count++
 

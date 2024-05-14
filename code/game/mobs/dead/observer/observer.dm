@@ -115,7 +115,7 @@ Works together with spawning an observer, noted above.
 		return
 
 	if(length(client.images))
-		for(var/image/hud in client.images)
+		for_no_type_check(var/image/hud, client.images)
 			if(copytext(hud.icon_state, 1, 4) == "hud")
 				client.images.Remove(hud)
 

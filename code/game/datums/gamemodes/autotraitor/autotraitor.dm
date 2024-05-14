@@ -5,7 +5,7 @@
 	name = "AutoTraitor"
 	config_tag = "extend-a-traitormongous"
 
-	var/list/possible_traitors
+	var/list/datum/mind/possible_traitors = list()
 	var/num_players = 0
 
 /datum/game_mode/traitor/autotraitor/announce()
@@ -20,7 +20,7 @@
 
 	possible_traitors = get_players_for_role(BE_TRAITOR)
 
-	for(var/datum/mind/player in possible_traitors)
+	for_no_type_check(var/datum/mind/player, possible_traitors)
 		for(var/job in restricted_jobs)
 			if(player.assigned_role == job)
 				possible_traitors -= player
@@ -52,7 +52,7 @@
 		traitors += traitor
 		possible_traitors.Remove(traitor)
 
-	for(var/datum/mind/traitor in traitors)
+	for_no_type_check(var/datum/mind/traitor, traitors)
 		if(!traitor || !istype(traitor))
 			traitors.Remove(traitor)
 			continue

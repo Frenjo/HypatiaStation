@@ -1210,7 +1210,7 @@
 	if(isnull(client))
 		return 0
 
-	for(var/image/hud in client.images)
+	for_no_type_check(var/image/hud, client.images)
 		if(copytext(hud.icon_state, 1, 4) == "hud") //ugly, but icon comparison is worse, I believe
 			client.images.Remove(hud)
 

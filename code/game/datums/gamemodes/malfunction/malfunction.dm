@@ -35,7 +35,7 @@
 	return 0
 
 /datum/game_mode/malfunction/post_setup()
-	for(var/datum/mind/ai_mind in malf_ai)
+	for_no_type_check(var/datum/mind/ai_mind, malf_ai)
 		if(!length(malf_ai))
 			to_world("Uh oh, it's malfunction and there is no AI! Please report this.")
 			to_world("Rebooting world in 5 seconds.")
@@ -158,19 +158,19 @@
 	to_world("<B>It has fully taken control of all of [station_name()]'s systems.</B>")
 
 	to_nuke_or_not_to_nuke = TRUE
-	for(var/datum/mind/AI_mind in malf_ai)
+	for_no_type_check(var/datum/mind/AI_mind, malf_ai)
 		to_chat(AI_mind.current, "Congratulations you have taken control of the station.")
 		to_chat(AI_mind.current, "You may decide to blow up the station. You have 60 seconds to choose.")
 		to_chat(AI_mind.current, "You should have a new verb in the Malfunction tab. If you dont - rejoin the game.")
 		AI_mind.current.verbs.Add(/datum/game_mode/malfunction/proc/ai_win)
 	spawn(60 SECONDS)
-		for(var/datum/mind/AI_mind in malf_ai)
+		for_no_type_check(var/datum/mind/AI_mind, malf_ai)
 			AI_mind.current.verbs.Remove(/datum/game_mode/malfunction/proc/ai_win)
 		to_nuke_or_not_to_nuke = FALSE
 
 /datum/game_mode/proc/is_malf_ai_dead()
 	var/all_dead = TRUE
-	for(var/datum/mind/AI_mind in malf_ai)
+	for_no_type_check(var/datum/mind/AI_mind, malf_ai)
 		if(isAI(AI_mind.current) && AI_mind.current.stat != DEAD)
 			all_dead = FALSE
 	return all_dead
@@ -180,7 +180,7 @@
 		return
 
 	var/text = "<FONT size = 2><B>The malfunctioning AI were:</B></FONT>"
-	for(var/datum/mind/malf in malf_ai)
+	for_no_type_check(var/datum/mind/malf, malf_ai)
 		text += "<br>[malf.key] was [malf.name] ("
 		if(malf.current)
 			if(malf.current.stat == DEAD)

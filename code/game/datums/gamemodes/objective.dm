@@ -23,14 +23,14 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/proc/find_target()
 	var/list/possible_targets = list()
-	for(var/datum/mind/possible_target in global.PCticker.minds)
+	for_no_type_check(var/datum/mind/possible_target, global.PCticker.minds)
 		if(possible_target != owner && ishuman(possible_target.current) && possible_target.current.stat != DEAD)
 			possible_targets += possible_target
 	if(length(possible_targets))
 		target = pick(possible_targets)
 
 /datum/objective/proc/find_target_by_role(role, role_type = 0)//Option sets either to check assigned role or special role. Default to assigned.
-	for(var/datum/mind/possible_target in global.PCticker.minds)
+	for_no_type_check(var/datum/mind/possible_target, global.PCticker.minds)
 		if(possible_target != owner && ishuman(possible_target.current) && (role_type ? possible_target.special_role : possible_target.assigned_role) == role)
 			target = possible_target
 			break
@@ -776,7 +776,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	var/list/possible_targets = list()
 	var/list/priority_targets = list()
 
-	for(var/datum/mind/possible_target in global.PCticker.minds)
+	for_no_type_check(var/datum/mind/possible_target, global.PCticker.minds)
 		if(possible_target != owner && ishuman(possible_target.current) && possible_target.current.stat != DEAD && possible_target.assigned_role != "MODE")
 			possible_targets.Add(possible_target)
 			for(var/role in roles)
@@ -861,7 +861,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 			return 1
 
 	var/datum/game_mode/heist/H = global.PCticker.mode
-	for(var/datum/mind/raider in H.raiders)
+	for_no_type_check(var/datum/mind/raider, H.raiders)
 		if(isnotnull(raider.current))
 			for(var/obj/O in raider.current.get_contents())
 				if(istype(O, target))
@@ -919,7 +919,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 					total_amount += S.amount
 
 	var/datum/game_mode/heist/H = global.PCticker.mode
-	for(var/datum/mind/raider in H.raiders)
+	for_no_type_check(var/datum/mind/raider, H.raiders)
 		if(raider.current)
 			for(var/obj/item/O in raider.current.get_contents())
 				if(istype(O, /obj/item/stack/sheet))

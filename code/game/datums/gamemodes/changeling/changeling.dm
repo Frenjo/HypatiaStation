@@ -75,7 +75,7 @@ var/list/possible_changeling_IDs = list(
 		return 0
 
 /datum/game_mode/changeling/post_setup()
-	for(var/datum/mind/changeling in changelings)
+	for_no_type_check(var/datum/mind/changeling, changelings)
 		grant_changeling_powers(changeling.current)
 		changeling.special_role = "Changeling"
 		if(!CONFIG_GET(objectives_disabled))
@@ -147,7 +147,7 @@ var/list/possible_changeling_IDs = list(
 
 /*/datum/game_mode/changeling/check_finished()
 	var/changelings_alive = 0
-	for(var/datum/mind/changeling in changelings)
+	for_no_type_check(var/datum/mind/changeling, changelings)
 		if(!iscarbon(changeling.current))
 			continue
 		if(changeling.current.stat==2)
@@ -177,7 +177,7 @@ var/list/possible_changeling_IDs = list(
 		return
 
 	var/text = "<FONT size = 2><B>The changelings were:</B></FONT>"
-	for(var/datum/mind/changeling in changelings)
+	for_no_type_check(var/datum/mind/changeling, changelings)
 		var/changelingwin = TRUE
 		text += "<br>[changeling.key] was [changeling.name] ("
 		if(changeling.current)

@@ -266,7 +266,7 @@ Implants;
 
 /datum/game_mode/proc/get_players_for_role(role, override_jobbans = 0)
 	var/list/players = list()
-	var/list/candidates = list()
+	var/list/datum/mind/candidates = list()
 	//var/list/drafted = list()
 	//var/datum/mind/applicant = null
 
@@ -317,7 +317,7 @@ Implants;
 
 	// Remove candidates who want to be antagonist but have a job that precludes it
 	if(restricted_jobs)
-		for(var/datum/mind/player in candidates)
+		for_no_type_check(var/datum/mind/player, candidates)
 			for(var/job in restricted_jobs)
 				if(player.assigned_role == job)
 					candidates.Remove(player)

@@ -254,7 +254,7 @@
 
 		usr.energy -= 300
 	var/list/mob/living/cultists = new
-	for(var/datum/mind/H in ticker.mode.cult)
+	for_no_type_check(var/datum/mind/H, ticker.mode.cult)
 		if(isliving(H.current))
 			cultists+=H.current
 			var/mob/cultist = input("Choose the one who you want to summon", "Followers of Geometer") as null|anything in (cultists - usr)

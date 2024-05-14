@@ -98,7 +98,7 @@
 	if(!exact)
 		exact = -1
 	var/list/datum/recipe/possible_recipes = new
-	for(var/datum/recipe/recipe in avaiable_recipes)
+	for_no_type_check(var/datum/recipe/recipe, avaiable_recipes)
 		if(recipe.check_reagents(obj.reagents) == exact && recipe.check_items(obj) == exact)
 			possible_recipes += recipe
 	if(!length(possible_recipes))
@@ -109,7 +109,7 @@
 		var/r_count = 0
 		var/i_count = 0
 		. = possible_recipes[1]
-		for(var/datum/recipe/recipe in possible_recipes)
+		for_no_type_check(var/datum/recipe/recipe, possible_recipes)
 			var/N_i = recipe.items ? length(recipe.items) : 0
 			var/N_r = recipe.reagents ? length(recipe.reagents) : 0
 			if(N_i > i_count || (N_i == i_count && N_r > r_count ))

@@ -199,7 +199,7 @@ That prevents a few funky behaviors.
 						else
 							if(IS_GAME_MODE(/datum/game_mode/malfunction))
 								var/datum/game_mode/malfunction/malf = global.PCticker.mode
-								for(var/datum/mind/malfai in malf.malf_ai)
+								for_no_type_check(var/datum/mind/malfai, malf.malf_ai)
 									if(target_ai.mind == malfai)
 										to_chat(user, "\red <b>ERROR</b>: \black Remote transfer interface disabled.") //Do ho ho ho~
 										return
@@ -222,7 +222,7 @@ That prevents a few funky behaviors.
 						else
 							if(IS_GAME_MODE(/datum/game_mode/malfunction))
 								var/datum/game_mode/malfunction/malf = global.PCticker.mode
-								for(var/datum/mind/malfai in malf.malf_ai)
+								for_no_type_check(var/datum/mind/malfai, malf.malf_ai)
 									if(target_ai.mind == malfai)
 										to_chat(user, "\red <b>ERROR</b>: \black Remote transfer interface disabled.")
 										return

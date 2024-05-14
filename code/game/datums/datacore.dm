@@ -224,8 +224,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 				foundrecord = t
 				break
 
-	var/list/all_jobs = get_job_datums()
-	for(var/datum/job/J in all_jobs)
+	for_no_type_check(var/datum/job/J, get_job_datums())
 		var/list/alttitles = get_alternate_titles(J.title)
 		if(isnull(J))
 			continue

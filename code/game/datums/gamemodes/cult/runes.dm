@@ -541,7 +541,7 @@ var/list/sacrificed = list()
 		usr.say("[input]")
 	else
 		usr.whisper("[input]")
-	for(var/datum/mind/H in global.PCticker.mode.cult)
+	for_no_type_check(var/datum/mind/H, global.PCticker.mode.cult)
 		if(H.current)
 			to_chat(H.current, SPAN_WARNING("\b [input]"))
 	qdel(src)
@@ -762,7 +762,7 @@ var/list/sacrificed = list()
 /obj/effect/rune/proc/freedom()
 	var/mob/living/user = usr
 	var/list/mob/living/carbon/cultists = new
-	for(var/datum/mind/H in global.PCticker.mode.cult)
+	for_no_type_check(var/datum/mind/H, global.PCticker.mode.cult)
 		if(iscarbon(H.current))
 			cultists += H.current
 	var/list/mob/living/carbon/users = new
@@ -808,7 +808,7 @@ var/list/sacrificed = list()
 /obj/effect/rune/proc/cultsummon()
 	var/mob/living/user = usr
 	var/list/mob/living/carbon/cultists = new
-	for(var/datum/mind/H in global.PCticker.mode.cult)
+	for_no_type_check(var/datum/mind/H, global.PCticker.mode.cult)
 		if(iscarbon(H.current))
 			cultists += H.current
 	var/list/mob/living/carbon/users = new
@@ -929,7 +929,7 @@ var/list/sacrificed = list()
 /obj/effect/rune/proc/bloodboil() //cultists need at least one DANGEROUS rune. Even if they're all stealthy.
 /*
 	var/list/mob/living/carbon/cultists = new
-	for(var/datum/mind/H in ticker.mode.cult)
+	for_no_type_check(var/datum/mind/H, global.PCticker.mode.cult)
 		if(iscarbon(H.current))
 			cultists+=H.current
 */

@@ -36,7 +36,7 @@
 			head_check = 1
 			break
 
-	for(var/datum/mind/player in possible_headrevs)
+	for_no_type_check(var/datum/mind/player, possible_headrevs)
 		for(var/job in restricted_jobs)//Removing heads and such from the list
 			if(player.assigned_role == job)
 				possible_headrevs -= player
@@ -57,7 +57,7 @@
 	. = ..()
 
 	heads = get_living_heads()
-	for(var/datum/mind/rev_mind in head_revolutionaries)
+	for_no_type_check(var/datum/mind/rev_mind, head_revolutionaries)
 		if(!CONFIG_GET(objectives_disabled))
 			for(var/datum/mind/head_mind in heads)
 				var/datum/objective/mutiny/rp/rev_obj = new
@@ -68,7 +68,7 @@
 
 		update_rev_icons_added(rev_mind)
 
-	for(var/datum/mind/rev_mind in head_revolutionaries)
+	for_no_type_check(var/datum/mind/rev_mind, head_revolutionaries)
 		greet_revolutionary(rev_mind)
 		rev_mind.current.verbs += /mob/living/carbon/human/proc/RevConvert
 		equip_traitor(rev_mind.current, 1) //changing how revs get assigned their uplink so they can get PDA uplinks. --NEO
@@ -123,7 +123,7 @@
 //Checks for a head victory//
 /////////////////////////////
 /datum/game_mode/revolution/rp_revolution/check_heads_victory()
-	for(var/datum/mind/rev_mind in head_revolutionaries)
+	for_no_type_check(var/datum/mind/rev_mind, head_revolutionaries)
 		var/turf/T = get_turf(rev_mind.current)
 		if(rev_mind.current.stat != DEAD)
 			// TODO: add a similar check that also checks whether they're without ID in the brig..
@@ -200,7 +200,7 @@
 	if(tried_to_add_revheads < world.time)
 		tried_to_add_revheads = world.time + 50
 		var/active_revs = 0
-		for(var/datum/mind/rev_mind in head_revolutionaries)
+		for_no_type_check(var/datum/mind/rev_mind, head_revolutionaries)
 			if(rev_mind.current && rev_mind.current.client && rev_mind.current.client.inactivity <= 10 * 60 * 20) // 20 minutes inactivity are OK
 				active_revs++
 
@@ -245,7 +245,7 @@
 	return ..()
 
 /datum/game_mode/revolution/rp_revolution/proc/command_report(message)
-	for(var/obj/machinery/computer/communications/comm in world)
+	for_no_type_check(var/obj/machinery/computer/communications/comm, GLOBL.communications_consoles)
 		if(!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
 			var/obj/item/paper/intercept = new /obj/item/paper(comm.loc)
 			intercept.name = "paper - 'Cent. Com. Announcement'"
@@ -261,7 +261,7 @@
 		log_debug("Adding head kill/capture/convert objective for [M.name]")
 		heads += M
 
-		for(var/datum/mind/rev_mind in head_revolutionaries)
+		for_no_type_check(var/datum/mind/rev_mind, head_revolutionaries)
 			var/datum/objective/mutiny/rp/rev_obj = new
 			rev_obj.owner = rev_mind
 			rev_obj.target = M.mind

@@ -24,7 +24,7 @@
 	set_security_level(/decl/security_level/delta)
 
 	malf.malf_mode_declared = TRUE
-	for(var/datum/mind/ai_mind in malf.malf_ai)
+	for_no_type_check(var/datum/mind/ai_mind, malf.malf_ai)
 		ai_mind.current.verbs.Remove(/datum/game_mode/malfunction/proc/takeover)
 	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(!isnewplayer(M))
@@ -46,7 +46,7 @@
 	if(!malf.to_nuke_or_not_to_nuke)
 		return
 	malf.to_nuke_or_not_to_nuke = FALSE
-	for(var/datum/mind/ai_mind in malf.malf_ai)
+	for_no_type_check(var/datum/mind/ai_mind, malf.malf_ai)
 		ai_mind.current.verbs.Remove(/datum/game_mode/malfunction/proc/ai_win)
 	malf.explosion_in_progress = TRUE
 	for_no_type_check(var/mob/M, GLOBL.player_list)

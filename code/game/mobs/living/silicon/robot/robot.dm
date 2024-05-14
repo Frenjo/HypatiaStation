@@ -193,7 +193,7 @@
 	. = ..()
 	if(IS_GAME_MODE(/datum/game_mode/malfunction))
 		var/datum/game_mode/malfunction/malf = global.PCticker.mode
-		for(var/datum/mind/malfai in malf.malf_ai)
+		for_no_type_check(var/datum/mind/malfai, malf.malf_ai)
 			if(connected_ai?.mind == malfai)
 				if(malf.apcs >= 3)
 					stat(null, "Time until station control secured: [max(malf.AI_win_timeleft / (malf.apcs / 3), 0)] seconds")

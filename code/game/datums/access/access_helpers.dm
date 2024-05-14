@@ -20,13 +20,17 @@
 			return get_all_centcom_access()
 
 /proc/get_access_ids(access_types = ACCESS_TYPE_ALL)
+	RETURN_TYPE(/list)
+
 	. = list()
-	for(var/datum/access/access in get_all_access_datums())
+	for_no_type_check(var/datum/access/access, get_all_access_datums())
 		if(access.access_type & access_types)
 			. += access.id
 
 GLOBAL_GLOBL_LIST_INIT(all_access_datums, null)
 /proc/get_all_access_datums()
+	RETURN_TYPE(/list/datum/access)
+
 	if(isnull(GLOBL.all_access_datums))
 		GLOBL.all_access_datums = init_subtypes(/datum/access)
 
@@ -36,7 +40,7 @@ GLOBAL_GLOBL_LIST_INIT(all_access_datums_assoc, null)
 /proc/get_all_access_datums_assoc()
 	if(isnull(GLOBL.all_access_datums_assoc))
 		GLOBL.all_access_datums_assoc = list()
-		for(var/datum/access/access in get_all_access_datums())
+		for_no_type_check(var/datum/access/access, get_all_access_datums())
 			GLOBL.all_access_datums_assoc["[access.id]"] = access
 
 	return GLOBL.all_access_datums_assoc
@@ -77,7 +81,7 @@ GLOBAL_GLOBL_LIST_INIT(all_region_access, null)
 	if(isnull(GLOBL.all_region_access))
 		GLOBL.all_region_access = list()
 		var/list/temp_region_access = list()
-		for(var/datum/access/access in get_all_access_datums())
+		for_no_type_check(var/datum/access/access, get_all_access_datums())
 			if(isnull(GLOBL.all_region_access["[access.region]"]))
 				GLOBL.all_region_access["[access.region]"] = list()
 			temp_region_access.Add(access.id)

@@ -211,7 +211,7 @@
 
 	if(syndicate && isnotnull(client))
 		if(IS_GAME_MODE(/datum/game_mode/traitor))
-			for(var/datum/mind/tra in global.PCticker.mode.traitors)
+			for_no_type_check(var/datum/mind/tra, global.PCticker.mode.traitors)
 				if(isnotnull(tra.current))
 					var/I = image('icons/mob/mob.dmi', loc = tra.current, icon_state = "traitor")
 					client.images.Add(I)

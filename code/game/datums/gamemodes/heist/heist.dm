@@ -16,7 +16,7 @@ VOX HEIST ROUNDTYPE
 	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 
 	var/list/raid_objectives = list()     //Raid objectives.
-	var/list/obj/cortical_stacks = list() //Stacks for 'leave nobody behind' objective.
+	var/list/obj/item/implant/cortical/cortical_stacks = list() //Stacks for 'leave nobody behind' objective.
 
 /datum/game_mode/heist/announce()
 	to_world("<B>The current game mode is - Heist!</B>")
@@ -47,7 +47,7 @@ VOX HEIST ROUNDTYPE
 		candidates -= new_raider
 		raider_num--
 
-	for(var/datum/mind/raider in raiders)
+	for_no_type_check(var/datum/mind/raider, raiders)
 		raider.assigned_role = "MODE"
 		raider.special_role = "Vox Raider"
 	return 1
@@ -71,7 +71,7 @@ VOX HEIST ROUNDTYPE
 	var/index = 1
 
 	//Spawn the vox!
-	for(var/datum/mind/raider in raiders)
+	for_no_type_check(var/datum/mind/raider, raiders)
 		if(index > length(raider_spawn))
 			index = 1
 
@@ -114,13 +114,13 @@ VOX HEIST ROUNDTYPE
 	if(!length(cortical_stacks))
 		return 0
 
-	for(var/obj/stack in cortical_stacks)
+	for_no_type_check(var/obj/item/implant/cortical/stack, cortical_stacks)
 		if(get_area(stack) != locate(/area/shuttle/vox/station))
 			return 0
 	return 1
 
 /datum/game_mode/heist/proc/is_raider_crew_alive()
-	for(var/datum/mind/raider in raiders)
+	for_no_type_check(var/datum/mind/raider, raiders)
 		if(raider.current)
 			if(ishuman(raider.current) && raider.current.stat != DEAD)
 				return 1
@@ -241,7 +241,7 @@ VOX HEIST ROUNDTYPE
 		check_return = TRUE
 
 	var/text = "<FONT size = 2><B>The vox raiders were:</B></FONT>"
-	for(var/datum/mind/vox in raiders)
+	for_no_type_check(var/datum/mind/vox, raiders)
 		text += "<br>[vox.key] was [vox.name] ("
 		if(check_return)
 			var/obj/stack = raiders[vox]

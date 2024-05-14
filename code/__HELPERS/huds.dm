@@ -67,7 +67,7 @@ the HUD updates properly! */
 //Deletes the current HUD images so they can be refreshed with new ones.
 /mob/proc/regular_hud_updates() //Used in the life.dm of mobs that can use HUDs.
 	if(isnotnull(client))
-		for(var/image/hud in client.images)
+		for_no_type_check(var/image/hud, client.images)
 			if(copytext(hud.icon_state, 1, 4) == "hud")
 				client.images.Remove(hud)
 	GLOBL.med_hud_users.Remove(src)

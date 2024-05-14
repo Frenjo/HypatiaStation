@@ -226,15 +226,15 @@
 				qdel(A)
 				continue
 
-		for(var/datum/mind/synd_mind in global.PCticker.mode.syndicates)
+		for_no_type_check(var/datum/mind/synd_mind, global.PCticker.mode.syndicates)
 			if(isnotnull(synd_mind.current?.client))
 				for(var/image/I in synd_mind.current.client.images)
 					if(I.icon_state == "synd")
 						qdel(I)
 
-		for(var/datum/mind/synd_mind in global.PCticker.mode.syndicates)
+		for_no_type_check(var/datum/mind/synd_mind, global.PCticker.mode.syndicates)
 			if(isnotnull(synd_mind.current?.client))
-				for(var/datum/mind/synd_mind_1 in global.PCticker.mode.syndicates)
+				for_no_type_check(var/datum/mind/synd_mind_1, global.PCticker.mode.syndicates)
 					if(isnotnull(synd_mind_1.current))
 						var/I = image('icons/mob/mob.dmi', loc = synd_mind_1.current, icon_state = "synd")
 						synd_mind.current.client.images.Add(I)

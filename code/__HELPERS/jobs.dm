@@ -2,7 +2,7 @@
 	return ((job in GLOBL.command_positions) || (job in GLOBL.nonhuman_positions) || (job in GLOBL.security_positions))
 
 /proc/get_job_datums()
-	RETURN_TYPE(/list)
+	RETURN_TYPE(/list/datum/job)
 
 	var/list/occupations = list()
 
@@ -17,10 +17,9 @@
 /proc/get_alternate_titles(job)
 	RETURN_TYPE(/list)
 
-	var/list/jobs = get_job_datums()
 	var/list/titles = list()
 
-	for(var/datum/job/J in jobs)
+	for_no_type_check(var/datum/job/J, get_job_datums())
 		if(isnull(J))
 			continue
 		if(J.title == job)

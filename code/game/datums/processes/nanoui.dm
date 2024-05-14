@@ -108,7 +108,7 @@ PROCESS_DEF(nanoui)
 		return 0 // has no open UIs
 
 	var/update_count = 0
-	for(var/datum/nanoui/ui in user.open_uis)
+	for_no_type_check(var/datum/nanoui/ui, user.open_uis)
 		if((isnull(src_object) || (isnotnull(src_object) && ui.src_object == src_object)) && (isnull(ui_key) || (isnotnull(ui_key) && ui.ui_key == ui_key)))
 			ui.process(TRUE)
 			update_count++
@@ -129,7 +129,7 @@ PROCESS_DEF(nanoui)
 		return 0 // has no open uis
 
 	var/close_count = 0
-	for(var/datum/nanoui/ui in user.open_uis)
+	for_no_type_check(var/datum/nanoui/ui, user.open_uis)
 		if((isnull(src_object) || (isnotnull(src_object) && ui.src_object == src_object)) && (isnull(ui_key) || (isnotnull(ui_key) && ui.ui_key == ui_key)))
 			ui.close()
 			close_count++
@@ -203,7 +203,7 @@ PROCESS_DEF(nanoui)
 	if(isnull(newMob.open_uis) || !islist(newMob.open_uis))
 		newMob.open_uis = list()
 
-	for(var/datum/nanoui/ui in oldMob.open_uis)
+	for_no_type_check(var/datum/nanoui/ui, oldMob.open_uis)
 		ui.user = newMob
 		newMob.open_uis.Add(ui)
 

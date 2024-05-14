@@ -45,7 +45,7 @@
 				var/objective_type = "[objective_type_capital][objective_type_text]" // Add them together into a text string.
 
 				var/list/possible_targets = list("Free objective")
-				for(var/datum/mind/possible_target in global.PCticker.minds)
+				for_no_type_check(var/datum/mind/possible_target, global.PCticker.minds)
 					if((possible_target != src) && ishuman(possible_target.current))
 						possible_targets.Add(possible_target.current)
 

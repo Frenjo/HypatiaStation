@@ -47,14 +47,14 @@
 	return 1
 
 /datum/game_mode/ninja/pre_setup()
-	for(var/datum/mind/ninja in ninjas)
+	for_no_type_check(var/datum/mind/ninja, ninjas)
 		ninja.current << browse(null, "window=playersetup")
 		ninja.current = create_space_ninja(pick(length(GLOBL.ninjastart) ? GLOBL.ninjastart : GLOBL.latejoin))
 		ninja.current.ckey = ninja.key
 	return 1
 
 /datum/game_mode/ninja/post_setup()
-	for(var/datum/mind/ninja in ninjas)
+	for_no_type_check(var/datum/mind/ninja, ninjas)
 		if(ninja.current && !(ishuman(ninja.current)))
 			return 0
 		if(!CONFIG_GET(objectives_disabled))
@@ -75,7 +75,7 @@
 	if(CONFIG_GET(continous_rounds))
 		return ..()
 	var/ninjas_alive = 0
-	for(var/datum/mind/ninja in ninjas)
+	for_no_type_check(var/datum/mind/ninja, ninjas)
 		if(!ishuman(ninja.current))
 			continue
 		if(ninja.current.stat==2)
@@ -150,7 +150,7 @@
 		return
 
 	var/text = "<FONT size = 2><B>The ninjas were:</B></FONT>"
-	for(var/datum/mind/ninja in ninjas)
+	for_no_type_check(var/datum/mind/ninja, ninjas)
 		var/ninjawin = TRUE
 		text += "<br>[ninja.key] was [ninja.name] ("
 		if(ninja.current)

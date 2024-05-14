@@ -394,7 +394,7 @@
 		dat += "<a href='?src=\ref[src];delay_round_end=1'>[global.PCticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
 		if(length(global.PCticker.mode.syndicates))
 			dat += "<br><table cellspacing=5><tr><td><B>Syndicates</B></td><td></td></tr>"
-			for(var/datum/mind/N in global.PCticker.mode.syndicates)
+			for_no_type_check(var/datum/mind/N, global.PCticker.mode.syndicates)
 				var/mob/M = N.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -418,20 +418,20 @@
 
 		if(length(global.PCticker.mode.head_revolutionaries) || length(global.PCticker.mode.revolutionaries))
 			dat += "<br><table cellspacing=5><tr><td><B>Revolutionaries</B></td><td></td></tr>"
-			for(var/datum/mind/N in global.PCticker.mode.head_revolutionaries)
+			for_no_type_check(var/datum/mind/N, global.PCticker.mode.head_revolutionaries)
 				var/mob/M = N.current
 				if(!M)
 					dat += "<tr><td><i>Head Revolutionary not found!</i></td></tr>"
 				else
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a> <b>(Leader)</b>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 					dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
-			for(var/datum/mind/N in global.PCticker.mode.revolutionaries)
+			for_no_type_check(var/datum/mind/N, global.PCticker.mode.revolutionaries)
 				var/mob/M = N.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 					dat += "<td><A href='?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
 			dat += "</table><table cellspacing=5><tr><td><B>Target(s)</B></td><td></td><td><B>Location</B></td></tr>"
-			for(var/datum/mind/N in global.PCticker.mode.get_living_heads())
+			for_no_type_check(var/datum/mind/N, global.PCticker.mode.get_living_heads())
 				var/mob/M = N.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -444,7 +444,7 @@
 
 		if(length(global.PCticker.mode.changelings))
 			dat += "<br><table cellspacing=5><tr><td><B>Changelings</B></td><td></td><td></td></tr>"
-			for(var/datum/mind/changeling in global.PCticker.mode.changelings)
+			for_no_type_check(var/datum/mind/changeling, global.PCticker.mode.changelings)
 				var/mob/M = changeling.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -456,7 +456,7 @@
 
 		if(length(global.PCticker.mode.wizards))
 			dat += "<br><table cellspacing=5><tr><td><B>Wizards</B></td><td></td><td></td></tr>"
-			for(var/datum/mind/wizard in global.PCticker.mode.wizards)
+			for_no_type_check(var/datum/mind/wizard, global.PCticker.mode.wizards)
 				var/mob/M = wizard.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -468,7 +468,7 @@
 
 		if(length(global.PCticker.mode.raiders))
 			dat += "<br><table cellspacing=5><tr><td><B>Raiders</B></td><td></td><td></td></tr>"
-			for(var/datum/mind/raider in global.PCticker.mode.raiders)
+			for_no_type_check(var/datum/mind/raider, global.PCticker.mode.raiders)
 				var/mob/M = raider.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -478,7 +478,7 @@
 
 		if(length(global.PCticker.mode.ninjas))
 			dat += "<br><table cellspacing=5><tr><td><B>Ninjas</B></td><td></td><td></td></tr>"
-			for(var/datum/mind/ninja in global.PCticker.mode.ninjas)
+			for_no_type_check(var/datum/mind/ninja, global.PCticker.mode.ninjas)
 				var/mob/M = ninja.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -490,7 +490,7 @@
 
 		if(length(global.PCticker.mode.cult))
 			dat += "<br><table cellspacing=5><tr><td><B>Cultists</B></td><td></td></tr>"
-			for(var/datum/mind/N in global.PCticker.mode.cult)
+			for_no_type_check(var/datum/mind/N, global.PCticker.mode.cult)
 				var/mob/M = N.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -499,7 +499,7 @@
 
 		/*if(istype(ticker.mode, /datum/game_mode/anti_revolution) && length(ticker.mode:heads))	//comment out anti-revolution
 			dat += "<br><table cellspacing=5><tr><td><B>Corrupt Heads</B></td><td></td></tr>"
-			for(var/datum/mind/N in ticker.mode:heads)
+			for_no_type_check(var/datum/mind/N, ticker.mode:heads)
 				var/mob/M = N.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
@@ -508,7 +508,7 @@
 */
 		if(length(global.PCticker.mode.traitors))
 			dat += "<br><table cellspacing=5><tr><td><B>Traitors</B></td><td></td><td></td></tr>"
-			for(var/datum/mind/traitor in global.PCticker.mode.traitors)
+			for_no_type_check(var/datum/mind/traitor, global.PCticker.mode.traitors)
 				var/mob/M = traitor.current
 				if(M)
 					dat += "<tr><td><a href='?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"

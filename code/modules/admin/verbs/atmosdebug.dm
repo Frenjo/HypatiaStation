@@ -33,7 +33,7 @@
 
 	feedback_add_details("admin_verb", "CPOW") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-	for(var/datum/powernet/PN in GLOBL.powernets)
+	for_no_type_check(var/datum/powernet/PN, GLOBL.powernets)
 		if(!length(PN.nodes))
 			if(length(PN.cables) > 1)
 				var/obj/structure/cable/C = PN.cables[1]

@@ -42,7 +42,7 @@
 	for(var/A in possible_modes)
 		intercepttext += i_text.build(A, pick(head_revolutionaries))
 
-	for (var/obj/machinery/computer/communications/comm in world)
+	for_no_type_check(var/obj/machinery/computer/communications/comm, GLOBL.communications_consoles)
 		if (!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
 			var/obj/item/paper/intercept = new /obj/item/paper( comm.loc )
 			intercept.name = "paper - 'Cent. Com. Status Summary'"
@@ -113,7 +113,7 @@
 	for(var/A in possible_modes)
 		intercepttext += i_text.build(A, pick(head_revolutionaries))
 
-	for (var/obj/machinery/computer/communications/comm in world)
+	for_no_type_check(var/obj/machinery/computer/communications/comm, GLOBL.communications_consoles)
 		if (!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
 			var/obj/item/paper/intercept = new /obj/item/paper( comm.loc )
 			intercept.name = "paper - 'Cent. Com. Status Summary'"
@@ -131,7 +131,7 @@
 		for(var/datum/mind/revmind in head_revolutionaries)
 			intercepttext += "<br>[revmind.current.real_name]"
 		intercepttext += "<br>Please arrest them at once."
-		for (var/obj/machinery/computer/communications/comm in world)
+		for_no_type_check(var/obj/machinery/computer/communications/comm, GLOBL.communications_consoles)
 			if (!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
 				var/obj/item/paper/intercept = new /obj/item/paper( comm.loc )
 				intercept.name = "paper - 'Cent. Com. Status Summary'"

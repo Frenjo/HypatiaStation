@@ -40,12 +40,12 @@
 	return 1
 
 /datum/game_mode/wizard/pre_setup()
-	for(var/datum/mind/wizard in wizards)
+	for_no_type_check(var/datum/mind/wizard, wizards)
 		wizard.current.loc = pick(GLOBL.wizardstart)
 	return 1
 
 /datum/game_mode/wizard/post_setup()
-	for(var/datum/mind/wizard in wizards)
+	for_no_type_check(var/datum/mind/wizard, wizards)
 		if(!CONFIG_GET(objectives_disabled))
 			forge_wizard_objectives(wizard)
 		//learn_basic_spells(wizard.current)
@@ -187,7 +187,7 @@
 		return ..()
 
 	var/wizards_alive = 0
-	for(var/datum/mind/wizard in wizards)
+	for_no_type_check(var/datum/mind/wizard, wizards)
 		if(!iscarbon(wizard.current))
 			continue
 		if(wizard.current.stat == DEAD)
@@ -212,7 +212,7 @@
 		return
 
 	var/text = "<FONT size = 2><B>The wizards/witches were:</B></FONT>"
-	for(var/datum/mind/wizard in wizards)
+	for_no_type_check(var/datum/mind/wizard, wizards)
 		text += "<br>[wizard.key] was [wizard.name] ("
 		if(isnotnull(wizard.current))
 			if(wizard.current.stat == DEAD)

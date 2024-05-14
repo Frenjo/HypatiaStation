@@ -18,7 +18,7 @@
 
 	var/list/datum/mind/possible_changelings = get_players_for_role(BE_CHANGELING)
 
-	for(var/datum/mind/player in possible_changelings)
+	for_no_type_check(var/datum/mind/player, possible_changelings)
 		for(var/job in restricted_jobs)//Removing robots from the list
 			if(player.assigned_role == job)
 				possible_changelings -= player
@@ -33,7 +33,7 @@
 		return 0
 
 /datum/game_mode/traitor/changeling/post_setup()
-	for(var/datum/mind/changeling in changelings)
+	for_no_type_check(var/datum/mind/changeling, changelings)
 		grant_changeling_powers(changeling.current)
 		changeling.special_role = "Changeling"
 		if(!CONFIG_GET(objectives_disabled))

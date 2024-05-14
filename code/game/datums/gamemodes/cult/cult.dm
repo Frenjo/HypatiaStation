@@ -65,8 +65,8 @@
 	if(CONFIG_GET(protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
-	var/list/cultists_possible = get_players_for_role(BE_CULTIST)
-	for(var/datum/mind/player in cultists_possible)
+	var/list/datum/mind/cultists_possible = get_players_for_role(BE_CULTIST)
+	for_no_type_check(var/datum/mind/player, cultists_possible)
 		for(var/job in restricted_jobs)//Removing heads and such from the list
 			if(player.assigned_role == job)
 				cultists_possible -= player
@@ -93,7 +93,7 @@
 		if(length(possible_targets))
 			sacrifice_target = pick(possible_targets)
 
-	for(var/datum/mind/cult_mind in cult)
+	for_no_type_check(var/datum/mind/cult_mind, cult)
 		equip_cultist(cult_mind.current)
 		grant_runeword(cult_mind.current)
 		update_cult_icons_added(cult_mind)
@@ -192,24 +192,24 @@
 
 /datum/game_mode/proc/update_all_cult_icons()
 	spawn(0)
-		for(var/datum/mind/cultist in cult)
+		for_no_type_check(var/datum/mind/cultist, cult)
 			if(cultist.current)
 				if(cultist.current.client)
-					for(var/image/I in cultist.current.client.images)
+					for_no_type_check(var/image/I, cultist.current.client.images)
 						if(I.icon_state == "cult")
 							qdel(I)
 
-		for(var/datum/mind/cultist in cult)
+		for_no_type_check(var/datum/mind/cultist, cult)
 			if(cultist.current)
 				if(cultist.current.client)
-					for(var/datum/mind/cultist_1 in cult)
+					for_no_type_check(var/datum/mind/cultist_1, cult)
 						if(cultist_1.current)
 							var/I = image('icons/mob/mob.dmi', loc = cultist_1.current, icon_state = "cult")
 							cultist.current.client.images += I
 
 /datum/game_mode/proc/update_cult_icons_added(datum/mind/cult_mind)
 	spawn(0)
-		for(var/datum/mind/cultist in cult)
+		for_no_type_check(var/datum/mind/cultist, cult)
 			if(cultist.current)
 				if(cultist.current.client)
 					var/I = image('icons/mob/mob.dmi', loc = cult_mind.current, icon_state = "cult")
@@ -221,16 +221,16 @@
 
 /datum/game_mode/proc/update_cult_icons_removed(datum/mind/cult_mind)
 	spawn(0)
-		for(var/datum/mind/cultist in cult)
+		for_no_type_check(var/datum/mind/cultist, cult)
 			if(cultist.current)
 				if(cultist.current.client)
-					for(var/image/I in cultist.current.client.images)
+					for_no_type_check(var/image/I, cultist.current.client.images)
 						if(I.icon_state == "cult" && I.loc == cult_mind.current)
 							qdel(I)
 
 		if(cult_mind.current)
 			if(cult_mind.current.client)
-				for(var/image/I in cult_mind.current.client.images)
+				for_no_type_check(var/image/I, cult_mind.current.client.images)
 					if(I.icon_state == "cult")
 						qdel(I)
 
@@ -255,7 +255,7 @@
 
 /datum/game_mode/cult/proc/check_survive()
 	acolytes_survived = 0
-	for(var/datum/mind/cult_mind in cult)
+	for_no_type_check(var/datum/mind/cult_mind, cult)
 		if(cult_mind.current && cult_mind.current.stat != DEAD)
 			var/area/A = get_area(cult_mind.current)
 			if(is_type_in_list(A, GLOBL.centcom_areas))
@@ -320,7 +320,7 @@
 		return
 
 	var/text = "<FONT size = 2><B>The cultists were:</B></FONT>"
-	for(var/datum/mind/cultist in cult)
+	for_no_type_check(var/datum/mind/cultist, cult)
 		text += "<br>[cultist.key] was [cultist.name] ("
 		if(isnotnull(cultist.current))
 			if(cultist.current.stat == DEAD)

@@ -124,7 +124,7 @@
 				"a huge new ARG by a popular entertainment company", "a secret tour by popular artiste [random_name(pick(MALE, FEMALE))]")]. \
 				Tau Ceti Daily is offering discount tickets for two to see [random_name(pick(MALE, FEMALE))] live in return for eyewitness reports and up to the minute coverage."
 
-	for(var/datum/feed_channel/FC in news_network.network_channels)
+	for_no_type_check(var/datum/feed_channel/FC, news_network.network_channels)
 		if(FC.channel_name == "Tau Ceti Daily")
 			FC.messages += newMsg
 			break
@@ -225,7 +225,7 @@
 		"Broccoli discovered to be colonies of tiny aliens with murder on their minds" \
 	)
 
-	for(var/datum/feed_channel/FC in news_network.network_channels)
+	for_no_type_check(var/datum/feed_channel/FC, news_network.network_channels)
 		if(FC.channel_name == "The Gibson Gazette")
 			FC.messages += newMsg
 			break
