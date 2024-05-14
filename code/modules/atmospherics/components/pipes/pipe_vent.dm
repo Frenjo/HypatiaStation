@@ -1,9 +1,8 @@
 /obj/machinery/atmospherics/pipe/vent
+	name = "pipe vent"
+	desc = "A large passive air vent."
 	icon = 'icons/obj/atmospherics/pipe_vent.dmi'
 	icon_state = "intact"
-
-	name = "vent"
-	desc = "A large air vent"
 
 	level = 1
 
@@ -17,7 +16,8 @@
 	var/obj/machinery/atmospherics/node1
 
 /obj/machinery/atmospherics/pipe/vent/high_volume
-	name = "Larger vent"
+	name = "large pipe vent"
+	desc = "A larger, high-volume passive air vent."
 	volume = 1000
 
 /obj/machinery/atmospherics/pipe/vent/New()
