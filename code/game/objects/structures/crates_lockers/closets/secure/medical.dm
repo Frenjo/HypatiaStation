@@ -1,7 +1,7 @@
 /*
  * Medicine
  */
-/obj/structure/closet/secure/medical1
+/obj/structure/closet/secure/medical/medicine
 	name = "Medicine Closet"
 	desc = "Filled with medical junk."
 	req_access = list(ACCESS_MEDICAL)
@@ -28,7 +28,7 @@
 /*
  * Anaesthetic
  */
-/obj/structure/closet/secure/medical2
+/obj/structure/closet/secure/medical/anaesthetic
 	name = "Anesthetic"
 	desc = "Used to knock people out."
 	req_access = list(ACCESS_SURGERY)
@@ -51,7 +51,7 @@
 /*
  * Medical Doctor
  */
-/obj/structure/closet/secure/medical3
+/obj/structure/closet/secure/medical/doctor
 	name = "Medical Doctor's Locker"
 	req_access = list(ACCESS_SURGERY)
 	icon_state = "securemed1"
@@ -75,7 +75,7 @@
 		/obj/item/storage/belt/medical
 	)
 
-/obj/structure/closet/secure/medical3/New()
+/obj/structure/closet/secure/medical/doctor/New()
 	if(prob(50))
 		starts_with.Add(/obj/item/storage/backpack/medic)
 	else
@@ -107,7 +107,7 @@
 /*
  * Chief Medical Officer
  */
-/obj/structure/closet/secure/cmo
+/obj/structure/closet/secure/medical/cmo
 	name = "Chief Medical Officer's Locker"
 	req_access = list(ACCESS_CMO)
 	icon_state = "cmosecure1"
@@ -132,7 +132,7 @@
 		/obj/item/reagent_containers/hypospray
 	)
 
-/obj/structure/closet/secure/cmo/New()
+/obj/structure/closet/secure/medical/cmo/New()
 	if(prob(50))
 		starts_with.Add(/obj/item/storage/backpack/medic)
 	else
@@ -186,7 +186,7 @@
 /*
  * First Aid
  */
-/obj/structure/closet/secure/medical_wall
+/obj/structure/closet/secure/medical/wall
 	name = "First Aid Closet"
 	desc = "It's a secure wall-mounted storage unit for first aid supplies."
 	req_access = list(ACCESS_MEDICAL)
@@ -200,7 +200,7 @@
 	density = FALSE
 	wall_mounted = TRUE
 
-/obj/structure/closet/secure/medical_wall/update_icon()
+/obj/structure/closet/secure/medical/wall/update_icon()
 	if(broken)
 		icon_state = icon_broken
 	else

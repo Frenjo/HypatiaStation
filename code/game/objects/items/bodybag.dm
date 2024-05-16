@@ -86,26 +86,26 @@
 		icon_state = icon_opened
 
 
-/obj/item/bodybag/cryobag
+/obj/item/bodybag/cryo
 	name = "stasis bag"
 	desc = "A folded, non-reusable bag designed to prevent additional damage to an occupant at the cost of genetic damage."
 	icon = 'icons/obj/cryobag.dmi'
 	icon_state = "bodybag_folded"
 
-/obj/item/bodybag/cryobag/attack_self(mob/user)
-	var/obj/structure/closet/body_bag/cryobag/R = new /obj/structure/closet/body_bag/cryobag(user.loc)
+/obj/item/bodybag/cryo/attack_self(mob/user)
+	var/obj/structure/closet/body_bag/cryo/R = new /obj/structure/closet/body_bag/cryo(user.loc)
 	R.add_fingerprint(user)
 	qdel(src)
 
 
-/obj/structure/closet/body_bag/cryobag
+/obj/structure/closet/body_bag/cryo
 	name = "stasis bag"
 	desc = "A non-reusable plastic bag designed to prevent additional damage to an occupant at the cost of genetic damage."
 	icon = 'icons/obj/cryobag.dmi'
-	item_path = /obj/item/bodybag/cryobag
+	item_path = /obj/item/bodybag/cryo
 	var/used = 0
 
-/obj/structure/closet/body_bag/cryobag/open()
+/obj/structure/closet/body_bag/cryo/open()
 	. = ..()
 	if(used)
 		var/obj/item/O = new/obj/item(src.loc)
@@ -115,7 +115,7 @@
 		O.desc = "Pretty useless now.."
 		qdel(src)
 
-/obj/structure/closet/body_bag/cryobag/MouseDrop(over_object, src_location, over_location)
+/obj/structure/closet/body_bag/cryo/MouseDrop(over_object, src_location, over_location)
 	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
 		if(!ishuman(usr))
 			return

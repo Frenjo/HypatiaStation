@@ -21,7 +21,7 @@
 	var/list/viables = list(
 		/obj/item/roller,
 		/obj/structure/closet/crate,
-		/obj/structure/closet/acloset,
+		/obj/structure/closet/alien,
 		/mob/living/simple_animal/hostile/mimic,
 		/mob/living/simple_animal/hostile/viscerator,
 		/mob/living/simple_animal/hostile/hivebot,

@@ -170,10 +170,10 @@
 "do" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"; tag = ""},/mob/living/simple_animal/hostile/syndicate{name = "Syndicate Technician"},/turf/simulated/floor/tiled/dark,/area/awaymission/challenge/end)
 "dp" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"; tag = ""},/turf/simulated/floor/tiled/dark,/area/awaymission/challenge/end)
 "dq" = (/obj/machinery/light,/turf/simulated/floor/grid/blue,/area/awaymission/challenge/end)
-"dr" = (/obj/structure/closet/emcloset,/turf/simulated/floor/grid/blue,/area/awaymission/challenge/end)
+"dr" = (/obj/structure/closet/emergency,/turf/simulated/floor/grid/blue,/area/awaymission/challenge/end)
 "ds" = (/obj/structure/cable,/obj/machinery/power/smes/magical,/turf/simulated/floor/grid/blue,/area/awaymission/challenge/end)
 "dt" = (/obj/machinery/power/terminal{dir = 8},/obj/structure/cable,/turf/simulated/floor/grid/blue,/area/awaymission/challenge/end)
-"du" = (/obj/structure/closet/l3closet/general,/turf/simulated/floor/grid/blue,/area/awaymission/challenge/end)
+"du" = (/obj/structure/closet/l3/general,/turf/simulated/floor/grid/blue,/area/awaymission/challenge/end)
 "xZ" = (/obj/machinery/door/window/southright,/turf/simulated/floor/airless,/area/awaymission/challenge/main)
 
 (1,1,1) = {"

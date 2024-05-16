@@ -73,7 +73,7 @@
 /*
  * Chaplain
  */
-/obj/structure/closet/wardrobe/chaplain_black
+/obj/structure/closet/wardrobe/chaplain
 	name = "chapel wardrobe"
 	desc = "It's a storage unit for NanoTrasen-approved religious attire."
 	icon_state = "black"
@@ -164,7 +164,7 @@
 /*
  * Atmospherics
  */
-/obj/structure/closet/wardrobe/atmospherics_yellow
+/obj/structure/closet/wardrobe/atmospherics
 	name = "atmospherics wardrobe"
 	icon_state = "yellow"
 	icon_closed = "yellow"
@@ -187,7 +187,7 @@
 /*
  * Engineering
  */
-/obj/structure/closet/wardrobe/engineering_yellow
+/obj/structure/closet/wardrobe/engineering
 	name = "engineering wardrobe"
 	icon_state = "yellow"
 	icon_closed = "yellow"
@@ -246,7 +246,7 @@
 /*
  * Toxins
  */
-/obj/structure/closet/wardrobe/toxins_white
+/obj/structure/closet/wardrobe/toxins
 	name = "toxins wardrobe"
 	icon_state = "white"
 	icon_closed = "white"
@@ -266,7 +266,7 @@
 /*
  * Robotics
  */
-/obj/structure/closet/wardrobe/robotics_black
+/obj/structure/closet/wardrobe/robotics
 	name = "robotics wardrobe"
 	icon_state = "black"
 	icon_closed = "black"
@@ -285,7 +285,7 @@
 /*
  * Chemistry
  */
-/obj/structure/closet/wardrobe/chemistry_white
+/obj/structure/closet/wardrobe/chemistry
 	name = "chemistry wardrobe"
 	icon_state = "white"
 	icon_closed = "white"
@@ -302,7 +302,7 @@
 /*
  * Genetics
  */
-/obj/structure/closet/wardrobe/genetics_white
+/obj/structure/closet/wardrobe/genetics
 	name = "genetics wardrobe"
 	icon_state = "white"
 	icon_closed = "white"
@@ -319,7 +319,7 @@
 /*
  * Virology
  */
-/obj/structure/closet/wardrobe/virology_white
+/obj/structure/closet/wardrobe/virology
 	name = "virology wardrobe"
 	icon_state = "white"
 	icon_closed = "white"
@@ -338,7 +338,7 @@
 /*
  * Medical
  */
-/obj/structure/closet/wardrobe/medic_white
+/obj/structure/closet/wardrobe/medical
 	name = "medical wardrobe"
 	icon_state = "white"
 	icon_closed = "white"

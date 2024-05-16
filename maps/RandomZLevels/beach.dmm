@@ -17,7 +17,7 @@
 "q" = (/obj/structure/closet/athletic_mixed,/turf/simulated/floor/beach/sand,/area/awaymission/beach)
 "r" = (/obj/item/clothing/shoes/sandal,/obj/item/clothing/shoes/sandal,/obj/item/clothing/shoes/sandal,/obj/structure/closet/crate,/turf/simulated/floor/beach/sand,/area/awaymission/beach)
 "s" = (/turf/simulated/wall/reinforced/riveted{icon_state = "sandstone3"; tag = "icon-sandstone3"},/area/awaymission/beach)
-"t" = (/obj/structure/closet/gmcloset{name = "formal wardrobe"},/turf/simulated/floor/wood,/area/awaymission/beach)
+"t" = (/obj/structure/closet/formal,/turf/simulated/floor/wood,/area/awaymission/beach)
 "u" = (/obj/structure/closet/secure/bar,/turf/simulated/floor/wood,/area/awaymission/beach)
 "v" = (/obj/structure/table/woodentable,/obj/item/book/manual/barman_recipes,/turf/simulated/floor/wood,/area/awaymission/beach)
 "w" = (/obj/structure/table/woodentable,/obj/item/reagent_containers/food/drinks/shaker,/turf/simulated/floor/wood,/area/awaymission/beach)

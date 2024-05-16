@@ -12,14 +12,14 @@
 /*
  * Emergency Closet
  */
-/obj/structure/closet/emcloset
+/obj/structure/closet/emergency
 	name = "emergency closet"
 	desc = "It's a storage unit for emergency breathmasks and o2 tanks."
 	icon_state = "emergency"
 	icon_closed = "emergency"
 	icon_opened = "emergencyopen"
 
-/obj/structure/closet/emcloset/New()
+/obj/structure/closet/emergency/New()
 	switch(pickweight(list("small" = 55, "aid" = 25, "tank" = 10, "both" = 10, "nothing" = 0, "delete" = 0)))
 		if("small")
 			starts_with = list(
@@ -58,12 +58,12 @@
 
 		//If you want to re-add fire, just add "fire" = 15 to the pick list.
 		/*if ("fire")
-			new /obj/structure/closet/firecloset(src.loc)
+			new /obj/structure/closet/fire_safety(src.loc)
 			del(src)*/
 
 	. = ..()
 
-/obj/structure/closet/emcloset_legacy
+/obj/structure/closet/emergency_legacy
 	name = "emergency closet"
 	desc = "It's a storage unit for emergency breathmasks and o2 tanks."
 	icon_state = "emergency"
@@ -78,7 +78,7 @@
 /*
  * Fire Closet
  */
-/obj/structure/closet/firecloset
+/obj/structure/closet/fire_safety
 	name = "fire-safety closet"
 	desc = "It's a storage unit for fire-fighting supplies."
 	icon_state = "firecloset"
@@ -93,7 +93,7 @@
 		/obj/item/clothing/head/hardhat/red
 	)
 
-/obj/structure/closet/firecloset/full
+/obj/structure/closet/fire_safety/full
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,
 		/obj/item/clothing/mask/gas,
@@ -103,7 +103,7 @@
 		/obj/item/clothing/head/hardhat/red
 	)
 
-/obj/structure/closet/firecloset/update_icon()
+/obj/structure/closet/fire_safety/update_icon()
 	if(!opened)
 		icon_state = icon_closed
 	else
@@ -112,14 +112,14 @@
 /*
  * Tool Closet
  */
-/obj/structure/closet/toolcloset
+/obj/structure/closet/tool
 	name = "tool closet"
 	desc = "It's a storage unit for tools."
 	icon_state = "toolcloset"
 	icon_closed = "toolcloset"
 	icon_opened = "toolclosetopen"
 
-/obj/structure/closet/toolcloset/New()
+/obj/structure/closet/tool/New()
 	if(prob(40))
 		starts_with.Add(/obj/item/clothing/suit/storage/hazardvest)
 	if(prob(70))
@@ -172,7 +172,7 @@
 /*
  * Bombsuit closet
  */
-/obj/structure/closet/bombcloset
+/obj/structure/closet/bomb_suit
 	name = "\improper EOD closet"
 	desc = "It's a storage unit for explosion-protective suits."
 	icon_state = "bombsuit"
@@ -186,9 +186,7 @@
 		/obj/item/clothing/head/bomb_hood
 	)
 
-/obj/structure/closet/bombclosetsecurity
-	name = "\improper EOD closet"
-	desc = "It's a storage unit for explosion-protective suits."
+/obj/structure/closet/bomb_suit/security
 	icon_state = "bombsuitsec"
 	icon_closed = "bombsuitsec"
 	icon_opened = "bombsuitsecopen"

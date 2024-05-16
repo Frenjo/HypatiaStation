@@ -61,7 +61,7 @@
 	// update the current life tick, can be used to e.g. only do something every 4 ticks
 	life_tick++
 
-	in_stasis = istype(loc, /obj/structure/closet/body_bag/cryobag) && loc:opened == 0
+	in_stasis = istype(loc, /obj/structure/closet/body_bag/cryo) && loc:opened == 0
 	if(in_stasis)
 		loc:used++
 

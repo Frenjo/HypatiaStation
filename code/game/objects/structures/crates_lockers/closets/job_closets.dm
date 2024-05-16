@@ -8,7 +8,8 @@
 /*
  * Bartender
  */
-/obj/structure/closet/gmcloset
+// This one should maybe go under /obj/structure/closet/wardrobe/formal and be renamed to "formal wardrobe" for consistency.
+/obj/structure/closet/formal
 	name = "formal closet"
 	desc = "It's a storage unit for formal clothing."
 	icon_state = "black"
@@ -32,7 +33,7 @@
 /*
  * Janitor
  */
-/obj/structure/closet/jcloset
+/obj/structure/closet/janitor
 	name = "custodial closet"
 	desc = "It's a storage unit for janitorial clothes and gear."
 	icon_state = "mixed"
@@ -56,7 +57,7 @@
 /*
  * Lawyer
  */
-/obj/structure/closet/lawcloset
+/obj/structure/closet/lawyer
 	name = "legal closet"
 	desc = "It's a storage unit for courtroom apparel and items."
 	icon_state = "blue"

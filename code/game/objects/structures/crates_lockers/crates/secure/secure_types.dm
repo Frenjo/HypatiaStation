@@ -46,7 +46,7 @@ periods of time. There is some small print on top, \n \
 /*
  * Hydroponics
  */
-/obj/structure/closet/crate/secure/hydrosec
+/obj/structure/closet/crate/secure/hydroponics
 	desc = "A crate with a lock on it, painted in the scheme of the station's botanists."
 	name = "secure hydroponics crate"
 	icon_state = "hydrosecurecrate"

@@ -17,7 +17,7 @@
 /*
  * Alien
  */
-/obj/structure/closet/acloset
+/obj/structure/closet/alien
 	name = "strange closet"
 	desc = "It looks alien!"
 	icon_state = "acloset"
@@ -96,7 +96,7 @@
 	icon_opened = "syndicateopen"
 	anchored = TRUE
 
-/obj/structure/closet/thunderdome/tdred
+/obj/structure/closet/thunderdome/red
 	name = "red-team Thunderdome closet"
 
 	starts_with = list(
@@ -120,7 +120,7 @@
 		/obj/item/clothing/head/helmet/thunderdome
 	)
 
-/obj/structure/closet/thunderdome/tdgreen
+/obj/structure/closet/thunderdome/green
 	name = "green-team Thunderdome closet"
 	icon_state = "syndicate1"
 	icon_closed = "syndicate1"

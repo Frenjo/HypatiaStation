@@ -1,7 +1,7 @@
 /*
  * Level 3 Biohazard
  */
-/obj/structure/closet/l3closet
+/obj/structure/closet/l3
 	name = "level-3 biohazard suit closet"
 	desc = "It's a storage unit for level-3 biohazard gear."
 	icon_state = "bio"
@@ -11,7 +11,7 @@
 /*
  * Level 3 Biohazard General
  */
-/obj/structure/closet/l3closet/general
+/obj/structure/closet/l3/general
 	icon_state = "bio_general"
 	icon_closed = "bio_general"
 	icon_opened = "bio_generalopen"
@@ -24,7 +24,7 @@
 /*
  * Level 3 Biohazard Virology
  */
-/obj/structure/closet/l3closet/virology
+/obj/structure/closet/l3/virology
 	icon_state = "bio_virology"
 	icon_closed = "bio_virology"
 	icon_opened = "bio_virologyopen"
@@ -39,7 +39,7 @@
 /*
  * Level 3 Biohazard Security
  */
-/obj/structure/closet/l3closet/security
+/obj/structure/closet/l3/security
 	icon_state = "bio_security"
 	icon_closed = "bio_security"
 	icon_opened = "bio_securityopen"
@@ -52,7 +52,7 @@
 /*
  * Level 3 Biohazard Janitor
  */
-/obj/structure/closet/l3closet/janitor
+/obj/structure/closet/l3/janitor
 	icon_state = "bio_janitor"
 	icon_closed = "bio_janitor"
 	icon_opened = "bio_janitoropen"
@@ -65,7 +65,7 @@
 /*
  * Level 3 Biohazard Scientist
  */
-/obj/structure/closet/l3closet/scientist
+/obj/structure/closet/l3/scientist
 	icon_state = "bio_scientist"
 	icon_closed = "bio_scientist"
 	icon_opened = "bio_scientistopen"

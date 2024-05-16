@@ -1,7 +1,41 @@
 /*
+ * Engineer
+ */
+/obj/structure/closet/secure/engineering
+	name = "Engineer's Locker"
+	req_access = list(ACCESS_ENGINE_EQUIP)
+	icon_state = "secureeng1"
+	icon_closed = "secureeng"
+	icon_locked = "secureeng1"
+	icon_opened = "secureengopen"
+	icon_broken = "secureengbroken"
+	icon_off = "secureengoff"
+
+	starts_with = list(
+		/obj/item/storage/toolbox/mechanical,
+		/obj/item/radio/headset/engi,
+		/obj/item/clothing/suit/storage/hazardvest,
+		/obj/item/clothing/mask/gas,
+		/obj/item/clothing/glasses/meson,
+		/obj/item/cartridge/engineering,
+		/obj/item/taperoll/engineering
+	)
+
+/obj/structure/closet/secure/engineering/New()
+	if(prob(50))
+		starts_with.Add(/obj/item/storage/backpack/industrial)
+	else
+		starts_with.Add(/obj/item/storage/satchel/eng)
+	if(prob(70))
+		starts_with.Add(/obj/item/clothing/tie/storage/brown_vest)
+	else
+		starts_with.Add(/obj/item/clothing/tie/storage/webbing)
+	. = ..()
+
+/*
  * Chief Engineer
  */
-/obj/structure/closet/secure/engineering_chief
+/obj/structure/closet/secure/engineering/chief
 	name = "Chief Engineer's Locker"
 	req_access = list(ACCESS_CE)
 	icon_state = "securece1"
@@ -28,7 +62,7 @@
 		/obj/item/taperoll/engineering
 	)
 
-/obj/structure/closet/secure/engineering_chief/New()
+/obj/structure/closet/secure/engineering/chief/New()
 	if(prob(50))
 		starts_with.Add(/obj/item/storage/backpack/industrial)
 	else
@@ -42,7 +76,7 @@
 /*
  * Electrical
  */
-/obj/structure/closet/secure/engineering_electrical
+/obj/structure/closet/secure/engineering/electrical
 	name = "Electrical Supplies"
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	icon_state = "secureengelec1"
@@ -72,7 +106,7 @@
 /*
  * Welding
  */
-/obj/structure/closet/secure/engineering_welding
+/obj/structure/closet/secure/engineering/welding
 	name = "Welding Supplies"
 	req_access = list(ACCESS_CONSTRUCTION)
 	icon_state = "secureengweld1"
@@ -95,43 +129,9 @@
 	)
 
 /*
- * Engineer
- */
-/obj/structure/closet/secure/engineering_personal
-	name = "Engineer's Locker"
-	req_access = list(ACCESS_ENGINE_EQUIP)
-	icon_state = "secureeng1"
-	icon_closed = "secureeng"
-	icon_locked = "secureeng1"
-	icon_opened = "secureengopen"
-	icon_broken = "secureengbroken"
-	icon_off = "secureengoff"
-
-	starts_with = list(
-		/obj/item/storage/toolbox/mechanical,
-		/obj/item/radio/headset/engi,
-		/obj/item/clothing/suit/storage/hazardvest,
-		/obj/item/clothing/mask/gas,
-		/obj/item/clothing/glasses/meson,
-		/obj/item/cartridge/engineering,
-		/obj/item/taperoll/engineering
-	)
-
-/obj/structure/closet/secure/engineering_personal/New()
-	if(prob(50))
-		starts_with.Add(/obj/item/storage/backpack/industrial)
-	else
-		starts_with.Add(/obj/item/storage/satchel/eng)
-	if(prob(70))
-		starts_with.Add(/obj/item/clothing/tie/storage/brown_vest)
-	else
-		starts_with.Add(/obj/item/clothing/tie/storage/webbing)
-	. = ..()
-
-/*
  * Atmospheric Technician
  */
-/obj/structure/closet/secure/atmos_personal
+/obj/structure/closet/secure/engineering/atmos
 	name = "Technician's Locker"
 	req_access = list(ACCESS_ATMOSPHERICS)
 	icon_state = "secureatm1"
@@ -152,7 +152,7 @@
 		/obj/item/taperoll/engineering
 	)
 
-/obj/structure/closet/secure/atmos_personal/New()
+/obj/structure/closet/secure/engineering/atmos/New()
 	if(prob(50))
 		starts_with.Add(/obj/item/storage/backpack/industrial)
 	else
