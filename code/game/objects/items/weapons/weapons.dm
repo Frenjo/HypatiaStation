@@ -311,22 +311,6 @@
 	icon_state = "wood_tableparts"
 	atom_flags = null
 
-/obj/item/wire
-	desc = "This is just a simple piece of regular insulated wire."
-	name = "wire"
-	icon = 'icons/obj/power.dmi'
-	icon_state = "item_wire"
-	matter_amounts = list(MATERIAL_METAL = 40)
-	attack_verb = list("whipped", "lashed", "disciplined", "tickled")
-
-	var/amount = 1.0
-	var/laying = 0.0
-	var/old_lay = null
-
-/obj/item/wire/suicide_act(mob/user)
-	viewers(user) << SPAN_DANGER("[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide.")
-	return (OXYLOSS)
-
 /obj/item/camera_bug
 	name = "camera bug"
 	icon = 'icons/obj/items/devices/device.dmi'
