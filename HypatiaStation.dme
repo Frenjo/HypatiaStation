@@ -178,6 +178,7 @@
 #include "code\game\areas\Space_Station_13_areas.dm"
 #include "code\game\atoms\_atom.dm"
 #include "code\game\atoms\atom_flags.dm"
+#include "code\game\atoms\atom_procs.dm"
 #include "code\game\atoms\atom_verbs.dm"
 #include "code\game\atoms\movable\_movable.dm"
 #include "code\game\atoms\movable\clickable_stat.dm"

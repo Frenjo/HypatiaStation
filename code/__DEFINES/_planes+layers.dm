@@ -69,6 +69,11 @@
 	#define HUD_ABOVE_ITEM_LAYER 2
 
 /*
+ * Balloon Text
+ */
+#define BALLOON_TEXT_PLANE 10
+
+/*
  * Helper Functions
 */
 /atom/proc/reset_plane_and_layer()
