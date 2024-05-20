@@ -461,8 +461,8 @@
 	for(var/datum/tech/T in files.known_tech)
 		if(T?.level > 1)
 			var/diff
-			switch(T.id) //bad, bad formulas
-				if("materials")
+			switch(T.type) //bad, bad formulas
+				if(/datum/tech/materials)
 					var/pmat = 0//Calculations to make up for the fact that these parts and tech modify the same thing
 					for(var/obj/item/stock_part/micro_laser/Ml in component_parts)
 						pmat += Ml.rating
@@ -472,7 +472,7 @@
 					if(resource_coeff != diff)
 						resource_coeff = diff
 						output += "Production efficiency increased.<br>"
-				if("programming")
+				if(/datum/tech/programming)
 					var/ptime = 0
 					for(var/obj/item/stock_part/manipulator/Ma in component_parts)
 						ptime += Ma.rating

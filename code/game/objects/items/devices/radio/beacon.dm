@@ -3,7 +3,7 @@
 	desc = "A beacon used by a teleporter."
 	icon_state = "beacon"
 	item_state = "signaler"
-	origin_tech = list(RESEARCH_TECH_BLUESPACE = 1)
+	origin_tech = list(/datum/tech/bluespace = 1)
 
 	var/code = "electronic"
 
@@ -41,7 +41,7 @@
 /obj/item/radio/beacon/syndicate
 	name = "suspicious beacon"
 	desc = "A label on it reads: <i>Activate to have a singularity beacon teleported to your location</i>."
-	origin_tech = list(RESEARCH_TECH_BLUESPACE = 1, RESEARCH_TECH_SYNDICATE = 7)
+	origin_tech = list(/datum/tech/bluespace = 1, /datum/tech/syndicate = 7)
 
 /obj/item/radio/beacon/syndicate/attack_self(mob/user as mob)
 	if(user)

@@ -2,7 +2,7 @@
 	name = "\improper HUD"
 	desc = "A heads-up display that provides important info in (almost) real time."
 	item_flags = null //doesn't protect eyes because it's a monocle, duh
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_BIOTECH = 2)
+	origin_tech = list(/datum/tech/magnets = 3, /datum/tech/biotech = 2)
 	var/list/icon/current = list() //the current hud icons
 
 /obj/item/clothing/glasses/hud/proc/process_hud(mob/M)

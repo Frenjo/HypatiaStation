@@ -9,7 +9,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2.0
-	origin_tech = list(RESEARCH_TECH_SYNDICATE = 4, RESEARCH_TECH_MAGNETS = 4)
+	origin_tech = list(/datum/tech/magnets = 4, /datum/tech/syndicate = 4)
 	var/can_use = 1
 	var/obj/effect/dummy/chameleon/active_dummy = null
 	var/saved_item = /obj/item/cigbutt

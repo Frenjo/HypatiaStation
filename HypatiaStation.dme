@@ -51,7 +51,6 @@
 #include "code\__DEFINES\preferences.dm"
 #include "code\__DEFINES\process_scheduler.dm"
 #include "code\__DEFINES\radio.dm"
-#include "code\__DEFINES\research.dm"
 #include "code\__DEFINES\screen_locs.dm"
 #include "code\__DEFINES\security_levels.dm"
 #include "code\__DEFINES\setup.dm"

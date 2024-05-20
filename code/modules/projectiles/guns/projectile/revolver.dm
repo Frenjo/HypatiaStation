@@ -3,7 +3,7 @@
 	name = "revolver"
 	icon_state = "detective"
 
-	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MATERIALS = 2)
+	origin_tech = list(/datum/tech/materials = 2, /datum/tech/combat = 2)
 
 	caliber = "38"
 
@@ -106,7 +106,7 @@
 	desc = "When you absolutely, positively need a 10mm hole in the other guy. Uses .357 ammo."	//>10mm hole >.357
 	icon_state = "mateba"
 
-	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MATERIALS = 2)
+	origin_tech = list(/datum/tech/materials = 2, /datum/tech/combat = 2)
 
 // A gun to play Russian Roulette!
 // You can spin the chamber to randomize the position of the bullet.
@@ -114,7 +114,7 @@
 	name = "Russian Revolver"
 	desc = "A Russian made revolver. Uses .357 ammo. It has a single slot in it's chamber for a bullet."
 
-	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MATERIALS = 2)
+	origin_tech = list(/datum/tech/materials = 2, /datum/tech/combat = 2)
 
 	max_shells = 6
 

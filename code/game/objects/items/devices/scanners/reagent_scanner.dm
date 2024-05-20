@@ -17,7 +17,7 @@
 	throw_range = 20
 
 	matter_amounts = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 20)
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_BIOTECH = 2)
+	origin_tech = list(/datum/tech/magnets = 2, /datum/tech/biotech = 2)
 
 	var/details = FALSE
 	var/recent_fail = FALSE
@@ -61,5 +61,5 @@
 /obj/item/reagent_scanner/adv
 	name = "advanced reagent scanner"
 	icon_state = "adv_spectrometer"
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_BIOTECH = 2)
+	origin_tech = list(/datum/tech/magnets = 4, /datum/tech/biotech = 2)
 	details = TRUE

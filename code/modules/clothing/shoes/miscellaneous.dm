@@ -5,7 +5,7 @@
 	item_state = "brown"
 	permeability_coefficient = 0.05
 	item_flags = ITEM_FLAG_NO_SLIP
-	origin_tech = list(RESEARCH_TECH_SYNDICATE = 3)
+	origin_tech = list(/datum/tech/syndicate = 3)
 	var/list/clothing_choices = list()
 	siemens_coefficient = 0.8
 	species_restricted = null

@@ -10,7 +10,7 @@
 	throw_speed = 1
 	throw_range = 7
 	w_class = 4.0
-	origin_tech = list(RESEARCH_TECH_COMBAT = 1)
+	origin_tech = list(/datum/tech/combat = 1)
 	attack_verb = list("robusted")
 
 /obj/item/storage/toolbox/New()
@@ -77,7 +77,7 @@
 	name = "suspicious looking toolbox"
 	icon_state = "syndicate"
 	item_state = "toolbox_syndi"
-	origin_tech = list(RESEARCH_TECH_COMBAT = 1, RESEARCH_TECH_SYNDICATE = 1)
+	origin_tech = list(/datum/tech/combat = 1, /datum/tech/syndicate = 1)
 	force = 7.0
 
 	starts_with = list(

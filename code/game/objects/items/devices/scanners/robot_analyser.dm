@@ -18,7 +18,7 @@
 	throw_range = 10
 
 	matter_amounts = list(MATERIAL_METAL = 200)
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_BIOTECH = 1)
+	origin_tech = list(/datum/tech/magnets = 1, /datum/tech/biotech = 1)
 
 /obj/item/robot_analyser/attack(mob/living/M as mob, mob/living/user as mob)
 	if(user.stat)

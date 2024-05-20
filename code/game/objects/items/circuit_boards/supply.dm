@@ -8,12 +8,12 @@
 /obj/item/circuitboard/ordercomp
 	name = "circuit board (Supply ordering console)"
 	build_path = /obj/machinery/computer/ordercomp
-	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
+	origin_tech = list(/datum/tech/programming = 2)
 
 /obj/item/circuitboard/supplycomp
 	name = "circuit board (Supply shuttle console)"
 	build_path = /obj/machinery/computer/supplycomp
-	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
+	origin_tech = list(/datum/tech/programming = 3)
 
 	var/contraband_enabled = FALSE
 
@@ -40,4 +40,4 @@
 /obj/item/circuitboard/mining_shuttle
 	name = "circuit board (Mining Shuttle)"
 	build_path = /obj/machinery/computer/shuttle_control/mining
-	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
+	origin_tech = list(/datum/tech/programming = 2)

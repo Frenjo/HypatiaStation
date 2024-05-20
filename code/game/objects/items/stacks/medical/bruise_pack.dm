@@ -3,7 +3,7 @@
 	singular_name = "gauze length"
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
-	origin_tech = list(RESEARCH_TECH_BIOTECH = 1)
+	origin_tech = list(/datum/tech/biotech = 1)
 
 /obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())

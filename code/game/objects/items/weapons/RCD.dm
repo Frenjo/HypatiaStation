@@ -22,7 +22,7 @@ RCD
 	throw_range = 5
 	w_class = 3.0
 	matter_amounts = list(MATERIAL_METAL = 50000)
-	origin_tech = list(RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_MATERIALS = 2)
+	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 4)
 
 	var/datum/effect/system/spark_spread/spark_system
 	var/matter = 0
@@ -211,5 +211,5 @@ RCD
 	opacity = FALSE
 	density = FALSE
 	anchored = FALSE
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
+	origin_tech = list(/datum/tech/materials = 2)
 	matter_amounts = list(MATERIAL_METAL = 30000, MATERIAL_GLASS = 15000)

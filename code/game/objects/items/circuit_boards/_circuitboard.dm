@@ -18,7 +18,7 @@
 
 	w_class = 2.0
 
-	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
+	origin_tech = list(/datum/tech/programming = 2)
 
 	var/id = null
 	var/frequency = null

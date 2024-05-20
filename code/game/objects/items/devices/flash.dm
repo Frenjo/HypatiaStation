@@ -9,7 +9,7 @@
 	throw_speed = 4
 	throw_range = 10
 	obj_flags = OBJ_FLAG_CONDUCT
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_COMBAT = 1)
+	origin_tech = list(/datum/tech/magnets = 2, /datum/tech/combat = 1)
 
 	var/times_used = 0	//Number of times it's been used.
 	var/broken = 0		//Is the flash burnt out?
@@ -190,7 +190,7 @@
 	name = "synthetic flash"
 	desc = "When a problem arises, SCIENCE is the solution."
 	icon_state = "sflash"
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_COMBAT = 1)
+	origin_tech = list(/datum/tech/magnets = 2, /datum/tech/combat = 1)
 	var/construction_cost = list(MATERIAL_METAL = 750, MATERIAL_GLASS = 750)
 	var/construction_time = 100
 

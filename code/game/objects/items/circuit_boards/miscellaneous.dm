@@ -12,7 +12,7 @@
 /obj/item/circuitboard/arcade
 	name = "circuit board (Arcade)"
 	build_path = /obj/machinery/computer/arcade
-	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 1)
+	origin_tech = list(/datum/tech/programming = 1)
 
 /obj/item/circuitboard/olddoor
 	name = "circuit board (DoorMex)"
@@ -29,4 +29,4 @@
 /obj/item/circuitboard/HolodeckControl // Not going to let people get this, but it's just here for future
 	name = "circuit board (Holodeck Control)"
 	build_path = /obj/machinery/computer/holodeck_control
-	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 4)
+	origin_tech = list(/datum/tech/programming = 4)

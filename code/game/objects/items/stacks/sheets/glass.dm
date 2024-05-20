@@ -16,7 +16,7 @@
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
 	matter_amounts = list(MATERIAL_GLASS = 3750)
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
+	origin_tech = list(/datum/tech/materials = 1)
 	material = /decl/material/glass
 	var/created_window = /obj/structure/window/basic
 
@@ -137,7 +137,7 @@
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
 	matter_amounts = list(MATERIAL_METAL = 1875, MATERIAL_GLASS = 3750)
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
+	origin_tech = list(/datum/tech/materials = 2)
 	material = /decl/material/reinforced_glass
 
 /obj/item/stack/sheet/glass/reinforced/cyborg
@@ -338,7 +338,7 @@
 	singular_name = "plasma glass sheet"
 	icon_state = "sheet-plasmaglass"
 	matter_amounts = list(MATERIAL_GLASS = 7500)
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_PLASMATECH = 2)
+	origin_tech = list(/datum/tech/materials = 3, /datum/tech/plasma = 2)
 	material = /decl/material/plasma_glass
 	created_window = /obj/structure/window/plasmabasic
 
@@ -367,7 +367,7 @@
 	singular_name = "reinforced plasma glass sheet"
 	icon_state = "sheet-plasmarglass"
 	matter_amounts = list(MATERIAL_METAL = 1875, MATERIAL_GLASS = 7500)
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_PLASMATECH = 2)
+	origin_tech = list(/datum/tech/materials = 4, /datum/tech/plasma = 2)
 	material = /decl/material/reinforced_plasma_glass
 	created_window = /obj/structure/window/plasmareinforced
 

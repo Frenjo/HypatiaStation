@@ -841,7 +841,7 @@ ________________________________________________________________________________
 				to_chat(U, "Research information detected, processing...")
 				if(do_after(U,s_delay))
 					for(var/datum/tech/current_data in stored_research)
-						if(current_data.id==TD.stored.id)
+						if(current_data.type == TD.stored.type)
 							if(current_data.level<TD.stored.level)
 								current_data.level=TD.stored.level
 							break
@@ -1061,7 +1061,7 @@ ________________________________________________________________________________
 						to_chat(U, SPAN_INFO("Checking \the [current_data.name] database."))
 						if(do_after(U, S.s_delay) && G.candrain && isnotnull(A))
 							for(var/datum/tech/analyzing_data in files.known_tech)
-								if(current_data.id == analyzing_data.id)
+								if(current_data.type == analyzing_data.type)
 									if(analyzing_data.level > current_data.level)
 										to_chat(U, "\blue Database: \black <b>UPDATED</b>.")
 										current_data.level = analyzing_data.level

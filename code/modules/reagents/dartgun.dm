@@ -7,7 +7,7 @@
 	opacity = FALSE
 	density = FALSE
 	anchored = FALSE
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 2)
+	origin_tech = list(/datum/tech/materials = 2)
 	var/darts = 5
 
 /obj/item/dart_cartridge/update_icon()

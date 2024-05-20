@@ -95,16 +95,3 @@ Note: Must be placed within 3 tiles of the R&D Console
 		icon_state = "d_analyser_l"
 		busy = FALSE
 	return 1
-
-//For testing purposes only.
-/*/obj/item/deconstruction_test
-	name = "Test Item"
-	desc = "WTF?"
-	icon = 'icons/obj/weapons/weapons.dmi'
-	icon_state = "d20"
-	g_amt = 5000
-	m_amt = 5000
-	origin_tech = list(
-		RESEARCH_TECH_MATERIALS = 5, RESEARCH_TECH_PLASMATECH = 5, RESEARCH_TECH_SYNDICATE = 5,
-		RESEARCH_TECH_PROGRAMMING = 9
-	)*/

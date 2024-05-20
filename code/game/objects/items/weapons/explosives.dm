@@ -7,7 +7,7 @@
 	item_state = "plasticx"
 	item_flags = ITEM_FLAG_NO_BLUDGEON
 	w_class = 2.0
-	origin_tech = list(RESEARCH_TECH_SYNDICATE = 2)
+	origin_tech = list(/datum/tech/syndicate = 2)
 
 	var/datum/wires/explosive/c4/wires = null
 	var/timer = 10

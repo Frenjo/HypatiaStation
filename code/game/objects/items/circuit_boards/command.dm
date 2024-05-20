@@ -8,7 +8,7 @@
 /obj/item/circuitboard/communications
 	name = "circuit board (Communications)"
 	build_path = /obj/machinery/computer/communications
-	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_MAGNETS = 2)
+	origin_tech = list(/datum/tech/magnets = 2, /datum/tech/programming = 2)
 
 /obj/item/circuitboard/communications/Destroy()
 	. = ..()
@@ -42,7 +42,7 @@
 /obj/item/circuitboard/teleporter
 	name = "circuit board (Teleporter)"
 	build_path = /obj/machinery/computer/teleporter
-	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_BLUESPACE = 2)
+	origin_tech = list(/datum/tech/programming = 2, /datum/tech/bluespace = 2)
 
 /obj/item/circuitboard/skills
 	name = "circuit board (Employment Records)"

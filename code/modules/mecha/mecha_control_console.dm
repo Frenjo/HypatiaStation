@@ -71,7 +71,7 @@
 	desc = "Device used to transmit exosuit data."
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "motion2"
-	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2, RESEARCH_TECH_MAGNETS = 2)
+	origin_tech = list(/datum/tech/magnets = 2, /datum/tech/programming = 2)
 	construction_time = 50
 	construction_cost = list(MATERIAL_METAL = 500)
 

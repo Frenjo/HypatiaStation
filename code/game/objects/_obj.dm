@@ -24,12 +24,6 @@
 	var/damtype = "brute"
 	var/force = 0
 
-/obj/New()
-	matter_amounts = list()
-	origin_tech = list()
-	attack_verb = list()
-	. = ..()
-
 /obj/assume_air(datum/gas_mixture/giver)
 	return isnotnull(loc) ? loc.assume_air(giver) : null
 

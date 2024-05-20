@@ -2,7 +2,7 @@
 	name = "flashbang"
 	icon_state = "flashbang"
 	item_state = "flashbang"
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_COMBAT = 1)
+	origin_tech = list(/datum/tech/materials = 2, /datum/tech/combat = 1)
 	var/banglet = 0
 
 /obj/item/grenade/flashbang/prime()

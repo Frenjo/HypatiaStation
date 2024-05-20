@@ -134,7 +134,7 @@
 	obj_flags = OBJ_FLAG_CONDUCT
 	throwforce = 0
 	w_class = 3.0
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 1)
+	origin_tech = list(/datum/tech/materials = 1)
 
 	var/breakouttime = 300	//Deciseconds = 30s = 0.5 minute
 
@@ -246,7 +246,7 @@
 	throw_speed = 4
 	throw_range = 20
 	m_amt = 100
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 2, RESEARCH_TECH_SYNDICATE = 3)*/
+	origin_tech = list(/datum/tech/magnets = 2, /datum/tech/syndicate = 3)*/
 
 /obj/item/shard/shrapnel
 	name = "shrapnel"
@@ -280,7 +280,7 @@
 	throw_speed = 4
 	throw_range = 20
 	matter_amounts = list(MATERIAL_METAL = 100)
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 1)
+	origin_tech = list(/datum/tech/magnets = 1)
 
 	var/temp = null
 	var/uses = 4.0
@@ -353,7 +353,7 @@
 	icon_state = "meat"
 	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 1.0
-	origin_tech = list(RESEARCH_TECH_BIOTECH = 2)
+	origin_tech = list(/datum/tech/biotech = 2)
 
 /obj/item/hatchet/soghunknife
 	name = "duelling knife"
@@ -380,17 +380,6 @@
 	gender = PLURAL
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "ectoplasm"
-
-/obj/item/research	//Makes testing much less of a pain -Sieve
-	name = "research"
-	icon = 'icons/obj/stock_parts.dmi'
-	icon_state = "capacitor"
-	desc = "A debug item for research."
-	origin_tech = list(
-		RESEARCH_TECH_MATERIALS = 8, RESEARCH_TECH_PROGRAMMING = 8, RESEARCH_TECH_MAGNETS = 8,
-		RESEARCH_TECH_POWERSTORAGE = 8, RESEARCH_TECH_BLUESPACE = 8, RESEARCH_TECH_COMBAT = 8,
-		RESEARCH_TECH_BIOTECH = 8, RESEARCH_TECH_SYNDICATE = 8
-	)
 
 // --- Things below are originally from weaponry.dm ---
 /obj/item/banhammer

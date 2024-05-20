@@ -15,7 +15,7 @@
 	throw_speed = 3
 	throw_range = 15
 
-	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 3)
+	origin_tech = list(/datum/tech/programming = 3)
 
 /obj/item/ai_module/proc/install(obj/machinery/computer/C)
 	if(istype(C, /obj/machinery/computer/aiupload))

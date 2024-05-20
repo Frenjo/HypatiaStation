@@ -122,7 +122,7 @@
 	// Techs - Initialises all /datum/tech into a list, indexed by id.
 	for(var/path in SUBTYPESOF(/datum/tech))
 		var/datum/tech/T = new path()
-		GLOBL.all_techs[T.id] = T
+		GLOBL.all_techs[path] = T
 
 	// Designs - Initialises all /datum/design into a list, indexed by id.
 	for(var/path in SUBTYPESOF(/datum/design))

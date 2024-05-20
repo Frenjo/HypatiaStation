@@ -3,7 +3,7 @@
 	name = "delivery grenade"
 	icon_state = "delivery"
 	item_state = "flashbang"
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_MAGNETS = 4)
+	origin_tech = list(/datum/tech/materials = 3, /datum/tech/magnets = 4)
 
 	var/banglet = 0
 	var/spawner_type = null // must be an object path
@@ -34,10 +34,10 @@
 	name = "manhack delivery grenade"
 	spawner_type = /mob/living/simple_animal/hostile/viscerator
 	deliveryamt = 5
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_SYNDICATE = 4)
+	origin_tech = list(/datum/tech/materials = 3, /datum/tech/magnets = 4, /datum/tech/syndicate = 4)
 
 /obj/item/grenade/spawnergrenade/spesscarp
 	name = "carp delivery grenade"
 	spawner_type = /mob/living/simple_animal/hostile/carp
 	deliveryamt = 5
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_SYNDICATE = 4)
+	origin_tech = list(/datum/tech/materials = 3, /datum/tech/magnets = 4, /datum/tech/syndicate = 4)

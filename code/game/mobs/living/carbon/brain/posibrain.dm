@@ -5,8 +5,8 @@
 	icon_state = "posibrain"
 	w_class = 3
 	origin_tech = list(
-		RESEARCH_TECH_ENGINEERING = 4, RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 2,
-		RESEARCH_TECH_PROGRAMMING = 4
+		/datum/tech/materials = 4, /datum/tech/engineering = 4, /datum/tech/programming = 4,
+		/datum/tech/bluespace = 2
 	)
 
 	construction_cost = list(MATERIAL_METAL = 500, MATERIAL_GLASS = 500, MATERIAL_SILVER = 200, MATERIAL_GOLD = 200, MATERIAL_PLASMA = 100, MATERIAL_DIAMOND = 10)

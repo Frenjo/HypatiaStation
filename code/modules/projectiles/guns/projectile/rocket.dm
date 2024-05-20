@@ -8,7 +8,7 @@
 	obj_flags = OBJ_FLAG_CONDUCT
 	item_flags = ITEM_FLAG_HAS_USE_DELAY
 	slot_flags = null
-	origin_tech = list(RESEARCH_TECH_COMBAT = 8, RESEARCH_TECH_MATERIALS = 5)
+	origin_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 8)
 
 	throw_speed = 2
 	throw_range = 10

@@ -4,7 +4,7 @@
 	icon_state = "signaller"
 	item_state = "signaler"
 	matter_amounts = list(MATERIAL_METAL = 1000, MATERIAL_GLASS = 200, "waste" = 100)
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 1)
+	origin_tech = list(/datum/tech/magnets = 1)
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 
 	secured = 1

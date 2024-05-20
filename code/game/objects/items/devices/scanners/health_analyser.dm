@@ -20,7 +20,7 @@
 	throw_range = 10
 
 	matter_amounts = list(MATERIAL_METAL = 200)
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 1, RESEARCH_TECH_BIOTECH = 1)
+	origin_tech = list(/datum/tech/magnets = 1, /datum/tech/biotech = 1)
 
 	var/mode = MODE_SHOW_LIMB_DAMAGE
 

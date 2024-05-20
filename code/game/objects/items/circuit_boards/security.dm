@@ -68,4 +68,4 @@
 /obj/item/circuitboard/prison_shuttle
 	name = "circuit board (Prison Shuttle)"
 	build_path = /obj/machinery/computer/shuttle_control/prison
-	origin_tech = list(RESEARCH_TECH_PROGRAMMING = 2)
+	origin_tech = list(/datum/tech/programming = 2)

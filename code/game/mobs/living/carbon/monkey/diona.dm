@@ -13,7 +13,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "nymph"
 	slot_flags = SLOT_HEAD
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_BIOTECH = 5)
+	origin_tech = list(/datum/tech/magnets = 3, /datum/tech/biotech = 5)
 
 /obj/item/holder/New()
 	..()

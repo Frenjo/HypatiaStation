@@ -4,7 +4,7 @@
 	icon_state = "laser"
 	item_state = "laser"
 
-	origin_tech = list(RESEARCH_TECH_COMBAT = 3, RESEARCH_TECH_MAGNETS = 2)
+	origin_tech = list(/datum/tech/magnets = 2, /datum/tech/combat = 3)
 
 	fire_sound = 'sound/weapons/Laser.ogg'
 
@@ -73,7 +73,7 @@
 	desc = "With the L.A.S.E.R. cannon, the lasing medium is enclosed in a tube lined with uranium-235 and subjected to high neutron flux in a nuclear reactor core. This incredible technology may help YOU achieve high excitation rates with small laser volumes!"
 	icon_state = "lasercannon"
 
-	origin_tech = list(RESEARCH_TECH_COMBAT = 4, RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_POWERSTORAGE = 3)
+	origin_tech = list(/datum/tech/materials = 3, /datum/tech/combat = 4, /datum/tech/power_storage = 3)
 
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	fire_delay = 2 SECONDS
@@ -103,8 +103,8 @@
 	icon_state = "xray"
 
 	origin_tech = list(
-		RESEARCH_TECH_COMBAT = 5, RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_MAGNETS = 2,
-		RESEARCH_TECH_SYNDICATE = 2
+		/datum/tech/materials = 3, /datum/tech/magnets = 2, /datum/tech/combat = 5,
+		/datum/tech/syndicate = 2
 	)
 
 	fire_sound = 'sound/weapons/laser3.ogg'
@@ -122,7 +122,7 @@
 	name = "laser tag gun"
 	desc = "Standard issue weapon of the Imperial Guard."
 
-	origin_tech = list(RESEARCH_TECH_COMBAT = 1, RESEARCH_TECH_MAGNETS = 2)
+	origin_tech = list(/datum/tech/magnets = 2, /datum/tech/combat = 1)
 
 	clumsy_check = FALSE
 

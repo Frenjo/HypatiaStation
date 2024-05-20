@@ -137,7 +137,7 @@
 	name = "diamond drill"
 	desc = "This is an upgraded version of the drill that'll pierce the heavens! (Can be attached to: Combat and Engineering Exosuits)"
 	icon_state = "mecha_diamond_drill"
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_ENGINEERING = 3)
+	origin_tech = list(/datum/tech/materials = 4, /datum/tech/engineering = 3)
 	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_DIAMOND = 6500)
 	equip_cooldown = 20
 	force = 15
@@ -268,8 +268,8 @@
 	desc = "An exosuit-mounted rapid-construction-device. (Can be attached to: Any exosuit)"
 	icon_state = "mecha_rcd"
 	origin_tech = list(
-		RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_BLUESPACE = 3, RESEARCH_TECH_MAGNETS = 4,
-		RESEARCH_TECH_POWERSTORAGE = 4
+		/datum/tech/materials = 4, /datum/tech/magnets = 4, /datum/tech/power_storage = 4,
+		/datum/tech/bluespace = 3
 	)
 	equip_cooldown = 10
 	energy_drain = 250
@@ -379,7 +379,7 @@
 	name = "teleporter"
 	desc = "An exosuit module that allows exosuits to teleport to any position in view."
 	icon_state = "mecha_teleport"
-	origin_tech = list(RESEARCH_TECH_BLUESPACE = 10)
+	origin_tech = list(/datum/tech/bluespace = 10)
 	equip_cooldown = 150
 	energy_drain = 1000
 	range = RANGED
@@ -400,7 +400,7 @@
 	name = "wormhole generator"
 	desc = "An exosuit module that allows generating of small quasi-stable wormholes."
 	icon_state = "mecha_wholegen"
-	origin_tech = list(RESEARCH_TECH_BLUESPACE = 3)
+	origin_tech = list(/datum/tech/bluespace = 3)
 	equip_cooldown = 50
 	energy_drain = 300
 	range = RANGED
@@ -452,7 +452,7 @@
 	name = "gravitational catapult"
 	desc = "An exosuit mounted Gravitational Catapult."
 	icon_state = "mecha_teleport"
-	origin_tech = list(RESEARCH_TECH_BLUESPACE = 2, RESEARCH_TECH_MAGNETS = 3)
+	origin_tech = list(/datum/tech/magnets = 3, /datum/tech/bluespace = 2)
 	equip_cooldown = 10
 	energy_drain = 100
 	range = MELEE|RANGED
@@ -529,7 +529,7 @@
 	name = "armour booster module (close combat weaponry)"
 	desc = "Boosts exosuit armour against armed melee attacks. Requires energy to operate."
 	icon_state = "mecha_abooster_ccw"
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 3)
+	origin_tech = list(/datum/tech/materials = 3)
 	equip_cooldown = 10
 	energy_drain = 50
 	range = 0
@@ -582,7 +582,7 @@
 	name = "armour booster module (ranged weaponry)"
 	desc = "Boosts exosuit armour against ranged attacks. Completely blocks taser shots. Requires energy to operate."
 	icon_state = "mecha_abooster_proj"
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 4)
+	origin_tech = list(/datum/tech/materials = 4)
 	equip_cooldown = 10
 	energy_drain = 50
 	range = 0
@@ -656,7 +656,7 @@
 	name = "repair droid"
 	desc = "Automated repair droid. Scans exosuit for damage and repairs it. Can fix almost all types of external or internal damage."
 	icon_state = "repair_droid"
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 3, RESEARCH_TECH_PROGRAMMING = 3)
+	origin_tech = list(/datum/tech/magnets = 3, /datum/tech/programming = 3)
 	equip_cooldown = 20
 	energy_drain = 100
 	range = 0
@@ -745,7 +745,7 @@
 	name = "energy relay"
 	desc = "Wirelessly drains energy from any available power channel in area. The performance index is quite low."
 	icon_state = "tesla"
-	origin_tech = list(RESEARCH_TECH_MAGNETS = 4, RESEARCH_TECH_SYNDICATE = 2)
+	origin_tech = list(/datum/tech/magnets = 4, /datum/tech/syndicate = 2)
 	equip_cooldown = 10
 	energy_drain = 0
 	range = 0
@@ -861,7 +861,7 @@
 	name = "plasma converter"
 	desc = "Generates power using solid plasma as fuel. Pollutes the environment."
 	icon_state = "tesla"
-	origin_tech = list(RESEARCH_TECH_PLASMATECH = 2, RESEARCH_TECH_POWERSTORAGE = 2, RESEARCH_TECH_ENGINEERING = 1)
+	origin_tech = list(/datum/tech/engineering = 1, /datum/tech/power_storage = 2, /datum/tech/plasma = 2)
 	equip_cooldown = 10
 	energy_drain = 0
 	range = MELEE
@@ -997,7 +997,7 @@
 	name = "\improper ExoNuclear reactor"
 	desc = "Generates power using uranium. Pollutes the environment."
 	icon_state = "tesla"
-	origin_tech = list(RESEARCH_TECH_POWERSTORAGE = 3, RESEARCH_TECH_ENGINEERING = 3)
+	origin_tech = list(/datum/tech/engineering = 3, /datum/tech/power_storage = 3)
 	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_SILVER = 500, MATERIAL_GLASS = 1000)
 	max_fuel = 50000
 	fuel_per_cycle_idle = 10
@@ -1103,7 +1103,7 @@
 	name = "passenger compartment"
 	desc = "A mountable passenger compartment for exo-suits. Rather cramped."
 	icon_state = "mecha_abooster_ccw"
-	origin_tech = list(RESEARCH_TECH_ENGINEERING = 1, RESEARCH_TECH_BIOTECH = 1)
+	origin_tech = list(/datum/tech/biotech = 1, /datum/tech/engineering = 1)
 	energy_drain = 10
 	range = MELEE
 	construction_cost = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 5000)

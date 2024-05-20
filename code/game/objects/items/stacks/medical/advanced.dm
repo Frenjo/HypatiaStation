@@ -4,7 +4,7 @@
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
 	heal_brute = 12
-	origin_tech = list(RESEARCH_TECH_BIOTECH = 1)
+	origin_tech = list(/datum/tech/biotech = 1)
 
 /obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())
@@ -53,7 +53,7 @@
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
 	heal_burn = 12
-	origin_tech = list(RESEARCH_TECH_BIOTECH = 1)
+	origin_tech = list(/datum/tech/biotech = 1)
 
 /obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(..())

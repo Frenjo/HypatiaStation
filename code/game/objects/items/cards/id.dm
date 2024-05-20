@@ -105,7 +105,7 @@
 /obj/item/card/id/syndicate
 	name = "agent card"
 	access = list(ACCESS_MAINT_TUNNELS, ACCESS_SYNDICATE, ACCESS_EXTERNAL_AIRLOCKS)
-	origin_tech = list(RESEARCH_TECH_SYNDICATE = 3)
+	origin_tech = list(/datum/tech/syndicate = 3)
 
 	var/registered_user = null
 

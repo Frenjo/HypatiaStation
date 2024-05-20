@@ -65,7 +65,7 @@ research holder datum.
 	var/matches = 0
 	for(var/req in T.req_tech)
 		for(var/datum/tech/known in known_tech)
-			if(req == known.id && known.level >= T.req_tech[req])
+			if(req == known.type && known.level >= T.req_tech[req])
 				matches++
 				break
 	if(matches == length(T.req_tech))
@@ -81,7 +81,7 @@ research holder datum.
 	var/matches = 0
 	var/list/k_tech = list()
 	for(var/datum/tech/known in known_tech)
-		k_tech[known.id] = known.level
+		k_tech[known.type] = known.level
 	for(var/req in D.req_tech)
 		if(isnotnull(k_tech[req]) && k_tech[req] >= D.req_tech[req])
 			matches++
@@ -111,7 +111,7 @@ research holder datum.
 // Input: datum/tech; Output: Null
 /datum/research/proc/AddTech2Known(datum/tech/T)
 	for(var/datum/tech/known in known_tech)
-		if(T.id == known.id)
+		if(T.type == known.type)
 			if(T.level > known.level)
 				known.level = T.level
 			return
@@ -143,10 +143,10 @@ research holder datum.
 	return
 
 // Refreshes the levels of a given tech.
-// Input: Tech's ID and Level; Output: null
-/datum/research/proc/UpdateTech(ID, level)
+// Input: Tech's typepath and Level; Output: null
+/datum/research/proc/UpdateTech(typepath, level)
 	for(var/datum/tech/KT in known_tech)
-		if(KT.id == ID)
+		if(KT.type == typepath)
 			if(KT.level <= level)
 				KT.level = max((KT.level + 1), (level - 1))
 	return
@@ -165,7 +165,6 @@ research holder datum.
 /datum/tech	//Datum of individual technologies.
 	var/name = "name"			// Name of the technology.
 	var/desc = "description"	// General description of what it does and what it makes.
-	var/id = "id"				// An easily referenced ID. Must be alphanumeric, lower-case, and no symbols.
 	var/level = 1				// A simple number scale of the research level. Level 0 = Secret tech.
 	var/list/req_tech = list()	// List of ids associated values of techs required to research this tech. "id" = #
 
@@ -173,59 +172,49 @@ research holder datum.
 /datum/tech/materials
 	name = "Materials Research"
 	desc = "Development of new and improved materials."
-	id = RESEARCH_TECH_MATERIALS
-
-/datum/tech/engineering
-	name = "Engineering Research"
-	desc = "Development of new and improved engineering parts and."
-	id = RESEARCH_TECH_ENGINEERING
-
-/datum/tech/plasmatech
-	name = "Plasma Research"
-	desc = "Research into the mysterious substance colloqually known as 'plasma'."
-	id = RESEARCH_TECH_PLASMATECH
-
-/datum/tech/powerstorage
-	name = "Power Manipulation Technology"
-	desc = "The various technologies behind the storage and generation of electicity."
-	id = RESEARCH_TECH_POWERSTORAGE
-
-/datum/tech/bluespace
-	name = "'Blue-space' Research"
-	desc = "Research into the sub-reality known as 'blue-space'"
-	id = RESEARCH_TECH_BLUESPACE
-
-/datum/tech/biotech
-	name = "Biological Technology"
-	desc = "Research into the deeper mysteries of life and organic substances."
-	id = RESEARCH_TECH_BIOTECH
-
-/datum/tech/combat
-	name = "Combat Systems Research"
-	desc = "The development of offensive and defensive systems."
-	id = RESEARCH_TECH_COMBAT
 
 /datum/tech/magnets
 	name = "Electromagnetic Spectrum Research"
 	desc = "Research into the electromagnetic spectrum. No clue how they actually work, though."
-	id = RESEARCH_TECH_MAGNETS
+
+/datum/tech/biotech
+	name = "Biological Technology"
+	desc = "Research into the deeper mysteries of life and organic substances."
+
+/datum/tech/combat
+	name = "Combat Systems Research"
+	desc = "The development of offensive and defensive systems."
+
+/datum/tech/engineering
+	name = "Engineering Research"
+	desc = "Development of new and improved engineering parts and technologies."
+
+/datum/tech/power_storage
+	name = "Power Manipulation Technology"
+	desc = "The various technologies behind the storage and generation of electicity."
 
 /datum/tech/programming
 	name = "Data Theory Research"
-	desc = "The development of new computer and artificial intelligence and data storage systems."
-	id = RESEARCH_TECH_PROGRAMMING
+	desc = "The development of new computer, artificial intelligence and data storage systems."
 
+/datum/tech/plasma
+	name = "Plasma Research"
+	desc = "Research into the mysterious substance colloqually known as 'plasma'."
+
+/datum/tech/bluespace
+	name = "'Blue-space' Research"
+	desc = "Research into the sub-reality known as 'blue-space'."
+
+// Secret Techs
 /datum/tech/syndicate
 	name = "Illegal Technologies Research"
 	desc = "The study of technologies that violate standard NanoTrasen regulations."
-	id = RESEARCH_TECH_SYNDICATE
 	level = 0
 
 // Added this, hopefully it's fixed. -Frenjo
 /datum/tech/arcane
 	name = "Arcane Research"
 	desc = "Research into the occult and arcane fields for use in practical science."
-	id = RESEARCH_TECH_ARCANE
 	level = 0
 
 /*
@@ -233,20 +222,17 @@ research holder datum.
 /datum/tech/explosives
 	name = "Explosives Research"
 	desc = "The creation and application of explosive materials."
-	id = RESEARCH_TECH_EXPLOSIVES
-	req_tech = list(RESEARCH_TECH_MATERIALS = 3)
+	req_tech = list(/datum/tech/materials = 3)
 
-/datum/tech/generators
+/datum/tech/power_generation
 	name = "Power Generation Technology"
 	desc = "Research into more powerful and more reliable sources."
-	id = RESEARCH_TECH_GENERATORS
-	req_tech = list(RESEARCH_TECH_POWERSTORAGE = 2)
+	req_tech = list(/datum/tech/power_storage = 2)
 
 /datum/tech/robotics
 	name = "Robotics Technology"
 	desc = "The development of advanced automated, autonomous machines."
-	id = RESEARCH_TECH_ROBOTICS
-	req_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_PROGRAMMING = 3)
+	req_tech = list(/datum/tech/materials = 3, /datum/tech/programming = 3)
 */
 
 /obj/item/disk/tech_disk

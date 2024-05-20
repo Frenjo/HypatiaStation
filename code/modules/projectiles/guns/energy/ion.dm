@@ -5,7 +5,7 @@
 
 	w_class = 4
 	slot_flags = SLOT_BACK
-	origin_tech = list(RESEARCH_TECH_COMBAT = 2, RESEARCH_TECH_MAGNETS = 4)
+	origin_tech = list(/datum/tech/magnets = 4, /datum/tech/combat = 2)
 
 	fire_sound = 'sound/weapons/Laser.ogg'
 

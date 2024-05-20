@@ -162,7 +162,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	else if(href_list["copy_tech"]) //Copys some technology data from the research holder to the disk.
 		for(var/datum/tech/T in files.known_tech)
-			if(href_list["copy_tech_ID"] == T.id)
+			if(text2path(href_list["copy_tech_ID"]) == T.type)
 				t_disk.stored = T
 				break
 		screen = 1.2
@@ -521,7 +521,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Load Technology to Disk:<BR><BR>"
 			for(var/datum/tech/T in files.known_tech)
 				dat += "[T.name] "
-				dat += "<A href='?src=\ref[src];copy_tech=1;copy_tech_ID=[T.id]'>(Copy to Disk)</A><BR>"
+				dat += "<A href='?src=\ref[src];copy_tech=1;copy_tech_ID=[T.type]'>(Copy to Disk)</A><BR>"
 
 		if(1.4) //Design Disk menu.
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><HR>"

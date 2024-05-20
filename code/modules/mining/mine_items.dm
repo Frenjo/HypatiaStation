@@ -69,7 +69,7 @@
 	item_state = "pickaxe"
 	w_class = 4
 	matter_amounts = list(MATERIAL_METAL = 3750) //one sheet, but where can you make them?
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_ENGINEERING = 1)
+	origin_tech = list(/datum/tech/materials = 1, /datum/tech/engineering = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	sharp = 1
 
@@ -91,7 +91,7 @@
 	icon_state = "spickaxe"
 	item_state = "spickaxe"
 	digspeed = 30
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 3)
+	origin_tech = list(/datum/tech/materials = 3)
 	desc = "This makes no metallurgic sense."
 
 /obj/item/pickaxe/drill
@@ -99,7 +99,7 @@
 	icon_state = "handdrill"
 	item_state = "jackhammer"
 	digspeed = 30
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 2, RESEARCH_TECH_POWERSTORAGE = 3, RESEARCH_TECH_ENGINEERING = 2)
+	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/power_storage = 3)
 	desc = "Yours is the drill that will pierce through the rock walls."
 	drill_verb = "drilling"
 
@@ -108,7 +108,7 @@
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
 	digspeed = 20 //faster than drill, but cannot dig
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 3, RESEARCH_TECH_POWERSTORAGE = 2, RESEARCH_TECH_ENGINEERING = 2)
+	origin_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 2, /datum/tech/power_storage = 2)
 	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
 	drill_verb = "hammering"
 
@@ -117,7 +117,7 @@
 	icon_state = "gpickaxe"
 	item_state = "gpickaxe"
 	digspeed = 20
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 4)
+	origin_tech = list(/datum/tech/materials = 4)
 	desc = "This makes no metallurgic sense."
 
 /obj/item/pickaxe/plasmacutter
@@ -127,7 +127,7 @@
 	w_class = 3 //it is smaller than the pickaxe
 	damtype = "fire"
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/ light thermite on fire
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 4, RESEARCH_TECH_PLASMATECH = 3, RESEARCH_TECH_ENGINEERING = 3)
+	origin_tech = list(/datum/tech/materials = 4, /datum/tech/engineering = 3, /datum/tech/plasma = 3)
 	desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
 	drill_verb = "cutting"
 
@@ -136,7 +136,7 @@
 	icon_state = "dpickaxe"
 	item_state = "dpickaxe"
 	digspeed = 10
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 6, RESEARCH_TECH_ENGINEERING = 4)
+	origin_tech = list(/datum/tech/materials = 6, /datum/tech/engineering = 4)
 	desc = "A pickaxe with a diamond pick head, this is just like minecraft."
 
 /obj/item/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
@@ -144,7 +144,7 @@
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
 	digspeed = 5 //Digs through walls, girders, and can dig up sand
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 6, RESEARCH_TECH_POWERSTORAGE = 4, RESEARCH_TECH_ENGINEERING = 5)
+	origin_tech = list(/datum/tech/materials = 6, /datum/tech/engineering = 5, /datum/tech/power_storage = 4)
 	desc = "Yours is the drill that will pierce the heavens!"
 	drill_verb = "drilling"
 
@@ -171,7 +171,7 @@
 	item_state = "shovel"
 	w_class = 3
 	matter_amounts = list(MATERIAL_METAL = 50)
-	origin_tech = list(RESEARCH_TECH_MATERIALS = 1, RESEARCH_TECH_ENGINEERING = 1)
+	origin_tech = list(/datum/tech/materials = 1, /datum/tech/engineering = 1)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 
 /obj/item/shovel/spade
