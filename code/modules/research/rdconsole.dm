@@ -492,6 +492,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(1.1) //Research viewer
 			dat += "Current Research Levels:<BR><BR>"
 			for(var/datum/tech/T in files.known_tech)
+				if(T.level == 0) // If it's a secret tech, don't display it until it's actually researched.
+					continue
 				dat += "[T.name]<BR>"
 				dat +=  "* Level: [T.level]<BR>"
 				dat +=  "* Summary: [T.desc]<HR>"
