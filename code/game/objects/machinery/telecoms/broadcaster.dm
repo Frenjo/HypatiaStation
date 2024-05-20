@@ -661,7 +661,7 @@
 	signal.frequency = FREQUENCY_COMMON// Common channel
 
   //#### Sending the signal to all subspace receivers ####//
-	for(var/obj/machinery/telecoms/receiver/R in telecoms_list)
+	for(var/obj/machinery/telecoms/receiver/R in GLOBL.telecoms_list)
 		R.receive_signal(signal)
 
 	sleep(rand(10, 25))

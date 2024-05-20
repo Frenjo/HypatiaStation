@@ -339,11 +339,11 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 		  //#### Sending the signal to all subspace receivers ####//
 
-			for(var/obj/machinery/telecoms/receiver/R in telecoms_list)
+			for(var/obj/machinery/telecoms/receiver/R in GLOBL.telecoms_list)
 				R.receive_signal(signal)
 
 			// Allinone can act as receivers.
-			for(var/obj/machinery/telecoms/allinone/R in telecoms_list)
+			for(var/obj/machinery/telecoms/allinone/R in GLOBL.telecoms_list)
 				R.receive_signal(signal)
 
 			// Receiving code can be located in Telecommunications.dm
@@ -391,7 +391,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		)
 		signal.frequency = connection.frequency // Quick frequency set
 
-		for(var/obj/machinery/telecoms/receiver/R in telecoms_list)
+		for(var/obj/machinery/telecoms/receiver/R in GLOBL.telecoms_list)
 			R.receive_signal(signal)
 
 		sleep(rand(10, 25)) // wait a little...

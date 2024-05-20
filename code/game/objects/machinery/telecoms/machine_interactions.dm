@@ -13,22 +13,29 @@
 	var/temp = "" // output message
 	var/construct_op = 0
 
-/obj/machinery/telecoms/attackby(obj/item/P as obj, mob/user as mob)
+/obj/machinery/telecoms/attack_tool(obj/item/tool, mob/user)
 	// Using a multitool lets you access the receiver's interface
-	if(istype(P, /obj/item/multitool))
+	if(ismultitool(tool))
 		attack_hand(user)
+		return TRUE
 
-	// REPAIRING: Use Nanopaste to repair 10-20 integrity points.
-	if(istype(P, /obj/item/stack/nanopaste))
-		var/obj/item/stack/nanopaste/T = P
-		if(integrity < 100)												//Damaged, let's repair!
+	return ..()
+
+/obj/machinery/telecoms/attack_by(obj/item/I, mob/user)
+	// REPAIRING: Use nanopaste to repair 10-20 integrity points.
+	if(istype(I, /obj/item/stack/nanopaste))
+		var/obj/item/stack/nanopaste/paste = I
+		if(integrity < 100) // Damaged, let's repair!
 			integrity = between(0, integrity + rand(10, 20), 100)
-			T.use(1)
-			to_chat(usr, "You apply the Nanopaste to [src], repairing some of the damage.")
+			paste.use(1)
+			to_chat(user, SPAN_INFO("You apply \the [paste] to \the [src], repairing some of the damage."))
 		else
-			to_chat(usr, "This machine is already in perfect condition.")
-		return
+			to_chat(user, SPAN_WARNING("This machine is already in perfect condition."))
+		return TRUE
 
+	return ..()
+
+/obj/machinery/telecoms/attackby(obj/item/P, mob/user)
 	switch(construct_op)
 		if(0)
 			if(istype(P, /obj/item/screwdriver))
@@ -361,8 +368,8 @@
 
 /obj/machinery/telecoms/proc/canAccess(mob/user)
 	if(issilicon(user) || in_range(user, src))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 #undef TELECOMM_Z
 #undef STATION_Z

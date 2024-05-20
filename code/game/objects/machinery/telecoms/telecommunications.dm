@@ -13,7 +13,7 @@
 	Look at radio.dm for the prequel to this code.
 */
 
-/var/global/list/obj/machinery/telecoms/telecoms_list = list()
+GLOBAL_GLOBL_LIST_NEW(obj/machinery/telecoms/telecoms_list)
 
 /obj/machinery/telecoms
 	var/list/links = list() // list of machines this machine is linked to
@@ -39,7 +39,7 @@
 	var/listening_level = 0	// 0 = auto set in New() - this is the z level that the machine is listening to.
 
 /obj/machinery/telecoms/New()
-	telecoms_list.Add(src)
+	GLOBL.telecoms_list.Add(src)
 	. = ..()
 
 	//Set the listening_level if there's none.
@@ -56,12 +56,12 @@
 			for(var/obj/machinery/telecoms/T in orange(20, src))
 				add_link(T)
 		else
-			for(var/obj/machinery/telecoms/T in telecoms_list)
+			for_no_type_check(var/obj/machinery/telecoms/T, GLOBL.telecoms_list)
 				add_link(T)
 
 /obj/machinery/telecoms/Destroy()
-	telecoms_list.Remove(src)
-	for(var/obj/machinery/telecoms/comm in telecoms_list)
+	GLOBL.telecoms_list.Remove(src)
+	for_no_type_check(var/obj/machinery/telecoms/comm, GLOBL.telecoms_list)
 		comm.links.Remove(src)
 	links = list()
 	return ..()

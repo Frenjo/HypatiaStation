@@ -69,7 +69,7 @@
 	usr.set_machine(src)
 
 	if(!src.allowed(usr) && !emagged)
-		usr << "\red ACCESS DENIED."
+		FEEDBACK_ACCESS_DENIED(usr)
 		return
 
 	if(href_list["viewserver"])
