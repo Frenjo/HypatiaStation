@@ -120,7 +120,7 @@ research holder datum.
 
 /datum/research/proc/AddDesign2Known(datum/design/D)
 	for(var/datum/design/known in known_designs)
-		if(D.id == known.id)
+		if(D.type == known.type)
 			if(D.reliability_mod > known.reliability_mod)
 				known.reliability_mod = D.reliability_mod
 			return

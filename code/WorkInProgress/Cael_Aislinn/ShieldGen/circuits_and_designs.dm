@@ -20,7 +20,6 @@
 /datum/design/shield_gen_ex
 	name = "Circuit Design (Experimental hull shield generator)"
 	desc = "Allows for the construction of circuit boards used to build an experimental hull shield generator."
-	id = "shield_gen"
 	req_tech = list(/datum/tech/plasma = 3, /datum/tech/bluespace = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_PLASMA = 10000, MATERIAL_DIAMOND = 5000, MATERIAL_GOLD = 10000)
@@ -47,7 +46,6 @@
 /datum/design/shield_gen
 	name = "Circuit Design (Experimental bubble shield generator)"
 	desc = "Allows for the construction of circuit boards used to build an experimental shield generator."
-	id = "shield_gen"
 	req_tech = list(/datum/tech/plasma = 3, /datum/tech/bluespace = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_PLASMA = 10000, MATERIAL_DIAMOND = 5000, MATERIAL_GOLD = 10000)
@@ -74,7 +72,6 @@
 /datum/design/shield_cap
 	name = "Circuit Design (Experimental shield capacitor)"
 	desc = "Allows for the construction of circuit boards used to build an experimental shielding capacitor."
-	id = "shield_cap"
 	req_tech = list(/datum/tech/magnets = 3, /datum/tech/power_storage = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_PLASMA = 10000, MATERIAL_DIAMOND = 5000, MATERIAL_SILVER = 10000)

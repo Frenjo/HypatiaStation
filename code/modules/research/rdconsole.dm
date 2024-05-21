@@ -185,7 +185,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	else if(href_list["copy_design"]) //Copy design data from the research holder to the design disk.
 		for(var/datum/design/D in files.known_designs)
-			if(href_list["copy_design_ID"] == D.id)
+			if(text2path(href_list["copy_design_ID"]) == D.type)
 				d_disk.blueprint = D
 				break
 		screen = 1.4
@@ -294,7 +294,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(linked_lathe)
 			var/datum/design/being_built = null
 			for(var/datum/design/D in files.known_designs)
-				if(D.id == href_list["build"])
+				if(D.type == text2path(href_list["build"]))
 					being_built = D
 					break
 			if(being_built)
@@ -336,7 +336,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(linked_imprinter)
 			var/datum/design/being_built = null
 			for(var/datum/design/D in files.known_designs)
-				if(D.id == href_list["imprint"])
+				if(D.type == text2path(href_list["imprint"]))
 					being_built = D
 					break
 			if(being_built)
@@ -553,7 +553,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Load Design to Disk:<BR><BR>"
 			for(var/datum/design/D in files.known_designs)
 				dat += "[D.name] "
-				dat += "<A href='?src=\ref[src];copy_design=1;copy_design_ID=[D.id]'>(Copy to Disk)</A><BR>"
+				dat += "<A href='?src=\ref[src];copy_design=1;copy_design_ID=[D.type]'>(Copy to Disk)</A><BR>"
 
 		if(1.6) //R&D console settings
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
@@ -635,7 +635,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					if(!check_materials && linked_lathe.reagents.has_reagent(M, D.materials[M]))
 						check_materials = TRUE
 				if(check_materials)
-					dat += "* <A href='?src=\ref[src];build=[D.id]'>[temp_dat]</A><BR>"
+					dat += "* <A href='?src=\ref[src];build=[D.type]'>[temp_dat]</A><BR>"
 				else
 					dat += "* [temp_dat]<BR>"
 
@@ -761,7 +761,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					if(!check_materials && linked_imprinter.reagents.has_reagent(M, D.materials[M]))
 						check_materials = TRUE
 				if(check_materials)
-					dat += "* <A href='?src=\ref[src];imprint=[D.id]'>[temp_dat]</A><BR>"
+					dat += "* <A href='?src=\ref[src];imprint=[D.type]'>[temp_dat]</A><BR>"
 				else
 					dat += "* [temp_dat]<BR>"
 

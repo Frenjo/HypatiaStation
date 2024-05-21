@@ -10,7 +10,6 @@
 /datum/design/rust_core_control
 	name = "Circuit Design (RUST core controller)"
 	desc = "Allows for the construction of circuit boards used to build a core control console for the RUST fusion engine."
-	id = "rust_core_control"
 	req_tech = list(/datum/tech/engineering = 4, /datum/tech/programming = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
@@ -27,7 +26,6 @@
 /datum/design/rust_fuel_control
 	name = "Circuit Design (RUST fuel controller)"
 	desc = "Allows for the construction of circuit boards used to build a fuel injector control console for the RUST fusion engine."
-	id = "rust_fuel_control"
 	req_tech = list(/datum/tech/engineering = 4, /datum/tech/programming = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
@@ -44,7 +42,6 @@
 /datum/design/rust_fuel_port
 	name = "Internal circuitry (RUST fuel port)"
 	desc = "Allows for the construction of circuit boards used to build a fuel injection port for the RUST fusion engine."
-	id = "rust_fuel_port"
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/engineering = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_URANIUM = 3000)
@@ -61,7 +58,6 @@
 /datum/design/rust_fuel_compressor
 	name = "Circuit Design (RUST fuel compressor)"
 	desc = "Allows for the construction of circuit boards used to build a fuel compressor of the RUST fusion engine."
-	id = "rust_fuel_compressor"
 	req_tech = list(/datum/tech/materials = 6, /datum/tech/plasma = 4)
 	build_type = IMPRINTER
 	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_PLASMA = 3000, MATERIAL_DIAMOND = 1000)
@@ -90,7 +86,6 @@
 /datum/design/rust_core
 	name = "Internal circuitry (RUST tokamak core)"
 	desc = "The circuit board that for a RUST-pattern tokamak fusion core."
-	id = "pacman"
 	req_tech = list(
 		/datum/tech/magnets = 5, /datum/tech/power_storage = 6, /datum/tech/plasma = 4,
 		/datum/tech/bluespace = 3
@@ -122,7 +117,6 @@
 /datum/design/rust_injector
 	name = "Internal circuitry (RUST tokamak core)"
 	desc = "The circuit board that for a RUST-pattern particle accelerator."
-	id = "pacman"
 	req_tech = list(
 		/datum/tech/materials = 6, /datum/tech/engineering = 4, /datum/tech/power_storage = 3,
 		/datum/tech/plasma = 4

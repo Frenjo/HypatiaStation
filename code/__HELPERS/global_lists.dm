@@ -119,15 +119,15 @@
 	return 1
 
 /hook/global_init/proc/init_research()
-	// Techs - Initialises all /datum/tech into a list, indexed by id.
+	// Techs - Initialises all /datum/tech into a list, indexed by typepath.
 	for(var/path in SUBTYPESOF(/datum/tech))
 		var/datum/tech/T = new path()
 		GLOBL.all_techs[path] = T
 
-	// Designs - Initialises all /datum/design into a list, indexed by id.
+	// Designs - Initialises all /datum/design into a list, indexed by typepath.
 	for(var/path in SUBTYPESOF(/datum/design))
 		var/datum/design/D = new path()
-		GLOBL.all_designs[D.id] = D
+		GLOBL.all_designs[path] = D
 
 	// Artifact effects - Adds the typepaths of all /datum/artifact_effect to a list.
 	for(var/path in SUBTYPESOF(/datum/artifact_effect))
