@@ -15,7 +15,7 @@
 	// ... pulse_projectile_types and beam_projectile_types are lists or null.
 	var/has_firemodes
 	var/gun_mode = GUN_MODE_PULSE
-	var/gun_setting = null
+	var/gun_setting = GUN_SETTING_STUN
 	var/list/pulse_projectile_types = null
 	var/list/beam_projectile_types = null
 	var/projectile_type
