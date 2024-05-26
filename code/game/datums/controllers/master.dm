@@ -55,9 +55,8 @@ CONTROLLER_DEF(master)
 	// List of processes that are queued to run.
 	var/tmp/list/datum/process/queued = list()
 
-	// Process name -> process object map.
-	// TODO: Probably update this to index by typepath instead of name.
-	var/tmp/list/processes_by_name = list()
+	// Process typepath -> process instance map.
+	var/tmp/list/processes_by_type = list()
 
 	// List of processes whose setup will be deferred until all the other processes are set up.
 	var/tmp/list/deferred_setup_list = list()
@@ -386,8 +385,8 @@ CONTROLLER_DEF(master)
 	// Sets up the process.
 	process.setup()
 
-	// Saves process in the name -> process map.
-	processes_by_name[process.name] = process
+	// Saves the process in the type -> instance map.
+	processes_by_type[process.type] = process
 
 	// Waits until setup is done.
 	WAIT_FOR_BACKLOG
@@ -425,10 +424,10 @@ CONTROLLER_DEF(master)
 	record_start(newProcess, 0)
 	record_end(newProcess, 0)
 
-	processes_by_name[newProcess.name] = newProcess
+	processes_by_type[newProcess.type] = newProcess
 
 /datum/controller/master/proc/queue_processes()
-	for(var/datum/process/p in processes)
+	for_no_type_check(var/datum/process/p, processes)
 		// Doesn't double-queue or queue running processes
 		if(p.disabled || p.running || p.queued || !p.idle)
 			continue
@@ -442,20 +441,20 @@ CONTROLLER_DEF(master)
 		spawn(0)
 			p.process()
 
-/datum/controller/master/proc/enable_process(process_name)
-	if(isnotnull(processes_by_name[process_name]))
-		var/datum/process/process = processes_by_name[process_name]
+/datum/controller/master/proc/enable_process(process_type)
+	if(isnotnull(processes_by_type[process_type]))
+		var/datum/process/process = processes_by_type[process_type]
 		process.enable()
 
-/datum/controller/master/proc/disable_process(process_name)
-	if(isnotnull(processes_by_name[process_name]))
-		var/datum/process/process = processes_by_name[process_name]
+/datum/controller/master/proc/disable_process(process_type)
+	if(isnotnull(processes_by_type[process_type]))
+		var/datum/process/process = processes_by_type[process_type]
 		process.disable()
 
-/datum/controller/master/proc/restart_process(process_name)
-	if(isnotnull(processes_by_name[process_name]))
-		var/datum/process/oldInstance = processes_by_name[process_name]
-		var/datum/process/newInstance = new oldInstance.type(src)
+/datum/controller/master/proc/restart_process(process_type)
+	if(isnotnull(processes_by_type[process_type]))
+		var/datum/process/oldInstance = processes_by_type[process_type]
+		var/datum/process/newInstance = new process_type(src)
 		newInstance._copy_state_from(oldInstance)
 		replace_process(oldInstance, newInstance)
 		oldInstance.kill()
