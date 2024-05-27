@@ -89,7 +89,7 @@ CONTROLLER_DEF(pai)
 				return
 		recruit_window(usr)
 
-/datum/controller/pai/proc/recruit_window(mob/M as mob)
+/datum/controller/pai/proc/recruit_window(mob/M)
 	var/datum/pAI_candidate/candidate
 	for_no_type_check(var/datum/pAI_candidate/c, candidates)
 		if(!istype(c) || !istype(M))

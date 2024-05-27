@@ -6,7 +6,7 @@
  * The radio_controller is a global object maintaining all radio transmissions, think about it as about "ether".
  * Note that walkie-talkie, intercoms and headsets handle transmission using nonstandard way.
  * procs:
- *	add_object(obj/device as obj, var/new_frequency as num, var/filter as text|null = null)
+ *	add_object(obj/device, var/new_frequency, var/filter = null)
  *		Adds listening object.
  *		parameters:
  *			device - device receiving signals, must have proc receive_signal (see description below).
@@ -24,7 +24,7 @@
  *		Obviously, after calling this proc, device will not receive any signals on old_frequency.
  *		Other frequencies will left unaffected.
  *
- *	return_frequency(var/frequency as num)
+ *	return_frequency(var/frequency)
  *		returns:
  *			Reference to frequency object. Use it if you need to send and do not need to listen.
 */
@@ -33,7 +33,7 @@ CONTROLLER_DEF(radio)
 
 	var/list/frequencies = list()
 
-/datum/controller/radio/proc/add_object(obj/device as obj, new_frequency as num, filter = null as text|null)
+/datum/controller/radio/proc/add_object(obj/device, new_frequency, filter = null)
 	RETURN_TYPE(/datum/radio_frequency)
 
 	var/f_text = num2text(new_frequency)
@@ -56,7 +56,7 @@ CONTROLLER_DEF(radio)
 			frequencies.Remove(f_text)
 	return 1
 
-/datum/controller/radio/proc/return_frequency(new_frequency as num)
+/datum/controller/radio/proc/return_frequency(new_frequency)
 	RETURN_TYPE(/datum/radio_frequency)
 
 	var/f_text = num2text(new_frequency)
