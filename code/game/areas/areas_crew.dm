@@ -60,6 +60,7 @@
 /area/crew/bunker
 	name = "\improper Bunker"
 	icon_state = "locker"
+	area_flags = AREA_FLAG_IS_SURGE_PROTECTED
 
 /area/crew/theatre
 	name = "\improper Theatre"
