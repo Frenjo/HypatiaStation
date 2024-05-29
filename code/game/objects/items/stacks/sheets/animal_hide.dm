@@ -35,7 +35,7 @@
 	icon_state = "sheet-xeno"
 
 //Step one - dehairing.
-/obj/item/stack/sheet/animalhide/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/stack/sheet/animalhide/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/kitchenknife) || \
 		istype(W, /obj/item/kitchen/utensil/knife) || \
 		istype(W, /obj/item/twohanded/fireaxe) || \

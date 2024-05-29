@@ -11,7 +11,7 @@
 	var/heal_brute = 0
 	var/heal_burn = 0
 
-/obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/attack(mob/living/carbon/M, mob/user)
 	if(!istype(M))
 		to_chat(user, SPAN_WARNING("\The [src] cannot be applied to [M]!"))
 		return 1

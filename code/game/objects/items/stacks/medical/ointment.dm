@@ -7,7 +7,7 @@
 	heal_burn = 1
 	origin_tech = list(/datum/tech/biotech = 1)
 
-/obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/ointment/attack(mob/living/carbon/M, mob/user)
 	if(..())
 		return 1
 

@@ -39,7 +39,7 @@
 
 	return ..()
 
-/obj/item/stack/rods/attack_self(mob/user as mob)
+/obj/item/stack/rods/attack_self(mob/user)
 	src.add_fingerprint(user)
 
 	if(!isturf(user.loc))

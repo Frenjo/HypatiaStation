@@ -19,7 +19,7 @@
 
 	return ..()
 
-/obj/item/stack/light_w/attackby(obj/item/O as obj, mob/user as mob)
+/obj/item/stack/light_w/attackby(obj/item/O, mob/user)
 	..()
 	if(istype(O, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/M = O

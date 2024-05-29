@@ -5,7 +5,7 @@
 	icon_state = "brutepack"
 	origin_tech = list(/datum/tech/biotech = 1)
 
-/obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M, mob/user)
 	if(..())
 		return 1
 

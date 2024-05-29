@@ -61,7 +61,7 @@
 
 	return ..()
 
-/obj/item/stack/sheet/glass/proc/construct_window(mob/user as mob)
+/obj/item/stack/sheet/glass/proc/construct_window(mob/user)
 	if(!user || !src)
 		return 0
 	if(!isturf(user.loc))

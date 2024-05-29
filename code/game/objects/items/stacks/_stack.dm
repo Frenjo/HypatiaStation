@@ -33,10 +33,10 @@
 	to_chat(usr, "There are [src.amount] [src.singular_name]\s in the stack.")
 	return
 
-/obj/item/stack/attack_self(mob/user as mob)
+/obj/item/stack/attack_self(mob/user)
 	list_recipes(user)
 
-/obj/item/stack/proc/list_recipes(mob/user as mob, recipes_sublist)
+/obj/item/stack/proc/list_recipes(mob/user, recipes_sublist)
 	if(!recipes)
 		return
 
@@ -187,24 +187,24 @@
 		amount += extra
 	return 1
 
-/obj/item/stack/proc/add_to_stacks(mob/usr as mob)
+/obj/item/stack/proc/add_to_stacks(mob/user)
 	var/obj/item/stack/oldsrc = src
 	qdel(src)
-	for(var/obj/item/stack/item in usr.loc)
+	for(var/obj/item/stack/item in user.loc)
 		if(item == oldsrc)
 			continue
 		if(!istype(item, oldsrc.type))
 			continue
 		if(item.amount >= item.max_amount)
 			continue
-		oldsrc.attackby(item, usr)
-		to_chat(usr, "You add new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s.")
+		oldsrc.attackby(item, user)
+		to_chat(user, "You add new [item.singular_name] to the stack. It now contains [item.amount] [item.singular_name]\s.")
 		if(!oldsrc)
 			break
 
-/obj/item/stack/attack_hand(mob/user as mob)
+/obj/item/stack/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src)
-		var/obj/item/stack/F = new src.type( user, 1)
+		var/obj/item/stack/F = new src.type(user, 1)
 		F.copy_evidences(src)
 		user.put_in_hands(F)
 		src.add_fingerprint(user)
@@ -217,7 +217,7 @@
 		..()
 	return
 
-/obj/item/stack/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/stack/attackby(obj/item/W, mob/user)
 	if(istype(W, src.type))
 		var/obj/item/stack/S = W
 		if(S.amount >= max_amount)
@@ -241,7 +241,7 @@
 	else
 		return ..()
 
-/obj/item/stack/proc/copy_evidences(obj/item/stack/from as obj)
+/obj/item/stack/proc/copy_evidences(obj/item/stack/from)
 	src.blood_DNA = from.blood_DNA
 	src.fingerprints = from.fingerprints
 	src.hidden_fingerprints = from.hidden_fingerprints
