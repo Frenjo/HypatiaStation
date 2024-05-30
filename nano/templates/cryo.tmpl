@@ -1,5 +1,5 @@
-<!-- 
-Title: Cryo Cell Status UI 
+<!--
+Title: Cryo Cell Status UI
 Used In File(s): \code\game\machinery\cryo.dm
  -->
 <h3>Cryo Cell Status</h3>
@@ -18,7 +18,7 @@ Used In File(s): \code\game\machinery\cryo.dm
 				<span class="bad">DEAD</span>
 			{{/if}}
 		</div>
-	
+
 		{{if occupant.stat < 2}}
 			<div class="line">
 				<div class="statusLabel">Health:</div>
@@ -29,25 +29,25 @@ Used In File(s): \code\game\machinery\cryo.dm
 				{{/if}}
 				<div class="statusValue">{{:~round(occupant.health)}}</div>
 			</div>
-		
+
 			<div class="line">
 				<div class="statusLabel">=&gt; Brute Damage:</div>
 				{{:~displayBar(occupant.bruteLoss, 0, occupant.maxHealth, 'bad')}}
 				<div class="statusValue">{{:~round(occupant.bruteLoss)}}</div>
 			</div>
-		
+
 			<div class="line">
 				<div class="statusLabel">=&gt; Resp. Damage:</div>
 				{{:~displayBar(occupant.oxyLoss, 0, occupant.maxHealth, 'bad')}}
 				<div class="statusValue">{{:~round(occupant.oxyLoss)}}</div>
 			</div>
-		
+
 			<div class="line">
 				<div class="statusLabel">=&gt; Toxin Damage:</div>
 				{{:~displayBar(occupant.toxLoss, 0, occupant.maxHealth, 'bad')}}
 				<div class="statusValue">{{:~round(occupant.toxLoss)}}</div>
 			</div>
-		
+
 			<div class="line">
 				<div class="statusLabel">=&gt; Burn Severity:</div>
 				{{:~displayBar(occupant.fireLoss, 0, occupant.maxHealth, 'bad')}}
@@ -79,7 +79,7 @@ Used In File(s): \code\game\machinery\cryo.dm
 		Beaker:
 	</div>
 	<div class="itemContent" style="width: 40%;">
-		{{if isBeakerLoaded}}		
+		{{if isBeakerLoaded}}
 			{{:beakerLabel ? beakerLabel : '<span class="average">No label</span>'}}<br>
 			{{if beakerVolume}}
 				<span class="highlight">{{:beakerVolume}} units remaining</span><br>

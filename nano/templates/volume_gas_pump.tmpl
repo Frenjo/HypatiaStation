@@ -1,4 +1,4 @@
-<!-- 
+<!--
 Title: Volumetric Gas Pump UI
 Written by Frenjo, 03/11/2019.
 Rewritten by Frenjo, 01/03/2021.
@@ -21,7 +21,7 @@ Rewritten by Frenjo, 01/03/2021.
 		{{:~displayBar(target_transfer_rate, 0, max_transfer_rate)}}
 		<div style="clear: both; padding-top: 4px;">
 			{{:~link('MIN', null, {'set_press' : 'min'}, (target_transfer_rate > 0) ? null : 'disabled')}}
-			{{:~link('SET', null, {'set_press' : 'set'}, null)}}			
+			{{:~link('SET', null, {'set_press' : 'set'}, null)}}
 			{{:~link('MAX', null, {'set_press' : 'max'}, (target_transfer_rate < max_transfer_rate) ? null : 'disabled')}}
 			<div style="float: left; width: 80px; text-align: center;">&nbsp;{{:target_transfer_rate}} kPa&nbsp;</div>
 		</div>

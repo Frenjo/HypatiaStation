@@ -1098,7 +1098,7 @@
 								: "{" + hash) + ");")
 							: tagName === ">"
 								? (hasEncoder = true, "h(" + params + ");")
-								: (getsVal = true, "(v=" + params + ")!=" + (isLinkExpr ? "=" : "") + 'u?v:"";') // Strict equality just for data-link="title{:expr}" so expr=null will remove title attribute 
+								: (getsVal = true, "(v=" + params + ")!=" + (isLinkExpr ? "=" : "") + 'u?v:"";') // Strict equality just for data-link="title{:expr}" so expr=null will remove title attribute
 						)
 						: (hasTag = true, "{tmpl:" // Add this tagCtx to the compiled code for the tagCtxs to be passed to renderTag()
 							+ (content ? nestedTmpls.length: "0") + "," // For block tags, pass in the key (nestedTmpls.length) to the nested content template
@@ -1766,7 +1766,7 @@
 							// This is a compiled function for binding to an object returned by a helper/data function.
 							path._cb = innerCb = onUpdatedExpression(path, paths.slice(i+1));
 							path._rt = origRoot;
-							innerCb._bnd = callback._bnd; // Set the same cbBindingsStore key as for callback, so when callback is disposed, disposal of innerCb happens too. 
+							innerCb._bnd = callback._bnd; // Set the same cbBindingsStore key as for callback, so when callback is disposed, disposal of innerCb happens too.
 						}
 						$observe(path._rt, paths.slice(0, i), path._cb, contextCb, unobserve);
 						path = path._ob;
