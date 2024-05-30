@@ -495,7 +495,7 @@
 "pF" = (/obj/structure/stool/bed/chair{dir = 1},/turf/simulated/floor/tiled/dark,/area/centcom/specops)
 "pH" = (/obj/structure/closet/secure/injection,/turf/simulated/floor/tiled/white,/area/centcom/control)
 "pI" = (/obj/structure/table,/obj/item/wrench,/obj/item/clothing/gloves/yellow,/obj/item/assembly/infra,/obj/item/clothing/glasses/night,/obj/machinery/light/small{dir = 1},/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/syndicate_station/start)
-"pJ" = (/obj/machinery/door/airlock/glass/medical{id_tag = null; name = "Shuttle Medbay"; req_access = list(5)},/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/shuttle/escape/centcom)
+"pJ" = (/obj/machinery/door/airlock/glass/medical{name = "Shuttle Medbay"; req_access = list(5)},/turf/simulated/shuttle/floor{icon_state = "floor3"},/area/shuttle/escape/centcom)
 "pK" = (/turf/simulated/floor/holofloor{dir = 5; icon_state = "1"},/area/holodeck/source/space)
 "pM" = (/obj/machinery/computer/pod{id = "syndicate_elite"; name = "Hull Door Control"},/turf/simulated/shuttle/floor{icon_state = "floor4"},/area/syndicate_mothership/elite_squad)
 "pP" = (/obj/machinery/door/airlock/command{name = "Thunderdome Administration"; req_access = list(102)},/turf/simulated/floor{dir = 5; icon_state = "vault"},/area/tdome)
