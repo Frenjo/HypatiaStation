@@ -3,7 +3,7 @@ client/verb/powernets_debug()
 	if(!holder)	return
 	var/ref_holder = "\ref[holder]"
 	for(var/i=1,i<=powernets.len,i++)
-		src << "<a href='byond:://?[ref_holder];adminplayervars=\ref[powernets[i]]'>[copytext("\ref[powernets[i]]",8,12)]</A>"
+		src << "<a href='byond://?[ref_holder];adminplayervars=\ref[powernets[i]]'>[copytext("\ref[powernets[i]]",8,12)]</A>"
 
 
 client/verb/powernet_overlays()

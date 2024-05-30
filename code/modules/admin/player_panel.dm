@@ -74,15 +74,15 @@
 
 					body += "</td><td align='center'>";
 
-					body += "<a href='byond:://?src=\ref[src];adminplayeropts="+ref+"'>PP</a> - "
-					body += "<a href='byond:://?src=\ref[src];notes=show;mob="+ref+"'>N</a> - "
-					body += "<a href='byond:://?_src_=vars;Vars="+ref+"'>VV</a> - "
-					body += "<a href='byond:://?src=\ref[src];traitor="+ref+"'>TP</a> - "
-					body += "<a href='byond:://?src=\ref[usr];priv_msg=\ref"+ref+"'>PM</a> - "
-					body += "<a href='byond:://?src=\ref[src];subtlemessage="+ref+"'>SM</a> - "
-					body += "<a href='byond:://?src=\ref[src];adminplayerobservejump="+ref+"'>JMP</a><br>"
+					body += "<a href='byond://?src=\ref[src];adminplayeropts="+ref+"'>PP</a> - "
+					body += "<a href='byond://?src=\ref[src];notes=show;mob="+ref+"'>N</a> - "
+					body += "<a href='byond://?_src_=vars;Vars="+ref+"'>VV</a> - "
+					body += "<a href='byond://?src=\ref[src];traitor="+ref+"'>TP</a> - "
+					body += "<a href='byond://?src=\ref[usr];priv_msg=\ref"+ref+"'>PM</a> - "
+					body += "<a href='byond://?src=\ref[src];subtlemessage="+ref+"'>SM</a> - "
+					body += "<a href='byond://?src=\ref[src];adminplayerobservejump="+ref+"'>JMP</a><br>"
 					if(antagonist > 0)
-						body += "<font size='2'><a href='byond:://?src=\ref[src];check_antagonist=1'><font color='red'><b>Antagonist</b></font></a></font>";
+						body += "<font size='2'><a href='byond://?src=\ref[src];check_antagonist=1'><font color='red'><b>Antagonist</b></font></a></font>";
 
 					body += "</td></tr></table>";
 
@@ -193,7 +193,7 @@
 			<tr id='title_tr'>
 				<td align='center'>
 					<font size='5'><b>Player panel</b></font><br>
-					Hover over a line to see more information - <a href='byond:://?src=\ref[src];check_antagonist=1'>Check antagonists</a>
+					Hover over a line to see more information - <a href='byond://?src=\ref[src];check_antagonist=1'>Check antagonists</a>
 					<p>
 				</td>
 			</tr>
@@ -358,16 +358,16 @@
 
 
 		dat += {"<td>[(M.client ? "[M.client]" : "No client")]</td>
-		<td align=center><A href='byond:://?src=\ref[src];adminplayeropts=\ref[M]'>X</A></td>
-		<td align=center><A href='byond:://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>
+		<td align=center><A href='byond://?src=\ref[src];adminplayeropts=\ref[M]'>X</A></td>
+		<td align=center><A href='byond://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>
 		"}
 		switch(is_special_character(M))
 			if(0)
-				dat += {"<td align=center><A href='byond:://?src=\ref[src];traitor=\ref[M]'>Traitor?</A></td>"}
+				dat += {"<td align=center><A href='byond://?src=\ref[src];traitor=\ref[M]'>Traitor?</A></td>"}
 			if(1)
-				dat += {"<td align=center><A href='byond:://?src=\ref[src];traitor=\ref[M]'><font color=red>Traitor?</font></A></td>"}
+				dat += {"<td align=center><A href='byond://?src=\ref[src];traitor=\ref[M]'><font color=red>Traitor?</font></A></td>"}
 			if(2)
-				dat += {"<td align=center><A href='byond:://?src=\ref[src];traitor=\ref[M]'><font color=red><b>Traitor?</b></font></A></td>"}
+				dat += {"<td align=center><A href='byond://?src=\ref[src];traitor=\ref[M]'><font color=red><b>Traitor?</b></font></A></td>"}
 
 	dat += "</table></body></html>"
 
@@ -382,23 +382,23 @@
 		dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
 		dat += "<B>Emergency shuttle</B><BR>"
 		if(!global.PCemergency.online())
-			dat += "<a href='byond:://?src=\ref[src];call_shuttle=1'>Call Shuttle</a><br>"
+			dat += "<a href='byond://?src=\ref[src];call_shuttle=1'>Call Shuttle</a><br>"
 		else
 			var/timeleft = global.PCemergency.estimate_arrival_time()
 			switch(global.PCemergency.location())
 				if(0)
-					dat += "ETA: <a href='byond:://?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
-					dat += "<a href='byond:://?src=\ref[src];call_shuttle=2'>Send Back</a><br>"
+					dat += "ETA: <a href='byond://?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
+					dat += "<a href='byond://?src=\ref[src];call_shuttle=2'>Send Back</a><br>"
 				if(1)
-					dat += "ETA: <a href='byond:://?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
-		dat += "<a href='byond:://?src=\ref[src];delay_round_end=1'>[global.PCticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
+					dat += "ETA: <a href='byond://?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
+		dat += "<a href='byond://?src=\ref[src];delay_round_end=1'>[global.PCticker.delay_end ? "End Round Normally" : "Delay Round End"]</a><br>"
 		if(length(global.PCticker.mode.syndicates))
 			dat += "<br><table cellspacing=5><tr><td><B>Syndicates</B></td><td></td></tr>"
 			for_no_type_check(var/datum/mind/N, global.PCticker.mode.syndicates)
 				var/mob/M = N.current
 				if(M)
-					dat += "<tr><td><a href='byond:://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-					dat += "<td><A href='byond:://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
+					dat += "<tr><td><a href='byond://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+					dat += "<td><A href='byond://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
 				else
 					dat += "<tr><td><i>Nuclear Operative not found!</i></td></tr>"
 			dat += "</table><br><table><tr><td><B>Nuclear Disk(s)</B></td></tr>"
@@ -408,7 +408,7 @@
 				while(!isturf(disk_loc))
 					if(ismob(disk_loc))
 						var/mob/M = disk_loc
-						dat += "carried by <a href='byond:://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a> "
+						dat += "carried by <a href='byond://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a> "
 					if(isobj(disk_loc))
 						var/obj/O = disk_loc
 						dat += "in \a [O.name] "
@@ -423,19 +423,19 @@
 				if(!M)
 					dat += "<tr><td><i>Head Revolutionary not found!</i></td></tr>"
 				else
-					dat += "<tr><td><a href='byond:://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a> <b>(Leader)</b>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-					dat += "<td><A href='byond:://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
+					dat += "<tr><td><a href='byond://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a> <b>(Leader)</b>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+					dat += "<td><A href='byond://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
 			for_no_type_check(var/datum/mind/N, global.PCticker.mode.revolutionaries)
 				var/mob/M = N.current
 				if(M)
-					dat += "<tr><td><a href='byond:://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-					dat += "<td><A href='byond:://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
+					dat += "<tr><td><a href='byond://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+					dat += "<td><A href='byond://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
 			dat += "</table><table cellspacing=5><tr><td><B>Target(s)</B></td><td></td><td><B>Location</B></td></tr>"
 			for_no_type_check(var/datum/mind/N, global.PCticker.mode.get_living_heads())
 				var/mob/M = N.current
 				if(M)
-					dat += "<tr><td><a href='byond:://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-					dat += "<td><A href='byond:://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
+					dat += "<tr><td><a href='byond://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+					dat += "<td><A href='byond://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
 					var/turf/mob_loc = get_turf(M)
 					dat += "<td>[mob_loc.loc]</td></tr>"
 				else
@@ -447,9 +447,9 @@
 			for_no_type_check(var/datum/mind/changeling, global.PCticker.mode.changelings)
 				var/mob/M = changeling.current
 				if(M)
-					dat += "<tr><td><a href='byond:://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-					dat += "<td><A href='byond:://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
-					dat += "<td><A href='byond:://?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
+					dat += "<tr><td><a href='byond://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+					dat += "<td><A href='byond://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
+					dat += "<td><A href='byond://?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
 				else
 					dat += "<tr><td><i>Changeling not found!</i></td></tr>"
 			dat += "</table>"
@@ -459,9 +459,9 @@
 			for_no_type_check(var/datum/mind/wizard, global.PCticker.mode.wizards)
 				var/mob/M = wizard.current
 				if(M)
-					dat += "<tr><td><a href='byond:://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-					dat += "<td><A href='byond:://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
-					dat += "<td><A href='byond:://?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
+					dat += "<tr><td><a href='byond://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+					dat += "<td><A href='byond://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
+					dat += "<td><A href='byond://?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
 				else
 					dat += "<tr><td><i>Wizard not found!</i></td></tr>"
 			dat += "</table>"
@@ -471,9 +471,9 @@
 			for_no_type_check(var/datum/mind/raider, global.PCticker.mode.raiders)
 				var/mob/M = raider.current
 				if(M)
-					dat += "<tr><td><a href='byond:://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-					dat += "<td><A href='byond:://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
-					dat += "<td><A href='byond:://?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
+					dat += "<tr><td><a href='byond://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+					dat += "<td><A href='byond://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
+					dat += "<td><A href='byond://?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
 			dat += "</table>"
 
 		if(length(global.PCticker.mode.ninjas))
@@ -481,9 +481,9 @@
 			for_no_type_check(var/datum/mind/ninja, global.PCticker.mode.ninjas)
 				var/mob/M = ninja.current
 				if(M)
-					dat += "<tr><td><a href='byond:://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-					dat += "<td><A href='byond:://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
-					dat += "<td><A href='byond:://?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
+					dat += "<tr><td><a href='byond://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+					dat += "<td><A href='byond://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
+					dat += "<td><A href='byond://?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
 				else
 					dat += "<tr><td><i>Ninja not found!</i></td></tr>"
 			dat += "</table>"
@@ -493,8 +493,8 @@
 			for_no_type_check(var/datum/mind/N, global.PCticker.mode.cult)
 				var/mob/M = N.current
 				if(M)
-					dat += "<tr><td><a href='byond:://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-					dat += "<td><A href='byond:://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
+					dat += "<tr><td><a href='byond://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+					dat += "<td><A href='byond://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
 			dat += "</table>"
 
 		/*if(istype(ticker.mode, /datum/game_mode/anti_revolution) && length(ticker.mode:heads))	//comment out anti-revolution
@@ -502,8 +502,8 @@
 			for_no_type_check(var/datum/mind/N, ticker.mode:heads)
 				var/mob/M = N.current
 				if(M)
-					dat += "<tr><td><a href='byond:://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-					dat += "<td><A href='byond:://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
+					dat += "<tr><td><a href='byond://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+					dat += "<td><A href='byond://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td></tr>"
 			dat += "</table>"
 */
 		if(length(global.PCticker.mode.traitors))
@@ -511,9 +511,9 @@
 			for_no_type_check(var/datum/mind/traitor, global.PCticker.mode.traitors)
 				var/mob/M = traitor.current
 				if(M)
-					dat += "<tr><td><a href='byond:://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
-					dat += "<td><A href='byond:://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
-					dat += "<td><A href='byond:://?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
+					dat += "<tr><td><a href='byond://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+					dat += "<td><A href='byond://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
+					dat += "<td><A href='byond://?src=\ref[src];traitor=\ref[M]'>Show Objective</A></td></tr>"
 				else
 					dat += "<tr><td><i>Traitor not found!</i></td></tr>"
 			dat += "</table>"

@@ -87,8 +87,8 @@
 	user.set_machine(src)
 	var/t = "<TT><B>Power Monitoring</B><HR>"
 
-	t += "<BR><HR><A href='byond:://?src=\ref[src];update=1'>Refresh</A>"
-	t += "<BR><HR><A href='byond:://?src=\ref[src];close=1'>Close</A>"
+	t += "<BR><HR><A href='byond://?src=\ref[src];update=1'>Refresh</A>"
+	t += "<BR><HR><A href='byond://?src=\ref[src];close=1'>Close</A>"
 
 	if(!powernet)
 		t += "\red No connection"

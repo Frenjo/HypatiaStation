@@ -808,7 +808,7 @@
 	if(!isAI(user))
 		return
 	var/output = {"<b>Assume direct control over [src]?</b>
-						<a href='byond:://?src=\ref[src];ai_take_control=\ref[user];duration=3000'>Yes</a><br>
+						<a href='byond://?src=\ref[src];ai_take_control=\ref[user];duration=3000'>Yes</a><br>
 						"}
 	user << browse(output, "window=mecha_attack_ai")
 	return
@@ -1271,7 +1271,7 @@
 										"[MECHA_INT_FIRE]" = "<font color='red'><b>INTERNAL FIRE</b></font>",
 										"[MECHA_INT_TEMP_CONTROL]" = "<font color='red'><b>LIFE SUPPORT SYSTEM MALFUNCTION</b></font>",
 										"[MECHA_INT_TANK_BREACH]" = "<font color='red'><b>GAS TANK BREACH</b></font>",
-										"[MECHA_INT_CONTROL_LOST]" = "<font color='red'><b>COORDINATION SYSTEM CALIBRATION FAILURE</b></font> - <a href='byond:://?src=\ref[src];repair_int_control_lost=1'>Recalibrate</a>",
+										"[MECHA_INT_CONTROL_LOST]" = "<font color='red'><b>COORDINATION SYSTEM CALIBRATION FAILURE</b></font> - <a href='byond://?src=\ref[src];repair_int_control_lost=1'>Recalibrate</a>",
 										"[MECHA_INT_SHORT_CIRCUIT]" = "<font color='red'><b>SHORT CIRCUIT</b></font>"
 										)
 	for(var/tflag in dam_reports)
@@ -1299,7 +1299,7 @@
 						<b>Cabin pressure: </b>[cabin_pressure>WARNING_HIGH_PRESSURE ? "<font color='red'>[cabin_pressure]</font>": cabin_pressure]kPa<br>
 						<b>Cabin temperature: </b> [return_temperature()]&deg;K|[return_temperature() - T0C]&deg;C<br>
 						<b>Lights: </b>[lights?"on":"off"]<br>
-						[src.dna?"<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[src.dna]</span> \[<a href='byond:://?src=\ref[src];reset_dna=1'>Reset</a>\]<br>":null]
+						[src.dna?"<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[src.dna]</span> \[<a href='byond://?src=\ref[src];reset_dna=1'>Reset</a>\]<br>":null]
 					"}
 	return output
 
@@ -1307,39 +1307,39 @@
 	var/output = {"<div class='wr'>
 						<div class='header'>Electronics</div>
 						<div class='links'>
-						<a href='byond:://?src=\ref[src];toggle_lights=1'>Toggle Lights</a><br>
+						<a href='byond://?src=\ref[src];toggle_lights=1'>Toggle Lights</a><br>
 						<b>Radio settings:</b><br>
-						Microphone: <a href='byond:://?src=\ref[src];rmictoggle=1'><span id="rmicstate">[radio.broadcasting?"Engaged":"Disengaged"]</span></a><br>
-						Speaker: <a href='byond:://?src=\ref[src];rspktoggle=1'><span id="rspkstate">[radio.listening?"Engaged":"Disengaged"]</span></a><br>
+						Microphone: <a href='byond://?src=\ref[src];rmictoggle=1'><span id="rmicstate">[radio.broadcasting?"Engaged":"Disengaged"]</span></a><br>
+						Speaker: <a href='byond://?src=\ref[src];rspktoggle=1'><span id="rspkstate">[radio.listening?"Engaged":"Disengaged"]</span></a><br>
 						Frequency:
-						<a href='byond:://?src=\ref[src];rfreq=-10'>-</a>
-						<a href='byond:://?src=\ref[src];rfreq=-2'>-</a>
+						<a href='byond://?src=\ref[src];rfreq=-10'>-</a>
+						<a href='byond://?src=\ref[src];rfreq=-2'>-</a>
 						<span id="rfreq">[format_frequency(radio.frequency)]</span>
-						<a href='byond:://?src=\ref[src];rfreq=2'>+</a>
-						<a href='byond:://?src=\ref[src];rfreq=10'>+</a><br>
+						<a href='byond://?src=\ref[src];rfreq=2'>+</a>
+						<a href='byond://?src=\ref[src];rfreq=10'>+</a><br>
 						</div>
 						</div>
 						<div class='wr'>
 						<div class='header'>Airtank</div>
 						<div class='links'>
-						<a href='byond:://?src=\ref[src];toggle_airtank=1'>Toggle Internal Airtank Usage</a><br>
-						[(/obj/mecha/verb/disconnect_from_port in src.verbs)?"<a href='byond:://?src=\ref[src];port_disconnect=1'>Disconnect from port</a><br>":null]
-						[(/obj/mecha/verb/connect_to_port in src.verbs)?"<a href='byond:://?src=\ref[src];port_connect=1'>Connect to port</a><br>":null]
+						<a href='byond://?src=\ref[src];toggle_airtank=1'>Toggle Internal Airtank Usage</a><br>
+						[(/obj/mecha/verb/disconnect_from_port in src.verbs)?"<a href='byond://?src=\ref[src];port_disconnect=1'>Disconnect from port</a><br>":null]
+						[(/obj/mecha/verb/connect_to_port in src.verbs)?"<a href='byond://?src=\ref[src];port_connect=1'>Connect to port</a><br>":null]
 						</div>
 						</div>
 						<div class='wr'>
 						<div class='header'>Permissions & Logging</div>
 						<div class='links'>
-						<a href='byond:://?src=\ref[src];toggle_id_upload=1'><span id='t_id_upload'>[add_req_access?"L":"Unl"]ock ID upload panel</span></a><br>
-						<a href='byond:://?src=\ref[src];toggle_maint_access=1'><span id='t_maint_access'>[maint_access?"Forbid":"Permit"] maintenance protocols</span></a><br>
-						<a href='byond:://?src=\ref[src];dna_lock=1'>DNA-lock</a><br>
-						<a href='byond:://?src=\ref[src];view_log=1'>View internal log</a><br>
-						<a href='byond:://?src=\ref[src];change_name=1'>Change exosuit name</a><br>
+						<a href='byond://?src=\ref[src];toggle_id_upload=1'><span id='t_id_upload'>[add_req_access?"L":"Unl"]ock ID upload panel</span></a><br>
+						<a href='byond://?src=\ref[src];toggle_maint_access=1'><span id='t_maint_access'>[maint_access?"Forbid":"Permit"] maintenance protocols</span></a><br>
+						<a href='byond://?src=\ref[src];dna_lock=1'>DNA-lock</a><br>
+						<a href='byond://?src=\ref[src];view_log=1'>View internal log</a><br>
+						<a href='byond://?src=\ref[src];change_name=1'>Change exosuit name</a><br>
 						</div>
 						</div>
 						<div id='equipment_menu'>[get_equipment_menu()]</div>
 						<hr>
-						[(/obj/mecha/verb/eject in src.verbs)?"<a href='byond:://?src=\ref[src];eject=1'>Eject</a><br>":null]
+						[(/obj/mecha/verb/eject in src.verbs)?"<a href='byond://?src=\ref[src];eject=1'>Eject</a><br>":null]
 						"}
 	return output
 
@@ -1350,7 +1350,7 @@
 						<div class='header'>Equipment</div>
 						<div class='links'>"}
 		for(var/obj/item/mecha_parts/mecha_equipment/W in equipment)
-			output += "[W.name] <a href='byond:://?src=\ref[W];detach=1'>Detach</a><br>"
+			output += "[W.name] <a href='byond://?src=\ref[W];detach=1'>Detach</a><br>"
 		output += "<b>Available equipment slots:</b> [max_equip - length(equipment)]"
 		output += "</div></div>"
 	return output
@@ -1386,7 +1386,7 @@
 						<body>
 						<h1>Following keycodes are present in this system:</h1>"}
 	for(var/a in operation_req_access)
-		output += "[get_access_desc(a)] - <a href='byond:://?src=\ref[src];del_req_access=[a];user=\ref[user];id_card=\ref[id_card]'>Delete</a><br>"
+		output += "[get_access_desc(a)] - <a href='byond://?src=\ref[src];del_req_access=[a];user=\ref[user];id_card=\ref[id_card]'>Delete</a><br>"
 	output += "<hr><h1>Following keycodes were detected on portable device:</h1>"
 	for(var/a in id_card.access)
 		if(a in operation_req_access)
@@ -1394,8 +1394,8 @@
 		var/a_name = get_access_desc(a)
 		if(!a_name)
 			continue //there's some strange access without a name
-		output += "[a_name] - <a href='byond:://?src=\ref[src];add_req_access=[a];user=\ref[user];id_card=\ref[id_card]'>Add</a><br>"
-	output += "<hr><a href='byond:://?src=\ref[src];finish_req_access=1;user=\ref[user]'>Finish</a> <font color='red'>(Warning! The ID upload panel will be locked. It can be unlocked only through Exosuit Interface.)</font>"
+		output += "[a_name] - <a href='byond://?src=\ref[src];add_req_access=[a];user=\ref[user];id_card=\ref[id_card]'>Add</a><br>"
+	output += "<hr><a href='byond://?src=\ref[src];finish_req_access=1;user=\ref[user]'>Finish</a> <font color='red'>(Warning! The ID upload panel will be locked. It can be unlocked only through Exosuit Interface.)</font>"
 	output += "</body></html>"
 	user << browse(output, "window=exosuit_add_access")
 	onclose(user, "exosuit_add_access")
@@ -1411,9 +1411,9 @@
 						</style>
 						</head>
 						<body>
-						[add_req_access?"<a href='byond:://?src=\ref[src];req_access=1;id_card=\ref[id_card];user=\ref[user]'>Edit operation keycodes</a>":null]
-						[maint_access?"<a href='byond:://?src=\ref[src];maint_access=1;id_card=\ref[id_card];user=\ref[user]'>Initiate maintenance protocol</a>":null]
-						[(state>0) ?"<a href='byond:://?src=\ref[src];set_internal_tank_valve=1;user=\ref[user]'>Set Cabin Air Pressure</a>":null]
+						[add_req_access?"<a href='byond://?src=\ref[src];req_access=1;id_card=\ref[id_card];user=\ref[user]'>Edit operation keycodes</a>":null]
+						[maint_access?"<a href='byond://?src=\ref[src];maint_access=1;id_card=\ref[id_card];user=\ref[user]'>Initiate maintenance protocol</a>":null]
+						[(state>0) ?"<a href='byond://?src=\ref[src];set_internal_tank_valve=1;user=\ref[user]'>Set Cabin Air Pressure</a>":null]
 						</body>
 						</html>"}
 	user << browse(output, "window=exosuit_maint_console")
@@ -1821,18 +1821,18 @@
 						</head>
 						<body>
 						<h3>Set:</h3>
-						<a href='byond:://?src=\ref[src];debug=1;set_i_dam=[MECHA_INT_FIRE]'>MECHA_INT_FIRE</a><br />
-						<a href='byond:://?src=\ref[src];debug=1;set_i_dam=[MECHA_INT_TEMP_CONTROL]'>MECHA_INT_TEMP_CONTROL</a><br />
-						<a href='byond:://?src=\ref[src];debug=1;set_i_dam=[MECHA_INT_SHORT_CIRCUIT]'>MECHA_INT_SHORT_CIRCUIT</a><br />
-						<a href='byond:://?src=\ref[src];debug=1;set_i_dam=[MECHA_INT_TANK_BREACH]'>MECHA_INT_TANK_BREACH</a><br />
-						<a href='byond:://?src=\ref[src];debug=1;set_i_dam=[MECHA_INT_CONTROL_LOST]'>MECHA_INT_CONTROL_LOST</a><br />
+						<a href='byond://?src=\ref[src];debug=1;set_i_dam=[MECHA_INT_FIRE]'>MECHA_INT_FIRE</a><br />
+						<a href='byond://?src=\ref[src];debug=1;set_i_dam=[MECHA_INT_TEMP_CONTROL]'>MECHA_INT_TEMP_CONTROL</a><br />
+						<a href='byond://?src=\ref[src];debug=1;set_i_dam=[MECHA_INT_SHORT_CIRCUIT]'>MECHA_INT_SHORT_CIRCUIT</a><br />
+						<a href='byond://?src=\ref[src];debug=1;set_i_dam=[MECHA_INT_TANK_BREACH]'>MECHA_INT_TANK_BREACH</a><br />
+						<a href='byond://?src=\ref[src];debug=1;set_i_dam=[MECHA_INT_CONTROL_LOST]'>MECHA_INT_CONTROL_LOST</a><br />
 						<hr />
 						<h3>Clear:</h3>
-						<a href='byond:://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_FIRE]'>MECHA_INT_FIRE</a><br />
-						<a href='byond:://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_TEMP_CONTROL]'>MECHA_INT_TEMP_CONTROL</a><br />
-						<a href='byond:://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_SHORT_CIRCUIT]'>MECHA_INT_SHORT_CIRCUIT</a><br />
-						<a href='byond:://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_TANK_BREACH]'>MECHA_INT_TANK_BREACH</a><br />
-						<a href='byond:://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_CONTROL_LOST]'>MECHA_INT_CONTROL_LOST</a><br />
+						<a href='byond://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_FIRE]'>MECHA_INT_FIRE</a><br />
+						<a href='byond://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_TEMP_CONTROL]'>MECHA_INT_TEMP_CONTROL</a><br />
+						<a href='byond://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_SHORT_CIRCUIT]'>MECHA_INT_SHORT_CIRCUIT</a><br />
+						<a href='byond://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_TANK_BREACH]'>MECHA_INT_TANK_BREACH</a><br />
+						<a href='byond://?src=\ref[src];debug=1;clear_i_dam=[MECHA_INT_CONTROL_LOST]'>MECHA_INT_CONTROL_LOST</a><br />
  					   </body>
 						</html>"}
 

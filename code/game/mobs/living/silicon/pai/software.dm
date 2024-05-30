@@ -452,8 +452,8 @@
 		dat += "<h2>Medical Records</h2><HR>"
 		if(isnotnull(GLOBL.data_core.general))
 			for_no_type_check(var/datum/data/record/R, sortRecord(GLOBL.data_core.general))
-				dat += text("<A href='byond:://?src=\ref[];med_rec=\ref[];software=medicalrecord;sub=1'>[]: []<BR>", src, R, R.fields["id"], R.fields["name"])
-		//dat += text("<HR><A href='byond:://?src=\ref[];screen=0;softFunction=medical records'>Back</A>", src)
+				dat += text("<A href='byond://?src=\ref[];med_rec=\ref[];software=medicalrecord;sub=1'>[]: []<BR>", src, R, R.fields["id"], R.fields["name"])
+		//dat += text("<HR><A href='byond://?src=\ref[];screen=0;softFunction=medical records'>Back</A>", src)
 	if(subscreen == 1)
 		dat += "<CENTER><B>Medical Record</B></CENTER><BR>"
 		if(istype(medicalActive1, /datum/data/record) && GLOBL.data_core.general.Find(medicalActive1))
@@ -462,10 +462,10 @@
 		else
 			dat += "<pre>Requested medical record not found.</pre><BR>"
 		if(istype(medicalActive2, /datum/data/record) && GLOBL.data_core.medical.Find(medicalActive2))
-			dat += text("<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: <A href='byond:://?src=\ref[];field=b_type'>[]</A><BR>\nDNA: <A href='byond:://?src=\ref[];field=b_dna'>[]</A><BR>\n<BR>\nMinor Disabilities: <A href='byond:://?src=\ref[];field=mi_dis'>[]</A><BR>\nDetails: <A href='byond:://?src=\ref[];field=mi_dis_d'>[]</A><BR>\n<BR>\nMajor Disabilities: <A href='byond:://?src=\ref[];field=ma_dis'>[]</A><BR>\nDetails: <A href='byond:://?src=\ref[];field=ma_dis_d'>[]</A><BR>\n<BR>\nAllergies: <A href='byond:://?src=\ref[];field=alg'>[]</A><BR>\nDetails: <A href='byond:://?src=\ref[];field=alg_d'>[]</A><BR>\n<BR>\nCurrent Diseases: <A href='byond:://?src=\ref[];field=cdi'>[]</A> (per disease info placed in log/comment section)<BR>\nDetails: <A href='byond:://?src=\ref[];field=cdi_d'>[]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='byond:://?src=\ref[];field=notes'>[]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", src, medicalActive2.fields["b_type"], src, medicalActive2.fields["b_dna"], src, medicalActive2.fields["mi_dis"], src, medicalActive2.fields["mi_dis_d"], src, medicalActive2.fields["ma_dis"], src, medicalActive2.fields["ma_dis_d"], src, medicalActive2.fields["alg"], src, medicalActive2.fields["alg_d"], src, medicalActive2.fields["cdi"], src, medicalActive2.fields["cdi_d"], src, medicalActive2.fields["notes"])
+			dat += text("<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: <A href='byond://?src=\ref[];field=b_type'>[]</A><BR>\nDNA: <A href='byond://?src=\ref[];field=b_dna'>[]</A><BR>\n<BR>\nMinor Disabilities: <A href='byond://?src=\ref[];field=mi_dis'>[]</A><BR>\nDetails: <A href='byond://?src=\ref[];field=mi_dis_d'>[]</A><BR>\n<BR>\nMajor Disabilities: <A href='byond://?src=\ref[];field=ma_dis'>[]</A><BR>\nDetails: <A href='byond://?src=\ref[];field=ma_dis_d'>[]</A><BR>\n<BR>\nAllergies: <A href='byond://?src=\ref[];field=alg'>[]</A><BR>\nDetails: <A href='byond://?src=\ref[];field=alg_d'>[]</A><BR>\n<BR>\nCurrent Diseases: <A href='byond://?src=\ref[];field=cdi'>[]</A> (per disease info placed in log/comment section)<BR>\nDetails: <A href='byond://?src=\ref[];field=cdi_d'>[]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='byond://?src=\ref[];field=notes'>[]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", src, medicalActive2.fields["b_type"], src, medicalActive2.fields["b_dna"], src, medicalActive2.fields["mi_dis"], src, medicalActive2.fields["mi_dis_d"], src, medicalActive2.fields["ma_dis"], src, medicalActive2.fields["ma_dis_d"], src, medicalActive2.fields["alg"], src, medicalActive2.fields["alg_d"], src, medicalActive2.fields["cdi"], src, medicalActive2.fields["cdi_d"], src, medicalActive2.fields["notes"])
 		else
 			dat += "<pre>Requested medical record not found.</pre><BR>"
-		dat += text("<BR>\n<A href='byond:://?src=\ref[];software=medicalrecord;sub=0'>Back</A><BR>", src)
+		dat += text("<BR>\n<A href='byond://?src=\ref[];software=medicalrecord;sub=0'>Back</A><BR>", src)
 	return dat
 
 // Security Records
@@ -475,18 +475,18 @@
 		dat += "<h2>Security Records</h2><HR>"
 		if(isnotnull(GLOBL.data_core.general))
 			for_no_type_check(var/datum/data/record/R, sortRecord(GLOBL.data_core.general))
-				dat += text("Name: <A href='byond:://?src=\ref[];field=name'>[]</A><BR>\nID: <A href='byond:://?src=\ref[];field=id'>[]</A><BR>\nSex: <A href='byond:://?src=\ref[];field=sex'>[]</A><BR>\nAge: <A href='byond:://?src=\ref[];field=age'>[]</A><BR>\nRank: <A href='byond:://?src=\ref[];field=rank'>[]</A><BR>\nFingerprint: <A href='byond:://?src=\ref[];field=fingerprint'>[]</A><BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", src, securityActive1.fields["name"], src, securityActive1.fields["id"], src, securityActive1.fields["sex"], src, securityActive1.fields["age"], src, securityActive1.fields["rank"], src, securityActive1.fields["fingerprint"], securityActive1.fields["p_stat"], securityActive1.fields["m_stat"])
+				dat += text("Name: <A href='byond://?src=\ref[];field=name'>[]</A><BR>\nID: <A href='byond://?src=\ref[];field=id'>[]</A><BR>\nSex: <A href='byond://?src=\ref[];field=sex'>[]</A><BR>\nAge: <A href='byond://?src=\ref[];field=age'>[]</A><BR>\nRank: <A href='byond://?src=\ref[];field=rank'>[]</A><BR>\nFingerprint: <A href='byond://?src=\ref[];field=fingerprint'>[]</A><BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", src, securityActive1.fields["name"], src, securityActive1.fields["id"], src, securityActive1.fields["sex"], src, securityActive1.fields["age"], src, securityActive1.fields["rank"], src, securityActive1.fields["fingerprint"], securityActive1.fields["p_stat"], securityActive1.fields["m_stat"])
 	if(subscreen == 1)
 		dat += "<h3>Security Record</h3>"
 		if(istype(securityActive1, /datum/data/record) && GLOBL.data_core.general.Find(securityActive1))
-			dat += text("Name: <A href='byond:://?src=\ref[];field=name'>[]</A> ID: <A href='byond:://?src=\ref[];field=id'>[]</A><BR>\nSex: <A href='byond:://?src=\ref[];field=sex'>[]</A><BR>\nAge: <A href='byond:://?src=\ref[];field=age'>[]</A><BR>\nRank: <A href='byond:://?src=\ref[];field=rank'>[]</A><BR>\nFingerprint: <A href='byond:://?src=\ref[];field=fingerprint'>[]</A><BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", src, securityActive1.fields["name"], src, securityActive1.fields["id"], src, securityActive1.fields["sex"], src, securityActive1.fields["age"], src, securityActive1.fields["rank"], src, securityActive1.fields["fingerprint"], securityActive1.fields["p_stat"], securityActive1.fields["m_stat"])
+			dat += text("Name: <A href='byond://?src=\ref[];field=name'>[]</A> ID: <A href='byond://?src=\ref[];field=id'>[]</A><BR>\nSex: <A href='byond://?src=\ref[];field=sex'>[]</A><BR>\nAge: <A href='byond://?src=\ref[];field=age'>[]</A><BR>\nRank: <A href='byond://?src=\ref[];field=rank'>[]</A><BR>\nFingerprint: <A href='byond://?src=\ref[];field=fingerprint'>[]</A><BR>\nPhysical Status: []<BR>\nMental Status: []<BR>", src, securityActive1.fields["name"], src, securityActive1.fields["id"], src, securityActive1.fields["sex"], src, securityActive1.fields["age"], src, securityActive1.fields["rank"], src, securityActive1.fields["fingerprint"], securityActive1.fields["p_stat"], securityActive1.fields["m_stat"])
 		else
 			dat += "<pre>Requested security record not found,</pre><BR>"
 		if(istype(securityActive2, /datum/data/record) && GLOBL.data_core.security.Find(securityActive2))
-			dat += text("<BR>\nSecurity Data<BR>\nCriminal Status: []<BR>\n<BR>\nMinor Crimes: <A href='byond:://?src=\ref[];field=mi_crim'>[]</A><BR>\nDetails: <A href='byond:://?src=\ref[];field=mi_crim_d'>[]</A><BR>\n<BR>\nMajor Crimes: <A href='byond:://?src=\ref[];field=ma_crim'>[]</A><BR>\nDetails: <A href='byond:://?src=\ref[];field=ma_crim_d'>[]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='byond:://?src=\ref[];field=notes'>[]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", securityActive2.fields["criminal"], src, securityActive2.fields["mi_crim"], src, securityActive2.fields["mi_crim_d"], src, securityActive2.fields["ma_crim"], src, securityActive2.fields["ma_crim_d"], src, securityActive2.fields["notes"])
+			dat += text("<BR>\nSecurity Data<BR>\nCriminal Status: []<BR>\n<BR>\nMinor Crimes: <A href='byond://?src=\ref[];field=mi_crim'>[]</A><BR>\nDetails: <A href='byond://?src=\ref[];field=mi_crim_d'>[]</A><BR>\n<BR>\nMajor Crimes: <A href='byond://?src=\ref[];field=ma_crim'>[]</A><BR>\nDetails: <A href='byond://?src=\ref[];field=ma_crim_d'>[]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='byond://?src=\ref[];field=notes'>[]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", securityActive2.fields["criminal"], src, securityActive2.fields["mi_crim"], src, securityActive2.fields["mi_crim_d"], src, securityActive2.fields["ma_crim"], src, securityActive2.fields["ma_crim_d"], src, securityActive2.fields["notes"])
 		else
 			dat += "<pre>Requested security record not found,</pre><BR>"
-		dat += text("<BR>\n<A href='byond:://?src=\ref[];software=securityrecord;sub=0'>Back</A><BR>", src)
+		dat += text("<BR>\n<A href='byond://?src=\ref[];software=securityrecord;sub=0'>Back</A><BR>", src)
 	return dat
 
 // Universal Translator

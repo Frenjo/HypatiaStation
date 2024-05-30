@@ -29,20 +29,20 @@
 		// --- Main Menu ---
 		if(SERVER_SCREEN_MAIN_MENU)
 			dat += "<br>[temp]<br>"
-			dat += "<br>Current Network: <a href='byond:://?src=\ref[src];network=1'>[network]</a><br>"
+			dat += "<br>Current Network: <a href='byond://?src=\ref[src];network=1'>[network]</a><br>"
 			if(length(servers))
 				dat += "<br>Detected Telecommunication Servers:<ul>"
 				for(var/obj/machinery/telecoms/T in servers)
-					dat += "<li><a href='byond:://?src=\ref[src];viewserver=[T.id]'>\ref[T] [T.name]</a> ([T.id])</li>"
+					dat += "<li><a href='byond://?src=\ref[src];viewserver=[T.id]'>\ref[T] [T.name]</a> ([T.id])</li>"
 				dat += "</ul>"
-				dat += "<br><a href='byond:://?src=\ref[src];operation=release'>\[Flush Buffer\]</a>"
+				dat += "<br><a href='byond://?src=\ref[src];operation=release'>\[Flush Buffer\]</a>"
 			else
-				dat += "<br>No servers detected. Scan for servers: <a href='byond:://?src=\ref[src];operation=scan'>\[Scan\]</a>"
+				dat += "<br>No servers detected. Scan for servers: <a href='byond://?src=\ref[src];operation=scan'>\[Scan\]</a>"
 
 		// --- Viewing Server ---
 		if(SERVER_SCREEN_VIEWING_SERVER)
 			dat += "<br>[temp]<br>"
-			dat += "<center><a href='byond:://?src=\ref[src];operation=mainmenu'>\[Main Menu\]</a>     <a href='byond:://?src=\ref[src];operation=refresh'>\[Refresh\]</a></center>"
+			dat += "<center><a href='byond://?src=\ref[src];operation=mainmenu'>\[Main Menu\]</a>     <a href='byond://?src=\ref[src];operation=refresh'>\[Refresh\]</a></center>"
 			dat += "<br>Current Network: [network]"
 			dat += "<br>Selected Server: [SelectedServer.id]"
 			if(SelectedServer.totaltraffic >= 1024)
@@ -56,7 +56,7 @@
 				i++
 				// If the log is a speech file
 				if(C.input_type == "Speech File")
-					dat += "<li><font color = #008F00>[C.name]</font color>  <font color = #FF0000><a href='byond:://?src=\ref[src];delete=[i]'>\[X\]</a></font color><br>"
+					dat += "<li><font color = #008F00>[C.name]</font color>  <font color = #FF0000><a href='byond://?src=\ref[src];delete=[i]'>\[X\]</a></font color><br>"
 
 					// -- Determine race of orator --
 					var/race				// The actual race of the mob
@@ -105,7 +105,7 @@
 					dat += "</li><br>"
 
 				else if(C.input_type == "Execution Error")
-					dat += "<li><font color = #990000>[C.name]</font color>  <font color = #FF0000><a href='byond:://?src=\ref[src];delete=[i]'>\[X\]</a></font color><br>"
+					dat += "<li><font color = #990000>[C.name]</font color>  <font color = #FF0000><a href='byond://?src=\ref[src];delete=[i]'>\[X\]</a></font color><br>"
 					dat += "<u><font color = #787700>Output</font color></u>: \"[C.parameters["message"]]\"<br>"
 					dat += "</li><br>"
 

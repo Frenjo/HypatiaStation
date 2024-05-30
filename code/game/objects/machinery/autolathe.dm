@@ -109,7 +109,7 @@
 		if(stored_materials[MATERIAL_METAL] < t.matter_amounts[MATERIAL_METAL] || stored_materials[MATERIAL_GLASS] < t.matter_amounts[MATERIAL_GLASS])
 			dat += title + "<br>"
 			continue
-		dat += "<A href='byond:://?src=\ref[src];make=\ref[t]'>[title]</A>"
+		dat += "<A href='byond://?src=\ref[src];make=\ref[t]'>[title]</A>"
 		if(istype(t, /obj/item/stack))
 			var/obj/item/stack/S = t
 			var/max_multiplier = min(S.max_amount, S.matter_amounts[MATERIAL_METAL] ? round(stored_materials[MATERIAL_METAL] / S.matter_amounts[MATERIAL_METAL]) : INFINITY, \
@@ -117,11 +117,11 @@
 			if(max_multiplier > 1)
 				dat += " |"
 			if(max_multiplier > 10)
-				dat += " <A href='byond:://?src=\ref[src];make=\ref[t];multiplier=[10]'>x[10]</A>"
+				dat += " <A href='byond://?src=\ref[src];make=\ref[t];multiplier=[10]'>x[10]</A>"
 			if(max_multiplier > 25)
-				dat += " <A href='byond:://?src=\ref[src];make=\ref[t];multiplier=[25]'>x[25]</A>"
+				dat += " <A href='byond://?src=\ref[src];make=\ref[t];multiplier=[25]'>x[25]</A>"
 			if(max_multiplier > 1)
-				dat += " <A href='byond:://?src=\ref[src];make=\ref[t];multiplier=[max_multiplier]'>x[max_multiplier]</A>"
+				dat += " <A href='byond://?src=\ref[src];make=\ref[t];multiplier=[max_multiplier]'>x[max_multiplier]</A>"
 		dat += "<br>"
 	user << browse("<HTML><HEAD><TITLE>Autolathe Control Panel</TITLE></HEAD><BODY><TT>[dat]</TT></BODY></HTML>", "window=autolathe_regular")
 	onclose(user, "autolathe_regular")
@@ -269,7 +269,7 @@
 
 			else // somebody is trying to exploit, alert admins -walter0o
 				var/turf/LOC = get_turf(usr)
-				message_admins("[key_name_admin(usr)] tried to exploit an autolathe to duplicate <a href='byond:://?_src_=vars;Vars=\ref[attempting_to_build]'>[attempting_to_build]</a> ! ([LOC ? "<a href='byond:://?_src_=holder;adminplayerobservecoodjump=1;X=[LOC.x];Y=[LOC.y];Z=[LOC.z]'>JMP</a>" : "null"])", 0)
+				message_admins("[key_name_admin(usr)] tried to exploit an autolathe to duplicate <a href='byond://?_src_=vars;Vars=\ref[attempting_to_build]'>[attempting_to_build]</a> ! ([LOC ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[LOC.x];Y=[LOC.y];Z=[LOC.z]'>JMP</a>" : "null"])", 0)
 				log_admin("EXPLOIT : [key_name(usr)] tried to exploit an autolathe to duplicate [attempting_to_build] !")
 				return
 
@@ -288,7 +288,7 @@
 
 			if((multiplier > max_multiplier) || (multiplier <= 0)) // somebody is trying to exploit, alert admins-walter0o
 				var/turf/LOC = get_turf(usr)
-				message_admins("[key_name_admin(usr)] tried to exploit an autolathe with multiplier set to <u>[multiplier]</u> on <u>[template]</u>  ! ([LOC ? "<a href='byond:://?_src_=holder;adminplayerobservecoodjump=1;X=[LOC.x];Y=[LOC.y];Z=[LOC.z]'>JMP</a>" : "null"])" , 0)
+				message_admins("[key_name_admin(usr)] tried to exploit an autolathe with multiplier set to <u>[multiplier]</u> on <u>[template]</u>  ! ([LOC ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[LOC.x];Y=[LOC.y];Z=[LOC.z]'>JMP</a>" : "null"])" , 0)
 				log_admin("EXPLOIT : [key_name(usr)] tried to exploit an autolathe with multiplier set to [multiplier] on [template]  !")
 				return
 

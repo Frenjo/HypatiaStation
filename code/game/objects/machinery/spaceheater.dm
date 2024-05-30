@@ -101,10 +101,10 @@
 
 		dat += "Set Temperature: "
 
-		dat += "<A href='byond:://?src=\ref[src];op=temp;val=-5'>-</A>"
+		dat += "<A href='byond://?src=\ref[src];op=temp;val=-5'>-</A>"
 
 		dat += " [set_temperature]&deg;C "
-		dat += "<A href='byond:://?src=\ref[src];op=temp;val=5'>+</A><BR>"
+		dat += "<A href='byond://?src=\ref[src];op=temp;val=5'>+</A><BR>"
 
 		user.set_machine(src)
 		user << browse("<HEAD><TITLE>Space Heater Control Panel</TITLE></HEAD><TT>[dat]</TT>", "window=spaceheater")

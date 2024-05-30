@@ -22,13 +22,13 @@
 	if(in_range(src, user))
 		var/dat = "<b>Accounts Database</b><br>"
 		dat += "<i>[machine_id]</i><br>"
-		dat += "Confirm identity: <a href='byond:://?src=\ref[src];choice=insert_card'>[held_card ? held_card : "-----"]</a><br>"
+		dat += "Confirm identity: <a href='byond://?src=\ref[src];choice=insert_card'>[held_card ? held_card : "-----"]</a><br>"
 
 		if(access_level > 0)
 			dat += "You may not edit accounts at this terminal, only create and view them.<br>"
 			if(creating_new_account)
 				dat += "<br>"
-				dat += "<a href='byond:://?src=\ref[src];choice=view_accounts_list;'>Return to accounts list</a>"
+				dat += "<a href='byond://?src=\ref[src];choice=view_accounts_list;'>Return to accounts list</a>"
 				dat += "<form name='create_account' action='?src=\ref[src]' method='get'>"
 				dat += "<input type='hidden' name='src' value='\ref[src]'>"
 				dat += "<input type='hidden' name='choice' value='finalise_create_account'>"
@@ -40,14 +40,14 @@
 			else
 				if(detailed_account_view)
 					dat += "<br>"
-					dat += "<a href='byond:://?src=\ref[src];choice=view_accounts_list;'>Return to accounts list</a><hr>"
+					dat += "<a href='byond://?src=\ref[src];choice=view_accounts_list;'>Return to accounts list</a><hr>"
 					dat += "<b>Account number:</b> #[detailed_account_view.account_number]<br>"
 					dat += "<b>Account holder:</b> [detailed_account_view.owner_name]<br>"
 					dat += "<b>Account balance:</b> $[detailed_account_view.money]<br>"
 					if(access_level > 1)
-						dat += "<b><a href='byond:://?src=\ref[src];choice=add_funds'>Silently add funds (no transaction log)</a><br>"
-						dat += "<b><a href='byond:://?src=\ref[src];choice=remove_funds'>Silently remove funds (no transaction log)</a><br>"
-					dat += "<b><a href='byond:://?src=\ref[src];choice=toggle_suspension'>[detailed_account_view.suspended ? "Unsuspend account" : "Suspend account"]</a><br>"
+						dat += "<b><a href='byond://?src=\ref[src];choice=add_funds'>Silently add funds (no transaction log)</a><br>"
+						dat += "<b><a href='byond://?src=\ref[src];choice=remove_funds'>Silently remove funds (no transaction log)</a><br>"
+					dat += "<b><a href='byond://?src=\ref[src];choice=toggle_suspension'>[detailed_account_view.suspended ? "Unsuspend account" : "Suspend account"]</a><br>"
 					dat += "<table border=1 style='width:100%'>"
 					dat += "<tr>"
 					dat += "<td><b>Date</b></td>"
@@ -68,7 +68,7 @@
 						dat += "</tr>"
 					dat += "</table>"
 				else
-					dat += "<a href='byond:://?src=\ref[src];choice=create_account;'>Create new account</a><br><br>"
+					dat += "<a href='byond://?src=\ref[src];choice=create_account;'>Create new account</a><br><br>"
 					dat += "<table border=1 style='width:100%'>"
 					for(var/i = 1, i <= length(all_money_accounts), i++)
 						var/datum/money_account/D = all_money_accounts[i]
@@ -76,7 +76,7 @@
 						dat += "<td>#[D.account_number]</td>"
 						dat += "<td>[D.owner_name]</td>"
 						dat += "<td>[D.suspended ? "SUSPENDED" : ""]</td>"
-						dat += "<td><a href='byond:://?src=\ref[src];choice=view_account_detail;account_index=[i]'>View in detail</a></td>"
+						dat += "<td><a href='byond://?src=\ref[src];choice=view_account_detail;account_index=[i]'>View in detail</a></td>"
 						dat += "</tr>"
 					dat += "</table>"
 

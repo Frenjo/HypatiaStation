@@ -218,29 +218,29 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 		dat += "<i>The console is dark and nonresponsive.</i>"
 	else
 		dat += "<b>RUST Tokamak pattern Electromagnetic Field Generator</b><br>"
-		dat += "<b>Device ID tag: </b> [id_tag ? id_tag : "UNSET"] <a href='byond:://?src=\ref[src];new_id_tag=1'>\[Modify\]</a><br>"
-		dat += "<a href='byond:://?src=\ref[src];toggle_active=1'>\[[owned_field ? "Deactivate" : "Activate"]\]</a><br>"
-		dat += "<a href='byond:://?src=\ref[src];toggle_remote=1'>\[[remote_access_enabled ? "Disable remote access to this device" : "Enable remote access to this device"]\]</a><br>"
+		dat += "<b>Device ID tag: </b> [id_tag ? id_tag : "UNSET"] <a href='byond://?src=\ref[src];new_id_tag=1'>\[Modify\]</a><br>"
+		dat += "<a href='byond://?src=\ref[src];toggle_active=1'>\[[owned_field ? "Deactivate" : "Activate"]\]</a><br>"
+		dat += "<a href='byond://?src=\ref[src];toggle_remote=1'>\[[remote_access_enabled ? "Disable remote access to this device" : "Enable remote access to this device"]\]</a><br>"
 		dat += "<hr>"
 		dat += "<b>Field strength:</b> [field_strength]Wm^3<br>"
-		dat += "<a href='byond:://?src=\ref[src];str=-1000'>\[----\]</a> \
-		<a href='byond:://?src=\ref[src];str=-100'>\[--- \]</a> \
-		<a href='byond:://?src=\ref[src];str=-10'>\[--  \]</a> \
-		<a href='byond:://?src=\ref[src];str=-1'>\[-   \]</a> \
-		<a href='byond:://?src=\ref[src];str=1'>\[+   \]</a> \
-		<a href='byond:://?src=\ref[src];str=10'>\[++  \]</a> \
-		<a href='byond:://?src=\ref[src];str=100'>\[+++ \]</a> \
-		<a href='byond:://?src=\ref[src];str=1000'>\[++++\]</a><br>"
+		dat += "<a href='byond://?src=\ref[src];str=-1000'>\[----\]</a> \
+		<a href='byond://?src=\ref[src];str=-100'>\[--- \]</a> \
+		<a href='byond://?src=\ref[src];str=-10'>\[--  \]</a> \
+		<a href='byond://?src=\ref[src];str=-1'>\[-   \]</a> \
+		<a href='byond://?src=\ref[src];str=1'>\[+   \]</a> \
+		<a href='byond://?src=\ref[src];str=10'>\[++  \]</a> \
+		<a href='byond://?src=\ref[src];str=100'>\[+++ \]</a> \
+		<a href='byond://?src=\ref[src];str=1000'>\[++++\]</a><br>"
 
 		dat += "<b>Field frequency:</b> [field_frequency]MHz<br>"
-		dat += "<a href='byond:://?src=\ref[src];freq=-1000'>\[----\]</a> \
-		<a href='byond:://?src=\ref[src];freq=-100'>\[--- \]</a> \
-		<a href='byond:://?src=\ref[src];freq=-10'>\[--  \]</a> \
-		<a href='byond:://?src=\ref[src];freq=-1'>\[-   \]</a> \
-		<a href='byond:://?src=\ref[src];freq=1'>\[+   \]</a> \
-		<a href='byond:://?src=\ref[src];freq=10'>\[++  \]</a> \
-		<a href='byond:://?src=\ref[src];freq=100'>\[+++ \]</a> \
-		<a href='byond:://?src=\ref[src];freq=1000'>\[++++\]</a><br>"
+		dat += "<a href='byond://?src=\ref[src];freq=-1000'>\[----\]</a> \
+		<a href='byond://?src=\ref[src];freq=-100'>\[--- \]</a> \
+		<a href='byond://?src=\ref[src];freq=-10'>\[--  \]</a> \
+		<a href='byond://?src=\ref[src];freq=-1'>\[-   \]</a> \
+		<a href='byond://?src=\ref[src];freq=1'>\[+   \]</a> \
+		<a href='byond://?src=\ref[src];freq=10'>\[++  \]</a> \
+		<a href='byond://?src=\ref[src];freq=100'>\[+++ \]</a> \
+		<a href='byond://?src=\ref[src];freq=1000'>\[++++\]</a><br>"
 
 		var/font_colour = "green"
 		var/active_power_usage = power_usage[USE_POWER_ACTIVE]

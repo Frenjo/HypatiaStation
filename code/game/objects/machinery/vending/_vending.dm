@@ -216,10 +216,10 @@
 			var/is_uncut = wires & APCWireColorToFlag[vendwires[wiredesc]]
 			dat += "[wiredesc] wire: "
 			if(!is_uncut)
-				dat += "<a href='byond:://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Mend</a>"
+				dat += "<a href='byond://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Mend</a>"
 			else
-				dat += "<a href='byond:://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Cut</a> "
-				dat += "<a href='byond:://?src=\ref[src];pulsewire=[vendwires[wiredesc]]'>Pulse</a> "
+				dat += "<a href='byond://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Cut</a> "
+				dat += "<a href='byond://?src=\ref[src];pulsewire=[vendwires[wiredesc]]'>Pulse</a> "
 			dat += "<br>"
 
 		dat += "<br>"
@@ -229,7 +229,7 @@
 		dat += "The [(wires & WIRE_SCANID) ? "purple" : "yellow"] light is on.<BR>"
 
 		if(length(slogan_list))
-			dat += "The speaker switch is [shut_up ? "off" : "on"]. <a href='byond:://?src=\ref[src];togglevoice=[1]'>Toggle</a>"
+			dat += "The speaker switch is [shut_up ? "off" : "on"]. <a href='byond://?src=\ref[src];togglevoice=[1]'>Toggle</a>"
 
 	user << browse(dat, "window=vending")
 	onclose(user, "")

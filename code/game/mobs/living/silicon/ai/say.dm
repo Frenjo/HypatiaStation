@@ -35,7 +35,7 @@ var/const/VOX_DELAY = 100 // 10 seconds
 	for(var/word in vox_words)
 		index++
 		var/stripped_word = copytext(word, 1, length(word) - 3) // Remove the .wav
-		dat += "<A href='byond:://?src=\ref[src];say_word=[stripped_word]'>[capitalize(stripped_word)]</A>"
+		dat += "<A href='byond://?src=\ref[src];say_word=[stripped_word]'>[capitalize(stripped_word)]</A>"
 		if(index != length(vox_words))
 			dat += " / "
 

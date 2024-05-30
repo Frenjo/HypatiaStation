@@ -297,28 +297,28 @@
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
 	<BR><HR>
-	<BR><B>Head(Mask):</B> <A href='byond:://?src=\ref[src];item=mask'>[(wear_mask ? wear_mask : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='byond:://?src=\ref[src];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='byond:://?src=\ref[src];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Gloves:</B> <A href='byond:://?src=\ref[src];item=gloves'>[(gloves ? gloves : "Nothing")]</A>
-	<BR><B>Eyes:</B> <A href='byond:://?src=\ref[src];item=eyes'>[(glasses ? glasses : "Nothing")]</A>
-	<BR><B>Left Ear:</B> <A href='byond:://?src=\ref[src];item=l_ear'>[(l_ear ? l_ear : "Nothing")]</A>
-	<BR><B>Right Ear:</B> <A href='byond:://?src=\ref[src];item=r_ear'>[(r_ear ? r_ear : "Nothing")]</A>
-	<BR><B>Head:</B> <A href='byond:://?src=\ref[src];item=head'>[(head ? head : "Nothing")]</A>
-	<BR><B>Shoes:</B> <A href='byond:://?src=\ref[src];item=shoes'>[(shoes ? shoes : "Nothing")]</A>
-	<BR><B>Belt:</B> <A href='byond:://?src=\ref[src];item=belt'>[(belt ? belt : "Nothing")]</A>
-	<BR><B>Uniform:</B> <A href='byond:://?src=\ref[src];item=uniform'>[(wear_uniform ? wear_uniform : "Nothing")]</A>
-	<BR><B>(Exo)Suit:</B> <A href='byond:://?src=\ref[src];item=suit'>[(wear_suit ? wear_suit : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='byond:://?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='byond:://?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
-	<BR><B>ID:</B> <A href='byond:://?src=\ref[src];item=id'>[(id_store ? id_store : "Nothing")]</A>
-	<BR><B>Suit Storage:</B> <A href='byond:://?src=\ref[src];item=suit_store'>[(suit_store ? suit_store : "Nothing")]</A>
-	<BR>[(handcuffed ? text("<A href='byond:://?src=\ref[src];item=handcuff'>Handcuffed</A>") : text("<A href='byond:://?src=\ref[src];item=handcuff'>Not Handcuffed</A>"))]
-	<BR>[(legcuffed ? text("<A href='byond:://?src=\ref[src];item=legcuff'>Legcuffed</A>") : text(""))]
-	<BR>[(internal ? text("<A href='byond:://?src=\ref[src];item=internal'>Remove Internal</A>") : "")]
-	<BR><A href='byond:://?src=\ref[src];item=splints'>Remove Splints</A>
-	<BR><A href='byond:://?src=\ref[src];item=pockets'>Empty Pockets</A>
-	<BR><A href='byond:://?src=\ref[user];refresh=1'>Refresh</A>
-	<BR><A href='byond:://?src=\ref[user];mach_close=mob[name]'>Close</A>
+	<BR><B>Head(Mask):</B> <A href='byond://?src=\ref[src];item=mask'>[(wear_mask ? wear_mask : "Nothing")]</A>
+	<BR><B>Left Hand:</B> <A href='byond://?src=\ref[src];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
+	<BR><B>Right Hand:</B> <A href='byond://?src=\ref[src];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
+	<BR><B>Gloves:</B> <A href='byond://?src=\ref[src];item=gloves'>[(gloves ? gloves : "Nothing")]</A>
+	<BR><B>Eyes:</B> <A href='byond://?src=\ref[src];item=eyes'>[(glasses ? glasses : "Nothing")]</A>
+	<BR><B>Left Ear:</B> <A href='byond://?src=\ref[src];item=l_ear'>[(l_ear ? l_ear : "Nothing")]</A>
+	<BR><B>Right Ear:</B> <A href='byond://?src=\ref[src];item=r_ear'>[(r_ear ? r_ear : "Nothing")]</A>
+	<BR><B>Head:</B> <A href='byond://?src=\ref[src];item=head'>[(head ? head : "Nothing")]</A>
+	<BR><B>Shoes:</B> <A href='byond://?src=\ref[src];item=shoes'>[(shoes ? shoes : "Nothing")]</A>
+	<BR><B>Belt:</B> <A href='byond://?src=\ref[src];item=belt'>[(belt ? belt : "Nothing")]</A>
+	<BR><B>Uniform:</B> <A href='byond://?src=\ref[src];item=uniform'>[(wear_uniform ? wear_uniform : "Nothing")]</A>
+	<BR><B>(Exo)Suit:</B> <A href='byond://?src=\ref[src];item=suit'>[(wear_suit ? wear_suit : "Nothing")]</A>
+	<BR><B>Back:</B> <A href='byond://?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='byond://?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
+	<BR><B>ID:</B> <A href='byond://?src=\ref[src];item=id'>[(id_store ? id_store : "Nothing")]</A>
+	<BR><B>Suit Storage:</B> <A href='byond://?src=\ref[src];item=suit_store'>[(suit_store ? suit_store : "Nothing")]</A>
+	<BR>[(handcuffed ? text("<A href='byond://?src=\ref[src];item=handcuff'>Handcuffed</A>") : text("<A href='byond://?src=\ref[src];item=handcuff'>Not Handcuffed</A>"))]
+	<BR>[(legcuffed ? text("<A href='byond://?src=\ref[src];item=legcuff'>Legcuffed</A>") : text(""))]
+	<BR>[(internal ? text("<A href='byond://?src=\ref[src];item=internal'>Remove Internal</A>") : "")]
+	<BR><A href='byond://?src=\ref[src];item=splints'>Remove Splints</A>
+	<BR><A href='byond://?src=\ref[src];item=pockets'>Empty Pockets</A>
+	<BR><A href='byond://?src=\ref[user];refresh=1'>Refresh</A>
+	<BR><A href='byond://?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
 	user << browse(dat, text("window=mob[name];size=340x480"))
 	onclose(user, "mob[name]")
@@ -492,7 +492,7 @@
 								to_chat(usr, "<b>Major Crimes:</b> [R.fields["ma_crim"]]")
 								to_chat(usr, "<b>Details:</b> [R.fields["ma_crim_d"]]")
 								to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
-								to_chat(usr, "<a href='byond:://?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>")
+								to_chat(usr, "<a href='byond://?src=\ref[src];secrecordComment=`'>\[View Comment Log\]</a>")
 								read = 1
 
 			if(!read)
@@ -523,7 +523,7 @@
 									counter++
 								if(counter == 1)
 									to_chat(usr, "No comment found")
-								to_chat(usr, "<a href='byond:://?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>")
+								to_chat(usr, "<a href='byond://?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>")
 
 			if(!read)
 				to_chat(usr, SPAN_WARNING("Unable to locate a data core entry for this person."))
@@ -621,7 +621,7 @@
 								to_chat(usr, "<b>Major Disabilities:</b> [R.fields["ma_dis"]]")
 								to_chat(usr, "<b>Details:</b> [R.fields["ma_dis_d"]]")
 								to_chat(usr, "<b>Notes:</b> [R.fields["notes"]]")
-								to_chat(usr, "<a href='byond:://?src=\ref[src];medrecordComment=`'>\[View Comment Log\]</a>")
+								to_chat(usr, "<a href='byond://?src=\ref[src];medrecordComment=`'>\[View Comment Log\]</a>")
 								read = 1
 
 			if(!read)
@@ -652,7 +652,7 @@
 									counter++
 								if(counter == 1)
 									to_chat(usr, "No comment found")
-								to_chat(usr, "<a href='byond:://?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>")
+								to_chat(usr, "<a href='byond://?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>")
 
 			if(!read)
 				to_chat(usr, SPAN_WARNING("Unable to locate a data core entry for this person."))

@@ -249,7 +249,7 @@
 						if(N > 25)
 							dat += "(<a href='byond://?src=\ref[src];vend=[O];amount=25'>x25</A>)"
 				if(N > 1)
-					dat += "(<a href='byond:://?src=\ref[src];vend=[O];amount=[N]'>All</A>)"
+					dat += "(<a href='byond://?src=\ref[src];vend=[O];amount=[N]'>All</A>)"
 				dat += "<br>"
 
 		dat += "</TT>"
@@ -265,10 +265,10 @@
 			var/is_uncut = src.wires & APCWireColorToFlag[vendwires[wiredesc]]
 			dat += "[wiredesc] wire: "
 			if(!is_uncut)
-				dat += "<a href='byond:://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Mend</a>"
+				dat += "<a href='byond://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Mend</a>"
 			else
-				dat += "<a href='byond:://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Cut</a> "
-				dat += "<a href='byond:://?src=\ref[src];pulsewire=[vendwires[wiredesc]]'>Pulse</a> "
+				dat += "<a href='byond://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Cut</a> "
+				dat += "<a href='byond://?src=\ref[src];pulsewire=[vendwires[wiredesc]]'>Pulse</a> "
 			dat += "<br>"
 
 		dat += "<br>"
@@ -439,7 +439,7 @@
 						if(N > 25)
 							dat += "(<a href='byond://?src=\ref[src];vend=[O];amount=25'>x25</A>)"
 				if(N > 1)
-					dat += "(<a href='byond:://?src=\ref[src];vend=[O];amount=[N]'>All</A>)"
+					dat += "(<a href='byond://?src=\ref[src];vend=[O];amount=[N]'>All</A>)"
 				dat += "<br>"
 
 		dat += "</TT>"
@@ -454,10 +454,10 @@
 			var/is_uncut = src.wires & APCWireColorToFlag[vendwires[wiredesc]]
 			dat += "[wiredesc] wire: "
 			if(!is_uncut)
-				dat += "<a href='byond:://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Mend</a>"
+				dat += "<a href='byond://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Mend</a>"
 			else
-				dat += "<a href='byond:://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Cut</a> "
-				dat += "<a href='byond:://?src=\ref[src];pulsewire=[vendwires[wiredesc]]'>Pulse</a> "
+				dat += "<a href='byond://?src=\ref[src];cutwire=[vendwires[wiredesc]]'>Cut</a> "
+				dat += "<a href='byond://?src=\ref[src];pulsewire=[vendwires[wiredesc]]'>Pulse</a> "
 			dat += "<br>"
 
 		dat += "<br>"

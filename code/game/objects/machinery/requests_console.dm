@@ -129,42 +129,42 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				dat += text("Which department do you need assistance from?<BR><BR>")
 				for(var/dpt in req_console_assistance)
 					if (dpt != department)
-						dat += text("[dpt] (<A href='byond:://?src=\ref[src];write=[ckey(dpt)]'>Message</A> or ")
-						dat += text("<A href='byond:://?src=\ref[src];write=[ckey(dpt)];priority=2'>High Priority</A>")
+						dat += text("[dpt] (<A href='byond://?src=\ref[src];write=[ckey(dpt)]'>Message</A> or ")
+						dat += text("<A href='byond://?src=\ref[src];write=[ckey(dpt)];priority=2'>High Priority</A>")
 //						if (hackState == 1)
-//							dat += text(" or <A href='byond:://?src=\ref[src];write=[ckey(dpt)];priority=3'>EXTREME</A>)")
+//							dat += text(" or <A href='byond://?src=\ref[src];write=[ckey(dpt)];priority=3'>EXTREME</A>)")
 						dat += text(")<BR>")
-				dat += text("<BR><A href='byond:://?src=\ref[src];setScreen=0'>Back</A><BR>")
+				dat += text("<BR><A href='byond://?src=\ref[src];setScreen=0'>Back</A><BR>")
 
 			if(2)	//req. supplies
 				dat += text("Which department do you need supplies from?<BR><BR>")
 				for(var/dpt in req_console_supplies)
 					if (dpt != department)
-						dat += text("[dpt] (<A href='byond:://?src=\ref[src];write=[ckey(dpt)]'>Message</A> or ")
-						dat += text("<A href='byond:://?src=\ref[src];write=[ckey(dpt)];priority=2'>High Priority</A>")
+						dat += text("[dpt] (<A href='byond://?src=\ref[src];write=[ckey(dpt)]'>Message</A> or ")
+						dat += text("<A href='byond://?src=\ref[src];write=[ckey(dpt)];priority=2'>High Priority</A>")
 //						if (hackState == 1)
-//							dat += text(" or <A href='byond:://?src=\ref[src];write=[ckey(dpt)];priority=3'>EXTREME</A>)")
+//							dat += text(" or <A href='byond://?src=\ref[src];write=[ckey(dpt)];priority=3'>EXTREME</A>)")
 						dat += text(")<BR>")
-				dat += text("<BR><A href='byond:://?src=\ref[src];setScreen=0'>Back</A><BR>")
+				dat += text("<BR><A href='byond://?src=\ref[src];setScreen=0'>Back</A><BR>")
 
 			if(3)	//relay information
 				dat += text("Which department would you like to send information to?<BR><BR>")
 				for(var/dpt in req_console_information)
 					if (dpt != department)
-						dat += text("[dpt] (<A href='byond:://?src=\ref[src];write=[ckey(dpt)]'>Message</A> or ")
-						dat += text("<A href='byond:://?src=\ref[src];write=[ckey(dpt)];priority=2'>High Priority</A>")
+						dat += text("[dpt] (<A href='byond://?src=\ref[src];write=[ckey(dpt)]'>Message</A> or ")
+						dat += text("<A href='byond://?src=\ref[src];write=[ckey(dpt)];priority=2'>High Priority</A>")
 //						if (hackState == 1)
-//							dat += text(" or <A href='byond:://?src=\ref[src];write=[ckey(dpt)];priority=3'>EXTREME</A>)")
+//							dat += text(" or <A href='byond://?src=\ref[src];write=[ckey(dpt)];priority=3'>EXTREME</A>)")
 						dat += text(")<BR>")
-				dat += text("<BR><A href='byond:://?src=\ref[src];setScreen=0'>Back</A><BR>")
+				dat += text("<BR><A href='byond://?src=\ref[src];setScreen=0'>Back</A><BR>")
 
 			if(6)	//sent successfully
 				dat += text("<FONT COLOR='GREEN'>Message sent</FONT><BR><BR>")
-				dat += text("<A href='byond:://?src=\ref[src];setScreen=0'>Continue</A><BR>")
+				dat += text("<A href='byond://?src=\ref[src];setScreen=0'>Continue</A><BR>")
 
 			if(7)	//unsuccessful; not sent
 				dat += text("<FONT COLOR='RED'>An error occurred. </FONT><BR><BR>")
-				dat += text("<A href='byond:://?src=\ref[src];setScreen=0'>Continue</A><BR>")
+				dat += text("<A href='byond://?src=\ref[src];setScreen=0'>Continue</A><BR>")
 
 			if(8)	//view messages
 				for (var/obj/machinery/requests_console/Console in allConsoles)
@@ -177,7 +177,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				icon_state = "req_comp0"
 				for(var/msg in messages)
 					dat += text("[msg]<BR>")
-				dat += text("<A href='byond:://?src=\ref[src];setScreen=0'>Back to main menu</A><BR>")
+				dat += text("<A href='byond://?src=\ref[src];setScreen=0'>Back to main menu</A><BR>")
 
 			if(9)	//authentication before sending
 				dat += text("<B>Message Authentication</B><BR><BR>")
@@ -185,8 +185,8 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				dat += text("You may authenticate your message now by scanning your ID or your stamp<BR><BR>")
 				dat += text("Validated by: [msgVerified]<br>");
 				dat += text("Stamped by: [msgStamped]<br>");
-				dat += text("<A href='byond:://?src=\ref[src];department=[dpt]'>Send</A><BR>");
-				dat += text("<BR><A href='byond:://?src=\ref[src];setScreen=0'>Back</A><BR>")
+				dat += text("<A href='byond://?src=\ref[src];department=[dpt]'>Send</A><BR>");
+				dat += text("<BR><A href='byond://?src=\ref[src];setScreen=0'>Back</A><BR>")
 
 			if(10)	//send announcement
 				dat += text("<B>Station wide announcement</B><BR><BR>")
@@ -194,10 +194,10 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 					dat += text("<b>Authentication accepted</b><BR><BR>")
 				else
 					dat += text("Swipe your card to authenticate yourself.<BR><BR>")
-				dat += text("<b>Message: </b>[message] <A href='byond:://?src=\ref[src];writeAnnouncement=1'>Write</A><BR><BR>")
+				dat += text("<b>Message: </b>[message] <A href='byond://?src=\ref[src];writeAnnouncement=1'>Write</A><BR><BR>")
 				if (announceAuth && message)
-					dat += text("<A href='byond:://?src=\ref[src];sendAnnouncement=1'>Announce</A><BR>");
-				dat += text("<BR><A href='byond:://?src=\ref[src];setScreen=0'>Back</A><BR>")
+					dat += text("<A href='byond://?src=\ref[src];sendAnnouncement=1'>Announce</A><BR>");
+				dat += text("<BR><A href='byond://?src=\ref[src];setScreen=0'>Back</A><BR>")
 
 			else	//main menu
 				screen = 0
@@ -206,17 +206,17 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 					dat += text("<FONT COLOR='RED'>There are new messages</FONT><BR>")
 				if (newmessagepriority == 2)
 					dat += text("<FONT COLOR='RED'><B>NEW PRIORITY MESSAGES</B></FONT><BR>")
-				dat += text("<A href='byond:://?src=\ref[src];setScreen=8'>View Messages</A><BR><BR>")
+				dat += text("<A href='byond://?src=\ref[src];setScreen=8'>View Messages</A><BR><BR>")
 
-				dat += text("<A href='byond:://?src=\ref[src];setScreen=1'>Request Assistance</A><BR>")
-				dat += text("<A href='byond:://?src=\ref[src];setScreen=2'>Request Supplies</A><BR>")
-				dat += text("<A href='byond:://?src=\ref[src];setScreen=3'>Relay Anonymous Information</A><BR><BR>")
+				dat += text("<A href='byond://?src=\ref[src];setScreen=1'>Request Assistance</A><BR>")
+				dat += text("<A href='byond://?src=\ref[src];setScreen=2'>Request Supplies</A><BR>")
+				dat += text("<A href='byond://?src=\ref[src];setScreen=3'>Relay Anonymous Information</A><BR><BR>")
 				if(announcementConsole)
-					dat += text("<A href='byond:://?src=\ref[src];setScreen=10'>Send station-wide announcement</A><BR><BR>")
+					dat += text("<A href='byond://?src=\ref[src];setScreen=10'>Send station-wide announcement</A><BR><BR>")
 				if (silent)
-					dat += text("Speaker <A href='byond:://?src=\ref[src];setSilent=0'>OFF</A>")
+					dat += text("Speaker <A href='byond://?src=\ref[src];setSilent=0'>OFF</A>")
 				else
-					dat += text("Speaker <A href='byond:://?src=\ref[src];setSilent=1'>ON</A>")
+					dat += text("Speaker <A href='byond://?src=\ref[src];setSilent=1'>ON</A>")
 
 		user << browse("[dat]", "window=request_console")
 		onclose(user, "req_console")
@@ -297,7 +297,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 									playsound(Console.loc, 'sound/machines/twobeep.ogg', 50, 1)
 									for (var/mob/O in hearers(5, Console.loc))
 										O.show_message(text("\icon[Console] *The Requests Console beeps: 'PRIORITY Alert in [department]'"))
-								Console.messages += "<B><FONT color='red'>High Priority message from <A href='byond:://?src=\ref[Console];write=[ckey(department)]'>[department]</A></FONT></B><BR>[sending]"
+								Console.messages += "<B><FONT color='red'>High Priority message from <A href='byond://?src=\ref[Console];write=[ckey(department)]'>[department]</A></FONT></B><BR>[sending]"
 
 		//					if("3")		//Not implemanted, but will be 		//Removed as it doesn't look like anybody intends on implimenting it ~Carn
 		//						if(Console.newmessagepriority < 3)
@@ -317,7 +317,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 									playsound(Console.loc, 'sound/machines/twobeep.ogg', 50, 1)
 									for (var/mob/O in hearers(4, Console.loc))
 										O.show_message(text("\icon[Console] *The Requests Console beeps: 'Message from [department]'"))
-								Console.messages += "<B>Message from <A href='byond:://?src=\ref[Console];write=[ckey(department)]'>[department]</A></FONT></B><BR>[message]"
+								Console.messages += "<B>Message from <A href='byond://?src=\ref[Console];write=[ckey(department)]'>[department]</A></FONT></B><BR>[message]"
 
 						screen = 6
 						//Console.luminosity = 2

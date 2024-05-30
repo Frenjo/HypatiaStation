@@ -48,19 +48,19 @@
 			var/is_uncut = wires & airlockWireColorToFlag[wires[wiredesc]]
 			t1 += "[wiredesc] wire: "
 			if(!is_uncut)
-				t1 += "<a href='byond:://?src=\ref[src];wires=[wires[wiredesc]]'>Mend</a>"
+				t1 += "<a href='byond://?src=\ref[src];wires=[wires[wiredesc]]'>Mend</a>"
 			else
-				t1 += "<a href='byond:://?src=\ref[src];wires=[wires[wiredesc]]'>Cut</a> "
-				t1 += "<a href='byond:://?src=\ref[src];pulse=[wires[wiredesc]]'>Pulse</a> "
+				t1 += "<a href='byond://?src=\ref[src];wires=[wires[wiredesc]]'>Cut</a> "
+				t1 += "<a href='byond://?src=\ref[src];pulse=[wires[wiredesc]]'>Pulse</a> "
 				if(signalers[wires[wiredesc]])
-					t1 += "<a href='byond:://?src=\ref[src];remove-signaler=[wires[wiredesc]]'>Detach signaler</a>"
+					t1 += "<a href='byond://?src=\ref[src];remove-signaler=[wires[wiredesc]]'>Detach signaler</a>"
 				else
-					t1 += "<a href='byond:://?src=\ref[src];signaler=[wires[wiredesc]]'>Attach signaler</a>"
+					t1 += "<a href='byond://?src=\ref[src];signaler=[wires[wiredesc]]'>Attach signaler</a>"
 			t1 += "<br>"
 
 		t1 += "<br>\n[(locked ? "The door bolts have fallen!" : "The door bolts look up.")]<br>\n[(lights ? "The door bolt lights are on." : "The door bolt lights are off!")]<br>\n[((arePowerSystemsOn() && !(stat & NOPOWER)) ? "The test light is on." : "The test light is off!")]<br>\n[(!aiControlDisabled == AIRLOCK_AI_CONTROL_ENABLED ? "The 'AI control allowed' light is on." : "The 'AI control allowed' light is off.")]<br>\n[(!safe ? "The 'Check Wiring' light is on." : "The 'Check Wiring' light is off.")]<br>\n[(!normalspeed ? "The 'Check Timing Mechanism' light is on." : "The 'Check Timing Mechanism' light is off.")]"
 
-		t1 += "<p><a href='byond:://?src=\ref[src];close=1'>Close</a></p>\n"
+		t1 += "<p><a href='byond://?src=\ref[src];close=1'>Close</a></p>\n"
 
 		user << browse(t1, "window=airlock")
 		onclose(user, "airlock")
@@ -104,18 +104,18 @@
 	if(isWireCut(AIRLOCK_WIRE_IDSCAN))
 		t1 += "IdScan wire is cut.<br>\n"
 	else if(aiDisabledIdScanner)
-		t1 += "IdScan disabled. <A href='byond:://?src=\ref[src];aiEnable=1'>Enable?</a><br>\n"
+		t1 += "IdScan disabled. <A href='byond://?src=\ref[src];aiEnable=1'>Enable?</a><br>\n"
 	else
-		t1 += "IdScan enabled. <A href='byond:://?src=\ref[src];aiDisable=1'>Disable?</a><br>\n"
+		t1 += "IdScan enabled. <A href='byond://?src=\ref[src];aiDisable=1'>Disable?</a><br>\n"
 
 	if(isWireCut(AIRLOCK_WIRE_MAIN_POWER1))
 		t1 += "Main Power Input wire is cut.<br>\n"
 	if(isWireCut(AIRLOCK_WIRE_MAIN_POWER2))
 		t1 += "Main Power Output wire is cut.<br>\n"
 	if(secondsMainPowerLost == 0)
-		t1 += "<A href='byond:://?src=\ref[src];aiDisable=2'>Temporarily disrupt main power?</a>.<br>\n"
+		t1 += "<A href='byond://?src=\ref[src];aiDisable=2'>Temporarily disrupt main power?</a>.<br>\n"
 	if(secondsBackupPowerLost == 0)
-		t1 += "<A href='byond:://?src=\ref[src];aiDisable=3'>Temporarily disrupt backup power?</a>.<br>\n"
+		t1 += "<A href='byond://?src=\ref[src];aiDisable=3'>Temporarily disrupt backup power?</a>.<br>\n"
 
 	if(isWireCut(AIRLOCK_WIRE_BACKUP_POWER1))
 		t1 += "Backup Power Input wire is cut.<br>\n"
@@ -125,53 +125,53 @@
 	if(isWireCut(AIRLOCK_WIRE_DOOR_BOLTS))
 		t1 += "Door bolt drop wire is cut.<br>\n"
 	else if(!locked)
-		t1 += "Door bolts are up. <A href='byond:://?src=\ref[src];aiDisable=4'>Drop them?</a><br>\n"
+		t1 += "Door bolts are up. <A href='byond://?src=\ref[src];aiDisable=4'>Drop them?</a><br>\n"
 	else
 		t1 += "Door bolts are down."
 		if(arePowerSystemsOn())
-			t1 += " <A href='byond:://?src=\ref[src];aiEnable=4'>Raise?</a><br>\n"
+			t1 += " <A href='byond://?src=\ref[src];aiEnable=4'>Raise?</a><br>\n"
 		else
 			t1 += " Cannot raise door bolts due to power failure.<br>\n"
 
 	if(isWireCut(AIRLOCK_WIRE_LIGHT))
 		t1 += "Door bolt lights wire is cut.<br>\n"
 	else if(!lights)
-		t1 += "Door lights are off. <A href='byond:://?src=\ref[src];aiEnable=10'>Enable?</a><br>\n"
+		t1 += "Door lights are off. <A href='byond://?src=\ref[src];aiEnable=10'>Enable?</a><br>\n"
 	else
-		t1 += "Door lights are on. <A href='byond:://?src=\ref[src];aiDisable=10'>Disable?</a><br>\n"
+		t1 += "Door lights are on. <A href='byond://?src=\ref[src];aiDisable=10'>Disable?</a><br>\n"
 
 	if(isWireCut(AIRLOCK_WIRE_ELECTRIFY))
 		t1 += "Electrification wire is cut.<br>\n"
 	if(secondsElectrified == -1)
-		t1 += "Door is electrified indefinitely. <A href='byond:://?src=\ref[src];aiDisable=5'>Un-electrify it?</a><br>\n"
+		t1 += "Door is electrified indefinitely. <A href='byond://?src=\ref[src];aiDisable=5'>Un-electrify it?</a><br>\n"
 	else if(secondsElectrified > 0)
-		t1 += "Door is electrified temporarily ([secondsElectrified] seconds). <A href='byond:://?src=\ref[src];aiDisable=5'>Un-electrify it?</a><br>\n"
+		t1 += "Door is electrified temporarily ([secondsElectrified] seconds). <A href='byond://?src=\ref[src];aiDisable=5'>Un-electrify it?</a><br>\n"
 	else
-		t1 += "Door is not electrified. <A href='byond:://?src=\ref[src];aiEnable=5'>Electrify it for 30 seconds?</a> Or, <A href='byond:://?src=\ref[src];aiEnable=6'>Electrify it indefinitely until someone cancels the electrification?</a><br>\n"
+		t1 += "Door is not electrified. <A href='byond://?src=\ref[src];aiEnable=5'>Electrify it for 30 seconds?</a> Or, <A href='byond://?src=\ref[src];aiEnable=6'>Electrify it indefinitely until someone cancels the electrification?</a><br>\n"
 
 	if(isWireCut(AIRLOCK_WIRE_SAFETY))
 		t1 += "Door force sensors not responding.</a><br>\n"
 	else if(safe)
-		t1 += "Door safeties operating normally. <A href='byond:://?src=\ref[src];aiDisable=8'> Override?</a><br>\n"
+		t1 += "Door safeties operating normally. <A href='byond://?src=\ref[src];aiDisable=8'> Override?</a><br>\n"
 	else
-		t1 += "Danger. Door safeties disabled. <A href='byond:://?src=\ref[src];aiEnable=8'> Restore?</a><br>\n"
+		t1 += "Danger. Door safeties disabled. <A href='byond://?src=\ref[src];aiEnable=8'> Restore?</a><br>\n"
 
 	if(isWireCut(AIRLOCK_WIRE_SPEED))
 		t1 += "Door timing circuitry not responding.</a><br>\n"
 	else if(normalspeed)
-		t1 += "Door timing circuitry operating normally. <A href='byond:://?src=\ref[src];aiDisable=9'> Override?</a><br>\n"
+		t1 += "Door timing circuitry operating normally. <A href='byond://?src=\ref[src];aiDisable=9'> Override?</a><br>\n"
 	else
-		t1 += "Warning.  Door timing circuitry operating abnormally. <A href='byond:://?src=\ref[src];aiEnable=9'> Restore?</a><br>\n"
+		t1 += "Warning.  Door timing circuitry operating abnormally. <A href='byond://?src=\ref[src];aiEnable=9'> Restore?</a><br>\n"
 
 	if(welded)
 		t1 += "Door appears to have been welded shut.<br>\n"
 	else if(!locked)
 		if(density)
-			t1 += "<A href='byond:://?src=\ref[src];aiEnable=7'>Open door</a><br>\n"
+			t1 += "<A href='byond://?src=\ref[src];aiEnable=7'>Open door</a><br>\n"
 		else
-			t1 += "<A href='byond:://?src=\ref[src];aiDisable=7'>Close door</a><br>\n"
+			t1 += "<A href='byond://?src=\ref[src];aiDisable=7'>Close door</a><br>\n"
 
-	t1 += "<p><a href='byond:://?src=\ref[src];close=1'>Close</a></p>\n"
+	t1 += "<p><a href='byond://?src=\ref[src];close=1'>Close</a></p>\n"
 	user << browse(t1, "window=airlock")
 	onclose(user, "airlock")
 

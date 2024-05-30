@@ -176,16 +176,16 @@
 		else
 			attacher_name = "[attacher.name]([attacher.ckey])"
 
-		var/log_str = "Bomb valve opened in <A href='byond:://?_src_=holder;adminplayerobservecoodjump=1;X=[bombturf.x];Y=[bombturf.y];Z=[bombturf.z]'>[A.name]</a> "
+		var/log_str = "Bomb valve opened in <A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[bombturf.x];Y=[bombturf.y];Z=[bombturf.z]'>[A.name]</a> "
 		log_str += "with [attached_device ? attached_device : "no device"] attacher: [attacher_name]"
 
 		if(attacher)
-			log_str += "(<A href='byond:://?_src_=holder;adminmoreinfo=\ref[attacher]'>?</A>)"
+			log_str += "(<A href='byond://?_src_=holder;adminmoreinfo=\ref[attacher]'>?</A>)"
 
 		var/mob/mob = get_mob_by_key(src.last_fingerprints)
 		var/last_touch_info = ""
 		if(mob)
-			last_touch_info = "(<A href='byond:://?_src_=holder;adminmoreinfo=\ref[mob]'>?</A>)"
+			last_touch_info = "(<A href='byond://?_src_=holder;adminmoreinfo=\ref[mob]'>?</A>)"
 
 		log_str += " Last touched by: [src.last_fingerprints][last_touch_info]"
 		GLOBL.bombers += log_str

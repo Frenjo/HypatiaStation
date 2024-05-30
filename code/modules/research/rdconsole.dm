@@ -464,7 +464,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 		if(0.2)
 			dat += "SYSTEM LOCKED<BR><BR>"
-			dat += "<A href='byond:://?src=\ref[src];lock=1.6'>Unlock</A>"
+			dat += "<A href='byond://?src=\ref[src];lock=1.6'>Unlock</A>"
 
 		if(0.3)
 			dat += "Constructing Prototype. Please Wait..."
@@ -474,20 +474,20 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 		if(1.0) //Main Menu
 			dat += "Main Menu:<BR><BR>"
-			dat += "<A href='byond:://?src=\ref[src];menu=1.1'>Current Research Levels</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.1'>Current Research Levels</A><BR>"
 			if(t_disk)
-				dat += "<A href='byond:://?src=\ref[src];menu=1.2'>Disk Operations</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];menu=1.2'>Disk Operations</A><BR>"
 			else if(d_disk)
-				dat += "<A href='byond:://?src=\ref[src];menu=1.4'>Disk Operations</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];menu=1.4'>Disk Operations</A><BR>"
 			else
 				dat += "(Please Insert Disk)<BR>"
 			if(isnotnull(linked_destroy))
-				dat += "<A href='byond:://?src=\ref[src];menu=2.2'>Destructive Analyser Menu</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];menu=2.2'>Destructive Analyser Menu</A><BR>"
 			if(isnotnull(linked_lathe))
-				dat += "<A href='byond:://?src=\ref[src];menu=3.1'>Protolathe Construction Menu</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];menu=3.1'>Protolathe Construction Menu</A><BR>"
 			if(isnotnull(linked_imprinter))
-				dat += "<A href='byond:://?src=\ref[src];menu=4.1'>Circuit Construction Menu</A><BR>"
-			dat += "<A href='byond:://?src=\ref[src];menu=1.6'>Settings</A>"
+				dat += "<A href='byond://?src=\ref[src];menu=4.1'>Circuit Construction Menu</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.6'>Settings</A>"
 
 		if(1.1) //Research viewer
 			dat += "Current Research Levels:<BR><BR>"
@@ -497,38 +497,38 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				dat += "[T.name]<BR>"
 				dat +=  "* Level: [T.level]<BR>"
 				dat +=  "* Summary: [T.desc]<HR>"
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A>"
 
 		if(1.2) //Technology Disk Menu
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
 			dat += "Disk Contents: (Technology Data Disk)<BR><BR>"
 			if(isnull(t_disk.stored))
 				dat += "The disk has no data stored on it.<HR>"
 				dat += "Operations: "
-				dat += "<A href='byond:://?src=\ref[src];menu=1.3'>Load Tech to Disk</A> || "
+				dat += "<A href='byond://?src=\ref[src];menu=1.3'>Load Tech to Disk</A> || "
 			else
 				dat += "Name: [t_disk.stored.name]<BR>"
 				dat += "Level: [t_disk.stored.level]<BR>"
 				dat += "Description: [t_disk.stored.desc]<HR>"
 				dat += "Operations: "
-				dat += "<A href='byond:://?src=\ref[src];updt_tech=1'>Upload to Database</A> || "
-				dat += "<A href='byond:://?src=\ref[src];clear_tech=1'>Clear Disk</A> || "
-			dat += "<A href='byond:://?src=\ref[src];eject_tech=1'>Eject Disk</A>"
+				dat += "<A href='byond://?src=\ref[src];updt_tech=1'>Upload to Database</A> || "
+				dat += "<A href='byond://?src=\ref[src];clear_tech=1'>Clear Disk</A> || "
+			dat += "<A href='byond://?src=\ref[src];eject_tech=1'>Eject Disk</A>"
 
 		if(1.3) //Technology Disk submenu
-			dat += "<BR><A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A> || "
-			dat += "<A href='byond:://?src=\ref[src];menu=1.2'>Return to Disk Operations</A><HR>"
+			dat += "<BR><A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
+			dat += "<A href='byond://?src=\ref[src];menu=1.2'>Return to Disk Operations</A><HR>"
 			dat += "Load Technology to Disk:<BR><BR>"
 			for(var/datum/tech/T in files.known_tech)
 				dat += "[T.name] "
-				dat += "<A href='byond:://?src=\ref[src];copy_tech=1;copy_tech_ID=[T.type]'>(Copy to Disk)</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];copy_tech=1;copy_tech_ID=[T.type]'>(Copy to Disk)</A><BR>"
 
 		if(1.4) //Design Disk menu.
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
 			if(isnull(d_disk.blueprint))
 				dat += "The disk has no data stored on it.<HR>"
 				dat += "Operations: "
-				dat += "<A href='byond:://?src=\ref[src];menu=1.5'>Load Design to Disk</A> || "
+				dat += "<A href='byond://?src=\ref[src];menu=1.5'>Load Design to Disk</A> || "
 			else
 				dat += "Name: [d_disk.blueprint.name]<BR>"
 				dat += "Level: [between(0, (d_disk.blueprint.reliability + rand(-15, 15)), 100)]<BR>"
@@ -543,60 +543,60 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				for(var/M in d_disk.blueprint.materials)
 					dat += "* [M] x [d_disk.blueprint.materials[M]]<BR>"
 				dat += "<HR>Operations: "
-				dat += "<A href='byond:://?src=\ref[src];updt_design=1'>Upload to Database</A> || "
-				dat += "<A href='byond:://?src=\ref[src];clear_design=1'>Clear Disk</A> || "
-			dat += "<A href='byond:://?src=\ref[src];eject_design=1'>Eject Disk</A>"
+				dat += "<A href='byond://?src=\ref[src];updt_design=1'>Upload to Database</A> || "
+				dat += "<A href='byond://?src=\ref[src];clear_design=1'>Clear Disk</A> || "
+			dat += "<A href='byond://?src=\ref[src];eject_design=1'>Eject Disk</A>"
 
 		if(1.5) //Technology disk submenu
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A> || "
-			dat += "<A href='byond:://?src=\ref[src];menu=1.4'>Return to Disk Operations</A><HR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
+			dat += "<A href='byond://?src=\ref[src];menu=1.4'>Return to Disk Operations</A><HR>"
 			dat += "Load Design to Disk:<BR><BR>"
 			for(var/datum/design/D in files.known_designs)
 				dat += "[D.name] "
-				dat += "<A href='byond:://?src=\ref[src];copy_design=1;copy_design_ID=[D.type]'>(Copy to Disk)</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];copy_design=1;copy_design_ID=[D.type]'>(Copy to Disk)</A><BR>"
 
 		if(1.6) //R&D console settings
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
 			dat += "R&D Console Setting:<BR><BR>"
 			if(sync)
-				dat += "<A href='byond:://?src=\ref[src];sync=1'>Sync Database with Network</A><BR>"
-				dat += "<A href='byond:://?src=\ref[src];togglesync=1'>Disconnect from Research Network</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];sync=1'>Sync Database with Network</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];togglesync=1'>Disconnect from Research Network</A><BR>"
 			else
-				dat += "<A href='byond:://?src=\ref[src];togglesync=1'>Connect to Research Network</A><BR>"
-			dat += "<A href='byond:://?src=\ref[src];menu=1.7'>Device Linkage Menu</A><BR>"
-			dat += "<A href='byond:://?src=\ref[src];lock=0.2'>Lock Console</A><BR>"
-			dat += "<A href='byond:://?src=\ref[src];reset=1'>Reset R&D Database.</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];togglesync=1'>Connect to Research Network</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.7'>Device Linkage Menu</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];lock=0.2'>Lock Console</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];reset=1'>Reset R&D Database.</A><BR>"
 
 		if(1.7) //R&D device linkage
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A> || "
-			dat += "<A href='byond:://?src=\ref[src];menu=1.6'>Settings Menu</A><HR> "
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
+			dat += "<A href='byond://?src=\ref[src];menu=1.6'>Settings Menu</A><HR> "
 			dat += "R&D Console Device Linkage Menu:<BR><BR>"
-			dat += "<A href='byond:://?src=\ref[src];find_device=1'>Re-sync with Nearby Devices</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];find_device=1'>Re-sync with Nearby Devices</A><BR>"
 			dat += "Linked Devices:<BR>"
 			if(linked_destroy)
-				dat += "* Destructive Analyser <A href='byond:://?src=\ref[src];disconnect=destroy'>(Disconnect)</A><BR>"
+				dat += "* Destructive Analyser <A href='byond://?src=\ref[src];disconnect=destroy'>(Disconnect)</A><BR>"
 			else
 				dat += "* (No Destructive Analyser Linked)<BR>"
 			if(linked_lathe)
-				dat += "* Protolathe <A href='byond:://?src=\ref[src];disconnect=lathe'>(Disconnect)</A><BR>"
+				dat += "* Protolathe <A href='byond://?src=\ref[src];disconnect=lathe'>(Disconnect)</A><BR>"
 			else
 				dat += "* (No Protolathe Linked)<BR>"
 			if(linked_imprinter)
-				dat += "* Circuit Imprinter <A href='byond:://?src=\ref[src];disconnect=imprinter'>(Disconnect)</A><BR>"
+				dat += "* Circuit Imprinter <A href='byond://?src=\ref[src];disconnect=imprinter'>(Disconnect)</A><BR>"
 			else
 				dat += "* (No Circuit Imprinter Linked)<BR>"
 
 		////////////////////DESTRUCTIVE ANALYSER SCREENS////////////////////////////
 		if(2.0)
 			dat += "NO DESTRUCTIVE ANALYSER LINKED TO CONSOLE<BR><BR>"
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A>"
 
 		if(2.1)
 			dat += "No Item Loaded. Standing-by...<BR><HR>"
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A>"
 
 		if(2.2)
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
 			dat += "Deconstruction Menu<HR>"
 			dat += "Name: [linked_destroy.loaded_item.name]<BR>"
 			dat += "Origin Tech:<BR>"
@@ -604,18 +604,18 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			for(var/T in temp_tech)
 				var/datum/tech/tech = GLOBL.all_techs[T] // If this comes out as null, then someone has added something invalid to linked_destroy.loaded_item.origin_tech.
 				dat += "* [tech.name] [temp_tech[T]]<BR>"
-			dat += "<HR><A href='byond:://?src=\ref[src];deconstruct=1'>Deconstruct Item</A> || "
-			dat += "<A href='byond:://?src=\ref[src];eject_item=1'>Eject Item</A> || "
+			dat += "<HR><A href='byond://?src=\ref[src];deconstruct=1'>Deconstruct Item</A> || "
+			dat += "<A href='byond://?src=\ref[src];eject_item=1'>Eject Item</A> || "
 
 		/////////////////////PROTOLATHE SCREENS/////////////////////////
 		if(3.0)
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
 			dat += "NO PROTOLATHE LINKED TO CONSOLE<BR><BR>"
 
 		if(3.1)
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A> || "
-			dat += "<A href='byond:://?src=\ref[src];menu=3.2'>Material Storage</A> || "
-			dat += "<A href='byond:://?src=\ref[src];menu=3.3'>Chemical Storage</A><HR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
+			dat += "<A href='byond://?src=\ref[src];menu=3.2'>Material Storage</A> || "
+			dat += "<A href='byond://?src=\ref[src];menu=3.3'>Chemical Storage</A><HR>"
 			dat += "Protolathe Menu:<BR><BR>"
 			dat += "<B>Material Amount:</B> [linked_lathe.get_total_stored_materials()] cm<sup>3</sup> (MAX: [linked_lathe.max_storage_capacity])<BR>"
 			dat += "<B>Chemical Volume:</B> [linked_lathe.reagents.total_volume] (MAX: [linked_lathe.reagents.maximum_volume])<HR>"
@@ -635,112 +635,112 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					if(!check_materials && linked_lathe.reagents.has_reagent(M, D.materials[M]))
 						check_materials = TRUE
 				if(check_materials)
-					dat += "* <A href='byond:://?src=\ref[src];build=[D.type]'>[temp_dat]</A><BR>"
+					dat += "* <A href='byond://?src=\ref[src];build=[D.type]'>[temp_dat]</A><BR>"
 				else
 					dat += "* [temp_dat]<BR>"
 
 		if(3.2) //Protolathe Material Storage Sub-menu
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A> || "
-			dat += "<A href='byond:://?src=\ref[src];menu=3.1'>Protolathe Menu</A><HR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
+			dat += "<A href='byond://?src=\ref[src];menu=3.1'>Protolathe Menu</A><HR>"
 			dat += "Material Storage<BR><HR>"
 			// Metal
 			dat += "* [linked_lathe.stored_materials[MATERIAL_METAL]] cm<sup>3</sup> of Metal || "
 			dat += "Eject: "
 			if(linked_lathe.stored_materials[MATERIAL_METAL] >= 3750)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_METAL];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_METAL];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_METAL] >= 18750)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_METAL];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_METAL];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_METAL] >= 3750)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_METAL];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_METAL];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			// Glass
 			dat += "* [linked_lathe.stored_materials[MATERIAL_GLASS]] cm<sup>3</sup> of Glass || "
 			dat += "Eject: "
 			if(linked_lathe.stored_materials[MATERIAL_GLASS] >= 3750)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GLASS];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GLASS];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_GLASS] >= 18750)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GLASS];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GLASS];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_GLASS] >= 3750)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GLASS];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GLASS];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			// Gold
 			dat += "* [linked_lathe.stored_materials[MATERIAL_GOLD]] cm<sup>3</sup> of Gold || "
 			dat += "Eject: "
 			if(linked_lathe.stored_materials[MATERIAL_GOLD] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GOLD];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GOLD];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_GOLD] >= 10000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GOLD];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GOLD];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_GOLD] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GOLD];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GOLD];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			// Silver
 			dat += "* [linked_lathe.stored_materials[MATERIAL_SILVER]] cm<sup>3</sup> of Silver || "
 			dat += "Eject: "
 			if(linked_lathe.stored_materials[MATERIAL_SILVER] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_SILVER];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_SILVER];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_SILVER] >= 10000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_SILVER];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_SILVER];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_SILVER] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_SILVER];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_SILVER];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			// Diamond
 			dat += "* [linked_lathe.stored_materials[MATERIAL_DIAMOND]] cm<sup>3</sup> of Diamond || "
 			dat += "Eject: "
 			if(linked_lathe.stored_materials[MATERIAL_DIAMOND] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_DIAMOND];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_DIAMOND];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_DIAMOND] >= 10000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_DIAMOND];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_DIAMOND];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_DIAMOND] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_DIAMOND];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_DIAMOND];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			// Plasma
 			dat += "* [linked_lathe.stored_materials[MATERIAL_PLASMA]] cm<sup>3</sup> of Solid Plasma || "
 			dat += "Eject: "
 			if(linked_lathe.stored_materials[MATERIAL_PLASMA] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_PLASMA];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_PLASMA];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_PLASMA] >= 10000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_PLASMA];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_PLASMA];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_PLASMA] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_PLASMA];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_PLASMA];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			// Uranium
 			dat += "* [linked_lathe.stored_materials[MATERIAL_URANIUM]] cm<sup>3</sup> of Uranium || "
 			dat += "Eject: "
 			if(linked_lathe.stored_materials[MATERIAL_URANIUM] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_URANIUM];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_URANIUM];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_URANIUM] >= 10000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_URANIUM];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_URANIUM];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_URANIUM] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_URANIUM];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_URANIUM];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			// Bananium
 			dat += "* [linked_lathe.stored_materials[MATERIAL_BANANIUM]] cm<sup>3</sup> of Bananium || "
 			dat += "Eject: "
 			if(linked_lathe.stored_materials[MATERIAL_BANANIUM] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_BANANIUM];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_BANANIUM];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_BANANIUM] >= 10000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_BANANIUM];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_BANANIUM];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
 			if(linked_lathe.stored_materials[MATERIAL_BANANIUM] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];lathe_ejectsheet=[MATERIAL_BANANIUM];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_BANANIUM];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 
 		if(3.3) //Protolathe Chemical Storage Submenu
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A> || "
-			dat += "<A href='byond:://?src=\ref[src];menu=3.1'>Protolathe Menu</A><HR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
+			dat += "<A href='byond://?src=\ref[src];menu=3.1'>Protolathe Menu</A><HR>"
 			dat += "Chemical Storage<BR><HR>"
 			for(var/datum/reagent/R in linked_lathe.reagents.reagent_list)
 				dat += "Name: [R.name] | Units: [R.volume] "
-				dat += "<A href='byond:://?src=\ref[src];disposeP=[R.type]'>(Purge)</A><BR>"
-				dat += "<A href='byond:://?src=\ref[src];disposeallP=1'><U>Disposal All Chemicals in Storage</U></A><BR>"
+				dat += "<A href='byond://?src=\ref[src];disposeP=[R.type]'>(Purge)</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];disposeallP=1'><U>Disposal All Chemicals in Storage</U></A><BR>"
 
 		///////////////////CIRCUIT IMPRINTER SCREENS////////////////////
 		if(4.0)
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
 			dat += "NO CIRCUIT IMPRINTER LINKED TO CONSOLE<BR><BR>"
 
 		if(4.1)
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A> || "
-			dat += "<A href='byond:://?src=\ref[src];menu=4.3'>Material Storage</A> || "
-			dat += "<A href='byond:://?src=\ref[src];menu=4.2'>Chemical Storage</A><HR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
+			dat += "<A href='byond://?src=\ref[src];menu=4.3'>Material Storage</A> || "
+			dat += "<A href='byond://?src=\ref[src];menu=4.2'>Chemical Storage</A><HR>"
 			dat += "Circuit Imprinter Menu:<BR><BR>"
 			dat += "Material Amount: [linked_imprinter.get_total_stored_materials()] cm<sup>3</sup><BR>"
 			dat += "Chemical Volume: [linked_imprinter.reagents.total_volume]<HR>"
@@ -761,62 +761,62 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					if(!check_materials && linked_imprinter.reagents.has_reagent(M, D.materials[M]))
 						check_materials = TRUE
 				if(check_materials)
-					dat += "* <A href='byond:://?src=\ref[src];imprint=[D.type]'>[temp_dat]</A><BR>"
+					dat += "* <A href='byond://?src=\ref[src];imprint=[D.type]'>[temp_dat]</A><BR>"
 				else
 					dat += "* [temp_dat]<BR>"
 
 		if(4.2)
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A> || "
-			dat += "<A href='byond:://?src=\ref[src];menu=4.1'>Imprinter Menu</A><HR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
+			dat += "<A href='byond://?src=\ref[src];menu=4.1'>Imprinter Menu</A><HR>"
 			dat += "Chemical Storage<BR><HR>"
 			for(var/datum/reagent/R in linked_imprinter.reagents.reagent_list)
 				dat += "Name: [R.name] | Units: [R.volume] "
-				dat += "<A href='byond:://?src=\ref[src];disposeI=[R.type]'>(Purge)</A><BR>"
-				dat += "<A href='byond:://?src=\ref[src];disposeallI=1'><U>Disposal All Chemicals in Storage</U></A><BR>"
+				dat += "<A href='byond://?src=\ref[src];disposeI=[R.type]'>(Purge)</A><BR>"
+				dat += "<A href='byond://?src=\ref[src];disposeallI=1'><U>Disposal All Chemicals in Storage</U></A><BR>"
 
 		if(4.3)
-			dat += "<A href='byond:://?src=\ref[src];menu=1.0'>Main Menu</A> || "
-			dat += "<A href='byond:://?src=\ref[src];menu=4.1'>Circuit Imprinter Menu</A><HR>"
+			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
+			dat += "<A href='byond://?src=\ref[src];menu=4.1'>Circuit Imprinter Menu</A><HR>"
 			dat += "Material Storage<BR><HR>"
 			// Glass
 			dat += "* [linked_imprinter.stored_materials[MATERIAL_GLASS]] cm<sup>3</sup> of Glass || "
 			dat += "Eject: "
 			if(linked_imprinter.stored_materials[MATERIAL_GLASS] >= 3750)
-				dat += "<A href='byond:://?src=\ref[src];imprinter_ejectsheet=glass;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
+				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=glass;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
 			if(linked_imprinter.stored_materials[MATERIAL_GLASS] >= 18750)
-				dat += "<A href='byond:://?src=\ref[src];imprinter_ejectsheet=glass;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
+				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=glass;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
 			if(linked_imprinter.stored_materials[MATERIAL_GLASS] >= 3750)
-				dat += "<A href='byond:://?src=\ref[src];imprinter_ejectsheet=glass;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
+				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=glass;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			// Gold
 			dat += "* [linked_imprinter.stored_materials[MATERIAL_GOLD]] cm<sup>3</sup> of Gold || "
 			dat += "Eject: "
 			if(linked_imprinter.stored_materials[MATERIAL_GOLD] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];imprinter_ejectsheet=gold;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
+				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=gold;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
 			if(linked_imprinter.stored_materials[MATERIAL_GOLD] >= 10000)
-				dat += "<A href='byond:://?src=\ref[src];imprinter_ejectsheet=gold;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
+				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=gold;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
 			if(linked_imprinter.stored_materials[MATERIAL_GOLD] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];imprinter_ejectsheet=gold;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
+				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=gold;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			// Diamond
 			dat += "* [linked_imprinter.stored_materials[MATERIAL_DIAMOND]] cm<sup>3</sup> of Diamond || "
 			dat += "Eject: "
 			if(linked_imprinter.stored_materials[MATERIAL_DIAMOND] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];imprinter_ejectsheet=diamond;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
+				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=diamond;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
 			if(linked_imprinter.stored_materials[MATERIAL_DIAMOND] >= 10000)
-				dat += "<A href='byond:://?src=\ref[src];imprinter_ejectsheet=diamond;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
+				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=diamond;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
 			if(linked_imprinter.stored_materials[MATERIAL_DIAMOND] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];imprinter_ejectsheet=diamond;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
+				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=diamond;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
 			dat += "<BR>"
 			// Uranium
 			dat += "* [linked_imprinter.stored_materials[MATERIAL_URANIUM]] cm<sup>3</sup> of Uranium || "
 			dat += "Eject: "
 			if(linked_imprinter.stored_materials[MATERIAL_URANIUM] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
+				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
 			if(linked_imprinter.stored_materials[MATERIAL_URANIUM] >= 10000)
-				dat += "<A href='byond:://?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
+				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
 			if(linked_imprinter.stored_materials[MATERIAL_URANIUM] >= 2000)
-				dat += "<A href='byond:://?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
+				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
 
 	user << browse("<TITLE>Research and Development Console</TITLE><HR>[dat]", "window=rdconsole;size=575x400")
 	onclose(user, "rdconsole")

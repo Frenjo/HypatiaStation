@@ -178,8 +178,8 @@
 		else
 			dat = {"<b>Ingredients:</b><br>[dat]"}
 		dat += {"<HR><BR>\
-<A href='byond:://?src=\ref[src];action=cook'>Turn on!<BR>\
-<A href='byond:://?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
+<A href='byond://?src=\ref[src];action=cook'>Turn on!<BR>\
+<A href='byond://?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
 "}
 
 	user << browse("<HEAD><TITLE>Microwave Controls</TITLE></HEAD><TT>[dat]</TT>", "window=microwave")

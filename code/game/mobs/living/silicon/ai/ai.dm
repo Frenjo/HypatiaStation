@@ -287,7 +287,7 @@
 
 	var/cameratext = ""
 	for(var/obj/machinery/camera/C in cameralist)
-		cameratext += "[(cameratext == "")? "" : "|"]<A href=byond:://?src=\ref[src];switchcamera=\ref[C]>[C.c_tag]</A>"
+		cameratext += "[(cameratext == "")? "" : "|"]<A href=byond://?src=\ref[src];switchcamera=\ref[C]>[C.c_tag]</A>"
 	queueAlarm("--- [class] alarm detected in [A.name]! ([(cameratext)? cameratext : "No Camera"])", class)
 
 	if(viewalerts)

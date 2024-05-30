@@ -85,15 +85,15 @@
 	user.set_machine(src)
 	var/html
 	if(isnotnull(mybag))
-		html += "<a href='byond:://?src=\ref[src];garbage=1'>[mybag.name]</a><br>"
+		html += "<a href='byond://?src=\ref[src];garbage=1'>[mybag.name]</a><br>"
 	if(isnotnull(mymop))
-		html += "<a href='byond:://?src=\ref[src];mop=1'>[mymop.name]</a><br>"
+		html += "<a href='byond://?src=\ref[src];mop=1'>[mymop.name]</a><br>"
 	if(isnotnull(myspray))
-		html += "<a href='byond:://?src=\ref[src];spray=1'>[myspray.name]</a><br>"
+		html += "<a href='byond://?src=\ref[src];spray=1'>[myspray.name]</a><br>"
 	if(isnotnull(myreplacer))
-		html += "<a href='byond:://?src=\ref[src];replacer=1'>[myreplacer.name]</a><br>"
+		html += "<a href='byond://?src=\ref[src];replacer=1'>[myreplacer.name]</a><br>"
 	if(signs)
-		html += "<a href='byond:://?src=\ref[src];sign=1'>[signs] sign\s</a><br>"
+		html += "<a href='byond://?src=\ref[src];sign=1'>[signs] sign\s</a><br>"
 
 	var/datum/browser/popup = new /datum/browser(user, "janicart", name, 240, 160)
 	popup.set_content(html)

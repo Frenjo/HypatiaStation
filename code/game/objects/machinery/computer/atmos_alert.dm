@@ -69,13 +69,13 @@
 
 	if(length(priority_alarms))
 		for(var/zone in priority_alarms)
-			priority_text += "<FONT color='red'><B>[zone]</B></FONT>  <A href='byond:://?src=\ref[src];priority_clear=[ckey(zone)]'>X</A><BR>"
+			priority_text += "<FONT color='red'><B>[zone]</B></FONT>  <A href='byond://?src=\ref[src];priority_clear=[ckey(zone)]'>X</A><BR>"
 	else
 		priority_text = "No priority alerts detected.<BR>"
 
 	if(length(minor_alarms))
 		for(var/zone in minor_alarms)
-			minor_text += "<B>[zone]</B>  <A href='byond:://?src=\ref[src];minor_clear=[ckey(zone)]'>X</A><BR>"
+			minor_text += "<B>[zone]</B>  <A href='byond://?src=\ref[src];minor_clear=[ckey(zone)]'>X</A><BR>"
 	else
 		minor_text = "No minor alerts detected.<BR>"
 

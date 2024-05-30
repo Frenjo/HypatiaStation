@@ -47,7 +47,7 @@
 		var/dat
 		dat += "[name] Wires:<BR>"
 		for(var/wire in wires)
-			dat += "[wire] Wire: <A href='byond:://?src=\ref[src];wire=[wire];cut=1'>[wires[wire] ? "Mend" : "Cut"]</A> <A href='byond:://?src=\ref[src];wire=[wire];pulse=1'>Pulse</A><BR>"
+			dat += "[wire] Wire: <A href='byond://?src=\ref[src];wire=[wire];cut=1'>[wires[wire] ? "Mend" : "Cut"]</A> <A href='byond://?src=\ref[src];wire=[wire];pulse=1'>Pulse</A><BR>"
 		dat += "The red light is [disabled ? "off" : "on"].<BR>"
 		dat += "The green light is [shocked ? "off" : "on"].<BR>"
 		dat += "The blue light is [hacked ? "off" : "on"].<BR>"

@@ -107,16 +107,16 @@
 
 	dat += {"
 <TT><B>Automatic Security Unit v1.3</B></TT><BR><BR>
-Status: ["<A href='byond:://?src=\ref[src];power=1'>[on ? "On" : "Off"]</A>"]<BR>
+Status: ["<A href='byond://?src=\ref[src];power=1'>[on ? "On" : "Off"]</A>"]<BR>
 Behaviour controls are [locked ? "locked" : "unlocked"]<BR>
 Maintenance panel panel is [open ? "opened" : "closed"]"}
 
 	if(!locked || issilicon(user))
 		dat += {"<BR>
-Check for Weapon Authorisation: ["<A href='byond:://?src=\ref[src];operation=idcheck'>[idcheck ? "Yes" : "No"]</A>"]<BR>
-Check Security Records: ["<A href='byond:://?src=\ref[src];operation=ignorerec'>[check_records ? "Yes" : "No"]</A>"]<BR>
-Operating Mode: ["<A href='byond:://?src=\ref[src];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A>"]<BR>
-Auto Patrol: ["<A href='byond:://?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>"]"}
+Check for Weapon Authorisation: ["<A href='byond://?src=\ref[src];operation=idcheck'>[idcheck ? "Yes" : "No"]</A>"]<BR>
+Check Security Records: ["<A href='byond://?src=\ref[src];operation=ignorerec'>[check_records ? "Yes" : "No"]</A>"]<BR>
+Operating Mode: ["<A href='byond://?src=\ref[src];operation=switchmode'>[arrest_type ? "Detain" : "Arrest"]</A>"]<BR>
+Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? "On" : "Off"]</A>"]"}
 
 	user << browse("<HEAD><TITLE>Securitron v1.3 controls</TITLE></HEAD>[dat]", "window=autosec")
 	onclose(user, "autosec")

@@ -434,8 +434,8 @@
 	if(src.locked && (!issilicon(user)))
 		t += "<I>(Swipe ID card to unlock control panel.)</I><BR>"
 	else
-		t += text("Turrets [] - <A href='byond:://?src=\ref[];toggleOn=1'>[]?</a><br>\n", src.enabled?"activated":"deactivated", src, src.enabled?"Disable":"Enable")
-		t += text("Currently set for [] - <A href='byond:://?src=\ref[];toggleLethal=1'>Change to []?</a><br>\n", src.lethal?"lethal":"stun repeatedly", src,  src.lethal?"Stun repeatedly":"Lethal")
+		t += text("Turrets [] - <A href='byond://?src=\ref[];toggleOn=1'>[]?</a><br>\n", src.enabled?"activated":"deactivated", src, src.enabled?"Disable":"Enable")
+		t += text("Currently set for [] - <A href='byond://?src=\ref[];toggleLethal=1'>Change to []?</a><br>\n", src.lethal?"lethal":"stun repeatedly", src,  src.lethal?"Stun repeatedly":"Lethal")
 
 	user << browse(t, "window=turretid")
 	onclose(user, "turretid")
@@ -539,11 +539,11 @@
 	var/dat = {"<html>
 					<head><title>[src] Control</title></head>
 					<body>
-					<b>Power: </b><a href='byond:://?src=\ref[src];power=1'>[on?"on":"off"]</a><br>
-					<b>Scan Range: </b><a href='byond:://?src=\ref[src];scan_range=-1'>-</a> [scan_range] <a href='byond:://?src=\ref[src];scan_range=1'>+</a><br>
+					<b>Power: </b><a href='byond://?src=\ref[src];power=1'>[on?"on":"off"]</a><br>
+					<b>Scan Range: </b><a href='byond://?src=\ref[src];scan_range=-1'>-</a> [scan_range] <a href='byond://?src=\ref[src];scan_range=1'>+</a><br>
 					<b>Scan for: </b>"}
 	for(var/scan in scan_for)
-		dat += "<div style=\"margin-left: 15px;\">[scan] (<a href='byond:://?src=\ref[src];scan_for=[scan]'>[scan_for[scan]?"Yes":"No"]</a>)</div>"
+		dat += "<div style=\"margin-left: 15px;\">[scan] (<a href='byond://?src=\ref[src];scan_for=[scan]'>[scan_for[scan]?"Yes":"No"]</a>)</div>"
 
 	dat += {"<b>Ammo: </b>[max(0, projectiles)]<br>
 				</body>

@@ -90,7 +90,7 @@ proc/move_research_shuttle()
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
 
 	src.add_fingerprint(usr)
-	var/dat = "<center>Research Shuttle: <b><A href='byond:://?src=\ref[src];move=1'>Send</A></b></center><br>"
+	var/dat = "<center>Research Shuttle: <b><A href='byond://?src=\ref[src];move=1'>Send</A></b></center><br>"
 
 	user << browse("[dat]", "window=researchshuttle;size=200x100")
 

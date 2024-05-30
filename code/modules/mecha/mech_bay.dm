@@ -185,8 +185,8 @@
 	output += {"<hr>
 					<b>Settings:</b>
 					<div style='margin-left: 15px;'>
-					<b>Start sequence on succesful init: </b><a href='byond:://?src=\ref[src];autostart=1'>[autostart?"On":"Off"]</a><br>
-					<b>Recharge Port Voltage: </b><a href='byond:://?src=\ref[src];voltage=30'>Low</a> - <a href='byond:://?src=\ref[src];voltage=45'>Medium</a> - <a href='byond:://?src=\ref[src];voltage=60'>High</a><br>
+					<b>Start sequence on succesful init: </b><a href='byond://?src=\ref[src];autostart=1'>[autostart?"On":"Off"]</a><br>
+					<b>Recharge Port Voltage: </b><a href='byond://?src=\ref[src];voltage=30'>Low</a> - <a href='byond://?src=\ref[src];voltage=45'>Medium</a> - <a href='byond://?src=\ref[src];voltage=60'>High</a><br>
 					</div>"}
 	*/
 

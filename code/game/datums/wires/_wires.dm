@@ -87,9 +87,9 @@ GLOBAL_GLOBL_LIST_INIT(wire_colours, list("red", "blue", "green", "white", "oran
 		html += "<tr>"
 		html += "<td[row_options1]><font color='[colour]'>[capitalize(colour)]</font></td>"
 		html += "<td[row_options2]>"
-		html += "<A href='byond:://?src=\ref[src];action=1;cut=[colour]'>[IsColourCut(colour) ? "Mend" : "Cut"]</A>"
-		html += " <A href='byond:://?src=\ref[src];action=1;pulse=[colour]'>Pulse</A>"
-		html += " <A href='byond:://?src=\ref[src];action=1;attach=[colour]'>[IsAttached(colour) ? "Detach" : "Attach"] Signaller</A></td></tr>"
+		html += "<A href='byond://?src=\ref[src];action=1;cut=[colour]'>[IsColourCut(colour) ? "Mend" : "Cut"]</A>"
+		html += " <A href='byond://?src=\ref[src];action=1;pulse=[colour]'>Pulse</A>"
+		html += " <A href='byond://?src=\ref[src];action=1;attach=[colour]'>[IsAttached(colour) ? "Detach" : "Attach"] Signaller</A></td></tr>"
 	html += "</table>"
 	html += "</div>"
 

@@ -28,15 +28,15 @@
 		return
 	user.machine = src
 	if(ishuman(user) || isAI(user))
-		var/dat = text("<I>Please Insert the cards into the slots</I><BR>\n\t\t\t\tFunction Disk: <A href='byond:://?src=\ref[];scan=1'>[]</A><BR>\n\t\t\t\tTarget Disk: <A href='byond:://?src=\ref[];modify=1'>[]</A><BR>\n\t\t\t\tAux. Data Disk: <A href='byond:://?src=\ref[];modify2=1'>[]</A><BR>\n\t\t\t\t\t(Not always used!)<BR>\n\t\t\t\t[]", src, (src.scan ? text("[]", src.scan.name) : "----------"), src, (src.modify ? text("[]", src.modify.name) : "----------"), src, (src.modify2 ? text("[]", src.modify2.name) : "----------"), (src.scan ? text("<A href='byond:://?src=\ref[];execute=1'>Execute Function</A>", src) : "No function disk inserted!"))
+		var/dat = text("<I>Please Insert the cards into the slots</I><BR>\n\t\t\t\tFunction Disk: <A href='byond://?src=\ref[];scan=1'>[]</A><BR>\n\t\t\t\tTarget Disk: <A href='byond://?src=\ref[];modify=1'>[]</A><BR>\n\t\t\t\tAux. Data Disk: <A href='byond://?src=\ref[];modify2=1'>[]</A><BR>\n\t\t\t\t\t(Not always used!)<BR>\n\t\t\t\t[]", src, (src.scan ? text("[]", src.scan.name) : "----------"), src, (src.modify ? text("[]", src.modify.name) : "----------"), src, (src.modify2 ? text("[]", src.modify2.name) : "----------"), (src.scan ? text("<A href='byond://?src=\ref[];execute=1'>Execute Function</A>", src) : "No function disk inserted!"))
 		if (src.temp)
-			dat = text("[]<BR><BR><A href='byond:://?src=\ref[];clear=1'>Clear Message</A>", src.temp, src)
+			dat = text("[]<BR><BR><A href='byond://?src=\ref[];clear=1'>Clear Message</A>", src.temp, src)
 		user << browse(dat, "window=dna_comp")
 		onclose(user, "dna_comp")
 	else
-		var/dat = text("<I>[]</I><BR>\n\t\t\t\t[] <A href='byond:://?src=\ref[];scan=1'>[]</A><BR>\n\t\t\t\t[] <A href='byond:://?src=\ref[];modify=1'>[]</A><BR>\n\t\t\t\t[] <A href='byond:://?src=\ref[];modify2=1'>[]</A><BR>\n\t\t\t\t\t(Not always used!)<BR>\n\t\t\t\t[]", stars("Please Insert the cards into the slots"), stars("Function Disk:"), src, (src.scan ? text("[]", src.scan.name) : "----------"), stars("Target Disk:"), src, (src.modify ? text("[]", src.modify.name) : "----------"), stars("Aux. Data Disk:"), src, (src.modify2 ? text("[]", src.modify2.name) : "----------"), (src.scan ? text("<A href='byond:://?src=\ref[];execute=1'>[]</A>", src, stars("Execute Function")) : stars("No function disk inserted!")))
+		var/dat = text("<I>[]</I><BR>\n\t\t\t\t[] <A href='byond://?src=\ref[];scan=1'>[]</A><BR>\n\t\t\t\t[] <A href='byond://?src=\ref[];modify=1'>[]</A><BR>\n\t\t\t\t[] <A href='byond://?src=\ref[];modify2=1'>[]</A><BR>\n\t\t\t\t\t(Not always used!)<BR>\n\t\t\t\t[]", stars("Please Insert the cards into the slots"), stars("Function Disk:"), src, (src.scan ? text("[]", src.scan.name) : "----------"), stars("Target Disk:"), src, (src.modify ? text("[]", src.modify.name) : "----------"), stars("Aux. Data Disk:"), src, (src.modify2 ? text("[]", src.modify2.name) : "----------"), (src.scan ? text("<A href='byond://?src=\ref[];execute=1'>[]</A>", src, stars("Execute Function")) : stars("No function disk inserted!")))
 		if (src.temp)
-			dat = text("[]<BR><BR><A href='byond:://?src=\ref[];clear=1'>[]", stars(src.temp), src, stars("Clear Message</A>"))
+			dat = text("[]<BR><BR><A href='byond://?src=\ref[];clear=1'>[]", stars(src.temp), src, stars("Clear Message</A>"))
 		user << browse(dat, "window=dna_comp")
 		onclose(user, "dna_comp")
 	return
@@ -486,28 +486,28 @@
 							src.status = null
 						else
 							t = copytext(t, 1, length(t))
-							src.temp = text("Trunicating []'s DNA sequence...<BR>[]<BR>Status: [] units left.<BR><BR><A href='byond:://?src=\ref[];abort=1'>Emergency Abort</A>", M.name, t, src.prog_p4, src)
+							src.temp = text("Trunicating []'s DNA sequence...<BR>[]<BR>Status: [] units left.<BR><BR><A href='byond://?src=\ref[];abort=1'>Emergency Abort</A>", M.name, t, src.prog_p4, src)
 					if("b")
 						if (src.prog_p4 <= 0)
 							src.temp = "Trunication complete"
 							src.status = null
 						else
 							t = copytext(t, 2, length(t) + 1)
-							src.temp = text("Trunicating []'s DNA sequence...<BR>[]<BR>Status: [] units left.<BR><BR><A href='byond:://?src=\ref[];abort=1'>Emergency Abort</A>", M.name, t, src.prog_p4, src)
+							src.temp = text("Trunicating []'s DNA sequence...<BR>[]<BR>Status: [] units left.<BR><BR><A href='byond://?src=\ref[];abort=1'>Emergency Abort</A>", M.name, t, src.prog_p4, src)
 					if("c")
 						if (length(t) <= src.prog_p2)
 							src.temp = "Limitation complete"
 							src.status = null
 						else
 							t = copytext(t, 1, length(t))
-							src.temp = text("Limiting []'s DNA sequence...<BR>[]<BR>Status: [] units converting to [] units.<BR><BR><A href='byond:://?src=\ref[];abort=1'>Emergency Abort</A>", M.name, t, length(t), src.prog_p2, src)
+							src.temp = text("Limiting []'s DNA sequence...<BR>[]<BR>Status: [] units converting to [] units.<BR><BR><A href='byond://?src=\ref[];abort=1'>Emergency Abort</A>", M.name, t, length(t), src.prog_p2, src)
 					else
 						if (length(t) <= src.prog_p2)
 							src.temp = "Limitation complete"
 							src.status = null
 						else
 							t = copytext(t, 2, length(t) + 1)
-							src.temp = text("Limiting []'s DNA sequence...<BR>[]<BR>Status: [] units converting to [] units.<BR><BR><A href='byond:://?src=\ref[];abort=1'>Emergency Abort</A>", M.name, t, length(t), src.prog_p2, src)
+							src.temp = text("Limiting []'s DNA sequence...<BR>[]<BR>Status: [] units converting to [] units.<BR><BR><A href='byond://?src=\ref[];abort=1'>Emergency Abort</A>", M.name, t, length(t), src.prog_p2, src)
 				switch(src.prog_p3)
 					if("UI")
 						M.primary.uni_identity = t
@@ -544,7 +544,7 @@
 						src.status = null
 					else
 						t = text("[][][]", copytext(t, 1, src.prog_p4), copytext(src.prog_p2, src.prog_p4, src.prog_p4 + 1), (src.prog_p4 < length(t) ? copytext(t, src.prog_p4 + 1, length(t) + 1) : null))
-						src.temp = text("Replacing []'s DNA sequence...<BR>[]<BR>Target: []<BR>Status: At position []<BR><BR><A href='byond:://?src=\ref[];abort=1'>Emergency Abort</A>", M.name, t, src.prog_p2, src.prog_p4, src)
+						src.temp = text("Replacing []'s DNA sequence...<BR>[]<BR>Target: []<BR>Status: At position []<BR><BR><A href='byond://?src=\ref[];abort=1'>Emergency Abort</A>", M.name, t, src.prog_p2, src.prog_p4, src)
 					switch(src.prog_p1)
 						if("UI")
 							M.primary.uni_identity = t
@@ -581,7 +581,7 @@
 							src.status = null
 						else
 							t = text("[][]", t, copytext(src.prog_p2, src.prog_p4, src.prog_p4 + 1))
-							src.temp = text("Adding to []'s DNA sequence...<BR>[]<BR>Adding: []<BR>Position: []<BR><BR><A href='byond:://?src=\ref[];abort=1'>Emergency Abort</A>", M.name, t, src.prog_p2, src.prog_p4, src)
+							src.temp = text("Adding to []'s DNA sequence...<BR>[]<BR>Adding: []<BR>Position: []<BR><BR><A href='byond://?src=\ref[];abort=1'>Emergency Abort</A>", M.name, t, src.prog_p2, src.prog_p4, src)
 						switch(src.prog_p1)
 							if("UI")
 								M.primary.uni_identity = t
@@ -612,7 +612,7 @@
 		return
 	var/dat
 	if (src.temp)
-		dat = text("[]<BR><BR><A href='byond:://?src=\ref[];clear=1'>Clear Message</A>", src.temp, src)
+		dat = text("[]<BR><BR><A href='byond://?src=\ref[];clear=1'>Clear Message</A>", src.temp, src)
 	else
 		if (src.connected)
 			var/mob/occupant = src.connected.occupant
@@ -630,14 +630,14 @@
 			else
 				dat += "The scanner is empty.<BR>"
 			if (!( src.connected.locked ))
-				dat += text("<A href='byond:://?src=\ref[];locked=1'>Lock (Unlocked)</A><BR>", src)
+				dat += text("<A href='byond://?src=\ref[];locked=1'>Lock (Unlocked)</A><BR>", src)
 			else
-				dat += text("<A href='byond:://?src=\ref[];locked=1'>Unlock (Locked)</A><BR>", src)
-			dat += text("Disk: <A href='byond:://?src=\ref[];scan=1'>[]</A><BR>\n[]<BR>\n[]<BR>", src,
+				dat += text("<A href='byond://?src=\ref[];locked=1'>Unlock (Locked)</A><BR>", src)
+			dat += text("Disk: <A href='byond://?src=\ref[];scan=1'>[]</A><BR>\n[]<BR>\n[]<BR>", src,
 			 	(src.scan ? text("[]", src.scan.name) : "----------"),
-			 	(src.scan ? text("<A href='byond:://?src=\ref[];u_dat=1'>Upload Data</A>", src) : "No disk to upload"),
-			 	((src.data || src.func || src.special) ? text("<A href='byond:://?src=\ref[];c_dat=1'>Clear Data</A><BR><A href='byond:://?src=\ref[];e_dat=1'>Execute Data</A><BR>Function Type: [][]<BR>Data: []", src, src, src.func, (src.special ? text("-[]", src.special) : null), src.data) : "No data uploaded"))
-			dat += text("<BR><BR><A href='byond:://?src=\ref[];mach_close=scanner'>Close</A>", user)
+			 	(src.scan ? text("<A href='byond://?src=\ref[];u_dat=1'>Upload Data</A>", src) : "No disk to upload"),
+			 	((src.data || src.func || src.special) ? text("<A href='byond://?src=\ref[];c_dat=1'>Clear Data</A><BR><A href='byond://?src=\ref[];e_dat=1'>Execute Data</A><BR>Function Type: [][]<BR>Data: []", src, src, src.func, (src.special ? text("-[]", src.special) : null), src.data) : "No data uploaded"))
+			dat += text("<BR><BR><A href='byond://?src=\ref[];mach_close=scanner'>Close</A>", user)
 	user << browse(dat, "window=scanner;size=400x500")
 	onclose(user, "scanner")
 	return

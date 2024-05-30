@@ -263,27 +263,27 @@
 
 	if(song)
 		if(length(song.lines) && !(playing))
-			dat += "<A href='byond:://?src=\ref[src];play=1'>Play Song</A><BR><BR>"
-			dat += "<A href='byond:://?src=\ref[src];repeat=1'>Repeat Song: [repeat] times.</A><BR><BR>"
+			dat += "<A href='byond://?src=\ref[src];play=1'>Play Song</A><BR><BR>"
+			dat += "<A href='byond://?src=\ref[src];repeat=1'>Repeat Song: [repeat] times.</A><BR><BR>"
 		if(playing)
-			dat += "<A href='byond:://?src=\ref[src];stop=1'>Stop Playing</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];stop=1'>Stop Playing</A><BR>"
 			dat += "Repeats left: [repeat].<BR><BR>"
 	if(!edit)
-		dat += "<A href='byond:://?src=\ref[src];edit=2'>Show Editor</A><BR><BR>"
+		dat += "<A href='byond://?src=\ref[src];edit=2'>Show Editor</A><BR><BR>"
 	else
-		dat += "<A href='byond:://?src=\ref[src];edit=1'>Hide Editor</A><BR>"
-		dat += "<A href='byond:://?src=\ref[src];newsong=1'>Start a New Song</A><BR>"
-		dat += "<A href='byond:://?src=\ref[src];import=1'>Import a Song</A><BR><BR>"
+		dat += "<A href='byond://?src=\ref[src];edit=1'>Hide Editor</A><BR>"
+		dat += "<A href='byond://?src=\ref[src];newsong=1'>Start a New Song</A><BR>"
+		dat += "<A href='byond://?src=\ref[src];import=1'>Import a Song</A><BR><BR>"
 		if(song)
 			var/calctempo = (10/song.tempo)*60
-			dat += "Tempo : <A href='byond:://?src=\ref[src];tempo=10'>-</A><A href='byond:://?src=\ref[src];tempo=1'>-</A> [calctempo] BPM <A href='byond:://?src=\ref[src];tempo=-1'>+</A><A href='byond:://?src=\ref[src];tempo=-10'>+</A><BR><BR>"
+			dat += "Tempo : <A href='byond://?src=\ref[src];tempo=10'>-</A><A href='byond://?src=\ref[src];tempo=1'>-</A> [calctempo] BPM <A href='byond://?src=\ref[src];tempo=-1'>+</A><A href='byond://?src=\ref[src];tempo=-10'>+</A><BR><BR>"
 			var/linecount = 0
 			for(var/line in song.lines)
 				linecount += 1
-				dat += "Line [linecount]: [line] <A href='byond:://?src=\ref[src];deleteline=[linecount]'>Delete Line</A> <A href='byond:://?src=\ref[src];modifyline=[linecount]'>Modify Line</A><BR>"
-			dat += "<A href='byond:://?src=\ref[src];newline=1'>Add Line</A><BR><BR>"
+				dat += "Line [linecount]: [line] <A href='byond://?src=\ref[src];deleteline=[linecount]'>Delete Line</A> <A href='byond://?src=\ref[src];modifyline=[linecount]'>Modify Line</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];newline=1'>Add Line</A><BR><BR>"
 		if(help)
-			dat += "<A href='byond:://?src=\ref[src];help=1'>Hide Help</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];help=1'>Hide Help</A><BR>"
 			dat += {"
 					Lines are a series of chords, separated by commas (,), each with notes seperated by hyphens (-).<br>
 					Every note in a chord will play together, with chord timed by the tempo.<br>
@@ -302,7 +302,7 @@
 					A song may only contain up to 50 lines.<br>
 					"}
 		else
-			dat += "<A href='byond:://?src=\ref[src];help=2'>Show Help</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];help=2'>Show Help</A><BR>"
 	dat += "</BODY></HTML>"
 	user << browse(dat, "window=piano;size=700x300")
 	onclose(user, "piano")

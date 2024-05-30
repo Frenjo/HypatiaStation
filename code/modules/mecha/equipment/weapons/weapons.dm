@@ -178,7 +178,7 @@
 	var/projectile_energy_cost
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/get_equip_info()
-		return "[..()]\[[src.projectiles]\][(src.projectiles < initial(src.projectiles))?" - <a href='byond:://?src=\ref[src];rearm=1'>Rearm</a>":null]"
+		return "[..()]\[[src.projectiles]\][(src.projectiles < initial(src.projectiles))?" - <a href='byond://?src=\ref[src];rearm=1'>Rearm</a>":null]"
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/proc/rearm()
 	if(projectiles < initial(projectiles))
@@ -279,7 +279,7 @@
 	construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_GOLD = 6000, MATERIAL_URANIUM = 6000)
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited/get_equip_info()//Limited version of the clusterbang launcher that can't reload
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[chassis.selected == src ? "<b>" : "<a href='byond:://?src=\ref[chassis];select_equip=\ref[src]'>"][src.name][chassis.selected == src ? "</b>" : "</a>"]\[[src.projectiles]\]"
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[chassis.selected == src ? "<b>" : "<a href='byond://?src=\ref[chassis];select_equip=\ref[src]'>"][src.name][chassis.selected == src ? "</b>" : "</a>"]\[[src.projectiles]\]"
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited/rearm()
 	return//Extra bit of security

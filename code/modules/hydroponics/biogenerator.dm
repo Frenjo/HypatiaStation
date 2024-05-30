@@ -86,34 +86,34 @@
 		switch(menustat)
 			if("menu")
 				if(beaker)
-					dat += "<A href='byond:://?src=\ref[src];action=activate'>Activate Biogenerator!</A><BR>"
-					dat += "<A href='byond:://?src=\ref[src];action=detach'>Detach Container</A><BR><BR>"
+					dat += "<A href='byond://?src=\ref[src];action=activate'>Activate Biogenerator!</A><BR>"
+					dat += "<A href='byond://?src=\ref[src];action=detach'>Detach Container</A><BR><BR>"
 					dat += "Food<BR>"
-					dat += "<A href='byond:://?src=\ref[src];action=create;item=milk;cost=20'>10 milk</A> <FONT COLOR=blue>(20)</FONT><BR>"
-					dat += "<A href='byond:://?src=\ref[src];action=create;item=meat;cost=50'>Slab of meat</A> <FONT COLOR=blue>(50)</FONT><BR>"
+					dat += "<A href='byond://?src=\ref[src];action=create;item=milk;cost=20'>10 milk</A> <FONT COLOR=blue>(20)</FONT><BR>"
+					dat += "<A href='byond://?src=\ref[src];action=create;item=meat;cost=50'>Slab of meat</A> <FONT COLOR=blue>(50)</FONT><BR>"
 					dat += "Nutrient<BR>"
-					dat += "<A href='byond:://?src=\ref[src];action=create;item=ez;cost=10'>E-Z-Nutrient</A> <FONT COLOR=blue>(10)</FONT> | <A href='byond:://?src=\ref[src];action=create;item=ez5;cost=50'>x5</A><BR>"
-					dat += "<A href='byond:://?src=\ref[src];action=create;item=l4z;cost=20'>Left 4 Zed</A> <FONT COLOR=blue>(20)</FONT> | <A href='byond:://?src=\ref[src];action=create;item=l4z5;cost=100'>x5</A><BR>"
-					dat += "<A href='byond:://?src=\ref[src];action=create;item=rh;cost=25'>Robust Harvest</A> <FONT COLOR=blue>(25)</FONT> | <A href='byond:://?src=\ref[src];action=create;item=rh5;cost=125'>x5</A><BR>"
+					dat += "<A href='byond://?src=\ref[src];action=create;item=ez;cost=10'>E-Z-Nutrient</A> <FONT COLOR=blue>(10)</FONT> | <A href='byond://?src=\ref[src];action=create;item=ez5;cost=50'>x5</A><BR>"
+					dat += "<A href='byond://?src=\ref[src];action=create;item=l4z;cost=20'>Left 4 Zed</A> <FONT COLOR=blue>(20)</FONT> | <A href='byond://?src=\ref[src];action=create;item=l4z5;cost=100'>x5</A><BR>"
+					dat += "<A href='byond://?src=\ref[src];action=create;item=rh;cost=25'>Robust Harvest</A> <FONT COLOR=blue>(25)</FONT> | <A href='byond://?src=\ref[src];action=create;item=rh5;cost=125'>x5</A><BR>"
 					dat += "Leather<BR>"
-					dat += "<A href='byond:://?src=\ref[src];action=create;item=wallet;cost=100'>Wallet</A> <FONT COLOR=blue>(100)</FONT><BR>"
-					dat += "<A href='byond:://?src=\ref[src];action=create;item=gloves;cost=250'>Botanical gloves</A> <FONT COLOR=blue>(250)</FONT><BR>"
-					dat += "<A href='byond:://?src=\ref[src];action=create;item=tbelt;cost=300'>Utility belt</A> <FONT COLOR=blue>(300)</FONT><BR>"
-					dat += "<A href='byond:://?src=\ref[src];action=create;item=satchel;cost=400'>Leather Satchel</A> <FONT COLOR=blue>(400)</FONT><BR>"
-					dat += "<A href='byond:://?src=\ref[src];action=create;item=cashbag;cost=400'>Cash Bag</A> <FONT COLOR=blue>(400)</FONT><BR>"
+					dat += "<A href='byond://?src=\ref[src];action=create;item=wallet;cost=100'>Wallet</A> <FONT COLOR=blue>(100)</FONT><BR>"
+					dat += "<A href='byond://?src=\ref[src];action=create;item=gloves;cost=250'>Botanical gloves</A> <FONT COLOR=blue>(250)</FONT><BR>"
+					dat += "<A href='byond://?src=\ref[src];action=create;item=tbelt;cost=300'>Utility belt</A> <FONT COLOR=blue>(300)</FONT><BR>"
+					dat += "<A href='byond://?src=\ref[src];action=create;item=satchel;cost=400'>Leather Satchel</A> <FONT COLOR=blue>(400)</FONT><BR>"
+					dat += "<A href='byond://?src=\ref[src];action=create;item=cashbag;cost=400'>Cash Bag</A> <FONT COLOR=blue>(400)</FONT><BR>"
 					//dat += "Other<BR>"
-					//dat += "<A href='byond:://?src=\ref[src];action=create;item=monkey;cost=500'>Monkey</A> <FONT COLOR=blue>(500)</FONT><BR>"
+					//dat += "<A href='byond://?src=\ref[src];action=create;item=monkey;cost=500'>Monkey</A> <FONT COLOR=blue>(500)</FONT><BR>"
 				else
 					dat += "<BR><FONT COLOR=red>No beaker inside. Please insert a beaker.</FONT><BR>"
 			if("nopoints")
 				dat += "You do not have biomass to create products.<BR>Please, put growns into reactor and activate it.<BR>"
-				dat += "<A href='byond:://?src=\ref[src];action=menu'>Return to menu</A>"
+				dat += "<A href='byond://?src=\ref[src];action=menu'>Return to menu</A>"
 			if("complete")
 				dat += "Operation complete.<BR>"
-				dat += "<A href='byond:://?src=\ref[src];action=menu'>Return to menu</A>"
+				dat += "<A href='byond://?src=\ref[src];action=menu'>Return to menu</A>"
 			if("void")
 				dat += "<FONT COLOR=red>Error: No growns inside.</FONT><BR>Please, put growns into reactor.<BR>"
-				dat += "<A href='byond:://?src=\ref[src];action=menu'>Return to menu</A>"
+				dat += "<A href='byond://?src=\ref[src];action=menu'>Return to menu</A>"
 	user << browse(dat, "window=biogenerator")
 	onclose(user, "biogenerator")
 	return

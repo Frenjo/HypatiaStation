@@ -81,7 +81,7 @@ GLOBAL_GLOBL_LIST_INIT(adminhelp_ignored_words, list("unknown", "the", "a", "an"
 							mobs_found += found
 							if(!ai_found && isAI(found))
 								ai_found = 1
-							msg += "<b><font color='black'>[original_word] (<A href='byond:://?_src_=holder;adminmoreinfo=\ref[found]'>?</A>)</font></b> "
+							msg += "<b><font color='black'>[original_word] (<A href='byond://?_src_=holder;adminmoreinfo=\ref[found]'>?</A>)</font></b> "
 							continue
 			msg += "[original_word] "
 
@@ -89,7 +89,7 @@ GLOBAL_GLOBL_LIST_INIT(adminhelp_ignored_words, list("unknown", "the", "a", "an"
 		return						//this doesn't happen
 
 	var/ref_mob = "\ref[mob]"
-	msg = "\blue <b><font color=red>HELP: </font>[key_name(src, 1)] (<A href='byond:://?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) (<A href='byond:://?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A href='byond:://?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A href='byond:://?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) (<A href='byond:://?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>) (<A href='byond:://?_src_=holder;check_antagonist=1'>CA</A>) [ai_found ? " (<A href='byond:://?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b> [msg]"
+	msg = "\blue <b><font color=red>HELP: </font>[key_name(src, 1)] (<A href='byond://?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) (<A href='byond://?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) (<A href='byond://?_src_=vars;Vars=[ref_mob]'>VV</A>) (<A href='byond://?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) (<A href='byond://?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>) (<A href='byond://?_src_=holder;check_antagonist=1'>CA</A>) [ai_found ? " (<A href='byond://?_src_=holder;adminchecklaws=[ref_mob]'>CL</A>)" : ""]:</b> [msg]"
 
 	//send this msg to all admins
 	var/admin_number_afk = 0

@@ -187,17 +187,17 @@ datum/controller/game_controller
 							message_admins("<b>The master controller reports: [MC_report]</b>")
 							if(!diseases_ready)
 								if(last_disease_processed)
-									message_admins("<b>DISEASE PROCESSING stuck on </b><A href='byond:://?src=%holder_ref%;adminplayervars=\ref[last_disease_processed]'>[last_disease_processed]</A>", 0, 1)
+									message_admins("<b>DISEASE PROCESSING stuck on </b><A href='byond://?src=%holder_ref%;adminplayervars=\ref[last_disease_processed]'>[last_disease_processed]</A>", 0, 1)
 								else
 									message_admins("<b>DISEASE PROCESSING stuck on </b>unknown")
 							if(!machines_ready)
 								if(last_machine_processed)
-									message_admins("<b>MACHINE PROCESSING stuck on </b><A href='byond:://?src=%holder_ref%;adminplayervars=\ref[last_machine_processed]'>[last_machine_processed]</A>", 0, 1)
+									message_admins("<b>MACHINE PROCESSING stuck on </b><A href='byond://?src=%holder_ref%;adminplayervars=\ref[last_machine_processed]'>[last_machine_processed]</A>", 0, 1)
 								else
 									message_admins("<b>MACHINE PROCESSING stuck on </b>unknown")
 							if(!objects_ready)
 								if(last_obj_processed)
-									message_admins("<b>OBJ PROCESSING stuck on </b><A href='byond:://?src=ADMINHOLDERREF;adminplayervars=\ref[last_obj_processed]'>[last_obj_processed]</A>", 0, 1)
+									message_admins("<b>OBJ PROCESSING stuck on </b><A href='byond://?src=ADMINHOLDERREF;adminplayervars=\ref[last_obj_processed]'>[last_obj_processed]</A>", 0, 1)
 								else
 									message_admins("<b>OBJ PROCESSING stuck on </b>unknown")
 							log_admin("PROC BREAKAGE WARNING: infinite_loop_check = [IL_check]; [MC_report];")

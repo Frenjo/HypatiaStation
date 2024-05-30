@@ -213,8 +213,8 @@ var/syndicate_elite_shuttle_timeleft = 0
 	else
 		dat  = {"<BR><B>Special Operations Shuttle</B><HR>
 		\nLocation: [syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership ? "Departing for [GLOBL.current_map.station_name] in ([syndicate_elite_shuttle_timeleft] seconds.)":syndicate_elite_shuttle_at_station ? "Station":"Dock"]<BR>
-		[syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership ? "\n*The Syndicate Elite shuttle is already leaving.*<BR>\n<BR>":syndicate_elite_shuttle_at_station ? "\n<A href='byond:://?src=\ref[src];sendtodock=1'>Shuttle Offline</A><BR>\n<BR>":"\n<A href='byond:://?src=\ref[src];sendtostation=1'>Depart to [GLOBL.current_map.station_name]</A><BR>\n<BR>"]
-		\n<A href='byond:://?src=\ref[user];mach_close=computer'>Close</A>"}
+		[syndicate_elite_shuttle_moving_to_station || syndicate_elite_shuttle_moving_to_mothership ? "\n*The Syndicate Elite shuttle is already leaving.*<BR>\n<BR>":syndicate_elite_shuttle_at_station ? "\n<A href='byond://?src=\ref[src];sendtodock=1'>Shuttle Offline</A><BR>\n<BR>":"\n<A href='byond://?src=\ref[src];sendtostation=1'>Depart to [GLOBL.current_map.station_name]</A><BR>\n<BR>"]
+		\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 
 	user << browse(dat, "window=computer;size=575x450")
 	onclose(user, "computer")
@@ -242,7 +242,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 
 		usr << "\blue The Syndicate Elite shuttle will arrive on [GLOBL.current_map.station_name] in [(SYNDICATE_ELITE_MOVETIME/10)] seconds."
 
-		temp  = "Shuttle departing.<BR><BR><A href='byond:://?src=\ref[src];mainmenu=1'>OK</A>"
+		temp  = "Shuttle departing.<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 		updateUsrDialog()
 
 		var/area/syndicate_mothership/elite_squad/elite_squad = locate()

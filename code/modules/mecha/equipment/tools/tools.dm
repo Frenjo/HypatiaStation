@@ -372,7 +372,7 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/rcd/get_equip_info()
-	return "[..()] \[<a href='byond:://?src=\ref[src];mode=0'>D</a>|<a href='byond:://?src=\ref[src];mode=1'>C</a>|<a href='byond:://?src=\ref[src];mode=2'>A</a>\]"
+	return "[..()] \[<a href='byond://?src=\ref[src];mode=0'>D</a>|<a href='byond://?src=\ref[src];mode=1'>C</a>|<a href='byond://?src=\ref[src];mode=2'>A</a>\]"
 
 
 /obj/item/mecha_parts/mecha_equipment/teleporter
@@ -515,7 +515,7 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult/get_equip_info()
-	return "[..()] [mode == 1 ? "([locked || "Nothing"])" : null] \[<a href='byond:://?src=\ref[src];mode=1'>S</a>|<a href='byond:://?src=\ref[src];mode=2'>P</a>\]"
+	return "[..()] [mode == 1 ? "([locked || "Nothing"])" : null] \[<a href='byond://?src=\ref[src];mode=1'>S</a>|<a href='byond://?src=\ref[src];mode=2'>P</a>\]"
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult/Topic(href, href_list)
 	..()
@@ -693,7 +693,7 @@
 /obj/item/mecha_parts/mecha_equipment/repair_droid/get_equip_info()
 	if(!chassis)
 		return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='byond:://?src=\ref[src];toggle_repairs=1'>[pr_repair_droid.active()?"Dea":"A"]ctivate</a>"
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='byond://?src=\ref[src];toggle_repairs=1'>[pr_repair_droid.active()?"Dea":"A"]ctivate</a>"
 
 
 /obj/item/mecha_parts/mecha_equipment/repair_droid/Topic(href, href_list)
@@ -816,7 +816,7 @@
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/get_equip_info()
 	if(!chassis)
 		return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='byond:://?src=\ref[src];toggle_relay=1'>[pr_energy_relay.active() ? "Dea" : "A"]ctivate</a>"
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='byond://?src=\ref[src];toggle_relay=1'>[pr_energy_relay.active() ? "Dea" : "A"]ctivate</a>"
 
 /*
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/proc/dynusepower(amount)
@@ -907,7 +907,7 @@
 /obj/item/mecha_parts/mecha_equipment/generator/get_equip_info()
 	var/output = ..()
 	if(output)
-		return "[output] \[[fuel]: [round(fuel.amount * fuel.perunit, 0.1)] cm<sup>3</sup>\] - <a href='byond:://?src=\ref[src];toggle=1'>[pr_mech_generator.active() ? "Dea" : "A"]ctivate</a>"
+		return "[output] \[[fuel]: [round(fuel.amount * fuel.perunit, 0.1)] cm<sup>3</sup>\] - <a href='byond://?src=\ref[src];toggle=1'>[pr_mech_generator.active() ? "Dea" : "A"]ctivate</a>"
 	return
 
 /obj/item/mecha_parts/mecha_equipment/generator/action(target)
@@ -1183,7 +1183,7 @@
 		M.verbs -= /obj/mecha/proc/move_inside_passenger
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/get_equip_info()
-	return "[..()] <br />[occupant? "\[Occupant: [occupant]\]|" : ""]Exterior Hatch: <a href='byond:://?src=\ref[src];toggle_lock=1'>Toggle Lock</a>"
+	return "[..()] <br />[occupant? "\[Occupant: [occupant]\]|" : ""]Exterior Hatch: <a href='byond://?src=\ref[src];toggle_lock=1'>Toggle Lock</a>"
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/Topic(href,href_list)
 	..()

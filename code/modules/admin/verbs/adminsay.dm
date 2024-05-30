@@ -9,7 +9,7 @@
 
 	log_admin("[key_name(src)] : [msg]")
 
-	msg = "<span class='admin'><span class='prefix'>ADMIN:</span> <EM>[key_name(usr, 1)]</EM> (<a href='byond:://?_src_=holder;adminplayerobservejump=\ref[mob]'>JMP</A>): <span class='message'>[msg]</span></span>"
+	msg = "<span class='admin'><span class='prefix'>ADMIN:</span> <EM>[key_name(usr, 1)]</EM> (<a href='byond://?_src_=holder;adminplayerobservejump=\ref[mob]'>JMP</A>): <span class='message'>[msg]</span></span>"
 	for_no_type_check(var/client/C, GLOBL.admins)
 		if((R_ADMIN | R_MOD | R_DONOR) & C.holder.rights)
 			to_chat(C, msg)
@@ -34,4 +34,4 @@
 		color = "adminmod"
 	for_no_type_check(var/client/C, GLOBL.admins)
 		if((R_ADMIN | R_MOD) & C.holder.rights)
-			to_chat(C, "<span class='[color]'><span class='prefix'>MOD:</span> <EM>[key_name(src,1)]</EM> (<A href='byond:://?src=\ref[C.holder];adminplayerobservejump=\ref[mob]'>JMP</A>): <span class='message'>[msg]</span></span>")
+			to_chat(C, "<span class='[color]'><span class='prefix'>MOD:</span> <EM>[key_name(src,1)]</EM> (<A href='byond://?src=\ref[C.holder];adminplayerobservejump=\ref[mob]'>JMP</A>): <span class='message'>[msg]</span></span>")

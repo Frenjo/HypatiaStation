@@ -44,28 +44,28 @@
 		if(cur_viewed_device)
 			dat += "<b>Device tag:</b> [cur_viewed_device.id_tag ? cur_viewed_device.id_tag : "UNSET"]<br>"
 			dat += "<font color=blue>Device [cur_viewed_device.owned_field ? "activated" : "deactivated"].</font><br>"
-			dat += "<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];toggle_active=1'>\[Bring field [cur_viewed_device.owned_field ? "offline" : "online"]\]</a><br>"
+			dat += "<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];toggle_active=1'>\[Bring field [cur_viewed_device.owned_field ? "offline" : "online"]\]</a><br>"
 			dat += "<b>Device [cur_viewed_device.anchored ? "secured" : "unsecured"].</b><br>"
 			dat += "<hr>"
 			dat += "<b>Field encumbrance:</b> [cur_viewed_device.owned_field ? 0 : "NA"]<br>"
 			dat += "<b>Field strength:</b> [cur_viewed_device.field_strength] Wm^3<br>"
-			dat += "<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=-1000'>\[----\]</a> \
-			<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=-100'>\[--- \]</a> \
-			<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=-10'>\[--  \]</a> \
-			<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=-1'>\[-   \]</a> \
-			<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=1'>\[+   \]</a> \
-			<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=10'>\[++  \]</a> \
-			<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=100'>\[+++ \]</a> \
-			<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=1000'>\[++++\]</a><br>"
+			dat += "<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=-1000'>\[----\]</a> \
+			<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=-100'>\[--- \]</a> \
+			<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=-10'>\[--  \]</a> \
+			<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=-1'>\[-   \]</a> \
+			<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=1'>\[+   \]</a> \
+			<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=10'>\[++  \]</a> \
+			<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=100'>\[+++ \]</a> \
+			<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];str=1000'>\[++++\]</a><br>"
 			dat += "<b>Field frequency:</b> [cur_viewed_device.field_frequency] MHz<br>"
-			dat += "<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=-1000'>\[----\]</a> \
-			<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=-100'>\[--- \]</a> \
-			<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=-10'>\[--  \]</a> \
-			<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=-1'>\[-   \]</a> \
-			<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=1'>\[+   \]</a> \
-			<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=10'>\[++  \]</a> \
-			<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=100'>\[+++ \]</a> \
-			<a href='byond:://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=1000'>\[++++\]</a><br>"
+			dat += "<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=-1000'>\[----\]</a> \
+			<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=-100'>\[--- \]</a> \
+			<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=-10'>\[--  \]</a> \
+			<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=-1'>\[-   \]</a> \
+			<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=1'>\[+   \]</a> \
+			<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=10'>\[++  \]</a> \
+			<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=100'>\[+++ \]</a> \
+			<a href='byond://?src=\ref[cur_viewed_device];extern_update=\ref[src];freq=1000'>\[++++\]</a><br>"
 
 			var/power_stat = "Good"
 			if(cur_viewed_device.cached_power_avail < cur_viewed_device.power_usage[USE_POWER_ACTIVE])
@@ -74,7 +74,7 @@
 				power_stat = "Check"
 			dat += "<b>Power status:</b> [power_stat]<br>"
 		else
-			dat += "<a href='byond:://?src=\ref[src];scan=1'>\[Refresh device list\]</a><br><br>"
+			dat += "<a href='byond://?src=\ref[src];scan=1'>\[Refresh device list\]</a><br><br>"
 			if(connected_devices.len)
 				dat += "<table width='100%' border=1>"
 				dat += "<tr>"
@@ -88,15 +88,15 @@
 
 					dat += "<tr>"
 					dat += "<td>[C.id_tag]</td>"
-					dat += "<td><a href='byond:://?src=\ref[src];manage_individual=\ref[C]'>\[Manage\]</a></td>"
+					dat += "<td><a href='byond://?src=\ref[src];manage_individual=\ref[C]'>\[Manage\]</a></td>"
 					dat += "</tr>"
 					dat += "</table>"
 			else
 				dat += "No devices connected.<br>"
 
 		dat += "<hr>"
-		dat += "<a href='byond:://?src=\ref[src];refresh=1'>Refresh</a> "
-		dat += "<a href='byond:://?src=\ref[src];close=1'>Close</a>"
+		dat += "<a href='byond://?src=\ref[src];refresh=1'>Refresh</a> "
+		dat += "<a href='byond://?src=\ref[src];close=1'>Close</a>"
 
 	user << browse(dat, "window=core_control;size=500x400")
 	onclose(user, "core_control")

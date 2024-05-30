@@ -121,23 +121,23 @@
 		FEEDBACK_ACCESS_DENIED(user)
 		return
 	usr.set_machine(src)
-	/*var/dat = {"<b>Power: </b><a href='byond:://?src=\ref[src];power=1'>[on?"On":"Off"]</a><br>
+	/*var/dat = {"<b>Power: </b><a href='byond://?src=\ref[src];power=1'>[on?"On":"Off"]</a><br>
 				<b>Desirable output pressure: </b>
-				[target_pressure]kPa | <a href='byond:://?src=\ref[src];set_press=1'>Change</a>
+				[target_pressure]kPa | <a href='byond://?src=\ref[src];set_press=1'>Change</a>
 				<br>
 				<b>Node 1 Concentration:</b>
-				<a href='byond:://?src=\ref[src];node1_c=-0.1'><b>-</b></a>
-				<a href='byond:://?src=\ref[src];node1_c=-0.01'>-</a>
+				<a href='byond://?src=\ref[src];node1_c=-0.1'><b>-</b></a>
+				<a href='byond://?src=\ref[src];node1_c=-0.01'>-</a>
 				[node1_concentration]([node1_concentration*100]%)
-				<a href='byond:://?src=\ref[src];node1_c=0.01'><b>+</b></a>
-				<a href='byond:://?src=\ref[src];node1_c=0.1'>+</a>
+				<a href='byond://?src=\ref[src];node1_c=0.01'><b>+</b></a>
+				<a href='byond://?src=\ref[src];node1_c=0.1'>+</a>
 				<br>
 				<b>Node 2 Concentration:</b>
-				<a href='byond:://?src=\ref[src];node2_c=-0.1'><b>-</b></a>
-				<a href='byond:://?src=\ref[src];node2_c=-0.01'>-</a>
+				<a href='byond://?src=\ref[src];node2_c=-0.1'><b>-</b></a>
+				<a href='byond://?src=\ref[src];node2_c=-0.01'>-</a>
 				[node2_concentration]([node2_concentration*100]%)
-				<a href='byond:://?src=\ref[src];node2_c=0.01'><b>+</b></a>
-				<a href='byond:://?src=\ref[src];node2_c=0.1'>+</a>
+				<a href='byond://?src=\ref[src];node2_c=0.01'><b>+</b></a>
+				<a href='byond://?src=\ref[src];node2_c=0.1'>+</a>
 				"}
 
 	user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_mixer")

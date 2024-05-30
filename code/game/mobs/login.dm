@@ -20,10 +20,10 @@
 						alert("You have logged in already with another key this round, please log out of this one NOW or risk being banned!")
 				if(matches)
 					if(isnotnull(M.client))
-						message_admins("<font color='red'><B>Notice: </B><font color='blue'><A href='byond:://?src=\ref[usr];priv_msg=\ref[src]'>[key_name_admin(src)]</A> has the same [matches] as <A href='byond:://?src=\ref[usr];priv_msg=\ref[M]'>[key_name_admin(M)]</A>.</font>", 1)
+						message_admins("<font color='red'><B>Notice: </B><font color='blue'><A href='byond://?src=\ref[usr];priv_msg=\ref[src]'>[key_name_admin(src)]</A> has the same [matches] as <A href='byond://?src=\ref[usr];priv_msg=\ref[M]'>[key_name_admin(M)]</A>.</font>", 1)
 						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(M)].")
 					else
-						message_admins("<font color='red'><B>Notice: </B><font color='blue'><A href='byond:://?src=\ref[usr];priv_msg=\ref[src]'>[key_name_admin(src)]</A> has the same [matches] as [key_name_admin(M)] (no longer logged in). </font>", 1)
+						message_admins("<font color='red'><B>Notice: </B><font color='blue'><A href='byond://?src=\ref[usr];priv_msg=\ref[src]'>[key_name_admin(src)]</A> has the same [matches] as [key_name_admin(M)] (no longer logged in). </font>", 1)
 						log_access("Notice: [key_name(src)] has the same [matches] as [key_name(M)] (no longer logged in).")
 
 /mob/Login()

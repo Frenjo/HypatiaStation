@@ -200,7 +200,7 @@
 Status: []<BR>
 Behaviour controls are [src.locked ? "locked" : "unlocked"]"},
 
-"<A href='byond:://?src=\ref[src];power=1'>[src.on ? "On" : "Off"]</A>" )
+"<A href='byond://?src=\ref[src];power=1'>[src.on ? "On" : "Off"]</A>" )
 
 		if(!src.locked)
 			dat += text({"<BR>
@@ -210,11 +210,11 @@ Neutralize Identified Criminals: []<BR>
 Neutralize All Non-Security and Non-Command Personnel: []<BR>
 Neutralize All Unidentified Life Signs: []<BR>"},
 
-"<A href='byond:://?src=\ref[src];operation=authweapon'>[src.auth_weapons ? "Yes" : "No"]</A>",
-"<A href='byond:://?src=\ref[src];operation=checkrecords'>[src.check_records ? "Yes" : "No"]</A>",
-"<A href='byond:://?src=\ref[src];operation=shootcrooks'>[src.criminals ? "Yes" : "No"]</A>",
-"<A href='byond:://?src=\ref[src];operation=shootall'>[stun_all ? "Yes" : "No"]</A>",
-"<A href='byond:://?src=\ref[src];operation=checkxenos'>[check_anomalies ? "Yes" : "No"]</A>" )
+"<A href='byond://?src=\ref[src];operation=authweapon'>[src.auth_weapons ? "Yes" : "No"]</A>",
+"<A href='byond://?src=\ref[src];operation=checkrecords'>[src.check_records ? "Yes" : "No"]</A>",
+"<A href='byond://?src=\ref[src];operation=shootcrooks'>[src.criminals ? "Yes" : "No"]</A>",
+"<A href='byond://?src=\ref[src];operation=shootall'>[stun_all ? "Yes" : "No"]</A>",
+"<A href='byond://?src=\ref[src];operation=checkxenos'>[check_anomalies ? "Yes" : "No"]</A>" )
 	else
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -226,7 +226,7 @@ Neutralize All Unidentified Life Signs: []<BR>"},
 <TT><B>Automatic Portable Turret Installation</B></TT><BR><BR>
 Status: []<BR>"},
 
-"<A href='byond:://?src=\ref[src];power=1'>[src.on ? "On" : "Off"]</A>" )
+"<A href='byond://?src=\ref[src];power=1'>[src.on ? "On" : "Off"]</A>" )
 
 
 	user << browse("<HEAD><TITLE>Automatic Portable Turret Installation</TITLE></HEAD>[dat]", "window=autosec")
@@ -887,7 +887,7 @@ Status: []<BR>"},
 Status: []<BR>
 Behaviour controls are [Parent_Turret.locked ? "locked" : "unlocked"]"},
 
-"<A href='byond:://?src=\ref[src];power=1'>[Parent_Turret.on ? "On" : "Off"]</A>" )
+"<A href='byond://?src=\ref[src];power=1'>[Parent_Turret.on ? "On" : "Off"]</A>" )
 
 
 		dat += text({"<BR>
@@ -897,17 +897,17 @@ Neutralize Identified Criminals: []<BR>
 Neutralize All Non-Security and Non-Command Personnel: []<BR>
 Neutralize All Unidentified Life Signs: []<BR>"},
 
-"<A href='byond:://?src=\ref[src];operation=authweapon'>[Parent_Turret.auth_weapons ? "Yes" : "No"]</A>",
-"<A href='byond:://?src=\ref[src];operation=checkrecords'>[Parent_Turret.check_records ? "Yes" : "No"]</A>",
-"<A href='byond:://?src=\ref[src];operation=shootcrooks'>[Parent_Turret.criminals ? "Yes" : "No"]</A>",
-"<A href='byond:://?src=\ref[src];operation=shootall'>[Parent_Turret.stun_all ? "Yes" : "No"]</A>" ,
-"<A href='byond:://?src=\ref[src];operation=checkxenos'>[Parent_Turret.check_anomalies ? "Yes" : "No"]</A>" )
+"<A href='byond://?src=\ref[src];operation=authweapon'>[Parent_Turret.auth_weapons ? "Yes" : "No"]</A>",
+"<A href='byond://?src=\ref[src];operation=checkrecords'>[Parent_Turret.check_records ? "Yes" : "No"]</A>",
+"<A href='byond://?src=\ref[src];operation=shootcrooks'>[Parent_Turret.criminals ? "Yes" : "No"]</A>",
+"<A href='byond://?src=\ref[src];operation=shootall'>[Parent_Turret.stun_all ? "Yes" : "No"]</A>" ,
+"<A href='byond://?src=\ref[src];operation=checkxenos'>[Parent_Turret.check_anomalies ? "Yes" : "No"]</A>" )
 	else
 		dat += text({"
 <TT><B>Automatic Portable Turret Installation</B></TT><BR><BR>
 Status: []<BR>"},
 
-"<A href='byond:://?src=\ref[src];power=1'>[Parent_Turret.on ? "On" : "Off"]</A>" )
+"<A href='byond://?src=\ref[src];power=1'>[Parent_Turret.on ? "On" : "Off"]</A>" )
 
 	user << browse("<HEAD><TITLE>Automatic Portable Turret Installation</TITLE></HEAD>[dat]", "window=autosec")
 	onclose(user, "autosec")
@@ -924,7 +924,7 @@ Status: []<BR>"},
 Status: []<BR>
 Behaviour controls are [Parent_Turret.locked ? "locked" : "unlocked"]"},
 
-"<A href='byond:://?src=\ref[src];power=1'>[Parent_Turret.on ? "On" : "Off"]</A>" )
+"<A href='byond://?src=\ref[src];power=1'>[Parent_Turret.on ? "On" : "Off"]</A>" )
 
 		if(!Parent_Turret.locked)
 			dat += text({"<BR>
@@ -934,11 +934,11 @@ Neutralize Identified Criminals: []<BR>
 Neutralize All Non-Security and Non-Command Personnel: []<BR>
 Neutralize All Unidentified Life Signs: []<BR>"},
 
-"<A href='byond:://?src=\ref[src];operation=authweapon'>[Parent_Turret.auth_weapons ? "Yes" : "No"]</A>",
-"<A href='byond:://?src=\ref[src];operation=checkrecords'>[Parent_Turret.check_records ? "Yes" : "No"]</A>",
-"<A href='byond:://?src=\ref[src];operation=shootcrooks'>[Parent_Turret.criminals ? "Yes" : "No"]</A>",
-"<A href='byond:://?src=\ref[src];operation=shootall'>[Parent_Turret.stun_all ? "Yes" : "No"]</A>" ,
-"<A href='byond:://?src=\ref[src];operation=checkxenos'>[Parent_Turret.check_anomalies ? "Yes" : "No"]</A>" )
+"<A href='byond://?src=\ref[src];operation=authweapon'>[Parent_Turret.auth_weapons ? "Yes" : "No"]</A>",
+"<A href='byond://?src=\ref[src];operation=checkrecords'>[Parent_Turret.check_records ? "Yes" : "No"]</A>",
+"<A href='byond://?src=\ref[src];operation=shootcrooks'>[Parent_Turret.criminals ? "Yes" : "No"]</A>",
+"<A href='byond://?src=\ref[src];operation=shootall'>[Parent_Turret.stun_all ? "Yes" : "No"]</A>" ,
+"<A href='byond://?src=\ref[src];operation=checkxenos'>[Parent_Turret.check_anomalies ? "Yes" : "No"]</A>" )
 	else
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -950,7 +950,7 @@ Neutralize All Unidentified Life Signs: []<BR>"},
 <TT><B>Automatic Portable Turret Installation</B></TT><BR><BR>
 Status: []<BR>"},
 
-"<A href='byond:://?src=\ref[src];power=1'>[Parent_Turret.on ? "On" : "Off"]</A>" )
+"<A href='byond://?src=\ref[src];power=1'>[Parent_Turret.on ? "On" : "Off"]</A>" )
 
 
 

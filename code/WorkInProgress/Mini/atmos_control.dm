@@ -30,12 +30,12 @@
 		overridden = 1
 	else if(!emagged)
 		overridden = 0
-	var/dat = "<a href='byond:://?src=\ref[src]&reset=1'>Main Menu</a><hr>"
+	var/dat = "<a href='byond://?src=\ref[src]&reset=1'>Main Menu</a><hr>"
 	if(current)
 		dat += specific()
 	else
 		for(var/obj/machinery/alarm/alarm in GLOBL.machines)
-			dat += "<a href='byond:://?src=\ref[src]&alarm=\ref[alarm]'>"
+			dat += "<a href='byond://?src=\ref[src]&alarm=\ref[alarm]'>"
 			switch(max(alarm.danger_level, alarm.alarm_area.atmos_alarm))
 				if (0)
 					dat += "<font color=green>"
@@ -200,23 +200,23 @@
 	switch(current.screen)
 		if(AIR_ALARM_SCREEN_MAIN)
 			if(current.alarm_area.atmos_alarm)
-				output += {"<a href='byond:://?src=\ref[src];alarm=\ref[current];atmos_reset=1'>Reset - Atmospheric Alarm</a><hr>"}
+				output += {"<a href='byond://?src=\ref[src];alarm=\ref[current];atmos_reset=1'>Reset - Atmospheric Alarm</a><hr>"}
 			else
-				output += {"<a href='byond:://?src=\ref[src];alarm=\ref[current];atmos_alarm=1'>Activate - Atmospheric Alarm</a><hr>"}
+				output += {"<a href='byond://?src=\ref[src];alarm=\ref[current];atmos_alarm=1'>Activate - Atmospheric Alarm</a><hr>"}
 
 			output += {"
-<a href='byond:://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_SCRUB]'>Scrubbers Control</a><br>
-<a href='byond:://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_VENT]'>Vents Control</a><br>
-<a href='byond:://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MODE]'>Set environmental mode</a><br>
-<a href='byond:://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_SENSORS]'>Sensor Control</a><br>
+<a href='byond://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_SCRUB]'>Scrubbers Control</a><br>
+<a href='byond://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_VENT]'>Vents Control</a><br>
+<a href='byond://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MODE]'>Set environmental mode</a><br>
+<a href='byond://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_SENSORS]'>Sensor Control</a><br>
 <HR>
 "}
 			if(istype(current.mode, /decl/air_alarm_mode/panic))
-				output += "<font color='red'><B>PANIC SYPHON ACTIVE</B></font><br><A href='byond:://?src=\ref[src];alarm=\ref[current];mode=[/decl/air_alarm_mode/scrubbing]'>turn syphoning off</A>"
+				output += "<font color='red'><B>PANIC SYPHON ACTIVE</B></font><br><A href='byond://?src=\ref[src];alarm=\ref[current];mode=[/decl/air_alarm_mode/scrubbing]'>turn syphoning off</A>"
 			else
-				output += "<A href='byond:://?src=\ref[src];alarm=\ref[current];mode=[/decl/air_alarm_mode/panic]'><font color='red'><B>ACTIVATE PANIC SYPHON IN AREA</B></font></A>"
+				output += "<A href='byond://?src=\ref[src];alarm=\ref[current];mode=[/decl/air_alarm_mode/panic]'><font color='red'><B>ACTIVATE PANIC SYPHON IN AREA</B></font></A>"
 
-			output += "<br><br>Atmospheric Lockdown: <a href='byond:://?src=\ref[src];alarm=\ref[current];atmos_unlock=[current.alarm_area.air_doors_activated]'>[current.alarm_area.air_doors_activated ? "<b>ENABLED</b>" : "Disabled"]</a>"
+			output += "<br><br>Atmospheric Lockdown: <a href='byond://?src=\ref[src];alarm=\ref[current];atmos_unlock=[current.alarm_area.air_doors_activated]'>[current.alarm_area.air_doors_activated ? "<b>ENABLED</b>" : "Disabled"]</a>"
 		if(AIR_ALARM_SCREEN_VENT)
 			var/sensor_data = ""
 			if(current.alarm_area.air_vent_names.len)
@@ -232,22 +232,22 @@
 					sensor_data += {"
 <B>[long_name]</B>[state]<BR>
 <B>Operating:</B>
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=power;val=[!data["power"]]'>[data["power"]?"on":"off"]</A>
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=power;val=[!data["power"]]'>[data["power"]?"on":"off"]</A>
 <BR>
 <B>Pressure checks:</B>
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=checks;val=[data["checks"]^1]' [(data["checks"]&1)?"style='font-weight:bold;'":""]>external</A>
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=checks;val=[data["checks"]^2]' [(data["checks"]&2)?"style='font-weight:bold;'":""]>internal</A>
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=checks;val=[data["checks"]^1]' [(data["checks"]&1)?"style='font-weight:bold;'":""]>external</A>
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=checks;val=[data["checks"]^2]' [(data["checks"]&2)?"style='font-weight:bold;'":""]>internal</A>
 <BR>
 <B>External pressure bound:</B>
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=-1000'>-</A>
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=-100'>-</A>
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=-10'>-</A>
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=-1'>-</A>
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=-1000'>-</A>
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=-100'>-</A>
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=-10'>-</A>
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=-1'>-</A>
 [data["external"]]
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=+1'>+</A>
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=+10'>+</A>
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=+100'>+</A>
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=+1000'>+</A>
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=+1'>+</A>
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=+10'>+</A>
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=+100'>+</A>
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=adjust_external_pressure;val=+1000'>+</A>
 <BR>
 "}
 					if(data["direction"] == "siphon")
@@ -259,7 +259,7 @@ siphoning
 					sensor_data += {"<HR>"}
 			else
 				sensor_data = "No vents connected.<BR>"
-			output = {"<a href='byond:://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MAIN]'>Main menu</a><br>[sensor_data]"}
+			output = {"<a href='byond://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MAIN]'>Main menu</a><br>[sensor_data]"}
 		if(AIR_ALARM_SCREEN_SCRUB)
 			var/sensor_data = ""
 			if(current.alarm_area.air_scrub_names.len)
@@ -276,45 +276,45 @@ siphoning
 					sensor_data += {"
 <B>[long_name]</B>[state]<BR>
 <B>Operating:</B>
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=power;val=[!data["power"]]'>[data["power"]?"on":"off"]</A><BR>
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=power;val=[!data["power"]]'>[data["power"]?"on":"off"]</A><BR>
 <B>Type:</B>
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=scrubbing;val=[!data["scrubbing"]]'>[data["scrubbing"]?"scrubbing":"syphoning"]</A><BR>
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=scrubbing;val=[!data["scrubbing"]]'>[data["scrubbing"]?"scrubbing":"syphoning"]</A><BR>
 "}
 
 					if(data["scrubbing"])
 						sensor_data += {"
 <B>Filtering:</B>
 Carbon Dioxide
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=co2_scrub;val=[!data["filter_co2"]]'>[data["filter_co2"]?"on":"off"]</A>;
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=co2_scrub;val=[!data["filter_co2"]]'>[data["filter_co2"]?"on":"off"]</A>;
 Toxins
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=tox_scrub;val=[!data["filter_toxins"]]'>[data["filter_toxins"]?"on":"off"]</A>;
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=tox_scrub;val=[!data["filter_toxins"]]'>[data["filter_toxins"]?"on":"off"]</A>;
 Nitrous Oxide
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=n2o_scrub;val=[!data["filter_n2o"]]'>[data["filter_n2o"]?"on":"off"]</A>
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=n2o_scrub;val=[!data["filter_n2o"]]'>[data["filter_n2o"]?"on":"off"]</A>
 <BR>
 "}
 					sensor_data += {"
 <B>Panic syphon:</B> [data["panic"]?"<font color='red'><B>PANIC SYPHON ACTIVATED</B></font>":""]
-<A href='byond:://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=panic_siphon;val=[!data["panic"]]'><font color='[(data["panic"]?"blue'>Dea":"red'>A")]ctivate</font></A><BR>
+<A href='byond://?src=\ref[src];alarm=\ref[current];id_tag=[id_tag];command=panic_siphon;val=[!data["panic"]]'><font color='[(data["panic"]?"blue'>Dea":"red'>A")]ctivate</font></A><BR>
 <HR>
 "}
 			else
 				sensor_data = "No scrubbers connected.<BR>"
-			output = {"<a href='byond:://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MAIN]'>Main menu</a><br>[sensor_data]"}
+			output = {"<a href='byond://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MAIN]'>Main menu</a><br>[sensor_data]"}
 
 		if(AIR_ALARM_SCREEN_MODE)
 			output += {"
-<a href='byond:://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MAIN]'>Main menu</a><br>
+<a href='byond://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MAIN]'>Main menu</a><br>
 <b>Air machinery mode for the area:</b><ul>"}
 			for(var/mode_type in current.available_modes)
 				var/decl/air_alarm_mode/iterated_mode = GET_DECL_INSTANCE(mode_type)
 				if(istype(current.mode, mode_type))
-					output += {"<li><A href='byond:://?src=\ref[src];alarm=\ref[current];mode=[mode_type]'><b>[iterated_mode.description]</b></A> (selected)</li>"}
+					output += {"<li><A href='byond://?src=\ref[src];alarm=\ref[current];mode=[mode_type]'><b>[iterated_mode.description]</b></A> (selected)</li>"}
 				else
-					output += {"<li><A href='byond:://?src=\ref[src];alarm=\ref[current];mode=[mode_type]'>[iterated_mode.description]</A></li>"}
+					output += {"<li><A href='byond://?src=\ref[src];alarm=\ref[current];mode=[mode_type]'>[iterated_mode.description]</A></li>"}
 			output += "</ul>"
 		if(AIR_ALARM_SCREEN_SENSORS)
 			output += {"
-<a href='byond:://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MAIN]'>Main menu</a><br>
+<a href='byond://?src=\ref[src];alarm=\ref[current];screen=[AIR_ALARM_SCREEN_MAIN]'>Main menu</a><br>
 <b>Alarm thresholds:</b><br>
 Partial pressure for gases
 <style>/* some CSS woodoo here. Does not work perfect in ie6 but who cares? */
@@ -340,19 +340,19 @@ table tr:first-child th:first-child { border: none;}
 				output += "<TR><th>[gases[g]]</th>"
 				tlv = current.TLV[g]
 				for (var/i = 1, i <= 4, i++)
-					output += "<td><A href='byond:://?src=\ref[src];alarm=\ref[current];command=set_threshold;env=[g];var=[i]'>[tlv[i] >= 0?tlv[i]:"OFF"]</A></td>"
+					output += "<td><A href='byond://?src=\ref[src];alarm=\ref[current];command=set_threshold;env=[g];var=[i]'>[tlv[i] >= 0?tlv[i]:"OFF"]</A></td>"
 				output += "</TR>"
 
 			tlv = current.TLV["pressure"]
 			output += "<TR><th>Pressure</th>"
 			for(var/i = 1, i <= 4, i++)
-				output += "<td><A href='byond:://?src=\ref[src];alarm=\ref[current];command=set_threshold;env=pressure;var=[i]'>[tlv[i]>= 0?tlv[i]:"OFF"]</A></td>"
+				output += "<td><A href='byond://?src=\ref[src];alarm=\ref[current];command=set_threshold;env=pressure;var=[i]'>[tlv[i]>= 0?tlv[i]:"OFF"]</A></td>"
 			output += "</TR>"
 
 			tlv = current.TLV["temperature"]
 			output += "<TR><th>Temperature</th>"
 			for(var/i = 1, i <= 4, i++)
-				output += "<td><A href='byond:://?src=\ref[src];alarm=\ref[current];command=set_threshold;env=temperature;var=[i]'>[tlv[i]>= 0?tlv[i]:"OFF"]</A></td>"
+				output += "<td><A href='byond://?src=\ref[src];alarm=\ref[current];command=set_threshold;env=temperature;var=[i]'>[tlv[i]>= 0?tlv[i]:"OFF"]</A></td>"
 			output += "</TR>"
 			output += "</table>"
 

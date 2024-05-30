@@ -189,14 +189,14 @@
 		module = new /obj/item/robot_module/drone(src)
 
 	var/dat = "<HEAD><TITLE>Drone modules</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
-	dat += {"<A href='byond:://?src=\ref[src];mach_close=robotmod'>Close</A>
+	dat += {"<A href='byond://?src=\ref[src];mach_close=robotmod'>Close</A>
 	<BR>
 	<BR>
 	<B>Activated Modules</B>
 	<BR>
-	Module 1: [module_state_1 ? "<A href=byond:://?src=\ref[src];mod=\ref[module_state_1]>[module_state_1]<A>" : "No Module"]<BR>
-	Module 2: [module_state_2 ? "<A href=byond:://?src=\ref[src];mod=\ref[module_state_2]>[module_state_2]<A>" : "No Module"]<BR>
-	Module 3: [module_state_3 ? "<A href=byond:://?src=\ref[src];mod=\ref[module_state_3]>[module_state_3]<A>" : "No Module"]<BR>
+	Module 1: [module_state_1 ? "<A href=byond://?src=\ref[src];mod=\ref[module_state_1]>[module_state_1]<A>" : "No Module"]<BR>
+	Module 2: [module_state_2 ? "<A href=byond://?src=\ref[src];mod=\ref[module_state_2]>[module_state_2]<A>" : "No Module"]<BR>
+	Module 3: [module_state_3 ? "<A href=byond://?src=\ref[src];mod=\ref[module_state_3]>[module_state_3]<A>" : "No Module"]<BR>
 	<BR>
 	<B>Installed Modules</B><BR><BR>"}
 
@@ -212,7 +212,7 @@
 		else if(activated(O))
 			module_string += text("[O]: <B>Activated</B><BR>")
 		else
-			module_string += text("[O]: <A href=byond:://?src=\ref[src];act=\ref[O]>Activate</A><BR>")
+			module_string += text("[O]: <A href=byond://?src=\ref[src];act=\ref[O]>Activate</A><BR>")
 
 		if(isitem(O) && !istype(O, /obj/item/stack/cable_coil))
 			tools += module_string
@@ -227,7 +227,7 @@
 		else if(activated(module.emag))
 			dat += text("[module.emag]: <B>Activated</B><BR>")
 		else
-			dat += text("[module.emag]: <A href=byond:://?src=\ref[src];act=\ref[module.emag]>Activate</A><BR>")
+			dat += text("[module.emag]: <A href=byond://?src=\ref[src];act=\ref[module.emag]>Activate</A><BR>")
 
 	dat += resources
 

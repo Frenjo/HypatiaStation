@@ -71,9 +71,9 @@
 	else
 		dat += "<font color='green'>Engines ready.</font><br>"
 
-	dat += "<br><b><A href='byond:://?src=\ref[src];toggle_cloak=[1]'>Toggle cloaking field</A></b><br>"
-	dat += "<b><A href='byond:://?src=\ref[src];move_multi=[1]'>Move ship</A></b><br>"
-	dat += "<b><A href='byond:://?src=\ref[src];start=[1]'>Return to base</A></b></center>"
+	dat += "<br><b><A href='byond://?src=\ref[src];toggle_cloak=[1]'>Toggle cloaking field</A></b><br>"
+	dat += "<b><A href='byond://?src=\ref[src];move_multi=[1]'>Move ship</A></b><br>"
+	dat += "<b><A href='byond://?src=\ref[src];start=[1]'>Return to base</A></b></center>"
 
 	user << browse("[dat]", "window=[shuttle_tag]shuttlecontrol;size=300x600")
 

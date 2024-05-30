@@ -16,33 +16,33 @@
 ///// Z-Level stuff
 	var/dat = {"
 <b>Regular pipes:</b><BR>
-<A href='byond:://?src=\ref[src];make=0;dir=1'>Pipe</A><BR>
-<A href='byond:://?src=\ref[src];make=1;dir=5'>Bent Pipe</A><BR>
-<A href='byond:://?src=\ref[src];make=5;dir=1'>Manifold</A><BR>
-<A href='byond:://?src=\ref[src];make=8;dir=1'>Manual Valve</A><BR>
-<A href='byond:://?src=\ref[src];make=20;dir=1'>Pipe Cap</A><BR>
-<A href='byond:://?src=\ref[src];make=19;dir=1'>4-Way Manifold</A><BR>
-<A href='byond:://?src=\ref[src];make=18;dir=1'>Manual T-Valve</A><BR>
-<A href='byond:://?src=\ref[src];make=21;dir=1'>upward Pipe</A><BR>
-<A href='byond:://?src=\ref[src];make=22;dir=1'>downward Pipe</A><BR>
+<A href='byond://?src=\ref[src];make=0;dir=1'>Pipe</A><BR>
+<A href='byond://?src=\ref[src];make=1;dir=5'>Bent Pipe</A><BR>
+<A href='byond://?src=\ref[src];make=5;dir=1'>Manifold</A><BR>
+<A href='byond://?src=\ref[src];make=8;dir=1'>Manual Valve</A><BR>
+<A href='byond://?src=\ref[src];make=20;dir=1'>Pipe Cap</A><BR>
+<A href='byond://?src=\ref[src];make=19;dir=1'>4-Way Manifold</A><BR>
+<A href='byond://?src=\ref[src];make=18;dir=1'>Manual T-Valve</A><BR>
+<A href='byond://?src=\ref[src];make=21;dir=1'>upward Pipe</A><BR>
+<A href='byond://?src=\ref[src];make=22;dir=1'>downward Pipe</A><BR>
 <b>Devices:</b><BR>
-<A href='byond:://?src=\ref[src];make=4;dir=1'>Connector</A><BR>
-<A href='byond:://?src=\ref[src];make=7;dir=1'>Unary Vent</A><BR>
-<A href='byond:://?src=\ref[src];make=9;dir=1'>Gas Pump</A><BR>
-<A href='byond:://?src=\ref[src];make=15;dir=1'>Passive Gate</A><BR>
-<A href='byond:://?src=\ref[src];make=16;dir=1'>Volume Pump</A><BR>
-<A href='byond:://?src=\ref[src];make=10;dir=1'>Scrubber</A><BR>
-<A href='byond:://?src=\ref[src];makemeter=1'>Meter</A><BR>
-<A href='byond:://?src=\ref[src];make=13;dir=1'>Gas Filter</A><BR>
-<A href='byond:://?src=\ref[src];make=14;dir=1'>Gas Mixer</A><BR>
+<A href='byond://?src=\ref[src];make=4;dir=1'>Connector</A><BR>
+<A href='byond://?src=\ref[src];make=7;dir=1'>Unary Vent</A><BR>
+<A href='byond://?src=\ref[src];make=9;dir=1'>Gas Pump</A><BR>
+<A href='byond://?src=\ref[src];make=15;dir=1'>Passive Gate</A><BR>
+<A href='byond://?src=\ref[src];make=16;dir=1'>Volume Pump</A><BR>
+<A href='byond://?src=\ref[src];make=10;dir=1'>Scrubber</A><BR>
+<A href='byond://?src=\ref[src];makemeter=1'>Meter</A><BR>
+<A href='byond://?src=\ref[src];make=13;dir=1'>Gas Filter</A><BR>
+<A href='byond://?src=\ref[src];make=14;dir=1'>Gas Mixer</A><BR>
 <b>Heat exchange:</b><BR>
-<A href='byond:://?src=\ref[src];make=2;dir=1'>Pipe</A><BR>
-<A href='byond:://?src=\ref[src];make=3;dir=5'>Bent Pipe</A><BR>
-<A href='byond:://?src=\ref[src];make=6;dir=1'>Junction</A><BR>
-<A href='byond:://?src=\ref[src];make=17;dir=1'>Heat Exchanger</A><BR>
+<A href='byond://?src=\ref[src];make=2;dir=1'>Pipe</A><BR>
+<A href='byond://?src=\ref[src];make=3;dir=5'>Bent Pipe</A><BR>
+<A href='byond://?src=\ref[src];make=6;dir=1'>Junction</A><BR>
+<A href='byond://?src=\ref[src];make=17;dir=1'>Heat Exchanger</A><BR>
 <b>Insulated pipes:</b><BR>
-<A href='byond:://?src=\ref[src];make=11;dir=1'>Pipe</A><BR>
-<A href='byond:://?src=\ref[src];make=12;dir=5'>Bent Pipe</A><BR>
+<A href='byond://?src=\ref[src];make=11;dir=1'>Pipe</A><BR>
+<A href='byond://?src=\ref[src];make=12;dir=5'>Bent Pipe</A><BR>
 
 "}
 ///// Z-Level stuff
@@ -149,16 +149,16 @@ Nah
 
 ///// Z-Level stuff
 	var/dat = {"<b>Disposal Pipes</b><br><br>
-<A href='byond:://?src=\ref[src];dmake=0'>Pipe</A><BR>
-<A href='byond:://?src=\ref[src];dmake=1'>Bent Pipe</A><BR>
-<A href='byond:://?src=\ref[src];dmake=2'>Junction</A><BR>
-<A href='byond:://?src=\ref[src];dmake=3'>Y-Junction</A><BR>
-<A href='byond:://?src=\ref[src];dmake=4'>Trunk</A><BR>
-<A href='byond:://?src=\ref[src];dmake=5'>Bin</A><BR>
-<A href='byond:://?src=\ref[src];dmake=6'>Outlet</A><BR>
-<A href='byond:://?src=\ref[src];dmake=7'>Chute</A><BR>
-<A href='byond:://?src=\ref[src];dmake=21'>Upwards</A><BR>
-<A href='byond:://?src=\ref[src];dmake=22'>Downwards</A><BR>
+<A href='byond://?src=\ref[src];dmake=0'>Pipe</A><BR>
+<A href='byond://?src=\ref[src];dmake=1'>Bent Pipe</A><BR>
+<A href='byond://?src=\ref[src];dmake=2'>Junction</A><BR>
+<A href='byond://?src=\ref[src];dmake=3'>Y-Junction</A><BR>
+<A href='byond://?src=\ref[src];dmake=4'>Trunk</A><BR>
+<A href='byond://?src=\ref[src];dmake=5'>Bin</A><BR>
+<A href='byond://?src=\ref[src];dmake=6'>Outlet</A><BR>
+<A href='byond://?src=\ref[src];dmake=7'>Chute</A><BR>
+<A href='byond://?src=\ref[src];dmake=21'>Upwards</A><BR>
+<A href='byond://?src=\ref[src];dmake=22'>Downwards</A><BR>
 "}
 ///// Z-Level stuff
 

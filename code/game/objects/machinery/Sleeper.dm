@@ -71,15 +71,15 @@
 			if(occupant.reagents)
 				for(var/chemical in connected.available_chemicals)
 					dat += "[connected.available_chemicals[chemical]]: [occupant.reagents.get_reagent_amount(chemical)] units<br>"
-			dat += "<A href='byond:://?src=\ref[src];refresh=1'>Refresh Meter Readings</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];refresh=1'>Refresh Meter Readings</A><BR>"
 			if(src.connected.beaker)
-				dat += "<HR><A href='byond:://?src=\ref[src];removebeaker=1'>Remove Beaker</A><BR>"
+				dat += "<HR><A href='byond://?src=\ref[src];removebeaker=1'>Remove Beaker</A><BR>"
 				var/beaker_space = src.connected.beaker.reagents.maximum_volume - src.connected.beaker.reagents.total_volume
 				if(src.connected.filtering)
-					dat += "<A href='byond:://?src=\ref[src];togglefilter=1'>Stop Dialysis</A><BR>"
+					dat += "<A href='byond://?src=\ref[src];togglefilter=1'>Stop Dialysis</A><BR>"
 					dat += "Output Beaker has [beaker_space] units of free space remaining<BR><HR>"
 				else
-					dat += "<HR><A href='byond:://?src=\ref[src];togglefilter=1'>Start Dialysis</A><BR>"
+					dat += "<HR><A href='byond://?src=\ref[src];togglefilter=1'>Start Dialysis</A><BR>"
 					dat += "Output Beaker has [beaker_space] units of free space remaining<BR><HR>"
 			else
 				dat += "<HR>No Dialysis Output Beaker is present.<BR><HR>"
@@ -87,13 +87,13 @@
 			for(var/chemical in connected.available_chemicals)
 				dat += "Inject [connected.available_chemicals[chemical]]: "
 				for(var/amount in connected.amounts)
-					dat += "<a href='byond:://?src=\ref[src];chemical=[chemical];amount=[amount]'>[amount] units</a><br> "
+					dat += "<a href='byond://?src=\ref[src];chemical=[chemical];amount=[amount]'>[amount] units</a><br> "
 
 
-			dat += "<HR><A href='byond:://?src=\ref[src];ejectify=1'>Eject Patient</A>"
+			dat += "<HR><A href='byond://?src=\ref[src];ejectify=1'>Eject Patient</A>"
 		else
 			dat += "The sleeper is empty."
-		dat += "<BR><BR><A href='byond:://?src=\ref[user];mach_close=sleeper'>Close</A>"
+		dat += "<BR><BR><A href='byond://?src=\ref[user];mach_close=sleeper'>Close</A>"
 		user << browse(dat, "window=sleeper;size=400x500")
 		onclose(user, "sleeper")
 	return

@@ -79,7 +79,7 @@
 	if(amt_strange)
 		dat += "Strange rocks: [amt_strange]<br>"
 
-	dat += "<br><br><A href='byond:://?src=\ref[src];removeall=1'>Empty box</A>"
+	dat += "<br><br><A href='byond://?src=\ref[src];removeall=1'>Empty box</A>"
 	user << browse("[dat]", "window=orebox")
 
 /obj/structure/ore_box/Topic(href, href_list)

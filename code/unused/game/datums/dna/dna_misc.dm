@@ -30,9 +30,9 @@
 			pushstring = "</font color><b>[copytext(input, i, i+1)]</b><font color='blue'>"
 		else
 			if(ui) //This is for allowing block clicks to be differentiated
-				pushstring = "<a href='byond:://?src=\ref[src];uimenuset=[num2text(blockpos)];uimenusubset=[num2text(subpos)]'>[copytext(input, i, i+1)]</a>"
+				pushstring = "<a href='byond://?src=\ref[src];uimenuset=[num2text(blockpos)];uimenusubset=[num2text(subpos)]'>[copytext(input, i, i+1)]</a>"
 			else
-				pushstring = "<a href='byond:://?src=\ref[src];semenuset=[num2text(blockpos)];semenusubset=[num2text(subpos)]'>[copytext(input, i, i+1)]</a>"
+				pushstring = "<a href='byond://?src=\ref[src];semenuset=[num2text(blockpos)];semenusubset=[num2text(subpos)]'>[copytext(input, i, i+1)]</a>"
 
 		string += pushstring // push the string to the return string
 

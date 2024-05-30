@@ -183,7 +183,7 @@ var/list/alldepartments = list("Central Command")
 
 /proc/centcom_fax(var/sent, var/sentname, var/mob/Sender)
 
-	var/msg = "\blue <b><font color='orange'>CENTCOM FAX: </font>[key_name(Sender, 1)] (<A href='byond:://?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A href='byond:://?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A href='byond:://?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A href='byond:://?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A href='byond:://?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='byond:://?_src_=holder;CentComFaxReply=\ref[Sender]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='byond:://?_src_=holder;CentComFaxView=\ref[sent]'>view message</a>"
+	var/msg = "\blue <b><font color='orange'>CENTCOM FAX: </font>[key_name(Sender, 1)] (<A href='byond://?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A href='byond://?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A href='byond://?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A href='byond://?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A href='byond://?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='byond://?_src_=holder;CentComFaxReply=\ref[Sender]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='byond://?_src_=holder;CentComFaxView=\ref[sent]'>view message</a>"
 	GLOBL.admins << msg
 
 /proc/SendFax(var/sent, var/sentname, var/mob/Sender, var/dpt)

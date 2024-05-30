@@ -36,7 +36,7 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 	if(emped)
 		html += "ERROR"
 	else
-		html += "<BR><A href='byond:://?src=\ref[src];tag=1'>Set Tag</A> "
+		html += "<BR><A href='byond://?src=\ref[src];tag=1'>Set Tag</A> "
 		html += "<BR>Tag: [gpstag]"
 
 		for(var/obj/item/gps/G in GLOBL.gps_list)

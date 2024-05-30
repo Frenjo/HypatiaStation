@@ -38,18 +38,18 @@ var/const/max_assembly_amount = 300
 			return
 
 	var/t = "<B>Reactor Fuel Rod Compressor / Assembler</B><BR>"
-	t += "<A href='byond:://?src=\ref[src];close=1'>Close</A><BR>"
+	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 	if(locked)
 		t += "Swipe your ID to unlock this console."
 	else
-		t += "Compressed matter in storage: [compressed_matter] <A href='byond:://?src=\ref[src];eject_matter=1'>\[Eject all\]</a><br>"
-		t += "<A href='byond:://?src=\ref[src];activate=1'><b>Activate Fuel Synthesis</b></A><BR> (fuel assemblies require no more than [max_assembly_amount] rods).<br>"
+		t += "Compressed matter in storage: [compressed_matter] <A href='byond://?src=\ref[src];eject_matter=1'>\[Eject all\]</a><br>"
+		t += "<A href='byond://?src=\ref[src];activate=1'><b>Activate Fuel Synthesis</b></A><BR> (fuel assemblies require no more than [max_assembly_amount] rods).<br>"
 		t += "<hr>"
 		t += "- New fuel assembly constituents:- <br>"
 		for(var/reagent in new_assembly_quantities)
-			t += "	[reagent] rods: [new_assembly_quantities[reagent]] \[<A href='byond:://?src=\ref[src];change_reagent=[reagent]'>Modify</A>\]<br>"
+			t += "	[reagent] rods: [new_assembly_quantities[reagent]] \[<A href='byond://?src=\ref[src];change_reagent=[reagent]'>Modify</A>\]<br>"
 	t += "<hr>"
-	t += "<A href='byond:://?src=\ref[src];close=1'>Close</A><BR>"
+	t += "<A href='byond://?src=\ref[src];close=1'>Close</A><BR>"
 
 	user << browse(t, "window=fuelcomp;size=500x300")
 	user.set_machine(src)

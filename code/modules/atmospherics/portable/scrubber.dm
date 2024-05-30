@@ -87,18 +87,18 @@
 
 	if(isnotnull(holding))
 		holding_text = {"<BR><B>Tank Pressure</B>: [holding.air_contents.return_pressure()] KPa<BR>
-<A href='byond:://?src=\ref[src];remove_tank=1'>Remove Tank</A><BR>
+<A href='byond://?src=\ref[src];remove_tank=1'>Remove Tank</A><BR>
 "}
 	var/output_text = {"<TT><B>[name]</B><BR>
 Pressure: [air_contents.return_pressure()] KPa<BR>
 Port Status: [(connected_port)?("Connected"):("Disconnected")]
 [holding_text]
 <BR>
-Power Switch: <A href='byond:://?src=\ref[src];power=1'>[on?("On"):("Off")]</A><BR>
-Power regulator: <A href='byond:://?src=\ref[src];volume_adj=-1000'>-</A> <A href='byond:://?src=\ref[src];volume_adj=-100'>-</A> <A href='byond:://?src=\ref[src];volume_adj=-10'>-</A> <A href='byond:://?src=\ref[src];volume_adj=-1'>-</A> [volume_rate] <A href='byond:://?src=\ref[src];volume_adj=1'>+</A> <A href='byond:://?src=\ref[src];volume_adj=10'>+</A> <A href='byond:://?src=\ref[src];volume_adj=100'>+</A> <A href='byond:://?src=\ref[src];volume_adj=1000'>+</A><BR>
+Power Switch: <A href='byond://?src=\ref[src];power=1'>[on?("On"):("Off")]</A><BR>
+Power regulator: <A href='byond://?src=\ref[src];volume_adj=-1000'>-</A> <A href='byond://?src=\ref[src];volume_adj=-100'>-</A> <A href='byond://?src=\ref[src];volume_adj=-10'>-</A> <A href='byond://?src=\ref[src];volume_adj=-1'>-</A> [volume_rate] <A href='byond://?src=\ref[src];volume_adj=1'>+</A> <A href='byond://?src=\ref[src];volume_adj=10'>+</A> <A href='byond://?src=\ref[src];volume_adj=100'>+</A> <A href='byond://?src=\ref[src];volume_adj=1000'>+</A><BR>
 
 <HR>
-<A href='byond:://?src=\ref[user];mach_close=scrubber'>Close</A><BR>
+<A href='byond://?src=\ref[user];mach_close=scrubber'>Close</A><BR>
 "}
 
 	user << browse(output_text, "window=scrubber;size=600x300")

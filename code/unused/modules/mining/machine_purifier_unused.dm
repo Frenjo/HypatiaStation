@@ -30,7 +30,7 @@
 	else
 		dat += text("<b><font color='red'>NOT CONNECTED</font></b>")
 
-	dat += text("<br><br><A href='byond:://?src=\ref[src];purify=[input]'>Purify</A>")
+	dat += text("<br><br><A href='byond://?src=\ref[src];purify=[input]'>Purify</A>")
 
 	dat += text("<br><br>found: <font color='green'><b>[processed]</b></font>")
 	user << browse("[dat]", "window=purifier")

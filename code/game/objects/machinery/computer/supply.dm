@@ -66,10 +66,10 @@
 		dat += {"<BR><B>Supply shuttle</B><HR>
 		Location: [supply_shuttle.has_arrive_time() ? "Moving to station ([supply_shuttle.eta_minutes()] Mins.)":supply_shuttle.at_station() ? "Station":"Dock"]<BR>
 		<HR>Supply points: [global.PCsupply.points]<BR>
-		<BR>\n<A href='byond:://?src=\ref[src];order=categories'>Request items</A><BR><BR>
-		<A href='byond:://?src=\ref[src];vieworders=1'>View approved orders</A><BR><BR>
-		<A href='byond:://?src=\ref[src];viewrequests=1'>View requests</A><BR><BR>
-		<A href='byond:://?src=\ref[user];mach_close=computer'>Close</A>"}
+		<BR>\n<A href='byond://?src=\ref[src];order=categories'>Request items</A><BR><BR>
+		<A href='byond://?src=\ref[src];vieworders=1'>View approved orders</A><BR><BR>
+		<A href='byond://?src=\ref[src];viewrequests=1'>View requests</A><BR><BR>
+		<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 
 	user << browse(dat, "window=computer;size=575x450")
 	onclose(user, "computer")
@@ -94,19 +94,19 @@
 		temp = list()
 		temp += "<b>Supply points: [global.PCsupply.points]</b><BR>"
 		if(current_category == GET_DECL_INSTANCE(/decl/hierarchy/supply_pack))
-			temp += "<A href='byond:://?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
+			temp += "<A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
 			for(var/decl/hierarchy/supply_pack/sp in current_category.children)
 				if(!sp.is_category())
 					continue
-				temp += "<A href='byond:://?src=\ref[src];order=\ref[sp]'>[sp.name]</A><BR>"
+				temp += "<A href='byond://?src=\ref[src];order=\ref[sp]'>[sp.name]</A><BR>"
 		else
-			temp += "<A href='byond:://?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
+			temp += "<A href='byond://?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
 			temp += "<b>Request from: [current_category.name]</b><BR><BR>"
 			for(var/decl/hierarchy/supply_pack/sp in current_category.children)
 				if(sp.hidden || sp.contraband || sp.is_category())
 					continue
-				temp += "<A href='byond:://?src=\ref[src];doorder=\ref[sp]'>[sp.name]</A> Cost: [sp.cost]<BR>"
+				temp += "<A href='byond://?src=\ref[src];doorder=\ref[sp]'>[sp.name]</A> Cost: [sp.cost]<BR>"
 
 		temp = jointext(temp, null)
 
@@ -163,21 +163,21 @@
 		global.PCsupply.requestlist += O // Edited this to reflect 'shuttles' port. -Frenjo
 
 		temp = "Thanks for your request. The cargo team will process it as soon as possible.<BR>"
-		temp += "<BR><A href='byond:://?src=\ref[src];order=\ref[current_category]'>Back</A> <A href='byond:://?src=\ref[src];mainmenu=1'>Main Menu</A>"
+		temp += "<BR><A href='byond://?src=\ref[src];order=\ref[current_category]'>Back</A> <A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A>"
 
 	else if(href_list["vieworders"])
 		temp = "Current approved orders: <BR><BR>"
 		for(var/S in global.PCsupply.shoppinglist) // Edited this to reflect 'shuttles' port. -Frenjo
 			var/datum/supply_order/SO = S
 			temp += "[SO.object.name] approved by [SO.orderedby] [SO.comment ? "([SO.comment])":""]<BR>"
-		temp += "<BR><A href='byond:://?src=\ref[src];mainmenu=1'>OK</A>"
+		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 
 	else if(href_list["viewrequests"])
 		temp = "Current requests: <BR><BR>"
 		for(var/S in global.PCsupply.requestlist) // Edited this to reflect 'shuttles' port. -Frenjo
 			var/datum/supply_order/SO = S
 			temp += "#[SO.ordernum] - [SO.object.name] requested by [SO.orderedby]<BR>"
-		temp += "<BR><A href='byond:://?src=\ref[src];mainmenu=1'>OK</A>"
+		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 
 	else if(href_list["mainmenu"])
 		temp = null
@@ -205,11 +205,11 @@
 			dat += {"<BR><B>Supply shuttle</B><HR>
 		\nLocation: [supply_shuttle.has_arrive_time() ? "Moving to station ([supply_shuttle.eta_minutes()] Mins.)":supply_shuttle.at_station() ? "Station":"Away"]<BR>
 		<HR>\nSupply points: [global.PCsupply.points]<BR>\n<BR>
-		[supply_shuttle.has_arrive_time() ? "\n*Must be away to order items*<BR>\n<BR>":supply_shuttle.at_station() ? "\n*Must be away to order items*<BR>\n<BR>":"\n<A href='byond:://?src=\ref[src];order=categories'>Order items</A><BR>\n<BR>"]
-		[supply_shuttle.has_arrive_time() ? "\n*Shuttle already called*<BR>\n<BR>":supply_shuttle.at_station() ? "\n<A href='byond:://?src=\ref[src];send=1'>Send away</A><BR>\n<BR>":"\n<A href='byond:://?src=\ref[src];send=1'>Send to station</A><BR>\n<BR>"]
-		\n<A href='byond:://?src=\ref[src];viewrequests=1'>View requests</A><BR>\n<BR>
-		\n<A href='byond:://?src=\ref[src];vieworders=1'>View orders</A><BR>\n<BR>
-		\n<A href='byond:://?src=\ref[user];mach_close=computer'>Close</A>"}
+		[supply_shuttle.has_arrive_time() ? "\n*Must be away to order items*<BR>\n<BR>":supply_shuttle.at_station() ? "\n*Must be away to order items*<BR>\n<BR>":"\n<A href='byond://?src=\ref[src];order=categories'>Order items</A><BR>\n<BR>"]
+		[supply_shuttle.has_arrive_time() ? "\n*Shuttle already called*<BR>\n<BR>":supply_shuttle.at_station() ? "\n<A href='byond://?src=\ref[src];send=1'>Send away</A><BR>\n<BR>":"\n<A href='byond://?src=\ref[src];send=1'>Send to station</A><BR>\n<BR>"]
+		\n<A href='byond://?src=\ref[src];viewrequests=1'>View requests</A><BR>\n<BR>
+		\n<A href='byond://?src=\ref[src];vieworders=1'>View orders</A><BR>\n<BR>
+		\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 
 	user << browse(dat, "window=computer;size=575x450")
 	onclose(user, "computer")
@@ -243,15 +243,15 @@
 	//Calling the shuttle
 	if(href_list["send"])
 		if(supply_shuttle.forbidden_atoms_check()) // Edited this to reflect 'shuttles' port. -Frenjo
-			temp = "For safety reasons the automated supply shuttle cannot transport live organisms, classified nuclear weaponry or homing beacons.<BR><BR><A href='byond:://?src=\ref[src];mainmenu=1'>OK</A>"
+			temp = "For safety reasons the automated supply shuttle cannot transport live organisms, classified nuclear weaponry or homing beacons.<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 
 		else if(supply_shuttle.at_station()) // Edited this to reflect 'shuttles' port. -Frenjo
 			supply_shuttle.launch(src) // Edited this to reflect 'shuttles' port. -Frenjo
-			temp = "The supply shuttle has departed.<BR><BR><A href='byond:://?src=\ref[src];mainmenu=1'>OK</A>"
+			temp = "The supply shuttle has departed.<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 		else
 			// Edited this to reflect 'shuttles' port. -Frenjo
 			supply_shuttle.launch(src)
-			temp = "The supply shuttle has been called and will arrive in [round(global.PCsupply.movetime/600,1)] minutes.<BR><BR><A href='byond:://?src=\ref[src];mainmenu=1'>OK</A>"
+			temp = "The supply shuttle has been called and will arrive in [round(global.PCsupply.movetime/600,1)] minutes.<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 			//post_signal("supply")
 
 	else if(href_list["order"])
@@ -268,19 +268,19 @@
 		temp = list()
 		temp += "<b>Supply points: [global.PCsupply.points]</b><BR>"
 		if(current_category == GET_DECL_INSTANCE(/decl/hierarchy/supply_pack))
-			temp += "<A href='byond:://?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
+			temp += "<A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A><HR><BR><BR>"
 			temp += "<b>Select a category</b><BR><BR>"
 			for(var/decl/hierarchy/supply_pack/sp in current_category.children)
 				if(!sp.is_category())
 					continue
-				temp += "<A href='byond:://?src=\ref[src];order=\ref[sp]'>[sp.name]</A><BR>"
+				temp += "<A href='byond://?src=\ref[src];order=\ref[sp]'>[sp.name]</A><BR>"
 		else
-			temp += "<A href='byond:://?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
+			temp += "<A href='byond://?src=\ref[src];order=categories'>Back to all categories</A><HR><BR><BR>"
 			temp += "<b>Request from: [current_category.name]</b><BR><BR>"
 			for(var/decl/hierarchy/supply_pack/sp in current_category.children)
 				if((sp.hidden && !hacked) || (sp.contraband && !can_order_contraband) || sp.is_category())
 					continue
-				temp += "<A href='byond:://?src=\ref[src];doorder=\ref[sp]'>[sp.name]</A> Cost: [sp.cost]<BR>"
+				temp += "<A href='byond://?src=\ref[src];doorder=\ref[sp]'>[sp.name]</A> Cost: [sp.cost]<BR>"
 
 		temp = jointext(temp, null)
 
@@ -337,7 +337,7 @@
 		global.PCsupply.requestlist += O // Edited this to reflect 'shuttles' port. -Frenjo
 
 		temp = "Order request placed.<BR>"
-		temp += "<BR><A href='byond:://?src=\ref[src];order=\ref[current_category]'>Back</A> | <A href='byond:://?src=\ref[src];mainmenu=1'>Main Menu</A> | <A href='byond:://?src=\ref[src];confirmorder=[O.ordernum]'>Authorize Order</A>"
+		temp += "<BR><A href='byond://?src=\ref[src];order=\ref[current_category]'>Back</A> | <A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A> | <A href='byond://?src=\ref[src];confirmorder=[O.ordernum]'>Authorize Order</A>"
 
 	else if(href_list["confirmorder"])
 		//Find the correct supply_order datum
@@ -357,10 +357,10 @@
 					global.PCsupply.shoppinglist += O
 
 					temp = "Thanks for your order.<BR>"
-					temp += "<BR><A href='byond:://?src=\ref[src];viewrequests=1'>Back</A> <A href='byond:://?src=\ref[src];mainmenu=1'>Main Menu</A>"
+					temp += "<BR><A href='byond://?src=\ref[src];viewrequests=1'>Back</A> <A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A>"
 				else
 					temp = "Not enough supply points.<BR>"
-					temp += "<BR><A href='byond:://?src=\ref[src];viewrequests=1'>Back</A> <A href='byond:://?src=\ref[src];mainmenu=1'>Main Menu</A>"
+					temp += "<BR><A href='byond://?src=\ref[src];viewrequests=1'>Back</A> <A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A>"
 				break
 
 	else if(href_list["vieworders"])
@@ -368,8 +368,8 @@
 		//for(var/S in supply_shuttle.shoppinglist)
 		for(var/S in global.PCsupply.shoppinglist) // Edited this to reflect 'shuttles' port. -Frenjo
 			var/datum/supply_order/SO = S
-			temp += "#[SO.ordernum] - [SO.object.name] approved by [SO.orderedby][SO.comment ? " ([SO.comment])":""]<BR>"// <A href='byond:://?src=\ref[src];cancelorder=[S]'>(Cancel)</A><BR>"
-		temp += "<BR><A href='byond:://?src=\ref[src];mainmenu=1'>OK</A>"
+			temp += "#[SO.ordernum] - [SO.object.name] approved by [SO.orderedby][SO.comment ? " ([SO.comment])":""]<BR>"// <A href='byond://?src=\ref[src];cancelorder=[S]'>(Cancel)</A><BR>"
+		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 /*
 	else if (href_list["cancelorder"])
 		var/datum/supply_order/remove_supply = href_list["cancelorder"]
@@ -379,17 +379,17 @@
 
 		for(var/S in supply_shuttle_shoppinglist)
 			var/datum/supply_order/SO = S
-			temp += "[SO.object.name] approved by [SO.orderedby][SO.comment ? " ([SO.comment])":""] <A href='byond:://?src=\ref[src];cancelorder=[S]'>(Cancel)</A><BR>"
-		temp += "<BR><A href='byond:://?src=\ref[src];mainmenu=1'>OK</A>"
+			temp += "[SO.object.name] approved by [SO.orderedby][SO.comment ? " ([SO.comment])":""] <A href='byond://?src=\ref[src];cancelorder=[S]'>(Cancel)</A><BR>"
+		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 */
 	else if(href_list["viewrequests"])
 		temp = "Current requests: <BR><BR>"
 		for(var/S in global.PCsupply.requestlist) // Edited this to reflect 'shuttles' port. -Frenjo
 			var/datum/supply_order/SO = S
-			temp += "#[SO.ordernum] - [SO.object.name] requested by [SO.orderedby]  [supply_shuttle.has_arrive_time() ? "":supply_shuttle.at_station() ? "":"<A href='byond:://?src=\ref[src];confirmorder=[SO.ordernum]'>Approve</A> <A href='byond:://?src=\ref[src];rreq=[SO.ordernum]'>Remove</A>"]<BR>" // Edited this to reflect 'shuttles' port. -Frenjo
+			temp += "#[SO.ordernum] - [SO.object.name] requested by [SO.orderedby]  [supply_shuttle.has_arrive_time() ? "":supply_shuttle.at_station() ? "":"<A href='byond://?src=\ref[src];confirmorder=[SO.ordernum]'>Approve</A> <A href='byond://?src=\ref[src];rreq=[SO.ordernum]'>Remove</A>"]<BR>" // Edited this to reflect 'shuttles' port. -Frenjo
 
-		temp += "<BR><A href='byond:://?src=\ref[src];clearreq=1'>Clear list</A>"
-		temp += "<BR><A href='byond:://?src=\ref[src];mainmenu=1'>OK</A>"
+		temp += "<BR><A href='byond://?src=\ref[src];clearreq=1'>Clear list</A>"
+		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 
 	else if(href_list["rreq"])
 		var/ordernum = text2num(href_list["rreq"])
@@ -402,12 +402,12 @@
 				global.PCsupply.requestlist.Cut(i,i + 1) // Edited this to reflct 'shuttles' port. -Frenjo
 				temp = "Request removed.<BR>"
 				break
-		temp += "<BR><A href='byond:://?src=\ref[src];viewrequests=1'>Back</A> <A href='byond:://?src=\ref[src];mainmenu=1'>Main Menu</A>"
+		temp += "<BR><A href='byond://?src=\ref[src];viewrequests=1'>Back</A> <A href='byond://?src=\ref[src];mainmenu=1'>Main Menu</A>"
 
 	else if(href_list["clearreq"])
 		global.PCsupply.requestlist.Cut() // Edited this to reflct 'shuttles' port. -Frenjo
 		temp = "List cleared.<BR>"
-		temp += "<BR><A href='byond:://?src=\ref[src];mainmenu=1'>OK</A>"
+		temp += "<BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 
 	else if(href_list["mainmenu"])
 		temp = null

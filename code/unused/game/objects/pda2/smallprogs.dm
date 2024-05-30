@@ -39,17 +39,17 @@
 
 		dat += "<h4>Station Status Display Interlink</h4>"
 
-		dat += "\[ <A href='byond:://?src=\ref[src];statdisp=blank'>Clear</A> \]<BR>"
-		dat += "\[ <A href='byond:://?src=\ref[src];statdisp=shuttle'>Shuttle ETA</A> \]<BR>"
-		dat += "\[ <A href='byond:://?src=\ref[src];statdisp=message'>Message</A> \]"
+		dat += "\[ <A href='byond://?src=\ref[src];statdisp=blank'>Clear</A> \]<BR>"
+		dat += "\[ <A href='byond://?src=\ref[src];statdisp=shuttle'>Shuttle ETA</A> \]<BR>"
+		dat += "\[ <A href='byond://?src=\ref[src];statdisp=message'>Message</A> \]"
 
-		dat += "<ul><li> Line 1: <A href='byond:://?src=\ref[src];statdisp=setmsg1'>[ message1 ? message1 : "(none)"]</A>"
-		dat += "<li> Line 2: <A href='byond:://?src=\ref[src];statdisp=setmsg2'>[ message2 ? message2 : "(none)"]</A></ul><br>"
-		dat += "\[ Alert: <A href='byond:://?src=\ref[src];statdisp=alert;alert=default'>None</A> |"
+		dat += "<ul><li> Line 1: <A href='byond://?src=\ref[src];statdisp=setmsg1'>[ message1 ? message1 : "(none)"]</A>"
+		dat += "<li> Line 2: <A href='byond://?src=\ref[src];statdisp=setmsg2'>[ message2 ? message2 : "(none)"]</A></ul><br>"
+		dat += "\[ Alert: <A href='byond://?src=\ref[src];statdisp=alert;alert=default'>None</A> |"
 
-		dat += " <A href='byond:://?src=\ref[src];statdisp=alert;alert=redalert'>Red Alert</A> |"
-		dat += " <A href='byond:://?src=\ref[src];statdisp=alert;alert=lockdown'>Lockdown</A> |"
-		dat += " <A href='byond:://?src=\ref[src];statdisp=alert;alert=biohazard'>Biohazard</A> \]<BR>"
+		dat += " <A href='byond://?src=\ref[src];statdisp=alert;alert=redalert'>Red Alert</A> |"
+		dat += " <A href='byond://?src=\ref[src];statdisp=alert;alert=lockdown'>Lockdown</A> |"
+		dat += " <A href='byond://?src=\ref[src];statdisp=alert;alert=biohazard'>Biohazard</A> \]<BR>"
 
 		return dat
 

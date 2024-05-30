@@ -42,9 +42,9 @@
 	if(machine.ore_amounts[/obj/item/ore/iron])
 		html += "Iron: [machine.ore_amounts[/obj/item/ore/iron]] "
 		if(machine.selected & ORE_PROC_IRON)
-			html += "(<A href='byond:://?src=\ref[src];sel_iron=no'><font color='green'>Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_iron=no'><font color='green'>Smelting</font></A>)"
 		else
-			html += "(<A href='byond:://?src=\ref[src];sel_iron=yes'><font color='red'>Not Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_iron=yes'><font color='red'>Not Smelting</font></A>)"
 		html += "<br>"
 		has_materials = TRUE
 	else
@@ -54,9 +54,9 @@
 	if(machine.ore_amounts[/obj/item/ore/glass])
 		html += "Sand: [machine.ore_amounts[/obj/item/ore/glass]] "
 		if(machine.selected & ORE_PROC_GLASS)
-			html += "(<A href='byond:://?src=\ref[src];sel_glass=no'><font color='green'>Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_glass=no'><font color='green'>Smelting</font></A>)"
 		else
-			html += "(<A href='byond:://?src=\ref[src];sel_glass=yes'><font color='red'>Not Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_glass=yes'><font color='red'>Not Smelting</font></A>)"
 		html += "<br>"
 		has_materials = TRUE
 	else
@@ -66,9 +66,9 @@
 	if(machine.ore_amounts[/obj/item/ore/plasma])
 		html += "Plasma: [machine.ore_amounts[/obj/item/ore/plasma]] "
 		if(machine.selected & ORE_PROC_PLASMA)
-			html += "(<A href='byond:://?src=\ref[src];sel_plasma=no'><font color='green'>Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_plasma=no'><font color='green'>Smelting</font></A>)"
 		else
-			html += "(<A href='byond:://?src=\ref[src];sel_plasma=yes'><font color='red'>Not Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_plasma=yes'><font color='red'>Not Smelting</font></A>)"
 		html += "<br>"
 		has_materials = TRUE
 	else
@@ -78,9 +78,9 @@
 	if(machine.ore_amounts[/obj/item/ore/uranium])
 		html += "Uranium: [machine.ore_amounts[/obj/item/ore/uranium]] "
 		if(machine.selected & ORE_PROC_URANIUM)
-			html += "(<A href='byond:://?src=\ref[src];sel_uranium=no'><font color='green'>Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_uranium=no'><font color='green'>Smelting</font></A>)"
 		else
-			html += "(<A href='byond:://?src=\ref[src];sel_uranium=yes'><font color='red'>Not Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_uranium=yes'><font color='red'>Not Smelting</font></A>)"
 		html += "<br>"
 		has_materials = TRUE
 	else
@@ -90,9 +90,9 @@
 	if(machine.ore_amounts[/obj/item/ore/gold])
 		html += "Gold: [machine.ore_amounts[/obj/item/ore/gold]] "
 		if(machine.selected & ORE_PROC_GOLD)
-			html += "(<A href='byond:://?src=\ref[src];sel_gold=no'><font color='green'>Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_gold=no'><font color='green'>Smelting</font></A>)"
 		else
-			html += "(<A href='byond:://?src=\ref[src];sel_gold=yes'><font color='red'>Not Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_gold=yes'><font color='red'>Not Smelting</font></A>)"
 		html += "<br>"
 		has_materials = TRUE
 	else
@@ -102,9 +102,9 @@
 	if(machine.ore_amounts[/obj/item/ore/silver])
 		html += "Silver: [machine.ore_amounts[/obj/item/ore/silver]] "
 		if(machine.selected & ORE_PROC_SILVER)
-			html += "(<A href='byond:://?src=\ref[src];sel_silver=no'><font color='green'>Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_silver=no'><font color='green'>Smelting</font></A>)"
 		else
-			html += "(<A href='byond:://?src=\ref[src];sel_silver=yes'><font color='red'>Not Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_silver=yes'><font color='red'>Not Smelting</font></A>)"
 		html += "<br>"
 		has_materials = TRUE
 	else
@@ -114,9 +114,9 @@
 	if(machine.ore_amounts[/obj/item/ore/diamond])
 		html += "Diamond: [machine.ore_amounts[/obj/item/ore/diamond]] "
 		if(machine.selected & ORE_PROC_DIAMOND)
-			html += "(<A href='byond:://?src=\ref[src];sel_diamond=no'><font color='green'>Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_diamond=no'><font color='green'>Smelting</font></A>)"
 		else
-			html += "(<A href='byond:://?src=\ref[src];sel_diamond=yes'><font color='red'>Not Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_diamond=yes'><font color='red'>Not Smelting</font></A>)"
 		html += "<br>"
 		has_materials = TRUE
 	else
@@ -126,9 +126,9 @@
 	if(machine.ore_amounts[/obj/item/ore/bananium])
 		html += "Bananium: [machine.ore_amounts[/obj/item/ore/bananium]] "
 		if(machine.selected & ORE_PROC_BANANIUM)
-			html += "(<A href='byond:://?src=\ref[src];sel_bananium=no'><font color='green'>Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_bananium=no'><font color='green'>Smelting</font></A>)"
 		else
-			html += "(<A href='byond:://?src=\ref[src];sel_bananium=yes'><font color='red'>Not Smelting</font></A>)"
+			html += "(<A href='byond://?src=\ref[src];sel_bananium=yes'><font color='red'>Not Smelting</font></A>)"
 		html += "<br>"
 		has_materials = TRUE
 	else
@@ -138,9 +138,9 @@
 		// On or off.
 		html += "<br>Machine is currently: "
 		if(machine.on)
-			html += "<A href='byond:://?src=\ref[src];set_on=off'>On</A>"
+			html += "<A href='byond://?src=\ref[src];set_on=off'>On</A>"
 		else
-			html += "<A href='byond:://?src=\ref[src];set_on=on'>Off</A>"
+			html += "<A href='byond://?src=\ref[src];set_on=on'>Off</A>"
 	else
 		html += "---No Materials Loaded---"
 

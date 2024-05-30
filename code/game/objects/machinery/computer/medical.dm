@@ -29,31 +29,31 @@
 		return
 	var/dat
 	if (src.temp)
-		dat = text("<TT>[src.temp]</TT><BR><BR><A href='byond:://?src=\ref[src];temp=1'>Clear Screen</A>")
+		dat = text("<TT>[src.temp]</TT><BR><BR><A href='byond://?src=\ref[src];temp=1'>Clear Screen</A>")
 	else
-		dat = text("Confirm Identity: <A href='byond:://?src=\ref[];scan=1'>[]</A><HR>", src, (src.scan ? text("[]", src.scan.name) : "----------"))
+		dat = text("Confirm Identity: <A href='byond://?src=\ref[];scan=1'>[]</A><HR>", src, (src.scan ? text("[]", src.scan.name) : "----------"))
 		if (src.authenticated)
 			switch(src.screen)
 				if(1.0)
 					dat += {"
-<A href='byond:://?src=\ref[src];search=1'>Search Records</A>
-<BR><A href='byond:://?src=\ref[src];screen=2'>List Records</A>
+<A href='byond://?src=\ref[src];search=1'>Search Records</A>
+<BR><A href='byond://?src=\ref[src];screen=2'>List Records</A>
 <BR>
-<BR><A href='byond:://?src=\ref[src];screen=5'>Virus Database</A>
-<BR><A href='byond:://?src=\ref[src];screen=6'>Medbot Tracking</A>
+<BR><A href='byond://?src=\ref[src];screen=5'>Virus Database</A>
+<BR><A href='byond://?src=\ref[src];screen=6'>Medbot Tracking</A>
 <BR>
-<BR><A href='byond:://?src=\ref[src];screen=3'>Record Maintenance</A>
-<BR><A href='byond:://?src=\ref[src];logout=1'>{Log Out}</A><BR>
+<BR><A href='byond://?src=\ref[src];screen=3'>Record Maintenance</A>
+<BR><A href='byond://?src=\ref[src];logout=1'>{Log Out}</A><BR>
 "}
 				if(2.0)
 					dat += "<B>Record List</B>:<HR>"
 					if(isnotnull(GLOBL.data_core.general))
 						for_no_type_check(var/datum/data/record/R, sortRecord(GLOBL.data_core.general))
-							dat += text("<A href='byond:://?src=\ref[];d_rec=\ref[]'>[]: []<BR>", src, R, R.fields["id"], R.fields["name"])
+							dat += text("<A href='byond://?src=\ref[];d_rec=\ref[]'>[]: []<BR>", src, R, R.fields["id"], R.fields["name"])
 							//Foreach goto(132)
-					dat += text("<HR><A href='byond:://?src=\ref[];screen=1'>Back</A>", src)
+					dat += text("<HR><A href='byond://?src=\ref[];screen=1'>Back</A>", src)
 				if(3.0)
-					dat += text("<B>Records Maintenance</B><HR>\n<A href='byond:://?src=\ref[];back=1'>Backup To Disk</A><BR>\n<A href='byond:://?src=\ref[];u_load=1'>Upload From disk</A><BR>\n<A href='byond:://?src=\ref[];del_all=1'>Delete All Records</A><BR>\n<BR>\n<A href='byond:://?src=\ref[];screen=1'>Back</A>", src, src, src, src)
+					dat += text("<B>Records Maintenance</B><HR>\n<A href='byond://?src=\ref[];back=1'>Backup To Disk</A><BR>\n<A href='byond://?src=\ref[];u_load=1'>Upload From disk</A><BR>\n<A href='byond://?src=\ref[];del_all=1'>Delete All Records</A><BR>\n<BR>\n<A href='byond://?src=\ref[];screen=1'>Back</A>", src, src, src, src)
 				if(4.0)
 					var/icon/front = new(active1.fields["photo"], dir = SOUTH)
 					var/icon/side = new(active1.fields["photo"], dir = WEST)
@@ -63,26 +63,26 @@
 					if(istype(src.active1, /datum/data/record) && GLOBL.data_core.general.Find(src.active1))
 						dat += "<table><tr><td>Name: [active1.fields["name"]] \
 								ID: [active1.fields["id"]]<BR>\n	\
-								Sex: <A href='byond:://?src=\ref[src];field=sex'>[active1.fields["sex"]]</A><BR>\n	\
-								Age: <A href='byond:://?src=\ref[src];field=age'>[active1.fields["age"]]</A><BR>\n	\
-								Fingerprint: <A href='byond:://?src=\ref[src];field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>\n	\
-								Physical Status: <A href='byond:://?src=\ref[src];field=p_stat'>[active1.fields["p_stat"]]</A><BR>\n	\
-								Mental Status: <A href='byond:://?src=\ref[src];field=m_stat'>[active1.fields["m_stat"]]</A><BR></td><td align = center valign = top> \
+								Sex: <A href='byond://?src=\ref[src];field=sex'>[active1.fields["sex"]]</A><BR>\n	\
+								Age: <A href='byond://?src=\ref[src];field=age'>[active1.fields["age"]]</A><BR>\n	\
+								Fingerprint: <A href='byond://?src=\ref[src];field=fingerprint'>[active1.fields["fingerprint"]]</A><BR>\n	\
+								Physical Status: <A href='byond://?src=\ref[src];field=p_stat'>[active1.fields["p_stat"]]</A><BR>\n	\
+								Mental Status: <A href='byond://?src=\ref[src];field=m_stat'>[active1.fields["m_stat"]]</A><BR></td><td align = center valign = top> \
 								Photo:<br><img src=front.png height=64 width=64 border=5><img src=side.png height=64 width=64 border=5></td></tr></table>"
 					else
 						dat += "<B>General Record Lost!</B><BR>"
 					if(istype(src.active2, /datum/data/record) && GLOBL.data_core.medical.Find(src.active2))
-						dat += text("<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: <A href='byond:://?src=\ref[];field=b_type'>[]</A><BR>\nDNA: <A href='byond:://?src=\ref[];field=b_dna'>[]</A><BR>\n<BR>\nMinor Disabilities: <A href='byond:://?src=\ref[];field=mi_dis'>[]</A><BR>\nDetails: <A href='byond:://?src=\ref[];field=mi_dis_d'>[]</A><BR>\n<BR>\nMajor Disabilities: <A href='byond:://?src=\ref[];field=ma_dis'>[]</A><BR>\nDetails: <A href='byond:://?src=\ref[];field=ma_dis_d'>[]</A><BR>\n<BR>\nAllergies: <A href='byond:://?src=\ref[];field=alg'>[]</A><BR>\nDetails: <A href='byond:://?src=\ref[];field=alg_d'>[]</A><BR>\n<BR>\nCurrent Diseases: <A href='byond:://?src=\ref[];field=cdi'>[]</A> (per disease info placed in log/comment section)<BR>\nDetails: <A href='byond:://?src=\ref[];field=cdi_d'>[]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='byond:://?src=\ref[];field=notes'>[]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", src, src.active2.fields["b_type"], src, src.active2.fields["b_dna"], src, src.active2.fields["mi_dis"], src, src.active2.fields["mi_dis_d"], src, src.active2.fields["ma_dis"], src, src.active2.fields["ma_dis_d"], src, src.active2.fields["alg"], src, src.active2.fields["alg_d"], src, src.active2.fields["cdi"], src, src.active2.fields["cdi_d"], src, src.active2.fields["notes"])
+						dat += text("<BR>\n<CENTER><B>Medical Data</B></CENTER><BR>\nBlood Type: <A href='byond://?src=\ref[];field=b_type'>[]</A><BR>\nDNA: <A href='byond://?src=\ref[];field=b_dna'>[]</A><BR>\n<BR>\nMinor Disabilities: <A href='byond://?src=\ref[];field=mi_dis'>[]</A><BR>\nDetails: <A href='byond://?src=\ref[];field=mi_dis_d'>[]</A><BR>\n<BR>\nMajor Disabilities: <A href='byond://?src=\ref[];field=ma_dis'>[]</A><BR>\nDetails: <A href='byond://?src=\ref[];field=ma_dis_d'>[]</A><BR>\n<BR>\nAllergies: <A href='byond://?src=\ref[];field=alg'>[]</A><BR>\nDetails: <A href='byond://?src=\ref[];field=alg_d'>[]</A><BR>\n<BR>\nCurrent Diseases: <A href='byond://?src=\ref[];field=cdi'>[]</A> (per disease info placed in log/comment section)<BR>\nDetails: <A href='byond://?src=\ref[];field=cdi_d'>[]</A><BR>\n<BR>\nImportant Notes:<BR>\n\t<A href='byond://?src=\ref[];field=notes'>[]</A><BR>\n<BR>\n<CENTER><B>Comments/Log</B></CENTER><BR>", src, src.active2.fields["b_type"], src, src.active2.fields["b_dna"], src, src.active2.fields["mi_dis"], src, src.active2.fields["mi_dis_d"], src, src.active2.fields["ma_dis"], src, src.active2.fields["ma_dis_d"], src, src.active2.fields["alg"], src, src.active2.fields["alg_d"], src, src.active2.fields["cdi"], src, src.active2.fields["cdi_d"], src, src.active2.fields["notes"])
 						var/counter = 1
 						while(src.active2.fields[text("com_[]", counter)])
-							dat += text("[]<BR><A href='byond:://?src=\ref[];del_c=[]'>Delete Entry</A><BR><BR>", src.active2.fields[text("com_[]", counter)], src, counter)
+							dat += text("[]<BR><A href='byond://?src=\ref[];del_c=[]'>Delete Entry</A><BR><BR>", src.active2.fields[text("com_[]", counter)], src, counter)
 							counter++
-						dat += text("<A href='byond:://?src=\ref[];add_c=1'>Add Entry</A><BR><BR>", src)
-						dat += text("<A href='byond:://?src=\ref[];del_r=1'>Delete Record (Medical Only)</A><BR><BR>", src)
+						dat += text("<A href='byond://?src=\ref[];add_c=1'>Add Entry</A><BR><BR>", src)
+						dat += text("<A href='byond://?src=\ref[];del_r=1'>Delete Record (Medical Only)</A><BR><BR>", src)
 					else
 						dat += "<B>Medical Record Lost!</B><BR>"
-						dat += text("<A href='byond:://?src=\ref[src];new=1'>New Record</A><BR><BR>")
-					dat += text("\n<A href='byond:://?src=\ref[];print_p=1'>Print Record</A><BR>\n<A href='byond:://?src=\ref[];screen=2'>Back</A><BR>", src, src)
+						dat += text("<A href='byond://?src=\ref[src];new=1'>New Record</A><BR><BR>")
+					dat += text("\n<A href='byond://?src=\ref[];print_p=1'>Print Record</A><BR>\n<A href='byond://?src=\ref[];screen=2'>Back</A><BR>", src, src)
 				if(5.0)
 					dat += "<CENTER><B>Virus Database</B></CENTER>"
 					/*	Advanced diseases is weak! Feeble! Glory to virus2!
@@ -92,16 +92,16 @@
 							continue // TODO (tm): Add advance diseases to the virus database which no one uses.
 						if(!Dis.desc)
 							continue
-						dat += "<br><a href='byond:://?src=\ref[src];vir=[Dt]'>[Dis.name]</a>"
+						dat += "<br><a href='byond://?src=\ref[src];vir=[Dt]'>[Dis.name]</a>"
 					*/
 					for (var/ID in virusDB)
 						var/datum/data/record/v = virusDB[ID]
-						dat += "<br><a href='byond:://?src=\ref[src];vir=\ref[v]'>[v.fields["name"]]</a>"
+						dat += "<br><a href='byond://?src=\ref[src];vir=\ref[v]'>[v.fields["name"]]</a>"
 
-					dat += "<br><a href='byond:://?src=\ref[src];screen=1'>Back</a>"
+					dat += "<br><a href='byond://?src=\ref[src];screen=1'>Back</a>"
 				if(6.0)
 					dat += "<center><b>Medical Robot Monitor</b></center>"
-					dat += "<a href='byond:://?src=\ref[src];screen=1'>Back</a>"
+					dat += "<a href='byond://?src=\ref[src];screen=1'>Back</a>"
 					dat += "<br><b>Medical Robots:</b>"
 					var/bdat = null
 					for(var/obj/machinery/bot/medbot/M in world)
@@ -121,7 +121,7 @@
 
 				else
 		else
-			dat += text("<A href='byond:://?src=\ref[];login=1'>{Log In}</A>", src)
+			dat += text("<A href='byond://?src=\ref[];login=1'>{Log In}</A>", src)
 	user << browse(text("<HEAD><TITLE>Medical Records</TITLE></HEAD><TT>[]</TT>", dat), "window=med_rec")
 	onclose(user, "med_rec")
 	return
@@ -209,13 +209,13 @@
 			if(href_list["vir"])
 				var/datum/data/record/v = locate(href_list["vir"])
 				src.temp = "<center>GNAv2 based virus lifeform V-[v.fields["id"]]</center>"
-				src.temp += "<br><b>Name:</b> <A href='byond:://?src=\ref[src];field=vir_name;edit_vir=\ref[v]'>[v.fields["name"]]</A>"
+				src.temp += "<br><b>Name:</b> <A href='byond://?src=\ref[src];field=vir_name;edit_vir=\ref[v]'>[v.fields["name"]]</A>"
 				src.temp += "<br><b>Antigen:</b> [v.fields["antigen"]]"
 				src.temp += "<br><b>Spread:</b> [v.fields["spread type"]] "
-				src.temp += "<br><b>Details:</b><br> <A href='byond:://?src=\ref[src];field=vir_desc;edit_vir=\ref[v]'>[v.fields["description"]]</A>"
+				src.temp += "<br><b>Details:</b><br> <A href='byond://?src=\ref[src];field=vir_desc;edit_vir=\ref[v]'>[v.fields["description"]]</A>"
 
 			if(href_list["del_all"])
-				src.temp = text("Are you sure you wish to delete all records?<br>\n\t<A href='byond:://?src=\ref[];temp=1;del_all2=1'>Yes</A><br>\n\t<A href='byond:://?src=\ref[];temp=1'>No</A><br>", src, src)
+				src.temp = text("Are you sure you wish to delete all records?<br>\n\t<A href='byond://?src=\ref[];temp=1;del_all2=1'>Yes</A><br>\n\t<A href='byond://?src=\ref[];temp=1'>No</A><br>", src, src)
 
 			if(href_list["del_all2"])
 				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.medical)
@@ -302,13 +302,13 @@
 							src.active2.fields["notes"] = t1
 					if("p_stat")
 						if(istype(src.active1, /datum/data/record))
-							src.temp = text("<B>Physical Condition:</B><BR>\n\t<A href='byond:://?src=\ref[];temp=1;p_stat=deceased'>*Deceased*</A><BR>\n\t<A href='byond:://?src=\ref[];temp=1;p_stat=ssd'>*SSD*</A><BR>\n\t<A href='byond:://?src=\ref[];temp=1;p_stat=active'>Active</A><BR>\n\t<A href='byond:://?src=\ref[];temp=1;p_stat=unfit'>Physically Unfit</A><BR>\n\t<A href='byond:://?src=\ref[];temp=1;p_stat=disabled'>Disabled</A><BR>", src, src, src, src, src)
+							src.temp = text("<B>Physical Condition:</B><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=deceased'>*Deceased*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=ssd'>*SSD*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=active'>Active</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=unfit'>Physically Unfit</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;p_stat=disabled'>Disabled</A><BR>", src, src, src, src, src)
 					if("m_stat")
 						if(istype(src.active1, /datum/data/record))
-							src.temp = text("<B>Mental Condition:</B><BR>\n\t<A href='byond:://?src=\ref[];temp=1;m_stat=insane'>*Insane*</A><BR>\n\t<A href='byond:://?src=\ref[];temp=1;m_stat=unstable'>*Unstable*</A><BR>\n\t<A href='byond:://?src=\ref[];temp=1;m_stat=watch'>*Watch*</A><BR>\n\t<A href='byond:://?src=\ref[];temp=1;m_stat=stable'>Stable</A><BR>", src, src, src, src)
+							src.temp = text("<B>Mental Condition:</B><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=insane'>*Insane*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=unstable'>*Unstable*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=watch'>*Watch*</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;m_stat=stable'>Stable</A><BR>", src, src, src, src)
 					if("b_type")
 						if(istype(src.active2, /datum/data/record))
-							src.temp = text("<B>Blood Type:</B><BR>\n\t<A href='byond:://?src=\ref[];temp=1;b_type=an'>A-</A> <A href='byond:://?src=\ref[];temp=1;b_type=ap'>A+</A><BR>\n\t<A href='byond:://?src=\ref[];temp=1;b_type=bn'>B-</A> <A href='byond:://?src=\ref[];temp=1;b_type=bp'>B+</A><BR>\n\t<A href='byond:://?src=\ref[];temp=1;b_type=abn'>AB-</A> <A href='byond:://?src=\ref[];temp=1;b_type=abp'>AB+</A><BR>\n\t<A href='byond:://?src=\ref[];temp=1;b_type=on'>O-</A> <A href='byond:://?src=\ref[];temp=1;b_type=op'>O+</A><BR>", src, src, src, src, src, src, src, src)
+							src.temp = text("<B>Blood Type:</B><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=an'>A-</A> <A href='byond://?src=\ref[];temp=1;b_type=ap'>A+</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=bn'>B-</A> <A href='byond://?src=\ref[];temp=1;b_type=bp'>B+</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=abn'>AB-</A> <A href='byond://?src=\ref[];temp=1;b_type=abp'>AB+</A><BR>\n\t<A href='byond://?src=\ref[];temp=1;b_type=on'>O-</A> <A href='byond://?src=\ref[];temp=1;b_type=op'>O+</A><BR>", src, src, src, src, src, src, src, src)
 					if("b_dna")
 						if(istype(src.active1, /datum/data/record))
 							var/t1 = copytext(sanitize(input("Please input DNA hash:", "Med. records", src.active1.fields["dna"], null)  as text),1,MAX_MESSAGE_LEN)
@@ -381,7 +381,7 @@
 
 			if(href_list["del_r"])
 				if(src.active2)
-					src.temp = text("Are you sure you wish to delete the record (Medical Portion Only)?<br>\n\t<A href='byond:://?src=\ref[];temp=1;del_r2=1'>Yes</A><br>\n\t<A href='byond:://?src=\ref[];temp=1'>No</A><br>", src, src)
+					src.temp = text("Are you sure you wish to delete the record (Medical Portion Only)?<br>\n\t<A href='byond://?src=\ref[];temp=1;del_r2=1'>Yes</A><br>\n\t<A href='byond://?src=\ref[];temp=1'>No</A><br>", src, src)
 
 			if(href_list["del_r2"])
 				if(src.active2)

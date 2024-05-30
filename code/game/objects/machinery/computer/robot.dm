@@ -30,12 +30,12 @@
 	user.set_machine(src)
 	var/dat
 	if (src.temp)
-		dat = "<TT>[src.temp]</TT><BR><BR><A href='byond:://?src=\ref[src];temp=1'>Clear Screen</A>"
+		dat = "<TT>[src.temp]</TT><BR><BR><A href='byond://?src=\ref[src];temp=1'>Clear Screen</A>"
 	else
 		if(screen == 0)
 			dat += "<h3>Cyborg Control Console</h3><BR>"
-			dat += "<A href='byond:://?src=\ref[src];screen=1'>1. Cyborg Status</A><BR>"
-			dat += "<A href='byond:://?src=\ref[src];screen=2'>2. Emergency Full Destruct</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];screen=1'>1. Cyborg Status</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];screen=2'>2. Emergency Full Destruct</A><BR>"
 		if(screen == 1)
 			for(var/mob/living/silicon/robot/R in GLOBL.mob_list)
 				if(isdrone(R))
@@ -71,28 +71,28 @@
 					dat += " Independent from AI |"
 				if (issilicon(user))
 					if((user.mind.special_role && user.mind.original == user) && !R.emagged)
-						dat += "<A href='byond:://?src=\ref[src];magbot=\ref[R]'>(<font color=blue><i>Hack</i></font>)</A> "
-				dat += "<A href='byond:://?src=\ref[src];stopbot=\ref[R]'>(<font color=green><i>[R.canmove ? "Lockdown" : "Release"]</i></font>)</A> "
-				dat += "<A href='byond:://?src=\ref[src];killbot=\ref[R]'>(<font color=red><i>Destroy</i></font>)</A>"
+						dat += "<A href='byond://?src=\ref[src];magbot=\ref[R]'>(<font color=blue><i>Hack</i></font>)</A> "
+				dat += "<A href='byond://?src=\ref[src];stopbot=\ref[R]'>(<font color=green><i>[R.canmove ? "Lockdown" : "Release"]</i></font>)</A> "
+				dat += "<A href='byond://?src=\ref[src];killbot=\ref[R]'>(<font color=red><i>Destroy</i></font>)</A>"
 				dat += "<BR>"
-			dat += "<A href='byond:://?src=\ref[src];screen=0'>(Return to Main Menu)</A><BR>"
+			dat += "<A href='byond://?src=\ref[src];screen=0'>(Return to Main Menu)</A><BR>"
 		if(screen == 2)
 			if(!src.status)
 				dat += {"<BR><B>Emergency Robot Self-Destruct</B><HR>\nStatus: Off<BR>
 				\n<BR>
-				\nCountdown: [src.timeleft]/60 <A href='byond:://?src=\ref[src];reset=1'>\[Reset\]</A><BR>
+				\nCountdown: [src.timeleft]/60 <A href='byond://?src=\ref[src];reset=1'>\[Reset\]</A><BR>
 				\n<BR>
-				\n<A href='byond:://?src=\ref[src];eject=1'>Start Sequence</A><BR>
+				\n<A href='byond://?src=\ref[src];eject=1'>Start Sequence</A><BR>
 				\n<BR>
-				\n<A href='byond:://?src=\ref[user];mach_close=computer'>Close</A>"}
+				\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
 			else
 				dat = {"<B>Emergency Robot Self-Destruct</B><HR>\nStatus: Activated<BR>
 				\n<BR>
 				\nCountdown: [src.timeleft]/60 \[Reset\]<BR>
-				\n<BR>\n<A href='byond:://?src=\ref[src];stop=1'>Stop Sequence</A><BR>
+				\n<BR>\n<A href='byond://?src=\ref[src];stop=1'>Stop Sequence</A><BR>
 				\n<BR>
-				\n<A href='byond:://?src=\ref[user];mach_close=computer'>Close</A>"}
-			dat += "<A href='byond:://?src=\ref[src];screen=0'>(Return to Main Menu)</A><BR>"
+				\n<A href='byond://?src=\ref[user];mach_close=computer'>Close</A>"}
+			dat += "<A href='byond://?src=\ref[src];screen=0'>(Return to Main Menu)</A><BR>"
 
 	user << browse(dat, "window=computer;size=400x500")
 	onclose(user, "computer")
@@ -106,8 +106,8 @@
 
 		if (href_list["eject"])
 			src.temp = {"Destroy Robots?<BR>
-			<BR><B><A href='byond:://?src=\ref[src];eject2=1'>\[Swipe ID to initiate destruction sequence\]</A></B><BR>
-			<A href='byond:://?src=\ref[src];temp=1'>Cancel</A>"}
+			<BR><B><A href='byond://?src=\ref[src];eject2=1'>\[Swipe ID to initiate destruction sequence\]</A></B><BR>
+			<A href='byond://?src=\ref[src];temp=1'>Cancel</A>"}
 
 		else if (href_list["eject2"])
 			var/obj/item/card/id/I = usr.get_active_hand()
@@ -129,8 +129,8 @@
 		else if (href_list["stop"])
 			src.temp = {"
 			Stop Robot Destruction Sequence?<BR>
-			<BR><A href='byond:://?src=\ref[src];stop2=1'>Yes</A><BR>
-			<A href='byond:://?src=\ref[src];temp=1'>No</A>"}
+			<BR><A href='byond://?src=\ref[src];stop2=1'>Yes</A><BR>
+			<A href='byond://?src=\ref[src];temp=1'>No</A>"}
 
 		else if (href_list["stop2"])
 			src.stop = 1
