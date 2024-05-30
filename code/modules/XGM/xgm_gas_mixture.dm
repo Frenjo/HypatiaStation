@@ -38,7 +38,8 @@
 
 	if(moles > 0 && abs(temperature - temp) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
 		var/self_heat_capacity = heat_capacity() * group_multiplier
-		var/giver_heat_capacity = GLOBL.gas_data.specific_heat[gasid] * moles
+		var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
+		var/giver_heat_capacity = gas_data.specific_heat[gasid] * moles
 		var/combined_heat_capacity = giver_heat_capacity + self_heat_capacity
 		if(combined_heat_capacity != 0)
 			temperature = (temp * giver_heat_capacity + temperature * self_heat_capacity) / combined_heat_capacity
@@ -108,8 +109,9 @@
 //Returns the heat capacity of the gas mix based on the specific heat of the gases.
 /datum/gas_mixture/proc/heat_capacity()
 	. = 0
+	var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
 	for(var/g in gas)
-		. += GLOBL.gas_data.specific_heat[g] * gas[g]
+		. += gas_data.specific_heat[g] * gas[g]
 
 //Updates the total_moles count and trims any empty gases.
 /datum/gas_mixture/proc/update_values()
@@ -172,14 +174,15 @@
 		return
 
 	var/sum = 0
+	var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
 	for(var/g in gas)
-		if(GLOBL.gas_data.flags[g] & flag)
+		if(gas_data.flags[g] & flag)
 			sum += gas[g]
 
 	var/datum/gas_mixture/removed = new
 
 	for(var/g in gas)
-		if(GLOBL.gas_data.flags[g] & flag)
+		if(gas_data.flags[g] & flag)
 			removed.gas[g] = QUANTIZE((gas[g] / sum) * amount)
 			gas[g] -= removed.gas[g] / group_multiplier
 
@@ -235,19 +238,20 @@
 	//List of overlays that need to be removed now that they're not valid.
 	var/list/graphic_remove = null
 
-	for(var/g in GLOBL.gas_data.overlay_limit)
-		if(graphic.Find(GLOBL.gas_data.tile_overlay[g]))
+	var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
+	for(var/g in gas_data.overlay_limit)
+		if(graphic.Find(gas_data.tile_overlay[g]))
 			//Overlay is already applied for this gas, check if it's still valid.
-			if(gas[g] <= GLOBL.gas_data.overlay_limit[g])
+			if(gas[g] <= gas_data.overlay_limit[g])
 				if(!graphic_remove)
 					graphic_remove = list()
-				graphic_remove.Add(GLOBL.gas_data.tile_overlay[g])
+				graphic_remove.Add(gas_data.tile_overlay[g])
 		else
 			//Overlay isn't applied for this gas, check if it's valid and needs to be added.
-			if(gas[g] > GLOBL.gas_data.overlay_limit[g])
+			if(gas[g] > gas_data.overlay_limit[g])
 				if(!graphic_add)
 					graphic_add = list()
-				graphic_add.Add(GLOBL.gas_data.tile_overlay[g])
+				graphic_add.Add(gas_data.tile_overlay[g])
 
 	. = 0
 	//Apply changes

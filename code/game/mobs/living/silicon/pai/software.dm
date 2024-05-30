@@ -568,8 +568,9 @@
 		dat += "Air Pressure: [round(pressure,0.1)] kPa<br>"
 
 		if(total_moles)
+			var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
 			for(var/g in environment.gas)
-				dat += "[GLOBL.gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%<br>"
+				dat += "[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%<br>"
 		dat += "Temperature: [round(environment.temperature-T0C)]&deg;C<br>"
 	dat += "<br><a href='byond://?src=\ref[src];software=atmosensor;sub=0'>Refresh Reading</a>"
 	dat += "<br>"

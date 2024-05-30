@@ -911,8 +911,9 @@
 
 				if(total_moles > 0)
 					to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
+					var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
 					for(var/g in T.air_contents.gas)
-						to_chat(user, SPAN_INFO("[GLOBL.gas_data.name[g]]: [round((T.air_contents.gas[g] / total_moles) * 100)]%"))
+						to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((T.air_contents.gas[g] / total_moles) * 100)]%"))
 					to_chat(user, SPAN_INFO("Temperature: [round(T.air_contents.temperature-T0C)]&deg;C"))
 				else
 					to_chat(user, SPAN_INFO("Tank is empty!"))
@@ -924,8 +925,9 @@
 
 				if(total_moles > 0)
 					to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
+					var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
 					for(var/g in P.air_contents.gas)
-						to_chat(user, SPAN_INFO("[GLOBL.gas_data.name[g]]: [round((P.air_contents.gas[g] / total_moles) * 100)]%"))
+						to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((P.air_contents.gas[g] / total_moles) * 100)]%"))
 					to_chat(user, SPAN_INFO("Temperature: [round(P.air_contents.temperature-T0C)]&deg;C"))
 				else
 					to_chat(user, SPAN_INFO("Tank is empty!"))
@@ -937,8 +939,9 @@
 
 				if(total_moles > 0)
 					to_chat(user, SPAN_INFO("Pressure: [round(pressure, 0.1)] kPa"))
+					var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
 					for(var/g in T.parent.air.gas)
-						to_chat(user, SPAN_INFO("[GLOBL.gas_data.name[g]]: [round((T.parent.air.gas[g] / total_moles) * 100)]%"))
+						to_chat(user, SPAN_INFO("[gas_data.name[g]]: [round((T.parent.air.gas[g] / total_moles) * 100)]%"))
 					to_chat(user, SPAN_INFO("Temperature: [round(T.parent.air.temperature-T0C)]&deg;C"))
 				else
 					to_chat(user, SPAN_INFO("Tank is empty!"))

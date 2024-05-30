@@ -309,8 +309,9 @@
 		else
 			pressure_alert = -1
 
+	var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
 	for(var/g in environment.gas)
-		if(GLOBL.gas_data.flags[g] & XGM_GAS_CONTAMINANT && environment.gas[g] > GLOBL.gas_data.overlay_limit[g] + 1)
+		if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && environment.gas[g] > gas_data.overlay_limit[g] + 1)
 			pl_effects()
 			break
 	return

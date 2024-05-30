@@ -319,9 +319,10 @@ ________________________________________________________________________________
 
 				dat += "Air Pressure: [round(pressure,0.1)] kPa"
 
-				if (total_moles)
+				if(total_moles)
+					var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
 					for(var/g in environment.gas)
-						dat += "<li>[GLOBL.gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%</li>"
+						dat += "<li>[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%</li>"
 					dat += "</ul>"
 					dat += "Temperature: [round(environment.temperature-T0C)]&deg;C"
 		if(2)

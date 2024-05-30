@@ -39,8 +39,9 @@
 	else
 		user.show_message(SPAN_WARNING("Pressure: [round(pressure, 0.1)] kPa"), 1)
 	if(total_moles)
+		var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
 		for(var/g in environment.gas)
-			user.show_message(SPAN_INFO("[GLOBL.gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%"), 1)
+			user.show_message(SPAN_INFO("[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%"), 1)
 		user.show_message(SPAN_INFO("Temperature: [round(environment.temperature - T0C)]&deg;C"), 1)
 
 	add_fingerprint(user)

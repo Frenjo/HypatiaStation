@@ -128,7 +128,8 @@
 	var/pressure = environment.return_pressure()
 	var/adjusted_pressure = calculate_affecting_pressure(pressure)
 
-	if(adjusted_pressure < WARNING_HIGH_PRESSURE && adjusted_pressure > WARNING_LOW_PRESSURE && abs(environment.temperature - 293.15) < 20 && abs(bodytemperature - 310.14) < 0.5 && environment.gas[/decl/xgm_gas/plasma] < GLOBL.gas_data.overlay_limit[/decl/xgm_gas/plasma])
+	var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
+	if(adjusted_pressure < WARNING_HIGH_PRESSURE && adjusted_pressure > WARNING_LOW_PRESSURE && abs(environment.temperature - 293.15) < 20 && abs(bodytemperature - 310.14) < 0.5 && environment.gas[/decl/xgm_gas/plasma] < gas_data.overlay_limit[/decl/xgm_gas/plasma])
 		return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
 	var/environment_heat_capacity = environment.heat_capacity()
