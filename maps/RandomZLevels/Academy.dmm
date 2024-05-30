@@ -40,7 +40,7 @@
 "aN" = (/obj/structure/lattice,/turf/space,/area/space)
 "aO" = (/obj/machinery/door/airlock/gold{locked = 1},/turf/simulated/floor/carpet,/area/awaymission/academy/headmaster)
 "aP" = (/obj/machinery/door/airlock/gold{locked = 1},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/simulated/floor/carpet,/area/awaymission/academy/headmaster)
-"aQ" = (/turf/simulated/mineral/random/high_chance,/area/awaymission/academy)
+"aQ" = (/turf/simulated/rock/random_ore/high_chance,/area/awaymission/academy)
 "aR" = (/obj/structure/noticeboard,/turf/simulated/wall/steel,/area/awaymission/academy/headmaster)
 "aS" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"; tag = ""},/turf/simulated/floor/wood,/area/awaymission/academy/headmaster)
 "aT" = (/obj/structure/stool/bed/chair/office/dark,/turf/simulated/floor/carpet,/area/awaymission/academy/headmaster)

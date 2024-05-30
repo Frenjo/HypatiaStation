@@ -303,7 +303,7 @@
 		suspension_field.overlays += "shield2"
 		visible_message(SPAN_INFO("\icon[suspension_field] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"]."))
 	else
-		if(istype(T, /turf/simulated/mineral) || istype(T, /turf/simulated/wall))
+		if(istype(T, /turf/simulated/rock) || istype(T, /turf/simulated/wall))
 			suspension_field.icon_state = "shieldsparkles"
 		else
 			suspension_field.icon_state = "shield2"

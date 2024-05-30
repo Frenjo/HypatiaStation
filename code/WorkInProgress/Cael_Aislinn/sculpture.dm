@@ -48,7 +48,7 @@
 			continue
 		else if(istype(thisturf, /turf/simulated/wall))
 			continue
-		else if(istype(thisturf, /turf/simulated/mineral))
+		else if(istype(thisturf, /turf/simulated/rock))
 			continue
 		else if(istype(thisturf, /turf/simulated/shuttle/wall))
 			continue
@@ -211,7 +211,7 @@
 						continue
 					else if(istype(thisturf, /turf/simulated/wall))
 						continue
-					else if(istype(thisturf, /turf/simulated/mineral))
+					else if(istype(thisturf, /turf/simulated/rock))
 						continue
 					else if(istype(thisturf, /turf/simulated/shuttle/wall))
 						continue

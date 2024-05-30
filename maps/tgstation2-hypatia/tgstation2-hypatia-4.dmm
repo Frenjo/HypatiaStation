@@ -659,7 +659,7 @@
 "XA" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/airless,/area/derelict/hallway/primary)
 "XG" = (/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/airless{icon_state = "damaged2"},/area/derelict/singularity_engine)
 "XL" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/window/reinforced,/turf/simulated/floor,/area/derelict/solar_control)
-"XM" = (/turf/simulated/mineral,/area/space)
+"XM" = (/turf/simulated/rock,/area/space)
 "XO" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor,/area/derelict/bridge/access)
 "XQ" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/door/window/northright,/turf/simulated/floor,/area/derelict/bridge/access)
 "XV" = (/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/airless,/area/space)

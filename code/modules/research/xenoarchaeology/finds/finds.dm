@@ -536,7 +536,7 @@
 				new_item.speaking_to_players = 1
 				GLOBL.processing_objects.Add(src)
 		var/turf/T = get_turf(src)
-		if(istype(T, /turf/simulated/mineral))
+		if(istype(T, /turf/simulated/rock))
 			T:last_find = new_item
 		qdel(src)
 

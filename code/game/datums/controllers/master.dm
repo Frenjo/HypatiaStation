@@ -298,7 +298,7 @@ CONTROLLER_DEF(master)
 /datum/controller/master/proc/setup_xenoarch()
 	to_world(SPAN_DANGER("↪ Setting up xenoarchaeology."))
 
-	for(var/turf/simulated/mineral/M in block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz)))
+	for(var/turf/simulated/rock/M in block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz)))
 		if(isnull(M.geologic_data))
 			M.geologic_data = new /datum/geosample(M)
 
@@ -307,9 +307,9 @@ CONTROLLER_DEF(master)
 
 		var/digsite = get_random_digsite_type()
 		var/list/processed_turfs = list()
-		var/list/turf/simulated/mineral/turfs_to_process = list(M)
-		for_no_type_check(var/turf/simulated/mineral/archeo_turf, turfs_to_process)
-			for(var/turf/simulated/mineral/T in orange(1, archeo_turf))
+		var/list/turf/simulated/rock/turfs_to_process = list(M)
+		for_no_type_check(var/turf/simulated/rock/archeo_turf, turfs_to_process)
+			for(var/turf/simulated/rock/T in orange(1, archeo_turf))
 				if(isnotnull(T.finds))
 					continue
 				if(T in processed_turfs)

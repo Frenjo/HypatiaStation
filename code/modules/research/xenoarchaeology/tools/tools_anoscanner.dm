@@ -36,7 +36,7 @@
 	nearest_artifact_distance = -1
 	var/turf/cur_turf = get_turf(src)
 	if(global.CTmaster) //Sanity check due to runtimes ~Z
-		for(var/turf/simulated/mineral/T in GLOBL.artifact_spawning_turfs)
+		for(var/turf/simulated/rock/T in GLOBL.artifact_spawning_turfs)
 			if(T.artifact_find)
 				if(T.z == cur_turf.z)
 					var/cur_dist = get_dist(cur_turf, T) * 2
