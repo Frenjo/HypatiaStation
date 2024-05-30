@@ -776,6 +776,7 @@
 #include "code\game\objects\items\stacks\sheets\mineral.dm"
 #include "code\game\objects\items\stacks\sheets\sheet_types.dm"
 #include "code\game\objects\items\stacks\tiles\_tile.dm"
+#include "code\game\objects\items\stacks\tiles\circuit_grid.dm"
 #include "code\game\objects\items\stacks\tiles\light.dm"
 #include "code\game\objects\items\stacks\tiles\metal.dm"
 #include "code\game\objects\items\stacks\tiles\misc.dm"
