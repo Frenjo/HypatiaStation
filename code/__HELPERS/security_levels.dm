@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_TYPED_INIT(security_level, /decl/security_level, GET_DECL_INSTANCE(/decl/security_level/green))
+GLOBAL_GLOBL_INIT(decl/security_level/security_level, GET_DECL_INSTANCE(/decl/security_level/green))
 // For numerical severities, see SEC_LEVEL_X defines in code/__DEFINES/security_levels.dm.
 
 GLOBAL_GLOBL_LIST_NEW(area/hallway/contactable_hallway_areas)

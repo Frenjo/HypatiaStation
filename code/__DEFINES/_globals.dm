@@ -2,6 +2,8 @@
 
 /*
  * Internal
+ *
+ * Do not use these directly, use the others below for clarity.
  */
 #define GLOBAL_RAW(X) /var/global##X
 #define GLOBAL_CONTROLLED(X) /datum/controller/global_variables/var/static##X
@@ -10,10 +12,8 @@
  * BYOND
  */
 #define GLOBAL_BYOND(N) GLOBAL_RAW(/##N)
-#define GLOBAL_BYOND_TYPED(N, T) GLOBAL_RAW(##T/##N)
 #define GLOBAL_BYOND_INIT(N, V) GLOBAL_BYOND(N) = V
-#define GLOBAL_BYOND_TYPED_INIT(N, T, V) GLOBAL_BYOND_TYPED(N, T) = V
-#define GLOBAL_BYOND_NEW(N, T) GLOBAL_BYOND_TYPED_INIT(N, T, new T())
+#define GLOBAL_BYOND_NEW(N) GLOBAL_BYOND_INIT(N, new()) // This is one of the only places I will accept use of untyped new().
 
 /*
  * BYOND Lists
@@ -26,10 +26,8 @@
  * GLOBL
  */
 #define GLOBAL_GLOBL(N) GLOBAL_CONTROLLED(/##N)
-#define GLOBAL_GLOBL_TYPED(N, T) GLOBAL_CONTROLLED(##T/##N)
 #define GLOBAL_GLOBL_INIT(N, V) GLOBAL_GLOBL(N) = V
-#define GLOBAL_GLOBL_TYPED_INIT(N, T, V) GLOBAL_GLOBL_TYPED(N, T) = V
-#define GLOBAL_GLOBL_NEW(N, T) GLOBAL_GLOBL_TYPED_INIT(N, T, new T())
+#define GLOBAL_GLOBL_NEW(N) GLOBAL_GLOBL_INIT(N, new()) // This is one of the only places I will accept use of untyped new().
 
 /*
  * GLOBL Lists
@@ -41,7 +39,7 @@
 /*
  * Controllers & Processes
  */
-#define CONTROLLER_DEF(X) GLOBAL_BYOND_TYPED(CT##X, /datum/controller/##X); \
+#define CONTROLLER_DEF(X) GLOBAL_BYOND(datum/controller/##X/CT##X); \
 /datum/controller/##X/New() \
 { \
 	. = ..(); \
@@ -50,7 +48,7 @@
 } \
 /datum/controller/##X
 
-#define PROCESS_DEF(X) GLOBAL_BYOND_TYPED(PC##X, /datum/process/##X); \
+#define PROCESS_DEF(X) GLOBAL_BYOND(datum/process/##X/PC##X); \
 /datum/process/##X/New() \
 { \
 	. = ..(); \

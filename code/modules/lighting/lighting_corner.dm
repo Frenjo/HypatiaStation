@@ -1,5 +1,5 @@
 GLOBAL_BYOND_LIST_NEW(all_lighting_corners)
-GLOBAL_BYOND_NEW(dummy_lighting_corner, /datum/lighting_corner/dummy)
+GLOBAL_BYOND_NEW(datum/lighting_corner/dummy/dummy_lighting_corner)
 // Because we can control each corner of every lighting overlay.
 // And corners get shared between multiple turfs (unless you're on the corners of the map, then 1 corner doesn't).
 // For the record: these should never ever ever be deleted, even if the turf doesn't have dynamic lighting.

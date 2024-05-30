@@ -1,7 +1,7 @@
 /*
  * Global holder for religion data.
  */
-GLOBAL_GLOBL_NEW(religion, /datum/religion)
+GLOBAL_GLOBL_NEW(datum/religion/religion)
 
 /datum/religion
 	var/name = null	// The name of the religion.

@@ -1,4 +1,4 @@
-GLOBAL_BYOND_NEW(dview_mob, /mob/dview)
+GLOBAL_BYOND_NEW(mob/dview/dview_mob)
 
 // Version of view() which ignores darkness, because BYOND doesn't have it.
 /proc/dview(range = world.view, center, invis_flags = 0)

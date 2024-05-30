@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_NEW(splashscreen, /obj/effect/splashscreen)
+GLOBAL_GLOBL_NEW(obj/effect/splashscreen/splashscreen)
 
 /obj/effect/splashscreen
 	name = "Space Station 13"

@@ -3,7 +3,7 @@
  *
  * Uses the same visual objects for all players.
  */
-GLOBAL_GLOBL_NEW(global_hud, /datum/global_hud)
+GLOBAL_GLOBL_NEW(datum/global_hud/global_hud)
 
 /datum/global_hud
 	var/atom/movable/screen/druggy

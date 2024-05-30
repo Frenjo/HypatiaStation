@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_TYPED(data_core, /datum/datacore)
+GLOBAL_GLOBL(datum/datacore/data_core)
 GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 
 /hook/startup/proc/create_datacore()

@@ -1,4 +1,4 @@
-GLOBAL_BYOND_NEW(vsc, /vs_control)
+GLOBAL_BYOND_NEW(vs_control/vsc)
 
 /vs_control
 	var/fire_consuption_rate = 0.25

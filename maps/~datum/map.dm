@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_TYPED_INIT(current_map, /datum/map, new CURRENT_MAP_DATUM())
+GLOBAL_GLOBL_INIT(datum/map/current_map, new CURRENT_MAP_DATUM())
 
 /datum/map
 	var/name = "Default Map"

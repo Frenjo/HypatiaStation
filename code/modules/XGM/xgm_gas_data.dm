@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_TYPED(gas_data, /decl/xgm_gas_data) // TODO: This needs to be moved over to the declarations controller.
+GLOBAL_GLOBL(decl/xgm_gas_data/gas_data) // TODO: This needs to be moved over to the declarations controller.
 
 /decl/xgm_gas_data
 	// Simple list of all the gas typepaths.
