@@ -41,12 +41,12 @@ Class Procs:
 /zone
 	var/name
 	var/invalid = FALSE
-	var/list/contents
-	var/list/fire_tiles
+	var/list/turf/simulated/contents
+	var/list/turf/simulated/fire_tiles
 
 	var/needs_update = FALSE
 
-	var/list/edges
+	var/list/connection_edge/edges
 
 	var/datum/gas_mixture/air
 
@@ -101,7 +101,7 @@ Class Procs:
 	ASSERT(!into.invalid)
 #endif
 	c_invalidate()
-	for(var/turf/simulated/T in contents)
+	for_no_type_check(var/turf/simulated/T, contents)
 		into.add(T)
 		#ifdef ZASDBG
 		T.dbg(merged)
@@ -111,7 +111,7 @@ Class Procs:
 	invalid = TRUE
 	global.PCair.remove_zone(src)
 	#ifdef ZASDBG
-	for(var/turf/simulated/T in contents)
+	for_no_type_check(var/turf/simulated/T, contents)
 		T.dbg(invalid_zone)
 	#endif
 
@@ -119,7 +119,7 @@ Class Procs:
 	if(invalid)
 		return //Short circuit for explosions where rebuild is called many times over.
 	c_invalidate()
-	for(var/turf/simulated/T in contents)
+	for_no_type_check(var/turf/simulated/T, contents)
 		//T.dbg(invalid_zone)
 		T.needs_air_update = FALSE //Reset the marker so that it will be added to the list.
 		global.PCair.mark_for_update(T)
@@ -135,11 +135,11 @@ Class Procs:
 
 /zone/proc/tick()
 	if(air.check_tile_graphic())
-		for(var/turf/simulated/T in contents)
+		for_no_type_check(var/turf/simulated/T, contents)
 			T.set_graphic(air.graphic)
 			CHECK_TICK
 
-	for(var/connection_edge/E in edges)
+	for_no_type_check(var/connection_edge/E, edges)
 		if(E.sleeping)
 			E.recheck()
 			CHECK_TICK
@@ -159,7 +159,7 @@ Class Procs:
 	var/zone_edges = 0
 	var/space_edges = 0
 	var/space_coefficient = 0
-	for(var/connection_edge/E in edges)
+	for_no_type_check(var/connection_edge/E, edges)
 		if(E.type == /connection_edge/zone)
 			zone_edges++
 		else

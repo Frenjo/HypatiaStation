@@ -38,7 +38,7 @@ Attach to transfer valve and open. BOOM.
 
 /zone/proc/process_fire()
 	if(!air.check_combustability())
-		for(var/turf/simulated/T in fire_tiles)
+		for_no_type_check(var/turf/simulated/T, fire_tiles)
 			if(istype(T.fire))
 				T.fire.RemoveFire()
 			T.fire = null
@@ -59,7 +59,7 @@ Attach to transfer valve and open. BOOM.
 
 	var/firelevel = air.calculate_firelevel()
 
-	for(var/turf/T in fire_tiles)
+	for_no_type_check(var/turf/simulated/T, fire_tiles)
 		if(T.fire)
 			T.fire.firelevel = firelevel
 		else

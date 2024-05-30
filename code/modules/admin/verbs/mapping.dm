@@ -191,7 +191,7 @@ var/list/debug_verbs = list(
 		return
 	var/icon/yellow = new('icons/misc/debug_group.dmi', "yellow")
 
-	for(var/turf/T in Z.contents)
+	for_no_type_check(var/turf/simulated/T, Z.contents)
 		images += image(yellow, T, "zasdebug", TURF_LAYER)
 		testZAScolors_turfs += T
 	for(var/connection_edge/zone/edge in Z.edges)
@@ -227,13 +227,13 @@ var/list/debug_verbs = list(
 		usedZAScolors = 1
 
 	testZAScolors_zones += location.zone
-	for(var/turf/T in location.zone.contents)
+	for_no_type_check(var/turf/simulated/T, location.zone.contents)
 		images += image(green, T, "zasdebug", TURF_LAYER)
 		testZAScolors_turfs += T
 	for(var/connection_edge/zone/edge in location.zone.edges)
 		var/zone/Z = edge.get_connected_zone(location.zone)
 		testZAScolors_zones += Z
-		for(var/turf/T in Z.contents)
+		for_no_type_check(var/turf/simulated/T, Z.contents)
 			images += image(blue, T, "zasdebug", TURF_LAYER)
 			testZAScolors_turfs += T
 		for(var/connection_edge/zone/z_edge in Z.edges)
