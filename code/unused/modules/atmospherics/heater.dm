@@ -76,28 +76,28 @@
 	var/tt
 	switch(src.t_status)
 		if(1.0)
-			tt = text("Releasing <A href='?src=\ref[];t=2'>Siphon</A> <A href='?src=\ref[];t=3'>Stop</A>", src, src)
+			tt = text("Releasing <A href='byond:://?src=\ref[];t=2'>Siphon</A> <A href='byond:://?src=\ref[];t=3'>Stop</A>", src, src)
 		if(2.0)
-			tt = text("<A href='?src=\ref[];t=1'>Release</A> Siphoning<A href='?src=\ref[];t=3'>Stop</A>", src, src)
+			tt = text("<A href='byond:://?src=\ref[];t=1'>Release</A> Siphoning<A href='byond:://?src=\ref[];t=3'>Stop</A>", src, src)
 		if(3.0)
-			tt = text("<A href='?src=\ref[];t=1'>Release</A> <A href='?src=\ref[];t=2'>Siphon</A> Stopped", src, src)
+			tt = text("<A href='byond:://?src=\ref[];t=1'>Release</A> <A href='byond:://?src=\ref[];t=2'>Siphon</A> Stopped", src, src)
 		else
 	var/ht = null
 	if (src.h_status)
-		ht = text("Heating <A href='?src=\ref[];h=2'>Stop</A>", src)
+		ht = text("Heating <A href='byond:://?src=\ref[];h=2'>Stop</A>", src)
 	else
-		ht = text("<A href='?src=\ref[];h=1'>Heat</A> Stopped", src)
+		ht = text("<A href='byond:://?src=\ref[];h=1'>Heat</A> Stopped", src)
 	var/ct = null
 	switch(src.c_status)
 		if(1.0)
-			ct = text("Releasing <A href='?src=\ref[];c=2'>Accept</A> <A href='?src=\ref[];ct=3'>Stop</A>", src, src)
+			ct = text("Releasing <A href='byond:://?src=\ref[];c=2'>Accept</A> <A href='byond:://?src=\ref[];ct=3'>Stop</A>", src, src)
 		if(2.0)
-			ct = text("<A href='?src=\ref[];c=1'>Release</A> Accepting <A href='?src=\ref[];c=3'>Stop</A>", src, src)
+			ct = text("<A href='byond:://?src=\ref[];c=1'>Release</A> Accepting <A href='byond:://?src=\ref[];c=3'>Stop</A>", src, src)
 		if(3.0)
-			ct = text("<A href='?src=\ref[];c=1'>Release</A> <A href='?src=\ref[];c=2'>Accept</A> Stopped", src, src)
+			ct = text("<A href='byond:://?src=\ref[];c=1'>Release</A> <A href='byond:://?src=\ref[];c=2'>Accept</A> Stopped", src, src)
 		else
 			ct = "Disconnected"
-	var/dat = text("<TT><B>Canister Valves</B><BR>\n<FONT color = 'blue'><B>Contains/Capacity</B> [] / []</FONT><BR>\nUpper Valve Status: [][]<BR>\n\t<A href='?src=\ref[];tp=-[]'>M</A> <A href='?src=\ref[];tp=-10000'>-</A> <A href='?src=\ref[];tp=-1000'>-</A> <A href='?src=\ref[];tp=-100'>-</A> <A href='?src=\ref[];tp=-1'>-</A> [] <A href='?src=\ref[];tp=1'>+</A> <A href='?src=\ref[];tp=100'>+</A> <A href='?src=\ref[];tp=1000'>+</A> <A href='?src=\ref[];tp=10000'>+</A> <A href='?src=\ref[];tp=[]'>M</A><BR>\nHeater Status: [] - []<BR>\n\tTrg Tmp: <A href='?src=\ref[];ht=-50'>-</A> <A href='?src=\ref[];ht=-5'>-</A> <A href='?src=\ref[];ht=-1'>-</A> [] <A href='?src=\ref[];ht=1'>+</A> <A href='?src=\ref[];ht=5'>+</A> <A href='?src=\ref[];ht=50'>+</A><BR>\n<BR>\nPipe Valve Status: []<BR>\n\t<A href='?src=\ref[];cp=-[]'>M</A> <A href='?src=\ref[];cp=-10000'>-</A> <A href='?src=\ref[];cp=-1000'>-</A> <A href='?src=\ref[];cp=-100'>-</A> <A href='?src=\ref[];cp=-1'>-</A> [] <A href='?src=\ref[];cp=1'>+</A> <A href='?src=\ref[];cp=100'>+</A> <A href='?src=\ref[];cp=1000'>+</A> <A href='?src=\ref[];cp=10000'>+</A> <A href='?src=\ref[];cp=[]'>M</A><BR>\n<BR>\n<A href='?src=\ref[];mach_close=canister'>Close</A><BR>\n</TT>", src.gas.total_moles(), src.maximum, tt, (src.holding ? text("<BR><A href='?src=\ref[];tank=1'>Tank ([]</A>)", src, src.holding.gas.total_moles()) : null), src, num2text(1000000.0, 7), src, src, src, src, src.t_per, src, src, src, src, src, num2text(1000000.0, 7), ht, (src.gas.total_moles() ? (src.gas.temperature-T0C) : 20), src, src, src, src.h_tar, src, src, src, ct, src, num2text(1000000.0, 7), src, src, src, src, src.c_per, src, src, src, src, src, num2text(1000000.0, 7), user)
+	var/dat = text("<TT><B>Canister Valves</B><BR>\n<FONT color = 'blue'><B>Contains/Capacity</B> [] / []</FONT><BR>\nUpper Valve Status: [][]<BR>\n\t<A href='byond:://?src=\ref[];tp=-[]'>M</A> <A href='byond:://?src=\ref[];tp=-10000'>-</A> <A href='byond:://?src=\ref[];tp=-1000'>-</A> <A href='byond:://?src=\ref[];tp=-100'>-</A> <A href='byond:://?src=\ref[];tp=-1'>-</A> [] <A href='byond:://?src=\ref[];tp=1'>+</A> <A href='byond:://?src=\ref[];tp=100'>+</A> <A href='byond:://?src=\ref[];tp=1000'>+</A> <A href='byond:://?src=\ref[];tp=10000'>+</A> <A href='byond:://?src=\ref[];tp=[]'>M</A><BR>\nHeater Status: [] - []<BR>\n\tTrg Tmp: <A href='byond:://?src=\ref[];ht=-50'>-</A> <A href='byond:://?src=\ref[];ht=-5'>-</A> <A href='byond:://?src=\ref[];ht=-1'>-</A> [] <A href='byond:://?src=\ref[];ht=1'>+</A> <A href='byond:://?src=\ref[];ht=5'>+</A> <A href='byond:://?src=\ref[];ht=50'>+</A><BR>\n<BR>\nPipe Valve Status: []<BR>\n\t<A href='byond:://?src=\ref[];cp=-[]'>M</A> <A href='byond:://?src=\ref[];cp=-10000'>-</A> <A href='byond:://?src=\ref[];cp=-1000'>-</A> <A href='byond:://?src=\ref[];cp=-100'>-</A> <A href='byond:://?src=\ref[];cp=-1'>-</A> [] <A href='byond:://?src=\ref[];cp=1'>+</A> <A href='byond:://?src=\ref[];cp=100'>+</A> <A href='byond:://?src=\ref[];cp=1000'>+</A> <A href='byond:://?src=\ref[];cp=10000'>+</A> <A href='byond:://?src=\ref[];cp=[]'>M</A><BR>\n<BR>\n<A href='byond:://?src=\ref[];mach_close=canister'>Close</A><BR>\n</TT>", src.gas.total_moles(), src.maximum, tt, (src.holding ? text("<BR><A href='byond:://?src=\ref[];tank=1'>Tank ([]</A>)", src, src.holding.gas.total_moles()) : null), src, num2text(1000000.0, 7), src, src, src, src, src.t_per, src, src, src, src, src, num2text(1000000.0, 7), ht, (src.gas.total_moles() ? (src.gas.temperature-T0C) : 20), src, src, src, src.h_tar, src, src, src, ct, src, num2text(1000000.0, 7), src, src, src, src, src.c_per, src, src, src, src, src, num2text(1000000.0, 7), user)
 	user << browse(dat, "window=canister;size=600x300")
 	onclose(user, "canister")
 	return */ //TODO: FIX

@@ -389,27 +389,27 @@
 	var/tt
 	switch(src.t_status)
 		if(1.0)
-			tt = text("Releasing <A href='?src=\ref[];t=2'>Siphon</A> <A href='?src=\ref[];t=3'>Stop</A>", src, src)
+			tt = text("Releasing <A href='byond:://?src=\ref[];t=2'>Siphon</A> <A href='byond:://?src=\ref[];t=3'>Stop</A>", src, src)
 		if(2.0)
-			tt = text("<A href='?src=\ref[];t=1'>Release</A> Siphoning <A href='?src=\ref[];t=3'>Stop</A>", src, src)
+			tt = text("<A href='byond:://?src=\ref[];t=1'>Release</A> Siphoning <A href='byond:://?src=\ref[];t=3'>Stop</A>", src, src)
 		if(3.0)
-			tt = text("<A href='?src=\ref[];t=1'>Release</A> <A href='?src=\ref[];t=2'>Siphon</A> Stopped <A href='?src=\ref[];t=4'>Automatic</A>", src, src, src)
+			tt = text("<A href='byond:://?src=\ref[];t=1'>Release</A> <A href='byond:://?src=\ref[];t=2'>Siphon</A> Stopped <A href='byond:://?src=\ref[];t=4'>Automatic</A>", src, src, src)
 		else
 			tt = "Automatic equalizers are on!"
 	var/ct = null
 	switch(src.c_status)
 		if(1.0)
-			ct = text("Releasing <A href='?src=\ref[];c=2'>Accept</A> <A href='?src=\ref[];c=3'>Stop</A>", src, src)
+			ct = text("Releasing <A href='byond:://?src=\ref[];c=2'>Accept</A> <A href='byond:://?src=\ref[];c=3'>Stop</A>", src, src)
 		if(2.0)
-			ct = text("<A href='?src=\ref[];c=1'>Release</A> Accepting <A href='?src=\ref[];c=3'>Stop</A>", src, src)
+			ct = text("<A href='byond:://?src=\ref[];c=1'>Release</A> Accepting <A href='byond:://?src=\ref[];c=3'>Stop</A>", src, src)
 		if(3.0)
-			ct = text("<A href='?src=\ref[];c=1'>Release</A> <A href='?src=\ref[];c=2'>Accept</A> Stopped", src, src)
+			ct = text("<A href='byond:://?src=\ref[];c=1'>Release</A> <A href='byond:://?src=\ref[];c=2'>Accept</A> Stopped", src, src)
 		else
 			ct = "Disconnected"
 	var/at = null
 	if (src.t_status == 4)
-		at = text("Automatic On <A href='?src=\ref[];t=3'>Stop</A>", src)
-	var/dat = text("<TT><B>Canister Valves</B> []<BR>\n\t<FONT color = 'blue'><B>Contains/Capacity</B> [] / []</FONT><BR>\n\tUpper Valve Status: [] []<BR>\n\t\t<A href='?src=\ref[];tp=-[]'>M</A> <A href='?src=\ref[];tp=-10000'>-</A> <A href='?src=\ref[];tp=-1000'>-</A> <A href='?src=\ref[];tp=-100'>-</A> <A href='?src=\ref[];tp=-1'>-</A> [] <A href='?src=\ref[];tp=1'>+</A> <A href='?src=\ref[];tp=100'>+</A> <A href='?src=\ref[];tp=1000'>+</A> <A href='?src=\ref[];tp=10000'>+</A> <A href='?src=\ref[];tp=[]'>M</A><BR>\n\tPipe Valve Status: []<BR>\n\t\t<A href='?src=\ref[];cp=-[]'>M</A> <A href='?src=\ref[];cp=-10000'>-</A> <A href='?src=\ref[];cp=-1000'>-</A> <A href='?src=\ref[];cp=-100'>-</A> <A href='?src=\ref[];cp=-1'>-</A> [] <A href='?src=\ref[];cp=1'>+</A> <A href='?src=\ref[];cp=100'>+</A> <A href='?src=\ref[];cp=1000'>+</A> <A href='?src=\ref[];cp=10000'>+</A> <A href='?src=\ref[];cp=[]'>M</A><BR>\n<BR>\n\n<A href='?src=\ref[];mach_close=siphon'>Close</A><BR>\n\t</TT>", (!( src.alterable ) ? "<B>Valves are locked. Unlock with wrench!</B>" : "You can lock this interface with a wrench."), num2text(src.gas.return_pressure(), 10), num2text(src.maximum, 10), (src.t_status == 4 ? text("[]", at) : text("[]", tt)), (src.holding ? text("<BR>(<A href='?src=\ref[];tank=1'>Tank ([]</A>)", src, src.holding.air_contents.return_pressure()) : null), src, num2text(max_valve, 7), src, src, src, src, src.t_per, src, src, src, src, src, num2text(max_valve, 7), ct, src, num2text(max_valve, 7), src, src, src, src, src.c_per, src, src, src, src, src, num2text(max_valve, 7), user)
+		at = text("Automatic On <A href='byond:://?src=\ref[];t=3'>Stop</A>", src)
+	var/dat = text("<TT><B>Canister Valves</B> []<BR>\n\t<FONT color = 'blue'><B>Contains/Capacity</B> [] / []</FONT><BR>\n\tUpper Valve Status: [] []<BR>\n\t\t<A href='byond:://?src=\ref[];tp=-[]'>M</A> <A href='byond:://?src=\ref[];tp=-10000'>-</A> <A href='byond:://?src=\ref[];tp=-1000'>-</A> <A href='byond:://?src=\ref[];tp=-100'>-</A> <A href='byond:://?src=\ref[];tp=-1'>-</A> [] <A href='byond:://?src=\ref[];tp=1'>+</A> <A href='byond:://?src=\ref[];tp=100'>+</A> <A href='byond:://?src=\ref[];tp=1000'>+</A> <A href='byond:://?src=\ref[];tp=10000'>+</A> <A href='byond:://?src=\ref[];tp=[]'>M</A><BR>\n\tPipe Valve Status: []<BR>\n\t\t<A href='byond:://?src=\ref[];cp=-[]'>M</A> <A href='byond:://?src=\ref[];cp=-10000'>-</A> <A href='byond:://?src=\ref[];cp=-1000'>-</A> <A href='byond:://?src=\ref[];cp=-100'>-</A> <A href='byond:://?src=\ref[];cp=-1'>-</A> [] <A href='byond:://?src=\ref[];cp=1'>+</A> <A href='byond:://?src=\ref[];cp=100'>+</A> <A href='byond:://?src=\ref[];cp=1000'>+</A> <A href='byond:://?src=\ref[];cp=10000'>+</A> <A href='byond:://?src=\ref[];cp=[]'>M</A><BR>\n<BR>\n\n<A href='byond:://?src=\ref[];mach_close=siphon'>Close</A><BR>\n\t</TT>", (!( src.alterable ) ? "<B>Valves are locked. Unlock with wrench!</B>" : "You can lock this interface with a wrench."), num2text(src.gas.return_pressure(), 10), num2text(src.maximum, 10), (src.t_status == 4 ? text("[]", at) : text("[]", tt)), (src.holding ? text("<BR>(<A href='byond:://?src=\ref[];tank=1'>Tank ([]</A>)", src, src.holding.air_contents.return_pressure()) : null), src, num2text(max_valve, 7), src, src, src, src, src.t_per, src, src, src, src, src, num2text(max_valve, 7), ct, src, num2text(max_valve, 7), src, src, src, src, src.c_per, src, src, src, src, src, num2text(max_valve, 7), user)
 	user << browse(dat, "window=siphon;size=600x300")
 	onclose(user, "siphon")
 	return

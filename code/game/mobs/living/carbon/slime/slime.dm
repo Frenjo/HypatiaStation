@@ -439,7 +439,7 @@
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
 	<BR><HR><BR>
-	<BR><A href='?src=\ref[user];mach_close=mob[name]'>Close</A>
+	<BR><A href='byond:://?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
 	user << browse(dat, text("window=mob[name];size=340x480"))
 	onclose(user, "mob[name]")

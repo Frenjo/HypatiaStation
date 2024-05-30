@@ -75,8 +75,8 @@
 	if(src.locked && (!issilicon(user)))
 		t += "<I>(Swipe ID card to unlock control panel.)</I><BR>"
 	else
-		t += "Dispenser [src.disabled ? "deactivated" : "activated"] - <A href='?src=\ref[src];toggleOn=1'>[src.disabled ? "Enable" : "Disable"]?</a><br>\n"
-		t += "Uses Left: [uses]. <A href='?src=\ref[src];toggleUse=1'>Activate the dispenser?</A><br>\n"
+		t += "Dispenser [src.disabled ? "deactivated" : "activated"] - <A href='byond:://?src=\ref[src];toggleOn=1'>[src.disabled ? "Enable" : "Disable"]?</a><br>\n"
+		t += "Uses Left: [uses]. <A href='byond:://?src=\ref[src];toggleUse=1'>Activate the dispenser?</A><br>\n"
 
 	user << browse(t, "window=computer;size=575x450")
 	onclose(user, "computer")

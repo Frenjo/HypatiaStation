@@ -86,7 +86,7 @@
 	output += "<b>Cargo Compartment Contents:</b><div style=\"margin-left: 15px;\">"
 	if(length(cargo))
 		for(var/obj/O in src.cargo)
-			output += "<a href='?src=\ref[src];drop_from_cargo=\ref[O]'>Unload</a> : [O]<br>"
+			output += "<a href='byond:://?src=\ref[src];drop_from_cargo=\ref[O]'>Unload</a> : [O]<br>"
 	else
 		output += "Nothing"
 	output += "</div>"

@@ -14,7 +14,7 @@
 	var/dat = "<body>"
 	dat += "<tt><center>"
 	dat += "<b>Choose occupation chances</b><br>Unavailable occupations are crossed out.<br><br>"
-	dat += "<center><a href='?_src_=prefs;preference=job;task=close'>\[Done\]</a></center><br>" // Easier to press up here.
+	dat += "<center><a href='byond:://?_src_=prefs;preference=job;task=close'>\[Done\]</a></center><br>" // Easier to press up here.
 	dat += "<table width='100%' cellpadding='1' cellspacing='0'><tr><td width='20%'>" // Table within a table for alignment, also allows you to easily add more colomns.
 	dat += "<table width='100%' cellpadding='1' cellspacing='0'>"
 	var/index = -1
@@ -52,7 +52,7 @@
 
 		dat += "</td><td width='40%'>"
 
-		dat += "<a href='?_src_=prefs;preference=job;task=input;text=[rank]'>"
+		dat += "<a href='byond:://?_src_=prefs;preference=job;task=input;text=[rank]'>"
 
 		if(rank == "Assistant") // Assistant is special.
 			if(job_civilian_low & JOB_ASSISTANT)
@@ -82,13 +82,13 @@
 
 	switch(alternate_option)
 		if(GET_RANDOM_JOB)
-			dat += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=green>Get random job if preferences unavailable</font></a></u></center><br>"
+			dat += "<center><br><u><a href='byond:://?_src_=prefs;preference=job;task=random'><font color=green>Get random job if preferences unavailable</font></a></u></center><br>"
 		if(BE_ASSISTANT)
-			dat += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=red>Be assistant if preference unavailable</font></a></u></center><br>"
+			dat += "<center><br><u><a href='byond:://?_src_=prefs;preference=job;task=random'><font color=red>Be assistant if preference unavailable</font></a></u></center><br>"
 		if(RETURN_TO_LOBBY)
-			dat += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=purple>Return to lobby if preference unavailable</font></a></u></center><br>"
+			dat += "<center><br><u><a href='byond:://?_src_=prefs;preference=job;task=random'><font color=purple>Return to lobby if preference unavailable</font></a></u></center><br>"
 
-	dat += "<center><a href='?_src_=prefs;preference=job;task=reset'>\[Reset\]</a></center>"
+	dat += "<center><a href='byond:://?_src_=prefs;preference=job;task=reset'>\[Reset\]</a></center>"
 	dat += "</tt>"
 
 	user << browse(null, "window=preferences")

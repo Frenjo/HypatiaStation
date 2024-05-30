@@ -183,7 +183,7 @@ obj/machinery/computer/airtunnel/attack_ai(user as mob)
 					dat += "<B>Status:</B> Fully Extended<BR>"
 				else
 					dat += "<B>Status:</B> Stopped Midway<BR>"
-	dat += text("<A href='?src=\ref[];retract=1'>Retract</A> <A href='?src=\ref[];stop=1'>Stop</A> <A href='?src=\ref[];extend=1'>Extend</A><BR>", src, src, src)
+	dat += text("<A href='byond:://?src=\ref[];retract=1'>Retract</A> <A href='byond:://?src=\ref[];stop=1'>Stop</A> <A href='byond:://?src=\ref[];extend=1'>Extend</A><BR>", src, src, src)
 	dat += text("<BR><B>Air Level:</B> []<BR>", (SS13_airtunnel.air_stat ? "Acceptable" : "DANGEROUS"))
 	dat += "<B>Air System Status:</B> "
 	switch(SS13_airtunnel.siphon_status)
@@ -196,9 +196,9 @@ obj/machinery/computer/airtunnel/attack_ai(user as mob)
 		if(3.0)
 			dat += "RELEASING MAX (Siphons only) "
 		else
-	dat += text("<A href='?src=\ref[];refresh=1'>(Refresh)</A><BR>", src)
-	dat += text("<A href='?src=\ref[];release=1'>RELEASE (Siphons only)</A> <A href='?src=\ref[];siphon=1'>Siphon (Siphons only)</A> <A href='?src=\ref[];stop_siph=1'>Stop</A> <A href='?src=\ref[];auto=1'>Regulate</A><BR>", src, src, src, src)
-	dat += text("<BR><BR><A href='?src=\ref[];mach_close=computer'>Close</A></TT></BODY></HTML>", user)
+	dat += text("<A href='byond:://?src=\ref[];refresh=1'>(Refresh)</A><BR>", src)
+	dat += text("<A href='byond:://?src=\ref[];release=1'>RELEASE (Siphons only)</A> <A href='byond:://?src=\ref[];siphon=1'>Siphon (Siphons only)</A> <A href='byond:://?src=\ref[];stop_siph=1'>Stop</A> <A href='byond:://?src=\ref[];auto=1'>Regulate</A><BR>", src, src, src, src)
+	dat += text("<BR><BR><A href='byond:://?src=\ref[];mach_close=computer'>Close</A></TT></BODY></HTML>", user)
 	user << browse(dat, "window=computer;size=400x500")
 	onclose(user, "computer")
 	return
@@ -282,7 +282,7 @@ obj/machinery/computer/airtunnel/attack_ai(user as mob)
 	use_power(10)
 
 	if (src.loc == user.loc)
-		var/dat = text("<B>Security Pad:</B><BR>\nKeycard: []<BR>\n<A href='?src=\ref[];door1=1'>Toggle Outer Door</A><BR>\n<A href='?src=\ref[];door2=1'>Toggle Inner Door</A><BR>\n<BR>\n<A href='?src=\ref[];em_cl=1'>Emergency Close</A><BR>\n<A href='?src=\ref[];em_op=1'>Emergency Open</A><BR>", (src.scan ? text("<A href='?src=\ref[];card=1'>[]</A>", src, src.scan.name) : text("<A href='?src=\ref[];card=1'>-----</A>", src)), src, src, src, src)
+		var/dat = text("<B>Security Pad:</B><BR>\nKeycard: []<BR>\n<A href='byond:://?src=\ref[];door1=1'>Toggle Outer Door</A><BR>\n<A href='byond:://?src=\ref[];door2=1'>Toggle Inner Door</A><BR>\n<BR>\n<A href='byond:://?src=\ref[];em_cl=1'>Emergency Close</A><BR>\n<A href='byond:://?src=\ref[];em_op=1'>Emergency Open</A><BR>", (src.scan ? text("<A href='byond:://?src=\ref[];card=1'>[]</A>", src, src.scan.name) : text("<A href='byond:://?src=\ref[];card=1'>-----</A>", src)), src, src, src, src)
 		user << browse(dat, "window=sec_lock")
 		onclose(user, "sec_lock")
 	return

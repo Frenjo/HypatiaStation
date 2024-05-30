@@ -44,7 +44,7 @@
 						[integrity < 30 ? "<font color='red'><b>DAMAGE LEVEL CRITICAL</b></font><br>" : null]
 						[internal_damage & MECHA_INT_TEMP_CONTROL ? "<font color='red'><b>CLOWN SUPPORT SYSTEM MALFUNCTION</b></font><br>" : null]
 						[internal_damage & MECHA_INT_TANK_BREACH ? "<font color='red'><b>GAS TANK HONK</b></font><br>" : null]
-						[internal_damage & MECHA_INT_CONTROL_LOST ? "<font color='red'><b>HONK-A-DOODLE</b></font> - <a href='?src=\ref[src];repair_int_control_lost=1'>Recalibrate</a><br>" : null]
+						[internal_damage & MECHA_INT_CONTROL_LOST ? "<font color='red'><b>HONK-A-DOODLE</b></font> - <a href='byond:://?src=\ref[src];repair_int_control_lost=1'>Recalibrate</a><br>" : null]
 						<b>IntegriHONK: </b> [integrity]%<br>
 						<b>PowerHONK charge: </b>[isnull(cell_charge) ? "No powercell installed" : "[cell.percent()]%"]<br>
 						<b>Air source: </b>[use_internal_tank ? "Internal Airtank" : "Environment"]<br>
@@ -53,7 +53,7 @@
 						<b>HONK pressure: </b>[cabin_pressure>WARNING_HIGH_PRESSURE ? "<font color='red'>[cabin_pressure]</font>": cabin_pressure]kPa<br>
 						<b>HONK temperature: </b> [return_temperature()]&deg;K|[return_temperature() - T0C]&deg;C<br>
 						<b>Lights: </b>[lights ? "on" : "off"]<br>
-						[src.dna ? "<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[src.dna]</span> \[<a href='?src=\ref[src];reset_dna=1'>Reset</a>\]<br>" : null]
+						[src.dna ? "<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[src.dna]</span> \[<a href='byond:://?src=\ref[src];reset_dna=1'>Reset</a>\]<br>" : null]
 					"}
 	return output
 
@@ -116,7 +116,7 @@
 	var/output = {"<div class='wr'>
 						<div class='header'>Sounds of HONK:</div>
 						<div class='links'>
-						<a href='?src=\ref[src];play_sound=sadtrombone'>Sad Trombone</a>
+						<a href='byond:://?src=\ref[src];play_sound=sadtrombone'>Sad Trombone</a>
 						</div>
 						</div>
 						"}
@@ -128,7 +128,7 @@
 		return
 	var/output = "<b>Honk-ON-Systems:</b><div style=\"margin-left: 15px;\">"
 	for(var/obj/item/mecha_parts/mecha_equipment/MT in equipment)
-		output += "[selected == MT ? "<b id='\ref[MT]'>" : "<a id='\ref[MT]' href='?src=\ref[src];select_equip=\ref[MT]'>"][MT.get_equip_info()][selected == MT ? "</b>" : "</a>"]<br>"
+		output += "[selected == MT ? "<b id='\ref[MT]'>" : "<a id='\ref[MT]' href='byond:://?src=\ref[src];select_equip=\ref[MT]'>"][MT.get_equip_info()][selected == MT ? "</b>" : "</a>"]<br>"
 	output += "</div>"
 	return output
 

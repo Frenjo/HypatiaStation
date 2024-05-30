@@ -169,27 +169,27 @@
 	if(isatom(D))
 		var/atom/A = D
 		if(isliving(A))
-			body += "<a href='?_src_=vars;rename=\ref[D]'><b>[D]</b></a>"
+			body += "<a href='byond:://?_src_=vars;rename=\ref[D]'><b>[D]</b></a>"
 			if(A.dir)
-				body += "<br><font size='1'><a href='?_src_=vars;rotatedatum=\ref[D];rotatedir=left'><<</a> <a href='?_src_=vars;datumedit=\ref[D];varnameedit=dir'>[dir2text(A.dir)]</a> <a href='?_src_=vars;rotatedatum=\ref[D];rotatedir=right'>>></a></font>"
+				body += "<br><font size='1'><a href='byond:://?_src_=vars;rotatedatum=\ref[D];rotatedir=left'><<</a> <a href='byond:://?_src_=vars;datumedit=\ref[D];varnameedit=dir'>[dir2text(A.dir)]</a> <a href='byond:://?_src_=vars;rotatedatum=\ref[D];rotatedir=right'>>></a></font>"
 			var/mob/living/M = A
-			body += "<br><font size='1'><a href='?_src_=vars;datumedit=\ref[D];varnameedit=ckey'>[M.ckey ? M.ckey : "No ckey"]</a> / <a href='?_src_=vars;datumedit=\ref[D];varnameedit=real_name'>[M.real_name ? M.real_name : "No real name"]</a></font>"
+			body += "<br><font size='1'><a href='byond:://?_src_=vars;datumedit=\ref[D];varnameedit=ckey'>[M.ckey ? M.ckey : "No ckey"]</a> / <a href='byond:://?_src_=vars;datumedit=\ref[D];varnameedit=real_name'>[M.real_name ? M.real_name : "No real name"]</a></font>"
 			body += {"
 			<br><font size='1'>
-			BRUTE:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=brute'>[M.getBruteLoss()]</a>
-			FIRE:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=fire'>[M.getFireLoss()]</a>
-			TOXIN:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=toxin'>[M.getToxLoss()]</a>
-			OXY:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=oxygen'>[M.getOxyLoss()]</a>
-			CLONE:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=clone'>[M.getCloneLoss()]</a>
-			BRAIN:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=brain'>[M.getBrainLoss()]</a>
+			BRUTE:<font size='1'><a href='byond:://?_src_=vars;mobToDamage=\ref[D];adjustDamage=brute'>[M.getBruteLoss()]</a>
+			FIRE:<font size='1'><a href='byond:://?_src_=vars;mobToDamage=\ref[D];adjustDamage=fire'>[M.getFireLoss()]</a>
+			TOXIN:<font size='1'><a href='byond:://?_src_=vars;mobToDamage=\ref[D];adjustDamage=toxin'>[M.getToxLoss()]</a>
+			OXY:<font size='1'><a href='byond:://?_src_=vars;mobToDamage=\ref[D];adjustDamage=oxygen'>[M.getOxyLoss()]</a>
+			CLONE:<font size='1'><a href='byond:://?_src_=vars;mobToDamage=\ref[D];adjustDamage=clone'>[M.getCloneLoss()]</a>
+			BRAIN:<font size='1'><a href='byond:://?_src_=vars;mobToDamage=\ref[D];adjustDamage=brain'>[M.getBrainLoss()]</a>
 			</font>
 
 
 			"}
 		else
-			body += "<a href='?_src_=vars;datumedit=\ref[D];varnameedit=name'><b>[D]</b></a>"
+			body += "<a href='byond:://?_src_=vars;datumedit=\ref[D];varnameedit=name'><b>[D]</b></a>"
 			if(A.dir)
-				body += "<br><font size='1'><a href='?_src_=vars;rotatedatum=\ref[D];rotatedir=left'><<</a> <a href='?_src_=vars;datumedit=\ref[D];varnameedit=dir'>[dir2text(A.dir)]</a> <a href='?_src_=vars;rotatedatum=\ref[D];rotatedir=right'>>></a></font>"
+				body += "<br><font size='1'><a href='byond:://?_src_=vars;rotatedatum=\ref[D];rotatedir=left'><<</a> <a href='byond:://?_src_=vars;datumedit=\ref[D];varnameedit=dir'>[dir2text(A.dir)]</a> <a href='byond:://?_src_=vars;rotatedatum=\ref[D];rotatedir=right'>>></a></font>"
 	else
 		body += "<b>[D]</b>"
 
@@ -215,10 +215,10 @@
 
 	body += "</div></td>"
 
-	body += "<td width='50%'><div align='center'><a href='?_src_=vars;datumrefresh=\ref[D]'>Refresh</a>"
+	body += "<td width='50%'><div align='center'><a href='byond:://?_src_=vars;datumrefresh=\ref[D]'>Refresh</a>"
 
 	//if(ismob(D))
-	//	body += "<br><a href='?_src_=vars;mob_player_panel=\ref[D]'>Show player panel</a></div></td></tr></table></div><hr>"
+	//	body += "<br><a href='byond:://?_src_=vars;mob_player_panel=\ref[D]'>Show player panel</a></div></td></tr></table></div><hr>"
 
 	body += {"	<form>
 				<select name="file" size="1"
@@ -334,7 +334,7 @@ body
 	var/html = ""
 
 	if(DA)
-		html += "<li style='backgroundColor:white'>(<a href='?_src_=vars;datumedit=\ref[DA];varnameedit=[name]'>E</a>) (<a href='?_src_=vars;datumchange=\ref[DA];varnamechange=[name]'>C</a>) (<a href='?_src_=vars;datummass=\ref[DA];varnamemass=[name]'>M</a>) "
+		html += "<li style='backgroundColor:white'>(<a href='byond:://?_src_=vars;datumedit=\ref[DA];varnameedit=[name]'>E</a>) (<a href='byond:://?_src_=vars;datumchange=\ref[DA];varnamechange=[name]'>C</a>) (<a href='byond:://?_src_=vars;datummass=\ref[DA];varnamemass=[name]'>M</a>) "
 	else
 		html += "<li>"
 
@@ -371,11 +371,11 @@ body
 
 	else if(isdatum(value))
 		var/datum/D = value
-		html += "<a href='?_src_=vars;Vars=\ref[value]'>[name] \ref[value]</a> = [D.type]"
+		html += "<a href='byond:://?_src_=vars;Vars=\ref[value]'>[name] \ref[value]</a> = [D.type]"
 
 	else if(isclient(value))
 		var/client/C = value
-		html += "<a href='?_src_=vars;Vars=\ref[value]'>[name] \ref[value]</a> = [C] [C.type]"
+		html += "<a href='byond:://?_src_=vars;Vars=\ref[value]'>[name] \ref[value]</a> = [C] [C.type]"
 //
 	else if(islist(value))
 		var/list/L = value

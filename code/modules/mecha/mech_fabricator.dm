@@ -305,7 +305,7 @@
 	if(istype(part_set))
 		for(var/obj/item/part in part_set)
 			var/resources_available = check_resources(part)
-			output += "<div class='part'>[output_part_info(part)]<br>\[[resources_available ? "<a href='?src=\ref[src];part=\ref[part]'>Build</a> | " : null]<a href='?src=\ref[src];add_to_queue=\ref[part]'>Add to queue</a>\]\[<a href='?src=\ref[src];part_desc=\ref[part]'>?</a>\]</div>"
+			output += "<div class='part'>[output_part_info(part)]<br>\[[resources_available ? "<a href='byond:://?src=\ref[src];part=\ref[part]'>Build</a> | " : null]<a href='byond:://?src=\ref[src];add_to_queue=\ref[part]'>Add to queue</a>\]\[<a href='byond:://?src=\ref[src];part_desc=\ref[part]'>?</a>\]</div>"
 	return output
 
 /obj/machinery/mecha_part_fabricator/proc/output_part_info(obj/item/part)
@@ -330,7 +330,7 @@
 		var/amount = min(res_max_amount, resources[resource])
 		output += "<span class=\"res_name\">[resource]: </span>[amount] cm&sup3;"
 		if(amount>0)
-			output += "<span style='font-size:80%;'> - Remove \[<a href='?src=\ref[src];remove_mat=1;material=[resource]'>1</a>\] | \[<a href='?src=\ref[src];remove_mat=10;material=[resource]'>10</a>\] | \[<a href='?src=\ref[src];remove_mat=[res_max_amount];material=[resource]'>All</a>\]</span>"
+			output += "<span style='font-size:80%;'> - Remove \[<a href='byond:://?src=\ref[src];remove_mat=1;material=[resource]'>1</a>\] | \[<a href='byond:://?src=\ref[src];remove_mat=10;material=[resource]'>10</a>\] | \[<a href='byond:://?src=\ref[src];remove_mat=[res_max_amount];material=[resource]'>All</a>\]</span>"
 		output += "<br/>"
 	return output
 
@@ -414,7 +414,7 @@
 		if(!check_resources(part))
 			visible_message("\icon[src] <b>[src]</b> beeps, \"Not enough resources. Queue processing stopped\".")
 			temp = {"<font color='red'>Not enough resources to build next part.</font><br>
-						<a href='?src=\ref[src];process_queue=1'>Try again</a> | <a href='?src=\ref[src];clear_temp=1'>Return</a><a>"}
+						<a href='byond:://?src=\ref[src];process_queue=1'>Try again</a> | <a href='byond:://?src=\ref[src];clear_temp=1'>Return</a><a>"}
 			return 0
 		remove_from_queue(1)
 		build_part(part)
@@ -432,12 +432,12 @@
 			var/obj/item/part = listgetindex(queue, i)
 			if(istype(part))
 				if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
-					output += "<li[!check_resources(part) ? " style='color: #f00;'" : null]>[part.name] - [i > 1 ? "<a href='?src=\ref[src];queue_move=-1;index=[i]' class='arrow'>&uarr;</a>" : null] [i < length(queue) ? "<a href='?src=\ref[src];queue_move=+1;index=[i]' class='arrow'>&darr;</a>" : null] <a href='?src=\ref[src];remove_from_queue=[i]'>Remove</a></li>"
+					output += "<li[!check_resources(part) ? " style='color: #f00;'" : null]>[part.name] - [i > 1 ? "<a href='byond:://?src=\ref[src];queue_move=-1;index=[i]' class='arrow'>&uarr;</a>" : null] [i < length(queue) ? "<a href='byond:://?src=\ref[src];queue_move=+1;index=[i]' class='arrow'>&darr;</a>" : null] <a href='byond:://?src=\ref[src];remove_from_queue=[i]'>Remove</a></li>"
 				else//Prevents junk items from even appearing in the list, and they will be silently removed when the fab processes
 					remove_from_queue(i)//Trash it
 					return list_queue()//Rebuild it
 		output += "</ol>"
-		output += "\[<a href='?src=\ref[src];process_queue=1'>Process queue</a> | <a href='?src=\ref[src];clear_queue=1'>Clear queue</a>\]"
+		output += "\[<a href='byond:://?src=\ref[src];process_queue=1'>Process queue</a> | <a href='byond:://?src=\ref[src];clear_queue=1'>Clear queue</a>\]"
 	return output
 
 /obj/machinery/mecha_part_fabricator/proc/convert_designs()
@@ -510,13 +510,13 @@
 		if(!silent)
 			temp = "Processed [i] equipment designs.<br>"
 			temp += tech_output
-			temp += "<a href='?src=\ref[src];clear_temp=1'>Return</a>"
+			temp += "<a href='byond:://?src=\ref[src];clear_temp=1'>Return</a>"
 			updateUsrDialog()
 		if(i || tech_output)
 			visible_message("\icon[src] <b>[src]</b> beeps, \"Successfully synchronized with R&D server. New data processed.\"")
 	if(found == 0)
 		temp = "Couldn't contact R&D server.<br>"
-		temp += "<a href='?src=\ref[src];clear_temp=1'>Return</a>"
+		temp += "<a href='byond:://?src=\ref[src];clear_temp=1'>Return</a>"
 		updateUsrDialog()
 		visible_message("\icon[src] <b>[src]</b> beeps, \"Error! Couldn't connect to R&D server.\"")
 
@@ -554,12 +554,12 @@
 		switch(screen)
 			if("main")
 				left_part = output_available_resources()+"<hr>"
-				left_part += "<a href='?src=\ref[src];sync=1'>Sync with R&D servers</a><hr>"
+				left_part += "<a href='byond:://?src=\ref[src];sync=1'>Sync with R&D servers</a><hr>"
 				for(var/part_set in part_sets)
-					left_part += "<a href='?src=\ref[src];part_set=[part_set]'>[part_set]</a> - \[<a href='?src=\ref[src];partset_to_queue=[part_set]'>Add all parts to queue\]<br>"
+					left_part += "<a href='byond:://?src=\ref[src];part_set=[part_set]'>[part_set]</a> - \[<a href='byond:://?src=\ref[src];partset_to_queue=[part_set]'>Add all parts to queue\]<br>"
 			if("parts")
 				left_part += output_parts_list(part_set)
-				left_part += "<hr><a href='?src=\ref[src];screen=main'>Return</a>"
+				left_part += "<hr><a href='byond:://?src=\ref[src];screen=main'>Return</a>"
 	dat = {"<html>
 			  <head>
 			  <title>[name]</title>
@@ -653,10 +653,10 @@
 		if(part)
 			temp = {"<h1>[part] description:</h1>
 						[part.desc]<br>
-						<a href='?src=\ref[src];clear_temp=1'>Return</a>
+						<a href='byond:://?src=\ref[src];clear_temp=1'>Return</a>
 						"}
 	if(href_list["remove_mat"] && href_list["material"])
-		temp = "Ejected [remove_material(href_list["material"],text2num(href_list["remove_mat"]))] of [href_list["material"]]<br><a href='?src=\ref[src];clear_temp=1'>Return</a>"
+		temp = "Ejected [remove_material(href_list["material"],text2num(href_list["remove_mat"]))] of [href_list["material"]]<br><a href='byond:://?src=\ref[src];clear_temp=1'>Return</a>"
 	updateUsrDialog()
 
 /obj/machinery/mecha_part_fabricator/proc/remove_material(mat_string, amount)

@@ -126,7 +126,7 @@
 				qdel(G)
 				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [GM.name] ([GM.ckey]) in disposals.</font>")
 				GM.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [usr.name] ([usr.ckey])</font>")
-				msg_admin_attack("[usr] ([usr.ckey]) placed [GM] ([GM.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
+				msg_admin_attack("[usr] ([usr.ckey]) placed [GM] ([GM.ckey]) in a disposals unit. (<A href='byond:://?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
 		return
 
 	if(!I)
@@ -174,7 +174,7 @@
 
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Has placed [target.name] ([target.ckey]) in disposals.</font>")
 		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been placed in disposals by [user.name] ([user.ckey])</font>")
-		msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+		msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A href='byond:://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 	else
 		return
 	if(target.client)
@@ -246,17 +246,17 @@
 
 	if(!ai)  // AI can't pull flush handle
 		if(flush)
-			dat += "Disposal handle: <A href='?src=\ref[src];handle=0'>Disengage</A> <B>Engaged</B>"
+			dat += "Disposal handle: <A href='byond:://?src=\ref[src];handle=0'>Disengage</A> <B>Engaged</B>"
 		else
-			dat += "Disposal handle: <B>Disengaged</B> <A href='?src=\ref[src];handle=1'>Engage</A>"
-		dat += "<BR><HR><A href='?src=\ref[src];eject=1'>Eject contents</A><HR>"
+			dat += "Disposal handle: <B>Disengaged</B> <A href='byond:://?src=\ref[src];handle=1'>Engage</A>"
+		dat += "<BR><HR><A href='byond:://?src=\ref[src];eject=1'>Eject contents</A><HR>"
 
 	if(mode <= 0)
-		dat += "Pump: <B>Off</B> <A href='?src=\ref[src];pump=1'>On</A><BR>"
+		dat += "Pump: <B>Off</B> <A href='byond:://?src=\ref[src];pump=1'>On</A><BR>"
 	else if(mode == 1)
-		dat += "Pump: <A href='?src=\ref[src];pump=0'>Off</A> <B>On</B> (pressurizing)<BR>"
+		dat += "Pump: <A href='byond:://?src=\ref[src];pump=0'>Off</A> <B>On</B> (pressurizing)<BR>"
 	else
-		dat += "Pump: <A href='?src=\ref[src];pump=0'>Off</A> <B>On</B> (idle)<BR>"
+		dat += "Pump: <A href='byond:://?src=\ref[src];pump=0'>Off</A> <B>On</B> (idle)<BR>"
 
 	var/per = 100 * air_contents.return_pressure() / (SEND_PRESSURE)
 

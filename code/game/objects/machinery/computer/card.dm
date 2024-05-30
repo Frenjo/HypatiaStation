@@ -58,9 +58,9 @@
 		if(GLOBL.data_core)
 			dat += GLOBL.data_core.get_manifest(0) // make it monochrome
 		dat += "<br>"
-		dat += "<a href='?src=\ref[src];choice=print'>Print</a><br>"
+		dat += "<a href='byond:://?src=\ref[src];choice=print'>Print</a><br>"
 		dat += "<br>"
-		dat += "<a href='?src=\ref[src];choice=mode;mode_target=0'>Access ID modification console.</a><br>"
+		dat += "<a href='byond:://?src=\ref[src];choice=mode;mode_target=0'>Access ID modification console.</a><br>"
 
 		/*var/crew = ""
 		var/list/L = list()
@@ -69,7 +69,7 @@
 			L += R
 		for(var/R in sortList(L))
 			crew += "[R]<br>"*/
-		//dat = "<tt><b>Crew Manifest:</b><br>Please use security record computer to modify entries.<br><br>[crew]<a href='?src=\ref[src];choice=print'>Print</a><br><br><a href='?src=\ref[src];choice=mode;mode_target=0'>Access ID modification console.</a><br></tt>"
+		//dat = "<tt><b>Crew Manifest:</b><br>Please use security record computer to modify entries.<br><br>[crew]<a href='byond:://?src=\ref[src];choice=print'>Print</a><br><br><a href='byond:://?src=\ref[src];choice=mode;mode_target=0'>Access ID modification console.</a><br></tt>"
 	else
 		var/header = "<div align='center'><b>Identification Card Modifier</b></div>"
 
@@ -97,21 +97,21 @@
 
 		if(!authenticated)
 			header += "<br><i>Please insert the cards into the slots</i><br>"
-			header += "Target: <a href='?src=\ref[src];choice=modify'>[target_name]</a><br>"
-			header += "Confirm Identity: <a href='?src=\ref[src];choice=scan'>[scan_name]</a><br>"
+			header += "Target: <a href='byond:://?src=\ref[src];choice=modify'>[target_name]</a><br>"
+			header += "Confirm Identity: <a href='byond:://?src=\ref[src];choice=scan'>[scan_name]</a><br>"
 		else
 			header += "<div align='center'><br>"
-			header += "<a href='?src=\ref[src];choice=modify'>Remove [target_name]</a> || "
-			header += "<a href='?src=\ref[src];choice=scan'>Remove [scan_name]</a> <br> "
-			header += "<a href='?src=\ref[src];choice=mode;mode_target=1'>Access Crew Manifest</a> || "
-			header += "<a href='?src=\ref[src];choice=logout'>Log Out</a></div>"
+			header += "<a href='byond:://?src=\ref[src];choice=modify'>Remove [target_name]</a> || "
+			header += "<a href='byond:://?src=\ref[src];choice=scan'>Remove [scan_name]</a> <br> "
+			header += "<a href='byond:://?src=\ref[src];choice=mode;mode_target=1'>Access Crew Manifest</a> || "
+			header += "<a href='byond:://?src=\ref[src];choice=logout'>Log Out</a></div>"
 
 		header += "<hr>"
 
 		var/jobs_all = ""
 		var/list/alljobs = (istype(src,/obj/machinery/computer/card/centcom)? GLOBL.all_centcom_jobs : GLOBL.all_jobs) + "Custom"
 		for(var/job in alljobs)
-			jobs_all += "<a href='?src=\ref[src];choice=assign;assign_target=[job]'>[replacetext(job, " ", "&nbsp")]</a> " //make sure there isn't a line break in the middle of a job
+			jobs_all += "<a href='byond:://?src=\ref[src];choice=assign;assign_target=[job]'>[replacetext(job, " ", "&nbsp")]</a> " //make sure there isn't a line break in the middle of a job
 
 
 		var/body
@@ -163,9 +163,9 @@
 				accesses += "<h5>Central Command:</h5>"
 				for(var/A in get_all_centcom_access())
 					if(A in modify.access)
-						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=0'><font color=\"red\">[replacetext(get_access_desc(A), " ", "&nbsp")]</font></a> "
+						accesses += "<a href='byond:://?src=\ref[src];choice=access;access_target=[A];allowed=0'><font color=\"red\">[replacetext(get_access_desc(A), " ", "&nbsp")]</font></a> "
 					else
-						accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=1'>[replacetext(get_access_desc(A), " ", "&nbsp")]</a> "
+						accesses += "<a href='byond:://?src=\ref[src];choice=access;access_target=[A];allowed=1'>[replacetext(get_access_desc(A), " ", "&nbsp")]</a> "
 			else
 				accesses += "<div align='center'><b>Access</b></div>"
 				accesses += "<table style='width:100%'>"
@@ -177,16 +177,16 @@
 					accesses += "<td style='width:14%' valign='top'>"
 					for(var/A in get_region_accesses(i))
 						if(A in modify.access)
-							accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=0'><font color=\"red\">[replacetext(get_access_desc(A), " ", "&nbsp")]</font></a> "
+							accesses += "<a href='byond:://?src=\ref[src];choice=access;access_target=[A];allowed=0'><font color=\"red\">[replacetext(get_access_desc(A), " ", "&nbsp")]</font></a> "
 						else
-							accesses += "<a href='?src=\ref[src];choice=access;access_target=[A];allowed=1'>[replacetext(get_access_desc(A), " ", "&nbsp")]</a> "
+							accesses += "<a href='byond:://?src=\ref[src];choice=access;access_target=[A];allowed=1'>[replacetext(get_access_desc(A), " ", "&nbsp")]</a> "
 						accesses += "<br>"
 					accesses += "</td>"
 				accesses += "</tr></table>"
 			body = "[carddesc]<br>[jobs]<br><br>[accesses]" //CHECK THIS
 		else
-			body = "<a href='?src=\ref[src];choice=auth'>{Log in}</a> <br><hr>"
-			body += "<a href='?src=\ref[src];choice=mode;mode_target=1'>Access Crew Manifest</a>"
+			body = "<a href='byond:://?src=\ref[src];choice=auth'>{Log in}</a> <br><hr>"
+			body += "<a href='byond:://?src=\ref[src];choice=mode;mode_target=1'>Access Crew Manifest</a>"
 		dat = "<tt>[header][body]<hr><br></tt>"
 	user << browse(dat, "window=id_com;size=900x520")
 	onclose(user, "id_com")

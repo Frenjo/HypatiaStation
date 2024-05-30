@@ -166,9 +166,9 @@
 
 	var/list/gases = list("O2", "N2", "Plasma", "CO2", "N2O")
 	user.machine = src
-	var/dat = "Filter Release Rate:<BR>\n<A href='?src=\ref[src];fp=-[num2text(src.maxrate, 9)]'>M</A> <A href='?src=\ref[src];fp=-100000'>-</A> <A href='?src=\ref[src];fp=-10000'>-</A> <A href='?src=\ref[src];fp=-1000'>-</A> <A href='?src=\ref[src];fp=-100'>-</A> <A href='?src=\ref[src];fp=-1'>-</A> [src.f_per] <A href='?src=\ref[src];fp=1'>+</A> <A href='?src=\ref[src];fp=100'>+</A> <A href='?src=\ref[src];fp=1000'>+</A> <A href='?src=\ref[src];fp=10000'>+</A> <A href='?src=\ref[src];fp=100000'>+</A> <A href='?src=\ref[src];fp=[num2text(src.maxrate, 9)]'>M</A><BR>\n"
+	var/dat = "Filter Release Rate:<BR>\n<A href='byond:://?src=\ref[src];fp=-[num2text(src.maxrate, 9)]'>M</A> <A href='byond:://?src=\ref[src];fp=-100000'>-</A> <A href='byond:://?src=\ref[src];fp=-10000'>-</A> <A href='byond:://?src=\ref[src];fp=-1000'>-</A> <A href='byond:://?src=\ref[src];fp=-100'>-</A> <A href='byond:://?src=\ref[src];fp=-1'>-</A> [src.f_per] <A href='byond:://?src=\ref[src];fp=1'>+</A> <A href='byond:://?src=\ref[src];fp=100'>+</A> <A href='byond:://?src=\ref[src];fp=1000'>+</A> <A href='byond:://?src=\ref[src];fp=10000'>+</A> <A href='byond:://?src=\ref[src];fp=100000'>+</A> <A href='byond:://?src=\ref[src];fp=[num2text(src.maxrate, 9)]'>M</A><BR>\n"
 	for (var/i = 1; i <= gases.len; i++)
-		dat += "[gases[i]]: <A HREF='?src=\ref[src];tg=[1 << (i - 1)]'>[(src.f_mask & 1 << (i - 1)) ? "Releasing" : "Passing"]</A><BR>\n"
+		dat += "[gases[i]]: <A href='byond:://?src=\ref[src];tg=[1 << (i - 1)]'>[(src.f_mask & 1 << (i - 1)) ? "Releasing" : "Passing"]</A><BR>\n"
 	if(gas.total_moles())
 		var/totalgas = gas.total_moles()
 		var/pressure = round(totalgas / gas.maximum * 100)
@@ -181,7 +181,7 @@
 		dat += "<BR>Gas Levels: <BR>\nPressure: [pressure]%<BR>\nNitrogen: [nitrogen]%<BR>\nOxygen: [oxygen]%<BR>\nPlasma: [plasma]%<BR>\nCO2: [co2]%<BR>\nN2O: [no2]%<BR>\n"
 	else
 		dat += "<BR>Gas Levels: <BR>\nPressure: 0%<BR>\nNitrogen: 0%<BR>\nOxygen: 0%<BR>\nPlasma: 0%<BR>\nCO2: 0%<BR>\nN2O: 0%<BR>\n"
-	dat += "<BR>\n<A href='?src=\ref[src];close=1'>Close</A><BR>\n"
+	dat += "<BR>\n<A href='byond:://?src=\ref[src];close=1'>Close</A><BR>\n"
 
 	user << browse(dat, "window=pipefilter;size=300x365")*/ //TODO: FIX
 	//onclose(user, "pipefilter")

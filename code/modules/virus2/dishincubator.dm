@@ -106,26 +106,26 @@
 	var/string = "Off"
 	if(on)
 		string = "On"
-	dat += "Power status : <A href='?src=\ref[src];power=1'>[string]</a>"
+	dat += "Power status : <A href='byond:://?src=\ref[src];power=1'>[string]</a>"
 	dat += "<BR>"
 	dat += "Food supply : [foodsupply]"
 	dat += "<BR>"
-	dat += "Radiation Levels : [radiation] RADS : <A href='?src=\ref[src];rad=1'>Radiate</a>"
+	dat += "Radiation Levels : [radiation] RADS : <A href='byond:://?src=\ref[src];rad=1'>Radiate</a>"
 	dat += "<BR>"
 	dat += "Toxins : [toxins]"
 	dat += "<BR><BR>"
 	if(beaker)
-		dat += "Eject chemicals : <A href='?src=\ref[src];ejectchem=1'> Eject</a>"
+		dat += "Eject chemicals : <A href='byond:://?src=\ref[src];ejectchem=1'> Eject</a>"
 		dat += "<BR>"
 	if(dish)
-		dat += "Eject Virus dish : <A href='?src=\ref[src];ejectdish=1'> Eject</a>"
+		dat += "Eject Virus dish : <A href='byond:://?src=\ref[src];ejectdish=1'> Eject</a>"
 		dat += "<BR>"
 		if(beaker)
-			dat += "Breed viral culture in beaker : <A href='?src=\ref[src];virus=1'> Start</a>"
+			dat += "Breed viral culture in beaker : <A href='byond:://?src=\ref[src];virus=1'> Start</a>"
 			dat += "<BR>"
 	dat += "<BR><BR>"
-	dat += "<A href='?src=\ref[src];flush=1'>Flush system</a><BR>"
-	dat += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
+	dat += "<A href='byond:://?src=\ref[src];flush=1'>Flush system</a><BR>"
+	dat += "<A href='byond:://?src=\ref[src];close=1'>Close</A><BR>"
 	user << browse("<TITLE>Pathogenic incubator</TITLE>incubator menu:<BR><BR>[dat]", "window=incubator;size=575x400")
 	onclose(user, "incubator")
 	return

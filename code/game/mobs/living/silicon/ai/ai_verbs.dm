@@ -81,7 +81,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 	set name = "Show Alerts"
 
 	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
-	dat += "<A HREF='?src=\ref[src];mach_close=aialerts'>Close</A><BR><BR>"
+	dat += "<A href='byond:://?src=\ref[src];mach_close=aialerts'>Close</A><BR><BR>"
 	for(var/cat in alarms)
 		dat += text("<B>[]</B><BR>\n", cat)
 		var/list/alarmlist = alarms[cat]
@@ -92,7 +92,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 				var/cameratext = ""
 				if(alarm.cameras)
 					for(var/obj/machinery/camera/I in alarm.cameras)
-						cameratext += "[cameratext == "" ? "" : " | "]<A HREF=?src=\ref[src];switchcamera=\ref[I]>[I.c_tag]</A>"
+						cameratext += "[cameratext == "" ? "" : " | "]<A href=byond:://?src=\ref[src];switchcamera=\ref[I]>[I.c_tag]</A>"
 				dat += "-- [alarm.area.name] ([cameratext ? cameratext : "No Camera"])"
 
 				if(length(alarm.sources) > 1)

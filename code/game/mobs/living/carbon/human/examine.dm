@@ -415,8 +415,8 @@
 						if(R.fields["id"] == E.fields["id"])
 							criminal = R.fields["criminal"]
 
-			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='?src=\ref[src];criminal=1'>\[[criminal]\]</a>\n"
-			msg += "<span class = 'deptradio'>Security records:</span> <a href='?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>\n"
+			msg += "<span class = 'deptradio'>Criminal status:</span> <a href='byond:://?src=\ref[src];criminal=1'>\[[criminal]\]</a>\n"
+			msg += "<span class = 'deptradio'>Security records:</span> <a href='byond:://?src=\ref[src];secrecord=`'>\[View\]</a>  <a href='byond:://?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>\n"
 
 	if(hasHUD(usr,"medical"))
 		var/perpname = "wot"
@@ -437,8 +437,8 @@
 					if(R.fields["id"] == E.fields["id"])
 						medical = R.fields["p_stat"]
 
-		msg += "<span class = 'deptradio'>Physical status:</span> <a href='?src=\ref[src];medical=1'>\[[medical]\]</a>\n"
-		msg += "<span class = 'deptradio'>Medical records:</span> <a href='?src=\ref[src];medrecord=`'>\[View\]</a> <a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>\n"
+		msg += "<span class = 'deptradio'>Physical status:</span> <a href='byond:://?src=\ref[src];medical=1'>\[[medical]\]</a>\n"
+		msg += "<span class = 'deptradio'>Medical records:</span> <a href='byond:://?src=\ref[src];medrecord=`'>\[View\]</a> <a href='byond:://?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>\n"
 
 
 	if(print_flavor_text()) msg += "[print_flavor_text()]\n"

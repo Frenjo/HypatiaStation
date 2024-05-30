@@ -48,7 +48,7 @@ var/const/HOLOPAD_MODE = 0
 			for_no_type_check(var/mob/living/silicon/ai/AI, GLOBL.ai_list)
 				if(!AI.client)
 					continue
-				to_chat(AI, SPAN_INFO("Your presence is requested at <a href='?src=\ref[AI];jumptoholopad=\ref[src]'>\the [area]</a>."))
+				to_chat(AI, SPAN_INFO("Your presence is requested at <a href='byond:://?src=\ref[AI];jumptoholopad=\ref[src]'>\the [area]</a>."))
 		else
 			to_chat(user, SPAN_NOTICE("A request for AI presence was already sent recently."))
 

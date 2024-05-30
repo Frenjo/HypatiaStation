@@ -24,7 +24,7 @@
 	interact(user)
 
 #define ADD_MATERIAL(NAME, STACK) \
-if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]] (<A href='?src=\ref[src];release=[STACK]'>Release</A>)<br>"
+if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]] (<A href='byond:://?src=\ref[src];release=[STACK]'>Release</A>)<br>"
 /obj/machinery/mineral/stacking_unit_console/interact(mob/user)
 	user.set_machine(src)
 

@@ -98,9 +98,9 @@
 [beaker_contents]<hr>
 "}
 	if(is_beaker_ready && !is_chamber_empty && !(stat & (NOPOWER|BROKEN)))
-		dat += "<A href='?src=\ref[src];action=juice'>Turn on!<BR>"
+		dat += "<A href='byond:://?src=\ref[src];action=juice'>Turn on!<BR>"
 	if(beaker)
-		dat += "<A href='?src=\ref[src];action=detach'>Detach a beaker!<BR>"
+		dat += "<A href='byond:://?src=\ref[src];action=detach'>Detach a beaker!<BR>"
 	user << browse("<HEAD><TITLE>Juicer</TITLE></HEAD><TT>[dat]</TT>", "window=juicer")
 	onclose(user, "juicer")
 	return

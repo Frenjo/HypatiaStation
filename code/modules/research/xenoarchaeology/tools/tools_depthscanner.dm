@@ -70,7 +70,7 @@
 
 /obj/item/depth_scanner/interact(mob/user as mob)
 	var/dat = "<b>Co-ordinates with positive matches</b><br>"
-	dat += "<A href='?src=\ref[src];clear=0'>== Clear all ==</a><br>"
+	dat += "<A href='byond:://?src=\ref[src];clear=0'>== Clear all ==</a><br>"
 	if(current)
 		dat += "Time: [current.time]<br>"
 		dat += "Coords: [current.coords]<br>"
@@ -82,7 +82,7 @@
 			dat += "Anomaly material: [finds_as_strings[index]]<br>"
 		else
 			dat += "Anomaly material: Unknown<br>"
-		dat += "<A href='?src=\ref[src];clear=[current.record_index]'>clear entry</a><br>"
+		dat += "<A href='byond:://?src=\ref[src];clear=[current.record_index]'>clear entry</a><br>"
 	else
 		dat += "Select an entry from the list<br>"
 		dat += "<br>"
@@ -93,12 +93,12 @@
 	if(length(positive_locations))
 		for(var/index = 1, index <= length(positive_locations), index++)
 			var/datum/depth_scan/D = positive_locations[index]
-			dat += "<A href='?src=\ref[src];select=[index]'>[D.time], coords: [D.coords]</a><br>"
+			dat += "<A href='byond:://?src=\ref[src];select=[index]'>[D.time], coords: [D.coords]</a><br>"
 	else
 		dat += "No entries recorded."
 	dat += "<hr>"
-	dat += "<A href='?src=\ref[src];refresh=1'>Refresh</a><br>"
-	dat += "<A href='?src=\ref[src];close=1'>Close</a><br>"
+	dat += "<A href='byond:://?src=\ref[src];refresh=1'>Refresh</a><br>"
+	dat += "<A href='byond:://?src=\ref[src];close=1'>Close</a><br>"
 	user << browse(dat,"window=depth_scanner;size=300x500")
 	onclose(user, "depth_scanner")
 

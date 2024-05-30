@@ -174,15 +174,15 @@
 		dat += "<i>The console is dark and nonresponsive.</i>"
 	else
 		dat += "<B>Reactor Core Fuel Injector</B><hr>"
-		dat += "<b>Device ID tag:</b> [id_tag] <a href='?src=\ref[src];modify_tag=1'>\[Modify\]</a><br>"
-		dat += "<b>Status:</b> [injecting ? "<font color=green>Active</font> <a href='?src=\ref[src];toggle_injecting=1'>\[Disable\]</a>" : "<font color=blue>Standby</font> <a href='?src=\ref[src];toggle_injecting=1'>\[Enable\]</a>"]<br>"
-		dat += "<b>Fuel usage:</b> [fuel_usage*100]% <a href='?src=\ref[src];fuel_usage=1'>\[Modify\]</a><br>"
+		dat += "<b>Device ID tag:</b> [id_tag] <a href='byond:://?src=\ref[src];modify_tag=1'>\[Modify\]</a><br>"
+		dat += "<b>Status:</b> [injecting ? "<font color=green>Active</font> <a href='byond:://?src=\ref[src];toggle_injecting=1'>\[Disable\]</a>" : "<font color=blue>Standby</font> <a href='byond:://?src=\ref[src];toggle_injecting=1'>\[Enable\]</a>"]<br>"
+		dat += "<b>Fuel usage:</b> [fuel_usage*100]% <a href='byond:://?src=\ref[src];fuel_usage=1'>\[Modify\]</a><br>"
 		dat += "<b>Fuel assembly port:</b> "
-		dat += "<a href='?src=\ref[src];fuel_assembly=1'>\[[cur_assembly ? "Eject assembly to port" : "Draw assembly from port"]\]</a> "
+		dat += "<a href='byond:://?src=\ref[src];fuel_assembly=1'>\[[cur_assembly ? "Eject assembly to port" : "Draw assembly from port"]\]</a> "
 		if(cur_assembly)
-			dat += "<a href='?src=\ref[src];emergency_fuel_assembly=1'>\[Emergency eject\]</a><br>"
+			dat += "<a href='byond:://?src=\ref[src];emergency_fuel_assembly=1'>\[Emergency eject\]</a><br>"
 		else
-			dat += "<a href='?src=\ref[src];emergency_fuel_assembly=1'>\[[emergency_insert_ready ? "Cancel emergency insertion" : "Emergency insert"]\]</a><br>"
+			dat += "<a href='byond:://?src=\ref[src];emergency_fuel_assembly=1'>\[[emergency_insert_ready ? "Cancel emergency insertion" : "Emergency insert"]\]</a><br>"
 		var/font_colour = "green"
 		var/active_power_usage = power_usage[USE_POWER_ACTIVE]
 		if(cached_power_avail < active_power_usage)
@@ -190,11 +190,11 @@
 		else if(cached_power_avail < active_power_usage * 2)
 			font_colour = "orange"
 		dat += "<b>Power status:</b> <font color=[font_colour]>[active_power_usage]/[cached_power_avail] W</font><br>"
-		dat += "<a href='?src=\ref[src];toggle_remote=1'>\[[remote_access_enabled ? "Disable remote access" : "Enable remote access"]\]</a><br>"
+		dat += "<a href='byond:://?src=\ref[src];toggle_remote=1'>\[[remote_access_enabled ? "Disable remote access" : "Enable remote access"]\]</a><br>"
 
 		dat += "<hr>"
-		dat += "<A href='?src=\ref[src];refresh=1'>Refresh</A> "
-		dat += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
+		dat += "<A href='byond:://?src=\ref[src];refresh=1'>Refresh</A> "
+		dat += "<A href='byond:://?src=\ref[src];close=1'>Close</A><BR>"
 
 	user << browse(dat, "window=fuel_injector;size=500x300")
 	onclose(user, "fuel_injector")

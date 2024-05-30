@@ -73,7 +73,7 @@
 				if(alarm_types_show["Camera"])
 					msg += "CAMERA: [alarm_types_show["Power"]] alarms detected. - "
 
-				msg += "<A href=?src=\ref[src];showalerts=1'>\[Show Alerts\]</a>"
+				msg += "<A href=byond:://?src=\ref[src];showalerts=1'>\[Show Alerts\]</a>"
 				to_chat(src, msg)
 
 			if(length(alarms_to_clear) < 3)
@@ -98,7 +98,7 @@
 				if(alarm_types_show["Camera"])
 					msg += "CAMERA: [alarm_types_show["Power"]] alarms detected. - "
 
-				msg += "<A href=?src=\ref[src];showalerts=1'>\[Show Alerts\]</a>"
+				msg += "<A href=byond:://?src=\ref[src];showalerts=1'>\[Show Alerts\]</a>"
 				to_chat(src, msg)
 
 			alarms_to_show = list()

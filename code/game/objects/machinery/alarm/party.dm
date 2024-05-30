@@ -35,30 +35,30 @@
 	var/d2
 	if(ishuman(user) || issilicon(user))
 		if(A.party_alarm)
-			d1 = "<A href='?src=\ref[src];reset=1'>No Party :(</A>"
+			d1 = "<A href='byond:://?src=\ref[src];reset=1'>No Party :(</A>"
 		else
-			d1 = "<A href='?src=\ref[src];alarm=1'>PARTY!!!</A>"
+			d1 = "<A href='byond:://?src=\ref[src];alarm=1'>PARTY!!!</A>"
 		if(timing)
-			d2 = "<A href='?src=\ref[src];time=0'>Stop Time Lock</A>"
+			d2 = "<A href='byond:://?src=\ref[src];time=0'>Stop Time Lock</A>"
 		else
-			d2 = "<A href='?src=\ref[src];time=1'>Initiate Time Lock</A>"
+			d2 = "<A href='byond:://?src=\ref[src];time=1'>Initiate Time Lock</A>"
 		var/second = time % 60
 		var/minute = (time - second) / 60
-		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>Party Button</B> [d1]\n<HR>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
+		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>Party Button</B> [d1]\n<HR>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='byond:://?src=\ref[src];tp=-30'>-</A> <A href='byond:://?src=\ref[src];tp=-1'>-</A> <A href='byond:://?src=\ref[src];tp=1'>+</A> <A href='byond:://?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
 		user << browse(dat, "window=partyalarm")
 		onclose(user, "partyalarm")
 	else
 		if(A.fire_alarm)
-			d1 = "<A href='?src=\ref[src];reset=1'>[stars("No Party :(")]</A>"
+			d1 = "<A href='byond:://?src=\ref[src];reset=1'>[stars("No Party :(")]</A>"
 		else
-			d1 = "<A href='?src=\ref[src];alarm=1'>[stars("PARTY!!!")]</A>"
+			d1 = "<A href='byond:://?src=\ref[src];alarm=1'>[stars("PARTY!!!")]</A>"
 		if(timing)
-			d2 = "<A href='?src=\ref[src];time=0'>[stars("Stop Time Lock")]</A>"
+			d2 = "<A href='byond:://?src=\ref[src];time=0'>[stars("Stop Time Lock")]</A>"
 		else
-			d2 = "<A href='?src=\ref[src];time=1'>[stars("Initiate Time Lock")]</A>"
+			d2 = "<A href='byond:://?src=\ref[src];time=1'>[stars("Initiate Time Lock")]</A>"
 		var/second = time % 60
 		var/minute = (time - second) / 60
-		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>[stars("Party Button")]</B> [d1]\n<HR>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='?src=\ref[src];tp=-30'>-</A> <A href='?src=\ref[src];tp=-1'>-</A> <A href='?src=\ref[src];tp=1'>+</A> <A href='?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
+		var/dat = "<HTML><HEAD></HEAD><BODY><TT><B>[stars("Party Button")]</B> [d1]\n<HR>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='byond:://?src=\ref[src];tp=-30'>-</A> <A href='byond:://?src=\ref[src];tp=-1'>-</A> <A href='byond:://?src=\ref[src];tp=1'>+</A> <A href='byond:://?src=\ref[src];tp=30'>+</A>\n</TT></BODY></HTML>"
 		user << browse(dat, "window=partyalarm")
 		onclose(user, "partyalarm")
 

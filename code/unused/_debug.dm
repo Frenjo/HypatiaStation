@@ -423,13 +423,13 @@ Doing this because FindTurfs() isn't even used
 		debugobj.debuglist = list( powernets, plines, vote, config, admins, ticker, SS13_airtunnel, sun )
 
 
-		to_world("<A href='?src=\ref[debugobj];Vars=1'>Debug</A>")
+		to_world("<A href='byond:://?src=\ref[debugobj];Vars=1'>Debug</A>")
 	else
 		alert("Debugging off")
 		return
 	/*for(var/obj/O in plines)
 
-		to_world("<A href='?src=\ref[O];Vars=1'>[O.name]</A>")
+		to_world("<A href='byond:://?src=\ref[O];Vars=1'>[O.name]</A>")
 	*/
 
 

@@ -67,7 +67,7 @@
 	var/dat = "<center><table>"
 	for(var/i = length(contents), i >= 1, i--)
 		var/obj/item/P = contents[i]
-		dat += "<tr><td><a href='?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"
+		dat += "<tr><td><a href='byond:://?src=\ref[src];retrieve=\ref[P]'>[P.name]</a></td></tr>"
 	dat += "</table></center>"
 	user << browse("<html><head><title>[name]</title></head><body>[dat]</body></html>", "window=filingcabinet;size=350x300")
 

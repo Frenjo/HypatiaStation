@@ -77,17 +77,17 @@
 	var/dat
 	dat += {"
 <TT><B>Automatic Station Cleaner v1.0</B></TT><BR><BR>
-Status: ["<A href='?src=\ref[src];operation=start'>[on ? "On" : "Off"]</A>"]<BR>
+Status: ["<A href='byond:://?src=\ref[src];operation=start'>[on ? "On" : "Off"]</A>"]<BR>
 Behaviour controls are [locked ? "locked" : "unlocked"]<BR>
 Maintenance panel is [open ? "opened" : "closed"]"}
 	if(!locked || issilicon(user))
-		dat += {"<BR>Cleans Blood: ["<A href='?src=\ref[src];operation=blood'>[blood ? "Yes" : "No"]</A>"]<BR>"}
-		dat += {"<BR>Patrol station: ["<A href='?src=\ref[src];operation=patrol'>[should_patrol ? "Yes" : "No"]</A>"]<BR>"}
-	//	dat += {"<BR>Beacon frequency: ["<A href='?src=\ref[src];operation=freq'>[beacon_freq]</A>"]<BR>"}
+		dat += {"<BR>Cleans Blood: ["<A href='byond:://?src=\ref[src];operation=blood'>[blood ? "Yes" : "No"]</A>"]<BR>"}
+		dat += {"<BR>Patrol station: ["<A href='byond:://?src=\ref[src];operation=patrol'>[should_patrol ? "Yes" : "No"]</A>"]<BR>"}
+	//	dat += {"<BR>Beacon frequency: ["<A href='byond:://?src=\ref[src];operation=freq'>[beacon_freq]</A>"]<BR>"}
 	if(open && !locked)
 		dat += {"
-Odd looking screw twiddled: ["<A href='?src=\ref[src];operation=screw'>[screwloose ? "Yes" : "No"]</A>"]<BR>
-Weird button pressed: ["<A href='?src=\ref[src];operation=oddbutton'>[oddbutton ? "Yes" : "No"]</A>"]"}
+Odd looking screw twiddled: ["<A href='byond:://?src=\ref[src];operation=screw'>[screwloose ? "Yes" : "No"]</A>"]<BR>
+Weird button pressed: ["<A href='byond:://?src=\ref[src];operation=oddbutton'>[oddbutton ? "Yes" : "No"]</A>"]"}
 
 	user << browse("<HEAD><TITLE>Cleaner v1.0 controls</TITLE></HEAD>[dat]", "window=autocleaner")
 	onclose(user, "autocleaner")

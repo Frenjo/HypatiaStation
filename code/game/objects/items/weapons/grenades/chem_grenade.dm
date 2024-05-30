@@ -36,7 +36,7 @@
 	if(stage > 1 && !active && clown_check(user))
 		to_chat(user, SPAN_WARNING("You prime \the [name]!"))
 
-		msg_admin_attack("[user.name] ([user.ckey]) primed \a [src]. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+		msg_admin_attack("[user.name] ([user.ckey]) primed \a [src]. (<A href='byond:://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 		activate()
 		add_fingerprint(user)
@@ -123,7 +123,7 @@
 	if(active)
 		icon_state = initial(icon_state) + "_active"
 		if(user)
-			msg_admin_attack("[user.name] ([user.ckey]) primed \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+			msg_admin_attack("[user.name] ([user.ckey]) primed \a [src] (<A href='byond:://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 /obj/item/grenade/chemical/proc/primed(primed = 1)
 	if(active)

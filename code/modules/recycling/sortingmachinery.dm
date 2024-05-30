@@ -187,7 +187,7 @@
 
 	dat += "<table style='width:100%; padding:4px;'><tr>"
 	for(var/i = 1, i <= length(GLOBL.tagger_locations), i++)
-		dat += "<td><a href='?src=\ref[src];nextTag=[i]'>[GLOBL.tagger_locations[i]]</a></td>"
+		dat += "<td><a href='byond:://?src=\ref[src];nextTag=[i]'>[GLOBL.tagger_locations[i]]</a></td>"
 
 		if (i % 4 == 0)
 			dat += "</tr><tr>"

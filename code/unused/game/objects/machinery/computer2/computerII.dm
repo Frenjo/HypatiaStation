@@ -114,8 +114,8 @@
 	else
 		dat = "<TT><b>Thinktronic BIOS V1.4</b><br><br>"
 
-		dat += "Current ID: <a href='?src=\ref[src];id=auth'>[src.authid ? "[src.authid.name]" : "----------"]</a><br>"
-		dat += "Auxiliary ID: <a href='?src=\ref[src];id=aux'>[src.auxid ? "[src.auxid.name]" : "----------"]</a><br><br>"
+		dat += "Current ID: <a href='byond:://?src=\ref[src];id=auth'>[src.authid ? "[src.authid.name]" : "----------"]</a><br>"
+		dat += "Auxiliary ID: <a href='byond:://?src=\ref[src];id=aux'>[src.auxid ? "[src.auxid.name]" : "----------"]</a><br><br>"
 
 		var/progdat
 		if((src.hd) && (src.hd.root))

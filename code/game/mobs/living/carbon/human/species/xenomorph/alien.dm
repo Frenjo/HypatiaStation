@@ -58,12 +58,12 @@ Des: Removes all infected images from the alien.
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
 	<BR><HR>
-	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=l_hand'>[(l_hand ? text("[]", l_hand) : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=r_hand'>[(r_hand ? text("[]", r_hand) : "Nothing")]</A>
-	<BR><B>Head:</B> <A href='?src=\ref[src];item=head'>[(head ? text("[]", head) : "Nothing")]</A>
-	<BR><B>(Exo)Suit:</B> <A href='?src=\ref[src];item=suit'>[(wear_suit ? text("[]", wear_suit) : "Nothing")]</A>
-	<BR><A href='?src=\ref[src];item=pockets'>Empty Pouches</A>
-	<BR><A href='?src=\ref[user];mach_close=mob[name]'>Close</A>
+	<BR><B>Left Hand:</B> <A href='byond:://?src=\ref[src];item=l_hand'>[(l_hand ? text("[]", l_hand) : "Nothing")]</A>
+	<BR><B>Right Hand:</B> <A href='byond:://?src=\ref[src];item=r_hand'>[(r_hand ? text("[]", r_hand) : "Nothing")]</A>
+	<BR><B>Head:</B> <A href='byond:://?src=\ref[src];item=head'>[(head ? text("[]", head) : "Nothing")]</A>
+	<BR><B>(Exo)Suit:</B> <A href='byond:://?src=\ref[src];item=suit'>[(wear_suit ? text("[]", wear_suit) : "Nothing")]</A>
+	<BR><A href='byond:://?src=\ref[src];item=pockets'>Empty Pouches</A>
+	<BR><A href='byond:://?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
 	user << browse(dat, text("window=mob[name];size=340x480"))
 	onclose(user, "mob[name]")

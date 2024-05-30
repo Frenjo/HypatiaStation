@@ -35,7 +35,7 @@ GLOBAL_GLOBL_LIST_INIT(robot_verbs_default, list(
 
 /mob/living/silicon/robot/proc/robot_alerts()
 	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
-	dat += "<A HREF='?src=\ref[src];mach_close=robotalerts'>Close</A><BR><BR>"
+	dat += "<A href='byond:://?src=\ref[src];mach_close=robotalerts'>Close</A><BR><BR>"
 	for(var/cat in alarms)
 		dat += text("<B>[cat]</B><BR>\n")
 		var/list/alarmlist = alarms[cat]

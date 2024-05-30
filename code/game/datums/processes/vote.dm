@@ -298,42 +298,42 @@ PROCESS_DEF(vote)
 			if(!votes)
 				votes = 0
 			if(current_votes[C.ckey] == i)
-				. += "<li><b><a href='?src=\ref[src];vote=[i]'>[choices[i]] ([votes] votes)</a></b></li>"
+				. += "<li><b><a href='byond:://?src=\ref[src];vote=[i]'>[choices[i]] ([votes] votes)</a></b></li>"
 			else
-				. += "<li><a href='?src=\ref[src];vote=[i]'>[choices[i]] ([votes] votes)</a></li>"
+				. += "<li><a href='byond:://?src=\ref[src];vote=[i]'>[choices[i]] ([votes] votes)</a></li>"
 
 		. += "</ul><hr>"
 		if(admin)
-			. += "(<a href='?src=\ref[src];vote=cancel'>Cancel Vote</a>) "
+			. += "(<a href='byond:://?src=\ref[src];vote=cancel'>Cancel Vote</a>) "
 	else
 		. += "<h2>Start a vote:</h2><hr><ul><li>"
 		//restart
 		if(trialmin || CONFIG_GET(allow_vote_restart))
-			. += "<a href='?src=\ref[src];vote=restart'>Restart</a>"
+			. += "<a href='byond:://?src=\ref[src];vote=restart'>Restart</a>"
 		else
 			. += "<font color='grey'>Restart (Disallowed)</font>"
 		. += "</li><li>"
 		if(trialmin || CONFIG_GET(allow_vote_restart))
-			. += "<a href='?src=\ref[src];vote=crew_transfer'>Crew Transfer</a>"
+			. += "<a href='byond:://?src=\ref[src];vote=crew_transfer'>Crew Transfer</a>"
 		else
 			. += "<font color='grey'>Crew Transfer (Disallowed)</font>"
 		if(trialmin)
-			. += "\t(<a href='?src=\ref[src];vote=toggle_restart'>[CONFIG_GET(allow_vote_restart) ? "Allowed" : "Disallowed"]</a>)"
+			. += "\t(<a href='byond:://?src=\ref[src];vote=toggle_restart'>[CONFIG_GET(allow_vote_restart) ? "Allowed" : "Disallowed"]</a>)"
 		. += "</li><li>"
 		//gamemode
 		if(trialmin || CONFIG_GET(allow_vote_mode))
-			. += "<a href='?src=\ref[src];vote=gamemode'>GameMode</a>"
+			. += "<a href='byond:://?src=\ref[src];vote=gamemode'>GameMode</a>"
 		else
 			. += "<font color='grey'>GameMode (Disallowed)</font>"
 		if(trialmin)
-			. += "\t(<a href='?src=\ref[src];vote=toggle_gamemode'>[CONFIG_GET(allow_vote_mode) ? "Allowed" : "Disallowed"]</a>)"
+			. += "\t(<a href='byond:://?src=\ref[src];vote=toggle_gamemode'>[CONFIG_GET(allow_vote_mode) ? "Allowed" : "Disallowed"]</a>)"
 
 		. += "</li>"
 		//custom
 		if(trialmin)
-			. += "<li><a href='?src=\ref[src];vote=custom'>Custom</a></li>"
+			. += "<li><a href='byond:://?src=\ref[src];vote=custom'>Custom</a></li>"
 		. += "</ul><hr>"
-	. += "<a href='?src=\ref[src];vote=close' style='position:absolute;right:50px'>Close</a></body></html>"
+	. += "<a href='byond:://?src=\ref[src];vote=close' style='position:absolute;right:50px'>Close</a></body></html>"
 	return .
 
 /datum/process/vote/Topic(href, list/href_list, hsrc)

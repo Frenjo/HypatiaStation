@@ -90,9 +90,9 @@
 	user.set_machine(src)
 
 	var/html = "<div class='statusDisplay'>[temp_msg]</div><BR>"
-	html += "<A href='?src=\ref[src];setrotation=1'>Set Bearing</A>"
+	html += "<A href='byond:://?src=\ref[src];setrotation=1'>Set Bearing</A>"
 	html += "<div class='statusDisplay'>[rotation]�</div>"
-	html += "<A href='?src=\ref[src];setangle=1'>Set Elevation</A>"
+	html += "<A href='byond:://?src=\ref[src];setangle=1'>Set Elevation</A>"
 	html += "<div class='statusDisplay'>[angle]�</div>"
 	html += "<span class='linkOn'>Set Power</span>"
 	html += "<div class='statusDisplay'>"
@@ -104,15 +104,15 @@
 		if(power == power_options[i])
 			html += "<span class='linkOn'>[power_options[i]]</span>"
 			continue
-		html += "<A href='?src=\ref[src];setpower=[i]'>[power_options[i]]</A>"
+		html += "<A href='byond:://?src=\ref[src];setpower=[i]'>[power_options[i]]</A>"
 
 	html += "</div>"
-	html += "<A href='?src=\ref[src];setz=1'>Set Sector</A>"
+	html += "<A href='byond:://?src=\ref[src];setz=1'>Set Sector</A>"
 	html += "<div class='statusDisplay'>[z_co ? z_co : "NULL"]</div>"
 
-	html += "<BR><A href='?src=\ref[src];send=1'>Send</A>"
-	html += " <A href='?src=\ref[src];receive=1'>Receive</A>"
-	html += "<BR><A href='?src=\ref[src];recal=1'>Recalibrate Crystals</A> <A href='?src=\ref[src];eject=1'>Eject Crystals</A>"
+	html += "<BR><A href='byond:://?src=\ref[src];send=1'>Send</A>"
+	html += " <A href='byond:://?src=\ref[src];receive=1'>Receive</A>"
+	html += "<BR><A href='byond:://?src=\ref[src];recal=1'>Recalibrate Crystals</A> <A href='byond:://?src=\ref[src];eject=1'>Eject Crystals</A>"
 
 	// Information about the last teleport
 	html += "<BR><div class='statusDisplay'>"

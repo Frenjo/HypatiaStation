@@ -99,9 +99,9 @@ Thus, the two variables affect pump operation are set in New():
 
 	// Commented this out due to NanoUI port. -Frenjo
 	/*interact(mob/user as mob)
-		var/dat = {"<b>Power: </b><a href='?src=\ref[src];power=1'>[on?"On":"Off"]</a><br>
+		var/dat = {"<b>Power: </b><a href='byond:://?src=\ref[src];power=1'>[on?"On":"Off"]</a><br>
 					<b>Desirable output flow: </b>
-					[round(transfer_rate,1)]l/s | <a href='?src=\ref[src];set_transfer_rate=1'>Change</a>
+					[round(transfer_rate,1)]l/s | <a href='byond:://?src=\ref[src];set_transfer_rate=1'>Change</a>
 					"}
 
 		user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_pump")

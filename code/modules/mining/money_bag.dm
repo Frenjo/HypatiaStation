@@ -43,23 +43,23 @@
 
 	var/dat = "<b>The contents of the moneybag reveal...</b><br>"
 	if(amt_gold)
-		dat += "Gold coins: [amt_gold] <A href='?src=\ref[src];remove=[MATERIAL_GOLD]'>Remove one</A><br>"
+		dat += "Gold coins: [amt_gold] <A href='byond:://?src=\ref[src];remove=[MATERIAL_GOLD]'>Remove one</A><br>"
 	if(amt_silver)
-		dat += "Silver coins: [amt_silver] <A href='?src=\ref[src];remove=[MATERIAL_SILVER]'>Remove one</A><br>"
+		dat += "Silver coins: [amt_silver] <A href='byond:://?src=\ref[src];remove=[MATERIAL_SILVER]'>Remove one</A><br>"
 	if(amt_iron)
-		dat += "Metal coins: [amt_iron] <A href='?src=\ref[src];remove=[MATERIAL_METAL]'>Remove one</A><br>"
+		dat += "Metal coins: [amt_iron] <A href='byond:://?src=\ref[src];remove=[MATERIAL_METAL]'>Remove one</A><br>"
 	if(amt_diamond)
-		dat += "Diamond coins: [amt_diamond] <A href='?src=\ref[src];remove=[MATERIAL_DIAMOND]'>Remove one</A><br>"
+		dat += "Diamond coins: [amt_diamond] <A href='byond:://?src=\ref[src];remove=[MATERIAL_DIAMOND]'>Remove one</A><br>"
 	if(amt_plasma)
-		dat += "Plasma coins: [amt_plasma] <A href='?src=\ref[src];remove=[MATERIAL_PLASMA]'>Remove one</A><br>"
+		dat += "Plasma coins: [amt_plasma] <A href='byond:://?src=\ref[src];remove=[MATERIAL_PLASMA]'>Remove one</A><br>"
 	if(amt_uranium)
-		dat += "Uranium coins: [amt_uranium] <A href='?src=\ref[src];remove=[MATERIAL_URANIUM]'>Remove one</A><br>"
+		dat += "Uranium coins: [amt_uranium] <A href='byond:://?src=\ref[src];remove=[MATERIAL_URANIUM]'>Remove one</A><br>"
 	if(amt_bananium)
-		dat += "Bananium coins: [amt_bananium] <A href='?src=\ref[src];remove=[MATERIAL_BANANIUM]'>Remove one</A><br>"
+		dat += "Bananium coins: [amt_bananium] <A href='byond:://?src=\ref[src];remove=[MATERIAL_BANANIUM]'>Remove one</A><br>"
 	if(amt_adamantine)
-		dat += "Adamantine coins: [amt_adamantine] <A href='?src=\ref[src];remove=[MATERIAL_ADAMANTINE]'>Remove one</A><br>"
+		dat += "Adamantine coins: [amt_adamantine] <A href='byond:://?src=\ref[src];remove=[MATERIAL_ADAMANTINE]'>Remove one</A><br>"
 	if(amt_mythril)
-		dat += "Mythril coins: [amt_mythril] <A href='?src=\ref[src];remove=[MATERIAL_MYTHRIL]'>Remove one</A><br>"
+		dat += "Mythril coins: [amt_mythril] <A href='byond:://?src=\ref[src];remove=[MATERIAL_MYTHRIL]'>Remove one</A><br>"
 	user << browse("[dat]", "window=moneybag")
 
 /obj/item/moneybag/attackby(obj/item/W as obj, mob/user as mob)

@@ -210,7 +210,7 @@
 	if(src.delete && src.temphtml) //Window in buffer but its just simple message, so nothing
 		src.delete = src.delete
 	else if(!src.delete && src.temphtml) //Window in buffer - its a menu, dont add clear message
-		dat = "[src.temphtml]<BR><BR><A href='?src=\ref[src];clear=1'>Main Menu</A>"
+		dat = "[src.temphtml]<BR><BR><A href='byond:://?src=\ref[src];clear=1'>Main Menu</A>"
 	else
 		if(src.connected) //Is something connected?
 			var/mob/living/carbon/human/occupant = src.connected.occupant
@@ -347,6 +347,6 @@
 				dat += "\The [src] is empty."
 		else
 			dat = "<font color='red'>Error: No Body Scanner connected.</font>"
-	dat += "<BR><BR><A href='?src=\ref[user];mach_close=scanconsole'>Close</A>"
+	dat += "<BR><BR><A href='byond:://?src=\ref[user];mach_close=scanconsole'>Close</A>"
 	user << browse(dat, "window=scanconsole;size=430x600")
 	return

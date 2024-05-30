@@ -13,11 +13,11 @@
 
 		/*
 		dat += "<br><TT>Frequency: "
-		dat += "<a href='?src=\ref[src];adj_freq=-10'>--</a> "
-		dat += "<a href='?src=\ref[src];adj_freq=-2'>-</a> "
+		dat += "<a href='byond:://?src=\ref[src];adj_freq=-10'>--</a> "
+		dat += "<a href='byond:://?src=\ref[src];adj_freq=-2'>-</a> "
 		dat += "[format_frequency(src.master.frequency)] "
-		dat += "<a href='?src=\ref[src];adj_freq=2'>+</a> "
-		dat += "<a href='?src=\ref[src];adj_freq=10'>++</a>"
+		dat += "<a href='byond:://?src=\ref[src];adj_freq=2'>+</a> "
+		dat += "<a href='byond:://?src=\ref[src];adj_freq=10'>++</a>"
 		dat += "</TT><br>"
 		*/
 

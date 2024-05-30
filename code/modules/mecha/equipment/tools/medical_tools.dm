@@ -106,7 +106,7 @@
 	if(output)
 		var/temp = ""
 		if(occupant)
-			temp = "<br />\[Occupant: [occupant] (Health: [occupant.health]%)\]<br /><a href='?src=\ref[src];view_stats=1'>View stats</a>|<a href='?src=\ref[src];eject=1'>Eject</a>"
+			temp = "<br />\[Occupant: [occupant] (Health: [occupant.health]%)\]<br /><a href='byond:://?src=\ref[src];view_stats=1'>View stats</a>|<a href='byond:://?src=\ref[src];eject=1'>Eject</a>"
 		return "[output] [temp]"
 	return
 
@@ -307,7 +307,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/cable_layer/get_equip_info()
 	var/output = ..()
 	if(output)
-		return "[output] \[Cable: [cable ? cable.amount : 0] m\][(cable && cable.amount) ? "- <a href='?src=\ref[src];toggle=1'>[!equip_ready ? "Dea" : "A"]ctivate</a>|<a href='?src=\ref[src];cut=1'>Cut</a>" : null]"
+		return "[output] \[Cable: [cable ? cable.amount : 0] m\][(cable && cable.amount) ? "- <a href='byond:://?src=\ref[src];toggle=1'>[!equip_ready ? "Dea" : "A"]ctivate</a>|<a href='byond:://?src=\ref[src];cut=1'>Cut</a>" : null]"
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/load_cable(obj/item/stack/cable_coil/CC)
@@ -436,7 +436,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/get_equip_info()
 	var/output = ..()
 	if(output)
-		return "[output] \[<a href=\"?src=\ref[src];toggle_mode=1\">[mode? "Analyse" : "Launch"]</a>\]<br />\[Syringes: [length(syringes)]/[max_syringes] | Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br /><a href='?src=\ref[src];show_reagents=1'>Reagents list</a>"
+		return "[output] \[<a href=\"?src=\ref[src];toggle_mode=1\">[mode? "Analyse" : "Launch"]</a>\]<br />\[Syringes: [length(syringes)]/[max_syringes] | Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br /><a href='byond:://?src=\ref[src];show_reagents=1'>Reagents list</a>"
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun/action(atom/movable/target)

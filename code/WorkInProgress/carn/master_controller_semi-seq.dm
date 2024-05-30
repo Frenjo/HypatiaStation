@@ -185,17 +185,17 @@ datum/controller/game_controller/proc/process()
 					var/MC_admin_report = "<b><font color='red'>PROC BREAKAGE WARNING:</font> The game's master contorller appears to be stuck in one of it's cycles. It has looped through it's delaying loop [IL_check] times.<br>The master controller reports: [MC_report]</b><br>"
 					if(!diseases_ready)
 						if(last_disease_processed)
-							MC_admin_report += "<b>DISEASE PROCESSING stuck on </b><A HREF='?src=%holder_ref%;adminplayervars=\ref[last_disease_processed]'>[last_disease_processed]</A><br>"
+							MC_admin_report += "<b>DISEASE PROCESSING stuck on </b><A href='byond:://?src=%holder_ref%;adminplayervars=\ref[last_disease_processed]'>[last_disease_processed]</A><br>"
 						else
 							MC_admin_report += "<b>DISEASE PROCESSING stuck on </b>unknown<br>"
 					if(!machines_ready)
 						if(last_machine_processed)
-							MC_admin_report += "<b>MACHINE PROCESSING stuck on </b><A HREF='?src=%holder_ref%;adminplayervars=\ref[last_machine_processed]'>[last_machine_processed]</A><br>"
+							MC_admin_report += "<b>MACHINE PROCESSING stuck on </b><A href='byond:://?src=%holder_ref%;adminplayervars=\ref[last_machine_processed]'>[last_machine_processed]</A><br>"
 						else
 							MC_admin_report += "<b>MACHINE PROCESSING stuck on </b>unknown<br>"
 					if(!objects_ready)
 						if(last_obj_processed)
-							MC_admin_report += "<b>OBJ PROCESSING stuck on </b><A HREF='?src=ADMINHOLDERREF;adminplayervars=\ref[last_obj_processed]'>[last_obj_processed]</A><br>"
+							MC_admin_report += "<b>OBJ PROCESSING stuck on </b><A href='byond:://?src=ADMINHOLDERREF;adminplayervars=\ref[last_obj_processed]'>[last_obj_processed]</A><br>"
 						else
 							MC_admin_report += "<b>OBJ PROCESSING stuck on </b>unknown<br>"
 					MC_admin_report += "<font color='red'><b>Master controller breaking out of delaying loop. Restarting the round is advised if problem persists. DO NOT manually restart the master controller.</b></font><br>"

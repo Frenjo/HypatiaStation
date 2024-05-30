@@ -90,9 +90,9 @@
 		dat += "<HEAD><TITLE>Suit storage unit: Maintenance panel</TITLE></HEAD>"
 		dat += "<Font color ='black'><B>Maintenance panel controls</B></font><HR>"
 		dat += "<font color ='grey'>The panel is ridden with controls, button and meters, labeled in strange signs and symbols that <BR>you cannot understand. Probably the manufactoring world's language.<BR> Among other things, a few controls catch your eye.<BR><BR>"
-		dat += "<font color ='black'>A small dial with a \"�\" symbol embroidded on it. It's pointing towards a gauge that reads [(issuperUV ? "15nm" : "185nm")]</font>.<BR> <font color='blue'><A href='?src=\ref[src];toggleUV=1'> Turn towards [(issuperUV ? "185nm" : "15nm")]</A><BR>"
-		dat += "<font color ='black'>A thick old-style button, with 2 grimy LED lights next to it. The [(safetieson ? "<font color='green'><B>GREEN</B></font>" : "<font color='red'><B>RED</B></font>")] LED is on.</font><BR><font color ='blue'><A href='?src=\ref[src];togglesafeties=1'>Press button</a></font>"
-		dat += "<HR><BR><A href='?src=\ref[user];mach_close=suit_storage_unit'>Close panel</A>"
+		dat += "<font color ='black'>A small dial with a \"�\" symbol embroidded on it. It's pointing towards a gauge that reads [(issuperUV ? "15nm" : "185nm")]</font>.<BR> <font color='blue'><A href='byond:://?src=\ref[src];toggleUV=1'> Turn towards [(issuperUV ? "185nm" : "15nm")]</A><BR>"
+		dat += "<font color ='black'>A thick old-style button, with 2 grimy LED lights next to it. The [(safetieson ? "<font color='green'><B>GREEN</B></font>" : "<font color='red'><B>RED</B></font>")] LED is on.</font><BR><font color ='blue'><A href='byond:://?src=\ref[src];togglesafeties=1'>Press button</a></font>"
+		dat += "<HR><BR><A href='byond:://?src=\ref[user];mach_close=suit_storage_unit'>Close panel</A>"
 		//user << browse(dat, "window=ssu_m_panel;size=400x500")
 		//onclose(user, "ssu_m_panel")
 	else if(isUV) //The thing is running its cauterisation cycle. You have to wait.
@@ -109,30 +109,30 @@
 			dat += "<B>Welcome to the Unit control panel.</B><HR>"
 			dat += "<font color='black'>Helmet storage compartment: <B>[(helmet ? helmet.name : "</font><font color ='grey'>No helmet detected.")]</B></font><BR>"
 			if(isnotnull(helmet) && isopen)
-				dat += "<A href='?src=\ref[src];dispense_helmet=1'>Dispense helmet</A><BR>"
+				dat += "<A href='byond:://?src=\ref[src];dispense_helmet=1'>Dispense helmet</A><BR>"
 			dat += "<font color='black'>Suit storage compartment: <B>[(suit ? suit.name : "</font><font color ='grey'>No exosuit detected.")]</B></font><BR>"
 			if(isnotnull(suit) && isopen)
-				dat += "<A href='?src=\ref[src];dispense_suit=1'>Dispense suit</A><BR>"
+				dat += "<A href='byond:://?src=\ref[src];dispense_suit=1'>Dispense suit</A><BR>"
 			dat += "<font color='black'>Breathmask storage compartment: <B>[(mask ? mask.name : "</font><font color ='grey'>No breathmask detected.")]</B></font><BR>"
 			if(isnotnull(mask) && isopen)
-				dat += "<A href='?src=\ref[src];dispense_mask=1'>Dispense mask</A><BR>"
+				dat += "<A href='byond:://?src=\ref[src];dispense_mask=1'>Dispense mask</A><BR>"
 			if(isnotnull(occupant))
 				dat += "<HR><B><font color ='red'>WARNING: Biological entity detected inside the Unit's storage. Please remove.</B></font><BR>"
-				dat += "<A href='?src=\ref[src];eject_guy=1'>Eject extra load</A>"
-			dat += "<HR><font color='black'>Unit is: [(isopen ? "Open" : "Closed")] - <A href='?src=\ref[src];toggle_open=1'>[(isopen ? "Close" : "Open")] Unit</A></font> "
+				dat += "<A href='byond:://?src=\ref[src];eject_guy=1'>Eject extra load</A>"
+			dat += "<HR><font color='black'>Unit is: [(isopen ? "Open" : "Closed")] - <A href='byond:://?src=\ref[src];toggle_open=1'>[(isopen ? "Close" : "Open")] Unit</A></font> "
 			if(isopen)
 				dat += "<HR>"
 			else
-				dat += " - <A href='?src=\ref[src];toggle_lock=1'><font color ='orange'>*[(islocked ? "Unlock" : "Lock")] Unit*</A></font><HR>"
+				dat += " - <A href='byond:://?src=\ref[src];toggle_lock=1'><font color ='orange'>*[(islocked ? "Unlock" : "Lock")] Unit*</A></font><HR>"
 			dat += "Unit status: [(islocked ? "<font color ='red'><B>**LOCKED**</B></font><BR>" : "<font color ='green'><B>**UNLOCKED**</B></font><BR>")]"
-			dat += "<A href='?src=\ref[src];start_UV=1'>Start Disinfection cycle</A><BR>"
-			dat += "<BR><BR><A href='?src=\ref[user];mach_close=suit_storage_unit'>Close control panel</A>"
+			dat += "<A href='byond:://?src=\ref[src];start_UV=1'>Start Disinfection cycle</A><BR>"
+			dat += "<BR><BR><A href='byond:://?src=\ref[user];mach_close=suit_storage_unit'>Close control panel</A>"
 			//user << browse(dat, "window=Suit Storage Unit;size=400x500")
 			//onclose(user, "Suit Storage Unit")
 		else //Ohhhh shit it's dirty or broken! Let's inform the guy.
 			dat += "<HEAD><TITLE>Suit storage unit</TITLE></HEAD>"
 			dat += "<font color='maroon'><B>Unit chamber is too contaminated to continue usage. Please call for a qualified individual to perform maintenance.</font></B><BR><BR>"
-			dat += "<HR><A href='?src=\ref[user];mach_close=suit_storage_unit'>Close control panel</A>"
+			dat += "<HR><A href='byond:://?src=\ref[user];mach_close=suit_storage_unit'>Close control panel</A>"
 			//user << browse(dat, "window=suit_storage_unit;size=400x500")
 			//onclose(user, "suit_storage_unit")
 

@@ -62,17 +62,19 @@
 		return
 
 	var/dat = "<B>Reactor Core Fuel Control</B><BR>"
-	/*dat += "<b>Fuel depletion announcement:</b> "
-	dat += "[announce_fueldepletion == 0 ? 	"Disabled"		: "<a href='?src=\ref[src];announce_fueldepletion=0'>\[Disable\]</a>"] "
-	dat += "[announce_fueldepletion == 1 ? 	"Announcing"	: "<a href='?src=\ref[src];announce_fueldepletion=1'>\[Announce\]</a>"] "
-	dat += "[announce_fueldepletion == 2 ? 	"Broadcasting"	: "<a href='?src=\ref[src];announce_fueldepletion=2'>\[Broadcast\]</a>"]<br>"
+	/*
+	dat += "<b>Fuel depletion announcement:</b> "
+	dat += "[announce_fueldepletion == 0 ? 	"Disabled"		: "<a href='byond:://?src=\ref[src];announce_fueldepletion=0'>\[Disable\]</a>"] "
+	dat += "[announce_fueldepletion == 1 ? 	"Announcing"	: "<a href='byond:://?src=\ref[src];announce_fueldepletion=1'>\[Announce\]</a>"] "
+	dat += "[announce_fueldepletion == 2 ? 	"Broadcasting"	: "<a href='byond:://?src=\ref[src];announce_fueldepletion=2'>\[Broadcast\]</a>"]<br>"
 	dat += "<b>Stage progression announcement:</b> "
-	dat += "[announce_stageprogression == 0 ? 	"Disabled"		: "<a href='?src=\ref[src];announce_stageprogression=0'>\[Disable\]</a>"] "
-	dat += "[announce_stageprogression == 1 ? 	"Announcing"	: "<a href='?src=\ref[src];announce_stageprogression=1'>\[Announce\]</a>"] "
-	dat += "[announce_stageprogression == 2 ? 	"Broadcasting"	: "<a href='?src=\ref[src];announce_stageprogression=2'>\[Broadcast\]</a>"]<br>"*/
+	dat += "[announce_stageprogression == 0 ? 	"Disabled"		: "<a href='byond:://?src=\ref[src];announce_stageprogression=0'>\[Disable\]</a>"] "
+	dat += "[announce_stageprogression == 1 ? 	"Announcing"	: "<a href='byond:://?src=\ref[src];announce_stageprogression=1'>\[Announce\]</a>"] "
+	dat += "[announce_stageprogression == 2 ? 	"Broadcasting"	: "<a href='byond:://?src=\ref[src];announce_stageprogression=2'>\[Broadcast\]</a>"]<br>"
+	*/
 	dat += "<hr>"
 
-	dat += "<b>Detected devices</b> <a href='?src=\ref[src];scan=1'>\[Refresh list\]</a>"
+	dat += "<b>Detected devices</b> <a href='byond:://?src=\ref[src];scan=1'>\[Refresh list\]</a>"
 	dat += "<table border=1 width='100%'>"
 	dat += "<tr>"
 	dat += "<td><b>ID</b></td>"
@@ -89,7 +91,7 @@
 		dat += "<tr>"
 		dat += "<td>[I.id_tag]</td>"
 		if(I.cur_assembly)
-			dat += "<td><a href='?src=\ref[I];toggle_injecting=1;update_extern=\ref[src]'>\[[I.injecting ? "Halt injecting" : "Begin injecting"]\]</a></td>"
+			dat += "<td><a href='byond:://?src=\ref[I];toggle_injecting=1;update_extern=\ref[src]'>\[[I.injecting ? "Halt injecting" : "Begin injecting"]\]</a></td>"
 		else
 			dat += "<td>None</td>"
 		dat += "<td>[I.fuel_usage * 100]%</td>"
@@ -98,20 +100,20 @@
 		else
 			dat += "<td>NA</td>"
 		if(stage_times.Find(I.id_tag))
-			dat += "<td>[ticks_this_stage]/[stage_times[I.id_tag]]s <a href='?src=\ref[src];stage_time=[I.id_tag]'>Modify</td>"
+			dat += "<td>[ticks_this_stage]/[stage_times[I.id_tag]]s <a href='byond:://?src=\ref[src];stage_time=[I.id_tag]'>Modify</td>"
 		else
-			dat += "<td>[ticks_this_stage]s <a href='?src=\ref[src];stage_time=[I.id_tag]'>Set</td>"
+			dat += "<td>[ticks_this_stage]s <a href='byond:://?src=\ref[src];stage_time=[I.id_tag]'>Set</td>"
 		if(proceeding_stages.Find(I.id_tag))
-			dat += "<td><a href='?src=\ref[src];set_next_stage=[I.id_tag]'>[proceeding_stages[I.id_tag]]</a></td>"
+			dat += "<td><a href='byond:://?src=\ref[src];set_next_stage=[I.id_tag]'>[proceeding_stages[I.id_tag]]</a></td>"
 		else
-			dat += "<td>None <a href='?src=\ref[src];set_next_stage=[I.id_tag]'>\[modify\]</a></td>"
-		dat += "<td><a href='?src=\ref[src];toggle_stage=[I.id_tag]'>\[[active_stages.Find(I.id_tag) ? "Deactivate stage" : "Activate stage "] \]</a></td>"
+			dat += "<td>None <a href='byond:://?src=\ref[src];set_next_stage=[I.id_tag]'>\[modify\]</a></td>"
+		dat += "<td><a href='byond:://?src=\ref[src];toggle_stage=[I.id_tag]'>\[[active_stages.Find(I.id_tag) ? "Deactivate stage" : "Activate stage "] \]</a></td>"
 		dat += "</tr>"
 	dat += "</table>"
 
 	dat += "<hr>"
-	dat += "<A href='?src=\ref[src];refresh=1'>Refresh</A> "
-	dat += "<A href='?src=\ref[src];close=1'>Close</A><BR>"
+	dat += "<A href='byond:://?src=\ref[src];refresh=1'>Refresh</A> "
+	dat += "<A href='byond:://?src=\ref[src];close=1'>Close</A><BR>"
 	user << browse(dat, "window=fuel_control;size=800x400")
 	user.set_machine(src)
 

@@ -180,11 +180,11 @@
 					if(ismob(M))
 						M.attack_log += "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> shot <b>[M]/[M.ckey]</b> with a <b>dartgun</b> ([R])"
 						user.attack_log += "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> shot <b>[M]/[M.ckey]</b> with a <b>dartgun</b> ([R])"
-						msg_admin_attack("[user] ([user.ckey]) shot [M] ([M.ckey]) with a dartgun ([R]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+						msg_admin_attack("[user] ([user.ckey]) shot [M] ([M.ckey]) with a dartgun ([R]) (<A href='byond:://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 					else
 						M.attack_log += "\[[time_stamp()]\] <b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[M]/[M.ckey]</b> with a <b>dartgun</b> ([R])"
-						msg_admin_attack("UNKNOWN shot [M] ([M.ckey]) with a <b>dartgun</b> ([R]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+						msg_admin_attack("UNKNOWN shot [M] ([M.ckey]) with a <b>dartgun</b> ([R]) (<A href='byond:://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 					if(D.reagents)
 						D.reagents.trans_to(M, 15)
@@ -227,12 +227,12 @@
 				for(var/datum/reagent/R in B.reagents.reagent_list)
 					dat += "<br>    [R.volume] units of [R.name], "
 				if(check_beaker_mixing(B))
-					dat += text("<A href='?src=\ref[src];stop_mix=[i]'><font color='green'>Mixing</font></A> ")
+					dat += text("<A href='byond:://?src=\ref[src];stop_mix=[i]'><font color='green'>Mixing</font></A> ")
 				else
-					dat += text("<A href='?src=\ref[src];mix=[i]'><font color='red'>Not mixing</font></A> ")
+					dat += text("<A href='byond:://?src=\ref[src];mix=[i]'><font color='red'>Not mixing</font></A> ")
 			else
 				dat += "nothing."
-			dat += " \[<A href='?src=\ref[src];eject=[i]'>Eject</A>\]<br>"
+			dat += " \[<A href='byond:://?src=\ref[src];eject=[i]'>Eject</A>\]<br>"
 			i++
 	else
 		dat += "There are no beakers inserted!<br><br>"
@@ -242,7 +242,7 @@
 			dat += "The dart cartridge has [cartridge.darts] shots remaining."
 		else
 			dat += "<font color='red'>The dart cartridge is empty!</font>"
-		dat += " \[<A href='?src=\ref[src];eject_cart=1'>Eject</A>\]"
+		dat += " \[<A href='byond:://?src=\ref[src];eject_cart=1'>Eject</A>\]"
 
 	user << browse(dat, "window=dartgun")
 	onclose(user, "dartgun", src)
