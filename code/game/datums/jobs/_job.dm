@@ -23,8 +23,8 @@
 	var/minimal_player_age = 0
 
 	// Job access. The use of minimal_access or access is determined by a config setting: CONFIG_GET(jobs_have_minimal_access).
-	var/list/access = list()			// Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
-	var/list/minimal_access = list()	// Useful for servers which prefer to only have access given to the places a job absolutely needs (IE larger server population.)
+	var/list/access = null			// Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
+	var/list/minimal_access = null	// Useful for servers which prefer to only have access given to the places a job absolutely needs (IE larger server population.)
 
 	// A typepath to the outfit that mobs with this job will spawn with, if any.
 	var/outfit
@@ -45,7 +45,7 @@
 	return H.equip_outfit(outfit_type)
 
 /datum/job/proc/get_access()
-	if(CONFIG_GET(jobs_have_minimal_access))
+	if(CONFIG_GET(jobs_have_minimal_access) && isnotnull(minimal_access))
 		return minimal_access.Copy()
 	else
 		return access.Copy()

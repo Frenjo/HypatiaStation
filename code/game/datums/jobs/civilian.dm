@@ -213,7 +213,6 @@
 	selection_color = "#dddddd"
 
 	access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS)
-	minimal_access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS)
 
 	outfit = /decl/hierarchy/outfit/job/service/janitor
 	alt_titles = list("Custodial Specialist", "Sanitation Technician", "Cleaner")
