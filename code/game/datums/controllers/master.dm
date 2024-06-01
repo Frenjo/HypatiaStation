@@ -115,6 +115,11 @@ CONTROLLER_DEF(master)
 		global.CTradio = new /datum/controller/radio()
 		to_world(SPAN_DANGER("↪ Radio setup complete."))
 
+	// Here to initialize the random events nicely at round start.
+	if(isnull(global.CTeconomy))
+		global.CTeconomy = new /datum/controller/economy()
+		to_world(SPAN_DANGER("↪ Economy setup complete."))
+
 	setup_processes()
 	setup_objects()
 	setup_genetics()

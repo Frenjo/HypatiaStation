@@ -91,12 +91,12 @@
 			if(FESTIVAL)
 				newMsg.body = "A [pick("festival", "week long celebration", "day of revelry", "planet-wide holiday")] has been declared on [affected_dest.name] by [pick("Governor", "Commissioner", "General", "Commandant", "Administrator")] [random_name(pick(MALE, FEMALE))] to celebrate [pick("the birth of their [pick("son", "daughter")]", "coming of age of their [pick("son", "daughter")]", "the pacification of rogue military cell", "the apprehension of a violent criminal who had been terrorising the planet")]. Massive stocks of food and meat have been bought driving up prices across the planet."
 
-	for_no_type_check(var/datum/feed_channel/FC, news_network.network_channels)
+	for_no_type_check(var/datum/feed_channel/FC, global.CTeconomy.news_network.channels)
 		if(FC.channel_name == "Tau Ceti Daily")
 			FC.messages += newMsg
 			break
-	for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
-		NEWSCASTER.newsAlert("Tau Ceti Daily")
+	for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
+		caster.newsAlert("Tau Ceti Daily")
 
 /datum/event/economic_event/end()
 	for(var/good_type in dearer_goods)

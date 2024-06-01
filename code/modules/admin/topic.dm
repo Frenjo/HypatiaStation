@@ -2469,7 +2469,7 @@
 
 	else if(href_list["ac_submit_new_channel"])
 		var/check = 0
-		for_no_type_check(var/datum/feed_channel/FC, news_network.network_channels)
+		for_no_type_check(var/datum/feed_channel/FC, global.CTeconomy.news_network.channels)
 			if(FC.channel_name == src.admincaster_feed_channel.channel_name)
 				check = 1
 				break
@@ -2484,14 +2484,14 @@
 				newChannel.locked = src.admincaster_feed_channel.locked
 				newChannel.is_admin_channel = 1
 				feedback_inc("newscaster_channels",1)
-				news_network.network_channels += newChannel                        //Adding channel to the global network
+				global.CTeconomy.news_network.channels.Add(newChannel)	// Adds the channel to the global network.
 				log_admin("[key_name_admin(usr)] created command feed channel: [src.admincaster_feed_channel.channel_name]!")
 				src.admincaster_screen=5
 		src.access_news_network()
 
 	else if(href_list["ac_set_channel_receiving"])
 		var/list/available_channels = list()
-		for_no_type_check(var/datum/feed_channel/F, news_network.network_channels)
+		for_no_type_check(var/datum/feed_channel/F, global.CTeconomy.news_network.channels)
 			available_channels += F.channel_name
 		src.admincaster_feed_channel.channel_name = adminscrub(input(usr, "Choose receiving Feed Channel", "Network Channel Handler") in available_channels )
 		src.access_news_network()
@@ -2511,14 +2511,14 @@
 			newMsg.body = src.admincaster_feed_message.body
 			newMsg.is_admin_message = 1
 			feedback_inc("newscaster_stories",1)
-			for_no_type_check(var/datum/feed_channel/FC, news_network.network_channels)
+			for_no_type_check(var/datum/feed_channel/FC, global.CTeconomy.news_network.channels)
 				if(FC.channel_name == src.admincaster_feed_channel.channel_name)
 					FC.messages += newMsg //Adding message to the network's appropriate feed_channel
 					break
 			src.admincaster_screen=4
 
-		for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
-			NEWSCASTER.newsAlert(src.admincaster_feed_channel.channel_name)
+		for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
+			caster.newsAlert(src.admincaster_feed_channel.channel_name)
 
 		log_admin("[key_name_admin(usr)] submitted a feed story to channel: [src.admincaster_feed_channel.channel_name]!")
 		src.access_news_network()
@@ -2541,12 +2541,12 @@
 
 	else if(href_list["ac_menu_wanted"])
 		var/already_wanted = 0
-		if(news_network.wanted_issue)
+		if(global.CTeconomy.news_network.wanted_issue)
 			already_wanted = 1
 
 		if(already_wanted)
-			src.admincaster_feed_message.author = news_network.wanted_issue.author
-			src.admincaster_feed_message.body = news_network.wanted_issue.body
+			src.admincaster_feed_message.author = global.CTeconomy.news_network.wanted_issue.author
+			src.admincaster_feed_message.body = global.CTeconomy.news_network.wanted_issue.body
 		src.admincaster_screen = 14
 		src.access_news_network()
 
@@ -2575,15 +2575,15 @@
 					WANTED.body = src.admincaster_feed_message.body                   //Wanted desc
 					WANTED.backup_author = src.admincaster_signature                  //Submitted by
 					WANTED.is_admin_message = 1
-					news_network.wanted_issue = WANTED
-					for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
-						NEWSCASTER.newsAlert()
-						NEWSCASTER.update_icon()
+					global.CTeconomy.news_network.wanted_issue = WANTED
+					for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
+						caster.newsAlert()
+						caster.update_icon()
 					src.admincaster_screen = 15
 				else
-					news_network.wanted_issue.author = src.admincaster_feed_message.author
-					news_network.wanted_issue.body = src.admincaster_feed_message.body
-					news_network.wanted_issue.backup_author = src.admincaster_feed_message.backup_author
+					global.CTeconomy.news_network.wanted_issue.author = src.admincaster_feed_message.author
+					global.CTeconomy.news_network.wanted_issue.body = src.admincaster_feed_message.body
+					global.CTeconomy.news_network.wanted_issue.backup_author = src.admincaster_feed_message.backup_author
 					src.admincaster_screen = 19
 				log_admin("[key_name_admin(usr)] issued a Station-wide Wanted Notification for [src.admincaster_feed_message.author]!")
 		src.access_news_network()
@@ -2591,9 +2591,9 @@
 	else if(href_list["ac_cancel_wanted"])
 		var/choice = alert("Please confirm Wanted Issue removal","Network Security Handler","Confirm","Cancel")
 		if(choice=="Confirm")
-			news_network.wanted_issue = null
-			for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
-				NEWSCASTER.update_icon()
+			global.CTeconomy.news_network.wanted_issue = null
+			for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
+				caster.update_icon()
 			src.admincaster_screen=17
 		src.access_news_network()
 

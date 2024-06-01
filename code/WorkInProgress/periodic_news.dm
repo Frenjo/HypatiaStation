@@ -125,7 +125,7 @@ GLOBAL_GLOBL_LIST_INIT(newscaster_standard_feeds, list(
 	newMsg.body = news.message
 
 	var/datum/feed_channel/sendto
-	for(var/datum/feed_channel/channel in news_network.network_channels)
+	for_no_type_check(var/datum/feed_channel/channel, global.CTeconomy.news_network.channels)
 		if(channel.channel_name == news.channel_name)
 			sendto = channel
 			break
@@ -136,9 +136,9 @@ GLOBAL_GLOBL_LIST_INIT(newscaster_standard_feeds, list(
 		sendto.author = news.author
 		sendto.locked = 1
 		sendto.is_admin_channel = 1
-		news_network.network_channels += sendto
+		global.CTeconomy.news_network.channels.Add(sendto)
 
 	sendto.messages += newMsg
 
-	for(var/obj/machinery/newscaster/caster in allCasters)
+	for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
 		caster.newsAlert(news.channel_name)

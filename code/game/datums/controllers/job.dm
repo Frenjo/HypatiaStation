@@ -355,7 +355,7 @@ CONTROLLER_DEF(jobs)
 			H.loc = S.loc
 
 	//give them an account in the station database
-	var/datum/money_account/M = create_account(H.real_name, rand(50, 500) * 10, null)
+	var/datum/money_account/M = create_money_account(H.real_name, rand(50, 500) * 10, null)
 	if(isnotnull(H.mind))
 		var/remembered_info = ""
 		remembered_info += "<b>Your account number is:</b> #[M.account_number]<br>"

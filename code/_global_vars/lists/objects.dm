@@ -35,3 +35,6 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/door/airlock/airlocks_list)
 GLOBAL_GLOBL_LIST_NEW(obj/machinery/door/airlock/maintenance/maintenance_airlocks_list)
 
 GLOBAL_GLOBL_LIST_NEW(obj/machinery/conveyor/conveyors_list)
+
+// A list of all newscasters in existence.
+GLOBAL_GLOBL_LIST_NEW(obj/machinery/newscaster/all_newscasters)

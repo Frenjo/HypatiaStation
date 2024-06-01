@@ -15,8 +15,8 @@
 	var/creating_new_account = 0
 
 /obj/machinery/account_database/New()
-	..()
-	machine_id = "[station_name()] Acc. DB #[num_financial_terminals++]"
+	. = ..()
+	machine_id = "[station_name()] Acc. DB #[global.CTeconomy.num_financial_terminals++]"
 
 /obj/machinery/account_database/attack_hand(mob/user as mob)
 	if(in_range(src, user))
@@ -70,8 +70,8 @@
 				else
 					dat += "<a href='byond://?src=\ref[src];choice=create_account;'>Create new account</a><br><br>"
 					dat += "<table border=1 style='width:100%'>"
-					for(var/i = 1, i <= length(all_money_accounts), i++)
-						var/datum/money_account/D = all_money_accounts[i]
+					for(var/i = 1, i <= length(global.CTeconomy.all_money_accounts), i++)
+						var/datum/money_account/D = global.CTeconomy.all_money_accounts[i]
 						dat += "<tr>"
 						dat += "<td>#[D.account_number]</td>"
 						dat += "<td>[D.owner_name]</td>"
@@ -121,20 +121,20 @@
 			if("finalise_create_account")
 				var/account_name = href_list["holder_name"]
 				var/starting_funds = max(text2num(href_list["starting_funds"]), 0)
-				create_account(account_name, starting_funds, src)
+				create_money_account(account_name, starting_funds, src)
 				if(starting_funds > 0)
 					//subtract the money
-					GLOBL.station_account.money -= starting_funds
+					global.CTeconomy.station_account.money -= starting_funds
 
 					//create a transaction log entry
 					var/datum/transaction/T = new()
 					T.target_name = account_name
 					T.purpose = "New account funds initialisation"
 					T.amount = "([starting_funds])"
-					T.date = current_date_string
+					T.date = global.CTeconomy.current_date_string
 					T.time = worldtime2text()
 					T.source_terminal = machine_id
-					GLOBL.station_account.transaction_log.Add(T)
+					global.CTeconomy.station_account.transaction_log.Add(T)
 
 				creating_new_account = 0
 			if("insert_card")
@@ -160,8 +160,8 @@
 							access_level = 1
 			if("view_account_detail")
 				var/index = text2num(href_list["account_index"])
-				if(index && index <= length(all_money_accounts))
-					detailed_account_view = all_money_accounts[index]
+				if(index && index <= length(global.CTeconomy.all_money_accounts))
+					detailed_account_view = global.CTeconomy.all_money_accounts[index]
 			if("view_accounts_list")
 				detailed_account_view = null
 				creating_new_account = 0

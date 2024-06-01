@@ -14,8 +14,8 @@
 	var/datum/money_account/linked_account
 
 /obj/item/eftpos/New()
-	..()
-	machine_id = "[station_name()] EFTPOS #[num_financial_terminals++]"
+	. = ..()
+	machine_id = "[station_name()] EFTPOS #[global.CTeconomy.num_financial_terminals++]"
 	access_code = rand(1111, 111111)
 	spawn(0)
 		print_reference()
@@ -56,7 +56,7 @@
 
 	//by default, connect to the station account
 	//the user of the EFTPOS device can change the target account though, and no-one will be the wiser (except whoever's being charged)
-	linked_account = GLOBL.station_account
+	linked_account = global.CTeconomy.station_account
 
 /obj/item/eftpos/proc/print_reference()
 	var/obj/item/paper/R = new(src.loc)
@@ -133,7 +133,7 @@
 						T.purpose = transaction_purpose
 						T.amount = transaction_amount
 						T.source_terminal = machine_id
-						T.date = current_date_string
+						T.date = global.CTeconomy.current_date_string
 						T.time = worldtime2text()
 						linked_account.transaction_log.Add(T)
 					else
@@ -245,7 +245,7 @@
 								else
 									T.amount = "[transaction_amount]"
 								T.source_terminal = machine_id
-								T.date = current_date_string
+								T.date = global.CTeconomy.current_date_string
 								T.time = worldtime2text()
 								D.transaction_log.Add(T)
 								//
@@ -254,7 +254,7 @@
 								T.purpose = transaction_purpose
 								T.amount = "[transaction_amount]"
 								T.source_terminal = machine_id
-								T.date = current_date_string
+								T.date = global.CTeconomy.current_date_string
 								T.time = worldtime2text()
 								linked_account.transaction_log.Add(T)
 							else

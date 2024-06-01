@@ -8,8 +8,8 @@ GLOBAL_GLOBL_INIT(account_hack_attempted, FALSE)
 
 /datum/event/money_hacker/setup()
 	end_time = world.time + 6000
-	if(length(all_money_accounts))
-		affected_account = pick(all_money_accounts)
+	if(length(global.CTeconomy.all_money_accounts))
+		affected_account = pick(global.CTeconomy.all_money_accounts)
 
 		GLOBL.account_hack_attempted = TRUE
 	else
@@ -68,7 +68,7 @@ GLOBAL_GLOBL_INIT(account_hack_attempted, FALSE)
 		T.amount = pick("", "([rand(0, 99999)])", "alla money", "9001$", "HOLLA HOLLA GET DOLLA", "([lost])")
 		var/date1 = "31 December, 1999"
 		var/date2 = "[num2text(rand(1, 31))] [pick(GLOBL.months)], [rand(1000, 3000)]"
-		T.date = pick("", current_date_string, date1, date2)
+		T.date = pick("", global.CTeconomy.current_date_string, date1, date2)
 		var/time1 = rand(0, 99999999)
 		var/time2 = "[round(time1 / 36000) + 12]:[(time1 / 600 % 60) < 10 ? add_zero(time1 / 600 % 60, 1) : time1 / 600 % 60]"
 		T.time = pick("", worldtime2text(), time2)
