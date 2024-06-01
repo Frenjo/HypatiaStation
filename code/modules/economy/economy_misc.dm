@@ -68,16 +68,15 @@
 
 var/global/current_date_string
 
-var/global/datum/money_account/vendor_account
-var/global/datum/money_account/station_account
-var/global/list/datum/money_account/department_accounts = list()
+GLOBAL_GLOBL_INIT(economy_init, FALSE)
+GLOBAL_GLOBL_INIT(datum/money_account/station_account, null)
+GLOBAL_GLOBL_INIT(datum/money_account/vendor_account, null)
 var/global/num_financial_terminals = 1
 var/global/next_account_number = 0
 var/global/list/all_money_accounts = list()
-var/global/economy_init = 0
 
 /proc/setup_economy()
-	if(economy_init)
+	if(GLOBL.economy_init)
 		return 2
 
 	var/datum/feed_channel/newChannel = new /datum/feed_channel
@@ -99,61 +98,41 @@ var/global/economy_init = 0
 		GLOBL.weighted_randomevent_locations[D] = length(D.viable_random_events)
 		GLOBL.weighted_mundaneevent_locations[D] = length(D.viable_mundane_events)
 
-	create_station_account()
-
-	for(var/department in GLOBL.station_departments)
-		create_department_account(department)
-	create_department_account("Vendor")
-	vendor_account = department_accounts["Vendor"]
+	// Creates the station and vendor accounts.
+	GLOBL.station_account = create_special_money_account("[station_name()] Station", 75000)
+	GLOBL.vendor_account = create_special_money_account("Vendor", 5000)
+	// Creates departmental accounts.
+	for(var/department_path in SUBTYPESOF(/decl/department))
+		var/decl/department/department = GET_DECL_INSTANCE(department_path)
+		department.account = create_special_money_account(department.name, 5000)
 
 	current_date_string = "[num2text(rand(1, 31))] [pick(GLOBL.months)], [GLOBL.game_year]"
 
-	economy_init = 1
+	GLOBL.economy_init = TRUE
 	return 1
 
-/proc/create_station_account()
-	if(!station_account)
-		next_account_number = rand(111111, 999999)
+/proc/create_special_money_account(owner_name, starting_money)
+	RETURN_TYPE(/datum/money_account)
 
-		station_account = new()
-		station_account.owner_name = "[station_name()] Station Account"
-		station_account.account_number = rand(111111, 999999)
-		station_account.remote_access_pin = rand(1111, 111111)
-		station_account.money = 75000
-
-		//create an entry in the account transaction log for when it was created
-		var/datum/transaction/T = new()
-		T.target_name = station_account.owner_name
-		T.purpose = "Account creation"
-		T.amount = 75000
-		T.date = "2nd April, 2555"
-		T.time = "11:24"
-		T.source_terminal = "Biesel GalaxyNet Terminal #277"
-
-		//add the account
-		station_account.transaction_log.Add(T)
-		all_money_accounts.Add(station_account)
-
-/proc/create_department_account(department)
 	next_account_number = rand(111111, 999999)
 
-	var/datum/money_account/department_account = new()
-	department_account.owner_name = "[department] Account"
-	department_account.account_number = rand(111111, 999999)
-	department_account.remote_access_pin = rand(1111, 111111)
-	department_account.money = 5000
+	var/datum/money_account/account = new /datum/money_account()
+	account.owner_name = "[owner_name] Account"
+	account.account_number = rand(111111, 999999)
+	account.remote_access_pin = rand(1111, 111111)
+	account.money = starting_money
 
-	//create an entry in the account transaction log for when it was created
-	var/datum/transaction/T = new()
-	T.target_name = department_account.owner_name
+	// Creates an entry in the account transaction log for when it was created.
+	var/datum/transaction/T = new /datum/transaction()
+	T.target_name = account.owner_name
 	T.purpose = "Account creation"
-	T.amount = department_account.money
+	T.amount = starting_money
 	T.date = "2nd April, 2555"
 	T.time = "11:24"
 	T.source_terminal = "Biesel GalaxyNet Terminal #277"
 
-	//add the account
-	department_account.transaction_log.Add(T)
-	all_money_accounts.Add(department_account)
+	// Adds the account.
+	account.transaction_log.Add(T)
+	all_money_accounts.Add(account)
 
-	department_accounts[department] = department_account
+	return account

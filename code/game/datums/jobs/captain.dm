@@ -4,7 +4,9 @@
 /datum/job/captain
 	title = "Captain"
 	flag = JOB_CAPTAIN
-	department_flag = DEPARTMENT_ENGSEC
+
+	department = /decl/department/engsec
+	head_position = TRUE
 
 	total_positions = 1
 	spawn_positions = 1
@@ -39,7 +41,9 @@
 /datum/job/hop
 	title = "Head of Personnel"
 	flag = JOB_HOP
-	department_flag = DEPARTMENT_CIVILIAN
+
+	department = /decl/department/civilian
+	head_position = TRUE
 
 	total_positions = 1
 	spawn_positions = 1

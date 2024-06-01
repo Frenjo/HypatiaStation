@@ -396,7 +396,7 @@
 		var/obj/item/card/id/C = I
 		visible_message(SPAN_INFO("[usr] swipes a card through [src]."))
 		if(check_accounts)
-			if(isnotnull(vendor_account))
+			if(isnotnull(GLOBL.vendor_account))
 				var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
 				var/datum/money_account/D = attempt_account_access(C.associated_account_number, attempt_pin, 2)
 				if(isnotnull(D))
@@ -404,11 +404,11 @@
 					if(transaction_amount <= D.money)
 						//transfer the money
 						D.money -= transaction_amount
-						vendor_account.money += transaction_amount
+						GLOBL.vendor_account.money += transaction_amount
 
 						//create entries in the two account transaction logs
 						var/datum/transaction/T = new /datum/transaction()
-						T.target_name = "[vendor_account.owner_name] (via [name])"
+						T.target_name = "[GLOBL.vendor_account.owner_name] (via [name])"
 						T.purpose = "Purchase of [currently_vending.product_name]"
 						if(transaction_amount > 0)
 							T.amount = "([transaction_amount])"
@@ -426,7 +426,7 @@
 						T.source_terminal = name
 						T.date = current_date_string
 						T.time = worldtime2text()
-						vendor_account.transaction_log.Add(T)
+						GLOBL.vendor_account.transaction_log.Add(T)
 
 						// Vend the item
 						vend(currently_vending, usr)

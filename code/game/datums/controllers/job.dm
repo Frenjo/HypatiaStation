@@ -369,10 +369,11 @@ CONTROLLER_DEF(jobs)
 
 		H.mind.initial_account = M
 
-	// If they're head, give them the account info for their department
+	// If they're a head, give them the account info for their department.
 	if(isnotnull(H.mind) && job.head_position)
 		var/remembered_info = ""
-		var/datum/money_account/department_account = department_accounts[job.department]
+		var/decl/department/department = GET_DECL_INSTANCE(job.department)
+		var/datum/money_account/department_account = department.account
 
 		if(department_account)
 			remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"

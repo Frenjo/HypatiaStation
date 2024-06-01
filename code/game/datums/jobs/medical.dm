@@ -4,7 +4,9 @@
 /datum/job/cmo
 	title = "Chief Medical Officer"
 	flag = JOB_CMO
-	department_flag = DEPARTMENT_MEDSCI
+
+	department = /decl/department/medsci
+	head_position = TRUE
 
 	total_positions = 1
 	spawn_positions = 1
@@ -30,7 +32,8 @@
 /datum/job/doctor
 	title = "Medical Doctor"
 	flag = JOB_DOCTOR
-	department_flag = DEPARTMENT_MEDSCI
+
+	department = /decl/department/medsci
 
 	total_positions = 5
 	spawn_positions = 3
@@ -58,7 +61,8 @@
 /datum/job/chemist
 	title = "Chemist"
 	flag = JOB_CHEMIST
-	department_flag = DEPARTMENT_MEDSCI
+
+	department = /decl/department/medsci
 
 	total_positions = 2
 	spawn_positions = 2
@@ -81,7 +85,8 @@
 /datum/job/geneticist
 	title = "Geneticist"
 	flag = JOB_GENETICIST
-	department_flag = DEPARTMENT_MEDSCI
+
+	department = /decl/department/medsci
 
 	total_positions = 2
 	spawn_positions = 2
@@ -103,7 +108,8 @@
 /datum/job/virologist
 	title = "Virologist"
 	flag = JOB_VIROLOGIST
-	department_flag = DEPARTMENT_MEDSCI
+
+	department = /decl/department/medsci
 
 	total_positions = 1
 	spawn_positions = 1
@@ -126,7 +132,8 @@
 /datum/job/psychiatrist
 	title = "Psychiatrist"
 	flag = JOB_PSYCHIATRIST
-	department_flag = DEPARTMENT_MEDSCI
+
+	department = /decl/department/medsci
 
 	total_positions = 1
 	spawn_positions = 1

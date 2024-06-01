@@ -258,7 +258,9 @@
 		else if(backbag == 3 || backbag == 4)
 			clothes_s.Blend(new /icon('icons/mob/on_mob/back.dmi', "satchel"), ICON_OVERLAY)
 
-	else if(job_civilian_low & JOB_ASSISTANT)//This gives the preview icon clothes depending on which job(if any) is set to 'high'
+	// TODO: All of this needs to be torn out in favour of a less hardcoded and more dynamic system.
+	// This is the only thing holding back the department restructure.
+	else if(job_by_department_low[/decl/department/civilian] & JOB_ASSISTANT)//This gives the preview icon clothes depending on which job(if any) is set to 'high'
 		clothes_s = new /icon('icons/mob/on_mob/uniform.dmi', "grey_s")
 		clothes_s.Blend(new /icon('icons/mob/on_mob/feet.dmi', "black"), ICON_UNDERLAY)
 		if(backbag == 2)
@@ -266,8 +268,8 @@
 		else if(backbag == 3 || backbag == 4)
 			clothes_s.Blend(new /icon('icons/mob/on_mob/back.dmi', "satchel"), ICON_OVERLAY)
 
-	else if(job_civilian_high)//I hate how this looks, but there's no reason to go through this switch if it's empty
-		switch(job_civilian_high)
+	else if(job_by_department_high[/decl/department/civilian])//I hate how this looks, but there's no reason to go through this switch if it's empty
+		switch(job_by_department_high[/decl/department/civilian])
 			if(JOB_HOP)
 				clothes_s = new /icon('icons/mob/on_mob/uniform.dmi', "hop_s")
 				clothes_s.Blend(new /icon('icons/mob/on_mob/feet.dmi', "brown"), ICON_UNDERLAY)
@@ -438,8 +440,8 @@
 					if(4)
 						clothes_s.Blend(new /icon('icons/mob/on_mob/back.dmi', "satchel"), ICON_OVERLAY)
 
-	else if(job_medsci_high)
-		switch(job_medsci_high)
+	else if(job_by_department_high[/decl/department/medsci])
+		switch(job_by_department_high[/decl/department/medsci])
 			if(JOB_RD)
 				clothes_s = new /icon('icons/mob/on_mob/uniform.dmi', "director_s")
 				clothes_s.Blend(new /icon('icons/mob/on_mob/feet.dmi', "brown"), ICON_UNDERLAY)
@@ -551,8 +553,8 @@
 					if(4)
 						clothes_s.Blend(new /icon('icons/mob/on_mob/back.dmi', "satchel"), ICON_OVERLAY)
 
-	else if(job_engsec_high)
-		switch(job_engsec_high)
+	else if(job_by_department_high[/decl/department/engsec])
+		switch(job_by_department_high[/decl/department/engsec])
 			if(JOB_CAPTAIN)
 				clothes_s = new /icon('icons/mob/on_mob/uniform.dmi', "captain_s")
 				clothes_s.Blend(new /icon('icons/mob/on_mob/feet.dmi', "brown"), ICON_UNDERLAY)

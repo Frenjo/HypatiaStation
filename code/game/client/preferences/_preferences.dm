@@ -53,18 +53,11 @@
 	var/icon/preview_icon_front = null
 	var/icon/preview_icon_side = null
 
-	//Jobs, uses bitflags
-	var/job_civilian_high = 0
-	var/job_civilian_med = 0
-	var/job_civilian_low = 0
-
-	var/job_medsci_high = 0
-	var/job_medsci_med = 0
-	var/job_medsci_low = 0
-
-	var/job_engsec_high = 0
-	var/job_engsec_med = 0
-	var/job_engsec_low = 0
+	// Jobs, now slightly more modular.
+	// Needs to be finished and is still hardcoded in a few places.
+	var/list/job_by_department_high = list()
+	var/list/job_by_department_med = list()
+	var/list/job_by_department_low = list()
 
 	//Keeps track of preference for not getting any wanted jobs
 	var/alternate_option = BE_ASSISTANT

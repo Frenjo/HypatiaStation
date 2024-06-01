@@ -1,9 +1,13 @@
 /datum/job
 	// The name of the job.
 	var/title = "NOPE"
-	// Bitflags for the job.
+	// Bitflag for the job.
 	var/flag = 0
-	var/department_flag = 0
+
+	// The department the job belongs to.
+	var/department = null
+	// Whether this is a head position.
+	var/head_position = FALSE
 
 	// How many players can be this job.
 	var/total_positions = 0

@@ -1,6 +1,4 @@
 // EngSec
-#define DEPARTMENT_ENGSEC	BITFLAG(0)
-
 #define JOB_CAPTAIN			BITFLAG(0)
 #define JOB_HOS				BITFLAG(1)
 #define JOB_WARDEN			BITFLAG(2)
@@ -15,8 +13,6 @@
 
 
 // MedSci
-#define DEPARTMENT_MEDSCI	BITFLAG(1)
-
 #define JOB_RD				BITFLAG(0)
 #define JOB_SCIENTIST		BITFLAG(1)
 #define JOB_CHEMIST			BITFLAG(2)
@@ -30,8 +26,6 @@
 
 
 // Civilian
-#define DEPARTMENT_CIVILIAN	BITFLAG(2)
-
 #define JOB_HOP				BITFLAG(0)
 #define JOB_BARTENDER		BITFLAG(1)
 #define JOB_BOTANIST		BITFLAG(2)

@@ -148,6 +148,10 @@ PROCESS_DEF(ticker)
 	else
 		mode.announce()
 
+	// Here to initialize the random events nicely at round start.
+	setup_economy()
+	global.PCshuttle.setup_shuttle_docks() // Updated to reflect 'shuttles' port. -Frenjo
+
 	current_state = GAME_STATE_PLAYING
 	create_characters() // Creates player characters and transfers them.
 	collect_minds()
@@ -155,10 +159,6 @@ PROCESS_DEF(ticker)
 	GLOBL.data_core.manifest()
 
 	callHook("roundstart")
-
-	// Here to initialize the random events nicely at round start.
-	setup_economy()
-	global.PCshuttle.setup_shuttle_docks() // Updated to reflect 'shuttles' port. -Frenjo
 
 	post_setup() // This forks off and doesn't need to be waited on.
 

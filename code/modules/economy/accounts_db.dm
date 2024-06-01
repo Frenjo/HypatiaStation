@@ -124,7 +124,7 @@
 				create_account(account_name, starting_funds, src)
 				if(starting_funds > 0)
 					//subtract the money
-					station_account.money -= starting_funds
+					GLOBL.station_account.money -= starting_funds
 
 					//create a transaction log entry
 					var/datum/transaction/T = new()
@@ -134,7 +134,7 @@
 					T.date = current_date_string
 					T.time = worldtime2text()
 					T.source_terminal = machine_id
-					station_account.transaction_log.Add(T)
+					GLOBL.station_account.transaction_log.Add(T)
 
 				creating_new_account = 0
 			if("insert_card")

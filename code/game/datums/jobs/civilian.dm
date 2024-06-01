@@ -4,7 +4,8 @@
 /datum/job/bartender
 	title = "Bartender"
 	flag = JOB_BARTENDER
-	department_flag = DEPARTMENT_CIVILIAN
+
+	department = /decl/department/civilian
 
 	total_positions = 1
 	spawn_positions = 1
@@ -40,7 +41,8 @@
 /datum/job/chef
 	title = "Chef"
 	flag = JOB_CHEF
-	department_flag = DEPARTMENT_CIVILIAN
+
+	department = /decl/department/civilian
 
 	total_positions = 1
 	spawn_positions = 1
@@ -60,7 +62,8 @@
 /datum/job/hydro
 	title = "Botanist"
 	flag = JOB_BOTANIST
-	department_flag = DEPARTMENT_CIVILIAN
+
+	department = /decl/department/civilian
 
 	total_positions = 3
 	spawn_positions = 2
@@ -83,7 +86,8 @@
 /datum/job/clown
 	title = "Clown"
 	flag = JOB_CLOWN
-	department_flag = DEPARTMENT_CIVILIAN
+
+	department = /decl/department/civilian
 
 	total_positions = 1
 	spawn_positions = 1
@@ -109,7 +113,8 @@
 /datum/job/mime
 	title = "Mime"
 	flag = JOB_MIME
-	department_flag = DEPARTMENT_CIVILIAN
+
+	department = /decl/department/civilian
 
 	total_positions = 1
 	spawn_positions = 1
@@ -204,7 +209,8 @@
 /datum/job/janitor
 	title = "Janitor"
 	flag = JOB_JANITOR
-	department_flag = DEPARTMENT_CIVILIAN
+
+	department = /decl/department/civilian
 
 	total_positions = 1
 	spawn_positions = 1
@@ -224,7 +230,8 @@
 /datum/job/librarian
 	title = "Librarian"
 	flag = JOB_LIBRARIAN
-	department_flag = DEPARTMENT_CIVILIAN
+
+	department = /decl/department/civilian
 
 	total_positions = 1
 	spawn_positions = 1
@@ -245,7 +252,8 @@
 /datum/job/lawyer
 	title = "Internal Affairs Agent"
 	flag = JOB_LAWYER
-	department_flag = DEPARTMENT_CIVILIAN
+
+	department = /decl/department/civilian
 
 	total_positions = 2
 	spawn_positions = 2

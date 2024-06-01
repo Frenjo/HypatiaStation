@@ -4,7 +4,9 @@
 /datum/job/chief_engineer
 	title = "Chief Engineer"
 	flag = JOB_CHIEF
-	department_flag = DEPARTMENT_ENGSEC
+
+	department = /decl/department/engsec
+	head_position = TRUE
 
 	total_positions = 1
 	spawn_positions = 1
@@ -33,7 +35,8 @@
 /datum/job/engineer
 	title = "Station Engineer"
 	flag = JOB_ENGINEER
-	department_flag = DEPARTMENT_ENGSEC
+
+	department = /decl/department/engsec
 
 	total_positions = 5
 	spawn_positions = 5
@@ -62,7 +65,8 @@
 /datum/job/atmos
 	title = "Atmospheric Technician"
 	flag = JOB_ATMOSTECH
-	department_flag = DEPARTMENT_ENGSEC
+
+	department = /decl/department/engsec
 
 	total_positions = 3
 	spawn_positions = 2

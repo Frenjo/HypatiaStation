@@ -42,7 +42,7 @@
 			var/available_in_days = job.available_in_days(user.client)
 			dat += "<del>[rank]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
 			continue
-		if((job_civilian_low & JOB_ASSISTANT) && rank != "Assistant")
+		if((job_by_department_low[/decl/department/civilian] & JOB_ASSISTANT) && rank != "Assistant")
 			dat += "<font color=orange>[rank]</font></td><td></td></tr>"
 			continue
 		if((rank in GLOBL.command_positions) || rank == "AI") // Bold head jobs and AI.
@@ -55,7 +55,7 @@
 		dat += "<a href='byond://?_src_=prefs;preference=job;task=input;text=[rank]'>"
 
 		if(rank == "Assistant") // Assistant is special.
-			if(job_civilian_low & JOB_ASSISTANT)
+			if(job_by_department_low[/decl/department/civilian] & JOB_ASSISTANT)
 				dat += " <font color=green>\[Yes]</font>"
 			else
 				dat += " <font color=red>\[No]</font>"
@@ -113,10 +113,10 @@
 		return
 
 	if(role == "Assistant")
-		if(job_civilian_low & job.flag)
-			job_civilian_low &= ~job.flag
+		if(job_by_department_low[/decl/department/civilian] & job.flag)
+			job_by_department_low[/decl/department/civilian] &= ~job.flag
 		else
-			job_civilian_low |= job.flag
+			job_by_department_low[/decl/department/civilian] |= job.flag
 		SetChoices(user)
 		return
 
@@ -132,47 +132,23 @@
 	SetChoices(user)
 
 /datum/preferences/proc/ResetJobs()
-	job_civilian_high = 0
-	job_civilian_med = 0
-	job_civilian_low = 0
-
-	job_medsci_high = 0
-	job_medsci_med = 0
-	job_medsci_low = 0
-
-	job_engsec_high = 0
-	job_engsec_med = 0
-	job_engsec_low = 0
+	for(var/dep in SUBTYPESOF(/decl/department))
+		job_by_department_high[dep] = 0
+		job_by_department_med[dep] = 0
+		job_by_department_low[dep] = 0
 
 /datum/preferences/proc/GetJobDepartment(datum/job/job, level)
 	if(isnull(job) || !level)
 		return 0
 
-	switch(job.department_flag)
-		if(DEPARTMENT_CIVILIAN)
-			switch(level)
-				if(1)
-					return job_civilian_high
-				if(2)
-					return job_civilian_med
-				if(3)
-					return job_civilian_low
-		if(DEPARTMENT_MEDSCI)
-			switch(level)
-				if(1)
-					return job_medsci_high
-				if(2)
-					return job_medsci_med
-				if(3)
-					return job_medsci_low
-		if(DEPARTMENT_ENGSEC)
-			switch(level)
-				if(1)
-					return job_engsec_high
-				if(2)
-					return job_engsec_med
-				if(3)
-					return job_engsec_low
+	switch(level)
+		if(1)
+			return job_by_department_high[job.department]
+		if(2)
+			return job_by_department_med[job.department]
+		if(3)
+			return job_by_department_low[job.department]
+
 	return 0
 
 /datum/preferences/proc/SetJobDepartment(datum/job/job, level)
@@ -181,46 +157,22 @@
 
 	switch(level)
 		if(1) // Only one of these should ever be active at once so clear them all here.
-			job_civilian_high = 0
-			job_medsci_high = 0
-			job_engsec_high = 0
+			for(var/dep in SUBTYPESOF(/decl/department))
+				job_by_department_high[dep] = 0
 			return
 		if(2) // Set current highs to med, then reset them.
-			job_civilian_med |= job_civilian_high
-			job_medsci_med |= job_medsci_high
-			job_engsec_med |= job_engsec_high
-			job_civilian_high = 0
-			job_medsci_high = 0
-			job_engsec_high = 0
+			for(var/dep in SUBTYPESOF(/decl/department))
+				job_by_department_med[dep] = job_by_department_high[dep]
+				job_by_department_high[dep] = 0
 
-	switch(job.department_flag)
-		if(DEPARTMENT_CIVILIAN)
-			switch(level)
-				if(2)
-					job_civilian_high = job.flag
-					job_civilian_med &= ~job.flag
-				if(3)
-					job_civilian_med |= job.flag
-					job_civilian_low &= ~job.flag
-				else
-					job_civilian_low |= job.flag
-		if(DEPARTMENT_MEDSCI)
-			switch(level)
-				if(2)
-					job_medsci_high = job.flag
-					job_medsci_med &= ~job.flag
-				if(3)
-					job_medsci_med |= job.flag
-					job_medsci_low &= ~job.flag
-				else
-					job_medsci_low |= job.flag
-		if(DEPARTMENT_ENGSEC)
-			switch(level)
-				if(2)
-					job_engsec_high = job.flag
-					job_engsec_med &= ~job.flag
-				if(3)
-					job_engsec_med |= job.flag
-					job_engsec_low &= ~job.flag
-				else
-					job_engsec_low |= job.flag
+	var/department = job.department
+	var/flag = job.flag
+	switch(level)
+		if(2)
+			job_by_department_high[department] = flag
+			job_by_department_med[department] &= ~flag
+		if(3)
+			job_by_department_med[department] |= flag
+			job_by_department_low[department] &= ~flag
+		else
+			job_by_department_low[department] |= flag
