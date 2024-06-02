@@ -13,6 +13,14 @@ CONTROLLER_DEF(economy)
 	var/datum/feed_network/news_network = new /datum/feed_network()
 
 	/*
+	 * Trade Destinations
+	 */
+	// These are associative lists of location event weights, indexed by the location datum.
+	// They're set in /datum/controller/economy/New() below.
+	var/list/weighted_mundane_event_locations = list()
+	var/list/weighted_random_event_locations = list()
+
+	/*
 	 * Money Accounts
 	 */
 	// The current date string used for economy things.
@@ -52,8 +60,8 @@ CONTROLLER_DEF(economy)
 	// Sets up trade destinations.
 	for(var/location_type in SUBTYPESOF(/datum/trade_destination))
 		var/datum/trade_destination/D = new location_type()
-		GLOBL.weighted_randomevent_locations[D] = length(D.viable_random_events)
-		GLOBL.weighted_mundaneevent_locations[D] = length(D.viable_mundane_events)
+		weighted_mundane_event_locations[D] = length(D.viable_mundane_events)
+		weighted_random_event_locations[D] = length(D.viable_random_events)
 
 	// Creates the station and vendor accounts.
 	station_account = create_special_money_account("[station_name()] Station", 75000)

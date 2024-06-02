@@ -3,7 +3,7 @@
 	endWhen = 10
 
 /datum/event/mundane_news/announce()
-	var/datum/trade_destination/affected_dest = pickweight(GLOBL.weighted_mundaneevent_locations)
+	var/datum/trade_destination/affected_dest = pickweight(global.CTeconomy.weighted_mundane_event_locations)
 	var/event_type = 0
 	if(length(affected_dest.viable_mundane_events))
 		event_type = pick(affected_dest.viable_mundane_events)
@@ -139,7 +139,7 @@
 	var/datum/feed_message/newMsg = new /datum/feed_message
 	newMsg.author = "Editor Mike Hammers"
 	//newMsg.is_admin_message = 1
-	var/datum/trade_destination/affected_dest = pick(GLOBL.weighted_mundaneevent_locations)
+	var/datum/trade_destination/affected_dest = pick(global.CTeconomy.weighted_mundane_event_locations)
 	newMsg.body = pick(
 		"Tree stuck in tajaran; firefighters baffled.", \
 		"Armadillos want aardvarks removed from dictionary claims 'here first'.", \
