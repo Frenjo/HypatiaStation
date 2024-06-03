@@ -15,8 +15,9 @@ CONTROLLER_DEF(economy)
 	/*
 	 * Trade Destinations
 	 */
-	// These are associative lists of location event weights, indexed by the location datum.
+	// These are weighted lists of /decl/trade_destination typepaths.
 	// They're set in /datum/controller/economy/New() below.
+	// Any entry picked from them MUST use GET_DECL_INSTANCE() as they only store raw typepaths.
 	var/list/weighted_mundane_event_locations = list()
 	var/list/weighted_random_event_locations = list()
 
@@ -40,28 +41,17 @@ CONTROLLER_DEF(economy)
 	. = ..()
 
 	// Creates newscaster feed channels.
-	var/datum/feed_channel/channel = new /datum/feed_channel()
-	channel.channel_name = "Tau Ceti Daily"
-	channel.author = "CentCom Minister of Information"
-	channel.locked = TRUE
-	channel.is_admin_channel = TRUE
-	news_network.channels.Add(channel)
-
-	channel = new /datum/feed_channel()
-	channel.channel_name = "The Gibson Gazette"
-	channel.author = "Editor Mike Hammers"
-	channel.locked = TRUE
-	channel.is_admin_channel = TRUE
-	news_network.channels.Add(channel)
+	news_network.channels.Add(new /datum/feed_channel/tau_ceti_daily())
+	news_network.channels.Add(new /datum/feed_channel/gibson_gazette())
 
 	// Sets the current date string.
 	current_date_string = "[num2text(rand(1, 31))] [pick(GLOBL.months)], [GLOBL.game_year]"
 
 	// Sets up trade destinations.
-	for(var/location_type in SUBTYPESOF(/datum/trade_destination))
-		var/datum/trade_destination/D = new location_type()
-		weighted_mundane_event_locations[D] = length(D.viable_mundane_events)
-		weighted_random_event_locations[D] = length(D.viable_random_events)
+	for(var/location_path in SUBTYPESOF(/decl/trade_destination))
+		var/decl/trade_destination/D = GET_DECL_INSTANCE(location_path)
+		weighted_mundane_event_locations[location_path] = length(D.viable_mundane_events)
+		weighted_random_event_locations[location_path] = length(D.viable_random_events)
 
 	// Creates the station and vendor accounts.
 	station_account = create_special_money_account("[station_name()] Station", 75000)

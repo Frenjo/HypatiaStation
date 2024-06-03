@@ -2482,7 +2482,7 @@
 				newChannel.channel_name = src.admincaster_feed_channel.channel_name
 				newChannel.author = src.admincaster_signature
 				newChannel.locked = src.admincaster_feed_channel.locked
-				newChannel.is_admin_channel = 1
+				newChannel.is_admin_channel = TRUE
 				feedback_inc("newscaster_channels",1)
 				global.CTeconomy.news_network.channels.Add(newChannel)	// Adds the channel to the global network.
 				log_admin("[key_name_admin(usr)] created command feed channel: [src.admincaster_feed_channel.channel_name]!")
@@ -2509,7 +2509,7 @@
 			var/datum/feed_message/newMsg = new /datum/feed_message
 			newMsg.author = src.admincaster_signature
 			newMsg.body = src.admincaster_feed_message.body
-			newMsg.is_admin_message = 1
+			newMsg.is_admin_message = TRUE
 			feedback_inc("newscaster_stories",1)
 			for_no_type_check(var/datum/feed_channel/FC, global.CTeconomy.news_network.channels)
 				if(FC.channel_name == src.admincaster_feed_channel.channel_name)
@@ -2574,7 +2574,7 @@
 					WANTED.author = src.admincaster_feed_message.author               //Wanted name
 					WANTED.body = src.admincaster_feed_message.body                   //Wanted desc
 					WANTED.backup_author = src.admincaster_signature                  //Submitted by
-					WANTED.is_admin_message = 1
+					WANTED.is_admin_message = TRUE
 					global.CTeconomy.news_network.wanted_issue = WANTED
 					for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
 						caster.newsAlert()

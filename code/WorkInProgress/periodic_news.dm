@@ -134,8 +134,8 @@ GLOBAL_GLOBL_LIST_INIT(newscaster_standard_feeds, list(
 		sendto = new /datum/feed_channel
 		sendto.channel_name = news.channel_name
 		sendto.author = news.author
-		sendto.locked = 1
-		sendto.is_admin_channel = 1
+		sendto.locked = TRUE
+		sendto.is_admin_channel = TRUE
 		global.CTeconomy.news_network.channels.Add(sendto)
 
 	sendto.messages += newMsg

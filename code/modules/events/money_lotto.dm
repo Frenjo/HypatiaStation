@@ -25,7 +25,7 @@
 /datum/event/money_lotto/announce()
 	var/datum/feed_message/newMsg = new /datum/feed_message
 	newMsg.author = "NanoTrasen Editor"
-	newMsg.is_admin_message = 1
+	newMsg.is_admin_message = TRUE
 
 	newMsg.body = "TC Daily wishes to congratulate <b>[winner_name]</b> for recieving the Tau Ceti Stellar Slam Lottery, and receiving the out of this world sum of [winner_sum] credits!"
 	if(!deposit_success)

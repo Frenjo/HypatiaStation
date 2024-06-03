@@ -5,10 +5,10 @@
 	var/event_type = 0
 	var/list/cheaper_goods = list()
 	var/list/dearer_goods = list()
-	var/datum/trade_destination/affected_dest
+	var/decl/trade_destination/affected_dest
 
 /datum/event/economic_event/start()
-	affected_dest = pickweight(global.CTeconomy.weighted_random_event_locations)
+	affected_dest = GET_DECL_INSTANCE(pickweight(global.CTeconomy.weighted_random_event_locations))
 	if(length(affected_dest.viable_random_events))
 		endWhen = rand(60, 300)
 		event_type = pick(affected_dest.viable_random_events)
@@ -55,7 +55,7 @@
 	//copy-pasted from the admin verbs to submit new newscaster messages
 	var/datum/feed_message/newMsg = new /datum/feed_message
 	newMsg.author = "Tau Ceti Daily"
-	newMsg.is_admin_message = 1
+	newMsg.is_admin_message = TRUE
 
 	//see if our location has custom event info for this event
 	newMsg.body = affected_dest.get_custom_eventstring()
