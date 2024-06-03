@@ -34,7 +34,7 @@
 		else
 			O.loc = src
 
-	ChangeTurf(/turf/simulated/floor/plating)
+	ChangeTurf(/turf/simulated/floor/plating/metal)
 
 /turf/simulated/wall/reinforced/attack_hand(mob/user as mob)
 	if(HULK in user.mutations)

@@ -345,7 +345,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/dismantleFloor(turf/new_turf)
 	if(istype(new_turf, /turf/simulated/floor))
 		var/turf/simulated/floor/T = new_turf
-		if(!istype(new_turf, /turf/simulated/floor/plating))
+		if(!istype(new_turf, /turf/simulated/floor/plating/metal))
 			if(!T.broken && !T.burnt)
 				new T.tile_path(T)
 			T.make_plating()

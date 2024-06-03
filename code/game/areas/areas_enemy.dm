@@ -24,7 +24,7 @@
 
 /area/syndicate_station/start
 	name = "\improper Syndicate Forward Operating Base"
-	base_turf = /turf/simulated/floor/plating
+	base_turf = /turf/simulated/floor/plating/metal
 
 /area/syndicate_station/southwest
 	name = "\improper South-West of SS13"

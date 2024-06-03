@@ -19,9 +19,9 @@
 
 /obj/item/stack/tile/metal/grey/proc/build(turf/T)
 	if(isspace(T))
-		T.ChangeTurf(/turf/simulated/floor/plating/airless)
+		T.ChangeTurf(/turf/simulated/floor/plating/metal/airless)
 	else
-		T.ChangeTurf(/turf/simulated/floor/plating)
+		T.ChangeTurf(/turf/simulated/floor/plating/metal)
 	return
 
 // White

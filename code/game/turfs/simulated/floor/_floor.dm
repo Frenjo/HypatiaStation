@@ -115,6 +115,6 @@ var/list/wood_icons = list("wood", "wood-broken")
 	return new_floor
 
 /turf/simulated/floor/proc/make_plating()
-	RETURN_TYPE(/turf/simulated/floor/plating)
+	RETURN_TYPE(/turf/simulated/floor/plating/metal)
 
-	return make_floor(/turf/simulated/floor/plating)
+	return make_floor(/turf/simulated/floor/plating/metal)

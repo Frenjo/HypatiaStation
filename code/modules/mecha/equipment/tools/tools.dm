@@ -299,7 +299,7 @@
 					if(disabled)
 						return
 					chassis.spark_system.start()
-					target:ChangeTurf(/turf/simulated/floor/plating)
+					target:ChangeTurf(/turf/simulated/floor/plating/metal)
 					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
 					chassis.use_power(energy_drain)
 			else if(istype(target, /turf/simulated/floor))
@@ -329,7 +329,7 @@
 				if(do_after_cooldown(target))
 					if(disabled)
 						return
-					target:ChangeTurf(/turf/simulated/floor/plating)
+					target:ChangeTurf(/turf/simulated/floor/plating/metal)
 					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
 					chassis.spark_system.start()
 					chassis.use_power(energy_drain * 2)

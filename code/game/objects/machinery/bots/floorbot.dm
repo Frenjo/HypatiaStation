@@ -190,7 +190,7 @@
 					break
 		if((!target || target == null ) && improvefloors)
 			for(var/turf/simulated/floor/F in view(7, src))
-				if(!(F in floorbottargets) && F != oldtarget && F.icon_state == "Floor1" && !(istype(F, /turf/simulated/floor/plating)))
+				if(!(F in floorbottargets) && F != oldtarget && F.icon_state == "Floor1" && !(istype(F, /turf/simulated/floor/plating/metal)))
 					oldtarget = F
 					target = F
 					break

@@ -23,7 +23,7 @@
 	if(prob(15) && !rotting)
 		dismantle_wall()
 	else if(prob(70) && !rotting)
-		ChangeTurf(/turf/simulated/floor/plating)
+		ChangeTurf(/turf/simulated/floor/plating/metal)
 	else
 		ReplaceWithLattice()
 	return 0

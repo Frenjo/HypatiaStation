@@ -3,7 +3,6 @@
  */
 /turf/simulated/floor/plating
 	name = "plating"
-	icon_state = "plating"
 	plane = PLATING_PLANE
 
 	tile_path = null
@@ -13,20 +12,6 @@
 	if(iswire(tool))
 		var/obj/item/stack/cable_coil/coil = tool
 		coil.turf_place(src, user)
-		return TRUE
-
-	if(iswelder(tool))
-		var/obj/item/weldingtool/welder = tool
-		if(welder.isOn())
-			if(broken || burnt)
-				if(welder.remove_fuel(0, user))
-					to_chat(user, SPAN_WARNING("You fix some dents on the broken plating."))
-					playsound(src, 'sound/items/Welder.ogg', 80, 1)
-					icon_state = "plating"
-					burnt = 0
-					broken = 0
-				else
-					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 		return TRUE
 	return ..()
 
@@ -69,53 +54,5 @@
 
 	icon_state = icon_plating // Because asteroids are 'platings' too.
 
-/turf/simulated/floor/plating/break_tile()
-	. = ..()
-	if(.)
-		icon_state = "platingdmg[pick(1, 2, 3)]"
-
-/turf/simulated/floor/plating/burn_tile()
-	. = ..()
-	if(.)
-		icon_state = "panelscorched"
-
 /turf/simulated/floor/plating/make_plating()
 	return // You can't make plating into plating.
-
-// Airless
-/turf/simulated/floor/plating/airless
-	name = "airless plating"
-	initial_gases = null
-	temperature = TCMB
-
-/turf/simulated/floor/plating/airless/New()
-	. = ..()
-	name = "plating"
-
-/*
- * Shuttle Plating
- */
-/turf/simulated/floor/plating/shuttle
-	explosion_resistance = 1
-
-/turf/simulated/floor/plating/airless/shuttle
-	explosion_resistance = 1
-
-/*
- * Iron Sand
- */
-/turf/simulated/floor/plating/ironsand/New()
-	. = ..()
-	name = "iron sand"
-	icon_state = "ironsand[rand(1, 15)]"
-
-/*
- * Snow
- */
-/turf/simulated/floor/plating/snow
-	name = "snow"
-	icon = 'icons/turf/snow.dmi'
-	icon_state = "snow"
-
-/turf/simulated/floor/plating/snow/ex_act(severity)
-	return

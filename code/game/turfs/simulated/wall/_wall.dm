@@ -139,7 +139,7 @@
 		else
 			O.loc = src
 
-	ChangeTurf(/turf/simulated/floor/plating)
+	ChangeTurf(/turf/simulated/floor/plating/metal)
 
 // Wall-rot effect, a nasty fungus that destroys walls.
 /turf/simulated/wall/proc/rot()
@@ -169,7 +169,7 @@
 	O.density = TRUE
 	O.layer = 5
 
-	ChangeTurf(/turf/simulated/floor/plating)
+	ChangeTurf(/turf/simulated/floor/plating/metal)
 
 	var/turf/simulated/floor/F = src
 	F.burn_tile()

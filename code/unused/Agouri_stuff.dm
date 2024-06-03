@@ -554,7 +554,7 @@
 	var/prior_icon = icon_old
 	var/old_dir = dir
 
-	var/turf/simulated/floor/plating/W = new /turf/simulated/floor/plating( locate(src.x, src.y, src.z) )
+	var/turf/simulated/floor/plating/metal/W = new /turf/simulated/floor/plating/metal( locate(src.x, src.y, src.z) )
 
 	W.RemoveLattice()
 	W.dir = old_dir
@@ -1258,13 +1258,13 @@ var/list/plating_icons = list("plating","platingdmg1","platingdmg2","platingdmg3
 	nitrogen = 0.001
 	temperature = TCMB
 
-/turf/simulated/floor/plating
+/turf/simulated/floor/plating/metal
 	name = "plating"
 	icon_state = "plating"
 	floor_tile = null
 	intact = 0
 
-/turf/simulated/floor/plating/airless
+/turf/simulated/floor/plating/metal/airless
 	icon_state = "plating"
 	name = "airless plating"
 	oxygen = 0.01

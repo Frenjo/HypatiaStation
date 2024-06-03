@@ -165,7 +165,7 @@
 /area/shuttle/transport/centcom
 	name = "\improper Transport Shuttle CentCom"
 	icon_state = "shuttle"
-	base_turf = /turf/simulated/floor/plating
+	base_turf = /turf/simulated/floor/plating/metal
 
 /area/shuttle/transport/station
 	name = "\improper Transport Shuttle Station"
@@ -223,7 +223,7 @@
 /area/shuttle/administration/centcom
 	name = "\improper Administration Shuttle CentCom"
 	icon_state = "shuttlered"
-	base_turf = /turf/simulated/floor/plating
+	base_turf = /turf/simulated/floor/plating/metal
 
 /area/shuttle/administration/station
 	name = "\improper Administration Shuttle Station"

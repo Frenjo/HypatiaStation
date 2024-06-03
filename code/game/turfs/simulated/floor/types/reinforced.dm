@@ -22,7 +22,7 @@
 				SPAN_INFO("You hear a ratchet.")
 			)
 			new /obj/item/stack/rods(src, 2)
-			make_floor(/turf/simulated/floor/plating)
+			make_floor(/turf/simulated/floor/plating/metal)
 		return TRUE
 
 	if(iscrowbar(tool))
