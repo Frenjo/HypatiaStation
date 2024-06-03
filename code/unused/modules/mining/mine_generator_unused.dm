@@ -135,7 +135,7 @@
 			if(start_loc.y <= target_loc.y)                                 //GOING NORTH-EAST
 				for(y1 = start_loc.y; y1 <= target_loc.y; y1++)
 					for(x1 = start_loc.x; x1 <= target_loc.x; x1++)
-						new/turf/simulated/floor/plating/airless/asteroid(column)
+						new/turf/simulated/floor/plating/asteroid/airless(column)
 						column = get_step(column,EAST)
 					line_start = get_step(line_start,NORTH)
 					column = line_start
@@ -144,7 +144,7 @@
 			else                                                            //GOING NORTH-WEST
 				for(y1 = start_loc.y; y1 >= target_loc.y; y1--)
 					for(x1 = start_loc.x; x1 <= target_loc.x; x1++)
-						new/turf/simulated/floor/plating/airless/asteroid(column)
+						new/turf/simulated/floor/plating/asteroid/airless(column)
 						column = get_step(column,WEST)
 					line_start = get_step(line_start,NORTH)
 					column = line_start
@@ -154,7 +154,7 @@
 			if(start_loc.y <= target_loc.y)                                 //GOING SOUTH-EAST
 				for(y1 = start_loc.y; y1 <= target_loc.y; y1++)
 					for(x1 = start_loc.x; x1 >= target_loc.x; x1--)
-						new/turf/simulated/floor/plating/airless/asteroid(column)
+						new/turf/simulated/floor/plating/asteroid/airless(column)
 						column = get_step(column,EAST)
 					line_start = get_step(line_start,SOUTH)
 					column = line_start
@@ -163,7 +163,7 @@
 			else                                                            //GOING SOUTH-WEST
 				for(y1 = start_loc.y; y1 >= target_loc.y; y1--)
 					for(x1 = start_loc.x; x1 >= target_loc.x; x1--)
-						new/turf/simulated/floor/plating/airless/asteroid(column)
+						new/turf/simulated/floor/plating/asteroid/airless(column)
 						column = get_step(column,WEST)
 					line_start = get_step(line_start,SOUTH)
 					column = line_start

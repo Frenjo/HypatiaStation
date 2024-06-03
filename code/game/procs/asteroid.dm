@@ -120,7 +120,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 			valid = FALSE
 			continue
 
-		if(locate(/turf/simulated/floor/plating/airless/asteroid) in surroundings)
+		if(locate(/turf/simulated/floor/plating/asteroid/airless) in surroundings)
 			valid = FALSE
 			continue
 

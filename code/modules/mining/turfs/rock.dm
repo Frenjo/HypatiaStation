@@ -287,7 +287,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/simulated/rock/artifact_spawning_turfs)
 					M.Stun(5)
 			M.apply_effect(25, IRRADIATE)
 
-	var/turf/simulated/floor/plating/airless/asteroid/N = ChangeTurf(/turf/simulated/floor/plating/airless/asteroid)
+	var/turf/simulated/floor/plating/asteroid/airless/N = ChangeTurf(/turf/simulated/floor/plating/asteroid/airless)
 	N.full_update_mineral_overlays()
 
 	if(rand(1, 500) == 1)

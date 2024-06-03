@@ -1,16 +1,14 @@
 /*
  * Asteroid
  */
-/turf/simulated/floor/plating/airless/asteroid //floor piece
+/turf/simulated/floor/plating/asteroid //floor piece
 	name = "asteroid"
-	icon = 'icons/turf/floors.dmi'
 	icon_state = "asteroid"
-	temperature = TCMB
 	icon_plating = "asteroid"
 
 	var/dug = FALSE
 
-/turf/simulated/floor/plating/airless/asteroid/New()
+/turf/simulated/floor/plating/asteroid/New()
 	var/proper_name = name
 	. = ..()
 	name = proper_name
@@ -20,11 +18,11 @@
 	if(prob(20))
 		icon_state = "asteroid[rand(0, 12)]"
 
-/turf/simulated/floor/plating/airless/asteroid/initialise()
+/turf/simulated/floor/plating/asteroid/initialise()
 	. = ..()
 	update_mineral_overlays()
 
-/turf/simulated/floor/plating/airless/asteroid/ex_act(severity)
+/turf/simulated/floor/plating/asteroid/ex_act(severity)
 	switch(severity)
 		if(3)
 			return
@@ -35,12 +33,12 @@
 			gets_dug()
 	return
 
-/turf/simulated/floor/plating/airless/asteroid/burn_tile()
+/turf/simulated/floor/plating/asteroid/burn_tile()
 	SHOULD_CALL_PARENT(FALSE)
 
 	return FALSE // Asteroid tiles don't burn.
 
-/turf/simulated/floor/plating/airless/asteroid/Entered(atom/movable/M as mob|obj)
+/turf/simulated/floor/plating/asteroid/Entered(atom/movable/M as mob|obj)
 	. = ..()
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
@@ -52,7 +50,7 @@
 			else if(istype(R.module_state_3, /obj/item/storage/bag/ore))
 				attackby(R.module_state_3, R)
 
-/turf/simulated/floor/plating/airless/asteroid/attackby(obj/item/W as obj, mob/user as mob)
+/turf/simulated/floor/plating/asteroid/attackby(obj/item/W as obj, mob/user as mob)
 	if(isnull(W) || isnull(user))
 		return 0
 
@@ -117,7 +115,7 @@
 	else
 		..(W, user)
 
-/turf/simulated/floor/plating/airless/asteroid/proc/gets_dug()
+/turf/simulated/floor/plating/asteroid/proc/gets_dug()
 	if(dug)
 		return
 	for(var/i = 0; i < 5; i++)
@@ -126,7 +124,7 @@
 	icon_plating = "asteroid_dug"
 	icon_state = "asteroid_dug"
 
-/turf/simulated/floor/plating/airless/asteroid/proc/update_mineral_overlays()
+/turf/simulated/floor/plating/asteroid/proc/update_mineral_overlays()
 	overlays.Cut()
 	if(istype(get_step(src, NORTH), /turf/simulated/rock))
 		overlays.Add(image('icons/turf/walls/rocks_ores.dmi', "rock_side_n"))
@@ -137,10 +135,20 @@
 	if(istype(get_step(src, WEST), /turf/simulated/rock))
 		overlays.Add(image('icons/turf/walls/rocks_ores.dmi', "rock_side_w", layer = 6))
 
-/turf/simulated/floor/plating/airless/asteroid/proc/full_update_mineral_overlays()
-	var/turf/simulated/floor/plating/airless/asteroid/A
+/turf/simulated/floor/plating/asteroid/proc/full_update_mineral_overlays()
+	var/turf/simulated/floor/plating/asteroid/A
 	for(var/direction in GLOBL.alldirs)
-		if(istype(get_step(src, direction), /turf/simulated/floor/plating/airless/asteroid))
+		if(istype(get_step(src, direction), /turf/simulated/floor/plating/asteroid))
 			A = get_step(src, direction)
 			A.update_mineral_overlays()
 	update_mineral_overlays()
+
+// Airless
+/turf/simulated/floor/plating/asteroid/airless
+	name = "airless asteroid"
+	initial_gases = null
+	temperature = TCMB
+
+/turf/simulated/floor/plating/asteroid/airless/New()
+	. = ..()
+	name = "asteroid"
