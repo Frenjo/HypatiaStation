@@ -98,7 +98,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 				var/mob/living/M = src
 				M.take_organ_damage(20)
 
-/atom/proc/check_eye(user as mob)
+/atom/proc/check_eye(mob/user)
 	if(isAI(user)) // WHYYYY
 		return TRUE
 	return FALSE
@@ -106,10 +106,10 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 /atom/proc/on_reagent_change()
 	return
 
-/atom/proc/Bumped(AM as mob|obj)
+/atom/proc/Bumped(atom/movable/AM)
 	return
 
-/atom/proc/meteorhit(obj/meteor as obj)
+/atom/proc/meteorhit(obj/meteor)
 	return
 
 /atom/proc/allow_drop()
@@ -118,7 +118,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 /atom/proc/CheckExit()
 	return 1
 
-/atom/proc/HasProximity(atom/movable/AM as mob|obj)
+/atom/proc/HasProximity(atom/movable/AM)
 	return
 
 /atom/proc/in_contents_of(container)//can take class or object instance as argument
@@ -184,11 +184,11 @@ Maxdistance is the longest range the beam will persist before it gives up.
 	. = new_dir != dir
 	dir = new_dir
 
-/atom/proc/hitby(atom/movable/AM as mob|obj)
+/atom/proc/hitby(atom/movable/AM)
 	return
 
 // Returns TRUE if made bloody, returns FALSE otherwise.
-/atom/proc/add_blood(mob/living/carbon/human/M as mob)
+/atom/proc/add_blood(mob/living/carbon/human/M)
 	if(HAS_ATOM_FLAGS(src, ATOM_FLAG_NO_BLOODY))
 		return FALSE
 	if(!ishuman(M))
@@ -205,7 +205,7 @@ Maxdistance is the longest range the beam will persist before it gives up.
 		blood_color = M.species.blood_color
 	return TRUE
 
-/atom/proc/add_vomit_floor(mob/living/carbon/M as mob, toxvomit = FALSE)
+/atom/proc/add_vomit_floor(mob/living/carbon/M, toxvomit = FALSE)
 	if(issimulated(src))
 		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
 		// Make toxins vomit look different

@@ -30,10 +30,10 @@
 	. = ..()
 	create_reagents(10)
 
-/obj/item/toy/balloon/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/toy/balloon/attack(mob/living/carbon/human/M, mob/user)
 	return
 
-/obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
+/obj/item/toy/balloon/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src, A) <= 1)
@@ -43,7 +43,7 @@
 		src.update_icon()
 	return
 
-/obj/item/toy/balloon/attackby(obj/O as obj, mob/user as mob)
+/obj/item/toy/balloon/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/reagent_containers/glass))
 		if(O.reagents)
 			if(O.reagents.total_volume < 1)
@@ -155,7 +155,7 @@
 		return TRUE
 	return ..()
 
-/obj/item/toy/gun/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
+/obj/item/toy/gun/afterattack(atom/target, mob/user, flag)
 	if(flag)
 		return
 	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
@@ -222,7 +222,7 @@
 	return ..()
 
 
-/obj/item/toy/crossbow/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
+/obj/item/toy/crossbow/afterattack(atom/target, mob/user, flag)
 	if(!isturf(target.loc) || target == user)
 		return
 	if(flag)
@@ -276,7 +276,7 @@
 			O.show_message(SPAN_WARNING("[user] realized they were out of ammo and starting scrounging for some!"), 1)
 
 
-/obj/item/toy/crossbow/attack(mob/M as mob, mob/user as mob)
+/obj/item/toy/crossbow/attack(mob/M, mob/user)
 	src.add_fingerprint(user)
 
 // ******* Check
@@ -324,7 +324,7 @@
 
 	var/active = 0
 
-/obj/item/toy/sword/attack_self(mob/user as mob)
+/obj/item/toy/sword/attack_self(mob/user)
 	src.active = !(src.active)
 	if(src.active)
 		to_chat(user, SPAN_INFO("You extend the plastic blade with a quick flick of your wrist."))
@@ -397,9 +397,9 @@
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
 	qdel(src)
 
-/obj/item/toy/snappop/Crossed(H as mob|obj)
-	if((ishuman(H))) //i guess carp and shit shouldn't set them off
-		var/mob/living/carbon/M = H
+/obj/item/toy/snappop/Crossed(atom/movable/AM)
+	if((ishuman(AM))) //i guess carp and shit shouldn't set them off
+		var/mob/living/carbon/M = AM
 		if(IS_RUNNING(M))
 			to_chat(M, SPAN_WARNING("You step on the snap pop!"))
 
@@ -426,10 +426,10 @@
 	create_reagents(10)
 	reagents.add_reagent("water", 10)
 
-/obj/item/toy/waterflower/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/toy/waterflower/attack(mob/living/carbon/human/M, mob/user)
 	return
 
-/obj/item/toy/waterflower/afterattack(atom/A as mob|obj, mob/user as mob)
+/obj/item/toy/waterflower/afterattack(atom/A, mob/user)
 	if(istype(A, /obj/item/storage/backpack))
 		return
 
@@ -485,13 +485,13 @@
 	var/cooldown = 0
 
 //all credit to skasi for toy mech fun ideas
-/obj/item/toy/prize/attack_self(mob/user as mob)
+/obj/item/toy/prize/attack_self(mob/user)
 	if(cooldown < world.time - 8)
 		to_chat(user, SPAN_NOTICE("You play with [src]."))
 		playsound(user, 'sound/mecha/mechstep.ogg', 20, 1)
 		cooldown = world.time
 
-/obj/item/toy/prize/attack_hand(mob/user as mob)
+/obj/item/toy/prize/attack_hand(mob/user)
 	if(loc == user)
 		if(cooldown < world.time - 8)
 			to_chat(user, SPAN_NOTICE("You play with [src]."))

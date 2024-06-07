@@ -37,7 +37,7 @@
 		Break()
 		qdel(src)
 
-/obj/structure/lamarr/meteorhit(obj/O as obj)
+/obj/structure/lamarr/meteorhit(obj/O)
 		new /obj/item/shard(src.loc)
 		Break()
 		qdel(src)
@@ -61,16 +61,16 @@
 		src.icon_state = "labcage[src.occupied]"
 	return
 
-/obj/structure/lamarr/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/lamarr/attackby(obj/item/W, mob/user)
 	src.health -= W.force
 	src.healthcheck()
 	..()
 	return
 
-/obj/structure/lamarr/attack_paw(mob/user as mob)
+/obj/structure/lamarr/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/structure/lamarr/attack_hand(mob/user as mob)
+/obj/structure/lamarr/attack_hand(mob/user)
 	if(src.destroyed)
 		return
 	else

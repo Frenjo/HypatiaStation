@@ -195,7 +195,7 @@
 			act = "whimper" //ugly hack to stop animals screaming when crushed :P
 		..(act, type, desc)
 
-/mob/living/simple_animal/attack_animal(mob/living/M as mob)
+/mob/living/simple_animal/attack_animal(mob/living/M)
 	if(M.melee_damage_upper == 0)
 		M.emote("[M.friendly] [src]")
 	else
@@ -214,7 +214,7 @@
 	adjustBruteLoss(Proj.damage)
 	return 0
 
-/mob/living/simple_animal/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_animal/attack_hand(mob/living/carbon/human/M)
 	..()
 	switch(M.a_intent)
 		if("help")
@@ -248,7 +248,7 @@
 				if(isnotnull(O.client) && !O.blinded)
 					O.show_message(SPAN_WARNING("[M] [response_harm] [src]."))
 
-/mob/living/simple_animal/attack_slime(mob/living/carbon/slime/M as mob)
+/mob/living/simple_animal/attack_slime(mob/living/carbon/slime/M)
 	if(isnull(global.PCticker))
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
@@ -267,7 +267,7 @@
 
 	adjustBruteLoss(damage)
 
-/mob/living/simple_animal/attackby(obj/item/O as obj, mob/user as mob)  //Marker -Agouri
+/mob/living/simple_animal/attackby(obj/item/O, mob/user)  //Marker -Agouri
 	if(istype(O, /obj/item/stack/medical))
 		if(stat != DEAD)
 			var/obj/item/stack/medical/MED = O

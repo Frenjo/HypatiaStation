@@ -1,4 +1,4 @@
-/obj/item/Bump(mob/M as mob)
+/obj/item/Bump(mob/M)
 	spawn(0)
 		..()
 	return
@@ -151,14 +151,14 @@
 	viewers(user) << SPAN_DANGER("[user] is putting the [src.name] on \his head! It looks like \he's trying to commit suicide.")
 	return (BRUTELOSS)
 
-/obj/item/legcuffs/beartrap/attack_self(mob/user as mob)
+/obj/item/legcuffs/beartrap/attack_self(mob/user)
 	..()
 	if(ishuman(user) && !user.stat && !user.restrained())
 		armed = !armed
 		icon_state = "beartrap[armed]"
 		to_chat(user, SPAN_NOTICE("[src] is now [armed ? "armed" : "disarmed"]."))
 
-/obj/item/legcuffs/beartrap/Crossed(AM as mob|obj)
+/obj/item/legcuffs/beartrap/Crossed(atom/movable/AM)
 	if(armed)
 		if(ishuman(AM))
 			if(isturf(src.loc))
@@ -225,7 +225,7 @@
 						SPAN_DANGER("[user] is slitting \his throat with the shard of glass! It looks like \he's trying to commit suicide."))
 	return (BRUTELOSS)
 
-/obj/item/shard/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/shard/attack(mob/living/carbon/M, mob/living/carbon/user)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
 	return ..()
 
@@ -320,13 +320,13 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/camera_bug/attack_self(mob/usr as mob)
+/obj/item/camera_bug/attack_self(mob/user)
 	var/list/cameras = list()
 	for_no_type_check(var/obj/machinery/camera/C, global.CTcameranet.cameras)
 		if(C.bugged && C.status)
 			cameras.Add(C)
 	if(length(cameras) == 0)
-		to_chat(usr, SPAN_WARNING("No bugged functioning cameras found."))
+		to_chat(user, SPAN_WARNING("No bugged functioning cameras found."))
 		return
 
 	var/list/friendly_cameras = list()
@@ -341,10 +341,10 @@
 		if(C.c_tag == target)
 			target = C
 			break
-	if(usr.stat == DEAD)
+	if(user.stat == DEAD)
 		return
 
-	usr.client.eye = target
+	user.client.eye = target
 
 /obj/item/syntiflesh
 	name = "syntiflesh"
@@ -415,7 +415,7 @@
 	user.visible_message(SPAN_DANGER("[user] is impaling \himself with the [src.name]! It looks like \he's trying to commit suicide."))
 	return (BRUTELOSS | FIRELOSS)
 
-/obj/item/nullrod/attack(mob/M as mob, mob/living/user as mob) //Paste from old-code to decult with a null rod.
+/obj/item/nullrod/attack(mob/M, mob/living/user) //Paste from old-code to decult with a null rod.
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been attacked with [src.name] by [user.name] ([user.ckey])</font>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to attack [M.name] ([M.ckey])</font>")
 
@@ -444,7 +444,7 @@
 			to_chat(user, SPAN_WARNING("The rod appears to do nothing."))
 			M.visible_message(SPAN_WARNING("[user] waves [src] over [M]'s head."))
 
-/obj/item/nullrod/afterattack(atom/A, mob/user as mob)
+/obj/item/nullrod/afterattack(atom/A, mob/user)
 	if(istype(A, /turf/simulated/floor))
 		to_chat(user, SPAN_INFO("You hit the floor with the [src]."))
 		call(/obj/effect/rune/proc/revealrunes)(src)
@@ -467,7 +467,7 @@
 	user.visible_message(SPAN_DANGER("[user] is impaling \himself with the [src.name]! It looks like \he's trying to commit suicide."))
 	return(BRUTELOSS)
 
-/obj/item/sord/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/sord/attack(mob/living/carbon/M, mob/living/carbon/user)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
 	return ..()
 
@@ -493,7 +493,7 @@
 	user.visible_message(SPAN_DANGER("[user] is falling on the [src.name]! It looks like \he's trying to commit suicide."))
 	return(BRUTELOSS)
 
-/obj/item/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/claymore/attack(mob/living/carbon/M, mob/living/carbon/user)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
 	return ..()
 
@@ -518,7 +518,7 @@
 /obj/item/katana/IsShield()
 	return 1
 
-/obj/item/katana/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/katana/attack(mob/living/carbon/M, mob/living/carbon/user)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
 	return ..()
 

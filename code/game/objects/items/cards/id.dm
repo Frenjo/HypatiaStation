@@ -28,7 +28,7 @@
 		dna_hash = human.dna.unique_enzymes
 		fingerprint_hash = md5(human.dna.uni_identity)
 
-/obj/item/card/id/attack_self(mob/user as mob)
+/obj/item/card/id/attack_self(mob/user)
 	visible_message("[user] shows you: \icon[src] [name]: assignment: [assignment]")
 	add_fingerprint(user)
 
@@ -38,7 +38,7 @@
 /obj/item/card/id/get_id()
 	return src
 
-/obj/item/card/id/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/card/id/attackby(obj/item/W, mob/user)
 	. = ..()
 	if(istype(W, /obj/item/id_wallet))
 		to_chat(user, "You slip [src] into [W].")
@@ -109,7 +109,7 @@
 
 	var/registered_user = null
 
-/obj/item/card/id/syndicate/New(mob/user as mob)
+/obj/item/card/id/syndicate/New(mob/user)
 	. = ..()
 	if(isnotnull(user)) // Runtime prevention on laggy starts or where users log out because of lag at round start.
 		registered_name = ishuman(user) ? user.real_name : user.name
@@ -122,7 +122,7 @@
 	. = ..() // This one's the same as the normal agent card except it has all station access by default.
 	access |= get_all_station_access()
 
-/obj/item/card/id/syndicate/afterattack(obj/item/O as obj, mob/user as mob, proximity)
+/obj/item/card/id/syndicate/afterattack(obj/item/O, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(O, /obj/item/card/id))
@@ -131,7 +131,7 @@
 		if(isliving(user) && isnotnull(user.mind?.special_role))
 			to_chat(usr, SPAN_INFO("The card's microscanners activate as you pass it over the ID, copying its access."))
 
-/obj/item/card/id/syndicate/attack_self(mob/user as mob)
+/obj/item/card/id/syndicate/attack_self(mob/user)
 	if(!registered_name)
 		//Stop giving the players unsanitized unputs! You are giving ways for players to intentionally crash clients! -Nodrak
 		var/t = reject_bad_name(input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name))

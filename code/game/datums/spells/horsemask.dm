@@ -43,7 +43,7 @@
 	//flags_inv = null	//so you can still see their face... no. How can you recognize someone when their face is completely different?
 	voicechange = 1		//NEEEEIIGHH
 
-/obj/item/clothing/mask/horsehead/magic/dropped(mob/user as mob)
+/obj/item/clothing/mask/horsehead/magic/dropped(mob/user)
 	canremove = 1
 	..()
 

@@ -1,7 +1,7 @@
 /mob/var/skincmds = list()
-/obj/proc/SkinCmd(mob/user as mob, data as text)
+/obj/proc/SkinCmd(mob/user, data as text)
 
-/proc/SkinCmdRegister(mob/user, name as text, O as obj)
+/proc/SkinCmdRegister(mob/user, name as text, obj/O)
 	user.skincmds[name] = O
 
 /mob/verb/skincmd(data as text)

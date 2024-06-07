@@ -93,7 +93,7 @@
 		return !opacity
 	return !density
 
-/obj/machinery/door/proc/bumpopen(mob/user as mob)
+/obj/machinery/door/proc/bumpopen(mob/user)
 	if(operating)
 		return
 	if(user.last_airflow > world.time - global.vsc.airflow_delay) //Fakkit
@@ -108,19 +108,19 @@
 		else
 			flick("door_deny", src)
 
-/obj/machinery/door/meteorhit(obj/M as obj)
+/obj/machinery/door/meteorhit(obj/M)
 	open()
 
-/obj/machinery/door/attack_ai(mob/user as mob)
+/obj/machinery/door/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/door/attack_paw(mob/user as mob)
+/obj/machinery/door/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/door/attack_hand(mob/user as mob)
+/obj/machinery/door/attack_hand(mob/user)
 	return attackby(user, user)
 
-/obj/machinery/door/attack_tk(mob/user as mob)
+/obj/machinery/door/attack_tk(mob/user)
 	if(requiresID() && !allowed(null))
 		return
 	..()
@@ -145,7 +145,7 @@
 		return TRUE
 	return ..()
 
-/obj/machinery/door/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/door/attackby(obj/item/I, mob/user)
 	if(operating || isrobot(user))
 		return //borgs can't attack doors open because it conflicts with their AI-like interaction with them.
 	add_fingerprint(user)

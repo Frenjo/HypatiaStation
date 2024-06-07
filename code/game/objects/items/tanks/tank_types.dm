@@ -100,7 +100,7 @@
 	. = ..()
 	air_contents.adjust_gas(/decl/xgm_gas/plasma, (3 * ONE_ATMOSPHERE) * 70 / (R_IDEAL_GAS_EQUATION * T20C))
 
-/obj/item/tank/plasma/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/tank/plasma/attackby(obj/item/W, mob/user)
 	. = ..()
 	if(istype(W, /obj/item/flamethrower))
 		var/obj/item/flamethrower/F = W

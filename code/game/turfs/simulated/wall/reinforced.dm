@@ -36,7 +36,7 @@
 
 	ChangeTurf(/turf/simulated/floor/plating/metal)
 
-/turf/simulated/wall/reinforced/attack_hand(mob/user as mob)
+/turf/simulated/wall/reinforced/attack_hand(mob/user)
 	if(HULK in user.mutations)
 		if(prob(10) || rotting)
 			to_chat(user, SPAN_INFO("You smash through the wall."))
@@ -55,7 +55,7 @@
 	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 	add_fingerprint(user)
 
-/turf/simulated/wall/reinforced/attackby(obj/item/W as obj, mob/user as mob)
+/turf/simulated/wall/reinforced/attackby(obj/item/W, mob/user)
 	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
@@ -348,8 +348,8 @@
 	max_temperature = INFINITY
 	explosion_resistance = INFINITY
 
-/turf/simulated/wall/reinforced/riveted/attack_hand(mob/user as mob)
+/turf/simulated/wall/reinforced/riveted/attack_hand(mob/user)
 	return
 
-/turf/simulated/wall/reinforced/riveted/attackby(obj/item/W as obj, mob/user as mob)
+/turf/simulated/wall/reinforced/riveted/attackby(obj/item/W, mob/user)
 	return

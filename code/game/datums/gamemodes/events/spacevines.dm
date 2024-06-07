@@ -22,7 +22,7 @@
 		master.growth_queue -= src
 	return ..()
 
-/obj/effect/spacevine/attackby(obj/item/W as obj, mob/user as mob)
+/obj/effect/spacevine/attackby(obj/item/W, mob/user)
 	if(!W || !user || !W.type)
 		return
 
@@ -61,10 +61,10 @@
 		//Plant-b-gone damage is handled in its entry in chemistry-reagents.dm
 	..()
 
-/obj/effect/spacevine/attack_hand(mob/user as mob)
+/obj/effect/spacevine/attack_hand(mob/user)
 	manual_unbuckle(user)
 
-/obj/effect/spacevine/attack_paw(mob/user as mob)
+/obj/effect/spacevine/attack_paw(mob/user)
 	manual_unbuckle(user)
 
 /obj/effect/spacevine/proc/unbuckle()
@@ -76,7 +76,7 @@
 		buckled_mob = null
 	return
 
-/obj/effect/spacevine/proc/manual_unbuckle(mob/user as mob)
+/obj/effect/spacevine/proc/manual_unbuckle(mob/user)
 	if(buckled_mob)
 		if(prob(50))
 			if(buckled_mob.buckled == src)

@@ -53,13 +53,13 @@
 	src.name = (name_action + name_part1 + name_part2)
 
 
-/obj/machinery/computer/arcade/attack_ai(mob/user as mob)
+/obj/machinery/computer/arcade/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/arcade/attack_paw(mob/user as mob)
+/obj/machinery/computer/arcade/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/arcade/attack_hand(mob/user as mob)
+/obj/machinery/computer/arcade/attack_hand(mob/user)
 	if(..())
 		return
 	user.set_machine(src)

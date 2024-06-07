@@ -8,7 +8,7 @@
 	anchored = TRUE
 	var/shattered = 0
 
-/obj/structure/mirror/attack_hand(mob/user as mob)
+/obj/structure/mirror/attack_hand(mob/user)
 	if(shattered)
 		return
 
@@ -82,7 +82,7 @@
 	..()
 
 
-/obj/structure/mirror/attackby(obj/item/I as obj, mob/user as mob)
+/obj/structure/mirror/attackby(obj/item/I, mob/user)
 	if(shattered)
 		playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 70, 1)
 		return
@@ -95,7 +95,7 @@
 		playsound(src, 'sound/effects/Glasshit.ogg', 70, 1)
 
 
-/obj/structure/mirror/attack_animal(mob/user as mob)
+/obj/structure/mirror/attack_animal(mob/user)
 	if(!isanimal(user))
 		return
 	var/mob/living/simple_animal/M = user
@@ -108,7 +108,7 @@
 	shatter()
 
 
-/obj/structure/mirror/attack_slime(mob/user as mob)
+/obj/structure/mirror/attack_slime(mob/user)
 	if(!isslimeadult(user))
 		return
 	if(shattered)

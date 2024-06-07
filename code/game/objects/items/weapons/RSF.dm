@@ -38,7 +38,7 @@ RSF
 		return TRUE
 	return ..()
 
-/obj/item/rsf/attack_self(mob/user as mob)
+/obj/item/rsf/attack_self(mob/user)
 	playsound(src, 'sound/effects/pop.ogg', 50, 0)
 	if(mode == MODE_DOSH)
 		mode = MODE_DRINKING_GLASS
@@ -66,7 +66,7 @@ RSF
 		return
 	// Change mode
 
-/obj/item/rsf/afterattack(atom/A, mob/user as mob, proximity)
+/obj/item/rsf/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	if(!(istype(A, /obj/structure/table) || istype(A, /turf/simulated/floor)))

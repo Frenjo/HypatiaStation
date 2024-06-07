@@ -127,7 +127,7 @@
 		to_chat(usr, src.desc)
 	return
 
-/obj/item/attack_hand(mob/user as mob)
+/obj/item/attack_hand(mob/user)
 	if(isnull(user))
 		return
 	if(hasorgans(user))
@@ -157,7 +157,7 @@
 	add_fingerprint(user)
 	user.put_in_active_hand(src)
 
-/obj/item/attack_paw(mob/user as mob)
+/obj/item/attack_paw(mob/user)
 	if(istype(src.loc, /obj/item/storage))
 		for(var/mob/M in range(1, src.loc))
 			if(M.s_active == src.loc)
@@ -181,7 +181,7 @@
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
-/obj/item/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/storage))
 		var/obj/item/storage/S = W
 		if(S.use_to_pickup)
@@ -212,14 +212,14 @@
 
 	return
 
-/obj/item/proc/talk_into(mob/M as mob, text)
+/obj/item/proc/talk_into(mob/M, text)
 	return
 
-/obj/item/proc/moved(mob/user as mob, old_loc as turf)
+/obj/item/proc/moved(mob/user, turf/old_loc)
 	return
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
-/obj/item/proc/dropped(mob/user as mob)
+/obj/item/proc/dropped(mob/user)
 	return
 
 // called just as an item is picked up (loc is not yet changed)
@@ -227,15 +227,15 @@
 	return
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.
-/obj/item/proc/on_exit_storage(obj/item/storage/S as obj)
+/obj/item/proc/on_exit_storage(obj/item/storage/S)
 	return
 
 // called when this item is added into a storage item, which is passed on as S. The loc variable is already set to the storage item.
-/obj/item/proc/on_enter_storage(obj/item/storage/S as obj)
+/obj/item/proc/on_enter_storage(obj/item/storage/S)
 	return
 
 // called when "found" in pockets and storage items. Returns 1 if the search should end.
-/obj/item/proc/on_found(mob/finder as mob)
+/obj/item/proc/on_found(mob/finder)
 	return
 
 // called after an item is placed in an equipment slot
@@ -252,7 +252,7 @@
 //the mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
 //If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
 //Set disable_warning to 1 if you wish it to not give you outputs.
-/obj/item/proc/mob_can_equip(M as mob, slot, disable_warning = 0)
+/obj/item/proc/mob_can_equip(mob/M, slot, disable_warning = 0)
 	if(!slot)
 		return 0
 	if(!M)
@@ -486,7 +486,7 @@
 /obj/item/proc/IsShield()
 	return 0
 
-/obj/item/proc/eyestab(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/proc/eyestab(mob/living/carbon/M, mob/living/carbon/user)
 	var/mob/living/carbon/human/H = M
 	if(istype(H) && H.are_eyes_covered())
 		// you can't stab someone in the eyes wearing a mask!
@@ -560,7 +560,7 @@
 		var/obj/item/clothing/gloves/G = src
 		G.transfer_blood = 0
 
-/obj/item/add_blood(mob/living/carbon/human/M as mob)
+/obj/item/add_blood(mob/living/carbon/human/M)
 	if(!..())
 		return 0
 

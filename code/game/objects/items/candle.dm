@@ -20,7 +20,7 @@
 	else i = 3
 	icon_state = "candle[i][lit ? "_lit" : ""]"
 
-/obj/item/candle/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/candle/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
@@ -63,7 +63,7 @@
 		var/turf/T = loc
 		T.hotspot_expose(700, 5)
 
-/obj/item/candle/attack_self(mob/user as mob)
+/obj/item/candle/attack_self(mob/user)
 	if(lit)
 		lit = 0
 		update_icon()

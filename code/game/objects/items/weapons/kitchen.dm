@@ -55,7 +55,7 @@
 	icon_state = "fork"
 	sharp = 1
 
-/obj/item/kitchen/utensil/fork/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/kitchen/utensil/fork/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!istype(M))
 		return ..()
 
@@ -83,7 +83,7 @@
 	desc = "Yay, no washing up to do."
 	icon_state = "pfork"
 
-/obj/item/kitchen/utensil/pfork/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/kitchen/utensil/pfork/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!istype(M))
 		return ..()
 
@@ -124,7 +124,7 @@
 						"\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>")
 	return (BRUTELOSS)
 
-/obj/item/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
+/obj/item/kitchen/utensil/knife/attack(mob/target, mob/living/user)
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << "\red You accidentally cut yourself with the [src]."
 		user.take_organ_damage(20)
@@ -139,7 +139,7 @@
 	force = 10.0
 	throwforce = 10.0
 
-/obj/item/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
+/obj/item/kitchen/utensil/knife/attack(mob/target, mob/living/user)
 	if ((CLUMSY in user.mutations) && prob(50))
 		user << "\red You somehow managed to cut yourself with the [src]."
 		user.take_organ_damage(20)
@@ -199,7 +199,7 @@
 	sharp = 1
 	edge = 1
 
-/obj/item/butch/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/butch/attack(mob/living/carbon/M, mob/living/carbon/user)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
 	return ..()
 
@@ -218,7 +218,7 @@
 	w_class = 3.0
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "whacked") //I think the rollingpin attackby will end up ignoring this anyway.
 
-/obj/item/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/kitchen/rollingpin/attack(mob/living/M, mob/living/user)
 	if((CLUMSY in user.mutations) && prob(50))
 		user << "\red The [src] slips out of your hand and hits your head."
 		user.take_organ_damage(10)
@@ -290,7 +290,7 @@
 					   // w_class = 2 -- takes up 3
 					   // w_class = 3 -- takes up 5
 
-/obj/item/tray/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/tray/attack(mob/living/carbon/M, mob/living/carbon/user)
 	// Drop all the things. All of them.
 	overlays.Cut()
 	for(var/obj/item/I in carrying)
@@ -483,7 +483,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 //Enough with the violent stuff, here's what happens if you try putting food on it
 /////////////////////////////////////////////////////////////////////////////////////////////
-/*/obj/item/tray/attackby(obj/item/W as obj, mob/user as mob)
+/*/obj/item/tray/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/kitchen/utensil/fork))
 		if (W.icon_state == "forkloaded")
 			user << "\red You already have omelette on your fork."

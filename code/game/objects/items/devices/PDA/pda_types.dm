@@ -45,9 +45,9 @@
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. The surface is coated with polytetrafluoroethylene and banana drippings."
 	ttone = "honk"
 
-/obj/item/pda/clown/Crossed(crosser as mob|obj) //Clown PDA is slippery.
-	if(iscarbon(crosser))
-		var/mob/living/carbon/M = crosser
+/obj/item/pda/clown/Crossed(atom/movable/AM) //Clown PDA is slippery.
+	if(iscarbon(AM))
+		var/mob/living/carbon/M = AM
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if((istype(H.shoes, /obj/item/clothing/shoes) && HAS_ITEM_FLAGS(H.shoes, ITEM_FLAG_NO_SLIP)) || IS_WALKING(M))
@@ -179,7 +179,7 @@
 /obj/item/pda/ai/can_use()
 	return 1
 
-/obj/item/pda/ai/attack_self(mob/user as mob)
+/obj/item/pda/ai/attack_self(mob/user)
 	if(honkamt > 0 && prob(60))//For clown virus.
 		honkamt--
 		playsound(loc, 'sound/items/bikehorn.ogg', 30, 1)

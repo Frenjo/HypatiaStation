@@ -37,13 +37,13 @@
 		else
 	return
 
-/obj/machinery/sleep_console/attack_ai(mob/user as mob)
+/obj/machinery/sleep_console/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/sleep_console/attack_paw(mob/user as mob)
+/obj/machinery/sleep_console/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/sleep_console/attack_hand(mob/user as mob)
+/obj/machinery/sleep_console/attack_hand(mob/user)
 	if(..())
 		return
 	if(src.connected)
@@ -186,7 +186,7 @@
 		qdel(src)
 	return
 
-/obj/machinery/sleeper/attackby(obj/item/G as obj, mob/user as mob)
+/obj/machinery/sleeper/attackby(obj/item/G, mob/user)
 	if(istype(G, /obj/item/reagent_containers/glass))
 		if(!beaker)
 			beaker = G
@@ -273,7 +273,7 @@
 		go_out()
 	..(severity)
 
-/obj/machinery/sleeper/alter_health(mob/living/M as mob)
+/obj/machinery/sleeper/alter_health(mob/living/M)
 	if(M.health > 0)
 		if(M.getOxyLoss() >= 10)
 			var/amount = max(0.15, 1)
@@ -311,7 +311,7 @@
 		icon_state = "sleeper_0-r"
 	return
 
-/obj/machinery/sleeper/proc/inject_chemical(mob/living/user as mob, chemical, amount)
+/obj/machinery/sleeper/proc/inject_chemical(mob/living/user, chemical, amount)
 	if(src.occupant && src.occupant.reagents)
 		if(src.occupant.reagents.get_reagent_amount(chemical) + amount <= 20)
 			src.occupant.reagents.add_reagent(chemical, amount)
@@ -320,7 +320,7 @@
 	to_chat(user, "There's no occupant in the sleeper or the subject has too many chemicals!")
 	return
 
-/obj/machinery/sleeper/proc/check(mob/living/user as mob)
+/obj/machinery/sleeper/proc/check(mob/living/user)
 	if(src.occupant)
 		to_chat(user, SPAN_INFO_B("Occupant ([src.occupant]) Statistics:"))
 		var/t1

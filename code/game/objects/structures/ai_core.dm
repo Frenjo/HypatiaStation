@@ -10,7 +10,7 @@
 	var/obj/item/circuitboard/circuit = null
 	var/obj/item/mmi/brain = null
 
-/obj/structure/ai_core/attackby(obj/item/object as obj, mob/user as mob)
+/obj/structure/ai_core/attackby(obj/item/object, mob/user)
 	switch(state)
 		if(0)
 			if(istype(object, /obj/item/wrench))
@@ -175,7 +175,7 @@
 	anchored = TRUE
 	state = 20 // So it doesn't interact based on the above. Not really necessary.
 
-/obj/structure/ai_core/deactivated/attackby(obj/item/aicard/card as obj, mob/user as mob)
+/obj/structure/ai_core/deactivated/attackby(obj/item/aicard/card, mob/user)
 	if(istype(card, /obj/item/aicard)) //Is it?
 		card.transfer_ai("INACTIVE", "AICARD", src, user)
 	return
@@ -186,7 +186,7 @@ If adding stuff to this, don't forget that an AI need to cancel_camera() wheneve
 That prevents a few funky behaviors.
 */
 //What operation to perform based on target, what ineraction to perform based on object used, target itself, user. The object used is src and calls this proc.
-/obj/item/proc/transfer_ai(choice as text, interaction as text, target, mob/user as mob)
+/obj/item/proc/transfer_ai(choice as text, interaction as text, target, mob/user)
 	if(!src:flush)
 		switch(choice)
 			if("AICORE") //AI mob.

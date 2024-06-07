@@ -66,11 +66,11 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	for(var/ch_name in channels)
 		secure_radio_connections[ch_name] = register_radio(src, null, GLOBL.radio_channels[ch_name], RADIO_CHAT)
 
-/obj/item/radio/attack_self(mob/user as mob)
+/obj/item/radio/attack_self(mob/user)
 	user.set_machine(src)
 	interact(user)
 
-/obj/item/radio/interact(mob/user as mob)
+/obj/item/radio/interact(mob/user)
 	if(!on)
 		return
 
@@ -201,7 +201,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	qdel(A)
 	return
 
-/obj/item/radio/talk_into(mob/living/M as mob, message, channel, verbage = "says", datum/language/speaking = null)
+/obj/item/radio/talk_into(mob/living/M, message, channel, verbage = "says", datum/language/speaking = null)
 	if(!on)
 		return // the device has to be on
 	// Fix for permacell radios, but kinda eh about actually fixing them.
@@ -585,12 +585,12 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 					else
 						R.show_message(rendered, 2)
 
-/obj/item/radio/hear_talk(mob/M as mob, msg, verbage = "says", datum/language/speaking = null)
+/obj/item/radio/hear_talk(mob/M, msg, verbage = "says", datum/language/speaking = null)
 	if(broadcasting)
 		if(get_dist(src, M) <= canhear_range)
 			talk_into(M, msg, null, verbage, speaking)
 /*
-/obj/item/radio/proc/accept_rad(obj/item/radio/R as obj, message)
+/obj/item/radio/proc/accept_rad(obj/item/radio/R, message)
 
 	if ((R.frequency == frequency && message))
 		return 1
@@ -699,7 +699,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		return TRUE
 	return ..()
 
-/obj/item/radio/borg/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/radio/borg/attackby(obj/item/W, mob/user)
 //	..()
 	user.set_machine(src)
 	if(!(istype(W, /obj/item/screwdriver) || (istype(W, /obj/item/encryptionkey/))))
@@ -784,7 +784,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			recalculateChannels()
 	..()
 
-/obj/item/radio/borg/interact(mob/user as mob)
+/obj/item/radio/borg/interact(mob/user)
 	if(!on)
 		return
 

@@ -19,7 +19,7 @@
 
 	var/universal_translate = 0 // set to 1 if it can translate nonhuman speech
 
-/obj/machinery/computer/telecoms/server/attack_hand(mob/user as mob)
+/obj/machinery/computer/telecoms/server/attack_hand(mob/user)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	user.set_machine(src)

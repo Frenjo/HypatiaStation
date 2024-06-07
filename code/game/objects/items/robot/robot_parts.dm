@@ -114,7 +114,7 @@
 				return TRUE
 	return FALSE
 
-/obj/item/robot_parts/robot_suit/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/robot_parts/robot_suit/attackby(obj/item/W, mob/user)
 	. = ..()
 	if(istype(W, /obj/item/stack/sheet/metal) && isnull(l_arm) && isnull(r_arm) && isnull(l_leg) && isnull(r_leg) && isnull(chest) && isnull(head))
 		var/obj/item/stack/sheet/metal/M = W
@@ -260,7 +260,7 @@
 
 		src.created_name = t
 
-/obj/item/robot_parts/chest/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/robot_parts/chest/attackby(obj/item/W, mob/user)
 	. = ..()
 	if(istype(W, /obj/item/cell))
 		if(isnotnull(cell))
@@ -281,7 +281,7 @@
 			wires = TRUE
 			to_chat(user, SPAN_INFO("You insert the wire!"))
 
-/obj/item/robot_parts/head/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/robot_parts/head/attackby(obj/item/W, mob/user)
 	. = ..()
 	if(istype(W, /obj/item/flash))
 		if(isnotnull(flash1) && isnotnull(flash2))

@@ -46,7 +46,7 @@
 		qdel(src)
 
 // This needs to be replaced with the new system.
-/obj/item/card/emag/afterattack(obj/item/O as obj, mob/user as mob)
+/obj/item/card/emag/afterattack(obj/item/O, mob/user)
 	for(var/type in devices)
 		if(istype(O, type))
 			uses--

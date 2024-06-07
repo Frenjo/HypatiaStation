@@ -12,7 +12,7 @@
 	max_w_class = 3
 	max_combined_w_class = 21
 
-/obj/item/storage/backpack/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/backpack/attackby(obj/item/W, mob/user)
 	if(isnotnull(use_sound))
 		playsound(loc, use_sound, 50, 1, -5)
 	..()
@@ -23,7 +23,7 @@
 	..(user, slot)
 
 /*
-/obj/item/storage/backpack/dropped(mob/user as mob)
+/obj/item/storage/backpack/dropped(mob/user)
 	if (loc == user && use_sound)
 		playsound(loc, use_sound, 50, 1, -5)
 	..(user)
@@ -40,7 +40,7 @@
 	max_w_class = 4
 	max_combined_w_class = 28
 
-/obj/item/storage/backpack/holding/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/backpack/holding/attackby(obj/item/W, mob/user)
 	if(crit_fail)
 		to_chat(user, SPAN_WARNING("The Bluespace generator isn't working."))
 		return
@@ -62,7 +62,7 @@
 		*/
 	..()
 
-/obj/item/storage/backpack/holding/proc/failcheck(mob/user as mob)
+/obj/item/storage/backpack/holding/proc/failcheck(mob/user)
 	if(prob(reliability))
 		return 1 //No failure
 	if(prob(reliability))

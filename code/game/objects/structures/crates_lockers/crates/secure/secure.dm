@@ -24,7 +24,7 @@
 /obj/structure/closet/crate/secure/can_open()
 	return !locked
 
-/obj/structure/closet/crate/secure/proc/togglelock(mob/user as mob)
+/obj/structure/closet/crate/secure/proc/togglelock(mob/user)
 	if(src.opened)
 		to_chat(user, SPAN_NOTICE("Close the crate first."))
 		return
@@ -55,14 +55,14 @@
 	else
 		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
 
-/obj/structure/closet/crate/secure/attack_hand(mob/user as mob)
+/obj/structure/closet/crate/secure/attack_hand(mob/user)
 	src.add_fingerprint(user)
 	if(locked)
 		src.togglelock(user)
 	else
 		src.toggle(user)
 
-/obj/structure/closet/crate/secure/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/closet/crate/secure/attackby(obj/item/W, mob/user)
 	if(is_type_in_list(W, list(/obj/item/package_wrap, /obj/item/stack/cable_coil, /obj/item/radio/electropack, /obj/item/wirecutters)))
 		return ..()
 	if(locked && (istype(W, /obj/item/card/emag) || istype(W, /obj/item/melee/energy/blade)))

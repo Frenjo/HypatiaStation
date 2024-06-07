@@ -117,7 +117,7 @@
 /*
  * Inventory
  */
-/mob/living/simple_animal/parrot/show_inv(mob/user as mob)
+/mob/living/simple_animal/parrot/show_inv(mob/user)
 	user.set_machine(src)
 	if(user.stat) return
 
@@ -212,7 +212,7 @@
  * Attack responces
  */
 //Humans, monkeys, aliens
-/mob/living/simple_animal/parrot/attack_hand(mob/living/carbon/M as mob)
+/mob/living/simple_animal/parrot/attack_hand(mob/living/carbon/M)
 	..()
 	if(client) return
 	if(!stat && M.a_intent == "hurt")
@@ -232,11 +232,11 @@
 			drop_held_item(0)
 	return
 
-/mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/monkey/M as mob)
+/mob/living/simple_animal/parrot/attack_paw(mob/living/carbon/monkey/M)
 	attack_hand(M)
 
 //Simple animals
-/mob/living/simple_animal/parrot/attack_animal(mob/living/simple_animal/M as mob)
+/mob/living/simple_animal/parrot/attack_animal(mob/living/simple_animal/M)
 	if(client) return
 
 
@@ -249,7 +249,7 @@
 		icon_state = "parrot_fly"
 
 //Mobs with objects
-/mob/living/simple_animal/parrot/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/parrot/attackby(obj/item/O, mob/user)
 	..()
 	if(!stat && !client && !istype(O, /obj/item/stack/medical))
 		if(O.force)

@@ -48,7 +48,7 @@
 				src.req_access.Add(pick(get_all_station_access()))
 	..()
 
-/obj/structure/closet/secure/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/closet/secure/attackby(obj/item/W, mob/user)
 	if(src.opened)
 		if(istype(W, /obj/item/grab))
 			if(src.large)
@@ -80,14 +80,14 @@
 	else
 		togglelock(user)
 
-/obj/structure/closet/secure/attack_hand(mob/user as mob)
+/obj/structure/closet/secure/attack_hand(mob/user)
 	src.add_fingerprint(user)
 	if(src.locked)
 		src.togglelock(user)
 	else
 		src.toggle(user)
 
-/obj/structure/closet/secure/attack_paw(mob/user as mob)
+/obj/structure/closet/secure/attack_paw(mob/user)
 	return src.attack_hand(user)
 
 /obj/structure/closet/secure/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
@@ -102,7 +102,7 @@
 	else
 		icon_state = icon_opened
 
-/obj/structure/closet/secure/proc/togglelock(mob/user as mob)
+/obj/structure/closet/secure/proc/togglelock(mob/user)
 	if(src.opened)
 		to_chat(user, SPAN_NOTICE("Close the locker first."))
 		return

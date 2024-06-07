@@ -13,7 +13,7 @@
 	var/allow_reagents = 0
 	var/malfunction = 0
 
-/obj/item/implant/proc/trigger(emote, source as mob)
+/obj/item/implant/proc/trigger(emote, mob/source)
 	return
 
 /obj/item/implant/proc/activate()
@@ -28,7 +28,7 @@
 /obj/item/implant/proc/get_data()
 	return "No information available"
 
-/obj/item/implant/proc/hear(message, source as mob)
+/obj/item/implant/proc/hear(message, mob/source)
 	return
 
 /obj/item/implant/proc/islegal()
@@ -110,7 +110,7 @@ Implant Specifics:<BR>"}
 	return dat
 
 
-/obj/item/implant/dexplosive/trigger(emote, source as mob)
+/obj/item/implant/dexplosive/trigger(emote, mob/source)
 	if(emote == "deathgasp")
 		src.activate("death")
 	return
@@ -148,7 +148,7 @@ Implant Specifics:<BR>"}
 <b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
 	return dat
 
-/obj/item/implant/explosive/hear_talk(mob/M as mob, msg)
+/obj/item/implant/explosive/hear_talk(mob/M, msg)
 	hear(msg)
 	return
 
@@ -204,7 +204,7 @@ Implant Specifics:<BR>"}
 	if(t)
 		t.hotspot_expose(3500, 125)
 
-/obj/item/implant/explosive/implanted(mob/source as mob)
+/obj/item/implant/explosive/implanted(mob/source)
 	elevel = alert("What sort of explosion would you prefer?", "Implant Intent", "Localized Limb", "Destroy Body", "Full Explosion")
 	phrase = input("Choose activation phrase:") as text
 	var/list/replacechars = list("'" = "", "\"" = "", ">" = "", "<" = "", "(" = "", ")" = "")
@@ -281,7 +281,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	. = ..()
 	create_reagents(50)
 
-/obj/item/implant/chem/trigger(emote, source as mob)
+/obj/item/implant/chem/trigger(emote, mob/source)
 	if(emote == "deathgasp")
 		src.activate(src.reagents.total_volume)
 	return
@@ -362,7 +362,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 <b>Integrity:</b> Implant can only be used three times before the nanobots are depleted."}
 	return dat
 
-/obj/item/implant/adrenalin/trigger(emote, mob/source as mob)
+/obj/item/implant/adrenalin/trigger(emote, mob/source)
 	if(src.uses < 1)
 		return 0
 	if(emote == "pale")
@@ -447,7 +447,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	spawn(20)
 		malfunction--
 
-/obj/item/implant/death_alarm/implanted(mob/source as mob)
+/obj/item/implant/death_alarm/implanted(mob/source)
 	mobname = source.real_name
 	GLOBL.processing_objects.Add(src)
 	return 1
@@ -473,7 +473,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 <b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
 	return dat
 
-/obj/item/implant/compressed/trigger(emote, mob/source as mob)
+/obj/item/implant/compressed/trigger(emote, mob/source)
 	if(src.scanned == null)
 		return 0
 
@@ -489,7 +489,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		scanned.loc = t
 	qdel(src)
 
-/obj/item/implant/compressed/implanted(mob/source as mob)
+/obj/item/implant/compressed/implanted(mob/source)
 	src.activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
 	if(source.mind)
 		source.mind.store_memory("Compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)

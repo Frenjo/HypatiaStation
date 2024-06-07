@@ -18,7 +18,7 @@
 	else
 		icon_state = "implanter0"
 
-/obj/item/implanter/attack(mob/M as mob, mob/user as mob)
+/obj/item/implanter/attack(mob/M, mob/user)
 	if(!iscarbon(M))
 		return
 	if(isnotnull(user) && isnotnull(imp))
@@ -99,7 +99,7 @@
 	else
 		icon_state = "cimplanter0"
 
-/obj/item/implanter/compressed/attack(mob/M as mob, mob/user as mob)
+/obj/item/implanter/compressed/attack(mob/M, mob/user)
 	var/obj/item/implant/compressed/c = imp
 	if(isnull(c))
 		return
@@ -108,7 +108,7 @@
 		return
 	return ..()
 
-/obj/item/implanter/compressed/afterattack(atom/A, mob/user as mob)
+/obj/item/implanter/compressed/afterattack(atom/A, mob/user)
 	if(isitem(A) && isnotnull(imp))
 		var/obj/item/implant/compressed/c = imp
 		if(isnotnull(c.scanned))

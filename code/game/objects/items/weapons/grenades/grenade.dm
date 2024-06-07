@@ -12,7 +12,7 @@
 	var/active = 0
 	var/det_time = 50
 
-/obj/item/grenade/proc/clown_check(var/mob/living/user)
+/obj/item/grenade/proc/clown_check(mob/living/user)
 	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("Huh? How does this thing work?"))
 
@@ -24,7 +24,7 @@
 	return 1
 
 
-/*/obj/item/grenade/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
+/*/obj/item/grenade/afterattack(atom/target, mob/user)
 	if (istype(target, /obj/item/storage)) return ..() // Trying to put it in a full container
 	if (istype(target, /obj/item/gun/grenadelauncher)) return ..()
 	if((user.get_active_hand() == src) && (!active) && (clown_check(user)) && target.loc != src.loc)
@@ -51,7 +51,7 @@
 	to_chat(usr, "\The [src] is set for instant detonation.")
 
 
-/obj/item/grenade/attack_self(mob/user as mob)
+/obj/item/grenade/attack_self(mob/user)
 	if(!active)
 		if(clown_check(user))
 			to_chat(user, SPAN_WARNING("You prime \the [name]! [det_time/10] seconds!"))
@@ -64,7 +64,7 @@
 	return
 
 
-/obj/item/grenade/proc/activate(mob/user as mob)
+/obj/item/grenade/proc/activate(mob/user)
 	if(active)
 		return
 
@@ -111,5 +111,5 @@
 	..()
 	return
 
-/obj/item/grenade/attack_paw(mob/user as mob)
+/obj/item/grenade/attack_paw(mob/user)
 	return attack_hand(user)

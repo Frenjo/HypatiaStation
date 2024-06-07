@@ -212,7 +212,7 @@
 /mob/living/silicon/robot/restrained()
 	return 0
 
-/mob/living/silicon/robot/meteorhit(obj/O as obj)
+/mob/living/silicon/robot/meteorhit(obj/O)
 	visible_message(SPAN_WARNING("[src] has been hit by [O]!"))
 	if(health > 0)
 		adjustBruteLoss(30)
@@ -231,7 +231,7 @@
 		return
 	. = ..()
 
-/mob/living/silicon/robot/cancelAlarm(class, area/A as area, obj/origin)
+/mob/living/silicon/robot/cancelAlarm(class, area/A, obj/origin)
 	var/has_alarm = ..()
 
 	if(!has_alarm)
@@ -342,7 +342,7 @@
 
 	return ..()
 
-/mob/living/silicon/robot/attackby(obj/item/W as obj, mob/user as mob)
+/mob/living/silicon/robot/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
 		return
 
@@ -475,7 +475,7 @@
 			spark_system.start()
 		return ..()
 
-/mob/living/silicon/robot/attack_slime(mob/living/carbon/slime/M as mob)
+/mob/living/silicon/robot/attack_slime(mob/living/carbon/slime/M)
 	if(isnull(global.PCticker))
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
@@ -529,7 +529,7 @@
 
 		updatehealth()
 
-/mob/living/silicon/robot/attack_animal(mob/living/M as mob)
+/mob/living/silicon/robot/attack_animal(mob/living/M)
 	if(M.melee_damage_upper == 0)
 		M.emote("[M.friendly] [src]")
 	else

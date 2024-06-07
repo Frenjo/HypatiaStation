@@ -38,7 +38,7 @@ FLOOR SAFES
 			space += I.w_class
 			I.loc = src
 
-/obj/structure/safe/proc/check_unlocked(mob/user as mob, canhear)
+/obj/structure/safe/proc/check_unlocked(mob/user, canhear)
 	if(user && canhear)
 		if(tumbler_1_pos == tumbler_1_open)
 			to_chat(user, SPAN_NOTICE("You hear a [pick("tonk", "krunk", "plunk")] from [src]."))
@@ -68,7 +68,7 @@ FLOOR SAFES
 	else
 		icon_state = initial(icon_state)
 
-/obj/structure/safe/attack_hand(mob/user as mob)
+/obj/structure/safe/attack_hand(mob/user)
 	user.set_machine(src)
 	var/dat = "<center>"
 	dat += "<a href='byond://?src=\ref[src];open=1'>[open ? "Close" : "Open"] [src]</a> | <a href='byond://?src=\ref[src];decrement=1'>-</a> [dial * 5] <a href='byond://?src=\ref[src];increment=1'>+</a>"
@@ -137,7 +137,7 @@ FLOOR SAFES
 				user.put_in_hands(P)
 				updateUsrDialog()
 
-/obj/structure/safe/attackby(obj/item/I as obj, mob/user as mob)
+/obj/structure/safe/attackby(obj/item/I, mob/user)
 	if(open)
 		if(I.w_class + space <= maxspace)
 			space += I.w_class
@@ -160,7 +160,7 @@ FLOOR SAFES
 /obj/structure/safe/ex_act(severity)
 	return
 
-/obj/structure/safe/meteorhit(obj/O as obj)
+/obj/structure/safe/meteorhit(obj/O)
 	return
 
 

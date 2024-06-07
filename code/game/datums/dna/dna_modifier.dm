@@ -67,7 +67,7 @@
 /obj/machinery/dna_scannernew/allow_drop()
 	return 0
 
-/obj/machinery/dna_scannernew/relaymove(mob/user as mob)
+/obj/machinery/dna_scannernew/relaymove(mob/user)
 	if(user.stat)
 		return
 	src.go_out()
@@ -330,14 +330,14 @@
 		return
 	return
 */
-/obj/machinery/computer/scan_consolenew/attack_paw(user as mob)
+/obj/machinery/computer/scan_consolenew/attack_paw(mob/user)
 	ui_interact(user)
 
-/obj/machinery/computer/scan_consolenew/attack_ai(user as mob)
+/obj/machinery/computer/scan_consolenew/attack_ai(mob/user)
 	src.add_hiddenprint(user)
 	ui_interact(user)
 
-/obj/machinery/computer/scan_consolenew/attack_hand(user as mob)
+/obj/machinery/computer/scan_consolenew/attack_hand(mob/user)
 	if(!..())
 		ui_interact(user)
 

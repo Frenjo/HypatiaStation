@@ -1,4 +1,4 @@
-/mob/living/carbon/human/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/human/attack_hand(mob/living/carbon/human/M)
 	var/datum/organ/external/temp = M:organs_by_name["r_hand"]
 	if(M.hand)
 		temp = M:organs_by_name["l_hand"]
@@ -225,5 +225,5 @@
 			visible_message(SPAN_DANGER("[M] attempted to disarm [src]!"))
 	return
 
-/mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
+/mob/living/carbon/human/proc/afterattack(atom/target, mob/living/user, inrange, params)
 	return

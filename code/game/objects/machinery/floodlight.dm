@@ -31,7 +31,7 @@
 			src.visible_message(SPAN_WARNING("[src] shuts down due to lack of power!"))
 			return
 
-/obj/machinery/floodlight/attack_hand(mob/user as mob)
+/obj/machinery/floodlight/attack_hand(mob/user)
 	if(open && cell)
 		if(ishuman(user))
 			if(!user.get_active_hand())

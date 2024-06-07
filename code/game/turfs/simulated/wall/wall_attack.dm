@@ -1,5 +1,5 @@
 // Interactions
-/turf/simulated/wall/attack_paw(mob/user as mob)
+/turf/simulated/wall/attack_paw(mob/user)
 	if((HULK in user.mutations))
 		usr.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 	if((HULK in user.mutations) || user.get_species() == SPECIES_OBSEDAI)
@@ -14,7 +14,7 @@
 
 	return attack_hand(user)
 
-/turf/simulated/wall/attack_animal(mob/living/M as mob)
+/turf/simulated/wall/attack_animal(mob/living/M)
 	if(M.wall_smash)
 		if(istype(src, /turf/simulated/wall/reinforced) && !rotting)
 			to_chat(M, SPAN_INFO("This wall is far too strong for you to destroy."))
@@ -31,7 +31,7 @@
 
 	to_chat(M, SPAN_INFO("You push the wall but nothing happens!"))
 
-/turf/simulated/wall/attack_hand(mob/user as mob)
+/turf/simulated/wall/attack_hand(mob/user)
 	if((HULK in user.mutations))
 		usr.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 	if((HULK in user.mutations) || user.get_species() == SPECIES_OBSEDAI)
@@ -53,7 +53,7 @@
 	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 	add_fingerprint(user)
 
-/turf/simulated/wall/attackby(obj/item/W as obj, mob/user as mob)
+/turf/simulated/wall/attackby(obj/item/W, mob/user)
 	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return

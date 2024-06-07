@@ -10,7 +10,7 @@
 	icon_state = "plasma"
 	material = /decl/material/plasma
 
-/obj/structure/mineral_door/transparent/plasma/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/mineral_door/transparent/plasma/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))

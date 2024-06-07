@@ -20,7 +20,7 @@
 
 //BS12 EDIT
 /* // All cult functionality moved to Null Rod
-/obj/item/storage/bible/proc/bless(mob/living/carbon/M as mob)
+/obj/item/storage/bible/proc/bless(mob/living/carbon/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/heal_amt = 10
@@ -29,7 +29,7 @@
 				H.UpdateDamageIcon()
 	return
 
-/obj/item/storage/bible/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/storage/bible/attack(mob/living/M, mob/living/user)
 
 	var/chaplain = 0
 	if(user.mind && (user.mind.assigned_role == "Chaplain"))
@@ -85,7 +85,7 @@
 		playsound(src.loc, "punch", 25, 1, -1)
 	return
 */
-/obj/item/storage/bible/afterattack(atom/A, mob/user as mob, proximity)
+/obj/item/storage/bible/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 /*	if (istype(A, /turf/simulated/floor))
@@ -99,7 +99,7 @@
 			A.reagents.del_reagent(/datum/reagent/water)
 			A.reagents.add_reagent("holywater", water2holy)
 
-/obj/item/storage/bible/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/bible/attackby(obj/item/W, mob/user)
 	if(isnotnull(use_sound))
 		playsound(loc, use_sound, 50, 1, -5)
 	..()

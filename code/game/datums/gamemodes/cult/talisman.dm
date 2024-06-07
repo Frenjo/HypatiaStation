@@ -8,7 +8,7 @@
 	..()
 	return
 
-/obj/item/paper/talisman/attack_self(mob/living/user as mob)
+/obj/item/paper/talisman/attack_self(mob/living/user)
 	if(iscultist(user))
 		var/delete = 1
 		switch(imbue)
@@ -45,7 +45,7 @@
 		to_chat(user, "You see strange symbols on the paper. Are they supposed to mean something?")
 		return
 
-/obj/item/paper/talisman/attack(mob/living/carbon/T as mob, mob/living/user as mob)
+/obj/item/paper/talisman/attack(mob/living/carbon/T, mob/living/user)
 	if(iscultist(user))
 		if(imbue == "runestun")
 			user.take_organ_damage(5, 0)

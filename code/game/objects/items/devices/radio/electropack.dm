@@ -11,13 +11,13 @@
 
 	var/code = 2
 
-/obj/item/radio/electropack/attack_hand(mob/user as mob)
+/obj/item/radio/electropack/attack_hand(mob/user)
 	if(src == user.back)
 		to_chat(user, SPAN_NOTICE("You need help taking this off!"))
 		return
 	..()
 
-/obj/item/radio/electropack/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/radio/electropack/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/clothing/head/helmet))
 		if(!b_stat)
@@ -100,7 +100,7 @@
 		master.receive_signal()
 	return
 
-/obj/item/radio/electropack/attack_self(mob/user as mob, flag1)
+/obj/item/radio/electropack/attack_self(mob/user, flag1)
 	if(!ishuman(user))
 		return
 	user.set_machine(src)

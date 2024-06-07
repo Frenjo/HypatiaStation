@@ -6,7 +6,7 @@
 	anchored = TRUE
 	var/amount = 3 // spawns each items X times.
 
-/obj/structure/walllocker/attack_hand(mob/user as mob)
+/obj/structure/walllocker/attack_hand(mob/user)
 	if(isAI(user))	//Added by Strumpetplaya - AI shouldn't be able to
 		return		//activate emergency lockers.  This fixes that.  (Does this make sense, the AI can't call attack_hand, can it? --Mloc)
 	if(!amount)

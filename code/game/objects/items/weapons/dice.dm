@@ -17,7 +17,7 @@
 	icon_state = "d2020"
 	sides = 20
 
-/obj/item/dice/attack_self(mob/user as mob)
+/obj/item/dice/attack_self(mob/user)
 	var/result = rand(1, sides)
 	var/comment = ""
 	if(sides == 20 && result == 20)

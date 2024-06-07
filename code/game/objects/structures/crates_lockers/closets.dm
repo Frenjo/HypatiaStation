@@ -132,7 +132,7 @@
 	density = TRUE
 	return 1
 
-/obj/structure/closet/proc/toggle(mob/user as mob)
+/obj/structure/closet/proc/toggle(mob/user)
 	. = src.opened ? src.close() : src.open()
 	if(!.)
 		to_chat(user, SPAN_NOTICE("It won't budge!"))
@@ -169,7 +169,7 @@
 
 	return
 
-/obj/structure/closet/attack_animal(mob/living/user as mob)
+/obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)
 		visible_message(SPAN_WARNING("[user] destroys the [src]."))
 		for(var/atom/movable/A as mob|obj in src)
@@ -183,14 +183,14 @@
 			A.loc = src.loc
 		qdel(src)
 
-/obj/structure/closet/meteorhit(obj/O as obj)
+/obj/structure/closet/meteorhit(obj/O)
 	if(O.icon_state == "flaming")
 		for(var/mob/M in src)
 			M.meteorhit(O)
 		src.dump_contents()
 		qdel(src)
 
-/obj/structure/closet/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/closet/attackby(obj/item/W, mob/user)
 	if(src.opened)
 		if(istype(W, /obj/item/grab))
 			src.MouseDrop_T(W:affecting, user)		//act like they were dragged onto the closet
@@ -230,7 +230,7 @@
 		src.attack_hand(user)
 	return
 
-/obj/structure/closet/MouseDrop_T(atom/movable/O as mob|obj, mob/user as mob)
+/obj/structure/closet/MouseDrop_T(atom/movable/O, mob/user)
 	if(istype(O, /atom/movable/screen))	//fix for HUD elements making their way into the world	-Pete
 		return
 	if(O.loc == user)
@@ -253,7 +253,7 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/structure/closet/relaymove(mob/user as mob)
+/obj/structure/closet/relaymove(mob/user)
 	if(user.stat || !isturf(src.loc))
 		return
 
@@ -266,15 +266,15 @@
 			spawn(30)
 				lastbang = 0
 
-/obj/structure/closet/attack_paw(mob/user as mob)
+/obj/structure/closet/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/structure/closet/attack_hand(mob/user as mob)
+/obj/structure/closet/attack_hand(mob/user)
 	src.add_fingerprint(user)
 	src.toggle(user)
 
 // tk grab then use on self
-/obj/structure/closet/attack_self_tk(mob/user as mob)
+/obj/structure/closet/attack_self_tk(mob/user)
 	src.add_fingerprint(user)
 	if(!src.toggle())
 		to_chat(usr, SPAN_NOTICE("It won't budge!"))
@@ -302,7 +302,7 @@
 	else
 		icon_state = icon_opened
 
-/obj/structure/closet/hear_talk(mob/M as mob, text)
+/obj/structure/closet/hear_talk(mob/M, text)
 	for(var/atom/A in src)
 		if(istype(A, /obj/))
 			var/obj/O = A

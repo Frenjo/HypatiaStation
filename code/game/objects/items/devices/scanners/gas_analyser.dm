@@ -19,7 +19,7 @@
 	matter_amounts = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 20)
 	origin_tech = list(/datum/tech/magnets = 1, /datum/tech/engineering = 1)
 
-/obj/item/gas_analyser/attack_self(mob/user as mob)
+/obj/item/gas_analyser/attack_self(mob/user)
 	if(user.stat)
 		return
 	if(!ishuman(usr) && !IS_GAME_MODE(/datum/game_mode/monkey))

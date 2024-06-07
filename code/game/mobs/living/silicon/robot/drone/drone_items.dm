@@ -26,7 +26,7 @@
 	//Item currently being held.
 	var/obj/item/wrapped = null
 
-/obj/item/gripper/attack_self(mob/user as mob)
+/obj/item/gripper/attack_self(mob/user)
 	if(wrapped)
 		wrapped.attack_self(user)
 
@@ -50,7 +50,7 @@
 	wrapped = null
 	//update_icon()
 
-/obj/item/gripper/afterattack(atom/target, mob/user as mob)
+/obj/item/gripper/afterattack(atom/target, mob/user)
 	if(!target) //Target is invalid.
 		return
 
@@ -114,7 +114,7 @@
 		/decl/material/wood = 0
 	)
 
-/obj/item/matter_decompiler/afterattack(atom/target, mob/user as mob)
+/obj/item/matter_decompiler/afterattack(atom/target, mob/user)
 	//We only want to deal with using this on turfs. Specific items aren't important.
 	var/turf/T = get_turf(target)
 	if(!istype(T))

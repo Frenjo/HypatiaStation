@@ -5,7 +5,7 @@
 
 	var/registered_name = null
 
-/obj/structure/closet/secure/personal/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/closet/secure/personal/attackby(obj/item/W, mob/user)
 	if(src.opened)
 		if(istype(W, /obj/item/grab))
 			src.MouseDrop_T(W:affecting, user)      //act like they were dragged onto the closet

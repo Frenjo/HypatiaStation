@@ -86,13 +86,13 @@
 		if(temperature > T0C + 200)
 			alarm()			// added check of detector status here
 
-/obj/machinery/firealarm/attack_ai(mob/user as mob)
+/obj/machinery/firealarm/attack_ai(mob/user)
 	return attack_hand(user)
 
 /obj/machinery/firealarm/bullet_act(BLAH)
 	return alarm()
 
-/obj/machinery/firealarm/attack_paw(mob/user as mob)
+/obj/machinery/firealarm/attack_paw(mob/user)
 	return attack_hand(user)
 
 /obj/machinery/firealarm/emp_act(severity)
@@ -100,7 +100,7 @@
 		alarm()
 	..()
 
-/obj/machinery/firealarm/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/firealarm/attackby(obj/item/W, mob/user)
 	add_fingerprint(user)
 
 	if(istype(W, /obj/item/screwdriver) && buildstage == 2)
@@ -188,7 +188,7 @@
 			stat |= NOPOWER
 			update_icon()
 
-/obj/machinery/firealarm/attack_hand(mob/user as mob)
+/obj/machinery/firealarm/attack_hand(mob/user)
 	if(user.stat || stat & (NOPOWER|BROKEN))
 		return
 

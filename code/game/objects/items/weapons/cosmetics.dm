@@ -31,7 +31,7 @@
 	name = "[colour] lipstick"
 
 
-/obj/item/lipstick/attack_self(mob/user as mob)
+/obj/item/lipstick/attack_self(mob/user)
 	to_chat(user, SPAN_NOTICE("You twist \the [src] [open ? "closed" : "open"]."))
 	open = !open
 	if(open)
@@ -39,7 +39,7 @@
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/lipstick/attack(mob/M as mob, mob/user as mob)
+/obj/item/lipstick/attack(mob/M, mob/user)
 	if(!open)
 		return
 
@@ -74,7 +74,7 @@
 		to_chat(user, SPAN_NOTICE("Where are the lips on that?"))
 
 //you can wipe off lipstick with paper!
-/obj/item/paper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/paper/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(user.zone_sel.selecting == "mouth")
 		if(!ismob(M))
 			return

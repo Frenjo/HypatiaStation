@@ -11,7 +11,7 @@
 
 //////////////////////////////Capturing////////////////////////////////////////////////////////
 
-/obj/item/soulstone/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/soulstone/attack(mob/living/carbon/human/M, mob/user)
 	if(!ishuman(M))//If target is not a human.
 		return ..()
 	if(istype(M, /mob/living/carbon/human/dummy))
@@ -28,7 +28,7 @@
 	transfer_soul("VICTIM", M, user)
 	return
 
-	/*attack(mob/living/simple_animal/shade/M as mob, mob/user as mob)//APPARENTLY THEY NEED THEIR OWN SPECIAL SNOWFLAKE CODE IN THE LIVING ANIMAL DEFINES
+	/*attack(mob/living/simple_animal/shade/M, mob/user)//APPARENTLY THEY NEED THEIR OWN SPECIAL SNOWFLAKE CODE IN THE LIVING ANIMAL DEFINES
 		if(!istype(M, /mob/living/simple_animal/shade))//If target is not a shade
 			return ..()
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to capture the soul of [M.name] ([M.ckey])</font>")
@@ -92,7 +92,7 @@
 	return ..()
 
 ////////////////////////////Proc for moving soul in and out off stone//////////////////////////////////////
-/obj/item/proc/transfer_soul(choice as text, target, mob/U as mob)
+/obj/item/proc/transfer_soul(choice, target, mob/U)
 	switch(choice)
 		if("VICTIM")
 			var/mob/living/carbon/human/T = target

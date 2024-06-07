@@ -1,4 +1,4 @@
-/turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
+/turf/Enter(atom/movable/mover, atom/forget)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
 		FEEDBACK_MOVEMENT_ADMIN_DISABLED(usr) // This is to identify lag problems.
 		return
@@ -41,7 +41,7 @@
 
 	return TRUE // Nothing found to block so return success!
 
-/turf/Entered(atom/atom as mob|obj)
+/turf/Entered(atom/atom)
 	if(movement_disabled)
 		FEEDBACK_MOVEMENT_ADMIN_DISABLED(usr) // This is to identify lag problems.
 		return

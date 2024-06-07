@@ -150,7 +150,7 @@
 		return TP
 	return
 
-/obj/machinery/turret/proc/check_target(atom/movable/T as mob|obj)
+/obj/machinery/turret/proc/check_target(atom/movable/T)
 	if(T && (T in protected_area.turretTargets))
 		var/area/area_T = get_area(T)
 		if(!area_T || (area_T.type != protected_area.type))
@@ -407,13 +407,13 @@
 		else
 			FEEDBACK_ACCESS_DENIED(user)
 
-/obj/machinery/turretid/attack_ai(mob/user as mob)
+/obj/machinery/turretid/attack_ai(mob/user)
 	if(!ailock)
 		return attack_hand(user)
 	else
 		to_chat(user, SPAN_NOTICE("There seems to be a firewall preventing you from accessing this device."))
 
-/obj/machinery/turretid/attack_hand(mob/user as mob)
+/obj/machinery/turretid/attack_hand(mob/user)
 	if(get_dist(src, user) > 0)
 		if(!issilicon(user))
 			to_chat(user, SPAN_NOTICE("You are too far away."))
@@ -441,7 +441,7 @@
 	onclose(user, "turretid")
 
 
-/obj/machinery/turret/attack_animal(mob/living/M as mob)
+/obj/machinery/turret/attack_animal(mob/living/M)
 	if(M.melee_damage_upper == 0)
 		return
 	if(!(stat & BROKEN))
@@ -534,7 +534,7 @@
 	qdel(src)
 	return
 
-/obj/structure/turret/gun_turret/attack_hand(mob/user as mob)
+/obj/structure/turret/gun_turret/attack_hand(mob/user)
 	user.set_machine(src)
 	var/dat = {"<html>
 					<head><title>[src] Control</title></head>
@@ -552,7 +552,7 @@
 	onclose(user, "turret")
 	return
 
-/obj/structure/turret/gun_turret/attack_ai(mob/user as mob)
+/obj/structure/turret/gun_turret/attack_ai(mob/user)
 	return attack_hand(user)
 
 /obj/structure/turret/gun_turret/Topic(href, href_list)

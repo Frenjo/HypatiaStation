@@ -18,7 +18,7 @@
 	var/health = 100.0
 	var/maxhealth = 100.0
 
-/obj/structure/barricade/wooden/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/barricade/wooden/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/stack/sheet/wood))
 		if (src.health < src.maxhealth)
 			visible_message("\red [user] begins to repair \the [src]!")
@@ -110,7 +110,7 @@
 
 	src.icon_state = "barrier[src.locked]"
 
-/obj/machinery/deployable/barrier/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/deployable/barrier/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/card/id/))
 		if (src.allowed(user))
 			if	(src.emagged < 2.0)

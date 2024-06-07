@@ -179,7 +179,7 @@
 	apply_damage(rand(30, 40), BRUTE, affecting, run_armor_check(affecting, "melee"))
 	return
 
-/mob/living/carbon/human/meteorhit(O as obj)
+/mob/living/carbon/human/meteorhit(obj/O)
 	visible_message(SPAN_WARNING("[src] has been hit by [O]!"))
 	if(health > 0)
 		var/datum/organ/external/affecting = get_organ(pick("chest", "chest", "chest", "head"))
@@ -195,7 +195,7 @@
 	return
 
 
-/mob/living/carbon/human/attack_animal(mob/living/M as mob)
+/mob/living/carbon/human/attack_animal(mob/living/M)
 	if(M.melee_damage_upper == 0)
 		M.emote("[M.friendly] [src]")
 	else
@@ -221,7 +221,7 @@
 					return 1
 	return 0
 
-/mob/living/carbon/human/attack_slime(mob/living/carbon/slime/M as mob)
+/mob/living/carbon/human/attack_slime(mob/living/carbon/slime/M)
 	if(M.Victim)
 		return // can't attack while eating!
 
@@ -292,7 +292,7 @@
 /mob/living/carbon/human/var/co2overloadtime = null
 /mob/living/carbon/human/var/temperature_resistance = T0C + 75
 
-/mob/living/carbon/human/show_inv(mob/user as mob)
+/mob/living/carbon/human/show_inv(mob/user)
 	user.set_machine(src)
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
@@ -1019,7 +1019,7 @@
 */
 //returns 1 if made bloody, returns 0 otherwise
 
-/mob/living/carbon/human/add_blood(mob/living/carbon/human/M as mob)
+/mob/living/carbon/human/add_blood(mob/living/carbon/human/M)
 	if(!..())
 		return 0
 	//if this blood isn't already in the list, add it

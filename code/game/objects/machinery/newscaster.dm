@@ -775,7 +775,7 @@
 	var/scribble = ""
 	var/scribble_page = null
 
-/*/obj/item/newspaper/attack_hand(mob/user as mob)
+/*/obj/item/newspaper/attack_hand(mob/user)
 	..()
 	to_world("derp")*/
 

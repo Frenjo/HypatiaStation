@@ -121,7 +121,7 @@
 
 	var/mode = PINPOINTER_MODE_DISK
 
-/obj/item/pinpointer/nukeop/attack_self(mob/user as mob)
+/obj/item/pinpointer/nukeop/attack_self(mob/user)
 	active = !active
 	if(active)
 		GLOBL.processing_objects.Add(src)

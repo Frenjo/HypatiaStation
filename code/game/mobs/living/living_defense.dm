@@ -59,7 +59,7 @@
 	P.on_hit(src, absorb)
 	return absorb
 
-/mob/living/hitby(atom/movable/AM as mob|obj, speed = 5) //Standardization and logging -Sieve
+/mob/living/hitby(atom/movable/AM, speed = 5) //Standardization and logging -Sieve
 	if(isobj(AM))
 		var/obj/O = AM
 		var/zone = ran_zone("chest", 75) //Hits a random part of the body, geared towards the chest

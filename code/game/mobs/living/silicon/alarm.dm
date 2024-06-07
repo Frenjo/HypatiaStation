@@ -26,7 +26,7 @@
 	else
 		alarmlist[A.name] = new /datum/alarm(A, list(source), cameralist)
 
-/mob/living/silicon/proc/cancelAlarm(class, area/A as area, source)
+/mob/living/silicon/proc/cancelAlarm(class, area/A, source)
 	var/cleared = FALSE
 	var/list/alarmlist = alarms[class]
 

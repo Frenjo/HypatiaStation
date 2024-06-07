@@ -1056,7 +1056,7 @@ table tr:first-child th:first-child { border: none;}
 
 	updateUsrDialog()
 
-/obj/machinery/alarm/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/alarm/attackby(obj/item/W, mob/user)
 /*	if (istype(W, /obj/item/wirecutters))
 		stat ^= BROKEN
 		add_fingerprint(user)

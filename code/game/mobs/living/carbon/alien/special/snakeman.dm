@@ -6,7 +6,7 @@
 	movement_delay()
 		return 4
 
-/mob/living/carbon/alien/humanoid/special/snakeman/verb/lay_egg(mob/living/carbon/human/M as mob)
+/mob/living/carbon/alien/humanoid/special/snakeman/verb/lay_egg(mob/living/carbon/human/M)
 	set name = "Impregnate"
 	set desc = "Lays an egg on a corpse, allowing the egg to feed."
 	set category = "Snakeman"

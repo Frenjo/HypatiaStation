@@ -48,7 +48,7 @@
 //		item_state = initial(item_state)
 		ion_trail.stop()
 
-/obj/item/tank/jetpack/proc/allow_thrust(num, mob/living/user as mob)
+/obj/item/tank/jetpack/proc/allow_thrust(num, mob/living/user)
 	if(!on)
 		return 0
 	if(num < 0.005 || air_contents.total_moles < num)

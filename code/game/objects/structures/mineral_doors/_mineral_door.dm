@@ -30,17 +30,17 @@
 		return TryToSwitchState(user)
 	return
 
-/obj/structure/mineral_door/attack_ai(mob/user as mob) //those aren't machinery, they're just big fucking slabs of a mineral
+/obj/structure/mineral_door/attack_ai(mob/user) //those aren't machinery, they're just big fucking slabs of a mineral
 	if(isAI(user)) //so the AI can't open it
 		return
 	else if(isrobot(user)) //but cyborgs can
 		if(get_dist(user, src) <= 1) //not remotely though
 			return TryToSwitchState(user)
 
-/obj/structure/mineral_door/attack_paw(mob/user as mob)
+/obj/structure/mineral_door/attack_paw(mob/user)
 	return TryToSwitchState(user)
 
-/obj/structure/mineral_door/attack_hand(mob/user as mob)
+/obj/structure/mineral_door/attack_hand(mob/user)
 	return TryToSwitchState(user)
 
 /obj/structure/mineral_door/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
@@ -103,7 +103,7 @@
 	else
 		icon_state = material.icon_prefix
 
-/obj/structure/mineral_door/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/mineral_door/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/pickaxe))
 		var/obj/item/pickaxe/digTool = W
 		to_chat(user, "You start digging the [name].")

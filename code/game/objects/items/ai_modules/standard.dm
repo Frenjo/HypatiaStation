@@ -63,7 +63,7 @@
 	var/newFreeFormLaw = "freeform"
 	desc = "A 'freeform' AI module: '<freeform>'"
 
-/obj/item/ai_module/freeform/attack_self(var/mob/user as mob)
+/obj/item/ai_module/freeform/attack_self(mob/user)
 	..()
 	var/eatShit = "Eat shit and die"
 	var/targName = input(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", eatShit)
@@ -89,7 +89,7 @@
 	var/newFreeFormLaw = "freeform"
 	var/lawpos = 15
 
-/obj/item/ai_module/freeform/attack_self(mob/user as mob)
+/obj/item/ai_module/freeform/attack_self(mob/user)
 	. = ..()
 	lawpos = 0
 	while(lawpos < 15)
@@ -124,7 +124,7 @@
 
 	var/newFreeFormLaw = ""
 
-/obj/item/ai_module/freeformcore/attack_self(mob/user as mob)
+/obj/item/ai_module/freeformcore/attack_self(mob/user)
 	. = ..()
 	newFreeFormLaw = stripped_input(usr, "Please enter a new core law for the AI.", "Freeform Law Entry")
 	desc = "A 'freeform' Core AI module: '[newFreeFormLaw]'"
@@ -152,7 +152,7 @@
 
 	var/newFreeFormLaw = ""
 
-/obj/item/ai_module/syndicate/attack_self(mob/user as mob)
+/obj/item/ai_module/syndicate/attack_self(mob/user)
 	. = ..()
 	newFreeFormLaw = stripped_input(usr, "Please enter a new law for the AI.", "Freeform Law Entry", "", MAX_MESSAGE_LEN)
 	desc = "A hacked AI law module: '[newFreeFormLaw]'"

@@ -45,7 +45,7 @@
 	A.attack_ghost(src)
 
 // Oh by the way this didn't work with old click code which is why clicking shit didn't spam you
-/atom/proc/attack_ghost(mob/dead/observer/user as mob)
+/atom/proc/attack_ghost(mob/dead/observer/user)
 	if(isnotnull(user?.client) && user.client.inquisitive_ghost)
 		examine()
 
@@ -53,23 +53,23 @@
 // And here are some good things for free:
 // Now you can click through portals, wormholes, gateways, and teleporters while observing. -Sayu
 
-/obj/machinery/teleport/hub/attack_ghost(mob/user as mob)
+/obj/machinery/teleport/hub/attack_ghost(mob/user)
 	var/atom/l = loc
 	var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(l.x - 2, l.y, l.z))
 	if(isnotnull(com.locked))
 		user.loc = get_turf(com.locked)
 
-/obj/effect/portal/attack_ghost(mob/user as mob)
+/obj/effect/portal/attack_ghost(mob/user)
 	if(isnotnull(target))
 		user.loc = get_turf(target)
 
-/obj/machinery/gateway/centerstation/attack_ghost(mob/user as mob)
+/obj/machinery/gateway/centerstation/attack_ghost(mob/user)
 	if(isnotnull(awaygate))
 		user.loc = awaygate.loc
 	else
 		to_chat(user, "[src] has no destination.")
 
-/obj/machinery/gateway/centeraway/attack_ghost(mob/user as mob)
+/obj/machinery/gateway/centeraway/attack_ghost(mob/user)
 	if(isnotnull(stationgate))
 		user.loc = stationgate.loc
 	else
@@ -81,7 +81,7 @@
 // but I'm leaving it here anyway
 // commented out, of course.
 /*
-/atom/proc/attack_admin(mob/user as mob)
+/atom/proc/attack_admin(mob/user)
 	if(!user || !user.client || !user.client.holder)
 		return
 	attack_hand(user)

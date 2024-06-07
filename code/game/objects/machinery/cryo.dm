@@ -60,7 +60,7 @@
 /obj/machinery/atmospherics/unary/cryo_cell/allow_drop()
 	return 0
 
-/obj/machinery/atmospherics/unary/cryo_cell/relaymove(mob/user as mob)
+/obj/machinery/atmospherics/unary/cryo_cell/relaymove(mob/user)
 	if(user.stat)
 		return
 	go_out()
@@ -272,7 +272,7 @@
 	update_icon()
 	return
 
-/obj/machinery/atmospherics/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob)
+/obj/machinery/atmospherics/unary/cryo_cell/proc/put_mob(mob/living/carbon/M)
 	if(!istype(M))
 		to_chat(usr, SPAN_DANGER("The cryo cell cannot handle such a lifeform!"))
 		return
@@ -337,7 +337,7 @@
 /datum/data/function/proc/reset()
 	return
 
-/datum/data/function/proc/r_input(href, href_list, mob/user as mob)
+/datum/data/function/proc/r_input(href, href_list, mob/user)
 	return
 
 /datum/data/function/proc/display()

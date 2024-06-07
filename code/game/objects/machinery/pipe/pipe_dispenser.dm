@@ -7,10 +7,10 @@
 	var/unwrenched = 0
 	var/wait = 0
 
-/obj/machinery/pipedispenser/attack_paw(user as mob)
+/obj/machinery/pipedispenser/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/pipedispenser/attack_hand(user as mob)
+/obj/machinery/pipedispenser/attack_hand(mob/user)
 	if(..())
 		return
 ///// Z-Level stuff
@@ -78,7 +78,7 @@
 				wait = 0
 	return
 
-/obj/machinery/pipedispenser/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/pipedispenser/attackby(obj/item/W, mob/user)
 	src.add_fingerprint(usr)
 	if (istype(W, /obj/item/pipe) || istype(W, /obj/item/pipe_meter))
 		usr << "\blue You put [W] back to [src]."
@@ -123,7 +123,7 @@
 
 /*
 //Allow you to push disposal pipes into it (for those with density 1)
-obj/machinery/pipedispenser/disposal/Crossed(var/obj/structure/disposalconstruct/pipe as obj)
+obj/machinery/pipedispenser/disposal/Crossed(var/obj/structure/disposalconstruct/pipe)
 	if(istype(pipe) && !pipe.anchored)
 		del(pipe)
 
@@ -131,11 +131,11 @@ Nah
 */
 
 //Allow you to drag-drop disposal pipes into it
-/obj/machinery/pipedispenser/disposal/MouseDrop_T(var/obj/structure/disposalconstruct/pipe as obj, mob/usr as mob)
-	if(!usr.canmove || usr.stat || usr.restrained())
+/obj/machinery/pipedispenser/disposal/MouseDrop_T(obj/structure/disposalconstruct/pipe, mob/user)
+	if(!user.canmove || user.stat || user.restrained())
 		return
 
-	if (!istype(pipe) || get_dist(usr, src) > 1 || get_dist(src,pipe) > 1 )
+	if (!istype(pipe) || get_dist(user, src) > 1 || get_dist(src,pipe) > 1 )
 		return
 
 	if (pipe.anchored)
@@ -143,7 +143,7 @@ Nah
 
 	qdel(pipe)
 
-/obj/machinery/pipedispenser/disposal/attack_hand(user as mob)
+/obj/machinery/pipedispenser/disposal/attack_hand(mob/user)
 	if(..())
 		return
 

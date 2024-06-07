@@ -49,7 +49,7 @@
 	else
 		usr << "This one seems particularly lifeless. Perhaps it will regain some of its luster later.."
 
-/obj/item/brain/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/brain/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!ismob(M))
 		return
 

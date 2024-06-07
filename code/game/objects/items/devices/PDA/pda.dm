@@ -87,7 +87,7 @@
 /obj/item/pda/get_id()
 	return id
 
-/obj/item/pda/MouseDrop(obj/over_object as obj, src_location, over_location)
+/obj/item/pda/MouseDrop(obj/over_object, src_location, over_location)
 	var/mob/M = usr
 	if(!istype(over_object, /atom/movable/screen) && can_use())
 		return attack_self(M)
@@ -238,7 +238,7 @@
 	ui.set_auto_update(auto_update)
 
 //NOTE: graphic resources are loaded on client login
-/obj/item/pda/attack_self(mob/user as mob)
+/obj/item/pda/attack_self(mob/user)
 	user.set_machine(src)
 
 	if(active_uplink_check(user))
@@ -758,7 +758,7 @@
 	else
 		to_chat(usr, SPAN_NOTICE("You cannot do this while restrained."))
 
-/obj/item/pda/proc/id_check(mob/user as mob, choice as num)//To check for IDs; 1 for in-pda use, 2 for out of pda use.
+/obj/item/pda/proc/id_check(mob/user, choice as num)//To check for IDs; 1 for in-pda use, 2 for out of pda use.
 	if(choice == 1)
 		if(id)
 			remove_id()
@@ -779,7 +779,7 @@
 	return
 
 // access to status display signals
-/obj/item/pda/attackby(obj/item/C as obj, mob/user as mob)
+/obj/item/pda/attackby(obj/item/C, mob/user)
 	..()
 	if(istype(C, /obj/item/cartridge) && !cartridge)
 		cartridge = C
@@ -822,7 +822,7 @@
 			to_chat(user, SPAN_NOTICE("You slide \the [C] into \the [src]."))
 	return
 
-/obj/item/pda/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/pda/attack(mob/living/M, mob/living/user)
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		switch(scanmode)
@@ -880,7 +880,7 @@
 				else
 					user.show_message(SPAN_INFO("No radiation detected."))
 
-/obj/item/pda/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+/obj/item/pda/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	switch(scanmode)

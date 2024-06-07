@@ -8,7 +8,7 @@
 	icon_state = "nest"
 	var/health = 100
 
-/obj/structure/stool/bed/nest/manual_unbuckle(mob/user as mob)
+/obj/structure/stool/bed/nest/manual_unbuckle(mob/user)
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
 			if(buckled_mob != user)
@@ -36,7 +36,7 @@
 			src.add_fingerprint(user)
 	return
 
-/obj/structure/stool/bed/nest/buckle_mob(mob/M as mob, mob/user as mob)
+/obj/structure/stool/bed/nest/buckle_mob(mob/M, mob/user)
 	if(!ismob(M) || !in_range(src, user) || M.loc != src.loc || user.restrained() || usr.stat || M.buckled || ispAI(user))
 		return
 
@@ -68,7 +68,7 @@
 	src.add_fingerprint(user)
 	return
 
-/obj/structure/stool/bed/nest/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/stool/bed/nest/attackby(obj/item/W, mob/user)
 	var/aforce = W.force
 	health = max(0, health - aforce)
 	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)

@@ -317,7 +317,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	active = !active
 
 // Directly trigger the uplink. Turn on if it isn't already.
-/obj/item/uplink/hidden/proc/trigger(mob/user as mob)
+/obj/item/uplink/hidden/proc/trigger(mob/user)
 	if(!active)
 		toggle()
 	interact(user)
@@ -325,7 +325,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 // Checks to see if the value meets the target. Like a frequency being a traitor_frequency, in order to unlock a headset.
 // If true, it accesses trigger() and returns 1. If it fails, it returns false. Use this to see if you need to close the
 // current item's menu.
-/obj/item/uplink/hidden/proc/check_trigger(mob/user as mob, value, target)
+/obj/item/uplink/hidden/proc/check_trigger(mob/user, value, target)
 	if(value == target)
 		trigger(user)
 		return 1
@@ -392,7 +392,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 // You place this in your uplinkable item to check if an uplink is active or not.
 // If it is, it will display the uplink menu and return 1, else it'll return false.
 // If it returns true, I recommend closing the item's normal menu with "user << browse(null, "window=name")"
-/obj/item/proc/active_uplink_check(mob/user as mob)
+/obj/item/proc/active_uplink_check(mob/user)
 	// Activates the uplink if it's active
 	if(src.hidden_uplink)
 		if(src.hidden_uplink.active)
@@ -411,7 +411,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	hidden_uplink = new /obj/item/uplink/hidden(src)
 	icon_state = "radio"
 
-/obj/item/radio/uplink/attack_self(mob/user as mob)
+/obj/item/radio/uplink/attack_self(mob/user)
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 
@@ -419,7 +419,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	. = ..()
 	hidden_uplink = new /obj/item/uplink/hidden(src)
 
-/obj/item/multitool/uplink/attack_self(mob/user as mob)
+/obj/item/multitool/uplink/attack_self(mob/user)
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 

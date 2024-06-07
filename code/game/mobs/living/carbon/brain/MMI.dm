@@ -75,7 +75,7 @@
 
 	return ..()
 
-/obj/item/mmi/attack_self(mob/user as mob)
+/obj/item/mmi/attack_self(mob/user)
 	if(!brainmob)
 		user << "\red You upend the MMI, but there's nothing in it."
 	else if(locked)

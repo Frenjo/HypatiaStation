@@ -44,7 +44,7 @@
 		qdel(src)
 
 
-/obj/structure/displaycase/meteorhit(obj/O as obj)
+/obj/structure/displaycase/meteorhit(obj/O)
 		new /obj/item/shard( src.loc )
 		new /obj/item/gun/energy/laser/captain( src.loc )
 		qdel(src)
@@ -70,16 +70,16 @@
 	return
 
 
-/obj/structure/displaycase/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/displaycase/attackby(obj/item/W, mob/user)
 	src.health -= W.force
 	src.healthcheck()
 	..()
 	return
 
-/obj/structure/displaycase/attack_paw(mob/user as mob)
+/obj/structure/displaycase/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/structure/displaycase/attack_hand(mob/user as mob)
+/obj/structure/displaycase/attack_hand(mob/user)
 	if (src.destroyed && src.occupied)
 		new /obj/item/gun/energy/laser/captain( src.loc )
 		user << "\b You deactivate the hover field built into the case."
@@ -95,5 +95,3 @@
 		src.health -= 2
 		healthcheck()
 		return
-
-

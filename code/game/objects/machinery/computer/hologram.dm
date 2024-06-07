@@ -44,7 +44,7 @@
 
 	src.projector.hologram.icon = I
 
-/obj/machinery/computer/hologram_comp/proc/show_console(var/mob/user as mob)
+/obj/machinery/computer/hologram_comp/proc/show_console(mob/user)
 	var/dat
 	user.set_machine(src)
 	if (src.temp)

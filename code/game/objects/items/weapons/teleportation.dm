@@ -26,7 +26,7 @@
 	var/broadcasting = null
 	var/listening = 1.0
 
-/obj/item/locator/attack_self(mob/user as mob)
+/obj/item/locator/attack_self(mob/user)
 	user.set_machine(src)
 	var/dat
 	if(src.temp)
@@ -137,7 +137,7 @@ Frequency:
 	matter_amounts = list(MATERIAL_METAL = 10000)
 	origin_tech = list(/datum/tech/magnets = 1, /datum/tech/bluespace = 3)
 
-/obj/item/hand_tele/attack_self(mob/user as mob)
+/obj/item/hand_tele/attack_self(mob/user)
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	if(!current_location||current_location.z == 2||current_location.z >= 7)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
 		to_chat(user, SPAN_NOTICE("\The [src] is malfunctioning."))

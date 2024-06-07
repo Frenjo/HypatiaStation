@@ -249,7 +249,7 @@
 //OTHER PROCS
 
 //To batch-remove wizard spells. Linked to mind.dm.
-/mob/proc/spellremove(mob/M as mob)
+/mob/proc/spellremove(mob/M)
 	for(var/obj/effect/proc_holder/spell/spell_to_remove in src.spell_list)
 		qdel(spell_to_remove)
 

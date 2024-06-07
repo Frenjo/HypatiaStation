@@ -152,14 +152,14 @@
 	return
 
 //Allows AIs to use door_timer, see human attack_hand function below
-/obj/machinery/door_timer/attack_ai(mob/user as mob)
+/obj/machinery/door_timer/attack_ai(mob/user)
 	return attack_hand(user)
 
 //Allows humans to use door_timer
 //Opens dialog window when someone clicks on door timer
 // Allows altering timer and the timing boolean.
 // Flasher activation limited to 150 seconds
-/obj/machinery/door_timer/attack_hand(mob/user as mob)
+/obj/machinery/door_timer/attack_hand(mob/user)
 	if(..())
 		return
 

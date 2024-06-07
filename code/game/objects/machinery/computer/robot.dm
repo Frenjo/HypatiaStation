@@ -15,13 +15,13 @@
 
 	light_color = "#a97faa"
 
-/obj/machinery/computer/robotics/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/robotics/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/robotics/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/robotics/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/robotics/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/robotics/attack_hand(mob/user)
 	if(..())
 		return
 	if (src.z > 6)

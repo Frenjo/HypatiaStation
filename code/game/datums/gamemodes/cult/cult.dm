@@ -7,7 +7,7 @@
 		"join", "tech", "destroy", "other", "hide"
 	)
 
-/proc/iscultist(mob/living/M as mob)
+/proc/iscultist(mob/living/M)
 	return istype(M) && M.mind && (M.mind in global.PCticker?.mode?.cult)
 
 /proc/is_convertable_to_cult(datum/mind/mind)

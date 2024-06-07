@@ -112,7 +112,7 @@
 		return P
 	return 0
 
-/obj/machinery/processor/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/processor/attackby(obj/item/O, mob/user)
 	if(src.processing)
 		user << "\red The processor is in the process of processing."
 		return 1
@@ -136,7 +136,7 @@
 	what:loc = src
 	return
 
-/obj/machinery/processor/attack_hand(var/mob/user as mob)
+/obj/machinery/processor/attack_hand(mob/user)
 	if(src.stat != 0) //NOPOWER etc
 		return
 	if(src.processing)

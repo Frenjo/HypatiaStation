@@ -24,7 +24,7 @@
 		return 0
 	return 1
 
-/obj/machinery/computer/meteorhit(obj/O as obj)
+/obj/machinery/computer/meteorhit(obj/O)
 	for(var/x in verbs)
 		verbs.Remove(x)
 	set_broken()

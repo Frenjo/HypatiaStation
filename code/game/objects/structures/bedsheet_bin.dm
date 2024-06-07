@@ -16,7 +16,7 @@ LINEN BINS
 	w_class = 1.0
 	item_color = "white"
 
-/obj/item/bedsheet/attack_self(mob/user as mob)
+/obj/item/bedsheet/attack_self(mob/user)
 	user.drop_item()
 	if(layer == initial(layer))
 		layer = 5
@@ -120,7 +120,7 @@ LINEN BINS
 			icon_state = "linenbin-full"
 #undef STARTING_LINEN_AMOUNT
 
-/obj/structure/bedsheetbin/attackby(obj/item/I as obj, mob/user as mob)
+/obj/structure/bedsheetbin/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/bedsheet))
 		user.drop_item()
 		I.loc = src
@@ -133,10 +133,10 @@ LINEN BINS
 		hidden = I
 		to_chat(user, SPAN_NOTICE("You hide [I] among the sheets."))
 
-/obj/structure/bedsheetbin/attack_paw(mob/user as mob)
+/obj/structure/bedsheetbin/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/structure/bedsheetbin/attack_hand(mob/user as mob)
+/obj/structure/bedsheetbin/attack_hand(mob/user)
 	if(amount >= 1)
 		amount--
 
@@ -159,7 +159,7 @@ LINEN BINS
 
 	add_fingerprint(user)
 
-/obj/structure/bedsheetbin/attack_tk(mob/user as mob)
+/obj/structure/bedsheetbin/attack_tk(mob/user)
 	if(amount >= 1)
 		amount--
 

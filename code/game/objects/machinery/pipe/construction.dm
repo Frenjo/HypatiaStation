@@ -269,10 +269,10 @@ Buildable meters
 		else
 			return 0
 
-/obj/item/pipe/attack_self(mob/user as mob)
+/obj/item/pipe/attack_self(mob/user)
 	return rotate()
 
-/obj/item/pipe/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/pipe/attackby(obj/item/W, mob/user)
 	..()
 	//*
 	if(!istype(W, /obj/item/wrench))
@@ -675,7 +675,7 @@ Buildable meters
 	item_state = "buildpipe"
 	w_class = 4
 
-/obj/item/pipe_meter/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/pipe_meter/attackby(obj/item/W, mob/user)
 	..()
 
 	if (!istype(W, /obj/item/wrench))

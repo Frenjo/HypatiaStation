@@ -69,14 +69,14 @@
 	//to_world("glass at [x],[y],[z] Mhit")
 	deflate(1)
 
-/obj/structure/inflatable/attack_paw(mob/user as mob)
+/obj/structure/inflatable/attack_paw(mob/user)
 	return attack_generic(user, 15)
 
-/obj/structure/inflatable/attack_hand(mob/user as mob)
+/obj/structure/inflatable/attack_hand(mob/user)
 	add_fingerprint(user)
 	return
 
-/obj/structure/inflatable/proc/attack_generic(mob/user as mob, damage = 0)	//used by attack_animal and attack_slime
+/obj/structure/inflatable/proc/attack_generic(mob/user, damage = 0)	//used by attack_animal and attack_slime
 	health -= damage
 	if(health <= 0)
 		user.visible_message(SPAN_DANGER("[user] tears open [src]!"))
@@ -84,7 +84,7 @@
 	else	//for nicer text~
 		user.visible_message(SPAN_DANGER("[user] tears at [src]!"))
 
-/obj/structure/inflatable/attack_animal(mob/user as mob)
+/obj/structure/inflatable/attack_animal(mob/user)
 	if(!isanimal(user))
 		return
 	var/mob/living/simple_animal/M = user
@@ -92,12 +92,12 @@
 		return
 	attack_generic(M, M.melee_damage_upper)
 
-/obj/structure/inflatable/attack_slime(mob/user as mob)
+/obj/structure/inflatable/attack_slime(mob/user)
 	if(!isslimeadult(user))
 		return
 	attack_generic(user, rand(10, 15))
 
-/obj/structure/inflatable/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/inflatable/attackby(obj/item/W, mob/user)
 	if(!istype(W))
 		return
 
@@ -173,17 +173,17 @@
 	//		return TryToSwitchState(user)
 	//	return
 
-/obj/structure/inflatable/door/attack_ai(mob/user as mob) //those aren't machinery, they're just big fucking slabs of a mineral
+/obj/structure/inflatable/door/attack_ai(mob/user) //those aren't machinery, they're just big fucking slabs of a mineral
 	if(isAI(user)) //so the AI can't open it
 		return
 	else if(isrobot(user)) //but cyborgs can
 		if(get_dist(user, src) <= 1) //not remotely though
 			return TryToSwitchState(user)
 
-/obj/structure/inflatable/door/attack_paw(mob/user as mob)
+/obj/structure/inflatable/door/attack_paw(mob/user)
 	return TryToSwitchState(user)
 
-/obj/structure/inflatable/door/attack_hand(mob/user as mob)
+/obj/structure/inflatable/door/attack_hand(mob/user)
 	return TryToSwitchState(user)
 
 /obj/structure/inflatable/door/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)

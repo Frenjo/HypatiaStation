@@ -95,14 +95,14 @@
 	icon_state = "secbot[on]"
 	updateUsrDialog()
 
-/obj/machinery/bot/secbot/attack_hand(mob/user as mob)
+/obj/machinery/bot/secbot/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
 	usr.set_machine(src)
 	interact(user)
 
-/obj/machinery/bot/secbot/interact(mob/user as mob)
+/obj/machinery/bot/secbot/interact(mob/user)
 	var/dat
 
 	dat += {"
@@ -146,7 +146,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			mode = SECBOT_IDLE
 			updateUsrDialog()
 
-/obj/machinery/bot/secbot/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/bot/secbot/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(allowed(user) && !open && !emagged)
 			locked = !locked
@@ -164,7 +164,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			target = user
 			mode = SECBOT_HUNT
 
-/obj/machinery/bot/secbot/Emag(mob/user as mob)
+/obj/machinery/bot/secbot/Emag(mob/user)
 	..()
 	if(open && !locked)
 		if(isnotnull(user))
@@ -585,7 +585,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 //If the security records say to arrest them, arrest them
 //Or if they have weapons and aren't security, arrest them.
-/obj/machinery/bot/secbot/proc/assess_perp(mob/living/carbon/human/perp as mob)
+/obj/machinery/bot/secbot/proc/assess_perp(mob/living/carbon/human/perp)
 	var/threatcount = 0
 
 	if(emagged == 2)
@@ -636,7 +636,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 	return threatcount
 
-/obj/machinery/bot/secbot/Bump(M as mob|obj) //Leave no door unopened!
+/obj/machinery/bot/secbot/Bump(atom/M) //Leave no door unopened!
 	if((istype(M, /obj/machinery/door)) && (isnotnull(botcard)))
 		var/obj/machinery/door/D = M
 		if(!istype(D, /obj/machinery/door/firedoor) && D.check_access(botcard))
@@ -647,7 +647,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		frustration = 0
 
 /* terrible
-/obj/machinery/bot/secbot/Bumped(atom/movable/M as mob|obj)
+/obj/machinery/bot/secbot/Bumped(atom/movable/M)
 	spawn(0)
 		if(M)
 			var/turf/T = get_turf(src)

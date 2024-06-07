@@ -23,13 +23,13 @@
 		return TRUE
 	return ..()
 
-/obj/machinery/computer/aifixer/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/aifixer/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/aifixer/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/aifixer/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/aifixer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/aifixer/attack_hand(mob/user)
 	if(..())
 		return
 

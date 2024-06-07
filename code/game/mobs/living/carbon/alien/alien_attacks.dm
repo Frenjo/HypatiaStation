@@ -3,7 +3,7 @@
 /mob/living/carbon/alien/attack_ui(slot_id)
 	return
 
-/mob/living/carbon/alien/meteorhit(O as obj)
+/mob/living/carbon/alien/meteorhit(obj/O)
 	visible_message(SPAN_WARNING("[src] has been hit by [O]!"))
 	if (health > 0)
 		adjustBruteLoss((istype(O, /obj/effect/meteor/small) ? 10 : 25))
@@ -12,7 +12,7 @@
 		updatehealth()
 	return
 
-/mob/living/carbon/alien/attack_animal(mob/living/M as mob)
+/mob/living/carbon/alien/attack_animal(mob/living/M)
 	if(isanimal(M))
 		var/mob/living/simple_animal/S = M
 		if(S.melee_damage_upper == 0)
@@ -25,7 +25,7 @@
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [S.name] ([S.ckey])</font>")
 			updatehealth()
 
-/mob/living/carbon/alien/attack_paw(mob/living/carbon/monkey/M as mob)
+/mob/living/carbon/alien/attack_paw(mob/living/carbon/monkey/M)
 	if(!ismonkey(M))	return//Fix for aliens receiving double messages when attacking other aliens.
 
 	if(!global.PCticker)
@@ -47,7 +47,7 @@
 	return
 
 
-/mob/living/carbon/alien/attack_slime(mob/living/carbon/slime/M as mob)
+/mob/living/carbon/alien/attack_slime(mob/living/carbon/slime/M)
 	if(!global.PCticker)
 		M << "You cannot attack people before the game has started."
 		return
@@ -72,7 +72,7 @@
 
 	return
 
-/mob/living/carbon/alien/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/alien/attack_hand(mob/living/carbon/human/M)
 	if(!global.PCticker)
 		M << "You cannot attack people before the game has started."
 		return

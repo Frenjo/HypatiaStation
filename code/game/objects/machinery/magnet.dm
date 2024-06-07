@@ -241,10 +241,10 @@
 			if(M.freq == frequency && M.code == code)
 				magnets.Add(M)
 
-/obj/machinery/magnetic_controller/attack_ai(mob/user as mob)
+/obj/machinery/magnetic_controller/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/magnetic_controller/attack_hand(mob/user as mob)
+/obj/machinery/magnetic_controller/attack_hand(mob/user)
 	if(stat & (BROKEN | NOPOWER))
 		return
 	user.set_machine(src)

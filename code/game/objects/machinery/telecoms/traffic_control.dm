@@ -21,7 +21,7 @@
 	var/temp = ""				// temporary feedback messages
 	var/storedcode = ""			// code stored
 
-/obj/machinery/computer/telecoms/traffic/attack_hand(mob/user as mob)
+/obj/machinery/computer/telecoms/traffic/attack_hand(mob/user)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	user.set_machine(src)

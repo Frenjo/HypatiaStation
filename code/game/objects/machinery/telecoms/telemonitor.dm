@@ -21,7 +21,7 @@
 	var/network = "NULL"		// the network to probe
 	var/temp = ""				// temporary feedback messages
 
-/obj/machinery/computer/telecoms/monitor/attack_hand(mob/user as mob)
+/obj/machinery/computer/telecoms/monitor/attack_hand(mob/user)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	user.set_machine(src)

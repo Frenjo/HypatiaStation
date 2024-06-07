@@ -22,7 +22,7 @@
 	var/details = FALSE
 	var/recent_fail = FALSE
 
-/obj/item/reagent_scanner/afterattack(obj/O, mob/user as mob)
+/obj/item/reagent_scanner/afterattack(obj/O, mob/user)
 	if(!istype(O))
 		return
 	if(user.stat)

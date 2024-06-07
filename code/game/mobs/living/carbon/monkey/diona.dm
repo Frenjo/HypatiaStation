@@ -37,7 +37,7 @@
 			M.loc = get_turf(src)
 		qdel(src)
 
-/obj/item/holder/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/holder/attackby(obj/item/W, mob/user)
 	for(var/mob/M in src.contents)
 		M.attackby(W, user)
 
@@ -50,7 +50,7 @@
 	var/list/donors = list()
 	var/ready_evolve = 0
 
-/mob/living/carbon/monkey/diona/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/monkey/diona/attack_hand(mob/living/carbon/human/M)
 	//Let people pick the little buggers up.
 	if(M.a_intent == "help")
 		if(M.species && istype(M.species, /datum/species/diona))

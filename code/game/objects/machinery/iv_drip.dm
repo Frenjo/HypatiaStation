@@ -50,7 +50,7 @@
 		src.update_icon()
 
 
-/obj/machinery/iv_drip/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/iv_drip/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/reagent_containers))
 		if(isnotnull(src.beaker))
 			user << "There is already a reagent container loaded!"
@@ -122,7 +122,7 @@
 				beaker.reagents.handle_reactions()
 				update_icon()
 
-/obj/machinery/iv_drip/attack_hand(mob/user as mob)
+/obj/machinery/iv_drip/attack_hand(mob/user)
 	if(src.beaker)
 		src.beaker.loc = get_turf(src)
 		src.beaker = null

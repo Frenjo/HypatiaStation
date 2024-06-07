@@ -36,7 +36,7 @@
 	density = FALSE
 	return ..()
 
-/obj/machinery/door/window/Bumped(atom/movable/AM as mob|obj)
+/obj/machinery/door/window/Bumped(atom/movable/AM)
 	if(!ismob(AM))
 		var/obj/machinery/bot/bot = AM
 		if(istype(bot))
@@ -157,7 +157,7 @@
 	..()
 
 //When an object is thrown at the window
-/obj/machinery/door/window/hitby(AM as mob|obj)
+/obj/machinery/door/window/hitby(atom/movable/AM)
 	..()
 	visible_message(SPAN_DANGER("The glass door was hit by [AM]."), 1)
 	var/tforce = 0
@@ -170,10 +170,10 @@
 	//..() //Does this really need to be here twice? The parent proc doesn't even do anything yet. - Nodrak
 	return
 
-/obj/machinery/door/window/attack_ai(mob/user as mob)
+/obj/machinery/door/window/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/door/window/attack_hand(mob/user as mob)
+/obj/machinery/door/window/attack_hand(mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
@@ -184,7 +184,7 @@
 
 	return attackby(user, user)
 
-/obj/machinery/door/window/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/door/window/attackby(obj/item/I, mob/user)
 	//If it's in the process of opening/closing, ignore the click
 	if(operating == 1)
 		return

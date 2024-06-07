@@ -15,10 +15,10 @@
 	var/occupied = 0
 	var/meattype = MEAT_TYPE_NOTHING
 
-/obj/structure/kitchenspike/attack_paw(mob/user as mob)
+/obj/structure/kitchenspike/attack_paw(mob/user)
 	return src.attack_hand(usr)
 
-/obj/structure/kitchenspike/attackby(obj/item/grab/G as obj, mob/user as mob)
+/obj/structure/kitchenspike/attackby(obj/item/grab/G, mob/user)
 	if(!istype(G, /obj/item/grab))
 		return
 	if(ismonkey(G.affecting))
@@ -55,7 +55,7 @@
 //		else if(istype(C, /obj/mob/carbon/alien) && !istype(C, /mob/living/carbon/alien/larva/slime))
 //		else if(istype(C, /obj/livestock/spesscarp
 
-/obj/structure/kitchenspike/attack_hand(mob/user as mob)
+/obj/structure/kitchenspike/attack_hand(mob/user)
 	if(..())
 		return
 	if(src.occupied)

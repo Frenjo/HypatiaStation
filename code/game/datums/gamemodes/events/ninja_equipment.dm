@@ -1348,7 +1348,7 @@ It is possible to destroy the net by the occupant or someone else.
 		qdel(src)
 	return
 
-/obj/effect/energy_net/process(var/mob/living/carbon/M as mob)
+/obj/effect/energy_net/process(mob/living/carbon/M)
 	var/check = 60//30 seconds before teleportation. Could be extended I guess. - Extended to one minute
 	var/mob_name = affecting.name//Since they will report as null if terminated before teleport.
 	//The person can still try and attack the net when inside.
@@ -1429,7 +1429,7 @@ It is possible to destroy the net by the occupant or someone else.
 	healthcheck()
 	return
 
-/obj/effect/energy_net/hitby(AM as mob|obj)
+/obj/effect/energy_net/hitby(atom/movable/AM)
 	..()
 	visible_message(SPAN_DANGER("[src] was hit by [AM]."))
 	var/tforce = 0
@@ -1469,7 +1469,7 @@ It is possible to destroy the net by the occupant or someone else.
 /obj/effect/energy_net/attack_paw()
 	return attack_hand()
 
-/obj/effect/energy_net/attackby(obj/item/W as obj, mob/user as mob)
+/obj/effect/energy_net/attackby(obj/item/W, mob/user)
 	var/aforce = W.force
 	health = max(0, health - aforce)
 	healthcheck()

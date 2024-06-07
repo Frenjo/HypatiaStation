@@ -13,7 +13,7 @@
 
 	var/targetName = ""
 
-/obj/item/ai_module/safeguard/attack_self(mob/user as mob)
+/obj/item/ai_module/safeguard/attack_self(mob/user)
 	. = ..()
 	targetName = stripped_input(usr, "Please enter the name of the person to safeguard.", "Safeguard who?", user.name)
 	desc = "A 'safeguard' AI module: 'Safeguard [targetName]. Individuals that threaten [targetName] are not human and are a threat to humans.'"

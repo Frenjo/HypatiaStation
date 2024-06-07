@@ -61,7 +61,7 @@
 
 	to_chat(usr, msg)
 
-/mob/living/simple_animal/construct/attack_animal(mob/living/M as mob)
+/mob/living/simple_animal/construct/attack_animal(mob/living/M)
 	if(istype(M, /mob/living/simple_animal/construct/builder))
 		health += 5
 		M.emote("mends some of \the <EM>[src]'s</EM> wounds.")
@@ -79,7 +79,7 @@
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 			adjustBruteLoss(damage)
 
-/mob/living/simple_animal/construct/attackby(obj/item/O as obj, mob/user as mob)
+/mob/living/simple_animal/construct/attackby(obj/item/O, mob/user)
 	if(O.force)
 		var/damage = O.force
 		if(O.damtype == HALLOSS)
@@ -216,7 +216,7 @@
 	var/energy = 0
 	var/max_energy = 1000
 
-/mob/living/simple_animal/construct/behemoth/attackby(obj/item/O as obj, mob/user as mob)
+/mob/living/simple_animal/construct/behemoth/attackby(obj/item/O, mob/user)
 	if(O.force)
 		if(O.force >= 11)
 			var/damage = O.force

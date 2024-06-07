@@ -43,13 +43,3 @@
 	density = TRUE
 	unacidable = 1
 	anchored = TRUE
-
-/obj/effect/gateway/Bumped(mob/M as mob|obj)
-	spawn(0)
-		return
-	return
-
-/obj/effect/gateway/Crossed(AM as mob|obj)
-	spawn(0)
-		return
-	return

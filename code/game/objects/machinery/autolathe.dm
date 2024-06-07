@@ -93,12 +93,12 @@
 
 	var/busy = 0
 
-/obj/machinery/autolathe/proc/wires_win(mob/user as mob)
+/obj/machinery/autolathe/proc/wires_win(mob/user)
 	var/dat
 	dat += "Autolathe Wires:<BR>"
 	dat += wires.GetInteractWindow()
 
-/obj/machinery/autolathe/proc/regular_win(mob/user as mob)
+/obj/machinery/autolathe/proc/regular_win(mob/user)
 	var/dat = "<B>Metal Amount:</B> [stored_materials[MATERIAL_METAL]] cm<sup>3</sup> (MAX: [storage_capacity[MATERIAL_METAL]])<BR>\n<FONT color=blue><B>Glass Amount:</B></FONT> [stored_materials[MATERIAL_GLASS]] cm<sup>3</sup> (MAX: [storage_capacity[MATERIAL_GLASS]])<HR>"
 	var/list/objs = list()
 	objs += src.L
@@ -137,7 +137,7 @@
 	else
 		return 0
 
-/obj/machinery/autolathe/interact(mob/user as mob)
+/obj/machinery/autolathe/interact(mob/user)
 	if(..())
 		return
 
@@ -192,7 +192,7 @@
 
 	return ..()
 
-/obj/machinery/autolathe/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/autolathe/attackby(obj/item/O, mob/user)
 	if(stored_materials[MATERIAL_METAL] + O.matter_amounts[MATERIAL_METAL] > storage_capacity[MATERIAL_METAL])
 		to_chat(user, SPAN_WARNING("The autolathe is full. Please remove metal from the autolathe in order to insert more."))
 		return 1
@@ -240,10 +240,10 @@
 	busy = 0
 	updateUsrDialog()
 
-/obj/machinery/autolathe/attack_paw(mob/user as mob)
+/obj/machinery/autolathe/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/autolathe/attack_hand(mob/user as mob)
+/obj/machinery/autolathe/attack_hand(mob/user)
 	user.set_machine(src)
 	interact(user)
 

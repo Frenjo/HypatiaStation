@@ -17,7 +17,7 @@
 	open = round(rand(0, 1))
 	update_icon()
 
-/obj/structure/toilet/attack_hand(mob/living/user as mob)
+/obj/structure/toilet/attack_hand(mob/living/user)
 	if(swirlie)
 		usr.visible_message(
 			SPAN_DANGER("[user] slams the toilet seat onto [swirlie.name]'s head!"),
@@ -47,7 +47,7 @@
 /obj/structure/toilet/update_icon()
 	icon_state = "toilet[open][cistern]"
 
-/obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
+/obj/structure/toilet/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/crowbar))
 		to_chat(user, SPAN_NOTICE("You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]."))
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
@@ -117,7 +117,7 @@
 	density = FALSE
 	anchored = TRUE
 
-/obj/structure/urinal/attackby(obj/item/I as obj, mob/user as mob)
+/obj/structure/urinal/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
 		if(isliving(G.affecting))
@@ -161,7 +161,7 @@
 	anchored = TRUE
 	mouse_opacity = FALSE
 
-/obj/machinery/shower/attack_hand(mob/M as mob)
+/obj/machinery/shower/attack_hand(mob/M)
 	on = !on
 	update_icon()
 	if(on)
@@ -171,7 +171,7 @@
 		for(var/atom/movable/G in src.loc)
 			G.clean_blood()
 
-/obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/shower/attackby(obj/item/I, mob/user)
 	if(I.type == /obj/item/gas_analyser)
 		to_chat(user, SPAN_NOTICE("The water temperature seems to be [watertemp]."))
 	if(istype(I, /obj/item/wrench))
@@ -228,7 +228,7 @@
 	..()
 
 //Yes, showers are super powerful as far as washing goes.
-/obj/machinery/shower/proc/wash(atom/movable/O as obj|mob)
+/obj/machinery/shower/proc/wash(atom/movable/O)
 	if(!on)
 		return
 
@@ -321,7 +321,7 @@
 	for(var/mob/living/carbon/C in loc)
 		check_heat(C)
 
-/obj/machinery/shower/proc/check_heat(mob/M as mob)
+/obj/machinery/shower/proc/check_heat(mob/M)
 	if(!on || watertemp == "normal")
 		return
 	if(iscarbon(M))
@@ -354,7 +354,7 @@
 	anchored = TRUE
 	var/busy = 0 	//Something's being washed at the moment
 
-/obj/structure/sink/attack_hand(mob/user as mob)
+/obj/structure/sink/attack_hand(mob/user)
 	if(hasorgans(user))
 		var/datum/organ/external/temp = user:organs_by_name["r_hand"]
 		if(user.hand)
@@ -389,7 +389,7 @@
 		V.show_message(SPAN_INFO("[user] washes their hands using \the [src]."))
 
 
-/obj/structure/sink/attackby(obj/item/O as obj, mob/user as mob)
+/obj/structure/sink/attackby(obj/item/O, mob/user)
 	if(busy)
 		to_chat(user, SPAN_WARNING("Someone's already washing here."))
 		return
@@ -472,12 +472,12 @@
 	name = "puddle"
 	icon_state = "puddle"
 
-/obj/structure/sink/puddle/attack_hand(mob/M as mob)
+/obj/structure/sink/puddle/attack_hand(mob/M)
 	icon_state = "puddle-splash"
 	..()
 	icon_state = "puddle"
 
-/obj/structure/sink/puddle/attackby(obj/item/O as obj, mob/user as mob)
+/obj/structure/sink/puddle/attackby(obj/item/O, mob/user)
 	icon_state = "puddle-splash"
 	..()
 	icon_state = "puddle"

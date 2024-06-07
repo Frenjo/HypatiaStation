@@ -292,7 +292,7 @@
 			return 1
 	return 1
 
-/obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
+/obj/structure/table/MouseDrop_T(obj/O, mob/user)
 	if(!isitem(O) || user.get_active_hand() != O)
 		return
 	if(isrobot(user))
@@ -302,7 +302,7 @@
 		step(O, get_dir(O, src))
 	return
 
-/obj/structure/table/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/table/attackby(obj/item/W, mob/user)
 	if(!W)
 		return
 	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
@@ -486,7 +486,7 @@
 	else
 		return ..()
 
-/obj/structure/table/reinforced/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/table/reinforced/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
@@ -538,7 +538,7 @@
 	else
 		return FALSE
 
-/obj/structure/rack/MouseDrop_T(obj/O as obj, mob/user as mob)
+/obj/structure/rack/MouseDrop_T(obj/O, mob/user)
 	if(!isitem(O) || user.get_active_hand() != O)
 		return
 	if(isrobot(user))
@@ -548,7 +548,7 @@
 		step(O, get_dir(O, src))
 	return
 
-/obj/structure/rack/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/rack/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/wrench))
 		new /obj/item/rack_parts(src.loc)
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)

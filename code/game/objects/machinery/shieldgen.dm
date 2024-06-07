@@ -36,7 +36,7 @@
 
 	return 1
 
-/obj/machinery/shield/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/shield/attackby(obj/item/W, mob/user)
 	if(!istype(W))
 		return
 
@@ -108,7 +108,7 @@
 /obj/machinery/shield/blob_act()
 	qdel(src)
 
-/obj/machinery/shield/hitby(AM as mob|obj)
+/obj/machinery/shield/hitby(atom/movable/AM)
 	//Let everyone know we've been hit!
 	visible_message("\red <B>[src] was hit by [AM].</B>")
 
@@ -200,7 +200,7 @@
 	update_icon()
 	return
 
-/obj/machinery/shieldgen/meteorhit(obj/O as obj)
+/obj/machinery/shieldgen/meteorhit(obj/O)
 	src.health -= max_health * 0.25 //A quarter of the machine's health
 	if(prob(5))
 		src.malfunction = 1
@@ -234,7 +234,7 @@
 				malfunction = 1
 	checkhp()
 
-/obj/machinery/shieldgen/attack_hand(mob/user as mob)
+/obj/machinery/shieldgen/attack_hand(mob/user)
 	if(locked)
 		user << "The machine is locked, you are unable to use it."
 		return
@@ -267,7 +267,7 @@
 	update_icon()
 	return TRUE
 
-/obj/machinery/shieldgen/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/shieldgen/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/screwdriver))
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		if(is_open)
@@ -382,7 +382,7 @@
 //		message_admins("[PN.load]", 1)
 //		use_power(250) //uses APC power
 
-/obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
+/obj/machinery/shieldwallgen/attack_hand(mob/user)
 	if(state != 1)
 		user << "\red The shield generator needs to be firmly secured to the floor first."
 		return 1
@@ -582,7 +582,7 @@
 	if(A && B)
 		needs_power = 1
 
-/obj/machinery/shieldwall/attack_hand(mob/user as mob)
+/obj/machinery/shieldwall/attack_hand(mob/user)
 	return
 
 /obj/machinery/shieldwall/process()

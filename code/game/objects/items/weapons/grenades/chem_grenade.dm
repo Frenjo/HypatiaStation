@@ -18,7 +18,7 @@
 	. = ..()
 	create_reagents(1000)
 
-/obj/item/grenade/chemical/attack_self(mob/user as mob)
+/obj/item/grenade/chemical/attack_self(mob/user)
 	if(!stage || stage==1)
 		if(detonator)
 //			detonator.loc=src.loc
@@ -44,7 +44,7 @@
 			var/mob/living/carbon/C = user
 			C.throw_mode_on()
 
-/obj/item/grenade/chemical/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/grenade/chemical/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/assembly_holder) && (!stage || stage == 1) && path != 2)
 		var/obj/item/assembly_holder/det = W
 		if(istype(det.a_left,det.a_right.type) || (!isigniter(det.a_left) && !isigniter(det.a_right)))
@@ -109,7 +109,7 @@
 	if(detonator)
 		usr << "With attached [detonator.name]"
 
-/obj/item/grenade/chemical/activate(mob/user as mob)
+/obj/item/grenade/chemical/activate(mob/user)
 	if(active)
 		return
 

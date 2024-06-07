@@ -33,7 +33,7 @@
 	times_used = max(0, round(times_used)) //sanity
 
 
-/obj/item/flash/attack(mob/living/M as mob, mob/user as mob)
+/obj/item/flash/attack(mob/living/M, mob/user)
 	if(!user || !M)
 		return	//sanity
 
@@ -118,7 +118,7 @@
 		user.visible_message(SPAN_NOTICE("[user] fails to blind [M] with the flash!"))
 	return
 
-/obj/item/flash/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/flash/attack_self(mob/living/carbon/user, flag = 0, emp = 0)
 	if(!user || !clown_check(user))
 		return
 	if(broken)
@@ -194,14 +194,14 @@
 	var/construction_cost = list(MATERIAL_METAL = 750, MATERIAL_GLASS = 750)
 	var/construction_time = 100
 
-/obj/item/flash/synthetic/attack(mob/living/M as mob, mob/user as mob)
+/obj/item/flash/synthetic/attack(mob/living/M, mob/user)
 	..()
 	if(!broken)
 		broken = 1
 		to_chat(user, SPAN_WARNING("The bulb has burnt out!"))
 		icon_state = "flashburnt"
 
-/obj/item/flash/synthetic/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
+/obj/item/flash/synthetic/attack_self(mob/living/carbon/user, flag = 0, emp = 0)
 	..()
 	if(!broken)
 		broken = 1

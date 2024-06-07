@@ -14,18 +14,18 @@
 	. = ..()
 	icon_state = "uglyminearmed"
 
-/obj/effect/mine/Crossed(AM as mob|obj)
+/obj/effect/mine/Crossed(atom/movable/AM)
 	Bumped(AM)
 
-/obj/effect/mine/Bumped(mob/M as mob|obj)
+/obj/effect/mine/Bumped(atom/movable/AM)
 	if(triggered)
 		return
 
-	if(ishuman(M) || ismonkey(M))
+	if(ishuman(AM) || ismonkey(AM))
 		for(var/mob/O in viewers(world.view, src.loc))
-			to_chat(O, "<font color='red'>[M] triggered the \icon[src] [src]</font>")
+			to_chat(O, "<font color='red'>[AM] triggered the \icon[src] [src]</font>")
 		triggered = TRUE
-		call(src, triggerproc)(M)
+		call(src, triggerproc)(AM)
 
 /obj/effect/mine/proc/triggerrad(obj)
 	make_sparks(3, TRUE, src)

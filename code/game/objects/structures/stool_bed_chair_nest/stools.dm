@@ -26,7 +26,7 @@
 		new /obj/item/stack/sheet/metal(src.loc)
 		qdel(src)
 
-/obj/structure/stool/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/stool/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/wrench))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		new /obj/item/stack/sheet/metal(src.loc)
@@ -56,7 +56,7 @@
 	w_class = 5.0
 	var/obj/structure/stool/origin = null
 
-/obj/item/stool/attack_self(mob/user as mob)
+/obj/item/stool/attack_self(mob/user)
 	..()
 	origin.loc = get_turf(src)
 	user.u_equip(src)
@@ -66,7 +66,7 @@
 	)
 	qdel(src)
 
-/obj/item/stool/attack(mob/M as mob, mob/user as mob)
+/obj/item/stool/attack(mob/M, mob/user)
 	if(prob(5) && isliving(M))
 		user.visible_message(SPAN_WARNING("[user] breaks [src] over [M]'s back!"))
 		user.u_equip(src)

@@ -82,7 +82,7 @@
 		src.pixel_y = rand(0, 16)
 	..()
 
-/obj/item/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/screwdriver/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!istype(M))
 		return ..()
 	if(user.zone_sel.selecting != "eyes" && user.zone_sel.selecting != "head")
@@ -117,7 +117,7 @@
 		item_state = "cutters_yellow"
 	..()
 
-/obj/item/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
+/obj/item/wirecutters/attack(mob/living/carbon/C, mob/user)
 	if(C.handcuffed && (istype(C.handcuffed, /obj/item/handcuffs/cable)))
 		user.visible_message(
 			"\The [user] cuts \the [C]'s restraints with \the [src]!",
@@ -192,7 +192,7 @@
 
 	return ..()
 
-/obj/item/weldingtool/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/weldingtool/attackby(obj/item/W, mob/user)
 	if(!status && istype(W, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = W
 		R.use(1)
@@ -252,7 +252,7 @@
 	if(isturf(location))
 		location.hotspot_expose(700, 5)
 
-/obj/item/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
+/obj/item/weldingtool/afterattack(obj/O, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src, O) <= 1 && !src.welding)
@@ -277,7 +277,7 @@
 			location.hotspot_expose(700, 50, 1)
 	return
 
-/obj/item/weldingtool/attack_self(mob/user as mob)
+/obj/item/weldingtool/attack_self(mob/user)
 	toggle()
 	return
 
@@ -362,7 +362,7 @@
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
-/obj/item/weldingtool/proc/eyecheck(mob/user as mob)
+/obj/item/weldingtool/proc/eyecheck(mob/user)
 	if(!iscarbon(user))
 		return 1
 	var/safety = user:eyecheck()
@@ -399,7 +399,7 @@
 					user.disabilities &= ~NEARSIGHTED
 	return
 
-/obj/item/weldingtool/attack(mob/M as mob, mob/user as mob)
+/obj/item/weldingtool/attack(mob/M, mob/user)
 	if(hasorgans(M))
 		var/datum/organ/external/S = M:organs_by_name[user.zone_sel.selecting]
 		if(!S)

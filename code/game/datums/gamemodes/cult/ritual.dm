@@ -104,7 +104,7 @@ var/engwords = list(
 
 	return ..()
 
-/obj/effect/rune/attack_hand(mob/living/user as mob)
+/obj/effect/rune/attack_hand(mob/living/user)
 	if(!iscultist(user))
 		to_chat(user, "You can't mouth the arcane scratchings without fumbling over them.")
 		return
@@ -357,7 +357,7 @@ var/engwords = list(
 //		usr << "whatev"
 //		usr << browse(null, "window=tank")
 
-/obj/item/tome/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/tome/attack(mob/living/M, mob/living/user)
 	M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had the [name] used on him by [user.name] ([user.ckey])</font>"
 	user.attack_log += "\[[time_stamp()]\] <font color='red'>Used [name] on [M.name] ([M.ckey])</font>"
 	msg_admin_attack("[user.name] ([user.ckey]) used [name] on [M.name] ([M.ckey]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
@@ -380,7 +380,7 @@ var/engwords = list(
 		O.show_message(SPAN_DANGER("[user] beats [M] with the arcane tome!"), 1)
 	to_chat(user, SPAN_WARNING("You feel searing heat inside!"))
 
-/obj/item/tome/attack_self(mob/living/user as mob)
+/obj/item/tome/attack_self(mob/living/user)
 	usr = user
 	if(!usr.canmove || usr.stat || usr.restrained())
 		return
@@ -507,7 +507,7 @@ var/engwords = list(
 	w_class = 2.0
 	var/cultistsonly = 1
 
-/obj/item/tome/imbued/attack_self(mob/user as mob)
+/obj/item/tome/imbued/attack_self(mob/user)
 	if(src.cultistsonly && !iscultist(usr))
 		return
 	if(!cultwords["travel"])

@@ -71,7 +71,7 @@
 	qdel(closer)
 	return ..()
 
-/obj/item/storage/MouseDrop(obj/over_object as obj)
+/obj/item/storage/MouseDrop(obj/over_object)
 	if(ishuman(usr) || ismonkey(usr)) //so monkeys can take off their backpacks -- Urist
 		if(ismecha(usr.loc)) // stops inventory actions in a mech
 			return
@@ -110,7 +110,7 @@
 			L.Add(G.gift:return_inv())
 	return L
 
-/obj/item/storage/proc/show_to(mob/user as mob)
+/obj/item/storage/proc/show_to(mob/user)
 	if(user.s_active != src)
 		for(var/obj/item/I in src)
 			if(I.on_found(user))
@@ -126,7 +126,7 @@
 	user.s_active = src
 	is_seeing |= user
 
-/obj/item/storage/proc/hide_from(mob/user as mob)
+/obj/item/storage/proc/hide_from(mob/user)
 	if(isnull(user.client))
 		return
 	user.client.screen.Remove(boxes)
@@ -136,7 +136,7 @@
 		user.s_active = null
 	is_seeing.Remove(user)
 
-/obj/item/storage/proc/open(mob/user as mob)
+/obj/item/storage/proc/open(mob/user)
 	if(isnotnull(use_sound))
 		playsound(loc, use_sound, 50, 1, -5)
 
@@ -144,7 +144,7 @@
 	user.s_active?.close(user)
 	show_to(user)
 
-/obj/item/storage/proc/close(mob/user as mob)
+/obj/item/storage/proc/close(mob/user)
 	hide_from(user)
 	user.s_active = null
 
@@ -207,14 +207,14 @@
 	var/obj/item/sample_object
 	var/number
 
-/datum/numbered_display/New(obj/item/sample as obj)
+/datum/numbered_display/New(obj/item/sample)
 	if(!istype(sample))
 		qdel(src)
 	sample_object = sample
 	number = 1
 
 //This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
-/obj/item/storage/proc/orient2hud(mob/user as mob)
+/obj/item/storage/proc/orient2hud(mob/user)
 	var/adjusted_contents = length(contents)
 
 	//Numbered contents display
@@ -242,7 +242,7 @@
 
 //This proc return 1 if the item can be picked up and 0 if it can't.
 //Set the stop_messages to stop it from printing messages
-/obj/item/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = FALSE)
+/obj/item/storage/proc/can_be_inserted(obj/item/W, stop_messages = FALSE)
 	if(!istype(W))
 		return //Not an item
 
@@ -297,7 +297,7 @@
 //This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
 //The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
 //such as when picking up all the items on a tile with one click.
-/obj/item/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
+/obj/item/storage/proc/handle_item_insertion(obj/item/W, prevent_warning = 0)
 	if(!istype(W))
 		return 0
 	if(isnotnull(usr))
@@ -326,7 +326,7 @@
 	return 1
 
 //Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
-/obj/item/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
+/obj/item/storage/proc/remove_from_storage(obj/item/W, atom/new_location)
 	if(!istype(W))
 		return 0
 
@@ -359,7 +359,7 @@
 	return 1
 
 //This proc is called when you want to place an item into the storage item.
-/obj/item/storage/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/attackby(obj/item/W, mob/user)
 	..()
 
 	if(isrobot(user))
@@ -385,10 +385,10 @@
 	W.add_fingerprint(user)
 	handle_item_insertion(W)
 
-/obj/item/storage/dropped(mob/user as mob)
+/obj/item/storage/dropped(mob/user)
 	return
 
-/obj/item/storage/attack_hand(mob/user as mob)
+/obj/item/storage/attack_hand(mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.l_pocket == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
@@ -439,7 +439,7 @@
 	..()
 
 // BubbleWrap - A box can be folded up to make card
-/obj/item/storage/attack_self(mob/user as mob)
+/obj/item/storage/attack_self(mob/user)
 	//Clicking on itself will empty it, if it has the verb to do that.
 	if(user.get_active_hand() == src)
 		if(verbs.Find(/obj/item/storage/verb/quick_empty))
@@ -467,7 +467,7 @@
 	qdel(src)
 //BubbleWrap END
 
-/obj/item/storage/hear_talk(mob/M as mob, text)
+/obj/item/storage/hear_talk(mob/M, text)
 	for(var/atom/A in src)
 		if(isobj(A))
 			var/obj/O = A

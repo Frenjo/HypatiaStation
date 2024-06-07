@@ -50,7 +50,7 @@
 /*******************
 *   Item Adding
 ********************/
-/obj/machinery/microwave/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/microwave/attackby(obj/item/O, mob/user)
 	if(src.broken > 0)
 		if(src.broken == 2 && istype(O, /obj/item/screwdriver)) // If it's broken and they're using a screwdriver
 			user.visible_message(SPAN_INFO("[user] starts to fix part of the microwave."), SPAN_INFO("You start to fix part of the microwave."))
@@ -111,20 +111,20 @@
 		return 1
 	src.updateUsrDialog()
 
-/obj/machinery/microwave/attack_paw(mob/user as mob)
+/obj/machinery/microwave/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/microwave/attack_ai(mob/user as mob)
+/obj/machinery/microwave/attack_ai(mob/user)
 	return 0
 
-/obj/machinery/microwave/attack_hand(mob/user as mob)
+/obj/machinery/microwave/attack_hand(mob/user)
 	user.set_machine(src)
 	interact(user)
 
 /*******************
 *   Microwave Menu
 ********************/
-/obj/machinery/microwave/interact(mob/user as mob) // The microwave Menu
+/obj/machinery/microwave/interact(mob/user) // The microwave Menu
 	var/dat = ""
 	if(src.broken > 0)
 		dat = {"<TT>Bzzzzttttt</TT>"}

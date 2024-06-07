@@ -27,10 +27,10 @@
 	if(ismob(user)) shock(user, 70)
 
 
-/obj/structure/grille/attack_paw(mob/user as mob)
+/obj/structure/grille/attack_paw(mob/user)
 	attack_hand(user)
 
-/obj/structure/grille/attack_hand(mob/user as mob)
+/obj/structure/grille/attack_hand(mob/user)
 	playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
 
 	var/damage_dealt
@@ -54,7 +54,7 @@
 	health -= damage_dealt
 	healthcheck()
 
-/obj/structure/grille/attack_slime(mob/user as mob)
+/obj/structure/grille/attack_slime(mob/user)
 	if(!isslimeadult(user))
 		return
 
@@ -65,7 +65,7 @@
 	healthcheck()
 	return
 
-/obj/structure/grille/attack_animal(mob/living/simple_animal/M as mob)
+/obj/structure/grille/attack_animal(mob/living/simple_animal/M)
 	if(M.melee_damage_upper == 0)
 		return
 
@@ -95,7 +95,7 @@
 	healthcheck()
 	return 0
 
-/obj/structure/grille/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/grille/attackby(obj/item/W, mob/user)
 	if(iswirecutter(W))
 		if(!shock(user, 100))
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
@@ -189,7 +189,7 @@
 // shock user with probability prb (if all connections & power are working)
 // returns 1 if shocked, 0 otherwise
 
-/obj/structure/grille/proc/shock(mob/user as mob, prb)
+/obj/structure/grille/proc/shock(mob/user, prb)
 	if(!anchored || destroyed)		// anchored/destroyed grilles are never connected
 		return 0
 	if(!prob(prb))

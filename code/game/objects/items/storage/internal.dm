@@ -29,7 +29,7 @@
 //items that use internal storage have the option of calling this to emulate default storage MouseDrop behaviour.
 //returns 1 if the master item's parent's MouseDrop() should be called, 0 otherwise. It's strange, but no other way of
 //doing it without the ability to call another proc's parent, really.
-/obj/item/storage/internal/proc/handle_mousedrop(mob/user as mob, obj/over_object as obj)
+/obj/item/storage/internal/proc/handle_mousedrop(mob/user, obj/over_object)
 	if(ishuman(user) || ismonkey(user)) //so monkeys can take off their backpacks -- Urist
 		if(ismecha(user.loc)) // stops inventory actions in a mech
 			return 0
@@ -61,7 +61,7 @@
 //items that use internal storage have the option of calling this to emulate default storage attack_hand behaviour.
 //returns 1 if the master item's parent's attack_hand() should be called, 0 otherwise.
 //It's strange, but no other way of doing it without the ability to call another proc's parent, really.
-/obj/item/storage/internal/proc/handle_attack_hand(mob/user as mob)
+/obj/item/storage/internal/proc/handle_attack_hand(mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.l_pocket == master_item && !H.get_active_hand())	//Prevents opening if it's in a pocket.

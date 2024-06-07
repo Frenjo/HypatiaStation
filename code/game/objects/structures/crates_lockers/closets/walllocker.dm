@@ -20,14 +20,14 @@
 	var/list/spawnitems = list(/obj/item/tank/emergency/oxygen, /obj/item/clothing/mask/breath)
 	var/amount = 2 // spawns each items X times.
 
-/obj/structure/closet/walllocker/emerglocker/toggle(mob/user as mob)
+/obj/structure/closet/walllocker/emerglocker/toggle(mob/user)
 	src.attack_hand(user)
 	return
 
-/obj/structure/closet/walllocker/emerglocker/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/closet/walllocker/emerglocker/attackby(obj/item/W, mob/user)
 	return
 
-/obj/structure/closet/walllocker/emerglocker/attack_hand(mob/user as mob)
+/obj/structure/closet/walllocker/emerglocker/attack_hand(mob/user)
 	if(isAI(user))	//Added by Strumpetplaya - AI shouldn't be able to
 		return		//activate emergency lockers.  This fixes that.  (Does this make sense, the AI can't call attack_hand, can it? --Mloc)
 	if(!amount)

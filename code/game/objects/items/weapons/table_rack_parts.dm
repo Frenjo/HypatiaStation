@@ -9,7 +9,7 @@
 /*
  * Table Parts
  */
-/obj/item/table_parts/attack_self(mob/user as mob)
+/obj/item/table_parts/attack_self(mob/user)
 	new /obj/structure/table(user.loc)
 	user.drop_item()
 	qdel(src)
@@ -39,7 +39,7 @@
 /*
  * Reinforced Table Parts
  */
-/obj/item/table_parts/reinforced/attack_self(mob/user as mob)
+/obj/item/table_parts/reinforced/attack_self(mob/user)
 	new /obj/structure/table/reinforced(user.loc)
 	user.drop_item()
 	qdel(src)
@@ -57,7 +57,7 @@
 /*
  * Wooden Table Parts
  */
-/obj/item/table_parts/wood/attack_self(mob/user as mob)
+/obj/item/table_parts/wood/attack_self(mob/user)
 	new /obj/structure/table/woodentable(user.loc)
 	user.drop_item()
 	qdel(src)
@@ -74,7 +74,7 @@
 /*
  * Rack Parts
  */
-/obj/item/rack_parts/attack_self(mob/user as mob)
+/obj/item/rack_parts/attack_self(mob/user)
 	var/obj/structure/rack/R = new /obj/structure/rack(user.loc)
 	R.add_fingerprint(user)
 	user.drop_item()

@@ -34,7 +34,7 @@
 		return TRUE
 	return ..()
 
-/obj/machinery/computer/aiupload/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/aiupload/attack_hand(mob/user)
 	if(src.stat & NOPOWER)
 		usr << "The upload computer has no power!"
 		return
@@ -65,7 +65,7 @@
 		return TRUE
 	return ..()
 
-/obj/machinery/computer/borgupload/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/borgupload/attack_hand(mob/user)
 	if(src.stat & NOPOWER)
 		usr << "The upload computer has no power!"
 		return

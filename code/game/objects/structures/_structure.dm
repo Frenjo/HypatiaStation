@@ -52,7 +52,7 @@
 		if(3.0)
 			return
 
-/obj/structure/meteorhit(obj/O as obj)
+/obj/structure/meteorhit(obj/O)
 	qdel(src)
 
 /obj/structure/proc/do_climb()

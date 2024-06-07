@@ -703,7 +703,7 @@ var/list/sacrificed = list()
 
 
 /////////////////////////////////////////SIXTEENTH RUNE
-/obj/effect/rune/proc/revealrunes(obj/W as obj)
+/obj/effect/rune/proc/revealrunes(obj/W)
 	var/go = 0
 	var/rad
 	var/S = 0
@@ -993,7 +993,7 @@ var/list/sacrificed = list()
 
 
 //////////				Rune 24 (counting burningblood, which kinda doesnt work yet.)
-/obj/effect/rune/proc/runestun(mob/living/T as mob)
+/obj/effect/rune/proc/runestun(mob/living/T)
 	if(isrune(src))	///When invoked as rune, flash and stun everyone around.
 		usr.say("Fuu ma[pick("'","`")]jin!")
 

@@ -95,7 +95,7 @@
 		for(var/obj/effect/proc_holder/P in proc_holder_list)
 			statpanel("[P.panel]", "", P)
 
-/mob/living/silicon/pai/check_eye(mob/user as mob)
+/mob/living/silicon/pai/check_eye(mob/user)
 	if(isnull(current))
 		return null
 	user.reset_view(current)
@@ -145,7 +145,7 @@
 
 // See software.dm for Topic()
 
-/mob/living/silicon/pai/meteorhit(obj/O as obj)
+/mob/living/silicon/pai/meteorhit(obj/O)
 	visible_message(SPAN_WARNING("[src] has been hit by [O]!"))
 	if(health > 0)
 		adjustBruteLoss(30)

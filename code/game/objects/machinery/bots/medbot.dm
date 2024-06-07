@@ -80,10 +80,10 @@
 	icon_state = "medibot[on]"
 	updateUsrDialog()
 
-/obj/machinery/bot/medbot/attack_paw(mob/user as mob)
+/obj/machinery/bot/medbot/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/bot/medbot/attack_hand(mob/user as mob)
+/obj/machinery/bot/medbot/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -162,7 +162,7 @@
 
 	updateUsrDialog()
 
-/obj/machinery/bot/medbot/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/bot/medbot/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(allowed(user) && !open && !emagged)
 			locked = !locked
@@ -196,7 +196,7 @@
 		if(health < maxhealth && !istype(W, /obj/item/screwdriver) && W.force)
 			step_to(src, (get_step_away(src, user)))
 
-/obj/machinery/bot/medbot/Emag(mob/user as mob)
+/obj/machinery/bot/medbot/Emag(mob/user)
 	..()
 	if(open && !locked)
 		if(isnotnull(user))
@@ -306,7 +306,7 @@
 	if(length(path) > 8 && patient)
 		frustration++
 
-/obj/machinery/bot/medbot/proc/assess_patient(mob/living/carbon/C as mob)
+/obj/machinery/bot/medbot/proc/assess_patient(mob/living/carbon/C)
 	//Time to see if they need medical help!
 	if(C.stat == DEAD)
 		return 0 //welp too late for them!
@@ -344,7 +344,7 @@
 
 	return 0
 
-/obj/machinery/bot/medbot/proc/medicate_patient(mob/living/carbon/C as mob)
+/obj/machinery/bot/medbot/proc/medicate_patient(mob/living/carbon/C)
 	if(!on)
 		return
 
@@ -454,7 +454,7 @@
 	make_sparks(3, TRUE, src)
 	return ..()
 
-/obj/machinery/bot/medbot/Bump(M as mob|obj) //Leave no door unopened!
+/obj/machinery/bot/medbot/Bump(atom/M) //Leave no door unopened!
 	if(istype(M, /obj/machinery/door) && isnotnull(botcard))
 		var/obj/machinery/door/D = M
 		if(!istype(D, /obj/machinery/door/firedoor) && D.check_access(botcard))
@@ -465,7 +465,7 @@
 		frustration = 0
 
 /* terrible
-/obj/machinery/bot/medbot/Bumped(atom/movable/M as mob|obj)
+/obj/machinery/bot/medbot/Bumped(atom/movable/M)
 	spawn(0)
 		if (M)
 			var/turf/T = get_turf(src)

@@ -5,7 +5,7 @@
 /*
  * Power
  */
-/area/proc/power_alert(state, obj/source as obj)
+/area/proc/power_alert(state, obj/source)
 	if(state != power_alarm)
 		power_alarm = state
 		if(istype(source)) // Only report power alarms on the z-level where the source is located.

@@ -197,14 +197,14 @@
 	return
 
 
-/mob/living/carbon/slime/u_equip(obj/item/W as obj)
+/mob/living/carbon/slime/u_equip(obj/item/W)
 	return
 
 
 /mob/living/carbon/slime/attack_ui(slot)
 	return
 
-/mob/living/carbon/slime/meteorhit(O as obj)
+/mob/living/carbon/slime/meteorhit(obj/O)
 	for(var/mob/M in viewers(src, null))
 		if((M.client && !( M.blinded )))
 			M.show_message(SPAN_WARNING("[src] has been hit by [O]!"), 1)
@@ -216,7 +216,7 @@
 	return
 
 
-/mob/living/carbon/slime/attack_slime(mob/living/carbon/slime/M as mob)
+/mob/living/carbon/slime/attack_slime(mob/living/carbon/slime/M)
 	if(!global.PCticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
@@ -245,7 +245,7 @@
 	return
 
 
-/mob/living/carbon/slime/attack_animal(mob/living/M as mob)
+/mob/living/carbon/slime/attack_animal(mob/living/M)
 	if(M.melee_damage_upper == 0)
 		M.emote("[M.friendly] [src]")
 	else
@@ -259,7 +259,7 @@
 		adjustBruteLoss(damage)
 		updatehealth()
 
-/mob/living/carbon/slime/attack_paw(mob/living/carbon/monkey/M as mob)
+/mob/living/carbon/slime/attack_paw(mob/living/carbon/monkey/M)
 	if(!ismonkey(M))
 		return//Fix for aliens receiving double messages when attacking other aliens.
 
@@ -287,7 +287,7 @@
 	return
 
 
-/mob/living/carbon/slime/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/slime/attack_hand(mob/living/carbon/human/M)
 	if(!global.PCticker)
 		to_chat(M, "You cannot attack people before the game has started.")
 		return
@@ -434,7 +434,7 @@
 /mob/living/carbon/slime/var/temperature_resistance = T0C+75
 
 
-/mob/living/carbon/slime/show_inv(mob/user as mob)
+/mob/living/carbon/slime/show_inv(mob/user)
 	user.set_machine(src)
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
@@ -574,7 +574,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle19"
 
-/obj/item/slimepotion/attack(mob/living/carbon/slime/M as mob, mob/user as mob)
+/obj/item/slimepotion/attack(mob/living/carbon/slime/M, mob/user)
 	if(!isslime(M))//If target is not a slime.
 		to_chat(user, SPAN_WARNING("The potion only works on baby slimes!"))
 		return ..()
@@ -606,7 +606,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle19"
 
-/obj/item/slimepotion2/attack(mob/living/carbon/slime/adult/M as mob, mob/user as mob)
+/obj/item/slimepotion2/attack(mob/living/carbon/slime/adult/M, mob/user)
 	if(!isslimeadult(M))	//If target is not a slime.
 		to_chat(user, SPAN_WARNING("The potion only works on adult slimes!"))
 		return ..()
@@ -635,7 +635,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16"
 
-/obj/item/slimesteroid/attack(mob/living/carbon/slime/M as mob, mob/user as mob)
+/obj/item/slimesteroid/attack(mob/living/carbon/slime/M, mob/user)
 	if(!isslime(M))	//If target is not a slime.
 		to_chat(user, SPAN_WARNING("The steroid only works on baby slimes!"))
 		return ..()
@@ -756,7 +756,7 @@
 	else
 		icon_state = "golem"
 
-/obj/effect/golemrune/attack_hand(mob/living/user as mob)
+/obj/effect/golemrune/attack_hand(mob/living/user)
 	var/mob/dead/observer/ghost
 	for(var/mob/dead/observer/O in src.loc)
 		if(!O.client)
@@ -868,7 +868,7 @@
 	if (environment.toxins > MOLES_PLASMA_VISIBLE)//plasma exposure causes the egg to hatch
 		src.Hatch()
 
-/obj/item/reagent_containers/food/snacks/egg/slime/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/egg/slime/attackby(obj/item/W, mob/user)
 	if(istype( W, /obj/item/toy/crayon ))
 		return
 	else

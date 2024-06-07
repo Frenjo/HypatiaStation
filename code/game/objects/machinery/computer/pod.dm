@@ -52,7 +52,7 @@
 	return
 
 /*
-/obj/machinery/computer/pod/attackby(I as obj, user as mob)
+/obj/machinery/computer/pod/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/screwdriver))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
@@ -108,15 +108,15 @@
 	return
 */
 
-/obj/machinery/computer/pod/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/pod/attack_ai(mob/user)
 	return attack_hand(user)
 
 
-/obj/machinery/computer/pod/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/pod/attack_paw(mob/user)
 	return attack_hand(user)
 
 
-/obj/machinery/computer/pod/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/pod/attack_hand(mob/user)
 	if(..())
 		return
 
@@ -205,7 +205,7 @@
 	title = "External Airlock Controls"
 	req_access = list(ACCESS_SYNDICATE)
 
-/obj/machinery/computer/pod/old/syndicate/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/pod/old/syndicate/attack_hand(mob/user)
 	if(!allowed(user))
 		FEEDBACK_ACCESS_DENIED(user)
 		return

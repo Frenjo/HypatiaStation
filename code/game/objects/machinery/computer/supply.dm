@@ -18,10 +18,10 @@
 	. = ..()
 	current_category = GET_DECL_INSTANCE(/decl/hierarchy/supply_pack)
 
-/obj/machinery/computer/supplycomp/attack_ai(mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/supplycomp/attack_paw(mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_paw(mob/user)
 	return attack_hand(user)
 
 /obj/machinery/computer/ordercomp
@@ -37,10 +37,10 @@
 	. = ..()
 	current_category = GET_DECL_INSTANCE(/decl/hierarchy/supply_pack)
 
-/obj/machinery/computer/ordercomp/attack_ai(mob/user as mob)
+/obj/machinery/computer/ordercomp/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/ordercomp/attack_paw(mob/user as mob)
+/obj/machinery/computer/ordercomp/attack_paw(mob/user)
 	return attack_hand(user)
 
 /*
@@ -53,7 +53,7 @@
 	opacity = FALSE
 */
 
-/obj/machinery/computer/ordercomp/attack_hand(mob/user as mob)
+/obj/machinery/computer/ordercomp/attack_hand(mob/user)
 	if(..())
 		return
 	user.set_machine(src)
@@ -186,7 +186,7 @@
 	updateUsrDialog()
 	return
 
-/obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/supplycomp/attack_hand(mob/user)
 	if(!allowed(user))
 		FEEDBACK_ACCESS_DENIED(user)
 		return

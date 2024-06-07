@@ -188,13 +188,13 @@ var/syndicate_elite_shuttle_timeleft = 0
 	to_chat(user, SPAN_WARNING("The electronic systems in this console are far too advanced for your primitive hacking peripherals."))
 	return FALSE
 
-/obj/machinery/computer/syndicate_elite_shuttle/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/syndicate_elite_shuttle/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/syndicate_elite_shuttle/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/syndicate_elite_shuttle/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/syndicate_elite_shuttle/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/syndicate_elite_shuttle/attack_hand(mob/user)
 	if(!allowed(user))
 		FEEDBACK_ACCESS_DENIED(user)
 		return

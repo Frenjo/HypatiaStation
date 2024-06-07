@@ -15,7 +15,7 @@
 		/obj/item/clothing/suit/space/rig
 	)
 
-/obj/item/modkit/afterattack(obj/O, mob/user as mob)
+/obj/item/modkit/afterattack(obj/O, mob/user)
 	if(!parts)
 		to_chat(user, SPAN_WARNING("This kit has no parts for this modification left."))
 		user.drop_from_inventory(src)

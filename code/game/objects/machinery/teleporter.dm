@@ -13,7 +13,7 @@
 	..()
 	return
 
-/obj/machinery/computer/teleporter/attackby(I as obj, mob/living/user as mob)
+/obj/machinery/computer/teleporter/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/card/data))
 		var/obj/item/card/data/C = I
 		if(stat & (NOPOWER|BROKEN) & C.function != "teleporter")
@@ -125,7 +125,7 @@
 		src.id = t
 	return
 
-/proc/find_loc(obj/R as obj)
+/proc/find_loc(obj/R)
 	if(!R)
 		return null
 	var/turf/T = R.loc
@@ -154,14 +154,14 @@
 
 	var/accurate = 0
 
-/obj/machinery/teleport/hub/Bumped(M as mob|obj)
+/obj/machinery/teleport/hub/Bumped(atom/movable/M)
 	spawn()
 		if(src.icon_state == "tele1")
 			teleport(M)
 			use_power(5000)
 	return
 
-/obj/machinery/teleport/hub/proc/teleport(atom/movable/M as mob|obj)
+/obj/machinery/teleport/hub/proc/teleport(atom/movable/M)
 	var/atom/l = src.loc
 	var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(l.x - 2, l.y, l.z))
 	if(!com)
@@ -185,7 +185,7 @@
 			B.show_message(SPAN_INFO("Test fire completed."))
 	return
 /*
-/proc/do_teleport(atom/movable/M as mob|obj, atom/destination, precision)
+/proc/do_teleport(atom/movable/M, atom/destination, precision)
 	if(istype(M, /obj/effect))
 		del(M)
 		return
@@ -367,5 +367,5 @@
 	src.range--
 	return
 
-/atom/proc/laserhit(L as obj)
+/atom/proc/laserhit(obj/L)
 	return 1

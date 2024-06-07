@@ -11,13 +11,13 @@
 	var/obj/item/target = null
 	var/creator = null
 
-/obj/effect/portal/Bumped(mob/M as mob|obj)
+/obj/effect/portal/Bumped(mob/M)
 	spawn(0)
 		src.teleport(M)
 		return
 	return
 
-/obj/effect/portal/Crossed(AM as mob|obj)
+/obj/effect/portal/Crossed(atom/movable/AM)
 	spawn(0)
 		src.teleport(AM)
 		return
@@ -29,7 +29,7 @@
 		qdel(src)
 		return
 
-/obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
+/obj/effect/portal/proc/teleport(atom/movable/M)
 	if(istype(M, /obj/effect)) //sparks don't teleport
 		return
 	if(M.anchored && ismecha(M))

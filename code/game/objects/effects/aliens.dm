@@ -88,7 +88,7 @@
 	healthcheck()
 	return
 
-/obj/effect/alien/resin/hitby(AM as mob|obj)
+/obj/effect/alien/resin/hitby(atom/movable/AM)
 	..()
 	for(var/mob/O in viewers(src, null))
 		O.show_message(SPAN_DANGER("[src] was hit by [AM]."), 1)
@@ -120,7 +120,7 @@
 /obj/effect/alien/resin/attack_paw()
 	return attack_hand()
 
-/obj/effect/alien/resin/attackby(obj/item/W as obj, mob/user as mob)
+/obj/effect/alien/resin/attackby(obj/item/W, mob/user)
 	var/aforce = W.force
 	health = max(0, health - aforce)
 	playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
@@ -355,7 +355,7 @@ Alien plants should do something if theres a lot of poison
 	else
 		qdel(src)
 
-/obj/effect/alien/egg/attack_hand(user as mob)
+/obj/effect/alien/egg/attack_hand(mob/user)
 	var/mob/living/carbon/M = user
 	if(!istype(M) || !(locate(/datum/organ/internal/xenos/hivenode) in M.internal_organs))
 		return attack_hand(user)
@@ -434,7 +434,7 @@ Alien plants should do something if theres a lot of poison
 		health -= 5
 		healthcheck()
 
-/obj/effect/alien/egg/HasProximity(atom/movable/AM as mob|obj)
+/obj/effect/alien/egg/HasProximity(atom/movable/AM)
 	if(status == GROWN)
 		if(!CanHug(AM))
 			return

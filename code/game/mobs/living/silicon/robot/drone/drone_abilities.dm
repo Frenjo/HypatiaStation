@@ -30,7 +30,7 @@
 	origin_tech = list(/datum/tech/magnets = 3, /datum/tech/engineering = 5)
 
 //Actual picking-up event.
-/mob/living/silicon/robot/drone/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/silicon/robot/drone/attack_hand(mob/living/carbon/human/M)
 	if(M.a_intent == "help")
 		var/obj/item/holder/drone/D = new /obj/item/holder/drone(loc)
 		loc = D

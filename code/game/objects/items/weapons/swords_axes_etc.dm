@@ -11,7 +11,7 @@
 /*
  * Banhammer
  */
-/obj/item/banhammer/attack(mob/M as mob, mob/user as mob)
+/obj/item/banhammer/attack(mob/M, mob/user)
 	to_chat(M, SPAN_DANGER("You have been banned FOR NO REISIN by [user]!"))
 	to_chat(user, SPAN_WARNING("You have <b>BANNED</b> [M]!"))
 
@@ -28,7 +28,7 @@
 	. = ..()
 	item_color = pick("red", "blue", "green", "purple")
 
-/obj/item/melee/energy/sword/attack_self(mob/living/user as mob)
+/obj/item/melee/energy/sword/attack_self(mob/living/user)
 	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("You accidentally cut yourself with [src]."))
 		user.take_organ_damage(5, 5)
@@ -74,7 +74,7 @@
 	slot_flags = SLOT_BELT
 	force = 10
 
-/obj/item/melee/classic_baton/attack(mob/M as mob, mob/living/user as mob)
+/obj/item/melee/classic_baton/attack(mob/M, mob/living/user)
 	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("You club yourself over the head."))
 		user.Weaken(3 * force)
@@ -131,7 +131,7 @@
 	force = 3
 	var/on = 0
 
-/obj/item/melee/telebaton/attack_self(mob/user as mob)
+/obj/item/melee/telebaton/attack_self(mob/user)
 	on = !on
 	if(on)
 		user.visible_message(
@@ -176,7 +176,7 @@
 
 	return
 
-/obj/item/melee/telebaton/attack(mob/target as mob, mob/living/user as mob)
+/obj/item/melee/telebaton/attack(mob/target, mob/living/user)
 	if(on)
 		if((CLUMSY in user.mutations) && prob(50))
 			to_chat(user, SPAN_WARNING("You club yourself over the head."))
@@ -224,7 +224,7 @@
 /*
  * Energy Axe
  */
-/obj/item/melee/energy/axe/attack_self(mob/user as mob)
+/obj/item/melee/energy/axe/attack_self(mob/user)
 	src.active = !src.active
 	if(src.active)
 		to_chat(user, SPAN_INFO("The axe is now energised."))
@@ -249,7 +249,7 @@
 	else
 		return 0
 
-/obj/item/shield/energy/attack_self(mob/living/user as mob)
+/obj/item/shield/energy/attack_self(mob/living/user)
 	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("You beat yourself in the head with [src]."))
 		user.take_organ_damage(5)

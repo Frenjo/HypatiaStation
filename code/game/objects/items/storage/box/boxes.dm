@@ -282,7 +282,7 @@
 		/obj/item/match = 10
 	)
 
-/obj/item/storage/box/matches/attackby(obj/item/match/W as obj, mob/user as mob)
+/obj/item/storage/box/matches/attackby(obj/item/match/W, mob/user)
 	if(istype(W) && !W.lit && !W.burnt)
 		W.lit = TRUE
 		W.damtype = "burn"

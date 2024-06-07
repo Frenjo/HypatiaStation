@@ -19,7 +19,7 @@
 /turf/simulated/wall/blob_act()
 	take_damage(rand(75, 125))
 
-/turf/simulated/wall/meteorhit(obj/M as obj)
+/turf/simulated/wall/meteorhit(obj/M)
 	if(prob(15) && !rotting)
 		dismantle_wall()
 	else if(prob(70) && !rotting)

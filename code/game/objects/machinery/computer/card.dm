@@ -35,15 +35,15 @@
 	return ..()
 
 
-/obj/machinery/computer/card/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/card/attack_ai(mob/user)
 	return attack_hand(user)
 
 
-/obj/machinery/computer/card/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/card/attack_paw(mob/user)
 	return attack_hand(user)
 
 
-/obj/machinery/computer/card/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/card/attack_hand(mob/user)
 	if(..())
 		return
 

@@ -9,13 +9,13 @@
 /obj/effect/step_trigger/proc/Trigger(atom/movable/A)
 	return 0
 
-/obj/effect/step_trigger/Crossed(H as mob|obj)
+/obj/effect/step_trigger/Crossed(atom/movable/AM)
 	..()
-	if(!H)
+	if(!AM)
 		return
-	if(isobserver(H) && !affect_ghosts)
+	if(isobserver(AM) && !affect_ghosts)
 		return
-	Trigger(H)
+	Trigger(AM)
 
 
 /* Tosses things in a certain direction */

@@ -67,7 +67,7 @@
 	if(isnull(tank)) //An admin must have spawned the farmbot! Better give it a tank.
 		tank = new /obj/structure/reagent_dispensers/watertank(src)
 
-/obj/machinery/bot/farmbot/Bump(M as mob|obj) //Leave no door unopened!
+/obj/machinery/bot/farmbot/Bump(atom/M) //Leave no door unopened!
 	spawn(0)
 		if(istype(M, /obj/machinery/door) && isnotnull(botcard))
 			var/obj/machinery/door/D = M
@@ -86,7 +86,7 @@
 	icon_state = "farmbot[on]"
 	updateUsrDialog()
 
-/obj/machinery/bot/farmbot/attack_paw(mob/user as mob)
+/obj/machinery/bot/farmbot/attack_paw(mob/user)
 	return attack_hand(user)
 
 /obj/machinery/bot/farmbot/proc/get_total_ferts()
@@ -95,7 +95,7 @@
 		total_fert++
 	return total_fert
 
-/obj/machinery/bot/farmbot/attack_hand(mob/user as mob)
+/obj/machinery/bot/farmbot/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -157,7 +157,7 @@
 
 	updateUsrDialog()
 
-/obj/machinery/bot/farmbot/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/bot/farmbot/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(allowed(user))
 			locked = !locked
@@ -180,7 +180,7 @@
 	else
 		..()
 
-/obj/machinery/bot/farmbot/Emag(mob/user as mob)
+/obj/machinery/bot/farmbot/Emag(mob/user)
 	..()
 	if(user)
 		to_chat(user, SPAN_WARNING("You short out [src]'s plant identifier circuits."))

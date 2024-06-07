@@ -191,7 +191,7 @@
 	add_fingerprint(usr)
 	return 0
 
-/obj/machinery/attack_ai(mob/user as mob)
+/obj/machinery/attack_ai(mob/user)
 	if(isrobot(user))
 		// For some reason attack_robot doesn't work
 		// This is to stop robots from using cameras to remotely control machines.
@@ -200,7 +200,7 @@
 	else
 		return attack_hand(user)
 
-/obj/machinery/attack_paw(mob/user as mob)
+/obj/machinery/attack_paw(mob/user)
 	return attack_hand(user)
 
 /obj/machinery/attack_hand(mob/user)

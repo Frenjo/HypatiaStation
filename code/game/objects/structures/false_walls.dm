@@ -41,7 +41,7 @@
 				junction |= get_dir(src, W)
 	icon_state = "[material.icon_prefix][junction]"
 
-/obj/structure/falsewall/attack_hand(mob/user as mob)
+/obj/structure/falsewall/attack_hand(mob/user)
 	if(opening)
 		return
 
@@ -71,7 +71,7 @@
 	else
 		icon_state = "[material.icon_prefix]fwall_open"
 
-/obj/structure/falsewall/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/falsewall/attackby(obj/item/W, mob/user)
 	if(opening)
 		user << "\red You must wait until the door has stopped moving."
 		return
@@ -152,7 +152,7 @@
 	anchored = TRUE
 	material = /decl/material/plasteel
 
-/obj/structure/falsewall/reinforced/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/falsewall/reinforced/attackby(obj/item/W, mob/user)
 	if(opening)
 		user << "\red You must wait until the door has stopped moving."
 		return
@@ -206,11 +206,11 @@
 	var/active = null
 	var/last_event = 0
 
-/obj/structure/falsewall/uranium/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/falsewall/uranium/attackby(obj/item/W, mob/user)
 	radiate()
 	..()
 
-/obj/structure/falsewall/uranium/attack_hand(mob/user as mob)
+/obj/structure/falsewall/uranium/attack_hand(mob/user)
 	radiate()
 	..()
 

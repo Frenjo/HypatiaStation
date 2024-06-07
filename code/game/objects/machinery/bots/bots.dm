@@ -45,7 +45,7 @@
 	if(health <= 0)
 		explode()
 
-/obj/machinery/bot/proc/Emag(mob/user as mob)
+/obj/machinery/bot/proc/Emag(mob/user)
 	if(locked)
 		locked = FALSE
 		emagged = 1
@@ -62,7 +62,7 @@
 		else
 			to_chat(usr, SPAN_DANGER("[src]'s parts look very loose!"))
 
-/obj/machinery/bot/attack_animal(mob/living/simple_animal/M as mob)
+/obj/machinery/bot/attack_animal(mob/living/simple_animal/M)
 	if(M.melee_damage_upper == 0)
 		return
 	health -= M.melee_damage_upper
@@ -72,7 +72,7 @@
 		new /obj/effect/decal/cleanable/blood/oil(loc)
 	healthcheck()
 
-/obj/machinery/bot/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/bot/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/screwdriver))
 		if(!locked)
 			open = !open
@@ -152,7 +152,7 @@
 		if(was_on)
 			turn_on()
 
-/obj/machinery/bot/attack_ai(mob/user as mob)
+/obj/machinery/bot/attack_ai(mob/user)
 	attack_hand(user)
 
 /obj/machinery/bot/attack_hand(mob/living/carbon/human/user)

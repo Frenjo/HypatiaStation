@@ -33,13 +33,13 @@
 				2=Network Access
 	*/
 
-/obj/machinery/door_control/attack_ai(mob/user as mob)
+/obj/machinery/door_control/attack_ai(mob/user)
 	if(wires & 2)
 		return src.attack_hand(user)
 	else
 		to_chat(user, "Error, no route to host.")
 
-/obj/machinery/door_control/attack_paw(mob/user as mob)
+/obj/machinery/door_control/attack_paw(mob/user)
 	return src.attack_hand(user)
 
 /obj/machinery/door_control/attack_emag(obj/item/card/emag/emag, mob/user, uses)
@@ -52,7 +52,7 @@
 	emagged = TRUE
 	return TRUE
 
-/obj/machinery/door_control/attackby(obj/item/W, mob/user as mob)
+/obj/machinery/door_control/attackby(obj/item/W, mob/user)
 	/* For later implementation
 	if (istype(W, /obj/item/screwdriver))
 	{
@@ -72,7 +72,7 @@
 
 	return attack_hand(user)
 
-/obj/machinery/door_control/attack_hand(mob/user as mob)
+/obj/machinery/door_control/attack_hand(mob/user)
 	src.add_fingerprint(usr)
 	if(stat & (NOPOWER | BROKEN))
 		return
@@ -160,18 +160,18 @@
 	var/id = null
 	var/active = FALSE
 
-/obj/machinery/driver_button/attack_ai(mob/user as mob)
+/obj/machinery/driver_button/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/driver_button/attack_paw(mob/user as mob)
+/obj/machinery/driver_button/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/driver_button/attackby(obj/item/W, mob/user as mob)
+/obj/machinery/driver_button/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/detective_scanner))
 		return
 	return attack_hand(user)
 
-/obj/machinery/driver_button/attack_hand(mob/user as mob)
+/obj/machinery/driver_button/attack_hand(mob/user)
 	src.add_fingerprint(usr)
 	if(stat & (NOPOWER | BROKEN))
 		return

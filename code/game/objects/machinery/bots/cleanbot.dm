@@ -66,14 +66,14 @@
 	path = list()
 	updateUsrDialog()
 
-/obj/machinery/bot/cleanbot/attack_hand(mob/user as mob)
+/obj/machinery/bot/cleanbot/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
 	usr.set_machine(src)
 	interact(user)
 
-/obj/machinery/bot/cleanbot/interact(mob/user as mob)
+/obj/machinery/bot/cleanbot/interact(mob/user)
 	var/dat
 	dat += {"
 <TT><B>Automatic Station Cleaner v1.0</B></TT><BR><BR>
@@ -125,7 +125,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 			to_chat(usr, SPAN_NOTICE("You press the weird button."))
 			updateUsrDialog()
 
-/obj/machinery/bot/cleanbot/attackby(obj/item/W, mob/user as mob)
+/obj/machinery/bot/cleanbot/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(allowed(usr) && !open && !emagged)
 			locked = !locked
@@ -140,7 +140,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 	else
 		return ..()
 
-/obj/machinery/bot/cleanbot/Emag(mob/user as mob)
+/obj/machinery/bot/cleanbot/Emag(mob/user)
 	..()
 	if(open && !locked)
 		if(isnotnull(user))

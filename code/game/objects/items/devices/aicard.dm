@@ -8,7 +8,7 @@
 	var/flush = null
 	origin_tech = list(/datum/tech/materials = 4, /datum/tech/programming = 4)
 
-/obj/item/aicard/attack(mob/living/silicon/ai/M as mob, mob/user as mob)
+/obj/item/aicard/attack(mob/living/silicon/ai/M, mob/user)
 	if(!isAI(M))//If target is not an AI.
 		return ..()
 
@@ -19,7 +19,7 @@
 	transfer_ai("AICORE", "AICARD", M, user)
 	return
 
-/obj/item/aicard/attack(mob/living/silicon/decoy/M as mob, mob/user as mob)
+/obj/item/aicard/attack(mob/living/silicon/decoy/M, mob/user)
 	if(!istype (M, /mob/living/silicon/decoy))
 		return ..()
 	else

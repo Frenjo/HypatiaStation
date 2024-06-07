@@ -79,7 +79,7 @@
 		if(length(GLOBL.message_servers))
 			linkedServer = GLOBL.message_servers[1]
 
-/obj/machinery/computer/message_monitor/attack_hand(var/mob/living/user as mob)
+/obj/machinery/computer/message_monitor/attack_hand(mob/living/user)
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(!istype(user))
@@ -245,10 +245,10 @@
 	onclose(user, "message")
 	return
 
-/obj/machinery/computer/message_monitor/attack_ai(mob/user as mob)
+/obj/machinery/computer/message_monitor/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/message_monitor/proc/BruteForce(mob/user as mob)
+/obj/machinery/computer/message_monitor/proc/BruteForce(mob/user)
 	if(isnull(linkedServer))
 		to_chat(user, SPAN_WARNING("Could not complete brute-force: Linked Server Disconnected!"))
 	else

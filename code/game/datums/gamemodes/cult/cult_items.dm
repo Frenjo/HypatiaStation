@@ -9,7 +9,7 @@
 	throwforce = 10
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-/obj/item/melee/cultblade/attack(mob/living/target as mob, mob/living/carbon/human/user as mob)
+/obj/item/melee/cultblade/attack(mob/living/target, mob/living/carbon/human/user)
 	if(iscultist(user))
 		playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
 		return ..()
@@ -22,7 +22,7 @@
 			user.UpdateDamageIcon()
 	return
 
-/obj/item/melee/cultblade/pickup(mob/living/user as mob)
+/obj/item/melee/cultblade/pickup(mob/living/user)
 	if(!iscultist(user))
 		to_chat(user, SPAN_WARNING("An overwhelming feeling of dread comes over you as you pick up the cultist's sword. It would be wise to be rid of this blade quickly."))
 		user.make_dizzy(120)

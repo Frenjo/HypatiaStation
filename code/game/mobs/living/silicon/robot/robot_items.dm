@@ -6,7 +6,7 @@
 	name = "RoboTray"
 	desc = "An autoloading tray specialized for carrying refreshments."
 
-/obj/item/tray/robotray/afterattack(atom/target, mob/user as mob)
+/obj/item/tray/robotray/afterattack(atom/target, mob/user)
 	if ( !target )
 		return
 	// pick up items, mostly copied from base tray pickup proc
@@ -94,7 +94,7 @@
 	name = "Printing Pen"
 	var/mode = 1
 
-/obj/item/pen/robopen/attack_self(mob/user as mob)
+/obj/item/pen/robopen/attack_self(mob/user)
 	playsound(src, 'sound/effects/pop.ogg', 50, 0)
 	if (mode == 1)
 		mode = 2
@@ -107,7 +107,7 @@
 // Copied over from paper's rename verb
 // see code\modules\paperwork\paper.dm line 62
 
-/obj/item/pen/robopen/proc/RenamePaper(mob/user as mob, obj/paper as obj)
+/obj/item/pen/robopen/proc/RenamePaper(mob/user, obj/paper)
 	if(!user || !paper)
 		return
 	var/n_name = input(user, "What would you like to label the paper?", "Paper Labelling", null)  as text

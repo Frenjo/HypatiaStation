@@ -80,7 +80,7 @@
 		else
 			return
 
-/obj/machinery/suit_storage_unit/attack_hand(mob/user as mob)
+/obj/machinery/suit_storage_unit/attack_hand(mob/user)
 	var/dat
 	if(..())
 		return
@@ -169,7 +169,7 @@
 	update_icon()
 	add_fingerprint(usr)
 
-/obj/machinery/suit_storage_unit/proc/toggleUV(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/toggleUV(mob/user)
 //	var/protected = 0
 //	var/mob/living/carbon/human/H = user
 	if(!panelopen)
@@ -194,7 +194,7 @@
 			issuperUV = TRUE
 		return
 
-/obj/machinery/suit_storage_unit/proc/togglesafeties(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/togglesafeties(mob/user)
 //	var/protected = 0
 //	var/mob/living/carbon/human/H = user
 	if(!panelopen) //Needed check due to bugs
@@ -214,21 +214,21 @@
 		to_chat(user, "You push the button. The coloured LED next to it changes.")
 		safetieson = !safetieson
 
-/obj/machinery/suit_storage_unit/proc/dispense_helmet(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/dispense_helmet(mob/user)
 	if(isnull(helmet))
 		return //Do I even need this sanity check? Nyoro~n
 
 	helmet.loc = loc
 	helmet = null
 
-/obj/machinery/suit_storage_unit/proc/dispense_suit(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/dispense_suit(mob/user)
 	if(isnull(suit))
 		return
 
 	suit.loc = loc
 	suit = null
 
-/obj/machinery/suit_storage_unit/proc/dispense_mask(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/dispense_mask(mob/user)
 	if(isnull(mask))
 		return
 
@@ -249,7 +249,7 @@
 	if(isnotnull(occupant))
 		eject_occupant(occupant)
 
-/obj/machinery/suit_storage_unit/proc/toggle_open(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/toggle_open(mob/user)
 	if(islocked || isUV)
 		to_chat(user, SPAN_WARNING("Unable to open unit."))
 		return
@@ -258,7 +258,7 @@
 		return // eject_occupant opens the door, so we need to return
 	isopen = !isopen
 
-/obj/machinery/suit_storage_unit/proc/toggle_lock(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/toggle_lock(mob/user)
 	if(isnotnull(occupant) && safetieson)
 		to_chat(user, SPAN_WARNING("The Unit's safety protocols disallow locking when a biological form is detected inside its compartments."))
 		return
@@ -266,7 +266,7 @@
 		return
 	islocked = !islocked
 
-/obj/machinery/suit_storage_unit/proc/start_UV(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/start_UV(mob/user)
 	if(isUV || isopen) //I'm bored of all these sanity checks
 		return
 	if(isnotnull(occupant) && safetieson)
@@ -344,7 +344,7 @@
 		cycletime_left--
 	return cycletime_left
 
-/obj/machinery/suit_storage_unit/proc/eject_occupant(mob/user as mob)
+/obj/machinery/suit_storage_unit/proc/eject_occupant(mob/user)
 	if(islocked)
 		return
 
@@ -415,7 +415,7 @@
 	else
 		occupant = null //Testing this as a backup sanity test
 
-/obj/machinery/suit_storage_unit/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/suit_storage_unit/attackby(obj/item/I, mob/user)
 	if(!ispowered)
 		return
 	if(istype(I, /obj/item/screwdriver))
@@ -502,10 +502,10 @@
 	update_icon()
 	updateUsrDialog()
 
-/obj/machinery/suit_storage_unit/attack_ai(mob/user as mob)
+/obj/machinery/suit_storage_unit/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/suit_storage_unit/attack_paw(mob/user as mob)
+/obj/machinery/suit_storage_unit/attack_paw(mob/user)
 	to_chat(user, SPAN_INFO("The console controls are far too complicated for your tiny brain!"))
 
 //////////////////////////////REMINDER: Make it lock once you place some fucker inside.

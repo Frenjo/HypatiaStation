@@ -42,14 +42,14 @@
 	path = list()
 	updateUsrDialog()
 
-/obj/machinery/bot/floorbot/attack_hand(mob/user as mob)
+/obj/machinery/bot/floorbot/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
 	usr.set_machine(src)
 	interact(user)
 
-/obj/machinery/bot/floorbot/interact(mob/user as mob)
+/obj/machinery/bot/floorbot/interact(mob/user)
 	var/dat
 	dat += "<TT><B>Automatic Station Floor Repairer v1.0</B></TT><BR><BR>"
 	dat += "Status: <A href='byond://?src=\ref[src];operation=start'>[on ? "On" : "Off"]</A><BR>"
@@ -70,7 +70,7 @@
 	user << browse("<HEAD><TITLE>Repairbot v1.0 controls</TITLE></HEAD>[dat]", "window=autorepair")
 	onclose(user, "autorepair")
 
-/obj/machinery/bot/floorbot/attackby(obj/item/W , mob/user as mob)
+/obj/machinery/bot/floorbot/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/tile/metal/grey))
 		var/obj/item/stack/tile/metal/grey/T = W
 		if(amount >= 50)
@@ -95,7 +95,7 @@
 	else
 		..()
 
-/obj/machinery/bot/floorbot/Emag(mob/user as mob)
+/obj/machinery/bot/floorbot/Emag(mob/user)
 	..()
 	if(open && !locked)
 		if(isnotnull(user))

@@ -11,7 +11,7 @@
 	var/max_uses = 5
 	var/op = 1
 
-/obj/item/spellbook/attack_self(mob/user as mob)
+/obj/item/spellbook/attack_self(mob/user)
 	user.set_machine(src)
 	var/dat
 	if(temp)

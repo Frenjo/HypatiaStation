@@ -28,17 +28,17 @@
 	unbuckle()
 	return ..()
 
-/obj/structure/stool/bed/attack_paw(mob/user as mob)
+/obj/structure/stool/bed/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/structure/stool/bed/attack_hand(mob/user as mob)
+/obj/structure/stool/bed/attack_hand(mob/user)
 	manual_unbuckle(user)
 	return
 
 /obj/structure/stool/bed/MouseDrop(atom/over_object)
 	return
 
-/obj/structure/stool/bed/MouseDrop_T(mob/M as mob, mob/user as mob)
+/obj/structure/stool/bed/MouseDrop_T(mob/M, mob/user)
 	if(!istype(M)) return
 	buckle_mob(M, user)
 	return
@@ -52,7 +52,7 @@
 			buckled_mob = null
 	return
 
-/obj/structure/stool/bed/proc/manual_unbuckle(mob/user as mob)
+/obj/structure/stool/bed/proc/manual_unbuckle(mob/user)
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
 			if(buckled_mob != user)
@@ -71,7 +71,7 @@
 			src.add_fingerprint(user)
 	return
 
-/obj/structure/stool/bed/proc/buckle_mob(mob/M as mob, mob/user as mob)
+/obj/structure/stool/bed/proc/buckle_mob(mob/M, mob/user)
 	if(!global.PCticker)
 		to_chat(user, "You can't buckle anyone in before the game starts.")
 	if(!ismob(M) || !in_range(src, user) || M.loc != src.loc || user.restrained() || user.lying || user.stat || M.buckled || ispAI(user))
@@ -131,7 +131,7 @@
 		else
 			buckled_mob = null
 
-/obj/structure/stool/bed/roller/buckle_mob(mob/M as mob, mob/user as mob)
+/obj/structure/stool/bed/roller/buckle_mob(mob/M, mob/user)
 	if(!ismob(M) || !in_range(src, user) || M.loc != src.loc || user.restrained() || user.lying || user.stat || M.buckled || ispAI(user))
 		return
 	M.pixel_y = 6
@@ -140,7 +140,7 @@
 	..()
 	return
 
-/obj/structure/stool/bed/roller/manual_unbuckle(mob/user as mob)
+/obj/structure/stool/bed/roller/manual_unbuckle(mob/user)
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)	//this is probably unneccesary, but it doesn't hurt
 			buckled_mob.pixel_y = 0

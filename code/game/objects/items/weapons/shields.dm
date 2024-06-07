@@ -66,7 +66,7 @@
 
 	var/active = 0
 
-/obj/item/cloaking_device/attack_self(mob/user as mob)
+/obj/item/cloaking_device/attack_self(mob/user)
 	active = !active
 	if(active)
 		to_chat(user, SPAN_INFO("The cloaking device is now active."))

@@ -97,7 +97,7 @@
 
 		qdel(src)
 
-/obj/item/tank/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/tank/attackby(obj/item/W, mob/user)
 	. = ..()
 	var/obj/icon = src
 
@@ -129,7 +129,7 @@
 	if(istype(W, /obj/item/assembly_holder))
 		bomb_assemble(W, user)
 
-/obj/item/tank/attack_self(mob/user as mob)
+/obj/item/tank/attack_self(mob/user)
 	if(isnull(air_contents))
 		return
 

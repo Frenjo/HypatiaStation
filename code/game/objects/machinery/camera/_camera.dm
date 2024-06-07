@@ -105,7 +105,7 @@
 		return
 	user.electrocute_act(10, src)
 
-/obj/machinery/camera/attack_hand(mob/living/carbon/human/user as mob)
+/obj/machinery/camera/attack_hand(mob/living/carbon/human/user)
 	if(!istype(user))
 		return
 
@@ -117,7 +117,7 @@
 		add_hiddenprint(user)
 		deactivate(user, 0)
 
-/obj/machinery/camera/attackby(W as obj, mob/living/user as mob)
+/obj/machinery/camera/attackby(obj/item/W, mob/living/user)
 	// DECONSTRUCTION
 	if(isscrewdriver(W))
 		//user << "<span class='notice'>You start to [panel_open ? "close" : "open"] the camera's panel.</span>"
@@ -191,7 +191,7 @@
 		..()
 	return
 
-/obj/machinery/camera/proc/deactivate(user as mob, choice = 1)
+/obj/machinery/camera/proc/deactivate(mob/user, choice = 1)
 	if(choice == 1)
 		status = !status
 		if(!status)
@@ -292,7 +292,7 @@
 	busy = FALSE
 	return 0
 
-/obj/machinery/camera/interact(mob/living/user as mob)
+/obj/machinery/camera/interact(mob/living/user)
 	if(!panel_open || isAI(user))
 		return
 

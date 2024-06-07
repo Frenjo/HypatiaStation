@@ -14,7 +14,7 @@
 	var/last_configurator = null
 	var/locked = TRUE
 
-/obj/item/airlock_electronics/attack_self(mob/user as mob)
+/obj/item/airlock_electronics/attack_self(mob/user)
 	if(!ishuman(user) && !isdrone(user))
 		return ..(user)
 

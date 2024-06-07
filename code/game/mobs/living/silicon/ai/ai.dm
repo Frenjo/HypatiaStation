@@ -150,7 +150,7 @@
 				if(malf.apcs >= 3)
 					stat(null, "Time until station control secured: [max(malf.AI_win_timeleft / (malf.apcs / 3), 0)] seconds.")
 
-/mob/living/silicon/ai/check_eye(mob/user as mob)
+/mob/living/silicon/ai/check_eye(mob/user)
 	if(isnull(current))
 		return null
 	user.reset_view(current)
@@ -243,7 +243,7 @@
 				sleep(40)
 				continue
 
-/mob/living/silicon/ai/meteorhit(obj/O as obj)
+/mob/living/silicon/ai/meteorhit(obj/O)
 	visible_message(SPAN_WARNING("[src] has been hit by [O]!"))
 	if(health > 0)
 		adjustBruteLoss(30)
@@ -251,7 +251,7 @@
 			adjustFireLoss(40)
 		updatehealth()
 
-/mob/living/silicon/ai/attack_animal(mob/living/M as mob)
+/mob/living/silicon/ai/attack_animal(mob/living/M)
 	if(M.melee_damage_upper == 0)
 		M.emote("[M.friendly] [src]")
 	else
@@ -293,7 +293,7 @@
 	if(viewalerts)
 		ai_alerts()
 
-/mob/living/silicon/ai/cancelAlarm(class, area/A as area, source)
+/mob/living/silicon/ai/cancelAlarm(class, area/A, source)
 	var/has_alarm = ..()
 
 	if(!has_alarm)

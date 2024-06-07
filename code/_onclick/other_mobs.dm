@@ -15,7 +15,7 @@
 
 	A.attack_hand(src)
 
-/atom/proc/attack_hand(mob/user as mob)
+/atom/proc/attack_hand(mob/user)
 	return
 
 /mob/living/carbon/human/RestrainedClickOn(atom/A)
@@ -50,7 +50,7 @@
 /mob/living/UnarmedAttack(atom/A)
 	A.attack_animal(src)
 
-/atom/proc/attack_animal(mob/user as mob)
+/atom/proc/attack_animal(mob/user)
 	return
 
 /mob/living/RestrainedClickOn(atom/A)
@@ -62,7 +62,7 @@
 /mob/living/carbon/monkey/UnarmedAttack(atom/A)
 	A.attack_paw(src)
 
-/atom/proc/attack_paw(mob/user as mob)
+/atom/proc/attack_paw(mob/user)
 	return
 
 /*
@@ -107,7 +107,7 @@
 /mob/living/carbon/slime/UnarmedAttack(atom/A)
 	A.attack_slime(src)
 
-/atom/proc/attack_slime(mob/user as mob)
+/atom/proc/attack_slime(mob/user)
 	return
 
 /mob/living/carbon/slime/RestrainedClickOn(atom/A)

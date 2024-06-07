@@ -11,7 +11,7 @@
 	overlays += image('icons/obj/structures/chairs.dmi', src, "echair_over", MOB_LAYER + 1, dir)
 	return
 
-/obj/structure/stool/bed/chair/e_chair/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/stool/bed/chair/e_chair/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/wrench))
 		var/obj/structure/stool/bed/chair/C = new /obj/structure/stool/bed/chair(loc)
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)

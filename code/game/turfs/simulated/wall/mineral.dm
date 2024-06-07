@@ -23,7 +23,7 @@
 	icon_state = "diamond0"
 	material = /decl/material/diamond
 
-/turf/simulated/wall/diamond/thermitemelt(mob/user as mob)
+/turf/simulated/wall/diamond/thermitemelt(mob/user)
 	return
 
 /turf/simulated/wall/bananium
@@ -71,15 +71,15 @@
 		active = null
 		return
 
-/turf/simulated/wall/uranium/attack_hand(mob/user as mob)
+/turf/simulated/wall/uranium/attack_hand(mob/user)
 	radiate(1)
 	. = ..()
 
-/turf/simulated/wall/uranium/attackby(obj/item/W as obj, mob/user as mob)
+/turf/simulated/wall/uranium/attackby(obj/item/W, mob/user)
 	radiate(1)
 	. = ..()
 
-/turf/simulated/wall/uranium/Bumped(AM as mob|obj)
+/turf/simulated/wall/uranium/Bumped(atom/movable/AM)
 	radiate(1)
 	. = ..()
 
@@ -90,7 +90,7 @@
 	icon_state = "plasma0"
 	material = /decl/material/plasma
 
-/turf/simulated/wall/plasma/attackby(obj/item/W as obj, mob/user as mob)
+/turf/simulated/wall/plasma/attackby(obj/item/W, mob/user)
 	if(is_hot(W) > 300)//If the temperature of the object is over 300, then ignite
 		ignite(is_hot(W))
 		return
@@ -136,7 +136,7 @@
 	else
 		return 0
 
-/turf/simulated/wall/proc/attackby(obj/item/W as obj, mob/user as mob)
+/turf/simulated/wall/proc/attackby(obj/item/W, mob/user)
 	if((mineral == "gold") || (mineral == "silver"))
 		if(shocked)
 			shock()

@@ -75,7 +75,7 @@
 		stat |= NOPOWER
 	return
 
-/obj/machinery/door/firedoor/attack_hand(mob/user as mob)
+/obj/machinery/door/firedoor/attack_hand(mob/user)
 	add_fingerprint(user)
 	if(operating)
 		return//Already doing something.
@@ -122,7 +122,7 @@
 				nextstate = DOOR_CLOSED
 				close()
 
-/obj/machinery/door/firedoor/attackby(obj/item/C as obj, mob/user as mob)
+/obj/machinery/door/firedoor/attackby(obj/item/C, mob/user)
 	add_fingerprint(user)
 	if(operating)
 		return//Already doing something.
@@ -239,7 +239,7 @@
 		else
 			return 1
 
-	CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
+	CheckExit(atom/movable/move, turf/target)
 		if(istype(mover) && mover.checkpass(PASS_FLAG_GLASS))
 			return 1
 		if(get_dir(loc, target) == dir)

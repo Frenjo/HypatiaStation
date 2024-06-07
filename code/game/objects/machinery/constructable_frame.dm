@@ -29,7 +29,7 @@
 		D += "."
 	desc = D
 
-/obj/machinery/constructable_frame/machine_frame/attackby(obj/item/P as obj, mob/user as mob)
+/obj/machinery/constructable_frame/machine_frame/attackby(obj/item/P, mob/user)
 	if(P.crit_fail)
 		to_chat(user, SPAN_WARNING("This part is faulty, you cannot add this to the machine!"))
 		return

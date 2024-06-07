@@ -146,7 +146,7 @@
 	. = ..()
 
 //returns 1 if made bloody, returns 0 otherwise
-/turf/simulated/add_blood(mob/living/carbon/human/M as mob)
+/turf/simulated/add_blood(mob/living/carbon/human/M)
 	if(!..())
 		return 0
 
@@ -178,7 +178,7 @@
 	tracks.AddTracks(bloodDNA, comingdir, goingdir, bloodcolor)
 
 // Only adds blood on the floor -- Skie
-/turf/simulated/proc/add_blood_floor(mob/living/carbon/M as mob)
+/turf/simulated/proc/add_blood_floor(mob/living/carbon/M)
 	if(ismonkey(M))
 		var/obj/effect/decal/cleanable/blood/this = new /obj/effect/decal/cleanable/blood(src)
 		this.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type

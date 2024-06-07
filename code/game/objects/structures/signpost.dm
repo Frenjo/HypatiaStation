@@ -4,10 +4,10 @@
 	anchored = TRUE
 	density = TRUE
 
-/obj/structure/signpost/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/signpost/attackby(obj/item/W, mob/user)
 	return attack_hand(user)
 
-/obj/structure/signpost/attack_hand(mob/user as mob)
+/obj/structure/signpost/attack_hand(mob/user)
 	switch(alert("Travel back to ss13?", , "Yes", "No"))
 		if("Yes")
 			if(user.z != src.z)

@@ -96,7 +96,7 @@
 	icon_state = "[lasercolor]ed209[on]"
 	updateUsrDialog()
 
-/obj/machinery/bot/ed209/attack_hand(mob/user as mob)
+/obj/machinery/bot/ed209/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
@@ -155,7 +155,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			mode = SECBOT_IDLE
 			updateUsrDialog()
 
-/obj/machinery/bot/ed209/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/bot/ed209/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(allowed(user) && !open && !emagged)
 			locked = !locked
@@ -176,7 +176,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 					shootAt(user)
 				mode = SECBOT_HUNT
 
-/obj/machinery/bot/ed209/Emag(mob/user as mob)
+/obj/machinery/bot/ed209/Emag(mob/user)
 	..()
 	if(open && !locked)
 		if(isnotnull(user))
@@ -608,7 +608,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 //If the security records say to arrest them, arrest them
 //Or if they have weapons and aren't security, arrest them.
-/obj/machinery/bot/ed209/proc/assess_perp(mob/living/carbon/human/perp as mob)
+/obj/machinery/bot/ed209/proc/assess_perp(mob/living/carbon/human/perp)
 	var/threatcount = 0
 
 	if(emagged == 2)
@@ -680,7 +680,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 	return threatcount
 
-/obj/machinery/bot/ed209/Bump(M as mob | obj) //Leave no door unopened!
+/obj/machinery/bot/ed209/Bump(atom/M) //Leave no door unopened!
 	if(istype(M, /obj/machinery/door) && isnotnull(botcard))
 		var/obj/machinery/door/D = M
 		if(!istype(D, /obj/machinery/door/firedoor) && D.check_access(botcard))
@@ -691,7 +691,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		frustration = 0
 
 /* terrible
-/obj/machinery/bot/ed209/Bumped(atom/movable/M as mob|obj)
+/obj/machinery/bot/ed209/Bumped(atom/movable/M)
 	spawn(0)
 		if(M)
 			var/turf/T = get_turf(src)
@@ -865,7 +865,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	var/created_name = "ED-209 Security Robot" //To preserve the name if it's a unique securitron I guess
 	var/lasercolor = ""
 
-/obj/item/ed209_assembly/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/ed209_assembly/attackby(obj/item/W, mob/user)
 	. = ..()
 	if(istype(W, /obj/item/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", name, created_name), 1, MAX_NAME_LEN)

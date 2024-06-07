@@ -24,7 +24,7 @@
 
 	var/mode = MODE_SHOW_LIMB_DAMAGE
 
-/obj/item/health_analyser/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/health_analyser/attack(mob/living/M, mob/living/user)
 	if(user.stat)
 		return
 	if(!ishuman(usr) && !IS_GAME_MODE(/datum/game_mode/monkey))

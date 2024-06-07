@@ -20,7 +20,7 @@
 		src.icon_state = "implantpad-0"
 	return
 
-/obj/item/implantpad/attack_hand(mob/user as mob)
+/obj/item/implantpad/attack_hand(mob/user)
 	if(src.case && (user.l_hand == src || user.r_hand == src))
 		user.put_in_active_hand(case)
 
@@ -43,7 +43,7 @@
 		return TRUE
 	return ..()
 
-/obj/item/implantpad/attack_self(mob/user as mob)
+/obj/item/implantpad/attack_self(mob/user)
 	user.set_machine(src)
 	var/dat = "<B>Implant Mini-Computer:</B><HR>"
 	if(src.case)

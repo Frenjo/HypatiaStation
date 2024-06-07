@@ -23,7 +23,7 @@
 	..()
 	add_implants()
 
-/obj/machinery/implantchair/attack_hand(mob/user as mob)
+/obj/machinery/implantchair/attack_hand(mob/user)
 	user.set_machine(src)
 	var/health_text = ""
 	if(src.occupant)
@@ -64,7 +64,7 @@
 		src.add_fingerprint(usr)
 		return
 
-/obj/machinery/implantchair/attackby(obj/item/G as obj, mob/user as mob)
+/obj/machinery/implantchair/attackby(obj/item/G, mob/user)
 	if(istype(G, /obj/item/grab))
 		if(!ismob(G:affecting))
 			return
@@ -94,7 +94,7 @@
 	icon_state = "implantchair"
 	return
 
-/obj/machinery/implantchair/proc/put_mob(mob/living/carbon/M as mob)
+/obj/machinery/implantchair/proc/put_mob(mob/living/carbon/M)
 	if(!iscarbon(M))
 		usr << "\red <B>The [src.name] cannot hold this!</B>"
 		return

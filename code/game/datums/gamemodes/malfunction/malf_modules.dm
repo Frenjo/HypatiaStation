@@ -258,7 +258,7 @@ rcd light flash thingy on matter drain
 		new /datum/malf_module/small/upgrade_camera()
 	)
 
-/datum/malf_module/module_picker/proc/use(user as mob)
+/datum/malf_module/module_picker/proc/use(mob/user)
 	var/dat
 	if(temp)
 		dat = "[temp]<BR><BR><A href='byond://?src=\ref[src];temp=1'>Clear</A>"

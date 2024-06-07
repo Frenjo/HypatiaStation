@@ -1099,7 +1099,7 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 		return TRUE
 	return FALSE
 
-/proc/is_hot(obj/item/W as obj)
+/proc/is_hot(obj/item/W)
 	switch(W.type)
 		if(/obj/item/weldingtool)
 			var/obj/item/weldingtool/WT = W
@@ -1133,7 +1133,7 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 			return 0
 
 //Whether or not the given item counts as sharp in terms of dealing damage
-/proc/is_sharp(obj/O as obj)
+/proc/is_sharp(obj/O)
 	if(isnull(O))
 		return FALSE
 	if(O.sharp)
@@ -1143,7 +1143,7 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 	return FALSE
 
 //Whether or not the given item counts as cutting with an edge in terms of removing limbs
-/proc/has_edge(obj/O as obj)
+/proc/has_edge(obj/O)
 	if(isnull(O))
 		return FALSE
 	if(O.edge)
@@ -1151,7 +1151,7 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 	return FALSE
 
 //Returns 1 if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.
-/proc/can_puncture(obj/item/W as obj)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
+/proc/can_puncture(obj/item/W)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
 	if(isnull(W))
 		return FALSE
 	if(W.sharp)
@@ -1166,7 +1166,7 @@ GLOBAL_GLOBL_LIST_INIT(common_tools, list(
 		istype(W, /obj/item/clothing/mask/cigarette)
 	)
 
-/proc/is_surgery_tool(obj/item/W as obj)
+/proc/is_surgery_tool(obj/item/W)
 	return(	\
 		istype(W, /obj/item/scalpel)		||	\
 		istype(W, /obj/item/hemostat)	||	\

@@ -61,14 +61,14 @@
 	species = list(SPECIES_HUMAN, SPECIES_SOGHUN, SPECIES_TAJARAN)
 	target_department = "Security"
 
-/obj/machinery/suit_cycler/attack_ai(mob/user as mob)
+/obj/machinery/suit_cycler/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/suit_cycler/attack_paw(mob/user as mob)
+/obj/machinery/suit_cycler/attack_paw(mob/user)
 	to_chat(user, SPAN_INFO("The console controls are far too complicated for your tiny brain!"))
 	return
 
-/obj/machinery/suit_cycler/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/suit_cycler/attackby(obj/item/I, mob/user)
 	if(electrified != 0)
 		if(src.shock(user, 100))
 			return
@@ -183,7 +183,7 @@
 
 	..()
 
-/obj/machinery/suit_cycler/attack_hand(mob/user as mob)
+/obj/machinery/suit_cycler/attack_hand(mob/user)
 	add_fingerprint(user)
 
 	if(..() || stat & (BROKEN|NOPOWER))
@@ -393,7 +393,7 @@
 
 	eject_occupant(usr)
 
-/obj/machinery/suit_cycler/proc/eject_occupant(mob/user as mob)
+/obj/machinery/suit_cycler/proc/eject_occupant(mob/user)
 	if(locked || active)
 		to_chat(usr, SPAN_WARNING("The cycler is locked."))
 		return

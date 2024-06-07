@@ -8,7 +8,7 @@
 /*
  * Banana Peals
  */
-/obj/item/bananapeel/Crossed(AM as mob|obj)
+/obj/item/bananapeel/Crossed(atom/movable/AM)
 	if(iscarbon(AM))
 		var/mob/M =	AM
 		if(ishuman(M))
@@ -26,7 +26,7 @@
 /*
  * Soap
  */
-/obj/item/soap/Crossed(AM as mob|obj) //EXACTLY the same as bananapeel for now, so it makes sense to put it in the same dm -- Urist
+/obj/item/soap/Crossed(atom/movable/AM) //EXACTLY the same as bananapeel for now, so it makes sense to put it in the same dm -- Urist
 	if(iscarbon(AM))
 		var/mob/M =	AM
 		if(ishuman(M))
@@ -40,7 +40,7 @@
 		M.Stun(3)
 		M.Weaken(2)
 
-/obj/item/soap/afterattack(atom/target, mob/user as mob, proximity)
+/obj/item/soap/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
@@ -55,7 +55,7 @@
 		target.clean_blood()
 	return
 
-/obj/item/soap/attack(mob/target as mob, mob/user as mob)
+/obj/item/soap/attack(mob/target, mob/user)
 	if(target && user && ishuman(target) && ishuman(user) && !target.stat && !user.stat && user.zone_sel &&user.zone_sel.selecting == "mouth")
 		user.visible_message(SPAN_WARNING("\the [user] washes \the [target]'s mouth out with soap!"))
 		return
@@ -65,7 +65,7 @@
 /*
  * Bike Horns
  */
-/obj/item/bikehorn/attack_self(mob/user as mob)
+/obj/item/bikehorn/attack_self(mob/user)
 	if(spam_flag == 0)
 		spam_flag = 1
 		playsound(src, 'sound/items/bikehorn.ogg', 50, 1)

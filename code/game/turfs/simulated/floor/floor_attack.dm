@@ -1,7 +1,7 @@
-/turf/simulated/floor/attack_paw(mob/user as mob)
+/turf/simulated/floor/attack_paw(mob/user)
 	return attack_hand(user)
 
-/turf/simulated/floor/attack_hand(mob/user as mob)
+/turf/simulated/floor/attack_hand(mob/user)
 	if(!user.canmove || user.restrained() || !user.pulling)
 		return
 	if(user.pulling.anchored || !isturf(user.pulling.loc))

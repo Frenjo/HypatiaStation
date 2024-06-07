@@ -1,4 +1,4 @@
-/obj/machinery/door/airlock/attack_hand(mob/user as mob)
+/obj/machinery/door/airlock/attack_hand(mob/user)
 	if(!issilicon(usr))
 		if(isElectrified())
 			if(shock(user, 100))
@@ -68,10 +68,10 @@
 	else
 		..(user)
 
-/obj/machinery/door/airlock/attack_paw(mob/user as mob)
+/obj/machinery/door/airlock/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/door/airlock/attack_ai(mob/user as mob)
+/obj/machinery/door/airlock/attack_ai(mob/user)
 	if(!canAIControl())
 		if(canAIHack())
 			hack(user)
@@ -178,7 +178,7 @@
 //aiDisable - 1 idscan, 2 disrupt main power, 3 disrupt backup power, 4 drop door bolts, 5 un-electrify door, 7 close door
 //aiEnable - 1 idscan, 4 raise door bolts, 5 electrify door for 30 seconds, 6 electrify door indefinitely, 7 open door
 
-/obj/machinery/door/airlock/proc/hack(mob/user as mob)
+/obj/machinery/door/airlock/proc/hack(mob/user)
 	if(!aiHacking)
 		aiHacking = TRUE
 		spawn(20)
@@ -273,7 +273,7 @@
 
 	return ..()
 
-/obj/machinery/door/airlock/attackby(C as obj, mob/user as mob)
+/obj/machinery/door/airlock/attackby(obj/item/C, mob/user)
 	if(iscrowbar(C) || istype(C, /obj/item/twohanded/fireaxe))
 		var/beingcrowbarred = iscrowbar(C) //derp, Agouri
 		if(beingcrowbarred && (operating == -1 || density && welded && operating != 1 && p_open && (!arePowerSystemsOn() || stat & NOPOWER) && !locked))
@@ -352,7 +352,7 @@
 
 	return ..()
 
-/obj/machinery/door/airlock/plasma/attackby(C as obj, mob/user as mob)
+/obj/machinery/door/airlock/plasma/attackby(obj/item/C, mob/user)
 	if(isnotnull(C))
 		ignite(is_hot(C))
 	. = ..()

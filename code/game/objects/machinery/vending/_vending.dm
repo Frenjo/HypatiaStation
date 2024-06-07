@@ -111,7 +111,7 @@
 	emagged = TRUE
 	return TRUE
 
-/obj/machinery/vending/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/vending/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/screwdriver))
 		panel_open = !panel_open
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
@@ -147,13 +147,13 @@
 	else
 		..()
 
-/obj/machinery/vending/attack_paw(mob/user as mob)
+/obj/machinery/vending/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/vending/attack_ai(mob/user as mob)
+/obj/machinery/vending/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/vending/attack_hand(mob/user as mob)
+/obj/machinery/vending/attack_hand(mob/user)
 	if(stat & (BROKEN | NOPOWER))
 		return
 

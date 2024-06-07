@@ -21,7 +21,7 @@
 	var/list/timestamp = list()
 	var/canprint = 1
 
-/obj/item/taperecorder/hear_talk(mob/living/M as mob, msg, verbage = "says")
+/obj/item/taperecorder/hear_talk(mob/living/M, msg, verbage = "says")
 	if(recording)
 		//var/ending = copytext(msg, length(msg))
 		timestamp+= timerecorded

@@ -14,19 +14,19 @@
 	var/list/network = list("SS13")
 	var/mapping = 0//For the overview file, interesting bit of code.
 
-/obj/machinery/computer/security/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/security/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/security/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/security/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/security/check_eye(var/mob/user as mob)
+/obj/machinery/computer/security/check_eye(mob/user)
 	if ((get_dist(user, src) > 1 || !( user.canmove ) || user.blinded || !( current ) || !( current.status )) && (!issilicon(user)))
 		return null
 	user.reset_view(current)
 	return 1
 
-/obj/machinery/computer/security/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/security/attack_hand(mob/user)
 	if (src.z > 6)
 		user << "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!"
 		return

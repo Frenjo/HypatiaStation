@@ -12,13 +12,13 @@
      default /datum/recipe/ procs does not rely on this parameter.
  *
  *  Functions you need:
- *  /datum/recipe/proc/make(var/obj/container as obj)
+ *  /datum/recipe/proc/make(var/obj/container)
  *    Creates result inside container,
  *    deletes prerequisite reagents,
  *    transfers reagents from prerequisite objects,
  *    deletes all prerequisite objects (even not needed for recipe at the moment).
  *
- *  /proc/select_recipe(list/datum/recipe/avaiable_recipes, obj/obj as obj, exact = 1)
+ *  /proc/select_recipe(list/datum/recipe/avaiable_recipes, obj/obj, exact = 1)
  *    Wonderful function that select suitable recipe for you.
  *    obj is a machine (or magik hat) with prerequisites,
  *    exact = 0 forces algorithm to ignore superfluous stuff.
@@ -28,7 +28,7 @@
  *  /datum/recipe/proc/check_reagents(var/datum/reagents/avail_reagents)
  *    //1=precisely,  0=insufficiently, -1=superfluous
  *
- *  /datum/recipe/proc/check_items(var/obj/container as obj)
+ *  /datum/recipe/proc/check_items(var/obj/container)
  *    //1=precisely, 0=insufficiently, -1=superfluous
  *
  * */
@@ -52,7 +52,7 @@
 		return -1
 	return .
 
-/datum/recipe/proc/check_items(obj/container as obj) //1=precisely, 0=insufficiently, -1=superfluous
+/datum/recipe/proc/check_items(obj/container) //1=precisely, 0=insufficiently, -1=superfluous
 	if(!items)
 		if(locate(/obj) in container)
 			return -1
@@ -74,7 +74,7 @@
 	return .
 
 //general version
-/datum/recipe/proc/make(obj/container as obj)
+/datum/recipe/proc/make(obj/container)
 	var/obj/result_obj = new result(container)
 	for(var/obj/O in (container.contents - result_obj))
 		O.reagents.trans_to(result_obj, O.reagents.total_volume)
@@ -83,7 +83,7 @@
 	return result_obj
 
 // food-related
-/datum/recipe/proc/make_food(obj/container as obj)
+/datum/recipe/proc/make_food(obj/container)
 	var/obj/result_obj = new result(container)
 	for(var/obj/O in (container.contents - result_obj))
 		if(O.reagents)
@@ -94,7 +94,7 @@
 	container.reagents.clear_reagents()
 	return result_obj
 
-/proc/select_recipe(list/datum/recipe/avaiable_recipes, obj/obj as obj, exact = 1 as num)
+/proc/select_recipe(list/datum/recipe/avaiable_recipes, obj/obj, exact = 1 as num)
 	if(!exact)
 		exact = -1
 	var/list/datum/recipe/possible_recipes = new

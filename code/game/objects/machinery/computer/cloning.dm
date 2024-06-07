@@ -74,13 +74,13 @@
 		return TRUE
 	return ..()
 
-/obj/machinery/computer/cloning/attack_paw(mob/user as mob)
+/obj/machinery/computer/cloning/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/cloning/attack_ai(mob/user as mob)
+/obj/machinery/computer/cloning/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/cloning/attack_hand(mob/user as mob)
+/obj/machinery/computer/cloning/attack_hand(mob/user)
 	user.set_machine(src)
 	add_fingerprint(user)
 
@@ -338,7 +338,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject as mob)
+/obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject)
 	if((isnull(subject)) || (!(ishuman(subject))) || (!subject.dna))
 		scantemp = "Error: Unable to locate valid genetic data."
 		return

@@ -14,7 +14,7 @@
 	var/power_rating = 15000	//15 kW
 	var/obj/item/charging = null
 
-/obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
+/obj/machinery/recharger/attackby(obj/item/G, mob/user)
 	if(issilicon(user))
 		return
 
@@ -50,7 +50,7 @@
 		to_chat(user, "You [anchored ? "attached" : "detached"] the recharger.")
 		playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
 
-/obj/machinery/recharger/attack_hand(mob/user as mob)
+/obj/machinery/recharger/attack_hand(mob/user)
 	add_fingerprint(user)
 
 	if(isnotnull(charging))
@@ -60,7 +60,7 @@
 		update_power_state(USE_POWER_IDLE)
 		update_icon()
 
-/obj/machinery/recharger/attack_paw(mob/user as mob)
+/obj/machinery/recharger/attack_paw(mob/user)
 	return attack_hand(user)
 
 /obj/machinery/recharger/process()

@@ -71,7 +71,7 @@
 	GLOBL.airlocks_list.Remove(src)
 	return ..()
 
-/obj/machinery/door/airlock/bumpopen(mob/living/user as mob) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
+/obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
 	if(!issilicon(usr))
 		if(isElectrified())
 			if(!justzap)
@@ -92,7 +92,7 @@
 			do_animate("deny")
 	. = ..(user)
 
-/obj/machinery/door/airlock/bumpopen(mob/living/simple_animal/user as mob)
+/obj/machinery/door/airlock/bumpopen(mob/living/simple_animal/user)
 	. = ..(user)
 
 /obj/machinery/door/airlock/proc/isElectrified()

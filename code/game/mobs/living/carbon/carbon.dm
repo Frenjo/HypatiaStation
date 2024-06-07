@@ -55,7 +55,7 @@
 		visible_message(SPAN_DANGER("[M] bursts out of [src]!"))
 	. = ..(null, 1)
 
-/mob/living/carbon/attack_hand(mob/M as mob)
+/mob/living/carbon/attack_hand(mob/M)
 	if(!iscarbon(M))
 		return
 
@@ -75,7 +75,7 @@
 		if(D.spread_by_touch())
 			contract_disease(D, 0, 1, CONTACT_HANDS)
 
-/mob/living/carbon/attack_paw(mob/M as mob)
+/mob/living/carbon/attack_paw(mob/M)
 	if(!iscarbon(M))
 		return
 
@@ -331,7 +331,7 @@
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/u_equip(obj/item/W as obj)
+/mob/living/carbon/u_equip(obj/item/W)
 	if(isnull(W))
 		return 0
 
@@ -345,7 +345,7 @@
 	else
 		..()
 
-/mob/living/carbon/show_inv(mob/living/carbon/user as mob)
+/mob/living/carbon/show_inv(mob/living/carbon/user)
 	user.set_machine(src)
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>

@@ -110,7 +110,7 @@
 /obj/proc/hide(h)
 	return
 
-/obj/proc/hear_talk(mob/M as mob, text)
+/obj/proc/hear_talk(mob/M, text)
 /*
 	var/mob/mo = locate(/mob) in src
 	if(mo)

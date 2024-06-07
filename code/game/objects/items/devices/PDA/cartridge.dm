@@ -68,7 +68,7 @@
 	the user can't access.  Well, unless they are href hacking.
 	But in that case their UI will just lock up.
 */
-/obj/item/cartridge/proc/create_NanoUI_values(mob/user as mob)
+/obj/item/cartridge/proc/create_NanoUI_values(mob/user)
 	var/values[0]
 
 	/*		Signaler (Mode: 40)				*/

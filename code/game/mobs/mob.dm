@@ -118,7 +118,7 @@
 	if(istype(W))
 		equip_to_slot_if_possible(W, slot)
 
-/mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = 0, disable_warning = 1, redraw_mob = 1)
+/mob/proc/put_in_any_hand_if_possible(obj/item/W, del_on_fail = 0, disable_warning = 1, redraw_mob = 1)
 	if(equip_to_slot_if_possible(W, SLOT_ID_L_HAND, del_on_fail, disable_warning, redraw_mob))
 		return 1
 	else if(equip_to_slot_if_possible(W, SLOT_ID_R_HAND, del_on_fail, disable_warning, redraw_mob))
@@ -129,7 +129,7 @@
 //set del_on_fail to have it delete W if it fails to equip
 //set disable_warning to disable the 'you are unable to equip that' warning.
 //unset redraw_mob to prevent the mob from being redrawn at the end.
-/mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1)
+/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1)
 	if(!istype(W))
 		return 0
 
@@ -146,11 +146,11 @@
 
 //This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
 //In most cases you will want to use equip_to_slot_if_possible()
-/mob/proc/equip_to_slot(obj/item/W as obj, slot)
+/mob/proc/equip_to_slot(obj/item/W, slot)
 	return
 
 //This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds tarts and when events happen and such.
-/mob/proc/equip_to_slot_or_del(obj/item/W as obj, slot)
+/mob/proc/equip_to_slot_or_del(obj/item/W, slot)
 	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
 
 //The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
@@ -199,7 +199,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = loc
 
-/mob/proc/show_inv(mob/user as mob)
+/mob/proc/show_inv(mob/user)
 	user.set_machine(src)
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
@@ -250,7 +250,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 
 	return TRUE
 
-/mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
+/mob/proc/ret_grab(obj/effect/list_container/mobl/L, flag)
 	if(!istype(l_hand, /obj/item/grab) && !istype(r_hand, /obj/item/grab))
 		if(isnull(L))
 			return null
@@ -587,7 +587,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 						return 1
 		return 0
 
-/mob/MouseDrop(mob/M as mob)
+/mob/MouseDrop(mob/M)
 	..()
 	if(M != usr)
 		return

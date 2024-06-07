@@ -26,7 +26,7 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	var/attached = 0
 
-/obj/item/clothing/mask/facehugger/attack_paw(user as mob) //can be picked up by aliens
+/obj/item/clothing/mask/facehugger/attack_paw(mob/user) //can be picked up by aliens
 	if(isalien(user))
 		attack_hand(user)
 		return
@@ -34,7 +34,7 @@ var/const/MAX_ACTIVE_TIME = 400
 		..()
 		return
 
-/obj/item/clothing/mask/facehugger/attack_hand(user as mob)
+/obj/item/clothing/mask/facehugger/attack_hand(mob/user)
 	if((stat == CONSCIOUS && !sterile) && !isalien(user))
 		Attach(user)
 		return
@@ -42,7 +42,7 @@ var/const/MAX_ACTIVE_TIME = 400
 		..()
 		return
 
-/obj/item/clothing/mask/facehugger/attack(mob/living/M as mob, mob/user as mob)
+/obj/item/clothing/mask/facehugger/attack(mob/living/M, mob/user)
 	..()
 	user.drop_from_inventory(src)
 	Attach(M)
@@ -85,13 +85,13 @@ var/const/MAX_ACTIVE_TIME = 400
 	HasProximity(target)
 	return
 
-/obj/item/clothing/mask/facehugger/on_found(mob/finder as mob)
+/obj/item/clothing/mask/facehugger/on_found(mob/finder)
 	if(stat == CONSCIOUS)
 		HasProximity(finder)
 		return 1
 	return
 
-/obj/item/clothing/mask/facehugger/HasProximity(atom/movable/AM as mob|obj)
+/obj/item/clothing/mask/facehugger/HasProximity(atom/movable/AM)
 	if(CanHug(AM))
 		Attach(AM)
 
@@ -109,7 +109,7 @@ var/const/MAX_ACTIVE_TIME = 400
 		icon_state = "[initial(icon_state)]"
 		Attach(hit_atom)
 
-/obj/item/clothing/mask/facehugger/proc/Attach(M as mob)
+/obj/item/clothing/mask/facehugger/proc/Attach(mob/M)
 	if((!iscorgi(M) && !iscarbon(M)) || isalien(M))
 		return
 	if(attached)
@@ -167,7 +167,7 @@ var/const/MAX_ACTIVE_TIME = 400
 
 	return
 
-/obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/target as mob)
+/obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/target)
 	if(!target || target.wear_mask != src || target.stat == DEAD) //was taken off or something
 		return
 

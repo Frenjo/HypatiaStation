@@ -18,7 +18,7 @@
 	..()
 	fireaxe = new /obj/item/twohanded/fireaxe(src)
 
-/obj/structure/closet/fireaxecabinet/attackby(obj/item/O as obj, mob/user as mob)  //Marker -Agouri
+/obj/structure/closet/fireaxecabinet/attackby(obj/item/O, mob/user)  //Marker -Agouri
 	//..() //That's very useful, Erro
 	var/hasaxe = 0       //gonna come in handy later~
 	if(fireaxe)
@@ -105,7 +105,7 @@
 				spawn(10)
 					update_icon()
 
-/obj/structure/closet/fireaxecabinet/attack_hand(mob/user as mob)
+/obj/structure/closet/fireaxecabinet/attack_hand(mob/user)
 	var/hasaxe = 0
 	if(fireaxe)
 		hasaxe = 1
@@ -145,7 +145,7 @@
 			spawn(10)
 				update_icon()
 
-/obj/structure/closet/fireaxecabinet/attack_tk(mob/user as mob)
+/obj/structure/closet/fireaxecabinet/attack_tk(mob/user)
 	if(localopened && fireaxe)
 		fireaxe.loc = loc
 		to_chat(user, SPAN_INFO("You telekinetically remove the fire axe."))
@@ -186,11 +186,11 @@
 		to_chat(usr, SPAN_INFO("The [src.name] is closed."))
 	update_icon()
 
-/obj/structure/closet/fireaxecabinet/attack_paw(mob/user as mob)
+/obj/structure/closet/fireaxecabinet/attack_paw(mob/user)
 	attack_hand(user)
 	return
 
-/obj/structure/closet/fireaxecabinet/attack_ai(mob/user as mob)
+/obj/structure/closet/fireaxecabinet/attack_ai(mob/user)
 	if(src.smashed)
 		to_chat(user, SPAN_WARNING("The security of the cabinet is compromised."))
 		return

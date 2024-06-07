@@ -35,7 +35,7 @@
 	name = "[initial(name)] (Wielded)"
 	update_icon()
 
-/obj/item/twohanded/mob_can_equip(M as mob, slot)
+/obj/item/twohanded/mob_can_equip(mob/M, slot)
 	//Cannot equip wielded items.
 	if(wielded)
 		to_chat(M, SPAN_WARNING("Unwield the [initial(name)] first!"))
@@ -43,7 +43,7 @@
 
 	return ..()
 
-/obj/item/twohanded/dropped(mob/user as mob)
+/obj/item/twohanded/dropped(mob/user)
 	//handles unwielding a twohanded weapon when dropped as well as clearing up the offhand
 	if(user)
 		var/obj/item/twohanded/O = user.get_inactive_hand()
@@ -57,7 +57,7 @@
 /obj/item/twohanded/pickup(mob/user)
 	unwield()
 
-/obj/item/twohanded/attack_self(mob/user as mob)
+/obj/item/twohanded/attack_self(mob/user)
 	if(ismonkey(user))
 		to_chat(user, SPAN_WARNING("It's too heavy for you to wield fully."))
 		return
@@ -124,7 +124,7 @@
 	icon_state = "fireaxe[wielded]"
 	return
 
-/obj/item/twohanded/fireaxe/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+/obj/item/twohanded/fireaxe/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	..()
@@ -170,7 +170,7 @@
 	icon_state = "dualsaber[wielded]"
 	return
 
-/obj/item/twohanded/dualsaber/attack(target as mob, mob/living/user as mob)
+/obj/item/twohanded/dualsaber/attack(mob/target, mob/living/user)
 	..()
 	if((CLUMSY in user.mutations) && wielded && prob(40))
 		to_chat(user, SPAN_WARNING("You twirl around a bit before losing your balance and impaling yourself on the [src]."))

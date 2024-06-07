@@ -306,7 +306,7 @@
 
 	return ..()
 
-/obj/item/shard/Crossed(AM as mob|obj)
+/obj/item/shard/Crossed(atom/movable/AM)
 	if(ismob(AM))
 		var/mob/M = AM
 		to_chat(M, SPAN_DANGER("You step in the broken glass!"))

@@ -106,10 +106,10 @@
 					F.loc = src.loc
 					qdel(src)
 
-/obj/machinery/telecoms/attack_ai(mob/user as mob)
+/obj/machinery/telecoms/attack_ai(mob/user)
 	attack_hand(user)
 
-/obj/machinery/telecoms/attack_hand(mob/user as mob)
+/obj/machinery/telecoms/attack_hand(mob/user)
 	// You need a multitool to use this, or be silicon
 	if(!issilicon(user))
 		// istype returns false if the value is null
@@ -284,7 +284,7 @@
 	return 0
 
 // Returns a multitool from a user depending on their mobtype.
-/obj/machinery/telecoms/proc/get_multitool(mob/user as mob)
+/obj/machinery/telecoms/proc/get_multitool(mob/user)
 	var/obj/item/multitool/P = null
 	// Let's double check
 	if(!issilicon(user) && istype(user.get_active_hand(), /obj/item/multitool))

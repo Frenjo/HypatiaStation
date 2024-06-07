@@ -18,13 +18,13 @@
 
 	light_color = "#315ab4"
 
-/obj/machinery/computer/med_data/attack_ai(user as mob)
+/obj/machinery/computer/med_data/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/med_data/attack_paw(user as mob)
+/obj/machinery/computer/med_data/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/med_data/attack_hand(mob/user as mob)
+/obj/machinery/computer/med_data/attack_hand(mob/user)
 	if(..())
 		return
 	var/dat

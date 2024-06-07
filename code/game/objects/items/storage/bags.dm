@@ -125,7 +125,7 @@
 	//verbs -= /obj/item/storage/verb/quick_empty
 	//verbs += /obj/item/storage/bag/sheetsnatcher/quick_empty
 
-/obj/item/storage/bag/sheetsnatcher/can_be_inserted(obj/item/W as obj, stop_messages = 0)
+/obj/item/storage/bag/sheetsnatcher/can_be_inserted(obj/item/W, stop_messages = 0)
 	if(!istype(W, /obj/item/stack/sheet) || istype(W, /obj/item/stack/sheet/sandstone) || istype(W, /obj/item/stack/sheet/wood))
 		if(!stop_messages)
 			to_chat(usr, "The snatcher does not accept [W].")
@@ -140,7 +140,7 @@
 	return 1
 
 // Modified handle_item_insertion.  Would prefer not to, but...
-/obj/item/storage/bag/sheetsnatcher/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
+/obj/item/storage/bag/sheetsnatcher/handle_item_insertion(obj/item/W, prevent_warning = 0)
 	var/obj/item/stack/sheet/S = W
 	if(!istype(S))
 		return 0
@@ -181,7 +181,7 @@
 
 // Sets up numbered display to show the stack size of each stored mineral
 // NOTE: numbered display is turned off currently because it's broken
-/obj/item/storage/bag/sheetsnatcher/orient2hud(mob/user as mob)
+/obj/item/storage/bag/sheetsnatcher/orient2hud(mob/user)
 	var/adjusted_contents = length(contents)
 
 	//Numbered contents display
@@ -219,7 +219,7 @@
 	update_icon()
 
 // Instead of removing
-/obj/item/storage/bag/sheetsnatcher/remove_from_storage(obj/item/W as obj, atom/new_location)
+/obj/item/storage/bag/sheetsnatcher/remove_from_storage(obj/item/W, atom/new_location)
 	var/obj/item/stack/sheet/S = W
 	if(!istype(S))
 		return 0

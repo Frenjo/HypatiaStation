@@ -59,18 +59,18 @@
 	var/id = null
 	var/active = 0
 
-/obj/machinery/holosign_switch/attack_ai(mob/user as mob)
+/obj/machinery/holosign_switch/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/holosign_switch/attack_paw(mob/user as mob)
+/obj/machinery/holosign_switch/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/holosign_switch/attackby(obj/item/W, mob/user as mob)
+/obj/machinery/holosign_switch/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/detective_scanner))
 		return
 	return src.attack_hand(user)
 
-/obj/machinery/holosign_switch/attack_hand(mob/user as mob)
+/obj/machinery/holosign_switch/attack_hand(mob/user)
 	src.add_fingerprint(usr)
 	if(stat & (NOPOWER | BROKEN))
 		return

@@ -14,7 +14,7 @@
 	var/operating = 0
 	var/obj/item/robot_parts/being_built = null
 
-/obj/machinery/robotic_fabricator/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/robotic_fabricator/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/stack/sheet/metal))
 		if(src.metal_amount < 150000.0)
 			var/count = 0
@@ -43,10 +43,10 @@
 	else
 		stat |= NOPOWER
 
-/obj/machinery/robotic_fabricator/attack_paw(user as mob)
+/obj/machinery/robotic_fabricator/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/robotic_fabricator/attack_hand(user as mob)
+/obj/machinery/robotic_fabricator/attack_hand(mob/user)
 	var/dat
 	if(..())
 		return

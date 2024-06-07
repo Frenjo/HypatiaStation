@@ -102,7 +102,7 @@
 	var/diskcolor = pick(0, 1, 2)
 	src.icon_state = "datadisk[diskcolor]"
 
-/obj/item/disk/data/attack_self(mob/user as mob)
+/obj/item/disk/data/attack_self(mob/user)
 	src.read_only = !src.read_only
 	user << "You flip the write-protect tab to [src.read_only ? "protected" : "unprotected"]."
 
@@ -129,12 +129,12 @@
 			src.healthstring = "ERROR"
 		return src.healthstring
 
-/obj/machinery/clonepod/attack_ai(mob/user as mob)
+/obj/machinery/clonepod/attack_ai(mob/user)
 	src.add_hiddenprint(user)
 	return attack_hand(user)
-/obj/machinery/clonepod/attack_paw(mob/user as mob)
+/obj/machinery/clonepod/attack_paw(mob/user)
 	return attack_hand(user)
-/obj/machinery/clonepod/attack_hand(mob/user as mob)
+/obj/machinery/clonepod/attack_hand(mob/user)
 	if((isnull(src.occupant)) || (stat & NOPOWER))
 		return
 	if((isnotnull(src.occupant)) && (src.occupant.stat != DEAD))
@@ -302,7 +302,7 @@
 	return TRUE
 
 //Let's unlock this early I guess.  Might be too early, needs tweaking.
-/obj/machinery/clonepod/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/clonepod/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(!src.check_access(W))
 			FEEDBACK_ACCESS_DENIED(user)
@@ -393,7 +393,7 @@
 			qdel(src.occupant)
 	return
 
-/obj/machinery/clonepod/relaymove(mob/user as mob)
+/obj/machinery/clonepod/relaymove(mob/user)
 	if(user.stat)
 		return
 	src.go_out()

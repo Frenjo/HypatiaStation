@@ -16,7 +16,7 @@
 	icon_state = "ash"
 	anchored = TRUE
 
-/obj/effect/decal/cleanable/ash/attack_hand(mob/user as mob)
+/obj/effect/decal/cleanable/ash/attack_hand(mob/user)
 	to_chat(user, SPAN_NOTICE("[src] sifts through your fingers."))
 	var/turf/simulated/floor/F = get_turf(src)
 	if(istype(F))

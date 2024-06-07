@@ -13,15 +13,15 @@
 	var/id = null
 	var/on = TRUE
 
-/obj/machinery/igniter/attack_ai(mob/user as mob)
+/obj/machinery/igniter/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/igniter/attack_paw(mob/user as mob)
+/obj/machinery/igniter/attack_paw(mob/user)
 	if(IS_GAME_MODE(/datum/game_mode/monkey))
 		return src.attack_hand(user)
 	return
 
-/obj/machinery/igniter/attack_hand(mob/user as mob)
+/obj/machinery/igniter/attack_hand(mob/user)
 	if(..())
 		return
 	add_fingerprint(user)
@@ -74,7 +74,7 @@
 		icon_state = "[base_state]-p"
 //		src.sd_SetLuminosity(0)
 
-/obj/machinery/sparker/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/sparker/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/detective_scanner))
 		return
 	if(istype(W, /obj/item/screwdriver))
@@ -141,16 +141,16 @@
 	var/id = null
 	var/active = FALSE
 
-/obj/machinery/ignition_switch/attack_ai(mob/user as mob)
+/obj/machinery/ignition_switch/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/ignition_switch/attack_paw(mob/user as mob)
+/obj/machinery/ignition_switch/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/ignition_switch/attackby(obj/item/W, mob/user as mob)
+/obj/machinery/ignition_switch/attackby(obj/item/W, mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/ignition_switch/attack_hand(mob/user as mob)
+/obj/machinery/ignition_switch/attack_hand(mob/user)
 	if(stat & (NOPOWER | BROKEN))
 		return
 	if(active)

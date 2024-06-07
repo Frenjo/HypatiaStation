@@ -201,10 +201,10 @@ var/bomb_set
 		return TRUE
 	return ..()
 
-/obj/machinery/nuclearbomb/attack_paw(mob/user as mob)
+/obj/machinery/nuclearbomb/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
+/obj/machinery/nuclearbomb/attack_hand(mob/user)
 	if(src.extended)
 		if(!ishuman(user))
 			FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
@@ -242,7 +242,7 @@ var/bomb_set
 		src.extended = 1
 	return
 
-/obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
+/obj/machinery/nuclearbomb/proc/nukehack_win(mob/user)
 	var/dat
 	dat += "<TT><B>Nuclear Fission Explosive</B><BR>\nNuclear Device Wires:</A><HR>"
 	for(var/wire in src.wires)

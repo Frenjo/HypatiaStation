@@ -16,7 +16,7 @@
 	. = ..()
 	handle_rotation()
 
-/obj/structure/stool/bed/chair/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/stool/bed/chair/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/assembly/shock_kit))
 		var/obj/item/assembly/shock_kit/SK = W
@@ -32,7 +32,7 @@
 		SK.master = E
 		qdel(src)
 
-/obj/structure/stool/bed/chair/attack_tk(mob/user as mob)
+/obj/structure/stool/bed/chair/attack_tk(mob/user)
 	if(buckled_mob)
 		..()
 	else
@@ -68,7 +68,7 @@
 		handle_rotation()
 		return
 
-/obj/structure/stool/bed/chair/MouseDrop_T(mob/M as mob, mob/user as mob)
+/obj/structure/stool/bed/chair/MouseDrop_T(mob/M, mob/user)
 	if(!istype(M))
 		return
 	buckle_mob(M, user)
@@ -85,7 +85,7 @@
 /obj/structure/stool/bed/chair/wood/wings
 	icon_state = "wooden_chair_wings"
 
-/obj/structure/stool/bed/chair/wood/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/stool/bed/chair/wood/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/wrench))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		new /obj/item/stack/sheet/wood(src.loc)

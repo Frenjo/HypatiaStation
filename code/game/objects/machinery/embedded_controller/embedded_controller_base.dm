@@ -31,10 +31,10 @@
 
 	update_icon()
 
-/obj/machinery/embedded_controller/attack_ai(mob/user as mob)
+/obj/machinery/embedded_controller/attack_ai(mob/user)
 	src.ui_interact(user)
 
-/obj/machinery/embedded_controller/attack_hand(mob/user as mob)
+/obj/machinery/embedded_controller/attack_hand(mob/user)
 	if(!user.IsAdvancedToolUser())
 		return 0
 

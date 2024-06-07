@@ -40,7 +40,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		location.hotspot_expose(700, 5)
 		return
 
-/obj/item/match/dropped(mob/user as mob)
+/obj/item/match/dropped(mob/user)
 	if(lit)
 		burn_out()
 	return ..()
@@ -84,7 +84,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	qdel(reagents)
 	return ..()
 
-/obj/item/clothing/mask/cigarette/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/mask/cigarette/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
@@ -120,7 +120,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	user.update_inv_r_hand(1)
 	return
 
-/obj/item/clothing/mask/cigarette/afterattack(obj/item/reagent_containers/glass/glass, mob/user as mob, proximity)
+/obj/item/clothing/mask/cigarette/afterattack(obj/item/reagent_containers/glass/glass, mob/user, proximity)
 	..()
 	if(!proximity)
 		return
@@ -180,7 +180,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			reagents.remove_any(REAGENTS_METABOLISM)
 	return
 
-/obj/item/clothing/mask/cigarette/attack_self(mob/user as mob)
+/obj/item/clothing/mask/cigarette/attack_self(mob/user)
 	if(lit == 1)
 		user.visible_message(SPAN_NOTICE("[user] calmly drops and treads on the lit [src], putting it out instantly."))
 		die()
@@ -249,7 +249,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	icon_state = "cigarbutt"
 
 
-/obj/item/clothing/mask/cigarette/cigar/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/mask/cigarette/cigar/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
 		if(WT.isOn())
@@ -317,7 +317,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(location)
 		location.hotspot_expose(700, 5)
 
-/obj/item/clothing/mask/cigarette/pipe/attack_self(mob/user as mob) //Refills the pipe. Can be changed to an attackby later, if loose tobacco is added to vendors or something.
+/obj/item/clothing/mask/cigarette/pipe/attack_self(mob/user) //Refills the pipe. Can be changed to an attackby later, if loose tobacco is added to vendors or something.
 	if(lit == 1)
 		user.visible_message(SPAN_NOTICE("[user] puts out [src]."))
 		lit = 0
@@ -329,7 +329,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		to_chat(user, SPAN_NOTICE("You refill the pipe with tobacco."))
 		smoketime = initial(smoketime)
 
-/obj/item/clothing/mask/cigarette/pipe/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/mask/cigarette/pipe/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
 		if(WT.isOn())//
@@ -433,7 +433,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	return
 
 
-/obj/item/lighter/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/lighter/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!ismob(M))
 		return
 	M.IgniteMob()

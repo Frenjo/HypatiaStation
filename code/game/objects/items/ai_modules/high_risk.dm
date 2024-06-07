@@ -74,7 +74,7 @@
 
 	var/targetName = ""
 
-/obj/item/ai_module/oneHuman/attack_self(mob/user as mob)
+/obj/item/ai_module/oneHuman/attack_self(mob/user)
 	. = ..()
 	targetName = stripped_input(usr, "Please enter the name of the person who is the only human.", "Who?", user.real_name)
 	desc = "A 'one human' AI module: 'Only [targetName] is human.'"

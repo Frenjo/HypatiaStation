@@ -117,7 +117,7 @@
 	for(var/obj/item/toy/crayon/crayon in contents)
 		overlays.Add(image('icons/obj/items/crayons.dmi', crayon.colourName))
 
-/obj/item/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/fancy/crayons/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/toy/crayon))
 		switch(W:colourName)
 			if("mime")
@@ -159,14 +159,14 @@
 	icon_state = "[initial(icon_state)][length(contents)]"
 	desc = "There are [length(contents)] cig\s left!"
 
-/obj/item/storage/fancy/cigarettes/remove_from_storage(obj/item/W as obj, atom/new_location)
+/obj/item/storage/fancy/cigarettes/remove_from_storage(obj/item/W, atom/new_location)
 	var/obj/item/clothing/mask/cigarette/C = W
 	if(!istype(C))
 		return // what
 	reagents.trans_to(C, (reagents.total_volume / length(contents)))
 	..()
 
-/obj/item/storage/fancy/cigarettes/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/storage/fancy/cigarettes/attack(mob/living/carbon/M, mob/living/carbon/user)
 	if(!ismob(M))
 		return
 
@@ -225,6 +225,6 @@
 	else
 		overlays.Add(image(icon, src, "ledb"))
 
-/obj/item/storage/lockbox/vials/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/lockbox/vials/attackby(obj/item/W, mob/user)
 	. = ..()
 	update_icon()

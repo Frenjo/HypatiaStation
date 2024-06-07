@@ -71,7 +71,7 @@
 			if(prob(10))
 				say("Nom")
 
-/mob/living/simple_animal/hostile/retaliate/goat/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/hostile/retaliate/goat/attackby(obj/item/O, mob/user)
 	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
 		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
 		var/obj/item/reagent_containers/glass/G = O
@@ -111,7 +111,7 @@
 	udder.my_atom = src
 	..()
 
-/mob/living/simple_animal/cow/attackby(obj/item/O as obj, mob/user as mob)
+/mob/living/simple_animal/cow/attackby(obj/item/O, mob/user)
 	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_containers/glass))
 		user.visible_message(SPAN_NOTICE("[user] milks [src] using \the [O]."))
 		var/obj/item/reagent_containers/glass/G = O
@@ -129,7 +129,7 @@
 		if(udder && prob(5))
 			udder.add_reagent("milk", rand(5, 10))
 
-/mob/living/simple_animal/cow/attack_hand(mob/living/carbon/M as mob)
+/mob/living/simple_animal/cow/attack_hand(mob/living/carbon/M)
 	if(!stat && M.a_intent == "disarm" && icon_state != icon_dead)
 		M.visible_message(
 			SPAN_WARNING("[M] tips over [src]."),
@@ -231,7 +231,7 @@ GLOBAL_GLOBL_INIT(chicken_count, 0)
 	..()
 	GLOBL.chicken_count -= 1
 
-/mob/living/simple_animal/chicken/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/chicken/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/reagent_containers/food/snacks/grown/wheat)) //feedin' dem chickens
 		if(!stat && eggsleft < 8)
 			user.visible_message("\blue [user] feeds [O] to [name]! It clucks happily.","\blue You feed [O] to [name]! It clucks happily.")

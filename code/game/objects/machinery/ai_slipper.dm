@@ -49,10 +49,10 @@
 			return
 	return
 
-/obj/machinery/ai_slipper/attack_ai(mob/user as mob)
+/obj/machinery/ai_slipper/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/ai_slipper/attack_hand(mob/user as mob)
+/obj/machinery/ai_slipper/attack_hand(mob/user)
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(!in_range(src, user))

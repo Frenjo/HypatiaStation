@@ -12,7 +12,7 @@
 	max_w_class = 3
 	max_combined_w_class = 16
 
-/obj/item/storage/briefcase/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/storage/briefcase/attack(mob/living/M, mob/living/user)
 	//..()
 	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("The [src] slips out of your hand and hits your head."))

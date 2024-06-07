@@ -66,7 +66,7 @@
 	src.opened = 0
 	return 1
 
-/obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/closet/crate/attackby(obj/item/W, mob/user)
 	if(opened)
 		if(isrobot(user))
 			return

@@ -63,14 +63,14 @@
 	else
 		src.overlays += image('icons/obj/kitchen.dmi', "gridle")
 
-/obj/machinery/gibber/attack_paw(mob/user as mob)
+/obj/machinery/gibber/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/gibber/relaymove(mob/user as mob)
+/obj/machinery/gibber/relaymove(mob/user)
 	src.go_out()
 	return
 
-/obj/machinery/gibber/attack_hand(mob/user as mob)
+/obj/machinery/gibber/attack_hand(mob/user)
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(operating)
@@ -79,7 +79,7 @@
 	else
 		src.startgibbing(user)
 
-/obj/machinery/gibber/attackby(obj/item/grab/G as obj, mob/user as mob)
+/obj/machinery/gibber/attackby(obj/item/grab/G, mob/user)
 	if(src.occupant)
 		user << "\red The gibber is full, empty it first!"
 		return
@@ -138,7 +138,7 @@
 	return
 
 
-/obj/machinery/gibber/proc/startgibbing(mob/user as mob)
+/obj/machinery/gibber/proc/startgibbing(mob/user)
 	if(src.operating)
 		return
 	if(!src.occupant)

@@ -113,7 +113,7 @@
 		return 0
 	return 1
 
-/obj/structure/window/hitby(AM as mob|obj)
+/obj/structure/window/hitby(atom/movable/AM)
 	..()
 	visible_message(SPAN_DANGER("[src] was hit by [AM]."))
 	var/tforce = 0
@@ -130,11 +130,11 @@
 		step(src, get_dir(AM, src))
 	take_damage(tforce)
 
-/obj/structure/window/attack_tk(mob/user as mob)
+/obj/structure/window/attack_tk(mob/user)
 	user.visible_message(SPAN_NOTICE("Something knocks on [src]."))
 	playsound(loc, 'sound/effects/Glasshit.ogg', 50, 1)
 
-/obj/structure/window/attack_hand(mob/user as mob)
+/obj/structure/window/attack_hand(mob/user)
 	if(HULK in user.mutations)
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
 		user.visible_message(SPAN_DANGER("[user] smashes through [src]!"))
@@ -161,14 +161,14 @@
 			)
 	return
 
-/obj/structure/window/attack_paw(mob/user as mob)
+/obj/structure/window/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/structure/window/proc/attack_generic(mob/user as mob, damage = 0)	//used by attack_animal and attack_slime
+/obj/structure/window/proc/attack_generic(mob/user, damage = 0)	//used by attack_animal and attack_slime
 	user.visible_message(SPAN_DANGER("[user] smashes into [src]!"))
 	take_damage(damage)
 
-/obj/structure/window/attack_animal(mob/user as mob)
+/obj/structure/window/attack_animal(mob/user)
 	if(!isanimal(user))
 		return
 	var/mob/living/simple_animal/M = user
@@ -176,12 +176,12 @@
 		return
 	attack_generic(M, M.melee_damage_upper)
 
-/obj/structure/window/attack_slime(mob/user as mob)
+/obj/structure/window/attack_slime(mob/user)
 	if(!isslimeadult(user))
 		return
 	attack_generic(user, rand(10, 15))
 
-/obj/structure/window/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/window/attackby(obj/item/W, mob/user)
 	if(!istype(W))
 		return//I really wish I did not need this
 

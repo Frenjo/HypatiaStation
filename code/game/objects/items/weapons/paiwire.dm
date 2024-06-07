@@ -6,7 +6,7 @@
 
 	var/obj/machinery/machine
 
-/obj/item/pai_cable/proc/plugin(obj/machinery/M as obj, mob/user as mob)
+/obj/item/pai_cable/proc/plugin(obj/machinery/M, mob/user)
 	if(!istype(M, /obj/machinery/door) && !istype(M, /obj/machinery/camera))
 		user.visible_message(
 			SPAN_NOTICE("[user] dumbly fumbles to find a place on \the [M] to plug in \the [src]."),
@@ -24,5 +24,5 @@
 	machine = M
 	return TRUE
 
-/obj/item/pai_cable/attack(obj/machinery/M as obj, mob/user as mob)
+/obj/item/pai_cable/attack(obj/machinery/M, mob/user)
 	plugin(M, user)

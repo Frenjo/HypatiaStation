@@ -48,7 +48,7 @@
 	colourName = "mime"
 	uses = 0
 
-/obj/item/toy/crayon/mime/attack_self(mob/living/user as mob) //inversion
+/obj/item/toy/crayon/mime/attack_self(mob/living/user) //inversion
 	if(colour != "#FFFFFF" && shadeColour != "#000000")
 		colour = "#FFFFFF"
 		shadeColour = "#000000"
@@ -67,13 +67,13 @@
 	colourName = "rainbow"
 	uses = 0
 
-/obj/item/toy/crayon/rainbow/attack_self(mob/living/user as mob)
+/obj/item/toy/crayon/rainbow/attack_self(mob/living/user)
 	colour = input(user, "Please select the main colour.", "Crayon colour") as color
 	shadeColour = input(user, "Please select the shade colour.", "Crayon colour") as color
 	return
 
 
-/obj/item/toy/crayon/afterattack(atom/target, mob/user as mob, proximity)
+/obj/item/toy/crayon/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(target, /turf/simulated/floor))
@@ -97,7 +97,7 @@
 					qdel(src)
 	return
 
-/obj/item/toy/crayon/attack(mob/M as mob, mob/user as mob)
+/obj/item/toy/crayon/attack(mob/M, mob/user)
 	if(M == user)
 		to_chat(user, "You take a bite of the crayon and swallow it.")
 //		user.nutrition += 5

@@ -179,7 +179,7 @@
 	u_equip(W)
 	update_icons()
 
-/mob/proc/u_equip(W as obj)
+/mob/proc/u_equip(obj/W)
 	if(W == r_hand)
 		r_hand = null
 		update_inv_r_hand(0)

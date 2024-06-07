@@ -33,10 +33,10 @@
 	..()
 	usr << text("The service panel is [open ? "open" : "closed"].")
 
-/obj/item/storage/secure/attack_paw(mob/user as mob)
+/obj/item/storage/secure/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/item/storage/secure/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/secure/attackby(obj/item/W, mob/user)
 	if(locked)
 		if((istype(W, /obj/item/card/emag)||istype(W, /obj/item/melee/energy/blade)) && (!emagged))
 			emagged = 1
@@ -88,7 +88,7 @@
 		return
 	..()
 
-/obj/item/storage/secure/attack_self(mob/user as mob)
+/obj/item/storage/secure/attack_self(mob/user)
 	user.set_machine(src)
 	var/dat = text("<TT><B>[]</B><BR>\n\nLock Status: []",src, (locked ? "LOCKED" : "UNLOCKED"))
 	var/message = "Code"
@@ -156,7 +156,7 @@
 	new /obj/item/paper(src)
 	new /obj/item/pen(src)
 
-/obj/item/storage/secure/briefcase/attack_hand(mob/user as mob)
+/obj/item/storage/secure/briefcase/attack_hand(mob/user)
 	if((loc == user) && (locked == 1))
 		usr << "\red [src] is locked and cannot be opened!"
 	else if((loc == user) && (!locked))
@@ -170,7 +170,7 @@
 	return
 
 	//I consider this worthless but it isn't my code so whatever.  Remove or uncomment.
-	/*attack(mob/M as mob, mob/living/user as mob)
+	/*attack(mob/M, mob/living/user)
 		if ((CLUMSY in user.mutations) && prob(50))
 			user << "\red The [src] slips out of your hand and hits your head."
 			user.take_organ_damage(10)
@@ -227,7 +227,7 @@
 	new /obj/item/paper(src)
 	new /obj/item/pen(src)
 
-/obj/item/storage/secure/safe/attack_hand(mob/user as mob)
+/obj/item/storage/secure/safe/attack_hand(mob/user)
 	return attack_self(user)
 
 /obj/item/storage/secure/safe/HoS/New()

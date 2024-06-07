@@ -10,13 +10,13 @@
 	//Used to enable or disable drone fabrication.
 	var/obj/machinery/drone_fabricator/dronefab
 
-/obj/machinery/computer/drone_control/attack_ai(mob/user as mob)
+/obj/machinery/computer/drone_control/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/drone_control/attack_paw(mob/user as mob)
+/obj/machinery/computer/drone_control/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/drone_control/attack_hand(mob/user as mob)
+/obj/machinery/computer/drone_control/attack_hand(mob/user)
 	if(..())
 		return
 

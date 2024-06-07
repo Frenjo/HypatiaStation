@@ -18,7 +18,7 @@
 	var/selfdestructing = 0
 	var/charges = 1
 
-/obj/machinery/syndicate_beacon/attack_hand(var/mob/user as mob)
+/obj/machinery/syndicate_beacon/attack_hand(mob/user)
 	usr.set_machine(src)
 	var/dat = "<font color=#005500><i>Scanning [pick("retina pattern", "voice print", "fingerprints", "dna sequence")]...<br>Identity confirmed,<br></i></font>"
 	if(ishuman(user) || isAI(user))
@@ -144,17 +144,17 @@
 	if(user)
 		user << "\blue You deactivate the beacon."
 
-/obj/machinery/singularity_beacon/attack_ai(mob/user as mob)
+/obj/machinery/singularity_beacon/attack_ai(mob/user)
 	return
 
-/obj/machinery/singularity_beacon/attack_hand(var/mob/user as mob)
+/obj/machinery/singularity_beacon/attack_hand(mob/user)
 	if(stat & SCREWED)
 		return active ? Deactivate(user) : Activate(user)
 	else
 		user << "\red You need to screw the beacon to the floor first!"
 		return
 
-/obj/machinery/singularity_beacon/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/singularity_beacon/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/screwdriver))
 		if(active)
 			user << "\red You need to deactivate the beacon first!"

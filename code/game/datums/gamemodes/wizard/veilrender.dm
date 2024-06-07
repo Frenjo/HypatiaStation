@@ -9,7 +9,7 @@
 	w_class = 3
 	var/charged = 1
 
-/obj/item/veilrender/attack_self(mob/user as mob)
+/obj/item/veilrender/attack_self(mob/user)
 	if(charged == 1)
 		new /obj/effect/rend(get_turf(usr))
 		charged = 0

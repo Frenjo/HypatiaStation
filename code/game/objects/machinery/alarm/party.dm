@@ -19,10 +19,10 @@
 	var/timing = 0.0
 	var/lockdownbyai = 0
 
-/obj/machinery/partyalarm/attack_paw(mob/user as mob)
+/obj/machinery/partyalarm/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/partyalarm/attack_hand(mob/user as mob)
+/obj/machinery/partyalarm/attack_hand(mob/user)
 	if(user.stat || stat & (NOPOWER|BROKEN))
 		return
 

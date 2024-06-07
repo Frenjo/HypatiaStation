@@ -102,7 +102,7 @@
 		flash()
 	..(severity)
 
-/obj/machinery/flasher/portable/HasProximity(atom/movable/AM as mob|obj)
+/obj/machinery/flasher/portable/HasProximity(atom/movable/AM)
 	if(src.disable || (src.last_flash && world.time < src.last_flash + 150))
 		return
 
@@ -140,16 +140,16 @@
 	var/id = null
 	var/active = FALSE
 
-/obj/machinery/flasher_button/attack_ai(mob/user as mob)
+/obj/machinery/flasher_button/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/flasher_button/attack_paw(mob/user as mob)
+/obj/machinery/flasher_button/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/flasher_button/attackby(obj/item/W, mob/user as mob)
+/obj/machinery/flasher_button/attackby(obj/item/W, mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/flasher_button/attack_hand(mob/user as mob)
+/obj/machinery/flasher_button/attack_hand(mob/user)
 	if(stat & (NOPOWER | BROKEN))
 		return
 	if(active)

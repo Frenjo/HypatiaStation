@@ -234,7 +234,7 @@
 
 	return ..()
 
-/obj/item/radio/headset/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/radio/headset/attackby(obj/item/W, mob/user)
 //	..()
 	user.set_machine(src)
 	if(istype(W, /obj/item/encryptionkey))

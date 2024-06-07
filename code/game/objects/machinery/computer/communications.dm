@@ -287,13 +287,13 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 	emagged = TRUE
 	return TRUE
 
-/obj/machinery/computer/communications/attack_ai(mob/user as mob)
+/obj/machinery/computer/communications/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/communications/attack_paw(mob/user as mob)
+/obj/machinery/computer/communications/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/communications/attack_hand(mob/user as mob)
+/obj/machinery/computer/communications/attack_hand(mob/user)
 	if(..())
 		return
 	if(src.z > 6)
@@ -394,7 +394,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 	user << browse(dat, "window=communications;size=400x500")
 	onclose(user, "communications")
 
-/obj/machinery/computer/communications/proc/interact_ai(mob/living/silicon/ai/user as mob)
+/obj/machinery/computer/communications/proc/interact_ai(mob/living/silicon/ai/user)
 	var/dat = ""
 	switch(src.aistate)
 		if(STATE_DEFAULT)

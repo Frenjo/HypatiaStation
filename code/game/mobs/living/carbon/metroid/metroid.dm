@@ -93,7 +93,7 @@
 	return tally + CONFIG_GET(slime_delay)
 
 
-/mob/living/carbon/metroid/Bump(atom/movable/AM as mob|obj, yes)
+/mob/living/carbon/metroid/Bump(atom/movable/AM, yes)
 	spawn( 0 )
 		if ((!( yes ) || now_pushing))
 			return
@@ -250,14 +250,14 @@
 	return
 
 
-/mob/living/carbon/metroid/u_equip(obj/item/W as obj)
+/mob/living/carbon/metroid/u_equip(obj/item/W)
 	return
 
 
 /mob/living/carbon/metroid/attack_ui(slot)
 	return
 
-/mob/living/carbon/metroid/meteorhit(O as obj)
+/mob/living/carbon/metroid/meteorhit(obj/O)
 	for(var/mob/M in viewers(src, null))
 		if ((M.client && !( M.blinded )))
 			M.show_message(text("\red [] has been hit by []", src, O), 1)
@@ -331,7 +331,7 @@
 	return
 
 
-/mob/living/carbon/metroid/attack_slime(mob/living/carbon/metroid/M as mob)
+/mob/living/carbon/metroid/attack_slime(mob/living/carbon/metroid/M)
 	if (!ticker)
 		M << "You cannot attack people before the game has started."
 		return
@@ -360,7 +360,7 @@
 	return
 
 
-/mob/living/carbon/metroid/attack_animal(mob/living/simple_animal/M as mob)
+/mob/living/carbon/metroid/attack_animal(mob/living/simple_animal/M)
 	if(M.melee_damage_upper == 0)
 		M.emote("[M.friendly] [src]")
 	else
@@ -374,7 +374,7 @@
 		adjustBruteLoss(damage)
 		updatehealth()
 
-/mob/living/carbon/metroid/attack_paw(mob/living/carbon/monkey/M as mob)
+/mob/living/carbon/metroid/attack_paw(mob/living/carbon/monkey/M)
 	if(!ismonkey(M))	return//Fix for aliens receiving double messages when attacking other aliens.
 
 	if (!ticker)
@@ -404,7 +404,7 @@
 	return
 
 
-/mob/living/carbon/metroid/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/carbon/metroid/attack_hand(mob/living/carbon/human/M)
 	if (!ticker)
 		M << "You cannot attack people before the game has started."
 		return
@@ -551,7 +551,7 @@
 
 
 
-/mob/living/carbon/metroid/attack_alien(mob/living/carbon/alien/humanoid/M as mob)
+/mob/living/carbon/metroid/attack_alien(mob/living/carbon/alien/humanoid/M)
 	if (!ticker)
 		M << "You cannot attack people before the game has started."
 		return
@@ -653,7 +653,7 @@ mob/living/carbon/metroid/var/co2overloadtime = null
 mob/living/carbon/metroid/var/temperature_resistance = T0C+75
 
 
-/mob/living/carbon/metroid/show_inv(mob/user as mob)
+/mob/living/carbon/metroid/show_inv(mob/user)
 
 	user.machine = src
 	var/dat = {"

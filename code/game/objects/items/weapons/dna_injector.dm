@@ -29,7 +29,7 @@
 		SetValue(value)
 		//testing("[name]: DNA2 SE blocks after SetValue: [english_list(buf.dna.SE)]")
 
-/obj/item/dnainjector/attack_paw(mob/user as mob)
+/obj/item/dnainjector/attack_paw(mob/user)
 	return attack_hand(user)
 
 /obj/item/dnainjector/proc/GetRealBlock(var/selblock)
@@ -66,7 +66,7 @@
 	else
 		return buf.dna.SetUIValue(real_block,val)
 
-/obj/item/dnainjector/proc/inject(mob/M as mob, mob/user as mob)
+/obj/item/dnainjector/proc/inject(mob/M, mob/user)
 	if(isliving(M))
 		M.radiation += rand(5,20)
 
@@ -99,7 +99,7 @@
 		qdel(src)
 	return uses
 
-/obj/item/dnainjector/attack(mob/M as mob, mob/user as mob)
+/obj/item/dnainjector/attack(mob/M, mob/user)
 	if(!ismob(M))
 		return
 	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
