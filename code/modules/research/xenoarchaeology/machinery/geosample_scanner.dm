@@ -60,10 +60,10 @@
 	coolant_reagents_purity[/datum/reagent/coolant] = 1
 	coolant_reagents_purity[/datum/reagent/adminordrazine] = 2
 
-/obj/machinery/radiocarbon_spectrometer/attack_hand(mob/user as mob)
+/obj/machinery/radiocarbon_spectrometer/attack_hand(mob/user)
 	ui_interact(user)
 
-/obj/machinery/radiocarbon_spectrometer/attackby(obj/I as obj, mob/user as mob)
+/obj/machinery/radiocarbon_spectrometer/attackby(obj/item/I, mob/user)
 	if(scanning)
 		to_chat(user, SPAN_WARNING("You can't do that while [src] is scanning!"))
 	else

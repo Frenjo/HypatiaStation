@@ -426,7 +426,7 @@
 	return
 
 
-/obj/machinery/hydroponics/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/hydroponics/attackby(obj/item/O, mob/user)
 	//Called when mob user "attacks" it with object O
 	if(istype(O, /obj/item/reagent_containers/glass))
 		var/b_amount = O.reagents.get_reagent_amount("water")
@@ -784,7 +784,7 @@
 			qdel(src)
 	return
 
-/obj/machinery/hydroponics/attack_tk(mob/user as mob)
+/obj/machinery/hydroponics/attack_tk(mob/user)
 	if(harvest)
 		myseed.harvest(src)
 	else if(dead)
@@ -794,7 +794,7 @@
 		qdel(myseed)
 		updateicon()
 
-/obj/machinery/hydroponics/attack_hand(mob/user as mob)
+/obj/machinery/hydroponics/attack_hand(mob/user)
 	if(issilicon(usr))		//How does AI know what plant is?
 		return
 	if(harvest)

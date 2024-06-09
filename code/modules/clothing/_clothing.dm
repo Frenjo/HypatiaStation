@@ -4,7 +4,7 @@
 	var/list/species_restricted = null //Only these species can wear this kit.
 
 //BS12: Species-restricted clothing check.
-/obj/item/clothing/mob_can_equip(M as mob, slot)
+/obj/item/clothing/mob_can_equip(mob/M, slot)
 	if(species_restricted && ishuman(M))
 		var/wearable = FALSE
 		var/exclusive = FALSE

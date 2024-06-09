@@ -68,7 +68,7 @@
 				for(var/datum/reagent/R in B.reagents.reagent_list)
 					to_chat(usr, SPAN_INFO("[R.volume] units of [R.name]"))
 
-/obj/item/gun/dartgun/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/gun/dartgun/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/dart_cartridge))
 		var/obj/item/dart_cartridge/D = I
 
@@ -212,7 +212,7 @@
 		return
 	..()
 
-/obj/item/gun/dartgun/can_hit(mob/living/target as mob, mob/living/user as mob)
+/obj/item/gun/dartgun/can_hit(mob/living/target, mob/living/user)
 	return 1
 
 /obj/item/gun/dartgun/attack_self(mob/user)
@@ -282,7 +282,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/item/gun/dartgun/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
+/obj/item/gun/dartgun/Fire(atom/target, mob/living/user, params, reflex = 0)
 	if(cartridge)
 		spawn(0) fire_dart(target,user)
 	else

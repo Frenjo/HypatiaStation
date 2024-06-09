@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 
-/obj/machinery/biohazard_destroyer/attackby(var/obj/I as obj, var/mob/user as mob)
+/obj/machinery/biohazard_destroyer/attackby(obj/I, mob/user)
 	for(var/path in accepts)
 		if(I.type in typesof(path))
 			user.drop_item()

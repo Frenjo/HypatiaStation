@@ -33,7 +33,7 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 			P.air_contents.adjust_gas(/decl/xgm_gas/plasma, -0.001 * drainratio)
 	return
 
-/obj/machinery/power/rad_collector/attack_hand(mob/user as mob)
+/obj/machinery/power/rad_collector/attack_hand(mob/user)
 	if(anchored)
 		if(!src.locked)
 			toggle_power()

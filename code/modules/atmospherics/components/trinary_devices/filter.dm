@@ -139,7 +139,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/trinary/filter/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/atmospherics/trinary/filter/attackby(obj/item/W, mob/user)
 	if(!istype(W, /obj/item/wrench))
 		return ..()
 	var/turf/T = src.loc
@@ -165,7 +165,7 @@
 		new /obj/item/pipe(loc, make_from = src)
 		qdel(src)
 
-/obj/machinery/atmospherics/trinary/filter/attack_hand(user as mob) // -- TLE
+/obj/machinery/atmospherics/trinary/filter/attack_hand(mob/user) // -- TLE
 	if(..())
 		return
 

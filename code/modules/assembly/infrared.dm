@@ -100,7 +100,7 @@
 		process_cooldown()
 	return
 
-/obj/item/assembly/infra/interact(mob/user as mob) //TODO: change this this to the wire control panel
+/obj/item/assembly/infra/interact(mob/user) //TODO: change this this to the wire control panel
 	if(!secured)
 		return
 	user.set_machine(src)
@@ -237,7 +237,7 @@
 	hit()
 	return
 
-/obj/effect/beam/i_beam/Crossed(atom/movable/AM as mob|obj)
+/obj/effect/beam/i_beam/Crossed(atom/movable/AM)
 	if(istype(AM, /obj/effect/beam))
 		return
 	spawn(0)

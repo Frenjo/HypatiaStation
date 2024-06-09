@@ -133,7 +133,7 @@ Thus, the two variables affect pump operation are set in New():
 		broadcast_status()
 	update_icon()
 
-/obj/machinery/atmospherics/binary/volume_pump/attack_hand(user as mob)
+/obj/machinery/atmospherics/binary/volume_pump/attack_hand(mob/user)
 	if(..())
 		return
 	add_fingerprint(usr)
@@ -176,7 +176,7 @@ Thus, the two variables affect pump operation are set in New():
 	..()
 	update_icon()
 
-/obj/machinery/atmospherics/binary/volume_pump/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/atmospherics/binary/volume_pump/attackby(obj/item/W, mob/user)
 	if(!istype(W, /obj/item/wrench))
 		return ..()
 	if(!(stat & NOPOWER) && on)

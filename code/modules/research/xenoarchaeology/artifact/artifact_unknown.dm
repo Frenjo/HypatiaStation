@@ -162,7 +162,7 @@
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_NITRO && !secondary_effect.activated)
 			secondary_effect.ToggleActivate(0)
 
-/obj/machinery/artifact/attack_hand(mob/user as mob)
+/obj/machinery/artifact/attack_hand(mob/user)
 	if(get_dist(user, src) > 1)
 		to_chat(user, SPAN_WARNING("You can't reach [src] from here."))
 		return
@@ -187,7 +187,7 @@
 	if(secondary_effect && secondary_effect.effect == EFFECT_TOUCH && secondary_effect.activated)
 		secondary_effect.DoEffectTouch(user)
 
-/obj/machinery/artifact/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/machinery/artifact/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/reagent_containers))
 		if(W.reagents.has_reagent("hydrogen", 1) || W.reagents.has_reagent("water", 1))
 			if(my_effect.trigger == TRIGGER_WATER)
@@ -233,7 +233,7 @@
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_FORCE && prob(25))
 			secondary_effect.ToggleActivate(0)
 
-/obj/machinery/artifact/Bumped(M as mob|obj)
+/obj/machinery/artifact/Bumped(atom/movable/M)
 	..()
 	if(isobj(M))
 		if(M:throwforce >= 10)

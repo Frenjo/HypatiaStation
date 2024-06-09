@@ -32,7 +32,7 @@
 	var/author
 	var/SQLquery
 
-/obj/machinery/librarypubliccomp/attack_hand(mob/user as mob)
+/obj/machinery/librarypubliccomp/attack_hand(mob/user)
 	usr.set_machine(src)
 	var/dat = "<HEAD><TITLE>Library Visitor</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	switch(screenstate)
@@ -131,7 +131,7 @@
 
 	var/bibledelay = 0 // LOL NO SPAM (1 minute delay) -- Doohl
 
-/obj/machinery/librarycomp/attack_hand(mob/user as mob)
+/obj/machinery/librarycomp/attack_hand(mob/user)
 	usr.set_machine(src)
 	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	switch(screenstate)
@@ -248,7 +248,7 @@
 	emagged = TRUE
 	return TRUE
 
-/obj/machinery/librarycomp/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/librarycomp/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/barcodescanner))
 		var/obj/item/barcodescanner/scanner = W
 		scanner.computer = src
@@ -406,12 +406,12 @@
 	density = TRUE
 	var/obj/item/book/cache		// Last scanned book
 
-/obj/machinery/libraryscanner/attackby(obj/O as obj, mob/user as mob)
+/obj/machinery/libraryscanner/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/book))
 		user.drop_item()
 		O.loc = src
 
-/obj/machinery/libraryscanner/attack_hand(mob/user as mob)
+/obj/machinery/libraryscanner/attack_hand(mob/user)
 	usr.set_machine(src)
 	var/dat = "<HEAD><TITLE>Scanner Control Interface</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	if(cache)
@@ -455,7 +455,7 @@
 	anchored = TRUE
 	density = TRUE
 
-/obj/machinery/bookbinder/attackby(obj/O as obj, mob/user as mob)
+/obj/machinery/bookbinder/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/paper))
 		user.drop_item()
 		O.loc = src

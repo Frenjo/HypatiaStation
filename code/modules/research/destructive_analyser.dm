@@ -34,7 +34,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	qdel(src)
 	return
 
-/obj/machinery/r_n_d/destructive_analyser/attackby(obj/O as obj, mob/user as mob)
+/obj/machinery/r_n_d/destructive_analyser/attackby(obj/O, mob/user)
 	if(..())
 		return 1
 

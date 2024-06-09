@@ -28,7 +28,7 @@
 	. = ..()
 	item_color = pick("red", "blue", "green", "purple")
 
-/obj/item/holo/esword/attack_self(mob/living/user as mob)
+/obj/item/holo/esword/attack_self(mob/living/user)
 	active = !active
 	if(active)
 		force = 30

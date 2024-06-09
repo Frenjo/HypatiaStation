@@ -95,7 +95,7 @@
 			to_chat(usr, "\The [src] can be attached!")
 	return
 
-/obj/item/assembly_holder/HasProximity(atom/movable/AM as mob|obj)
+/obj/item/assembly_holder/HasProximity(atom/movable/AM)
 	if(a_left)
 		a_left.HasProximity(AM)
 	if(a_right)
@@ -103,7 +103,7 @@
 	if(special_assembly)
 		special_assembly.HasProximity(AM)
 
-/obj/item/assembly_holder/Crossed(atom/movable/AM as mob|obj)
+/obj/item/assembly_holder/Crossed(atom/movable/AM)
 	if(a_left)
 		a_left.Crossed(AM)
 	if(a_right)
@@ -111,7 +111,7 @@
 	if(special_assembly)
 		special_assembly.Crossed(AM)
 
-/obj/item/assembly_holder/on_found(mob/finder as mob)
+/obj/item/assembly_holder/on_found(mob/finder)
 	if(a_left)
 		a_left.on_found(finder)
 	if(a_right)
@@ -139,7 +139,7 @@
 	..()
 	return
 
-/obj/item/assembly_holder/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/assembly_holder/attackby(obj/item/W, mob/user)
 	if(isscrewdriver(W))
 		if(!a_left || !a_right)
 			to_chat(user, SPAN_WARNING("BUG:Assembly part missing, please report this!"))
@@ -159,7 +159,7 @@
 		..()
 	return
 
-/obj/item/assembly_holder/attack_self(mob/user as mob)
+/obj/item/assembly_holder/attack_self(mob/user)
 	src.add_fingerprint(user)
 	if(src.secured)
 		if(!a_left || !a_right)

@@ -163,7 +163,7 @@
 	stat |= BROKEN
 	recharge_port?.stop_charge()
 
-/obj/machinery/computer/mech_bay_power_console/attack_hand(mob/user as mob)
+/obj/machinery/computer/mech_bay_power_console/attack_hand(mob/user)
 	if(..())
 		return
 	var/output = "<html><head><title>[src.name]</title></head><body>"

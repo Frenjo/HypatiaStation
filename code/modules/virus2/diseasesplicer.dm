@@ -26,13 +26,13 @@
 
 	return ..()
 
-/obj/machinery/computer/disease_splicer/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/disease_splicer/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/disease_splicer/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/disease_splicer/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/disease_splicer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/disease_splicer/attack_hand(mob/user)
 	if(..())
 		return
 	user.set_machine(src)

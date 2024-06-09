@@ -18,7 +18,7 @@
 		return
 	to_chat(usr, SPAN_INFO("[length(syringes)] / [max_syringes] syringes."))
 
-/obj/item/gun/syringe/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/gun/syringe/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = I
 		if(S.mode != 2) //SYRINGE_BROKEN in syringes.dm
@@ -41,10 +41,10 @@
 /obj/item/gun/syringe/can_fire()
 	return length(syringes)
 
-/obj/item/gun/syringe/can_hit(mob/living/target as mob, mob/living/user as mob)
+/obj/item/gun/syringe/can_hit(mob/living/target, mob/living/user)
 	return 1		//SHOOT AND LET THE GOD GUIDE IT (probably will hit a wall anyway)
 
-/obj/item/gun/syringe/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
+/obj/item/gun/syringe/Fire(atom/target, mob/living/user, params, reflex = 0)
 	if(length(syringes))
 		spawn(0)
 			fire_syringe(target,user)

@@ -41,7 +41,7 @@
 		if(LIGHT_STAGE_THREE)
 			to_chat(usr, "The casing is closed.")
 
-/obj/machinery/light_frame/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/light_frame/attackby(obj/item/W, mob/user)
 	add_fingerprint(user)
 	if(istype(W, /obj/item/wrench))
 		if(stage == LIGHT_STAGE_ONE)

@@ -40,7 +40,7 @@
 	disable_wire = pick(w)
 	w -= disable_wire
 
-/obj/machinery/r_n_d/attack_hand(mob/user as mob)
+/obj/machinery/r_n_d/attack_hand(mob/user)
 	if(shocked)
 		shock(user, 50)
 	if(opened)
@@ -54,7 +54,7 @@
 		user << browse("<HTML><HEAD><TITLE>[name] Hacking</TITLE></HEAD><BODY>[dat]</BODY></HTML>","window=hack_win")
 	return
 
-/obj/machinery/r_n_d/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/r_n_d/attackby(obj/item/O, mob/user)
 	if(stat)
 		return 1
 	if(disabled)

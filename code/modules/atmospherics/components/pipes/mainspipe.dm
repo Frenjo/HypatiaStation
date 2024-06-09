@@ -632,13 +632,13 @@
 
 	return TRUE
 
-/obj/machinery/atmospherics/mains_pipe/valve/attack_ai(mob/user as mob)
+/obj/machinery/atmospherics/mains_pipe/valve/attack_ai(mob/user)
 	return
 
-/obj/machinery/atmospherics/mains_pipe/valve/attack_paw(mob/user as mob)
+/obj/machinery/atmospherics/mains_pipe/valve/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/atmospherics/mains_pipe/valve/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/mains_pipe/valve/attack_hand(mob/user)
 	src.add_fingerprint(usr)
 	update_icon(1)
 	sleep(10)
@@ -665,10 +665,10 @@
 	unregister_radio(src, frequency)
 	return ..()
 
-/obj/machinery/atmospherics/mains_pipe/valve/digital/attack_ai(mob/user as mob)
+/obj/machinery/atmospherics/mains_pipe/valve/digital/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/atmospherics/mains_pipe/valve/digital/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/mains_pipe/valve/digital/attack_hand(mob/user)
 	if(!allowed(user))
 		FEEDBACK_ACCESS_DENIED(user)
 		return

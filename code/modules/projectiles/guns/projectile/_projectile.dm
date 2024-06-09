@@ -42,7 +42,7 @@
 		return 1
 	return 0
 
-/obj/item/gun/projectile/attackby(obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/attackby(obj/item/A, mob/user)
 	var/num_loaded = 0
 	if(istype(A, /obj/item/ammo_magazine))
 		if(load_method == MAGAZINE && length(loaded))
@@ -75,7 +75,7 @@
 	A.update_icon()
 	update_icon()
 
-/obj/item/gun/projectile/attack_self(mob/user as mob)
+/obj/item/gun/projectile/attack_self(mob/user)
 	if(target)
 		return ..()
 	if(length(loaded))

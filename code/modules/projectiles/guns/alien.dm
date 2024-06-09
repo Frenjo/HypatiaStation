@@ -54,7 +54,7 @@
 /obj/item/spikethrower/update_icon()
 	icon_state = "spikethrower[spikes]"
 
-/obj/item/spikethrower/afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
+/obj/item/spikethrower/afterattack(atom/A, mob/living/user, flag, params)
 	if(flag)
 		return
 	if(isnotnull(user?.client) && user.client.gun_mode && !(A in target))
@@ -63,7 +63,7 @@
 	else
 		Fire(A, user, params)
 
-/obj/item/spikethrower/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
+/obj/item/spikethrower/attack(mob/living/M, mob/living/user, def_zone)
 	if(M == user && user.zone_sel.selecting == "mouth")
 		M.visible_message(SPAN_WARNING("[user] attempts without success to fit [src] into their mouth."))
 		return
@@ -79,7 +79,7 @@
 	else
 		return ..()
 
-/obj/item/spikethrower/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
+/obj/item/spikethrower/proc/Fire(atom/target, mob/living/user, params, reflex = 0)
 	add_fingerprint(user)
 
 	var/turf/curloc = get_turf(user)
@@ -138,7 +138,7 @@
 
 	var/mode = 1
 
-/obj/item/gun/energy/noisecannon/attack_hand(mob/user as mob)
+/obj/item/gun/energy/noisecannon/attack_hand(mob/user)
 	if(loc != user)
 		var/mob/living/carbon/human/H = user
 		if(istype(H))

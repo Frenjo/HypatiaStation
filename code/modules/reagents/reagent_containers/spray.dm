@@ -22,7 +22,7 @@
 	..()
 	src.verbs -= /obj/item/reagent_containers/verb/set_APTFT
 
-/obj/item/reagent_containers/spray/afterattack(atom/A as mob|obj, mob/user as mob)
+/obj/item/reagent_containers/spray/afterattack(atom/A, mob/user)
 	if(istype(A, /obj/item/storage) || istype(A, /obj/structure/table) || istype(A, /obj/structure/rack) || istype(A, /obj/structure/closet) \
 	|| istype(A, /obj/item/reagent_containers) || istype(A, /obj/structure/sink) || istype(A, /obj/structure/janitorialcart))
 		return
@@ -62,7 +62,7 @@
 		log_game("[key_name(user)] fired Space lube from \a [src].")
 	return
 
-/obj/item/reagent_containers/spray/proc/Spray_at(atom/A as mob|obj)
+/obj/item/reagent_containers/spray/proc/Spray_at(atom/A)
 	var/obj/effect/decal/chempuff/D = new/obj/effect/decal/chempuff(get_turf(src))
 	D.create_reagents(amount_per_transfer_from_this)
 	reagents.trans_to(D, amount_per_transfer_from_this, 1 / spray_size)
@@ -148,7 +148,7 @@
 	safety = !safety
 	to_chat(usr, SPAN_NOTICE("You switch the safety [safety ? "on" : "off"]."))
 
-/obj/item/reagent_containers/spray/pepper/Spray_at(atom/A as mob|obj)
+/obj/item/reagent_containers/spray/pepper/Spray_at(atom/A)
 	if(safety)
 		to_chat(usr, SPAN_WARNING("The safety is on!"))
 		return
@@ -185,7 +185,7 @@
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/combat = 3, /datum/tech/engineering = 3)
 
 //this is a big copypasta clusterfuck, but it's still better than it used to be!
-/obj/item/reagent_containers/spray/chemsprayer/Spray_at(atom/A as mob|obj)
+/obj/item/reagent_containers/spray/chemsprayer/Spray_at(atom/A)
 	var/Sprays[3]
 	for(var/i = 1, i <= 3, i++) // intialize sprays
 		if(src.reagents.total_volume < 1)
@@ -237,7 +237,7 @@
 	..()
 	reagents.add_reagent("plantbgone", 100)
 
-/obj/item/reagent_containers/spray/plantbgone/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
+/obj/item/reagent_containers/spray/plantbgone/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 

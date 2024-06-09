@@ -72,7 +72,7 @@
 	if(usr && !usr.stat)
 		usr << "A magnetic storage ring, it contains [fuel]kg of [content ? content : "nothing"]."
 
-/obj/item/fuel/proc/injest(mob/M as mob)
+/obj/item/fuel/proc/injest(mob/M)
 	switch(content)
 		if("Anti-Hydrogen")
 			M.gib()
@@ -81,7 +81,7 @@
 	del(src)
 	return
 
-/obj/item/fuel/attack(mob/M as mob, mob/user as mob)
+/obj/item/fuel/attack(mob/M, mob/user)
 	if (user != M)
 		var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human(  )
 		O.source = user

@@ -21,7 +21,7 @@
 			if(P.id == id)
 				doors.Add(P)
 
-/obj/machinery/computer/turbine_control/attack_hand(mob/user as mob)
+/obj/machinery/computer/turbine_control/attack_hand(mob/user)
 	user.machine = src
 	ui_interact(user)
 	return

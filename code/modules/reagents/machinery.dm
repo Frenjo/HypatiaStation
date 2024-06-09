@@ -187,7 +187,7 @@
 	add_fingerprint(usr)
 	return 1 // update UIs attached to this object
 
-/obj/machinery/chem_dispenser/attackby(obj/item/reagent_containers/B as obj, mob/user as mob)
+/obj/machinery/chem_dispenser/attackby(obj/item/reagent_containers/B, mob/user)
 	if(isrobot(user))
 		return
 
@@ -216,13 +216,13 @@
 		global.PCnanoui.update_uis(src) // update all UIs attached to src
 		return
 
-/obj/machinery/chem_dispenser/attack_ai(mob/user as mob)
+/obj/machinery/chem_dispenser/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/chem_dispenser/attack_paw(mob/user as mob)
+/obj/machinery/chem_dispenser/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/chem_dispenser/attack_hand(mob/user as mob)
+/obj/machinery/chem_dispenser/attack_hand(mob/user)
 	if(stat & BROKEN)
 		return
 
@@ -238,7 +238,7 @@
 	max_energy = 100
 	dispensable_reagents = list("water", "ice", "coffee", "cream", "tea", "icetea", "cola", "spacemountainwind", "dr_gibb", "space_up", "tonic", "sodawater", "lemon_lime", "sugar", "orangejuice", "limejuice", "watermelonjuice")
 
-/obj/machinery/chem_dispenser/soda/attackby(obj/item/B as obj, mob/user as mob)
+/obj/machinery/chem_dispenser/soda/attackby(obj/item/B, mob/user)
 	..()
 	if(istype(B, /obj/item/multitool))
 		if(hackedcheck == 0)
@@ -262,7 +262,7 @@
 	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
 	dispensable_reagents = list("lemon_lime", "sugar", "orangejuice", "limejuice", "sodawater", "tonic", "beer", "kahlua", "whiskey", "wine", "vodka", "gin", "rum", "tequilla", "vermouth", "cognac", "ale", "mead")
 
-/obj/machinery/chem_dispenser/beer/attackby(obj/item/B as obj, mob/user as mob)
+/obj/machinery/chem_dispenser/beer/attackby(obj/item/B, mob/user)
 	..()
 	if(istype(B, /obj/item/multitool))
 		if(hackedcheck == 0)
@@ -330,7 +330,7 @@
 		spawn(rand(0, 15))
 			stat |= NOPOWER
 
-/obj/machinery/chem_master/attackby(obj/item/B as obj, mob/user as mob)
+/obj/machinery/chem_master/attackby(obj/item/B, mob/user)
 	if(istype(B, /obj/item/reagent_containers/glass))
 		if(src.beaker)
 			to_chat(user, "A beaker is already loaded into the machine.")
@@ -508,13 +508,13 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/chem_master/attack_ai(mob/user as mob)
+/obj/machinery/chem_master/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/chem_master/attack_paw(mob/user as mob)
+/obj/machinery/chem_master/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/chem_master/attack_hand(mob/user as mob)
+/obj/machinery/chem_master/attack_hand(mob/user)
 	if(stat & BROKEN)
 		return
 	user.set_machine(src)
@@ -740,13 +740,13 @@
 	src.add_fingerprint(usr)
 	return
 
-/obj/machinery/computer/pandemic/attack_ai(mob/user as mob)
+/obj/machinery/computer/pandemic/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/pandemic/attack_paw(mob/user as mob)
+/obj/machinery/computer/pandemic/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/pandemic/attack_hand(mob/user as mob)
+/obj/machinery/computer/pandemic/attack_hand(mob/user)
 	if(stat & (NOPOWER|BROKEN))
 		return
 	user.set_machine(src)
@@ -924,7 +924,7 @@
 	return
 
 
-/obj/machinery/reagentgrinder/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/reagentgrinder/attackby(obj/item/O, mob/user)
 
 	if(istype(O, /obj/item/reagent_containers/glass) || \
 		istype(O, /obj/item/reagent_containers/food/drinks/drinkingglass) || \
@@ -970,17 +970,17 @@
 	src.updateUsrDialog()
 	return 0
 
-/obj/machinery/reagentgrinder/attack_paw(mob/user as mob)
+/obj/machinery/reagentgrinder/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/reagentgrinder/attack_ai(mob/user as mob)
+/obj/machinery/reagentgrinder/attack_ai(mob/user)
 	return 0
 
-/obj/machinery/reagentgrinder/attack_hand(mob/user as mob)
+/obj/machinery/reagentgrinder/attack_hand(mob/user)
 	user.set_machine(src)
 	interact(user)
 
-/obj/machinery/reagentgrinder/interact(mob/user as mob) // The microwave Menu
+/obj/machinery/reagentgrinder/interact(mob/user) // The microwave Menu
 	var/is_chamber_empty = 0
 	var/is_beaker_ready = 0
 	var/processing_chamber = ""

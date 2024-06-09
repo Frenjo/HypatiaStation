@@ -67,7 +67,7 @@
 	update_icon()
 	return null
 
-/obj/machinery/atmospherics/pipe/tank/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/atmospherics/pipe/tank/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/gas_analyser) && get_dist(user, src) <= 1)
 		for(var/mob/O in viewers(user, null))
 			to_chat(O, SPAN_WARNING("[user] has used the analyser on \icon[icon]."))

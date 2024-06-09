@@ -48,7 +48,7 @@
 /obj/machinery/computer/shuttle_control/multi
 	icon_state = "syndishuttle"
 
-/obj/machinery/computer/shuttle_control/multi/attack_hand(user as mob)
+/obj/machinery/computer/shuttle_control/multi/attack_hand(mob/user)
 	if(..(user))
 		return
 	add_fingerprint(user)

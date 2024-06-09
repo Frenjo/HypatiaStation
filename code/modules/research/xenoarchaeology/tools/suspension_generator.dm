@@ -56,7 +56,7 @@
 		if(cell.charge <= 0)
 			deactivate()
 
-/obj/machinery/suspension_gen/interact(mob/user as mob)
+/obj/machinery/suspension_gen/interact(mob/user)
 	var/dat = "<b>Multi-phase mobile suspension field generator MK II \"Steadfast\"</b><br>"
 	if(cell)
 		var/colour = "red"
@@ -154,7 +154,7 @@
 
 	updateUsrDialog()
 
-/obj/machinery/suspension_gen/attack_hand(mob/user as mob)
+/obj/machinery/suspension_gen/attack_hand(mob/user)
 	if(!open)
 		interact(user)
 	else if(cell)
@@ -166,7 +166,7 @@
 		cell = null
 		to_chat(user, SPAN_INFO("You remove the power cell"))
 
-/obj/machinery/suspension_gen/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/suspension_gen/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/screwdriver))
 		if(!open)
 			if(screwed)

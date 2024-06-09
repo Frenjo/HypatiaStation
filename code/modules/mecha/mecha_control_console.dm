@@ -10,13 +10,13 @@
 
 	light_color = "#a97faa"
 
-/obj/machinery/computer/mecha/attack_ai(mob/user as mob)
+/obj/machinery/computer/mecha/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/mecha/attack_paw(mob/user as mob)
+/obj/machinery/computer/mecha/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/mecha/attack_hand(mob/user as mob)
+/obj/machinery/computer/mecha/attack_hand(mob/user)
 	if(..())
 		return
 	user.set_machine(src)

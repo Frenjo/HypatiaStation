@@ -32,7 +32,7 @@
 		icon_state = "biogen-work"
 	return
 
-/obj/machinery/biogenerator/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/biogenerator/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/reagent_containers/glass))
 		if(beaker)
 			to_chat(user, SPAN_WARNING("The biogenerator is already loaded."))
@@ -74,7 +74,7 @@
 	update_icon()
 	return
 
-/obj/machinery/biogenerator/interact(mob/user as mob)
+/obj/machinery/biogenerator/interact(mob/user)
 	if(stat & BROKEN)
 		return
 	user.set_machine(src)
@@ -118,7 +118,7 @@
 	onclose(user, "biogenerator")
 	return
 
-/obj/machinery/biogenerator/attack_hand(mob/user as mob)
+/obj/machinery/biogenerator/attack_hand(mob/user)
 	interact(user)
 
 /obj/machinery/biogenerator/proc/activate()

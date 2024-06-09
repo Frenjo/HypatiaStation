@@ -236,7 +236,7 @@
 
 	return ..()
 
-/obj/machinery/power/smes/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/power/smes/attackby(obj/item/W, mob/user)
 	if(open_hatch)
 		if(istype(W, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
 			building_terminal = 1

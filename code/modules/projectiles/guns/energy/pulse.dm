@@ -24,7 +24,7 @@
 		GUN_SETTING_DESTROY = /obj/item/projectile/energy/beam/pulse
 	)
 
-/obj/item/gun/energy/pulse_rifle/attack_self(mob/living/user as mob)
+/obj/item/gun/energy/pulse_rifle/attack_self(mob/living/user)
 	switch(gun_setting)
 		if(GUN_SETTING_DESTROY)
 			gun_setting = GUN_SETTING_STUN
@@ -63,7 +63,7 @@
 
 	cell_type = /obj/item/cell/infinite
 
-/obj/item/gun/energy/pulse_rifle/destroyer/attack_self(mob/living/user as mob)
+/obj/item/gun/energy/pulse_rifle/destroyer/attack_self(mob/living/user)
 	to_chat(user, SPAN_WARNING("\The [name] has three settings, and they are all DESTROY."))
 
 /obj/item/gun/energy/pulse_rifle/M1911

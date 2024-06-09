@@ -73,7 +73,7 @@
 
 	. = ..()
 
-/obj/structure/closet/crate/secure/loot/togglelock(mob/user as mob)
+/obj/structure/closet/crate/secure/loot/togglelock(mob/user)
 	if(locked)
 		to_chat(user, SPAN_NOTICE("The crate is locked with a Deca-code lock."))
 		var/input = input(usr, "Enter digit from [min] to [max].", "Deca-Code Lock", "") as num
@@ -102,7 +102,7 @@
 	else
 		return ..()
 
-/obj/structure/closet/crate/secure/loot/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/closet/crate/secure/loot/attackby(obj/item/W, mob/user)
 	if(locked)
 		if(istype(W, /obj/item/card/emag))
 			to_chat(user, SPAN_NOTICE("The crate unlocks!"))

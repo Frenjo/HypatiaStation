@@ -35,13 +35,13 @@
 
 	return ..()
 
-/obj/machinery/computer/disease_curer/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/disease_curer/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/disease_curer/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/disease_curer/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/disease_curer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/disease_curer/attack_hand(mob/user)
 	if(..())
 		return
 	user.machine = src

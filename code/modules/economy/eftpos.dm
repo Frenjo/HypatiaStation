@@ -78,7 +78,7 @@
 	D.wrapped = R
 	D.name = "small parcel - 'EFTPOS access code'"
 
-/obj/item/eftpos/attack_self(mob/user as mob)
+/obj/item/eftpos/attack_self(mob/user)
 	if(in_range(src, user))
 		var/dat = "<b>[eftpos_name]</b><br>"
 		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting NanoTrasen IT Support</i><br>"
@@ -106,7 +106,7 @@
 	else
 		user << browse(null, "window=eftpos")
 
-/obj/item/eftpos/attackby(O as obj, user as mob)
+/obj/item/eftpos/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/card))
 		if(linked_account)
 			var/obj/item/card/I = O

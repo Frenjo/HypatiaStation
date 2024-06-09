@@ -75,7 +75,7 @@ field_generator power level display
 		update_icon()
 	return
 
-/obj/machinery/field_generator/attack_hand(mob/user as mob)
+/obj/machinery/field_generator/attack_hand(mob/user)
 	if(state == 2)
 		if(in_range(src, user))//Need to actually touch the thing to turn it on
 			if(src.active >= 1)

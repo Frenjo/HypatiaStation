@@ -49,7 +49,7 @@
 		return TRUE
 	return ..()
 
-/obj/item/core_sampler/proc/sample_item(item_to_sample, mob/user as mob)
+/obj/item/core_sampler/proc/sample_item(item_to_sample, mob/user)
 	var/datum/geosample/geo_data
 	if(istype(item_to_sample, /turf/simulated/rock))
 		var/turf/simulated/rock/T = item_to_sample

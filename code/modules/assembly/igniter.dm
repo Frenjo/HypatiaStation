@@ -29,7 +29,7 @@
 
 	return 1
 
-/obj/item/assembly/igniter/attack_self(mob/user as mob)
+/obj/item/assembly/igniter/attack_self(mob/user)
 	activate()
 	add_fingerprint(user)
 	return

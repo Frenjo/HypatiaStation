@@ -217,19 +217,19 @@
 		damage += proj.damage * config_bullet_energy
 	return 0
 
-/obj/machinery/power/supermatter/attack_paw(mob/user as mob)
+/obj/machinery/power/supermatter/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/power/supermatter/attack_robot(mob/user as mob)
+/obj/machinery/power/supermatter/attack_robot(mob/user)
 	if(Adjacent(user))
 		return attack_hand(user)
 	else
 		to_chat(user, SPAN_WARNING("You attempt to interface with the control circuits but find they are not connected to your network. Maybe in a future firmware update."))
 
-/obj/machinery/power/supermatter/attack_ai(mob/user as mob)
+/obj/machinery/power/supermatter/attack_ai(mob/user)
 	to_chat(user, SPAN_WARNING("You attempt to interface with the control circuits but find they are not connected to your network. Maybe in a future firmware update."))
 
-/obj/machinery/power/supermatter/attack_hand(mob/user as mob)
+/obj/machinery/power/supermatter/attack_hand(mob/user)
 	user.visible_message(
 		SPAN_WARNING("The [user] reaches out and touches \the [src], inducing a resonance... \his body starts to glow and bursts into flames before flashing into ash."),
 		SPAN_DANGER("You reach out and touch \the [src]. Everything starts burning and all you can hear is ringing. Your last thought is \"That was not a wise decision.\""),
@@ -243,7 +243,7 @@
 		if(get_dist(R, src) <= 15) // Better than using orange() every process
 			R.receive_pulse(power)
 
-/obj/machinery/power/supermatter/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/machinery/power/supermatter/attackby(obj/item/W, mob/living/user)
 	user.visible_message(
 		SPAN_WARNING("\The [user] touches \a [W] to \the [src] as a silence fills the room..."),
 		//"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>"
@@ -257,7 +257,7 @@
 
 	user.apply_effect(150, IRRADIATE)
 
-/obj/machinery/power/supermatter/Bumped(atom/AM as mob|obj)
+/obj/machinery/power/supermatter/Bumped(atom/movable/AM)
 	if(isliving(AM))
 		AM.visible_message(
 			SPAN_WARNING("\The [AM] slams into \the [src] inducing a resonance... \his body starts to glow and catch flame before flashing into ash."),

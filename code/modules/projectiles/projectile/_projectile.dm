@@ -65,7 +65,7 @@
 	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked) // add in AGONY!
 	return 1
 
-/obj/item/projectile/proc/check_fire(mob/living/target as mob, mob/living/user as mob)  //Checks if you can hit them or not.
+/obj/item/projectile/proc/check_fire(mob/living/target, mob/living/user)  //Checks if you can hit them or not.
 	if(!istype(target) || !istype(user))
 		return 0
 
@@ -81,7 +81,7 @@
 	qdel(in_chamber) //No need for it anymore
 	return output //Send it back to the gun!
 
-/obj/item/projectile/Bump(atom/A as mob|obj|turf|area)
+/obj/item/projectile/Bump(atom/A)
 	if(A == firer)
 		loc = A.loc
 		return 0 //cannot shoot yourself
@@ -181,7 +181,7 @@
 	var/target = null
 	var/result = 0 //To pass the message back to the gun.
 
-/obj/item/projectile/test/Bump(atom/A as mob|obj|turf|area)
+/obj/item/projectile/test/Bump(atom/A)
 	if(A == firer)
 		loc = A.loc
 		return //cannot shoot yourself

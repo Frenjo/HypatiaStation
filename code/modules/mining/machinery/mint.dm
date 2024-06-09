@@ -67,7 +67,7 @@
 				amt_mythril += 100 * O.amount
 				qdel(O)
 
-/obj/machinery/mineral/mint/attack_hand(user as mob)
+/obj/machinery/mineral/mint/attack_hand(mob/user)
 	var/dat = "<b>Coin Press</b><br>"
 
 	if(isnull(input))

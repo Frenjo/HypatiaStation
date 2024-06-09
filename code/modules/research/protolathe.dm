@@ -41,7 +41,7 @@ Note: Must be placed west/left of and R&D console to function.
 		T += M.rating
 	max_storage_capacity = T * 75000
 
-/obj/machinery/r_n_d/protolathe/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/r_n_d/protolathe/attackby(obj/item/O, mob/user)
 	if(..())
 		return 1
 	if(O.is_open_container())

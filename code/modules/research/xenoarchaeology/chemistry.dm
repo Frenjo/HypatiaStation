@@ -77,7 +77,7 @@
 	possible_transfer_amounts = list(1, 2)
 	volume = 2
 
-/obj/item/reagent_containers/glass/solution_tray/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/item/reagent_containers/glass/solution_tray/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/pen))
 		var/new_label = input("What should the new label be?","Label solution tray")
 		if(new_label)

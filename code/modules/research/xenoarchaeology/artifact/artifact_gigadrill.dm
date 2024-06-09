@@ -10,7 +10,7 @@
 	var/drill_time = 10
 	var/turf/drilling_turf
 
-/obj/machinery/giga_drill/attack_hand(mob/user as mob)
+/obj/machinery/giga_drill/attack_hand(mob/user)
 	if(active)
 		active = 0
 		icon_state = "gigadrill"

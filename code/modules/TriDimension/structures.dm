@@ -29,7 +29,7 @@
 /obj/multiz/ladder/attack_paw(mob/M)
 	return attack_hand(M)
 
-/obj/multiz/ladder/attackby(obj/item/C as obj, mob/user as mob)
+/obj/multiz/ladder/attackby(obj/item/C, mob/user)
 	..(C, user)
 // construction commented out for balance concerns
 /*	if (!target && istype(C, /obj/item/stack/rods))

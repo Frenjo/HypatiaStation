@@ -18,7 +18,7 @@
 	to_chat(usr, "[src] Grenade launcher:")
 	to_chat(usr, SPAN_INFO("[grenades] / [max_grenades] Grenades."))
 
-/obj/item/gun/grenadelauncher/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/gun/grenadelauncher/attackby(obj/item/I, mob/user)
 	if((istype(I, /obj/item/grenade)))
 		if(length(grenades) < max_grenades)
 			user.drop_item()

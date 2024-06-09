@@ -146,13 +146,13 @@
 	else if(dir == 12)
 		dir = 4
 
-/obj/machinery/atmospherics/binary/valve/attack_ai(mob/user as mob)
+/obj/machinery/atmospherics/binary/valve/attack_ai(mob/user)
 	return
 
-/obj/machinery/atmospherics/binary/valve/attack_paw(mob/user as mob)
+/obj/machinery/atmospherics/binary/valve/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/atmospherics/binary/valve/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/binary/valve/attack_hand(mob/user)
 	add_fingerprint(usr)
 	update_icon(1)
 	sleep(10)
@@ -196,10 +196,10 @@
 	unregister_radio(src, frequency)
 	return ..()
 
-/obj/machinery/atmospherics/binary/valve/digital/attack_ai(mob/user as mob)
+/obj/machinery/atmospherics/binary/valve/digital/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/atmospherics/binary/valve/digital/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/binary/valve/digital/attack_hand(mob/user)
 	if(!allowed(user))
 		FEEDBACK_ACCESS_DENIED(user)
 		return
@@ -224,7 +224,7 @@
 			else
 				open()
 
-/obj/machinery/atmospherics/binary/valve/digital/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/atmospherics/binary/valve/digital/attackby(obj/item/W, mob/user)
 	if(!istype(W, /obj/item/wrench))
 		return ..()
 	if(istype(src, /obj/machinery/atmospherics/binary/valve/digital))

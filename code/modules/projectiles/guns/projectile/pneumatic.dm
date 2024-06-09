@@ -52,7 +52,7 @@
 	else
 		to_chat(usr, "There's no tank in [src].")
 
-/obj/item/storage/pneumatic/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/pneumatic/attackby(obj/item/W, mob/user)
 	if(isnull(tank) && istype(W, /obj/item/tank))
 		user.drop_item()
 		tank = W
@@ -78,7 +78,7 @@
 	else
 		to_chat(usr, "Nothing is attached to the tank valve!")
 
-/obj/item/storage/pneumatic/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
+/obj/item/storage/pneumatic/afterattack(atom/target, mob/living/user, flag, params)
 	if(istype(target, /obj/item/storage/backpack))
 		return
 
@@ -98,7 +98,7 @@
 		spawn(0)
 			Fire(target, user, params)
 
-/obj/item/storage/pneumatic/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
+/obj/item/storage/pneumatic/attack(mob/living/M, mob/living/user, def_zone)
 	if(length(contents) > 0)
 		if(user.a_intent == "hurt")
 			user.visible_message(SPAN_DANGER("\The [user] fires \the [src] point blank at [M]!"))
@@ -108,7 +108,7 @@
 			Fire(M, user)
 			return
 
-/obj/item/storage/pneumatic/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
+/obj/item/storage/pneumatic/proc/Fire(atom/target, mob/living/user, params, reflex = 0)
 	if(isnull(tank))
 		to_chat(user, "There is no gas tank in [src]!")
 		return 0

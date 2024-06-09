@@ -23,7 +23,7 @@
 	icon_state = "glass_ore"
 	origin_tech = list(/datum/tech/materials = 1)
 
-/obj/item/ore/glass/attack_self(mob/living/user as mob) //It's magic I ain't gonna explain how instant conversion with no tool works. -- Urist
+/obj/item/ore/glass/attack_self(mob/living/user) //It's magic I ain't gonna explain how instant conversion with no tool works. -- Urist
 	var/location = get_turf(user)
 	for(var/obj/item/ore/glass/sand in location)
 		new /obj/item/stack/sheet/sandstone(location)
@@ -66,7 +66,7 @@
 	pixel_x = rand(0, 16) - 8
 	pixel_y = rand(0, 8) - 8
 
-/obj/item/ore/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/ore/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/core_sampler))
 		var/obj/item/core_sampler/C = W
 		C.sample_item(src, user)
@@ -129,7 +129,7 @@
 	name = "mythril coin"
 	icon_state = "coin_mythril"
 
-/obj/item/coin/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/coin/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/CC = W
 		if(string_attached)
@@ -159,7 +159,7 @@
 		to_chat(user, SPAN_INFO("You detach the string from the coin."))
 	else ..()
 
-/obj/item/coin/attack_self(mob/user as mob)
+/obj/item/coin/attack_self(mob/user)
 	var/result = rand(1, sides)
 	var/comment = ""
 	if(result == 1)

@@ -20,7 +20,7 @@
 		AM.loc = T
 	return ..()
 
-/obj/structure/big_delivery/attack_hand(mob/user as mob)
+/obj/structure/big_delivery/attack_hand(mob/user)
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
 		wrapped.loc = get_turf(src.loc)
 		if(istype(wrapped, /obj/structure/closet))
@@ -29,7 +29,7 @@
 	qdel(src)
 	return
 
-/obj/structure/big_delivery/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/big_delivery/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/dest_tagger))
 		var/obj/item/dest_tagger/O = W
 
@@ -59,7 +59,7 @@
 	var/obj/item/wrapped = null
 	var/sortTag = 0
 
-/obj/item/small_delivery/attack_self(mob/user as mob)
+/obj/item/small_delivery/attack_self(mob/user)
 	if(src.wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
 		wrapped.loc = user.loc
 		if(ishuman(user))
@@ -70,7 +70,7 @@
 	qdel(src)
 	return
 
-/obj/item/small_delivery/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/small_delivery/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/dest_tagger))
 		var/obj/item/dest_tagger/O = W
 
@@ -99,7 +99,7 @@
 
 	var/amount = 25.0
 
-/obj/item/package_wrap/afterattack(obj/target as obj, mob/user as mob, proximity)
+/obj/item/package_wrap/afterattack(obj/target, mob/user, proximity)
 	if(!proximity)
 		return
 	if(!istype(target))	//this really shouldn't be necessary (but it is).	-Pete
@@ -182,7 +182,7 @@
 	//If you don't want to fuck up disposals, add to this list, and don't change the order.
 	//If you insist on changing the order, you'll have to change every sort junction to reflect the new order. --Pete
 
-/obj/item/dest_tagger/proc/openwindow(mob/user as mob)
+/obj/item/dest_tagger/proc/openwindow(mob/user)
 	var/dat = "<tt><center><h1><b>TagMaster 2.2</b></h1></center>"
 
 	dat += "<table style='width:100%; padding:4px;'><tr>"
@@ -197,7 +197,7 @@
 	user << browse(dat, "window=destTagScreen;size=450x350")
 	onclose(user, "destTagScreen")
 
-/obj/item/dest_tagger/attack_self(mob/user as mob)
+/obj/item/dest_tagger/attack_self(mob/user)
 	openwindow(user)
 	return
 

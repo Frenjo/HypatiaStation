@@ -42,7 +42,7 @@
 	colour = "white"
 
 
-/obj/item/pen/attack(mob/M as mob, mob/user as mob)
+/obj/item/pen/attack(mob/M, mob/user)
 	if(!ismob(M))
 		return
 	to_chat(user, SPAN_WARNING("You stab [M] with the pen."))
@@ -69,7 +69,7 @@
 	. = ..()
 
 
-/obj/item/pen/sleepypen/attack(mob/M as mob, mob/user as mob)
+/obj/item/pen/sleepypen/attack(mob/M, mob/user)
 	if(!(ismob(M)))
 		return
 	..()
@@ -87,7 +87,7 @@
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/syndicate = 5)
 
 
-/obj/item/pen/paralysis/attack(mob/M as mob, mob/user as mob)
+/obj/item/pen/paralysis/attack(mob/M, mob/user)
 	if(!(ismob(M)))
 		return
 	..()

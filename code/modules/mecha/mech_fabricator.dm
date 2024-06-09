@@ -520,21 +520,21 @@
 		updateUsrDialog()
 		visible_message("\icon[src] <b>[src]</b> beeps, \"Error! Couldn't connect to R&D server.\"")
 
-/obj/machinery/mecha_part_fabricator/proc/get_resource_cost_w_coeff(obj/item/part as obj, resource as text, roundto = 1)
+/obj/machinery/mecha_part_fabricator/proc/get_resource_cost_w_coeff(obj/item/part, resource as text, roundto = 1)
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
 		return round(part:construction_cost[resource] * resource_coeff, roundto)
 	else
 		return 0
 
-/obj/machinery/mecha_part_fabricator/proc/get_construction_time_w_coeff(obj/item/part as obj, roundto = 1)
+/obj/machinery/mecha_part_fabricator/proc/get_construction_time_w_coeff(obj/item/part, roundto = 1)
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
 		return round(part:construction_time * time_coeff, roundto)
 	else
 		return 0
 
-/obj/machinery/mecha_part_fabricator/attack_hand(mob/user as mob)
+/obj/machinery/mecha_part_fabricator/attack_hand(mob/user)
 	var/dat, left_part
 	if (..())
 		return
@@ -675,7 +675,7 @@
 		qdel(res)
 	return result
 
-/obj/machinery/mecha_part_fabricator/attackby(obj/W as obj, mob/user as mob)
+/obj/machinery/mecha_part_fabricator/attackby(obj/W, mob/user)
 	if(istype(W, /obj/item/screwdriver))
 		if(!opened)
 			opened = TRUE

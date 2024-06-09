@@ -1,7 +1,7 @@
 /obj/item/reagent_containers/food/drinks/cans
 	var/canopened = 0
 
-/obj/item/reagent_containers/food/drinks/cans/attack_self(mob/user as mob)
+/obj/item/reagent_containers/food/drinks/cans/attack_self(mob/user)
 	if(canopened == 0)
 		playsound(src,'sound/effects/canopen.ogg', rand(10, 50), 1)
 		to_chat(user, SPAN_NOTICE("You open the drink with an audible pop!"))
@@ -9,7 +9,7 @@
 	else
 		return
 
-/obj/item/reagent_containers/food/drinks/cans/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/food/drinks/cans/attack(mob/M, mob/user, def_zone)
 	if(canopened == 0)
 		to_chat(user, SPAN_NOTICE("You need to open the drink!"))
 		return

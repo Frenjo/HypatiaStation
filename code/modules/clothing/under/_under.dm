@@ -37,7 +37,7 @@
 
 	..()
 
-/obj/item/clothing/under/attack_hand(mob/user as mob)
+/obj/item/clothing/under/attack_hand(mob/user)
 	// Only forward to the attached accessory if the clothing is equipped (not in a storage).
 	if(isnotnull(hastie) && loc == user)
 		hastie.attack_hand(user)
@@ -45,7 +45,7 @@
 	..()
 
 // This is to ensure people can take off suits when there is an attached accessory
-/obj/item/clothing/under/MouseDrop(obj/over_object as obj)
+/obj/item/clothing/under/MouseDrop(obj/over_object)
 	if(ishuman(usr) || ismonkey(usr))
 		// Makes sure that the clothing is equipped so that we can't drag it into our hand from miles away.
 		if(loc != usr)
@@ -108,7 +108,7 @@
 		if(3)
 			to_chat(usr, "Your suit will now report your vital lifesigns as well as your coordinate position.")
 
-/obj/item/clothing/under/proc/remove_accessory(mob/user as mob)
+/obj/item/clothing/under/proc/remove_accessory(mob/user)
 	if(isnull(hastie))
 		return
 

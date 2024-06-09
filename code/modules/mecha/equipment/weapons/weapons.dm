@@ -11,7 +11,7 @@
 	var/fire_volume = 50 //How loud it is played.
 	var/auto_rearm = 0 //Does the weapon reload itself after each shot?
 
-/obj/item/mecha_parts/mecha_equipment/weapon/can_attach(obj/mecha/combat/M as obj)
+/obj/item/mecha_parts/mecha_equipment/weapon/can_attach(obj/mecha/combat/M)
 	if(!istype(M))
 		return 0
 	return ..()
@@ -127,7 +127,7 @@
 	construction_time = 500
 	construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_BANANIUM = 10000)
 
-/obj/item/mecha_parts/mecha_equipment/weapon/honker/can_attach(obj/mecha/combat/honker/M as obj)
+/obj/item/mecha_parts/mecha_equipment/weapon/honker/can_attach(obj/mecha/combat/honker/M)
 	if(!istype(M))
 		return 0
 	return ..()
@@ -296,7 +296,7 @@
 	construction_time = 300
 	construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_BANANIUM = 5000)
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar/can_attach(obj/mecha/combat/honker/M as obj)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar/can_attach(obj/mecha/combat/honker/M)
 	if(!istype(M))
 		return 0
 	return ..()

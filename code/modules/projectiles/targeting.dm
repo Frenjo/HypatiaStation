@@ -21,7 +21,7 @@
 	lower_aim()
 
 //Removing the lock and the buttons.
-/obj/item/gun/dropped(mob/user as mob)
+/obj/item/gun/dropped(mob/user)
 	stop_aim()
 	user.client?.remove_gun_icons()
 	return ..()
@@ -41,7 +41,7 @@
 
 //Compute how to fire.....
 //Return 1 if a target was found, 0 otherwise.
-/obj/item/gun/proc/PreFire(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, params)
+/obj/item/gun/proc/PreFire(atom/A, mob/living/user, params)
 	//Lets not spam it.
 	if(lock_time > world.time - 2)
 		return

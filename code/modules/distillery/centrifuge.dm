@@ -21,7 +21,7 @@
 	var/enzymes = 0
 	var/water = 0
 
-/obj/machinery/centrifuge/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/centrifuge/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/reagent_containers/food))
 		user.u_equip(W)
 		W.loc = src
@@ -29,7 +29,7 @@
 	else
 		..()
 
-/obj/machinery/centrifuge/attack_hand(mob/user as mob)
+/obj/machinery/centrifuge/attack_hand(mob/user)
 	for(var/obj/item/reagent_containers/food/F in output)
 		F.loc = src.loc
 		output -= F

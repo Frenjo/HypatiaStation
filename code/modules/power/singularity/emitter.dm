@@ -67,7 +67,7 @@
 	else
 		icon_state = "emitter"
 
-/obj/machinery/power/emitter/attack_hand(mob/user as mob)
+/obj/machinery/power/emitter/attack_hand(mob/user)
 	src.add_fingerprint(user)
 	if(state == 2)
 		if(!powernet)

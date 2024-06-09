@@ -7,7 +7,7 @@
 	icon_state = "hydro"
 	item_state = "analyser"
 
-/obj/item/plant_analyser/attack_self(mob/user as mob)
+/obj/item/plant_analyser/attack_self(mob/user)
 	return 0
 
 /*
@@ -47,7 +47,7 @@
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/combat = 1)
 	attack_verb = list("chopped", "torn", "cut")
 
-/obj/item/hatchet/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/hatchet/attack(mob/living/carbon/M, mob/living/carbon/user)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
 	return ..()
 
@@ -71,7 +71,7 @@
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/combat = 2)
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 
-/obj/item/scythe/afterattack(atom/A, mob/user as mob, proximity)
+/obj/item/scythe/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(A, /obj/effect/spacevine))
@@ -275,7 +275,7 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/corncob/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/corncob/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/circular_saw) || istype(W, /obj/item/hatchet) \
 	|| istype(W, /obj/item/kitchen/utensil/knife) || istype(W, /obj/item/kitchenknife) \
@@ -302,7 +302,7 @@
 	w_class = 1
 	var/list/item_quants = list()
 
-/obj/item/seedbag/attack_self(mob/user as mob)
+/obj/item/seedbag/attack_self(mob/user)
 	user.machine = src
 	interact(user)
 
@@ -317,7 +317,7 @@
 		if(0)
 			usr << "The bag now picks up one seed pouch at a time."
 
-/obj/item/seeds/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/seeds/attackby(obj/item/O, mob/user)
 	..()
 	if (istype(O, /obj/item/seedbag))
 		var/obj/item/seedbag/S = O
@@ -346,7 +346,7 @@
 		S.updateUsrDialog()
 	return
 
-/obj/item/seedbag/interact(mob/user as mob)
+/obj/item/seedbag/interact(mob/user)
 
 	var/dat = "<TT><b>Select an item:</b><br>"
 

@@ -60,7 +60,7 @@
 	var/datum/reagents/R = reagent_list[length(reagent_list)]
 	R.add_reagent(reagent, 30)
 
-/obj/item/reagent_containers/borghypo/attack(mob/M as mob, mob/user as mob)
+/obj/item/reagent_containers/borghypo/attack(mob/M, mob/user)
 	var/datum/reagents/R = reagent_list[mode]
 	if(!R.total_volume)
 		to_chat(user, SPAN_WARNING("The injector is empty."))
@@ -77,7 +77,7 @@
 			to_chat(user, SPAN_INFO("[trans] units injected. [R.total_volume] units remaining."))
 	return
 
-/obj/item/reagent_containers/borghypo/attack_self(mob/user as mob)
+/obj/item/reagent_containers/borghypo/attack_self(mob/user)
 	playsound(src, 'sound/effects/pop.ogg', 50, 0)		//Change the mode
 	mode++
 	if(mode > length(reagent_list))

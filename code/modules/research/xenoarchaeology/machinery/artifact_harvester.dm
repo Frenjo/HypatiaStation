@@ -35,11 +35,11 @@
 		return TRUE
 	return..()
 
-/obj/machinery/artifact_harvester/attack_hand(mob/user as mob)
+/obj/machinery/artifact_harvester/attack_hand(mob/user)
 	src.add_fingerprint(user)
 	interact(user)
 
-/obj/machinery/artifact_harvester/interact(mob/user as mob)
+/obj/machinery/artifact_harvester/interact(mob/user)
 	if(stat & (NOPOWER | BROKEN))
 		return
 	user.set_machine(src)

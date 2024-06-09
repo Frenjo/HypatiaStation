@@ -40,7 +40,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	qdel(src)
 	return
 
-/obj/machinery/r_n_d/circuit_imprinter/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/r_n_d/circuit_imprinter/attackby(obj/item/O, mob/user)
 	if(..())
 		return 1
 	if(O.is_open_container())

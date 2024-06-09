@@ -26,7 +26,7 @@
 	GLOBL.processing_objects.Remove(src)
 	return ..()
 
-/obj/item/gun/energy/temperature/attack_self(mob/living/user as mob)
+/obj/item/gun/energy/temperature/attack_self(mob/living/user)
 	user.set_machine(src)
 	var/temp_text = ""
 	if(temperature > (T0C - 50))

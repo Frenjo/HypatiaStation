@@ -73,7 +73,7 @@
 	if(crit_fail)
 		to_chat(usr, SPAN_WARNING("This power cell seems to be faulty."))
 
-/obj/item/cell/attack_self(mob/user as mob)
+/obj/item/cell/attack_self(mob/user)
 	src.add_fingerprint(user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

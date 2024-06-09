@@ -87,7 +87,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/trinary/mixer/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/atmospherics/trinary/mixer/attackby(obj/item/W, mob/user)
 	if(!istype(W, /obj/item/wrench))
 		return ..()
 	var/turf/T = loc
@@ -113,7 +113,7 @@
 		new /obj/item/pipe(loc, make_from=src)
 		qdel(src)
 
-/obj/machinery/atmospherics/trinary/mixer/attack_hand(user as mob)
+/obj/machinery/atmospherics/trinary/mixer/attack_hand(mob/user)
 	if(..())
 		return
 	add_fingerprint(usr)

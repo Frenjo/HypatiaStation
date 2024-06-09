@@ -87,7 +87,7 @@
 
 	return results
 
-/obj/machinery/atmospherics/unary/portables_connector/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/atmospherics/unary/portables_connector/attackby(obj/item/W, mob/user)
 	if(!istype(W, /obj/item/wrench))
 		return ..()
 	if(isnotnull(connected_device))

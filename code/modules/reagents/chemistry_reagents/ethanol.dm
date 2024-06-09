@@ -853,7 +853,7 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#2E2E61" // rgb: 46, 46, 97
 
-/datum/reagent/neurotoxin/on_mob_life(mob/living/carbon/M as mob)
+/datum/reagent/neurotoxin/on_mob_life(mob/living/carbon/M)
 	if(isnull(M))
 		M = holder.my_atom
 	M.weakened = max(M.weakened, 3)

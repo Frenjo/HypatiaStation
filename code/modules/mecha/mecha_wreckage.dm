@@ -35,7 +35,7 @@
 /obj/effect/decal/mecha_wreckage/bullet_act(obj/item/projectile/Proj)
 	return
 
-/obj/effect/decal/mecha_wreckage/attackby(obj/item/W as obj, mob/user as mob)
+/obj/effect/decal/mecha_wreckage/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
 		if(salvage_num <= 0)

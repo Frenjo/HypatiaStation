@@ -84,7 +84,7 @@ proc/move_research_shuttle()
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
 	return ..()*/
 
-/obj/machinery/computer/research_shuttle/attack_hand(user as mob)
+/obj/machinery/computer/research_shuttle/attack_hand(mob/user)
 	// Time to start praying this works. -Frenjo
 	radio_controller.remove_object(src, frequency)
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)

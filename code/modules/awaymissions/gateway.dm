@@ -72,7 +72,7 @@
 	if(length(linked) == 8)
 		ready = TRUE
 
-/obj/machinery/gateway/centerstation/proc/toggleon(mob/user as mob)
+/obj/machinery/gateway/centerstation/proc/toggleon(mob/user)
 	if(!ready)
 		return
 	if(length(linked) != 8)
@@ -99,7 +99,7 @@
 	active = FALSE
 	update_icon()
 
-/obj/machinery/gateway/centerstation/attack_hand(mob/user as mob)
+/obj/machinery/gateway/centerstation/attack_hand(mob/user)
 	if(!ready)
 		detect()
 		return
@@ -109,7 +109,7 @@
 	toggleoff()
 
 //okay, here's the good teleporting stuff
-/obj/machinery/gateway/centerstation/Bumped(atom/movable/M as mob|obj)
+/obj/machinery/gateway/centerstation/Bumped(atom/movable/M)
 	if(!ready)
 		return
 	if(!active)
@@ -128,7 +128,7 @@
 			use_power(5000)
 		return
 
-/obj/machinery/gateway/centerstation/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/gateway/centerstation/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/multitool))
 		to_chat(user, "\black The gate is already calibrated, there is no work for you to do here.")
 		return
@@ -176,7 +176,7 @@
 	if(length(linked) == 8)
 		ready = TRUE
 
-/obj/machinery/gateway/centeraway/proc/toggleon(mob/user as mob)
+/obj/machinery/gateway/centeraway/proc/toggleon(mob/user)
 	if(!ready)
 		return
 	if(length(linked) != 8)
@@ -198,7 +198,7 @@
 	active = FALSE
 	update_icon()
 
-/obj/machinery/gateway/centeraway/attack_hand(mob/user as mob)
+/obj/machinery/gateway/centeraway/attack_hand(mob/user)
 	if(!ready)
 		detect()
 		return
@@ -207,7 +207,7 @@
 		return
 	toggleoff()
 
-/obj/machinery/gateway/centeraway/Bumped(atom/movable/M as mob|obj)
+/obj/machinery/gateway/centeraway/Bumped(atom/movable/M)
 	if(!ready)
 		return
 	if(!active)
@@ -221,7 +221,7 @@
 	M.set_dir(SOUTH)
 
 
-/obj/machinery/gateway/centeraway/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/gateway/centeraway/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/multitool))
 		if(calibrated)
 			to_chat(user, "\black The gate is already calibrated, there is no work for you to do here.")

@@ -27,7 +27,7 @@
 		return
 	to_chat(usr, SPAN_INFO("[length(rockets)] / [max_rockets] rockets."))
 
-/obj/item/gun/rocketlauncher/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/gun/rocketlauncher/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/ammo_casing/rocket))
 		if(length(rockets) < max_rockets)
 			user.drop_item()
@@ -41,7 +41,7 @@
 /obj/item/gun/rocketlauncher/can_fire()
 	return length(rockets)
 
-/obj/item/gun/rocketlauncher/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
+/obj/item/gun/rocketlauncher/Fire(atom/target, mob/living/user, params, reflex = 0)
 	if(length(rockets))
 		var/obj/item/ammo_casing/rocket/I = rockets[1]
 		var/obj/item/missile/M = new projectile(user.loc)

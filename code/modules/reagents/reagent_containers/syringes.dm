@@ -30,7 +30,7 @@
 	..()
 	update_icon()
 
-/obj/item/reagent_containers/syringe/attack_self(mob/user as mob)
+/obj/item/reagent_containers/syringe/attack_self(mob/user)
 	switch(mode)
 		if(SYRINGE_DRAW)
 			mode = SYRINGE_INJECT
@@ -47,7 +47,7 @@
 /obj/item/reagent_containers/syringe/attack_paw()
 	return attack_hand()
 
-/obj/item/reagent_containers/syringe/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/reagent_containers/syringe/attackby(obj/item/I, mob/user)
 	return
 
 /obj/item/reagent_containers/syringe/afterattack(obj/target, mob/user, proximity)
@@ -213,7 +213,7 @@
 		filling.icon += mix_colour_from_reagents(reagents.reagent_list)
 		overlays += filling
 
-/obj/item/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
+/obj/item/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target, mob/living/carbon/user)
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [target.name] ([target.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
 	target.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>"
 	msg_admin_attack("[user.name] ([user.ckey]) attacked [target.name] ([target.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
@@ -283,7 +283,7 @@
 	..()
 	update_icon()
 
-/obj/item/reagent_containers/ld50_syringe/attack_self(mob/user as mob)
+/obj/item/reagent_containers/ld50_syringe/attack_self(mob/user)
 	mode = !mode
 	update_icon()
 
@@ -294,7 +294,7 @@
 /obj/item/reagent_containers/ld50_syringe/attack_paw()
 	return attack_hand()
 
-/obj/item/reagent_containers/ld50_syringe/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/reagent_containers/ld50_syringe/attackby(obj/item/I, mob/user)
 	return
 
 /obj/item/reagent_containers/ld50_syringe/afterattack(obj/target, mob/user, flag)

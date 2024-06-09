@@ -20,7 +20,7 @@
 	if(holder)
 		holder.update_icon()
 
-/obj/item/assembly/mousetrap/proc/triggered(mob/target as mob, type = "feet")
+/obj/item/assembly/mousetrap/proc/triggered(mob/target, type = "feet")
 	if(!armed)
 		return
 	var/datum/organ/external/affecting = null
@@ -49,7 +49,7 @@
 	update_icon()
 	pulse(0)
 
-/obj/item/assembly/mousetrap/attack_self(mob/living/user as mob)
+/obj/item/assembly/mousetrap/attack_self(mob/living/user)
 	if(!armed)
 		to_chat(user, SPAN_NOTICE("You arm [src]."))
 	else
@@ -68,7 +68,7 @@
 	update_icon()
 	playsound(user.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -3)
 
-/obj/item/assembly/mousetrap/attack_hand(mob/living/user as mob)
+/obj/item/assembly/mousetrap/attack_hand(mob/living/user)
 	if(armed)
 		if(((user.getBrainLoss() >= 60 || (CLUMSY in user.mutations))) && prob(50))
 			var/which_hand = "l_hand"
@@ -82,7 +82,7 @@
 			return
 	..()
 
-/obj/item/assembly/mousetrap/Crossed(AM as mob|obj)
+/obj/item/assembly/mousetrap/Crossed(atom/movable/AM)
 	if(armed)
 		if(ishuman(AM))
 			var/mob/living/carbon/H = AM
@@ -96,7 +96,7 @@
 			triggered(AM)
 	..()
 
-/obj/item/assembly/mousetrap/on_found(mob/finder as mob)
+/obj/item/assembly/mousetrap/on_found(mob/finder)
 	if(armed)
 		finder.visible_message(
 			SPAN_WARNING("[finder] accidentally sets off [src], breaking their fingers."),
@@ -106,10 +106,10 @@
 		return 1	//end the search!
 	return 0
 
-/obj/item/assembly/mousetrap/hitby(A as mob|obj)
+/obj/item/assembly/mousetrap/hitby(atom/movable/AM)
 	if(!armed)
 		return ..()
-	visible_message(SPAN_WARNING("[src] is triggered by [A]."))
+	visible_message(SPAN_WARNING("[src] is triggered by [AM]."))
 	triggered(null)
 
 /obj/item/assembly/mousetrap/armed

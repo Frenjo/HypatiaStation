@@ -63,5 +63,5 @@
 	icon_state = "stamp-cent"
 	item_color = "centcom"
 
-/obj/item/stamp/attack_paw(mob/user as mob)
+/obj/item/stamp/attack_paw(mob/user)
 	return attack_hand(user)

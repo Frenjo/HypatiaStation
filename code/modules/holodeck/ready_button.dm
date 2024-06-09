@@ -16,18 +16,18 @@
 	var/area/currentarea = null
 	var/eventstarted = 0
 
-/obj/machinery/readybutton/attack_ai(mob/user as mob)
+/obj/machinery/readybutton/attack_ai(mob/user)
 	to_chat(user, "The station AI is not to interact with these devices!")
 	return
 
-/obj/machinery/readybutton/attack_paw(mob/user as mob)
+/obj/machinery/readybutton/attack_paw(mob/user)
 	to_chat(user, "You are too primitive to use this device.")
 	return
 
-/obj/machinery/readybutton/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/readybutton/attackby(obj/item/W, mob/user)
 	to_chat(user, "The device is a solid button, there's nothing you can do with it!")
 
-/obj/machinery/readybutton/attack_hand(mob/user as mob)
+/obj/machinery/readybutton/attack_hand(mob/user)
 	if(user.stat || stat & (NOPOWER | BROKEN))
 		to_chat(user, "This device is not powered.")
 		return

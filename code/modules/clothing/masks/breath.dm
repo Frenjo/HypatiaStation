@@ -49,7 +49,7 @@
 /obj/item/clothing/mask/breath/vox/attack_self(mob/user)
 	to_chat(user, "You can't really adjust this mask - it's moulded to your beak!")
 
-/obj/item/clothing/mask/breath/vox/mob_can_equip(M as mob, slot)
+/obj/item/clothing/mask/breath/vox/mob_can_equip(mob/M, slot)
 	var/mob/living/carbon/human/V = M
 	if(V.species.name != SPECIES_VOX)
 		to_chat(V, SPAN_WARNING("This clearly isn't designed for your species!"))

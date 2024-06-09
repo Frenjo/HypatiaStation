@@ -26,7 +26,7 @@
 
 	var/stage = 0
 
-/obj/machinery/telepad_cargo/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/telepad_cargo/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/wrench))
 		anchored = FALSE
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
@@ -61,7 +61,7 @@
 	item_state = "signaler"
 	origin_tech = list(/datum/tech/bluespace = 3)
 
-/obj/item/telepad_beacon/attack_self(mob/user as mob)
+/obj/item/telepad_beacon/attack_self(mob/user)
 	if(user)
 		to_chat(user, SPAN_CAUTION("Locked In"))
 		new /obj/machinery/telepad_cargo(user.loc)

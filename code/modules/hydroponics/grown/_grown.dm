@@ -26,7 +26,7 @@
 	pixel_x = rand(-5.0, 5)
 	pixel_y = rand(-5.0, 5)
 
-/obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/O as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/O, mob/user)
 	..()
 	if(istype(O, /obj/item/plant_analyser))
 		var/msg
@@ -66,7 +66,7 @@
 				user << "\blue The plant bag is full."*/
 	return
 
-/*/obj/item/seeds/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/*/obj/item/seeds/attackby(var/obj/item/O, var/mob/user)
 	if (istype(O, /obj/item/storage/bag/plants))
 		var/obj/item/plantbag/S = O
 		if (S.mode == 1)
@@ -85,7 +85,7 @@
 				user << "\blue The plant bag is full."
 	return*/
 
-/obj/item/grown/attackby(obj/item/O as obj, mob/user as mob)
+/obj/item/grown/attackby(obj/item/O, mob/user)
 	..()
 	if(istype(O, /obj/item/plant_analyser))
 		var/msg

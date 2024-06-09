@@ -21,7 +21,7 @@
 			pixel_x = rand(-5, 5)
 			pixel_y = rand(-5, 5)
 
-/obj/item/shard/plasma/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/shard/plasma/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W

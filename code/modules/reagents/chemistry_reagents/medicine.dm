@@ -628,7 +628,7 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#C8A5DC" // rgb: 200, 165, 220
 
-/datum/reagent/adminordrazine/on_mob_life(mob/living/carbon/M as mob)
+/datum/reagent/adminordrazine/on_mob_life(mob/living/carbon/M)
 	if(isnull(M))
 		M = holder.my_atom // This can even heal dead people.
 	M.reagents.remove_all_type(/datum/reagent/toxin, 5 * REM, 0, 1)

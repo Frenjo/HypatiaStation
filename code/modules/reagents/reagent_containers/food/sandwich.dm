@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/food/snacks/breadslice/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/breadslice/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/shard) || istype(W, /obj/item/reagent_containers/food/snacks))
 		var/obj/item/reagent_containers/food/snacks/csandwich/S = new(get_turf(src))
 		S.attackby(W, user)
@@ -14,7 +14,7 @@
 
 	var/list/ingredients = list()
 
-/obj/item/reagent_containers/food/snacks/csandwich/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/csandwich/attackby(obj/item/W, mob/user)
 	var/sandwich_limit = 4
 	for(var/obj/item/O in ingredients)
 		if(istype(O, /obj/item/reagent_containers/food/snacks/breadslice))
@@ -81,7 +81,7 @@
 	var/obj/item/O = pick(contents)
 	to_chat(usr, SPAN_INFO("You think you can see [O.name] in there."))
 
-/obj/item/reagent_containers/food/snacks/csandwich/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/food/snacks/csandwich/attack(mob/M, mob/user, def_zone)
 	var/obj/item/shard
 	for(var/obj/item/O in contents)
 		if(istype(O, /obj/item/shard))

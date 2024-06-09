@@ -53,7 +53,7 @@
 	empty_mag = new /obj/item/ammo_magazine/a12mm/empty(src)
 	update_icon()
 
-/obj/item/gun/projectile/automatic/c20r/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+/obj/item/gun/projectile/automatic/c20r/afterattack(atom/target, mob/living/user, flag)
 	. = ..()
 	if(!length(loaded) && empty_mag)
 		empty_mag.loc = get_turf(loc)
@@ -89,7 +89,7 @@
 	var/cover_open = FALSE
 	var/mag_inserted = TRUE
 
-/obj/item/gun/projectile/automatic/l6_saw/attack_self(mob/user as mob)
+/obj/item/gun/projectile/automatic/l6_saw/attack_self(mob/user)
 	cover_open = !cover_open
 	to_chat(user, SPAN_NOTICE("You [cover_open ? "open" : "close"] [src]'s cover."))
 	update_icon()
@@ -97,14 +97,14 @@
 /obj/item/gun/projectile/automatic/l6_saw/update_icon()
 	icon_state = "l6[cover_open ? "open" : "closed"][mag_inserted ? round(length(loaded), 25) : "-empty"]"
 
-/obj/item/gun/projectile/automatic/l6_saw/afterattack(atom/target as mob|obj|turf, mob/living/user as mob|obj, flag, params) //what I tried to do here is just add a check to see if the cover is open or not and add an icon_state change because I can't figure out how c-20rs do it with overlays
+/obj/item/gun/projectile/automatic/l6_saw/afterattack(atom/target, mob/living/user, flag, params) //what I tried to do here is just add a check to see if the cover is open or not and add an icon_state change because I can't figure out how c-20rs do it with overlays
 	if(cover_open)
 		to_chat(user, SPAN_NOTICE("[src]'s cover is open! Close it before firing!"))
 	else
 		. = ..()
 		update_icon()
 
-/obj/item/gun/projectile/automatic/l6_saw/attack_hand(mob/user as mob)
+/obj/item/gun/projectile/automatic/l6_saw/attack_hand(mob/user)
 	if(loc != user)
 		return ..() //let them pick it up
 	if(!cover_open || (cover_open && !mag_inserted))
@@ -123,7 +123,7 @@
 		update_icon()
 		to_chat(user, SPAN_NOTICE("You remove the magazine from [src]."))
 
-/obj/item/gun/projectile/automatic/l6_saw/attackby(obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/automatic/l6_saw/attackby(obj/item/A, mob/user)
 	if(!cover_open)
 		to_chat(user, SPAN_NOTICE("[src]'s cover is closed! You can't insert a new mag!"))
 		return

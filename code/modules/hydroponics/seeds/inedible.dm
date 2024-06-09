@@ -115,7 +115,7 @@
 	growthstages = 4
 	plant_type = 1
 
-/obj/item/seeds/kudzu/attack_self(mob/user as mob)
+/obj/item/seeds/kudzu/attack_self(mob/user)
 	if(isspace(user.loc))
 		return
 	to_chat(user, SPAN_NOTICE("You plant the kudzu. You monster."))

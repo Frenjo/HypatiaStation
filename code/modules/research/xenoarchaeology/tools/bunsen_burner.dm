@@ -10,7 +10,7 @@
 	var/obj/item/reagent_containers/held_container
 	var/heat_time = 50
 
-/obj/machinery/bunsen_burner/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/bunsen_burner/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/reagent_containers))
 		if(held_container)
 			to_chat(user, SPAN_WARNING("You must remove the [held_container] first."))
@@ -27,7 +27,7 @@
 	else
 		to_chat(user, SPAN_WARNING("You can't put the [W] onto the [src]."))
 
-/obj/machinery/bunsen_burner/attack_hand(mob/user as mob)
+/obj/machinery/bunsen_burner/attack_hand(mob/user)
 	if(held_container)
 		underlays = null
 		to_chat(user, SPAN_INFO("You remove the [held_container] from the [src]."))

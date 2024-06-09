@@ -57,7 +57,7 @@
 	seed = /obj/item/seeds/towercap
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
-/obj/item/grown/log/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/grown/log/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/circular_saw) || istype(W, /obj/item/hatchet) \
 	|| (istype(W, /obj/item/twohanded/fireaxe) && W:wielded) \
 	|| istype(W, /obj/item/melee/energy))
@@ -115,7 +115,7 @@
 	reagents.add_reagent("sacid", round(potency, 1))
 	force = round((5 + potency / 5), 1)
 
-/obj/item/grown/nettle/pickup(mob/living/carbon/human/user as mob)
+/obj/item/grown/nettle/pickup(mob/living/carbon/human/user)
 	if(!user.gloves)
 		to_chat(user, SPAN_WARNING("The nettle burns your bare hand!"))
 		if(ishuman(user))
@@ -126,7 +126,7 @@
 		else
 			user.take_organ_damage(0, force)
 
-/obj/item/grown/nettle/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
+/obj/item/grown/nettle/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	if(force > 0)
@@ -170,7 +170,7 @@
 	to_chat(viewers(user), SPAN_DANGER("[user] is eating some of the [src.name]! It looks like \he's trying to commit suicide."))
 	return (BRUTELOSS|TOXLOSS)
 
-/obj/item/grown/deathnettle/pickup(mob/living/carbon/human/user as mob)
+/obj/item/grown/deathnettle/pickup(mob/living/carbon/human/user)
 	if(!user.gloves)
 		if(ishuman(user))
 			var/organ = ((user.hand ? "l_":"r_") + "arm")
@@ -183,7 +183,7 @@
 			user.Paralyse(5)
 			to_chat(user, SPAN_WARNING("You are stunned by the Deathnettle when you try picking it up!"))
 
-/obj/item/grown/deathnettle/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/grown/deathnettle/attack(mob/living/carbon/M, mob/user)
 	if(!..())
 		return
 	if(isliving(M))
@@ -201,7 +201,7 @@
 			M.Weaken(force / 15)
 		M.drop_item()
 
-/obj/item/grown/deathnettle/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
+/obj/item/grown/deathnettle/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	if(force > 0)

@@ -13,7 +13,7 @@
 	item_flags = ITEM_FLAG_NO_BLUDGEON
 	slot_flags = SLOT_BELT
 
-/obj/item/detective_scanner/attackby(obj/item/f_card/W as obj, mob/user as mob)
+/obj/item/detective_scanner/attackby(obj/item/f_card/W, mob/user)
 	..()
 	if(istype(W, /obj/item/f_card))
 		if(W.fingerprints)
@@ -32,7 +32,7 @@
 			W.add_fingerprint(user)
 	return
 
-/obj/item/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/detective_scanner/attack(mob/living/carbon/human/M, mob/user)
 	if(!ishuman(M))
 		to_chat(user, SPAN_WARNING("[M] is not human and cannot have fingerprints."))
 		flick("forensic0", src)
@@ -65,7 +65,7 @@
 				to_chat(user, SPAN_INFO("Blood type: [M.blood_DNA[blood]]\nDNA: [blood]"))
 	return
 
-/obj/item/detective_scanner/afterattack(atom/A as obj|turf|area, mob/user as mob, proximity)
+/obj/item/detective_scanner/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	if(loc != user)
@@ -149,7 +149,7 @@
 		flick("forensic2", src)
 		return 0
 
-/obj/item/detective_scanner/proc/add_data(atom/A as mob|obj|turf|area)
+/obj/item/detective_scanner/proc/add_data(atom/A)
 	//I love associative lists.
 	var/list/data_entry = stored["\ref [A]"]
 	if(islist(data_entry)) //Yay, it was already stored!

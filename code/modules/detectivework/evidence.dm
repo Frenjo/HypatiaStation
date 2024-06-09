@@ -8,7 +8,7 @@
 	item_state = ""
 	w_class = 1
 
-/obj/item/evidencebag/afterattack(obj/item/I, mob/user as mob, proximity)
+/obj/item/evidencebag/afterattack(obj/item/I, mob/user, proximity)
 	if(!proximity)
 		return
 	if(!in_range(I, user))
@@ -64,7 +64,7 @@
 	w_class = I.w_class
 	return
 
-/obj/item/evidencebag/attack_self(mob/user as mob)
+/obj/item/evidencebag/attack_self(mob/user)
 	if(length(contents))
 		var/obj/item/I = contents[1]
 		user.visible_message(

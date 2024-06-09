@@ -20,7 +20,7 @@
 		src.clothing_choices += V
 	return
 
-/obj/item/clothing/under/chameleon/attackby(obj/item/clothing/under/U as obj, mob/user as mob)
+/obj/item/clothing/under/chameleon/attackby(obj/item/clothing/under/U, mob/user)
 	..()
 	if(istype(U, /obj/item/clothing/under/chameleon))
 		to_chat(user, SPAN_WARNING("Nothing happens."))

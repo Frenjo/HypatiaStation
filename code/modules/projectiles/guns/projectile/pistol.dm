@@ -30,7 +30,7 @@
 	empty_mag = new /obj/item/ammo_magazine/a50/empty(src)
 	update_icon()
 
-/obj/item/gun/projectile/deagle/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+/obj/item/gun/projectile/deagle/afterattack(atom/target, mob/living/user, flag)
 	. = ..()
 	if(!length(loaded) && empty_mag)
 		empty_mag.loc = get_turf(loc)
@@ -68,7 +68,7 @@
 	empty_mag = new /obj/item/ammo_magazine/a75/empty(src)
 	update_icon()
 
-/obj/item/gun/projectile/gyropistol/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+/obj/item/gun/projectile/gyropistol/afterattack(atom/target, mob/living/user, flag)
 	. = ..()
 	if(!length(loaded) && empty_mag)
 		empty_mag.loc = get_turf(loc)
@@ -103,13 +103,13 @@
 	. = ..()
 	empty_mag = new /obj/item/ammo_magazine/mc9mm/empty(src)
 
-/obj/item/gun/projectile/pistol/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+/obj/item/gun/projectile/pistol/afterattack(atom/target, mob/living/user, flag)
 	. = ..()
 	if(!length(loaded) && empty_mag)
 		empty_mag.loc = get_turf(loc)
 		empty_mag = null
 
-/obj/item/gun/projectile/pistol/attack_hand(mob/user as mob)
+/obj/item/gun/projectile/pistol/attack_hand(mob/user)
 	if(loc == user)
 		if(silenced)
 			if(user.l_hand != src && user.r_hand != src)
@@ -122,7 +122,7 @@
 			return
 	. = ..()
 
-/obj/item/gun/projectile/pistol/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/gun/projectile/pistol/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/silencer))
 		if(user.l_hand != src && user.r_hand != src)	//if we're not in his hands
 			to_chat(user, SPAN_NOTICE("You'll need [src] in your hands to do that."))

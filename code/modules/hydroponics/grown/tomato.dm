@@ -77,7 +77,7 @@
 	if(ismob(loc))
 		pickup(loc)
 
-/obj/item/reagent_containers/food/snacks/grown/killertomato/attack_self(mob/user as mob)
+/obj/item/reagent_containers/food/snacks/grown/killertomato/attack_self(mob/user)
 	if(isspace(user.loc))
 		return
 
@@ -116,7 +116,7 @@
 	qdel(src)
 	return
 
-/obj/item/reagent_containers/food/snacks/grown/bluetomato/Crossed(AM as mob|obj)
+/obj/item/reagent_containers/food/snacks/grown/bluetomato/Crossed(atom/movable/AM)
 	if(iscarbon(AM))
 		var/mob/M =	AM
 		if(ishuman(M))

@@ -48,7 +48,7 @@
 	update_icon()
 	return 1
 
-/obj/item/gun/energy/floragun/attack_self(mob/living/user as mob)
+/obj/item/gun/energy/floragun/attack_self(mob/living/user)
 	switch(gun_setting)
 		if(GUN_SETTING_KILL)
 			gun_setting = GUN_SETTING_SPECIAL

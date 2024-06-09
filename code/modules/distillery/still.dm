@@ -19,7 +19,7 @@
 	var/progress = 0
 	var/error = 0
 
-/obj/machinery/still/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/still/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/reagent_containers/food))
 		user.u_equip(W)
 		W.loc = src
@@ -27,7 +27,7 @@
 	else
 		..()
 
-/obj/machinery/still/attack_hand(mob/user as mob)
+/obj/machinery/still/attack_hand(mob/user)
 	for(var/obj/item/reagent_containers/food/F in output)
 		F.loc = src.loc
 		output -= F

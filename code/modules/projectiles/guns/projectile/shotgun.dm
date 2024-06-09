@@ -28,7 +28,7 @@
 		return 1
 	return 0
 
-/obj/item/gun/projectile/shotgun/pump/attack_self(mob/living/user as mob)
+/obj/item/gun/projectile/shotgun/pump/attack_self(mob/living/user)
 	if(recentpump)
 		return
 
@@ -37,7 +37,7 @@
 	spawn(10)
 		recentpump = FALSE
 
-/obj/item/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)
+/obj/item/gun/projectile/shotgun/pump/proc/pump(mob/M)
 	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
 	pumped = 0
 	if(isnotnull(current_shell)) // We have a shell in the chamber
@@ -100,7 +100,7 @@
 		return 1
 	return 0
 
-/obj/item/gun/projectile/shotgun/doublebarrel/attack_self(mob/living/user as mob)
+/obj/item/gun/projectile/shotgun/doublebarrel/attack_self(mob/living/user)
 	if(!(locate(/obj/item/ammo_casing/shotgun) in src) && !length(loaded))
 		to_chat(user, SPAN_NOTICE("\The [src] is empty."))
 		return
@@ -113,7 +113,7 @@
 	to_chat(user, SPAN_NOTICE("You break \the [src]."))
 	update_icon()
 
-/obj/item/gun/projectile/shotgun/doublebarrel/attackby(obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/shotgun/doublebarrel/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ammo_casing) && load_method == SPEEDLOADER)
 		var/obj/item/ammo_casing/AC = A
 		if(AC.caliber == caliber && (length(loaded) < max_shells) && (length(contents) < max_shells))	//forgive me father, for i have sinned

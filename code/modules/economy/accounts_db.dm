@@ -18,7 +18,7 @@
 	. = ..()
 	machine_id = "[station_name()] Acc. DB #[global.CTeconomy.num_financial_terminals++]"
 
-/obj/machinery/account_database/attack_hand(mob/user as mob)
+/obj/machinery/account_database/attack_hand(mob/user)
 	if(in_range(src, user))
 		var/dat = "<b>Accounts Database</b><br>"
 		dat += "<i>[machine_id]</i><br>"
@@ -84,7 +84,7 @@
 	else
 		user << browse(null, "window=account_db")
 
-/obj/machinery/account_database/attackby(O as obj, user as mob)//TODO:SANITY
+/obj/machinery/account_database/attackby(obj/item/O, mob/user)//TODO:SANITY
 	if(istype(O, /obj/item/card))
 		var/obj/item/card/id/idcard = O
 		if(!held_card)

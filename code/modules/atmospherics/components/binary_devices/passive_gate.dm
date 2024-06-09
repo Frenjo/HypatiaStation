@@ -85,7 +85,7 @@
 	radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 	return 1
 
-/obj/machinery/atmospherics/binary/passive_gate/interact(mob/user as mob)
+/obj/machinery/atmospherics/binary/passive_gate/interact(mob/user)
 	var/dat = {"<b>Power: </b><a href='byond://?src=\ref[src];power=1'>[on?"On":"Off"]</a><br>
 				<b>Desirable output pressure: </b>
 				[round(target_pressure, 0.1)]kPa | <a href='byond://?src=\ref[src];set_press=1'>Change</a>
@@ -120,7 +120,7 @@
 		broadcast_status()
 	update_icon()
 
-/obj/machinery/atmospherics/binary/passive_gate/attack_hand(user as mob)
+/obj/machinery/atmospherics/binary/passive_gate/attack_hand(mob/user)
 	if(..())
 		return
 	add_fingerprint(usr)
@@ -146,7 +146,7 @@
 	..()
 	update_icon()
 
-/obj/machinery/atmospherics/binary/passive_gate/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/atmospherics/binary/passive_gate/attackby(obj/item/W, mob/user)
 	if(!istype(W, /obj/item/wrench))
 		return ..()
 	if(on)

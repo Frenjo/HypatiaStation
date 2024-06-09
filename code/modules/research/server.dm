@@ -82,7 +82,7 @@
 		produce_heat(operating_temperature)
 		delay = initial(delay)
 
-/obj/machinery/r_n_d/server/meteorhit(obj/O as obj)
+/obj/machinery/r_n_d/server/meteorhit(obj/O)
 	griefProtection()
 	..()
 
@@ -128,7 +128,7 @@
 
 				env.merge(removed)
 
-/obj/machinery/r_n_d/server/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/r_n_d/server/attackby(obj/item/O, mob/user)
 	if(..())
 		return 1
 
@@ -156,7 +156,7 @@
 			qdel(src)
 			return 1
 
-/obj/machinery/r_n_d/server/attack_hand(mob/user as mob)
+/obj/machinery/r_n_d/server/attack_hand(mob/user)
 	if(disabled)
 		return
 	if(shocked)

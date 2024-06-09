@@ -195,7 +195,7 @@
 	return get_turf(src)
 
 // attempt to move while inside
-/obj/machinery/disposal/relaymove(mob/user as mob)
+/obj/machinery/disposal/relaymove(mob/user)
 	if(user.stat || src.flushing)
 		return
 	src.go_out(user)
@@ -211,7 +211,7 @@
 	return
 
 // monkeys can only pull the flush lever
-/obj/machinery/disposal/attack_paw(mob/user as mob)
+/obj/machinery/disposal/attack_paw(mob/user)
 	if(stat & BROKEN)
 		return
 
@@ -220,11 +220,11 @@
 	return
 
 // ai as human but can't flush
-/obj/machinery/disposal/attack_ai(mob/user as mob)
+/obj/machinery/disposal/attack_ai(mob/user)
 	interact(user, 1)
 
 // human interact with machine
-/obj/machinery/disposal/attack_hand(mob/user as mob)
+/obj/machinery/disposal/attack_hand(mob/user)
 	if(user && user.loc == src)
 		to_chat(user, SPAN_WARNING("You cannot reach the controls from inside."))
 		return
@@ -621,7 +621,7 @@
 	qdel(other)
 
 // called when player tries to move while in a pipe
-/obj/structure/disposalholder/relaymove(mob/user as mob)
+/obj/structure/disposalholder/relaymove(mob/user)
 	if(user.stat)
 		return
 	if(src.loc)

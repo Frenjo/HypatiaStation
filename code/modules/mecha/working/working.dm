@@ -10,7 +10,7 @@
 		new /obj/item/mecha_parts/mecha_tracking(src)
 
 /*
-/obj/mecha/working/melee_action(atom/target as obj|mob|turf)
+/obj/mecha/working/melee_action(atom/target)
 	if(internal_damage&MECHA_INT_CONTROL_LOST)
 		target = pick(oview(1,src))
 	if(selected_tool)
@@ -18,7 +18,7 @@
 	return
 */
 
-/obj/mecha/working/range_action(atom/target as obj|mob|turf)
+/obj/mecha/working/range_action(atom/target)
 	return
 
 /*

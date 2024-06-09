@@ -29,10 +29,10 @@
 	var/icon/img	//Big photo image
 	var/scribble	//Scribble on the back.
 
-/obj/item/photo/attack_self(mob/user as mob)
+/obj/item/photo/attack_self(mob/user)
 	examine()
 
-/obj/item/photo/attackby(obj/item/P as obj, mob/user as mob)
+/obj/item/photo/attackby(obj/item/P, mob/user)
 	if(istype(P, /obj/item/pen) || istype(P, /obj/item/toy/crayon))
 		var/txt = sanitize(input(user, "What would you like to write on the back?", "Photo Writing", null) as text)
 		txt = copytext(txt, 1, 128)
@@ -48,7 +48,7 @@
 	else
 		to_chat(usr, SPAN_NOTICE("It is too far away."))
 
-/obj/item/photo/proc/show(mob/user as mob)
+/obj/item/photo/proc/show(mob/user)
 	user << browse_rsc(img, "tmp_photo.png")
 	user << browse("<html><head><title>[name]</title></head>" \
 		+ "<body style='overflow:hidden'>" \
@@ -80,7 +80,7 @@
 	item_state = "briefcase"
 	can_hold = list(/obj/item/photo)
 
-/obj/item/storage/photo_album/MouseDrop(obj/over_object as obj)
+/obj/item/storage/photo_album/MouseDrop(obj/over_object)
 	if((ishuman(usr) || IS_GAME_MODE(/datum/game_mode/monkey)))
 		var/mob/M = usr
 		if(!(istype(over_object, /atom/movable/screen)))
@@ -123,10 +123,10 @@
 	var/icon_on = "camera"
 	var/icon_off = "camera_off"
 
-/obj/item/camera/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/camera/attack(mob/living/carbon/human/M, mob/user)
 	return
 
-/obj/item/camera/attack_self(mob/user as mob)
+/obj/item/camera/attack_self(mob/user)
 	on = !on
 	if(on)
 		src.icon_state = icon_on
@@ -135,7 +135,7 @@
 	user << "You switch the camera [on ? "on" : "off"]."
 	return
 
-/obj/item/camera/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/camera/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/camera_film))
 		if(pictures_left)
 			to_chat(user, SPAN_NOTICE("[src] still has some film in it!"))
@@ -147,7 +147,7 @@
 		return
 	..()
 
-/obj/item/camera/proc/get_icon(turf/the_turf as turf)
+/obj/item/camera/proc/get_icon(turf/the_turf)
 	//Bigger icon base to capture those icons that were shifted to the next tile
 	//i.e. pretty much all wall-mounted machinery
 	var/icon/res = icon('icons/effects/96x96.dmi', "")
@@ -185,7 +185,7 @@
 				res.Blend(new/icon(img, "", A.dir), ICON_OVERLAY, 33 + A.pixel_x, 33 + A.pixel_y)
 	return res
 
-/obj/item/camera/proc/get_mobs(turf/the_turf as turf)
+/obj/item/camera/proc/get_mobs(turf/the_turf)
 	var/mob_detail
 	for(var/mob/living/carbon/A in the_turf)
 		if(A.invisibility)
@@ -206,7 +206,7 @@
 			mob_detail += "You can also see [A] on the photo[A:health < 75 ? " - [A] looks hurt":""].[holding ? " [holding]":"."]."
 	return mob_detail
 
-/obj/item/camera/afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
+/obj/item/camera/afterattack(atom/target, mob/user, flag)
 	if(!on || !pictures_left || ismob(target.loc))
 		return
 

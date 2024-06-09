@@ -13,7 +13,7 @@
 	item_state = "electronic"
 	obj_flags = OBJ_FLAG_CONDUCT
 
-/obj/item/antibody_scanner/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/antibody_scanner/attack(mob/living/carbon/M, mob/user)
 	if(!istype(M))
 		to_chat(user, SPAN_NOTICE("Incompatible object, scan aborted."))
 		return
@@ -46,7 +46,7 @@
 	src.virus2.makerandom()
 	growth = rand(5, 50)
 
-/obj/item/virusdish/attackby(var/obj/item/W as obj,var/mob/living/carbon/user as mob)
+/obj/item/virusdish/attackby(obj/item/W, mob/living/carbon/user)
 	if(istype(W,/obj/item/hand_labeler) || istype(W,/obj/item/reagent_containers/syringe))
 		return
 	..()

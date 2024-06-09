@@ -35,13 +35,13 @@
 	else
 		icon_state = "heater_0"
 
-/obj/machinery/atmospherics/unary/heat_reservoir/heater/attack_ai(mob/user as mob)
+/obj/machinery/atmospherics/unary/heat_reservoir/heater/attack_ai(mob/user)
 	ui_interact(user)
 
-/obj/machinery/atmospherics/unary/heat_reservoir/heater/attack_paw(mob/user as mob)
+/obj/machinery/atmospherics/unary/heat_reservoir/heater/attack_paw(mob/user)
 	ui_interact(user)
 
-/obj/machinery/atmospherics/unary/heat_reservoir/heater/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/unary/heat_reservoir/heater/attack_hand(mob/user)
 	ui_interact(user)
 
 /obj/machinery/atmospherics/unary/heat_reservoir/heater/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)

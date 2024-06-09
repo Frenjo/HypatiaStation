@@ -72,7 +72,7 @@
 		overheat()
 			explosion(get_turf(src), 2, 5, 2, -1)
 
-	attackby(var/obj/item/O as obj, var/mob/user as mob)
+	attackby(obj/item/O, mob/user)
 		if(istype(O, /obj/item/tank/plasma))
 			if(P)
 				user << "\red The generator already has a plasma tank loaded!"
@@ -115,17 +115,17 @@
 				new_frame.icon_state = "box_1"
 				del(src)
 
-	attack_hand(mob/user as mob)
+	attack_hand(mob/user)
 		..()
 		if (!anchored)
 			return
 
 		interact(user)
 
-	attack_ai(mob/user as mob)
+	attack_ai(mob/user)
 		interact(user)
 
-	attack_paw(mob/user as mob)
+	attack_paw(mob/user)
 		interact(user)
 
 	proc

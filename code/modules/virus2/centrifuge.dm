@@ -24,7 +24,7 @@
 	if(! (stat & (BROKEN|NOPOWER)) && (isolating || curing))
 		icon_state = "centrifuge_moving"
 
-/obj/machinery/computer/disease_centrifuge/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/disease_centrifuge/attack_hand(mob/user)
 	if(..())
 		return
 	user.set_machine(src)

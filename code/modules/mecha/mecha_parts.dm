@@ -19,7 +19,7 @@
 	var/datum/construction/construct
 	construction_cost = list(MATERIAL_METAL = 20000)
 
-/obj/item/mecha_parts/chassis/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/mecha_parts/chassis/attackby(obj/item/W, mob/user)
 	if(!construct || !construct.action(W, user))
 		..()
 	return

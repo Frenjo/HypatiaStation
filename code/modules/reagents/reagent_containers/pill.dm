@@ -15,10 +15,10 @@
 	if(!icon_state)
 		icon_state = "pill[rand(1, 20)]"
 
-/obj/item/reagent_containers/pill/attack_self(mob/user as mob)
+/obj/item/reagent_containers/pill/attack_self(mob/user)
 	return
 
-/obj/item/reagent_containers/pill/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/pill/attack(mob/M, mob/user, def_zone)
 	if(M == user)
 		to_chat(M, SPAN_INFO("You swallow [src]."))
 		M.drop_from_inventory(src) //icon update

@@ -68,7 +68,7 @@
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/forcebolt)
 	/*
-	attack_self(mob/living/user as mob)
+	attack_self(mob/living/user)
 		if(projectile_type == "/obj/item/projectile/forcebolt")
 			charge_cost = 200
 			user << "\red The [name] will now strike a small area."

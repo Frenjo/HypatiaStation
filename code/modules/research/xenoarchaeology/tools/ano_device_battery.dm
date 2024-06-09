@@ -48,7 +48,7 @@
 		return TRUE
 	return ..()
 
-/obj/item/anodevice/attack_self(mob/user as mob)
+/obj/item/anodevice/attack_self(mob/user)
 	return src.interact(user)
 
 /obj/item/anodevice/interact(mob/user)

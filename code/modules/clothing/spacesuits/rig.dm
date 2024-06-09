@@ -202,7 +202,7 @@
 		helmet.canremove = 0
 		to_chat(H, SPAN_INFO("You deploy your hardsuit helmet, sealing you off from the world."))
 
-/obj/item/clothing/suit/space/rig/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/suit/space/rig/attackby(obj/item/W, mob/user)
 	if(!isliving(user))
 		return
 	if(user.a_intent == "help")

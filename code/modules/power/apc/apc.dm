@@ -262,7 +262,7 @@
 
 	make_terminal()
 
-/obj/machinery/power/apc/proc/can_use(mob/user as mob, loud = 0) //used by attack_hand() and Topic()
+/obj/machinery/power/apc/proc/can_use(mob/user, loud = 0) //used by attack_hand() and Topic()
 	if(user.stat)
 		to_chat(user, SPAN_WARNING("You must be conscious to use [src]!"))
 		return 0

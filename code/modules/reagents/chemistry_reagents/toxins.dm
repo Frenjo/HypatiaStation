@@ -176,7 +176,7 @@
 	color = "#669900" // rgb: 102, 153, 0
 	toxpwr = 0.5
 
-/datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/carbon/M as mob)
+/datum/reagent/toxin/zombiepowder/on_mob_life(mob/living/carbon/M)
 	if(isnull(M))
 		M = holder.my_atom
 	M.status_flags |= FAKEDEATH
@@ -289,7 +289,7 @@
 	toxpwr = 0
 	overdose = 30
 
-/datum/reagent/toxin/potassium_chloride/on_mob_life(mob/living/carbon/M as mob)
+/datum/reagent/toxin/potassium_chloride/on_mob_life(mob/living/carbon/M)
 	var/mob/living/carbon/human/H = M
 	if(H.stat != 1)
 		if(volume >= overdose)
@@ -308,7 +308,7 @@
 	toxpwr = 2
 	overdose = 20
 
-/datum/reagent/toxin/potassium_chlorophoride/on_mob_life(mob/living/carbon/M as mob)
+/datum/reagent/toxin/potassium_chlorophoride/on_mob_life(mob/living/carbon/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.stat != 1)

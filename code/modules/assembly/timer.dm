@@ -61,7 +61,7 @@
 		holder.update_icon()
 	return
 
-/obj/item/assembly/timer/interact(mob/user as mob) //TODO: Have this use the wires
+/obj/item/assembly/timer/interact(mob/user) //TODO: Have this use the wires
 	if(!secured)
 		user.show_message(SPAN_WARNING("The [name] is unsecured!"))
 		return 0

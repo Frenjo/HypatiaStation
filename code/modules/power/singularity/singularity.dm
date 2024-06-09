@@ -56,7 +56,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 	GLOBL.processing_objects -= src
 	return ..()
 
-/obj/singularity/attack_hand(mob/user as mob)
+/obj/singularity/attack_hand(mob/user)
 	consume(user)
 	return 1
 

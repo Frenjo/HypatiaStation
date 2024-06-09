@@ -9,7 +9,7 @@
 	throwforce = 2
 	slot_flags = SLOT_EARS
 
-/obj/item/clothing/ears/attack_hand(mob/user as mob)
+/obj/item/clothing/ears/attack_hand(mob/user)
 	if(isnull(user))
 		return
 

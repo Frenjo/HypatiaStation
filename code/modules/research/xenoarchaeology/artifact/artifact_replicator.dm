@@ -92,7 +92,7 @@
 		else if(prob(5))
 			visible_message(SPAN_INFO("\icon[src] [src] [pick("clicks", "whizzes", "whirrs", "whooshes", "clanks", "clongs", "clonks", "bangs")]."))
 
-/obj/machinery/replicator/attack_hand(mob/user as mob)
+/obj/machinery/replicator/attack_hand(mob/user)
 	interact(user)
 
 /obj/machinery/replicator/interact(mob/user)

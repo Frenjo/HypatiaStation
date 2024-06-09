@@ -47,7 +47,7 @@
 		icon_state = "laser"//"emitter"
 
 // Commented this out because I got the laser control computer working... Sort of. -Frenjo
-/*/obj/machinery/zero_point_emitter/attack_hand(mob/user as mob)
+/*/obj/machinery/zero_point_emitter/attack_hand(mob/user)
 	src.add_fingerprint(user)
 	if(state == 2)
 		if(!src.locked)

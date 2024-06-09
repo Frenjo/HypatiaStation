@@ -65,7 +65,7 @@ log transactions
 			playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
 		break
 
-/obj/machinery/atm/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/atm/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card))
 		if(emagged > 0)
 			//prevent inserting id into an emagged ATM
@@ -116,7 +116,7 @@ log transactions
 	else
 		..()
 
-/obj/machinery/atm/attack_hand(mob/user as mob)
+/obj/machinery/atm/attack_hand(mob/user)
 	if(issilicon(user))
 		to_chat(user, SPAN_WARNING("\icon[src] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per NanoTrasen regulation #1005."))
 		return
@@ -413,7 +413,7 @@ log transactions
 	src.attack_hand(usr)
 
 //stolen wholesale and then edited a bit from newscasters, which are awesome and by Agouri
-/obj/machinery/atm/proc/scan_user(mob/living/carbon/human/human_user as mob)
+/obj/machinery/atm/proc/scan_user(mob/living/carbon/human/human_user)
 	if(!authenticated_account)
 		if(human_user.id_store)
 			var/obj/item/card/id/I
@@ -439,7 +439,7 @@ log transactions
 					view_screen = NO_SCREEN
 
 // put the currently held id on the ground or in the hand of the user
-/obj/machinery/atm/proc/release_held_id(mob/living/carbon/human/human_user as mob)
+/obj/machinery/atm/proc/release_held_id(mob/living/carbon/human/human_user)
 	if(!held_card)
 		return
 

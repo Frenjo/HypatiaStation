@@ -70,7 +70,7 @@
 	if(isturf(location))
 		location.hotspot_expose(700, 1)
 
-/obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
+/obj/item/clothing/head/cakehat/attack_self(mob/user)
 	if(status > 1)
 		return
 	onfire = !onfire
@@ -95,7 +95,7 @@
 	item_state = "ushankadown"
 	inv_flags = INV_FLAG_HIDE_EARS
 
-/obj/item/clothing/head/ushanka/attack_self(mob/user as mob)
+/obj/item/clothing/head/ushanka/attack_self(mob/user)
 	if(icon_state == "ushankadown")
 		icon_state = "ushankaup"
 		item_state = "ushankaup"

@@ -46,7 +46,7 @@
 
 	return ..()
 
-/obj/structure/filingcabinet/attackby(obj/item/P as obj, mob/user as mob)
+/obj/structure/filingcabinet/attackby(obj/item/P, mob/user)
 	if(istype(P, /obj/item/paper) || istype(P, /obj/item/folder) || istype(P, /obj/item/photo))
 		to_chat(user, SPAN_NOTICE("You put [P] in [src]."))
 		user.drop_item()
@@ -58,7 +58,7 @@
 	else
 		to_chat(user, SPAN_WARNING("You can't put [P] in [src]!"))
 
-/obj/structure/filingcabinet/attack_hand(mob/user as mob)
+/obj/structure/filingcabinet/attack_hand(mob/user)
 	if(!length(contents))
 		to_chat(user, SPAN_NOTICE("\The [src] is empty."))
 		return

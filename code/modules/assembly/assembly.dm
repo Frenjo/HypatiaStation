@@ -46,7 +46,7 @@
 	return
 
 //Called when attack_self is called
-/obj/item/assembly/interact(mob/user as mob)
+/obj/item/assembly/interact(mob/user)
 	return
 
 /obj/item/assembly/process_cooldown()
@@ -93,7 +93,7 @@
 		return 1
 	return 0
 
-/obj/item/assembly/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/assembly/attackby(obj/item/W, mob/user)
 	if(isassembly(W))
 		var/obj/item/assembly/A = W
 		if((!A.secured) && (!secured))
@@ -122,14 +122,14 @@
 			to_chat(usr, "\The [src] can be attached!")
 	return
 
-/obj/item/assembly/attack_self(mob/user as mob)
+/obj/item/assembly/attack_self(mob/user)
 	if(!user)
 		return 0
 	user.set_machine(src)
 	interact(user)
 	return 1
 
-/obj/item/assembly/interact(mob/user as mob)
+/obj/item/assembly/interact(mob/user)
 	return //HTML MENU FOR WIRES GOES HERE
 
 /*

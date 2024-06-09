@@ -143,7 +143,7 @@
 /datum/global_iterator/vehicle_intertial_movement //inertial movement in space
 	delay = 7
 
-	process(var/obj/vehicle/V as obj, direction)
+	process(obj/vehicle/V, direction)
 		if(direction)
 			if(!step(V, direction)||V.check_for_support())
 				src.stop()

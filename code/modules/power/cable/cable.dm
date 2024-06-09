@@ -487,7 +487,7 @@ By design, d1 is the smallest direction and d2 is the highest
 ///////////////////////////////////
 
 //you can use wires to heal robotics
-/obj/item/stack/cable_coil/attack(mob/M as mob, mob/user as mob)
+/obj/item/stack/cable_coil/attack(mob/M, mob/user)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/datum/organ/external/S = H.get_organ(user.zone_sel.selecting)
@@ -582,7 +582,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		return
 	..()
 
-/obj/item/stack/cable_coil/attack_hand(mob/user as mob)
+/obj/item/stack/cable_coil/attack_hand(mob/user)
 	if(user.get_inactive_hand() == src)
 		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, color)
 		F.copy_evidences(src)

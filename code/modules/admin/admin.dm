@@ -928,7 +928,7 @@ var/global/floorIsLava = 0
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
-/proc/is_special_character(mob/M as mob) // returns 1 for specail characters and 2 for heroes of gamemode
+/proc/is_special_character(mob/M) // returns 1 for specail characters and 2 for heroes of gamemode
 	if(!global.PCticker || !global.PCticker.mode)
 		return 0
 	if(!istype(M))

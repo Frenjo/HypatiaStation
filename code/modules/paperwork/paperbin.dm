@@ -12,7 +12,7 @@
 	var/list/papers = list()	//List of papers put in the bin for reference.
 
 
-/obj/item/paper_bin/MouseDrop(mob/user as mob)
+/obj/item/paper_bin/MouseDrop(mob/user)
 	if((user == usr && (!(usr.restrained()) && (!(usr.stat) && (usr.contents.Find(src) || in_range(src, usr))))))
 		if(!isslime(usr) && !isanimal(usr))
 			if(!usr.get_active_hand())		//if active hand is empty
@@ -21,11 +21,11 @@
 	return
 
 
-/obj/item/paper_bin/attack_paw(mob/user as mob)
+/obj/item/paper_bin/attack_paw(mob/user)
 	return attack_hand(user)
 
 
-/obj/item/paper_bin/attack_hand(mob/user as mob)
+/obj/item/paper_bin/attack_hand(mob/user)
 	if(hasorgans(user))
 		var/datum/organ/external/temp = user:organs_by_name["r_hand"]
 		if(user.hand)
@@ -60,7 +60,7 @@
 	return
 
 
-/obj/item/paper_bin/attackby(obj/item/paper/i as obj, mob/user as mob)
+/obj/item/paper_bin/attackby(obj/item/paper/i, mob/user)
 	if(!istype(i))
 		return
 

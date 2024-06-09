@@ -96,7 +96,7 @@
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 
-/obj/machinery/disease_incubator/attack_hand(mob/user as mob)
+/obj/machinery/disease_incubator/attack_hand(mob/user)
 	if(stat & BROKEN)
 		return
 	user.set_machine(src)

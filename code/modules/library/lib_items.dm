@@ -24,7 +24,7 @@
 			I.loc = src
 	update_icon()
 
-/obj/structure/bookcase/attackby(obj/O as obj, mob/user as mob)
+/obj/structure/bookcase/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/book))
 		user.drop_item()
 		O.loc = src
@@ -38,7 +38,7 @@
 	else
 		..()
 
-/obj/structure/bookcase/attack_hand(mob/user as mob)
+/obj/structure/bookcase/attack_hand(mob/user)
 	if(length(contents))
 		var/obj/item/book/choice = input("Which book would you like to remove from the shelf?") in contents
 		if(choice)
@@ -136,7 +136,7 @@
 	var/carved = 0	 // Has the book been hollowed out for use as a secret storage item?
 	var/obj/item/store	//What's in the book?
 
-/obj/item/book/attack_self(mob/user as mob)
+/obj/item/book/attack_self(mob/user)
 	if(carved)
 		if(store)
 			to_chat(user, SPAN_NOTICE("[store] falls out of [title]!"))
@@ -153,7 +153,7 @@
 	else
 		to_chat(user, "This book is completely blank!")
 
-/obj/item/book/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/book/attackby(obj/item/W, mob/user)
 	if(carved)
 		if(!store)
 			if(W.w_class < 3)
@@ -253,7 +253,7 @@
 	var/obj/item/book/book	 //  Currently scanned book
 	var/mode = 0 					// 0 - Scan only, 1 - Scan and Set Buffer, 2 - Scan and Attempt to Check In, 3 - Scan and Attempt to Add to Inventory
 
-/obj/item/barcodescanner/attack_self(mob/user as mob)
+/obj/item/barcodescanner/attack_self(mob/user)
 	mode += 1
 	if(mode > 3)
 		mode = 0

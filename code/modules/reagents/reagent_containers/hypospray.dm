@@ -13,7 +13,7 @@
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	slot_flags = SLOT_BELT
 
-/obj/item/reagent_containers/hypospray/attack_paw(mob/user as mob)
+/obj/item/reagent_containers/hypospray/attack_paw(mob/user)
 	return src.attack_hand(user)
 
 /obj/item/reagent_containers/hypospray/New() //comment this to make hypos start off empty
@@ -21,7 +21,7 @@
 	//reagents.add_reagent("tricordrazine", 30) // Commented this, planning on adding hypos to the RnD protolathe. -Frenjo
 	return
 
-/obj/item/reagent_containers/hypospray/attack(mob/M as mob, mob/user as mob)
+/obj/item/reagent_containers/hypospray/attack(mob/M, mob/user)
 	if(!reagents.total_volume)
 		to_chat(user, SPAN_WARNING("[src] is empty."))
 		return
@@ -62,7 +62,7 @@
 	update_icon()
 	return
 
-/obj/item/reagent_containers/hypospray/autoinjector/attack(mob/M as mob, mob/user as mob)
+/obj/item/reagent_containers/hypospray/autoinjector/attack(mob/M, mob/user)
 	..()
 	if(reagents.total_volume <= 0) //Prevents autoinjectors to be refilled.
 		UNSET_ITEM_FLAGS(src, ATOM_FLAG_OPEN_CONTAINER)

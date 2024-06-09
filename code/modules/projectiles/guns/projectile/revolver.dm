@@ -40,7 +40,7 @@
 		to_chat(M, "You name the gun [input]. Say hello to your new friend.")
 		return 1
 
-/obj/item/gun/projectile/detective/attackby(obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/detective/attackby(obj/item/A, mob/user)
 	..()
 	if(istype(A, /obj/item/screwdriver))
 		if(caliber == "38")
@@ -94,7 +94,7 @@
 	. = ..()
 	empty_mag = new /obj/item/ammo_magazine/c45r/empty(src)
 
-/obj/item/gun/projectile/detective/semiauto/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag)
+/obj/item/gun/projectile/detective/semiauto/afterattack(atom/target, mob/living/user, flag)
 	..()
 	if(!length(loaded) && empty_mag)
 		empty_mag.loc = get_turf(loc)
@@ -135,7 +135,7 @@
 		else
 			loaded.Add(new ammo_type(src))
 
-/obj/item/gun/projectile/russian/attackby(obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/russian/attackby(obj/item/A, mob/user)
 	if(isnull(A))
 		return
 
@@ -169,7 +169,7 @@
 		Spin()
 	update_icon()
 
-/obj/item/gun/projectile/russian/attack_self(mob/user as mob)
+/obj/item/gun/projectile/russian/attack_self(mob/user)
 	user.visible_message(
 		SPAN_WARNING("[user] spins the chamber of the revolver."),
 		SPAN_WARNING("You spin the revolver's chamber.")
@@ -177,7 +177,7 @@
 	if(getAmmo() > 0)
 		Spin()
 
-/obj/item/gun/projectile/russian/attack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj)
+/obj/item/gun/projectile/russian/attack(atom/target, mob/living/user)
 	if(!length(loaded))
 		user.visible_message(
 			SPAN_WARNING("*click*"),

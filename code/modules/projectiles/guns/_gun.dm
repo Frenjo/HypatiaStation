@@ -54,7 +54,7 @@
 	for(var/obj/O in contents)
 		O.emp_act(severity)
 
-/obj/item/gun/afterattack(atom/A as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
+/obj/item/gun/afterattack(atom/A, mob/living/user, flag, params)
 	if(flag)
 		return //It's adjacent, is the user, or is on the user's person
 	if(istype(target, /obj/machinery/recharger) && istype(src, /obj/item/gun/energy))
@@ -80,7 +80,7 @@
 /obj/item/gun/proc/isHandgun()
 	return TRUE
 
-/obj/item/gun/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)//TODO: go over this
+/obj/item/gun/proc/Fire(atom/target, mob/living/user, params, reflex = 0)//TODO: go over this
 	//Exclude lasertag guns from the CLUMSY check.
 	if(clumsy_check)
 		if(isliving(user))
@@ -189,7 +189,7 @@
 /obj/item/gun/proc/can_fire()
 	return load_into_chamber()
 
-/obj/item/gun/proc/can_hit(mob/living/target as mob, mob/living/user as mob)
+/obj/item/gun/proc/can_hit(mob/living/target, mob/living/user)
 	return in_chamber.check_fire(target, user)
 
 /obj/item/gun/proc/click_empty(mob/user = null)
@@ -200,7 +200,7 @@
 		visible_message("*click click*")
 		playsound(src, 'sound/weapons/empty.ogg', 100, 1)
 
-/obj/item/gun/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
+/obj/item/gun/attack(mob/living/M, mob/living/user, def_zone)
 	//Suicide handling.
 	if(M == user && user.zone_sel.selecting == "mouth" && !mouthshoot)
 		mouthshoot = TRUE

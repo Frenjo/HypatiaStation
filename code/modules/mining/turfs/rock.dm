@@ -116,7 +116,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/simulated/rock/artifact_spawning_turfs)
 	return ..()
 
 // Not even going to touch this pile of spaghetti.
-/turf/simulated/rock/attackby(obj/item/W as obj, mob/user as mob)
+/turf/simulated/rock/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/pickaxe))
 		var/turf/T = user.loc
 		if(!(isturf(T)))

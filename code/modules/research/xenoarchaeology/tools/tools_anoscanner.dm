@@ -17,10 +17,10 @@
 	spawn(0)
 		scan()
 
-/obj/item/ano_scanner/attack_self(mob/user as mob)
+/obj/item/ano_scanner/attack_self(mob/user)
 	return src.interact(user)
 
-/obj/item/ano_scanner/interact(mob/user as mob)
+/obj/item/ano_scanner/interact(mob/user)
 	var/message = "Background radiation levels detected."
 	if(nearest_artifact_distance >= 0)
 		message = "Exotic energy detected on wavelength '[nearest_artifact_id]' in a radius of [nearest_artifact_distance]m"

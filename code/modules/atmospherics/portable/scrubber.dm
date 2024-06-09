@@ -75,13 +75,13 @@
 /obj/machinery/portable_atmospherics/scrubber/return_air()
 	return air_contents
 
-/obj/machinery/portable_atmospherics/scrubber/attack_ai(mob/user as mob)
+/obj/machinery/portable_atmospherics/scrubber/attack_ai(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/scrubber/attack_paw(mob/user as mob)
+/obj/machinery/portable_atmospherics/scrubber/attack_paw(mob/user)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/scrubber/attack_hand(mob/user as mob)
+/obj/machinery/portable_atmospherics/scrubber/attack_hand(mob/user)
 	user.set_machine(src)
 	var/holding_text
 
@@ -158,7 +158,7 @@ Power regulator: <A href='byond://?src=\ref[src];volume_adj=-1000'>-</A> <A href
 	gid++
 	name = "[name] (ID [id])"
 
-/obj/machinery/portable_atmospherics/scrubber/huge/attack_hand(mob/user as mob)
+/obj/machinery/portable_atmospherics/scrubber/huge/attack_hand(mob/user)
 	to_chat(usr, SPAN_INFO("You can't directly interact with this machine. Use the area atmos computer."))
 
 /obj/machinery/portable_atmospherics/scrubber/huge/update_icon()
@@ -169,7 +169,7 @@ Power regulator: <A href='byond://?src=\ref[src];volume_adj=-1000'>-</A> <A href
 	else
 		icon_state = "scrubber:0"
 
-/obj/machinery/portable_atmospherics/scrubber/huge/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/portable_atmospherics/scrubber/huge/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/wrench))
 		if(on)
 			to_chat(user, SPAN_INFO("Turn it off first!"))
@@ -186,7 +186,7 @@ Power regulator: <A href='byond://?src=\ref[src];volume_adj=-1000'>-</A> <A href
 /obj/machinery/portable_atmospherics/scrubber/huge/stationary
 	name = "Stationary Air Scrubber"
 
-/obj/machinery/portable_atmospherics/scrubber/huge/stationary/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/portable_atmospherics/scrubber/huge/stationary/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/wrench))
 		to_chat(user, SPAN_INFO("The bolts are too tight for you to unscrew!"))
 		return

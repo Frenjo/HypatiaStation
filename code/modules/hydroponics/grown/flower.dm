@@ -51,6 +51,6 @@
 	plant_type = 1
 	seed = /obj/item/seeds/sunflower
 
-/obj/item/grown/sunflower/attack(mob/M as mob, mob/user as mob)
+/obj/item/grown/sunflower/attack(mob/M, mob/user)
 	to_chat(M, "<font color='green'><b>[user] smacks you with a sunflower!</font><font color='yellow'><b>FLOWER POWER<b></font>")
 	to_chat(user, "<font color='green'>Your sunflower's </font><font color='yellow'><b>FLOWER POWER</b></font><font color='green'> strikes [M]</font>")

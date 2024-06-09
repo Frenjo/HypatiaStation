@@ -24,10 +24,10 @@
 	volume = 5
 	can_be_placed_into = null
 
-/obj/item/reagent_containers/glass/rag/attack_self(mob/user as mob)
+/obj/item/reagent_containers/glass/rag/attack_self(mob/user)
 	return
 
-/obj/item/reagent_containers/glass/rag/attack(atom/target as obj|turf|area, mob/user as mob, flag)
+/obj/item/reagent_containers/glass/rag/attack(atom/target, mob/user, flag)
 	if(ismob(target) && target.reagents && reagents.total_volume)
 		user.visible_message(
 			SPAN_WARNING("\The [target] has been smothered with \the [src] by \the [user]!"),
@@ -41,7 +41,7 @@
 	else
 		..()
 
-/obj/item/reagent_containers/glass/rag/afterattack(atom/A as obj|turf|area, mob/user as mob, proximity)
+/obj/item/reagent_containers/glass/rag/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(A) && (src in user))

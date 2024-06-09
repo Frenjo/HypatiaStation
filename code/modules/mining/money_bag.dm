@@ -10,7 +10,7 @@
 	throwforce = 2.0
 	w_class = 4.0
 
-/obj/item/moneybag/attack_hand(user as mob)
+/obj/item/moneybag/attack_hand(mob/user)
 	var/amt_gold = 0
 	var/amt_silver = 0
 	var/amt_diamond = 0
@@ -62,7 +62,7 @@
 		dat += "Mythril coins: [amt_mythril] <A href='byond://?src=\ref[src];remove=[MATERIAL_MYTHRIL]'>Remove one</A><br>"
 	user << browse("[dat]", "window=moneybag")
 
-/obj/item/moneybag/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/moneybag/attackby(obj/item/W, mob/user)
 	. = ..()
 	if(istype(W, /obj/item/coin))
 		var/obj/item/coin/C = W

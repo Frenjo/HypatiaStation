@@ -18,7 +18,7 @@
 	var/amt_strange = 0
 	var/last_update = 0
 
-/obj/structure/ore_box/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/ore_box/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/ore))
 		contents += W
 	if(istype(W, /obj/item/storage))
@@ -28,7 +28,7 @@
 			S.remove_from_storage(O, src) // This will move the item to this item's contents
 		to_chat(user, SPAN_INFO("You empty the satchel into the box."))
 
-/obj/structure/ore_box/attack_hand(obj, mob/user as mob)
+/obj/structure/ore_box/attack_hand(obj, mob/user)
 	var/amt_gold = 0
 	var/amt_silver = 0
 	var/amt_diamond = 0

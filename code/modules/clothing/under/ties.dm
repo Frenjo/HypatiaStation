@@ -15,7 +15,7 @@
 	inv_overlay = image("icon" = 'icons/obj/items/clothing/ties_overlay.dmi', "icon_state" = "[item_color? "[item_color]" : "[icon_state]"]")
 
 //when user attached an accessory to S
-/obj/item/clothing/tie/proc/on_attached(obj/item/clothing/under/S, mob/user as mob)
+/obj/item/clothing/tie/proc/on_attached(obj/item/clothing/under/S, mob/user)
 	if(!istype(S))
 		return
 	has_suit = S
@@ -24,7 +24,7 @@
 	to_chat(user, SPAN_NOTICE("You attach [src] to [has_suit]."))
 	src.add_fingerprint(user)
 
-/obj/item/clothing/tie/proc/on_removed(mob/user as mob)
+/obj/item/clothing/tie/proc/on_removed(mob/user)
 	if(!has_suit)
 		return
 	has_suit.overlays -= inv_overlay
@@ -37,7 +37,7 @@
 	..()
 
 //default attack_hand behaviour
-/obj/item/clothing/tie/attack_hand(mob/user as mob)
+/obj/item/clothing/tie/attack_hand(mob/user)
 	if(has_suit)
 		has_suit.remove_accessory(user)
 		return	//we aren't an object on the ground so don't call parent
@@ -206,7 +206,7 @@
 /obj/item/clothing/tie/holster/proc/can_holster(obj/item/gun/W)
 	return W.isHandgun()
 
-/obj/item/clothing/tie/holster/proc/holster(obj/item/I, mob/user as mob)
+/obj/item/clothing/tie/holster/proc/holster(obj/item/I, mob/user)
 	if(holstered)
 		to_chat(user, SPAN_WARNING("There is already a [holstered] holstered here!"))
 
@@ -224,7 +224,7 @@
 	holstered.add_fingerprint(user)
 	user.visible_message(SPAN_INFO("[user] holsters the [holstered]."), "You holster the [holstered].")
 
-/obj/item/clothing/tie/holster/proc/unholster(mob/user as mob)
+/obj/item/clothing/tie/holster/proc/unholster(mob/user)
 	if(!holstered)
 		return
 
@@ -245,7 +245,7 @@
 		holstered.add_fingerprint(user)
 		holstered = null
 
-/obj/item/clothing/tie/holster/attack_hand(mob/user as mob)
+/obj/item/clothing/tie/holster/attack_hand(mob/user)
 	if(has_suit)	//if we are part of a suit
 		if(holstered)
 			unholster(user)
@@ -253,7 +253,7 @@
 
 	..(user)
 
-/obj/item/clothing/tie/holster/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/tie/holster/attackby(obj/item/W, mob/user)
 	holster(W, user)
 
 /obj/item/clothing/tie/holster/emp_act(severity)
@@ -269,11 +269,11 @@
 	else
 		to_chat(usr, "It is empty.")
 
-/obj/item/clothing/tie/holster/on_attached(obj/item/clothing/under/S, mob/user as mob)
+/obj/item/clothing/tie/holster/on_attached(obj/item/clothing/under/S, mob/user)
 	..()
 	has_suit.verbs += /obj/item/clothing/tie/holster/verb/holster_verb
 
-/obj/item/clothing/tie/holster/on_removed(mob/user as mob)
+/obj/item/clothing/tie/holster/on_removed(mob/user)
 	has_suit.verbs -= /obj/item/clothing/tie/holster/verb/holster_verb
 	..()
 
@@ -333,7 +333,7 @@
 	hold = new/obj/item/storage/internal(src)
 	hold.storage_slots = slots
 
-/obj/item/clothing/tie/storage/attack_hand(mob/user as mob)
+/obj/item/clothing/tie/storage/attack_hand(mob/user)
 	if(has_suit)	//if we are part of a suit
 		hold.open(user)
 		return
@@ -341,14 +341,14 @@
 	if(hold.handle_attack_hand(user))	//otherwise interact as a regular storage item
 		..(user)
 
-/obj/item/clothing/tie/storage/MouseDrop(obj/over_object as obj)
+/obj/item/clothing/tie/storage/MouseDrop(obj/over_object)
 	if(has_suit)
 		return
 
 	if(hold.handle_mousedrop(usr, over_object))
 		..(over_object)
 
-/obj/item/clothing/tie/storage/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/tie/storage/attackby(obj/item/W, mob/user)
 	hold.attackby(W, user)
 
 /obj/item/clothing/tie/storage/emp_act(severity)
@@ -359,7 +359,7 @@
 	hold.hear_talk(M, msg)
 	..()
 
-/obj/item/clothing/tie/storage/attack_self(mob/user as mob)
+/obj/item/clothing/tie/storage/attack_self(mob/user)
 	to_chat(user, SPAN_NOTICE("You empty [src]."))
 	var/turf/T = get_turf(src)
 	hold.hide_from(usr)
@@ -407,7 +407,7 @@
 	item_color = "holobadge-cord"
 	slot_flags = SLOT_MASK
 
-/obj/item/clothing/tie/holobadge/attack_self(mob/user as mob)
+/obj/item/clothing/tie/holobadge/attack_self(mob/user)
 	if(!stored_name)
 		to_chat(user, "Waving around a badge before swiping an ID would be pretty pointless.")
 		return
@@ -425,7 +425,7 @@
 	emagged = TRUE
 	return TRUE
 
-/obj/item/clothing/tie/holobadge/attackby(obj/item/O as obj, mob/user as mob)
+/obj/item/clothing/tie/holobadge/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/card/id) || istype(O, /obj/item/pda))
 		var/obj/item/card/id/id_card = null
 

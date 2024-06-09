@@ -65,10 +65,10 @@
 			for(var/mob/L in range(src, 1))
 				to_chat(L, SPAN_INFO("\icon[src] [src] pings [pick("madly", "wildly", "excitedly", "crazily")]!."))
 
-/obj/item/depth_scanner/attack_self(mob/user as mob)
+/obj/item/depth_scanner/attack_self(mob/user)
 	return src.interact(user)
 
-/obj/item/depth_scanner/interact(mob/user as mob)
+/obj/item/depth_scanner/interact(mob/user)
 	var/dat = "<b>Co-ordinates with positive matches</b><br>"
 	dat += "<A href='byond://?src=\ref[src];clear=0'>== Clear all ==</a><br>"
 	if(current)

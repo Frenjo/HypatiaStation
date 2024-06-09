@@ -26,7 +26,7 @@
 // t2: Another turf representing the other corner of the same grid (Required).
 // map_name: A valid name for the map to be saved, such as "castle" (Required).
 // flags: Any, or a combination, of several bit flags (Optional, see documentation).
-/dmm_suite/proc/save_map(turf/t1 as turf, turf/t2 as turf, map_name as text, flags as num)
+/dmm_suite/proc/save_map(turf/t1, turf/t2, map_name as text, flags as num)
 	//Check for illegal characters in file name... in a cheap way.
 	if(!((ckeyEx(map_name) == map_name) && ckeyEx(map_name)))
 		CRASH("Invalid text supplied to proc save_map, invalid characters or empty string.")
@@ -45,7 +45,7 @@
 // t1: A turf representing one corner of a three dimensional grid (Required).
 // t2: Another turf representing the other corner of the same grid (Required).
 // flags: Any, or a combination, of several bit flags (Optional, see documentation).
-/dmm_suite/proc/write_map(turf/t1 as turf, turf/t2 as turf, flags as num)
+/dmm_suite/proc/write_map(turf/t1, turf/t2, flags as num)
 	//Check for valid turfs.
 	if(!isturf(t1) || !isturf(t2))
 		CRASH("Invalid arguments supplied to proc write_map, arguments were not turfs.")
@@ -106,7 +106,7 @@
 
 	return dmm_text
 
-/dmm_suite/proc/make_template(turf/model as turf, flags as num)
+/dmm_suite/proc/make_template(turf/model, flags as num)
 	var/template = ""
 	var/obj_template = ""
 	var/mob_template = ""

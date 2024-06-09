@@ -23,13 +23,13 @@
 	//1 = select event
 	//2 = authenticate
 
-/obj/machinery/keycard_auth/attack_ai(mob/user as mob)
+/obj/machinery/keycard_auth/attack_ai(mob/user)
 	to_chat(user, "The station AI is not to interact with these devices.")
 
-/obj/machinery/keycard_auth/attack_paw(mob/user as mob)
+/obj/machinery/keycard_auth/attack_paw(mob/user)
 	to_chat(user, "You are too primitive to use this device.")
 
-/obj/machinery/keycard_auth/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/keycard_auth/attackby(obj/item/W, mob/user)
 	if(stat & (NOPOWER | BROKEN))
 		to_chat(user, "This device is not powered.")
 		return
@@ -52,7 +52,7 @@
 	else
 		stat |= NOPOWER
 
-/obj/machinery/keycard_auth/attack_hand(mob/user as mob)
+/obj/machinery/keycard_auth/attack_hand(mob/user)
 	if(user.stat || stat & (NOPOWER | BROKEN))
 		to_chat(user, "This device is not powered.")
 		return

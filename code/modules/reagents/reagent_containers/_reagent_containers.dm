@@ -23,20 +23,20 @@
 		src.verbs -= /obj/item/reagent_containers/verb/set_APTFT
 	create_reagents(volume)
 
-/obj/item/reagent_containers/attack_self(mob/user as mob)
+/obj/item/reagent_containers/attack_self(mob/user)
 	return
 
-/obj/item/reagent_containers/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/attack(mob/M, mob/user, def_zone)
 	return
 
 // this prevented pills, food, and other things from being picked up by bags.
 // possibly intentional, but removing it allows us to not duplicate functionality.
 // -Sayu (storage conslidation)
 /*
-/obj/item/reagent_containers/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/reagent_containers/attackby(obj/item/I, mob/user)
 	return
 */
-/obj/item/reagent_containers/afterattack(obj/target, mob/user , flag)
+/obj/item/reagent_containers/afterattack(obj/target, mob/user, flag)
 	return
 
 /obj/item/reagent_containers/proc/reagentlist(obj/item/reagent_containers/snack) //Attack logs for regents in pills

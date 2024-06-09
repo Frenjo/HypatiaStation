@@ -17,7 +17,7 @@
 	var/growthstages = 0
 	var/plant_type = 0 // 0 = 'normal plant'; 1 = weed; 2 = shroom
 
-/obj/item/seeds/attackby(obj/item/O as obj, mob/user as mob)
+/obj/item/seeds/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/plant_analyser))
 		to_chat(user, "*** <B>[plantname]</B> ***")
 		to_chat(user, "-Plant Endurance: \blue [endurance]")

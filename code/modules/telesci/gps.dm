@@ -31,7 +31,7 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 		overlays.Remove("emp")
 		overlays.Add("working")
 
-/obj/item/gps/attack_self(mob/user as mob)
+/obj/item/gps/attack_self(mob/user)
 	var/html
 	if(emped)
 		html += "ERROR"

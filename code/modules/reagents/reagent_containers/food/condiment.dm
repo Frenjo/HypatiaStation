@@ -14,13 +14,13 @@
 	possible_transfer_amounts = list(1, 5, 10)
 	volume = 50
 
-/obj/item/reagent_containers/food/condiment/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/condiment/attackby(obj/item/W, mob/user)
 	return
 
-/obj/item/reagent_containers/food/condiment/attack_self(mob/user as mob)
+/obj/item/reagent_containers/food/condiment/attack_self(mob/user)
 	return
 
-/obj/item/reagent_containers/food/condiment/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/food/condiment/attack(mob/M, mob/user, def_zone)
 	var/datum/reagents/R = src.reagents
 
 	if(!R || !R.total_volume)
@@ -54,7 +54,7 @@
 		return 1
 	return 0
 
-/obj/item/reagent_containers/food/condiment/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/reagent_containers/food/condiment/attackby(obj/item/I, mob/user)
 		return
 
 /obj/item/reagent_containers/food/condiment/afterattack(obj/target, mob/user, flag)

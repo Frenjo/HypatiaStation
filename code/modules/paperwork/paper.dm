@@ -86,7 +86,7 @@
 	add_fingerprint(usr)
 	return
 
-/obj/item/paper/attack_self(mob/living/user as mob)
+/obj/item/paper/attack_self(mob/living/user)
 	examine()
 	if(rigged && (CONFIG_GET(holiday_name) == "April Fool's Day"))
 		if(spam_flag == 0)
@@ -96,7 +96,7 @@
 				spam_flag = 0
 	return
 
-/obj/item/paper/attack_ai(mob/living/silicon/ai/user as mob)
+/obj/item/paper/attack_ai(mob/living/silicon/ai/user)
 	var/dist
 	if(istype(user) && user.current) //is AI
 		dist = get_dist(src, user.current)
@@ -163,7 +163,7 @@
 	update_icon()
 
 
-/obj/item/paper/proc/parsepencode(t, obj/item/pen/P, mob/user as mob, iscrayon = 0)
+/obj/item/paper/proc/parsepencode(t, obj/item/pen/P, mob/user, iscrayon = 0)
 //	t = copytext(sanitize(t),1,MAX_MESSAGE_LEN)
 
 	t = replacetext(t, "\[center\]", "<center>")
@@ -213,7 +213,7 @@
 	return t
 
 
-/obj/item/paper/proc/openhelp(mob/user as mob)
+/obj/item/paper/proc/openhelp(mob/user)
 	user << browse({"<HTML><HEAD><TITLE>Pen Help</TITLE></HEAD>
 	<BODY>
 		<b><center>Crayon&Pen commands</center></b><br>
@@ -303,7 +303,7 @@
 		update_icon()
 
 
-/obj/item/paper/attackby(obj/item/P as obj, mob/user as mob)
+/obj/item/paper/attackby(obj/item/P, mob/user)
 	..()
 	var/clown = 0
 	if(user.mind && (user.mind.assigned_role == "Clown"))

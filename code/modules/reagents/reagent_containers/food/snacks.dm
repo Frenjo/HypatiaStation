@@ -30,10 +30,10 @@
 		qdel(src)
 	return
 
-/obj/item/reagent_containers/food/snacks/attack_self(mob/user as mob)
+/obj/item/reagent_containers/food/snacks/attack_self(mob/user)
 	return
 
-/obj/item/reagent_containers/food/snacks/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/reagent_containers/food/snacks/attack(mob/M, mob/user, def_zone)
 	if(!reagents.total_volume) //Shouldn't be needed but it checks to see if it has anything left in it.
 		to_chat(user, SPAN_WARNING("None of [src] left, oh no!"))
 		M.drop_from_inventory(src) //so icons update :[
@@ -114,7 +114,7 @@
 	else
 		to_chat(usr, SPAN_INFO("\The [src] was bitten multiple times!"))
 
-/obj/item/reagent_containers/food/snacks/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/storage))
 		..() // -> item/attackby()
 	if(istype(W,/obj/item/storage))
@@ -470,7 +470,7 @@
 	src.visible_message("\red [src.name] has been squashed.","\red You hear a smack.")
 	qdel(src)
 
-/obj/item/reagent_containers/food/snacks/egg/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/egg/attackby(obj/item/W, mob/user)
 	if(istype( W, /obj/item/toy/crayon ))
 		var/obj/item/toy/crayon/C = W
 		var/clr = C.colourName
@@ -900,7 +900,7 @@
 	reagents.add_reagent("nutriment", 8)
 	bitesize = 1
 
-/obj/item/reagent_containers/food/snacks/omelette/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/omelette/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/kitchen/utensil/fork))
 		if(W.icon_state == "forkloaded")
 			user << "\red You already have omelette on your fork."
@@ -1602,7 +1602,7 @@
 	..()
 	reagents.add_reagent("nutriment",10)
 
-/obj/item/reagent_containers/food/snacks/monkeycube/afterattack(obj/O as obj, mob/user as mob, proximity)
+/obj/item/reagent_containers/food/snacks/monkeycube/afterattack(obj/O, mob/user, proximity)
 	if(!proximity) return
 	if(istype(O,/obj/structure/sink) && !wrapped)
 		user << "You place \the [name] under a stream of water..."
@@ -1610,7 +1610,7 @@
 		return Expand()
 	..()
 
-/obj/item/reagent_containers/food/snacks/monkeycube/attack_self(mob/user as mob)
+/obj/item/reagent_containers/food/snacks/monkeycube/attack_self(mob/user)
 	if(wrapped)
 		Unwrap(user)
 
@@ -1629,7 +1629,7 @@
 		new /mob/living/carbon/monkey(get_turf(src))
 	qdel(src)
 
-/obj/item/reagent_containers/food/snacks/monkeycube/proc/Unwrap(mob/user as mob)
+/obj/item/reagent_containers/food/snacks/monkeycube/proc/Unwrap(mob/user)
 	icon_state = "monkeycube"
 	desc = "Just add water!"
 	user << "You unwrap the cube."
@@ -2803,7 +2803,7 @@
 
 	icon_state = "pizzabox[length(boxes) + 1]"
 
-/obj/item/pizzabox/attack_hand( mob/user as mob )
+/obj/item/pizzabox/attack_hand(mob/user)
 	if(open && pizza)
 		user.put_in_hands(pizza)
 
@@ -2827,7 +2827,7 @@
 		return
 	..()
 
-/obj/item/pizzabox/attack_self(mob/user as mob)
+/obj/item/pizzabox/attack_self(mob/user)
 	if(length(boxes))
 		return
 
@@ -2838,7 +2838,7 @@
 
 	update_icon()
 
-/obj/item/pizzabox/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/pizzabox/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/pizzabox))
 		var/obj/item/pizzabox/box = I
 
@@ -2935,7 +2935,7 @@
 ///////////////////////////////////////////
 
 // Flour + egg = dough
-/obj/item/reagent_containers/food/snacks/flour/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/flour/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/reagent_containers/food/snacks/egg))
 		new /obj/item/reagent_containers/food/snacks/dough(src)
 		user << "You make some dough."
@@ -2943,7 +2943,7 @@
 		qdel(src)
 
 // Egg + flour = dough
-/obj/item/reagent_containers/food/snacks/egg/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/egg/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/reagent_containers/food/snacks/flour))
 		new /obj/item/reagent_containers/food/snacks/dough(src)
 		user << "You make some dough."
@@ -2963,7 +2963,7 @@
 	reagents.add_reagent("nutriment", 3)
 
 // Dough + rolling pin = flat dough
-/obj/item/reagent_containers/food/snacks/dough/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/dough/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/kitchen/rollingpin))
 		new /obj/item/reagent_containers/food/snacks/sliceable/flatdough(src)
 		user << "You flatten the dough."
@@ -3007,7 +3007,7 @@
 	..()
 	reagents.add_reagent("nutriment", 4)
 
-/obj/item/reagent_containers/food/snacks/bun/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/bun/attackby(obj/item/W, mob/user)
 	// Bun + meatball = burger
 	if(istype(W,/obj/item/reagent_containers/food/snacks/meatball))
 		new /obj/item/reagent_containers/food/snacks/monkeyburger(src)
@@ -3030,7 +3030,7 @@
 		qdel(src)
 
 // Burger + cheese wedge = cheeseburger
-/obj/item/reagent_containers/food/snacks/monkeyburger/attackby(obj/item/reagent_containers/food/snacks/cheesewedge/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/monkeyburger/attackby(obj/item/reagent_containers/food/snacks/cheesewedge/W, mob/user)
 	if(istype(W))// && !istype(src,/obj/item/reagent_containers/food/snacks/cheesewedge))
 		new /obj/item/reagent_containers/food/snacks/cheeseburger(src)
 		user << "You make a cheeseburger."
@@ -3041,7 +3041,7 @@
 		..()
 
 // Human Burger + cheese wedge = cheeseburger
-/obj/item/reagent_containers/food/snacks/human/burger/attackby(obj/item/reagent_containers/food/snacks/cheesewedge/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/human/burger/attackby(obj/item/reagent_containers/food/snacks/cheesewedge/W, mob/user)
 	if(istype(W))
 		new /obj/item/reagent_containers/food/snacks/cheeseburger(src)
 		user << "You make a cheeseburger."
@@ -3123,7 +3123,7 @@
 
 
 // potato + knife = raw sticks
-/obj/item/reagent_containers/food/snacks/grown/potato/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/grown/potato/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/kitchen/utensil/knife))
 		new /obj/item/reagent_containers/food/snacks/rawsticks(src)
 		user << "You cut the potato."

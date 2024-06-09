@@ -14,7 +14,7 @@
 	reagents.add_reagent("capsaicin", 3 + round(potency / 5, 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-/obj/item/reagent_containers/food/snacks/grown/chili/attackby(obj/item/O as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/grown/chili/attackby(obj/item/O, mob/user)
 	. = ..()
 	if(istype(O, /obj/item/plant_analyser))
 		to_chat(user, SPAN_INFO("- Capsaicin: <i>[reagents.get_reagent_amount("capsaicin")]%</i>"))
@@ -36,7 +36,7 @@
 	reagents.add_reagent("frostoil", 3 + round(potency / 5, 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-/obj/item/reagent_containers/food/snacks/grown/icepepper/attackby(obj/item/O as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/grown/icepepper/attackby(obj/item/O, mob/user)
 	. = ..()
 	if(istype(O, /obj/item/plant_analyser))
 		to_chat(user, SPAN_INFO("- Frostoil: <i>[reagents.get_reagent_amount("frostoil")]%</i>"))
@@ -280,7 +280,7 @@
 	reagents.add_reagent("nutriment", 1 + round((potency / 6), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-/obj/item/reagent_containers/food/snacks/grown/pumpkin/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/reagent_containers/food/snacks/grown/pumpkin/attackby(obj/item/W, mob/user)
 	..()
 	if(istype(W, /obj/item/circular_saw) || istype(W, /obj/item/hatchet) \
 	|| istype(W, /obj/item/twohanded/fireaxe) || istype(W, /obj/item/kitchen/utensil/knife) \

@@ -195,11 +195,11 @@
 		healthcheck()
 	..()
 
-/obj/machinery/portable_atmospherics/canister/meteorhit(obj/O as obj)
+/obj/machinery/portable_atmospherics/canister/meteorhit(obj/O)
 	health = 0
 	healthcheck()
 
-/obj/machinery/portable_atmospherics/canister/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/portable_atmospherics/canister/attackby(obj/item/W, mob/user)
 	if(!istype(W, /obj/item/wrench) && !istype(W, /obj/item/tank) && !istype(W, /obj/item/gas_analyser) && !istype(W, /obj/item/pda))
 		visible_message(SPAN_WARNING("[user] hits the [src] with a [W]!"))
 		health -= W.force
@@ -223,13 +223,13 @@
 
 	global.PCnanoui.update_uis(src) // Update all NanoUIs attached to src
 
-/obj/machinery/portable_atmospherics/canister/attack_ai(mob/user as mob)
+/obj/machinery/portable_atmospherics/canister/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/portable_atmospherics/canister/attack_paw(mob/user as mob)
+/obj/machinery/portable_atmospherics/canister/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/portable_atmospherics/canister/attack_hand(mob/user as mob)
+/obj/machinery/portable_atmospherics/canister/attack_hand(mob/user)
 	return ui_interact(user)
 
 /obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)

@@ -23,13 +23,13 @@
 	emergencyShutdown()
 	return ..()
 
-/obj/machinery/computer/holodeck_control/attack_ai(mob/user as mob)
+/obj/machinery/computer/holodeck_control/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/computer/holodeck_control/attack_paw(mob/user as mob)
+/obj/machinery/computer/holodeck_control/attack_paw(mob/user)
 	return
 
-/obj/machinery/computer/holodeck_control/attack_hand(mob/user as mob)
+/obj/machinery/computer/holodeck_control/attack_hand(mob/user)
 	if(..())
 		return
 	user.set_machine(src)
@@ -190,7 +190,7 @@
 
 	return FALSE
 
-/obj/machinery/computer/holodeck_control/meteorhit(obj/O as obj)
+/obj/machinery/computer/holodeck_control/meteorhit(obj/O)
 	emergencyShutdown()
 	..()
 

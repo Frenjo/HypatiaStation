@@ -38,7 +38,7 @@
 
 	return FALSE // Asteroid tiles don't burn.
 
-/turf/simulated/floor/plating/asteroid/Entered(atom/movable/M as mob|obj)
+/turf/simulated/floor/plating/asteroid/Entered(atom/movable/M)
 	. = ..()
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
@@ -50,7 +50,7 @@
 			else if(istype(R.module_state_3, /obj/item/storage/bag/ore))
 				attackby(R.module_state_3, R)
 
-/turf/simulated/floor/plating/asteroid/attackby(obj/item/W as obj, mob/user as mob)
+/turf/simulated/floor/plating/asteroid/attackby(obj/item/W, mob/user)
 	if(isnull(W) || isnull(user))
 		return 0
 

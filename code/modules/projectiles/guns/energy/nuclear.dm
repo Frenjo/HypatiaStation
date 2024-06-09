@@ -20,7 +20,7 @@
 		GUN_SETTING_KILL = /obj/item/projectile/energy/beam/laser
 	)
 
-/obj/item/gun/energy/gun/attack_self(mob/living/user as mob)
+/obj/item/gun/energy/gun/attack_self(mob/living/user)
 	switch(gun_setting)
 		if(GUN_SETTING_STUN)
 			gun_setting = GUN_SETTING_KILL

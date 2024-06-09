@@ -52,7 +52,7 @@
 	var/obj/item/arrow = null			// Nocked arrow.
 	var/obj/item/cell/cell = null		// Used for firing special projectiles like rods.
 
-/obj/item/crossbow/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/crossbow/attackby(obj/item/W, mob/user)
 	if(isnull(arrow))
 		if(istype(W, /obj/item/arrow))
 			user.drop_item()
@@ -107,7 +107,7 @@
 	else
 		. = ..()
 
-/obj/item/crossbow/attack_self(mob/living/user as mob)
+/obj/item/crossbow/attack_self(mob/living/user)
 	if(tension)
 		if(isnotnull(arrow))
 			user.visible_message(
@@ -128,7 +128,7 @@
 	else
 		draw(user)
 
-/obj/item/crossbow/proc/draw(mob/user as mob)
+/obj/item/crossbow/proc/draw(mob/user)
 	if(isnull(arrow))
 		to_chat(user, "You don't have anything nocked to [src].")
 		return
@@ -146,7 +146,7 @@
 	spawn(25)
 		increase_tension(user)
 
-/obj/item/crossbow/proc/increase_tension(mob/user as mob)
+/obj/item/crossbow/proc/increase_tension(mob/user)
 	if(isnull(arrow) || !tension || current_user != user) //Arrow has been fired, bow has been relaxed or user has changed.
 		return
 
@@ -164,7 +164,7 @@
 		spawn(25)
 			increase_tension(user)
 
-/obj/item/crossbow/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
+/obj/item/crossbow/afterattack(atom/target, mob/living/user, flag, params)
 	if(istype(target, /obj/item/storage/backpack))
 		dropped()
 		return
@@ -189,7 +189,7 @@
 		spawn(0)
 			Fire(target, user, params)
 
-/obj/item/crossbow/proc/Fire(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, params, reflex = 0)
+/obj/item/crossbow/proc/Fire(atom/target, mob/living/user, params, reflex = 0)
 	add_fingerprint(user)
 
 	var/turf/curloc = get_turf(user)
