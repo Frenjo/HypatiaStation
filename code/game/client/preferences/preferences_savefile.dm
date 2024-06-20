@@ -149,9 +149,10 @@
 	S["alternate_option"]	>> alternate_option
 	for(var/path in SUBTYPESOF(/decl/department))
 		var/decl/department/dep = GET_DECL_INSTANCE(path)
-		S["job_[lowertext(dep.name)]_high"] >> job_by_department_high[path]
-		S["job_[lowertext(dep.name)]_med"] >> job_by_department_med[path]
-		S["job_[lowertext(dep.name)]_low"] >> job_by_department_low[path]
+		var/dep_name = lowertext(dep.name)
+		S["job_[dep_name]_high"] >> job_by_department_high[path]
+		S["job_[dep_name]_med"] >> job_by_department_med[path]
+		S["job_[dep_name]_low"] >> job_by_department_low[path]
 
 	// Miscellaneous.
 	S["flavor_text"]		>> flavor_text
@@ -266,9 +267,10 @@
 	S["alternate_option"]	<< alternate_option
 	for(var/path in SUBTYPESOF(/decl/department))
 		var/decl/department/dep = GET_DECL_INSTANCE(path)
-		S["job_[lowertext(dep.name)]_high"] << job_by_department_high[path]
-		S["job_[lowertext(dep.name)]_med"] << job_by_department_med[path]
-		S["job_[lowertext(dep.name)]_low"] << job_by_department_low[path]
+		var/dep_name = lowertext(dep.name)
+		S["job_[dep_name]_high"] << job_by_department_high[path]
+		S["job_[dep_name]_med"] << job_by_department_med[path]
+		S["job_[dep_name]_low"] << job_by_department_low[path]
 
 	// Miscellaneous.
 	S["flavor_text"]		<< flavor_text
