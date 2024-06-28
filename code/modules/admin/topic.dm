@@ -1797,7 +1797,7 @@
 					return
 				GLOBL.gravity_is_on = !GLOBL.gravity_is_on
 				for_no_type_check(var/area/A, GLOBL.area_list)
-					A.gravitychange(GLOBL.gravity_is_on, A)
+					A.set_gravity(GLOBL.gravity_is_on)
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","Grav")
 				if(GLOBL.gravity_is_on)

@@ -155,13 +155,15 @@
 			L << sound(sound, repeat = FALSE, wait = FALSE, channel = 1, volume = musVolume)
 			L.client.played = world.time
 
-/area/proc/gravitychange(gravitystate = FALSE, area/A)
-	A.has_gravity = gravitystate
-	if(gravitystate)
-		for(var/mob/living/carbon/human/M in A)
-			thunk(M)
+/area/proc/set_gravity(new_gravity = FALSE)
+	has_gravity = new_gravity
+	if(!new_gravity)
+		return
+	for(var/mob/living/carbon/human/M in src)
+		thunk(M)
 
-/area/proc/thunk(mob)
+// Why is this not a proc on /mob/living?
+/area/proc/thunk(mob/living/mob)
 	if(isspace(get_turf(mob))) // Can't fall onto nothing.
 		return
 
