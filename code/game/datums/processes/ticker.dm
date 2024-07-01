@@ -5,14 +5,16 @@ PROCESS_DEF(ticker)
 	name = "Ticker"
 	schedule_interval = 2 SECONDS
 
-	var/lastTickerTimeDuration
-	var/lastTickerTime
+	var/last_time_duration
+	var/last_time
 
 	var/const/restart_timeout = 1 MINUTE
 	var/current_state = GAME_STATE_PREGAME
 
-	// Whether or not the lobby timer is counting down.
+	// Whether the lobby timer is counting down.
 	var/static/roundstart_progressing = TRUE
+	// The lobby timer, in seconds.
+	var/pregame_timeleft = 180 // TODO: Convert this to deciseconds then set this to 3 MINUTES.
 	// "extended"
 	var/static/master_mode = "extended"
 	// If this is anything but "secret", the secret rotation will forceably choose this mode.
@@ -20,8 +22,6 @@ PROCESS_DEF(ticker)
 
 	var/hide_mode = FALSE
 	var/datum/game_mode/mode = null
-	var/event_time = null
-	var/event = 0
 
 	// The music track played in the pregame lobby.
 	var/decl/music_track/lobby_music = null
@@ -31,8 +31,6 @@ PROCESS_DEF(ticker)
 
 	// If set to TRUE, ALL players who latejoin or declare-ready join will have random appearances/genders.
 	var/random_players = FALSE
-
-	var/pregame_timeleft = 0
 
 	// If set to TRUE, the round will not restart on its own.
 	var/delay_end = FALSE
@@ -45,22 +43,22 @@ PROCESS_DEF(ticker)
 	var/atom/movable/screen/cinematic = null
 
 /datum/process/ticker/setup()
-	lastTickerTime = world.timeofday
+	last_time = world.timeofday
 
 /datum/process/ticker/do_work()
 	var/currentTime = world.timeofday
 
-	if(currentTime < lastTickerTime) // check for midnight rollover
-		lastTickerTimeDuration = (currentTime - (lastTickerTime - TICKS_IN_DAY)) / TICKS_IN_SECOND
+	if(currentTime < last_time) // check for midnight rollover
+		last_time_duration = (currentTime - (last_time - TICKS_IN_DAY)) / TICKS_IN_SECOND
 	else
-		lastTickerTimeDuration = (currentTime - lastTickerTime) / TICKS_IN_SECOND
+		last_time_duration = (currentTime - last_time) / TICKS_IN_SECOND
 
-	lastTickerTime = currentTime
+	last_time = currentTime
 
 	process_internal()
 
 /datum/process/ticker/proc/getLastTickerTimeDuration()
-	return lastTickerTimeDuration
+	return last_time_duration
 
 /datum/process/ticker/proc/pregame()
 	var/list/possible_lobby_music = list(
@@ -79,7 +77,6 @@ PROCESS_DEF(ticker)
 	lobby_music = GET_DECL_INSTANCE(pick(possible_lobby_music))
 
 	do
-		pregame_timeleft = 180
 		to_world("<B><FONT color='blue'>Welcome to the pre-game lobby!</FONT></B>")
 		to_world("Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds.")
 		while(current_state == GAME_STATE_PREGAME)

@@ -6,7 +6,7 @@ GLOBAL_GLOBL_LIST_NEW(controllers)
 
 /datum/controller
 	// The controller's name.
-	var/name
+	var/name = "controller"
 	// The clickable stat() panel button object.
 	var/atom/movable/clickable_stat/stat_click = null
 
