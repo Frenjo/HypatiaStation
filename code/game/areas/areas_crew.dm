@@ -1,17 +1,23 @@
 // Crew
 /area/crew
 	icon_state = "crew_quarters"
-	area_flags = AREA_FLAG_IS_SHIELDED
 
 // Dormitories
 /area/crew/dormitories
 	name = "\improper Dormitories"
 	icon_state = "Sleep"
+	area_flags = AREA_FLAG_IS_SHIELDED
 
 /area/crew/dormitories/bedroom
 	name = "\improper Dormitory Bedroom"
 
-/area/crew/dormitories/bedroom/cryo
+/area/crew/dormitories/cabin1
+	name = "\improper Dormitory Cabin 1"
+
+/area/crew/dormitories/cabin2
+	name = "\improper Dormitory Cabin 2"
+
+/area/crew/dormitories/cryo
 	name = "\improper Cryogenic Storage"
 	icon_state = "cryo"
 
