@@ -11,7 +11,7 @@
 	var/lastMove = 0
 
 /obj/machinery/computer/syndicate_station/New()
-	curr_location= locate(/area/syndicate_station/start)
+	curr_location= locate(/area/enemy/syndicate_station/start)
 
 /obj/machinery/computer/syndicate_station/proc/syndicate_move_to(area/destination as area)
 	if(moving)	return
@@ -23,7 +23,7 @@
 	lastMove = world.time
 
 	if(curr_location.z != dest_location.z)
-		var/area/transit_location = locate(/area/syndicate_station/transit)
+		var/area/transit_location = locate(/area/enemy/syndicate_station/transit)
 		curr_location.move_contents_to(transit_location)
 		curr_location = transit_location
 		sleep(SYNDICATE_SHUTTLE_MOVE_TIME)
@@ -75,23 +75,23 @@
 		user.set_machine(src)
 
 	if(href_list["syndicate"])
-		syndicate_move_to(/area/syndicate_station/start)
+		syndicate_move_to(/area/enemy/syndicate_station/start)
 	else if(href_list["station_nw"])
-		syndicate_move_to(/area/syndicate_station/northwest)
+		syndicate_move_to(/area/enemy/syndicate_station/northwest)
 	else if(href_list["station_n"])
-		syndicate_move_to(/area/syndicate_station/north)
+		syndicate_move_to(/area/enemy/syndicate_station/north)
 	else if(href_list["station_ne"])
-		syndicate_move_to(/area/syndicate_station/northeast)
+		syndicate_move_to(/area/enemy/syndicate_station/northeast)
 	else if(href_list["station_sw"])
-		syndicate_move_to(/area/syndicate_station/southwest)
+		syndicate_move_to(/area/enemy/syndicate_station/southwest)
 	else if(href_list["station_s"])
-		syndicate_move_to(/area/syndicate_station/south)
+		syndicate_move_to(/area/enemy/syndicate_station/south)
 	else if(href_list["station_se"])
-		syndicate_move_to(/area/syndicate_station/southeast)
+		syndicate_move_to(/area/enemy/syndicate_station/southeast)
 	else if(href_list["commssat"])
-		syndicate_move_to(/area/syndicate_station/commssat)
+		syndicate_move_to(/area/enemy/syndicate_station/commssat)
 	else if(href_list["mining"])
-		syndicate_move_to(/area/syndicate_station/mining)
+		syndicate_move_to(/area/enemy/syndicate_station/mining)
 
 	add_fingerprint(usr)
 	updateUsrDialog()

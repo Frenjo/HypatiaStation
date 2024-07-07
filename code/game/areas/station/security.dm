@@ -1,35 +1,35 @@
 /*
- * Security
+ * Security Areas
  */
-/area/security
+/area/station/security
 	icon_state = "security"
 
-/area/security/main
+/area/station/security/main
 	name = "\improper Security Office"
 
-/area/security/lobby
+/area/station/security/lobby
 	name = "\improper Security Lobby"
 
-/area/security/brig
+/area/station/security/brig
 	name = "\improper Brig"
 	icon_state = "brig"
 
-/area/security/evidence_storage
+/area/station/security/evidence_storage
 	name = "\improper Evidence Storage"
 
-/area/security/range
+/area/station/security/range
 	name = "\improper Firing Range"
 	icon_state = "firingrange"
 
-/area/security/armoury
+/area/station/security/armoury
 	name = "\improper Armoury"
 	icon_state = "armoury"
 
-/area/security/warden
+/area/station/security/warden
 	name = "\improper Warden's Office"
 	icon_state = "Warden"
 
-/area/security/detective
+/area/station/security/detective
 	name = "\improper Detective's Office"
 	icon_state = "detective"
 
@@ -50,33 +50,29 @@
 						objectToGrayscale.icon = newIcon
 */
 
-/*
- * Security Posts
- */
-/area/security/post
+// Posts
+/area/station/security/post
 	name = "\improper Security Post"
 
-/area/security/post/arrivals
+/area/station/security/post/arrivals
 	name = "\improper Arrivals Security Post"
 
-/area/security/post/starboard
+/area/station/security/post/starboard
 	name = "\improper Starboard Security Post"
 
-/*
- * Security Checkpoints
- */
-/area/security/checkpoint
+// Checkpoints
+/area/station/security/checkpoint
 	name = "\improper Security Checkpoint"
 	icon_state = "checkpoint1"
 
-/area/security/checkpoint/supply
+/area/station/security/checkpoint/supply
 	name = "Security Checkpoint - Cargo Bay"
 
-/area/security/checkpoint/engineering
+/area/station/security/checkpoint/engineering
 	name = "Security Checkpoint - Engineering"
 
-/area/security/checkpoint/medical
+/area/station/security/checkpoint/medical
 	name = "Security Checkpoint - Medbay"
 
-/area/security/checkpoint/science
+/area/station/security/checkpoint/science
 	name = "Security Checkpoint - Science"

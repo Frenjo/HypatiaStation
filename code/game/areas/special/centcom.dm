@@ -66,24 +66,24 @@
  *
  * THUNDERDOME
  */
-/area/tdome
+/area/centcom/tdome
 	name = "\improper Thunderdome"
 	icon_state = "thunder"
 	requires_power = FALSE
 	dynamic_lighting = FALSE
 
-/area/tdome/team_one
+/area/centcom/tdome/team_one
 	name = "\improper Thunderdome (Team 1)"
 	icon_state = "green"
 
-/area/tdome/team_two
+/area/centcom/tdome/team_two
 	name = "\improper Thunderdome (Team 2)"
 	icon_state = "yellow"
 
-/area/tdome/admin
+/area/centcom/tdome/admin
 	name = "\improper Thunderdome (Admin)"
 	icon_state = "purple"
 
-/area/tdome/observation
+/area/centcom/tdome/observation
 	name = "\improper Thunderdome (Observer)"
 	icon_state = "purple"

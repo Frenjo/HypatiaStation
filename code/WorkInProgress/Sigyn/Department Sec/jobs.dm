@@ -11,22 +11,22 @@ proc/assign_sec_to_department(var/mob/living/carbon/human/H)
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/cargo(H), SLOT_ID_WEAR_UNIFORM)
 				H.equip_to_slot_or_del(new /obj/item/radio/headset/headset_sec/department/supply(H), slot_ears)
 				access = list(access_mailsorting, access_mining)
-				destination = /area/security/checkpoint/supply
+				destination = /area/station/security/checkpoint/supply
 			if("engineering")
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/engine(H), SLOT_ID_WEAR_UNIFORM)
 				H.equip_to_slot_or_del(new /obj/item/radio/headset/headset_sec/department/engi(H), slot_ears)
 				access = list(access_construction, access_engine)
-				destination = /area/security/checkpoint/engineering
+				destination = /area/station/security/checkpoint/engineering
 			if("medical")
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/med(H), SLOT_ID_WEAR_UNIFORM)
 				H.equip_to_slot_or_del(new /obj/item/radio/headset/headset_sec/department/med(H), slot_ears)
 				access = list(access_medical)
-				destination = /area/security/checkpoint/medical
+				destination = /area/station/security/checkpoint/medical
 			if("science")
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/science(H), SLOT_ID_WEAR_UNIFORM)
 				H.equip_to_slot_or_del(new /obj/item/radio/headset/headset_sec/department/sci(H), slot_ears)
 				access = list(access_research)
-				destination = /area/security/checkpoint/science
+				destination = /area/station/security/checkpoint/science
 			else
 				H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security(H), SLOT_ID_WEAR_UNIFORM)
 				H.equip_to_slot_or_del(new /obj/item/radio/headset/headset_sec(H), slot_ears)

@@ -220,7 +220,7 @@
 	for(var/datum/mind/rev_mind in head_revolutionaries)
 		if(rev_mind.current.stat != 2)
 			var/turf/revloc = rev_mind.current.loc
-			if(!istype(revloc.loc,/area/security/brig) && !rev_mind.current.handcuffed)
+			if(!istype(revloc.loc,/area/station/security/brig) && !rev_mind.current.handcuffed)
 				return 0
 		else if(RPREV_REQUIRE_REVS_ALIVE) return 0
 	return 1

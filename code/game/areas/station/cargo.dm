@@ -1,30 +1,33 @@
-// Cargo
-// Officially "Supply", but there we are.
-/area/cargo
+/*
+ * Cargo Areas
+ *
+ * Officially "Supply", but there we are.
+ */
+/area/station/cargo
 	icon_state = "quart"
 
-/area/cargo/lobby
+/area/station/cargo/lobby
 	name = "\improper Cargo Lobby"
 	icon_state = "quartstorage"
 
-/area/cargo/office
+/area/station/cargo/office
 	name = "\improper Cargo Office"
 	icon_state = "quartoffice"
 
-/area/cargo/delivery
+/area/station/cargo/delivery
 	name = "\improper Delivery Office"
 	icon_state = "quartoffice"
 
-/area/cargo/bay
+/area/station/cargo/bay
 	name = "\improper Cargo Bay"
 	icon_state = "quartstorage"
 
-/area/cargo/bay/warehouse
+/area/station/cargo/bay/warehouse
 	name = "\improper Cargo Bay Warehouse"
 
-/area/cargo/mining_dock
+/area/station/cargo/mining_dock
 	name = "\improper Mining Dock"
 	icon_state = "mining"
 
-/area/cargo/quartermaster
+/area/station/cargo/quartermaster
 	name = "\improper Quartermaster's Office"

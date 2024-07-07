@@ -32,7 +32,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 				for(var/O in cur_loc)
 					qdel(O)
 
-			var/area/asteroid/artifactroom/A = new /area/asteroid/artifactroom()
+			var/area/asteroid/artifact_room/A = new /area/asteroid/artifact_room()
 			A.name = isnotnull(name) ? name : "Artifact Room #[start_loc.x][start_loc.y][start_loc.z]"
 
 			if(x == 0 || x == (x_size - 1) || y == 0 || y == (y_size - 1))
@@ -86,7 +86,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 	var/list/room = null
 	var/list/turfs = null
 
-	turfs = get_area_turfs(/area/mine/unexplored)
+	turfs = get_area_turfs(/area/asteroid/mine/unexplored)
 
 	if(!length(turfs))
 		return 0
@@ -108,7 +108,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 		surroundings.Add(range(7, locate(T.x, T.y + size, T.z)))
 		surroundings.Add(range(7, locate(T.x + size, T.y + size, T.z)))
 
-		if(locate(/area/mine/explored) in surroundings)			// +5s are for view range
+		if(locate(/area/asteroid/mine/explored) in surroundings)			// +5s are for view range
 			valid = FALSE
 			continue
 
@@ -116,7 +116,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 			valid = FALSE
 			continue
 
-		if(locate(/area/asteroid/artifactroom) in surroundings)
+		if(locate(/area/asteroid/artifact_room) in surroundings)
 			valid = FALSE
 			continue
 

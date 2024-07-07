@@ -5,7 +5,7 @@ GLOBAL_GLOBL_LIST_NEW(ghostteleportlocs)
 
 /hook/startup/proc/setup_teleport_locs()
 	for_no_type_check(var/area/a, GLOBL.area_list)
-		if(istype(a, /area/shuttle) || istype(a, /area/syndicate_station) || istype(a, /area/wizard_station))
+		if(istype(a, /area/shuttle) || istype(a, /area/enemy/syndicate_station) || istype(a, /area/enemy/wizard_station))
 			continue
 		if(GLOBL.teleportlocs.Find(a.name))
 			continue
@@ -20,7 +20,7 @@ GLOBAL_GLOBL_LIST_NEW(ghostteleportlocs)
 	for_no_type_check(var/area/a, GLOBL.area_list)
 		if(GLOBL.ghostteleportlocs.Find(a.name))
 			continue
-		if(/*istype(a, /area/turret_protected/aisat) ||*/ istype(a, /area/derelict) || istype(a, /area/tdome))
+		if(/*istype(a, /area/turret_protected/aisat) ||*/ istype(a, /area/external/abandoned/derelict) || istype(a, /area/centcom/tdome))
 			GLOBL.ghostteleportlocs.Add(a.name)
 			GLOBL.ghostteleportlocs[a.name] = a
 		var/turf/picked = pick(get_area_turfs(a.type))

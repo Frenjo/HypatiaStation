@@ -63,7 +63,7 @@ var/global/announce_vox_departure = TRUE //Stealth systems - give an announcemen
 	lastMove = world.time
 
 	if(curr_location.z != dest_location.z)
-		var/area/transit_location = locate(/area/vox_station/transit)
+		var/area/transit_location = locate(/area/enemy/vox_station/transit)
 		curr_location.move_contents_to(transit_location)
 		curr_location = transit_location
 		sleep(VOX_SHUTTLE_MOVE_TIME)
@@ -119,15 +119,15 @@ var/global/announce_vox_departure = TRUE //Stealth systems - give an announcemen
 		vox_move_to(/area/shuttle/vox/station)
 		vox_shuttle_location = "start"
 	else if(href_list["solars_fore_starboard"])
-		vox_move_to(/area/vox_station/northeast_solars)
+		vox_move_to(/area/enemy/vox_station/northeast_solars)
 	else if(href_list["solars_fore_port"])
-		vox_move_to(/area/vox_station/northwest_solars)
+		vox_move_to(/area/enemy/vox_station/northwest_solars)
 	else if(href_list["solars_aft_starboard"])
-		vox_move_to(/area/vox_station/southeast_solars)
+		vox_move_to(/area/enemy/vox_station/southeast_solars)
 	else if(href_list["solars_aft_port"])
-		vox_move_to(/area/vox_station/southwest_solars)
+		vox_move_to(/area/enemy/vox_station/southwest_solars)
 	else if(href_list["mining"])
-		vox_move_to(/area/vox_station/mining)
+		vox_move_to(/area/enemy/vox_station/mining)
 
 	add_fingerprint(usr)
 	updateUsrDialog()

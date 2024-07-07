@@ -304,39 +304,39 @@ PROCESS_DEF(shuttle)
 	vox_shuttle.origin = locate(/area/shuttle/vox/station)
 
 	vox_shuttle.destinations = list(
-		"Fore Starboard Solars" = locate(/area/vox_station/northeast_solars),
-		"Fore Port Solars" = locate(/area/vox_station/northwest_solars),
-		"Aft Starboard Solars" = locate(/area/vox_station/southeast_solars),
-		"Aft Port Solars" = locate(/area/vox_station/southwest_solars),
-		"Mining asteroid" = locate(/area/vox_station/mining)
+		"Fore Starboard Solars" = locate(/area/enemy/vox_station/northeast_solars),
+		"Fore Port Solars" = locate(/area/enemy/vox_station/northwest_solars),
+		"Aft Starboard Solars" = locate(/area/enemy/vox_station/southeast_solars),
+		"Aft Port Solars" = locate(/area/enemy/vox_station/southwest_solars),
+		"Mining asteroid" = locate(/area/enemy/vox_station/mining)
 	)
 
 	vox_shuttle.announcer = "NSV Icarus"
 	vox_shuttle.arrival_message = "Attention [GLOBL.current_map.station_name], we just tracked a small target bypassing our defensive perimeter. Can't fire on it without hitting the station - you've got incoming visitors, like it or not."
 	vox_shuttle.departure_message = "Your guests are pulling away, [GLOBL.current_map.station_name] - moving too fast for us to draw a bead on them. Looks like they're heading out of the system at a rapid clip."
-	vox_shuttle.interim = locate(/area/vox_station/transit)
+	vox_shuttle.interim = locate(/area/enemy/vox_station/transit)
 
 	shuttles["Vox Skipjack"] = vox_shuttle
 
 	// Nuke Ops Shuttle
 	var/datum/shuttle/multi_shuttle/mercenary_shuttle = new /datum/shuttle/multi_shuttle()
-	mercenary_shuttle.origin = locate(/area/syndicate_station/start)
+	mercenary_shuttle.origin = locate(/area/enemy/syndicate_station/start)
 
 	mercenary_shuttle.destinations = list(
-		"Northwest of the station" = locate(/area/syndicate_station/northwest),
-		"North of the station" = locate(/area/syndicate_station/north),
-		"Northeast of the station" = locate(/area/syndicate_station/northeast),
-		"Southwest of the station" = locate(/area/syndicate_station/southwest),
-		"South of the station" = locate(/area/syndicate_station/south),
-		"Southeast of the station" = locate(/area/syndicate_station/southeast),
-		"Telecoms Satellite" = locate(/area/syndicate_station/commssat),
-		"Mining Asteroid" = locate(/area/syndicate_station/mining),
-		/*"Arrivals dock" = locate(/area/syndicate_station/arrivals_dock),*/
+		"Northwest of the station" = locate(/area/enemy/syndicate_station/northwest),
+		"North of the station" = locate(/area/enemy/syndicate_station/north),
+		"Northeast of the station" = locate(/area/enemy/syndicate_station/northeast),
+		"Southwest of the station" = locate(/area/enemy/syndicate_station/southwest),
+		"South of the station" = locate(/area/enemy/syndicate_station/south),
+		"Southeast of the station" = locate(/area/enemy/syndicate_station/southeast),
+		"Telecoms Satellite" = locate(/area/enemy/syndicate_station/commssat),
+		"Mining Asteroid" = locate(/area/enemy/syndicate_station/mining),
+		/*"Arrivals dock" = locate(/area/enemy/syndicate_station/arrivals_dock),*/
 	)
 
 	mercenary_shuttle.announcer = "NSV Icarus"
 	mercenary_shuttle.arrival_message = "Attention, [GLOBL.current_map.station_name], you have a large signature approaching the station - looks unarmed to surface scans. We're too far out to intercept - brace for visitors."
 	mercenary_shuttle.departure_message = "Your visitors are on their way out of the system, [GLOBL.current_map.station_name], burning delta-v like it's nothing. Good riddance."
-	mercenary_shuttle.interim = locate(/area/syndicate_station/transit)
+	mercenary_shuttle.interim = locate(/area/enemy/syndicate_station/transit)
 
 	shuttles["Mercenary"] = mercenary_shuttle

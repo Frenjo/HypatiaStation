@@ -3,7 +3,7 @@
 	oneShot = TRUE
 
 	var/releaseWhen = 25
-	var/list/area/prisonAreas = list()
+	var/list/area/external/prisonAreas = list()
 
 /datum/event/prison_break/setup()
 	announceWhen = rand(50, 60)
@@ -21,7 +21,7 @@
 
 /datum/event/prison_break/start()
 	for_no_type_check(var/area/A, GLOBL.area_list)
-		if(istype(A, /area/security/brig) || istype(A, /area/prison))
+		if(istype(A, /area/station/security/brig) || istype(A, /area/external/prison))
 			prisonAreas += A
 
 	if(length(prisonAreas))

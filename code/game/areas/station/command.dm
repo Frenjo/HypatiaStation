@@ -1,5 +1,7 @@
-// Command
-/area/command/bridge
+/*
+ * Command Areas
+ */
+/area/station/command/bridge
 	name = "\improper Bridge"
 	icon_state = "bridge"
 	ambience = list(
@@ -7,38 +9,38 @@
 		'sound/music/title2.ogg'
 	)
 
-/area/command/bridge/meeting_room
+/area/station/command/bridge/meeting_room
 	name = "\improper Heads of Staff Meeting Room"
 	icon_state = "conference"
 	ambience = list()
 
 // Head of Staff Offices
-/area/command/office/captain
+/area/station/command/office/captain
 	name = "\improper Captain's Office"
 	icon_state = "captain"
 
-/area/command/office/hop
+/area/station/command/office/hop
 	name = "\improper Head of Personnel's Office"
 	icon_state = "head_quarters"
 
-/area/command/office/rd
+/area/station/command/office/rd
 	name = "\improper Research Director's Office"
 	icon_state = "head_quarters"
 
-/area/command/office/hos
+/area/station/command/office/hos
 	name = "\improper Head of Security's Office"
 	icon_state = "sec_hos"
 
-/area/command/office/ce
+/area/station/command/office/ce
 	name = "\improper Chief Engineer's Office"
 	icon_state = "head_quarters"
 
-/area/command/office/cmo
+/area/station/command/office/cmo
 	name = "\improper Chief Medical Officer's Office"
 	icon_state = "CMO"
 
 // Teleporter
-/area/command/teleporter
+/area/station/command/teleporter
 	name = "\improper Teleporter"
 	icon_state = "teleporter"
 	ambience = list(
@@ -46,7 +48,7 @@
 	)
 
 // Gateway
-/area/command/gateway
+/area/station/command/gateway
 	name = "\improper Gateway"
 	icon_state = "teleporter"
 	ambience = list(
@@ -54,6 +56,6 @@
 	)
 
 // Vault
-/area/command/vault
+/area/station/command/vault
 	name = "\improper Vault"
 	icon_state = "nuke_storage"

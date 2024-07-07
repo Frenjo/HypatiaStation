@@ -255,7 +255,7 @@
 /proc/prison_break() // -- Callagan
 	var/list/area/areas = list()
 	for_no_type_check(var/area/A, GLOBL.area_list)
-		if(istype(A, /area/security/brig) || istype(A, /area/prison))
+		if(istype(A, /area/station/security/brig) || istype(A, /area/external/prison))
 			areas += A
 
 	if(length(areas))

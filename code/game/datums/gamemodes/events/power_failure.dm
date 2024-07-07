@@ -4,7 +4,7 @@
 		for_no_type_check(var/mob/M, GLOBL.player_list)
 			M << sound('sound/AI/poweroff.ogg')
 
-	var/list/skipped_areas = list(/area/engineering/engine, /area/turret_protected/ai)
+	var/list/skipped_areas = list(/area/station/engineering/engine, /area/turret_protected/ai)
 
 	for(var/obj/machinery/power/smes/S in world)
 		var/area/current_area = get_area(S)
@@ -38,7 +38,7 @@
 		for_no_type_check(var/mob/M, GLOBL.player_list)
 			M << sound('sound/AI/poweron.ogg')
 
-	var/list/skipped_areas = list(/area/engineering/engine, /area/turret_protected/ai)
+	var/list/skipped_areas = list(/area/station/engineering/engine, /area/turret_protected/ai)
 
 	for(var/obj/machinery/power/apc/C in world)
 		if(C.cell && isstationlevel(C.z))

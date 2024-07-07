@@ -1,103 +1,106 @@
+/*
+ * Enemy Areas
+ */
 // Syndicate
 // Names are used.
-/area/syndicate_mothership
+/area/enemy/syndicate_mothership
 	name = "\improper Syndicate Mothership"
 	icon_state = "syndie-ship"
 	requires_power = FALSE
 	dynamic_lighting = FALSE
 
-/area/syndicate_mothership/control
+/area/enemy/syndicate_mothership/control
 	name = "\improper Syndicate Control Room"
 	icon_state = "syndie-control"
 	dynamic_lighting = FALSE
 
-/area/syndicate_mothership/elite_squad
+/area/enemy/syndicate_mothership/elite_squad
 	name = "\improper Syndicate Elite Squad"
 	icon_state = "syndie-elite"
 	dynamic_lighting = FALSE
 
 // Shuttle
-/area/syndicate_station
+/area/enemy/syndicate_station
 	name = "\improper Syndicate Station"
 	icon_state = "yellow"
 	requires_power = FALSE
 
-/area/syndicate_station/start
+/area/enemy/syndicate_station/start
 	name = "\improper Syndicate Forward Operating Base"
 	base_turf = /turf/simulated/floor/plating/metal
 
-/area/syndicate_station/southwest
+/area/enemy/syndicate_station/southwest
 	name = "\improper South-West of SS13"
 	icon_state = "southwest"
 
-/area/syndicate_station/northwest
+/area/enemy/syndicate_station/northwest
 	name = "\improper North-West of SS13"
 	icon_state = "northwest"
 
-/area/syndicate_station/northeast
+/area/enemy/syndicate_station/northeast
 	name = "\improper North-East of SS13"
 	icon_state = "northeast"
 
-/area/syndicate_station/southeast
+/area/enemy/syndicate_station/southeast
 	name = "\improper Nouth-East of SS13"
 	icon_state = "southeast"
 
-/area/syndicate_station/north
+/area/enemy/syndicate_station/north
 	name = "\improper North of SS13"
 	icon_state = "north"
 
-/area/syndicate_station/south
+/area/enemy/syndicate_station/south
 	name = "\improper South of SS13"
 	icon_state = "south"
 
-/area/syndicate_station/commssat
+/area/enemy/syndicate_station/commssat
 	name = "\improper South of the communication satellite"
 	icon_state = "south"
 
-/area/syndicate_station/mining
+/area/enemy/syndicate_station/mining
 	name = "\improper North-East of the mining asteroid"
 	icon_state = "north"
 
-/area/syndicate_station/transit
+/area/enemy/syndicate_station/transit
 	name = "\improper Hyperspace"
 	icon_state = "shuttle"
 	base_turf = /turf/space/transit/north
 
 // Wizard
-/area/wizard_station
+/area/enemy/wizard_station
 	name = "\improper Wizard's Den"
 	icon_state = "yellow"
 	requires_power = FALSE
 	dynamic_lighting = FALSE
 
 // Vox
-/area/vox_station/transit
+/area/enemy/vox_station/transit
 	name = "\improper Hyperspace"
 	icon_state = "shuttle"
 	requires_power = FALSE
 	base_turf = /turf/space/transit/north
 
-/area/vox_station/southwest_solars
+/area/enemy/vox_station/southwest_solars
 	name = "\improper Aft Port Solars"
 	icon_state = "southwest"
 	requires_power = FALSE
 
-/area/vox_station/northwest_solars
+/area/enemy/vox_station/northwest_solars
 	name = "\improper Fore Port Solars"
 	icon_state = "northwest"
 	requires_power = FALSE
 
-/area/vox_station/northeast_solars
+/area/enemy/vox_station/northeast_solars
 	name = "\improper Fore Starboard Solars"
 	icon_state = "northeast"
 	requires_power = FALSE
 
-/area/vox_station/southeast_solars
+/area/enemy/vox_station/southeast_solars
 	name = "\improper Aft Starboard Solars"
 	icon_state = "southeast"
 	requires_power = FALSE
 
-/area/vox_station/mining
+/area/enemy/vox_station/mining
 	name = "\improper Nearby mining asteroid"
 	icon_state = "north"
 	requires_power = FALSE

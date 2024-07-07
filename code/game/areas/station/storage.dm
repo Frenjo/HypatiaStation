@@ -1,38 +1,40 @@
-// Storage
-/area/storage
+/*
+ * Storage Areas
+ */
+/area/station/storage
 	icon_state = "storage"
 
 // Tools
-/area/storage/tools
+/area/station/storage/tools
 	name = "Tool Storage"
 
-/area/storage/tools/primary
+/area/station/storage/tools/primary
 	name = "Primary Tool Storage"
 	icon_state = "primarystorage"
 
-/area/storage/tools/auxiliary
+/area/station/storage/tools/auxiliary
 	name = "Auxiliary Tool Storage"
 	icon_state = "auxstorage"
 
-/area/storage/art
+/area/station/storage/art
 	name = "Art Supply Storage"
 
-/area/storage/eva
+/area/station/storage/eva
 	name = "EVA Storage"
 	icon_state = "eva"
 
-/area/storage/tech
+/area/station/storage/tech
 	name = "Technical Storage"
 
 // Emergency
-/area/storage/emergency
+/area/station/storage/emergency
 	icon_state = "emergencystorage"
 
-/area/storage/emergency/port
+/area/station/storage/emergency/port
 	name = "Port Emergency Storage"
 
-/area/storage/emergency/central
+/area/station/storage/emergency/central
 	name = "Central Emergency Storage"
 
-/area/storage/emergency/starboard
+/area/station/storage/emergency/starboard
 	name = "Starboard Emergency Storage"

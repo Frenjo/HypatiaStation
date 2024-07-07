@@ -28,34 +28,34 @@
 	var/spawn_area_type
 	switch(location)
 		if(LOC_KITCHEN)
-			spawn_area_type = /area/crew/kitchen
+			spawn_area_type = /area/station/crew/kitchen
 			locstring = "the kitchen"
 		if(LOC_ATMOS)
-			spawn_area_type = /area/engineering/atmospherics
+			spawn_area_type = /area/station/engineering/atmospherics
 			locstring = "atmospherics"
 		if(LOC_INCIN)
-			spawn_area_type = /area/maintenance/incinerator
+			spawn_area_type = /area/station/maintenance/incinerator
 			locstring = "the incinerator"
 		if(LOC_CHAPEL)
-			spawn_area_type = /area/crew/chapel/main
+			spawn_area_type = /area/station/crew/chapel/main
 			locstring = "the chapel"
 		if(LOC_LIBRARY)
-			spawn_area_type = /area/crew/library
+			spawn_area_type = /area/station/crew/library
 			locstring = "the library"
 		if(LOC_HYDRO)
-			spawn_area_type = /area/crew/hydroponics
+			spawn_area_type = /area/station/crew/hydroponics
 			locstring = "hydroponics"
 		if(LOC_VAULT)
-			spawn_area_type = /area/command/vault
+			spawn_area_type = /area/station/command/vault
 			locstring = "the vault"
 		if(LOC_CONSTR)
 			spawn_area_type = /area/construction
 			locstring = "the construction area"
 		if(LOC_TECH)
-			spawn_area_type = /area/storage/tech
+			spawn_area_type = /area/station/storage/tech
 			locstring = "technical storage"
 		if(LOC_ASSEMBLY)
-			spawn_area_type = /area/abandoned/assembly_line
+			spawn_area_type = /area/external/abandoned/assembly_line
 			locstring = "the unused assembly line"
 
 	//to_world("looking for [spawn_area_type]")

@@ -72,7 +72,7 @@
 		H.set_machine(src)
 		if(href_list["spell_choice"])
 			if(href_list["spell_choice"] == "rememorize")
-				var/area/wizard_station/A = locate()
+				var/area/enemy/wizard_station/A = locate()
 				if(usr in A.contents)
 					uses = max_uses
 					H.spellremove(usr)

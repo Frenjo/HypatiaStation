@@ -170,7 +170,7 @@
 	for_no_type_check(var/turf/simulated/floor/circuit_grid/blue/grid, GLOBL.contactable_blue_grid_turfs)
 		grid.icon_state = "rcircuit_flash"
 	// Updates all hallway areas so they flash.
-	for_no_type_check(var/area/hallway/hall, GLOBL.contactable_hallway_areas)
+	for_no_type_check(var/area/station/hallway/hall, GLOBL.contactable_hallway_areas)
 		hall.destruct_alert()
 
 /decl/security_level/delta/on_change_from()
@@ -179,7 +179,7 @@
 	for_no_type_check(var/turf/simulated/floor/circuit_grid/blue/grid, GLOBL.contactable_blue_grid_turfs)
 		grid.icon_state = "bcircuit"
 	// Resets all hallway areas so they stop flashing.
-	for_no_type_check(var/area/hallway/hall, GLOBL.contactable_hallway_areas)
+	for_no_type_check(var/area/station/hallway/hall, GLOBL.contactable_hallway_areas)
 		hall.destruct_reset()
 
 /decl/security_level/delta/on_elevate_to()

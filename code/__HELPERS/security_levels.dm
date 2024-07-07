@@ -1,7 +1,7 @@
 GLOBAL_GLOBL_INIT(decl/security_level/security_level, GET_DECL_INSTANCE(/decl/security_level/green))
 // For numerical severities, see SEC_LEVEL_X defines in code/__DEFINES/security_levels.dm.
 
-GLOBAL_GLOBL_LIST_NEW(area/hallway/contactable_hallway_areas)
+GLOBAL_GLOBL_LIST_NEW(area/station/hallway/contactable_hallway_areas)
 GLOBAL_GLOBL_LIST_NEW(turf/simulated/floor/circuit_grid/blue/contactable_blue_grid_turfs)
 
 /proc/set_security_level(level)

@@ -340,7 +340,7 @@
 /*
 	var/list/theareas = list()
 	for_no_type_check(var/area/AR, GLOBL.area_list)
-		if(istype(AR, /area/shuttle) || istype(AR, /area/syndicate_station)) continue
+		if(istype(AR, /area/shuttle) || istype(AR, /area/enemy/syndicate_station)) continue
 		if(theareas.Find(AR.name)) continue
 		var/turf/picked = pick(get_area_turfs(AR.type))
 		if (picked.z == src.z)

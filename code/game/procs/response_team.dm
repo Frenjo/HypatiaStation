@@ -145,7 +145,7 @@ GLOBAL_GLOBL(can_call_ert)
 	sleep(5 MINUTES)
 	GLOBL.send_emergency_team = FALSE // Can no longer join the ERT.
 
-/*	var/area/security/nuke_storage/nukeloc = locate()//To find the nuke in the vault
+/*	var/area/station/security/nuke_storage/nukeloc = locate()//To find the nuke in the vault
 	var/obj/machinery/nuclearbomb/nuke = locate() in nukeloc
 	if(!nuke)
 		nuke = locate() in world

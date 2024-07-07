@@ -1,83 +1,85 @@
-// Maintenance
-/area/maintenance
+/*
+ * Maintenance Areas
+ */
+/area/station/maintenance
 	area_flags = AREA_FLAG_IS_SHIELDED
 
 // Fore
-/area/maintenance/fore
+/area/station/maintenance/fore
 	name = "Fore Maintenance"
 	icon_state = "fmaint"
 
-/area/maintenance/fore/port
+/area/station/maintenance/fore/port
 	name = "Fore Port Maintenance"
 	icon_state = "fpmaint"
 
-/area/maintenance/fore/port_central
+/area/station/maintenance/fore/port_central
 	name = "Fore Port Central Maintenance"
 	icon_state = "fpmaint"
 
-/area/maintenance/fore/starboard
+/area/station/maintenance/fore/starboard
 	name = "Fore Starboard Maintenance"
 	icon_state = "fsmaint"
 
-/area/maintenance/fore/starboard_central
+/area/station/maintenance/fore/starboard_central
 	name = "Fore Starboard Central Maintenance"
 	icon_state = "fsmaint"
 
 // Central
-/area/maintenance/central
+/area/station/maintenance/central
 	name = "Central Maintenance"
 	icon_state = "maintcentral"
 
-/area/maintenance/central/port
+/area/station/maintenance/central/port
 	name = "Central Port Maintenance"
 
-/area/maintenance/central/starboard
+/area/station/maintenance/central/starboard
 	name = "Central Starboard Maintenance"
 
 // Aft
-/area/maintenance/aft
+/area/station/maintenance/aft
 	name = "Aft Maintenance"
 	icon_state = "amaint"
 
-/area/maintenance/aft/port
+/area/station/maintenance/aft/port
 	name = "Aft Port Maintenance"
 	icon_state = "apmaint"
 
-/area/maintenance/aft/starboard
+/area/station/maintenance/aft/starboard
 	name = "Aft Starboard Maintenance"
 	icon_state = "asmaint"
 
-/area/maintenance/aft/starboard_central
+/area/station/maintenance/aft/starboard_central
 	name = "Aft Starboard Central Maintenance"
 	icon_state = "asmaint"
 
 // Incinerator
-/area/maintenance/incinerator
+/area/station/maintenance/incinerator
 	name = "\improper Incinerator"
 	icon_state = "disposal"
 
-/area/maintenance/incinerator/space
+/area/station/maintenance/incinerator/space
 	name = "\improper Incinerator Space"
 	requires_power = FALSE
 
 // Waste Disposal
-/area/maintenance/disposal
+/area/station/maintenance/disposal
 	name = "Waste Disposal"
 	icon_state = "disposal"
 
 // Solars
-/area/maintenance/solar/fore_port
+/area/station/maintenance/solar/fore_port
 	name = "Fore Port Solar Maintenance"
 	icon_state = "SolarcontrolP"
 
-/area/maintenance/solar/fore_starboard
+/area/station/maintenance/solar/fore_starboard
 	name = "Fore Starboard Solar Maintenance"
 	icon_state = "SolarcontrolS"
 
-/area/maintenance/solar/aft_port
+/area/station/maintenance/solar/aft_port
 	name = "Aft Port Solar Maintenance"
 	icon_state = "SolarcontrolP"
 
-/area/maintenance/solar/aft_starboard
+/area/station/maintenance/solar/aft_starboard
 	name = "Aft Starboard Solar Maintenance"
 	icon_state = "SolarcontrolS"

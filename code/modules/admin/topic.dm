@@ -2284,7 +2284,7 @@
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","EgL")
 				for_no_type_check(var/obj/machinery/door/airlock/W, GLOBL.airlocks_list)
-					if(isstationlevel(W.z) && !istype(get_area(W), /area/command) && !istype(get_area(W), /area/crew) && !istype(get_area(W), /area/prison))
+					if(isstationlevel(W.z) && !istype(get_area(W), /area/station/command) && !istype(get_area(W), /area/station/crew) && !istype(get_area(W), /area/external/prison))
 						W.req_access = list()
 				message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
 				command_alert("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.")

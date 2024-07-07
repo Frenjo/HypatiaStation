@@ -163,7 +163,7 @@
 
 	var/is_currently_brigged = FALSE
 
-	if(istype(T.loc, /area/security/brig) || istype(T.loc, /area/prison))
+	if(istype(T.loc, /area/station/security/brig) || istype(T.loc, /area/external/prison))
 		is_currently_brigged = TRUE
 		for(var/obj/item/card/id/card in current)
 			is_currently_brigged = FALSE
