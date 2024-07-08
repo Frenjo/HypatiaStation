@@ -639,7 +639,7 @@ other types of metals and chemistry for reagents).
 	desc = "Allows for the construction of LBX AC 10."
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/combat = 4)
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
+	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/scattershot
 	category = "Exosuit Equipment"
 
 /datum/design/mech_laser
@@ -647,7 +647,7 @@ other types of metals and chemistry for reagents).
 	desc = "Allows for the construction of CH-PS Laser."
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/magnets = 3, /datum/tech/combat = 3)
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
+	build_path = /obj/item/mecha_part/equipment/weapon/energy/laser
 	category = "Exosuit Equipment"
 
 /datum/design/mech_laser_heavy
@@ -655,7 +655,7 @@ other types of metals and chemistry for reagents).
 	desc = "Allows for the construction of CH-LC Laser Cannon."
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/magnets = 4, /datum/tech/combat = 4)
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/heavy
+	build_path = /obj/item/mecha_part/equipment/weapon/energy/laser/heavy
 	category = "Exosuit Equipment"
 
 /datum/design/mech_grenade_launcher
@@ -663,7 +663,7 @@ other types of metals and chemistry for reagents).
 	desc = "Allows for the construction of SGL-6 Grenade Launcher."
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/combat = 3)
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang
+	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang
 	category = "Exosuit Equipment"
 
 /datum/design/clusterbang_launcher
@@ -671,7 +671,7 @@ other types of metals and chemistry for reagents).
 	desc = "A weapon that violates the Geneva Convention at 6 rounds per minute"
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 5, /datum/tech/syndicate = 3)
-	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited
+	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited
 	category = "Exosuit Equipment"
 
 /datum/design/mech_wormhole_gen
@@ -679,7 +679,7 @@ other types of metals and chemistry for reagents).
 	desc = "An exosuit module that allows generating of small quasi-stable wormholes."
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/magnets = 2, /datum/tech/bluespace = 3)
-	build_path = /obj/item/mecha_parts/mecha_equipment/wormhole_generator
+	build_path = /obj/item/mecha_part/equipment/wormhole_generator
 	category = "Exosuit Equipment"
 
 /datum/design/mech_teleporter
@@ -687,7 +687,7 @@ other types of metals and chemistry for reagents).
 	desc = "An exosuit module that allows exosuits to teleport to any position in view."
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/magnets = 5, /datum/tech/bluespace = 10)
-	build_path = /obj/item/mecha_parts/mecha_equipment/teleporter
+	build_path = /obj/item/mecha_part/equipment/teleporter
 	category = "Exosuit Equipment"
 
 /datum/design/mech_rcd
@@ -698,7 +698,7 @@ other types of metals and chemistry for reagents).
 		/datum/tech/materials = 4, /datum/tech/magnets = 4, /datum/tech/engineering = 4,
 		/datum/tech/power_storage = 4, /datum/tech/bluespace = 3
 	)
-	build_path = /obj/item/mecha_parts/mecha_equipment/tool/rcd
+	build_path = /obj/item/mecha_part/equipment/tool/rcd
 	category = "Exosuit Equipment"
 
 /datum/design/mech_gravcatapult
@@ -706,7 +706,7 @@ other types of metals and chemistry for reagents).
 	desc = "An exosuit mounted Gravitational Catapult."
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/magnets = 3, /datum/tech/engineering = 3, /datum/tech/bluespace = 2)
-	build_path = /obj/item/mecha_parts/mecha_equipment/gravcatapult
+	build_path = /obj/item/mecha_part/equipment/gravcatapult
 	category = "Exosuit Equipment"
 
 /datum/design/mech_repair_droid
@@ -714,7 +714,7 @@ other types of metals and chemistry for reagents).
 	desc = "Automated Repair Droid. BEEP BOOP"
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/magnets = 3, /datum/tech/engineering = 3, /datum/tech/programming = 3)
-	build_path = /obj/item/mecha_parts/mecha_equipment/repair_droid
+	build_path = /obj/item/mecha_part/equipment/repair_droid
 	category = "Exosuit Equipment"
 
 /datum/design/mech_plasma_generator
@@ -722,7 +722,7 @@ other types of metals and chemistry for reagents).
 	desc = "Exosuit-mounted plasma converter."
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/engineering = 2, /datum/tech/power_storage = 2, /datum/tech/plasma = 2)
-	build_path = /obj/item/mecha_parts/mecha_equipment/generator
+	build_path = /obj/item/mecha_part/equipment/generator
 	category = "Exosuit Equipment"
 
 /datum/design/mech_energy_relay
@@ -730,7 +730,7 @@ other types of metals and chemistry for reagents).
 	desc = "Tesla Energy Relay"
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/magnets = 4, /datum/tech/power_storage = 3)
-	build_path = /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay
+	build_path = /obj/item/mecha_part/equipment/tesla_energy_relay
 	category = "Exosuit Equipment"
 
 /datum/design/mech_ccw_armor
@@ -738,7 +738,7 @@ other types of metals and chemistry for reagents).
 	desc = "Exosuit-mounted armor booster."
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 4)
-	build_path = /obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster
+	build_path = /obj/item/mecha_part/equipment/anticcw_armor_booster
 	category = "Exosuit Equipment"
 
 /datum/design/mech_proj_armor
@@ -746,7 +746,7 @@ other types of metals and chemistry for reagents).
 	desc = "Exosuit-mounted armor booster."
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 5, /datum/tech/engineering = 3)
-	build_path = /obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster
+	build_path = /obj/item/mecha_part/equipment/antiproj_armor_booster
 	category = "Exosuit Equipment"
 
 /datum/design/mech_syringe_gun
@@ -757,7 +757,7 @@ other types of metals and chemistry for reagents).
 		/datum/tech/materials = 3, /datum/tech/magnets = 4, /datum/tech/biotech = 4,
 		/datum/tech/programming = 3
 	)
-	build_path = /obj/item/mecha_parts/mecha_equipment/tool/syringe_gun
+	build_path = /obj/item/mecha_part/equipment/tool/syringe_gun
 	category = "Exosuit Equipment"
 
 /datum/design/mech_diamond_drill
@@ -765,7 +765,7 @@ other types of metals and chemistry for reagents).
 	desc = "An upgraded version of the standard drill"
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/materials = 4, /datum/tech/engineering = 3)
-	build_path = /obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill
+	build_path = /obj/item/mecha_part/equipment/tool/drill/diamond
 	category = "Exosuit Equipment"
 
 /datum/design/mech_generator_nuclear
@@ -773,7 +773,7 @@ other types of metals and chemistry for reagents).
 	desc = "Compact nuclear reactor module"
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/power_storage = 3)
-	build_path = /obj/item/mecha_parts/mecha_equipment/generator/nuclear
+	build_path = /obj/item/mecha_part/equipment/generator/nuclear
 	category = "Exosuit Equipment"
 
 ////////////////////////////////////////

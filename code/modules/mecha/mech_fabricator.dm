@@ -58,68 +58,68 @@
 			/obj/item/robot_parts/robot_component/armour
 		),
 		"Ripley" = list(
-			/obj/item/mecha_parts/chassis/ripley,
-			/obj/item/mecha_parts/part/ripley_torso,
-			/obj/item/mecha_parts/part/ripley_left_arm,
-			/obj/item/mecha_parts/part/ripley_right_arm,
-			/obj/item/mecha_parts/part/ripley_left_leg,
-			/obj/item/mecha_parts/part/ripley_right_leg
+			/obj/item/mecha_part/chassis/ripley,
+			/obj/item/mecha_part/part/ripley_torso,
+			/obj/item/mecha_part/part/ripley_left_arm,
+			/obj/item/mecha_part/part/ripley_right_arm,
+			/obj/item/mecha_part/part/ripley_left_leg,
+			/obj/item/mecha_part/part/ripley_right_leg
 		),
 		"Odysseus" = list(
-			/obj/item/mecha_parts/chassis/odysseus,
-			/obj/item/mecha_parts/part/odysseus_torso,
-			/obj/item/mecha_parts/part/odysseus_head,
-			/obj/item/mecha_parts/part/odysseus_left_arm,
-			/obj/item/mecha_parts/part/odysseus_right_arm,
-			/obj/item/mecha_parts/part/odysseus_left_leg,
-			/obj/item/mecha_parts/part/odysseus_right_leg
+			/obj/item/mecha_part/chassis/odysseus,
+			/obj/item/mecha_part/part/odysseus_torso,
+			/obj/item/mecha_part/part/odysseus_head,
+			/obj/item/mecha_part/part/odysseus_left_arm,
+			/obj/item/mecha_part/part/odysseus_right_arm,
+			/obj/item/mecha_part/part/odysseus_left_leg,
+			/obj/item/mecha_part/part/odysseus_right_leg
 		),
 		"Gygax" = list(
-			/obj/item/mecha_parts/chassis/gygax,
-			/obj/item/mecha_parts/part/gygax_torso,
-			/obj/item/mecha_parts/part/gygax_head,
-			/obj/item/mecha_parts/part/gygax_left_arm,
-			/obj/item/mecha_parts/part/gygax_right_arm,
-			/obj/item/mecha_parts/part/gygax_left_leg,
-			/obj/item/mecha_parts/part/gygax_right_leg,
-			/obj/item/mecha_parts/part/gygax_armour
+			/obj/item/mecha_part/chassis/gygax,
+			/obj/item/mecha_part/part/gygax_torso,
+			/obj/item/mecha_part/part/gygax_head,
+			/obj/item/mecha_part/part/gygax_left_arm,
+			/obj/item/mecha_part/part/gygax_right_arm,
+			/obj/item/mecha_part/part/gygax_left_leg,
+			/obj/item/mecha_part/part/gygax_right_leg,
+			/obj/item/mecha_part/part/gygax_armour
 		),
 		"Durand" = list(
-			/obj/item/mecha_parts/chassis/durand,
-			/obj/item/mecha_parts/part/durand_torso,
-			/obj/item/mecha_parts/part/durand_head,
-			/obj/item/mecha_parts/part/durand_left_arm,
-			/obj/item/mecha_parts/part/durand_right_arm,
-			/obj/item/mecha_parts/part/durand_left_leg,
-			/obj/item/mecha_parts/part/durand_right_leg,
-			/obj/item/mecha_parts/part/durand_armour
+			/obj/item/mecha_part/chassis/durand,
+			/obj/item/mecha_part/part/durand_torso,
+			/obj/item/mecha_part/part/durand_head,
+			/obj/item/mecha_part/part/durand_left_arm,
+			/obj/item/mecha_part/part/durand_right_arm,
+			/obj/item/mecha_part/part/durand_left_leg,
+			/obj/item/mecha_part/part/durand_right_leg,
+			/obj/item/mecha_part/part/durand_armour
 		),
 		"H.O.N.K" = list(
-			/obj/item/mecha_parts/chassis/honker,
-			/obj/item/mecha_parts/part/honker_torso,
-			/obj/item/mecha_parts/part/honker_head,
-			/obj/item/mecha_parts/part/honker_left_arm,
-			/obj/item/mecha_parts/part/honker_right_arm,
-			/obj/item/mecha_parts/part/honker_left_leg,
-			/obj/item/mecha_parts/part/honker_right_leg
+			/obj/item/mecha_part/chassis/honker,
+			/obj/item/mecha_part/part/honker_torso,
+			/obj/item/mecha_part/part/honker_head,
+			/obj/item/mecha_part/part/honker_left_arm,
+			/obj/item/mecha_part/part/honker_right_arm,
+			/obj/item/mecha_part/part/honker_left_leg,
+			/obj/item/mecha_part/part/honker_right_leg
 		),
 		"Exosuit Equipment" = list(
-			/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp,
-			/obj/item/mecha_parts/mecha_equipment/tool/drill,
-			/obj/item/mecha_parts/mecha_equipment/tool/extinguisher,
-			/obj/item/mecha_parts/mecha_equipment/tool/cable_layer,
-			/obj/item/mecha_parts/mecha_equipment/tool/passenger, // Ported this from NSS Eternal along with the hoverpod. -Frenjo
-			/obj/item/mecha_parts/mecha_equipment/tool/sleeper,
-			/obj/item/mecha_parts/mecha_equipment/tool/syringe_gun,
-			/obj/item/mecha_parts/chassis/firefighter,
-			/obj/item/mecha_parts/mecha_equipment/repair_droid, // Re-enabled this. -Frenjo
-			/obj/item/mecha_parts/mecha_equipment/generator,
-			///obj/item/mecha_parts/mecha_equipment/jetpack, //TODO MECHA JETPACK SPRITE MISSING
-			/obj/item/mecha_parts/mecha_equipment/weapon/energy/taser,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/lmg,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar,
-			/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/banana_mortar,
-			/obj/item/mecha_parts/mecha_equipment/weapon/honker
+			/obj/item/mecha_part/equipment/tool/hydraulic_clamp,
+			/obj/item/mecha_part/equipment/tool/drill,
+			/obj/item/mecha_part/equipment/tool/extinguisher,
+			/obj/item/mecha_part/equipment/tool/cable_layer,
+			/obj/item/mecha_part/equipment/tool/passenger, // Ported this from NSS Eternal along with the hoverpod. -Frenjo
+			/obj/item/mecha_part/equipment/tool/sleeper,
+			/obj/item/mecha_part/equipment/tool/syringe_gun,
+			/obj/item/mecha_part/chassis/firefighter,
+			/obj/item/mecha_part/equipment/repair_droid, // Re-enabled this. -Frenjo
+			/obj/item/mecha_part/equipment/generator,
+			///obj/item/mecha_part/equipment/jetpack, //TODO MECHA JETPACK SPRITE MISSING
+			/obj/item/mecha_part/equipment/weapon/energy/taser,
+			/obj/item/mecha_part/equipment/weapon/ballistic/lmg,
+			/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar,
+			/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar,
+			/obj/item/mecha_part/equipment/weapon/honker
 		),
 		"Robotic Upgrade Modules" = list(
 			/obj/item/borg/upgrade/reset,
@@ -130,7 +130,7 @@
 			/obj/item/borg/upgrade/jetpack
 		),
 		"Misc" = list(
-			/obj/item/mecha_parts/mecha_tracking
+			/obj/item/mecha_part/tracking
 		)
 	)
 
@@ -293,8 +293,8 @@
 /*
 	New()
 		..()
-		add_part_to_set("Test",list("result"="/obj/item/mecha_parts/part/gygax_armour","time"=600,"metal"=75000,"diamond"=10000))
-		add_part_to_set("Test",list("result"="/obj/item/mecha_parts/part/ripley_left_arm","time"=200,"metal"=25000))
+		add_part_to_set("Test",list("result"="/obj/item/mecha_part/part/gygax_armour","time"=600,"metal"=75000,"diamond"=10000))
+		add_part_to_set("Test",list("result"="/obj/item/mecha_part/part/ripley_left_arm","time"=200,"metal"=25000))
 		remove_part_set("Gygax")
 		return
 */
@@ -342,7 +342,7 @@
 				resources[resource] -= get_resource_cost_w_coeff(part, resource)
 
 /obj/machinery/mecha_part_fabricator/proc/check_resources(obj/item/part)
-//		if(istype(part, /obj/item/robot_parts) || istype(part, /obj/item/mecha_parts) || istype(part,/obj/item/borg/upgrade))
+//		if(istype(part, /obj/item/robot_parts) || istype(part, /obj/item/mecha_part) || istype(part,/obj/item/borg/upgrade))
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
 		for(var/resource in part:construction_cost)

@@ -84,9 +84,9 @@
 
 /obj/mecha/working/hoverpod/combatpod/New()
 	..()
-	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser
+	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/weapon/energy/laser
 	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive
+	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/explosive
 	ME.attach(src)
 
 /obj/mecha/working/hoverpod/shuttlepod
@@ -94,7 +94,7 @@
 
 /obj/mecha/working/hoverpod/shuttlepod/New()
 	..()
-	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
+	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/tool/passenger
 	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
+	ME = new /obj/item/mecha_part/equipment/tool/passenger
 	ME.attach(src)

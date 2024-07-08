@@ -7,7 +7,7 @@
 	. = ..()
 	var/turf/T = get_turf(src)
 	if(T.z != 2)
-		new /obj/item/mecha_parts/mecha_tracking(src)
+		new /obj/item/mecha_part/tracking(src)
 
 /*
 /obj/mecha/working/melee_action(atom/target)
@@ -26,7 +26,7 @@
 	var/output = ..()
 	output += "<b>[src.name] Tools:</b><div style=\"margin-left: 15px;\">"
 	if(length(equipment))
-		for(var/obj/item/mecha_parts/mecha_equipment/MT in equipment)
+		for(var/obj/item/mecha_part/equipment/MT in equipment)
 			output += "[selected==MT?"<b>":"<a href='byond://?src=\ref[src];select_equip=\ref[MT]'>"][MT.get_equip_info()][selected==MT?"</b>":"</a>"]<br>"
 	else
 		output += "None"

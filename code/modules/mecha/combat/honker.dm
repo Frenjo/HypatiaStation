@@ -127,7 +127,7 @@
 	if(!length(equipment))
 		return
 	var/output = "<b>Honk-ON-Systems:</b><div style=\"margin-left: 15px;\">"
-	for(var/obj/item/mecha_parts/mecha_equipment/MT in equipment)
+	for(var/obj/item/mecha_part/equipment/MT in equipment)
 		output += "[selected == MT ? "<b id='\ref[MT]'>" : "<a id='\ref[MT]' href='byond://?src=\ref[src];select_equip=\ref[MT]'>"][MT.get_equip_info()][selected == MT ? "</b>" : "</a>"]<br>"
 	output += "</div>"
 	return output

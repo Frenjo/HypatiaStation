@@ -71,11 +71,11 @@
 // Ripley Chassis
 /datum/construction/mecha/ripley_chassis
 	steps = list(
-		list("key" = /obj/item/mecha_parts/part/ripley_torso),		//1
-		list("key" = /obj/item/mecha_parts/part/ripley_left_arm),	//2
-		list("key" = /obj/item/mecha_parts/part/ripley_right_arm),	//3
-		list("key" = /obj/item/mecha_parts/part/ripley_left_leg),	//4
-		list("key" = /obj/item/mecha_parts/part/ripley_right_leg)	//5
+		list("key" = /obj/item/mecha_part/part/ripley_torso),		//1
+		list("key" = /obj/item/mecha_part/part/ripley_left_arm),	//2
+		list("key" = /obj/item/mecha_part/part/ripley_right_arm),	//3
+		list("key" = /obj/item/mecha_part/part/ripley_left_leg),	//4
+		list("key" = /obj/item/mecha_part/part/ripley_right_leg)	//5
 	)
 
 /datum/construction/mecha/ripley_chassis/custom_action(step, atom/used_atom, mob/user)
@@ -91,7 +91,7 @@
 	return check_all_steps(used_atom, user)
 
 /datum/construction/mecha/ripley_chassis/spawn_result()
-	var/obj/item/mecha_parts/chassis/const_holder = holder
+	var/obj/item/mecha_part/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/ripley(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
 	const_holder.icon_state = "ripley0"
@@ -393,12 +393,12 @@
 // Gygax Chassis
 /datum/construction/mecha/gygax_chassis
 	steps = list(
-		list("key" = /obj/item/mecha_parts/part/gygax_torso),		//1
-		list("key" = /obj/item/mecha_parts/part/gygax_left_arm),	//2
-		list("key" = /obj/item/mecha_parts/part/gygax_right_arm),	//3
-		list("key" = /obj/item/mecha_parts/part/gygax_left_leg),	//4
-		list("key" = /obj/item/mecha_parts/part/gygax_right_leg),	//5
-		list("key" = /obj/item/mecha_parts/part/gygax_head)
+		list("key" = /obj/item/mecha_part/part/gygax_torso),		//1
+		list("key" = /obj/item/mecha_part/part/gygax_left_arm),	//2
+		list("key" = /obj/item/mecha_part/part/gygax_right_arm),	//3
+		list("key" = /obj/item/mecha_part/part/gygax_left_leg),	//4
+		list("key" = /obj/item/mecha_part/part/gygax_right_leg),	//5
+		list("key" = /obj/item/mecha_part/part/gygax_head)
 	)
 
 /datum/construction/mecha/gygax_chassis/custom_action(step, atom/used_atom, mob/user)
@@ -414,7 +414,7 @@
 	return check_all_steps(used_atom, user)
 
 /datum/construction/mecha/gygax_chassis/spawn_result()
-	var/obj/item/mecha_parts/chassis/const_holder = holder
+	var/obj/item/mecha_part/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/gygax(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
 	const_holder.icon_state = "gygax0"
@@ -441,7 +441,7 @@
 		),
 		//3
 		list(
-			"key" = /obj/item/mecha_parts/part/gygax_armour,
+			"key" = /obj/item/mecha_part/part/gygax_armour,
 			"backkey" = /obj/item/weldingtool,
 			"desc" = "Internal armor is welded."
 		),
@@ -811,7 +811,7 @@
 					"[user] pries Gygax Armour Plates from [holder].",
 					"You pry Gygax Armour Plates from [holder]."
 				)
-				new /obj/item/mecha_parts/part/gygax_armour(get_turf(holder))
+				new /obj/item/mecha_part/part/gygax_armour(get_turf(holder))
 				holder.icon_state = "gygax17"
 		if(1)
 			if(diff == FORWARD)
@@ -835,11 +835,11 @@
 // Firefighter Chassis
 /datum/construction/mecha/firefighter_chassis
 	steps = list(
-		list("key" = /obj/item/mecha_parts/part/ripley_torso),		//1
-		list("key" = /obj/item/mecha_parts/part/ripley_left_arm),	//2
-		list("key" = /obj/item/mecha_parts/part/ripley_right_arm),	//3
-		list("key" = /obj/item/mecha_parts/part/ripley_left_leg),	//4
-		list("key" = /obj/item/mecha_parts/part/ripley_right_leg),	//5
+		list("key" = /obj/item/mecha_part/part/ripley_torso),		//1
+		list("key" = /obj/item/mecha_part/part/ripley_left_arm),	//2
+		list("key" = /obj/item/mecha_part/part/ripley_right_arm),	//3
+		list("key" = /obj/item/mecha_part/part/ripley_left_leg),	//4
+		list("key" = /obj/item/mecha_part/part/ripley_right_leg),	//5
 		list("key" = /obj/item/clothing/suit/fire)					//6
 	)
 
@@ -857,7 +857,7 @@
 	return check_all_steps(used_atom, user)
 
 /datum/construction/mecha/firefighter_chassis/spawn_result()
-	var/obj/item/mecha_parts/chassis/const_holder = holder
+	var/obj/item/mecha_part/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/firefighter(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
 	const_holder.icon_state = "fireripley0"
@@ -1181,12 +1181,12 @@
 // Honker Chassis
 /datum/construction/mecha/honker_chassis
 	steps = list(
-		list("key" = /obj/item/mecha_parts/part/honker_torso),		//1
-		list("key" = /obj/item/mecha_parts/part/honker_left_arm),	//2
-		list("key" = /obj/item/mecha_parts/part/honker_right_arm),	//3
-		list("key" = /obj/item/mecha_parts/part/honker_left_leg),	//4
-		list("key" = /obj/item/mecha_parts/part/honker_right_leg),	//5
-		list("key" = /obj/item/mecha_parts/part/honker_head)
+		list("key" = /obj/item/mecha_part/part/honker_torso),		//1
+		list("key" = /obj/item/mecha_part/part/honker_left_arm),	//2
+		list("key" = /obj/item/mecha_part/part/honker_right_arm),	//3
+		list("key" = /obj/item/mecha_part/part/honker_left_leg),	//4
+		list("key" = /obj/item/mecha_part/part/honker_right_leg),	//5
+		list("key" = /obj/item/mecha_part/part/honker_head)
 	)
 
 /datum/construction/mecha/honker_chassis/action(atom/used_atom, mob/user)
@@ -1202,7 +1202,7 @@
 	return 1
 
 /datum/construction/mecha/honker_chassis/spawn_result()
-	var/obj/item/mecha_parts/chassis/const_holder = holder
+	var/obj/item/mecha_part/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/mecha/honker(const_holder)
 	const_holder.density = TRUE
 	spawn()
@@ -1279,12 +1279,12 @@
 // Durand Chassis
 /datum/construction/mecha/durand_chassis
 	steps = list(
-		list("key" = /obj/item/mecha_parts/part/durand_torso),		//1
-		list("key" = /obj/item/mecha_parts/part/durand_left_arm),	//2
-		list("key" = /obj/item/mecha_parts/part/durand_right_arm),	//3
-		list("key" = /obj/item/mecha_parts/part/durand_left_leg),	//4
-		list("key" = /obj/item/mecha_parts/part/durand_right_leg),	//5
-		list("key" = /obj/item/mecha_parts/part/durand_head)
+		list("key" = /obj/item/mecha_part/part/durand_torso),		//1
+		list("key" = /obj/item/mecha_part/part/durand_left_arm),	//2
+		list("key" = /obj/item/mecha_part/part/durand_right_arm),	//3
+		list("key" = /obj/item/mecha_part/part/durand_left_leg),	//4
+		list("key" = /obj/item/mecha_part/part/durand_right_leg),	//5
+		list("key" = /obj/item/mecha_part/part/durand_head)
 	)
 
 /datum/construction/mecha/durand_chassis/custom_action(step, atom/used_atom, mob/user)
@@ -1300,7 +1300,7 @@
 	return check_all_steps(used_atom, user)
 
 /datum/construction/mecha/durand_chassis/spawn_result()
-	var/obj/item/mecha_parts/chassis/const_holder = holder
+	var/obj/item/mecha_part/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/durand(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
 	const_holder.icon_state = "durand0"
@@ -1327,7 +1327,7 @@
 		),
 		//3
 		list(
-			"key" = /obj/item/mecha_parts/part/durand_armour,
+			"key" = /obj/item/mecha_part/part/durand_armour,
 			"backkey" = /obj/item/weldingtool,
 			"desc" = "Internal armor is welded."
 		),
@@ -1697,7 +1697,7 @@
 					"[user] pries Durand Armour Plates from [holder].",
 					"You pry Durand Armour Plates from [holder]."
 				)
-				new /obj/item/mecha_parts/part/durand_armour(get_turf(holder))
+				new /obj/item/mecha_part/part/durand_armour(get_turf(holder))
 				holder.icon_state = "durand17"
 		if(1)
 			if(diff == FORWARD)
@@ -1722,12 +1722,12 @@
 /datum/construction/mecha/phazon_chassis
 	result = "/obj/mecha/combat/phazon"
 	steps = list(
-		list("key" = /obj/item/mecha_parts/part/phazon_torso),		//1
-		list("key" = /obj/item/mecha_parts/part/phazon_left_arm),	//2
-		list("key" = /obj/item/mecha_parts/part/phazon_right_arm),	//3
-		list("key" = /obj/item/mecha_parts/part/phazon_left_leg),	//4
-		list("key" = /obj/item/mecha_parts/part/phazon_right_leg),	//5
-		list("key" = /obj/item/mecha_parts/part/phazon_head)
+		list("key" = /obj/item/mecha_part/part/phazon_torso),		//1
+		list("key" = /obj/item/mecha_part/part/phazon_left_arm),	//2
+		list("key" = /obj/item/mecha_part/part/phazon_right_arm),	//3
+		list("key" = /obj/item/mecha_part/part/phazon_left_leg),	//4
+		list("key" = /obj/item/mecha_part/part/phazon_right_leg),	//5
+		list("key" = /obj/item/mecha_part/part/phazon_head)
 	)
 
 /datum/construction/mecha/phazon_chassis/custom_action(step, atom/used_atom, mob/user)
@@ -1745,12 +1745,12 @@
 // Odysseus Chassis
 /datum/construction/mecha/odysseus_chassis
 	steps = list(
-		list("key" = /obj/item/mecha_parts/part/odysseus_torso),	//1
-		list("key" = /obj/item/mecha_parts/part/odysseus_head),		//2
-		list("key" = /obj/item/mecha_parts/part/odysseus_left_arm),	//3
-		list("key" = /obj/item/mecha_parts/part/odysseus_right_arm),//4
-		list("key" = /obj/item/mecha_parts/part/odysseus_left_leg),	//5
-		list("key" = /obj/item/mecha_parts/part/odysseus_right_leg)	//6
+		list("key" = /obj/item/mecha_part/part/odysseus_torso),	//1
+		list("key" = /obj/item/mecha_part/part/odysseus_head),		//2
+		list("key" = /obj/item/mecha_part/part/odysseus_left_arm),	//3
+		list("key" = /obj/item/mecha_part/part/odysseus_right_arm),//4
+		list("key" = /obj/item/mecha_part/part/odysseus_left_leg),	//5
+		list("key" = /obj/item/mecha_part/part/odysseus_right_leg)	//6
 	)
 
 /datum/construction/mecha/odysseus_chassis/custom_action(step, atom/used_atom, mob/user)
@@ -1766,7 +1766,7 @@
 	return check_all_steps(used_atom, user)
 
 /datum/construction/mecha/odysseus_chassis/spawn_result()
-	var/obj/item/mecha_parts/chassis/const_holder = holder
+	var/obj/item/mecha_part/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/odysseus(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
 	const_holder.icon_state = "odysseus0"

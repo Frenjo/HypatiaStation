@@ -32,13 +32,13 @@
 
 /obj/mecha/combat/gygax/dark/New()
 	..()
-	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot
+	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/weapon/ballistic/scattershot
 	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flashbang/clusterbang
+	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang/clusterbang
 	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/teleporter
+	ME = new /obj/item/mecha_part/equipment/teleporter
 	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay
+	ME = new /obj/item/mecha_part/equipment/tesla_energy_relay
 	ME.attach(src)
 	return
 

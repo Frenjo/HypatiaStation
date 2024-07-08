@@ -93,11 +93,11 @@
 
 /obj/structure/largecrate/hoverpod/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/crowbar))
-		var/obj/item/mecha_parts/mecha_equipment/ME
+		var/obj/item/mecha_part/equipment/ME
 		var/obj/mecha/working/hoverpod/H = new (loc)
 
-		ME = new /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp
+		ME = new /obj/item/mecha_part/equipment/tool/hydraulic_clamp
 		ME.attach(H)
-		ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
+		ME = new /obj/item/mecha_part/equipment/tool/passenger
 		ME.attach(H)
 	..()

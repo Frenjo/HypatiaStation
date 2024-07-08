@@ -50,7 +50,7 @@
 					"You cut [N] from [src].",
 					"You hear the sound of a welder nearby."
 				)
-				if(istype(N, /obj/item/mecha_parts/part))
+				if(istype(N, /obj/item/mecha_part/part))
 					welder_salvage -= type
 				salvage_num--
 			else
@@ -98,12 +98,12 @@
 /obj/effect/decal/mecha_wreckage/gygax/New()
 	..()
 	var/list/parts = list(
-		/obj/item/mecha_parts/part/gygax_torso,
-		/obj/item/mecha_parts/part/gygax_head,
-		/obj/item/mecha_parts/part/gygax_left_arm,
-		/obj/item/mecha_parts/part/gygax_right_arm,
-		/obj/item/mecha_parts/part/gygax_left_leg,
-		/obj/item/mecha_parts/part/gygax_right_leg
+		/obj/item/mecha_part/part/gygax_torso,
+		/obj/item/mecha_part/part/gygax_head,
+		/obj/item/mecha_part/part/gygax_left_arm,
+		/obj/item/mecha_part/part/gygax_right_arm,
+		/obj/item/mecha_part/part/gygax_left_leg,
+		/obj/item/mecha_part/part/gygax_right_leg
 	)
 	for(var/i = 0; i < 2; i++)
 		if(!isemptylist(parts) && prob(40))
@@ -136,11 +136,11 @@
 /obj/effect/decal/mecha_wreckage/ripley/New()
 	..()
 	var/list/parts = list(
-		/obj/item/mecha_parts/part/ripley_torso,
-		/obj/item/mecha_parts/part/ripley_left_arm,
-		/obj/item/mecha_parts/part/ripley_right_arm,
-		/obj/item/mecha_parts/part/ripley_left_leg,
-		/obj/item/mecha_parts/part/ripley_right_leg
+		/obj/item/mecha_part/part/ripley_torso,
+		/obj/item/mecha_part/part/ripley_left_arm,
+		/obj/item/mecha_part/part/ripley_right_arm,
+		/obj/item/mecha_part/part/ripley_left_leg,
+		/obj/item/mecha_part/part/ripley_right_leg
 	)
 	for(var/i = 0; i < 2; i++)
 		if(!isemptylist(parts) && prob(40))
@@ -156,11 +156,11 @@
 /obj/effect/decal/mecha_wreckage/ripley/firefighter/New()
 	..()
 	var/list/parts = list(
-		/obj/item/mecha_parts/part/ripley_torso,
-		/obj/item/mecha_parts/part/ripley_left_arm,
-		/obj/item/mecha_parts/part/ripley_right_arm,
-		/obj/item/mecha_parts/part/ripley_left_leg,
-		/obj/item/mecha_parts/part/ripley_right_leg,
+		/obj/item/mecha_part/part/ripley_torso,
+		/obj/item/mecha_part/part/ripley_left_arm,
+		/obj/item/mecha_part/part/ripley_right_arm,
+		/obj/item/mecha_part/part/ripley_left_leg,
+		/obj/item/mecha_part/part/ripley_right_leg,
 		/obj/item/clothing/suit/fire
 	)
 	for(var/i = 0;i < 2; i++)
@@ -181,13 +181,13 @@
 /obj/effect/decal/mecha_wreckage/honker/New()
 	..()
 	var/list/parts = list(
-		/obj/item/mecha_parts/chassis/honker,
-		/obj/item/mecha_parts/part/honker_torso,
-		/obj/item/mecha_parts/part/honker_head,
-		/obj/item/mecha_parts/part/honker_left_arm,
-		/obj/item/mecha_parts/part/honker_right_arm,
-		/obj/item/mecha_parts/part/honker_left_leg,
-		/obj/item/mecha_parts/part/honker_right_leg
+		/obj/item/mecha_part/chassis/honker,
+		/obj/item/mecha_part/part/honker_torso,
+		/obj/item/mecha_part/part/honker_head,
+		/obj/item/mecha_part/part/honker_left_arm,
+		/obj/item/mecha_part/part/honker_right_arm,
+		/obj/item/mecha_part/part/honker_left_leg,
+		/obj/item/mecha_part/part/honker_right_leg
 	)
 	for(var/i = 0; i < 2; i++)
 		if(!isemptylist(parts) && prob(40))
@@ -203,12 +203,12 @@
 /obj/effect/decal/mecha_wreckage/durand/New()
 	..()
 	var/list/parts = list(
-		/obj/item/mecha_parts/part/durand_torso,
-		/obj/item/mecha_parts/part/durand_head,
-		/obj/item/mecha_parts/part/durand_left_arm,
-		/obj/item/mecha_parts/part/durand_right_arm,
-		/obj/item/mecha_parts/part/durand_left_leg,
-		/obj/item/mecha_parts/part/durand_right_leg
+		/obj/item/mecha_part/part/durand_torso,
+		/obj/item/mecha_part/part/durand_head,
+		/obj/item/mecha_part/part/durand_left_arm,
+		/obj/item/mecha_part/part/durand_right_arm,
+		/obj/item/mecha_part/part/durand_left_leg,
+		/obj/item/mecha_part/part/durand_right_leg
 	)
 	for(var/i = 0;i < 2; i++)
 		if(!isemptylist(parts) && prob(40))
@@ -229,12 +229,12 @@
 /obj/effect/decal/mecha_wreckage/odysseus/New()
 	..()
 	var/list/parts = list(
-		/obj/item/mecha_parts/part/odysseus_torso,
-		/obj/item/mecha_parts/part/odysseus_head,
-		/obj/item/mecha_parts/part/odysseus_left_arm,
-		/obj/item/mecha_parts/part/odysseus_right_arm,
-		/obj/item/mecha_parts/part/odysseus_left_leg,
-		/obj/item/mecha_parts/part/odysseus_right_leg
+		/obj/item/mecha_part/part/odysseus_torso,
+		/obj/item/mecha_part/part/odysseus_head,
+		/obj/item/mecha_part/part/odysseus_left_arm,
+		/obj/item/mecha_part/part/odysseus_right_arm,
+		/obj/item/mecha_part/part/odysseus_left_leg,
+		/obj/item/mecha_part/part/odysseus_right_leg
 	)
 	for(var/i = 0; i < 2; i++)
 		if(!isemptylist(parts) && prob(40))

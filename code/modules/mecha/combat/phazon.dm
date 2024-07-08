@@ -22,9 +22,9 @@
 
 /obj/mecha/combat/phazon/New()
 	..()
-	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/rcd
+	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/tool/rcd
 	ME.attach(src)
-	ME = new /obj/item/mecha_parts/mecha_equipment/gravcatapult
+	ME = new /obj/item/mecha_part/equipment/gravcatapult
 	ME.attach(src)
 	return
 

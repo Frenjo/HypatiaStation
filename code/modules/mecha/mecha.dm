@@ -68,7 +68,7 @@
 	var/wreckage
 
 	var/list/equipment = new
-	var/obj/item/mecha_parts/mecha_equipment/selected
+	var/obj/item/mecha_part/equipment/selected
 	var/max_equip = 3
 	var/datum/events/events
 
@@ -184,7 +184,7 @@
 			usr << "It's falling apart."
 	if(length(equipment))
 		usr << "It's equipped with:"
-		for(var/obj/item/mecha_parts/mecha_equipment/ME in equipment)
+		for(var/obj/item/mecha_part/equipment/ME in equipment)
 			usr << "\icon[ME] [ME]"
 	return
 
@@ -365,7 +365,7 @@
 				setInternalDamage(int_dam_flag)
 	if(prob(5))
 		if(ignore_threshold || src.health * 100 / initial(src.health) < src.internal_damage_threshold)
-			var/obj/item/mecha_parts/mecha_equipment/destr = safepick(equipment)
+			var/obj/item/mecha_part/equipment/destr = safepick(equipment)
 			if(destr)
 				destr.destroy()
 	return
@@ -476,7 +476,7 @@
 	return
 
 /obj/mecha/proc/dynhitby(atom/movable/A)
-	if(istype(A, /obj/item/mecha_parts/mecha_tracking))
+	if(istype(A, /obj/item/mecha_part/tracking))
 		A.forceMove(src)
 		src.visible_message("The [A] fastens firmly to [src].")
 		return
@@ -539,7 +539,7 @@
 			spawn(0)
 				if(wreckage)
 					var/obj/effect/decal/mecha_wreckage/WR = new wreckage(T)
-					for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
+					for(var/obj/item/mecha_part/equipment/E in equipment)
 						if(E.salvageable && prob(30))
 							WR.crowbar_salvage += E
 							E.forceMove(WR)
@@ -556,7 +556,7 @@
 						WR.crowbar_salvage += internal_tank
 						internal_tank.forceMove(WR)
 				else
-					for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
+					for(var/obj/item/mecha_part/equipment/E in equipment)
 						E.forceMove(T)
 						E.destroy()
 		spawn(0)
@@ -655,8 +655,8 @@
 			user << "[src]-MMI interface initialization failed."
 		return
 
-	if(istype(W, /obj/item/mecha_parts/mecha_equipment))
-		var/obj/item/mecha_parts/mecha_equipment/E = W
+	if(istype(W, /obj/item/mecha_part/equipment))
+		var/obj/item/mecha_part/equipment/E = W
 		spawn()
 			if(E.can_attach(src))
 				user.drop_item()
@@ -748,7 +748,7 @@
 			user << "The [src.name] is at full integrity"
 		return
 
-	else if(istype(W, /obj/item/mecha_parts/mecha_tracking))
+	else if(istype(W, /obj/item/mecha_part/tracking))
 		user.drop_from_inventory(W)
 		W.forceMove(src)
 		user.visible_message("[user] attaches [W] to [src].", "You attach [W] to [src]")
@@ -1349,7 +1349,7 @@
 		output += {"<div class='wr'>
 						<div class='header'>Equipment</div>
 						<div class='links'>"}
-		for(var/obj/item/mecha_parts/mecha_equipment/W in equipment)
+		for(var/obj/item/mecha_part/equipment/W in equipment)
 			output += "[W.name] <a href='byond://?src=\ref[W];detach=1'>Detach</a><br>"
 		output += "<b>Available equipment slots:</b> [max_equip - length(equipment)]"
 		output += "</div></div>"
@@ -1359,7 +1359,7 @@
 	if(!length(equipment))
 		return
 	var/output = "<b>Equipment:</b><div style=\"margin-left: 15px;\">"
-	for(var/obj/item/mecha_parts/mecha_equipment/MT in equipment)
+	for(var/obj/item/mecha_part/equipment/MT in equipment)
 		output += "<div id='\ref[MT]'>[MT.get_equip_info()]</div>"
 	output += "</div>"
 	return output
@@ -1458,7 +1458,7 @@
 	if(href_list["select_equip"])
 		if(usr != src.occupant)
 			return
-		var/obj/item/mecha_parts/mecha_equipment/equip = new_filter.getObj("select_equip")
+		var/obj/item/mecha_part/equipment/equip = new_filter.getObj("select_equip")
 		if(equip)
 			src.selected = equip
 			src.occupant_message("You switch to [equip]")
