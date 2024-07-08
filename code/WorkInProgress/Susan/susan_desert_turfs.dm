@@ -19,43 +19,43 @@
 /turf/simulated/wall/impassable_rock/New()
 	icon_state = "rock"
 
-/area/awaymission/labs/researchdivision
+/area/away_mission/labs/researchdivision
 	name = "Research"
 	icon_state = "away3"
 
-/area/awaymission/labs/militarydivision
+/area/away_mission/labs/militarydivision
 	name = "Military"
 	icon_state = "away2"
 
-/area/awaymission/labs/gateway
+/area/away_mission/labs/gateway
 	name = "Gateway"
 	icon_state = "away1"
 
-/area/awaymission/labs/command
+/area/away_mission/labs/command
 	name = "Command"
 	icon_state = "away"
 
-/area/awaymission/labs/civilian
+/area/away_mission/labs/civilian
 	name = "Civilian"
 	icon_state = "away3"
 
-/area/awaymission/labs/cargo
+/area/away_mission/labs/cargo
 	name = "Cargo"
 	icon_state = "away2"
 
-/area/awaymission/labs/medical
+/area/away_mission/labs/medical
 	name = "Medical"
 	icon_state = "away1"
 
-/area/awaymission/labs/security
+/area/away_mission/labs/security
 	name = "Security"
 	icon_state = "away"
 
-/area/awaymission/labs/solars
+/area/away_mission/labs/solars
 	name = "Solars"
 	icon_state = "away3"
 
-/area/awaymission/labs/cave
+/area/away_mission/labs/cave
 	name = "Caves"
 	icon_state = "away2"
 

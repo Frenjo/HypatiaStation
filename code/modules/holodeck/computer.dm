@@ -12,9 +12,9 @@
 
 /obj/machinery/computer/holodeck_control/New()
 	. = ..()
-	linked_holodeck = locate(/area/holodeck/alpha)
+	linked_holodeck = locate(/area/special/holodeck/alpha)
 	//if(linkedholodeck)
-	//	target = locate(/area/holodeck/source_emptycourt)
+	//	target = locate(/area/special/holodeck/source_emptycourt)
 	//	if(target)
 	//		loadProgram(target)
 
@@ -81,76 +81,76 @@
 		usr.set_machine(src)
 
 		if(href_list["emptycourt"])
-			target = locate(/area/holodeck/source/empty_court)
+			target = locate(/area/special/holodeck/source/empty_court)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["boxingcourt"])
-			target = locate(/area/holodeck/source/boxing_court)
+			target = locate(/area/special/holodeck/source/boxing_court)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["basketball"])
-			target = locate(/area/holodeck/source/basketball_court)
+			target = locate(/area/special/holodeck/source/basketball_court)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["thunderdomecourt"])
-			target = locate(/area/holodeck/source/thunderdome_court)
+			target = locate(/area/special/holodeck/source/thunderdome_court)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["beach"])
-			target = locate(/area/holodeck/source/beach)
+			target = locate(/area/special/holodeck/source/beach)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["desert"])
-			target = locate(/area/holodeck/source/desert)
+			target = locate(/area/special/holodeck/source/desert)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["space"])
-			target = locate(/area/holodeck/source/space)
+			target = locate(/area/special/holodeck/source/space)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["picnicarea"])
-			target = locate(/area/holodeck/source/picnic_area)
+			target = locate(/area/special/holodeck/source/picnic_area)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["snowfield"])
-			target = locate(/area/holodeck/source/snow_field)
+			target = locate(/area/special/holodeck/source/snow_field)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["theatre"])
-			target = locate(/area/holodeck/source/theatre)
+			target = locate(/area/special/holodeck/source/theatre)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["meetinghall"])
-			target = locate(/area/holodeck/source/meeting_hall)
+			target = locate(/area/special/holodeck/source/meeting_hall)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["turnoff"])
-			target = locate(/area/holodeck/source/plating)
+			target = locate(/area/special/holodeck/source/plating)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["burntest"])
 			if(!emagged)
 				return
-			target = locate(/area/holodeck/source/burn_test)
+			target = locate(/area/special/holodeck/source/burn_test)
 			if(target)
 				loadProgram(target)
 
 		else if(href_list["wildlifecarp"])
 			if(!emagged)
 				return
-			target = locate(/area/holodeck/source/wildlife)
+			target = locate(/area/special/holodeck/source/wildlife)
 			if(target)
 				loadProgram(target)
 
@@ -216,7 +216,7 @@
 	if(active)
 		if(!checkInteg(linked_holodeck))
 			damaged = 1
-			target = locate(/area/holodeck/source/plating)
+			target = locate(/area/special/holodeck/source/plating)
 			if(target)
 				loadProgram(target)
 			active = 0
@@ -254,7 +254,7 @@
 
 /obj/machinery/computer/holodeck_control/proc/togglePower(toggleOn = 0)
 	if(toggleOn)
-		var/area/targetsource = locate(/area/holodeck/source/empty_court)
+		var/area/targetsource = locate(/area/special/holodeck/source/empty_court)
 		holographic_items = targetsource.copy_contents_to(linked_holodeck)
 
 		spawn(30)
@@ -271,7 +271,7 @@
 	else
 		for(var/item in holographic_items)
 			derez(item)
-		var/area/targetsource = locate(/area/holodeck/source/plating)
+		var/area/targetsource = locate(/area/special/holodeck/source/plating)
 		targetsource.copy_contents_to(linked_holodeck , 1)
 		active = 0
 
@@ -319,10 +319,10 @@
 	for(var/item in holographic_items)
 		derez(item)
 	//Turn it back to the regular non-holographic room
-	target = locate(/area/holodeck/source/plating)
+	target = locate(/area/special/holodeck/source/plating)
 	if(target)
 		loadProgram(target)
 
-	var/area/targetsource = locate(/area/holodeck/source/plating)
+	var/area/targetsource = locate(/area/special/holodeck/source/plating)
 	targetsource.copy_contents_to(linked_holodeck, 1)
 	active = 0

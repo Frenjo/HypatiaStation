@@ -1,5 +1,5 @@
 /*
- * Miscellaneous Areas
+ * Miscellaneous Special Areas
  */
 /area/planet/clown
 	name = "\improper Clown Planet"
@@ -7,12 +7,7 @@
 	requires_power = FALSE
 
 // Alien
-/area/alien
+/area/special/alien
 	name = "\improper Alien Base"
 	icon_state = "yellow"
 	requires_power = FALSE
-
-// Construction
-/area/construction
-	name = "\improper Construction Area"
-	icon_state = "yellow"

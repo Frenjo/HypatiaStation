@@ -49,7 +49,7 @@
 			spawn_area_type = /area/station/command/vault
 			locstring = "the vault"
 		if(LOC_CONSTR)
-			spawn_area_type = /area/construction
+			spawn_area_type = /area/station/construction
 			locstring = "the construction area"
 		if(LOC_TECH)
 			spawn_area_type = /area/station/storage/tech

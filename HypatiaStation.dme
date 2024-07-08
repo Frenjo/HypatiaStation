@@ -177,6 +177,7 @@
 #include "code\game\areas\station\hallway.dm"
 #include "code\game\areas\station\maintenance.dm"
 #include "code\game\areas\station\medical.dm"
+#include "code\game\areas\station\misc.dm"
 #include "code\game\areas\station\research.dm"
 #include "code\game\areas\station\security.dm"
 #include "code\game\areas\station\solar.dm"

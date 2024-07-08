@@ -1,32 +1,32 @@
 // Spacebattle
-/area/awaymission/spacebattle
+/area/away_mission/spacebattle
 	name = "\improper Space Battle"
 	icon_state = "away"
 	requires_power = FALSE
 
-/area/awaymission/spacebattle/cruiser
+/area/away_mission/spacebattle/cruiser
 	name = "\improper NanoTrasen Cruiser"
 
-/area/awaymission/spacebattle/syndicate1
+/area/away_mission/spacebattle/syndicate1
 	name = "\improper Syndicate Assault Ship 1"
 
-/area/awaymission/spacebattle/syndicate2
+/area/away_mission/spacebattle/syndicate2
 	name = "\improper Syndicate Assault Ship 2"
 
-/area/awaymission/spacebattle/syndicate3
+/area/away_mission/spacebattle/syndicate3
 	name = "\improper Syndicate Assault Ship 3"
 
-/area/awaymission/spacebattle/syndicate4
+/area/away_mission/spacebattle/syndicate4
 	name = "\improper Syndicate War Sphere 1"
 
-/area/awaymission/spacebattle/syndicate5
+/area/away_mission/spacebattle/syndicate5
 	name = "\improper Syndicate War Sphere 2"
 
-/area/awaymission/spacebattle/syndicate6
+/area/away_mission/spacebattle/syndicate6
 	name = "\improper Syndicate War Sphere 3"
 
-/area/awaymission/spacebattle/syndicate7
+/area/away_mission/spacebattle/syndicate7
 	name = "\improper Syndicate Fighter"
 
-/area/awaymission/spacebattle/secret
+/area/away_mission/spacebattle/secret
 	name = "\improper Hidden Chamber"

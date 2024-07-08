@@ -19,25 +19,25 @@
  * Areas
  */
 //Gateroom gets its own APC specifically for the gate
-/area/awaymission/gateroom
+/area/away_mission/gateroom
 
 //Library, medbay, storage room
-/area/awaymission/southblock
+/area/away_mission/southblock
 
 //Arrivals, security, hydroponics, shuttles (since they dont move, they dont need specific areas)
-/area/awaymission/arrivalblock
+/area/away_mission/arrivalblock
 
 //Crew quarters, cafeteria, chapel
-/area/awaymission/midblock
+/area/away_mission/midblock
 
 //engineering, bridge (not really north but it doesnt really need its own APC)
-/area/awaymission/northblock
+/area/away_mission/northblock
 
 //That massive research room
-/area/awaymission/research
+/area/away_mission/research
 
 //Syndicate shuttle
-/area/awaymission/syndishuttle
+/area/away_mission/syndishuttle
 
 
 /*

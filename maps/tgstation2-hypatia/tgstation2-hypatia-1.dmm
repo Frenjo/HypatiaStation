@@ -2565,7 +2565,7 @@
 "iKc" = (/obj/structure/table/reinforced{icon_state = "table"},/obj/item/storage/box/donkpockets{pixel_x = 3; pixel_y = 3},/obj/item/storage/box/donkpockets{pixel_x = 3; pixel_y = 3},/obj/item/storage/box/donkpockets{pixel_x = 3; pixel_y = 3},/obj/machinery/newscaster{dir = 8; pixel_x = 28},/turf/simulated/floor{dir = 5; icon_state = "vault"},/area/station/crew/bunker)
 "iKi" = (/obj/machinery/atmospherics/mains_pipe/simple/hidden{dir = 4},/turf/simulated/floor{dir = 9; icon_state = "whitehall"},/area/station/research/hallway)
 "iKp" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/disposalpipe/segment,/obj/machinery/atmospherics/mains_pipe/simple/hidden,/turf/simulated/floor/wood,/area/station/command/bridge/meeting_room)
-"iKC" = (/turf/simulated/floor/reinforced{name = "Holodeck Projector Floor"},/area/holodeck/alpha)
+"iKC" = (/turf/simulated/floor/reinforced{name = "Holodeck Projector Floor"},/area/special/holodeck/alpha)
 "iKD" = (/obj/machinery/bodyscanner,/obj/structure/sign/nosmoking_2{pixel_y = 30},/turf/simulated/floor/tiled/white,/area/station/medical/exam_room)
 "iKG" = (/obj/effect/decal/floor/industrial/warning/border{dir = 8},/turf/simulated/floor/tiled/grey,/area/external/prison/solitary)
 "iKJ" = (/obj/structure/disposalpipe/segment{dir = 1; icon_state = "pipe-c"},/turf/simulated/floor/plating/metal,/area/station/maintenance/aft/starboard_central)

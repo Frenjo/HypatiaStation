@@ -1,5 +1,5 @@
 // Beach
-/area/awaymission/beach
+/area/away_mission/beach
 	name = "Beach"
 	icon_state = "null"
 	luminosity = 1
@@ -7,7 +7,7 @@
 	requires_power = FALSE
 	var/sound/mysound = null
 
-/area/awaymission/beach/New()
+/area/away_mission/beach/New()
 	..()
 	var/sound/S = new/sound()
 	mysound = S
@@ -20,20 +20,20 @@
 	S.status = SOUND_UPDATE
 	process()
 
-/area/awaymission/beach/Entered(atom/movable/Obj, atom/OldLoc)
+/area/away_mission/beach/Entered(atom/movable/Obj, atom/OldLoc)
 	if(ismob(Obj))
 		if(Obj:client)
 			mysound.status = SOUND_UPDATE
 			Obj << mysound
 	return
 
-/area/awaymission/beach/Exited(atom/movable/Obj)
+/area/away_mission/beach/Exited(atom/movable/Obj)
 	if(ismob(Obj))
 		if(Obj:client)
 			mysound.status = SOUND_PAUSED | SOUND_UPDATE
 			Obj << mysound
 
-/area/awaymission/beach/proc/process()
+/area/away_mission/beach/proc/process()
 	set background = BACKGROUND_ENABLED
 
 	var/sound/S = null

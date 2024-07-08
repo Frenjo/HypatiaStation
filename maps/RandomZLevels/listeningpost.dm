@@ -1,5 +1,5 @@
 // Listening Post
-/area/awaymission/listeningpost
+/area/away_mission/listeningpost
 	name = "\improper Listening Post"
 	icon_state = "away"
 	requires_power = FALSE

@@ -8,36 +8,36 @@
 /*
  * Map Areas
  */
-/area/awaymission/wwmines
+/area/away_mission/wwmines
 	name = "\improper Wild West Mines"
 	icon_state = "away1"
 	luminosity = 1
 	requires_power = FALSE
 
-/area/awaymission/wwgov
+/area/away_mission/wwgov
 	name = "\improper Wild West Mansion"
 	icon_state = "away2"
 	luminosity = 1
 	requires_power = FALSE
 
-/area/awaymission/wwrefine
+/area/away_mission/wwrefine
 	name = "\improper Wild West Refinery"
 	icon_state = "away3"
 	luminosity = 1
 	requires_power = FALSE
 
-/area/awaymission/wwvault
+/area/away_mission/wwvault
 	name = "\improper Wild West Vault"
 	icon_state = "away3"
 	luminosity = 0
 
-/area/awaymission/wwvaultdoors
+/area/away_mission/wwvaultdoors
 	name = "\improper Wild West Vault Doors"  // this is to keep the vault area being entirely lit because of requires_power
 	icon_state = "away2"
 	requires_power = FALSE
 	luminosity = 0
 
-/area/awaymission/desert
+/area/away_mission/desert
 	name = "Mars"
 	icon_state = "away"
 

@@ -39,12 +39,12 @@
 	return
 
 // Away Missions
-/area/awaymission
+/area/away_mission
 	name = "\improper Strange Location"
 	icon_state = "away"
 
 // Beach
-/area/beach
+/area/special/beach
 	name = "Keelin's private beach"
 	icon_state = "null"
 	luminosity = 1
@@ -53,7 +53,7 @@
 
 	var/sound/mysound = null
 
-/area/beach/New()
+/area/special/beach/New()
 	. = ..()
 	var/sound/S = new/sound()
 	mysound = S
@@ -66,20 +66,20 @@
 	S.status = SOUND_UPDATE
 	process()
 
-/area/beach/Entered(atom/movable/Obj, atom/OldLoc)
+/area/special/beach/Entered(atom/movable/Obj, atom/OldLoc)
 	if(ismob(Obj))
 		if(Obj:client)
 			mysound.status = SOUND_UPDATE
 			Obj << mysound
 	return
 
-/area/beach/Exited(atom/movable/Obj)
+/area/special/beach/Exited(atom/movable/Obj)
 	if(ismob(Obj))
 		if(Obj:client)
 			mysound.status = SOUND_PAUSED | SOUND_UPDATE
 			Obj << mysound
 
-/area/beach/proc/process()
+/area/special/beach/proc/process()
 	set background = BACKGROUND_ENABLED
 
 	var/sound/S = null

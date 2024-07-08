@@ -1,21 +1,21 @@
 //Academy Areas
-/area/awaymission/academy
+/area/away_mission/academy
 	name = "\improper Academy Asteroids"
 	icon_state = "away"
 
-/area/awaymission/academy/headmaster
+/area/away_mission/academy/headmaster
 	name = "\improper Academy Fore Block"
 	icon_state = "away1"
 
-/area/awaymission/academy/classrooms
+/area/away_mission/academy/classrooms
 	name = "\improper Academy Classroom Block"
 	icon_state = "away2"
 
-/area/awaymission/academy/academyaft
+/area/away_mission/academy/academyaft
 	name = "\improper Academy Ship Aft Block"
 	icon_state = "away3"
 
-/area/awaymission/academy/academygate
+/area/away_mission/academy/academygate
 	name = "\improper Academy Gateway"
 	icon_state = "away4"
 

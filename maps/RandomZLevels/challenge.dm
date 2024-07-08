@@ -1,15 +1,15 @@
 //Challenge Areas
 
-/area/awaymission/challenge/start
+/area/away_mission/challenge/start
 	name = "Where Am I?"
 	icon_state = "away"
 
-/area/awaymission/challenge/main
+/area/away_mission/challenge/main
 	name = "\improper Danger Room"
 	icon_state = "away1"
 	requires_power = FALSE
 
-/area/awaymission/challenge/end
+/area/away_mission/challenge/end
 	name = "Administration"
 	icon_state = "away2"
 	requires_power = FALSE
