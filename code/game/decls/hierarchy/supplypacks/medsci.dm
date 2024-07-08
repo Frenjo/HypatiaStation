@@ -5,8 +5,8 @@
 /decl/hierarchy/supply_pack/medsci/stemcell
 	name = "Stem-Cell Pack (2)"
 	contains = list(
-		/obj/item/cloning/charge,
-		/obj/item/cloning/charge
+		/obj/item/cloning_charge,
+		/obj/item/cloning_charge
 	)
 	cost = 125
 	containertype = /obj/structure/closet/crate/secure/bio

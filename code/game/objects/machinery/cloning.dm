@@ -67,7 +67,7 @@
 	buf.dna.SE = new_SE
 	buf.dna.SetSEValueRange(MONKEYBLOCK, 0xDAC, 0xFFF)
 
-/obj/item/cloning/charge
+/obj/item/cloning_charge
 	name = "Short-Term Biological Suspension Unit (SBSU)"
 	//desc = "PLACEHOLDER"
 	icon = 'icons/obj/storage/storage.dmi'
@@ -315,7 +315,7 @@
 		else
 			src.locked = 0
 			to_chat(user, "System unlocked.")
-	else if(istype(W, /obj/item/cloning/charge))
+	else if(istype(W, /obj/item/cloning_charge))
 		to_chat(user, SPAN_INFO("\The [src] processes \the [W]."))
 		biomass += 1
 		user.drop_item()
