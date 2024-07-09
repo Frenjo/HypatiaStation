@@ -19,10 +19,6 @@
 /area/station/storage/art
 	name = "Art Supply Storage"
 
-/area/station/storage/eva
-	name = "EVA Storage"
-	icon_state = "eva"
-
 /area/station/storage/tech
 	name = "Technical Storage"
 

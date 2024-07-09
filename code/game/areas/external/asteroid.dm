@@ -5,23 +5,23 @@
  *
  * Some of this was originally in mine_areas.dm as part of the mining module.
  */
-/area/asteroid // -- TLE
+/area/external/asteroid // -- TLE
 	name = "\improper Asteroid"
 	icon_state = "asteroid"
 	ambience = list(
 		'sound/ambience/song_game.ogg'
 	)
 
-/area/asteroid/cave // -- TLE
+/area/external/asteroid/cave // -- TLE
 	name = "\improper Asteroid - Underground"
 	icon_state = "cave"
 
-/area/asteroid/artifact_room
+/area/external/asteroid/artifact_room
 	name = "\improper Asteroid - Artifact"
 	icon_state = "cave"
 
 // Mining
-/area/asteroid/mine
+/area/external/asteroid/mine
 	name = "Mine"
 	icon_state = "mining"
 	ambience = list(
@@ -29,8 +29,8 @@
 		'sound/ambience/song_game.ogg'
 	)
 
-/area/asteroid/mine/explored
+/area/external/asteroid/mine/explored
 	icon_state = "explored"
 
-/area/asteroid/mine/unexplored
+/area/external/asteroid/mine/unexplored
 	icon_state = "unexplored"

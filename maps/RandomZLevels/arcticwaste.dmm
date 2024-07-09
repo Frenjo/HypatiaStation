@@ -39,7 +39,7 @@
 "M" = (/obj/machinery/space_heater,/turf/simulated/floor/plating/metal{dir = 2; icon_state = "warnplate"; tag = "icon-warnplate (NORTH)"},/area/away_mission)
 "N" = (/turf/simulated/floor/plating/metal{tag = "icon-warnplate (SOUTHEAST)"; icon_state = "warnplate"; dir = 6},/area/away_mission)
 "O" = (/obj/machinery/light,/turf/simulated/floor/plating/metal,/area/away_mission)
-"P" = (/turf/space,/area/planet/clown)
+"P" = (/turf/space,/area/external/planet/clown)
 "Q" = (/obj/structure/ladder{height = 1; id = "arcticwaste"},/turf/simulated/floor/plating/snow{icon_state = "plating"},/area/away_mission)
 "R" = (/obj/structure/flora/bush,/turf/simulated/floor/plating/snow,/area/away_mission)
 "S" = (/obj/structure/flora/tree/pine,/obj/structure/flora/grass/both,/turf/simulated/floor/plating/snow,/area/away_mission)

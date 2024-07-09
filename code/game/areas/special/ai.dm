@@ -1,3 +1,8 @@
+/*
+ * AI Monitored & Turret Protected Areas
+ *
+ * I kept these together because they always were, also why not?
+ */
 // AI Monitored
 /area/ai_monitored
 	name = "AI Monitored Area"
@@ -23,11 +28,11 @@
 	if(ismob(O) && motioncamera)
 		motioncamera.lostTarget(O)
 
-//AI
 /area/ai_monitored/storage/eva
 	name = "EVA Storage"
 	icon_state = "eva"
 
+// Turret Protected
 /area/turret_protected
 	name = "Turret Protected Area"
 	icon_state = "ai"
@@ -48,7 +53,7 @@
 	)
 	area_flags = AREA_FLAG_IS_SURGE_PROTECTED
 
-/area/turret_protected/ai
+/area/turret_protected/ai_chamber
 	name = "\improper AI Chamber"
 	icon_state = "ai_chamber"
 	ambience = list(

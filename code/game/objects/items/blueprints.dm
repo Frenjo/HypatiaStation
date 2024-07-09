@@ -84,7 +84,7 @@ move an amendment</a> to the drawing.</p>
 	var/list/SPECIALS = list(
 		/area/shuttle,
 		/area/centcom,
-		/area/asteroid,
+		/area/external/asteroid,
 		/area/enemy/syndicate_station,
 		/area/enemy/wizard_station,
 		/area/external/prison
