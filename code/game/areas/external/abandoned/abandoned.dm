@@ -18,6 +18,4 @@
 /area/external/abandoned/assembly_line
 	name = "\improper Assembly Line"
 	icon_state = "ass_line"
-	power_equip = 0
-	power_light = 0
-	power_environ = 0
+	power_channels = list(EQUIP = FALSE, LIGHT = FALSE, ENVIRON = FALSE)

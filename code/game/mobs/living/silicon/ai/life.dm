@@ -54,7 +54,7 @@
 /mob/living/silicon/ai/proc/check_power_status()
 	var/has_power = TRUE
 	var/area/current_area = get_area(src)
-	if(!current_area.power_equip && !isitem(loc))
+	if(!current_area.powered(EQUIP) && !isitem(loc))
 		has_power = FALSE
 
 	if(has_power)
@@ -99,7 +99,7 @@
 
 	var/area/current_area = get_area(src)
 	var/turf/current_turf = get_turf(src)
-	if(current_area.power_equip || isspace(current_turf) || isitem(loc))
+	if(current_area.powered(EQUIP) || isspace(current_turf) || isitem(loc))
 		return
 
 	if(aiRestorePowerRoutine == 0)
@@ -115,7 +115,7 @@
 		spawn(20)
 			to_chat(src, "Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection.")
 			sleep(50)
-			if(current_area.power_equip)
+			if(current_area.powered(EQUIP))
 				if(!isspace(current_turf))
 					to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 					aiRestorePowerRoutine = 0
@@ -148,7 +148,7 @@
 					aiRestorePowerRoutine = 2
 					return
 
-				if(current_area.power_equip)
+				if(current_area.powered(EQUIP))
 					if(!isspace(current_turf))
 						to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 						aiRestorePowerRoutine = 0

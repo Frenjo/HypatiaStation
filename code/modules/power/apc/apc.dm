@@ -31,11 +31,7 @@
 	var/aidisabled = 0
 	var/tdir = null
 	var/obj/machinery/power/terminal/terminal = null
-	var/lastused_light = 0
-	var/lastused_equip = 0
-	var/lastused_environ = 0
-	var/lastused_total = 0
-	var/lastused_charging = 0
+	var/list/last_used = list(EQUIP = 0, LIGHT = 0, ENVIRON = 0, TOTAL = 0, CHARGING = 0)
 	var/main_status = 0
 	var/wiresexposed = 0
 	var/malfhack = 0 //New var for my changes to AI malf. --NeoFite
@@ -100,9 +96,8 @@
 				malf.apcs--
 
 	area.apc = null
-	area.power_light = FALSE
-	area.power_equip = FALSE
-	area.power_environ = FALSE
+	for(var/channel in area.power_channels)
+		area.power_channels[channel] = FALSE
 	area.power_change()
 	if(occupant)
 		malfvacate(1)
@@ -239,7 +234,7 @@
 	..()
 
 /obj/machinery/power/apc/proc/report()
-	return "[area.name] : [equipment]/[lighting]/[environ] ([lastused_equip + lastused_light + lastused_environ]) : [cell ? cell.percent() : "N/C"] ([charging])"
+	return "[area.name] : [equipment]/[lighting]/[environ] ([last_used[EQUIP] + last_used[LIGHT] + last_used[ENVIRON]]) : [cell ? cell.percent() : "N/C"] ([charging])"
 
 /obj/machinery/power/apc/proc/init()
 	has_electronics = 2 //installed and secured

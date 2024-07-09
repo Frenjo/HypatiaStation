@@ -55,12 +55,8 @@
 	var/requires_power = TRUE
 	var/always_unpowered = FALSE
 	var/obj/machinery/power/apc/apc = null
-	var/power_equip = TRUE
-	var/power_light = TRUE
-	var/power_environ = TRUE
-	var/used_equip = 0
-	var/used_light = 0
-	var/used_environ = 0
+	var/list/power_channels = list(EQUIP = TRUE, LIGHT = TRUE, ENVIRON = TRUE)
+	var/list/power_used = list(EQUIP = 0, LIGHT = 0, ENVIRON = 0)
 
 	/*
 	 * Light Switch / Gravity
@@ -96,13 +92,12 @@
 /area/initialise()
 	. = ..()
 	if(!requires_power || isnull(apc))
-		power_light = FALSE		//rastaf0
-		power_equip = FALSE		//rastaf0
-		power_environ = FALSE	//rastaf0
+		for(var/channel in power_channels)	//rastaf0
+			power_channels[channel] = FALSE
 	power_change()		// all machines set to current power level, also updates lighting icon
 
 /area/proc/updateicon()
-	if((fire_alarm || evac_alarm || party_alarm || destruct_alarm) && ((!requires_power) ? (!requires_power) : power_environ))
+	if((fire_alarm || evac_alarm || party_alarm || destruct_alarm) && ((!requires_power) ? (!requires_power) : power_channels[ENVIRON]))
 		if(fire_alarm && !evac_alarm && !party_alarm && !destruct_alarm)
 			icon_state = "blue"
 		else if(atmos_alarm && !fire_alarm && !evac_alarm && !party_alarm && !destruct_alarm)

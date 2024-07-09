@@ -39,10 +39,10 @@
 	if(!area.requires_power)
 		return
 
-	lastused_light = area.usage(LIGHT)
-	lastused_equip = area.usage(EQUIP)
-	lastused_environ = area.usage(ENVIRON)
-	lastused_total = lastused_light + lastused_equip + lastused_environ
+	last_used[EQUIP] = area.usage(EQUIP)
+	last_used[LIGHT] = area.usage(LIGHT)
+	last_used[ENVIRON] = area.usage(ENVIRON)
+	last_used[TOTAL] = last_used[EQUIP] + last_used[LIGHT] + last_used[ENVIRON]
 	area.clear_usage()
 
 	//store states to update icon if any change
@@ -62,15 +62,15 @@
 
 	if(cell && !shorted)
 		// draw power from cell as before to power the area
-		var/cellused = min(cell.charge, CELLRATE * lastused_total)	// clamp deduction to a max, amount left in cell
+		var/cellused = min(cell.charge, CELLRATE * last_used[TOTAL])	// clamp deduction to a max, amount left in cell
 		cell.use(cellused)
 
-		if(excess > lastused_total)		// if power excess recharge the cell
+		if(excess > last_used[TOTAL])		// if power excess recharge the cell
 										// by the same amount just used
 			var/draw = draw_power(cellused / CELLRATE) // draw the power needed to charge this cell
 			cell.give(draw * CELLRATE)
 		else		// no excess, and not enough per-apc
-			if((cell.charge / CELLRATE + excess) >= lastused_total)		// can we draw enough from cell+grid to cover last usage?
+			if((cell.charge / CELLRATE + excess) >= last_used[TOTAL])		// can we draw enough from cell+grid to cover last usage?
 				var/draw = draw_power(excess)
 				cell.charge = min(cell.maxcharge, cell.charge + CELLRATE * draw)	//recharge with what we can
 				charging = 0
@@ -126,7 +126,7 @@
 				autoflag = 0
 
 		// now trickle-charge the cell
-		lastused_charging = 0 // Clear the variable for new use.
+		last_used[CHARGING] = 0 // Clear the variable for new use.
 		if(src.attempt_charging())
 			if(excess > 0)		// check to make sure we have enough to charge
 				// Max charge is capped to % per second constant
@@ -135,8 +135,8 @@
 				ch = draw_power(ch / CELLRATE) // Removes the power we're taking from the grid
 				cell.give(ch * CELLRATE) // actually recharge the cell
 
-				lastused_charging = ch
-				lastused_total += ch // Sensors need this to stop reporting APC charging as "Other" load
+				last_used[CHARGING] = ch
+				last_used[TOTAL] += ch // Sensors need this to stop reporting APC charging as "Other" load
 			else
 				charging = 0		// stop charging
 				chargecount = 0
@@ -228,17 +228,16 @@
 
 /obj/machinery/power/apc/proc/update()
 	if(operating && !shorted)
+		area.power_channels[EQUIP] = (equipment >= POWERCHAN_ON)
 		//prevent unnecessary updates to emergency lighting
 		var/new_power_light = (lighting >= POWERCHAN_ON)
-		if(area.power_light != new_power_light)
-			area.power_light = new_power_light
+		if(area.power_channels[LIGHT] != new_power_light)
+			area.power_channels[LIGHT] = new_power_light
 			area.set_emergency_lighting(lighting == POWERCHAN_OFF_AUTO) //if lights go auto-off, emergency lights go on
-		area.power_equip = (equipment >= POWERCHAN_ON)
-		area.power_environ = (environ >= POWERCHAN_ON)
+		area.power_channels[ENVIRON] = (environ >= POWERCHAN_ON)
 	else
-		area.power_light = FALSE
-		area.power_equip = FALSE
-		area.power_environ = FALSE
+		for(var/channel in area.power_channels)
+			area.power_channels[channel] = FALSE
 	area.power_change()
 
 // val 0=off, 1=off(auto) 2=on 3=on(auto)

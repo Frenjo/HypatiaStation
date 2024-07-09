@@ -57,7 +57,7 @@
 	if(!A.powered(EQUIP))
 		return
 	A.use_power(EQUIP, 5000)
-	var/light = A.power_light
+	var/light = A.power_channels[LIGHT]
 	A.updateicon()
 
 	flick("echair1", src)
@@ -73,6 +73,6 @@
 		SPAN_DANGER("You hear a deep sharp shock!")
 	)
 
-	A.power_light = light
+	A.power_channels[LIGHT] = light
 	A.updateicon()
 	return

@@ -18,7 +18,7 @@
  *		USE_POWER_ACTIVE (num)
  *			Value for the amount of power to use when in active power mode
  *
- *	power_channel (num)
+ *	power_channel (string)
  *		What channel to draw from when drawing power for power mode
  *		Possible Values:
  *			EQUIP -- Equipment Channel

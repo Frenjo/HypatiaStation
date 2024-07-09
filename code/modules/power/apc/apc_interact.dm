@@ -19,15 +19,15 @@
 		"powerCellStatus" = cell ? cell.percent() : null,
 		"chargeMode" = chargemode,
 		"chargingStatus" = charging,
-		"totalLoad" = round(lastused_total),
-		"totalCharging" = round(lastused_charging),
+		"totalLoad" = round(last_used[TOTAL]),
+		"totalCharging" = round(last_used[CHARGING]),
 		"coverLocked" = coverlocked,
 		"malfStatus" = get_malf_status(user),
 
 		"powerChannels" = list(
 			list(
 				"title" = "Equipment",
-				"powerLoad" = lastused_equip,
+				"powerLoad" = last_used[EQUIP],
 				"status" = equipment,
 				"topicParams" = list(
 					"auto"	= list("eqp" = 3),
@@ -37,7 +37,7 @@
 			),
 			list(
 				"title" = "Lighting",
-				"powerLoad" = lastused_light,
+				"powerLoad" = last_used[LIGHT],
 				"status" = lighting,
 				"topicParams" = list(
 					"auto"	= list("lgt" = 3),
@@ -47,7 +47,7 @@
 			),
 			list(
 				"title" = "Environment",
-				"powerLoad" = lastused_environ,
+				"powerLoad" = last_used[ENVIRON],
 				"status" = environ,
 				"topicParams" = list(
 					"auto"	= list("env" = 3),

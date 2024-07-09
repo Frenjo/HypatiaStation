@@ -67,7 +67,6 @@
 
 // Added these due to map editing. -Frenjo
 /area/external/tcomsat/solar
-	requires_power = TRUE
 	always_unpowered = TRUE
 	icon_state = "tcomsatlounge"
 

@@ -15,10 +15,11 @@
 #define USE_POWER_ACTIVE	"2" // Run auto, use active.
 
 // Values for the power_channel variable.
-#define EQUIP	1 // Use the equipment power channel.
-#define LIGHT	2 // Use the lighting power channel.
-#define ENVIRON	3 // Use the environment power channel.
-#define TOTAL	4 // For total power used only.
+#define EQUIP	"equip" // Use the equipment power channel.
+#define LIGHT	"light" // Use the lighting power channel.
+#define ENVIRON	"environ" // Use the environment power channel.
+#define TOTAL	"total" // For total power used only.
+#define CHARGING "charging" // For APC charging only.
 
 // bitflags for machine stat variable
 #define BROKEN		BITFLAG(0)

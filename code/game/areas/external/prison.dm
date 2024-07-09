@@ -16,7 +16,6 @@
 /area/external/prison/solar
 	name = "\improper Prison Satellite Solar Array"
 	icon_state = "storage"
-	requires_power = TRUE
 	always_unpowered = TRUE
 
 /area/external/prison/solar_control

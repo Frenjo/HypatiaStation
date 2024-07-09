@@ -10,11 +10,11 @@
 
 	switch(channel)
 		if(EQUIP)
-			return power_equip
+			return power_channels[EQUIP]
 		if(LIGHT)
-			return power_light
+			return power_channels[LIGHT]
 		if(ENVIRON)
-			return power_environ
+			return power_channels[ENVIRON]
 
 	return FALSE
 
@@ -29,28 +29,27 @@
 /area/proc/usage(channel)
 	var/used = 0
 	switch(channel)
-		if(LIGHT)
-			used += used_light
 		if(EQUIP)
-			used += used_equip
+			used += power_used[EQUIP]
+		if(LIGHT)
+			used += power_used[LIGHT]
 		if(ENVIRON)
-			used += used_environ
+			used += power_used[ENVIRON]
 		if(TOTAL)
-			used += used_light + used_equip + used_environ
+			used += power_used[EQUIP] + power_used[LIGHT] + power_used[ENVIRON]
 	return used
 
 // Sets usage on all channels to zero.
 /area/proc/clear_usage()
-	used_equip = 0
-	used_light = 0
-	used_environ = 0
+	for(var/channel in power_used)
+		power_used[channel] = 0
 
 // Adds the provided usage amount to the provided channel.
 /area/proc/use_power(amount, channel)
 	switch(channel)
 		if(EQUIP)
-			used_equip += amount
+			power_used[EQUIP] += amount
 		if(LIGHT)
-			used_light += amount
+			power_used[LIGHT] += amount
 		if(ENVIRON)
-			used_environ += amount
+			power_used[ENVIRON] += amount

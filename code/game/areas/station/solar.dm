@@ -4,7 +4,6 @@
  * The station's solar arrays.
  */
 /area/station/solar
-	requires_power = TRUE
 	always_unpowered = TRUE
 
 /area/station/solar/fore/port
