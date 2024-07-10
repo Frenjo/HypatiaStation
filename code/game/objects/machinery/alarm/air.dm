@@ -32,7 +32,7 @@
 
 //all air alarms in area are connected via magic
 /area
-	var/obj/machinery/alarm/master_air_alarm
+	var/obj/machinery/air_alarm/master_air_alarm
 	var/list/air_vent_names = list()
 	var/list/air_scrub_names = list()
 	var/list/air_vent_info = list()
@@ -41,7 +41,7 @@
 /*
  * Air Alarm
  */
-/obj/machinery/alarm
+/obj/machinery/air_alarm
 	name = "alarm"
 	icon = 'icons/obj/machines/monitors.dmi'
 	icon_state = "alarm0"
@@ -96,7 +96,7 @@
 	var/temperature_dangerlevel = 0
 	var/other_dangerlevel = 0
 
-/obj/machinery/alarm/server/New()
+/obj/machinery/air_alarm/server/New()
 	. = ..()
 	req_access = list(ACCESS_RD, ACCESS_ATMOSPHERICS, ACCESS_ENGINE_EQUIP)
 	TLV[/decl/xgm_gas/oxygen] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
@@ -107,7 +107,7 @@
 	TLV["temperature"] =				list(20, 40, 140, 160) // K
 	target_temperature = 90
 
-/obj/machinery/alarm/New(loc, dir, building = 0)
+/obj/machinery/air_alarm/New(loc, dir, building = 0)
 	. = ..()
 	mode = GET_DECL_INSTANCE(/decl/air_alarm_mode/scrubbing) // Sets the alarm to scrubbing by default.
 	if(building)
@@ -126,17 +126,17 @@
 
 	first_run()
 
-/obj/machinery/alarm/initialise()
+/obj/machinery/air_alarm/initialise()
 	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_TO_AIRALARM)
 	if(!master_is_operating())
 		elect_master()
 
-/obj/machinery/alarm/Destroy()
+/obj/machinery/air_alarm/Destroy()
 	unregister_radio(src, frequency)
 	return ..()
 
-/obj/machinery/alarm/proc/first_run()
+/obj/machinery/air_alarm/proc/first_run()
 	alarm_area = get_area(src)
 	area_uid = alarm_area.uid
 	if(name in list(
@@ -154,7 +154,7 @@
 	TLV["pressure"] =					list(ONE_ATMOSPHERE * 0.80, ONE_ATMOSPHERE * 0.90, ONE_ATMOSPHERE * 1.10, ONE_ATMOSPHERE * 1.20) /* kpa */
 	TLV["temperature"] =				list(T0C - 26, T0C, T0C + 40, T0C + 66) // K
 
-/obj/machinery/alarm/process()
+/obj/machinery/air_alarm/process()
 	if((stat & (NOPOWER | BROKEN)) || shorted || buildstage != 2)
 		return
 
@@ -239,7 +239,7 @@
 
 	updateDialog()
 
-/obj/machinery/alarm/proc/overall_danger_level()
+/obj/machinery/air_alarm/proc/overall_danger_level()
 	var/turf/simulated/location = loc
 	if(!istype(location))
 		return//returns if loc is not simulated
@@ -268,22 +268,22 @@
 		temperature_dangerlevel
 	)
 
-/obj/machinery/alarm/proc/master_is_operating()
+/obj/machinery/air_alarm/proc/master_is_operating()
 	return isnotnull(alarm_area.master_air_alarm) && !(alarm_area.master_air_alarm.stat & (NOPOWER | BROKEN))
 
-/obj/machinery/alarm/proc/elect_master()
-	for(var/obj/machinery/alarm/AA in alarm_area)
+/obj/machinery/air_alarm/proc/elect_master()
+	for(var/obj/machinery/air_alarm/AA in alarm_area)
 		if(!(AA.stat & (NOPOWER | BROKEN)))
 			alarm_area.master_air_alarm = AA
 
-/obj/machinery/alarm/proc/get_danger_level(current_value, list/danger_levels)
+/obj/machinery/air_alarm/proc/get_danger_level(current_value, list/danger_levels)
 	if((current_value >= danger_levels[4] && danger_levels[4] > 0) || current_value <= danger_levels[1])
 		return 2
 	if((current_value >= danger_levels[3] && danger_levels[3] > 0) || current_value <= danger_levels[2])
 		return 1
 	return 0
 
-/obj/machinery/alarm/update_icon()
+/obj/machinery/air_alarm/update_icon()
 	if(wiresexposed)
 		icon_state = "alarmx"
 		return
@@ -298,7 +298,7 @@
 		if(2)
 			icon_state = "alarm1"
 
-/obj/machinery/alarm/receive_signal(datum/signal/signal)
+/obj/machinery/air_alarm/receive_signal(datum/signal/signal)
 	if(stat & (NOPOWER|BROKEN))
 		return
 
@@ -328,7 +328,7 @@
 	else if(dev_type == "AVP")
 		alarm_area.air_vent_info[id_tag] = signal.data
 
-/obj/machinery/alarm/proc/register_env_machine(m_id, device_type)
+/obj/machinery/air_alarm/proc/register_env_machine(m_id, device_type)
 	var/new_name
 	if(device_type == "AVP")
 		new_name = "[alarm_area.name] Vent Pump #[length(alarm_area.air_vent_names) + 1]"
@@ -341,7 +341,7 @@
 	spawn(10)
 		send_signal(m_id, list("init" = new_name))
 
-/obj/machinery/alarm/proc/refresh_all()
+/obj/machinery/air_alarm/proc/refresh_all()
 	for(var/id_tag in alarm_area.air_vent_names)
 		var/list/I = alarm_area.air_vent_info[id_tag]
 		if(I && I["timestamp"] + AIR_ALARM_REPORT_TIMEOUT / 2 > world.time)
@@ -353,7 +353,7 @@
 			continue
 		send_signal(id_tag, list("status"))
 
-/obj/machinery/alarm/proc/send_signal(target, list/command)//sends signal 'command' to 'target'. Returns FALSE if no radio connection, TRUE otherwise
+/obj/machinery/air_alarm/proc/send_signal(target, list/command)//sends signal 'command' to 'target'. Returns FALSE if no radio connection, TRUE otherwise
 	if(isnull(radio_connection))
 		return FALSE
 
@@ -370,18 +370,18 @@
 
 	return TRUE
 
-/obj/machinery/alarm/proc/apply_mode(mode_type)
+/obj/machinery/air_alarm/proc/apply_mode(mode_type)
 	var/current_pressures = TLV["pressure"]
 	var/target_pressure = (current_pressures[2] + current_pressures[3]) / 2
 	mode = GET_DECL_INSTANCE(mode_type)
 	mode.apply(src, alarm_area, target_pressure)
 
-/obj/machinery/alarm/proc/apply_danger_level(new_danger_level)
+/obj/machinery/air_alarm/proc/apply_danger_level(new_danger_level)
 	if(alarm_area.atmos_alert(new_danger_level))
 		post_alert(new_danger_level)
 
 	for(var/area/A in alarm_area)
-		for(var/obj/machinery/alarm/AA in A)
+		for(var/obj/machinery/air_alarm/AA in A)
 			if(!(AA.stat & (NOPOWER | BROKEN)) && !AA.shorted && AA.danger_level != new_danger_level)
 				AA.update_icon()
 
@@ -392,7 +392,7 @@
 
 	update_icon()
 
-/obj/machinery/alarm/proc/post_alert(alert_level)
+/obj/machinery/air_alarm/proc/post_alert(alert_level)
 	var/datum/radio_frequency/frequency = global.CTradio.return_frequency(alarm_frequency)
 	if(isnull(frequency))
 		return
@@ -412,15 +412,15 @@
 
 	frequency.post_signal(src, alert_signal)
 
-/obj/machinery/alarm/proc/refresh_danger_level()
+/obj/machinery/air_alarm/proc/refresh_danger_level()
 	var/level = 0
-	for(var/obj/machinery/alarm/AA in alarm_area)
+	for(var/obj/machinery/air_alarm/AA in alarm_area)
 		if(!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
 			if(AA.danger_level > level)
 				level = AA.danger_level
 	apply_danger_level(level)
 
-/obj/machinery/alarm/proc/air_doors_close(manual)
+/obj/machinery/air_alarm/proc/air_doors_close(manual)
 	var/area/A = get_area(src)
 	if(!A.air_doors_activated)
 		A.air_doors_activated = TRUE
@@ -456,7 +456,7 @@
 					E:req_access = list(ACCESS_ENGINE, ACCESS_ATMOSPHERICS)
 					E.update_icon()*/
 
-/obj/machinery/alarm/proc/air_doors_open(manual)
+/obj/machinery/air_alarm/proc/air_doors_open(manual)
 	var/area/A = get_area(loc)
 	if(A.air_doors_activated)
 		A.air_doors_activated = FALSE
@@ -480,15 +480,15 @@
 ///////////
 //HACKING//
 ///////////
-/obj/machinery/alarm/proc/isWireColorCut(wireColor)
+/obj/machinery/air_alarm/proc/isWireColorCut(wireColor)
 	var/wireFlag = AAlarmWireColorToFlag[wireColor]
 	return ((AAlarmwires & wireFlag) == 0)
 
-/obj/machinery/alarm/proc/isWireCut(wireIndex)
+/obj/machinery/air_alarm/proc/isWireCut(wireIndex)
 	var/wireFlag = AAlarmIndexToFlag[wireIndex]
 	return ((AAlarmwires & wireFlag) == 0)
 
-/obj/machinery/alarm/proc/allWiresCut()
+/obj/machinery/air_alarm/proc/allWiresCut()
 	var/i = 1
 	while(i <= 5)
 		if(AAlarmwires & AAlarmIndexToFlag[i])
@@ -496,7 +496,7 @@
 		i++
 	return 1
 
-/obj/machinery/alarm/proc/cut(wireColor)
+/obj/machinery/air_alarm/proc/cut(wireColor)
 	var/wireFlag = AAlarmWireColorToFlag[wireColor]
 	var/wireIndex = AAlarmWireColorToIndex[wireColor]
 	AAlarmwires &= ~wireFlag
@@ -525,7 +525,7 @@
 
 	updateDialog()
 
-/obj/machinery/alarm/proc/mend(wireColor)
+/obj/machinery/air_alarm/proc/mend(wireColor)
 	var/wireFlag = AAlarmWireColorToFlag[wireColor]
 	var/wireIndex = AAlarmWireColorToIndex[wireColor] //not used in this function
 	AAlarmwires |= wireFlag
@@ -543,7 +543,7 @@
 
 	updateDialog()
 
-/obj/machinery/alarm/proc/pulse(wireColor)
+/obj/machinery/air_alarm/proc/pulse(wireColor)
 	//var/wireFlag = AAlarmWireColorToFlag[wireColor] //not used in this function
 	var/wireIndex = AAlarmWireColorToIndex[wireColor]
 	switch(wireIndex)
@@ -584,7 +584,7 @@
 
 	updateDialog()
 
-/obj/machinery/alarm/proc/shock(mob/user, prb)
+/obj/machinery/air_alarm/proc/shock(mob/user, prb)
 	if((stat & NOPOWER))		// unpowered, no shock
 		return 0
 	if(!prob(prb))
@@ -598,16 +598,16 @@
 //END HACKING//
 ///////////////
 
-/obj/machinery/alarm/attack_ai(mob/user)
+/obj/machinery/air_alarm/attack_ai(mob/user)
 	return interact(user)
 
-/obj/machinery/alarm/attack_hand(mob/user)
+/obj/machinery/air_alarm/attack_hand(mob/user)
 	. = ..()
 	if(.)
 		return
 	return interact(user)
 
-/obj/machinery/alarm/interact(mob/user)
+/obj/machinery/air_alarm/interact(mob/user)
 	user.set_machine(src)
 
 	if(buildstage != 2)
@@ -655,13 +655,13 @@
 		user << browse(return_text(user),"window=air_alarm")
 		onclose(user, "air_alarm")
 
-/obj/machinery/alarm/proc/return_text(mob/user)
+/obj/machinery/air_alarm/proc/return_text(mob/user)
 	if(issilicon(user) && locked)
 		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr><i>(Swipe ID card to unlock interface)</i></body></html>"
 	else
 		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr>[return_controls()]</body></html>"
 
-/obj/machinery/alarm/proc/return_status()
+/obj/machinery/air_alarm/proc/return_status()
 	var/turf/location = get_turf(src)
 	var/datum/gas_mixture/environment = location.return_air()
 	var/total = environment.total_moles
@@ -734,7 +734,7 @@ Toxins: <span class='dl[plasma_dangerlevel]'>[plasma_percent]</span>%<br>
 
 	return output
 
-/obj/machinery/alarm/proc/rcon_text()
+/obj/machinery/air_alarm/proc/rcon_text()
 	var/dat = "<table width=\"100%\"><td align=\"center\"><b>Remote Control:</b><br>"
 	if(rcon_setting == AIR_ALARM_RCON_NO)
 		dat += "<b>Off</b>"
@@ -756,7 +756,7 @@ Toxins: <span class='dl[plasma_dangerlevel]'>[plasma_percent]</span>%<br>
 
 	return dat
 
-/obj/machinery/alarm/proc/return_controls()
+/obj/machinery/air_alarm/proc/return_controls()
 	var/output = ""//"<B>[alarm_zone] Air [name]</B><HR>"
 
 	switch(screen)
@@ -915,7 +915,7 @@ table tr:first-child th:first-child { border: none;}
 
 	return output
 
-/obj/machinery/alarm/Topic(href, href_list)
+/obj/machinery/air_alarm/Topic(href, href_list)
 	if(href_list["rcon"])
 		rcon_setting = text2num(href_list["rcon"])
 
@@ -1056,7 +1056,7 @@ table tr:first-child th:first-child { border: none;}
 
 	updateUsrDialog()
 
-/obj/machinery/alarm/attackby(obj/item/W, mob/user)
+/obj/machinery/air_alarm/attackby(obj/item/W, mob/user)
 /*	if (istype(W, /obj/item/wirecutters))
 		stat ^= BROKEN
 		add_fingerprint(user)
@@ -1134,7 +1134,7 @@ table tr:first-child th:first-child { border: none;}
 
 	return ..()
 
-/obj/machinery/alarm/power_change()
+/obj/machinery/air_alarm/power_change()
 	if(powered(power_channel))
 		stat &= ~NOPOWER
 	else
@@ -1142,7 +1142,7 @@ table tr:first-child th:first-child { border: none;}
 	spawn(rand(0, 15))
 		update_icon()
 
-/obj/machinery/alarm/examine()
+/obj/machinery/air_alarm/examine()
 	. = ..()
 	if(buildstage < 2)
 		to_chat(usr, "It is not wired.")

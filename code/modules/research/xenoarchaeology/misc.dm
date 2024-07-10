@@ -108,6 +108,6 @@
 /*
  * Isolation Room Air Alarms
  */
-/obj/machinery/alarm/isolation
+/obj/machinery/air_alarm/isolation
 	name = "Isolation room air control"
 	req_access = list(ACCESS_RESEARCH)

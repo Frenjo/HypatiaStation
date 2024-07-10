@@ -160,7 +160,7 @@
 
 /obj/item/circuitboard/firealarm
 	name = "circuit board (Fire Alarm)"
-	build_path = "/obj/machinery/firealarm"
+	build_path = "/obj/machinery/fire_alarm"
 	board_type = "wallmount"
 	origin_tech = list(/datum/tech/engineering = 2)
 	frame_desc = "Requires 1 Scanning Module, 1 Capacitor, and 2 pieces of cable."
@@ -172,7 +172,7 @@
 
 /obj/item/circuitboard/alarm
 	name = "circuit board (Atmospheric Alarm)"
-	build_path = "/obj/machinery/alarm"
+	build_path = "/obj/machinery/air_alarm"
 	board_type = "wallmount"
 	origin_tech = list(/datum/tech/engineering = 2, /datum/tech/programming = 2)
 	frame_desc = "Requires 1 Scanning Module, 1 Console Screen, and 2 pieces of cable."

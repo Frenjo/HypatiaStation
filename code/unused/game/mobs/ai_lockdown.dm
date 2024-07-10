@@ -10,7 +10,7 @@
 //	Commented this out to disable Lockdowns -- TLE
 /*	to_world("\red Lockdown initiated by [usr.name]!")
 
-	for(var/obj/machinery/firealarm/FA in world) //activate firealarms
+	for(var/obj/machinery/fire_alarm/FA in world) //activate firealarms
 		spawn( 0 )
 			if(FA.lockdownbyai == 0)
 				FA.lockdownbyai = 1
@@ -42,7 +42,7 @@
 
 	to_world("\red Lockdown cancelled by [usr.name]!")
 
-	for(var/obj/machinery/firealarm/FA in world) //deactivate firealarms
+	for(var/obj/machinery/fire_alarm/FA in world) //deactivate firealarms
 		spawn( 0 )
 			if(FA.lockdownbyai == 1)
 				FA.lockdownbyai = 0

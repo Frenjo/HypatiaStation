@@ -48,7 +48,7 @@ Code shamelessly copied from apc_frame
 /obj/item/frame/alarm
 	name = "air alarm frame"
 	desc = "Used for building Air Alarms"
-	build_machine_type = /obj/machinery/alarm
+	build_machine_type = /obj/machinery/air_alarm
 
 /*
 FIRE ALARM ITEM
@@ -59,7 +59,7 @@ Code shamelessly copied from apc_frame
 	name = "fire alarm frame"
 	desc = "Used for building Fire Alarms"
 	icon_state = "fire_bitem"
-	build_machine_type = /obj/machinery/firealarm
+	build_machine_type = /obj/machinery/fire_alarm
 
 /*
 TUBE LIGHT FIXTURE ITEM

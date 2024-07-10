@@ -13,7 +13,7 @@
 /*
  * Fire Alarm
  */
-/obj/machinery/firealarm
+/obj/machinery/fire_alarm
 	name = "fire alarm"
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
 	icon = 'icons/obj/machines/monitors.dmi'
@@ -36,7 +36,7 @@
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 
-/obj/machinery/firealarm/New(loc, dir, building)
+/obj/machinery/fire_alarm/New(loc, dir, building)
 	name = "fire alarm"
 	. = ..()
 	if(isnotnull(loc))
@@ -51,7 +51,7 @@
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 
-/obj/machinery/firealarm/initialise()
+/obj/machinery/fire_alarm/initialise()
 	. = ..()
 	if(iscontactlevel(z))
 		if(isnotnull(GLOBL.security_level))
@@ -60,7 +60,7 @@
 			overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_green"))
 	update_icon()
 
-/obj/machinery/firealarm/update_icon()
+/obj/machinery/fire_alarm/update_icon()
 	if(wiresexposed)
 		switch(buildstage)
 			if(2)
@@ -81,26 +81,26 @@
 	else
 		icon_state = "fire0"
 
-/obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
+/obj/machinery/fire_alarm/fire_act(datum/gas_mixture/air, temperature, volume)
 	if(detecting)
 		if(temperature > T0C + 200)
 			alarm()			// added check of detector status here
 
-/obj/machinery/firealarm/attack_ai(mob/user)
+/obj/machinery/fire_alarm/attack_ai(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/firealarm/bullet_act(BLAH)
+/obj/machinery/fire_alarm/bullet_act(BLAH)
 	return alarm()
 
-/obj/machinery/firealarm/attack_paw(mob/user)
+/obj/machinery/fire_alarm/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/firealarm/emp_act(severity)
+/obj/machinery/fire_alarm/emp_act(severity)
 	if(prob(50 / severity))
 		alarm()
 	..()
 
-/obj/machinery/firealarm/attackby(obj/item/W, mob/user)
+/obj/machinery/fire_alarm/attackby(obj/item/W, mob/user)
 	add_fingerprint(user)
 
 	if(istype(W, /obj/item/screwdriver) && buildstage == 2)
@@ -161,7 +161,7 @@
 
 	alarm()
 
-/obj/machinery/firealarm/process()//Note: this processing was mostly phased out due to other code, and only runs when needed
+/obj/machinery/fire_alarm/process()//Note: this processing was mostly phased out due to other code, and only runs when needed
 	if(stat & (NOPOWER|BROKEN))
 		return
 
@@ -179,7 +179,7 @@
 	if(locate(/obj/fire) in loc)
 		alarm()
 
-/obj/machinery/firealarm/power_change()
+/obj/machinery/fire_alarm/power_change()
 	if(powered(ENVIRON))
 		stat &= ~NOPOWER
 		update_icon()
@@ -188,7 +188,7 @@
 			stat |= NOPOWER
 			update_icon()
 
-/obj/machinery/firealarm/attack_hand(mob/user)
+/obj/machinery/fire_alarm/attack_hand(mob/user)
 	if(user.stat || stat & (NOPOWER|BROKEN))
 		return
 
@@ -230,7 +230,7 @@
 		user << browse(dat, "window=firealarm")
 		onclose(user, "firealarm")
 
-/obj/machinery/firealarm/Topic(href, href_list)
+/obj/machinery/fire_alarm/Topic(href, href_list)
 	..()
 	if(usr.stat || stat & (BROKEN|NOPOWER))
 		return
@@ -260,7 +260,7 @@
 		usr << browse(null, "window=firealarm")
 		return
 
-/obj/machinery/firealarm/proc/reset()
+/obj/machinery/fire_alarm/proc/reset()
 	if(!working)
 		return
 	var/area/A = loc
@@ -270,7 +270,7 @@
 	A.fire_reset()
 	update_icon()
 
-/obj/machinery/firealarm/proc/alarm()
+/obj/machinery/fire_alarm/proc/alarm()
 	if(!working)
 		return
 	var/area/A = loc

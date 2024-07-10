@@ -1,7 +1,7 @@
 /*
  * Party Alarm
  */
-/obj/machinery/partyalarm
+/obj/machinery/party_alarm
 	name = "\improper PARTY BUTTON"
 	desc = "Cuban Pete is in the house!"
 	icon = 'icons/obj/machines/monitors.dmi'
@@ -19,10 +19,10 @@
 	var/timing = 0.0
 	var/lockdownbyai = 0
 
-/obj/machinery/partyalarm/attack_paw(mob/user)
+/obj/machinery/party_alarm/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/machinery/partyalarm/attack_hand(mob/user)
+/obj/machinery/party_alarm/attack_hand(mob/user)
 	if(user.stat || stat & (NOPOWER|BROKEN))
 		return
 
@@ -62,7 +62,7 @@
 		user << browse(dat, "window=partyalarm")
 		onclose(user, "partyalarm")
 
-/obj/machinery/partyalarm/proc/reset()
+/obj/machinery/party_alarm/proc/reset()
 	if(!working)
 		return
 	var/area/A = get_area(src)
@@ -71,7 +71,7 @@
 		//A = A.master
 	A.party_reset()
 
-/obj/machinery/partyalarm/proc/alarm()
+/obj/machinery/party_alarm/proc/alarm()
 	if(!working)
 		return
 	var/area/A = get_area(src)
@@ -80,7 +80,7 @@
 		//A = A.master
 	A.party_alert()
 
-/obj/machinery/partyalarm/Topic(href, href_list)
+/obj/machinery/party_alarm/Topic(href, href_list)
 	..()
 	if(usr.stat || stat & (BROKEN|NOPOWER))
 		return

@@ -164,7 +164,7 @@ move an amendment</a> to the drawing.</p>
 	if(!oldtitle) // or replacetextx goes to infinite loop
 		return
 	//for(var/area/RA in A.related)
-	//	for(var/obj/machinery/alarm/M in RA)
+	//	for(var/obj/machinery/air_alarm/M in RA)
 	//		M.name = replacetextx(M.name,oldtitle,title)
 	//	for(var/obj/machinery/power/apc/M in RA)
 	//		M.name = replacetextx(M.name,oldtitle,title)
@@ -176,7 +176,7 @@ move an amendment</a> to the drawing.</p>
 	//		M.name = replacetextx(M.name,oldtitle,title)
 	//TODO: much much more. Unnamed airlocks, cameras, etc.
 
-	for(var/obj/machinery/alarm/M in A)
+	for(var/obj/machinery/air_alarm/M in A)
 		M.name = replacetext(M.name, oldtitle, title)
 	for(var/obj/machinery/power/apc/M in A)
 		M.name = replacetext(M.name, oldtitle, title)

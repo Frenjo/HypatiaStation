@@ -10,7 +10,7 @@
 	circuit = /obj/item/circuitboard/atmoscontrol
 	req_access = list(ACCESS_CE)
 
-	var/obj/machinery/alarm/current
+	var/obj/machinery/air_alarm/current
 	var/overridden = 0 //not set yet, can't think of a good way to do it
 
 /obj/machinery/computer/atmoscontrol/attack_ai(var/mob/user as mob)
@@ -34,7 +34,7 @@
 	if(current)
 		dat += specific()
 	else
-		for(var/obj/machinery/alarm/alarm in GLOBL.machines)
+		for(var/obj/machinery/air_alarm/alarm in GLOBL.machines)
 			dat += "<a href='byond://?src=\ref[src]&alarm=\ref[alarm]'>"
 			switch(max(alarm.danger_level, alarm.alarm_area.atmos_alarm))
 				if (0)

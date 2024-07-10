@@ -36,10 +36,10 @@
 	comms?.post_status("alert", status_post)
 
 	// Updates all fire alarms to display the corresponding alert light.
-	for(var/obj/machinery/firealarm/fire_alarm in GLOBL.machines)
-		if(iscontactlevel(fire_alarm.z))
-			fire_alarm.overlays.Cut()
-			fire_alarm.overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_[name]"))
+	for(var/obj/machinery/fire_alarm/alarm in GLOBL.machines)
+		if(iscontactlevel(alarm.z))
+			alarm.overlays.Cut()
+			alarm.overlays.Add(image('icons/obj/machines/monitors.dmi', "overlay_[name]"))
 
 // Things to do when the level is moved away from us in any direction.
 /decl/security_level/proc/on_change_from()
