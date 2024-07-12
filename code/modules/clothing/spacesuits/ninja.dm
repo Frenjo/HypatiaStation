@@ -33,7 +33,7 @@
 	)
 
 	var/list/stored_research = list()			// For stealing station research.
-	var/obj/item/disk/tech_disk/t_disk 	//To copy design onto disk.
+	var/obj/item/disk/tech/t_disk 	//To copy design onto disk.
 
 		//Other articles of ninja gear worn together, used to easily reference them after initializing.
 	var/obj/item/clothing/head/helmet/space/space_ninja/n_hood

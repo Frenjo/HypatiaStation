@@ -39,8 +39,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	light_color = "#a97faa"
 
 	var/datum/research/files							//Stores all the collected research data.
-	var/obj/item/disk/tech_disk/t_disk = null	//Stores the technology disk.
-	var/obj/item/disk/design_disk/d_disk = null	//Stores the design disk.
+	var/obj/item/disk/tech/t_disk = null	//Stores the technology disk.
+	var/obj/item/disk/design/d_disk = null	//Stores the design disk.
 
 	var/obj/machinery/r_n_d/destructive_analyser/linked_destroy = null	//Linked Destructive Analyser
 	var/obj/machinery/r_n_d/protolathe/linked_lathe = null				//Linked Protolathe
@@ -115,9 +115,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			to_chat(user, SPAN_WARNING("A disk is already loaded into the machine."))
 			return TRUE
 
-		if(istype(I, /obj/item/disk/tech_disk))
+		if(istype(I, /obj/item/disk/tech))
 			t_disk = I
-		else if(istype(I, /obj/item/disk/design_disk))
+		else if(istype(I, /obj/item/disk/design))
 			d_disk = I
 		else
 			to_chat(user, SPAN_WARNING("Machine cannot accept disks in that format."))

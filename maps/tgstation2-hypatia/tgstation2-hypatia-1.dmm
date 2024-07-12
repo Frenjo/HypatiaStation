@@ -6883,7 +6883,7 @@
 "xTh" = (/obj/machinery/atmospherics/mains_pipe/simple/hidden{dir = 6},/turf/simulated/floor/tiled/grey,/area/station/engineering/foyer)
 "xTl" = (/obj/machinery/door/airlock/research{name = "Miscellaneous Research"; req_access = list(47)},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/door/firedoor/border_only{dir = 8; icon = 'icons/obj/doors/emergency/fire2.dmi'; name = "firelock east"},/turf/simulated/floor/tiled/white,/area/station/research/miscellaneous)
 "xTt" = (/obj/effect/decal/floor/coloured/red/corner{dir = 4},/obj/structure/sign/electricshock{pixel_y = 32},/turf/simulated/floor/tiled/grey,/area/station/security/brig)
-"xTx" = (/obj/item/folder/white,/obj/structure/table,/obj/item/disk/tech_disk,/obj/item/disk/tech_disk,/obj/item/disk/design_disk,/obj/item/disk/design_disk,/obj/item/reagent_containers/dropper{pixel_y = -4},/turf/simulated/floor/tiled/white,/area/station/research/development)
+"xTx" = (/obj/item/folder/white,/obj/structure/table,/obj/item/disk/tech,/obj/item/disk/tech,/obj/item/disk/design,/obj/item/disk/design,/obj/item/reagent_containers/dropper{pixel_y = -4},/turf/simulated/floor/tiled/white,/area/station/research/development)
 "xTz" = (/obj/structure/disposalpipe/segment,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled/showroom,/area/station/crew/kitchen/fridge)
 "xTK" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating/metal,/area/station/maintenance/fore/port)
 "xTP" = (/obj/structure/dispenser{oxygentanks = 15; plasmatanks = 0},/turf/simulated/floor/plating/metal,/area/station/engineering/hallway/auxiliary)

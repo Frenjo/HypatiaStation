@@ -243,12 +243,12 @@
 	var/irradiating = 0
 	var/injector_ready = 0	//Quick fix for issue 286 (screwdriver the screen twice to restore injector)	-Pete
 	var/obj/machinery/dna_scannernew/connected = null
-	var/obj/item/disk/data/disk = null
+	var/obj/item/disk/cloning_data/disk = null
 	var/selected_menu_key = null
 	var/waiting_for_user_input = 0 // Fix for #274 (Mash create block injector without answering dialog to make unlimited injectors) - N3X
 
 /obj/machinery/computer/scan_consolenew/attack_by(obj/item/I, mob/user)
-	if(istype(I, /obj/item/disk/data)) //INSERT SOME diskS
+	if(istype(I, /obj/item/disk/cloning_data)) //INSERT SOME diskS
 		if(isnotnull(disk))
 			to_chat(user, SPAN_WARNING("There is already a disk inserted."))
 			return TRUE

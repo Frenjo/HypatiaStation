@@ -11,7 +11,7 @@
 	var/menu = 1 //Which menu screen to display
 	var/list/records = list()
 	var/datum/dna2/record/active_record = null
-	var/obj/item/disk/data/diskette = null //Mostly so the geneticist can steal everything.
+	var/obj/item/disk/cloning_data/diskette = null //Mostly so the geneticist can steal everything.
 	var/loading = 0 // Nice loading text
 
 	light_color = "#315ab4"
@@ -59,7 +59,7 @@
 	return podf
 
 /obj/machinery/computer/cloning/attack_by(obj/item/I, mob/user)
-	if(istype(I, /obj/item/disk/data)) //INSERT SOME DISKETTES
+	if(istype(I, /obj/item/disk/cloning_data)) //INSERT SOME DISKETTES
 		if(isnotnull(diskette))
 			to_chat(user, SPAN_WARNING("There is already a disk inserted."))
 			return TRUE

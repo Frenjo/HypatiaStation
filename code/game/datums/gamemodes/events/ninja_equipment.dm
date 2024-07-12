@@ -836,8 +836,8 @@ ________________________________________________________________________________
 				else
 					to_chat(U, SPAN_WARNING("Procedure interrupted. Protocol terminated."))
 			return
-		else if(istype(I, /obj/item/disk/tech_disk))//If it's a data disk, we want to copy the research on to the suit.
-			var/obj/item/disk/tech_disk/TD = I
+		else if(istype(I, /obj/item/disk/tech))//If it's a data disk, we want to copy the research on to the suit.
+			var/obj/item/disk/tech/TD = I
 			if(TD.stored)//If it has something on it.
 				to_chat(U, "Research information detected, processing...")
 				if(do_after(U,s_delay))

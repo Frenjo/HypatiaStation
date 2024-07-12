@@ -785,7 +785,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(/datum/tech/programming = 1)
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 10)
-	build_path = /obj/item/disk/design_disk
+	build_path = /obj/item/disk/design
 
 /datum/design/tech_disk
 	name = "Technology Data Storage Disk"
@@ -793,7 +793,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(/datum/tech/programming = 1)
 	build_type = PROTOLATHE | AUTOLATHE
 	materials = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 10)
-	build_path = /obj/item/disk/tech_disk
+	build_path = /obj/item/disk/tech
 
 ////////////////////////////////////////
 /////////////Stock Parts////////////////
@@ -1582,25 +1582,6 @@ other types of metals and chemistry for reagents).
 			req_tech = list(/datum/tech/materials = 1)
 			materials = list(MATERIAL_GOLD = 3000, "iron" = 15, "copper" = 10, MATERIAL_SILVER = 2500)
 			build_path = "/obj/item/banhammer" */
-
-////////////////////////////////////////
-//Disks for transporting design datums//
-////////////////////////////////////////
-/obj/item/disk/design_disk
-	name = "Component Design Disk"
-	desc = "A disk for storing device design data for construction in lathes."
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk2"
-	item_state = "card-id"
-	w_class = 1.0
-	matter_amounts = list(MATERIAL_METAL = 30, MATERIAL_METAL = 10)
-
-	var/datum/design/blueprint
-
-/obj/item/disk/design_disk/New()
-	. = ..()
-	pixel_x = rand(-5.0, 5)
-	pixel_y = rand(-5.0, 5)
 
 /////////////////////////////////////////
 //////////////Borg Upgrades//////////////

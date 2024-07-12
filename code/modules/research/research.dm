@@ -234,19 +234,3 @@ research holder datum.
 	desc = "The development of advanced automated, autonomous machines."
 	req_tech = list(/datum/tech/materials = 3, /datum/tech/programming = 3)
 */
-
-/obj/item/disk/tech_disk
-	name = "Technology Disk"
-	desc = "A disk for storing technology data for further research."
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk2"
-	item_state = "card-id"
-	w_class = 1.0
-	matter_amounts = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 10)
-
-	var/datum/tech/stored
-
-/obj/item/disk/tech_disk/New()
-	. = ..()
-	pixel_x = rand(-5.0, 5)
-	pixel_y = rand(-5.0, 5)

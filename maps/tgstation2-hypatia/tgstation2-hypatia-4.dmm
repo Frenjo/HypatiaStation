@@ -587,7 +587,7 @@
 "SE" = (/turf/simulated/floor/plating/metal/airless,/area/external/abandoned/derelict/solar/starboard)
 "SF" = (/obj/structure/table,/turf/simulated/floor/airless,/area/external/abandoned/derelict/hallway/primary)
 "SH" = (/obj/machinery/atmospherics/pipe/manifold/visible/supply{dir = 4},/turf/simulated/floor/plating/metal,/area/external/djstation)
-"SI" = (/obj/item/disk/data/demo,/turf/simulated/floor/plating/metal/airless,/area/space)
+"SI" = (/obj/item/disk/cloning_data/demo,/turf/simulated/floor/plating/metal/airless,/area/space)
 "SR" = (/obj/structure/window/reinforced,/turf/simulated/floor/tiled/grey,/area/external/abandoned/derelict/solar_control)
 "SS" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/airless,/area/external/abandoned/derelict/hallway/secondary)
 "Tj" = (/obj/structure/table,/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 6},/turf/simulated/floor{icon_state = "bar"},/area/external/djstation)
