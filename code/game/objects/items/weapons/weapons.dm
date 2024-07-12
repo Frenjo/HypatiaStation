@@ -17,56 +17,6 @@
 	attack_verb = list("called", "rang")
 	hitsound = 'sound/weapons/ring.ogg'
 
-/obj/item/rsp
-	name = "rapid-seed-producer (RSP)"
-	desc = "A device used to rapidly deploy seeds."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "rcd"
-	opacity = FALSE
-	density = FALSE
-	anchored = FALSE
-	w_class = 3.0
-
-	var/matter = 0
-	var/mode = 1
-
-/obj/item/soap
-	name = "soap"
-	desc = "A cheap bar of soap. Doesn't smell."
-	gender = PLURAL
-	icon = 'icons/obj/items.dmi'
-	icon_state = "soap"
-	w_class = 1.0
-	throwforce = 0
-	throw_speed = 4
-	throw_range = 20
-
-/obj/item/soap/nanotrasen
-	desc = "A NanoTrasen brand bar of soap. Smells of plasma."
-	icon_state = "soapnt"
-
-/obj/item/soap/deluxe
-	desc = "A deluxe Waffle Co. brand bar of soap. Smells of condoms."
-	icon_state = "soapdeluxe"
-
-/obj/item/soap/syndie
-	desc = "An untrustworthy bar of soap. Smells of fear."
-	icon_state = "soapsyndie"
-
-/obj/item/bikehorn
-	name = "bike horn"
-	desc = "A horn off of a bicycle."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "bike_horn"
-	item_state = "bike_horn"
-	throwforce = 3
-	w_class = 1.0
-	throw_speed = 3
-	throw_range = 15
-	attack_verb = list("HONKED")
-
-	var/spam_flag = 0
-
 /obj/item/c_tube
 	name = "cardboard tube"
 	desc = "A tube... of cardboard."
@@ -89,17 +39,6 @@
 	w_class = 2.0
 	matter_amounts = list(MATERIAL_METAL = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
-
-/obj/item/disk
-	name = "disk"
-	icon = 'icons/obj/items.dmi'
-
-/obj/item/disk/nuclear
-	name = "nuclear authentication disk"
-	desc = "Better keep this safe."
-	icon_state = "nucleardisk"
-	item_state = "card-id"
-	w_class = 1.0
 
 /*
 /obj/item/game_kit

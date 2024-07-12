@@ -1,3 +1,8 @@
+/*
+ * Power Cell
+ *
+ * These are not technically a "stock part" but they perform much the same function.
+ */
 /obj/item/cell
 	name = "power cell"
 	desc = "A rechargable electrochemical power cell."
@@ -24,7 +29,6 @@
 	user.visible_message(SPAN_DANGER("[user] is licking the electrodes of the [src.name]! It looks like \he's trying to commit suicide."))
 	return (FIRELOSS)
 
-
 /obj/item/cell/crap
 	name = "\improper NanoTrasen brand rechargable AA battery"
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
@@ -36,7 +40,6 @@
 	..()
 	charge = 0
 
-
 /obj/item/cell/secborg
 	name = "security borg rechargable D battery"
 	origin_tech = list(/datum/tech/power_storage = 0)
@@ -47,7 +50,6 @@
 	..()
 	charge = 0
 
-
 /obj/item/cell/apc
 	name = "\improper APC power cell"
 	origin_tech = list(/datum/tech/power_storage = 1)
@@ -56,7 +58,6 @@
 
 /obj/item/cell/apc/empty/New()
 	..()
-
 
 /obj/item/cell/high
 	name = "high-capacity power cell"
@@ -68,7 +69,6 @@
 /obj/item/cell/high/empty/New()
 	..()
 	charge = 0
-
 
 /obj/item/cell/super
 	name = "super-capacity power cell"
@@ -82,7 +82,6 @@
 	..()
 	charge = 0
 
-
 /obj/item/cell/hyper
 	name = "hyper-capacity power cell"
 	origin_tech = list(/datum/tech/power_storage = 6)
@@ -95,7 +94,6 @@
 	..()
 	charge = 0
 
-
 /obj/item/cell/infinite
 	name = "infinite-capacity power cell!"
 	icon_state = "icell"
@@ -105,7 +103,6 @@
 
 /obj/item/cell/infinite/use()
 	return 1
-
 
 /obj/item/cell/potato
 	name = "potato battery"
@@ -117,7 +114,6 @@
 	maxcharge = 300
 	matter_amounts = list()
 	minor_fault = 1
-
 
 /obj/item/cell/slime
 	name = "charged slime core"

@@ -5,31 +5,9 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "lipstick"
 	w_class = 1.0
+
 	var/colour = "red"
 	var/open = 0
-
-
-/obj/item/lipstick/purple
-	name = "purple lipstick"
-	colour = "purple"
-
-/obj/item/lipstick/jade
-	name = "jade lipstick"
-	colour = "jade"
-
-/obj/item/lipstick/black
-	name = "black lipstick"
-	colour = "black"
-
-
-/obj/item/lipstick/random
-	name = "lipstick"
-
-/obj/item/lipstick/random/New()
-	. = ..()
-	colour = pick("red","purple","jade","black")
-	name = "[colour] lipstick"
-
 
 /obj/item/lipstick/attack_self(mob/user)
 	to_chat(user, SPAN_NOTICE("You twist \the [src] [open ? "closed" : "open"]."))
@@ -72,6 +50,26 @@
 				H.update_body()
 	else
 		to_chat(user, SPAN_NOTICE("Where are the lips on that?"))
+
+/obj/item/lipstick/purple
+	name = "purple lipstick"
+	colour = "purple"
+
+/obj/item/lipstick/jade
+	name = "jade lipstick"
+	colour = "jade"
+
+/obj/item/lipstick/black
+	name = "black lipstick"
+	colour = "black"
+
+/obj/item/lipstick/random
+	name = "lipstick"
+
+/obj/item/lipstick/random/New()
+	. = ..()
+	colour = pick("red","purple","jade","black")
+	name = "[colour] lipstick"
 
 //you can wipe off lipstick with paper!
 /obj/item/paper/attack(mob/living/carbon/M, mob/living/carbon/user)
