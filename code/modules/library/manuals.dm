@@ -2,17 +2,16 @@
 
 //Oh god what the fuck I am not good at computer
 /obj/item/book/manual
-	icon = 'icons/obj/library.dmi'
-	due_date = 0 // Game time in 1/10th seconds
-	unique = 1	// 0 - Normal book, 1 - Should not be treated as normal book, unable to be copied, unable to be modified
+	name = "instruction manual"
+	unique = TRUE
 
-
+// Repairs/Construction
 /obj/item/book/manual/engineering_construction
 	name = "Station Repairs and Construction"
 	icon_state ="bookEngineering"
-	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
-	title = "Station Repairs and Construction"
 
+	title = "Station Repairs and Construction"
+	author = "Engineering Encyclopedia"
 	dat = {"
 
 		<html><head>
@@ -26,13 +25,13 @@
 
 		"}
 
-
+// Singularity/Particle Accelerator
 /obj/item/book/manual/engineering_particle_accelerator
 	name = "Particle Accelerator User's Guide"
 	icon_state ="bookParticleAccelerator"
-	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
-	title = "Particle Accelerator User's Guide"
 
+	title = "Particle Accelerator User's Guide"
+	author = "Engineering Encyclopedia"
 	dat = {"<html>
 				<head>
 				<style>
@@ -68,13 +67,13 @@
 				</body>
 				</html>"}
 
-
+// Supermatter
 /obj/item/book/manual/supermatter_engine
 	name = "Supermatter Engine User's Guide"
 	icon_state = "bookSupermatter"
-	author = "Waleed Asad"
-	title = "Supermatter Engine User's Guide"
 
+	title = "Supermatter Engine User's Guide"
+	author = "Waleed Asad"
 	dat = {"Engineering notes on single-stage Supermatter engine,</br>
 			-Waleed Asad</br>
 
@@ -157,13 +156,13 @@
 
 			-Waleed Asad, Senior Engine Technician."}
 
-
+// Hacking
 /obj/item/book/manual/engineering_hacking
 	name = "Hacking"
 	icon_state ="bookHacking"
-	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
-	title = "Hacking"
 
+	title = "Hacking"
+	author = "Engineering Encyclopedia"
 	dat = {"
 
 		<html><head>
@@ -177,13 +176,13 @@
 
 		"}
 
-
+// Singularity Safety
 /obj/item/book/manual/engineering_singularity_safety
 	name = "Singularity Safety in Special Circumstances"
 	icon_state ="bookEngineeringSingularitySafety"
-	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
-	title = "Singularity Safety in Special Circumstances"
 
+	title = "Singularity Safety in Special Circumstances"
+	author = "Engineering Encyclopedia"
 	dat = {"<html>
 				<head>
 				<style>
@@ -226,13 +225,13 @@
 				</html>
 				"}
 
-
+// Pod People
 /obj/item/book/manual/hydroponics_pod_people
 	name = "The Diona Harvest - From seed to market"
 	icon_state ="bookHydroponicsPodPeople"
-	author = "Farmer John"
-	title = "The Diona Harvest - From seed to market"
 
+	title = "The Diona Harvest - From seed to market"
+	author = "Farmer John"
 	dat = {"<html>
 				<head>
 				<style>
@@ -259,13 +258,13 @@
 				</html>
 				"}
 
-
+// Cloning
 /obj/item/book/manual/medical_cloning
 	name = "Cloning techniques of the 26th century"
 	icon_state ="bookCloning"
-	author = "Medical Journal, volume 3"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
-	title = "Cloning techniques of the 26th century"
 
+	title = "Cloning techniques of the 26th century"
+	author = "Medical Journal, volume 3"
 	dat = {"<html>
 				<head>
 				<style>
@@ -350,13 +349,13 @@
 				</html>
 				"}
 
-
+// Ripley Construction/Maintenance
 /obj/item/book/manual/ripley_build_and_repair
 	name = "APLU \"Ripley\" Construction and Operation Manual"
-	icon_state ="book"
-	author = "Randall Varn, Einstein Engines Senior Mechanic"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
-	title = "APLU \"Ripley\" Construction and Operation Manual"
+	icon_state = "book"
 
+	title = "APLU \"Ripley\" Construction and Operation Manual"
+	author = "Randall Varn, Einstein Engines Senior Mechanic"
 	dat = {"<html>
 				<head>
 				<style>
@@ -423,13 +422,13 @@
 
 			"}
 
-
+// Research
 /obj/item/book/manual/research_and_development
 	name = "Research and Development 101"
 	icon_state = "rdbook"
-	author = "Dr. L. Ight"
-	title = "Research and Development 101"
 
+	title = "Research and Development 101"
+	author = "Dr. L. Ight"
 	dat = {"<html>
 				<head>
 				<style>
@@ -489,13 +488,13 @@
 				</html>
 			"}
 
-
+// Cyborgs/Robotics
 /obj/item/book/manual/robotics_cyborgs
 	name = "Cyborgs for Dummies"
 	icon_state = "borgbook"
-	author = "XISC"
-	title = "Cyborgs for Dummies"
 
+	title = "Cyborgs for Dummies"
+	author = "XISC"
 	dat = {"<html>
 				<head>
 				<style>
@@ -693,14 +692,14 @@
 		</html>
 		"}
 
-
+// Space Law
 /obj/item/book/manual/security_space_law
 	name = "Space Law"
 	desc = "A set of NanoTrasen guidelines for keeping law and order on their space stations."
 	icon_state = "bookSpaceLaw"
-	author = "NanoTrasen"
-	title = "Space Law"
 
+	title = "Space Law"
+	author = "NanoTrasen"
 	dat = {"
 
 		<html><head>
@@ -713,14 +712,14 @@
 
 		"}
 
-
+// Medical Manual
 /obj/item/book/manual/medical_diagnostics_manual
 	name = "NT Medical Diagnostics Manual"
 	desc = "First, do no harm. A detailed medical practitioner's guide."
 	icon_state = "bookMedical"
-	author = "NanoTrasen Medicine Department"
-	title = "NT Medical Diagnostics Manual"
 
+	title = "NT Medical Diagnostics Manual"
+	author = "NanoTrasen Medicine Department"
 	dat = {"
 
 		<html><head>
@@ -758,13 +757,13 @@
 
 		"}
 
-
+// Engineering Manual
 /obj/item/book/manual/engineering_guide
 	name = "Engineering Textbook"
 	icon_state ="bookEngineering2"
-	author = "Engineering Encyclopedia"
-	title = "Engineering Textbook"
 
+	title = "Engineering Textbook"
+	author = "Engineering Encyclopedia"
 	dat = {"
 
 		<html><head>
@@ -777,13 +776,13 @@
 
 		"}
 
-
+// Food Recipes
 /obj/item/book/manual/chef_recipes
 	name = "Chef Recipes"
 	icon_state = "cooked_book"
-	author = "Victoria Ponsonby"
-	title = "Chef Recipes"
 
+	title = "Chef Recipes"
+	author = "Victoria Ponsonby"
 	dat = {"<html>
 				<head>
 				<style>
@@ -834,13 +833,13 @@
 				</html>
 			"}
 
-
+// Drinks Recipes
 /obj/item/book/manual/barman_recipes
 	name = "Barman Recipes"
 	icon_state = "barbook"
-	author = "Sir John Rose"
-	title = "Barman Recipes"
 
+	title = "Barman Recipes"
+	author = "Sir John Rose"
 	dat = {"<html>
 				<head>
 				<style>
@@ -888,13 +887,13 @@
 				</html>
 			"}
 
-
+// Detective Manual
 /obj/item/book/manual/detective
 	name = "The Film Noir: Proper Procedures for Investigations"
-	icon_state ="bookDetective"
-	author = "NanoTrasen"
-	title = "The Film Noir: Proper Procedures for Investigations"
+	icon_state = "bookDetective"
 
+	title = "The Film Noir: Proper Procedures for Investigations"
+	author = "NanoTrasen"
 	dat = {"<html>
 			<head>
 			<style>
@@ -931,13 +930,13 @@
 			</body>
 			</html>"}
 
-
+// Nuclear Operations
 /obj/item/book/manual/nuclear
 	name = "Fission Mailed: Nuclear Sabotage 101"
-	icon_state ="bookNuclear"
-	author = "Syndicate"
-	title = "Fission Mailed: Nuclear Sabotage 101"
+	icon_state = "bookNuclear"
 
+	title = "Fission Mailed: Nuclear Sabotage 101"
+	author = "Syndicate"
 	dat = {"<html>
 			Nuclear Explosives 101:<br>
 			Hello and thank you for choosing the Syndicate for your nuclear information needs.<br>
@@ -968,12 +967,13 @@
 			Good luck!
 			</html>"}
 
-
+// Atmospherics Pipes
 /obj/item/book/manual/atmospipes
 	name = "Pipes and You: Getting To Know Your Scary Tools"
 	icon_state = "pipingbook"
-	author = "Maria Crash, Senior Atmospherics Technician"
+
 	title = "Pipes and You: Getting To Know Your Scary Tools"
+	author = "Maria Crash, Senior Atmospherics Technician"
 	dat = {"<html>
 				<head>
 				<style>
@@ -1066,12 +1066,13 @@
 				</html>
 			"}
 
-
+// EVA Manual
 /obj/item/book/manual/evaguide
 	name = "EVA Gear and You: Not Spending All Day Inside"
 	icon_state = "evabook"
-	author = "Maria Crash, Senior Atmospherics Technician"
+
 	title = "EVA Gear and You: Not Spending All Day Inside"
+	author = "Maria Crash, Senior Atmospherics Technician"
 	dat = {"<html>
 				<head>
 				<style>
