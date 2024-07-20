@@ -30,7 +30,7 @@
 			return 0
 
 	if(isnotnull(filter)) //here goes some copypasta. It is for optimisation. -rastaf0
-		for(var/obj/device in devices[filter])
+		for_no_type_check(var/obj/device, devices[filter])
 			if(device == source)
 				continue
 			if(isnotnull(range))
@@ -41,7 +41,7 @@
 				if(start_point.z != end_point.z || get_dist(start_point, end_point) > range)
 					continue
 			device.receive_signal(signal, TRANSMISSION_RADIO, frequency)
-		for(var/obj/device in devices["_default"])
+		for_no_type_check(var/obj/device, devices["_default"])
 			if(device == source)
 				continue
 			if(isnotnull(range))
@@ -57,7 +57,7 @@
 		for(var/next_filter in devices)
 //			var/list/obj/DDD = devices[next_filter]
 //			Nt+=DDD.len
-			for(var/obj/device in devices[next_filter])
+			for_no_type_check(var/obj/device, devices[next_filter])
 				if(device == source)
 					continue
 				if(isnotnull(range))

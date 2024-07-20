@@ -81,7 +81,7 @@
 /obj/machinery/telecoms/receiver/preset_right/New()
 	for(var/i = FREQUENCY_FREE_MINIMUM, i < FREQUENCY_FREE_MAXIMUM, i += 2)
 		freq_listening |= i
-	..()
+	return ..()
 
 // CentCom
 /obj/machinery/telecoms/receiver/preset_cent
@@ -125,7 +125,7 @@
 /obj/machinery/telecoms/bus/preset_four/New()
 	for(var/i = FREQUENCY_FREE_MINIMUM, i < FREQUENCY_FREE_MAXIMUM, i += 2)
 		freq_listening |= i
-	..()
+	return ..()
 
 // CentCom
 /obj/machinery/telecoms/bus/preset_cent
@@ -216,7 +216,7 @@
 /obj/machinery/telecoms/server/presets/common/New()
 	for(var/i = FREQUENCY_FREE_MINIMUM, i < FREQUENCY_FREE_MAXIMUM, i += 2)
 		freq_listening |= i
-	..()
+	return ..()
 
 // Command
 /obj/machinery/telecoms/server/presets/command

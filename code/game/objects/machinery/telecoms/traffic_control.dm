@@ -11,7 +11,7 @@
 	circuit = /obj/item/circuitboard/comm_traffic
 
 	var/screen = TRAFFIC_SCREEN_MAIN_MENU	// the screen number:
-	var/list/servers = list()				// the servers located by the computer
+	var/list/obj/machinery/telecoms/server/servers = list()				// the servers located by the computer
 	var/mob/editingcode
 	var/mob/lasteditor
 	var/list/viewingcode = list()
@@ -34,7 +34,7 @@
 			dat += "<br>Current Network: <a href='byond://?src=\ref[src];network=1'>[network]</a><br>"
 			if(length(servers))
 				dat += "<br>Detected Telecommunication Servers:<ul>"
-				for(var/obj/machinery/telecoms/T in servers)
+				for_no_type_check(var/obj/machinery/telecoms/server/T, servers)
 					dat += "<li><a href='byond://?src=\ref[src];viewserver=[T.id]'>\ref[T] [T.name]</a> ([T.id])</li>"
 				dat += "</ul>"
 				dat += "<br><a href='byond://?src=\ref[src];operation=release'>\[Flush Buffer\]</a>"
@@ -74,7 +74,7 @@
 
 	if(href_list["viewserver"])
 		screen = TRAFFIC_SCREEN_VIEWING_SERVER
-		for(var/obj/machinery/telecoms/T in servers)
+		for_no_type_check(var/obj/machinery/telecoms/server/T, servers)
 			if(T.id == href_list["viewserver"])
 				SelectedServer = T
 				break

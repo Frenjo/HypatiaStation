@@ -141,7 +141,7 @@
 		dat += "<br>Linked Network Entities: <ol>"
 
 		var/i = 0
-		for(var/obj/machinery/telecoms/T in links)
+		for_no_type_check(var/obj/machinery/telecoms/T, links)
 			i++
 			if(T.hide && !src.hide)
 				continue
@@ -210,7 +210,7 @@
 					if(length(newnet) > 15)
 						temp = "<font color = #666633>-% Too many characters in new network tag %-</font color>"
 					else
-						for(var/obj/machinery/telecoms/T in links)
+						for_no_type_check(var/obj/machinery/telecoms/T, links)
 							T.links.Remove(src)
 						network = newnet
 						links = list()

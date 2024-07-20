@@ -16,7 +16,7 @@
 GLOBAL_GLOBL_LIST_NEW(obj/machinery/telecoms/telecoms_list)
 
 /obj/machinery/telecoms
-	var/list/links = list() // list of machines this machine is linked to
+	var/list/obj/machinery/telecoms/links = list() // list of machines this machine is linked to
 	var/traffic = 0 // value increases as traffic increases
 	var/netspeed = 5 // how much traffic to lose per tick (50 gigabytes/second * netspeed)
 	var/list/autolinkers = list() // list of text/number values to link with
@@ -105,7 +105,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/telecoms/telecoms_list)
 		signal.data["slow"] = netlag
 
 // Loop through all linked machines and send the signal or copy.
-	for(var/obj/machinery/telecoms/machine in links)
+	for_no_type_check(var/obj/machinery/telecoms/machine, links)
 		if(filter && !istype(machine, filter))
 			continue
 		if(!machine.on)

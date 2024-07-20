@@ -48,7 +48,7 @@
 			dat += "<br>Current Network: [network]<br>"
 			dat += "Selected Network Entity: [SelectedMachine.name] ([SelectedMachine.id])<br>"
 			dat += "Linked Entities: <ol>"
-			for(var/obj/machinery/telecoms/T in SelectedMachine.links)
+			for_no_type_check(var/obj/machinery/telecoms/T, SelectedMachine.links)
 				if(!T.hide)
 					dat += "<li><a href='byond://?src=\ref[src];viewmachine=[T.id]'>\ref[T.id] [T.name]</a> ([T.id])</li>"
 			dat += "</ol>"
