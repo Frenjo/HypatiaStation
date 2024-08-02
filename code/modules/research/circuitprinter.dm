@@ -89,8 +89,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	var/obj/item/stack/sheet/stack = O
 	if(!O)
 		return
-	var/material = get_material_name_by_type(stack.type)
-	if(!(material in accepted_materials))
+	if(!(stack.material.type in accepted_materials))
 		to_chat(user, SPAN_WARNING("The [src.name] cannot accept this material!"))
 		return 1
 	if((get_total_stored_materials() + stack.perunit) > max_storage_capacity)
@@ -110,7 +109,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	stack.use(num_sheets)
 	if(do_after(usr, 16))
 		to_chat(user, SPAN_INFO("You add [num_sheets] sheets to \the [src.name]."))
-		stored_materials[material] += (num_sheets * stack.perunit)
+		stored_materials[stack.material.type] += (num_sheets * stack.perunit)
 	else
 		new stack.type(src.loc, num_sheets)
 	busy = FALSE

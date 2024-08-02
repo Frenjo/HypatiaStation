@@ -6,6 +6,8 @@
 	var/icon_prefix
 	// The type path of the associated sheet item.
 	var/sheet_path
+	// The amount of this material that each sheet holds.
+	var/per_unit = MATERIAL_AMOUNT_PER_SHEET
 
 	/*
 	 * Wall

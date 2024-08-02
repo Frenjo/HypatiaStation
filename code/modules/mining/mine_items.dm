@@ -68,7 +68,7 @@
 	throwforce = 4
 	item_state = "pickaxe"
 	w_class = 4
-	matter_amounts = list(MATERIAL_METAL = 3750) //one sheet, but where can you make them?
+	matter_amounts = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET) //one sheet, but where can you make them?
 	origin_tech = list(/datum/tech/materials = 1, /datum/tech/engineering = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	sharp = 1

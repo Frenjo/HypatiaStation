@@ -48,7 +48,6 @@ var/global/list/datum/stack_recipe/sandstone_recipes = list(
 	icon_state = "sheet-diamond"
 	origin_tech = list(/datum/tech/materials = 6)
 	material = /decl/material/diamond
-	perunit = 3750
 
 var/global/list/datum/stack_recipe/diamond_recipes = list(
 	new/datum/stack_recipe("diamond door", /obj/structure/mineral_door/transparent/diamond, 10, one_per_turf = 1, on_floor = 1),
@@ -68,7 +67,6 @@ var/global/list/datum/stack_recipe/diamond_recipes = list(
 	icon_state = "sheet-uranium"
 	origin_tech = list(/datum/tech/materials = 5)
 	material = /decl/material/uranium
-	perunit = 2000
 
 var/global/list/datum/stack_recipe/uranium_recipes = list(
 	new/datum/stack_recipe("uranium door", /obj/structure/mineral_door/uranium, 10, one_per_turf = 1, on_floor = 1),
@@ -88,7 +86,6 @@ var/global/list/datum/stack_recipe/uranium_recipes = list(
 	icon_state = "sheet-plasma"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/plasma = 2)
 	material = /decl/material/plasma
-	perunit = 2000
 
 var/global/list/datum/stack_recipe/plasma_recipes = list(
 	new/datum/stack_recipe("plasma door", /obj/structure/mineral_door/transparent/plasma, 10, one_per_turf = 1, on_floor = 1),
@@ -108,7 +105,6 @@ var/global/list/datum/stack_recipe/plasma_recipes = list(
 	icon_state = "sheet-plastic"
 	origin_tech = list(/datum/tech/materials = 3)
 	material = /decl/material/plastic
-	perunit = 2000
 
 /obj/item/stack/sheet/plastic/cyborg
 	name = "plastic sheets"
@@ -136,7 +132,6 @@ var/global/list/datum/stack_recipe/plastic_recipes = list(
 	icon_state = "sheet-gold"
 	origin_tech = list(/datum/tech/materials = 4)
 	material = /decl/material/gold
-	perunit = 2000
 
 var/global/list/datum/stack_recipe/gold_recipes = list(
 	new/datum/stack_recipe("golden door", /obj/structure/mineral_door/gold, 10, one_per_turf = 1, on_floor = 1),
@@ -156,7 +151,6 @@ var/global/list/datum/stack_recipe/gold_recipes = list(
 	icon_state = "sheet-silver"
 	origin_tech = list(/datum/tech/materials = 3)
 	material = /decl/material/silver
-	perunit = 2000
 
 var/global/list/datum/stack_recipe/silver_recipes = list(
 	new/datum/stack_recipe("silver door", /obj/structure/mineral_door/silver, 10, one_per_turf = 1, on_floor = 1),
@@ -176,7 +170,6 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 	icon_state = "sheet-bananium"
 	origin_tech = list(/datum/tech/materials = 4)
 	material = /decl/material/bananium
-	perunit = 2000
 
 /obj/item/stack/sheet/bananium/New(loc, amount = null)
 	pixel_x = rand(0, 4) - 4
@@ -193,7 +186,6 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 	icon_state = "sheet-enruranium"
 	origin_tech = list(/datum/tech/materials = 5)
 	material = /decl/material/enriched_uranium
-	perunit = 1000
 
 /*
  * Adamantine
@@ -203,7 +195,6 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 	icon_state = "sheet-adamantine"
 	origin_tech = list(/datum/tech/materials = 4)
 	material = /decl/material/adamantine
-	perunit = 2000
 
 /*
  * Mythril
@@ -213,4 +204,3 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 	icon_state = "sheet-mythril"
 	origin_tech = list(/datum/tech/materials = 4)
 	material = /decl/material/mythril
-	perunit = 2000

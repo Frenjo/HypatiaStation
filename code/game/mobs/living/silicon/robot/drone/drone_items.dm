@@ -246,23 +246,19 @@
 			switch(type)
 				if(/decl/material/steel)
 					if(isnull(stack_metal))
-						stack_metal = new /obj/item/stack/sheet/metal/cyborg(module)
-						stack_metal.amount = 1
+						stack_metal = new /obj/item/stack/sheet/metal/cyborg(module, 1)
 					stack = stack_metal
 				if(/decl/material/glass)
 					if(isnull(stack_glass))
-						stack_glass = new /obj/item/stack/sheet/glass/cyborg(module)
-						stack_glass.amount = 1
+						stack_glass = new /obj/item/stack/sheet/glass/cyborg(module, 1)
 					stack = stack_glass
 				if(/decl/material/plastic)
 					if(isnull(stack_plastic))
-						stack_plastic = new /obj/item/stack/sheet/plastic/cyborg(module)
-						stack_plastic.amount = 1
+						stack_plastic = new /obj/item/stack/sheet/plastic/cyborg(module, 1)
 					stack = stack_plastic
 				if(/decl/material/wood)
 					if(isnull(stack_wood))
-						stack_wood = new /obj/item/stack/sheet/wood/cyborg(module)
-						stack_wood.amount = 1
+						stack_wood = new /obj/item/stack/sheet/wood/cyborg(module, 1)
 					stack = stack_wood
 
 			stack.amount++

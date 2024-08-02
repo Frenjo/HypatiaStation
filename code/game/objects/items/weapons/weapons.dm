@@ -143,7 +143,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "rack_parts"
 	obj_flags = OBJ_FLAG_CONDUCT
-	matter_amounts = list(MATERIAL_METAL = 3750)
+	matter_amounts = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET)
 
 /obj/item/shard
 	name = "shard"
@@ -156,7 +156,7 @@
 	force = 5.0
 	throwforce = 8.0
 	item_state = "shard-glass"
-	matter_amounts = list(MATERIAL_GLASS = 3750)
+	matter_amounts = list(/decl/material/glass = MATERIAL_AMOUNT_PER_SHEET)
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")
 
 /obj/item/shard/suicide_act(mob/user)
@@ -233,7 +233,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "table_parts"
-	matter_amounts = list(MATERIAL_METAL = 3750)
+	matter_amounts = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET)
 	obj_flags = OBJ_FLAG_CONDUCT
 	attack_verb = list("slammed", "bashed", "battered", "bludgeoned", "thrashed", "whacked")
 
@@ -242,7 +242,7 @@
 	desc = "Hard table parts. Well...harder..."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "reinf_tableparts"
-	matter_amounts = list(MATERIAL_METAL = 7500)
+	matter_amounts = list(MATERIAL_METAL = (MATERIAL_AMOUNT_PER_SHEET * 2))
 
 /obj/item/table_parts/wood
 	name = "wooden table parts"

@@ -19,15 +19,15 @@
 
 	var/time_coeff = 1.5 //can be upgraded with research
 	var/resource_coeff = 1.5 //can be upgraded with research
-	var/list/resources = list(
-		MATERIAL_METAL			= 0,
-		MATERIAL_GLASS			= 0,
-		MATERIAL_GOLD			= 0,
-		MATERIAL_SILVER			= 0,
-		MATERIAL_DIAMOND		= 0,
-		MATERIAL_PLASMA			= 0,
-		MATERIAL_URANIUM		= 0,
-		MATERIAL_BANANIUM		= 0
+	var/list/stored_materials = list(
+		/decl/material/steel	= 0,
+		/decl/material/glass	= 0,
+		/decl/material/silver	= 0,
+		/decl/material/gold		= 0,
+		/decl/material/diamond	= 0,
+		/decl/material/uranium	= 0,
+		/decl/material/plasma	= 0,
+		/decl/material/bananium	= 0
 		// Re-enabled bananium. -Frenjo
 	)
 	var/res_max_amount = 200000
@@ -161,7 +161,7 @@
 	var/T = 0
 	for(var/obj/item/stock_part/matter_bin/M in component_parts)
 		T += M.rating
-	res_max_amount = (187500 + (T * 37500))
+	res_max_amount = ((MATERIAL_AMOUNT_PER_SHEET * 50) + (T * (MATERIAL_AMOUNT_PER_SHEET * 100)))
 	T = 0
 	for(var/obj/item/stock_part/micro_laser/Ma in component_parts)
 		T += Ma.rating
@@ -316,9 +316,9 @@
 	var/i = 0
 	var/output
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))//The most efficient way to go about this. Not all objects have these vars, but if they don't then they CANNOT be made by the mech fab. Doing it this way reduces a major amount of typecasting and switches, while cutting down maintenece for them as well -Sieve
-		for(var/c in part:construction_cost)//The check should ensure that anything without the var doesn't make it to this point
-			if(c in resources)
-				output += "[i ? " | " : null][get_resource_cost_w_coeff(part, c)] [c]"
+		for(var/path in part:construction_cost)//The check should ensure that anything without the var doesn't make it to this point
+			if(path in stored_materials)
+				output += "[i ? " | " : null][get_resource_cost_w_coeff(part, path)] [get_material_name(path)]"
 				i++
 		return output
 	else
@@ -326,11 +326,11 @@
 
 /obj/machinery/mecha_part_fabricator/proc/output_available_resources()
 	var/output
-	for(var/resource in resources)
-		var/amount = min(res_max_amount, resources[resource])
-		output += "<span class=\"res_name\">[resource]: </span>[amount] cm&sup3;"
-		if(amount>0)
-			output += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[resource]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[resource]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[res_max_amount];material=[resource]'>All</a>\]</span>"
+	for(var/resource_path in stored_materials)
+		var/amount = min(res_max_amount, stored_materials[resource_path])
+		output += "<span class=\"res_name\">[get_material_name(resource_path)]: </span>[amount] cm&sup3;"
+		if(amount > 0)
+			output += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[resource_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[resource_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[res_max_amount];material=[resource_path]'>All</a>\]</span>"
 		output += "<br/>"
 	return output
 
@@ -338,16 +338,16 @@
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
 		for(var/resource in part:construction_cost)
-			if(resource in resources)
-				resources[resource] -= get_resource_cost_w_coeff(part, resource)
+			if(resource in stored_materials)
+				stored_materials[resource] -= get_resource_cost_w_coeff(part, resource)
 
 /obj/machinery/mecha_part_fabricator/proc/check_resources(obj/item/part)
 //		if(istype(part, /obj/item/robot_parts) || istype(part, /obj/item/mecha_part) || istype(part,/obj/item/borg/upgrade))
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
 		for(var/resource in part:construction_cost)
-			if(resource in resources)
-				if(resources[resource] < get_resource_cost_w_coeff(part, resource))
+			if(resource in stored_materials)
+				if(stored_materials[resource] < get_resource_cost_w_coeff(part, resource))
 					return 0
 		return 1
 	else
@@ -520,7 +520,7 @@
 		updateUsrDialog()
 		visible_message("\icon[src] <b>[src]</b> beeps, \"Error! Couldn't connect to R&D server.\"")
 
-/obj/machinery/mecha_part_fabricator/proc/get_resource_cost_w_coeff(obj/item/part, resource as text, roundto = 1)
+/obj/machinery/mecha_part_fabricator/proc/get_resource_cost_w_coeff(obj/item/part, resource, roundto = 1)
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
 		return round(part:construction_cost[resource] * resource_coeff, roundto)
@@ -656,19 +656,19 @@
 						<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>
 						"}
 	if(href_list["remove_mat"] && href_list["material"])
-		temp = "Ejected [remove_material(href_list["material"],text2num(href_list["remove_mat"]))] of [href_list["material"]]<br><a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
+		temp = "Ejected [remove_material(text2path(href_list["material"]),text2num(href_list["remove_mat"]))] of [href_list["material"]]<br><a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
 	updateUsrDialog()
 
-/obj/machinery/mecha_part_fabricator/proc/remove_material(mat_string, amount)
-	var/type = get_material_type_by_name(mat_string)
-	if(isnull(type))
+/obj/machinery/mecha_part_fabricator/proc/remove_material(type, amount)
+	var/sheet_type = get_material_sheet_type(type)
+	if(isnull(sheet_type))
 		return 0
 	var/result = 0
-	var/obj/item/stack/sheet/res = new type(src)
-	var/total_amount = round(resources[mat_string] / res.perunit)
+	var/obj/item/stack/sheet/res = new sheet_type(src)
+	var/total_amount = round(stored_materials[type] / res.perunit)
 	res.amount = min(total_amount, amount)
 	if(res.amount > 0)
-		resources[mat_string] -= res.amount * res.perunit
+		stored_materials[type] -= res.amount * res.perunit
 		res.Move(loc)
 		result = res.amount
 	else
@@ -697,30 +697,10 @@
 				if(I.reliability != 100 && crit_fail)
 					I.crit_fail = 1
 				I.loc = loc
-			if(resources[MATERIAL_METAL] >= 3750)
-				var/obj/item/stack/sheet/metal/G = new /obj/item/stack/sheet/metal(loc)
-				G.amount = round(resources[MATERIAL_METAL] / G.perunit)
-			if(resources[MATERIAL_GLASS] >= 3750)
-				var/obj/item/stack/sheet/glass/G = new /obj/item/stack/sheet/glass(loc)
-				G.amount = round(resources[MATERIAL_GLASS] / G.perunit)
-			if(resources[MATERIAL_PLASMA] >= 2000)
-				var/obj/item/stack/sheet/plasma/G = new /obj/item/stack/sheet/plasma(loc)
-				G.amount = round(resources[MATERIAL_PLASMA] / G.perunit)
-			if(resources[MATERIAL_SILVER] >= 2000)
-				var/obj/item/stack/sheet/silver/G = new /obj/item/stack/sheet/silver(loc)
-				G.amount = round(resources[MATERIAL_SILVER] / G.perunit)
-			if(resources[MATERIAL_GOLD] >= 2000)
-				var/obj/item/stack/sheet/gold/G = new /obj/item/stack/sheet/gold(loc)
-				G.amount = round(resources[MATERIAL_GOLD] / G.perunit)
-			if(resources[MATERIAL_URANIUM] >= 2000)
-				var/obj/item/stack/sheet/uranium/G = new /obj/item/stack/sheet/uranium(loc)
-				G.amount = round(resources[MATERIAL_URANIUM] / G.perunit)
-			if(resources[MATERIAL_DIAMOND] >= 2000)
-				var/obj/item/stack/sheet/diamond/G = new /obj/item/stack/sheet/diamond(loc)
-				G.amount = round(resources[MATERIAL_DIAMOND] / G.perunit)
-			if(resources[MATERIAL_BANANIUM] >= 2000)
-				var/obj/item/stack/sheet/bananium/G = new /obj/item/stack/sheet/bananium(loc)
-				G.amount = round(resources[MATERIAL_BANANIUM] / G.perunit)
+			for(var/material_path in stored_materials)
+				var/decl/material/material = GET_DECL_INSTANCE(material_path)
+				if(stored_materials[material_path] >= material.per_unit)
+					new material.sheet_path(loc, round(stored_materials[material_path] / material.per_unit))
 			qdel(src)
 			return 1
 		else
@@ -730,29 +710,29 @@
 	if(istype(W, /obj/item/card/emag))
 		emag()
 		return
-	var/material = get_material_name_by_type(W.type)
-	if(isnull(material))
+	if(!istype(W, /obj/item/stack/sheet))
+		return
+	var/obj/item/stack/sheet/stack = W
+	if(isnull(stack.material))
 		return ..()
-
 	if(being_built)
 		to_chat(user, SPAN_WARNING("The fabricator is currently processing. Please wait until completion."))
 		return
-	var/obj/item/stack/sheet/stack = W
-	var/sname = "[stack.name]"
-	var/amnt = stack.perunit
-	if(resources[material] < res_max_amount)
+
+	if(stored_materials[stack.material.type] < res_max_amount)
 		var/count = 0
-		overlays.Add("fab-load-[material]") //loading animation is now an overlay based on material type. No more spontaneous conversion of all ores to metal. -vey
+		//loading animation is now an overlay based on material type. No more spontaneous conversion of all ores to metal. -vey
+		overlays.Add("fab-load-[lowertext(stack.material.name)]")
 		if(do_after(user, 10))
 			if(stack && stack.amount)
-				while(resources[material] < res_max_amount && stack)
-					resources[material] += amnt
+				while(stored_materials[stack.material.type] < res_max_amount && stack)
+					stored_materials[stack.material.type] += stack.perunit
 					stack.use(1)
 					count++
-				overlays.Remove("fab-load-[material]")
-				to_chat(user, SPAN_INFO("You insert [count] [sname] into the fabricator."))
+				overlays.Remove("fab-load-[lowertext(stack.material.name)]")
+				to_chat(user, SPAN_INFO("You insert [count] [stack.name] into the fabricator."))
 				updateUsrDialog()
 		else
-			to_chat(user, SPAN_WARNING("You fail to insert the [sname] into the fabricator."))
+			to_chat(user, SPAN_WARNING("You fail to insert the [stack.name] into the fabricator."))
 	else
-		to_chat(user, SPAN_WARNING("The fabricator cannot hold more [sname]."))
+		to_chat(user, SPAN_WARNING("The fabricator cannot hold more [stack.name]."))

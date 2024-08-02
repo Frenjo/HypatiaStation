@@ -84,7 +84,7 @@ var/global/list/datum/stack_recipe/metal_recipes = list(
 	desc = "Sheets made out off metal. It has been dubbed Metal Sheets."
 	singular_name = "metal sheet"
 	icon_state = "sheet-metal"
-	matter_amounts = list(MATERIAL_METAL = 3750)
+	matter_amounts = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET)
 	throwforce = 14.0
 	obj_flags = OBJ_FLAG_CONDUCT
 	origin_tech = list(/datum/tech/materials = 1)
@@ -113,7 +113,7 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list(
 	desc = "This sheet is an alloy of iron and plasma."
 	icon_state = "sheet-plasteel"
 	item_state = "sheet-metal"
-	matter_amounts = list(MATERIAL_METAL = 7500)
+	matter_amounts = list(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET * 2))
 	throwforce = 15.0
 	obj_flags = OBJ_FLAG_CONDUCT
 	origin_tech = list(/datum/tech/materials = 2)

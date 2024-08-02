@@ -11,13 +11,14 @@
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "smashed")
 
 	var/decl/material/material
-	var/perunit = 3750
+	var/perunit
 
 /obj/item/stack/sheet/New()
 	SHOULD_CALL_PARENT(TRUE)
 
 	if(isnotnull(material))
 		material = GET_DECL_INSTANCE(material)
+		perunit = material.per_unit
 	. = ..()
 
 // Since the sheetsnatcher was consolidated into weapon/storage/bag we now use

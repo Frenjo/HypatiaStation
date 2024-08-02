@@ -227,9 +227,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 									files.UpdateTech(T, temp_tech[T])
 							if(linked_destroy.loaded_item.reliability < 100 && linked_destroy.loaded_item.crit_fail)
 								files.UpdateDesign(linked_destroy.loaded_item.type)
-							if(linked_lathe) //Also sends salvaged materials to a linked protolathe, if any.
-								linked_lathe.stored_materials[MATERIAL_METAL] += min((linked_lathe.max_storage_capacity - linked_lathe.get_total_stored_materials()), (linked_destroy.loaded_item.matter_amounts[MATERIAL_METAL] * linked_destroy.decon_mod))
-								linked_lathe.stored_materials[MATERIAL_GLASS] += min((linked_lathe.max_storage_capacity - linked_lathe.get_total_stored_materials()), (linked_destroy.loaded_item.matter_amounts[MATERIAL_GLASS] * linked_destroy.decon_mod))
+							if(isnotnull(linked_lathe)) //Also sends salvaged materials to a linked protolathe, if any.
+								var/obj/item/loaded_item = linked_destroy.loaded_item
+								for(var/material_path in loaded_item.matter_amounts)
+									var/storage_capacity = linked_lathe.max_storage_capacity - linked_lathe.get_total_stored_materials()
+									linked_lathe.stored_materials[material_path] += min(storage_capacity, (loaded_item.matter_amounts[material_path] * linked_destroy.decon_mod))
 							linked_destroy.loaded_item = null
 						for(var/obj/I in linked_destroy.contents)
 							for(var/mob/M in I.contents)
@@ -376,27 +378,27 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		linked_lathe.reagents.clear_reagents()
 
 	else if(href_list["lathe_ejectsheet"] && linked_lathe) // Causes the protolathe to eject a sheet of material.
-		var/material_name = href_list["lathe_ejectsheet"]
+		var/material_type = text2path(href_list["lathe_ejectsheet"])
 		var/desired_num_sheets = text2num(href_list["lathe_ejectsheet_amt"])
-		var/type = get_material_type_by_name(material_name)
+		var/type = get_material_sheet_type(material_type)
 		if(ispath(type))
 			var/obj/item/stack/sheet/sheet = new type(linked_lathe.loc)
-			var/available_num_sheets = round(linked_lathe.stored_materials[material_name] / sheet.perunit)
+			var/available_num_sheets = round(linked_lathe.stored_materials[material_type] / sheet.perunit)
 			if(available_num_sheets > 0)
 				sheet.amount = min(available_num_sheets, desired_num_sheets)
-				linked_lathe.stored_materials[material_name] = max(0, (linked_lathe.stored_materials[material_name] - sheet.amount * sheet.perunit))
+				linked_lathe.stored_materials[material_type] = max(0, (linked_lathe.stored_materials[material_type] - sheet.amount * sheet.perunit))
 			else
 				qdel(sheet)
 	else if(href_list["imprinter_ejectsheet"] && linked_imprinter) // Causes the circuit imprinter to eject a sheet of material.
-		var/material_name = href_list["imprinter_ejectsheet"]
+		var/material_type = text2path(href_list["imprinter_ejectsheet"])
 		var/desired_num_sheets = text2num(href_list["imprinter_ejectsheet_amt"])
-		var/type = get_material_type_by_name(material_name)
+		var/type = get_material_sheet_type(material_type)
 		if(ispath(type))
 			var/obj/item/stack/sheet/sheet = new type(linked_imprinter.loc)
-			var/available_num_sheets = round(linked_imprinter.stored_materials[material_name] / sheet.perunit)
+			var/available_num_sheets = round(linked_imprinter.stored_materials[material_type] / sheet.perunit)
 			if(available_num_sheets > 0)
 				sheet.amount = min(available_num_sheets, desired_num_sheets)
-				linked_imprinter.stored_materials[material_name] = max(0, (linked_imprinter.stored_materials[material_name] - sheet.amount * sheet.perunit))
+				linked_imprinter.stored_materials[material_type] = max(0, (linked_imprinter.stored_materials[material_type] - sheet.amount * sheet.perunit))
 			else
 				qdel(sheet)
 
@@ -625,7 +627,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				var/temp_dat = "[D.name]"
 				var/check_materials = TRUE
 				for(var/M in D.materials)
-					var/material_name = get_material_name_by_id(M)
+					var/material_name = ispath(M, /decl/material) ? get_material_name(M) : null
 					if(isnull(material_name))
 						var/datum/reagent/reagent = GLOBL.chemical_reagents_list[M]
 						material_name = reagent.name // If this still comes out as null, then someone has added something invalid to D.materials.
@@ -643,85 +645,18 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='byond://?src=\ref[src];menu=3.1'>Protolathe Menu</A><HR>"
 			dat += "Material Storage<BR><HR>"
-			// Metal
-			dat += "* [linked_lathe.stored_materials[MATERIAL_METAL]] cm<sup>3</sup> of Metal || "
-			dat += "Eject: "
-			if(linked_lathe.stored_materials[MATERIAL_METAL] >= 3750)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_METAL];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_METAL] >= 18750)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_METAL];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_METAL] >= 3750)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_METAL];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
-			dat += "<BR>"
-			// Glass
-			dat += "* [linked_lathe.stored_materials[MATERIAL_GLASS]] cm<sup>3</sup> of Glass || "
-			dat += "Eject: "
-			if(linked_lathe.stored_materials[MATERIAL_GLASS] >= 3750)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GLASS];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_GLASS] >= 18750)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GLASS];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_GLASS] >= 3750)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GLASS];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
-			dat += "<BR>"
-			// Gold
-			dat += "* [linked_lathe.stored_materials[MATERIAL_GOLD]] cm<sup>3</sup> of Gold || "
-			dat += "Eject: "
-			if(linked_lathe.stored_materials[MATERIAL_GOLD] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GOLD];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_GOLD] >= 10000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GOLD];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_GOLD] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_GOLD];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
-			dat += "<BR>"
-			// Silver
-			dat += "* [linked_lathe.stored_materials[MATERIAL_SILVER]] cm<sup>3</sup> of Silver || "
-			dat += "Eject: "
-			if(linked_lathe.stored_materials[MATERIAL_SILVER] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_SILVER];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_SILVER] >= 10000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_SILVER];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_SILVER] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_SILVER];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
-			dat += "<BR>"
-			// Diamond
-			dat += "* [linked_lathe.stored_materials[MATERIAL_DIAMOND]] cm<sup>3</sup> of Diamond || "
-			dat += "Eject: "
-			if(linked_lathe.stored_materials[MATERIAL_DIAMOND] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_DIAMOND];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_DIAMOND] >= 10000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_DIAMOND];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_DIAMOND] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_DIAMOND];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
-			dat += "<BR>"
-			// Plasma
-			dat += "* [linked_lathe.stored_materials[MATERIAL_PLASMA]] cm<sup>3</sup> of Solid Plasma || "
-			dat += "Eject: "
-			if(linked_lathe.stored_materials[MATERIAL_PLASMA] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_PLASMA];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_PLASMA] >= 10000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_PLASMA];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_PLASMA] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_PLASMA];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
-			dat += "<BR>"
-			// Uranium
-			dat += "* [linked_lathe.stored_materials[MATERIAL_URANIUM]] cm<sup>3</sup> of Uranium || "
-			dat += "Eject: "
-			if(linked_lathe.stored_materials[MATERIAL_URANIUM] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_URANIUM];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_URANIUM] >= 10000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_URANIUM];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_URANIUM] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_URANIUM];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
-			dat += "<BR>"
-			// Bananium
-			dat += "* [linked_lathe.stored_materials[MATERIAL_BANANIUM]] cm<sup>3</sup> of Bananium || "
-			dat += "Eject: "
-			if(linked_lathe.stored_materials[MATERIAL_BANANIUM] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_BANANIUM];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_BANANIUM] >= 10000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_BANANIUM];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_lathe.stored_materials[MATERIAL_BANANIUM] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[MATERIAL_BANANIUM];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+			for(var/material_path in linked_lathe.stored_materials)
+				var/decl/material/material = GET_DECL_INSTANCE(material_path)
+				var/material_amount = linked_lathe.stored_materials[material_path]
+				dat += "* [material_amount] cm<sup>3</sup> of [material.name] || "
+				dat += "Eject: "
+				if(material_amount >= material.per_unit)
+					dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[material_path];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+				if(material_amount >= (material.per_unit * 5))
+					dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[material_path];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+				if(material_amount >= material.per_unit)
+					dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[material_path];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+				dat += "<BR>"
 
 		if(3.3) //Protolathe Chemical Storage Submenu
 			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
@@ -751,7 +686,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				var/temp_dat = "[D.name]"
 				var/check_materials = TRUE
 				for(var/M in D.materials)
-					var/material_name = get_material_name_by_id(M)
+					var/material_name = ispath(M, /decl/material) ? get_material_name(M) : null
 					if(isnull(material_name))
 						var/datum/reagent/reagent = GLOBL.chemical_reagents_list[M]
 						material_name = reagent.name // If this still comes out as null, then someone has added something invalid to D.materials.
@@ -778,45 +713,18 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='byond://?src=\ref[src];menu=4.1'>Circuit Imprinter Menu</A><HR>"
 			dat += "Material Storage<BR><HR>"
-			// Glass
-			dat += "* [linked_imprinter.stored_materials[MATERIAL_GLASS]] cm<sup>3</sup> of Glass || "
-			dat += "Eject: "
-			if(linked_imprinter.stored_materials[MATERIAL_GLASS] >= 3750)
-				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=glass;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_imprinter.stored_materials[MATERIAL_GLASS] >= 18750)
-				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=glass;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_imprinter.stored_materials[MATERIAL_GLASS] >= 3750)
-				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=glass;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
-			dat += "<BR>"
-			// Gold
-			dat += "* [linked_imprinter.stored_materials[MATERIAL_GOLD]] cm<sup>3</sup> of Gold || "
-			dat += "Eject: "
-			if(linked_imprinter.stored_materials[MATERIAL_GOLD] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=gold;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_imprinter.stored_materials[MATERIAL_GOLD] >= 10000)
-				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=gold;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_imprinter.stored_materials[MATERIAL_GOLD] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=gold;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
-			dat += "<BR>"
-			// Diamond
-			dat += "* [linked_imprinter.stored_materials[MATERIAL_DIAMOND]] cm<sup>3</sup> of Diamond || "
-			dat += "Eject: "
-			if(linked_imprinter.stored_materials[MATERIAL_DIAMOND] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=diamond;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_imprinter.stored_materials[MATERIAL_DIAMOND] >= 10000)
-				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=diamond;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_imprinter.stored_materials[MATERIAL_DIAMOND] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=diamond;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
-			dat += "<BR>"
-			// Uranium
-			dat += "* [linked_imprinter.stored_materials[MATERIAL_URANIUM]] cm<sup>3</sup> of Uranium || "
-			dat += "Eject: "
-			if(linked_imprinter.stored_materials[MATERIAL_URANIUM] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
-			if(linked_imprinter.stored_materials[MATERIAL_URANIUM] >= 10000)
-				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
-			if(linked_imprinter.stored_materials[MATERIAL_URANIUM] >= 2000)
-				dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=uranium;imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
+			for(var/material_path in linked_imprinter.stored_materials)
+				var/decl/material/material = GET_DECL_INSTANCE(material_path)
+				var/material_amount = linked_imprinter.stored_materials[material_path]
+				dat += "* [material_amount] cm<sup>3</sup> of [material.name] || "
+				dat += "Eject: "
+				if(material_amount >= material.per_unit)
+					dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=[material_path];imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
+				if(material_amount >= (material.per_unit * 5))
+					dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=[material_path];imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
+				if(material_amount >= material.per_unit)
+					dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=[material_path];imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
+				dat += "<BR>"
 
 	user << browse("<TITLE>Research and Development Console</TITLE><HR>[dat]", "window=rdconsole;size=575x400")
 	onclose(user, "rdconsole")

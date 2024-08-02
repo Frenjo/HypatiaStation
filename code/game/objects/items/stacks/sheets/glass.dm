@@ -15,9 +15,10 @@
 	desc = "HOLY SHEET! That is a lot of glass."
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
-	matter_amounts = list(MATERIAL_GLASS = 3750)
+	matter_amounts = list(/decl/material/glass = MATERIAL_AMOUNT_PER_SHEET)
 	origin_tech = list(/datum/tech/materials = 1)
 	material = /decl/material/glass
+
 	var/created_window = /obj/structure/window/basic
 
 /obj/item/stack/sheet/glass/cyborg
@@ -136,8 +137,9 @@
 	desc = "Glass which seems to have rods or something stuck in them."
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
-	matter_amounts = list(MATERIAL_METAL = 1875, MATERIAL_GLASS = 3750)
+	matter_amounts = list(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET / 2), /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET)
 	origin_tech = list(/datum/tech/materials = 2)
+
 	material = /decl/material/reinforced_glass
 
 /obj/item/stack/sheet/glass/reinforced/cyborg
@@ -337,9 +339,10 @@
 	desc = "A very strong and very resistant sheet of a plasma-glass alloy."
 	singular_name = "plasma glass sheet"
 	icon_state = "sheet-plasmaglass"
-	matter_amounts = list(MATERIAL_GLASS = 7500)
+	matter_amounts = list(/decl/material/glass = (MATERIAL_AMOUNT_PER_SHEET * 2))
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/plasma = 2)
 	material = /decl/material/plasma_glass
+
 	created_window = /obj/structure/window/plasmabasic
 
 /obj/item/stack/sheet/glass/plasma/attack_by(obj/item/I, mob/user)
@@ -366,9 +369,10 @@
 	desc = "Plasma glass which seems to have rods or something stuck in them."
 	singular_name = "reinforced plasma glass sheet"
 	icon_state = "sheet-plasmarglass"
-	matter_amounts = list(MATERIAL_METAL = 1875, MATERIAL_GLASS = 7500)
+	matter_amounts = list(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET / 2), /decl/material/glass = (MATERIAL_AMOUNT_PER_SHEET * 2))
 	origin_tech = list(/datum/tech/materials = 4, /datum/tech/plasma = 2)
 	material = /decl/material/reinforced_plasma_glass
+
 	created_window = /obj/structure/window/plasmareinforced
 
 /obj/item/stack/sheet/glass/plasma/reinforced/attackby(obj/item/I, mob/user)

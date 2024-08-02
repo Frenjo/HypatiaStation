@@ -9,14 +9,15 @@ For the materials datum, it assumes you need reagents unless specified otherwise
 you use one of the material IDs below. These are NOT ids in the usual sense (they aren't defined in the object or part of a datum),
 they are simply references used as part of a "has materials?" type proc. They all start with a $ to denote that they aren't reagents.
 The currently supporting non-reagent materials:
-- $metal (/obj/item/stack/metal). One sheet = 3750 units.
-- $glass (/obj/item/stack/glass). One sheet = 3750 units.
-- $plasma (/obj/item/stack/plasma). One sheet = 3750 units.
-- $silver (/obj/item/stack/silver). One sheet = 3750 units.
-- $gold (/obj/item/stack/gold). One sheet = 3750 units.
-- $uranium (/obj/item/stack/uranium). One sheet = 3750 units.
-- $diamond (/obj/item/stack/diamond). One sheet = 3750 units.
-- $clown (/obj/item/stack/clown). One sheet = 3750 units. ("Bananium")
+- $metal (/obj/item/stack/metal).
+- $glass (/obj/item/stack/glass).
+- $plasma (/obj/item/stack/plasma).
+- $silver (/obj/item/stack/silver).
+- $gold (/obj/item/stack/gold).
+- $uranium (/obj/item/stack/uranium).
+- $diamond (/obj/item/stack/diamond).
+- $clown (/obj/item/stack/clown). ("Bananium")
+- All values are that one sheet = MATERIAL_AMOUNT_PER_SHEET units.
 (Insert new ones here)
 
 Don't add new keyword/IDs if they are made from an existing one (such as rods which are made from metal). Only add raw materials.
@@ -26,7 +27,7 @@ Design Guidlines
 reliability_mod (starts at 0, gets improved through experimentation). Example: PACMAN generator. 79 base reliablity + 6 tech
 (3 plasmatech, 3 powerstorage) + 0 (since it's completely new) = 85% reliability. Reliability is the chance it works CORRECTLY.
 - When adding new designs, check rdreadme.dm to see what kind of things have already been made and where new stuff is needed.
-- A single sheet of anything is 3750 units of material. Materials besides metal/glass require help from other jobs (mining for
+- A single sheet of anything is MATERIAL_AMOUNT_PER_SHEET units of material. Materials besides metal/glass require help from other jobs (mining for
 other types of metals and chemistry for reagents).
 - Add the AUTOLATHE tag to
 
@@ -1442,7 +1443,7 @@ other types of metals and chemistry for reagents).
 	desc = "A box of prototype 9mm ammunition."
 	req_tech = list(/datum/tech/materials = 3, /datum/tech/combat = 4)
 	build_type = PROTOLATHE
-	materials = list(MATERIAL_METAL = 3750, MATERIAL_SILVER = 100)
+	materials = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET, MATERIAL_SILVER = 100)
 	build_path = /obj/item/ammo_magazine/c9mm
 
 /datum/design/stunshell
@@ -1502,7 +1503,7 @@ other types of metals and chemistry for reagents).
 	desc = "Yours is the drill that will pierce the heavens!"
 	req_tech = list(/datum/tech/materials = 6, /datum/tech/engineering = 4, /datum/tech/power_storage = 4)
 	build_type = PROTOLATHE
-	materials = list(MATERIAL_METAL = 3000, MATERIAL_GLASS = 1000, MATERIAL_DIAMOND = 3750) //Yes, a whole diamond is needed.
+	materials = list(MATERIAL_METAL = 3000, MATERIAL_GLASS = 1000, MATERIAL_DIAMOND = MATERIAL_AMOUNT_PER_SHEET) //Yes, a whole diamond is needed.
 	reliability_base = 79
 	build_path = /obj/item/pickaxe/diamonddrill
 

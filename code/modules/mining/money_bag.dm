@@ -83,7 +83,7 @@
 
 	if(href_list["remove"])
 		var/obj/item/coin/coin = null
-		switch(href_list["remove"])
+		switch(text2path(href_list["remove"]))
 			if(MATERIAL_GOLD)
 				coin = locate(/obj/item/coin/gold, contents)
 			if(MATERIAL_SILVER)

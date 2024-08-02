@@ -153,7 +153,6 @@
 		return
 
 	regular_win(user)
-
 	return
 
 /obj/machinery/autolathe/attack_tool(obj/item/tool, mob/user)
@@ -183,10 +182,10 @@
 				I.loc = loc
 				if(I.reliability != 100 && crit_fail)
 					I.crit_fail = TRUE
-			if(stored_materials[MATERIAL_METAL] >= 3750)
-				new /obj/item/stack/sheet/metal(loc, round(stored_materials[MATERIAL_METAL] / 3750))
-			if(stored_materials[MATERIAL_GLASS] >= 3750)
-				new /obj/item/stack/sheet/glass(loc, round(stored_materials[MATERIAL_GLASS] / 3750))
+			for(var/material_path in stored_materials)
+				var/decl/material/material = GET_DECL_INSTANCE(material_path)
+				if(stored_materials[material_path] >= material.per_unit)
+					new material.sheet_path(loc, round(stored_materials[material_path] / material.per_unit))
 			qdel(src)
 			return TRUE
 
@@ -255,7 +254,7 @@
 
 	if(!busy)
 		if(href_list["make"])
-			var/turf/T = get_step(src.loc, get_dir(src,usr))
+			var/turf/T = get_step(src.loc, get_dir(src, usr))
 
 			// critical exploit fix start -walter0o
 			var/obj/item/template = null
