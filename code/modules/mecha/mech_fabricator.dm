@@ -318,7 +318,8 @@
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))//The most efficient way to go about this. Not all objects have these vars, but if they don't then they CANNOT be made by the mech fab. Doing it this way reduces a major amount of typecasting and switches, while cutting down maintenece for them as well -Sieve
 		for(var/path in part:construction_cost)//The check should ensure that anything without the var doesn't make it to this point
 			if(path in stored_materials)
-				output += "[i ? " | " : null][get_resource_cost_w_coeff(part, path)] [get_material_name(path)]"
+				var/decl/material/material = GET_DECL_INSTANCE(path)
+				output += "[i ? " | " : null][get_resource_cost_w_coeff(part, path)] [material.name]"
 				i++
 		return output
 	else
@@ -326,11 +327,12 @@
 
 /obj/machinery/mecha_part_fabricator/proc/output_available_resources()
 	var/output
-	for(var/resource_path in stored_materials)
-		var/amount = min(res_max_amount, stored_materials[resource_path])
-		output += "<span class=\"res_name\">[get_material_name(resource_path)]: </span>[amount] cm&sup3;"
+	for(var/material_path in stored_materials)
+		var/decl/material/material = GET_DECL_INSTANCE(material_path)
+		var/amount = min(res_max_amount, stored_materials[material_path])
+		output += "<span class=\"res_name\">[material.name]: </span>[amount] cm&sup3;"
 		if(amount > 0)
-			output += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[resource_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[resource_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[res_max_amount];material=[resource_path]'>All</a>\]</span>"
+			output += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[res_max_amount];material=[material_path]'>All</a>\]</span>"
 		output += "<br/>"
 	return output
 
@@ -660,11 +662,11 @@
 	updateUsrDialog()
 
 /obj/machinery/mecha_part_fabricator/proc/remove_material(type, amount)
-	var/sheet_type = get_material_sheet_type(type)
-	if(isnull(sheet_type))
+	var/decl/material/material = GET_DECL_INSTANCE(type)
+	if(isnull(material.sheet_path))
 		return 0
 	var/result = 0
-	var/obj/item/stack/sheet/res = new sheet_type(src)
+	var/obj/item/stack/sheet/res = new material.sheet_path(src)
 	var/total_amount = round(stored_materials[type] / res.perunit)
 	res.amount = min(total_amount, amount)
 	if(res.amount > 0)

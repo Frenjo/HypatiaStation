@@ -380,9 +380,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["lathe_ejectsheet"] && linked_lathe) // Causes the protolathe to eject a sheet of material.
 		var/material_type = text2path(href_list["lathe_ejectsheet"])
 		var/desired_num_sheets = text2num(href_list["lathe_ejectsheet_amt"])
-		var/type = get_material_sheet_type(material_type)
-		if(ispath(type))
-			var/obj/item/stack/sheet/sheet = new type(linked_lathe.loc)
+		var/decl/material/material = GET_DECL_INSTANCE(material_type)
+		if(ispath(material.sheet_path))
+			var/obj/item/stack/sheet/sheet = new material.sheet_path(linked_lathe.loc)
 			var/available_num_sheets = round(linked_lathe.stored_materials[material_type] / sheet.perunit)
 			if(available_num_sheets > 0)
 				sheet.amount = min(available_num_sheets, desired_num_sheets)
@@ -392,9 +392,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["imprinter_ejectsheet"] && linked_imprinter) // Causes the circuit imprinter to eject a sheet of material.
 		var/material_type = text2path(href_list["imprinter_ejectsheet"])
 		var/desired_num_sheets = text2num(href_list["imprinter_ejectsheet_amt"])
-		var/type = get_material_sheet_type(material_type)
-		if(ispath(type))
-			var/obj/item/stack/sheet/sheet = new type(linked_imprinter.loc)
+		var/decl/material/material = GET_DECL_INSTANCE(material_type)
+		if(ispath(material.sheet_path))
+			var/obj/item/stack/sheet/sheet = new material.sheet_path(linked_imprinter.loc)
 			var/available_num_sheets = round(linked_imprinter.stored_materials[material_type] / sheet.perunit)
 			if(available_num_sheets > 0)
 				sheet.amount = min(available_num_sheets, desired_num_sheets)
@@ -626,15 +626,18 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					continue
 				var/temp_dat = "[D.name]"
 				var/check_materials = TRUE
-				for(var/M in D.materials)
-					var/material_name = ispath(M, /decl/material) ? get_material_name(M) : null
+				for(var/material_path in D.materials)
+					var/material_name = null
+					if(ispath(material_path, /decl/material))
+						var/decl/material/material = GET_DECL_INSTANCE(material_path)
+						material_name = material.name
 					if(isnull(material_name))
-						var/datum/reagent/reagent = GLOBL.chemical_reagents_list[M]
+						var/datum/reagent/reagent = GLOBL.chemical_reagents_list[material_path]
 						material_name = reagent.name // If this still comes out as null, then someone has added something invalid to D.materials.
-					temp_dat += " [D.materials[M]] [material_name]"
-					if(D.materials[M] > linked_lathe.stored_materials[M])
+					temp_dat += " [D.materials[material_path]] [material_name]"
+					if(D.materials[material_path] > linked_lathe.stored_materials[material_path])
 						check_materials = FALSE
-					if(!check_materials && linked_lathe.reagents.has_reagent(M, D.materials[M]))
+					if(!check_materials && linked_lathe.reagents.has_reagent(material_path, D.materials[material_path]))
 						check_materials = TRUE
 				if(check_materials)
 					dat += "* <A href='byond://?src=\ref[src];build=[D.type]'>[temp_dat]</A><BR>"
@@ -685,15 +688,18 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					continue
 				var/temp_dat = "[D.name]"
 				var/check_materials = TRUE
-				for(var/M in D.materials)
-					var/material_name = ispath(M, /decl/material) ? get_material_name(M) : null
+				for(var/material_path in D.materials)
+					var/material_name = null
+					if(ispath(material_path, /decl/material))
+						var/decl/material/material = GET_DECL_INSTANCE(material_path)
+						material_name = material.name
 					if(isnull(material_name))
-						var/datum/reagent/reagent = GLOBL.chemical_reagents_list[M]
+						var/datum/reagent/reagent = GLOBL.chemical_reagents_list[material_path]
 						material_name = reagent.name // If this still comes out as null, then someone has added something invalid to D.materials.
-					temp_dat += " [D.materials[M]] [material_name]"
-					if(D.materials[M] > linked_imprinter.stored_materials[M])
+					temp_dat += " [D.materials[material_path]] [material_name]"
+					if(D.materials[material_path] > linked_imprinter.stored_materials[material_path])
 						check_materials = FALSE
-					if(!check_materials && linked_imprinter.reagents.has_reagent(M, D.materials[M]))
+					if(!check_materials && linked_imprinter.reagents.has_reagent(material_path, D.materials[material_path]))
 						check_materials = TRUE
 				if(check_materials)
 					dat += "* <A href='byond://?src=\ref[src];imprint=[D.type]'>[temp_dat]</A><BR>"
