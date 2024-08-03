@@ -11,56 +11,16 @@
 	w_class = 4.0
 
 /obj/item/moneybag/attack_hand(mob/user)
-	var/amt_gold = 0
-	var/amt_silver = 0
-	var/amt_diamond = 0
-	var/amt_iron = 0
-	var/amt_plasma = 0
-	var/amt_uranium = 0
-	var/amt_bananium = 0
-	var/amt_adamantine = 0
-	var/amt_mythril = 0
+	var/list/num_coins_by_material = list()
 
 	for(var/obj/item/coin/C in contents)
-		if(istype(C, /obj/item/coin/diamond))
-			amt_diamond++
-		if(istype(C, /obj/item/coin/plasma))
-			amt_plasma++
-		if(istype(C, /obj/item/coin/iron))
-			amt_iron++
-		if(istype(C, /obj/item/coin/silver))
-			amt_silver++
-		if(istype(C, /obj/item/coin/gold))
-			amt_gold++
-		if(istype(C, /obj/item/coin/uranium))
-			amt_uranium++
-		if(istype(C, /obj/item/coin/bananium))
-			amt_bananium++
-		if(istype(C, /obj/item/coin/adamantine))
-			amt_adamantine++
-		if(istype(C, /obj/item/coin/mythril))
-			amt_mythril++
+		num_coins_by_material[C.material.type]++
 
 	var/dat = "<b>The contents of the moneybag reveal...</b><br>"
-	if(amt_gold)
-		dat += "Gold coins: [amt_gold] <A href='byond://?src=\ref[src];remove=[MATERIAL_GOLD]'>Remove one</A><br>"
-	if(amt_silver)
-		dat += "Silver coins: [amt_silver] <A href='byond://?src=\ref[src];remove=[MATERIAL_SILVER]'>Remove one</A><br>"
-	if(amt_iron)
-		dat += "Metal coins: [amt_iron] <A href='byond://?src=\ref[src];remove=[MATERIAL_METAL]'>Remove one</A><br>"
-	if(amt_diamond)
-		dat += "Diamond coins: [amt_diamond] <A href='byond://?src=\ref[src];remove=[MATERIAL_DIAMOND]'>Remove one</A><br>"
-	if(amt_plasma)
-		dat += "Plasma coins: [amt_plasma] <A href='byond://?src=\ref[src];remove=[MATERIAL_PLASMA]'>Remove one</A><br>"
-	if(amt_uranium)
-		dat += "Uranium coins: [amt_uranium] <A href='byond://?src=\ref[src];remove=[MATERIAL_URANIUM]'>Remove one</A><br>"
-	if(amt_bananium)
-		dat += "Bananium coins: [amt_bananium] <A href='byond://?src=\ref[src];remove=[MATERIAL_BANANIUM]'>Remove one</A><br>"
-	if(amt_adamantine)
-		dat += "Adamantine coins: [amt_adamantine] <A href='byond://?src=\ref[src];remove=[MATERIAL_ADAMANTINE]'>Remove one</A><br>"
-	if(amt_mythril)
-		dat += "Mythril coins: [amt_mythril] <A href='byond://?src=\ref[src];remove=[MATERIAL_MYTHRIL]'>Remove one</A><br>"
-	user << browse("[dat]", "window=moneybag")
+	for(var/material_path in num_coins_by_material)
+		var/decl/material/material = GET_DECL_INSTANCE(material_path)
+		dat += "[material.name] coins: [num_coins_by_material[material_path]] <A href='byond://?src=\ref[src];remove=[material_path]'>Remove one</A><br>"
+	user << browse(dat, "window=moneybag")
 
 /obj/item/moneybag/attackby(obj/item/W, mob/user)
 	. = ..()
@@ -83,25 +43,8 @@
 
 	if(href_list["remove"])
 		var/obj/item/coin/coin = null
-		switch(text2path(href_list["remove"]))
-			if(MATERIAL_GOLD)
-				coin = locate(/obj/item/coin/gold, contents)
-			if(MATERIAL_SILVER)
-				coin = locate(/obj/item/coin/silver, contents)
-			if(MATERIAL_METAL)
-				coin = locate(/obj/item/coin/iron, contents)
-			if(MATERIAL_DIAMOND)
-				coin = locate(/obj/item/coin/diamond, contents)
-			if(MATERIAL_PLASMA)
-				coin = locate(/obj/item/coin/plasma, contents)
-			if(MATERIAL_URANIUM)
-				coin = locate(/obj/item/coin/uranium, contents)
-			if(MATERIAL_BANANIUM)
-				coin = locate(/obj/item/coin/bananium, contents)
-			if(MATERIAL_ADAMANTINE)
-				coin = locate(/obj/item/coin/adamantine, contents)
-			if(MATERIAL_MYTHRIL)
-				coin = locate(/obj/item/coin/mythril, contents)
+		var/decl/material/material = GET_DECL_INSTANCE(text2path(href_list["remove"]))
+		coin = locate(material.coin_path, contents)
 		if(isnull(coin))
 			return
 		coin.loc = loc

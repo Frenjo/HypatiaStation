@@ -85,49 +85,61 @@
 	throwforce = 0
 	w_class = 1
 
+	var/decl/material/material
 	var/string_attached = FALSE
 	var/sides = 2
 
 /obj/item/coin/New()
+	if(isnotnull(material))
+		material = GET_DECL_INSTANCE(material)
 	. = ..()
 	pixel_x = rand(0, 16) - 8
 	pixel_y = rand(0, 8) - 8
 
-/obj/item/coin/gold
-	name = "gold coin"
-	icon_state = "coin_gold"
+/obj/item/coin/iron
+	name = "iron coin"
+	icon_state = "coin_iron"
+	material = MATERIAL_METAL
 
 /obj/item/coin/silver
 	name = "silver coin"
 	icon_state = "coin_silver"
+	material = /decl/material/silver
+
+/obj/item/coin/gold
+	name = "gold coin"
+	icon_state = "coin_gold"
+	material = /decl/material/gold
 
 /obj/item/coin/diamond
 	name = "diamond coin"
 	icon_state = "coin_diamond"
-
-/obj/item/coin/iron
-	name = "iron coin"
-	icon_state = "coin_iron"
-
-/obj/item/coin/plasma
-	name = "solid plasma coin"
-	icon_state = "coin_plasma"
+	material = /decl/material/diamond
 
 /obj/item/coin/uranium
 	name = "uranium coin"
 	icon_state = "coin_uranium"
+	material = /decl/material/uranium
+
+/obj/item/coin/plasma
+	name = "solid plasma coin"
+	icon_state = "coin_plasma"
+	material = /decl/material/plasma
 
 /obj/item/coin/bananium
 	name = "bananium coin"
 	icon_state = "coin_bananium"
+	material = /decl/material/bananium
 
 /obj/item/coin/adamantine
 	name = "adamantine coin"
 	icon_state = "coin_adamantine"
+	material = /decl/material/adamantine
 
 /obj/item/coin/mythril
 	name = "mythril coin"
 	icon_state = "coin_mythril"
+	material = /decl/material/mythril
 
 /obj/item/coin/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/cable_coil))

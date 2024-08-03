@@ -8,6 +8,8 @@
 	var/sheet_path
 	// The amount of this material that each sheet holds.
 	var/per_unit = MATERIAL_AMOUNT_PER_SHEET
+	// The type path of the associated coin item.
+	var/coin_path
 
 	/*
 	 * Wall
@@ -37,6 +39,7 @@
 /decl/material/steel
 	name = "Steel"
 	sheet_path = /obj/item/stack/sheet/metal
+	coin_path = /obj/item/coin/iron
 
 	wall_path = /turf/simulated/wall/steel
 	wall_false_path = /obj/structure/falsewall/steel
@@ -112,6 +115,7 @@
 /decl/material/silver
 	name = "Silver"
 	sheet_path = /obj/item/stack/sheet/silver
+	coin_path = /obj/item/coin/silver
 
 	wall_path = /turf/simulated/wall/silver
 	wall_false_path = /obj/structure/falsewall/silver
@@ -122,6 +126,7 @@
 /decl/material/gold
 	name = "Gold"
 	sheet_path = /obj/item/stack/sheet/gold
+	coin_path = /obj/item/coin/gold
 
 	wall_path = /turf/simulated/wall/gold
 	wall_false_path = /obj/structure/falsewall/gold
@@ -132,6 +137,7 @@
 /decl/material/diamond
 	name = "Diamond"
 	sheet_path = /obj/item/stack/sheet/diamond
+	coin_path = /obj/item/coin/diamond
 
 	wall_path = /turf/simulated/wall/diamond
 	wall_false_path = /obj/structure/falsewall/diamond
@@ -142,6 +148,7 @@
 /decl/material/uranium
 	name = "Uranium"
 	sheet_path = /obj/item/stack/sheet/uranium
+	coin_path = /obj/item/coin/uranium
 
 	wall_path = /turf/simulated/wall/uranium
 	wall_false_path = /obj/structure/falsewall/uranium
@@ -156,6 +163,7 @@
 /decl/material/plasma
 	name = "Plasma"
 	sheet_path = /obj/item/stack/sheet/plasma
+	coin_path = /obj/item/coin/plasma
 
 	wall_path = /turf/simulated/wall/plasma
 	wall_false_path = /obj/structure/falsewall/plasma
@@ -166,6 +174,7 @@
 /decl/material/bananium
 	name = "Bananium"
 	sheet_path = /obj/item/stack/sheet/bananium
+	coin_path = /obj/item/coin/bananium
 
 	wall_path = /turf/simulated/wall/bananium
 	wall_false_path = /obj/structure/falsewall/bananium
@@ -176,10 +185,12 @@
 /decl/material/adamantine
 	name = "Adamantine"
 	sheet_path = /obj/item/stack/sheet/adamantine
+	coin_path = /obj/item/coin/adamantine
 
 /decl/material/mythril
 	name = "Mythril"
 	sheet_path = /obj/item/stack/sheet/mythril
+	coin_path = /obj/item/coin/mythril
 
 /*
  * Alien/Strange Materials
