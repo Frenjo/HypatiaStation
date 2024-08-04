@@ -13,9 +13,9 @@ Note: Must be placed west/left of and R&D console to function.
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 
 	accepted_materials = list(
-		MATERIAL_METAL, MATERIAL_GLASS, MATERIAL_GOLD, MATERIAL_SILVER,
-		MATERIAL_DIAMOND, MATERIAL_PLASMA, MATERIAL_URANIUM, MATERIAL_BANANIUM,
-		MATERIAL_ADAMANTINE
+		MATERIAL_METAL, /decl/material/glass, /decl/material/silver, /decl/material/gold,
+		/decl/material/diamond, /decl/material/uranium, /decl/material/plasma, /decl/material/bananium,
+		/decl/material/adamantine
 	)
 	max_storage_capacity = 100000
 

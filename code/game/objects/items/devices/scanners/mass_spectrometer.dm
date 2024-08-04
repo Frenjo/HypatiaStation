@@ -17,7 +17,7 @@
 	throw_speed = 4
 	throw_range = 20
 
-	matter_amounts = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 20)
+	matter_amounts = list(MATERIAL_METAL = 30, /decl/material/glass = 20)
 	origin_tech = list(/datum/tech/magnets = 2, /datum/tech/biotech = 2)
 
 	var/details = FALSE

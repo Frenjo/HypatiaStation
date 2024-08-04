@@ -76,8 +76,8 @@
 		USE_POWER_ACTIVE = 100
 	)
 
-	var/list/stored_materials = list(MATERIAL_METAL = 0, MATERIAL_GLASS = 0)
-	var/list/storage_capacity = list(MATERIAL_METAL = 150000, MATERIAL_GLASS = 75000)
+	var/list/stored_materials = list(MATERIAL_METAL = 0, /decl/material/glass = 0)
+	var/list/storage_capacity = list(MATERIAL_METAL = 150000, /decl/material/glass = 75000)
 
 	var/operating = 0.0
 	var/panel_open = 0
@@ -99,21 +99,21 @@
 	dat += wires.GetInteractWindow()
 
 /obj/machinery/autolathe/proc/regular_win(mob/user)
-	var/dat = "<B>Metal Amount:</B> [stored_materials[MATERIAL_METAL]] cm<sup>3</sup> (MAX: [storage_capacity[MATERIAL_METAL]])<BR>\n<FONT color=blue><B>Glass Amount:</B></FONT> [stored_materials[MATERIAL_GLASS]] cm<sup>3</sup> (MAX: [storage_capacity[MATERIAL_GLASS]])<HR>"
+	var/dat = "<B>Metal Amount:</B> [stored_materials[MATERIAL_METAL]] cm<sup>3</sup> (MAX: [storage_capacity[MATERIAL_METAL]])<BR>\n<FONT color=blue><B>Glass Amount:</B></FONT> [stored_materials[/decl/material/glass]] cm<sup>3</sup> (MAX: [storage_capacity[/decl/material/glass]])<HR>"
 	var/list/objs = list()
 	objs += src.L
 	if(src.hacked)
 		objs += src.LL
 	for(var/obj/t in objs)
-		var/title = "[t.name] ([t.matter_amounts[MATERIAL_METAL]] m /[t.matter_amounts[MATERIAL_GLASS]] g)"
-		if(stored_materials[MATERIAL_METAL] < t.matter_amounts[MATERIAL_METAL] || stored_materials[MATERIAL_GLASS] < t.matter_amounts[MATERIAL_GLASS])
+		var/title = "[t.name] ([t.matter_amounts[MATERIAL_METAL]] m /[t.matter_amounts[/decl/material/glass]] g)"
+		if(stored_materials[MATERIAL_METAL] < t.matter_amounts[MATERIAL_METAL] || stored_materials[/decl/material/glass] < t.matter_amounts[/decl/material/glass])
 			dat += title + "<br>"
 			continue
 		dat += "<A href='byond://?src=\ref[src];make=\ref[t]'>[title]</A>"
 		if(istype(t, /obj/item/stack))
 			var/obj/item/stack/S = t
 			var/max_multiplier = min(S.max_amount, S.matter_amounts[MATERIAL_METAL] ? round(stored_materials[MATERIAL_METAL] / S.matter_amounts[MATERIAL_METAL]) : INFINITY, \
-				S.matter_amounts[MATERIAL_GLASS] ? round(stored_materials[MATERIAL_GLASS] / S.matter_amounts[MATERIAL_GLASS]) : INFINITY)
+				S.matter_amounts[/decl/material/glass] ? round(stored_materials[/decl/material/glass] / S.matter_amounts[/decl/material/glass]) : INFINITY)
 			if(max_multiplier > 1)
 				dat += " |"
 			if(max_multiplier > 10)
@@ -195,10 +195,10 @@
 	if(stored_materials[MATERIAL_METAL] + O.matter_amounts[MATERIAL_METAL] > storage_capacity[MATERIAL_METAL])
 		to_chat(user, SPAN_WARNING("The autolathe is full. Please remove metal from the autolathe in order to insert more."))
 		return 1
-	if(stored_materials[MATERIAL_GLASS] + O.matter_amounts[MATERIAL_GLASS] > storage_capacity[MATERIAL_GLASS])
+	if(stored_materials[/decl/material/glass] + O.matter_amounts[/decl/material/glass] > storage_capacity[/decl/material/glass])
 		to_chat(user, SPAN_WARNING("The autolathe is full. Please remove glass from the autolathe in order to insert more."))
 		return 1
-	if(O.matter_amounts[MATERIAL_METAL] == 0 && O.matter_amounts[MATERIAL_GLASS] == 0)
+	if(O.matter_amounts[MATERIAL_METAL] == 0 && O.matter_amounts[/decl/material/glass] == 0)
 		to_chat(user, SPAN_WARNING("This object does not contain significant amounts of metal or glass, or cannot be accepted by the autolathe due to size or hazardous materials."))
 		return 1
 	/*
@@ -213,7 +213,7 @@
 	var/amount = 1
 	var/obj/item/stack/stack
 	var/m_amt = O.matter_amounts[MATERIAL_METAL]
-	var/g_amt = O.matter_amounts[MATERIAL_GLASS]
+	var/g_amt = O.matter_amounts[/decl/material/glass]
 	if(istype(O, /obj/item/stack))
 		stack = O
 		amount = stack.amount
@@ -221,7 +221,7 @@
 			amount = min(amount, round((storage_capacity[MATERIAL_METAL] - stored_materials[MATERIAL_METAL]) / m_amt))
 			flick("autolathe_o", src)//plays metal insertion animation
 		if(g_amt)
-			amount = min(amount, round((storage_capacity[MATERIAL_GLASS] - stored_materials[MATERIAL_GLASS]) / g_amt))
+			amount = min(amount, round((storage_capacity[/decl/material/glass] - stored_materials[/decl/material/glass]) / g_amt))
 			flick("autolathe_r", src)//plays glass insertion animation
 		stack.use(amount)
 	else
@@ -232,7 +232,7 @@
 	busy = 1
 	use_power(max(1000, (m_amt + g_amt) * amount / 10))
 	stored_materials[MATERIAL_METAL] += m_amt * amount
-	stored_materials[MATERIAL_GLASS] += g_amt * amount
+	stored_materials[/decl/material/glass] += g_amt * amount
 	to_chat(user, "You insert [amount] sheet[amount > 1 ? "s" : ""] to the autolathe.")
 	if(O && O.loc == src)
 		qdel(O)
@@ -283,7 +283,7 @@
 			if(istype(template, /obj/item/stack)) // stacks are the only items which can have a multiplier higher than 1 -walter0o
 				var/obj/item/stack/S = template
 				max_multiplier = min(S.max_amount, S.matter_amounts[MATERIAL_METAL] ? round(stored_materials[MATERIAL_METAL] / S.matter_amounts[MATERIAL_METAL]) : INFINITY, \
-					S.matter_amounts[MATERIAL_GLASS] ? round(stored_materials[MATERIAL_GLASS] / S.matter_amounts[MATERIAL_GLASS]) : INFINITY)  // pasta from regular_win() to make sure the numbers match -walter0o
+					S.matter_amounts[/decl/material/glass] ? round(stored_materials[/decl/material/glass] / S.matter_amounts[/decl/material/glass]) : INFINITY)  // pasta from regular_win() to make sure the numbers match -walter0o
 
 			if((multiplier > max_multiplier) || (multiplier <= 0)) // somebody is trying to exploit, alert admins-walter0o
 				var/turf/LOC = get_turf(usr)
@@ -291,8 +291,8 @@
 				log_admin("EXPLOIT : [key_name(usr)] tried to exploit an autolathe with multiplier set to [multiplier] on [template]  !")
 				return
 
-			var/power = max(2000, (template.matter_amounts[MATERIAL_METAL] + template.matter_amounts[MATERIAL_GLASS]) * multiplier / 5)
-			if(stored_materials[MATERIAL_METAL] >= template.matter_amounts[MATERIAL_METAL] * multiplier && stored_materials[MATERIAL_GLASS] >= template.matter_amounts[MATERIAL_GLASS] * multiplier)
+			var/power = max(2000, (template.matter_amounts[MATERIAL_METAL] + template.matter_amounts[/decl/material/glass]) * multiplier / 5)
+			if(stored_materials[MATERIAL_METAL] >= template.matter_amounts[MATERIAL_METAL] * multiplier && stored_materials[/decl/material/glass] >= template.matter_amounts[/decl/material/glass] * multiplier)
 				busy = 1
 				use_power(power)
 				icon_state = "autolathe"
@@ -303,11 +303,11 @@
 						use_power(power)
 						spawn(16)
 							stored_materials[MATERIAL_METAL] -= template.matter_amounts[MATERIAL_METAL] * multiplier
-							stored_materials[MATERIAL_GLASS] -= template.matter_amounts[MATERIAL_GLASS] * multiplier
+							stored_materials[/decl/material/glass] -= template.matter_amounts[/decl/material/glass] * multiplier
 							if(stored_materials[MATERIAL_METAL] < 0)
 								stored_materials[MATERIAL_METAL] = 0
-							if(stored_materials[MATERIAL_GLASS] < 0)
-								stored_materials[MATERIAL_GLASS] = 0
+							if(stored_materials[/decl/material/glass] < 0)
+								stored_materials[/decl/material/glass] = 0
 							var/obj/new_item = new template.type(T)
 							if(multiplier > 1)
 								var/obj/item/stack/S = new_item
@@ -326,7 +326,7 @@
 		tot_rating += MB.rating
 	tot_rating *= 25000
 	storage_capacity[MATERIAL_METAL] = tot_rating * 2
-	storage_capacity[MATERIAL_GLASS] = tot_rating
+	storage_capacity[/decl/material/glass] = tot_rating
 
 /obj/machinery/autolathe/New()
 	..()

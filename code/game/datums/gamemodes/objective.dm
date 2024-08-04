@@ -880,25 +880,25 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 			target = MATERIAL_METAL
 			target_amount = 300
 		if(2)
-			target = MATERIAL_GLASS
+			target = /decl/material/glass
 			target_amount = 200
 		if(3)
-			target = MATERIAL_PLASTEEL
+			target = /decl/material/plasteel
 			target_amount = 100
 		if(4)
-			target = MATERIAL_PLASMA
+			target = /decl/material/plasma
 			target_amount = 100
 		if(5)
-			target = MATERIAL_SILVER
+			target = /decl/material/silver
 			target_amount = 50
 		if(6)
-			target = MATERIAL_GOLD
+			target = /decl/material/gold
 			target_amount = 20
 		if(7)
-			target = MATERIAL_URANIUM
+			target = /decl/material/uranium
 			target_amount = 20
 		if(8)
-			target = MATERIAL_DIAMOND
+			target = /decl/material/diamond
 			target_amount = 20
 
 	explanation_text = "Ransack the station and escape with [target_amount] [target]."
@@ -907,15 +907,14 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	var/total_amount = 0
 
 	for(var/obj/item/O in locate(/area/shuttle/vox/station))
-		var/obj/item/stack/sheet/S
 		if(istype(O, /obj/item/stack/sheet))
-			if(O.name == target)
-				S = O
+			var/obj/item/stack/sheet/S = O
+			if(S.material.type == target)
 				total_amount += S.amount
 		for(var/obj/I in O.contents)
 			if(istype(I, /obj/item/stack/sheet))
-				if(I.name == target)
-					S = I
+				var/obj/item/stack/sheet/S = I
+				if(S.material.type == target)
 					total_amount += S.amount
 
 	var/datum/game_mode/heist/H = global.PCticker.mode
@@ -923,8 +922,8 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 		if(raider.current)
 			for(var/obj/item/O in raider.current.get_contents())
 				if(istype(O, /obj/item/stack/sheet))
-					if(O.name == target)
-						var/obj/item/stack/sheet/S = O
+					var/obj/item/stack/sheet/S = O
+					if(S.material.type == target)
 						total_amount += S.amount
 
 	if(total_amount >= target_amount)

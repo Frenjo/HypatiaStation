@@ -212,4 +212,4 @@ RCD
 	density = FALSE
 	anchored = FALSE
 	origin_tech = list(/datum/tech/materials = 2)
-	matter_amounts = list(MATERIAL_METAL = 30000, MATERIAL_GLASS = 15000)
+	matter_amounts = list(MATERIAL_METAL = 30000, /decl/material/glass = 15000)

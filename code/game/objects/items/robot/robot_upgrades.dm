@@ -83,7 +83,7 @@
 	desc = "Used to force a restart of a disabled-but-repaired robot, bringing it back online."
 	icon_state = "cyborg_upgrade1"
 
-	construction_cost = list(MATERIAL_METAL = 60000, MATERIAL_GLASS = 5000)
+	construction_cost = list(MATERIAL_METAL = 60000, /decl/material/glass = 5000)
 
 /obj/item/borg/upgrade/restart/action(mob/living/silicon/robot/R)
 	if(R.health < 0)
@@ -106,7 +106,7 @@
 	desc = "Used to kick in a robot's VTEC systems, increasing their speed."
 	icon_state = "cyborg_upgrade2"
 
-	construction_cost = list(MATERIAL_METAL = 80000, MATERIAL_GLASS = 6000, MATERIAL_GOLD = 5000)
+	construction_cost = list(MATERIAL_METAL = 80000, /decl/material/glass = 6000, /decl/material/gold = 5000)
 	require_module = TRUE
 
 /obj/item/borg/upgrade/vtec/action(mob/living/silicon/robot/R)
@@ -130,7 +130,7 @@
 	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
 	icon_state = "cyborg_upgrade3"
 
-	construction_cost = list(MATERIAL_METAL = 80000, MATERIAL_GLASS = 6000, MATERIAL_GOLD = 2000, MATERIAL_DIAMOND = 500)
+	construction_cost = list(MATERIAL_METAL = 80000, /decl/material/glass = 6000, /decl/material/gold = 2000, /decl/material/diamond = 500)
 	require_module = TRUE
 
 /obj/item/borg/upgrade/tasercooler/action(mob/living/silicon/robot/R)
@@ -167,7 +167,7 @@
 	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
 	icon_state = "cyborg_upgrade3"
 
-	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_PLASMA = 15000, MATERIAL_URANIUM = 20000)
+	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/uranium = 20000, /decl/material/plasma = 15000)
 	require_module = TRUE
 
 /obj/item/borg/upgrade/jetpack/action(mob/living/silicon/robot/R)
@@ -196,7 +196,7 @@
 	desc = "Unlocks the hidden, deadlier functions of a robot."
 	icon_state = "cyborg_upgrade3"
 
-	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_GLASS = 15000, MATERIAL_DIAMOND = 10000)
+	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/glass = 15000, /decl/material/diamond = 10000)
 	require_module = TRUE
 
 /obj/item/borg/upgrade/syndicate/action(mob/living/silicon/robot/R)
@@ -219,7 +219,7 @@
 	desc = "A highly advanced, complex system for supressing incoming flashes directed at the borg's optical processing system."
 	icon_state = "cyborg_upgrade4"
 
-	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_GLASS = 2000, MATERIAL_GOLD = 2000, MATERIAL_SILVER = 3000, MATERIAL_DIAMOND = 5000)
+	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/glass = 2000, /decl/material/silver = 3000, /decl/material/gold = 2000, /decl/material/diamond = 5000)
 	require_module = TRUE
 
 /obj/item/borg/upgrade/flashproof/action(mob/living/silicon/robot/R)

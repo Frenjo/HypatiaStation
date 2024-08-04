@@ -17,7 +17,7 @@
 	icon_state = "welding"
 	item_flags = ITEM_FLAG_COVERS_EYES | ITEM_FLAG_COVERS_MOUTH
 	item_state = "welding"
-	matter_amounts = list(MATERIAL_METAL = 3000, MATERIAL_GLASS = 1000)
+	matter_amounts = list(MATERIAL_METAL = 3000, /decl/material/glass = 1000)
 
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	inv_flags = INV_FLAG_HIDE_MASK | INV_FLAG_HIDE_EARS | INV_FLAG_HIDE_EYES | INV_FLAG_HIDE_FACE

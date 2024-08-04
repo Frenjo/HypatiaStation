@@ -6,7 +6,7 @@
 	w_class = 2
 	anchored = FALSE
 
-	matter_amounts = list(MATERIAL_METAL = 700, MATERIAL_GLASS = 300)
+	matter_amounts = list(MATERIAL_METAL = 700, /decl/material/glass = 300)
 
 	//	Motion, EMP-Proof, X-Ray
 	var/list/obj/item/possible_upgrades = list(

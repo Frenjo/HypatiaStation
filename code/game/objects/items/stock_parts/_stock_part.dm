@@ -20,5 +20,5 @@
 	name = "console screen"
 	desc = "Used in the construction of computers and other devices with an interactive console."
 	icon_state = "screen"
-	matter_amounts = list(MATERIAL_GLASS = 200)
+	matter_amounts = list(/decl/material/glass = 200)
 	origin_tech = list(/datum/tech/materials = 1)

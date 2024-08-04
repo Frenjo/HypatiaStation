@@ -162,7 +162,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "beaker"
 	item_state = "beaker"
-	matter_amounts = list(MATERIAL_GLASS = 500)
+	matter_amounts = list(/decl/material/glass = 500)
 
 /obj/item/reagent_containers/glass/beaker/on_reagent_change()
 	update_icon()
@@ -214,7 +214,7 @@
 	name = "large beaker"
 	desc = "A large beaker. Can hold up to 100 units."
 	icon_state = "beakerlarge"
-	matter_amounts = list(MATERIAL_GLASS = 5000)
+	matter_amounts = list(/decl/material/glass = 5000)
 	volume = 100
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 25, 30, 50, 100)
@@ -233,7 +233,7 @@
 	name = "bluespace beaker"
 	desc = "A bluespace beaker, powered by experimental bluespace technology. Can hold up to 300 units."
 	icon_state = "beakerbluespace"
-	matter_amounts = list(MATERIAL_GLASS = 5000)
+	matter_amounts = list(/decl/material/glass = 5000)
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 25, 30, 50, 100, 300)
@@ -243,7 +243,7 @@
 	name = "vial"
 	desc = "A small glass vial. Can hold up to 25 units."
 	icon_state = "vial"
-	matter_amounts = list(MATERIAL_GLASS = 250)
+	matter_amounts = list(/decl/material/glass = 250)
 	volume = 25
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 25)

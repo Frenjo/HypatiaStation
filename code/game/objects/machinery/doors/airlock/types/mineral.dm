@@ -1,23 +1,23 @@
 /obj/machinery/door/airlock/gold
 	name = "Gold Airlock"
 	icon = 'icons/obj/doors/mineral/gold.dmi'
-	mineral = MATERIAL_GOLD
+	mineral = /decl/material/gold
 
 /obj/machinery/door/airlock/silver
 	name = "Silver Airlock"
 	icon = 'icons/obj/doors/mineral/silver.dmi'
-	mineral = MATERIAL_SILVER
+	mineral = /decl/material/silver
 
 /obj/machinery/door/airlock/diamond
 	name = "Diamond Airlock"
 	icon = 'icons/obj/doors/mineral/diamond.dmi'
-	mineral = MATERIAL_DIAMOND
+	mineral = /decl/material/diamond
 
 /obj/machinery/door/airlock/uranium
 	name = "Uranium Airlock"
 	desc = "And they said I was crazy."
 	icon = 'icons/obj/doors/mineral/uranium.dmi'
-	mineral = MATERIAL_URANIUM
+	mineral = /decl/material/uranium
 
 	var/last_event = 0
 
@@ -36,7 +36,7 @@
 	name = "Plasma Airlock"
 	desc = "No way this can end badly."
 	icon = 'icons/obj/doors/mineral/plasma.dmi'
-	mineral = MATERIAL_PLASMA
+	mineral = /decl/material/plasma
 
 /obj/machinery/door/airlock/plasma/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
@@ -65,9 +65,9 @@
 /obj/machinery/door/airlock/clown
 	name = "Bananium Airlock"
 	icon = 'icons/obj/doors/mineral/bananium.dmi'
-	mineral = MATERIAL_BANANIUM
+	mineral = /decl/material/bananium
 
 /obj/machinery/door/airlock/sandstone
 	name = "Sandstone Airlock"
 	icon = 'icons/obj/doors/mineral/sandstone.dmi'
-	mineral = MATERIAL_SANDSTONE
+	mineral = /decl/material/sandstone

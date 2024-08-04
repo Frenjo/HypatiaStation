@@ -65,7 +65,11 @@
 
 	//loop over the walls in the temple and make them a random pre-chosen mineral (null is a stand in for plasma, which the walls already are)
 	//treat plasma slightly differently because it's the default wall type
-	var/mineral = pick(MATERIAL_URANIUM, MATERIAL_SANDSTONE, MATERIAL_GOLD, MATERIAL_METAL, MATERIAL_SILVER, MATERIAL_DIAMOND, MATERIAL_BANANIUM, MATERIAL_PLASMA)
+	var/static/list/minerals = list(
+		MATERIAL_METAL, /decl/material/sandstone, /decl/material/silver, /decl/material/gold, /decl/material/diamond,
+		/decl/material/uranium, /decl/material/plasma, /decl/material/bananium
+	)
+	var/mineral = pick(minerals)
 	//to_world("init [mineral]")
 	var/area/my_area = get_area(src)
 	var/list/temple_turfs = get_area_turfs(my_area.type)
@@ -88,8 +92,10 @@
 			qdel(D)
 
 	for(var/turf/simulated/wall/reinforced/riveted/T in temple_turfs)
-		if(mineral != MATERIAL_PLASMA)
-			T.icon_state = replacetext(T.icon_state, MATERIAL_PLASMA, mineral)
+		if(mineral != /decl/material/plasma)
+			var/decl/material/current_mineral = GET_DECL_INSTANCE(/decl/material/plasma)
+			var/decl/material/wanted_mineral = GET_DECL_INSTANCE(mineral)
+			T.icon_state = replacetext(T.icon_state, current_mineral.icon_prefix, wanted_mineral.icon_prefix)
 
 		/*for(var/obj/effect/landmark/falsewall_spawner/F in T.contents)
 			//to_world("falsewall_spawner found in wall")

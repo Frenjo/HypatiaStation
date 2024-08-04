@@ -7,7 +7,7 @@
 	w_class = 2
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
-	matter_amounts = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20)
+	matter_amounts = list(MATERIAL_METAL = 50, /decl/material/glass = 20)
 	icon_action_button = "action_flashlight"
 
 	var/on = 0

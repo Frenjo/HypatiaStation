@@ -22,7 +22,10 @@
 	desc = "Allows for the construction of circuit boards used to build an experimental hull shield generator."
 	req_tech = list(/datum/tech/plasma = 3, /datum/tech/bluespace = 4)
 	build_type = IMPRINTER
-	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_PLASMA = 10000, MATERIAL_DIAMOND = 5000, MATERIAL_GOLD = 10000)
+	materials = list(
+		/decl/material/glass = 2000, /decl/material/gold = 10000, /decl/material/diamond = 5000,
+		/decl/material/plasma = 10000, "sacid" = 20
+	)
 	build_path = /obj/machinery/shield_gen/external
 
 ////////////////////////////////////////
@@ -48,7 +51,10 @@
 	desc = "Allows for the construction of circuit boards used to build an experimental shield generator."
 	req_tech = list(/datum/tech/plasma = 3, /datum/tech/bluespace = 4)
 	build_type = IMPRINTER
-	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_PLASMA = 10000, MATERIAL_DIAMOND = 5000, MATERIAL_GOLD = 10000)
+	materials = list(
+		/decl/material/glass = 2000, /decl/material/gold = 10000, /decl/material/diamond = 5000,
+		/decl/material/plasma = 10000, "sacid" = 20
+	)
 	build_path = /obj/machinery/shield_gen/external
 
 ////////////////////////////////////////
@@ -74,5 +80,8 @@
 	desc = "Allows for the construction of circuit boards used to build an experimental shielding capacitor."
 	req_tech = list(/datum/tech/magnets = 3, /datum/tech/power_storage = 4)
 	build_type = IMPRINTER
-	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_PLASMA = 10000, MATERIAL_DIAMOND = 5000, MATERIAL_SILVER = 10000)
+	materials = list(
+		/decl/material/glass = 2000, /decl/material/silver = 10000, /decl/material/diamond = 5000,
+		/decl/material/plasma = 10000, "sacid" = 20
+	)
 	build_path = /obj/machinery/shield_gen/external

@@ -12,7 +12,7 @@
 	desc = "Allows for the construction of circuit boards used to build a core control console for the RUST fusion engine."
 	req_tech = list(/datum/tech/engineering = 4, /datum/tech/programming = 4)
 	build_type = IMPRINTER
-	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
+	materials = list(/decl/material/glass = 2000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/rust_core_control
 
 //////////////////////////////////////
@@ -28,7 +28,7 @@
 	desc = "Allows for the construction of circuit boards used to build a fuel injector control console for the RUST fusion engine."
 	req_tech = list(/datum/tech/engineering = 4, /datum/tech/programming = 4)
 	build_type = IMPRINTER
-	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20)
+	materials = list(/decl/material/glass = 2000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/rust_fuel_control
 
 //////////////////////////////////////
@@ -44,7 +44,7 @@
 	desc = "Allows for the construction of circuit boards used to build a fuel injection port for the RUST fusion engine."
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/engineering = 4)
 	build_type = IMPRINTER
-	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_URANIUM = 3000)
+	materials = list(/decl/material/glass = 2000, /decl/material/uranium = 3000, "sacid" = 20)
 	build_path = /obj/item/module/rust_fuel_port
 
 //////////////////////////////////////
@@ -60,7 +60,7 @@
 	desc = "Allows for the construction of circuit boards used to build a fuel compressor of the RUST fusion engine."
 	req_tech = list(/datum/tech/materials = 6, /datum/tech/plasma = 4)
 	build_type = IMPRINTER
-	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_PLASMA = 3000, MATERIAL_DIAMOND = 1000)
+	materials = list(/decl/material/glass = 2000, /decl/material/diamond = 1000, /decl/material/plasma = 3000, "sacid" = 20)
 	build_path = /obj/item/module/rust_fuel_compressor
 
 //////////////////////////////////////
@@ -92,7 +92,7 @@
 	)
 	build_type = IMPRINTER
 	reliability_base = 79
-	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_PLASMA = 3000, MATERIAL_DIAMOND = 2000)
+	materials = list(/decl/material/glass = 2000, /decl/material/diamond = 2000, /decl/material/plasma = 3000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/rust_core
 
 //////////////////////////////////////
@@ -123,5 +123,5 @@
 	)
 	build_type = IMPRINTER
 	reliability_base = 79
-	materials = list(MATERIAL_GLASS = 2000, "sacid" = 20, MATERIAL_PLASMA = 3000, MATERIAL_URANIUM = 2000)
+	materials = list(/decl/material/glass = 2000, /decl/material/uranium = 2000, /decl/material/plasma = 3000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/rust_core

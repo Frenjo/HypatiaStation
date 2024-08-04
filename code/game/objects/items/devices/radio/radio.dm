@@ -14,7 +14,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	throw_speed = 2
 	throw_range = 9
 	w_class = 2
-	matter_amounts = list(MATERIAL_METAL = 75, MATERIAL_GLASS = 25)
+	matter_amounts = list(MATERIAL_METAL = 75, /decl/material/glass = 25)
 
 	var/on = 1 // 0 for off
 	var/last_transmission

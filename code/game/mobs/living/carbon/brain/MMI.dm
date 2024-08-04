@@ -8,7 +8,7 @@
 	w_class = 3
 	origin_tech = list(/datum/tech/biotech = 3)
 
-	var/list/construction_cost = list(MATERIAL_METAL = 1000, MATERIAL_GLASS = 500)
+	var/list/construction_cost = list(MATERIAL_METAL = 1000, /decl/material/glass = 500)
 	var/construction_time = 75
 	//these vars are so the mecha fabricator doesn't shit itself anymore. --NEO
 

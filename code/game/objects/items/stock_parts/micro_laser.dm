@@ -6,7 +6,7 @@
 	name = "micro-laser"
 	desc = "A tiny laser used in certain devices."
 	icon_state = "micro_laser"
-	matter_amounts = list(MATERIAL_METAL = 10, MATERIAL_GLASS = 20)
+	matter_amounts = list(MATERIAL_METAL = 10, /decl/material/glass = 20)
 	origin_tech = list(/datum/tech/magnets = 1)
 
 // Rating 2

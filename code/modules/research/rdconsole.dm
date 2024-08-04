@@ -352,8 +352,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				spawn(16)
 					use_power(power)
 					for(var/M in being_built.materials)
-						if(M in list(MATERIAL_GLASS, MATERIAL_GOLD, MATERIAL_DIAMOND, MATERIAL_URANIUM))
-							linked_lathe.stored_materials[M] = max(0, (linked_lathe.stored_materials[M] - being_built.materials[M]))
+						if(M in linked_imprinter.accepted_materials)
+							linked_imprinter.stored_materials[M] = max(0, (linked_imprinter.stored_materials[M] - being_built.materials[M]))
 						else
 							linked_imprinter.reagents.remove_reagent(M, being_built.materials[M])
 					var/obj/new_item = new being_built.build_path(src)

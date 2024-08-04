@@ -125,7 +125,7 @@
 	equip_cooldown = 150
 	range = MELEE|RANGED
 	construction_time = 500
-	construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_BANANIUM = 10000)
+	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/bananium = 10000)
 
 /obj/item/mecha_part/equipment/weapon/honker/can_attach(obj/mecha/combat/honker/M)
 	if(!istype(M))
@@ -276,7 +276,7 @@
 /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang/clusterbang//Because I am a heartless bastard -Sieve
 	name = "\improper SOP-6 grenade launcher"
 	projectile = /obj/item/grenade/flashbang/clusterbang
-	construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_GOLD = 6000, MATERIAL_URANIUM = 6000)
+	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/gold = 6000, /decl/material/uranium = 6000)
 
 /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited/get_equip_info()//Limited version of the clusterbang launcher that can't reload
 	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[chassis.selected == src ? "<b>" : "<a href='byond://?src=\ref[chassis];select_equip=\ref[src]'>"][src.name][chassis.selected == src ? "</b>" : "</a>"]\[[src.projectiles]\]"
@@ -294,7 +294,7 @@
 	projectile_energy_cost = 100
 	equip_cooldown = 20
 	construction_time = 300
-	construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_BANANIUM = 5000)
+	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/bananium = 5000)
 
 /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/can_attach(obj/mecha/combat/honker/M)
 	if(!istype(M))

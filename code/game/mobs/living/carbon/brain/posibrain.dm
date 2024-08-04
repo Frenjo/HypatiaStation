@@ -9,7 +9,10 @@
 		/datum/tech/bluespace = 2
 	)
 
-	construction_cost = list(MATERIAL_METAL = 500, MATERIAL_GLASS = 500, MATERIAL_SILVER = 200, MATERIAL_GOLD = 200, MATERIAL_PLASMA = 100, MATERIAL_DIAMOND = 10)
+	construction_cost = list(
+		MATERIAL_METAL = 500, /decl/material/glass = 500, /decl/material/silver = 200,
+		/decl/material/gold = 200, /decl/material/diamond = 10, /decl/material/plasma = 100
+	)
 	construction_time = 75
 
 	req_access = list(ACCESS_ROBOTICS)

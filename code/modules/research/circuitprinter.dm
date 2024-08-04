@@ -9,7 +9,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	icon_state = "circuit_imprinter"
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 
-	accepted_materials = list(MATERIAL_GLASS, MATERIAL_GOLD, MATERIAL_DIAMOND, MATERIAL_URANIUM)
+	accepted_materials = list(/decl/material/glass, /decl/material/gold, /decl/material/diamond, /decl/material/uranium)
 	max_storage_capacity = 75000
 
 /obj/machinery/r_n_d/circuit_imprinter/New()

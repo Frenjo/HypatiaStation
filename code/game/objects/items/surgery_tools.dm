@@ -19,7 +19,7 @@
 	desc = "Retracts stuff."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "retractor"
-	matter_amounts = list(MATERIAL_METAL = 10000, MATERIAL_GLASS = 5000)
+	matter_amounts = list(MATERIAL_METAL = 10000, /decl/material/glass = 5000)
 	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 2.0
 	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1)
@@ -32,7 +32,7 @@
 	desc = "You think you have seen this before."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "hemostat"
-	matter_amounts = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 2500)
+	matter_amounts = list(MATERIAL_METAL = 5000, /decl/material/glass = 2500)
 	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 2.0
 	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1)
@@ -46,7 +46,7 @@
 	desc = "This stops bleeding."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "cautery"
-	matter_amounts = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 2500)
+	matter_amounts = list(MATERIAL_METAL = 5000, /decl/material/glass = 2500)
 	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 2.0
 	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1)
@@ -61,7 +61,7 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "drill"
 	hitsound = 'sound/weapons/circsawhit.ogg'
-	matter_amounts = list(MATERIAL_METAL = 15000, MATERIAL_GLASS = 10000)
+	matter_amounts = list(MATERIAL_METAL = 15000, /decl/material/glass = 10000)
 	obj_flags = OBJ_FLAG_CONDUCT
 	force = 15.0
 	w_class = 2.0
@@ -92,7 +92,7 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	matter_amounts = list(MATERIAL_METAL = 10000, MATERIAL_GLASS = 5000)
+	matter_amounts = list(MATERIAL_METAL = 10000, /decl/material/glass = 5000)
 	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
@@ -149,7 +149,7 @@
 	throwforce = 9.0
 	throw_speed = 3
 	throw_range = 5
-	matter_amounts = list(MATERIAL_METAL = 20000, MATERIAL_GLASS = 10000)
+	matter_amounts = list(MATERIAL_METAL = 20000, /decl/material/glass = 10000)
 	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = 1

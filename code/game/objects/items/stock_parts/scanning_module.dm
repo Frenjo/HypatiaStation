@@ -6,7 +6,7 @@
 	name = "scanning module"
 	desc = "A compact, high resolution scanning module used in the construction of certain devices."
 	icon_state = "scan_module"
-	matter_amounts = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 20)
+	matter_amounts = list(MATERIAL_METAL = 50, /decl/material/glass = 20)
 	origin_tech = list(/datum/tech/magnets = 1)
 
 // Rating 2

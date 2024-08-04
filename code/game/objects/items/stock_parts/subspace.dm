@@ -2,7 +2,7 @@
  * Subspace Stock Parts
  */
 /obj/item/stock_part/subspace
-	matter_amounts = list(MATERIAL_METAL = 30, MATERIAL_GLASS = 10)
+	matter_amounts = list(MATERIAL_METAL = 30, /decl/material/glass = 10)
 
 // Subspace Ansible
 /obj/item/stock_part/subspace/ansible
@@ -56,7 +56,7 @@
 	name = "ansible crystal"
 	icon_state = "ansible_crystal"
 	desc = "A crystal made from pure glass used to transmit laser databursts to subspace."
-	matter_amounts = list(MATERIAL_GLASS = 50)
+	matter_amounts = list(/decl/material/glass = 50)
 	origin_tech = list(/datum/tech/materials = 4, /datum/tech/magnets = 4, /datum/tech/bluespace = 2)
 
 // Subspace Transmitter

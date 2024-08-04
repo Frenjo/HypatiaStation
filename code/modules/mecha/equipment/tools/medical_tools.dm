@@ -6,7 +6,7 @@
 	origin_tech = list(/datum/tech/biotech = 3, /datum/tech/programming = 2)
 	energy_drain = 20
 	range = MELEE
-	construction_cost = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 10000)
+	construction_cost = list(MATERIAL_METAL = 5000, /decl/material/glass = 10000)
 	reliability = 1000
 	equip_cooldown = 20
 	var/mob/living/carbon/occupant = null
@@ -404,7 +404,7 @@
 		/datum/tech/programming = 3
 	)
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 3000, MATERIAL_GLASS = 2000)
+	construction_cost = list(MATERIAL_METAL = 3000, /decl/material/glass = 2000)
 
 /obj/item/mecha_part/equipment/tool/syringe_gun/New()
 	..()

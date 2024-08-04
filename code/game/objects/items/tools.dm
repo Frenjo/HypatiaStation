@@ -151,7 +151,7 @@
 	w_class = 2.0
 
 	//Cost to make in the autolathe
-	matter_amounts = list(MATERIAL_METAL = 70, MATERIAL_GLASS = 30)
+	matter_amounts = list(MATERIAL_METAL = 70, /decl/material/glass = 30)
 
 	//R&D tech level
 	origin_tech = list(/datum/tech/engineering = 1)
@@ -431,21 +431,21 @@
 /obj/item/weldingtool/largetank
 	name = "industrial welding tool"
 	max_fuel = 40
-	matter_amounts = list(MATERIAL_METAL = 70, MATERIAL_GLASS = 60)
+	matter_amounts = list(MATERIAL_METAL = 70, /decl/material/glass = 60)
 	origin_tech = list(/datum/tech/engineering = 2)
 
 /obj/item/weldingtool/hugetank
 	name = "upgraded welding tool"
 	max_fuel = 80
 	w_class = 3.0
-	matter_amounts = list(MATERIAL_METAL = 70, MATERIAL_GLASS = 120)
+	matter_amounts = list(MATERIAL_METAL = 70, /decl/material/glass = 120)
 	origin_tech = list(/datum/tech/engineering = 3)
 
 /obj/item/weldingtool/experimental
 	name = "experimental welding tool"
 	max_fuel = 40
 	w_class = 3.0
-	matter_amounts = list(MATERIAL_METAL = 70, MATERIAL_GLASS = 120)
+	matter_amounts = list(MATERIAL_METAL = 70, /decl/material/glass = 120)
 	origin_tech = list(/datum/tech/engineering = 4, /datum/tech/plasma = 3)
 
 	var/last_gen = 0

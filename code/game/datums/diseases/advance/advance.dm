@@ -15,7 +15,7 @@ var/list/advance_cures = list(
 	"nutriment", "sugar", "orangejuice",
 	"spaceacillin", "kelotane", "ethanol",
 	"leporazine", "synaptizine", "lipozine",
-	MATERIAL_SILVER, MATERIAL_GOLD, MATERIAL_PLASMA
+	"silver", "gold", "plasma"
 )
 
 /*

@@ -6,7 +6,7 @@
 	name = "capacitor"
 	desc = "A basic capacitor used in the construction of a variety of devices."
 	icon_state = "capacitor"
-	matter_amounts = list(MATERIAL_METAL = 50, MATERIAL_GLASS = 50)
+	matter_amounts = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	origin_tech = list(/datum/tech/power_storage = 1)
 
 // Rating 2

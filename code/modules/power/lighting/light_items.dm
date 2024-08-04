@@ -25,7 +25,7 @@
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "c_tube"
-	matter_amounts = list(MATERIAL_METAL = 60, MATERIAL_GLASS = 100)
+	matter_amounts = list(MATERIAL_METAL = 60, /decl/material/glass = 100)
 
 	brightness_range = 6
 	brightness_power = 2
@@ -48,7 +48,7 @@
 	icon_state = "lbulb"
 	base_state = "lbulb"
 	item_state = "contvapour"
-	matter_amounts = list(MATERIAL_METAL = 60, MATERIAL_GLASS = 100)
+	matter_amounts = list(MATERIAL_METAL = 60, /decl/material/glass = 100)
 
 	brightness_range = 4
 	brightness_power = 2
@@ -63,7 +63,7 @@
 	icon_state = "fbulb"
 	base_state = "fbulb"
 	item_state = "egg4"
-	matter_amounts = list(MATERIAL_METAL = 60, MATERIAL_GLASS = 100)
+	matter_amounts = list(MATERIAL_METAL = 60, /decl/material/glass = 100)
 
 	brightness_range = 4
 	brightness_power = 2

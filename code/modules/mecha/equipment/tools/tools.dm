@@ -138,7 +138,7 @@
 	desc = "This is an upgraded version of the drill that'll pierce the heavens! (Can be attached to: Combat and Engineering Exosuits)"
 	icon_state = "mecha_diamond_drill"
 	origin_tech = list(/datum/tech/materials = 4, /datum/tech/engineering = 3)
-	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_DIAMOND = 6500)
+	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/diamond = 6500)
 	equip_cooldown = 20
 	force = 15
 
@@ -275,7 +275,10 @@
 	energy_drain = 250
 	range = MELEE|RANGED
 	construction_time = 1200
-	construction_cost = list(MATERIAL_METAL = 30000, MATERIAL_PLASMA = 25000, MATERIAL_SILVER = 20000, MATERIAL_GOLD = 20000)
+	construction_cost = list(
+		MATERIAL_METAL = 30000, /decl/material/silver = 20000,
+		/decl/material/gold = 20000, /decl/material/plasma = 25000
+	)
 	var/mode = 0 //0 - deconstruct, 1 - wall or floor, 2 - airlock.
 	var/disabled = 0 //malf
 
@@ -533,7 +536,7 @@
 	equip_cooldown = 10
 	energy_drain = 50
 	range = 0
-	construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_SILVER = 5000)
+	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/silver = 5000)
 
 	var/deflect_coeff = 1.15
 	var/damage_coeff = 0.8
@@ -586,7 +589,7 @@
 	equip_cooldown = 10
 	energy_drain = 50
 	range = 0
-	construction_cost = list(MATERIAL_METAL = 20000, MATERIAL_GOLD = 5000)
+	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/gold = 5000)
 
 	var/deflect_coeff = 1.15
 	var/damage_coeff = 0.8
@@ -660,7 +663,7 @@
 	equip_cooldown = 20
 	energy_drain = 100
 	range = 0
-	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_GOLD = 1000, MATERIAL_SILVER = 2000, MATERIAL_GLASS = 5000)
+	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/glass = 5000, /decl/material/silver = 2000, /decl/material/gold = 1000)
 
 	var/health_boost = 2
 	var/datum/global_iterator/pr_repair_droid
@@ -749,7 +752,7 @@
 	equip_cooldown = 10
 	energy_drain = 0
 	range = 0
-	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_GOLD = 2000, MATERIAL_SILVER = 3000, MATERIAL_GLASS = 2000)
+	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/glass = 2000, /decl/material/silver = 3000, /decl/material/gold = 2000)
 
 	var/datum/global_iterator/pr_energy_relay
 	var/coeff = 100
@@ -865,7 +868,7 @@
 	equip_cooldown = 10
 	energy_drain = 0
 	range = MELEE
-	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_SILVER = 500, MATERIAL_GLASS = 1000)
+	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/glass = 1000, /decl/material/silver = 500)
 	reliability = 1000
 
 	var/datum/global_iterator/pr_mech_generator
@@ -998,7 +1001,7 @@
 	desc = "Generates power using uranium. Pollutes the environment."
 	icon_state = "tesla"
 	origin_tech = list(/datum/tech/engineering = 3, /datum/tech/power_storage = 3)
-	construction_cost = list(MATERIAL_METAL = 10000, MATERIAL_SILVER = 500, MATERIAL_GLASS = 1000)
+	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/glass = 1000, /decl/material/silver = 500)
 	max_fuel = 50000
 	fuel_per_cycle_idle = 10
 	fuel_per_cycle_active = 30
@@ -1106,7 +1109,7 @@
 	origin_tech = list(/datum/tech/biotech = 1, /datum/tech/engineering = 1)
 	energy_drain = 10
 	range = MELEE
-	construction_cost = list(MATERIAL_METAL = 5000, MATERIAL_GLASS = 5000)
+	construction_cost = list(MATERIAL_METAL = 5000, /decl/material/glass = 5000)
 	reliability = 1000
 	equip_cooldown = 20
 	salvageable = 0
