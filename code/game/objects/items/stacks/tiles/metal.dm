@@ -4,7 +4,7 @@
 /obj/item/stack/tile/metal
 	desc = "These could work as a pretty decent throwing weapon!"
 	force = 6
-	matter_amounts = list(MATERIAL_METAL = 937.5)
+	matter_amounts = list(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET / 4))
 	throwforce = 15
 	throw_speed = 5
 	throw_range = 20

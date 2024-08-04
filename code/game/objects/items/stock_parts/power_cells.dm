@@ -15,14 +15,14 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = 3.0
-	matter_amounts = list(MATERIAL_METAL = 750, /decl/material/glass = 50)
+	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 50)
 
 	var/charge = 0	// note %age conveted to actual charge in New
 	var/maxcharge = 1000
 
 	var/rigged = 0		// true if rigged to explode
 	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
-	var/construction_cost = list(MATERIAL_METAL = 750, /decl/material/glass = 75)
+	var/construction_cost = list(/decl/material/steel = 750, /decl/material/glass = 75)
 	var/construction_time = 100
 
 /obj/item/cell/suicide_act(mob/user)
@@ -34,7 +34,7 @@
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
 	origin_tech = list(/datum/tech/power_storage = 0)
 	maxcharge = 500
-	matter_amounts = list(MATERIAL_METAL = 750, /decl/material/glass = 40)
+	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 40)
 
 /obj/item/cell/crap/empty/New()
 	..()
@@ -44,7 +44,7 @@
 	name = "security borg rechargable D battery"
 	origin_tech = list(/datum/tech/power_storage = 0)
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
-	matter_amounts = list(MATERIAL_METAL = 750, /decl/material/glass = 40)
+	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 40)
 
 /obj/item/cell/secborg/empty/New()
 	..()
@@ -54,7 +54,7 @@
 	name = "\improper APC power cell"
 	origin_tech = list(/datum/tech/power_storage = 1)
 	maxcharge = 5000
-	matter_amounts = list(MATERIAL_METAL = 750, /decl/material/glass = 50)
+	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 50)
 
 /obj/item/cell/apc/empty/New()
 	..()
@@ -64,7 +64,7 @@
 	origin_tech = list(/datum/tech/power_storage = 2)
 	icon_state = "hcell"
 	maxcharge = 10000
-	matter_amounts = list(MATERIAL_METAL = 750, /decl/material/glass = 60)
+	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 60)
 
 /obj/item/cell/high/empty/New()
 	..()
@@ -75,8 +75,8 @@
 	origin_tech = list(/datum/tech/power_storage = 5)
 	icon_state = "scell"
 	maxcharge = 20000
-	matter_amounts = list(MATERIAL_METAL = 750, /decl/material/glass = 70)
-	construction_cost = list(MATERIAL_METAL = 750, /decl/material/glass = 100)
+	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 70)
+	construction_cost = list(/decl/material/steel = 750, /decl/material/glass = 100)
 
 /obj/item/cell/super/empty/New()
 	..()
@@ -87,8 +87,8 @@
 	origin_tech = list(/datum/tech/power_storage = 6)
 	icon_state = "hpcell"
 	maxcharge = 30000
-	matter_amounts = list(MATERIAL_METAL = 750, /decl/material/glass = 80)
-	construction_cost = list(MATERIAL_METAL = 500, /decl/material/glass = 150, /decl/material/silver = 200, /decl/material/gold = 200)
+	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 80)
+	construction_cost = list(/decl/material/steel = 500, /decl/material/glass = 150, /decl/material/silver = 200, /decl/material/gold = 200)
 
 /obj/item/cell/hyper/empty/New()
 	..()
@@ -99,7 +99,7 @@
 	icon_state = "icell"
 	origin_tech =  null
 	maxcharge = 30000
-	matter_amounts = list(MATERIAL_METAL = 750, /decl/material/glass = 80)
+	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 80)
 
 /obj/item/cell/infinite/use()
 	return 1

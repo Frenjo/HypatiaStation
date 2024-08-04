@@ -10,7 +10,7 @@
 	w_class = 2.0
 	throw_speed = 2
 	throw_range = 5
-	matter_amounts = list(MATERIAL_METAL = 500)
+	matter_amounts = list(/decl/material/steel = 500)
 	origin_tech = list(/datum/tech/materials = 1)
 
 	var/dispenser = 0

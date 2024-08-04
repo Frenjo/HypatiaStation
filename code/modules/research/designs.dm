@@ -1303,7 +1303,7 @@ other types of metals and chemistry for reagents).
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks basic and could be improved."
 	req_tech = list(/datum/tech/materials = 2, /datum/tech/magnets = 2, /datum/tech/biotech = 2)
 	build_type = PROTOLATHE
-	materials = list(MATERIAL_METAL = 12500, /decl/material/glass = 7500)
+	materials = list(/decl/material/steel = 12500, /decl/material/glass = 7500)
 	build_path = /obj/item/scalpel/laser1
 
 /datum/design/scalpel_laser2
@@ -1311,7 +1311,7 @@ other types of metals and chemistry for reagents).
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks somewhat advanced."
 	req_tech = list(/datum/tech/materials = 4, /datum/tech/magnets = 4, /datum/tech/biotech = 3)
 	build_type = PROTOLATHE
-	materials = list(MATERIAL_METAL = 12500, /decl/material/glass = 7500, /decl/material/silver = 2500)
+	materials = list(/decl/material/steel = 12500, /decl/material/glass = 7500, /decl/material/silver = 2500)
 	build_path = /obj/item/scalpel/laser2
 
 /datum/design/scalpel_laser3
@@ -1319,7 +1319,7 @@ other types of metals and chemistry for reagents).
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks to be the pinnacle of precision energy cutlery!"
 	req_tech = list(/datum/tech/materials = 6, /datum/tech/magnets = 5, /datum/tech/biotech = 4)
 	build_type = PROTOLATHE
-	materials = list(MATERIAL_METAL = 12500, /decl/material/glass = 7500, /decl/material/silver = 2000, /decl/material/gold = 1500)
+	materials = list(/decl/material/steel = 12500, /decl/material/glass = 7500, /decl/material/silver = 2000, /decl/material/gold = 1500)
 	build_path = /obj/item/scalpel/laser3
 
 /datum/design/scalpel_manager
@@ -1327,7 +1327,7 @@ other types of metals and chemistry for reagents).
 	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
 	req_tech = list(/datum/tech/materials = 7, /datum/tech/magnets = 5, /datum/tech/biotech = 4, /datum/tech/programming = 4)
 	build_type = PROTOLATHE
-	materials = list (MATERIAL_METAL = 12500, /decl/material/glass = 7500, /decl/material/silver = 1500, /decl/material/gold = 1500, /decl/material/diamond = 750)
+	materials = list (/decl/material/steel = 12500, /decl/material/glass = 7500, /decl/material/silver = 1500, /decl/material/gold = 1500, /decl/material/diamond = 750)
 	build_path = /obj/item/scalpel/manager
 
 // Added hypospray to protolathe with some sensible-looking variables. -Frenjo

@@ -170,7 +170,7 @@
 	throwforce = 4
 	item_state = "shovel"
 	w_class = 3
-	matter_amounts = list(MATERIAL_METAL = 50)
+	matter_amounts = list(/decl/material/steel = 50)
 	origin_tech = list(/datum/tech/materials = 1, /datum/tech/engineering = 1)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 

@@ -78,13 +78,13 @@
 		for(var/obj/effect/landmark/falsewall_spawner/F in T.contents)
 			var/obj/structure/temple_falsewall/fwall = new(F.loc)
 			fwall.mineral = mineral
-			if(mineral == MATERIAL_METAL)
+			if(mineral == /decl/material/steel)
 				fwall.is_metal = 1
 			qdel(F)
 
 		for(var/obj/effect/landmark/door_spawner/D in T.contents)
 			var/spawn_type
-			if(mineral == MATERIAL_METAL)
+			if(mineral == /decl/material/steel)
 				spawn_type = /obj/machinery/door/airlock/vault
 			else
 				spawn_type = text2path("/obj/machinery/door/airlock/[mineral]")

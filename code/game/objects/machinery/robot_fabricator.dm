@@ -18,13 +18,13 @@
 	if(istype(O, /obj/item/stack/sheet/metal))
 		if(src.metal_amount < 150000.0)
 			var/count = 0
-			src.overlays += "fab-load-metal"
+			src.overlays += "fab-load-steel"
 			spawn(15)
 				if(O)
 					if(!O:amount)
 						return
 					while(metal_amount < 150000 && O:amount)
-						src.metal_amount += O.matter_amounts[MATERIAL_METAL] /*O:height * O:width * O:length * 100000.0*/
+						src.metal_amount += O.matter_amounts[/decl/material/steel] /*O:height * O:width * O:length * 100000.0*/
 						O:amount--
 						count++
 
@@ -32,7 +32,7 @@
 						qdel(O)
 
 					to_chat(user, "You insert [count] metal sheet\s into the fabricator.")
-					src.overlays -= "fab-load-metal"
+					src.overlays -= "fab-load-steel"
 					updateDialog()
 		else
 			to_chat(user, "The robot part maker is full. Please remove metal from the robot part maker in order to insert more.")

@@ -877,7 +877,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 /datum/objective/heist/salvage/choose_target()
 	switch(rand(1, 8))
 		if(1)
-			target = MATERIAL_METAL
+			target = /decl/material/steel
 			target_amount = 300
 		if(2)
 			target = /decl/material/glass
@@ -901,7 +901,8 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 			target = /decl/material/diamond
 			target_amount = 20
 
-	explanation_text = "Ransack the station and escape with [target_amount] [target]."
+	var/decl/material/target_material = GET_DECL_INSTANCE(target)
+	explanation_text = "Ransack the station and escape with [target_amount] [lowertext(target_material.name)]."
 
 /datum/objective/heist/salvage/check_completion()
 	var/total_amount = 0

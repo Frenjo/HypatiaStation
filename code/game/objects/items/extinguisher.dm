@@ -11,7 +11,7 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 10.0
-	matter_amounts = list(MATERIAL_METAL = 90)
+	matter_amounts = list(/decl/material/steel = 90)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 
 	var/max_water = 50

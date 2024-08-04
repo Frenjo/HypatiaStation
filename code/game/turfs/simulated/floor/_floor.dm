@@ -39,7 +39,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	var/lava = 0
 	var/broken = 0
 	var/burnt = 0
-	var/mineral = MATERIAL_METAL
+	var/mineral = /decl/material/steel
 	var/tile_path = null
 
 /turf/simulated/floor/New()

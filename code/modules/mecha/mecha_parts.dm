@@ -10,14 +10,14 @@
 	obj_flags = OBJ_FLAG_CONDUCT
 	origin_tech = list(/datum/tech/programming = 2, RESEARCH_MATERIAL = 2)
 	var/construction_time = 100
-	var/list/construction_cost = list(MATERIAL_METAL = 20000, /decl/material/glass = 5000)
+	var/list/construction_cost = list(/decl/material/steel = 20000, /decl/material/glass = 5000)
 
 
 /obj/item/mecha_part/chassis
 	name = "mecha chassis"
 	icon_state = "backbone"
 	var/datum/construction/construct
-	construction_cost = list(MATERIAL_METAL = 20000)
+	construction_cost = list(/decl/material/steel = 20000)
 
 /obj/item/mecha_part/chassis/attackby(obj/item/W, mob/user)
 	if(!construct || !construct.action(W, user))
@@ -44,7 +44,7 @@
 		/datum/tech/programming = 2
 	)
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 40000, /decl/material/glass = 15000)
+	construction_cost = list(/decl/material/steel = 40000, /decl/material/glass = 15000)
 
 /obj/item/mecha_part/part/ripley_left_arm
 	name = "\improper Ripley left arm"
@@ -52,7 +52,7 @@
 	icon_state = "ripley_l_arm"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 150
-	construction_cost = list(MATERIAL_METAL = 25000)
+	construction_cost = list(/decl/material/steel = 25000)
 
 /obj/item/mecha_part/part/ripley_right_arm
 	name = "\improper Ripley right arm"
@@ -60,7 +60,7 @@
 	icon_state = "ripley_r_arm"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 150
-	construction_cost = list(MATERIAL_METAL = 25000)
+	construction_cost = list(/decl/material/steel = 25000)
 
 /obj/item/mecha_part/part/ripley_left_leg
 	name = "\improper Ripley left leg"
@@ -68,7 +68,7 @@
 	icon_state = "ripley_l_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 150
-	construction_cost = list(MATERIAL_METAL = 30000)
+	construction_cost = list(/decl/material/steel = 30000)
 
 /obj/item/mecha_part/part/ripley_right_leg
 	name = "\improper Ripley right leg"
@@ -76,13 +76,13 @@
 	icon_state = "ripley_r_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 150
-	construction_cost = list(MATERIAL_METAL = 30000)
+	construction_cost = list(/decl/material/steel = 30000)
 
 
 ///////// Gygax
 /obj/item/mecha_part/chassis/gygax
 	name = "\improper Gygax chassis"
-	construction_cost = list(MATERIAL_METAL = 25000)
+	construction_cost = list(/decl/material/steel = 25000)
 
 /obj/item/mecha_part/chassis/gygax/New()
 	..()
@@ -97,7 +97,7 @@
 		/datum/tech/programming = 2
 	)
 	construction_time = 300
-	construction_cost = list(MATERIAL_METAL = 50000, /decl/material/glass = 20000)
+	construction_cost = list(/decl/material/steel = 50000, /decl/material/glass = 20000)
 
 /obj/item/mecha_part/part/gygax_head
 	name = "\improper Gygax head"
@@ -108,7 +108,7 @@
 		/datum/tech/programming = 2
 	)
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/glass = 10000)
+	construction_cost = list(/decl/material/steel = 20000, /decl/material/glass = 10000)
 
 /obj/item/mecha_part/part/gygax_left_arm
 	name = "\improper Gygax left arm"
@@ -116,7 +116,7 @@
 	icon_state = "gygax_l_arm"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 30000)
+	construction_cost = list(/decl/material/steel = 30000)
 
 /obj/item/mecha_part/part/gygax_right_arm
 	name = "\improper Gygax right arm"
@@ -124,34 +124,34 @@
 	icon_state = "gygax_r_arm"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 30000)
+	construction_cost = list(/decl/material/steel = 30000)
 
 /obj/item/mecha_part/part/gygax_left_leg
 	name = "\improper Gygax left leg"
 	icon_state = "gygax_l_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 35000)
+	construction_cost = list(/decl/material/steel = 35000)
 
 /obj/item/mecha_part/part/gygax_right_leg
 	name = "\improper Gygax right leg"
 	icon_state = "gygax_r_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 35000)
+	construction_cost = list(/decl/material/steel = 35000)
 
 /obj/item/mecha_part/part/gygax_armour
 	name = "\improper Gygax armour plates"
 	icon_state = "gygax_armour"
 	origin_tech = list(/datum/tech/materials = 6, /datum/tech/combat = 4, /datum/tech/engineering = 5)
 	construction_time = 600
-	construction_cost = list(MATERIAL_METAL = 50000, /decl/material/diamond = 10000)
+	construction_cost = list(/decl/material/steel = 50000, /decl/material/diamond = 10000)
 
 
 //////////// Durand
 /obj/item/mecha_part/chassis/durand
 	name = "\improper Durand chassis"
-	construction_cost = list(MATERIAL_METAL = 25000)
+	construction_cost = list(/decl/material/steel = 25000)
 
 /obj/item/mecha_part/chassis/durand/New()
 	..()
@@ -165,7 +165,7 @@
 		/datum/tech/programming = 2
 	)
 	construction_time = 300
-	construction_cost = list(MATERIAL_METAL = 55000, /decl/material/glass = 20000, /decl/material/silver = 10000)
+	construction_cost = list(/decl/material/steel = 55000, /decl/material/glass = 20000, /decl/material/silver = 10000)
 
 /obj/item/mecha_part/part/durand_head
 	name = "\improper Durand head"
@@ -175,42 +175,42 @@
 		/datum/tech/programming = 2
 	)
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 25000, /decl/material/glass = 10000, /decl/material/silver = 3000)
+	construction_cost = list(/decl/material/steel = 25000, /decl/material/glass = 10000, /decl/material/silver = 3000)
 
 /obj/item/mecha_part/part/durand_left_arm
 	name = "\improper Durand left arm"
 	icon_state = "durand_l_arm"
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 35000, /decl/material/silver = 3000)
+	construction_cost = list(/decl/material/steel = 35000, /decl/material/silver = 3000)
 
 /obj/item/mecha_part/part/durand_right_arm
 	name = "\improper Durand right arm"
 	icon_state = "durand_r_arm"
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 35000, /decl/material/silver = 3000)
+	construction_cost = list(/decl/material/steel = 35000, /decl/material/silver = 3000)
 
 /obj/item/mecha_part/part/durand_left_leg
 	name = "\improper Durand left leg"
 	icon_state = "durand_l_leg"
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 40000, /decl/material/silver = 3000)
+	construction_cost = list(/decl/material/steel = 40000, /decl/material/silver = 3000)
 
 /obj/item/mecha_part/part/durand_right_leg
 	name = "\improper Durand right leg"
 	icon_state = "durand_r_leg"
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 40000, /decl/material/silver = 3000)
+	construction_cost = list(/decl/material/steel = 40000, /decl/material/silver = 3000)
 
 /obj/item/mecha_part/part/durand_armour
 	name = "\improper Durand armour plates"
 	icon_state = "durand_armour"
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 4, /datum/tech/engineering = 5)
 	construction_time = 600
-	construction_cost = list(MATERIAL_METAL = 50000, /decl/material/uranium = 10000)
+	construction_cost = list(/decl/material/steel = 50000, /decl/material/uranium = 10000)
 
 
 ////////// Firefighter
@@ -254,37 +254,37 @@
 	name = "\improper H.O.N.K torso"
 	icon_state = "honker_harness"
 	construction_time = 300
-	construction_cost = list(MATERIAL_METAL = 35000, /decl/material/glass = 10000, /decl/material/bananium = 10000)
+	construction_cost = list(/decl/material/steel = 35000, /decl/material/glass = 10000, /decl/material/bananium = 10000)
 
 /obj/item/mecha_part/part/honker_head
 	name = "\improper H.O.N.K head"
 	icon_state = "honker_head"
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 15000, /decl/material/glass = 5000, /decl/material/bananium = 5000)
+	construction_cost = list(/decl/material/steel = 15000, /decl/material/glass = 5000, /decl/material/bananium = 5000)
 
 /obj/item/mecha_part/part/honker_left_arm
 	name = "\improper H.O.N.K left arm"
 	icon_state = "honker_l_arm"
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/bananium = 5000)
+	construction_cost = list(/decl/material/steel = 20000, /decl/material/bananium = 5000)
 
 /obj/item/mecha_part/part/honker_right_arm
 	name = "\improper H.O.N.K right arm"
 	icon_state = "honker_r_arm"
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/bananium = 5000)
+	construction_cost = list(/decl/material/steel = 20000, /decl/material/bananium = 5000)
 
 /obj/item/mecha_part/part/honker_left_leg
 	name = "\improper H.O.N.K left leg"
 	icon_state = "honker_l_leg"
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/bananium = 5000)
+	construction_cost = list(/decl/material/steel = 20000, /decl/material/bananium = 5000)
 
 /obj/item/mecha_part/part/honker_right_leg
 	name = "\improper H.O.N.K right leg"
 	icon_state = "honker_r_leg"
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/bananium = 5000)
+	construction_cost = list(/decl/material/steel = 20000, /decl/material/bananium = 5000)
 
 
 ////////// Phazon
@@ -300,7 +300,7 @@
 	name = "\improper Phazon torso"
 	icon_state = "phazon_harness"
 	construction_time = 300
-	construction_cost = list(MATERIAL_METAL = 35000, /decl/material/glass = 10000, /decl/material/plasma = 20000)
+	construction_cost = list(/decl/material/steel = 35000, /decl/material/glass = 10000, /decl/material/plasma = 20000)
 	origin_tech = list(
 		/datum/tech/materials = 7, /datum/tech/power_storage = 6, /datum/tech/programming = 5,
 		/datum/tech/bluespace = 6
@@ -310,35 +310,35 @@
 	name = "\improper Phazon head"
 	icon_state = "phazon_head"
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 15000, /decl/material/glass = 5000, /decl/material/plasma = 10000)
+	construction_cost = list(/decl/material/steel = 15000, /decl/material/glass = 5000, /decl/material/plasma = 10000)
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 6, /datum/tech/programming = 4)
 
 /obj/item/mecha_part/part/phazon_left_arm
 	name = "\improper Phazon left arm"
 	icon_state = "phazon_l_arm"
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/plasma = 10000)
+	construction_cost = list(/decl/material/steel = 20000, /decl/material/plasma = 10000)
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 2, /datum/tech/bluespace = 2)
 
 /obj/item/mecha_part/part/phazon_right_arm
 	name = "\improper Phazon right arm"
 	icon_state = "phazon_r_arm"
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/plasma = 10000)
+	construction_cost = list(/decl/material/steel = 20000, /decl/material/plasma = 10000)
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 2, /datum/tech/bluespace = 2)
 
 /obj/item/mecha_part/part/phazon_left_leg
 	name = "\improper Phazon left leg"
 	icon_state = "phazon_l_leg"
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/plasma = 10000)
+	construction_cost = list(/decl/material/steel = 20000, /decl/material/plasma = 10000)
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 3, /datum/tech/bluespace = 3)
 
 /obj/item/mecha_part/part/phazon_right_leg
 	name = "\improper Phazon right leg"
 	icon_state = "phazon_r_leg"
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/plasma = 10000)
+	construction_cost = list(/decl/material/steel = 20000, /decl/material/plasma = 10000)
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 3, /datum/tech/bluespace = 3)
 
 
@@ -354,7 +354,7 @@
 	name = "\improper Odysseus head"
 	icon_state = "odysseus_head"
 	construction_time = 100
-	construction_cost = list(MATERIAL_METAL = 2000, /decl/material/glass = 10000)
+	construction_cost = list(/decl/material/steel = 2000, /decl/material/glass = 10000)
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/programming = 3)
 
 /obj/item/mecha_part/part/odysseus_torso
@@ -366,7 +366,7 @@
 		/datum/tech/programming = 2
 	)
 	construction_time = 180
-	construction_cost = list(MATERIAL_METAL = 25000)
+	construction_cost = list(/decl/material/steel = 25000)
 
 /obj/item/mecha_part/part/odysseus_left_arm
 	name = "\improper Odysseus left arm"
@@ -374,7 +374,7 @@
 	icon_state = "odysseus_l_arm"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 120
-	construction_cost = list(MATERIAL_METAL = 10000)
+	construction_cost = list(/decl/material/steel = 10000)
 
 /obj/item/mecha_part/part/odysseus_right_arm
 	name = "\improper Odysseus right arm"
@@ -382,7 +382,7 @@
 	icon_state = "odysseus_r_arm"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 120
-	construction_cost = list(MATERIAL_METAL = 10000)
+	construction_cost = list(/decl/material/steel = 10000)
 
 /obj/item/mecha_part/part/odysseus_left_leg
 	name = "\improper Odysseus left leg"
@@ -390,7 +390,7 @@
 	icon_state = "odysseus_l_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 130
-	construction_cost = list(MATERIAL_METAL = 15000)
+	construction_cost = list(/decl/material/steel = 15000)
 
 /obj/item/mecha_part/part/odysseus_right_leg
 	name = "\improper Odysseus right leg"
@@ -398,14 +398,14 @@
 	icon_state = "odysseus_r_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 130
-	construction_cost = list(MATERIAL_METAL = 15000)
+	construction_cost = list(/decl/material/steel = 15000)
 
 /*/obj/item/mecha_part/part/odysseus_armour
 	name = "\improper Odysseus carapace"
 	icon_state = "odysseus_armour"
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3)
 	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 15000)*/
+	construction_cost = list(/decl/material/steel = 15000)*/
 
 
 ///////// Circuitboards

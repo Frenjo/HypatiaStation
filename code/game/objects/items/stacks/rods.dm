@@ -9,7 +9,7 @@
 	throwforce = 15.0
 	throw_speed = 5
 	throw_range = 20
-	matter_amounts = list(MATERIAL_METAL = (MATERIAL_AMOUNT_PER_SHEET / 2))
+	matter_amounts = list(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET / 2))
 	max_amount = 60
 	attack_verb = list("hit", "bludgeoned", "whacked")
 

@@ -24,7 +24,7 @@
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
-	matter_amounts = list(MATERIAL_METAL = 150)
+	matter_amounts = list(/decl/material/steel = 150)
 	origin_tech = list(/datum/tech/materials = 1, /datum/tech/engineering = 1)
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
@@ -43,7 +43,7 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	matter_amounts = list(MATERIAL_METAL = 75)
+	matter_amounts = list(/decl/material/steel = 75)
 	attack_verb = list("stabbed")
 
 /obj/item/screwdriver/suicide_act(mob/user)
@@ -105,7 +105,7 @@
 	throw_speed = 2
 	throw_range = 9
 	w_class = 2.0
-	matter_amounts = list(MATERIAL_METAL = 80)
+	matter_amounts = list(/decl/material/steel = 80)
 	origin_tech = list(/datum/tech/materials = 1, /datum/tech/engineering = 1)
 	attack_verb = list("pinched", "nipped")
 	sharp = 1
@@ -151,7 +151,7 @@
 	w_class = 2.0
 
 	//Cost to make in the autolathe
-	matter_amounts = list(MATERIAL_METAL = 70, /decl/material/glass = 30)
+	matter_amounts = list(/decl/material/steel = 70, /decl/material/glass = 30)
 
 	//R&D tech level
 	origin_tech = list(/datum/tech/engineering = 1)
@@ -431,21 +431,21 @@
 /obj/item/weldingtool/largetank
 	name = "industrial welding tool"
 	max_fuel = 40
-	matter_amounts = list(MATERIAL_METAL = 70, /decl/material/glass = 60)
+	matter_amounts = list(/decl/material/steel = 70, /decl/material/glass = 60)
 	origin_tech = list(/datum/tech/engineering = 2)
 
 /obj/item/weldingtool/hugetank
 	name = "upgraded welding tool"
 	max_fuel = 80
 	w_class = 3.0
-	matter_amounts = list(MATERIAL_METAL = 70, /decl/material/glass = 120)
+	matter_amounts = list(/decl/material/steel = 70, /decl/material/glass = 120)
 	origin_tech = list(/datum/tech/engineering = 3)
 
 /obj/item/weldingtool/experimental
 	name = "experimental welding tool"
 	max_fuel = 40
 	w_class = 3.0
-	matter_amounts = list(MATERIAL_METAL = 70, /decl/material/glass = 120)
+	matter_amounts = list(/decl/material/steel = 70, /decl/material/glass = 120)
 	origin_tech = list(/datum/tech/engineering = 4, /datum/tech/plasma = 3)
 
 	var/last_gen = 0
@@ -470,7 +470,7 @@
 	throwforce = 7.0
 	item_state = "crowbar"
 	w_class = 2.0
-	matter_amounts = list(MATERIAL_METAL = 50)
+	matter_amounts = list(/decl/material/steel = 50)
 	origin_tech = list(/datum/tech/engineering = 1)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 

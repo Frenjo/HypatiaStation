@@ -9,7 +9,7 @@
 	var/obj/machinery/mineral/input = null
 	var/obj/machinery/mineral/output = null
 	var/list/amount_by_material = list(
-		/decl/material/steel = 0,
+		MATERIAL_METAL = 0,
 		/decl/material/silver = 0,
 		/decl/material/gold = 0,
 		/decl/material/diamond = 0,
