@@ -8,8 +8,14 @@
 	var/sheet_path
 	// The amount of this material that each sheet holds.
 	var/per_unit = MATERIAL_AMOUNT_PER_SHEET
+
+	/*
+	 * Mint
+	 */
 	// The type path of the associated coin item.
 	var/coin_path
+	// The colour code used for the mint.
+	var/mint_colour_code
 
 	/*
 	 * Wall
@@ -39,7 +45,9 @@
 /decl/material/steel
 	name = "Steel"
 	sheet_path = /obj/item/stack/sheet/metal
+
 	coin_path = /obj/item/coin/iron
+	mint_colour_code = "#555555"
 
 	wall_path = /turf/simulated/wall/steel
 	wall_false_path = /obj/structure/falsewall/steel
@@ -115,7 +123,9 @@
 /decl/material/silver
 	name = "Silver"
 	sheet_path = /obj/item/stack/sheet/silver
+
 	coin_path = /obj/item/coin/silver
+	mint_colour_code = "#888888"
 
 	wall_path = /turf/simulated/wall/silver
 	wall_false_path = /obj/structure/falsewall/silver
@@ -126,7 +136,9 @@
 /decl/material/gold
 	name = "Gold"
 	sheet_path = /obj/item/stack/sheet/gold
+
 	coin_path = /obj/item/coin/gold
+	mint_colour_code = "#ffcc00"
 
 	wall_path = /turf/simulated/wall/gold
 	wall_false_path = /obj/structure/falsewall/gold
@@ -137,7 +149,9 @@
 /decl/material/diamond
 	name = "Diamond"
 	sheet_path = /obj/item/stack/sheet/diamond
+
 	coin_path = /obj/item/coin/diamond
+	mint_colour_code = "#8888FF"
 
 	wall_path = /turf/simulated/wall/diamond
 	wall_false_path = /obj/structure/falsewall/diamond
@@ -148,7 +162,9 @@
 /decl/material/uranium
 	name = "Uranium"
 	sheet_path = /obj/item/stack/sheet/uranium
+
 	coin_path = /obj/item/coin/uranium
+	mint_colour_code = "#008800"
 
 	wall_path = /turf/simulated/wall/uranium
 	wall_false_path = /obj/structure/falsewall/uranium
@@ -163,7 +179,9 @@
 /decl/material/plasma
 	name = "Plasma"
 	sheet_path = /obj/item/stack/sheet/plasma
+
 	coin_path = /obj/item/coin/plasma
+	mint_colour_code = "#FF8800"
 
 	wall_path = /turf/simulated/wall/plasma
 	wall_false_path = /obj/structure/falsewall/plasma
@@ -174,7 +192,9 @@
 /decl/material/bananium
 	name = "Bananium"
 	sheet_path = /obj/item/stack/sheet/bananium
+
 	coin_path = /obj/item/coin/bananium
+	mint_colour_code = "#AAAA00"
 
 	wall_path = /turf/simulated/wall/bananium
 	wall_false_path = /obj/structure/falsewall/bananium
@@ -185,12 +205,16 @@
 /decl/material/adamantine
 	name = "Adamantine"
 	sheet_path = /obj/item/stack/sheet/adamantine
+
 	coin_path = /obj/item/coin/adamantine
+	mint_colour_code = "#888888"
 
 /decl/material/mythril
 	name = "Mythril"
 	sheet_path = /obj/item/stack/sheet/mythril
+
 	coin_path = /obj/item/coin/mythril
+	mint_colour_code = "#f30000"
 
 /*
  * Alien/Strange Materials
