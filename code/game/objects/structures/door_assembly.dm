@@ -165,7 +165,7 @@
 				if(do_after(user, 40))
 					if(!src || !WT.isOn()) return
 					user << "\blue You dissasembled the airlock assembly!"
-					new /obj/item/stack/sheet/metal(src.loc, 4)
+					new /obj/item/stack/sheet/steel(src.loc, 4)
 					qdel (src)
 		else
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)

@@ -15,7 +15,7 @@
 	var/obj/item/robot_parts/being_built = null
 
 /obj/machinery/robotic_fabricator/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/stack/sheet/metal))
+	if(istype(O, /obj/item/stack/sheet/steel))
 		if(src.metal_amount < 150000.0)
 			var/count = 0
 			src.overlays += "fab-load-steel"

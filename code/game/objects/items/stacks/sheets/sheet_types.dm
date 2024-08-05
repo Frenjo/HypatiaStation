@@ -79,21 +79,21 @@ var/global/list/datum/stack_recipe/metal_recipes = list(
 	new/datum/stack_recipe("steel door", /obj/structure/mineral_door/steel, 20, one_per_turf = 1, on_floor = 1),
 )
 
-/obj/item/stack/sheet/metal
-	name = "metal"
-	desc = "Sheets made out off metal. It has been dubbed Metal Sheets."
-	singular_name = "metal sheet"
-	icon_state = "sheet-metal"
+/obj/item/stack/sheet/steel
+	name = "steel"
+	desc = "Sheets made out of steel. They have been dubbed steel sheets."
+	singular_name = "steel sheet"
+	icon_state = "steel"
 	matter_amounts = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET)
 	throwforce = 14.0
 	obj_flags = OBJ_FLAG_CONDUCT
 	origin_tech = list(/datum/tech/materials = 1)
 	material = /decl/material/steel
 
-/obj/item/stack/sheet/metal/cyborg
+/obj/item/stack/sheet/steel/cyborg
 	matter_amounts = null
 
-/obj/item/stack/sheet/metal/New(loc, amount = null)
+/obj/item/stack/sheet/steel/New(loc, amount = null)
 	recipes = metal_recipes
 	return ..()
 
@@ -111,7 +111,7 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list(
 	name = "plasteel"
 	singular_name = "plasteel sheet"
 	desc = "This sheet is an alloy of iron and plasma."
-	icon_state = "sheet-plasteel"
+	icon_state = "plasteel"
 	item_state = "sheet-metal"
 	matter_amounts = list(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET * 2))
 	throwforce = 15.0
@@ -141,7 +141,7 @@ var/global/list/datum/stack_recipe/wood_recipes = list(
 	name = "wooden plank"
 	desc = "One can only guess that this is a bunch of wood."
 	singular_name = "wood plank"
-	icon_state = "sheet-wood"
+	icon_state = "wood"
 	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1)
 	material = /decl/material/wood
 
@@ -158,7 +158,7 @@ var/global/list/datum/stack_recipe/wood_recipes = list(
 	name = "cloth"
 	desc = "This roll of cloth is made from only the finest chemicals and bunny rabbits."
 	singular_name = "cloth roll"
-	icon_state = "sheet-cloth"
+	icon_state = "cloth"
 	origin_tech = list(/datum/tech/materials = 2)
 	material = /decl/material/cloth
 
@@ -187,7 +187,7 @@ var/global/list/datum/stack_recipe/cardboard_recipes = list(
 	name = "cardboard"
 	desc = "Large sheets of card, like boxes folded flat."
 	singular_name = "cardboard sheet"
-	icon_state = "sheet-card"
+	icon_state = "card"
 	origin_tech = list(/datum/tech/materials = 1)
 	material = /decl/material/cardboard
 

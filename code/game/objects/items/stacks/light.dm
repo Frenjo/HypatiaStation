@@ -21,8 +21,8 @@
 
 /obj/item/stack/light_w/attackby(obj/item/O, mob/user)
 	..()
-	if(istype(O, /obj/item/stack/sheet/metal))
-		var/obj/item/stack/sheet/metal/M = O
+	if(istype(O, /obj/item/stack/sheet/steel))
+		var/obj/item/stack/sheet/steel/M = O
 		M.amount--
 		if(M.amount <= 0)
 			user.drop_from_inventory(M)

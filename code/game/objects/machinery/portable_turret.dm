@@ -314,8 +314,10 @@ Status: []<BR>"},
 					Gun.power_supply.charge=gun_charge
 					Gun.update_icon()
 					lasercolor = null
-				if(prob(50)) new /obj/item/stack/sheet/metal( loc, rand(1,4))
-				if(prob(50)) new /obj/item/assembly/prox_sensor(locate(x,y,z))
+				if(prob(50))
+					new /obj/item/stack/sheet/steel(loc, rand(1, 4))
+				if(prob(50))
+					new /obj/item/assembly/prox_sensor(locate(x,y,z))
 			else
 				user << "You remove the turret but did not manage to salvage anything."
 			qdel(src)
@@ -699,14 +701,14 @@ Status: []<BR>"},
 			else if(istype(W, /obj/item/crowbar) && !anchored)
 				playsound(src, 'sound/items/Crowbar.ogg', 75, 1)
 				user << "You dismantle the turret construction."
-				new /obj/item/stack/sheet/metal( loc, 5)
+				new /obj/item/stack/sheet/steel(loc, 5)
 				qdel(src)
 				return
 
 		if(1)
-			if(istype(W, /obj/item/stack/sheet/metal))
-				if(W:amount>=2) // requires 2 metal sheets
-					user << "\blue You add some metal armor to the interior frame."
+			if(istype(W, /obj/item/stack/sheet/steel))
+				if(W:amount>=2) // requires 2 steel sheets
+					user << "\blue You add some steel armor to the interior frame."
 					build_step = 2
 					W:amount -= 2
 					icon_state = "turret_frame2"
@@ -740,8 +742,8 @@ Status: []<BR>"},
 				if(do_after(user, 20))
 					if(!src || !WT.remove_fuel(5, user)) return
 					build_step = 1
-					user << "You remove the turret's interior metal armor."
-					new /obj/item/stack/sheet/metal( loc, 2)
+					user << "You remove the turret's interior steel armor."
+					new /obj/item/stack/sheet/steel(loc, 2)
 					return
 
 
@@ -781,9 +783,9 @@ Status: []<BR>"},
 			// attack_hand() removes the prox sensor
 
 		if(6)
-			if(istype(W, /obj/item/stack/sheet/metal))
+			if(istype(W, /obj/item/stack/sheet/steel))
 				if(W:amount>=2)
-					user << "\blue You add some metal armor to the exterior frame."
+					user << "\blue You add some steel armor to the exterior frame."
 					build_step = 7
 					W:amount -= 2
 					if(W:amount <= 0)
@@ -824,7 +826,7 @@ Status: []<BR>"},
 			else if(istype(W, /obj/item/crowbar))
 				playsound(src, 'sound/items/Crowbar.ogg', 75, 1)
 				user << "You pry off the turret's exterior armor."
-				new /obj/item/stack/sheet/metal( loc, 2)
+				new /obj/item/stack/sheet/steel(loc, 2)
 				build_step = 6
 				return
 

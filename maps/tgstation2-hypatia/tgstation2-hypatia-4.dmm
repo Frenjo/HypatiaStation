@@ -417,7 +417,7 @@
 "EJ" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor/tiled/grey,/area/external/abandoned/derelict/arrival)
 "EK" = (/turf/simulated/floor/airless{icon_state = "floorscorched1"},/area/external/abandoned/derelict/hallway/primary)
 "ER" = (/obj/machinery/door/unpowered/shuttle,/turf/simulated/floor/airless,/area/space)
-"EV" = (/obj/structure/rack,/obj/item/stack/sheet/glass{amount = 50; pixel_x = 3; pixel_y = 3},/obj/item/stack/sheet/metal{amount = 50},/obj/item/storage/box/lights/mixed,/turf/simulated/floor/plating/metal,/area/external/djstation)
+"EV" = (/obj/structure/rack,/obj/item/stack/sheet/glass{amount = 50; pixel_x = 3; pixel_y = 3},/obj/item/stack/sheet/steel{amount = 50},/obj/item/storage/box/lights/mixed,/turf/simulated/floor/plating/metal,/area/external/djstation)
 "EW" = (/obj/structure/stool/bed/chair{dir = 1},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/tiled/grey,/area/external/abandoned/derelict/arrival)
 "Fa" = (/obj/item/stack/medical/bruise_pack,/turf/simulated/floor/airless{icon_state = "damaged2"},/area/external/abandoned/derelict/medical)
 "Fb" = (/obj/structure/cable{d2 = 2; icon_state = "0-2"},/obj/machinery/power/tracker,/turf/simulated/floor/plating/metal/airless,/area/external/djstation/solars)

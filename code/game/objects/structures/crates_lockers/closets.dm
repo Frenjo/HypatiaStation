@@ -201,7 +201,7 @@
 			if(!WT.remove_fuel(0, user))
 				FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 				return
-			new /obj/item/stack/sheet/metal(src.loc)
+			new /obj/item/stack/sheet/steel(loc)
 			visible_message(
 				SPAN_NOTICE("\The [src] has been cut apart by [user] with \the [WT]."),
 				SPAN_WARNING("You hear welding.")

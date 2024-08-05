@@ -23,13 +23,13 @@
 
 /obj/structure/stool/blob_act()
 	if(prob(75))
-		new /obj/item/stack/sheet/metal(src.loc)
+		new /obj/item/stack/sheet/steel(loc)
 		qdel(src)
 
 /obj/structure/stool/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/wrench))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
-		new /obj/item/stack/sheet/metal(src.loc)
+		new /obj/item/stack/sheet/steel(loc)
 		qdel(src)
 	return
 
@@ -70,8 +70,7 @@
 	if(prob(5) && isliving(M))
 		user.visible_message(SPAN_WARNING("[user] breaks [src] over [M]'s back!"))
 		user.u_equip(src)
-		var/obj/item/stack/sheet/metal/m = new/obj/item/stack/sheet/metal
-		m.loc = get_turf(src)
+		new /obj/item/stack/sheet/steel(get_turf(src))
 		qdel(src)
 		var/mob/living/T = M
 		T.Weaken(10)

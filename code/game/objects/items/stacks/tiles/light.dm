@@ -27,7 +27,7 @@
 
 /obj/item/stack/tile/light/attack_tool(obj/item/tool, mob/user)
 	if(iscrowbar(tool) && use(1))
-		new /obj/item/stack/sheet/metal(user.loc)
+		new /obj/item/stack/sheet/steel(user.loc)
 		new /obj/item/stack/light_w(user.loc)
 		return TRUE
 

@@ -140,7 +140,7 @@
 		if((!istype(target, /turf/simulated/wall/reinforced) && eatingDuration >= 100) || eatingDuration >= 200) //need 20 ticks to eat an rwall, 10 for a regular one
 			var/turf/simulated/wall/wall = target
 			wall.ChangeTurf(/turf/simulated/floor)
-			new /obj/item/stack/sheet/metal(src, flatPlasmaValue)
+			new /obj/item/stack/sheet/steel(src, flatPlasmaValue)
 			return 1
 	else if(ismovable(target))
 		if(ismob(target) || eatingDuration >= 50) //5 ticks to eat stuff like airlocks

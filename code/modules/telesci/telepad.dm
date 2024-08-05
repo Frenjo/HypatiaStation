@@ -48,7 +48,7 @@
 	if(istype(W, /obj/item/weldingtool) && stage == 1)
 		playsound(src, 'sound/items/Welder.ogg', 50, 1)
 		to_chat(user, SPAN_CAUTION("You disassemble the telepad."))
-		new /obj/item/stack/sheet/metal(get_turf(src))
+		new /obj/item/stack/sheet/steel(get_turf(src))
 		new /obj/item/stack/sheet/glass(get_turf(src))
 		qdel(src)
 

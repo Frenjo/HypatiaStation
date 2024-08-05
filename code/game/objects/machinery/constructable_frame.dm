@@ -50,7 +50,7 @@
 				if(istype(P, /obj/item/wrench))
 					playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 					to_chat(user, SPAN_INFO("You dismantle the frame."))
-					new /obj/item/stack/sheet/metal(loc, 5)
+					new /obj/item/stack/sheet/steel(loc, 5)
 					qdel(src)
 		if(2)
 			if(istype(P, /obj/item/circuitboard))

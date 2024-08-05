@@ -13,7 +13,7 @@ var/list/AVAILABLE_ORES = typesof(/obj/item/ore)
 		prod_type = param_prod_type
 
 var/list/datum/material_recipe/MATERIAL_RECIPES = list(
-		new/datum/material_recipe("Metal", list(/obj/item/ore/iron), /obj/item/stack/sheet/metal),
+		new/datum/material_recipe("Steel", list(/obj/item/ore/iron), /obj/item/stack/sheet/steel),
 		new/datum/material_recipe("Glass", list(/obj/item/ore/glass), /obj/item/stack/sheet/glass),
 		new/datum/material_recipe("Gold", list(/obj/item/ore/gold), /obj/item/stack/sheet/gold),
 		new/datum/material_recipe("Silver", list(/obj/item/ore/silver), /obj/item/stack/sheet/silver),

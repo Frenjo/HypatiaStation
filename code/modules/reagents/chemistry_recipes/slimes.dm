@@ -48,7 +48,7 @@
 
 /datum/chemical_reaction/slimemetal/on_reaction(datum/reagents/holder)
 	var/turf/location = get_turf(holder.my_atom)
-	new /obj/item/stack/sheet/metal(location, 15)
+	new /obj/item/stack/sheet/steel(location, 15)
 	new /obj/item/stack/sheet/plasteel(location, 5)
 
 //Gold

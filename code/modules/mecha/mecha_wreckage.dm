@@ -12,7 +12,7 @@
 	opacity = FALSE
 	var/list/welder_salvage = list(
 		/obj/item/stack/sheet/plasteel,
-		/obj/item/stack/sheet/metal,
+		/obj/item/stack/sheet/steel,
 		/obj/item/stack/rods
 	)
 	var/list/wirecutters_salvage = list(

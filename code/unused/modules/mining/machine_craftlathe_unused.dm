@@ -168,7 +168,7 @@ proc/check_craftlathe_recipe(var/list/param_recipe)
 
 /obj/machinery/autolathe2/proc/build_recipes()
 	//Parameters: ID, Name, Amount, Amount_added_per_attackby, Recipe, Object type
-	CRAFT_ITEMS += new/datum/craftlathe_item("METAL","Metal",1,1,list("","","","","","","","",""),/obj/item/stack/sheet/metal)
+	CRAFT_ITEMS += new/datum/craftlathe_item("STEEL","Steel",1,1,list("","","","","","","","",""),/obj/item/stack/sheet/steel)
 	CRAFT_ITEMS += new/datum/craftlathe_item("R METAL","Reinforced Metal",1,1,list("","","","","","","","",""),/obj/item/stack/sheet/r_metal)
 	CRAFT_ITEMS += new/datum/craftlathe_item("GLASS","Glass",1,1,list("","","","","","","","",""),/obj/item/stack/sheet/glass)
 	CRAFT_ITEMS += new/datum/craftlathe_item("R GLASS","Reinforced Glass",1,1,list("","","","","","","","",""),/obj/item/stack/sheet/glass/reinforced)

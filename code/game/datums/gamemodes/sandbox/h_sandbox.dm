@@ -83,7 +83,7 @@ datum/hSB
 					P.equip_to_slot_if_possible(new /obj/item/tank/jetpack(P), SLOT_ID_BACK, FALSE, TRUE)
 					P.ui_toggle_internals()
 				if("hsbmetal")
-					var/obj/item/stack/sheet/hsb = new/obj/item/stack/sheet/metal
+					var/obj/item/stack/sheet/hsb = new /obj/item/stack/sheet/steel
 					hsb.amount = 50
 					hsb.loc = usr.loc
 				if("hsbglass")

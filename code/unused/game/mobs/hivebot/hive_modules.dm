@@ -44,8 +44,7 @@
 	src.modules += new /obj/item/wirecutters(src)
 	src.modules += new /obj/item/multitool(src)
 
-	var/obj/item/stack/sheet/metal/M = new /obj/item/stack/sheet/metal(src)
-	M.amount = 50
+	var/obj/item/stack/sheet/steel/M = new /obj/item/stack/sheet/steel(src, 50)
 	src.modules += M
 
 	var/obj/item/stack/sheet/glass/reinforced/G = new /obj/item/stack/sheet/glass/reinforced(src)

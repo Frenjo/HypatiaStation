@@ -33,7 +33,7 @@
 					if(isnull(src) || !WT.isOn())
 						return
 					to_chat(user, SPAN_INFO("You deconstruct the frame."))
-					new /obj/item/stack/sheet/metal(loc, 5)
+					new /obj/item/stack/sheet/steel(loc, 5)
 					qdel(src)
 		if(1)
 			if(istype(P, /obj/item/wrench))

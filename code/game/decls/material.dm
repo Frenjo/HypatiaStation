@@ -44,7 +44,7 @@
  */
 /decl/material/steel
 	name = "Steel"
-	sheet_path = /obj/item/stack/sheet/metal
+	sheet_path = /obj/item/stack/sheet/steel
 
 	coin_path = /obj/item/coin/iron
 	mint_colour_code = "#555555"

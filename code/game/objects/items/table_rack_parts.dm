@@ -17,7 +17,7 @@
 
 /obj/item/table_parts/attack_tool(obj/item/tool, mob/user)
 	if(iswrench(tool))
-		new /obj/item/stack/sheet/metal(user.loc)
+		new /obj/item/stack/sheet/steel(user.loc)
 		qdel(src)
 		return TRUE
 
@@ -47,7 +47,7 @@
 
 /obj/item/table_parts/reinforced/attack_tool(obj/item/tool, mob/user)
 	if(iswrench(tool))
-		new /obj/item/stack/sheet/metal(user.loc)
+		new /obj/item/stack/sheet/steel(user.loc)
 		new /obj/item/stack/rods(user.loc)
 		qdel(src)
 		return TRUE
@@ -83,7 +83,7 @@
 
 /obj/item/rack_parts/attack_tool(obj/item/tool, mob/user)
 	if(iswrench(tool))
-		new /obj/item/stack/sheet/metal(user.loc)
+		new /obj/item/stack/sheet/steel(user.loc)
 		qdel(src)
 		return TRUE
 

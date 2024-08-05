@@ -33,7 +33,7 @@
 				playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
 				if(do_after(user, 20))
 					user << "\blue You deconstruct the frame."
-					new /obj/item/stack/sheet/metal( src.loc, 5 )
+					new /obj/item/stack/sheet/steel(src.loc, 5)
 					del(src)
 		if(1)
 			if(istype(P, /obj/item/wrench))

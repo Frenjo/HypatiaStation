@@ -49,7 +49,7 @@
 			to_chat(usr, "You begin deconstructing [src].")
 			if(!do_after(usr, 30))
 				return
-			new /obj/item/stack/sheet/metal(get_turf(loc), sheets_refunded)
+			new /obj/item/stack/sheet/steel(get_turf(loc), sheets_refunded)
 			user.visible_message(
 				"[user.name] deconstructs [src].",
 				"You deconstruct [src].",

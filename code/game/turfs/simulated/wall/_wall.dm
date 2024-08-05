@@ -127,7 +127,7 @@
 			new material.sheet_path(src)
 			new material.sheet_path(src)
 	else
-		new /obj/item/stack/sheet/metal(src)
+		new /obj/item/stack/sheet/steel(src)
 		if(isnotnull(material.sheet_path))
 			new material.sheet_path(src)
 			new material.sheet_path(src)

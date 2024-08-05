@@ -6,7 +6,7 @@
 	obj_flags = OBJ_FLAG_CONDUCT
 	var/build_machine_type
 	var/refund_amt = 2
-	var/refund_type = /obj/item/stack/sheet/metal
+	var/refund_type = /obj/item/stack/sheet/steel
 	var/reverse = 0 // if resulting object faces opposite its dir (like light fixtures)
 
 /obj/item/frame/attackby(obj/item/W, mob/user)

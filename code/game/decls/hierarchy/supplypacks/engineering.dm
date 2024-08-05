@@ -64,13 +64,13 @@
 	containername = "Replacement lights"
 
 
-/decl/hierarchy/supply_pack/engineering/metal50
-	name = "50 metal sheets"
-	contains = list(/obj/item/stack/sheet/metal)
+/decl/hierarchy/supply_pack/engineering/steel50
+	name = "50 steel sheets"
+	contains = list(/obj/item/stack/sheet/steel)
 	amount = 50
 	cost = 10
 	containertype = /obj/structure/closet/crate
-	containername = "Metal sheets crate"
+	containername = "steel sheets crate"
 
 
 /decl/hierarchy/supply_pack/engineering/glass50

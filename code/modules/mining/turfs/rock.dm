@@ -339,8 +339,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/simulated/rock/artifact_spawning_turfs)
 				R.amount = rand(1, 5)
 
 			if(3)
-				var/obj/item/stack/sheet/metal/R = new /obj/item/stack/sheet/metal(src)
-				R.amount = rand(5, 25)
+				new /obj/item/stack/sheet/steel(src, rand(5, 25))
 
 			if(4)
 				var/obj/item/stack/sheet/plasteel/R = new /obj/item/stack/sheet/plasteel(src)

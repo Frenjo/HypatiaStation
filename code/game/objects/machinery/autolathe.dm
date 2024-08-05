@@ -17,7 +17,7 @@
 	new /obj/item/airalarm_electronics(),
 	new /obj/item/firealarm_electronics(),
 	new /obj/item/module/power_control(),
-	new /obj/item/stack/sheet/metal(),
+	new /obj/item/stack/sheet/steel(),
 	new /obj/item/stack/sheet/glass(),
 	new /obj/item/stack/sheet/glass/reinforced(),
 	new /obj/item/stack/rods(),

@@ -116,8 +116,8 @@
 
 /obj/item/robot_parts/robot_suit/attackby(obj/item/W, mob/user)
 	. = ..()
-	if(istype(W, /obj/item/stack/sheet/metal) && isnull(l_arm) && isnull(r_arm) && isnull(l_leg) && isnull(r_leg) && isnull(chest) && isnull(head))
-		var/obj/item/stack/sheet/metal/M = W
+	if(istype(W, /obj/item/stack/sheet/steel) && isnull(l_arm) && isnull(r_arm) && isnull(l_leg) && isnull(r_leg) && isnull(chest) && isnull(head))
+		var/obj/item/stack/sheet/steel/M = W
 		var/obj/item/ed209_assembly/B = new /obj/item/ed209_assembly(get_turf(src))
 		to_chat(user, SPAN_INFO("You reinforce the robot frame."))
 		M.use(1)

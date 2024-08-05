@@ -171,7 +171,7 @@ GLOBAL_GLOBL_LIST_INIT(breach_burn_descriptors, list(
 
 //Handles repairs (and also upgrades).
 /obj/item/clothing/suit/space/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/stack/sheet/plastic) || istype(W, /obj/item/stack/sheet/metal))
+	if(istype(W, /obj/item/stack/sheet/plastic) || istype(W, /obj/item/stack/sheet/steel))
 		if(isliving(src.loc))
 			to_chat(user, SPAN_WARNING("How do you intend to patch a hardsuit while someone is wearing it?"))
 			return

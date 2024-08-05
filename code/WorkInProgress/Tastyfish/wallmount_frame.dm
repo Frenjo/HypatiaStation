@@ -10,7 +10,7 @@
 	spawn(1)
 		if (!istype(loc, /turf/simulated/floor))
 			usr << "\red [name] cannot be placed on this spot."
-			new/obj/item/stack/sheet/metal(get_turf(src), 2)
+			new/obj/item/stack/sheet/steel(get_turf(src), 2)
 			del(src)
 			return
 
@@ -21,7 +21,7 @@
 		var/turf/T = get_step(usr, dir)
 		if(!istype(T, /turf/simulated/wall))
 			usr << "\red [name] must be placed on a wall."
-			new/obj/item/stack/sheet/metal(get_turf(src), 2)
+			new/obj/item/stack/sheet/steel(get_turf(src), 2)
 			del(src)
 			return
 
@@ -46,7 +46,7 @@
 			if(istype(P, /obj/item/wrench))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 				user << "\blue You dismantle the frame"
-				new /obj/item/stack/sheet/metal(src.loc, 2)
+				new /obj/item/stack/sheet/steel(src.loc, 2)
 				del(src)
 		if(2)
 			if(istype(P, /obj/item/circuitboard))

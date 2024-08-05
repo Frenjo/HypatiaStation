@@ -221,18 +221,19 @@
 			"There appear to be [pick("dark red", "dark purple", "dark green", "dark blue")] stains on it")]."
 		if(14)
 			apply_material_decorations = 0
-			var/list/possible_spawns = list()
-			possible_spawns += /obj/item/stack/sheet/metal
-			possible_spawns += /obj/item/stack/sheet/plasteel
-			possible_spawns += /obj/item/stack/sheet/glass
-			possible_spawns += /obj/item/stack/sheet/glass/reinforced
-			possible_spawns += /obj/item/stack/sheet/plasma
-			possible_spawns += /obj/item/stack/sheet/mythril
-			possible_spawns += /obj/item/stack/sheet/gold
-			possible_spawns += /obj/item/stack/sheet/silver
-			possible_spawns += /obj/item/stack/sheet/enruranium
-			possible_spawns += /obj/item/stack/sheet/sandstone
-			possible_spawns += /obj/item/stack/sheet/silver
+			var/list/possible_spawns = list(
+				/obj/item/stack/sheet/steel,
+				/obj/item/stack/sheet/plasteel,
+				/obj/item/stack/sheet/glass,
+				/obj/item/stack/sheet/glass/reinforced,
+				/obj/item/stack/sheet/sandstone,
+				/obj/item/stack/sheet/silver,
+				/obj/item/stack/sheet/silver,
+				/obj/item/stack/sheet/gold,
+				/obj/item/stack/sheet/enruranium,
+				/obj/item/stack/sheet/plasma,
+				/obj/item/stack/sheet/mythril
+			)
 
 			var/new_type = pick(possible_spawns)
 			new_item = new new_type(src.loc)

@@ -155,7 +155,7 @@
 		if(target == null || !target)
 			if(maketiles)
 				if(target == null || !target)
-					for(var/obj/item/stack/sheet/metal/M in view(7, src))
+					for(var/obj/item/stack/sheet/steel/M in view(7, src))
 						if(!(M in floorbottargets) && M != oldtarget && M.amount == 1 && !(istype(M.loc, /turf/simulated/wall)))
 							oldtarget = M
 							target = M
@@ -236,7 +236,7 @@
 	if(loc == target || loc == target.loc)
 		if(istype(target, /obj/item/stack/tile/metal/grey))
 			eattile(target)
-		else if(istype(target, /obj/item/stack/sheet/metal))
+		else if(istype(target, /obj/item/stack/sheet/steel))
 			maketile(target)
 		else if(istype(target, /turf/) && emagged < 2)
 			repair(target)
@@ -315,8 +315,8 @@
 		target = null
 		repairing = FALSE
 
-/obj/machinery/bot/floorbot/proc/maketile(obj/item/stack/sheet/metal/M)
-	if(!istype(M, /obj/item/stack/sheet/metal))
+/obj/machinery/bot/floorbot/proc/maketile(obj/item/stack/sheet/steel/M)
+	if(!istype(M, /obj/item/stack/sheet/steel))
 		return
 	if(M.amount > 1)
 		return

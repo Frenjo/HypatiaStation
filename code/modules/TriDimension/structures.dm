@@ -87,8 +87,7 @@
 			sleep(60)
 			if(!user || !WT || !WT.isOn())	return
 
-			var/obj/item/stack/sheet/metal/S = new /obj/item/stack/sheet/metal( src )
-			S.amount = 2
+			var/obj/item/stack/sheet/steel/S = new /obj/item/stack/sheet/steel(src, 2)
 			user << "<span class='notice'>You remove the ladder and close the hole.</span>"
 			Del()
 		else

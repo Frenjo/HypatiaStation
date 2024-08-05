@@ -12,7 +12,7 @@
 		health -= Proj.damage
 		..()
 		if(health <= 0)
-			new /obj/item/stack/sheet/metal(get_turf(src))
+			new /obj/item/stack/sheet/steel(get_turf(src))
 			qdel(src)
 
 		return
@@ -26,7 +26,7 @@
 				if(!src)
 					return
 				user << "\blue You dissasembled the girder!"
-				new /obj/item/stack/sheet/metal(get_turf(src))
+				new /obj/item/stack/sheet/steel(get_turf(src))
 				qdel(src)
 		else if(!anchored)
 			playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
@@ -42,12 +42,12 @@
 			if(!src)
 				return
 			user << "\blue You slice apart the girder!"
-			new /obj/item/stack/sheet/metal(get_turf(src))
+			new /obj/item/stack/sheet/steel(get_turf(src))
 			qdel(src)
 
 	else if(istype(W, /obj/item/pickaxe/diamonddrill))
 		user << "\blue You drill through the girder!"
-		new /obj/item/stack/sheet/metal(get_turf(src))
+		new /obj/item/stack/sheet/steel(get_turf(src))
 		qdel(src)
 
 	else if(istype(W, /obj/item/screwdriver) && state == 2 && istype(src,/obj/structure/girder/reinforced))
@@ -142,13 +142,13 @@
 			return
 		if(2.0)
 			if (prob(30))
-				var/remains = pick(/obj/item/stack/rods,/obj/item/stack/sheet/metal)
+				var/remains = pick(/obj/item/stack/rods, /obj/item/stack/sheet/steel)
 				new remains(loc)
 				qdel(src)
 			return
 		if(3.0)
 			if (prob(5))
-				var/remains = pick(/obj/item/stack/rods,/obj/item/stack/sheet/metal)
+				var/remains = pick(/obj/item/stack/rods, /obj/item/stack/sheet/steel)
 				new remains(loc)
 				qdel(src)
 			return
@@ -220,7 +220,7 @@
 	health -= Proj.damage
 	..()
 	if(health <= 0)
-		new /obj/item/stack/sheet/metal(get_turf(src))
+		new /obj/item/stack/sheet/steel(get_turf(src))
 		qdel(src)
 
 	return

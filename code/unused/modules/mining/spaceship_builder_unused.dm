@@ -124,10 +124,10 @@
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 
-	if (istype(W, /obj/item/stack/sheet/metal))
+	if (istype(W, /obj/item/stack/sheet/steel))
 
-		var/obj/item/stack/sheet/metal/M = W
-		user << "\blue You insert all the metal into the machine."
+		var/obj/item/stack/sheet/steel/M = W
+		user << "\blue You insert all the steel into the machine."
 		metal_amount += M.amount * 100
 		del(M)
 

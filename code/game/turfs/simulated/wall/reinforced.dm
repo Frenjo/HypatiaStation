@@ -23,8 +23,8 @@
 		new /obj/structure/girder/reinforced(src)
 		new /obj/item/stack/sheet/plasteel(src)
 	else
-		new /obj/item/stack/sheet/metal(src)
-		new /obj/item/stack/sheet/metal(src)
+		new /obj/item/stack/sheet/steel(src)
+		new /obj/item/stack/sheet/steel(src)
 		new /obj/item/stack/sheet/plasteel(src)
 
 	for(var/obj/O in contents) //Eject contents!
@@ -287,8 +287,8 @@
 			dismantle_wall()
 
 	//REPAIRING
-	else if(istype(W, /obj/item/stack/sheet/metal) && d_state)
-		var/obj/item/stack/sheet/metal/MS = W
+	else if(istype(W, /obj/item/stack/sheet/steel) && d_state)
+		var/obj/item/stack/sheet/steel/MS = W
 
 		to_chat(user, SPAN_NOTICE("You begin patching-up the wall with \a [MS]."))
 

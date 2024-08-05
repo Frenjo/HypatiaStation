@@ -137,7 +137,7 @@
 		),
 		//6
 		list(
-			"key" = /obj/item/stack/sheet/metal,
+			"key" = /obj/item/stack/sheet/steel,
 			"backkey" = /obj/item/screwdriver,
 			"desc" = "Peripherals control module is secured."
 		),
@@ -327,8 +327,7 @@
 					"[user] pries internal armor layer from [holder].",
 					"You pry internal armor layer from [holder]."
 				)
-				var/obj/item/stack/sheet/metal/MS = new /obj/item/stack/sheet/metal(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/sheet/steel(get_turf(holder), 5)
 				holder.icon_state = "ripley8"
 		if(4)
 			if(diff == FORWARD)
@@ -459,7 +458,7 @@
 		),
 		//6
 		list(
-			"key" = /obj/item/stack/sheet/metal,
+			"key" = /obj/item/stack/sheet/steel,
 			"backkey" = /obj/item/screwdriver,
 			"desc" = "Advanced capacitor is secured."
 		),
@@ -769,8 +768,7 @@
 					"[user] pries internal armor layer from [holder].",
 					"You pry internal armor layer from [holder]."
 				)
-				var/obj/item/stack/sheet/metal/MS = new /obj/item/stack/sheet/metal(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/sheet/steel(get_turf(holder), 5)
 				holder.icon_state = "gygax14"
 		if(4)
 			if(diff == FORWARD)
@@ -1345,7 +1343,7 @@
 		),
 		//6
 		list(
-			"key" = /obj/item/stack/sheet/metal,
+			"key" = /obj/item/stack/sheet/steel,
 			"backkey" = /obj/item/screwdriver,
 			"desc" = "Advanced capacitor is secured."
 		),
@@ -1655,8 +1653,7 @@
 					"[user] pries internal armor layer from [holder].",
 					"You pry internal armor layer from [holder]."
 				)
-				var/obj/item/stack/sheet/metal/MS = new /obj/item/stack/sheet/metal(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/sheet/steel(get_turf(holder), 5)
 				holder.icon_state = "durand14"
 		if(4)
 			if(diff == FORWARD)
@@ -1811,7 +1808,7 @@
 		),
 		//6
 		list(
-			"key" = /obj/item/stack/sheet/metal,
+			"key" = /obj/item/stack/sheet/steel,
 			"backkey" = /obj/item/screwdriver,
 			"desc" = "Peripherals control module is secured."
 		),
@@ -2001,8 +1998,7 @@
 					"[user] pries internal armor layer from [holder].",
 					"You pry internal armor layer from [holder]."
 				)
-				var/obj/item/stack/sheet/metal/MS = new /obj/item/stack/sheet/metal(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/sheet/steel(get_turf(holder), 5)
 				holder.icon_state = "odysseus8"
 		if(4)
 			if(diff == FORWARD)

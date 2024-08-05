@@ -22,7 +22,7 @@
 		if(!welder.remove_fuel(0, user))
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return TRUE
-		var/obj/item/stack/sheet/metal/new_item = new /obj/item/stack/sheet/metal(get_turf(loc))
+		var/obj/item/stack/sheet/steel/new_item = new /obj/item/stack/sheet/steel(get_turf(loc))
 		new_item.add_to_stacks(user)
 		visible_message(
 			SPAN_NOTICE("[user] shapes \the [src] into sheets with \the [welder]."),

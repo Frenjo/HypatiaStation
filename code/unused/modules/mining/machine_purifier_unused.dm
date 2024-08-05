@@ -48,7 +48,7 @@
 			while(locate(/obj/item/ore, input.loc))
 				O = locate(/obj/item/ore, input.loc)
 				if (istype(O,/obj/item/ore/iron))
-					new /obj/item/stack/sheet/metal(output.loc)
+					new /obj/item/stack/sheet/steel(output.loc)
 					del(O)
 				if (istype(O,/obj/item/ore/diamond))
 					new /obj/item/stack/sheet/diamond(output.loc)

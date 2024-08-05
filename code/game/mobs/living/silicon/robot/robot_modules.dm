@@ -129,7 +129,7 @@
 	modules.Add(new /obj/item/gas_analyser(src))
 	modules.Add(new /obj/item/taperoll/engineering(src))
 
-	var/obj/item/stack/sheet/metal/cyborg/M = new /obj/item/stack/sheet/metal/cyborg(src)
+	var/obj/item/stack/sheet/steel/cyborg/M = new /obj/item/stack/sheet/steel/cyborg(src)
 	M.amount = 50
 	modules.Add(M)
 
@@ -143,7 +143,7 @@
 
 /obj/item/robot_module/engineering/respawn_consumable(mob/living/silicon/robot/R)
 	var/list/stacks = list(
-		/obj/item/stack/sheet/metal,
+		/obj/item/stack/sheet/steel,
 		/obj/item/stack/sheet/glass/reinforced,
 		/obj/item/stack/cable_coil
 	)
@@ -333,7 +333,7 @@
 	var/list/stacktypes = list(
 		/obj/item/stack/rods = 10,
 		/obj/item/stack/tile/metal/grey = 10,
-		/obj/item/stack/sheet/metal/cyborg = 10,
+		/obj/item/stack/sheet/steel/cyborg = 10,
 		/obj/item/stack/sheet/wood/cyborg = 1,
 		/obj/item/stack/cable_coil = 30,
 		/obj/item/stack/sheet/glass/cyborg = 10,
@@ -353,7 +353,7 @@
 	C.reagents.add_reagent("cleaner", 10)
 
 	var/list/stacks = list(
-		/obj/item/stack/sheet/metal,
+		/obj/item/stack/sheet/steel,
 		/obj/item/stack/cable_coil,
 		/obj/item/stack/sheet/glass/cyborg,
 		/obj/item/stack/rods,

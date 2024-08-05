@@ -246,7 +246,7 @@
 			switch(type)
 				if(/decl/material/steel)
 					if(isnull(stack_metal))
-						stack_metal = new /obj/item/stack/sheet/metal/cyborg(module, 1)
+						stack_metal = new /obj/item/stack/sheet/steel/cyborg(module, 1)
 					stack = stack_metal
 				if(/decl/material/glass)
 					if(isnull(stack_glass))

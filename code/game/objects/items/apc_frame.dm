@@ -8,7 +8,7 @@
 
 /obj/item/apc_frame/attack_tool(obj/item/tool, mob/user)
 	if(iswrench(tool))
-		new /obj/item/stack/sheet/metal(get_turf(loc), 2)
+		new /obj/item/stack/sheet/steel(get_turf(loc), 2)
 		qdel(src)
 		return TRUE
 

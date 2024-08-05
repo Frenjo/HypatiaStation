@@ -30,7 +30,7 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 
 	var/html = "<b>Stacking Unit Console</b><br><br>"
 
-	ADD_MATERIAL("Iron", /obj/item/stack/sheet/metal)
+	ADD_MATERIAL("Steel", /obj/item/stack/sheet/steel)
 	ADD_MATERIAL("Glass", /obj/item/stack/sheet/glass)
 
 	ADD_MATERIAL("Plasteel", /obj/item/stack/sheet/plasteel)
@@ -84,7 +84,7 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 	var/obj/machinery/mineral/input = null
 	var/obj/machinery/mineral/output = null
 	var/list/stack_amounts = list(
-		/obj/item/stack/sheet/metal = 0,
+		/obj/item/stack/sheet/steel = 0,
 		/obj/item/stack/sheet/glass = 0,
 
 		/obj/item/stack/sheet/plasteel = 0,

@@ -295,7 +295,7 @@
 				if(selected == ORE_PROC_IRON)
 					if(ore_amounts[/obj/item/ore/iron] > 0)
 						ore_amounts[/obj/item/ore/iron]--
-						new /obj/item/stack/sheet/metal(output.loc)
+						new /obj/item/stack/sheet/steel(output.loc)
 					else
 						on = FALSE
 					continue

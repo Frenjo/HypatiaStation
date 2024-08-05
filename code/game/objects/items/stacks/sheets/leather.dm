@@ -22,6 +22,6 @@
 	name = "leather"
 	desc = "The by-product of mob grinding."
 	singular_name = "leather piece"
-	icon_state = "sheet-leather"
+	icon_state = "leather"
 	origin_tech = list(/datum/tech/materials = 2)
 	material = /decl/material/leather
