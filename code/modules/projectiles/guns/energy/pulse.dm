@@ -30,17 +30,17 @@
 			gun_setting = GUN_SETTING_STUN
 			charge_cost = 100
 			fire_sound = 'sound/weapons/Taser.ogg'
-			to_chat(user, SPAN_WARNING("\The [name] is now set to stun."))
+			to_chat(user, SPAN_WARNING("\The [src] is now set to stun."))
 		if(GUN_SETTING_STUN)
 			gun_setting = GUN_SETTING_KILL
 			charge_cost = 100
 			fire_sound = 'sound/weapons/Laser.ogg'
-			to_chat(user, SPAN_WARNING("\The [name] is now set to kill."))
+			to_chat(user, SPAN_WARNING("\The [src] is now set to kill."))
 		if(GUN_SETTING_KILL)
 			gun_setting = GUN_SETTING_DESTROY
 			charge_cost = 200
 			fire_sound = 'sound/weapons/pulse.ogg'
-			to_chat(user, SPAN_WARNING("\The [name] is now set to DESTROY."))
+			to_chat(user, SPAN_WARNING("\The [src] is now set to DESTROY."))
 
 /obj/item/gun/energy/pulse_rifle/isHandgun()
 	return FALSE
@@ -64,7 +64,7 @@
 	cell_type = /obj/item/cell/infinite
 
 /obj/item/gun/energy/pulse_rifle/destroyer/attack_self(mob/living/user)
-	to_chat(user, SPAN_WARNING("\The [name] has three settings, and they are all DESTROY."))
+	to_chat(user, SPAN_WARNING("\The [src] has three settings, and they are all DESTROY."))
 
 /obj/item/gun/energy/pulse_rifle/M1911
 	name = "m1911-P"

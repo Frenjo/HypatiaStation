@@ -88,7 +88,7 @@
 	if(usr.stat)
 		return
 	if(has_sensor >= 2)
-		to_chat(usr, "The controls are locked.")
+		FEEDBACK_CONTROLS_LOCKED(usr)
 		return 0
 	if(has_sensor <= 0)
 		to_chat(usr, "This suit does not have any sensors.")

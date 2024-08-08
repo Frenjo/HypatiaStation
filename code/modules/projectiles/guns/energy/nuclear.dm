@@ -26,13 +26,13 @@
 			gun_setting = GUN_SETTING_KILL
 			charge_cost = 100
 			fire_sound = 'sound/weapons/Laser.ogg'
-			to_chat(user, SPAN_WARNING("\The [name] is now set to kill."))
+			to_chat(user, SPAN_WARNING("\The [src] is now set to kill."))
 			modifystate = "energykill"
 		if(GUN_SETTING_KILL)
 			gun_setting = GUN_SETTING_STUN
 			charge_cost = 100
 			fire_sound = 'sound/weapons/Taser.ogg'
-			to_chat(user, SPAN_WARNING("\The [name] is now set to stun."))
+			to_chat(user, SPAN_WARNING("\The [src] is now set to stun."))
 			modifystate = "energystun"
 	update_icon()
 

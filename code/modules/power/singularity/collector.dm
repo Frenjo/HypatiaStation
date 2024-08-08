@@ -44,7 +44,7 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [P?"Fuel: [round(P.air_contents.gas[/decl/xgm_gas/plasma]/0.29)]%":"<font color='red'>It is empty</font>"].","singulo")
 			return
 		else
-			to_chat(user, SPAN_WARNING("The controls are locked!"))
+			FEEDBACK_CONTROLS_LOCKED(user)
 			return
 	..()
 
@@ -86,10 +86,10 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 		if(src.allowed(user))
 			if(active)
 				src.locked = !src.locked
-				to_chat(user, "The controls are now [src.locked ? "locked" : "unlocked"].")
+				FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
 			else
 				src.locked = 0 //just in case it somehow gets locked
-				to_chat(user, SPAN_WARNING("The controls can only be locked when the [src] is active."))
+				FEEDBACK_ONLY_LOCK_CONTROLS_WHEN_ACTIVE(user)
 		else
 			FEEDBACK_ACCESS_DENIED(user)
 			return 1

@@ -53,12 +53,12 @@
 		if(GUN_SETTING_KILL)
 			gun_setting = GUN_SETTING_SPECIAL
 			charge_cost = 100
-			to_chat(user, SPAN_WARNING("\The [name] is now set to increase yield."))
+			to_chat(user, SPAN_WARNING("\The [src] is now set to increase yield."))
 			modifystate = "florayield"
 		if(GUN_SETTING_SPECIAL)
 			gun_setting = GUN_SETTING_KILL
 			charge_cost = 100
-			to_chat(user, SPAN_WARNING("\The [name] is now set to induce mutations."))
+			to_chat(user, SPAN_WARNING("\The [src] is now set to induce mutations."))
 			modifystate = "floramut"
 	update_icon()
 

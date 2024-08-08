@@ -310,7 +310,7 @@
 	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(src.allowed(user))
 			src.locked = !src.locked
-			user << "The controls are now [src.locked ? "locked." : "unlocked."]"
+			FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
 		else
 			FEEDBACK_ACCESS_DENIED(user)
 
@@ -387,7 +387,7 @@
 		user << "\red The shield generator needs to be firmly secured to the floor first."
 		return 1
 	if(src.locked && !issilicon(user))
-		user << "\red The controls are locked!"
+		FEEDBACK_CONTROLS_LOCKED(user)
 		return 1
 	if(power != 1)
 		user << "\red The shield generator needs to be powered by wire underneath."
@@ -496,33 +496,33 @@
 /obj/machinery/shieldwallgen/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/wrench))
 		if(active)
-			user << "Turn off the field generator first."
+			FEEDBACK_TURN_OFF_FIRST(user)
 			return
 
 		else if(state == 0)
 			state = 1
 			playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-			user << "You secure the external reinforcing bolts to the floor."
+			to_chat(user, SPAN_NOTICE("You secure the external reinforcing bolts to the floor."))
 			src.anchored = TRUE
 			return
 
 		else if(state == 1)
 			state = 0
 			playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
-			user << "You undo the external reinforcing bolts."
+			to_chat(user, SPAN_NOTICE("You undo the external reinforcing bolts."))
 			src.anchored = FALSE
 			return
 
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(src.allowed(user))
 			src.locked = !src.locked
-			user << "Controls are now [src.locked ? "locked." : "unlocked."]"
+			FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
 		else
 			FEEDBACK_ACCESS_DENIED(user)
 
 	else
 		src.add_fingerprint(user)
-		visible_message("\red The [src.name] has been hit with \the [W.name] by [user.name]!")
+		visible_message(SPAN_WARNING("\The [src] has been hit with \the [W] by [user.name]!"))
 
 /obj/machinery/shieldwallgen/proc/cleanup(NSEW)
 	var/obj/machinery/shieldwall/F

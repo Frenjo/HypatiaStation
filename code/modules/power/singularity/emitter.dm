@@ -45,7 +45,7 @@
 			fire_mode = GUN_MODE_BEAM
 		to_chat(user, "You toggle the emitter's fire mode to [fire_mode == GUN_MODE_BEAM ? "beam" : "pulse"].")
 	else
-		to_chat(user, SPAN_WARNING("The controls are locked!"))
+		FEEDBACK_CONTROLS_LOCKED(user)
 	return
 */
 
@@ -90,7 +90,7 @@
 				investigate_log("turned <font color='green'>on</font> by [user.key]","singulo")
 			update_icon()
 		else
-			to_chat(user, SPAN_WARNING("The controls are locked!"))
+			FEEDBACK_CONTROLS_LOCKED(user)
 	else
 		to_chat(user, SPAN_WARNING("The [src] needs to be firmly secured to the floor first."))
 		return 1
@@ -269,7 +269,7 @@
 				FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
 			else
 				locked = 0 //just in case it somehow gets locked
-				to_chat(user, SPAN_WARNING("The controls can only be locked when \the [src] is online."))
+				FEEDBACK_ONLY_LOCK_CONTROLS_WHEN_ACTIVE(user)
 		else
 			FEEDBACK_ACCESS_DENIED(user)
 		return TRUE

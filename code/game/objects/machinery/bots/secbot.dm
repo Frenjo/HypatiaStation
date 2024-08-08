@@ -150,7 +150,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(allowed(user) && !open && !emagged)
 			locked = !locked
-			to_chat(user, "Controls are now [locked ? "locked" : "unlocked"].")
+			FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
 		else
 			if(emagged)
 				FEEDBACK_ERROR_GENERIC(user)

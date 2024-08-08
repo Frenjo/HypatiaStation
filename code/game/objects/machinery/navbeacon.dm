@@ -116,7 +116,7 @@
 		if(open)
 			if(src.allowed(user))
 				src.locked = !src.locked
-				to_chat(user, "Controls are now [src.locked ? "locked" : "unlocked"].")
+				FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
 			else
 				FEEDBACK_ACCESS_DENIED(user)
 			updateDialog()

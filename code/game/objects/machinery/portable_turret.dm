@@ -344,7 +344,7 @@ Status: []<BR>"},
 		// Behavior lock/unlock mangement
 		if (allowed(user))
 			locked = !src.locked
-			user << "Controls are now [locked ? "locked." : "unlocked."]"
+			FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
 		else
 			FEEDBACK_ACCESS_DENIED(user)
 
@@ -1024,7 +1024,7 @@ Status: []<BR>"},
 	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if (Parent_Turret.allowed(user))
 			Parent_Turret.locked = !Parent_Turret.locked
-			user << "Controls are now [Parent_Turret.locked ? "locked." : "unlocked."]"
+			FEEDBACK_TOGGLE_CONTROLS_LOCK(user, Parent_Turret.locked)
 			updateUsrDialog()
 		else
 			FEEDBACK_ACCESS_DENIED(user)

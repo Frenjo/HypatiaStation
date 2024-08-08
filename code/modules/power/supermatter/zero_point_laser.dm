@@ -63,7 +63,7 @@
 				src.use_power = 2
 			update_icon()
 		else
-			user << "\red The controls are locked!"
+			FEEDBACK_CONTROLS_LOCKED(user)
 	else
 		user << "\red The [src] needs to be firmly secured to the floor first."
 		return 1*/
@@ -120,7 +120,7 @@
 		to_chat(user, SPAN_WARNING("\The [src]'s lock has already been shorted!"))
 		return FALSE
 	user.visible_message(
-		SPAN_WARNING("[user.name] emags the [name]."),
+		SPAN_WARNING("[user.name] emags \the [src]."),
 		SPAN_WARNING("You short out the lock.")
 	)
 	emagged = TRUE
@@ -130,67 +130,67 @@
 /obj/machinery/zero_point_emitter/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/wrench))
 		if(active)
-			to_chat(user, "Turn off the [src] first.")
+			FEEDBACK_TURN_OFF_FIRST(user)
 			return
 		switch(state)
 			if(0)
 				state = 1
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				user.visible_message(
-					"[user.name] secures [name] to the floor.",
-					"You secure the external reinforcing bolts to the floor.",
-					"You hear a ratchet."
+					SPAN_NOTICE("[user.name] secures \the [src]'s reinforcing bolts to the floor."),
+					SPAN_NOTICE("You secure the external reinforcing bolts to the floor."),
+					SPAN_INFO("You hear a ratchet.")
 				)
 				anchored = TRUE
 			if(1)
 				state = 0
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				user.visible_message(
-					"[user.name] unsecures [name] reinforcing bolts from the floor.",
-					"You undo the external reinforcing bolts.",
-					"You hear a ratchet."
+					SPAN_NOTICE("[user.name] unsecures \the [src]'s reinforcing bolts from the floor."),
+					SPAN_NOTICE("You undo the external reinforcing bolts."),
+					SPAN_INFO("You hear a ratchet.")
 				)
 				anchored = FALSE
 			if(2)
-				to_chat(user, SPAN_WARNING("The [name] needs to be unwelded from the floor."))
+				to_chat(user, SPAN_WARNING("\The [src] needs to be unwelded from the floor."))
 		return
 
 	if(istype(W, /obj/item/weldingtool))
 		var/obj/item/weldingtool/WT = W
 		if(active)
-			to_chat(user, "Turn off the [src] first.")
+			FEEDBACK_TURN_OFF_FIRST(user)
 			return
 		switch(state)
 			if(0)
-				to_chat(user, SPAN_WARNING("The [name] needs to be wrenched to the floor."))
+				to_chat(user, SPAN_WARNING("\The [src] needs to be wrenched to the floor."))
 			if(1)
 				if(WT.remove_fuel(0, user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 					user.visible_message(
-						"[user.name] starts to weld the [name] to the floor.",
-						"You start to weld the [src] to the floor.",
+						SPAN_NOTICE("[user.name] starts to weld \the [src] to the floor."),
+						SPAN_NOTICE("You start to weld \the [src] to the floor."),
 						SPAN_WARNING("You hear welding.")
 					)
 					if(do_after(user, 20))
 						if(isnull(src) || !WT.isOn())
 							return
 						state = 2
-						to_chat(user, "You weld the [src] to the floor.")
+						to_chat(user, SPAN_NOTICE("You weld \the [src] to the floor."))
 				else
 					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			if(2)
 				if(WT.remove_fuel(0, user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 					user.visible_message(
-						"[user.name] starts to cut the [name] free from the floor.",
-						"You start to cut the [src] free from the floor.",
+						SPAN_NOTICE("[user.name] starts to cut \the [src] free from the floor."),
+						SPAN_NOTICE("You start to cut \the [src] free from the floor."),
 						SPAN_WARNING("You hear welding.")
 					)
 					if(do_after(user, 20))
 						if(isnull(src) || !WT.isOn())
 							return
 						state = 1
-						to_chat(user, "You cut the [src] free from the floor.")
+						to_chat(user, SPAN_NOTICE("You cut \the [src] free from the floor."))
 				else
 					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 		return
@@ -202,10 +202,10 @@
 		if(allowed(user))
 			if(active)
 				locked = !locked
-				to_chat(user, "The controls are now [locked ? "locked" : "unlocked"].")
+				FEEDBACK_TOGGLE_CONTROLS_LOCK(user, locked)
 			else
 				locked = FALSE //just in case it somehow gets locked
-				to_chat(user, SPAN_WARNING("The controls can only be locked when the [src] is online."))
+				FEEDBACK_ONLY_LOCK_CONTROLS_WHEN_ACTIVE(user)
 		else
 			FEEDBACK_ACCESS_DENIED(user)
 		return

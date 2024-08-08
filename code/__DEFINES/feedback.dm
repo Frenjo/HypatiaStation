@@ -34,6 +34,8 @@ USER.visible_message( \
 #define FEEDBACK_NOT_ENOUGH_WELDING_FUEL(T)	to_chat(T, SPAN_WARNING("You need more welding fuel to complete this task."))
 #define FEEDBACK_TURN_OFF_FIRST(T)			to_chat(T, SPAN_WARNING("Turn off \the [src] first."))
 #define FEEDBACK_LOCK_SEEMS_BROKEN(T)		to_chat(T, SPAN_WARNING("The lock seems to be broken."))
+#define FEEDBACK_CONTROLS_LOCKED(T) to_chat(T, SPAN_WARNING("The controls are locked!"))
+#define FEEDBACK_ONLY_LOCK_CONTROLS_WHEN_ACTIVE(T) to_chat(T, SPAN_WARNING("The controls can only be locked when \the [src] is active."))
 
 #define FEEDBACK_GUN_NOT_ACTIVE_HAND(T) to_chat(T, SPAN_WARNING("You need your gun in your active hand to do that!"))
 
