@@ -1,5 +1,5 @@
 /*
- * CentCom.
+ * CentCom
  */
 /area/centcom
 	name = "\improper CentCom"
@@ -30,7 +30,7 @@
 	icon_state = "brig"
 
 /*
- * Shuttle Docks.
+ * Shuttle Docks
  */
 /area/centcom/shuttle_dock
 	name = "\improper CentCom Shuttle Dock"
@@ -62,7 +62,7 @@
 	name = "\improper CentCom Rescue Shuttle"
 
 /*
- * Thunderdome.
+ * Thunderdome
  *
  * THUNDERDOME
  */

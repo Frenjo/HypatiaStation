@@ -1,7 +1,7 @@
 /*
- * Power-related /area procs.
+ * Power-related /area procs
  */
-// Returns true if the area has power to the provided channel.
+// Returns TRUE if the area has power to the provided channel.
 /area/proc/powered(channel)
 	if(!requires_power)
 		return TRUE

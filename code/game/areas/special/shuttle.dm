@@ -2,13 +2,13 @@
 //place to another. Look at escape shuttle for example.
 //All shuttles show now be under shuttle since we have smooth-wall code.
 /*
- * Base.
+ * Base
  */
 /area/shuttle
 	requires_power = FALSE
 
 /*
- * Arrival.
+ * Arrival
  */
 /area/shuttle/arrival/station
 	name = "\improper Arrival Shuttle Station"
@@ -27,7 +27,7 @@
 // End of new stuff.
 
 /*
- * Escape.
+ * Escape
  */
 /area/shuttle/escape
 	/*
@@ -51,7 +51,7 @@
 	base_turf = /turf/space/transit/north
 
 /*
- * Escape Pods.
+ * Escape Pods
  */
 // Escape Pod 1
 /area/shuttle/escape_pod1
@@ -142,7 +142,7 @@
 	base_turf = /turf/space/transit/west
 
 /*
- * Mining.
+ * Mining
  */
 /area/shuttle/mining
 	/*
@@ -160,7 +160,7 @@
 	icon_state = "shuttle"
 
 /*
- * Transport.
+ * Transport
  */
 /area/shuttle/transport/centcom
 	name = "\improper Transport Shuttle CentCom"
@@ -172,7 +172,7 @@
 	icon_state = "shuttle"
 
 /*
- * Alien.
+ * Alien
  */
 /area/shuttle/alien/base
 	icon_state = "shuttle"
@@ -185,7 +185,7 @@
 	requires_power = TRUE
 
 /*
- * Prison.
+ * Prison
  */
 /area/shuttle/prison/station
 	name = "\improper Prison Shuttle Station"
@@ -196,7 +196,7 @@
 	icon_state = "shuttle2"
 
 /*
- * Special Ops.
+ * Special Ops
  */
 /area/shuttle/specops/centcom
 	name = "\improper Special Ops Shuttle CentCom"
@@ -207,7 +207,7 @@
 	icon_state = "shuttlered2"
 
 /*
- * Syndicate Elite.
+ * Syndicate Elite
  */
 /area/shuttle/syndicate_elite/mothership
 	name = "\improper Syndicate Elite Shuttle Mothership"
@@ -218,7 +218,7 @@
 	icon_state = "shuttlered2"
 
 /*
- * Administration.
+ * Administration
  */
 /area/shuttle/administration/centcom
 	name = "\improper Administration Shuttle CentCom"
@@ -230,7 +230,7 @@
 	icon_state = "shuttlered2"
 
 /*
- * Research.
+ * Research
  */
 /area/shuttle/research
 	/*
@@ -248,7 +248,7 @@
 	icon_state = "shuttle"
 
 /*
- * Vox.
+ * Vox
  */
 /area/shuttle/vox/station
 	name = "\improper Vox Skipjack Station"
@@ -265,7 +265,7 @@
 	icon_state = "shuttle"
 
 /*
- * Supply.
+ * Supply
  */
 /area/shuttle/supply/centcom
 	name = "\improper Supply Shuttle CentCom"

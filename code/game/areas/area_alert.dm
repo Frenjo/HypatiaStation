@@ -1,10 +1,8 @@
 /*
- * Alert-related /area procs.
+ * Alert-related /area procs
  */
 
-/*
- * Power
- */
+// Power
 /area/proc/power_alert(state, obj/source)
 	if(state != power_alarm)
 		power_alarm = state
@@ -29,9 +27,7 @@
 					else
 						a.triggerAlarm("Power", src, cameras, source)
 
-/*
- * Atmos
- */
+// Atmos
 /area/proc/atmos_alert(danger_level)
 	if(danger_level != atmos_alarm)
 		if(danger_level == 2)
@@ -54,9 +50,7 @@
 		return TRUE
 	return FALSE
 
-/*
- * Fire
- */
+// Fire
 /area/proc/fire_alert()
 	if(!fire_alarm)
 		fire_alarm = TRUE
@@ -97,9 +91,7 @@
 		for(var/obj/machinery/computer/station_alert/a in GLOBL.machines)
 			a.cancelAlarm("Fire", src, src)
 
-/*
- * Evac
- */
+// Evac
 /area/proc/evac_alert()
 	if(!evac_alarm)
 		evac_alarm = TRUE
@@ -110,9 +102,7 @@
 		evac_alarm = FALSE
 		updateicon()
 
-/*
- * Party
- */
+// Party
 /area/proc/party_alert()
 	if(!party_alarm)
 		party_alarm = TRUE
@@ -132,11 +122,8 @@
 					spawn()
 						D.open()
 
-/*
- * Destruct
- *
- * Added these to make use of unused sprites. -Frenjo
- */
+// Destruct
+// Added these to make use of unused sprites. -Frenjo
 /area/proc/destruct_alert()
 	if(!destruct_alarm)
 		destruct_alarm = TRUE

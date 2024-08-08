@@ -1,4 +1,6 @@
-//Engineering
+/*
+ * Engineering Areas
+ */
 /area/station/engineering
 	name = "Engineering"
 	icon_state = "engine"
