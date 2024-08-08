@@ -15,13 +15,16 @@
 
 /obj/item/eftpos/New()
 	. = ..()
-	machine_id = "[station_name()] EFTPOS #[global.CTeconomy.num_financial_terminals++]"
 	access_code = rand(1111, 111111)
+
+/obj/item/eftpos/initialise()
+	. = ..()
+	machine_id = "[station_name()] EFTPOS #[global.CTeconomy.num_financial_terminals++]"
 	spawn(0)
 		print_reference()
 
 		//create a short manual as well
-		var/obj/item/paper/R = new(src.loc)
+		var/obj/item/paper/R = new /obj/item/paper(get_turf(src))
 		/*
 		R.info += "<b>When first setting up your EFTPOS device:</b>"
 		R.info += "1. Memorise your EFTPOS command code (provided with all EFTPOS devices).<br>"
@@ -49,7 +52,7 @@
 		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
 		stampoverlay.icon_state = "paper_stamp-cent"
 		if(!R.stamped)
-			R.stamped = new
+			R.stamped = list()
 		R.stamped += /obj/item/stamp
 		R.overlays += stampoverlay
 		R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"

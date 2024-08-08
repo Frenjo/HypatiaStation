@@ -83,6 +83,7 @@
 	var/securityCaster = 0
 		// 0 = Caster cannot be used to issue wanted posters
 		// 1 = the opposite
+	var/static/static_unit_no = 0
 	var/unit_no = 0 //Each newscaster has a unit number
 	//var/datum/feed_message/wanted //We're gonna use a feed_message to store data of the wanted person because fields are similar
 	//var/wanted_issue = 0			//OBSOLETE
@@ -110,9 +111,11 @@
 	. = ..()								//I just realised the newscasters weren't in the global machines list. The superconstructor call will tend to that
 	GLOBL.all_newscasters.Add(src)
 	paper_remaining = 15			// Will probably change this to something better
-	for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters) // Let's give it an appropriate unit number // TODO: Replace this with something more efficient.
-		unit_no++
+
+/obj/machinery/newscaster/initialise()
+	. = ..()
 	update_icon() //for any custom ones on the map...
+	unit_no = ++static_unit_no // Let's give it an appropriate unit number.
 
 /obj/machinery/newscaster/Destroy()
 	GLOBL.all_newscasters.Remove(src)

@@ -14,7 +14,7 @@
 	var/datum/money_account/detailed_account_view
 	var/creating_new_account = 0
 
-/obj/machinery/account_database/New()
+/obj/machinery/account_database/initialise()
 	. = ..()
 	machine_id = "[station_name()] Acc. DB #[global.CTeconomy.num_financial_terminals++]"
 

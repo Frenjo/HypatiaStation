@@ -37,10 +37,10 @@ log transactions
 	var/view_screen = NO_SCREEN
 	var/datum/effect/system/spark_spread/spark_system
 
-/obj/machinery/atm/New()
+/obj/machinery/atm/initialise()
 	. = ..()
 	machine_id = "[station_name()] RT #[global.CTeconomy.num_financial_terminals++]"
-	spark_system = new /datum/effect/system/spark_spread
+	spark_system = new /datum/effect/system/spark_spread(src)
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 

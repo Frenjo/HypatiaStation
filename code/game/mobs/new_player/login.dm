@@ -19,7 +19,7 @@
 	GLOBL.player_list |= src
 
 	new_player_panel()
-	spawn(40)
+	spawn(10 SECONDS)
 		if(client)
 			global.PCnanoui.send_resources(client)
 			handle_privacy_poll()
