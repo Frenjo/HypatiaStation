@@ -73,7 +73,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 			wall = /obj/effect/alien/resin
 	switch(alert("Floor type", null, "Regular floor", "Reinforced floor"))
 		if("Regular floor")
-			floor = /turf/simulated/floor
+			floor = /turf/simulated/floor/tiled
 		if("Reinforced floor")
 			floor = /turf/simulated/floor/reinforced
 	if(isnotnull(x) && isnotnull(y) && isnotnull(z) && isnotnull(wall) && isnotnull(floor) && isnotnull(x_len) && isnotnull(y_len))
