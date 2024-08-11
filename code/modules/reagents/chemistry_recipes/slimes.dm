@@ -172,7 +172,7 @@
 	var/turf/location = get_turf(holder.my_atom)
 	holder.my_atom.visible_message(SPAN_WARNING("The slime extract begins to vibrate violently!"))
 	sleep(50)
-	for(var/turf/simulated/floor/target_tile in range(0, location))
+	for(var/turf/open/floor/target_tile in range(0, location))
 		target_tile.assume_gas(/decl/xgm_gas/plasma, 25, 1400)
 		spawn(0)
 			target_tile.hotspot_expose(700, 400)

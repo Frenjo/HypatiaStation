@@ -1,12 +1,12 @@
 /*
  * Wood
  */
-/turf/simulated/floor/wood
+/turf/open/floor/wood
 	name = "wood floor"
 	icon_state = "wood"
 	tile_path = /obj/item/stack/tile/wood
 
-/turf/simulated/floor/wood/attack_tool(obj/item/tool, mob/user)
+/turf/open/floor/wood/attack_tool(obj/item/tool, mob/user)
 	if(iscrowbar(tool))
 		to_chat(user, SPAN_WARNING("You forcefully pry off the planks, destroying them in the process."))
 		playsound(src, 'sound/items/Crowbar.ogg', 80, 1)
@@ -22,7 +22,7 @@
 
 	return ..()
 
-/turf/simulated/floor/wood/update_icon()
+/turf/open/floor/wood/update_icon()
 	. = ..()
 	if(!.)
 		return FALSE
@@ -33,12 +33,12 @@
 		icon_state = "wood"
 		//to_world("[icon_state]y's got [icon_state]")
 
-/turf/simulated/floor/wood/break_tile()
+/turf/open/floor/wood/break_tile()
 	. = ..()
 	if(.)
 		icon_state = "wood-broken"
 
-/turf/simulated/floor/wood/burn_tile()
+/turf/open/floor/wood/burn_tile()
 	. = ..()
 	if(.)
 		icon_state = "wood-broken"

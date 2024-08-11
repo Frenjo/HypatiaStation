@@ -18,7 +18,7 @@ Attach to transfer valve and open. BOOM.
 
 /turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
-/turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
+/turf/open/hotspot_expose(exposed_temperature, exposed_volume, soh)
 	if(fire_protection > world.time - 300)
 		return 0
 	if(locate(/obj/fire) in src)
@@ -38,7 +38,7 @@ Attach to transfer valve and open. BOOM.
 
 /zone/proc/process_fire()
 	if(!air.check_combustability())
-		for_no_type_check(var/turf/simulated/T, fire_tiles)
+		for_no_type_check(var/turf/open/T, fire_tiles)
 			if(istype(T.fire))
 				T.fire.RemoveFire()
 			T.fire = null
@@ -59,7 +59,7 @@ Attach to transfer valve and open. BOOM.
 
 	var/firelevel = air.calculate_firelevel()
 
-	for_no_type_check(var/turf/simulated/T, fire_tiles)
+	for_no_type_check(var/turf/open/T, fire_tiles)
 		if(T.fire)
 			T.fire.firelevel = firelevel
 		else
@@ -68,7 +68,7 @@ Attach to transfer valve and open. BOOM.
 /turf/proc/create_fire(fl)
 	return 0
 
-/turf/simulated/create_fire(fl)
+/turf/open/create_fire(fl)
 	if(fire)
 		fire.firelevel = max(fl, fire.firelevel)
 		return 1
@@ -101,7 +101,7 @@ Attach to transfer valve and open. BOOM.
 /obj/fire/process()
 	. = 1
 
-	var/turf/simulated/my_tile = loc
+	var/turf/open/my_tile = loc
 	if(!istype(my_tile) || !my_tile.zone)
 		if(my_tile.fire == src)
 			my_tile.fire = null
@@ -131,7 +131,7 @@ Attach to transfer valve and open. BOOM.
 
 	//spread
 	for(var/direction in GLOBL.cardinal)
-		var/turf/simulated/enemy_tile = get_step(my_tile, direction)
+		var/turf/open/enemy_tile = get_step(my_tile, direction)
 
 		if(istype(enemy_tile))
 			if(my_tile.open_directions & direction) //Grab all valid bordering tiles
@@ -187,12 +187,12 @@ Attach to transfer valve and open. BOOM.
 		loc = null
 	global.PCair.active_hotspots.Remove(src)
 
-/turf/simulated
+/turf/open
 	var/fire_protection = 0 //Protects newly extinguished tiles from being overrun again.
 
 /turf/proc/apply_fire_protection()
 
-/turf/simulated/apply_fire_protection()
+/turf/open/apply_fire_protection()
 	fire_protection = world.time
 
 /datum/gas_mixture/proc/zburn(obj/effect/decal/cleanable/liquid_fuel/liquid, force_burn, no_check = 0)

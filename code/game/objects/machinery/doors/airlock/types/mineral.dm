@@ -47,7 +47,7 @@
 		PlasmaBurn(exposed_temperature)
 
 /obj/machinery/door/airlock/plasma/proc/PlasmaBurn(temperature)
-	for(var/turf/simulated/floor/target_tile in range(2, loc))
+	for(var/turf/open/floor/target_tile in range(2, loc))
 		target_tile.assume_gas(/decl/xgm_gas/plasma, 35, 400 + T0C)
 		spawn(0)
 			target_tile.hotspot_expose(temperature, 400)

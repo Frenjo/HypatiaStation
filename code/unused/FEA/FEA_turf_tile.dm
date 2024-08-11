@@ -72,7 +72,7 @@ turf
 			pressure_difference = connection_difference
 			pressure_direction = connection_direction
 
-turf/simulated/proc/consider_pressure_difference_space(connection_difference)
+turf/open/proc/consider_pressure_difference_space(connection_difference)
 	for(var/direction in cardinal)
 		if(direction&group_border)
 			if(isspace(get_step(src,direction)))
@@ -85,7 +85,7 @@ turf/simulated/proc/consider_pressure_difference_space(connection_difference)
 				return 1
 
 
-turf/simulated
+turf/open
 
 	var/current_graphic = null
 
@@ -144,7 +144,7 @@ turf/simulated
 		else
 			if(air_master)
 				for(var/direction in cardinal)
-					var/turf/simulated/floor/target = get_step(src,direction)
+					var/turf/open/floor/target = get_step(src,direction)
 					if(istype(target))
 						air_master.tiles_to_update.Add(target)
 
@@ -159,7 +159,7 @@ turf/simulated
 			active_hotspot.Kill()
 		if(blocks_air)
 			for(var/direction in list(NORTH, SOUTH, EAST, WEST))
-				var/turf/simulated/tile = get_step(src,direction)
+				var/turf/open/tile = get_step(src,direction)
 				if(istype(tile) && !tile.blocks_air)
 					air_master.tiles_to_update.Add(tile)
 		..()
@@ -193,7 +193,7 @@ turf/simulated
 		temperature_archived = temperature
 		archived_cycle = air_master.current_cycle
 
-	proc/share_air_with_tile(turf/simulated/T)
+	proc/share_air_with_tile(turf/open/T)
 		return air.share(T.air)
 
 	proc/mimic_air_with_tile(turf/T)
@@ -246,7 +246,7 @@ turf/simulated
 			group_border = 0
 			for(var/direction in cardinal)
 				if(air_check_directions&direction)
-					var/turf/simulated/T = get_step(src,direction)
+					var/turf/open/T = get_step(src,direction)
 
 					//See if actually a border
 					if(!istype(T) || (T.parent!=parent))
@@ -292,7 +292,7 @@ turf/simulated
 		next_check += check_delay + rand(player_count, player_count * 1.5)
 		check_delay++
 
-		var/turf/simulated/list/possible_fire_spreads = list()
+		var/turf/open/list/possible_fire_spreads = list()
 		if(processing)
 			if(archived_cycle < air_master.current_cycle) //archive self if not already done
 				archive()
@@ -300,7 +300,7 @@ turf/simulated
 
 			for(var/direction in cardinal)
 				if(air_check_directions&direction) //Grab all valid bordering tiles
-					var/turf/simulated/enemy_tile = get_step(src, direction)
+					var/turf/open/enemy_tile = get_step(src, direction)
 					var/connection_difference = 0
 
 					if(istype(enemy_tile))  //enemy_tile == neighbor, btw
@@ -404,7 +404,7 @@ turf/simulated
 					var/turf/neighbor = get_step(src,direction)
 
 					if(issimulated(neighbor)) //anything under this subtype will share in the exchange
-						var/turf/simulated/modeled_neighbor = neighbor
+						var/turf/open/modeled_neighbor = neighbor
 
 						if(modeled_neighbor.archived_cycle < air_master.current_cycle)
 							modeled_neighbor.archive()
@@ -522,7 +522,7 @@ turf/simulated
 				(heat_capacity*model.heat_capacity/(heat_capacity+model.heat_capacity))
 			temperature -= heat/heat_capacity
 
-	proc/share_temperature_mutual_solid(turf/simulated/sharer, conduction_coefficient)
+	proc/share_temperature_mutual_solid(turf/open/sharer, conduction_coefficient)
 		var/delta_temperature = (temperature_archived - sharer.temperature_archived)
 		if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER && heat_capacity && sharer.heat_capacity)
 

@@ -175,9 +175,9 @@
 // Including through doors openable with the ID
 /turf/proc/CardinalTurfsWithAccess(obj/item/card/id/card)
 	var/list/L = list()
-	//	for(var/turf/simulated/t in oview(src,1))
+	//	for(var/turf/open/t in oview(src,1))
 	for(var/d in GLOBL.cardinal)
-		var/turf/simulated/T = get_step(src, d)
+		var/turf/open/T = get_step(src, d)
 		if(istype(T) && !T.density)
 			if(!LinkBlockedWithAccess(src, T, card))
 				L.Add(T)

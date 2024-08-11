@@ -22,6 +22,6 @@
 			if(i == lowBoundX || i == hiBoundX || j == lowBoundY || j == hiBoundY)
 				new /turf/closed/wall/vault(locate(i, j, z), type)
 			else
-				new /turf/simulated/floor/vault(locate(i, j, z), type)
+				new /turf/open/floor/vault(locate(i, j, z), type)
 
 	qdel(src)

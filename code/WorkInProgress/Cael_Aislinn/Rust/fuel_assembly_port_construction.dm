@@ -24,7 +24,7 @@
 		return
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
-	if (!istype(loc, /turf/simulated/floor))
+	if (!istype(loc, /turf/open/floor))
 		usr << "\red Port cannot be placed on this spot."
 		return
 	if (!A.requires_power || istype(A, /area/space))

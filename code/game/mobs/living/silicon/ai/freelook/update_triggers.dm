@@ -9,11 +9,11 @@
 /turf/proc/visibilityChanged()
 	global.CTcameranet?.update_visibility(src)
 
-/turf/simulated/New()
+/turf/open/New()
 	. = ..()
 	visibilityChanged()
 
-/turf/simulated/Destroy()
+/turf/open/Destroy()
 	visibilityChanged()
 	return ..()
 

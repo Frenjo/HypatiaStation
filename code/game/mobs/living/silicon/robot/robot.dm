@@ -614,7 +614,7 @@
 			if(isturf(tile))
 				tile.clean_blood()
 				if(issimulated(tile))
-					var/turf/simulated/S = tile
+					var/turf/open/S = tile
 					S.dirt = 0
 				for(var/A in tile)
 					if(istype(A, /obj/effect))

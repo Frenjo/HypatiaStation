@@ -106,7 +106,7 @@
 	/*var/list/doors = list()
 
 	if(toupdate.len)
-		for(var/turf/simulated/T1 in toupdate)
+		for(var/turf/open/T1 in toupdate)
 			for(var/obj/machinery/door/D2 in T1)
 				doors += D2
 			if(T1.parent)

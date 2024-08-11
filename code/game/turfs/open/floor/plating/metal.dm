@@ -1,12 +1,12 @@
 /*
  * Metal Plating
  */
-/turf/simulated/floor/plating/metal
+/turf/open/floor/plating/metal
 	name = "metal plating"
 
 	icon_state = "plating"
 
-/turf/simulated/floor/plating/metal/attack_tool(obj/item/tool, mob/user)
+/turf/open/floor/plating/metal/attack_tool(obj/item/tool, mob/user)
 	if(iswelder(tool))
 		var/obj/item/weldingtool/welder = tool
 		if(welder.isOn())
@@ -22,23 +22,23 @@
 		return TRUE
 	return ..()
 
-/turf/simulated/floor/plating/metal/break_tile()
+/turf/open/floor/plating/metal/break_tile()
 	. = ..()
 	if(.)
 		icon_state = "platingdmg[pick(1, 2, 3)]"
 
-/turf/simulated/floor/plating/metal/burn_tile()
+/turf/open/floor/plating/metal/burn_tile()
 	. = ..()
 	if(.)
 		icon_state = "panelscorched"
 
 // Airless
-/turf/simulated/floor/plating/metal/airless
+/turf/open/floor/plating/metal/airless
 	name = "airless metal plating"
 	initial_gases = null
 	temperature = TCMB
 
-/turf/simulated/floor/plating/metal/airless/New()
+/turf/open/floor/plating/metal/airless/New()
 	. = ..()
 	name = "metal plating"
 
@@ -47,36 +47,36 @@
  *
  * Basically the default metal plating sprite but with asteroid-esque and stuff on it.
  */
-/turf/simulated/floor/plating/metal/asteroid
+/turf/open/floor/plating/metal/asteroid
 	name = "dust-covered metal plating"
 	icon_state = "asteroidplating"
 
 // Airless
-/turf/simulated/floor/plating/metal/asteroid/airless
+/turf/open/floor/plating/metal/asteroid/airless
 	name = "airless dust-covered metal plating"
 	initial_gases = null
 	temperature = TCMB
 
-/turf/simulated/floor/plating/metal/asteroid/airless/New()
+/turf/open/floor/plating/metal/asteroid/airless/New()
 	. = ..()
 	name = "dust-covered metal plating"
 
 /*
  * Shuttle Plating
  */
-/turf/simulated/floor/plating/metal/shuttle
+/turf/open/floor/plating/metal/shuttle
 	name = "shuttle plating"
 
 	explosion_resistance = 1
 
 // Airless
-/turf/simulated/floor/plating/metal/shuttle/airless
+/turf/open/floor/plating/metal/shuttle/airless
 	name = "airless shuttle plating"
 	initial_gases = null
 	temperature = TCMB
 
 	explosion_resistance = 1
 
-/turf/simulated/floor/plating/metal/shuttle/airless/New()
+/turf/open/floor/plating/metal/shuttle/airless/New()
 	. = ..()
 	name = "shuttle plating"

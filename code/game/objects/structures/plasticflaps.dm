@@ -49,6 +49,6 @@
 /obj/structure/plasticflaps/mining/Destroy() //lazy hack to set the turf to allow air to pass if it's a simulated floor
 	var/turf/T = get_turf(loc)
 	if(isnotnull(T))
-		if(istype(T, /turf/simulated/floor))
+		if(istype(T, /turf/open/floor))
 			UNSET_TURF_FLAGS(T, TURF_FLAG_BLOCKS_AIR)
 	return ..()

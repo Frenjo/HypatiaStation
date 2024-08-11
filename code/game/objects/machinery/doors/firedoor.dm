@@ -251,8 +251,8 @@
 	update_nearby_tiles(need_rebuild)
 		if(!air_master) return 0
 
-		var/turf/simulated/source = loc
-		var/turf/simulated/destination = get_step(source,dir)
+		var/turf/open/source = loc
+		var/turf/open/destination = get_step(source,dir)
 
 		update_heat_protection(loc)
 

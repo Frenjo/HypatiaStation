@@ -561,7 +561,7 @@
 	initialize_mains_directions = dir | turn(dir, 180)
 
 /obj/machinery/atmospherics/mains_pipe/valve/update_icon(animation)
-	var/turf/simulated/floor = loc
+	var/turf/open/floor = loc
 	var/hide = istype(floor) ? floor.intact : 0
 	level = 1
 	for(var/obj/machinery/atmospherics/mains_pipe/node in nodes)
@@ -675,7 +675,7 @@
 	..()
 
 /obj/machinery/atmospherics/mains_pipe/valve/digital/update_icon(animation)
-	var/turf/simulated/floor = loc
+	var/turf/open/floor = loc
 	var/hide = istype(floor) ? floor.intact : 0
 	level = 1
 	for(var/obj/machinery/atmospherics/mains_pipe/node in nodes)

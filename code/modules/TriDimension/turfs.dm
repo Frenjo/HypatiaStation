@@ -1,4 +1,4 @@
-/turf/simulated/floor/open
+/turf/open/floor/open
 	name = "open space"
 	intact = 0
 	density = FALSE
@@ -9,12 +9,12 @@
 	var/turf/floorbelow
 	var/list/overlay_references
 
-/turf/simulated/floor/open/New()
+/turf/open/floor/open/New()
 	..()
 	getbelow()
 	return
 
-/turf/simulated/floor/open/Enter(atom/movable/enterer)
+/turf/open/floor/open/Enter(atom/movable/enterer)
 	if(..()) //TODO make this check if gravity is active (future use) - Sukasa
 		spawn(1)
 			// only fall down in defined areas (read: areas with artificial gravitiy)
@@ -55,7 +55,7 @@
 	return ..()
 
 // override to make sure nothing is hidden
-/turf/simulated/floor/open/levelupdate()
+/turf/open/floor/open/levelupdate()
 	for(var/obj/O in src)
 		if(O.level == 1)
 			O.hide(0)
@@ -63,16 +63,16 @@
 //overwrite the attackby of space to transform it to openspace if necessary
 /turf/space/attackby(obj/item/C, mob/user)
 	if(istype(C, /obj/item/stack/cable_coil) && src.hasbelow())
-		var/turf/simulated/floor/open/W = src.ChangeTurf(/turf/simulated/floor/open)
+		var/turf/open/floor/open/W = src.ChangeTurf(/turf/open/floor/open)
 		W.attackby(C, user)
 		return
 	..()
 
-/turf/simulated/floor/open/ex_act(severity)
+/turf/open/floor/open/ex_act(severity)
 	// cant destroy empty space with an ordinary bomb
 	return
 
-/turf/simulated/floor/open/attackby(obj/item/C, mob/user)
+/turf/open/floor/open/attackby(obj/item/C, mob/user)
 	..(C, user)
 	if(istype(C, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/cable = C
@@ -103,7 +103,7 @@
 			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
 	return
 
-/turf/simulated/floor/open/proc/getbelow()
+/turf/open/floor/open/proc/getbelow()
 	var/turf/controllerlocation = locate(1, 1, z)
 	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
 		// check if there is something to draw below

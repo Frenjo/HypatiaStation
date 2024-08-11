@@ -16,7 +16,7 @@
 	desc = "A patch of grass like they often use on golf courses."
 	icon_state = "grass"
 	origin_tech = list(/datum/tech/biotech = 1)
-	turf_path = /turf/simulated/floor/grass
+	turf_path = /turf/open/floor/grass
 
 /*
  * Wood
@@ -26,7 +26,7 @@
 	singular_name = "wood floor tile"
 	desc = "An easy to fit wooden floor tile."
 	icon_state = "wood"
-	turf_path = /turf/simulated/floor/wood
+	turf_path = /turf/open/floor/wood
 
 /*
  * Carpets
@@ -36,7 +36,7 @@
 	singular_name = "carpet"
 	desc = "A piece of carpet. It is the same size as a normal floor tile!"
 	icon_state = "carpet"
-	turf_path = /turf/simulated/floor/carpet
+	turf_path = /turf/open/floor/carpet
 
 /*
  * Linoleum
@@ -46,4 +46,4 @@
 	singular_name = "linoleum"
 	desc = "A prefabricated linoleum floor tile."
 	icon_state = "linoleum"
-	turf_path = /turf/simulated/floor/linoleum
+	turf_path = /turf/open/floor/linoleum

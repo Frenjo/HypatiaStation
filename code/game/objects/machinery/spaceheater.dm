@@ -161,7 +161,7 @@
 /obj/machinery/space_heater/process()
 	if(on)
 		if(cell && cell.charge > 0)
-			var/turf/simulated/L = loc
+			var/turf/open/L = loc
 			if(istype(L))
 				var/datum/gas_mixture/env = L.return_air()
 				if(env.temperature != set_temperature + T0C)

@@ -222,7 +222,7 @@
 		if(c.up)
 			var/turf/O = locate(src.x, src.y, c.up_target)
 			if(isspace(O))
-				O.ChangeTurf(/turf/simulated/floor/open)
+				O.ChangeTurf(/turf/open/floor/open)
 
 /obj/multiz/stairs/initialise()
 	. = ..()

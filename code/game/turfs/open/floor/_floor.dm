@@ -22,7 +22,7 @@ var/list/plating_icons = list(
 )
 var/list/wood_icons = list("wood", "wood-broken")
 
-/turf/simulated/floor
+/turf/open/floor
 	//Note to coders, the 'intact' var can no longer be used to determine if the floor is a plating or not.
 	//Use the is_plating(), is_plasteel_floor() and is_light_floor() procs instead. --Errorage
 	name = "floor"
@@ -42,19 +42,19 @@ var/list/wood_icons = list("wood", "wood-broken")
 	var/mineral = /decl/material/steel
 	var/tile_path = null
 
-/turf/simulated/floor/New()
+/turf/open/floor/New()
 	. = ..()
 	if(icon_state in icons_to_ignore_at_floor_init) //so damaged/burned tiles or plating icons aren't saved as the default
 		icon_regular_floor = "floor"
 	else
 		icon_regular_floor = icon_state
 
-/turf/simulated/floor/initialise()
+/turf/open/floor/initialise()
 	. = ..()
 	update_special()
 	update_icon()
 
-//turf/simulated/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+//turf/open/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 //	if ((istype(mover, /obj/machinery/vehicle) && !(src.burnt)))
 //		if (!( locate(/obj/machinery/mass_driver, src) ))
 //			return 0
@@ -64,24 +64,24 @@ var/list/wood_icons = list("wood", "wood-broken")
  * update_special()
  * This is used for special floor functionality such as carpet connections and siding on grass.
  */
-/turf/simulated/floor/proc/update_special()
+/turf/open/floor/proc/update_special()
 	return
 
-/turf/simulated/floor/proc/update_icon()
+/turf/open/floor/proc/update_icon()
 	SHOULD_CALL_PARENT(TRUE)
 
 	if(lava)
 		return FALSE
 	return TRUE
 
-/turf/simulated/floor/proc/gets_drilled()
+/turf/open/floor/proc/gets_drilled()
 	return
 
-/turf/simulated/floor/proc/break_tile_to_plating()
+/turf/open/floor/proc/break_tile_to_plating()
 	make_plating()
 	break_tile()
 
-/turf/simulated/floor/proc/break_tile()
+/turf/open/floor/proc/break_tile()
 	SHOULD_CALL_PARENT(TRUE)
 
 	if(broken)
@@ -89,7 +89,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	broken = TRUE
 	return TRUE
 
-/turf/simulated/floor/proc/burn_tile()
+/turf/open/floor/proc/burn_tile()
 	SHOULD_CALL_PARENT(TRUE)
 
 	if(broken || burnt)
@@ -100,13 +100,13 @@ var/list/wood_icons = list("wood", "wood-broken")
 /*
  * Wrapper for ChangeTurf() which handles various floor-specific updates.
  */
-/turf/simulated/floor/proc/make_floor(turf/simulated/floor/type_path)
+/turf/open/floor/proc/make_floor(turf/open/floor/type_path)
 	RETURN_TYPE(type_path)
 
 	set_light(0)
 	var/old_icon = icon_regular_floor
 	var/old_dir = dir
-	var/turf/simulated/floor/new_floor = ChangeTurf(type_path)
+	var/turf/open/floor/new_floor = ChangeTurf(type_path)
 	new_floor.set_light(0)
 	new_floor.icon_regular_floor = old_icon
 	new_floor.set_dir(old_dir)
@@ -114,7 +114,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 	new_floor.update_icon()
 	return new_floor
 
-/turf/simulated/floor/proc/make_plating()
-	RETURN_TYPE(/turf/simulated/floor/plating/metal)
+/turf/open/floor/proc/make_plating()
+	RETURN_TYPE(/turf/open/floor/plating/metal)
 
-	return make_floor(/turf/simulated/floor/plating/metal)
+	return make_floor(/turf/open/floor/plating/metal)

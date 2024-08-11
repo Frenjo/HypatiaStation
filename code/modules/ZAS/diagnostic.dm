@@ -29,7 +29,7 @@
 
 /client/var/list/zone_debug_images
 
-/client/proc/Test_ZAS_Connection(turf/simulated/T as turf)
+/client/proc/Test_ZAS_Connection(turf/open/T as turf)
 	set category = PANEL_DEBUG
 
 	if(!istype(T))
@@ -53,7 +53,7 @@
 			to_chat(mob, "No air passage :x")
 		return
 
-	var/turf/simulated/other_turf = get_step(T, direction_list[direction])
+	var/turf/open/other_turf = get_step(T, direction_list[direction])
 	if(!istype(other_turf))
 		return
 
@@ -169,12 +169,12 @@
 	var/list/turfs = current_zone.contents.Copy()
 	var/current_identifier = 1
 
-	for(var/turf/simulated/current in turfs)
+	for(var/turf/open/current in turfs)
 		lowest_id = null
 		current_adjacents = list()
 
 		for(var/direction in cardinal)
-			var/turf/simulated/adjacent = get_step(current, direction)
+			var/turf/open/adjacent = get_step(current, direction)
 			if(!current.ZCanPass(adjacent))
 				continue
 			if(turfs.Find(adjacent))
@@ -189,7 +189,7 @@
 			identical_ids.Add(lowest_id)
 			overlays.Add(image('icons/misc/debug_rebuild.dmi',, "[lowest_id]"))
 
-		for(var/turf/simulated/adjacent in current_adjacents)
+		for(var/turf/open/adjacent in current_adjacents)
 			adjacent_id = turfs[adjacent]
 			if(adjacent_id != lowest_id)
 				if(adjacent_id)
@@ -209,7 +209,7 @@
 
 	var/list/final_arrangement = list()
 
-	for(var/turf/simulated/current in turfs)
+	for(var/turf/open/current in turfs)
 		current_identifier = identical_ids[turfs[current]]
 		current.overlays.Remove(overlays[turfs[current]])
 		current.overlays.Add(overlays[current_identifier])

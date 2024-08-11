@@ -189,8 +189,8 @@
 					target = D
 					break
 		if((!target || target == null ) && improvefloors)
-			for(var/turf/simulated/floor/F in view(7, src))
-				if(!(F in floorbottargets) && F != oldtarget && F.icon_state == "Floor1" && !(istype(F, /turf/simulated/floor/plating/metal)))
+			for(var/turf/open/floor/F in view(7, src))
+				if(!(F in floorbottargets) && F != oldtarget && F.icon_state == "Floor1" && !(istype(F, /turf/open/floor/plating/metal)))
 					oldtarget = F
 					target = F
 					break
@@ -203,7 +203,7 @@
 
 	if((!target || target == null) && emagged == 2)
 		if(!target || target == null)
-			for(var/turf/simulated/floor/D in view(7, src))
+			for(var/turf/open/floor/D in view(7, src))
 				if(!(D in floorbottargets) && D != oldtarget && D.tile_path)
 					oldtarget = D
 					target = D
@@ -240,8 +240,8 @@
 			maketile(target)
 		else if(istype(target, /turf/) && emagged < 2)
 			repair(target)
-		else if(emagged == 2 && istype(target,/turf/simulated/floor))
-			var/turf/simulated/floor/F = target
+		else if(emagged == 2 && istype(target,/turf/open/floor))
+			var/turf/open/floor/F = target
 			anchored = TRUE
 			repairing = TRUE
 			if(prob(90))
@@ -266,7 +266,7 @@
 	if(isspace(target))
 		if(istype(target.loc, /area/space))
 			return
-	else if(!istype(target, /turf/simulated/floor))
+	else if(!istype(target, /turf/open/floor))
 		return
 	if(amount <= 0)
 		return

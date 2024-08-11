@@ -99,11 +99,11 @@ RCD
 				if(useResource(1, user))
 					to_chat(user, "Building Floor...")
 					activate()
-					A:ChangeTurf(/turf/simulated/floor/plating/metal/airless)
+					A:ChangeTurf(/turf/open/floor/plating/metal/airless)
 					return 1
 				return 0
 
-			if(istype(A, /turf/simulated/floor))
+			if(istype(A, /turf/open/floor))
 				if(checkResource(3, user))
 					to_chat(user, "Building Wall ...")
 					playsound(src, 'sound/machines/click.ogg', 50, 1)
@@ -116,7 +116,7 @@ RCD
 				return 0
 
 		if(MODE_AIRLOCK)
-			if(istype(A, /turf/simulated/floor))
+			if(istype(A, /turf/open/floor))
 				if(checkResource(10, user))
 					to_chat(user, "Building Airlock...")
 					playsound(src, 'sound/machines/click.ogg', 50, 1)
@@ -141,11 +141,11 @@ RCD
 						if(!useResource(5, user))
 							return 0
 						activate()
-						A:ChangeTurf(/turf/simulated/floor/plating/metal/airless)
+						A:ChangeTurf(/turf/open/floor/plating/metal/airless)
 						return 1
 				return 0
 
-			if(istype(A, /turf/simulated/floor))
+			if(istype(A, /turf/open/floor))
 				if(checkResource(5, user))
 					to_chat(user, "Deconstructing Floor...")
 					playsound(src, 'sound/machines/click.ogg', 50, 1)

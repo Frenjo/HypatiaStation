@@ -16,7 +16,7 @@
 					continue
 				var/add_this_turf = 0
 				if(isspace(O))
-					for(var/turf/simulated/G in orange(1, O))
+					for(var/turf/open/G in orange(1, O))
 						add_this_turf = 1
 						break
 

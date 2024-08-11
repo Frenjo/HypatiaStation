@@ -129,7 +129,7 @@ datum
 
 
 
-			reaction_turf(var/turf/simulated/T, var/volume)//splash the blood all over the place
+			reaction_turf(var/turf/open/T, var/volume)//splash the blood all over the place
 				if(!istype(T)) return
 				var/datum/reagent/blood/self = src
 				del(src)
@@ -208,7 +208,7 @@ datum
 			color = "#0064C8" // rgb: 0, 100, 200
 			custom_metabolism = 0.01
 
-			reaction_turf(var/turf/simulated/T, var/volume)
+			reaction_turf(var/turf/open/T, var/volume)
 				if (!istype(T)) return
 				del(src)
 				if(volume >= 3)
@@ -279,7 +279,7 @@ datum
 			color = "#009CA8" // rgb: 0, 156, 168
 			overdose = REAGENTS_OVERDOSE
 
-			reaction_turf(var/turf/simulated/T, var/volume)
+			reaction_turf(var/turf/open/T, var/volume)
 				if (!istype(T)) return
 				del(src)
 				if(volume >= 1)
@@ -940,7 +940,7 @@ datum
 			reaction_turf(var/turf/T, var/volume)
 				if(volume >= 1)
 					if(issimulated(T))
-						var/turf/simulated/S = T
+						var/turf/open/S = T
 						S.dirt = 0
 					T.clean_blood()
 					for(var/obj/effect/decal/cleanable/C in T.contents)
@@ -2142,7 +2142,7 @@ datum
 				..()
 				return
 
-			reaction_turf(var/turf/simulated/T, var/volume)
+			reaction_turf(var/turf/open/T, var/volume)
 				for(var/mob/living/carbon/slime/M in T)
 					M.adjustToxLoss(rand(15,30))
 
@@ -2273,7 +2273,7 @@ datum
 				M.nutrition += nutriment_factor
 				..()
 				return
-			reaction_turf(var/turf/simulated/T, var/volume)
+			reaction_turf(var/turf/open/T, var/volume)
 				if (!istype(T)) return
 				del(src)
 				if(volume >= 3)

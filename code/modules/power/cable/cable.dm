@@ -608,8 +608,8 @@ By design, d1 is the smallest direction and d2 is the highest
 // Cable laying procedures
 //////////////////////////////////////////////
 
-// called when cable_coil is clicked on a turf/simulated/floor
-/obj/item/stack/cable_coil/proc/turf_place(turf/simulated/floor/F, mob/user)
+// called when cable_coil is clicked on a turf/open/floor
+/obj/item/stack/cable_coil/proc/turf_place(turf/open/floor/F, mob/user)
 	if(!isturf(user.loc))
 		return
 
@@ -644,7 +644,7 @@ By design, d1 is the smallest direction and d2 is the highest
 					to_chat(user, SPAN_WARNING("There's already a cable at that position."))
 					return
 
-			var/turf/simulated/floor/open/temp = F
+			var/turf/open/floor/open/temp = F
 			var/obj/structure/cable/C = new(F)
 			var/obj/structure/cable/D = new(temp.floorbelow)
 

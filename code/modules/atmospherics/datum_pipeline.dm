@@ -106,7 +106,7 @@
 			//		were setup to properly handle this case
 	return network
 
-/datum/pipeline/proc/mingle_with_turf(turf/simulated/target, mingle_volume)
+/datum/pipeline/proc/mingle_with_turf(turf/open/target, mingle_volume)
 	var/datum/gas_mixture/air_sample = air.remove_ratio(mingle_volume / air.volume)
 	air_sample.volume = mingle_volume
 
@@ -139,7 +139,7 @@
 	var/partial_heat_capacity = total_heat_capacity * (share_volume / air.volume)
 
 	if(issimulated(target))
-		var/turf/simulated/modeled_location = target
+		var/turf/open/modeled_location = target
 
 		if(HAS_TURF_FLAGS(modeled_location, TURF_FLAG_BLOCKS_AIR))
 			if(modeled_location.heat_capacity > 0 && partial_heat_capacity > 0)

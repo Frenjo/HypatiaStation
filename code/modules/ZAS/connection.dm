@@ -49,8 +49,8 @@ Class Procs:
 
 */
 /connection
-	var/turf/simulated/A
-	var/turf/simulated/B
+	var/turf/open/A
+	var/turf/open/B
 	var/zone/zoneA
 	var/zone/zoneB
 
@@ -58,7 +58,7 @@ Class Procs:
 
 	var/state = 0
 
-/connection/New(turf/simulated/A, turf/simulated/B)
+/connection/New(turf/open/A, turf/open/B)
 	#ifdef ZASDBG
 	ASSERT(air_master.has_valid_zone(A))
 	//ASSERT(air_master.has_valid_zone(B))

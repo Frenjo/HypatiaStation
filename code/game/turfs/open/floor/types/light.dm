@@ -9,7 +9,7 @@
 #define LIGHTFLOOR_STATE_BROKEN 3
 #define LIGHTFLOOR_STATE_BITS 3
 
-/turf/simulated/floor/light
+/turf/open/floor/light
 	name = "light floor"
 	light_range = 5
 	icon_state = "light_on"
@@ -17,15 +17,15 @@
 
 	var/state // The state of the tile. 0-7, 0x4 is on-bit - use the helper procs below
 
-/turf/simulated/floor/light/initialise()
+/turf/open/floor/light/initialise()
 	. = ..()
 	name = initial(name) // Just in case commands rename it in the ..() call.
 
-/turf/simulated/floor/light/attack_hand(mob/user)
+/turf/open/floor/light/attack_hand(mob/user)
 	toggle_on()
 	update_icon()
 
-/turf/simulated/floor/light/attackby(obj/item/I, mob/user)
+/turf/open/floor/light/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/light/bulb)) //only for light tiles
 		if(get_state())
 			user.drop_item(I)
@@ -38,7 +38,7 @@
 		return TRUE
 	return ..()
 
-/turf/simulated/floor/light/update_icon()
+/turf/open/floor/light/update_icon()
 	. = ..()
 	if(!.)
 		return FALSE
@@ -62,27 +62,27 @@
 		set_light(0)
 		icon_state = "light_off"
 
-/turf/simulated/floor/light/break_tile()
+/turf/open/floor/light/break_tile()
 	. = ..()
 	if(.)
 		icon_state = "light_broken"
 
-/turf/simulated/floor/light/proc/get_state()
+/turf/open/floor/light/proc/get_state()
 	return state & LIGHTFLOOR_STATE_BITS
 
-/turf/simulated/floor/light/proc/get_on()
+/turf/open/floor/light/proc/get_on()
 	return state & LIGHTFLOOR_ON_BIT
 
-/turf/simulated/floor/light/proc/set_state(n)
+/turf/open/floor/light/proc/set_state(n)
 	state = get_on() | (n & LIGHTFLOOR_STATE_BITS)
 
-/turf/simulated/floor/light/proc/set_on(n)
+/turf/open/floor/light/proc/set_on(n)
 	if(n)
 		state |= LIGHTFLOOR_ON_BIT
 	else
 		state &= ~LIGHTFLOOR_ON_BIT
 
-/turf/simulated/floor/light/proc/toggle_on()
+/turf/open/floor/light/proc/toggle_on()
 	state ^= LIGHTFLOOR_ON_BIT
 
 #undef LIGHTFLOOR_STATE_OK

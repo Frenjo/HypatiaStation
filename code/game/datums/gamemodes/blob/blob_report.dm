@@ -64,7 +64,7 @@
 			if(isnotstationlevel(T.z)
 				continue
 
-			if(istype(T,/turf/simulated/floor))
+			if(istype(T,/turf/open/floor))
 				if(!(T:burnt))
 					src.floor += 12
 				else

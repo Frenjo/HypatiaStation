@@ -29,7 +29,7 @@
 	if(!CONFIG_GET(starlight))
 		return
 
-	if(locate(/turf/simulated) in orange(src, 1))
+	if(locate(/turf/open) in orange(src, 1))
 		set_light(CONFIG_GET(starlight))
 	else
 		set_light(0)

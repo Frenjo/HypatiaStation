@@ -365,7 +365,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	if(isnull(location))
 		return 0
 
-	if(istype(location, /turf/simulated/shuttle/floor/brig)) // Fails traitors if they are in the shuttle brig -- Polymorph
+	if(istype(location, /turf/open/floor/shuttle/brig)) // Fails traitors if they are in the shuttle brig -- Polymorph
 		if(iscarbon(owner.current))
 			var/mob/living/carbon/C = owner.current
 			if(!C.handcuffed)

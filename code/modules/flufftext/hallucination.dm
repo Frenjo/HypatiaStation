@@ -92,10 +92,10 @@ Gunshots/explosions/opening doors/less rare audio (done)
 				//src << "Danger Flash"
 				if(!halimage)
 					var/list/possible_points = list()
-					for(var/turf/simulated/floor/F in view(src, world.view))
+					for(var/turf/open/floor/F in view(src, world.view))
 						possible_points += F
 					if(length(possible_points))
-						var/turf/simulated/floor/target = pick(possible_points)
+						var/turf/open/floor/target = pick(possible_points)
 						switch(rand(1, 3))
 							if(1)
 								//src << "Space"
@@ -164,10 +164,10 @@ Gunshots/explosions/opening doors/less rare audio (done)
 				//src << "Danger Flash"
 				if(!halbody)
 					var/list/possible_points = list()
-					for(var/turf/simulated/floor/F in view(src, world.view))
+					for(var/turf/open/floor/F in view(src, world.view))
 						possible_points += F
 					if(length(possible_points))
-						var/turf/simulated/floor/target = pick(possible_points)
+						var/turf/open/floor/target = pick(possible_points)
 						switch(rand(1,4))
 							if(1)
 								halbody = image('icons/mob/human.dmi', target, "husk_l", TURF_LAYER)

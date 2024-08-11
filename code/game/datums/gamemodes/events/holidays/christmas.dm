@@ -2,7 +2,7 @@
 	for(var/obj/structure/flora/tree/pine/xmas in GLOBL.movable_atom_list)
 		if(isnotstationlevel(xmas.z))
 			continue
-		for(var/turf/simulated/floor/T in orange(1, xmas))
+		for(var/turf/open/floor/T in orange(1, xmas))
 			for(var/i = 1, i <= rand(1, 5), i++)
 				new /obj/item/a_gift(T)
 	//for(var/mob/living/simple_animal/corgi/Ian/Ian in mob_list)

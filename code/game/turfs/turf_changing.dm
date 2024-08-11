@@ -12,7 +12,7 @@
 			if(c.down)
 				var/turf/below = locate(x, y, c.down_target)
 				if((global.PCair.has_valid_zone(below) || global.PCair.has_valid_zone(src)) && !isspace(below)) // dont make open space into space, its pointless and makes people drop out of the station
-					var/turf/W = ChangeTurf(/turf/simulated/floor/open)
+					var/turf/W = ChangeTurf(/turf/open/floor/open)
 					var/list/temp = list()
 					temp.Add(W)
 					c.add(temp, 3, 1) // report the new open space to the zcontroller
@@ -33,14 +33,14 @@
 		//Yeah, we're just going to rebuild the whole thing.
 		//Despite this being called a bunch during explosions,
 		//the zone will only really do heavy lifting once.
-		var/turf/simulated/S = src
+		var/turf/open/S = src
 		if(isnotnull(S.zone))
 			S.zone.rebuild()
 
 	qdel(src) // Executes the Destroy() chain.
 	var/turf/new_turf = new type_path(src)
 
-	if(ispath(type_path, /turf/simulated/floor))
+	if(ispath(type_path, /turf/open/floor))
 		if(old_fire)
 			fire = old_fire
 		new_turf.RemoveLattice()
@@ -81,7 +81,7 @@
 	return 1
 
 //I would name this copy_from() but we remove the other turf from their air zone for some reason
-/turf/simulated/transport_properties_from(turf/simulated/other)
+/turf/open/transport_properties_from(turf/open/other)
 	if(!..())
 		return 0
 
@@ -93,7 +93,7 @@
 	return 1
 
 //No idea why resetting the base appearence from New() isn't enough, but without this it doesn't work
-/turf/closed/wall/shuttle/corner/exterior/transport_properties_from(turf/simulated/other)
+/turf/closed/wall/shuttle/corner/exterior/transport_properties_from(turf/open/other)
 	. = ..()
 	reset_base_appearance()
 

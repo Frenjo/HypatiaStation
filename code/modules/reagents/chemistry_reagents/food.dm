@@ -240,7 +240,7 @@
 	holder.remove_reagent(id, FOOD_METABOLISM)
 	. = ..()
 
-/datum/reagent/frostoil/reaction_turf(turf/simulated/T, volume)
+/datum/reagent/frostoil/reaction_turf(turf/open/T, volume)
 	for(var/mob/living/carbon/slime/M in T)
 		M.adjustToxLoss(rand(15, 30))
 
@@ -359,7 +359,7 @@
 	M.nutrition += nutriment_factor
 	. = ..()
 
-/datum/reagent/cornoil/reaction_turf(turf/simulated/T, volume)
+/datum/reagent/cornoil/reaction_turf(turf/open/T, volume)
 	if(!istype(T))
 		return
 	qdel(src)

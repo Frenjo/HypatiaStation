@@ -1,24 +1,24 @@
 /*
  * Beach
  */
-/turf/simulated/floor/beach
+/turf/open/floor/beach
 	name = "beach"
 	icon = 'icons/misc/beach.dmi'
 
-/turf/simulated/floor/beach/sand
+/turf/open/floor/beach/sand
 	name = "sand"
 	icon_state = "sand"
 
-/turf/simulated/floor/beach/coastline
+/turf/open/floor/beach/coastline
 	name = "coastline"
 	icon = 'icons/misc/beach2.dmi'
 	icon_state = "sandwater"
 
-/turf/simulated/floor/beach/water
+/turf/open/floor/beach/water
 	name = "water"
 	icon_state = "water"
 
-/turf/simulated/floor/beach/water/New()
+/turf/open/floor/beach/water/New()
 	. = ..()
 	var/image/water = image(icon = 'icons/misc/beach.dmi', icon_state = "water5")
 	water.plane = DEFAULT_PLANE

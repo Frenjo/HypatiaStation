@@ -191,9 +191,9 @@
 			if(isturf(object) && pa.Find("left") && !pa.Find("alt") && !pa.Find("ctrl") )
 				if(isspace(object))
 					var/turf/T = object
-					T.ChangeTurf(/turf/simulated/floor)
+					T.ChangeTurf(/turf/open/floor)
 					return
-				else if(istype(object, /turf/simulated/floor))
+				else if(istype(object, /turf/open/floor))
 					var/turf/T = object
 					T.ChangeTurf(/turf/closed/wall/steel)
 					return
@@ -204,9 +204,9 @@
 			else if(pa.Find("right"))
 				if(istype(object, /turf/closed/wall))
 					var/turf/T = object
-					T.ChangeTurf(/turf/simulated/floor)
+					T.ChangeTurf(/turf/open/floor)
 					return
-				else if(istype(object, /turf/simulated/floor))
+				else if(istype(object, /turf/open/floor))
 					var/turf/T = object
 					T.ChangeTurf(/turf/space)
 					return

@@ -4,9 +4,6 @@
 	icon = 'icons/turf/walls/reinforced.dmi'
 	icon_state = "plasteel0"
 
-	opacity = TRUE
-	density = TRUE
-
 	explosion_resistance = 25
 
 	material = /decl/material/plasteel
@@ -34,7 +31,7 @@
 		else
 			O.loc = src
 
-	ChangeTurf(/turf/simulated/floor/plating/metal)
+	ChangeTurf(/turf/open/floor/plating/metal)
 
 /turf/closed/wall/reinforced/attack_hand(mob/user)
 	if(HULK in user.mutations)

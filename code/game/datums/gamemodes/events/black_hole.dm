@@ -24,7 +24,7 @@
 			qdel(M)
 		for(var/obj/O in orange(1, src))
 			qdel(O)
-		for(var/turf/simulated/ST in orange(1, src))
+		for(var/turf/open/ST in orange(1, src))
 			ST.ChangeTurf(/turf/space)
 
 		sleep(6)
@@ -82,6 +82,6 @@
 
 	//Destroying the turf
 	if(T && issimulated(T) && prob(turf_removal_chance))
-		var/turf/simulated/ST = T
+		var/turf/open/ST = T
 		ST.ChangeTurf(/turf/space)
 	return

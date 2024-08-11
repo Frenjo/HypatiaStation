@@ -37,7 +37,7 @@
 		var/mob/living/carbon/C = M
 		C.antibodies |= self.data["antibodies"]
 
-/datum/reagent/blood/reaction_turf(turf/simulated/T, volume)//splash the blood all over the place
+/datum/reagent/blood/reaction_turf(turf/open/T, volume)//splash the blood all over the place
 	if(!istype(T))
 		return
 	var/datum/reagent/blood/self = src
@@ -118,7 +118,7 @@
 
 	custom_metabolism = 0.01
 
-/datum/reagent/water/reaction_turf(turf/simulated/T, volume)
+/datum/reagent/water/reaction_turf(turf/open/T, volume)
 	if(!istype(T))
 		return
 	qdel(src)
@@ -198,7 +198,7 @@
 	color = "#009CA8" // rgb: 0, 156, 168
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/lube/reaction_turf(turf/simulated/T, volume)
+/datum/reagent/lube/reaction_turf(turf/open/T, volume)
 	if(!istype(T))
 		return
 	qdel(src)
@@ -721,7 +721,7 @@
 /datum/reagent/space_cleaner/reaction_turf(turf/T, volume)
 	if(volume >= 1)
 		if(issimulated(T))
-			var/turf/simulated/S = T
+			var/turf/open/S = T
 			S.dirt = 0
 		T.clean_blood()
 		for(var/obj/effect/decal/cleanable/C in T.contents)

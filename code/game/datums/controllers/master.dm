@@ -244,7 +244,7 @@ CONTROLLER_DEF(master)
 	WAIT_FOR_BACKLOG
 
 	to_world(SPAN_DANGER("↪ Initialising turfs."))
-	for_no_type_check(var/turf/simulated/turf, GLOBL.simulated_turf_list)
+	for_no_type_check(var/turf/open/turf, GLOBL.open_turf_list)
 		if(!GC_DESTROYED(turf))
 			turf.initialise()
 	for_no_type_check(var/turf/closed/rock/turf, GLOBL.all_rock_turfs)

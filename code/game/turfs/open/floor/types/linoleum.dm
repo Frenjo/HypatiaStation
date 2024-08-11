@@ -4,7 +4,7 @@
  * Technically "vinyl" but I'm old-fashioned.
  * (And British.)
  */
-/turf/simulated/floor/linoleum
+/turf/open/floor/linoleum
 	name = "linoleum"
 	icon_state = "grimy"
 	tile_path = /obj/item/stack/tile/linoleum

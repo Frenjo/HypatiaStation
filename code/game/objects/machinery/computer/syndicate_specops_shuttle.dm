@@ -135,7 +135,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 /*
 	var/obj/explosionmarker = locate("Syndicate Breach Area")
 	if(explosionmarker)
-		var/turf/simulated/T = explosionmarker.loc
+		var/turf/open/T = explosionmarker.loc
 		if(T)
 			explosion(T,4,6,8,10,0)
 

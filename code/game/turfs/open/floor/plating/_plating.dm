@@ -1,27 +1,27 @@
 /*
  * Plating
  */
-/turf/simulated/floor/plating
+/turf/open/floor/plating
 	name = "plating"
 	plane = PLATING_PLANE
 
 	tile_path = null
 	intact = FALSE
 
-/turf/simulated/floor/plating/attack_tool(obj/item/tool, mob/user)
+/turf/open/floor/plating/attack_tool(obj/item/tool, mob/user)
 	if(iswire(tool))
 		var/obj/item/stack/cable_coil/coil = tool
 		coil.turf_place(src, user)
 		return TRUE
 	return ..()
 
-/turf/simulated/floor/plating/attack_by(obj/item/I, mob/user)
+/turf/open/floor/plating/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = I
 		if(R.amount >= 2)
 			to_chat(user, SPAN_INFO("Reinforcing the floor..."))
 			if(do_after(user, 3 SECONDS) && R && R.amount >= 2)
-				make_floor(/turf/simulated/floor/reinforced)
+				make_floor(/turf/open/floor/reinforced)
 				playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 				R.use(2)
 				return TRUE
@@ -33,10 +33,10 @@
 		if(!broken && !burnt)
 			var/obj/item/stack/tile/tile_stack = I
 			tile_stack.use(1)
-			var/turf/simulated/floor/new_floor = make_floor(tile_stack.turf_path)
+			var/turf/open/floor/new_floor = make_floor(tile_stack.turf_path)
 			if(istype(tile_stack, /obj/item/stack/tile/light))
 				var/obj/item/stack/tile/light/light_stack = tile_stack
-				var/turf/simulated/floor/light/light_floor = new_floor
+				var/turf/open/floor/light/light_floor = new_floor
 				light_floor.set_state(light_stack.state)
 				light_floor.set_on(light_stack.on)
 			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
@@ -45,7 +45,7 @@
 		return TRUE
 	return ..()
 
-/turf/simulated/floor/plating/update_icon()
+/turf/open/floor/plating/update_icon()
 	. = ..()
 	if(!.)
 		return FALSE
@@ -54,5 +54,5 @@
 
 	icon_state = icon_plating // Because asteroids are 'platings' too.
 
-/turf/simulated/floor/plating/make_plating()
+/turf/open/floor/plating/make_plating()
 	return // You can't make plating into plating.

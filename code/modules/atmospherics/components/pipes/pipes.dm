@@ -200,7 +200,7 @@
 	else if(parent)
 		var/environment_temperature = 0
 
-		if(istype(loc, /turf/simulated/))
+		if(istype(loc, /turf/open/))
 			if(loc:blocks_air)
 				environment_temperature = loc:temperature
 			else

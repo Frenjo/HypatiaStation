@@ -6,7 +6,7 @@
 	anchored = TRUE
 	density = TRUE
 	var/obj/machinery/compressor/compressor
-	var/turf/simulated/outturf
+	var/turf/open/outturf
 	var/lastgen = 0
 
 /obj/machinery/power/turbine/New()

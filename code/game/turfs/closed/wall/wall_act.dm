@@ -1,4 +1,4 @@
-/turf/closed/wall/adjacent_fire_act(turf/simulated/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
+/turf/closed/wall/adjacent_fire_act(turf/open/floor/adj_turf, datum/gas_mixture/adj_air, adj_temp, adj_volume)
 	if(adj_temp > max_temperature)
 		take_damage(log(rand(5, 10) * (adj_temp - max_temperature)))
 	return ..()
@@ -23,7 +23,7 @@
 	if(prob(15) && !rotting)
 		dismantle_wall()
 	else if(prob(70) && !rotting)
-		ChangeTurf(/turf/simulated/floor/plating/metal)
+		ChangeTurf(/turf/open/floor/plating/metal)
 	else
 		ReplaceWithLattice()
 	return 0

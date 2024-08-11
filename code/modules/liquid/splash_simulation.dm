@@ -167,7 +167,7 @@ var/list/datum/puddle/puddles = list()
 /turf/space/can_leave_liquid(from_direction)
 	return 1
 
-/turf/simulated/floor/can_accept_liquid(from_direction)
+/turf/open/floor/can_accept_liquid(from_direction)
 	for(var/obj/structure/window/W in src)
 		if(W.dir in list(5,6,9,10))
 			return 0
@@ -178,7 +178,7 @@ var/list/datum/puddle/puddles = list()
 			return 0
 	return 1
 
-/turf/simulated/floor/can_leave_liquid(to_direction)
+/turf/open/floor/can_leave_liquid(to_direction)
 	for(var/obj/structure/window/W in src)
 		if(W.dir in list(5,6,9,10))
 			return 0

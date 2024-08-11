@@ -12,10 +12,10 @@ Class Vars:
 	air - The gas mixture that any turfs in this zone will return. Values are per-tile with a group multiplier.
 
 Class Procs:
-	add(turf/simulated/T)
+	add(turf/open/T)
 		Adds a turf to the contents, sets its zone and merges its air.
 
-	remove(turf/simulated/T)
+	remove(turf/open/T)
 		Removes a turf, sets its zone to null and erases any gas graphics.
 		Invalidates the zone if it has no more tiles.
 
@@ -28,7 +28,7 @@ Class Procs:
 	rebuild()
 		Invalidates the zone and marks all its former tiles for updates.
 
-	add_tile_air(turf/simulated/T)
+	add_tile_air(turf/open/T)
 		Adds the air contained in T.air to the zone's air supply. Called when adding a turf.
 
 	tick()
@@ -41,8 +41,8 @@ Class Procs:
 /zone
 	var/name
 	var/invalid = FALSE
-	var/list/turf/simulated/contents
-	var/list/turf/simulated/fire_tiles
+	var/list/turf/open/contents
+	var/list/turf/open/fire_tiles
 
 	var/needs_update = FALSE
 
@@ -61,7 +61,7 @@ Class Procs:
 	air.group_multiplier = 1
 	air.volume = CELL_VOLUME
 
-/zone/proc/add(turf/simulated/T)
+/zone/proc/add(turf/open/T)
 #ifdef ZASDBG
 	ASSERT(!invalid)
 	ASSERT(istype(T))
@@ -77,7 +77,7 @@ Class Procs:
 		global.PCair.active_fire_zones.Add(src)
 	T.set_graphic(air.graphic)
 
-/zone/proc/remove(turf/simulated/T)
+/zone/proc/remove(turf/open/T)
 #ifdef ZASDBG
 	ASSERT(!invalid)
 	ASSERT(istype(T))
@@ -101,7 +101,7 @@ Class Procs:
 	ASSERT(!into.invalid)
 #endif
 	c_invalidate()
-	for_no_type_check(var/turf/simulated/T, contents)
+	for_no_type_check(var/turf/open/T, contents)
 		into.add(T)
 		#ifdef ZASDBG
 		T.dbg(merged)
@@ -111,7 +111,7 @@ Class Procs:
 	invalid = TRUE
 	global.PCair.remove_zone(src)
 	#ifdef ZASDBG
-	for_no_type_check(var/turf/simulated/T, contents)
+	for_no_type_check(var/turf/open/T, contents)
 		T.dbg(invalid_zone)
 	#endif
 
@@ -119,7 +119,7 @@ Class Procs:
 	if(invalid)
 		return //Short circuit for explosions where rebuild is called many times over.
 	c_invalidate()
-	for_no_type_check(var/turf/simulated/T, contents)
+	for_no_type_check(var/turf/open/T, contents)
 		//T.dbg(invalid_zone)
 		T.needs_air_update = FALSE //Reset the marker so that it will be added to the list.
 		global.PCair.mark_for_update(T)
@@ -135,7 +135,7 @@ Class Procs:
 
 /zone/proc/tick()
 	if(air.check_tile_graphic())
-		for_no_type_check(var/turf/simulated/T, contents)
+		for_no_type_check(var/turf/open/T, contents)
 			T.set_graphic(air.graphic)
 			CHECK_TICK
 

@@ -8,5 +8,5 @@
 		explosion(src, -1, 0, 2)
 	. = ..()
 
-/turf/proc/adjacent_fire_act(turf/simulated/floor/source, temperature, volume)
+/turf/proc/adjacent_fire_act(turf/open/floor/source, temperature, volume)
 	return

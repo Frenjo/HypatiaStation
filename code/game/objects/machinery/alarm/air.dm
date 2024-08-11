@@ -158,7 +158,7 @@
 	if((stat & (NOPOWER | BROKEN)) || shorted || buildstage != 2)
 		return
 
-	var/turf/simulated/location = loc
+	var/turf/open/location = loc
 	if(!istype(location))
 		return//returns if loc is not simulated
 
@@ -240,7 +240,7 @@
 	updateDialog()
 
 /obj/machinery/air_alarm/proc/overall_danger_level()
-	var/turf/simulated/location = loc
+	var/turf/open/location = loc
 	if(!istype(location))
 		return//returns if loc is not simulated
 

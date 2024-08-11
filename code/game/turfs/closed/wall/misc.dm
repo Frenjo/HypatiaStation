@@ -21,7 +21,7 @@
 		else
 			O.loc = src
 
-	ChangeTurf(/turf/simulated/floor/plating/metal)
+	ChangeTurf(/turf/open/floor/plating/metal)
 
 // Vault
 /turf/closed/wall/vault

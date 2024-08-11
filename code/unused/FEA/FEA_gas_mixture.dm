@@ -267,7 +267,7 @@ What are the archived variables for?
 
 	proc/temperature_share(datum/gas_mixture/sharer, conduction_coefficient)
 
-	proc/temperature_turf_share(turf/simulated/sharer, conduction_coefficient)
+	proc/temperature_turf_share(turf/open/sharer, conduction_coefficient)
 
 
 	proc/check_me_then_temperature_mimic(turf/model, conduction_coefficient)
@@ -276,7 +276,7 @@ What are the archived variables for?
 
 	proc/check_both_then_temperature_share(datum/gas_mixture/sharer, conduction_coefficient)
 
-	proc/check_me_then_temperature_turf_share(turf/simulated/sharer, conduction_coefficient)
+	proc/check_me_then_temperature_turf_share(turf/open/sharer, conduction_coefficient)
 
 	proc/compare(datum/gas_mixture/sample)
 			//Compares sample to self to see if within acceptable ranges that group processing may be enabled
@@ -799,7 +799,7 @@ What are the archived variables for?
 		return 1
 		//Logic integrated from: temperature_share(sharer, conduction_coefficient) for efficiency
 
-	check_me_then_temperature_turf_share(turf/simulated/sharer, conduction_coefficient)
+	check_me_then_temperature_turf_share(turf/open/sharer, conduction_coefficient)
 		var/delta_temperature = (temperature_archived - sharer.temperature)
 
 		var/self_temperature_delta = 0
@@ -877,7 +877,7 @@ What are the archived variables for?
 				else
 					temperature -= heat/(self_heat_capacity*group_multiplier)
 
-	temperature_turf_share(turf/simulated/sharer, conduction_coefficient)
+	temperature_turf_share(turf/open/sharer, conduction_coefficient)
 		var/delta_temperature = (temperature_archived - sharer.temperature)
 		if(abs(delta_temperature) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
 			var/self_heat_capacity = heat_capacity()

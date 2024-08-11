@@ -16,7 +16,7 @@ GLOBAL_GLOBL_LIST_NEW(cached_icons)
 
 	var/paint_type = ""
 
-/obj/item/reagent_containers/glass/paint/afterattack(turf/simulated/target, mob/user, proximity)
+/obj/item/reagent_containers/glass/paint/afterattack(turf/open/target, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(target) && reagents.total_volume > 5)

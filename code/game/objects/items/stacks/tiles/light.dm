@@ -9,7 +9,7 @@
 	throw_range = 20
 	obj_flags = OBJ_FLAG_CONDUCT
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "smashed")
-	turf_path = /turf/simulated/floor/light
+	turf_path = /turf/open/floor/light
 
 	var/on = 1
 	var/state //0 = fine, 1 = flickering, 2 = breaking, 3 = broken

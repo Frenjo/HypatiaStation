@@ -1,28 +1,28 @@
 /*
  * Airless
  */
-/turf/simulated/floor/airless
+/turf/open/floor/airless
 	name = "airless floor"
 	icon_state = "floor"
 	initial_gases = null
 	temperature = TCMB
 
-/turf/simulated/floor/airless/New()
+/turf/open/floor/airless/New()
 	. = ..()
 	name = "floor"
 
-/turf/simulated/floor/airless/ceiling
+/turf/open/floor/airless/ceiling
 	icon_state = "rockvault"
 
 /*
  * Vault
  */
-/turf/simulated/floor/vault
+/turf/open/floor/vault
 	icon_state = "rockvault"
 
-/turf/simulated/floor/vault/New(location, type)
+/turf/open/floor/vault/New(location, type)
 	. = ..()
 	icon_state = "[type]vault"
 
-/turf/simulated/floor/vault/relativewall()
+/turf/open/floor/vault/relativewall()
 	return

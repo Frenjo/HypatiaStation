@@ -86,7 +86,7 @@
 
 /turf/proc/AdjacentTurfs()
 	var/list/list = list()
-	for(var/turf/simulated/t in oview(src, 1))
+	for(var/turf/open/t in oview(src, 1))
 		if(!t.density)
 			if(!LinkBlocked(src, t) && !TurfBlockedNonWindow(t))
 				list.Add(t)

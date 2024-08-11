@@ -16,7 +16,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 	anchored = TRUE
 
 /obj/effect/immovablerod/Bump(atom/clong)
-	if(istype(clong, /turf/simulated/shuttle)) //Skip shuttles without actually deleting the rod
+	if(istype(clong, /turf/closed/wall/shuttle) || istype(clong, /turf/open/floor/shuttle)) //Skip shuttles without actually deleting the rod
 		return
 
 	else if(isturf(clong))

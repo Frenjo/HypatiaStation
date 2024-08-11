@@ -68,7 +68,7 @@
 
 /obj/effect/biomass_controller/New()
 	. = ..()
-	if(!istype(src.loc, /turf/simulated/floor))
+	if(!istype(src.loc, /turf/open/floor))
 		qdel(src)
 
 	spawn_biomass_piece(src.loc)
@@ -144,8 +144,8 @@
 /obj/effect/biomass/proc/spread()
 	var/direction = pick(GLOBL.cardinal)
 	var/step = get_step(src, direction)
-	if(istype(step, /turf/simulated/floor))
-		var/turf/simulated/floor/F = step
+	if(istype(step, /turf/open/floor))
+		var/turf/open/floor/F = step
 		if(!locate(/obj/effect/biomass, F))
 			if(F.Enter(src))
 				if(master)
@@ -173,18 +173,18 @@
 
 /proc/biomass_infestation()
 	spawn() //to stop the secrets panel hanging
-		var/list/turf/simulated/floor/turfs = list() //list of all the empty floor turfs in the hallway areas
+		var/list/turf/open/floor/turfs = list() //list of all the empty floor turfs in the hallway areas
 		for(var/areapath in typesof(/area/station/hallway))
 			var/area/A = locate(areapath)
 			//for(var/area/B in A.related)
-			//	for(var/turf/simulated/floor/F in B.contents)
+			//	for(var/turf/open/floor/F in B.contents)
 			//		if(!length(F.contents))
 			//			turfs += F
-			for(var/turf/simulated/floor/F in A.contents)
+			for(var/turf/open/floor/F in A.contents)
 				if(!length(F.contents))
 					turfs += F
 
 		if(length(turfs)) //Pick a turf to spawn at if we can
-			var/turf/simulated/floor/T = pick(turfs)
+			var/turf/open/floor/T = pick(turfs)
 			new/obj/effect/biomass_controller(T) //spawn a controller at turf
 			message_admins("\blue Event: Biomass spawned at [T.loc.loc] ([T.x],[T.y],[T.z])")

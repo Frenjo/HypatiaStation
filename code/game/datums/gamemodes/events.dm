@@ -56,10 +56,10 @@
 			world << sound('sound/AI/spanomalies.ogg')
 			var/list/turfs = new
 			var/turf/picked
-			for(var/turf/simulated/floor/T in GLOBL.simulated_turf_list)
+			for(var/turf/open/floor/T in GLOBL.simulated_turf_list)
 				if(T.z == 1)
 					turfs += T
-			for(var/turf/simulated/floor/T in turfs)
+			for(var/turf/open/floor/T in turfs)
 				if(prob(20))
 					spawn(50+rand(0,3000))
 						picked = pick(turfs)

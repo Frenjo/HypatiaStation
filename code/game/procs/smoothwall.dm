@@ -46,19 +46,19 @@
 			src.icon_state = "swall[junction]"
 		else //if it's diagonal, we need to figure out if we're using the floor diagonal or the space diagonal sprite
 			var/is_floor = 0
-			for(var/turf/simulated/floor/F in range_list)
+			for(var/turf/open/floor/F in range_list)
 				if(abs(src.x-F.x)-abs(src.y-F.y))
 					if((15-junction) & get_dir(src,F)) //if there's a floor in at least one of the empty space directions, return 1
 						is_floor = 1
 						newicon = F.icon
 						newiconstate = F.icon_state //we'll save these for later
-			for(var/turf/simulated/floor/F in range_list)
+			for(var/turf/open/floor/F in range_list)
 				if(abs(src.x-F.x)-abs(src.y-F.y))
 					if((15-junction) & get_dir(src,F)) //if there's a floor in at least one of the empty space directions, return 1
 						is_floor = 1
 						newicon = F.icon
 						newiconstate = F.icon_state //we'll save these for later
-			for(var/turf/simulated/shuttle/floor/F in range_list)
+			for(var/turf/open/floor/shuttle/F in range_list)
 				if(abs(src.x-F.x)-abs(src.y-F.y))
 					if((15-junction) & get_dir(src,F)) //if there's a floor in at least one of the empty space directions, return 1
 						is_floor = 1
@@ -127,10 +127,14 @@
 	var/list/range_list = orange(src, 1)
 	for(var/turf/closed/wall/W in range_list)
 		if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
+			if(isnull(W.material)) // Skip walls that don't have a material set.
+				continue
 			if(W.material.type in material.wall_links_to) // Only 'like' walls connect -Sieve
 				junction |= get_dir(src, W)
 	for(var/obj/structure/falsewall/W in range_list)
 		if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
+			if(isnull(W.material)) // Skip walls that don't have a material set.
+				continue
 			if(W.material.type in material.wall_links_to)
 				junction |= get_dir(src, W)
 	icon_state = "[material.icon_prefix][junction]"

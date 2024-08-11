@@ -956,7 +956,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					continue moving
 
 	if(length(toupdate))
-		for(var/turf/simulated/T1 in toupdate)
+		for(var/turf/open/T1 in toupdate)
 			for(var/obj/machinery/door/door in T1)
 				door.update_nearby_tiles(TRUE)
 

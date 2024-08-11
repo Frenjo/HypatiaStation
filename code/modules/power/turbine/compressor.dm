@@ -8,7 +8,7 @@
 
 	var/obj/machinery/power/turbine/turbine
 	var/datum/gas_mixture/gas_contained
-	var/turf/simulated/inturf
+	var/turf/open/inturf
 	var/starter = 0
 	var/rpm = 0
 	var/rpmtarget = 0

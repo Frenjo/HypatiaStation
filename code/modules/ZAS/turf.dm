@@ -1,4 +1,4 @@
-/turf/simulated
+/turf/open
 	var/zone/zone = null
 	var/open_directions
 	var/gas_graphic
@@ -7,7 +7,7 @@
 	var/needs_air_update = FALSE
 	var/datum/gas_mixture/air = null
 
-/turf/simulated/proc/set_graphic(new_graphic)
+/turf/open/proc/set_graphic(new_graphic)
 	gas_graphic = new_graphic
 	overlays.Cut()
 	for(var/i in gas_graphic)
@@ -42,11 +42,11 @@
 			continue
 
 		if(issimulated(unsim))
-			var/turf/simulated/sim = unsim
+			var/turf/open/sim = unsim
 			if(global.PCair.has_valid_zone(sim))
 				global.PCair.connect(sim, src)
 
-/turf/simulated/update_air_properties()
+/turf/open/update_air_properties()
 	if(isnotnull(zone) && zone.invalid)
 		c_copy_air()
 		zone = null //Easier than iterating through the list at the zone.
@@ -103,7 +103,7 @@
 			//Check that our zone hasn't been cut off recently.
 			//This happens when windows move or are constructed. We need to rebuild.
 			if((previously_open & d) && issimulated(unsim))
-				var/turf/simulated/sim = unsim
+				var/turf/open/sim = unsim
 				if(sim.zone == zone)
 					zone.rebuild()
 					return
@@ -113,7 +113,7 @@
 		open_directions |= d
 
 		if(issimulated(unsim))
-			var/turf/simulated/sim = unsim
+			var/turf/open/sim = unsim
 			sim.open_directions |= GLOBL.reverse_dir[d]
 
 			if(global.PCair.has_valid_zone(sim))
@@ -200,11 +200,11 @@
 	var/datum/gas_mixture/GM = return_air()
 	return GM.remove(amount)
 
-/turf/simulated/assume_air(datum/gas_mixture/giver)
+/turf/open/assume_air(datum/gas_mixture/giver)
 	var/datum/gas_mixture/my_air = return_air()
 	my_air.merge(giver)
 
-/turf/simulated/assume_gas(gasid, moles, temp = null)
+/turf/open/assume_gas(gasid, moles, temp = null)
 	var/datum/gas_mixture/my_air = return_air()
 
 	if(isnull(temp))
@@ -214,11 +214,11 @@
 
 	return 1
 
-/turf/simulated/remove_air(amount as num)
+/turf/open/remove_air(amount as num)
 	var/datum/gas_mixture/my_air = return_air()
 	return my_air.remove(amount)
 
-/turf/simulated/return_air()
+/turf/open/return_air()
 	if(zone)
 		if(!zone.invalid)
 			global.PCair.mark_zone_update(zone)
@@ -240,7 +240,7 @@
 	air.temperature = temperature
 	air.update_values()
 
-/turf/simulated/proc/c_copy_air()
+/turf/open/proc/c_copy_air()
 	if(isnull(air))
 		air = new /datum/gas_mixture()
 	air.copy_from(zone.air)

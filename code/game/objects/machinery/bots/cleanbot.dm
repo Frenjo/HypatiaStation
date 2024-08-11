@@ -161,7 +161,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 
 	if(screwloose && prob(5))
 		if(issimulated(loc))
-			var/turf/simulated/T = loc
+			var/turf/open/T = loc
 			if(T.wet < 1)
 				T.wet = TRUE
 				if(T.wet_overlay)
@@ -306,7 +306,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 		cleantime = 10
 	spawn(cleantime)
 		if(issimulated(loc))
-			var/turf/simulated/f = loc
+			var/turf/open/f = loc
 			f.dirt = 0
 		cleaning = FALSE
 		qdel(target)

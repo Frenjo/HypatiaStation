@@ -140,7 +140,7 @@
 		else
 			O.loc = src
 
-	ChangeTurf(/turf/simulated/floor/plating/metal)
+	ChangeTurf(/turf/open/floor/plating/metal)
 
 // Wall-rot effect, a nasty fungus that destroys walls.
 /turf/closed/wall/proc/rot()
@@ -170,9 +170,9 @@
 	O.density = TRUE
 	O.layer = 5
 
-	ChangeTurf(/turf/simulated/floor/plating/metal)
+	ChangeTurf(/turf/open/floor/plating/metal)
 
-	var/turf/simulated/floor/F = src
+	var/turf/open/floor/F = src
 	F.burn_tile()
 	F.icon_state = "wall_thermite"
 	to_chat(user, SPAN_WARNING("The thermite starts melting through the wall."))

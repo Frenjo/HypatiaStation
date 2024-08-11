@@ -191,7 +191,7 @@ move an amendment</a> to the drawing.</p>
 /obj/item/blueprints/proc/check_tile_is_border(turf/T2, dir)
 	if(isspace(T2))
 		return BORDER_SPACE //omg hull breach we all going to die here
-	if(istype(T2, /turf/simulated/shuttle))
+	if(istype(T2, /turf/closed/wall/shuttle) || istype(T2, /turf/open/floor/shuttle))
 		return BORDER_SPACE
 	if(get_area_type(T2.loc) != AREA_SPACE)
 		return BORDER_BETWEEN

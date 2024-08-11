@@ -15,11 +15,11 @@
 	name = "blue circuit grid floor tile"
 	singular_name = "blue circuit grid floor tile"
 	icon_state = "blue_circuit"
-	turf_path = /turf/simulated/floor/circuit_grid/blue
+	turf_path = /turf/open/floor/circuit_grid/blue
 
 // Green
 /obj/item/stack/tile/circuit_grid/green
 	name = "green circuit grid floor tile"
 	singular_name = "green circuit grid floor tile"
 	icon_state = "green_circuit"
-	turf_path = /turf/simulated/floor/circuit_grid/green
+	turf_path = /turf/open/floor/circuit_grid/green

@@ -1,6 +1,6 @@
 //this is everything i'm going to be using in my outpost zeta map, and possibly future maps.
 
-/turf/simulated/desert
+/turf/open/desert
 	name = "desert"
 	icon = 'code/WorkInProgress/Susan/desert.dmi'
 	icon_state = "desert"
@@ -8,7 +8,7 @@
 	light_range = 5
 	//lighting_lumcount = 8
 
-/turf/simulated/desert/New()
+/turf/open/desert/New()
 	icon_state = "desert[rand(0, 4)]"
 
 /turf/closed/wall/impassable_rock

@@ -1,7 +1,7 @@
-/turf/simulated/floor/attack_paw(mob/user)
+/turf/open/floor/attack_paw(mob/user)
 	return attack_hand(user)
 
-/turf/simulated/floor/attack_hand(mob/user)
+/turf/open/floor/attack_hand(mob/user)
 	if(!user.canmove || user.restrained() || !user.pulling)
 		return
 	if(user.pulling.anchored || !isturf(user.pulling.loc))
@@ -22,15 +22,15 @@
 	else
 		step(user.pulling, get_dir(user.pulling.loc, src))
 
-/turf/simulated/floor/attack_tool(obj/item/tool, mob/user)
+/turf/open/floor/attack_tool(obj/item/tool, mob/user)
 	if(iscrowbar(tool))
 		if(broken || burnt)
 			to_chat(user, SPAN_WARNING("You remove the broken plating."))
 		else
 			if(isnotnull(tile_path))
 				var/obj/item/I = new tile_path(src)
-				if(istype(src, /turf/simulated/floor/light))
-					var/turf/simulated/floor/light/light_floor = src
+				if(istype(src, /turf/open/floor/light))
+					var/turf/open/floor/light/light_floor = src
 					var/obj/item/stack/tile/light/light_stack = I
 					light_stack.on = light_floor.get_on()
 					light_stack.state = light_floor.get_state()
@@ -50,7 +50,7 @@
 
 	return ..()
 
-/turf/simulated/floor/attack_by(obj/item/I, mob/user)
+/turf/open/floor/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/rods))
 		to_chat(user, SPAN_WARNING("You must remove the plating first."))
 		return TRUE

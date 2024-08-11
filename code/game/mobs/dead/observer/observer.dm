@@ -527,7 +527,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/obj/effect/decal/cleanable/blood/choice = input(src,"What blood would you like to use?") in null|choices
 
 	var/direction = input(src, "Which way?", "Tile selection") as anything in list("Here", "North", "South", "East", "West")
-	var/turf/simulated/T = src.loc
+	var/turf/open/T = src.loc
 	if(direction != "Here")
 		T = get_step(T, text2dir(direction))
 

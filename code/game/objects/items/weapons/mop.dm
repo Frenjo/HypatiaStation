@@ -16,7 +16,7 @@
 	. = ..()
 	create_reagents(5)
 
-/obj/item/mop/proc/clean(turf/simulated/A)
+/obj/item/mop/proc/clean(turf/open/A)
 	if(reagents.has_reagent("water", 1))
 		A.clean_blood()
 		A.dirt = 0

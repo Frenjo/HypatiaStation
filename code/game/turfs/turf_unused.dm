@@ -4,7 +4,7 @@
 
 //////Assimilate Air//////
 /*
-/turf/simulated/proc/Assimilate_Air()
+/turf/open/proc/Assimilate_Air()
 	var/aoxy = 0//Holders to assimilate air from nearby turfs
 	var/anitro = 0
 	var/aco = 0
@@ -17,8 +17,8 @@
 		if(isspace(T))//Counted as no air
 			turf_count++//Considered a valid turf for air calcs
 			continue
-		else if(istype(T,/turf/simulated/floor))
-			var/turf/simulated/S = T
+		else if(istype(T,/turf/open/floor))
+			var/turf/open/S = T
 			if(S.air)//Add the air's contents to the holders
 				aoxy += S.air.oxygen
 				anitro += S.air.nitrogen
@@ -38,8 +38,8 @@
 		var/turf/T = get_step(src,direction)
 		if(isspace(T))//Counted as no air
 			continue
-		else if(istype(T,/turf/simulated/floor))
-			var/turf/simulated/S = T
+		else if(istype(T,/turf/open/floor))
+			var/turf/open/S = T
 			if(S.air)//Add the air's contents to the holders
 				S.air.oxygen = air.oxygen
 				S.air.nitrogen = air.nitrogen

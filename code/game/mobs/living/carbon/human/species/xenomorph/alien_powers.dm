@@ -147,7 +147,7 @@
 			to_chat(src, SPAN_ALIUM("You cannot dissolve this object."))
 			return
 		// R FLOOR
-		if(istype(T, /turf/simulated/floor/reinforced))
+		if(istype(T, /turf/open/floor/reinforced))
 			to_chat(src, SPAN_ALIUM("You cannot dissolve this object."))
 			return
 		else// Not a type we can acid.

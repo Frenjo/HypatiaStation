@@ -236,7 +236,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/telecoms/telecoms_list)
 		return
 
 	if(!(stat & (NOPOWER|BROKEN))) //Blatently stolen from space heater.
-		var/turf/simulated/L = loc
+		var/turf/open/L = loc
 		if(istype(L))
 			var/datum/gas_mixture/env = L.return_air()
 			//if(env.temperature < (heat_amt+T0C))

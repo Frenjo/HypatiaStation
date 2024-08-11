@@ -1461,7 +1461,7 @@
 		spawn(20)
 			qdel(S)
 
-		var/turf/simulated/floor/T = get_turf(M)
+		var/turf/open/floor/T = get_turf(M)
 		if(istype(T))
 			if(prob(80))	T.break_tile_to_plating()
 			else			T.break_tile()
@@ -2210,7 +2210,7 @@
 
 				message_admins("[key_name_admin(usr)] made the floor LAVA! It'll last [length] seconds and it will deal [damage] damage to everyone.", 1)
 
-				for(var/turf/simulated/floor/F in GLOBL.simulated_turf_list)
+				for(var/turf/open/floor/F in GLOBL.open_turf_list)
 					if(isstationlevel(F.z))
 						F.name = "lava"
 						F.desc = "The floor is LAVA!"
@@ -2221,8 +2221,8 @@
 					for(var/i = 0, i < length, i++) // 180 = 3 minutes
 						if(damage)
 							for(var/mob/living/carbon/L in GLOBL.living_mob_list)
-								if(istype(L.loc, /turf/simulated/floor)) // Are they on LAVA?!
-									var/turf/simulated/floor/F = L.loc
+								if(istype(L.loc, /turf/open/floor)) // Are they on LAVA?!
+									var/turf/open/floor/F = L.loc
 									if(F.lava)
 										var/safe = 0
 										for(var/obj/structure/O in F.contents)
@@ -2235,7 +2235,7 @@
 
 						sleep(10)
 
-					for(var/turf/simulated/floor/F in GLOBL.simulated_turf_list) // Reset everything.
+					for(var/turf/open/floor/F in GLOBL.open_turf_list) // Reset everything.
 						if(isstationlevel(F.z))
 							F.name = initial(F.name)
 							F.desc = initial(F.desc)

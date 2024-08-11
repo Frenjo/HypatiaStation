@@ -2,10 +2,10 @@
  * Tiled... Tiles?
  * The most common type of flooring.
  */
-/turf/simulated/floor/tiled
+/turf/open/floor/tiled
 	name = "tiled floor"
 
-/turf/simulated/floor/tiled/update_icon()
+/turf/open/floor/tiled/update_icon()
 	. = ..()
 	if(!.)
 		return FALSE
@@ -14,12 +14,12 @@
 
 	icon_state = icon_regular_floor
 
-/turf/simulated/floor/tiled/break_tile()
+/turf/open/floor/tiled/break_tile()
 	. = ..()
 	if(.)
 		icon_state = "damaged[pick(1, 2, 3, 4, 5)]"
 
-/turf/simulated/floor/tiled/burn_tile()
+/turf/open/floor/tiled/burn_tile()
 	. = ..()
 	if(.)
 		if(prob(50))
@@ -28,46 +28,46 @@
 			icon_state = "floorscorched[pick(1, 2)]"
 
 // Grey Tiles - The standard ones.
-/turf/simulated/floor/tiled/grey
+/turf/open/floor/tiled/grey
 	icon_state = "floor"
 	tile_path = /obj/item/stack/tile/metal/grey
 
 // White Tiles - The medical and science ones.
-/turf/simulated/floor/tiled/white
+/turf/open/floor/tiled/white
 	icon_state = "white"
 	tile_path = /obj/item/stack/tile/metal/white
 
 // Dark Tiles - The ominous ones.
-/turf/simulated/floor/tiled/dark
+/turf/open/floor/tiled/dark
 	icon_state = "dark"
 	tile_path = /obj/item/stack/tile/metal/dark
 
-/turf/simulated/floor/tiled/dark/server
+/turf/open/floor/tiled/dark/server
 	name = "server walkway"
 	initial_gases = list(/decl/xgm_gas/nitrogen = 500)
 	temperature = 80
 
-/turf/simulated/floor/tiled/dark/mainframe
+/turf/open/floor/tiled/dark/mainframe
 	name = "mainframe floor"
 	initial_gases = list(/decl/xgm_gas/nitrogen = 100)
 	temperature = 80
 
 // Dark Chapel Tiles - The religiously ominous ones.
-/turf/simulated/floor/tiled/dark_chapel
+/turf/open/floor/tiled/dark_chapel
 	icon_state = "darkchapel"
 	tile_path = /obj/item/stack/tile/metal/dark_chapel
 
 // Freezer Tiles - The chilly ones.
-/turf/simulated/floor/tiled/freezer
+/turf/open/floor/tiled/freezer
 	icon_state = "freezerfloor"
 	tile_path = /obj/item/stack/tile/metal/freezer
 
 // Showroom Tiles - The fancy ones.
-/turf/simulated/floor/tiled/showroom
+/turf/open/floor/tiled/showroom
 	icon_state = "showroomfloor"
 	tile_path = /obj/item/stack/tile/metal/showroom
 
 // Hydroponics Tiles - The slightly green ones.
-/turf/simulated/floor/tiled/hydroponics
+/turf/open/floor/tiled/hydroponics
 	icon_state = "hydrofloor"
 	tile_path = /obj/item/stack/tile/metal/hydroponics

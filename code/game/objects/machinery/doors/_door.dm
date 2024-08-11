@@ -279,13 +279,13 @@
 	if(!global.PCair)
 		return 0
 
-	for(var/turf/simulated/turf in locs)
+	for(var/turf/open/turf in locs)
 		update_heat_protection(turf)
 		global.PCair.mark_for_update(turf)
 
 	return 1
 
-/obj/machinery/door/proc/update_heat_protection(turf/simulated/source)
+/obj/machinery/door/proc/update_heat_protection(turf/open/source)
 	if(istype(source))
 		if(density && (opacity || heat_proof))
 			source.thermal_conductivity = DOOR_HEAT_TRANSFER_COEFFICIENT

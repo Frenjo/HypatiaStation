@@ -36,7 +36,7 @@
  *		Called when zones have a direct connection and equivalent pressure and temperature.
  *		Merges the zones to create a single zone.
  *
- *	connect(turf/simulated/A, turf/B)
+ *	connect(turf/open/A, turf/B)
  *		Called by turf/update_air_properties(). The first argument must be simulated.
  *		Creates a connection between A and B.
  *
@@ -103,8 +103,8 @@ PROCESS_DEF(air)
 
 	to_world(SPAN_DANGER("↪ Processing geometry..."))
 
-	var/simulated_turf_count = length(GLOBL.simulated_turf_list)
-	for_no_type_check(var/turf/simulated/S, GLOBL.simulated_turf_list)
+	var/simulated_turf_count = length(GLOBL.open_turf_list)
+	for_no_type_check(var/turf/open/S, GLOBL.open_turf_list)
 		S.update_air_properties()
 		CHECK_TICK
 
@@ -225,7 +225,7 @@ PROCESS_DEF(air)
 		return BLOCKED
 	return ablock | B.c_airblock(A)
 
-/datum/process/air/proc/has_valid_zone(turf/simulated/T)
+/datum/process/air/proc/has_valid_zone(turf/open/T)
 	#ifdef ZASDBG
 	ASSERT(istype(T))
 	#endif
@@ -246,7 +246,7 @@ PROCESS_DEF(air)
 		B.c_merge(A)
 		mark_zone_update(A)
 
-/datum/process/air/proc/connect(turf/simulated/A, turf/simulated/B)
+/datum/process/air/proc/connect(turf/open/A, turf/open/B)
 	#ifdef ZASDBG
 	ASSERT(istype(A))
 	ASSERT(isturf(B))

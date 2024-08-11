@@ -256,7 +256,7 @@
 	else if(pressure > TANK_RUPTURE_PRESSURE)
 		//to_world("\blue[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]")
 		if(integrity <= 0)
-			var/turf/simulated/T = get_turf(src)
+			var/turf/open/T = get_turf(src)
 			if(isnull(T))
 				return
 			T.assume_air(air_contents)
@@ -268,7 +268,7 @@
 	else if(pressure > TANK_LEAK_PRESSURE)
 		//to_world("\blue[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]")
 		if(integrity <= 0)
-			var/turf/simulated/T = get_turf(src)
+			var/turf/open/T = get_turf(src)
 			if(isnull(T))
 				return
 			var/datum/gas_mixture/leaked_gas = air_contents.remove_ratio(0.25)

@@ -1,29 +1,29 @@
 // Contains: Holographic Turfs
 // Base
-/turf/simulated/floor/holofloor
+/turf/open/floor/holofloor
 	thermal_conductivity = 0
 
-/turf/simulated/floor/holofloor/attackby(obj/item/W, mob/user)
+/turf/open/floor/holofloor/attackby(obj/item/W, mob/user)
 	return	// HOLOFLOOR DOES NOT GIVE A FUCK
 
-/turf/simulated/floor/holofloor/burnmix
+/turf/open/floor/holofloor/burnmix
 	name = "burn-mix floor"
 	icon_state = "engine"
 	initial_gases = list(/decl/xgm_gas/oxygen = 2500, /decl/xgm_gas/plasma = 5000)
 	temperature = 370
 
 // Grass
-/turf/simulated/floor/holofloor/grass
+/turf/open/floor/holofloor/grass
 	name = "lush grass"
 	icon_state = "grass1"
 	tile_path = /obj/item/stack/tile/grass
 
-/turf/simulated/floor/holofloor/grass/New()
+/turf/open/floor/holofloor/grass/New()
 	icon_state = "grass[pick("1", "2", "3", "4")]"
 	..()
 	spawn(4)
 		update_icon()
 		for(var/direction in GLOBL.cardinal)
-			if(istype(get_step(src, direction), /turf/simulated/floor))
-				var/turf/simulated/floor/FF = get_step(src, direction)
+			if(istype(get_step(src, direction), /turf/open/floor))
+				var/turf/open/floor/FF = get_step(src, direction)
 				FF.update_icon() //so siding get updated properly

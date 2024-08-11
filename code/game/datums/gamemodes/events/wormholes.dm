@@ -1,7 +1,7 @@
 /proc/wormhole_event()
 	spawn()
 		var/list/pick_turfs = list()
-		for(var/turf/simulated/floor/T in GLOBL.simulated_turf_list)
+		for(var/turf/open/floor/T in GLOBL.open_turf_list)
 			if(isstationlevel(T.z))
 				pick_turfs += T
 
@@ -39,12 +39,12 @@
 				i++
 
 				//get our enter and exit locations
-				var/turf/simulated/floor/enter = pick_turfs[i]
+				var/turf/open/floor/enter = pick_turfs[i]
 				pick_turfs -= enter							//remove it from pickable turfs list
 				if(!enter || !istype(enter))
 					continue	//sanity
 
-				var/turf/simulated/floor/exit = pick(pick_turfs)
+				var/turf/open/floor/exit = pick(pick_turfs)
 				pick_turfs -= exit
 				if(!exit || !istype(exit))
 					continue	//sanity

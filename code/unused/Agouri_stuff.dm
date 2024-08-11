@@ -300,7 +300,7 @@
 	//pr_give_air = new /datum/global_iterator/vehicle_tank_give_air(list(src)            //Same here -Agouri
 
 /obj/vehicle/proc/check_for_support()
-	if(locate(/obj/structure/grille, orange(1, src)) || locate(/obj/structure/lattice, orange(1, src)) || locate(/turf/simulated, orange(1, src)))
+	if(locate(/obj/structure/grille, orange(1, src)) || locate(/obj/structure/lattice, orange(1, src)) || locate(/turf/open, orange(1, src)))
 		return 1
 	else
 		return 0
@@ -536,7 +536,7 @@
 	var/prior_icon = icon_old
 	var/old_dir = dir
 
-	var/turf/simulated/floor/W = new /turf/simulated/floor( locate(src.x, src.y, src.z) )
+	var/turf/open/floor/W = new /turf/open/floor( locate(src.x, src.y, src.z) )
 
 	W.RemoveLattice()
 	W.dir = old_dir
@@ -554,7 +554,7 @@
 	var/prior_icon = icon_old
 	var/old_dir = dir
 
-	var/turf/simulated/floor/plating/metal/W = new /turf/simulated/floor/plating/metal( locate(src.x, src.y, src.z) )
+	var/turf/open/floor/plating/metal/W = new /turf/open/floor/plating/metal( locate(src.x, src.y, src.z) )
 
 	W.RemoveLattice()
 	W.dir = old_dir
@@ -568,12 +568,12 @@
 /turf/proc/ReplaceWithEngineFloor()
 	var/old_dir = dir
 
-	var/turf/simulated/floor/reinforced/E = new /turf/simulated/floor/reinforced( locate(src.x, src.y, src.z) )
+	var/turf/open/floor/reinforced/E = new /turf/open/floor/reinforced( locate(src.x, src.y, src.z) )
 
 	E.dir = old_dir
 	E.icon_state = "engine"
 
-/turf/simulated/Entered(atom/A, atom/OL)
+/turf/open/Entered(atom/A, atom/OL)
 	if(iscarbon(A))
 		var/mob/living/carbon/M = A
 		if(M.lying)	return
@@ -790,7 +790,7 @@
 			O.anchored = TRUE
 			O.density = TRUE
 			O.layer = 5
-			var/turf/simulated/floor/F = ReplaceWithPlating()
+			var/turf/open/floor/F = ReplaceWithPlating()
 			F.burn_tile()
 			F.icon_state = "wall_thermite"
 			user << "\red The thermite melts the wall."
@@ -826,7 +826,7 @@
 			O.anchored = TRUE
 			O.density = TRUE
 			O.layer = 5
-			var/turf/simulated/floor/F = ReplaceWithPlating()
+			var/turf/open/floor/F = ReplaceWithPlating()
 			F.burn_tile()
 			F.icon_state = "wall_thermite"
 			user << "\red The thermite melts the wall."
@@ -942,7 +942,7 @@
 			O.anchored = TRUE
 			O.density = TRUE
 			O.layer = 5
-			var/turf/simulated/floor/F = ReplaceWithPlating()
+			var/turf/open/floor/F = ReplaceWithPlating()
 			F.burn_tile()
 			F.icon_state = "wall_thermite"
 			user << "\red The thermite melts the wall."
@@ -985,7 +985,7 @@
 			O.anchored = TRUE
 			O.density = TRUE
 			O.layer = 5
-			var/turf/simulated/floor/F = ReplaceWithPlating()
+			var/turf/open/floor/F = ReplaceWithPlating()
 			F.burn_tile()
 			F.icon_state = "wall_thermite"
 			user << "\red The thermite melts the wall."
@@ -1158,7 +1158,7 @@ var/list/icons_to_ignore_at_floor_init = list("damaged1","damaged2","damaged3","
 
 var/list/plating_icons = list("plating","platingdmg1","platingdmg2","platingdmg3","asteroid","asteroid_dug")
 
-/turf/simulated/floor
+/turf/open/floor
 
 	//Note to coders, the 'intact' var can no longer be used to determine if the floor is a plating or not.
 	//Use the is_plating(), is_plasteel_floor() and is_light_floor() procs instead. --Errorage
@@ -1210,11 +1210,11 @@ var/list/plating_icons = list("plating","platingdmg1","platingdmg2","platingdmg3
 			spawn(4)
 				update_icon()
 				for(var/direction in cardinal)
-					if(istype(get_step(src,direction),/turf/simulated/floor))
-						var/turf/simulated/floor/FF = get_step(src,direction)
+					if(istype(get_step(src,direction),/turf/open/floor))
+						var/turf/open/floor/FF = get_step(src,direction)
 						FF.update_icon() //so siding get updated properly
 
-/turf/simulated/floor/vault
+/turf/open/floor/vault
 	icon_state = "rockvault"
 
 	New(location,type)
@@ -1228,18 +1228,18 @@ var/list/plating_icons = list("plating","platingdmg1","platingdmg2","platingdmg3
 		..()
 		icon_state = "[type]vault"
 
-/turf/simulated/floor/reinforced
+/turf/open/floor/reinforced
 	name = "reinforced floor"
 	icon_state = "engine"
 	thermal_conductivity = 0.025
 	heat_capacity = 325000
 
-/turf/simulated/floor/reinforced/cult
+/turf/open/floor/reinforced/cult
 	name = "engraved floor"
 	icon_state = "cult"
 
 
-/turf/simulated/floor/reinforced/n20
+/turf/open/floor/reinforced/n20
 	New()
 		..()
 		var/datum/gas_mixture/adding = new
@@ -1251,20 +1251,20 @@ var/list/plating_icons = list("plating","platingdmg1","platingdmg2","platingdmg3
 
 		assume_air(adding)
 
-/turf/simulated/floor/reinforced/vacuum
+/turf/open/floor/reinforced/vacuum
 	name = "vacuum floor"
 	icon_state = "engine"
 	oxygen = 0
 	nitrogen = 0.001
 	temperature = TCMB
 
-/turf/simulated/floor/plating/metal
+/turf/open/floor/plating/metal
 	name = "plating"
 	icon_state = "plating"
 	floor_tile = null
 	intact = 0
 
-/turf/simulated/floor/plating/metal/airless
+/turf/open/floor/plating/metal/airless
 	icon_state = "plating"
 	name = "airless plating"
 	oxygen = 0.01
@@ -1275,24 +1275,24 @@ var/list/plating_icons = list("plating","platingdmg1","platingdmg2","platingdmg3
 		..()
 		name = "plating"
 
-/turf/simulated/floor/grid
+/turf/open/floor/grid
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "circuit"
 
-/turf/simulated/floor/New()
+/turf/open/floor/New()
 	..()
 	if(icon_state in icons_to_ignore_at_floor_init) //so damaged/burned tiles or plating icons aren't saved as the default
 		icon_regular_floor = "floor"
 	else
 		icon_regular_floor = icon_state
 
-//turf/simulated/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
+//turf/open/floor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 //	if ((istype(mover, /obj/machinery/vehicle) && !(src.burnt)))
 //		if (!( locate(/obj/machinery/mass_driver, src) ))
 //			return 0
 //	return ..()
 
-/turf/simulated/floor/ex_act(severity)
+/turf/open/floor/ex_act(severity)
 	//set src in oview(1)
 	switch(severity)
 		if(1.0)
@@ -1317,10 +1317,10 @@ var/list/plating_icons = list("plating","platingdmg1","platingdmg2","platingdmg3
 				src.hotspot_expose(1000,CELL_VOLUME)
 	return
 
-/turf/simulated/floor/blob_act()
+/turf/open/floor/blob_act()
 	return
 
-turf/simulated/floor/proc/update_icon()
+turf/open/floor/proc/update_icon()
 	if(is_plasteel_floor())
 		if(!broken && !burnt)
 			icon_state = icon_regular_floor
@@ -1352,11 +1352,11 @@ turf/simulated/floor/proc/update_icon()
 			if(!(icon_state in list("grass1","grass2","grass3","grass4")))
 				icon_state = "grass[pick("1","2","3","4")]"
 	spawn(1)
-		if(istype(src,/turf/simulated/floor)) //Was throwing runtime errors due to a chance of it changing to space halfway through.
+		if(istype(src,/turf/open/floor)) //Was throwing runtime errors due to a chance of it changing to space halfway through.
 			if(air)
 				update_visuals(air)
 
-turf/simulated/floor/return_siding_icon_state()
+turf/open/floor/return_siding_icon_state()
 	..()
 	if(is_grass_floor())
 		var/dir_sum = 0
@@ -1370,10 +1370,10 @@ turf/simulated/floor/return_siding_icon_state()
 			return 0
 
 
-/turf/simulated/floor/attack_paw(mob/user as mob)
+/turf/open/floor/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/turf/simulated/floor/attack_hand(mob/user as mob)
+/turf/open/floor/attack_hand(mob/user as mob)
 	if (is_light_floor())
 		var/obj/item/stack/tile/light/T = floor_tile
 		T.on = !T.on
@@ -1394,7 +1394,7 @@ turf/simulated/floor/return_siding_icon_state()
 		step(user.pulling, get_dir(user.pulling.loc, src))
 	return
 
-/turf/simulated/floor/reinforced/attackby(obj/item/C as obj, mob/user as mob)
+/turf/open/floor/reinforced/attackby(obj/item/C as obj, mob/user as mob)
 	if(!C)
 		return
 	if(!user)
@@ -1405,44 +1405,44 @@ turf/simulated/floor/return_siding_icon_state()
 		if(do_after(user, 30))
 			new /obj/item/stack/rods(src, 2)
 			ReplaceWithFloor()
-			var/turf/simulated/floor/F = src
+			var/turf/open/floor/F = src
 			F.make_plating()
 			return
 
-/turf/simulated/floor/proc/gets_drilled()
+/turf/open/floor/proc/gets_drilled()
 	return
 
-/turf/simulated/floor/proc/break_tile_to_plating()
+/turf/open/floor/proc/break_tile_to_plating()
 	if(!is_plating())
 		make_plating()
 	break_tile()
 
-/turf/simulated/floor/is_plasteel_floor()
+/turf/open/floor/is_plasteel_floor()
 	if(istype(floor_tile,/obj/item/stack/tile/metal/grey))
 		return 1
 	else
 		return 0
 
-/turf/simulated/floor/is_light_floor()
+/turf/open/floor/is_light_floor()
 	if(istype(floor_tile,/obj/item/stack/tile/light))
 		return 1
 	else
 		return 0
 
-/turf/simulated/floor/is_grass_floor()
+/turf/open/floor/is_grass_floor()
 	if(istype(floor_tile,/obj/item/stack/tile/grass))
 		return 1
 	else
 		return 0
 
-/turf/simulated/floor/is_plating()
+/turf/open/floor/is_plating()
 	if(!floor_tile)
 		return 1
 	return 0
 
-/turf/simulated/floor/proc/break_tile()
-	if(istype(src,/turf/simulated/floor/reinforced)) return
-	if(istype(src,/turf/simulated/floor/mech_bay_recharge_floor))
+/turf/open/floor/proc/break_tile()
+	if(istype(src,/turf/open/floor/reinforced)) return
+	if(istype(src,/turf/open/floor/mech_bay_recharge_floor))
 		src.ReplaceWithPlating()
 	if(broken) return
 	if(is_plasteel_floor())
@@ -1458,8 +1458,8 @@ turf/simulated/floor/return_siding_icon_state()
 		src.icon_state = "sand[pick("1","2","3")]"
 		broken = 1
 
-/turf/simulated/floor/proc/burn_tile()
-	if(istype(src,/turf/simulated/floor/reinforced)) return
+/turf/open/floor/proc/burn_tile()
+	if(istype(src,/turf/open/floor/reinforced)) return
 	if(broken || burnt) return
 	if(is_plasteel_floor())
 		src.icon_state = "damaged[pick(1,2,3,4,5)]"
@@ -1476,13 +1476,13 @@ turf/simulated/floor/return_siding_icon_state()
 
 //This proc will delete the floor_tile and the update_iocn() proc will then change the icon_state of the turf
 //This proc auto corrects the grass tiles' siding.
-/turf/simulated/floor/proc/make_plating()
-	if(istype(src,/turf/simulated/floor/reinforced)) return
+/turf/open/floor/proc/make_plating()
+	if(istype(src,/turf/open/floor/reinforced)) return
 
 	if(is_grass_floor())
 		for(var/direction in cardinal)
-			if(istype(get_step(src,direction),/turf/simulated/floor))
-				var/turf/simulated/floor/FF = get_step(src,direction)
+			if(istype(get_step(src,direction),/turf/open/floor))
+				var/turf/open/floor/FF = get_step(src,direction)
 				FF.update_icon() //so siding get updated properly
 
 	if(!floor_tile) return
@@ -1500,7 +1500,7 @@ turf/simulated/floor/return_siding_icon_state()
 //This proc will make the turf a plasteel floor tile. The expected argument is the tile to make the turf with
 //If none is given it will make a new object. dropping or unequipping must be handled before or after calling
 //this proc.
-/turf/simulated/floor/proc/make_plasteel_floor(var/obj/item/stack/tile/metal/grey/T = null)
+/turf/open/floor/proc/make_plasteel_floor(var/obj/item/stack/tile/metal/grey/T = null)
 	broken = 0
 	burnt = 0
 	intact = 1
@@ -1527,7 +1527,7 @@ turf/simulated/floor/return_siding_icon_state()
 //This proc will make the turf a light floor tile. The expected argument is the tile to make the turf with
 //If none is given it will make a new object. dropping or unequipping must be handled before or after calling
 //this proc.
-/turf/simulated/floor/proc/make_light_floor(var/obj/item/stack/tile/light/T = null)
+/turf/open/floor/proc/make_light_floor(var/obj/item/stack/tile/light/T = null)
 	broken = 0
 	burnt = 0
 	intact = 1
@@ -1545,7 +1545,7 @@ turf/simulated/floor/return_siding_icon_state()
 
 //This proc will make a turf into a grass patch. Fun eh? Insert the grass tile to be used as the argument
 //If no argument is given a new one will be made.
-/turf/simulated/floor/proc/make_grass_floor(var/obj/item/stack/tile/grass/T = null)
+/turf/open/floor/proc/make_grass_floor(var/obj/item/stack/tile/grass/T = null)
 	broken = 0
 	burnt = 0
 	intact = 1
@@ -1561,7 +1561,7 @@ turf/simulated/floor/return_siding_icon_state()
 	update_icon()
 	levelupdate()
 
-/turf/simulated/floor/attackby(obj/item/C as obj, mob/user as mob)
+/turf/open/floor/attackby(obj/item/C as obj, mob/user as mob)
 
 	if(!C || !user)
 		return 0
@@ -1619,8 +1619,8 @@ turf/simulated/floor/return_siding_icon_state()
 					F.on = L.on
 				if(istype(T,/obj/item/stack/tile/grass))
 					for(var/direction in cardinal)
-						if(istype(get_step(src,direction),/turf/simulated/floor))
-							var/turf/simulated/floor/FF = get_step(src,direction)
+						if(istype(get_step(src,direction),/turf/open/floor))
+							var/turf/open/floor/FF = get_step(src,direction)
 							FF.update_icon() //so siding gets updated properly
 				T.use(1)
 				update_icon()
@@ -1926,7 +1926,7 @@ turf/simulated/floor/return_siding_icon_state()
 			if(i == lowBoundX || i == hiBoundX || j == lowBoundY || j == hiBoundY)
 				new /turf/closed/wall/vault(locate(i,j,z),type)
 			else
-				new /turf/simulated/floor/vault(locate(i,j,z),type)
+				new /turf/open/floor/vault(locate(i,j,z),type)
 
 	del(src)
 

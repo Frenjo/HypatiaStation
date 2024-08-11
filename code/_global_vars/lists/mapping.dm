@@ -20,7 +20,7 @@ GLOBAL_GLOBL_LIST_INIT(accessible_z_levels, list("1" = 5, "3" = 10, "4" = 15, "5
 
 // Areas
 GLOBAL_GLOBL_LIST_NEW(area/area_list) // A list of all areas in the world.
-GLOBAL_GLOBL_LIST_NEW(turf/simulated/simulated_turf_list) // A list of all simulated turfs in the world.
+GLOBAL_GLOBL_LIST_NEW(turf/open/open_turf_list) // A list of all open turfs in the world.
 
 // Landmarks
 GLOBAL_GLOBL_LIST_NEW(obj/effect/landmark/landmark_list) // A list of all created landmarks.

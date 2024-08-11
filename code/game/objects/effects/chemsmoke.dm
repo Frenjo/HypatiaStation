@@ -220,9 +220,9 @@
 	pending += location
 
 	while(length(pending))
-		for(var/turf/simulated/current in pending)
+		for(var/turf/open/current in pending)
 			for(var/D in GLOBL.cardinal)
-				var/turf/simulated/target = get_step(current, D)
+				var/turf/open/target = get_step(current, D)
 				if(wallList)
 					if(istype(target, /turf/closed/wall))
 						if(!(target in wallList))

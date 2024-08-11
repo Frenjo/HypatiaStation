@@ -95,8 +95,8 @@
 						if(istype(m, f2))
 							from_objs += m
 
-				else if(text_starts_with(f, "/turf/simulated"))
-					for_no_type_check(var/turf/simulated/m, GLOBL.simulated_turf_list)
+				else if(text_starts_with(f, "/turf/open"))
+					for_no_type_check(var/turf/open/m, GLOBL.open_turf_list)
 						if(istype(m, f2))
 							from_objs += m
 
@@ -159,8 +159,8 @@
 							if(istype(m, f2))
 								objs += m
 
-					else if(text_starts_with(f, "/turf/simulated"))
-						for(var/turf/simulated/m in from_obj)
+					else if(text_starts_with(f, "/turf/open"))
+						for(var/turf/open/m in from_obj)
 							if(istype(m, f2))
 								objs += m
 

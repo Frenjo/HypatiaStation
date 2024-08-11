@@ -26,7 +26,7 @@ Important variables:
 		Turfs that are in this list have their border data updated before the next air calculations for a cycle.
 		Place turfs in this list rather than call the proc directly to prevent race conditions
 
-	turf/simulated.archive() and datum/air_group.archive()
+	turf/open.archive() and datum/air_group.archive()
 		This stores all data for.
 		If you modify, make sure to update the archived_cycle to prevent race conditions and maintain symmetry
 
@@ -86,15 +86,15 @@ datum
 		air_system
 			//Geoemetry lists
 			var/list/datum/air_group/air_groups = list()
-			var/list/turf/simulated/active_singletons = list()
+			var/list/turf/open/active_singletons = list()
 
 			//Special functions lists
-			var/list/turf/simulated/active_super_conductivity = list()
-			var/list/turf/simulated/high_pressure_delta = list()
+			var/list/turf/open/active_super_conductivity = list()
+			var/list/turf/open/high_pressure_delta = list()
 
 			//Geometry updates lists
-			var/list/turf/simulated/tiles_to_update = list()
-			var/list/turf/simulated/groups_to_rebuild = list()
+			var/list/turf/open/tiles_to_update = list()
+			var/list/turf/open/groups_to_rebuild = list()
 
 			var/current_cycle = 0
 
@@ -103,7 +103,7 @@ datum
 					//Call this at the start to setup air groups geometry
 					//Warning: Very processor intensive but only must be done once per round
 
-				assemble_group_turf(turf/simulated/base)
+				assemble_group_turf(turf/open/base)
 					//Call this to try to construct a group starting from base and merging with neighboring unparented tiles
 					//Expands the group until all valid borders explored
 
@@ -140,7 +140,7 @@ datum
 					//Used by process_rebuild_select_groups()
 					//Warning: Do not call this, add the group to air_master.groups_to_rebuild instead
 
-				add_singleton(turf/simulated/T)
+				add_singleton(turf/open/T)
 					if(!active_singletons.Find(T))
 						active_singletons += T
 
@@ -151,23 +151,23 @@ datum
 
 				var/start_time = world.timeofday
 
-				for_no_type_check(var/turf/simulated/S, GLOBL.simulated_turf_list)
+				for_no_type_check(var/turf/open/S, GLOBL.simulated_turf_list)
 					if(!S.blocks_air && !S.parent)
 						assemble_group_turf(S)
 					S.update_air_properties()
 
 				to_world("\red \b Geometry processed in [(world.timeofday-start_time)/10] seconds!")
 
-			assemble_group_turf(turf/simulated/base)
+			assemble_group_turf(turf/open/base)
 
-				var/list/turf/simulated/members = list(base) //Confirmed group members
-				var/list/turf/simulated/possible_members = list(base) //Possible places for group expansion
-				var/list/turf/simulated/possible_borders = list()
-				var/list/turf/simulated/possible_space_borders = list()
+				var/list/turf/open/members = list(base) //Confirmed group members
+				var/list/turf/open/possible_members = list(base) //Possible places for group expansion
+				var/list/turf/open/possible_borders = list()
+				var/list/turf/open/possible_space_borders = list()
 				var/possible_space_length = 0
 
 				while(possible_members.len>0) //Keep expanding, looking for new members
-					for(var/turf/simulated/test in possible_members)
+					for(var/turf/open/test in possible_members)
 						test.length_space_border = 0
 						for(var/direction in cardinal)
 							var/turf/T = get_step(test,direction)
@@ -194,7 +194,7 @@ datum
 						group.space_borders = possible_space_borders
 						group.length_space_border = possible_space_length
 
-					for(var/turf/simulated/test in members)
+					for(var/turf/open/test in members)
 						test.parent = group
 						test.processing = 0
 						active_singletons -= test
@@ -275,7 +275,7 @@ datum
 				return 1
 
 			process_update_tiles()
-				for(var/turf/simulated/T in tiles_to_update)
+				for(var/turf/open/T in tiles_to_update)
 					T.update_air_properties()
 /*
 				for(var/obj/movable/floor/O in tiles_to_update)
@@ -288,15 +288,15 @@ datum
 
 				for(var/datum/air_group/turf/turf_AG in groups_to_rebuild) //Deconstruct groups, gathering their old members
 					for(var/turf in turf_AG.members)
-						var/turf/simulated/T = turf
+						var/turf/open/T = turf
 						T.parent = null
 						turfs += T
 					del(turf_AG)
 
-				for(var/turf/simulated/S in turfs) //Have old members try to form new groups
+				for(var/turf/open/S in turfs) //Have old members try to form new groups
 					if(!S.parent)
 						assemble_group_turf(S)
-				for(var/turf/simulated/S in turfs)
+				for(var/turf/open/S in turfs)
 					S.update_air_properties()
 
 //				var/obj/movable/list/movable_objects = list()
@@ -325,7 +325,7 @@ datum
 					item:process_cell()
 
 			process_super_conductivity()
-				for(var/turf/simulated/hot_potato in active_super_conductivity)
+				for(var/turf/open/hot_potato in active_super_conductivity)
 					hot_potato.super_conduct()
 
 			process_high_pressure_delta()

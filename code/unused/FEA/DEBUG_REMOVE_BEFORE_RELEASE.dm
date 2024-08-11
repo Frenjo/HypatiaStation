@@ -8,7 +8,7 @@ datum/gas_mixture
 	var/turf/parent
 
 /*
-turf/simulated
+turf/open
 	New()
 		..()
 
@@ -28,7 +28,7 @@ turf/space
 	verb
 		create_floor()
 			set src in world
-			new /turf/simulated/floor(src)
+			new /turf/open/floor(src)
 
 		create_meteor(direction as num)
 			set src in world
@@ -41,7 +41,7 @@ turf/wall
 	verb
 		create_floor()
 			set src in world
-			new /turf/simulated/floor(src)
+			new /turf/open/floor(src)
 
 /obj/item/tank
 	verb
@@ -55,7 +55,7 @@ turf/wall
 			air_contents.oxygen = target_oxygen_pressure*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
 			air_contents.toxins = target_toxin_pressure*air_contents.volume/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
 
-turf/simulated/floor
+turf/open/floor
 	verb
 		parent_info()
 			set src in world
@@ -390,7 +390,7 @@ mob
 				else
 					V.overlays += icon('icons/Testing/atmos_testing.dmi',"marker0")
 
-turf/simulated
+turf/open
 	var/fire_verbose = 0
 
 	verb
@@ -568,7 +568,7 @@ mob
 			for(var/datum/air_group/group in air_master.air_groups)
 				group.marker = 0
 
-			for(var/turf/simulated/floor/S in GLOBL.simulated_turf_list)
+			for(var/turf/open/floor/S in GLOBL.simulated_turf_list)
 				S.icon = 'icons/Testing/turf_analysis.dmi'
 				if(S.parent)
 					if(S.parent.group_processing)
@@ -615,7 +615,7 @@ mob
 			for(var/datum/air_group/group in air_master.air_groups)
 				group.marker = 0
 
-			for(var/turf/simulated/floor/S in GLOBL.simulated_turf_list)
+			for(var/turf/open/floor/S in GLOBL.simulated_turf_list)
 				S.icon = 'icons/Testing/turf_analysis.dmi'
 				if(S.parent)
 					if(S.parent.group_processing)

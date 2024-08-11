@@ -24,7 +24,7 @@
 
 /datum/event/infestation/start()
 	location = rand(0, 9)
-	var/list/turf/simulated/floor/turfs = list()
+	var/list/turf/open/floor/turfs = list()
 	var/spawn_area_type
 	switch(location)
 		if(LOC_KITCHEN)
@@ -65,10 +65,10 @@
 		//to_world("	A: [A], contents.len: [length(A.contents)]")
 		//for(var/area/B in A.related)
 			//to_world("	B: [B], contents.len: [length(B.contents)]")
-		//	for(var/turf/simulated/floor/F in B.contents)
+		//	for(var/turf/open/floor/F in B.contents)
 		//		if(!length(F.contents))
 		//			turfs += F
-		for(var/turf/simulated/floor/F in A.contents)
+		for(var/turf/open/floor/F in A.contents)
 			if(!length(F.contents))
 				turfs += F
 
@@ -91,7 +91,7 @@
 	spawn(0)
 		var/num = rand(2,max_number)
 		while(length(turfs) && num > 0)
-			var/turf/simulated/floor/T = pick(turfs)
+			var/turf/open/floor/T = pick(turfs)
 			turfs.Remove(T)
 			num--
 

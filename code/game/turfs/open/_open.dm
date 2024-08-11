@@ -1,4 +1,4 @@
-/turf/simulated
+/turf/open
 	name = "station"
 	initial_gases = list(/decl/xgm_gas/oxygen = MOLES_O2STANDARD, /decl/xgm_gas/nitrogen = MOLES_N2STANDARD)
 
@@ -9,21 +9,21 @@
 	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
 	var/dirt = 0
 
-/turf/simulated/New()
+/turf/open/New()
 	. = ..()
-	GLOBL.simulated_turf_list.Add(src)
+	GLOBL.open_turf_list.Add(src)
 
-/turf/simulated/initialise()
+/turf/open/initialise()
 	. = ..()
 	for(var/atom/movable/mover in src)
 		spawn(0)
 			Entered(mover)
 
-/turf/simulated/Destroy()
-	GLOBL.simulated_turf_list.Remove(src)
+/turf/open/Destroy()
+	GLOBL.open_turf_list.Remove(src)
 	return ..()
 
-/turf/simulated/Entered(atom/A, atom/OL)
+/turf/open/Entered(atom/A, atom/OL)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
 		FEEDBACK_MOVEMENT_ADMIN_DISABLED(usr) // This is to identify lag problems.
 		return
@@ -73,7 +73,7 @@
 
 			if(bloodDNA)
 				AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints, bloodDNA, H.dir, 0, bloodcolor) // Coming
-				var/turf/simulated/from = get_step(H,reverse_direction(H.dir))
+				var/turf/open/from = get_step(H,reverse_direction(H.dir))
 				if(istype(from) && from)
 					from.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints, bloodDNA, 0, H.dir, bloodcolor) // Going
 
@@ -150,7 +150,7 @@
 	. = ..()
 
 //returns 1 if made bloody, returns 0 otherwise
-/turf/simulated/add_blood(mob/living/carbon/human/M)
+/turf/open/add_blood(mob/living/carbon/human/M)
 	if(!..())
 		return 0
 
@@ -175,14 +175,14 @@
 
 	return 1 //we bloodied the floor
 
-/turf/simulated/proc/AddTracks(typepath, bloodDNA, comingdir, goingdir, bloodcolor = "#A10808")
+/turf/open/proc/AddTracks(typepath, bloodDNA, comingdir, goingdir, bloodcolor = "#A10808")
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
 	if(isnull(tracks))
 		tracks = new typepath(src)
 	tracks.AddTracks(bloodDNA, comingdir, goingdir, bloodcolor)
 
 // Only adds blood on the floor -- Skie
-/turf/simulated/proc/add_blood_floor(mob/living/carbon/M)
+/turf/open/proc/add_blood_floor(mob/living/carbon/M)
 	if(ismonkey(M))
 		var/obj/effect/decal/cleanable/blood/this = new /obj/effect/decal/cleanable/blood(src)
 		this.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
