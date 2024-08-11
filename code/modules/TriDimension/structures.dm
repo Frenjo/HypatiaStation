@@ -48,7 +48,7 @@
 					if(A.density)
 						blocked = 1
 						break
-				if(!blocked && !istype(below, /turf/simulated/wall))
+				if(!blocked && !istype(below, /turf/closed/wall))
 					var/obj/multiz/ladder/X = new /obj/multiz/ladder(below)
 					S.amount = S.amount - 2
 					if(S.amount == 0) S.Del()
@@ -110,7 +110,7 @@
 			if(A.density)
 				blocked = TRUE
 				break
-		if(blocked || istype(T, /turf/simulated/wall))
+		if(blocked || istype(T, /turf/closed/wall))
 			to_chat(M, "Something is blocking the ladder.")
 		else
 			M.visible_message(

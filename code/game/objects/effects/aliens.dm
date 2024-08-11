@@ -305,8 +305,8 @@ Alien plants should do something if theres a lot of poison
 		for(var/mob/O in hearers(src, null))
 			O.show_message(SPAN_RADIOACTIVE("[src.target] collapses under its own weight into a puddle of goop and undigested debris!"), 1)
 
-		if(istype(target, /turf/simulated/wall)) // I hate turf code.
-			var/turf/simulated/wall/W = target
+		if(istype(target, /turf/closed/wall)) // I hate turf code.
+			var/turf/closed/wall/W = target
 			W.dismantle_wall(1)
 		else
 			qdel(target)

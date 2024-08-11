@@ -1,4 +1,4 @@
-/turf/simulated/wall/reinforced
+/turf/closed/wall/reinforced
 	name = "reinforced plasteel wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms."
 	icon = 'icons/turf/walls/reinforced.dmi'
@@ -17,7 +17,7 @@
 
 	var/d_state = 0
 
-/turf/simulated/wall/reinforced/dismantle_wall(devastated = FALSE, explode = FALSE)
+/turf/closed/wall/reinforced/dismantle_wall(devastated = FALSE, explode = FALSE)
 	if(!devastated)
 		playsound(src, 'sound/items/Welder.ogg', 100, 1)
 		new /obj/structure/girder/reinforced(src)
@@ -36,7 +36,7 @@
 
 	ChangeTurf(/turf/simulated/floor/plating/metal)
 
-/turf/simulated/wall/reinforced/attack_hand(mob/user)
+/turf/closed/wall/reinforced/attack_hand(mob/user)
 	if(HULK in user.mutations)
 		if(prob(10) || rotting)
 			to_chat(user, SPAN_INFO("You smash through the wall."))
@@ -55,7 +55,7 @@
 	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 	add_fingerprint(user)
 
-/turf/simulated/wall/reinforced/attackby(obj/item/W, mob/user)
+/turf/closed/wall/reinforced/attackby(obj/item/W, mob/user)
 	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
@@ -138,7 +138,7 @@
 				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 
 				sleep(40)
-				if(!istype(src, /turf/simulated/wall/reinforced) || !user || !W || !T)
+				if(!istype(src, /turf/closed/wall/reinforced) || !user || !W || !T)
 					return
 
 				if(d_state == 1 && user.loc == T && user.get_active_hand() == W)
@@ -168,7 +168,7 @@
 					playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
 					sleep(60)
-					if(!istype(src, /turf/simulated/wall/reinforced) || !user || !WT || !WT.isOn() || !T)
+					if(!istype(src, /turf/closed/wall/reinforced) || !user || !WT || !WT.isOn() || !T)
 						return
 
 					if(d_state == 2 && user.loc == T && user.get_active_hand() == WT)
@@ -184,7 +184,7 @@
 				playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
 				sleep(40)
-				if(!istype(src, /turf/simulated/wall/reinforced) || !user || !W || !T)
+				if(!istype(src, /turf/closed/wall/reinforced) || !user || !W || !T)
 					return
 
 				if(d_state == 2 && user.loc == T && user.get_active_hand() == W)
@@ -199,7 +199,7 @@
 				playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 
 				sleep(100)
-				if(!istype(src, /turf/simulated/wall/reinforced) || !user || !W || !T)
+				if(!istype(src, /turf/closed/wall/reinforced) || !user || !W || !T)
 					return
 
 				if(d_state == 3 && user.loc == T && user.get_active_hand() == W)
@@ -214,7 +214,7 @@
 				playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 
 				sleep(40)
-				if(!istype(src, /turf/simulated/wall/reinforced) || !user || !W || !T)
+				if(!istype(src, /turf/closed/wall/reinforced) || !user || !W || !T)
 					return
 
 				if(d_state == 4 && user.loc == T && user.get_active_hand() == W)
@@ -231,7 +231,7 @@
 					playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
 					sleep(100)
-					if(!istype(src, /turf/simulated/wall/reinforced) || !user || !WT || !WT.isOn() || !T)
+					if(!istype(src, /turf/closed/wall/reinforced) || !user || !WT || !WT.isOn() || !T)
 						return
 
 					if(d_state == 5 && user.loc == T && user.get_active_hand() == WT)
@@ -248,7 +248,7 @@
 				playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
 				sleep(70)
-				if(!istype(src, /turf/simulated/wall/reinforced) || !user || !W || !T)
+				if(!istype(src, /turf/closed/wall/reinforced) || !user || !W || !T)
 					return
 
 				if(d_state == 5 && user.loc == T && user.get_active_hand() == W)
@@ -264,7 +264,7 @@
 				playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 
 				sleep(100)
-				if(!istype(src, /turf/simulated/wall/reinforced) || !user || !W || !T)
+				if(!istype(src, /turf/closed/wall/reinforced) || !user || !W || !T)
 					return
 
 				if(user.loc == T && user.get_active_hand() == W)
@@ -279,7 +279,7 @@
 		to_chat(user, SPAN_NOTICE("You begin to drill though the wall."))
 
 		sleep(200)
-		if(!istype(src, /turf/simulated/wall/reinforced) || !user || !W || !T)
+		if(!istype(src, /turf/closed/wall/reinforced) || !user || !W || !T)
 			return
 
 		if(user.loc == T && user.get_active_hand() == W)
@@ -293,7 +293,7 @@
 		to_chat(user, SPAN_NOTICE("You begin patching-up the wall with \a [MS]."))
 
 		sleep(max(20 * d_state, 100))	//time taken to repair is proportional to the damage! (max 10 seconds)
-		if(!istype(src, /turf/simulated/wall/reinforced) || !user || !MS || !T)
+		if(!istype(src, /turf/closed/wall/reinforced) || !user || !MS || !T)
 			return
 
 		if(user.loc == T && user.get_active_hand() == MS && d_state)
@@ -340,7 +340,7 @@
 		return attack_hand(user)
 
 // These replace the old /turf/unsimulated/wall, they're immune to basically everything.
-/turf/simulated/wall/reinforced/riveted
+/turf/closed/wall/reinforced/riveted
 	name = "riveted reinforced wall"
 	icon_state = "riveted"
 
@@ -348,8 +348,8 @@
 	max_temperature = INFINITY
 	explosion_resistance = INFINITY
 
-/turf/simulated/wall/reinforced/riveted/attack_hand(mob/user)
+/turf/closed/wall/reinforced/riveted/attack_hand(mob/user)
 	return
 
-/turf/simulated/wall/reinforced/riveted/attackby(obj/item/W, mob/user)
+/turf/closed/wall/reinforced/riveted/attackby(obj/item/W, mob/user)
 	return

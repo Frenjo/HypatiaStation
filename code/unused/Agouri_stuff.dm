@@ -645,7 +645,7 @@
 
 /turf/proc/ReplaceWithWall()
 	var/old_icon = icon_state
-	var/turf/simulated/wall/S = new /turf/simulated/wall( locate(src.x, src.y, src.z) )
+	var/turf/closed/wall/S = new /turf/closed/wall( locate(src.x, src.y, src.z) )
 	S.icon_old = old_icon
 	S.opacity = FALSE
 	S.sd_NewOpacity(1)
@@ -653,17 +653,17 @@
 
 /turf/proc/ReplaceWithRWall()
 	var/old_icon = icon_state
-	var/turf/simulated/wall/reinforced/S = new /turf/simulated/wall/reinforced( locate(src.x, src.y, src.z) )
+	var/turf/closed/wall/reinforced/S = new /turf/closed/wall/reinforced( locate(src.x, src.y, src.z) )
 	S.icon_old = old_icon
 	S.opacity = FALSE
 	S.sd_NewOpacity(1)
 	return S
 
-/turf/simulated/wall/New()
+/turf/closed/wall/New()
 	..()
 
-/turf/simulated/wall/proc/dismantle_wall(devastated=0, explode=0)
-	if(istype(src,/turf/simulated/wall/reinforced))
+/turf/closed/wall/proc/dismantle_wall(devastated=0, explode=0)
+	if(istype(src,/turf/closed/wall/reinforced))
 		if(!devastated)
 			playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
 			new /obj/structure/girder/reinforced(src)
@@ -672,7 +672,7 @@
 			new /obj/item/stack/sheet/steel(src)
 			new /obj/item/stack/sheet/steel(src)
 			new /obj/item/stack/sheet/plasteel( src )
-	else if(istype(src,/turf/simulated/wall/cult))
+	else if(istype(src,/turf/closed/wall/cult))
 		if(!devastated)
 			playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
 			new /obj/effect/decal/remains/human(src)
@@ -692,13 +692,13 @@
 
 	ReplaceWithPlating(explode)
 
-/turf/simulated/wall/examine()
+/turf/closed/wall/examine()
 	set src in oview(1)
 
 	usr << "It looks like a regular wall."
 	return
 
-/turf/simulated/wall/ex_act(severity)
+/turf/closed/wall/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			//SN src = null
@@ -712,7 +712,7 @@
 				dismantle_wall(1,1)
 		if(3.0)
 			var/proba
-			if (istype(src, /turf/simulated/wall/reinforced))
+			if (istype(src, /turf/closed/wall/reinforced))
 				proba = 15
 			else
 				proba = 40
@@ -721,11 +721,11 @@
 		else
 	return
 
-/turf/simulated/wall/blob_act()
+/turf/closed/wall/blob_act()
 	if(prob(50))
 		dismantle_wall()
 
-/turf/simulated/wall/attack_paw(mob/user as mob)
+/turf/closed/wall/attack_paw(mob/user as mob)
 	if ((user.mutations & HULK))
 		if (prob(40))
 			usr << text("\blue You smash through the wall.")
@@ -738,9 +738,9 @@
 	return src.attack_hand(user)
 
 
-/turf/simulated/wall/attack_animal(mob/living/simple_animal/M as mob)
+/turf/closed/wall/attack_animal(mob/living/simple_animal/M as mob)
 	if(M.wall_smash)
-		if (istype(src, /turf/simulated/wall/reinforced))
+		if (istype(src, /turf/closed/wall/reinforced))
 			M << text("\blue This wall is far too strong for you to destroy.")
 			return
 		else
@@ -755,7 +755,7 @@
 	M << "\blue You push the wall but nothing happens!"
 	return
 
-/turf/simulated/wall/attack_hand(mob/user as mob)
+/turf/closed/wall/attack_hand(mob/user as mob)
 	if ((user.mutations & HULK))
 		if (prob(40))
 			usr << text("\blue You smash through the wall.")
@@ -770,7 +770,7 @@
 	src.add_fingerprint(user)
 	return
 
-/turf/simulated/wall/attackby(obj/item/W as obj, mob/user as mob)
+/turf/closed/wall/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
@@ -803,7 +803,7 @@
 			user << "\blue Now disassembling the outer wall plating."
 			playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
 			sleep(100)
-			if (W && istype(src, /turf/simulated/wall))
+			if (W && istype(src, /turf/closed/wall))
 				if ((get_turf(user) == T && user.equipped() == W))
 					user << "\blue You disassembled the outer wall plating."
 					dismantle_wall()
@@ -838,7 +838,7 @@
 			user << "\blue Now disassembling the outer wall plating."
 			playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
 			sleep(60)
-			if (W && istype(src, /turf/simulated/wall))
+			if (W && istype(src, /turf/closed/wall))
 				if ((get_turf(user) == T && user.equipped() == W))
 					user << "\blue You disassembled the outer wall plating."
 					dismantle_wall()
@@ -850,7 +850,7 @@
 		var/turf/T = user.loc
 		user << "\blue Now drilling through wall."
 		sleep(60)
-		if (W && istype(src, /turf/simulated/wall))
+		if (W && istype(src, /turf/closed/wall))
 			if ((user.loc == T && user.equipped() == W))
 				dismantle_wall(1)
 				for(var/mob/O in viewers(user, 5))
@@ -863,7 +863,7 @@
 		W:spark_system.start()
 		playsound(src.loc, "sparks", 50, 1)
 		sleep(70)
-		if (W && istype(src, /turf/simulated/wall))
+		if (W && istype(src, /turf/closed/wall))
 			if ((user.loc == T && user.equipped() == W))
 				W:spark_system.start()
 				playsound(src.loc, "sparks", 50, 1)
@@ -917,13 +917,13 @@
 	return
 
 
-/turf/simulated/wall/reinforced/attackby(obj/item/W as obj, mob/user as mob)
+/turf/closed/wall/reinforced/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 
-	if(!istype(src, /turf/simulated/wall/reinforced))
+	if(!istype(src, /turf/closed/wall/reinforced))
 		return // this may seem stupid and redundant but apparently floors can call this attackby() proc, it was spamming shit up. -- Doohl
 
 
@@ -1135,7 +1135,7 @@
 		return attack_hand(user)
 	return
 
-/turf/simulated/wall/meteorhit(obj/M as obj)
+/turf/closed/wall/meteorhit(obj/M as obj)
 	if (prob(15))
 		dismantle_wall()
 	else if(prob(70))
@@ -1221,7 +1221,7 @@ var/list/plating_icons = list("plating","platingdmg1","platingdmg2","platingdmg3
 		..()
 		icon_state = "[type]vault"
 
-/turf/simulated/wall/vault
+/turf/closed/wall/vault
 	icon_state = "rockvault"
 
 	New(location,type)
@@ -1924,7 +1924,7 @@ turf/simulated/floor/return_siding_icon_state()
 	for(var/i = lowBoundX,i<=hiBoundX,i++)
 		for(var/j = lowBoundY,j<=hiBoundY,j++)
 			if(i == lowBoundX || i == hiBoundX || j == lowBoundY || j == hiBoundY)
-				new /turf/simulated/wall/vault(locate(i,j,z),type)
+				new /turf/closed/wall/vault(locate(i,j,z),type)
 			else
 				new /turf/simulated/floor/vault(locate(i,j,z),type)
 

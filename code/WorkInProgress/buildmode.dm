@@ -195,14 +195,14 @@
 					return
 				else if(istype(object, /turf/simulated/floor))
 					var/turf/T = object
-					T.ChangeTurf(/turf/simulated/wall/steel)
+					T.ChangeTurf(/turf/closed/wall/steel)
 					return
-				else if(istype(object, /turf/simulated/wall))
+				else if(istype(object, /turf/closed/wall))
 					var/turf/T = object
-					T.ChangeTurf(/turf/simulated/wall/reinforced)
+					T.ChangeTurf(/turf/closed/wall/reinforced)
 					return
 			else if(pa.Find("right"))
-				if(istype(object, /turf/simulated/wall))
+				if(istype(object, /turf/closed/wall))
 					var/turf/T = object
 					T.ChangeTurf(/turf/simulated/floor)
 					return
@@ -210,9 +210,9 @@
 					var/turf/T = object
 					T.ChangeTurf(/turf/space)
 					return
-				else if(istype(object, /turf/simulated/wall/reinforced))
+				else if(istype(object, /turf/closed/wall/reinforced))
 					var/turf/T = object
-					T.ChangeTurf(/turf/simulated/wall/steel)
+					T.ChangeTurf(/turf/closed/wall/steel)
 					return
 				else if(isobj(object))
 					qdel(object)

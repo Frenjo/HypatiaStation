@@ -1,16 +1,13 @@
 /*
  * Mineral Deposits
  */
-GLOBAL_GLOBL_LIST_NEW(turf/simulated/rock/artifact_spawning_turfs)
+GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/all_rock_turfs)
+GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/artifact_spawning_turfs)
 
-/turf/simulated/rock //wall piece
+/turf/closed/rock //wall piece
 	name = "rock"
 	icon = 'icons/turf/walls/rocks_ores.dmi'
 	icon_state = "rock"
-
-	opacity = TRUE
-	density = TRUE
-	turf_flags = TURF_FLAG_BLOCKS_AIR
 
 	initial_gases = null
 	temperature = T0C
@@ -30,7 +27,11 @@ GLOBAL_GLOBL_LIST_NEW(turf/simulated/rock/artifact_spawning_turfs)
 	var/obj/item/last_find
 	var/datum/artifact_find/artifact_find = null
 
-/turf/simulated/rock/initialise()
+/turf/closed/rock/New()
+	. = ..()
+	GLOBL.all_rock_turfs.Add(src)
+
+/turf/closed/rock/initialise()
 	. = ..()
 	update_and_spread_mineral()
 
@@ -55,7 +56,11 @@ GLOBAL_GLOBL_LIST_NEW(turf/simulated/rock/artifact_spawning_turfs)
 		if(istype(T, /turf/simulated/floor) || isspace(T) || istype(T, /turf/simulated/shuttle/floor))
 			T.overlays.Add(image(icon, "rock_side_e", layer = 6))
 
-/turf/simulated/rock/ex_act(severity)
+/turf/closed/rock/Destroy()
+	GLOBL.all_rock_turfs.Remove(src)
+	return ..()
+
+/turf/closed/rock/ex_act(severity)
 	switch(severity)
 		if(2)
 			if(prob(70))
@@ -65,7 +70,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/simulated/rock/artifact_spawning_turfs)
 			mined_ore = 2 //some of the stuff gets blown up
 			get_drilled()
 
-/turf/simulated/rock/Bumped(AM)
+/turf/closed/rock/Bumped(AM)
 	. = ..()
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
@@ -84,7 +89,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/simulated/rock/artifact_spawning_turfs)
 		if(istype(M.selected, /obj/item/mecha_part/equipment/tool/drill))
 			M.selected.action(src)
 
-/turf/simulated/rock/attack_tool(obj/item/tool, mob/user)
+/turf/closed/rock/attack_tool(obj/item/tool, mob/user)
 	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey)) // If there's ever something pre-attack_tool(), then this should be moved there.
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return TRUE
@@ -116,7 +121,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/simulated/rock/artifact_spawning_turfs)
 	return ..()
 
 // Not even going to touch this pile of spaghetti.
-/turf/simulated/rock/attackby(obj/item/W, mob/user)
+/turf/closed/rock/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/pickaxe))
 		var/turf/T = user.loc
 		if(!(isturf(T)))
@@ -230,7 +235,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/simulated/rock/artifact_spawning_turfs)
 		return attack_hand(user)
 
 // Updates the turf's ore and, if applicable, attempts to spread it.
-/turf/simulated/rock/proc/update_and_spread_mineral()
+/turf/closed/rock/proc/update_and_spread_mineral()
 	if(ispath(ore, /decl/ore))
 		ore = GET_DECL_INSTANCE(ore)
 	if(isnull(ore))
@@ -245,12 +250,12 @@ GLOBAL_GLOBL_LIST_NEW(turf/simulated/rock/artifact_spawning_turfs)
 
 	for(var/try_dir in GLOBL.cardinal)
 		if(prob(ore.spread_chance))
-			var/turf/simulated/rock/random_ore/target_turf = get_step(src, try_dir)
+			var/turf/closed/rock/random_ore/target_turf = get_step(src, try_dir)
 			if(istype(target_turf) && isnull(target_turf.ore))
 				target_turf.ore = ore
 				target_turf.update_and_spread_mineral()
 
-/turf/simulated/rock/proc/drop_ore()
+/turf/closed/rock/proc/drop_ore()
 	if(isnull(ore))
 		return
 	if(!ispath(ore.item_path, /obj/item/ore))
@@ -262,7 +267,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/simulated/rock/artifact_spawning_turfs)
 		O.geologic_data = geologic_data
 	return O
 
-/turf/simulated/rock/proc/get_drilled(artifact_fail = 0)
+/turf/closed/rock/proc/get_drilled(artifact_fail = 0)
 	//var/destroyed = 0 //used for breaking strange rocks
 	if(isnotnull(ore) && ore.result_amount)
 		//if the turf has already been excavated, some of it's ore has been removed
@@ -294,7 +299,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/simulated/rock/artifact_spawning_turfs)
 		visible_message(SPAN_NOTICE("An old dusty crate was buried within!"))
 		new /obj/structure/closet/crate/secure/loot(src)
 
-/turf/simulated/rock/proc/excavate_find(prob_clean = 0, datum/find/F)
+/turf/closed/rock/proc/excavate_find(prob_clean = 0, datum/find/F)
 	//with skill and luck, players can cleanly extract finds
 	//otherwise, they come out inside a chunk of rock
 	var/obj/item/X
@@ -323,7 +328,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/simulated/rock/artifact_spawning_turfs)
 
 	finds.Remove(F)
 
-/turf/simulated/rock/proc/artifact_debris(severity = 0)
+/turf/closed/rock/proc/artifact_debris(severity = 0)
 	//cael's patented random limited drop componentized loot system!
 	//sky's patented not-fucking-retarded overhaul!
 

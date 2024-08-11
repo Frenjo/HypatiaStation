@@ -332,7 +332,7 @@
 		if(isnull(src))
 			return
 		var/junction = 0 //will be used to determine from which side the window is connected to other windows
-		for(var/turf/simulated/wall/W in orange(src, 1))
+		for(var/turf/closed/wall/W in orange(src, 1))
 			if(abs(x - W.x) - abs(y - W.y))		//doesn't count windows, placed diagonally to src
 				junction |= get_dir(src, W)
 		if(!is_fulltile())

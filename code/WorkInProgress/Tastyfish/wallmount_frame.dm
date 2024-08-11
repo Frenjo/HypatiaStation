@@ -19,7 +19,7 @@
 		pixel_y = (obj_ofs.y - 2) * wall_offset
 
 		var/turf/T = get_step(usr, dir)
-		if(!istype(T, /turf/simulated/wall))
+		if(!istype(T, /turf/closed/wall))
 			usr << "\red [name] must be placed on a wall."
 			new/obj/item/stack/sheet/steel(get_turf(src), 2)
 			del(src)

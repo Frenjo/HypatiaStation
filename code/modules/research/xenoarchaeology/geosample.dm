@@ -22,7 +22,7 @@
 	w_class = 1
 	sharp = 1
 	//item_state = "electronic"
-	var/source_rock = "/turf/simulated/rock/"
+	var/source_rock = "/turf/closed/rock/"
 	var/datum/geosample/geological_data
 
 /obj/item/rocksliver/New()
@@ -47,12 +47,12 @@
 	//all potential finds are initialised to null, so nullcheck before you access them
 	var/list/find_presence
 
-/datum/geosample/New(turf/simulated/rock/container)
+/datum/geosample/New(turf/closed/rock/container)
 	find_presence = list()
 	UpdateTurf(container)
 
 //this should only need to be called once
-/datum/geosample/proc/UpdateTurf(turf/simulated/rock/container)
+/datum/geosample/proc/UpdateTurf(turf/closed/rock/container)
 	set background = BACKGROUND_ENABLED
 	if(isnull(container) || !istype(container))
 		return
@@ -95,7 +95,7 @@
 		total_spread += find_presence[entry]*/
 
 //have this separate from UpdateTurf() so that we dont have a billion turfs being updated (redundantly) every time an artifact spawns
-/datum/geosample/proc/UpdateNearbyArtifactInfo(turf/simulated/rock/container)
+/datum/geosample/proc/UpdateNearbyArtifactInfo(turf/closed/rock/container)
 	if(isnull(container) || !istype(container))
 		return
 
@@ -104,7 +104,7 @@
 		artifact_id = container.artifact_find.artifact_id
 	else
 		if(isnotnull(global.CTmaster)) //Sanity check due to runtimes ~Z
-			for_no_type_check(var/turf/simulated/rock/T, GLOBL.artifact_spawning_turfs)
+			for_no_type_check(var/turf/closed/rock/T, GLOBL.artifact_spawning_turfs)
 				if(isnotnull(T.artifact_find))
 					var/cur_dist = get_dist(container, T) * 2
 					if((artifact_distance < 0 || cur_dist < artifact_distance) && cur_dist <= T.artifact_find.artifact_detect_range)

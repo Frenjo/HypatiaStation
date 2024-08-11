@@ -224,7 +224,7 @@
 			for(var/D in GLOBL.cardinal)
 				var/turf/simulated/target = get_step(current, D)
 				if(wallList)
-					if(istype(target, /turf/simulated/wall))
+					if(istype(target, /turf/closed/wall))
 						if(!(target in wallList))
 							wallList += target
 						continue

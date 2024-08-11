@@ -592,8 +592,8 @@
 /datum/reagent/thermite/reaction_turf(turf/T, volume)
 	qdel(src)
 	if(volume >= 5)
-		if(istype(T, /turf/simulated/wall))
-			var/turf/simulated/wall/W = T
+		if(istype(T, /turf/closed/wall))
+			var/turf/closed/wall/W = T
 			W.thermite = TRUE
 			W.overlays.Add(image('icons/effects/effects.dmi', icon_state = "#673910"))
 

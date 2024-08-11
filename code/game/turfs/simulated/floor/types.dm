@@ -26,13 +26,3 @@
 
 /turf/simulated/floor/vault/relativewall()
 	return
-
-/turf/simulated/wall/vault
-	icon_state = "rockvault"
-
-/turf/simulated/wall/vault/New(location, type)
-	. = ..()
-	icon_state = "[type]vault"
-
-/turf/simulated/wall/vault/relativewall()
-	return

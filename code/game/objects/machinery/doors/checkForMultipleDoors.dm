@@ -6,7 +6,7 @@
 			return 0
 	return 1
 
-/turf/simulated/wall/proc/checkForMultipleDoors()
+/turf/closed/wall/proc/checkForMultipleDoors()
 	if(!loc)
 		return 0
 	for(var/obj/machinery/door/D in locate(x, y, z))

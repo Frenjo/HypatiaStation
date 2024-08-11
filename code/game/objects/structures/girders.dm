@@ -105,7 +105,7 @@
 			user << "\blue You added the plating!"
 			var/turf/T = get_turf(src)
 			T.ChangeTurf(S.material.wall_path)
-			for(var/turf/simulated/wall/X in T.loc)
+			for(var/turf/closed/wall/X in T.loc)
 				X?.add_hiddenprint(usr)
 			qdel(src)
 			return TRUE
@@ -176,8 +176,8 @@
 		S.use(1)
 		user << "\blue Wall fully reinforced!"
 		var/turf/T = get_turf(src)
-		T.ChangeTurf(/turf/simulated/wall/reinforced)
-		for(var/turf/simulated/wall/reinforced/X in T.loc)
+		T.ChangeTurf(/turf/closed/wall/reinforced)
+		for(var/turf/closed/wall/reinforced/X in T.loc)
 			X?.add_hiddenprint(usr)
 		qdel(src)
 		return TRUE

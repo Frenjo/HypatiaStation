@@ -49,7 +49,7 @@
 	coin_path = /obj/item/coin/iron
 	mint_colour_code = "#555555"
 
-	wall_path = /turf/simulated/wall/steel
+	wall_path = /turf/closed/wall/steel
 	wall_false_path = /obj/structure/falsewall/steel
 	wall_links_to = list(/decl/material/steel, /decl/material/plasteel)
 
@@ -68,7 +68,7 @@
 	name = "Plasteel"
 	sheet_path = /obj/item/stack/sheet/plasteel
 
-	wall_path = /turf/simulated/wall/reinforced
+	wall_path = /turf/closed/wall/reinforced
 	wall_false_path = /obj/structure/falsewall/reinforced
 	wall_links_to = list(/decl/material/steel, /decl/material/plasteel)
 
@@ -114,7 +114,7 @@
 	name = "Sandstone"
 	sheet_path = /obj/item/stack/sheet/sandstone
 
-	wall_path = /turf/simulated/wall/sandstone
+	wall_path = /turf/closed/wall/sandstone
 	wall_false_path = /obj/structure/falsewall/sandstone
 	wall_links_to = list(/decl/material/sandstone)
 
@@ -127,7 +127,7 @@
 	coin_path = /obj/item/coin/silver
 	mint_colour_code = "#888888"
 
-	wall_path = /turf/simulated/wall/silver
+	wall_path = /turf/closed/wall/silver
 	wall_false_path = /obj/structure/falsewall/silver
 	wall_links_to = list(/decl/material/silver)
 
@@ -140,7 +140,7 @@
 	coin_path = /obj/item/coin/gold
 	mint_colour_code = "#ffcc00"
 
-	wall_path = /turf/simulated/wall/gold
+	wall_path = /turf/closed/wall/gold
 	wall_false_path = /obj/structure/falsewall/gold
 	wall_links_to = list(/decl/material/gold)
 
@@ -153,7 +153,7 @@
 	coin_path = /obj/item/coin/diamond
 	mint_colour_code = "#8888FF"
 
-	wall_path = /turf/simulated/wall/diamond
+	wall_path = /turf/closed/wall/diamond
 	wall_false_path = /obj/structure/falsewall/diamond
 	wall_links_to = list(/decl/material/diamond)
 
@@ -166,7 +166,7 @@
 	coin_path = /obj/item/coin/uranium
 	mint_colour_code = "#008800"
 
-	wall_path = /turf/simulated/wall/uranium
+	wall_path = /turf/closed/wall/uranium
 	wall_false_path = /obj/structure/falsewall/uranium
 	wall_links_to = list(/decl/material/uranium)
 
@@ -183,7 +183,7 @@
 	coin_path = /obj/item/coin/plasma
 	mint_colour_code = "#FF8800"
 
-	wall_path = /turf/simulated/wall/plasma
+	wall_path = /turf/closed/wall/plasma
 	wall_false_path = /obj/structure/falsewall/plasma
 	wall_links_to = list(/decl/material/plasma)
 
@@ -196,7 +196,7 @@
 	coin_path = /obj/item/coin/bananium
 	mint_colour_code = "#AAAA00"
 
-	wall_path = /turf/simulated/wall/bananium
+	wall_path = /turf/closed/wall/bananium
 	wall_false_path = /obj/structure/falsewall/bananium
 	wall_links_to = list(/decl/material/bananium)
 
@@ -223,7 +223,7 @@
 /decl/material/cult
 	name = "Cult"
 
-	wall_path = /turf/simulated/wall/cult
+	wall_path = /turf/closed/wall/cult
 
 /decl/material/resin
 	name = "Resin"

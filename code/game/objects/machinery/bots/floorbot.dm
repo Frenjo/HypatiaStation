@@ -156,7 +156,7 @@
 			if(maketiles)
 				if(target == null || !target)
 					for(var/obj/item/stack/sheet/steel/M in view(7, src))
-						if(!(M in floorbottargets) && M != oldtarget && M.amount == 1 && !(istype(M.loc, /turf/simulated/wall)))
+						if(!(M in floorbottargets) && M != oldtarget && M.amount == 1 && !(istype(M.loc, /turf/closed/wall)))
 							oldtarget = M
 							target = M
 							break

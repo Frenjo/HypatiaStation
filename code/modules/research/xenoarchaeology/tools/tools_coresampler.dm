@@ -51,8 +51,8 @@
 
 /obj/item/core_sampler/proc/sample_item(item_to_sample, mob/user)
 	var/datum/geosample/geo_data
-	if(istype(item_to_sample, /turf/simulated/rock))
-		var/turf/simulated/rock/T = item_to_sample
+	if(istype(item_to_sample, /turf/closed/rock))
+		var/turf/closed/rock/T = item_to_sample
 		T.geologic_data.UpdateNearbyArtifactInfo(T)
 		geo_data = T.geologic_data
 	else if(istype(item_to_sample, /obj/item/ore))

@@ -65,13 +65,13 @@
 					if("/turf/simulated/floor/reinforced")
 						colour = rgb(128,128,128)
 
-					if("/turf/simulated/wall")
+					if("/turf/closed/wall")
 						colour = rgb(96,96,96)
 
-					if("/turf/simulated/wall/reinforced")
+					if("/turf/closed/wall/reinforced")
 						colour = rgb(128,96,96)
 
-					if("/turf/simulated/wall/reinforced/riveted")
+					if("/turf/closed/wall/reinforced/riveted")
 						colour = rgb(140,140,140)
 
 					//if("/turf/unsimulated/floor")
@@ -220,13 +220,13 @@
 							t1 = min(100, t1-100)
 							colour = rgb( t1*2.55, t1*2.55, 255)
 
-					if("/turf/simulated/wall")
+					if("/turf/closed/wall")
 						colour = rgb(96,96,96)
 
-					if("/turf/simulated/wall/reinforced")
+					if("/turf/closed/wall/reinforced")
 						colour = rgb(128,96,96)
 
-					if("/turf/simulated/wall/reinforced/riveted")
+					if("/turf/closed/wall/reinforced/riveted")
 						colour = rgb(140,140,140)
 
 					//if("/turf/unsimulated/floor")

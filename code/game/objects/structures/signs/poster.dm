@@ -57,8 +57,8 @@
 
 
 //separated to reduce code duplication. Moved here for ease of reference and to unclutter r_wall/attackby()
-/turf/simulated/wall/proc/place_poster(obj/item/contraband/poster/P, mob/user)
-	if(!istype(src, /turf/simulated/wall))
+/turf/closed/wall/proc/place_poster(obj/item/contraband/poster/P, mob/user)
+	if(!istype(src, /turf/closed/wall))
 		to_chat(user, SPAN_WARNING("You can't place this here!"))
 		return
 
@@ -87,7 +87,7 @@
 	if(!D)
 		return
 
-	if(istype(src, /turf/simulated/wall) && user && user.loc == temp_loc)//Let's check if everything is still there
+	if(istype(src, /turf/closed/wall) && user && user.loc == temp_loc)//Let's check if everything is still there
 		to_chat(user, SPAN_NOTICE("You place the poster!"))
 	else
 		D.roll_and_drop(temp_loc)

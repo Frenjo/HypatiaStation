@@ -1,4 +1,4 @@
-/turf/simulated/wall
+/turf/closed/wall
 	name = "wall"
 	desc = "A huge thing used to separate rooms."
 	icon = 'icons/turf/walls.dmi'
@@ -14,6 +14,7 @@
 
 	var/decl/material/material
 	var/rotting = FALSE
+	var/thermite = FALSE
 
 	var/damage = 0
 	var/damage_cap = 100 //Wall will break down to girders if damage reaches this point
@@ -23,18 +24,18 @@
 
 	var/max_temperature = 1800 //K, walls will take damage if they're next to a fire hotter than this
 
-/turf/simulated/wall/New()
+/turf/closed/wall/New()
 	if(isnotnull(material))
 		material = GET_DECL_INSTANCE(material)
 	. = ..()
 
-/turf/simulated/wall/Destroy()
+/turf/closed/wall/Destroy()
 	for(var/obj/effect/E in src)
 		if(E.name == "Wallrot")
 			qdel(E)
 	return ..()
 
-/turf/simulated/wall/proc/radiate(bumped)
+/turf/closed/wall/proc/radiate(bumped)
 	for(var/mob/living/L in range(3, src))
 		L.apply_effect(12, IRRADIATE, 0)
 	/*
@@ -43,7 +44,7 @@
 			active = 1
 			for(var/mob/living/L in range(3, src))
 				L.apply_effect(12, IRRADIATE, 0)
-			for(var/turf/simulated/wall/uranium/T in range(3, src))
+			for(var/turf/closed/wall/uranium/T in range(3, src))
 				T.radiate()
 			last_event = world.time
 			active = null
@@ -51,14 +52,14 @@
 	return
 	*/
 
-/turf/simulated/wall/ChangeTurf(turf/type_path)
+/turf/closed/wall/ChangeTurf(turf/type_path)
 	for(var/obj/effect/E in src)
 		if(E.name == "Wallrot")
 			qdel(E)
 	return ..(type_path)
 
 //Appearance
-/turf/simulated/wall/examine()
+/turf/closed/wall/examine()
 	. = ..()
 
 	if(!damage)
@@ -75,7 +76,7 @@
 	if(rotting)
 		to_chat(usr, SPAN_WARNING("There is fungus growing on [src]."))
 
-/turf/simulated/wall/proc/update_icon()
+/turf/closed/wall/proc/update_icon()
 	if(!damage_overlays[1]) //list hasn't been populated
 		generate_overlays()
 
@@ -94,7 +95,7 @@
 	overlays.Add(damage_overlays[overlay])
 	damage_overlay = overlay
 
-/turf/simulated/wall/proc/generate_overlays()
+/turf/closed/wall/proc/generate_overlays()
 	var/alpha_inc = 256 / length(damage_overlays)
 
 	for(var/i = 1; i <= length(damage_overlays); i++)
@@ -104,12 +105,12 @@
 		damage_overlays[i] = img
 
 //Damage
-/turf/simulated/wall/proc/take_damage(dam)
+/turf/closed/wall/proc/take_damage(dam)
 	if(dam)
 		damage = max(0, damage + dam)
 		update_damage()
 
-/turf/simulated/wall/proc/update_damage()
+/turf/closed/wall/proc/update_damage()
 	var/cap = damage_cap
 	if(rotting)
 		cap = cap / 10
@@ -119,7 +120,7 @@
 	else
 		update_icon()
 
-/turf/simulated/wall/proc/dismantle_wall(devastated = FALSE, explode = FALSE)
+/turf/closed/wall/proc/dismantle_wall(devastated = FALSE, explode = FALSE)
 	if(!devastated)
 		playsound(src, 'sound/items/Welder.ogg', 100, 1)
 		new /obj/structure/girder(src)
@@ -142,7 +143,7 @@
 	ChangeTurf(/turf/simulated/floor/plating/metal)
 
 // Wall-rot effect, a nasty fungus that destroys walls.
-/turf/simulated/wall/proc/rot()
+/turf/closed/wall/proc/rot()
 	if(!rotting)
 		rotting = TRUE
 
@@ -159,7 +160,7 @@
 			O.layer = 5
 			O.mouse_opacity = FALSE
 
-/turf/simulated/wall/proc/thermitemelt(mob/user)
+/turf/closed/wall/proc/thermitemelt(mob/user)
 	var/obj/effect/overlay/O = new /obj/effect/overlay(src)
 	O.name = "Thermite"
 	O.desc = "Looks hot."

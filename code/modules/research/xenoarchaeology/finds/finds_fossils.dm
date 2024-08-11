@@ -17,7 +17,7 @@
 	var/t = pickweight(l)
 	var/obj/item/W = new t(src.loc)
 	var/turf/T = get_turf(src)
-	if(istype(T, /turf/simulated/rock))
+	if(istype(T, /turf/closed/rock))
 		T:last_find = W
 	qdel(src)
 

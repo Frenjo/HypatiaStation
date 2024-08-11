@@ -11,12 +11,12 @@
 /turf/simulated/desert/New()
 	icon_state = "desert[rand(0, 4)]"
 
-/turf/simulated/wall/impassable_rock
+/turf/closed/wall/impassable_rock
 	name = "Mountain Wall"
 	//so that you can see the impassable sections in the map editor
 	icon_state = "riveted"
 
-/turf/simulated/wall/impassable_rock/New()
+/turf/closed/wall/impassable_rock/New()
 	icon_state = "rock"
 
 /area/away_mission/labs/researchdivision

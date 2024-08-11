@@ -22,8 +22,8 @@
 
 /obj/machinery/giga_drill/Bump(atom/A)
 	if(active && !drilling_turf)
-		if(istype(A, /turf/simulated/rock))
-			var/turf/simulated/rock/M = A
+		if(istype(A, /turf/closed/rock))
+			var/turf/closed/rock/M = A
 			drilling_turf = get_turf(src)
 			visible_message(SPAN_DANGER("[src] begins to drill into [M]!"))
 			anchored = TRUE

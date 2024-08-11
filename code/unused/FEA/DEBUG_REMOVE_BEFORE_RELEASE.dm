@@ -37,7 +37,7 @@ turf/space
 			walk(M, direction,10)
 
 
-turf/simulated/wall
+turf/wall
 	verb
 		create_floor()
 			set src in world
@@ -79,7 +79,7 @@ turf/simulated/floor
 	verb
 		create_wall()
 			set src in world
-			new /turf/simulated/wall(src)
+			new /turf/closed/wall(src)
 	verb
 		adjust_mixture(temp as num, tox as num, oxy as num)
 			set src in world

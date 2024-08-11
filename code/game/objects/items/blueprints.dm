@@ -195,7 +195,7 @@ move an amendment</a> to the drawing.</p>
 		return BORDER_SPACE
 	if(get_area_type(T2.loc) != AREA_SPACE)
 		return BORDER_BETWEEN
-	if(istype(T2, /turf/simulated/wall))
+	if(istype(T2, /turf/closed/wall))
 		return BORDER_2NDTILE
 	if(!issimulated(T2))
 		return BORDER_BETWEEN

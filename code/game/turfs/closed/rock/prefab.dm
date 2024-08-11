@@ -2,25 +2,25 @@
  * Mineral Deposit Prefabs
  */
 // Re-added these because some away missions require them.
-/turf/simulated/rock/gold_ore
+/turf/closed/rock/gold_ore
 	icon_state = "rock_gold"
 	ore = /decl/ore/gold
 
-/turf/simulated/rock/silver_ore
+/turf/closed/rock/silver_ore
 	icon_state = "rock_silver"
 	ore = /decl/ore/silver
 
-/turf/simulated/rock/diamond_ore
+/turf/closed/rock/diamond_ore
 	icon_state = "rock_diamond"
 	ore = /decl/ore/diamond
 
-/turf/simulated/rock/bananium_ore
+/turf/closed/rock/bananium_ore
 	icon_state = "rock_bananium"
 	ore = /decl/ore/bananium
 
 // End of away mission specific additions.
 
-/turf/simulated/rock/random_ore
+/turf/closed/rock/random_ore
 	name = "mineral deposit"
 
 	var/ore_chance = 10 // Means 10% chance of this plot changing to an ore deposit.
@@ -34,12 +34,12 @@
 		/decl/ore/bananium = 1
 	)
 
-/turf/simulated/rock/random_ore/New()
+/turf/closed/rock/random_ore/New()
 	if(prob(ore_chance))
 		ore = GET_DECL_INSTANCE(pickweight(ore_spawn_chance_list))
 	. = ..()
 
-/turf/simulated/rock/random_ore/high_chance
+/turf/closed/rock/random_ore/high_chance
 	ore_chance = 25
 	ore_spawn_chance_list = list(
 		/decl/ore/uranium = 10,

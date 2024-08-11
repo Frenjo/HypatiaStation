@@ -189,9 +189,9 @@ var/list/datum/puddle/puddles = list()
 			return 0
 	return 1
 
-/turf/simulated/wall/can_accept_liquid(from_direction)
+/turf/closed/wall/can_accept_liquid(from_direction)
 	return 0
-/turf/simulated/wall/can_leave_liquid(from_direction)
+/turf/closed/wall/can_leave_liquid(from_direction)
 	return 0
 
 /obj/proc/liquid_pass()

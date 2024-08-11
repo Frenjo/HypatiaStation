@@ -91,7 +91,7 @@
 			new spawn_type(D.loc)
 			qdel(D)
 
-	for(var/turf/simulated/wall/reinforced/riveted/T in temple_turfs)
+	for(var/turf/closed/wall/reinforced/riveted/T in temple_turfs)
 		if(mineral != /decl/material/plasma)
 			var/decl/material/current_mineral = GET_DECL_INSTANCE(/decl/material/plasma)
 			var/decl/material/wanted_mineral = GET_DECL_INSTANCE(mineral)

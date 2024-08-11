@@ -17,7 +17,7 @@
 
 /obj/structure/falsewall/Destroy()
 	var/list/range_list = orange(src, 1)
-	for(var/turf/simulated/wall/W in range_list)
+	for(var/turf/closed/wall/W in range_list)
 		W.relativewall()
 	for(var/obj/structure/falsewall/W in range_list)
 		W.relativewall()
@@ -31,7 +31,7 @@
 	var/junction = 0 //will be used to determine from which side the wall is connected to other walls
 
 	var/list/range_list = orange(src, 1)
-	for(var/turf/simulated/wall/W in range_list)
+	for(var/turf/closed/wall/W in range_list)
 		if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
 			if(W.material.type in material.wall_links_to) // Only 'like' walls connect -Sieve
 				junction |= get_dir(src, W)
@@ -160,21 +160,21 @@
 	if(istype(W, /obj/item/screwdriver))
 		var/turf/T = get_turf(src)
 		user.visible_message("[user] tightens some bolts on the r wall.", "You tighten the bolts on the wall.")
-		T.ChangeTurf(/turf/simulated/wall/steel) //Intentionally makes a regular wall instead of an r-wall (no cheap r-walls for you).
+		T.ChangeTurf(/turf/closed/wall/steel) //Intentionally makes a regular wall instead of an r-wall (no cheap r-walls for you).
 		qdel(src)
 
 	if( istype(W, /obj/item/weldingtool) )
 		var/obj/item/weldingtool/WT = W
 		if( WT.remove_fuel(0,user) )
 			var/turf/T = get_turf(src)
-			T.ChangeTurf(/turf/simulated/wall/steel)
+			T.ChangeTurf(/turf/closed/wall/steel)
 			T = get_turf(src)
 			T.attackby(W,user)
 			qdel(src)
 
 	else if( istype(W, /obj/item/pickaxe/plasmacutter) )
 		var/turf/T = get_turf(src)
-		T.ChangeTurf(/turf/simulated/wall/steel)
+		T.ChangeTurf(/turf/closed/wall/steel)
 		T = get_turf(src)
 		T.attackby(W,user)
 		qdel(src)
@@ -182,14 +182,14 @@
 	//DRILLING
 	else if (istype(W, /obj/item/pickaxe/diamonddrill))
 		var/turf/T = get_turf(src)
-		T.ChangeTurf(/turf/simulated/wall/steel)
+		T.ChangeTurf(/turf/closed/wall/steel)
 		T = get_turf(src)
 		T.attackby(W,user)
 		qdel(src)
 
 	else if( istype(W, /obj/item/melee/energy/blade) )
 		var/turf/T = get_turf(src)
-		T.ChangeTurf(/turf/simulated/wall/steel)
+		T.ChangeTurf(/turf/closed/wall/steel)
 		T = get_turf(src)
 		T.attackby(W,user)
 		qdel(src)
@@ -220,7 +220,7 @@
 			active = 1
 			for(var/mob/living/L in range(3,src))
 				L.apply_effect(12,IRRADIATE,0)
-			for(var/turf/simulated/wall/uranium/T in range(3,src))
+			for(var/turf/closed/wall/uranium/T in range(3,src))
 				T.radiate()
 			last_event = world.time
 			active = null

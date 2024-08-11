@@ -5,7 +5,6 @@
 	var/wet = 0
 	var/image/wet_overlay = null
 
-	var/thermite = 0
 	var/to_be_destroyed = 0 //Used for fire, if a melting temperature was reached, it will be destroyed
 	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
 	var/dirt = 0
@@ -13,7 +12,12 @@
 /turf/simulated/New()
 	. = ..()
 	GLOBL.simulated_turf_list.Add(src)
-	levelupdate()
+
+/turf/simulated/initialise()
+	. = ..()
+	for(var/atom/movable/mover in src)
+		spawn(0)
+			Entered(mover)
 
 /turf/simulated/Destroy()
 	GLOBL.simulated_turf_list.Remove(src)

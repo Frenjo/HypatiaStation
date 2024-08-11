@@ -1,5 +1,5 @@
 // Interactions
-/turf/simulated/wall/attack_paw(mob/user)
+/turf/closed/wall/attack_paw(mob/user)
 	if((HULK in user.mutations))
 		usr.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 	if((HULK in user.mutations) || user.get_species() == SPECIES_OBSEDAI)
@@ -14,9 +14,9 @@
 
 	return attack_hand(user)
 
-/turf/simulated/wall/attack_animal(mob/living/M)
+/turf/closed/wall/attack_animal(mob/living/M)
 	if(M.wall_smash)
-		if(istype(src, /turf/simulated/wall/reinforced) && !rotting)
+		if(istype(src, /turf/closed/wall/reinforced) && !rotting)
 			to_chat(M, SPAN_INFO("This wall is far too strong for you to destroy."))
 			return
 		else
@@ -31,7 +31,7 @@
 
 	to_chat(M, SPAN_INFO("You push the wall but nothing happens!"))
 
-/turf/simulated/wall/attack_hand(mob/user)
+/turf/closed/wall/attack_hand(mob/user)
 	if((HULK in user.mutations))
 		usr.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 	if((HULK in user.mutations) || user.get_species() == SPECIES_OBSEDAI)
@@ -53,7 +53,7 @@
 	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 	add_fingerprint(user)
 
-/turf/simulated/wall/attackby(obj/item/W, mob/user)
+/turf/closed/wall/attackby(obj/item/W, mob/user)
 	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
@@ -123,7 +123,7 @@
 				playsound(src, 'sound/items/Welder.ogg', 100, 1)
 
 				sleep(100)
-				if(!istype(src, /turf/simulated/wall) || !user || !WT || !WT.isOn() || !T)
+				if(!istype(src, /turf/closed/wall) || !user || !WT || !WT.isOn() || !T)
 					return
 
 				if(user.loc == T && user.get_active_hand() == WT)
@@ -141,7 +141,7 @@
 		sleep(60)
 		if(material.type == /decl/material/diamond) // Oh look, it's tougher
 			sleep(60)
-		if(!istype(src, /turf/simulated/wall) || !user || !W || !T)
+		if(!istype(src, /turf/closed/wall) || !user || !W || !T)
 			return
 
 		if(user.loc == T && user.get_active_hand() == W)
@@ -161,7 +161,7 @@
 		sleep(60)
 		if(material.type == /decl/material/diamond)
 			sleep(60)
-		if(!istype(src, /turf/simulated/wall) || !user || !W || !T)
+		if(!istype(src, /turf/closed/wall) || !user || !W || !T)
 			return
 
 		if(user.loc == T && user.get_active_hand() == W)
@@ -184,7 +184,7 @@
 		sleep(70)
 		if(material.type == /decl/material/diamond)
 			sleep(70)
-		if(!istype(src, /turf/simulated/wall) || !user || !EB || !T)
+		if(!istype(src, /turf/closed/wall) || !user || !EB || !T)
 			return
 
 		if(user.loc == T && user.get_active_hand() == W)

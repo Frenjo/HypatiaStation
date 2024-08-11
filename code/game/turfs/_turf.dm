@@ -28,12 +28,7 @@
 /turf/New()
 	. = ..()
 	GLOBL.processing_turfs.Add(src)
-
-/turf/initialise()
-	. = ..()
-	for(var/atom/movable/mover in src)
-		spawn(0)
-			Entered(mover)
+	levelupdate()
 
 /turf/Destroy()
 	GLOBL.processing_turfs.Remove(src)

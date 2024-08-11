@@ -270,7 +270,7 @@
 	invocation = "none"
 	invocation_type = "none"
 	range = 0
-	summon_type = list(/turf/simulated/wall/cult)
+	summon_type = list(/turf/closed/wall/cult)
 	centcom_cancast = 0 //Stop crashing the server by spawning turfs on transit tiles
 
 
@@ -287,7 +287,7 @@
 	centcom_cancast = 0 //Stop crashing the server by spawning turfs on transit tiles
 	delay = 50
 
-	summon_type = list(/turf/simulated/wall/reinforced)
+	summon_type = list(/turf/closed/wall/reinforced)
 
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/soulstone

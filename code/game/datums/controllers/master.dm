@@ -247,6 +247,9 @@ CONTROLLER_DEF(master)
 	for_no_type_check(var/turf/simulated/turf, GLOBL.simulated_turf_list)
 		if(!GC_DESTROYED(turf))
 			turf.initialise()
+	for_no_type_check(var/turf/closed/rock/turf, GLOBL.all_rock_turfs)
+		if(!GC_DESTROYED(turf))
+			turf.initialise()
 	WAIT_FOR_BACKLOG
 
 	to_world(SPAN_DANGER("↪ Initialising objects."))
@@ -303,18 +306,18 @@ CONTROLLER_DEF(master)
 /datum/controller/master/proc/setup_xenoarch()
 	to_world(SPAN_DANGER("↪ Setting up xenoarchaeology."))
 
-	for(var/turf/simulated/rock/M in block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz)))
-		if(isnull(M.geologic_data))
-			M.geologic_data = new /datum/geosample(M)
+	for_no_type_check(var/turf/closed/rock/turf, GLOBL.all_rock_turfs)
+		if(isnull(turf.geologic_data))
+			turf.geologic_data = new /datum/geosample(turf)
 
 		if(!prob(XENOARCH_SPAWN_CHANCE))
 			continue
 
 		var/digsite = get_random_digsite_type()
 		var/list/processed_turfs = list()
-		var/list/turf/simulated/rock/turfs_to_process = list(M)
-		for_no_type_check(var/turf/simulated/rock/archeo_turf, turfs_to_process)
-			for(var/turf/simulated/rock/T in orange(1, archeo_turf))
+		var/list/turf/closed/rock/turfs_to_process = list(turf)
+		for_no_type_check(var/turf/closed/rock/archeo_turf, turfs_to_process)
+			for(var/turf/closed/rock/T in orange(1, archeo_turf))
 				if(isnotnull(T.finds))
 					continue
 				if(T in processed_turfs)
@@ -342,8 +345,8 @@ CONTROLLER_DEF(master)
 					archeo_turf.overlays.Add(archeo_turf.archaeo_overlay)
 
 		//dont create artifact machinery in animal or plant digsites, or if we already have one
-		if(isnull(M.artifact_find) && digsite != 1 && digsite != 2 && prob(ARTIFACT_SPAWN_CHANCE))
-			M.artifact_find = new /datum/artifact_find()
+		if(isnull(turf.artifact_find) && digsite != 1 && digsite != 2 && prob(ARTIFACT_SPAWN_CHANCE))
+			turf.artifact_find = new /datum/artifact_find()
 
 	WAIT_FOR_BACKLOG
 #undef XENOARCH_SPAWN_CHANCE

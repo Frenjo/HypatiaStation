@@ -6,7 +6,7 @@
 	var/junction = 0 //will be used to determine from which side the wall is connected to other walls
 
 	var/list/range_list = orange(src, 1)
-	for(var/turf/simulated/wall/W in range_list)
+	for(var/turf/closed/wall/W in range_list)
 		if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
 			junction |= get_dir(src, W)
 	for(var/obj/structure/falsewall/W in range_list)
@@ -18,8 +18,8 @@
  * As they are now, they sort of work screwy and may need further coding. Or just be scrapped.
  */
 /*
-	if(istype(src, /turf/simulated/shuttle/wall))
-		for(var/turf/simulated/shuttle/wall/W in range_list)
+	if(istype(src, /turf/closed/wall/shuttle))
+		for(var/turf/closed/wall/shuttle/W in range_list)
 			if(abs(src.x-W.x)-abs(src.y-W.y)) //doesn't count diagonal walls
 				junction |= get_dir(src,W)
 		for(var/obj/machinery/shuttle/W in range_list) //stuff like engine and propulsion should merge with walls
@@ -33,13 +33,13 @@
 				junction |= get_dir(src,W)
 */
 
-	if(istype(src, /turf/simulated/wall))
-		var/turf/simulated/wall/wall = src
+	if(istype(src, /turf/closed/wall))
+		var/turf/closed/wall/wall = src
 		wall.icon_state = "[wall.material.icon_prefix][junction]"
 	else if(istype(src, /obj/structure/falsewall))
 		var/obj/structure/falsewall/fwall = src
 		fwall.icon_state = "[fwall.material.icon_prefix][junction]"
-/*	else if(istype(src,/turf/simulated/shuttle/wall))
+/*	else if(istype(src,/turf/closed/wall/shuttle))
 		var/newicon = icon;
 		var/newiconstate = icon_state;
 		if(junction!=5 && junction!=6 && junction!=9 && junction!=10) //if it's not diagonal, all is well, no additional calculations needed
@@ -72,30 +72,30 @@
 				src.icon_state = "swall_s[junction]"*/
 
 /atom/proc/relativewall_neighbours()
-	for(var/turf/simulated/wall/W in range(src, 1))
+	for(var/turf/closed/wall/W in range(src, 1))
 		W.relativewall()
 	for(var/obj/structure/falsewall/W in range(src, 1))
 		W.relativewall()
 		W.update_icon()//Refreshes the wall to make sure the icons don't desync
 
-/turf/simulated/wall/New()
+/turf/closed/wall/New()
 	relativewall_neighbours()
 	..()
 
-/*/turf/simulated/shuttle/wall/New()
+/*/turf/closed/wall/shuttle/New()
 
 	spawn(20) //testing if this will make /obj/machinery/shuttle and /door count - It does, it stays.
 		if(src.icon_state in list("wall1", "wall", "diagonalWall", "wall_floor", "wall_space")) //so wizard den, syndie shuttle etc will remain black
-			for(var/turf/simulated/shuttle/wall/W in range(src,1))
+			for(var/turf/closed/wall/shuttle/W in range(src,1))
 				W.relativewall()
 
 	..()*/
 
-/turf/simulated/wall/Destroy()
+/turf/closed/wall/Destroy()
 	var/temploc = src.loc
 
 	spawn(10)
-		for(var/turf/simulated/wall/W in range(temploc, 1))
+		for(var/turf/closed/wall/W in range(temploc, 1))
 			W.relativewall()
 
 		for(var/obj/structure/falsewall/W in range(temploc, 1))
@@ -111,21 +111,21 @@
 
 	return ..()
 
-/*/turf/simulated/shuttle/wall/Del()
+/*/turf/closed/wall/shuttle/Del()
 
 	var/temploc = src.loc
 
 	spawn(10)
-		for(var/turf/simulated/shuttle/wall/W in range(temploc,1))
+		for(var/turf/closed/wall/shuttle/W in range(temploc,1))
 			W.relativewall()
 
 	..()*/
 
-/turf/simulated/wall/relativewall()
+/turf/closed/wall/relativewall()
 	var/junction = 0 //will be used to determine from which side the wall is connected to other walls
 
 	var/list/range_list = orange(src, 1)
-	for(var/turf/simulated/wall/W in range_list)
+	for(var/turf/closed/wall/W in range_list)
 		if(abs(x - W.x) - abs(y - W.y)) //doesn't count diagonal walls
 			if(W.material.type in material.wall_links_to) // Only 'like' walls connect -Sieve
 				junction |= get_dir(src, W)

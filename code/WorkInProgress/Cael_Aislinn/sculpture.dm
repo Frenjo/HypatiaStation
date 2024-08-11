@@ -46,13 +46,13 @@
 	for(var/turf/thisturf in view(50,src))
 		if(isspace(thisturf))
 			continue
-		else if(istype(thisturf, /turf/simulated/wall))
+		else if(istype(thisturf, /turf/closed/wall))
 			continue
-		else if(istype(thisturf, /turf/simulated/rock))
+		else if(istype(thisturf, /turf/closed/rock))
 			continue
-		else if(istype(thisturf, /turf/simulated/shuttle/wall))
+		else if(istype(thisturf, /turf/closed/wall/shuttle))
 			continue
-		else if(istype(thisturf, /turf/simulated/wall/reinforced/riveted))
+		else if(istype(thisturf, /turf/closed/wall/reinforced/riveted))
 			continue
 		turfs += thisturf
 	var/turf/target_turf = pick(turfs)
@@ -209,13 +209,13 @@
 				for(var/turf/thisturf in view(7,src))
 					if(isspace(thisturf))
 						continue
-					else if(istype(thisturf, /turf/simulated/wall))
+					else if(istype(thisturf, /turf/closed/wall))
 						continue
-					else if(istype(thisturf, /turf/simulated/rock))
+					else if(istype(thisturf, /turf/closed/rock))
 						continue
-					else if(istype(thisturf, /turf/simulated/shuttle/wall))
+					else if(istype(thisturf, /turf/closed/wall/shuttle))
 						continue
-					else if(istype(thisturf, /turf/simulated/wall/reinforced/riveted))
+					else if(istype(thisturf, /turf/closed/wall/reinforced/riveted))
 						continue
 					turfs += thisturf
 				var/turf/target_turf = pick(turfs)

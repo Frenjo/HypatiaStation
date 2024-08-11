@@ -1,11 +1,11 @@
-/turf/simulated/wall/cult
+/turf/closed/wall/cult
 	name = "wall"
 	desc = "The patterns engraved on the wall seem to shift as you try to focus on them. You feel sick"
 	icon = 'icons/turf/walls/cult.dmi'
 	icon_state = "cult0"
 	material = /decl/material/cult // Placeholder.
 
-/turf/simulated/wall/cult/dismantle_wall(devastated = FALSE, explode = FALSE)
+/turf/closed/wall/cult/dismantle_wall(devastated = FALSE, explode = FALSE)
 	if(!devastated)
 		playsound(src, 'sound/items/Welder.ogg', 100, 1)
 		new /obj/effect/decal/cleanable/blood(src)
@@ -22,3 +22,14 @@
 			O.loc = src
 
 	ChangeTurf(/turf/simulated/floor/plating/metal)
+
+// Vault
+/turf/closed/wall/vault
+	icon_state = "rockvault"
+
+/turf/closed/wall/vault/New(location, type)
+	. = ..()
+	icon_state = "[type]vault"
+
+/turf/closed/wall/vault/relativewall()
+	return
