@@ -354,7 +354,9 @@ PROCESS_DEF(air)
 		edge.recheck()
 		return edge
 
-/datum/process/air/proc/has_same_air(turf/A, turf/B)
+/datum/process/air/proc/has_same_air(turf/open/A, turf/open/B)
+	if(!istype(A) || !istype(B)) // This was added to replicate identical behaviour to what came before.
+		return TRUE // Still not sure if this should return TRUE or FALSE.
 	if(isnotnull(A.initial_gases) && isnull(B.initial_gases))
 		return FALSE
 	if(isnull(A.initial_gases) && isnotnull(B.initial_gases))
