@@ -10,7 +10,7 @@
 	var/list/closed = list()
 
 	while(open.len)
-		for(var/turf/T in open)
+		for_no_type_check(var/turf/T, open)
 			for(var/turf/O in orange(1, T))
 				if(get_dist(O, src) > field_radius)
 					continue

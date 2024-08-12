@@ -853,13 +853,13 @@ var/global/datum/tension/tension_master
 		var/list/dstturfs = list()
 		var/throwy = world.maxy
 
-		for(var/turf/T in end_location)
+		for_no_type_check(var/turf/T, end_location.turf_list)
 			dstturfs += T
 			if(T.y < throwy)
 				throwy = T.y
 
 					// hey you, get out of the way!
-		for(var/turf/T in dstturfs)
+		for_no_type_check(var/turf/T, dstturfs)
 						// find the turf to move things to
 			var/turf/D = locate(T.x, throwy - 1, 1)
 						//var/turf/E = get_step(D, SOUTH)

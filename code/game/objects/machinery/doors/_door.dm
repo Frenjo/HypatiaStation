@@ -279,7 +279,7 @@
 	if(!global.PCair)
 		return 0
 
-	for(var/turf/open/turf in locs)
+	for_no_type_check(var/turf/open/turf, locs)
 		update_heat_protection(turf)
 		global.PCair.mark_for_update(turf)
 

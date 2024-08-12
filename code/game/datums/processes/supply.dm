@@ -98,7 +98,7 @@ PROCESS_DEF(supply)
 
 	var/list/clear_turfs = list()
 
-	for(var/turf/T in area_shuttle)
+	for_no_type_check(var/turf/T, area_shuttle.turf_list)
 		if(T.density)
 			continue
 		var/contcount

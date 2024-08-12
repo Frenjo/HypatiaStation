@@ -146,19 +146,19 @@ var/syndicate_elite_shuttle_timeleft = 0
 	var/area/start_location = locate(/area/shuttle/syndicate_elite/mothership)
 	var/area/end_location = locate(/area/shuttle/syndicate_elite/station)
 
-	var/list/dstturfs = list()
+	var/list/turf/dstturfs = list()
 	var/throwy = world.maxy
 
-	for(var/turf/T in end_location)
-		dstturfs  = T
+	for_no_type_check(var/turf/T, end_location.turf_list)
+		dstturfs += T
 		if(T.y < throwy)
 			throwy = T.y
 
-				// hey you, get out of the way!
-	for(var/turf/T in dstturfs)
-					// find the turf to move things to
+	// hey you, get out of the way!
+	for_no_type_check(var/turf/T, dstturfs)
+		// find the turf to move things to
 		var/turf/D = locate(T.x, throwy - 1, 1)
-					//var/turf/E = get_step(D, SOUTH)
+		//var/turf/E = get_step(D, SOUTH)
 		for(var/atom/movable/AM as mob|obj in T)
 			AM.Move(D)
 		if(issimulated(T))
@@ -172,7 +172,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 
 	start_location.move_contents_to(end_location)
 
-	for(var/turf/T in get_area_turfs(end_location) )
+	for_no_type_check(var/turf/T, get_area_turfs(end_location))
 		var/mob/M = locate(/mob) in T
 		M << "\red You have arrived to [GLOBL.current_map.station_name]. Commence operation!"
 

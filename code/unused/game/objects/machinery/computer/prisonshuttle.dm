@@ -190,18 +190,18 @@ var/prison_shuttle_timeleft = 0
 				var/area/start_location = locate(/area/shuttle/prison/prison)
 				var/area/end_location = locate(/area/shuttle/prison/station)
 
-				var/list/dstturfs = list()
+				var/list/turf/dstturfs = list()
 				var/throwy = world.maxy
 
-				for(var/turf/T in end_location)
-					dstturfs += T
+				for_no_type_check(var/turf/T, end_location.turf_list)
+					dstturfs.Add(T)
 					if(T.y < throwy)
 						throwy = T.y
-							// hey you, get out of the way!
-				for(var/turf/T in dstturfs)
-								// find the turf to move things to
+				// hey you, get out of the way!
+				for_no_type_check(var/turf/T, dstturfs)
+					// find the turf to move things to
 					var/turf/D = locate(T.x, throwy - 1, 1)
-								//var/turf/E = get_step(D, SOUTH)
+					//var/turf/E = get_step(D, SOUTH)
 					for(var/atom/movable/AM as mob|obj in T)
 						AM.Move(D)
 					if(issimulated(T))
@@ -219,19 +219,19 @@ var/prison_shuttle_timeleft = 0
 				var/area/start_location = locate(/area/shuttle/prison/station)
 				var/area/end_location = locate(/area/shuttle/prison/prison)
 
-				var/list/dstturfs = list()
+				var/list/turf/dstturfs = list()
 				var/throwy = world.maxy
 
-				for(var/turf/T in end_location)
-					dstturfs += T
+				for_no_type_check(var/turf/T, end_location.turf_list)
+					dstturfs.Add(T)
 					if(T.y < throwy)
 						throwy = T.y
 
-							// hey you, get out of the way!
-				for(var/turf/T in dstturfs)
-								// find the turf to move things to
+				// hey you, get out of the way!
+				for_no_type_check(var/turf/T, dstturfs)
+					// find the turf to move things to
 					var/turf/D = locate(T.x, throwy - 1, 1)
-								//var/turf/E = get_step(D, SOUTH)
+					//var/turf/E = get_step(D, SOUTH)
 					for(var/atom/movable/AM as mob|obj in T)
 						AM.Move(D)
 					if(issimulated(T))

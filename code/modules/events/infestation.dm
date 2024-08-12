@@ -65,10 +65,10 @@
 		//to_world("	A: [A], contents.len: [length(A.contents)]")
 		//for(var/area/B in A.related)
 			//to_world("	B: [B], contents.len: [length(B.contents)]")
-		//	for(var/turf/open/floor/F in B.contents)
-		//		if(!length(F.contents))
-		//			turfs += F
-		for(var/turf/open/floor/F in A.contents)
+			//for(var/turf/open/floor/F in B.turf_list)
+				//if(!length(F.contents))
+					//turfs += F
+		for(var/turf/open/floor/F in A.turf_list)
 			if(!length(F.contents))
 				turfs += F
 

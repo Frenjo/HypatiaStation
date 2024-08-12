@@ -38,7 +38,7 @@
 			command_alert("Bluespace artillery fire detected. Brace for impact.")
 			message_admins("[key_name_admin(usr)] has launched an artillery strike.", 1)
 			var/list/L = list()
-			for(var/turf/T in get_area_turfs(thearea.type))
+			for_no_type_check(var/turf/T, get_area_turfs(thearea.type))
 				L += T
 			var/loc = pick(L)
 			explosion(loc, 2, 5, 11)
@@ -53,7 +53,7 @@
 	spawn(30)
 	var/list/L = list()
 
-	for(var/turf/T in get_area_turfs(thearea.type))
+	for_no_type_check(var/turf/T, get_area_turfs(thearea.type))
 		L+=T
 	var/loc = pick(L)
 	explosion(loc,2,5,11)*/

@@ -116,7 +116,7 @@
 
 			//apply wall affecting reagents to walls
 			if(R.type in wall_affecting_reagents)
-				for(var/turf/T in wallList)
+				for_no_type_check(var/turf/T, wallList)
 					R.reaction_turf(T, R.volume)
 
 			//reagents that should be applied to turfs in a random pattern
@@ -127,7 +127,7 @@
 
 			spawn(0)
 				for(var/i = 0, i < runs, i++)
-					for(var/turf/T in targetTurfs)
+					for_no_type_check(var/turf/T, targetTurfs)
 						if(prob(proba))
 							R.reaction_turf(T, R.volume)
 						for(var/atom/A in T.contents)

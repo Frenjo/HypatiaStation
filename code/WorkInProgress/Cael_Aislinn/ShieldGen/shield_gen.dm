@@ -274,7 +274,7 @@
 		var/turf/T = get_turf(src)
 		if(T in covered_turfs)
 			covered_turfs.Remove(T)
-		for(var/turf/O in covered_turfs)
+		for_no_type_check(var/turf/O, covered_turfs)
 			var/obj/effect/energy_field/E = new(O)
 			field.Add(E)
 		covered_turfs = null

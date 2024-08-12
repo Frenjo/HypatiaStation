@@ -312,7 +312,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	var/list/L = list()
-	for(var/turf/T in get_area_turfs(thearea.type))
+	for_no_type_check(var/turf/T, get_area_turfs(thearea.type))
 		L.Add(T)
 
 	if(!length(L))

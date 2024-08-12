@@ -223,7 +223,7 @@
 			for(var/mob/M in range(10, src))
 				M.show_message("The holodeck overloads!")
 
-			for(var/turf/T in linked_holodeck)
+			for_no_type_check(var/turf/T, linked_holodeck.turf_list)
 				if(prob(30))
 					make_sparks(2, TRUE, T)
 				T.ex_act(3)
@@ -247,7 +247,7 @@
 	qdel(obj)
 
 /obj/machinery/computer/holodeck_control/proc/checkInteg(area/A)
-	for(var/turf/T in A)
+	for_no_type_check(var/turf/T, A.turf_list)
 		if(isspace(T))
 			return 0
 	return 1

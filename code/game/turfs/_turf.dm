@@ -24,10 +24,14 @@
 
 /turf/New()
 	. = ..()
+	var/area/turf_area = loc
+	turf_area.turf_list.Add(src)
 	GLOBL.processing_turfs.Add(src)
 	levelupdate()
 
 /turf/Destroy()
+	var/area/turf_area = loc
+	turf_area.turf_list.Remove(src)
 	GLOBL.processing_turfs.Remove(src)
 	return ..()
 

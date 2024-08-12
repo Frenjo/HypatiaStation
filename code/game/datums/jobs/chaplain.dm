@@ -89,7 +89,7 @@
 					B.icon_state = "koran"
 					B.item_state = "koran"
 					for(var/area/station/crew/chapel/main/A in GLOBL.area_list)
-						for(var/turf/T in A.contents)
+						for_no_type_check(var/turf/T, A.turf_list)
 							if(T.icon_state == "carpetsymbol")
 								T.set_dir(4)
 				if("Scrapbook")
@@ -108,7 +108,7 @@
 					B.icon_state = "athiest"
 					B.item_state = "syringe_kit"
 					for(var/area/station/crew/chapel/main/A in GLOBL.area_list)
-						for(var/turf/T in A.contents)
+						for_no_type_check(var/turf/T, A.turf_list)
 							if(T.icon_state == "carpetsymbol")
 								T.set_dir(10)
 				if("Tome")
@@ -124,7 +124,7 @@
 					B.icon_state = "scientology"
 					B.item_state = "scientology"
 					for(var/area/station/crew/chapel/main/A in GLOBL.area_list)
-						for(var/turf/T in A.contents)
+						for_no_type_check(var/turf/T, A.turf_list)
 							if(T.icon_state == "carpetsymbol")
 								T.set_dir(8)
 				if("the bible melts")
@@ -138,7 +138,7 @@
 					B.icon_state = "bible"
 					B.item_state = "bible"
 					for(var/area/station/crew/chapel/main/A in GLOBL.area_list)
-						for(var/turf/T in A.contents)
+						for_no_type_check(var/turf/T, A.turf_list)
 							if(T.icon_state == "carpetsymbol")
 								T.set_dir(2)
 

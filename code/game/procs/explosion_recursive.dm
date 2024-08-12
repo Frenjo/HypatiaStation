@@ -39,7 +39,7 @@
 		T.explosion_spread(power - epicenter.explosion_resistance, direction)
 
 	//This step applies the ex_act effects for the explosion, as planned in the previous step.
-	for(var/turf/T in global.explosion_turfs)
+	for_no_type_check(var/turf/T, global.explosion_turfs)
 		if(global.explosion_turfs[T] <= 0)
 			continue
 		if(!T)

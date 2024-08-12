@@ -439,7 +439,7 @@ var/linenums = 0
 			var/turf/ne = locate(min(T.x + 4, world.maxx), min(T.y + 4, world.maxy), T.z)
 			defer_powernet_rebuild = 1
 
-			for(var/turf/U in block(sw, ne))
+			for_no_type_check(var/turf/U, block(sw, ne))
 				var/zone = 4
 				if ((U.y <= (T.y + 1) && U.y >= (T.y - 1) && U.x <= (T.x + 2) && U.x >= (T.x - 2)) )
 					zone = 3
@@ -461,7 +461,7 @@ var/linenums = 0
 				var/turf/ne = locate(min(T.x + 4, world.maxx), min(T.y + 4, world.maxy), T.z)
 				defer_powernet_rebuild = 1
 
-				for(var/turf/U in block(sw, ne))
+				for_no_type_check(var/turf/U, block(sw, ne))
 					var/zone = 4
 					if ((U.y <= (T.y + 2) && U.y >= (T.y - 2) && U.x <= (T.x + 2) && U.x >= (T.x - 2)) )
 						zone = 3
@@ -506,7 +506,7 @@ var/linenums = 0
 
 	defer_powernet_rebuild = 1
 
-	for(var/turf/U in block(sw, ne))
+	for_no_type_check(var/turf/U, block(sw, ne))
 
 		var/zone = 4
 		if ((U.y <= (T.y + max) && U.y >= (T.y - max) && U.x <= (T.x + max) && U.x >= (T.x - max) ))

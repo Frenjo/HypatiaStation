@@ -728,7 +728,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 				var/cultists_escaped = 0
 
 				var/area/shuttle/escape/centcom/C = /area/shuttle/escape/centcom
-				for(var/turf/T in	get_area_turfs(C.type))
+				for_no_type_check(var/turf/T, get_area_turfs(C.type))
 					for(var/mob/living/carbon/H in T)
 						if(iscultist(H))
 							cultists_escaped++

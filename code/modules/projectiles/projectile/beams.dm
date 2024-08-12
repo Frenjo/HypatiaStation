@@ -79,7 +79,7 @@ var/list/beam_master = list()
 		var/list/turf_master = beam_master[reference]
 		for(var/laser_state in turf_master)
 			var/list/turfs = turf_master[laser_state]
-			for(var/turf/T in turfs)
+			for_no_type_check(var/turf/T, turfs)
 				T.overlays.Remove(beam_master[laser_state])
 
 /obj/item/projectile/energy/beam/laser

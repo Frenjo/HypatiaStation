@@ -130,7 +130,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			var/turf/center = locate((destination.x + xoffset), (destination.y + yoffset), location.z)//So now, find the new center.
 
 			//Now to find a box from center location and make that our destination.
-			for(var/turf/T in block(locate(center.x + b1xerror, center.y + b1yerror, location.z), locate(center.x + b2xerror, center.y + b2yerror, location.z)))
+			for_no_type_check(var/turf/T, block(locate(center.x + b1xerror, center.y + b1yerror, location.z), locate(center.x + b2xerror, center.y + b2yerror, location.z)))
 				if(density && T.density)
 					continue//If density was specified.
 				if(T.x > world.maxx || T.x < 1)
@@ -700,38 +700,44 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all areas of that type in the world.
-/proc/get_areas(areatype)
-	if(!areatype)
+/proc/get_areas(area_type)
+	RETURN_TYPE(/list)
+
+	if(!area_type)
 		return null
-	if(istext(areatype))
-		areatype = text2path(areatype)
-	if(isarea(areatype))
-		var/area/areatemp = areatype
-		areatype = areatemp.type
+	else if(istext(area_type))
+		area_type = text2path(area_type)
+	else if(isarea(area_type))
+		var/area/areatemp = area_type
+		area_type = areatemp.type
 
 	var/list/areas = list()
-	for_no_type_check(var/area/N, GLOBL.area_list)
-		if(istype(N, areatype))
-			areas.Add(N)
+	for_no_type_check(var/area/A, GLOBL.area_list)
+		if(istype(A, area_type))
+			areas.Add(A)
+
 	return areas
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all turfs in areas of that type of that type in the world.
-/proc/get_area_turfs(areatype)
-	if(!areatype)
-		return null
-	if(istext(areatype))
-		areatype = text2path(areatype)
-	if(isarea(areatype))
-		var/area/areatemp = areatype
-		areatype = areatemp.type
+/proc/get_area_turfs(area_type)
+	RETURN_TYPE(/list)
 
-	var/list/turfs = list()
+	if(!area_type)
+		return null
+	else if(istext(area_type))
+		area_type = text2path(area_type)
+	else if(isarea(area_type))
+		var/area/temp_area = area_type
+		area_type = temp_area.type
+
+	// This should be completely fine as there are currently no duplicated areas.
+	// And there never should be!
 	for_no_type_check(var/area/N, GLOBL.area_list)
-		if(istype(N, areatype))
-			for(var/turf/T in N)
-				turfs.Add(T)
-	return turfs
+		if(istype(N, area_type))
+			return N.turf_list
+
+	return list()
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all atoms	(objs, turfs, mobs) in areas of that type of that type in the world.

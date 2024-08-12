@@ -214,7 +214,7 @@
 	if(!defarea)
 		defarea = new world.area
 	areas = list()
-	for(var/turf/T in block(locate(x1, y1, z1), locate(x2, y2, z2)))
+	for_no_type_check(var/turf/T, block(locate(x1, y1, z1), locate(x2, y2, z2)))
 		areas[T.loc] = null
 	for(n in areas)	// quickly eliminate associations for smaller storage
 		areas -= n
@@ -426,7 +426,7 @@
 			&& T.z >= z1 && T.z <= z2)
 
 /swapmap/proc/InUse()
-	for(var/turf/T in AllTurfs())
+	for_no_type_check(var/turf/T, AllTurfs())
 		for(var/mob/M in T)
 			if(M.key)
 				return 1

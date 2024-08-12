@@ -23,16 +23,16 @@ proc/move_research_shuttle()
 			toArea = locate(/area/shuttle/research/outpost)
 
 
-		var/list/dstturfs = list()
+		var/list/turf/dstturfs = list()
 		var/throwy = world.maxy
 
-		for(var/turf/T in toArea)
+		for_no_type_check(var/turf/T, toArea.turf_list)
 			dstturfs += T
 			if(T.y < throwy)
 				throwy = T.y
 
 		// hey you, get out of the way!
-		for(var/turf/T in dstturfs)
+		for_no_type_check(var/turf/T, dstturfs)
 			// find the turf to move things to
 			var/turf/D = locate(T.x, throwy - 1, 1)
 			//var/turf/E = get_step(D, SOUTH)

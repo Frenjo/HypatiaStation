@@ -74,12 +74,12 @@
 /datum/shuttle/ferry/multidock/specops/move(area/origin, area/destination)
 	..(origin, destination)
 	if(!location)	//just arrived home
-		for(var/turf/T in get_area_turfs(destination))
+		for_no_type_check(var/turf/T, get_area_turfs(destination))
 			var/mob/M = locate(/mob) in T
 			to_chat(M, SPAN_WARNING("You have arrived at Central Command. Operation has ended!"))
 	else	//just left for the station
 		launch_mauraders()
-		for(var/turf/T in get_area_turfs(destination))
+		for_no_type_check(var/turf/T, get_area_turfs(destination))
 			var/mob/M = locate(/mob) in T
 			to_chat(M, SPAN_WARNING("You have arrived at [GLOBL.current_map.station_name]. Commence operation!"))
 

@@ -127,7 +127,7 @@ move an amendment</a> to the drawing.</p>
 	A.always_unpowered = FALSE
 	move_turfs_to_area(turfs, A)
 
-	//for(var/turf/T in A.contents)
+	//for_no_type_check(var/turf/T, A.turf_list)
 	//	T.lighting_changed = 1
 	//	lighting_controller.changed_turfs += T
 

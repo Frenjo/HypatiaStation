@@ -388,7 +388,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 		if(!isturf(T))
 			return 0
 		turfs.Add(T)
-	for(var/turf/T3 in turfs)
+	for_no_type_check(var/turf/T3, turfs)
 		if(isnull(T3))
 			continue
 		if(!can_move(T3))

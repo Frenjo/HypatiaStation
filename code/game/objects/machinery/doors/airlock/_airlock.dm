@@ -192,7 +192,7 @@
 		if(!arePowerSystemsOn() || (stat & NOPOWER) || isWireCut(AIRLOCK_WIRE_DOOR_BOLTS))
 			return
 	if(safe)
-		for(var/turf/turf in locs)
+		for_no_type_check(var/turf/turf, locs)
 			if(locate(/mob/living) in turf)
 				// Uncommented sound to play when door is blocked. -Frenjo
 				playsound(src, 'sound/machines/buzz-two.ogg', 25, 0)	//THE BUZZING IT NEVER STOPS	-Pete
@@ -200,7 +200,7 @@
 					close()
 				return
 
-	for(var/turf/turf in locs)
+	for_no_type_check(var/turf/turf, locs)
 		for(var/mob/living/M in turf)
 			if(isrobot(M))
 				M.adjustBruteLoss(DOOR_CRUSH_DAMAGE)
@@ -228,7 +228,7 @@
 		playsound(src, 'sound/items/bikehorn.ogg', 30, 1)
 	else
 		playsound(src, 'sound/machines/airlock.ogg', 30, 1)
-	for(var/turf/turf in locs)
+	for_no_type_check(var/turf/turf, locs)
 		var/obj/structure/window/killthis = (locate(/obj/structure/window) in turf)
 		if(isnotnull(killthis))
 			killthis.ex_act(2)//Smashin windows

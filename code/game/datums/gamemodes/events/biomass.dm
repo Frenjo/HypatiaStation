@@ -177,10 +177,10 @@
 		for(var/areapath in typesof(/area/station/hallway))
 			var/area/A = locate(areapath)
 			//for(var/area/B in A.related)
-			//	for(var/turf/open/floor/F in B.contents)
-			//		if(!length(F.contents))
-			//			turfs += F
-			for(var/turf/open/floor/F in A.contents)
+				//for(var/turf/open/floor/F in B.turf_list)
+					//if(!length(F.contents))
+						//turfs += F
+			for(var/turf/open/floor/F in A.turf_list)
 				if(!length(F.contents))
 					turfs += F
 

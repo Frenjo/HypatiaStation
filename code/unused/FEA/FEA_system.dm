@@ -167,7 +167,7 @@ datum
 				var/possible_space_length = 0
 
 				while(possible_members.len>0) //Keep expanding, looking for new members
-					for(var/turf/open/test in possible_members)
+					for_no_type_check(var/turf/open/test, possible_members)
 						test.length_space_border = 0
 						for(var/direction in cardinal)
 							var/turf/T = get_step(test,direction)
@@ -194,7 +194,7 @@ datum
 						group.space_borders = possible_space_borders
 						group.length_space_border = possible_space_length
 
-					for(var/turf/open/test in members)
+					for_no_type_check(var/turf/open/test, members)
 						test.parent = group
 						test.processing = 0
 						active_singletons -= test
@@ -275,7 +275,7 @@ datum
 				return 1
 
 			process_update_tiles()
-				for(var/turf/open/T in tiles_to_update)
+				for_no_type_check(var/turf/open/T, tiles_to_update)
 					T.update_air_properties()
 /*
 				for(var/obj/movable/floor/O in tiles_to_update)
@@ -325,11 +325,11 @@ datum
 					item:process_cell()
 
 			process_super_conductivity()
-				for(var/turf/open/hot_potato in active_super_conductivity)
+				for_no_type_check(var/turf/open/hot_potato, active_super_conductivity)
 					hot_potato.super_conduct()
 
 			process_high_pressure_delta()
-				for(var/turf/pressurized in high_pressure_delta)
+				for_no_type_check(var/turf/pressurized, high_pressure_delta)
 					pressurized.high_pressure_movements()
 
 				high_pressure_delta.len = 0

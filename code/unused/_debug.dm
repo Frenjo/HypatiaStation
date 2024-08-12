@@ -462,7 +462,7 @@ Doing this because FindTurfs() isn't even used
 	var/area/A = locate(/area/airintake)
 
 	var/atot = 0
-	for(var/turf/T in A)
+	for_no_type_check(var/turf/T, A.turf_list)
 		atot += T.tot_gas()
 
 	var/ptot = 0

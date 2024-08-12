@@ -61,7 +61,7 @@
 
 	proc/count()
 		for(var/turf/T in world)
-			if(isnotstationlevel(T.z)
+			if(isnotstationlevel(T.z))
 				continue
 
 			if(istype(T,/turf/open/floor))

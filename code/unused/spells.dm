@@ -359,7 +359,7 @@
 
 	make_smoke(5, FALSE, usr.loc, usr)
 	var/list/L = list()
-	for(var/turf/T in get_area_turfs(thearea.type))
+	for_no_type_check(var/turf/T, get_area_turfs(thearea.type))
 		if(!T.density)
 			var/clear = 1
 			for(var/obj/O in T)
