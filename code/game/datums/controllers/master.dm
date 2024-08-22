@@ -168,7 +168,7 @@ CONTROLLER_DEF(master)
 		update_current_tick_data()
 		return 0
 	else
-		return TimeOfTick
+		return TIMEOFTICK
 
 /datum/controller/master/proc/update_current_tick_data()
 	if(world.time > current_tick)
@@ -529,7 +529,7 @@ CONTROLLER_DEF(master)
  */
 /datum/controller/master/proc/record_start(datum/process/process, time = null)
 	if(isnull(time))
-		time = TimeOfGame
+		time = TIMEOFGAME
 		last_queued[process] = world.time
 		last_start[process] = time
 	else
@@ -538,7 +538,7 @@ CONTROLLER_DEF(master)
 
 /datum/controller/master/proc/record_end(datum/process/process, time = null)
 	if(isnull(time))
-		time = TimeOfGame
+		time = TIMEOFGAME
 
 	var/lastRunTime = time - last_start[process]
 

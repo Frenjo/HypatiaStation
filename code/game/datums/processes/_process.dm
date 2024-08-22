@@ -117,7 +117,7 @@
 
 /datum/process/proc/started()
 	// Initialize run_start so we can detect hung processes.
-	run_start = TimeOfGame
+	run_start = TIMEOFGAME
 
 	// Initialize defer count
 	cpu_defer_count = 0
@@ -176,7 +176,7 @@
 	if(istype(lastObj))
 		lastObjType = lastObj.type
 
-	var/msg = "[name] process hung at tick #[ticks]. Process was unresponsive for [(TimeOfGame - run_start) / 10] seconds and was restarted. Last task: [last_task]. Last Object Type: [lastObjType]"
+	var/msg = "[name] process hung at tick #[ticks]. Process was unresponsive for [(TIMEOFGAME - run_start) / 10] seconds and was restarted. Last task: [last_task]. Last Object Type: [lastObjType]"
 	log_debug(msg)
 	message_admins(msg)
 
@@ -214,10 +214,10 @@
 		cpu_defer_count++
 		last_slept = 0
 	else
-		if(TimeOfTick > last_slept + sleep_interval)
+		if(TIMEOFTICK > last_slept + sleep_interval)
 			// If we haven't slept in sleep_interval deciseconds, sleep to allow other work to proceed.
 			sleep(0)
-			last_slept = TimeOfTick
+			last_slept = TIMEOFTICK
 
 /datum/process/proc/update()
 	// Clear delta
@@ -237,7 +237,7 @@
 		set_status(PROCESS_STATUS_MAYBE_HUNG)
 
 /datum/process/proc/get_elapsed_time()
-	return TimeOfGame - run_start
+	return TIMEOFGAME - run_start
 
 /datum/process/proc/get_context()
 	return "<tr><td>[name]</td><td>[master.average_run_time(src)]</td><td>[master.last_run_time[src]]</td><td>[master.highest_run_time[src]]</td><td>[ticks]</td></tr>\n"

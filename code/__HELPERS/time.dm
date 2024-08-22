@@ -1,5 +1,5 @@
-#define TimeOfGame (get_game_time())
-#define TimeOfTick (world.tick_usage * 0.01 * world.tick_lag)
+#define TIMEOFGAME (get_game_time())
+#define TIMEOFTICK (world.tick_usage * 0.01 * world.tick_lag)
 
 GLOBAL_GLOBL_LIST_INIT(months, list(
 	"January", "February", "March", "April",
