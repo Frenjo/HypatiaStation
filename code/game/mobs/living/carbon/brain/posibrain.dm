@@ -95,8 +95,7 @@
 	src.brainmob.mind.assigned_role = "Positronic Brain"
 
 	var/turf/T = get_turf_or_move(src.loc)
-	for (var/mob/M in viewers(T))
-		M.show_message("\blue The positronic brain chimes quietly.")
+	T.visible_message(SPAN_INFO("The positronic brain chimes quietly."))
 	icon_state = "posibrain-occupied"
 
 /obj/item/mmi/posibrain/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
@@ -106,8 +105,7 @@
 	icon_state = "posibrain"
 
 	var/turf/T = get_turf_or_move(src.loc)
-	for (var/mob/M in viewers(T))
-		M.show_message("\blue The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?")
+	T.visible_message(SPAN_INFO("The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?"))
 
 /obj/item/mmi/posibrain/examine()
 	set src in oview()

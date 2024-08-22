@@ -1445,24 +1445,25 @@ It is possible to destroy the net by the occupant or someone else.
 
 /obj/effect/energy_net/attack_hand()
 	if(HULK in usr.mutations)
-		to_chat(usr, SPAN_INFO("You easily destroy the energy net."))
-		for(var/mob/O in oviewers(src))
-			O.show_message(SPAN_WARNING("[usr] rips the energy net apart!"), 1)
+		usr.visible_message(
+			SPAN_WARNING("[usr] rips the energy net apart!"),
+			SPAN_INFO("You easily destroy the energy net.")
+		)
 		health -= 50
 	else if(ishuman(usr))
 		var/mob/living/carbon/human/H = usr
 		if(H.species.can_shred(H))
-			to_chat(H, SPAN_ALIUM("You claw at the net."))
-			for(var/mob/O in oviewers(src))
-				O.show_message(SPAN_WARNING("[H] claws at the energy net!"), 1)
-
+			H.visible_message(
+				SPAN_WARNING("[H] claws at the energy net!"),
+				SPAN_ALIUM("You claw at the energy net.")
+			)
 			playsound(src, 'sound/weapons/slash.ogg', 80, 1)
 			health -= rand(10, 20)
-
 			if(health <= 0)
-				to_chat(H, SPAN_ALIUM("You slice the energy net to pieces."))
-				for(var/mob/O in oviewers(src))
-					O.show_message(SPAN_WARNING("[H] slices the energy net apart!"), 1)
+				H.visible_message(
+					SPAN_WARNING("[H] slices the energy net apart!"),
+					SPAN_ALIUM("You slice the energy net to pieces.")
+				)
 	healthcheck()
 	return
 

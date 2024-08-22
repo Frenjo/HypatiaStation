@@ -130,7 +130,7 @@
 					return
 
 				if(mmi.brainmob.mind)
-					global.PCticker.mode.remove_cultist(mmi.brainmob.mind, 1)
+					global.PCticker.mode.remove_cultist(mmi.brainmob.mind)
 					global.PCticker.mode.remove_revolutionary(mmi.brainmob.mind, 1)
 
 				user.drop_item()

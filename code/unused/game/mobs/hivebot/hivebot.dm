@@ -87,9 +87,7 @@
 	src.updatehealth()
 
 /mob/living/silicon/hivebot/meteorhit(obj/O as obj)
-	for(var/mob/M in viewers(src, null))
-		M.show_message(text("\red [src] has been hit by [O]"), 1)
-		//Foreach goto(19)
+	visible_message(SPAN_DANGER("[src] has been hit by [O]!"))
 	if (src.health > 0)
 		src.adjustBruteLoss(30)
 		if ((O.icon_state == "flaming"))

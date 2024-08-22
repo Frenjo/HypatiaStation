@@ -61,7 +61,7 @@
 	if(istype(W, /obj/item/circular_saw) || istype(W, /obj/item/hatchet) \
 	|| (istype(W, /obj/item/twohanded/fireaxe) && W:wielded) \
 	|| istype(W, /obj/item/melee/energy))
-		user.show_message(SPAN_NOTICE("You make planks out of \the [src]!"), 1)
+		to_chat(user, SPAN_NOTICE("You make planks out of \the [src]!"))
 		for(var/i = 0, i < 2, i++)
 			var/obj/item/stack/sheet/wood/NG = new(user.loc)
 			for(var/obj/item/stack/sheet/wood/G in user.loc)

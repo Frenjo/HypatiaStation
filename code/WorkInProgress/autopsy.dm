@@ -146,8 +146,10 @@
 			scan_data += chemID
 			scan_data += "<br>"
 
-	for(var/mob/O in viewers(usr))
-		O.show_message(SPAN_WARNING("\the [src] rattles and prints out a sheet of paper."), 1)
+	visible_message(
+		SPAN_WARNING("\The [src] rattles and prints out a sheet of paper."),
+		SPAN_WARNING("You hear a printer rattling.")
+	)
 
 	sleep(10)
 
@@ -183,14 +185,11 @@
 
 	var/datum/organ/external/S = M.get_organ(user.zone_sel.selecting)
 	if(!S)
-		to_chat(usr, "<b>You can't scan this body part.</b>")
+		to_chat(usr, SPAN_WARNING("You can't scan this body part."))
 		return
 	if(!S.open)
-		to_chat(usr, "<b>You have to cut the limb open first!</b>")
+		to_chat(usr, SPAN_WARNING("You have to cut the limb open first!"))
 		return
-	for(var/mob/O in viewers(M))
-		O.show_message(SPAN_WARNING("[user.name] scans the wounds on [M.name]'s [S.display_name] with \the [src.name]"), 1)
-
+	user.visible_message(SPAN_INFO("[user] scans the wounds on [M]'s [S.display_name] with \the [src]."))
 	src.add_data(S)
-
 	return 1

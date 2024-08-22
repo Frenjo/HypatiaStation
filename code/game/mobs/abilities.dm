@@ -44,44 +44,44 @@ Creature-level abilities.
 		return 0
 
 	var/list/creatures = list()
-	for(var/mob/living/carbon/h in view(src))
-		creatures += h
+	for(var/mob/living/carbon/C in view(src))
+		if(!isnull(C.client))
+			creatures.Add(C)
 
 	var/mob/target = input("Who do you want to project your words to?") as null | anything in creatures
-
 	if(isnull(target))
 		return
 
 	mob.visible_message(
-		SPAN_INFO("[mob.real_name] focuses intently on [target.real_name]."),
-		SPAN_WARNING("You focus intently on [target.real_name].")
+		SPAN_INFO("[mob] focuses intently on [target]."),
+		SPAN_INFO("You focus intently on [target].")
 	)
 
 	var/intensity = input("How intense do you want the projection to be?") in list(1, 2, 3)
 	var/say = input("What do you wish to say?")
 
 	if(target.get_species() == SPECIES_SKRELL)
-		target.show_message(SPAN_INFO("You hear [mob.real_name]'s words in your mind: [say]"))
+		to_chat(target, SPAN_INFO("You hear [mob]'s words in your mind: [say]"))
 	else
 		switch(intensity)
 			if(1)
-				target.show_message(SPAN_DANGER("You feel an ache in your head."))
-				target.show_message(SPAN_INFO("You hear words in your mind: [say]"))
+				to_chat(target, SPAN_WARNING("You feel an ache in your head."))
+				to_chat(target, SPAN_INFO("You hear words in your mind: [say]"))
 			if(2)
-				target.show_message(SPAN_DANGER("You feel a pressure between your eyes."))
-				target.show_message(SPAN_INFO("You hear words in your mind: [say]"))
+				to_chat(target, SPAN_DANGER("You feel a pressure between your eyes."))
+				to_chat(target, SPAN_INFO("You hear words in your mind: [say]"))
 			if(3)
-				target.show_message(SPAN_DANGER("You feel a pressure between your eyes."))
-				target.show_message(SPAN_INFO_B("You hear words in your mind: [say]"))
+				to_chat(target, SPAN_DANGER("You feel a pressure between your eyes."))
+				to_chat(target, SPAN_INFO_B("You hear words in your mind: [say]"))
 				if(ishuman(target))
-					var/mob/living/carbon/human/h = target
-					h.visible_message(
-						SPAN_DANGER("[target.real_name]'s nose begins to bleed."),
-						SPAN_DANGER("Your nose begins to bleed...")
+					var/mob/living/carbon/human/H = target
+					H.visible_message(
+						SPAN_WARNING("[target]'s nose begins to bleed."),
+						SPAN_WARNING("Your nose begins to bleed...")
 					)
-					h.drip(3)
+					H.drip(3)
 
-	mob.show_message(SPAN_INFO("You project your words into [target.real_name]: [say]"))
+	to_chat(mob, SPAN_INFO("You project your words into [target]: [say]"))
 
-	for(var/mob/dead/observer/G in GLOBL.mob_list)
-		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
+	for(var/mob/dead/observer/G in GLOBL.dead_mob_list)
+		to_chat(G, "<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")

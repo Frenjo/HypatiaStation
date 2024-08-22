@@ -55,9 +55,9 @@
 			return
 
 		if(istype(W, /obj/item/screwdriver))
-			if (do_after(user, 20))
-				open =! open
-				user.show_message(text("\blue You [] the service panel.", (open ? "open" : "close")))
+			if(do_after(user, 20))
+				open = !open
+				to_chat(user, SPAN_INFO("You [open ? "open" : "close"] the service panel."))
 			return
 		if((istype(W, /obj/item/multitool)) && (open == 1)&& (!l_hacking))
 			user.show_message(text("\red Now attempting to reset internal memory, please hold."), 1)

@@ -19,31 +19,42 @@
 	ghostize()
 	return ..()
 
-/mob/proc/show_message(msg, type, alt, alt_type)	//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/*
+ * show_message
+ *
+ * Shows a message to the src mob.
+ * msg is the message to be displayed.
+ * type can be either 1 (visible) or 2 (audible).
+ * alt (optional) is the message to be displayed if the type check fails.
+ * (IE 1 to a blind mob, or 2 to a deaf one.)
+ * alt_type (optional) can be either 1 (visible) or 2 (audible).
+ */
+/mob/proc/show_message(msg, type, alt, alt_type)
 	if(isnull(client))
 		return
+	if(!msg)
+		return
+	if(!type)
+		return
 
-	if(type)
-		if(type & 1 && (sdisabilities & BLIND || blinded || paralysis))	//Vision related
-			if(!alt)
-				return
-			else
-				msg = alt
-				type = alt_type
-		if(type & 2 && (sdisabilities & DEAF || ear_deaf))	//Hearing related
-			if(!alt)
-				return
-			else
-				msg = alt
-				type = alt_type
-				if((type & 1 && sdisabilities & BLIND))
-					return
+	if(type & 1 && (sdisabilities & BLIND || blinded || paralysis)) // Vision-related.
+		if(!alt || !alt_type)
+			return
+		msg = alt
+		type = alt_type
+	if(type & 2 && (sdisabilities & DEAF || ear_deaf)) // Hearing-related.
+		if(!alt || !alt_type)
+			return
+		msg = alt
+		type = alt_type
+		if((type & 1 && sdisabilities & BLIND))
+			return
+
 	// Added voice muffling for Issue 41.
 	if(stat == UNCONSCIOUS || sleeping > 0)
 		to_chat(src, "<I>... You can almost hear someone talking ...</I>")
 	else
 		to_chat(src, msg)
-	return
 
 // Show a message to all mobs in sight of this one
 // This would be for visible actions by the src mob

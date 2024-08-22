@@ -140,9 +140,8 @@
 	return
 
 /mob/living/carbon/monkey/meteorhit(obj/O as obj)
-	for(var/mob/M in viewers(src, null))
-		M.show_message(text("\red [] has been hit by []", src, O), 1)
-	if (health > 0)
+	visible_message(SPAN_WARNING("[src] has been hit by [O]!"))
+	if(health > 0)
 		var/shielded = 0
 		adjustBruteLoss(30)
 		if ((O.icon_state == "flaming" && !( shielded )))
@@ -161,8 +160,7 @@
 		if ((M.a_intent == "hurt" && !( istype(wear_mask, /obj/item/clothing/mask/muzzle) )))
 			if ((prob(75) && health > 0))
 				playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					O.show_message("\red <B>[M.name] has bit [name]!</B>", 1)
+				visible_message(SPAN_DANGER("[M] bites [src]!")) // "bites" sounds much better than "has bit" or "has bitten"
 				var/damage = rand(1, 5)
 				adjustBruteLoss(damage)
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
@@ -170,8 +168,7 @@
 					if(istype(D, /datum/disease/jungle_fever))
 						contract_disease(D,1,0)
 			else
-				for(var/mob/O in viewers(src, null))
-					O.show_message("\red <B>[M.name] has attempted to bite [name]!</B>", 1)
+				visible_message(SPAN_DANGER("[M] attempted to bite [src]!"))
 	return
 
 /mob/living/carbon/monkey/attack_hand(mob/living/carbon/human/M as mob)

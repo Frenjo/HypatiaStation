@@ -132,8 +132,7 @@
 	icon_state = "victor_kaminsky_1"
 
 /obj/item/fluff/victor_kaminsky_1/attack_self(mob/user)
-	for(var/mob/O in viewers(user, null))
-		O.show_message(text("[] shows you: \icon[] [].", user, src, src.name), 1)
+	user.visible_message("[user] shows you: \icon[src] [src.name].")
 	src.add_fingerprint(user)
 
 /obj/item/fluff/ana_issek_2 //suethecake: Ana Issek
@@ -248,9 +247,7 @@
 
 /obj/item/fluff/cado_keppel_1/attack_self(mob/user)
 	if(user.r_hand == src || user.l_hand == src)
-		for(var/mob/O in viewers(user, null))
-			O.show_message(text("\red [] uses [] to comb their hair with incredible style and sophistication. What a guy.", user, src), 1)
-	return
+		visible_message(SPAN_WARNING("[user] uses [src] to comb their hair with incredible style and sophistication. What a guy."))
 
 /obj/item/fluff/hugo_cinderbacth_1 //thatoneguy: Hugo Cinderbatch
 	name = "Old Cane"

@@ -244,7 +244,7 @@
 				continue
 
 /mob/living/silicon/ai/meteorhit(obj/O)
-	visible_message(SPAN_WARNING("[src] has been hit by [O]!"))
+	visible_message(SPAN_DANGER("[src] has been hit by [O]!"))
 	if(health > 0)
 		adjustBruteLoss(30)
 		if(O.icon_state == "flaming")

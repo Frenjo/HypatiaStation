@@ -44,7 +44,7 @@
 
 		//paralysis += 1
 
-	show_message(SPAN_WARNING("The blob attacks you!"))
+	to_chat(src, SPAN_WARNING("The blob attacks you!"))
 
 	adjustFireLoss(damage)
 

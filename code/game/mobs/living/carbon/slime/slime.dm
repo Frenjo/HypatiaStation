@@ -189,7 +189,7 @@
 
 		//paralysis += 1
 
-	show_message(SPAN_WARNING("The blob attacks you!"))
+	to_chat(src, SPAN_DANGER("The blob attacks you!"))
 
 	adjustFireLoss(damage)
 
@@ -205,9 +205,7 @@
 	return
 
 /mob/living/carbon/slime/meteorhit(obj/O)
-	for(var/mob/M in viewers(src, null))
-		if((M.client && !( M.blinded )))
-			M.show_message(SPAN_WARNING("[src] has been hit by [O]!"), 1)
+	visible_message(SPAN_DANGER("[src] has been hit by [O]!"))
 	if(health > 0)
 		adjustBruteLoss((istype(O, /obj/effect/meteor/small) ? 10 : 25))
 		adjustFireLoss(30)
@@ -225,9 +223,7 @@
 		return // can't attack while eating!
 
 	if(health > -100)
-		for(var/mob/O in viewers(src, null))
-			if((O.client && !O.blinded))
-				O.show_message(SPAN_DANGER("The [M.name] has glomped [src]!"), 1)
+		visible_message(SPAN_DANGER("\The [M] has glomped [src]!"))
 
 		var/damage = rand(1, 3)
 		attacked += 5
@@ -251,8 +247,7 @@
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 50, 1, 1)
-		for(var/mob/O in viewers(src, null))
-			O.show_message("\red <B>[M]</B> [M.attacktext] [src]!", 1)
+		visible_message(SPAN_WARNING("<B>[M]</B> [M.attacktext] [src]!"))
 		M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 		src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
@@ -279,9 +274,7 @@
 			if(health > 0)
 				attacked += 10
 				//playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					if((O.client && !O.blinded))
-						O.show_message(SPAN_DANGER("[M.name] has attacked [src]!"), 1)
+				visible_message(SPAN_DANGER("[M] has attacked [src]!"))
 				adjustBruteLoss(rand(1, 3))
 				updatehealth()
 	return
@@ -297,15 +290,11 @@
 	if(Victim)
 		if(Victim == M)
 			if(prob(60))
-				for(var/mob/O in viewers(src, null))
-					if((O.client && !O.blinded))
-						O.show_message(SPAN_WARNING("[M] attempts to wrestle \the [name] off!"), 1)
+				visible_message(SPAN_WARNING("[M] attempts to wrestle \the [src] off!"))
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 			else
-				for(var/mob/O in viewers(src, null))
-					if((O.client && !O.blinded))
-						O.show_message(SPAN_WARNING("[M] manages to wrestle \the [name] off!"), 1)
+				visible_message(SPAN_WARNING("[M] manages to wrestle \the [src] off!"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 				if(prob(90) && !client)
@@ -325,15 +314,11 @@
 
 		else
 			if(prob(30))
-				for(var/mob/O in viewers(src, null))
-					if((O.client && !O.blinded))
-						O.show_message(SPAN_WARNING("[M] attempts to wrestle \the [name] off of [Victim]!"), 1)
+				visible_message(SPAN_WARNING("[M] attempts to wrestle \the [src] off of [Victim]!"))
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 
 			else
-				for(var/mob/O in viewers(src, null))
-					if((O.client && !O.blinded))
-						O.show_message(SPAN_WARNING("[M] manages to wrestle \the [name] off of [Victim]!"), 1)
+				visible_message(SPAN_WARNING("[M] manages to wrestle \the [src] off of [Victim]!"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 				if(prob(80) && !client)
@@ -364,9 +349,10 @@
 			if(M.a_intent == "hurt")//Stungloves. Any contact will stun the alien.
 				if(G.cell.charge >= 2500)
 					G.cell.use(2500)
-					for(var/mob/O in viewers(src, null))
-						if((O.client && !O.blinded))
-							O.show_message(SPAN_DANGER("[src] has been touched with the stun gloves by [M]!"), 1, SPAN_WARNING("You hear someone fall."), 2)
+					visible_message(
+						SPAN_DANGER("[src] has been touched with the stun gloves by [M]!"),
+						SPAN_WARNING("You hear someone fall.")
+					)
 					return
 				else
 					to_chat(M, SPAN_WARNING("Not enough charge!"))
@@ -389,9 +375,7 @@
 			LAssailant = M
 
 			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			for(var/mob/O in viewers(src, null))
-				if((O.client && !O.blinded))
-					O.show_message(SPAN_WARNING("[M] has grabbed [src] passively!"), 1)
+			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
 
 		else
 
@@ -413,17 +397,13 @@
 						step_away(src, M, 15)
 
 				playsound(loc, "punch", 25, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					if((O.client && !O.blinded))
-						O.show_message(SPAN_DANGER("[M] has punched [src]!"), 1)
+				visible_message(SPAN_DANGER("[M] has punched [src]!"))
 
 				adjustBruteLoss(damage)
 				updatehealth()
 			else
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-				for(var/mob/O in viewers(src, null))
-					if((O.client && !O.blinded))
-						O.show_message(SPAN_DANGER("[M] has attempted to punch [src]!"), 1)
+				visible_message(SPAN_DANGER("[M] has attempted to punch [src]!"))
 	return
 
 /mob/living/carbon/slime/restrained()

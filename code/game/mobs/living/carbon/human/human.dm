@@ -173,14 +173,13 @@
 /mob/living/carbon/human/blob_act()
 	if(stat == DEAD)
 		return
-	show_message(SPAN_WARNING("The blob attacks you!"))
+	to_chat(src, SPAN_WARNING("The blob attacks you!"))
 	var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 	var/datum/organ/external/affecting = get_organ(ran_zone(dam_zone))
 	apply_damage(rand(30, 40), BRUTE, affecting, run_armor_check(affecting, "melee"))
-	return
 
 /mob/living/carbon/human/meteorhit(obj/O)
-	visible_message(SPAN_WARNING("[src] has been hit by [O]!"))
+	visible_message(SPAN_DANGER("[src] has been hit by [O]!"))
 	if(health > 0)
 		var/datum/organ/external/affecting = get_organ(pick("chest", "chest", "chest", "head"))
 		if(!affecting)
@@ -876,18 +875,18 @@
 	var/list/creatures = list()
 	for(var/mob/living/carbon/h in GLOBL.mob_list)
 		creatures += h
-	var/mob/target = input ("Who do you want to project your mind to ?") as null|anything in creatures
+	var/mob/target = input ("Who do you want to project your mind to?") as null | anything in creatures
 	if(isnull(target))
 		return
 
 	var/say = input ("What do you wish to say")
 	if(mRemotetalk in target.mutations)
-		target.show_message(SPAN_INFO("You hear [src.real_name]'s voice: [say]"))
+		to_chat(target, SPAN_INFO("You hear [src]'s voice: [say]"))
 	else
-		target.show_message(SPAN_INFO("You hear a voice that seems to echo around the room: [say]"))
-	usr.show_message(SPAN_INFO("You project your mind into [target.real_name]: [say]"))
+		to_chat(target, SPAN_INFO("You hear a voice that seems to echo around the room: [say]"))
+	to_chat(src, SPAN_INFO("You project your mind into [target]: [say]"))
 	for(var/mob/dead/observer/G in GLOBL.mob_list)
-		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
+		to_chat(G, "<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
 
 /mob/living/carbon/human/proc/remoteobserve()
 	set name = "Remote View"

@@ -34,39 +34,34 @@
 			if(!(L.Find(place)))
 				qdel(src)
 				return
-		for(var/mob/O in viewers(target, null))
-			if ((O.client && !( O.blinded )))
-				O.show_message(text("\red <B>[] is trying to put a [] on []</B>", source, item, target), 1)
+		target.visible_message(SPAN_DANGER("[source] is trying to put \a [item] on [target]!"))
 	else
 		var/message = null
 		switch(place)
 			if("mask")
 				if(istype(target.wear_mask, /obj/item/clothing)&&!target.wear_mask:canremove)
-					message = text("\red <B>[] fails to take off \a [] from []'s body!</B>", source, target.wear_mask, target)
+					message = SPAN_DANGER("[source] fails to take off \a [target.wear_mask] from [target]'s body!")
 				else
-					message = text("\red <B>[] is trying to take off \a [] from []'s head!</B>", source, target.wear_mask, target)
+					message = SPAN_DANGER("[source] is trying to take off \a [target.wear_mask] from [target]'s head!")
 			if("l_hand")
-				message = text("\red <B>[] is trying to take off a [] from []'s left hand!</B>", source, target.l_hand, target)
+				message = SPAN_DANGER("[source] is trying to take off \a [target.l_hand] from [target]'s left hand!")
 			if("r_hand")
-				message = text("\red <B>[] is trying to take off a [] from []'s right hand!</B>", source, target.r_hand, target)
+				message = SPAN_DANGER("[source] is trying to take off \a [target.r_hand] from [target]'s right hand!")
 			if("back")
-				message = text("\red <B>[] is trying to take off a [] from []'s back!</B>", source, target.back, target)
+				message = SPAN_DANGER("[source] is trying to take off \a [target.back] from [target]'s back!")
 			if("handcuff")
-				message = text("\red <B>[] is trying to unhandcuff []!</B>", source, target)
+				message = SPAN_DANGER("[source] is trying to unhandcuff [target]!")
 			if("internal")
 				if (target.internal)
-					message = text("\red <B>[] is trying to remove []'s internals</B>", source, target)
+					message = SPAN_DANGER("[source] is trying to remove [target]'s internals!")
 				else
-					message = text("\red <B>[] is trying to set on []'s internals.</B>", source, target)
+					message = SPAN_DANGER("[source] is trying to set on [target]'s internals.")
 			if("pockets")
-				message = text("\red <B>[] is trying to empty []'s pockets</B>",source, target)
+				message = SPAN_DANGER("[source] is trying to empty [target]'s pockets!")
 			else
-		for(var/mob/M in viewers(target, null))
-			M.show_message(message, 1)
-	spawn( 30 )
+		target.visible_message(message)
+	spawn(30)
 		done()
-		return
-	return
 
 /obj/effect/equip_e/monkey/done()
 	if(!source || !target)						return
@@ -179,9 +174,7 @@
 					if (istype(target.back, /obj/item/tank))
 						target.internal = target.back
 						target.internal.add_fingerprint(source)
-						for(var/mob/M in viewers(target, 1))
-							if ((M.client && !( M.blinded )))
-								M.show_message(text("[] is now running on internals.", target), 1)
+						target.visible_message("[target] is now running on internals.")
 		else
 	source.regenerate_icons()
 	target.regenerate_icons()

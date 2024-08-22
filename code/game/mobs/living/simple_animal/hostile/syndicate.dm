@@ -62,15 +62,15 @@
 	if(O.force)
 		if(prob(80))
 			var/damage = O.force
-			if (O.damtype == HALLOSS)
+			if(O.damtype == HALLOSS)
 				damage = 0
 			health -= damage
-			visible_message("\red \b [src] has been attacked with the [O] by [user]. ")
+			visible_message(SPAN_DANGER("[src] has been attacked with \the [O] by [user]."))
 		else
-			visible_message("\red \b [src] blocks the [O] with its shield! ")
+			visible_message(SPAN_DANGER("[src] blocks \the [O] with its shield!"))
 	else
-		usr << "\red This weapon is ineffective, it does no damage."
-		visible_message("\red [user] gently taps [src] with the [O]. ")
+		to_chat(user, SPAN_WARNING("This weapon is ineffective, it does no damage."))
+		visible_message(SPAN_WARNING("[user] gently taps [src] with \the [O]."))
 
 
 /mob/living/simple_animal/hostile/syndicate/melee/bullet_act(var/obj/item/projectile/Proj)

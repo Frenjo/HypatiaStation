@@ -63,7 +63,7 @@
 
 /obj/item/assembly/timer/interact(mob/user) //TODO: Have this use the wires
 	if(!secured)
-		user.show_message(SPAN_WARNING("The [name] is unsecured!"))
+		to_chat(user, SPAN_WARNING("The [name] is unsecured!"))
 		return 0
 	var/second = time % 60
 	var/minute = (time - second) / 60

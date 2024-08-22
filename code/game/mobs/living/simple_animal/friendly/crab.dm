@@ -59,22 +59,16 @@
 					MED.amount -= 1
 					if(MED.amount <= 0)
 						del(MED)
-					for(var/mob/M in viewers(src, null))
-						if ((M.client && !( M.blinded )))
-							M.show_message("\blue [user] applies the [MED] on [src]")
+					visible_message(SPAN_INFO("[user] applies \the [MED] on [src]."))
 		else
-			user << "\blue this [src] is dead, medical items won't bring it back to life."
+			to_chat(user, SPAN_INFO("This [src] is dead, medical items won't bring it back to life."))
 	else
 		if(O.force)
 			health -= O.force
-			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
-					M.show_message("\red \b [src] has been attacked with the [O] by [user]. ")
+			visible_message(SPAN_DANGER("[src] has been attacked with \the [O] by [user]."))
 		else
-			usr << "\red This weapon is ineffective, it does no damage."
-			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
-					M.show_message("\red [user] gently taps [src] with the [O]. ")
+			to_chat(user, SPAN_WARNING("This weapon is ineffective, it does no damage."))
+			visible_message(SPAN_WARNING("[user] gently taps [src] with \the [O]."))
 
 /mob/living/simple_animal/crab/Topic(href, href_list)
 	if(usr.stat) return

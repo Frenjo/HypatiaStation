@@ -376,9 +376,8 @@ var/engwords = list(
 	if(iscultist(M))
 		return
 	M.take_organ_damage(0, rand(5, 20)) //really lucky - 5 hits for a crit
-	for(var/mob/O in viewers(M, null))
-		O.show_message(SPAN_DANGER("[user] beats [M] with the arcane tome!"), 1)
-	to_chat(user, SPAN_WARNING("You feel searing heat inside!"))
+	M.visible_message(SPAN_DANGER("[user] beats [M] with the arcane tome!")) // This is visible from M for consistency with other attacks.
+	to_chat(user, SPAN_WARNING("You feel searing heat inside!")) // This has always confused me. Why does the person DOING the beating feel searing heat?
 
 /obj/item/tome/attack_self(mob/living/user)
 	usr = user

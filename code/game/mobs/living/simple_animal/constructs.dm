@@ -71,8 +71,7 @@
 		else
 			if(M.attack_sound)
 				playsound(loc, M.attack_sound, 50, 1, 1)
-			for(var/mob/O in viewers(src, null))
-				O.show_message(SPAN("attack", "\The <EM>[M]</EM> [M.attacktext] \the <EM>[src]</EM>!"), 1)
+			visible_message(SPAN("attack", "\The <EM>[M]</EM> [M.attacktext] \the <EM>[src]</EM>!"))
 			M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
 
@@ -85,14 +84,10 @@
 		if(O.damtype == HALLOSS)
 			damage = 0
 		adjustBruteLoss(damage)
-		for(var/mob/M in viewers(src, null))
-			if(M.client && !M.blinded)
-				M.show_message(SPAN_DANGER("[src] has been attacked with [O] by [user]."))
+		visible_message(SPAN_DANGER("[src] has been attacked with \the [O] by [user]."))
 	else
 		to_chat(usr, SPAN_WARNING("This weapon is ineffective, it does no damage."))
-		for(var/mob/M in viewers(src, null))
-			if(M.client && !M.blinded)
-				M.show_message(SPAN_WARNING("[user] gently taps [src] with [O]."))
+		visible_message(SPAN_WARNING("[user] gently taps [src] with \the [O]."))
 
 
 /////////////////Juggernaut///////////////
@@ -223,18 +218,12 @@
 			if(O.damtype == HALLOSS)
 				damage = 0
 			adjustBruteLoss(damage)
-			for(var/mob/M in viewers(src, null))
-				if(M.client && !M.blinded)
-					M.show_message(SPAN_DANGER("[src] has been attacked with [O] by [user]."))
+			visible_message(SPAN_DANGER("[src] has been attacked with \the [O] by [user]."))
 		else
-			for(var/mob/M in viewers(src, null))
-				if(M.client && !M.blinded)
-					M.show_message(SPAN_DANGER("[O] bounces harmlessly off of [src]."))
+			visible_message(SPAN_DANGER("\The [O] bounces harmlessly off of [src]."))
 	else
 		to_chat(usr, SPAN_WARNING("This weapon is ineffective, it does no damage."))
-		for(var/mob/M in viewers(src, null))
-			if(M.client && !M.blinded)
-				M.show_message(SPAN_DANGER("[user] gently taps [src] with [O]."))
+		visible_message(SPAN_WARNING("[user] gently taps [src] with \the [O]."))
 
 
 ////////////////Powers//////////////////

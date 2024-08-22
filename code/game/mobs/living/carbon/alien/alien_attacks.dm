@@ -4,7 +4,7 @@
 	return
 
 /mob/living/carbon/alien/meteorhit(obj/O)
-	visible_message(SPAN_WARNING("[src] has been hit by [O]!"))
+	visible_message(SPAN_DANGER("[src] has been hit by [O]!"))
 	if (health > 0)
 		adjustBruteLoss((istype(O, /obj/effect/meteor/small) ? 10 : 25))
 		adjustFireLoss(30)

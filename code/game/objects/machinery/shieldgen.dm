@@ -522,7 +522,7 @@
 
 	else
 		src.add_fingerprint(user)
-		visible_message(SPAN_WARNING("\The [src] has been hit with \the [W] by [user.name]!"))
+		visible_message(SPAN_WARNING("\The [src] has been hit with \the [W] by [user]!"))
 
 /obj/machinery/shieldwallgen/proc/cleanup(NSEW)
 	var/obj/machinery/shieldwall/F

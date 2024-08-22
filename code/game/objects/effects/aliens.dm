@@ -90,8 +90,7 @@
 
 /obj/effect/alien/resin/hitby(atom/movable/AM)
 	..()
-	for(var/mob/O in viewers(src, null))
-		O.show_message(SPAN_DANGER("[src] was hit by [AM]."), 1)
+	visible_message(SPAN_DANGER("[src] was hit by \the [AM]."))
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 10
@@ -101,21 +100,21 @@
 	health = max(0, health - tforce)
 	healthcheck()
 	..()
-	return
 
 /obj/effect/alien/resin/attack_hand()
 	if(HULK in usr.mutations)
-		to_chat(usr, SPAN_INFO("You easily destroy the [name]."))
-		for(var/mob/O in oviewers(src))
-			O.show_message(SPAN_WARNING("[usr] destroys the [name]!"), 1)
+		usr.visible_message(
+			SPAN_WARNING("[usr] destroys \the [src]!"),
+			SPAN_INFO("You easily destroy \the [src].")
+		)
 		health = 0
 	else
-		to_chat(usr, SPAN_INFO("You claw at the [name]."))
-		for(var/mob/O in oviewers(src))
-			O.show_message(SPAN_WARNING("[usr] claws at the [name]!"), 1)
+		usr.visible_message(
+			SPAN_WARNING("[usr] claws at \the [src]!"),
+			SPAN_INFO("You claw at \the [src].")
+		)
 		health -= rand(5, 10)
 	healthcheck()
-	return
 
 /obj/effect/alien/resin/attack_paw()
 	return attack_hand()

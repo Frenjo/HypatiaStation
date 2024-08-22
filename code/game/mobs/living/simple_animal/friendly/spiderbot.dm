@@ -89,8 +89,7 @@
 				if(health > maxHealth)
 					health = maxHealth
 				add_fingerprint(user)
-				for(var/mob/W in viewers(user, null))
-					W.show_message(text("\red [user] has spot-welded some of the damage to [src]!"), 1)
+				user.visible_message(SPAN_WARNING("[user] has spot-welded some of the damage to [src]!"))
 			else
 				user << "\blue [src] is undamaged!"
 		else
@@ -137,17 +136,13 @@
 	else
 		if(O.force)
 			var/damage = O.force
-			if (O.damtype == HALLOSS)
+			if(O.damtype == HALLOSS)
 				damage = 0
 			adjustBruteLoss(damage)
-			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
-					M.show_message("\red \b [src] has been attacked with the [O] by [user]. ")
+			visible_message(SPAN_DANGER("[src] has been attacked with \the [O] by [user]."))
 		else
-			usr << "\red This weapon is ineffective, it does no damage."
-			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
-					M.show_message("\red [user] gently taps [src] with the [O]. ")
+			to_chat(user, SPAN_WARNING("This weapon is ineffective, it does no damage."))
+			visible_message(SPAN_WARNING("[user] gently taps [src] with \the [O]."))
 
 /mob/living/simple_animal/spiderbot/proc/transfer_personality(obj/item/mmi/M)
 
@@ -157,9 +152,7 @@
 		src.name = "Spider-bot ([M.brainmob.name])"
 
 /mob/living/simple_animal/spiderbot/proc/explode() //When emagged.
-	for(var/mob/M in viewers(src, null))
-		if ((M.client && !( M.blinded )))
-			M.show_message("\red [src] makes an odd warbling noise, fizzles, and explodes.")
+	visible_message(SPAN_DANGER("[src] makes an odd warbling noise, fizzles, and explodes!"))
 	explosion(get_turf(loc), -1, -1, 3, 5)
 	eject_brain()
 	Die()

@@ -201,8 +201,7 @@
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 50, 1, 1)
-		for(var/mob/O in viewers(src, null))
-			O.show_message(SPAN_WARNING("<B>[M]</B> [M.attacktext] [src]!"), 1)
+		visible_message(SPAN_WARNING("<B>[M]</B> [M.attacktext] [src]!"))
 		M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
 		src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
@@ -219,9 +218,7 @@
 	switch(M.a_intent)
 		if("help")
 			if(health > 0)
-				for(var/mob/O in viewers(src, null))
-					if(isnotnull(O.client) && !O.blinded)
-						O.show_message(SPAN_INFO("[M] [response_help] [src]."))
+				visible_message(SPAN_INFO("[M] [response_help] [src]."))
 
 		if("grab")
 			if(M == src)
@@ -238,15 +235,11 @@
 			G.affecting = src
 			LAssailant = M
 
-			for(var/mob/O in viewers(src, null))
-				if(isnotnull(O.client) && !O.blinded)
-					O.show_message(SPAN_WARNING("[M] has grabbed [src] passively!"), 1)
+			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
 
 		if("hurt", "disarm")
 			adjustBruteLoss(harm_intent_damage)
-			for(var/mob/O in viewers(src, null))
-				if(isnotnull(O.client) && !O.blinded)
-					O.show_message(SPAN_WARNING("[M] [response_harm] [src]."))
+			visible_message(SPAN_WARNING("[M] [response_harm] [src]."))
 
 /mob/living/simple_animal/attack_slime(mob/living/carbon/slime/M)
 	if(isnull(global.PCticker))
@@ -277,9 +270,7 @@
 					MED.amount -= 1
 					if(MED.amount <= 0)
 						qdel(MED)
-					for(var/mob/M in viewers(src, null))
-						if((M.client && !M.blinded))
-							M.show_message(SPAN_INFO("[user] applies the [MED] on [src]."))
+					visible_message(SPAN_INFO("[user] applies \the [MED] on [src]."))
 		else
 			to_chat(user, SPAN_INFO("This [src] is dead, medical items won't bring it back to life."))
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
@@ -295,14 +286,10 @@
 			if(O.damtype == HALLOSS)
 				damage = 0
 			adjustBruteLoss(damage)
-			for(var/mob/M in viewers(src, null))
-				if((M.client && !M.blinded))
-					M.show_message(SPAN_DANGER("[src] has been attacked with the [O] by [user]."))
+			visible_message(SPAN_DANGER("[src] has been attacked with \the [O] by [user]."))
 		else
 			to_chat(usr, SPAN_WARNING("This weapon is ineffective, it does no damage."))
-			for(var/mob/M in viewers(src, null))
-				if((M.client && !M.blinded))
-					M.show_message(SPAN_WARNING("[user] gently taps [src] with the [O]."))
+			visible_message(SPAN_WARNING("[user] gently taps [src] with \the [O]."))
 
 /mob/living/simple_animal/movement_delay()
 	var/tally = 0 //Incase I need to add stuff other than "speed" later

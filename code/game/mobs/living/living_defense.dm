@@ -19,15 +19,15 @@
 		absorb += 1
 	if(absorb >= 2)
 		if(absorb_text)
-			show_message("[absorb_text]")
+			to_chat(src, "[absorb_text]")
 		else
-			show_message(SPAN_WARNING("Your armor absorbs the blow!"))
+			to_chat(src, SPAN_WARNING("Your armor absorbs the blow!"))
 		return 2
 	if(absorb == 1)
 		if(absorb_text)
-			show_message("[soften_text]",4)
+			to_chat(src, "[soften_text]")
 		else
-			show_message(SPAN_WARNING("Your armor softens the blow!"))
+			to_chat(src, SPAN_WARNING("Your armor softens the blow!"))
 		return 1
 	return 0
 
@@ -67,7 +67,7 @@
 		if(isitem(O))
 			var/obj/item/W = O
 			dtype = W.damtype
-		src.visible_message(SPAN_WARNING("[src] has been hit by [O]."))
+		src.visible_message(SPAN_DANGER("[src] has been hit by [O]!"))
 		var/armor = run_armor_check(zone, "melee", "Your armor has protected your [zone].", "Your armor has softened hit to your [zone].")
 		if(armor < 2)
 			apply_damage(O.throwforce * (speed / 5), dtype, zone, armor, O, sharp = is_sharp(O), edge = has_edge(O))

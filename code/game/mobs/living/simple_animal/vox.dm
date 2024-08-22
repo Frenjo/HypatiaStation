@@ -40,18 +40,12 @@
 			if (O.damtype == HALLOSS)
 				damage = 0
 			health -= damage
-			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
-					M.show_message("\red \b [src] has been attacked with the [O] by [user]. ")
+			visible_message(SPAN_DANGER("[src] has been attacked with \the [O] by [user]."))
 		else
-			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
-					M.show_message("\red \b The [O] bounces harmlessly off of [src]. ")
+			visible_message(SPAN_DANGER("\The [O] bounces harmlessly off of [src]."))
 	else
-		usr << "\red This weapon is ineffective, it does no damage."
-		for(var/mob/M in viewers(src, null))
-			if ((M.client && !( M.blinded )))
-				M.show_message("\red [user] gently taps [src] with the [O]. ")
+		to_chat(user, SPAN_WARNING("This weapon is ineffective, it does no damage."))
+		visible_message(SPAN_WARNING("[user] gently taps [src] with \the [O]."))
 
 /mob/living/simple_animal/vox/armalis/verb/fire_quill(mob/target as mob in oview())
 

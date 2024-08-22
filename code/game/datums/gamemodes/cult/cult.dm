@@ -181,7 +181,7 @@
 	if(!CONFIG_GET(objectives_disabled))
 		memoize_cult_objectives(cult_mind)
 
-/datum/game_mode/proc/remove_cultist(datum/mind/cult_mind, show_message = 1)
+/datum/game_mode/proc/remove_cultist(datum/mind/cult_mind, show_message = TRUE)
 	if(cult_mind in cult)
 		cult -= cult_mind
 		to_chat(cult_mind.current, SPAN_DANGER("<FONT size = 3>An unfamiliar white light flashes through your mind, cleansing the taint of the dark-one and the memories of your time as his servant with it.</FONT>"))
