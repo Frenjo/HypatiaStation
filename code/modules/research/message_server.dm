@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_LIST_NEW(message_servers)
+GLOBAL_GLOBL_LIST_NEW(obj/machinery/message_server/message_servers)
 
 /datum/data_pda_msg
 	var/recipient = "Unspecified" //name of the person

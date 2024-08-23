@@ -13,33 +13,33 @@
 	var/virus_type = pick(/datum/disease/dnaspread, /datum/disease/advance/flu, /datum/disease/advance/cold, /datum/disease/brainrot, /datum/disease/magnitis)
 
 	for(var/mob/living/carbon/human/H in shuffle(GLOBL.living_mob_list))
-		var/foundAlready = 0	// don't infect someone that already has the virus
+		var/foundAlready = FALSE	// don't infect someone that already has the virus
 		var/turf/T = get_turf(H)
-		if(!T)
+		if(isnull(T))
 			continue
 		if(isnotstationlevel(T.z))
 			continue
-		for(var/datum/disease/D in H.viruses)
-			foundAlready = 1
+		for_no_type_check(var/datum/disease/D, H.viruses)
+			foundAlready = TRUE
 		if(H.stat == DEAD || foundAlready)
 			continue
 
 		if(virus_type == /datum/disease/dnaspread)		//Dnaspread needs strain_data set to work.
-			if((!H.dna) || (H.sdisabilities & BLIND))	//A blindness disease would be the worst.
+			if(isnull(H.dna) || (H.sdisabilities & BLIND))	//A blindness disease would be the worst.
 				continue
-			var/datum/disease/dnaspread/D = new
+			var/datum/disease/dnaspread/D = new /datum/disease/dnaspread()
 			D.strain_data["name"] = H.real_name
 			D.strain_data["UI"] = H.dna.UI.Copy()
 			D.strain_data["SE"] = H.dna.SE.Copy()
-			D.carrier = 1
+			D.carrier = TRUE
 			D.holder = H
 			D.affected_mob = H
-			H.viruses += D
+			H.viruses.Add(D)
 			break
 		else
-			var/datum/disease/D = new virus_type
-			D.carrier = 1
+			var/datum/disease/D = new virus_type()
+			D.carrier = TRUE
 			D.holder = H
 			D.affected_mob = H
-			H.viruses += D
+			H.viruses.Add(D)
 			break

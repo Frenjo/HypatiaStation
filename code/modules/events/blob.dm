@@ -2,7 +2,7 @@
 	announceWhen	= 12
 	endWhen			= 120
 
-	var/obj/effect/blob/core/Blob
+	var/obj/effect/blob/core/blob = null
 
 /datum/event/blob/announce()
 	command_alert("Confirmed outbreak of level 7 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert")
@@ -10,16 +10,16 @@
 
 /datum/event/blob/start()
 	var/turf/T = pick(GLOBL.blobstart)
-	if(!T)
+	if(isnull(T))
 		kill()
 		return
-	Blob = new /obj/effect/blob/core(T, 120)
+	blob = new /obj/effect/blob/core(T, 120)
 	for(var/i = 1; i < rand(3, 4), i++)
-		Blob.process()
+		blob.process()
 
 /datum/event/blob/tick()
-	if(!Blob)
+	if(isnull(blob))
 		kill()
 		return
 	if(IsMultiple(activeFor, 3))
-		Blob.process()
+		blob.process()

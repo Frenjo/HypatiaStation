@@ -22,7 +22,7 @@ GLOBAL_GLOBL_INIT(sent_aliens_to_station, FALSE)
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in GLOBL.machines)
 		if(!temp_vent.welded && temp_vent.network && isstationlevel(temp_vent.loc.z))
 			if(length(temp_vent.network.normal_members) > 50)	//Stops Aliens getting stuck in small networks. See: Security, Virology
-				vents += temp_vent
+				vents.Add(temp_vent)
 
 	var/list/candidates = get_alien_candidates()
 
@@ -30,10 +30,10 @@ GLOBAL_GLOBL_INIT(sent_aliens_to_station, FALSE)
 		var/obj/vent = pick(vents)
 		var/candidate = pick(candidates)
 
-		var/mob/living/carbon/alien/larva/new_xeno = new(vent.loc)
+		var/mob/living/carbon/alien/larva/new_xeno = new /mob/living/carbon/alien/larva(vent.loc)
 		new_xeno.key = candidate
 
-		candidates -= candidate
-		vents -= vent
+		candidates.Remove(candidate)
+		vents.Remove(vent)
 		spawncount--
 		successSpawn = TRUE

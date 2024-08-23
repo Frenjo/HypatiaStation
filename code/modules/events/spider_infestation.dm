@@ -17,10 +17,10 @@ GLOBAL_GLOBL_INIT(sent_spiders_to_station, FALSE)
 
 /datum/event/spider_infestation/start()
 	var/list/vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in world)
+	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in GLOBL.machines)
 		if(!temp_vent.welded && temp_vent.network && isstationlevel(temp_vent.loc.z))
 			if(length(temp_vent.network.normal_members) > 50)
-				vents += temp_vent
+				vents.Add(temp_vent)
 
 	while(spawncount >= 1 && length(vents))
 		var/obj/vent = pick(vents)

@@ -11,10 +11,10 @@
 	world << sound('sound/AI/outbreak5.ogg')
 
 /datum/event/viral_infection/start()
-	var/list/candidates = list()	//list of candidate keys
+	var/list/mob/living/carbon/human/candidates = list()	//list of candidate keys
 	for(var/mob/living/carbon/human/G in GLOBL.player_list)
-		if(G.client && G.stat != DEAD)
-			candidates += G
+		if(isnotnull(G.client) && G.stat != DEAD)
+			candidates.Add(G)
 	if(!length(candidates))
 		return
 	candidates = shuffle(candidates)//Incorporating Donkie's list shuffle

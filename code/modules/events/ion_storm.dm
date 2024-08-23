@@ -13,8 +13,9 @@
 	endWhen = rand(10, 20)
 
 	for(var/mob/living/carbon/human/player in GLOBL.mob_list)
-		if(player.client)
-			players += player.real_name
+		if(isnull(player.client))
+			continue
+		players.Add(player.real_name)
 
 /datum/event/ionstorm/announce()
 	world << sound('sound/AI/ionstorm.ogg')
@@ -23,7 +24,7 @@
 /datum/event/ionstorm/start()
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		var/turf/T = get_turf(H)
-		if(!T)
+		if(isnull(T))
 			continue
 		if(isnotstationlevel(T.z))
 			continue
@@ -31,7 +32,7 @@
 			continue
 
 		if(ishuman(H))
-			H.client.screen |= GLOBL.global_hud.ion_storm
+			H.client?.screen |= GLOBL.global_hud.ion_storm
 
 	var/random_player = "The Captain"
 	if(length(players))
@@ -75,22 +76,17 @@
 
 /datum/event/ionstorm/tick()
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
-		if(!H)
-			continue
-
 		var/turf/T = get_turf(H)
-		if(!T)
+		if(isnull(T))
 			continue
 		if(isnotstationlevel(T.z))
 			continue
 		if(HAS_AREA_FLAGS(get_area(T), AREA_FLAG_IS_SHIELDED))
-			if(H.client)
-				H.client.screen.Remove(GLOBL.global_hud.ion_storm)
+			H.client?.screen.Remove(GLOBL.global_hud.ion_storm)
 			continue
 
 		if(ishuman(H))
-			if(H.client)
-				H.client.screen |= GLOBL.global_hud.ion_storm
+			H.client?.screen |= GLOBL.global_hud.ion_storm
 
 	if(botEmagChance)
 		for(var/obj/machinery/bot/bot in world)
@@ -103,4 +99,4 @@
 	command_alert("The station has passed the ion storm. Monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
-		H.client.screen.Remove(GLOBL.global_hud.ion_storm)
+		H.client?.screen.Remove(GLOBL.global_hud.ion_storm)

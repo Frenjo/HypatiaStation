@@ -54,7 +54,7 @@
 	beneficiary_messages |= "YOUR FUND HAS BEEN MOVED TO [pick("Salusa", "Segunda", "Cepheus", "Andromeda", "Gruis", "Corona", "Aquila", "ARES", "Asellus")] DEVELOPMENTARY BANK FOR ONWARD REMITTANCE."
 
 	time_failed = world.time
-	for(var/obj/machinery/message_server/MS in GLOBL.message_servers)
+	for_no_type_check(var/obj/machinery/message_server/MS, GLOBL.message_servers)
 		if(MS.active)
 			useMS = MS
 			break
@@ -63,7 +63,7 @@
 	if(!useMS || !useMS.active)
 		useMS = null
 		if(GLOBL.message_servers)
-			for(var/obj/machinery/message_server/MS in GLOBL.message_servers)
+			for_no_type_check(var/obj/machinery/message_server/MS, GLOBL.message_servers)
 				if(MS.active)
 					useMS = MS
 					break
@@ -75,7 +75,7 @@
 			var/obj/item/pda/P
 			var/list/viables = list()
 			for(var/obj/item/pda/check_pda in sortAtom(GLOBL.pda_list))
-				if(!check_pda.owner||check_pda.toff||check_pda == src||check_pda.hidden)
+				if(!check_pda.owner || check_pda.toff || check_pda == src || check_pda.hidden)
 					continue
 				viables.Add(check_pda)
 
@@ -116,7 +116,7 @@
 			useMS.send_pda_message("[P.owner]", sender, message)
 
 			if(prob(50)) //Give the AI an increased chance to intercept the message
-				for(var/mob/living/silicon/ai/ai in GLOBL.mob_list)
+				for_no_type_check(var/mob/living/silicon/ai/ai, GLOBL.ai_list)
 					// Allows other AIs to intercept the message but the AI won't intercept their own message.
 					if(ai.aiPDA != P && ai.aiPDA != src)
 						ai.show_message("<i>Intercepted message from <b>[sender]</b></i> (Unknown / spam?) <i>to <b>[P:owner]</b>: [message]</i>")
@@ -137,8 +137,8 @@
 			else
 				L = get(P, /mob/living/silicon)
 
-			if(L)
-				L << "\icon[P] <b>Message from [sender] (Unknown / spam?), </b>\"[message]\" (Unable to Reply)"
+			if(isnotnull(L))
+				to_chat(L, "\icon[P] <b>Message from [sender] (Unknown / spam?), </b>\"[message]\" (Unable to Reply)")
 	else if(world.time > time_failed + 1200)
 		//if there's no server active for two minutes, give up
 		kill()

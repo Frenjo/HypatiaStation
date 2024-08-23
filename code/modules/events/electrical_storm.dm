@@ -23,22 +23,17 @@
 
 /datum/event/electrical_storm/start()
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
-		if(!H)
-			continue
-
 		var/turf/T = get_turf(H)
-		if(!T)
+		if(isnull(T))
 			continue
 		if(isnotstationlevel(T.z))
 			continue
 		if(HAS_AREA_FLAGS(get_area(T), AREA_FLAG_IS_SHIELDED))
-			if(H.client)
-				H.client.screen.Remove(GLOBL.global_hud.electrical_storm)
+			H.client?.screen.Remove(GLOBL.global_hud.electrical_storm)
 			continue
 
 		if(ishuman(H))
-			if(H.client)
-				H.client.screen |= GLOBL.global_hud.electrical_storm
+			H.client?.screen |= GLOBL.global_hud.electrical_storm
 
 /datum/event/electrical_storm/tick()
 	/*var/list/epicentreList = list()

@@ -21,14 +21,14 @@
 		if(!temp_vent.welded && temp_vent.network && isstationlevel(temp_vent.loc.z))
 			//Stops cortical borers getting stuck in small networks. See: Security, Virology
 			if(length(temp_vent.network.normal_members) > 50)
-				vents += temp_vent
+				vents.Add(temp_vent)
 
 	var/list/candidates = get_alien_candidates()
 	while(spawncount > 0 && length(vents) && length(candidates))
 		var/obj/vent = pick_n_take(vents)
 		var/client/C = pick_n_take(candidates)
 
-		var/mob/living/simple_animal/borer/new_borer = new(vent.loc)
+		var/mob/living/simple_animal/borer/new_borer = new /mob/living/simple_animal/borer(vent.loc)
 		new_borer.key = C.key
 
 		spawncount--

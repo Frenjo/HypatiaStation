@@ -13,8 +13,8 @@
 /datum/event/organ_failure/start()
 	var/list/candidates = list()	//list of candidate keys
 	for(var/mob/living/carbon/human/G in GLOBL.player_list)
-		if(G.mind && G.mind.current && G.mind.current.stat != DEAD && G.health > 70)
-			candidates += G
+		if(isnotnull(G.mind) && isnotnull(G.mind.current) && G.mind.current.stat != DEAD && G.health > 70)
+			candidates.Add(G)
 	if(!length(candidates))
 		return
 	candidates = shuffle(candidates)//Incorporating Donkie's list shuffle

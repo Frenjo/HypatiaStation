@@ -22,17 +22,17 @@
 /datum/event/prison_break/start()
 	for_no_type_check(var/area/A, GLOBL.area_list)
 		if(istype(A, /area/station/security/brig) || istype(A, /area/external/prison))
-			prisonAreas += A
+			prisonAreas.Add(A)
 
 	if(length(prisonAreas))
-		for(var/area/A in prisonAreas)
+		for_no_type_check(var/area/A, prisonAreas)
 			for(var/obj/machinery/light/L in A)
 				L.flicker(10)
 
 /datum/event/prison_break/tick()
 	if(activeFor == releaseWhen)
 		if(length(prisonAreas))
-			for(var/area/A in prisonAreas)
+			for_no_type_check(var/area/A, prisonAreas)
 				for(var/obj/machinery/power/apc/temp_apc in A)
 					temp_apc.overload_lighting()
 

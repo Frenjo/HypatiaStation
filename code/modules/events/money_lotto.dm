@@ -11,7 +11,7 @@
 		if(!D.suspended)
 			D.money += winner_sum
 
-			var/datum/transaction/T = new()
+			var/datum/transaction/T = new /datum/transaction()
 			T.target_name = "Tau Ceti Daily Grand Slam -Stellar- Lottery"
 			T.purpose = "Winner!"
 			T.amount = winner_sum
@@ -33,7 +33,7 @@
 
 	for_no_type_check(var/datum/feed_channel/FC, global.CTeconomy.news_network.channels)
 		if(FC.channel_name == "Tau Ceti Daily")
-			FC.messages += newMsg
+			FC.messages.Add(newMsg)
 			break
 
 	for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)

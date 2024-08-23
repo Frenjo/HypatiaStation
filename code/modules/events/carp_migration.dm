@@ -3,11 +3,11 @@
 	endWhen = 900
 	oneShot = TRUE
 
-	var/list/spawned_carp = list()
+	var/list/mob/living/simple_animal/hostile/carp/spawned_carp = list()
 
 /datum/event/carp_migration/setup()
 	announceWhen = rand(40, 60)
-	endWhen = rand(600,1200)
+	endWhen = rand(600, 1200)
 
 /datum/event/carp_migration/announce()
 	command_alert("Unknown biological entities have been detected near [station_name()], please stand-by.", "Lifesign Alert")
@@ -18,7 +18,7 @@
 			spawned_carp.Add(new /mob/living/simple_animal/hostile/carp(C.loc))
 
 /datum/event/carp_migration/end()
-	for(var/mob/living/simple_animal/hostile/carp/C in spawned_carp)
+	for_no_type_check(var/mob/living/simple_animal/hostile/carp/C, spawned_carp)
 		if(!C.stat)
 			var/turf/T = get_turf(C)
 			if(isspace(T))

@@ -14,22 +14,17 @@
 
 /datum/event/radiation_storm/tick()
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
-		if(!H)
-			continue
-
 		var/turf/T = get_turf(H)
-		if(!T)
+		if(isnull(T))
 			continue
 		if(isnotstationlevel(T.z))
 			continue
 		if(HAS_AREA_FLAGS(get_area(T), AREA_FLAG_IS_SHIELDED))
-			if(H.client)
-				H.client.screen.Remove(GLOBL.global_hud.rad_storm)
+			H.client?.screen.Remove(GLOBL.global_hud.rad_storm)
 			continue
 
 		if(ishuman(H))
-			if(H.client)
-				H.client.screen |= GLOBL.global_hud.rad_storm
+			H.client?.screen |= GLOBL.global_hud.rad_storm
 			H.apply_effect(rand(15, 35), IRRADIATE, 0)
 			if(prob(5))
 				H.apply_effect(rand(40, 70), IRRADIATE, 0)
@@ -42,7 +37,7 @@
 
 	for(var/mob/living/carbon/monkey/M in GLOBL.living_mob_list)
 		var/turf/T = get_turf(M)
-		if(!T)
+		if(isnull(T))
 			continue
 		if(isnotstationlevel(T.z))
 			continue
@@ -54,7 +49,7 @@
 	command_alert("The station has passed the radiation belt. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
 
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
-		H.client.screen.Remove(GLOBL.global_hud.rad_storm)
+		H.client?.screen.Remove(GLOBL.global_hud.rad_storm)
 
 	spawn(150)
 	revoke_maint_all_access()
