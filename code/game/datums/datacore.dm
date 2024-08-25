@@ -44,7 +44,7 @@ GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 		if(OOC)
 			var/active = FALSE
 			for_no_type_check(var/mob/M, GLOBL.player_list)
-				if(M.real_name == name && isnotnull(M.client) && M.client.inactivity <= 10 * 60 * 10)
+				if(M.real_name == name && M.client?.inactivity <= 10 * 60 * 10)
 					active = TRUE
 					break
 			isactive[name] = active ? "Active" : "Inactive"
