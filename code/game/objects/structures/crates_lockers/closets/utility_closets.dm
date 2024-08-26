@@ -234,7 +234,7 @@
 	wall_mounted = TRUE
 
 	starts_with = list(
-		/obj/item/reagent_containers/syringe/inaprovaline,
+		/obj/item/reagent_holder/syringe/inaprovaline,
 		/obj/item/stack/medical/ointment,
 		/obj/item/stack/medical/ointment,
 		/obj/item/stack/medical/ointment,

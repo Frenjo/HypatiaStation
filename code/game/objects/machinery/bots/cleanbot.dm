@@ -319,7 +319,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 	visible_message(SPAN_DANGER("[src] blows apart!"), 1)
 
 	var/turf/T = get_turf(src)
-	new /obj/item/reagent_containers/glass/bucket(T)
+	new /obj/item/reagent_holder/glass/bucket(T)
 	new /obj/item/assembly/prox_sensor(T)
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(T)
@@ -328,7 +328,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 	return ..()
 
 // Cleanbot Assembly
-/obj/item/reagent_containers/glass/bucket/attack_by(obj/item/I, mob/user)
+/obj/item/reagent_holder/glass/bucket/attack_by(obj/item/I, mob/user)
 	if(isprox(I))
 		to_chat(user, SPAN_INFO("You add \the [I] to \the [src]."))
 		qdel(I)

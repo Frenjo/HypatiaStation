@@ -10,7 +10,7 @@
 	var/beaker = null
 
 /obj/machinery/disease_isolator/attack_by(obj/item/I, mob/user)
-	if(!istype(I, /obj/item/reagent_containers/syringe))
+	if(!istype(I, /obj/item/reagent_holder/syringe))
 		return ..()
 	if(isnotnull(beaker))
 		to_chat(user, SPAN_WARNING("A syringe is already loaded into the machine."))

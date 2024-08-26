@@ -98,7 +98,7 @@
 
 	/*var/datum/reagents/R = target.reagents
 
-	var/obj/item/reagent_containers/glass/beaker/noreact/B = new /obj/item/reagent_containers/glass/beaker/noreact //temporary holder
+	var/obj/item/reagent_holder/glass/beaker/noreact/B = new /obj/item/reagent_holder/glass/beaker/noreact //temporary holder
 
 	amount = min(min(amount, total_volume), R.maximum_volume-R.total_volume)
 	var/part = amount / total_volume
@@ -122,7 +122,7 @@
 	B.handle_reactions()
 	handle_reactions()*/
 
-	var/obj/item/reagent_containers/glass/beaker/noreact/B = new /obj/item/reagent_containers/glass/beaker/noreact //temporary holder
+	var/obj/item/reagent_holder/glass/beaker/noreact/B = new /obj/item/reagent_holder/glass/beaker/noreact //temporary holder
 	B.volume = 1000
 
 	var/datum/reagents/BR = B.reagents

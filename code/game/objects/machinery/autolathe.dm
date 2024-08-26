@@ -1,7 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 /var/global/list/autolathe_recipes = list(
 	/*screwdriver removed*/
-	new /obj/item/reagent_containers/glass/bucket(),
+	new /obj/item/reagent_holder/glass/bucket(),
 	new /obj/item/crowbar(),
 	new /obj/item/flashlight(),
 	new /obj/item/extinguisher(),
@@ -29,10 +29,10 @@
 	new /obj/item/retractor(),
 	new /obj/item/cautery(),
 	new /obj/item/hemostat(),
-	new /obj/item/reagent_containers/glass/beaker(),
-	new /obj/item/reagent_containers/glass/beaker/large(),
-	new /obj/item/reagent_containers/glass/beaker/vial(),
-	new /obj/item/reagent_containers/syringe(),
+	new /obj/item/reagent_holder/glass/beaker(),
+	new /obj/item/reagent_holder/glass/beaker/large(),
+	new /obj/item/reagent_holder/glass/beaker/vial(),
+	new /obj/item/reagent_holder/syringe(),
 	new /obj/item/ammo_casing/shotgun/blank(),
 	new /obj/item/ammo_casing/shotgun/beanbag(),
 	new /obj/item/ammo_magazine/c45r(),

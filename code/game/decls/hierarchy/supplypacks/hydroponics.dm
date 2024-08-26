@@ -45,10 +45,10 @@
 /decl/hierarchy/supply_pack/hydroponics/hydroponics // -- Skie
 	name = "Hydroponics Supply Crate"
 	contains = list(
-		/obj/item/reagent_containers/spray/plantbgone,
-		/obj/item/reagent_containers/spray/plantbgone,
-		/obj/item/reagent_containers/glass/bottle/ammonia,
-		/obj/item/reagent_containers/glass/bottle/ammonia,
+		/obj/item/reagent_holder/spray/plantbgone,
+		/obj/item/reagent_holder/spray/plantbgone,
+		/obj/item/reagent_holder/glass/bottle/ammonia,
+		/obj/item/reagent_holder/glass/bottle/ammonia,
 		/obj/item/hatchet,
 		/obj/item/minihoe,
 		/obj/item/plant_analyser,

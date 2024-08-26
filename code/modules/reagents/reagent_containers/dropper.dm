@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// Droppers.
 ////////////////////////////////////////////////////////////////////////////////
-/obj/item/reagent_containers/dropper
+/obj/item/reagent_holder/dropper
 	name = "dropper"
 	desc = "A dropper. Transfers 5 units."
 	icon = 'icons/obj/chemical.dmi'
@@ -11,7 +11,7 @@
 	volume = 5
 	var/filled = 0
 
-/obj/item/reagent_containers/dropper/afterattack(obj/target, mob/user, flag)
+/obj/item/reagent_holder/dropper/afterattack(obj/target, mob/user, flag)
 	if(!target.reagents || !flag)
 		return
 
@@ -20,7 +20,7 @@
 			to_chat(user, SPAN_WARNING("[target] is full."))
 			return
 
-		if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/reagent_containers/food) && !istype(target, /obj/item/clothing/mask/cigarette)) //You can inject humans and food but you cant remove the shit.
+		if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/reagent_holder/food) && !istype(target, /obj/item/clothing/mask/cigarette)) //You can inject humans and food but you cant remove the shit.
 			to_chat(user, SPAN_WARNING("You cannot directly fill this object."))
 			return
 

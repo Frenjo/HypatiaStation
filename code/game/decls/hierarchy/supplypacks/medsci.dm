@@ -23,9 +23,9 @@
 		/obj/item/storage/firstaid/o2,
 		/obj/item/storage/firstaid/adv,
 		/obj/item/storage/firstaid/radiation, // Added this so we can get the kit from somewhere before I try editing the map. -Frenjo
-		/obj/item/reagent_containers/glass/bottle/antitoxin,
-		/obj/item/reagent_containers/glass/bottle/inaprovaline,
-		/obj/item/reagent_containers/glass/bottle/stoxin,
+		/obj/item/reagent_holder/glass/bottle/antitoxin,
+		/obj/item/reagent_holder/glass/bottle/inaprovaline,
+		/obj/item/reagent_holder/glass/bottle/stoxin,
 		/obj/item/storage/box/syringes,
 		/obj/item/storage/box/autoinjectors
 	)
@@ -36,18 +36,18 @@
 
 /decl/hierarchy/supply_pack/medsci/virus
 	name = "Virus sample crate"
-/*	contains = list(/obj/item/reagent_containers/glass/bottle/flu_virion,
-					/obj/item/reagent_containers/glass/bottle/cold,
-					/obj/item/reagent_containers/glass/bottle/epiglottis_virion,
-					/obj/item/reagent_containers/glass/bottle/liver_enhance_virion,
-					/obj/item/reagent_containers/glass/bottle/fake_gbs,
-					/obj/item/reagent_containers/glass/bottle/magnitis,
-					/obj/item/reagent_containers/glass/bottle/pierrot_throat,
-					/obj/item/reagent_containers/glass/bottle/brainrot,
-					/obj/item/reagent_containers/glass/bottle/hullucigen_virion,
+/*	contains = list(/obj/item/reagent_holder/glass/bottle/flu_virion,
+					/obj/item/reagent_holder/glass/bottle/cold,
+					/obj/item/reagent_holder/glass/bottle/epiglottis_virion,
+					/obj/item/reagent_holder/glass/bottle/liver_enhance_virion,
+					/obj/item/reagent_holder/glass/bottle/fake_gbs,
+					/obj/item/reagent_holder/glass/bottle/magnitis,
+					/obj/item/reagent_holder/glass/bottle/pierrot_throat,
+					/obj/item/reagent_holder/glass/bottle/brainrot,
+					/obj/item/reagent_holder/glass/bottle/hullucigen_virion,
 					/obj/item/storage/box/syringes,
 					/obj/item/storage/box/beakers,
-					/obj/item/reagent_containers/glass/bottle/mutagen)*/
+					/obj/item/reagent_holder/glass/bottle/mutagen)*/
 	contains = list(
 		/obj/item/virusdish/random,
 		/obj/item/virusdish/random,

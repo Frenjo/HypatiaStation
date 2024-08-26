@@ -1414,10 +1414,10 @@
 			usr << "This can only be used on instances of type /mob/living/carbon/human"
 			return
 
-		H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/cookie(H), SLOT_ID_L_HAND)
-		if(!(istype(H.l_hand, /obj/item/reagent_containers/food/snacks/cookie)))
-			H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/cookie(H), SLOT_ID_R_HAND)
-			if(!(istype(H.r_hand, /obj/item/reagent_containers/food/snacks/cookie)))
+		H.equip_to_slot_or_del(new /obj/item/reagent_holder/food/snacks/cookie(H), SLOT_ID_L_HAND)
+		if(!(istype(H.l_hand, /obj/item/reagent_holder/food/snacks/cookie)))
+			H.equip_to_slot_or_del(new /obj/item/reagent_holder/food/snacks/cookie(H), SLOT_ID_R_HAND)
+			if(!(istype(H.r_hand, /obj/item/reagent_holder/food/snacks/cookie)))
 				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				return

@@ -69,7 +69,7 @@
 			to_chat(user, SPAN_WARNING("It's broken!"))
 			return 1
 	else if(src.dirty == 100) // The microwave is all dirty so can't be used!
-		if(istype(O, /obj/item/reagent_containers/spray/cleaner)) // If they're trying to clean it then let them
+		if(istype(O, /obj/item/reagent_holder/spray/cleaner)) // If they're trying to clean it then let them
 			user.visible_message(SPAN_INFO("[user] starts to clean the microwave."), SPAN_INFO("You start to clean the microwave."))
 			if(do_after(user, 20))
 				user.visible_message(SPAN_INFO("[user]  has cleaned  the microwave."), SPAN_INFO("You have cleaned the microwave."))
@@ -94,7 +94,7 @@
 			O.loc = src
 			user.visible_message(SPAN_INFO("[user] has added \the [O] to \the [src]."), SPAN_INFO("You add \the [O] to \the [src]."))
 
-	else if(istype(O, /obj/item/reagent_containers/glass) || istype(O, /obj/item/reagent_containers/food/drinks) || istype(O, /obj/item/reagent_containers/food/condiment))
+	else if(istype(O, /obj/item/reagent_holder/glass) || istype(O, /obj/item/reagent_holder/food/drinks) || istype(O, /obj/item/reagent_holder/food/condiment))
 		if(!O.reagents)
 			return 1
 		for(var/datum/reagent/R in O.reagents.reagent_list)
@@ -138,20 +138,20 @@
 		var/list/items_measures_p = new
 		for(var/obj/O in contents)
 			var/display_name = O.name
-			if(istype(O, /obj/item/reagent_containers/food/snacks/egg))
+			if(istype(O, /obj/item/reagent_holder/food/snacks/egg))
 				items_measures[display_name] = "egg"
 				items_measures_p[display_name] = "eggs"
-			if(istype(O, /obj/item/reagent_containers/food/snacks/tofu))
+			if(istype(O, /obj/item/reagent_holder/food/snacks/tofu))
 				items_measures[display_name] = "tofu chunk"
 				items_measures_p[display_name] = "tofu chunks"
-			if(istype(O, /obj/item/reagent_containers/food/snacks/meat)) //any meat
+			if(istype(O, /obj/item/reagent_holder/food/snacks/meat)) //any meat
 				items_measures[display_name] = "slab of meat"
 				items_measures_p[display_name] = "slabs of meat"
-			if(istype(O, /obj/item/reagent_containers/food/snacks/donkpocket))
+			if(istype(O, /obj/item/reagent_holder/food/snacks/donkpocket))
 				display_name = "Turnovers"
 				items_measures[display_name] = "turnover"
 				items_measures_p[display_name] = "turnovers"
-			if(istype(O, /obj/item/reagent_containers/food/snacks/carpmeat))
+			if(istype(O, /obj/item/reagent_holder/food/snacks/carpmeat))
 				items_measures[display_name] = "fillet of meat"
 				items_measures_p[display_name] = "fillets of meat"
 			items_counts[display_name]++
@@ -256,7 +256,7 @@
 
 /obj/machinery/microwave/proc/has_extra_item()
 	for(var/obj/O in contents)
-		if(!istype(O, /obj/item/reagent_containers/food) && !istype(O, /obj/item/grown))
+		if(!istype(O, /obj/item/reagent_holder/food) && !istype(O, /obj/item/grown))
 			return 1
 	return 0
 
@@ -309,7 +309,7 @@
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/fail()
-	var/obj/item/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
+	var/obj/item/reagent_holder/food/snacks/badrecipe/ffuu = new(src)
 	var/amount = 0
 	for(var/obj/O in contents-ffuu)
 		amount++

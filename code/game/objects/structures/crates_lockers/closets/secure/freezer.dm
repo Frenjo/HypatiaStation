@@ -18,16 +18,16 @@
 	req_access = list(ACCESS_KITCHEN)
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/condiment/sugar,
-		/obj/item/reagent_containers/food/snacks/flour,
-		/obj/item/reagent_containers/food/snacks/flour,
-		/obj/item/reagent_containers/food/snacks/flour,
-		/obj/item/reagent_containers/food/snacks/flour,
-		/obj/item/reagent_containers/food/snacks/flour,
-		/obj/item/reagent_containers/food/snacks/flour,
-		/obj/item/reagent_containers/food/snacks/meat/monkey,
-		/obj/item/reagent_containers/food/snacks/meat/monkey,
-		/obj/item/reagent_containers/food/snacks/meat/monkey
+		/obj/item/reagent_holder/food/condiment/sugar,
+		/obj/item/reagent_holder/food/snacks/flour,
+		/obj/item/reagent_holder/food/snacks/flour,
+		/obj/item/reagent_holder/food/snacks/flour,
+		/obj/item/reagent_holder/food/snacks/flour,
+		/obj/item/reagent_holder/food/snacks/flour,
+		/obj/item/reagent_holder/food/snacks/flour,
+		/obj/item/reagent_holder/food/snacks/meat/monkey,
+		/obj/item/reagent_holder/food/snacks/meat/monkey,
+		/obj/item/reagent_holder/food/snacks/meat/monkey
 	)
 
 /obj/structure/closet/secure/freezer/kitchen/mining
@@ -46,10 +46,10 @@
 	icon_off = "fridge1"
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/snacks/meat/monkey,
-		/obj/item/reagent_containers/food/snacks/meat/monkey,
-		/obj/item/reagent_containers/food/snacks/meat/monkey,
-		/obj/item/reagent_containers/food/snacks/meat/monkey
+		/obj/item/reagent_holder/food/snacks/meat/monkey,
+		/obj/item/reagent_holder/food/snacks/meat/monkey,
+		/obj/item/reagent_holder/food/snacks/meat/monkey,
+		/obj/item/reagent_holder/food/snacks/meat/monkey
 	)
 
 /*
@@ -65,14 +65,14 @@
 	icon_off = "fridge1"
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/drinks/milk,
-		/obj/item/reagent_containers/food/drinks/milk,
-		/obj/item/reagent_containers/food/drinks/milk,
-		/obj/item/reagent_containers/food/drinks/milk,
-		/obj/item/reagent_containers/food/drinks/milk,
-		/obj/item/reagent_containers/food/drinks/soymilk,
-		/obj/item/reagent_containers/food/drinks/soymilk,
-		/obj/item/reagent_containers/food/drinks/soymilk,
+		/obj/item/reagent_holder/food/drinks/milk,
+		/obj/item/reagent_holder/food/drinks/milk,
+		/obj/item/reagent_holder/food/drinks/milk,
+		/obj/item/reagent_holder/food/drinks/milk,
+		/obj/item/reagent_holder/food/drinks/milk,
+		/obj/item/reagent_holder/food/drinks/soymilk,
+		/obj/item/reagent_holder/food/drinks/soymilk,
+		/obj/item/reagent_holder/food/drinks/soymilk,
 		/obj/item/storage/fancy/egg_box,
 		/obj/item/storage/fancy/egg_box
 	)

@@ -65,7 +65,7 @@
 	requires_heating = 1
 
 
-/obj/item/reagent_containers/glass/solution_tray
+/obj/item/reagent_holder/glass/solution_tray
 	name = "solution tray"
 	desc = "A small, open-topped glass container for delicate research samples. It sports a re-useable strip for labelling with a pen."
 	icon = 'icons/obj/items/devices/device.dmi'
@@ -77,7 +77,7 @@
 	possible_transfer_amounts = list(1, 2)
 	volume = 2
 
-/obj/item/reagent_containers/glass/solution_tray/attackby(obj/item/W, mob/living/user)
+/obj/item/reagent_holder/glass/solution_tray/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/pen))
 		var/new_label = input("What should the new label be?","Label solution tray")
 		if(new_label)
@@ -92,68 +92,68 @@
 	icon_state = "solution_trays"
 
 	starts_with = list(
-		/obj/item/reagent_containers/glass/solution_tray = 7
+		/obj/item/reagent_holder/glass/solution_tray = 7
 	)
 
 
-/obj/item/reagent_containers/glass/beaker/tungsten
+/obj/item/reagent_holder/glass/beaker/tungsten
 	name = "beaker 'tungsten'"
 
-/obj/item/reagent_containers/glass/beaker/tungsten/New()
+/obj/item/reagent_holder/glass/beaker/tungsten/New()
 	..()
 	reagents.add_reagent("tungsten", 50)
 	update_icon()
 
 
-/obj/item/reagent_containers/glass/beaker/oxygen
+/obj/item/reagent_holder/glass/beaker/oxygen
 	name = "beaker 'oxygen'"
 
-/obj/item/reagent_containers/glass/beaker/oxygen/New()
+/obj/item/reagent_holder/glass/beaker/oxygen/New()
 	..()
 	reagents.add_reagent("oxygen", 50)
 	update_icon()
 
 
-/obj/item/reagent_containers/glass/beaker/sodium
+/obj/item/reagent_holder/glass/beaker/sodium
 	name = "beaker 'sodium'"
 
-/obj/item/reagent_containers/glass/beaker/sodium/New()
+/obj/item/reagent_holder/glass/beaker/sodium/New()
 		..()
 		reagents.add_reagent("sodium", 50)
 		update_icon()
 
 
-/obj/item/reagent_containers/glass/beaker/lithium
+/obj/item/reagent_holder/glass/beaker/lithium
 	name = "beaker 'lithium'"
 
-/obj/item/reagent_containers/glass/beaker/lithium/New()
+/obj/item/reagent_holder/glass/beaker/lithium/New()
 	..()
 	reagents.add_reagent("lithium",50)
 	update_icon()
 
 
-/obj/item/reagent_containers/glass/beaker/water
+/obj/item/reagent_holder/glass/beaker/water
 	name = "beaker 'water'"
 
-/obj/item/reagent_containers/glass/beaker/water/New()
+/obj/item/reagent_holder/glass/beaker/water/New()
 	..()
 	reagents.add_reagent("water",50)
 	update_icon()
 
 
-/obj/item/reagent_containers/glass/beaker/water
+/obj/item/reagent_holder/glass/beaker/water
 	name = "beaker 'water'"
 
-/obj/item/reagent_containers/glass/beaker/water/New()
+/obj/item/reagent_holder/glass/beaker/water/New()
 	..()
 	reagents.add_reagent("water",50)
 	update_icon()
 
 
-/obj/item/reagent_containers/glass/beaker/fuel
+/obj/item/reagent_holder/glass/beaker/fuel
 	name = "beaker 'fuel'"
 
-/obj/item/reagent_containers/glass/beaker/fuel/New()
+/obj/item/reagent_holder/glass/beaker/fuel/New()
 	..()
 	reagents.add_reagent("fuel",50)
 	update_icon()

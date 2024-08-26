@@ -11,14 +11,14 @@
 	)
 
 	var/processing = 0
-	var/obj/item/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_holder/glass/beaker = null
 	var/points = 0
 	var/menustat = "menu"
 
 /obj/machinery/biogenerator/New()
 	. = ..()
 	create_reagents(1000)
-	beaker = new /obj/item/reagent_containers/glass/beaker/large(src)
+	beaker = new /obj/item/reagent_holder/glass/beaker/large(src)
 
 /obj/machinery/biogenerator/on_reagent_change()			//When the reagents change, change the icon as well.
 	update_icon()
@@ -33,7 +33,7 @@
 	return
 
 /obj/machinery/biogenerator/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/reagent_containers/glass))
+	if(istype(O, /obj/item/reagent_holder/glass))
 		if(beaker)
 			to_chat(user, SPAN_WARNING("The biogenerator is already loaded."))
 		else
@@ -45,12 +45,12 @@
 		to_chat(user, SPAN_WARNING("The biogenerator is currently processing."))
 	else if(istype(O, /obj/item/storage/bag/plants))
 		var/i = 0
-		for(var/obj/item/reagent_containers/food/snacks/grown/G in contents)
+		for(var/obj/item/reagent_holder/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
 			to_chat(user, SPAN_WARNING("The biogenerator is already full! Activate it."))
 		else
-			for(var/obj/item/reagent_containers/food/snacks/grown/G in O.contents)
+			for(var/obj/item/reagent_holder/food/snacks/grown/G in O.contents)
 				G.loc = src
 				i++
 				if(i >= 10)
@@ -59,11 +59,11 @@
 			if(i < 10)
 				to_chat(user, SPAN_INFO("You empty the plant bag into the biogenerator."))
 
-	else if(!istype(O, /obj/item/reagent_containers/food/snacks/grown))
+	else if(!istype(O, /obj/item/reagent_holder/food/snacks/grown))
 		to_chat(user, SPAN_WARNING("You cannot put this in [src.name]."))
 	else
 		var/i = 0
-		for(var/obj/item/reagent_containers/food/snacks/grown/G in contents)
+		for(var/obj/item/reagent_holder/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
 			user << "\red The biogenerator is full! Activate it."
@@ -130,7 +130,7 @@
 		to_chat(usr, SPAN_WARNING("The biogenerator is in the process of working."))
 		return
 	var/S = 0
-	for(var/obj/item/reagent_containers/food/snacks/grown/I in contents)
+	for(var/obj/item/reagent_holder/food/snacks/grown/I in contents)
 		S += 5
 		if(I.reagents.get_reagent_amount("nutriment") < 0.1)
 			points += 1
@@ -163,7 +163,7 @@
 		if("milk")
 			beaker.reagents.add_reagent("milk", 10)
 		if("meat")
-			new/obj/item/reagent_containers/food/snacks/meat(src.loc)
+			new/obj/item/reagent_holder/food/snacks/meat(src.loc)
 		if("ez")
 			new/obj/item/nutrient/ez(src.loc)
 		if("l4z")

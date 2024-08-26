@@ -428,7 +428,7 @@
 
 /obj/machinery/hydroponics/attackby(obj/item/O, mob/user)
 	//Called when mob user "attacks" it with object O
-	if(istype(O, /obj/item/reagent_containers/glass))
+	if(istype(O, /obj/item/reagent_holder/glass))
 		var/b_amount = O.reagents.get_reagent_amount("water")
 		if(b_amount > 0 && waterlevel < 100)
 			if(b_amount + waterlevel > 100)
@@ -459,8 +459,8 @@
 		qdel(O)
 		updateicon()
 
-	else if(istype(O, /obj/item/reagent_containers/syringe))  // Syringe stuff
-		var/obj/item/reagent_containers/syringe/S = O
+	else if(istype(O, /obj/item/reagent_holder/syringe))  // Syringe stuff
+		var/obj/item/reagent_holder/syringe/S = O
 		if(planted)
 			if(S.mode == 1)
 				if(!S.reagents.total_volume)
@@ -696,7 +696,7 @@
 			to_chat(user, "-Nutrition level: \blue [nutrilevel]/10")
 			to_chat(user, "")
 
-	else if(istype(O, /obj/item/reagent_containers/spray/plantbgone))
+	else if(istype(O, /obj/item/reagent_holder/spray/plantbgone))
 		if(planted && myseed)
 			health -= rand(5, 20)
 
@@ -744,7 +744,7 @@
 	else if(istype(O, /obj/item/storage/bag/plants))
 		attack_hand(user)
 		var/obj/item/storage/bag/plants/S = O
-		for(var/obj/item/reagent_containers/food/snacks/grown/G in locate(user.x, user.y, user.z))
+		for(var/obj/item/reagent_holder/food/snacks/grown/G in locate(user.x, user.y, user.z))
 			if(!S.can_be_inserted(G))
 				return
 			S.handle_item_insertion(G, 1)
@@ -828,7 +828,7 @@
 	var/t_amount = 0
 
 	while(t_amount < (yield * parent.yieldmod))
-		var/obj/item/reagent_containers/food/snacks/grown/t_prod = new produce(user.loc, potency) // User gets a consumable
+		var/obj/item/reagent_holder/food/snacks/grown/t_prod = new produce(user.loc, potency) // User gets a consumable
 		if(!t_prod)
 			return
 		t_prod.seed = type
@@ -860,7 +860,7 @@
 	var/t_amount = 0
 
 	while(t_amount < (yield * parent.yieldmod))
-		var/obj/item/reagent_containers/food/snacks/grown/t_prod = new produce(user.loc, potency) // User gets a consumable
+		var/obj/item/reagent_holder/food/snacks/grown/t_prod = new produce(user.loc, potency) // User gets a consumable
 		t_prod.seed = type
 		t_prod.species = species
 		t_prod.lifespan = lifespan

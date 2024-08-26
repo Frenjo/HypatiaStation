@@ -11,9 +11,9 @@
 
 	products = list(
 		/obj/item/beezeez = 45, /obj/item/nutrient/ez = 35, /obj/item/nutrient/l4z = 25, /obj/item/nutrient/rh = 15, /obj/item/pestspray = 20,
-		/obj/item/reagent_containers/syringe = 5, /obj/item/storage/bag/plants = 5
+		/obj/item/reagent_holder/syringe = 5, /obj/item/storage/bag/plants = 5
 	)
-	premium = list(/obj/item/reagent_containers/glass/bottle/ammonia = 10, /obj/item/reagent_containers/glass/bottle/diethylamine = 5)
+	premium = list(/obj/item/reagent_holder/glass/bottle/ammonia = 10, /obj/item/reagent_holder/glass/bottle/diethylamine = 5)
 
 	slogan_list = list(
 		"Aren't you glad you don't have to fertilize the natural way?", "Now with 50% less stink!",

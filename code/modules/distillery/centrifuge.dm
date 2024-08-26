@@ -12,9 +12,9 @@
 		USE_POWER_ACTIVE = 10000
 	)
 
-	var/list/obj/item/reagent_containers/food/input = list()
-	var/list/obj/item/reagent_containers/food/output = list()
-	var/obj/item/reagent_containers/food/centrifuging_item
+	var/list/obj/item/reagent_holder/food/input = list()
+	var/list/obj/item/reagent_holder/food/output = list()
+	var/obj/item/reagent_holder/food/centrifuging_item
 	var/busy = 0
 	var/progress = 0
 	var/error = 0
@@ -22,7 +22,7 @@
 	var/water = 0
 
 /obj/machinery/centrifuge/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/reagent_containers/food))
+	if(istype(W, /obj/item/reagent_holder/food))
 		user.u_equip(W)
 		W.loc = src
 		input += W
@@ -30,12 +30,12 @@
 		..()
 
 /obj/machinery/centrifuge/attack_hand(mob/user)
-	for(var/obj/item/reagent_containers/food/F in output)
+	for(var/obj/item/reagent_holder/food/F in output)
 		F.loc = src.loc
 		output -= F
 	while(enzymes >= 50)
 		enzymes -= 50
-		new/obj/item/reagent_containers/food/condiment/enzyme(src.loc)
+		new/obj/item/reagent_holder/food/condiment/enzyme(src.loc)
 
 /obj/machinery/centrifuge/process()
 	if(error)

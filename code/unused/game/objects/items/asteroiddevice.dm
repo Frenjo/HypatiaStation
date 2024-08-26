@@ -78,10 +78,10 @@
 	new /obj/item/radio/beacon(src)
 	new /obj/item/gps(src)
 	new /obj/item/flashlight(src)
-	new /obj/item/reagent_containers/food/drinks/beer(src)
-	new /obj/item/reagent_containers/food/snacks/chips(src)
+	new /obj/item/reagent_holder/food/drinks/beer(src)
+	new /obj/item/reagent_holder/food/snacks/chips(src)
 	new /obj/item/storage/fancy/cigarettes(src)
-	var/obj/item/reagent_containers/pill/P = new/obj/item/reagent_containers/pill(src)
+	var/obj/item/reagent_holder/pill/P = new/obj/item/reagent_holder/pill(src)
 	P.reagents.add_reagent("nutriment", 500)
 	P.name = "Cyanide pill"
 	return

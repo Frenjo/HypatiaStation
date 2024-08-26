@@ -4,7 +4,7 @@
 /*
  * Tomato
  */
-/obj/item/reagent_containers/food/snacks/grown/tomato
+/obj/item/reagent_holder/food/snacks/grown/tomato
 	seed = /obj/item/seeds/tomato
 	name = "tomato"
 	desc = "I say to-mah-to, you say tom-mae-to."
@@ -12,12 +12,12 @@
 	filling_color = "#FF0000"
 	potency = 10
 
-/obj/item/reagent_containers/food/snacks/grown/tomato/initialise()
+/obj/item/reagent_holder/food/snacks/grown/tomato/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-/obj/item/reagent_containers/food/snacks/grown/tomato/throw_impact(atom/hit_atom)
+/obj/item/reagent_holder/food/snacks/grown/tomato/throw_impact(atom/hit_atom)
 	..()
 	new/obj/effect/decal/cleanable/tomato_smudge(src.loc)
 	src.visible_message(SPAN_NOTICE("The [src.name] has been squashed."), SPAN_MODERATE("You hear a smack."))
@@ -27,7 +27,7 @@
 /*
  * Blood Tomato
  */
-/obj/item/reagent_containers/food/snacks/grown/bloodtomato
+/obj/item/reagent_holder/food/snacks/grown/bloodtomato
 	seed = /obj/item/seeds/tomato/blood
 	name = "blood-tomato"
 	desc = "So bloody...so...very...bloody....AHHHH!!!!"
@@ -35,13 +35,13 @@
 	potency = 10
 	filling_color = "#FF0000"
 
-/obj/item/reagent_containers/food/snacks/grown/bloodtomato/initialise()
+/obj/item/reagent_holder/food/snacks/grown/bloodtomato/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	reagents.add_reagent("blood", 1 + round((potency / 5), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-/obj/item/reagent_containers/food/snacks/grown/bloodtomato/throw_impact(atom/hit_atom)
+/obj/item/reagent_holder/food/snacks/grown/bloodtomato/throw_impact(atom/hit_atom)
 	..()
 	new/obj/effect/decal/cleanable/blood/splatter(src.loc)
 	src.visible_message(SPAN_NOTICE("The [src.name] has been squashed."), SPAN_MODERATE("You hear a smack."))
@@ -54,7 +54,7 @@
 /*
  * Killer Tomato
  */
-/obj/item/reagent_containers/food/snacks/grown/killertomato
+/obj/item/reagent_holder/food/snacks/grown/killertomato
 	seed = /obj/item/seeds/tomato/killer
 	name = "killer-tomato"
 	desc = "I say to-mah-to, you say tom-mae-to... OH GOD IT'S EATING MY LEGS!!"
@@ -70,14 +70,14 @@
 	potency = 30
 	plant_type = 2
 
-/obj/item/reagent_containers/food/snacks/grown/killertomato/initialise()
+/obj/item/reagent_holder/food/snacks/grown/killertomato/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 	if(ismob(loc))
 		pickup(loc)
 
-/obj/item/reagent_containers/food/snacks/grown/killertomato/attack_self(mob/user)
+/obj/item/reagent_holder/food/snacks/grown/killertomato/attack_self(mob/user)
 	if(isspace(user.loc))
 		return
 
@@ -89,7 +89,7 @@
 /*
  * Blue Tomato
  */
-/obj/item/reagent_containers/food/snacks/grown/bluetomato
+/obj/item/reagent_holder/food/snacks/grown/bluetomato
 	seed = /obj/item/seeds/tomato/blue
 	name = "blue-tomato"
 	desc = "I say blue-mah-to, you say blue-mae-to."
@@ -97,13 +97,13 @@
 	potency = 10
 	filling_color = "#586CFC"
 
-/obj/item/reagent_containers/food/snacks/grown/bluetomato/initialise()
+/obj/item/reagent_holder/food/snacks/grown/bluetomato/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	reagents.add_reagent("lube", 1 + round((potency / 5), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-/obj/item/reagent_containers/food/snacks/grown/bluetomato/throw_impact(atom/hit_atom)
+/obj/item/reagent_holder/food/snacks/grown/bluetomato/throw_impact(atom/hit_atom)
 	..()
 	new/obj/effect/decal/cleanable/blood/oil(src.loc)
 	src.visible_message(
@@ -116,7 +116,7 @@
 	qdel(src)
 	return
 
-/obj/item/reagent_containers/food/snacks/grown/bluetomato/Crossed(atom/movable/AM)
+/obj/item/reagent_holder/food/snacks/grown/bluetomato/Crossed(atom/movable/AM)
 	if(iscarbon(AM))
 		var/mob/M =	AM
 		if(ishuman(M))
@@ -133,7 +133,7 @@
 /*
  * Bluespace Tomato
  */
-/obj/item/reagent_containers/food/snacks/grown/bluespacetomato
+/obj/item/reagent_holder/food/snacks/grown/bluespacetomato
 	seed = /obj/item/seeds/tomato/bluespace
 	name = "blue-space tomato"
 	desc = "So lubricated, you might slip through space-time."
@@ -142,13 +142,13 @@
 	origin_tech = list(/datum/tech/bluespace = 3)
 	filling_color = "#91F8FF"
 
-/obj/item/reagent_containers/food/snacks/grown/bluespacetomato/initialise()
+/obj/item/reagent_holder/food/snacks/grown/bluespacetomato/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 20), 1))
 	reagents.add_reagent("singulo", 1 + round((potency / 5), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
 
-/obj/item/reagent_containers/food/snacks/grown/bluespacetomato/throw_impact(atom/hit_atom)
+/obj/item/reagent_holder/food/snacks/grown/bluespacetomato/throw_impact(atom/hit_atom)
 	..()
 	var/mob/M = usr
 	var/outer_teleport_radius = potency / 10 //Plant potency determines radius of teleport.

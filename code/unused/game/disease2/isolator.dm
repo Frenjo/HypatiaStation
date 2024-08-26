@@ -26,8 +26,8 @@
 		del(src)
 		return
 
-	attackby(var/obj/item/reagent_containers/glass/B as obj, var/mob/user as mob)
-		if(!istype(B,/obj/item/reagent_containers/syringe))
+	attackby(var/obj/item/reagent_holder/glass/B as obj, var/mob/user as mob)
+		if(!istype(B,/obj/item/reagent_holder/syringe))
 			return
 
 		if(src.beaker)
@@ -37,7 +37,7 @@
 		src.beaker =  B
 		user.drop_item()
 		B.loc = src
-		if(istype(B,/obj/item/reagent_containers/syringe))
+		if(istype(B,/obj/item/reagent_holder/syringe))
 			user << "You add the syringe to the machine!"
 			src.updateUsrDialog()
 			icon_state = "isolator_in"

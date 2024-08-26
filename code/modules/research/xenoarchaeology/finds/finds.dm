@@ -115,7 +115,7 @@
 	switch(find_type)
 		if(1)
 			item_type = "bowl"
-			new_item = new /obj/item/reagent_containers/glass(src.loc)
+			new_item = new /obj/item/reagent_holder/glass(src.loc)
 			new_item.icon = 'icons/obj/xenoarchaeology.dmi'
 			new_item.icon_state = "bowl"
 			apply_image_decorations = 1
@@ -123,7 +123,7 @@
 				additional_desc = "There appear to be [pick("dark", "faintly glowing", "pungent", "bright")] [pick("red", "purple", "green", "blue")] stains inside."
 		if(2)
 			item_type = "urn"
-			new_item = new /obj/item/reagent_containers/glass(src.loc)
+			new_item = new /obj/item/reagent_holder/glass(src.loc)
 			new_item.icon = 'icons/obj/xenoarchaeology.dmi'
 			new_item.icon_state = "urn"
 			apply_image_decorations = 1

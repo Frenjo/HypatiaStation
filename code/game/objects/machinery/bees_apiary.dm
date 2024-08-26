@@ -82,8 +82,8 @@
 			N.caught_bees = 0
 		else
 			user << "\blue There are no more bees in the net."
-	else if(istype(O, /obj/item/reagent_containers/glass))
-		var/obj/item/reagent_containers/glass/G = O
+	else if(istype(O, /obj/item/reagent_holder/glass))
+		var/obj/item/reagent_holder/glass/G = O
 		if(harvestable_honey > 0)
 			if(health > 0)
 				user << "\red You begin to harvest the honey. The bees don't seem to like it."
@@ -235,7 +235,7 @@
 
 	while(health > 15)
 		health -= 15
-		var/obj/item/reagent_containers/food/snacks/honeycomb/H = new(src.loc)
+		var/obj/item/reagent_holder/food/snacks/honeycomb/H = new(src.loc)
 		if(toxic > 0)
 			H.reagents.add_reagent("toxin", toxic)
 

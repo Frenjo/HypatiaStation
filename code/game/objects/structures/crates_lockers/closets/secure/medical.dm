@@ -15,14 +15,14 @@
 	starts_with = list(
 		/obj/item/storage/box/autoinjectors,
 		/obj/item/storage/box/syringes,
-		/obj/item/reagent_containers/dropper,
-		/obj/item/reagent_containers/dropper,
-		/obj/item/reagent_containers/glass/beaker,
-		/obj/item/reagent_containers/glass/beaker,
-		/obj/item/reagent_containers/glass/bottle/inaprovaline,
-		/obj/item/reagent_containers/glass/bottle/inaprovaline,
-		/obj/item/reagent_containers/glass/bottle/antitoxin,
-		/obj/item/reagent_containers/glass/bottle/antitoxin
+		/obj/item/reagent_holder/dropper,
+		/obj/item/reagent_holder/dropper,
+		/obj/item/reagent_holder/glass/beaker,
+		/obj/item/reagent_holder/glass/beaker,
+		/obj/item/reagent_holder/glass/bottle/inaprovaline,
+		/obj/item/reagent_holder/glass/bottle/inaprovaline,
+		/obj/item/reagent_holder/glass/bottle/antitoxin,
+		/obj/item/reagent_holder/glass/bottle/antitoxin
 	)
 
 /*
@@ -129,7 +129,7 @@
 		/obj/item/radio/headset/heads/cmo,
 		/obj/item/storage/belt/medical,
 		/obj/item/flash,
-		/obj/item/reagent_containers/hypospray
+		/obj/item/reagent_holder/hypospray
 	)
 
 /obj/structure/closet/secure/medical/cmo/New()

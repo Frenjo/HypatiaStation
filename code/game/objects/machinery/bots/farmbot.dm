@@ -202,7 +202,7 @@
 
 	var/turf/T = get_turf(src)
 	new /obj/item/minihoe(T)
-	new /obj/item/reagent_containers/glass/bucket(T)
+	new /obj/item/reagent_holder/glass/bucket(T)
 	new /obj/item/assembly/prox_sensor(T)
 	new /obj/item/plant_analyser(T)
 
@@ -547,7 +547,7 @@
 		qdel(I)
 		return TRUE
 
-	if(istype(I, /obj/item/reagent_containers/glass/bucket) && build_step == 1)
+	if(istype(I, /obj/item/reagent_holder/glass/bucket) && build_step == 1)
 		build_step++
 		to_chat(user, SPAN_INFO("You add a bucket to \the [src]!"))
 		name = "farmbot assembly with bucket"

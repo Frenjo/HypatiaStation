@@ -84,12 +84,12 @@
 	l_pocket = /obj/item/grenade/chemical/cleaner
 
 	r_hand = /obj/item/mop
-	l_hand = /obj/item/reagent_containers/glass/bucket
+	l_hand = /obj/item/reagent_holder/glass/bucket
 
 	backpack_contents = list(/obj/item/stack/tile/metal/grey = 7)
 
 /decl/hierarchy/outfit/tournament/janitor/post_equip(mob/living/carbon/human/user)
 	. = ..()
-	var/obj/item/reagent_containers/glass/bucket/water_bucket = locate(/obj/item/reagent_containers/glass/bucket) in user
+	var/obj/item/reagent_holder/glass/bucket/water_bucket = locate(/obj/item/reagent_holder/glass/bucket) in user
 	if(isnotnull(water_bucket))
 		water_bucket.reagents.add_reagent("water", 70)

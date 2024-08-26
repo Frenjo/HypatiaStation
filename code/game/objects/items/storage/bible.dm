@@ -14,7 +14,7 @@
 	desc = "To be applied to the head repeatedly."
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/drinks/cans/beer = 2,
+		/obj/item/reagent_holder/food/drinks/cans/beer = 2,
 		/obj/item/spacecash = 3
 	)
 

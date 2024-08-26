@@ -10,7 +10,7 @@
 	icon_state = "seed-tomato"
 	species = "tomato"
 	plantname = "Tomato Plants"
-	productname = /obj/item/reagent_containers/food/snacks/grown/tomato
+	productname = /obj/item/reagent_holder/food/snacks/grown/tomato
 	lifespan = 25
 	endurance = 15
 	maturation = 8
@@ -29,7 +29,7 @@
 	icon_state = "seed-bloodtomato"
 	species = "bloodtomato"
 	plantname = "Blood-Tomato Plants"
-	productname = /obj/item/reagent_containers/food/snacks/grown/bloodtomato
+	productname = /obj/item/reagent_holder/food/snacks/grown/bloodtomato
 	endurance = 20
 	yield = 3
 
@@ -42,7 +42,7 @@
 	icon_state = "seed-killertomato"
 	species = "killertomato"
 	plantname = "Killer-Tomato Plants"
-	productname = /obj/item/reagent_containers/food/snacks/grown/killertomato
+	productname = /obj/item/reagent_holder/food/snacks/grown/killertomato
 	oneharvest = 1
 	growthstages = 2
 
@@ -55,7 +55,7 @@
 	icon_state = "seed-bluetomato"
 	species = "bluetomato"
 	plantname = "Blue-Tomato Plants"
-	productname = /obj/item/reagent_containers/food/snacks/grown/bluetomato
+	productname = /obj/item/reagent_holder/food/snacks/grown/bluetomato
 
 /*
  * Bluespace Tomato
@@ -66,7 +66,7 @@
 	icon_state = "seed-bluespacetomato"
 	species = "bluespacetomato"
 	plantname = "Blue-Space Tomato Plants"
-	productname = /obj/item/reagent_containers/food/snacks/grown/bluespacetomato
+	productname = /obj/item/reagent_holder/food/snacks/grown/bluespacetomato
 
 /*
  * Gib Tomato

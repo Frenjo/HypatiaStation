@@ -12,7 +12,7 @@
 	var/list/obj/item/possible_upgrades = list(
 		/obj/item/assembly/prox_sensor,
 		/obj/item/stack/sheet/plasma,
-		/obj/item/reagent_containers/food/snacks/grown/carrot
+		/obj/item/reagent_holder/food/snacks/grown/carrot
 	)
 	var/list/upgrades = list()
 	var/state = 0

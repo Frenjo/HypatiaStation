@@ -17,7 +17,7 @@
 	var/stunned = 0 //It can be stunned by tasers. Delicate circuits.
 //var/emagged = 0
 	var/list/botcard_access = list(ACCESS_MEDICAL)
-	var/obj/item/reagent_containers/glass/reagent_glass = null //Can be set to draw from this for reagents.
+	var/obj/item/reagent_holder/glass/reagent_glass = null //Can be set to draw from this for reagents.
 	var/skin = null //Set to "tox", "ointment" or "o2" for the other two firstaid kits.
 	var/frustration = 0
 	var/list/path = list()
@@ -176,7 +176,7 @@
 			else
 				FEEDBACK_ACCESS_DENIED(user)
 
-	else if(istype(W, /obj/item/reagent_containers/glass))
+	else if(istype(W, /obj/item/reagent_holder/glass))
 		if(locked)
 			to_chat(user, SPAN_NOTICE("You cannot insert a beaker because the panel is locked."))
 			return

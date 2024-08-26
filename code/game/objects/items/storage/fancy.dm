@@ -47,10 +47,10 @@
 	icon_type = "donut"
 	name = "donut box"
 	storage_slots = 6
-	can_hold = list(/obj/item/reagent_containers/food/snacks/donut)
+	can_hold = list(/obj/item/reagent_holder/food/snacks/donut)
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/snacks/donut/normal = 6
+		/obj/item/reagent_holder/food/snacks/donut/normal = 6
 	)
 
 /obj/item/storage/fancy/donut_box/empty
@@ -65,10 +65,10 @@
 	icon_type = "egg"
 	name = "egg box"
 	storage_slots = 12
-	can_hold = list(/obj/item/reagent_containers/food/snacks/egg)
+	can_hold = list(/obj/item/reagent_holder/food/snacks/egg)
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/snacks/egg = 12
+		/obj/item/reagent_holder/food/snacks/egg = 12
 	)
 
 /*
@@ -196,10 +196,10 @@
 	icon_type = "vial"
 	name = "vial storage box"
 	storage_slots = 6
-	can_hold = list(/obj/item/reagent_containers/glass/beaker/vial)
+	can_hold = list(/obj/item/reagent_holder/glass/beaker/vial)
 
 	starts_with = list(
-		/obj/item/reagent_containers/glass/beaker/vial = 6
+		/obj/item/reagent_holder/glass/beaker/vial = 6
 	)
 
 /obj/item/storage/lockbox/vials
@@ -209,7 +209,7 @@
 	icon_state = "vialbox0"
 	item_state = "syringe_kit"
 	max_w_class = 3
-	can_hold = list(/obj/item/reagent_containers/glass/beaker/vial)
+	can_hold = list(/obj/item/reagent_holder/glass/beaker/vial)
 	max_combined_w_class = 14 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 6
 	req_access = list(ACCESS_VIROLOGY)

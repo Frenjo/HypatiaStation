@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// Pills.
 ////////////////////////////////////////////////////////////////////////////////
-/obj/item/reagent_containers/pill
+/obj/item/reagent_holder/pill
 	name = "pill"
 	desc = "a pill."
 	icon = 'icons/obj/chemical.dmi'
@@ -10,15 +10,15 @@
 	possible_transfer_amounts = null
 	volume = 50
 
-/obj/item/reagent_containers/pill/New()
+/obj/item/reagent_holder/pill/New()
 	..()
 	if(!icon_state)
 		icon_state = "pill[rand(1, 20)]"
 
-/obj/item/reagent_containers/pill/attack_self(mob/user)
+/obj/item/reagent_holder/pill/attack_self(mob/user)
 	return
 
-/obj/item/reagent_containers/pill/attack(mob/M, mob/user, def_zone)
+/obj/item/reagent_holder/pill/attack(mob/M, mob/user, def_zone)
 	if(M == user)
 		to_chat(M, SPAN_INFO("You swallow [src]."))
 		M.drop_from_inventory(src) //icon update
@@ -54,7 +54,7 @@
 
 	return 0
 
-/obj/item/reagent_containers/pill/afterattack(obj/target, mob/user, proximity)
+/obj/item/reagent_holder/pill/afterattack(obj/target, mob/user, proximity)
 	if(!proximity)
 		return
 
@@ -81,186 +81,186 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 //Pills
-/obj/item/reagent_containers/pill/antitox
+/obj/item/reagent_holder/pill/antitox
 	name = "Anti-toxins pill"
 	desc = "Neutralizes many common toxins."
 	icon_state = "pill17"
 
-/obj/item/reagent_containers/pill/antitox/New()
+/obj/item/reagent_holder/pill/antitox/New()
 	..()
 	reagents.add_reagent("anti_toxin", 25)
 
 
-/obj/item/reagent_containers/pill/tox
+/obj/item/reagent_holder/pill/tox
 	name = "Toxins pill"
 	desc = "Highly toxic."
 	icon_state = "pill5"
 
-/obj/item/reagent_containers/pill/tox/New()
+/obj/item/reagent_holder/pill/tox/New()
 	..()
 	reagents.add_reagent("toxin", 50)
 
 
-/obj/item/reagent_containers/pill/cyanide
+/obj/item/reagent_holder/pill/cyanide
 	name = "Cyanide pill"
 	desc = "Don't swallow this."
 	icon_state = "pill5"
 
-/obj/item/reagent_containers/pill/cyanide/New()
+/obj/item/reagent_holder/pill/cyanide/New()
 	..()
 	reagents.add_reagent("cyanide", 50)
 
 
-/obj/item/reagent_containers/pill/adminordrazine
+/obj/item/reagent_holder/pill/adminordrazine
 	name = "Adminordrazine pill"
 	desc = "It's magic. We don't have to explain it."
 	icon_state = "pill16"
 
-/obj/item/reagent_containers/pill/adminordrazine/New()
+/obj/item/reagent_holder/pill/adminordrazine/New()
 	..()
 	reagents.add_reagent("adminordrazine", 50)
 
 
-/obj/item/reagent_containers/pill/stox
+/obj/item/reagent_holder/pill/stox
 	name = "Sleeping pill"
 	desc = "Commonly used to treat insomnia."
 	icon_state = "pill8"
 
-/obj/item/reagent_containers/pill/stox/New()
+/obj/item/reagent_holder/pill/stox/New()
 	..()
 	reagents.add_reagent("stoxin", 15)
 
 
-/obj/item/reagent_containers/pill/kelotane
+/obj/item/reagent_holder/pill/kelotane
 	name = "Kelotane pill"
 	desc = "Used to treat burns."
 	icon_state = "pill11"
 
-/obj/item/reagent_containers/pill/kelotane/New()
+/obj/item/reagent_holder/pill/kelotane/New()
 	..()
 	reagents.add_reagent("kelotane", 15)
 
 
-/obj/item/reagent_containers/pill/paracetamol
+/obj/item/reagent_holder/pill/paracetamol
 	name = "Paracetamol pill"
 	desc = "Tylenol! A painkiller for the ages. Chewables!"
 	icon_state = "pill8"
 
-/obj/item/reagent_containers/pill/paracetamol/New()
+/obj/item/reagent_holder/pill/paracetamol/New()
 	..()
 	reagents.add_reagent("paracetamol", 15)
 
 
-/obj/item/reagent_containers/pill/tramadol
+/obj/item/reagent_holder/pill/tramadol
 	name = "Tramadol pill"
 	desc = "A simple painkiller."
 	icon_state = "pill8"
 
-/obj/item/reagent_containers/pill/tramadol/New()
+/obj/item/reagent_holder/pill/tramadol/New()
 	..()
 	reagents.add_reagent("tramadol", 15)
 
 
-/obj/item/reagent_containers/pill/methylphenidate
+/obj/item/reagent_holder/pill/methylphenidate
 	name = "Methylphenidate pill"
 	desc = "Improves the ability to concentrate."
 	icon_state = "pill8"
 
-/obj/item/reagent_containers/pill/methylphenidate/New()
+/obj/item/reagent_holder/pill/methylphenidate/New()
 	..()
 	reagents.add_reagent("methylphenidate", 15)
 
 
-/obj/item/reagent_containers/pill/citalopram
+/obj/item/reagent_holder/pill/citalopram
 	name = "Citalopram pill"
 	desc = "Mild anti-depressant."
 	icon_state = "pill8"
 
-/obj/item/reagent_containers/pill/citalopram/New()
+/obj/item/reagent_holder/pill/citalopram/New()
 	..()
 	reagents.add_reagent("citalopram", 15)
 
 
-/obj/item/reagent_containers/pill/inaprovaline
+/obj/item/reagent_holder/pill/inaprovaline
 	name = "Inaprovaline pill"
 	desc = "Used to stabilize patients."
 	icon_state = "pill20"
 
-/obj/item/reagent_containers/pill/inaprovaline/New()
+/obj/item/reagent_holder/pill/inaprovaline/New()
 	..()
 	reagents.add_reagent("inaprovaline", 30)
 
 
-/obj/item/reagent_containers/pill/dexalin
+/obj/item/reagent_holder/pill/dexalin
 	name = "Dexalin pill"
 	desc = "Used to treat oxygen deprivation."
 	icon_state = "pill16"
 
-/obj/item/reagent_containers/pill/dexalin/New()
+/obj/item/reagent_holder/pill/dexalin/New()
 	..()
 	reagents.add_reagent("dexalin", 15)
 
 
-/obj/item/reagent_containers/pill/bicaridine
+/obj/item/reagent_holder/pill/bicaridine
 	name = "Bicaridine pill"
 	desc = "Used to treat physical injuries."
 	icon_state = "pill18"
 
-/obj/item/reagent_containers/pill/bicaridine/New()
+/obj/item/reagent_holder/pill/bicaridine/New()
 	..()
 	reagents.add_reagent("bicaridine", 20)
 
 
-/obj/item/reagent_containers/pill/happy
+/obj/item/reagent_holder/pill/happy
 	name = "Happy pill"
 	desc = "Happy happy joy joy!"
 	icon_state = "pill18"
 
-/obj/item/reagent_containers/pill/happy/New()
+/obj/item/reagent_holder/pill/happy/New()
 	..()
 	reagents.add_reagent("space_drugs", 15)
 	reagents.add_reagent("sugar", 15)
 
 
-/obj/item/reagent_containers/pill/zoom
+/obj/item/reagent_holder/pill/zoom
 	name = "Zoom pill"
 	desc = "Zoooom!"
 	icon_state = "pill18"
 
-/obj/item/reagent_containers/pill/zoom/New()
+/obj/item/reagent_holder/pill/zoom/New()
 	..()
 	reagents.add_reagent("impedrezene", 10)
 	reagents.add_reagent("synaptizine", 5)
 	reagents.add_reagent("hyperzine", 5)
 
 // Added this to go with the radiation first aid kit. -Frenjo
-/obj/item/reagent_containers/pill/hyronalin
+/obj/item/reagent_holder/pill/hyronalin
 	name = "Hyronalin pill"
 	desc = "Used to treat radiation sickness."
 	icon_state = "pill1"
 
-/obj/item/reagent_containers/pill/hyronalin/New()
+/obj/item/reagent_holder/pill/hyronalin/New()
 	..()
 	reagents.add_reagent("hyronalin", 5)
 
 // This too, obviously. -Frenjo
-/obj/item/reagent_containers/pill/arithracaridine
+/obj/item/reagent_holder/pill/arithracaridine
 	name = "Arithracaridine pill"
 	// Should this be "Arithra-Caridine"? -Frenjo
 	desc = "Used to treat severe radiation sickness."
 	icon_state = "pill15"
 
-/obj/item/reagent_containers/pill/arithracaridine/New()
+/obj/item/reagent_holder/pill/arithracaridine/New()
 	..()
 	reagents.add_reagent("arithrazine", 2)
 	reagents.add_reagent("bicaridine", 3)
 
 // Added this along with stokaline for survival boxes. -Frenjo
-/obj/item/reagent_containers/pill/stokaline
+/obj/item/reagent_holder/pill/stokaline
 	name = "Stokaline pill"
 	desc = "Used to provide essential nutrients in emergencies, or as a vitamin supplement."
 	icon_state = "pill18"
 
-/obj/item/reagent_containers/pill/stokaline/New()
+/obj/item/reagent_holder/pill/stokaline/New()
 	..()
 	reagents.add_reagent("stokaline", 2)

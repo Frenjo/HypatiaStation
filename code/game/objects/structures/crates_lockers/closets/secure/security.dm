@@ -156,7 +156,7 @@
 		/obj/item/taperoll/police,
 		/obj/item/storage/box/flashbangs,
 		/obj/item/storage/belt/security,
-		/obj/item/reagent_containers/spray/pepper,
+		/obj/item/reagent_holder/spray/pepper,
 		/obj/item/melee/baton,
 		/obj/item/gun/energy/taser,
 		/obj/item/storage/box/holobadge
@@ -189,7 +189,7 @@
 		/obj/item/radio/headset/sec,
 		/obj/item/storage/belt/security,
 		/obj/item/flash,
-		/obj/item/reagent_containers/spray/pepper,
+		/obj/item/reagent_holder/spray/pepper,
 		/obj/item/grenade/flashbang,
 		/obj/item/melee/baton,
 		/obj/item/gun/energy/taser,
@@ -284,8 +284,8 @@
 	req_access = list(ACCESS_CAPTAIN)
 
 	starts_with = list(
-		/obj/item/reagent_containers/ld50_syringe/choral,
-		/obj/item/reagent_containers/ld50_syringe/choral
+		/obj/item/reagent_holder/ld50_syringe/choral,
+		/obj/item/reagent_holder/ld50_syringe/choral
 	)
 
 /*

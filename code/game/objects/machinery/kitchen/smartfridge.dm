@@ -32,7 +32,7 @@
 
 
 /obj/machinery/smartfridge/proc/accept_check(obj/item/O)
-	if(istype(O,/obj/item/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
+	if(istype(O,/obj/item/reagent_holder/food/snacks/grown/) || istype(O,/obj/item/seeds/))
 		return 1
 	return 0
 
@@ -67,11 +67,11 @@
 	req_one_access = list(ACCESS_MEDICAL, ACCESS_CHEMISTRY)
 
 /obj/machinery/smartfridge/secure/medbay/accept_check(obj/item/O)
-	if(istype(O,/obj/item/reagent_containers/glass/))
+	if(istype(O,/obj/item/reagent_holder/glass/))
 		return 1
 	if(istype(O,/obj/item/storage/pill_bottle/))
 		return 1
-	if(istype(O,/obj/item/reagent_containers/pill/))
+	if(istype(O,/obj/item/reagent_holder/pill/))
 		return 1
 	return 0
 
@@ -84,7 +84,7 @@
 	icon_off = "smartfridge_virology-off"
 
 /obj/machinery/smartfridge/secure/virology/accept_check(obj/item/O)
-	if(istype(O,/obj/item/reagent_containers/glass/beaker/vial/))
+	if(istype(O,/obj/item/reagent_holder/glass/beaker/vial/))
 		return 1
 	if(istype(O,/obj/item/virusdish/))
 		return 1
@@ -95,7 +95,7 @@
 	desc = "A refrigerated storage unit for medicine and chemical storage."
 
 /obj/machinery/smartfridge/chemistry/accept_check(obj/item/O)
-	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_containers))
+	if(istype(O,/obj/item/storage/pill_bottle) || istype(O,/obj/item/reagent_holder))
 		return 1
 	return 0
 
@@ -109,7 +109,7 @@
 	desc = "A refrigerated storage unit for tasty tasty alcohol."
 
 /obj/machinery/smartfridge/drinks/accept_check(obj/item/O)
-	if(istype(O,/obj/item/reagent_containers/glass) || istype(O,/obj/item/reagent_containers/food/drinks) || istype(O,/obj/item/reagent_containers/food/condiment))
+	if(istype(O,/obj/item/reagent_holder/glass) || istype(O,/obj/item/reagent_holder/food/drinks) || istype(O,/obj/item/reagent_holder/food/condiment))
 		return 1
 
 /obj/machinery/smartfridge/process()

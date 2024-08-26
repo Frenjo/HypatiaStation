@@ -203,7 +203,7 @@
 		new /obj/item/pen(src)
 		new /obj/item/pda/captain(src)
 		new /obj/item/storage/id_kit(src)
-		new /obj/item/reagent_containers/food/drinks/flask(src)
+		new /obj/item/reagent_holder/food/drinks/flask(src)
 		new /obj/item/gun/energy/gun(src)
 		new /obj/item/clothing/glasses/sunglasses(src)
 		new /obj/item/clothing/suit/storage/captunic(src)

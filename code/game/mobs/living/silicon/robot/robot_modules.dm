@@ -85,25 +85,25 @@
 	modules.Add(new /obj/item/borg/sight/hud/med(src))
 	modules.Add(new /obj/item/health_analyser(src))
 	modules.Add(new /obj/item/reagent_scanner/adv(src))
-	modules.Add(new /obj/item/reagent_containers/borghypo(src))
-	modules.Add(new /obj/item/reagent_containers/glass/beaker/large(src))
-	modules.Add(new /obj/item/reagent_containers/robodropper(src))
-	modules.Add(new /obj/item/reagent_containers/syringe(src))
+	modules.Add(new /obj/item/reagent_holder/borghypo(src))
+	modules.Add(new /obj/item/reagent_holder/glass/beaker/large(src))
+	modules.Add(new /obj/item/reagent_holder/robodropper(src))
+	modules.Add(new /obj/item/reagent_holder/syringe(src))
 	modules.Add(new /obj/item/extinguisher/mini(src))
 
-	emag = new /obj/item/reagent_containers/spray(src)
+	emag = new /obj/item/reagent_holder/spray(src)
 	emag.reagents.add_reagent("pacid", 250)
 	emag.name = "Polyacid spray"
 
 /obj/item/robot_module/medical/respawn_consumable(mob/living/silicon/robot/R)
-	var/obj/item/reagent_containers/syringe/S = locate() in modules
+	var/obj/item/reagent_holder/syringe/S = locate() in modules
 	if(S.mode == 2)//SYRINGE_BROKEN
 		S.reagents.clear_reagents()
 		S.mode = initial(S.mode)
 		S.desc = initial(S.desc)
 		S.update_icon()
 	if(emag)
-		var/obj/item/reagent_containers/spray/PS = emag
+		var/obj/item/reagent_holder/spray/PS = emag
 		PS.reagents.add_reagent("pacid", 2)
 
 /*
@@ -205,7 +205,7 @@
 	modules.Add(new /obj/item/mop(src))
 	modules.Add(new /obj/item/lightreplacer(src))
 
-	emag = new /obj/item/reagent_containers/spray(src)
+	emag = new /obj/item/reagent_holder/spray(src)
 	emag.reagents.add_reagent("lube", 250)
 	emag.name = "Lube spray"
 
@@ -213,7 +213,7 @@
 	var/obj/item/lightreplacer/LR = locate() in modules
 	LR.Charge(R)
 	if(emag)
-		var/obj/item/reagent_containers/spray/S = emag
+		var/obj/item/reagent_holder/spray/S = emag
 		S.reagents.add_reagent("lube", 2)
 
 /*
@@ -224,24 +224,24 @@
 
 /obj/item/robot_module/butler/New()
 	. = ..()
-	modules.Add(new /obj/item/reagent_containers/food/drinks/cans/beer(src))
-	modules.Add(new /obj/item/reagent_containers/food/condiment/enzyme(src))
+	modules.Add(new /obj/item/reagent_holder/food/drinks/cans/beer(src))
+	modules.Add(new /obj/item/reagent_holder/food/condiment/enzyme(src))
 	modules.Add(new /obj/item/pen/robopen(src))
 
 	var/obj/item/rsf/M = new /obj/item/rsf(src)
 	M.matter = 30
 	modules.Add(M)
 
-	modules.Add(new /obj/item/reagent_containers/robodropper(src))
+	modules.Add(new /obj/item/reagent_holder/robodropper(src))
 
 	var/obj/item/lighter/zippo/L = new /obj/item/lighter/zippo(src)
 	L.lit = 1
 	modules.Add(L)
 
 	modules.Add(new /obj/item/tray/robotray(src))
-	modules.Add(new /obj/item/reagent_containers/food/drinks/shaker(src))
+	modules.Add(new /obj/item/reagent_holder/food/drinks/shaker(src))
 
-	emag = new /obj/item/reagent_containers/food/drinks/cans/beer(src)
+	emag = new /obj/item/reagent_holder/food/drinks/cans/beer(src)
 	emag.create_reagents(50)
 	emag.reagents.add_reagent("beer2", 50)
 	emag.name = "Mickey Finn's Special Brew"
@@ -258,10 +258,10 @@
 	R.add_language("Gutter")
 
 /obj/item/robot_module/butler/respawn_consumable(mob/living/silicon/robot/R)
-	var/obj/item/reagent_containers/food/condiment/enzyme/E = locate() in modules
+	var/obj/item/reagent_holder/food/condiment/enzyme/E = locate() in modules
 	E.reagents.add_reagent("enzyme", 2)
 	if(emag)
-		var/obj/item/reagent_containers/food/drinks/cans/beer/B = emag
+		var/obj/item/reagent_holder/food/drinks/cans/beer/B = emag
 		B.reagents.add_reagent("beer2", 2)
 
 /*
@@ -323,7 +323,7 @@
 	modules.Add(new /obj/item/wirecutters(src))
 	modules.Add(new /obj/item/multitool(src))
 	modules.Add(new /obj/item/lightreplacer(src))
-	modules.Add(new /obj/item/reagent_containers/spray/cleaner(src))
+	modules.Add(new /obj/item/reagent_holder/spray/cleaner(src))
 	modules.Add(new /obj/item/gripper(src))
 	modules.Add(new /obj/item/matter_decompiler(src))
 
@@ -349,7 +349,7 @@
 	. = ..() //not much ROM to spare in that tiny microprocessor!
 
 /obj/item/robot_module/drone/respawn_consumable(mob/living/silicon/robot/R)
-	var/obj/item/reagent_containers/spray/cleaner/C = locate() in modules
+	var/obj/item/reagent_holder/spray/cleaner/C = locate() in modules
 	C.reagents.add_reagent("cleaner", 10)
 
 	var/list/stacks = list(

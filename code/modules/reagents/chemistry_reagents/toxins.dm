@@ -79,8 +79,8 @@
 
 /datum/reagent/plasma/reaction_obj(obj/O, volume)
 	qdel(src)
-	/*if(istype(O,/obj/item/reagent_containers/food/snacks/egg/slime))
-		var/obj/item/reagent_containers/food/snacks/egg/slime/egg = O
+	/*if(istype(O,/obj/item/reagent_holder/food/snacks/egg/slime))
+		var/obj/item/reagent_holder/food/snacks/egg/slime/egg = O
 		if (egg.grown)
 			egg.Hatch()*/
 	if(isnull(O) || !volume)

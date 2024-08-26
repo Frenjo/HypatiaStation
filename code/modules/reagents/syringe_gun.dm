@@ -19,8 +19,8 @@
 	to_chat(usr, SPAN_INFO("[length(syringes)] / [max_syringes] syringes."))
 
 /obj/item/gun/syringe/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/reagent_containers/syringe))
-		var/obj/item/reagent_containers/syringe/S = I
+	if(istype(I, /obj/item/reagent_holder/syringe))
+		var/obj/item/reagent_holder/syringe/S = I
 		if(S.mode != 2) //SYRINGE_BROKEN in syringes.dm
 			if(length(syringes) < max_syringes)
 				user.drop_item()
@@ -57,7 +57,7 @@
 	else
 		var/turf/trg = get_turf(target)
 		var/obj/effect/syringe_gun_dummy/D = new/obj/effect/syringe_gun_dummy(get_turf(src))
-		var/obj/item/reagent_containers/syringe/S = syringes[1]
+		var/obj/item/reagent_holder/syringe/S = syringes[1]
 		if((!S) || (!S.reagents))	//ho boy! wot runtimes!
 			return
 		S.reagents.trans_to(D, S.reagents.total_volume)

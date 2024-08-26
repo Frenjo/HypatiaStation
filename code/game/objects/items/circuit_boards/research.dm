@@ -87,7 +87,7 @@
 	req_components = list(
 		/obj/item/stock_part/matter_bin = 2,
 		/obj/item/stock_part/manipulator = 2,
-		/obj/item/reagent_containers/glass/beaker = 2
+		/obj/item/reagent_holder/glass/beaker = 2
 	)
 
 /obj/item/circuitboard/circuit_imprinter
@@ -99,7 +99,7 @@
 	req_components = list(
 		/obj/item/stock_part/matter_bin = 1,
 		/obj/item/stock_part/manipulator = 1,
-		/obj/item/reagent_containers/glass/beaker = 2
+		/obj/item/reagent_holder/glass/beaker = 2
 	)
 
 /obj/item/circuitboard/rdserver

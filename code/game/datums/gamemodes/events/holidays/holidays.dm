@@ -203,7 +203,7 @@ GLOBAL_GLOBL_INIT(eventchance, 10)	//% per 5 mins
 			var/turf/open/floor/F = Floorlist[rand(1, length(Floorlist))]
 			Floorlist = null
 			var/obj/structure/closet/C = locate(/obj/structure/closet) in F
-			var/obj/item/reagent_containers/food/snacks/chocolateegg/wrapped/Egg
+			var/obj/item/reagent_holder/food/snacks/chocolateegg/wrapped/Egg
 			if( C )			Egg = new(C)
 			else			Egg = new(F)
 */

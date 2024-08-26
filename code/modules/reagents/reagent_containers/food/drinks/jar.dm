@@ -1,15 +1,15 @@
 ///jar
-/obj/item/reagent_containers/food/drinks/jar
+/obj/item/reagent_holder/food/drinks/jar
 	name = "empty jar"
 	desc = "A jar. You're not sure what it's supposed to hold."
 	icon_state = "jar"
 	item_state = "beaker"
-	
-/obj/item/reagent_containers/food/drinks/jar/New()
+
+/obj/item/reagent_holder/food/drinks/jar/New()
 	..()
 	reagents.add_reagent("slime", 50)
 
-/obj/item/reagent_containers/food/drinks/jar/on_reagent_change()
+/obj/item/reagent_holder/food/drinks/jar/on_reagent_change()
 	if(length(reagents.reagent_list))
 		switch(reagents.get_master_reagent_id())
 			if("slime")

@@ -803,7 +803,7 @@ ________________________________________________________________________________
 			to_chat(U, SPAN_INFO("You slot \the [I] into \the [src]."))
 			updateUsrDialog()
 			return
-		else if(istype(I, /obj/item/reagent_containers/glass))//If it's a glass beaker.
+		else if(istype(I, /obj/item/reagent_holder/glass))//If it's a glass beaker.
 			var/total_reagent_transfer//Keep track of this stuff.
 			for(var/reagent_id in reagent_list)
 				var/datum/reagent/R = I.reagents.has_reagent(reagent_id)//Mostly to pull up the name of the reagent after calculating. Also easier to use than writing long proc paths.

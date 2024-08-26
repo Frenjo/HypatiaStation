@@ -11,7 +11,7 @@
 	blood_overlay_type = "armor"
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO
 	allowed = list(
-		/obj/item/reagent_containers/spray/plantbgone, /obj/item/plant_analyser, /obj/item/seeds,
+		/obj/item/reagent_holder/spray/plantbgone, /obj/item/plant_analyser, /obj/item/seeds,
 		/obj/item/nutrient, /obj/item/minihoe
 	)
 
@@ -180,8 +180,8 @@
 	item_state = "fr_jacket"
 	blood_overlay_type = "armor"
 	allowed = list(
-		/obj/item/stack/medical, /obj/item/reagent_containers/dropper, /obj/item/reagent_containers/hypospray,
-		/obj/item/reagent_containers/syringe, /obj/item/health_analyser, /obj/item/flashlight,
+		/obj/item/stack/medical, /obj/item/reagent_holder/dropper, /obj/item/reagent_holder/hypospray,
+		/obj/item/reagent_holder/syringe, /obj/item/health_analyser, /obj/item/flashlight,
 		/obj/item/radio, /obj/item/tank/emergency/oxygen
 	)
 

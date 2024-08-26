@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/armor
 	allowed = list(
-		/obj/item/gun/energy, /obj/item/reagent_containers/spray/pepper, /obj/item/gun/projectile,
+		/obj/item/gun/energy, /obj/item/reagent_holder/spray/pepper, /obj/item/gun/projectile,
 		/obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/melee/baton, /obj/item/handcuffs
 	)
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO

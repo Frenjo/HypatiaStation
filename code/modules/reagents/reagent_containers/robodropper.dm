@@ -1,4 +1,4 @@
-/obj/item/reagent_containers/robodropper
+/obj/item/reagent_holder/robodropper
 	name = "industrial dropper"
 	desc = "A larger dropper. Transfers 10 units."
 	icon = 'icons/obj/chemical.dmi'
@@ -9,7 +9,7 @@
 
 	var/filled = 0
 
-/obj/item/reagent_containers/robodropper/afterattack(obj/target, mob/user, flag)
+/obj/item/reagent_holder/robodropper/afterattack(obj/target, mob/user, flag)
 	if(!target.reagents)
 		return
 
@@ -19,7 +19,7 @@
 			user << "\red [target] is full."
 			return
 
-		if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/reagent_containers/food)) //You can inject humans and food but you cant remove the shit.
+		if(!target.is_open_container() && !ismob(target) && !istype(target, /obj/item/reagent_holder/food)) //You can inject humans and food but you cant remove the shit.
 			user << "\red You cannot directly fill this object."
 			return
 

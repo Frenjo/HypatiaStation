@@ -68,7 +68,7 @@
 		/obj/item/clothing/head/wizard = 1, /obj/item/clothing/suit/wizrobe = 1, /obj/item/clothing/head/wizard/red = 1,
 		/obj/item/clothing/suit/wizrobe/red = 1, /obj/item/clothing/shoes/sandal = 1, /obj/item/staff = 2
 	)
-	contraband = list(/obj/item/reagent_containers/glass/bottle/wizarditis = 1)	// No one can get to the machine to hack it anyways; for the lulz - Microwave
+	contraband = list(/obj/item/reagent_holder/glass/bottle/wizarditis = 1)	// No one can get to the machine to hack it anyways; for the lulz - Microwave
 
 	slogan_list = list(
 		"Sling spells the proper way with MagiVend!", "Be your own Houdini! Use MagiVend!"
@@ -88,7 +88,7 @@
 	icon_state = "dinnerware"
 
 	products = list(
-		/obj/item/tray = 8, /obj/item/kitchen/utensil/fork = 6, /obj/item/kitchenknife = 3, /obj/item/reagent_containers/food/drinks/drinkingglass = 16,
+		/obj/item/tray = 8, /obj/item/kitchen/utensil/fork = 6, /obj/item/kitchenknife = 3, /obj/item/reagent_holder/food/drinks/drinkingglass = 16,
 		/obj/item/clothing/suit/chef/classic = 2, /obj/item/trash/bowl = 20
 	)
 	contraband = list(/obj/item/kitchen/utensil/spoon = 2, /obj/item/kitchen/utensil/knife = 2, /obj/item/kitchen/rollingpin = 2, /obj/item/butch = 2)

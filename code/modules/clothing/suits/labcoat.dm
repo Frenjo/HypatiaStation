@@ -7,9 +7,9 @@
 	body_parts_covered = UPPER_TORSO | LOWER_TORSO | ARMS
 	allowed = list(
 		/obj/item/gas_analyser, /obj/item/stack/medical, /obj/item/dnainjector,
-		/obj/item/reagent_containers/dropper, /obj/item/reagent_containers/syringe, /obj/item/reagent_containers/hypospray,
-		/obj/item/health_analyser, /obj/item/flashlight/pen, /obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/pill, /obj/item/storage/pill_bottle,
+		/obj/item/reagent_holder/dropper, /obj/item/reagent_holder/syringe, /obj/item/reagent_holder/hypospray,
+		/obj/item/health_analyser, /obj/item/flashlight/pen, /obj/item/reagent_holder/glass/bottle,
+		/obj/item/reagent_holder/glass/beaker, /obj/item/reagent_holder/pill, /obj/item/storage/pill_bottle,
 		/obj/item/paper
 	)
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 50, rad = 0)

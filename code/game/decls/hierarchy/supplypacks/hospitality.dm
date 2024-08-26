@@ -6,18 +6,18 @@
 	name = "Party equipment"
 	contains = list(
 		/obj/item/storage/box/drinkingglasses,
-		/obj/item/reagent_containers/food/drinks/shaker,
-		/obj/item/reagent_containers/food/drinks/flask/barflask,
-		/obj/item/reagent_containers/food/drinks/bottle/patron,
-		/obj/item/reagent_containers/food/drinks/bottle/goldschlager,
+		/obj/item/reagent_holder/food/drinks/shaker,
+		/obj/item/reagent_holder/food/drinks/flask/barflask,
+		/obj/item/reagent_holder/food/drinks/bottle/patron,
+		/obj/item/reagent_holder/food/drinks/bottle/goldschlager,
 		/obj/item/storage/fancy/cigarettes/dromedaryco,
 		/obj/item/lipstick/random,
-		/obj/item/reagent_containers/food/drinks/cans/ale,
-		/obj/item/reagent_containers/food/drinks/cans/ale,
-		/obj/item/reagent_containers/food/drinks/cans/beer,
-		/obj/item/reagent_containers/food/drinks/cans/beer,
-		/obj/item/reagent_containers/food/drinks/cans/beer,
-		/obj/item/reagent_containers/food/drinks/cans/beer
+		/obj/item/reagent_holder/food/drinks/cans/ale,
+		/obj/item/reagent_holder/food/drinks/cans/ale,
+		/obj/item/reagent_holder/food/drinks/cans/beer,
+		/obj/item/reagent_holder/food/drinks/cans/beer,
+		/obj/item/reagent_holder/food/drinks/cans/beer,
+		/obj/item/reagent_holder/food/drinks/cans/beer
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate

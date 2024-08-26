@@ -7,8 +7,8 @@
 	anchored = TRUE
 
 /obj/machinery/seed_extractor/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/reagent_containers/food/snacks/grown))
-		var/obj/item/reagent_containers/food/snacks/grown/F = O
+	if(istype(O, /obj/item/reagent_holder/food/snacks/grown))
+		var/obj/item/reagent_holder/food/snacks/grown/F = O
 		user.drop_item()
 		to_chat(user, SPAN_NOTICE("You extract some seeds from the [F.name]."))
 		var/seed = F.seed

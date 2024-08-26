@@ -7,7 +7,7 @@
 	icon_state = "seed-corn"
 	species = "corn"
 	plantname = "Corn Stalks"
-	productname = /obj/item/reagent_containers/food/snacks/grown/corn
+	productname = /obj/item/reagent_holder/food/snacks/grown/corn
 	lifespan = 25
 	endurance = 15
 	maturation = 8
@@ -27,7 +27,7 @@
 	icon_state = "seed-wheat"
 	species = "wheat"
 	plantname = "Wheat Stalks"
-	productname = /obj/item/reagent_containers/food/snacks/grown/wheat
+	productname = /obj/item/reagent_holder/food/snacks/grown/wheat
 	lifespan = 25
 	endurance = 15
 	maturation = 6
@@ -47,7 +47,7 @@
 	icon_state = "seed-rice"
 	species = "rice"
 	plantname = "Rice Stalks"
-	productname = /obj/item/reagent_containers/food/snacks/grown/ricestalk
+	productname = /obj/item/reagent_holder/food/snacks/grown/ricestalk
 	lifespan = 25
 	endurance = 15
 	maturation = 6

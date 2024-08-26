@@ -7,7 +7,7 @@
 	icon_state = "mycelium-reishi"
 	species = "reishi"
 	plantname = "Reishi"
-	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/reishi
+	productname = /obj/item/reagent_holder/food/snacks/grown/mushroom/reishi
 	lifespan = 35
 	endurance = 35
 	maturation = 10
@@ -27,7 +27,7 @@
 	icon_state = "mycelium-amanita"
 	species = "amanita"
 	plantname = "Fly Amanitas"
-	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/amanita
+	productname = /obj/item/reagent_holder/food/snacks/grown/mushroom/amanita
 	lifespan = 50
 	endurance = 35
 	maturation = 10
@@ -47,7 +47,7 @@
 	icon_state = "mycelium-angel"
 	species = "angel"
 	plantname = "Destroying Angels"
-	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/angel
+	productname = /obj/item/reagent_holder/food/snacks/grown/mushroom/angel
 	lifespan = 50
 	endurance = 35
 	maturation = 12
@@ -67,7 +67,7 @@
 	icon_state = "mycelium-liberty"
 	species = "liberty"
 	plantname = "Liberty-Caps"
-	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap
+	productname = /obj/item/reagent_holder/food/snacks/grown/mushroom/libertycap
 	lifespan = 25
 	endurance = 15
 	maturation = 7
@@ -87,7 +87,7 @@
 	icon_state = "mycelium-chanter"
 	species = "chanter"
 	plantname = "Chanterelle Mushrooms"
-	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/chanterelle
+	productname = /obj/item/reagent_holder/food/snacks/grown/mushroom/chanterelle
 	lifespan = 35
 	endurance = 20
 	maturation = 7
@@ -107,7 +107,7 @@
 	icon_state = "mycelium-glowshroom"
 	species = "glowshroom"
 	plantname = "Glowshrooms"
-	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/glowshroom
+	productname = /obj/item/reagent_holder/food/snacks/grown/mushroom/glowshroom
 	lifespan = 120 //ten times that is the delay
 	endurance = 30
 	maturation = 15
@@ -127,7 +127,7 @@
 	icon_state = "mycelium-plump"
 	species = "plump"
 	plantname = "Plump-Helmet Mushrooms"
-	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/plumphelmet
+	productname = /obj/item/reagent_holder/food/snacks/grown/mushroom/plumphelmet
 	lifespan = 25
 	endurance = 15
 	maturation = 8
@@ -147,7 +147,7 @@
 	icon_state = "mycelium-walkingmushroom"
 	species = "walkingmushroom"
 	plantname = "Walking Mushrooms"
-	productname = /obj/item/reagent_containers/food/snacks/grown/mushroom/walkingmushroom
+	productname = /obj/item/reagent_holder/food/snacks/grown/mushroom/walkingmushroom
 	lifespan = 30
 	endurance = 30
 	maturation = 5

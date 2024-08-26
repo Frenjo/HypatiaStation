@@ -7,7 +7,7 @@
 	icon_state = "seed-cabbage"
 	species = "cabbage"
 	plantname = "Cabbages"
-	productname = /obj/item/reagent_containers/food/snacks/grown/cabbage
+	productname = /obj/item/reagent_holder/food/snacks/grown/cabbage
 	lifespan = 50
 	endurance = 25
 	maturation = 3
@@ -26,7 +26,7 @@
 	icon_state = "seed-potato"
 	species = "potato"
 	plantname = "Potato-Plants"
-	productname = /obj/item/reagent_containers/food/snacks/grown/potato
+	productname = /obj/item/reagent_holder/food/snacks/grown/potato
 	lifespan = 30
 	endurance = 15
 	maturation = 10
@@ -46,7 +46,7 @@
 	icon_state = "seed-soybean"
 	species = "soybean"
 	plantname = "Soybean Plants"
-	productname = /obj/item/reagent_containers/food/snacks/grown/soybeans
+	productname = /obj/item/reagent_holder/food/snacks/grown/soybeans
 	lifespan = 25
 	endurance = 15
 	maturation = 4
@@ -65,7 +65,7 @@
 	icon_state = "seed-carrot"
 	species = "carrot"
 	plantname = "Carrots"
-	productname = /obj/item/reagent_containers/food/snacks/grown/carrot
+	productname = /obj/item/reagent_holder/food/snacks/grown/carrot
 	lifespan = 25
 	endurance = 15
 	maturation = 10
@@ -85,7 +85,7 @@
 	icon_state = "seed-whitebeet"
 	species = "whitebeet"
 	plantname = "White-Beet Plants"
-	productname = /obj/item/reagent_containers/food/snacks/grown/whitebeet
+	productname = /obj/item/reagent_holder/food/snacks/grown/whitebeet
 	lifespan = 60
 	endurance = 50
 	maturation = 6

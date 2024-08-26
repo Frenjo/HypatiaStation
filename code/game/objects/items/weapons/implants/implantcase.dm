@@ -30,7 +30,7 @@
 			src.name = "glass case - '[t]'"
 		else
 			src.name = "glass case"
-	else if(istype(I, /obj/item/reagent_containers/syringe))
+	else if(istype(I, /obj/item/reagent_holder/syringe))
 		if(!src.imp)
 			return
 		if(!src.imp.allow_reagents)

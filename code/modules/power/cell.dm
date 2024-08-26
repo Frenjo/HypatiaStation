@@ -86,8 +86,8 @@
 
 /obj/item/cell/attackby(obj/item/W, mob/user)
 	..()
-	if(istype(W, /obj/item/reagent_containers/syringe))
-		var/obj/item/reagent_containers/syringe/S = W
+	if(istype(W, /obj/item/reagent_holder/syringe))
+		var/obj/item/reagent_holder/syringe/S = W
 		to_chat(user, "You inject the solution into the power cell.")
 		if(S.reagents.has_reagent("plasma", 5))
 			rigged = 1

@@ -27,14 +27,14 @@
 /*
  * Plastellium
  */
-/obj/item/reagent_containers/food/snacks/grown/plastellium
+/obj/item/reagent_holder/food/snacks/grown/plastellium
 	seed = /obj/item/seeds/plastellium
 	name = "clump of plastellium"
 	desc = "Hmm, needs some processing"
 	icon_state = "plastellium"
 	filling_color = "#C4C4C4"
 
-/obj/item/reagent_containers/food/snacks/grown/plastellium/initialise()
+/obj/item/reagent_holder/food/snacks/grown/plastellium/initialise()
 	. = ..()
 	reagents.add_reagent("plasticide", 1 + round((potency / 10), 1))
 	bitesize = 1 + round(reagents.total_volume / 2, 1)
@@ -77,14 +77,14 @@
 /*
  * Kudzu
  */
-/obj/item/reagent_containers/food/snacks/grown/kudzupod
+/obj/item/reagent_holder/food/snacks/grown/kudzupod
 	seed = /obj/item/seeds/kudzu
 	name = "kudzu pod"
 	desc = "<I>Pueraria Virallis</I>: An invasive species with vines that rapidly creep and wrap around whatever they contact."
 	icon_state = "kudzupod"
 	filling_color = "#59691B"
 
-/obj/item/reagent_containers/food/snacks/grown/kudzupod/initialise()
+/obj/item/reagent_holder/food/snacks/grown/kudzupod/initialise()
 	. = ..()
 	reagents.add_reagent("nutriment", 1 + round((potency / 50), 1))
 	reagents.add_reagent("anti_toxin", 1 + round((potency / 25), 1))
@@ -221,7 +221,7 @@
 // This isn't a fruit or a vegetable, so I wasn't sure where to put it.
 // But I went off the idea that you don't usually just pick up sugarcane and start munching on it.
 // Therefore this is the best place by that logic. -Frenjo
-/obj/item/reagent_containers/food/snacks/grown/sugarcane
+/obj/item/reagent_holder/food/snacks/grown/sugarcane
 	seed = /obj/item/seeds/sugarcaneseed
 	name = "sugarcane"
 	desc = "Sickly sweet."
@@ -229,7 +229,7 @@
 	potency = 50
 	filling_color = "#C0C9AD"
 
-/obj/item/reagent_containers/food/snacks/grown/sugarcane/initialise()
+/obj/item/reagent_holder/food/snacks/grown/sugarcane/initialise()
 	. = ..()
 	reagents.add_reagent("sugar", 4 + round((potency / 5), 1))
 
@@ -242,14 +242,14 @@
  * "Cash" Money Tree
  */
 //This object is just a transition object. All it does is make dosh and delete itself. -Cheridan
-/obj/item/reagent_containers/food/snacks/grown/money
+/obj/item/reagent_holder/food/snacks/grown/money
 	seed = /obj/item/seeds/cash
 	name = "dosh"
 	desc = "Green and lush."
 	icon_state = "spawner"
 	potency = 10
 
-/obj/item/reagent_containers/food/snacks/grown/money/New(new_loc, new_potency)
+/obj/item/reagent_holder/food/snacks/grown/money/New(new_loc, new_potency)
 	. = ..(new_loc, new_potency)
 	// TODO: Investigate this, it might still be broken. Previous comment said:
 	switch(new_potency) //(potency) //It wants to use the default potency instead of the new, so it was always 10. Will try to come back to this later - Cheridan
@@ -271,7 +271,7 @@
 			new /obj/item/spacecash/c1000(new_loc)
 
 //Workaround to keep harvesting from working weirdly.
-/obj/item/reagent_containers/food/snacks/grown/money/initialise()
+/obj/item/reagent_holder/food/snacks/grown/money/initialise()
 	. = ..()
 	qdel(src)
 
@@ -280,18 +280,18 @@
  */
 /*
 //This object is just a transition object. All it does is make a grass tile and delete itself.
-/obj/item/reagent_containers/food/snacks/grown/grass
+/obj/item/reagent_holder/food/snacks/grown/grass
 	seed = /obj/item/seeds/grass
 	name = "grass"
 	desc = "Green and lush."
 	icon_state = "spawner"
 	potency = 20
 
-/obj/item/reagent_containers/food/snacks/grown/grass/New()
+/obj/item/reagent_holder/food/snacks/grown/grass/New()
 	new/obj/item/stack/tile/grass(src.loc)
 
 //Workaround to keep harvesting from working weirdly.
-/obj/item/reagent_containers/food/snacks/grown/grass/initialise()
+/obj/item/reagent_holder/food/snacks/grown/grass/initialise()
 	..()
 	qdel(src)
 */

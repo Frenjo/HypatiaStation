@@ -170,7 +170,7 @@
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "maye_daye_1"
 
-/obj/item/reagent_containers/food/drinks/flask/fluff/william_hackett
+/obj/item/reagent_holder/food/drinks/flask/fluff/william_hackett
 	name = "handmade flask"
 	desc = "A wooden flask with a silver lid and bottom. It has a matte, dark blue paint on it with the initials \"W.H.\" etched in black."
 	icon = 'icons/obj/custom_items.dmi'
@@ -182,7 +182,7 @@
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "asusrose"
 
-/obj/item/reagent_containers/food/drinks/flask/fluff/johann_erzatz_1 //leonheart11:  Johann Erzatz
+/obj/item/reagent_holder/food/drinks/flask/fluff/johann_erzatz_1 //leonheart11:  Johann Erzatz
 	name = "vintage thermos"
 	desc = "An older thermos with a faint shine."
 	icon = 'icons/obj/custom_items.dmi'
@@ -286,21 +286,21 @@
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "lifetimeid"
 
-/obj/item/reagent_containers/food/drinks/flask/fluff/shinyflask //lexusjjss: Lexus Langg & Zachary Tomlinson
+/obj/item/reagent_holder/food/drinks/flask/fluff/shinyflask //lexusjjss: Lexus Langg & Zachary Tomlinson
 	name = "shiny flask"
 	desc = "A shiny metal flask. It appears to have a Greek symbol inscribed on it."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "shinyflask"
 	volume = 50
 
-/obj/item/reagent_containers/food/drinks/flask/fluff/lithiumflask //mcgulliver: Wox Derax
+/obj/item/reagent_holder/food/drinks/flask/fluff/lithiumflask //mcgulliver: Wox Derax
 	name = "Lithium Flask"
 	desc = "A flask with a Lithium Atom symbol on it."
 	icon = 'icons/obj/custom_items.dmi'
 	icon_state = "lithiumflask"
 	volume = 50
 
-/obj/item/reagent_containers/glass/beaker/large/fluff/nashida_bishara_1 //rukral:Nashida Bisha'ra
+/obj/item/reagent_holder/glass/beaker/large/fluff/nashida_bishara_1 //rukral:Nashida Bisha'ra
 	name = "Nashida's Etched Beaker"
 	desc = "The message: 'Please do not be removing this beaker from the chemistry lab. If lost, return to Nashida Bisha'ra' can be seen etched into the side of this 100 unit beaker."
 	icon = 'icons/obj/chemical.dmi'
@@ -308,7 +308,7 @@
 	matter_amounts = list(/decl/material/glass = 5000)
 	volume = 100
 
-/obj/item/reagent_containers/glass/beaker/fluff/eleanor_stone //Rkf45: Eleanor Stone
+/obj/item/reagent_holder/glass/beaker/fluff/eleanor_stone //Rkf45: Eleanor Stone
 	name = "teapot"
 	desc = "An elegant teapot. The engraving on the bottom reads 'ENS'"
 	icon = 'icons/obj/custom_items.dmi'
@@ -325,20 +325,20 @@
 
 /obj/item/storage/pill_bottle/fluff/listermedbottle/New()
 	..()
-	new /obj/item/reagent_containers/pill/fluff/listermed( src )
-	new /obj/item/reagent_containers/pill/fluff/listermed( src )
-	new /obj/item/reagent_containers/pill/fluff/listermed( src )
-	new /obj/item/reagent_containers/pill/fluff/listermed( src )
-	new /obj/item/reagent_containers/pill/fluff/listermed( src )
-	new /obj/item/reagent_containers/pill/fluff/listermed( src )
-	new /obj/item/reagent_containers/pill/fluff/listermed( src )
+	new /obj/item/reagent_holder/pill/fluff/listermed( src )
+	new /obj/item/reagent_holder/pill/fluff/listermed( src )
+	new /obj/item/reagent_holder/pill/fluff/listermed( src )
+	new /obj/item/reagent_holder/pill/fluff/listermed( src )
+	new /obj/item/reagent_holder/pill/fluff/listermed( src )
+	new /obj/item/reagent_holder/pill/fluff/listermed( src )
+	new /obj/item/reagent_holder/pill/fluff/listermed( src )
 
-/obj/item/reagent_containers/pill/fluff/listermed
+/obj/item/reagent_holder/pill/fluff/listermed
 	name = "anti-depressant pill"
 	desc = "Used to deal with depression."
 	icon_state = "pill9"
 
-/obj/item/reagent_containers/pill/fluff/listermed/New()
+/obj/item/reagent_holder/pill/fluff/listermed/New()
 	..()
 	reagents.add_reagent("stoxin", 5)
 	reagents.add_reagent("sugar", 10)
@@ -356,7 +356,7 @@
 
 //Strange penlight, Nerezza: Asher Spock
 
-/obj/item/reagent_containers/hypospray/fluff/asher_spock_1
+/obj/item/reagent_holder/hypospray/fluff/asher_spock_1
 	name = "strange penlight"
 	desc = "Besides the coloring, this penlight looks rather normal and innocent. However, you get a nagging feeling whenever you see it..."
 	icon = 'icons/obj/custom_items.dmi'
@@ -364,17 +364,17 @@
 	amount_per_transfer_from_this = 5
 	volume = 15
 
-/obj/item/reagent_containers/hypospray/fluff/asher_spock_1/New()
+/obj/item/reagent_holder/hypospray/fluff/asher_spock_1/New()
 	..()
 	reagents.remove_reagent("tricordrazine", 30)
 	reagents.add_reagent("oxycodone", 15)
 	update_icon()
 	return
 
-/obj/item/reagent_containers/hypospray/fluff/asher_spock_1/attack_self(mob/user)
+/obj/item/reagent_holder/hypospray/fluff/asher_spock_1/attack_self(mob/user)
 	user << "\blue You click \the [src] but get no reaction. Must be dead."
 
-/obj/item/reagent_containers/hypospray/fluff/asher_spock_1/attack(mob/M, mob/user)
+/obj/item/reagent_holder/hypospray/fluff/asher_spock_1/attack(mob/M, mob/user)
 	if (user.ckey != "nerezza") //Because this can end up in the wrong hands, let's make it useless for them!
 		user << "\blue You click \the [src] but get no reaction. Must be dead."
 		return
@@ -398,7 +398,7 @@
 			user << "\blue [trans] units injected. [reagents.total_volume] units remaining in \the [src]."
 	return
 
-/obj/item/reagent_containers/hypospray/fluff/asher_spock_1/examine(mob/user)
+/obj/item/reagent_holder/hypospray/fluff/asher_spock_1/examine(mob/user)
 	..()
 	if(user.ckey != "nerezza") return //Only the owner knows how to examine the contents.
 	if(reagents && reagents.reagent_list.len)
@@ -935,25 +935,25 @@
 
 /obj/item/storage/belt/medical/fluff/nashi_belt/New()
 	..()
-	new /obj/item/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 14, "Bicaridine")
-	new /obj/item/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 15, "Dermaline")
-	new /obj/item/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 16, "Dylovene")
-	new /obj/item/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 17, "Dexalin Plus")
-	new /obj/item/reagent_containers/glass/bottle/fluff/nashi_bottle(src, 18, "Tricordrazine")
-	new /obj/item/reagent_containers/syringe/(src)
+	new /obj/item/reagent_holder/glass/bottle/fluff/nashi_bottle(src, 14, "Bicaridine")
+	new /obj/item/reagent_holder/glass/bottle/fluff/nashi_bottle(src, 15, "Dermaline")
+	new /obj/item/reagent_holder/glass/bottle/fluff/nashi_bottle(src, 16, "Dylovene")
+	new /obj/item/reagent_holder/glass/bottle/fluff/nashi_bottle(src, 17, "Dexalin Plus")
+	new /obj/item/reagent_holder/glass/bottle/fluff/nashi_bottle(src, 18, "Tricordrazine")
+	new /obj/item/reagent_holder/syringe/(src)
 	new /obj/item/health_analyser(src)
 
-/obj/item/reagent_containers/glass/bottle/fluff/nashi_bottle
+/obj/item/reagent_holder/glass/bottle/fluff/nashi_bottle
 	icon = 'icons/obj/chemical.dmi'
 	//Starting them with lids on them.  Safety first!
 
-/obj/item/reagent_containers/glass/bottle/fluff/nashi_bottle/New(loc, var/color, var/labeled)
+/obj/item/reagent_holder/glass/bottle/fluff/nashi_bottle/New(loc, var/color, var/labeled)
 	..()
 	name = "[labeled] bottle"
 	desc = "A small bottle.  Contains [labeled]"
 	icon_state = "bottle[color]"
 
-/obj/item/reagent_containers/food/drinks/flask/fluff/yuri_kornienkovich_flask
+/obj/item/reagent_holder/food/drinks/flask/fluff/yuri_kornienkovich_flask
 	name = "Yuri's Flask"
 	desc = "An old gold plated flask. Nothing noteworthy about it besides it being gold and the red star on the worn out leather around it. There is also an engraving on the cap that is rather hard to see but it looks like \"Kornienkovich\" "
 	icon = 'icons/obj/custom_items.dmi'

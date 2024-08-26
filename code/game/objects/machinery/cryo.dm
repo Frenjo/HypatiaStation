@@ -9,7 +9,7 @@
 	var/on = 0
 	var/temperature_archived
 	var/mob/living/carbon/occupant = null
-	var/obj/item/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_holder/glass/beaker = null
 
 	var/current_heat_capacity = 50
 
@@ -168,7 +168,7 @@
 	return 1 // update UIs attached to this object
 
 /obj/machinery/atmospherics/unary/cryo_cell/attack_by(obj/item/I, mob/user)
-	if(istype(I, /obj/item/reagent_containers/glass))
+	if(istype(I, /obj/item/reagent_holder/glass))
 		if(isnotnull(beaker))
 			to_chat(user, SPAN_WARNING("A beaker is already loaded into the machine."))
 			return TRUE

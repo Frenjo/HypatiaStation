@@ -101,7 +101,7 @@
 	max_combined_w_class = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * plants.w_class
 	max_w_class = 3
 	w_class = 1
-	can_hold = list(/obj/item/reagent_containers/food/snacks/grown, /obj/item/seeds, /obj/item/grown)
+	can_hold = list(/obj/item/reagent_holder/food/snacks/grown, /obj/item/seeds, /obj/item/grown)
 
 // -----------------------------
 //        Sheet Snatcher

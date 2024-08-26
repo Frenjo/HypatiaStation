@@ -47,7 +47,7 @@
 	growth = rand(5, 50)
 
 /obj/item/virusdish/attackby(obj/item/W, mob/living/carbon/user)
-	if(istype(W,/obj/item/hand_labeler) || istype(W,/obj/item/reagent_containers/syringe))
+	if(istype(W,/obj/item/hand_labeler) || istype(W,/obj/item/reagent_holder/syringe))
 		return
 	..()
 	if(prob(50))

@@ -7,7 +7,7 @@
 	icon_state = "seed-poppy"
 	species = "poppy"
 	plantname = "Poppy Plants"
-	productname = /obj/item/reagent_containers/food/snacks/grown/poppy
+	productname = /obj/item/reagent_holder/food/snacks/grown/poppy
 	lifespan = 25
 	endurance = 10
 	potency = 20
@@ -27,7 +27,7 @@
 	icon_state = "seed-harebell"
 	species = "harebell"
 	plantname = "Harebells"
-	productname = /obj/item/reagent_containers/food/snacks/grown/harebell
+	productname = /obj/item/reagent_holder/food/snacks/grown/harebell
 	lifespan = 100
 	endurance = 20
 	maturation = 7

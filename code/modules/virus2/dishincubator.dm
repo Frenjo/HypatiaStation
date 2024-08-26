@@ -6,7 +6,7 @@
 	icon_state = "incubator"
 
 	var/obj/item/virusdish/dish
-	var/obj/item/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_holder/glass/beaker = null
 	var/radiation = 0
 
 	var/on = 0
@@ -18,8 +18,8 @@
 	var/virusing
 
 /obj/machinery/disease_incubator/attack_by(obj/item/I, mob/user)
-	if(istype(I, /obj/item/reagent_containers/glass) || istype(I, /obj/item/reagent_containers/syringe))
-		var/is_beaker = istype(I, /obj/item/reagent_containers/glass)
+	if(istype(I, /obj/item/reagent_holder/glass) || istype(I, /obj/item/reagent_holder/syringe))
+		var/is_beaker = istype(I, /obj/item/reagent_holder/glass)
 		if(isnotnull(beaker))
 			to_chat(user, SPAN_WARNING("A [is_beaker ? "beaker" : "syringe"] is already loaded into the machine."))
 			return TRUE

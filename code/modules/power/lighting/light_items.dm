@@ -107,8 +107,8 @@
 // attack bulb/tube with object
 // if a syringe, can inject plasma to make it explode
 /obj/item/light/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/reagent_containers/syringe))
-		var/obj/item/reagent_containers/syringe/S = I
+	if(istype(I, /obj/item/reagent_holder/syringe))
+		var/obj/item/reagent_holder/syringe/S = I
 
 		to_chat(user, "You inject the solution into the [src].")
 

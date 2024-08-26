@@ -7,7 +7,7 @@
 	icon_state = "seed-shand"
 	species = "shand"
 	plantname = "S'Rendarr's Hand"
-	productname = /obj/item/reagent_containers/food/snacks/grown/shand
+	productname = /obj/item/reagent_holder/food/snacks/grown/shand
 	lifespan = 50
 	endurance = 25
 	maturation = 3
@@ -26,7 +26,7 @@
 	icon_state = "seed-mtear"
 	species = "mtear"
 	plantname = "Messa's Tear"
-	productname = /obj/item/reagent_containers/food/snacks/grown/mtear
+	productname = /obj/item/reagent_holder/food/snacks/grown/mtear
 	lifespan = 50
 	endurance = 25
 	maturation = 3

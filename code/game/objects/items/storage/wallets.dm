@@ -21,7 +21,7 @@
 		/obj/item/paper,
 		/obj/item/pen,
 		/obj/item/photo,
-		/obj/item/reagent_containers/dropper,
+		/obj/item/reagent_holder/dropper,
 		/obj/item/screwdriver,
 		/obj/item/stamp
 	)

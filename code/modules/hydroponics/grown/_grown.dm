@@ -5,7 +5,7 @@
 
 //Grown foods
 //Subclass so we can pass on values
-/obj/item/reagent_containers/food/snacks/grown
+/obj/item/reagent_holder/food/snacks/grown
 	var/seed
 	var/plantname = ""
 	var/productname
@@ -19,14 +19,14 @@
 	var/plant_type = 0
 	icon = 'icons/obj/flora/harvest.dmi'
 
-/obj/item/reagent_containers/food/snacks/grown/New(newloc, newpotency)
+/obj/item/reagent_holder/food/snacks/grown/New(newloc, newpotency)
 	if(isnotnull(newpotency))
 		potency = newpotency
 	. = ..()
 	pixel_x = rand(-5.0, 5)
 	pixel_y = rand(-5.0, 5)
 
-/obj/item/reagent_containers/food/snacks/grown/attackby(obj/item/O, mob/user)
+/obj/item/reagent_holder/food/snacks/grown/attackby(obj/item/O, mob/user)
 	..()
 	if(istype(O, /obj/item/plant_analyser))
 		var/msg
@@ -52,7 +52,7 @@
 		var/obj/item/plantbag/S = O
 		if (S.mode == 1)
 			for(var/obj/item/G in get_turf(src))
-				if(istype(G, /obj/item/seeds) || istype(G, /obj/item/reagent_containers/food/snacks/grown))
+				if(istype(G, /obj/item/seeds) || istype(G, /obj/item/reagent_holder/food/snacks/grown))
 					if(length(S.contents) < S.capacity)
 						S.contents += G
 					else
@@ -71,7 +71,7 @@
 		var/obj/item/plantbag/S = O
 		if (S.mode == 1)
 			for(var/obj/item/G in get_turf(src))
-				if(istype(G, /obj/item/seeds) || istype(G, /obj/item/reagent_containers/food/snacks/grown))
+				if(istype(G, /obj/item/seeds) || istype(G, /obj/item/reagent_holder/food/snacks/grown))
 					if(length(S.contents) < S.capacity)
 						S.contents += G
 					else

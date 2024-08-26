@@ -9,17 +9,17 @@
 	icon_state = "snack"
 
 	products = list(
-		/obj/item/reagent_containers/food/snacks/candy = 6, /obj/item/reagent_containers/food/drinks/dry_ramen = 6,
-		/obj/item/reagent_containers/food/snacks/chips = 6, /obj/item/reagent_containers/food/snacks/sosjerky = 6,
-		/obj/item/reagent_containers/food/snacks/no_raisin = 6, /obj/item/reagent_containers/food/snacks/spacetwinkie = 6,
-		/obj/item/reagent_containers/food/snacks/cheesiehonkers = 6
+		/obj/item/reagent_holder/food/snacks/candy = 6, /obj/item/reagent_holder/food/drinks/dry_ramen = 6,
+		/obj/item/reagent_holder/food/snacks/chips = 6, /obj/item/reagent_holder/food/snacks/sosjerky = 6,
+		/obj/item/reagent_holder/food/snacks/no_raisin = 6, /obj/item/reagent_holder/food/snacks/spacetwinkie = 6,
+		/obj/item/reagent_holder/food/snacks/cheesiehonkers = 6
 	)
-	contraband = list(/obj/item/reagent_containers/food/snacks/syndicake = 6)
+	contraband = list(/obj/item/reagent_holder/food/snacks/syndicake = 6)
 	prices = list(
-		/obj/item/reagent_containers/food/snacks/candy = 1, /obj/item/reagent_containers/food/drinks/dry_ramen = 5,
-		/obj/item/reagent_containers/food/snacks/chips = 1, /obj/item/reagent_containers/food/snacks/sosjerky = 2,
-		/obj/item/reagent_containers/food/snacks/no_raisin = 1, /obj/item/reagent_containers/food/snacks/spacetwinkie = 1,
-		/obj/item/reagent_containers/food/snacks/cheesiehonkers = 1
+		/obj/item/reagent_holder/food/snacks/candy = 1, /obj/item/reagent_holder/food/drinks/dry_ramen = 5,
+		/obj/item/reagent_holder/food/snacks/chips = 1, /obj/item/reagent_holder/food/snacks/sosjerky = 2,
+		/obj/item/reagent_holder/food/snacks/no_raisin = 1, /obj/item/reagent_holder/food/snacks/spacetwinkie = 1,
+		/obj/item/reagent_holder/food/snacks/cheesiehonkers = 1
 	)
 
 	slogan_list = list(
@@ -36,15 +36,15 @@
 // A prefab empty version which contains just the hidden contraband items.
 /obj/machinery/vending/snack/empty
 	products = list(
-		/obj/item/reagent_containers/food/snacks/candy = 0, /obj/item/reagent_containers/food/drinks/dry_ramen = 0,
-		/obj/item/reagent_containers/food/snacks/chips = 0, /obj/item/reagent_containers/food/snacks/sosjerky = 0,
-		/obj/item/reagent_containers/food/snacks/no_raisin = 0, /obj/item/reagent_containers/food/snacks/spacetwinkie = 0,
-		/obj/item/reagent_containers/food/snacks/cheesiehonkers = 0
+		/obj/item/reagent_holder/food/snacks/candy = 0, /obj/item/reagent_holder/food/drinks/dry_ramen = 0,
+		/obj/item/reagent_holder/food/snacks/chips = 0, /obj/item/reagent_holder/food/snacks/sosjerky = 0,
+		/obj/item/reagent_holder/food/snacks/no_raisin = 0, /obj/item/reagent_holder/food/snacks/spacetwinkie = 0,
+		/obj/item/reagent_holder/food/snacks/cheesiehonkers = 0
 	)
-	contraband = list(/obj/item/reagent_containers/food/snacks/syndicake = 6)
+	contraband = list(/obj/item/reagent_holder/food/snacks/syndicake = 6)
 	prices = list(
-		/obj/item/reagent_containers/food/snacks/candy = 1, /obj/item/reagent_containers/food/drinks/dry_ramen = 5,
-		/obj/item/reagent_containers/food/snacks/chips = 1, /obj/item/reagent_containers/food/snacks/sosjerky = 2,
-		/obj/item/reagent_containers/food/snacks/no_raisin = 1, /obj/item/reagent_containers/food/snacks/spacetwinkie = 1,
-		/obj/item/reagent_containers/food/snacks/cheesiehonkers = 1
+		/obj/item/reagent_holder/food/snacks/candy = 1, /obj/item/reagent_holder/food/drinks/dry_ramen = 5,
+		/obj/item/reagent_holder/food/snacks/chips = 1, /obj/item/reagent_holder/food/snacks/sosjerky = 2,
+		/obj/item/reagent_holder/food/snacks/no_raisin = 1, /obj/item/reagent_holder/food/snacks/spacetwinkie = 1,
+		/obj/item/reagent_holder/food/snacks/cheesiehonkers = 1
 	)

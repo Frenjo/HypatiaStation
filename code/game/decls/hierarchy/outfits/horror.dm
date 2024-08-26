@@ -18,7 +18,7 @@
 	l_ear = /obj/item/radio/headset
 
 	r_pocket = /obj/item/bikehorn
-	l_pocket = /obj/item/reagent_containers/food/snacks/grown/banana
+	l_pocket = /obj/item/reagent_holder/food/snacks/grown/banana
 
 	r_hand = /obj/item/twohanded/fireaxe
 

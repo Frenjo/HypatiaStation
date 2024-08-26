@@ -27,13 +27,13 @@ Note: Must be placed west/left of and R&D console to function.
 	component_parts += new /obj/item/stock_part/matter_bin(src)
 	component_parts += new /obj/item/stock_part/manipulator(src)
 	component_parts += new /obj/item/stock_part/manipulator(src)
-	component_parts += new /obj/item/reagent_containers/glass/beaker(src)
-	component_parts += new /obj/item/reagent_containers/glass/beaker(src)
+	component_parts += new /obj/item/reagent_holder/glass/beaker(src)
+	component_parts += new /obj/item/reagent_holder/glass/beaker(src)
 	RefreshParts()
 
 /obj/machinery/r_n_d/protolathe/RefreshParts()
 	var/T = 0
-	for(var/obj/item/reagent_containers/glass/G in component_parts)
+	for(var/obj/item/reagent_holder/glass/G in component_parts)
 		T += G.reagents.maximum_volume
 	create_reagents(T) // Holder for the reagents used as materials.
 	T = 0
@@ -67,7 +67,7 @@ Note: Must be placed west/left of and R&D console to function.
 			M.state = 2
 			M.icon_state = "box_1"
 			for(var/obj/I in component_parts)
-				if(istype(I, /obj/item/reagent_containers/glass/beaker))
+				if(istype(I, /obj/item/reagent_holder/glass/beaker))
 					reagents.trans_to(I, reagents.total_volume)
 				if(I.reliability != 100 && crit_fail)
 					I.crit_fail = 1

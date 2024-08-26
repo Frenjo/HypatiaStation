@@ -12,15 +12,15 @@
 		USE_POWER_ACTIVE = 10000
 	)
 
-	var/list/obj/item/reagent_containers/food/input = list()
-	var/list/obj/item/reagent_containers/food/output = list()
-	var/obj/item/reagent_containers/food/distilling_item
+	var/list/obj/item/reagent_holder/food/input = list()
+	var/list/obj/item/reagent_holder/food/output = list()
+	var/obj/item/reagent_holder/food/distilling_item
 	var/busy = 0
 	var/progress = 0
 	var/error = 0
 
 /obj/machinery/still/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/reagent_containers/food))
+	if(istype(W, /obj/item/reagent_holder/food))
 		user.u_equip(W)
 		W.loc = src
 		input += W
@@ -28,7 +28,7 @@
 		..()
 
 /obj/machinery/still/attack_hand(mob/user)
-	for(var/obj/item/reagent_containers/food/F in output)
+	for(var/obj/item/reagent_holder/food/F in output)
 		F.loc = src.loc
 		output -= F
 
@@ -51,8 +51,8 @@
 		return	//Not done yet.
 
 	switch(distilling_item.type)
-		if(/obj/item/reagent_containers/food/drinks/cans/beer)
-			var/obj/item/reagent_containers/food/drinks/bottle/vodka/V = new(src)
+		if(/obj/item/reagent_holder/food/drinks/cans/beer)
+			var/obj/item/reagent_holder/food/drinks/bottle/vodka/V = new(src)
 			output += V
 		else
 			error = 1

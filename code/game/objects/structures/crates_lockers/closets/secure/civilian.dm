@@ -24,16 +24,16 @@
 	req_access = list(ACCESS_BAR)
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/drinks/cans/beer,
-		/obj/item/reagent_containers/food/drinks/cans/beer,
-		/obj/item/reagent_containers/food/drinks/cans/beer,
-		/obj/item/reagent_containers/food/drinks/cans/beer,
-		/obj/item/reagent_containers/food/drinks/cans/beer,
-		/obj/item/reagent_containers/food/drinks/cans/beer,
-		/obj/item/reagent_containers/food/drinks/cans/beer,
-		/obj/item/reagent_containers/food/drinks/cans/beer,
-		/obj/item/reagent_containers/food/drinks/cans/beer,
-		/obj/item/reagent_containers/food/drinks/cans/beer
+		/obj/item/reagent_holder/food/drinks/cans/beer,
+		/obj/item/reagent_holder/food/drinks/cans/beer,
+		/obj/item/reagent_holder/food/drinks/cans/beer,
+		/obj/item/reagent_holder/food/drinks/cans/beer,
+		/obj/item/reagent_holder/food/drinks/cans/beer,
+		/obj/item/reagent_holder/food/drinks/cans/beer,
+		/obj/item/reagent_holder/food/drinks/cans/beer,
+		/obj/item/reagent_holder/food/drinks/cans/beer,
+		/obj/item/reagent_holder/food/drinks/cans/beer,
+		/obj/item/reagent_holder/food/drinks/cans/beer
 	)
 
 /*

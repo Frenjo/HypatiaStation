@@ -1286,7 +1286,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 3000, /decl/material/diamond = 500, /decl/material/plasma = 3000)
 	reliability_base = 76
-	build_path = /obj/item/reagent_containers/glass/beaker/bluespace
+	build_path = /obj/item/reagent_holder/glass/beaker/bluespace
 
 /datum/design/noreactbeaker
 	name = "cryostasis beaker"
@@ -1295,7 +1295,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 3000)
 	reliability_base = 76
-	build_path = /obj/item/reagent_containers/glass/beaker/noreact
+	build_path = /obj/item/reagent_holder/glass/beaker/noreact
 	category = "Misc"
 
 /datum/design/scalpel_laser1
@@ -1337,7 +1337,7 @@ other types of metals and chemistry for reagents).
 	req_tech = list(/datum/tech/materials = 4, /datum/tech/biotech = 4, /datum/tech/engineering = 3)
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 7500, /decl/material/glass = 4500, /decl/material/silver = 1500, /decl/material/gold = 1500)
-	build_path = /obj/item/reagent_containers/hypospray
+	build_path = /obj/item/reagent_holder/hypospray
 
 /////////////////////////////////////////
 /////////////////Weapons/////////////////
@@ -1386,7 +1386,7 @@ other types of metals and chemistry for reagents).
 	build_type = PROTOLATHE
 	materials = list(MATERIAL_METAL = 5000, /decl/material/glass = 1000)
 	reliability_base = 100
-	build_path = /obj/item/reagent_containers/spray/chemsprayer
+	build_path = /obj/item/reagent_holder/spray/chemsprayer
 
 /datum/design/rapidsyringe
 	name = "Rapid Syringe Gun"

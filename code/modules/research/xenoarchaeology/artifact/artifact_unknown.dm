@@ -188,7 +188,7 @@
 		secondary_effect.DoEffectTouch(user)
 
 /obj/machinery/artifact/attackby(obj/item/W, mob/living/user)
-	if(istype(W, /obj/item/reagent_containers))
+	if(istype(W, /obj/item/reagent_holder))
 		if(W.reagents.has_reagent("hydrogen", 1) || W.reagents.has_reagent("water", 1))
 			if(my_effect.trigger == TRIGGER_WATER)
 				my_effect.ToggleActivate()

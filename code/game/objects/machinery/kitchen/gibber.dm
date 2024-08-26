@@ -150,7 +150,7 @@
 	update_icon()
 
 	var/totalslabs = 3
-	var/obj/item/reagent_containers/food/snacks/meat/allmeat[totalslabs]
+	var/obj/item/reagent_holder/food/snacks/meat/allmeat[totalslabs]
 
 	if(ishuman(src.occupant))
 		var/sourcename = src.occupant.real_name
@@ -159,7 +159,7 @@
 		var/sourcetotalreagents = src.occupant.reagents.total_volume
 
 		for(var/i=1 to totalslabs)
-			var/obj/item/reagent_containers/food/snacks/meat/human/newmeat = new
+			var/obj/item/reagent_holder/food/snacks/meat/human/newmeat = new
 			newmeat.name = sourcename + newmeat.name
 			newmeat.subjectname = sourcename
 			newmeat.subjectjob = sourcejob
@@ -190,7 +190,7 @@
 			sourcenutriment = src.occupant.nutrition / 30 // small animals don't have as much nutrition
 
 		for(var/i=1 to totalslabs)
-			var/obj/item/reagent_containers/food/snacks/meat/newmeat = new
+			var/obj/item/reagent_holder/food/snacks/meat/newmeat = new
 			newmeat.name = "[sourcename]-[newmeat.name]"
 
 			newmeat.reagents.add_reagent("nutriment", sourcenutriment / totalslabs)

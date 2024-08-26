@@ -32,7 +32,7 @@
 /obj/item/storage/firstaid/regular
 	starts_with = list(
 		/obj/item/health_analyser,
-		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_holder/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack = 3,
 		/obj/item/stack/medical/ointment = 2
 	)
@@ -46,9 +46,9 @@
 
 	starts_with = list(
 		/obj/item/health_analyser,
-		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_holder/hypospray/autoinjector,
 		/obj/item/stack/medical/ointment = 3,
-		/obj/item/reagent_containers/pill/kelotane = 2 // Replaced ointment with these since they actually work --Errorage
+		/obj/item/reagent_holder/pill/kelotane = 2 // Replaced ointment with these since they actually work --Errorage
 	)
 
 /obj/item/storage/firstaid/toxin
@@ -60,8 +60,8 @@
 
 	starts_with = list(
 		/obj/item/health_analyser,
-		/obj/item/reagent_containers/syringe/antitoxin = 3,
-		/obj/item/reagent_containers/pill/antitox = 3
+		/obj/item/reagent_holder/syringe/antitoxin = 3,
+		/obj/item/reagent_holder/pill/antitox = 3
 	)
 
 /obj/item/storage/firstaid/o2
@@ -72,9 +72,9 @@
 
 	starts_with = list(
 		/obj/item/health_analyser,
-		/obj/item/reagent_containers/hypospray/autoinjector,
-		/obj/item/reagent_containers/syringe/inaprovaline,
-		/obj/item/reagent_containers/pill/dexalin = 4
+		/obj/item/reagent_holder/hypospray/autoinjector,
+		/obj/item/reagent_holder/syringe/inaprovaline,
+		/obj/item/reagent_holder/pill/dexalin = 4
 	)
 
 /obj/item/storage/firstaid/adv
@@ -84,7 +84,7 @@
 	item_state = "firstaid-advanced"
 
 	starts_with = list(
-		/obj/item/reagent_containers/hypospray/autoinjector,
+		/obj/item/reagent_holder/hypospray/autoinjector,
 		/obj/item/stack/medical/advanced/bruise_pack = 3,
 		/obj/item/stack/medical/advanced/ointment = 2,
 		/obj/item/stack/medical/splint
@@ -100,12 +100,12 @@
 
 	starts_with = list(
 		/obj/item/health_analyser,
-		/obj/item/reagent_containers/hypospray/autoinjector,
-		/obj/item/reagent_containers/syringe/hyronalin,
-		/obj/item/reagent_containers/syringe/antitoxin,
-		/obj/item/reagent_containers/pill/hyronalin,
-		/obj/item/reagent_containers/pill/antitox,
-		/obj/item/reagent_containers/pill/arithracaridine
+		/obj/item/reagent_holder/hypospray/autoinjector,
+		/obj/item/reagent_holder/syringe/hyronalin,
+		/obj/item/reagent_holder/syringe/antitoxin,
+		/obj/item/reagent_holder/pill/hyronalin,
+		/obj/item/reagent_holder/pill/antitox,
+		/obj/item/reagent_holder/pill/arithracaridine
 	)
 
 // Added a purple first aid kit containing surgery stuff, and redid sprite. -Frenjo
@@ -135,7 +135,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	item_state = "contsolid"
 	w_class = 2.0
-	can_hold = list(/obj/item/reagent_containers/pill, /obj/item/dice, /obj/item/paper)
+	can_hold = list(/obj/item/reagent_holder/pill, /obj/item/dice, /obj/item/paper)
 	allow_quick_gather = 1
 	use_to_pickup = 1
 	storage_slots = 14
@@ -146,7 +146,7 @@
 	desc = "Contains pills used to treat burns."
 
 	starts_with = list(
-		/obj/item/reagent_containers/pill/kelotane = 7
+		/obj/item/reagent_holder/pill/kelotane = 7
 	)
 
 /obj/item/storage/pill_bottle/antitox
@@ -154,7 +154,7 @@
 	desc = "Contains pills used to counter toxins."
 
 	starts_with = list(
-		/obj/item/reagent_containers/pill/antitox = 7
+		/obj/item/reagent_holder/pill/antitox = 7
 	)
 
 /obj/item/storage/pill_bottle/inaprovaline
@@ -162,7 +162,7 @@
 	desc = "Contains pills used to stabilize patients."
 
 	starts_with = list(
-		/obj/item/reagent_containers/pill/inaprovaline = 7
+		/obj/item/reagent_holder/pill/inaprovaline = 7
 	)
 
 /obj/item/storage/pill_bottle/tramadol
@@ -170,7 +170,7 @@
 	desc = "Contains pills used to relieve pain."
 
 	starts_with = list(
-		/obj/item/reagent_containers/pill/tramadol = 7
+		/obj/item/reagent_holder/pill/tramadol = 7
 	)
 
 // Added this to go with the radiation first aid kit. -Frenjo
@@ -179,7 +179,7 @@
 	desc = "Contains pills used to lower radiation levels."
 
 	starts_with = list(
-		/obj/item/reagent_containers/pill/hyronalin = 7
+		/obj/item/reagent_holder/pill/hyronalin = 7
 	)
 
 // Added this along with stokaline for survival boxes. -Frenjo
@@ -188,7 +188,7 @@
 	desc = "Contains pills used to provide essential nutrients in emergency situations."
 
 	starts_with = list(
-		/obj/item/reagent_containers/pill/stokaline = 7
+		/obj/item/reagent_holder/pill/stokaline = 7
 	)
 
 /obj/item/storage/pill_bottle/dice

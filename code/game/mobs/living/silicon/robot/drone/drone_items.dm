@@ -165,7 +165,7 @@
 			stored_comms[/decl/material/steel] += 3
 		else if(istype(W, /obj/item/shard))
 			stored_comms[/decl/material/glass] += 3
-		else if(istype(W, /obj/item/reagent_containers/food/snacks/grown))
+		else if(istype(W, /obj/item/reagent_holder/food/snacks/grown))
 			stored_comms[/decl/material/wood] += 4
 		else
 			continue

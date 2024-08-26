@@ -72,12 +72,12 @@
 	pixel_x = rand(-5.0, 5)
 	pixel_y = rand(-5.0, 5)
 
-/obj/item/reagent_containers/food/snacks/honeycomb
+/obj/item/reagent_holder/food/snacks/honeycomb
 	name = "honeycomb"
 	icon_state = "honeycomb"
 	desc = "Dripping with sugary sweetness."
 
-/obj/item/reagent_containers/food/snacks/honeycomb/New()
+/obj/item/reagent_holder/food/snacks/honeycomb/New()
 	..()
 	reagents.add_reagent("honey",10)
 	reagents.add_reagent("nutriment", 0.5)

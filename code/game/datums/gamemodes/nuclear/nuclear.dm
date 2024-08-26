@@ -221,7 +221,7 @@
 		synd_mob.equip_to_slot_or_del(new /obj/item/storage/satchel(synd_mob), SLOT_ID_BACK)
 	synd_mob.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(synd_mob), SLOT_ID_IN_BACKPACK)
 	synd_mob.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(synd_mob), SLOT_ID_IN_BACKPACK)
-	synd_mob.equip_to_slot_or_del(new /obj/item/reagent_containers/pill/cyanide(synd_mob), SLOT_ID_IN_BACKPACK)
+	synd_mob.equip_to_slot_or_del(new /obj/item/reagent_holder/pill/cyanide(synd_mob), SLOT_ID_IN_BACKPACK)
 	synd_mob.equip_to_slot_or_del(new /obj/item/gun/projectile/automatic/c20r(synd_mob), SLOT_ID_BELT)
 	synd_mob.equip_to_slot_or_del(new /obj/item/storage/box/survival/engineer(synd_mob.back), SLOT_ID_IN_BACKPACK)
 

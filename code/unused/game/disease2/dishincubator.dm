@@ -5,7 +5,7 @@
 	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "incubator"
 	var/obj/item/virusdish/dish
-	var/obj/item/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_holder/glass/beaker = null
 	var/radiation = 0
 
 	var/on = 0
@@ -33,10 +33,10 @@
 		return
 
 	attackby(var/obj/B as obj, var/mob/user as mob)
-		if(istype(B, /obj/item/reagent_containers/glass) || istype(B,/obj/item/reagent_containers/syringe))
+		if(istype(B, /obj/item/reagent_holder/glass) || istype(B,/obj/item/reagent_holder/syringe))
 
 			if(src.beaker)
-				if(istype(beaker,/obj/item/reagent_containers/syringe))
+				if(istype(beaker,/obj/item/reagent_holder/syringe))
 					user << "A syringe is already loaded into the machine."
 				else
 					user << "A beaker is already loaded into the machine."
@@ -45,7 +45,7 @@
 			src.beaker =  B
 			user.drop_item()
 			B.loc = src
-			if(istype(B,/obj/item/reagent_containers/syringe))
+			if(istype(B,/obj/item/reagent_holder/syringe))
 				user << "You add the syringe to the machine!"
 				src.updateUsrDialog()
 			else

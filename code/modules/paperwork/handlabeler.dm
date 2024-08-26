@@ -30,7 +30,7 @@
 	if(issilicon(A))
 		to_chat(user, SPAN_NOTICE("You can't label cyborgs."))
 		return
-	if(istype(A, /obj/item/reagent_containers/glass))
+	if(istype(A, /obj/item/reagent_holder/glass))
 		to_chat(user, SPAN_NOTICE("The label can't stick to the [A.name]. (Try using a pen.)"))
 		return
 

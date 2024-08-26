@@ -5,19 +5,19 @@
 /decl/hierarchy/supply_pack/supply/food
 	name = "Kitchen supply crate"
 	contains = list(
-		/obj/item/reagent_containers/food/snacks/flour,
-		/obj/item/reagent_containers/food/snacks/flour,
-		/obj/item/reagent_containers/food/snacks/flour,
-		/obj/item/reagent_containers/food/snacks/flour,
-		/obj/item/reagent_containers/food/drinks/milk,
-		/obj/item/reagent_containers/food/drinks/milk,
+		/obj/item/reagent_holder/food/snacks/flour,
+		/obj/item/reagent_holder/food/snacks/flour,
+		/obj/item/reagent_holder/food/snacks/flour,
+		/obj/item/reagent_holder/food/snacks/flour,
+		/obj/item/reagent_holder/food/drinks/milk,
+		/obj/item/reagent_holder/food/drinks/milk,
 		/obj/item/storage/fancy/egg_box,
-		/obj/item/reagent_containers/food/snacks/tofu,
-		/obj/item/reagent_containers/food/snacks/tofu,
-		/obj/item/reagent_containers/food/snacks/meat,
-		/obj/item/reagent_containers/food/snacks/meat,
-		/obj/item/reagent_containers/food/snacks/grown/banana,
-		/obj/item/reagent_containers/food/snacks/grown/banana
+		/obj/item/reagent_holder/food/snacks/tofu,
+		/obj/item/reagent_holder/food/snacks/tofu,
+		/obj/item/reagent_holder/food/snacks/meat,
+		/obj/item/reagent_holder/food/snacks/meat,
+		/obj/item/reagent_holder/food/snacks/grown/banana,
+		/obj/item/reagent_holder/food/snacks/grown/banana
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/freezer
@@ -42,16 +42,16 @@
 /decl/hierarchy/supply_pack/supply/janitor
 	name = "Janitorial supplies"
 	contains = list(
-		/obj/item/reagent_containers/glass/bucket,
-		/obj/item/reagent_containers/glass/bucket,
-		/obj/item/reagent_containers/glass/bucket,
+		/obj/item/reagent_holder/glass/bucket,
+		/obj/item/reagent_holder/glass/bucket,
+		/obj/item/reagent_holder/glass/bucket,
 		/obj/item/mop,
 		/obj/item/caution,
 		/obj/item/caution,
 		/obj/item/caution,
 		/obj/item/storage/bag/trash,
-		/obj/item/reagent_containers/spray/cleaner,
-		/obj/item/reagent_containers/glass/rag,
+		/obj/item/reagent_holder/spray/cleaner,
+		/obj/item/reagent_holder/glass/rag,
 		/obj/item/grenade/chemical/cleaner,
 		/obj/item/grenade/chemical/cleaner,
 		/obj/item/grenade/chemical/cleaner,

@@ -6,10 +6,10 @@
 	var/curing
 	var/virusing
 
-	var/obj/item/reagent_containers/container = null
+	var/obj/item/reagent_holder/container = null
 
 /obj/machinery/computer/disease_curer/attack_by(obj/item/I, mob/user)
-	if(istype(I, /obj/item/reagent_containers))
+	if(istype(I, /obj/item/reagent_holder))
 		if(isnull(container))
 			container = I
 			user.drop_item()
@@ -20,7 +20,7 @@
 		if(virusing)
 			user << "<b>The pathogen materializer is still recharging.."
 			return TRUE
-		var/obj/item/reagent_containers/glass/beaker/product = new /obj/item/reagent_containers/glass/beaker(loc)
+		var/obj/item/reagent_holder/glass/beaker/product = new /obj/item/reagent_holder/glass/beaker(loc)
 
 		var/list/data = list("donor" = null, "viruses" = null, "blood_DNA" = null, "blood_type" = null, "resistances" = null, "trace_chem" = null, "virus2" = list(), "antibodies" = 0)
 		data["virus2"] |= I:virus2
@@ -101,8 +101,8 @@
 	return
 
 
-/obj/machinery/computer/disease_curer/proc/createcure(var/obj/item/reagent_containers/container)
-	var/obj/item/reagent_containers/glass/beaker/product = new(src.loc)
+/obj/machinery/computer/disease_curer/proc/createcure(var/obj/item/reagent_holder/container)
+	var/obj/item/reagent_holder/glass/beaker/product = new(src.loc)
 	var/datum/reagent/blood/B = locate() in container.reagents.reagent_list
 
 	var/list/data = list()

@@ -11,7 +11,7 @@
 		USE_POWER_ACTIVE = 300
 	)
 
-	//var/obj/item/reagent_containers/glass/coolant_container
+	//var/obj/item/reagent_holder/glass/coolant_container
 	var/scanning = 0
 	var/report_num = 0
 	//
@@ -75,17 +75,17 @@
 				N.use(amount_used)
 				scanner_seal_integrity = round(scanner_seal_integrity + amount_used * 10)
 				return
-		if(istype(I, /obj/item/reagent_containers/glass))
+		if(istype(I, /obj/item/reagent_holder/glass))
 			var/choice = alert("What do you want to do with the container?", "Radiometric Scanner", "Add coolant", "Empty coolant", "Scan container")
 			if(choice == "Add coolant")
-				var/obj/item/reagent_containers/glass/G = I
+				var/obj/item/reagent_holder/glass/G = I
 				var/amount_transferred = min(src.reagents.maximum_volume - src.reagents.total_volume, G.reagents.total_volume)
 				G.reagents.trans_to(src, amount_transferred)
 				to_chat(user, SPAN_INFO("You empty [amount_transferred]u of coolant into [src]."))
 				update_coolant()
 				return
 			else if(choice == "Empty coolant")
-				var/obj/item/reagent_containers/glass/G = I
+				var/obj/item/reagent_holder/glass/G = I
 				var/amount_transferred = min(G.reagents.maximum_volume - G.reagents.total_volume, src.reagents.total_volume)
 				src.reagents.trans_to(G, amount_transferred)
 				to_chat(user, SPAN_INFO("You remove [amount_transferred]u of coolant from [src]."))

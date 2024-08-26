@@ -12,7 +12,7 @@
 	emote_see = list("shakes its head", "shivers")
 	speak_chance = 1
 	turns_per_move = 10
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/corgi
+	meat_type = /obj/item/reagent_holder/food/snacks/meat/corgi
 	meat_amount = 3
 	response_help  = "pets the"
 	response_disarm = "bops the"
@@ -283,7 +283,7 @@
 			if(!movement_target || !(movement_target.loc in oview(src, 3)))
 				movement_target = null
 				stop_automated_movement = 0
-				for(var/obj/item/reagent_containers/food/snacks/S in oview(src, 3))
+				for(var/obj/item/reagent_holder/food/snacks/S in oview(src, 3))
 					if(isturf(S.loc) || ishuman(S.loc))
 						movement_target = S
 						break
@@ -320,7 +320,7 @@
 					dir = i
 					sleep(1)
 
-/obj/item/reagent_containers/food/snacks/meat/corgi
+/obj/item/reagent_holder/food/snacks/meat/corgi
 	name = "Corgi meat"
 	desc = "Tastes like... well you know..."
 

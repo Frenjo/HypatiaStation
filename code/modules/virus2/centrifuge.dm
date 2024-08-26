@@ -7,11 +7,11 @@
 	var/curing
 	var/isolating
 
-	var/obj/item/reagent_containers/glass/beaker/vial/sample = null
+	var/obj/item/reagent_holder/glass/beaker/vial/sample = null
 	var/datum/disease2/disease/virus2 = null
 
 /obj/machinery/computer/disease_centrifuge/attack_by(obj/item/I, mob/user)
-	if(istype(I, /obj/item/reagent_containers/glass/beaker/vial))
+	if(istype(I, /obj/item/reagent_holder/glass/beaker/vial))
 		if(isnull(sample))
 			sample = I
 			user.drop_item()

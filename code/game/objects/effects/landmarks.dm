@@ -137,7 +137,7 @@
 /obj/effect/landmark/costume/chicken/New()
 	new /obj/item/clothing/suit/chickensuit(loc)
 	new /obj/item/clothing/head/chicken(loc)
-	new /obj/item/reagent_containers/food/snacks/egg(loc)
+	new /obj/item/reagent_holder/food/snacks/egg(loc)
 	delete_me = TRUE
 
 /obj/effect/landmark/costume/gladiator/New()

@@ -11,7 +11,7 @@
 	var/path = 0
 	var/obj/item/assembly_holder/detonator = null
 	var/list/beakers = list()
-	var/list/allowed_containers = list(/obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle)
+	var/list/allowed_containers = list(/obj/item/reagent_holder/glass/beaker, /obj/item/reagent_holder/glass/bottle)
 	var/affected_area = 3
 
 /obj/item/grenade/chemical/New()
@@ -135,7 +135,7 @@
 
 	//if(prob(reliability))
 	var/has_reagents = 0
-	for(var/obj/item/reagent_containers/glass/G in beakers)
+	for(var/obj/item/reagent_holder/glass/G in beakers)
 		if(G.reagents.total_volume)
 			has_reagents = 1
 
@@ -147,7 +147,7 @@
 
 	playsound(src, 'sound/effects/bamf.ogg', 50, 1)
 
-	for(var/obj/item/reagent_containers/glass/G in beakers)
+	for(var/obj/item/reagent_holder/glass/G in beakers)
 		G.reagents.trans_to(src, G.reagents.total_volume)
 
 	if(src.reagents.total_volume) //The possible reactions didnt use up all reagents.
@@ -172,7 +172,7 @@
 	name = "large chem grenade"
 	desc = "An oversized grenade that affects a larger area."
 	icon_state = "large_grenade"
-	allowed_containers = list(/obj/item/reagent_containers/glass)
+	allowed_containers = list(/obj/item/reagent_holder/glass)
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/combat = 3)
 	affected_area = 4
 
@@ -184,8 +184,8 @@
 
 /obj/item/grenade/chemical/large/New()
 	. = ..()
-	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
-	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
+	var/obj/item/reagent_holder/glass/beaker/B1 = new(src)
+	var/obj/item/reagent_holder/glass/beaker/B2 = new(src)
 
 	B1.reagents.add_reagent("aluminum", 30)
 	B2.reagents.add_reagent("foaming_agent", 10)
@@ -205,8 +205,8 @@
 
 /obj/item/grenade/chemical/incendiary/New()
 	. = ..()
-	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
-	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
+	var/obj/item/reagent_holder/glass/beaker/B1 = new(src)
+	var/obj/item/reagent_holder/glass/beaker/B2 = new(src)
 
 	B1.reagents.add_reagent("aluminum", 15)
 	B1.reagents.add_reagent("fuel", 20)
@@ -228,8 +228,8 @@
 
 /obj/item/grenade/chemical/antiweed/New()
 	. = ..()
-	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
-	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
+	var/obj/item/reagent_holder/glass/beaker/B1 = new(src)
+	var/obj/item/reagent_holder/glass/beaker/B2 = new(src)
 
 	B1.reagents.add_reagent("plantbgone", 25)
 	B1.reagents.add_reagent("potassium", 25)
@@ -250,8 +250,8 @@
 
 /obj/item/grenade/chemical/cleaner/New()
 	. = ..()
-	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
-	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
+	var/obj/item/reagent_holder/glass/beaker/B1 = new(src)
+	var/obj/item/reagent_holder/glass/beaker/B2 = new(src)
 
 	B1.reagents.add_reagent("fluorosurfactant", 40)
 	B2.reagents.add_reagent("water", 40)

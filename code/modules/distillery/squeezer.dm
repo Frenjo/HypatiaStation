@@ -12,8 +12,8 @@
 		USE_POWER_ACTIVE = 500
 	)
 
-	var/list/obj/item/reagent_containers/food/input = list()
-	var/obj/item/reagent_containers/food/squeezed_item
+	var/list/obj/item/reagent_holder/food/input = list()
+	var/obj/item/reagent_holder/food/squeezed_item
 	var/water_level = 0
 	var/busy = 0
 	var/progress = 0

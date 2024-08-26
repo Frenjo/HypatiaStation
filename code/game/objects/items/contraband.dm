@@ -7,13 +7,13 @@
 
 /obj/item/storage/pill_bottle/happy/New()
 	..()
-	new /obj/item/reagent_containers/pill/happy(src)
-	new /obj/item/reagent_containers/pill/happy(src)
-	new /obj/item/reagent_containers/pill/happy(src)
-	new /obj/item/reagent_containers/pill/happy(src)
-	new /obj/item/reagent_containers/pill/happy(src)
-	new /obj/item/reagent_containers/pill/happy(src)
-	new /obj/item/reagent_containers/pill/happy(src)
+	new /obj/item/reagent_holder/pill/happy(src)
+	new /obj/item/reagent_holder/pill/happy(src)
+	new /obj/item/reagent_holder/pill/happy(src)
+	new /obj/item/reagent_holder/pill/happy(src)
+	new /obj/item/reagent_holder/pill/happy(src)
+	new /obj/item/reagent_holder/pill/happy(src)
+	new /obj/item/reagent_holder/pill/happy(src)
 
 
 /obj/item/storage/pill_bottle/zoom
@@ -22,13 +22,13 @@
 
 /obj/item/storage/pill_bottle/zoom/New()
 	..()
-	new /obj/item/reagent_containers/pill/zoom(src)
-	new /obj/item/reagent_containers/pill/zoom(src)
-	new /obj/item/reagent_containers/pill/zoom(src)
-	new /obj/item/reagent_containers/pill/zoom(src)
-	new /obj/item/reagent_containers/pill/zoom(src)
-	new /obj/item/reagent_containers/pill/zoom(src)
-	new /obj/item/reagent_containers/pill/zoom(src)
+	new /obj/item/reagent_holder/pill/zoom(src)
+	new /obj/item/reagent_holder/pill/zoom(src)
+	new /obj/item/reagent_holder/pill/zoom(src)
+	new /obj/item/reagent_holder/pill/zoom(src)
+	new /obj/item/reagent_holder/pill/zoom(src)
+	new /obj/item/reagent_holder/pill/zoom(src)
+	new /obj/item/reagent_holder/pill/zoom(src)
 
 //########################## CONTRABAND ;3333333333333333333 -Agouri ###################################################
 /obj/item/contraband

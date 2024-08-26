@@ -22,7 +22,7 @@
 		new /obj/item/clothing/head/helmet/swat(src)
 		new /obj/item/clothing/shoes/brown(src)
 		new /obj/item/radio/headset/heads/captain(src)
-		new /obj/item/reagent_containers/food/drinks/flask(src)
+		new /obj/item/reagent_holder/food/drinks/flask(src)
 		new /obj/item/clothing/gloves/captain(src)
 		new /obj/item/gun/energy/gun(src)
 		return
@@ -76,7 +76,7 @@
 		new /obj/item/flash(src)
 		new /obj/item/melee/baton(src)
 		new /obj/item/gun/energy/taser(src)
-		new /obj/item/reagent_containers/spray/pepper(src)
+		new /obj/item/reagent_holder/spray/pepper(src)
 		return
 
 
@@ -100,8 +100,8 @@
 		new /obj/item/clothing/glasses/sunglasses(src)
 		new /obj/item/storage/flashbang_kit(src)
 		new /obj/item/storage/belt/security(src)
-		new /obj/item/reagent_containers/spray/pepper(src)
-		new /obj/item/reagent_containers/spray/pepper(src)
+		new /obj/item/reagent_holder/spray/pepper(src)
+		new /obj/item/reagent_holder/spray/pepper(src)
 		new /obj/item/melee/baton(src)
 		return
 
@@ -123,8 +123,8 @@
 		new /obj/item/radio/headset/headset_sec(src)
 		new /obj/item/storage/belt/security(src)
 		new /obj/item/flash(src)
-		new /obj/item/reagent_containers/spray/pepper(src)
-		new /obj/item/reagent_containers/spray/pepper(src)
+		new /obj/item/reagent_holder/spray/pepper(src)
+		new /obj/item/reagent_holder/spray/pepper(src)
 		new /obj/item/clothing/glasses/sunglasses(src)
 		return
 
@@ -174,8 +174,8 @@
 
 	New()
 		sleep(2)
-		new /obj/item/reagent_containers/ld50_syringe/choral(src)
-		new /obj/item/reagent_containers/ld50_syringe/choral(src)
+		new /obj/item/reagent_holder/ld50_syringe/choral(src)
+		new /obj/item/reagent_holder/ld50_syringe/choral(src)
 		return
 
 

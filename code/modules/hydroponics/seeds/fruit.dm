@@ -7,7 +7,7 @@
 	icon_state = "seed-chili"
 	species = "chili"
 	plantname = "Chili Plants"
-	productname = /obj/item/reagent_containers/food/snacks/grown/chili
+	productname = /obj/item/reagent_holder/food/snacks/grown/chili
 	lifespan = 20
 	endurance = 15
 	maturation = 5
@@ -26,7 +26,7 @@
 	icon_state = "seed-icepepper"
 	species = "chiliice"
 	plantname = "Ice-Pepper Plants"
-	productname = /obj/item/reagent_containers/food/snacks/grown/icepepper
+	productname = /obj/item/reagent_holder/food/snacks/grown/icepepper
 	lifespan = 25
 	endurance = 15
 	maturation = 4
@@ -45,7 +45,7 @@
 	icon_state = "seed-grapes"
 	species = "grape"
 	plantname = "Grape Vine"
-	productname = /obj/item/reagent_containers/food/snacks/grown/grapes
+	productname = /obj/item/reagent_holder/food/snacks/grown/grapes
 	lifespan = 50
 	endurance = 25
 	maturation = 3
@@ -64,7 +64,7 @@
 	icon_state = "seed-greengrapes"
 	species = "greengrape"
 	plantname = "Green-Grape Vine"
-	productname = /obj/item/reagent_containers/food/snacks/grown/greengrapes
+	productname = /obj/item/reagent_holder/food/snacks/grown/greengrapes
 
 /*
  * Berry
@@ -75,7 +75,7 @@
 	icon_state = "seed-berry"
 	species = "berry"
 	plantname = "Berry Bush"
-	productname = /obj/item/reagent_containers/food/snacks/grown/berries
+	productname = /obj/item/reagent_holder/food/snacks/grown/berries
 	lifespan = 20
 	endurance = 15
 	maturation = 5
@@ -94,7 +94,7 @@
 	icon_state = "seed-glowberry"
 	species = "glowberry"
 	plantname = "Glow-Berry Bush"
-	productname = /obj/item/reagent_containers/food/snacks/grown/glowberries
+	productname = /obj/item/reagent_holder/food/snacks/grown/glowberries
 	lifespan = 30
 	endurance = 25
 
@@ -107,7 +107,7 @@
 	icon_state = "seed-poisonberry"
 	species = "poisonberry"
 	plantname = "Poison-Berry Bush"
-	productname = /obj/item/reagent_containers/food/snacks/grown/poisonberries
+	productname = /obj/item/reagent_holder/food/snacks/grown/poisonberries
 
 /*
  * Death Berry
@@ -118,7 +118,7 @@
 	icon_state = "seed-deathberry"
 	species = "deathberry"
 	plantname = "Death Berry Bush"
-	productname = /obj/item/reagent_containers/food/snacks/grown/deathberries
+	productname = /obj/item/reagent_holder/food/snacks/grown/deathberries
 	lifespan = 30
 	endurance = 20
 	yield = 3
@@ -133,7 +133,7 @@
 	icon_state = "seed-banana"
 	species = "banana"
 	plantname = "Banana Tree"
-	productname = /obj/item/reagent_containers/food/snacks/grown/banana
+	productname = /obj/item/reagent_holder/food/snacks/grown/banana
 	lifespan = 50
 	endurance = 30
 	maturation = 6
@@ -151,7 +151,7 @@
 	icon_state = "seed-eggplant"
 	species = "eggplant"
 	plantname = "Eggplants"
-	productname = /obj/item/reagent_containers/food/snacks/grown/eggplant
+	productname = /obj/item/reagent_holder/food/snacks/grown/eggplant
 	lifespan = 25
 	endurance = 15
 	maturation = 6
@@ -170,7 +170,7 @@
 	icon_state = "seed-apple"
 	species = "apple"
 	plantname = "Apple Tree"
-	productname = /obj/item/reagent_containers/food/snacks/grown/apple
+	productname = /obj/item/reagent_holder/food/snacks/grown/apple
 	lifespan = 55
 	endurance = 35
 	maturation = 6
@@ -184,7 +184,7 @@
  * Poisoned Apple
  */
 /obj/item/seeds/apple/poisoned
-	productname = /obj/item/reagent_containers/food/snacks/grown/apple/poisoned
+	productname = /obj/item/reagent_holder/food/snacks/grown/apple/poisoned
 
 /*
  * Golden Apple
@@ -195,7 +195,7 @@
 	icon_state = "seed-goldapple"
 	species = "goldapple"
 	plantname = "Golden Apple Tree"
-	productname = /obj/item/reagent_containers/food/snacks/grown/goldapple
+	productname = /obj/item/reagent_holder/food/snacks/grown/goldapple
 	maturation = 10
 	production = 10
 	yield = 3
@@ -209,7 +209,7 @@
 	icon_state = "seed-watermelon"
 	species = "watermelon"
 	plantname = "Watermelon Vines"
-	productname = /obj/item/reagent_containers/food/snacks/grown/watermelon
+	productname = /obj/item/reagent_holder/food/snacks/grown/watermelon
 	lifespan = 50
 	endurance = 40
 	maturation = 6
@@ -228,7 +228,7 @@
 	icon_state = "seed-pumpkin"
 	species = "pumpkin"
 	plantname = "Pumpkin Vines"
-	productname = /obj/item/reagent_containers/food/snacks/grown/pumpkin
+	productname = /obj/item/reagent_holder/food/snacks/grown/pumpkin
 	lifespan = 50
 	endurance = 40
 	maturation = 6
@@ -247,7 +247,7 @@
 	icon_state = "seed-lime"
 	species = "lime"
 	plantname = "Lime Tree"
-	productname = /obj/item/reagent_containers/food/snacks/grown/lime
+	productname = /obj/item/reagent_holder/food/snacks/grown/lime
 	lifespan = 55
 	endurance = 50
 	maturation = 6
@@ -266,7 +266,7 @@
 	icon_state = "seed-lemon"
 	species = "lemon"
 	plantname = "Lemon Tree"
-	productname = /obj/item/reagent_containers/food/snacks/grown/lemon
+	productname = /obj/item/reagent_holder/food/snacks/grown/lemon
 	lifespan = 55
 	endurance = 45
 	maturation = 6
@@ -285,7 +285,7 @@
 	icon_state = "seed-orange"
 	species = "orange"
 	plantname = "Orange Tree"
-	productname = /obj/item/reagent_containers/food/snacks/grown/orange
+	productname = /obj/item/reagent_holder/food/snacks/grown/orange
 	lifespan = 60
 	endurance = 50
 	maturation = 6
@@ -304,7 +304,7 @@
 	icon_state = "seed-cocoapod"
 	species = "cocoapod"
 	plantname = "Cocao Tree" //SIC: see above
-	productname = /obj/item/reagent_containers/food/snacks/grown/cocoapod
+	productname = /obj/item/reagent_holder/food/snacks/grown/cocoapod
 	lifespan = 20
 	endurance = 15
 	maturation = 5
@@ -323,7 +323,7 @@
 	icon_state = "seed-cherry"
 	species = "cherry"
 	plantname = "Cherry Tree"
-	productname = /obj/item/reagent_containers/food/snacks/grown/cherries
+	productname = /obj/item/reagent_holder/food/snacks/grown/cherries
 	lifespan = 35
 	endurance = 35
 	maturation = 5

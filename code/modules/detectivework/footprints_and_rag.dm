@@ -13,7 +13,7 @@
 /obj/item/clothing/shoes
 	var/track_blood = 0
 
-/obj/item/reagent_containers/glass/rag
+/obj/item/reagent_holder/glass/rag
 	name = "damp rag"
 	desc = "For cleaning up messes, you suppose."
 	w_class = 1
@@ -24,10 +24,10 @@
 	volume = 5
 	can_be_placed_into = null
 
-/obj/item/reagent_containers/glass/rag/attack_self(mob/user)
+/obj/item/reagent_holder/glass/rag/attack_self(mob/user)
 	return
 
-/obj/item/reagent_containers/glass/rag/attack(atom/target, mob/user, flag)
+/obj/item/reagent_holder/glass/rag/attack(atom/target, mob/user, flag)
 	if(ismob(target) && target.reagents && reagents.total_volume)
 		user.visible_message(
 			SPAN_WARNING("\The [target] has been smothered with \the [src] by \the [user]!"),
@@ -41,7 +41,7 @@
 	else
 		..()
 
-/obj/item/reagent_containers/glass/rag/afterattack(atom/A, mob/user, proximity)
+/obj/item/reagent_holder/glass/rag/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(A) && (src in user))
@@ -51,7 +51,7 @@
 			A.clean_blood()
 	return
 
-/obj/item/reagent_containers/glass/rag/examine()
+/obj/item/reagent_holder/glass/rag/examine()
 	if(!usr)
 		return
 	to_chat(usr, "That's \a [src].")

@@ -152,12 +152,12 @@
 		"dexalin" = "Dexalin"
 	)
 	var/amounts = list(5, 10)
-	var/obj/item/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_holder/glass/beaker = null
 	var/filtering = 0
 
 /obj/machinery/sleeper/New()
 	..()
-	beaker = new /obj/item/reagent_containers/glass/beaker/large(src)
+	beaker = new /obj/item/reagent_holder/glass/beaker/large(src)
 
 /obj/machinery/sleeper/initialise()
 	. = ..()
@@ -187,7 +187,7 @@
 	return
 
 /obj/machinery/sleeper/attackby(obj/item/G, mob/user)
-	if(istype(G, /obj/item/reagent_containers/glass))
+	if(istype(G, /obj/item/reagent_holder/glass))
 		if(!beaker)
 			beaker = G
 			user.drop_item()

@@ -12,21 +12,21 @@
 	req_access = list(ACCESS_BAR)
 
 	products = list(
-		/obj/item/reagent_containers/food/drinks/bottle/gin = 5, /obj/item/reagent_containers/food/drinks/bottle/whiskey = 5,
-		/obj/item/reagent_containers/food/drinks/bottle/tequilla = 5, /obj/item/reagent_containers/food/drinks/bottle/vodka = 5,
-		/obj/item/reagent_containers/food/drinks/bottle/vermouth = 5, /obj/item/reagent_containers/food/drinks/bottle/rum = 5,
-		/obj/item/reagent_containers/food/drinks/bottle/wine = 5, /obj/item/reagent_containers/food/drinks/bottle/cognac = 5,
-		/obj/item/reagent_containers/food/drinks/bottle/kahlua = 5, /obj/item/reagent_containers/food/drinks/cans/beer = 6,
-		/obj/item/reagent_containers/food/drinks/cans/ale = 6, /obj/item/reagent_containers/food/drinks/bottle/orangejuice = 4,
-		/obj/item/reagent_containers/food/drinks/bottle/tomatojuice = 4, /obj/item/reagent_containers/food/drinks/bottle/limejuice = 4,
-		/obj/item/reagent_containers/food/drinks/bottle/cream = 4, /obj/item/reagent_containers/food/drinks/cans/tonic = 8,
-		/obj/item/reagent_containers/food/drinks/cans/cola = 8, /obj/item/reagent_containers/food/drinks/cans/sodawater = 15,
-		/obj/item/reagent_containers/food/drinks/flask/barflask = 2, /obj/item/reagent_containers/food/drinks/flask/vacuumflask = 2,
-		/obj/item/reagent_containers/food/drinks/drinkingglass = 30, /obj/item/reagent_containers/food/drinks/ice = 9,
-		/obj/item/reagent_containers/food/drinks/bottle/melonliquor = 2, /obj/item/reagent_containers/food/drinks/bottle/bluecuracao = 2,
-		/obj/item/reagent_containers/food/drinks/bottle/absinthe = 2, /obj/item/reagent_containers/food/drinks/bottle/grenadine = 5
+		/obj/item/reagent_holder/food/drinks/bottle/gin = 5, /obj/item/reagent_holder/food/drinks/bottle/whiskey = 5,
+		/obj/item/reagent_holder/food/drinks/bottle/tequilla = 5, /obj/item/reagent_holder/food/drinks/bottle/vodka = 5,
+		/obj/item/reagent_holder/food/drinks/bottle/vermouth = 5, /obj/item/reagent_holder/food/drinks/bottle/rum = 5,
+		/obj/item/reagent_holder/food/drinks/bottle/wine = 5, /obj/item/reagent_holder/food/drinks/bottle/cognac = 5,
+		/obj/item/reagent_holder/food/drinks/bottle/kahlua = 5, /obj/item/reagent_holder/food/drinks/cans/beer = 6,
+		/obj/item/reagent_holder/food/drinks/cans/ale = 6, /obj/item/reagent_holder/food/drinks/bottle/orangejuice = 4,
+		/obj/item/reagent_holder/food/drinks/bottle/tomatojuice = 4, /obj/item/reagent_holder/food/drinks/bottle/limejuice = 4,
+		/obj/item/reagent_holder/food/drinks/bottle/cream = 4, /obj/item/reagent_holder/food/drinks/cans/tonic = 8,
+		/obj/item/reagent_holder/food/drinks/cans/cola = 8, /obj/item/reagent_holder/food/drinks/cans/sodawater = 15,
+		/obj/item/reagent_holder/food/drinks/flask/barflask = 2, /obj/item/reagent_holder/food/drinks/flask/vacuumflask = 2,
+		/obj/item/reagent_holder/food/drinks/drinkingglass = 30, /obj/item/reagent_holder/food/drinks/ice = 9,
+		/obj/item/reagent_holder/food/drinks/bottle/melonliquor = 2, /obj/item/reagent_holder/food/drinks/bottle/bluecuracao = 2,
+		/obj/item/reagent_holder/food/drinks/bottle/absinthe = 2, /obj/item/reagent_holder/food/drinks/bottle/grenadine = 5
 	)
-	contraband = list(/obj/item/reagent_containers/food/drinks/tea = 10)
+	contraband = list(/obj/item/reagent_holder/food/drinks/tea = 10)
 
 	slogan_list = list(
 		"I hope nobody asks me for a bloody cup o' tea...",
@@ -60,13 +60,13 @@
 	icon_vend = "coffee-vend"
 
 	products = list(
-		/obj/item/reagent_containers/food/drinks/coffee = 25, /obj/item/reagent_containers/food/drinks/tea = 25,
-		/obj/item/reagent_containers/food/drinks/h_chocolate = 25
+		/obj/item/reagent_holder/food/drinks/coffee = 25, /obj/item/reagent_holder/food/drinks/tea = 25,
+		/obj/item/reagent_holder/food/drinks/h_chocolate = 25
 	)
-	contraband = list(/obj/item/reagent_containers/food/drinks/ice = 10)
+	contraband = list(/obj/item/reagent_holder/food/drinks/ice = 10)
 	prices = list(
-		/obj/item/reagent_containers/food/drinks/coffee = 25, /obj/item/reagent_containers/food/drinks/tea = 25,
-		/obj/item/reagent_containers/food/drinks/h_chocolate = 25
+		/obj/item/reagent_holder/food/drinks/coffee = 25, /obj/item/reagent_holder/food/drinks/tea = 25,
+		/obj/item/reagent_holder/food/drinks/h_chocolate = 25
 	)
 
 	ad_list = list(
@@ -84,17 +84,17 @@
 	icon_state = "Cola_Machine"
 
 	products = list(
-		/obj/item/reagent_containers/food/drinks/cans/cola = 10, /obj/item/reagent_containers/food/drinks/cans/space_mountain_wind = 10,
-		/obj/item/reagent_containers/food/drinks/cans/dr_gibb = 10, /obj/item/reagent_containers/food/drinks/cans/starkist = 10,
-		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 10, /obj/item/reagent_containers/food/drinks/cans/space_up = 10,
-		/obj/item/reagent_containers/food/drinks/cans/iced_tea = 10, /obj/item/reagent_containers/food/drinks/cans/grape_juice = 10
+		/obj/item/reagent_holder/food/drinks/cans/cola = 10, /obj/item/reagent_holder/food/drinks/cans/space_mountain_wind = 10,
+		/obj/item/reagent_holder/food/drinks/cans/dr_gibb = 10, /obj/item/reagent_holder/food/drinks/cans/starkist = 10,
+		/obj/item/reagent_holder/food/drinks/cans/waterbottle = 10, /obj/item/reagent_holder/food/drinks/cans/space_up = 10,
+		/obj/item/reagent_holder/food/drinks/cans/iced_tea = 10, /obj/item/reagent_holder/food/drinks/cans/grape_juice = 10
 	)
-	contraband = list(/obj/item/reagent_containers/food/drinks/cans/thirteenloko = 5)
+	contraband = list(/obj/item/reagent_holder/food/drinks/cans/thirteenloko = 5)
 	prices = list(
-		/obj/item/reagent_containers/food/drinks/cans/cola = 1, /obj/item/reagent_containers/food/drinks/cans/space_mountain_wind = 1,
-		/obj/item/reagent_containers/food/drinks/cans/dr_gibb = 1, /obj/item/reagent_containers/food/drinks/cans/starkist = 1,
-		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 2, /obj/item/reagent_containers/food/drinks/cans/space_up = 1,
-		/obj/item/reagent_containers/food/drinks/cans/iced_tea = 1, /obj/item/reagent_containers/food/drinks/cans/grape_juice = 1
+		/obj/item/reagent_holder/food/drinks/cans/cola = 1, /obj/item/reagent_holder/food/drinks/cans/space_mountain_wind = 1,
+		/obj/item/reagent_holder/food/drinks/cans/dr_gibb = 1, /obj/item/reagent_holder/food/drinks/cans/starkist = 1,
+		/obj/item/reagent_holder/food/drinks/cans/waterbottle = 2, /obj/item/reagent_holder/food/drinks/cans/space_up = 1,
+		/obj/item/reagent_holder/food/drinks/cans/iced_tea = 1, /obj/item/reagent_holder/food/drinks/cans/grape_juice = 1
 	)
 
 	slogan_list = list("Robust Softdrinks: More robust than a toolbox to the head!")
@@ -107,17 +107,17 @@
 // A prefab empty version which contains just the hidden contraband items.
 /obj/machinery/vending/cola/empty
 	products = list(
-		/obj/item/reagent_containers/food/drinks/cans/cola = 0, /obj/item/reagent_containers/food/drinks/cans/space_mountain_wind = 0,
-		/obj/item/reagent_containers/food/drinks/cans/dr_gibb = 0, /obj/item/reagent_containers/food/drinks/cans/starkist = 0,
-		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 0, /obj/item/reagent_containers/food/drinks/cans/space_up = 0,
-		/obj/item/reagent_containers/food/drinks/cans/iced_tea = 0, /obj/item/reagent_containers/food/drinks/cans/grape_juice = 0
+		/obj/item/reagent_holder/food/drinks/cans/cola = 0, /obj/item/reagent_holder/food/drinks/cans/space_mountain_wind = 0,
+		/obj/item/reagent_holder/food/drinks/cans/dr_gibb = 0, /obj/item/reagent_holder/food/drinks/cans/starkist = 0,
+		/obj/item/reagent_holder/food/drinks/cans/waterbottle = 0, /obj/item/reagent_holder/food/drinks/cans/space_up = 0,
+		/obj/item/reagent_holder/food/drinks/cans/iced_tea = 0, /obj/item/reagent_holder/food/drinks/cans/grape_juice = 0
 	)
-	contraband = list(/obj/item/reagent_containers/food/drinks/cans/thirteenloko = 5)
+	contraband = list(/obj/item/reagent_holder/food/drinks/cans/thirteenloko = 5)
 	prices = list(
-		/obj/item/reagent_containers/food/drinks/cans/cola = 1, /obj/item/reagent_containers/food/drinks/cans/space_mountain_wind = 1,
-		/obj/item/reagent_containers/food/drinks/cans/dr_gibb = 1, /obj/item/reagent_containers/food/drinks/cans/starkist = 1,
-		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 2, /obj/item/reagent_containers/food/drinks/cans/space_up = 1,
-		/obj/item/reagent_containers/food/drinks/cans/iced_tea = 1, /obj/item/reagent_containers/food/drinks/cans/grape_juice = 1
+		/obj/item/reagent_holder/food/drinks/cans/cola = 1, /obj/item/reagent_holder/food/drinks/cans/space_mountain_wind = 1,
+		/obj/item/reagent_holder/food/drinks/cans/dr_gibb = 1, /obj/item/reagent_holder/food/drinks/cans/starkist = 1,
+		/obj/item/reagent_holder/food/drinks/cans/waterbottle = 2, /obj/item/reagent_holder/food/drinks/cans/space_up = 1,
+		/obj/item/reagent_holder/food/drinks/cans/iced_tea = 1, /obj/item/reagent_holder/food/drinks/cans/grape_juice = 1
 	)
 
 /obj/machinery/vending/sovietsoda
@@ -125,8 +125,8 @@
 	desc = "An old sweet water vending machine, how did this end up here?"
 	icon_state = "sovietsoda"
 
-	products = list(/obj/item/reagent_containers/food/drinks/drinkingglass/soda = 30)
-	contraband = list(/obj/item/reagent_containers/food/drinks/drinkingglass/cola = 20)
+	products = list(/obj/item/reagent_holder/food/drinks/drinkingglass/soda = 30)
+	contraband = list(/obj/item/reagent_holder/food/drinks/drinkingglass/cola = 20)
 
 	ad_list = list(
 		"For Tsar and Country.", "Have you fulfilled your nutrition quota today?", "Very nice!",

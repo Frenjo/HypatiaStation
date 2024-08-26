@@ -7,7 +7,7 @@
 	icon_state = "mycelium-plast"
 	species = "plastellium"
 	plantname = "Plastellium"
-	productname = /obj/item/reagent_containers/food/snacks/grown/plastellium
+	productname = /obj/item/reagent_holder/food/snacks/grown/plastellium
 	lifespan = 15
 	endurance = 17
 	maturation = 5
@@ -67,7 +67,7 @@
 	icon_state = "seed-cash"
 	species = "cashtree"
 	plantname = "Money Tree"
-	productname = /obj/item/reagent_containers/food/snacks/grown/money
+	productname = /obj/item/reagent_holder/food/snacks/grown/money
 	lifespan = 55
 	endurance = 45
 	maturation = 6
@@ -86,7 +86,7 @@
 	icon_state = "seed-grass"
 	species = "grass"
 	plantname = "Grass"
-	//productname = /obj/item/reagent_containers/food/snacks/grown/grass
+	//productname = /obj/item/reagent_holder/food/snacks/grown/grass
 	productname = /obj/item/stack/tile/grass // Temporary until I figure out wtf to do with this. -Frenjo
 	lifespan = 60
 	endurance = 50
@@ -105,7 +105,7 @@
 	icon_state = "seed-kudzu"
 	species = "kudzu"
 	plantname = "Kudzu"
-	productname = /obj/item/reagent_containers/food/snacks/grown/kudzupod
+	productname = /obj/item/reagent_holder/food/snacks/grown/kudzupod
 	lifespan = 20
 	endurance = 10
 	maturation = 6
@@ -194,7 +194,7 @@
 	icon_state = "seed-sugarcane"
 	species = "sugarcane"
 	plantname = "Sugarcane"
-	productname = /obj/item/reagent_containers/food/snacks/grown/sugarcane
+	productname = /obj/item/reagent_holder/food/snacks/grown/sugarcane
 	lifespan = 60
 	endurance = 50
 	maturation = 3

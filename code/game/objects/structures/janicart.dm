@@ -11,7 +11,7 @@
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
 	var/obj/item/storage/bag/trash/mybag	= null
 	var/obj/item/mop/mymop = null
-	var/obj/item/reagent_containers/spray/myspray = null
+	var/obj/item/reagent_holder/spray/myspray = null
 	var/obj/item/lightreplacer/myreplacer = null
 	var/signs = 0	//maximum capacity hardcoded below
 
@@ -51,7 +51,7 @@
 			updateUsrDialog()
 			to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
 
-	else if(istype(I, /obj/item/reagent_containers/spray) && isnull(myspray))
+	else if(istype(I, /obj/item/reagent_holder/spray) && isnull(myspray))
 		user.drop_item()
 		myspray = I
 		I.loc = src

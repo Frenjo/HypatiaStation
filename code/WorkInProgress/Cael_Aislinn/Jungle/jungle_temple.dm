@@ -140,9 +140,9 @@
 			if(prob(25))
 				new /obj/effect/glowshroom(src.loc)
 			else if(prob(33))
-				new /obj/item/reagent_containers/food/snacks/grown/mushroom/libertycap(src.loc)
+				new /obj/item/reagent_holder/food/snacks/grown/mushroom/libertycap(src.loc)
 			else if(prob(50))
-				new /obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris(src.loc)
+				new /obj/item/reagent_holder/food/snacks/grown/ambrosiavulgaris(src.loc)
 		if("blob")
 			new /obj/effect/blob/core(src.loc)
 		if("clothes")
@@ -219,14 +219,14 @@
 			var/obj/structure/closet/crate/freezer/C = new(src.loc)
 			var/num = rand(2, 6)
 			var/new_type = pick(
-			/obj/item/reagent_containers/food/drinks/cans/beer, \
-			/obj/item/reagent_containers/food/drinks/tea, \
-			/obj/item/reagent_containers/food/drinks/dry_ramen, \
-			/obj/item/reagent_containers/food/snacks/candiedapple, \
-			/obj/item/reagent_containers/food/snacks/chocolatebar, \
-			/obj/item/reagent_containers/food/snacks/cookie, \
-			/obj/item/reagent_containers/food/snacks/meatball, \
-			/obj/item/reagent_containers/food/snacks/plump_pie, \
+			/obj/item/reagent_holder/food/drinks/cans/beer, \
+			/obj/item/reagent_holder/food/drinks/tea, \
+			/obj/item/reagent_holder/food/drinks/dry_ramen, \
+			/obj/item/reagent_holder/food/snacks/candiedapple, \
+			/obj/item/reagent_holder/food/snacks/chocolatebar, \
+			/obj/item/reagent_holder/food/snacks/cookie, \
+			/obj/item/reagent_holder/food/snacks/meatball, \
+			/obj/item/reagent_holder/food/snacks/plump_pie, \
 			)
 			for(var/i = 0, i < num, i++)
 				new new_type(C)

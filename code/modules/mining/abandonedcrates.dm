@@ -18,9 +18,9 @@
 	switch(loot)
 		if(1)
 			starts_with = list(
-				/obj/item/reagent_containers/food/drinks/bottle/rum,
-				/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
-				/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+				/obj/item/reagent_holder/food/drinks/bottle/rum,
+				/obj/item/reagent_holder/food/snacks/grown/ambrosiadeus,
+				/obj/item/reagent_holder/food/drinks/bottle/whiskey,
 				/obj/item/lighter/zippo
 			)
 		if(2)
@@ -33,7 +33,7 @@
 		if(3)
 			return
 		if(4)
-			starts_with = list(/obj/item/reagent_containers/glass/beaker/bluespace)
+			starts_with = list(/obj/item/reagent_holder/glass/beaker/bluespace)
 		if(5 to 6)
 			for(var/i = 0, i < 10, i++)
 				starts_with += /obj/item/ore/diamond
@@ -46,7 +46,7 @@
 				starts_with += /obj/machinery/hydroponics
 		if(10)
 			for(var/i = 0, i < 3, i++)
-				starts_with += /obj/item/reagent_containers/glass/beaker/noreact
+				starts_with += /obj/item/reagent_holder/glass/beaker/noreact
 		if(11 to 12)
 			for(var/i = 0, i < 9, i++)
 				starts_with += /obj/item/bluespace_crystal

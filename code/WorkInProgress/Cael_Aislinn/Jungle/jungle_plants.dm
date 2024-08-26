@@ -72,7 +72,7 @@ var/jungle_plants_init = 0
 	fruit_icon_states = shuffle(fruit_icon_states)
 	reagent_effects = shuffle(reagent_effects)
 
-/obj/item/reagent_containers/food/snacks/grown/jungle_fruit
+/obj/item/reagent_holder/food/snacks/grown/jungle_fruit
 	seed
 	name = "jungle fruit"
 	desc = "It smells weird and looks off."
@@ -114,7 +114,7 @@ var/jungle_plants_init = 0
 		fruits_left--
 		to_chat(user, SPAN_INFO("You pick a fruit off [src]."))
 
-		var/obj/item/reagent_containers/food/snacks/grown/jungle_fruit/J = new(src.loc)
+		var/obj/item/reagent_holder/food/snacks/grown/jungle_fruit/J = new(src.loc)
 		J.potency = plant_strength
 		J.icon_state = fruit_icon_states[fruit_type]
 		J.reagents.add_reagent(reagent_effects[fruit_type], 1+round((plant_strength / 20), 1))

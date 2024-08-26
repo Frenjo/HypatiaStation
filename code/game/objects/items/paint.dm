@@ -1,7 +1,7 @@
 //NEVER USE THIS IT SUX	-PETETHEGOAT
 GLOBAL_GLOBL_LIST_NEW(cached_icons)
 
-/obj/item/reagent_containers/glass/paint
+/obj/item/reagent_holder/glass/paint
 	desc = "It's a paint bucket."
 	name = "paint bucket"
 	icon = 'icons/obj/items/paints.dmi'
@@ -16,7 +16,7 @@ GLOBAL_GLOBL_LIST_NEW(cached_icons)
 
 	var/paint_type = ""
 
-/obj/item/reagent_containers/glass/paint/afterattack(turf/open/target, mob/user, proximity)
+/obj/item/reagent_holder/glass/paint/afterattack(turf/open/target, mob/user, proximity)
 	if(!proximity)
 		return
 	if(istype(target) && reagents.total_volume > 5)
@@ -27,7 +27,7 @@ GLOBAL_GLOBL_LIST_NEW(cached_icons)
 	else
 		return ..()
 
-/obj/item/reagent_containers/glass/paint/New()
+/obj/item/reagent_holder/glass/paint/New()
 	if(paint_type == "remover")
 		name = "paint remover bucket"
 	else if(paint_type && length(paint_type) > 0)
@@ -35,40 +35,40 @@ GLOBAL_GLOBL_LIST_NEW(cached_icons)
 	..()
 	reagents.add_reagent("paint_[paint_type]", volume)
 
-/obj/item/reagent_containers/glass/paint/on_reagent_change() //Until we have a generic "paint", this will give new colours to all paints in the can
+/obj/item/reagent_holder/glass/paint/on_reagent_change() //Until we have a generic "paint", this will give new colours to all paints in the can
 	var/mixedcolor = mix_colour_from_reagents(reagents.reagent_list)
 	for(var/datum/reagent/paint/P in reagents.reagent_list)
 		P.color = mixedcolor
 
-/obj/item/reagent_containers/glass/paint/red
+/obj/item/reagent_holder/glass/paint/red
 	icon_state = "red"
 	paint_type = "red"
 
-/obj/item/reagent_containers/glass/paint/green
+/obj/item/reagent_holder/glass/paint/green
 	icon_state = "green"
 	paint_type = "green"
 
-/obj/item/reagent_containers/glass/paint/blue
+/obj/item/reagent_holder/glass/paint/blue
 	icon_state = "blue"
 	paint_type = "blue"
 
-/obj/item/reagent_containers/glass/paint/yellow
+/obj/item/reagent_holder/glass/paint/yellow
 	icon_state = "yellow"
 	paint_type = "yellow"
 
-/obj/item/reagent_containers/glass/paint/violet
+/obj/item/reagent_holder/glass/paint/violet
 	icon_state = "violet"
 	paint_type = "violet"
 
-/obj/item/reagent_containers/glass/paint/black
+/obj/item/reagent_holder/glass/paint/black
 	icon_state = "black"
 	paint_type = "black"
 
-/obj/item/reagent_containers/glass/paint/white
+/obj/item/reagent_holder/glass/paint/white
 	icon_state = "white"
 	paint_type = "white"
 
-/obj/item/reagent_containers/glass/paint/remover
+/obj/item/reagent_holder/glass/paint/remover
 	paint_type = "remover"
 
 /*

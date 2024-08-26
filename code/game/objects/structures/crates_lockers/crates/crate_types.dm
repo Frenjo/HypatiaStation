@@ -217,8 +217,8 @@
 /obj/structure/closet/crate/hydroponics/prespawned
 	//This exists so the prespawned hydro crates spawn with their contents.
 	starts_with = list(
-		/obj/item/reagent_containers/spray/plantbgone,
-		/obj/item/reagent_containers/spray/plantbgone,
+		/obj/item/reagent_holder/spray/plantbgone,
+		/obj/item/reagent_holder/spray/plantbgone,
 		/obj/item/minihoe,
 	//	/obj/item/weedspray,
 	//	/obj/item/weedspray,

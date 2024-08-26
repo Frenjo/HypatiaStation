@@ -49,7 +49,7 @@
 
 	var/locked = 0
 	var/mob/living/carbon/occupant = null
-	var/obj/item/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_holder/glass/beaker = null
 	var/opened = 0
 
 /obj/machinery/dna_scannernew/New()
@@ -89,7 +89,7 @@
 /obj/machinery/dna_scannernew/proc/eject_occupant()
 	src.go_out()
 	for(var/obj/O in src)
-		if((!istype(O, /obj/item/reagent_containers)) && (!istype(O, /obj/item/circuitboard/clonescanner)) && (!istype(O, /obj/item/stock_part)) && (!istype(O, /obj/item/stack/cable_coil)))
+		if((!istype(O, /obj/item/reagent_holder)) && (!istype(O, /obj/item/circuitboard/clonescanner)) && (!istype(O, /obj/item/stock_part)) && (!istype(O, /obj/item/stack/cable_coil)))
 			O.loc = get_turf(src)//Ejects items that manage to get in there (exluding the components)
 	if(!occupant)
 		for(var/mob/M in src)//Failsafe so you can get mobs out
@@ -121,7 +121,7 @@
 	return
 
 /obj/machinery/dna_scannernew/attack_by(obj/item/I, mob/user)
-	if(istype(I, /obj/item/reagent_containers/glass))
+	if(istype(I, /obj/item/reagent_holder/glass))
 		if(isnotnull(beaker))
 			to_chat(user, SPAN_WARNING("A beaker is already loaded into the machine."))
 			return TRUE
@@ -665,7 +665,7 @@
 
 	if(href_list["ejectBeaker"])
 		if(connected.beaker)
-			var/obj/item/reagent_containers/glass/B = connected.beaker
+			var/obj/item/reagent_holder/glass/B = connected.beaker
 			B.loc = connected.loc
 			connected.beaker = null
 		return 1

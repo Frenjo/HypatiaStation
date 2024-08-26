@@ -29,7 +29,7 @@
 	var/obj/item/dart_cartridge/cartridge = null //Container of darts.
 	var/max_beakers = 3
 	var/dart_reagent_amount = 15
-	var/container_type = /obj/item/reagent_containers/glass/beaker
+	var/container_type = /obj/item/reagent_holder/glass/beaker
 	var/list/starting_chems = null
 
 /obj/item/gun/dartgun/update_icon()
@@ -63,7 +63,7 @@
 		return
 	if(length(beakers))
 		to_chat(usr, SPAN_INFO("[src] contains:"))
-		for(var/obj/item/reagent_containers/glass/beaker/B in beakers)
+		for(var/obj/item/reagent_holder/glass/beaker/B in beakers)
 			if(B.reagents && length(B.reagents.reagent_list))
 				for(var/datum/reagent/R in B.reagents.reagent_list)
 					to_chat(usr, SPAN_INFO("[R.volume] units of [R.name]"))
@@ -89,14 +89,14 @@
 		to_chat(user, SPAN_INFO("You slot [D] into [src]."))
 		update_icon()
 		return
-	if(istype(I, /obj/item/reagent_containers/glass))
+	if(istype(I, /obj/item/reagent_holder/glass))
 		if(!istype(I, container_type))
 			to_chat(user, SPAN_INFO("[I] doesn't seem to fit into [src]."))
 			return
 		if(length(beakers) >= max_beakers)
 			to_chat(user, SPAN_INFO("[src] already has [max_beakers] beakers in it - another one isn't going to fit!"))
 			return
-		var/obj/item/reagent_containers/glass/beaker/B = I
+		var/obj/item/reagent_holder/glass/beaker/B = I
 		user.drop_item()
 		B.loc = src
 		beakers += B
@@ -127,11 +127,11 @@
 	if(!cartridge.darts)
 		return 0
 
-	var/obj/item/reagent_containers/syringe/dart = new(src)
+	var/obj/item/reagent_holder/syringe/dart = new(src)
 
 	if(length(mixing))
 		var/mix_amount = dart_reagent_amount / length(mixing)
-		for(var/obj/item/reagent_containers/glass/beaker/B in mixing)
+		for(var/obj/item/reagent_holder/glass/beaker/B in mixing)
 			B.reagents.trans_to(dart,mix_amount)
 
 	return dart
@@ -142,7 +142,7 @@
 	else
 		var/turf/trg = get_turf(target)
 		var/obj/effect/syringe_gun_dummy/D = new/obj/effect/syringe_gun_dummy(get_turf(src))
-		var/obj/item/reagent_containers/syringe/S = get_mixed_syringe()
+		var/obj/item/reagent_holder/syringe/S = get_mixed_syringe()
 		if(!S)
 			to_chat(user, SPAN_WARNING("There are no darts in [src]!"))
 			return
@@ -221,7 +221,7 @@
 
 	if(length(beakers))
 		var/i = 1
-		for(var/obj/item/reagent_containers/glass/beaker/B in beakers)
+		for(var/obj/item/reagent_holder/glass/beaker/B in beakers)
 			dat += "Beaker [i] contains: "
 			if(B.reagents && length(B.reagents.reagent_list))
 				for(var/datum/reagent/R in B.reagents.reagent_list)
@@ -272,7 +272,7 @@
 		var/index = text2num(href_list["eject"])
 		if(index <= length(beakers))
 			if(beakers[index])
-				var/obj/item/reagent_containers/glass/beaker/B = beakers[index]
+				var/obj/item/reagent_holder/glass/beaker/B = beakers[index]
 				to_chat(usr, "You remove [B] from [src].")
 				mixing -= B
 				beakers -= B

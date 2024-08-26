@@ -57,12 +57,12 @@
 	can_hold = list(
 		/obj/item/health_analyser,
 		/obj/item/dnainjector,
-		/obj/item/reagent_containers/dropper,
-		/obj/item/reagent_containers/glass/beaker,
-		/obj/item/reagent_containers/glass/bottle,
-		/obj/item/reagent_containers/pill,
-		/obj/item/reagent_containers/syringe,
-//		/obj/item/reagent_containers/glass/dispenser, // I don't know what this one would map to in current code.
+		/obj/item/reagent_holder/dropper,
+		/obj/item/reagent_holder/glass/beaker,
+		/obj/item/reagent_holder/glass/bottle,
+		/obj/item/reagent_holder/pill,
+		/obj/item/reagent_holder/syringe,
+//		/obj/item/reagent_holder/glass/dispenser, // I don't know what this one would map to in current code.
 		/obj/item/lighter/zippo,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/storage/pill_bottle,
@@ -70,7 +70,7 @@
 		/obj/item/flashlight/pen,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/clothing/gloves/latex,
-		/obj/item/reagent_containers/hypospray
+		/obj/item/reagent_holder/hypospray
 	)
 
 /obj/item/storage/belt/security
@@ -83,14 +83,14 @@
 	max_combined_w_class = 21
 	can_hold = list(
 		/obj/item/grenade/flashbang,
-		/obj/item/reagent_containers/spray/pepper,
+		/obj/item/reagent_holder/spray/pepper,
 		/obj/item/handcuffs,
 		/obj/item/flash,
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/ammo_magazine,
-		/obj/item/reagent_containers/food/snacks/donut/normal,
-		/obj/item/reagent_containers/food/snacks/donut/jelly,
+		/obj/item/reagent_holder/food/snacks/donut/normal,
+		/obj/item/reagent_holder/food/snacks/donut/jelly,
 		/obj/item/melee/baton,
 		/obj/item/gun/energy/taser,
 		/obj/item/lighter/zippo,
@@ -145,14 +145,14 @@
 	max_combined_w_class = 21
 	can_hold = list(
 		/obj/item/grenade/flashbang,
-		/obj/item/reagent_containers/spray/pepper,
+		/obj/item/reagent_holder/spray/pepper,
 		/obj/item/handcuffs,
 		/obj/item/flash,
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing/shotgun,
 		/obj/item/ammo_magazine,
-		/obj/item/reagent_containers/food/snacks/donut/normal,
-		/obj/item/reagent_containers/food/snacks/donut/jelly,
+		/obj/item/reagent_holder/food/snacks/donut/normal,
+		/obj/item/reagent_holder/food/snacks/donut/jelly,
 		/obj/item/melee/baton,
 		/obj/item/gun/energy/taser,
 		/obj/item/lighter/zippo,

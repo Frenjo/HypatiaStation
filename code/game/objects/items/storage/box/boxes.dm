@@ -27,7 +27,7 @@
 	icon_state = "syringe"
 
 	starts_with = list(
-		/obj/item/reagent_containers/syringe = 7
+		/obj/item/reagent_holder/syringe = 7
 	)
 
 // Beakers
@@ -36,7 +36,7 @@
 	icon_state = "beaker"
 
 	starts_with = list(
-		/obj/item/reagent_containers/glass/beaker = 7
+		/obj/item/reagent_holder/glass/beaker = 7
 	)
 
 // DNA Injectors
@@ -130,7 +130,7 @@
 	desc = "It has a picture of drinking glasses on it."
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/drinks/drinkingglass = 6
+		/obj/item/reagent_holder/food/drinks/drinkingglass = 6
 	)
 
 // Condiment Bottles
@@ -139,7 +139,7 @@
 	desc = "It has a large ketchup smear on it."
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/condiment = 6
+		/obj/item/reagent_holder/food/condiment = 6
 	)
 
 // Paper Cups
@@ -148,7 +148,7 @@
 	desc = "It has pictures of paper cups on the front."
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/drinks/sillycup = 7
+		/obj/item/reagent_holder/food/drinks/sillycup = 7
 	)
 
 /obj/item/storage/box/cups/empty
@@ -161,7 +161,7 @@
 	icon_state = "donk_kit"
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/snacks/donkpocket = 6
+		/obj/item/reagent_holder/food/snacks/donkpocket = 6
 	)
 
 /obj/item/storage/box/donkpockets/empty
@@ -174,10 +174,10 @@
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "monkeycubebox"
 	storage_slots = 7
-	can_hold = list(/obj/item/reagent_containers/food/snacks/monkeycube)
+	can_hold = list(/obj/item/reagent_holder/food/snacks/monkeycube)
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/snacks/monkeycube/wrapped = 5
+		/obj/item/reagent_holder/food/snacks/monkeycube/wrapped = 5
 	)
 
 /obj/item/storage/box/monkeycubes/farwacubes
@@ -185,7 +185,7 @@
 	desc = "Drymate brand farwa cubes, shipped from Ahdomai. Just add water!"
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/farwacube = 5
+		/obj/item/reagent_holder/food/snacks/monkeycube/wrapped/farwacube = 5
 	)
 
 /obj/item/storage/box/monkeycubes/stokcubes
@@ -193,7 +193,7 @@
 	desc = "Drymate brand stok cubes, shipped from Moghes. Just add water!"
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/stokcube = 5
+		/obj/item/reagent_holder/food/snacks/monkeycube/wrapped/stokcube = 5
 	)
 
 /obj/item/storage/box/monkeycubes/neaeracubes
@@ -201,7 +201,7 @@
 	desc = "Drymate brand neaera cubes, shipped from Jargon 4. Just add water!"
 
 	starts_with = list(
-		/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube = 5
+		/obj/item/reagent_holder/food/snacks/monkeycube/wrapped/neaeracube = 5
 	)
 
 // Spare IDs
@@ -297,7 +297,7 @@
 	icon_state = "syringe"
 
 	starts_with = list(
-		/obj/item/reagent_containers/hypospray/autoinjector = 7
+		/obj/item/reagent_holder/hypospray/autoinjector = 7
 	)
 
 // Lights

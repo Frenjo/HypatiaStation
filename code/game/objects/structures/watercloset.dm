@@ -394,8 +394,8 @@
 		to_chat(user, SPAN_WARNING("Someone's already washing here."))
 		return
 
-	if(istype(O, /obj/item/reagent_containers))
-		var/obj/item/reagent_containers/RG = O
+	if(istype(O, /obj/item/reagent_holder))
+		var/obj/item/reagent_holder/RG = O
 		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message(
 			SPAN_INFO("[user] fills \the [RG] using \the [src]."),

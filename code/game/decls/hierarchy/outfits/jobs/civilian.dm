@@ -85,7 +85,7 @@
 	shoes = /obj/item/clothing/shoes/clown_shoes
 
 	backpack_contents = list(
-		/obj/item/reagent_containers/food/snacks/grown/banana,
+		/obj/item/reagent_holder/food/snacks/grown/banana,
 		/obj/item/bikehorn,
 		/obj/item/stamp/clown,
 		/obj/item/toy/crayon/rainbow,
@@ -110,7 +110,7 @@
 
 	backpack_contents = list(
 		/obj/item/toy/crayon/mime,
-		/obj/item/reagent_containers/food/drinks/bottle/nothing
+		/obj/item/reagent_holder/food/drinks/bottle/nothing
 	)
 
 	pda_type = /obj/item/pda/mime
