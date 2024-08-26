@@ -23,7 +23,8 @@
 }
 
 /* states and images */
-.uiIcon16 {
+.uiIcon16
+{
 	float: left;
 	width: 16px;
 	height: 16px;
@@ -31,7 +32,8 @@
 	background-image: url(uiIcons16.png);
 }
 
-.uiLinkPendingIcon {
+.uiLinkPendingIcon
+{
 	display: none;
 	float: left;
 	width: 16px;
@@ -40,11 +42,13 @@
 	background-image: url(uiLinkPendingIcon.gif);
 }
 
-.linkPending .uiIcon16 {
+.linkPending .uiIcon16
+{
 	display: none;
 }
 
-.linkPending .uiLinkPendingIcon {
+.linkPending .uiLinkPendingIcon
+{
 	display: block;
 }
 

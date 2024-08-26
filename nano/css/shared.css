@@ -1,4 +1,5 @@
-body {
+body
+{
 	padding: 0;
 	margin: 0;
 	font-size: 12px;
@@ -7,11 +8,13 @@ body {
 	font-family: Verdana, Geneva, sans-serif;
 	background: #272727 url(uiBackground.png) 50% 0 repeat-x;
 }
-hr {
+hr
+{
 	background-color: #40628a;
 	height: 1px;
 }
-.link, .linkOn, .linkOff, .selected, .disabled {
+.link, .linkOn, .linkOff, .selected, .disabled
+{
 	float: left;
 	min-width: 15px;
 	height: 16px;
@@ -26,18 +29,22 @@ hr {
 	white-space: nowrap;
 }
 
-.hasIcon {
+.hasIcon
+{
 	padding: 0px 4px 4px 0px;
 }
 
-a:hover, .linkActive:hover {
+a:hover, .linkActive:hover
+{
 	background: #507aac;
 }
-.linkPending, .linkPending:hover {
+.linkPending, .linkPending:hover
+{
 	color: #ffffff;
 	background: #507aac;
 }
-a.white, a.white:link, a.white:visited, a.white:active {
+a.white, a.white:link, a.white:visited, a.white:active
+{
 	color: #40628a;
 	text-decoration: none;
 	background: #ffffff;
@@ -46,68 +53,84 @@ a.white, a.white:link, a.white:visited, a.white:active {
 	margin: 0 2px 0 0;
 	cursor:default;
 }
-a.white:hover {
+a.white:hover
+{
 	color: #ffffff;
 	background: #40628a;
 }
-.linkOn, a.linkOn:link, a.linkOn:visited, a.linkOn:active, a.linkOn:hover, .selected, a.selected:link, a.selected:visited, a.selected:active, a.selected:hover {
+.linkOn, a.linkOn:link, a.linkOn:visited, a.linkOn:active, a.linkOn:hover, .selected, a.selected:link, a.selected:visited, a.selected:active, a.selected:hover
+{
 	color: #ffffff;
 	background: #2f943c;
 }
-.linkOff, a.linkOff:link, a.linkOff:visited, a.linkOff:active, a.linkOff:hover, .disabled, a.disabled:link, a.disabled:visited, a.disabled:active, a.disabled:hover {
+.linkOff, a.linkOff:link, a.linkOff:visited, a.linkOff:active, a.linkOff:hover, .disabled, a.disabled:link, a.disabled:visited, a.disabled:active, a.disabled:hover
+{
 	color: #ffffff;
 	background: #999999;
 	border-color: #666666;
 }
-a.icon, .linkOn.icon, .linkOff.icon, .selected.icon, .disabled.icon {
+a.icon, .linkOn.icon, .linkOff.icon, .selected.icon, .disabled.icon
+{
 	position: relative;
 	padding: 1px 4px 2px 20px;
 }
-a.icon img, .linkOn.icon img, .linkOff.icon img, .selected.icon img, .disabled.icon img {
+a.icon img, .linkOn.icon img, .linkOff.icon img, .selected.icon img, .disabled.icon img
+{
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 18px;
 	height: 18px;
 }
-ul {
+ul
+{
 	padding: 4px 0 0 10px;
 	margin: 0;
 	list-style-type: none;
 }
-li {
+li
+{
 	padding: 0 0 2px 0;
 }
-img, a img {
+img, a img
+{
 	border-style:none;
 }
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6
+{
 	margin: 0;
 	padding: 12px 0 6px 0;
 	color: #517087;
 	clear: both;
 }
-h1 {
+h1
+{
 	font-size: 18px;
 }
-h2 {
+h2
+{
 	font-size: 16px;
 }
-h3 {
+h3
+{
 	font-size: 14px;
 }
-h4 {
+h4
+{
 	font-size: 12px;
 }
-#uiWrapper {
+#uiWrapper
+{
 	width: 100%;
 	height: 100%;
 }
-#uiTitleWrapper {
+#uiTitleWrapper
+{
 	position: relative;
 	height: 30px;
 }
-#uiTitle {
+#uiTitle
+{
 	position: absolute;
 	top: 6px;
 	left: 44px;
@@ -116,12 +139,14 @@ h4 {
 	color: #E9C183;
 	font-size: 16px;
 }
-#uiTitle.icon {
+#uiTitle.icon
+{
 	padding: 6px 8px 6px 42px;
 	background-position: 2px 50%;
 	background-repeat: no-repeat;
 }
-#uiTitleFluff {
+#uiTitleFluff
+{
 	position: absolute;
 	top: 4px;
 	right: 12px;
@@ -129,18 +154,21 @@ h4 {
 	height: 24px;
 	background: url(uiTitleFluff.png) 50% 50% no-repeat;
 }
-#uiStatusIcon {
+#uiStatusIcon
+{
 	position: absolute;
 	top: 4px;
 	left: 12px;
 	width: 24px;
 	height: 24px;
 }
-#uiContent {
+#uiContent
+{
 	clear: both;
 	padding: 8px;
 }
-#uiNoJavaScript {
+#uiNoJavaScript
+{
 	position: relative;
 	background: url(uiNoticeBackground.jpg) 50% 50%;
 	color: #000000;
@@ -151,36 +179,45 @@ h4 {
 	margin: 4px 0 4px 0;
 }
 
-.white {
+.white
+{
 	color: white;
 	font-weight: bold;
 }
 
-.good {
+.good
+{
 	color: #4f7529;
 	font-weight: bold;
 }
-.average {
+.average
+{
 	color: #cd6500;
 	font-weight: bold;
 }
-.bad {
+.bad
+{
 	color: #ee0000;
 	font-weight: bold;
 }
-.redBackground {
+.redBackground
+{
 	background: #ea0000;
 }
-.yellowBackground {
+.yellowBackground
+{
 	background: #cacc00;
 }
-.highlight {
+.highlight
+{
 	color: #8BA5C4;
 }
-.dark {
+.dark
+{
 	color: #272727;
 }
-.noticePlaceholder {
+.noticePlaceholder
+{
 	position: relative;
 	font-size: 12px;
 	font-style: italic;
@@ -188,7 +225,8 @@ h4 {
 	padding: 3px 4px 3px 4px;
 	margin: 4px 0 4px 0;
 }
-.notice {
+.notice
+{
 	position: relative;
 	background: url(uiNoticeBackground.jpg) 50% 50%;
 	color: #000000;
@@ -198,10 +236,12 @@ h4 {
 	padding: 3px 4px 3px 4px;
 	margin: 4px 0 4px 0;
 }
-.notice.icon {
+.notice.icon
+{
 	padding: 2px 4px 0 20px;
 }
-.notice img {
+.notice img
+{
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -210,64 +250,76 @@ h4 {
 }
 
 
-div.notice {
+div.notice
+{
 	clear: both;
 }
-.itemGroup {
+.itemGroup
+{
 	border: 1px solid #e9c183;
 	background: #2c2c2c;
 	padding: 4px;
 	clear: both;
 }
-.item {
+.item
+{
 	width: 100%;
 	margin: 4px 0 0 0;
 	clear: both;
 }
 
 
-.itemLabel {
+.itemLabel
+{
 	float: left;
 	width: 30%;
 	color: #e9c183;
 }
-.itemContent {
+.itemContent
+{
 	float: left;
 	width: 69%;
 }
-.itemLabelNarrow {
+.itemLabelNarrow
+{
 	float: left;
 	width: 20%;
 	color: #e9c183;
 }
-.itemLabelWide {
+.itemLabelWide
+{
 	float: left;
 	width: 45%;
 	color: #e9c183;
 }
 
 
-.itemContentWide {
+.itemContentWide
+{
 	float: left;
 	width: 79%;
 }
-.itemContentSmall {
+.itemContentSmall
+{
 	float: left;
 	width: 33%;
 }
-.itemContentMedium {
+.itemContentMedium
+{
 	float: left;
 	width: 55%;
 }
 
-.statusDisplay {
+.statusDisplay
+{
 	background: #000000;
 	color: #ffffff;
 	border: 1px solid #40628a;
 	padding: 4px;
 	margin: 3px 0;
 }
-.statusDisplayRecords {
+.statusDisplayRecords
+{
 	background: #000000;
 	color: #ffffff;
 	border: 1px solid #40628a;
@@ -278,25 +330,30 @@ div.notice {
 }
 
 
-.statusLabel {
+.statusLabel
+{
 	width: 138px;
 	float: left;
 	overflow: hidden;
 	color: #98B0C3;
 }
-.statusValue {
+.statusValue
+{
 	float: left;
 }
-.block {
+.block
+{
 	padding: 8px;
 	margin: 10px 4px 4px 4px;
 	border: 1px solid #40628a;
 	background-color: #202020;
 }
-.block h3 {
+.block h3
+{
 	padding: 0;
 }
-.displayBar {
+.displayBar
+{
 	position: relative;
 	width: 236px;
 	height: 16px;
@@ -306,7 +363,8 @@ div.notice {
 	overflow: hidden;
 	background: #000000;
 }
-.displayBarText {
+.displayBarText
+{
 	position: absolute;
 	top: -2px;
 	left: 5px;
@@ -315,70 +373,86 @@ div.notice {
 	color: #ffffff;
 	font-weight: normal;
 }
-.displayBarFill {
+.displayBarFill
+{
 	width: 0%;
 	height: 100%;
 	background: #40628a;
 	overflow: hidden;
 	float: left;
 }
-.displayBarFill.alignRight {
+.displayBarFill.alignRight
+{
 	float: right;
 }
-.displayBarFill.good {
+.displayBarFill.good
+{
 	color: #ffffff;
 	background: #4f7529;
 }
-.displayBarFill.average {
+.displayBarFill.average
+{
 	color: #ffffff;
 	background: #cd6500;
 }
-.displayBarFill.bad {
+.displayBarFill.bad
+{
 	color: #ffffff;
 	background: #ee0000;
 }
-.displayBarFill.highlight {
+.displayBarFill.highlight
+{
 	color: #ffffff;
 	background: #8BA5C4;
 }
-.clearBoth {
+.clearBoth
+{
 	clear: both;
 }
-.clearLeft {
+.clearLeft
+{
 	clear: left;
 }
-.clearRight {
+.clearRight
+{
 	clear: right;
 }
-.line {
+.line
+{
 	width: 100%;
 	clear: both;
 }
-.inactive, , a.inactive:link, a.inactive:visited, a.inactive:active, a.inactive:hover {
+.inactive, a.inactive:link, a.inactive:visited, a.inactive:active, a.inactive:hover
+{
 	color: #ffffff;
 	background: #999999;
 	border-color: #666666;
 }
-.fixedLeft {
+.fixedLeft
+{
 	width: 110px;
 	float: left;
 }
-.fixedLeftWide {
+.fixedLeftWide
+{
 	width: 165px;
 	float: left;
 }
 
-.fixedLeftWider{
+.fixedLeftWider
+{
 	width: 220px;
 	float: left;
 }
 
-.fixedLeftWidest{
+.fixedLeftWidest
+{
 	width: 250px;
 	float: left;
 }
 
-.floatRight {
+.floatRight
+{
 	float: right;
 }
 
