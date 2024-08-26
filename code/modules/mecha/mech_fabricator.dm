@@ -136,13 +136,14 @@
 
 /obj/machinery/mecha_part_fabricator/New()
 	. = ..()
-	component_parts = list()
-	component_parts.Add(new /obj/item/circuitboard/mechfab(src))
-	component_parts.Add(new /obj/item/stock_part/matter_bin(src))
-	component_parts.Add(new /obj/item/stock_part/matter_bin(src))
-	component_parts.Add(new /obj/item/stock_part/manipulator(src))
-	component_parts.Add(new /obj/item/stock_part/micro_laser(src))
-	component_parts.Add(new /obj/item/stock_part/console_screen(src))
+	component_parts = list(
+		new /obj/item/circuitboard/mechfab(src),
+		new /obj/item/stock_part/matter_bin(src),
+		new /obj/item/stock_part/matter_bin(src),
+		new /obj/item/stock_part/manipulator(src),
+		new /obj/item/stock_part/micro_laser(src),
+		new /obj/item/stock_part/console_screen(src)
+	)
 	RefreshParts()
 
 	//	part_sets["Cyborg Upgrade Modules"] = typesof(/obj/item/borg/upgrade/) - /obj/item/borg/upgrade/  // Eh.  This does it dymaically, but to support having the items referenced otherwhere in the code but not being constructable, going to do it manaully.

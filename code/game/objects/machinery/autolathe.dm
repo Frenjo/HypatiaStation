@@ -329,17 +329,16 @@
 	storage_capacity[/decl/material/glass] = tot_rating
 
 /obj/machinery/autolathe/New()
-	..()
-
-	wires = new(src)
-
-	component_parts = list()
-	component_parts += new /obj/item/circuitboard/autolathe(src)
-	component_parts += new /obj/item/stock_part/matter_bin(src)
-	component_parts += new /obj/item/stock_part/matter_bin(src)
-	component_parts += new /obj/item/stock_part/matter_bin(src)
-	component_parts += new /obj/item/stock_part/manipulator(src)
-	component_parts += new /obj/item/stock_part/console_screen(src)
+	. = ..()
+	wires = new /datum/wires/autolathe(src)
+	component_parts = list(
+		new /obj/item/circuitboard/autolathe(src),
+		new /obj/item/stock_part/matter_bin(src),
+		new /obj/item/stock_part/matter_bin(src),
+		new /obj/item/stock_part/matter_bin(src),
+		new /obj/item/stock_part/manipulator(src),
+		new /obj/item/stock_part/console_screen(src)
+	)
 	RefreshParts()
 
 	src.L = global.autolathe_recipes

@@ -53,15 +53,16 @@
 	var/opened = 0
 
 /obj/machinery/dna_scannernew/New()
-	..()
-	component_parts = list()
-	component_parts += new /obj/item/circuitboard/clonescanner(src)
-	component_parts += new /obj/item/stock_part/scanning_module(src)
-	component_parts += new /obj/item/stock_part/manipulator(src)
-	component_parts += new /obj/item/stock_part/micro_laser(src)
-	component_parts += new /obj/item/stock_part/console_screen(src)
-	component_parts += new /obj/item/stack/cable_coil(src)
-	component_parts += new /obj/item/stack/cable_coil(src)
+	. = ..()
+	component_parts = list(
+		new /obj/item/circuitboard/clonescanner(src),
+		new /obj/item/stock_part/scanning_module(src),
+		new /obj/item/stock_part/manipulator(src),
+		new /obj/item/stock_part/micro_laser(src),
+		new /obj/item/stock_part/console_screen(src),
+		new /obj/item/stack/cable_coil(src),
+		new /obj/item/stack/cable_coil(src)
+	)
 	RefreshParts()
 
 /obj/machinery/dna_scannernew/allow_drop()

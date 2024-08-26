@@ -44,7 +44,7 @@
 	area_uid = initial_loc.uid
 
 	if(!id_tag)
-		assign_uid()
+		uid = ++static_uid
 		id_tag = num2text(uid)
 
 /obj/machinery/atmospherics/unary/vent_pump/atmos_initialise()

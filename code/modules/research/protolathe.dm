@@ -21,14 +21,15 @@ Note: Must be placed west/left of and R&D console to function.
 
 /obj/machinery/r_n_d/protolathe/New()
 	. = ..()
-	component_parts = list()
-	component_parts += new /obj/item/circuitboard/protolathe(src)
-	component_parts += new /obj/item/stock_part/matter_bin(src)
-	component_parts += new /obj/item/stock_part/matter_bin(src)
-	component_parts += new /obj/item/stock_part/manipulator(src)
-	component_parts += new /obj/item/stock_part/manipulator(src)
-	component_parts += new /obj/item/reagent_holder/glass/beaker(src)
-	component_parts += new /obj/item/reagent_holder/glass/beaker(src)
+	component_parts = list(
+		new /obj/item/circuitboard/protolathe(src),
+		new /obj/item/stock_part/matter_bin(src),
+		new /obj/item/stock_part/matter_bin(src),
+		new /obj/item/stock_part/manipulator(src),
+		new /obj/item/stock_part/manipulator(src),
+		new /obj/item/reagent_holder/glass/beaker(src),
+		new /obj/item/reagent_holder/glass/beaker(src)
+	)
 	RefreshParts()
 
 /obj/machinery/r_n_d/protolathe/RefreshParts()

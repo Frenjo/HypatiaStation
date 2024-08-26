@@ -14,12 +14,13 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 
 /obj/machinery/r_n_d/circuit_imprinter/New()
 	. = ..()
-	component_parts = list()
-	component_parts += new /obj/item/circuitboard/circuit_imprinter(src)
-	component_parts += new /obj/item/stock_part/matter_bin(src)
-	component_parts += new /obj/item/stock_part/manipulator(src)
-	component_parts += new /obj/item/reagent_holder/glass/beaker(src)
-	component_parts += new /obj/item/reagent_holder/glass/beaker(src)
+	component_parts = list(
+		new /obj/item/circuitboard/circuit_imprinter(src),
+		new /obj/item/stock_part/matter_bin(src),
+		new /obj/item/stock_part/manipulator(src),
+		new /obj/item/reagent_holder/glass/beaker(src),
+		new /obj/item/reagent_holder/glass/beaker(src)
+	)
 	RefreshParts()
 
 /obj/machinery/r_n_d/circuit_imprinter/RefreshParts()

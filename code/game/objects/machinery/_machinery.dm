@@ -89,7 +89,7 @@
 	icon = 'icons/obj/stationobjs.dmi'
 
 	// Unique IDs.
-	var/static/gl_uid = 1
+	var/static/static_uid = 0
 	var/uid
 
 	// Power.
@@ -244,7 +244,3 @@
 
 /obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
 	return 0
-
-/obj/machinery/proc/assign_uid()
-	uid = gl_uid
-	gl_uid++

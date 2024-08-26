@@ -24,11 +24,12 @@
 
 /obj/machinery/r_n_d/server/New()
 	. = ..()
-	component_parts = list()
-	component_parts += new /obj/item/circuitboard/rdserver(src)
-	component_parts += new /obj/item/stock_part/scanning_module(src)
-	component_parts += new /obj/item/stack/cable_coil(src)
-	component_parts += new /obj/item/stack/cable_coil(src)
+	component_parts = list(
+		new /obj/item/circuitboard/rdserver(src),
+		new /obj/item/stock_part/scanning_module(src),
+		new /obj/item/stack/cable_coil(src),
+		new /obj/item/stack/cable_coil(src)
+	)
 	RefreshParts()
 
 /obj/machinery/r_n_d/server/Destroy()
