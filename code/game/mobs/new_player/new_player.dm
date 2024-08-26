@@ -17,21 +17,21 @@
 	var/totalPlayersReady = 0
 
 /mob/new_player/proc/new_player_panel()
-	var/output = "<div align='center'><b>New Player Options</b>"
-	output += "<hr>"
-	output += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character</a></p>"
+	var/html = "<div align='center'><b>New Player Options</b>"
+	html += "<hr>"
+	html += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character</a></p>"
 
 	if(global.PCticker?.current_state <= GAME_STATE_PREGAME)
 		if(!ready)
-			output += "<p><a href='byond://?src=\ref[src];ready=1'>Declare Ready</a></p>"
+			html += "<p><a href='byond://?src=\ref[src];ready=1'>Declare Ready</a></p>"
 		else
-			output += "<p><b>You are ready</b> (<a href='byond://?src=\ref[src];ready=2'>Cancel</a>)</p>"
+			html += "<p><b>You are ready</b> (<a href='byond://?src=\ref[src];ready=2'>Cancel</a>)</p>"
 
 	else
-		output += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</a><br><br>"
-		output += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</a></p>"
+		html += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</a><br><br>"
+		html += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</a></p>"
 
-	output += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</a></p>"
+	html += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</a></p>"
 
 	if(!IsGuestKey(src.key))
 		establish_db_connection()
@@ -46,15 +46,15 @@
 				break
 
 			if(newpoll)
-				output += "<p><b><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</a> (NEW!)</b></p>"
+				html += "<p><b><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</a> (NEW!)</b></p>"
 			else
-				output += "<p><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</a></p>"
+				html += "<p><a href='byond://?src=\ref[src];showpoll=1'>Show Player Polls</a></p>"
 
-	output += "</div>"
+	html += "</div>"
 
 	var/datum/browser/panel = new /datum/browser(src, "playersetup", "", 210, 240, src)
 	panel.set_window_options("can_close=0")
-	panel.set_content(output)
+	panel.set_content(html)
 	panel.open()
 
 /mob/new_player/Stat()
@@ -87,7 +87,7 @@
 		return 0
 
 	if(href_list["show_preferences"])
-		client.prefs.ShowChoices(src)
+		client.prefs.character_setup_panel(src)
 		return 1
 
 	if(href_list["ready"])
@@ -141,10 +141,10 @@
 				src << alert("You are currently not whitelisted to play [client.prefs.species].")
 				return 0
 
-		late_join_choices()
+		late_join_choices_panel()
 
 	if(href_list["manifest"])
-		view_crew_manifest()
+		crew_manifest_panel()
 
 	if(href_list["SelectedJob"])
 		if(!GLOBL.enter_allowed)
@@ -326,29 +326,29 @@
 		a.autosay("[character.real_name], [rank ? "[rank]," : "visitor," ] [join_message ? join_message : "has arrived on the station"].", "Arrivals Announcement Computer")
 		qdel(a)
 
-/mob/new_player/proc/late_join_choices()
+/mob/new_player/proc/late_join_choices_panel()
 	var/mills = world.time // 1/10 of a second, not real milliseconds but whatever
 	//var/secs = ((mills % 36000) % 600) / 10 //Not really needed, but I'll leave it here for refrence.. or something
 	var/mins = (mills % 36000) / 600
 	var/hours = mills / 36000
 
-	var/output = "<html><body><center>"
-	output += "<b>Round Duration:</b> [round(hours)]h [round(mins)]m<br>"
+	var/html = "<html><body><center>"
+	html += "<b>Round Duration:</b> [round(hours)]h [round(mins)]m<br>"
 
 	if(isnotnull(global.PCemergency)) //In case Nanotrasen decides reposess CentCom's shuttles.
 		//Shuttle is going to centcom, not recalled
 		if(global.PCemergency.going_to_centcom())
-			output += "<font color='red'><b>The station has been evacuated.</b></font><br>"
+			html += "<font color='red'><b>The station has been evacuated.</b></font><br>"
 		// Emergency shuttle is past the point of no recall
 		if(global.PCemergency.online())
 			if(global.PCemergency.evac)
-				output += "<font color='red'>The station is currently undergoing evacuation procedures.</font><br>"
+				html += "<font color='red'>The station is currently undergoing evacuation procedures.</font><br>"
 			else
 				// Crew transfer initiated
-				output += "<font color='red'>The station is currently undergoing crew transfer procedures.</font><br>"
+				html += "<font color='red'>The station is currently undergoing crew transfer procedures.</font><br>"
 
-	output += "<hr>"
-	output += "<b>Choose from the following open positions:</b><br>"
+	html += "<hr>"
+	html += "<b>Choose from the following open positions:</b><br>"
 	for_no_type_check(var/datum/job/job, global.CTjobs.occupations)
 		if(is_job_available(job?.title))
 			var/active = 0
@@ -356,12 +356,12 @@
 			for_no_type_check(var/mob/M, GLOBL.player_list)
 				if(M.mind?.assigned_role == job.title && M.client?.inactivity <= 10 * 60 * 10)
 					active++
-			output += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
-	output += "</center>"
+			html += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
+	html += "</center>"
 
 	var/datum/browser/panel = new /datum/browser(src, "latechoices", "", 300, 640, src)
 	panel.set_window_options("can_close=1")
-	panel.set_content(output)
+	panel.set_content(html)
 	panel.open()
 
 /mob/new_player/proc/create_character()
@@ -424,15 +424,15 @@
 
 	return new_character
 
-/mob/new_player/proc/view_crew_manifest()
-	var/output = "<html><body>"
-	output += "<b>Crew Manifest</b>"
-	output += "<hr>"
-	output += GLOBL.data_core.get_manifest(OOC = 1)
+/mob/new_player/proc/crew_manifest_panel()
+	var/html = "<html><body>"
+	html += "<b>Crew Manifest</b>"
+	html += "<hr>"
+	html += GLOBL.data_core.get_manifest(OOC = 1)
 
 	var/datum/browser/panel = new /datum/browser(src, "manifest", "", 370, 420, src)
 	panel.set_window_options("can_close=1")
-	panel.set_content(output)
+	panel.set_content(html)
 	panel.open()
 
 /mob/new_player/Move()

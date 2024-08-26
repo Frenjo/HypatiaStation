@@ -109,7 +109,7 @@
 	var/datum/job/job = global.CTjobs.get_job(role)
 	if(isnull(job))
 		user << browse(null, "window=mob_occupation")
-		ShowChoices(user)
+		character_setup_panel(user)
 		return
 
 	if(role == "Assistant")

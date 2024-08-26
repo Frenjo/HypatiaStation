@@ -99,48 +99,58 @@
 	age = rand(25, 35)
 	b_type = pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
-/datum/preferences/proc/ShowChoices(mob/user)
-	if(isnull(user) || isnull(user.client))
+/datum/preferences/proc/character_setup_panel(mob/user)
+	if(isnull(user?.client))
 		return
 
 	update_preview_icon()
 	user << browse_rsc(preview_icon_front, "previewicon.png")
 	user << browse_rsc(preview_icon_side, "previewicon2.png")
-	var/dat = "<html><body><center>"
+	var/dat = "<div align='center'>"
 
 	if(path)
-		dat += "<center>"
+		dat += "<div align='center'>"
 		dat += "Slot <b>[slot_name]</b> - "
 		dat += "<a href=\"byond://?src=\ref[user];preference=open_load_dialog\">Load slot</a> - "
 		dat += "<a href=\"byond://?src=\ref[user];preference=save\">Save slot</a> - "
 		dat += "<a href=\"byond://?src=\ref[user];preference=reload\">Reload slot</a>"
-		dat += "</center>"
+		dat += "</div>"
 
 	else
 		dat += "Please create an account to save your preferences."
 
-	dat += "</center><hr><table><tr><td width='340px' height='320px'>"
+	dat += "</div><hr><table><tr><td width='340px' height='320px'>"
 
-	dat += "<b>Name:</b> "
-	dat += "<a href='byond://?_src_=prefs;preference=name;task=input'><b>[real_name]</b></a><br>"
-	dat += "(<a href='byond://?_src_=prefs;preference=name;task=random'>Random Name</A>) "
-	dat += "(<a href='byond://?_src_=prefs;preference=name'>Always Random Name: [be_random_name ? "Yes" : "No"]</a>)"
+	dat += "<b>Name:</b> <a href='byond://?_src_=prefs;preference=name;task=input'><b>[real_name]</b></a>"
+	dat += "<br>"
+	dat += "(<a href='byond://?_src_=prefs;preference=name;task=random'>Random Name</A>) (<a href='byond://?_src_=prefs;preference=name'>Always Random Name: [be_random_name ? "Yes" : "No"]</a>)"
 	dat += "<br>"
 
-	dat += "<b>Gender:</b> <a href='byond://?_src_=prefs;preference=gender'><b>[gender == MALE ? "Male" : "Female"]</b></a><br>"
-	dat += "<b>Age:</b> <a href='byond://?_src_=prefs;preference=age;task=input'>[age]</a><br>"
+	dat += "<b>Gender:</b> <a href='byond://?_src_=prefs;preference=gender'><b>[gender == MALE ? "Male" : "Female"]</b></a>"
+	dat += "<br>"
+	dat += "<b>Age:</b> <a href='byond://?_src_=prefs;preference=age;task=input'>[age]</a>"
+	dat += "<br>"
 	dat += "<b>Spawn Point</b>: <a href='byond://?src=\ref[user];preference=spawnpoint;task=input'>[spawnpoint]</a>"
 
 	dat += "<br>"
-	dat += "<b>UI Style:</b> <a href='byond://?_src_=prefs;preference=ui'><b>[UI_style]</b></a><br>"
-	dat += "<b>Custom UI</b>(recommended for White UI):<br>"
-	dat += "-Color: <a href='byond://?_src_=prefs;preference=UIcolor'><b>[UI_style_color]</b></a> <table style='display:inline;' bgcolor='[UI_style_color]'><tr><td>__</td></tr></table><br>"
-	dat += "-Alpha(transparency): <a href='byond://?_src_=prefs;preference=UIalpha'><b>[UI_style_alpha]</b></a><br>"
-	dat += "<b>Play admin midis:</b> <a href='byond://?_src_=prefs;preference=hear_midis'><b>[(toggles & SOUND_MIDI) ? "Yes" : "No"]</b></a><br>"
-	dat += "<b>Play lobby music:</b> <a href='byond://?_src_=prefs;preference=lobby_music'><b>[(toggles & SOUND_LOBBY) ? "Yes" : "No"]</b></a><br>"
-	dat += "<b>Ghost ears:</b> <a href='byond://?_src_=prefs;preference=ghost_ears'><b>[(toggles & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</b></a><br>"
-	dat += "<b>Ghost sight:</b> <a href='byond://?_src_=prefs;preference=ghost_sight'><b>[(toggles & CHAT_GHOSTSIGHT) ? "All Emotes" : "Nearest Creatures"]</b></a><br>"
-	dat += "<b>Ghost radio:</b> <a href='byond://?_src_=prefs;preference=ghost_radio'><b>[(toggles & CHAT_GHOSTRADIO) ? "All Chatter" : "Nearest Speakers"]</b></a><br>"
+	dat += "<b>UI Style:</b> <a href='byond://?_src_=prefs;preference=ui'><b>[UI_style]</b></a>"
+	dat += "<br>"
+	dat += "<b>Custom UI</b> (recommended for White UI):"
+	dat += "<br>"
+	dat += "- Color: <a href='byond://?_src_=prefs;preference=UIcolor'><b>[UI_style_color]</b></a> <font face='fixedsys' size='3' color='[UI_style_color]'><table style='display:inline;' bgcolor='[UI_style_color]'><tr><td>__</td></tr></font></table>"
+	dat += "<br>"
+	dat += "- Alpha (transparency): <a href='byond://?_src_=prefs;preference=UIalpha'><b>[UI_style_alpha]</b></a>"
+	dat += "<br>"
+	dat += "<b>Play admin midis:</b> <a href='byond://?_src_=prefs;preference=hear_midis'><b>[(toggles & SOUND_MIDI) ? "Yes" : "No"]</b></a>"
+	dat += "<br>"
+	dat += "<b>Play lobby music:</b> <a href='byond://?_src_=prefs;preference=lobby_music'><b>[(toggles & SOUND_LOBBY) ? "Yes" : "No"]</b></a>"
+	dat += "<br>"
+	dat += "<b>Ghost ears:</b> <a href='byond://?_src_=prefs;preference=ghost_ears'><b>[(toggles & CHAT_GHOSTEARS) ? "All Speech" : "Nearest Creatures"]</b></a>"
+	dat += "<br>"
+	dat += "<b>Ghost sight:</b> <a href='byond://?_src_=prefs;preference=ghost_sight'><b>[(toggles & CHAT_GHOSTSIGHT) ? "All Emotes" : "Nearest Creatures"]</b></a>"
+	dat += "<br>"
+	dat += "<b>Ghost radio:</b> <a href='byond://?_src_=prefs;preference=ghost_radio'><b>[(toggles & CHAT_GHOSTRADIO) ? "All Chatter" : "Nearest Speakers"]</b></a>"
+	dat += "<br>"
 
 	if(CONFIG_GET(allow_Metadata))
 		dat += "<b>OOC Notes:</b> <a href='byond://?_src_=prefs;preference=metadata;task=input'> Edit </a><br>"
@@ -230,7 +240,13 @@
 
 	dat += "NanoTrasen Relation:<br><a href='byond://?_src_=prefs;preference=nt_relation;task=input'><b>[nanotrasen_relation]</b></a><br>"
 
-	dat += "</td><td><b>Preview</b><br><img src=previewicon.png height=64 width=64><img src=previewicon2.png height=64 width=64></td></tr></table>"
+	dat += "</td>"
+	dat += "<td><div class='block'>"
+	dat += "<b>Preview</b>"
+	dat += "<hr>"
+	dat += "<img src=previewicon.png height=64 width=64><img src=previewicon2.png height=64 width=64>"
+	dat += "</div></td>"
+	dat += "</tr></table>"
 
 	dat += "</td><td width='300px' height='300px'>"
 
@@ -241,7 +257,7 @@
 
 	//dat += "<b><a href=\"byond://?src=\ref[user];preference=antagoptions;active=0\">Set Antag Options</b></a><br>"
 
-	dat += "\t<a href=\"byond://?src=\ref[user];preference=skills\"><b>Set Skills</b> (<i>[GetSkillClass(used_skillpoints)][used_skillpoints > 0 ? " [used_skillpoints]" : "0"])</i></a><br>"
+	dat += "\t<a href=\"byond://?src=\ref[user];preference=skills\"><b>Set Skills</b> (<i>[GetSkillClass(used_skillpoints)] [used_skillpoints > 0 ? " [used_skillpoints]" : "0"])</i></a><br>"
 
 	dat += "<a href='byond://?src=\ref[user];preference=flavor_text;task=input'><b>Set Flavor Text</b></a><br>"
 	if(length(flavor_text) <= 40)
@@ -254,12 +270,12 @@
 	dat += "<br>"
 
 	dat += "<br><b>Hair</b><br>"
-	dat += "<a href='byond://?_src_=prefs;preference=hair;task=input'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair)]'><tr><td>__</td></tr></table></font> "
-	dat += " Style: <a href='byond://?_src_=prefs;preference=h_style;task=input'>[h_style]</a><br>"
+	dat += "Style: <a href='byond://?_src_=prefs;preference=h_style;task=input'>[h_style]</a><br>"
+	dat += "<a href='byond://?_src_=prefs;preference=hair;task=input'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair, 2)]'><table style='display:inline;' bgcolor='#[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair)]'><tr><td>__</td></tr></table></font><br>"
 
 	dat += "<br><b>Facial</b><br>"
-	dat += "<a href='byond://?_src_=prefs;preference=facial;task=input'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial)]'><tr><td>__</td></tr></table></font> "
-	dat += " Style: <a href='byond://?_src_=prefs;preference=f_style;task=input'>[f_style]</a><br>"
+	dat += "Style: <a href='byond://?_src_=prefs;preference=f_style;task=input'>[f_style]</a><br>"
+	dat += "<a href='byond://?_src_=prefs;preference=facial;task=input'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_facial, 2)][num2hex(g_facial, 2)][num2hex(b_facial)]'><tr><td>__</td></tr></table></font><br>"
 
 	dat += "<br><b>Eyes</b><br>"
 	dat += "<a href='byond://?_src_=prefs;preference=eyes;task=input'>Change Color</a> <font face='fixedsys' size='3' color='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes, 2)]'><table  style='display:inline;' bgcolor='#[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes)]'><tr><td>__</td></tr></table></font><br>"
@@ -283,16 +299,20 @@
 				else
 					dat += "<b>Be [i]:</b> <a href='byond://?_src_=prefs;preference=be_special;num=[n]'><b>[be_special & (1 << n) ? "Yes" : "No"]</b></a><br>"
 			n++
-	dat += "</td></tr></table><hr><center>"
+	dat += "</td></tr></table>"
 
+	dat += "<hr>"
+	dat += "<div align='center'>"
 	if(!IsGuestKey(user.key))
 		dat += "<a href='byond://?_src_=prefs;preference=load'>Undo</a> - "
 		dat += "<a href='byond://?_src_=prefs;preference=save'>Save Setup</a> - "
 
 	dat += "<a href='byond://?_src_=prefs;preference=reset_all'>Reset Setup</a>"
-	dat += "</center></body></html>"
+	dat += "</div>"
 
-	user << browse(dat, "window=preferences;size=560x580")
+	var/datum/browser/panel = new /datum/browser(user, "preferences", "", 700, 800)
+	panel.set_content(dat)
+	panel.open()
 
 /datum/preferences/proc/SetDisabilities(mob/user)
 	var/dat = "<body>"
@@ -313,38 +333,37 @@
 	user << browse(null, "window=preferences")
 	user << browse(dat, "window=disabil;size=350x300")
 
-/datum/preferences/proc/SetRecords(mob/user)
-	var/dat = "<body>"
-	dat += "<tt><center>"
-	dat += "<b>Set Character Records</b><br>"
+/datum/preferences/proc/set_records(mob/user)
+	var/html = "<div align='center'><b>Set Character Records</b>"
+	html += "<hr>"
 
-	dat += "<a href=\"byond://?src=\ref[user];preference=records;task=med_record\">Medical Records</a><br>"
-
+	html += "<a href=\"byond://?src=\ref[user];preference=records;task=med_record\">Medical Records</a><br>"
 	if(length(med_record) <= 40)
-		dat += "[med_record]"
+		html += "[med_record]"
 	else
-		dat += "[copytext(med_record, 1, 37)]..."
+		html += "[copytext(med_record, 1, 37)]..."
 
-	dat += "<br><br><a href=\"byond://?src=\ref[user];preference=records;task=gen_record\">Employment Records</a><br>"
-
+	html += "<br><br><a href=\"byond://?src=\ref[user];preference=records;task=gen_record\">Employment Records</a><br>"
 	if(length(gen_record) <= 40)
-		dat += "[gen_record]"
+		html += "[gen_record]"
 	else
-		dat += "[copytext(gen_record, 1, 37)]..."
+		html += "[copytext(gen_record, 1, 37)]..."
 
-	dat += "<br><br><a href=\"byond://?src=\ref[user];preference=records;task=sec_record\">Security Records</a><br>"
-
+	html += "<br><br><a href=\"byond://?src=\ref[user];preference=records;task=sec_record\">Security Records</a><br>"
 	if(length(sec_record) <= 40)
-		dat += "[sec_record]<br>"
+		html += "[sec_record]<br>"
 	else
-		dat += "[copytext(sec_record, 1, 37)]...<br>"
+		html += "[copytext(sec_record, 1, 37)]...<br>"
 
-	dat += "<br>"
-	dat += "<a href=\"byond://?src=\ref[user];preference=records;records=-1\">\[Done\]</a>"
-	dat += "</center></tt>"
+	html += "<br>"
+	html += "<hr>"
+	html += "<a href=\"byond://?src=\ref[user];preference=records;records=-1\">\[Done\]</a>"
+	html += "</div>"
 
 	user << browse(null, "window=preferences")
-	user << browse(dat, "window=records;size=350x300")
+	var/datum/browser/panel = new /datum/browser(user, "records", "", 350, 300)
+	panel.set_content(html)
+	panel.open()
 
 /datum/preferences/proc/SetAntagoptions(mob/user)
 	if(uplinklocation == "")
@@ -374,7 +393,7 @@
 		switch(href_list["task"])
 			if("close")
 				user << browse(null, "window=mob_occupation")
-				ShowChoices(user)
+				character_setup_panel(user)
 			if("reset")
 				ResetJobs()
 				SetChoices(user)
@@ -402,7 +421,7 @@
 	else if(href_list["preference"] == "skills")
 		if(href_list["cancel"])
 			user << browse(null, "window=show_skills")
-			ShowChoices(user)
+			character_setup_panel(user)
 		else if(href_list["skillinfo"])
 			var/datum/skill/S = locate(href_list["skillinfo"])
 			var/HTML = "<b>[S.name]</b><br>[S.desc]"
@@ -412,7 +431,7 @@
 			var/value = text2num(href_list["newvalue"])
 			skills[S.id] = value
 			CalculateSkillPoints()
-			SetSkills(user)
+			set_skills_panel(user)
 		else if(href_list["preconfigured"])
 			var/selected = input(user, "Select a skillset", "Skillset") as null | anything in GLOBL.skill_presets
 			if(!selected)
@@ -426,18 +445,18 @@
 				skills[V] = GLOBL.skill_presets[selected][V]
 			CalculateSkillPoints()
 
-			SetSkills(user)
+			set_skills_panel(user)
 		else if(href_list["setspecialization"])
 			skill_specialization = href_list["setspecialization"]
 			CalculateSkillPoints()
-			SetSkills(user)
+			set_skills_panel(user)
 		else
-			SetSkills(user)
+			set_skills_panel(user)
 		return 1
 
 	else if(href_list["preference"] == "records")
 		if(text2num(href_list["record"]) >= 1)
-			SetRecords(user)
+			set_records(user)
 			return
 		else
 			user << browse(null, "window=records")
@@ -449,7 +468,7 @@
 				medmsg = html_encode(medmsg)
 
 				med_record = medmsg
-				SetRecords(user)
+				set_records(user)
 
 		if(href_list["task"] == "sec_record")
 			var/secmsg = input(usr, "Set your security notes here.", "Security Records", html_decode(sec_record)) as message
@@ -459,7 +478,7 @@
 				secmsg = html_encode(secmsg)
 
 				sec_record = secmsg
-				SetRecords(user)
+				set_records(user)
 		if(href_list["task"] == "gen_record")
 			var/genmsg = input(usr, "Set your employment notes here.", "Employment Records", html_decode(gen_record)) as message
 
@@ -468,7 +487,7 @@
 				genmsg = html_encode(genmsg)
 
 				gen_record = genmsg
-				SetRecords(user)
+				set_records(user)
 
 	else if(href_list["preference"] == "antagoptions")
 		if(text2num(href_list["active"]) == 0)
@@ -484,7 +503,7 @@
 			SetAntagoptions(user)
 		if(href_list["antagtask"] == "done")
 			user << browse(null, "window=antagoptions")
-			ShowChoices(user)
+			character_setup_panel(user)
 		return 1
 
 	switch(href_list["task"])
@@ -508,7 +527,7 @@
 					f_style = random_facial_hair_style(gender, species)
 				if("underwear")
 					underwear = rand(1, length(GLOBL.underwear_m))
-					ShowChoices(user)
+					character_setup_panel(user)
 				if("eyes")
 					r_eyes = rand(0, 255)
 					g_eyes = rand(0, 255)
@@ -690,7 +709,7 @@
 					var/new_underwear = input(user, "Choose your character's underwear:", "Character Preference") as null | anything in underwear_options
 					if(new_underwear)
 						underwear = underwear_options.Find(new_underwear)
-					ShowChoices(user)
+					character_setup_panel(user)
 
 				if("eyes")
 					var/new_eyes = input(user, "Choose your character's eye colour:", "Character Preference") as color | null
@@ -923,7 +942,7 @@
 					load_character(text2num(href_list["num"]))
 					close_load_dialog(user)
 
-	ShowChoices(user)
+	character_setup_panel(user)
 	return 1
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = 0)
