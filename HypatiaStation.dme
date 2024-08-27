@@ -490,6 +490,7 @@
 #include "code\game\mobs\living\carbon\carbon.dm"
 #include "code\game\mobs\living\carbon\carbon_defines.dm"
 #include "code\game\mobs\living\carbon\carbon_helpers.dm"
+#include "code\game\mobs\living\carbon\carbon_movement.dm"
 #include "code\game\mobs\living\carbon\carbon_powers.dm"
 #include "code\game\mobs\living\carbon\give.dm"
 #include "code\game\mobs\living\carbon\internals.dm"

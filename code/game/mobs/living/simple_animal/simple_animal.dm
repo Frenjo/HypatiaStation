@@ -292,11 +292,10 @@
 			visible_message(SPAN_WARNING("[user] gently taps [src] with \the [O]."))
 
 /mob/living/simple_animal/movement_delay()
-	var/tally = 0 //Incase I need to add stuff other than "speed" later
+	. = ..() //Incase I need to add stuff other than "speed" later
+	. += speed
 
-	tally = speed
-
-	return tally + CONFIG_GET(animal_delay)
+	. += CONFIG_GET(animal_delay)
 
 /mob/living/simple_animal/Stat()
 	..()

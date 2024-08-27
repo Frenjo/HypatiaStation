@@ -105,18 +105,19 @@
 	add_language("Rootspeak")
 
 /mob/living/carbon/monkey/movement_delay()
-	var/tally = 0
-	if(reagents)
-		if(reagents.has_reagent("hyperzine")) return -1
-
-		if(reagents.has_reagent("nuka_cola")) return -1
+	. = ..()
+	if(isnotnull(reagents))
+		if(reagents.has_reagent("hyperzine") || reagents.has_reagent("nuka_cola"))
+			return -1
 
 	var/health_deficiency = (100 - health)
-	if(health_deficiency >= 45) tally += (health_deficiency / 25)
+	if(health_deficiency >= 45)
+		. += (health_deficiency / 25)
 
-	if (bodytemperature < 283.222)
-		tally += (283.222 - bodytemperature) / 10 * 1.75
-	return tally + CONFIG_GET(monkey_delay)
+	if(bodytemperature < 283.222)
+		. += (283.222 - bodytemperature) / 10 * 1.75
+
+	. += CONFIG_GET(monkey_delay)
 
 /mob/living/carbon/monkey/Topic(href, href_list)
 	..()

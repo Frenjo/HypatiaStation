@@ -86,6 +86,8 @@
 	return 0
 
 /mob/proc/movement_delay()
+	SHOULD_CALL_PARENT(TRUE)
+
 	return 0
 
 /mob/proc/Life()

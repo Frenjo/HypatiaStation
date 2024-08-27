@@ -225,9 +225,6 @@
 		move_delay = world.time - leftover	//set move delay
 
 		mob.last_move_intent = world.time + 10
-		if(IS_RUNNING(mob))
-			if(mob.drowsyness > 0)
-				move_delay += 6
 		move_delay += mob.move_intent.move_delay
 		move_delay += mob.movement_delay()
 

@@ -82,29 +82,28 @@
 	..()
 
 /mob/living/carbon/slime/movement_delay()
-	var/tally = 0
+	. = ..()
 
 	var/health_deficiency = (100 - health)
 	if(health_deficiency >= 45)
-		tally += (health_deficiency / 25)
+		. += (health_deficiency / 25)
 
 	if(bodytemperature < 183.222)
-		tally += (283.222 - bodytemperature) / 10 * 1.75
+		. += (283.222 - bodytemperature) / 10 * 1.75
 
-	if(reagents)
+	if(isnotnull(reagents))
 		if(reagents.has_reagent("hyperzine")) // hyperzine slows slimes down
-			tally *= 2 // moves twice as slow
-
+			. *= 2 // moves twice as slow
 		if(reagents.has_reagent("frostoil")) // frostoil also makes them move VEEERRYYYYY slow
-			tally *= 5
+			. *= 5
 
 	if(health <= 0) // if damaged, the slime moves twice as slow
-		tally *= 2
+		. *= 2
 
 	if(bodytemperature >= 330.23) // 135 F
 		return -1	// slimes become supercharged at high temperatures
 
-	return tally + CONFIG_GET(slime_delay)
+	. += CONFIG_GET(slime_delay)
 
 /mob/living/carbon/slime/Process_Spacemove()
 	return 2
