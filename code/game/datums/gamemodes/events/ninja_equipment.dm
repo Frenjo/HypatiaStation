@@ -1186,8 +1186,10 @@ ________________________________________________________________________________
 			target_list += target
 	if(length(target_list))
 		assess_targets(target_list, M)
-	if(!M.druggy)
-		M.see_invisible = SEE_INVISIBLE_LIVING
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		if(!C.druggy)
+			M.see_invisible = SEE_INVISIBLE_LIVING
 
 /obj/item/clothing/glasses/hud/ninja/proc/assess_targets(list/target_list, mob/living/carbon/U)
 	var/icon/tempHud = 'icons/mob/screen/hud.dmi'

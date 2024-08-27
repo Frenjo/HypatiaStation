@@ -66,4 +66,6 @@
 	var/is_jittery = 0
 	var/jitteriness = 0	//Carbon
 
+	var/job = null
+
 	var/immune_to_ssd = 0

@@ -156,6 +156,9 @@ var/list/sacrificed = list()
 
 /////////////////////////////////////////SIXTH RUNE
 /obj/effect/rune/proc/drain()
+	if(!iscarbon(usr))
+		return fizzle()
+	var/mob/living/carbon/user = usr
 	var/drain = 0
 	for(var/obj/effect/rune/R in GLOBL.movable_atom_list)
 		if(R.word1 == cultwords["travel"] && R.word2 == cultwords["blood"] && R.word3 == cultwords["self"])
@@ -167,13 +170,12 @@ var/list/sacrificed = list()
 					drain += bdrain
 	if(!drain)
 		return fizzle()
-	usr.say ("Yu[pick("'", "`")]gular faras desdae. Havas mithum javara. Umathar uf'kal thenar!")
-	usr.visible_message(
-		SPAN_WARNING("Blood flows from the rune into [usr]!"),
+	user.say ("Yu[pick("'", "`")]gular faras desdae. Havas mithum javara. Umathar uf'kal thenar!")
+	user.visible_message(
+		SPAN_WARNING("Blood flows from the rune into [user]!"),
 		SPAN_WARNING("The blood starts flowing from the rune and into your frail mortal body. You feel... empowered."),
 		SPAN_WARNING("You hear a liquid flowing.")
 	)
-	var/mob/living/user = usr
 	if(user.bhunger)
 		user.bhunger = max(user.bhunger - 2 * drain, 0)
 	if(drain >= 50)
@@ -194,28 +196,26 @@ var/list/sacrificed = list()
 	for(, drain > 0, drain -= 5)
 		sleep(2)
 		user.heal_organ_damage(5, 0)
-	return
-
 
 /////////////////////////////////////////SEVENTH RUNE
 /obj/effect/rune/proc/seer()
-	if(usr.loc == src.loc)
-		if(usr.seer == 1)
-			usr.say("Rash'tla sektath mal[pick("'", "`")]zua. Zasan therium viortia.")
-			to_chat(usr, SPAN_WARNING("The world beyond fades from your vision."))
-			usr.see_invisible = SEE_INVISIBLE_LIVING
-			usr.seer = 0
-		else if(usr.see_invisible != SEE_INVISIBLE_LIVING)
-			to_chat(usr, SPAN_WARNING("The world beyond flashes your eyes but disappears quickly, as if something is disrupting your vision."))
-			usr.see_invisible = SEE_INVISIBLE_OBSERVER
-			usr.seer = 0
-		else
-			usr.say("Rash'tla sektath mal[pick("'", "`")]zua. Zasan therium vivira. Itonis al'ra matum!")
-			to_chat(usr, SPAN_WARNING("The world beyond opens to your eyes."))
-			usr.see_invisible = SEE_INVISIBLE_OBSERVER
-			usr.seer = 1
-		return
-	return fizzle()
+	if(!iscarbon(usr) || usr.loc != src.loc)
+		return fizzle()
+	var/mob/living/carbon/user = usr
+	if(user.seer)
+		user.say("Rash'tla sektath mal[pick("'", "`")]zua. Zasan therium viortia.")
+		to_chat(user, SPAN_WARNING("The world beyond fades from your vision."))
+		user.see_invisible = SEE_INVISIBLE_LIVING
+		user.seer = FALSE
+	else if(user.see_invisible != SEE_INVISIBLE_LIVING)
+		to_chat(user, SPAN_WARNING("The world beyond flashes your eyes but disappears quickly, as if something is disrupting your vision."))
+		user.see_invisible = SEE_INVISIBLE_OBSERVER
+		user.seer = FALSE
+	else
+		user.say("Rash'tla sektath mal[pick("'", "`")]zua. Zasan therium vivira. Itonis al'ra matum!")
+		to_chat(user, SPAN_WARNING("The world beyond opens to your eyes."))
+		user.see_invisible = SEE_INVISIBLE_OBSERVER
+		user.seer = TRUE
 
 
 /////////////////////////////////////////EIGHTH RUNE
@@ -333,25 +333,24 @@ var/list/sacrificed = list()
 
 /////////////////////////////////////////TENTH RUNE
 /obj/effect/rune/proc/ajourney() //some bits copypastaed from admin tools - Urist
-	if(usr.loc == src.loc)
-		var/mob/living/carbon/human/L = usr
-		usr.say("Fwe[pick("'", "`")]sh mah erl nyag r'ya!")
-		usr.visible_message(
-			SPAN_WARNING("[usr]'s eyes glow blue as \he freezes in place, absolutely motionless."),
-			SPAN_WARNING("The shadow that is your spirit separates itself from your body. You are now in the realm beyond. While this is a great sight, being here strains your mind and body. Hurry..."),
-			SPAN_WARNING("You hear only complete silence for a moment.")
-		)
-		usr.ghostize(1)
-		L.ajourn = 1
-		while(L)
-			if(L.key)
-				L.ajourn = 0
-				return
-			else
-				L.take_organ_damage(10, 0)
-			sleep(100)
-	return fizzle()
-
+	if(!ishuman(usr) || usr.loc != src.loc)
+		return fizzle()
+	var/mob/living/carbon/human/L = usr
+	L.say("Fwe[pick("'", "`")]sh mah erl nyag r'ya!")
+	L.visible_message(
+		SPAN_WARNING("[L]'s eyes glow blue as \he freezes in place, absolutely motionless."),
+		SPAN_WARNING("The shadow that is your spirit separates itself from your body. You are now in the realm beyond. While this is a great sight, being here strains your mind and body. Hurry..."),
+		SPAN_WARNING("You hear only complete silence for a moment.")
+	)
+	L.ghostize(1)
+	L.ajourn = TRUE
+	while(L)
+		if(isnotnull(L.key))
+			L.ajourn = FALSE
+			return
+		else
+			L.take_organ_damage(10, 0)
+		sleep(100)
 
 /////////////////////////////////////////ELEVENTH RUNE
 /obj/effect/rune/proc/manifest()

@@ -35,3 +35,9 @@
 	var/overeatduration = 0 // How long this guy is overeating
 
 	var/digitalcamo = 0 // Can they be tracked by the AI?
+
+	// These appear to be cult-related.
+	// They could all probably be moved down to /human later.
+	var/bhunger = 0
+	var/ajourn = FALSE
+	var/seer = FALSE

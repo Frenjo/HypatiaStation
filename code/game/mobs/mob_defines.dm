@@ -71,8 +71,7 @@
 	var/flavor_text = ""
 
 	var/blinded = null
-	var/bhunger = 0			//Carbon
-	var/ajourn = 0
+
 	var/druggy = 0			//Carbon
 	var/confused = 0		//Carbon
 
@@ -129,8 +128,6 @@
 	var/obj/item/back = null // Human/Monkey
 	var/obj/item/clothing/mask/wear_mask = null // Carbon
 
-	var/seer = 0 //for cult //Carbon, probably Human
-
 	var/datum/hud/hud_used = null
 
 	var/list/grabbed_by = list()
@@ -143,8 +140,6 @@
 	var/coughedtime = null
 
 	var/inertia_dir = 0
-
-	var/job = null	//Living
 
 	var/datum/dna/dna = null	//Carbon
 	var/radiation = 0.0			//Carbon
