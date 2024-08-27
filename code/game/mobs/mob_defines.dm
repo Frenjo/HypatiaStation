@@ -3,6 +3,7 @@
 	layer = 4.0
 	animate_movement = 2
 //	flags = NOREACT
+	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 
 	// The mind attached to this mob.
 	var/datum/mind/mind = null
@@ -44,41 +45,37 @@
 	var/atom/movable/screen/zone_sel/zone_sel = null
 
 	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
-	var/damageoverlaytemp = 0
+
 	var/computer_id = null
 	var/lastattacker = null
 	var/lastattacked = null
-	var/attack_log = list( )
-	var/already_placed = 0.0
+	var/attack_log = list()
+
 	var/obj/machinery/machine = null
 	var/other_mobs = null
 	var/memory = ""
-	var/poll_answer = 0.0
+
 	var/sdisabilities = 0	//Carbon
 	var/disabilities = 0	//Carbon
 	var/atom/movable/pulling = null
 	var/next_move = null
 	var/monkeyizing = null	//Carbon
-	var/other = 0.0
+
 	var/hand = null
-	var/eye_blind = null	//Carbon
-	var/eye_blurry = null	//Carbon
+
 	var/ear_deaf = null		//Carbon
-	var/ear_damage = null	//Carbon
+
 	var/stuttering = null	//Carbon
 	var/slurring = null		//Carbon
 	var/real_name = null
 	var/flavor_text = ""
-	var/med_record = ""
-	var/sec_record = ""
-	var/gen_record = ""
+
 	var/blinded = null
 	var/bhunger = 0			//Carbon
 	var/ajourn = 0
 	var/druggy = 0			//Carbon
 	var/confused = 0		//Carbon
-	var/antitoxs = null
-	var/plasma = null
+
 	var/sleeping = 0		//Carbon
 	var/resting = 0			//Carbon
 	var/lying = 0
@@ -97,24 +94,15 @@
 	var/name_archive //For admin things like possession
 
 	var/timeofdeath = 0.0//Living
-	var/cpr_time = 1.0//Carbon
-
 
 	var/bodytemperature = 310.055	//98.7 F
 	var/drowsyness = 0.0//Carbon
-	var/dizziness = 0//Carbon
-	var/is_dizzy = 0
-	var/is_jittery = 0
-	var/jitteriness = 0//Carbon
-	var/charges = 0.0
-	var/nutrition = 400.0//Carbon
 
-	var/overeatduration = 0		// How long this guy is overeating //Carbon
 	var/paralysis = 0.0
 	var/stunned = 0.0
 	var/weakened = 0.0
 	var/losebreath = 0.0	//Carbon
-	var/intent = null		//Living
+
 	var/shakecamera = 0
 	var/a_intent = "help"	//Living
 
@@ -156,14 +144,7 @@
 
 	var/inertia_dir = 0
 
-	var/music_lastplayed = "null"
-
 	var/job = null	//Living
-
-	var/const/blindness = 1	//Carbon
-	var/const/deafness = 2	//Carbon
-	var/const/muteness = 4	//Carbon
-
 
 	var/datum/dna/dna = null	//Carbon
 	var/radiation = 0.0			//Carbon
@@ -206,19 +187,11 @@
 	var/list/resistances = list()
 	var/datum/disease/virus = null
 
-	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
-
 	var/update_icon = 1 //Set to 1 to trigger update_icons() at the next life() call
 
 	var/status_flags = CANSTUN|CANWEAKEN|CANPARALYSE|CANPUSH	//bitflags defining which status effects can be inflicted (replaces canweaken, canstun, etc)
 
 	var/area/lastarea = null
-
-	var/digitalcamo = 0 // Can they be tracked by the AI?
-
-	var/list/radar_blips = list() // list of screen objects, radar blips
-	var/radar_open = 0 	// nonzero is radar is open
-
 
 	var/obj/control_object //Used by admins to possess objects. All mobs should have this var
 
@@ -230,8 +203,6 @@
 
 	var/has_limbs = 1 //Whether this mob have any limbs he can move with
 	var/can_stand = 1 //Whether this mob have ability to stand
-
-	var/immune_to_ssd = 0
 
 	var/turf/listed_turf = null  //the current turf being examined in the stat panel
 

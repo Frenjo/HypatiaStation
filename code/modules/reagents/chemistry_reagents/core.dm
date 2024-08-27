@@ -523,7 +523,9 @@
 	color = "#FFFFFF" // rgb: 255, 255, 255
 
 /datum/reagent/sugar/on_mob_life(mob/living/M)
-	M.nutrition += 1 * REM
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition += 1 * REM
 	. = ..()
 
 /datum/reagent/glycerol
@@ -614,7 +616,9 @@
 /datum/reagent/virus_food/on_mob_life(mob/living/M)
 	if(isnull(M))
 		M = holder.my_atom
-	M.nutrition += nutriment_factor * REM
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition += nutriment_factor * REM
 	. = ..()
 
 /datum/reagent/iron

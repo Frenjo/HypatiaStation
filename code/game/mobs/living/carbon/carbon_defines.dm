@@ -20,3 +20,18 @@
 	var/pose = null
 
 	var/pulse = PULSE_NORM	//current pulse level
+
+	/*
+	 * All below were moved from /mob.
+	 * These need to be sorted eventually.
+	 */
+	var/med_record = ""
+	var/sec_record = ""
+	var/gen_record = ""
+
+	var/cpr_time = TRUE
+
+	var/nutrition = 400
+	var/overeatduration = 0 // How long this guy is overeating
+
+	var/digitalcamo = 0 // Can they be tracked by the AI?

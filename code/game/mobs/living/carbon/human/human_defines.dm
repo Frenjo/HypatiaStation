@@ -87,3 +87,9 @@
 
 	var/mob/remoteview_target = null
 	var/hand_blood_color
+
+	/*
+	 * All below were moved from /mob.
+	 * These need to be sorted eventually.
+	 */
+	var/damageoverlaytemp = 0

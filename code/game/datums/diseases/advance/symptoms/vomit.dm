@@ -29,22 +29,22 @@ Bonus
 /datum/symptom/vomit/Activate(datum/disease/advance/A)
 	..()
 	if(prob(SYMPTOM_ACTIVATION_PROB / 2))
-		var/mob/living/M = A.affected_mob
+		var/mob/living/carbon/C = A.affected_mob
 		switch(A.stage)
 			if(1, 2, 3, 4)
-				to_chat(M, SPAN_NOTICE("[pick("You feel nauseous.", "You feel like you're going to throw up!")]"))
+				to_chat(C, SPAN_NOTICE("[pick("You feel nauseous.", "You feel like you're going to throw up!")]"))
 			else
-				Vomit(M)
+				Vomit(C)
 	return
 
-/datum/symptom/vomit/proc/Vomit(mob/living/M)
-	M.visible_message("<B>[M]</B> vomits on the floor!")
+/datum/symptom/vomit/proc/Vomit(mob/living/carbon/C)
+	C.visible_message("<B>[C]</B> vomits on the floor!")
 
-	M.nutrition -= 20
-	M.adjustToxLoss(-3)
+	C.nutrition -= 20
+	C.adjustToxLoss(-3)
 
-	var/turf/pos = get_turf(M)
-	pos.add_vomit_floor(M)
+	var/turf/pos = get_turf(C)
+	pos.add_vomit_floor(C)
 	playsound(pos, 'sound/effects/splat.ogg', 50, 1)
 
 

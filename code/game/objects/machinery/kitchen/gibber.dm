@@ -153,10 +153,11 @@
 	var/obj/item/reagent_holder/food/snacks/meat/allmeat[totalslabs]
 
 	if(ishuman(src.occupant))
-		var/sourcename = src.occupant.real_name
-		var/sourcejob = src.occupant.job
-		var/sourcenutriment = src.occupant.nutrition / 15
-		var/sourcetotalreagents = src.occupant.reagents.total_volume
+		var/mob/living/carbon/human/H = src.occupant
+		var/sourcename = H.real_name
+		var/sourcejob = H.job
+		var/sourcenutriment = H.nutrition / 15
+		var/sourcetotalreagents = H.reagents.total_volume
 
 		for(var/i=1 to totalslabs)
 			var/obj/item/reagent_holder/food/snacks/meat/human/newmeat = new
@@ -164,52 +165,53 @@
 			newmeat.subjectname = sourcename
 			newmeat.subjectjob = sourcejob
 			newmeat.reagents.add_reagent("nutriment", sourcenutriment / totalslabs) // Thehehe. Fat guys go first
-			src.occupant.reagents.trans_to(newmeat, round (sourcetotalreagents / totalslabs, 1)) // Transfer all the reagents from the
+			H.reagents.trans_to(newmeat, round (sourcetotalreagents / totalslabs, 1)) // Transfer all the reagents from the
 			allmeat[i] = newmeat
 
-		src.occupant.attack_log += "\[[time_stamp()]\] Was gibbed by <b>[user]/[user.ckey]</b>" //One shall not simply gib a mob unnoticed!
-		user.attack_log += "\[[time_stamp()]\] Gibbed <b>[src.occupant]/[src.occupant.ckey]</b>"
-		msg_admin_attack("[user.name] ([user.ckey]) gibbed [src.occupant] ([src.occupant.ckey]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+		H.attack_log += "\[[time_stamp()]\] Was gibbed by <b>[user]/[user.ckey]</b>" //One shall not simply gib a mob unnoticed!
+		user.attack_log += "\[[time_stamp()]\] Gibbed <b>[H]/[H.ckey]</b>"
+		msg_admin_attack("[user.name] ([user.ckey]) gibbed [H] ([H.ckey]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-		src.occupant.death(1)
-		src.occupant.ghostize()
+		H.death(1)
+		H.ghostize()
 
-	else if( istype(src.occupant, /mob/living/carbon/) || istype(src.occupant, /mob/living/simple_animal/ ) )
-
-		var/sourcename = src.occupant.name
-		var/sourcenutriment = src.occupant.nutrition / 15
+	else if(iscarbon(occupant) || isanimal(occupant))
+		// I don't think /simple_animal actually did anything with their nutrition so it would just always be 400.
+		var/nutrition = iscarbon(occupant) ? src.occupant:nutrition : 400
+		var/sourcename = occupant.name
+		var/sourcenutriment = nutrition / 15
 		var/sourcetotalreagents = 0
 
-		if( istype(src.occupant, /mob/living/carbon/monkey/) || istype(src.occupant, /mob/living/carbon/alien/) ) // why are you gibbing aliens? oh well
+		if(ismonkey(occupant) || isalien(occupant)) // why are you gibbing aliens? oh well
 			totalslabs = 3
-			sourcetotalreagents = src.occupant.reagents.total_volume
-		else if( istype(src.occupant, /mob/living/simple_animal/cow) || istype(src.occupant, /mob/living/simple_animal/hostile/bear) )
+			sourcetotalreagents = occupant.reagents.total_volume
+		else if(istype(occupant, /mob/living/simple_animal/cow) || isbear(occupant))
 			totalslabs = 2
 		else
 			totalslabs = 1
-			sourcenutriment = src.occupant.nutrition / 30 // small animals don't have as much nutrition
+			sourcenutriment = nutrition / 30 // small animals don't have as much nutrition
 
 		for(var/i=1 to totalslabs)
-			var/obj/item/reagent_holder/food/snacks/meat/newmeat = new
+			var/obj/item/reagent_holder/food/snacks/meat/newmeat = new /obj/item/reagent_holder/food/snacks/meat()
 			newmeat.name = "[sourcename]-[newmeat.name]"
 
 			newmeat.reagents.add_reagent("nutriment", sourcenutriment / totalslabs)
 
 			// Transfer reagents from the old mob to the meat
-			if( istype(src.occupant, /mob/living/carbon/) )
-				src.occupant.reagents.trans_to(newmeat, round(sourcetotalreagents / totalslabs, 1))
+			if(iscarbon(occupant))
+				occupant.reagents.trans_to(newmeat, round(sourcetotalreagents / totalslabs, 1))
 
 			allmeat[i] = newmeat
 
-		if(src.occupant.client) // Gibbed a cow with a client in it? log that shit
-			src.occupant.attack_log += "\[[time_stamp()]\] Was gibbed by <b>[user]/[user.ckey]</b>"
-			user.attack_log += "\[[time_stamp()]\] Gibbed <b>[src.occupant]/[src.occupant.ckey]</b>"
-			msg_admin_attack("\[[time_stamp()]\] <b>[key_name(user)]</b> gibbed <b>[key_name(src.occupant)]</b>")
+		if(isnotnull(occupant.client)) // Gibbed a cow with a client in it? log that shit
+			occupant.attack_log += "\[[time_stamp()]\] Was gibbed by <b>[user]/[user.ckey]</b>"
+			user.attack_log += "\[[time_stamp()]\] Gibbed <b>[src.occupant]/[occupant.ckey]</b>"
+			msg_admin_attack("\[[time_stamp()]\] <b>[key_name(user)]</b> gibbed <b>[key_name(occupant)]</b>")
 
-		src.occupant.death(1)
-		src.occupant.ghostize()
+		occupant.death(1)
+		occupant.ghostize()
 
-	qdel(src.occupant)
+	qdel(occupant)
 
 	spawn(src.gibtime)
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)

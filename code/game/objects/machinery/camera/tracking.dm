@@ -64,8 +64,10 @@
 			continue
 		if(M.invisibility)//cloaked
 			continue
-		if(M.digitalcamo)
-			continue
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
+			if(C.digitalcamo)
+				continue
 
 		// Human check
 		var/human = 0

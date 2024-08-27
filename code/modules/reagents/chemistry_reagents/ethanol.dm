@@ -26,7 +26,9 @@
 	var/pass_out = 400	//amount absorbed after which mob starts passing out
 
 /datum/reagent/ethanol/on_mob_life(mob/living/M)
-	M.nutrition += nutriment_factor
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition += nutriment_factor
 	holder.remove_reagent(id, FOOD_METABOLISM)
 
 	if(adj_drowsy)

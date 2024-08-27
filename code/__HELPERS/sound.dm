@@ -49,7 +49,7 @@ var/const/FALLOFF_SOUNDS = 2
 var/const/SURROUND_CAP = 255
 
 /mob/proc/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff)
-	if(isnull(client) || ear_deaf > 0)
+	if(isnull(client))
 		return
 
 	soundin = get_sfx(soundin)
@@ -85,6 +85,11 @@ var/const/SURROUND_CAP = 255
 		S.falloff = (falloff ? falloff : FALLOFF_SOUNDS)
 
 	src << S
+
+/mob/living/playsound_local(turf/turf_source, soundin, vol as num, vary, frequency, falloff)
+	if(ear_deaf > 0)
+		return
+	. = ..()
 
 /client/proc/playtitlemusic()
 	if(isnull(global.PCticker?.lobby_music) || !(prefs.toggles & SOUND_LOBBY))

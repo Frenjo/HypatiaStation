@@ -40,46 +40,47 @@
 		qdel(src)
 		return 0
 	if(iscarbon(M))
-		if(M == user)								//If you're eating it yourself.
-			var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
+		var/mob/living/carbon/C = M
+		if(C == user)								//If you're eating it yourself.
+			var/fullness = C.nutrition + (C.reagents.get_reagent_amount("nutriment") * 25)
 			if(fullness <= 50)
-				to_chat(M, SPAN_WARNING("You hungrily chew out a piece of [src] and gobble it!"))
+				to_chat(C, SPAN_WARNING("You hungrily chew out a piece of [src] and gobble it!"))
 			if(fullness > 50 && fullness <= 150)
-				to_chat(M, SPAN_INFO("You hungrily begin to eat [src]."))
+				to_chat(C, SPAN_INFO("You hungrily begin to eat [src]."))
 			if(fullness > 150 && fullness <= 350)
-				to_chat(M, SPAN_INFO("You take a bite of [src]."))
+				to_chat(C, SPAN_INFO("You take a bite of [src]."))
 			if(fullness > 350 && fullness <= 550)
-				to_chat(M, SPAN_INFO("You unwillingly chew a bit of [src]."))
-			if(fullness > (550 * (1 + M.overeatduration / 2000)))	// The more you eat - the more you can eat
-				to_chat(M, SPAN_WARNING("You cannot force any more of [src] to go down your throat."))
+				to_chat(C, SPAN_INFO("You unwillingly chew a bit of [src]."))
+			if(fullness > (550 * (1 + C.overeatduration / 2000)))	// The more you eat - the more you can eat
+				to_chat(C, SPAN_WARNING("You cannot force any more of [src] to go down your throat."))
 				return 0
 		else
-			if(!isslime(M))		//If you're feeding it to someone else.
-				var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
-				if(fullness <= (550 * (1 + M.overeatduration / 1000)))
+			if(!isslime(C))		//If you're feeding it to someone else.
+				var/fullness = C.nutrition + (C.reagents.get_reagent_amount("nutriment") * 25)
+				if(fullness <= (550 * (1 + C.overeatduration / 1000)))
 					for(var/mob/O in viewers(world.view, user))
-						O.show_message(SPAN_WARNING("[user] attempts to feed [M] [src]."), 1)
+						O.show_message(SPAN_WARNING("[user] attempts to feed [C] [src]."), 1)
 				else
 					for(var/mob/O in viewers(world.view, user))
-						O.show_message(SPAN_WARNING("[user] cannot force anymore of [src] down [M]'s throat."), 1)
+						O.show_message(SPAN_WARNING("[user] cannot force anymore of [src] down [C]'s throat."), 1)
 						return 0
 
-				if(!do_mob(user, M))
+				if(!do_mob(user, C))
 					return
 
-				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
-				user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [M.name] ([M.ckey]) Reagents: [reagentlist(src)]</font>")
-				msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
+				C.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
+				user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [C.name] ([C.ckey]) Reagents: [reagentlist(src)]</font>")
+				msg_admin_attack("[key_name(user)] fed [key_name(C)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
 
 				for(var/mob/O in viewers(world.view, user))
-					O.show_message(SPAN_WARNING("[user] feeds [M] [src]."), 1)
+					O.show_message(SPAN_WARNING("[user] feeds [C] [src]."), 1)
 
 			else
 				to_chat(user, "This creature does not seem to have a mouth!")
 				return
 
 		if(reagents)								//Handle ingestion of the reagent.
-			playsound(M.loc,'sound/items/eatfood.ogg', rand(10, 50), 1)
+			playsound(C.loc,'sound/items/eatfood.ogg', rand(10, 50), 1)
 			if(reagents.total_volume)
 				if(reagents.total_volume > bitesize)
 					/*
@@ -88,11 +89,11 @@
 					var/temp_bitesize =  max(reagents.total_volume /2, bitesize)
 					reagents.trans_to(M, temp_bitesize)
 					*/
-					reagents.trans_to_ingest(M, bitesize)
+					reagents.trans_to_ingest(C, bitesize)
 				else
-					reagents.trans_to_ingest(M, reagents.total_volume)
+					reagents.trans_to_ingest(C, reagents.total_volume)
 				bitecount++
-				On_Consume(M)
+				On_Consume(C)
 			return 1
 
 	return 0

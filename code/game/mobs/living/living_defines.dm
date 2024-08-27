@@ -51,3 +51,19 @@
 	var/attack_sound = null
 	var/friendly = "nuzzles"
 	var/wall_smash = 0
+
+	/*
+	 * All below were moved from /mob.
+	 * These need to be sorted eventually.
+	 */
+	var/eye_blind = null	//Carbon
+	var/eye_blurry = null	//Carbon
+	// ear_deaf would go here when moved.
+	var/ear_damage = null	//Carbon
+
+	var/is_dizzy = 0
+	var/dizziness = 0	//Carbon
+	var/is_jittery = 0
+	var/jitteriness = 0	//Carbon
+
+	var/immune_to_ssd = 0

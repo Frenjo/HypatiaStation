@@ -530,9 +530,9 @@
 						return
 				message = SPAN_DANGER("[source] is trying to empty [target]'s pockets!")
 			if("CPR")
-				if (!target.cpr_time)
+				if(!target.cpr_time)
 					qdel(src)
-				target.cpr_time = 0
+				target.cpr_time = FALSE
 				message = SPAN_DANGER("[source] is trying perform CPR on [target]!")
 			if("id")
 				target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their ID ([target.id_store]) removed by [source.name] ([source.ckey])</font>"
@@ -562,7 +562,7 @@ The else statement is for equipping stuff to empty slots.
 It can still be worn/put on as normal.
 */
 /obj/effect/equip_e/human/done()	//TODO: And rewrite this :< ~Carn
-	target.cpr_time = 1
+	target.cpr_time = TRUE
 	if(isanimal(source)) return //animals cannot strip people
 	if(!source || !target) return		//Target or source no longer exist
 	if(source.loc != s_loc) return		//source has moved

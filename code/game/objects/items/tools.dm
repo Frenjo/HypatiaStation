@@ -371,32 +371,32 @@
 		var/datum/organ/internal/eyes/E = H.internal_organs["eyes"]
 		switch(safety)
 			if(1)
-				to_chat(user, SPAN_WARNING("Your eyes sting a little."))
+				to_chat(H, SPAN_WARNING("Your eyes sting a little."))
 				E.damage += rand(1, 2)
 				if(E.damage > 12)
-					user.eye_blurry += rand(3, 6)
+					H.eye_blurry += rand(3, 6)
 			if(0)
-				to_chat(user, SPAN_WARNING("Your eyes burn."))
+				to_chat(H, SPAN_WARNING("Your eyes burn."))
 				E.damage += rand(2, 4)
 				if(E.damage > 10)
 					E.damage += rand(4, 10)
 			if(-1)
-				to_chat(user, SPAN_WARNING("Your thermals intensify the welder's glow. Your eyes itch and burn severely."))
-				user.eye_blurry += rand(12, 20)
+				to_chat(H, SPAN_WARNING("Your thermals intensify the welder's glow. Your eyes itch and burn severely."))
+				H.eye_blurry += rand(12, 20)
 				E.damage += rand(12, 16)
 		if(safety < 2)
 			if(E.damage > 10)
-				to_chat(user, SPAN_WARNING("Your eyes are really starting to hurt. This can't be good for you!"))
+				to_chat(H, SPAN_WARNING("Your eyes are really starting to hurt. This can't be good for you!"))
 			if(E.damage >= E.min_broken_damage)
-				to_chat(user, SPAN_WARNING("You go blind!"))
-				user.sdisabilities |= BLIND
+				to_chat(H, SPAN_WARNING("You go blind!"))
+				H.sdisabilities |= BLIND
 			else if(E.damage >= E.min_bruised_damage)
-				to_chat(user, SPAN_WARNING("You go blind!"))
-				user.eye_blind = 5
-				user.eye_blurry = 5
-				user.disabilities |= NEARSIGHTED
+				to_chat(H, SPAN_WARNING("You go blind!"))
+				H.eye_blind = 5
+				H.eye_blurry = 5
+				H.disabilities |= NEARSIGHTED
 				spawn(100)
-					user.disabilities &= ~NEARSIGHTED
+					H.disabilities &= ~NEARSIGHTED
 	return
 
 /obj/item/weldingtool/attack(mob/M, mob/user)

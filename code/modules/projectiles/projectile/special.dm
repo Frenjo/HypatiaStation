@@ -79,26 +79,26 @@
 //	if(ishuman(target) && M.dna && M.dna.mutantrace == "plant") //Plantmen possibly get mutated and damaged by the rays.
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = M
-		if(HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_PLANT) && M.nutrition < 500)
+		if(HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_PLANT) && H.nutrition < 500)
 			if(prob(15))
-				M.apply_effect(rand(30, 80), IRRADIATE)
-				M.Weaken(5)
-				M.visible_message(
-					message = SPAN_WARNING("[M] writhes in pain as \his vacuoles boil."),
+				H.apply_effect(rand(30, 80), IRRADIATE)
+				H.Weaken(5)
+				H.visible_message(
+					message = SPAN_WARNING("[H] writhes in pain as \his vacuoles boil."),
 					blind_message = SPAN_WARNING("You hear the crunching of leaves.")
 				)
 			if(prob(35))
 			//	for (var/mob/V in viewers(src)) //Public messages commented out to prevent possible metaish genetics experimentation and stuff. - Cheridan
 			//		V.show_message("\red [M] is mutated by the radiation beam.", 3, "\red You hear the snapping of twigs.", 2)
 				if(prob(80))
-					randmutb(M)
-					domutcheck(M, null)
+					randmutb(H)
+					domutcheck(H, null)
 				else
-					randmutg(M)
-					domutcheck(M, null)
+					randmutg(H)
+					domutcheck(H, null)
 			else
-				M.adjustFireLoss(rand(5, 15))
-				M.show_message(SPAN_WARNING("The radiation beam singes you!"))
+				H.adjustFireLoss(rand(5, 15))
+				H.show_message(SPAN_WARNING("The radiation beam singes you!"))
 			//	for (var/mob/V in viewers(src))
 			//		V.show_message("\red [M] is singed by the radiation beam.", 3, "\red You hear the crackle of burning leaves.", 2)
 	else if(iscarbon(target))
@@ -119,8 +119,8 @@
 	var/mob/M = target
 	if(ishuman(target)) //These rays make plantmen fat.
 		var/mob/living/carbon/human/H = M
-		if(HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_PLANT) && M.nutrition < 500)
-			M.nutrition += 30
+		if(HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_PLANT) && H.nutrition < 500)
+			H.nutrition += 30
 	else if(iscarbon(target))
 		M.show_message(SPAN_INFO("The radiation beam dissipates harmlessly through your body."))
 	else

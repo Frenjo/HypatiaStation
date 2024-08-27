@@ -14,7 +14,9 @@
 		M = holder.my_atom
 	if(prob(50))
 		M.heal_organ_damage(1, 0)
-	M.nutrition += nutriment_factor	// For hunger and fatness
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition += nutriment_factor	// For hunger and fatness
 /*
 				// If overeaten - vomit and fall down
 				// Makes you feel bad but removes reagents and some effect
@@ -51,7 +53,9 @@
 	if(isnull(M))
 		M = holder.my_atom
 	//if(prob(50)) M.heal_organ_damage(1,0)
-	M.nutrition += nutriment_factor	// For hunger and fatness
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition += nutriment_factor	// For hunger and fatness
 
 	// Basically a copy of the commented out nutriment code with added overdose condition.
 	// I'll probably tweak this later to make it less severe after testing. -Frenjo
@@ -86,10 +90,12 @@
 /datum/reagent/lipozine/on_mob_life(mob/living/M)
 	if(isnull(M))
 		M = holder.my_atom
-	M.nutrition -= nutriment_factor
-	M.overeatduration = 0
-	if(M.nutrition < 0)//Prevent from going into negatives.
-		M.nutrition = 0
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition -= nutriment_factor
+		C.overeatduration = 0
+		if(C.nutrition < 0)//Prevent from going into negatives.
+			C.nutrition = 0
 	. = ..()
 
 /datum/reagent/soysauce
@@ -268,7 +274,9 @@
 	color = "#302000" // rgb: 48, 32, 0
 
 /datum/reagent/coco/on_mob_life(mob/living/M)
-	M.nutrition += nutriment_factor
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition += nutriment_factor
 	. = ..()
 
 /datum/reagent/psilocybin
@@ -319,12 +327,16 @@
 	color = "#FF00FF" // rgb: 255, 0, 255
 
 /datum/reagent/sprinkles/on_mob_life(mob/living/M)
-	M.nutrition += nutriment_factor
-	if(ishuman(M) && (M.job in list("Security Officer", "Head of Security", "Detective", "Warden")))
-		if(isnull(M))
-			M = holder.my_atom
-		M.heal_organ_damage(1, 1)
-		M.nutrition += nutriment_factor
+	if(isnull(M))
+		M = holder.my_atom
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition += nutriment_factor
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.job in list("Security Officer", "Head of Security", "Detective", "Warden"))
+			H.heal_organ_damage(1, 1)
+			H.nutrition += nutriment_factor
 	. = ..()
 
 /*	//removed because of meta bullshit. this is why we can't have nice things.
@@ -356,7 +368,9 @@
 	color = "#302000" // rgb: 48, 32, 0
 
 /datum/reagent/cornoil/on_mob_life(mob/living/M)
-	M.nutrition += nutriment_factor
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition += nutriment_factor
 	. = ..()
 
 /datum/reagent/cornoil/reaction_turf(turf/open/T, volume)
@@ -407,7 +421,9 @@
 	color = "#302000" // rgb: 48, 32, 0
 
 /datum/reagent/dry_ramen/on_mob_life(mob/living/M)
-	M.nutrition += nutriment_factor
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition += nutriment_factor
 	. = ..()
 
 /datum/reagent/hot_ramen
@@ -419,7 +435,9 @@
 	color = "#302000" // rgb: 48, 32, 0
 
 /datum/reagent/hot_ramen/on_mob_life(mob/living/M)
-	M.nutrition += nutriment_factor
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition += nutriment_factor
 	if(M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
 		M.bodytemperature = min(310, M.bodytemperature + (10 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	. = ..()
@@ -433,7 +451,9 @@
 	color = "#302000" // rgb: 48, 32, 0
 
 /datum/reagent/hell_ramen/on_mob_life(mob/living/M)
-	M.nutrition += nutriment_factor
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition += nutriment_factor
 	M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
 	. = ..()
 
@@ -467,7 +487,9 @@
 	color = "#FFFFFF" // rgb: 0, 0, 0
 
 /datum/reagent/rice/on_mob_life(mob/living/M)
-	M.nutrition += nutriment_factor
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition += nutriment_factor
 	. = ..()
 
 /datum/reagent/cherryjelly
@@ -479,5 +501,7 @@
 	color = "#801E28" // rgb: 128, 30, 40
 
 /datum/reagent/cherryjelly/on_mob_life(mob/living/M)
-	M.nutrition += nutriment_factor
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition += nutriment_factor
 	. = ..()

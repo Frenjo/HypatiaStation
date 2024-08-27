@@ -108,6 +108,10 @@
 	Weaken(10)
 	return shock_damage
 
+/mob/living/carbon/rejuvenate()
+	. = ..()
+	nutrition = 400
+
 /mob/living/carbon/proc/swap_hand()
 	var/obj/item/item_in_hand = get_active_hand()
 	if(isnotnull(item_in_hand)) //this segment checks if the item in your hand is twohanded.

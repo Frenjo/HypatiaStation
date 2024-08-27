@@ -16,7 +16,9 @@
 /datum/reagent/drink/on_mob_life(mob/living/M)
 	if(isnull(M))
 		M = holder.my_atom
-	M.nutrition += nutriment_factor
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition += nutriment_factor
 	holder.remove_reagent(id, FOOD_METABOLISM)
 	// Drinks should be used up faster than other reagents.
 	holder.remove_reagent(id, FOOD_METABOLISM)
@@ -409,7 +411,9 @@
 /datum/reagent/doctor_delight/on_mob_life(mob/living/M)
 	if(isnull(M))
 		M = holder.my_atom
-	M.nutrition += nutriment_factor
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		C.nutrition += nutriment_factor
 	holder.remove_reagent(id, FOOD_METABOLISM)
 	if(M.getOxyLoss() && prob(50))
 		M.adjustOxyLoss(-2)

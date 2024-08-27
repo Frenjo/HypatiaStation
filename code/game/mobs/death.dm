@@ -64,9 +64,6 @@
 
 	update_canmove()
 
-	dizziness = 0
-	jitteriness = 0
-
 	layer = MOB_LAYER
 
 	if(blind && client)
