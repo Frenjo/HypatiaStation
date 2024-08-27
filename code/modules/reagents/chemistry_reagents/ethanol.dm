@@ -25,16 +25,14 @@
 	var/blur_start = 300	//amount absorbed after which mob starts getting blurred vision
 	var/pass_out = 400	//amount absorbed after which mob starts passing out
 
-/datum/reagent/ethanol/on_mob_life(mob/living/M)
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		C.nutrition += nutriment_factor
+/datum/reagent/ethanol/on_mob_life(mob/living/carbon/C)
+	C.nutrition += nutriment_factor
 	holder.remove_reagent(id, FOOD_METABOLISM)
 
 	if(adj_drowsy)
-		M.drowsyness = max(0, M.drowsyness + adj_drowsy)
+		C.drowsyness = max(0, C.drowsyness + adj_drowsy)
 	if(adj_sleepy)
-		M.sleeping = max(0, M.sleeping + adj_sleepy)
+		C.sleeping = max(0, C.sleeping + adj_sleepy)
 
 	if(!data["special"] || (!isnum(data["special"]) && length(data)))
 		data["special"] = 1				//if it doesn't exist we set it. if it's a list we're going to set it to 1 as well. This is to
@@ -47,23 +45,23 @@
 		if(isnum(A.data["special"]))
 			d += A.data["special"]
 
-	M.dizziness += dizzy_adj
+	C.dizziness += dizzy_adj
 	if(d >= slur_start && d < pass_out)
-		if(!M.slurring)
-			M.slurring = 1
-		M.slurring += slurr_adj
+		if(!C.slurring)
+			C.slurring = 1
+		C.slurring += slurr_adj
 	if(d >= confused_start && prob(33))
-		if(!M.confused)
-			M.confused = 1
-		M.confused = max(M:confused + confused_adj, 0)
+		if(!C.confused)
+			C.confused = 1
+		C.confused = max(C.confused + confused_adj, 0)
 	if(d >= blur_start)
-		M.eye_blurry = max(M.eye_blurry, 10)
-		M.drowsyness = max(M.drowsyness, 0)
+		C.eye_blurry = max(C.eye_blurry, 10)
+		C.drowsyness = max(C.drowsyness, 0)
 	if(d >= pass_out)
-		M.paralysis = max(M.paralysis, 20)
-		M.drowsyness = max(M.drowsyness, 30)
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+		C.paralysis = max(C.paralysis, 20)
+		C.drowsyness = max(C.drowsyness, 30)
+		if(ishuman(C))
+			var/mob/living/carbon/human/H = C
 			var/datum/organ/internal/liver/L = H.internal_organs["liver"]
 			if(istype(L))
 				L.take_damage(0.1, 1)
@@ -98,8 +96,8 @@
 	boozepwr = 1
 	nutriment_factor = 1 * FOOD_METABOLISM
 
-/datum/reagent/ethanol/beer/on_mob_life(mob/living/M)
-	M.jitteriness = max(M.jitteriness - 3, 0)
+/datum/reagent/ethanol/beer/on_mob_life(mob/living/carbon/C)
+	C.jitteriness = max(C.jitteriness - 3, 0)
 	. = ..()
 
 /datum/reagent/ethanol/kahlua
@@ -112,8 +110,8 @@
 	adj_drowsy = -3
 	adj_sleepy = -2
 
-/datum/reagent/ethanol/kahlua/on_mob_life(mob/living/M)
-	M.make_jittery(5)
+/datum/reagent/ethanol/kahlua/on_mob_life(mob/living/carbon/C)
+	C.make_jittery(5)
 	. = ..()
 
 /datum/reagent/ethanol/whiskey
@@ -141,11 +139,11 @@
 	boozepwr = 2
 	nutriment_factor = 1 * FOOD_METABOLISM
 
-/datum/reagent/ethanol/thirteenloko/on_mob_life(mob/living/M)
-	M.drowsyness = max(0, M.drowsyness - 7)
-	if(M.bodytemperature > 310)
-		M.bodytemperature = max(310, M.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
-	M.make_jittery(5)
+/datum/reagent/ethanol/thirteenloko/on_mob_life(mob/living/carbon/C)
+	C.drowsyness = max(0, C.drowsyness - 7)
+	if(C.bodytemperature > 310)
+		C.bodytemperature = max(310, C.bodytemperature - (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
+	C.make_jittery(5)
 	. = ..()
 
 /datum/reagent/ethanol/vodka
@@ -155,8 +153,8 @@
 	color = "#0064C8" // rgb: 0, 100, 200
 	boozepwr = 2
 
-/datum/reagent/ethanol/vodka/on_mob_life(mob/living/M)
-	M.radiation = max(M.radiation - 1, 0)
+/datum/reagent/ethanol/vodka/on_mob_life(mob/living/carbon/C)
+	C.radiation = max(C.radiation - 1, 0)
 	. = ..()
 
 /datum/reagent/ethanol/bilk
@@ -174,8 +172,8 @@
 	color = "#666340" // rgb: 102, 99, 64
 	boozepwr = 5
 
-/datum/reagent/ethanol/threemileisland/on_mob_life(mob/living/M)
-	M.druggy = max(M.druggy, 50)
+/datum/reagent/ethanol/threemileisland/on_mob_life(mob/living/carbon/C)
+	C.druggy = max(C.druggy, 50)
 	. = ..()
 
 /datum/reagent/ethanol/gin
@@ -264,61 +262,59 @@
 	slur_start = 1
 	confused_start = 1
 
-/datum/reagent/ethanol/pwine/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	M.druggy = max(M.druggy, 50)
+/datum/reagent/ethanol/pwine/on_mob_life(mob/living/carbon/C)
+	C.druggy = max(C.druggy, 50)
 	if(!data["special"])
 		data["special"] = 1
 	data["special"]++
 	switch(data["special"])
 		if(1 to 25)
-			if(!M.stuttering)
-				M.stuttering = 1
-			M.make_dizzy(1)
-			M.hallucination = max(M.hallucination, 3)
+			if(!C.stuttering)
+				C.stuttering = 1
+			C.make_dizzy(1)
+			C.hallucination = max(C.hallucination, 3)
 			if(prob(1))
-				M.emote(pick("twitch", "giggle"))
+				C.emote(pick("twitch", "giggle"))
 		if(25 to 75)
-			if(!M.stuttering)
-				M.stuttering = 1
-			M.hallucination = max(M.hallucination, 10)
-			M.make_jittery(2)
-			M.make_dizzy(2)
-			M.druggy = max(M.druggy, 45)
+			if(!C.stuttering)
+				C.stuttering = 1
+			C.hallucination = max(C.hallucination, 10)
+			C.make_jittery(2)
+			C.make_dizzy(2)
+			C.druggy = max(C.druggy, 45)
 			if(prob(5))
-				M.emote(pick("twitch", "giggle"))
+				C.emote(pick("twitch", "giggle"))
 		if(75 to 150)
-			if(!M.stuttering)
-				M.stuttering = 1
-			M.hallucination = max(M.hallucination, 60)
-			M.make_jittery(4)
-			M.make_dizzy(4)
-			M.druggy = max(M.druggy, 60)
+			if(!C.stuttering)
+				C.stuttering = 1
+			C.hallucination = max(C.hallucination, 60)
+			C.make_jittery(4)
+			C.make_dizzy(4)
+			C.druggy = max(C.druggy, 60)
 			if(prob(10))
-				M.emote(pick("twitch", "giggle"))
+				C.emote(pick("twitch", "giggle"))
 			if(prob(30))
-				M.adjustToxLoss(2)
+				C.adjustToxLoss(2)
 		if(150 to 300)
-			if(!M.stuttering)
-				M.stuttering = 1
-			M.hallucination = max(M.hallucination, 60)
-			M.make_jittery(4)
-			M.make_dizzy(4)
-			M.druggy = max(M.druggy, 60)
+			if(!C.stuttering)
+				C.stuttering = 1
+			C.hallucination = max(C.hallucination, 60)
+			C.make_jittery(4)
+			C.make_dizzy(4)
+			C.druggy = max(C.druggy, 60)
 			if(prob(10))
-				M.emote(pick("twitch", "giggle"))
+				C.emote(pick("twitch", "giggle"))
 			if(prob(30))
-				M.adjustToxLoss(2)
+				C.adjustToxLoss(2)
 			if(prob(5))
-				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
+				if(ishuman(C))
+					var/mob/living/carbon/human/H = C
 					var/datum/organ/internal/heart/L = H.internal_organs["heart"]
 					if(istype(L))
 						L.take_damage(5, 0)
 		if(300 to INFINITY)
-			if(ishuman(M))
-				var/mob/living/carbon/human/H = M
+			if(ishuman(C))
+				var/mob/living/carbon/human/H = C
 				var/datum/organ/internal/heart/L = H.internal_organs["heart"]
 				if(istype(L))
 					L.take_damage(100, 0)
@@ -331,9 +327,9 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 1
 
-/datum/reagent/ethanol/deadrum/on_mob_life(mob/living/M)
+/datum/reagent/ethanol/deadrum/on_mob_life(mob/living/carbon/C)
 	. = ..()
-	M.dizziness += 5
+	C.dizziness += 5
 
 /datum/reagent/ethanol/sake
 	name = "Sake"
@@ -443,9 +439,9 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 5
 
-/datum/reagent/ethanol/toxins_special/on_mob_life(mob/living/M)
-	if(M.bodytemperature < 330)
-		M.bodytemperature = min(330, M.bodytemperature + (15 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
+/datum/reagent/ethanol/toxins_special/on_mob_life(mob/living/carbon/C)
+	if(C.bodytemperature < 330)
+		C.bodytemperature = min(330, C.bodytemperature + (15 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
 	. = ..()
 
 /datum/reagent/ethanol/beepsky_smash
@@ -456,8 +452,8 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 4
 
-/datum/reagent/ethanol/beepsky_smash/on_mob_life(mob/living/M)
-	M.Stun(2)
+/datum/reagent/ethanol/beepsky_smash/on_mob_life(mob/living/carbon/C)
+	C.Stun(2)
 	. = ..()
 
 /datum/reagent/ethanol/irish_cream
@@ -530,8 +526,8 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 5
 
-/datum/reagent/ethanol/manhattan_proj/on_mob_life(mob/living/M)
-	M.druggy = max(M.druggy, 30)
+/datum/reagent/ethanol/manhattan_proj/on_mob_life(mob/living/carbon/C)
+	C.druggy = max(C.druggy, 30)
 	. = ..()
 
 /datum/reagent/ethanol/whiskeysoda
@@ -548,9 +544,9 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 4
 
-/datum/reagent/ethanol/antifreeze/on_mob_life(mob/living/M)
-	if(M.bodytemperature < 330)
-		M.bodytemperature = min(330, M.bodytemperature + (20 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
+/datum/reagent/ethanol/antifreeze/on_mob_life(mob/living/carbon/C)
+	if(C.bodytemperature < 330)
+		C.bodytemperature = min(330, C.bodytemperature + (20 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
 	. = ..()
 
 /datum/reagent/ethanol/barefoot
@@ -636,9 +632,9 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 3
 
-/datum/reagent/ethanol/sbiten/on_mob_life(mob/living/M)
-	if(M.bodytemperature < 360)
-		M.bodytemperature = min(360, M.bodytemperature + (50 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
+/datum/reagent/ethanol/sbiten/on_mob_life(mob/living/carbon/C)
+	if(C.bodytemperature < 360)
+		C.bodytemperature = min(360, C.bodytemperature + (50 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
 	. = ..()
 
 /datum/reagent/ethanol/devilskiss
@@ -671,9 +667,9 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 1
 
-/datum/reagent/ethanol/iced_beer/on_mob_life(mob/living/M)
-	if(M.bodytemperature > 270)
-		M.bodytemperature = max(270, M.bodytemperature - (20 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
+/datum/reagent/ethanol/iced_beer/on_mob_life(mob/living/carbon/C)
+	if(C.bodytemperature > 270)
+		C.bodytemperature = max(270, C.bodytemperature - (20 * TEMPERATURE_DAMAGE_COEFFICIENT)) //310 is the normal bodytemp. 310.055
 	. = ..()
 
 /datum/reagent/ethanol/grog
@@ -774,17 +770,17 @@
 	color = "#664300" // rgb: 102, 67, 0
 	boozepwr = 4
 
-/datum/reagent/ethanol/silencer/on_mob_life(mob/living/M)
+/datum/reagent/ethanol/silencer/on_mob_life(mob/living/carbon/C)
 	if(!data["special"])
 		data["special"] = 1
 	data["special"]++
-	M.dizziness += 10
+	C.dizziness += 10
 	if(data["special"] >= 55 && data["special"] < 115)
-		if(!M.stuttering)
-			M.stuttering = 1
-		M.stuttering += 10
+		if(!C.stuttering)
+			C.stuttering = 1
+		C.stuttering += 10
 	else if(data["special"] >= 115 && prob(33))
-		M.confused = max(M.confused + 15, 15)
+		C.confused = max(C.confused + 15, 15)
 	. = ..()
 
 /datum/reagent/ethanol/tricordrazine_surprise
@@ -806,22 +802,22 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#666300" // rgb: 102, 99, 0
 
-/datum/reagent/atomicbomb/on_mob_life(mob/living/M)
-	M.druggy = max(M.druggy, 50)
-	M.confused = max(M.confused + 2, 0)
-	M.make_dizzy(10)
-	if(!M.stuttering)
-		M.stuttering = 1
-	M.stuttering += 3
+/datum/reagent/atomicbomb/on_mob_life(mob/living/carbon/C)
+	C.druggy = max(C.druggy, 50)
+	C.confused = max(C.confused + 2, 0)
+	C.make_dizzy(10)
+	if(!C.stuttering)
+		C.stuttering = 1
+	C.stuttering += 3
 	if(!data["special"])
 		data["special"] = 1
 	data["special"]++
 	switch(data["special"])
 		if(51 to 200)
-			M.sleeping += 1
+			C.sleeping += 1
 		if(201 to INFINITY)
-			M.sleeping += 1
-			M.adjustToxLoss(2)
+			C.sleeping += 1
+			C.adjustToxLoss(2)
 	. = ..()
 
 /datum/reagent/gargle_blaster
@@ -831,21 +827,21 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#664300" // rgb: 102, 67, 0
 
-/datum/reagent/gargle_blaster/on_mob_life(mob/living/M)
+/datum/reagent/gargle_blaster/on_mob_life(mob/living/carbon/C)
 	if(!data["special"])
 		data["special"] = 1
 	data["special"]++
-	M.dizziness += 6
+	C.dizziness += 6
 	switch(data["special"])
 		if(15 to 45)
-			M.stuttering = max(M.stuttering + 3, 0)
+			C.stuttering = max(C.stuttering + 3, 0)
 		if(45 to 55)
 			if(prob(50))
-				M.confused = max(M.confused + 3, 0)
+				C.confused = max(C.confused + 3, 0)
 		if(55 to 200)
-			M.druggy = max(M.druggy, 55)
+			C.druggy = max(C.druggy, 55)
 		if(200 to INFINITY)
-			M.adjustToxLoss(2)
+			C.adjustToxLoss(2)
 	. = ..()
 
 /datum/reagent/neurotoxin
@@ -855,24 +851,22 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#2E2E61" // rgb: 46, 46, 97
 
-/datum/reagent/neurotoxin/on_mob_life(mob/living/carbon/M)
-	if(isnull(M))
-		M = holder.my_atom
-	M.weakened = max(M.weakened, 3)
+/datum/reagent/neurotoxin/on_mob_life(mob/living/carbon/C)
+	C.weakened = max(C.weakened, 3)
 	if(!data["special"])
 		data["special"] = 1
 	data["special"]++
-	M.dizziness += 6
+	C.dizziness += 6
 	switch(data["special"])
 		if(15 to 45)
-			M.stuttering = max(M.stuttering + 3, 0)
+			C.stuttering = max(C.stuttering + 3, 0)
 		if(45 to 55)
 			if(prob(50))
-				M.confused = max(M.confused + 3, 0)
+				C.confused = max(C.confused + 3, 0)
 		if(55 to 200)
-			M.druggy = max(M.druggy, 55)
+			C.druggy = max(C.druggy, 55)
 		if(200 to INFINITY)
-			M.adjustToxLoss(2)
+			C.adjustToxLoss(2)
 	. = ..()
 
 /datum/reagent/hippies_delight
@@ -882,45 +876,43 @@
 	reagent_state = REAGENT_LIQUID
 	color = "#664300" // rgb: 102, 67, 0
 
-/datum/reagent/hippies_delight/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	M.druggy = max(M.druggy, 50)
+/datum/reagent/hippies_delight/on_mob_life(mob/living/carbon/C)
+	C.druggy = max(C.druggy, 50)
 	if(!data["special"])
 		data["special"] = 1
 	data["special"]++
 	switch(data["special"])
 		if(1 to 5)
-			if(!M.stuttering)
-				M.stuttering = 1
-			M.make_dizzy(10)
+			if(!C.stuttering)
+				C.stuttering = 1
+			C.make_dizzy(10)
 			if(prob(10))
-				M.emote(pick("twitch", "giggle"))
+				C.emote(pick("twitch", "giggle"))
 		if(5 to 10)
-			if(!M.stuttering)
-				M.stuttering = 1
-			M.make_jittery(20)
-			M.make_dizzy(20)
-			M.druggy = max(M.druggy, 45)
+			if(!C.stuttering)
+				C.stuttering = 1
+			C.make_jittery(20)
+			C.make_dizzy(20)
+			C.druggy = max(C.druggy, 45)
 			if(prob(20))
-				M.emote(pick("twitch", "giggle"))
+				C.emote(pick("twitch", "giggle"))
 		if(10 to 200)
-			if(!M.stuttering)
-				M.stuttering = 1
-			M.make_jittery(40)
-			M.make_dizzy(40)
-			M.druggy = max(M.druggy, 60)
+			if(!C.stuttering)
+				C.stuttering = 1
+			C.make_jittery(40)
+			C.make_dizzy(40)
+			C.druggy = max(C.druggy, 60)
 			if(prob(30))
-				M.emote(pick("twitch", "giggle"))
+				C.emote(pick("twitch", "giggle"))
 		if(200 to INFINITY)
-			if(!M.stuttering)
-				M.stuttering = 1
-			M.make_jittery(60)
-			M.make_dizzy(60)
-			M.druggy = max(M.druggy, 75)
+			if(!C.stuttering)
+				C.stuttering = 1
+			C.make_jittery(60)
+			C.make_dizzy(60)
+			C.druggy = max(C.druggy, 75)
 			if(prob(40))
-				M.emote(pick("twitch", "giggle"))
+				C.emote(pick("twitch", "giggle"))
 			if(prob(30))
-				M.adjustToxLoss(2)
+				C.adjustToxLoss(2)
 	holder.remove_reagent(id, 0.2)
 	. = ..()

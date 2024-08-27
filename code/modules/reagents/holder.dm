@@ -219,10 +219,10 @@
 	return total_transfered
 */
 
-/datum/reagents/proc/metabolize(mob/living/M, alien)
+/datum/reagents/proc/metabolize(mob/living/carbon/C, alien)
 	for(var/datum/reagent/R in reagent_list)
-		if(isnotnull(M) && isnotnull(R))
-			R.on_mob_life(M, alien)
+		if(isnotnull(C) && isnotnull(R))
+			R.on_mob_life(C, alien)
 	update_total()
 
 /datum/reagents/proc/conditional_update_move(atom/A, Running = 0)

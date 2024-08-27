@@ -13,24 +13,20 @@
 	var/adj_sleepy = 0
 	var/adj_temp = 0
 
-/datum/reagent/drink/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		C.nutrition += nutriment_factor
+/datum/reagent/drink/on_mob_life(mob/living/carbon/C)
+	C.nutrition += nutriment_factor
 	holder.remove_reagent(id, FOOD_METABOLISM)
 	// Drinks should be used up faster than other reagents.
 	holder.remove_reagent(id, FOOD_METABOLISM)
 	if(adj_dizzy)
-		M.dizziness = max(0, M.dizziness + adj_dizzy)
+		C.dizziness = max(0, C.dizziness + adj_dizzy)
 	if(adj_drowsy)
-		M.drowsyness = max(0, M.drowsyness + adj_drowsy)
+		C.drowsyness = max(0, C.drowsyness + adj_drowsy)
 	if(adj_sleepy)
-		M.sleeping = max(0, M.sleeping + adj_sleepy)
+		C.sleeping = max(0, C.sleeping + adj_sleepy)
 	if(adj_temp)
-		if(M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
-			M.bodytemperature = min(310, M.bodytemperature + (25 * TEMPERATURE_DAMAGE_COEFFICIENT))
+		if(C.bodytemperature < 310)//310 is the normal bodytemp. 310.055
+			C.bodytemperature = min(310, C.bodytemperature + (25 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	. = ..()
 
 /datum/reagent/drink/orangejuice
@@ -39,10 +35,10 @@
 	description = "Both delicious AND rich in Vitamin C, what more do you need?"
 	color = "#E78108" // rgb: 231, 129, 8
 
-/datum/reagent/drink/orangejuice/on_mob_life(mob/living/M)
+/datum/reagent/drink/orangejuice/on_mob_life(mob/living/carbon/C)
 	. = ..()
-	if(M.getOxyLoss() && prob(30))
-		M.adjustOxyLoss(-1)
+	if(C.getOxyLoss() && prob(30))
+		C.adjustOxyLoss(-1)
 
 /datum/reagent/drink/tomatojuice
 	name = "Tomato Juice"
@@ -50,10 +46,10 @@
 	description = "Tomatoes made into juice. What a waste of big, juicy tomatoes, huh?"
 	color = "#731008" // rgb: 115, 16, 8
 
-/datum/reagent/drink/tomatojuice/on_mob_life(mob/living/M)
+/datum/reagent/drink/tomatojuice/on_mob_life(mob/living/carbon/C)
 	. = ..()
-	if(M.getFireLoss() && prob(20))
-		M.heal_organ_damage(0, 1)
+	if(C.getFireLoss() && prob(20))
+		C.heal_organ_damage(0, 1)
 
 /datum/reagent/drink/limejuice
 	name = "Lime Juice"
@@ -61,10 +57,10 @@
 	description = "The sweet-sour juice of limes."
 	color = "#365E30" // rgb: 54, 94, 48
 
-/datum/reagent/drink/limejuice/on_mob_life(mob/living/M)
+/datum/reagent/drink/limejuice/on_mob_life(mob/living/carbon/C)
 	. = ..()
-	if(M.getToxLoss() && prob(20))
-		M.adjustToxLoss(-1 * REM)
+	if(C.getToxLoss() && prob(20))
+		C.adjustToxLoss(-1 * REM)
 
 /datum/reagent/drink/carrotjuice
 	name = "Carrot juice"
@@ -72,10 +68,10 @@
 	description = "It is just like a carrot but without crunching."
 	color = "#973800" // rgb: 151, 56, 0
 
-/datum/reagent/drink/carrotjuice/on_mob_life(mob/living/M)
+/datum/reagent/drink/carrotjuice/on_mob_life(mob/living/carbon/C)
 	. = ..()
-	M.eye_blurry = max(M.eye_blurry - 1, 0)
-	M.eye_blind = max(M.eye_blind - 1, 0)
+	C.eye_blurry = max(C.eye_blurry - 1, 0)
+	C.eye_blind = max(C.eye_blind - 1, 0)
 	if(!data["special"])
 		data["special"] = 1
 	switch(data["special"])
@@ -83,7 +79,7 @@
 			//nothing
 		if(21 to INFINITY)
 			if(prob(data["special"] - 10))
-				M.disabilities &= ~NEARSIGHTED
+				C.disabilities &= ~NEARSIGHTED
 	data["special"]++
 
 /datum/reagent/drink/berryjuice
@@ -111,9 +107,9 @@
 	description = "A tasty juice blended from various kinds of very deadly and toxic berries."
 	color = "#863353" // rgb: 134, 51, 83
 
-/datum/reagent/drink/poisonberryjuice/on_mob_life(mob/living/M)
+/datum/reagent/drink/poisonberryjuice/on_mob_life(mob/living/carbon/C)
 	. = ..()
-	M.adjustToxLoss(1)
+	C.adjustToxLoss(1)
 
 /datum/reagent/drink/watermelonjuice
 	name = "Watermelon Juice"
@@ -151,9 +147,9 @@
 	description = "An opaque white liquid produced by the mammary glands of mammals."
 	color = "#DFDFDF" // rgb: 223, 223, 223
 
-/datum/reagent/drink/milk/on_mob_life(mob/living/M)
-	if(M.getBruteLoss() && prob(20))
-		M.heal_organ_damage(1, 0)
+/datum/reagent/drink/milk/on_mob_life(mob/living/carbon/C)
+	if(C.getBruteLoss() && prob(20))
+		C.heal_organ_damage(1, 0)
 	if(holder.has_reagent("capsaicin"))
 		holder.remove_reagent("capsaicin", 10 * REAGENTS_METABOLISM)
 	. = ..()
@@ -194,9 +190,9 @@
 	adj_sleepy = -2
 	adj_temp = 25
 
-/datum/reagent/drink/coffee/on_mob_life(mob/living/M)
+/datum/reagent/drink/coffee/on_mob_life(mob/living/carbon/C)
 	. = ..()
-	M.make_jittery(5)
+	C.make_jittery(5)
 	if(adj_temp > 0 && holder.has_reagent("frostoil"))
 		holder.remove_reagent("frostoil", 10 * REAGENTS_METABOLISM)
 
@@ -217,11 +213,11 @@
 	adj_sleepy = 0
 	adj_temp = 5
 
-/datum/reagent/drink/coffee/soy_latte/on_mob_life(mob/living/M)
+/datum/reagent/drink/coffee/soy_latte/on_mob_life(mob/living/carbon/C)
 	. = ..()
-	M.sleeping = 0
-	if(M.getBruteLoss() && prob(20))
-		M.heal_organ_damage(1, 0)
+	C.sleeping = 0
+	if(C.getBruteLoss() && prob(20))
+		C.heal_organ_damage(1, 0)
 
 /datum/reagent/drink/coffee/cafe_latte
 	name = "Cafe Latte"
@@ -231,11 +227,11 @@
 	adj_sleepy = 0
 	adj_temp = 5
 
-/datum/reagent/drink/coffee/cafe_latte/on_mob_life(mob/living/M)
+/datum/reagent/drink/coffee/cafe_latte/on_mob_life(mob/living/carbon/C)
 	. = ..()
-	M.sleeping = 0
-	if(M.getBruteLoss() && prob(20))
-		M.heal_organ_damage(1, 0)
+	C.sleeping = 0
+	if(C.getBruteLoss() && prob(20))
+		C.heal_organ_damage(1, 0)
 
 /datum/reagent/drink/tea
 	name = "Tea"
@@ -247,10 +243,10 @@
 	adj_sleepy = -3
 	adj_temp = 20
 
-/datum/reagent/drink/tea/on_mob_life(mob/living/M)
+/datum/reagent/drink/tea/on_mob_life(mob/living/carbon/C)
 	. = ..()
-	if(M.getToxLoss() && prob(20))
-		M.adjustToxLoss(-1)
+	if(C.getToxLoss() && prob(20))
+		C.adjustToxLoss(-1)
 
 /datum/reagent/drink/tea/icetea
 	name = "Iced Tea"
@@ -302,11 +298,11 @@
 	color = "#100800" // rgb: 16, 8, 0
 	adj_sleepy = -2
 
-/datum/reagent/drink/coffee/nuka_cola/on_mob_life(mob/living/M)
-	M.make_jittery(20)
-	M.druggy = max(M.druggy, 30)
-	M.dizziness += 5
-	M.drowsyness = 0
+/datum/reagent/drink/coffee/nuka_cola/on_mob_life(mob/living/carbon/C)
+	C.make_jittery(20)
+	C.druggy = max(C.druggy, 30)
+	C.dizziness += 5
+	C.drowsyness = 0
 	. = ..()
 
 /datum/reagent/drink/cold/spacemountainwind
@@ -364,28 +360,26 @@
 	color = "#AEE5E4" // rgb" 174, 229, 228
 	adj_temp = -9
 
-/datum/reagent/drink/cold/milkshake/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
+/datum/reagent/drink/cold/milkshake/on_mob_life(mob/living/carbon/C)
 	if(!data["special"])
 		data["special"] = 1
 	switch(data["special"])
 		if(1 to 15)
-			M.bodytemperature -= 5 * TEMPERATURE_DAMAGE_COEFFICIENT
+			C.bodytemperature -= 5 * TEMPERATURE_DAMAGE_COEFFICIENT
 			if(holder.has_reagent("capsaicin"))
 				holder.remove_reagent("capsaicin", 5)
-			if(isslime(M))
-				M.bodytemperature -= rand(5, 20)
+			if(isslime(C))
+				C.bodytemperature -= rand(5, 20)
 		if(15 to 25)
-			M.bodytemperature -= 10 * TEMPERATURE_DAMAGE_COEFFICIENT
-			if(isslime(M))
-				M.bodytemperature -= rand(10, 20)
+			C.bodytemperature -= 10 * TEMPERATURE_DAMAGE_COEFFICIENT
+			if(isslime(C))
+				C.bodytemperature -= rand(10, 20)
 		if(25 to INFINITY)
-			M.bodytemperature -= 15 * TEMPERATURE_DAMAGE_COEFFICIENT
+			C.bodytemperature -= 15 * TEMPERATURE_DAMAGE_COEFFICIENT
 			if(prob(1))
-				M.emote("shiver")
-			if(isslime(M))
-				M.bodytemperature -= rand(15, 20)
+				C.emote("shiver")
+			if(isslime(C))
+				C.bodytemperature -= rand(15, 20)
 	data["special"]++
 	holder.remove_reagent(id, FOOD_METABOLISM)
 	. = ..()
@@ -396,9 +390,9 @@
 	id = "rewriter"
 	color = "#485000" // rgb:72, 080, 0
 
-/datum/reagent/drink/cold/rewriter/on_mob_life(mob/living/M)
+/datum/reagent/drink/cold/rewriter/on_mob_life(mob/living/carbon/C)
 	. = ..()
-	M.make_jittery(5)
+	C.make_jittery(5)
 
 /datum/reagent/doctor_delight
 	name = "The Doctor's Delight"
@@ -408,23 +402,19 @@
 	color = "#FF8CFF" // rgb: 255, 140, 255
 	nutriment_factor = 1 * FOOD_METABOLISM
 
-/datum/reagent/doctor_delight/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		C.nutrition += nutriment_factor
+/datum/reagent/doctor_delight/on_mob_life(mob/living/carbon/C)
+	C.nutrition += nutriment_factor
 	holder.remove_reagent(id, FOOD_METABOLISM)
-	if(M.getOxyLoss() && prob(50))
-		M.adjustOxyLoss(-2)
-	if(M.getBruteLoss() && prob(60))
-		M.heal_organ_damage(2, 0)
-	if(M.getFireLoss() && prob(50))
-		M.heal_organ_damage(0, 2)
-	if(M.getToxLoss() && prob(50))
-		M.adjustToxLoss(-2)
-	if(M.dizziness != 0)
-		M.dizziness = max(0, M.dizziness - 15)
-	if(M.confused != 0)
-		M.confused = max(0, M.confused - 5)
+	if(C.getOxyLoss() && prob(50))
+		C.adjustOxyLoss(-2)
+	if(C.getBruteLoss() && prob(60))
+		C.heal_organ_damage(2, 0)
+	if(C.getFireLoss() && prob(50))
+		C.heal_organ_damage(0, 2)
+	if(C.getToxLoss() && prob(50))
+		C.adjustToxLoss(-2)
+	if(C.dizziness != 0)
+		C.dizziness = max(0, C.dizziness - 15)
+	if(C.confused != 0)
+		C.confused = max(0, C.confused - 5)
 	. = ..()

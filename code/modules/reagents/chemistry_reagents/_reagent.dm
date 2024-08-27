@@ -61,11 +61,11 @@
 /datum/reagent/proc/reaction_turf(turf/T, volume)
 	qdel(src)
 
-/datum/reagent/proc/on_mob_life(mob/living/M, alien)
-	if(!isliving(M))
+/datum/reagent/proc/on_mob_life(mob/living/carbon/C, alien)
+	if(!istype(C))
 		return //Noticed runtime errors from pacid trying to damage ghosts, this should fix. --NEO
 	if(overdose > 0 && volume >= overdose) //Overdosing, wooo
-		M.adjustToxLoss(overdose_dam)
+		C.adjustToxLoss(overdose_dam)
 	holder.remove_reagent(id, custom_metabolism) //By default it slowly disappears.
 
 /datum/reagent/proc/on_move(mob/M)

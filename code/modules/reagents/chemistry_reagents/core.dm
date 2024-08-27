@@ -182,12 +182,13 @@
 	description = "An ashen-obsidian-water mix, this solution will alter certain sections of the brain's rationality."
 	color = "#E0E8EF" // rgb: 224, 232, 239
 
-/datum/reagent/water/holy/on_mob_life(mob/living/M)
-	if(ishuman(M))
-		if((M.mind in global.PCticker.mode.cult) && prob(10))
-			to_chat(M, SPAN_INFO("A cooling sensation from inside you brings you an untold calmness."))
-			global.PCticker.mode.remove_cultist(M.mind)
-			M.visible_message(SPAN_INFO("[M]'s eyes blink and become clearer.")) // So observers know it worked.
+/datum/reagent/water/holy/on_mob_life(mob/living/carbon/C)
+	if(ishuman(C))
+		var/mob/living/carbon/human/H = C
+		if((H.mind in global.PCticker?.mode.cult) && prob(10))
+			to_chat(H, SPAN_INFO("A cooling sensation from inside you brings you an untold calmness."))
+			global.PCticker.mode.remove_cultist(H.mind)
+			H.visible_message(SPAN_INFO("[H]'s eyes blink and become clearer.")) // So observers know it worked.
 	holder.remove_reagent(id, 10 * REAGENTS_METABOLISM) //high metabolism to prevent extended uncult rolls.
 
 /datum/reagent/lube
@@ -224,11 +225,9 @@
 
 	custom_metabolism = 0.01
 
-/datum/reagent/plasticide/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
+/datum/reagent/plasticide/on_mob_life(mob/living/carbon/C)
 	// Toxins are really weak, but without being treated, last very long.
-	M.adjustToxLoss(0.2)
+	C.adjustToxLoss(0.2)
 	. = ..()
 
 /datum/reagent/slimetoxin
@@ -239,13 +238,11 @@
 	color = "#13BC5E" // rgb: 19, 188, 94
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/slimetoxin/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	if(ishuman(M))
-		var/mob/living/carbon/human/human = M
+/datum/reagent/slimetoxin/on_mob_life(mob/living/carbon/C)
+	if(ishuman(C))
+		var/mob/living/carbon/human/human = C
 		if(isnull(human.dna.mutantrace))
-			to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
+			to_chat(C, SPAN_DANGER("Your flesh rapidly mutates!"))
 			human.dna.mutantrace = "slime"
 			human.update_mutantrace()
 	. = ..()
@@ -258,34 +255,32 @@
 	color = "#13BC5E" // rgb: 19, 188, 94
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/aslimetoxin/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	if(iscarbon(M) && M.stat != DEAD)
-		to_chat(M, SPAN_DANGER("Your flesh rapidly mutates!"))
-		if(M.monkeyizing)
+/datum/reagent/aslimetoxin/on_mob_life(mob/living/carbon/C)
+	if(iscarbon(C) && C.stat != DEAD)
+		to_chat(C, SPAN_DANGER("Your flesh rapidly mutates!"))
+		if(C.monkeyizing)
 			return
-		M.monkeyizing = TRUE
-		M.canmove = FALSE
-		M.icon = null
-		M.overlays.Cut()
-		M.invisibility = INVISIBILITY_MAXIMUM
-		for(var/obj/item/W in M)
+		C.monkeyizing = TRUE
+		C.canmove = FALSE
+		C.icon = null
+		C.overlays.Cut()
+		C.invisibility = INVISIBILITY_MAXIMUM
+		for(var/obj/item/W in C)
 			if(istype(W, /obj/item/implant))	//TODO: Carn. give implants a dropped() or something
 				qdel(W)
 				continue
 			W.reset_plane_and_layer()
-			W.loc = M.loc
-			W.dropped(M)
+			W.loc = C.loc
+			W.dropped(C)
 
-		var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(M.loc)
+		var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(C.loc)
 		new_mob.a_intent = "hurt"
 		new_mob.universal_speak = TRUE
-		if(isnotnull(M.mind))
-			M.mind.transfer_to(new_mob)
+		if(isnotnull(C.mind))
+			C.mind.transfer_to(new_mob)
 		else
-			new_mob.key = M.key
-		qdel(M)
+			new_mob.key = C.key
+		qdel(C)
 	. = ..()
 
 /datum/reagent/space_drugs
@@ -296,16 +291,14 @@
 	color = "#60A584" // rgb: 96, 165, 132
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/space_drugs/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	M.druggy = max(M.druggy, 15)
-	if(isturf(M.loc) && !isspace(M.loc))
-		if(M.canmove && !M.restrained())
+/datum/reagent/space_drugs/on_mob_life(mob/living/carbon/C)
+	C.druggy = max(C.druggy, 15)
+	if(isturf(C.loc) && !isspace(C.loc))
+		if(C.canmove && !C.restrained())
 			if(prob(10))
-				step(M, pick(GLOBL.cardinal))
+				step(C, pick(GLOBL.cardinal))
 	if(prob(7))
-		M.emote(pick("twitch", "drool", "moan", "giggle"))
+		C.emote(pick("twitch", "drool", "moan", "giggle"))
 	holder.remove_reagent(id, 0.5 * REAGENTS_METABOLISM)
 
 /*
@@ -353,11 +346,11 @@
 
 	custom_metabolism = 0.01
 
-/datum/reagent/oxygen/on_mob_life(mob/living/M, alien)
-	if(M.stat == DEAD)
+/datum/reagent/oxygen/on_mob_life(mob/living/carbon/C, alien)
+	if(C.stat == DEAD)
 		return
 	if(alien && (alien == IS_VOX || alien == IS_PLASMALIN))
-		M.adjustToxLoss(REAGENTS_METABOLISM)
+		C.adjustToxLoss(REAGENTS_METABOLISM)
 		holder.remove_reagent(id, REAGENTS_METABOLISM) // By default it slowly disappears.
 		return
 	. = ..()
@@ -379,11 +372,11 @@
 
 	custom_metabolism = 0.01
 
-/datum/reagent/nitrogen/on_mob_life(mob/living/M, alien)
-	if(M.stat == DEAD)
+/datum/reagent/nitrogen/on_mob_life(mob/living/carbon/C, alien)
+	if(C.stat == DEAD)
 		return
 	if(alien && alien == IS_VOX)
-		M.adjustOxyLoss(-2 * REM)
+		C.adjustOxyLoss(-2 * REM)
 		holder.remove_reagent(id, REAGENTS_METABOLISM) // By default it slowly disappears.
 		return
 	. = ..()
@@ -414,14 +407,12 @@
 	color = "#484848" // rgb: 72, 72, 72
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/mercury/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	if(M.canmove && !M.restrained() && isspace(M.loc))
-		step(M, pick(GLOBL.cardinal))
+/datum/reagent/mercury/on_mob_life(mob/living/carbon/C)
+	if(C.canmove && !C.restrained() && isspace(C.loc))
+		step(C, pick(GLOBL.cardinal))
 	if(prob(5))
-		M.emote(pick("twitch", "drool", "moan"))
-	M.adjustBrainLoss(2)
+		C.emote(pick("twitch", "drool", "moan"))
+	C.adjustBrainLoss(2)
 	. = ..()
 
 /datum/reagent/sulfur
@@ -460,10 +451,8 @@
 	color = "#808080" // rgb: 128, 128, 128
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/chlorine/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	M.take_organ_damage(1 * REM, 0)
+/datum/reagent/chlorine/on_mob_life(mob/living/carbon/C)
+	C.take_organ_damage(1 * REM, 0)
 	. = ..()
 
 /datum/reagent/fluorine
@@ -474,10 +463,8 @@
 	color = "#808080" // rgb: 128, 128, 128
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/fluorine/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	M.adjustToxLoss(1 * REM)
+/datum/reagent/fluorine/on_mob_life(mob/living/carbon/C)
+	C.adjustToxLoss(1 * REM)
 	. = ..()
 
 /datum/reagent/sodium
@@ -506,13 +493,11 @@
 	color = "#808080" // rgb: 128, 128, 128
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/lithium/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	if(M.canmove && !M.restrained() && isspace(M.loc))
-		step(M, pick(GLOBL.cardinal))
+/datum/reagent/lithium/on_mob_life(mob/living/carbon/C)
+	if(C.canmove && !C.restrained() && isspace(C.loc))
+		step(C, pick(GLOBL.cardinal))
 	if(prob(5))
-		M.emote(pick("twitch", "drool", "moan"))
+		C.emote(pick("twitch", "drool", "moan"))
 	. = ..()
 
 /datum/reagent/sugar
@@ -522,10 +507,8 @@
 	reagent_state = REAGENT_SOLID
 	color = "#FFFFFF" // rgb: 255, 255, 255
 
-/datum/reagent/sugar/on_mob_life(mob/living/M)
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		C.nutrition += 1 * REM
+/datum/reagent/sugar/on_mob_life(mob/living/carbon/C)
+	C.nutrition += 1 * REM
 	. = ..()
 
 /datum/reagent/glycerol
@@ -553,27 +536,22 @@
 	reagent_state = REAGENT_SOLID
 	color = "#C7C7C7" // rgb: 199,199,199
 
-/datum/reagent/radium/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	M.apply_effect(2 * REM, IRRADIATE, 0)
+/datum/reagent/radium/on_mob_life(mob/living/carbon/C)
+	C.apply_effect(2 * REM, IRRADIATE, 0)
 	// radium may increase your chances to cure a disease
-	if(!iscarbon(M)) // make sure to only use it on carbon mobs
-		return
-	var/mob/living/carbon/C = M
 	if(!length(C.virus2))
 		return
 	for(var/ID in C.virus2)
 		var/datum/disease2/disease/V = C.virus2[ID]
 		if(prob(5))
 			if(prob(50))
-				M.radiation += 50 // curing it that way may kill you instead
+				C.radiation += 50 // curing it that way may kill you instead
 				var/mob/living/carbon/human/H
 				if(ishuman(C))
 					H = C
 				if(isnull(H) || (isnotnull(H.species) && !HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_RAD_ABSORB)))
-					M.adjustToxLoss(100)
-			M:antibodies |= V.antigen
+					C.adjustToxLoss(100)
+			C.antibodies |= V.antigen
 	. = ..()
 
 /datum/reagent/radium/reaction_turf(turf/T, volume)
@@ -599,10 +577,8 @@
 			W.thermite = TRUE
 			W.overlays.Add(image('icons/effects/effects.dmi', icon_state = "#673910"))
 
-/datum/reagent/thermite/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	M.adjustFireLoss(1)
+/datum/reagent/thermite/on_mob_life(mob/living/carbon/C)
+	C.adjustFireLoss(1)
 	. = ..()
 
 /datum/reagent/virus_food
@@ -613,12 +589,8 @@
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#899613" // rgb: 137, 150, 19
 
-/datum/reagent/virus_food/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		C.nutrition += nutriment_factor * REM
+/datum/reagent/virus_food/on_mob_life(mob/living/carbon/C)
+	C.nutrition += nutriment_factor * REM
 	. = ..()
 
 /datum/reagent/iron
@@ -650,10 +622,8 @@
 	reagent_state = REAGENT_SOLID
 	color = "#B8B8C0" // rgb: 184, 184, 192
 
-/datum/reagent/uranium/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	M.apply_effect(1, IRRADIATE, 0)
+/datum/reagent/uranium/on_mob_life(mob/living/carbon/C)
+	C.apply_effect(1, IRRADIATE, 0)
 	. = ..()
 
 /datum/reagent/uranium/reaction_turf(turf/T, volume)
@@ -702,10 +672,8 @@
 		M.adjust_fire_stacks(volume / 10)
 		return
 
-/datum/reagent/fuel/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	M.adjustToxLoss(1)
+/datum/reagent/fuel/on_mob_life(mob/living/carbon/C)
+	C.adjustToxLoss(1)
 	. = ..()
 
 /datum/reagent/space_cleaner
@@ -772,16 +740,14 @@
 	color = "#C8A5DC" // rgb: 200, 165, 220
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/impedrezene/on_mob_life(mob/living/M)
-	if(isnull(M))
-		M = holder.my_atom
-	M.jitteriness = max(M.jitteriness - 5, 0)
+/datum/reagent/impedrezene/on_mob_life(mob/living/carbon/C)
+	C.jitteriness = max(C.jitteriness - 5, 0)
 	if(prob(80))
-		M.adjustBrainLoss(1 * REM)
+		C.adjustBrainLoss(1 * REM)
 	if(prob(50))
-		M.drowsyness = max(M.drowsyness, 3)
+		C.drowsyness = max(C.drowsyness, 3)
 	if(prob(10))
-		M.emote("drool")
+		C.emote("drool")
 	. = ..()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
