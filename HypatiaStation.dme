@@ -203,6 +203,7 @@
 #include "code\game\client\preferences\preferences_savefile.dm"
 #include "code\game\client\preferences\preferences_skills.dm"
 #include "code\game\client\preferences\preferences_toggles.dm"
+#include "code\game\client\preferences\panels\character_setup.dm"
 #include "code\game\client\verbs\ooc.dm"
 #include "code\game\client\verbs\who.dm"
 #include "code\game\datums\beam.dm"
