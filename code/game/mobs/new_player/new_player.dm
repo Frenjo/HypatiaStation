@@ -359,7 +359,7 @@
 			html += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
 	html += "</center>"
 
-	var/datum/browser/panel = new /datum/browser(src, "latechoices", "", 300, 640, src)
+	var/datum/browser/panel = new /datum/browser(src, "latechoices", "", 300, 820, src)
 	panel.set_window_options("can_close=1")
 	panel.set_content(html)
 	panel.open()
