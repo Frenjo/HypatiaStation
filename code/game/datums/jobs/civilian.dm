@@ -79,6 +79,69 @@
 	alt_titles = list("Hydroponicist", "Gardener")
 
 /*
+ * Janitor
+ */
+/datum/job/janitor
+	title = "Janitor"
+	flag = JOB_JANITOR
+
+	department = /decl/department/civilian
+
+	total_positions = 1
+	spawn_positions = 1
+
+	supervisors = "the Head of Personnel"
+	selection_color = "#dddddd"
+
+	access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS)
+
+	outfit = /decl/hierarchy/outfit/job/service/janitor
+	alt_titles = list("Custodial Specialist", "Sanitation Technician", "Cleaner")
+
+/*
+ * Librarian
+ */
+// More or less assistants.
+/datum/job/librarian
+	title = "Librarian"
+	flag = JOB_LIBRARIAN
+
+	department = /decl/department/civilian
+
+	total_positions = 1
+	spawn_positions = 1
+
+	supervisors = "the Head of Personnel"
+	selection_color = "#dddddd"
+
+	access = list(ACCESS_LIBRARY, ACCESS_MAINT_TUNNELS)
+	minimal_access = list(ACCESS_LIBRARY)
+
+	outfit = /decl/hierarchy/outfit/job/service/librarian
+	alt_titles = list("Journalist", "Reporter")
+
+/*
+ * Lawyer
+ */
+/datum/job/lawyer
+	title = "Lawyer"
+	flag = JOB_LAWYER
+
+	department = /decl/department/civilian
+
+	total_positions = 2
+	spawn_positions = 2
+
+	supervisors = "the Head of Personnel and Space Law"
+	selection_color = "#dddddd"
+
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS)
+	minimal_access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS)
+
+	outfit = /decl/hierarchy/outfit/job/service/lawyer
+	alt_titles = list("Solicitor")
+
+/*
  * Clown
  */
 //Griff //BS12 EDIT
@@ -202,79 +265,3 @@
 		to_chat(usr, "You'll have to wait if you want to atone for your sins.")
 		spawn(3000)
 			H.miming = TRUE
-
-/*
- * Janitor
- */
-/datum/job/janitor
-	title = "Janitor"
-	flag = JOB_JANITOR
-
-	department = /decl/department/civilian
-
-	total_positions = 1
-	spawn_positions = 1
-
-	supervisors = "the Head of Personnel"
-	selection_color = "#dddddd"
-
-	access = list(ACCESS_JANITOR, ACCESS_MAINT_TUNNELS)
-
-	outfit = /decl/hierarchy/outfit/job/service/janitor
-	alt_titles = list("Custodial Specialist", "Sanitation Technician", "Cleaner")
-
-/*
- * Librarian
- */
-// More or less assistants.
-/datum/job/librarian
-	title = "Librarian"
-	flag = JOB_LIBRARIAN
-
-	department = /decl/department/civilian
-
-	total_positions = 1
-	spawn_positions = 1
-
-	supervisors = "the Head of Personnel"
-	selection_color = "#dddddd"
-
-	access = list(ACCESS_LIBRARY, ACCESS_MAINT_TUNNELS)
-	minimal_access = list(ACCESS_LIBRARY)
-
-	outfit = /decl/hierarchy/outfit/job/service/librarian
-	alt_titles = list("Journalist", "Reporter")
-
-/*
- * Internal Affairs Agent
- */
-//var/global/lawyer = 0//Checks for another lawyer //This changed clothes on 2nd lawyer, both IA get the same dreds.
-/datum/job/lawyer
-	title = "Internal Affairs Agent"
-	flag = JOB_LAWYER
-
-	department = /decl/department/civilian
-
-	total_positions = 2
-	spawn_positions = 2
-
-	supervisors = "the Captain"
-	selection_color = "#dddddd"
-
-	access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS, ACCESS_MAINT_TUNNELS)
-	minimal_access = list(ACCESS_LAWYER, ACCESS_COURT, ACCESS_SEC_DOORS)
-
-	outfit = /decl/hierarchy/outfit/job/internal_affairs
-	alt_titles = list("Lawyer")
-
-/datum/job/lawyer/equip(mob/living/carbon/human/H)
-	. = ..()
-
-	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(H)
-	L.imp_in = H
-	L.implanted = TRUE
-	var/datum/organ/external/affected = H.organs_by_name["head"]
-	affected.implants.Add(L)
-	L.part = affected
-
-	return 1

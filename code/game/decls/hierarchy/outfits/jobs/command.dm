@@ -52,3 +52,22 @@
 
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/pda/heads/hop
+
+/*
+ * Internal Affairs Agent
+ */
+/decl/hierarchy/outfit/job/command/internal_affairs
+	name = "Internal Affairs Agent"
+
+	uniform = /obj/item/clothing/under/rank/internalaffairs
+	suit = /obj/item/clothing/suit/storage/internalaffairs
+
+	glasses = /obj/item/clothing/glasses/sunglasses
+
+	l_ear = /obj/item/radio/headset/sec
+
+	l_hand = /obj/item/storage/briefcase
+	r_hand = /obj/item/encryptionkey/com
+
+	id_type = /obj/item/card/id/silver
+	pda_type = /obj/item/pda/lawyer

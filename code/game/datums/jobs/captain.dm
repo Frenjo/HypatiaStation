@@ -68,3 +68,42 @@
 
 	outfit = /decl/hierarchy/outfit/job/command/hop
 	alt_titles = list("Human Resources Director")
+
+/*
+ * Internal Affairs Agent
+ */
+/datum/job/internal_affairs
+	title = "Internal Affairs Agent"
+	flag = JOB_INTERNALAFFAIRS
+
+	department = /decl/department/civilian
+
+	total_positions = 2
+	spawn_positions = 2
+
+	supervisors = "NanoTrasen Officials and Corporate Regulations"
+	selection_color = "#ddddff"
+
+	// Has basic access to every department, plus the usual command accesses.
+	// Also has access to the law office and courtroom.
+	access = list(
+		ACCESS_SECURITY, ACCESS_MEDICAL, ACCESS_ENGINE, ACCESS_MAINT_TUNNELS,
+		ACCESS_EXTERNAL_AIRLOCKS, ACCESS_AI_UPLOAD, ACCESS_TELEPORTER, ACCESS_EVA,
+		ACCESS_BRIDGE, ACCESS_CARGO, ACCESS_LAWYER, ACCESS_COURT,
+		ACCESS_RESEARCH, ACCESS_MINING, ACCESS_HEADS_VAULT, ACCESS_RC_ANNOUNCE,
+		ACCESS_KEYCARD_AUTH, ACCESS_GATEWAY, ACCESS_SEC_DOORS
+	)
+
+	outfit = /decl/hierarchy/outfit/job/command/internal_affairs
+
+/datum/job/internal_affairs/equip(mob/living/carbon/human/H)
+	. = ..()
+
+	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(H)
+	L.imp_in = H
+	L.implanted = TRUE
+	var/datum/organ/external/affected = H.organs_by_name["head"]
+	affected.implants.Add(L)
+	L.part = affected
+
+	return 1

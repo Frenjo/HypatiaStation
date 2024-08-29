@@ -5,26 +5,6 @@
 	name = "Assistant"
 
 /*
- * Internal Affairs Agent
- *
- * This needs to be moved to a Security or a Command job in future.
- */
-/decl/hierarchy/outfit/job/internal_affairs
-	name = "Internal Affairs Agent"
-
-	uniform = /obj/item/clothing/under/rank/internalaffairs
-	suit = /obj/item/clothing/suit/storage/internalaffairs
-
-	glasses = /obj/item/clothing/glasses/sunglasses/big
-	shoes = /obj/item/clothing/shoes/brown
-
-	l_ear = /obj/item/radio/headset/sec
-
-	l_hand = /obj/item/storage/briefcase
-
-	pda_type = /obj/item/pda/lawyer
-
-/*
  * Service
  */
 /decl/hierarchy/outfit/job/service
@@ -148,3 +128,33 @@
 	l_hand = /obj/item/storage/bible
 
 	pda_type = /obj/item/pda/chaplain
+
+/*
+ * Lawyer
+ */
+/decl/hierarchy/outfit/job/service/lawyer
+	name = "Lawyer"
+
+	uniform = /obj/item/clothing/under/lawyer/bluesuit
+	suit = /obj/item/clothing/suit/storage/lawyer/bluejacket
+
+	glasses = /obj/item/clothing/glasses/sunglasses/big
+	shoes = /obj/item/clothing/shoes/brown
+
+	l_ear = /obj/item/radio/headset/sec
+
+	l_hand = /obj/item/storage/briefcase
+	r_hand = /obj/item/encryptionkey/service
+
+	pda_type = /obj/item/pda/lawyer
+
+	// First lawyer gets the default blue suit, another that joins gets the purple one.
+	var/static/use_purple_suit = FALSE
+
+/decl/hierarchy/outfit/job/service/lawyer/pre_equip(mob/living/carbon/human/user)
+	. = ..()
+	if(use_purple_suit)
+		uniform = /obj/item/clothing/under/lawyer/purpsuit
+		suit = /obj/item/clothing/suit/storage/lawyer/purpjacket
+	else
+		use_purple_suit = TRUE
