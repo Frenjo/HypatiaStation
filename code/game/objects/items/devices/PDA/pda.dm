@@ -461,7 +461,7 @@
 
 		if("Toggle Door")
 			if(cartridge && cartridge.access_remote_door)
-				for(var/obj/machinery/door/poddoor/M in world)
+				for(var/obj/machinery/door/poddoor/M in GLOBL.machines)
 					if(M.id == cartridge.remote_door_id)
 						if(M.density)
 							M.open()

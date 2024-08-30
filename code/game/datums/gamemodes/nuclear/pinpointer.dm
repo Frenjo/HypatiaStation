@@ -24,7 +24,7 @@
 
 /obj/item/pinpointer/examine()
 	. = ..()
-	for(var/obj/machinery/nuclearbomb/bomb in world)
+	for(var/obj/machinery/nuclearbomb/bomb in GLOBL.machines)
 		if(bomb.timing)
 			to_chat(usr, SPAN_DANGER("Extreme danger. Arming signal detected. Time remaining: [bomb.timeleft]."))
 

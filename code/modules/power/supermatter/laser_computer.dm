@@ -13,7 +13,7 @@
 
 /obj/machinery/computer/lasercon/initialise()
 	. = ..()
-	for(var/obj/machinery/zero_point_emitter/laser in world)
+	for(var/obj/machinery/zero_point_emitter/laser in GLOBL.machines)
 		if(laser.id == id)
 			lasers.Add(laser)
 

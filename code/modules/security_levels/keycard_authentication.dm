@@ -110,7 +110,7 @@
 
 /obj/machinery/keycard_auth/proc/broadcast_request()
 	icon_state = "auth_on"
-	for(var/obj/machinery/keycard_auth/auth in world)
+	for(var/obj/machinery/keycard_auth/auth in GLOBL.machines)
 		if(auth == src)
 			continue
 		auth.reset()

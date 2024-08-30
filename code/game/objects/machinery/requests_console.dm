@@ -167,7 +167,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				dat += text("<A href='byond://?src=\ref[src];setScreen=0'>Continue</A><BR>")
 
 			if(8)	//view messages
-				for (var/obj/machinery/requests_console/Console in allConsoles)
+				for(var/obj/machinery/requests_console/Console in allConsoles)
 					if (Console.department == department)
 						Console.newmessagepriority = 0
 						Console.icon_state = "req_comp0"
@@ -278,14 +278,14 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		screen = 7 //if it's successful, this will get overrwritten (7 = unsufccessfull, 6 = successfull)
 		if (sending)
 			var/pass = 0
-			for (var/obj/machinery/message_server/MS in world)
+			for_no_type_check(var/obj/machinery/message_server/MS, GLOBL.message_servers)
 				if(!MS.active) continue
 				MS.send_rc_message(href_list["department"],department,log_msg,msgStamped,msgVerified,priority)
 				pass = 1
 
 			if(pass)
 
-				for (var/obj/machinery/requests_console/Console in allConsoles)
+				for(var/obj/machinery/requests_console/Console in allConsoles)
 					if (ckey(Console.department) == ckey(href_list["department"]))
 
 						switch(priority)
@@ -295,7 +295,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 									Console.icon_state = "req_comp2"
 								if(!Console.silent)
 									playsound(Console.loc, 'sound/machines/twobeep.ogg', 50, 1)
-									for (var/mob/O in hearers(5, Console.loc))
+									for(var/mob/O in hearers(5, Console.loc))
 										O.show_message(text("\icon[Console] *The Requests Console beeps: 'PRIORITY Alert in [department]'"))
 								Console.messages += "<B><FONT color='red'>High Priority message from <A href='byond://?src=\ref[Console];write=[ckey(department)]'>[department]</A></FONT></B><BR>[sending]"
 
@@ -305,7 +305,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		//							Console.icon_state = "req_comp3"
 		//						if(!Console.silent)
 		//							playsound(Console.loc, 'sound/machines/twobeep.ogg', 50, 1)
-		//							for (var/mob/O in hearers(7, Console.loc))
+		//							for(var/mob/O in hearers(7, Console.loc))
 		//								O.show_message(text("\icon[Console] *The Requests Console yells: 'EXTREME PRIORITY alert in [department]'"))
 		//						Console.messages += "<B><FONT color='red'>Extreme Priority message from [ckey(department)]</FONT></B><BR>[message]"
 
@@ -315,7 +315,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 									Console.icon_state = "req_comp1"
 								if(!Console.silent)
 									playsound(Console.loc, 'sound/machines/twobeep.ogg', 50, 1)
-									for (var/mob/O in hearers(4, Console.loc))
+									for(var/mob/O in hearers(4, Console.loc))
 										O.show_message(text("\icon[Console] *The Requests Console beeps: 'Message from [department]'"))
 								Console.messages += "<B>Message from <A href='byond://?src=\ref[Console];write=[ckey(department)]'>[department]</A></FONT></B><BR>[message]"
 
@@ -324,7 +324,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 						Console.light_range = 2
 				messages += "<B>Message sent to [dpt]</B><BR>[message]"
 			else
-				for (var/mob/O in hearers(4, src.loc))
+				for(var/mob/O in hearers(4, src.loc))
 					O.show_message(text("\icon[src] *The Requests Console beeps: 'NOTICE: No server detected!'"))
 
 

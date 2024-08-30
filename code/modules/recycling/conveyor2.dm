@@ -233,7 +233,7 @@
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
-	for(var/obj/machinery/conveyor_switch/S in world)
+	for(var/obj/machinery/conveyor_switch/S in GLOBL.machines)
 		if(S.id == src.id)
 			S.position = position
 			S.update()
@@ -256,7 +256,7 @@
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
-	for(var/obj/machinery/conveyor_switch/S in world)
+	for(var/obj/machinery/conveyor_switch/S in GLOBL.machines)
 		if(S.id == src.id)
 			S.position = position
 			S.update()

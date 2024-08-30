@@ -31,14 +31,14 @@
 		user.reset_view(src.current)
 
 	var/list/L = list
-	for (var/obj/machinery/camera/C in world)
+	for(var/obj/machinery/camera/C in GLOBL.machines)
 		L.Add(C)
 
 	camera_network_sort(L)
 
 	var/list/D = list()
 	D["Cancel"] = "Cancel"
-	for (var/obj/machinery/camera/C in L)
+	for(var/obj/machinery/camera/C in L)
 		if ( C.network in src.networks )
 			D[text("[]: [][]", C.network, C.c_tag, (C.status ? null : " (Deactivated)"))] = C
 

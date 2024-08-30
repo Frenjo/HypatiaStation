@@ -486,7 +486,7 @@
 		icon_state = "motion0"
 																				//CODE FIXED BUT REMOVED
 //	if(control_area)															//USE: updates other controls in the area
-//		for (var/obj/machinery/turretid/Turret_Control in world)				//I'm not sure if this is what it was
+//		for (var/obj/machinery/turretid/Turret_Control in GLOBL.machines)		//I'm not sure if this is what it was
 //			if( Turret_Control.control_area != src.control_area )	continue	//supposed to do. Or whether the person
 //			Turret_Control.icon_state = icon_state								//who coded it originally was just tired
 //			Turret_Control.enabled = enabled									//or something. I don't see  any situation

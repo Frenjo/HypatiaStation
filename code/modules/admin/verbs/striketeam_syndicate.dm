@@ -45,7 +45,7 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 //Code for spawning a nuke auth code.
 	var/nuke_code
 	var/temp_code
-	for(var/obj/machinery/nuclearbomb/N in world)
+	for(var/obj/machinery/nuclearbomb/N in GLOBL.machines)
 		temp_code = text2num(N.r_code)
 		if(temp_code)//if it's actually a number. It won't convert any non-numericals.
 			nuke_code = N.r_code
@@ -87,7 +87,7 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 			syndicate_commando_number--
 
 //Spawns the rest of the commando gear.
-//	for (var/obj/effect/landmark/L)
+//	for(var/obj/effect/landmark/L)
 	//	if (L.name == "Commando_Manual")
 			//new /obj/item/gun/energy/pulse_rifle(L.loc)
 		//	var/obj/item/paper/P = new(L.loc)

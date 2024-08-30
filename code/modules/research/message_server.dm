@@ -63,14 +63,14 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/message_server/message_servers)
 	var/decryptkey = "password"
 
 /obj/machinery/message_server/New()
-	GLOBL.message_servers += src
+	GLOBL.message_servers.Add(src)
 	decryptkey = GenerateKey()
 	send_pda_message("System Administrator", "system", "This is an automated message. The messaging system is functioning correctly.")
 	..()
 	return
 
 /obj/machinery/message_server/Destroy()
-	GLOBL.message_servers -= src
+	GLOBL.message_servers.Remove(src)
 	return ..()
 
 /obj/machinery/message_server/proc/GenerateKey()

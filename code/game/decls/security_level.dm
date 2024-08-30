@@ -32,7 +32,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	// Updates all status displays.
-	var/obj/machinery/computer/communications/comms = locate() in GLOBL.communications_consoles
+	var/obj/machinery/computer/communications/comms = pick(GLOBL.communications_consoles)
 	comms?.post_status("alert", status_post)
 
 	// Updates all fire alarms to display the corresponding alert light.

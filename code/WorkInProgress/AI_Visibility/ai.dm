@@ -60,7 +60,7 @@
 		return
 
 	var/list/L = list()
-	for (var/obj/machinery/camera/C in world)
+	for(var/obj/machinery/camera/C in GLOBL.machines)
 		L.Add(C)
 
 	camera_sort(L)

@@ -9,17 +9,17 @@
 	feedback_add_details("admin_verb", "CP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	//all plumbing - yes, some things might get stated twice, doesn't matter.
-	for(var/obj/machinery/atmospherics/plumbing in world)
+	for(var/obj/machinery/atmospherics/plumbing in GLOBL.machines)
 		if(plumbing.nodealert)
 			to_chat(usr, "Unconnected [plumbing.name] located at [plumbing.x], [plumbing.y], [plumbing.z] ([get_area(plumbing.loc)])")
 
 	//Manifolds
-	for(var/obj/machinery/atmospherics/pipe/manifold/pipe in world)
+	for(var/obj/machinery/atmospherics/pipe/manifold/pipe in GLOBL.machines)
 		if(!pipe.node1 || !pipe.node2 || !pipe.node3)
 			to_chat(usr, "Unconnected [pipe.name] located at [pipe.x], [pipe.y], [pipe.z] ([get_area(pipe.loc)])")
 
 	//Pipes
-	for(var/obj/machinery/atmospherics/pipe/simple/pipe in world)
+	for(var/obj/machinery/atmospherics/pipe/simple/pipe in GLOBL.machines)
 		if(!pipe.node1 || !pipe.node2)
 			to_chat(usr, "Unconnected [pipe.name] located at [pipe.x], [pipe.y], [pipe.z] ([get_area(pipe.loc)])")
 

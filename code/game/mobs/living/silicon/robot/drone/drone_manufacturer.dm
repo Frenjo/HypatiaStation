@@ -111,7 +111,7 @@
 		usr << "You must wait 10 minutes to respawn as a drone!"
 		return
 
-	for(var/obj/machinery/drone_fabricator/DF in world)
+	for(var/obj/machinery/drone_fabricator/DF in GLOBL.machines)
 		if(DF.stat & NOPOWER || !DF.produce_drones)
 			continue
 		if(DF.count_drones() >= CONFIG_GET(max_maint_drones))

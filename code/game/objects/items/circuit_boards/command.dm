@@ -12,11 +12,11 @@
 
 /obj/item/circuitboard/communications/Destroy()
 	. = ..()
-	for(var/obj/machinery/computer/communications/commconsole in world)
+	for_no_type_check(var/obj/machinery/computer/communications/commconsole, GLOBL.communications_consoles)
 		if(isturf(commconsole.loc))
 			return .
 
-	for(var/obj/item/circuitboard/communications/commboard in world)
+	for(var/obj/item/circuitboard/communications/commboard in GLOBL.movable_atom_list)
 		if((isturf(commboard.loc) || istype(commboard.loc, /obj/item/storage)) && commboard != src)
 			return .
 

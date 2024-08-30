@@ -9,14 +9,14 @@
 
 	var/callshuttle = 0
 
-	for(var/obj/machinery/computer/communications/commconsole in world)
+	for_no_type_check(var/obj/machinery/computer/communications/commconsole, GLOBL.communications_consoles)
 		if(commconsole.z == 2)
 			continue
 		if(isturf(commconsole.loc))
 			break
 		callshuttle++
 
-	for(var/obj/item/circuitboard/communications/commboard in world)
+	for(var/obj/item/circuitboard/communications/commboard in GLOBL.movable_atom_list)
 		if(commboard.z == 2)
 			continue
 		if(isturf(commboard.loc) || istype(commboard.loc, /obj/item/storage))
@@ -44,7 +44,7 @@
 		spawn(10)
 			explosion(src.loc, 3, 6, 12, 15)
 
-	var/obj/machinery/computer/communications/comms = locate() in GLOBL.communications_consoles // Change status.
+	var/obj/machinery/computer/communications/comms = pick(GLOBL.communications_consoles) // Change status.
 	comms?.post_status("ai_emotion", "BSOD")
 	if(istype(loc, /obj/item/aicard))
 		loc.icon_state = "aicard-404"

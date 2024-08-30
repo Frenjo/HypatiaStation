@@ -6,7 +6,7 @@
 
 	var/list/skipped_areas = list(/area/station/engineering/engine, /area/turret_protected/ai_chamber)
 
-	for(var/obj/machinery/power/smes/S in world)
+	for(var/obj/machinery/power/smes/S in GLOBL.machines)
 		var/area/current_area = get_area(S)
 		if(current_area.type in skipped_areas || isnotstationlevel(S.z))
 			continue
@@ -19,7 +19,7 @@
 		S.update_icon()
 		S.power_change()
 
-	for(var/obj/machinery/power/apc/C in world)
+	for(var/obj/machinery/power/apc/C in GLOBL.machines)
 		if(C.cell && isstationlevel(C.z))
 			var/area/A = get_area(C)
 			var/skip = 0
@@ -40,11 +40,11 @@
 
 	var/list/skipped_areas = list(/area/station/engineering/engine, /area/turret_protected/ai_chamber)
 
-	for(var/obj/machinery/power/apc/C in world)
+	for(var/obj/machinery/power/apc/C in GLOBL.machines)
 		if(C.cell && isstationlevel(C.z))
 			C.cell.charge = C.cell.maxcharge
 
-	for(var/obj/machinery/power/smes/S in world)
+	for(var/obj/machinery/power/smes/S in GLOBL.machines)
 		var/area/current_area = get_area(S)
 		if(current_area.type in skipped_areas || isnotstationlevel(S.z))
 			continue
@@ -69,7 +69,7 @@
 		for_no_type_check(var/mob/M, GLOBL.player_list)
 			M << sound('sound/AI/poweron.ogg')
 
-	for(var/obj/machinery/power/smes/S in world)
+	for(var/obj/machinery/power/smes/S in GLOBL.machines)
 		if(isnotstationlevel(S.z))
 			continue
 		S.charge = S.capacity

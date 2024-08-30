@@ -593,7 +593,7 @@ var/global/datum/tension/tension_master
 										var/I = image('icons/mob/mob.dmi', loc = synd_mind_1.current, icon_state = "synd")
 										synd_mind.current.client.images += I
 
-					for (var/obj/machinery/nuclearbomb/bomb in world)
+					for (var/obj/machinery/nuclearbomb/bomb in GLOBL.machines)
 						bomb.r_code = nuke_code						// All the nukes are set to this code.
 
 			return 1 // Has to return one before it knows if there's a wizard to prevent the parent from automatically selecting another game mode.

@@ -447,7 +447,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 
 /*
 /proc/enable_prison_shuttle(var/mob/user)
-	for(var/obj/machinery/computer/prison_shuttle/PS in world)
+	for(var/obj/machinery/computer/prison_shuttle/PS in GLOBL.machines)
 		PS.allowedtocall = !(PS.allowedtocall)
 */
 
@@ -559,7 +559,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 	frequency.post_signal(src, status_signal)
 
 /obj/machinery/computer/communications/Destroy()
-	for(var/obj/machinery/computer/communications/commconsole in world)
+	for_no_type_check(var/obj/machinery/computer/communications/commconsole, GLOBL.communications_consoles)
 		if(isturf(commconsole.loc) && commconsole != src)
 			return ..()
 

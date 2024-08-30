@@ -245,7 +245,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 		ai_emotions.Add("Tribunal", "Tribunal Malfunctioning")
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
 
-	var/obj/machinery/computer/communications/comms = locate() in GLOBL.communications_consoles
+	var/obj/machinery/computer/communications/comms = pick(GLOBL.communications_consoles)
 	if(emote == "Friend Computer")
 		comms?.post_status("friend_computer")
 	else

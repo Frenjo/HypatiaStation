@@ -596,7 +596,7 @@ Doing this because FindTurfs() isn't even used
 			T.otemp = 293.15
 			T.ttemp = 293.15
 
-/mob/verb/fire(turf/T as turf in world)
+/mob/verb/fire(turf/T as turf in GLOBL.open_turf_list)
 	set category = PANEL_SPECIAL_VERBS
 	set name = "Create Fire"
 
@@ -608,7 +608,7 @@ Doing this because FindTurfs() isn't even used
 		T.poison += 30000000
 		T.firelevel = T.poison
 
-/mob/verb/co2(turf/T as turf in world)
+/mob/verb/co2(turf/T as turf in GLOBL.open_turf_list)
 	set category = PANEL_SPECIAL_VERBS
 	set name = "Create CO2"
 
@@ -619,7 +619,7 @@ Doing this because FindTurfs() isn't even used
 	spawn(0)
 		T.co2 += 300000000
 
-/mob/verb/n2o(turf/T as turf in world)
+/mob/verb/n2o(turf/T as turf in GLOBL.open_turf_list)
 	set category = PANEL_SPECIAL_VERBS
 	set name = "Create N2O"
 

@@ -16,7 +16,7 @@
 /obj/machinery/computer/pod/New()
 	..()
 	spawn(5)
-		for(var/obj/machinery/mass_driver/M in world)
+		for(var/obj/machinery/mass_driver/M in GLOBL.machines)
 			if(M.id == id)
 				connected = M
 			else
@@ -31,21 +31,21 @@
 		viewers(null, null) << "Cannot locate mass driver connector. Cancelling firing sequence!"
 		return
 
-	for(var/obj/machinery/door/poddoor/M in world)
+	for(var/obj/machinery/door/poddoor/M in GLOBL.machines)
 		if(M.id == id)
 			M.open()
 			return
 
 	sleep(20)
 
-	for(var/obj/machinery/mass_driver/M in world)
+	for(var/obj/machinery/mass_driver/M in GLOBL.machines)
 		if(M.id == id)
 			M.power = connected.power
 			M.drive()
 
 	sleep(50)
 
-	for(var/obj/machinery/door/poddoor/M in world)
+	for(var/obj/machinery/door/poddoor/M in GLOBL.machines)
 		if(M.id == id)
 			M.close()
 			return
@@ -72,7 +72,7 @@
 				else //it's not an old computer. Generate standard pod circuitboard.
 					M = new /obj/item/circuitboard/pod( A )
 
-				for (var/obj/C in src)
+				for(var/obj/C in src)
 					C.loc = loc
 				M.id = id
 				A.circuit = M
@@ -95,7 +95,7 @@
 				else //it's not an old computer. Generate standard pod circuitboard.
 					M = new /obj/item/circuitboard/pod( A )
 
-				for (var/obj/C in src)
+				for(var/obj/C in src)
 					C.loc = loc
 				M.id = id
 				A.circuit = M
@@ -181,7 +181,7 @@
 			time += tp
 			time = min(max(round(time), 0), 120)
 		if(href_list["door"])
-			for(var/obj/machinery/door/poddoor/M in world)
+			for(var/obj/machinery/door/poddoor/M in GLOBL.machines)
 				if(M.id == id)
 					if(M.density)
 						M.open()

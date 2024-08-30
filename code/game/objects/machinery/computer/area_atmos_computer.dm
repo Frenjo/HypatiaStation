@@ -161,7 +161,7 @@
 	if(!T.loc)
 		return
 	var/area/A = T.loc
-	for(var/obj/machinery/portable_atmospherics/scrubber/huge/scrubber in world)
+	for(var/obj/machinery/portable_atmospherics/scrubber/huge/scrubber in GLOBL.machines)
 		var/turf/T2 = get_turf(scrubber)
 		if(T2 && T2.loc)
 			var/area/A2 = T2.loc

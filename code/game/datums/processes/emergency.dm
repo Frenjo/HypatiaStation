@@ -129,7 +129,7 @@ PROCESS_DEF(emergency)
 
 // Sets the status displays.
 /datum/process/emergency/proc/set_status_displays(recalled = FALSE)
-	var/obj/machinery/computer/communications/comms = locate() in GLOBL.communications_consoles
+	var/obj/machinery/computer/communications/comms = pick(GLOBL.communications_consoles)
 	comms?.post_status(recalled ? "blank" : "shuttle")
 
 /datum/process/emergency/proc/can_call()
