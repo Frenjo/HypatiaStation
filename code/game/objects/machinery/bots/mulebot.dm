@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-// Mulebot - carries crates around for Quartermaster
+// MULEbot - carries crates around for Quartermaster
 // Navigates via floor navbeacons
 // Remote Controlled from QM's PDA
 
@@ -17,6 +17,7 @@
 	fire_dam_coeff = 0.7
 	brute_dam_coeff = 0.5
 
+	var/static/static_mulebot_id = 0
 	suffix = ""
 
 	req_access = list(ACCESS_CARGO) // added robotics access so assembly line drop-off works properly -veyveyr //I don't think so, Tim. You need to add it to the MULE's hidden robot ID card. -NEO
@@ -57,30 +58,25 @@
 
 /obj/machinery/bot/mulebot/New()
 	. = ..()
-	wires = new /datum/wires/mulebot(src)
-	botcard = new /obj/item/card/id(src)
+	if(!suffix)
+		suffix = "#[++static_mulebot_id]"
+	name = "MULEbot ([suffix])"
 
+	verbs.Remove(/atom/movable/verb/pull)
+
+	cell = new /obj/item/cell/apc(src) // This was originally an untyped cell with 2k charge/capacity. APC cells are the closest available prefab.
+	wires = new /datum/wires/mulebot(src)
+
+	botcard = new /obj/item/card/id(src)
 	var/datum/job/cargo_tech/J = GLOBL.all_jobs["Cargo Technician"]
 	botcard.access = J.get_access()
 //	botcard.access += access_robotics //Why --Ikki
-	cell = new /obj/item/cell(src)
-	cell.charge = 2000
-	cell.maxcharge = 2000
-
-	verbs -= /atom/movable/verb/pull
 
 // must wait for map loading to finish
 /obj/machinery/bot/mulebot/initialise()
 	. = ..()
 	register_radio(src, null, control_freq, RADIO_MULEBOT)
 	register_radio(src, null, beacon_freq, RADIO_NAVBEACONS)
-
-	var/count = 0
-	for(var/obj/machinery/bot/mulebot/other in world)
-		count++
-	if(!suffix)
-		suffix = "#[count]"
-	name = "Mulebot ([suffix])"
 
 /obj/machinery/bot/mulebot/Destroy()
 	unregister_radio(src, beacon_freq)
@@ -240,7 +236,7 @@
 		else
 			dat += "The bot is in maintenance mode and cannot be controlled.<BR>"
 
-	user << browse("<HEAD><TITLE>Mulebot [suffix ? "([suffix])" : ""]</TITLE></HEAD>[dat]", "window=mulebot;size=350x500")
+	user << browse("<HEAD><TITLE>MULEbot [suffix ? "([suffix])" : ""]</TITLE></HEAD>[dat]", "window=mulebot;size=350x500")
 	onclose(user, "mulebot")
 
 /obj/machinery/bot/mulebot/Topic(href, href_list)
@@ -319,23 +315,23 @@
 
 			if("destination")
 				refresh = 0
-				var/new_dest = input("Enter new destination tag", "Mulebot [suffix ? "([suffix])" : ""]", destination) as text | null
+				var/new_dest = input("Enter new destination tag", "MULEbot [suffix ? "([suffix])" : ""]", destination) as text | null
 				refresh = 1
 				if(new_dest)
 					set_destination(new_dest)
 
 			if("setid")
 				refresh = 0
-				var/new_id = copytext(sanitize(input("Enter new bot ID", "Mulebot [suffix ? "([suffix])" : ""]", suffix) as text | null), 1, MAX_NAME_LEN)
+				var/new_id = copytext(sanitize(input("Enter new bot ID", "MULEbot [suffix ? "([suffix])" : ""]", suffix) as text | null), 1, MAX_NAME_LEN)
 				refresh = 1
 				if(new_id)
 					suffix = new_id
-					name = "Mulebot ([suffix])"
+					name = "MULEbot ([suffix])"
 					updateDialog()
 
 			if("sethome")
 				refresh = 0
-				var/new_home = input("Enter new home tag", "Mulebot [suffix ? "([suffix])" : ""]", home_destination) as text | null
+				var/new_home = input("Enter new home tag", "MULEbot [suffix ? "([suffix])" : ""]", home_destination) as text | null
 				refresh = 1
 				if(new_home)
 					home_destination = new_home
