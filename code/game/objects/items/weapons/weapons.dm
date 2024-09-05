@@ -113,9 +113,9 @@
 						if(O == H)
 							continue
 						O.show_message(SPAN_DANGER("[H] steps on \the [src]."), 1)
-		if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
+		if(isanimal(AM) && !istype(AM, /mob/living/simple/parrot) && !istype(AM, /mob/living/simple/construct) && !istype(AM, /mob/living/simple/shade) && !istype(AM, /mob/living/simple/hostile/viscerator))
 			armed = 0
-			var/mob/living/simple_animal/SA = AM
+			var/mob/living/simple/SA = AM
 			SA.health -= 20
 	..()
 

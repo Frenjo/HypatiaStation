@@ -1,7 +1,7 @@
 
 //sculpture
 //SCP-173, nothing more need be said
-/mob/living/simple_animal/sculpture
+/mob/living/simple/sculpture
 	name = "\improper sculpture"
 	real_name = "sculpture"
 	desc = "It's some kind of human sized, doll-like sculpture, with weird discolourations on some parts of it. It appears to be quite solid. "
@@ -20,7 +20,7 @@
 	var/hibernate = 0
 	var/random_escape_chance = 0.5
 
-/mob/living/simple_animal/sculpture/proc/GrabMob(var/mob/living/target)
+/mob/living/simple/sculpture/proc/GrabMob(var/mob/living/target)
 	if(target && target != src && ishuman(target))
 		G = new /obj/item/grab(target)
 		G.assailant = src
@@ -41,7 +41,7 @@
 		log_admin("[target] ([target.ckey]) has been grabbed and is being strangled by SCP-173.")
 		message_admins("Alert: [target.real_name] has been grabbed and is being strangled by SCP-173. Set var/allow_escape = 1 to allow this player to escape temporarily, or var/hibernate = 1 to disable it entirely.")
 
-/mob/living/simple_animal/sculpture/proc/Escape()
+/mob/living/simple/sculpture/proc/Escape()
 	var/list/turfs = list()
 	for(var/turf/thisturf in view(50,src))
 		if(isspace(thisturf))
@@ -63,7 +63,7 @@
 	spawn(rand(20,35) * 10)
 		hibernate = 0
 
-/mob/living/simple_animal/sculpture/Life()
+/mob/living/simple/sculpture/Life()
 
 	observed = 0
 
@@ -244,19 +244,19 @@
 		G.state = 1
 		G.killing = 0
 
-/mob/living/simple_animal/sculpture/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple/sculpture/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	..()
 
-/mob/living/simple_animal/sculpture/Topic(href, href_list)
+/mob/living/simple/sculpture/Topic(href, href_list)
 	..()
 
-/mob/living/simple_animal/sculpture/Bump(atom/movable/AM as mob, yes)
+/mob/living/simple/sculpture/Bump(atom/movable/AM as mob, yes)
 	if(!G)
 		GrabMob(AM)
 
-/mob/living/simple_animal/sculpture/Bumped(atom/movable/AM as mob, yes)
+/mob/living/simple/sculpture/Bumped(atom/movable/AM as mob, yes)
 	if(!G)
 		GrabMob(AM)
 
-/mob/living/simple_animal/sculpture/ex_act(var/severity)
+/mob/living/simple/sculpture/ex_act(var/severity)
 	//nothing

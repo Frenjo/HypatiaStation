@@ -1,5 +1,5 @@
 // Base Class
-/mob/living/simple_animal/livestock
+/mob/living/simple/livestock
 	desc = "Tasty!"
 	icon = 'icons/mob/livestock.dmi'
 	emote_see = list("shakes its head", "kicks the ground")
@@ -102,7 +102,7 @@
 			..(O, user)
 
 // Cow
-/mob/living/simple_animal/livestock/cow
+/mob/living/simple/livestock/cow
 	name = "\improper Cow"
 	icon_state = "cow"
 	icon_living = "cow"
@@ -136,7 +136,7 @@
 	desc = "It's what's for dinner!"
 
 // Chicken
-/mob/living/simple_animal/livestock/chicken
+/mob/living/simple/livestock/chicken
 	name = "\improper Chicken"
 	icon_state = "chick"
 	icon_living = "chick"
@@ -148,7 +148,7 @@
 	speak_emote = list("bocks","clucks")
 	emote_hear = list("bocks", "clucks", "squawks")
 
-/mob/living/simple_animal/livestock/chicken/Life()
+/mob/living/simple/livestock/chicken/Life()
 	..()
 
 	// go right before cycle elapses, and if animal isn't starving
@@ -173,7 +173,7 @@
 
 /datum/supply_packs/chicken
 	name = "\improper Chicken crate"
-	contains = list("/mob/living/simple_animal/livestock/chicken",
+	contains = list("/mob/living/simple/livestock/chicken",
 					"/obj/item/reagent_holder/food/snacks/grown/corn")
 	cost = 10
 	containertype = "/obj/structure/closet/critter"
@@ -182,7 +182,7 @@
 
 /datum/supply_packs/cow
 	name = "\improper Cow crate"
-	contains = list("/mob/living/simple_animal/livestock/cow",
+	contains = list("/mob/living/simple/livestock/cow",
 					"/obj/item/reagent_holder/food/snacks/grown/corn")
 	cost = 50
 	containertype = "/obj/structure/closet/critter"

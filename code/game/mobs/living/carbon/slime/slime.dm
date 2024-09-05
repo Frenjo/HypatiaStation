@@ -563,7 +563,7 @@
 	if(M.stat)
 		to_chat(user, SPAN_WARNING("The slime is dead!"))
 		return..()
-	var/mob/living/simple_animal/slime/pet = new /mob/living/simple_animal/slime(M.loc)
+	var/mob/living/simple/slime/pet = new /mob/living/simple/slime(M.loc)
 	pet.icon_state = "[M.colour] baby slime"
 	pet.icon_living = "[M.colour] baby slime"
 	pet.icon_dead = "[M.colour] baby slime dead"
@@ -592,7 +592,7 @@
 	if(M.stat)
 		to_chat(user, SPAN_WARNING("The slime is dead!"))
 		return..()
-	var/mob/living/simple_animal/adultslime/pet = new /mob/living/simple_animal/adultslime(M.loc)
+	var/mob/living/simple/adultslime/pet = new /mob/living/simple/adultslime(M.loc)
 	pet.icon_state = "[M.colour] adult slime"
 	pet.icon_living = "[M.colour] adult slime"
 	pet.icon_dead = "[M.colour] baby slime dead"

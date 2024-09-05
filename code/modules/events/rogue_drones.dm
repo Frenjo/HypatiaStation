@@ -2,7 +2,7 @@
 	startWhen = 10
 	endWhen = 1000
 
-	var/list/mob/living/simple_animal/hostile/retaliate/malf_drone/drones_list = list()
+	var/list/mob/living/simple/hostile/retaliate/malf_drone/drones_list = list()
 
 /datum/event/rogue_drone/start()
 	//spawn them at the same place as carp
@@ -18,7 +18,7 @@
 	else
 		num = rand(2, 6)
 	for(var/i = 0, i < num, i++)
-		var/mob/living/simple_animal/hostile/retaliate/malf_drone/D = new /mob/living/simple_animal/hostile/retaliate/malf_drone(get_turf(pick(possible_spawns)))
+		var/mob/living/simple/hostile/retaliate/malf_drone/D = new /mob/living/simple/hostile/retaliate/malf_drone(get_turf(pick(possible_spawns)))
 		drones_list.Add(D)
 		if(prob(25))
 			D.disabled = rand(15, 60)
@@ -38,7 +38,7 @@
 
 /datum/event/rogue_drone/end()
 	var/num_recovered = 0
-	for_no_type_check(var/mob/living/simple_animal/hostile/retaliate/malf_drone/D, drones_list)
+	for_no_type_check(var/mob/living/simple/hostile/retaliate/malf_drone/D, drones_list)
 		make_sparks(3, FALSE, D.loc)
 		D.z = GLOBL.current_map.admin_levels[1]
 		D.has_loot = 0

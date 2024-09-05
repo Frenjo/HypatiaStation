@@ -155,7 +155,7 @@
 	invocation_type = "shout"
 	range = 1
 
-	summon_type = list(/mob/living/simple_animal/hostile/carp)
+	summon_type = list(/mob/living/simple/hostile/carp)
 
 
 /obj/effect/proc_holder/spell/aoe_turf/conjure/construct
@@ -184,7 +184,7 @@
 	summon_amt = 10
 	range = 3
 
-	summon_type = list(/mob/living/simple_animal/hostile/creature)
+	summon_type = list(/mob/living/simple/hostile/creature)
 
 
 /obj/effect/proc_holder/spell/targeted/trigger/blind

@@ -114,11 +114,11 @@
 	if(swarming > 0)
 		swarming -= 1
 		if(swarming <= 0)
-			for(var/mob/living/simple_animal/bee/B in src.loc)
+			for(var/mob/living/simple/bee/B in src.loc)
 				bees_in_hive += B.strength
 				qdel(B)
 	else if(bees_in_hive < 10)
-		for(var/mob/living/simple_animal/bee/B in src.loc)
+		for(var/mob/living/simple/bee/B in src.loc)
 			bees_in_hive += B.strength
 			qdel(B)
 
@@ -146,7 +146,7 @@
 			health += max(nutrilevel - 1, round(-health / 2))
 			bees_in_hive += max(nutrilevel - 1, round(-bees_in_hive / 2))
 			if(length(owned_bee_swarms))
-				var/mob/living/simple_animal/bee/B = pick(owned_bee_swarms)
+				var/mob/living/simple/bee/B = pick(owned_bee_swarms)
 				B.target_turf = get_turf(src)
 
 		//clear out some toxins
@@ -163,7 +163,7 @@
 
 		//make some new bees
 		if(bees_in_hive >= 10 && prob(bees_in_hive * 10))
-			var/mob/living/simple_animal/bee/B = new(get_turf(src), src)
+			var/mob/living/simple/bee/B = new(get_turf(src), src)
 			owned_bee_swarms.Add(B)
 			B.mut = mut
 			B.toxic = toxic
@@ -198,7 +198,7 @@
 
 /obj/machinery/apiary/proc/die()
 	if(length(owned_bee_swarms))
-		var/mob/living/simple_animal/bee/B = pick(owned_bee_swarms)
+		var/mob/living/simple/bee/B = pick(owned_bee_swarms)
 		B.target_turf = get_turf(src)
 		B.strength -= 1
 		if(B.strength <= 0)
@@ -209,7 +209,7 @@
 	health = 0
 
 /obj/machinery/apiary/proc/angry_swarm(var/mob/M)
-	for(var/mob/living/simple_animal/bee/B in owned_bee_swarms)
+	for(var/mob/living/simple/bee/B in owned_bee_swarms)
 		B.feral = 25
 		B.target_mob = M
 
@@ -220,7 +220,7 @@
 		if(bees_in_hive >= 5)
 			spawn_strength = 6
 
-		var/mob/living/simple_animal/bee/B = new(get_turf(src), src)
+		var/mob/living/simple/bee/B = new(get_turf(src), src)
 		B.target_mob = M
 		B.strength = spawn_strength
 		B.feral = 25

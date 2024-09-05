@@ -62,7 +62,7 @@
 		else
 			to_chat(usr, SPAN_DANGER("[src]'s parts look very loose!"))
 
-/obj/machinery/bot/attack_animal(mob/living/simple_animal/M)
+/obj/machinery/bot/attack_animal(mob/living/simple/M)
 	if(M.melee_damage_upper == 0)
 		return
 	health -= M.melee_damage_upper

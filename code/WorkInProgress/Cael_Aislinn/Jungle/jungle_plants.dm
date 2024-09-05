@@ -21,7 +21,7 @@
 
 /obj/structure/bush/Bumped(M as mob)
 	if(isanimal(M))
-		var/mob/living/simple_animal/A = M
+		var/mob/living/simple/A = M
 		A.loc = get_turf(src)
 	else if(ismonkey(M))
 		var/mob/living/carbon/monkey/A = M

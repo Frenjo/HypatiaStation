@@ -17,7 +17,7 @@
 
 /obj/item/bee_net/attack_self(mob/user)
 	var/turf/T = get_step(get_turf(user), user.dir)
-	for(var/mob/living/simple_animal/bee/B in T)
+	for(var/mob/living/simple/bee/B in T)
 		if(B.feral < 0)
 			caught_bees += B.strength
 			qdel(B)
@@ -39,7 +39,7 @@
 	while(caught_bees > 0)
 		//release a few super massive swarms
 		while(caught_bees > 5)
-			var/mob/living/simple_animal/bee/B = new(src.loc)
+			var/mob/living/simple/bee/B = new(src.loc)
 			B.feral = 5
 			B.target_mob = M
 			B.strength = 6
@@ -47,7 +47,7 @@
 			caught_bees -= 6
 
 		//what's left over
-		var/mob/living/simple_animal/bee/B = new(src.loc)
+		var/mob/living/simple/bee/B = new(src.loc)
 		B.strength = caught_bees
 		B.icon_state = "bees[B.strength]"
 		B.feral = 5

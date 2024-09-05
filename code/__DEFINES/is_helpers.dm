@@ -49,15 +49,15 @@
 #define isrobot(X)		istype(X, /mob/living/silicon/robot)
 #define isdrone(X)		istype(X, /mob/living/silicon/robot/drone)
 
-// Simple Animal.
-#define isanimal(X)		istype(X, /mob/living/simple_animal)
-#define iscorgi(X)		istype(X, /mob/living/simple_animal/corgi)
-#define iscrab(X)		istype(X, /mob/living/simple_animal/crab)
-#define iscat(X)		istype(X, /mob/living/simple_animal/cat)
-#define ismouse(X)		istype(X, /mob/living/simple_animal/mouse)
-#define isbear(X)		istype(X, /mob/living/simple_animal/hostile/bear)
-#define iscarp(X)		istype(X, /mob/living/simple_animal/hostile/carp)
-#define isclown(X)		istype(X, /mob/living/simple_animal/hostile/retaliate/clown)
+// Simple.
+#define isanimal(X)		istype(X, /mob/living/simple) // Eventually convert this over to issimple(X).
+#define iscorgi(X)		istype(X, /mob/living/simple/corgi)
+#define iscrab(X)		istype(X, /mob/living/simple/crab)
+#define iscat(X)		istype(X, /mob/living/simple/cat)
+#define ismouse(X)		istype(X, /mob/living/simple/mouse)
+#define isbear(X)		istype(X, /mob/living/simple/hostile/bear)
+#define iscarp(X)		istype(X, /mob/living/simple/hostile/carp)
+#define isclown(X)		istype(X, /mob/living/simple/hostile/retaliate/clown)
 
 /*
  * Object Helpers

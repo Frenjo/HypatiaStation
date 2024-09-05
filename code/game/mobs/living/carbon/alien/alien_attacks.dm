@@ -14,7 +14,7 @@
 
 /mob/living/carbon/alien/attack_animal(mob/living/M)
 	if(isanimal(M))
-		var/mob/living/simple_animal/S = M
+		var/mob/living/simple/S = M
 		if(S.melee_damage_upper == 0)
 			S.emote("[S.friendly] [src]")
 		else

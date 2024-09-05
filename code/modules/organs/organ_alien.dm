@@ -62,7 +62,7 @@
 /obj/item/organ/borer/removed(var/mob/living/target,var/mob/living/user)
 	..()
 
-	var/mob/living/simple_animal/borer/B = target.has_brain_worms()
+	var/mob/living/simple/borer/B = target.has_brain_worms()
 	if(B)
 		B.leave_host()
 		B.ckey = target.ckey

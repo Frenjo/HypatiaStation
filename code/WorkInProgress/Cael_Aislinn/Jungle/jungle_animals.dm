@@ -30,11 +30,11 @@
 
 /obj/effect/landmark/animal_spawner/panther
 	name = "panther spawner"
-	spawn_type = /mob/living/simple_animal/hostile/panther
+	spawn_type = /mob/living/simple/hostile/panther
 
 /obj/effect/landmark/animal_spawner/parrot
 	name = "parrot spawner"
-	spawn_type = /mob/living/simple_animal/parrot
+	spawn_type = /mob/living/simple/parrot
 
 /obj/effect/landmark/animal_spawner/monkey
 	name = "monkey spawner"
@@ -42,14 +42,14 @@
 
 /obj/effect/landmark/animal_spawner/snake
 	name = "snake spawner"
-	spawn_type = /mob/living/simple_animal/hostile/snake
+	spawn_type = /mob/living/simple/hostile/snake
 
 
 //*********//
 // Panther //
 //*********//
 
-/mob/living/simple_animal/hostile/panther
+/mob/living/simple/hostile/panther
 	name = "panther"
 	desc = "A long sleek, black cat with sharp teeth and claws."
 	icon = 'code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi'
@@ -76,18 +76,18 @@
 	layer = 3.1		//so they can stay hidde under the /obj/structure/bush
 	var/stalk_tick_delay = 3
 
-/mob/living/simple_animal/hostile/panther/ListTargets()
+/mob/living/simple/hostile/panther/ListTargets()
 	var/list/targets = list()
 	for(var/mob/living/carbon/human/H in view(src, 10))
 		targets += H
 	return targets
 
-/mob/living/simple_animal/hostile/panther/FindTarget()
+/mob/living/simple/hostile/panther/FindTarget()
 	. = ..()
 	if(.)
 		emote("nashes at [.]")
 
-/mob/living/simple_animal/hostile/panther/AttackingTarget()
+/mob/living/simple/hostile/panther/AttackingTarget()
 	. =..()
 	var/mob/living/L = .
 	if(istype(L))
@@ -95,7 +95,7 @@
 			L.Weaken(3)
 			L.visible_message(SPAN_DANGER("\the [src] knocks down \the [L]!"))
 
-/mob/living/simple_animal/hostile/panther/AttackTarget()
+/mob/living/simple/hostile/panther/AttackTarget()
 	..()
 	if(stance == HOSTILE_STANCE_ATTACKING && get_dist(src, target_mob))
 		stalk_tick_delay -= 1
@@ -107,7 +107,7 @@
 // Snake //
 //*******//
 
-/mob/living/simple_animal/hostile/snake
+/mob/living/simple/hostile/snake
 	name = "snake"
 	desc = "A sinuously coiled, venomous looking reptile."
 	icon = 'code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi'
@@ -134,24 +134,24 @@
 	layer = 3.1		//so they can stay hidde under the /obj/structure/bush
 	var/stalk_tick_delay = 3
 
-/mob/living/simple_animal/hostile/snake/ListTargets()
+/mob/living/simple/hostile/snake/ListTargets()
 	var/list/targets = list()
 	for(var/mob/living/carbon/human/H in view(src, 10))
 		targets += H
 	return targets
 
-/mob/living/simple_animal/hostile/snake/FindTarget()
+/mob/living/simple/hostile/snake/FindTarget()
 	. = ..()
 	if(.)
 		emote("hisses wickedly")
 
-/mob/living/simple_animal/hostile/snake/AttackingTarget()
+/mob/living/simple/hostile/snake/AttackingTarget()
 	. =..()
 	var/mob/living/L = .
 	if(istype(L))
 		L.apply_damage(rand(3,12), TOX)
 
-/mob/living/simple_animal/hostile/snake/AttackTarget()
+/mob/living/simple/hostile/snake/AttackTarget()
 	..()
 	if(stance == HOSTILE_STANCE_ATTACKING && get_dist(src, target_mob))
 		stalk_tick_delay -= 1

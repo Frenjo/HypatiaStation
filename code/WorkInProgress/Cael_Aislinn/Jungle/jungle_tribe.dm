@@ -21,7 +21,7 @@
 
 	var/num_tribesmen = rand(3, 6)
 	for(var/i = 0, i < num_tribesmen, i++)
-		var/mob/living/simple_animal/hostile/tribesman/T = new(src.loc)
+		var/mob/living/simple/hostile/tribesman/T = new(src.loc)
 		T.my_type = tribe_type
 		T.x += rand(-6, 6)
 		T.y += rand(-6, 6)
@@ -33,18 +33,18 @@
 
 /obj/effect/jungle_tribe_spawn/process()
 	set background = BACKGROUND_ENABLED
-	for(var/mob/living/simple_animal/hostile/tribesman/T in tribesmen)
+	for(var/mob/living/simple/hostile/tribesman/T in tribesmen)
 		if(T.stat == DEAD)
 			tribesmen.Remove(T)
 			spawn(rand(50, 300))
-				var/mob/living/simple_animal/hostile/tribesman/B = new(src.loc)
+				var/mob/living/simple/hostile/tribesman/B = new(src.loc)
 				B.my_type = tribe_type
 				B.x += rand(-4, 4)
 				B.y += rand(-4, 4)
 				tribesmen += B
 
 
-/mob/living/simple_animal/hostile/tribesman
+/mob/living/simple/hostile/tribesman
 	name = "tribesman"
 	desc = "A noble savage, doesn't seem to know what to make of you."
 	icon = 'code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi'
@@ -62,7 +62,7 @@
 	stop_automated_movement_when_pulled = 0
 	var/my_type = 1
 
-/mob/living/simple_animal/hostile/tribesman/New()
+/mob/living/simple/hostile/tribesman/New()
 	if(prob(33))
 		ranged = 1
 
@@ -71,20 +71,20 @@
 		icon_living = "native[my_type]"
 		icon_dead = "native[my_type]_dead"
 
-/mob/living/simple_animal/hostile/tribesman/ListTargets()
+/mob/living/simple/hostile/tribesman/ListTargets()
 	var/list/targets = list()
-	for(var/mob/living/simple_animal/hostile/H in view(src, 10))
-		if(istype(H, /mob/living/simple_animal/hostile/tribesman))
+	for(var/mob/living/simple/hostile/H in view(src, 10))
+		if(istype(H, /mob/living/simple/hostile/tribesman))
 			continue
 		targets += H
 	return targets
 
-/mob/living/simple_animal/hostile/tribesman/FindTarget()
+/mob/living/simple/hostile/tribesman/FindTarget()
 	. = ..()
 	if(.)
 		emote("waves a spear at [.]")
 
-/mob/living/simple_animal/hostile/tribesman/OpenFire(target_mob)
+/mob/living/simple/hostile/tribesman/OpenFire(target_mob)
 	visible_message(SPAN_WARNING("\red <b>[src]</b> throws a spear at [target_mob]!"), 1)
 	flick(src, "native[my_type]_act")
 

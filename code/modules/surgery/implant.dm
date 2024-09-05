@@ -208,8 +208,8 @@
 			BITSET(target.hud_updateflag, IMPLOYAL_HUD)
 
 			//Handle possessive brain borers.
-			if(istype(obj, /mob/living/simple_animal/borer))
-				var/mob/living/simple_animal/borer/worm = obj
+			if(istype(obj, /mob/living/simple/borer))
+				var/mob/living/simple/borer/worm = obj
 				if(worm.controlling)
 					target.release_control()
 				worm.detatch()

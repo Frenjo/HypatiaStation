@@ -65,7 +65,7 @@
 	healthcheck()
 	return
 
-/obj/structure/grille/attack_animal(mob/living/simple_animal/M)
+/obj/structure/grille/attack_animal(mob/living/simple/M)
 	if(M.melee_damage_upper == 0)
 		return
 

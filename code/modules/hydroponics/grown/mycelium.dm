@@ -205,7 +205,7 @@
 	if(isspace(user.loc))
 		return
 
-	new /mob/living/simple_animal/mushroom(user.loc)
+	new /mob/living/simple/mushroom(user.loc)
 	qdel(src)
 
 	to_chat(user, SPAN_NOTICE("You plant the walking mushroom."))

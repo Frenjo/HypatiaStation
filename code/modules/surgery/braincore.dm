@@ -105,7 +105,7 @@
 		SPAN_INFO("You separate [target]'s brain from spine with \the [tool].")
 	)
 
-	var/mob/living/simple_animal/borer/borer = target.has_brain_worms()
+	var/mob/living/simple/borer/borer = target.has_brain_worms()
 
 	if(borer)
 		borer.detatch() //Should remove borer if the brain is removed - RR

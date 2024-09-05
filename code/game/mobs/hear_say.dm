@@ -10,7 +10,7 @@
 	var/style = "body"
 	if(!say_understands(speaker, language))
 		if(isanimal(speaker))
-			var/mob/living/simple_animal/S = speaker
+			var/mob/living/simple/S = speaker
 			message = pick(S.speak)
 		else
 			message = stars(message)
@@ -59,7 +59,7 @@
 	var/style = "body"
 	if(!say_understands(speaker, language))
 		if(isanimal(speaker))
-			var/mob/living/simple_animal/S = speaker
+			var/mob/living/simple/S = speaker
 			message = pick(S.speak)
 		else
 			message = stars(message)

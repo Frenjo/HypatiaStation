@@ -412,7 +412,7 @@
 	set name = "Release Control"
 	set desc = "Release control of your host's body."
 
-	var/mob/living/simple_animal/borer/B = has_brain_worms()
+	var/mob/living/simple/borer/B = has_brain_worms()
 	if(isnull(B))
 		return
 
@@ -437,7 +437,7 @@
 	set name = "Torment host"
 	set desc = "Punish your host with agony."
 
-	var/mob/living/simple_animal/borer/B = has_brain_worms()
+	var/mob/living/simple/borer/B = has_brain_worms()
 	if(isnull(B))
 		return
 
@@ -448,7 +448,7 @@
 //Check for brain worms in head.
 /mob/proc/has_brain_worms()
 	for(var/I in contents)
-		if(istype(I, /mob/living/simple_animal/borer))
+		if(istype(I, /mob/living/simple/borer))
 			return I
 
 	return 0
@@ -458,7 +458,7 @@
 	set name = "Reproduce"
 	set desc = "Spawn several young."
 
-	var/mob/living/simple_animal/borer/B = has_brain_worms()
+	var/mob/living/simple/borer/B = has_brain_worms()
 	if(isnull(B))
 		return
 
@@ -469,6 +469,6 @@
 
 		new /obj/effect/decal/cleanable/vomit(get_turf(src))
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
-		new /mob/living/simple_animal/borer(get_turf(src))
+		new /mob/living/simple/borer(get_turf(src))
 	else
 		to_chat(src, "You do not have enough chemicals stored to reproduce.")

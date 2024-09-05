@@ -196,7 +196,7 @@
 					M.emote("[sattisfaction_text]")
 				qdel(src)
 		if(ismouse(M))
-			var/mob/living/simple_animal/mouse/N = M
+			var/mob/living/simple/mouse/N = M
 			to_chat(N, SPAN_INFO("You nibble away at [src]."))
 			if(prob(50))
 				N.visible_message("[N] nibbles away at [src].", "")

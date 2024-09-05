@@ -28,8 +28,8 @@
 	transfer_soul("VICTIM", M, user)
 	return
 
-	/*attack(mob/living/simple_animal/shade/M, mob/user)//APPARENTLY THEY NEED THEIR OWN SPECIAL SNOWFLAKE CODE IN THE LIVING ANIMAL DEFINES
-		if(!istype(M, /mob/living/simple_animal/shade))//If target is not a shade
+	/*attack(mob/living/simple/shade/M, mob/user)//APPARENTLY THEY NEED THEIR OWN SPECIAL SNOWFLAKE CODE IN THE LIVING ANIMAL DEFINES
+		if(!istype(M, /mob/living/simple/shade))//If target is not a shade
 			return ..()
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to capture the soul of [M.name] ([M.ckey])</font>")
 
@@ -42,7 +42,7 @@
 		return
 	user.set_machine(src)
 	var/dat = "<TT><B>Soul Stone</B><BR>"
-	for(var/mob/living/simple_animal/shade/A in src)
+	for(var/mob/living/simple/shade/A in src)
 		dat += "Captured Soul: [A.name]<br>"
 		dat += {"<A href='byond://?src=\ref[src];choice=Summon'>Summon Shade</A>"}
 		dat += "<br>"
@@ -68,7 +68,7 @@
 			return
 
 		if("Summon")
-			for(var/mob/living/simple_animal/shade/A in src)
+			for(var/mob/living/simple/shade/A in src)
 				A.status_flags &= ~GODMODE
 				A.canmove = TRUE
 				to_chat(A, "<b>You have been released from your prison, but you are still bound to [U.name]'s will. Help them suceed in their goals at all costs.</b>")
@@ -119,7 +119,7 @@
 							animation.master = T
 							flick("dust-h", animation)
 							qdel(animation)
-							var/mob/living/simple_animal/shade/S = new /mob/living/simple_animal/shade(T.loc)
+							var/mob/living/simple/shade/S = new /mob/living/simple/shade(T.loc)
 							S.loc = C //put shade in stone
 							S.status_flags |= GODMODE //So they won't die inside the stone somehow
 							S.canmove = FALSE//Can't move out of the soul stone
@@ -136,7 +136,7 @@
 							C.imprinted = "[S.name]"
 							qdel(T)
 		if("SHADE")
-			var/mob/living/simple_animal/shade/T = target
+			var/mob/living/simple/shade/T = target
 			var/obj/item/soulstone/C = src
 			if(T.stat == DEAD)
 				to_chat(U, "\red <b>Capture failed!</b>: \black The shade has already been banished!")
@@ -157,12 +157,12 @@
 		if("CONSTRUCT")
 			var/obj/structure/constructshell/T = target
 			var/obj/item/soulstone/C = src
-			var/mob/living/simple_animal/shade/A = locate() in C
+			var/mob/living/simple/shade/A = locate() in C
 			if(A)
 				var/construct_class = alert(U, "Please choose which type of construct you wish to create.", , "Juggernaut", "Wraith", "Artificer")
 				switch(construct_class)
 					if("Juggernaut")
-						var/mob/living/simple_animal/construct/armoured/Z = new /mob/living/simple_animal/construct/armoured(get_turf(T.loc))
+						var/mob/living/simple/construct/armoured/Z = new /mob/living/simple/construct/armoured(get_turf(T.loc))
 						Z.key = A.key
 						if(iscultist(U))
 							if(IS_GAME_MODE(/datum/game_mode/cult))
@@ -179,7 +179,7 @@
 						qdel(C)
 
 					if("Wraith")
-						var/mob/living/simple_animal/construct/wraith/Z = new /mob/living/simple_animal/construct/wraith(get_turf(T.loc))
+						var/mob/living/simple/construct/wraith/Z = new /mob/living/simple/construct/wraith(get_turf(T.loc))
 						Z.key = A.key
 						if(iscultist(U))
 							if(IS_GAME_MODE(/datum/game_mode/cult))
@@ -196,7 +196,7 @@
 						qdel(C)
 
 					if("Artificer")
-						var/mob/living/simple_animal/construct/builder/Z = new /mob/living/simple_animal/construct/builder (get_turf(T.loc))
+						var/mob/living/simple/construct/builder/Z = new /mob/living/simple/construct/builder (get_turf(T.loc))
 						Z.key = A.key
 						if(iscultist(U))
 							if(IS_GAME_MODE(/datum/game_mode/cult))

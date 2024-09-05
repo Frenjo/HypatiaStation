@@ -41,7 +41,7 @@
 
 /obj/structure/largecrate/lisa/attackby(obj/item/W, mob/user)	//ugly but oh well
 	if(istype(W, /obj/item/crowbar))
-		new /mob/living/simple_animal/corgi/Lisa(loc)
+		new /mob/living/simple/corgi/Lisa(loc)
 	..()
 
 /*
@@ -53,7 +53,7 @@
 
 /obj/structure/largecrate/cow/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/crowbar))
-		new /mob/living/simple_animal/cow(loc)
+		new /mob/living/simple/cow(loc)
 	..()
 
 /*
@@ -65,7 +65,7 @@
 
 /obj/structure/largecrate/goat/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/crowbar))
-		new /mob/living/simple_animal/hostile/retaliate/goat(loc)
+		new /mob/living/simple/hostile/retaliate/goat(loc)
 	..()
 
 /*
@@ -79,7 +79,7 @@
 	if(istype(W, /obj/item/crowbar))
 		var/num = rand(4, 6)
 		for(var/i = 0, i < num, i++)
-			new /mob/living/simple_animal/chick(loc)
+			new /mob/living/simple/chick(loc)
 	..()
 
 /*

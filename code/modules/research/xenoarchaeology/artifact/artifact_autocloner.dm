@@ -16,25 +16,25 @@
 	var/previous_power_state = 0
 
 	var/list/nasties = list(
-		/mob/living/simple_animal/hostile/giant_spider/nurse,
-		/mob/living/simple_animal/hostile/alien,
-		/mob/living/simple_animal/hostile/bear,
-		/mob/living/simple_animal/hostile/creature,
-		/mob/living/simple_animal/hostile/panther,
-		/mob/living/simple_animal/hostile/snake
+		/mob/living/simple/hostile/giant_spider/nurse,
+		/mob/living/simple/hostile/alien,
+		/mob/living/simple/hostile/bear,
+		/mob/living/simple/hostile/creature,
+		/mob/living/simple/hostile/panther,
+		/mob/living/simple/hostile/snake
 	)
 
 	var/list/not_nasties = list(
-		/mob/living/simple_animal/cat,
-		/mob/living/simple_animal/corgi,
-		/mob/living/simple_animal/corgi/puppy,
-		/mob/living/simple_animal/chicken,
-		/mob/living/simple_animal/cow,
-		/mob/living/simple_animal/parrot,
-		/mob/living/simple_animal/slime,
-		/mob/living/simple_animal/crab,
-		/mob/living/simple_animal/mouse,
-		/mob/living/simple_animal/hostile/retaliate/goat,
+		/mob/living/simple/cat,
+		/mob/living/simple/corgi,
+		/mob/living/simple/corgi/puppy,
+		/mob/living/simple/chicken,
+		/mob/living/simple/cow,
+		/mob/living/simple/parrot,
+		/mob/living/simple/slime,
+		/mob/living/simple/crab,
+		/mob/living/simple/mouse,
+		/mob/living/simple/hostile/retaliate/goat,
 		/mob/living/carbon/monkey
 	)
 

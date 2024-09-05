@@ -50,34 +50,34 @@
 	mind.special_role = ""
 
 // Animals
-/mob/living/simple_animal/mind_initialize()
+/mob/living/simple/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Animal"
 
-/mob/living/simple_animal/corgi/mind_initialize()
+/mob/living/simple/corgi/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Corgi"
 
-/mob/living/simple_animal/shade/mind_initialize()
+/mob/living/simple/shade/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Shade"
 
-/mob/living/simple_animal/construct/builder/mind_initialize()
+/mob/living/simple/construct/builder/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Artificer"
 	mind.special_role = "Cultist"
 
-/mob/living/simple_animal/construct/wraith/mind_initialize()
+/mob/living/simple/construct/wraith/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Wraith"
 	mind.special_role = "Cultist"
 
-/mob/living/simple_animal/construct/armoured/mind_initialize()
+/mob/living/simple/construct/armoured/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Juggernaut"
 	mind.special_role = "Cultist"
 
-/mob/living/simple_animal/vox/armalis/mind_initialize()
+/mob/living/simple/vox/armalis/mind_initialize()
 	. = ..()
 	mind.assigned_role = "Armalis"
 	mind.special_role = "Vox Raider"

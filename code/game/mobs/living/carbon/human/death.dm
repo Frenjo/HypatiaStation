@@ -35,10 +35,10 @@
 
 	//Handle brain slugs.
 	var/datum/organ/external/head = get_organ("head")
-	var/mob/living/simple_animal/borer/B
+	var/mob/living/simple/borer/B
 
 	for(var/I in head.implants)
-		if(istype(I, /mob/living/simple_animal/borer))
+		if(istype(I, /mob/living/simple/borer))
 			B = I
 	if(B)
 		if(!B.ckey && ckey && B.controlling)

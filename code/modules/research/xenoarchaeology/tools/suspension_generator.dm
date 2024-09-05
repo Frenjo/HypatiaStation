@@ -47,7 +47,7 @@
 				suspension_field.overlays += "shield2"
 			I.loc = suspension_field
 
-		for(var/mob/living/simple_animal/M in T)
+		for(var/mob/living/simple/M in T)
 			M.weakened = max(M.weakened, 3)
 			cell.charge -= power_use
 			if(prob(5))
@@ -281,7 +281,7 @@
 	if(!success)
 		return
 
-	for(var/mob/living/simple_animal/C in T)
+	for(var/mob/living/simple/C in T)
 		C.visible_message(
 			SPAN_INFO("\icon[C] [C] begins to float in the air!"),
 			"You feel tingly and light, but it is difficult to move."

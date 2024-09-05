@@ -166,7 +166,7 @@
 			if(ME.occupant)
 				return 1
 		else if(isanimal(T))
-			var/mob/living/simple_animal/A = T
+			var/mob/living/simple/A = T
 			if(!A.stat)
 				if(lasers)
 					return 1
@@ -182,7 +182,7 @@
 	for(var/obj/mecha/M in protected_area.turretTargets)
 		if(M.occupant)
 			new_targets += M
-	for(var/mob/living/simple_animal/M in protected_area.turretTargets)
+	for(var/mob/living/simple/M in protected_area.turretTargets)
 		if(!M.stat)
 			new_targets += M
 	if(length(new_targets))

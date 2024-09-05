@@ -28,7 +28,7 @@
 		var/obj/vent = pick_n_take(vents)
 		var/client/C = pick_n_take(candidates)
 
-		var/mob/living/simple_animal/borer/new_borer = new /mob/living/simple_animal/borer(vent.loc)
+		var/mob/living/simple/borer/new_borer = new /mob/living/simple/borer(vent.loc)
 		new_borer.key = C.key
 
 		spawncount--

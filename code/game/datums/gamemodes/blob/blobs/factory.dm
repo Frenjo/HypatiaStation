@@ -17,16 +17,16 @@
 /obj/effect/blob/factory/run_action()
 	if(length(spores) >= max_spores)
 		return 0
-	new /mob/living/simple_animal/hostile/blobspore(src.loc, src)
+	new /mob/living/simple/hostile/blobspore(src.loc, src)
 	return 1
 
 /obj/effect/blob/factory/Destroy()
-	for(var/mob/living/simple_animal/hostile/blobspore/spore in spores)
+	for(var/mob/living/simple/hostile/blobspore/spore in spores)
 		if(spore.factory == src)
 			spore.factory = null
 	return ..()
 
-/mob/living/simple_animal/hostile/blobspore
+/mob/living/simple/hostile/blobspore
 	name = "blob"
 	desc = "Some blob thing."
 	icon = 'icons/mob/critter.dmi'
@@ -54,16 +54,16 @@
 
 	var/obj/effect/blob/factory/factory = null
 
-/mob/living/simple_animal/hostile/blobspore/New(loc, obj/effect/blob/factory/linked_node)
+/mob/living/simple/hostile/blobspore/New(loc, obj/effect/blob/factory/linked_node)
 	if(istype(linked_node))
 		factory = linked_node
 		factory.spores.Add(src)
 	. = ..(loc)
 
-/mob/living/simple_animal/hostile/blobspore/Die()
+/mob/living/simple/hostile/blobspore/Die()
 	qdel(src)
 
-/mob/living/simple_animal/hostile/blobspore/Destroy()
+/mob/living/simple/hostile/blobspore/Destroy()
 	if(isnotnull(factory))
 		factory.spores.Remove(src)
 		factory = null

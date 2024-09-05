@@ -3,7 +3,7 @@ GLOBAL_GLOBL_LIST_INIT(space_surprises, list(
 	/obj/item/pickaxe/silver					= 4,
 	/obj/item/pickaxe/drill					= 4,
 	/obj/item/pickaxe/jackhammer				= 4,
-	//mob/living/simple_animal/hostile/carp			= 3,
+	//mob/living/simple/hostile/carp			= 3,
 	/obj/item/pickaxe/diamond				= 3,
 	/obj/item/pickaxe/diamonddrill			= 3,
 	/obj/item/pickaxe/gold					= 3,

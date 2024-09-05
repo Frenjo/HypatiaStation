@@ -171,7 +171,7 @@
 /obj/structure/window/attack_animal(mob/user)
 	if(!isanimal(user))
 		return
-	var/mob/living/simple_animal/M = user
+	var/mob/living/simple/M = user
 	if(M.melee_damage_upper <= 0)
 		return
 	attack_generic(M, M.melee_damage_upper)

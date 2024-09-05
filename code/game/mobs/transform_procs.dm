@@ -258,7 +258,7 @@
 	for(var/t in organs)	//this really should not be necessary
 		qdel(t)
 
-	var/mob/living/simple_animal/corgi/new_corgi = new /mob/living/simple_animal/corgi(loc)
+	var/mob/living/simple/corgi/new_corgi = new /mob/living/simple/corgi(loc)
 	new_corgi.a_intent = "hurt"
 	new_corgi.key = key
 
@@ -268,7 +268,7 @@
 	return
 
 /mob/living/carbon/human/Animalize()
-	var/list/mobtypes = typesof(/mob/living/simple_animal)
+	var/list/mobtypes = typesof(/mob/living/simple)
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
@@ -300,7 +300,7 @@
 	return
 
 /mob/proc/Animalize()
-	var/list/mobtypes = typesof(/mob/living/simple_animal)
+	var/list/mobtypes = typesof(/mob/living/simple)
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
@@ -325,41 +325,41 @@
 	if(!MP)
 		return 0	//Sanity, this should never happen.
 
-	if(ispath(MP, /mob/living/simple_animal/space_worm))
+	if(ispath(MP, /mob/living/simple/space_worm))
 		return 0 //Unfinished. Very buggy, they seem to just spawn additional space worms everywhere and eating your own tail results in new worms spawning.
 
-	if(ispath(MP, /mob/living/simple_animal/construct/behemoth))
+	if(ispath(MP, /mob/living/simple/construct/behemoth))
 		return 0 //I think this may have been an unfinished WiP or something. These constructs should really have their own class simple_animal/construct/subtype
 
-	if(ispath(MP, /mob/living/simple_animal/construct/armoured))
+	if(ispath(MP, /mob/living/simple/construct/armoured))
 		return 0 //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
 
-	if(ispath(MP, /mob/living/simple_animal/construct/wraith))
+	if(ispath(MP, /mob/living/simple/construct/wraith))
 		return 0 //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
 
-	if(ispath(MP, /mob/living/simple_animal/construct/builder))
+	if(ispath(MP, /mob/living/simple/construct/builder))
 		return 0 //Verbs do not appear for players. These constructs should really have their own class simple_animal/construct/subtype
 
 //Good mobs!
-	if(ispath(MP, /mob/living/simple_animal/cat))
+	if(ispath(MP, /mob/living/simple/cat))
 		return 1
-	if(ispath(MP, /mob/living/simple_animal/corgi))
+	if(ispath(MP, /mob/living/simple/corgi))
 		return 1
-	if(ispath(MP, /mob/living/simple_animal/crab))
+	if(ispath(MP, /mob/living/simple/crab))
 		return 1
-	if(ispath(MP, /mob/living/simple_animal/hostile/carp))
+	if(ispath(MP, /mob/living/simple/hostile/carp))
 		return 1
-	if(ispath(MP, /mob/living/simple_animal/mushroom))
+	if(ispath(MP, /mob/living/simple/mushroom))
 		return 1
-	if(ispath(MP, /mob/living/simple_animal/shade))
+	if(ispath(MP, /mob/living/simple/shade))
 		return 1
-	if(ispath(MP, /mob/living/simple_animal/tomato))
+	if(ispath(MP, /mob/living/simple/tomato))
 		return 1
-	if(ispath(MP, /mob/living/simple_animal/mouse))
+	if(ispath(MP, /mob/living/simple/mouse))
 		return 1 //It is impossible to pull up the player panel for mice (Fixed! - Nodrak)
-	if(ispath(MP, /mob/living/simple_animal/hostile/bear))
+	if(ispath(MP, /mob/living/simple/hostile/bear))
 		return 1 //Bears will auto-attack mobs, even if they're player controlled (Fixed! - Nodrak)
-	if(ispath(MP, /mob/living/simple_animal/parrot))
+	if(ispath(MP, /mob/living/simple/parrot))
 		return 1 //Parrots are no longer unfinished! -Nodrak
 
 	//Not in here? Must be untested!

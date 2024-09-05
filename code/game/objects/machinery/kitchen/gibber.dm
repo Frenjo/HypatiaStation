@@ -185,7 +185,7 @@
 		if(ismonkey(occupant) || isalien(occupant)) // why are you gibbing aliens? oh well
 			totalslabs = 3
 			sourcetotalreagents = occupant.reagents.total_volume
-		else if(istype(occupant, /mob/living/simple_animal/cow) || isbear(occupant))
+		else if(istype(occupant, /mob/living/simple/cow) || isbear(occupant))
 			totalslabs = 2
 		else
 			totalslabs = 1

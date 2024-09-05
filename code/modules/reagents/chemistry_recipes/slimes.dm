@@ -61,24 +61,24 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimecrit/on_reaction(datum/reagents/holder)
-	/*var/blocked = list(/mob/living/simple_animal/hostile,
-		/mob/living/simple_animal/hostile/pirate,
-		/mob/living/simple_animal/hostile/pirate/ranged,
-		/mob/living/simple_animal/hostile/russian,
-		/mob/living/simple_animal/hostile/russian/ranged,
-		/mob/living/simple_animal/hostile/syndicate,
-		/mob/living/simple_animal/hostile/syndicate/melee,
-		/mob/living/simple_animal/hostile/syndicate/melee/space,
-		/mob/living/simple_animal/hostile/syndicate/ranged,
-		/mob/living/simple_animal/hostile/syndicate/ranged/space,
-		/mob/living/simple_animal/hostile/alien/queen/large,
-		/mob/living/simple_animal/hostile/faithless,
-		/mob/living/simple_animal/hostile/panther,
-		/mob/living/simple_animal/hostile/snake,
-		/mob/living/simple_animal/hostile/retaliate,
-		/mob/living/simple_animal/hostile/retaliate/clown
+	/*var/blocked = list(/mob/living/simple/hostile,
+		/mob/living/simple/hostile/pirate,
+		/mob/living/simple/hostile/pirate/ranged,
+		/mob/living/simple/hostile/russian,
+		/mob/living/simple/hostile/russian/ranged,
+		/mob/living/simple/hostile/syndicate,
+		/mob/living/simple/hostile/syndicate/melee,
+		/mob/living/simple/hostile/syndicate/melee/space,
+		/mob/living/simple/hostile/syndicate/ranged,
+		/mob/living/simple/hostile/syndicate/ranged/space,
+		/mob/living/simple/hostile/alien/queen/large,
+		/mob/living/simple/hostile/faithless,
+		/mob/living/simple/hostile/panther,
+		/mob/living/simple/hostile/snake,
+		/mob/living/simple/hostile/retaliate,
+		/mob/living/simple/hostile/retaliate/clown
 		)//exclusion list for things you don't want the reaction to create.
-	var/list/critters = typesof(/mob/living/simple_animal/hostile) - blocked // list of possible hostile mobs
+	var/list/critters = typesof(/mob/living/simple/hostile) - blocked // list of possible hostile mobs
 
 	playsound(get_turf_loc(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 
@@ -88,7 +88,7 @@
 
 	for(var/i = 1, i <= 5, i++)
 		var/chosen = pick(critters)
-		var/mob/living/simple_animal/hostile/C = new chosen
+		var/mob/living/simple/hostile/C = new chosen
 		C.faction = "slimesummon"
 		C.loc = get_turf_loc(holder.my_atom)
 		if(prob(50))
@@ -507,20 +507,20 @@
 	required_other = 4
 
 /datum/chemical_reaction/slimecrit/on_reaction(var/datum/reagents/holder, var/created_volume)
-	var/blocked = list(/mob/living/simple_animal/hostile,
-		/mob/living/simple_animal/hostile/pirate,
-		/mob/living/simple_animal/hostile/pirate/ranged,
-		/mob/living/simple_animal/hostile/russian,
-		/mob/living/simple_animal/hostile/russian/ranged,
-		/mob/living/simple_animal/hostile/syndicate,
-		/mob/living/simple_animal/hostile/syndicate/melee,
-		/mob/living/simple_animal/hostile/syndicate/melee/space,
-		/mob/living/simple_animal/hostile/syndicate/ranged,
-		/mob/living/simple_animal/hostile/syndicate/ranged/space,
-		/mob/living/simple_animal/hostile/alien/queen/large,
-		/mob/living/simple_animal/clown
+	var/blocked = list(/mob/living/simple/hostile,
+		/mob/living/simple/hostile/pirate,
+		/mob/living/simple/hostile/pirate/ranged,
+		/mob/living/simple/hostile/russian,
+		/mob/living/simple/hostile/russian/ranged,
+		/mob/living/simple/hostile/syndicate,
+		/mob/living/simple/hostile/syndicate/melee,
+		/mob/living/simple/hostile/syndicate/melee/space,
+		/mob/living/simple/hostile/syndicate/ranged,
+		/mob/living/simple/hostile/syndicate/ranged/space,
+		/mob/living/simple/hostile/alien/queen/large,
+		/mob/living/simple/clown
 		)//exclusion list for things you don't want the reaction to create.
-	var/list/critters = typesof(/mob/living/simple_animal/hostile) - blocked // list of possible hostile mobs
+	var/list/critters = typesof(/mob/living/simple/hostile) - blocked // list of possible hostile mobs
 
 	playsound(get_turf_loc(holder.my_atom), 'sound/effects/phasein.ogg', 100, 1)
 
@@ -530,7 +530,7 @@
 
 	for(var/i = 1, i <= created_volume, i++)
 		var/chosen = pick(critters)
-		var/mob/living/simple_animal/hostile/C = new chosen
+		var/mob/living/simple/hostile/C = new chosen
 		C.loc = get_turf_loc(holder.my_atom)
 		if(prob(50))
 			for(var/j = 1, j <= rand(1, 3), j++)

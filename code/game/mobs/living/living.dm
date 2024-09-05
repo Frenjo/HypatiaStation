@@ -604,8 +604,8 @@ default behaviour is:
 		return
 
 	//Resisting control by an alien mind.
-	if(istype(src.loc, /mob/living/simple_animal/borer))
-		var/mob/living/simple_animal/borer/B = src.loc
+	if(istype(src.loc, /mob/living/simple/borer))
+		var/mob/living/simple/borer/B = src.loc
 		var/mob/living/captive_brain/H = src
 
 		to_chat(H, SPAN_DANGER("You begin doggedly resisting the parasite's control (this will take approximately sixty seconds)."))

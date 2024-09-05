@@ -738,7 +738,7 @@
 	return src.attack_hand(user)
 
 
-/turf/closed/wall/attack_animal(mob/living/simple_animal/M as mob)
+/turf/closed/wall/attack_animal(mob/living/simple/M as mob)
 	if(M.wall_smash)
 		if (istype(src, /turf/closed/wall/reinforced))
 			M << text("\blue This wall is far too strong for you to destroy.")

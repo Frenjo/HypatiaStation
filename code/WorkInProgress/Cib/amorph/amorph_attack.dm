@@ -177,7 +177,7 @@
 
 
 
-/mob/living/carbon/amorph/attack_animal(mob/living/simple_animal/M as mob)
+/mob/living/carbon/amorph/attack_animal(mob/living/simple/M as mob)
 	if(M.melee_damage_upper == 0)
 		M.emote("[M.friendly] [src]")
 	else

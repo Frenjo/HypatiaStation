@@ -244,7 +244,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 							spawn(2)
 								icon_state = "secbot[on]"
 
-							var/mob/living/simple_animal/S = target
+							var/mob/living/simple/S = target
 							S.AdjustStunned(10)
 							S.adjustBruteLoss(15)
 							if(S.stat)
@@ -561,7 +561,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			else if(idcheck && ismonkey(C))
 				threatlevel = 4
 
-		else if(istype(M, /mob/living/simple_animal/hostile))
+		else if(istype(M, /mob/living/simple/hostile))
 			if(M.stat == DEAD)
 				continue
 			else

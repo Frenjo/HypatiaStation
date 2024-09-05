@@ -447,7 +447,7 @@ Status: []<BR>"},
 	var/list/secondarytargets = list() // targets that are least important
 
 	if(src.check_anomalies) // if its set to check for xenos/carps, check for non-mob "crittersssss"(And simple_animals)
-		for(var/mob/living/simple_animal/C in view(7,src))
+		for(var/mob/living/simple/C in view(7,src))
 			if(!C.stat)
 				targets += C
 

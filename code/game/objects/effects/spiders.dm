@@ -65,7 +65,7 @@
 /obj/effect/spider/stickyweb/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || height == 0)
 		return TRUE
-	if(istype(mover, /mob/living/simple_animal/hostile/giant_spider))
+	if(istype(mover, /mob/living/simple/hostile/giant_spider))
 		return TRUE
 	else if(isliving(mover))
 		if(prob(50))
@@ -199,7 +199,7 @@
 	if(isturf(loc) && amount_grown > 0)
 		amount_grown += rand(0, 2)
 		if(amount_grown >= 100)
-			var/spawn_type = pick(typesof(/mob/living/simple_animal/hostile/giant_spider))
+			var/spawn_type = pick(typesof(/mob/living/simple/hostile/giant_spider))
 			new spawn_type(src.loc)
 			qdel(src)
 
