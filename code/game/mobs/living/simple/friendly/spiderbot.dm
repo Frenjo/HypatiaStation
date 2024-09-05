@@ -42,6 +42,21 @@
 	small = 1
 	speak_emote = list("beeps","clicks","chirps")
 
+/mob/living/simple/spiderbot/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(emagged)
+		to_chat(user, SPAN_DANGER("\The [src] is already overloaded - better run."))
+		return FALSE
+
+	emagged = TRUE
+	to_chat(user, SPAN_WARNING("You short out the security protocols and overload \the [src]'s cell, priming it to explode in a short time."))
+	spawn(10 SECONDS)
+		to_chat(src, SPAN_WARNING("Your cell seems to be outputting a lot of power..."))
+	spawn(20 SECONDS)
+		to_chat(src, SPAN_DANGER("Internal heat sensors are spiking! Something is badly wrong with your cell!"))
+	spawn(30 SECONDS)
+		explode()
+	return TRUE
+
 /mob/living/simple/spiderbot/attackby(obj/item/O, mob/user)
 
 	if(istype(O, /obj/item/mmi) || istype(O, /obj/item/mmi/posibrain))
@@ -120,19 +135,6 @@
 		else
 			user << "\red You swipe your card, with no effect."
 			return 0
-	else if (istype(O, /obj/item/card/emag))
-		if (emagged)
-			user << "\red [src] is already overloaded - better run."
-			return 0
-		else
-			var/obj/item/card/emag/emag = O
-			emag.uses--
-			emagged = 1
-			user << "\blue You short out the security protocols and overload [src]'s cell, priming it to explode in a short time."
-			spawn(100)	src << "\red Your cell seems to be outputting a lot of power..."
-			spawn(200)	src << "\red Internal heat sensors are spiking! Something is badly wrong with your cell!"
-			spawn(300)	src.explode()
-
 	else
 		if(O.force)
 			var/damage = O.force

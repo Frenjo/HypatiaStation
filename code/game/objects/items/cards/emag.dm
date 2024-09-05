@@ -26,9 +26,7 @@
 		/obj/machinery/shield_gen,
 		/obj/machinery/deployable,
 		/obj/machinery/turretid,
-		/obj/machinery/bot,
-		/obj/machinery/door,
-		/obj/machinery/mecha_part_fabricator
+		/obj/machinery/door
 	)
 
 // This is the new way.

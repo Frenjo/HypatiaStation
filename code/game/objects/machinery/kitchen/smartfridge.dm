@@ -189,12 +189,17 @@
 
 	updateUsrDialog()
 
+/obj/machinery/smartfridge/secure/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(emagged)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+
+	emagged = TRUE
+	to_chat(user, SPAN_WARNING("You short out the product lock on \the [src]."))
+	return TRUE
+
 /obj/machinery/smartfridge/secure/attackby(obj/item/O, mob/user)
-	if (istype(O, /obj/item/card/emag))
-		src.emagged = 1
-		user << "You short out the product lock on [src]"
-		return
-	else if(istype(O, /obj/item/screwdriver))
+	if(istype(O, /obj/item/screwdriver))
 		panel_open = !panel_open
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panel_open)

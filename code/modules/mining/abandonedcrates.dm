@@ -102,11 +102,16 @@
 	else
 		return ..()
 
+/obj/structure/closet/crate/secure/loot/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(!locked)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+	to_chat(user, SPAN_NOTICE("The crate unlocks!"))
+	locked = FALSE
+	return TRUE
+
 /obj/structure/closet/crate/secure/loot/attackby(obj/item/W, mob/user)
 	if(locked)
-		if(istype(W, /obj/item/card/emag))
-			to_chat(user, SPAN_NOTICE("The crate unlocks!"))
-			locked = 0
 		if(istype(W, /obj/item/multitool))
 			to_chat(user, SPAN_NOTICE("DECA-CODE LOCK REPORT:"))
 			if(attempts == 1)

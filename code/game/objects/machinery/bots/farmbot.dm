@@ -181,9 +181,9 @@
 		..()
 
 /obj/machinery/bot/farmbot/Emag(mob/user)
-	..()
+	. = ..()
 	if(user)
-		to_chat(user, SPAN_WARNING("You short out [src]'s plant identifier circuits."))
+		to_chat(user, SPAN_WARNING("You short out \the [src]'s plant identifier circuits."))
 	spawn(0)
 		for(var/mob/O in hearers(src, null))
 			O.show_message(SPAN_DANGER("[src] buzzes oddly!"), 1)

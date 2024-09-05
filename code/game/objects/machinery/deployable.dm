@@ -110,6 +110,24 @@
 
 	src.icon_state = "barrier[src.locked]"
 
+/obj/machinery/deployable/barrier/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(emagged == 0)
+		emagged = 1
+		req_access.Cut()
+		req_one_access.Cut()
+		to_chat(user, SPAN_WARNING("You break the ID authentication lock on \the [src]."))
+		make_sparks(2, TRUE, src)
+		visible_message(SPAN_WARNING("BZZzZZzZZzZT"))
+		return TRUE
+	else if(emagged == 1)
+		emagged = 2
+		to_chat(user, SPAN_WARNING("You short out the anchoring mechanism on \the [src]."))
+		make_sparks(2, TRUE, src)
+		visible_message(SPAN_WARNING("BZZzZZzZZzZT"))
+		return TRUE
+
+	return FALSE
+
 /obj/machinery/deployable/barrier/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/card/id/))
 		if (src.allowed(user))
@@ -128,21 +146,6 @@
 				visible_message("\red BZZzZZzZZzZT")
 				return
 		return
-	else if (istype(W, /obj/item/card/emag))
-		if (src.emagged == 0)
-			src.emagged = 1
-			src.req_access.Cut()
-			src.req_one_access.Cut()
-			user << "You break the ID authentication lock on \the [src]."
-			make_sparks(2, TRUE, src)
-			visible_message("\red BZZzZZzZZzZT")
-			return
-		else if (src.emagged == 1)
-			src.emagged = 2
-			user << "You short out the anchoring mechanism on \the [src]."
-			make_sparks(2, TRUE, src)
-			visible_message("\red BZZzZZzZZzZT")
-			return
 	else if (istype(W, /obj/item/wrench))
 		if (src.health < src.maxhealth)
 			src.health = src.maxhealth

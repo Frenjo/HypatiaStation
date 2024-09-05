@@ -197,10 +197,10 @@
 			step_to(src, (get_step_away(src, user)))
 
 /obj/machinery/bot/medbot/Emag(mob/user)
-	..()
+	. = ..()
 	if(open && !locked)
 		if(isnotnull(user))
-			to_chat(user, SPAN_WARNING("You short out [src]'s reagent synthesis circuits."))
+			to_chat(user, SPAN_WARNING("You short out \the [src]'s reagent synthesis circuits."))
 		spawn(0)
 			for(var/mob/O in hearers(src, null))
 				O.show_message(SPAN_DANGER("[src] buzzes oddly!"), 1)

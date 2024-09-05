@@ -82,6 +82,14 @@
 		new /obj/effect/decal/cleanable/blood/oil(loc)
 	healthcheck()
 
+/obj/machinery/bot/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(emagged >= 2)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+
+	Emag(user)
+	return TRUE
+
 /obj/machinery/bot/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/screwdriver))
 		if(!locked)
@@ -100,8 +108,6 @@
 				to_chat(user, SPAN_WARNING("You must open the maintenance panel first."))
 		else
 			to_chat(user, SPAN_NOTICE("[src] does not need repairs."))
-	else if(istype(W, /obj/item/card/emag) && emagged < 2)
-		Emag(user)
 	else
 		if(hasvar(W, "force") && hasvar(W, "damtype"))
 			switch(W.damtype)

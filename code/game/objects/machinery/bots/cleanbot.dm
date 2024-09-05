@@ -141,10 +141,10 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 		return ..()
 
 /obj/machinery/bot/cleanbot/Emag(mob/user)
-	..()
+	. = ..()
 	if(open && !locked)
 		if(isnotnull(user))
-			to_chat(user, SPAN_NOTICE("The [src] buzzes and beeps."))
+			to_chat(user, SPAN_NOTICE("\The [src] buzzes and beeps."))
 		oddbutton = TRUE
 		screwloose = TRUE
 

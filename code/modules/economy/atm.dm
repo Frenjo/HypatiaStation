@@ -65,23 +65,28 @@ log transactions
 			playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
 		break
 
+/obj/machinery/atm/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(emagged)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+
+	//short out the machine, shoot sparks, spew money!
+	emagged = TRUE
+	spark_system.start()
+	spawn_money(rand(100, 500), loc)
+	//we don't want to grief people by locking their id in an emagged ATM
+	release_held_id(user)
+
+	//display a message to the user
+	var/response = pick("Initiating withdraw. Have a nice day!", "CRITICAL ERROR: Activating cash chamber panic siphon.", "PIN Code accepted! Emptying account balance.", "Jackpot!")
+	to_chat(user, SPAN_WARNING("\icon[src] \The [src] beeps: \"[response]\""))
+	return TRUE
+
 /obj/machinery/atm/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card))
-		if(emagged > 0)
+		if(emagged)
 			//prevent inserting id into an emagged ATM
 			to_chat(user, SPAN_WARNING("\icon[src] CARD READER ERROR. This system has been compromised!"))
-			return
-		else if(istype(I, /obj/item/card/emag))
-			//short out the machine, shoot sparks, spew money!
-			emagged = 1
-			spark_system.start()
-			spawn_money(rand(100, 500), src.loc)
-			//we don't want to grief people by locking their id in an emagged ATM
-			release_held_id(user)
-
-			//display a message to the user
-			var/response = pick("Initiating withdraw. Have a nice day!", "CRITICAL ERROR: Activating cash chamber panic siphon.", "PIN Code accepted! Emptying account balance.", "Jackpot!")
-			to_chat(user, SPAN_WARNING("\icon[src] The [src] beeps: \"[response]\""))
 			return
 
 		var/obj/item/card/id/idcard = I

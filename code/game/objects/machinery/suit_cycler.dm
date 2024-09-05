@@ -68,6 +68,20 @@
 	to_chat(user, SPAN_INFO("The console controls are far too complicated for your tiny brain!"))
 	return
 
+/obj/machinery/suit_cycler/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(emagged)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+
+	updateUsrDialog()
+	// Clears the access reqs, disables the safeties, and opens up all paintjobs.
+	to_chat(user, SPAN_WARNING("You run the sequencer across the interface, corrupting the operating protocols."))
+	departments = list("Engineering", "Mining", "Medical", "Security", "Atmos", "^%###^%$")
+	emagged = TRUE
+	safeties = FALSE
+	req_access.Cut()
+	return TRUE
+
 /obj/machinery/suit_cycler/attackby(obj/item/I, mob/user)
 	if(electrified != 0)
 		if(src.shock(user, 100))
@@ -116,23 +130,6 @@
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panel_open)
 		updateUsrDialog()
-		return
-
-	else if(istype(I, /obj/item/card/emag))
-		if(emagged)
-			to_chat(user, SPAN_WARNING("The cycler has already been subverted."))
-			return
-
-		var/obj/item/card/emag/E = I
-		src.updateUsrDialog()
-		E.uses--
-
-		//Clear the access reqs, disable the safeties, and open up all paintjobs.
-		to_chat(user, SPAN_WARNING("You run the sequencer across the interface, corrupting the operating protocols."))
-		departments = list("Engineering", "Mining", "Medical", "Security", "Atmos", "^%###^%$")
-		emagged = 1
-		safeties = 0
-		req_access = list()
 		return
 
 	else if(istype(I, /obj/item/clothing/head/helmet/space))

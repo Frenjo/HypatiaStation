@@ -96,10 +96,10 @@
 		..()
 
 /obj/machinery/bot/floorbot/Emag(mob/user)
-	..()
+	. = ..()
 	if(open && !locked)
 		if(isnotnull(user))
-			to_chat(user, SPAN_NOTICE("The [src] buzzes and beeps."))
+			to_chat(user, SPAN_NOTICE("\The [src] buzzes and beeps."))
 
 /obj/machinery/bot/floorbot/Topic(href, href_list)
 	if(..())

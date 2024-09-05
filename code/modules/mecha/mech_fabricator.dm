@@ -678,6 +678,14 @@
 		qdel(res)
 	return result
 
+/obj/machinery/mecha_part_fabricator/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(emagged > 0)
+		FEEDBACK_ALREADY_EMAGGED(user)
+		return FALSE
+
+	emag()
+	return TRUE
+
 /obj/machinery/mecha_part_fabricator/attackby(obj/W, mob/user)
 	if(istype(W, /obj/item/screwdriver))
 		if(!opened)
@@ -710,9 +718,6 @@
 			to_chat(user, SPAN_WARNING("You can't load the [name] while it's opened."))
 			return 1
 
-	if(istype(W, /obj/item/card/emag))
-		emag()
-		return
 	if(!istype(W, /obj/item/stack/sheet))
 		return
 	var/obj/item/stack/sheet/stack = W

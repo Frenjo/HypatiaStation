@@ -168,7 +168,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	..()
 	if(open && !locked)
 		if(isnotnull(user))
-			to_chat(user, SPAN_WARNING("You short out [src]'s target assessment circuits."))
+			to_chat(user, SPAN_WARNING("You short out \the [src]'s target assessment circuits."))
 		spawn(0)
 			for(var/mob/O in hearers(src, null))
 				O.show_message(SPAN_DANGER("[src] buzzes oddly!"), 1)
