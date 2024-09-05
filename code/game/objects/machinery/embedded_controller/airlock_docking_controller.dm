@@ -28,7 +28,7 @@
 
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(isnull(ui))
-		ui = new(user, src, ui_key, "docking_airlock_console.tmpl", name, 470, 290)
+		ui = new /datum/nanoui(user, src, ui_key, "docking_airlock_console.tmpl", name, 470, 290)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update()
@@ -163,7 +163,7 @@
 	set category = PANEL_DEBUG
 	set src in view(1)
 
-	var/datum/signal/signal = new
+	var/datum/signal/signal = new /datum/signal()
 	signal.data["tag"] = sender
 	signal.data["command"] = command
 	signal.data["recipient"] = id_tag

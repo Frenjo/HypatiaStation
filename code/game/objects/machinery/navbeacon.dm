@@ -87,10 +87,10 @@
 	if(!frequency)
 		return
 
-	var/datum/signal/signal = new()
+	var/datum/signal/signal = new /datum/signal()
 	signal.source = src
 	signal.transmission_method = TRANSMISSION_RADIO
-	signal.data["beacon"] = location
+	signal.data = list("beacon" = location)
 
 	for(var/key in codes)
 		signal.data[key] = codes[key]

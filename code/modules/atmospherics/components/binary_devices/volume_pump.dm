@@ -85,7 +85,6 @@ Thus, the two variables affect pump operation are set in New():
 	var/datum/signal/signal = new /datum/signal()
 	signal.transmission_method = TRANSMISSION_RADIO
 	signal.source = src
-
 	signal.data = list(
 		"tag" = id,
 		"device" = "APV",

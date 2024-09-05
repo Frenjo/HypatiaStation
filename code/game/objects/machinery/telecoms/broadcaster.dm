@@ -643,7 +643,7 @@
 
 /atom/proc/telecoms_process()
 	// First, we want to generate a new radio signal
-	var/datum/signal/signal = new
+	var/datum/signal/signal = new /datum/signal()
 	signal.transmission_method = 2 // 2 would be a subspace transmission.
 	var/turf/pos = get_turf(src)
 

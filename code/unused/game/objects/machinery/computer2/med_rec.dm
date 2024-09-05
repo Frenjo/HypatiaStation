@@ -453,10 +453,12 @@
 				info += "<B>Medical Record Lost!</B><BR>"
 			info += "</TT>"
 
-			var/datum/signal/signal = new
-			signal.data["data"] = info
-			signal.data["title"] = "Medical Record"
-			src.peripheral_command("print",signal)
+			var/datum/signal/signal = new /datum/signal()
+			signal.data = list(
+				"data" = info,
+				"title" = "Medical Record"
+			)
+			peripheral_command("print", signal)
 
 	src.master.add_fingerprint(usr)
 	src.master.updateUsrDialog()

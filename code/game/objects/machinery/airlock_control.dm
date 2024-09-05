@@ -61,12 +61,12 @@
 	if(isnotnull(radio_connection))
 		var/datum/signal/signal = new /datum/signal()
 		signal.transmission_method = TRANSMISSION_RADIO
-		signal.data["tag"] = id_tag
-		signal.data["timestamp"] = world.time
-
-		signal.data["door_status"] = density ? "closed" : "open"
-		signal.data["lock_status"] = locked ? "locked" : "unlocked"
-
+		signal.data = list(
+			"tag" = id_tag,
+			"timestamp" = world.time,
+			"door_status" = density ? "closed" : "open",
+			"lock_status" = locked ? "locked" : "unlocked"
+		)
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
 
 /obj/machinery/door/airlock/open(surpress_send)
@@ -84,18 +84,16 @@
 	if(ismecha(AM))
 		var/obj/mecha/mecha = AM
 		if(density && isnotnull(radio_connection) && isnotnull(mecha.occupant) && (allowed(mecha.occupant) || check_access_list(mecha.operation_req_access)))
-			var/datum/signal/signal = new
+			var/datum/signal/signal = new /datum/signal()
 			signal.transmission_method = TRANSMISSION_RADIO
-			signal.data["tag"] = id_tag
-			signal.data["timestamp"] = world.time
-
-			signal.data["door_status"] = density?("closed"):("open")
-			signal.data["lock_status"] = locked?("locked"):("unlocked")
-
-			signal.data["bumped_with_access"] = 1
-
+			signal.data = list(
+				"tag" = id_tag,
+				"timestamp" = world.time,
+				"door_status" = density ? "closed" : "open",
+				"lock_status" = locked ? "locked" : "unlocked",
+				"bumped_with_access" = 1
+			)
 			radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
-	return
 
 /obj/machinery/door/airlock/initialise()
 	. = ..()
@@ -136,11 +134,12 @@
 		icon_state = "airlock_sensor_off"
 
 /obj/machinery/airlock_sensor/attack_hand(mob/user)
-	var/datum/signal/signal = new
+	var/datum/signal/signal = new /datum/signal()
 	signal.transmission_method = TRANSMISSION_RADIO
-	signal.data["tag"] = master_tag
-	signal.data["command"] = command
-
+	signal.data = list(
+		"tag" = master_tag,
+		"command" = command
+	)
 	radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
 	flick("airlock_sensor_cycle", src)
 
@@ -150,12 +149,13 @@
 		var/pressure = round(air_sample.return_pressure(),0.1)
 
 		if(abs(pressure - previousPressure) > 0.001 || previousPressure == null)
-			var/datum/signal/signal = new
+			var/datum/signal/signal = new /datum/signal()
 			signal.transmission_method = TRANSMISSION_RADIO
-			signal.data["tag"] = id_tag
-			signal.data["timestamp"] = world.time
-			signal.data["pressure"] = num2text(pressure)
-
+			signal.data = list(
+				"tag" = id_tag,
+				"timestamp" = world.time,
+				"pressure" = num2text(pressure)
+			)
 			radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
 
 			previousPressure = pressure
@@ -209,11 +209,12 @@
 		FEEDBACK_ACCESS_DENIED(user)
 
 	else if(radio_connection)
-		var/datum/signal/signal = new
+		var/datum/signal/signal = new /datum/signal()
 		signal.transmission_method = TRANSMISSION_RADIO
-		signal.data["tag"] = master_tag
-		signal.data["command"] = command
-
+		signal.data = list(
+			"tag" = master_tag,
+			"command" = command
+		)
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
 	flick("access_button_cycle", src)
 

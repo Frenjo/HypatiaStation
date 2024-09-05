@@ -23,7 +23,7 @@
 
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(isnull(ui))
-		ui = new(user, src, ui_key, "simple_docking_console.tmpl", name, 470, 290)
+		ui = new /datum/nanoui(user, src, ui_key, "simple_docking_console.tmpl", name, 470, 290)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update()
@@ -52,11 +52,11 @@
 /datum/computer/file/embedded_program/docking/simple
 	var/tag_door
 
-/datum/computer/file/embedded_program/docking/simple/New(var/obj/machinery/embedded_controller/M)
+/datum/computer/file/embedded_program/docking/simple/New(obj/machinery/embedded_controller/M)
 	..(M)
 	memory["door_status"] = list(state = "closed", lock = "locked")		//assume closed and locked in case the doors dont report in
 
-	if (istype(M, /obj/machinery/embedded_controller/radio/simple_docking_controller))
+	if(istype(M, /obj/machinery/embedded_controller/radio/simple_docking_controller))
 		var/obj/machinery/embedded_controller/radio/simple_docking_controller/controller = M
 
 		tag_door = controller.tag_door? controller.tag_door : "[id_tag]_hatch"
@@ -68,9 +68,10 @@
 /datum/computer/file/embedded_program/docking/simple/receive_signal(datum/signal/signal, receive_method, receive_param)
 	var/receive_tag = signal.data["tag"]
 
-	if(!receive_tag) return
+	if(!receive_tag)
+		return
 
-	if(receive_tag==tag_door)
+	if(receive_tag == tag_door)
 		memory["door_status"]["state"] = signal.data["door_status"]
 		memory["door_status"]["lock"] = signal.data["lock_status"]
 
@@ -79,22 +80,23 @@
 /datum/computer/file/embedded_program/docking/simple/receive_user_command(command)
 	switch(command)
 		if("force_door")
-			if (override_enabled)
+			if(override_enabled)
 				if(memory["door_status"]["state"] == "open")
 					close_door()
 				else
 					open_door()
 		if("toggle_override")
-			if (override_enabled)
+			if(override_enabled)
 				disable_override()
 			else
 				enable_override()
 
-
-/datum/computer/file/embedded_program/docking/simple/proc/signal_door(var/command)
-	var/datum/signal/signal = new
-	signal.data["tag"] = tag_door
-	signal.data["command"] = command
+/datum/computer/file/embedded_program/docking/simple/proc/signal_door(command)
+	var/datum/signal/signal = new /datum/signal()
+	signal.data = list(
+		"tag" = tag_door,
+		"command" = command
+	)
 	post_signal(signal)
 
 ///datum/computer/file/embedded_program/docking/simple/proc/signal_mech_sensor(var/command)
@@ -147,7 +149,7 @@
 	set category = PANEL_DEBUG
 	set src in view(1)
 
-	var/datum/signal/signal = new
+	var/datum/signal/signal = new /datum/signal()
 	signal.data["tag"] = sender
 	signal.data["command"] = command
 	signal.data["recipient"] = id_tag

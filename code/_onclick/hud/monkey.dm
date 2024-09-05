@@ -9,21 +9,12 @@
 	action_intent = using
 
 	// Small action intent boxes.
-	using = new /atom/movable/screen/action_intent/help(src, ui_style)
-	adding.Add(using)
-	intent_buttons["help"] = using
-
-	using = new /atom/movable/screen/action_intent/disarm(src, ui_style)
-	adding.Add(using)
-	intent_buttons["disarm"] = using
-
-	using = new /atom/movable/screen/action_intent/grab(src, ui_style)
-	adding.Add(using)
-	intent_buttons["grab"] = using
-
-	using = new /atom/movable/screen/action_intent/harm(src, ui_style)
-	adding.Add(using)
-	intent_buttons["harm"] = using
+	adding.Add(
+		new /atom/movable/screen/action_intent/help(src, ui_style),
+		new /atom/movable/screen/action_intent/disarm(src, ui_style),
+		new /atom/movable/screen/action_intent/grab(src, ui_style),
+		new /atom/movable/screen/action_intent/harm(src, ui_style)
+	)
 	// End small action intent boxes.
 
 	using = new /atom/movable/screen/move_intent()

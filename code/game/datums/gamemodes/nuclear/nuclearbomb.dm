@@ -20,7 +20,7 @@ var/bomb_set
 	var/yes_code = 0.0
 	var/safety = 1.0
 	var/obj/item/disk/nuclear/auth = null
-	var/list/wires = list()
+	var/list/wires
 	var/light_wire
 	var/safety_wire
 	var/timing_wire
@@ -30,14 +30,16 @@ var/bomb_set
 /obj/machinery/nuclearbomb/New()
 	..()
 	r_code = "[rand(10000, 99999.0)]"//Creates a random code upon object spawn.
+	wires = list(
+		"Red" = 0,
+		"Blue" = 0,
+		"Green" = 0,
+		"Marigold" = 0,
+		"Fuschia" = 0,
+		"Black" = 0,
+		"Pearl" = 0
+	)
 
-	src.wires["Red"] = 0
-	src.wires["Blue"] = 0
-	src.wires["Green"] = 0
-	src.wires["Marigold"] = 0
-	src.wires["Fuschia"] = 0
-	src.wires["Black"] = 0
-	src.wires["Pearl"] = 0
 	var/list/w = list(
 		"Red",
 		"Blue",
@@ -47,12 +49,12 @@ var/bomb_set
 		"Fuschia",
 		"Pearl"
 	)
-	src.light_wire = pick(w)
-	w -= src.light_wire
-	src.timing_wire = pick(w)
-	w -= src.timing_wire
-	src.safety_wire = pick(w)
-	w -= src.safety_wire
+	light_wire = pick(w)
+	w.Remove(light_wire)
+	timing_wire = pick(w)
+	w.Remove(timing_wire)
+	safety_wire = pick(w)
+	w.Remove(safety_wire)
 
 /obj/machinery/nuclearbomb/process()
 	if(src.timing)

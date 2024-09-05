@@ -242,7 +242,7 @@
 
 /datum/computer/file/embedded_program/docking/proc/force_undock()
 	//to_world("[id_tag]: forcing undock")
-	if (tag_target)
+	if(tag_target)
 		send_docking_command(tag_target, "dock_error")
 	reset()
 
@@ -257,26 +257,33 @@
 	return undocked()
 
 /datum/computer/file/embedded_program/docking/proc/send_docking_command(var/recipient, var/command)
-	var/datum/signal/signal = new
-	signal.data["tag"] = id_tag
-	signal.data["command"] = command
-	signal.data["recipient"] = recipient
+	var/datum/signal/signal = new /datum/signal()
+	signal.data = list(
+		"tag" = id_tag,
+		"command" = command,
+		"recipient" = recipient
+	)
 	post_signal(signal)
 
 /datum/computer/file/embedded_program/docking/proc/broadcast_docking_status()
-	var/datum/signal/signal = new
-	signal.data["tag"] = id_tag
-	signal.data["dock_status"] = get_docking_status()
+	var/datum/signal/signal = new /datum/signal()
+	signal.data = list(
+		"tag" = id_tag,
+		"dock_status" = get_docking_status()
+	)
 	post_signal(signal)
 
 //this is mostly for NanoUI
 /datum/computer/file/embedded_program/docking/proc/get_docking_status()
-	switch (dock_state)
-		if (STATE_UNDOCKED) return "undocked"
-		if (STATE_DOCKING) return "docking"
-		if (STATE_UNDOCKING) return "undocking"
-		if (STATE_DOCKED) return "docked"
-
+	switch(dock_state)
+		if(STATE_UNDOCKED)
+			return "undocked"
+		if(STATE_DOCKING)
+			return "docking"
+		if(STATE_UNDOCKING)
+			return "undocking"
+		if(STATE_DOCKED)
+			return "docked"
 
 #undef STATE_UNDOCKED
 #undef STATE_DOCKING

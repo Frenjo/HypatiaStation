@@ -302,7 +302,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 		if(subspace_transmission)
 			// First, we want to generate a new radio signal
-			var/datum/signal/signal = new
+			var/datum/signal/signal = new /datum/signal()
 			signal.transmission_method = TRANSMISSION_SUBSPACE
 
 			// --- Finally, tag the actual signal with the appropriate values ---
@@ -359,7 +359,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			filter_type = 1
 
 
-		var/datum/signal/signal = new
+		var/datum/signal/signal = new /datum/signal()
 		signal.transmission_method = TRANSMISSION_SUBSPACE
 
 

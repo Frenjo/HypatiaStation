@@ -360,7 +360,6 @@
 	var/datum/signal/signal = new /datum/signal()
 	signal.transmission_method = TRANSMISSION_RADIO
 	signal.source = src
-
 	signal.data = command
 	signal.data["tag"] = target
 	signal.data["sigtype"] = "command"

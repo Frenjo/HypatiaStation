@@ -117,21 +117,22 @@
 
 	H.organs = list()
 	H.internal_organs = list()
-	H.organs_by_name = list()
 	H.internal_organs_by_name = list()
 
 	// This is a basic humanoid limb setup.
-	H.organs_by_name["chest"] = new/datum/organ/external/chest()
-	H.organs_by_name["groin"] = new/datum/organ/external/groin(H.organs_by_name["chest"])
-	H.organs_by_name["head"] = new/datum/organ/external/head(H.organs_by_name["chest"])
-	H.organs_by_name["l_arm"] = new/datum/organ/external/l_arm(H.organs_by_name["chest"])
-	H.organs_by_name["r_arm"] = new/datum/organ/external/r_arm(H.organs_by_name["chest"])
-	H.organs_by_name["r_leg"] = new/datum/organ/external/r_leg(H.organs_by_name["groin"])
-	H.organs_by_name["l_leg"] = new/datum/organ/external/l_leg(H.organs_by_name["groin"])
-	H.organs_by_name["l_hand"] = new/datum/organ/external/l_hand(H.organs_by_name["l_arm"])
-	H.organs_by_name["r_hand"] = new/datum/organ/external/r_hand(H.organs_by_name["r_arm"])
-	H.organs_by_name["l_foot"] = new/datum/organ/external/l_foot(H.organs_by_name["l_leg"])
-	H.organs_by_name["r_foot"] = new/datum/organ/external/r_foot(H.organs_by_name["r_leg"])
+	H.organs_by_name = list(
+		"chest" = new /datum/organ/external/chest(),
+		"groin" = new /datum/organ/external/groin(H.organs_by_name["chest"]),
+		"head" = new /datum/organ/external/head(H.organs_by_name["chest"]),
+		"l_arm" = new /datum/organ/external/l_arm(H.organs_by_name["chest"]),
+		"r_arm" = new /datum/organ/external/r_arm(H.organs_by_name["chest"]),
+		"r_leg" = new /datum/organ/external/r_leg(H.organs_by_name["groin"]),
+		"l_leg" = new /datum/organ/external/l_leg(H.organs_by_name["groin"]),
+		"l_hand" = new /datum/organ/external/l_hand(H.organs_by_name["l_arm"]),
+		"r_hand" = new /datum/organ/external/r_hand(H.organs_by_name["r_arm"]),
+		"l_foot" = new /datum/organ/external/l_foot(H.organs_by_name["l_leg"]),
+		"r_foot" = new /datum/organ/external/r_foot(H.organs_by_name["r_leg"])
+	)
 
 	for(var/organ in has_organ)
 		var/organ_type = has_organ[organ]

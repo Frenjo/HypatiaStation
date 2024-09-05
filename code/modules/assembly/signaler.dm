@@ -99,10 +99,10 @@ Code:
 	if(!radio_connection)
 		return
 
-	var/datum/signal/signal = new
+	var/datum/signal/signal = new /datum/signal()
 	signal.source = src
 	signal.encryption = code
-	signal.data["message"] = "ACTIVATE"
+	signal.data = list("message" = "ACTIVATE")
 	radio_connection.post_signal(src, signal)
 	return
 /*

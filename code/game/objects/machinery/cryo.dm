@@ -85,23 +85,26 @@
 		return
 
 	// this is the data which will be sent to the ui
-	var/list/data = list()
-	data["isOperating"] = on
-	data["hasOccupant"] = occupant ? 1 : 0
+	var/list/data = list(
+		"isOperating" = on,
+		"hasOccupant" = isnotnull(occupant)
+	)
 
-	var/list/occupantData = list()
-	if(occupant)
-		occupantData["name"] = occupant.name
-		occupantData["stat"] = occupant.stat
-		occupantData["health"] = occupant.health
-		occupantData["maxHealth"] = occupant.maxHealth
-		occupantData["minHealth"] = CONFIG_GET(health_threshold_dead)
-		occupantData["bruteLoss"] = occupant.getBruteLoss()
-		occupantData["oxyLoss"] = occupant.getOxyLoss()
-		occupantData["toxLoss"] = occupant.getToxLoss()
-		occupantData["fireLoss"] = occupant.getFireLoss()
-		occupantData["bodyTemperature"] = occupant.bodytemperature
-	data["occupant"] = occupantData;
+	var/list/occupant_data = null
+	if(isnotnull(occupant))
+		occupant_data = list(
+			"name" = occupant.name,
+			"stat" = occupant.stat,
+			"health" = occupant.health,
+			"maxHealth" = occupant.maxHealth,
+			"minHealth" = CONFIG_GET(health_threshold_dead),
+			"bruteLoss" = occupant.getBruteLoss(),
+			"oxyLoss" = occupant.getOxyLoss(),
+			"toxLoss" = occupant.getToxLoss(),
+			"fireLoss" = occupant.getFireLoss(),
+			"bodyTemperature" = occupant.bodytemperature
+		)
+	data["occupant"] = isnotnull(occupant_data) ? occupant_data : list();
 
 	data["cellTemperature"] = round(air_contents.temperature)
 	data["cellTemperatureStatus"] = "good"

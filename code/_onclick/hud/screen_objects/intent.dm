@@ -27,9 +27,10 @@
 /atom/movable/screen/action_intent
 	screen_loc = UI_ACTI
 
-/atom/movable/screen/action_intent/New(loc, intent, icon/ico)
+/atom/movable/screen/action_intent/New(loc, intent, icon/ico, ui_alpha)
 	name = intent
 	icon = ico
+	alpha = ui_alpha
 	. = ..(loc)
 
 /atom/movable/screen/action_intent/Click(location, control, params)
@@ -38,26 +39,26 @@
 
 // This is a lot of duplicated code but icon operations refuse to work any other way.
 // It's also WAY LESS duplicated code than before.
-/atom/movable/screen/action_intent/help/New(loc, ui_style)
+/atom/movable/screen/action_intent/help/New(loc, ui_style, ui_alpha = 255)
 	var/icon/ico = new /icon(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255, 255, 255, 1), 1, ico.Height() / 2, ico.Width() / 2, ico.Height())
-	. = ..(loc, "help", ico)
+	. = ..(loc, "help", ico, ui_alpha)
 
-/atom/movable/screen/action_intent/disarm/New(loc, ui_style)
+/atom/movable/screen/action_intent/disarm/New(loc, ui_style, ui_alpha = 255)
 	var/icon/ico = new /icon(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255, 255, 255, 1), ico.Width() / 2, ico.Height() / 2, ico.Width(), ico.Height())
-	. = ..(loc, "disarm", ico)
+	. = ..(loc, "disarm", ico, ui_alpha)
 
-/atom/movable/screen/action_intent/grab/New(loc, ui_style)
+/atom/movable/screen/action_intent/grab/New(loc, ui_style, ui_alpha = 255)
 	var/icon/ico = new /icon(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255, 255, 255, 1), ico.Width() / 2, 1, ico.Width(), ico.Height() / 2)
-	. = ..(loc, "grab", ico)
+	. = ..(loc, "grab", ico, ui_alpha)
 
-/atom/movable/screen/action_intent/harm/New(loc, ui_style)
+/atom/movable/screen/action_intent/harm/New(loc, ui_style, ui_alpha = 255)
 	var/icon/ico = new /icon(ui_style, "black")
 	ico.MapColors(0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, -1,-1,-1,-1)
 	ico.DrawBox(rgb(255, 255, 255, 1), 1, 1, ico.Width() / 2, ico.Height() / 2)
-	. = ..(loc, "hurt", ico) // TODO: Refactor and rename back to "harm" again.
+	. = ..(loc, "hurt", ico, ui_alpha) // TODO: Refactor and rename back to "harm" again.

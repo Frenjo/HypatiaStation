@@ -114,7 +114,7 @@
 
 	var/transmission_method = TRANSMISSION_WIRE
 
-	var/data
+	var/list/data
 	var/encryption
 
 	var/frequency = 0

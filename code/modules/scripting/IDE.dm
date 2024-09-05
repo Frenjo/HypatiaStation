@@ -116,8 +116,10 @@
 							M << output("<font color = blue>TCS compilation successful!</font color>", "tcserror")
 							M << output("(0 errors)", "tcserror")
 
-					var/datum/signal/signal = new()
-					signal.data["message"] = ""
+					var/datum/signal/signal = new /datum/signal()
+					signal.data = list(
+						"message" = ""
+					)
 					if(length(Server.freq_listening))
 						signal.frequency = Server.freq_listening[1]
 					else

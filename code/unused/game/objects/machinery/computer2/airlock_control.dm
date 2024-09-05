@@ -50,9 +50,11 @@
 //			src.master.set_frequency(new_frequency)
 
 		if(href_list["send_command"])
-			var/datum/signal/signal = new
-			signal.data["tag"] = id_tag
-			signal.data["command"] = href_list["send_command"]
+			var/datum/signal/signal = new /datum/signal()
+			signal.data = list(
+				"tag" = id_tag,
+				"command" = href_list["send_command"]
+			)
 			peripheral_command("send signal", signal)
 
 		src.master.add_fingerprint(usr)

@@ -62,25 +62,12 @@
 		hud_elements |= using
 
 		// Small action intent boxes.
-		using = new /atom/movable/screen/action_intent/help(src, ui_style)
-		using.alpha = ui_alpha
-		adding.Add(using)
-		intent_buttons["help"] = using
-
-		using = new /atom/movable/screen/action_intent/disarm(src, ui_style)
-		using.alpha = ui_alpha
-		adding.Add(using)
-		intent_buttons["disarm"] = using
-
-		using = new /atom/movable/screen/action_intent/grab(src, ui_style)
-		using.alpha = ui_alpha
-		adding.Add(using)
-		intent_buttons["grab"] = using
-
-		using = new /atom/movable/screen/action_intent/harm(src, ui_style)
-		using.alpha = ui_alpha
-		adding.Add(using)
-		intent_buttons["harm"] = using
+		adding.Add(
+			new /atom/movable/screen/action_intent/help(src, ui_style, ui_alpha),
+			new /atom/movable/screen/action_intent/disarm(src, ui_style, ui_alpha),
+			new /atom/movable/screen/action_intent/grab(src, ui_style, ui_alpha),
+			new /atom/movable/screen/action_intent/harm(src, ui_style, ui_alpha)
+		)
 		// End small action intent boxes.
 
 	if(hud_data.has_m_intent)

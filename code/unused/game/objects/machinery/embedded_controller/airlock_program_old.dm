@@ -217,15 +217,17 @@
 		del(signal)
 
 
-/datum/computer/file/embedded_program/proc/signalDoor(var/tag, var/command)
-	var/datum/signal/signal = new
-	signal.data["tag"] = tag
-	signal.data["command"] = command
+/datum/computer/file/embedded_program/proc/signalDoor(tag, command)
+	var/datum/signal/signal = new /datum/signal()
+	signal.data = list(
+		"tag" = tag,
+		"command" = command
+	)
 	post_signal(signal)
 
 
-/datum/computer/file/embedded_program/proc/signalPump(var/tag, var/power, var/direction, var/pressure)
-	var/datum/signal/signal = new
+/datum/computer/file/embedded_program/proc/signalPump(tag, power, direction, pressure)
+	var/datum/signal/signal = new /datum/signal()
 	signal.data = list(
 		"tag" = tag,
 		"sigtype" = "command",

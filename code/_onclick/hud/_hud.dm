@@ -16,8 +16,6 @@
 	 */
 	var/atom/movable/screen/move_intent/move_intent
 	var/atom/movable/screen/action_intent
-	// An associative list containing the small action intent button objects, indexed by intent name.
-	var/list/atom/movable/screen/action_intent/intent_buttons = list()
 
 	/*
 	 * Hands

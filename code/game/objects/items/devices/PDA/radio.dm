@@ -21,7 +21,7 @@
 	if(!frequency)
 		return
 
-	var/datum/signal/signal = new()
+	var/datum/signal/signal = new /datum/signal()
 	signal.source = src
 	signal.transmission_method = TRANSMISSION_RADIO
 	signal.data[key] = value
@@ -227,10 +227,10 @@
 	var/turf/T = get_turf(src)
 	GLOBL.lastsignalers.Add("[time] <B>:</B> [usr.key] used [src] @ location ([T.x],[T.y],[T.z]) <B>:</B> [format_frequency(frequency)]/[code]")
 
-	var/datum/signal/signal = new
+	var/datum/signal/signal = new /datum/signal()
 	signal.source = src
 	signal.encryption = code
-	signal.data["message"] = message
+	signal.data = list("message" = message)
 
 	radio_connection.post_signal(src, signal)
 

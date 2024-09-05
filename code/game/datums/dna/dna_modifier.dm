@@ -395,32 +395,35 @@
 	data["selectedUITarget"] = selected_ui_target
 	data["selectedUITargetHex"] = selected_ui_target_hex
 
-	var/list/occupantData = list()
-	if(!src.connected.occupant || !src.connected.occupant.dna)
-		occupantData["name"] = null
-		occupantData["stat"] = null
-		occupantData["isViableSubject"] = null
-		occupantData["health"] = null
-		occupantData["maxHealth"] = null
-		occupantData["minHealth"] = null
-		occupantData["uniqueEnzymes"] = null
-		occupantData["uniqueIdentity"] = null
-		occupantData["structuralEnzymes"] = null
-		occupantData["radiationLevel"] = null
+	var/list/occupant_data
+	if(isnull(connected.occupant) || isnull(connected.occupant.dna))
+		occupant_data = list(
+			"name" = null,
+			"stat" = null,
+			"isViableSubject" = null,
+			"health" = null,
+			"maxHealth" = null,
+			"minHealth" = null,
+			"uniqueEnzymes" = null,
+			"uniqueIdentity" = null,
+			"structuralEnzymes" = null,
+			"radiationLevel" = null
+		)
 	else
-		occupantData["name"] = connected.occupant.name
-		occupantData["stat"] = connected.occupant.stat
-		occupantData["isViableSubject"] = 1
-		if(NOCLONE in connected.occupant.mutations || !src.connected.occupant.dna)
-			occupantData["isViableSubject"] = 0
-		occupantData["health"] = connected.occupant.health
-		occupantData["maxHealth"] = connected.occupant.maxHealth
-		occupantData["minHealth"] = CONFIG_GET(health_threshold_dead)
-		occupantData["uniqueEnzymes"] = connected.occupant.dna.unique_enzymes
-		occupantData["uniqueIdentity"] = connected.occupant.dna.uni_identity
-		occupantData["structuralEnzymes"] = connected.occupant.dna.struc_enzymes
-		occupantData["radiationLevel"] = connected.occupant.radiation
-	data["occupant"] = occupantData;
+		var/is_viable_subject = !(NOCLONE in connected.occupant.mutations) && isnotnull(connected.occupant.dna)
+		occupant_data = list(
+			"name" = connected.occupant.name,
+			"stat" = connected.occupant.stat,
+			"isViableSubject" = is_viable_subject,
+			"health" = connected.occupant.health,
+			"maxHealth" = connected.occupant.maxHealth,
+			"minHealth" = CONFIG_GET(health_threshold_dead),
+			"uniqueEnzymes" = connected.occupant.dna.unique_enzymes,
+			"uniqueIdentity" = connected.occupant.dna.uni_identity,
+			"structuralEnzymes" = connected.occupant.dna.struc_enzymes,
+			"radiationLevel" = connected.occupant.radiation
+		)
+	data["occupant"] = occupant_data;
 
 	data["isBeakerLoaded"] = connected.beaker ? 1 : 0
 	data["beakerLabel"] = null

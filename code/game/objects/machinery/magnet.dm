@@ -279,13 +279,12 @@
 	src.add_fingerprint(usr)
 
 	if(href_list["radio-op"])
-
 		// Prepare signal beforehand, because this is a radio operation
-		var/datum/signal/signal = new
+		var/datum/signal/signal = new /datum/signal()
 		signal.transmission_method = TRANSMISSION_RADIO // radio transmission
 		signal.source = src
 		signal.frequency = frequency
-		signal.data["code"] = code
+		signal.data = list("code" = code)
 
 		// Apply any necessary commands
 		switch(href_list["radio-op"])
@@ -304,7 +303,6 @@
 
 
 		// Broadcast the signal
-
 		radio_connection.post_signal(src, signal, filter = RADIO_MAGNETS)
 
 		spawn(1)
@@ -346,11 +344,11 @@
 		looping = 1
 
 		// Prepare the radio signal
-		var/datum/signal/signal = new
+		var/datum/signal/signal = new /datum/signal()
 		signal.transmission_method = TRANSMISSION_RADIO // radio transmission
 		signal.source = src
 		signal.frequency = frequency
-		signal.data["code"] = code
+		signal.data = list("code" = code)
 
 		if(pathpos > length(rpath)) // if the position is greater than the length, we just loop through the list!
 			pathpos = 1

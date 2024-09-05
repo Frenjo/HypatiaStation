@@ -154,10 +154,10 @@ Code:
 				var/time = time2text(world.realtime,"hh:mm:ss")
 				lastsignalers.Add("[time] <B>:</B> [usr.key] used [src.master] @ location ([src.master.loc.x],[src.master.loc.y],[src.master.loc.z]) <B>:</B> [format_frequency(send_freq)]/[send_code]")
 
-				var/datum/signal/signal = new
+				var/datum/signal/signal = new /datum/signal()
 				signal.source = src
 				signal.encryption = send_code
-				signal.data["message"] = "ACTIVATE"
+				signal.data = list("message" = "ACTIVATE")
 
 				src.post_signal(signal,"[send_freq]")
 				return

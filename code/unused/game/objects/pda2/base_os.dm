@@ -274,11 +274,13 @@
 							return
 
 
-						var/datum/signal/signal = new
-						signal.data["command"] = "text message"
-						signal.data["message"] = t
-						signal.data["sender"] = src.master.owner
-						signal.data["tag"] = "\ref[P]"
+						var/datum/signal/signal = new /datum/signal()
+						signal.data = list(
+							"command" = "text message",
+							"message" = t,
+							"sender" = master.owner,
+							"tag" = "\ref[P]"
+						)
 						src.post_signal(signal)
 						src.message_note += "<i><b>&rarr; To [P.owner]:</b></i><br>[t]<br>"
 						log_pda("[usr] sent [t] to [P.owner]")
@@ -310,8 +312,8 @@
 					if("scan")
 						if(src.message_on)
 							src.detected_pdas = list()
-							var/datum/signal/signal = new
-							signal.data["command"] = "report pda"
+							var/datum/signal/signal = new /datum/signal()
+							signal.data = list("command" = "report pda")
 							src.post_signal(signal)
 
 			else if(href_list["note_func"]) //Note program specific topic junk

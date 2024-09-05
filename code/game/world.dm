@@ -90,15 +90,16 @@
 		return n
 
 	else if(T == "status")
-		var/list/s = list()
-		s["version"] = GLOBL.game_version
-		s["mode"] = global.PCticker.master_mode
-		s["respawn"] = CONFIG_GET(respawn)
-		s["enter"] = GLOBL.enter_allowed
-		s["vote"] = CONFIG_GET(allow_vote_mode)
-		s["ai"] = CONFIG_GET(allow_ai)
-		s["host"] = host ? host : null
-		s["players"] = list()
+		var/list/s = list(
+			"version" = GLOBL.game_version,
+			"mode" = global.PCticker.master_mode,
+			"respawn" = CONFIG_GET(respawn),
+			"enter" = GLOBL.enter_allowed,
+			"vote" = CONFIG_GET(allow_vote_mode),
+			"ai" = CONFIG_GET(allow_ai),
+			"host" = host ? host : null,
+			"players" = list()
+		)
 		var/n = 0
 		var/admins = 0
 

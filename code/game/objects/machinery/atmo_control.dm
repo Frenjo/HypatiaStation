@@ -43,10 +43,13 @@
 
 /obj/machinery/air_sensor/process()
 	if(on)
-		var/datum/signal/signal = new
+		var/datum/signal/signal = new /datum/signal()
 		signal.transmission_method = TRANSMISSION_RADIO
-		signal.data["tag"] = id_tag
-		signal.data["timestamp"] = world.time
+		signal.data = list(
+			"tag" = id_tag,
+			"timestamp" = world.time,
+			"sigtype" = "status"
+		)
 
 		var/datum/gas_mixture/air_sample = return_air()
 
@@ -80,7 +83,6 @@
 				signal.data[/decl/xgm_gas/plasma] = 0
 				signal.data[/decl/xgm_gas/oxygen_agent_b] = 0
 				signal.data[/decl/xgm_gas/nitrous_oxide] = 0
-		signal.data["sigtype"] = "status"
 		radio_connection.post_signal(src, signal, filter = RADIO_ATMOSIA)
 
 /obj/machinery/air_sensor/initialise()
@@ -261,7 +263,7 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 
 	if(!radio_connection)
 		return 0
-	var/datum/signal/signal = new
+	var/datum/signal/signal = new /datum/signal()
 	signal.transmission_method = TRANSMISSION_RADIO
 	signal.source = src
 	if(href_list["in_refresh_status"])
@@ -318,10 +320,9 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 				if(data["temperature"] <= on_temperature)
 					injecting = 1
 
-		var/datum/signal/signal = new
+		var/datum/signal/signal = new /datum/signal()
 		signal.transmission_method = TRANSMISSION_RADIO
 		signal.source = src
-
 		signal.data = list(
 			"tag" = device_tag,
 			"power" = injecting,
@@ -373,7 +374,7 @@ Rate: [volume_rate] L/sec<BR>"}
 		if(!radio_connection)
 			return 0
 
-		var/datum/signal/signal = new
+		var/datum/signal/signal = new /datum/signal()
 		signal.transmission_method = TRANSMISSION_RADIO
 		signal.source = src
 		signal.data = list(
@@ -391,7 +392,7 @@ Rate: [volume_rate] L/sec<BR>"}
 		if(!radio_connection)
 			return 0
 
-		var/datum/signal/signal = new
+		var/datum/signal/signal = new /datum/signal()
 		signal.transmission_method = TRANSMISSION_RADIO
 		signal.source = src
 		signal.data = list(
@@ -406,7 +407,7 @@ Rate: [volume_rate] L/sec<BR>"}
 		if(!radio_connection)
 			return 0
 
-		var/datum/signal/signal = new
+		var/datum/signal/signal = new /datum/signal()
 		signal.transmission_method = TRANSMISSION_RADIO
 		signal.source = src
 		signal.data = list(

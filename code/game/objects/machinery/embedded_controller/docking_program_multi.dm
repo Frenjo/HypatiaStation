@@ -216,14 +216,18 @@
 		..(target)
 
 /datum/computer/file/embedded_program/airlock/multi_docking/proc/send_signal_to_master(var/command)
-	var/datum/signal/signal = new
-	signal.data["tag"] = id_tag
-	signal.data["command"] = command
-	signal.data["recipient"] = master_tag
+	var/datum/signal/signal = new /datum/signal()
+	signal.data = list(
+		"tag" = id_tag,
+		"command" = command,
+		"recipient" = master_tag
+	)
 	post_signal(signal)
 
 /datum/computer/file/embedded_program/airlock/multi_docking/proc/broadcast_override_status()
-	var/datum/signal/signal = new
-	signal.data["tag"] = id_tag
-	signal.data["override_status"] = override_enabled? "enabled" : "disabled"
+	var/datum/signal/signal = new /datum/signal()
+	signal.data = list(
+		"tag" = id_tag,
+		"override_status" = override_enabled ? "enabled" : "disabled"
+	)
 	post_signal(signal)

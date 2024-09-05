@@ -41,10 +41,12 @@
 			if (!in_range(src.master, usr))
 				return
 
-			var/datum/signal/signal = new
-			signal.data["type"] = "message"
-			signal.data["data"] = t
-			signal.data["sender"] = src.screen_name
+			var/datum/signal/signal = new /datum/signal()
+			signal.data = list(
+				"type" = "message",
+				"data" = t,
+				"sender" = screen_name
+			)
 			src.messages += "<i><b>&rarr; You:</b></i><br>[t]<br>"
 
 			peripheral_command("send signal", signal)
@@ -55,9 +57,11 @@
 					src.messages = null
 
 				if("print")
-					var/datum/signal/signal = new
-					signal.data["data"] = src.messages
-					signal.data["title"] = "Chatlog"
+					var/datum/signal/signal = new /datum/signal()
+					signal.data = list(
+						"data" = messages,
+						"title" = "Chatlog"
+					)
 					peripheral_command("print", signal)
 
 				//if("save")

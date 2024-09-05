@@ -18,27 +18,26 @@
 	return 0
 
 /obj/machinery/embedded_controller/receive_signal(datum/signal/signal, receive_method, receive_param)
-	if(!signal || signal.encryption)
+	if(isnull(signal) || signal.encryption)
 		return
 
-	if(program)
+	if(isnotnull(program))
 		program.receive_signal(signal, receive_method, receive_param)
 			//spawn(5) program.process() //no, program.process sends some signals and machines respond and we here again and we lag -rastaf0
 
 /obj/machinery/embedded_controller/process()
-	if(program)
-		program.process()
+	program?.process()
 
 	update_icon()
 
 /obj/machinery/embedded_controller/attack_ai(mob/user)
-	src.ui_interact(user)
+	ui_interact(user)
 
 /obj/machinery/embedded_controller/attack_hand(mob/user)
 	if(!user.IsAdvancedToolUser())
 		return 0
 
-	src.ui_interact(user)
+	ui_interact(user)
 
 /obj/machinery/embedded_controller/ui_interact()
 	return
