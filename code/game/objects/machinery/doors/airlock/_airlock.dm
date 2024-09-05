@@ -55,6 +55,11 @@
 	var/obj/item/airlock_electronics/electronics = null
 	var/hasShocked = 0 //Prevents multiple shocks from happening
 
+	var/sound_path = 'sound/machines/airlock.ogg'
+	var/sound_volume = 30
+	var/additional_sound_path = null
+	var/additional_sound_volume = 30
+
 /obj/machinery/door/airlock/New()
 	. = ..()
 	GLOBL.airlocks_list.Add(src)
@@ -171,16 +176,11 @@
 	if(!forced)
 		if(!arePowerSystemsOn() || (stat & NOPOWER) || isWireCut(AIRLOCK_WIRE_OPEN_DOOR))
 			return 0
-	//use_power(50)
-	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
-	// Edited this so it actually works. -Frenjo
-	if(istype(src, /obj/machinery/door/airlock/glass))
-		playsound(src, 'sound/machines/windowdoor.ogg', 100, 1)
-	else if(istype(src, /obj/machinery/door/airlock/clown))
-		playsound(src, 'sound/machines/airlock.ogg', 30, 1) //Play the airlock as well as clown noise, it's still an airlock. -Frenjo
-		playsound(src, 'sound/items/bikehorn.ogg', 30, 1)
-	else
-		playsound(src, 'sound/machines/airlock.ogg', 30, 1)
+
+	use_power(360) // 360W seems much more appropriate for an actuator moving an industrial door capable of crushing people.
+	playsound(src, sound_path, sound_volume, TRUE)
+	if(isnotnull(additional_sound_path))
+		playsound(src, additional_sound_path, additional_sound_volume, TRUE)
 	if(isnotnull(closeOther) && istype(closeOther, /obj/machinery/door/airlock) && !closeOther.density)
 		closeOther.close()
 	return ..()
@@ -218,16 +218,11 @@
 			if(issimulated(location))
 				location.add_blood(M)
 
-	//use_power(50)
-	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
-	// Edited this so it actually works. -Frenjo
-	if(istype(src, /obj/machinery/door/airlock/glass))
-		playsound(src, 'sound/machines/windowdoor.ogg', 100, 1)
-	else if(istype(src, /obj/machinery/door/airlock/clown))
-		playsound(src, 'sound/machines/airlock.ogg', 30, 1) //Play the airlock as well as clown noise, it's still an airlock. -Frenjo
-		playsound(src, 'sound/items/bikehorn.ogg', 30, 1)
-	else
-		playsound(src, 'sound/machines/airlock.ogg', 30, 1)
+	use_power(360) // 360W seems much more appropriate for an actuator moving an industrial door capable of crushing people.
+	playsound(src, sound_path, sound_volume, TRUE)
+	if(isnotnull(additional_sound_path))
+		playsound(src, additional_sound_path, additional_sound_volume, TRUE)
+
 	for_no_type_check(var/turf/turf, locs)
 		var/obj/structure/window/killthis = (locate(/obj/structure/window) in turf)
 		if(isnotnull(killthis))

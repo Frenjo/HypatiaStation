@@ -67,6 +67,8 @@
 	icon = 'icons/obj/doors/mineral/bananium.dmi'
 	mineral = /decl/material/bananium
 
+	additional_sound_path = 'sound/items/bikehorn.ogg'
+
 /obj/machinery/door/airlock/sandstone
 	name = "Sandstone Airlock"
 	icon = 'icons/obj/doors/mineral/sandstone.dmi'

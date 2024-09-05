@@ -5,6 +5,9 @@
 
 	glass = TRUE
 
+	sound_path = 'sound/machines/windowdoor.ogg'
+	sound_volume = 100
+
 /obj/machinery/door/airlock/glass/command
 	name = "Glass Command Airlock"
 	icon = 'icons/obj/doors/command_glass.dmi'
