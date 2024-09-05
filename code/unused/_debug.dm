@@ -408,7 +408,7 @@ Doing this because FindTurfs() isn't even used
 	set category = PANEL_DEBUG
 
 	if(Debug)
-		for(var/obj/machinery/power/apc/APC in world)
+		for(var/obj/machinery/power/apc/APC in GLOBL.machines)
 			to_world(APC.report())
 	else
 		alert("Debugging off")
@@ -440,7 +440,7 @@ Doing this because FindTurfs() isn't even used
 
 	if(Debug)
 		var/n = 0
-		for(var/obj/machinery/M in world)
+		for(var/obj/machinery/M in GLOBL.machines)
 			n++
 			if(! (M in machines) )
 				to_world("[M] [M.type]: not in list")

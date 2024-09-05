@@ -25,6 +25,16 @@
 	var/open = FALSE //Maint panel
 	var/locked = TRUE
 
+/obj/machinery/bot/New()
+	SHOULD_CALL_PARENT(TRUE)
+
+	. = ..()
+	GLOBL.bots_list.Add(src)
+
+/obj/machinery/bot/Destroy()
+	GLOBL.bots_list.Remove(src)
+	return ..()
+
 /obj/machinery/bot/proc/turn_on()
 	if(stat)
 		return 0

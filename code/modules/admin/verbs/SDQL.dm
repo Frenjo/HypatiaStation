@@ -116,7 +116,7 @@
 							from_objs += m
 
 				else if(text_starts_with(f, "/obj/machinery"))
-					for(var/obj/machinery/m in world)
+					for(var/obj/machinery/m in GLOBL.machines)
 						if(istype(m, f2))
 							from_objs += m
 
