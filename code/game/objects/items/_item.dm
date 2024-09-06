@@ -143,8 +143,7 @@
 			//canremove==0 means that object may not be removed. You can still wear it. This only applies to clothing. /N
 			if(!C.can_remove)
 				return
-			else
-				user.u_equip(src)
+		user.u_equip(src)
 	else
 		if(isliving(loc))
 			return
@@ -166,8 +165,7 @@
 			var/obj/item/clothing/C = src
 			if(!C.can_remove)
 				return
-			else
-				user.u_equip(src)
+		user.u_equip(src)
 	else
 		if(isliving(src.loc))
 			return
