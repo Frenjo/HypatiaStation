@@ -32,7 +32,6 @@
 
 //all air alarms in area are connected via magic
 /area
-	var/obj/machinery/air_alarm/master_air_alarm
 	var/list/air_vent_names = list()
 	var/list/air_scrub_names = list()
 	var/list/air_vent_info = list()
@@ -129,8 +128,6 @@
 /obj/machinery/air_alarm/initialise()
 	. = ..()
 	radio_connection = register_radio(src, null, frequency, RADIO_TO_AIRALARM)
-	if(!master_is_operating())
-		elect_master()
 
 /obj/machinery/air_alarm/Destroy()
 	unregister_radio(src, frequency)
@@ -160,7 +157,7 @@
 
 	var/turf/open/location = loc
 	if(!istype(location))
-		return//returns if loc is not simulated
+		return // Returns if loc is not /turf/open.
 
 	var/datum/gas_mixture/environment = location.return_air()
 
@@ -242,7 +239,7 @@
 /obj/machinery/air_alarm/proc/overall_danger_level()
 	var/turf/open/location = loc
 	if(!istype(location))
-		return//returns if loc is not simulated
+		return // Returns if loc is not /turf/open.
 
 	var/datum/gas_mixture/environment = location.return_air()
 
@@ -268,14 +265,6 @@
 		temperature_dangerlevel
 	)
 
-/obj/machinery/air_alarm/proc/master_is_operating()
-	return isnotnull(alarm_area.master_air_alarm) && !(alarm_area.master_air_alarm.stat & (NOPOWER | BROKEN))
-
-/obj/machinery/air_alarm/proc/elect_master()
-	for(var/obj/machinery/air_alarm/AA in alarm_area)
-		if(!(AA.stat & (NOPOWER | BROKEN)))
-			alarm_area.master_air_alarm = AA
-
 /obj/machinery/air_alarm/proc/get_danger_level(current_value, list/danger_levels)
 	if((current_value >= danger_levels[4] && danger_levels[4] > 0) || current_value <= danger_levels[1])
 		return 2
@@ -287,7 +276,7 @@
 	if(wiresexposed)
 		icon_state = "alarmx"
 		return
-	if((stat & (NOPOWER|BROKEN)) || shorted)
+	if((stat & (NOPOWER | BROKEN)) || shorted)
 		icon_state = "alarmp"
 		return
 	switch(max(danger_level, alarm_area.atmos_alarm))
@@ -299,16 +288,8 @@
 			icon_state = "alarm1"
 
 /obj/machinery/air_alarm/receive_signal(datum/signal/signal)
-	if(stat & (NOPOWER|BROKEN))
+	if(stat & (NOPOWER | BROKEN))
 		return
-
-	if(alarm_area.master_air_alarm != src)
-		if(master_is_operating())
-			return
-		elect_master()
-		if(alarm_area.master_air_alarm != src)
-			return
-
 	if(isnull(signal) || signal.encryption)
 		return
 
@@ -380,7 +361,7 @@
 		post_alert(new_danger_level)
 
 	for(var/area/A in alarm_area)
-		for(var/obj/machinery/air_alarm/AA in A)
+		for(var/obj/machinery/air_alarm/AA in A.machines_list)
 			if(!(AA.stat & (NOPOWER | BROKEN)) && !AA.shorted && AA.danger_level != new_danger_level)
 				AA.update_icon()
 
@@ -413,8 +394,8 @@
 
 /obj/machinery/air_alarm/proc/refresh_danger_level()
 	var/level = 0
-	for(var/obj/machinery/air_alarm/AA in alarm_area)
-		if(!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted)
+	for(var/obj/machinery/air_alarm/AA in alarm_area.machines_list)
+		if(!(AA.stat & (NOPOWER | BROKEN)) && !AA.shorted)
 			if(AA.danger_level > level)
 				level = AA.danger_level
 	apply_danger_level(level)
@@ -423,7 +404,7 @@
 	var/area/A = get_area(src)
 	if(!A.air_doors_activated)
 		A.air_doors_activated = TRUE
-		for(var/obj/machinery/door/firedoor/E in A.all_doors)
+		for(var/obj/machinery/door/firedoor/E in A.doors_list)
 			if(istype(E, /obj/machinery/door/firedoor))
 				if(!E:blocked)
 					if(E.operating)
@@ -459,7 +440,7 @@
 	var/area/A = get_area(loc)
 	if(A.air_doors_activated)
 		A.air_doors_activated = FALSE
-		for(var/obj/machinery/door/firedoor/E in A.all_doors)
+		for(var/obj/machinery/door/firedoor/E in A.doors_list)
 			if(istype(E, /obj/machinery/door/firedoor))
 				if(!E:blocked)
 					if(E.operating)

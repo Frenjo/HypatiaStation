@@ -23,6 +23,8 @@
 	var/pathweight = 1
 
 /turf/New()
+	SHOULD_CALL_PARENT(TRUE)
+
 	. = ..()
 	var/area/turf_area = loc
 	turf_area.turf_list.Add(src)
@@ -30,6 +32,8 @@
 	levelupdate()
 
 /turf/Destroy()
+	SHOULD_CALL_PARENT(TRUE)
+
 	var/area/turf_area = loc
 	turf_area.turf_list.Remove(src)
 	GLOBL.processing_turfs.Remove(src)

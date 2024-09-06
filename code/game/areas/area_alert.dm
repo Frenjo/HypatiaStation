@@ -8,7 +8,7 @@
 		power_alarm = state
 		if(istype(source)) // Only report power alarms on the z-level where the source is located.
 			var/list/cameras = list()
-			for(var/obj/machinery/camera/C in src)
+			for(var/obj/machinery/camera/C in machines_list)
 				cameras.Add(C)
 				if(state == 1)
 					C.network.Remove("Power Alarms")
@@ -32,7 +32,7 @@
 	if(danger_level != atmos_alarm)
 		if(danger_level == 2)
 			var/list/cameras = list()
-			for(var/obj/machinery/camera/C in src)
+			for(var/obj/machinery/camera/C in machines_list)
 				cameras.Add(C)
 				C.network.Add("Atmosphere Alarms")
 			for(var/mob/living/silicon/aiPlayer in GLOBL.player_list)
@@ -40,7 +40,7 @@
 			for(var/obj/machinery/computer/station_alert/a in GLOBL.machines)
 				a.triggerAlarm("Atmosphere", src, cameras, src)
 		else if(atmos_alarm == 2)
-			for(var/obj/machinery/camera/C in src)
+			for(var/obj/machinery/camera/C in machines_list)
 				C.network.Remove("Atmosphere Alarms")
 			for(var/mob/living/silicon/aiPlayer in GLOBL.player_list)
 				aiPlayer.cancelAlarm("Atmosphere", src, src)
@@ -56,7 +56,7 @@
 		fire_alarm = TRUE
 		updateicon()
 		mouse_opacity = FALSE
-		for(var/obj/machinery/door/firedoor/D in all_doors)
+		for(var/obj/machinery/door/firedoor/D in doors_list)
 			if(!D.blocked)
 				if(D.operating)
 					D.nextstate = DOOR_CLOSED
@@ -64,7 +64,7 @@
 					spawn()
 						D.close()
 		var/list/cameras = list()
-		for(var/obj/machinery/camera/C in src)
+		for(var/obj/machinery/camera/C in machines_list)
 			cameras.Add(C)
 			C.network.Add("Fire Alarms")
 		for(var/mob/living/silicon/ai/aiPlayer in GLOBL.player_list)
@@ -77,14 +77,14 @@
 		fire_alarm = FALSE
 		mouse_opacity = FALSE
 		updateicon()
-		for(var/obj/machinery/door/firedoor/D in all_doors)
+		for(var/obj/machinery/door/firedoor/D in doors_list)
 			if(!D.blocked)
 				if(D.operating)
 					D.nextstate = OPEN
 				else if(D.density)
 					spawn()
 						D.open()
-		for(var/obj/machinery/camera/C in src)
+		for(var/obj/machinery/camera/C in machines_list)
 			C.network.Remove("Fire Alarms")
 		for(var/mob/living/silicon/ai/aiPlayer in GLOBL.player_list)
 			aiPlayer.cancelAlarm("Fire", src, src)
@@ -114,7 +114,7 @@
 		party_alarm = FALSE
 		mouse_opacity = FALSE
 		updateicon()
-		for(var/obj/machinery/door/firedoor/D in src)
+		for(var/obj/machinery/door/firedoor/D in doors_list)
 			if(!D.blocked)
 				if(D.operating)
 					D.nextstate = OPEN

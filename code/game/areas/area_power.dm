@@ -20,7 +20,7 @@
 
 // Called when power status changes.
 /area/proc/power_change()
-	for(var/obj/machinery/M in src)	// for each machine in the area
+	for_no_type_check(var/obj/machinery/M, machines_list) // For each machine in the area.
 		M.power_change()			// reverify power status (to update icons etc.)
 	if(fire_alarm || evac_alarm || party_alarm || destruct_alarm)
 		updateicon()

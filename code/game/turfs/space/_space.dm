@@ -19,6 +19,8 @@
 	var/static/list/phase_shift_by_y
 
 /turf/space/New()
+	SHOULD_CALL_PARENT(FALSE)
+
 	if(isnull(dust_cache))
 		build_dust_cache()
 	toggle_transit() //add static dust

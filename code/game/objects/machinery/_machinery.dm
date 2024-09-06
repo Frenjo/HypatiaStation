@@ -106,7 +106,11 @@
 	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
 
 /obj/machinery/New()
+	SHOULD_CALL_PARENT(TRUE)
+
 	. = ..()
+	var/area/machine_area = get_area(src)
+	machine_area.machines_list.Add(src)
 	if(!GLOBL.machinery_sort_required && isnotnull(global.PCticker))
 		dd_insertObjectList(GLOBL.machines, src)
 	else
@@ -114,17 +118,30 @@
 		GLOBL.machinery_sort_required = TRUE
 
 /obj/machinery/Destroy()
+	SHOULD_CALL_PARENT(TRUE)
+
+	var/area/machine_area = get_area(src)
+	machine_area?.machines_list.Remove(src)
 	GLOBL.machines.Remove(src)
-	if(component_parts)
+
+	if(length(component_parts))
 		for(var/atom/A in component_parts)
 			if(A.loc == src) // If the components are inside the machine, delete them.
 				qdel(A)
 			else // Otherwise we assume they were dropped to the ground during deconstruction, and were not removed from the component_parts list by deconstruction code.
 				component_parts.Remove(A)
-	if(contents) // The same for contents.
+	if(length(contents)) // The same for contents.
 		for(var/atom/A in contents)
 			qdel(A)
 	return ..()
+
+/obj/machinery/Move(NewLoc)
+	var/area/old_area = get_area(src)
+	var/area/new_area = get_area(NewLoc)
+	if(old_area != new_area)
+		old_area.machines_list.Remove(src)
+		new_area.machines_list.Add(src)
+	. = ..()
 
 /obj/machinery/process() // If you don't use process or power, why are you here?
 	if(!(power_state || power_usage[USE_POWER_IDLE] || power_usage[USE_POWER_ACTIVE]))

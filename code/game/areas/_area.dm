@@ -39,13 +39,15 @@
 	var/turf/base_turf
 	// The list containing all turfs in the area.
 	var/list/turf/turf_list = list()
+	// The list containing all machines in the area.
+	var/list/obj/machinery/machines_list = list()
+	var/list/doors_list = list() // Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area.
 
 	/*
 	 * Alerts / Alarms
 	 */
 	var/power_alarm = 1
 	var/atmos_alarm = 0
-	var/list/all_doors = list() // Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area.
 	var/air_doors_activated = FALSE
 	var/fire_alarm = FALSE
 	var/evac_alarm = FALSE
