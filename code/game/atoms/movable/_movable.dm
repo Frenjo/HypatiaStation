@@ -23,6 +23,8 @@
 	GLOBL.movable_atom_list.Add(src)
 
 /atom/movable/Destroy()
+	GLOBL.movable_atom_list.Remove(src)
+
 	var/turf/un_opaque = null
 	if(opacity && isturf(loc))
 		un_opaque = loc
@@ -35,10 +37,9 @@
 			pulledby.pulling = null
 		pulledby = null
 
-	for(var/atom/movable/mover in contents)
-		qdel(mover)
+	for_no_type_check(var/atom/A, contents)
+		qdel(A)
 
-	GLOBL.movable_atom_list.Remove(src)
 	return ..()
 
 /atom/movable/Move()

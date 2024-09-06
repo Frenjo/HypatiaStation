@@ -48,7 +48,7 @@
 	..()
 
 //vvvvv Infared beam stuff vvvvv
-	if(atom && atom.density && !istype(atom, /obj/effect/beam))
+	if(atom?.density && !istype(atom, /obj/effect/beam))
 		for(var/obj/effect/beam/i_beam/I in src)
 			spawn(0)
 				if(isnotnull(I))
@@ -75,10 +75,10 @@
 	*/
 
 		else if(!isspace(src))
-			M:inertia_dir = 0
+			mob.inertia_dir = 0
 	..()
 	var/objects = 0
-	for(var/atom/A as mob|obj|turf|area in range(1))
+	for(var/atom/A in range(1))
 		if(objects > loopsanity)
 			break
 		objects++

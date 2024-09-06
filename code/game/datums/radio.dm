@@ -17,7 +17,7 @@
 	devices = list()
 	. = ..()
 
-/datum/radio_frequency/proc/post_signal(obj/source, datum/signal/signal, filter = null as text|null, range = null as num|null)
+/datum/radio_frequency/proc/post_signal(obj/source, datum/signal/signal, filter = null, range = null)
 //	log_admin("DEBUG \[[world.timeofday]\]: post_signal {source=\"[source]\", [signal.debug_print()], filter=[filter]}")
 //	var/N_f=0
 //	var/N_nf=0
@@ -72,7 +72,7 @@
 //	log_admin("DEBUG: post_signal(source=[source] ([source.x], [source.y], [source.z]),filter=[filter]) frequency=[frequency], N_f=[N_f], N_nf=[N_nf]")
 //	del(signal)
 
-/datum/radio_frequency/proc/add_listener(obj/device, filter as text | null)
+/datum/radio_frequency/proc/add_listener(obj/device, filter)
 	if(isnull(filter))
 		filter = "_default"
 	//log_admin("add_listener(device=[device],filter=[filter]) frequency=[frequency]")

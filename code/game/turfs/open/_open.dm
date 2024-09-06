@@ -83,7 +83,7 @@
 			if(1)
 				if(ishuman(M)) // Added check since monkeys don't have shoes
 					var/mob/living/carbon/human/human = M
-					if(IS_RUNNING(human) && !(istype(human.shoes, /obj/item/clothing/shoes) && HAS_ITEM_FLAGS(human.shoes, ITEM_FLAG_NO_SLIP)))
+					if(IS_RUNNING(human) && !(istype(human.shoes) && HAS_ITEM_FLAGS(human.shoes, ITEM_FLAG_NO_SLIP)))
 						human.stop_pulling()
 						step(human, human.dir)
 						to_chat(human, SPAN_INFO("You slipped on the wet floor!"))
@@ -125,7 +125,7 @@
 			if(3) // Ice
 				if(ishuman(M)) // Added check since monkeys don't have shoes
 					var/mob/living/carbon/human/human = M
-					if(IS_RUNNING(human) && !(istype(human.shoes, /obj/item/clothing/shoes) && HAS_ITEM_FLAGS(human.shoes, ITEM_FLAG_NO_SLIP)) && prob(30))
+					if(IS_RUNNING(human) && !(istype(human.shoes) && HAS_ITEM_FLAGS(human.shoes, ITEM_FLAG_NO_SLIP)) && prob(30))
 						human.stop_pulling()
 						step(human, human.dir)
 						to_chat(human, SPAN_INFO("You slipped on the icy floor!"))

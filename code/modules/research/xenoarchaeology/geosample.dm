@@ -80,7 +80,7 @@
 	find_presence["chlorine"] = rand(500, 2500) / 100
 
 	//loop over finds, grab any relevant stuff
-	for(var/datum/find/F in container.finds)
+	for_no_type_check(var/datum/find/F, container.finds)
 		var/responsive_reagent = get_responsive_reagent(F.find_type)
 		find_presence[responsive_reagent] = F.dissonance_spread
 

@@ -10,15 +10,18 @@
 /obj/structure/lattice/initialise()
 	. = ..()
 ///// Z-Level Stuff
-	if(!(isspace(src.loc) || isopenspace(src.loc)))
-///// Z-Level Stuff
+	if(!isspace(loc) && !isopenspace(loc))
 		qdel(src)
-	for(var/obj/structure/lattice/LAT in src.loc)
-		if(LAT != src)
-			qdel(LAT)
+///// Z-Level Stuff
+
+	for(var/obj/structure/lattice/other in loc)
+		if(other != src)
+			qdel(other)
+
 	icon = 'icons/obj/structures/smoothlattice.dmi'
 	icon_state = "latticeblank"
 	updateOverlays()
+
 	for(var/dir in GLOBL.cardinal)
 		var/obj/structure/lattice/L
 		if(locate(/obj/structure/lattice, get_step(src, dir)))
@@ -30,7 +33,7 @@
 		var/obj/structure/lattice/L
 		if(locate(/obj/structure/lattice, get_step(src, dir)))
 			L = locate(/obj/structure/lattice, get_step(src, dir))
-			L.updateOverlays(src.loc)
+			L.updateOverlays(loc)
 	return ..()
 
 /obj/structure/lattice/blob_act()

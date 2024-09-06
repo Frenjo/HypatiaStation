@@ -38,9 +38,7 @@
 		member.air_temporary.multiply(member.volume / air.volume)
 
 /datum/pipeline/proc/build_pipeline(obj/machinery/atmospherics/pipe/base)
-	air = new /datum/gas_mixture()
-
-	var/list/possible_expansions = list(base)
+	var/list/obj/machinery/atmospherics/pipe/possible_expansions = list(base)
 	members = list(base)
 	edges = list()
 
@@ -55,7 +53,7 @@
 		air = new /datum/gas_mixture()
 
 	while(length(possible_expansions))
-		for(var/obj/machinery/atmospherics/pipe/borderline in possible_expansions)
+		for_no_type_check(var/obj/machinery/atmospherics/pipe/borderline, possible_expansions)
 			var/list/result = borderline.pipeline_expansion()
 			var/edge_check = length(result)
 
@@ -90,8 +88,8 @@
 
 	network = new_network
 
-	for(var/obj/machinery/atmospherics/pipe/edge in edges)
-		for(var/obj/machinery/atmospherics/result in edge.pipeline_expansion())
+	for_no_type_check(var/obj/machinery/atmospherics/pipe/edge, edges)
+		for(var/obj/machinery/atmospherics/result in edge.pipeline_expansion()) // This can't be converted to for_no_type_check() since there are nulls involved.
 			if(!istype(result, /obj/machinery/atmospherics/pipe) && result != reference)
 				result.network_expand(new_network, edge)
 
