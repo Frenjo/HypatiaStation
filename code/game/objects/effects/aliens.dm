@@ -238,7 +238,7 @@ Alien plants should do something if theres a lot of poison
 
 	var/damage = W.force / 4.0
 
-	if(istype(W, /obj/item/weldingtool))
+	if(iswelder(W))
 		var/obj/item/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))
@@ -414,7 +414,7 @@ Alien plants should do something if theres a lot of poison
 		src.visible_message(SPAN_DANGER("\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]"))
 	var/damage = W.force / 4.0
 
-	if(istype(W, /obj/item/weldingtool))
+	if(iswelder(W))
 		var/obj/item/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))

@@ -11,7 +11,7 @@
 	material = /decl/material/plasma
 
 /obj/structure/mineral_door/transparent/plasma/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weldingtool))
+	if(iswelder(W))
 		var/obj/item/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			TemperatureAct(100)

@@ -81,12 +81,12 @@
 		if(T.density)
 			user << "\red The wall is blocked!"
 			return
-		if(istype(W, /obj/item/screwdriver))
+		if(isscrewdriver(W))
 			user.visible_message("[user] tightens some bolts on the wall.", "You tighten the bolts on the wall.")
 			T.ChangeTurf(material.wall_path)
 			qdel(src)
 
-		if( istype(W, /obj/item/weldingtool) )
+		if(iswelder(W))
 			var/obj/item/weldingtool/WT = W
 			if( WT:welding )
 				T.ChangeTurf(material.wall_path)
@@ -157,13 +157,13 @@
 		user << "\red You must wait until the door has stopped moving."
 		return
 
-	if(istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		var/turf/T = get_turf(src)
 		user.visible_message("[user] tightens some bolts on the r wall.", "You tighten the bolts on the wall.")
 		T.ChangeTurf(/turf/closed/wall/steel) //Intentionally makes a regular wall instead of an r-wall (no cheap r-walls for you).
 		qdel(src)
 
-	if( istype(W, /obj/item/weldingtool) )
+	if(iswelder(W))
 		var/obj/item/weldingtool/WT = W
 		if( WT.remove_fuel(0,user) )
 			var/turf/T = get_turf(src)

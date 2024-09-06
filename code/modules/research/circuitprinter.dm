@@ -47,7 +47,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	if(O.is_open_container())
 		return 0
 
-	if(istype(O, /obj/item/screwdriver))
+	if(isscrewdriver(O))
 		if(!opened)
 			opened = TRUE
 			if(linked_console)
@@ -61,7 +61,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, opened)
 		return 1
 	if(opened)
-		if(istype(O, /obj/item/crowbar))
+		if(iscrowbar(O))
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			M.state = 2

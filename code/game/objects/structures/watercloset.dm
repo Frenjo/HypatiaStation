@@ -48,7 +48,7 @@
 	icon_state = "toilet[open][cistern]"
 
 /obj/structure/toilet/attackby(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/crowbar))
+	if(iscrowbar(I))
 		to_chat(user, SPAN_NOTICE("You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]."))
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
 		if(do_after(user, 30))
@@ -174,7 +174,7 @@
 /obj/machinery/shower/attackby(obj/item/I, mob/user)
 	if(I.type == /obj/item/gas_analyser)
 		to_chat(user, SPAN_NOTICE("The water temperature seems to be [watertemp]."))
-	if(istype(I, /obj/item/wrench))
+	if(iswrench(I))
 		to_chat(user, SPAN_NOTICE("You begin to adjust the temperature valve with \the [I]."))
 		if(do_after(user, 50))
 			switch(watertemp)

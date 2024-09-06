@@ -142,7 +142,7 @@
 	material = /decl/material/mythril
 
 /obj/item/coin/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/stack/cable_coil))
+	if(iscable(W))
 		var/obj/item/stack/cable_coil/CC = W
 		if(string_attached)
 			to_chat(user, SPAN_INFO("There is already a string attached to this coin."))
@@ -158,7 +158,7 @@
 		to_chat(user, SPAN_INFO("You attach a string to the coin."))
 		CC.use(1)
 
-	else if(istype(W, /obj/item/wirecutters))
+	else if(iswirecutter(W))
 		if(!string_attached)
 			..()
 			return

@@ -89,7 +89,7 @@
 	return 1
 
 /obj/machinery/meter/attackby(obj/item/W, mob/user)
-	if(!istype(W, /obj/item/wrench))
+	if(!iswrench(W))
 		return ..()
 	playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 	to_chat(user, SPAN_INFO("You begin to unfasten \the [src]..."))

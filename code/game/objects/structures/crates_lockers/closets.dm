@@ -196,7 +196,7 @@
 			src.MouseDrop_T(W:affecting, user)		//act like they were dragged onto the closet
 		if(istype(W, /obj/item/tk_grab))
 			return 0
-		if(istype(W, /obj/item/weldingtool))
+		if(iswelder(W))
 			var/obj/item/weldingtool/WT = W
 			if(!WT.remove_fuel(0, user))
 				FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
@@ -215,7 +215,7 @@
 			W.loc = src.loc
 	else if(istype(W, /obj/item/package_wrap))
 		return
-	else if(istype(W, /obj/item/weldingtool))
+	else if(iswelder(W))
 		var/obj/item/weldingtool/WT = W
 		if(!WT.remove_fuel(0,user))
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)

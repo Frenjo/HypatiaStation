@@ -141,7 +141,7 @@
 		created_name = t
 		return
 
-	if(istype(W, /obj/item/weldingtool) && ( (istext(glass)) || (glass == 1) || (!anchored) ))
+	if(iswelder(W) && ( (istext(glass)) || (glass == 1) || (!anchored) ))
 		var/obj/item/weldingtool/WT = W
 		if (WT.remove_fuel(0, user))
 			playsound(src, 'sound/items/Welder2.ogg', 50, 1)
@@ -171,7 +171,7 @@
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 
-	else if(istype(W, /obj/item/wrench) && state == 0)
+	else if(iswrench(W) && state == 0)
 		playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 		if(anchored)
 			user.visible_message("[user] unsecures the airlock assembly from the floor.", "You start to unsecure the airlock assembly from the floor.")
@@ -183,7 +183,7 @@
 			user << "\blue You [anchored? "un" : ""]secured the airlock assembly!"
 			anchored = !anchored
 
-	else if(istype(W, /obj/item/stack/cable_coil) && state == 0 && anchored )
+	else if(iscable(W) && state == 0 && anchored )
 		var/obj/item/stack/cable_coil/coil = W
 		user.visible_message("[user] wires the airlock assembly.", "You start to wire the airlock assembly.")
 		if(do_after(user, 40))
@@ -192,7 +192,7 @@
 			src.state = 1
 			user << "\blue You wire the Airlock!"
 
-	else if(istype(W, /obj/item/wirecutters) && state == 1 )
+	else if(iswirecutter(W) && state == 1 )
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
@@ -217,7 +217,7 @@
 		else
 			W.loc = src.loc
 
-	else if(istype(W, /obj/item/crowbar) && state == 2 )
+	else if(iscrowbar(W) && state == 2 )
 		playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 		user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to install electronics into the airlock assembly.")
 
@@ -257,7 +257,7 @@
 							S.use(2)
 							glass = "[lowertext(S.material.name)]"
 
-	else if(istype(W, /obj/item/screwdriver) && state == 2 )
+	else if(isscrewdriver(W) && state == 2 )
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		user << "\blue Now finishing the airlock."
 

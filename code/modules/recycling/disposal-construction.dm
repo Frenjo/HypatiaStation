@@ -202,7 +202,7 @@
 				to_chat(user, "There is already a [nicetype] at that location.")
 				return
 
-	if(istype(I, /obj/item/wrench))
+	if(iswrench(I))
 		if(anchored)
 			anchored = FALSE
 			if(ispipe)
@@ -222,7 +222,7 @@
 		playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 		update()
 
-	else if(istype(I, /obj/item/weldingtool))
+	else if(iswelder(I))
 		if(anchored)
 			var/obj/item/weldingtool/W = I
 			if(W.remove_fuel(0, user))

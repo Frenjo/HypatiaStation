@@ -227,7 +227,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 				)
 				temp_state--
 
-			if(iscoil(O))
+			if(iscable(O))
 				var/obj/item/stack/cable_coil/C = O
 				if(C.amount >= 5)
 					playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -390,7 +390,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 				)
 				temp_state--
 
-			if(iscoil(O))
+			if(iscable(O))
 				var/obj/item/stack/cable_coil/C = O
 				if(C.amount >= 5)
 					playsound(src, 'sound/items/Deconstruct.ogg', 75, 1)

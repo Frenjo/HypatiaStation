@@ -58,3 +58,17 @@
 
 #define INV_FLAG_BLOCK_HEAD_HAIR	BITFLAG(9)	// temporarily removes the user's hair overlay. Leaves facial hair.
 #define INV_FLAG_BLOCK_HAIR			BITFLAG(10)	// temporarily removes the user's hair, facial and otherwise.
+
+/*
+ * Tool Flags
+ * These determine what tool actions a given item can perform.
+ * Used by /obj/item/var/tool_flags.
+ */
+#define TOOL_FLAG_WRENCH		BITFLAG(0)
+#define TOOL_FLAG_SCREWDRIVER	BITFLAG(1)
+#define TOOL_FLAG_CROWBAR		BITFLAG(2)
+#define TOOL_FLAG_WIRECUTTER	BITFLAG(3)
+#define TOOL_FLAG_WELDER		BITFLAG(4)
+#define TOOL_FLAG_MULTITOOL		BITFLAG(5)
+#define TOOL_FLAG_CABLE_COIL	BITFLAG(6)
+#define TOOL_FLAGS_COMMON (TOOL_FLAG_WRENCH | TOOL_FLAG_SCREWDRIVER | TOOL_FLAG_CROWBAR | TOOL_FLAG_WIRECUTTER | TOOL_FLAG_WELDER | TOOL_FLAG_MULTITOOL | TOOL_FLAG_CABLE_COIL)

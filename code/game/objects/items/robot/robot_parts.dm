@@ -271,7 +271,7 @@
 			W.loc = src
 			src.cell = W
 			to_chat(user, SPAN_INFO("You insert the cell!"))
-	if(istype(W, /obj/item/stack/cable_coil))
+	if(iscable(W))
 		if(wires)
 			to_chat(user, SPAN_INFO("You have already inserted wire!"))
 			return

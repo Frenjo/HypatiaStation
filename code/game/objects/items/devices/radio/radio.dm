@@ -702,10 +702,10 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 /obj/item/radio/borg/attackby(obj/item/W, mob/user)
 //	..()
 	user.set_machine(src)
-	if(!(istype(W, /obj/item/screwdriver) || (istype(W, /obj/item/encryptionkey/))))
+	if(!(isscrewdriver(W) || (istype(W, /obj/item/encryptionkey/))))
 		return
 
-	if(istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		if(keyslot)
 			for(var/ch_name in channels)
 				unregister_radio(src, GLOBL.radio_channels[ch_name])

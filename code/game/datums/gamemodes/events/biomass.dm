@@ -50,7 +50,7 @@
 		else //weapons with subtypes
 			if(istype(W, /obj/item/melee/energy/sword))
 				qdel(src)
-			else if(istype(W, /obj/item/weldingtool))
+			else if(iswelder(W))
 				var/obj/item/weldingtool/WT = W
 				if(WT.remove_fuel(0, user))
 					qdel(src)

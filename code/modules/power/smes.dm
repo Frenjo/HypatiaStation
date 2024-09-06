@@ -238,7 +238,7 @@
 
 /obj/machinery/power/smes/attackby(obj/item/W, mob/user)
 	if(open_hatch)
-		if(istype(W, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
+		if(iscable(W) && !terminal && !building_terminal)
 			building_terminal = 1
 			var/obj/item/stack/cable_coil/CC = W
 			if(CC.amount < 10)
@@ -257,7 +257,7 @@
 			terminal.connect_to_network()
 			stat = 0
 
-		else if(istype(W, /obj/item/wirecutters) && terminal && !building_terminal)
+		else if(iswirecutter(W) && terminal && !building_terminal)
 			building_terminal = 1
 			var/turf/tempTDir = terminal.loc
 			if(istype(tempTDir))

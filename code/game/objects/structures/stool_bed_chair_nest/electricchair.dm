@@ -12,7 +12,7 @@
 	return
 
 /obj/structure/stool/bed/chair/e_chair/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		var/obj/structure/stool/bed/chair/C = new /obj/structure/stool/bed/chair(loc)
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		C.set_dir(dir)

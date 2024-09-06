@@ -95,7 +95,7 @@
 		else
 			to_chat(user, SPAN_NOTICE("[src] already has a cell installed."))
 
-	else if(istype(W, /obj/item/screwdriver))
+	else if(isscrewdriver(W))
 		if(isnotnull(cell))
 			var/obj/item/C = cell
 			C.loc = get_turf(user)

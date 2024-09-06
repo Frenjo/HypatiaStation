@@ -27,7 +27,7 @@
 		qdel(src)
 
 /obj/structure/stool/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		new /obj/item/stack/sheet/steel(loc)
 		qdel(src)

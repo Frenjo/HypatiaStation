@@ -40,7 +40,7 @@
 		playsound(src, 'sound/items/Crowbar.ogg', 80, 1)
 		return TRUE
 
-	if(iswire(tool))
+	if(iscable(tool))
 		to_chat(user, SPAN_WARNING("You must remove the plating first."))
 		return TRUE
 

@@ -133,7 +133,7 @@
 	if(..())
 		return 1
 
-	if(istype(O, /obj/item/screwdriver))
+	if(isscrewdriver(O))
 		if(!opened)
 			opened = TRUE
 			icon_state = "server_o"
@@ -144,7 +144,7 @@
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, opened)
 		return 1
 	if(opened)
-		if(istype(O, /obj/item/crowbar))
+		if(iscrowbar(O))
 			griefProtection()
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)

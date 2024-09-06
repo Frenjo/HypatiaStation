@@ -1029,7 +1029,7 @@ table tr:first-child th:first-child { border: none;}
 
 	if(href_list["AAlarmwires"])
 		var/t1 = text2num(href_list["AAlarmwires"])
-		if(!(istype(usr.get_active_hand(), /obj/item/wirecutters)))
+		if(!iswirecutter(usr.get_active_hand()))
 			to_chat(usr, "You need wirecutters!")
 			return
 		if(isWireColorCut(t1))
@@ -1044,7 +1044,7 @@ table tr:first-child th:first-child { border: none;}
 
 	else if(href_list["pulse"])
 		var/t1 = text2num(href_list["pulse"])
-		if(!istype(usr.get_active_hand(), /obj/item/multitool))
+		if(!ismultitool(usr.get_active_hand()))
 			to_chat(usr, "You need a multitool!")
 			return
 		if(isWireColorCut(t1))
@@ -1056,7 +1056,7 @@ table tr:first-child th:first-child { border: none;}
 	updateUsrDialog()
 
 /obj/machinery/air_alarm/attackby(obj/item/W, mob/user)
-/*	if (istype(W, /obj/item/wirecutters))
+/*	if(iswirecutter(W))
 		stat ^= BROKEN
 		add_fingerprint(user)
 		for(var/mob/O in viewers(user, null))
@@ -1068,14 +1068,14 @@ table tr:first-child th:first-child { border: none;}
 
 	switch(buildstage)
 		if(2)
-			if(istype(W, /obj/item/screwdriver))  // Opening that Air Alarm up.
+			if(isscrewdriver(W))  // Opening that Air Alarm up.
 				//user << "You pop the Air Alarm's maintence panel open."
 				wiresexposed = !wiresexposed
 				to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"].")
 				update_icon()
 				return
 
-			if(wiresexposed && (istype(W, /obj/item/multitool) || istype(W, /obj/item/wirecutters)))
+			if(wiresexposed && (ismultitool(W) || iswirecutter(W)))
 				return attack_hand(user)
 
 			if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))// trying to unlock the interface with an ID card
@@ -1092,7 +1092,7 @@ table tr:first-child th:first-child { border: none;}
 			return
 
 		if(1)
-			if(istype(W, /obj/item/stack/cable_coil))
+			if(iscable(W))
 				var/obj/item/stack/cable_coil/coil = W
 				if(coil.amount < 5)
 					to_chat(user, "You need more cable for this!")
@@ -1106,7 +1106,7 @@ table tr:first-child th:first-child { border: none;}
 				first_run()
 				return
 
-			else if(istype(W, /obj/item/crowbar))
+			else if(iscrowbar(W))
 				to_chat(user, "You start prying out the circuit.")
 				playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 				if(do_after(user, 20))
@@ -1124,7 +1124,7 @@ table tr:first-child th:first-child { border: none;}
 				update_icon()
 				return
 
-			else if(istype(W, /obj/item/wrench))
+			else if(iswrench(W))
 				to_chat(user, "You remove the fire alarm assembly from the wall!")
 				var/obj/item/frame/alarm/frame = new /obj/item/frame/alarm()
 				frame.loc = user.loc

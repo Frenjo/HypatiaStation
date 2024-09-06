@@ -176,7 +176,7 @@ Thus, the two variables affect pump operation are set in New():
 	update_icon()
 
 /obj/machinery/atmospherics/binary/volume_pump/attackby(obj/item/W, mob/user)
-	if(!istype(W, /obj/item/wrench))
+	if(!iswrench(W))
 		return ..()
 	if(!(stat & NOPOWER) && on)
 		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], turn it off first."))

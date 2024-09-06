@@ -387,7 +387,7 @@ var/linenums = 0
 
 /obj/machinery/pipes/attackby(obj/item/W as obj, mob/user as mob)
 
-	if (istype(W, /obj/item/weldingtool) && W:welding)
+	if(iswelder(W) && W:welding)
 		if(!(stat & BROKEN))
 			return
 		if (W:weldfuel < 2)

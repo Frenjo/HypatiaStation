@@ -107,7 +107,7 @@
 /obj/machinery/pipefilter/attackby(obj/item/W, mob/user as mob)
 	if(istype(W, /obj/item/detective_scanner))
 		return ..()
-	if(istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		if(bypassed)
 			user.show_message(text("\red Remove the foreign wires first!"), 1)
 			return
@@ -133,7 +133,7 @@
 		bypassed = 1
 		src.updateicon()
 		return
-	if(istype(W, /obj/item/wirecutters) && bypassed)
+	if(iswirecutter(W) && bypassed)
 		src.add_fingerprint(user)
 		user.show_message(text("\red Now removing the bypass wires... <I>(This may take a while)</I>"), 1)
 		sleep(50)

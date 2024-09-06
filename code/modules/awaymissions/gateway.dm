@@ -129,7 +129,7 @@
 		return
 
 /obj/machinery/gateway/centerstation/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/multitool))
+	if(ismultitool(W))
 		to_chat(user, "\black The gate is already calibrated, there is no work for you to do here.")
 		return
 
@@ -222,7 +222,7 @@
 
 
 /obj/machinery/gateway/centeraway/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/multitool))
+	if(ismultitool(W))
 		if(calibrated)
 			to_chat(user, "\black The gate is already calibrated, there is no work for you to do here.")
 			return

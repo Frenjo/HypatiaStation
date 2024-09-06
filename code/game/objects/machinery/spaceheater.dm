@@ -70,7 +70,7 @@
 		else
 			to_chat(user, "The hatch must be open to insert a power cell.")
 			return
-	else if(istype(I, /obj/item/screwdriver))
+	else if(isscrewdriver(I))
 		open = !open
 		user.visible_message(
 			SPAN_INFO("[user] [open ? "opens" : "closes"] the hatch on the [src]."),

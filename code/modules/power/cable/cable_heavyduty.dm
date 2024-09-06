@@ -14,7 +14,7 @@
 		to_chat(user, SPAN_WARNING("The cables are too tough to be cut with \the [tool]."))
 		return TRUE
 
-	if(iswire(tool))
+	if(iscable(tool))
 		to_chat(user, SPAN_WARNING("You will need heavier cables to connect to these."))
 		return TRUE
 

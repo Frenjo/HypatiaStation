@@ -86,7 +86,7 @@
 	icon_state = "wooden_chair_wings"
 
 /obj/structure/stool/bed/chair/wood/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		new /obj/item/stack/sheet/wood(src.loc)
 		qdel(src)

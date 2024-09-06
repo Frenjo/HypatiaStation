@@ -43,7 +43,7 @@
 						user << "\blue You add cables to the frame."
 						state = 2
 						icon_state = "wm_1"
-			if(istype(P, /obj/item/wrench))
+			if(iswrench(P))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 				user << "\blue You dismantle the frame"
 				new /obj/item/stack/sheet/steel(src.loc, 2)
@@ -75,7 +75,7 @@
 					user << desc
 				else
 					user << "\red This frame does not accept circuit boards of this type!"
-			if(istype(P, /obj/item/wirecutters))
+			if(iswirecutter(P))
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 				user << "\blue You remove the cables."
 				state = 1
@@ -84,7 +84,7 @@
 				A.amount = 5
 
 		if(3)
-			if(istype(P, /obj/item/crowbar))
+			if(iscrowbar(P))
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				state = 2
 				circuit.loc = src.loc
@@ -100,7 +100,7 @@
 				components = null
 				icon_state = "wm_1"
 
-			if(istype(P, /obj/item/screwdriver))
+			if(isscrewdriver(P))
 				var/component_check = 1
 				for(var/R in req_components)
 					if(req_components[R] > 0)

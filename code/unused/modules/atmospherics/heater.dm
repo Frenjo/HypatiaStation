@@ -180,7 +180,7 @@
 		T.loc = src
 		src.holding = T
 	else
-		if (istype(W, /obj/item/wrench))
+		if(iswrench(W))
 			var/obj/machinery/connector/con = locate(/obj/machinery/connector, src.loc)
 
 			if (src.c_status)

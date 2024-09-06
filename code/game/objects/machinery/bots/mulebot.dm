@@ -103,7 +103,7 @@
 		C.loc = src
 		cell = C
 		updateDialog()
-	else if(istype(I, /obj/item/screwdriver))
+	else if(isscrewdriver(I))
 		if(locked)
 			to_chat(user, SPAN_WARNING("The maintenance panel cannot be opened or closed while the controls are locked."))
 			return
@@ -118,7 +118,7 @@
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, open)
 
 		updateDialog()
-	else if(istype(I, /obj/item/wrench))
+	else if(iswrench(I))
 		if(health < maxhealth)
 			health = min(maxhealth, health + 25)
 			user.visible_message(

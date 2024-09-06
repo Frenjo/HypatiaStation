@@ -43,7 +43,7 @@
 
 /obj/machinery/light_frame/attackby(obj/item/W, mob/user)
 	add_fingerprint(user)
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		if(stage == LIGHT_STAGE_ONE)
 			playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 			to_chat(usr, "You begin deconstructing [src].")
@@ -65,7 +65,7 @@
 			to_chat(usr, "You have to unscrew the case first.")
 			return
 
-	if(istype(W, /obj/item/wirecutters))
+	if(iswirecutter(W))
 		if(stage != LIGHT_STAGE_TWO)
 			return
 		stage = LIGHT_STAGE_ONE
@@ -79,7 +79,7 @@
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		return
 
-	if(istype(W, /obj/item/stack/cable_coil))
+	if(iscable(W))
 		if(stage != LIGHT_STAGE_ONE)
 			return
 		var/obj/item/stack/cable_coil/coil = W
@@ -92,7 +92,7 @@
 		)
 		return
 
-	if(istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		if(stage == LIGHT_STAGE_TWO)
 			update_icon()
 			stage = LIGHT_STAGE_THREE

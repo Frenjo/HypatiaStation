@@ -88,7 +88,7 @@
 			return
 
 	//Hacking init.
-	if(istype(I, /obj/item/multitool) || istype(I, /obj/item/wirecutters))
+	if(ismultitool(I) || iswirecutter(I))
 		if(panel_open)
 			attack_hand(user)
 		return
@@ -125,7 +125,7 @@
 			updateUsrDialog()
 			return
 
-	else if(istype(I, /obj/item/screwdriver))
+	else if(isscrewdriver(I))
 		panel_open = !panel_open
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panel_open)
@@ -316,7 +316,7 @@
 
 	else if((href_list["cutwire"]) && (src.panel_open))
 		var/twire = text2num(href_list["cutwire"])
-		if(!istype(usr.get_active_hand(), /obj/item/wirecutters))
+		if(!iswirecutter(usr.get_active_hand()))
 			to_chat(usr, "You need wirecutters!")
 			return
 		if(src.isWireColorCut(twire))
@@ -326,7 +326,7 @@
 
 	else if((href_list["pulsewire"]) && (src.panel_open))
 		var/twire = text2num(href_list["pulsewire"])
-		if(!istype(usr.get_active_hand(), /obj/item/multitool))
+		if(!ismultitool(usr.get_active_hand()))
 			to_chat(usr, "You need a multitool!")
 			return
 		if(src.isWireColorCut(twire))

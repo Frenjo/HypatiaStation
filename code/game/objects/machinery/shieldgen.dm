@@ -268,7 +268,7 @@
 	return TRUE
 
 /obj/machinery/shieldgen/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		if(is_open)
 			user << "\blue You close the panel."
@@ -277,7 +277,7 @@
 			user << "\blue You open the panel and expose the wiring."
 			is_open = 1
 
-	else if(istype(W, /obj/item/stack/cable_coil) && malfunction && is_open)
+	else if(iscable(W) && malfunction && is_open)
 		var/obj/item/stack/cable_coil/coil = W
 		user << "\blue You begin to replace the wires."
 		//if(do_after(user, min(60, round( ((maxhealth/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
@@ -289,7 +289,7 @@
 			user << "\blue You repair the [src]!"
 			update_icon()
 
-	else if(istype(W, /obj/item/wrench))
+	else if(iswrench(W))
 		if(locked)
 			user << "The bolts are covered, unlocking this would retract the covers."
 			return
@@ -494,7 +494,7 @@
 		CF.set_dir(field_dir)
 
 /obj/machinery/shieldwallgen/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		if(active)
 			FEEDBACK_TURN_OFF_FIRST(user)
 			return

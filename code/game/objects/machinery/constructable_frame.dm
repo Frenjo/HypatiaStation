@@ -35,7 +35,7 @@
 		return
 	switch(state)
 		if(1)
-			if(istype(P, /obj/item/stack/cable_coil))
+			if(iscable(P))
 				var/obj/item/stack/cable_coil/C = P
 				if(C.amount >= 5)
 					playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -47,7 +47,7 @@
 							state = 2
 							icon_state = "box_1"
 			else
-				if(istype(P, /obj/item/wrench))
+				if(iswrench(P))
 					playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 					to_chat(user, SPAN_INFO("You dismantle the frame."))
 					new /obj/item/stack/sheet/steel(loc, 5)
@@ -80,7 +80,7 @@
 				else
 					to_chat(user, SPAN_WARNING("This frame does not accept circuit boards of this type!"))
 			else
-				if(istype(P, /obj/item/wirecutters))
+				if(iswirecutter(P))
 					playsound(src, 'sound/items/Wirecutter.ogg', 50, 1)
 					to_chat(user, SPAN_INFO("You remove the cables."))
 					state = 1
@@ -89,7 +89,7 @@
 					A.amount = 5
 
 		if(3)
-			if(istype(P, /obj/item/crowbar))
+			if(iscrowbar(P))
 				playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 				state = 2
 				circuit.loc = loc
@@ -105,7 +105,7 @@
 				components = null
 				icon_state = "box_1"
 			else
-				if(istype(P, /obj/item/screwdriver))
+				if(isscrewdriver(P))
 					var/component_check = 1
 					for(var/R in req_components)
 						if(req_components[R] > 0)
@@ -134,7 +134,7 @@
 						for(var/I in req_components)
 							if(istype(P, I) && (req_components[I] > 0))
 								playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-								if(istype(P, /obj/item/stack/cable_coil))
+								if(iscable(P))
 									var/obj/item/stack/cable_coil/CP = P
 									if(CP.amount > 1)
 										var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
@@ -153,5 +153,5 @@
 								update_desc()
 								break
 						user << desc
-						if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))
+						if(P && P.loc != src && !iscable(P))
 							to_chat(user, SPAN_WARNING("You cannot add that component to the machine!"))

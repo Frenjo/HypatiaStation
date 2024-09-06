@@ -54,7 +54,7 @@
 
 	if (issilicon(user) && get_dist(src,user)>1)
 		return src.attack_hand(user)
-	if (istype(W, /obj/item/crowbar))
+	if(iscrowbar(W))
 		if(opened)
 			if(has_electronics & 1)
 				playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
@@ -79,7 +79,7 @@
 				icon_state = "port2"
 		return
 
-	else if (istype(W, /obj/item/stack/cable_coil) && opened && !(has_electronics & 2))
+	else if(iscable(W) && opened && !(has_electronics & 2))
 		var/obj/item/stack/cable_coil/C = W
 		if(C.amount < 10)
 			user << "\red You need more wires."
@@ -94,7 +94,7 @@
 			has_electronics &= 2
 		return
 
-	else if (istype(W, /obj/item/wirecutters) && opened && (has_electronics & 2))
+	else if(iswirecutter(W) && opened && (has_electronics & 2))
 		user << "You begin to cut the cables..."
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		if(do_after(user, 50))
@@ -114,7 +114,7 @@
 			qdel(W)
 		return
 
-	else if (istype(W, /obj/item/weldingtool) && opened && !has_electronics)
+	else if(iswelder(W) && opened && !has_electronics)
 		var/obj/item/weldingtool/WT = W
 		if (WT.get_fuel() < 3)
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)

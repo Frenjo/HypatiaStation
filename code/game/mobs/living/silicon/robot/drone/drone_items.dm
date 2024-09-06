@@ -214,7 +214,7 @@
 		else
 			module_string += text("[O]: <A href=byond://?src=\ref[src];act=\ref[O]>Activate</A><BR>")
 
-		if(isitem(O) && !istype(O, /obj/item/stack/cable_coil))
+		if(isitem(O) && !iscable(O))
 			tools += module_string
 		else
 			resources += module_string

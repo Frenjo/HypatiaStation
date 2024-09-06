@@ -147,7 +147,7 @@
 	update_icon()
 
 /obj/machinery/atmospherics/binary/passive_gate/attackby(obj/item/W, mob/user)
-	if(!istype(W, /obj/item/wrench))
+	if(!iswrench(W))
 		return ..()
 	if(on)
 		to_chat(user, SPAN_WARNING("You cannot unwrench this [src], turn it off first."))

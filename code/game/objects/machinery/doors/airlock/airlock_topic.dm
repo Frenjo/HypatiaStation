@@ -14,7 +14,7 @@
 		usr.set_machine(src)
 		if(href_list["wires"])
 			var/t1 = text2num(href_list["wires"])
-			if(!(istype(usr.get_active_hand(), /obj/item/wirecutters)))
+			if(!iswirecutter(usr.get_active_hand()))
 				to_chat(usr, "You need wirecutters!")
 				return
 			if(isWireColorCut(t1))
@@ -23,7 +23,7 @@
 				cut(t1)
 		else if(href_list["pulse"])
 			var/t1 = text2num(href_list["pulse"])
-			if(!istype(usr.get_active_hand(), /obj/item/multitool))
+			if(!ismultitool(usr.get_active_hand()))
 				to_chat(usr, "You need a multitool!")
 				return
 			if(isWireColorCut(t1))

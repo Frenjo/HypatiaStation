@@ -36,7 +36,7 @@
 	return
 
 /obj/effect/decal/mecha_wreckage/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weldingtool))
+	if(iswelder(W))
 		var/obj/item/weldingtool/WT = W
 		if(salvage_num <= 0)
 			to_chat(user, "You don't see anything that can be cut with [W].")
@@ -58,7 +58,7 @@
 		else
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
-	if(istype(W, /obj/item/wirecutters))
+	if(iswirecutter(W))
 		if(salvage_num <= 0)
 			to_chat(user, "You don't see anything that can be cut with [W].")
 			return
@@ -73,7 +73,7 @@
 				salvage_num--
 			else
 				to_chat(user, "You failed to salvage anything valuable from [src].")
-	if(istype(W, /obj/item/crowbar))
+	if(iscrowbar(W))
 		if(!isemptylist(crowbar_salvage))
 			var/obj/S = pick(crowbar_salvage)
 			if(S)

@@ -64,7 +64,7 @@
 					anchored = TRUE
 				return TRUE
 
-			if(iscoil(tool))
+			if(iscable(tool))
 				var/obj/item/stack/cable_coil/coil = tool
 				if(coil.use(2))
 					to_chat(user, SPAN_NOTICE("You add wires to the assembly."))

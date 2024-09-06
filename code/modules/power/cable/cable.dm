@@ -115,7 +115,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	if(T.intact)
 		return
 
-	if(istype(W, /obj/item/wirecutters))
+	if(iswirecutter(W))
 ///// Z-Level Stuff
 		if(src.d1 == 12 || src.d2 == 12)
 			to_chat(user, SPAN_WARNING("You must cut this cable from above."))
@@ -154,14 +154,14 @@ By design, d1 is the smallest direction and d2 is the highest
 		return	// not needed, but for clarity
 
 
-	else if(istype(W, /obj/item/stack/cable_coil))
+	else if(iscable(W))
 		var/obj/item/stack/cable_coil/coil = W
 		if(coil.amount < 1)
 			to_chat(user, "Not enough cable.")
 			return
 		coil.cable_join(src, user)
 
-	else if(istype(W, /obj/item/multitool))
+	else if(ismultitool(W))
 		if(powernet && (powernet.avail > 0))		// is it powered?
 			to_chat(user, SPAN_WARNING("[powernet.avail]W in power network."))
 		else
@@ -450,19 +450,22 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/item/stack/cable_coil
 	name = "cable coil"
+	desc = "A coil of power cable."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "coil"
+
+	obj_flags = OBJ_FLAG_CONDUCT
+	slot_flags = SLOT_BELT
+	tool_flags = TOOL_FLAG_CABLE_COIL
+
 	amount = MAXCOIL
 	max_amount = MAXCOIL
 	item_color = COLOR_RED
-	desc = "A coil of power cable."
 	throwforce = 10
 	w_class = 2.0
 	throw_speed = 2
 	throw_range = 5
 	matter_amounts = list(MATERIAL_METAL = 50, /decl/material/glass = 20)
-	obj_flags = OBJ_FLAG_CONDUCT
-	slot_flags = SLOT_BELT
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 
@@ -555,14 +558,14 @@ By design, d1 is the smallest direction and d2 is the highest
 //	- Wirecutters: cut them duh!
 //	- Cable coil: merge cables
 /obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wirecutters) && src.amount > 1)
+	if(iswirecutter(W) && src.amount > 1)
 		src.amount--
 		new/obj/item/stack/cable_coil(user.loc, 1, item_color)
 		to_chat(user, SPAN_NOTICE("You cut a piece off the cable coil."))
 		src.update_icon()
 		return
 
-	else if(istype(W, /obj/item/stack/cable_coil))
+	else if(iscable(W))
 		var/obj/item/stack/cable_coil/C = W
 
 		if(C.amount >= MAXCOIL)

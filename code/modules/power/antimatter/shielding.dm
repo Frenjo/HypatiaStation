@@ -213,7 +213,7 @@ proc/cardinalrange(var/center)
 	w_amt = 2000
 
 /obj/item/am_shielding_container/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/multitool) && isturf(src.loc))
+	if(ismultitool(I) && isturf(src.loc))
 		new/obj/machinery/am_shielding(src.loc)
 		qdel(src)
 		return

@@ -762,7 +762,7 @@
 		playsound(loc, 'sound/effects/spray3.ogg', 50, 1, -6)
 		qdel(O)
 		updateicon()
-	else if(istype(O, /obj/item/wrench))
+	else if(iswrench(O))
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "wrench" : "unwrench"] \the [src].")

@@ -128,7 +128,7 @@
 	return TRUE
 
 /obj/machinery/zero_point_emitter/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		if(active)
 			FEEDBACK_TURN_OFF_FIRST(user)
 			return
@@ -155,7 +155,7 @@
 				to_chat(user, SPAN_WARNING("\The [src] needs to be unwelded from the floor."))
 		return
 
-	if(istype(W, /obj/item/weldingtool))
+	if(iswelder(W))
 		var/obj/item/weldingtool/WT = W
 		if(active)
 			FEEDBACK_TURN_OFF_FIRST(user)

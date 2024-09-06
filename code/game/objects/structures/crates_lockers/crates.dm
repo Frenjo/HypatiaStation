@@ -75,7 +75,7 @@
 			W.loc = src.loc
 	else if(istype(W, /obj/item/package_wrap))
 		return
-	else if(istype(W, /obj/item/stack/cable_coil))
+	else if(iscable(W))
 		if(rigged)
 			to_chat(user, SPAN_NOTICE("[src] is already rigged!"))
 			return
@@ -90,7 +90,7 @@
 			user.drop_item()
 			W.loc = src
 			return
-	else if(istype(W, /obj/item/wirecutters))
+	else if(iswirecutter(W))
 		if(rigged)
 			to_chat(user, SPAN_NOTICE("You cut away the wiring."))
 			playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)

@@ -21,7 +21,7 @@
 	. = ..()
 
 /obj/structure/sign/poster/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wirecutters))
+	if(iswirecutter(W))
 		playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		if(ruined)
 			to_chat(user, SPAN_NOTICE("You remove the remnants of the poster."))

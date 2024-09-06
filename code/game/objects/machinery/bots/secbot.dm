@@ -160,7 +160,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 				FEEDBACK_ACCESS_DENIED(user)
 	else
 		..()
-		if(!istype(W, /obj/item/screwdriver) && W.force && !target)
+		if(!isscrewdriver(W) && W.force && !target)
 			target = user
 			mode = SECBOT_HUNT
 

@@ -112,7 +112,7 @@
 	return TRUE
 
 /obj/machinery/vending/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		panel_open = !panel_open
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panel_open)
@@ -121,7 +121,7 @@
 			overlays.Add(image(icon, "[initial(icon_state)]-panel"))
 		updateUsrDialog()
 		return
-	else if(istype(W, /obj/item/multitool) || istype(W, /obj/item/wirecutters))
+	else if(ismultitool(W) || iswirecutter(W))
 		if(panel_open)
 			attack_hand(user)
 		return
@@ -306,7 +306,7 @@
 
 		else if((href_list["cutwire"]) && (panel_open))
 			var/twire = text2num(href_list["cutwire"])
-			if(!(istype(usr.get_active_hand(), /obj/item/wirecutters)))
+			if(!iswirecutter(usr.get_active_hand()))
 				to_chat(usr, "You need wirecutters!")
 				return
 			if(isWireColorCut(twire))
@@ -316,7 +316,7 @@
 
 		else if((href_list["pulsewire"]) && (panel_open))
 			var/twire = text2num(href_list["pulsewire"])
-			if(!istype(usr.get_active_hand(), /obj/item/multitool))
+			if(!ismultitool(usr.get_active_hand()))
 				to_chat(usr, "You need a multitool!")
 				return
 			if(isWireColorCut(twire))

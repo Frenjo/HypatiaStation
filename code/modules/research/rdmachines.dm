@@ -76,7 +76,7 @@
 	add_fingerprint(usr)
 	if(href_list["pulse"])
 		var/temp_wire = href_list["wire"]
-		if(!istype(usr.get_active_hand(), /obj/item/multitool))
+		if(!ismultitool(usr.get_active_hand()))
 			to_chat(usr, "You need a multitool!")
 		else
 			if(wires[temp_wire])
@@ -97,7 +97,7 @@
 					spawn(100)
 						shocked = !shocked
 	if(href_list["cut"])
-		if(!istype(usr.get_active_hand(), /obj/item/wirecutters))
+		if(!iswirecutter(usr.get_active_hand()))
 			to_chat(usr, "You need wirecutters!")
 		else
 			var/temp_wire = href_list["wire"]

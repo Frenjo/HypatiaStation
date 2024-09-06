@@ -23,7 +23,7 @@
 	dir = pick(GLOBL.cardinal)
 
 /obj/item/ammo_casing/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		if(isnotnull(loaded_bullet))
 			if(initial(loaded_bullet.name) == "bullet")
 				var/tmp_label = ""

@@ -24,7 +24,7 @@
 
 /obj/machinery/camera/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	. = ..(W, user)
-	if(istype(W, /obj/item/wirecutters))
+	if(iswirecutter(W))
 		if(status)
 			cameranet.addCamera(src)
 		else

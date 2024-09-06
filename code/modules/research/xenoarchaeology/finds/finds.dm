@@ -47,7 +47,7 @@
 		src.visible_message("The [src] crumbles away, leaving some dust and gravel behind.")*/
 
 /obj/item/ore/strangerock/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weldingtool))
+	if(iswelder(W))
 		var/obj/item/weldingtool/w = W
 		if(w.isOn())
 			if(w.get_fuel() >= 4 && !src.method)

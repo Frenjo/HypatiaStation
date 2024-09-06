@@ -146,7 +146,7 @@
 				visible_message("\red BZZzZZzZZzZT")
 				return
 		return
-	else if (istype(W, /obj/item/wrench))
+	else if(iswrench(W))
 		if (src.health < src.maxhealth)
 			src.health = src.maxhealth
 			src.emagged = 0

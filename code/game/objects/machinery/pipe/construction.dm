@@ -275,7 +275,7 @@ Buildable meters
 /obj/item/pipe/attackby(obj/item/W, mob/user)
 	..()
 	//*
-	if(!istype(W, /obj/item/wrench))
+	if(!iswrench(W))
 		return ..()
 	if(!isturf(src.loc))
 		return 1
@@ -678,7 +678,7 @@ Buildable meters
 /obj/item/pipe_meter/attackby(obj/item/W, mob/user)
 	..()
 
-	if (!istype(W, /obj/item/wrench))
+	if(!iswrench(W))
 		return ..()
 	if(!locate(/obj/machinery/atmospherics/pipe, src.loc))
 		user << "\red You need to fasten it to a pipe"

@@ -42,7 +42,7 @@
 
 //LOOK AT THIS - ..()??
 /*/mob/living/simple/crab/attackby(var/obj/item/O, var/mob/user)
-	if(istype(O, /obj/item/wirecutters))
+	if(iswirecutter(O))
 		if(prob(50))
 			user << "\red \b This kills the crab."
 			health -= 20

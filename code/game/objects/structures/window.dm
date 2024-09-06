@@ -212,7 +212,7 @@
 	if(HAS_ITEM_FLAGS(W, ITEM_FLAG_NO_BLUDGEON))
 		return
 
-	if(istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		if(reinf && state >= 1)
 			state = 3 - state
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
@@ -227,7 +227,7 @@
 			update_nearby_icons()
 			playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
 			to_chat(user, SPAN_NOTICE("[anchored ? "You have fastened the window to the floor" : "You have unfastened the window"]."))
-	else if(istype(W, /obj/item/crowbar) && reinf && state <= 1)
+	else if(iscrowbar(W) && reinf && state <= 1)
 		state = 1 - state
 		playsound(loc, 'sound/items/Crowbar.ogg', 75, 1)
 		to_chat(user, SPAN_NOTICE("[state ? "You have pried the window into the frame" : "You have pried the window out of the frame"]."))

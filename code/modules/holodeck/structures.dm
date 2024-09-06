@@ -31,7 +31,7 @@
 		qdel(W)
 		return
 
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		to_chat(user, "It's a holotable! There are no bolts!")
 		return
 
@@ -76,6 +76,6 @@
 	return
 
 /obj/structure/rack/holorack/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		to_chat(user, "It's a holorack! You can't unwrench it!")
 		return

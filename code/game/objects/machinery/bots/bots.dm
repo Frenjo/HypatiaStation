@@ -91,12 +91,12 @@
 	return TRUE
 
 /obj/machinery/bot/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		if(!locked)
 			open = !open
 			playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 			FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, open)
-	else if(istype(W, /obj/item/weldingtool))
+	else if(iswelder(W))
 		if(health < maxhealth)
 			if(open)
 				health = min(maxhealth, health + 10)

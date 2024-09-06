@@ -18,7 +18,7 @@
 		return
 
 /obj/structure/girder/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench) && state == 0)
+	if(iswrench(W) && state == 0)
 		if(anchored && !istype(src,/obj/structure/girder/displaced))
 			playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 			user << "\blue Now disassembling the girder"
@@ -50,7 +50,7 @@
 		new /obj/item/stack/sheet/steel(get_turf(src))
 		qdel(src)
 
-	else if(istype(W, /obj/item/screwdriver) && state == 2 && istype(src,/obj/structure/girder/reinforced))
+	else if(isscrewdriver(W) && state == 2 && istype(src,/obj/structure/girder/reinforced))
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		user << "\blue Now unsecuring support struts"
 		if(do_after(user, 40))
@@ -59,7 +59,7 @@
 			user << "\blue You unsecured the support struts!"
 			state = 1
 
-	else if(istype(W, /obj/item/wirecutters) && istype(src,/obj/structure/girder/reinforced) && state == 1)
+	else if(iswirecutter(W) && istype(src, /obj/structure/girder/reinforced) && state == 1)
 		playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 		user << "\blue Now removing support struts"
 		if(do_after(user, 40))
@@ -69,7 +69,7 @@
 			new/obj/structure/girder(src.loc)
 			qdel(src)
 
-	else if(istype(W, /obj/item/crowbar) && state == 0 && anchored )
+	else if(iscrowbar(W) && state == 0 && anchored )
 		playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 		user << "\blue Now dislodging the girder"
 		if(do_after(user, 40))
@@ -192,7 +192,7 @@
 	var/health = 250
 
 /obj/structure/cultgirder/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 		user << "\blue Now disassembling the girder"
 		if(do_after(user, 40))

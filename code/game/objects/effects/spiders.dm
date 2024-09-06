@@ -29,7 +29,7 @@
 
 	var/damage = W.force / 4.0
 
-	if(istype(W, /obj/item/weldingtool))
+	if(iswelder(W))
 		var/obj/item/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))

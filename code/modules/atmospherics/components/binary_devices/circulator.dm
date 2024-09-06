@@ -71,7 +71,7 @@
 	return 1
 
 /obj/machinery/atmospherics/binary/circulator/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		anchored = !anchored
 		to_chat(user, SPAN_INFO("You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor."))
 

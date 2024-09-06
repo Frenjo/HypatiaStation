@@ -5,6 +5,8 @@
 	pass_flags = PASS_FLAG_TABLE
 	pressure_resistance = 5
 
+	var/slot_flags // This is used to determine on which slots an item can fit.
+
 	// Stores item-specific bitflag values.
 	// Overridden on subtypes or manipulated with *_ITEM_FLAGS(ITEM, FLAGS) macros.
 	var/item_flags
@@ -12,6 +14,9 @@
 	// Overridden on subtypes or manipulated with *_INV_FLAGS(ITEM, FLAGS) macros.
 	// This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 	var/inv_flags
+	// Stores tool-specific bitflag values.
+	// Overridden on subtypes or manipulated with *_TOOL_FLAGS(ITEM, FLAGS) macros.
+	var/tool_flags
 
 	var/origin_tech // Used by R&D to determine what research bonuses this item grants.
 
@@ -24,7 +29,6 @@
 	var/burning = null
 	var/hitsound = null
 	var/w_class = 3.0
-	var/slot_flags = 0		//This is used to determine on which slots an item can fit.
 //	causeerrorheresoifixthis
 	var/obj/item/master = null
 

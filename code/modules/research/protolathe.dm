@@ -48,7 +48,7 @@ Note: Must be placed west/left of and R&D console to function.
 	if(O.is_open_container())
 		return 1
 
-	if(istype(O, /obj/item/screwdriver))
+	if(isscrewdriver(O))
 		if(!opened)
 			opened = TRUE
 			if(linked_console)
@@ -62,7 +62,7 @@ Note: Must be placed west/left of and R&D console to function.
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, opened)
 		return 1
 	if(opened)
-		if(istype(O, /obj/item/crowbar))
+		if(iscrowbar(O))
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			M.state = 2

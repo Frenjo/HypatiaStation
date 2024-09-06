@@ -155,7 +155,7 @@
 		return
 
 /obj/machinery/singularity_beacon/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		if(active)
 			user << "\red You need to deactivate the beacon first!"
 			return

@@ -22,7 +22,7 @@
 
 /obj/item/candle/attackby(obj/item/W, mob/user)
 	..()
-	if(istype(W, /obj/item/weldingtool))
+	if(iswelder(W))
 		var/obj/item/weldingtool/WT = W
 		if(WT.isOn()) //Badasses dont get blinded by lighting their candle with a welding tool
 			light(SPAN_WARNING("[user] casually lights the [name] with [W]."))

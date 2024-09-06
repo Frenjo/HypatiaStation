@@ -687,7 +687,7 @@
 	return TRUE
 
 /obj/machinery/mecha_part_fabricator/attackby(obj/W, mob/user)
-	if(istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		if(!opened)
 			opened = TRUE
 			icon_state = "fab-o"
@@ -699,7 +699,7 @@
 		return
 
 	if(opened)
-		if(istype(W, /obj/item/crowbar))
+		if(iscrowbar(W))
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(loc)
 			M.state = 2

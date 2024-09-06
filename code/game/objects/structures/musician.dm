@@ -411,7 +411,7 @@
 	return
 
 /obj/structure/device/piano/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/wrench))
+	if(iswrench(O))
 		if(anchored)
 			playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 			user << "\blue You begin to loosen \the [src]'s casters..."

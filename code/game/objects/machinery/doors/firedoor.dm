@@ -126,7 +126,7 @@
 	add_fingerprint(user)
 	if(operating)
 		return//Already doing something.
-	if(istype(C, /obj/item/weldingtool))
+	if(iswelder(C))
 		var/obj/item/weldingtool/W = C
 		if(W.remove_fuel(0, user))
 			blocked = !blocked
@@ -142,11 +142,11 @@
 		to_chat(user, SPAN_WARNING("\The [src] is welded solid!"))
 		return
 
-	if(istype(C, /obj/item/crowbar) || (istype(C, /obj/item/twohanded/fireaxe) && C:wielded == 1))
+	if(iscrowbar(C) || (istype(C, /obj/item/twohanded/fireaxe) && C:wielded == 1))
 		if(operating)
 			return
 
-		if(blocked && istype(C, /obj/item/crowbar))
+		if(blocked && iscrowbar(C))
 			user.visible_message(
 				SPAN_WARNING("\The [user] pries at \the [src] with \a [C], but \the [src] is welded in place!"),
 				"You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!",
@@ -160,7 +160,7 @@
 			"You hear metal strain."
 			)
 		if(do_after(user, 30))
-			if(istype(C, /obj/item/crowbar))
+			if(iscrowbar(C))
 				if(stat & (BROKEN|NOPOWER) || !density)
 					user.visible_message(
 						SPAN_WARNING("\The [user] forces \the [src] [density ? "open" : "closed"] with \a [C]!"),

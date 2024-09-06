@@ -167,14 +167,14 @@
 		to_chat(user, SPAN_INFO("You remove the power cell"))
 
 /obj/machinery/suspension_gen/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		if(!open)
 			if(screwed)
 				screwed = 0
 			else
 				screwed = 1
 			to_chat(user, SPAN_INFO("You [screwed ? "screw" : "unscrew"] the battery panel."))
-	else if(istype(W, /obj/item/crowbar))
+	else if(iscrowbar(W))
 		if(!locked)
 			if(!screwed)
 				if(!suspension_field)
@@ -190,7 +190,7 @@
 				to_chat(user, SPAN_WARNING("Unscrew [src]'s battery panel first."))
 		else
 			to_chat(user, SPAN_WARNING("[src]'s security locks are engaged."))
-	else if(istype(W, /obj/item/wrench))
+	else if(iswrench(W))
 		if(!suspension_field)
 			if(anchored)
 				anchored = FALSE

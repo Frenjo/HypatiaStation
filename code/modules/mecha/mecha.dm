@@ -680,7 +680,7 @@
 				user << "\red Invalid ID: Access denied."
 		else
 			user << "\red Maintenance protocols disabled by operator."
-	else if(istype(W, /obj/item/wrench))
+	else if(iswrench(W))
 		if(state == 1)
 			state = 2
 			user << "You undo the securing bolts."
@@ -688,7 +688,7 @@
 			state = 1
 			user << "You tighten the securing bolts."
 		return
-	else if(istype(W, /obj/item/crowbar))
+	else if(iscrowbar(W))
 		if(state == 2)
 			state = 3
 			user << "You open the hatch to the power unit"
@@ -696,7 +696,7 @@
 			state = 2
 			user << "You close the hatch to the power unit"
 		return
-	else if(istype(W, /obj/item/stack/cable_coil))
+	else if(iscable(W))
 		if(state == 3 && hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
 			var/obj/item/stack/cable_coil/CC = W
 			if(CC.amount > 1)
@@ -706,7 +706,7 @@
 			else
 				user << "There's not enough wire to finish the task."
 		return
-	else if(istype(W, /obj/item/screwdriver))
+	else if(isscrewdriver(W))
 		if(hasInternalDamage(MECHA_INT_TEMP_CONTROL))
 			clearInternalDamage(MECHA_INT_TEMP_CONTROL)
 			user << "You repair the damaged temperature controller."
@@ -733,7 +733,7 @@
 				user << "There's already a powercell installed."
 		return
 
-	else if(istype(W, /obj/item/weldingtool) && user.a_intent != "hurt")
+	else if(iswelder(W) && user.a_intent != "hurt")
 		var/obj/item/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			if (hasInternalDamage(MECHA_INT_TANK_BREACH))

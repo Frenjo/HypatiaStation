@@ -189,7 +189,7 @@ GLOBAL_GLOBL_LIST_INIT(breach_burn_descriptors, list(
 			repair_breaches(BURN, (istype(P, /obj/item/stack/sheet/plastic) ? 3 : 5), user)
 		return
 
-	else if(istype(W, /obj/item/weldingtool))
+	else if(iswelder(W))
 		if(isliving(src.loc))
 			to_chat(user, SPAN_WARNING("How do you intend to patch a hardsuit while someone is wearing it?"))
 			return

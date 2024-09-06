@@ -112,7 +112,7 @@
 
 /obj/structure/closet/crate/secure/loot/attackby(obj/item/W, mob/user)
 	if(locked)
-		if(istype(W, /obj/item/multitool))
+		if(ismultitool(W))
 			to_chat(user, SPAN_NOTICE("DECA-CODE LOCK REPORT:"))
 			if(attempts == 1)
 				to_chat(user, SPAN_WARNING("* Anti-Tamper Bomb will activate on next failed access attempt."))

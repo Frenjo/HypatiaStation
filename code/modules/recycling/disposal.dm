@@ -58,7 +58,7 @@
 		return
 	src.add_fingerprint(user)
 	if(mode <= 0) // It's off
-		if(istype(I, /obj/item/screwdriver))
+		if(isscrewdriver(I))
 			if(length(contents))
 				to_chat(user, "Eject the items first!")
 				return
@@ -72,7 +72,7 @@
 				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, "You attach the screws around the power connection.")
 				return
-		else if(istype(I, /obj/item/weldingtool) && mode == -1)
+		else if(iswelder(I) && mode == -1)
 			if(length(contents))
 				to_chat(user, "Eject the items first!")
 				return
@@ -847,7 +847,7 @@
 	if(T.intact)
 		return		// prevent interaction with T-scanner revealed pipes
 	src.add_fingerprint(user)
-	if(istype(I, /obj/item/weldingtool))
+	if(iswelder(I))
 		var/obj/item/weldingtool/W = I
 
 		if(W.remove_fuel(0, user))
@@ -1265,7 +1265,7 @@
 	if(T.intact)
 		return		// prevent interaction with T-scanner revealed pipes
 	src.add_fingerprint(user)
-	if(istype(I, /obj/item/weldingtool))
+	if(iswelder(I))
 		var/obj/item/weldingtool/W = I
 
 		if(W.remove_fuel(0, user))
@@ -1378,7 +1378,7 @@
 	if(!I || !user)
 		return
 	src.add_fingerprint(user)
-	if(istype(I, /obj/item/screwdriver))
+	if(isscrewdriver(I))
 		if(mode == 0)
 			mode = 1
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
@@ -1389,7 +1389,7 @@
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			to_chat(user, "You attach the screws around the power connection.")
 			return
-	else if(istype(I, /obj/item/weldingtool) && mode == 1)
+	else if(iswelder(I) && mode == 1)
 		var/obj/item/weldingtool/W = I
 		if(W.remove_fuel(0, user))
 			playsound(src, 'sound/items/Welder2.ogg', 100, 1)

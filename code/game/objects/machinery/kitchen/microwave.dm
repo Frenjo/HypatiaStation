@@ -52,12 +52,12 @@
 ********************/
 /obj/machinery/microwave/attackby(obj/item/O, mob/user)
 	if(src.broken > 0)
-		if(src.broken == 2 && istype(O, /obj/item/screwdriver)) // If it's broken and they're using a screwdriver
+		if(src.broken == 2 && isscrewdriver(O)) // If it's broken and they're using a screwdriver
 			user.visible_message(SPAN_INFO("[user] starts to fix part of the microwave."), SPAN_INFO("You start to fix part of the microwave."))
 			if(do_after(user, 20))
 				user.visible_message(SPAN_INFO("[user] fixes part of the microwave."), SPAN_INFO("You have fixed part of the microwave."))
 				src.broken = 1 // Fix it a bit
-		else if(src.broken == 1 && istype(O, /obj/item/wrench)) // If it's broken and they're doing the wrench
+		else if(src.broken == 1 && iswrench(O)) // If it's broken and they're doing the wrench
 			user.visible_message(SPAN_INFO("[user] starts to fix part of the microwave."), SPAN_INFO("You start to fix part of the microwave."))
 			if(do_after(user, 20))
 				user.visible_message(SPAN_INFO("[user] fixes the microwave."), SPAN_INFO("You have fixed the microwave."))

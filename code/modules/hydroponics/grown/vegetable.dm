@@ -32,7 +32,7 @@
 
 /obj/item/reagent_holder/food/snacks/grown/potato/attackby(obj/item/W, mob/user)
 	..()
-	if(istype(W, /obj/item/stack/cable_coil))
+	if(iscable(W))
 		if(W:amount >= 5)
 			W:amount -= 5
 			if(!W:amount)

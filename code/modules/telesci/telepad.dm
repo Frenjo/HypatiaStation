@@ -27,7 +27,7 @@
 	var/stage = 0
 
 /obj/machinery/telepad_cargo/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		anchored = FALSE
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		if(anchored)
@@ -36,7 +36,7 @@
 		else if(!anchored)
 			anchored = TRUE
 			to_chat(user, SPAN_CAUTION("The [src] is now secured."))
-	if(istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		if(stage == 0)
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			to_chat(user, SPAN_CAUTION("You unscrew the telepad's tracking beacon."))
@@ -45,7 +45,7 @@
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 			to_chat(user, SPAN_CAUTION("You screw in the telepad's tracking beacon."))
 			stage = 0
-	if(istype(W, /obj/item/weldingtool) && stage == 1)
+	if(iswelder(W) && stage == 1)
 		playsound(src, 'sound/items/Welder.ogg', 50, 1)
 		to_chat(user, SPAN_CAUTION("You disassemble the telepad."))
 		new /obj/item/stack/sheet/steel(get_turf(src))

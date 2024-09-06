@@ -63,7 +63,7 @@
 		return	//can't do this stuff whilst inside objects and such
 
 	if(rotting)
-		if(istype(W, /obj/item/weldingtool))
+		if(iswelder(W))
 			var/obj/item/weldingtool/WT = W
 			if(WT.remove_fuel(0, user))
 				to_chat(user, SPAN_NOTICE("You burn away the fungi with \the [WT]."))
@@ -79,7 +79,7 @@
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
 	if(thermite)
-		if(istype(W, /obj/item/weldingtool))
+		if(iswelder(W))
 			var/obj/item/weldingtool/WT = W
 			if(WT.remove_fuel(0, user))
 				thermitemelt(user)
@@ -103,7 +103,7 @@
 	var/turf/T = user.loc	//get user's location for delay checks
 
 	//DECONSTRUCTION
-	if(istype(W, /obj/item/weldingtool))
+	if(iswelder(W))
 		var/response = "Dismantle"
 		if(damage)
 			response = alert(user, "Would you like to repair or dismantle [src]?", "[src]", "Repair", "Dismantle")

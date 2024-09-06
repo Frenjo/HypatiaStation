@@ -1,14 +1,14 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 /* Tools!
- * Note: Multitools are /obj/item
  *
  * Contains:
- *		Wrench
- *		Screwdriver
- *		Wirecutters
- *		Welding Tool
- *		Crowbar
+ *	Wrench
+ *	Screwdriver
+ *	Wirecutters
+ *	Welding Tool
+ *	Crowbar
+ *	Multitool
  */
 
 /*
@@ -19,8 +19,11 @@
 	desc = "A wrench with many common uses. Can be usually found in your hand."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "wrench"
+
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
+	tool_flags = TOOL_FLAG_WRENCH
+
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
@@ -36,8 +39,11 @@
 	desc = "You can be totally screwwy with this."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "screwdriver"
+
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
+	tool_flags = TOOL_FLAG_SCREWDRIVER
+
 	force = 5.0
 	w_class = 1.0
 	throwforce = 5.0
@@ -99,8 +105,11 @@
 	desc = "This cuts wires."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "cutters"
+
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
+	tool_flags = TOOL_FLAG_WIRECUTTER
+
 	force = 6.0
 	throw_speed = 2
 	throw_range = 9
@@ -140,8 +149,10 @@
 	name = "welding tool"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "welder"
+
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
+	tool_flags = TOOL_FLAG_WELDER
 
 	//Amount of OUCH when it's thrown
 	force = 3.0
@@ -464,8 +475,11 @@
 	desc = "Used to remove floors and to pry open doors."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "crowbar"
+
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
+	tool_flags = TOOL_FLAG_CROWBAR
+
 	force = 5.0
 	throwforce = 7.0
 	item_state = "crowbar"
@@ -478,3 +492,27 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "red_crowbar"
 	item_state = "crowbar_red"
+
+/**
+ * Multitool -- A multitool is used for hacking electronic devices.
+ * TO-DO -- Using it as a power measurement tool for cables etc. Nannek.
+ *
+ */
+/obj/item/multitool
+	name = "multitool"
+	desc = "Used for pulsing wires to test which to cut. Not recommended by doctors."
+	icon = 'icons/obj/items/devices/device.dmi'
+	icon_state = "multitool"
+
+	obj_flags = OBJ_FLAG_CONDUCT
+	tool_flags = TOOL_FLAG_MULTITOOL
+
+	force = 5.0
+	w_class = 2.0
+	throwforce = 5.0
+	throw_range = 15
+	throw_speed = 3
+	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
+	matter_amounts = list(MATERIAL_METAL = 50, /decl/material/glass = 20)
+	origin_tech = list(/datum/tech/magnets = 1, /datum/tech/engineering = 1)
+	var/obj/machinery/telecoms/buffer // simple machine buffer for device linkage

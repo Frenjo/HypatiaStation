@@ -776,7 +776,7 @@
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(usr)
 		return
 
-	if (istype(W, /obj/item/weldingtool) && W:welding)
+	if(iswelder(W) && W:welding)
 		var/turf/T = get_turf(user)
 		if(!isturf(T))
 			return
@@ -927,7 +927,7 @@
 		return // this may seem stupid and redundant but apparently floors can call this attackby() proc, it was spamming shit up. -- Doohl
 
 
-	if (istype(W, /obj/item/weldingtool) && W:welding)
+	if(iswelder(W) && W:welding)
 		W:eyecheck(user)
 		var/turf/T = user.loc
 		if(!isturf(T))
@@ -1014,7 +1014,7 @@
 		user << "\blue This wall is too thick to slice through. You will need to find a different path."
 		return
 
-	else if (istype(W, /obj/item/wrench))
+	else if(iswrench(W))
 		if (src.d_state == 4)
 			var/turf/T = user.loc
 			user << "\blue Detaching support rods."
@@ -1024,13 +1024,13 @@
 				src.d_state = 5
 				user << "\blue You detach the support rods."
 
-	else if (istype(W, /obj/item/wirecutters))
+	else if(iswirecutter(W))
 		if (src.d_state == 0)
 			playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
 			src.d_state = 1
 			new /obj/item/stack/rods( src )
 
-	else if (istype(W, /obj/item/screwdriver))
+	else if(isscrewdriver(W))
 		if (src.d_state == 1)
 			var/turf/T = user.loc
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
@@ -1040,7 +1040,7 @@
 				src.d_state = 2
 				user << "\blue You removed the support lines."
 
-	else if (istype(W, /obj/item/crowbar))
+	else if(iscrowbar(W))
 
 		if (src.d_state == 3)
 			var/turf/T = user.loc
@@ -1399,7 +1399,7 @@ turf/open/floor/return_siding_icon_state()
 		return
 	if(!user)
 		return
-	if(istype(C, /obj/item/wrench))
+	if(iswrench(C))
 		user << "\blue Removing rods..."
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 80, 1)
 		if(do_after(user, 30))
@@ -1578,7 +1578,7 @@ turf/open/floor/return_siding_icon_state()
 			else
 				user << "\blue The lightbulb seems fine, no need to replace it."
 
-	if(istype(C, /obj/item/crowbar) && (!(is_plating())))
+	if(iscrowbar(C) && (!(is_plating())))
 		if(broken || burnt)
 			user << "\red You remove the broken plating."
 		else
@@ -1646,7 +1646,7 @@ turf/open/floor/return_siding_icon_state()
 		else
 			user << "\red You cannot shovel this."
 
-	if(istype(C, /obj/item/weldingtool))
+	if(iswelder(C))
 		var/obj/item/weldingtool/welder = C
 		if(welder.welding && (is_plating()))
 			if(broken || burnt)

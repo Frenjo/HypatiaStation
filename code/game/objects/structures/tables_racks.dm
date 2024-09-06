@@ -326,7 +326,7 @@
 			qdel(W)
 			return
 
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		to_chat(user, SPAN_INFO("Now disassembling table."))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user,50))
@@ -487,7 +487,7 @@
 		return ..()
 
 /obj/structure/table/reinforced/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weldingtool))
+	if(iswelder(W))
 		var/obj/item/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			if(src.status == 2)
@@ -509,7 +509,7 @@
 			return
 		return
 
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		if(src.status == 2)
 			return
 	..()
@@ -549,7 +549,7 @@
 	return
 
 /obj/structure/rack/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		new /obj/item/rack_parts(src.loc)
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		qdel(src)

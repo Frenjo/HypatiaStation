@@ -17,13 +17,13 @@
 /obj/structure/computerframe/attackby(obj/item/P, mob/user)
 	switch(state)
 		if(0)
-			if(istype(P, /obj/item/wrench))
+			if(iswrench(P))
 				playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 				if(do_after(user, 20))
 					to_chat(user, SPAN_INFO("You wrench the frame into place."))
 					anchored = TRUE
 					state = 1
-			if(istype(P, /obj/item/weldingtool))
+			if(iswelder(P))
 				var/obj/item/weldingtool/WT = P
 				if(!WT.remove_fuel(0, user))
 					to_chat(user, SPAN_WARNING("The welding tool must be on to complete this task."))
@@ -36,7 +36,7 @@
 					new /obj/item/stack/sheet/steel(loc, 5)
 					qdel(src)
 		if(1)
-			if(istype(P, /obj/item/wrench))
+			if(iswrench(P))
 				playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 				if(do_after(user, 20))
 					to_chat(user, SPAN_INFO("You unfasten the frame."))
@@ -53,12 +53,12 @@
 					P.loc = src
 				else
 					to_chat(user, SPAN_WARNING("This frame does not accept circuit boards of this type!"))
-			if(istype(P, /obj/item/screwdriver) && circuit)
+			if(isscrewdriver(P) && circuit)
 				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You screw the circuit board into place."))
 				state = 2
 				icon_state = "2"
-			if(istype(P, /obj/item/crowbar) && circuit)
+			if(iscrowbar(P) && circuit)
 				playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You remove the circuit board."))
 				state = 1
@@ -66,12 +66,12 @@
 				circuit.loc = loc
 				circuit = null
 		if(2)
-			if(istype(P, /obj/item/screwdriver) && circuit)
+			if(isscrewdriver(P) && circuit)
 				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You unfasten the circuit board."))
 				state = 1
 				icon_state = "1"
-			if(istype(P, /obj/item/stack/cable_coil))
+			if(iscable(P))
 				if(P:amount >= 5)
 					playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 					if(do_after(user, 20))
@@ -83,7 +83,7 @@
 							state = 3
 							icon_state = "3"
 		if(3)
-			if(istype(P, /obj/item/wirecutters))
+			if(iswirecutter(P))
 				playsound(src, 'sound/items/Wirecutter.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You remove the cables."))
 				state = 2
@@ -101,13 +101,13 @@
 							state = 4
 							icon_state = "4"
 		if(4)
-			if(istype(P, /obj/item/crowbar))
+			if(iscrowbar(P))
 				playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You remove the glass panel."))
 				state = 3
 				icon_state = "3"
 				new /obj/item/stack/sheet/glass(loc, 2)
-			if(istype(P, /obj/item/screwdriver))
+			if(isscrewdriver(P))
 				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You connect the monitor."))
 				var/B = new circuit.build_path(loc)

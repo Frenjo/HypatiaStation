@@ -194,7 +194,7 @@
 	icon_state = "wm_[state][panel]"
 
 /obj/machinery/washing_machine/attackby(obj/item/W, mob/user)
-	/*if(istype(W,/obj/item/screwdriver))
+	/*if(isscrewdriver(W))
 		panel = !panel
 		user << "\blue you [panel ? "open" : "close"] the [src]'s maintenance panel"*/
 	if(istype(W, /obj/item/toy/crayon) ||istype(W, /obj/item/stamp))

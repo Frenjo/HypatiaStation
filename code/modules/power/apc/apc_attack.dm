@@ -84,7 +84,7 @@
 	if(issilicon(user) && !in_range(src, user))
 		return src.attack_hand(user)
 	src.add_fingerprint(user)
-	if(istype(W, /obj/item/crowbar) && opened)
+	if(iscrowbar(W) && opened)
 		if(has_electronics == 1)
 			if(terminal)
 				to_chat(user, SPAN_WARNING("Disconnect wires first."))
@@ -110,7 +110,7 @@
 		else if(opened != 2) //cover isn't removed
 			opened = 0
 			update_icon()
-	else if(istype(W, /obj/item/crowbar) && !((stat & BROKEN) || malfhack))
+	else if(iscrowbar(W) && !((stat & BROKEN) || malfhack))
 		if(coverlocked && !(stat & MAINT))
 			to_chat(user, SPAN_WARNING("The cover is locked and cannot be opened."))
 			return
@@ -134,7 +134,7 @@
 			)
 			chargecount = 0
 			update_icon()
-	else if(istype(W, /obj/item/screwdriver))	// haxing
+	else if(isscrewdriver(W))	// haxing
 		if(opened)
 			if(cell)
 				to_chat(user, SPAN_WARNING("Close the APC first."))	//Less hints more mystery!
@@ -177,7 +177,7 @@
 				update_icon()
 			else
 				FEEDBACK_ACCESS_DENIED(user)
-	else if(istype(W, /obj/item/stack/cable_coil) && !terminal && opened && has_electronics != 2)
+	else if(iscable(W) && !terminal && opened && has_electronics != 2)
 		if(src.loc:intact)
 			to_chat(user, SPAN_WARNING("You must remove the floor plating in front of the APC first."))
 			return
@@ -201,7 +201,7 @@
 			)
 			make_terminal()
 			terminal.connect_to_network()
-	else if(istype(W, /obj/item/wirecutters) && terminal && opened && has_electronics != 2)
+	else if(iswirecutter(W) && terminal && opened && has_electronics != 2)
 		if(src.loc:intact)
 			to_chat(user, SPAN_WARNING("You must remove the floor plating in front of the APC first."))
 			return
@@ -229,7 +229,7 @@
 	else if(istype(W, /obj/item/module/power_control) && opened && has_electronics == 0 && ((stat & BROKEN) || malfhack))
 		to_chat(user, SPAN_WARNING("You cannot put the board inside, the frame is damaged."))
 		return
-	else if(istype(W, /obj/item/weldingtool) && opened && has_electronics == 0 && !terminal)
+	else if(iswelder(W) && opened && has_electronics == 0 && !terminal)
 		var/obj/item/weldingtool/WT = W
 		if(WT.get_fuel() < 3)
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
@@ -305,9 +305,7 @@
 		else
 			if(issilicon(user))
 				return src.attack_hand(user)
-			if(!opened && wiresexposed && \
-				(istype(W, /obj/item/multitool) || \
-				istype(W, /obj/item/wirecutters) || istype(W, /obj/item/assembly/signaler)))
+			if(!opened && wiresexposed && (ismultitool(W) || iswirecutter(W) || istype(W, /obj/item/assembly/signaler)))
 				return src.attack_hand(user)
 			user.visible_message(
 				SPAN_WARNING("The [src.name] has been hit with the [W.name] by [user.name]!"),

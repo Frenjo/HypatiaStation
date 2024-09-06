@@ -199,7 +199,7 @@
 	return TRUE
 
 /obj/machinery/smartfridge/secure/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/screwdriver))
+	if(isscrewdriver(O))
 		panel_open = !panel_open
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panel_open)
@@ -208,7 +208,7 @@
 			overlays.Add(image(icon, icon_panel))
 		updateUsrDialog()
 		return
-	else if(istype(O, /obj/item/multitool)||istype(O, /obj/item/wirecutters))
+	else if(ismultitool(O) || iswirecutter(O))
 		if(src.panel_open)
 			attack_hand(user)
 		return
@@ -289,7 +289,7 @@
 
 	if ((href_list["cutwire"]) && (src.panel_open))
 		var/twire = text2num(href_list["cutwire"])
-		if (!( istype(usr.get_active_hand(), /obj/item/wirecutters) ))
+		if(!iswirecutter(usr.get_active_hand()))
 			usr << "You need wirecutters!"
 			return
 		if (src.isWireColorCut(twire))
@@ -298,7 +298,7 @@
 			src.cut(twire)
 	else if ((href_list["pulsewire"]) && (src.panel_open))
 		var/twire = text2num(href_list["pulsewire"])
-		if (!istype(usr.get_active_hand(), /obj/item/multitool))
+		if(!ismultitool(usr.get_active_hand()))
 			usr << "You need a multitool!"
 			return
 		if (src.isWireColorCut(twire))

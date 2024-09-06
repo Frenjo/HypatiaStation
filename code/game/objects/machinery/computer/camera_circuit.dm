@@ -49,7 +49,7 @@
 				updateDialog()
 			else
 				user << "\blue You must select a camera network circuit!"
-		else if(istype(I,/obj/item/screwdriver))
+		else if(isscrewdriver(I))
 			secured = !secured
 			user.visible_message("\blue The [src] can [secured ? "no longer" : "now"] be modified.")
 			updateBuildPath()

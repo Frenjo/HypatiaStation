@@ -29,7 +29,7 @@
 		bombtank.attackby(W, user)
 		return
 
-	if(istype(W, /obj/item/wrench) && !status)	//This is basically bomb assembly code inverted. apparently it works.
+	if(iswrench(W) && !status)	//This is basically bomb assembly code inverted. apparently it works.
 		to_chat(user, SPAN_NOTICE("You disassemble [src]."))
 
 		bombassembly.loc = user.loc
@@ -43,7 +43,7 @@
 		qdel(src)
 		return
 
-	if((istype(W, /obj/item/weldingtool) && W:welding))
+	if(iswelder(W) && W:welding)
 		if(!status)
 			status = 1
 			GLOBL.bombers += "[key_name(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]"

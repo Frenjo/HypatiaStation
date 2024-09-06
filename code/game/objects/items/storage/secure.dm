@@ -54,12 +54,12 @@
 				user << "You short out the lock on [src]."
 			return
 
-		if(istype(W, /obj/item/screwdriver))
+		if(isscrewdriver(W))
 			if(do_after(user, 20))
 				open = !open
 				to_chat(user, SPAN_INFO("You [open ? "open" : "close"] the service panel."))
 			return
-		if((istype(W, /obj/item/multitool)) && (open == 1)&& (!l_hacking))
+		if(ismultitool(W) && open == 1 && !l_hacking)
 			user.show_message(text("\red Now attempting to reset internal memory, please hold."), 1)
 			l_hacking = 1
 			if (do_after(usr, 100))

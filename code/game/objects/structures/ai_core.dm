@@ -13,13 +13,13 @@
 /obj/structure/ai_core/attackby(obj/item/object, mob/user)
 	switch(state)
 		if(0)
-			if(istype(object, /obj/item/wrench))
+			if(iswrench(object))
 				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 				if(do_after(user, 20))
 					to_chat(user, SPAN_INFO("You wrench the frame into place."))
 					anchored = TRUE
 					state = 1
-			if(istype(object, /obj/item/weldingtool))
+			if(iswelder(object))
 				var/obj/item/weldingtool/WT = object
 				if(!WT.isOn())
 					to_chat(user, "The welder must be on for this task.")
@@ -32,7 +32,7 @@
 					new /obj/item/stack/sheet/plasteel(loc, 4)
 					qdel(src)
 		if(1)
-			if(istype(object, /obj/item/wrench))
+			if(iswrench(object))
 				playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 				if(do_after(user, 20))
 					to_chat(user, SPAN_INFO("You unfasten the frame."))
@@ -45,12 +45,12 @@
 				circuit = object
 				user.drop_item()
 				object.loc = src
-			if(istype(object, /obj/item/screwdriver) && circuit)
+			if(isscrewdriver(object) && circuit)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You screw the circuit board into place."))
 				state = 2
 				icon_state = "2"
-			if(istype(object, /obj/item/crowbar) && circuit)
+			if(iscrowbar(object) && circuit)
 				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You remove the circuit board."))
 				state = 1
@@ -58,12 +58,12 @@
 				circuit.loc = loc
 				circuit = null
 		if(2)
-			if(istype(object, /obj/item/screwdriver) && circuit)
+			if(isscrewdriver(object) && circuit)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You unfasten the circuit board."))
 				state = 1
 				icon_state = "1"
-			if(istype(object, /obj/item/stack/cable_coil))
+			if(iscable(object))
 				var/obj/item/stack/cable_coil/cable = object
 				if(cable.amount >= 5)
 					playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -73,7 +73,7 @@
 						state = 3
 						icon_state = "3"
 		if(3)
-			if(istype(object, /obj/item/wirecutters))
+			if(iswirecutter(object))
 				if(brain)
 					to_chat(user, "Get that brain out of there first")
 				else
@@ -139,7 +139,7 @@
 				to_chat(user, "Added [mmi].")
 				icon_state = "3b"
 
-			if(istype(object, /obj/item/crowbar) && brain)
+			if(iscrowbar(object) && brain)
 				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You remove the brain."))
 				brain.loc = loc
@@ -147,7 +147,7 @@
 				icon_state = "3"
 
 		if(4)
-			if(istype(object, /obj/item/crowbar))
+			if(iscrowbar(object))
 				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You remove the glass panel."))
 				state = 3
@@ -158,7 +158,7 @@
 				new /obj/item/stack/sheet/glass/reinforced(loc, 2)
 				return
 
-			if(istype(object, /obj/item/screwdriver))
+			if(isscrewdriver(object))
 				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You connect the monitor."))
 				var/mob/living/silicon/ai/new_ai = new /mob/living/silicon/ai(loc, laws, brain)

@@ -42,7 +42,7 @@
 
 /obj/item/gun/projectile/detective/attackby(obj/item/A, mob/user)
 	..()
-	if(istype(A, /obj/item/screwdriver))
+	if(isscrewdriver(A))
 		if(caliber == "38")
 			to_chat(user, SPAN_NOTICE("You begin to reinforce the barrel of [src]."))
 			if(length(loaded))

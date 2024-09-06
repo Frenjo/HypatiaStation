@@ -23,20 +23,20 @@
 /obj/computer2frame/attackby(obj/item/P as obj, mob/user as mob)
 	switch(state)
 		if(0)
-			if(istype(P, /obj/item/wrench))
+			if(iswrench(P))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 				if(do_after(user, 20))
 					user << "\blue You wrench the frame into place."
 					src.anchored = TRUE
 					src.state = 1
-			if(istype(P, /obj/item/weldingtool))
+			if(iswelder(P))
 				playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
 				if(do_after(user, 20))
 					user << "\blue You deconstruct the frame."
 					new /obj/item/stack/sheet/steel(src.loc, 5)
 					del(src)
 		if(1)
-			if(istype(P, /obj/item/wrench))
+			if(iswrench(P))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 				if(do_after(user, 20))
 					user << "\blue You unfasten the frame."
@@ -49,12 +49,12 @@
 				src.mainboard = P
 				user.drop_item()
 				P.loc = src
-			if(istype(P, /obj/item/screwdriver) && mainboard)
+			if(isscrewdriver(P) && mainboard)
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << "\blue You screw the mainboard into place."
 				src.state = 2
 				src.icon_state = "2"
-			if(istype(P, /obj/item/crowbar) && mainboard)
+			if(iscrowbar(P) && mainboard)
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				user << "\blue You remove the mainboard."
 				src.state = 1
@@ -62,7 +62,7 @@
 				mainboard.loc = src.loc
 				src.mainboard = null
 		if(2)
-			if(istype(P, /obj/item/screwdriver) && mainboard && (!peripherals.len))
+			if(isscrewdriver(P) && mainboard && (!peripherals.len))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << "\blue You unfasten the mainboard."
 				src.state = 1
@@ -77,7 +77,7 @@
 				else
 					user << "\red There is no more room for peripheral cards."
 
-			if(istype(P, /obj/item/crowbar) && src.peripherals.len)
+			if(iscrowbar(P) && src.peripherals.len)
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				user << "\blue You remove the peripheral boards."
 				for(var/obj/item/peripheral/W in src.peripherals)
@@ -94,7 +94,7 @@
 						src.state = 3
 						src.icon_state = "3"
 		if(3)
-			if(istype(P, /obj/item/wirecutters))
+			if(iswirecutter(P))
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 50, 1)
 				user << "\blue You remove the cables."
 				src.state = 2
@@ -111,7 +111,7 @@
 				P.loc = src
 				user << "\blue You connect the drive to the cabling."
 
-			if(istype(P, /obj/item/crowbar) && src.hd)
+			if(iscrowbar(P) && src.hd)
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				user << "\blue You remove the hard drive."
 				src.hd.loc = src.loc
@@ -126,13 +126,13 @@
 						src.state = 4
 						src.icon_state = "4"
 		if(4)
-			if(istype(P, /obj/item/crowbar))
+			if(iscrowbar(P))
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				user << "\blue You remove the glass panel."
 				src.state = 3
 				src.icon_state = "3"
 				new /obj/item/stack/sheet/glass( src.loc, 2 )
-			if(istype(P, /obj/item/screwdriver))
+			if(isscrewdriver(P))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << "\blue You connect the monitor."
 				var/obj/machinery/computer2/C= new /obj/machinery/computer2( src.loc )

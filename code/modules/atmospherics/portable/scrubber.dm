@@ -170,7 +170,7 @@ Power regulator: <A href='byond://?src=\ref[src];volume_adj=-1000'>-</A> <A href
 		icon_state = "scrubber:0"
 
 /obj/machinery/portable_atmospherics/scrubber/huge/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		if(on)
 			to_chat(user, SPAN_INFO("Turn it off first!"))
 			return
@@ -187,7 +187,7 @@ Power regulator: <A href='byond://?src=\ref[src];volume_adj=-1000'>-</A> <A href
 	name = "Stationary Air Scrubber"
 
 /obj/machinery/portable_atmospherics/scrubber/huge/stationary/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		to_chat(user, SPAN_INFO("The bolts are too tight for you to unscrew!"))
 		return
 	..()

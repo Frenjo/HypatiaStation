@@ -35,6 +35,10 @@
 #define SET_INV_FLAGS(ITEM, FLAGS) ITEM.inv_flags |= FLAGS
 #define UNSET_INV_FLAGS(ITEM, FLAGS) ITEM.inv_flags &= ~FLAGS
 #define HAS_INV_FLAGS(ITEM, FLAGS) (ITEM.inv_flags & FLAGS)
+// Tool
+#define SET_TOOL_FLAGS(ITEM, FLAGS) ITEM.tool_flags |= FLAGS
+#define UNSET_TOOL_FLAGS(ITEM, FLAGS) ITEM.tool_flags &= ~FLAGS
+#define HAS_TOOL_FLAGS(ITEM, FLAGS) (ITEM.tool_flags & FLAGS)
 
 // Species
 #define SET_SPECIES_FLAGS(SPECIES, FLAGS) SPECIES.species_flags |= FLAGS

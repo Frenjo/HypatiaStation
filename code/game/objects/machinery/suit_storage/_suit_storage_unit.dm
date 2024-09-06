@@ -418,7 +418,7 @@
 /obj/machinery/suit_storage_unit/attackby(obj/item/I, mob/user)
 	if(!ispowered)
 		return
-	if(istype(I, /obj/item/screwdriver))
+	if(isscrewdriver(I))
 		panelopen = !panelopen
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		to_chat(user, SPAN_INFO("You [(panelopen ? "open up" : "close")] the unit's maintenance panel."))

@@ -28,7 +28,7 @@
 	construct_window(user)
 
 /obj/item/stack/sheet/glass/attack_tool(obj/item/tool, mob/user)
-	if(iswire(tool))
+	if(iscable(tool))
 		var/obj/item/stack/cable_coil/cable = tool
 		if(!cable.use(5))
 			to_chat(user, SPAN_WARNING("There is not enough wire in this coil, you need 5 lengths!"))
@@ -146,7 +146,7 @@
 	matter_amounts = null
 
 /obj/item/stack/sheet/glass/reinforced/attack_tool(obj/item/tool, mob/user)
-	if(iswire(tool))
+	if(iscable(tool))
 		return TRUE
 	return ..()
 

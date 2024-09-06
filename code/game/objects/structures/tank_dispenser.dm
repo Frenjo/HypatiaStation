@@ -65,7 +65,7 @@
 			to_chat(user, SPAN_NOTICE("[src] is full."))
 		updateUsrDialog()
 		return
-	if(istype(I, /obj/item/wrench))
+	if(iswrench(I))
 		if(anchored)
 			to_chat(user, SPAN_NOTICE("You lean down and unwrench [src]."))
 			anchored = FALSE

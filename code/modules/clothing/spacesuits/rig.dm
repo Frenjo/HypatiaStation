@@ -218,7 +218,7 @@
 				to_chat(user, "\The [src] does not have a helmet mount.")
 				return
 
-			if(istype(W, /obj/item/screwdriver))
+			if(isscrewdriver(W))
 				if(!helmet)
 					to_chat(user, "\The [src] does not have a helmet installed.")
 				else
@@ -244,7 +244,7 @@
 				to_chat(user, "\The [src] does not have boot mounts.")
 				return
 
-			if(istype(W, /obj/item/screwdriver))
+			if(isscrewdriver(W))
 				if(!boots)
 					to_chat(user, "\The [src] does not have any boots installed.")
 				else

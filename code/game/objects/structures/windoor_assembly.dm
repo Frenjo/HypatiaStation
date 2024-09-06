@@ -60,7 +60,7 @@
 	//I really should have spread this out across more states but thin little windoors are hard to sprite.
 	switch(state)
 		if("01")
-			if(istype(W, /obj/item/weldingtool) && !anchored)
+			if(iswelder(W) && !anchored)
 				var/obj/item/weldingtool/WT = W
 				if(WT.remove_fuel(0, user))
 					user.visible_message(
@@ -82,7 +82,7 @@
 					return
 
 			//Wrenching an unsecure assembly anchors it in place. Step 4 complete
-			if(istype(W, /obj/item/wrench) && !anchored)
+			if(iswrench(W) && !anchored)
 				playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 				user.visible_message(
 					"[user] secures the windoor assembly to the floor.",
@@ -100,7 +100,7 @@
 						src.name = "Anchored Windoor Assembly"
 
 			//Unwrenching an unsecure assembly un-anchors it. Step 4 undone
-			else if(istype(W, /obj/item/wrench) && anchored)
+			else if(iswrench(W) && anchored)
 				playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 				user.visible_message(
 					"[user] unsecures the windoor assembly to the floor.",
@@ -138,7 +138,7 @@
 						src.name = "Secure Windoor Assembly"
 
 			//Adding cable to the assembly. Step 5 complete.
-			else if(istype(W, /obj/item/stack/cable_coil) && anchored)
+			else if(iscable(W) && anchored)
 				user.visible_message(
 					"[user] wires the windoor assembly.",
 					"You start to wire the windoor assembly."
@@ -160,7 +160,7 @@
 
 		if("02")
 			//Removing wire from the assembly. Step 5 undone.
-			if(istype(W, /obj/item/wirecutters) && !src.electronics)
+			if(iswirecutter(W) && !src.electronics)
 				playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 				user.visible_message(
 					"[user] cuts the wires from the airlock assembly.",
@@ -199,7 +199,7 @@
 					W.loc = src.loc
 
 			//Screwdriver to remove airlock electronics. Step 6 undone.
-			else if(istype(W, /obj/item/screwdriver) && src.electronics)
+			else if(isscrewdriver(W) && src.electronics)
 				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 				user.visible_message(
 					"[user] removes the electronics from the airlock assembly.",
@@ -219,7 +219,7 @@
 					ae.loc = src.loc
 
 			//Crowbar to complete the assembly, Step 7 complete.
-			else if(istype(W, /obj/item/crowbar))
+			else if(iscrowbar(W))
 				if(!src.electronics)
 					to_chat(user, SPAN_WARNING("The assembly is missing electronics."))
 					return

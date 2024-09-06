@@ -5,7 +5,7 @@
 		return
 
 	//add wires
-	if(istype(W, /obj/item/stack/cable_coil))
+	if(iscable(W))
 		var/obj/item/stack/cable_coil/C = W
 		if(clipped)
 			to_chat(user, SPAN_NOTICE("The [src] are too badly mangled for wiring."))
@@ -39,7 +39,7 @@
 		else
 			to_chat(user, SPAN_NOTICE("A [cell] is already attached to the [src]."))
 
-	else if(istype(W, /obj/item/wirecutters) || istype(W, /obj/item/scalpel))
+	else if(iswirecutter(W) || istype(W, /obj/item/scalpel))
 		//stunglove stuff
 		if(cell)
 			cell.updateicon()

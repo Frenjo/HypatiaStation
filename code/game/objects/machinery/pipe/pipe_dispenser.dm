@@ -85,7 +85,7 @@
 		user.drop_item()
 		qdel(W)
 		return
-	else if (istype(W, /obj/item/wrench))
+	else if(iswrench(W))
 		if (unwrenched==0)
 			playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 			user << "\blue You begin to unfasten \the [src] from the floor..."

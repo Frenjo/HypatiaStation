@@ -116,7 +116,7 @@
 			overlays = list()
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/wrench))
+	if(iswrench(W))
 		user.visible_message(
 			"[user] wrenches [src]'s faucet [modded ? "closed" : "open"].",
 			"You wrench [src]'s faucet [modded ? "closed" : "open"]."

@@ -90,7 +90,7 @@
 			emagged = 1
 			emp_act(1)
 		else if(!active)
-			if(istype(O, /obj/item/wrench))
+			if(iswrench(O))
 				anchored = !anchored
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 				if(anchored)
@@ -98,14 +98,14 @@
 				else
 					user << "\blue You unsecure the generator from the floor."
 				makepowernets()
-			else if(istype(O, /obj/item/screwdriver))
+			else if(isscrewdriver(O))
 				open = !open
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				if(open)
 					user << "\blue You open the access panel."
 				else
 					user << "\blue You close the access panel."
-			else if(istype(O, /obj/item/crowbar) && !open)
+			else if(iscrowbar(O) && !open)
 				var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 				for(var/obj/item/I in component_parts)
 					if(I.reliability < 100)

@@ -287,7 +287,7 @@
 			src.updateUsrDialog()
 			return
 
-	else if (istype(W, /obj/item/screwdriver))
+	else if(isscrewdriver(W))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			var/obj/computer2frame/A = new /obj/computer2frame( src.loc )

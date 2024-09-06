@@ -18,14 +18,14 @@
 /obj/machinery/filter_control/attackby(obj/item/W, mob/user as mob)
 	if(istype(W, /obj/item/detective_scanner))
 		return ..()
-	if(istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		src.add_fingerprint(user)
 		user.show_message(text("\red Now [] the panel...", (src.locked) ? "unscrewing" : "reattaching"), 1)
 		sleep(30)
 		src.locked =! src.locked
 		src.updateicon()
 		return
-	if(istype(W, /obj/item/wirecutters) && !src.locked)
+	if(iswirecutter(W) && !src.locked)
 		stat ^= BROKEN
 		src.add_fingerprint(user)
 		for(var/mob/O in viewers(user, null))

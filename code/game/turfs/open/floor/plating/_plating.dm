@@ -9,7 +9,7 @@
 	intact = 0
 
 /turf/open/floor/plating/attack_tool(obj/item/tool, mob/user)
-	if(iswire(tool))
+	if(iscable(tool))
 		var/obj/item/stack/cable_coil/coil = tool
 		coil.turf_place(src, user)
 		return TRUE

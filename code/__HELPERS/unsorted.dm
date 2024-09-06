@@ -1049,62 +1049,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/get_turf_or_move(turf/location)
 	return get_turf(location)
 
-//Quick type checks for some tools
-GLOBAL_GLOBL_LIST_INIT(common_tools, list(
-	/obj/item/stack/cable_coil,
-	/obj/item/wrench,
-	/obj/item/weldingtool,
-	/obj/item/screwdriver,
-	/obj/item/wirecutters,
-	/obj/item/multitool,
-	/obj/item/crowbar
-))
-
-/proc/istool(O)
-	if(isnotnull(O) && is_type_in_list(O, GLOBL.common_tools))
-		return TRUE
-	return FALSE
-
-/proc/iswrench(O)
-	if(istype(O, /obj/item/wrench))
-		return TRUE
-	return FALSE
-
-/proc/iswelder(O)
-	if(istype(O, /obj/item/weldingtool))
-		return TRUE
-	return FALSE
-
-/proc/iscoil(O)
-	if(istype(O, /obj/item/stack/cable_coil))
-		return TRUE
-	return FALSE
-
-/proc/iswirecutter(O)
-	if(istype(O, /obj/item/wirecutters))
-		return TRUE
-	return FALSE
-
-/proc/isscrewdriver(O)
-	if(istype(O, /obj/item/screwdriver))
-		return TRUE
-	return FALSE
-
-/proc/ismultitool(O)
-	if(istype(O, /obj/item/multitool))
-		return TRUE
-	return FALSE
-
-/proc/iscrowbar(O)
-	if(istype(O, /obj/item/crowbar))
-		return TRUE
-	return FALSE
-
-/proc/iswire(O)
-	if(istype(O, /obj/item/stack/cable_coil))
-		return TRUE
-	return FALSE
-
 /proc/is_hot(obj/item/W)
 	switch(W.type)
 		if(/obj/item/weldingtool)

@@ -103,7 +103,7 @@
 /obj/machinery/fire_alarm/attackby(obj/item/W, mob/user)
 	add_fingerprint(user)
 
-	if(istype(W, /obj/item/screwdriver) && buildstage == 2)
+	if(isscrewdriver(W) && buildstage == 2)
 		wiresexposed = !wiresexposed
 		update_icon()
 		return
@@ -111,7 +111,7 @@
 	if(wiresexposed)
 		switch(buildstage)
 			if(2)
-				if(istype(W, /obj/item/multitool))
+				if(ismultitool(W))
 					detecting = !detecting
 					if(detecting)
 						user.visible_message(
@@ -124,7 +124,7 @@
 							"You have disconnected [src]'s detecting unit."
 						)
 			if(1)
-				if(istype(W, /obj/item/stack/cable_coil))
+				if(iscable(W))
 					var/obj/item/stack/cable_coil/coil = W
 					if(coil.amount < 5)
 						to_chat(user, "You need more cable for this!")
@@ -136,7 +136,7 @@
 					to_chat(user, "You wire \the [src]!")
 					update_icon()
 
-				else if(istype(W, /obj/item/crowbar))
+				else if(iscrowbar(W))
 					to_chat(user, "You pry out the circuit!")
 					playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 					spawn(20)
@@ -151,7 +151,7 @@
 					buildstage = 1
 					update_icon()
 
-				else if(istype(W, /obj/item/wrench))
+				else if(iswrench(W))
 					to_chat(user, "You remove the fire alarm assembly from the wall!")
 					var/obj/item/frame/firealarm/frame = new /obj/item/frame/firealarm()
 					frame.loc = user.loc

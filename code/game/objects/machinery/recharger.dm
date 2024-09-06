@@ -42,7 +42,7 @@
 		update_power_state(USE_POWER_ACTIVE)
 		update_icon()
 
-	else if(istype(G, /obj/item/wrench))
+	else if(iswrench(G))
 		if(isnotnull(charging))
 			to_chat(user, SPAN_WARNING("Remove [charging] first!"))
 			return

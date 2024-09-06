@@ -117,7 +117,7 @@
 
 			// else if no mob in loc, then allow coil to be placed
 
-	else if(istype(I, /obj/item/wirecutters))
+	else if(iswirecutter(I))
 		var/mob/M = locate() in src.loc
 		if(M && M.buckled == src)
 			M.buckled = null

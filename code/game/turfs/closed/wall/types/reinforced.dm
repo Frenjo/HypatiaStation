@@ -62,7 +62,7 @@
 		return	//can't do this stuff whilst inside objects and such
 
 	if(rotting)
-		if(istype(W, /obj/item/weldingtool))
+		if(iswelder(W))
 			var/obj/item/weldingtool/WT = W
 			if(WT.remove_fuel(0, user))
 				to_chat(user, SPAN_NOTICE("You burn away the fungi with \the [WT]."))
@@ -78,7 +78,7 @@
 
 	//THERMITE related stuff. Calls thermitemelt() which handles melting simulated walls and the relevant effects
 	if(thermite)
-		if(istype(W, /obj/item/weldingtool))
+		if(iswelder(W))
 			var/obj/item/weldingtool/WT = W
 			if(WT.remove_fuel(0, user))
 				thermitemelt(user)
@@ -103,7 +103,7 @@
 		to_chat(user, SPAN_NOTICE("This wall is too thick to slice through. You will need to find a different path."))
 		return
 
-	if(damage && istype(W, /obj/item/weldingtool))
+	if(damage && iswelder(W))
 		var/obj/item/weldingtool/WT = W
 		if(WT.remove_fuel(0,user))
 			to_chat(user, SPAN_NOTICE("You start repairing the damage to [src]."))
@@ -121,7 +121,7 @@
 	//DECONSTRUCTION
 	switch(d_state)
 		if(0)
-			if(istype(W, /obj/item/wirecutters))
+			if(iswirecutter(W))
 				playsound(src, 'sound/items/Wirecutter.ogg', 100, 1)
 				d_state = 1
 				icon_state = "r_wall-1"
@@ -130,7 +130,7 @@
 				return
 
 		if(1)
-			if(istype(W, /obj/item/screwdriver))
+			if(isscrewdriver(W))
 				to_chat(user, SPAN_NOTICE("You begin removing the support lines."))
 				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 
@@ -158,7 +158,7 @@
 				return
 
 		if(2)
-			if(istype(W, /obj/item/weldingtool))
+			if(iswelder(W))
 				var/obj/item/weldingtool/WT = W
 				if(WT.remove_fuel(0, user))
 					to_chat(user, SPAN_NOTICE("You begin slicing through the metal cover."))
@@ -191,7 +191,7 @@
 				return
 
 		if(3)
-			if(istype(W, /obj/item/crowbar))
+			if(iscrowbar(W))
 				to_chat(user, SPAN_NOTICE("You struggle to pry off the cover."))
 				playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 
@@ -206,7 +206,7 @@
 				return
 
 		if(4)
-			if(istype(W, /obj/item/wrench))
+			if(iswrench(W))
 				to_chat(user, SPAN_NOTICE("You start loosening the anchoring bolts which secure the support rods to their frame."))
 				playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 
@@ -221,7 +221,7 @@
 				return
 
 		if(5)
-			if(istype(W, /obj/item/weldingtool))
+			if(iswelder(W))
 				var/obj/item/weldingtool/WT = W
 				if(WT.remove_fuel(0, user))
 					to_chat(user, SPAN_NOTICE("You begin slicing through the support rods."))
@@ -256,7 +256,7 @@
 				return
 
 		if(6)
-			if(istype(W, /obj/item/crowbar))
+			if(iscrowbar(W))
 				to_chat(user, SPAN_NOTICE("You struggle to pry off the outer sheath."))
 				playsound(src, 'sound/items/Crowbar.ogg', 100, 1)
 

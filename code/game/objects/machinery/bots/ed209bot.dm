@@ -169,7 +169,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 				FEEDBACK_ACCESS_DENIED(user)
 	else
 		..()
-		if(!istype(W, /obj/item/screwdriver) && (!target))
+		if(!isscrewdriver(W) && (!target))
 			if(hasvar(W, "force") && W.force)//If force is defined and non-zero
 				target = user
 				if(lasercolor)//To make up for the fact that lasertag bots don't hunt
@@ -911,7 +911,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 				icon_state = "[lasercolor]ed209_shell"
 
 		if(3)
-			if(istype(W, /obj/item/weldingtool))
+			if(iswelder(W))
 				var/obj/item/weldingtool/WT = W
 				if(WT.remove_fuel(0, user))
 					build_step++
@@ -939,7 +939,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 				icon_state = "[lasercolor]ed209_prox"
 
 		if(6)
-			if(istype(W, /obj/item/stack/cable_coil))
+			if(iscable(W))
 				var/obj/item/stack/cable_coil/coil = W
 				to_chat(user, SPAN_INFO("You start to wire [src]..."))
 				if(do_after(user, 40))
@@ -974,7 +974,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			qdel(W)
 
 		if(8)
-			if(istype(W, /obj/item/screwdriver))
+			if(isscrewdriver(W))
 				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 				to_chat(user, SPAN_INFO("You start attaching the gun to [src]..."))
 				if(do_after(user, 40))

@@ -38,25 +38,25 @@
 /obj/machinery/telecoms/attackby(obj/item/P, mob/user)
 	switch(construct_op)
 		if(0)
-			if(istype(P, /obj/item/screwdriver))
+			if(isscrewdriver(P))
 				to_chat(user, "You unfasten the bolts.")
 				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 				construct_op ++
 		if(1)
-			if(istype(P, /obj/item/screwdriver))
+			if(isscrewdriver(P))
 				to_chat(user, "You fasten the bolts.")
 				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 				construct_op --
-			if(istype(P, /obj/item/wrench))
+			if(iswrench(P))
 				to_chat(user, "You dislodge the external plating.")
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				construct_op ++
 		if(2)
-			if(istype(P, /obj/item/wrench))
+			if(iswrench(P))
 				to_chat(user, "You secure the external plating.")
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				construct_op --
-			if(istype(P, /obj/item/wirecutters))
+			if(iswirecutter(P))
 				playsound(src, 'sound/items/Wirecutter.ogg', 50, 1)
 				to_chat(user, "You remove the cables.")
 				construct_op ++
@@ -64,7 +64,7 @@
 				A.amount = 5
 				stat |= BROKEN // the machine's been borked!
 		if(3)
-			if(istype(P, /obj/item/stack/cable_coil))
+			if(iscable(P))
 				var/obj/item/stack/cable_coil/A = P
 				if(A.amount >= 5)
 					to_chat(user, "You insert the cables.")
@@ -74,7 +74,7 @@
 						qdel(A)
 					construct_op --
 					stat &= ~BROKEN // the machine's not borked anymore!
-			if(istype(P, /obj/item/crowbar))
+			if(iscrowbar(P))
 				to_chat(user, "You begin prying out the circuit board and other components...")
 				playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 				if(do_after(user, 60))
@@ -94,7 +94,7 @@
 								newpath = I
 								var/obj/item/s = new newpath
 								s.loc = user.loc
-								if(istype(P, /obj/item/stack/cable_coil))
+								if(iscable(P))
 									var/obj/item/stack/cable_coil/A = P
 									A.amount = 1
 
@@ -113,7 +113,7 @@
 	// You need a multitool to use this, or be silicon
 	if(!issilicon(user))
 		// istype returns false if the value is null
-		if(!istype(user.get_active_hand(), /obj/item/multitool))
+		if(!ismultitool(user.get_active_hand()))
 			return
 
 	if(stat & (BROKEN|NOPOWER))
@@ -177,7 +177,7 @@
 
 /obj/machinery/telecoms/Topic(href, href_list)
 	if(!issilicon(usr))
-		if(!istype(usr.get_active_hand(), /obj/item/multitool))
+		if(!ismultitool(usr.get_active_hand()))
 			return
 
 	if(stat & (BROKEN|NOPOWER))
@@ -287,13 +287,13 @@
 /obj/machinery/telecoms/proc/get_multitool(mob/user)
 	var/obj/item/multitool/P = null
 	// Let's double check
-	if(!issilicon(user) && istype(user.get_active_hand(), /obj/item/multitool))
+	if(!issilicon(user) && ismultitool(user.get_active_hand()))
 		P = user.get_active_hand()
 	else if(isAI(user))
 		var/mob/living/silicon/ai/U = user
 		P = U.aiMulti
 	else if(isrobot(user) && in_range(user, src))
-		if(istype(user.get_active_hand(), /obj/item/multitool))
+		if(ismultitool(user.get_active_hand()))
 			P = user.get_active_hand()
 	return P
 

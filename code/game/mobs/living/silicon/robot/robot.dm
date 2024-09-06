@@ -322,7 +322,7 @@
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 		return TRUE
 
-	if(iswire(tool) && wiresexposed)
+	if(iscable(tool) && wiresexposed)
 		if(!getFireLoss())
 			to_chat(user, SPAN_WARNING("Nothing to fix here!"))
 			return TRUE
@@ -358,7 +358,7 @@
 				to_chat(usr, SPAN_INFO("You install the [W.name]."))
 				return
 
-	else if(istype(W, /obj/item/crowbar))	// crowbar means open or close the cover
+	else if(iscrowbar(W))	// crowbar means open or close the cover
 		if(opened)
 			if(isnotnull(cell))
 				to_chat(user, SPAN_NOTICE("You close the cover."))
@@ -423,12 +423,12 @@
 			C.wrapped = W
 			C.install()
 
-	else if(istype(W, /obj/item/screwdriver) && opened && isnull(cell))	// haxing
+	else if(isscrewdriver(W) && opened && isnull(cell))	// haxing
 		wiresexposed = !wiresexposed
 		to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"].")
 		updateicon()
 
-	else if(istype(W, /obj/item/screwdriver) && opened && isnotnull(cell))	// radio
+	else if(isscrewdriver(W) && opened && isnotnull(cell))	// radio
 		if(isnotnull(radio))
 			radio.attackby(W, user) // Push it to the radio to let it handle everything.
 		else

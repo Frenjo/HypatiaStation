@@ -301,7 +301,7 @@ Status: []<BR>"},
 
 /obj/machinery/porta_turret/attackby(obj/item/W, mob/user)
 	if(stat & BROKEN)
-		if(istype(W, /obj/item/crowbar))
+		if(iscrowbar(W))
 
 			// If the turret is destroyed, you can remove it with a crowbar to
 			// try and salvage its components
@@ -322,7 +322,7 @@ Status: []<BR>"},
 				user << "You remove the turret but did not manage to salvage anything."
 			qdel(src)
 
-	if((istype(W, /obj/item/wrench)) && (!on))
+	if(iswrench(W) && (!on))
 		if(raised) return
 		// This code handles moving the turret around. After all, it's a portable turret!
 
@@ -691,14 +691,14 @@ Status: []<BR>"},
 	// this is a bit unweildy but self-explanitory
 	switch(build_step)
 		if(0) // first step
-			if(istype(W, /obj/item/wrench) && !anchored)
+			if(iswrench(W) && !anchored)
 				playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 				user << "\blue You secure the external bolts."
 				anchored = TRUE
 				build_step = 1
 				return
 
-			else if(istype(W, /obj/item/crowbar) && !anchored)
+			else if(iscrowbar(W) && !anchored)
 				playsound(src, 'sound/items/Crowbar.ogg', 75, 1)
 				user << "You dismantle the turret construction."
 				new /obj/item/stack/sheet/steel(loc, 5)
@@ -716,7 +716,7 @@ Status: []<BR>"},
 						qdel(W)
 					return
 
-			else if(istype(W, /obj/item/wrench))
+			else if(iswrench(W))
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				user << "You unfasten the external bolts."
 				anchored = FALSE
@@ -725,13 +725,13 @@ Status: []<BR>"},
 
 
 		if(2)
-			if(istype(W, /obj/item/wrench))
+			if(iswrench(W))
 				playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 				user << "\blue You bolt the metal armor into place."
 				build_step = 3
 				return
 
-			else if(istype(W, /obj/item/weldingtool))
+			else if(iswelder(W))
 				var/obj/item/weldingtool/WT = W
 				if(!WT.isOn()) return
 				if (WT.get_fuel() < 5) // uses up 5 fuel.
@@ -758,7 +758,7 @@ Status: []<BR>"},
 				qdel(W) // delete the gun :(
 				return
 
-			else if(istype(W, /obj/item/wrench))
+			else if(iswrench(W))
 				playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 				user << "You remove the turret's metal armor bolts."
 				build_step = 2
@@ -774,7 +774,7 @@ Status: []<BR>"},
 			// attack_hand() removes the gun
 
 		if(5)
-			if(istype(W, /obj/item/screwdriver))
+			if(isscrewdriver(W))
 				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 				build_step = 6
 				user << "\blue You close the internal access hatch."
@@ -792,14 +792,14 @@ Status: []<BR>"},
 						qdel(W)
 					return
 
-			else if(istype(W, /obj/item/screwdriver))
+			else if(isscrewdriver(W))
 				playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 				build_step = 5
 				user << "You open the internal access hatch."
 				return
 
 		if(7)
-			if(istype(W, /obj/item/weldingtool))
+			if(iswelder(W))
 				var/obj/item/weldingtool/WT = W
 				if(!WT.isOn()) return
 				if (WT.get_fuel() < 5)
@@ -823,7 +823,7 @@ Status: []<BR>"},
 					Turret.New()
 					qdel(src)
 
-			else if(istype(W, /obj/item/crowbar))
+			else if(iscrowbar(W))
 				playsound(src, 'sound/items/Crowbar.ogg', 75, 1)
 				user << "You pry off the turret's exterior armor."
 				new /obj/item/stack/sheet/steel(loc, 2)
@@ -1006,7 +1006,7 @@ Status: []<BR>"},
 		sleep(40)
 		Parent_Turret.on = 1
 
-	else if((istype(W, /obj/item/wrench)) && (!Parent_Turret.on))
+	else if(iswrench(W) && (!Parent_Turret.on))
 		if(Parent_Turret.raised) return
 
 		if(!Parent_Turret.anchored)

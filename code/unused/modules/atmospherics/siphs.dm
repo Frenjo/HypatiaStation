@@ -99,7 +99,7 @@
 
 /obj/machinery/atmoalter/siphs/fullairsiphon/air_vent/attackby(W as obj, user as mob)
 
-	if (istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		if (src.c_status)
 			src.anchored = TRUE
 			src.c_status = 0
@@ -108,7 +108,7 @@
 				src.anchored = TRUE
 				src.c_status = 3
 	else
-		if (istype(W, /obj/item/wrench))
+		if(iswrench(W))
 			src.alterable = !( src.alterable )
 	return
 
@@ -221,7 +221,7 @@
 
 /obj/machinery/atmoalter/siphs/scrubbers/air_filter/attackby(W as obj, user as mob)
 
-	if (istype(W, /obj/item/screwdriver))
+	if(isscrewdriver(W))
 		if (src.c_status)
 			src.anchored = TRUE
 			src.c_status = 0
@@ -230,7 +230,7 @@
 				src.anchored = TRUE
 				src.c_status = 3
 	else
-		if (istype(W, /obj/item/wrench))
+		if(iswrench(W))
 			src.alterable = !( src.alterable )
 	return
 
@@ -485,7 +485,7 @@
 		T.loc = src
 		src.holding = T
 	else
-		if (istype(W, /obj/item/screwdriver))
+		if(isscrewdriver(W))
 			var/obj/machinery/connector/con = locate(/obj/machinery/connector, src.loc)
 			if (src.c_status)
 				src.anchored = FALSE
@@ -504,7 +504,7 @@
 
 
 		else
-			if (istype(W, /obj/item/wrench))
+			if(iswrench(W))
 				src.alterable = !( src.alterable )
 				if (src.alterable)
 					user << "\blue You unlock the interface!"

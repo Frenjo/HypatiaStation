@@ -284,7 +284,7 @@ var/bomb_set
 		if(href_list["act"])
 			var/temp_wire = href_list["wire"]
 			if(href_list["act"] == "pulse")
-				if(!istype(usr.get_active_hand(), /obj/item/multitool))
+				if(!ismultitool(usr.get_active_hand()))
 					to_chat(usr, "You need a multitool!")
 				else
 					if(src.wires[temp_wire])
@@ -307,7 +307,7 @@ var/bomb_set
 							else
 								visible_message(SPAN_INFO("The [src] emits a quiet whirling noise!"))
 			if(href_list["act"] == "wire")
-				if(!istype(usr.get_active_hand(), /obj/item/wirecutters))
+				if(!iswirecutter(usr.get_active_hand()))
 					to_chat(usr, "You need wirecutters!")
 				else
 					wires[temp_wire] = !wires[temp_wire]
