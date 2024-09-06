@@ -1,8 +1,10 @@
 /turf/open/floor/open
 	name = "open space"
-	intact = 0
-	density = FALSE
 	icon_state = "black"
+
+	density = FALSE
+
+	intact = 0
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 
 	var/icon/darkoverlays = null
@@ -10,9 +12,8 @@
 	var/list/overlay_references
 
 /turf/open/floor/open/New()
-	..()
+	. = ..()
 	getbelow()
-	return
 
 /turf/open/floor/open/Enter(atom/movable/enterer)
 	if(..()) //TODO make this check if gravity is active (future use) - Sukasa
@@ -63,10 +64,10 @@
 //overwrite the attackby of space to transform it to openspace if necessary
 /turf/space/attackby(obj/item/C, mob/user)
 	if(istype(C, /obj/item/stack/cable_coil) && src.hasbelow())
-		var/turf/open/floor/open/W = src.ChangeTurf(/turf/open/floor/open)
+		var/turf/open/floor/open/W = ChangeTurf(/turf/open/floor/open)
 		W.attackby(C, user)
 		return
-	..()
+	. = ..()
 
 /turf/open/floor/open/ex_act(severity)
 	// cant destroy empty space with an ordinary bomb
@@ -108,16 +109,16 @@
 	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
 		// check if there is something to draw below
 		if(!controller.down)
-			src.ChangeTurf(get_base_turf_by_area(src))
-			return 0
+			ChangeTurf(get_base_turf_by_area(src))
+			return FALSE
 		else
-			floorbelow = locate(src.x, src.y, controller.down_target)
-			return 1
-	return 1
+			floorbelow = locate(x, y, controller.down_target)
+			return TRUE
+	return TRUE
 
 /turf/proc/hasbelow()
 	var/turf/controllerlocation = locate(1, 1, z)
 	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
 		if(controller.down)
-			return 1
-	return 0
+			return TRUE
+	return FALSE

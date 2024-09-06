@@ -7,8 +7,6 @@
 	var/wet = 0
 	var/image/wet_overlay = null
 
-	var/to_be_destroyed = 0 //Used for fire, if a melting temperature was reached, it will be destroyed
-	var/max_fire_temperature_sustained = 0 //The max temperature of the fire which it was subjected to
 	var/dirt = 0
 
 /turf/open/New()

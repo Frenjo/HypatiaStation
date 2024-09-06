@@ -6,7 +6,7 @@
 	plane = PLATING_PLANE
 
 	tile_path = null
-	intact = FALSE
+	intact = 0
 
 /turf/open/floor/plating/attack_tool(obj/item/tool, mob/user)
 	if(iswire(tool))

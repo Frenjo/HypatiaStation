@@ -1,6 +1,6 @@
 /turf/closed/wall/reinforced
 	name = "reinforced plasteel wall"
-	desc = "A huge chunk of reinforced metal used to separate rooms."
+	desc = "A huge chunk of reinforced plasteel used to separate rooms."
 	icon = 'icons/turf/walls/reinforced.dmi'
 	icon_state = "plasteel0"
 
