@@ -47,22 +47,22 @@
 	 * Hands, backpack and mask are defined by /mob.
 	 */
 	// Head
-	var/obj/item/head = null
-	var/obj/item/glasses = null
-	var/obj/item/l_ear = null
-	var/obj/item/r_ear = null
+	var/obj/item/clothing/head/head = null
+	var/obj/item/clothing/glasses/glasses = null
+	var/obj/item/clothing/ears/l_ear = null
+	var/obj/item/clothing/ears/r_ear = null
 	// Uniform
-	var/obj/item/wear_uniform = null
+	var/obj/item/clothing/under/wear_uniform = null
 	var/obj/item/id_store = null
 	var/obj/item/l_pocket = null
 	var/obj/item/r_pocket = null
 	// Suit
-	var/obj/item/wear_suit = null
+	var/obj/item/clothing/suit/wear_suit = null
 	var/obj/item/suit_store = null
 	// Other
-	var/obj/item/gloves = null
+	var/obj/item/clothing/gloves/gloves = null
 	var/obj/item/belt = null
-	var/obj/item/shoes = null
+	var/obj/item/clothing/shoes/shoes = null
 
 	var/used_skillpoints = 0
 	var/skill_specialization = null

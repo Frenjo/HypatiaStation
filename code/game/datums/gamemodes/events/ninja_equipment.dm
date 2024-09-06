@@ -1164,7 +1164,7 @@ ________________________________________________________________________________
 /obj/item/clothing/gloves/space_ninja/examine()
 	set src in view()
 	..()
-	if(!canremove)
+	if(!can_remove)
 		var/mob/living/carbon/human/U = loc
 		to_chat(U, "The energy drain mechanism is: <B>[candrain ? "active" : "inactive"]</B>.")
 

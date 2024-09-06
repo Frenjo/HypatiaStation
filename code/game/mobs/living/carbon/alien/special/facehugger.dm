@@ -143,12 +143,11 @@ var/const/MAX_ACTIVE_TIME = 400
 		if(target.wear_mask)
 			if(prob(20))
 				return
-			var/obj/item/clothing/W = target.wear_mask
-			if(!W.canremove)
+			if(!target.wear_mask.can_remove)
 				return
-			target.drop_from_inventory(W)
+			target.drop_from_inventory(target.wear_mask)
 
-			target.visible_message("\red \b [src] tears [W] off of [target]'s face!")
+			target.visible_message("\red \b [src] tears [target.wear_mask] off of [target]'s face!")
 
 		target.equip_to_slot(src, SLOT_ID_WEAR_MASK)
 

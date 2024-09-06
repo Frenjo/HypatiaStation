@@ -642,7 +642,7 @@
 	item_color = "golem"
 	has_sensor = 0
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	canremove = 0
+	can_remove = FALSE
 
 
 /obj/item/clothing/suit/golem
@@ -661,7 +661,7 @@
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS | HEAD
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
-	canremove = 0
+	can_remove = FALSE
 	armor = list(melee = 80, bullet = 20, laser = 20, energy = 10, bomb = 0, bio = 0, rad = 0)
 
 
@@ -670,7 +670,7 @@
 	desc = "sturdy adamantine feet"
 	icon_state = "golem"
 	item_state = null
-	canremove = 0
+	can_remove = FALSE
 	item_flags = ITEM_FLAG_NO_SLIP
 	slowdown = SHOES_SLOWDOWN + 1
 
@@ -680,7 +680,7 @@
 	desc = "the imposing face of an adamantine golem"
 	icon_state = "golem"
 	item_state = "golem"
-	canremove = 0
+	can_remove = FALSE
 	siemens_coefficient = 0
 	unacidable = 1
 
@@ -691,7 +691,7 @@
 	icon_state = "golem"
 	item_state = null
 	siemens_coefficient = 0
-	canremove = 0
+	can_remove = FALSE
 
 
 /obj/item/clothing/head/space/golem
@@ -700,7 +700,7 @@
 	item_color = "dermal"
 	name = "golem's head"
 	desc = "a golem's head"
-	canremove = 0
+	can_remove = FALSE
 	unacidable = 1
 	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
 	heat_protection = HEAD

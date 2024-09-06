@@ -20,7 +20,7 @@
 	if(H.l_ear != src && H.r_ear != src)
 		return ..()
 
-	if(!canremove)
+	if(!can_remove)
 		return
 
 	var/obj/item/clothing/ears/O

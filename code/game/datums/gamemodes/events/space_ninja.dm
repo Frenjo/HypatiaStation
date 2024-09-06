@@ -579,33 +579,33 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 			return 0
 
 		affecting = H
-		canremove = 0
+		can_remove = FALSE
 		slowdown = 0
 		n_hood = H.head
-		n_hood.canremove = 0
+		n_hood.can_remove = FALSE
 		n_shoes = H.shoes
-		n_shoes.canremove = 0
+		n_shoes.can_remove = FALSE
 		n_shoes.slowdown--
 		n_gloves = H.gloves
-		n_gloves.canremove = 0
+		n_gloves.can_remove = FALSE
 
 	return 1
 
 //This proc allows the suit to be taken off.
 /obj/item/clothing/suit/space/space_ninja/proc/unlock_suit()
 	affecting = null
-	canremove = 1
+	can_remove = TRUE
 	slowdown = 1
 	icon_state = "s-ninja"
 	if(n_hood)//Should be attached, might not be attached.
-		n_hood.canremove = 1
+		n_hood.can_remove = TRUE
 	if(n_shoes)
-		n_shoes.canremove = 1
+		n_shoes.can_remove = TRUE
 		n_shoes.slowdown++
 	if(n_gloves)
 		n_gloves.icon_state = "s-ninja"
 		n_gloves.item_state = "s-ninja"
-		n_gloves.canremove = 1
+		n_gloves.can_remove = TRUE
 		n_gloves.candrain = 0
 		n_gloves.draining = 0
 

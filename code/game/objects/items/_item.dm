@@ -13,6 +13,8 @@
 	// This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
 	var/inv_flags
 
+	var/origin_tech // Used by R&D to determine what research bonuses this item grants.
+
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/abstract = 0
 	var/item_state = null
@@ -26,25 +28,13 @@
 //	causeerrorheresoifixthis
 	var/obj/item/master = null
 
-	var/heat_protection = 0 //flags which determine which body parts are protected from heat. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
-	var/cold_protection = 0 //flags which determine which body parts are protected from cold. Use the HEAD, UPPER_TORSO, LOWER_TORSO, etc. flags. See setup.dm
-	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection flags
-	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection flags
-
 	var/icon_action_button = null //If this is set, The item will make an action button on the player's HUD when picked up. The button will have the icon_action_button sprite from the screen1_action.dmi file.
 	var/action_button_name = null //This is the text which gets displayed on the action button. If not set it defaults to 'Use [name]'. Note that icon_action_button needs to be set in order for the action button to appear.
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
 	var/item_color = null
 	var/body_parts_covered = 0 //see setup.dm for appropriate bit flags
-	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
-	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
-	var/permeability_coefficient = 1 // for chemicals/diseases
-	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
-	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
-	var/canremove = 1 //Mostly for Ninja code at this point but basically will not allow the item to be removed if set to 0. /N
-	var/armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	var/list/allowed = null //suit storage stuff.
+
 	var/obj/item/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
@@ -144,11 +134,13 @@
 
 	throwing = THROW_NONE
 	if(loc == user)
-		//canremove==0 means that object may not be removed. You can still wear it. This only applies to clothing. /N
-		if(!canremove)
-			return
-		else
-			user.u_equip(src)
+		if(istype(src, /obj/item/clothing))
+			var/obj/item/clothing/C = src
+			//canremove==0 means that object may not be removed. You can still wear it. This only applies to clothing. /N
+			if(!C.can_remove)
+				return
+			else
+				user.u_equip(src)
 	else
 		if(isliving(loc))
 			return
@@ -166,10 +158,12 @@
 	throwing = THROW_NONE
 	if(src.loc == user)
 		//canremove==0 means that object may not be removed. You can still wear it. This only applies to clothing. /N
-		if(istype(src, /obj/item/clothing) && !src:canremove)
-			return
-		else
-			user.u_equip(src)
+		if(istype(src, /obj/item/clothing))
+			var/obj/item/clothing/C = src
+			if(!C.can_remove)
+				return
+			else
+				user.u_equip(src)
 	else
 		if(isliving(src.loc))
 			return

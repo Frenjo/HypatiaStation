@@ -39,7 +39,7 @@
 		var/message = null
 		switch(place)
 			if("mask")
-				if(istype(target.wear_mask, /obj/item/clothing)&&!target.wear_mask:canremove)
+				if(istype(target.wear_mask, /obj/item/clothing) && !target.wear_mask.can_remove)
 					message = SPAN_DANGER("[source] fails to take off \a [target.wear_mask] from [target]'s body!")
 				else
 					message = SPAN_DANGER("[source] is trying to take off \a [target.wear_mask] from [target]'s head!")
@@ -73,7 +73,7 @@
 	switch(place)
 		if("mask")
 			if (target.wear_mask)
-				if(istype(target.wear_mask, /obj/item/clothing)&& !target.wear_mask:canremove)
+				if(istype(target.wear_mask, /obj/item/clothing) && !target.wear_mask.can_remove)
 					return
 				var/obj/item/W = target.wear_mask
 				target.u_equip(W)

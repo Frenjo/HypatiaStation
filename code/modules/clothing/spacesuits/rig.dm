@@ -5,9 +5,7 @@
 	icon_state = "rig0-engineering"
 	item_state = "eng_helm"
 	armor = list(melee = 40, bullet = 5, laser = 20, energy = 5, bomb = 35, bio = 100, rad = 80)
-	allowed = list(/obj/item/flashlight)
-	var/brightness_on = 4 //luminosity when on
-	var/on = 0
+
 	item_color = "engineering" //Determines used sprites: rig[on]-[color] and rig[on]-[color]2 (lying down sprite)
 	icon_action_button = "action_hardhat"
 	heat_protection = HEAD
@@ -18,6 +16,9 @@
 	sprite_sheets = list(
 		SPECIES_TAJARAN = 'icons/mob/species/tajara/helmet.dmi'
 	)
+
+	var/brightness_on = 4 //luminosity when on
+	var/on = 0
 
 /obj/item/clothing/head/helmet/space/rig/attack_self(mob/user)
 	if(!isturf(user.loc))
@@ -101,7 +102,7 @@
 			//TODO: Species check, skull damage for forcing an unfitting helmet on?
 			helmet.loc = H
 			H.equip_to_slot(helmet, SLOT_ID_HEAD)
-			helmet.canremove = 0
+			helmet.can_remove = FALSE
 
 	if(attached_boots && boots)
 		if(H.shoes)
@@ -110,7 +111,7 @@
 			to_chat(M, "Your suit's boots deploy with a hiss.")
 			boots.loc = H
 			H.equip_to_slot(boots, SLOT_ID_SHOES)
-			boots.canremove = 0
+			boots.can_remove = FALSE
 
 /obj/item/clothing/suit/space/rig/dropped()
 	..()
@@ -120,7 +121,7 @@
 		H = helmet.loc
 		if(istype(H))
 			if(helmet && H.head == helmet)
-				helmet.canremove = 1
+				helmet.can_remove = TRUE
 				H.drop_from_inventory(helmet)
 				helmet.loc = src
 
@@ -128,7 +129,7 @@
 		H = boots.loc
 		if(istype(H))
 			if(boots && H.shoes == boots)
-				boots.canremove = 1
+				boots.can_remove = TRUE
 				H.drop_from_inventory(boots)
 				boots.loc = src
 
@@ -188,7 +189,7 @@
 		return
 
 	if(H.head == helmet)
-		helmet.canremove = 1
+		helmet.can_remove = TRUE
 		H.drop_from_inventory(helmet)
 		helmet.loc = src
 		to_chat(H, SPAN_INFO("You retract your hardsuit helmet."))
@@ -199,7 +200,7 @@
 		//TODO: Species check, skull damage for forcing an unfitting helmet on?
 		helmet.loc = H
 		H.equip_to_slot(helmet, SLOT_ID_HEAD)
-		helmet.canremove = 0
+		helmet.can_remove = FALSE
 		to_chat(H, SPAN_INFO("You deploy your hardsuit helmet, sealing you off from the world."))
 
 /obj/item/clothing/suit/space/rig/attackby(obj/item/W, mob/user)

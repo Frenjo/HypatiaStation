@@ -422,7 +422,7 @@
 			if("mask")
 				target.attack_log += "\[[time_stamp()]\] <font color='orange'>Had their mask removed by [source.name] ([source.ckey])</font>"
 				source.attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) mask</font>"
-				if(target.wear_mask && !target.wear_mask.canremove)
+				if(isnotnull(target.wear_mask) && !target.wear_mask.can_remove)
 					message = SPAN_DANGER("[source] fails to take off \a [target.wear_mask] from [target]'s head!")
 					return
 				else
@@ -438,7 +438,7 @@
 			if("gloves")
 				target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their gloves ([target.gloves]) removed by [source.name] ([source.ckey])</font>"
 				source.attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) gloves ([target.gloves])</font>"
-				if(target.gloves && !target.gloves.canremove)
+				if(isnotnull(target.gloves) && !target.gloves.can_remove)
 					message = SPAN_DANGER("[source] fails to take off \a [target.gloves] from [target]'s hands!")
 					return
 				else
@@ -446,7 +446,7 @@
 			if("eyes")
 				target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their eyewear ([target.glasses]) removed by [source.name] ([source.ckey])</font>"
 				source.attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) eyewear ([target.glasses])</font>"
-				if(target.glasses && !target.glasses.canremove)
+				if(isnotnull(target.glasses) && !target.glasses.can_remove)
 					message = SPAN_DANGER("[source] fails to take off \a [target.glasses] from [target]'s eyes!")
 					return
 				else
@@ -454,7 +454,7 @@
 			if("l_ear")
 				target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their left ear item ([target.l_ear]) removed by [source.name] ([source.ckey])</font>"
 				source.attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) left ear item ([target.l_ear])</font>"
-				if(target.l_ear && !target.l_ear.canremove)
+				if(isnotnull(target.l_ear) && !target.l_ear.can_remove)
 					message = SPAN_DANGER("[source] fails to take off \a [target.l_ear] from [target]'s left ear!")
 					return
 				else
@@ -462,7 +462,7 @@
 			if("r_ear")
 				target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their right ear item ([target.r_ear]) removed by [source.name] ([source.ckey])</font>"
 				source.attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) right ear item ([target.r_ear])</font>"
-				if(target.r_ear && !target.r_ear.canremove)
+				if(isnotnull(target.r_ear) && !target.r_ear.can_remove)
 					message = SPAN_DANGER("[source] fails to take off \a [target.r_ear] from [target]'s right ear!")
 					return
 				else
@@ -470,7 +470,7 @@
 			if("head")
 				target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their hat ([target.head]) removed by [source.name] ([source.ckey])</font>"
 				source.attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) hat ([target.head])</font>"
-				if(target.head && !target.head.canremove)
+				if(isnotnull(target.head) && !target.head.can_remove)
 					message = SPAN_DANGER("[source] fails to take off \a [target.head] from [target]'s head!")
 					return
 				else
@@ -478,7 +478,7 @@
 			if("shoes")
 				target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their shoes ([target.shoes]) removed by [source.name] ([source.ckey])</font>"
 				source.attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) shoes ([target.shoes])</font>"
-				if(target.shoes && !target.shoes.canremove)
+				if(isnotnull(target.shoes) && !target.shoes.can_remove)
 					message = SPAN_DANGER("[source] fails to take off \a [target.shoes] from [target]'s feet!")
 					return
 				else
@@ -490,7 +490,7 @@
 			if("suit")
 				target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their suit ([target.wear_suit]) removed by [source.name] ([source.ckey])</font>"
 				source.attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [target.name]'s ([target.ckey]) suit ([target.wear_suit])</font>"
-				if(target.wear_suit && !target.wear_suit.canremove)
+				if(isnotnull(target.wear_suit) && !target.wear_suit.can_remove)
 					message = SPAN_DANGER("[source] fails to take off \a [target.wear_suit] from [target]'s body!")
 					return
 				else
@@ -513,7 +513,7 @@
 				for(var/obj/item/I in list(target.l_pocket, target.r_pocket))
 					if(I.on_found(source))
 						return
-				if(target.wear_uniform && !target.wear_uniform.canremove)
+				if(isnotnull(target.wear_uniform) && !target.wear_uniform.can_remove)
 					message = SPAN_DANGER("[source] fails to take off \a [target.wear_uniform] from [target]'s body!")
 					return
 				else
@@ -577,11 +577,11 @@ It can still be worn/put on as normal.
 	switch(place)	//here we go again...
 		if("mask")
 			slot_to_process = SLOT_ID_WEAR_MASK
-			if (target.wear_mask && target.wear_mask.canremove)
+			if (target.wear_mask && target.wear_mask.can_remove)
 				strip_item = target.wear_mask
 		if("gloves")
 			slot_to_process = SLOT_ID_GLOVES
-			if (target.gloves && target.gloves.canremove)
+			if (target.gloves && target.gloves.can_remove)
 				strip_item = target.gloves
 		if("eyes")
 			slot_to_process = SLOT_ID_GLASSES
@@ -597,7 +597,7 @@ It can still be worn/put on as normal.
 				strip_item = target.suit_store
 		if("head")
 			slot_to_process = SLOT_ID_HEAD
-			if (target.head && target.head.canremove)
+			if (target.head && target.head.can_remove)
 				strip_item = target.head
 		if("l_ear")
 			slot_to_process = SLOT_ID_L_EAR
@@ -609,7 +609,7 @@ It can still be worn/put on as normal.
 				strip_item = target.r_ear
 		if("shoes")
 			slot_to_process = SLOT_ID_SHOES
-			if (target.shoes && target.shoes.canremove)
+			if (target.shoes && target.shoes.can_remove)
 				strip_item = target.shoes
 		if("l_hand")
 			if (istype(target, /obj/item/clothing/suit/straight_jacket))
@@ -625,11 +625,11 @@ It can still be worn/put on as normal.
 				strip_item = target.r_hand
 		if("uniform")
 			slot_to_process = SLOT_ID_WEAR_UNIFORM
-			if(target.wear_uniform && target.wear_uniform.canremove)
+			if(target.wear_uniform && target.wear_uniform.can_remove)
 				strip_item = target.wear_uniform
 		if("suit")
 			slot_to_process = SLOT_ID_WEAR_SUIT
-			if (target.wear_suit && target.wear_suit.canremove)
+			if (target.wear_suit && target.wear_suit.can_remove)
 				strip_item = target.wear_suit
 		if("id")
 			slot_to_process = SLOT_ID_ID_STORE

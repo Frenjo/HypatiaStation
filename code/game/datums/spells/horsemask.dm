@@ -44,10 +44,10 @@
 	voicechange = 1		//NEEEEIIGHH
 
 /obj/item/clothing/mask/horsehead/magic/dropped(mob/user)
-	canremove = 1
+	can_remove = TRUE
 	..()
 
 /obj/item/clothing/mask/horsehead/magic/equipped(mob/user, slot)
 	if(slot == SLOT_ID_WEAR_MASK)
-		canremove = 0		//curses!
+		can_remove = FALSE //curses!
 	..()
