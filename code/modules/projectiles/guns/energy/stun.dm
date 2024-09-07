@@ -65,7 +65,7 @@
 
 /obj/item/gun/energy/disabler
 	name = "disabler"
-	desc = "A non-lethal self-defense weapon that exhausts organic targets, weakening them until they collapse."
+	desc = "A non-lethal self-defence weapon that exhausts organic targets, weakening them until they collapse."
 	icon_state = "disabler"
 
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/combat = 3, /datum/tech/power_storage = 1)

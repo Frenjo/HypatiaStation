@@ -178,7 +178,7 @@
 "dy" = (/obj/structure/table,/obj/item/storage/box/handcuffs,/obj/item/flash,/turf/open/floor/shuttle{icon_state = "floor4"},/area/centcom/rescue_shuttle)
 "dz" = (/obj/machinery/door/airlock/hatch{name = "Cockpit"; req_access = list(109)},/turf/open/floor/shuttle{icon_state = "floor2"},/area/centcom/rescue_shuttle)
 "dA" = (/obj/machinery/computer/crew,/turf/open/floor/shuttle,/area/centcom/rescue_shuttle)
-"dB" = (/obj/structure/stool/bed/chair{dir = 4; name = "Defense"},/turf/open/floor/shuttle,/area/centcom/rescue_shuttle)
+"dB" = (/obj/structure/stool/bed/chair{dir = 4; name = "Defence"},/turf/open/floor/shuttle,/area/centcom/rescue_shuttle)
 "dC" = (/obj/machinery/computer/communications,/turf/open/floor/shuttle,/area/centcom/rescue_shuttle)
 "dD" = (/obj/structure/table,/obj/machinery/light/small{dir = 8},/turf/open/floor/shuttle,/area/centcom/rescue_shuttle)
 "dE" = (/obj/structure/table,/obj/item/radio/off,/obj/machinery/light/small{dir = 4},/turf/open/floor/shuttle,/area/centcom/rescue_shuttle)

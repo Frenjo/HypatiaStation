@@ -98,7 +98,7 @@
 
 /mob/living/blob/verb/create_factory()
 	set category = "Blob"
-	set name = "Create Defense"
+	set name = "Create Defence"
 	set desc = "Create a Spore producing blob."
 	if(creating_blob)	return
 	var/turf/T = get_turf(src)
@@ -134,7 +134,7 @@
 
 /mob/living/blob/verb/revert()
 	set category = "Blob"
-	set name = "Purge Defense"
+	set name = "Purge Defence"
 	set desc = "Removes a porous blob."
 	if(creating_blob)	return
 	var/turf/T = get_turf(src)

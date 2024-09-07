@@ -31,7 +31,7 @@
 	target.clear_inherent_laws()
 	target.add_inherent_law("Never willingly commit an evil act.")
 	target.add_inherent_law("Respect legitimate authority.")
-	target.add_inherent_law("Act with honor.")
+	target.add_inherent_law("Act with honour.")
 	target.add_inherent_law("Help those in need.")
 	target.add_inherent_law("Punish those who harm or threaten innocents.")
 	target.show_laws()

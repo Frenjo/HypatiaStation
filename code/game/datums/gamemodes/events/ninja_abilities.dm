@@ -212,7 +212,7 @@ Must right click on a mob to activate.*/
 			else
 				to_chat(U, "They are already trapped inside an energy net.")
 		else
-			to_chat(U, "They will bring no honor to your Clan!")
+			to_chat(U, "They will bring no honour to your Clan!")
 	return
 
 //=======//ADRENALINE BOOST//=======//

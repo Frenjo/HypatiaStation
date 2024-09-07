@@ -895,7 +895,7 @@ datum
 		silicon
 			name = "Silicon"
 			id = "silicon"
-			description = "A tetravalent metalloid, silicon is less reactive than its chemical analog carbon."
+			description = "A tetravalent metalloid, silicon is less reactive than its chemical analogue carbon."
 			reagent_state = SOLID
 			color = "#A8A8A8" // rgb: 168, 168, 168
 
@@ -2048,7 +2048,7 @@ datum
 		condensedcapsaicin
 			name = "Condensed Capsaicin"
 			id = "condensedcapsaicin"
-			description = "A chemical agent used for self-defense and in police work."
+			description = "A chemical agent used for self-defence and in police work."
 			reagent_state = LIQUID
 			color = "#B31008" // rgb: 179, 16, 8
 

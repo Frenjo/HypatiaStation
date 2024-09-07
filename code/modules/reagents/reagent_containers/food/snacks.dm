@@ -480,7 +480,7 @@
 			usr << "\blue The egg refuses to take on this color!"
 			return
 
-		usr << "\blue You color \the [src] [clr]"
+		usr << "\blue You colour \the [src] [clr]"
 		icon_state = "egg-[clr]"
 		item_color = clr
 	else
@@ -1325,7 +1325,7 @@
 
 
 /obj/item/reagent_holder/food/snacks/badrecipe
-	name = "Burned mess"
+	name = "burnt mess"
 	desc = "Someone should be demoted from chef for this."
 	icon_state = "badrecipe"
 	filling_color = "#211F02"

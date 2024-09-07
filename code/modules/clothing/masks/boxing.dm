@@ -25,7 +25,7 @@
 
 /obj/item/clothing/mask/luchador/tecnicos
 	name = "tecnicos mask"
-	desc = "Worn by robust fighters who uphold justice and fight honorably."
+	desc = "Worn by robust fighters who uphold justice and fight honourably."
 	icon_state = "luchador"
 	item_state = "luchador"
 

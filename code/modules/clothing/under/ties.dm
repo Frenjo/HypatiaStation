@@ -112,7 +112,7 @@
 
 /obj/item/clothing/tie/medal/conduct
 	name = "distinguished conduct medal"
-	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is most basic award given by NanoTrasen. It is often awarded by a captain to a member of his crew."
+	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honour, this is most basic award given by NanoTrasen. It is often awarded by a captain to a member of his crew."
 
 /obj/item/clothing/tie/medal/bronze_heart
 	name = "bronze heart medal"
@@ -149,7 +149,7 @@
 
 /obj/item/clothing/tie/medal/gold/heroism
 	name = "medal of exceptional heroism"
-	desc = "An extremely rare golden medal awarded only by CentCom. To recieve such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
+	desc = "An extremely rare golden medal awarded only by CentCom. To recieve such a medal is the highest honour and as such, very few exist. This medal is almost never awarded to anybody but commanders."
 
 //Armbands
 /obj/item/clothing/tie/armband

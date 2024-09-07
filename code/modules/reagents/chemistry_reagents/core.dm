@@ -644,7 +644,7 @@
 /datum/reagent/silicon
 	name = "Silicon"
 	id = "silicon"
-	description = "A tetravalent metalloid, silicon is less reactive than its chemical analog carbon."
+	description = "A tetravalent metalloid, silicon is less reactive than its chemical analogue carbon."
 	reagent_state = REAGENT_SOLID
 	color = "#A8A8A8" // rgb: 168, 168, 168
 

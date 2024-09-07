@@ -408,7 +408,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 		if(10)
 			directive += "Our reputation is on the line. Harm as few civilians and innocents as possible."
 		if(11)
-			directive += "Our honor is on the line. Utilize only honorable tactics when dealing with opponents."
+			directive += "Our honour is on the line. Utilize only honourable tactics when dealing with opponents."
 		if(12)
 			directive += "We are currently negotiating with a Syndicate leader. Disguise assassinations as suicide or other natural causes."
 		if(13)
@@ -421,7 +421,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 		if(16)
 			directive += "The Spider Clan has been bargaining with a competing prosthetics manufacturer. Try to shine NanoTrasen prosthetics in a bad light."
 		if(17)
-			directive += "The Spider Clan has recently begun recruiting outsiders. Consider suitable candidates and assess their behavior amongst the crew."
+			directive += "The Spider Clan has recently begun recruiting outsiders. Consider suitable candidates and assess their behaviour amongst the crew."
 		if(18)
 			directive += "A cyborg liberation group has expressed interest in our serves. Prove the Spider Clan merciful towards law-bound synthetics."
 		else

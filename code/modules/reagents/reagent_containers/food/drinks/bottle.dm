@@ -293,7 +293,7 @@
 
 /obj/item/reagent_holder/food/drinks/bottle/grenadine
 	name = "Briar Rose Grenadine Syrup"
-	desc = "Sweet and tangy, a bar syrup used to add color or flavor to drinks."
+	desc = "Sweet and tangy, a bar syrup used to add colour or flavor to drinks."
 	icon_state = "grenadinebottle"
 
 /obj/item/reagent_holder/food/drinks/bottle/grenadine/New()

@@ -375,7 +375,7 @@
 		var/datum/supply_order/remove_supply = href_list["cancelorder"]
 		supply_shuttle_shoppinglist -= remove_supply
 		supply_shuttle_points += remove_supply.object.cost
-		temp += "Canceled: [remove_supply.object.name]<BR><BR><BR>"
+		temp += "Cancelled: [remove_supply.object.name]<BR><BR><BR>"
 
 		for(var/S in supply_shuttle_shoppinglist)
 			var/datum/supply_order/SO = S

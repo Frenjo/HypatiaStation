@@ -150,7 +150,7 @@
 		if(stat == DEAD)
 			to_chat(user, SPAN_WARNING("You swipe your ID card through [src], attempting to reboot it."))
 			if(!CONFIG_GET(allow_drone_spawn) || emagged || health < -35) // It's dead, Dave.
-				to_chat(user, SPAN_WARNING("The interface is fried, and a distressing burned smell wafts from the robot's interior. You're not rebooting this one."))
+				to_chat(user, SPAN_WARNING("The interface is fried, and a distressing burnt smell wafts from the robot's interior. You're not rebooting this one."))
 				return TRUE
 
 			var/drones = 0

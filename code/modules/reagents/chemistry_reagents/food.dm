@@ -134,7 +134,7 @@
 /datum/reagent/condensedcapsaicin
 	name = "Condensed Capsaicin"
 	id = "condensedcapsaicin"
-	description = "A chemical agent used for self-defense and in police work."
+	description = "A chemical agent used for self-defence and in police work."
 	reagent_state = REAGENT_LIQUID
 	color = "#B31008" // rgb: 179, 16, 8
 
