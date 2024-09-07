@@ -22,22 +22,18 @@
 #undef NONSENSICAL_VALUE
 
 /atom/proc/update_light()
-	set waitfor = FALSE
-
 	if(!light_power || !light_range)
 		if(isnotnull(light))
 			light.destroy()
 			light = null
-	else
-		if(!ismovable(loc))
-			. = src
-		else
-			. = loc
+		return
 
-		if(isnotnull(light))
-			light.update(.)
-		else
-			light = new /datum/light_source(src, .)
+	. = ismovable(loc) ? loc : src
+
+	if(isnotnull(light))
+		light.update(.)
+	else
+		light = new /datum/light_source(src, .)
 
 /atom/New()
 	. = ..()

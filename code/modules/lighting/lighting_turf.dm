@@ -31,20 +31,20 @@
 /turf/proc/lighting_build_overlay()
 	if(isnotnull(lighting_overlay))
 		return
-
 	var/area/A = loc
-	if(A.dynamic_lighting)
-		if(!lighting_corners_initialised)
-			generate_missing_corners()
+	if(!A.dynamic_lighting)
+		return
 
-		new /atom/movable/lighting_overlay(src)
+	if(!lighting_corners_initialised)
+		generate_missing_corners()
 
-		for_no_type_check(var/datum/lighting_corner/C, corners)
-			if(!C.active) // We would activate the corner, calculate the lighting for it.
-				for_no_type_check(var/datum/light_source/L, C.affecting)
-					L.recalc_corner(C)
+	new /atom/movable/lighting_overlay(src)
 
-				C.active = TRUE
+	for_no_type_check(var/datum/lighting_corner/C, corners)
+		if(!C.active) // We would activate the corner, calculate the lighting for it.
+			for_no_type_check(var/datum/light_source/L, C.affecting)
+				L.recalc_corner(C)
+			C.active = TRUE
 
 // Used to get a scaled lumcount.
 /turf/proc/get_lumcount(minlum = 0, maxlum = 1)
@@ -64,7 +64,7 @@
 // Can't think of a good name, this proc will recalculate the has_opaque_atom variable.
 /turf/proc/recalc_atom_opacity()
 	has_opaque_atom = FALSE
-	for(var/atom/A in contents + src) // Loop through every movable atom on our tile PLUS ourselves (we matter too...)
+	for_no_type_check(var/atom/A, contents + src) // Loop through every atom on our tile PLUS ourselves (we matter too...)
 		if(A.opacity)
 			has_opaque_atom = TRUE
 

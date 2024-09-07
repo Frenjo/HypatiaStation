@@ -20,18 +20,19 @@ GLOBAL_GLOBL_LIST_NEW(all_lighting_overlays) // Global list of lighting overlays
 
 /atom/movable/lighting_overlay/New(atom/loc, no_update = FALSE)
 	var/turf/T = loc // If this runtimes atleast we'll know what's creating overlays outside of turfs.
-	if(T.dynamic_lighting) // Only put lighting overlays on turfs with dynamic lighting enabled.
-		. = ..()
-		verbs.Cut()
-		GLOBL.all_lighting_overlays.Add(src)
-
-		T.lighting_overlay = src
-		T.luminosity = FALSE
-		if(no_update)
-			return
-		update_overlay()
-	else
+	if(!T.dynamic_lighting) // Only put lighting overlays on turfs with dynamic lighting enabled.
 		qdel(src)
+		return
+
+	. = ..()
+	verbs.Cut()
+	GLOBL.all_lighting_overlays.Add(src)
+
+	T.lighting_overlay = src
+	T.luminosity = FALSE
+	if(no_update)
+		return
+	update_overlay()
 
 /atom/movable/lighting_overlay/Destroy()
 	GLOBL.all_lighting_overlays.Remove(src)

@@ -14,6 +14,6 @@
 		power_change()
 
 /area/proc/set_emergency_lighting(enable)
-	for(var/obj/machinery/light/M in src)
+	for(var/obj/machinery/light/M in machines_list)
 		M.set_emergency_lighting(enable)
 		CHECK_TICK
