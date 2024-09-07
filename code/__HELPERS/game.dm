@@ -7,19 +7,6 @@
 	src:Topic(href, href_list)
 	return null
 
-/proc/get_area(O)
-	RETURN_TYPE(/area)
-
-	var/atom/location = O
-	for(var/i = 1, i <= 20, i++)
-		if(isarea(location))
-			return location
-		else if(istype(location))
-			location = location.loc
-		else
-			return null
-	return 0
-
 /proc/get_area_name(N) //get area by its name
 	for_no_type_check(var/area/A, GLOBL.area_list)
 		if(A.name == N)
@@ -58,11 +45,11 @@
 //#undef k2
 
 /proc/circlerange(center = usr, radius = 3)
-	var/turf/centerturf = get_turf(center)
+	var/turf/centerturf = GET_TURF(center)
 	var/list/turfs = list()
 	var/rsq = radius * (radius + 0.5)
 
-	for(var/atom/T in range(radius, centerturf))
+	for_no_type_check(var/atom/T, range(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
 		if(dx * dx + dy * dy <= rsq)
@@ -72,11 +59,11 @@
 	return turfs
 
 /proc/circleview(center = usr, radius = 3)
-	var/turf/centerturf = get_turf(center)
+	var/turf/centerturf = GET_TURF(center)
 	var/list/atoms = list()
 	var/rsq = radius * (radius + 0.5)
 
-	for(var/atom/A in view(radius, centerturf))
+	for_no_type_check(var/atom/A, view(radius, centerturf))
 		var/dx = A.x - centerturf.x
 		var/dy = A.y - centerturf.y
 		if(dx * dx + dy * dy <= rsq)
@@ -94,7 +81,7 @@
 	return dist
 
 /proc/circlerangeturfs(center = usr, radius = 3)
-	var/turf/centerturf = get_turf(center)
+	var/turf/centerturf = GET_TURF(center)
 	var/list/turfs = list()
 	var/rsq = radius * (radius + 0.5)
 
@@ -106,7 +93,7 @@
 	return turfs
 
 /proc/circleviewturfs(center = usr, radius = 3)		//Is there even a diffrence between this proc and circlerangeturfs()?
-	var/turf/centerturf = get_turf(center)
+	var/turf/centerturf = GET_TURF(center)
 	var/list/turfs = list()
 	var/rsq = radius * (radius + 0.5)
 
@@ -129,7 +116,7 @@
 	if(!recursion_limit)
 		return L
 
-	for(var/atom/A in O.contents)
+	for_no_type_check(var/atom/A, O.contents)
 		if(ismob(A))
 			var/mob/M = A
 			if(client_check && isnull(M.client))
@@ -138,7 +125,7 @@
 			if(sight_check && !isInSight(A, O))
 				continue
 			L |= M
-			//world.log << "[recursion_limit] = [M] - [get_turf(M)] - ([M.x], [M.y], [M.z])"
+			//world.log << "[recursion_limit] = [M] - [GET_TURF(M)] - ([M.x], [M.y], [M.z])"
 
 		else if(include_radio && isradio(A))
 			if(sight_check && !isInSight(A, O))
@@ -156,7 +143,7 @@
 
 /proc/get_mobs_in_view(R, atom/source)
 	// Returns a list of mobs in range of R from source. Used in radio and say code.
-	var/turf/T = get_turf(source)
+	var/turf/T = GET_TURF(source)
 	var/list/hear = list()
 
 	if(isnull(T))
@@ -203,8 +190,8 @@
 	for(var/i = 1; i <= length(radios); i++)
 		var/obj/item/radio/R = radios[i]
 		if(isnotnull(R))
-			var/turf/speaker = get_turf(R)
-			if(speaker)
+			var/turf/speaker = GET_TURF(R)
+			if(isnotnull(speaker))
 				for(var/turf/T in hear(R.canhear_range, speaker))
 					speaker_coverage[T] = T
 
@@ -212,7 +199,7 @@
 	for(var/i = 1; i <= length(GLOBL.player_list); i++)
 		var/mob/M = GLOBL.player_list[i]
 		if(isnotnull(M))
-			var/turf/ear = get_turf(M)
+			var/turf/ear = GET_TURF(M)
 			if(isnotnull(ear))
 				// Ghostship is magic: Ghosts can hear radio chatter from anywhere
 				if(speaker_coverage[ear] || (isobserver(M) && (M.client?.prefs.toggles & CHAT_GHOSTRADIO)))
@@ -251,8 +238,8 @@
 #undef SIGN
 
 /proc/isInSight(atom/A, atom/B)
-	var/turf/Aturf = get_turf(A)
-	var/turf/Bturf = get_turf(B)
+	var/turf/Aturf = GET_TURF(A)
+	var/turf/Bturf = GET_TURF(B)
 
 	if(isnull(Aturf) || isnull(Bturf))
 		return FALSE
@@ -278,7 +265,7 @@
 			return get_step(start, EAST)
 
 /proc/get_mob_by_key(key)
-	for(var/mob/M in GLOBL.mob_list)
+	for_no_type_check(var/mob/M, GLOBL.mob_list)
 		if(M.ckey == lowertext(key))
 			return M
 	return null

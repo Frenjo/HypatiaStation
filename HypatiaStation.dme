@@ -36,6 +36,7 @@
 #include "code\__DEFINES\dna.dm"
 #include "code\__DEFINES\dview.dm"
 #include "code\__DEFINES\feedback.dm"
+#include "code\__DEFINES\game.dm"
 #include "code\__DEFINES\gamemode.dm"
 #include "code\__DEFINES\hud.dm"
 #include "code\__DEFINES\invisibility.dm"

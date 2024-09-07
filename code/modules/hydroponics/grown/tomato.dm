@@ -45,8 +45,9 @@
 	..()
 	new/obj/effect/decal/cleanable/blood/splatter(src.loc)
 	src.visible_message(SPAN_NOTICE("The [src.name] has been squashed."), SPAN_MODERATE("You hear a smack."))
-	src.reagents.reaction(get_turf(hit_atom))
-	for(var/atom/A in get_turf(hit_atom))
+	var/turf/hit_turf = GET_TURF(hit_atom)
+	src.reagents.reaction(hit_turf)
+	for_no_type_check(var/atom/A, hit_turf)
 		src.reagents.reaction(A)
 	qdel(src)
 	return
@@ -110,8 +111,9 @@
 		SPAN_NOTICE("The [src.name] has been squashed."),
 		SPAN_MODERATE("You hear a smack.")
 	)
-	src.reagents.reaction(get_turf(hit_atom))
-	for(var/atom/A in get_turf(hit_atom))
+	var/turf/hit_turf = GET_TURF(hit_atom)
+	src.reagents.reaction(hit_turf)
+	for_no_type_check(var/atom/A, hit_turf)
 		src.reagents.reaction(A)
 	qdel(src)
 	return
@@ -194,7 +196,7 @@
 			s.set_up(3, 1, M)
 			s.start() //Two set of sparks, one before the teleport and one after.
 		if(2) //Teleports mob the tomato hit instead.
-			for(var/mob/A in get_turf(hit_atom))//For the mobs in the tile that was hit...
+			for(var/mob/A in GET_TURF(hit_atom))//For the mobs in the tile that was hit...
 				s.set_up(3, 1, A)
 				s.start()
 				new/obj/effect/decal/cleanable/molten_item(A.loc) //Leave a pile of goo behind for dramatic effect...
@@ -231,7 +233,7 @@
 
 /obj/item/grown/gibtomato/New()
 	..()
-	src.gibs = new /obj/effect/gibspawner/human(get_turf(src))
+	src.gibs = new /obj/effect/gibspawner/human(GET_TURF(src))
 	src.gibs.attach(src)
 	src.smoke.set_up(10, 0, usr.loc)
 */

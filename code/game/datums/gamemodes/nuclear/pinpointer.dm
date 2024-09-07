@@ -40,7 +40,7 @@
 /obj/item/pinpointer/process()
 	if(!active)
 		return PROCESS_KILL
-	if(isnull(thing_to_find) || get_turf(thing_to_find).z != get_turf(src).z)
+	if(isnull(thing_to_find) || GET_TURF_Z(thing_to_find) != GET_TURF_Z(src))
 		icon_state = "pinonnull"
 		return
 
@@ -76,7 +76,7 @@
 			var/targetY = input(usr, "Please input the y coordinate to search for.", "Location?", "") as num
 			if(!targetY || !(usr in view(1, src)))
 				return
-			var/turf/currentZ = get_turf(src)
+			var/turf/currentZ = GET_TURF(src)
 			thing_to_find = locate(targetX, targetY, currentZ.z)
 			to_chat(usr, SPAN_INFO("You set the pinpointer to locate \[[targetX],[targetY]\]."))
 			return attack_self()
@@ -103,7 +103,7 @@
 					if(!dna_string)
 						return
 					for(var/mob/living/carbon/M in GLOBL.mob_list)
-						if(!M.dna)
+						if(isnull(M.dna))
 							continue
 						if(M.dna.unique_enzymes == dna_string)
 							thing_to_find = M
@@ -139,7 +139,7 @@
 /obj/item/pinpointer/nukeop/process()
 	if(!active)
 		return PROCESS_KILL
-	if(isnull(thing_to_find) || get_turf(thing_to_find).z != get_turf(src).z)
+	if(isnull(thing_to_find) || GET_TURF_Z(thing_to_find) != GET_TURF_Z(src))
 		icon_state = "pinonnull"
 		return
 

@@ -63,18 +63,19 @@
 	return
 
 /obj/item/reagent_holder/spray/proc/Spray_at(atom/A)
-	var/obj/effect/decal/chempuff/D = new/obj/effect/decal/chempuff(get_turf(src))
+	var/obj/effect/decal/chempuff/D = new/obj/effect/decal/chempuff(GET_TURF(src))
 	D.create_reagents(amount_per_transfer_from_this)
 	reagents.trans_to(D, amount_per_transfer_from_this, 1 / spray_size)
 	D.icon += mix_colour_from_reagents(D.reagents.reagent_list)
 
-	var/turf/A_turf = get_turf(A)//BS12
+	var/turf/A_turf = GET_TURF(A)//BS12
 
 	spawn(0)
 		for(var/i = 0, i < spray_size, i++)
 			step_towards(D, A)
-			D.reagents.reaction(get_turf(D))
-			for(var/atom/T in get_turf(D))
+			var/turf/D_turf = GET_TURF(D)
+			D.reagents.reaction(D_turf)
+			for_no_type_check(var/atom/T, D_turf)
 				D.reagents.reaction(T)
 
 				// When spraying against the wall, also react with the wall, but
@@ -190,7 +191,7 @@
 	for(var/i = 1, i <= 3, i++) // intialize sprays
 		if(src.reagents.total_volume < 1)
 			break
-		var/obj/effect/decal/chempuff/D = new/obj/effect/decal/chempuff(get_turf(src))
+		var/obj/effect/decal/chempuff/D = new/obj/effect/decal/chempuff(GET_TURF(src))
 		D.create_reagents(amount_per_transfer_from_this)
 		src.reagents.trans_to(D, amount_per_transfer_from_this)
 
@@ -199,7 +200,7 @@
 		Sprays[i] = D
 
 	var/direction = get_dir(src, A)
-	var/turf/T = get_turf(A)
+	var/turf/T = GET_TURF(A)
 	var/turf/T1 = get_step(T, turn(direction, 90))
 	var/turf/T2 = get_step(T, turn(direction, -90))
 	var/list/the_targets = list(T, T1, T2)
@@ -207,7 +208,7 @@
 	for(var/i = 1, i <= length(Sprays), i++)
 		spawn()
 			var/obj/effect/decal/chempuff/D = Sprays[i]
-			if(!D)
+			if(isnull(D))
 				continue
 
 			// Spreads the sprays a little bit
@@ -216,8 +217,9 @@
 
 			for(var/j = 1, j <= rand(6, 8), j++)
 				step_towards(D, my_target)
-				D.reagents.reaction(get_turf(D))
-				for(var/atom/t in get_turf(D))
+				var/turf/D_turf = GET_TURF(D)
+				D.reagents.reaction(D_turf)
+				for_no_type_check(var/atom/t, D_turf)
 					D.reagents.reaction(t)
 				sleep(2)
 			qdel(D)

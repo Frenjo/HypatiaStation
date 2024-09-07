@@ -12,7 +12,7 @@
 		health -= Proj.damage
 		..()
 		if(health <= 0)
-			new /obj/item/stack/sheet/steel(get_turf(src))
+			new /obj/item/stack/sheet/steel(GET_TURF(src))
 			qdel(src)
 
 		return
@@ -22,16 +22,16 @@
 		if(anchored && !istype(src,/obj/structure/girder/displaced))
 			playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 			user << "\blue Now disassembling the girder"
-			if(do_after(user, 40))
+			if(do_after(user, 4 SECONDS))
 				if(!src)
 					return
 				user << "\blue You dissasembled the girder!"
-				new /obj/item/stack/sheet/steel(get_turf(src))
+				new /obj/item/stack/sheet/steel(GET_TURF(src))
 				qdel(src)
 		else if(!anchored)
 			playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 			user << "\blue Now securing the girder"
-			if(get_turf(user, 40))
+			if(do_after(user, 4 SECONDS))
 				user << "\blue You secured the girder!"
 				new/obj/structure/girder(src.loc)
 				qdel(src)
@@ -42,12 +42,12 @@
 			if(!src)
 				return
 			user << "\blue You slice apart the girder!"
-			new /obj/item/stack/sheet/steel(get_turf(src))
+			new /obj/item/stack/sheet/steel(GET_TURF(src))
 			qdel(src)
 
 	else if(istype(W, /obj/item/pickaxe/diamonddrill))
 		user << "\blue You drill through the girder!"
-		new /obj/item/stack/sheet/steel(get_turf(src))
+		new /obj/item/stack/sheet/steel(GET_TURF(src))
 		qdel(src)
 
 	else if(isscrewdriver(W) && state == 2 && istype(src,/obj/structure/girder/reinforced))
@@ -103,7 +103,7 @@
 				return TRUE
 			S.use(2)
 			user << "\blue You added the plating!"
-			var/turf/T = get_turf(src)
+			var/turf/T = GET_TURF(src)
 			T.ChangeTurf(S.material.wall_path)
 			for(var/turf/closed/wall/X in T.loc)
 				X?.add_hiddenprint(usr)
@@ -175,7 +175,7 @@
 			return TRUE
 		S.use(1)
 		user << "\blue Wall fully reinforced!"
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		T.ChangeTurf(/turf/closed/wall/reinforced)
 		for(var/turf/closed/wall/reinforced/X in T.loc)
 			X?.add_hiddenprint(usr)
@@ -197,19 +197,19 @@
 		user << "\blue Now disassembling the girder"
 		if(do_after(user, 40))
 			user << "\blue You dissasembled the girder!"
-			new /obj/effect/decal/remains/human(get_turf(src))
+			new /obj/effect/decal/remains/human(GET_TURF(src))
 			qdel(src)
 
 	else if(istype(W, /obj/item/pickaxe/plasmacutter))
 		user << "\blue Now slicing apart the girder"
 		if(do_after(user, 30))
 			user << "\blue You slice apart the girder!"
-		new /obj/effect/decal/remains/human(get_turf(src))
+		new /obj/effect/decal/remains/human(GET_TURF(src))
 		qdel(src)
 
 	else if(istype(W, /obj/item/pickaxe/diamonddrill))
 		user << "\blue You drill through the girder!"
-		new /obj/effect/decal/remains/human(get_turf(src))
+		new /obj/effect/decal/remains/human(GET_TURF(src))
 		qdel(src)
 
 /obj/structure/cultgirder/blob_act()
@@ -220,7 +220,7 @@
 	health -= Proj.damage
 	..()
 	if(health <= 0)
-		new /obj/item/stack/sheet/steel(get_turf(src))
+		new /obj/item/stack/sheet/steel(GET_TURF(src))
 		qdel(src)
 
 	return

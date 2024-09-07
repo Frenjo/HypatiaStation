@@ -63,8 +63,9 @@
 /obj/item/toy/balloon/throw_impact(atom/hit_atom)
 	if(src.reagents.total_volume >= 1)
 		src.visible_message(SPAN_WARNING("The [src] bursts!"), "You hear a pop and a splash.")
-		src.reagents.reaction(get_turf(hit_atom))
-		for(var/atom/A in get_turf(hit_atom))
+		var/turf/hit_turf = GET_TURF(hit_atom)
+		src.reagents.reaction(hit_turf)
+		for_no_type_check(var/atom/A, hit_turf)
 			src.reagents.reaction(A)
 		src.icon_state = "burst"
 		spawn(5)
@@ -231,15 +232,15 @@
 		return
 
 	else if(bullets)
-		var/turf/trg = get_turf(target)
-		var/obj/effect/foam_dart_dummy/D = new/obj/effect/foam_dart_dummy(get_turf(src))
+		var/turf/trg = GET_TURF(target)
+		var/obj/effect/foam_dart_dummy/D = new/obj/effect/foam_dart_dummy(GET_TURF(src))
 		bullets--
 		D.icon_state = "foamdart"
 		D.name = "foam dart"
 		playsound(user.loc, 'sound/items/syringeproj.ogg', 50, 1)
 
 		for(var/i = 0, i < 6, i++)
-			if(D)
+			if(isnotnull(D))
 				if(D.loc == trg)
 					break
 				step_towards(D, trg)
@@ -449,7 +450,7 @@
 	else
 		src.empty = 0
 
-		var/obj/effect/decal/D = new/obj/effect/decal/(get_turf(src))
+		var/obj/effect/decal/D = new/obj/effect/decal/(GET_TURF(src))
 		D.name = "water"
 		D.icon = 'icons/obj/chemical.dmi'
 		D.icon_state = "chempuff"
@@ -460,8 +461,9 @@
 		spawn(0)
 			for(var/i = 0, i < 1, i++)
 				step_towards(D, A)
-				D.reagents.reaction(get_turf(D))
-				for(var/atom/T in get_turf(D))
+				var/turf/D_turf = GET_TURF(D)
+				D.reagents.reaction(D_turf)
+				for_no_type_check(var/atom/T, D_turf)
 					D.reagents.reaction(T)
 					if(ismob(T) && T:client)
 						to_chat(T:client, SPAN_WARNING("[user] has sprayed you with water!"))

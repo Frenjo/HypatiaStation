@@ -96,7 +96,7 @@
 				sleep(3)
 				B.Move(get_step(usr, movementdirection), movementdirection)
 
-		var/turf/T = get_turf(target)
+		var/turf/T = GET_TURF(target)
 		var/turf/T1 = get_step(T,turn(direction, 90))
 		var/turf/T2 = get_step(T,turn(direction, -90))
 
@@ -104,21 +104,22 @@
 
 		for(var/a = 0, a < 5, a++)
 			spawn(0)
-				var/obj/effect/water/W = new /obj/effect/water(get_turf(src))
+				var/obj/effect/water/W = new /obj/effect/water(GET_TURF(src))
 				var/turf/my_target = pick(the_targets)
-				if(!W)
+				if(isnull(W))
 					return
 				W.create_reagents(5)
-				if(!W || !src)
+				if(isnull(W) || isnull(src))
 					return
 				src.reagents.trans_to(W, 1)
 				for(var/b = 0, b < 5, b++)
-					step_towards(W,my_target)
-					if(!W)
+					step_towards(W, my_target)
+					if(isnull(W))
 						return
-					W.reagents.reaction(get_turf(W))
-					for(var/atom/atm in get_turf(W))
-						if(!W)
+					var/turf/W_turf = GET_TURF(W)
+					W.reagents.reaction(W_turf)
+					for_no_type_check(var/atom/atm, W_turf)
+						if(isnull(W))
 							return
 						W.reagents.reaction(atm)
 						if(isliving(atm)) //For extinguishing mobs on fire

@@ -74,7 +74,7 @@
 
 /atom/movable/proc/hit_check(speed)
 	if(throwing)
-		for(var/atom/A in get_turf(src))
+		for_no_type_check(var/atom/A, GET_TURF(src))
 			if(A == src)
 				continue
 			if(isliving(A))
@@ -117,7 +117,7 @@
 		dy = SOUTH
 	var/dist_travelled = 0
 	var/dist_since_sleep = 0
-	var/area/a = get_area(src.loc)
+	var/area/a = GET_AREA(src)
 	if(dist_x > dist_y)
 		var/error = dist_x / 2 - dist_y
 		while(isnotnull(src) && isnotnull(target) &&((((x < target.x && dx == EAST) || (x > target.x && dx == WEST)) && dist_travelled < range) || (a && !a.has_gravity) || isspace(loc)) && throwing && isturf(loc))
@@ -146,7 +146,7 @@
 				if(dist_since_sleep >= speed)
 					dist_since_sleep = 0
 					sleep(1)
-			a = get_area(src.loc)
+			a = GET_AREA(src)
 	else
 		var/error = dist_y / 2 - dist_x
 		while(isnotnull(src) && isnotnull(target) &&((((y < target.y && dy == NORTH) || (y > target.y && dy == SOUTH)) && dist_travelled < range) || !a.has_gravity || isspace(loc)) && throwing && isturf(loc))
@@ -176,9 +176,9 @@
 					dist_since_sleep = 0
 					sleep(1)
 
-			a = get_area(src.loc)
+			a = GET_AREA(src)
 
 	//done throwing, either because it hit something or it finished moving
 	throwing = THROW_NONE
 	if(isobj(src))
-		throw_impact(get_turf(src), speed)
+		throw_impact(GET_TURF(src), speed)

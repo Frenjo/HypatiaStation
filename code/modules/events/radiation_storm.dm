@@ -14,12 +14,13 @@
 
 /datum/event/radiation_storm/tick()
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
-		var/turf/T = get_turf(H)
+		var/turf/T = GET_TURF(H)
 		if(isnull(T))
 			continue
 		if(isnotstationlevel(T.z))
 			continue
-		if(HAS_AREA_FLAGS(get_area(T), AREA_FLAG_IS_SHIELDED))
+		var/area/A = GET_AREA(T)
+		if(HAS_AREA_FLAGS(A, AREA_FLAG_IS_SHIELDED))
 			H.client?.screen.Remove(GLOBL.global_hud.rad_storm)
 			continue
 
@@ -36,7 +37,7 @@
 					domutcheck(H, null, MUTCHK_FORCED)
 
 	for(var/mob/living/carbon/monkey/M in GLOBL.living_mob_list)
-		var/turf/T = get_turf(M)
+		var/turf/T = GET_TURF(M)
 		if(isnull(T))
 			continue
 		if(isnotstationlevel(T.z))

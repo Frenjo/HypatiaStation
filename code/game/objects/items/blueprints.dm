@@ -45,7 +45,7 @@
 			edit_area()
 
 /obj/item/blueprints/interact()
-	var/area/A = get_area()
+	var/area/A = GET_AREA(src)
 	var/text = {"<HTML><head><title>[src]</title></head><BODY>
 <h2>[station_name()] blueprints</h2>
 <small>Property of NanoTrasen. For heads of staff only. Store in high-secure storage.</small><hr>
@@ -72,12 +72,7 @@ move an amendment</a> to the drawing.</p>
 	usr << browse(text, "window=blueprints")
 	onclose(usr, "blueprints")
 
-/obj/item/blueprints/proc/get_area()
-	var/turf/T = get_turf(usr)
-	var/area/A = T.loc
-	return A
-
-/obj/item/blueprints/proc/get_area_type(area/A = get_area())
+/obj/item/blueprints/proc/get_area_type(area/A = GET_AREA(src))
 	if(istype(A, /area/space))
 		return AREA_SPACE
 
@@ -97,7 +92,7 @@ move an amendment</a> to the drawing.</p>
 
 /obj/item/blueprints/proc/create_area()
 	//to_world("DEBUG: create_area")
-	var/res = detect_room(get_turf(usr))
+	var/res = detect_room(GET_TURF(usr))
 	if(!islist(res))
 		switch(res)
 			if(ROOM_ERR_SPACE)
@@ -143,7 +138,7 @@ move an amendment</a> to the drawing.</p>
 		//T.loc = A //error: cannot change constant value
 
 /obj/item/blueprints/proc/edit_area()
-	var/area/A = get_area()
+	var/area/A = GET_AREA(src)
 	//to_world("DEBUG: edit_area")
 	var/prevname = "[A.name]"
 	var/str = trim(stripped_input(usr, "New area name:", "Blueprint Editing", prevname, MAX_NAME_LEN))

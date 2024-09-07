@@ -630,8 +630,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Step-towards method of determining whether one atom can see another. Similar to viewers()
 /proc/can_see(atom/source, atom/target, length = 5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
-	var/turf/current = get_turf(source)
-	var/turf/target_turf = get_turf(target)
+	var/turf/current = GET_TURF(source)
+	var/turf/target_turf = GET_TURF(target)
 	var/steps = 0
 
 	while(current != target_turf)
@@ -1028,17 +1028,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	else
 		return zone
 
-//gets the turf the atom is located in (or itself, if it is a turf).
-//returns null if the atom is not in a turf.
-/proc/get_turf(atom/location)
-	RETURN_TYPE(/turf)
-
-	while(location)
-		if(isturf(location))
-			return location
-		location = location.loc
-	return null
-
 /proc/get(atom/loc, type)
 	while(loc)
 		if(istype(loc, type))
@@ -1047,7 +1036,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return null
 
 /proc/get_turf_or_move(turf/location)
-	return get_turf(location)
+	return GET_TURF(location)
 
 /proc/is_hot(obj/item/W)
 	switch(W.type)
