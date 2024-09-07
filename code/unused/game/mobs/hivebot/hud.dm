@@ -195,11 +195,7 @@
 
 
 
-	mymob.pullin = new /atom/movable/screen( null )
-	mymob.pullin.icon = 'icons/mob/screen/screen1_robot.dmi'
-	mymob.pullin.icon_state = "pull0"
-	mymob.pullin.name = "pull"
-	mymob.pullin.screen_loc = ui_pull
+	mymob.pullin = new /atom/movable/screen/action/pull('icons/mob/screen/screen1_robot.dmi', UI_PULL)
 
 	mymob.blind = new /atom/movable/screen( null )
 	mymob.blind.icon = 'icons/mob/screen/screen1_full.dmi''

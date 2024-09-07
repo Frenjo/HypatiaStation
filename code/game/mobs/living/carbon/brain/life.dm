@@ -218,8 +218,7 @@
 		else
 			healths.icon_state = "health7"
 
-	if(isnotnull(pullin))
-		pullin.icon_state = "pull[pulling ? 1 : 0]"
+	pullin?.icon_state = "pull[pulling ? 1 : 0]"
 	if(isnotnull(client))
 		client.screen.Remove(GLOBL.global_hud.blurry, GLOBL.global_hud.druggy, GLOBL.global_hud.vimpaired)
 

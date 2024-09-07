@@ -43,7 +43,7 @@
 	R.bodytemp = setup_screen_object("body temperature", 'icons/mob/screen/screen1.dmi', "temp0", UI_TEMP)
 	R.oxygen = setup_screen_object("oxygen", 'icons/mob/screen/screen1_robot.dmi', "oxy0", UI_OXYGEN)
 	R.fire = setup_screen_object("fire", 'icons/mob/screen/screen1_robot.dmi', "fire0", UI_FIRE)
-	R.pullin = setup_screen_object("pull", 'icons/mob/screen/screen1_robot.dmi', "pull0", UI_BORG_PULL)
+	R.pullin = new /atom/movable/screen/action/pull('icons/mob/screen/screen1_robot.dmi', UI_BORG_PULL)
 
 	R.blind = new /atom/movable/screen()
 	R.blind.icon = 'icons/mob/screen/screen1_full.dmi'

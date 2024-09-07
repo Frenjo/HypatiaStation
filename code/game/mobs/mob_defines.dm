@@ -14,27 +14,38 @@
 	//Not in use yet
 	var/obj/effect/organstructure/organStructure = null
 
-	var/atom/movable/screen/flash = null
-	var/atom/movable/screen/blind = null
 	var/atom/movable/screen/hands = null
-	var/atom/movable/screen/pullin = null
 	var/atom/movable/screen/internals = null
-	var/atom/movable/screen/oxygen = null
 	var/atom/movable/screen/i_select = null
 	var/atom/movable/screen/m_select = null
+
+	// Actions
+	var/atom/movable/screen/action/throw_icon/throw_icon = null
+	var/atom/movable/screen/action/pull/pullin = null
+
+	// Warnings
+	var/atom/movable/screen/oxygen = null
 	var/atom/movable/screen/toxin = null
 	var/atom/movable/screen/fire = null
-	var/atom/movable/screen/bodytemp = null
 	var/atom/movable/screen/healths = null
-	var/atom/movable/screen/throw_icon = null
-	var/atom/movable/screen/nutrition_icon = null
+
 	var/atom/movable/screen/pressure = null
-	var/atom/movable/screen/damageoverlay = null
-	var/atom/movable/screen/pain = null
+
+	var/atom/movable/screen/bodytemp = null
+
+	var/atom/movable/screen/nutrition_icon = null
+
+	// Guns
 	var/atom/movable/screen/gun/item/item_use_icon = null
 	var/atom/movable/screen/gun/move/gun_move_icon = null
 	var/atom/movable/screen/gun/run/gun_run_icon = null
 	var/atom/movable/screen/gun/mode/gun_setting_icon = null
+
+	// Fullscreen
+	var/atom/movable/screen/blind = null
+	var/atom/movable/screen/damageoverlay = null
+	var/atom/movable/screen/flash = null
+	var/atom/movable/screen/pain = null
 
 	/*A bunch of this stuff really needs to go under their own defines instead of being globally attached to mob.
 	A variable should only be globally attached to turfs/objects/whatever, when it is in fact needed as such.

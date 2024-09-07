@@ -145,6 +145,7 @@
 #include "code\_onclick\hud\parallax.dm"
 #include "code\_onclick\hud\robot.dm"
 #include "code\_onclick\hud\screen_objects\_screen.dm"
+#include "code\_onclick\hud\screen_objects\actions.dm"
 #include "code\_onclick\hud\screen_objects\gun.dm"
 #include "code\_onclick\hud\screen_objects\intent.dm"
 #include "code\_onclick\hud\screen_objects\inventory.dm"

@@ -80,7 +80,7 @@
 		move_intent = using
 
 	if(hud_data.has_drop)
-		using = setup_screen_object("drop", ui_style, "act_drop", UI_DROP_THROW)
+		using = new /atom/movable/screen/action/drop(ui_style, UI_DROP_THROW)
 		using.color = ui_colour
 		using.alpha = ui_alpha
 		hotkey_buttons.Add(using)
@@ -141,19 +141,19 @@
 		adding.Add(using)
 
 	if(hud_data.has_resist)
-		using = setup_screen_object("resist", ui_style, "act_resist", UI_PULL_RESIST)
+		using = new /atom/movable/screen/action/resist(ui_style, UI_PULL_RESIST)
 		using.color = ui_colour
 		using.alpha = ui_alpha
 		hotkey_buttons.Add(using)
 
 	if(hud_data.has_throw)
-		H.throw_icon = setup_screen_object("throw", ui_style, "act_throw_off", UI_DROP_THROW)
+		H.throw_icon = new /atom/movable/screen/action/throw_icon(ui_style, UI_DROP_THROW)
 		H.throw_icon.color = ui_colour
 		H.throw_icon.alpha = ui_alpha
 		hotkey_buttons.Add(H.throw_icon)
 		hud_elements |= H.throw_icon
 
-		H.pullin = setup_screen_object("pull", ui_style, "pull0", UI_PULL_RESIST)
+		H.pullin = new /atom/movable/screen/action/pull(ui_style, UI_PULL_RESIST)
 		hotkey_buttons.Add(H.pullin)
 		hud_elements |= H.pullin
 

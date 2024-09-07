@@ -23,8 +23,7 @@
 	adding.Add(using)
 	move_intent = using
 
-	using = setup_screen_object("drop", ui_style, "act_drop", UI_DROP_THROW)
-	adding.Add(using)
+	adding.Add(new /atom/movable/screen/action/drop(ui_style, UI_DROP_THROW))
 
 	inv_box = new /atom/movable/screen/inventory()
 	inv_box.name = "r_hand"
@@ -76,7 +75,9 @@
 	inv_box.slot_id = SLOT_ID_BACK
 	adding.Add(inv_box)
 
-	M.throw_icon = setup_screen_object("throw", ui_style, "act_throw_off", UI_DROP_THROW)
+	M.throw_icon = new /atom/movable/screen/action/throw_icon(ui_style, UI_DROP_THROW)
+	M.pullin = new /atom/movable/screen/action/pull(ui_style, UI_PULL_RESIST)
+
 	M.oxygen = setup_screen_object("oxygen", ui_style, "oxy0", UI_OXYGEN)
 	M.pressure = setup_screen_object("pressure", ui_style, "pressure0", UI_PRESSURE)
 	M.toxin = setup_screen_object("toxin", ui_style, "tox0", UI_TOXIN)
@@ -84,7 +85,6 @@
 	M.fire = setup_screen_object("fire", ui_style, "fire0", UI_FIRE)
 	M.bodytemp = setup_screen_object("body temperature", ui_style, "temp1", UI_TEMP)
 	M.healths = setup_screen_object("health", ui_style, "health0", UI_HEALTH)
-	M.pullin = setup_screen_object("pull", ui_style, "pull0", UI_PULL_RESIST)
 
 	M.blind = new /atom/movable/screen()
 	M.blind.icon = 'icons/mob/screen/screen1_full.dmi'

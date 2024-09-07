@@ -253,8 +253,7 @@
 			else
 				bodytemp.icon_state = "temp-2"
 
-	if(isnotnull(pullin))
-		pullin.icon_state = "pull[pulling ? 1 : 0]"
+	pullin?.icon_state = "pull[pulling ? 1 : 0]"
 //Oxygen and fire does nothing yet!!
 //	if(oxygen) oxygen.icon_state = "oxy[oxygen_alert ? 1 : 0]"
 //	if(fire) fire.icon_state = "fire[fire_alert ? 1 : 0]"

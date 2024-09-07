@@ -22,8 +22,7 @@
 	adding.Add(using)
 	move_intent = using
 
-	using = setup_screen_object("drop", 'icons/mob/screen/screen1_alien.dmi', "act_drop", UI_DROP_THROW)
-	adding.Add(using)
+	adding.Add(new /atom/movable/screen/action/drop('icons/mob/screen/screen1_alien.dmi', UI_DROP_THROW))
 
 //equippable shit
 	//suit
@@ -105,20 +104,15 @@
 //end of equippable shit
 
 /*
-	using = new /atom/movable/screen()
-	using.name = "resist"
-	using.icon = 'icons/mob/screen/screen1_alien.dmi'
-	using.icon_state = "act_resist"
-	using.screen_loc = ui_resist
-	adding.Add(using
+	adding.Add(new /atom/movable/screen/action/resist('icons/mob/screen/screen1_alien.dmi', UI_RESIST))
 */
 
-	owner.throw_icon = setup_screen_object("throw", 'icons/mob/screen/screen1_alien.dmi', "act_throw_off", UI_DROP_THROW)
+	owner.throw_icon = new /atom/movable/screen/action/throw_icon('icons/mob/screen/screen1_alien.dmi', UI_DROP_THROW)
 	owner.oxygen = setup_screen_object("oxygen", 'icons/mob/screen/screen1_alien.dmi', "oxy0", UI_ALIEN_OXYGEN)
 	owner.toxin = setup_screen_object("toxin", 'icons/mob/screen/screen1_alien.dmi', "tox0", UI_ALIEN_TOXIN)
 	owner.fire = setup_screen_object("fire", 'icons/mob/screen/screen1_alien.dmi', "fire0", UI_ALIEN_FIRE)
 	owner.healths = setup_screen_object("health", 'icons/mob/screen/screen1_alien.dmi', "health0", UI_ALIEN_HEALTH)
-	owner.pullin = setup_screen_object("pull", 'icons/mob/screen/screen1_alien.dmi', "pull0", UI_PULL_RESIST)
+	owner.pullin = new /atom/movable/screen/action/pull('icons/mob/screen/screen1_alien.dmi', UI_PULL_RESIST)
 
 	owner.blind = new /atom/movable/screen()
 	owner.blind.icon = 'icons/mob/screen/screen1_full.dmi'

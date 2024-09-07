@@ -171,11 +171,7 @@
 	using.mouse_opacity = FALSE
 	src.vimpaired += using
 
-	mymob.throw_icon = new /atom/movable/screen(null)
-	mymob.throw_icon.icon = ui_style
-	mymob.throw_icon.icon_state = "act_throw_off"
-	mymob.throw_icon.name = "throw"
-	mymob.throw_icon.screen_loc = ui_throw
+	mymob.throw_icon = new /atom/movable/screen/action/throw_toggle(ui_style, UI_THROW)
 
 	mymob.oxygen = new /atom/movable/screen( null )
 	mymob.oxygen.icon = ui_style
@@ -219,11 +215,7 @@
 	mymob.healths.name = "health"
 	mymob.healths.screen_loc = ui_health
 
-	mymob.pullin = new /atom/movable/screen( null )
-	mymob.pullin.icon = ui_style
-	mymob.pullin.icon_state = "pull0"
-	mymob.pullin.name = "pull"
-	mymob.pullin.screen_loc = ui_pull
+	mymob.pullin = new /atom/movable/screen/action/pull(ui_style, UI_PULL)
 
 	mymob.blind = new /atom/movable/screen( null )
 	mymob.blind.icon = ui_style

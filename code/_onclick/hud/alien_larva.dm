@@ -16,7 +16,7 @@
 	owner.toxin = setup_screen_object("toxin", 'icons/mob/screen/screen1_alien.dmi', "tox0", UI_ALIEN_TOXIN)
 	owner.fire = setup_screen_object("fire", 'icons/mob/screen/screen1_alien.dmi', "fire0", UI_ALIEN_FIRE)
 	owner.healths = setup_screen_object("health", 'icons/mob/screen/screen1_alien.dmi', "health0", UI_ALIEN_HEALTH)
-	owner.pullin = setup_screen_object("pull", 'icons/mob/screen/screen1_alien.dmi', "pull0", UI_PULL_RESIST)
+	owner.pullin = new /atom/movable/screen/action/pull('icons/mob/screen/screen1_alien.dmi', UI_PULL_RESIST)
 
 	owner.blind = new /atom/movable/screen()
 	owner.blind.icon = 'icons/mob/screen/screen1_full.dmi'
