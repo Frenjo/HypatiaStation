@@ -53,8 +53,8 @@
 	for(var/mob/living/M in GLOBL.mob_list)
 		// Easy checks first.
 		// Don't detect mobs on CentCom. Since the wizard den is on CentCom, we only need this.
-		var/turf/T = get_turf(M)
-		if(!T)
+		var/turf/T = GET_TURF(M)
+		if(isnull(T))
 			continue
 		if(T.z == 2)
 			continue
@@ -156,7 +156,7 @@
 				continue
 
 			if(U.eyeobj)
-				U.eyeobj.setLoc(get_turf(target))
+				U.eyeobj.setLoc(GET_TURF(target))
 			else
 				view_core()
 				return
@@ -178,7 +178,7 @@
 		return
 	if(!can_use())
 		return
-	user.eyeobj.setLoc(get_turf(src))
+	user.eyeobj.setLoc(GET_TURF(src))
 
 
 /mob/living/silicon/ai/attack_ai(mob/user)

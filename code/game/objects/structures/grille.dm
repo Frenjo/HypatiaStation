@@ -196,7 +196,7 @@
 		return 0
 	if(!in_range(src, user))//To prevent TK and mech users from getting shocked
 		return 0
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	var/obj/structure/cable/C = T.get_cable_node()
 	if(C)
 		if(electrocute_mob(user, C, src))

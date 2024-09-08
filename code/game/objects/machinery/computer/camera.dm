@@ -78,7 +78,7 @@
 	else
 		if(isAI(user))
 			var/mob/living/silicon/ai/A = user
-			A.eyeobj.setLoc(get_turf(C))
+			A.eyeobj.setLoc(GET_TURF(C))
 			A.client.eye = A.eyeobj
 		else
 			src.current = C
@@ -125,7 +125,7 @@
 /mob/Move(n, direct)
 	if(istype(machine, /obj/machinery/computer/security))
 		var/obj/machinery/computer/security/console = machine
-		var/turf/T = get_turf(console.current)
+		var/turf/T = GET_TURF(console.current)
 		for(var/i; i < 10; i++)
 			T = get_step(T, direct)
 		console.jump_on_click(src, T)

@@ -151,7 +151,7 @@
 		G.reagents.trans_to(src, G.reagents.total_volume)
 
 	if(src.reagents.total_volume) //The possible reactions didnt use up all reagents.
-		make_steam(10, FALSE, get_turf(src), src)
+		make_steam(10, FALSE, GET_TURF(src), src)
 
 		for(var/atom/A in view(affected_area, src.loc))
 			if(A == src)

@@ -44,14 +44,14 @@
 					SPAN_NOTICE("[user] climbs up \the [src]!"),
 					SPAN_NOTICE("You climb up \the [src]!")
 				)
-				user.loc = get_turf(up)
+				user.loc = GET_TURF(up)
 				up.add_fingerprint(user)
 			if("Down")
 				user.visible_message(
 					SPAN_NOTICE("[user] climbs down \the [src]!"),
 					SPAN_NOTICE("You climb down \the [src]!")
 				)
-				user.loc = get_turf(down)
+				user.loc = GET_TURF(down)
 				down.add_fingerprint(user)
 			if("Cancel")
 				return
@@ -61,7 +61,7 @@
 			SPAN_NOTICE("[user] climbs up \the [src]!"),
 			SPAN_NOTICE("You climb up \the [src]!")
 		)
-		user.loc = get_turf(up)
+		user.loc = GET_TURF(up)
 		up.add_fingerprint(user)
 
 	else if(down)
@@ -69,7 +69,7 @@
 			SPAN_NOTICE("[user] climbs down \the [src]!"),
 			SPAN_NOTICE("You climb down \the [src]!")
 		)
-		user.loc = get_turf(down)
+		user.loc = GET_TURF(down)
 		down.add_fingerprint(user)
 
 	add_fingerprint(user)

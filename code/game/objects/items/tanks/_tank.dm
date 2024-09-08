@@ -246,7 +246,7 @@
 		pressure = air_contents.return_pressure()
 		var/range = (pressure - TANK_FRAGMENT_PRESSURE) / TANK_FRAGMENT_SCALE
 		range = min(range, GLOBL.max_explosion_range)		// was 8 - - - Changed to a configurable define -- TLE
-		var/turf/epicenter = get_turf(loc)
+		var/turf/epicenter = GET_TURF(src)
 
 		//to_world("\blue Exploding Pressure: [pressure] kPa, intensity: [range]")
 
@@ -256,8 +256,8 @@
 	else if(pressure > TANK_RUPTURE_PRESSURE)
 		//to_world("\blue[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]")
 		if(integrity <= 0)
-			var/turf/open/T = get_turf(src)
-			if(isnull(T))
+			var/turf/open/T = GET_TURF(src)
+			if(!istype(T))
 				return
 			T.assume_air(air_contents)
 			playsound(src, 'sound/effects/spray.ogg', 10, 1, -3)
@@ -268,8 +268,8 @@
 	else if(pressure > TANK_LEAK_PRESSURE)
 		//to_world("\blue[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]")
 		if(integrity <= 0)
-			var/turf/open/T = get_turf(src)
-			if(isnull(T))
+			var/turf/open/T = GET_TURF(src)
+			if(!istype(T))
 				return
 			var/datum/gas_mixture/leaked_gas = air_contents.remove_ratio(0.25)
 			T.assume_air(leaked_gas)

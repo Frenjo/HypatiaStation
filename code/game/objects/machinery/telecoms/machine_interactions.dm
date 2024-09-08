@@ -272,13 +272,13 @@
 // You are able to send/receive signals from the station's z level (changeable in the STATION_Z #define) if
 // the relay is on the telecomm satellite (changable in the TELECOMM_Z #define)
 /obj/machinery/telecoms/relay/proc/toggle_level()
-	var/turf/position = get_turf(src)
+	var/position_z = GET_TURF_Z(src)
 
 	// Toggle on/off getting signals from the station or the current Z level
 	if(src.listening_level == STATION_Z) // equals the station
-		src.listening_level = position.z
+		src.listening_level = position_z
 		return 1
-	else if(position.z == TELECOMM_Z)
+	else if(position_z == TELECOMM_Z)
 		src.listening_level = STATION_Z
 		return 1
 	return 0

@@ -180,26 +180,26 @@ Implant Specifics:<BR>"}
 						istype(part, /datum/organ/external/groin) ||	\
 						istype(part, /datum/organ/external/head))
 						part.createwound(BRUISE, 60)	//mangle them instead
-						explosion(get_turf(imp_in), -1, -1, 2, 3)
+						explosion(GET_TURF(imp_in), -1, -1, 2, 3)
 						qdel(src)
 					else
-						explosion(get_turf(imp_in), -1, -1, 2, 3)
+						explosion(GET_TURF(imp_in), -1, -1, 2, 3)
 						part.droplimb(1)
 						qdel(src)
 			if(elevel == "Destroy Body")
-				explosion(get_turf(T), -1, 0, 1, 6)
+				explosion(GET_TURF(T), -1, 0, 1, 6)
 				T.gib()
 			if(elevel == "Full Explosion")
-				explosion(get_turf(T), 0, 1, 3, 6)
+				explosion(GET_TURF(T), 0, 1, 3, 6)
 				T.gib()
 
 		else
-			explosion(get_turf(imp_in), 0, 1, 3, 6)
+			explosion(GET_TURF(imp_in), 0, 1, 3, 6)
 
 	if(need_gib)
 		imp_in.gib()
 
-	var/turf/t = get_turf(imp_in)
+	var/turf/t = GET_TURF(imp_in)
 
 	if(t)
 		t.hotspot_expose(3500, 125)
@@ -250,7 +250,7 @@ Implant Specifics:<BR>"}
 					part.createwound(BRUISE, 60)	//mangle them instead
 				else
 					part.droplimb(1)
-			explosion(get_turf(imp_in), -1, -1, 2, 3)
+			explosion(GET_TURF(imp_in), -1, -1, 2, 3)
 			qdel(src)
 
 
@@ -482,7 +482,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		activate()
 
 /obj/item/implant/compressed/activate()
-	var/turf/t = get_turf(src)
+	var/turf/t = GET_TURF(src)
 	if(imp_in)
 		imp_in.put_in_hands(scanned)
 	else

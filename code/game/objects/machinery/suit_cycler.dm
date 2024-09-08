@@ -249,12 +249,12 @@
 	if(href_list["eject_suit"])
 		if(!suit)
 			return
-		suit.loc = get_turf(src)
+		suit.loc = GET_TURF(src)
 		suit = null
 	else if(href_list["eject_helmet"])
 		if(!helmet)
 			return
-		helmet.loc = get_turf(src)
+		helmet.loc = GET_TURF(src)
 		helmet = null
 	else if(href_list["select_department"])
 		target_department = input("Please select the target department paintjob.", "Suit cycler", null) as null|anything in departments
@@ -367,8 +367,8 @@
 		occupant.radiation += radiation_level * 10
 
 /obj/machinery/suit_cycler/proc/finished_job()
-	var/turf/T = get_turf(src)
-	T.visible_message("\The [src] pings loudly.")
+	var/turf/T = GET_TURF(src)
+	T?.visible_message("\The [src] pings loudly.")
 	icon_state = initial(icon_state)
 	active = 0
 	src.updateUsrDialog()
@@ -402,7 +402,7 @@
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
 
-	occupant.loc = get_turf(occupant)
+	occupant.loc = GET_TURF(occupant)
 	occupant = null
 
 	add_fingerprint(usr)

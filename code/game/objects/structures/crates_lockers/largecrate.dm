@@ -15,7 +15,7 @@
 /obj/structure/largecrate/attackby(obj/item/W, mob/user)
 	if(iscrowbar(W))
 		new /obj/item/stack/sheet/wood(src)
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		for(var/obj/O in contents)
 			O.loc = T
 		user.visible_message(

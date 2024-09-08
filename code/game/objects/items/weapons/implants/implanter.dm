@@ -24,9 +24,9 @@
 	if(isnotnull(user) && isnotnull(imp))
 		visible_message(SPAN_WARNING("[user] is attemping to implant [M]."))
 
-		var/turf/T = get_turf(M)
+		var/turf/T = GET_TURF(M)
 		if(isnotnull(T) && (M == user || do_after(user, 50)))
-			if(isnotnull(user) && isnotnull(M) && (get_turf(M) == T) && isnotnull(src) && isnotnull(imp))
+			if(isnotnull(user) && isnotnull(M) && (GET_TURF(M) == T) && isnotnull(src) && isnotnull(imp))
 				visible_message(SPAN_WARNING("[M] has been implanted by [user]."))
 
 				M.attack_log += "\[[time_stamp()]\] <font color='orange'> Implanted with [name] ([imp.name])  by [user.name] ([user.ckey])</font>"

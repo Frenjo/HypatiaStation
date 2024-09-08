@@ -33,7 +33,7 @@
 
 	playsound(src, 'sound/machines/click.ogg', 15, 1, -3)
 	for(var/obj/O in src)
-		O.loc = get_turf(src)
+		O.loc = GET_TURF(src)
 	icon_state = icon_opened
 	src.opened = 1
 
@@ -50,7 +50,7 @@
 
 	playsound(src, 'sound/machines/click.ogg', 15, 1, -3)
 	var/itemcount = 0
-	for(var/obj/O in get_turf(src))
+	for(var/obj/O in GET_TURF(src))
 		if(itemcount >= storage_capacity)
 			break
 		if(O.density || O.anchored || istype(O, /obj/structure/closet))

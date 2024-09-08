@@ -82,9 +82,8 @@
 
 /obj/item/grenade/proc/prime()
 //	playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-	var/turf/T = get_turf(src)
-	if(T)
-		T.hotspot_expose(700,125)
+	var/turf/T = GET_TURF(src)
+	T?.hotspot_expose(700,125)
 
 /obj/item/grenade/attack_tool(obj/item/tool, mob/user)
 	if(isscrewdriver(tool))

@@ -46,7 +46,7 @@
 				for(var/obj/machinery/teleport/hub/H in range(1))
 					var/amount = rand(2, 5)
 					for(var/i = 0; i < amount; i++)
-						new /mob/living/simple/hostile/carp(get_turf(H))
+						new /mob/living/simple/hostile/carp(GET_TURF(H))
 				//
 			else
 				for(var/mob/O in hearers(src, null))
@@ -74,8 +74,8 @@
 	var/list/areaindex = list()
 
 	for(var/obj/item/radio/beacon/R in GLOBL.movable_atom_list)
-		var/turf/T = get_turf(R)
-		if(!T)
+		var/turf/T = GET_TURF(R)
+		if(isnull(T))
 			continue
 		if(isnotplayerlevel(T.z))
 			continue
@@ -94,10 +94,7 @@
 			if(M.stat == DEAD)
 				if(M.timeofdeath + 6000 < world.time)
 					continue
-			var/turf/T = get_turf(M)
-			if(T)
-				continue
-			if(T.z == 2)
+			if(GET_TURF_Z(M) == 2)
 				continue
 			var/tmpname = M.real_name
 			if(areaindex[tmpname])
@@ -244,7 +241,7 @@
 				precision = rand(1,100)
 
 
-	var/turf/destturf = get_turf(destination)
+	var/turf/destturf = GET_TURF(destination)
 
 	var/tx = destturf.x + rand(precision * -1, precision)
 	var/ty = destturf.y + rand(precision * -1, precision)

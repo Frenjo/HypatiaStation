@@ -58,7 +58,7 @@
 
 /obj/item/stool/attack_self(mob/user)
 	..()
-	origin.loc = get_turf(src)
+	origin.loc = GET_TURF(src)
 	user.u_equip(src)
 	user.visible_message(
 		SPAN_INFO("[user] puts [src] down."),
@@ -70,7 +70,7 @@
 	if(prob(5) && isliving(M))
 		user.visible_message(SPAN_WARNING("[user] breaks [src] over [M]'s back!"))
 		user.u_equip(src)
-		new /obj/item/stack/sheet/steel(get_turf(src))
+		new /obj/item/stack/sheet/steel(GET_TURF(src))
 		qdel(src)
 		var/mob/living/T = M
 		T.Weaken(10)

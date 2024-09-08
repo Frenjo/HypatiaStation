@@ -118,7 +118,7 @@
 	. = ..()
 	if(istype(W, /obj/item/stack/sheet/steel) && isnull(l_arm) && isnull(r_arm) && isnull(l_leg) && isnull(r_leg) && isnull(chest) && isnull(head))
 		var/obj/item/stack/sheet/steel/M = W
-		var/obj/item/ed209_assembly/B = new /obj/item/ed209_assembly(get_turf(src))
+		var/obj/item/ed209_assembly/B = new /obj/item/ed209_assembly(GET_TURF(src))
 		to_chat(user, SPAN_INFO("You reinforce the robot frame."))
 		M.use(1)
 		if(user.get_inactive_hand() == src)
@@ -216,7 +216,7 @@
 				to_chat(user, SPAN_WARNING("This [W] does not seem to fit."))
 				return
 
-			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(get_turf(loc), unfinished = 1)
+			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(GET_TURF(src), unfinished = 1)
 			if(isnull(O))
 				return
 
@@ -299,7 +299,7 @@
 			to_chat(user, SPAN_INFO("You insert the flash into the eye socket!"))
 	else if(istype(W, /obj/item/stock_part/manipulator))
 		to_chat(user, SPAN_INFO("You install some manipulators and modify the head, creating a functional spider-bot!"))
-		new /mob/living/simple/spiderbot(get_turf(loc))
+		new /mob/living/simple/spiderbot(GET_TURF(src))
 		user.drop_item()
 		qdel(W)
 		qdel(src)

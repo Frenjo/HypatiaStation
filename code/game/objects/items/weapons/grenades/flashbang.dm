@@ -7,17 +7,17 @@
 
 /obj/item/grenade/flashbang/prime()
 	..()
-	for(var/obj/structure/closet/L in view(get_turf(src), null))
-		if(locate(/mob/living/carbon/, L))
+	for(var/obj/structure/closet/L in view(GET_TURF(src), null))
+		if(locate(/mob/living/carbon, L))
 			for(var/mob/living/carbon/M in L)
-				bang(get_turf(src), M)
+				bang(GET_TURF(src), M)
 
 
-	for(var/mob/living/carbon/M in viewers(get_turf(src), null))
-		bang(get_turf(src), M)
+	for(var/mob/living/carbon/M in viewers(GET_TURF(src), null))
+		bang(GET_TURF(src), M)
 
-	for(var/obj/effect/blob/B in view(8,get_turf(src)))       		//Blob damage here
-		var/damage = round(30/(get_dist(B,get_turf(src))+1))
+	for(var/obj/effect/blob/B in view(8, GET_TURF(src)))		//Blob damage here
+		var/damage = round(30 / (get_dist(B, GET_TURF(src)) + 1))
 		B.health -= damage
 		B.update_icon()
 	qdel(src)

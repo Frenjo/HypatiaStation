@@ -711,7 +711,7 @@
 	..()
 
 /obj/machinery/bot/mulebot/alter_health()
-	return get_turf(src)
+	return GET_TURF(src)
 
 // called from mob/living/carbon/human/Crossed()
 // when mulebot is in the same loc
@@ -868,7 +868,7 @@
 /obj/machinery/bot/mulebot/explode()
 	visible_message(SPAN_DANGER("[src] blows apart!"), 1)
 
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	new /obj/item/assembly/prox_sensor(T)
 	new /obj/item/stack/rods(T)
 	new /obj/item/stack/rods(T)

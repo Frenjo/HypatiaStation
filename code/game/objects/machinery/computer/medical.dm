@@ -107,8 +107,8 @@
 					for(var/obj/machinery/bot/medbot/M in GLOBL.bots_list)
 
 						if(M.z != src.z)	continue	//only find medibots on the same z-level as the computer
-						var/turf/bl = get_turf(M)
-						if(bl)	//if it can't find a turf for the medibot, then it probably shouldn't be showing up
+						var/turf/bl = GET_TURF(M)
+						if(isnotnull(bl))	//if it can't find a turf for the medibot, then it probably shouldn't be showing up
 							bdat += "[M.name] - <b>\[[bl.x],[bl.y]\]</b> - [M.on ? "Online" : "Offline"]<br>"
 							if((isnotnull(M.reagent_glass)) && M.use_beaker)
 								bdat += "Reservoir: \[[M.reagent_glass.reagents.total_volume]/[M.reagent_glass.reagents.maximum_volume]\]<br>"

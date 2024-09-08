@@ -55,7 +55,7 @@
 
 /obj/structure/lattice/attackby(obj/item/C, mob/user)
 	if(istype(C, /obj/item/stack/tile/metal/grey))
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		T.attackby(C, user) //BubbleWrap - hand this off to the underlying turf instead
 		return
 	if(iswelder(C))

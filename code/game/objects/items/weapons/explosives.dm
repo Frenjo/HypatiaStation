@@ -68,7 +68,7 @@
 
 		user << "Bomb has been planted. Timer counting down from [timer]."
 		spawn(timer*10)
-			explode(get_turf(target))
+			explode(GET_TURF(target))
 
 /obj/item/plastique/proc/explode(var/location)
 	if(!target)

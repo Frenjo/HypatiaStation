@@ -75,7 +75,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 
 		visible_message(SPAN_INFO("The console beeps happily as it disgorges \the [I]."), 3)
 
-		I.loc = get_turf(src)
+		I.loc = GET_TURF(src)
 		GLOBL.frozen_items -= I
 
 	else if(href_list["allitems"])
@@ -86,7 +86,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 		visible_message(SPAN_INFO("The console beeps happily as it disgorges the desired objects."), 3)
 
 		for(var/obj/item/I in GLOBL.frozen_items)
-			I.loc = get_turf(src)
+			I.loc = GET_TURF(src)
 			GLOBL.frozen_items -= I
 
 	else if(href_list["crew"])
@@ -387,7 +387,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 		occupant.client.eye = src.occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
 
-	occupant.loc = get_turf(src)
+	occupant.loc = GET_TURF(src)
 	occupant = null
 
 	if(orient_right)

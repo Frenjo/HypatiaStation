@@ -12,7 +12,7 @@
 /obj/item/grenade/spawnergrenade/prime()	// Prime now just handles the two loops that query for people in lockers and people who can see it.
 	if(spawner_type && deliveryamt)
 		// Make a quick flash
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		playsound(T, 'sound/effects/phasein.ogg', 100, 1)
 		for(var/mob/living/carbon/human/M in viewers(T, null))
 			if(M:eyecheck() <= 0)

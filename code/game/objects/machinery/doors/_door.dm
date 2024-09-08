@@ -35,7 +35,7 @@
 	if(density)
 		layer = closed_layer // Above most items if closed.
 		explosion_resistance = initial(explosion_resistance)
-		update_heat_protection(get_turf(src))
+		update_heat_protection(GET_TURF(src))
 	else
 		layer = open_layer // Under all objects if opened.
 		explosion_resistance = 0

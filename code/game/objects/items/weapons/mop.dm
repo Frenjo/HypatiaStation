@@ -34,11 +34,11 @@
 			to_chat(user, SPAN_NOTICE("Your mop is dry!"))
 			return
 
-		user.visible_message(SPAN_WARNING("[user] begins to clean \the [get_turf(A)]."))
+		user.visible_message(SPAN_WARNING("[user] begins to clean \the [GET_TURF(A)]."))
 
 		if(do_after(user, 40))
 			if(A)
-				clean(get_turf(A))
+				clean(GET_TURF(A))
 			to_chat(user, SPAN_NOTICE("You have finished mopping!"))
 
 /obj/effect/attack_by(obj/item/I, mob/user)

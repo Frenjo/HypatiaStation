@@ -69,12 +69,12 @@
 	if(!do_after(usr, 50))
 		return
 
-	usr.loc = get_turf(src)
-	if(get_turf(usr) == get_turf(src))
+	usr.loc = GET_TURF(src)
+	if(GET_TURF(usr) == GET_TURF(src))
 		usr.visible_message(SPAN_WARNING("[usr] climbs onto \the [src]!"))
 
 /obj/structure/proc/structure_shaken()
-	for(var/mob/living/M in get_turf(src))
+	for(var/mob/living/M in GET_TURF(src))
 		if(M.lying)
 			return //No spamming this on people.
 

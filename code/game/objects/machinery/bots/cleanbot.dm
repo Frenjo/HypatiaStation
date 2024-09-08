@@ -318,7 +318,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 	on = FALSE
 	visible_message(SPAN_DANGER("[src] blows apart!"), 1)
 
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	new /obj/item/reagent_holder/glass/bucket(T)
 	new /obj/item/assembly/prox_sensor(T)
 	if(prob(50))
@@ -366,7 +366,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 	if(istype(I, /obj/item/robot_parts/l_arm) || istype(I, /obj/item/robot_parts/r_arm))
 		user.drop_item()
 		qdel(I)
-		var/obj/machinery/bot/cleanbot/bot = new /obj/machinery/bot/cleanbot(get_turf(loc))
+		var/obj/machinery/bot/cleanbot/bot = new /obj/machinery/bot/cleanbot(GET_TURF(src))
 		bot.name = created_name
 		to_chat(user, SPAN_INFO("You add the robot arm to the bucket and sensor assembly. Beep boop!"))
 		user.drop_from_inventory(src)

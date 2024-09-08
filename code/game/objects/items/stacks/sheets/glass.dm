@@ -40,7 +40,7 @@
 			SPAN_NOTICE("[user] attaches some wire to \the [src]."),
 			SPAN_NOTICE("You attach some wire to \the [src].")
 		)
-		new /obj/item/stack/light_w(get_turf(loc))
+		new /obj/item/stack/light_w(GET_TURF(src))
 		return TRUE
 
 	return ..()
@@ -48,7 +48,7 @@
 /obj/item/stack/sheet/glass/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/rods = I
-		var/obj/item/stack/sheet/glass/reinforced/new_glass = new /obj/item/stack/sheet/glass/reinforced(get_turf(loc))
+		var/obj/item/stack/sheet/glass/reinforced/new_glass = new /obj/item/stack/sheet/glass/reinforced(GET_TURF(src))
 		new_glass.add_fingerprint(user)
 		new_glass.add_to_stacks(user)
 		rods.use(1)
@@ -294,7 +294,7 @@
 		if(!welder.remove_fuel(0, user))
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return TRUE
-		var/turf/T = get_turf(loc)
+		var/turf/T = GET_TURF(src)
 		var/obj/item/stack/sheet/glass/new_glass = new /obj/item/stack/sheet/glass(T)
 		for(var/obj/item/stack/sheet/glass/glass in T)
 			if(glass == new_glass)

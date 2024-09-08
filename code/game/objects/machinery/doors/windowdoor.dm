@@ -19,12 +19,7 @@
 	var/health = 150.0 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
 
 /obj/machinery/door/window/update_nearby_tiles(need_rebuild)
-	if(!global.PCair)
-		return 0
-
-	global.PCair.mark_for_update(get_turf(src))
-
-	return 1
+	global.PCair?.mark_for_update(GET_TURF(src))
 
 /obj/machinery/door/window/initialise()
 	. = ..()

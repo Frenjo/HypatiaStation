@@ -347,7 +347,7 @@
 			W.reset_plane_and_layer()
 		W.loc = new_location
 	else
-		W.loc = get_turf(src)
+		W.loc = GET_TURF(src)
 
 	if(isnotnull(usr))
 		orient2hud(usr)
@@ -427,7 +427,7 @@
 	if((!ishuman(usr) && (loc != usr)) || usr.stat || usr.restrained())
 		return
 
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	hide_from(usr)
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
@@ -463,7 +463,7 @@
 		return
 	// Now make the cardboard
 	to_chat(user, SPAN_NOTICE("You fold [src] flat."))
-	new foldable(get_turf(src))
+	new foldable(GET_TURF(src))
 	qdel(src)
 //BubbleWrap END
 

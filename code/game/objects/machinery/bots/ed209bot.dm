@@ -694,7 +694,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 /obj/machinery/bot/ed209/Bumped(atom/movable/M)
 	spawn(0)
 		if(M)
-			var/turf/T = get_turf(src)
+			var/turf/T = GET_TURF(src)
 			M:loc = T
 */
 
@@ -706,7 +706,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	walk_to(src, 0)
 	visible_message(SPAN_DANGER("[src] blows apart!"), 1)
 
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	var/obj/item/ed209_assembly/Sa = new /obj/item/ed209_assembly(T)
 	Sa.build_step = 1
 	Sa.overlays.Add(image('icons/obj/aibots.dmi', "hs_hole"))
@@ -844,13 +844,13 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 /obj/machinery/bot/ed209/bluetag/New()//If desired, you spawn red and bluetag bots easily
 	SHOULD_CALL_PARENT(FALSE)
 
-	new /obj/machinery/bot/ed209(get_turf(src), null, "b")
+	new /obj/machinery/bot/ed209(GET_TURF(src), null, "b")
 	qdel(src)
 
 /obj/machinery/bot/ed209/redtag/New()
 	SHOULD_CALL_PARENT(FALSE)
 
-	new /obj/machinery/bot/ed209(get_turf(src), null, "r")
+	new /obj/machinery/bot/ed209(GET_TURF(src), null, "r")
 	qdel(src)
 
 // ED-209 Assembly
@@ -988,7 +988,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			if(istype(W, /obj/item/cell))
 				build_step++
 				to_chat(user, SPAN_INFO("You complete the ED-209."))
-				new /obj/machinery/bot/ed209(get_turf(src), created_name, lasercolor)
+				new /obj/machinery/bot/ed209(GET_TURF(src), created_name, lasercolor)
 				user.drop_item()
 				qdel(W)
 				user.drop_from_inventory(src)

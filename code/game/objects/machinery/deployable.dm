@@ -39,9 +39,10 @@
 			else
 		if (src.health <= 0)
 			visible_message("\red <B>The barricade is smashed apart!</B>")
-			new /obj/item/stack/sheet/wood(get_turf(src))
-			new /obj/item/stack/sheet/wood(get_turf(src))
-			new /obj/item/stack/sheet/wood(get_turf(src))
+			var/turf/T = GET_TURF(src)
+			new /obj/item/stack/sheet/wood(T)
+			new /obj/item/stack/sheet/wood(T)
+			new /obj/item/stack/sheet/wood(T)
 			qdel(src)
 		..()
 
@@ -55,17 +56,19 @@
 			src.health -= 25
 			if (src.health <= 0)
 				visible_message("\red <B>The barricade is blown apart!</B>")
-				new /obj/item/stack/sheet/wood(get_turf(src))
-				new /obj/item/stack/sheet/wood(get_turf(src))
-				new /obj/item/stack/sheet/wood(get_turf(src))
+				var/turf/T = GET_TURF(src)
+				new /obj/item/stack/sheet/wood(T)
+				new /obj/item/stack/sheet/wood(T)
+				new /obj/item/stack/sheet/wood(T)
 				qdel(src)
 			return
 
 /obj/structure/barricade/wooden/meteorhit()
 	visible_message("\red <B>The barricade is smashed apart!</B>")
-	new /obj/item/stack/sheet/wood(get_turf(src))
-	new /obj/item/stack/sheet/wood(get_turf(src))
-	new /obj/item/stack/sheet/wood(get_turf(src))
+	var/turf/T = GET_TURF(src)
+	new /obj/item/stack/sheet/wood(T)
+	new /obj/item/stack/sheet/wood(T)
+	new /obj/item/stack/sheet/wood(T)
 	qdel(src)
 	return
 
@@ -209,10 +212,9 @@
 
 /obj/machinery/deployable/barrier/proc/explode()
 	visible_message("\red <B>[src] blows apart!</B>")
-	var/turf/Tsec = get_turf(src)
 
 /*	var/obj/item/stack/rods/ =*/
-	new /obj/item/stack/rods(Tsec)
+	new /obj/item/stack/rods(GET_TURF(src))
 
 	make_sparks(3, TRUE, src)
 

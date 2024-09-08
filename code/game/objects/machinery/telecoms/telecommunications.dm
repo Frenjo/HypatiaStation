@@ -45,8 +45,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/telecoms/telecoms_list)
 	//Set the listening_level if there's none.
 	if(!listening_level)
 		//Defaults to our Z level!
-		var/turf/position = get_turf(src)
-		listening_level = position.z
+		listening_level = GET_TURF_Z(src)
 
 /obj/machinery/telecoms/initialise()
 	. = ..()
@@ -187,9 +186,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/telecoms/telecoms_list)
 
 // Used in auto linking
 /obj/machinery/telecoms/proc/add_link(obj/machinery/telecoms/T)
-	var/turf/position = get_turf(src)
-	var/turf/T_position = get_turf(T)
-	if(position.z == T_position.z || (src.long_range_link && T.long_range_link))
+	if(GET_TURF_Z(src) == GET_TURF_Z(T) || (src.long_range_link && T.long_range_link))
 		for(var/x in autolinkers)
 			if(T.autolinkers.Find(x))
 				if(src != T)

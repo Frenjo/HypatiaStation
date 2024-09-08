@@ -16,7 +16,7 @@
 	var/caught_bees = 0
 
 /obj/item/bee_net/attack_self(mob/user)
-	var/turf/T = get_step(get_turf(user), user.dir)
+	var/turf/T = get_step(GET_TURF(user), user.dir)
 	for(var/mob/living/simple/bee/B in T)
 		if(B.feral < 0)
 			caught_bees += B.strength

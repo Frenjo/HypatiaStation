@@ -153,7 +153,7 @@
 	else if(href_list["eject"])
 		flick("farmbot_hatch", src)
 		for(var/obj/item/nutrient/fert in contents)
-			fert.loc = get_turf(src)
+			fert.loc = GET_TURF(src)
 
 	updateUsrDialog()
 
@@ -200,7 +200,7 @@
 	on = FALSE
 	visible_message(SPAN_DANGER("[src] blows apart!"), 1)
 
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	new /obj/item/minihoe(T)
 	new /obj/item/reagent_holder/glass/bucket(T)
 	new /obj/item/assembly/prox_sensor(T)
@@ -564,7 +564,7 @@
 	if(isprox(I) && build_step == 3)
 		build_step++
 		to_chat(user, SPAN_INFO("You complete the Farmbot! Beep boop."))
-		var/obj/machinery/bot/farmbot/S = new /obj/machinery/bot/farmbot(get_turf(src))
+		var/obj/machinery/bot/farmbot/S = new /obj/machinery/bot/farmbot(GET_TURF(src))
 		for(var/obj/structure/reagent_dispensers/watertank/wTank in contents)
 			wTank.loc = S
 			S.tank = wTank

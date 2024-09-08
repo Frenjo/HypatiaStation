@@ -75,7 +75,7 @@
 		if(3)
 			// State 3
 			if(iswirecutter(tool))
-				new /obj/item/stack/cable_coil(get_turf(src), 2)
+				new /obj/item/stack/cable_coil(GET_TURF(src), 2)
 				playsound(src, 'sound/items/Wirecutter.ogg', 50, 1)
 				to_chat(user, SPAN_NOTICE("You cut the wires from the circuits."))
 				state = 2
@@ -126,7 +126,7 @@
 		if(isnotnull(U))
 			to_chat(user, SPAN_NOTICE("You unattach an upgrade from the assembly."))
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
-			U.loc = get_turf(src)
+			U.loc = GET_TURF(src)
 			upgrades.Remove(U)
 		else
 			to_chat(user, SPAN_WARNING("There are no upgrades to unattach."))

@@ -937,7 +937,7 @@
 		NEWSPAPER.news_content += FC
 	if(global.CTeconomy.news_network.wanted_issue)
 		NEWSPAPER.important_message = global.CTeconomy.news_network.wanted_issue
-	NEWSPAPER.loc = get_turf(src)
+	NEWSPAPER.loc = GET_TURF(src)
 	paper_remaining--
 	return
 
@@ -946,7 +946,7 @@
 //	return									//bode well with a newscaster network of 10+ machines. Let's just return it, as it's added in the machines list.
 
 /obj/machinery/newscaster/proc/newsAlert(channel)	//This isn't Agouri's work, for it is ugly and vile.
-	var/turf/T = get_turf(src)						//Who the fuck uses spawn(600) anyway, jesus christ
+	var/turf/T = GET_TURF(src)						//Who the fuck uses spawn(600) anyway, jesus christ
 	if(channel)
 		for(var/mob/O in hearers(world.view - 1, T))
 			O.show_message(SPAN("newscaster", "<EM>[name]</EM> beeps, \"Breaking news from [channel]!\""), 2)

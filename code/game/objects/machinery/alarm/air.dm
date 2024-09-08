@@ -642,7 +642,7 @@
 		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr>[return_controls()]</body></html>"
 
 /obj/machinery/air_alarm/proc/return_status()
-	var/turf/location = get_turf(src)
+	var/turf/location = GET_TURF(src)
 	var/datum/gas_mixture/environment = location.return_air()
 	var/total = environment.total_moles
 	var/output = "<b>Air Status:</b><br>"

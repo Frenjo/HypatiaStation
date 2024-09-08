@@ -36,7 +36,7 @@
 			I.loc = src
 
 /obj/structure/closet/alter_health()
-	return get_turf(src)
+	return GET_TURF(src)
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || (height == 0 || wall_mounted))
@@ -49,7 +49,7 @@
 	return 1
 
 /obj/structure/closet/proc/can_close()
-	for(var/obj/structure/closet/closet in get_turf(src))
+	for(var/obj/structure/closet/closet in GET_TURF(src))
 		if(closet != src)
 			return 0
 	return 1

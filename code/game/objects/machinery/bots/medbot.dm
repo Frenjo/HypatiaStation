@@ -152,7 +152,7 @@
 
 	else if(href_list["eject"] && isnotnull(reagent_glass))
 		if(!locked)
-			reagent_glass.loc = get_turf(src)
+			reagent_glass.loc = GET_TURF(src)
 			reagent_glass = null
 		else
 			to_chat(usr, SPAN_NOTICE("You cannot eject the beaker because the panel is locked."))
@@ -285,7 +285,7 @@
 
 	if(patient && !length(path) && (get_dist(src, patient) > 1))
 		spawn(0)
-			path = AStar(loc, get_turf(patient), /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 30,id=botcard)
+			path = AStar(loc, GET_TURF(patient), /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 30,id=botcard)
 			if(!path)
 				path = list()
 			if(!length(path))
@@ -440,7 +440,7 @@
 	on = 0
 	visible_message(SPAN_DANGER("[src] blows apart!"))
 
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	new /obj/item/storage/firstaid(T)
 	new /obj/item/assembly/prox_sensor(T)
 	new /obj/item/health_analyser(T)
@@ -468,7 +468,7 @@
 /obj/machinery/bot/medbot/Bumped(atom/movable/M)
 	spawn(0)
 		if (M)
-			var/turf/T = get_turf(src)
+			var/turf/T = GET_TURF(src)
 			M:loc = T
 */
 
@@ -572,7 +572,7 @@
 				qdel(I)
 				build_step++
 				to_chat(user, SPAN_INFO("You complete the Medibot! Beep boop."))
-				var/obj/machinery/bot/medbot/S = new /obj/machinery/bot/medbot(get_turf(src))
+				var/obj/machinery/bot/medbot/S = new /obj/machinery/bot/medbot(GET_TURF(src))
 				S.skin = skin
 				S.name = created_name
 				user.drop_from_inventory(src)

@@ -62,8 +62,8 @@
 		return
 	// Make sure our user is still holding us
 	if(user && user.get_active_hand() == src)
-		var/turf/target_turf = get_turf(target)
-		if(target_turf)
+		var/turf/target_turf = GET_TURF(target)
+		if(isnotnull(target_turf))
 			var/turflist = getline(user, target_turf)
 			flame_turf(turflist)
 
@@ -71,7 +71,7 @@
 	if(user.stat || user.restrained() || user.lying)
 		return
 	if(iswrench(W) && !status)//Taking this apart
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		if(weldtool)
 			weldtool.loc = T
 			weldtool = null
@@ -185,10 +185,10 @@
 	for(var/turf/T in turflist)
 		if(T.density || isspace(T))
 			break
-		if(!previousturf && length(turflist) > 1)
-			previousturf = get_turf(src)
+		if(isnull(previousturf) && length(turflist) > 1)
+			previousturf = GET_TURF(src)
 			continue	//so we don't burn the tile we be standin on
-		if(previousturf && LinkBlocked(previousturf, T))
+		if(isnotnull(previousturf) && LinkBlocked(previousturf, T))
 			break
 		ignite_turf(T)
 		sleep(1)

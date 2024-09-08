@@ -137,15 +137,13 @@
 	/*
 	wow this is stupid, someone help me
 	*/
-	var/turf/T_src = get_turf(src)
-	if(!T_src.loc)
+	var/area/A_src = GET_AREA(src)
+	if(isnull(A_src))
 		return 0
-	var/area/A_src = T_src.loc
 
-	var/turf/T_scrub = get_turf(scrubber)
-	if(!T_scrub.loc)
+	var/area/A_scrub = GET_AREA(scrubber)
+	if(isnull(A_scrub))
 		return 0
-	var/area/A_scrub = T_scrub.loc
 
 	if(A_scrub != A_src)
 		return 0
@@ -157,17 +155,14 @@
 
 	var/found = 0
 
-	var/turf/T = get_turf(src)
-	if(!T.loc)
+	var/area/A = GET_AREA(src)
+	if(isnull(A))
 		return
-	var/area/A = T.loc
 	for(var/obj/machinery/portable_atmospherics/scrubber/huge/scrubber in GLOBL.machines)
-		var/turf/T2 = get_turf(scrubber)
-		if(T2 && T2.loc)
-			var/area/A2 = T2.loc
-			if(istype(A2) && A2 == A)
-				connectedscrubbers += scrubber
-				found = 1
+		var/area/A2 = GET_AREA(scrubber)
+		if(istype(A2) && A2 == A)
+			connectedscrubbers += scrubber
+			found = 1
 
 	if(!found)
 		status = "ERROR: No scrubber found!"

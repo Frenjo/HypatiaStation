@@ -140,7 +140,7 @@ Please wait until completion...</TT><BR>
 
 					spawn(build_time)
 						if(isnotnull(src.being_built))
-							src.being_built.loc = get_turf(src)
+							src.being_built.loc = GET_TURF(src)
 							src.being_built = null
 						update_power_state(USE_POWER_IDLE)
 						src.operating = 0

@@ -36,7 +36,7 @@
 			if(ishuman(user))
 				user.put_in_hands(I)
 			else
-				I.loc = get_turf(src)
+				I.loc = GET_TURF(src)
 			to_chat(user, SPAN_NOTICE("You find \an [I] in the cistern."))
 			w_items -= I.w_class
 			return
@@ -68,7 +68,7 @@
 			var/mob/living/GM = G.affecting
 
 			if(G.state > 1)
-				if(!GM.loc == get_turf(src))
+				if(!GM.loc == GET_TURF(src))
 					to_chat(user, SPAN_NOTICE("[GM.name] needs to be on the toilet."))
 					return
 				if(open && !swirlie)
@@ -123,7 +123,7 @@
 		if(isliving(G.affecting))
 			var/mob/living/GM = G.affecting
 			if(G.state > 1)
-				if(!GM.loc == get_turf(src))
+				if(!GM.loc == GET_TURF(src))
 					to_chat(user, SPAN_NOTICE("[GM.name] needs to be on the urinal."))
 					return
 				user.visible_message(

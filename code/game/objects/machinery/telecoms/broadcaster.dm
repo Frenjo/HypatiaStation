@@ -474,8 +474,7 @@
 	// --- Broadcast only to intercom devices ---
 	if(data == 1)
 		for(var/obj/item/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
-			var/turf/position = get_turf(R)
-			if(position && position.z == level)
+			if(GET_TURF_Z(R) == level)
 				receive |= R.send_hear(display_freq, level)
 
 	// --- Broadcast only to intercoms and station-bounced radios ---
@@ -483,8 +482,7 @@
 		for(var/obj/item/radio/R in connection.devices["[RADIO_CHAT]"])
 			if(istype(R, /obj/item/radio/headset))
 				continue
-			var/turf/position = get_turf(R)
-			if(position && position.z == level)
+			if(GET_TURF_Z(R) == level)
 				receive |= R.send_hear(display_freq)
 
 	// --- Broadcast to syndicate radio! ---
@@ -492,15 +490,13 @@
 		var/datum/radio_frequency/syndicateconnection = global.CTradio.return_frequency(FREQUENCY_SYNDICATE)
 
 		for(var/obj/item/radio/R in syndicateconnection.devices["[RADIO_CHAT]"])
-			var/turf/position = get_turf(R)
-			if(position && position.z == level)
+			if(GET_TURF_Z(R) == level)
 				receive |= R.send_hear(FREQUENCY_SYNDICATE)
 
 	// --- Broadcast to ALL radio devices ---
 	else
 		for(var/obj/item/radio/R in connection.devices["[RADIO_CHAT]"])
-			var/turf/position = get_turf(R)
-			if(position && position.z == level)
+			if(GET_TURF_Z(R) == level)
 				receive |= R.send_hear(display_freq)
 
   /* ###### Organize the receivers into categories for displaying the message ###### */
@@ -638,14 +634,12 @@
 //Use this to test if an obj can communicate with a Telecommunications Network
 /atom/proc/test_telecoms()
 	var/datum/signal/signal = src.telecoms_process()
-	var/turf/position = get_turf(src)
-	return (position.z in signal.data["level"] && signal.data["done"])
+	return (GET_TURF_Z(src) in signal.data["level"] && signal.data["done"])
 
 /atom/proc/telecoms_process()
 	// First, we want to generate a new radio signal
 	var/datum/signal/signal = new /datum/signal()
 	signal.transmission_method = 2 // 2 would be a subspace transmission.
-	var/turf/pos = get_turf(src)
 
 	// --- Finally, tag the actual signal with the appropriate values ---
 	signal.data = list(
@@ -656,7 +650,7 @@
 		"type" = 4, // determines what type of radio input it is: test broadcast
 		"reject" = 0,
 		"done" = 0,
-		"level" = pos.z // The level it is being broadcasted at.
+		"level" = GET_TURF_Z(src) // The level it is being broadcasted at.
 	)
 	signal.frequency = FREQUENCY_COMMON// Common channel
 

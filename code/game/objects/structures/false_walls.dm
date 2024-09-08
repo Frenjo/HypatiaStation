@@ -77,7 +77,7 @@
 		return
 
 	if(density)
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		if(T.density)
 			user << "\red The wall is blocked!"
 			return
@@ -91,34 +91,34 @@
 			if( WT:welding )
 				T.ChangeTurf(material.wall_path)
 				if(!istype(material, /decl/material/plasma)) // Stupid shit keeps me from pushing the attackby() to plasma walls -Sieve
-					T = get_turf(src)
+					T = GET_TURF(src)
 					T.attackby(W, user)
 				qdel(src)
 	else
 		user << "\blue You can't reach, close it first!"
 
-	if( istype(W, /obj/item/pickaxe/plasmacutter) )
-		var/turf/T = get_turf(src)
+	if(istype(W, /obj/item/pickaxe/plasmacutter))
+		var/turf/T = GET_TURF(src)
 		T.ChangeTurf(material.wall_path)
 		if(!istype(material, /decl/material/plasma))
-			T = get_turf(src)
+			T = GET_TURF(src)
 			T.attackby(W, user)
 		qdel(src)
 
 	//DRILLING
-	else if (istype(W, /obj/item/pickaxe/diamonddrill))
-		var/turf/T = get_turf(src)
+	else if(istype(W, /obj/item/pickaxe/diamonddrill))
+		var/turf/T = GET_TURF(src)
 		T.ChangeTurf(material.wall_path)
-		T = get_turf(src)
-		T.attackby(W,user)
+		T = GET_TURF(src)
+		T.attackby(W, user)
 		qdel(src)
 
-	else if( istype(W, /obj/item/melee/energy/blade) )
-		var/turf/T = get_turf(src)
+	else if(istype(W, /obj/item/melee/energy/blade))
+		var/turf/T = GET_TURF(src)
 		T.ChangeTurf(material.wall_path)
 		if(!istype(material, /decl/material/plasma))
-			T = get_turf(src)
-			T.attackby(W,user)
+			T = GET_TURF(src)
+			T.attackby(W, user)
 		qdel(src)
 
 /obj/structure/falsewall/update_icon()//Calling icon_update will refresh the smoothwalls if it's closed, otherwise it will make sure the icon is correct if it's open
@@ -158,40 +158,40 @@
 		return
 
 	if(isscrewdriver(W))
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		user.visible_message("[user] tightens some bolts on the r wall.", "You tighten the bolts on the wall.")
 		T.ChangeTurf(/turf/closed/wall/steel) //Intentionally makes a regular wall instead of an r-wall (no cheap r-walls for you).
 		qdel(src)
 
 	if(iswelder(W))
 		var/obj/item/weldingtool/WT = W
-		if( WT.remove_fuel(0,user) )
-			var/turf/T = get_turf(src)
+		if(WT.remove_fuel(0, user))
+			var/turf/T = GET_TURF(src)
 			T.ChangeTurf(/turf/closed/wall/steel)
-			T = get_turf(src)
-			T.attackby(W,user)
+			T = GET_TURF(src)
+			T.attackby(W, user)
 			qdel(src)
 
-	else if( istype(W, /obj/item/pickaxe/plasmacutter) )
-		var/turf/T = get_turf(src)
+	else if(istype(W, /obj/item/pickaxe/plasmacutter))
+		var/turf/T = GET_TURF(src)
 		T.ChangeTurf(/turf/closed/wall/steel)
-		T = get_turf(src)
-		T.attackby(W,user)
+		T = GET_TURF(src)
+		T.attackby(W, user)
 		qdel(src)
 
 	//DRILLING
-	else if (istype(W, /obj/item/pickaxe/diamonddrill))
-		var/turf/T = get_turf(src)
+	else if(istype(W, /obj/item/pickaxe/diamonddrill))
+		var/turf/T = GET_TURF(src)
 		T.ChangeTurf(/turf/closed/wall/steel)
-		T = get_turf(src)
-		T.attackby(W,user)
+		T = GET_TURF(src)
+		T.attackby(W, user)
 		qdel(src)
 
-	else if( istype(W, /obj/item/melee/energy/blade) )
-		var/turf/T = get_turf(src)
+	else if(istype(W, /obj/item/melee/energy/blade))
+		var/turf/T = GET_TURF(src)
 		T.ChangeTurf(/turf/closed/wall/steel)
-		T = get_turf(src)
-		T.attackby(W,user)
+		T = GET_TURF(src)
+		T.attackby(W, user)
 		qdel(src)
 
 /*

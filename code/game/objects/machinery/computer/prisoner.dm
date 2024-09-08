@@ -33,8 +33,8 @@
 		dat += "<HR>Chemical Implants<BR>"
 		var/turf/Tr = null
 		for(var/obj/item/implant/chem/C in GLOBL.movable_atom_list)
-			Tr = get_turf(C)
-			if((Tr) && (Tr.z != src.z))
+			Tr = GET_TURF(C)
+			if(isnotnull(Tr) && (Tr.z != src.z))
 				continue//Out of range
 			if(!C.implanted)
 				continue
@@ -45,16 +45,15 @@
 			dat += "********************************<BR>"
 		dat += "<HR>Tracking Implants<BR>"
 		for(var/obj/item/implant/tracking/T in GLOBL.movable_atom_list)
-			Tr = get_turf(T)
-			if((Tr) && (Tr.z != src.z))
+			Tr = GET_TURF(T)
+			if(isnotnull(Tr) && (Tr.z != src.z))
 				continue//Out of range
 			if(!T.implanted)
 				continue
 			var/loc_display = "Unknown"
 			var/mob/living/carbon/M = T.imp_in
 			if(isstationlevel(M.z) && !isspace(M.loc))
-				var/turf/mob_loc = get_turf(M)
-				loc_display = mob_loc.loc
+				loc_display = GET_AREA(M)
 			if(T.malfunction)
 				loc_display = pick(GLOBL.teleportlocs)
 			dat += "ID: [T.id] | Location: [loc_display]<BR>"

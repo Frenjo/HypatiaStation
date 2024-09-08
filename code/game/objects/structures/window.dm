@@ -304,11 +304,7 @@
 
 //This proc has to do with airgroups and atmos, it has nothing to do with smoothwindows, that's update_nearby_tiles().
 /obj/structure/window/proc/update_nearby_tiles(need_rebuild)
-	if(!global.PCair)
-		return 0
-	global.PCair.mark_for_update(get_turf(src))
-
-	return 1
+	global.PCair?.mark_for_update(GET_TURF(src))
 
 //checks if this window is full-tile one
 /obj/structure/window/proc/is_fulltile()

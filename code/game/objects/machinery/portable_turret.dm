@@ -629,9 +629,9 @@ Status: []<BR>"},
 			sleep(shot_delay)
 			last_fired = 0
 
-	var/turf/T = get_turf(src)
-	var/turf/U = get_turf(target)
-	if (!istype(T) || !istype(U))
+	var/turf/T = GET_TURF(src)
+	var/turf/U = GET_TURF(target)
+	if(!istype(T) || !istype(U))
 		return
 
 	if (!raised) // the turret has to be raised in order to fire - makes sense, right?

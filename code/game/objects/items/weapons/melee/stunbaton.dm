@@ -60,7 +60,7 @@
 /obj/item/melee/baton/attack_tool(obj/item/tool, mob/user)
 	if(isscrewdriver(tool) && isnotnull(bcell))
 		to_chat(user, SPAN_NOTICE("You remove \the [bcell] from \the [src]."))
-		bcell.loc = get_turf(loc)
+		bcell.loc = GET_TURF(src)
 		bcell.updateicon()
 		bcell = null
 		status = 0

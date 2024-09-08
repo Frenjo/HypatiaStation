@@ -343,7 +343,7 @@
 	on = FALSE
 	visible_message(SPAN_DANGER("[src] blows apart!"))
 
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	var/obj/item/storage/toolbox/mechanical/N = new /obj/item/storage/toolbox/mechanical(T)
 	N.contents = list()
 	new /obj/item/assembly/prox_sensor(T)
@@ -417,7 +417,7 @@
 
 	if(has_sensor && (istype(I, /obj/item/robot_parts/l_arm) || istype(I, /obj/item/robot_parts/r_arm)))
 		qdel(I)
-		var/obj/machinery/bot/floorbot/bot = new /obj/machinery/bot/floorbot(get_turf(user.loc))
+		var/obj/machinery/bot/floorbot/bot = new /obj/machinery/bot/floorbot(GET_TURF(src))
 		bot.name = created_name
 		to_chat(user, SPAN_INFO("You add the robot arm to the odd looking toolbox assembly! Boop beep!"))
 		user.drop_from_inventory(src)

@@ -9,7 +9,7 @@
 /obj/structure/coatrack/attack_hand(mob/user)
 	user.visible_message("[user] takes [coat] off \the [src].", "You take [coat] off the \the [src]")
 	if(!user.put_in_active_hand(coat))
-		coat.loc = get_turf(user)
+		coat.loc = GET_TURF(user)
 	coat = null
 	update_icon()
 

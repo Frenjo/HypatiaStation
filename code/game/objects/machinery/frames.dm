@@ -11,7 +11,7 @@
 
 /obj/item/frame/attackby(obj/item/W, mob/user)
 	if(iswrench(W))
-		new refund_type(get_turf(src.loc), refund_amt)
+		new refund_type(GET_TURF(src), refund_amt)
 		qdel(src)
 		return
 	..()
@@ -24,7 +24,7 @@
 	if(!(ndir in GLOBL.cardinal))
 		return
 
-	var/turf/loc = get_turf(usr)
+	var/turf/loc = GET_TURF(usr)
 	var/area/A = loc.loc
 	if(!istype(loc, /turf/open/floor))
 		to_chat(usr, SPAN_WARNING("\The [src] cannot be placed on this spot."))

@@ -237,9 +237,9 @@
 	return
 
 /obj/machinery/turret/proc/shootAt(atom/movable/target)
-	var/turf/T = get_turf(src)
-	var/turf/U = get_turf(target)
-	if(!T || !U)
+	var/turf/T = GET_TURF(src)
+	var/turf/U = GET_TURF(target)
+	if(isnull(T) || isnull(U))
 		return
 	var/obj/item/projectile/A
 	if(src.lasers)
@@ -627,7 +627,7 @@
 		cur_target = null
 		return
 	src.set_dir(get_dir(src, target))
-	var/turf/targloc = get_turf(target)
+	var/turf/targloc = GET_TURF(target)
 	var/target_x = targloc.x
 	var/target_y = targloc.y
 	var/target_z = targloc.z
@@ -636,9 +636,9 @@
 		for(var/i = 1 to min(projectiles, projectiles_per_shot))
 			if(!src)
 				break
-			var/turf/curloc = get_turf(src)
+			var/turf/curloc = GET_TURF(src)
 			targloc = locate(target_x + GaussRandRound(deviation, 1), target_y + GaussRandRound(deviation, 1), target_z)
-			if(!targloc || !curloc)
+			if(isnull(targloc) || isnull(curloc))
 				continue
 			if(targloc == curloc)
 				continue

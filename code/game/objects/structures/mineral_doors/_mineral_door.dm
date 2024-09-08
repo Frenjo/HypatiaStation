@@ -124,7 +124,7 @@
 
 /obj/structure/mineral_door/proc/Dismantle(devastated = 0)
 	if(isnotnull(material.sheet_path))
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		if(!devastated)
 			for(var/i = 1, i <= oreAmount, i++)
 				new material.sheet_path(T)
@@ -149,7 +149,4 @@
 	return
 
 /obj/structure/mineral_door/proc/update_nearby_tiles(need_rebuild) //Copypasta from airlock code
-	if(!global.PCair)
-		return 0
-	global.PCair.mark_for_update(get_turf(src))
-	return 1
+	global.PCair?.mark_for_update(GET_TURF(src))

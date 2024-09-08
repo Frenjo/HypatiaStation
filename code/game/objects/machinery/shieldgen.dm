@@ -29,12 +29,7 @@
 
 //Looks like copy/pasted code... I doubt 'need_rebuild' is even used here - Nodrak
 /obj/machinery/shield/proc/update_nearby_tiles(need_rebuild)
-	if(!global.PCair)
-		return 0
-
-	global.PCair.mark_for_update(get_turf(src))
-
-	return 1
+	global.PCair?.mark_for_update(GET_TURF(src))
 
 /obj/machinery/shield/attackby(obj/item/W, mob/user)
 	if(!istype(W))
@@ -301,7 +296,7 @@
 				src.shields_down()
 			anchored = FALSE
 		else
-			if(isspace(get_turf(src)))
+			if(isspace(GET_TURF(src)))
 				return //No wrenching these in space!
 			playsound(src, 'sound/items/Ratchet.ogg', 100, 1)
 			user << "\blue You secure the [src] to the floor!"

@@ -201,7 +201,7 @@
 
 /obj/structure/stool/bed/chair/janicart/attack_hand(mob/user)
 	if(isnotnull(mybag))
-		mybag.loc = get_turf(user)
+		mybag.loc = GET_TURF(user)
 		user.put_in_hands(mybag)
 		mybag = null
 	else

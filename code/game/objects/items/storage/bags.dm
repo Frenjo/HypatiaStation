@@ -204,7 +204,7 @@
 
 // Modified quick_empty verb drops appropriate sized stacks
 /obj/item/storage/bag/sheetsnatcher/quick_empty()
-	var/location = get_turf(src)
+	var/location = GET_TURF(src)
 	for(var/obj/item/stack/sheet/S in contents)
 		while(S.amount)
 			var/obj/item/stack/sheet/N = new S.type(location)

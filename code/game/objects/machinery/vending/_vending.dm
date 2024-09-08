@@ -474,7 +474,7 @@
 	if(icon_vend) //Show the vending animation if needed
 		flick(icon_vend, src)
 	spawn(vend_delay)
-		new R.product_path(get_turf(src))
+		new R.product_path(GET_TURF(src))
 		vend_ready = TRUE
 		return
 

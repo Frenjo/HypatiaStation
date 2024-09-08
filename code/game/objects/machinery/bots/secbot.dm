@@ -650,7 +650,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 /obj/machinery/bot/secbot/Bumped(atom/movable/M)
 	spawn(0)
 		if(M)
-			var/turf/T = get_turf(src)
+			var/turf/T = GET_TURF(src)
 			M:loc = T
 */
 
@@ -661,7 +661,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 /obj/machinery/bot/secbot/explode()
 	walk_to(src, 0)
 	visible_message(SPAN_DANGER("[src] blows apart!"), 1)
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 
 	var/obj/item/secbot_assembly/Sa = new /obj/item/secbot_assembly(T)
 	Sa.build_step = 1
@@ -751,7 +751,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	if(istype(I, /obj/item/melee/baton) && build_step >= 3)
 		user.drop_item()
 		build_step++
-		var/obj/machinery/bot/secbot/bot = new /obj/machinery/bot/secbot(get_turf(src))
+		var/obj/machinery/bot/secbot/bot = new /obj/machinery/bot/secbot(GET_TURF(src))
 		bot.name = created_name
 		to_chat(user, SPAN_INFO("You complete the Securitron! Beep boop."))
 		qdel(I)

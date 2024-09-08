@@ -67,8 +67,8 @@
 	var/list/crewmembers = list()
 
 	for(var/obj/item/clothing/under/C in src.tracked)
-		var/turf/pos = get_turf(C)
-		if((C) && (C.has_sensor) && (pos) && (pos.z == src.z) && C.sensor_mode)
+		var/turf/pos = GET_TURF(C)
+		if(isnotnull(C) && (C.has_sensor) && (pos?.z == src.z) && C.sensor_mode)
 			if(ishuman(C.loc))
 
 				var/mob/living/carbon/human/H = C.loc
