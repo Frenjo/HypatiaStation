@@ -116,24 +116,24 @@
 	if(!recursion_limit)
 		return L
 
-	for_no_type_check(var/atom/A, O.contents)
-		if(ismob(A))
-			var/mob/M = A
+	for_no_type_check(var/atom/movable/mover, O)
+		if(ismob(mover))
+			var/mob/M = mover
 			if(client_check && isnull(M.client))
-				L |= recursive_mob_check(A, L, recursion_limit - 1, client_check, sight_check, include_radio)
+				L |= recursive_mob_check(mover, L, recursion_limit - 1, client_check, sight_check, include_radio)
 				continue
-			if(sight_check && !isInSight(A, O))
+			if(sight_check && !isInSight(mover, O))
 				continue
 			L |= M
 			//world.log << "[recursion_limit] = [M] - [GET_TURF(M)] - ([M.x], [M.y], [M.z])"
 
-		else if(include_radio && isradio(A))
-			if(sight_check && !isInSight(A, O))
+		else if(include_radio && isradio(mover))
+			if(sight_check && !isInSight(mover, O))
 				continue
-			L |= A
+			L |= mover
 
-		if(isobj(A) || ismob(A))
-			L |= recursive_mob_check(A, L, recursion_limit - 1, client_check, sight_check, include_radio)
+		if(isobj(mover) || ismob(mover))
+			L |= recursive_mob_check(mover, L, recursion_limit - 1, client_check, sight_check, include_radio)
 	return L
 
 // The old system would loop through lists for a total of 5000 per function call, in an empty server.

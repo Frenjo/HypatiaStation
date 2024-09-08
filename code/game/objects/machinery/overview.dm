@@ -85,24 +85,24 @@
 
 				if(sense)
 
-					for(var/atom/AM in T.contents)
-
-						if(istype(AM, /obj/machinery/door) && !istype(AM, /obj/machinery/door/window))
-							if(AM.density)
+					for_no_type_check(var/atom/movable/mover, T)
+						if(istype(mover, /obj/machinery/door) && !istype(mover, /obj/machinery/door/window))
+							if(mover.density)
 								colour = rgb(96,96,192)
 								colour2 = colour
 							else
 								colour = rgb(128,192,128)
 
-						if(istype(AM, /obj/machinery/air_alarm))
+						if(istype(mover, /obj/machinery/air_alarm))
 							colour = rgb(0,255,0)
 							colour2 = colour
-							if(AM.icon_state=="alarm:1")
+							if(mover.icon_state == "alarm:1")
 								colour = rgb(255,255,0)
 								colour2 = rgb(255,128,0)
 
-						if(ismob(AM))
-							if(AM:client)
+						if(ismob(mover))
+							var/mob/M = mover
+							if(isnotnull(M.client))
 								colour = rgb(255,0,0)
 							else
 								colour = rgb(255,128,128)
@@ -238,22 +238,22 @@
 
 				if(sense)
 
-					for(var/atom/AM in T.contents)
-
-						if(istype(AM, /obj/machinery/door) && !istype(AM, /obj/machinery/door/window))
-							if(AM.density)
+					for_no_type_check(var/atom/movable/mover, T)
+						if(istype(mover, /obj/machinery/door) && !istype(mover, /obj/machinery/door/window))
+							if(mover.density)
 								colour = rgb(0,96,192)
 							else
 								colour = rgb(96,192,128)
 
-						if(istype(AM, /obj/machinery/air_alarm))
+						if(istype(mover, /obj/machinery/air_alarm))
 							colour = rgb(0,255,0)
 
-							if(AM.icon_state=="alarm:1")
+							if(mover.icon_state == "alarm:1")
 								colour = rgb(255,255,0)
 
-						if(ismob(AM))
-							if(AM:client)
+						if(ismob(mover))
+							var/mob/M = mover
+							if(isnotnull(M.client))
 								colour = rgb(255,0,0)
 							else
 								colour = rgb(255,128,128)

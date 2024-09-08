@@ -86,8 +86,9 @@
 
 /obj/effect/dummy/spell_jaunt/Destroy()
 	// Eject contents if deleted somehow
-	for(var/atom/movable/AM in src)
-		AM.loc = GET_TURF(src)
+	var/turf/T = GET_TURF(src)
+	for_no_type_check(var/atom/movable/mover, src)
+		mover.loc = T
 	return ..()
 
 /obj/effect/dummy/spell_jaunt/relaymove(mob/user, direction)

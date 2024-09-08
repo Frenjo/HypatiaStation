@@ -109,8 +109,8 @@
 	else
 		T.blob_act()//If we cant move in hit the turf
 		qdel(B)
-	for(var/atom/A in T)//Hit everything in the turf
-		A.blob_act()
+	for_no_type_check(var/atom/movable/mover, T) // Hit everything in the turf.
+		mover.blob_act()
 	return 1
 
 /obj/effect/blob/ex_act(severity)

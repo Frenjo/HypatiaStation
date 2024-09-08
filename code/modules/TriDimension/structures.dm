@@ -106,8 +106,8 @@
 	else
 		var/turf/T = target.loc
 		var/blocked = FALSE
-		for(var/atom/A in T.contents)
-			if(A.density)
+		for_no_type_check(var/atom/movable/mover, T)
+			if(mover.density)
 				blocked = TRUE
 				break
 		if(blocked || istype(T, /turf/closed/wall))

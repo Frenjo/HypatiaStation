@@ -19,24 +19,24 @@
 	if(..()) //TODO make this check if gravity is active (future use) - Sukasa
 		spawn(1)
 			// only fall down in defined areas (read: areas with artificial gravitiy)
-			if(!floorbelow) //make sure that there is actually something below
+			if(isnull(floorbelow)) //make sure that there is actually something below
 				if(!getbelow())
 					return
 			if(enterer)
 				var/area/areacheck = GET_AREA(src)
 				var/blocked = FALSE
 				var/soft = FALSE
-				for(var/atom/A in floorbelow.contents)
-					if(A.density)
+				for_no_type_check(var/atom/movable/mover, floorbelow.contents)
+					if(mover.density)
 						blocked = TRUE
 						break
-					if(istype(A, /obj/machinery/atmospherics/pipe/zpipe/up) && istype(enterer, /obj/item/pipe))
+					if(istype(mover, /obj/machinery/atmospherics/pipe/zpipe/up) && istype(enterer, /obj/item/pipe))
 						blocked = TRUE
 						break
-					if(istype(A, /obj/structure/disposalpipe/up) && istype(enterer, /obj/item/pipe))
+					if(istype(mover, /obj/structure/disposalpipe/up) && istype(enterer, /obj/item/pipe))
 						blocked = TRUE
 						break
-					if(istype(A, /obj/multiz/stairs))
+					if(istype(mover, /obj/multiz/stairs))
 						soft = TRUE
 						//dont break here, since we still need to be sure that it isnt blocked
 

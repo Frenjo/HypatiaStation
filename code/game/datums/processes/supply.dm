@@ -102,10 +102,10 @@ PROCESS_DEF(supply)
 		if(T.density)
 			continue
 		var/contcount
-		for(var/atom/A in T.contents)
-			if(istype(A, /atom/movable/lighting_overlay))
+		for_no_type_check(var/atom/movable/mover, T)
+			if(istype(mover, /atom/movable/lighting_overlay))
 				continue
-			if(istype(A, /obj/machinery/light))
+			if(istype(mover, /obj/machinery/light))
 				continue
 			contcount++
 		if(contcount)

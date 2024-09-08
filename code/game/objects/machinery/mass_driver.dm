@@ -23,16 +23,16 @@
 	use_power(500)
 	var/O_limit
 	var/atom/target = get_edge_target_turf(src, dir)
-	for(var/atom/movable/O in loc)
-		if(!O.anchored || ismecha(O) || istype(O, /obj/machinery/power/supermatter)) //Mechs need their launch platforms. And so does the supermatter.
+	for_no_type_check(var/atom/movable/mover, GET_TURF(src))
+		if(!mover.anchored || ismecha(mover) || istype(mover, /obj/machinery/power/supermatter)) //Mechs need their launch platforms. And so does the supermatter.
 			O_limit++
 			if(O_limit >= 20)
 				for(var/mob/M in hearers(src, null))
 					M << "\blue The mass driver lets out a screech, it mustn't be able to handle any more items."
 				break
 			use_power(500)
-			spawn( 0 )
-				O.throw_at(target, drive_range * power, power)
+			spawn(0)
+				mover.throw_at(target, drive_range * power, power)
 	flick("mass_driver1", src)
 	return
 

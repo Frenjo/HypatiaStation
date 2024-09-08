@@ -80,7 +80,7 @@
 		var/transit_state = ((direction & WEST ? world.maxx - x : x) + y_shift) % 15
 		overlays |= speedspace_cache["EW_[transit_state]"]
 
-	for(var/atom/movable/mover in src)
+	for_no_type_check(var/atom/movable/mover, src)
 		if(mover.simulated && !mover.anchored)
 			mover.throw_at(get_step(src, reverse_direction(direction)), 5, 1)
 

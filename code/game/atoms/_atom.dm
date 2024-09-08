@@ -140,17 +140,17 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
  */
 /atom/proc/search_contents_for(path, list/filter_path = null)
 	var/list/found = list()
-	for(var/atom/A in src)
-		if(istype(A, path))
-			found.Add(A)
+	for_no_type_check(var/atom/movable/mover, src)
+		if(istype(mover, path))
+			found.Add(mover)
 		if(filter_path)
 			var/pass = 0
 			for(var/type in filter_path)
-				pass |= istype(A, type)
+				pass |= istype(mover, type)
 			if(!pass)
 				continue
-		if(length(A.contents))
-			found.Add(A.search_contents_for(path, filter_path))
+		if(length(mover.contents))
+			found.Add(mover.search_contents_for(path, filter_path))
 	return found
 
 /*

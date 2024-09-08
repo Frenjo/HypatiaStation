@@ -131,8 +131,8 @@
 			else // Otherwise we assume they were dropped to the ground during deconstruction, and were not removed from the component_parts list by deconstruction code.
 				component_parts.Remove(A)
 	if(length(contents)) // The same for contents.
-		for(var/atom/A in contents)
-			qdel(A)
+		for_no_type_check(var/atom/movable/mover, contents)
+			qdel(mover)
 	return ..()
 
 /obj/machinery/Move(NewLoc)

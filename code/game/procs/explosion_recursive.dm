@@ -55,8 +55,8 @@
 		T.ex_act(severity)
 		if(!T)
 			T = locate(x, y, z)
-		for(var/atom/A in T)
-			A.ex_act(severity)
+		for_no_type_check(var/atom/movable/mover, T)
+			mover.ex_act(severity)
 
 	global.explosion_in_progress = FALSE
 

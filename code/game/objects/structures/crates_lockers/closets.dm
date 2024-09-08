@@ -303,7 +303,7 @@
 		icon_state = icon_opened
 
 /obj/structure/closet/hear_talk(mob/M, text)
-	for(var/atom/A in src)
-		if(istype(A, /obj/))
-			var/obj/O = A
+	for_no_type_check(var/atom/movable/mover, src)
+		if(isobj(mover))
+			var/obj/O = mover
 			O.hear_talk(M, text)

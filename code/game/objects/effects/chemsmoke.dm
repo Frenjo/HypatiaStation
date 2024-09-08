@@ -130,16 +130,16 @@
 					for_no_type_check(var/turf/T, targetTurfs)
 						if(prob(proba))
 							R.reaction_turf(T, R.volume)
-						for(var/atom/A in T.contents)
-							if(istype(A, /obj/effect/smoke/chem))	//skip the item if it is chem smoke
+						for_no_type_check(var/atom/movable/mover, T)
+							if(istype(mover, /obj/effect/smoke/chem))	//skip the item if it is chem smoke
 								continue
-							else if(ismob(A))
+							else if(ismob(mover))
 								var/dist = cheap_pythag(T.x - location.x, T.y - location.y)
 								if(!dist)
 									dist = 1
-								R.reaction_mob(A, volume = R.volume / dist)
-							else if(isobj(A))
-								R.reaction_obj(A, R.volume)
+								R.reaction_mob(mover, volume = R.volume / dist)
+							else if(isobj(mover))
+								R.reaction_obj(mover, R.volume)
 					sleep(30)
 
 	//build smoke icon

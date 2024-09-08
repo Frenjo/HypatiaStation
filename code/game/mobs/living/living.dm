@@ -67,12 +67,12 @@ default behaviour is:
 			var/dense = 0
 			if(loc.density)
 				dense = 1
-			for(var/atom/movable/A in loc)
-				if(A == src)
+			for_no_type_check(var/atom/movable/mover, GET_TURF(src))
+				if(mover == src)
 					continue
-				if(A.density)
-					if(HAS_ATOM_FLAGS(A, ATOM_FLAG_ON_BORDER))
-						dense = !A.CanPass(src, src.loc)
+				if(mover.density)
+					if(HAS_ATOM_FLAGS(mover, ATOM_FLAG_ON_BORDER))
+						dense = !mover.CanPass(src, loc)
 					else
 						dense = 1
 				if(dense)

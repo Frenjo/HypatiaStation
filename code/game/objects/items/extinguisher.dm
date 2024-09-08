@@ -118,12 +118,12 @@
 						return
 					var/turf/W_turf = GET_TURF(W)
 					W.reagents.reaction(W_turf)
-					for_no_type_check(var/atom/atm, W_turf)
+					for_no_type_check(var/atom/movable/mover, W_turf)
 						if(isnull(W))
 							return
-						W.reagents.reaction(atm)
-						if(isliving(atm)) //For extinguishing mobs on fire
-							var/mob/living/M = atm
+						W.reagents.reaction(mover)
+						if(isliving(mover)) //For extinguishing mobs on fire
+							var/mob/living/M = mover
 							M.ExtinguishMob()
 					if(W.loc == my_target)
 						break

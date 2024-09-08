@@ -264,7 +264,7 @@ Contains helper procs for airflow, handled in /connection_group.
 /zone/proc/movables()
 	. = list()
 	for_no_type_check(var/turf/open/T, contents)
-		for(var/atom/movable/A in T)
-			if(A.simulated || A.anchored || istype(A, /obj/effect) || istype(A, /mob/ai_eye))
+		for_no_type_check(var/atom/movable/mover, T)
+			if(mover.simulated || mover.anchored || istype(mover, /obj/effect) || istype(mover, /mob/ai_eye))
 				continue
-			. += A
+			. += mover

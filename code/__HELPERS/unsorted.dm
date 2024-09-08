@@ -621,7 +621,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /atom/proc/GetAllContents(searchDepth = 5)
 	var/list/toReturn = list()
 
-	for(var/atom/part in contents)
+	for_no_type_check(var/atom/movable/part, contents)
 		toReturn.Add(part)
 		if(length(part.contents) && searchDepth)
 			toReturn.Add(part.GetAllContents(searchDepth - 1))
@@ -639,8 +639,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			return FALSE
 		if(current.opacity)
 			return FALSE
-		for(var/atom/A in current)
-			if(A.opacity)
+		for_no_type_check(var/atom/movable/mover, current)
+			if(mover.opacity)
 				return FALSE
 		current = get_step_towards(current, target_turf)
 		steps++
@@ -651,8 +651,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/cant_pass = FALSE
 	if(T.density)
 		cant_pass = TRUE
-	for(var/atom/A in T)
-		if(A.density)//&&A.anchored
+	for_no_type_check(var/atom/movable/mover, T)
+		if(mover.density)// && mover.anchored
 			cant_pass = TRUE
 	return cant_pass
 

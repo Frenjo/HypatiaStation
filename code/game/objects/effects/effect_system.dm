@@ -493,10 +493,10 @@ steam.start() -- spawns the effect
 // transfer any reagents to the floor
 /obj/effect/foam/proc/checkReagents()
 	if(!metal && reagents)
-		for(var/atom/A in src.loc.contents)
-			if(A == src)
+		for_no_type_check(var/atom/movable/mover, GET_TURF(src))
+			if(mover == src)
 				continue
-			reagents.reaction(A, 1, 1)
+			reagents.reaction(mover, 1, 1)
 
 /obj/effect/foam/process()
 	if(--amount < 0)

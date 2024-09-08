@@ -33,7 +33,7 @@
 		return FALSE
 
 	// Finally, check objects/mobs to block entry that are not on the border.
-	for(var/atom/movable/obstacle in src)
+	for_no_type_check(var/atom/movable/obstacle, src)
 		if(!HAS_ATOM_FLAGS(obstacle, ATOM_FLAG_ON_BORDER))
 			if(!obstacle.CanPass(mover, mover.loc, 1, 0) && forget != obstacle)
 				mover.Bump(obstacle, 1)

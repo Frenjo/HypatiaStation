@@ -243,8 +243,8 @@
 								return
 							var/turf/W_turf = GET_TURF(W)
 							W.reagents.reaction(W_turf)
-							for_no_type_check(var/atom/atm, W_turf)
-								W.reagents.reaction(atm)
+							for_no_type_check(var/atom/movable/mover, W_turf)
+								W.reagents.reaction(mover)
 							if(W.loc == my_target)
 								break
 							sleep(2)
@@ -1121,8 +1121,9 @@
 	return 0
 
 /obj/item/mecha_part/equipment/tool/passenger/destroy()
-	for(var/atom/movable/AM in src)
-		AM.forceMove(GET_TURF(src))
+	var/turf/T = GET_TURF(src)
+	for_no_type_check(var/atom/movable/mover, src)
+		mover.forceMove(T)
 	return ..()
 
 /obj/item/mecha_part/equipment/tool/passenger/Exit(atom/movable/O)

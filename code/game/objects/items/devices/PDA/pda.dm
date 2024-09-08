@@ -1052,5 +1052,5 @@
 
 // Pass along the pulse to atoms in contents, largely added so pAIs are vulnerable to EMP
 /obj/item/pda/emp_act(severity)
-	for(var/atom/A in src)
-		A.emp_act(severity)
+	for_no_type_check(var/atom/movable/mover, src)
+		mover.emp_act(severity)

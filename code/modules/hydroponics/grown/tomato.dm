@@ -46,9 +46,9 @@
 	new/obj/effect/decal/cleanable/blood/splatter(src.loc)
 	src.visible_message(SPAN_NOTICE("The [src.name] has been squashed."), SPAN_MODERATE("You hear a smack."))
 	var/turf/hit_turf = GET_TURF(hit_atom)
-	src.reagents.reaction(hit_turf)
-	for_no_type_check(var/atom/A, hit_turf)
-		src.reagents.reaction(A)
+	reagents.reaction(hit_turf)
+	for_no_type_check(var/atom/movable/mover, hit_turf)
+		reagents.reaction(mover)
 	qdel(src)
 	return
 
@@ -112,9 +112,9 @@
 		SPAN_MODERATE("You hear a smack.")
 	)
 	var/turf/hit_turf = GET_TURF(hit_atom)
-	src.reagents.reaction(hit_turf)
-	for_no_type_check(var/atom/A, hit_turf)
-		src.reagents.reaction(A)
+	reagents.reaction(hit_turf)
+	for_no_type_check(var/atom/movable/mover, hit_turf)
+		reagents.reaction(mover)
 	qdel(src)
 	return
 

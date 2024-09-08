@@ -168,8 +168,8 @@
 		if(M.loc == loc)
 			wash(M)
 			check_heat(M)
-		for(var/atom/movable/G in src.loc)
-			G.clean_blood()
+		for_no_type_check(var/atom/movable/mover, GET_TURF(src))
+			mover.clean_blood()
 
 /obj/machinery/shower/attackby(obj/item/I, mob/user)
 	if(I.type == /obj/item/gas_analyser)

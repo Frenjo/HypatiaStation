@@ -460,15 +460,15 @@
 	// this seems to happen sometimes due to race conditions
 	// with items dropping as mobs are loaded
 
-	for(var/atom/movable/AM in src)
-		if(AM == cell || AM == botcard)
+	for_no_type_check(var/atom/movable/mover, src)
+		if(mover == cell || mover == botcard)
 			continue
 
-		AM.loc = loc
-		AM.reset_plane_and_layer()
-		AM.pixel_y = initial(AM.pixel_y)
-		if(ismob(AM))
-			var/mob/M = AM
+		mover.loc = loc
+		mover.reset_plane_and_layer()
+		mover.pixel_y = initial(mover.pixel_y)
+		if(ismob(mover))
+			var/mob/M = mover
 			if(isnotnull(M.client))
 				M.client.perspective = MOB_PERSPECTIVE
 				M.client.eye = src
@@ -676,9 +676,9 @@
 			if(auto_pickup)	// find a crate
 				var/atom/movable/AM
 				if(!wires.LoadCheck())	// if emagged, load first unanchored thing we find
-					for(var/atom/movable/A in get_step(loc, loaddir))
-						if(!A.anchored)
-							AM = A
+					for_no_type_check(var/atom/movable/mover, get_step(loc, loaddir)) // I hope that get_step() returns a /turf.
+						if(!mover.anchored)
+							AM = mover
 							break
 				else			// otherwise, look for crates only
 					AM = locate(/obj/structure/closet/crate) in get_step(loc,loaddir)

@@ -688,10 +688,10 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 			listed_turf = null
 		else
 			statpanel(listed_turf.name, null, listed_turf)
-			for(var/atom/A in listed_turf)
-				if(A.invisibility > see_invisible)
+			for_no_type_check(var/atom/movable/mover, listed_turf)
+				if(mover.invisibility > see_invisible)
 					continue
-				statpanel(listed_turf.name, null, A)
+				statpanel(listed_turf.name, null, mover)
 
 	if(length(spell_list))
 		for(var/obj/effect/proc_holder/spell/S in spell_list)

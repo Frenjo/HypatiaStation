@@ -9,12 +9,12 @@
 			legal = controller.up
 			if(controller.up)
 				var/turf/T = locate(usr.x, usr.y, controller.up_target)
-				if(T && (isspace(T) || isopenspace(T)))
+				if(isnotnull(T) && (isspace(T) || isopenspace(T)))
 					var/blocked = FALSE
-					for(var/atom/A in T.contents)
-						if(A.density)
+					for_no_type_check(var/atom/movable/mover, T)
+						if(mover.density)
 							blocked = TRUE
-							to_chat(usr, SPAN_WARNING("You bump into [A.name]."))
+							to_chat(usr, SPAN_WARNING("You bump into [mover.name]."))
 							break
 					if(!blocked)
 						usr.Move(T)
@@ -37,12 +37,12 @@
 			if(controller.down)
 				var/turf/T = locate(usr.x, usr.y, controller.down_target)
 				var/turf/S = locate(usr.x, usr.y, usr.z)
-				if(T && (isspace(S) || isopenspace(S)))
+				if(isnotnull(T) && (isspace(S) || isopenspace(S)))
 					var/blocked = FALSE
-					for(var/atom/A in T.contents)
-						if(A.density)
+					for_no_type_check(var/atom/movable/mover, T)
+						if(mover.density)
 							blocked = TRUE
-							to_chat(usr, SPAN_WARNING("You bump into [A.name]."))
+							to_chat(usr, SPAN_WARNING("You bump into [mover.name]."))
 							break
 					if(!blocked)
 						usr.Move(T)

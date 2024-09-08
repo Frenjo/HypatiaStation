@@ -61,8 +61,8 @@
 	#endif
 
 	var/result = 0
-	for(var/atom/movable/M in contents)
-		result |= M.c_airblock(other)
+	for_no_type_check(var/atom/movable/mover, src)
+		result |= mover.c_airblock(other)
 		if(result == BLOCKED)
 			return BLOCKED
 	return result

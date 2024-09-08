@@ -37,8 +37,8 @@
 			pulledby.pulling = null
 		pulledby = null
 
-	for_no_type_check(var/atom/A, contents)
-		qdel(A)
+	for_no_type_check(var/atom/movable/mover, src)
+		qdel(mover)
 
 	return ..()
 
@@ -74,18 +74,18 @@
 
 /atom/movable/proc/hit_check(speed)
 	if(throwing)
-		for_no_type_check(var/atom/A, GET_TURF(src))
-			if(A == src)
+		for_no_type_check(var/atom/movable/mover, GET_TURF(src))
+			if(mover == src)
 				continue
-			if(isliving(A))
-				var/mob/living/living = A
+			if(isliving(mover))
+				var/mob/living/living = mover
 				if(living.lying)
 					continue
 				throw_impact(living, speed)
 				if(throwing)
 					throwing = THROW_NONE
-			if(isobj(A))
-				var/obj/object = A
+			if(isobj(mover))
+				var/obj/object = mover
 				if(object.density && !object.throwpass)	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop movement
 					throw_impact(object, speed)
 					throwing = THROW_NONE

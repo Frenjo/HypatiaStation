@@ -42,9 +42,8 @@
 	var/datum/gas_mixture/air_contents = new()
 
 /obj/structure/transit_tube_pod/Destroy()
-	for(var/atom/movable/AM in contents)
-		AM.loc = loc
-
+	for_no_type_check(var/atom/movable/mover, src)
+		mover.loc = loc
 	return ..()
 
 // When destroyed by explosions, properly handle contents.

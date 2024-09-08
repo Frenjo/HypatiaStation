@@ -75,9 +75,8 @@
 			step_towards(D, A)
 			var/turf/D_turf = GET_TURF(D)
 			D.reagents.reaction(D_turf)
-			for_no_type_check(var/atom/T, D_turf)
-				D.reagents.reaction(T)
-
+			for_no_type_check(var/atom/movable/mover, D_turf)
+				D.reagents.reaction(mover)
 				// When spraying against the wall, also react with the wall, but
 				// not its contents. BS12
 				if(get_dist(D, A_turf) == 1 && A_turf.density)
@@ -219,8 +218,8 @@
 				step_towards(D, my_target)
 				var/turf/D_turf = GET_TURF(D)
 				D.reagents.reaction(D_turf)
-				for_no_type_check(var/atom/t, D_turf)
-					D.reagents.reaction(t)
+				for_no_type_check(var/atom/movable/mover, D_turf)
+					D.reagents.reaction(mover)
 				sleep(2)
 			qdel(D)
 

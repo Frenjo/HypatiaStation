@@ -15,7 +15,7 @@
 
 /turf/open/initialise()
 	. = ..()
-	for(var/atom/movable/mover in src)
+	for_no_type_check(var/atom/movable/mover, src)
 		spawn(0)
 			Entered(mover)
 

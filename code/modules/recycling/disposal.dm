@@ -311,9 +311,10 @@
 
 // eject the contents of the disposal unit
 /obj/machinery/disposal/proc/eject()
-	for(var/atom/movable/AM in src)
-		AM.loc = src.loc
-		AM.pipe_eject(0)
+	var/turf/T = GET_TURF(src)
+	for_no_type_check(var/atom/movable/mover, src)
+		mover.loc = T
+		mover.pipe_eject(0)
 	update()
 
 // update the icon & overlays to reflect mode & status
@@ -445,16 +446,16 @@
 /obj/machinery/disposal/proc/expel(obj/structure/disposalholder/H)
 	var/turf/target
 	playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
-	if(H) // Somehow, someone managed to flush a window which broke mid-transit and caused the disposal to go in an infinite loop trying to expel null, hopefully this fixes it
-		for(var/atom/movable/AM in H)
+	if(isnotnull(H)) // Somehow, someone managed to flush a window which broke mid-transit and caused the disposal to go in an infinite loop trying to expel null, hopefully this fixes it.
+		for_no_type_check(var/atom/movable/mover, H)
 			target = get_offset_target_turf(src.loc, rand(5) - rand(5), rand(5) - rand(5))
 
-			AM.loc = src.loc
-			AM.pipe_eject(0)
-			if(!isdrone(AM)) //Poor drones kept smashing windows and taking system damage being fired out of disposals. ~Z
+			mover.loc = src.loc
+			mover.pipe_eject(0)
+			if(!isdrone(mover)) //Poor drones kept smashing windows and taking system damage being fired out of disposals. ~Z
 				spawn(1)
-					if(AM)
-						AM.throw_at(target, 5, 1)
+					if(mover)
+						mover.throw_at(target, 5, 1)
 
 		H.vent_gas(loc)
 		qdel(H)
@@ -518,21 +519,21 @@
 
 	// now everything inside the disposal gets put into the holder
 	// note AM since can contain mobs or objs
-	for(var/atom/movable/AM in D)
-		AM.loc = src
-		if(ishuman(AM))
-			var/mob/living/carbon/human/H = AM
+	for_no_type_check(var/atom/movable/mover, D)
+		mover.loc = src
+		if(ishuman(mover))
+			var/mob/living/carbon/human/H = mover
 			if(FAT in H.mutations)		// is a human and fat?
 				has_fat_guy = 1			// set flag on holder
-		if(istype(AM, /obj/structure/big_delivery) && !hasmob)
-			var/obj/structure/big_delivery/T = AM
+		if(istype(mover, /obj/structure/big_delivery) && !hasmob)
+			var/obj/structure/big_delivery/T = mover
 			src.destinationTag = T.sortTag
-		if(istype(AM, /obj/item/small_delivery) && !hasmob)
-			var/obj/item/small_delivery/T = AM
+		if(istype(mover, /obj/item/small_delivery) && !hasmob)
+			var/obj/item/small_delivery/T = mover
 			src.destinationTag = T.sortTag
 		//Drones can mail themselves through maint.
-		if(isdrone(AM))
-			var/mob/living/silicon/robot/drone/drone = AM
+		if(isdrone(mover))
+			var/mob/living/silicon/robot/drone/drone = mover
 			src.destinationTag = drone.mail_destination
 
 // start the movement process
@@ -609,11 +610,11 @@
 	// merge two holder objects
 	// used when a a holder meets a stuck holder
 /obj/structure/disposalholder/proc/merge(obj/structure/disposalholder/other)
-	for(var/atom/movable/AM in other)
-		AM.loc = src		// move everything in other holder to this one
-		if(ismob(AM))
-			var/mob/M = AM
-			if(M.client)	// if a client mob, update eye to follow this holder
+	for_no_type_check(var/atom/movable/mover, other)
+		mover.loc = src		// move everything in other holder to this one
+		if(ismob(mover))
+			var/mob/M = mover
+			if(isnotnull(M.client))	// if a client mob, update eye to follow this holder
 				M.client.eye = src
 
 	if(other.has_fat_guy)
@@ -661,22 +662,21 @@
 // ensure if holder is present, it is expelled
 /obj/structure/disposalpipe/Destroy()
 	var/obj/structure/disposalholder/H = locate() in src
-	if(H)
+	if(isnotnull(H))
 		// holder was present
 		H.active = 0
 		var/turf/T = src.loc
 		if(T.density)
 			// deleting pipe is inside a dense turf (wall)
 			// this is unlikely, but just dump out everything into the turf in case
-
-			for(var/atom/movable/AM in H)
-				AM.loc = T
-				AM.pipe_eject(0)
+			for_no_type_check(var/atom/movable/mover, H)
+				mover.loc = T
+				mover.pipe_eject(0)
 			qdel(H)
 			return ..()
 
 		// otherwise, do normal expel from turf
-		if(H)
+		if(isnotnull(H))
 			expel(H, T, 0)
 	return ..()
 
@@ -756,27 +756,27 @@
 			target = get_ranged_target_turf(T, direction, 10)
 
 		playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
-		if(H)
-			for(var/atom/movable/AM in H)
-				AM.loc = T
-				AM.pipe_eject(direction)
+		if(isnotnull(H))
+			for_no_type_check(var/atom/movable/mover, H)
+				mover.loc = T
+				mover.pipe_eject(direction)
 				spawn(1)
-					if(AM)
-						AM.throw_at(target, 100, 1)
+					if(mover)
+						mover.throw_at(target, 100, 1)
 			H.vent_gas(T)
 			qdel(H)
 
 	else	// no specified direction, so throw in random direction
 		playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
-		if(H)
-			for(var/atom/movable/AM in H)
+		if(isnotnull(H))
+			for_no_type_check(var/atom/movable/mover, H)
 				target = get_offset_target_turf(T, rand(5) - rand(5), rand(5) - rand(5))
 
-				AM.loc = T
-				AM.pipe_eject(0)
+				mover.loc = T
+				mover.pipe_eject(0)
 				spawn(1)
-					if(AM)
-						AM.throw_at(target, 5, 1)
+					if(mover)
+						mover.throw_at(target, 5, 1)
 
 			H.vent_gas(T)	// all gas vent to turf
 			qdel(H)
@@ -796,22 +796,21 @@
 
 	src.invisibility = INVISIBILITY_MAXIMUM	// make invisible (since we won't delete the pipe immediately)
 	var/obj/structure/disposalholder/H = locate() in src
-	if(H)
+	if(isnotnull(H))
 		// holder was present
 		H.active = 0
 		var/turf/T = src.loc
 		if(T.density)
 			// broken pipe is inside a dense turf (wall)
 			// this is unlikely, but just dump out everything into the turf in case
-
-			for(var/atom/movable/AM in H)
-				AM.loc = T
-				AM.pipe_eject(0)
+			for_no_type_check(var/atom/movable/mover, H)
+				mover.loc = T
+				mover.pipe_eject(0)
 			qdel(H)
 			return
 
 		// otherwise, do normal expel from turf
-		if(H)
+		if(isnotnull(H))
 			expel(H, T, 0)
 
 	spawn(2)	// delete pipe after 2 ticks to ensure expel proc finished
@@ -1362,13 +1361,13 @@
 	sleep(20)	//wait until correct animation frame
 	playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 
-	if(H)
-		for(var/atom/movable/AM in H)
-			AM.loc = src.loc
-			AM.pipe_eject(dir)
-			if(!isdrone(AM)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
+	if(isnotnull(H))
+		for_no_type_check(var/atom/movable/mover, H)
+			mover.loc = loc
+			mover.pipe_eject(dir)
+			if(!isdrone(mover)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
 				spawn(5)
-					AM.throw_at(target, 3, 1)
+					mover.throw_at(target, 3, 1)
 		H.vent_gas(src.loc)
 		qdel(H)
 

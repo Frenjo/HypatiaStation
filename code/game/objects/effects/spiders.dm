@@ -222,6 +222,7 @@
 
 /obj/effect/spider/cocoon/Destroy()
 	src.visible_message(SPAN_WARNING("\the [src] splits open."))
-	for(var/atom/movable/A in contents)
-		A.loc = src.loc
+	var/turf/T = GET_TURF(src)
+	for_no_type_check(var/atom/movable/mover, src)
+		mover.loc = T
 	return ..()
