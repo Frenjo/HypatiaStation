@@ -98,7 +98,7 @@
 	reset_base_appearance()
 
 /turf/proc/ReplaceWithLattice()
-	ChangeTurf(get_base_turf_by_area(get_area(loc)))
+	ChangeTurf(get_base_turf_by_area(GET_AREA(src)))
 	new /obj/structure/lattice(locate(x, y, z))
 
 // Removes all signs of lattice on the pos of the turf -Donkieyo

@@ -2026,7 +2026,7 @@
 //knock yourself out to stop the ghosts
 					for_no_type_check(var/mob/M, GLOBL.player_list)
 						if(M.stat != DEAD && prob(25))
-							var/area/AffectedArea = get_area(M)
+							var/area/AffectedArea = GET_AREA(M)
 							if(AffectedArea.name != "Space" && AffectedArea.name != "Engine Walls" && AffectedArea.name != "Chemical Lab Test Chamber" && AffectedArea.name != "Escape Shuttle" && AffectedArea.name != "Arrival Area" && AffectedArea.name != "Arrival Shuttle" && AffectedArea.name != "start area" && AffectedArea.name != "Engine Combustion Chamber")
 								AffectedArea.power_channels[LIGHT] = FALSE
 								AffectedArea.power_change()
@@ -2286,7 +2286,8 @@
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","EgL")
 				for_no_type_check(var/obj/machinery/door/airlock/W, GLOBL.airlocks_list)
-					if(isstationlevel(W.z) && !istype(get_area(W), /area/station/command) && !istype(get_area(W), /area/station/crew) && !istype(get_area(W), /area/external/prison))
+					var/area/A = GET_AREA(W)
+					if(isstationlevel(W.z) && !istype(A, /area/station/command) && !istype(A, /area/station/crew) && !istype(A, /area/external/prison))
 						W.req_access = list()
 				message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
 				command_alert("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.")

@@ -182,6 +182,6 @@
 	sum_list[1] = A.fingerprints ? A.fingerprints.Copy() : null
 	sum_list[2] = A.suit_fibers ? A.suit_fibers.Copy() : null
 	sum_list[3] = A.blood_DNA ? A.blood_DNA.Copy() : null
-	sum_list[4] = "\The [A] in \the [get_area(A)]"
+	sum_list[4] = "\The [A] in \the [GET_AREA(A)]"
 	stored["\ref [A]"] = sum_list
 	return 0

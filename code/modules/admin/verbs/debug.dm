@@ -445,37 +445,37 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			areas_all.Add(A.type)
 
 	for(var/obj/machinery/power/apc/APC in GLOBL.machines)
-		var/area/A = get_area(APC)
+		var/area/A = GET_AREA(APC)
 		if(!(A.type in areas_with_APC))
 			areas_with_APC.Add(A.type)
 
 	for(var/obj/machinery/air_alarm/alarm in GLOBL.machines)
-		var/area/A = get_area(alarm)
+		var/area/A = GET_AREA(alarm)
 		if(!(A.type in areas_with_air_alarm))
 			areas_with_air_alarm.Add(A.type)
 
 	for(var/obj/machinery/requests_console/RC in GLOBL.machines)
-		var/area/A = get_area(RC)
+		var/area/A = GET_AREA(RC)
 		if(!(A.type in areas_with_RC))
 			areas_with_RC.Add(A.type)
 
 	for(var/obj/machinery/light/L in GLOBL.machines)
-		var/area/A = get_area(L)
+		var/area/A = GET_AREA(L)
 		if(!(A.type in areas_with_light))
 			areas_with_light.Add(A.type)
 
 	for(var/obj/machinery/light_switch/LS in GLOBL.machines)
-		var/area/A = get_area(LS)
+		var/area/A = GET_AREA(LS)
 		if(!(A.type in areas_with_LS))
 			areas_with_LS.Add(A.type)
 
 	for(var/obj/item/radio/intercom/I in GLOBL.movable_atom_list)
-		var/area/A = get_area(I)
+		var/area/A = GET_AREA(I)
 		if(!(A.type in areas_with_intercom))
 			areas_with_intercom.Add(A.type)
 
 	for(var/obj/machinery/camera/C in GLOBL.machines)
-		var/area/A = get_area(C)
+		var/area/A = GET_AREA(C)
 		if(!(A.type in areas_with_camera))
 			areas_with_camera.Add(A.type)
 

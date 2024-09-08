@@ -115,7 +115,7 @@ VOX HEIST ROUNDTYPE
 		return 0
 
 	for_no_type_check(var/obj/item/implant/cortical/stack, cortical_stacks)
-		if(get_area(stack) != locate(/area/shuttle/vox/station))
+		if(GET_AREA(stack) != locate(/area/shuttle/vox/station))
 			return 0
 	return 1
 
@@ -245,7 +245,7 @@ VOX HEIST ROUNDTYPE
 		text += "<br>[vox.key] was [vox.name] ("
 		if(check_return)
 			var/obj/stack = raiders[vox]
-			if(get_area(stack) != locate(/area/shuttle/vox/station))
+			if(GET_AREA(stack) != locate(/area/shuttle/vox/station))
 				text += "left behind)"
 				continue
 		if(isnotnull(vox.current))

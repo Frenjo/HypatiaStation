@@ -46,8 +46,7 @@
 	if(isnull(H.key) || isnull(H.mind))
 		return
 
-	var/turf/T = H.loc
-	var/area/placeofdeath = get_area(T.loc)
+	var/area/placeofdeath = GET_AREA(H)
 	var/podname = placeofdeath.name
 
 	var/sqlname = sanitizeSQL(H.real_name)
@@ -80,8 +79,7 @@
 	if(isnull(H.key) || isnull(H.mind))
 		return
 
-	var/turf/T = H.loc
-	var/area/placeofdeath = get_area(T.loc)
+	var/area/placeofdeath = GET_AREA(H)
 	var/podname = placeofdeath.name
 
 	var/sqlname = sanitizeSQL(H.real_name)

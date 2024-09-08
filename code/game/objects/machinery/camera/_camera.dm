@@ -44,9 +44,9 @@
 	*/
 	if(!length(network))
 		if(loc)
-			error("[name] in [get_area(src)] (x:[x] y:[y] z:[z] has errored. [network ? "Empty network list" : "Null network list"]")
+			error("[name] in [GET_AREA(src)] (x:[x] y:[y] z:[z] has errored. [network ? "Empty network list" : "Null network list"]")
 		else
-			error("[name] in [get_area(src)]has errored. [network ? "Empty network list" : "Null network list"]")
+			error("[name] in [GET_AREA(src)]has errored. [network ? "Empty network list" : "Null network list"]")
 		ASSERT(network)
 		ASSERT(length(network))
 	..()
@@ -218,12 +218,12 @@
 /obj/machinery/camera/proc/triggerCameraAlarm()
 	alarm_on = TRUE
 	for(var/mob/living/silicon/S in GLOBL.mob_list)
-		S.triggerAlarm("Camera", get_area(src), list(src), src)
+		S.triggerAlarm("Camera", GET_AREA(src), list(src), src)
 
 /obj/machinery/camera/proc/cancelCameraAlarm()
 	alarm_on = FALSE
 	for(var/mob/living/silicon/S in GLOBL.mob_list)
-		S.cancelAlarm("Camera", get_area(src), src)
+		S.cancelAlarm("Camera", GET_AREA(src), src)
 
 /obj/machinery/camera/proc/can_use()
 	if(!status)

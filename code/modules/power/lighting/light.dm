@@ -77,7 +77,7 @@
 	update(0)
 
 /obj/machinery/light/Destroy()
-	var/area/A = get_area(src)
+	var/area/A = GET_AREA(src)
 	if(isnotnull(A))
 		on = FALSE
 	return ..()
@@ -146,7 +146,7 @@
 			if(on && HAS_OBJ_FLAGS(W, OBJ_FLAG_CONDUCT))
 				//if(!user.mutations & COLD_RESISTANCE)
 				if(prob(12))
-					electrocute_mob(user, get_area(src), src, 0.3)
+					electrocute_mob(user, GET_AREA(src), src, 0.3)
 			broken()
 
 		else
@@ -170,12 +170,12 @@
 			make_sparks(3, TRUE, src)
 			//if(!user.mutations & COLD_RESISTANCE)
 			if(prob(75))
-				electrocute_mob(user, get_area(src), src, rand(0.7, 1.0))
+				electrocute_mob(user, GET_AREA(src), src, rand(0.7, 1.0))
 
 // returns whether this light has power
 // true if area has power and lightswitch is on
 /obj/machinery/light/powered()
-	var/area/A = get_area(src)
+	var/area/A = GET_AREA(src)
 	return isnotnull(A) && A.lightswitch && ..(power_channel)
 
 // ai attack - make lights flicker, because why not

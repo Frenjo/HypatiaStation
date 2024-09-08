@@ -9,4 +9,3 @@
 // Gets the area at the location of X, or X if it is an area itself.
 // I have no idea what will happen if X is not in an area, but it'll probably return null.
 #define GET_AREA(X) get_step(X, 0)?.loc
-#define get_area(X) GET_AREA(X) // This just exists so I don't have to mass find-replace without fixing surrounding code issues.

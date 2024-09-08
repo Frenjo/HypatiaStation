@@ -143,7 +143,7 @@
 	src.power_change()
 
 /obj/machinery/turret/proc/get_protected_area()
-	var/area/turret_protected/TP = get_area(src)
+	var/area/turret_protected/TP = GET_AREA(src)
 	if(istype(TP))
 		//if(TP.master && TP.master != TP)
 		//	TP = TP.master
@@ -152,8 +152,8 @@
 
 /obj/machinery/turret/proc/check_target(atom/movable/T)
 	if(T && (T in protected_area.turretTargets))
-		var/area/area_T = get_area(T)
-		if(!area_T || (area_T.type != protected_area.type))
+		var/area/area_T = GET_AREA(T)
+		if(isnull(area_T) || (area_T.type != protected_area.type))
 			protected_area.Exited(T)
 			return 0 //If the guy is somehow not in the turret's area (teleportation), get them out the damn list. --NEO
 		if(iscarbon(T) )
@@ -355,7 +355,7 @@
 /obj/machinery/turretid/New()
 	..()
 	if(!control_area)
-		var/area/CA = get_area(src)
+		var/area/CA = GET_AREA(src)
 		//if(CA.master && CA.master != CA)
 		//	control_area = CA.master
 		//else

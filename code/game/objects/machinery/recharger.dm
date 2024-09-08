@@ -23,7 +23,7 @@
 			return
 
 		// Checks to make sure he's not in space doing it, and that the area got proper power.
-		var/area/a = get_area(src)
+		var/area/a = GET_AREA(src)
 		if(!isarea(a))
 			to_chat(user, SPAN_WARNING("The [name] blinks red as you try to insert the item!"))
 			return

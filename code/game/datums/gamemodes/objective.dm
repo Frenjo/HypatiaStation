@@ -592,7 +592,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 			for_no_type_check(var/mob/living/silicon/ai/ai, GLOBL.ai_list)
 				if(isturf(ai.loc))
-					var/area/check_area = get_area(ai)
+					var/area/check_area = GET_AREA(ai)
 					if(istype(check_area, /area/shuttle/escape/centcom))
 						return 1
 					if(istype(check_area, /area/shuttle/escape_pod1/centcom))

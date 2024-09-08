@@ -71,7 +71,7 @@
 	)
 	var/mineral = pick(minerals)
 	//to_world("init [mineral]")
-	var/area/my_area = get_area(src)
+	var/area/my_area = GET_AREA(src)
 	var/list/temple_turfs = get_area_turfs(my_area.type)
 
 	for(var/turf/open/floor/T in temple_turfs)

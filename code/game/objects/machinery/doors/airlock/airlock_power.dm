@@ -47,7 +47,7 @@
 	if(!prob(prb))
 		return 0 //you lucked out, no shock for you
 	make_sparks(5, TRUE, src)
-	if(electrocute_mob(user, get_area(src), src))
+	if(electrocute_mob(user, GET_AREA(src), src))
 		hasShocked = 1
 		sleep(10)
 		hasShocked = 0

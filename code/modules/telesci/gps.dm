@@ -41,7 +41,7 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 
 		for(var/obj/item/gps/G in GLOBL.gps_list)
 			var/turf/pos = GET_TURF(G)
-			var/area/gps_area = get_area(G)
+			var/area/gps_area = GET_AREA(G)
 			var/tracked_gpstag = G.gpstag
 			if(G.emped)
 				html += "<BR>[tracked_gpstag]: ERROR"

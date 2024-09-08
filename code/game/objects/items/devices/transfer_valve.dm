@@ -168,7 +168,7 @@
 	if(valve_open == 0 && (tank_one && tank_two))
 		valve_open = 1
 		var/turf/bombturf = GET_TURF(src)
-		var/area/A = get_area(bombturf)
+		var/area/A = GET_AREA(bombturf)
 
 		var/attacher_name = ""
 		if(!attacher)

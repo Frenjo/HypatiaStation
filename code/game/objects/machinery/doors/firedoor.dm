@@ -26,14 +26,14 @@
 			spawn(1)
 				qdel(src)
 			return .
-	var/area/A = get_area(src)
+	var/area/A = GET_AREA(src)
 	ASSERT(istype(A))
 
 	A.doors_list.Add(src)
 	areas_added = list(A)
 
 	for(var/direction in GLOBL.cardinal)
-		A = get_area(get_step(src, direction))
+		A = GET_AREA(get_step(src, direction))
 		if(istype(A) && !(A in areas_added))
 			A.doors_list.Add(src)
 			areas_added += A

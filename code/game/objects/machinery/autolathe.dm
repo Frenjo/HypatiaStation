@@ -132,7 +132,7 @@
 	if(!prob(prb))
 		return 0
 	make_sparks(5, TRUE, src)
-	if(electrocute_mob(user, get_area(src), src, 0.7))
+	if(electrocute_mob(user, GET_AREA(src), src, 0.7))
 		return 1
 	else
 		return 0

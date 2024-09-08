@@ -499,7 +499,8 @@
 		updateUsrDialog()
 		sleep(30) //only sleep if called by user
 	var/found = 0
-	for(var/obj/machinery/computer/rdconsole/RDC in get_area(src))
+	var/area/A = GET_AREA(src)
+	for(var/obj/machinery/computer/rdconsole/RDC in A.machines_list)
 		if(!RDC.sync)
 			continue
 		found++

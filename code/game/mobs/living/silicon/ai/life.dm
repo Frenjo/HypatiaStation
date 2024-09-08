@@ -53,7 +53,7 @@
 
 /mob/living/silicon/ai/proc/check_power_status()
 	var/has_power = TRUE
-	var/area/current_area = get_area(src)
+	var/area/current_area = GET_AREA(src)
 	if(!current_area.powered(EQUIP) && !isitem(loc))
 		has_power = FALSE
 
@@ -97,7 +97,7 @@
 /mob/living/silicon/ai/proc/handle_power_loss()
 	set waitfor = FALSE
 
-	var/area/current_area = get_area(src)
+	var/area/current_area = GET_AREA(src)
 	var/turf/current_turf = GET_TURF(src)
 	if(current_area.powered(EQUIP) || isspace(current_turf) || isitem(loc))
 		return

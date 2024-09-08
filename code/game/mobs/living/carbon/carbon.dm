@@ -280,8 +280,8 @@
 			var/turf/end_T = GET_TURF(target)
 			if(isnotnull(start_T) && isnotnull(end_T))
 				var/mob/M = item
-				var/start_T_descriptor = "<font color='#6b5d00'>tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)]</font>"
-				var/end_T_descriptor = "<font color='#6b4400'>tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]</font>"
+				var/start_T_descriptor = "<font color='#6b5d00'>tile at [start_T.x], [start_T.y], [start_T.z] in area [GET_AREA(start_T)]</font>"
+				var/end_T_descriptor = "<font color='#6b4400'>tile at [end_T.x], [end_T.y], [end_T.z] in area [GET_AREA(end_T)]</font>"
 
 				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been thrown by [usr.name] ([usr.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
 				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor]</font>")
@@ -306,7 +306,7 @@
 		visible_message(SPAN_WARNING("[src] has thrown [item]."))
 
 		if(isnull(lastarea))
-			lastarea = get_area(loc)
+			lastarea = GET_AREA(src)
 		if(isspace(loc) || !lastarea.has_gravity)
 			inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)

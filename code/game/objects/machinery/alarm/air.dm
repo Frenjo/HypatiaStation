@@ -134,7 +134,7 @@
 	return ..()
 
 /obj/machinery/air_alarm/proc/first_run()
-	alarm_area = get_area(src)
+	alarm_area = GET_AREA(src)
 	area_uid = alarm_area.uid
 	if(name in list(
 		"north bump", "south bump", "east bump", "west bump",
@@ -401,7 +401,7 @@
 	apply_danger_level(level)
 
 /obj/machinery/air_alarm/proc/air_doors_close(manual)
-	var/area/A = get_area(src)
+	var/area/A = GET_AREA(src)
 	if(!A.air_doors_activated)
 		A.air_doors_activated = TRUE
 		for(var/obj/machinery/door/firedoor/E in A.doors_list)
@@ -437,7 +437,7 @@
 					E.update_icon()*/
 
 /obj/machinery/air_alarm/proc/air_doors_open(manual)
-	var/area/A = get_area(loc)
+	var/area/A = GET_AREA(src)
 	if(A.air_doors_activated)
 		A.air_doors_activated = FALSE
 		for(var/obj/machinery/door/firedoor/E in A.doors_list)
@@ -570,7 +570,7 @@
 	if(!prob(prb))
 		return 0 //you lucked out, no shock for you
 	make_sparks(5, TRUE, src)
-	if(electrocute_mob(user, get_area(src), src))
+	if(electrocute_mob(user, GET_AREA(src), src))
 		return 1
 	else
 		return 0

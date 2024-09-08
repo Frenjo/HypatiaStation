@@ -957,9 +957,8 @@ default behaviour is:
 			target_vent = vent_found 	//travel back. No additional time required.
 			to_chat(src, SPAN_WARNING("The vent you were heading to appears to be welded."))
 		loc = target_vent.loc
-		var/area/new_area = get_area(loc)
-		if(new_area)
-			new_area.Entered(src)
+		var/area/new_area = GET_AREA(src)
+		new_area?.Entered(src)
 
 /mob/living/proc/can_use_vents()
 	return "You can't fit into that vent."

@@ -409,7 +409,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 /obj/item/implant/death_alarm/activate(cause)
 	var/mob/M = imp_in
-	var/area/t = get_area(M)
+	var/area/t = GET_AREA(M)
 	switch(cause)
 		if("death")
 			var/obj/item/radio/headset/a = new /obj/item/radio/headset(null)

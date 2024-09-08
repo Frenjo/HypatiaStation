@@ -109,7 +109,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	. = ..()
-	var/area/machine_area = get_area(src)
+	var/area/machine_area = GET_AREA(src)
 	machine_area.machines_list.Add(src)
 	if(!GLOBL.machinery_sort_required && isnotnull(global.PCticker))
 		dd_insertObjectList(GLOBL.machines, src)
@@ -120,7 +120,7 @@
 /obj/machinery/Destroy()
 	SHOULD_CALL_PARENT(TRUE)
 
-	var/area/machine_area = get_area(src)
+	var/area/machine_area = GET_AREA(src)
 	machine_area?.machines_list.Remove(src)
 	GLOBL.machines.Remove(src)
 
@@ -136,8 +136,8 @@
 	return ..()
 
 /obj/machinery/Move(NewLoc)
-	var/area/old_area = get_area(src)
-	var/area/new_area = get_area(NewLoc)
+	var/area/old_area = GET_AREA(src)
+	var/area/new_area = GET_AREA(NewLoc)
 	if(old_area != new_area)
 		old_area.machines_list.Remove(src)
 		new_area.machines_list.Add(src)

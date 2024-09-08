@@ -172,9 +172,8 @@
 							return
 						loc = exit_vent.loc
 						entry_vent = null
-						var/area/new_area = get_area(loc)
-						if(new_area)
-							new_area.Entered(src)
+						var/area/new_area = GET_AREA(src)
+						new_area?.Entered(src)
 			else
 				entry_vent = null
 	//=================

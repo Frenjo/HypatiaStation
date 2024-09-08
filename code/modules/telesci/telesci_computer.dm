@@ -161,7 +161,7 @@
 		var/spawn_time = round(proj_data.time) * 10
 
 		var/turf/target = locate(trueX, trueY, z_co)
-		var/area/A = get_area(target)
+		var/area/A = GET_AREA(target)
 		flick("pad-beam", telepad)
 
 		if(spawn_time > 15) // 1.5 seconds

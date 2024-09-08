@@ -43,7 +43,7 @@
 	if(detectTime == -1)
 		for(var/mob/living/silicon/aiPlayer in GLOBL.player_list)
 			if(status)
-				aiPlayer.cancelAlarm("Motion", get_area(src), src)
+				aiPlayer.cancelAlarm("Motion", GET_AREA(src), src)
 	detectTime = 0
 	return 1
 
@@ -52,7 +52,7 @@
 		return 0
 	for(var/mob/living/silicon/aiPlayer in GLOBL.player_list)
 		if(status)
-			aiPlayer.triggerAlarm("Motion", get_area(src), list(src), src)
+			aiPlayer.triggerAlarm("Motion", GET_AREA(src), list(src), src)
 	detectTime = -1
 	return 1
 

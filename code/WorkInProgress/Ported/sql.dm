@@ -27,7 +27,7 @@ client/proc/onDeath()
 	roundinfo.deaths++
 	if(!ismob(mob))
 		return
-	var/area = get_area(mob)
+	var/area = GET_AREA(mob)
 	var/attacker
 	var/tod = time2text(world.realtime)
 	var/health

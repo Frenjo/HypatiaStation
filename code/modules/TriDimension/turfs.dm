@@ -23,7 +23,7 @@
 				if(!getbelow())
 					return
 			if(enterer)
-				var/area/areacheck = get_area(src)
+				var/area/areacheck = GET_AREA(src)
 				var/blocked = FALSE
 				var/soft = FALSE
 				for(var/atom/A in floorbelow.contents)

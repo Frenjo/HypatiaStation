@@ -6,7 +6,7 @@
 /turf/closed/wall/ex_act(severity)
 	switch(severity)
 		if(1)
-			ChangeTurf(get_base_turf_by_area(get_area(loc)))
+			ChangeTurf(get_base_turf_by_area(GET_AREA(src)))
 			return
 		if(2)
 			if(prob(75))

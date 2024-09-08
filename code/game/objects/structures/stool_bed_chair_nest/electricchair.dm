@@ -51,7 +51,7 @@
 	last_time = world.time
 
 	// special power handling
-	var/area/A = get_area(src)
+	var/area/A = GET_AREA(src)
 	if(!isarea(A))
 		return
 	if(!A.powered(EQUIP))

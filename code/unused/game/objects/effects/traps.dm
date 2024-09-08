@@ -211,7 +211,7 @@
 
 	switch(target_type)
 		if("turf")
-			for_no_type_check(var/turf/T, get_area_turfs(get_area(src)))
+			for_no_type_check(var/turf/T, get_area_turfs(GET_AREA(src)))
 				if(!T.density || include_dense)
 					targets += T
 		if("mob")

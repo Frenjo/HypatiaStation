@@ -27,7 +27,7 @@
 	var/radio_filter_in
 
 /obj/machinery/atmospherics/unary/vent_scrubber/New()
-	initial_loc = get_area(loc)
+	initial_loc = GET_AREA(src)
 	area_uid = initial_loc.uid
 	if(!id_tag)
 		uid = ++static_uid

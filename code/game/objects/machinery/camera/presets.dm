@@ -42,12 +42,12 @@
 	. = ..()
 
 	number = 1
-	var/area/A = get_area(src)
-	if(A)
-		for(var/obj/machinery/camera/autoname/C in GLOBL.machines)
+	var/area/A = GET_AREA(src)
+	if(isnotnull(A))
+		for(var/obj/machinery/camera/autoname/C in GLOBL.machines) // Optimise this to use the area's machines list.
 			if(C == src)
 				continue
-			var/area/CA = get_area(C)
+			var/area/CA = GET_AREA(C)
 			if(CA.type == A.type)
 				if(C.number)
 					number = max(number, C.number+1)

@@ -19,10 +19,7 @@
 
 /obj/machinery/light_switch/New()
 	..()
-	if(other_area)
-		src.connected_area = locate(other_area)
-	else
-		src.connected_area = get_area(src)
+	connected_area = isnotnull(other_area) ? locate(other_area) : GET_AREA(src)
 
 /obj/machinery/light_switch/initialise()
 	. = ..()

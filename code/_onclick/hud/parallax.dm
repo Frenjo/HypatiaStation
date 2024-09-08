@@ -128,13 +128,13 @@ GLOBAL_GLOBL_LIST_NEW(atom/movable/space_star/bluespace/parallax_bluespace_stars
 /mob/Move()
 	. = ..()
 	if(. && isnotnull(client))
-		var/area/new_area = get_area(src)
+		var/area/new_area = GET_AREA(src)
 		client.set_parallax_space(new_area.parallax_type)
 
 /mob/forceMove()
 	. = ..()
 	if(. && isnotnull(client))
-		var/area/new_area = get_area(src)
+		var/area/new_area = GET_AREA(src)
 		client.set_parallax_space(new_area.parallax_type)
 
 /area

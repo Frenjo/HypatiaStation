@@ -303,7 +303,7 @@
 		character.loc = pick(GLOBL.latejoin)
 		join_message = "has arrived on the station"
 
-	character.lastarea = get_area(loc)
+	character.lastarea = GET_AREA(src)
 
 	global.PCticker.mode.latespawn(character)
 
@@ -381,7 +381,7 @@
 		if(!new_character)
 			new_character = new(loc)
 
-		new_character.lastarea = get_area(loc)
+		new_character.lastarea = GET_AREA(src)
 
 	var/datum/language/chosen_language
 	if(client.prefs.secondary_language)

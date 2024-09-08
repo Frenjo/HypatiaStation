@@ -76,7 +76,7 @@
 	if(building == 0)
 		init()
 	else
-		area = get_area(src)
+		area = GET_AREA(src)
 		area.apc = src
 		opened = 1
 		operating = 0

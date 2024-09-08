@@ -40,7 +40,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/New()
 	. = ..()
 	air_contents.volume = 200
-	initial_loc = get_area(loc)
+	initial_loc = GET_AREA(src)
 	area_uid = initial_loc.uid
 
 	if(!id_tag)

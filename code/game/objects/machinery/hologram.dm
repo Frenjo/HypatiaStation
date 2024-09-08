@@ -44,7 +44,7 @@ var/const/HOLOPAD_MODE = 0
 		if(last_request + 200 < world.time)	//don't spam the AI with requests you jerk!
 			last_request = world.time
 			to_chat(user, SPAN_NOTICE("You request an AI's presence."))
-			var/area/area = get_area(src)
+			var/area/area = GET_AREA(src)
 			for_no_type_check(var/mob/living/silicon/ai/AI, GLOBL.ai_list)
 				if(!AI.client)
 					continue
@@ -122,8 +122,8 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 					return 1
 
 				else if(HOLOPAD_MODE == 1)
-					var/area/holo_area = get_area(src)
-					var/area/eye_area = get_area(master.eyeobj)
+					var/area/holo_area = GET_AREA(src)
+					var/area/eye_area = GET_AREA(master.eyeobj)
 
 					//if(eye_area in holo_area.master.related)
 					if(eye_area != holo_area)

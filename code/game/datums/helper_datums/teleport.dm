@@ -94,7 +94,7 @@
 /datum/teleport/proc/doTeleport()
 	var/turf/destturf
 	var/turf/curturf = GET_TURF(teleatom)
-	var/area/destarea = get_area(destination)
+	var/area/destarea = GET_AREA(destination)
 	if(precision)
 		var/list/posturfs = circlerangeturfs(destination, precision)
 		destturf = safepick(posturfs)

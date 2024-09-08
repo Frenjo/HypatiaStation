@@ -7,7 +7,7 @@
 	var/list/skipped_areas = list(/area/station/engineering/engine, /area/turret_protected/ai_chamber)
 
 	for(var/obj/machinery/power/smes/S in GLOBL.machines)
-		var/area/current_area = get_area(S)
+		var/area/current_area = GET_AREA(S)
 		if(current_area.type in skipped_areas || isnotstationlevel(S.z))
 			continue
 		S.last_charge			= S.charge
@@ -21,7 +21,7 @@
 
 	for(var/obj/machinery/power/apc/C in GLOBL.machines)
 		if(C.cell && isstationlevel(C.z))
-			var/area/A = get_area(C)
+			var/area/A = GET_AREA(C)
 			var/skip = 0
 			for(var/area_type in skipped_areas)
 				if(istype(A, area_type))
@@ -45,7 +45,7 @@
 			C.cell.charge = C.cell.maxcharge
 
 	for(var/obj/machinery/power/smes/S in GLOBL.machines)
-		var/area/current_area = get_area(S)
+		var/area/current_area = GET_AREA(S)
 		if(current_area.type in skipped_areas || isnotstationlevel(S.z))
 			continue
 		S.charge = S.last_charge

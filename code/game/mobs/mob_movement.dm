@@ -197,7 +197,7 @@
 	//	if(!mob.Process_Spacemove(0))	return 0
 
 	if(isnull(mob.lastarea))
-		mob.lastarea = get_area(mob.loc)
+		mob.lastarea = GET_AREA(mob)
 
 	if(isspace(mob.loc) || !mob.lastarea.has_gravity)
 		if(!mob.Process_Spacemove(0))

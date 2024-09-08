@@ -93,7 +93,7 @@
 					to_chat(user, SPAN_WARNING("No network found please hang up and try your call again."))
 					return TRUE
 
-				var/temptag = "[get_area(src)] ([rand(1, 999)])"
+				var/temptag = "[GET_AREA(src)] ([rand(1, 999)])"
 				input = strip_html(input(user, "How would you like to name the camera?", "Set Camera Name", temptag))
 
 				state = 4

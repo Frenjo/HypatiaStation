@@ -131,8 +131,8 @@
 		return
 
 	if(isnull(L.lastarea))
-		L.lastarea = get_area(L.loc)
-	var/area/newarea = get_area(L.loc)
+		L.lastarea = GET_AREA(L)
+	var/area/newarea = GET_AREA(L)
 	var/area/oldarea = L.lastarea
 	if(!oldarea.has_gravity && newarea.has_gravity && IS_RUNNING(L)) // Being ready when you change areas gives you a chance to avoid falling all together.
 		thunk(L)

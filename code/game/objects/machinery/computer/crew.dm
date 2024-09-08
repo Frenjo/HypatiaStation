@@ -82,7 +82,7 @@
 				crewmemberData["fire"] = round(H.getFireLoss(), 1)
 				crewmemberData["brute"] = round(H.getBruteLoss(), 1)
 				crewmemberData["name"] = (H.id_store ? H.id_store.name : "Unknown")
-				crewmemberData["area"] = get_area(H)
+				crewmemberData["area"] = GET_AREA(H)
 				crewmemberData["x"] = pos.x
 				crewmemberData["y"] = pos.y
 

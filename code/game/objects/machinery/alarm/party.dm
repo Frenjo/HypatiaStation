@@ -27,7 +27,7 @@
 		return
 
 	usr.set_machine(src)
-	var/area/A = get_area(src)
+	var/area/A = GET_AREA(src)
 	ASSERT(isarea(A))
 	//if(A.master)
 		//A = A.master
@@ -65,7 +65,7 @@
 /obj/machinery/party_alarm/proc/reset()
 	if(!working)
 		return
-	var/area/A = get_area(src)
+	var/area/A = GET_AREA(src)
 	ASSERT(isarea(A))
 	//if(A.master)
 		//A = A.master
@@ -74,7 +74,7 @@
 /obj/machinery/party_alarm/proc/alarm()
 	if(!working)
 		return
-	var/area/A = get_area(src)
+	var/area/A = GET_AREA(src)
 	ASSERT(isarea(A))
 	//if(A.master)
 		//A = A.master

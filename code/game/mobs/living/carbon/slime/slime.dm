@@ -764,8 +764,8 @@
 /obj/effect/golemrune/proc/announce_to_ghosts()
 	for(var/mob/dead/observer/G in GLOBL.player_list)
 		if(G.client)
-			var/area/A = get_area(src)
-			if(A)
+			var/area/A = GET_AREA(src)
+			if(isnotnull(A))
 				to_chat(G, "Golem rune created in [A.name].")
 
 //////////////////////////////Old shit from metroids/RoRos, and the old cores, would not take much work to re-add them////////////////////////

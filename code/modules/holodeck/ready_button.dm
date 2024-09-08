@@ -32,7 +32,7 @@
 		to_chat(user, "This device is not powered.")
 		return
 
-	currentarea = get_area(src.loc)
+	currentarea = GET_AREA(src)
 	if(!currentarea)
 		qdel(src)
 

@@ -786,7 +786,7 @@
 /obj/item/mecha_part/equipment/tesla_energy_relay/proc/dyngetcharge()
 	if(equip_ready) //disabled
 		return chassis.dyngetcharge()
-	var/area/A = get_area(chassis)
+	var/area/A = GET_AREA(chassis)
 	var/pow_chan = get_power_channel(A)
 	var/charge = 0
 	if(pow_chan)
@@ -824,7 +824,7 @@
 /*
 /obj/item/mecha_part/equipment/tesla_energy_relay/proc/dynusepower(amount)
 	if(!equip_ready) //enabled
-		var/area/A = get_area(chassis)
+		var/area/A = GET_AREA(chassis)
 		var/pow_chan = get_power_channel(A)
 		if(pow_chan)
 			A.master.use_power(amount * coeff, pow_chan)
@@ -844,8 +844,8 @@
 		ER.occupant_message("No powercell detected.")
 		return
 	if(cur_charge < ER.chassis.cell.maxcharge)
-		var/area/A = get_area(ER.chassis)
-		if(A)
+		var/area/A = GET_AREA(ER.chassis)
+		if(isnotnull(A))
 			var/pow_chan
 			for(var/c in list(EQUIP, ENVIRON, LIGHT))
 				//if(A.master.powered(c))

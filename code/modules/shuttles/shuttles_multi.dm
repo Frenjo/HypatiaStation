@@ -63,7 +63,7 @@
 	if(shuttle.moving_status != SHUTTLE_IDLE)
 		dat += "Location: <font color='red'>Moving</font> <br>"
 	else
-		var/area/areacheck = get_area(src)
+		var/area/areacheck = GET_AREA(src)
 		dat += "Location: [areacheck.name]<br>"
 
 	if((shuttle.last_move + shuttle.cooldown*10) > world.time)

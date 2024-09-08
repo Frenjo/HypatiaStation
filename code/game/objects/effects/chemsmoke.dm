@@ -76,7 +76,7 @@
 		contained += " [reagent] "
 	if(contained)
 		contained = "\[[contained]\]"
-	var/area/A = get_area(location)
+	var/area/A = GET_AREA(location)
 
 	var/where = "[A.name] | [location.x], [location.y]"
 	var/whereLink = "<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>[where]</a>"

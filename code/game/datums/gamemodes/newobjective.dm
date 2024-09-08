@@ -358,7 +358,7 @@ datum
 
 			check_completion()
 				if(target && target.current)
-					if(target.current.stat == 2 || istype(get_area(target.current), /area/centcom/tdome) || issilicon(target.current) || isbrain(target.current))
+					if(target.current.stat == 2 || istype(GET_AREA(target.current), /area/centcom/tdome) || issilicon(target.current) || isbrain(target.current))
 						return 1
 					else
 						return 0
@@ -1066,11 +1066,11 @@ datum
 									return 1
 						for_no_type_check(var/mob/living/silicon/ai/M, GLOBL.ai_list)
 							if(isturf(M.loc))
-								if(istype(get_area(M), /area/shuttle/escape))
+								if(istype(GET_AREA(M), /area/shuttle/escape))
 									return 1
 						for(var/obj/structure/ai_core/M in GLOBL.movable_atom_list)
 							if(isturf(M.loc) && M.state == 4)
-								if(istype(get_area(M), /area/shuttle/escape))
+								if(istype(GET_AREA(M), /area/shuttle/escape))
 									return 1
 						return 0
 
