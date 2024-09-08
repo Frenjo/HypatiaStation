@@ -41,10 +41,10 @@
 	return
 
 /obj/item/assembly/prox_sensor/proc/sense()
-	var/turf/mainloc = get_turf(src)
+	var/turf/mainloc = GET_TURF(src)
 //	if(scanning && cooldown <= 0)
 //		mainloc.visible_message("\icon[src] *boop* *boop*", "*boop* *boop*")
-	if((!holder && !secured)||(!scanning)||(cooldown > 0))
+	if((!holder && !secured) || !scanning || cooldown > 0)
 		return 0
 	pulse(0)
 	if(!holder)
@@ -56,9 +56,9 @@
 
 /obj/item/assembly/prox_sensor/process()
 	if(scanning)
-		var/turf/mainloc = get_turf(src)
-		for(var/mob/living/A in range(range,mainloc))
-			if (A.move_speed < 12)
+		var/turf/mainloc = GET_TURF(src)
+		for(var/mob/living/A in range(range, mainloc))
+			if(A.move_speed < 12)
 				sense()
 
 	if(timing && (time >= 0))

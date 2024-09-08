@@ -189,7 +189,7 @@
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		if(do_after(user, 20))
 			if(C.amount >= 10 && !terminal && opened && has_electronics != 2)
-				var/turf/T = get_turf(src)
+				var/turf/T = GET_TURF(src)
 				var/obj/structure/cable/N = T.get_cable_node()
 				if(prob(50) && electrocute_mob(usr, N, N))
 					make_sparks(5, TRUE, src)

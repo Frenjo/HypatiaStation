@@ -1017,7 +1017,7 @@ var/global/floorIsLava = 0
 			return
 
 	if(ispath(chosen, /turf))
-		var/turf/T = get_turf(usr.loc)
+		var/turf/T = GET_TURF(usr)
 		T.ChangeTurf(chosen)
 	else
 		new chosen(usr.loc)

@@ -677,10 +677,7 @@ steam.start() -- spawns the effect
 
 /datum/effect/system/reagents_explosion/set_up(amt, loc, flash = 0, flash_fact = 0)
 	amount = amt
-	if(isturf(loc))
-		location = loc
-	else
-		location = GET_TURF(loc)
+	location = isturf(loc) ? loc : GET_TURF(loc)
 
 	flashing = flash
 	flashing_factor = flash_fact

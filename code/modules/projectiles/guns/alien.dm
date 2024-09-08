@@ -82,8 +82,8 @@
 /obj/item/spikethrower/proc/Fire(atom/target, mob/living/user, params, reflex = 0)
 	add_fingerprint(user)
 
-	var/turf/curloc = get_turf(user)
-	var/turf/targloc = get_turf(target)
+	var/turf/curloc = GET_TURF(user)
+	var/turf/targloc = GET_TURF(target)
 	if(!istype(targloc) || !istype(curloc))
 		return
 
@@ -109,7 +109,7 @@
 		SPAN_WARNING("[user] fires [src]!"),
 		SPAN_WARNING("You fire [src]!")
 	)
-	spike.loc = get_turf(src)
+	spike.loc = GET_TURF(src)
 	spike.throw_at(target, 10, fire_force)
 	spike = null
 	update_icon()

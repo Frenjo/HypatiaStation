@@ -44,7 +44,7 @@
 		if(!isemptylist(welder_salvage) && WT.remove_fuel(0, user))
 			var/type = prob(70) ? pick(welder_salvage) : null
 			if(type)
-				var/N = new type(get_turf(user))
+				var/N = new type(GET_TURF(user))
 				user.visible_message(
 					"[user] cuts [N] from [src].",
 					"You cut [N] from [src].",
@@ -65,7 +65,7 @@
 		else if(!isemptylist(wirecutters_salvage))
 			var/type = prob(70) ? pick(wirecutters_salvage) : null
 			if(type)
-				var/N = new type(get_turf(user))
+				var/N = new type(GET_TURF(user))
 				user.visible_message(
 					"[user] cuts [N] from [src].",
 					"You cut [N] from [src]."
@@ -77,7 +77,7 @@
 		if(!isemptylist(crowbar_salvage))
 			var/obj/S = pick(crowbar_salvage)
 			if(S)
-				S.loc = get_turf(user)
+				S.loc = GET_TURF(user)
 				crowbar_salvage -= S
 				user.visible_message(
 					"[user] pries [S] from [src].",

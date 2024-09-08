@@ -105,7 +105,7 @@
 		spawn(0)
 			target_tile.hotspot_expose(temperature, 400)
 	for(var/obj/structure/falsewall/plasma/F in range(3, src))//Hackish as fuck, but until temperature_expose works, there is nothing I can do -Sieve
-		var/turf/T = get_turf(F)
+		var/turf/T = GET_TURF(F)
 		T.ChangeTurf(/turf/closed/wall/plasma)
 		qdel(F)
 	for(var/turf/closed/wall/plasma/W in range(3, src))

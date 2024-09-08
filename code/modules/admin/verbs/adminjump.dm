@@ -46,8 +46,8 @@
 		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
 		if(src.mob)
 			var/mob/A = src.mob
-			var/turf/T = get_turf(M)
-			if(T && isturf(T))
+			var/turf/T = GET_TURF(M)
+			if(isturf(T))
 				feedback_add_details("admin_verb", "JM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 				A.forceMove(T)
 			else
@@ -111,7 +111,7 @@
 	if(CONFIG_GET(allow_admin_jump))
 		log_admin("[key_name(usr)] teleported [key_name(M)]")
 		message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)]", 1)
-		M.forceMove(get_turf(usr))
+		M.forceMove(GET_TURF(usr))
 		feedback_add_details("admin_verb", "GM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		alert("Admin jumping disabled")
@@ -139,7 +139,7 @@
 		log_admin("[key_name(usr)] teleported [key_name(M)]")
 		message_admins("[key_name_admin(usr)] teleported [key_name(M)]", 1)
 		if(M)
-			M.forceMove(get_turf(usr))
+			M.forceMove(GET_TURF(usr))
 			feedback_add_details("admin_verb", "GK") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		alert("Admin jumping disabled")

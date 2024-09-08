@@ -89,4 +89,4 @@
 
 				skip:
 				if (ok == 0) // Finally, since everything else failed, place it on the ground
-					Item.loc = get_turf(M.loc)
+					Item.loc = GET_TURF(M)

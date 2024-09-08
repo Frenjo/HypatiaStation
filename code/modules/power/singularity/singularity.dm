@@ -542,8 +542,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 			continue
 		if(cult_nh_mind.current.stat)
 			continue
-		var/turf/pos = get_turf(cult_nh_mind.current)
-		if(pos.z != src.z)
+		if(GET_TURF_Z(cult_nh_mind.current) != src.z)
 			continue
 		cultists += cult_nh_mind.current
 	if(length(cultists))
@@ -553,8 +552,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 	for(var/mob/living/carbon/human/food in GLOBL.living_mob_list)
 		if(food.stat)
 			continue
-		var/turf/pos = get_turf(food)
-		if(pos.z != src.z)
+		if(GET_TURF_Z(food) != src.z)
 			continue
 		cultists += food
 	if(length(cultists))
@@ -564,8 +562,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 	for(var/mob/dead/observer/ghost in GLOBL.player_list)
 		if(!ghost.client)
 			continue
-		var/turf/pos = get_turf(ghost)
-		if(pos.z != src.z)
+		if(GET_TURF_Z(ghost) != src.z)
 			continue
 		cultists += ghost
 	if(length(cultists))

@@ -1365,7 +1365,7 @@
 		var/special_role_description = ""
 		var/health_description = ""
 		var/gender_description = ""
-		var/turf/T = get_turf(M)
+		var/turf/T = GET_TURF(M)
 
 		//Location
 		if(isturf(T))
@@ -1461,10 +1461,12 @@
 		spawn(20)
 			qdel(S)
 
-		var/turf/open/floor/T = get_turf(M)
+		var/turf/open/floor/T = GET_TURF(M)
 		if(istype(T))
-			if(prob(80))	T.break_tile_to_plating()
-			else			T.break_tile()
+			if(prob(80))
+				T.break_tile_to_plating()
+			else
+				T.break_tile()
 
 		if(M.health == 1)
 			M.gib()

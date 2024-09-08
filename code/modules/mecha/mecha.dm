@@ -265,12 +265,12 @@
 /obj/mecha/Move()
 	. = ..()
 	if(.)
-		events.fireEvent("onMove", get_turf(src))
+		events.fireEvent("onMove", GET_TURF(src))
 	return
 
 /obj/mecha/relaymove(mob/user, direction)
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
-		user.forceMove(get_turf(src))
+		user.forceMove(GET_TURF(src))
 		user << "You climb out from [src]"
 		return 0
 	if(connected_port)
@@ -520,13 +520,13 @@
 /obj/mecha/proc/destroy()
 	spawn()
 		go_out()
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		tag = "\ref[src]" //better safe then sorry
 		if(loc)
 			loc.Exited(src)
 		loc = null
-		if(T)
-			if(istype(src, /obj/mecha/working/ripley/))
+		if(isnotnull(T))
+			if(istype(src, /obj/mecha/working/ripley))
 				var/obj/mecha/working/ripley/R = src
 				if(R.cargo)
 					for(var/obj/O in R.cargo) //Dump contents of stored cargo
@@ -819,17 +819,16 @@
 /////////////////////////////////////
 
 /obj/mecha/proc/get_turf_air()
-	var/turf/T = get_turf(src)
-	if(T)
+	var/turf/T = GET_TURF(src)
+	if(isnotnull(T))
 		. = T.return_air()
-	return
 
 /obj/mecha/remove_air(amount)
 	if(use_internal_tank)
 		return cabin_air.remove(amount)
 	else
-		var/turf/T = get_turf(src)
-		if(T)
+		var/turf/T = GET_TURF(src)
+		if(isnotnull(T))
 			return T.remove_air(amount)
 	return
 

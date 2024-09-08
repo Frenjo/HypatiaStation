@@ -92,7 +92,7 @@
 				attempts--
 				if(attempts == 0)
 					to_chat(user, SPAN_DANGER("The crate's anti-tamper system activates!"))
-					var/turf/T = get_turf(loc)
+					var/turf/T = GET_TURF(src)
 					explosion(T, 0, 0, 0, 1)
 					qdel(src)
 					return

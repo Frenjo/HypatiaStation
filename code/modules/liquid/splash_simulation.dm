@@ -34,7 +34,7 @@ var/list/datum/puddle/puddles = list()
 	var/volume = input("Volume?","Volume?", 0 ) as num
 	if(!isnum(volume)) return
 	if(volume <= LIQUID_TRANSFER_THRESHOLD) return
-	var/turf/T = get_turf(src.mob)
+	var/turf/T = GET_TURF(mob)
 	if(!isturf(T)) return
 	trigger_splash(T, volume)
 

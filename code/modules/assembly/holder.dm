@@ -178,8 +178,8 @@
 			if(!istype(a_right, /obj/item/assembly/igniter))
 				a_right.attack_self(user)
 	else
-		var/turf/T = get_turf(src)
-		if(!T)
+		var/turf/T = GET_TURF(src)
+		if(isnull(T))
 			return 0
 		if(a_left)
 			a_left:holder = null

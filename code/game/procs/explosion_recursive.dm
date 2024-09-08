@@ -2,7 +2,7 @@
 	set category = PANEL_DEBUG
 
 	var/power = input(src, "power?", "power?") as num
-	var/turf/T = get_turf(src.mob)
+	var/turf/T = GET_TURF(mob)
 	explosion_rec(T, power)
 
 /var/global/list/explosion_turfs = list()
@@ -18,8 +18,8 @@
 
 	if(power <= 0)
 		return
-	epicenter = get_turf(epicenter)
-	if(!epicenter)
+	epicenter = GET_TURF(epicenter)
+	if(isnull(epicenter))
 		return
 
 	message_admins("Explosion with size ([power]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z])")

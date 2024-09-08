@@ -34,7 +34,7 @@
 	if(isnull(AC) || !istype(AC))
 		return 0
 
-	AC.loc = get_turf(src) //Eject casing onto ground.
+	AC.loc = GET_TURF(src) //Eject casing onto ground.
 	if(isnotnull(AC.loaded_bullet))
 		AC.desc += " This one is spent."	//descriptions are magic - only when there's a projectile in the casing
 		in_chamber = AC.loaded_bullet //Load projectile into chamber.
@@ -82,14 +82,14 @@
 		if(load_method == SPEEDLOADER)
 			var/obj/item/ammo_casing/AC = loaded[1]
 			loaded.Remove(AC)
-			AC.loc = get_turf(src) //Eject casing onto ground.
+			AC.loc = GET_TURF(src) //Eject casing onto ground.
 			to_chat(user, SPAN_INFO("You unload the shells from \the [src]!"))
 		if(load_method == MAGAZINE)
 			var/obj/item/ammo_magazine/AM = empty_mag
 			for(var/obj/item/ammo_casing/AC in loaded)
 				AM.stored_ammo.Add(AC)
 				loaded.Remove(AC)
-			AM.loc = get_turf(src)
+			AM.loc = GET_TURF(src)
 			empty_mag = null
 			update_icon()
 			AM.update_icon()

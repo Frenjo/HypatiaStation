@@ -400,4 +400,4 @@
 			SPAN_WARNING("Your suit automatically extinguishes you.")
 		)
 		H.ExtinguishMob()
-		new /obj/effect/water(get_turf(H))
+		new /obj/effect/water(GET_TURF(H))

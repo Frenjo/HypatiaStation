@@ -38,7 +38,7 @@ var/list/beam_master = list()
 		kill_count--
 
 		if(!bumped && !isturf(original))
-			if(loc == get_turf(original))
+			if(loc == GET_TURF(original))
 				if(!(original in permutated))
 					Bump(original)
 

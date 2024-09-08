@@ -49,7 +49,7 @@
 			to_chat(usr, "You begin deconstructing [src].")
 			if(!do_after(usr, 30))
 				return
-			new /obj/item/stack/sheet/steel(get_turf(loc), sheets_refunded)
+			new /obj/item/stack/sheet/steel(GET_TURF(src), sheets_refunded)
 			user.visible_message(
 				"[user.name] deconstructs [src].",
 				"You deconstruct [src].",
@@ -70,7 +70,7 @@
 			return
 		stage = LIGHT_STAGE_ONE
 		update_icon()
-		new /obj/item/stack/cable_coil(get_turf(loc), 1, "red")
+		new /obj/item/stack/cable_coil(GET_TURF(src), 1, "red")
 		user.visible_message(
 			"[user.name] removes the wiring from [src].",
 			"You remove the wiring from [src].",

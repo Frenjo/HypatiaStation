@@ -625,7 +625,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 				owner.visible_message(SPAN_WARNING("\The [owner]'s [display_name] explodes violently!"),\
 				SPAN_DANGER("Your [display_name] explodes!"),\
 				"You hear an explosion followed by a scream!")
-				explosion(get_turf(owner), -1, -1, 2, 3)
+				explosion(GET_TURF(owner), -1, -1, 2, 3)
 				make_sparks(5, FALSE, owner, owner)
 
 			owner.visible_message(SPAN_WARNING("[owner.name]'s [display_name] flies off in an arc."),\

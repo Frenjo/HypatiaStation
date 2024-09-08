@@ -70,7 +70,7 @@
 
 	proc
 		overheat()
-			explosion(get_turf(src), 2, 5, 2, -1)
+			explosion(GET_TURF(src), 2, 5, 2, -1)
 
 	attackby(obj/item/O, mob/user)
 		if(istype(O, /obj/item/tank/plasma))

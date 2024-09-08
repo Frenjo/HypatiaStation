@@ -81,7 +81,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 
 /obj/machinery/computer/forensic_scanning/New()
 	..()
-	new /obj/item/book/manual/detective(get_turf(src))
+	new /obj/item/book/manual/detective(GET_TURF(src))
 	return
 
 /obj/machinery/computer/forensic_scanning/attack_ai(mob/user)

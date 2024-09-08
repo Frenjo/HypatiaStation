@@ -21,8 +21,8 @@
 	return ..()
 
 /obj/structure/cable/heavyduty/attackby(obj/item/W, mob/user)
-	var/turf/T = get_turf(src)
-	if(T.intact)
+	var/turf/T = GET_TURF(src)
+	if(T?.intact)
 		return
 
 	return ..()

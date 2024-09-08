@@ -31,7 +31,7 @@
 
 /obj/item/mecha_part/equipment/tool/sleeper/destroy()
 	for(var/atom/movable/AM in src)
-		AM.forceMove(get_turf(src))
+		AM.forceMove(GET_TURF(src))
 	return ..()
 
 /obj/item/mecha_part/equipment/tool/sleeper/Exit(atom/movable/O)
@@ -80,7 +80,7 @@
 /obj/item/mecha_part/equipment/tool/sleeper/proc/go_out()
 	if(!occupant)
 		return
-	occupant.forceMove(get_turf(src))
+	occupant.forceMove(GET_TURF(src))
 	occupant_message("[occupant] ejected. Life support functions disabled.")
 	log_message("[occupant] ejected. Life support functions disabled.")
 	occupant.reset_view()
@@ -298,8 +298,7 @@
 			m = min(m, cable.amount)
 			if(m)
 				use_cable(m)
-				var/obj/item/stack/cable_coil/CC = new (get_turf(chassis))
-				CC.amount = m
+				new /obj/item/stack/cable_coil(GET_TURF(chassis), m)
 		else
 			occupant_message("There's no more cable on the reel.")
 	return
@@ -458,9 +457,9 @@
 		return
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
-	var/turf/trg = get_turf(target)
+	var/turf/trg = GET_TURF(target)
 	var/obj/item/reagent_holder/syringe/S = syringes[1]
-	S.forceMove(get_turf(chassis))
+	S.forceMove(GET_TURF(chassis))
 	reagents.trans_to(S, min(S.volume, reagents.total_volume))
 	syringes -= S
 	S.icon = 'icons/obj/chemical.dmi'

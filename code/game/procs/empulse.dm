@@ -3,7 +3,7 @@
 		return
 
 	if(!isturf(epicenter))
-		epicenter = get_turf(epicenter.loc)
+		epicenter = GET_TURF(epicenter)
 
 	if(log)
 		message_admins("EMP with size ([heavy_range], [light_range]) in area [epicenter.loc.name]")

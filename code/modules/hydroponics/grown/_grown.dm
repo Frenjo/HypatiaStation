@@ -51,7 +51,7 @@
 	/*if (istype(O, /obj/item/storage/bag/plants))
 		var/obj/item/plantbag/S = O
 		if (S.mode == 1)
-			for(var/obj/item/G in get_turf(src))
+			for(var/obj/item/G in GET_TURF(src))
 				if(istype(G, /obj/item/seeds) || istype(G, /obj/item/reagent_holder/food/snacks/grown))
 					if(length(S.contents) < S.capacity)
 						S.contents += G
@@ -70,7 +70,7 @@
 	if (istype(O, /obj/item/storage/bag/plants))
 		var/obj/item/plantbag/S = O
 		if (S.mode == 1)
-			for(var/obj/item/G in get_turf(src))
+			for(var/obj/item/G in GET_TURF(src))
 				if(istype(G, /obj/item/seeds) || istype(G, /obj/item/reagent_holder/food/snacks/grown))
 					if(length(S.contents) < S.capacity)
 						S.contents += G

@@ -108,7 +108,7 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 	var/obj/item/tank/plasma/Z = src.P
 	if(!Z)
 		return
-	Z.loc = get_turf(src)
+	Z.loc = GET_TURF(src)
 	Z.reset_plane_and_layer()
 	src.P = null
 	if(active)

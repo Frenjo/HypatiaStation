@@ -20,6 +20,6 @@
 /datum/event/carp_migration/end()
 	for_no_type_check(var/mob/living/simple/hostile/carp/C, spawned_carp)
 		if(!C.stat)
-			var/turf/T = get_turf(C)
+			var/turf/T = GET_TURF(C)
 			if(isspace(T))
 				qdel(C)

@@ -797,7 +797,7 @@
 /obj/item/clothing/tie/fluff/konaa_hirano/attack_self(mob/user)
 	if(held)
 		user << "You open [src] and [held] falls out."
-		held.loc = get_turf(user)
+		held.loc = GET_TURF(user)
 		src.held = null
 
 /obj/item/clothing/tie/fluff/konaa_hirano/attackby(obj/item/O, mob/user)

@@ -98,7 +98,7 @@
 		S.reagents.clear_reagents()
 
 /obj/item/cell/proc/explode()
-	var/turf/T = get_turf(src.loc)
+	var/turf/T = GET_TURF(src)
 /*
  * 1000-cell	explosion(T, -1, 0, 1, 1)
  * 2500-cell	explosion(T, -1, 0, 1, 1)

@@ -158,7 +158,7 @@
 		usr << "Cannot find air_system"
 		return
 
-	var/turf/T = get_turf(usr)
+	var/turf/T = GET_TURF(usr)
 	if(issimulated(T))
 		var/datum/air_group/AG = T:parent
 		AG.next_check = 30

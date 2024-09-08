@@ -7,9 +7,9 @@
 			usr << "It is forbidden to possess singularities."
 			return
 
-	var/turf/T = get_turf(O)
+	var/turf/T = GET_TURF(O)
 
-	if(T)
+	if(isnotnull(T))
 		log_admin("[key_name(usr)] has possessed [O] ([O.type]) at ([T.x], [T.y], [T.z])")
 		message_admins("[key_name(usr)] has possessed [O] ([O.type]) at ([T.x], [T.y], [T.z])", 1)
 	else
@@ -29,7 +29,7 @@
 /proc/release(obj/O as obj in GLOBL.movable_atom_list)
 	set category = PANEL_OBJECT
 	set name = "Release Obj"
-	//usr.loc = get_turf(usr)
+	//usr.loc = GET_TURF(usr)
 
 	if(usr.control_object && usr.name_archive) //if you have a name archived and if you are actually relassing an object
 		usr.real_name = usr.name_archive

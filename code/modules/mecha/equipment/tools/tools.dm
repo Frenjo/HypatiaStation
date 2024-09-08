@@ -222,28 +222,28 @@
 			if(src.reagents.total_volume > 0)
 				playsound(chassis, 'sound/effects/extinguish.ogg', 75, 1, -3)
 				var/direction = get_dir(chassis,target)
-				var/turf/T = get_turf(target)
+				var/turf/T = GET_TURF(target)
 				var/turf/T1 = get_step(T, turn(direction, 90))
 				var/turf/T2 = get_step(T, turn(direction, -90))
 
 				var/list/the_targets = list(T, T1, T2)
 				spawn(0)
 					for(var/a = 0, a < 5, a++)
-						var/obj/effect/water/W = new /obj/effect/water(get_turf(chassis))
-						if(!W)
+						var/obj/effect/water/W = new /obj/effect/water(GET_TURF(chassis))
+						if(isnull(W))
 							return
 						var/turf/my_target = pick(the_targets)
 						W.create_reagents(5)
 						src.reagents.trans_to(W, 1)
 						for(var/b = 0, b < 4, b++)
-							if(!W)
+							if(isnull(W))
 								return
 							step_towards(W, my_target)
-							if(!W)
+							if(isnull(W))
 								return
-							var/turf/W_turf = get_turf(W)
+							var/turf/W_turf = GET_TURF(W)
 							W.reagents.reaction(W_turf)
-							for(var/atom/atm in W_turf)
+							for_no_type_check(var/atom/atm, W_turf)
 								W.reagents.reaction(atm)
 							if(W.loc == my_target)
 								break
@@ -288,7 +288,7 @@
 	else
 		disabled = 0
 	if(!isturf(target) && !istype(target, /obj/machinery/door/airlock))
-		target = get_turf(target)
+		target = GET_TURF(target)
 	if(!action_checks(target) || disabled || get_dist(chassis, target) > 3)
 		return
 	playsound(chassis, 'sound/machines/click.ogg', 50, 1)
@@ -390,8 +390,8 @@
 /obj/item/mecha_part/equipment/teleporter/action(atom/target)
 	if(!action_checks(target) || src.loc.z == 2)
 		return
-	var/turf/T = get_turf(target)
-	if(T)
+	var/turf/T = GET_TURF(target)
+	if(isnotnull(T))
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
 		do_teleport(chassis, T, 4)
@@ -420,7 +420,7 @@
 		return
 	var/area/thearea = pick(theareas)
 	var/list/L = list()
-	var/turf/pos = get_turf(src)
+	var/turf/pos = GET_TURF(src)
 	for_no_type_check(var/turf/T, get_area_turfs(thearea.type))
 		if(!T.density && pos.z == T.z)
 			var/clear = 1
@@ -437,7 +437,7 @@
 		return
 	chassis.use_power(energy_drain)
 	set_ready_state(0)
-	var/obj/effect/portal/P = new /obj/effect/portal(get_turf(target))
+	var/obj/effect/portal/P = new /obj/effect/portal(GET_TURF(target))
 	P.target = target_turf
 	P.creator = null
 	P.icon = 'icons/obj/objects.dmi'
@@ -952,10 +952,10 @@
 
 /obj/item/mecha_part/equipment/generator/critfail()
 	..()
-	var/turf/open/T = get_turf(src)
-	if(!T)
+	var/turf/open/T = GET_TURF(src)
+	if(isnull(T))
 		return
-	var/datum/gas_mixture/GM = new
+	var/datum/gas_mixture/GM = new /datum/gas_mixture()
 	if(prob(10))
 		T.assume_gas(/decl/xgm_gas/plasma, 100, 1500 + T0C)
 		T.visible_message("The [src] suddenly disgorges a cloud of heated plasma.")
@@ -1122,7 +1122,7 @@
 
 /obj/item/mecha_part/equipment/tool/passenger/destroy()
 	for(var/atom/movable/AM in src)
-		AM.forceMove(get_turf(src))
+		AM.forceMove(GET_TURF(src))
 	return ..()
 
 /obj/item/mecha_part/equipment/tool/passenger/Exit(atom/movable/O)
@@ -1160,7 +1160,7 @@
 /obj/item/mecha_part/equipment/tool/passenger/proc/go_out()
 	if(!occupant)
 		return
-	occupant.forceMove(get_turf(src))
+	occupant.forceMove(GET_TURF(src))
 	occupant.reset_view()
 	/*
 	if(occupant.client)

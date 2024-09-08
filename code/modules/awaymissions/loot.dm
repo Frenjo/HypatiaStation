@@ -22,5 +22,5 @@
 				things.Remove(loot_spawn)
 				continue
 
-			new loot_path(get_turf(src))
+			new loot_path(GET_TURF(src))
 	qdel(src)

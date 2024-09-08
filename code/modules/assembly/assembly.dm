@@ -87,7 +87,7 @@
 	return secured
 
 /obj/item/assembly/attach_assembly(obj/item/assembly/A, mob/user)
-	holder = new/obj/item/assembly_holder(get_turf(src))
+	holder = new/obj/item/assembly_holder(GET_TURF(src))
 	if(holder.attach(A, src, user))
 		to_chat(user, SPAN_INFO("You attach \the [A] to \the [src]!"))
 		return 1

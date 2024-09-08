@@ -142,7 +142,7 @@ var/const/BLOOD_VOLUME_SURVIVE = 122
 		return
 
 	var/amm = 0.1 * amt
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	var/list/obj/effect/decal/cleanable/blood/drip/nums = list()
 	var/list/iconL = list("1", "2", "3", "4", "5")
 

@@ -47,7 +47,7 @@
 
 	// They're also super gross and ooze ichor.
 	if(prob(5))
-		var/obj/effect/decal/cleanable/blood/splatter/goo = new(get_turf(owner))
+		var/obj/effect/decal/cleanable/blood/splatter/goo = new /obj/effect/decal/cleanable/blood/splatter(GET_TURF(owner))
 		goo.name = "husk ichor"
 		goo.desc = "It's thick and stinks of decay."
 		goo.basecolor = "#412464"

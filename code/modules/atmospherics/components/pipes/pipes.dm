@@ -271,7 +271,7 @@
 		//dir = node1_direction|node2_direction
 	else
 		if(isnull(node1) && isnull(node2))
-			var/turf/T = get_turf(src)
+			var/turf/T = GET_TURF(src)
 			new /obj/item/pipe(loc, make_from = src)
 			for(var/obj/machinery/meter/meter in T)
 				if(meter.target == src)

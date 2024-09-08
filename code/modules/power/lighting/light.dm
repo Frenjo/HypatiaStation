@@ -401,7 +401,7 @@
 
 // explode the light
 /obj/machinery/light/proc/explode()
-	var/turf/T = get_turf(loc)
+	var/turf/T = GET_TURF(src)
 	spawn(0)
 		broken()	// break it first to give a warning
 		sleep(2)

@@ -5,8 +5,7 @@
 
 /obj/mecha/working/initialise()
 	. = ..()
-	var/turf/T = get_turf(src)
-	if(T.z != 2)
+	if(GET_TURF_Z(src) != 2)
 		new /obj/item/mecha_part/tracking(src)
 
 /*

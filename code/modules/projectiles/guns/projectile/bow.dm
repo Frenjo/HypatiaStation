@@ -29,7 +29,7 @@
 	if(throwforce == 15) // The rod has been superheated - we don't want it to be useable when removed from the bow.
 		to_chat(user, "[src] shatters into a scattering of overstressed metal shards as it leaves the crossbow.")
 		var/obj/item/shard/shrapnel/S = new /obj/item/shard/shrapnel()
-		S.loc = get_turf(src)
+		S.loc = GET_TURF(src)
 		qdel(src)
 
 /obj/item/crossbow
@@ -98,7 +98,7 @@
 	else if(isscrewdriver(W))
 		if(isnotnull(cell))
 			var/obj/item/C = cell
-			C.loc = get_turf(user)
+			C.loc = GET_TURF(user)
 			cell = null
 			to_chat(user, SPAN_NOTICE("You jimmy [cell] out of [src] with [W]."))
 		else
@@ -115,7 +115,7 @@
 				"You relax the tension on [src]'s string and remove [arrow]."
 			)
 			var/obj/item/arrow/A = arrow
-			A.loc = get_turf(src)
+			A.loc = GET_TURF(src)
 			A.removed(user)
 			arrow = null
 		else
@@ -192,8 +192,8 @@
 /obj/item/crossbow/proc/Fire(atom/target, mob/living/user, params, reflex = 0)
 	add_fingerprint(user)
 
-	var/turf/curloc = get_turf(user)
-	var/turf/targloc = get_turf(target)
+	var/turf/curloc = GET_TURF(user)
+	var/turf/targloc = GET_TURF(target)
 	if(!istype(targloc) || !istype(curloc))
 		return
 
@@ -203,7 +203,7 @@
 	)
 
 	var/obj/item/arrow/A = arrow
-	A.loc = get_turf(user)
+	A.loc = GET_TURF(user)
 	A.throw_at(target, 10, tension * release_speed)
 	arrow = null
 	tension = 0
@@ -212,7 +212,7 @@
 /obj/item/crossbow/dropped(mob/user)
 	if(isnotnull(arrow))
 		var/obj/item/arrow/A = arrow
-		A.loc = get_turf(src)
+		A.loc = GET_TURF(src)
 		A.removed(user)
 		arrow = null
 		tension = 0

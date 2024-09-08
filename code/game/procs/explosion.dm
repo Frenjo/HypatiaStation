@@ -26,8 +26,8 @@
 ///// Z-Level Stuff
 
 		var/start = world.timeofday
-		epicenter = get_turf(epicenter)
-		if(!epicenter)
+		epicenter = GET_TURF(epicenter)
+		if(isnull(epicenter))
 			return
 
 		//playsound(epicenter, 'sound/effects/explosionfar.ogg', 100, 1, round(devastation_range*2,1) )
@@ -44,9 +44,9 @@
 		var/frequency = get_rand_frequency()
 		for_no_type_check(var/mob/M, GLOBL.player_list)
 			// Double check for client
-			if(M && M.client)
-				var/turf/M_turf = get_turf(M)
-				if(M_turf && M_turf.z == epicenter.z)
+			if(isnotnull(M?.client))
+				var/turf/M_turf = GET_TURF(M)
+				if(M_turf?.z == epicenter.z)
 					var/dist = get_dist(M_turf, epicenter)
 					// If inside the blast radius + world.view - 2
 					if(dist <= round(max_range + world.view - 2, 1))

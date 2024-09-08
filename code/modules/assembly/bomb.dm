@@ -106,7 +106,7 @@
 	var/fuel_moles = air_contents.gas[/decl/xgm_gas/plasma] + air_contents.gas[/decl/xgm_gas/oxygen] / 6
 	var/strength = 1
 
-	var/turf/ground_zero = get_turf(loc)
+	var/turf/ground_zero = GET_TURF(src)
 	loc = null
 
 	if(air_contents.temperature > (T0C + 400))
@@ -152,7 +152,7 @@
 
 /obj/item/tank/proc/release()	//This happens when the bomb is not welded. Tank contents are just spat out.
 	var/datum/gas_mixture/removed = air_contents.remove(air_contents.total_moles)
-	var/turf/open/T = get_turf(src)
-	if(!T)
+	var/turf/open/T = GET_TURF(src)
+	if(!istype(T))
 		return
 	T.assume_air(removed)

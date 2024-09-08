@@ -361,7 +361,7 @@
 
 /obj/item/clothing/tie/storage/attack_self(mob/user)
 	to_chat(user, SPAN_NOTICE("You empty [src]."))
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	hold.hide_from(usr)
 	for(var/obj/item/I in hold.contents)
 		hold.remove_from_storage(I, T)

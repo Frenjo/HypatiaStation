@@ -268,7 +268,7 @@
 						SPAN_NOTICE("[user] begins to cut the cables out of the power terminal..."),
 						SPAN_NOTICE("You begin to cut the cables out of the power terminal...")
 					)
-					playsound(get_turf(src), 'sound/items/Deconstruct.ogg', 50, 1)
+					playsound(GET_TURF(src), 'sound/items/Deconstruct.ogg', 50, 1)
 					if(do_after(user, 50))
 						if(prob(50) && electrocute_mob(usr, terminal.powernet, terminal))
 							make_sparks(5, TRUE, src)

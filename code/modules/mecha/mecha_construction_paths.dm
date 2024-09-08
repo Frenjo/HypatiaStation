@@ -243,8 +243,7 @@
 					"[user] removes the wiring from [holder].",
 					"You remove the wiring from [holder]."
 				)
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(GET_TURF(holder), 4)
 				holder.icon_state = "ripley2"
 		if(10)
 			if(diff == FORWARD)
@@ -272,7 +271,7 @@
 					"[user] removes the central control module from [holder].",
 					"You remove the central computer mainboard from [holder]."
 				)
-				new /obj/item/circuitboard/mecha/ripley/main(get_turf(holder))
+				new /obj/item/circuitboard/mecha/ripley/main(GET_TURF(holder))
 				holder.icon_state = "ripley4"
 		if(8)
 			if(diff == FORWARD)
@@ -300,7 +299,7 @@
 					"[user] removes the peripherals control module from [holder].",
 					"You remove the peripherals control module from [holder]."
 				)
-				new /obj/item/circuitboard/mecha/ripley/peripherals(get_turf(holder))
+				new /obj/item/circuitboard/mecha/ripley/peripherals(GET_TURF(holder))
 				holder.icon_state = "ripley6"
 		if(6)
 			if(diff == FORWARD)
@@ -327,7 +326,7 @@
 					"[user] pries internal armor layer from [holder].",
 					"You pry internal armor layer from [holder]."
 				)
-				new /obj/item/stack/sheet/steel(get_turf(holder), 5)
+				new /obj/item/stack/sheet/steel(GET_TURF(holder), 5)
 				holder.icon_state = "ripley8"
 		if(4)
 			if(diff == FORWARD)
@@ -367,8 +366,7 @@
 					"[user] pries external armor layer from [holder].",
 					"You pry external armor layer from [holder]."
 				)
-				var/obj/item/stack/sheet/plasteel/MS = new /obj/item/stack/sheet/plasteel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/sheet/plasteel(GET_TURF(holder), 5)
 				holder.icon_state = "ripley11"
 		if(1)
 			if(diff == FORWARD)
@@ -600,8 +598,7 @@
 					"[user] removes the wiring from [holder].",
 					"You remove the wiring from [holder]."
 				)
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(GET_TURF(holder), 4)
 				holder.icon_state = "gygax2"
 		if(16)
 			if(diff == FORWARD)
@@ -629,7 +626,7 @@
 					"[user] removes the central control module from [holder].",
 					"You remove the central computer mainboard from [holder]."
 				)
-				new /obj/item/circuitboard/mecha/gygax/main(get_turf(holder))
+				new /obj/item/circuitboard/mecha/gygax/main(GET_TURF(holder))
 				holder.icon_state = "gygax4"
 		if(14)
 			if(diff == FORWARD)
@@ -657,7 +654,7 @@
 					"[user] removes the peripherals control module from [holder].",
 					"You remove the peripherals control module from [holder]."
 				)
-				new /obj/item/circuitboard/mecha/gygax/peripherals(get_turf(holder))
+				new /obj/item/circuitboard/mecha/gygax/peripherals(GET_TURF(holder))
 				holder.icon_state = "gygax6"
 		if(12)
 			if(diff == FORWARD)
@@ -685,7 +682,7 @@
 					"[user] removes the weapon control module from [holder].",
 					"You remove the weapon control module from [holder]."
 				)
-				new /obj/item/circuitboard/mecha/gygax/targeting(get_turf(holder))
+				new /obj/item/circuitboard/mecha/gygax/targeting(GET_TURF(holder))
 				holder.icon_state = "gygax8"
 		if(10)
 			if(diff == FORWARD)
@@ -713,7 +710,7 @@
 					"[user] removes the advanced scanner module from [holder].",
 					"You remove the advanced scanner module from [holder]."
 				)
-				new /obj/item/stock_part/scanning_module/adv(get_turf(holder))
+				new /obj/item/stock_part/scanning_module/adv(GET_TURF(holder))
 				holder.icon_state = "gygax10"
 		if(8)
 			if(diff == FORWARD)
@@ -741,7 +738,7 @@
 					"[user] removes the advanced capacitor from [holder].",
 					"You remove the advanced capacitor from [holder]."
 				)
-				new /obj/item/stock_part/capacitor/adv(get_turf(holder))
+				new /obj/item/stock_part/capacitor/adv(GET_TURF(holder))
 				holder.icon_state = "gygax12"
 		if(6)
 			if(diff == FORWARD)
@@ -768,7 +765,7 @@
 					"[user] pries internal armor layer from [holder].",
 					"You pry internal armor layer from [holder]."
 				)
-				new /obj/item/stack/sheet/steel(get_turf(holder), 5)
+				new /obj/item/stack/sheet/steel(GET_TURF(holder), 5)
 				holder.icon_state = "gygax14"
 		if(4)
 			if(diff == FORWARD)
@@ -809,7 +806,7 @@
 					"[user] pries Gygax Armour Plates from [holder].",
 					"You pry Gygax Armour Plates from [holder]."
 				)
-				new /obj/item/mecha_part/part/gygax_armour(get_turf(holder))
+				new /obj/item/mecha_part/part/gygax_armour(GET_TURF(holder))
 				holder.icon_state = "gygax17"
 		if(1)
 			if(diff == FORWARD)
@@ -1013,8 +1010,7 @@
 					"[user] removes the wiring from [holder].",
 					"You remove the wiring from [holder]."
 				)
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(GET_TURF(holder), 4)
 				holder.icon_state = "fireripley2"
 		if(11)
 			if(diff == FORWARD)
@@ -1042,7 +1038,7 @@
 					"[user] removes the central control module from [holder].",
 					"You remove the central computer mainboard from [holder]."
 				)
-				new /obj/item/circuitboard/mecha/ripley/main(get_turf(holder))
+				new /obj/item/circuitboard/mecha/ripley/main(GET_TURF(holder))
 				holder.icon_state = "fireripley4"
 		if(9)
 			if(diff == FORWARD)
@@ -1070,7 +1066,7 @@
 					"[user] removes the peripherals control module from [holder].",
 					"You remove the peripherals control module from [holder]."
 				)
-				new /obj/item/circuitboard/mecha/ripley/peripherals(get_turf(holder))
+				new /obj/item/circuitboard/mecha/ripley/peripherals(GET_TURF(holder))
 				holder.icon_state = "fireripley6"
 		if(7)
 			if(diff == FORWARD)
@@ -1098,8 +1094,7 @@
 					"[user] pries internal armor layer from [holder].",
 					"You pry internal armor layer from [holder]."
 				)
-				var/obj/item/stack/sheet/plasteel/MS = new /obj/item/stack/sheet/plasteel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/sheet/plasteel(GET_TURF(holder), 5)
 				holder.icon_state = "fireripley8"
 		if(5)
 			if(diff == FORWARD)
@@ -1139,8 +1134,7 @@
 					"[user] removes the external armor from [holder].",
 					"You remove the external armor from [holder]."
 				)
-				var/obj/item/stack/sheet/plasteel/MS = new /obj/item/stack/sheet/plasteel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/sheet/plasteel(GET_TURF(holder), 5)
 				holder.icon_state = "fireripley11"
 		if(2)
 			if(diff == FORWARD)
@@ -1154,8 +1148,7 @@
 					"[user] pries external armor layer from [holder].",
 					"You pry external armor layer from [holder]."
 				)
-				var/obj/item/stack/sheet/plasteel/MS = new /obj/item/stack/sheet/plasteel(get_turf(holder))
-				MS.amount = 5
+				new /obj/item/stack/sheet/plasteel(GET_TURF(holder), 5)
 				holder.icon_state = "fireripley12"
 		if(1)
 			if(diff == FORWARD)
@@ -1485,8 +1478,7 @@
 					"[user] removes the wiring from [holder].",
 					"You remove the wiring from [holder]."
 				)
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(GET_TURF(holder), 4)
 				holder.icon_state = "durand2"
 		if(16)
 			if(diff == FORWARD)
@@ -1514,7 +1506,7 @@
 					"[user] removes the central control module from [holder].",
 					"You remove the central computer mainboard from [holder]."
 				)
-				new /obj/item/circuitboard/mecha/durand/main(get_turf(holder))
+				new /obj/item/circuitboard/mecha/durand/main(GET_TURF(holder))
 				holder.icon_state = "durand4"
 		if(14)
 			if(diff == FORWARD)
@@ -1542,7 +1534,7 @@
 					"[user] removes the peripherals control module from [holder].",
 					"You remove the peripherals control module from [holder]."
 				)
-				new /obj/item/circuitboard/mecha/durand/peripherals(get_turf(holder))
+				new /obj/item/circuitboard/mecha/durand/peripherals(GET_TURF(holder))
 				holder.icon_state = "durand6"
 		if(12)
 			if(diff == FORWARD)
@@ -1570,7 +1562,7 @@
 					"[user] removes the weapon control module from [holder].",
 					"You remove the weapon control module from [holder]."
 				)
-				new /obj/item/circuitboard/mecha/durand/targeting(get_turf(holder))
+				new /obj/item/circuitboard/mecha/durand/targeting(GET_TURF(holder))
 				holder.icon_state = "durand8"
 		if(10)
 			if(diff == FORWARD)
@@ -1598,7 +1590,7 @@
 					"[user] removes the advanced scanner module from [holder].",
 					"You remove the advanced scanner module from [holder]."
 				)
-				new /obj/item/stock_part/scanning_module/adv(get_turf(holder))
+				new /obj/item/stock_part/scanning_module/adv(GET_TURF(holder))
 				holder.icon_state = "durand10"
 		if(8)
 			if(diff == FORWARD)
@@ -1626,7 +1618,7 @@
 					"[user] removes the advanced capacitor from [holder].",
 					"You remove the advanced capacitor from [holder]."
 				)
-				new /obj/item/stock_part/capacitor/adv(get_turf(holder))
+				new /obj/item/stock_part/capacitor/adv(GET_TURF(holder))
 				holder.icon_state = "durand12"
 		if(6)
 			if(diff == FORWARD)
@@ -1653,7 +1645,7 @@
 					"[user] pries internal armor layer from [holder].",
 					"You pry internal armor layer from [holder]."
 				)
-				new /obj/item/stack/sheet/steel(get_turf(holder), 5)
+				new /obj/item/stack/sheet/steel(GET_TURF(holder), 5)
 				holder.icon_state = "durand14"
 		if(4)
 			if(diff == FORWARD)
@@ -1694,7 +1686,7 @@
 					"[user] pries Durand Armour Plates from [holder].",
 					"You pry Durand Armour Plates from [holder]."
 				)
-				new /obj/item/mecha_part/part/durand_armour(get_turf(holder))
+				new /obj/item/mecha_part/part/durand_armour(GET_TURF(holder))
 				holder.icon_state = "durand17"
 		if(1)
 			if(diff == FORWARD)
@@ -1914,8 +1906,7 @@
 					"[user] removes the wiring from [holder].",
 					"You remove the wiring from [holder]."
 				)
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(GET_TURF(holder), 4)
 				holder.icon_state = "odysseus2"
 		if(10)
 			if(diff == FORWARD)
@@ -1943,7 +1934,7 @@
 					"[user] removes the central control module from [holder].",
 					"You remove the central computer mainboard from [holder]."
 				)
-				new /obj/item/circuitboard/mecha/odysseus/main(get_turf(holder))
+				new /obj/item/circuitboard/mecha/odysseus/main(GET_TURF(holder))
 				holder.icon_state = "odysseus4"
 		if(8)
 			if(diff == FORWARD)
@@ -1971,7 +1962,7 @@
 					"[user] removes the peripherals control module from [holder].",
 					"You remove the peripherals control module from [holder]."
 				)
-				new /obj/item/circuitboard/mecha/odysseus/peripherals(get_turf(holder))
+				new /obj/item/circuitboard/mecha/odysseus/peripherals(GET_TURF(holder))
 				holder.icon_state = "odysseus6"
 		if(6)
 			if(diff == FORWARD)
@@ -1998,7 +1989,7 @@
 					"[user] pries internal armor layer from [holder].",
 					"You pry internal armor layer from [holder]."
 				)
-				new /obj/item/stack/sheet/steel(get_turf(holder), 5)
+				new /obj/item/stack/sheet/steel(GET_TURF(holder), 5)
 				holder.icon_state = "odysseus8"
 		if(4)
 			if(diff == FORWARD)
@@ -2034,8 +2025,7 @@
 				)
 				holder.icon_state = "odysseus13"
 			else
-				var/obj/item/stack/sheet/plasteel/MS = new /obj/item/stack/sheet/plasteel(get_turf(holder))
-				MS.amount = 5
+				var/obj/item/stack/sheet/plasteel/MS = new /obj/item/stack/sheet/plasteel(GET_TURF(holder), 5)
 				user.visible_message(
 					"[user] pries [MS] from [holder].",
 					"You pry [MS] from [holder]."

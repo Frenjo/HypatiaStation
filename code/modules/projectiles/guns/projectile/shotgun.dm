@@ -41,7 +41,7 @@
 	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
 	pumped = 0
 	if(isnotnull(current_shell)) // We have a shell in the chamber
-		current_shell.loc = get_turf(src)//Eject casing
+		current_shell.loc = GET_TURF(src)//Eject casing
 		current_shell = null
 		if(in_chamber)
 			in_chamber = null
@@ -108,7 +108,7 @@
 	for(var/obj/item/ammo_casing/shotgun/shell in src)	//This feels like a hack.	//don't code at 3:30am kids!!
 		if(shell in loaded)
 			loaded.Remove(shell)
-		shell.loc = get_turf(loc)
+		shell.loc = GET_TURF(src)
 
 	to_chat(user, SPAN_NOTICE("You break \the [src]."))
 	update_icon()

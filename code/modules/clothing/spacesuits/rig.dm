@@ -223,7 +223,7 @@
 					to_chat(user, "\The [src] does not have a helmet installed.")
 				else
 					to_chat(user, "You detatch \the [helmet] from \the [src]'s helmet mount.")
-					helmet.loc = get_turf(src)
+					helmet.loc = GET_TURF(src)
 					src.helmet = null
 				return
 			else if(istype(W, /obj/item/clothing/head/helmet/space))
@@ -249,7 +249,7 @@
 					to_chat(user, "\The [src] does not have any boots installed.")
 				else
 					to_chat(user, "You detatch \the [boots] from \the [src]'s boot mounts.")
-					boots.loc = get_turf(src)
+					boots.loc = GET_TURF(src)
 					boots = null
 				return
 			else if(istype(W, /obj/item/clothing/shoes/magboots))

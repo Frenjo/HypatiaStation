@@ -119,8 +119,8 @@
 
 	add_fingerprint(user)
 
-	var/turf/curloc = get_turf(user)
-	var/turf/targloc = get_turf(target)
+	var/turf/curloc = GET_TURF(user)
+	var/turf/targloc = GET_TURF(target)
 	if(!istype(targloc) || !istype(curloc))
 		return
 

@@ -208,7 +208,7 @@ var/list/debug_verbs = list(
 		return
 	testZAScolors_remove()
 
-	var/turf/open/location = get_turf(usr)
+	var/turf/open/location = GET_TURF(usr)
 
 	if(!issimulated(location)) // We're in space, let's not cause runtimes.
 		to_chat(usr, SPAN_WARNING("This debug tool cannot be used from space."))

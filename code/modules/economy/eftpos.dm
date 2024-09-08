@@ -24,7 +24,7 @@
 		print_reference()
 
 		//create a short manual as well
-		var/obj/item/paper/R = new /obj/item/paper(get_turf(src))
+		var/obj/item/paper/R = new /obj/item/paper(GET_TURF(src))
 		/*
 		R.info += "<b>When first setting up your EFTPOS device:</b>"
 		R.info += "1. Memorise your EFTPOS command code (provided with all EFTPOS devices).<br>"

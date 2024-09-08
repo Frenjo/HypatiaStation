@@ -437,8 +437,7 @@
 				if(M)
 					dat += "<tr><td><a href='byond://?src=\ref[src];adminplayeropts=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 					dat += "<td><A href='byond://?src=\ref[usr];priv_msg=\ref[M]'>PM</A></td>"
-					var/turf/mob_loc = get_turf(M)
-					dat += "<td>[mob_loc.loc]</td></tr>"
+					dat += "<td>[GET_AREA(M)]</td></tr>"
 				else
 					dat += "<tr><td><i>Head not found!</i></td></tr>"
 			dat += "</table>"

@@ -107,8 +107,8 @@
 
 	add_fingerprint(user)
 
-	var/turf/curloc = get_turf(user)
-	var/turf/targloc = get_turf(target)
+	var/turf/curloc = GET_TURF(user)
+	var/turf/targloc = GET_TURF(target)
 	if(!istype(targloc) || !istype(curloc))
 		return
 
@@ -149,8 +149,8 @@
 		)
 
 	in_chamber.original = target
-	in_chamber.loc = get_turf(user)
-	in_chamber.starting = get_turf(user)
+	in_chamber.loc = GET_TURF(user)
+	in_chamber.starting = GET_TURF(user)
 	in_chamber.shot_from = src
 	user.next_move = world.time + 4
 	in_chamber.silenced = silenced

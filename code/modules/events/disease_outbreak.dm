@@ -14,7 +14,7 @@
 
 	for(var/mob/living/carbon/human/H in shuffle(GLOBL.living_mob_list))
 		var/foundAlready = FALSE	// don't infect someone that already has the virus
-		var/turf/T = get_turf(H)
+		var/turf/T = GET_TURF(H)
 		if(isnull(T))
 			continue
 		if(isnotstationlevel(T.z))

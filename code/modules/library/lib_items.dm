@@ -48,7 +48,7 @@
 				if(!user.get_active_hand())
 					user.put_in_hands(choice)
 			else
-				choice.loc = get_turf(src)
+				choice.loc = GET_TURF(src)
 			update_icon()
 
 /obj/structure/bookcase/ex_act(severity)
@@ -61,14 +61,14 @@
 		if(2.0)
 			for(var/obj/item/book/b in contents)
 				if(prob(50))
-					b.loc = (get_turf(src))
+					b.loc = GET_TURF(src)
 				else qdel(b)
 			qdel(src)
 			return
 		if(3.0)
 			if(prob(50))
 				for(var/obj/item/book/b in contents)
-					b.loc = (get_turf(src))
+					b.loc = GET_TURF(src)
 				qdel(src)
 			return
 		else
@@ -140,7 +140,7 @@
 	if(carved)
 		if(store)
 			to_chat(user, SPAN_NOTICE("[store] falls out of [title]!"))
-			store.loc = get_turf(src.loc)
+			store.loc = GET_TURF(src)
 			store = null
 			return
 		else

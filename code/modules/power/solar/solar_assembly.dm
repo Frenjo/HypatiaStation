@@ -44,9 +44,9 @@
 					SPAN_NOTICE("You place the glass on the solar assembly.")
 				)
 				if(tracker)
-					new /obj/machinery/power/tracker(get_turf(src), src)
+					new /obj/machinery/power/tracker(GET_TURF(src), src)
 				else
-					new /obj/machinery/power/solar(get_turf(src), src)
+					new /obj/machinery/power/solar(GET_TURF(src), src)
 			else
 				to_chat(user, SPAN_WARNING("You need two sheets of glass to put them into a solar panel."))
 				return

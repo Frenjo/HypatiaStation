@@ -25,8 +25,8 @@
 	if(!action_checks(target))
 		return
 	var/turf/curloc = chassis.loc
-	var/turf/targloc = get_turf(target)
-	if(!curloc || !targloc)
+	var/turf/targloc = GET_TURF(target)
+	if(isnull(curloc) || isnull(targloc))
 		return
 	chassis.use_power(energy_drain)
 	chassis.visible_message(SPAN_WARNING("[chassis] fires [src]!"))

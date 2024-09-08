@@ -208,7 +208,7 @@
 
 /obj/machinery/computer/holodeck_control/process()
 	for(var/item in holographic_items) // do this first, to make sure people don't take items out when power is down.
-		if(!(get_turf(item) in linked_holodeck))
+		if(!(GET_TURF(item) in linked_holodeck))
 			derez(item, 0)
 
 	if(!..())
@@ -261,9 +261,9 @@
 			for(var/obj/effect/landmark/L in linked_holodeck)
 				if(L.name == "Atmospheric Test Start")
 					spawn(20)
-						var/turf/T = get_turf(L)
+						var/turf/T = GET_TURF(L)
 						make_sparks(2, TRUE, T)
-						if(T)
+						if(isnotnull(T))
 							T.temperature = 5000
 							T.hotspot_expose(50000, 50000,1)
 
@@ -306,9 +306,9 @@
 		for(var/obj/effect/landmark/L in linked_holodeck)
 			if(L.name == "Atmospheric Test Start")
 				spawn(20)
-					var/turf/T = get_turf(L)
+					var/turf/T = GET_TURF(L)
 					make_sparks(2, TRUE, T)
-					if(T)
+					if(isnotnull(T))
 						T.temperature = 5000
 						T.hotspot_expose(50000, 50000, 1)
 			if(L.name == "Holocarp Spawn")

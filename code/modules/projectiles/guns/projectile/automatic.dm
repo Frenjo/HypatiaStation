@@ -56,7 +56,7 @@
 /obj/item/gun/projectile/automatic/c20r/afterattack(atom/target, mob/living/user, flag)
 	. = ..()
 	if(!length(loaded) && empty_mag)
-		empty_mag.loc = get_turf(loc)
+		empty_mag.loc = GET_TURF(src)
 		empty_mag = null
 		playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
 		update_icon()
@@ -115,7 +115,7 @@
 		empty_mag.stored_ammo = loaded
 		empty_mag.icon_state = "a762-[round(length(loaded), 10)]"
 		empty_mag.desc = "There are [length(loaded)] shells left!"
-		empty_mag.loc = get_turf(loc)
+		empty_mag.loc = GET_TURF(src)
 		user.put_in_hands(empty_mag)
 		empty_mag = null
 		mag_inserted = FALSE

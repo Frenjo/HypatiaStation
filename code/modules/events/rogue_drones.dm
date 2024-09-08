@@ -18,7 +18,7 @@
 	else
 		num = rand(2, 6)
 	for(var/i = 0, i < num, i++)
-		var/mob/living/simple/hostile/retaliate/malf_drone/D = new /mob/living/simple/hostile/retaliate/malf_drone(get_turf(pick(possible_spawns)))
+		var/mob/living/simple/hostile/retaliate/malf_drone/D = new /mob/living/simple/hostile/retaliate/malf_drone(GET_TURF(pick(possible_spawns)))
 		drones_list.Add(D)
 		if(prob(25))
 			D.disabled = rand(15, 60)

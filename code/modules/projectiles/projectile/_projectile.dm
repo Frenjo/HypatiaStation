@@ -167,7 +167,7 @@
 		step_towards(src, current)
 		sleep(1)
 		if(!bumped && !isturf(original))
-			if(loc == get_turf(original))
+			if(loc == GET_TURF(original))
 				if(!(original in permutated))
 					if(Bump(original))
 						return
@@ -193,9 +193,9 @@
 	result = 1
 
 /obj/item/projectile/test/process()
-	var/turf/curloc = get_turf(src)
-	var/turf/targloc = get_turf(target)
-	if(!curloc || !targloc)
+	var/turf/curloc = GET_TURF(src)
+	var/turf/targloc = GET_TURF(target)
+	if(isnull(curloc) || isnull(targloc))
 		return 0
 
 	yo = targloc.y - curloc.y
@@ -209,7 +209,7 @@
 		if(!target || loc == target)
 			target = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z) //Finding the target turf at map edge
 		step_towards(src, target)
-		var/mob/living/M = locate() in get_turf(src)
+		var/mob/living/M = locate() in GET_TURF(src)
 
 		if(istype(M)) //If there is someting living...
 			return 1 //Return 1

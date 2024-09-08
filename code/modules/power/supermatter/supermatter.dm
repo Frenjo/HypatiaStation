@@ -83,7 +83,7 @@
 	return ..()
 
 /obj/machinery/power/supermatter/proc/explode()
-	explosion(get_turf(src), explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)
+	explosion(GET_TURF(src), explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)
 	qdel(src)
 
 /obj/machinery/power/supermatter/proc/shift_light(lum, clr)

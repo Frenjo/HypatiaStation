@@ -97,7 +97,7 @@
 /obj/item/gun/projectile/detective/semiauto/afterattack(atom/target, mob/living/user, flag)
 	..()
 	if(!length(loaded) && empty_mag)
-		empty_mag.loc = get_turf(loc)
+		empty_mag.loc = GET_TURF(src)
 		empty_mag = null
 		to_chat(user, SPAN_NOTICE("The magazine falls out and clatters on the floor!"))
 

@@ -93,8 +93,8 @@ GLOBAL_GLOBL_LIST_INIT(breach_burn_descriptors, list(
 
 	if(!loc)
 		return
-	var/turf/T = get_turf(src)
-	if(!T)
+	var/turf/T = GET_TURF(src)
+	if(isnull(T))
 		return
 
 	amount = amount * src.resilience
