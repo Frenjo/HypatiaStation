@@ -90,17 +90,16 @@
 
 
 /obj/vehicle/proc/get_turf_air()
-	var/turf/T = get_turf(src)
-	if(T)
+	var/turf/T = GET_TURF(src)
+	if(isnotnull(T))
 		. = T.return_air()
-	return
 
 /obj/vehicle/airtight/remove_air(amount)
 	if(use_internal_tank)
 		return cabin_air.remove(amount)
 	else
-		var/turf/T = get_turf(src)
-		if(T)
+		var/turf/T = GET_TURF(src)
+		if(isnotnull(T))
 			return T.remove_air(amount)
 	return
 
@@ -777,7 +776,7 @@
 		return
 
 	if(iswelder(W) && W:welding)
-		var/turf/T = get_turf(user)
+		var/turf/T = GET_TURF(user)
 		if(!isturf(T))
 			return
 
@@ -803,8 +802,8 @@
 			user << "\blue Now disassembling the outer wall plating."
 			playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
 			sleep(100)
-			if (W && istype(src, /turf/closed/wall))
-				if ((get_turf(user) == T && user.equipped() == W))
+			if(W && istype(src, /turf/closed/wall))
+				if(GET_TURF(user) == T && user.equipped() == W)
 					user << "\blue You disassembled the outer wall plating."
 					dismantle_wall()
 				W:welding = 1
@@ -838,8 +837,8 @@
 			user << "\blue Now disassembling the outer wall plating."
 			playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
 			sleep(60)
-			if (W && istype(src, /turf/closed/wall))
-				if ((get_turf(user) == T && user.equipped() == W))
+			if(W && istype(src, /turf/closed/wall))
+				if(GET_TURF(user) == T && user.equipped() == W)
 					user << "\blue You disassembled the outer wall plating."
 					dismantle_wall()
 					for(var/mob/O in viewers(user, 5))

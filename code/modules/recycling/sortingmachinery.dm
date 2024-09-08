@@ -11,18 +11,18 @@
 
 /obj/structure/big_delivery/Destroy()
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
-		wrapped.loc = get_turf(loc)
+		wrapped.loc = GET_TURF(src)
 		if(istype(wrapped, /obj/structure/closet))
 			var/obj/structure/closet/O = wrapped
 			O.welded = 0
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	for(var/atom/movable/AM in contents)
 		AM.loc = T
 	return ..()
 
 /obj/structure/big_delivery/attack_hand(mob/user)
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
-		wrapped.loc = get_turf(src.loc)
+		wrapped.loc = GET_TURF(src)
 		if(istype(wrapped, /obj/structure/closet))
 			var/obj/structure/closet/O = wrapped
 			O.welded = 0
@@ -65,7 +65,7 @@
 		if(ishuman(user))
 			user.put_in_hands(wrapped)
 		else
-			wrapped.loc = get_turf(src)
+			wrapped.loc = GET_TURF(src)
 
 	qdel(src)
 	return
@@ -117,7 +117,7 @@
 	if(isitem(target) && !(istype(target, /obj/item/storage) && !istype(target, /obj/item/storage/box)))
 		var/obj/item/O = target
 		if(src.amount > 1)
-			var/obj/item/small_delivery/P = new /obj/item/small_delivery(get_turf(O.loc))	//Aaannd wrap it up!
+			var/obj/item/small_delivery/P = new /obj/item/small_delivery(GET_TURF(O))	//Aaannd wrap it up!
 			if(!isturf(O.loc))
 				if(user.client)
 					user.client.screen -= O
@@ -133,7 +133,7 @@
 	else if(istype(target, /obj/structure/closet/crate))
 		var/obj/structure/closet/crate/O = target
 		if(src.amount > 3 && !O.opened)
-			var/obj/structure/big_delivery/P = new /obj/structure/big_delivery(get_turf(O.loc))
+			var/obj/structure/big_delivery/P = new /obj/structure/big_delivery(GET_TURF(O))
 			P.icon_state = "deliverycrate"
 			P.wrapped = O
 			O.loc = P
@@ -143,7 +143,7 @@
 	else if(istype(target, /obj/structure/closet))
 		var/obj/structure/closet/O = target
 		if(src.amount > 3 && !O.opened)
-			var/obj/structure/big_delivery/P = new /obj/structure/big_delivery(get_turf(O.loc))
+			var/obj/structure/big_delivery/P = new /obj/structure/big_delivery(GET_TURF(O))
 			P.wrapped = O
 			O.welded = 1
 			O.loc = P

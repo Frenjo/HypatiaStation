@@ -10,7 +10,7 @@
 
 /obj/item/rust_fuel_compressor_frame/attack_tool(obj/item/tool, mob/user)
 	if(iswrench(tool))
-		new /obj/item/stack/sheet/plasteel(get_turf(loc), 12)
+		new /obj/item/stack/sheet/plasteel(GET_TURF(loc), 12)
 		qdel(src)
 		return TRUE
 
@@ -22,15 +22,15 @@
 	var/ndir = get_dir(usr, on_wall)
 	if(!(ndir in GLOBL.cardinal))
 		return
-	var/turf/loc = get_turf(usr)
-	var/area/A = loc.loc
-	if(!istype(loc, /turf/open/floor))
+	var/turf/T = GET_TURF(usr)
+	var/area/A = GET_AREA(usr)
+	if(!istype(T, /turf/open/floor))
 		to_chat(usr, SPAN_WARNING("Compressor cannot be placed on this spot."))
 		return
 	if(!A.requires_power || istype(A, /area/space))
 		to_chat(usr, SPAN_WARNING("Compressor cannot be placed in this area."))
 		return
-	new /obj/machinery/rust_fuel_assembly_port(loc, ndir, 1)
+	new /obj/machinery/rust_fuel_assembly_port(T, ndir, 1)
 	qdel(src)
 
 //construction steps

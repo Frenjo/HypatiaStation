@@ -15,7 +15,7 @@
 			created_field.Remove(F)
 			qdel(F)
 	else if(holder)
-		var/turf/T = get_turf(holder)
+		var/turf/T = GET_TURF(holder)
 		while(length(created_field) < 16)
 			var/obj/effect/energy_field/E = new (locate(T.x, T.y, T.z))
 			created_field.Add(E)
@@ -37,7 +37,7 @@
 
 /datum/artifact_effect/forcefield/UpdateMove()
 	if(length(created_field) && holder)
-		var/turf/T = get_turf(holder)
+		var/turf/T = GET_TURF(holder)
 		while(length(created_field) < 16)
 			//for now, just instantly respawn the fields when they get destroyed
 			var/obj/effect/energy_field/E = new(locate(T.x, T.y, T))

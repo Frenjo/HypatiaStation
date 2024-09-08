@@ -26,7 +26,7 @@
 /datum/chemical_reaction/emp_pulse/on_reaction(datum/reagents/holder, created_volume)
 	// 100 created volume = 4 heavy range & 7 light range. A few tiles smaller than traitor EMP grandes.
 	// 200 created volume = 8 heavy range & 14 light range. 4 tiles larger than traitor EMP grenades.
-	empulse(get_turf(holder.my_atom), round(created_volume / 24), round(created_volume / 14), 1)
+	empulse(GET_TURF(holder.my_atom), round(created_volume / 24), round(created_volume / 14), 1)
 	holder.clear_reagents()
 
 /datum/chemical_reaction/flash_powder
@@ -36,7 +36,7 @@
 	result_amount = null
 
 /datum/chemical_reaction/flash_powder/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	make_sparks(2, TRUE, location)
 	for(var/mob/living/carbon/M in viewers(world.view, location))
 		switch(get_dist(M, location))
@@ -63,7 +63,7 @@
 	result_amount = 1
 
 /datum/chemical_reaction/napalm/on_reaction(datum/reagents/holder, created_volume)
-	var/turf/location = get_turf(holder.my_atom.loc)
+	var/turf/location = GET_TURF(holder.my_atom)
 	for(var/turf/open/floor/target_tile in range(0, location))
 		target_tile.assume_gas(/decl/xgm_gas/volatile_fuel, created_volume, 400 + T0C)
 		spawn(0)
@@ -80,7 +80,7 @@
 	secondary = 1
 
 /datum/chemical_reaction/smoke/on_reaction(var/datum/reagents/holder, var/created_volume)
-	var/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	var/datum/effect/system/bad_smoke_spread/S = new /datum/effect/system/bad_smoke_spread()
 	S.attach(location)
 	S.set_up(10, 0, location)
@@ -106,7 +106,7 @@
 	secondary = 1
 
 /datum/chemical_reaction/chemsmoke/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	make_chem_smoke(created_volume, FALSE, location, holder, location)
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 	holder.clear_reagents()
@@ -118,7 +118,7 @@
 	result_amount = 1
 
 /datum/chemical_reaction/plasmasolidification/on_reaction(datum/reagents/holder, created_volume)
-	new /obj/item/stack/sheet/plasma(get_turf(holder.my_atom))
+	new /obj/item/stack/sheet/plasma(GET_TURF(holder.my_atom))
 
 /datum/chemical_reaction/plastication
 	name = "Plastic"
@@ -127,4 +127,4 @@
 	result_amount = 1
 
 /datum/chemical_reaction/plastication/on_reaction(datum/reagents/holder)
-	new /obj/item/stack/sheet/plastic(get_turf(holder.my_atom), 10)
+	new /obj/item/stack/sheet/plastic(GET_TURF(holder.my_atom), 10)

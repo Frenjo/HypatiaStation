@@ -40,7 +40,7 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 		html += "<BR>Tag: [gpstag]"
 
 		for(var/obj/item/gps/G in GLOBL.gps_list)
-			var/turf/pos = get_turf(G)
+			var/turf/pos = GET_TURF(G)
 			var/area/gps_area = get_area(G)
 			var/tracked_gpstag = G.gpstag
 			if(G.emped)

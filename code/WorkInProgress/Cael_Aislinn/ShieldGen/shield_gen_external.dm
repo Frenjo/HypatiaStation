@@ -6,7 +6,7 @@
 	..()
 
 /obj/machinery/shield_gen/external/get_shielded_turfs()
-	var/list/open = list(get_turf(src))
+	var/list/open = list(GET_TURF(src))
 	var/list/closed = list()
 
 	while(open.len)

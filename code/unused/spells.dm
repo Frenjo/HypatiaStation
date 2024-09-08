@@ -138,10 +138,10 @@
 
 
 	bullet_act(var/obj/item/projectile/Proj, var/def_zone)
-		var/turf/T = get_turf(src.loc)
-		if(T)
+		var/turf/T = GET_TURF(src)
+		if(isnotnull(T))
 			for(var/mob/M in T)
-				Proj.on_hit(M,M.bullet_act(Proj, def_zone))
+				Proj.on_hit(M, M.bullet_act(Proj, def_zone))
 		return
 
 
@@ -199,13 +199,13 @@
 
 	switch(user.dir)
 		if(NORTH)
-			T = get_turf(locate(x, y + range, z))
+			T = GET_TURF(locate(x, y + range, z))
 		if(EAST)
-			T = get_turf(locate(x + range, y, z))
+			T = GET_TURF(locate(x + range, y, z))
 		if(SOUTH)
-			T = get_turf(locate(x, y - range, z))
+			T = GET_TURF(locate(x, y - range, z))
 		if(WEST)
-			T = get_turf(locate(x - range, y, z))
+			T = GET_TURF(locate(x - range, y, z))
 		else
 			return
 
@@ -402,7 +402,7 @@
 /proc/spell_jaunt(var/mob/H, time = 50)
 	if(H.stat) return
 	spawn(0)
-		var/mobloc = get_turf(H.loc)
+		var/turf/mobloc = GET_TURF(H)
 		var/obj/effect/dummy/spell_jaunt/holder = new /obj/effect/dummy/spell_jaunt( mobloc )
 		var/atom/movable/overlay/animation = new /atom/movable/overlay( mobloc )
 		animation.name = "water"
@@ -417,7 +417,7 @@
 		H.client.eye = holder
 		make_steam(10, FALSE, mobloc)
 		sleep(time)
-		mobloc = get_turf(H.loc)
+		mobloc = GET_TURF(H)
 		animation.loc = mobloc
 		steam.location = mobloc
 		steam.start()

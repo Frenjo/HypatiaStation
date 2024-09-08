@@ -216,7 +216,7 @@
 		switch(href_list["id"])
 			if("auth")
 				if(isnotnull(src.authid))
-					src.authid.loc = get_turf(src)
+					src.authid.loc = GET_TURF(src)
 					src.authid = null
 				else
 					var/obj/item/I = usr.equipped()
@@ -226,7 +226,7 @@
 						src.authid = I
 			if("aux")
 				if(isnotnull(src.auxid))
-					src.auxid.loc = get_turf(src)
+					src.auxid.loc = GET_TURF(src)
 					src.auxid = null
 				else
 					var/obj/item/I = usr.equipped()
@@ -238,7 +238,7 @@
 	//Same but for a data disk
 	else if (href_list["disk"])
 		if(isnotnull(src.diskette))
-			src.diskette.loc = get_turf(src)
+			src.diskette.loc = GET_TURF(src)
 			src.diskette = null
 /*		else
 			var/obj/item/I = usr.equipped()

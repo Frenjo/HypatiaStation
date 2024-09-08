@@ -10,7 +10,7 @@
 	spawn(1)
 		if (!istype(loc, /turf/open/floor))
 			usr << "\red [name] cannot be placed on this spot."
-			new/obj/item/stack/sheet/steel(get_turf(src), 2)
+			new/obj/item/stack/sheet/steel(GET_TURF(src), 2)
 			del(src)
 			return
 
@@ -21,7 +21,7 @@
 		var/turf/T = get_step(usr, dir)
 		if(!istype(T, /turf/closed/wall))
 			usr << "\red [name] must be placed on a wall."
-			new/obj/item/stack/sheet/steel(get_turf(src), 2)
+			new/obj/item/stack/sheet/steel(GET_TURF(src), 2)
 			del(src)
 			return
 

@@ -53,7 +53,7 @@
 	result_amount = 1
 
 /datum/chemical_reaction/tofu/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_holder/food/snacks/tofu(location)
 
@@ -64,7 +64,7 @@
 	result_amount = 1
 
 /datum/chemical_reaction/chocolate_bar/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_holder/food/snacks/chocolatebar(location)
 
@@ -75,7 +75,7 @@
 	result_amount = 1
 
 /datum/chemical_reaction/chocolate_bar2/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/reagent_holder/food/snacks/chocolatebar(location)
 
@@ -87,7 +87,7 @@
 	result_amount = 1
 
 /datum/chemical_reaction/cheesewheel/on_reaction(datum/reagents/holder, created_volume)
-	new /obj/item/reagent_holder/food/snacks/sliceable/cheesewheel(get_turf(holder.my_atom))
+	new /obj/item/reagent_holder/food/snacks/sliceable/cheesewheel(GET_TURF(holder.my_atom))
 
 /datum/chemical_reaction/syntiflesh
 	name = "Syntiflesh"
@@ -96,4 +96,4 @@
 	result_amount = 1
 
 /datum/chemical_reaction/syntiflesh/on_reaction(datum/reagents/holder, created_volume)
-	new /obj/item/reagent_holder/food/snacks/meat/syntiflesh(get_turf(holder.my_atom))
+	new /obj/item/reagent_holder/food/snacks/meat/syntiflesh(GET_TURF(holder.my_atom))

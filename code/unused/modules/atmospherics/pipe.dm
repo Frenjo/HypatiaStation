@@ -427,7 +427,7 @@ var/linenums = 0
 	//lets say hypothetically it uses up 9/10 of its energy in bursting the pipe
 
 	if (strength < 773.0)
-		var/turf/T = get_turf(src.loc)
+		var/turf/T = GET_TURF(src)
 		T.poison += plasma
 		T.firelevel = T.poison
 		T.res_vars()

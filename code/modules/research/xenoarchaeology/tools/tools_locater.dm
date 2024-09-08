@@ -49,7 +49,7 @@
 									target_radio = R
 
 						scan_ticks = 0
-						var/turf/T = get_turf(src)
+						var/turf/T = GET_TURF(src)
 						if(target_radio)
 							T.visible_message("\icon[src] [src] [pick("chirps", "chirrups", "cheeps")] happily.")
 						else

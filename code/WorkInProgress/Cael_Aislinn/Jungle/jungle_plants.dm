@@ -22,10 +22,10 @@
 /obj/structure/bush/Bumped(M as mob)
 	if(isanimal(M))
 		var/mob/living/simple/A = M
-		A.loc = get_turf(src)
+		A.loc = GET_TURF(src)
 	else if(ismonkey(M))
 		var/mob/living/carbon/monkey/A = M
-		A.loc = get_turf(src)
+		A.loc = GET_TURF(src)
 
 /obj/structure/bush/attack_tool(obj/item/tool, mob/user)
 	// Hatchets can clear away undergrowth.

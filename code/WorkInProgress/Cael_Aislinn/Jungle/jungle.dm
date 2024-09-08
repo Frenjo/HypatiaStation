@@ -177,8 +177,8 @@
 			continue
 
 		W.connected = 1
-		var/turf/cur_turf = new /turf/open/jungle/water(get_turf(W))
-		var/turf/target_turf = get_turf(pick(river_nodes))
+		var/turf/cur_turf = new /turf/open/jungle/water(GET_TURF(W))
+		var/turf/target_turf = GET_TURF(pick(river_nodes))
 
 		var/detouring = 0
 		var/cur_dir = get_dir(cur_turf, target_turf)
@@ -255,9 +255,9 @@
 			continue
 
 		W.connected = 1
-		var/turf/cur_turf = get_turf(W)
+		var/turf/cur_turf = GET_TURF(W)
 		path_nodes.Remove(W)
-		var/turf/target_turf = get_turf(pick(path_nodes))
+		var/turf/target_turf = GET_TURF(pick(path_nodes))
 		path_nodes.Add(W)
 		//
 		cur_turf = new /turf/open/jungle/path(cur_turf)

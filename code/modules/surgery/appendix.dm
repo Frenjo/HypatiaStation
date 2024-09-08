@@ -88,9 +88,9 @@
 		appendicitis.cure()
 		target.resistances += appendicitis
 	if(app)
-		new /obj/item/reagent_holder/food/snacks/appendix/inflamed(get_turf(target))
+		new /obj/item/reagent_holder/food/snacks/appendix/inflamed(GET_TURF(target))
 	else
-		new /obj/item/reagent_holder/food/snacks/appendix(get_turf(target))
+		new /obj/item/reagent_holder/food/snacks/appendix(GET_TURF(target))
 	target.op_stage.appendix = 2
 
 /datum/surgery_step/appendectomy/remove_appendix/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)

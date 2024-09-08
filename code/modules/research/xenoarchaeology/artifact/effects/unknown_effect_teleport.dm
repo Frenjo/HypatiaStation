@@ -13,9 +13,9 @@
 			if(user.buckled)
 				user.buckled.unbuckle()
 
-			make_sparks(3, FALSE, get_turf(user))
+			make_sparks(3, FALSE, GET_TURF(user))
 			user.loc = pick(randomturfs)
-			make_sparks(3, FALSE, get_turf(user))
+			make_sparks(3, FALSE, GET_TURF(user))
 
 /datum/artifact_effect/teleport/DoEffectAura()
 	if(holder)
@@ -30,9 +30,9 @@
 					if(M.buckled)
 						M.buckled.unbuckle()
 
-					make_sparks(3, FALSE, get_turf(M))
+					make_sparks(3, FALSE, GET_TURF(M))
 					M.loc = pick(randomturfs)
-					make_sparks(3, FALSE, get_turf(M))
+					make_sparks(3, FALSE, GET_TURF(M))
 
 /datum/artifact_effect/teleport/DoEffectPulse()
 	if(holder)
@@ -45,8 +45,8 @@
 				if(length(randomturfs))
 					to_chat(M, SPAN_WARNING("You are displaced by a strange force!"))
 
-					make_sparks(3, FALSE, get_turf(M))
+					make_sparks(3, FALSE, GET_TURF(M))
 					if(M.buckled)
 						M.buckled.unbuckle()
 					M.loc = pick(randomturfs)
-					make_sparks(3, FALSE, get_turf(M))
+					make_sparks(3, FALSE, GET_TURF(M))

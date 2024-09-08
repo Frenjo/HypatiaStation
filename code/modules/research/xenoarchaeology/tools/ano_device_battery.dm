@@ -109,7 +109,7 @@
 				inserted_battery.battery_effect.ToggleActivate(1)
 
 			//update the effect loc
-			var/turf/T = get_turf(src)
+			var/turf/T = GET_TURF(src)
 			if(T != archived_loc)
 				archived_loc = T
 				inserted_battery.battery_effect.UpdateMove()
@@ -183,7 +183,7 @@
 		archived_time = time
 	if(href_list["ejectbattery"])
 		shutdown_emission()
-		inserted_battery.loc = get_turf(src)
+		inserted_battery.loc = GET_TURF(src)
 		inserted_battery = null
 		UpdateSprite()
 	if(href_list["close"])

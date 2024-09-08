@@ -73,7 +73,7 @@
 	var/trigger_co2 = 0
 	var/trigger_nitro = 0
 	if((my_effect.trigger >= TRIGGER_HEAT && my_effect.trigger <= TRIGGER_NITRO) || (my_effect.trigger >= TRIGGER_HEAT && my_effect.trigger <= TRIGGER_NITRO))
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		var/datum/gas_mixture/env = T.return_air()
 		if(env)
 			if(env.temperature < 225)

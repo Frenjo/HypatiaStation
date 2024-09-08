@@ -99,7 +99,7 @@
 			//success
 			if(artifact_find)
 				var/spawn_type = artifact_find.artifact_find_type
-				var/obj/O = new spawn_type(get_turf(src))
+				var/obj/O = new spawn_type(GET_TURF(src))
 				if(istype(O, /obj/machinery/artifact))
 					var/obj/machinery/artifact/X = O
 					if(X.my_effect)

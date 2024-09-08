@@ -88,5 +88,5 @@
 	visible_message(SPAN_WARNING("\red <b>[src]</b> throws a spear at [target_mob]!"), 1)
 	flick(src, "native[my_type]_act")
 
-	var/tturf = get_turf(target_mob)
+	var/tturf = GET_TURF(target_mob)
 	Shoot(tturf, src.loc, src)

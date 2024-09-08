@@ -214,7 +214,7 @@
 					target.release_control()
 				worm.detatch()
 
-			obj.loc = get_turf(target)
+			obj.loc = GET_TURF(target)
 			if(istype(obj, /obj/item/implant))
 				var/obj/item/implant/imp = obj
 				imp.imp_in = null
@@ -229,7 +229,7 @@
 			SPAN_INFO("[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool]."),
 			SPAN_INFO("You take something out of incision on [target]'s [affected.display_name]s with \the [tool].")
 		)
-		affected.hidden.loc = get_turf(target)
+		affected.hidden.loc = GET_TURF(target)
 		if(!affected.hidden.blood_DNA)
 			affected.hidden.blood_DNA = list()
 		affected.hidden.blood_DNA[target.dna.unique_enzymes] = target.dna.b_type

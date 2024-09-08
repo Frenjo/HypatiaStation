@@ -154,7 +154,7 @@
 /*client/proc/TestZASRebuild()
 	set category = PANEL_DEBUG
 
-//	var/turf/turf = get_turf(mob)
+//	var/turf/turf = GET_TURF(mob)
 	var/zone/current_zone = mob.loc:zone
 	if(!current_zone)
 		src << "There is no zone there!"

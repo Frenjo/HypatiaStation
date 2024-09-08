@@ -383,7 +383,7 @@
 	for(var/mob/living/carbon/M in get_step(mob,mob.dir))
 		mob.spread_disease_to(M)
 	if(prob(50))
-		var/obj/effect/decal/cleanable/mucus/M = new(get_turf(mob))
+		var/obj/effect/decal/cleanable/mucus/M = new /obj/effect/decal/cleanable/mucus(GET_TURF(mob))
 		M.virus2 = virus_copylist(mob.virus2)
 
 

@@ -241,9 +241,9 @@ datum
 				return
 			reaction_obj(var/obj/O, var/volume)
 				del(src)
-				var/turf/T = get_turf(O)
+				var/turf/T = GET_TURF(O)
 				var/hotspot = (locate(/obj/fire) in T)
-				if(hotspot && !isspace(T))
+				if(isnotnull(hotspot) && !isspace(T))
 					var/datum/gas_mixture/lowertemp = T.remove_air( T:air:total_moles() )
 					lowertemp.temperature = max( min(lowertemp.temperature-2000,lowertemp.temperature / 2) ,0)
 					lowertemp.react()
@@ -909,8 +909,8 @@ datum
 
 
 			reaction_obj(var/obj/O, var/volume)
-				var/turf/the_turf = get_turf(O)
-				if(!the_turf)
+				var/turf/the_turf = GET_TURF(O)
+				if(isnull(the_turf))
 					return //No sense trying to start a fire if you don't have a turf to set on fire. --NEO
 				new /obj/effect/decal/cleanable/liquid_fuel(the_turf, volume)
 			reaction_turf(var/turf/T, var/volume)
@@ -1564,7 +1564,7 @@ datum
 					if (egg.grown)
 						egg.Hatch()*/
 				if((!O) || (!volume))	return 0
-				var/turf/the_turf = get_turf(O)
+				var/turf/the_turf = GET_TURF(O)
 				var/datum/gas_mixture/napalm = new
 				var/datum/gas/volatile_fuel/fuel = new
 				fuel.moles = 5

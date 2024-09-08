@@ -116,7 +116,7 @@
 	if(cartridge)
 		to_chat(usr, SPAN_INFO("You pop the cartridge out of [src]."))
 		var/obj/item/dart_cartridge/C = cartridge
-		C.loc = get_turf(src)
+		C.loc = GET_TURF(src)
 		C.update_icon()
 		cartridge = null
 		src.update_icon()
@@ -140,8 +140,8 @@
 	if(locate(/obj/structure/table, src.loc))
 		return
 	else
-		var/turf/trg = get_turf(target)
-		var/obj/effect/syringe_gun_dummy/D = new/obj/effect/syringe_gun_dummy(get_turf(src))
+		var/turf/trg = GET_TURF(target)
+		var/obj/effect/syringe_gun_dummy/D = new/obj/effect/syringe_gun_dummy(GET_TURF(src))
 		var/obj/item/reagent_holder/syringe/S = get_mixed_syringe()
 		if(!S)
 			to_chat(user, SPAN_WARNING("There are no darts in [src]!"))
@@ -276,7 +276,7 @@
 				to_chat(usr, "You remove [B] from [src].")
 				mixing -= B
 				beakers -= B
-				B.loc = get_turf(src)
+				B.loc = GET_TURF(src)
 	else if (href_list["eject_cart"])
 		remove_cartridge()
 	src.updateUsrDialog()

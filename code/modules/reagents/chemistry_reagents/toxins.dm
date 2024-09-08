@@ -77,8 +77,8 @@
 			egg.Hatch()*/
 	if(isnull(O) || !volume)
 		return 0
-	var/turf/the_turf = get_turf(O)
-	the_turf.assume_gas(/decl/xgm_gas/volatile_fuel, volume, T20C)
+	var/turf/the_turf = GET_TURF(O)
+	the_turf?.assume_gas(/decl/xgm_gas/volatile_fuel, volume, T20C)
 
 /datum/reagent/plasma/reaction_turf(turf/T, volume)
 	qdel(src)

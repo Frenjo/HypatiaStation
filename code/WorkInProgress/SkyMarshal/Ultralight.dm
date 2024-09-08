@@ -123,7 +123,7 @@ atom/proc/ul_Illuminate()
 					AffectedAtom.ul_LightLevelChanged()
 			#endif
 
-	ul_LastIlluminated = get_turf(src)
+	ul_LastIlluminated = GET_TURF(src)
 	ul_Extinguished = UL_I_LIT
 
 	return

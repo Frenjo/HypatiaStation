@@ -93,8 +93,8 @@
 
 /obj/item/firbang/proc/prime()
 	playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
-	var/turf/T = get_turf(src)
-	if(T)
+	var/turf/T = GET_TURF(src)
+	if(isnotnull(T))
 		make_smoke(3, FALSE, loc, src)
 		make_sparks(3, TRUE, src)
 		new /obj/effect/new_year_tree(T)

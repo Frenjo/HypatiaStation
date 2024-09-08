@@ -181,7 +181,7 @@
 /obj/item/reagent_holder/food/snacks/Destroy()
 	if(contents)
 		for(var/atom/movable/something in contents)
-			something.loc = get_turf(src)
+			something.loc = GET_TURF(src)
 	return ..()
 
 /obj/item/reagent_holder/food/snacks/attack_animal(mob/M)
@@ -1607,7 +1607,7 @@
 	if(!proximity) return
 	if(istype(O,/obj/structure/sink) && !wrapped)
 		user << "You place \the [name] under a stream of water..."
-		loc = get_turf(O)
+		loc = GET_TURF(O)
 		return Expand()
 	..()
 
@@ -1621,13 +1621,13 @@
 	if(monkey_type)
 		switch(monkey_type)
 			if("tajara")
-				new /mob/living/carbon/monkey/tajara(get_turf(src))
+				new /mob/living/carbon/monkey/tajara(GET_TURF(src))
 			if("soghun")
-				new /mob/living/carbon/monkey/soghun(get_turf(src))
+				new /mob/living/carbon/monkey/soghun(GET_TURF(src))
 			if("skrell")
-				new /mob/living/carbon/monkey/skrell(get_turf(src))
+				new /mob/living/carbon/monkey/skrell(GET_TURF(src))
 	else
-		new /mob/living/carbon/monkey(get_turf(src))
+		new /mob/living/carbon/monkey(GET_TURF(src))
 	qdel(src)
 
 /obj/item/reagent_holder/food/snacks/monkeycube/proc/Unwrap(mob/user)

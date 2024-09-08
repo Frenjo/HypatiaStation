@@ -119,18 +119,18 @@
 		cur_artifact = null
 		var/articount = 0
 		var/obj/machinery/artifact/analysed
-		for(var/obj/machinery/artifact/A in get_turf(owned_scanner))
+		for(var/obj/machinery/artifact/A in GET_TURF(owned_scanner))
 			analysed = A
 			articount++
 
 		var/mundane = 0
-		for(var/obj/O in get_turf(owned_scanner))
+		for(var/obj/O in GET_TURF(owned_scanner))
 			if(O.invisibility)
 				continue
 			if(!istype(O, /obj/machinery/artifact) && !istype(O, /obj/machinery/artifact_scanpad))
 				mundane++
 				break
-		for(var/mob/O in get_turf(owned_scanner))
+		for(var/mob/O in GET_TURF(owned_scanner))
 			if(O.invisibility)
 				continue
 			mundane++

@@ -150,7 +150,7 @@
 		if(src.host)
 			prize_location = src.host.loc
 		else
-			prize_location = get_turf(src)
+			prize_location = GET_TURF(src)
 
 		switch(prizeselect)
 			if(1)
@@ -181,7 +181,7 @@
 	attack_self(mob/user as mob)
 		if(authid)
 			user << "The card falls out."
-			src.authid.loc = get_turf(user)
+			src.authid.loc = GET_TURF(user)
 			src.authid = null
 
 		return

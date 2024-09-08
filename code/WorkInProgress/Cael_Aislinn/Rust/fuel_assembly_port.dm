@@ -45,7 +45,7 @@
 /obj/machinery/rust_fuel_assembly_port/proc/try_insert_assembly()
 	var/success = 0
 	if(cur_assembly)
-		var/turf/check_turf = get_step(get_turf(src), src.dir)
+		var/turf/check_turf = get_step(GET_TURF(src), src.dir)
 		check_turf = get_step(check_turf, src.dir)
 		for(var/obj/machinery/power/rust_fuel_injector/I in check_turf)
 			if(I.stat & (BROKEN|NOPOWER))
@@ -65,7 +65,7 @@
 
 /obj/machinery/rust_fuel_assembly_port/proc/eject_assembly()
 	if(cur_assembly)
-		cur_assembly.loc = src.loc//get_step(get_turf(src), src.dir)
+		cur_assembly.loc = src.loc//get_step(GET_TURF(src), src.dir)
 		cur_assembly = null
 		icon_state = "port0"
 		return 1
@@ -73,7 +73,7 @@
 /obj/machinery/rust_fuel_assembly_port/proc/try_draw_assembly()
 	var/success = 0
 	if(!cur_assembly)
-		var/turf/check_turf = get_step(get_turf(src), src.dir)
+		var/turf/check_turf = get_step(GET_TURF(src), src.dir)
 		check_turf = get_step(check_turf, src.dir)
 		for(var/obj/machinery/power/rust_fuel_injector/I in check_turf)
 			if(I.stat & (BROKEN|NOPOWER))

@@ -10,11 +10,11 @@
 	. = ..()
 	if(!spawn_type)
 		var/new_type = pick(SUBTYPESOF(/obj/effect/landmark/animal_spawner))
-		new new_type(get_turf(src))
+		new new_type(GET_TURF(src))
 		qdel(src)
 
 	GLOBL.processing_objects.Add(src)
-	spawned_animal = new spawn_type(get_turf(src))
+	spawned_animal = new spawn_type(GET_TURF(src))
 
 /obj/effect/landmark/animal_spawner/process()
 	//if any of our animals are killed, spawn new ones

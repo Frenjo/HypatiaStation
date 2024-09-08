@@ -1,6 +1,6 @@
 /obj/item/reagent_holder/food/snacks/breadslice/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/shard) || istype(W, /obj/item/reagent_holder/food/snacks))
-		var/obj/item/reagent_holder/food/snacks/csandwich/S = new(get_turf(src))
+		var/obj/item/reagent_holder/food/snacks/csandwich/S = new /obj/item/reagent_holder/food/snacks/csandwich(GET_TURF(src))
 		S.attackby(W, user)
 		qdel(src)
 	..()

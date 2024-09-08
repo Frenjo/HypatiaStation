@@ -75,7 +75,7 @@
 					dat += "<br><b>Medical Robots:</b>"
 					var/bdat = null
 					for(var/obj/machinery/bot/medbot/M in GLOBL.bots_list)
-						var/turf/bl = get_turf(M)
+						var/turf/bl = GET_TURF(M)
 						bdat += "[M.name] - <b>\[[bl.x],[bl.y]\]</b> - [M.on ? "Online" : "Offline"]<br>"
 						if(isnotnull(M.reagent_glass))
 							bdat += "Reservoir: \[[M.reagent_glass.reagents.total_volume]/[M.reagent_glass.reagents.maximum_volume]\]"

@@ -44,12 +44,12 @@
 
 /obj/item/taperoll/attack_self(mob/user as mob)
 	if(icon_state == "[icon_base]_start")
-		start = get_turf(src)
+		start = GET_TURF(src)
 		usr << "\blue You place the first end of the [src]."
 		icon_state = "[icon_base]_stop"
 	else
 		icon_state = "[icon_base]_start"
-		end = get_turf(src)
+		end = GET_TURF(src)
 		if(start.y != end.y && start.x != end.x || start.z != end.z)
 			usr << "\blue [src] can only be laid horizontally or vertically."
 			return
@@ -59,12 +59,12 @@
 		if (start.x == end.x)
 			var/d = end.y-start.y
 			if(d) d = d/abs(d)
-			end = get_turf(locate(end.x,end.y+d,end.z))
+			end = GET_TURF(locate(end.x, end.y + d, end.z))
 			dir = "v"
 		else
 			var/d = end.x-start.x
 			if(d) d = d/abs(d)
-			end = get_turf(locate(end.x+d,end.y,end.z))
+			end = GET_TURF(locate(end.x + d, end.y, end.z))
 			dir = "h"
 
 		var/can_place = 1
@@ -97,18 +97,19 @@
 		usr << "\blue You finish placing the [src]."	//Git Test
 
 /obj/item/taperoll/afterattack(var/atom/A, mob/user as mob)
-	if (istype(A, /obj/machinery/door/airlock))
-		var/turf/T = get_turf(A)
+	if(istype(A, /obj/machinery/door/airlock))
+		var/turf/T = GET_TURF(A)
 		var/obj/item/tape/P = new tape_type(T.x,T.y,T.z)
 		P.loc = locate(T.x,T.y,T.z)
 		P.icon_state = "[src.icon_base]_door"
 		P.layer = 3.2
 		user << "\blue You finish placing the [src]."
 
-/obj/item/tape/Bumped(M as mob)
-	if(src.allowed(M))
-		var/turf/T = get_turf(src)
-		M:loc = T
+/obj/item/tape/Bumped(atom/movable/AM)
+	if(ismob(AM))
+		var/mob/M = AM
+		if(src.allowed(M))
+			M.loc = GET_TURF(src)
 
 /obj/item/tape/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(!density)

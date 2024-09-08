@@ -16,9 +16,10 @@
 	)
 	var/t = pickweight(l)
 	var/obj/item/W = new t(src.loc)
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	if(istype(T, /turf/closed/rock))
-		T:last_find = W
+		var/turf/closed/rock/closed = T
+		closed.last_find = W
 	qdel(src)
 
 /obj/item/fossil/bone
@@ -37,7 +38,7 @@
 
 /obj/item/fossil/skull/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/fossil/bone))
-		var/obj/o = new /obj/skeleton(get_turf(src))
+		var/obj/o = new /obj/skeleton(GET_TURF(src))
 		var/a = new /obj/item/fossil/bone
 		var/b = new src.type
 		o.contents.Add(a)

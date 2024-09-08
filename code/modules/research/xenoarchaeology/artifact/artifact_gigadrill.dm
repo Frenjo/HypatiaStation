@@ -24,11 +24,11 @@
 	if(active && !drilling_turf)
 		if(istype(A, /turf/closed/rock))
 			var/turf/closed/rock/M = A
-			drilling_turf = get_turf(src)
+			drilling_turf = GET_TURF(src)
 			visible_message(SPAN_DANGER("[src] begins to drill into [M]!"))
 			anchored = TRUE
 			spawn(drill_time)
-				if(get_turf(src) == drilling_turf && active)
+				if(GET_TURF(src) == drilling_turf && active)
 					M.get_drilled()
 					src.loc = M
 				drilling_turf = null

@@ -681,7 +681,7 @@
 		src.part3.attackby(W, user)
 		return
 	if(iswrench(W) && !src.status)
-		var/obj/item/assembly/prox_ignite/R = new(get_turf(src.loc))
+		var/obj/item/assembly/prox_ignite/R = new /obj/item/assembly/prox_ignite(GET_TURF(src))
 		R.part1 = src.part1
 		R.part1.master = R
 		R.part1.loc = R
@@ -770,7 +770,7 @@
 		src.part3.attackby(W, user)
 		return
 	if(iswrench(W) && !src.status)
-		var/obj/item/assembly/time_ignite/R = new(get_turf(src.loc))
+		var/obj/item/assembly/time_ignite/R = new /obj/item/assembly/time_ignite(GET_TURF(src))
 		R.part1 = src.part1
 		R.part1.master = R
 		R.part1.loc = R
@@ -849,7 +849,7 @@
 		src.part3.attackby(W, user)
 		return
 	if(iswrench(W) && !src.status)
-		var/obj/item/assembly/rad_ignite/R = new(get_turf(src.loc))
+		var/obj/item/assembly/rad_ignite/R = new /obj/item/assembly/rad_ignite(GET_TURF(src))
 		R.part1 = src.part1
 		R.part1.master = R
 		R.part1.loc = R
@@ -893,7 +893,7 @@
 		src.part4.attackby(W, user)
 		return
 	if(iswrench(W) && !src.status)
-		var/obj/item/assembly/a_i_a/R = new(get_turf(src.loc))
+		var/obj/item/assembly/a_i_a/R = new /obj/item/assembly/a_i_a(GET_TURF(src))
 		R.part1 = src.part1
 		R.part1.master = R
 		R.part1.loc = R

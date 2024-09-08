@@ -26,7 +26,7 @@
 	if(suspension_field)
 		cell.charge -= power_use
 
-		var/turf/T = get_turf(suspension_field)
+		var/turf/T = GET_TURF(suspension_field)
 		if(field_type == "carbon")
 			for(var/mob/living/carbon/M in T)
 				M.weakened = max(M.weakened, 3)
@@ -238,7 +238,7 @@
 //checks for whether the machine can be activated or not should already have occurred by this point
 /obj/machinery/suspension_gen/proc/activate()
 	//depending on the field type, we might pickup certain items
-	var/turf/T = get_turf(get_step(src, dir))
+	var/turf/T = GET_TURF(get_step(src, dir))
 	var/success = 0
 	var/collected = 0
 	switch(field_type)
@@ -310,7 +310,7 @@
 
 /obj/machinery/suspension_gen/proc/deactivate()
 	//drop anything we picked up
-	var/turf/T = get_turf(suspension_field)
+	var/turf/T = GET_TURF(suspension_field)
 
 	for(var/mob/M in T)
 		to_chat(M, SPAN_INFO("You no longer feel like floating."))

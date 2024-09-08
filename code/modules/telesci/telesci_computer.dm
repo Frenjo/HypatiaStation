@@ -130,7 +130,7 @@
 
 /obj/machinery/computer/telescience/proc/sparks()
 	if(isnotnull(telepad))
-		make_sparks(5, TRUE, get_turf(telepad))
+		make_sparks(5, TRUE, GET_TURF(telepad))
 	else
 		return
 
@@ -183,7 +183,7 @@
 			// use a lot of power
 			use_power(power * 10)
 
-			make_sparks(5, TRUE, get_turf(telepad))
+			make_sparks(5, TRUE, GET_TURF(telepad))
 
 			temp_msg = "Teleport successful.<BR>"
 			if(teles_left < 10)
@@ -192,11 +192,10 @@
 				temp_msg += "Data printed below."
 			investigate_log("[key_name(usr)]/[user] has teleported with Telescience at [trueX],[trueY],[z_co], in [A ? A.name : "null area"].","telesci")
 
-			var/sparks = get_turf(target)
-			make_sparks(5, TRUE, sparks)
+			make_sparks(5, TRUE, GET_TURF(target))
 
 			var/turf/source = target
-			var/turf/dest = get_turf(telepad)
+			var/turf/dest = GET_TURF(telepad)
 			if(sending)
 				source = dest
 				dest = target

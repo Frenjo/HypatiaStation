@@ -192,7 +192,7 @@
 
 // can breath normally in the disposal
 /obj/machinery/disposal/alter_health()
-	return get_turf(src)
+	return GET_TURF(src)
 
 // attempt to move while inside
 /obj/machinery/disposal/relaymove(mob/user)

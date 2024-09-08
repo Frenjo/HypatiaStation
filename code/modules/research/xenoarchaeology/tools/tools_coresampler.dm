@@ -94,7 +94,7 @@
 			var/mob/M = loc
 			success = M.put_in_inactive_hand(filled_bag)
 		if(!success)
-			filled_bag.loc = get_turf(src)
+			filled_bag.loc = GET_TURF(src)
 		filled_bag = null
 		icon_state = "sampler0"
 	else

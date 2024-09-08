@@ -5,7 +5,7 @@
 				if(!user.get_active_hand())
 					user.put_in_hand(coat)
 				else
-					coat.loc = get_turf(user)
+					coat.loc = GET_TURF(user)
 				coat = null
 				if(!hat)
 					icon_state = "coatrack0"
@@ -20,7 +20,7 @@
 				if(!user.get_active_hand())
 					user.put_in_hand(hat)
 				else
-					hat.loc = get_turf(user)
+					hat.loc = GET_TURF(user)
 				hat = null
 				if(!coat)
 					icon_state = "coatrack0"

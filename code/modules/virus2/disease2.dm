@@ -89,7 +89,7 @@
 	//Short airborne spread
 	if(src.spreadtype == "Airborne")
 		for(var/mob/living/carbon/M in oview(1,mob))
-			if(airborne_can_reach(get_turf(mob), get_turf(M)))
+			if(airborne_can_reach(GET_TURF(mob), GET_TURF(M)))
 				infect_virus2(M, src)
 
 	//fever

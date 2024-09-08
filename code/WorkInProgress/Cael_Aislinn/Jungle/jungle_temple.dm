@@ -310,7 +310,7 @@
 
 	//hint that this tile is dangerous
 	if(prob(90))
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		T.desc = pick("There is a faint sheen of moisture over the top.", "It looks a little unstable.", "Something doesn't seem right.")
 
 /obj/effect/step_trigger/trap/Trigger(atom/A)
@@ -364,7 +364,7 @@
 			var/atom/myloc = src.loc
 			var/image/flicker = image('code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi', "throw[throw_dir]")
 			myloc.overlays += flicker
-			var/turf/my_turf = get_turf(loc)
+			var/turf/my_turf = GET_TURF(src)
 			if(!my_turf.density)
 				my_turf.density = TRUE
 				spawn(8)
@@ -397,7 +397,7 @@
 	if(prob(10))
 		new /obj/effect/glowshroom(src.loc)
 	if(prob(90))
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		T.desc = pick("It looks a little dustier than the surrounding tiles.", "It is somewhat ornate.", "It looks a little darker than the surrounding tiles.")
 	qdel(src)
 

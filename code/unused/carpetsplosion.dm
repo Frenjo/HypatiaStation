@@ -5,7 +5,7 @@
 	sleep(5)
 
 	for(var/obj/effect/spreader/spread in spreadEpicentre.spreadList)
-		spreadTurfs += get_turf(spread)
+		spreadTurfs += GET_TURF(spread)
 
 	del(spreadEpicentre)
 	return

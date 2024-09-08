@@ -154,7 +154,7 @@
 
 /obj/effect/alien/flesh/weeds/proc/Life()
 	set background = BACKGROUND_ENABLED
-	var/turf/U = get_turf(src)
+	var/turf/U = GET_TURF(src)
 /*
 	if (locate(/obj/movable, U))
 		U = locate(/obj/movable, U)
@@ -351,7 +351,7 @@ Alien plants should do something if theres a lot of poison
 		walk_to(src,0)
 		src.visible_message("<b>[src]</b> disintegrates into mush!")
 		playsound(loc, 'sound/voice/hiss6.ogg', 80, 1, 1)
-		var/turf/Ts = get_turf(src)
+		var/turf/Ts = GET_TURF(src)
 		new /obj/effect/decal/cleanable/blood(Ts)
 		del(src)
 
@@ -413,7 +413,7 @@ Alien plants should do something if theres a lot of poison
 		for(var/mob/O in viewers(src, null))
 			O.show_message("\red <b>[src]</b> spits a glob at [src.target]!", 1)
 
-		var/tturf = get_turf(target)
+		var/tturf = GET_TURF(target)
 		if(rapid)
 			spawn(1)
 				Shoot(tturf, src.loc, src)

@@ -156,7 +156,7 @@
 
 /datum/reagent/water/reaction_obj(obj/O, volume)
 	qdel(src)
-	var/turf/T = get_turf(O)
+	var/turf/T = GET_TURF(O)
 	var/obj/fire/hotspot = locate(/obj/fire) in T
 	if(isnotnull(hotspot) && !isspace(T))
 		var/datum/gas_mixture/lowertemp = T.remove_air(T.air.total_moles)
@@ -657,7 +657,7 @@
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/fuel/reaction_obj(obj/O, volume)
-	var/turf/the_turf = get_turf(O)
+	var/turf/the_turf = GET_TURF(O)
 	if(isnull(the_turf))
 		return // No sense trying to start a fire if you don't have a turf to set on fire. --NEO
 	new /obj/effect/decal/cleanable/liquid_fuel(the_turf, volume)

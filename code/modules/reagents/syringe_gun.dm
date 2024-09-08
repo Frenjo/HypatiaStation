@@ -55,8 +55,8 @@
 	if(locate(/obj/structure/table, src.loc))
 		return
 	else
-		var/turf/trg = get_turf(target)
-		var/obj/effect/syringe_gun_dummy/D = new/obj/effect/syringe_gun_dummy(get_turf(src))
+		var/turf/trg = GET_TURF(target)
+		var/obj/effect/syringe_gun_dummy/D = new/obj/effect/syringe_gun_dummy(GET_TURF(src))
 		var/obj/item/reagent_holder/syringe/S = syringes[1]
 		if((!S) || (!S.reagents))	//ho boy! wot runtimes!
 			return

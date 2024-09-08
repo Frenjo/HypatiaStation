@@ -13,10 +13,7 @@
 
 /datum/effect/system/expl_particles/set_up(n = 10, loca)
 	number = n
-	if(isturf(loca))
-		location = loca
-	else
-		location = get_turf(loca)
+	location = isturf(loca) ? loca : GET_TURF(loca)
 
 /datum/effect/system/expl_particles/start()
 	var/i = 0
@@ -44,9 +41,7 @@
 		qdel(src)
 
 /datum/effect/system/explosion/set_up(loca)
-	if(isturf(loca))
-		location = loca
-	else location = get_turf(loca)
+	location = isturf(loca) ? loca : GET_TURF(loca)
 
 /datum/effect/system/explosion/start()
 	new/obj/effect/explosion(location)

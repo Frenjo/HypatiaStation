@@ -64,7 +64,7 @@
 	..()
 
 /datum/game_mode/monkey/proc/is_important_monkey(var/mob/living/carbon/monkey/M as mob)
-	var/turf/T = get_turf(M)
+	var/turf/T = GET_TURF(M)
 	var/area/A = get_area(M)
 	if(M.stat!=2)
 

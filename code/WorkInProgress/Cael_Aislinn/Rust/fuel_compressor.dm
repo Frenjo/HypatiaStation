@@ -66,7 +66,7 @@ var/const/max_assembly_amount = 300
 	if( href_list["eject_matter"] )
 		var/ejected = 0
 		while(compressed_matter > 10)
-			new /obj/item/rcd_ammo(get_step(get_turf(src), src.dir))
+			new /obj/item/rcd_ammo(get_step(GET_TURF(src), src.dir))
 			compressed_matter -= 10
 			ejected = 1
 		if(ejected)
@@ -98,7 +98,7 @@ var/const/max_assembly_amount = 300
 			compressed_matter = old_matter
 			usr << "\red \icon[src] [src] flashes red: \'Out of matter.\'"
 		else
-			F.loc = src.loc//get_step(get_turf(src), src.dir)
+			F.loc = src.loc//get_step(GET_TURF(src), src.dir)
 			F.percent_depleted = 0
 			if(compressed_matter < 0.034)
 				compressed_matter = 0

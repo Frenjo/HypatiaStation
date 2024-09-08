@@ -191,7 +191,7 @@
 	)
 
 	for(var/obj/item/alien_embryo/A in target)
-		A.loc = get_turf(target)
+		A.loc = GET_TURF(target)
 
 
 //////////////////////////////////////////////////////////////////
@@ -303,7 +303,7 @@
 	var/is_chest_organ_damaged = 0
 	var/datum/organ/internal/heart/heart = target.internal_organs["heart"]
 	var/datum/organ/external/chest/chest = target.get_organ("chest")
-	for(var/datum/organ/internal/I in chest.internal_organs) 
+	for(var/datum/organ/internal/I in chest.internal_organs)
 		if(I.damage > 0)
 			is_chest_organ_damaged = 1
 			break

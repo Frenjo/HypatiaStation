@@ -260,11 +260,11 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		if(..() == 1) // We can afford the item
 			var/path_obj = text2path(href_list["buy_item"])
 			var/mob/A = src.hostpda.loc
-			var/item = new path_obj(get_turf(src.hostpda))
+			var/item = new path_obj(GET_TURF(hostpda))
 			if(ismob(A) && !(locate(item) in NotInHand)) //&& !istype(item, /obj/spawner))
 				A.put_in_hands(item)
 			else
-				item:loc = get_turf(A)
+				item:loc = GET_TURF(A)
 			usr.update_clothing()
 			usr.client.onBought("[item:name]")
 	/*		if(istype(item, /obj/spawner)) // Spawners need to have del called on them to avoid leaving a marker behind
@@ -287,7 +287,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		return
 
 	explode()
-		var/turf/location = get_turf(src.loc)
+		var/turf/location = GET_TURF(src)
 		if(location)
 			location.hotspot_expose(700,125)
 			explosion(location, 0, 0, 2, 4, 1)
@@ -352,7 +352,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			if(href_list["buy_item"])
 				if(..() == 1) // We can afford the item
 					var/path_obj = text2path(href_list["buy_item"])
-					var/item = new path_obj(get_turf(src.loc))
+					var/item = new path_obj(GET_TURF(src))
 					var/mob/A = src.loc
 					if(istype(src.loc,/obj/item/implant/uplink))
 						var/obj/item/implant/uplink/U = src.loc
@@ -360,7 +360,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 					if(ismob(A) && !(locate(item) in NotInHand)) //&& !istype(item, /obj/spawner))
 						A.put_in_hands(item)
 					else
-						item:loc = get_turf(A)
+						item:loc = GET_TURF(A)
 	/*				if(istype(item, /obj/spawner)) // Spawners need to have del called on them to avoid leaving a marker behind
 						del item*/
 					usr.client.onBought("[item:name]")
@@ -414,7 +414,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		return
 
 	proc/explode()
-		var/turf/location = get_turf(src.loc)
+		var/turf/location = GET_TURF(src)
 		if(location)
 			location.hotspot_expose(700,125)
 			explosion(location, 0, 0, 2, 4, 1)

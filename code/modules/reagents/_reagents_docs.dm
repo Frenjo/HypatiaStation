@@ -186,7 +186,7 @@ About Recipes:
 			This proc is called when the recipe is matched.
 			You'll want to add explosions etc here.
 			To find the location you'll have to do something
-			like get_turf(holder.my_atom)
+			like GET_TURF(holder.my_atom)
 
 		name & id
 			Should be pretty obvious.

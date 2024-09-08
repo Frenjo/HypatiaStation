@@ -325,7 +325,7 @@
 						var/obj/item/slime_core/ME = my_atom
 						ME.Uses--
 						if(ME.Uses <= 0) // give the notification that the slime core is dead
-							for(var/mob/M in viewers(4, get_turf(my_atom)) )
+							for(var/mob/M in viewers(4, GET_TURF(my_atom)))
 								M << "\blue \icon[my_atom] The innards begin to boil!"
 				*/
 
@@ -337,7 +337,7 @@
 							ME2.name = "used slime extract"
 							ME2.desc = "This extract has been used up."
 
-					playsound(get_turf(my_atom), 'sound/effects/bubbles.ogg', 80, 1)
+					playsound(GET_TURF(my_atom), 'sound/effects/bubbles.ogg', 80, 1)
 
 					C.on_reaction(src, created_volume)
 					reaction_occured = 1

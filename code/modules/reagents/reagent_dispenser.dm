@@ -111,7 +111,7 @@
 				SPAN_INFO("[usr] detaches [rig] from \the [src]."),
 				SPAN_INFO("You detach [rig] from \the [src].")
 			)
-			rig.loc = get_turf(usr)
+			rig.loc = GET_TURF(usr)
 			rig = null
 			overlays = list()
 

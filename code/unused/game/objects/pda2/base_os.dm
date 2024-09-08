@@ -177,8 +177,8 @@
 					//Atmos Scanner
 					dat += "<h4>Atmospheric Readings</h4>"
 
-					var/turf/T = get_turf_or_move(get_turf(src.master))
-					if (isnull(T))
+					var/turf/T = get_turf_or_move(GET_TURF(src.master))
+					if(isnull(T))
 						dat += "Unable to obtain a reading.<br>"
 					else
 						var/datum/gas_mixture/environment = T.return_air()

@@ -1,13 +1,13 @@
 /obj/item/reagent_holder/food/snacks/breadslice/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/shard) || istype(W, /obj/item/reagent_holder/food/snacks))
-		var/obj/item/reagent_holder/food/snacks/customizable/S = new(get_turf(user))
+		var/obj/item/reagent_holder/food/snacks/customizable/S = new /obj/item/reagent_holder/food/snacks/customizable(GET_TURF(user))
 		S.attackby(W, user)
 		qdel(src)
 
 
 /obj/item/reagent_holder/food/snacks/bun/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/shard) || istype(W, /obj/item/reagent_holder/food/snacks))
-		var/obj/item/reagent_holder/food/snacks/customizable/burger/S = new(get_turf(user))
+		var/obj/item/reagent_holder/food/snacks/customizable/burger/S = new /obj/item/reagent_holder/food/snacks/customizable/burger(GET_TURF(user))
 		S.attackby(W, user)
 		qdel(src)
 	..()
@@ -15,7 +15,7 @@
 
 /obj/item/reagent_holder/food/snacks/sliceable/flatdough/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/shard) || istype(W, /obj/item/reagent_holder/food/snacks))
-		var/obj/item/reagent_holder/food/snacks/customizable/pizza/S = new(get_turf(user))
+		var/obj/item/reagent_holder/food/snacks/customizable/pizza/S = new /obj/item/reagent_holder/food/snacks/customizable/pizza(GET_TURF(user))
 		S.attackby(W, user)
 		qdel(src)
 	..()
@@ -23,7 +23,7 @@
 
 /obj/item/reagent_holder/food/snacks/boiledspagetti/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/shard) || istype(W, /obj/item/reagent_holder/food/snacks))
-		var/obj/item/reagent_holder/food/snacks/customizable/pasta/S = new(get_turf(user))
+		var/obj/item/reagent_holder/food/snacks/customizable/pasta/S = new /obj/item/reagent_holder/food/snacks/customizable/pasta(GET_TURF(user))
 		S.attackby(W, user)
 		qdel(src)
 
@@ -36,7 +36,7 @@
 
 /obj/item/trash/bowl/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/shard) || istype(W, /obj/item/reagent_holder/food/snacks))
-		var/obj/item/reagent_holder/food/snacks/customizable/soup/S = new(get_turf(user))
+		var/obj/item/reagent_holder/food/snacks/customizable/soup/S = new /obj/item/reagent_holder/food/snacks/customizable/soup(GET_TURF(user))
 		S.attackby(W, user)
 		qdel(src)
 	..()

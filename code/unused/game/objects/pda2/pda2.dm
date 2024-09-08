@@ -218,7 +218,7 @@
 
 	eject_cartridge()
 		if(src.cartridge)
-			var/turf/T = get_turf(src)
+			var/turf/T = GET_TURF(src)
 
 			if(src.active_program && (src.active_program.holder == src.cartridge))
 				src.active_program = null

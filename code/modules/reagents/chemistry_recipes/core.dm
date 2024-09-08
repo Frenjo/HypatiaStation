@@ -120,11 +120,11 @@
 	result_amount = 2
 
 /datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	for(var/mob/M in viewers(5, location))
 		to_chat(M, SPAN_WARNING("The solution violently bubbles!"))
 
-	location = get_turf(holder.my_atom)
+	location = GET_TURF(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
 		to_chat(M, SPAN_WARNING("The solution spews out foam!"))
@@ -145,7 +145,7 @@
 	result_amount = 5
 
 /datum/chemical_reaction/metalfoam/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
 		to_chat(M, SPAN_WARNING("The solution spews out a metalic foam!"))
@@ -161,7 +161,7 @@
 	result_amount = 5
 
 /datum/chemical_reaction/ironfoam/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
 		to_chat(M, SPAN_WARNING("The solution spews out a metalic foam!"))

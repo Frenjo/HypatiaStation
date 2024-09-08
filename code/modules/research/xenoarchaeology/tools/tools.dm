@@ -9,7 +9,7 @@
 	w_class = 2
 
 /obj/item/gps/attack_self(mob/user)
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	to_chat(user, SPAN_INFO("\icon[src] [src] flashes <i>[T.x].[rand(0, 9)]:[T.y].[rand(0, 9)]:[T.z].[rand(0, 9)]</i>."))
 
 /obj/item/measuring_tape

@@ -271,7 +271,7 @@
 	power_change()
 	if(active)
 		var/list/covered_turfs = get_shielded_turfs()
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		if(T in covered_turfs)
 			covered_turfs.Remove(T)
 		for_no_type_check(var/turf/O, covered_turfs)

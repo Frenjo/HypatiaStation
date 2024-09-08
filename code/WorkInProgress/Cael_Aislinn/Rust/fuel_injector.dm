@@ -276,7 +276,7 @@
 				//to_world("	numparticles: [numparticles]")
 				//
 
-				var/obj/effect/accelerated_particle/A = new/obj/effect/accelerated_particle(get_turf(src), dir)
+				var/obj/effect/accelerated_particle/A = new/obj/effect/accelerated_particle(GET_TURF(src), dir)
 				A.particle_type = reagent
 				A.additional_particles = numparticles - 1
 				//A.target = target_field

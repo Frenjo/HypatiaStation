@@ -52,7 +52,7 @@
 		if(w.isOn())
 			if(w.get_fuel() >= 4 && !src.method)
 				if(inside)
-					inside.loc = get_turf(src)
+					inside.loc = GET_TURF(src)
 					for(var/mob/M in viewers(world.view, user))
 						M.show_message(SPAN_INFO("[src] burns away revealing [inside]."), 1)
 				else
@@ -536,9 +536,10 @@
 			if(prob(25))
 				new_item.speaking_to_players = 1
 				GLOBL.processing_objects.Add(src)
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		if(istype(T, /turf/closed/rock))
-			T:last_find = new_item
+			var/turf/closed/rock/closed = T
+			closed.last_find = new_item
 		qdel(src)
 
 	else if(talkative)

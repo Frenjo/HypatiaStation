@@ -47,7 +47,7 @@
 				// 1/360 = 0.27% (furthest)
 				// variation of 12.2%
 				if( rand() < (0.25 + dist_ratio * 12.5) )
-					target = get_turf(M)
+					target = GET_TURF(M)
 					break
 			if(!target)
 				target = pick(range(particle_range))
@@ -56,7 +56,7 @@
 			for(var/mob/M in view(particle_range))
 				var/dist_ratio = particle_range / get_dist(M, src)
 				if( rand() < (0.25 + dist_ratio * 12.5) )
-					target = get_turf(M)
+					target = GET_TURF(M)
 					break
 			if(!target)
 				target = pick(view(particle_range))

@@ -206,7 +206,7 @@
 		if(src.internal_tank)
 			return src.internal_tank.air_contents.remove(amount)
 		else
-			var/turf/T = get_turf(src)
+			var/turf/T = GET_TURF(src)
 			return T.remove_air(amount)
 
 	return_air()

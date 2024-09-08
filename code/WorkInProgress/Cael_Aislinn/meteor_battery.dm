@@ -98,7 +98,7 @@
 /obj/machinery/meteor_battery/proc/get_new_target()
 	var/list/new_targets = new
 	var/new_target
-	for(var/obj/effect/meteor/M in view(protect_range, get_turf(src)))
+	for(var/obj/effect/meteor/M in view(protect_range, GET_TURF(src)))
 		new_targets += M
 	if(new_targets.len)
 		new_target = pick(new_targets)
@@ -122,13 +122,13 @@
 			continue
 		if(tracking_missiles && cur_target)
 			//update homing missile target
-			M.target = get_turf(cur_target)
+			M.target = GET_TURF(cur_target)
 			walk_towards(M, M.target, MISSILE_SPEED)
 
-		if(get_turf(M) == M.target && M)
+		if(GET_TURF(M) == M.target && M)
 			//missile has arrived at destination
 			fired_missiles.Remove(M)
-			if(isspace(get_turf(M)))
+			if(isspace(GET_TURF(M)))
 				//send the missile shooting off into the distance
 				walk(M, get_dir(src,M), MISSILE_SPEED)
 				spawn(rand(3,10) * 10)
@@ -170,9 +170,9 @@
 	return
 
 /obj/machinery/meteor_battery/proc/shootAt(var/atom/movable/target)
-	var/turf/T = get_turf(src)
-	var/turf/U = get_turf(target)
-	if (!T || !U)
+	var/turf/T = GET_TURF(src)
+	var/turf/U = GET_TURF(target)
+	if(isnull(T) || isnull(U))
 		return
 	use_power(500)
 	var/obj/item/projectile/missile/A = new(T)

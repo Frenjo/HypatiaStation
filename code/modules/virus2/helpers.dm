@@ -128,7 +128,7 @@
 				continue
 
 			if(vector == "Airborne")
-				if(airborne_can_reach(get_turf(src), get_turf(victim)))
+				if(airborne_can_reach(GET_TURF(src), GET_TURF(victim)))
 //					log_debug("In range, infecting")
 					infect_virus2(victim, V)
 				else

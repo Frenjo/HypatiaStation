@@ -20,8 +20,8 @@
 
 		for(var/i = 0, i < 10, i++)
 			for(var/mob/living/carbon/human/H in living_mob_list)
-				var/turf/T = get_turf(H)
-				if(!T)
+				var/turf/T = GET_TURF(H)
+				if(isnull(T))
 					continue
 				if(T.z != 1)
 					continue
@@ -29,24 +29,24 @@
 					continue
 
 				if(ishuman(H))
-					H.apply_effect((rand(15,35)),IRRADIATE,0)
+					H.apply_effect(rand(15, 35), IRRADIATE, 0)
 					if(prob(5))
-						H.apply_effect((rand(40,70)),IRRADIATE,0)
-						if (prob(75))
+						H.apply_effect(rand(40, 70), IRRADIATE, 0)
+						if(prob(75))
 							randmutb(H) // Applies bad mutation
-							domutcheck(H,null,MUTCHK_FORCED)
+							domutcheck(H, null, MUTCHK_FORCED)
 						else
 							randmutg(H) // Applies good mutation
-							domutcheck(H,null,MUTCHK_FORCED)
+							domutcheck(H, null, MUTCHK_FORCED)
 
 
 			for(var/mob/living/carbon/monkey/M in living_mob_list)
-				var/turf/T = get_turf(M)
-				if(!T)
+				var/turf/T = GET_TURF(M)
+				if(isnull(T))
 					continue
 				if(T.z != 1)
 					continue
-				M.apply_effect((rand(5,25)),IRRADIATE,0)
+				M.apply_effect(rand(5, 25), IRRADIATE, 0)
 			sleep(100)
 
 

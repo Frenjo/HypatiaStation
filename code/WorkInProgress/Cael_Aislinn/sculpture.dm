@@ -93,7 +93,7 @@
 		observed = 1
 
 	//can't do anything in space at all
-	if(isspace(get_turf(src)) || hibernate)
+	if(isspace(GET_TURF(src)) || hibernate)
 		return
 
 	for(var/mob/living/M in view(7, src))
@@ -127,7 +127,7 @@
 			break
 
 	//account for darkness
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	var/in_darkness = 0
 	if(T.luminosity == 0 && !issimulated(T))
 		in_darkness = 1
@@ -142,7 +142,7 @@
 				del G
 		else if(!G)
 			//see if we're able to strangle anyone
-			var/turf/myTurf = get_turf(src)
+			var/turf/myTurf = GET_TURF(src)
 			for(var/mob/living/M in myTurf)
 				GrabMob(M)
 				if(G)
@@ -178,12 +178,12 @@
 					target_turf = get_step(target_mob, src)
 				else
 					//move to them really really fast and knock them down
-					target_turf = get_turf(target_mob)
+					target_turf = GET_TURF(target_mob)
 
 				//rampage along a path to get to them, in the blink of an eye
 				var/turf/next_turf = get_step_towards(src, target_mob)
 				var/num_turfs = get_dist(src,target_mob)
-				while(get_turf(src) != target_turf && num_turfs > 0)
+				while(GET_TURF(src) != target_turf && num_turfs > 0)
 					for(var/obj/structure/window/W in next_turf)
 						W.ex_act(2)
 					for(var/obj/structure/table/O in next_turf)
@@ -198,7 +198,7 @@
 					num_turfs--
 
 				//if we reached them, knock them down and start strangling them
-				if(get_turf(src) == target_turf)
+				if(GET_TURF(src) == target_turf)
 					target_mob.Stun(1)
 					target_mob.Paralyse(1)
 					GrabMob(target_mob)
@@ -223,7 +223,7 @@
 				//rampage along a path to get to it, in the blink of an eye
 				var/turf/next_turf = get_step_towards(src, target_turf)
 				var/num_turfs = get_dist(src,target_turf)
-				while(get_turf(src) != target_turf && num_turfs > 0)
+				while(GET_TURF(src) != target_turf && num_turfs > 0)
 					for(var/obj/structure/window/W in next_turf)
 						W.ex_act(2)
 					for(var/obj/structure/table/O in next_turf)

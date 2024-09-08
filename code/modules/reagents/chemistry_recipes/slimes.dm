@@ -10,9 +10,8 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimespawn/on_reaction(datum/reagents/holder)
-	var/location = get_turf(holder.my_atom)
-	for(var/mob/O in viewers(location, null))
-		O.show_message(SPAN_WARNING("Infused with plasma, the core begins to quiver and grow, and soon a new baby slime emerges from it!"), 1)
+	var/turf/location = GET_TURF(holder.my_atom)
+	location.visible_message(SPAN_WARNING("Infused with plasma, the core begins to quiver and grow, and soon a new baby slime emerges from it!"))
 	new /mob/living/carbon/slime(location)
 
 /datum/chemical_reaction/slimemonkey
@@ -24,7 +23,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimemonkey/on_reaction(datum/reagents/holder)
-	var/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	for(var/i = 1, i <= 3, i++)
 		new /obj/item/reagent_holder/food/snacks/monkeycube(location)
 
@@ -47,7 +46,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimemetal/on_reaction(datum/reagents/holder)
-	var/turf/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	new /obj/item/stack/sheet/steel(location, 15)
 	new /obj/item/stack/sheet/plasteel(location, 5)
 
@@ -106,7 +105,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimebork/on_reaction(datum/reagents/holder)
-	var/turf/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	var/list/borks = SUBTYPESOF(/obj/item/reagent_holder/food/snacks)
 	// BORK BORK BORK
 
@@ -143,7 +142,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimefreeze/on_reaction(datum/reagents/holder)
-	var/turf/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	holder.my_atom.visible_message(SPAN_WARNING("The slime extract begins to vibrate violently!"))
 	sleep(50)
 	playsound(location, 'sound/effects/phasein.ogg', 100, 1)
@@ -169,7 +168,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimefire/on_reaction(datum/reagents/holder)
-	var/turf/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	holder.my_atom.visible_message(SPAN_WARNING("The slime extract begins to vibrate violently!"))
 	sleep(50)
 	for(var/turf/open/floor/target_tile in range(0, location))
@@ -187,7 +186,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimeoverload/on_reaction(datum/reagents/holder, created_volume)
-	empulse(get_turf(holder.my_atom), 3, 7)
+	empulse(GET_TURF(holder.my_atom), 3, 7)
 
 /datum/chemical_reaction/slimecell
 	name = "Slime Powercell"
@@ -198,7 +197,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimecell/on_reaction(datum/reagents/holder, created_volume)
-	new /obj/item/cell/slime(get_turf(holder.my_atom))
+	new /obj/item/cell/slime(GET_TURF(holder.my_atom))
 
 /datum/chemical_reaction/slimeglow
 	name = "Slime Glow"
@@ -209,7 +208,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimeglow/on_reaction(datum/reagents/holder)
-	var/turf/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	holder.my_atom.visible_message(SPAN_WARNING("The slime begins to emit a soft light."))
 	new /obj/item/flashlight/slime(location)
 
@@ -223,7 +222,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimepsteroid/on_reaction(datum/reagents/holder)
-	new /obj/item/slimesteroid(get_turf(holder.my_atom))
+	new /obj/item/slimesteroid(GET_TURF(holder.my_atom))
 
 /datum/chemical_reaction/slimejam
 	name = "Slime Jam"
@@ -243,7 +242,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimeplasma/on_reaction(datum/reagents/holder)
-	new /obj/item/stack/sheet/plasma(get_turf(holder.my_atom), 10)
+	new /obj/item/stack/sheet/plasma(GET_TURF(holder.my_atom), 10)
 
 //Red
 /datum/chemical_reaction/slimeglycerol
@@ -263,7 +262,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimebloodlust/on_reaction(datum/reagents/holder)
-	for(var/mob/living/carbon/slime/slime in viewers(get_turf(holder.my_atom), null))
+	for(var/mob/living/carbon/slime/slime in viewers(GET_TURF(holder.my_atom), null))
 		slime.tame = 0
 		slime.rabid = 1
 		slime.visible_message(SPAN_WARNING("The [slime] is driven into a frenzy!"))
@@ -278,7 +277,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimeppotion/on_reaction(datum/reagents/holder)
-	new /obj/item/slimepotion(get_turf(holder.my_atom))
+	new /obj/item/slimepotion(GET_TURF(holder.my_atom))
 
 //Black
 /datum/chemical_reaction/slimemutate2
@@ -301,7 +300,7 @@
 /datum/chemical_reaction/slimeexplosion/on_reaction(datum/reagents/holder)
 	holder.my_atom.visible_message(SPAN_WARNING("The slime extract begins to vibrate violently!"))
 	sleep(50)
-	explosion(get_turf(holder.my_atom), 1 , 3, 6)
+	explosion(GET_TURF(holder.my_atom), 1 , 3, 6)
 
 //Light Pink
 /datum/chemical_reaction/slimepotion2
@@ -313,7 +312,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimepotion2/on_reaction(datum/reagents/holder)
-	new /obj/item/slimepotion2(get_turf(holder.my_atom))
+	new /obj/item/slimepotion2(GET_TURF(holder.my_atom))
 
 //Adamantine
 /datum/chemical_reaction/slimegolem
@@ -325,7 +324,7 @@
 	required_other = 1
 
 /datum/chemical_reaction/slimegolem/on_reaction(datum/reagents/holder)
-	var/obj/effect/golemrune/Z = new /obj/effect/golemrune(get_turf(holder.my_atom))
+	var/obj/effect/golemrune/Z = new /obj/effect/golemrune(GET_TURF(holder.my_atom))
 	Z.announce_to_ghosts()
 
 /////////////////////////////////////OLD SLIME CORE REACTIONS ///////////////////////////////
@@ -366,7 +365,7 @@
 	required_other = 2
 
 /datum/chemical_reaction/slime_explosion/on_reaction(var/datum/reagents/holder, var/created_volume)
-	var/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	var/datum/effect/system/reagents_explosion/e = new()
 	e.set_up(round (created_volume/10, 1), location, 0, 0)
 	e.start()
@@ -392,7 +391,7 @@
 	required_other = 2
 
 /datum/chemical_reaction/slimesynthi/on_reaction(var/datum/reagents/holder, var/created_volume)
-	var/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	new /obj/item/reagent_holder/food/snacks/meat/syntiflesh(location)
 
 
@@ -596,11 +595,11 @@
 	required_other = 5
 
 /datum/chemical_reaction/slimefoam/on_reaction(var/datum/reagents/holder, var/created_volume)
-	var/location = get_turf(holder.my_atom)
+	var/turf/location = GET_TURF(holder.my_atom)
 	for(var/mob/M in viewers(5, location))
 		M << "\red The solution violently bubbles!"
 
-	location = get_turf(holder.my_atom)
+	location = GET_TURF(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
 		M << "\red The solution spews out foam!"

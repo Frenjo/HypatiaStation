@@ -5,7 +5,7 @@
 proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1)
 	spawn(0)
 		var/start = world.timeofday
-		epicenter = get_turf(epicenter)
+		epicenter = GET_TURF(epicenter)
 		if(!epicenter) return
 
 		if(adminlog)

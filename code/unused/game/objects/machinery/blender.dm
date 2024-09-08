@@ -128,7 +128,7 @@ the blender or the processor: Processor items are solid objects and Blender resu
 	else
 		for(var/obj/O in src.contents)			//Searches through the contents for the jug.
 			if(istype(O, /obj/item/reagent_holder/glass/blender_jug))
-				O.loc = get_turf(src)
+				O.loc = GET_TURF(src)
 				src.reagents.trans_to(O, src.reagents.total_volume)
 				O = null
 				src.flags = null
@@ -151,6 +151,6 @@ the blender or the processor: Processor items are solid objects and Blender resu
 	else
 		for(var/obj/O in src.contents)
 			if(istype(O, /obj/item/reagent_holder/food/snacks))
-				O.loc = get_turf(src)
+				O.loc = GET_TURF(src)
 				O = null
 	return
