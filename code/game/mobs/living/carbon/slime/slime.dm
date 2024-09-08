@@ -833,7 +833,7 @@
 
 /obj/item/reagent_holder/food/snacks/egg/slime/proc/Hatch()
 	processing_objects.Remove(src)
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	src.visible_message("\blue The [name] pulsates and quivers!")
 	spawn(rand(50,100))
 		src.visible_message("\blue The [name] bursts open!")
@@ -842,7 +842,7 @@
 
 
 /obj/item/reagent_holder/food/snacks/egg/slime/process()
-	var/turf/location = get_turf(src)
+	var/turf/location = GET_TURF(src)
 	var/datum/gas_mixture/environment = location.return_air()
 	if (environment.toxins > MOLES_PLASMA_VISIBLE)//plasma exposure causes the egg to hatch
 		src.Hatch()

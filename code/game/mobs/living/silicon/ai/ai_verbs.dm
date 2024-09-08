@@ -211,7 +211,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 			if(!C.can_use())
 				continue
 			if(network in C.network)
-				U.eyeobj.setLoc(get_turf(C))
+				U.eyeobj.setLoc(GET_TURF(C))
 				break
 
 	to_chat(src, SPAN_INFO("Switched to [network] camera network."))

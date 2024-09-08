@@ -163,31 +163,31 @@
 							temp = "Nothing could possibly go wrong with arming a crew of lunatics just itching for an excuse to kill eachother. Just be careful not to get hit in the crossfire!"
 						if("staffchange")
 							feedback_add_details("wizard_spell_learned", "ST") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/gun/energy/staff(get_turf(H))
+							new /obj/item/gun/energy/staff(GET_TURF(H))
 							temp = "An artefact that spits bolts of coruscating energy which cause the target's very form to reshape itself"
 							max_uses--
 						if("mentalfocus")
 							feedback_add_details("wizard_spell_learned", "MF") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/gun/energy/staff/focus(get_turf(H))
+							new /obj/item/gun/energy/staff/focus(GET_TURF(H))
 							temp = "An artefact that channels the will of the user into destructive bolts of force."
 							max_uses--
 						if("soulstone")
 							feedback_add_details("wizard_spell_learned", "SS") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/storage/belt/soulstone/full(get_turf(H))
+							new /obj/item/storage/belt/soulstone/full(GET_TURF(H))
 							H.spell_list += new /obj/effect/proc_holder/spell/aoe_turf/conjure/construct(H)
 							temp = "Soul Stone Shards are ancient tools capable of capturing and harnessing the spirits of the dead and dying. The spell Artificer allows you to create arcane machines for the captured souls to pilot."
 							max_uses--
 						if("armor")
 							feedback_add_details("wizard_spell_learned", "HS") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/clothing/shoes/sandal(get_turf(H)) //In case they've lost them.
-							new /obj/item/clothing/gloves/purple(get_turf(H))//To complete the outfit
-							new /obj/item/clothing/suit/space/rig/wizard(get_turf(H))
-							new /obj/item/clothing/head/helmet/space/rig/wizard(get_turf(H))
+							new /obj/item/clothing/shoes/sandal(GET_TURF(H)) //In case they've lost them.
+							new /obj/item/clothing/gloves/purple(GET_TURF(H))//To complete the outfit
+							new /obj/item/clothing/suit/space/rig/wizard(GET_TURF(H))
+							new /obj/item/clothing/head/helmet/space/rig/wizard(GET_TURF(H))
 							temp = "An artefact suit of armor that allows you to cast spells while providing more protection against attacks and the void of space."
 							max_uses--
 						if("staffanimation")
 							feedback_add_details("wizard_spell_learned", "SA") //please do not change the abbreviation to keep data processing consistent. Add a unique id to any new spells
-							new /obj/item/gun/energy/staff/animate(get_turf(H))
+							new /obj/item/gun/energy/staff/animate(GET_TURF(H))
 							temp = "An artefact that spits bolts of life-force which causes objects which are hit by it to animate and come to life! This magic doesn't affect machines."
 							max_uses--
 		else

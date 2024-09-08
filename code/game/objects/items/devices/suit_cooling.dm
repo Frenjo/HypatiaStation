@@ -69,7 +69,7 @@
 			var/obj/machinery/atmospherics/unary/cryo_cell/cell = H.loc
 			return cell.air_contents.temperature
 
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	if(isspace(T))
 		return 0	//space has no temperature, this just makes sure the cooling unit works in space
 
@@ -111,7 +111,7 @@
 		if(ishuman(user))
 			user.put_in_hands(cell)
 		else
-			cell.loc = get_turf(loc)
+			cell.loc = GET_TURF(src)
 
 		cell.add_fingerprint(user)
 		cell.updateicon()

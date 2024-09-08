@@ -85,31 +85,31 @@
 	if(href_list["rune"])
 		switch(href_list["rune"])
 			if("newtome")
-				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(get_turf(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(usr))
 				T.imbue = "newtome"
 			if("teleport")
-				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(get_turf(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(usr))
 				T.imbue = "[pick("ire", "ego", "nahlizet", "certum", "veri", "jatkaa", "balaq", "mgar", "karazet", "geeri", "orkan", "allaq")]"
 				T.info = "[T.imbue]"
 			if("emp")
-				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(get_turf(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(usr))
 				T.imbue = "emp"
 			if("conceal")
-				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(get_turf(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(usr))
 				T.imbue = "conceal"
 			if("communicate")
-				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(get_turf(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(usr))
 				T.imbue = "communicate"
 			if("runestun")
-				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(get_turf(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(usr))
 				T.imbue = "runestun"
 			if("armor")
-				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(get_turf(usr))
+				var/obj/item/paper/talisman/T = new /obj/item/paper/talisman(GET_TURF(usr))
 				T.imbue = "armor"
 			if("soulstone")
-				new /obj/item/soulstone(get_turf(usr))
+				new /obj/item/soulstone(GET_TURF(usr))
 			if("construct")
-				new /obj/structure/constructshell(get_turf(usr))
+				new /obj/structure/constructshell(GET_TURF(usr))
 		src.uses--
 		supply()
 	return

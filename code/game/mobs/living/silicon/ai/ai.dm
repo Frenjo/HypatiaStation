@@ -358,7 +358,7 @@
 		view_core()
 		return
 	// ok, we're alive, camera is good and in our network...
-	eyeobj.setLoc(get_turf(C))
+	eyeobj.setLoc(GET_TURF(C))
 	//machine = src
 
 	return 1

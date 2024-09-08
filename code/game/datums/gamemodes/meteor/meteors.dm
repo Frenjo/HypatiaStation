@@ -133,8 +133,8 @@
 
 		if(A)
 			for_no_type_check(var/mob/M, GLOBL.player_list)
-				var/turf/T = get_turf(M)
-				if(!T || T.z != src.z)
+				var/turf/T = GET_TURF(M)
+				if(isnull(T) || T.z != src.z)
 					continue
 				shake_camera(M, 3, get_dist(M.loc, src.loc) > 20 ? 1 : 3)
 				playsound(src, 'sound/effects/meteorimpact.ogg', 40, 1)

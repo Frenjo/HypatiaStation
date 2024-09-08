@@ -17,7 +17,7 @@
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt/cast(list/targets) //magnets, so mostly hardcoded
 	for(var/mob/living/target in targets)
 		spawn(0)
-			var/mobloc = get_turf(target.loc)
+			var/mobloc = GET_TURF(target)
 			var/obj/effect/dummy/spell_jaunt/holder = new /obj/effect/dummy/spell_jaunt(mobloc)
 			var/atom/movable/overlay/animation = new /atom/movable/overlay(mobloc)
 			animation.name = "water"
@@ -33,7 +33,7 @@
 				target.loc = holder
 				target.client.eye = holder
 				sleep(jaunt_duration)
-				mobloc = get_turf(target.loc)
+				mobloc = GET_TURF(target)
 				animation.loc = mobloc
 				target.canmove = FALSE
 				sleep(20)
@@ -56,7 +56,7 @@
 				target.client.eye = holder
 				make_steam(10, FALSE, mobloc)
 				sleep(jaunt_duration)
-				mobloc = get_turf(target.loc)
+				mobloc = GET_TURF(target)
 				animation.loc = mobloc
 				make_steam(10, FALSE, mobloc)
 				target.canmove = FALSE
@@ -87,7 +87,7 @@
 /obj/effect/dummy/spell_jaunt/Destroy()
 	// Eject contents if deleted somehow
 	for(var/atom/movable/AM in src)
-		AM.loc = get_turf(src)
+		AM.loc = GET_TURF(src)
 	return ..()
 
 /obj/effect/dummy/spell_jaunt/relaymove(mob/user, direction)

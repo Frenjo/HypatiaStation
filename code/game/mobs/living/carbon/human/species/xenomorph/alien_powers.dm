@@ -38,7 +38,7 @@
 		return 0
 
 	if(needs_foundation)
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		var/has_foundation
 		if(isnotnull(T))
 			//TODO: Work out the actual conditions this needs.
@@ -85,7 +85,7 @@
 		verbs.Remove(/mob/living/carbon/human/proc/lay_egg)
 		return
 
-	if(locate(/obj/effect/alien/egg) in get_turf(src))
+	if(locate(/obj/effect/alien/egg) in GET_TURF(src))
 		to_chat(src, "There's already an egg here.")
 		return
 
@@ -154,7 +154,7 @@
 			return
 
 	if(check_alien_ability(200, 0, "acid gland"))
-		new /obj/effect/alien/acid(get_turf(O), O)
+		new /obj/effect/alien/acid(GET_TURF(O), O)
 		visible_message(
 			SPAN_RADIOACTIVE("[src] vomits globs of vile stuff all over [O]. It begins to sizzle and melt under the bubbling mess of acid!")
 		)

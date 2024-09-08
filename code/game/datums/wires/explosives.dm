@@ -28,4 +28,4 @@ var/const/WIRE_EXPLODE = 1
 
 /datum/wires/explosive/c4/explode()
 	var/obj/item/plastique/P = holder
-	P.explode(get_turf(P))
+	P.explode(GET_TURF(P))

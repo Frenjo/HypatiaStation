@@ -71,9 +71,9 @@
 	set name = "Create Node"
 	set desc = "Create a Node."
 	if(creating_blob)	return
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	creating_blob = 1
-	if(!T)
+	if(isnull(T))
 		creating_blob = 0
 		return
 	var/obj/effect/blob/B = (locate(/obj/effect/blob) in T)
@@ -101,9 +101,9 @@
 	set name = "Create Defence"
 	set desc = "Create a Spore producing blob."
 	if(creating_blob)	return
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	creating_blob = 1
-	if(!T)
+	if(isnull(T))
 		creating_blob = 0
 		return
 	var/obj/effect/blob/B = (locate(/obj/effect/blob) in T)
@@ -137,9 +137,9 @@
 	set name = "Purge Defence"
 	set desc = "Removes a porous blob."
 	if(creating_blob)	return
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	creating_blob = 1
-	if(!T)
+	if(isnull(T))
 		creating_blob = 0
 		return
 	var/obj/effect/blob/B = (locate(/obj/effect/blob) in T)
@@ -160,9 +160,9 @@
 	set name = "Create new blob"
 	set desc = "Attempts to create a new blob in this tile."
 	if(creating_blob)	return
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	creating_blob = 1
-	if(!T)
+	if(isnull(T))
 		creating_blob = 0
 		return
 	var/obj/effect/blob/B = (locate(/obj/effect/blob) in T)

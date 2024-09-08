@@ -30,7 +30,7 @@
 
 	// Otherwise jump
 	else
-		loc = get_turf(A)
+		loc = GET_TURF(A)
 
 /mob/dead/observer/ClickOn(atom/A, params)
 	if(client.buildmode)
@@ -57,11 +57,11 @@
 	var/atom/l = loc
 	var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(l.x - 2, l.y, l.z))
 	if(isnotnull(com.locked))
-		user.loc = get_turf(com.locked)
+		user.loc = GET_TURF(com.locked)
 
 /obj/effect/portal/attack_ghost(mob/user)
 	if(isnotnull(target))
-		user.loc = get_turf(target)
+		user.loc = GET_TURF(target)
 
 /obj/machinery/gateway/centerstation/attack_ghost(mob/user)
 	if(isnotnull(awaygate))

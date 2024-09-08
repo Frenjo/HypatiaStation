@@ -316,7 +316,7 @@
 		var/datum/organ/external/head = H.get_organ("head")
 		head.implants -= src
 
-	src.loc = get_turf(host)
+	src.loc = GET_TURF(host)
 	controlling = 0
 
 	reset_view(null)

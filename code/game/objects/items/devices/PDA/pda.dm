@@ -198,7 +198,7 @@
 		data["manifest"] = GLOBL.data_core.get_manifest_json()
 
 	if(mode == 3)
-		var/turf/T = get_turf(user.loc)
+		var/turf/T = GET_TURF(user)
 		if(isnotnull(T))
 			var/datum/gas_mixture/environment = T.return_air()
 
@@ -485,8 +485,8 @@
 			if(signal)
 				if(signal.data["done"])
 					useTC = 1
-					var/turf/pos = get_turf(src)
-					if(pos.z in signal.data["level"])
+					var/turf/pos = GET_TURF(src)
+					if(pos?.z in signal.data["level"])
 						useTC = 2
 
 			if(istype(cartridge, /obj/item/cartridge/syndicate))
@@ -622,7 +622,7 @@
 			M.put_in_hands(id)
 			to_chat(usr, SPAN_NOTICE("You remove the ID from the [name]."))
 		else
-			id.loc = get_turf(src)
+			id.loc = GET_TURF(src)
 		id = null
 
 /obj/item/pda/proc/create_message(mob/living/U = usr, obj/item/pda/P)
@@ -659,8 +659,8 @@
 	if(signal)
 		if(signal.data["done"])
 			useTC = 1
-			var/turf/pos = get_turf(P)
-			if(pos.z in signal.data["level"])
+			var/turf/pos = GET_TURF(P)
+			if(pos?.z in signal.data["level"])
 				useTC = 2
 				//Let's make this barely readable
 				if(signal.data["compression"] > 0)
@@ -752,7 +752,7 @@
 					M.put_in_hands(O)
 					to_chat(usr, SPAN_NOTICE("You remove \the [O] from \the [src]."))
 					return
-			O.loc = get_turf(src)
+			O.loc = GET_TURF(src)
 		else
 			to_chat(usr, SPAN_NOTICE("This PDA does not have a pen in it."))
 	else
@@ -955,8 +955,8 @@
 /obj/item/pda/proc/explode() //This needs tuning. //Sure did.
 	if(!src.detonate)
 		return
-	var/turf/T = get_turf(src.loc)
-	if(T)
+	var/turf/T = GET_TURF(src)
+	if(isnotnull(T))
 		T.hotspot_expose(700, 125)
 		explosion(T, 0, 0, 1, rand(1, 2))
 	return
@@ -964,7 +964,7 @@
 /obj/item/pda/Destroy()
 	GLOBL.pda_list.Remove(src)
 	if(src.id && prob(90)) //IDs are kept in 90% of the cases
-		src.id.loc = get_turf(src.loc)
+		src.id.loc = GET_TURF(src)
 	return ..()
 
 /obj/item/pda/proc/available_pdas()

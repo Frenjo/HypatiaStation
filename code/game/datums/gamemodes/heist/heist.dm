@@ -60,7 +60,7 @@ VOX HEIST ROUNDTYPE
 
 	for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
 		if(L.name == "voxstart")
-			raider_spawn += get_turf(L)
+			raider_spawn += GET_TURF(L)
 			qdel(L)
 			continue
 

@@ -8,7 +8,7 @@
 
 /obj/item/apc_frame/attack_tool(obj/item/tool, mob/user)
 	if(iswrench(tool))
-		new /obj/item/stack/sheet/steel(get_turf(loc), 2)
+		new /obj/item/stack/sheet/steel(GET_TURF(src), 2)
 		qdel(src)
 		return TRUE
 
@@ -20,7 +20,7 @@
 	var/ndir = get_dir(usr, on_wall)
 	if(!(ndir in GLOBL.cardinal))
 		return
-	var/turf/loc = get_turf(usr)
+	var/turf/loc = GET_TURF(usr)
 	var/area/A = loc.loc
 	if(!istype(loc, /turf/open/floor))
 		to_chat(usr, SPAN_WARNING("An APC cannot be placed on this spot."))

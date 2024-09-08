@@ -84,8 +84,8 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	if(target && target.current)
 		if(target.current.stat == DEAD || !ishuman(target.current) || !target.current.ckey)
 			return 1
-		var/turf/T = get_turf(target.current)
-		if(T && isnotstationlevel(T.z))			//If they leave the station they count as dead for this
+		var/turf/T = GET_TURF(target.current)
+		if(isnotnull(T) && isnotstationlevel(T.z))			//If they leave the station they count as dead for this
 			return 2
 		return 0
 	return 1
@@ -121,7 +121,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 			var/datum/game_mode/revolution/rev = global.PCticker.mode
 			if(target in rev.head_revolutionaries)
 				return 1
-		var/turf/T = get_turf(target.current)
+		var/turf/T = GET_TURF(target.current)
 		if(isnotnull(T) && isnotstationlevel(T.z)) // If they leave the station they count as dead for this.
 			rval = 2
 		return 0
@@ -300,7 +300,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 			continue
 		if(isnotnull(player.mind) && (player.mind != owner))
 			if(player.stat != DEAD)			//they're not dead!
-				if(get_turf(player) in shuttle)
+				if(GET_TURF(player) in shuttle)
 					return 0
 	return 1
 
@@ -322,7 +322,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 			continue
 		if(isnotnull(player.mind))
 			if(player.stat != DEAD)
-				if(get_turf(player) in shuttle)
+				if(GET_TURF(player) in shuttle)
 					return 0
 	return 1
 
@@ -339,8 +339,8 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 			continue
 		if(isnotnull(player.mind))
 			if(player.stat != DEAD)
-				var/turf/T = get_turf(player)
-				if(!T)
+				var/turf/T = GET_TURF(player)
+				if(isnull(T))
 					continue
 				switch(T.loc.type)
 					if(/area/shuttle/escape/centcom, /area/shuttle/escape_pod1/centcom, /area/shuttle/escape_pod2/centcom, /area/shuttle/escape_pod3/centcom, /area/shuttle/escape_pod5/centcom, /area/shuttle/arrival/centcom)
@@ -361,7 +361,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 		return 0
 	if(isnull(owner.current) || owner.current.stat == DEAD)
 		return 0
-	var/turf/location = get_turf(owner.current.loc)
+	var/turf/location = GET_TURF(owner.current)
 	if(isnull(location))
 		return 0
 

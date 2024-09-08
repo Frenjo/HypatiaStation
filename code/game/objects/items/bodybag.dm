@@ -74,7 +74,7 @@
 		if(length(contents))
 			return 0
 		visible_message("[usr] folds up the [src.name]")
-		new item_path(get_turf(src))
+		new item_path(GET_TURF(src))
 		spawn(0)
 			qdel(src)
 		return

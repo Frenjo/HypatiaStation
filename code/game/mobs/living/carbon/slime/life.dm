@@ -29,9 +29,9 @@
 
 	//var/environment_heat_capacity = environment.heat_capacity()
 	var/loc_temp = T0C
-	if(isspace(get_turf(src)))
+	if(isspace(GET_TURF(src)))
 		//environment_heat_capacity = loc:heat_capacity
-		var/turf/heat_turf = get_turf(src)
+		var/turf/heat_turf = GET_TURF(src)
 		loc_temp = heat_turf.temperature
 	else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 		var/obj/machinery/atmospherics/unary/cryo_cell/cell = loc

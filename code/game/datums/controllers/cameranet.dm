@@ -97,7 +97,7 @@ CONTROLLER_DEF(cameranet)
 	if(isnull(c))
 		return
 
-	var/turf/T = get_turf(c)
+	var/turf/T = GET_TURF(c)
 	if(isnotnull(T))
 		var/x1 = max(0, T.x - 8) & ~0xf
 		var/y1 = max(0, T.y - 8) & ~0xf
@@ -122,7 +122,7 @@ CONTROLLER_DEF(cameranet)
 // Will check if a mob is on a viewable turf. Returns TRUE if it is, otherwise returns FALSE.
 /datum/controller/cameranet/proc/is_on_viewable_turf(mob/living/target)
 	// 0xf = 15
-	var/turf/position = get_turf(target)
+	var/turf/position = GET_TURF(target)
 	var/datum/camera_chunk/chunk = get_camera_chunk(position.x, position.y, position.z)
 	if(isnull(chunk))
 		return FALSE

@@ -124,13 +124,12 @@
 /////////////////////////////
 /datum/game_mode/revolution/rp_revolution/check_heads_victory()
 	for_no_type_check(var/datum/mind/rev_mind, head_revolutionaries)
-		var/turf/T = get_turf(rev_mind.current)
 		if(rev_mind.current.stat != DEAD)
 			// TODO: add a similar check that also checks whether they're without ID in the brig..
 			//       probably wanna export this stuff into a separate function for use by both
 			//       revs and heads
 			//assume that only carbon mobs can become rev heads for now
-			if(!rev_mind.current:handcuffed && T && isstationlevel(T.z))
+			if(!rev_mind.current:handcuffed && isstationlevel(GET_TURF_Z(rev_mind.current)))
 				return 0
 	return 1
 

@@ -295,7 +295,7 @@
  * Allows mobs to run though walls.
  */
 /client/proc/Process_Incorpmove(direct)
-	var/turf/mobloc = get_turf(mob)
+	var/turf/mobloc = GET_TURF(mob)
 	if(!isliving(mob))
 		return
 	var/mob/living/L = mob

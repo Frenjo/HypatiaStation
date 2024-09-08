@@ -55,11 +55,11 @@
 	return TRUE
 
 /obj/item/taperecorder/proc/explode()
-	var/turf/T = get_turf(loc)
+	var/turf/T = GET_TURF(src)
 	if(ismob(loc))
 		var/mob/M = loc
 		to_chat(M, SPAN_DANGER("\The [src] explodes!"))
-	if(T)
+	if(isnotnull(T))
 		T.hotspot_expose(700, 125)
 		explosion(T, -1, -1, 0, 4)
 	qdel(src)
@@ -109,8 +109,8 @@
 		return
 	else if(playing == 1)
 		playing = 0
-		var/turf/T = get_turf(src)
-		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: Playback stopped.</font>")
+		var/turf/T = GET_TURF(src)
+		T?.visible_message("<font color=Maroon><B>Tape Recorder</B>: Playback stopped.</font>")
 		icon_state = "taperecorderidle"
 		return
 
@@ -158,37 +158,37 @@
 			break
 		if(length(storedinfo) < i)
 			break
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: [storedinfo[i]]</font>")
 		if(length(storedinfo) < i + 1)
 			playsleepseconds = 1
 			sleep(10)
-			T = get_turf(src)
+			T = GET_TURF(src)
 			T.visible_message("<font color=Maroon><B>Tape Recorder</B>: End of recording.</font>")
 		else
 			playsleepseconds = timestamp[i + 1] - timestamp[i]
 		if(playsleepseconds > 14)
 			sleep(10)
-			T = get_turf(src)
+			T = GET_TURF(src)
 			T.visible_message("<font color=Maroon><B>Tape Recorder</B>: Skipping [playsleepseconds] seconds of silence</font>")
 			playsleepseconds = 1
 		i++
 	icon_state = "taperecorderidle"
 	playing = 0
 	if(emagged == 1.0)
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: This tape recorder will self-destruct in... Five.</font>")
 		sleep(10)
-		T = get_turf(src)
+		T = GET_TURF(src)
 		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: Four.</font>")
 		sleep(10)
-		T = get_turf(src)
+		T = GET_TURF(src)
 		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: Three.</font>")
 		sleep(10)
-		T = get_turf(src)
+		T = GET_TURF(src)
 		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: Two.</font>")
 		sleep(10)
-		T = get_turf(src)
+		T = GET_TURF(src)
 		T.visible_message("<font color=Maroon><B>Tape Recorder</B>: One.</font>")
 		sleep(10)
 		explode()
@@ -209,7 +209,7 @@
 		to_chat(usr, SPAN_NOTICE("You can't print the transcript while playing or recording!"))
 		return
 	to_chat(usr, SPAN_NOTICE("Transcript printed."))
-	var/obj/item/paper/P = new /obj/item/paper(get_turf(src))
+	var/obj/item/paper/P = new /obj/item/paper(GET_TURF(src))
 	var/t1 = "<B>Transcript:</B><BR><BR>"
 	for(var/i = 1, length(storedinfo) >= i, i++)
 		t1 += "[storedinfo[i]]<BR>"
@@ -255,8 +255,7 @@
 			return
 		else if(playing == 1)
 			playing = 0
-			var/turf/T = get_turf(src)
-			for(var/mob/O in hearers(world.view - 1, T))
+			for(var/mob/O in hearers(world.view - 1, GET_TURF(src)))
 				O.show_message("<font color=Maroon><B>Tape Recorder</B>: Playback stopped.</font>",2)
 			icon_state = "taperecorderidle"
 			return

@@ -50,23 +50,22 @@ Frequency:
 	..()
 	if(usr.stat || usr.restrained())
 		return
-	var/turf/current_location = get_turf(usr)	//What turf is the user on?
-	if(!current_location||current_location.z == 2)	//If turf was not found or they're on z level 2.
+	if(GET_TURF_Z(usr) == 2)	//What turf is the user on? //If turf was not found or they're on z level 2.
 		to_chat(usr, "The [src] is malfunctioning.")
 		return
 	if((usr.contents.Find(src) ||(in_range(src, usr) && isturf(src.loc))))
 		usr.set_machine(src)
 		if(href_list["refresh"])
 			src.temp = "<B>Persistent Signal Locator</B><HR>"
-			var/turf/sr = get_turf(src)
+			var/turf/sr = GET_TURF(src)
 
-			if(sr)
+			if(isnotnull(sr))
 				src.temp += "<B>Located Beacons:</B><BR>"
 
 				for(var/obj/item/radio/beacon/W in GLOBL.movable_atom_list)
 					if(W.frequency == src.frequency)
-						var/turf/tr = get_turf(W)
-						if(tr.z == sr.z && tr)
+						var/turf/tr = GET_TURF(W)
+						if(tr?.z == sr.z)
 							var/direct = max(abs(tr.x - sr.x), abs(tr.y - sr.y))
 							if(direct < 5)
 								direct = "very strong"
@@ -90,8 +89,8 @@ Frequency:
 							if(M.timeofdeath + 6000 < world.time)
 								continue
 
-					var/turf/tr = get_turf(W)
-					if(tr.z == sr.z && tr)
+					var/turf/tr = GET_TURF(W)
+					if(tr?.z == sr.z)
 						var/direct = max(abs(tr.x - sr.x), abs(tr.y - sr.y))
 						if(direct < 20)
 							if(direct < 5)
@@ -138,8 +137,8 @@ Frequency:
 	origin_tech = list(/datum/tech/magnets = 1, /datum/tech/bluespace = 3)
 
 /obj/item/hand_tele/attack_self(mob/user)
-	var/turf/current_location = get_turf(user)//What turf is the user on?
-	if(!current_location||current_location.z == 2||current_location.z >= 7)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
+	var/turf/current_location = GET_TURF(user)//What turf is the user on?
+	if(isnull(current_location) || current_location.z == 2 || current_location.z >= 7)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
 		to_chat(user, SPAN_NOTICE("\The [src] is malfunctioning."))
 		return
 	var/list/L = list()
@@ -172,7 +171,7 @@ Frequency:
 	var/T = L[t1]
 	for(var/mob/O in hearers(user, null))
 		O.show_message(SPAN_NOTICE("Locked In."), 2)
-	var/obj/effect/portal/P = new /obj/effect/portal(get_turf(src))
+	var/obj/effect/portal/P = new /obj/effect/portal(GET_TURF(src))
 	P.target = T
 	P.creator = src
 	src.add_fingerprint(user)

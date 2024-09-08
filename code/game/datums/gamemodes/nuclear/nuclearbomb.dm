@@ -429,8 +429,8 @@ var/bomb_set
 	GLOBL.enter_allowed = FALSE
 
 	var/off_station = 0
-	var/turf/bomb_location = get_turf(src)
-	if(bomb_location && isstationlevel(bomb_location.z))
+	var/turf/bomb_location = GET_TURF(src)
+	if(isnotnull(bomb_location) && isstationlevel(bomb_location.z))
 		if(bomb_location.x < (128 - NUKERANGE) || bomb_location.x > (128 + NUKERANGE) || bomb_location.y < (128 - NUKERANGE) || bomb_location.y > (128 + NUKERANGE))
 			off_station = 1
 	else

@@ -36,7 +36,7 @@
 	if(isnotnull(ai))
 		if(!isturf(ai.loc))
 			return
-		T = get_turf(T)
+		T = GET_TURF(T)
 		loc = T
 		global.CTcameranet.visibility(src)
 		if(isnotnull(ai.client))
@@ -90,7 +90,7 @@
 		user.sprint = initial
 
 	for(var/i = 0; i < max(user.sprint, initial); i += 20)
-		var/turf/step = get_turf(get_step(user.eyeobj, direct))
+		var/turf/step = GET_TURF(get_step(user.eyeobj, direct))
 		if(isnotnull(step))
 			user.eyeobj.setLoc(step)
 

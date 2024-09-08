@@ -182,7 +182,7 @@ var/const/MAX_ACTIVE_TIME = 400
 
 		if(iscorgi(target))
 			var/mob/living/simple/corgi/C = target
-			src.loc = get_turf(C)
+			src.loc = GET_TURF(C)
 			C.facehugger = null
 	else
 		target.visible_message(SPAN_DANGER("[src] violates [target]'s face!"))

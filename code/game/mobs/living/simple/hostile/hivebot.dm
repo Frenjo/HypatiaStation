@@ -89,11 +89,11 @@
 		bot_amt--
 		switch(bot_type)
 			if("norm")
-				new /mob/living/simple/hostile/hivebot(get_turf(src))
+				new /mob/living/simple/hostile/hivebot(GET_TURF(src))
 			if("range")
-				new /mob/living/simple/hostile/hivebot/range(get_turf(src))
+				new /mob/living/simple/hostile/hivebot/range(GET_TURF(src))
 			if("rapid")
-				new /mob/living/simple/hostile/hivebot/rapid(get_turf(src))
+				new /mob/living/simple/hostile/hivebot/rapid(GET_TURF(src))
 	spawn(100)
 		qdel(src)
 	return

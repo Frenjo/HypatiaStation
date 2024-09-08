@@ -24,7 +24,7 @@
 //	var/Nt=0
 	var/turf/start_point = null
 	if(isnotnull(range))
-		start_point = get_turf(source)
+		start_point = GET_TURF(source)
 		if(isnull(start_point))
 			qdel(signal)
 			return 0
@@ -34,7 +34,7 @@
 			if(device == source)
 				continue
 			if(isnotnull(range))
-				var/turf/end_point = get_turf(device)
+				var/turf/end_point = GET_TURF(device)
 				if(isnull(end_point))
 					continue
 				//if(max(abs(start_point.x-end_point.x), abs(start_point.y-end_point.y)) <= range)
@@ -45,7 +45,7 @@
 			if(device == source)
 				continue
 			if(isnotnull(range))
-				var/turf/end_point = get_turf(device)
+				var/turf/end_point = GET_TURF(device)
 				if(isnull(end_point))
 					continue
 				//if(max(abs(start_point.x-end_point.x), abs(start_point.y-end_point.y)) <= range)
@@ -61,7 +61,7 @@
 				if(device == source)
 					continue
 				if(isnotnull(range))
-					var/turf/end_point = get_turf(device)
+					var/turf/end_point = GET_TURF(device)
 					if(isnull(end_point))
 						continue
 					//if(max(abs(start_point.x-end_point.x), abs(start_point.y-end_point.y)) <= range)

@@ -75,8 +75,8 @@ Not sure why this would be useful (it's not) but whatever. Ninjas need their smo
 	var/C = 40
 	if(!ninjacost(C, 1))
 		var/mob/living/carbon/human/U = affecting
-		var/turf/mobloc = get_turf(U.loc)	//To make sure that certain things work properly below.
-		if((!T.density) && isturf(mobloc))
+		var/turf/mobloc = GET_TURF(U)	//To make sure that certain things work properly below.
+		if(!T.density && isturf(mobloc))
 			spawn(0)
 				playsound(U.loc, 'sound/effects/sparks4.ogg', 50, 1)
 				anim(mobloc, src, 'icons/mob/mob.dmi', , "phaseout", , U.dir)
@@ -163,8 +163,8 @@ This could be a lot better but I'm too tired atm.*/
 		if(length(targets))
 			var/mob/living/target = pick(targets)	//The point here is to pick a random, living mob in oview to shoot stuff at.
 			var/turf/curloc = U.loc
-			var/atom/targloc = get_turf(target)
-			if(!targloc || !isturf(targloc) || !curloc)
+			var/atom/targloc = GET_TURF(target)
+			if(!isturf(targloc) || isnull(curloc))
 				return
 			if(targloc == curloc)
 				return
@@ -282,7 +282,7 @@ Or otherwise known as anime mode. Which also happens to be ridiculously powerful
 	if(!ninjacost())
 		var/mob/living/carbon/human/U = affecting
 		var/turf/destination = get_teleport_loc(U.loc, U, 5)
-		var/turf/mobloc = get_turf(U.loc)	//To make sure that certain things work properly below.
+		var/turf/mobloc = GET_TURF(U)	//To make sure that certain things work properly below.
 		if(destination && isturf(mobloc))
 			U.say("Ai Satsugai!")
 			spawn(0)
@@ -331,7 +331,7 @@ This is so anime it hurts. But that's the point.*/
 			var/mob/living/target = pick(targets)
 			var/locx
 			var/locy
-			var/turf/mobloc = get_turf(target.loc)
+			var/turf/mobloc = GET_TURF(target)
 			var/safety = 0
 			switch(target.dir)
 				if(NORTH)

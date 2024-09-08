@@ -95,7 +95,7 @@ steam.start() -- spawns the effect
 	for(i = 0, i < src.number, i++)
 		spawn(0)
 			if(holder)
-				src.location = get_turf(holder)
+				src.location = GET_TURF(holder)
 			var/obj/effect/steam/steam = new /obj/effect/steam(location)
 			var/direction
 			if(src.cardinals)
@@ -158,7 +158,7 @@ steam.start() -- spawns the effect
 	if(isturf(loca))
 		location = loca
 	else
-		location = get_turf(loca)
+		location = GET_TURF(loca)
 
 /datum/effect/system/spark_spread/start()
 	var/i = 0
@@ -167,7 +167,7 @@ steam.start() -- spawns the effect
 			return
 		spawn(0)
 			if(holder)
-				src.location = get_turf(holder)
+				src.location = GET_TURF(holder)
 			var/obj/effect/sparks/sparks = new /obj/effect/sparks(location)
 			src.total_sparks++
 			var/direction
@@ -230,7 +230,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/smoke/bad/Move()
 	..()
-	for(var/mob/living/carbon/M in get_turf(src))
+	for(var/mob/living/carbon/M in GET_TURF(src))
 		affect(M)
 
 /obj/effect/smoke/bad/affect(mob/living/carbon/M)
@@ -258,7 +258,7 @@ steam.start() -- spawns the effect
 /////////////////////////////////////////////
 /obj/effect/smoke/sleepy/Move()
 	..()
-	for(var/mob/living/carbon/M in get_turf(src))
+	for(var/mob/living/carbon/M in GET_TURF(src))
 		affect(M)
 
 /obj/effect/smoke/sleepy/affect(mob/living/carbon/M)
@@ -283,7 +283,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/smoke/mustard/Move()
 	..()
-	for(var/mob/living/carbon/human/R in get_turf(src))
+	for(var/mob/living/carbon/human/R in GET_TURF(src))
 		affect(R)
 
 /obj/effect/smoke/mustard/affect(mob/living/carbon/human/R)
@@ -318,7 +318,7 @@ steam.start() -- spawns the effect
 	if(isturf(loca))
 		location = loca
 	else
-		location = get_turf(loca)
+		location = GET_TURF(loca)
 	if(direct)
 		direction = direct
 
@@ -329,7 +329,7 @@ steam.start() -- spawns the effect
 			return
 		spawn(0)
 			if(holder)
-				src.location = get_turf(holder)
+				src.location = GET_TURF(holder)
 			var/obj/effect/smoke/smoke = new smoke_type(location)
 			src.total_smoke++
 			var/direction = src.direction
@@ -374,7 +374,7 @@ steam.start() -- spawns the effect
 
 /datum/effect/system/ion_trail_follow/set_up(atom/atom)
 	attach(atom)
-	oldposition = get_turf(atom)
+	oldposition = GET_TURF(atom)
 
 /datum/effect/system/ion_trail_follow/start()
 	if(!src.on)
@@ -383,7 +383,7 @@ steam.start() -- spawns the effect
 	if(src.processing)
 		src.processing = FALSE
 		spawn(0)
-			var/turf/T = get_turf(src.holder)
+			var/turf/T = GET_TURF(holder)
 			if(T != src.oldposition)
 				if(isspace(T))
 					var/obj/effect/ion_trails/I = new /obj/effect/ion_trails(oldposition)
@@ -419,7 +419,7 @@ steam.start() -- spawns the effect
 
 /datum/effect/system/steam_trail_follow/set_up(atom/atom)
 	attach(atom)
-	oldposition = get_turf(atom)
+	oldposition = GET_TURF(atom)
 
 /datum/effect/system/steam_trail_follow/start()
 	if(!src.on)
@@ -431,7 +431,7 @@ steam.start() -- spawns the effect
 			if(src.number < 3)
 				var/obj/effect/steam/I = new /obj/effect/steam(oldposition)
 				src.number++
-				src.oldposition = get_turf(holder)
+				src.oldposition = GET_TURF(holder)
 				I.set_dir(src.holder.dir)
 				spawn(10)
 					qdel(I)
@@ -557,7 +557,7 @@ steam.start() -- spawns the effect
 	if(istype(loca, /turf/))
 		location = loca
 	else
-		location = get_turf(loca)
+		location = GET_TURF(loca)
 
 	carried_reagents = list()
 	metal = metalfoam
@@ -667,10 +667,7 @@ steam.start() -- spawns the effect
 	return !density
 
 /obj/structure/foamedmetal/proc/update_nearby_tiles(need_rebuild)
-	if(!global.PCair)
-		return 0
-	global.PCair.mark_for_update(get_turf(src))
-	return 1
+	global.PCair?.mark_for_update(GET_TURF(src))
 
 
 /datum/effect/system/reagents_explosion
@@ -683,7 +680,7 @@ steam.start() -- spawns the effect
 	if(isturf(loc))
 		location = loc
 	else
-		location = get_turf(loc)
+		location = GET_TURF(loc)
 
 	flashing = flash
 	flashing_factor = flash_fact

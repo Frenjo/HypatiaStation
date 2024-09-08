@@ -155,9 +155,8 @@
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 
 /obj/item/flashlight/flare/process()
-	var/turf/pos = get_turf(src)
-	if(pos)
-		pos.hotspot_expose(produce_heat, 5)
+	var/turf/pos = GET_TURF(src)
+	pos?.hotspot_expose(produce_heat, 5)
 	fuel = max(fuel - 1, 0)
 	if(!fuel || !on)
 		turn_off()

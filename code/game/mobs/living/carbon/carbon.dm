@@ -276,8 +276,8 @@
 		var/obj/item/grab/G = item
 		item = G.thrown() //throw the person instead of the grab
 		if(ismob(item))
-			var/turf/start_T = get_turf(loc) //Get the start and target tile for the descriptors
-			var/turf/end_T = get_turf(target)
+			var/turf/start_T = GET_TURF(src) //Get the start and target tile for the descriptors
+			var/turf/end_T = GET_TURF(target)
 			if(isnotnull(start_T) && isnotnull(end_T))
 				var/mob/M = item
 				var/start_T_descriptor = "<font color='#6b5d00'>tile at [start_T.x], [start_T.y], [start_T.z] in area [get_area(start_T)]</font>"
@@ -467,8 +467,8 @@
 		visible_message(SPAN_DANGER("[src] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!"))
 		B.chemicals -= 100
 
-		new /obj/effect/decal/cleanable/vomit(get_turf(src))
+		new /obj/effect/decal/cleanable/vomit(GET_TURF(src))
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)
-		new /mob/living/simple/borer(get_turf(src))
+		new /mob/living/simple/borer(GET_TURF(src))
 	else
 		to_chat(src, "You do not have enough chemicals stored to reproduce.")

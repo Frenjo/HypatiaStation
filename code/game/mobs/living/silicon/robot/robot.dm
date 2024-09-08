@@ -175,7 +175,7 @@
 //Improved /N
 /mob/living/silicon/robot/Destroy()
 	if(isnotnull(mmi) && isnotnull(mind)) // Safety for when a cyborg gets dust()ed. Or there is no MMI inside.
-		var/turf/T = get_turf(loc) // To hopefully prevent run time errors.
+		var/turf/T = GET_TURF(src) // To hopefully prevent run time errors.
 		if(isnotnull(T))
 			mmi.loc = T
 		if(isnotnull(mmi.brainmob))

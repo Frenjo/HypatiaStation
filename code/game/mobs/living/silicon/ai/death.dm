@@ -5,7 +5,7 @@
 	if(custom_sprite)//check for custom AI sprite, defaulting to blue screen if no.
 		icon_state = "[ckey]-ai-crash"
 
-	eyeobj?.setLoc(get_turf(src))
+	eyeobj?.setLoc(GET_TURF(src))
 
 	var/callshuttle = 0
 

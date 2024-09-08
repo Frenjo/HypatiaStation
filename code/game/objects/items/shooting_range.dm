@@ -64,7 +64,7 @@
 					user.put_in_hands(src)
 					to_chat(user, "You take the target off the stake.")
 			else
-				src.loc = get_turf(user)
+				src.loc = GET_TURF(user)
 				to_chat(user, "You take the target off the stake.")
 
 			stake.pinned_target = null

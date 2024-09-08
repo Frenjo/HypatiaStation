@@ -155,7 +155,7 @@
 
 /mob/living/simple/spiderbot/proc/explode() //When emagged.
 	visible_message(SPAN_DANGER("[src] makes an odd warbling noise, fizzles, and explodes!"))
-	explosion(get_turf(loc), -1, -1, 3, 5)
+	explosion(GET_TURF(src), -1, -1, 3, 5)
 	eject_brain()
 	Die()
 
@@ -174,10 +174,11 @@
 
 /mob/living/simple/spiderbot/proc/eject_brain()
 	if(mmi)
-		var/turf/T = get_turf(loc)
-		if(T)
+		var/turf/T = GET_TURF(src)
+		if(isnotnull(T))
 			mmi.loc = T
-		if(mind)	mind.transfer_to(mmi.brainmob)
+		if(mind)
+			mind.transfer_to(mmi.brainmob)
 		mmi = null
 		src.name = "Spider-bot"
 		update_icon()

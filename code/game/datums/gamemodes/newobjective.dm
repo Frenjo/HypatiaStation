@@ -271,8 +271,8 @@ datum
 					return 0
 				if(target.current.stat == 2)
 					return 0
-				var/turf/location = get_turf(target.current.loc)
-				if(!location)
+				var/turf/location = GET_TURF(target.current)
+				if(isnull(location))
 					return 0
 				if(!target.current:handcuffed && !istype(location, /turf/open/floor/shuttle/brig))
 					return 0
@@ -319,8 +319,8 @@ datum
 				if(target.current.stat == 2)
 					return 0
 
-				var/turf/location = get_turf(target.current.loc)
-				if(!location)
+				var/turf/location = GET_TURF(target.current)
+				if(isnull(location))
 					return 0
 
 				if(location in locate(/area/shuttle/escape/centcom))
@@ -482,7 +482,7 @@ datum
 
 				if(!owner.current || owner.current.stat == 2)
 					return 0
-				var/turf/location = get_turf(owner.current.loc)
+				var/turf/location = GET_TURF(owner.current)
 
 				if(location in locate(/area/shuttle/escape/centcom))
 					for(var/mob/living/player in locate(/area/shuttle/escape/centcom))
@@ -518,8 +518,8 @@ datum
 				if(!owner.current || owner.current.stat ==2)
 					return 0
 
-				var/turf/location = get_turf(owner.current.loc)
-				if(!location)
+				var/turf/location = GET_TURF(owner.current)
+				if(isnull(location))
 					return 0
 
 				if(owner.current:handcuffed || istype(location, /turf/open/floor/shuttle/brig))
@@ -1235,7 +1235,7 @@ datum
 						continue
 					if(isnotnull(player.mind))
 						if(player.stat != 2)
-							if(get_turf(player) in shuttle)
+							if(GET_TURF(player) in shuttle)
 								return 0
 				return 1
 
@@ -1396,10 +1396,10 @@ datum
 
 			check_completion()
 				if(target && target.current)
-					var/turf/T = get_turf(target.current)
+					var/turf/T = GET_TURF(target.current)
 					if(target.current.stat == 2)
 						return 1
-					else if((T) && (T.z != 1))//If they leave the station they count as dead for this
+					else if(isnotnull(T) && T.z != 1)//If they leave the station they count as dead for this
 						return 2
 					else
 						return 0
@@ -1458,19 +1458,19 @@ datum/objective/silence
 		var/area/pod4 =    locate(/area/shuttle/escape_pod5/centcom)
 
 		for(var/mob/living/player in GLOBL.mob_list)
-			if (player == owner.current)
+			if(player == owner.current)
 				continue
-			if (player.mind)
-				if (player.stat != 2)
-					if (get_turf(player) in shuttle)
+			if(player.mind)
+				if(player.stat != 2)
+					if(GET_TURF(player) in shuttle)
 						return 0
-					if (get_turf(player) in pod1)
+					if(GET_TURF(player) in pod1)
 						return 0
-					if (get_turf(player) in pod2)
+					if(GET_TURF(player) in pod2)
 						return 0
-					if (get_turf(player) in pod3)
+					if(GET_TURF(player) in pod3)
 						return 0
-					if (get_turf(player) in pod4)
+					if(GET_TURF(player) in pod4)
 						return 0
 		return 1
 

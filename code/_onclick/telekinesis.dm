@@ -180,9 +180,9 @@
 
 /*Not quite done likely needs to use something thats not get_step_to
 /obj/item/tk_grab/proc/check_path()
-	var/turf/ref = get_turf(src.loc)
-	var/turf/target = get_turf(focus.loc)
-	if(!ref || !target)
+	var/turf/ref = GET_TURF(src)
+	var/turf/target = GET_TURF(focus)
+	if(isnull(ref) || isnull(target))
 		return 0
 	var/distance = get_dist(ref, target)
 	if(distance >= 10)

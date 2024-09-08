@@ -251,7 +251,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	if(istype(A, /obj/effect/decal/point))
 		return FALSE
 
-	var/tile = get_turf(A)
+	var/turf/tile = GET_TURF(A)
 	if(isnull(tile))
 		return FALSE
 
@@ -960,7 +960,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 			affected.wounds.Add(I)
 			H.custom_pain("Something tears wetly in your [affected] as [selection] is pulled free!", 1)
 
-	selection.loc = get_turf(src)
+	selection.loc = GET_TURF(src)
 
 	for(var/obj/item/O in pinned)
 		if(O == selection)

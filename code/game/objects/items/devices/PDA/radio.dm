@@ -98,7 +98,7 @@
 			post_signal(control_freq, "command", "bot_status", "active", active, s_filter = RADIO_SECBOT)
 
 		if("summon")
-			post_signal(control_freq, "command", "summon", "active", active, "target", get_turf(PDA) , s_filter = RADIO_SECBOT)
+			post_signal(control_freq, "command", "summon", "active", active, "target", GET_TURF(PDA) , s_filter = RADIO_SECBOT)
 			post_signal(control_freq, "command", "bot_status", "active", active, s_filter = RADIO_SECBOT)
 
 /obj/item/radio/integrated/mule
@@ -224,7 +224,7 @@
 	last_transmission = world.time
 
 	var/time = time2text(world.realtime,"hh:mm:ss")
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	GLOBL.lastsignalers.Add("[time] <B>:</B> [usr.key] used [src] @ location ([T.x],[T.y],[T.z]) <B>:</B> [format_frequency(frequency)]/[code]")
 
 	var/datum/signal/signal = new /datum/signal()

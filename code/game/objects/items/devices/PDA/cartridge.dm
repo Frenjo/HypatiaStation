@@ -307,16 +307,16 @@
 	/*	Janitor Supplies Locator (Mode: 49)	*/
 	if(mode == 49)
 		var/JaniData[0]
-		var/turf/cl = get_turf(src)
+		var/turf/cl = GET_TURF(src)
 
-		if(cl)
+		if(isnotnull(cl))
 			JaniData["user_loc"] = list("x" = cl.x, "y" = cl.y)
 		else
 			JaniData["user_loc"] = list("x" = 0, "y" = 0)
 		var/MopData[0]
 		for(var/obj/item/mop/M in GLOBL.movable_atom_list)
-			var/turf/ml = get_turf(M)
-			if(ml)
+			var/turf/ml = GET_TURF(M)
+			if(isnotnull(ml))
 				if(ml.z != cl.z)
 					continue
 				var/direction = get_dir(src, M)
@@ -328,8 +328,8 @@
 
 		var/BucketData[0]
 		for(var/obj/structure/mopbucket/B in GLOBL.movable_atom_list)
-			var/turf/bl = get_turf(B)
-			if(bl)
+			var/turf/bl = GET_TURF(B)
+			if(isnotnull(bl))
 				if(bl.z != cl.z)
 					continue
 				var/direction = get_dir(src, B)
@@ -340,8 +340,8 @@
 
 		var/CbotData[0]
 		for(var/obj/machinery/bot/cleanbot/B in GLOBL.bots_list)
-			var/turf/bl = get_turf(B)
-			if(bl)
+			var/turf/bl = GET_TURF(B)
+			if(isnotnull(bl))
 				if(bl.z != cl.z)
 					continue
 				var/direction = get_dir(src,B)
@@ -352,8 +352,8 @@
 			CbotData[++CbotData.len] = list("x" = 0, "y" = 0, dir = null, status = null)
 		var/CartData[0]
 		for(var/obj/structure/janitorialcart/B in GLOBL.movable_atom_list)
-			var/turf/bl = get_turf(B)
-			if(bl)
+			var/turf/bl = GET_TURF(B)
+			if(isnotnull(bl))
 				if(bl.z != cl.z)
 					continue
 				var/direction = get_dir(src,B)

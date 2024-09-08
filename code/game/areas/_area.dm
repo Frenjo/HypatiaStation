@@ -164,7 +164,7 @@
 
 // Why is this not a proc on /mob/living?
 /area/proc/thunk(mob/living/mob)
-	if(isspace(get_turf(mob))) // Can't fall onto nothing.
+	if(isspace(GET_TURF(mob))) // Can't fall onto nothing.
 		return
 
 	if(ishuman(mob)) // Only humans can wear magboots, so we give them a chance to.

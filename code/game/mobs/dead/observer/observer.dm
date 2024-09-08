@@ -40,7 +40,7 @@
 
 	var/turf/T
 	if(ismob(body))
-		T = get_turf(body)				//Where is the body located?
+		T = GET_TURF(body)				//Where is the body located?
 		attack_log = body.attack_log	//preserve our attack logs by copying them to our ghost
 
 		if(ishuman(body))
@@ -186,7 +186,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			S.Crossed(src)
 		return
 
-	loc = get_turf(src) //Get out of closets and such as a ghost
+	loc = GET_TURF(src) //Get out of closets and such as a ghost
 	if((direct & NORTH) && y < world.maxy)
 		y++
 	else if((direct & SOUTH) && y > 1)
@@ -339,9 +339,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		following = target
 		to_chat(src, SPAN_INFO("Now following [target]."))
 		spawn(0)
-			var/turf/pos = get_turf(src)
+			var/turf/pos = GET_TURF(src)
 			while(loc == pos && isnotnull(target) && following == target && isnotnull(client))
-				var/turf/T = get_turf(target)
+				var/turf/T = GET_TURF(target)
 				if(isnull(T))
 					break
 				// To stop the ghost flickering.
@@ -368,9 +368,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		else
 			var/mob/M = dest[target] // Destination mob
 			var/mob/A = src			 // Source mob
-			var/turf/T = get_turf(M) // Turf of the destination mob
+			var/turf/T = GET_TURF(M) // Turf of the destination mob
 
-			if(isnotnull(T) && isturf(T))	// Make sure the turf exists, then move the source to that destination.
+			if(isturf(T))	// Make sure the turf exists, then move the source to that destination.
 				A.loc = T
 			else
 				to_chat(A, "This mob is not located in the game world.")

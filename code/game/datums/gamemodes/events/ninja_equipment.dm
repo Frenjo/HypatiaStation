@@ -603,13 +603,13 @@ ________________________________________________________________________________
 			s_busy = 0
 
 		if("Eject Disk")
-			var/turf/T = get_turf(loc)
+			var/turf/T = GET_TURF(src)
 			if(!U.get_active_hand())
 				U.put_in_hands(t_disk)
 				t_disk.add_fingerprint(U)
 				t_disk = null
 			else
-				if(T)
+				if(isnotnull(T))
 					t_disk.loc = T
 					t_disk = null
 				else
@@ -624,13 +624,13 @@ ________________________________________________________________________________
 			pai.attack_self(U)
 
 		if("Eject pAI")
-			var/turf/T = get_turf(loc)
+			var/turf/T = GET_TURF(src)
 			if(!U.get_active_hand())
 				U.put_in_hands(pai)
 				pai.add_fingerprint(U)
 				pai = null
 			else
-				if(T)
+				if(isnotnull(T))
 					pai.loc = T
 					pai = null
 				else
@@ -1051,7 +1051,7 @@ ________________________________________________________________________________
 			var/obj/machinery/A = target
 			to_chat(U, SPAN_INFO("Hacking \the [A]..."))
 			spawn(0)
-				var/turf/location = get_turf(U)
+				var/turf/location = GET_TURF(U)
 				for(var/mob/living/silicon/ai/ai in GLOBL.player_list)
 					to_chat(ai, SPAN_DANGER("Network Alert: Hacking attempt detected[location ? " in [location]" : ". Unable to pinpoint location"]."))
 			// These colons really need to be removed but I honestly don't feel like entirely rewriting this section right now.

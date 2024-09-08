@@ -38,7 +38,7 @@
 	if(!wrapped)
 		//There's some weirdness with items being lost inside the arm. Trying to fix all cases. ~Z
 		for(var/obj/item/thing in src.contents)
-			thing.loc = get_turf(src)
+			thing.loc = GET_TURF(src)
 		return
 
 	if(wrapped.loc != src)
@@ -46,7 +46,7 @@
 		return
 
 	src.loc << "\red You drop \the [wrapped]."
-	wrapped.loc = get_turf(src)
+	wrapped.loc = GET_TURF(src)
 	wrapped = null
 	//update_icon()
 
@@ -116,7 +116,7 @@
 
 /obj/item/matter_decompiler/afterattack(atom/target, mob/user)
 	//We only want to deal with using this on turfs. Specific items aren't important.
-	var/turf/T = get_turf(target)
+	var/turf/T = GET_TURF(target)
 	if(!istype(T))
 		return
 
@@ -129,7 +129,7 @@
 				"\red [loc] sucks [M] into its decompiler. There's a horrible crunching noise.",
 				"\red It's a bit of a struggle, but you manage to suck [M] into your decompiler. It makes a series of visceral crunching noises."
 			)
-			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
+			new/obj/effect/decal/cleanable/blood/splatter(GET_TURF(src))
 			qdel(M)
 			stored_comms[/decl/material/wood] += 2
 			stored_comms[/decl/material/plastic] += 2

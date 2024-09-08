@@ -25,7 +25,7 @@
 		* Passing through in this case ignores anything with the throwpass flag, such as tables, racks, and morgue trays.
 */
 /turf/Adjacent(atom/neighbor, atom/target = null)
-	var/turf/T0 = get_turf(neighbor)
+	var/turf/T0 = GET_TURF(neighbor)
 	if(T0 == src)
 		return TRUE
 	if(get_dist(src, T0) > 1)

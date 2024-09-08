@@ -600,7 +600,7 @@ default behaviour is:
 
 		else if(isitem(H.loc))
 			to_chat(src, "You struggle free of [H.loc].")
-			H.loc = get_turf(H)
+			H.loc = GET_TURF(H)
 		return
 
 	//Resisting control by an alien mind.
@@ -898,9 +898,9 @@ default behaviour is:
 			continue
 		if(temp_vent in loc)
 			continue
-		var/turf/T = get_turf(temp_vent)
+		var/turf/T = GET_TURF(temp_vent)
 
-		if(!T || T.z != loc.z)
+		if(isnull(T) || T.z != loc.z)
 			continue
 
 		var/i = 1

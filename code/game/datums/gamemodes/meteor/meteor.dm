@@ -40,8 +40,8 @@
 	var/survivors = 0
 	for(var/mob/living/player in GLOBL.player_list)
 		if(player.stat != DEAD)
-			var/turf/location = get_turf(player.loc)
-			if(!location)
+			var/turf/location = GET_TURF(player)
+			if(isnull(location))
 				continue
 			switch(location.loc.type)
 				if(/area/shuttle/escape/centcom)

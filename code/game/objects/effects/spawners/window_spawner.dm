@@ -26,7 +26,7 @@
 	if(activated)
 		return
 
-	if(!locate(/obj/structure/grille) in get_turf(src))
+	if(!locate(/obj/structure/grille) in GET_TURF(src))
 		var/obj/structure/grille/G = new /obj/structure/grille(loc)
 		handle_grille_spawn(G)
 

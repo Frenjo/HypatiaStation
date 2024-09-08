@@ -221,10 +221,10 @@
 				secure_radio_connections[ch_name] = null
 
 			if(isnotnull(keyslot1))
-				keyslot1.loc = get_turf(user)
+				keyslot1.loc = GET_TURF(user)
 				keyslot1 = null
 			if(isnotnull(keyslot2))
-				keyslot2.loc = get_turf(user)
+				keyslot2.loc = GET_TURF(user)
 				keyslot2 = null
 
 			recalculateChannels()

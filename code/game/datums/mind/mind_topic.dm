@@ -435,7 +435,7 @@
 					global.PCticker.mode.greet_syndicate(src)
 					log_admin("[key_name_admin(usr)] has nuke op'ed [current].")
 			if("lair")
-				current.loc = get_turf(locate("landmark*Syndicate-Spawn"))
+				current.loc = GET_TURF(locate("landmark*Syndicate-Spawn"))
 			if("dressup")
 				qdel(H.belt)
 				qdel(H.back)

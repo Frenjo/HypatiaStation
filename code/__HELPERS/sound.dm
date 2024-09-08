@@ -21,7 +21,7 @@ GLOBAL_GLOBL_LIST_INIT(page_sound, list('sound/effects/pageturn1.ogg', 'sound/ef
 		return
 
 	var/frequency = get_rand_frequency() // Same frequency for everybody
-	var/turf/turf_source = get_turf(source)
+	var/turf/turf_source = GET_TURF(source)
 
  	// Looping through the player list has the added bonus of working for mobs inside containers
 	for_no_type_check(var/mob/M, GLOBL.player_list)
@@ -30,7 +30,7 @@ GLOBAL_GLOBL_LIST_INIT(page_sound, list('sound/effects/pageturn1.ogg', 'sound/ef
 
 		var/distance = get_dist(M, turf_source)
 		if(distance <= (world.view + extrarange) * 3)
-			var/turf/T = get_turf(M)
+			var/turf/T = GET_TURF(M)
 
 			if(T?.z == turf_source.z)
 				//check that the air can transmit sound
@@ -68,7 +68,7 @@ var/const/SURROUND_CAP = 255
 
 	if(isturf(turf_source))
 		// 3D sounds, the technology is here!
-		var/turf/T = get_turf(src)
+		var/turf/T = GET_TURF(src)
 		S.volume -= get_dist(T, turf_source) * 0.5
 		if(S.volume < 0)
 			S.volume = 0

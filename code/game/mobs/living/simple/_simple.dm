@@ -277,7 +277,7 @@
 			to_chat(user, SPAN_INFO("This [src] is dead, medical items won't bring it back to life."))
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
 		if(istype(O, /obj/item/kitchenknife) || istype(O, /obj/item/butch))
-			new meat_type (get_turf(src))
+			new meat_type(GET_TURF(src))
 			if(prob(95))
 				qdel(src)
 				return

@@ -220,8 +220,7 @@ PROCESS_DEF(ticker)
 
 			switch(M.z)
 				if(0)	//inside a crate or something
-					var/turf/T = get_turf(M)
-					if(T && isstationlevel(T.z))				//we don't use M.death(0) because it calls a for(/mob) loop and
+					if(isstationlevel(GET_TURF_Z(M)))				//we don't use M.death(0) because it calls a for(/mob) loop and
 						M.health = 0
 						M.stat = DEAD
 				if(1)	//on a z-level 1 turf.

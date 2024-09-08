@@ -2,7 +2,7 @@
 	if(isnotnull(card))
 		card.removePersonality()
 		if(gibbed)
-			loc = get_turf(card)
+			loc = GET_TURF(card)
 			qdel(card)
 	if(isnotnull(mind))
 		qdel(mind)

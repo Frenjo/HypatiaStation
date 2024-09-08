@@ -91,10 +91,10 @@
 	src.go_out()
 	for(var/obj/O in src)
 		if((!istype(O, /obj/item/reagent_holder)) && (!istype(O, /obj/item/circuitboard/clonescanner)) && (!istype(O, /obj/item/stock_part)) && (!iscable(O)))
-			O.loc = get_turf(src)//Ejects items that manage to get in there (exluding the components)
+			O.loc = GET_TURF(src)//Ejects items that manage to get in there (exluding the components)
 	if(!occupant)
 		for(var/mob/M in src)//Failsafe so you can get mobs out
-			M.loc = get_turf(src)
+			M.loc = GET_TURF(src)
 
 /obj/machinery/dna_scannernew/verb/move_inside()
 	set category = PANEL_OBJECT
@@ -695,7 +695,7 @@
 		if(bufferOption == "ejectDisk")
 			if(!src.disk)
 				return
-			src.disk.loc = get_turf(src)
+			src.disk.loc = GET_TURF(src)
 			src.disk = null
 			return 1
 

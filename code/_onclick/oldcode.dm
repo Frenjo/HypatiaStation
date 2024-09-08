@@ -198,7 +198,7 @@
 								if(!border_obstacle.CheckExit(D, src))
 									check_1 = 0
 									// ------- YOU TRIED TO CLICK ON AN ITEM THROUGH A WINDOW (OR SIMILAR THING THAT LIMITS ON BORDERS) ON ONE OF THE DIRECITON TILES -------
-						for(var/obj/border_obstacle in get_turf(src))
+						for(var/obj/border_obstacle in GET_TURF(src))
 							if((border_obstacle.flags & ON_BORDER) && (src != border_obstacle))
 								if(!border_obstacle.CanPass(D, D.loc, 1, 0))
 									// ------- YOU TRIED TO CLICK ON AN ITEM THROUGH A WINDOW (OR SIMILAR THING THAT LIMITS ON BORDERS) ON THE TILE YOU'RE ON -------
@@ -212,7 +212,7 @@
 							if(border_obstacle.flags & ON_BORDER)
 								if(!border_obstacle.CheckExit(D, src))
 									check_2 = 0
-						for(var/obj/border_obstacle in get_turf(src))
+						for(var/obj/border_obstacle in GET_TURF(src))
 							if((border_obstacle.flags & ON_BORDER) && (src != border_obstacle))
 								if(!border_obstacle.CanPass(D, D.loc, 1, 0))
 									check_2 = 0
@@ -245,7 +245,7 @@
 								ok = 0
 
 					//Next, check objects to block entry that are on the border
-					for(var/obj/border_obstacle in get_turf(src))
+					for(var/obj/border_obstacle in GET_TURF(src))
 						if((border_obstacle.flags & ON_BORDER) && (src != border_obstacle))
 							if(!border_obstacle.CanPass(D, D.loc, 1, 0))
 								ok = 0
@@ -350,8 +350,8 @@
 			if((LASER in usr:mutations) && usr:a_intent == "harm" && world.time >= usr.next_move)
 				// ------- YOU HAVE THE LASER MUTATION, YOUR INTENT SET TO HURT AND IT'S BEEN MORE THAN A DECISECOND SINCE YOU LAS TATTACKED -------
 
-				var/turf/T = get_turf(usr)
-				var/turf/U = get_turf(src)
+				var/turf/T = GET_TURF(usr)
+				var/turf/U = GET_TURF(src)
 
 
 				if(ishuman(usr))

@@ -114,7 +114,7 @@
 
 	for_no_type_check(var/obj/effect/landmark/A, GLOBL.landmark_list)
 		if(A.name == "Syndicate-Spawn")
-			synd_spawn += get_turf(A)
+			synd_spawn += GET_TURF(A)
 			qdel(A)
 			continue
 

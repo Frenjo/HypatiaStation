@@ -104,7 +104,7 @@ rcd light flash thingy on matter drain
 				overload.uses --
 				M.visible_message(blind_message = SPAN_INFO("You hear a loud electrical buzzing sound!"))
 				spawn(50)
-					explosion(get_turf(M), 0, 1, 2, 3)
+					explosion(GET_TURF(M), 0, 1, 2, 3)
 					qdel(M)
 			else
 				to_chat(usr, "Out of uses.")

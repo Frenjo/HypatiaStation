@@ -52,7 +52,7 @@ the HUD updates properly! */
 	var/datum/arranged_hud_process/P = new /datum/arranged_hud_process()
 	P.client = M.client
 	P.mob = Alt ? Alt : M
-	P.turf = get_turf(P.mob)
+	P.turf = GET_TURF(P.mob)
 	return P
 
 /proc/can_process_hud(mob/M)

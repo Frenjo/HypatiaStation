@@ -83,7 +83,7 @@ GLOBAL_GLOBL_LIST_INIT(department_radio_keys, list(
 	if(!message)
 		return
 
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 
 	var/list/listening = list()
 	if(isnotnull(T))

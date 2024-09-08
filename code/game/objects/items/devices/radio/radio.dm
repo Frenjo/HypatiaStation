@@ -251,7 +251,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		if(!connection)
 			return
 
-		var/turf/position = get_turf(src)
+		var/turf/position = GET_TURF(src)
 
 		//#### Tagging the signal with all appropriate identity values ####//
 
@@ -612,8 +612,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 		return -1
 
 	if(!(0 in level))
-		var/turf/position = get_turf(src)
-		if(!position || !(position.z in level))
+		if(!(GET_TURF_Z(src) in level))
 			return -1
 	if(freq == FREQUENCY_SYNDICATE)
 		if(!(src.syndie))//Checks to see if it's allowed on that frequency, based on the encryption keys
@@ -687,7 +686,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 				unregister_radio(src, GLOBL.radio_channels[ch_name])
 				secure_radio_connections[ch_name] = null
 
-			var/turf/T = get_turf(user)
+			var/turf/T = GET_TURF(user)
 			if(isnotnull(T))
 				keyslot.loc = T
 				keyslot = null
@@ -712,8 +711,8 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 				secure_radio_connections[ch_name] = null
 
 			if(keyslot)
-				var/turf/T = get_turf(user)
-				if(T)
+				var/turf/T = GET_TURF(user)
+				if(isnotnull(T))
 					keyslot.loc = T
 					keyslot = null
 

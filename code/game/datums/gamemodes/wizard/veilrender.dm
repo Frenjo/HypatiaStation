@@ -11,7 +11,7 @@
 
 /obj/item/veilrender/attack_self(mob/user)
 	if(charged == 1)
-		new /obj/effect/rend(get_turf(usr))
+		new /obj/effect/rend(GET_TURF(usr))
 		charged = 0
 		visible_message(SPAN_DANGER("[src] hums with power as [usr] deals a blow to reality itself!"))
 	else
@@ -30,5 +30,5 @@
 /obj/effect/rend/New()
 	. = ..()
 	spawn(50)
-		new /obj/singularity/narsie/wizard(get_turf(src))
+		new /obj/singularity/narsie/wizard(GET_TURF(src))
 		qdel(src)

@@ -31,7 +31,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(isliving(loc))
 		var/mob/living/M = loc
 		M.IgniteMob()
-	var/turf/location = get_turf(src)
+	var/turf/location = GET_TURF(src)
 	smoketime--
 	if(smoketime < 1)
 		burn_out()
@@ -139,14 +139,14 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		src.lit = 1
 		damtype = "fire"
 		if(reagents.get_reagent_amount("plasma")) // the plasma explodes when exposed to fire
-			var/datum/effect/system/reagents_explosion/e = new()
-			e.set_up(round(reagents.get_reagent_amount("plasma") / 2.5, 1), get_turf(src), 0, 0)
+			var/datum/effect/system/reagents_explosion/e = new /datum/effect/system/reagents_explosion()
+			e.set_up(round(reagents.get_reagent_amount("plasma") / 2.5, 1), GET_TURF(src), 0, 0)
 			e.start()
 			qdel(src)
 			return
 		if(reagents.get_reagent_amount("fuel")) // the fuel explodes, too, but much less violently
-			var/datum/effect/system/reagents_explosion/e = new()
-			e.set_up(round(reagents.get_reagent_amount("fuel") / 5, 1), get_turf(src), 0, 0)
+			var/datum/effect/system/reagents_explosion/e = new /datum/effect/system/reagents_explosion()
+			e.set_up(round(reagents.get_reagent_amount("fuel") / 5, 1), GET_TURF(src), 0, 0)
 			e.start()
 			qdel(src)
 			return
@@ -154,8 +154,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		reagents.handle_reactions()
 		icon_state = icon_on
 		item_state = icon_on
-		var/turf/T = get_turf(src)
-		T.visible_message(flavor_text)
+		var/turf/T = GET_TURF(src)
+		T?.visible_message(flavor_text)
 		GLOBL.processing_objects.Add(src)
 
 
@@ -163,13 +163,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	if(isliving(loc))
 		var/mob/living/M = loc
 		M.IgniteMob()
-	var/turf/location = get_turf(src)
+	var/turf/location = GET_TURF(src)
 	smoketime--
 	if(smoketime < 1)
 		die()
 		return
-	if(location)
-		location.hotspot_expose(700, 5)
+	location?.hotspot_expose(700, 5)
 	if(reagents && reagents.total_volume)	//	check if it has any reagents at all
 		if(iscarbon(loc) && (src == loc:wear_mask)) // if it's in the human/monkey mouth, transfer reagents to the mob
 			var/mob/living/carbon/C = loc
@@ -187,7 +186,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	return ..()
 
 /obj/item/clothing/mask/cigarette/proc/die()
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	var/obj/item/butt = new type_butt(T)
 	transfer_fingerprints_to(butt)
 	if(ismob(loc))
@@ -296,12 +295,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		damtype = "fire"
 		icon_state = icon_on
 		item_state = icon_on
-		var/turf/T = get_turf(src)
-		T.visible_message(flavor_text)
+		var/turf/T = GET_TURF(src)
+		T?.visible_message(flavor_text)
 		GLOBL.processing_objects.Add(src)
 
 /obj/item/clothing/mask/cigarette/pipe/process()
-	var/turf/location = get_turf(src)
+	var/turf/location = GET_TURF(src)
 	smoketime--
 	if(smoketime < 1)
 		new /obj/effect/decal/cleanable/ash(location)
@@ -451,9 +450,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		..()
 
 /obj/item/lighter/process()
-	var/turf/location = get_turf(src)
-	if(location)
-		location.hotspot_expose(700, 5)
+	var/turf/location = GET_TURF(src)
+	location?.hotspot_expose(700, 5)
 	return
 
 

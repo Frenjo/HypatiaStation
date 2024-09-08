@@ -32,7 +32,7 @@
 		return
 	if(!active_dummy)
 		if(isitem(target) && !istype(target, /obj/item/disk/nuclear))
-			playsound(get_turf(src), 'sound/weapons/flash.ogg', 100, 1, -6)
+			playsound(GET_TURF(src), 'sound/weapons/flash.ogg', 100, 1, -6)
 			user << "\blue Scanned [target]."
 			saved_item = target.type
 			saved_icon = target.icon
@@ -44,17 +44,17 @@
 		return
 	if(active_dummy)
 		eject_all()
-		playsound(get_turf(src), 'sound/effects/pop.ogg', 100, 1, -6)
+		playsound(GET_TURF(src), 'sound/effects/pop.ogg', 100, 1, -6)
 		qdel(active_dummy)
 		active_dummy = null
 		to_chat(usr, SPAN_INFO("You deactivate the [src]."))
-		var/obj/effect/overlay/T = new/obj/effect/overlay(get_turf(src))
+		var/obj/effect/overlay/T = new /obj/effect/overlay(GET_TURF(src))
 		T.icon = 'icons/effects/effects.dmi'
 		flick("emppulse", T)
 		spawn(8)
 			qdel(T)
 	else
-		playsound(get_turf(src), 'sound/effects/pop.ogg', 100, 1, -6)
+		playsound(GET_TURF(src), 'sound/effects/pop.ogg', 100, 1, -6)
 		var/obj/O = new saved_item(src)
 		if(!O)
 			return
@@ -62,7 +62,7 @@
 		C.activate(O, usr, saved_icon, saved_icon_state, saved_overlays, src)
 		qdel(O)
 		to_chat(usr, SPAN_INFO("You activate the [src]."))
-		var/obj/effect/overlay/T = new/obj/effect/overlay(get_turf(src))
+		var/obj/effect/overlay/T = new /obj/effect/overlay(GET_TURF(src))
 		T.icon = 'icons/effects/effects.dmi'
 		flick("emppulse", T)
 		spawn(8)

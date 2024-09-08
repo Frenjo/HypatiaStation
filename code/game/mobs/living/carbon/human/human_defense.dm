@@ -39,7 +39,7 @@ emp_act
 				if(P.starting)
 					var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
 					var/new_y = P.starting.y + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
-					var/turf/curloc = get_turf(src)
+					var/turf/curloc = GET_TURF(src)
 
 					// redirect the projectile
 					P.original = locate(new_x, new_y, P.z)

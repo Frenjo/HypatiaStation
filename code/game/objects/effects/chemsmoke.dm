@@ -48,7 +48,7 @@
 	if(isturf(loca))
 		location = loca
 	else
-		location = get_turf(loca)
+		location = GET_TURF(loca)
 	if(isnull(location))
 		return
 

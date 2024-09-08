@@ -133,8 +133,8 @@
 		return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
 	var/environment_heat_capacity = environment.heat_capacity()
-	if(isspace(get_turf(src)))
-		var/turf/heat_turf = get_turf(src)
+	if(isspace(GET_TURF(src)))
+		var/turf/heat_turf = GET_TURF(src)
 		environment_heat_capacity = heat_turf.heat_capacity
 
 	if(environment.temperature > (T0C + 50) || environment.temperature < (T0C + 10))

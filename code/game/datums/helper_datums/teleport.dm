@@ -93,15 +93,15 @@
 //do the monkey dance
 /datum/teleport/proc/doTeleport()
 	var/turf/destturf
-	var/turf/curturf = get_turf(teleatom)
+	var/turf/curturf = GET_TURF(teleatom)
 	var/area/destarea = get_area(destination)
 	if(precision)
 		var/list/posturfs = circlerangeturfs(destination, precision)
 		destturf = safepick(posturfs)
 	else
-		destturf = get_turf(destination)
+		destturf = GET_TURF(destination)
 
-	if(!destturf || !curturf)
+	if(isnull(destturf) || isnull(curturf))
 		return 0
 
 	playSpecials(curturf, effectin, soundin)

@@ -149,7 +149,7 @@
 
 	// should be overloaded for all mobs whose "ear" is separate from their "mob"
 
-	return get_turf(src)
+	return GET_TURF(src)
 
 /mob/proc/say_test(text)
 	var/ending = copytext(text, length(text))

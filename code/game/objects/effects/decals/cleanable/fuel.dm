@@ -31,7 +31,7 @@
 	for(var/d in GLOBL.cardinal)
 		if(rand(25))
 			var/turf/open/target = get_step(src,d)
-			var/turf/open/origin = get_turf(src)
+			var/turf/open/origin = GET_TURF(src)
 			if(origin.CanPass(null, target, 0, 0) && target.CanPass(null, origin, 0, 0))
 				if(!locate(/obj/effect/decal/cleanable/liquid_fuel) in target)
 					new/obj/effect/decal/cleanable/liquid_fuel(target, amount * 0.25)

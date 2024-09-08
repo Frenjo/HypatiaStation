@@ -52,7 +52,7 @@
 	return ..()
 
 /datum/species/diona/handle_death(mob/living/carbon/human/H)
-	var/mob/living/carbon/monkey/diona/S = new(get_turf(H))
+	var/mob/living/carbon/monkey/diona/S = new /mob/living/carbon/monkey/diona(GET_TURF(H))
 
 	if(isnotnull(H.mind))
 		H.mind.transfer_to(S)

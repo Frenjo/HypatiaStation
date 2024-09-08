@@ -34,7 +34,7 @@
 
 	if(isturf(loc) || !length(contents))
 		for(var/mob/M in contents)
-			M.loc = get_turf(src)
+			M.loc = GET_TURF(src)
 		qdel(src)
 
 /obj/item/holder/attackby(obj/item/W, mob/user)
@@ -124,7 +124,7 @@
 
 	src.loc << "You feel a pang of loss as [src] splits away from your biomass."
 	src << "You wiggle out of the depths of [src.loc]'s biomass and plop to the ground."
-	src.loc = get_turf(src)
+	src.loc = GET_TURF(src)
 	src.verbs -= /mob/living/carbon/monkey/diona/proc/split
 	src.verbs += /mob/living/carbon/monkey/diona/proc/merge
 
@@ -148,7 +148,7 @@
 	src.split()
 	src.visible_message("\red [src] begins to shift and quiver, and erupts in a shower of shed bark and twigs!","\red You begin to shift and quiver, then erupt in a shower of shed bark and twigs, attaining your adult form!")
 
-	var/mob/living/carbon/human/adult = new(get_turf(src.loc))
+	var/mob/living/carbon/human/adult = new /mob/living/carbon/human(GET_TURF(src))
 	adult.set_species(SPECIES_DIONA)
 
 	if(istype(loc, /obj/item/holder/diona))

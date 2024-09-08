@@ -29,7 +29,7 @@
 	dead_mob_list += src
 	stat = DEAD
 	visible_message("\red <B>[src] shudders violently and explodes!</B>","\red <B>You feel your body rupture!</B>")
-	explosion(get_turf(loc), -1, -1, 3, 5)
+	explosion(GET_TURF(src), -1, -1, 3, 5)
 	src.gib()
 	return
 

@@ -1,5 +1,5 @@
 /proc/create_new_xenomorph(alien_caste, target)
-	target = get_turf(target)
+	target = GET_TURF(target)
 	if(isnull(target) || isnull(alien_caste))
 		return
 

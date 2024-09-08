@@ -97,20 +97,20 @@
 	if(tank_one && href_list["tankone"])
 		split_gases()
 		valve_open = 0
-		tank_one.loc = get_turf(src)
+		tank_one.loc = GET_TURF(src)
 		tank_one = null
 		update_icon()
 	else if(tank_two && href_list["tanktwo"])
 		split_gases()
 		valve_open = 0
-		tank_two.loc = get_turf(src)
+		tank_two.loc = GET_TURF(src)
 		tank_two = null
 		update_icon()
 	else if(href_list["open"])
 		toggle_valve()
 	else if(attached_device)
 		if(href_list["rem_device"])
-			attached_device.loc = get_turf(src)
+			attached_device.loc = GET_TURF(src)
 			attached_device:holder = null
 			attached_device = null
 			update_icon()
@@ -167,7 +167,7 @@
 /obj/item/transfer_valve/proc/toggle_valve()
 	if(valve_open == 0 && (tank_one && tank_two))
 		valve_open = 1
-		var/turf/bombturf = get_turf(src)
+		var/turf/bombturf = GET_TURF(src)
 		var/area/A = get_area(bombturf)
 
 		var/attacher_name = ""

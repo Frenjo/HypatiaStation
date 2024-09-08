@@ -126,7 +126,7 @@ length to avoid portals or something i guess?? Not that they're counted right no
 	var/PriorityQueue/open = new /PriorityQueue(/proc/PathWeightCompare)
 	var/list/closed = list()
 	var/list/path = null
-	start = get_turf(start)
+	start = GET_TURF(start)
 	if(isnull(start))
 		return 0
 

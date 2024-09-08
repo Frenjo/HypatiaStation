@@ -114,8 +114,8 @@
 						return
 
 				//second, spin a sticky spiderweb on this tile
-				var/obj/effect/spider/stickyweb/W = locate() in get_turf(src)
-				if(!W)
+				var/obj/effect/spider/stickyweb/W = locate() in GET_TURF(src)
+				if(isnull(W))
 					busy = SPINNING_WEB
 					src.visible_message("\blue \the [src] begins to secrete a sticky substance.")
 					stop_automated_movement = 1
@@ -126,15 +126,15 @@
 							stop_automated_movement = 0
 				else
 					//third, lay an egg cluster there
-					var/obj/effect/spider/eggcluster/E = locate() in get_turf(src)
-					if(!E && fed > 0)
+					var/obj/effect/spider/eggcluster/E = locate() in GET_TURF(src)
+					if(isnull(E) && fed > 0)
 						busy = LAYING_EGGS
 						src.visible_message("\blue \the [src] begins to lay a cluster of eggs.")
 						stop_automated_movement = 1
 						spawn(50)
 							if(busy == LAYING_EGGS)
-								E = locate() in get_turf(src)
-								if(!E)
+								E = locate() in GET_TURF(src)
+								if(isnull(E))
 									new /obj/effect/spider/eggcluster(src.loc)
 									fed--
 								busy = 0

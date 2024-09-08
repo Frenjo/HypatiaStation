@@ -98,7 +98,7 @@
 	set waitfor = FALSE
 
 	var/area/current_area = get_area(src)
-	var/turf/current_turf = get_turf(src)
+	var/turf/current_turf = GET_TURF(src)
 	if(current_area.powered(EQUIP) || isspace(current_turf) || isitem(loc))
 		return
 

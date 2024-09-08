@@ -67,7 +67,7 @@
 				target_turf = null
 			if(strength > 5)
 				//calm down and spread out a little
-				var/mob/living/simple/bee/B = new(get_turf(pick(orange(src,1))))
+				var/mob/living/simple/bee/B = new /mob/living/simple/bee(GET_TURF(pick(orange(src, 1))))
 				B.strength = rand(1,5)
 				src.strength -= B.strength
 				if(src.strength <= 5)
@@ -128,16 +128,16 @@
 						qdel(src)
 						return
 					src.icon_state = "bees[B.strength]"
-					var/turf/open/floor/T = get_turf(get_step(src, pick(1,2,4,8)))
+					var/turf/open/floor/T = GET_TURF(get_step(src, pick(1, 2, 4, 8)))
 					density = TRUE
-					if(T.Enter(src, get_turf(src)))
+					if(T.Enter(src, GET_TURF(src)))
 						src.loc = T
 					density = FALSE
 				break
 
 		if(target_mob)
 			if(target_mob in view(src,7))
-				target_turf = get_turf(target_mob)
+				target_turf = GET_TURF(target_mob)
 				wander = 0
 
 			else // My target's gone! But I might still be pissed! You there. You look like a good stinging target!

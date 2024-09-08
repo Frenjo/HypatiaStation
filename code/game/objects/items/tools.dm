@@ -259,9 +259,8 @@
 	if(ismob(location))
 		var/mob/M = location
 		if(M.l_hand == src || M.r_hand == src)
-			location = get_turf(M)
-	if(isturf(location))
-		location.hotspot_expose(700, 5)
+			location = GET_TURF(M)
+	location?.hotspot_expose(700, 5)
 
 /obj/item/weldingtool/afterattack(obj/O, mob/user, proximity)
 	if(!proximity)
@@ -280,12 +279,11 @@
 		return
 	if(src.welding)
 		remove_fuel(1)
-		var/turf/location = get_turf(user)
+		var/turf/location = GET_TURF(user)
 		if(isliving(O))
 			var/mob/living/L = O
 			L.IgniteMob()
-		if(isturf(location))
-			location.hotspot_expose(700, 50, 1)
+		location?.hotspot_expose(700, 50, 1)
 	return
 
 /obj/item/weldingtool/attack_self(mob/user)

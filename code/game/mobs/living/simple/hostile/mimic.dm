@@ -106,7 +106,7 @@
 
 /mob/living/simple/hostile/mimic/crate/Die()
 
-	var/obj/structure/closet/crate/C = new(get_turf(src))
+	var/obj/structure/closet/crate/C = new /obj/structure/closet/crate(GET_TURF(src))
 	// Put loot in crate
 	for(var/obj/O in src)
 		O.loc = C
@@ -141,7 +141,7 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 /mob/living/simple/hostile/mimic/copy/Die()
 
 	for(var/atom/movable/M in src)
-		M.loc = get_turf(src)
+		M.loc = GET_TURF(src)
 	..()
 
 /mob/living/simple/hostile/mimic/copy/ListTargets()

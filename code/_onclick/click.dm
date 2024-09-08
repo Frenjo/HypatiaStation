@@ -248,7 +248,7 @@
 	return
 
 /atom/proc/AltClick(mob/user)
-	var/turf/T = get_turf(src)
+	var/turf/T = GET_TURF(src)
 	if(T?.Adjacent(user))
 		if(user.listed_turf == T)
 			user.listed_turf = null
@@ -267,8 +267,8 @@
 
 /mob/living/LaserEyes(atom/A)
 	next_move = world.time + 6
-	var/turf/T = get_turf(src)
-	var/turf/U = get_turf(A)
+	var/turf/T = GET_TURF(src)
+	var/turf/U = GET_TURF(A)
 
 	var/obj/item/projectile/energy/beam/LE = new /obj/item/projectile/energy/beam(loc)
 	LE.icon = 'icons/effects/genetics.dmi'

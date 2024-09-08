@@ -148,8 +148,8 @@
 
 	for(var/mob/living/carbon/human/H in shuffle(GLOBL.living_mob_list))
 		var/foundAlready = 0 // don't infect someone that already has the virus
-		var/turf/T = get_turf(H)
-		if(!T)
+		var/turf/T = GET_TURF(H)
+		if(isnull(T))
 			continue
 		if(isnotstationlevel(T.z))
 			continue
@@ -221,8 +221,8 @@
 	sleep(100)
 */
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
-		var/turf/T = get_turf(H)
-		if(!T)
+		var/turf/T = GET_TURF(H)
+		if(isnull(T))
 			continue
 		if(isnotstationlevel(T.z))
 			continue
@@ -238,8 +238,8 @@
 					randmutg(H)
 					domutcheck(H, null, MUTCHK_FORCED)
 	for(var/mob/living/carbon/monkey/M in GLOBL.living_mob_list)
-		var/turf/T = get_turf(M)
-		if(!T)
+		var/turf/T = GET_TURF(M)
+		if(isnull(T))
 			continue
 		if(isnotstationlevel(T.z))
 			continue

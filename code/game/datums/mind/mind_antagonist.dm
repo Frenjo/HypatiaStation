@@ -47,7 +47,7 @@
 		global.PCticker.mode.forge_syndicate_objectives(src)
 		global.PCticker.mode.greet_syndicate(src)
 
-		current.loc = get_turf(locate("landmark*Syndicate-Spawn"))
+		current.loc = GET_TURF(locate("landmark*Syndicate-Spawn"))
 
 		var/mob/living/carbon/human/H = current
 		qdel(H.belt)

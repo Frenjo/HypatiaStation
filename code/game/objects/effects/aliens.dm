@@ -44,12 +44,12 @@
 
 /obj/effect/alien/resin/New()
 	..()
-	var/turf/T = get_turf(src)
-	T.thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
+	var/turf/T = GET_TURF(src)
+	T?.thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 
 /obj/effect/alien/resin/Destroy()
-	var/turf/T = get_turf(src)
-	T.thermal_conductivity = initial(T.thermal_conductivity)
+	var/turf/T = GET_TURF(src)
+	T?.thermal_conductivity = initial(T.thermal_conductivity)
 	return ..()
 
 /obj/effect/alien/resin/proc/healthcheck()
@@ -181,7 +181,7 @@
 
 /obj/effect/alien/weeds/proc/Life()
 	set background = TRUE
-	var/turf/U = get_turf(src)
+	var/turf/U = GET_TURF(src)
 /*
 	if (locate(/obj/movable, U))
 		U = locate(/obj/movable, U)
@@ -389,7 +389,7 @@ Alien plants should do something if theres a lot of poison
 		status = BURSTING
 		spawn(15)
 			status = BURST
-			child.loc = get_turf(src)
+			child.loc = GET_TURF(src)
 
 			if(kill && istype(child))
 				child.Die()

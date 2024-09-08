@@ -95,7 +95,7 @@
 		update_inv_r_hand()
 		return TRUE
 	else
-		W.loc = get_turf(src)
+		W.loc = GET_TURF(src)
 		W.reset_plane_and_layer()
 		W.dropped()
 		return FALSE
@@ -114,7 +114,7 @@
 		W.reset_plane_and_layer()
 		W.loc = loc
 
-		var/turf/T = get_turf(loc)
+		var/turf/T = GET_TURF(src)
 		if(isturf(T))
 			T.Entered(W)
 
@@ -134,7 +134,7 @@
 		else
 			l_hand.loc = loc
 
-		var/turf/T = get_turf(target)
+		var/turf/T = GET_TURF(target)
 		if(isturf(T))
 			T.Entered(l_hand)
 
@@ -155,7 +155,7 @@
 		else
 			r_hand.loc = loc
 
-		var/turf/T = get_turf(target)
+		var/turf/T = GET_TURF(target)
 		if(istype(T))
 			T.Entered(r_hand)
 

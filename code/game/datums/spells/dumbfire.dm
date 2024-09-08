@@ -20,7 +20,7 @@
 	var/proj_step_delay = 1 //lower = faster
 
 /obj/effect/proc_holder/spell/dumbfire/choose_targets(mob/user = usr)
-	var/turf/T = get_turf(usr)
+	var/turf/T = GET_TURF(usr)
 	for(var/i = 1; i < range; i++)
 		var/turf/new_turf = get_step(T, usr.dir)
 		if(new_turf.density)
