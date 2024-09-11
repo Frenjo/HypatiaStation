@@ -52,6 +52,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 				floors.Add(T)
 
 			A.contents.Add(T)
+			A.turf_list.Add(T)
 
 	return room_turfs
 

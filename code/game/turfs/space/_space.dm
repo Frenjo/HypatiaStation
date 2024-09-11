@@ -21,6 +21,9 @@
 /turf/space/New()
 	SHOULD_CALL_PARENT(FALSE)
 
+	var/area/turf_area = loc
+	turf_area.turf_list.Add(src)
+
 	if(isnull(dust_cache))
 		build_dust_cache()
 	toggle_transit() //add static dust
