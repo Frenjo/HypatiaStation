@@ -62,8 +62,6 @@ PROCESS_DEF(supply)
 
 		// Must be in a crate!
 		if(istype(MA, /obj/structure/closet/crate))
-			callHook("sell_crate", list(MA, area_shuttle))
-
 			points += points_per_crate
 			var/find_slip = 1
 

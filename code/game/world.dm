@@ -31,8 +31,6 @@
 	if(CONFIG_GET(log_runtime))
 		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
-	callHook("startup")
-
 	update_status()
 
 	. = ..()
@@ -42,6 +40,8 @@
 	for(var/i = 0, i < GLOBL.max_secret_rooms, i++)
 		make_mining_asteroid_secret()
 	WAIT_FOR_BACKLOG
+
+	call_hook(/hook/startup)
 
 	global.CTmaster = new /datum/controller/master()
 	//global.CTmaster.defer_setup_for(/datum/process/ticker) // This should no longer be needed, but I'm leaving it commented just in case.
@@ -54,7 +54,7 @@
 #undef RECOMMENDED_VERSION
 
 /world/Del()
-	callHook("shutdown")
+	call_hook(/hook/shutdown)
 	global.debugger.shutdown_debugger()
 	return ..()
 
@@ -119,11 +119,8 @@
 		return list2params(s)
 
 // Gamemode saving/loading.
-/hook/startup/proc/loadMode()
-	world.load_mode()
-	return 1
-
-/world/proc/load_mode()
+/hook/startup/proc/load_mode()
+	. = TRUE
 	var/list/lines = file2list("data/mode.txt")
 	if(length(lines))
 		if(lines[1])
@@ -136,19 +133,13 @@
 	F << the_mode
 
 // MOTD loading.
-/hook/startup/proc/loadMOTD()
-	world.load_motd()
-	return 1
-
-/world/proc/load_motd()
+/hook/startup/proc/load_motd()
+	. = TRUE
 	GLOBL.join_motd = file2text("config/motd.txt")
 
 // Moderator loading.
-/hook/startup/proc/loadMods()
-	world.load_mods()
-	return 1
-
-/world/proc/load_mods()
+/hook/startup/proc/load_mods()
+	. = TRUE
 	if(CONFIG_GET(admin_legacy_system))
 		var/text = file2text("config/moderators.txt")
 		if(isnull(text))
@@ -227,16 +218,16 @@
 		status = s
 
 // Database connections.
-/hook/startup/proc/connectDB()
+/hook/startup/proc/connect_database()
+	. = TRUE
 	if(!setup_database_connection())
 		world.log << "Your server failed to establish a connection with the feedback database."
 	else
 		world.log << "Feedback database connection established."
-	return 1
 
-/hook/startup/proc/connectOldDB()
+/hook/startup/proc/connect_old_database()
+	. = TRUE
 	if(!setup_old_database_connection())
 		world.log << "Your server failed to establish a connection with the SQL database."
 	else
 		world.log << "SQL database connection established."
-	return 1

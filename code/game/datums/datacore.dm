@@ -2,8 +2,8 @@ GLOBAL_GLOBL(datum/datacore/data_core)
 GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 
 /hook/startup/proc/create_datacore()
+	. = TRUE
 	GLOBL.data_core = new /datum/datacore()
-	return 1
 
 /datum/datacore
 	var/list/datum/data/record/general = list()

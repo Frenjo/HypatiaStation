@@ -25,6 +25,7 @@
 	var/flags = 0
 
 /hook/startup/proc/generate_gas_data()
+	. = TRUE
 	var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
 	for(var/type in SUBTYPESOF(/decl/xgm_gas))
 		var/decl/xgm_gas/gas = GET_DECL_INSTANCE(type) //avoid initial() because of potential New() actions
@@ -41,5 +42,3 @@
 		if(gas.overlay_limit)
 			gas_data.overlay_limit[type] = gas.overlay_limit
 		gas_data.flags[type] = gas.flags
-
-	return 1

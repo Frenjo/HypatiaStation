@@ -22,7 +22,6 @@
 		send2irc(CONFIG_GET(admin_irc), msg)
 	return
 
-
-/hook/startup/proc/ircNotify()
+/hook/startup/proc/irc_notify()
+	. = TRUE
 	send2mainirc("Server starting up on [isnotnull(CONFIG_GET(server)) ? "byond://[CONFIG_GET(server)]" : "byond://[world.address]:[world.port]"]")
-	return 1

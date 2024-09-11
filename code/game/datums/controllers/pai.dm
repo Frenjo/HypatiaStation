@@ -7,8 +7,8 @@
 // Global handler for pAI candidates.
 
 /hook/roundstart/proc/create_pai_controller()
+	. = TRUE
 	global.CTpai = new /datum/controller/pai()
-	return 1
 
 CONTROLLER_DEF(pai)
 	name = "pAI"

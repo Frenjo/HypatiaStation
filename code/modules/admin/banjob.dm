@@ -50,9 +50,9 @@ DEBUG
 	jobban_loadbanfile()
 */
 
-/hook/startup/proc/loadJobBans()
+/hook/startup/proc/load_job_bans()
+	. = TRUE
 	jobban_loadbanfile()
-	return 1
 
 /proc/jobban_loadbanfile()
 	if(CONFIG_GET(ban_legacy_system))

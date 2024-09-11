@@ -5,15 +5,12 @@
 
 GLOBAL_GLOBL_LIST_NEW(whitelist)
 
-/hook/startup/proc/loadWhitelist()
+/hook/startup/proc/load_whitelist()
+	. = TRUE
 	if(CONFIG_GET(usewhitelist))
-		load_whitelist()
-	return TRUE
-
-/proc/load_whitelist()
-	GLOBL.whitelist = file2list(WHITELISTFILE)
-	if(!length(GLOBL.whitelist))
-		GLOBL.whitelist = null
+		GLOBL.whitelist = file2list(WHITELISTFILE)
+		if(!length(GLOBL.whitelist))
+			GLOBL.whitelist = null
 
 /proc/check_whitelist(mob/M /*, var/rank*/)
 	if(!GLOBL.whitelist)
@@ -27,17 +24,15 @@ GLOBAL_GLOBL_LIST_NEW(whitelist)
  */
 GLOBAL_GLOBL_LIST_NEW(alien_whitelist)
 
-/hook/startup/proc/loadAlienWhitelist()
+/hook/startup/proc/load_alien_whitelist()
+	. = TRUE
 	if(CONFIG_GET(usealienwhitelist))
-		load_alienwhitelist()
-	return 1
-
-/proc/load_alienwhitelist()
-	var/text = file2text("config/alienwhitelist.txt")
-	if(!text)
-		log_misc("Failed to load config/alienwhitelist.txt")
-	else
-		GLOBL.alien_whitelist = splittext(text, "\n")
+		var/text = file2text("config/alienwhitelist.txt")
+		if(!text)
+			log_misc("Failed to load config/alienwhitelist.txt")
+			. = FALSE
+		else
+			GLOBL.alien_whitelist = splittext(text, "\n")
 
 //todo: admin aliens
 // This is also used for languages.

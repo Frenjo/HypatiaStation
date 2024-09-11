@@ -4,6 +4,7 @@ GLOBAL_GLOBL_LIST_NEW(teleportlocs)
 GLOBAL_GLOBL_LIST_NEW(ghostteleportlocs)
 
 /hook/startup/proc/setup_teleport_locs()
+	. = TRUE
 	for_no_type_check(var/area/a, GLOBL.area_list)
 		if(istype(a, /area/shuttle) || istype(a, /area/enemy/syndicate_station) || istype(a, /area/enemy/wizard_station))
 			continue
@@ -14,9 +15,9 @@ GLOBAL_GLOBL_LIST_NEW(ghostteleportlocs)
 			GLOBL.teleportlocs.Add(a.name)
 			GLOBL.teleportlocs[a.name] = a
 	GLOBL.teleportlocs = sortAssoc(GLOBL.teleportlocs)
-	return 1
 
 /hook/startup/proc/setup_ghost_teleport_locs()
+	. = TRUE
 	for_no_type_check(var/area/a, GLOBL.area_list)
 		if(GLOBL.ghostteleportlocs.Find(a.name))
 			continue
@@ -28,4 +29,3 @@ GLOBAL_GLOBL_LIST_NEW(ghostteleportlocs)
 			GLOBL.ghostteleportlocs.Add(a.name)
 			GLOBL.ghostteleportlocs[a.name] = a
 	GLOBL.ghostteleportlocs = sortAssoc(GLOBL.ghostteleportlocs)
-	return 1

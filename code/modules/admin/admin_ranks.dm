@@ -54,10 +54,9 @@ GLOBAL_GLOBL_LIST_NEW(admin_ranks)	//list of all ranks with associated rights
 	testing(msg)
 	#endif
 
-
-/hook/startup/proc/loadAdmins()
+/hook/startup/proc/load_admins_hook()
+	. = TRUE
 	load_admins()
-	return 1
 
 /proc/load_admins()
 	//clear the datums references

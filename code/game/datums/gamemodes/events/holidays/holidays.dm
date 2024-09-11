@@ -14,8 +14,8 @@ GLOBAL_GLOBL_INIT(eventchance, 10)	//% per 5 mins
 //																							~Carn
 
 /hook/startup/proc/update_holiday()
+	. = TRUE
 	get_holiday()
-	return 1
 
 //sets up the Holiday global variable. Shouldbe called on game configuration or something.
 /proc/get_holiday()

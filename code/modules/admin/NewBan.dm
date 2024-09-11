@@ -57,11 +57,12 @@ var/savefile/Banlist
 	CMinutes = (world.realtime / 10) / 60
 	return 1
 
-/hook/startup/proc/loadBans()
-	return LoadBans()
+/hook/startup/proc/load_bans()
+	. = LoadBans()
 
 /proc/LoadBans()
-	Banlist = new("data/banlist.bdb")
+	. = TRUE
+	Banlist = new /savefile("data/banlist.bdb")
 	log_admin("Loading Banlist")
 
 	if(!length(Banlist.dir))
@@ -75,7 +76,6 @@ var/savefile/Banlist
 		Banlist.cd = "/base"
 
 	ClearTempbans()
-	return 1
 
 /proc/ClearTempbans()
 	UpdateTime()

@@ -32,5 +32,5 @@
 	// Used for telling if the changelog has changed recently.
 	GLOBL.changelog_hash = md5('html/changelog.html')
 
-	callHook("global_init")
+	call_hook(/hook/global_init)
 	del(src) // This shouldn't qdel.

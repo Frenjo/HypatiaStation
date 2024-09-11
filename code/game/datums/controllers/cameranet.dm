@@ -4,8 +4,8 @@
  * The controller datum containing all the chunks.
  */
 /hook/startup/proc/create_camera_networks()
+	. = TRUE
 	global.CTcameranet = new /datum/controller/cameranet()
-	return 1
 
 CONTROLLER_DEF(cameranet)
 	name = "Cameras"

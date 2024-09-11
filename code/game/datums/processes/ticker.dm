@@ -151,7 +151,7 @@ PROCESS_DEF(ticker)
 	equip_characters()
 	GLOBL.data_core.manifest()
 
-	callHook("roundstart")
+	call_hook(/hook/roundstart)
 
 	global.PCshuttle.setup_shuttle_docks() // Updated to reflect 'shuttles' port. -Frenjo
 
@@ -337,7 +337,7 @@ PROCESS_DEF(ticker)
 		declare_completion()
 
 		spawn(50)
-			callHook("roundend")
+			call_hook(/hook/roundend)
 
 			if(mode.station_was_nuked)
 				feedback_set_details("end_proper", "nuke")
