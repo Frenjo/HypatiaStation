@@ -55,7 +55,7 @@
 
 						//replace old ID
 						qdel(C)
-						ok = M.equip_if_possible(I, SLOT_ID_ID_STORE, 0)	//if 1, last argument deletes on fail
+						ok = M.equip_if_possible(I, SLOT_ID_ID_STORE, FALSE) // if TRUE, last argument deletes on fail
 						break
 				else if(istype(Item,/obj/item/storage/belt))
 					if(M.ckey == "jakksergal" && M.real_name == "Nashi Ra'hal" && M.mind.role_alt_title && M.mind.role_alt_title != "Nurse" && M.mind.role_alt_title != "Chemist")
@@ -66,14 +66,14 @@
 					if(istype(M.belt,/obj/item/storage/belt))
 						for(var/obj/item/storage/belt/B in M)
 							qdel(B)
-							M.belt=null
-						ok = M.equip_if_possible(I, SLOT_ID_BELT, 0)
+							M.belt = null
+						ok = M.equip_if_possible(I, SLOT_ID_BELT, FALSE)
 						break
-					if(istype(M.belt,/obj/item/pda))
+					if(istype(M.belt, /obj/item/pda))
 						for(var/obj/item/pda/Pda in M)
-							M.belt=null
-							M.equip_if_possible(Pda, SLOT_ID_L_POCKET, 0)
-						ok = M.equip_if_possible(I, SLOT_ID_BELT, 0)
+							M.belt = null
+							M.equip_if_possible(Pda, SLOT_ID_L_POCKET, FALSE)
+						ok = M.equip_if_possible(I, SLOT_ID_BELT, FALSE)
 				else if(istype(M.back,/obj/item/storage)) // Try to place it in something on the mob's back
 					var/obj/item/storage/back = M.back
 					if(back.contents.len < back.storage_slots)

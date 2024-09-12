@@ -4,10 +4,7 @@
 // Returns the thing in our active hand.
 /mob/proc/get_active_hand()
 	if(!issilicon(src))
-		if(hand)
-			return l_hand
-		else
-			return r_hand
+		return hand ? l_hand : r_hand
 
 	if(isrobot(src))
 		var/mob/living/silicon/robot/robby = src
@@ -18,10 +15,7 @@
 
 // Returns the thing in our inactive hand.
 /mob/proc/get_inactive_hand()
-	if(hand)
-		return r_hand
-	else
-		return l_hand
+	return hand ? r_hand : l_hand
 
 // Puts the item into your l_hand if possible and calls all necessary triggers/updates.
 // Returns TRUE on success.
@@ -30,18 +24,17 @@
 		return FALSE
 	if(!istype(W))
 		return FALSE
+	if(isnotnull(l_hand))
+		return FALSE
 
-	if(isnull(l_hand))
-		l_hand = W
-//		l_hand.screen_loc = ui_lhand
-		W.equipped(src, SLOT_ID_L_HAND)
-		client?.screen |= W
-		if(pulling == W)
-			stop_pulling()
-		update_inv_l_hand()
-		return TRUE
-
-	return FALSE
+	l_hand = W
+//	l_hand.screen_loc = ui_lhand
+	W.equipped(src, SLOT_ID_L_HAND)
+	client?.screen |= W
+	if(pulling == W)
+		stop_pulling()
+	update_inv_l_hand()
+	return TRUE
 
 // Puts the item into your r_hand if possible and calls all necessary triggers/updates.
 // Returns TRUE on success.
@@ -50,34 +43,27 @@
 		return FALSE
 	if(!istype(W))
 		return FALSE
+	if(isnotnull(r_hand))
+		return FALSE
 
-	if(isnull(r_hand))
-		r_hand = W
-//		r_hand.screen_loc = ui_rhand
-		W.equipped(src, SLOT_ID_R_HAND)
-		client?.screen |= W
-		if(pulling == W)
-			stop_pulling()
-		update_inv_r_hand()
-		return TRUE
-
-	return FALSE
+	r_hand = W
+//	r_hand.screen_loc = ui_rhand
+	W.equipped(src, SLOT_ID_R_HAND)
+	client?.screen |= W
+	if(pulling == W)
+		stop_pulling()
+	update_inv_r_hand()
+	return TRUE
 
 // Puts the item into our active hand if possible.
 // Returns TRUE on success.
 /mob/proc/put_in_active_hand(obj/item/W)
-	if(hand)
-		return put_in_l_hand(W)
-	else
-		return put_in_r_hand(W)
+	return hand ? put_in_l_hand(W) : put_in_r_hand(W)
 
 // Puts the item into our inactive hand if possible.
 // Returns TRUE on success.
 /mob/proc/put_in_inactive_hand(obj/item/W)
-	if(hand)
-		return put_in_r_hand(W)
-	else
-		return put_in_l_hand(W)
+	return hand ? put_in_r_hand(W) : put_in_l_hand(W)
 
 // Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns TRUE on success.
 // If both fail it drops it on the floor and returns FALSE.
@@ -125,52 +111,43 @@
 
 // Drops the item in our left hand.
 /mob/proc/drop_l_hand(atom/target)
-	if(isnotnull(l_hand))
-		client?.screen -= l_hand
-		l_hand.reset_plane_and_layer()
+	if(isnull(l_hand))
+		return FALSE
 
-		if(isnotnull(target))
-			l_hand.loc = target.loc
-		else
-			l_hand.loc = loc
+	client?.screen.Remove(l_hand)
+	l_hand.reset_plane_and_layer()
 
-		var/turf/T = GET_TURF(target)
-		if(isturf(T))
-			T.Entered(l_hand)
+	l_hand.loc = isnotnull(target) ? target.loc : loc
 
-		l_hand.dropped(src)
-		l_hand = null
-		update_inv_l_hand()
-		return TRUE
-	return FALSE
+	var/turf/T = GET_TURF(target)
+	T?.Entered(l_hand)
+
+	l_hand.dropped(src)
+	l_hand = null
+	update_inv_l_hand()
+	return TRUE
 
 // Drops the item in our right hand.
 /mob/proc/drop_r_hand(atom/target)
-	if(isnotnull(r_hand))
-		client?.screen -= r_hand
-		r_hand.reset_plane_and_layer()
+	if(isnull(r_hand))
+		return FALSE
 
-		if(isnotnull(target))
-			r_hand.loc = target.loc
-		else
-			r_hand.loc = loc
+	client?.screen.Remove(r_hand)
+	r_hand.reset_plane_and_layer()
 
-		var/turf/T = GET_TURF(target)
-		if(istype(T))
-			T.Entered(r_hand)
+	r_hand.loc = isnotnull(target) ? target.loc : loc
 
-		r_hand.dropped(src)
-		r_hand = null
-		update_inv_r_hand()
-		return TRUE
-	return FALSE
+	var/turf/T = GET_TURF(target)
+	T?.Entered(r_hand)
+
+	r_hand.dropped(src)
+	r_hand = null
+	update_inv_r_hand()
+	return TRUE
 
 // Drops the item in our active hand.
 /mob/proc/drop_item(atom/target)
-	if(hand)
-		return drop_l_hand(target)
-	else
-		return drop_r_hand(target)
+	return hand ? drop_l_hand(target) : drop_r_hand(target)
 
 //TODO: phase out this proc
 /mob/proc/before_take_item(obj/item/W)	//TODO: what is this?
@@ -236,10 +213,10 @@
 #define EQUIP_IF_POSSIBLE(SLOT) \
 if(isnull(SLOT)) \
 	SLOT = W; \
-	equipped = TRUE;
-/mob/living/carbon/human/proc/equip_if_possible(obj/item/W, slot, del_on_fail = 1) // since byond doesn't seem to have pointers, this seems like the best way to do this :/
+	. = TRUE;
+/mob/living/carbon/human/proc/equip_if_possible(obj/item/W, slot, del_on_fail = TRUE) // since byond doesn't seem to have pointers, this seems like the best way to do this :/
 	//warning: icky code
-	var/equipped = FALSE
+	. = FALSE
 	switch(slot)
 		if(SLOT_ID_BACK)
 			EQUIP_IF_POSSIBLE(back)
@@ -254,11 +231,11 @@ if(isnull(SLOT)) \
 		if(SLOT_ID_BELT)
 			if(isnull(belt) && isnotnull(wear_uniform))
 				belt = W
-				equipped = 1
+				. = TRUE
 		if(SLOT_ID_ID_STORE)
 			if(isnull(id_store) && isnotnull(wear_uniform))
 				id_store = W
-				equipped = 1
+				. = TRUE
 		if(SLOT_ID_L_EAR)
 			EQUIP_IF_POSSIBLE(l_ear)
 		if(SLOT_ID_R_EAR)
@@ -278,30 +255,29 @@ if(isnull(SLOT)) \
 		if(SLOT_ID_L_POCKET)
 			if(isnull(l_pocket) && isnotnull(wear_uniform))
 				l_pocket = W
-				equipped = TRUE
+				. = TRUE
 		if(SLOT_ID_R_POCKET)
 			if(isnull(r_pocket) && isnotnull(wear_uniform))
 				r_pocket = W
-				equipped = TRUE
+				. = TRUE
 		if(SLOT_ID_SUIT_STORE)
 			if(isnull(suit_store) && isnotnull(wear_suit))
 				suit_store = W
-				equipped = TRUE
+				. = TRUE
 		if(SLOT_ID_IN_BACKPACK)
 			if(isnotnull(back) && istype(back, /obj/item/storage/backpack))
 				var/obj/item/storage/backpack/B = back
 				if(length(B.contents) < B.storage_slots && W.w_class <= B.max_w_class)
 					W.loc = B
-					equipped = TRUE
+					. = TRUE
 
-	if(equipped)
+	if(.)
 		W.layer_to_hud()
 		if(isnotnull(back) && W.loc != back)
 			W.loc = src
 	else
 		if(del_on_fail)
 			qdel(W)
-	return equipped
 #undef EQUIP_IF_POSSIBLE
 
 /mob/living/carbon/human/proc/equip_outfit(decl/outfit_path)
