@@ -319,7 +319,7 @@
 			if(HAS_SPECIES_FLAGS(H.species, SPECIES_FLAG_IS_SYNTHETIC))
 				return
 
-			if(!H.shoes && (!H.wear_suit || !(H.wear_suit.body_parts_covered & FEET)))
+			if(isnull(H.shoes) && (isnull(H.wear_suit) || !(H.wear_suit.body_parts_covered & FEET)))
 				var/datum/organ/external/affecting = H.get_organ(pick("l_foot", "r_foot"))
 				if(affecting.status & ORGAN_ROBOT)
 					return

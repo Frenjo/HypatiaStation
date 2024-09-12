@@ -7,29 +7,29 @@
 		to_chat(usr, SPAN_NOTICE("Something is there but you can't see it."))
 		return
 
-	var/skipgloves = 0
-	var/skipsuitstorage = 0
-	var/skipjumpsuit = 0
-	var/skipshoes = 0
-	var/skipmask = 0
-	var/skipears = 0
-	var/skipeyes = 0
-	var/skipface = 0
+	var/skipgloves = FALSE
+	var/skipsuitstorage = FALSE
+	var/skipjumpsuit = FALSE
+	var/skipshoes = FALSE
+	var/skipmask = FALSE
+	var/skipears = FALSE
+	var/skipeyes = FALSE
+	var/skipface = FALSE
 
 	//exosuits and helmets obscure our view and stuff.
-	if(wear_suit)
+	if(isnotnull(wear_suit))
 		skipgloves = HAS_INV_FLAGS(wear_suit, INV_FLAG_HIDE_GLOVES)
 		skipsuitstorage = HAS_INV_FLAGS(wear_suit, INV_FLAG_HIDE_SUIT_STORAGE)
 		skipjumpsuit = HAS_INV_FLAGS(wear_suit, INV_FLAG_HIDE_JUMPSUIT)
 		skipshoes = HAS_INV_FLAGS(wear_suit, INV_FLAG_HIDE_SHOES)
 
-	if(head)
+	if(isnotnull(head))
 		skipmask = HAS_INV_FLAGS(head, INV_FLAG_HIDE_MASK)
 		skipeyes = HAS_INV_FLAGS(head, INV_FLAG_HIDE_EYES)
 		skipears = HAS_INV_FLAGS(head, INV_FLAG_HIDE_EARS)
 		skipface = HAS_INV_FLAGS(head, INV_FLAG_HIDE_FACE)
 
-	if(wear_mask)
+	if(isnotnull(wear_mask))
 		skipface |= HAS_INV_FLAGS(wear_mask, INV_FLAG_HIDE_FACE)
 
 	// crappy hacks because you can't do \his[src] etc. I'm sorry this proc is so unreadable, blame the text macros :<
@@ -63,13 +63,11 @@
 	msg += "</EM>[src.name]</EM>, a </EM>[src.species]</EM>!\n" // Edited this a bit to show species alongside their name.
 
 	//uniform
-	if(wear_uniform && !skipjumpsuit)
+	if(!skipjumpsuit && isnotnull(wear_uniform))
 		//Ties
 		var/tie_msg
-		if(istype(wear_uniform, /obj/item/clothing/under))
-			var/obj/item/clothing/under/U = wear_uniform
-			if(U.hastie)
-				tie_msg += " with \icon[U.hastie] \a [U.hastie]"
+		if(isnotnull(wear_uniform.hastie))
+			tie_msg += " with \icon[wear_uniform.hastie] \a [wear_uniform.hastie]"
 
 		if(wear_uniform.blood_DNA)
 			msg += "[SPAN_WARNING("[t_He] [t_is] wearing \icon[wear_uniform] [wear_uniform.gender == PLURAL ? "some" : "a"] blood-stained [wear_uniform.name][tie_msg]!")]\n"
@@ -77,49 +75,49 @@
 			msg += "[t_He] [t_is] wearing \icon[wear_uniform] \a [wear_uniform][tie_msg].\n"
 
 	//head
-	if(head)
+	if(isnotnull(head))
 		if(head.blood_DNA)
 			msg += "[SPAN_WARNING("[t_He] [t_is] wearing \icon[head] [head.gender == PLURAL ? "some" : "a"] blood-stained [head.name] on [t_his] head!")]\n"
 		else
 			msg += "[t_He] [t_is] wearing \icon[head] \a [head] on [t_his] head.\n"
 
 	//suit/armour
-	if(wear_suit)
+	if(isnotnull(wear_suit))
 		if(wear_suit.blood_DNA)
 			msg += "[SPAN_WARNING("[t_He] [t_is] wearing \icon[wear_suit] [wear_suit.gender == PLURAL ? "some" : "a"] blood-stained [wear_suit.name]!")]\n"
 		else
 			msg += "[t_He] [t_is] wearing \icon[wear_suit] \a [wear_suit].\n"
 
 		//suit/armour storage
-		if(suit_store && !skipsuitstorage)
+		if(!skipsuitstorage && isnotnull(suit_store))
 			if(suit_store.blood_DNA)
 				msg += "[SPAN_WARNING("[t_He] [t_is] carrying \icon[suit_store] [suit_store.gender == PLURAL ? "some" : "a"] blood-stained [suit_store.name] on [t_his] [wear_suit.name]!")]\n"
 			else
 				msg += "[t_He] [t_is] carrying \icon[suit_store] \a [suit_store] on [t_his] [wear_suit.name].\n"
 
 	//back
-	if(back)
+	if(isnotnull(back))
 		if(back.blood_DNA)
 			msg += "[SPAN_WARNING("[t_He] [t_has] \icon[back] [back.gender == PLURAL ? "some" : "a"] blood-stained [back] on [t_his] back.")]\n"
 		else
 			msg += "[t_He] [t_has] \icon[back] \a [back] on [t_his] back.\n"
 
 	//left hand
-	if(l_hand)
+	if(isnotnull(l_hand))
 		if(l_hand.blood_DNA)
 			msg += "[SPAN_WARNING("[t_He] [t_is] holding \icon[l_hand] [l_hand.gender == PLURAL ? "some" : "a"] blood-stained [l_hand.name] in [t_his] left hand!")]\n"
 		else
 			msg += "[t_He] [t_is] holding \icon[l_hand] \a [l_hand] in [t_his] left hand.\n"
 
 	//right hand
-	if(r_hand)
+	if(isnotnull(r_hand))
 		if(r_hand.blood_DNA)
 			msg += "[SPAN_WARNING("[t_He] [t_is] holding \icon[r_hand] [r_hand.gender == PLURAL ? "some" : "a"] blood-stained [r_hand.name] in [t_his] right hand!")]\n"
 		else
 			msg += "[t_He] [t_is] holding \icon[r_hand] \a [r_hand] in [t_his] right hand.\n"
 
 	//gloves
-	if(gloves && !skipgloves)
+	if(!skipgloves && isnotnull(gloves))
 		if(gloves.blood_DNA)
 			msg += "[SPAN_WARNING("[t_He] [t_has] \icon[gloves] [gloves.gender == PLURAL ? "some" : "a"] blood-stained [gloves.name] on [t_his] hands!")]\n"
 		else
@@ -128,21 +126,21 @@
 		msg += "[SPAN_WARNING("[t_He] [t_has] blood-stained hands!")]\n"
 
 	//handcuffed?
-	if(handcuffed)
+	if(isnotnull(handcuffed))
 		if(istype(handcuffed, /obj/item/handcuffs/cable))
 			msg += "[SPAN_WARNING("[t_He] [t_is] \icon[handcuffed] restrained with cable!")]\n"
 		else
 			msg += "[SPAN_WARNING("[t_He] [t_is] \icon[handcuffed] handcuffed!")]\n"
 
 	//belt
-	if(belt)
+	if(isnotnull(belt))
 		if(belt.blood_DNA)
 			msg += "[SPAN_WARNING("[t_He] [t_has] \icon[belt] [belt.gender == PLURAL ? "some" : "a"] blood-stained [belt.name] about [t_his] waist!")]\n"
 		else
 			msg += "[t_He] [t_has] \icon[belt] \a [belt] about [t_his] waist.\n"
 
 	//shoes
-	if(shoes && !skipshoes)
+	if(!skipshoes && isnotnull(shoes))
 		if(shoes.blood_DNA)
 			msg += "[SPAN_WARNING("[t_He] [t_is] wearing \icon[shoes] [shoes.gender == PLURAL ? "some" : "a"] blood-stained [shoes.name] on [t_his] feet!")]\n"
 		else
@@ -151,26 +149,26 @@
 		msg += "[SPAN_WARNING("[t_He] [t_has] blood-stained feet!")]\n"
 
 	//mask
-	if(wear_mask && !skipmask)
+	if(!skipmask && isnotnull(wear_mask))
 		if(wear_mask.blood_DNA)
 			msg += "[SPAN_WARNING("[t_He] [t_has] \icon[wear_mask] [wear_mask.gender == PLURAL ? "some" : "a"] blood-stained [wear_mask.name] on [t_his] face!")]\n"
 		else
 			msg += "[t_He] [t_has] \icon[wear_mask] \a [wear_mask] on [t_his] face.\n"
 
 	//eyes
-	if(glasses && !skipeyes)
+	if(!skipeyes && isnotnull(glasses))
 		if(glasses.blood_DNA)
 			msg += "[SPAN_WARNING("[t_He] [t_has] \icon[glasses] [glasses.gender == PLURAL ? "some" : "a"] blood-stained [glasses] covering [t_his] eyes!")]\n"
 		else
 			msg += "[t_He] [t_has] \icon[glasses] \a [glasses] covering [t_his] eyes.\n"
 
-	//left ear
-	if(l_ear && !skipears)
-		msg += "[t_He] [t_has] \icon[l_ear] \a [l_ear] on [t_his] left ear.\n"
-
-	//right ear
-	if(r_ear && !skipears)
-		msg += "[t_He] [t_has] \icon[r_ear] \a [r_ear] on [t_his] right ear.\n"
+	if(!skipears)
+		//left ear
+		if(isnotnull(l_ear))
+			msg += "[t_He] [t_has] \icon[l_ear] \a [l_ear] on [t_his] left ear.\n"
+		//right ear
+		if(isnotnull(r_ear))
+			msg += "[t_He] [t_has] \icon[r_ear] \a [r_ear] on [t_his] right ear.\n"
 
 	//ID
 	if(id_store)
@@ -198,7 +196,7 @@
 	//splints
 	for(var/organ in list("l_leg","r_leg","l_arm","r_arm"))
 		var/datum/organ/external/o = get_organ(organ)
-		if(o && o.status & ORGAN_SPLINTED)
+		if(o?.status & ORGAN_SPLINTED)
 			msg += "[SPAN_WARNING("[t_He] [t_has] a splint on [t_his] [o.display_name]!")]\n"
 
 	if(suiciding)
@@ -345,7 +343,7 @@
 		msg += wound_flavor_text["head"]
 	else if(is_bleeding["head"])
 		msg += "[SPAN_WARNING("[src] has blood running down [t_his] face!")]\n"
-	if(wound_flavor_text["chest"] && !wear_uniform && !skipjumpsuit) //No need.  A missing chest gibs you.
+	if(wound_flavor_text["chest"] && isnull(wear_uniform) && !skipjumpsuit) //No need.  A missing chest gibs you.
 		msg += wound_flavor_text["chest"]
 	else if(is_bleeding["chest"])
 		display_chest = 1

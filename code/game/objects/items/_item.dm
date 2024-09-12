@@ -245,201 +245,179 @@
 	loc = user
 	layer_to_hud()
 
-//the mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
+//the mob M is attempting to equip this item into the slot passed through as 'slot'. Return TRUE if it can do this and FALSE if it can't.
 //If you are making custom procs but would like to retain partial or complete functionality of this one, include a 'return ..()' to where you want this to happen.
-//Set disable_warning to 1 if you wish it to not give you outputs.
-/obj/item/proc/mob_can_equip(mob/M, slot, disable_warning = 0)
+//Set disable_warning to TRUE if you wish it to not give you outputs.
+/obj/item/proc/mob_can_equip(mob/M, slot, disable_warning = FALSE)
 	if(!slot)
-		return 0
-	if(!M)
-		return 0
+		return FALSE
+	if(isnull(M))
+		return FALSE
+
+	if(iscarbon(M))
+		// START CARBON
+		var/mob/living/carbon/C = M
+		switch(slot)
+			if(SLOT_ID_L_HAND)
+				if(isnotnull(C.l_hand))
+					return FALSE
+				return TRUE
+			if(SLOT_ID_R_HAND)
+				if(isnotnull(C.r_hand))
+					return FALSE
+				return TRUE
+			if(SLOT_ID_WEAR_MASK)
+				if(isnotnull(C.wear_mask))
+					return FALSE
+				if(!(slot_flags & SLOT_MASK))
+					return FALSE
+				return TRUE
+			if(SLOT_ID_BACK)
+				if(isnotnull(C.back))
+					return FALSE
+				if(!(slot_flags & SLOT_BACK))
+					return FALSE
+				return TRUE
+		// END CARBON
 
 	if(ishuman(M))
 		//START HUMAN
 		var/mob/living/carbon/human/H = M
-
 		switch(slot)
-			if(SLOT_ID_L_HAND)
-				if(H.l_hand)
-					return 0
-				return 1
-			if(SLOT_ID_R_HAND)
-				if(H.r_hand)
-					return 0
-				return 1
-			if(SLOT_ID_WEAR_MASK)
-				if(H.wear_mask)
-					return 0
-				if(!(slot_flags & SLOT_MASK))
-					return 0
-				return 1
-			if(SLOT_ID_BACK)
-				if(H.back)
-					return 0
-				if(!(slot_flags & SLOT_BACK))
-					return 0
-				return 1
 			if(SLOT_ID_WEAR_SUIT)
-				if(H.wear_suit)
-					return 0
+				if(isnotnull(H.wear_suit))
+					return FALSE
 				if(!(slot_flags & SLOT_OCLOTHING))
-					return 0
-				return 1
+					return FALSE
+				return TRUE
 			if(SLOT_ID_GLOVES)
-				if(H.gloves)
-					return 0
+				if(isnotnull(H.gloves))
+					return FALSE
 				if(!(slot_flags & SLOT_GLOVES))
-					return 0
-				return 1
+					return FALSE
+				return TRUE
 			if(SLOT_ID_SHOES)
-				if(H.shoes)
-					return 0
+				if(isnotnull(H.shoes))
+					return FALSE
 				if(!(slot_flags & SLOT_FEET))
-					return 0
-				return 1
+					return FALSE
+				return TRUE
 			if(SLOT_ID_BELT)
-				if(H.belt)
-					return 0
-				if(!H.wear_uniform)
+				if(isnotnull(H.belt))
+					return FALSE
+				if(isnull(H.wear_uniform))
 					if(!disable_warning)
 						to_chat(H, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
-					return 0
+					return FALSE
 				if(!(slot_flags & SLOT_BELT))
-					return
-				return 1
+					return FALSE
+				return TRUE
 			if(SLOT_ID_GLASSES)
-				if(H.glasses)
-					return 0
+				if(isnotnull(H.glasses))
+					return FALSE
 				if(!(slot_flags & SLOT_EYES))
-					return 0
-				return 1
+					return FALSE
+				return TRUE
 			if(SLOT_ID_HEAD)
-				if(H.head)
-					return 0
+				if(isnotnull(H.head))
+					return FALSE
 				if(!(slot_flags & SLOT_HEAD))
-					return 0
-				return 1
+					return FALSE
+				return TRUE
 			if(SLOT_ID_L_EAR)
-				if(H.l_ear)
-					return 0
+				if(isnotnull(H.l_ear))
+					return FALSE
 				if(w_class < 2)
-					return 1
+					return TRUE
 				if(!(slot_flags & SLOT_EARS))
-					return 0
-				if((slot_flags & SLOT_TWOEARS) && H.r_ear)
-					return 0
-				return 1
+					return FALSE
+				if((slot_flags & SLOT_TWOEARS) && isnotnull(H.r_ear))
+					return FALSE
+				return TRUE
 			if(SLOT_ID_R_EAR)
-				if(H.r_ear)
-					return 0
+				if(isnotnull(H.r_ear))
+					return FALSE
 				if(w_class < 2)
-					return 1
+					return TRUE
 				if(!(slot_flags & SLOT_EARS))
-					return 0
-				if((slot_flags & SLOT_TWOEARS) && H.l_ear)
-					return 0
-				return 1
+					return FALSE
+				if((slot_flags & SLOT_TWOEARS) && isnotnull(H.l_ear))
+					return FALSE
+				return TRUE
 			if(SLOT_ID_WEAR_UNIFORM)
-				if(H.wear_uniform)
-					return 0
+				if(isnotnull(H.wear_uniform))
+					return FALSE
 				if(!(slot_flags & SLOT_ICLOTHING))
-					return 0
-				return 1
+					return FALSE
+				return TRUE
 			if(SLOT_ID_ID_STORE)
-				if(H.id_store)
-					return 0
-				if(!H.wear_uniform)
+				if(isnotnull(H.id_store))
+					return FALSE
+				if(isnull(H.wear_uniform))
 					if(!disable_warning)
 						to_chat(H, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
-					return 0
+					return FALSE
 				if(!(slot_flags & SLOT_ID))
-					return 0
-				return 1
+					return FALSE
+				return TRUE
 			if(SLOT_ID_L_POCKET)
-				if(H.l_pocket)
-					return 0
-				if(!H.wear_uniform)
+				if(isnotnull(H.l_pocket))
+					return FALSE
+				if(isnull(H.wear_uniform))
 					if(!disable_warning)
 						to_chat(H, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
-					return 0
+					return FALSE
 				if(slot_flags & SLOT_DENYPOCKET)
-					return 0
+					return FALSE
 				if(w_class <= 2 || (slot_flags & SLOT_POCKET))
-					return 1
+					return TRUE
+				return FALSE
 			if(SLOT_ID_R_POCKET)
-				if(H.r_pocket)
-					return 0
-				if(!H.wear_uniform)
+				if(isnotnull(H.r_pocket))
+					return FALSE
+				if(isnull(H.wear_uniform))
 					if(!disable_warning)
 						to_chat(H, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
-					return 0
+					return FALSE
 				if(slot_flags & SLOT_DENYPOCKET)
-					return 0
+					return FALSE
 				if(w_class <= 2 || (slot_flags & SLOT_POCKET))
-					return 1
-				return 0
+					return TRUE
+				return FALSE
 			if(SLOT_ID_SUIT_STORE)
-				if(H.suit_store)
-					return 0
-				if(!H.wear_suit)
+				if(isnotnull(H.suit_store))
+					return FALSE
+				if(isnull(H.wear_suit))
 					if(!disable_warning)
 						to_chat(H, SPAN_WARNING("You need a suit before you can attach this [name]."))
-					return 0
+					return FALSE
 				if(!H.wear_suit.allowed)
 					if(!disable_warning)
 						to_chat(usr, "You somehow have a suit with no defined allowed items for suit storage, stop that.")
-					return 0
+					return FALSE
 				if(istype(src, /obj/item/pda) || istype(src, /obj/item/pen) || is_type_in_list(src, H.wear_suit.allowed))
-					return 1
-				return 0
+					return TRUE
+				return FALSE
 			if(SLOT_ID_HANDCUFFED)
-				if(H.handcuffed)
-					return 0
+				if(isnotnull(H.handcuffed))
+					return FALSE
 				if(!istype(src, /obj/item/handcuffs))
-					return 0
-				return 1
+					return FALSE
+				return TRUE
 			if(SLOT_ID_LEGCUFFED)
-				if(H.legcuffed)
-					return 0
+				if(isnotnull(H.legcuffed))
+					return FALSE
 				if(!istype(src, /obj/item/legcuffs))
-					return 0
-				return 1
+					return FALSE
+				return TRUE
 			if(SLOT_ID_IN_BACKPACK)
-				if(H.back && (istype(H.back, /obj/item/storage/backpack) || istype(H.back, /obj/item/storage/satchel)))
+				if(isnotnull(H.back) && (istype(H.back, /obj/item/storage/backpack) || istype(H.back, /obj/item/storage/satchel)))
 					var/obj/item/storage/store = H.back
 					if(length(store.contents) < store.storage_slots && w_class <= store.max_w_class)
-						return 1
-				return 0
-		return 0 //Unsupported slot
+						return TRUE
+				return FALSE
+		return FALSE //Unsupported slot
 		//END HUMAN
-
-	else if(ismonkey(M))
-		//START MONKEY
-		var/mob/living/carbon/monkey/MO = M
-		switch(slot)
-			if(SLOT_ID_L_HAND)
-				if(MO.l_hand)
-					return 0
-				return 1
-			if(SLOT_ID_R_HAND)
-				if(MO.r_hand)
-					return 0
-				return 1
-			if(SLOT_ID_WEAR_MASK)
-				if(MO.wear_mask)
-					return 0
-				if(!(slot_flags & SLOT_MASK))
-					return 0
-				return 1
-			if(SLOT_ID_BACK)
-				if(MO.back)
-					return 0
-				if(!(slot_flags & SLOT_BACK))
-					return 0
-				return 1
-		return 0 //Unsupported slot
-
-		//END MONKEY
 
 /obj/item/verb/verb_pickup()
 	set category = PANEL_OBJECT

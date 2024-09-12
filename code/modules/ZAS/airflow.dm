@@ -238,11 +238,9 @@ Contains helper procs for airflow, handled in /connection_group.
 //	for(var/mob/M in hearers(src))
 //		M.show_message("\red <B>[src] slams into [A]!</B>",1,"\red You hear a loud slam!",2)
 	playsound(src, "punch", 25, 1, -1)
-	loc:add_blood(src)
-	if(src.wear_suit)
-		src.wear_suit.add_blood(src)
-	if(src.wear_uniform)
-		src.wear_uniform.add_blood(src)
+	loc.add_blood(src)
+	wear_suit?.add_blood(src)
+	wear_uniform?.add_blood(src)
 	var/b_loss = airflow_speed * global.vsc.airflow_damage
 
 	var/blocked = run_armor_check("head", "melee")
@@ -256,7 +254,7 @@ Contains helper procs for airflow, handled in /connection_group.
 
 	if(airflow_speed > 10)
 		paralysis += round(airflow_speed * global.vsc.airflow_stun)
-		stunned = max(stunned,paralysis + 3)
+		stunned = max(stunned, paralysis + 3)
 	else
 		stunned += round(airflow_speed * global.vsc.airflow_stun / 2)
 	. = ..()

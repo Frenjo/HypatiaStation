@@ -13,11 +13,8 @@ the HUD updates properly! */
 			continue
 
 		if(!local_scanner)
-			if(istype(patient.wear_uniform, /obj/item/clothing/under))
-				var/obj/item/clothing/under/U = patient.wear_uniform
-				if(U.sensor_mode < 2)
-					continue
-			else
+			var/obj/item/clothing/under/U = patient.wear_uniform
+			if(U?.sensor_mode < 2)
 				continue
 
 		P.client.images.Add(patient.hud_list[HEALTH_HUD])

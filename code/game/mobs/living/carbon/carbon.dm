@@ -187,7 +187,7 @@
 				if(status == "")
 					status = "OK"
 				show_message("\t [status == "OK" ? "\blue " : "\red "]My [org.display_name] is [status].", 1)
-			if((SKELETON in H.mutations) && !H.wear_uniform && !H.wear_suit)
+			if((SKELETON in H.mutations) && isnull(H.wear_uniform) && isnull(H.wear_suit))
 				H.play_xylophone()
 		else
 			var/t_him = "it"

@@ -337,9 +337,23 @@
 	if(!isliving(M))
 		return
 	if(method == TOUCH)
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
+			if(isnotnull(C.wear_mask))
+				if(prob(meltprob) && !C.wear_mask.unacidable)
+					to_chat(C, SPAN_DANGER("Your mask melts away but protects you from the acid!"))
+					qdel(C.wear_mask)
+					C.update_inv_wear_mask(0)
+					if(ishuman(C))
+						var/mob/living/carbon/human/H = C
+						H.update_hair(0)
+				else
+					to_chat(C, SPAN_WARNING("Your mask protects you from the acid."))
+				return
+
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(H.head)
+			if(isnotnull(H.head))
 				if(prob(meltprob) && !H.head.unacidable)
 					to_chat(H, SPAN_DANGER("Your headgear melts away but protects you from the acid!"))
 					qdel(H.head)
@@ -349,38 +363,17 @@
 					to_chat(H, SPAN_WARNING("Your headgear protects you from the acid."))
 				return
 
-			if(H.wear_mask)
-				if(prob(meltprob) && !H.wear_mask.unacidable)
-					to_chat(H, SPAN_DANGER("Your mask melts away but protects you from the acid!"))
-					qdel(H.wear_mask)
-					H.update_inv_wear_mask(0)
-					H.update_hair(0)
-				else
-					to_chat(H, SPAN_WARNING("Your mask protects you from the acid."))
-				return
-
-			if(H.glasses) //Doesn't protect you from the acid but can melt anyways!
+			if(isnotnull(H.glasses)) //Doesn't protect you from the acid but can melt anyways!
 				if(prob(meltprob) && !H.glasses.unacidable)
 					to_chat(H, SPAN_DANGER("Your glasses melt away!"))
 					qdel(H.glasses)
 					H.update_inv_glasses(0)
 
-		else if(ismonkey(M))
-			var/mob/living/carbon/monkey/MK = M
-			if(MK.wear_mask)
-				if(!MK.wear_mask.unacidable)
-					to_chat(MK, SPAN_DANGER("Your mask melts away but protects you from the acid!"))
-					qdel(MK.wear_mask)
-					MK.update_inv_wear_mask(0)
-				else
-					to_chat(MK, SPAN_WARNING("Your mask protects you from the acid."))
-				return
-
 		if(!M.unacidable)
 			if(ishuman(M) && volume >= 10)
 				var/mob/living/carbon/human/H = M
 				var/datum/organ/external/affecting = H.get_organ("head")
-				if(affecting)
+				if(isnotnull(affecting))
 					if(affecting.take_damage(4 * toxpwr, 2 * toxpwr))
 						H.UpdateDamageIcon()
 					if(prob(meltprob)) //Applies disfigurement

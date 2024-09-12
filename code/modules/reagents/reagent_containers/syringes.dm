@@ -142,7 +142,7 @@
 				var/time = 30 //Injecting through a hardsuit takes longer due to needing to find a port.
 				if(ishuman(target))
 					var/mob/living/carbon/human/H = target
-					if(H.wear_suit && istype(H.wear_suit, /obj/item/clothing/suit/space))
+					if(isnotnull(H.wear_suit) && istype(H.wear_suit, /obj/item/clothing/suit/space))
 						time = 60
 
 				for(var/mob/O in viewers(world.view, user))

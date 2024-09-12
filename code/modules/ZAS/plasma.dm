@@ -141,7 +141,7 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 
 /mob/living/carbon/human/proc/pl_suit_protected()
 	//Checks if the suit is adequately sealed.
-	if(wear_suit)
+	if(isnotnull(wear_suit))
 		if(global.vsc.plc.PLASMAGUARD_ONLY)
 			if(HAS_ITEM_FLAGS(wear_suit, ITEM_FLAG_PLASMAGUARD))
 				return 1
@@ -153,12 +153,9 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 
 /mob/living/carbon/human/proc/suit_contamination()
 	//Runs over the things that can be contaminated and does so.
-	if(wear_uniform)
-		wear_uniform.contaminate()
-	if(shoes)
-		shoes.contaminate()
-	if(gloves)
-		gloves.contaminate()
+	wear_uniform?.contaminate()
+	shoes?.contaminate()
+	gloves?.contaminate()
 
 /turf/Entered(obj/item/I)
 	. = ..()

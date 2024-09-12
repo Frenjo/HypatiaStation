@@ -296,24 +296,24 @@
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
 	<BR><HR>
-	<BR><B>Head(Mask):</B> <A href='byond://?src=\ref[src];item=mask'>[(wear_mask ? wear_mask : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='byond://?src=\ref[src];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='byond://?src=\ref[src];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Gloves:</B> <A href='byond://?src=\ref[src];item=gloves'>[(gloves ? gloves : "Nothing")]</A>
-	<BR><B>Eyes:</B> <A href='byond://?src=\ref[src];item=eyes'>[(glasses ? glasses : "Nothing")]</A>
-	<BR><B>Left Ear:</B> <A href='byond://?src=\ref[src];item=l_ear'>[(l_ear ? l_ear : "Nothing")]</A>
-	<BR><B>Right Ear:</B> <A href='byond://?src=\ref[src];item=r_ear'>[(r_ear ? r_ear : "Nothing")]</A>
-	<BR><B>Head:</B> <A href='byond://?src=\ref[src];item=head'>[(head ? head : "Nothing")]</A>
-	<BR><B>Shoes:</B> <A href='byond://?src=\ref[src];item=shoes'>[(shoes ? shoes : "Nothing")]</A>
-	<BR><B>Belt:</B> <A href='byond://?src=\ref[src];item=belt'>[(belt ? belt : "Nothing")]</A>
-	<BR><B>Uniform:</B> <A href='byond://?src=\ref[src];item=uniform'>[(wear_uniform ? wear_uniform : "Nothing")]</A>
-	<BR><B>(Exo)Suit:</B> <A href='byond://?src=\ref[src];item=suit'>[(wear_suit ? wear_suit : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='byond://?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='byond://?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
-	<BR><B>ID:</B> <A href='byond://?src=\ref[src];item=id'>[(id_store ? id_store : "Nothing")]</A>
-	<BR><B>Suit Storage:</B> <A href='byond://?src=\ref[src];item=suit_store'>[(suit_store ? suit_store : "Nothing")]</A>
-	<BR>[(handcuffed ? text("<A href='byond://?src=\ref[src];item=handcuff'>Handcuffed</A>") : text("<A href='byond://?src=\ref[src];item=handcuff'>Not Handcuffed</A>"))]
-	<BR>[(legcuffed ? text("<A href='byond://?src=\ref[src];item=legcuff'>Legcuffed</A>") : text(""))]
-	<BR>[(internal ? text("<A href='byond://?src=\ref[src];item=internal'>Remove Internal</A>") : "")]
+	<BR><B>Head(Mask):</B> <A href='byond://?src=\ref[src];item=mask'>[(isnotnull(wear_mask) ? wear_mask : "Nothing")]</A>
+	<BR><B>Left Hand:</B> <A href='byond://?src=\ref[src];item=l_hand'>[(isnotnull(l_hand) ? l_hand  : "Nothing")]</A>
+	<BR><B>Right Hand:</B> <A href='byond://?src=\ref[src];item=r_hand'>[(isnotnull(r_hand) ? r_hand : "Nothing")]</A>
+	<BR><B>Gloves:</B> <A href='byond://?src=\ref[src];item=gloves'>[(isnotnull(gloves) ? gloves : "Nothing")]</A>
+	<BR><B>Eyes:</B> <A href='byond://?src=\ref[src];item=eyes'>[(isnotnull(glasses) ? glasses : "Nothing")]</A>
+	<BR><B>Left Ear:</B> <A href='byond://?src=\ref[src];item=l_ear'>[(isnotnull(l_ear) ? l_ear : "Nothing")]</A>
+	<BR><B>Right Ear:</B> <A href='byond://?src=\ref[src];item=r_ear'>[(isnotnull(r_ear) ? r_ear : "Nothing")]</A>
+	<BR><B>Head:</B> <A href='byond://?src=\ref[src];item=head'>[(isnotnull(head) ? head : "Nothing")]</A>
+	<BR><B>Shoes:</B> <A href='byond://?src=\ref[src];item=shoes'>[(isnotnull(shoes) ? shoes : "Nothing")]</A>
+	<BR><B>Belt:</B> <A href='byond://?src=\ref[src];item=belt'>[(isnotnull(belt) ? belt : "Nothing")]</A>
+	<BR><B>Uniform:</B> <A href='byond://?src=\ref[src];item=uniform'>[(isnotnull(wear_uniform) ? wear_uniform : "Nothing")]</A>
+	<BR><B>(Exo)Suit:</B> <A href='byond://?src=\ref[src];item=suit'>[(isnotnull(wear_suit) ? wear_suit : "Nothing")]</A>
+	<BR><B>Back:</B> <A href='byond://?src=\ref[src];item=back'>[(isnotnull(back) ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !internal) ? " <A href='byond://?src=\ref[src];item=internal'>Set Internal</A>" : "")]
+	<BR><B>ID:</B> <A href='byond://?src=\ref[src];item=id'>[(isnotnull(id_store) ? id_store : "Nothing")]</A>
+	<BR><B>Suit Storage:</B> <A href='byond://?src=\ref[src];item=suit_store'>[(isnotnull(suit_store) ? suit_store : "Nothing")]</A>
+	<BR>[(isnotnull(handcuffed) ? "<A href='byond://?src=\ref[src];item=handcuff'>Handcuffed</A>" : "<A href='byond://?src=\ref[src];item=handcuff'>Not Handcuffed</A>")]
+	<BR>[(isnotnull(legcuffed) ? "<A href='byond://?src=\ref[src];item=legcuff'>Legcuffed</A>" : "")]
+	<BR>[(isnotnull(internal) ? "<A href='byond://?src=\ref[src];item=internal'>Remove Internal</A>" : "")]
 	<BR><A href='byond://?src=\ref[src];item=splints'>Remove Splints</A>
 	<BR><A href='byond://?src=\ref[src];item=pockets'>Empty Pockets</A>
 	<BR><A href='byond://?src=\ref[user];refresh=1'>Refresh</A>
@@ -711,18 +711,18 @@
 	else
 		return 2
 
-	if(istype(src.head, /obj/item/clothing/head/welding))
-		var/obj/item/clothing/head/welding/welding = src.head
+	if(istype(head, /obj/item/clothing/head/welding))
+		var/obj/item/clothing/head/welding/welding = head
 		if(!welding.up)
 			number += 2
-	if(istype(src.head, /obj/item/clothing/head/helmet/space))
+	if(istype(head, /obj/item/clothing/head/helmet/space))
 		number += 2
-	if(istype(src.glasses, /obj/item/clothing/glasses/thermal))
+	if(istype(glasses, /obj/item/clothing/glasses/thermal))
 		number -= 1
-	if(istype(src.glasses, /obj/item/clothing/glasses/sunglasses))
+	if(istype(glasses, /obj/item/clothing/glasses/sunglasses))
 		number += 1
-	if(istype(src.glasses, /obj/item/clothing/glasses/welding))
-		var/obj/item/clothing/glasses/welding/welding = src.glasses
+	if(istype(glasses, /obj/item/clothing/glasses/welding))
+		var/obj/item/clothing/glasses/welding/welding = glasses
 		if(!welding.up)
 			number += 2
 	return number

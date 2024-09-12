@@ -27,7 +27,7 @@ emp_act
 */
 // END TASER NERF
 
-	if(wear_suit && istype(wear_suit, /obj/item/clothing/suit/armor/laserproof))
+	if(isnotnull(wear_suit) && istype(wear_suit, /obj/item/clothing/suit/armor/laserproof))
 		if(istype(P, /obj/item/projectile/energy))
 			var/reflectchance = 40 - round(P.damage / 3)
 			if(!(def_zone in list("chest", "groin")))
@@ -271,13 +271,13 @@ emp_act
 						global.PCticker.mode.remove_revolutionary(mind)
 
 				if(bloody)//Apply blood
-					if(wear_mask)
+					if(isnotnull(wear_mask))
 						wear_mask.add_blood(src)
 						update_inv_wear_mask(0)
-					if(head)
+					if(isnotnull(head))
 						head.add_blood(src)
 						update_inv_head(0)
-					if(glasses && prob(33))
+					if(isnotnull(glasses) && prob(33))
 						glasses.add_blood(src)
 						update_inv_glasses(0)
 
@@ -303,10 +303,10 @@ emp_act
 	update_inv_gloves()		//updates on-mob overlays for bloody hands and/or bloody gloves
 
 /mob/living/carbon/human/proc/bloody_body(mob/living/source)
-	if(wear_suit)
+	if(isnotnull(wear_suit))
 		wear_suit.add_blood(source)
 		update_inv_wear_suit(0)
-	if(wear_uniform)
+	if(isnotnull(wear_uniform))
 		wear_uniform.add_blood(source)
 		update_inv_wear_uniform(0)
 

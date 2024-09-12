@@ -104,8 +104,7 @@
 
 /obj/machinery/computer/crew/proc/scan()
 	for(var/mob/living/carbon/human/H in GLOBL.mob_list)
-		if(istype(H.wear_uniform, /obj/item/clothing/under))
-			var/obj/item/clothing/under/C = H.wear_uniform
-			if(C.has_sensor)
-				tracked |= C
+		var/obj/item/clothing/under/C = H.wear_uniform
+		if(C?.has_sensor)
+			tracked |= C
 	return 1

@@ -289,7 +289,7 @@ steam.start() -- spawns the effect
 /obj/effect/smoke/mustard/affect(mob/living/carbon/human/R)
 	if(!..())
 		return 0
-	if(R.wear_suit != null)
+	if(isnotnull(R.wear_suit))
 		return 0
 
 	R.burn_skin(0.75)

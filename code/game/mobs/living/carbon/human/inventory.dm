@@ -722,7 +722,7 @@ It can still be worn/put on as normal.
 					target.u_equip(target.r_pocket) //At this stage l_pocket is already processed by the code above, we only need to process r_pocket.
 		else
 			if(item && target.has_organ_for_slot(slot_to_process)) //Placing an item on the mob
-				if(item.mob_can_equip(target, slot_to_process, 0))
+				if(item.mob_can_equip(target, slot_to_process, FALSE))
 					source.u_equip(item)
 					target.equip_to_slot_if_possible(item, slot_to_process, 0, 1, 1)
 					item.dropped(source)
