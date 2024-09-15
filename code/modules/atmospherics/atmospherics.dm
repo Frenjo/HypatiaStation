@@ -15,6 +15,9 @@ Pipelines + Other Objects -> Pipe network
 
 	power_channel = ENVIRON
 
+	// TODO: Possibly refactor and unify all of the different machinery id_tag variables into one.
+	var/id_tag = null // Used by several subtypes for signal handling.
+
 	var/nodealert = 0
 
 	var/initialize_directions = 0
@@ -53,3 +56,16 @@ Pipelines + Other Objects -> Pipe network
 
 /obj/machinery/atmospherics/update_icon()
 	return null
+
+/obj/machinery/atmospherics/receive_signal(datum/signal/signal)
+	SHOULD_CALL_PARENT(TRUE)
+
+	. = ..()
+	if(isnotnull(id_tag))
+		if(isnull(signal.data["tag"]) || signal.data["tag"] != id_tag)
+			return FALSE
+
+	if(signal.data["sigtype"] != "command")
+		return FALSE
+
+	return TRUE

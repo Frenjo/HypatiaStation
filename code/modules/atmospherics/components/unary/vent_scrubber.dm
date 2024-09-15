@@ -9,7 +9,6 @@
 	level = 1
 
 	var/area/initial_loc
-	var/id_tag = null
 	var/frequency = 1439
 	var/datum/radio_frequency/radio_connection
 
@@ -170,16 +169,19 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/receive_signal(datum/signal/signal)
 	if(stat & (NOPOWER|BROKEN))
 		return
-	if(isnull(signal.data["tag"]) || signal.data["tag"] != id_tag || signal.data["sigtype"] != "command")
-		return 0
 
-	if(isnotnull(signal.data["power"]))
-		on = text2num(signal.data["power"])
+	if(!..())
+		return
+
+	var/signal_power = signal.data["power"]
+	if(isnotnull(signal_power))
+		on = text2num(signal_power)
 	if(isnotnull(signal.data["power_toggle"]))
 		on = !on
 
-	if(signal.data["panic_siphon"]) //must be before if("scrubbing" thing
-		panic = text2num(signal.data["panic_siphon"] != null)
+	var/signal_panic_siphon = signal.data["panic_siphon"]
+	if(isnotnull(signal_panic_siphon)) //must be before if("scrubbing" thing
+		panic = text2num(signal_panic_siphon)
 		if(panic)
 			on = TRUE
 			scrubbing = SIPHONING
@@ -197,28 +199,33 @@
 			scrubbing = SCRUBBING
 			volume_rate = initial(volume_rate)
 
-	if(isnotnull(signal.data["scrubbing"]))
-		scrubbing = text2num(signal.data["scrubbing"])
+	var/signal_scrubbing = signal.data["scrubbing"]
+	if(isnotnull(signal_scrubbing))
+		scrubbing = text2num(signal_scrubbing)
 	if(signal.data["toggle_scrubbing"])
 		scrubbing = !scrubbing
 
-	if(isnotnull(signal.data["co2_scrub"]))
-		scrub_CO2 = text2num(signal.data["co2_scrub"])
+	var/signal_co2_scrub = signal.data["co2_scrub"]
+	if(isnotnull(signal_co2_scrub))
+		scrub_CO2 = text2num(signal_co2_scrub)
 	if(signal.data["toggle_co2_scrub"])
 		scrub_CO2 = !scrub_CO2
 
-	if(isnotnull(signal.data["tox_scrub"]))
-		scrub_Toxins = text2num(signal.data["tox_scrub"])
+	var/signal_tox_scrub = signal.data["tox_scrub"]
+	if(isnotnull(signal_tox_scrub))
+		scrub_Toxins = text2num(signal_tox_scrub)
 	if(signal.data["toggle_tox_scrub"])
 		scrub_Toxins = !scrub_Toxins
 
-	if(isnotnull(signal.data["n2o_scrub"]))
-		scrub_N2O = text2num(signal.data["n2o_scrub"])
+	var/signal_n2o_scrub = signal.data["n2o_scrub"]
+	if(isnotnull(signal_n2o_scrub))
+		scrub_N2O = text2num(signal_n2o_scrub)
 	if(signal.data["toggle_n2o_scrub"])
 		scrub_N2O = !scrub_N2O
 
-	if(isnotnull(signal.data["init"]))
-		name = signal.data["init"]
+	var/signal_init = signal.data["init"]
+	if(isnotnull(signal_init))
+		name = signal_init
 		return
 
 	if(isnotnull(signal.data["status"]))

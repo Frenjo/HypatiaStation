@@ -654,7 +654,6 @@
 	icon_state = "dvalve0"
 
 	var/frequency = 0
-	var/id = null
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/mains_pipe/valve/digital/atmos_initialise()
@@ -690,8 +689,8 @@
 		icon_state = "[hide?"h":""]dvalve[open]"
 
 /obj/machinery/atmospherics/mains_pipe/valve/digital/receive_signal(datum/signal/signal)
-	if(isnull(signal.data["tag"]) || signal.data["tag"] != id)
-		return 0
+	if(!..())
+		return
 
 	switch(signal.data["command"])
 		if("valve_open")

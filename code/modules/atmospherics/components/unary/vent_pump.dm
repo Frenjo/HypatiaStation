@@ -19,7 +19,6 @@
 
 	var/area/initial_loc
 	var/area_uid
-	var/id_tag = null
 
 	var/on = FALSE
 	var/pump_direction = RELEASING
@@ -160,49 +159,52 @@
 		return
 
 	//log_admin("DEBUG \[[world.timeofday]\]: /obj/machinery/atmospherics/unary/vent_pump/receive_signal([signal.debug_print()])")
-	if(isnull(signal.data["tag"]) || signal.data["tag"] != id_tag || signal.data["sigtype"] != "command")
-		return 0
+	if(!..())
+		return
 
-	if(signal.data["purge"] != null)
+	if(isnotnull(signal.data["purge"]))
 		pressure_checks &= ~PRESSURE_CHECK_EXTERNAL
 		pump_direction = SIPHONING
 
-	if(signal.data["stabalize"] != null)
+	if(isnotnull(signal.data["stabilise"]))
 		pressure_checks |= PRESSURE_CHECK_EXTERNAL
 		pump_direction = RELEASING
 
-	if(signal.data["power"] != null)
-		on = text2num(signal.data["power"])
+	var/signal_power = signal.data["power"]
+	if(isnotnull(signal_power))
+		on = text2num(signal_power)
 
-	if(signal.data["power_toggle"] != null)
+	if(isnotnull(signal.data["power_toggle"]))
 		on = !on
 
-	if(signal.data["checks"] != null)
-		pressure_checks = text2num(signal.data["checks"])
+	var/signal_checks = signal.data["checks"]
+	if(isnotnull(signal_checks))
+		pressure_checks = text2num(signal_checks)
 
-	if(signal.data["checks_toggle"] != null)
+	if(isnotnull(signal.data["checks_toggle"]))
 		pressure_checks = (pressure_checks ? PRESSURE_CHECK_NULL : PRESSURE_CHECK_BOTH)
 
-	if(signal.data["direction"] != null)
-		pump_direction = text2num(signal.data["direction"])
+	var/signal_direction = signal.data["direction"]
+	if(isnotnull(signal_direction))
+		pump_direction = text2num(signal_direction)
 
-	if(signal.data["set_internal_pressure"] != null)
-		internal_pressure_bound = clamp(text2num(signal.data["set_internal_pressure"]), 0, ONE_ATMOSPHERE * 50)
+	var/signal_set_internal_pressure = signal.data["set_internal_pressure"]
+	if(isnotnull(signal_set_internal_pressure))
+		internal_pressure_bound = clamp(text2num(signal_set_internal_pressure), 0, ONE_ATMOSPHERE * 50)
 
-	if(signal.data["set_external_pressure"] != null)
-		external_pressure_bound = clamp(text2num(signal.data["set_external_pressure"]), 0, ONE_ATMOSPHERE * 50)
+	var/signal_set_external_pressure = signal.data["set_external_pressure"]
+	if(isnotnull(signal_set_external_pressure))
+		external_pressure_bound = clamp(text2num(signal_set_external_pressure), 0, ONE_ATMOSPHERE * 50)
 
-	if(signal.data["adjust_internal_pressure"] != null)
-		internal_pressure_bound = clamp(internal_pressure_bound + text2num(signal.data["adjust_internal_pressure"]), 0, ONE_ATMOSPHERE * 50)
+	var/signal_adjust_internal_pressure = signal.data["adjust_internal_pressure"]
+	if(isnotnull(signal_adjust_internal_pressure))
+		internal_pressure_bound = clamp(internal_pressure_bound + text2num(signal_adjust_internal_pressure), 0, ONE_ATMOSPHERE * 50)
 
-	if(signal.data["adjust_external_pressure"] != null)
-		external_pressure_bound = clamp(external_pressure_bound + text2num(signal.data["adjust_external_pressure"]), 0, ONE_ATMOSPHERE * 50)
+	var/signal_adjust_external_pressure = signal.data["adjust_external_pressure"]
+	if(isnotnull(signal_adjust_external_pressure))
+		external_pressure_bound = clamp(external_pressure_bound + text2num(signal_adjust_external_pressure), 0, ONE_ATMOSPHERE * 50)
 
-	if(signal.data["init"] != null)
-		name = signal.data["init"]
-		return
-
-	if(signal.data["status"] != null)
+	if(isnotnull(signal.data["status"]))
 		spawn(2)
 			broadcast_status()
 		return //do not update_icon

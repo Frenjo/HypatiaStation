@@ -24,7 +24,6 @@ Thus, the two variables affect pump operation are set in New():
 	var/max_transfer_rate = 200
 
 	var/frequency = 0
-	var/id = null
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/binary/volume_pump/on
@@ -86,7 +85,7 @@ Thus, the two variables affect pump operation are set in New():
 	signal.transmission_method = TRANSMISSION_RADIO
 	signal.source = src
 	signal.data = list(
-		"tag" = id,
+		"tag" = id_tag,
 		"device" = "APV",
 		"power" = on,
 		"transfer_rate" = transfer_rate,
@@ -107,19 +106,20 @@ Thus, the two variables affect pump operation are set in New():
 		onclose(user, "atmo_pump")*/
 
 /obj/machinery/atmospherics/binary/volume_pump/receive_signal(datum/signal/signal)
-	if(isnull(signal.data["tag"]) || signal.data["tag"] != id || signal.data["sigtype"] != "command")
-		return 0
+	if(!..())
+		return
 
-	if("power" in signal.data)
-		on = text2num(signal.data["power"])
-
-	if("power_toggle" in signal.data)
+	var/signal_power = signal.data["power"]
+	if(isnotnull(signal_power))
+		on = text2num(signal_power)
+	if(isnotnull(signal.data["power_toggle"]))
 		on = !on
 
-	if("set_transfer_rate" in signal.data)
-		transfer_rate = clamp(text2num(signal.data["set_transfer_rate"]), 0, air1.volume)
+	var/signal_set_transfer_rate = signal.data["set_transfer_rate"]
+	if(isnotnull(signal_set_transfer_rate))
+		transfer_rate = clamp(text2num(signal_set_transfer_rate), 0, air1.volume)
 
-	if("status" in signal.data)
+	if(isnotnull(signal.data["status"]))
 		spawn(2)
 			broadcast_status()
 		return //do not update_icon

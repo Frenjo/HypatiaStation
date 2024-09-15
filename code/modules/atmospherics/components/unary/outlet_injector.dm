@@ -13,7 +13,6 @@
 	var/volume_rate = 50
 
 	var/frequency = 0
-	var/id = null
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/unary/outlet_injector/New()
@@ -64,8 +63,8 @@
 	return 1
 
 /obj/machinery/atmospherics/unary/outlet_injector/receive_signal(datum/signal/signal)
-	if(isnull(signal.data["tag"]) || signal.data["tag"] != id || signal.data["sigtype"] != "command")
-		return 0
+	if(!..())
+		return
 
 	if("power" in signal.data)
 		on = text2num(signal.data["power"])
@@ -127,7 +126,7 @@
 	signal.transmission_method = TRANSMISSION_RADIO
 	signal.source = src
 	signal.data = list(
-		"tag" = id,
+		"tag" = id_tag,
 		"device" = "AO",
 		"power" = on,
 		"volume_rate" = volume_rate,

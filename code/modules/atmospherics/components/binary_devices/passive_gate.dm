@@ -11,7 +11,6 @@
 	var/target_pressure = ONE_ATMOSPHERE
 
 	var/frequency = 0
-	var/id = null
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/binary/passive_gate/atmos_initialise()
@@ -75,7 +74,7 @@
 	signal.source = src
 
 	signal.data = list(
-		"tag" = id,
+		"tag" = id_tag,
 		"device" = "AGP",
 		"power" = on,
 		"target_output" = target_pressure,
@@ -95,19 +94,20 @@
 	onclose(user, "atmo_pump")
 
 /obj/machinery/atmospherics/binary/passive_gate/receive_signal(datum/signal/signal)
-	if(isnull(signal.data["tag"]) || signal.data["tag"] != id || signal.data["sigtype"] != "command")
-		return 0
+	if(!..())
+		return
 
-	if("power" in signal.data)
-		on = text2num(signal.data["power"])
-
-	if("power_toggle" in signal.data)
+	var/signal_power = signal.data["power"]
+	if(isnotnull(signal_power))
+		on = text2num(signal_power)
+	if(isnotnull(signal.data["power_toggle"]))
 		on = !on
 
-	if("set_output_pressure" in signal.data)
-		target_pressure = clamp(text2num(signal.data["set_output_pressure"]), 0, ONE_ATMOSPHERE * 50)
+	var/signal_set_output_pressure = signal.data["set_output_pressure"]
+	if(isnotnull(signal_set_output_pressure))
+		target_pressure = clamp(text2num(signal_set_output_pressure), 0, ONE_ATMOSPHERE * 50)
 
-	if("status" in signal.data)
+	if(isnotnull(signal.data["status"]))
 		spawn(2)
 			broadcast_status()
 		return //do not update_icon

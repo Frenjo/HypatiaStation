@@ -105,7 +105,6 @@
 	icon = 'icons/obj/atmospherics/digital_valve.dmi'
 
 	var/frequency = 0
-	var/id = null
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/atmos_initialise()
@@ -126,8 +125,8 @@
 	..()
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/receive_signal(datum/signal/signal)
-	if(isnull(signal.data["tag"]) || signal.data["tag"] != id)
-		return 0
+	if(!..())
+		return
 
 	switch(signal.data["command"])
 		if("valve_open")
@@ -225,7 +224,6 @@
 	icon = 'icons/obj/atmospherics/digital_valve.dmi'
 
 	var/frequency = 0
-	var/id = null
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/atmos_initialise()
@@ -246,8 +244,8 @@
 	..()
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/receive_signal(datum/signal/signal)
-	if(isnull(signal.data["tag"]) || signal.data["tag"] != id)
-		return 0
+	if(!..())
+		return
 
 	switch(signal.data["command"])
 		if("valve_open")

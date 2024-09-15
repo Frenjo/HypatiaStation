@@ -23,7 +23,6 @@
 	//4: Do not pass output_pressure_max
 
 	var/frequency = 0
-	var/id = null
 	var/datum/radio_frequency/radio_connection
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/high_volume
@@ -120,7 +119,7 @@
 	signal.source = src
 
 	signal.data = list(
-		"tag" = id,
+		"tag" = id_tag,
 		"device" = "ADVP",
 		"power" = on,
 		"direction" = pump_direction ? ("release") : ("siphon"),
@@ -135,38 +134,44 @@
 	return 1
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/receive_signal(datum/signal/signal)
-	if(isnull(signal.data["tag"]) || signal.data["tag"] != id || signal.data["sigtype"] != "command")
-		return 0
-	if("power" in signal.data)
-		on = text2num(signal.data["power"])
+	if(!..())
+		return
 
-	if("power_toggle" in signal.data)
+	var/signal_power = signal.data["power"]
+	if(isnotnull(signal_power))
+		on = text2num(signal_power)
+	if(isnotnull(signal.data["power_toggle"]))
 		on = !on
 
-	if("direction" in signal.data)
-		pump_direction = text2num(signal.data["direction"])
+	var/signal_direction = signal.data["direction"]
+	if(isnotnull(signal_direction))
+		pump_direction = text2num(signal_direction)
 
-	if("checks" in signal.data)
-		pressure_checks = text2num(signal.data["checks"])
+	var/signal_checks = signal.data["checks"]
+	if(isnotnull(signal_checks))
+		pressure_checks = text2num(signal_checks)
 
-	if("purge" in signal.data)
+	if(isnotnull(signal.data["purge"]))
 		pressure_checks &= ~1
 		pump_direction = 0
 
-	if("stabalize" in signal.data)
+	if(isnotnull(signal.data["stabilise"]))
 		pressure_checks |= 1
 		pump_direction = 1
 
-	if("set_input_pressure" in signal.data)
-		input_pressure_min = clamp(text2num(signal.data["set_input_pressure"]), 0, ONE_ATMOSPHERE * 50)
+	var/signal_set_input_pressure = signal.data["set_input_pressure"]
+	if(isnotnull(signal_set_input_pressure))
+		input_pressure_min = clamp(text2num(signal_set_input_pressure), 0, ONE_ATMOSPHERE * 50)
 
-	if("set_output_pressure" in signal.data)
-		output_pressure_max = clamp(text2num(signal.data["set_output_pressure"]), 0, ONE_ATMOSPHERE * 50)
+	var/signal_set_output_pressure = signal.data["set_output_pressure"]
+	if(isnotnull(signal_set_output_pressure))
+		output_pressure_max = clamp(text2num(signal_set_output_pressure), 0, ONE_ATMOSPHERE * 50)
 
-	if("set_external_pressure" in signal.data)
-		external_pressure_bound = clamp(text2num(signal.data["set_external_pressure"]), 0, ONE_ATMOSPHERE * 50)
+	var/signal_set_external_pressure = signal.data["set_external_pressure"]
+	if(isnotnull(signal_set_external_pressure))
+		external_pressure_bound = clamp(text2num(signal_set_external_pressure), 0, ONE_ATMOSPHERE * 50)
 
-	if("status" in signal.data)
+	if(isnotnull(signal.data["status"]))
 		spawn(2)
 			broadcast_status()
 		return //do not update_icon
