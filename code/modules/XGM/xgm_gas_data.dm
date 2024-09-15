@@ -28,7 +28,7 @@
 	. = TRUE
 	var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
 	for(var/type in SUBTYPESOF(/decl/xgm_gas))
-		var/decl/xgm_gas/gas = GET_DECL_INSTANCE(type) //avoid initial() because of potential New() actions
+		var/decl/xgm_gas/gas = GET_DECL_INSTANCE(type) // Avoid initial() because of potential New() actions.
 
 		if(type in gas_data.gases)
 			error("Duplicate gas `[type]`!")
