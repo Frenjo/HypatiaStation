@@ -103,7 +103,7 @@
 
 /obj/machinery/power/smes/proc/input_power(percentage)
 	var/inputted_power = target_load * (percentage / 100)
-	inputted_power = between(0, inputted_power, target_load)
+	inputted_power = clamp(inputted_power, 0, target_load)
 	if(terminal && terminal.powernet)
 		inputted_power = terminal.powernet.draw_power(inputted_power)
 		charge += inputted_power * SMESRATE

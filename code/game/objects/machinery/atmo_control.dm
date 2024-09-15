@@ -256,7 +256,7 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 
 	if(href_list["adj_pressure"])
 		var/change = text2num(href_list["adj_pressure"])
-		pressure_setting = between(0, pressure_setting + change, 50 * ONE_ATMOSPHERE)
+		pressure_setting = clamp(pressure_setting + change, 0, 50 * ONE_ATMOSPHERE)
 		spawn(1)
 			src.updateUsrDialog()
 		return

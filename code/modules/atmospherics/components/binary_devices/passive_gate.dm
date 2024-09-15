@@ -105,11 +105,7 @@
 		on = !on
 
 	if("set_output_pressure" in signal.data)
-		target_pressure = between(
-			0,
-			text2num(signal.data["set_output_pressure"]),
-			ONE_ATMOSPHERE * 50
-		)
+		target_pressure = clamp(text2num(signal.data["set_output_pressure"]), 0, ONE_ATMOSPHERE * 50)
 
 	if("status" in signal.data)
 		spawn(2)

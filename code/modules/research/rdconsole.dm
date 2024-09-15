@@ -533,7 +533,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				dat += "<A href='byond://?src=\ref[src];menu=1.5'>Load Design to Disk</A> || "
 			else
 				dat += "Name: [d_disk.blueprint.name]<BR>"
-				dat += "Level: [between(0, (d_disk.blueprint.reliability + rand(-15, 15)), 100)]<BR>"
+				dat += "Level: [clamp((d_disk.blueprint.reliability + rand(-15, 15)), 0, 100)]<BR>"
 				switch(d_disk.blueprint.build_type)
 					if(IMPRINTER)
 						dat += "Lathe Type: Circuit Imprinter<BR>"

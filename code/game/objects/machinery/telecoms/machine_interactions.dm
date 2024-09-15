@@ -26,7 +26,7 @@
 	if(istype(I, /obj/item/stack/nanopaste))
 		var/obj/item/stack/nanopaste/paste = I
 		if(integrity < 100) // Damaged, let's repair!
-			integrity = between(0, integrity + rand(10, 20), 100)
+			integrity = clamp(integrity + rand(10, 20), 0, 100)
 			paste.use(1)
 			to_chat(user, SPAN_INFO("You apply \the [paste] to \the [src], repairing some of the damage."))
 		else

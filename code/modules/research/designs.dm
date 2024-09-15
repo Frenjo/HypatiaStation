@@ -60,7 +60,7 @@ other types of metals and chemistry for reagents).
 	for(var/datum/tech/T in temp_techs)
 		if(T.type in req_tech)
 			new_reliability += T.level
-	new_reliability = between(reliability_base, new_reliability, 100)
+	new_reliability = clamp(new_reliability, reliability_base, 100)
 	reliability = new_reliability
 	return
 
