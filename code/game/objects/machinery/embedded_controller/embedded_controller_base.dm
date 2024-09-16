@@ -18,7 +18,7 @@
 	return 0
 
 /obj/machinery/embedded_controller/receive_signal(datum/signal/signal, receive_method, receive_param)
-	if(isnull(signal) || signal.encryption)
+	if(!..() || signal.encryption)
 		return
 
 	if(isnotnull(program))

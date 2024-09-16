@@ -61,7 +61,10 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/onetankbomb/receive_signal()	//This is mainly called by the sensor through sense() to the holder, and from the holder to here.
+/obj/item/onetankbomb/receive_signal(datum/signal/signal)	//This is mainly called by the sensor through sense() to the holder, and from the holder to here.
+	if(!..())
+		return
+
 	visible_message("\icon[src] *beep* *beep*", "*beep* *beep*")
 	sleep(10)
 	if(!src)

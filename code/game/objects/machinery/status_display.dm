@@ -84,6 +84,9 @@
 			usr << "The display says:<br>\t<xmp>[message1]</xmp><br>\t<xmp>[message2]</xmp>"
 
 /obj/machinery/status_display/receive_signal(datum/signal/signal)
+	if(!..())
+		return
+
 	switch(signal.data["command"])
 		if("blank")
 			set_blank()
@@ -205,6 +208,9 @@
 	mode = STATUS_MODE_SUPPLY_SHUTTLE
 
 /obj/machinery/status_display/supply/receive_signal(datum/signal/signal)
+	if(!..())
+		return
+
 	if(signal.data["command"] == "supply")
 		mode = STATUS_MODE_SUPPLY_SHUTTLE
 

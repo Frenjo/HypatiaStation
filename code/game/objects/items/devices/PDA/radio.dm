@@ -57,6 +57,9 @@
 	// create/populate list as they are recvd
 
 /obj/item/radio/integrated/beepsky/receive_signal(datum/signal/signal)
+	if(!..())
+		return
+
 //	var/obj/item/pda/P = src.loc
 
 	/*
@@ -124,6 +127,9 @@
 // create/populate lists as they are recvd
 
 /obj/item/radio/integrated/mule/receive_signal(datum/signal/signal)
+	if(!..())
+		return
+
 //	var/obj/item/pda/P = src.loc
 
 	/*

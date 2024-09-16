@@ -434,6 +434,8 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 // receive a radio signal
 // used for beacon reception
 /obj/machinery/bot/secbot/receive_signal(datum/signal/signal)
+	if(!..())
+		return
 	//log_admin("DEBUG \[[world.timeofday]\]: /obj/machinery/bot/secbot/receive_signal([signal.debug_print()])")
 	if(!on)
 		return

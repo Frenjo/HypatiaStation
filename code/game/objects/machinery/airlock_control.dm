@@ -9,7 +9,7 @@
 	explosion_resistance = 15
 
 /obj/machinery/door/airlock/receive_signal(datum/signal/signal)
-	if(isnull(signal) || signal.encryption)
+	if(!..() || signal.encryption)
 		return
 
 	if(id_tag != signal.data["tag"] || isnull(signal.data["command"]))

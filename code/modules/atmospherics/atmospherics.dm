@@ -58,9 +58,8 @@ Pipelines + Other Objects -> Pipe network
 	return null
 
 /obj/machinery/atmospherics/receive_signal(datum/signal/signal)
-	SHOULD_CALL_PARENT(TRUE)
-
-	. = ..()
+	if(!..())
+		return FALSE
 	if(isnotnull(id_tag))
 		if(isnull(signal.data["tag"]) || signal.data["tag"] != id_tag)
 			return FALSE

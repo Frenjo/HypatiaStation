@@ -124,11 +124,12 @@
 	var/intercept = 0 // if nonzero, broadcasts all messages to syndicate channel
 
 /obj/machinery/telecoms/allinone/receive_signal(datum/signal/signal)
+	if(!..())
+		return
 	if(!on) // has to be on to receive messages
 		return
 
 	if(is_freq_listening(signal)) // detect subspace signals
-
 		signal.data["done"] = 1 // mark the signal as being broadcasted
 		signal.data["compression"] = 0
 

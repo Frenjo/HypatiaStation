@@ -744,6 +744,8 @@
 // used for control and beacon reception
 
 /obj/machinery/bot/mulebot/receive_signal(datum/signal/signal)
+	if(!..())
+		return
 	if(!on)
 		return
 

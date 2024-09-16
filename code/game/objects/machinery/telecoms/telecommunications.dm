@@ -277,9 +277,9 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/telecoms/telecoms_list)
 	circuitboard = /obj/item/circuitboard/telecoms/receiver
 
 /obj/machinery/telecoms/receiver/receive_signal(datum/signal/signal)
-	if(!on) // has to be on to receive messages
+	if(!..())
 		return
-	if(!signal)
+	if(!on) // has to be on to receive messages
 		return
 	if(!check_receive_level(signal))
 		return

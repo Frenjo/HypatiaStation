@@ -75,6 +75,9 @@
 // or one of the set transponder keys
 // if found, return a signal
 /obj/machinery/navbeacon/receive_signal(datum/signal/signal)
+	if(!..())
+		return
+
 	var/request = signal.data["findbeacon"]
 	if(request && ((request in codes) || request == "any" || request == location))
 		spawn(1)

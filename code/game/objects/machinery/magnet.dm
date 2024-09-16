@@ -53,6 +53,9 @@
 	updateicon()
 
 /obj/machinery/magnetic_module/receive_signal(datum/signal/signal)
+	if(!..())
+		return
+
 	var/command = signal.data["command"]
 	var/modifier = signal.data["modifier"]
 	var/signal_code = signal.data["code"]

@@ -268,6 +268,9 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 		failed_steps = 0
 
 /obj/machinery/bot/cleanbot/receive_signal(datum/signal/signal)
+	if(!..())
+		return
+
 	var/recv = signal.data["beacon"]
 	var/valid = signal.data["patrol"]
 	if(!recv || !valid)

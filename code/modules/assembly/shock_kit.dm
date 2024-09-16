@@ -40,7 +40,8 @@
 	return
 
 /obj/item/assembly/shock_kit/receive_signal()
+	if(!..())
+		return
 	if(istype(loc, /obj/structure/stool/bed/chair/e_chair))
 		var/obj/structure/stool/bed/chair/e_chair/C = loc
 		C.shock()
-	return

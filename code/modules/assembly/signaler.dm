@@ -127,18 +127,17 @@ Code:
 	return 1
 
 /obj/item/assembly/signaler/receive_signal(datum/signal/signal)
-	if(!signal)
-		return 0
+	if(!..())
+		return
 	if(signal.encryption != code)
-		return 0
+		return
 	if(!(src.wires & WIRE_RADIO_RECEIVE))
-		return 0
+		return
 	pulse(1)
 
 	if(!holder)
 		for(var/mob/O in hearers(1, src.loc))
 			O.show_message("\icon[src] *beep* *beep*", src, 3, "*beep* *beep*", 2)
-	return
 
 /obj/item/assembly/signaler/process()
 	if(!deadman)

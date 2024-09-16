@@ -21,21 +21,21 @@
 	return ..()
 
 /obj/machinery/computer/atmos_alert/receive_signal(datum/signal/signal)
-	if(!signal || signal.encryption) return
+	if(!..() || signal.encryption)
+		return
 
 	var/zone = signal.data["zone"]
 	var/severity = signal.data["alert"]
+	if(!zone || !severity)
+		return
 
-	if(!zone || !severity) return
-
-	minor_alarms -= zone
-	priority_alarms -= zone
-	if(severity=="severe")
-		priority_alarms += zone
-	else if (severity=="minor")
-		minor_alarms += zone
+	minor_alarms.Remove(zone)
+	priority_alarms.Remove(zone)
+	if(severity == "severe")
+		priority_alarms.Add(zone)
+	else if(severity == "minor")
+		minor_alarms.Add(zone)
 	update_icon()
-	return
 
 /obj/machinery/computer/atmos_alert/attack_hand(mob/user)
 	if(..(user))

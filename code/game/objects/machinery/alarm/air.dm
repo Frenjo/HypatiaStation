@@ -290,7 +290,7 @@
 /obj/machinery/air_alarm/receive_signal(datum/signal/signal)
 	if(stat & (NOPOWER | BROKEN))
 		return
-	if(isnull(signal) || signal.encryption)
+	if(!..() || signal.encryption)
 		return
 
 	var/id_tag = signal.data["tag"]

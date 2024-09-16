@@ -136,7 +136,7 @@
 	src.updateUsrDialog()
 
 /obj/machinery/computer/general_air_control/receive_signal(datum/signal/signal)
-	if(!signal || signal.encryption)
+	if(!..() || signal.encryption)
 		return
 
 	var/id_tag = signal.data["tag"]

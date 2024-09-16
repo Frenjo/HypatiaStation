@@ -78,7 +78,7 @@
 	return
 
 /obj/item/radio/electropack/receive_signal(datum/signal/signal)
-	if(!signal || signal.encryption != code)
+	if(!..() || signal.encryption != code)
 		return
 
 	if(ismob(loc) && on)

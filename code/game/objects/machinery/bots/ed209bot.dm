@@ -458,6 +458,8 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 // receive a radio signal
 // used for beacon reception
 /obj/machinery/bot/ed209/receive_signal(datum/signal/signal)
+	if(!..())
+		return
 	if(!on)
 		return
 
