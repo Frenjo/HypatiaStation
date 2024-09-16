@@ -91,7 +91,7 @@
 
 	for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, WEST))
 		if(target.initialize_mains_directions & get_dir(target, src))
-			nodes[3] = target
+			nodes[4] = target
 			break
 
 	..() // initialize internal pipes
