@@ -98,11 +98,11 @@
 /obj/machinery/air_alarm/server/New()
 	. = ..()
 	req_access = list(ACCESS_RD, ACCESS_ATMOSPHERICS, ACCESS_ENGINE_EQUIP)
-	TLV[/decl/xgm_gas/oxygen] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
-	TLV[/decl/xgm_gas/carbon_dioxide] =	list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
+	TLV[/decl/xgm_gas/oxygen] =			list(-1.0, -1.0, -1.0, -1.0) // Partial pressure, kpa
+	TLV[/decl/xgm_gas/carbon_dioxide] =	list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
 	TLV[/decl/xgm_gas/plasma] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
 	TLV["other"] =						list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
-	TLV["pressure"] =					list(0,ONE_ATMOSPHERE * 0.10, ONE_ATMOSPHERE * 1.40, ONE_ATMOSPHERE * 1.60) /* kpa */
+	TLV["pressure"] =					list(0, ONE_ATMOSPHERE * 0.10, ONE_ATMOSPHERE * 1.40, ONE_ATMOSPHERE * 1.60) /* kpa */
 	TLV["temperature"] =				list(20, 40, 140, 160) // K
 	target_temperature = 90
 
@@ -325,12 +325,12 @@
 /obj/machinery/air_alarm/proc/refresh_all()
 	for(var/id_tag in alarm_area.air_vent_names)
 		var/list/I = alarm_area.air_vent_info[id_tag]
-		if(I && I["timestamp"] + AIR_ALARM_REPORT_TIMEOUT / 2 > world.time)
+		if(islist(I) && I["timestamp"] + AIR_ALARM_REPORT_TIMEOUT / 2 > world.time)
 			continue
 		send_signal(id_tag, list("status"))
 	for(var/id_tag in alarm_area.air_scrub_names)
 		var/list/I = alarm_area.air_scrub_info[id_tag]
-		if(I && I["timestamp"] + AIR_ALARM_REPORT_TIMEOUT / 2 > world.time)
+		if(islist(I) && I["timestamp"] + AIR_ALARM_REPORT_TIMEOUT / 2 > world.time)
 			continue
 		send_signal(id_tag, list("status"))
 
@@ -360,10 +360,9 @@
 	if(alarm_area.atmos_alert(new_danger_level))
 		post_alert(new_danger_level)
 
-	for(var/area/A in alarm_area)
-		for(var/obj/machinery/air_alarm/AA in A.machines_list)
-			if(!(AA.stat & (NOPOWER | BROKEN)) && !AA.shorted && AA.danger_level != new_danger_level)
-				AA.update_icon()
+	for(var/obj/machinery/air_alarm/alarm in alarm_area.machines_list)
+		if(!(alarm.stat & (NOPOWER | BROKEN)) && !alarm.shorted && alarm.danger_level != new_danger_level)
+			alarm.update_icon()
 
 	if(danger_level > 1)
 		air_doors_close(0)
@@ -394,25 +393,23 @@
 
 /obj/machinery/air_alarm/proc/refresh_danger_level()
 	var/level = 0
-	for(var/obj/machinery/air_alarm/AA in alarm_area.machines_list)
-		if(!(AA.stat & (NOPOWER | BROKEN)) && !AA.shorted)
-			if(AA.danger_level > level)
-				level = AA.danger_level
+	for(var/obj/machinery/air_alarm/alarm in alarm_area.machines_list)
+		if(!(alarm.stat & (NOPOWER | BROKEN)) && !alarm.shorted)
+			if(alarm.danger_level > level)
+				level = alarm.danger_level
 	apply_danger_level(level)
 
 /obj/machinery/air_alarm/proc/air_doors_close(manual)
-	var/area/A = GET_AREA(src)
-	if(!A.air_doors_activated)
-		A.air_doors_activated = TRUE
-		for(var/obj/machinery/door/firedoor/E in A.doors_list)
-			if(istype(E, /obj/machinery/door/firedoor))
-				if(!E:blocked)
-					if(E.operating)
-						E:nextstate = DOOR_CLOSED
-					else if(!E.density)
-						spawn(0)
-							E.close()
+	if(!alarm_area.air_doors_activated)
+		alarm_area.air_doors_activated = TRUE
+		for(var/obj/machinery/door/firedoor/E in alarm_area.doors_list)
+			if(E.blocked)
 				continue
+			if(E.operating)
+				E.nextstate = DOOR_CLOSED
+			else if(!E.density)
+				spawn(0)
+					E.close()
 
 /*				if(istype(E, /obj/machinery/door/airlock))
 				if((!E:arePowerSystemsOn()) || (E.stat & NOPOWER) || E:air_locked) continue
@@ -437,18 +434,16 @@
 					E.update_icon()*/
 
 /obj/machinery/air_alarm/proc/air_doors_open(manual)
-	var/area/A = GET_AREA(src)
-	if(A.air_doors_activated)
-		A.air_doors_activated = FALSE
-		for(var/obj/machinery/door/firedoor/E in A.doors_list)
-			if(istype(E, /obj/machinery/door/firedoor))
-				if(!E:blocked)
-					if(E.operating)
-						E:nextstate = OPEN
-					else if(E.density)
-						spawn(0)
-							E.open()
+	if(alarm_area.air_doors_activated)
+		alarm_area.air_doors_activated = FALSE
+		for(var/obj/machinery/door/firedoor/E in alarm_area.doors_list)
+			if(E.blocked)
 				continue
+			if(E.operating)
+				E.nextstate = OPEN
+			else if(E.density)
+				spawn(0)
+					E.open()
 
 /*				if(istype(E, /obj/machinery/door/airlock))
 				if((!E:arePowerSystemsOn()) || (E.stat & NOPOWER)) continue
@@ -570,7 +565,7 @@
 	if(!prob(prb))
 		return 0 //you lucked out, no shock for you
 	make_sparks(5, TRUE, src)
-	if(electrocute_mob(user, GET_AREA(src), src))
+	if(electrocute_mob(user, alarm_area, src))
 		return 1
 	else
 		return 0
