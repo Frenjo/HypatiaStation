@@ -46,18 +46,22 @@
 	src.virus2.makerandom()
 	growth = rand(5, 50)
 
-/obj/item/virusdish/attackby(obj/item/W, mob/living/carbon/user)
-	if(istype(W,/obj/item/hand_labeler) || istype(W,/obj/item/reagent_holder/syringe))
-		return
-	..()
+/obj/item/virusdish/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/hand_labeler) || istype(I, /obj/item/reagent_holder/syringe))
+		return TRUE
+
 	if(prob(50))
-		user << "The dish shatters"
+		to_chat(user, SPAN_WARNING("\The [src] shatters!"))
 		if(virus2.infectionchance > 0)
 			for(var/mob/living/carbon/target in view(1, GET_TURF(src)))
-				if(airborne_can_reach(GET_TURF(src), GET_TURF(target)))
-					if(get_infection_chance(target))
-						infect_virus2(target,src.virus2)
+				if(!airborne_can_reach(GET_TURF(src), GET_TURF(target)))
+					continue
+				if(get_infection_chance(target))
+					infect_virus2(target, virus2)
 		qdel(src)
+		return TRUE
+
+	return ..()
 
 /obj/item/virusdish/examine()
 	usr << "This is a virus containment dish"

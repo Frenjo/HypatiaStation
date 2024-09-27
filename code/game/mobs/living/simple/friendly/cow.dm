@@ -27,17 +27,21 @@
 	udder.my_atom = src
 	..()
 
-/mob/living/simple/cow/attackby(obj/item/O, mob/user)
-	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_holder/glass))
-		user.visible_message(SPAN_NOTICE("[user] milks [src] using \the [O]."))
-		var/obj/item/reagent_holder/glass/G = O
-		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
+/mob/living/simple/cow/attack_by(obj/item/I, mob/user)
+	if(stat == CONSCIOUS && istype(I, /obj/item/reagent_holder/glass))
+		user.visible_message(
+			SPAN_INFO("[user] milks \the [src] into \the [I]."),
+			SPAN_INFO("You milk \the [src] into \the [I].")
+		)
+		var/obj/item/reagent_holder/glass/G = I
+		var/transfered = udder.trans_id_to(G, "milk", rand(5, 10))
 		if(G.reagents.total_volume >= G.volume)
-			to_chat(user, SPAN_WARNING("The [O] is full."))
+			to_chat(user, SPAN_WARNING("The [I] is full."))
 		if(!transfered)
 			to_chat(user, SPAN_WARNING("The udder is dry. Wait a bit longer..."))
-	else
-		..()
+		return TRUE
+
+	return ..()
 
 /mob/living/simple/cow/Life()
 	. = ..()

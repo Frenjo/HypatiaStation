@@ -36,15 +36,17 @@
 	icon_state = "hskull"
 	desc = "It's a fossilised, horned skull."
 
-/obj/item/fossil/skull/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/fossil/bone))
+/obj/item/fossil/skull/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/fossil/bone))
 		var/obj/o = new /obj/skeleton(GET_TURF(src))
-		var/a = new /obj/item/fossil/bone
-		var/b = new src.type
+		var/a = new /obj/item/fossil/bone()
+		var/b = new type()
 		o.contents.Add(a)
 		o.contents.Add(b)
-		qdel(W)
+		qdel(I)
 		qdel(src)
+		return TRUE
+	return ..()
 
 /obj/skeleton
 	name = "incomplete skeleton"

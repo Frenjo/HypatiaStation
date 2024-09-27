@@ -34,34 +34,28 @@
 	singular_name = "alien hide piece"
 	icon_state = "xeno"
 
-//Step one - dehairing.
-/obj/item/stack/sheet/animalhide/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/kitchenknife) || \
-		istype(W, /obj/item/kitchen/utensil/knife) || \
-		istype(W, /obj/item/twohanded/fireaxe) || \
-		istype(W, /obj/item/hatchet) )
-
+// Step one - dehairing.
+/obj/item/stack/sheet/animalhide/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/kitchenknife) || istype(I, /obj/item/kitchen/utensil/knife) || istype(I, /obj/item/twohanded/fireaxe) || istype(I, /obj/item/hatchet))
 		//visible message on mobs is defined as visible_message(var/message, var/self_message, var/blind_message)
-		usr.visible_message(
-			SPAN_INFO("\the [usr] starts cutting hair off \the [src]."),
+		user.visible_message(
+			SPAN_INFO("[user] starts cutting the hair off \the [src]."),
 			SPAN_INFO("You start cutting the hair off \the [src]."),
-			"You hear the sound of a knife rubbing against flesh."
+			SPAN_WARNING("You hear the sound of a knife rubbing against flesh.")
 		)
-
-		if(do_after(user, 50))
-			to_chat(usr, SPAN_INFO("You cut the hair from this [src.singular_name]."))
-			//Try locating an exisitng stack on the tile and add to there if possible
-			for(var/obj/item/stack/sheet/hairlesshide/HS in usr.loc)
-				if(HS.amount < 50)
-					HS.amount++
-					src.use(1)
+		if(do_after(user, 5 SECONDS))
+			to_chat(user, SPAN_INFO("You cut the hair from the [singular_name]."))
+			// Try locating an existing stack on the tile and add to there if possible
+			for(var/obj/item/stack/sheet/hairlesshide/sheet in user.loc)
+				if(sheet.amount < 50)
+					sheet.amount++
+					use(1)
 					break
-			//If it gets to here it means it did not find a suitable stack on the tile.
-			var/obj/item/stack/sheet/hairlesshide/HS = new(usr.loc)
-			HS.amount = 1
-			src.use(1)
-	else
-		..()
+			// If it gets to here it means it did not find a suitable stack on the tile.
+			new /obj/item/stack/sheet/hairlesshide(user.loc, 1)
+			use(1)
+		return TRUE
+	return ..()
 
 //Step two - washing..... it's actually in washing machine code.
 /obj/item/stack/sheet/hairlesshide
@@ -85,14 +79,13 @@
 		wetness--
 		if(wetness == 0)
 			//Try locating an exisitng stack on the tile and add to there if possible
-			for(var/obj/item/stack/sheet/leather/HS in src.loc)
+			for(var/obj/item/stack/sheet/leather/HS in loc)
 				if(HS.amount < 50)
 					HS.amount++
-					src.use(1)
+					use(1)
 					wetness = initial(wetness)
 					break
 			//If it gets to here it means it did not find a suitable stack on the tile.
-			var/obj/item/stack/sheet/leather/HS = new(src.loc)
-			HS.amount = 1
+			new /obj/item/stack/sheet/leather(loc, 1)
 			wetness = initial(wetness)
-			src.use(1)
+			use(1)

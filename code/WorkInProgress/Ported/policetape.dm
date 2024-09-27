@@ -123,8 +123,10 @@
 	else
 		return FALSE
 
-/obj/item/tape/attackby(obj/item/item, mob/user)
-	breaktape(item, user)
+/obj/item/tape/attack_by(obj/item/item, mob/user)
+	if(breaktape(item, user))
+		return TRUE
+	return ..()
 
 /obj/item/tape/attack_hand(mob/user as mob)
 	if (user.a_intent == "help" && src.allowed(user))
@@ -138,31 +140,35 @@
 /obj/item/tape/attack_paw(mob/user as mob)
 	breaktape(/obj/item/wirecutters,user)
 
-/obj/item/tape/proc/breaktape(obj/item/W as obj, mob/user as mob)
-	if(user.a_intent == "help" && ((!can_puncture(W) && src.allowed(user))))
+/obj/item/tape/proc/breaktape(obj/item/W, mob/user)
+	if(user.a_intent == "help" && (!can_puncture(W) && allowed(user)))
 		user << "You can't break the [src] with that!"
-		return
-	user.show_viewers("\blue [user] breaks the [src]!")
+		return FALSE
+	user.visible_message(
+		SPAN_INFO("[user] breaks \the [src]!"),
+		SPAN_INFO("You break \the [src]."),
+		SPAN_INFO("You hear tape flapping.")
+	)
 
 	var/dir[2]
-	var/icon_dir = src.icon_state
-	if(icon_dir == "[src.icon_base]_h")
+	var/icon_dir = icon_state
+	if(icon_dir == "[icon_base]_h")
 		dir[1] = EAST
 		dir[2] = WEST
-	if(icon_dir == "[src.icon_base]_v")
+	if(icon_dir == "[icon_base]_v")
 		dir[1] = NORTH
 		dir[2] = SOUTH
 
-	for(var/i=1;i<3;i++)
+	for(var/i = 1; i < 3; i++)
 		var/N = 0
-		var/turf/cur = get_step(src,dir[i])
+		var/turf/cur = get_step(src, dir[i])
 		while(N != 1)
 			N = 1
-			for (var/obj/item/tape/P in cur)
+			for(var/obj/item/tape/P in cur)
 				if(P.icon_state == icon_dir)
 					N = 0
 					qdel(P)
-			cur = get_step(cur,dir[i])
+			cur = get_step(cur, dir[i])
 
 	qdel(src)
-	return
+	return TRUE

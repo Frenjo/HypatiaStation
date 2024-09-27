@@ -29,21 +29,25 @@
 /obj/machinery/keycard_auth/attack_paw(mob/user)
 	to_chat(user, "You are too primitive to use this device.")
 
-/obj/machinery/keycard_auth/attackby(obj/item/W, mob/user)
+/obj/machinery/keycard_auth/attack_by(obj/item/I, mob/user)
 	if(stat & (NOPOWER | BROKEN))
 		to_chat(user, "This device is not powered.")
-		return
-	if(istype(W, /obj/item/card/id))
-		var/obj/item/card/id/ID = W
-		if(ACCESS_KEYCARD_AUTH in ID.access)
+		return TRUE
+
+	if(istype(I, /obj/item/card/id))
+		var/obj/item/card/id/card = I
+		if(ACCESS_KEYCARD_AUTH in card.access)
 			if(active == TRUE)
-				//This is not the device that made the initial request. It is the device confirming the request.
+				// This is not the device that made the initial request. It is the device confirming the request.
 				if(isnotnull(event_source))
 					event_source.confirmed = TRUE
 					event_source.event_confirmed_by = usr
 			else if(screen == 2)
 				event_triggered_by = usr
-				broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
+				broadcast_request() // This is the device making the initial event request. It needs to broadcast to other devices
+		return TRUE
+
+	return ..()
 
 /obj/machinery/keycard_auth/power_change()
 	if(powered(ENVIRON))

@@ -117,30 +117,34 @@
 		add_hiddenprint(user)
 		deactivate(user, 0)
 
-/obj/machinery/camera/attackby(obj/item/W, mob/living/user)
+/obj/machinery/camera/attack_tool(obj/item/tool, mob/user)
 	// DECONSTRUCTION
-	if(isscrewdriver(W))
+	if(isscrewdriver(tool))
 		//user << "<span class='notice'>You start to [panel_open ? "close" : "open"] the camera's panel.</span>"
 		//if(toggle_panel(user)) // No delay because no one likes screwdrivers trying to be hip and have a duration cooldown
 		panel_open = !panel_open
-		user.visible_message(
-			SPAN_WARNING("[user] screws the camera's panel [panel_open ? "open" : "closed"]!"),
-			SPAN_NOTICE("You screw the camera's panel [panel_open ? "open" : "closed"].")
-		)
+		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panel_open)
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
+		return TRUE
 
-	else if((iswirecutter(W) || ismultitool(W)) && panel_open)
+	if(panel_open && (iswirecutter(tool) || ismultitool(tool)))
 		interact(user)
+		return TRUE
 
-	else if(iswelder(W) && wires.CanDeconstruct())
-		if(weld(W, user))
-			if(assembly)
+	if(iswelder(tool) && wires.CanDeconstruct())
+		var/obj/item/weldingtool/WT = tool
+		if(weld(WT, user))
+			if(isnotnull(assembly))
 				assembly.loc = loc
 				assembly.state = 1
 			qdel(src)
+		return TRUE
 
+	return ..()
+
+/obj/machinery/camera/attackby(obj/item/W, mob/living/user)
 	// OTHER
-	else if((istype(W, /obj/item/paper) || istype(W, /obj/item/pda)) && isliving(user))
+	if((istype(W, /obj/item/paper) || istype(W, /obj/item/pda)) && isliving(user))
 		var/mob/living/U = user
 		var/obj/item/paper/X = null
 		var/obj/item/pda/P = null

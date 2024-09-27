@@ -203,29 +203,26 @@
 
 	return ..()
 
-/obj/item/weldingtool/attackby(obj/item/W, mob/user)
-	if(!status && istype(W, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = W
+/obj/item/weldingtool/attack_by(obj/item/I, mob/user)
+	if(!status && istype(I, /obj/item/stack/rods))
+		var/obj/item/stack/rods/R = I
 		R.use(1)
 		var/obj/item/flamethrower/F = new/obj/item/flamethrower(user.loc)
-		src.loc = F
+		loc = F
 		F.weldtool = src
-		if(user.client)
-			user.client.screen -= src
+		user.client?.screen.Remove(src)
 		if(user.r_hand == src)
 			user.u_equip(src)
 		else
 			user.u_equip(src)
-		src.master = F
-		src.reset_plane_and_layer()
+		master = F
+		reset_plane_and_layer()
 		user.u_equip(src)
-		if(user.client)
-			user.client.screen -= src
-		src.loc = F
-		src.add_fingerprint(user)
-		return
-	..()
-	return
+		user.client?.screen.Remove(src)
+		loc = F
+		add_fingerprint(user)
+		return TRUE
+	return ..()
 
 /obj/item/weldingtool/process()
 	switch(welding)
