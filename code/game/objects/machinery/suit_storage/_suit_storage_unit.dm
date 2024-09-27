@@ -415,47 +415,46 @@
 	else
 		occupant = null //Testing this as a backup sanity test
 
+/obj/machinery/suit_storage_unit/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	if(!isopen)
+		to_chat(user, SPAN_WARNING("The unit's doors are shut."))
+		return TRUE
+	if(!ispowered || isbroken)
+		to_chat(user, SPAN_WARNING("The unit is not operational."))
+		return TRUE
+	if(isnotnull(occupant) || isnotnull(helmet) || isnotnull(suit)) // Unit needs to be absolutely empty.
+		to_chat(user, SPAN_WARNING("The unit's storage area is too cluttered."))
+		return TRUE
+
+	visible_message("[user] starts putting [grabbed] into \the [src].")
+	if(!do_after(user, 2 SECONDS))
+		return TRUE
+	if(isnull(grab) || isnull(grabbed))
+		return TRUE //derpcheck
+
+	if(isnotnull(grabbed.client))
+		grabbed.client.perspective = EYE_PERSPECTIVE
+		grabbed.client.eye = src
+	grabbed.loc = src
+	occupant = grabbed
+	isopen = FALSE //close ittt
+	add_fingerprint(user)
+	qdel(grab)
+	updateUsrDialog()
+	update_icon()
+	return TRUE
+
+/obj/machinery/suit_storage_unit/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
+		panelopen = !panelopen
+		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panelopen)
+		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
+		updateUsrDialog()
+		return TRUE
+	return ..()
+
 /obj/machinery/suit_storage_unit/attackby(obj/item/I, mob/user)
 	if(!ispowered)
-		return
-	if(isscrewdriver(I))
-		panelopen = !panelopen
-		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
-		to_chat(user, SPAN_INFO("You [(panelopen ? "open up" : "close")] the unit's maintenance panel."))
-		updateUsrDialog()
-		return
-	if(istype(I, /obj/item/grab))
-		var/obj/item/grab/G = I
-		if(!ismob(G.affecting))
-			return
-		if(!isopen)
-			to_chat(usr, SPAN_WARNING("The unit's doors are shut."))
-			return
-		if(!ispowered || isbroken)
-			to_chat(usr, SPAN_WARNING("The unit is not operational."))
-			return
-		if(occupant || helmet || suit) //Unit needs to be absolutely empty
-			to_chat(usr, SPAN_WARNING("The unit's storage area is too cluttered."))
-			return
-		visible_message("[user] starts putting [G.affecting.name] into the Suit Storage Unit.", 3)
-		if(do_after(user, 20))
-			if(!G || !G.affecting)
-				return //derpcheck
-			var/mob/M = G.affecting
-			if(M.client)
-				M.client.perspective = EYE_PERSPECTIVE
-				M.client.eye = src
-			M.loc = src
-			occupant = M
-			isopen = FALSE //close ittt
-
-			//for(var/obj/O in src)
-			//	O.loc = loc
-			add_fingerprint(user)
-			qdel(G)
-			updateUsrDialog()
-			update_icon()
-			return
 		return
 	if(istype(I, /obj/item/clothing/suit/space))
 		if(!isopen)

@@ -18,37 +18,35 @@
 /obj/structure/kitchenspike/attack_paw(mob/user)
 	return src.attack_hand(usr)
 
-/obj/structure/kitchenspike/attackby(obj/item/grab/G, mob/user)
-	if(!istype(G, /obj/item/grab))
-		return
-	if(ismonkey(G.affecting))
-		if(src.occupied == 0)
-			src.icon_state = "spikebloody"
-			src.occupied = 1
-			src.meat = 5
-			src.meattype = MEAT_TYPE_MONKEY
-			for(var/mob/O in viewers(src, null))
-				O.show_message(SPAN_WARNING("[user] has forced [G.affecting] onto the spike, killing them instantly!"))
-			qdel(G.affecting)
-			qdel(G)
+/obj/structure/kitchenspike/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	if(ismonkey(grabbed))
+		if(!occupied)
+			icon_state = "spikebloody"
+			occupied = TRUE
+			meat = 5
+			meattype = MEAT_TYPE_MONKEY
+			visible_message(SPAN_WARNING("[user] has forced [grabbed] onto the spike, killing them instantly!"))
+			qdel(grabbed)
+			qdel(grab)
+		else
+			to_chat(user, SPAN_WARNING("The spike already has something on it, finish collecting its meat first!"))
+		return TRUE
 
+	if(isalien(grabbed))
+		if(!occupied)
+			icon_state = "spikebloodygreen"
+			occupied = TRUE
+			meat = 5
+			meattype = MEAT_TYPE_ALIEN
+			visible_message(SPAN_WARNING("[user] has forced [grabbed] onto the spike, killing them instantly!"))
+			qdel(grabbed)
+			qdel(grab)
 		else
 			to_chat(user, SPAN_WARNING("The spike already has something on it, finish collecting its meat first!"))
-	else if(isalien(G.affecting))
-		if(src.occupied == 0)
-			src.icon_state = "spikebloodygreen"
-			src.occupied = 1
-			src.meat = 5
-			src.meattype = MEAT_TYPE_ALIEN
-			for(var/mob/O in viewers(src, null))
-				O.show_message(SPAN_WARNING("[user] has forced [G.affecting] onto the spike, killing them instantly!"))
-			qdel(G.affecting)
-			qdel(G)
-		else
-			to_chat(user, SPAN_WARNING("The spike already has something on it, finish collecting its meat first!"))
-	else
-		to_chat(user, SPAN_WARNING("They are too big for the spike, try something smaller!"))
-		return
+		return TRUE
+
+	to_chat(user, SPAN_WARNING("\The [grabbed] is too big for the spike, try something smaller!"))
+	return TRUE
 
 //	MouseDrop_T(var/atom/movable/C, mob/user)
 //		if(istype(C, /obj/mob/carbon/monkey)

@@ -64,19 +64,16 @@
 		src.add_fingerprint(usr)
 		return
 
-/obj/machinery/implantchair/attackby(obj/item/G, mob/user)
-	if(istype(G, /obj/item/grab))
-		if(!ismob(G:affecting))
-			return
-		for(var/mob/living/carbon/slime/M in range(1,G:affecting))
-			if(M.Victim == G:affecting)
-				usr << "[G:affecting:name] will not fit into the [src.name] because they have a slime latched onto their head."
-				return
-		var/mob/M = G:affecting
-		if(put_mob(M))
-			qdel(G)
-	src.updateUsrDialog()
-	return
+/obj/machinery/implantchair/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	for(var/mob/living/carbon/slime/S in range(1, grabbed))
+		if(S.Victim == grabbed)
+			to_chat(user, SPAN_WARNING("[grabbed] will not fit into \the [src] because they have a slime latched onto their head."))
+			return TRUE
+
+	if(put_mob(grabbed))
+		qdel(grab)
+	updateUsrDialog()
+	return TRUE
 
 /obj/machinery/implantchair/proc/go_out(mob/M)
 	if(!src.occupant)

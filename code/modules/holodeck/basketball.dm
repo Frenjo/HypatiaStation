@@ -18,21 +18,24 @@
 	density = TRUE
 	throwpass = 1
 
-/obj/structure/holohoop/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
-		var/obj/item/grab/G = W
-		if(G.state < 2)
-			to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
-			return
-		G.affecting.loc = src.loc
-		G.affecting.Weaken(5)
-		visible_message(SPAN_WARNING("[G.assailant] dunks [G.affecting] into the [src]!"), 3)
-		qdel(W)
-		return
-	else if(isitem(W) && get_dist(src, user) < 2)
-		user.drop_item(src)
-		visible_message(SPAN_INFO("[user] dunks [W] into the [src]!"), 3)
-		return
+/obj/structure/holohoop/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	if(get_dist(src, user) > 2)
+		return FALSE
+	if(grab.state < 2)
+		to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
+		return TRUE
+	grabbed.loc = loc
+	grabbed.Weaken(5)
+	visible_message(SPAN_WARNING("[user] dunks \the [grabbed] into \the [src]!"))
+	qdel(grab)
+	return TRUE
+
+/obj/structure/holohoop/attack_by(obj/item/I, mob/user)
+	if(get_dist(src, user) > 2)
+		return ..()
+	user.drop_item(src)
+	visible_message(SPAN_INFO("[user] dunks \the [I] into \the [src]!"))
+	return TRUE
 
 /obj/structure/holohoop/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(isitem(mover) && mover.throwing)

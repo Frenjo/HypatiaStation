@@ -631,6 +631,13 @@ steam.start() -- spawns the effect
 	attack_hand(user)
 	return
 
+/obj/structure/foamedmetal/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	grab.affecting.loc = src.loc
+	visible_message(SPAN_WARNING("[user] smashes [grabbed] through the foamed metal wall."))
+	qdel(grab)
+	qdel(src)
+	return TRUE
+
 /obj/structure/foamedmetal/attack_hand(mob/user)
 	if(HULK in user.mutations || prob(75 - metal * 25))
 		to_chat(user, SPAN_INFO("You smash through the metal foam wall."))
@@ -644,14 +651,6 @@ steam.start() -- spawns the effect
 	return
 
 /obj/structure/foamedmetal/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/grab))
-		var/obj/item/grab/G = I
-		G.affecting.loc = src.loc
-		visible_message(SPAN_WARNING("[G.assailant] smashes [G.affecting] through the foamed metal wall."))
-		qdel(I)
-		qdel(src)
-		return
-
 	if(prob(I.force * 20 - metal * 25))
 		to_chat(user, SPAN_INFO("You smash through the foamed metal with \the [I]."))
 		for(var/mob/O in oviewers(user))

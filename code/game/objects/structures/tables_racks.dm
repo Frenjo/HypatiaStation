@@ -302,30 +302,31 @@
 		step(O, get_dir(O, src))
 	return
 
+/obj/structure/table/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	if(get_dist(src, user) > 2)
+		return FALSE
+	if(isliving(grabbed))
+		var/mob/living/living_grabbed = grabbed
+		if(grab.state < 2)
+			if(user.a_intent == "hurt")
+				if(prob(15))
+					living_grabbed.Weaken(5)
+				living_grabbed.apply_damage(8, def_zone = "head")
+				visible_message(SPAN_WARNING("[user] slams \the [living_grabbed]'s face against \the [src]!"))
+				playsound(src, 'sound/weapons/tablehit1.ogg', 50, 1)
+			else
+				to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
+			return TRUE
+
+	grabbed.loc = loc
+	grabbed.Weaken(5)
+	visible_message(SPAN_WARNING("[user] puts \the [grabbed] on \the [src]."))
+	qdel(grab)
+	return TRUE
+
 /obj/structure/table/attackby(obj/item/W, mob/user)
 	if(!W)
 		return
-	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
-		var/obj/item/grab/G = W
-		if(isliving(G.affecting))
-			var/mob/living/M = G.affecting
-			if(G.state < 2)
-				if(user.a_intent == "hurt")
-					if(prob(15))
-						M.Weaken(5)
-					M.apply_damage(8, def_zone = "head")
-					visible_message(SPAN_WARNING("[G.assailant] slams [G.affecting]'s face against \the [src]!"))
-					playsound(src, 'sound/weapons/tablehit1.ogg', 50, 1)
-				else
-					to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
-					return
-			else
-				G.affecting.loc = src.loc
-				G.affecting.Weaken(5)
-				visible_message(SPAN_WARNING("[G.assailant] puts [G.affecting] on \the [src]."))
-			qdel(W)
-			return
-
 	if(iswrench(W))
 		to_chat(user, SPAN_INFO("Now disassembling table."))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)

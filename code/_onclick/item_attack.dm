@@ -16,6 +16,15 @@
 	return FALSE
 
 /*
+ * attack_grab()
+ *
+ * Called by /obj/item/grab/handle_attack().
+ * Returns TRUE if the grab was used successfully, FALSE if not.
+ */
+/atom/proc/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	return FALSE
+
+/*
  * This proc is the hopeful foundation of a new interaction system.
  * Eventually, things will be split up into different procs for different interactions.
  * We might have attack_tool(), attack_emag(), attack_user(), etc.

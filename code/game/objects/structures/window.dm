@@ -181,33 +181,35 @@
 		return
 	attack_generic(user, rand(10, 15))
 
+/obj/structure/window/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	if(get_dist(src, user) > 2)
+		return FALSE
+	if(!isliving(grabbed))
+		return FALSE
+
+	var/mob/living/living_grabbed = grabbed
+	qdel(grab) //gotta delete it here because if window breaks, it won't get deleted
+	switch(grab.state)
+		if(1)
+			living_grabbed.visible_message(SPAN_WARNING("[user] slams [living_grabbed] against \the [src]!"))
+			living_grabbed.apply_damage(7)
+			hit(10)
+		if(2)
+			living_grabbed.visible_message(SPAN_DANGER("[user] bashes [living_grabbed] against \the [src]!"))
+			if(prob(50))
+				living_grabbed.Weaken(1)
+			living_grabbed.apply_damage(10)
+			hit(25)
+		if(3)
+			living_grabbed.visible_message(SPAN_DANGER("<big>[user] crushes [living_grabbed] against \the [src]!</big>"))
+			living_grabbed.Weaken(5)
+			living_grabbed.apply_damage(20)
+			hit(50)
+	return TRUE
+
 /obj/structure/window/attackby(obj/item/W, mob/user)
 	if(!istype(W))
 		return//I really wish I did not need this
-
-	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
-		var/obj/item/grab/G = W
-		if(isliving(G.affecting))
-			var/mob/living/M = G.affecting
-			var/state = G.state
-			qdel(W)	//gotta delete it here because if window breaks, it won't get deleted
-			switch(state)
-				if(1)
-					M.visible_message(SPAN_WARNING("[user] slams [M] against \the [src]!"))
-					M.apply_damage(7)
-					hit(10)
-				if(2)
-					M.visible_message(SPAN_DANGER("[user] bashes [M] against \the [src]!"))
-					if(prob(50))
-						M.Weaken(1)
-					M.apply_damage(10)
-					hit(25)
-				if(3)
-					M.visible_message(SPAN_DANGER("<big>[user] crushes [M] against \the [src]!</big>"))
-					M.Weaken(5)
-					M.apply_damage(20)
-					hit(50)
-			return
 
 	if(HAS_ITEM_FLAGS(W, ITEM_FLAG_NO_BLUDGEON))
 		return

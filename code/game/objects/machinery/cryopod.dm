@@ -265,55 +265,48 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 
 	return
 
-/obj/machinery/cryopod/attackby(obj/item/G, mob/user)
-	if(istype(G, /obj/item/grab))
-		if(occupant)
-			to_chat(user, SPAN_INFO("The cryo pod is in use."))
-			return
+/obj/machinery/cryopod/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	if(isnotnull(occupant))
+		to_chat(user, SPAN_INFO("\The [src] is in use."))
+		return TRUE
 
-		if(!ismob(G:affecting))
-			return
+	var/willing = FALSE
+	if(isnotnull(grabbed.client))
+		if(alert(grabbed, "Would you like to enter cryosleep?", , "Yes", "No") == "Yes")
+			if(isnull(grab) || isnull(grabbed))
+				return TRUE
+			willing = TRUE
+	else
+		willing = TRUE
 
-		var/willing = null //We don't want to allow people to be forced into despawning.
-		var/mob/M = G:affecting
+	if(!willing)
+		return TRUE
 
-		if(M.client)
-			if(alert(M, "Would you like to enter cryosleep?", , "Yes", "No") == "Yes")
-				if(!M || !G || !G:affecting)
-					return
-				willing = 1
-		else
-			willing = 1
+	visible_message("[user] starts putting [grabbed] into \the [src].")
+	if(!do_after(user, 2 SECONDS))
+		if(isnull(grab) || isnull(grabbed))
+			return TRUE
 
-		if(willing)
-			visible_message("[user] starts putting [G:affecting:name] into the cryo pod.", 3)
+	grabbed.loc = src
+	if(isnotnull(grabbed.client))
+		grabbed.client.perspective = EYE_PERSPECTIVE
+		grabbed.client.eye = src
 
-			if(do_after(user, 20))
-				if(!M || !G || !G:affecting)
-					return
+	if(orient_right)
+		icon_state = "body_scanner_1-r"
+	else
+		icon_state = "body_scanner_1"
 
-				M.loc = src
-
-				if(M.client)
-					M.client.perspective = EYE_PERSPECTIVE
-					M.client.eye = src
-
-			if(orient_right)
-				icon_state = "body_scanner_1-r"
-			else
-				icon_state = "body_scanner_1"
-
-			to_chat(M, SPAN_INFO("You feel cool air surround you. You go numb as your senses turn inward."))
-			to_chat(M, SPAN_INFO_B("If you ghost, log out or close your client now, your character will shortly be permanently removed from the round."))
-			occupant = M
-			time_entered = world.time
-
-			// Book keeping!
-			log_admin("[key_name_admin(M)] has entered a stasis pod.")
-			message_admins("\blue [key_name_admin(M)] has entered a stasis pod.")
-
-			//Despawning occurs when process() is called with an occupant without a client.
-			src.add_fingerprint(M)
+	to_chat(grabbed, SPAN_INFO("You feel cool air surround you. You go numb as your senses turn inward."))
+	to_chat(grabbed, SPAN_INFO_B("If you ghost, log out or close your client now, your character will shortly be permanently removed from the round."))
+	occupant = grabbed
+	time_entered = world.time
+	// Book keeping!
+	log_admin("[key_name_admin(grabbed)] has entered a stasis pod.")
+	message_admins(SPAN_INFO("[key_name_admin(grabbed)] has entered a stasis pod."))
+	// Despawning occurs when process() is called with an occupant without a client.
+	add_fingerprint(grabbed)
+	return TRUE
 
 /obj/machinery/cryopod/verb/eject()
 	set category = PANEL_OBJECT

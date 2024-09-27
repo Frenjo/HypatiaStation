@@ -20,8 +20,8 @@
 /obj/structure/toilet/attack_hand(mob/living/user)
 	if(swirlie)
 		usr.visible_message(
-			SPAN_DANGER("[user] slams the toilet seat onto [swirlie.name]'s head!"),
-			SPAN_NOTICE("You slam the toilet seat onto [swirlie.name]'s head!"),
+			SPAN_DANGER("[user] slams the toilet seat onto \the [swirlie]'s head!"),
+			SPAN_NOTICE("You slam the toilet seat onto \the [swirlie]'s head!"),
 			"You hear reverberating porcelain."
 		)
 		swirlie.adjustBruteLoss(8)
@@ -47,54 +47,56 @@
 /obj/structure/toilet/update_icon()
 	icon_state = "toilet[open][cistern]"
 
-/obj/structure/toilet/attackby(obj/item/I, mob/living/user)
-	if(iscrowbar(I))
-		to_chat(user, SPAN_NOTICE("You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]."))
-		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
-		if(do_after(user, 30))
+/obj/structure/toilet/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	if(!isliving(grabbed))
+		return FALSE
+
+	var/mob/living/living_grabbed = grabbed
+	if(grab.state > 1)
+		if(living_grabbed.loc != GET_TURF(src))
+			to_chat(user, SPAN_NOTICE("\The [living_grabbed] needs to be on \the [src]."))
+			return
+		if(open && !swirlie)
 			user.visible_message(
-				SPAN_NOTICE("[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!"),
-				SPAN_NOTICE("You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!"),
+				SPAN_DANGER("[user] starts to give \the [living_grabbed] a swirlie!"),
+				SPAN_NOTICE("You start to give \the [living_grabbed] a swirlie!")
+			)
+			swirlie = living_grabbed
+			if(do_after(user, 3 SECONDS, TRUE))
+				user.visible_message(
+					SPAN_DANGER("[user] gives \the [living_grabbed] a swirlie!"),
+					SPAN_NOTICE("You give \the [living_grabbed] a swirlie!"),
+					"You hear a toilet flushing."
+				)
+				if(isnull(living_grabbed.internal))
+					living_grabbed.adjustOxyLoss(5)
+			swirlie = null
+		else
+			user.visible_message(
+				SPAN_DANGER("[user] slams [living_grabbed] into \the [src]!"),
+				SPAN_DANGER("You slam [living_grabbed] into \the [src]!")
+			)
+			living_grabbed.adjustBruteLoss(8)
+	else
+		to_chat(user, SPAN_NOTICE("You need a tighter grip."))
+	return TRUE
+
+/obj/structure/toilet/attack_tool(obj/item/tool, mob/user)
+	if(iscrowbar(tool))
+		to_chat(user, SPAN_NOTICE("You start to [cistern ? "replace the lid on" : "lift the lid off"] the cistern."))
+		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 50, 1)
+		if(do_after(user, 3 SECONDS))
+			user.visible_message(
+				SPAN_NOTICE("[user] [cistern ? "replaces the lid on" : "lifts the lid off"] the cistern!"),
+				SPAN_NOTICE("You [cistern ? "replace the lid on" : "lift the lid off"] the cistern!"),
 				"You hear grinding porcelain."
 			)
 			cistern = !cistern
 			update_icon()
-			return
+		return TRUE
+	return ..()
 
-	if(istype(I, /obj/item/grab))
-		var/obj/item/grab/G = I
-
-		if(isliving(G.affecting))
-			var/mob/living/GM = G.affecting
-
-			if(G.state > 1)
-				if(!GM.loc == GET_TURF(src))
-					to_chat(user, SPAN_NOTICE("[GM.name] needs to be on the toilet."))
-					return
-				if(open && !swirlie)
-					user.visible_message(
-						SPAN_DANGER("[user] starts to give [GM.name] a swirlie!"),
-						SPAN_NOTICE("You start to give [GM.name] a swirlie!")
-					)
-					swirlie = GM
-					if(do_after(user, 30, 5, 0))
-						user.visible_message(
-							SPAN_DANGER("[user] gives [GM.name] a swirlie!"),
-							SPAN_NOTICE("You give [GM.name] a swirlie!"),
-							"You hear a toilet flushing."
-						)
-						if(!GM.internal)
-							GM.adjustOxyLoss(5)
-					swirlie = null
-				else
-					user.visible_message(
-						SPAN_DANGER("[user] slams [GM.name] into the [src]!"),
-						SPAN_DANGER("You slam [GM.name] into the [src]!")
-					)
-					GM.adjustBruteLoss(8)
-			else
-				to_chat(user, SPAN_NOTICE("You need a tighter grip."))
-
+/obj/structure/toilet/attackby(obj/item/I, mob/living/user)
 	if(cistern)
 		if(I.w_class > 3)
 			to_chat(user, SPAN_NOTICE("\The [I] does not fit."))
@@ -117,23 +119,23 @@
 	density = FALSE
 	anchored = TRUE
 
-/obj/structure/urinal/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/grab))
-		var/obj/item/grab/G = I
-		if(isliving(G.affecting))
-			var/mob/living/GM = G.affecting
-			if(G.state > 1)
-				if(!GM.loc == GET_TURF(src))
-					to_chat(user, SPAN_NOTICE("[GM.name] needs to be on the urinal."))
-					return
-				user.visible_message(
-					SPAN_DANGER("[user] slams [GM.name] into the [src]!"),
-					SPAN_NOTICE("You slam [GM.name] into the [src]!")
-				)
-				GM.adjustBruteLoss(8)
-			else
-				to_chat(user, SPAN_NOTICE("You need a tighter grip."))
+/obj/structure/urinal/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	if(!isliving(grabbed))
+		return FALSE
 
+	var/mob/living/living_grabbed = grabbed
+	if(grab.state > 1)
+		if(living_grabbed.loc != GET_TURF(src))
+			to_chat(user, SPAN_NOTICE("\The [living_grabbed] needs to be on \the [src]."))
+			return
+		user.visible_message(
+			SPAN_DANGER("[user] slams \the [living_grabbed] into \the [src]!"),
+			SPAN_NOTICE("You slam \the [living_grabbed] into \the [src]!")
+		)
+		living_grabbed.adjustBruteLoss(8)
+	else
+		to_chat(user, SPAN_NOTICE("You need a tighter grip."))
+	return TRUE
 
 /obj/machinery/shower
 	name = "shower"

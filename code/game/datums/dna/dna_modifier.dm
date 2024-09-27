@@ -121,6 +121,19 @@
 	src.add_fingerprint(usr)
 	return
 
+/obj/machinery/dna_scannernew/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	if(isnotnull(occupant))
+		to_chat(usr, SPAN_WARNING("The scanner is already occupied!"))
+		return TRUE
+	if(grabbed.abiotic())
+		to_chat(usr, SPAN_WARNING("Subject cannot have abiotic items on."))
+		return TRUE
+
+	put_in(grabbed)
+	add_fingerprint(user)
+	qdel(grab)
+	return TRUE
+
 /obj/machinery/dna_scannernew/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_holder/glass))
 		if(isnotnull(beaker))
@@ -133,21 +146,6 @@
 			SPAN_INFO("[user] adds \a [I] to \the [src]!"),
 			SPAN_INFO("You add \a [I] to \the [src]!")
 		)
-		return TRUE
-
-	if(istype(I, /obj/item/grab))
-		var/obj/item/grab/G = I
-		if(!ismob(G.affecting))
-			return TRUE
-		if(isnotnull(occupant))
-			to_chat(usr, SPAN_WARNING("The scanner is already occupied!"))
-			return TRUE
-		if(G.affecting.abiotic())
-			to_chat(usr, SPAN_WARNING("Subject cannot have abiotic items on."))
-			return TRUE
-		put_in(G.affecting)
-		add_fingerprint(user)
-		qdel(G)
 		return TRUE
 
 	return ..()

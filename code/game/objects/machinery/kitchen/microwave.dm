@@ -50,6 +50,10 @@
 /*******************
 *   Item Adding
 ********************/
+/obj/machinery/microwave/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	to_chat(user, SPAN_WARNING("This is ridiculous. You can not fit \the [grabbed] inside \the [src]."))
+	return TRUE
+
 /obj/machinery/microwave/attackby(obj/item/O, mob/user)
 	if(src.broken > 0)
 		if(src.broken == 2 && isscrewdriver(O)) // If it's broken and they're using a screwdriver
@@ -102,10 +106,6 @@
 				to_chat(user, SPAN_WARNING("Your [O] contains components unsuitable for cookery."))
 				return 1
 		//G.reagents.trans_to(src,G.amount_per_transfer_from_this)
-	else if(istype(O, /obj/item/grab))
-		var/obj/item/grab/G = O
-		to_chat(user, SPAN_WARNING("This is ridiculous. You can not fit \the [G.affecting] in this [src]."))
-		return 1
 	else
 		to_chat(user, SPAN_WARNING("You have no idea what you can cook with this [O]."))
 		return 1

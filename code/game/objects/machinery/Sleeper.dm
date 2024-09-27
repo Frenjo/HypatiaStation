@@ -186,56 +186,54 @@
 		qdel(src)
 	return
 
-/obj/machinery/sleeper/attackby(obj/item/G, mob/user)
-	if(istype(G, /obj/item/reagent_holder/glass))
-		if(!beaker)
-			beaker = G
-			user.drop_item()
-			G.loc = src
-			user.visible_message("[user] adds \a [G] to \the [src]!", "You add \a [G] to \the [src]!")
-			src.updateUsrDialog()
-			return
-		else
-			to_chat(user, SPAN_WARNING("The sleeper has a beaker already."))
-			return
+/obj/machinery/sleeper/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	if(isnotnull(occupant))
+		to_chat(user, SPAN_INFO_B("\The [src] is already occupied!"))
+		return TRUE
+	for(var/mob/living/carbon/slime/S in range(1, grabbed))
+		if(S.Victim == grabbed)
+			to_chat(user, "[grabbed] will not fit into \the [src] because they have a slime latched onto their head.")
+			return TRUE
 
-	else if(istype(G, /obj/item/grab))
-		var/obj/item/grab/grab = G
-		if(!ismob(grab.affecting))
-			return
+	visible_message("[user] starts putting [grabbed] into the sleeper.")
+	if(!do_after(user, 2 SECONDS))
+		return TRUE
+	if(isnotnull(occupant))
+		to_chat(user, SPAN_INFO_B("\The [src] is already occupied!"))
+		return TRUE
+	if(isnull(grab) || isnull(grabbed))
+		return TRUE
 
-		if(src.occupant)
-			to_chat(user, SPAN_INFO_B("The sleeper is already occupied!"))
-			return
+	if(isnotnull(grabbed.client))
+		grabbed.client.perspective = EYE_PERSPECTIVE
+		grabbed.client.eye = src
+	grabbed.loc = src
+	occupant = grabbed
+	if(orient == "RIGHT")
+		icon_state = "sleeper_1-r"
+	else
+		icon_state = "sleeper_1"
+	to_chat(grabbed, SPAN_INFO_B("You feel cool air surround you. You go numb as your senses turn inward."))
+	add_fingerprint(user)
+	qdel(grab)
+	return TRUE
 
-		for(var/mob/living/carbon/slime/M in range(1, grab.affecting))
-			if(M.Victim == grab.affecting)
-				to_chat(usr, "[grab.affecting.name] will not fit into the sleeper because they have a slime latched onto their head.")
-				return
-
-		visible_message("[user] starts putting [grab.affecting.name] into the sleeper.", 3)
-		if(do_after(user, 20))
-			if(src.occupant)
-				to_chat(user, SPAN_INFO_B("The sleeper is already occupied!"))
-				return
-			if(!G || !grab.affecting)
-				return
-			var/mob/M = grab.affecting
-			if(M.client)
-				M.client.perspective = EYE_PERSPECTIVE
-				M.client.eye = src
-			M.loc = src
-			src.occupant = M
-			src.icon_state = "sleeper_1"
-			if(orient == "RIGHT")
-				icon_state = "sleeper_1-r"
-
-			to_chat(M, SPAN_INFO_B("You feel cool air surround you. You go numb as your senses turn inward."))
-
-			src.add_fingerprint(user)
-			qdel(G)
-		return
-	return
+/obj/machinery/sleeper/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/reagent_holder/glass))
+		var/obj/item/reagent_holder/glass/G = I
+		if(isnotnull(beaker))
+			to_chat(user, SPAN_WARNING("\The [src] has a beaker already."))
+			return TRUE
+		beaker = G
+		user.drop_item()
+		G.loc = src
+		user.visible_message(
+			"[user] adds \a [G] to \the [src]!",
+			"You add \a [G] to \the [src]!"
+		)
+		updateUsrDialog()
+		return TRUE
+	return ..()
 
 /obj/machinery/sleeper/ex_act(severity)
 	if(filtering)

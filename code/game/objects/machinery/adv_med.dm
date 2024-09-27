@@ -71,29 +71,25 @@
 	src.icon_state = "body_scanner_0"
 	return
 
-/obj/machinery/bodyscanner/attackby(obj/item/grab/G, mob/user)
-	if(!istype(G, /obj/item/grab) || !ismob(G.affecting))
-		return
-	if(src.occupant)
-		to_chat(usr, SPAN_INFO_B("The scanner is already occupied!"))
-		return
-	if(G.affecting.abiotic())
+/obj/machinery/bodyscanner/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	if(isnotnull(occupant))
+		to_chat(usr, SPAN_INFO_B("\The [src] is already occupied!"))
+		return TRUE
+	if(grabbed.abiotic())
 		to_chat(usr, SPAN_INFO_B("Subject cannot have abiotic items on."))
-		return
-	var/mob/M = G.affecting
-	if(M.client)
-		M.client.perspective = EYE_PERSPECTIVE
-		M.client.eye = src
-	M.loc = src
-	src.occupant = M
-	src.icon_state = "body_scanner_1"
+		return TRUE
+
+	if(isnotnull(grabbed.client))
+		grabbed.client.perspective = EYE_PERSPECTIVE
+		grabbed.client.eye = src
+	grabbed.loc = src
+	occupant = grabbed
+	icon_state = "body_scanner_1"
 	for(var/obj/O in src)
 		O.loc = src.loc
-		//Foreach goto(154)
-	src.add_fingerprint(user)
-	//G = null
-	qdel(G)
-	return
+	add_fingerprint(user)
+	qdel(grab)
+	return TRUE
 
 /obj/machinery/bodyscanner/ex_act(severity)
 	switch(severity)

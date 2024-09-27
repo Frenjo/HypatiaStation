@@ -82,6 +82,31 @@
 	req_access.Cut()
 	return TRUE
 
+// Other interface stuff.
+/obj/machinery/suit_cycler/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	if(locked)
+		to_chat(user, SPAN_WARNING("\The [src] is locked."))
+		return TRUE
+	if(length(contents))
+		to_chat(user, SPAN_WARNING("There is no room inside \the [src] for [grabbed]."))
+		return TRUE
+
+	visible_message("[user] starts putting [grabbed] into \the [src].")
+	if(!do_after(user, 2 SECONDS))
+		return TRUE
+	if(isnull(grab) || isnull(grabbed))
+		return TRUE
+
+	if(isnotnull(grabbed.client))
+		grabbed.client.perspective = EYE_PERSPECTIVE
+		grabbed.client.eye = src
+	grabbed.loc = src
+	occupant = grabbed
+	add_fingerprint(user)
+	qdel(grab)
+	updateUsrDialog()
+	return TRUE
+
 /obj/machinery/suit_cycler/attackby(obj/item/I, mob/user)
 	if(electrified != 0)
 		if(src.shock(user, 100))
@@ -92,40 +117,8 @@
 		if(panel_open)
 			attack_hand(user)
 		return
-	//Other interface stuff.
-	if(istype(I, /obj/item/grab))
-		var/obj/item/grab/G = I
 
-		if(!ismob(G.affecting))
-			return
-
-		if(locked)
-			to_chat(user, SPAN_WARNING("The suit cycler is locked."))
-			return
-
-		if(length(contents))
-			to_chat(user, SPAN_WARNING("There is no room inside the cycler for [G.affecting.name]."))
-			return
-
-		visible_message("[user] starts putting [G.affecting.name] into the suit cycler.", 3)
-
-		if(do_after(user, 20))
-			if(!G || !G.affecting)
-				return
-			var/mob/M = G.affecting
-			if(isnotnull(M.client))
-				M.client.perspective = EYE_PERSPECTIVE
-				M.client.eye = src
-			M.loc = src
-			occupant = M
-
-			add_fingerprint(user)
-			qdel(G)
-
-			updateUsrDialog()
-			return
-
-	else if(isscrewdriver(I))
+	if(isscrewdriver(I))
 		panel_open = !panel_open
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, panel_open)

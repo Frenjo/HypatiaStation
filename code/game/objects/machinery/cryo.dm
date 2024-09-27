@@ -170,10 +170,21 @@
 	add_fingerprint(usr)
 	return 1 // update UIs attached to this object
 
+/obj/machinery/atmospherics/unary/cryo_cell/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	for(var/mob/living/carbon/slime/S in range(1, grabbed))
+		if(S.Victim == grabbed)
+			to_chat(usr, SPAN_WARNING("[grabbed] will not fit into \the [src] because they have a slime latched onto their head."))
+			return TRUE
+
+	if(put_mob(grabbed))
+		qdel(grab)
+	updateUsrDialog()
+	return TRUE
+
 /obj/machinery/atmospherics/unary/cryo_cell/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/reagent_holder/glass))
 		if(isnotnull(beaker))
-			to_chat(user, SPAN_WARNING("A beaker is already loaded into the machine."))
+			to_chat(user, SPAN_WARNING("A [beaker] is already loaded into \the [src]."))
 			return TRUE
 		beaker = I
 		user.drop_item()
@@ -182,20 +193,6 @@
 			SPAN_INFO("[user] adds \a [I] to \the [src]!"),
 			SPAN_INFO("You add \a [I] to \the [src]!")
 		)
-		updateUsrDialog()
-		return TRUE
-
-	if(istype(I, /obj/item/grab))
-		var/obj/item/grab/G = I
-		if(!ismob(G.affecting))
-			return TRUE
-		for(var/mob/living/carbon/slime/M in range(1, G.affecting))
-			if(M.Victim == G.affecting)
-				to_chat(usr, SPAN_WARNING("[G.affecting.name] will not fit into the cryo because they have a slime latched onto their head."))
-				return TRUE
-		var/mob/M = G.affecting
-		if(put_mob(M))
-			qdel(G)
 		updateUsrDialog()
 		return TRUE
 	return ..()

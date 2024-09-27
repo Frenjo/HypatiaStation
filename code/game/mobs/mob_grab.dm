@@ -48,6 +48,12 @@
 	destroying = TRUE // Stops us calling qdel(src) on dropped()
 	return ..()
 
+// Handles using grabs on things.
+/obj/item/grab/handle_attack(atom/thing, mob/source)
+	. = thing.attack_grab(src, source, affecting)
+	if(!.) // If we didn't successfully use the grab on the thing, then pass down the attack chain.
+		return ..(thing, source)
+
 //Used by throw code to hand over the mob, instead of throwing the grab. The grab is then deleted by the throw code.
 /obj/item/grab/proc/thrown()
 	if(isnotnull(affecting))

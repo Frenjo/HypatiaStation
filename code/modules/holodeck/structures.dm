@@ -20,17 +20,6 @@
 	return // HOLOTABLE DOES NOT GIVE A FUCK
 
 /obj/structure/table/holotable/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
-		var/obj/item/grab/G = W
-		if(G.state < 2)
-			to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
-			return
-		G.affecting.loc = src.loc
-		G.affecting.Weaken(5)
-		visible_message(SPAN_WARNING("[G.assailant] puts [G.affecting] on the table."))
-		qdel(W)
-		return
-
 	if(iswrench(W))
 		to_chat(user, "It's a holotable! There are no bolts!")
 		return

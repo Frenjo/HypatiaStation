@@ -131,13 +131,18 @@
 
 	take_victim(usr, usr)
 
-/obj/machinery/optable/attackby(obj/item/W, mob/living/carbon/user)
-	if(istype(W, /obj/item/grab))
-		if(iscarbon(W:affecting))
-			take_victim(W:affecting, usr)
-			qdel(W)
-			return
+/obj/machinery/optable/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
+	if(!iscarbon(user) || !iscarbon(grabbed))
+		return FALSE
+
+	take_victim(grabbed, user)
+	qdel(grab)
+	return TRUE
+
+/obj/machinery/optable/attack_by(obj/item/I, mob/user)
+	SHOULD_CALL_PARENT(FALSE) // This is hacky as fuck.
+
 	user.drop_item()
-	if(W && W.loc)
-		W.loc = src.loc
-	return
+	if(isnotnull(I?.loc))
+		I.loc = src.loc
+	return TRUE
