@@ -382,15 +382,9 @@ CONTROLLER_DEF(jobs)
 
 		H.mind.store_memory(remembered_info)
 
-	spawn(0)
-		to_chat(H, SPAN_INFO_B("Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]."))
-
-	var/alt_title = H.mind.role_alt_title
-	to_chat(H, "<B>You are the [isnotnull(alt_title) ? alt_title : rank].</B>")
-	if(isnotnull(job.supervisors))
-		to_chat(H, "<b>As the [isnotnull(alt_title) ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
-	if(job.req_admin_notify)
-		to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
+	// Displays job-based and standard spawn information.
+	to_chat(H, jointext(job.get_spawn_message_content(H.mind.role_alt_title), "\n"))
+	to_chat(H, SPAN_INFO_B("Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]."))
 
 	if(rank == "Cyborg")
 		H.Robotize()

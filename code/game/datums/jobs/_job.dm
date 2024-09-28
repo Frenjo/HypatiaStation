@@ -4,7 +4,7 @@
 	// Bitflag for the job.
 	var/flag = 0
 
-	// The department the job belongs to.
+	// The typepath of the department the job belongs to.
 	var/department = null
 	// Whether this is a head position.
 	var/head_position = FALSE
@@ -16,7 +16,7 @@
 	// How many players have this job.
 	var/current_positions = 0
 
-	// Supervisors, who this person answers to directly.
+	// Supervisors, who this person directly answers to.
 	var/supervisors = null
 	// Selection screen color.
 	var/selection_color = "#ffffff"
@@ -30,12 +30,12 @@
 	var/list/access = null			// Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
 	var/list/minimal_access = null	// Useful for servers which prefer to only have access given to the places a job absolutely needs (IE larger server population.)
 
-	// A typepath to the outfit that mobs with this job will spawn with, if any.
+	// The typepath of the outfit that mobs with this job will spawn with, if any.
 	var/outfit
-	// List of alternate titles with alternate outfits as associative values, if any.
+	// List of alternate titles with alternate outfit typepaths as associative values, if any.
 	var/list/alt_titles
 
-	// The specific survival kit provided to characters with this job, if there is one.
+	// The typepath of the specific survival kit provided to characters with this job, if there is one.
 	// Currently only used for engineering jobs.
 	var/special_survival_kit = null
 
@@ -51,16 +51,24 @@
 /datum/job/proc/get_access()
 	if(CONFIG_GET(jobs_have_minimal_access) && isnotnull(minimal_access))
 		return minimal_access.Copy()
-	else
-		return access.Copy()
+	return access.Copy()
 
-// If the configuration option is set to require players to be logged as old enough to play certain jobs, then this proc checks that they are, otherwise it just returns 1.
+/*
+ * player_old_enough()
+ *
+ * If the configuration option is set to require players' accounts to be logged as old enough to play certain jobs, then this proc checks that they are.
+ * Returns TRUE if their account is old enough or if the configuration option is disabled, FALSE otherwise.
+ */
 /datum/job/proc/player_old_enough(client/C)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	if(available_in_days(C) == 0)
-		return 1	// Available in 0 days = available right now = player is old enough to play.
-	return 0
+		return TRUE	// Available in 0 days = available right now = player is old enough to play.
+	return FALSE
 
 /datum/job/proc/available_in_days(client/C)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	if(isnull(C))
 		return 0
 	if(!CONFIG_GET(use_age_restriction_for_jobs))
@@ -71,3 +79,16 @@
 		return 0
 
 	return max(0, minimal_player_age - C.player_age)
+
+// Returns a list of strings displayed to mobs with this job when spawning into the round.
+/datum/job/proc/get_spawn_message_content(alt_title = null)
+	RETURN_TYPE(/list)
+	SHOULD_CALL_PARENT(TRUE)
+
+	. = list()
+	var/job_title = isnotnull(alt_title) ? alt_title : title
+	. += "<B>You are the [job_title].</B>"
+	if(isnotnull(supervisors))
+		. += "<B>As the [job_title] you answer directly to [supervisors]. Special circumstances may change this.</B>"
+	if(req_admin_notify)
+		. += "<B>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</B>"
