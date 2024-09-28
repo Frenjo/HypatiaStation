@@ -20,12 +20,13 @@
 	var/nuke_off_station = 0 //Used for tracking if the syndies actually haul the nuke to the station
 	var/syndies_didnt_escape = 0 //Used for tracking if the syndies got the shuttle off of the z-level
 
-/datum/game_mode/nuclear/announce()
-	to_world("<B>The current game mode is - Nuclear Emergency!</B>")
-	to_world("<B>A [syndicate_name()] Strike Force is approaching [station_name()]!</B>")
-	to_world("A nuclear explosive was being transported by NanoTrasen to a military base. The transport ship mysteriously lost contact with Space Traffic Control (STC). About that time a strange disk was discovered around [station_name()]. It was identified by NanoTrasen as a nuclear auth. disk and now Syndicate Operatives have arrived to retake the disk and detonate SS13! Also, most likely Syndicate star ships are in the vicinity so take care not to lose the disk!")
-	to_world("<B>Syndicate</B>: Reclaim the disk and detonate the nuclear bomb anywhere on SS13.")
-	to_world("<B>Personnel</B>: Hold the disk and <B>escape with the disk</B> on the shuttle!")
+/datum/game_mode/nuclear/get_announce_content()
+	. = list()
+	. += "<B>The current game mode is - Nuclear Emergency!</B>"
+	. += "<B>A [syndicate_name()] Strike Force is approaching [station_name()]!</B>"
+	. += "A nuclear explosive was being transported by NanoTrasen to a military base. The transport ship mysteriously lost contact with Space Traffic Control (STC). About that time a strange disk was discovered around [station_name()]. It was identified by NanoTrasen as a nuclear auth. disk and now Syndicate Operatives have arrived to retake the disk and detonate SS13! Also, most likely Syndicate star ships are in the vicinity so take care not to lose the disk!"
+	. += "<B>Syndicate</B>: Reclaim the disk and detonate the nuclear bomb anywhere on SS13."
+	. += "<B>Personnel</B>: Hold the disk and <B>escape with the disk</B> on the shuttle!"
 
 /datum/game_mode/nuclear/can_start()//This could be better, will likely have to recode it later
 	if(!..())

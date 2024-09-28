@@ -8,9 +8,10 @@
 	required_enemies = 2
 	recommended_enemies = 3
 
-/datum/game_mode/traitor/changeling/announce()
-	to_world("<B>The current game mode is - Traitor+Changeling!</B>")
-	to_world("<B>There is an alien creature on the station along with some syndicate operatives out for their own gain! Do not let the changeling and the traitors succeed!</B>")
+/datum/game_mode/traitor/changeling/get_announce_content()
+	. = list()
+	. += "<B>The current game mode is - Traitor+Changeling!</B>"
+	. += "<B>There is an alien creature on the station along with some syndicate operatives out for their own gain! Do not let the changeling and the traitors succeed!</B>"
 
 /datum/game_mode/traitor/changeling/pre_setup()
 	if(CONFIG_GET(protect_roles_from_antagonist))

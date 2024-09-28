@@ -11,8 +11,9 @@
 	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 	var/finished = 0
 
-/datum/game_mode/ninja/announce()
-	to_world("<B>The current game mode is Ninja!</B>")
+/datum/game_mode/ninja/get_announce_content()
+	. = list()
+	. += "<B>The current game mode is Ninja!</B>"
 
 /datum/game_mode/ninja/can_start()
 	if(!..())

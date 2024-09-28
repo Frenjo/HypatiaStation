@@ -8,11 +8,9 @@
 	var/list/datum/mind/possible_traitors = list()
 	var/num_players = 0
 
-/datum/game_mode/traitor/autotraitor/announce()
-	SHOULD_CALL_PARENT(TRUE)
-
+/datum/game_mode/traitor/autotraitor/get_announce_content()
 	. = ..()
-	to_world("<B>Game mode is AutoTraitor. Traitors will be added to the round automagically as needed.</B>")
+	. += "<B>Game mode is AutoTraitor. Traitors will be added to the round automagically as needed.</B>"
 
 /datum/game_mode/traitor/autotraitor/pre_setup()
 	if(CONFIG_GET(protect_roles_from_antagonist))

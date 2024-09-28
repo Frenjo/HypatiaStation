@@ -33,11 +33,12 @@
 ///////////////////////////
 //Announces the game type//
 ///////////////////////////
-/datum/game_mode/revolution/announce()
-	to_world("<B>The current game mode is - Revolution!</B>")
-	to_world("<B>Some crewmembers are attempting to start a revolution!<BR>")
-	to_world("Revolutionaries - Kill the Captain, HoP, HoS, CE, RD and CMO. Convert other crewmembers (excluding the heads of staff, and security officers) to your cause by flashing them. Protect your leaders.<BR>")
-	to_world("Personnel - Protect the heads of staff. Kill the leaders of the revolution, and brainwash the other revolutionaries (by beating them in the head).")
+/datum/game_mode/revolution/get_announce_content()
+	. = list()
+	. += "<B>The current game mode is - Revolution!</B>"
+	. += "<B>Some crewmembers are attempting to start a revolution!</B>"
+	. += "<B>Revolutionaries:</B> Kill the Captain, HoP, HoS, CE, RD and CMO. Convert other crewmembers (excluding heads of staff and security officers) to your cause by flashing them. Protect your leaders."
+	. += "<B>Personnel:</B> Protect the heads of staff. Kill the leaders of the revolution, and brainwash the other revolutionaries (by beating them in the head)."
 
 
 ///////////////////////////////////////////////////////////////////////////////

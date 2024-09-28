@@ -136,9 +136,13 @@
 ///////////////////////////
 //Announces the game type//
 ///////////////////////////
-/datum/game_mode/revolution/rp_revolution/announce()
-	to_world("<B>The current game mode is - Revolution!</B>")
-	to_world("<B>Some crewmembers are attempting to start a revolution!</B>")
+/*
+// This is commented out because it's currently redundant, but there might be a use for it later.
+/datum/game_mode/revolution/rp_revolution/announce_content()
+	. = ..()
+	. += "<B>The current game mode is - Revolution!</B>"
+	. += "<B>Some crewmembers are attempting to start a revolution!</B>"
+*/
 
 //////////////////////////////////////////////////////////////////////
 //Announces the end of the game with all relavent information stated//

@@ -20,9 +20,10 @@
 	var/traitors_possible = 4 //hard limit on traitors if scaling is turned off
 	var/const/traitor_scaling_coeff = 5.0 //how much does the amount of players get divided by to determine traitors
 
-/datum/game_mode/traitor/announce()
-	to_world("<B>The current game mode is - Traitor!</B>")
-	to_world("<B>There is a syndicate traitor on the station. Do not let the traitor succeed!</B>")
+/datum/game_mode/traitor/get_announce_content()
+	. = list()
+	. += "<B>The current game mode is - Traitor!</B>"
+	. += "<B>There is a syndicate traitor on the station. Do not let the traitor succeed!</B>"
 
 /datum/game_mode/traitor/pre_setup()
 	if(CONFIG_GET(protect_roles_from_antagonist))

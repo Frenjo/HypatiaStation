@@ -45,9 +45,10 @@ var/list/possible_changeling_IDs = list(
 
 	var/changeling_amount = 4
 
-/datum/game_mode/changeling/announce()
-	to_world("<B>The current game mode is - Changeling!</B>")
-	to_world("<B>There are alien changelings on the station. Do not let the changelings succeed!</B>")
+/datum/game_mode/changeling/get_announce_content()
+	. = list()
+	. += "<B>The current game mode is - Changeling!</B>"
+	. += "<B>There are alien changelings on the station. Do not let the changelings succeed!</B>"
 
 /datum/game_mode/changeling/pre_setup()
 	if(CONFIG_GET(protect_roles_from_antagonist))

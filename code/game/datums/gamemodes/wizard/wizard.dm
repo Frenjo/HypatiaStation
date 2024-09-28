@@ -18,9 +18,10 @@
 	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
 	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 
-/datum/game_mode/wizard/announce()
-	to_world("<B>The current game mode is - Wizard!</B>")
-	to_world("<B>There is a [SPAN_WARNING("SPACE WIZARD")] on the station. You can't let him achieve his objective!</B>")
+/datum/game_mode/wizard/get_announce_content()
+	. = list()
+	. += "<B>The current game mode is - Wizard!</B>"
+	. += "<B>There is a [SPAN_WARNING("SPACE WIZARD")] on the station. You can't let them achieve their objective!</B>"
 
 /datum/game_mode/wizard/can_start()//This could be better, will likely have to recode it later
 	if(!..())

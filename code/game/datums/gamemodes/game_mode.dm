@@ -77,10 +77,19 @@ Implants;
 	. = ..()
 	newscaster_announcements = pick(GLOBL.newscaster_standard_feeds)
 
-/datum/game_mode/proc/announce() //to be calles when round starts
-	SHOULD_CALL_PARENT(FALSE)
+/datum/game_mode/proc/announce() // To be called when a round starts.
+	SHOULD_NOT_OVERRIDE(TRUE)
 
-	to_world("<B>Notice</B>: [src] did not define announce()")
+	var/list/messages = get_announce_content()
+	if(isnotnull(messages))
+		to_world(jointext(messages, "\n"))
+	else
+		to_world("<B>Notice</B>: [src] did not define get_announce_content()")
+
+// Returns a list of strings to be displayed by announce() when a round starts.
+/datum/game_mode/proc/get_announce_content()
+	RETURN_TYPE(/list)
+	return null
 
 ///can_start()
 ///Checks to see if the game can be setup and ran with the current number of players or whatnot.

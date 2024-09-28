@@ -49,9 +49,12 @@
 	var/const/max_cultists_to_start = 4
 	var/acolytes_survived = 0
 
-/datum/game_mode/cult/announce()
-	to_world("<B>The current game mode is - Cult!</B>")
-	to_world("<B>Some crewmembers are attempting to start a cult!<BR>\nCultists - complete your objectives. Convert crewmembers to your cause by using the convert rune. Remember - there is no you, there is only the cult.<BR>\nPersonnel - Do not let the cult succeed in its mission. Brainwashing them with the chaplain's bible reverts them to whatever CentCom-allowed faith they had.</B>")
+/datum/game_mode/cult/get_announce_content()
+	. = list()
+	. += "<B>The current game mode is - Cult!</B>"
+	. += "<B>Some crewmembers are attempting to start a cult!</B>"
+	. += "<B>Cultists:</B> Complete your objectives. Convert crewmembers to your cause by using the convert rune. Remember - there is no you, there is only the cult."
+	. += "<B>Personnel:</B> Do not let the cult succeed in its mission. Brainwashing them with the chaplain's bible reverts them to whatever CentCom-allowed faith they had."
 
 /datum/game_mode/cult/pre_setup()
 	if(!CONFIG_GET(objectives_disabled))

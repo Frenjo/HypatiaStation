@@ -11,9 +11,10 @@
 	uplink_welcome = "EVIL METEOR Uplink Console:"
 	uplink_uses = 10
 
-/datum/game_mode/meteor/announce()
-	to_world("<B>The current game mode is - Meteor!</B>")
-	to_world("<B>The space station has been stuck in a major meteor shower. You must escape from the station or at least live.</B>")
+/datum/game_mode/meteor/get_announce_content()
+	. = list()
+	. += "<B>The current game mode is - Meteor!</B>"
+	. += "<B>The space station has been stuck in a major meteor shower. You must escape from the station or at least live.</B>"
 
 /datum/game_mode/meteor/post_setup()
 	GLOBL.defer_powernet_rebuild = 2	//Might help with the lag
