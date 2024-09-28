@@ -97,11 +97,13 @@
 	var/tmp/times_killed
 
 /datum/process/New(datum/controller/master/master)
+	SHOULD_CALL_PARENT(TRUE)
+
 	. = ..()
 	src.master = master
 	previous_status = "idle"
 	idle()
-	sleep_interval = world.tick_lag / PROCESS_DEFAULT_SLEEP_INTERVAL
+	sleep_interval = (world.tick_lag / PROCESS_DEFAULT_SLEEP_INTERVAL)
 	last_slept = 0
 	run_start = 0
 	ticks = 0
@@ -116,6 +118,8 @@
 	return ..()
 
 /datum/process/proc/started()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	// Initialize run_start so we can detect hung processes.
 	run_start = TIMEOFGAME
 
@@ -128,6 +132,8 @@
 	on_start()
 
 /datum/process/proc/finished()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	ticks++
 	idle()
 	master.process_finished(src)
@@ -141,11 +147,15 @@
 	return
 
 /datum/process/proc/process()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	started()
 	do_work()
 	finished()
 
 /datum/process/proc/running()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	idle = FALSE
 	queued = FALSE
 	running = TRUE
@@ -153,6 +163,8 @@
 	set_status(PROCESS_STATUS_RUNNING)
 
 /datum/process/proc/idle()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	queued = FALSE
 	running = FALSE
 	idle = TRUE
@@ -160,6 +172,8 @@
 	set_status(PROCESS_STATUS_IDLE)
 
 /datum/process/proc/queued()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	idle = FALSE
 	running = FALSE
 	queued = TRUE
@@ -167,22 +181,28 @@
 	set_status(PROCESS_STATUS_QUEUED)
 
 /datum/process/proc/hung()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	hung = TRUE
 	set_status(PROCESS_STATUS_HUNG)
 
 /datum/process/proc/handle_hung()
-	var/datum/lastObj = last_object
-	var/lastObjType = "null"
-	if(istype(lastObj))
-		lastObjType = lastObj.type
+	SHOULD_NOT_OVERRIDE(TRUE)
 
-	var/msg = "[name] process hung at tick #[ticks]. Process was unresponsive for [(TIMEOFGAME - run_start) / 10] seconds and was restarted. Last task: [last_task]. Last Object Type: [lastObjType]"
+	var/datum/last = last_object
+	var/last_object_type = "null"
+	if(istype(last))
+		last_object_type = last.type
+
+	var/msg = "[name] process hung at tick #[ticks]. Process was unresponsive for [(TIMEOFGAME - run_start) / 10] seconds and was restarted. Last task: [last_task]. Last Object Type: [last_object_type]"
 	log_debug(msg)
 	message_admins(msg)
 
 	master.restart_process(name)
 
 /datum/process/proc/kill()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	if(!killed)
 		var/msg = "[name] process was killed at tick #[ticks]."
 		log_debug(msg)
@@ -196,7 +216,9 @@
 		del(src)
 
 // Do not call this directly - use SHECK or SCHECK_EVERY
-/datum/process/proc/sleep_check(tickId = 0)
+/datum/process/proc/sleep_check(tick_id = 0)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	calls_since_last_scheck = 0
 	if(killed)
 		// The kill proc is the only place where killed is set.
@@ -220,11 +242,13 @@
 			last_slept = TIMEOFTICK
 
 /datum/process/proc/update()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	// Clear delta
 	if(previous_status != status)
 		set_status(status)
 
-	var/elapsedTime = get_elapsed_time()
+	var/elapsedTime = (TIMEOFGAME - run_start)
 
 	if(hung)
 		handle_hung()
@@ -236,13 +260,9 @@
 	else if(elapsedTime > hang_warning_time)
 		set_status(PROCESS_STATUS_MAYBE_HUNG)
 
-/datum/process/proc/get_elapsed_time()
-	return TIMEOFGAME - run_start
-
-/datum/process/proc/get_context()
-	return "<tr><td>[name]</td><td>[master.average_run_time(src)]</td><td>[master.last_run_time[src]]</td><td>[master.highest_run_time[src]]</td><td>[ticks]</td></tr>\n"
-
 /datum/process/proc/get_context_data()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	return list(
 		"name" = name,
 		"averageRunTime" = master.average_run_time(src),
@@ -254,10 +274,9 @@
 		"disabled" = disabled
 	)
 
-/datum/process/proc/get_status()
-	return status
-
 /datum/process/proc/get_status_text(s = null)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	if(isnull(s))
 		s = status
 	switch(s)
@@ -276,21 +295,21 @@
 		else
 			return "UNKNOWN"
 
-/datum/process/proc/get_previous_status()
-	return previous_status
-
-/datum/process/proc/get_previous_status_text()
-	return get_status_text(previous_status)
-
 /datum/process/proc/set_status(newStatus)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	previous_status = status
 	status = newStatus
 
 /datum/process/proc/set_last_task(task, object)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	last_task = task
 	last_object = object
 
 /datum/process/proc/_copy_state_from(datum/process/target)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	master = target.master
 	name = target.name
 	schedule_interval = target.schedule_interval
@@ -316,9 +335,13 @@
 	return
 
 /datum/process/proc/disable()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	disabled = TRUE
 
 /datum/process/proc/enable()
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	disabled = FALSE
 
 /datum/process/proc/stat_process()
@@ -336,6 +359,8 @@
 	RETURN_TYPE(/list)
 
 /datum/process/proc/catch_exception(exception/e, thrower)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	if(istype(e)) // Real runtimes go to the real error handler
 		// There are two newlines here, because handling desc sucks
 		e.desc = "  Caught by process: [name]\n\n" + e.desc
@@ -366,6 +391,8 @@
 			exceptions[eid] = 0
 
 /datum/process/proc/catch_bad_type(datum/caught)
+	SHOULD_NOT_OVERRIDE(TRUE)
+
 	if(isnull(caught) || !istype(caught) || GC_DESTROYED(caught))
 		return // Only bother with types we can identify and that don't belong
 	catch_exception("Type [caught.type] does not belong in process' queue")

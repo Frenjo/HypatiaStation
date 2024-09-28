@@ -403,36 +403,36 @@ CONTROLLER_DEF(master)
 	to_world(SPAN_DANGER("↪ Processing every [process.schedule_interval / 10] second\s."))
 	to_world(SPAN_DANGER("↪ Initialised in [(world.timeofday - start_time) / 10] second\s."))
 
-/datum/controller/master/proc/replace_process(datum/process/oldProcess, datum/process/newProcess)
-	processes.Remove(oldProcess)
-	processes.Add(newProcess)
+/datum/controller/master/proc/replace_process(datum/process/old_process, datum/process/new_process)
+	processes.Remove(old_process)
+	processes.Add(new_process)
 
-	newProcess.idle()
-	idle.Remove(oldProcess)
-	running.Remove(oldProcess)
-	queued.Remove(oldProcess)
-	idle.Add(newProcess)
+	new_process.idle()
+	idle.Remove(old_process)
+	running.Remove(old_process)
+	queued.Remove(old_process)
+	idle.Add(new_process)
 
-	last_start.Remove(oldProcess)
-	last_start.Add(newProcess)
-	last_start[newProcess] = 0
+	last_start.Remove(old_process)
+	last_start.Add(new_process)
+	last_start[new_process] = 0
 
-	last_run_time.Add(newProcess)
-	last_run_time[newProcess] = last_run_time[oldProcess]
-	last_run_time.Remove(oldProcess)
+	last_run_time.Add(new_process)
+	last_run_time[new_process] = last_run_time[old_process]
+	last_run_time.Remove(old_process)
 
-	last_twenty_run_times.Add(newProcess)
-	last_twenty_run_times[newProcess] = last_twenty_run_times[oldProcess]
-	last_twenty_run_times.Remove(oldProcess)
+	last_twenty_run_times.Add(new_process)
+	last_twenty_run_times[new_process] = last_twenty_run_times[old_process]
+	last_twenty_run_times.Remove(old_process)
 
-	highest_run_time.Add(newProcess)
-	highest_run_time[newProcess] = highest_run_time[oldProcess]
-	highest_run_time.Remove(oldProcess)
+	highest_run_time.Add(new_process)
+	highest_run_time[new_process] = highest_run_time[old_process]
+	highest_run_time.Remove(old_process)
 
-	record_start(newProcess, 0)
-	record_end(newProcess, 0)
+	record_start(new_process, 0)
+	record_end(new_process, 0)
 
-	processes_by_type[newProcess.type] = newProcess
+	processes_by_type[new_process.type] = new_process
 
 /datum/controller/master/proc/queue_processes()
 	for_no_type_check(var/datum/process/p, processes)
@@ -461,11 +461,11 @@ CONTROLLER_DEF(master)
 
 /datum/controller/master/proc/restart_process(process_type)
 	if(isnotnull(processes_by_type[process_type]))
-		var/datum/process/oldInstance = processes_by_type[process_type]
-		var/datum/process/newInstance = new process_type(src)
-		newInstance._copy_state_from(oldInstance)
-		replace_process(oldInstance, newInstance)
-		oldInstance.kill()
+		var/datum/process/old_instance = processes_by_type[process_type]
+		var/datum/process/new_instance = new process_type(src)
+		new_instance._copy_state_from(old_instance)
+		replace_process(old_instance, new_instance)
+		old_instance.kill()
 
 /datum/controller/master/proc/check_running_processes()
 	for_no_type_check(var/datum/process/p, running)
@@ -474,8 +474,8 @@ CONTROLLER_DEF(master)
 		if(isnull(p)) // Process was killed
 			continue
 
-		var/status = p.get_status()
-		var/previousStatus = p.get_previous_status()
+		var/status = p.status
+		var/previousStatus = p.previous_status
 
 		// Check status changes
 		if(status != previousStatus)
