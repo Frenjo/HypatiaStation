@@ -290,9 +290,9 @@ What a mess.*/
 				temp += "<a href='byond://?src=\ref[src];choice=Purge All Records'>Yes</a><br>"
 				temp += "<a href='byond://?src=\ref[src];choice=Clear Screen'>No</a>"
 
-			if ("Purge All Records")
-				if(length(GLOBL.pda_manifest))
-					GLOBL.pda_manifest.Cut()
+			if("Purge All Records")
+				if(length(GLOBL.data_core.pda_manifest))
+					GLOBL.data_core.pda_manifest.Cut()
 				for_no_type_check(var/datum/data/record/R, GLOBL.data_core.security)
 					qdel(R)
 				temp = "All Employment records deleted."
@@ -305,8 +305,8 @@ What a mess.*/
 //RECORD CREATE
 			if ("New Record (General)")
 
-				if(length(GLOBL.pda_manifest))
-					GLOBL.pda_manifest.Cut()
+				if(length(GLOBL.data_core.pda_manifest))
+					GLOBL.data_core.pda_manifest.Cut()
 				var/datum/data/record/G = new /datum/data/record()
 				G.fields["name"] = "New Record"
 				G.fields["id"] = text("[]", add_zero(num2hex(rand(1, 1.6777215E7)), 6))
@@ -379,16 +379,16 @@ What a mess.*/
 				switch(href_list["choice"])
 					if ("Change Rank")
 						if (active1)
-							if(length(GLOBL.pda_manifest))
-								GLOBL.pda_manifest.Cut()
+							if(length(GLOBL.data_core.pda_manifest))
+								GLOBL.data_core.pda_manifest.Cut()
 							active1.fields["rank"] = href_list["rank"]
 							if(href_list["rank"] in GLOBL.all_jobs)
 								active1.fields["real_rank"] = href_list["real_rank"]
 
 					if ("Delete Record (ALL) Execute")
 						if (active1)
-							if(length(GLOBL.pda_manifest))
-								GLOBL.pda_manifest.Cut()
+							if(length(GLOBL.data_core.pda_manifest))
+								GLOBL.data_core.pda_manifest.Cut()
 							for_no_type_check(var/datum/data/record/R, GLOBL.data_core.medical)
 								if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
 									qdel(R)

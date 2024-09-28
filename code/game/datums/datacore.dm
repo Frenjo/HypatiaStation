@@ -1,5 +1,4 @@
 GLOBAL_GLOBL(datum/datacore/data_core)
-GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 
 /hook/startup/proc/create_datacore()
 	. = TRUE
@@ -11,6 +10,8 @@ GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 	var/list/datum/data/record/security = list()
 	// This list tracks characters spawned in the world and cannot be modified in-game. Currently referenced by respawn_character().
 	var/list/datum/data/record/locked = list()
+	// This was originally a global variable, but why not just put it on the datacore since that in itself is global anyway?!
+	var/list/pda_manifest = list()
 
 /datum/datacore/proc/get_manifest(monochrome, OOC)
 	var/list/heads = list()
@@ -37,7 +38,7 @@ GLOBAL_GLOBL_LIST_NEW(pda_manifest)
 	var/even = FALSE
 
 	// sort mobs
-	for_no_type_check(var/datum/data/record/t, GLOBL.data_core.general)
+	for_no_type_check(var/datum/data/record/t, general)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
 		var/real_rank = t.fields["real_rank"]
@@ -133,8 +134,8 @@ we'll only update it when it changes. The pda_manifest global list is zeroed out
 using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 */
 /datum/datacore/proc/get_manifest_json()
-	if(length(GLOBL.pda_manifest))
-		return GLOBL.pda_manifest
+	if(length(pda_manifest))
+		return pda_manifest
 
 	var/list/heads = list()
 	var/list/sec = list()
@@ -145,7 +146,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 	var/list/bot = list()
 	var/list/misc = list()
 
-	for_no_type_check(var/datum/data/record/t, GLOBL.data_core.general)
+	for_no_type_check(var/datum/data/record/t, general)
 		var/name = sanitize(t.fields["name"])
 		var/rank = sanitize(t.fields["rank"])
 		var/real_rank = t.fields["real_rank"]
@@ -196,7 +197,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		if(!department && !(name in heads))
 			misc[++misc.len] = list("name" = name, "rank" = rank, "active" = isactive)
 
-	GLOBL.pda_manifest = list(
+	pda_manifest = list(
 		"heads" = heads,
 		"sec" = sec,
 		"eng" = eng,
@@ -206,19 +207,19 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		"bot" = bot,
 		"misc" = misc
 	)
-	return GLOBL.pda_manifest
+	return pda_manifest
 
 /datum/datacore/proc/manifest()
 	for(var/mob/living/carbon/human/H in GLOBL.player_list)
 		manifest_inject(H)
 
 /datum/datacore/proc/manifest_modify(name, assignment)
-	if(length(GLOBL.pda_manifest))
-		GLOBL.pda_manifest.Cut()
+	if(length(pda_manifest))
+		pda_manifest.Cut()
 
 	var/datum/data/record/foundrecord
 	var/real_title = assignment
-	for_no_type_check(var/datum/data/record/t, GLOBL.data_core.general)
+	for_no_type_check(var/datum/data/record/t, general)
 		if(isnotnull(t))
 			if(t.fields["name"] == name)
 				foundrecord = t
@@ -237,8 +238,8 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		foundrecord.fields["real_rank"] = real_title
 
 /datum/datacore/proc/manifest_inject(mob/living/carbon/human/H)
-	if(length(GLOBL.pda_manifest))
-		GLOBL.pda_manifest.Cut()
+	if(length(pda_manifest))
+		pda_manifest.Cut()
 
 	if(isnotnull(H.mind) && (H.mind.assigned_role != "MODE"))
 		var/assignment

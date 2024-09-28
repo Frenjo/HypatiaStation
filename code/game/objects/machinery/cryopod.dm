@@ -231,8 +231,8 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 					current_mode.possible_traitors.Remove(occupant)
 
 			// Delete them from datacore.
-			if(length(GLOBL.pda_manifest))
-				GLOBL.pda_manifest.Cut()
+			if(length(GLOBL.data_core.pda_manifest))
+				GLOBL.data_core.pda_manifest.Cut()
 			for_no_type_check(var/datum/data/record/R, GLOBL.data_core.medical)
 				if((R.fields["name"] == occupant.real_name))
 					qdel(R)

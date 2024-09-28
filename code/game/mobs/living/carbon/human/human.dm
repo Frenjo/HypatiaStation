@@ -581,8 +581,8 @@
 								if(setmedical != "Cancel")
 									R.fields["p_stat"] = setmedical
 									modified = 1
-									if(length(GLOBL.pda_manifest))
-										GLOBL.pda_manifest.Cut()
+									if(length(GLOBL.data_core.pda_manifest))
+										GLOBL.data_core.pda_manifest.Cut()
 
 									spawn()
 										if(ishuman(usr))
