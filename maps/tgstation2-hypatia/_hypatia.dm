@@ -25,3 +25,8 @@
 	admin_levels = list(2)
 	contact_levels = list(1, 3, 5)
 	player_levels = list(1, 3, 4, 5, 6)
+
+	// Was list("3" = 30, "4" = 70).
+	// Spacing should be a reliable method of getting rid of a body -- Urist.
+	// Go away Urist, I'm restoring this to the longer list. ~Errorage
+	accessible_z_levels = list("1" = 5, "3" = 10, "4" = 15, "5" = 10, "6" = 60)

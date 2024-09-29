@@ -11,3 +11,7 @@ GLOBAL_GLOBL_INIT(datum/map/current_map, new CURRENT_MAP_DATUM())
 	var/list/player_levels = list()		// Defines all Z-levels a character can typically reach.
 
 	var/list/base_turf_by_z = list()	// Defines the base turf for each Z-level. Unlisted Z-levels default to world.turf.
+
+	// This list contains the z-level numbers which can be accessed via space travel and the percentile chances to get there.
+	// (Exceptions: extended, sandbox and nuke) -Errorage
+	var/list/accessible_z_levels = list()

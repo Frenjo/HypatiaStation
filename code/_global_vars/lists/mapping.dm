@@ -11,13 +11,6 @@ GLOBAL_GLOBL_LIST_INIT(reverse_dir, list(	// reverse_dir[dir] = reverse of dir
 	54, 53, 55, 60, 62, 61, 63
 ))
 
-GLOBAL_GLOBL_LIST_INIT(accessible_z_levels, list("1" = 5, "3" = 10, "4" = 15, "5" = 10, "6" = 60))
-// This list contains the z-level numbers which can be accessed via space travel and the percentile chances to get there.
-// (Exceptions: extended, sandbox and nuke) -Errorage
-// Was list("3" = 30, "4" = 70).
-// Spacing should be a reliable method of getting rid of a body -- Urist.
-// Go away Urist, I'm restoring this to the longer list. ~Errorage
-
 // Areas
 GLOBAL_GLOBL_LIST_NEW(area/area_list) // A list of all areas in the world.
 GLOBAL_GLOBL_LIST_NEW(turf/open/open_turf_list) // A list of all open turfs in the world.
