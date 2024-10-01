@@ -1794,21 +1794,21 @@
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","TriAI")
 			if("gravity")
-				if(!(global.PCticker && global.PCticker.mode))
-					usr << "Please wait until the game starts!  Not sure how it will work otherwise."
+				if(isnull(global.PCticker) || isnull(global.PCticker.mode))
+					to_chat(usr, "Please wait until the game starts! Not sure how it will work otherwise.")
 					return
-				GLOBL.gravity_is_on = !GLOBL.gravity_is_on
+				global.PCticker.gravity_is_on = !global.PCticker.gravity_is_on
 				for_no_type_check(var/area/A, GLOBL.area_list)
-					A.set_gravity(GLOBL.gravity_is_on)
+					A.set_gravity(global.PCticker.gravity_is_on)
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","Grav")
-				if(GLOBL.gravity_is_on)
+				if(global.PCticker.gravity_is_on)
 					log_admin("[key_name(usr)] toggled gravity on.", 1)
-					message_admins("\blue [key_name_admin(usr)] toggled gravity on.", 1)
+					message_admins(SPAN_INFO("[key_name_admin(usr)] toggled gravity on."), 1)
 					command_alert("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.")
 				else
 					log_admin("[key_name(usr)] toggled gravity off.", 1)
-					message_admins("\blue [key_name_admin(usr)] toggled gravity off.", 1)
+					message_admins(SPAN_INFO("[key_name_admin(usr)] toggled gravity off."), 1)
 					command_alert("Feedback surge detected in mass-distributions systems. Artifical gravity has been disabled whilst the system reinitializes. Further failures may result in a gravitational collapse and formation of blackholes. Have a nice day.")
 			if("wave")
 				feedback_inc("admin_secrets_fun_used",1)

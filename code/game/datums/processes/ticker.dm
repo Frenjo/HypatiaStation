@@ -36,7 +36,9 @@ PROCESS_DEF(ticker)
 	var/delay_end = FALSE
 
 	// Global holder for Triumvirate.
-	var/triai = 0
+	var/triai = FALSE
+	// Global holder for gravity status.
+	var/gravity_is_on = TRUE
 
 	// station_explosion used to be a variable for every mob's hud, which was a waste!
 	// Now we have a general cinematic centrally held within the gameticker, which is far more efficient!

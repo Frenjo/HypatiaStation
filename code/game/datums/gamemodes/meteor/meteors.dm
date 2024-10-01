@@ -5,15 +5,20 @@
 /var/const/meteors_in_small_wave = 10
 
 /proc/meteor_wave(number = meteors_in_wave)
-	if(!global.PCticker || GLOBL.wavesecret)
+	if(isnull(global.PCticker))
+		return
+	if(!IS_GAME_MODE(/datum/game_mode/meteor))
+		return
+	var/datum/game_mode/meteor/meteor_mode = global.PCticker.mode
+	if(meteor_mode.wavesecret)
 		return
 
-	GLOBL.wavesecret = TRUE
+	meteor_mode.wavesecret = TRUE
 	for(var/i = 0 to number)
 		spawn(rand(10, 100))
 			spawn_meteor()
 	spawn(meteor_wave_delay)
-		GLOBL.wavesecret = FALSE
+		meteor_mode.wavesecret = FALSE
 
 /proc/spawn_meteors(number = meteors_in_small_wave)
 	for(var/i = 0; i < number; i++)

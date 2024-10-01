@@ -1,12 +1,15 @@
 /datum/game_mode/meteor
 	name = "meteor"
 	config_tag = "meteor"
+
+	required_players = 0
+	votable = FALSE
+
 	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
 	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 	var/const/meteordelay = 2000
 	var/nometeors = 1
-	required_players = 0
-	votable = FALSE
+	var/wavesecret = FALSE
 
 	uplink_welcome = "EVIL METEOR Uplink Console:"
 	uplink_uses = 10
