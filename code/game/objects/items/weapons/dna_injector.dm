@@ -127,7 +127,7 @@
 				if (buf.types & DNA2_BUF_SE)
 					if(block)// Isolated injector
 						testing("Isolated block [block] injector with contents: [GetValue()]")
-						if(GetState() && block == MONKEYBLOCK && ishuman(M))
+						if(GetState() && block == GLOBL.dna_data.monkey_block && ishuman(M))
 							message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the Isolated [name] \red(MONKEY)")
 							log_attack("[key_name(user)] injected [key_name(M)] with the Isolated [name] (MONKEY)")
 							log_game("[key_name_admin(user)] injected [key_name_admin(M)] with the Isolated [name] \red(MONKEY)")
@@ -135,7 +135,7 @@
 							log_attack("[key_name(user)] injected [key_name(M)] with the Isolated [name]")
 					else
 						testing("DNA injector with contents: [english_list(buf.dna.SE)]")
-						if(GetState(MONKEYBLOCK) && ishuman(M))
+						if(GetState(GLOBL.dna_data.monkey_block) && ishuman(M))
 							message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the [name] \red(MONKEY)")
 							log_attack("[key_name(user)] injected [key_name(M)] with the [name] (MONKEY)")
 							log_game("[key_name_admin(user)] injected [key_name_admin(M)] with the [name] \red(MONKEY)")
@@ -162,7 +162,7 @@
 				if (buf.types & DNA2_BUF_SE)
 					if(block)// Isolated injector
 						testing("Isolated block [block] injector with contents: [GetValue()]")
-						if(GetState() && block == MONKEYBLOCK && ishuman(M))
+						if(GetState() && block == GLOBL.dna_data.monkey_block && ishuman(M))
 							message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the Isolated [name] \red(MONKEY)")
 							log_attack("[key_name(user)] injected [key_name(M)] with the Isolated [name] (MONKEY)")
 							log_game("[key_name_admin(user)] injected [key_name_admin(M)] with the Isolated [name] \red(MONKEY)")
@@ -170,7 +170,7 @@
 							log_attack("[key_name(user)] injected [key_name(M)] with the Isolated [name]")
 					else
 						testing("DNA injector with contents: [english_list(buf.dna.SE)]")
-						if(GetState(MONKEYBLOCK) && ishuman(M))
+						if(GetState(GLOBL.dna_data.monkey_block) && ishuman(M))
 							message_admins("[key_name_admin(user)] injected [key_name_admin(M)] with the [name] \red(MONKEY)")
 							log_game("[key_name(user)] injected [key_name(M)] with the [name] (MONKEY)")
 						else
@@ -205,7 +205,7 @@
 	//block = 2
 
 /obj/item/dnainjector/hulkmut/New()
-	block = HULKBLOCK
+	block = GLOBL.dna_data.hulk_block
 	..()
 
 /obj/item/dnainjector/antihulk
@@ -216,7 +216,7 @@
 	//block = 2
 
 /obj/item/dnainjector/antihulk/New()
-	block = HULKBLOCK
+	block = GLOBL.dna_data.hulk_block
 	..()
 
 /obj/item/dnainjector/xraymut
@@ -227,7 +227,7 @@
 	//block = 8
 
 /obj/item/dnainjector/xraymut/New()
-	block = XRAYBLOCK
+	block = GLOBL.dna_data.xray_block
 	..()
 
 /obj/item/dnainjector/antixray
@@ -238,7 +238,7 @@
 	//block = 8
 
 /obj/item/dnainjector/antixray/New()
-	block = XRAYBLOCK
+	block = GLOBL.dna_data.xray_block
 	..()
 
 /obj/item/dnainjector/firemut
@@ -249,7 +249,7 @@
 	//block = 10
 
 /obj/item/dnainjector/firemut/New()
-	block = FIREBLOCK
+	block = GLOBL.dna_data.fire_block
 	..()
 
 /obj/item/dnainjector/antifire
@@ -260,7 +260,7 @@
 	//block = 10
 
 /obj/item/dnainjector/antifire/New()
-	block = FIREBLOCK
+	block = GLOBL.dna_data.fire_block
 	..()
 
 /obj/item/dnainjector/telemut
@@ -271,7 +271,7 @@
 	//block = 12
 
 /obj/item/dnainjector/telemut/New()
-	block = TELEBLOCK
+	block = GLOBL.dna_data.tele_block
 	..()
 
 /obj/item/dnainjector/antitele
@@ -282,7 +282,7 @@
 	//block = 12
 
 /obj/item/dnainjector/antitele/New()
-	block = TELEBLOCK
+	block = GLOBL.dna_data.tele_block
 	..()
 
 /obj/item/dnainjector/nobreath
@@ -293,7 +293,7 @@
 	//block = 2
 
 /obj/item/dnainjector/nobreath/New()
-	block = NOBREATHBLOCK
+	block = GLOBL.dna_data.no_breath_block
 	..()
 
 /obj/item/dnainjector/antinobreath
@@ -304,7 +304,7 @@
 	//block = 2
 
 /obj/item/dnainjector/antinobreath/New()
-	block = NOBREATHBLOCK
+	block = GLOBL.dna_data.no_breath_block
 	..()
 
 /obj/item/dnainjector/remoteview
@@ -315,7 +315,7 @@
 	//block = 2
 
 /obj/item/dnainjector/remoteview/New()
-	block = REMOTEVIEWBLOCK
+	block = GLOBL.dna_data.remote_view_block
 	..()
 
 /obj/item/dnainjector/antiremoteview
@@ -326,7 +326,7 @@
 	//block = 2
 
 /obj/item/dnainjector/antiremoteview/New()
-	block = REMOTEVIEWBLOCK
+	block = GLOBL.dna_data.remote_view_block
 	..()
 
 /obj/item/dnainjector/regenerate
@@ -337,7 +337,7 @@
 	//block = 2
 
 /obj/item/dnainjector/regenerate/New()
-	block = REGENERATEBLOCK
+	block = GLOBL.dna_data.regenerate_block
 	..()
 
 /obj/item/dnainjector/antiregenerate
@@ -348,7 +348,7 @@
 	//block = 2
 
 /obj/item/dnainjector/antiregenerate/New()
-	block = REGENERATEBLOCK
+	block = GLOBL.dna_data.regenerate_block
 	..()
 
 /obj/item/dnainjector/runfast
@@ -359,7 +359,7 @@
 	//block = 2
 
 /obj/item/dnainjector/runfast/New()
-	block = INCREASERUNBLOCK
+	block = GLOBL.dna_data.increase_run_block
 	..()
 
 /obj/item/dnainjector/antirunfast
@@ -370,7 +370,7 @@
 	//block = 2
 
 /obj/item/dnainjector/antirunfast/New()
-	block = INCREASERUNBLOCK
+	block = GLOBL.dna_data.increase_run_block
 	..()
 
 /obj/item/dnainjector/morph
@@ -381,7 +381,7 @@
 	//block = 2
 
 /obj/item/dnainjector/morph/New()
-	block = MORPHBLOCK
+	block = GLOBL.dna_data.morph_block
 	..()
 
 /obj/item/dnainjector/antimorph
@@ -392,7 +392,7 @@
 	//block = 2
 
 /obj/item/dnainjector/antimorph/New()
-	block = MORPHBLOCK
+	block = GLOBL.dna_data.morph_block
 	..()
 
 /* No COLDBLOCK on bay
@@ -425,7 +425,7 @@
 	//block = 2
 
 /obj/item/dnainjector/noprints/New()
-	block = NOPRINTSBLOCK
+	block = GLOBL.dna_data.no_prints_block
 	..()
 
 /obj/item/dnainjector/antinoprints
@@ -436,7 +436,7 @@
 	//block = 2
 
 /obj/item/dnainjector/antinoprints/New()
-	block = NOPRINTSBLOCK
+	block = GLOBL.dna_data.no_prints_block
 	..()
 
 /obj/item/dnainjector/insulation
@@ -447,7 +447,7 @@
 	//block = 2
 
 /obj/item/dnainjector/insulation/New()
-	block = SHOCKIMMUNITYBLOCK
+	block = GLOBL.dna_data.shock_immunity_block
 	..()
 
 /obj/item/dnainjector/antiinsulation
@@ -458,7 +458,7 @@
 	//block = 2
 
 /obj/item/dnainjector/antiinsulation/New()
-	block = SHOCKIMMUNITYBLOCK
+	block = GLOBL.dna_data.shock_immunity_block
 	..()
 
 /obj/item/dnainjector/midgit
@@ -469,7 +469,7 @@
 	//block = 2
 
 /obj/item/dnainjector/midgit/New()
-	block = SMALLSIZEBLOCK
+	block = GLOBL.dna_data.small_size_block
 	..()
 
 /obj/item/dnainjector/antimidgit
@@ -480,7 +480,7 @@
 	//block = 2
 
 /obj/item/dnainjector/antimidgit/New()
-	block = SMALLSIZEBLOCK
+	block = GLOBL.dna_data.small_size_block
 	..()
 
 /////////////////////////////////////
@@ -492,7 +492,7 @@
 	//block = 1
 
 /obj/item/dnainjector/antiglasses/New()
-	block = GLASSESBLOCK
+	block = GLOBL.dna_data.glasses_block
 	..()
 
 /obj/item/dnainjector/glassesmut
@@ -503,7 +503,7 @@
 	//block = 1
 
 /obj/item/dnainjector/glassesmut/New()
-	block = GLASSESBLOCK
+	block = GLOBL.dna_data.glasses_block
 	..()
 
 /obj/item/dnainjector/epimut
@@ -514,7 +514,7 @@
 	//block = 3
 
 /obj/item/dnainjector/epimut/New()
-	block = HEADACHEBLOCK
+	block = GLOBL.dna_data.headache_block
 	..()
 
 /obj/item/dnainjector/antiepi
@@ -525,7 +525,7 @@
 	//block = 3
 
 /obj/item/dnainjector/antiepi/New()
-	block = HEADACHEBLOCK
+	block = GLOBL.dna_data.headache_block
 	..()
 
 /obj/item/dnainjector/anticough
@@ -536,7 +536,7 @@
 	//block = 5
 
 /obj/item/dnainjector/anticough/New()
-	block = COUGHBLOCK
+	block = GLOBL.dna_data.cough_block
 	..()
 
 /obj/item/dnainjector/coughmut
@@ -547,7 +547,7 @@
 	//block = 5
 
 /obj/item/dnainjector/coughmut/New()
-	block = COUGHBLOCK
+	block = GLOBL.dna_data.cough_block
 	..()
 
 /obj/item/dnainjector/clumsymut
@@ -558,7 +558,7 @@
 	//block = 6
 
 /obj/item/dnainjector/clumsymut/New()
-	block = CLUMSYBLOCK
+	block = GLOBL.dna_data.clumsy_block
 	..()
 
 /obj/item/dnainjector/anticlumsy
@@ -569,7 +569,7 @@
 	//block = 6
 
 /obj/item/dnainjector/anticlumsy/New()
-	block = CLUMSYBLOCK
+	block = GLOBL.dna_data.clumsy_block
 	..()
 
 /obj/item/dnainjector/antitour
@@ -580,7 +580,7 @@
 	//block = 7
 
 /obj/item/dnainjector/antitour/New()
-	block = TWITCHBLOCK
+	block = GLOBL.dna_data.twitch_block
 	..()
 
 /obj/item/dnainjector/tourmut
@@ -591,7 +591,7 @@
 	//block = 7
 
 /obj/item/dnainjector/tourmut/New()
-	block = TWITCHBLOCK
+	block = GLOBL.dna_data.twitch_block
 	..()
 
 /obj/item/dnainjector/stuttmut
@@ -602,7 +602,7 @@
 	//block = 9
 
 /obj/item/dnainjector/stuttmut/New()
-	block = NERVOUSBLOCK
+	block = GLOBL.dna_data.nervous_block
 	..()
 
 /obj/item/dnainjector/antistutt
@@ -613,7 +613,7 @@
 	//block = 9
 
 /obj/item/dnainjector/antistutt/New()
-	block = NERVOUSBLOCK
+	block = GLOBL.dna_data.nervous_block
 	..()
 
 /obj/item/dnainjector/blindmut
@@ -624,7 +624,7 @@
 	//block = 11
 
 /obj/item/dnainjector/blindmut/New()
-	block = BLINDBLOCK
+	block = GLOBL.dna_data.blind_block
 	..()
 
 /obj/item/dnainjector/antiblind
@@ -635,7 +635,7 @@
 	//block = 11
 
 /obj/item/dnainjector/antiblind/New()
-	block = BLINDBLOCK
+	block = GLOBL.dna_data.blind_block
 	..()
 
 /obj/item/dnainjector/deafmut
@@ -646,7 +646,7 @@
 	//block = 13
 
 /obj/item/dnainjector/deafmut/New()
-	block = DEAFBLOCK
+	block = GLOBL.dna_data.deaf_block
 	..()
 
 /obj/item/dnainjector/antideaf
@@ -657,7 +657,7 @@
 	//block = 13
 
 /obj/item/dnainjector/antideaf/New()
-	block = DEAFBLOCK
+	block = GLOBL.dna_data.deaf_block
 	..()
 
 /obj/item/dnainjector/hallucination
@@ -668,7 +668,7 @@
 	//block = 2
 
 /obj/item/dnainjector/hallucination/New()
-	block = HALLUCINATIONBLOCK
+	block = GLOBL.dna_data.hallucination_block
 	..()
 
 /obj/item/dnainjector/antihallucination
@@ -679,7 +679,7 @@
 	//block = 2
 
 /obj/item/dnainjector/antihallucination/New()
-	block = HALLUCINATIONBLOCK
+	block = GLOBL.dna_data.hallucination_block
 	..()
 
 /obj/item/dnainjector/h2m
@@ -690,7 +690,7 @@
 	//block = 14
 
 /obj/item/dnainjector/h2m/New()
-	block = MONKEYBLOCK
+	block = GLOBL.dna_data.monkey_block
 	..()
 
 /obj/item/dnainjector/m2h
@@ -701,5 +701,5 @@
 	//block = 14
 
 /obj/item/dnainjector/m2h/New()
-	block = MONKEYBLOCK
+	block = GLOBL.dna_data.monkey_block
 	..()

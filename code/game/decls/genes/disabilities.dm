@@ -59,7 +59,7 @@
 
 /decl/gene/disability/hallucinate/New()
 	. = ..()
-	block = HALLUCINATIONBLOCK
+	block = GLOBL.dna_data.hallucination_block
 
 // Epilepsy
 /decl/gene/disability/epilepsy
@@ -69,7 +69,7 @@
 
 /decl/gene/disability/epilepsy/New()
 	. = ..()
-	block = HEADACHEBLOCK
+	block = GLOBL.dna_data.headache_block
 
 // Cough
 /decl/gene/disability/cough
@@ -79,7 +79,7 @@
 
 /decl/gene/disability/cough/New()
 	. = ..()
-	block = COUGHBLOCK
+	block = GLOBL.dna_data.cough_block
 
 // Clumsiness
 /decl/gene/disability/clumsy
@@ -89,7 +89,7 @@
 
 /decl/gene/disability/clumsy/New()
 	. = ..()
-	block = CLUMSYBLOCK
+	block = GLOBL.dna_data.clumsy_block
 
 // Tourettes
 /decl/gene/disability/tourettes
@@ -99,7 +99,7 @@
 
 /decl/gene/disability/tourettes/New()
 	. = ..()
-	block = TWITCHBLOCK
+	block = GLOBL.dna_data.twitch_block
 
 // Nervousness
 /decl/gene/disability/nervousness
@@ -109,7 +109,7 @@
 
 /decl/gene/disability/nervousness/New()
 	. = ..()
-	block = NERVOUSBLOCK
+	block = GLOBL.dna_data.nervous_block
 
 // Blindness
 /decl/gene/disability/blindness
@@ -119,7 +119,7 @@
 
 /decl/gene/disability/blindness/New()
 	. = ..()
-	block = BLINDBLOCK
+	block = GLOBL.dna_data.blind_block
 
 // Deafness
 /decl/gene/disability/deaf
@@ -129,7 +129,7 @@
 
 /decl/gene/disability/deaf/New()
 	. = ..()
-	block = DEAFBLOCK
+	block = GLOBL.dna_data.deaf_block
 
 /decl/gene/disability/deaf/activate(mob/M, connected, flags)
 	..(M,connected, flags)
@@ -143,4 +143,4 @@
 
 /decl/gene/disability/nearsighted/New()
 	. = ..()
-	block = GLASSESBLOCK
+	block = GLOBL.dna_data.glasses_block

@@ -6,7 +6,7 @@
 
 /decl/gene/monkey/New()
 	. = ..()
-	block = MONKEYBLOCK
+	block = GLOBL.dna_data.monkey_block
 
 /decl/gene/monkey/can_activate(mob/M, flags)
 	return ishuman(M) || ismonkey(M)

@@ -101,4 +101,4 @@
 	for(var/i = length(new_SE); i <= DNA_SE_LENGTH; i++)
 		new_SE += rand(1, 1024)
 	buf.dna.SE = new_SE
-	buf.dna.SetSEValueRange(MONKEYBLOCK, 0xDAC, 0xFFF)
+	buf.dna.SetSEValueRange(GLOBL.dna_data.monkey_block, 0xDAC, 0xFFF)

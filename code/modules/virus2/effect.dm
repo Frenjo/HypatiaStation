@@ -216,9 +216,9 @@
 	name = "Telepathy Syndrome"
 	stage = 3
 
-/datum/disease2/effect/telepathic/activate(var/mob/living/carbon/mob, var/multiplier)
+/datum/disease2/effect/telepathic/activate(mob/living/carbon/mob, multiplier)
 	mob.dna.check_integrity()
-	mob.dna.SetSEState(REMOTETALKBLOCK, 1)
+	mob.dna.SetSEState(GLOBL.dna_data.remote_talk_block, 1)
 	domutcheck(mob, null)
 
 

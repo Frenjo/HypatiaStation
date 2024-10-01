@@ -25,7 +25,11 @@
 	if(!M)
 		return
 	M.dna.check_integrity()
-	var/block = pick(GLASSESBLOCK, COUGHBLOCK, FAKEBLOCK, NERVOUSBLOCK, CLUMSYBLOCK, TWITCHBLOCK, HEADACHEBLOCK, BLINDBLOCK, DEAFBLOCK, HALLUCINATIONBLOCK)
+	var/block = pick(\
+		GLOBL.dna_data.blind_block, GLOBL.dna_data.deaf_block, GLOBL.dna_data.clumsy_block, GLOBL.dna_data.fake_block,\
+		GLOBL.dna_data.cough_block, GLOBL.dna_data.glasses_block, GLOBL.dna_data.twitch_block, GLOBL.dna_data.nervous_block,\
+		GLOBL.dna_data.headache_block, GLOBL.dna_data.hallucination_block\
+	)
 	M.dna.SetSEState(block, 1)
 
 // Give Random Good Mutation to M
@@ -33,7 +37,12 @@
 	if(!M)
 		return
 	M.dna.check_integrity()
-	var/block = pick(HULKBLOCK, XRAYBLOCK, FIREBLOCK, TELEBLOCK, NOBREATHBLOCK, REMOTEVIEWBLOCK, REGENERATEBLOCK, INCREASERUNBLOCK, REMOTETALKBLOCK, MORPHBLOCK, BLENDBLOCK, NOPRINTSBLOCK, SHOCKIMMUNITYBLOCK, SMALLSIZEBLOCK)
+	var/block = pick(\
+		GLOBL.dna_data.hulk_block, GLOBL.dna_data.tele_block, GLOBL.dna_data.fire_block, GLOBL.dna_data.xray_block,\
+		GLOBL.dna_data.no_breath_block, GLOBL.dna_data.remote_view_block, GLOBL.dna_data.regenerate_block, GLOBL.dna_data.increase_run_block,\
+		GLOBL.dna_data.remote_talk_block, GLOBL.dna_data.morph_block, GLOBL.dna_data.blend_block, GLOBL.dna_data.no_prints_block,\
+		GLOBL.dna_data.shock_immunity_block, GLOBL.dna_data.small_size_block\
+	)
 	M.dna.SetSEState(block, 1)
 
 // Random Appearance Mutation

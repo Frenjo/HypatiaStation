@@ -10,7 +10,7 @@
 
 /decl/gene/basic/nobreath/New()
 	. = ..()
-	block = NOBREATHBLOCK
+	block = GLOBL.dna_data.no_breath_block
 
 // Remote Viewing
 /decl/gene/basic/remoteview
@@ -20,7 +20,7 @@
 
 /decl/gene/basic/remoteview/New()
 	. = ..()
-	block = REMOTEVIEWBLOCK
+	block = GLOBL.dna_data.remote_view_block
 
 /decl/gene/basic/remoteview/activate(mob/M, connected, flags)
 	..(M,connected, flags)
@@ -34,7 +34,7 @@
 
 /decl/gene/basic/regenerate/New()
 	. = ..()
-	block = REGENERATEBLOCK
+	block = GLOBL.dna_data.regenerate_block
 
 // Super Speed
 /decl/gene/basic/increaserun
@@ -44,7 +44,7 @@
 
 /decl/gene/basic/increaserun/New()
 	. = ..()
-	block = INCREASERUNBLOCK
+	block = GLOBL.dna_data.increase_run_block
 
 // Telepathy
 /decl/gene/basic/remotetalk
@@ -54,7 +54,7 @@
 
 /decl/gene/basic/remotetalk/New()
 	. = ..()
-	block = REMOTETALKBLOCK
+	block = GLOBL.dna_data.remote_talk_block
 
 /decl/gene/basic/remotetalk/activate(mob/M, connected, flags)
 	..(M,connected, flags)
@@ -68,7 +68,7 @@
 
 /decl/gene/basic/morph/New()
 	. = ..()
-	block = MORPHBLOCK
+	block = GLOBL.dna_data.morph_block
 
 /decl/gene/basic/morph/activate(mob/M)
 	..(M)
@@ -107,7 +107,7 @@
 
 /decl/gene/basic/cold_resist/New()
 	. = ..()
-	block = FIREBLOCK
+	block = GLOBL.dna_data.fire_block
 
 /decl/gene/basic/cold_resist/can_activate(mob/M, flags)
 	if(flags & MUTCHK_FORCED)
@@ -131,7 +131,7 @@
 
 /decl/gene/basic/noprints/New()
 	. = ..()
-	block = NOPRINTSBLOCK
+	block = GLOBL.dna_data.no_prints_block
 
 // Shock Immunity
 /decl/gene/basic/noshock
@@ -141,7 +141,7 @@
 
 /decl/gene/basic/noshock/New()
 	. = ..()
-	block = SHOCKIMMUNITYBLOCK
+	block = GLOBL.dna_data.shock_immunity_block
 
 // Midget
 /decl/gene/basic/midget
@@ -151,7 +151,7 @@
 
 /decl/gene/basic/midget/New()
 	. = ..()
-	block = SMALLSIZEBLOCK
+	block = GLOBL.dna_data.small_size_block
 
 /decl/gene/basic/midget/can_activate(mob/M, flags)
 	// Can't be big and small.
@@ -175,7 +175,7 @@
 
 /decl/gene/basic/hulk/New()
 	. = ..()
-	block = HULKBLOCK
+	block = GLOBL.dna_data.hulk_block
 
 /decl/gene/basic/hulk/can_activate(mob/M, flags)
 	// Can't be big and small.
@@ -207,7 +207,7 @@
 
 /decl/gene/basic/xray/New()
 	. = ..()
-	block = XRAYBLOCK
+	block = GLOBL.dna_data.xray_block
 
 // Telekinesis
 /decl/gene/basic/tk
@@ -218,7 +218,7 @@
 
 /decl/gene/basic/tk/New()
 	. = ..()
-	block = TELEBLOCK
+	block = GLOBL.dna_data.tele_block
 
 /decl/gene/basic/tk/OnDrawUnderlays(mob/M, g, fat)
 	return "telekinesishead[fat]_s"

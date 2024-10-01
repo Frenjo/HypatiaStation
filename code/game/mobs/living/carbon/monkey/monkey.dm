@@ -62,8 +62,8 @@
 		dna.unique_enzymes = md5(name)
 
 		// We're a monkey
-		dna.SetSEState(MONKEYBLOCK, 1)
-		dna.SetSEValueRange(MONKEYBLOCK, 0xDAC, 0xFFF)
+		dna.SetSEState(GLOBL.dna_data.monkey_block, 1)
+		dna.SetSEValueRange(GLOBL.dna_data.monkey_block, 0xDAC, 0xFFF)
 		// Fix gender
 		dna.SetUIState(DNA_UI_GENDER, gender != MALE, 1)
 
