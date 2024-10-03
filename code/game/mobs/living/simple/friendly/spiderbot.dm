@@ -57,8 +57,29 @@
 		explode()
 	return TRUE
 
-/mob/living/simple/spiderbot/attackby(obj/item/O, mob/user)
+/mob/living/simple/spiderbot/attack_tool(obj/item/tool, mob/user)
+	if(iswelder(tool))
+		if(health >= maxHealth)
+			to_chat(user, SPAN_INFO("\The [src] is undamaged!"))
+			return TRUE
+		var/obj/item/weldingtool/WT = tool
+		if(!WT.remove_fuel(0, user))
+			return TRUE
 
+		health += pick(1, 1, 1, 2, 2, 3)
+		add_fingerprint(user)
+		user.visible_message(
+			SPAN_INFO("[user] spot-welds some of the damage on \the [src]!"),
+			SPAN_INFO("You spot-weld some of the damage on \the [src]!"),
+			SPAN_WARNING("You hear welding.")
+		)
+		if(health > maxHealth)
+			health = maxHealth
+		return TRUE
+
+	return ..()
+
+/mob/living/simple/spiderbot/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/mmi) || istype(O, /obj/item/mmi/posibrain))
 		var/obj/item/mmi/B = O
 		if(src.mmi) //There's already a brain in it.
@@ -96,21 +117,7 @@
 		src.update_icon()
 		return 1
 
-	if(iswelder(O))
-		var/obj/item/weldingtool/WT = O
-		if (WT.remove_fuel(0))
-			if(health < maxHealth)
-				health += pick(1,1,1,2,2,3)
-				if(health > maxHealth)
-					health = maxHealth
-				add_fingerprint(user)
-				user.visible_message(SPAN_WARNING("[user] has spot-welded some of the damage to [src]!"))
-			else
-				user << "\blue [src] is undamaged!"
-		else
-			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
-			return
-	else if(istype(O, /obj/item/card/id)||istype(O, /obj/item/pda))
+	else if(istype(O, /obj/item/card/id) || istype(O, /obj/item/pda))
 		if (!mmi)
 			user << "\red There's no reason to swipe your ID - the spiderbot has no brain to remove."
 			return 0

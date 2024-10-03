@@ -41,18 +41,23 @@ GLOBAL_GLOBL_INIT(chicken_count, 0)
 	..()
 	GLOBL.chicken_count -= 1
 
-/mob/living/simple/chicken/attackby(obj/item/O, mob/user)
-	if(istype(O, /obj/item/reagent_holder/food/snacks/grown/wheat)) //feedin' dem chickens
+/mob/living/simple/chicken/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/reagent_holder/food/snacks/grown/wheat)) //feedin' dem chickens
 		if(!stat && eggsleft < 8)
-			user.visible_message("\blue [user] feeds [O] to [name]! It clucks happily.","\blue You feed [O] to [name]! It clucks happily.")
+			user.visible_message(
+				SPAN_INFO("[user] feeds \the [I] to \the [src]! It clucks happily."),
+				SPAN_INFO("You feed \the [I] to \the [src]! It clucks happily."),
+				SPAN_INFO("You hear rustling, followed by a chicken clucking happily.")
+			)
 			user.drop_item()
-			qdel(O)
+			qdel(I)
 			eggsleft += rand(1, 4)
 			//to_world(eggsleft)
 		else
-			user << "\blue [name] doesn't seem hungry!"
-	else
-		..()
+			to_chat(user, SPAN_INFO("\The [src] doesn't seem hungry..."))
+		return TRUE
+
+	return ..()
 
 /mob/living/simple/chicken/Life()
 	. =..()

@@ -39,8 +39,9 @@
 		del src
 		return
 
-/mob/living/simple/shade/attackby(obj/item/O, mob/user)  //Marker -Agouri
-	if(istype(O, /obj/item/soulstone))
-		O.transfer_soul("SHADE", src, user)
-		return
+/mob/living/simple/shade/attack_by(obj/item/I, mob/user) //Marker -Agouri
+	if(istype(I, /obj/item/soulstone))
+		I.transfer_soul("SHADE", src, user)
+		return TRUE
+
 	return ..()

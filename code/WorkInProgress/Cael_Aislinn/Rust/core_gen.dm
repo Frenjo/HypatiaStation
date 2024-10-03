@@ -154,8 +154,6 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 							)
 							state = RUST_STATE_TWO
 							connect_to_network()
-				else
-					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			if(RUST_STATE_TWO)
 				if(welder.remove_fuel(0, user))
 					user.visible_message(
@@ -172,8 +170,6 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 							)
 							state = RUST_STATE_ONE
 							disconnect_from_network()
-				else
-					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 		return TRUE
 
 	return ..()

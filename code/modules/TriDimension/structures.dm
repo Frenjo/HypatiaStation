@@ -79,7 +79,7 @@
 
 	else if(icon_state == "ladderdown" && d_state == 1 && iswelder(C))
 		var/obj/item/weldingtool/WT = C
-		if( WT.remove_fuel(0,user) )
+		if(WT.remove_fuel(0,user))
 
 			user << "<span class='notice'>You begin to remove the ladder.</span>"
 			playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
@@ -90,8 +90,6 @@
 			var/obj/item/stack/sheet/steel/S = new /obj/item/stack/sheet/steel(src, 2)
 			user << "<span class='notice'>You remove the ladder and close the hole.</span>"
 			Del()
-		else
-			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 		return
 
 	else

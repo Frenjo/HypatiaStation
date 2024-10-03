@@ -63,37 +63,53 @@
 /obj/machinery/radiocarbon_spectrometer/attack_hand(mob/user)
 	ui_interact(user)
 
-/obj/machinery/radiocarbon_spectrometer/attackby(obj/item/I, mob/user)
+/obj/machinery/radiocarbon_spectrometer/attack_by(obj/item/I, mob/user)
 	if(scanning)
-		to_chat(user, SPAN_WARNING("You can't do that while [src] is scanning!"))
-	else
-		if(istype(I, /obj/item/stack/nanopaste))
-			var/choice = alert("What do you want to do with the nanopaste?", "Radiometric Scanner", "Scan nanopaste", "Fix seal integrity")
-			if(choice == "Fix seal integrity")
-				var/obj/item/stack/nanopaste/N = I
-				var/amount_used = min(N.amount, 10 - scanner_seal_integrity / 10)
-				N.use(amount_used)
-				scanner_seal_integrity = round(scanner_seal_integrity + amount_used * 10)
-				return
-		if(istype(I, /obj/item/reagent_holder/glass))
-			var/choice = alert("What do you want to do with the container?", "Radiometric Scanner", "Add coolant", "Empty coolant", "Scan container")
-			if(choice == "Add coolant")
+		to_chat(user, SPAN_WARNING("You can't do that while \the [src] is scanning!"))
+		return TRUE
+
+	if(istype(I, /obj/item/stack/nanopaste))
+		var/choice = alert("What do you want to do with \the [I]?", "Radiometric Scanner", "Scan Item", "Fix Seal Integrity")
+		if(choice == "Fix Seal Integrity")
+			var/obj/item/stack/nanopaste/N = I
+			var/amount_used = min(N.amount, 10 - scanner_seal_integrity / 10)
+			N.use(amount_used)
+			scanner_seal_integrity = round(scanner_seal_integrity + amount_used * 10)
+		else
+			if(isnull(scanned_item))
+				scan_item(I)
+		return TRUE
+
+	if(istype(I, /obj/item/reagent_holder/glass))
+		var/choice = alert("What do you want to do with \the [I]?", "Radiometric Scanner", "Add Coolant", "Empty Coolant", "Scan Item")
+		switch(choice)
+			if("Add Coolant")
 				var/obj/item/reagent_holder/glass/G = I
-				var/amount_transferred = min(src.reagents.maximum_volume - src.reagents.total_volume, G.reagents.total_volume)
+				var/amount_transferred = min(reagents.maximum_volume - reagents.total_volume, G.reagents.total_volume)
 				G.reagents.trans_to(src, amount_transferred)
-				to_chat(user, SPAN_INFO("You empty [amount_transferred]u of coolant into [src]."))
+				to_chat(user, SPAN_INFO("You empty [amount_transferred]u of coolant into \the [src]."))
 				update_coolant()
-				return
-			else if(choice == "Empty coolant")
+			if("Empty Coolant")
 				var/obj/item/reagent_holder/glass/G = I
-				var/amount_transferred = min(G.reagents.maximum_volume - G.reagents.total_volume, src.reagents.total_volume)
-				src.reagents.trans_to(G, amount_transferred)
-				to_chat(user, SPAN_INFO("You remove [amount_transferred]u of coolant from [src]."))
+				var/amount_transferred = min(G.reagents.maximum_volume - G.reagents.total_volume, reagents.total_volume)
+				reagents.trans_to(G, amount_transferred)
+				to_chat(user, SPAN_INFO("You remove [amount_transferred]u of coolant from \the [src]."))
 				update_coolant()
-				return
-		user.drop_item()
-		I.loc = src
-		scanned_item = I
+			else
+				if(isnull(scanned_item))
+					scan_item(I)
+		return TRUE
+
+	if(isnull(scanned_item))
+		scan_item(I)
+		return TRUE
+
+	return ..()
+
+/obj/machinery/radiocarbon_spectrometer/proc/scan_item(obj/item/item_to_scan, mob/item_holder)
+	item_holder.drop_item()
+	item_to_scan.loc = src
+	scanned_item = item_to_scan
 
 /obj/machinery/radiocarbon_spectrometer/proc/update_coolant()
 	var/total_purity = 0
@@ -149,7 +165,7 @@
 	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "geoscanner.tmpl", "High Res Radiocarbon Spectrometer", 900, 825)
+		ui = new /datum/nanoui(user, src, ui_key, "geoscanner.tmpl", "High Res Radiocarbon Spectrometer", 900, 825)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

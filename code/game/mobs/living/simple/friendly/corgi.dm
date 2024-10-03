@@ -324,18 +324,18 @@
 	name = "Corgi meat"
 	desc = "Tastes like... well you know..."
 
-/mob/living/simple/corgi/attackby(obj/item/O, mob/user)  //Marker -Agouri
-	if(istype(O, /obj/item/newspaper))
+/mob/living/simple/corgi/attack_by(obj/item/I, mob/user) //Marker -Agouri
+	if(istype(I, /obj/item/newspaper))
 		if(!stat)
 			user.visible_message(
-				SPAN_INFO("[user] baps [name] on the nose with the rolled up [O]."),
-				SPAN_INFO("You bap [name] on the nose with the rolled up [O].")
+				SPAN_INFO("[user] baps \the [src] on the nose with the rolled up [I]."),
+				SPAN_INFO("You bap \the [src] on the nose with the rolled up [I].")
 			)
 			spawn(0)
 				for(var/i in list(1, 2, 4, 8, 4, 2, 1, 2))
 					set_dir(i)
 					sleep(1)
-			return TRUE
+		return TRUE
 
 	return ..()
 

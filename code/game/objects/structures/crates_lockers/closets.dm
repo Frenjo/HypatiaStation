@@ -199,7 +199,6 @@
 		if(iswelder(W))
 			var/obj/item/weldingtool/WT = W
 			if(!WT.remove_fuel(0, user))
-				FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 				return
 			new /obj/item/stack/sheet/steel(loc)
 			visible_message(
@@ -217,8 +216,7 @@
 		return
 	else if(iswelder(W))
 		var/obj/item/weldingtool/WT = W
-		if(!WT.remove_fuel(0,user))
-			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
+		if(!WT.remove_fuel(0, user))
 			return
 		src.welded = !src.welded
 		src.update_icon()

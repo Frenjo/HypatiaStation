@@ -78,7 +78,6 @@
 							new /obj/item/stack/rods(GET_TURF(src), 4)
 						qdel(src)
 				else
-					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 					return
 
 			//Wrenching an unsecure assembly anchors it in place. Step 4 complete

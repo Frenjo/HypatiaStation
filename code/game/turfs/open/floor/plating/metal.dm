@@ -17,8 +17,6 @@
 					icon_state = "plating"
 					burnt = 0
 					broken = 0
-				else
-					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 		return TRUE
 	return ..()
 

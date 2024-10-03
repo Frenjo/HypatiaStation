@@ -177,7 +177,7 @@
 						state = 2
 						to_chat(user, SPAN_NOTICE("You weld \the [src] to the floor."))
 				else
-					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
+					return
 			if(2)
 				if(WT.remove_fuel(0, user))
 					playsound(src, 'sound/items/Welder2.ogg', 50, 1)
@@ -192,7 +192,7 @@
 						state = 1
 						to_chat(user, SPAN_NOTICE("You cut \the [src] free from the floor."))
 				else
-					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
+					return
 		return
 
 	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))

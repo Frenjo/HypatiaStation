@@ -20,7 +20,6 @@
 			to_chat(user, SPAN_WARNING("You need at least two rods to do this."))
 			return TRUE
 		if(!welder.remove_fuel(0, user))
-			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return TRUE
 		var/obj/item/stack/sheet/steel/new_item = new /obj/item/stack/sheet/steel(GET_TURF(src))
 		new_item.add_to_stacks(user)

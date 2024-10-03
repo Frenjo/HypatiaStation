@@ -77,14 +77,15 @@
 	possible_transfer_amounts = list(1, 2)
 	volume = 2
 
-/obj/item/reagent_holder/glass/solution_tray/attackby(obj/item/W, mob/living/user)
-	if(istype(W, /obj/item/pen))
-		var/new_label = input("What should the new label be?","Label solution tray")
-		if(new_label)
+/obj/item/reagent_holder/glass/solution_tray/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/pen))
+		var/new_label = input("What should the new label be?", "Label Solution Tray")
+		if(isnotnull(new_label))
 			name = "solution tray ([new_label])"
-			user << "\blue You write on the label of the solution tray."
-	else
-		..(W, user)
+			to_chat(user, SPAN_INFO("You label the solution tray using \the [I]."))
+		return TRUE
+
+	return ..()
 
 
 /obj/item/storage/box/solution_trays

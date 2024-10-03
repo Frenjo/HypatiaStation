@@ -235,7 +235,7 @@
 							state = 2
 							connect_to_network()
 				else
-					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
+					return
 			if(2)
 				if(welder.remove_fuel(0, user))
 					user.visible_message(
@@ -253,7 +253,7 @@
 							state = 1
 							disconnect_from_network()
 				else
-					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
+					return
 		return TRUE
 
 	return ..()

@@ -321,5 +321,4 @@
 				qdel(src)
 			return
 		else
-			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return

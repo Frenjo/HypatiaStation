@@ -47,32 +47,32 @@
 	icon_state = "boulder[rand(1, 4)]"
 	excavation_level = rand(5, 50)
 
-/obj/structure/boulder/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/core_sampler))
-		src.geological_data.artifact_distance = rand(-100, 100) / 100
-		src.geological_data.artifact_id = artifact_find.artifact_id
+/obj/structure/boulder/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/core_sampler))
+		geological_data.artifact_distance = rand(-100, 100) / 100
+		geological_data.artifact_id = artifact_find.artifact_id
 
-		var/obj/item/core_sampler/C = W
+		var/obj/item/core_sampler/C = I
 		C.sample_item(src, user)
-		return
+		return TRUE
 
-	if(istype(W, /obj/item/depth_scanner))
-		var/obj/item/depth_scanner/C = W
+	if(istype(I, /obj/item/depth_scanner))
+		var/obj/item/depth_scanner/C = I
 		C.scan_atom(user, src)
-		return
+		return TRUE
 
-	if(istype(W, /obj/item/measuring_tape))
-		var/obj/item/measuring_tape/P = W
+	if(istype(I, /obj/item/measuring_tape))
+		var/obj/item/measuring_tape/P = I
 		user.visible_message(
-			SPAN_INFO("[user] extends [P] towards [src]."),
-			SPAN_INFO("You extend [P] towards [src].")
+			SPAN_INFO("[user] extends \the [P] towards \the [src]."),
+			SPAN_INFO("You extend \the [P] towards \the [src].")
 		)
 		if(do_after(user, 40))
 			to_chat(user, SPAN_INFO("\icon[P] [src] has been excavated to a depth of [2 * src.excavation_level]cm."))
-		return
+		return TRUE
 
-	if(istype(W, /obj/item/pickaxe))
-		var/obj/item/pickaxe/P = W
+	if(istype(I, /obj/item/pickaxe))
+		var/obj/item/pickaxe/P = I
 
 		if(last_act + P.digspeed > world.time)//prevents message spam
 			return
@@ -89,11 +89,11 @@
 		if(excavation_level > 100)
 			//failure
 			user.visible_message(
-				SPAN_DANGER("[src] suddenly crumbles away."),
-				SPAN_WARNING("[src] has disintegrated under your onslaught, any secrets it was holding are long gone.")
+				SPAN_DANGER("\The [src] suddenly crumbles away."),
+				SPAN_WARNING("\The [src] has disintegrated under your onslaught, any secrets it was holding are long gone.")
 			)
 			qdel(src)
-			return
+			return TRUE
 
 		if(prob(excavation_level))
 			//success
@@ -104,13 +104,16 @@
 					var/obj/machinery/artifact/X = O
 					if(X.my_effect)
 						X.my_effect.artifact_id = artifact_find.artifact_id
-				visible_message(SPAN_DANGER("[src] suddenly crumbles away."))
+				visible_message(SPAN_DANGER("\The [src] suddenly crumbles away."))
 			else
 				user.visible_message(
-					SPAN_DANGER("[src] suddenly crumbles away."),
-					SPAN_INFO("[src] has been whittled away under your careful excavation, but there was nothing of interest inside.")
+					SPAN_DANGER("\The [src] suddenly crumbles away."),
+					SPAN_INFO("\The [src] has been whittled away under your careful excavation, but there was nothing of interest inside.")
 				)
 			qdel(src)
+		return TRUE
+
+	return ..()
 
 /obj/structure/boulder/Bumped(AM)
 	. = ..()

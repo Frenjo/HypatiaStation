@@ -71,14 +71,19 @@
 			if(prob(10))
 				say("Nom")
 
-/mob/living/simple/hostile/retaliate/goat/attackby(obj/item/O, mob/user)
-	if(stat == CONSCIOUS && istype(O, /obj/item/reagent_holder/glass))
-		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
-		var/obj/item/reagent_holder/glass/G = O
-		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
+/mob/living/simple/hostile/retaliate/goat/attack_by(obj/item/I, mob/user)
+	if(stat == CONSCIOUS && istype(I, /obj/item/reagent_holder/glass))
+		user.visible_message(
+			SPAN_INFO("[user] milks \the [src] using \the [I]."),
+			SPAN_INFO("You milk \the [src] using \the [I]."),
+			SPAN_INFO("You hear liquid being squirted into a container.")
+		)
+		var/obj/item/reagent_holder/glass/G = I
+		var/transfered = udder.trans_id_to(G, "milk", rand(5, 10))
 		if(G.reagents.total_volume >= G.volume)
-			user << "\red The [O] is full."
-		if(!transfered)
-			user << "\red The udder is dry. Wait a bit longer..."
-	else
-		..()
+			to_chat(user, SPAN_WARNING("\The [I] is full."))
+		else if(!transfered)
+			to_chat(user, SPAN_WARNING("\The [src]'s udder is dry. Wait a bit longer..."))
+		return TRUE
+
+	return ..()

@@ -22,25 +22,29 @@
 	pixel_y = rand(-10.0, 10)
 	dir = pick(GLOBL.cardinal)
 
-/obj/item/ammo_casing/attackby(obj/item/W, mob/user)
-	if(isscrewdriver(W))
-		if(isnotnull(loaded_bullet))
-			if(initial(loaded_bullet.name) == "bullet")
-				var/tmp_label = ""
-				var/label_text = sanitize(input(user, "Inscribe some text into \the [initial(loaded_bullet.name)]", "Inscription", tmp_label))
-				if(length(label_text) > 20)
-					to_chat(user, SPAN_WARNING("The inscription can be at most 20 characters long."))
-				else
-					if(label_text == "")
-						to_chat(user, SPAN_INFO("You scratch the inscription off of [initial(loaded_bullet)]."))
-						loaded_bullet.name = initial(loaded_bullet.name)
-					else
-						to_chat(user, SPAN_INFO("You inscribe \"[label_text]\" into \the [initial(loaded_bullet.name)]."))
-						loaded_bullet.name = "[initial(loaded_bullet.name)] \"[label_text]\""
-			else
-				to_chat(user, SPAN_INFO("You can only inscribe a metal bullet."))	//because inscribing beanbags is silly
+/obj/item/ammo_casing/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
+		if(isnull(loaded_bullet))
+			to_chat(user, SPAN_WARNING("You can only inscribe a metal bullet.")) //because inscribing beanbags is silly
+			return TRUE
+		if(initial(loaded_bullet.name) == "bullet")
+			to_chat(user, SPAN_WARNING("There is no bullet in the casing to inscribe anything into."))
+			return TRUE
+
+		var/tmp_label = ""
+		var/label_text = sanitize(input(user, "Inscribe some text into \the [initial(loaded_bullet.name)]", "Inscription", tmp_label))
+		if(length(label_text) > 20)
+			to_chat(user, SPAN_WARNING("The inscription can be at most 20 characters long."))
 		else
-			to_chat(user, SPAN_INFO("There is no bullet in the casing to inscribe anything into."))
+			if(label_text == "")
+				to_chat(user, SPAN_INFO("You scratch the inscription off of [initial(loaded_bullet)]."))
+				loaded_bullet.name = initial(loaded_bullet.name)
+			else
+				to_chat(user, SPAN_INFO("You inscribe \"[label_text]\" into \the [initial(loaded_bullet.name)]."))
+				loaded_bullet.name = "[initial(loaded_bullet.name)] \"[label_text]\""
+		return TRUE
+
+	return ..()
 
 //Boxes of ammo
 /obj/item/ammo_magazine

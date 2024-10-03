@@ -131,7 +131,6 @@
 					dismantle_wall()
 			return
 		else
-			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 
 	else if(istype(W, /obj/item/pickaxe/plasmacutter))

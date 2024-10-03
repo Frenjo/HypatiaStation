@@ -105,7 +105,7 @@
 
 	if(damage && iswelder(W))
 		var/obj/item/weldingtool/WT = W
-		if(WT.remove_fuel(0,user))
+		if(WT.remove_fuel(0, user))
 			to_chat(user, SPAN_NOTICE("You start repairing the damage to [src]."))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
 			if(do_after(user, max(5, damage / 5)) && WT && WT.isOn())
@@ -113,7 +113,6 @@
 				take_damage(-damage)
 			return
 		else
-			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 
 	var/turf/T = user.loc	//get user's location for delay checks
@@ -172,8 +171,6 @@
 						d_state = 3
 						icon_state = "r_wall-3"
 						to_chat(user, SPAN_NOTICE("You press firmly on the cover, dislodging it."))
-				else
-					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 				return
 
 			if(istype(W, /obj/item/pickaxe/plasmacutter))
@@ -236,8 +233,6 @@
 						icon_state = "r_wall-6"
 						new /obj/item/stack/rods(src)
 						to_chat(user, SPAN_NOTICE("The support rods drop out as you cut them loose from the frame."))
-				else
-					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 				return
 
 			if(istype(W, /obj/item/pickaxe/plasmacutter))

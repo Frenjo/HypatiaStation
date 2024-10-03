@@ -298,11 +298,11 @@
 	if(get_fuel() >= amount)
 		reagents.remove_reagent("fuel", amount)
 		check_fuel()
-		if(M)
+		if(isnotnull(M))
 			eyecheck(M)
 		return 1
 	else
-		if(M)
+		if(isnotnull(M))
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(M)
 		return 0
 

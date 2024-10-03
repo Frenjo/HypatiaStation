@@ -267,7 +267,6 @@
 					qdel(src)
 					return
 			else
-				FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 				return
 		else
 			to_chat(user, "You need to attach it to the plating first!")

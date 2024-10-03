@@ -56,7 +56,6 @@
 			else
 				to_chat(user, "You failed to salvage anything valuable from [src].")
 		else
-			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 	if(iswirecutter(W))
 		if(salvage_num <= 0)

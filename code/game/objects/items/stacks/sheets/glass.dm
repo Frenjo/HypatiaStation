@@ -292,7 +292,6 @@
 	if(iswelder(tool))
 		var/obj/item/weldingtool/welder = tool
 		if(!welder.remove_fuel(0, user))
-			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return TRUE
 		var/turf/T = GET_TURF(src)
 		var/obj/item/stack/sheet/glass/new_glass = new /obj/item/stack/sheet/glass(T)

@@ -797,7 +797,7 @@
 			F.sd_LumReset()
 			return
 
-		if (W:remove_fuel(0,user))
+		if(W:remove_fuel(0, user))
 			W:welding = 2
 			user << "\blue Now disassembling the outer wall plating."
 			playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
@@ -808,7 +808,6 @@
 					dismantle_wall()
 				W:welding = 1
 		else
-			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 
 	else if (istype(W, /obj/item/pickaxe/plasmacutter))
@@ -1649,14 +1648,14 @@ turf/open/floor/return_siding_icon_state()
 		var/obj/item/weldingtool/welder = C
 		if(welder.welding && (is_plating()))
 			if(broken || burnt)
-				if(welder.remove_fuel(0,user))
+				if(welder.remove_fuel(0, user))
 					user << "\red You fix some dents on the broken plating."
 					playsound(src.loc, 'sound/items/Welder.ogg', 80, 1)
 					icon_state = "plating"
 					burnt = 0
 					broken = 0
 				else
-					FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
+					return
 
 /turf/unsimulated/floor/attack_paw(user as mob)
 	return src.attack_hand(user)

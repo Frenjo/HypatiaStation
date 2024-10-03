@@ -143,7 +143,7 @@
 
 	if(iswelder(W) && ( (istext(glass)) || (glass == 1) || (!anchored) ))
 		var/obj/item/weldingtool/WT = W
-		if (WT.remove_fuel(0, user))
+		if(WT.remove_fuel(0, user))
 			playsound(src, 'sound/items/Welder2.ogg', 50, 1)
 			if(istext(glass))
 				user.visible_message("[user] welds the [glass] plating off the airlock assembly.", "You start to weld the [glass] plating off the airlock assembly.")
@@ -168,7 +168,6 @@
 					new /obj/item/stack/sheet/steel(src.loc, 4)
 					qdel (src)
 		else
-			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return
 
 	else if(iswrench(W) && state == 0)

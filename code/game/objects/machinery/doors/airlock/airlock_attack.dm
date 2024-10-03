@@ -239,7 +239,6 @@
 	if(iswelder(tool) && !(operating > 0) && density)
 		var/obj/item/weldingtool/welder = tool
 		if(!welder.remove_fuel(0, user))
-			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return TRUE
 		user.visible_message(
 			SPAN_NOTICE("[user] starts to [welded ? "un" : ""]weld \the [src][welded ? "" : " shut"]."),

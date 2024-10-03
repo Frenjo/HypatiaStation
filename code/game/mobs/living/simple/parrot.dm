@@ -249,18 +249,18 @@
 		icon_state = "parrot_fly"
 
 //Mobs with objects
-/mob/living/simple/parrot/attackby(obj/item/O, mob/user)
-	..()
-	if(!stat && !client && !istype(O, /obj/item/stack/medical))
-		if(O.force)
+/mob/living/simple/parrot/attack_by(obj/item/I, mob/user)
+	if(!stat && !client && !istype(I, /obj/item/stack/medical))
+		if(I.force)
 			if(parrot_state == PARROT_PERCH)
-				parrot_sleep_dur = parrot_sleep_max //Reset it's sleep timer if it was perched
-
+				parrot_sleep_dur = parrot_sleep_max // Reset it's sleep timer if it was perched.
 			parrot_interest = user
 			parrot_state = PARROT_SWOOP | PARROT_FLEE
 			icon_state = "parrot_fly"
 			drop_held_item(0)
-	return
+		return TRUE
+
+	return ..()
 
 //Bullets
 /mob/living/simple/parrot/bullet_act(var/obj/item/projectile/Proj)

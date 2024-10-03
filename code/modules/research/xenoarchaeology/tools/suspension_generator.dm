@@ -166,62 +166,80 @@
 		cell = null
 		to_chat(user, SPAN_INFO("You remove the power cell"))
 
-/obj/machinery/suspension_gen/attackby(obj/item/W, mob/user)
-	if(isscrewdriver(W))
+/obj/machinery/suspension_gen/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
 		if(!open)
-			if(screwed)
-				screwed = 0
-			else
-				screwed = 1
-			to_chat(user, SPAN_INFO("You [screwed ? "screw" : "unscrew"] the battery panel."))
-	else if(iscrowbar(W))
-		if(!locked)
-			if(!screwed)
-				if(!suspension_field)
-					if(open)
-						open = 0
-					else
-						open = 1
-					to_chat(user, SPAN_INFO("You crowbar the battery panel [open ? "open" : "in place"]."))
-					icon_state = "suspension[open ? (cell ? "1" : "0") : "2"]"
-				else
-					to_chat(user, SPAN_WARNING("[src]'s safety locks are engaged, shut it down first."))
-			else
-				to_chat(user, SPAN_WARNING("Unscrew [src]'s battery panel first."))
+			screwed = !screwed
+			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
+			user.visible_message(
+				SPAN_NOTICE("[user] [screwed ? "screws in" : "unscrews"] the battery panel on \the [src]."),
+				SPAN_NOTICE("You [screwed ? "screw in" : "unscrew"] the battery panel on \the [src]."),
+				SPAN_INFO("You hear someone using a screwdriver.")
+			)
+		return TRUE
+
+	if(iscrowbar(tool))
+		if(locked)
+			to_chat(user, SPAN_WARNING("\The [src]'s security locks are engaged!"))
+			return TRUE
+		if(screwed)
+			to_chat(user, SPAN_WARNING("Unscrew \the [src]'s battery panel first."))
+			return TRUE
+		if(isnotnull(suspension_field))
+			to_chat(user, SPAN_WARNING("\The [src]'s safety locks are engaged, shut it down first."))
+			return TRUE
+		open = !open
+		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
+		user.visible_message(
+			SPAN_NOTICE("[user] crowbars \the [src]'s battery panel [open ? "open" : "into place"]."),
+			SPAN_NOTICE("You crowbar \the [src]'s battery panel [open ? "open" : "into place"]."),
+			SPAN_INFO("You hear someone using a crowbar.")
+		)
+		icon_state = "suspension[open ? (isnotnull(cell) ? "1" : "0") : "2"]"
+		return TRUE
+
+	if(iswrench(tool))
+		if(isnotnull(suspension_field))
+			to_chat(user, SPAN_WARNING("\The [src]'s safety locks are engaged, shut it down first."))
+			return TRUE
+		anchored = !anchored
+		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
+		user.visible_message(
+			SPAN_NOTICE("[user] wrenches \the [src]'s stabilising legs [anchored ? "into place" : "up against its body"]."),
+			SPAN_NOTICE("You wrench \the [src]'s stabilising legs [anchored ? "into place" : "up against its body"]."),
+			SPAN_INFO("You hear a ratchet.")
+		)
+		return TRUE
+
+	return ..()
+
+/obj/machinery/suspension_gen/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/cell))
+		if(!open)
+			to_chat(user, SPAN_WARNING("You must open the cover first!"))
+			return TRUE
+		if(isnotnull(cell))
+			to_chat(user, SPAN_WARNING("There is already a power cell installed."))
+			return TRUE
+		user.drop_item()
+		I.loc = src
+		cell = I
+		to_chat(user, SPAN_INFO("You insert the power cell."))
+		icon_state = "suspension1"
+		return TRUE
+
+	if(istype(I, /obj/item/card))
+		var/obj/item/card/card = I
+		if(isnotnull(auth_card))
+			to_chat(user, SPAN_WARNING("Remove \the [auth_card] first."))
+			return TRUE
+		if(attempt_unlock(card))
+			to_chat(user, SPAN_INFO("You swipe \the [card], the console flashes \'<i>Access granted.</i>\'"))
 		else
-			to_chat(user, SPAN_WARNING("[src]'s security locks are engaged."))
-	else if(iswrench(W))
-		if(!suspension_field)
-			if(anchored)
-				anchored = FALSE
-			else
-				anchored = TRUE
-			to_chat(user, SPAN_INFO("You wrench the stabilising legs [anchored ? "into place" : "up against the body"]."))
-			if(anchored)
-				desc = "It is resting securely on four stubby legs."
-			else
-				desc = "It has stubby legs bolted up against it's body for stabilising."
-		else
-			to_chat(user, SPAN_WARNING("You are unable to secure [src] while it is active!"))
-	else if(istype(W, /obj/item/cell))
-		if(open)
-			if(cell)
-				to_chat(user, SPAN_WARNING("There is a power cell already installed."))
-			else
-				user.drop_item()
-				W.loc = src
-				cell = W
-				to_chat(user, SPAN_INFO("You insert the power cell."))
-				icon_state = "suspension1"
-	else if(istype(W, /obj/item/card))
-		var/obj/item/card/I = W
-		if(!auth_card)
-			if(attempt_unlock(I))
-				to_chat(user, SPAN_INFO("You swipe [I], the console flashes \'<i>Access granted.</i>\'"))
-			else
-				to_chat(user, SPAN_WARNING("You swipe [I], console flashes \'<i>Access denied.</i>\'"))
-		else
-			to_chat(user, SPAN_WARNING("Remove [auth_card] first."))
+			to_chat(user, SPAN_WARNING("You swipe \the [card], console flashes \'<i>Access denied.</i>\'"))
+		return TRUE
+
+	return ..()
 
 /obj/machinery/suspension_gen/proc/attempt_unlock(obj/item/card/C)
 	if(!open)

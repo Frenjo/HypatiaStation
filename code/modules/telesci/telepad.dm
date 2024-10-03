@@ -26,31 +26,49 @@
 
 	var/stage = 0
 
-/obj/machinery/telepad_cargo/attackby(obj/item/W, mob/user)
-	if(iswrench(W))
-		anchored = FALSE
+/obj/machinery/telepad_cargo/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool))
+		anchored = !anchored
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
-		if(anchored)
-			anchored = FALSE
-			to_chat(user, SPAN_CAUTION("The [src] can now be moved."))
-		else if(!anchored)
-			anchored = TRUE
-			to_chat(user, SPAN_CAUTION("The [src] is now secured."))
-	if(isscrewdriver(W))
+		user.visible_message(
+			SPAN_NOTICE("[user] [anchored ? "secures" : "unsecures"] \the [src]'s anchoring bolts [anchored ? "to" : "from"] the floor."),
+			SPAN_NOTICE("You [anchored ? "secure" : "unsecure"] \the [src]'s anchoring bolts [anchored ? "to" : "from"] the floor."),
+			SPAN_INFO("You hear a ratchet.")
+		)
+		return TRUE
+
+	if(isscrewdriver(tool))
 		if(stage == 0)
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-			to_chat(user, SPAN_CAUTION("You unscrew the telepad's tracking beacon."))
+			user.visible_message(
+				SPAN_NOTICE("[user] unscrews \the [src]'s tracking beacon."),
+				SPAN_NOTICE("You unscrew \the [src]'s tracking beacon."),
+				SPAN_INFO("You hear someone using a screwdriver.")
+			)
 			stage = 1
 		else if(stage == 1)
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-			to_chat(user, SPAN_CAUTION("You screw in the telepad's tracking beacon."))
+			user.visible_message(
+				SPAN_NOTICE("[user] screws in \the [src]'s tracking beacon."),
+				SPAN_NOTICE("You screw in \the [src]'s tracking beacon."),
+				SPAN_INFO("You hear someone using a screwdriver.")
+			)
 			stage = 0
-	if(iswelder(W) && stage == 1)
+		return TRUE
+
+	if(iswelder(tool) && stage == 1)
 		playsound(src, 'sound/items/Welder.ogg', 50, 1)
-		to_chat(user, SPAN_CAUTION("You disassemble the telepad."))
+		user.visible_message(
+			SPAN_NOTICE("[user] disassembles \the [src]."),
+			SPAN_NOTICE("You disassemble \the [src]."),
+			SPAN_WARNING("You hear welding.")
+		)
 		new /obj/item/stack/sheet/steel(GET_TURF(src))
 		new /obj/item/stack/sheet/glass(GET_TURF(src))
 		qdel(src)
+		return TRUE
+
+	return ..()
 
 ///TELEPAD CALLER///
 /obj/item/telepad_beacon
