@@ -38,6 +38,10 @@
 		. = thing.attack_by(src, source) // Secondly, checks the new-style attack_by().
 	if(!.)
 		. = thing.attackby(src, source) // Thirdly, checks the old-style attackby().
+	if(!. && (source.a_intent == "disarm" || source.a_intent == "hurt"))
+		. = thing.attack_weapon(src, source) // Fourthly, checks for actual weapon attacks.
+
+	thing.after_attack(src, source, .) // Runs post-attack behaviour.
 
 /*
  * attack_tool()
@@ -68,19 +72,48 @@
 
 	return FALSE
 
-// No comment
+/*
+ * attackby()
+ *
+ * Called as the third part of handle_attack()'s attack chain.
+ * This is deprecated and should not be used going forward as it's been replaced by attack_by()!
+ */
 /atom/proc/attackby(obj/item/W, mob/user)
 	return FALSE
 
-/atom/movable/attackby(obj/item/W, mob/user)
-	if(!HAS_ITEM_FLAGS(W, ITEM_FLAG_NO_BLUDGEON))
-		visible_message(SPAN_DANGER("[src] has been hit by [user] with [W]."))
+/*
+ * attack_weapon()
+ *
+ * Called as the fourth part of handle_attack()'s attack chain IF the attacking mob is on disarm or harm intent.
+ * This is for actual weapon attacks, IE things that are intending to do damage.
+ * Returns TRUE if the interaction was handled, FALSE if not.
+ */
+/atom/proc/attack_weapon(obj/item/W, mob/user)
+	SHOULD_CALL_PARENT(TRUE)
 
-/mob/living/attackby(obj/item/item, mob/user)
-	if(!ismob(user))
-		return FALSE
-	if(istype(item))
-		return item.attack(src, user)
+	if(!HAS_ITEM_FLAGS(W, ITEM_FLAG_NO_BLUDGEON))
+		user.visible_message(
+			SPAN_DANGER("[user] hits \the [src] with \a [W]!"),
+			SPAN_DANGER("You hit \the [src] with \the [W]!"),
+			SPAN_WARNING("You hear something being hit.")
+		)
+		return TRUE
+
+	return FALSE
+
+/mob/living/attack_weapon(obj/item/W, mob/user)
+	if(istype(W))
+		return W.attack(src, user)
+	return ..()
+
+/*
+ * after_attack()
+ *
+ * Called by handle_attack() after the full attack chain has run.
+ * Returns nothing.
+ */
+/atom/proc/after_attack(obj/item/I, mob/user, attack_handled)
+	return
 
 // Proximity_flag is 1 if this afterattack was called on something adjacent, in your square, or on your person.
 // Click parameters is the params string from byond Click() code, see that documentation.
@@ -97,8 +130,8 @@
 	user.lastattacked = M
 	M.lastattacker = user
 
-	user.attack_log += "\[[time_stamp()]\]<font color='red'> Attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])</font>"
-	M.attack_log += "\[[time_stamp()]\]<font color='orange'> Attacked by [user.name] ([user.ckey]) with [name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])</font>"
+	user.attack_log += "\[[time_stamp()]\] <font color='red'>Attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])</font>"
+	M.attack_log += "\[[time_stamp()]\] <font color='orange'>Attacked by [user.name] ([user.ckey]) with [name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])</font>"
 	msg_admin_attack("[key_name(user)] attacked [key_name(M)] with [name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(damtype)])" )
 
 	//spawn(1800)            // this wont work right
