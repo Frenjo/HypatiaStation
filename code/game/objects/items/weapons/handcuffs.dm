@@ -17,79 +17,69 @@
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
 
 /obj/item/handcuffs/attack(mob/living/carbon/C, mob/user)
-	if(istype(src, /obj/item/handcuffs/cyborg) && isrobot(user))
-		if(!C.handcuffed)
-			var/turf/p_loc = user.loc
-			var/turf/p_loc_m = C.loc
-			playsound(src, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
-			user.visible_message(SPAN_DANGER("[user] is trying to put handcuffs on [C]!"))
-			spawn(30)
-				if(!C)
-					return
-				if(p_loc == user.loc && p_loc_m == C.loc)
-					C.handcuffed = new /obj/item/handcuffs(C)
-					C.update_inv_handcuffed()
-	else
-		if((CLUMSY in usr.mutations) && prob(50))
-			to_chat(user, SPAN_WARNING("Uh ... how do those things work?!"))
-			if(ishuman(C))
-				if(!C.handcuffed)
-					var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human()
-					O.source = user
-					O.target = user
-					O.item = user.get_active_hand()
-					O.s_loc = user.loc
-					O.t_loc = user.loc
-					O.place = "handcuff"
-					C.requests += O
-					spawn( 0 )
-						O.process()
-				return
-			return
-		if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
-			FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
-			return
+	if(!istype(C))
+		to_chat(user, SPAN_WARNING("You aren't sure how you could handcuff \the [C]..."))
+		return
+
+	if((CLUMSY in usr.mutations) && prob(50))
+		to_chat(user, SPAN_WARNING("Uh ... how do those things work?!"))
 		if(ishuman(C))
 			if(!C.handcuffed)
-				C.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed (attempt) by [user.name] ([user.ckey])</font>")
-				user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to handcuff [C.name] ([C.ckey])</font>")
-				msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(C)]")
-
 				var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human()
 				O.source = user
-				O.target = C
+				O.target = user
 				O.item = user.get_active_hand()
 				O.s_loc = user.loc
-				O.t_loc = C.loc
+				O.t_loc = user.loc
 				O.place = "handcuff"
 				C.requests += O
-				spawn(0)
-					if(istype(src, /obj/item/handcuffs/cable))
-						feedback_add_details("handcuffs", "C")
-						playsound(src, 'sound/weapons/cablecuff.ogg', 30, 1, -2)
-					else
-						feedback_add_details("handcuffs", "H")
-						playsound(src, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
+				spawn( 0 )
 					O.process()
 			return
-		else
-			if(!C.handcuffed)
-				var/obj/effect/equip_e/monkey/O = new /obj/effect/equip_e/monkey()
-				O.source = user
-				O.target = C
-				O.item = user.get_active_hand()
-				O.s_loc = user.loc
-				O.t_loc = C.loc
-				O.place = "handcuff"
-				C.requests += O
-				spawn(0)
-					if(istype(src, /obj/item/handcuffs/cable))
-						playsound(src, 'sound/weapons/cablecuff.ogg', 30, 1, -2)
-					else
-						playsound(src, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
-					O.process()
-			return
-	return
+		return
+	if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey))
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
+		return
+	if(ishuman(C))
+		if(!C.handcuffed)
+			C.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed (attempt) by [user.name] ([user.ckey])</font>")
+			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to handcuff [C.name] ([C.ckey])</font>")
+			msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(C)]")
+
+			var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human()
+			O.source = user
+			O.target = C
+			O.item = user.get_active_hand()
+			O.s_loc = user.loc
+			O.t_loc = C.loc
+			O.place = "handcuff"
+			C.requests += O
+			spawn(0)
+				if(istype(src, /obj/item/handcuffs/cable))
+					feedback_add_details("handcuffs", "C")
+					playsound(src, 'sound/weapons/cablecuff.ogg', 30, 1, -2)
+				else
+					feedback_add_details("handcuffs", "H")
+					playsound(src, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
+				O.process()
+		return
+	else
+		if(!C.handcuffed)
+			var/obj/effect/equip_e/monkey/O = new /obj/effect/equip_e/monkey()
+			O.source = user
+			O.target = C
+			O.item = user.get_active_hand()
+			O.s_loc = user.loc
+			O.t_loc = C.loc
+			O.place = "handcuff"
+			C.requests += O
+			spawn(0)
+				if(istype(src, /obj/item/handcuffs/cable))
+					playsound(src, 'sound/weapons/cablecuff.ogg', 30, 1, -2)
+				else
+					playsound(src, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
+				O.process()
+		return
 
 var/last_chew = 0
 /mob/living/carbon/human/RestrainedClickOn(atom/A)
@@ -157,3 +147,23 @@ var/last_chew = 0
 
 /obj/item/handcuffs/cyborg
 	dispenser = 1
+
+/obj/item/handcuffs/cyborg/attack(mob/living/carbon/target, mob/user)
+	if(!istype(target))
+		to_chat(user, SPAN_WARNING("You aren't sure how you could handcuff \the [target]..."))
+		return
+
+	if(isrobot(user))
+		if(!target.handcuffed)
+			var/turf/p_loc = user.loc
+			var/turf/p_loc_m = target.loc
+			playsound(src, 'sound/weapons/handcuffs.ogg', 30, 1, -2)
+			user.visible_message(SPAN_DANGER("[user] is trying to put handcuffs on [target]!"))
+			spawn(30)
+				if(!target)
+					return
+				if(p_loc == user.loc && p_loc_m == target.loc)
+					target.handcuffed = new /obj/item/handcuffs(target)
+					target.update_inv_handcuffed()
+	else
+		return ..()

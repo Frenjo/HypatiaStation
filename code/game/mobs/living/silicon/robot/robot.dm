@@ -335,39 +335,23 @@
 		if(wiresexposed)
 			interact(user)
 		else
-			to_chat(user, SPAN_WARNING("You can't reach the wiring."))
+			to_chat(user, SPAN_WARNING("You can't reach [src]'s wiring."))
 		return TRUE
 
-	return ..()
-
-/mob/living/silicon/robot/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/handcuffs)) // fuck i don't even know why isrobot() in handcuff code isn't working so this will have to do
-		return
-
-	if(opened) // Are they trying to insert something?
-		for(var/V in components)
-			var/datum/robot_component/C = components[V]
-			if(!C.installed && istype(W, C.external_type))
-				C.installed = 1
-				C.wrapped = W
-				C.install()
-				user.drop_item()
-				W.loc = null
-				to_chat(usr, SPAN_INFO("You install the [W.name]."))
-				return
-
-	else if(iscrowbar(W))	// crowbar means open or close the cover
+	if(iscrowbar(tool)) // Crowbar means open or close the cover.
 		if(opened)
 			if(isnotnull(cell))
-				to_chat(user, SPAN_NOTICE("You close the cover."))
+				to_chat(user, SPAN_NOTICE("You close [src]'s cover."))
 				opened = 0
 				updateicon()
-			else if(mmi && wiresexposed && isWireCut(1) && isWireCut(2) && isWireCut(3) && isWireCut(4) && isWireCut(5))
-				//Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
-				to_chat(user, "You jam the crowbar into the robot and begin levering [mmi].")
+				return TRUE
+
+			if(mmi && wiresexposed && isWireCut(1) && isWireCut(2) && isWireCut(3) && isWireCut(4) && isWireCut(5))
+				// Cell is out, wires are exposed, remove MMI, produce damaged chassis, baleet original mob.
+				to_chat(user, SPAN_NOTICE("You jam the crowbar into the robot and begin levering [mmi]."))
 				if(do_after(user, 30, src))
-					to_chat(user, "You damage some parts of the chassis, but eventually manage to rip out [mmi]!")
-					var/obj/item/robot_parts/robot_suit/C = new/obj/item/robot_parts/robot_suit(loc)
+					to_chat(user, SPAN_NOTICE("You damage some parts of the chassis, but eventually manage to rip out [mmi]!"))
+					var/obj/item/robot_parts/robot_suit/C = new /obj/item/robot_parts/robot_suit(loc)
 					C.l_leg = new /obj/item/robot_parts/l_leg(C)
 					C.r_leg = new /obj/item/robot_parts/r_leg(C)
 					C.l_arm = new /obj/item/robot_parts/l_arm(C)
@@ -375,103 +359,132 @@
 					C.updateicon()
 					new /obj/item/robot_parts/chest(loc)
 					qdel(src)
+					return TRUE
+
+			// Okay we're not removing the cell or an MMI, but maybe something else?
+			var/list/removable_components = list()
+			for(var/V in components)
+				if(V == "power cell")
+					continue
+				var/datum/robot_component/C = components[V]
+				if(C.installed == 1 || C.installed == -1)
+					removable_components.Add(V)
+
+			var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null | anything in removable_components
+			if(!remove)
+				return TRUE
+			var/datum/robot_component/C = components[remove]
+			var/obj/item/I = C.wrapped
+			to_chat(user, SPAN_NOTICE("You remove \the [I]."))
+			I.loc = loc
+
+			if(C.installed == 1)
+				C.uninstall()
+			C.installed = 0
+			return TRUE
+
+		if(locked)
+			to_chat(user, SPAN_WARNING("[src]'s cover is locked and cannot be opened."))
+		else
+			to_chat(user, SPAN_NOTICE("You open [src]'s cover."))
+			opened = TRUE
+			updateicon()
+		return TRUE
+
+	if(isscrewdriver(tool) && opened)
+		if(isnull(cell)) // Hacking.
+			wiresexposed = !wiresexposed
+			to_chat(user, SPAN_NOTICE("The wires have been [wiresexposed ? "exposed" : "unexposed"]."))
+			updateicon()
+			return TRUE
+		if(isnotnull(cell)) // Radio.
+			if(isnotnull(radio))
+				radio.attackby(tool, user) // Push it to the radio to let it handle everything.
 			else
-				// Okay we're not removing the cell or an MMI, but maybe something else?
-				var/list/removable_components = list()
-				for(var/V in components)
-					if(V == "power cell")
-						continue
-					var/datum/robot_component/C = components[V]
-					if(C.installed == 1 || C.installed == -1)
-						removable_components.Add(V)
+				to_chat(user, SPAN_WARNING("Unable to locate a radio."))
+			updateicon()
+			return TRUE
 
-				var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null | anything in removable_components
-				if(!remove)
-					return
-				var/datum/robot_component/C = components[remove]
-				var/obj/item/I = C.wrapped
-				to_chat(user, "You remove \the [I].")
-				I.loc = loc
+	return ..()
 
-				if(C.installed == 1)
-					C.uninstall()
-				C.installed = 0
+/mob/living/silicon/robot/attack_by(obj/item/I, mob/user)
+	if(opened) // Are they trying to insert something?
+		for(var/V in components)
+			var/datum/robot_component/C = components[V]
+			if(!C.installed && istype(I, C.external_type))
+				C.installed = 1
+				C.wrapped = I
+				C.install()
+				user.drop_item()
+				I.loc = null
+				to_chat(usr, SPAN_NOTICE("You install \the [I]."))
+				return TRUE
 
-		else
-			if(locked)
-				to_chat(user, "The cover is locked and cannot be opened.")
+		if(istype(I, /obj/item/cell)) // Trying to put a cell inside.
+			var/datum/robot_component/C = components["power cell"]
+			if(wiresexposed)
+				to_chat(user, SPAN_WARNING("Close the panel first."))
+			else if(isnotnull(cell))
+				to_chat(user, SPAN_WARNING("There is \a [cell] already installed."))
 			else
-				to_chat(user, "You open the cover.")
-				opened = TRUE
-				updateicon()
+				user.drop_item()
+				I.loc = src
+				cell = I
+				to_chat(user, SPAN_NOTICE("You insert \the [I]."))
 
-	else if(istype(W, /obj/item/cell) && opened)	// trying to put a cell inside
-		var/datum/robot_component/C = components["power cell"]
-		if(wiresexposed)
-			to_chat(user, "Close the panel first.")
-		else if(isnotnull(cell))
-			to_chat(user, "There is a power cell already installed.")
-		else
-			user.drop_item()
-			W.loc = src
-			cell = W
-			to_chat(user, "You insert the power cell.")
+				C.installed = 1
+				C.wrapped = I
+				C.install()
+			return TRUE
 
-			C.installed = 1
-			C.wrapped = W
-			C.install()
+		if(istype(I, /obj/item/encryptionkey))
+			if(isnotnull(radio)) // Sanityyyyyy.
+				radio.attackby(I, user) // GTFO, you have your own procs.
+			else
+				to_chat(user, SPAN_WARNING("Unable to locate a radio."))
+			return TRUE
 
-	else if(isscrewdriver(W) && opened && isnull(cell))	// haxing
-		wiresexposed = !wiresexposed
-		to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"].")
-		updateicon()
-
-	else if(isscrewdriver(W) && opened && isnotnull(cell))	// radio
-		if(isnotnull(radio))
-			radio.attackby(W, user) // Push it to the radio to let it handle everything.
-		else
-			to_chat(user, "Unable to locate a radio.")
-		updateicon()
-
-	else if(istype(W, /obj/item/encryptionkey/) && opened)
-		if(isnotnull(radio))//sanityyyyyy
-			radio.attackby(W, user)//GTFO, you have your own procs
-		else
-			to_chat(user, "Unable to locate a radio.")
-
-	else if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))			// trying to unlock the interface with an ID card
-		if(emagged)//still allow them to open the cover
-			to_chat(user, "The interface seems slightly damaged.")
+	if(istype(I, /obj/item/card/id) || istype(I, /obj/item/pda)) // Trying to unlock the interface with an ID card.
+		if(emagged) // Still allow them to open the cover.
+			to_chat(user, SPAN_WARNING("The interface seems slightly damaged."))
 		if(opened)
-			to_chat(user, "You must close the cover to swipe an ID card.")
+			to_chat(user, SPAN_WARNING("You must close [src]'s cover to swipe an ID card."))
 		else
 			if(allowed(usr))
 				locked = !locked
-				to_chat(user, "You [locked ? "lock" : "unlock"] [src]'s interface.")
+				to_chat(user, SPAN_NOTICE("You [locked ? "lock" : "unlock"] [src]'s interface."))
 				updateicon()
 			else
 				FEEDBACK_ACCESS_DENIED(user)
+		return TRUE
 
-	else if(istype(W, /obj/item/borg/upgrade))
-		var/obj/item/borg/upgrade/U = W
+	if(istype(I, /obj/item/borg/upgrade))
+		var/obj/item/borg/upgrade/U = I
 		if(!opened)
-			to_chat(usr, "You must access the cyborg's internals!")
-		else if(isnull(module) && U.require_module)
-			to_chat(usr, "The cyborg must choose a module before it can be upgraded!")
-		else if(U.locked)
-			to_chat(usr, "The upgrade is locked and cannot be used yet!")
-		else
-			if(U.action(src))
-				to_chat(usr, "You apply the upgrade to [src]!")
-				usr.drop_item()
-				U.loc = src
-			else
-				to_chat(usr, "Upgrade error!")
+			to_chat(usr, SPAN_WARNING("You must access [src]'s internals!"))
+			return TRUE
+		if(isnull(module) && U.require_module)
+			to_chat(usr, SPAN_WARNING("[src] must choose a module before it can be upgraded!"))
+			return TRUE
+		if(U.locked)
+			to_chat(usr, SPAN_WARNING("The upgrade is locked and cannot be used yet!"))
+			return TRUE
 
-	else
-		if(!(istype(W, /obj/item/robot_analyser) || istype(W, /obj/item/health_analyser)))
-			spark_system.start()
-		return ..()
+		if(U.action(src))
+			to_chat(usr, SPAN_NOTICE("You apply the upgrade to [src]!"))
+			usr.drop_item()
+			U.loc = src
+		else
+			to_chat(usr, SPAN_WARNING("Upgrade error!"))
+		return TRUE
+
+	return ..()
+
+/mob/living/silicon/robot/attack_weapon(obj/item/W, mob/user)
+	if(!(istype(W, /obj/item/robot_analyser) || istype(W, /obj/item/health_analyser)))
+		spark_system.start()
+		return TRUE
+	return ..()
 
 /mob/living/silicon/robot/attack_slime(mob/living/carbon/slime/M)
 	if(isnull(global.PCticker))
