@@ -232,31 +232,31 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 				if(C.amount >= 5)
 					playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 					user.visible_message(
-						SPAN_INFO("[user] adds wires to \the [src]."),
-						SPAN_INFO("You add some wires to \the [src].")
+						SPAN_NOTICE("[user] adds wires to \the [src]."),
+						SPAN_NOTICE("You add some wires to \the [src].")
 					)
 					C.use(5)
 					temp_state++
 		if(2)
 			if(iswirecutter(O))//TODO:Shock user if its on?
 				user.visible_message(
-					SPAN_INFO("[user] removes some wires from \the [src]."),
-					SPAN_INFO("You remove some wires from \the [src].")
+					SPAN_NOTICE("[user] removes some wires from \the [src]."),
+					SPAN_NOTICE("You remove some wires from \the [src].")
 				)
 				temp_state--
 
 			if(isscrewdriver(O))
 				user.visible_message(
-					SPAN_INFO("[user] closes \the [src]'s access panel."),
-					SPAN_INFO("You close \the [src]'s access panel."),
+					SPAN_NOTICE("[user] closes \the [src]'s access panel."),
+					SPAN_NOTICE("You close \the [src]'s access panel."),
 					SPAN_INFO("You hear someone using a screwdriver.")
 				)
 				temp_state++
 		if(3)
 			if(isscrewdriver(O))
 				user.visible_message(
-					SPAN_INFO("[user] opens \the [src]'s access panel."),
-					SPAN_INFO("You open \the [src]'s access panel."),
+					SPAN_NOTICE("[user] opens \the [src]'s access panel."),
+					SPAN_NOTICE("You open \the [src]'s access panel."),
 					SPAN_INFO("You hear someone using a screwdriver.")
 				)
 				temp_state--
