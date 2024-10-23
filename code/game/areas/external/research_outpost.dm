@@ -23,18 +23,6 @@
 	name = "Research Outpost Expedition Preparation"
 	icon_state = "anog"
 
-/area/external/research_outpost/isolation_one
-	name = "Research Outpost Isolation Cell 1"
-	icon_state = "iso1"
-
-/area/external/research_outpost/isolation_two
-	name = "Research Outpost Isolation Cell 2"
-	icon_state = "iso2"
-
-/area/external/research_outpost/isolation_three
-	name = "Research Outpost Isolation Cell 3"
-	icon_state = "iso3"
-
 /area/external/research_outpost/harvesting
 	name = "Research Outpost Exotic Particles Collection"
 	icon_state = "anolab"
@@ -51,14 +39,6 @@
 	name = "Research Outpost Anomalous Materials Lab"
 	icon_state = "anolab"
 
-/area/external/research_outpost/long_term_storage
-	name = "Research Outpost Long-Term Storage"
-	icon_state = "primarystorage"
-
-/area/external/research_outpost/temporary_storage
-	name = "Research Outpost Temporary Storage"
-	icon_state = "storage"
-
 /area/external/research_outpost/maintenance
 	name = "Research Outpost Maintenance"
 	icon_state = "maintcentral"
@@ -71,10 +51,33 @@
 	name = "Research Outpost Atmospherics"
 	icon_state = "atmos"
 
-/area/external/research_outpost/maintenance_storage
-	name = "Research Outpost Maintenance Storage"
+// Isolation Cells
+/area/external/research_outpost/isolation/one
+	name = "Research Outpost Isolation Cell 1"
+	icon_state = "iso1"
+
+/area/external/research_outpost/isolation/two
+	name = "Research Outpost Isolation Cell 2"
+	icon_state = "iso2"
+
+/area/external/research_outpost/isolation/three
+	name = "Research Outpost Isolation Cell 3"
+	icon_state = "iso3"
+
+// Storage
+/area/external/research_outpost/storage
 	icon_state = "auxstorage"
 
-/area/external/research_outpost/auxiliary_storage
+/area/external/research_outpost/storage/maintenance
+	name = "Research Outpost Maintenance Storage"
+
+/area/external/research_outpost/storage/auxiliary
 	name = "Research Outpost Auxiliary Storage"
-	icon_state = "auxstorage"
+
+/area/external/research_outpost/storage/long_term
+	name = "Research Outpost Long-Term Storage"
+	icon_state = "primarystorage"
+
+/area/external/research_outpost/storage/temporary
+	name = "Research Outpost Temporary Storage"
+	icon_state = "storage"
