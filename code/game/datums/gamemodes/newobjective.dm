@@ -274,7 +274,7 @@ datum
 				var/turf/location = GET_TURF(target.current)
 				if(isnull(location))
 					return 0
-				if(!target.current:handcuffed && !istype(location, /turf/open/floor/shuttle/brig))
+				if(!target.current:handcuffed && !istype(location, /turf/open/floor/shuttle/red/brig))
 					return 0
 
 				if(location in locate(/area/shuttle/escape/centcom))
@@ -522,7 +522,7 @@ datum
 				if(isnull(location))
 					return 0
 
-				if(owner.current:handcuffed || istype(location, /turf/open/floor/shuttle/brig))
+				if(owner.current:handcuffed || istype(location, /turf/open/floor/shuttle/red/brig))
 					return 0
 
 				if(location in locate(/area/shuttle/escape/centcom))
