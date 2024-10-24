@@ -34,7 +34,3 @@
 // West Outpost
 /area/external/mining_outpost/west_outpost
 	name = "West Mining Outpost"
-
-// Abandoned
-/area/external/mining_outpost/abandoned
-	name = "Abandoned Mining Station"

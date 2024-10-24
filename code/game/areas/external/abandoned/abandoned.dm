@@ -19,3 +19,11 @@
 	name = "\improper Assembly Line"
 	icon_state = "ass_line"
 	power_channels = list(EQUIP = FALSE, LIGHT = FALSE, ENVIRON = FALSE)
+
+// Abandoned Mining Station
+// This one was originally grouped with the non-abandoned mining outpost but I moved it for clarity.
+/area/external/abandoned/mining_outpost
+	name = "Abandoned Mining Station"
+	ambience = list(
+		'sound/ambience/song_game.ogg'
+	)
