@@ -15,6 +15,7 @@
 // Grass
 /turf/open/floor/holofloor/grass
 	name = "lush grass"
+	icon = 'icons/turf/floors/grass.dmi'
 	icon_state = "grass1"
 	tile_path = /obj/item/stack/tile/grass
 
