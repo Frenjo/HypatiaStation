@@ -38,13 +38,20 @@
 		GLOBL.contactable_blue_grid_turfs.Remove(src)
 	return ..()
 
-// Server
+/turf/open/floor/circuit_grid/blue/airless
+	name = "airless blue circuit grid floor"
+	initial_gases = null
+	temperature = TCMB
+
+/turf/open/floor/circuit_grid/blue/airless/New()
+	. = ..()
+	name = "blue circuit grid floor"
+
 /turf/open/floor/circuit_grid/blue/server
 	name = "server base"
 	initial_gases = list(/decl/xgm_gas/nitrogen = 500)
 	temperature = 80
 
-// Mainframe
 /turf/open/floor/circuit_grid/blue/mainframe
 	name = "mainframe base"
 	initial_gases = list(/decl/xgm_gas/nitrogen = 100)
@@ -58,5 +65,10 @@
 	tile_path = /obj/item/stack/tile/circuit_grid/green
 
 /turf/open/floor/circuit_grid/green/airless
+	name = "airless green circuit grid floor"
 	initial_gases = null
 	temperature = TCMB
+
+/turf/open/floor/circuit_grid/green/airless/New()
+	. = ..()
+	name = "green circuit grid floor"
