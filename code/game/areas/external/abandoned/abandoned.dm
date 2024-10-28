@@ -27,3 +27,15 @@
 	ambience = list(
 		'sound/ambience/song_game.ogg'
 	)
+
+// Bananium Shuttle
+// This one originally didn't have an area and was just classed as space.
+/area/external/abandoned/bananium_shuttle
+	name = "Abandoned Bananium Shuttle"
+	ambience = list(
+		'sound/ambience/ambispace.ogg',
+		'sound/music/title2.ogg',
+		'sound/music/space.ogg',
+		'sound/music/main.ogg',
+		'sound/music/traitor.ogg'
+	)
