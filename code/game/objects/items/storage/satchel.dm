@@ -34,22 +34,22 @@
 	item_state = "medicalpack"
 
 /obj/item/storage/satchel/vir
-	name = "virologist satchel"
-	desc = "A sterile satchel with virologist colours."
+	name = "virology satchel"
+	desc = "A sterile satchel in virology colours."
 	icon_state = "satchel-vir"
 
 /obj/item/storage/satchel/chem
-	name = "chemist satchel"
-	desc = "A sterile satchel with chemist colours."
+	name = "chemistry satchel"
+	desc = "A sterile satchel in chemistry colours."
 	icon_state = "satchel-chem"
 
 /obj/item/storage/satchel/gen
-	name = "geneticist satchel"
-	desc = "A sterile satchel with geneticist colours."
+	name = "genetics satchel"
+	desc = "A sterile satchel in genetics colours."
 	icon_state = "satchel-gen"
 
 /obj/item/storage/satchel/tox
-	name = "scientist satchel"
+	name = "science satchel"
 	desc = "Useful for holding research materials."
 	icon_state = "satchel-tox"
 
