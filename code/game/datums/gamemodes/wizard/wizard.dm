@@ -15,9 +15,6 @@
 
 	var/finished = 0
 
-	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
-	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
-
 /datum/game_mode/wizard/get_announce_content()
 	. = list()
 	. += "<B>The current game mode is - Wizard!</B>"
@@ -46,6 +43,7 @@
 	return 1
 
 /datum/game_mode/wizard/post_setup()
+	. = ..()
 	for_no_type_check(var/datum/mind/wizard, wizards)
 		if(!CONFIG_GET(objectives_disabled))
 			forge_wizard_objectives(wizard)
@@ -53,11 +51,6 @@
 		equip_wizard(wizard.current)
 		name_wizard(wizard.current)
 		greet_wizard(wizard)
-
-	spawn(rand(waittime_l, waittime_h))
-		send_intercept()
-	..()
-	return
 
 /datum/game_mode/proc/forge_wizard_objectives(datum/mind/wizard)
 	switch(rand(1, 100))

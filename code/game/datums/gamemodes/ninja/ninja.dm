@@ -7,8 +7,7 @@
 	required_players_secret = 10
 	required_enemies = 1
 	recommended_enemies = 1
-	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
-	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
+
 	var/finished = 0
 
 /datum/game_mode/ninja/get_announce_content()
@@ -55,6 +54,7 @@
 	return 1
 
 /datum/game_mode/ninja/post_setup()
+	. = ..()
 	for_no_type_check(var/datum/mind/ninja, ninjas)
 		if(ninja.current && !(ishuman(ninja.current)))
 			return 0
@@ -68,9 +68,6 @@
 		if(isnotnull(N.wear_suit) && istype(N.wear_suit, /obj/item/clothing/suit/space/space_ninja))
 			var/obj/item/clothing/suit/space/space_ninja/S = N.wear_suit
 			S:randomize_param()
-	spawn (rand(waittime_l, waittime_h))
-		send_intercept()
-	return ..()
 
 /datum/game_mode/ninja/check_finished()
 	if(CONFIG_GET(continous_rounds))

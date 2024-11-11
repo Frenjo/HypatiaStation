@@ -20,15 +20,12 @@
 	required_enemies = 3
 	recommended_enemies = 3
 
-
 	uplink_welcome = "AntagCorp Uplink Console:"
 	uplink_uses = 10
 
 	var/finished = 0
 	var/checkwin_counter = 0
 	var/max_headrevs = 3
-	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
-	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 
 ///////////////////////////
 //Announces the game type//
@@ -74,6 +71,7 @@
 
 
 /datum/game_mode/revolution/post_setup()
+	. = ..()
 	var/list/heads = get_living_heads()
 	for(var/datum/mind/rev_mind in head_revolutionaries)
 		if(!CONFIG_GET(objectives_disabled))
@@ -94,9 +92,6 @@
 	modePlayer += head_revolutionaries
 	if(global.PCemergency)
 		global.PCemergency.auto_recall = TRUE
-	spawn(rand(waittime_l, waittime_h))
-		send_intercept()
-	..()
 
 
 /datum/game_mode/revolution/process()

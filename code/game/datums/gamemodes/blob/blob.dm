@@ -3,10 +3,8 @@
 /*/datum/game_mode/blob
 	name = "blob"
 	config_tag = "blob"
+	intercept_time = list(3 MINUTES, 6 MINUTES)
 	required_players = 0
-
-	var/const/waittime_l = 1800 //lower bound on time before intercept arrives (in tenths of seconds)
-	var/const/waittime_h = 3600 //upper bound on time before intercept arrives (in tenths of seconds)
 
 	var/declared = 0
 	var/stage = 0

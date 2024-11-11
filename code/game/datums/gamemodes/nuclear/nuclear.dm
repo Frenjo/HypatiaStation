@@ -13,8 +13,6 @@
 	uplink_uses = 40
 
 	var/const/agents_possible = 5 //If we ever need more syndicate agents.
-	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
-	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 
 	var/nukes_left = 1 // Call 3714-PRAY right now and order more nukes! Limited offer!
 	var/nuke_off_station = 0 //Used for tracking if the syndies actually haul the nuke to the station
@@ -111,6 +109,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 
 /datum/game_mode/nuclear/post_setup()
+	. = ..()
 	var/list/turf/synd_spawn = list()
 
 	for_no_type_check(var/obj/effect/landmark/A, GLOBL.landmark_list)
@@ -153,12 +152,6 @@
 	if(nuke_spawn && length(synd_spawn))
 		var/obj/machinery/nuclearbomb/the_bomb = new /obj/machinery/nuclearbomb(nuke_spawn.loc)
 		the_bomb.r_code = nuke_code
-
-	spawn (rand(waittime_l, waittime_h))
-		send_intercept()
-
-	return ..()
-
 
 /datum/game_mode/proc/prepare_syndicate_leader(datum/mind/synd_mind, nuke_code)
 	if(nuke_code)

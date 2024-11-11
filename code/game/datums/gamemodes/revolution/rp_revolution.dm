@@ -55,7 +55,6 @@
 
 /datum/game_mode/revolution/rp_revolution/post_setup()
 	. = ..()
-
 	heads = get_living_heads()
 	for_no_type_check(var/datum/mind/rev_mind, head_revolutionaries)
 		if(!CONFIG_GET(objectives_disabled))
@@ -74,8 +73,6 @@
 		equip_traitor(rev_mind.current, 1) //changing how revs get assigned their uplink so they can get PDA uplinks. --NEO
 
 	modePlayer += head_revolutionaries
-	spawn(rand(waittime_l, waittime_h))
-		send_intercept()
 
 /datum/game_mode/revolution/rp_revolution/greet_revolutionary(datum/mind/rev_mind, you_are = 1)
 	var/obj_count = 1

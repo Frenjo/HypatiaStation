@@ -62,7 +62,7 @@
 	return 1
 
 /datum/game_mode/traitor/autotraitor/post_setup()
-	..()
+	. = ..()
 	CONFIG_SET(respawn, TRUE)
 	traitorcheckloop()
 

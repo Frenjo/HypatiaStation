@@ -5,8 +5,6 @@
 	required_players = 0
 	votable = FALSE
 
-	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
-	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 	var/const/meteordelay = 2000
 	var/nometeors = 1
 	var/wavesecret = FALSE
@@ -20,12 +18,10 @@
 	. += "<B>The space station has been stuck in a major meteor shower. You must escape from the station or at least live.</B>"
 
 /datum/game_mode/meteor/post_setup()
+	. = ..()
 	GLOBL.defer_powernet_rebuild = 2	//Might help with the lag
-	spawn (rand(waittime_l, waittime_h))
-		send_intercept()
 	spawn(meteordelay)
 		nometeors = 0
-	..()
 
 /datum/game_mode/meteor/process()
 	if(nometeors)

@@ -7,8 +7,6 @@
 
 	var/finished = 0
 	var/checkwin_counter = 0
-	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
-	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 
 	var/required_execute_targets = 1
 	var/required_brig_targets = 0
@@ -76,15 +74,12 @@
 
 
 /datum/game_mode/anti_revolution/post_setup()
-
+	. = ..()
 	for(var/datum/mind/head_mind in heads)
 		add_head_objectives(head_mind)
 	for(var/datum/mind/head_mind in heads)
 		greet_head(head_mind)
 	modePlayer += heads
-	spawn (rand(waittime_l, waittime_h))
-		send_intercept()
-	..()
 
 
 /datum/game_mode/anti_revolution/process()

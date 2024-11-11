@@ -40,9 +40,6 @@ var/list/possible_changeling_IDs = list(
 	var/const/prob_right_objective_l = 25 //lower bound on probability of determining the objective correctly
 	var/const/prob_right_objective_h = 50 //upper bound on probability of determining the objective correctly
 
-	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
-	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
-
 	var/changeling_amount = 4
 
 /datum/game_mode/changeling/get_announce_content()
@@ -76,17 +73,13 @@ var/list/possible_changeling_IDs = list(
 		return 0
 
 /datum/game_mode/changeling/post_setup()
+	. = ..()
 	for_no_type_check(var/datum/mind/changeling, changelings)
 		grant_changeling_powers(changeling.current)
 		changeling.special_role = "Changeling"
 		if(!CONFIG_GET(objectives_disabled))
 			forge_changeling_objectives(changeling)
 		greet_changeling(changeling)
-
-	spawn(rand(waittime_l, waittime_h))
-		send_intercept()
-	..()
-	return
 
 /datum/game_mode/proc/forge_changeling_objectives(datum/mind/changeling)
 	//OBJECTIVES - Always absorb 5 genomes, plus random traitor objectives.

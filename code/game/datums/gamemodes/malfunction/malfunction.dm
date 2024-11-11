@@ -12,9 +12,6 @@
 	uplink_welcome = "Crazy AI Uplink Console:"
 	uplink_uses = 10
 
-	var/const/waittime_l = 600
-	var/const/waittime_h = 1800 // started at 1800
-
 	var/AI_win_timeleft = 1800 //started at 1800, in case I change this for testing round end.
 	var/malf_mode_declared = 0
 	var/station_captured = 0
@@ -36,6 +33,7 @@
 	return 0
 
 /datum/game_mode/malfunction/post_setup()
+	. = ..()
 	for_no_type_check(var/datum/mind/ai_mind, malf_ai)
 		if(!length(malf_ai))
 			to_world("Uh oh, it's malfunction and there is no AI! Please report this.")
@@ -66,9 +64,6 @@
 				ai_mind.current.icon_state = "ai-malf2"
 */
 	global.PCemergency?.auto_recall = TRUE
-	spawn(rand(waittime_l, waittime_h))
-		send_intercept()
-	. = ..()
 
 /datum/game_mode/malfunction/process()
 	if(apcs >= 3 && malf_mode_declared)

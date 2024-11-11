@@ -14,6 +14,7 @@
 	var/name = "invalid"
 	var/config_tag = null
 	var/intercept_hacked = 0
+	var/list/intercept_time = list(1 MINUTE, 3 MINUTES) // The time range between which the intercept will be sent.
 	var/votable = TRUE
 	var/probability = 0
 	var/station_was_nuked = 0 //see nuclearbomb.dm and malfunction.dm
@@ -126,6 +127,9 @@ Implants;
 	if(global.revdata)
 		feedback_set_details("revision", "[global.revdata.revision]")
 	feedback_set_details("server_ip", "[world.internet_address]:[world.port]")
+
+	spawn(rand(intercept_time[1], intercept_time[2]))
+		send_intercept()
 	return 1
 
 ///process()
@@ -219,51 +223,57 @@ Implants;
 	return 0
 
 /datum/game_mode/proc/send_intercept()
-	var/intercepttext = "<FONT size = 3><B>Cent. Com. Update</B> Requested status information:</FONT><HR>"
-	intercepttext += "<B> In case you have misplaced your copy, attached is a list of personnel whom reliable sources&trade; suspect may be affiliated with the Syndicate:</B><br>"
+	var/text = "<font size = 3><B>Cent. Com. Update</B></font>"
+	text += "<br>"
+	text += "<font size = 3>Requested status information:</font>"
+	text += "<hr>"
+	text += "<B>In case you have misplaced your copy, attached is a list of personnel whom reliable sources&trade; suspect may be affiliated with the Syndicate:</B>"
+	text += "<br>"
 
 	var/list/suspects = list()
-	for(var/mob/living/carbon/human/man in GLOBL.player_list)
-		if(isnotnull(man.client) && isnotnull(man.mind))
+	for(var/mob/living/carbon/human/H in GLOBL.player_list)
+		if(isnotnull(H.client) && isnotnull(H.mind))
 			// NT relation option
-			var/special_role = man.mind.special_role
+			var/special_role = H.mind.special_role
 			if(special_role == "Wizard" || special_role == "Ninja" || special_role == "Syndicate" || special_role == "Vox Raider")
 				continue	//NT intelligence ruled out possiblity that those are too classy to pretend to be a crew.
-			if(man.client.prefs.nanotrasen_relation == "Opposed" && prob(50) || man.client.prefs.nanotrasen_relation == "Skeptical" && prob(20))
-				suspects.Add(man)
+			if(H.client.prefs.nanotrasen_relation == "Opposed" && prob(50) || H.client.prefs.nanotrasen_relation == "Skeptical" && prob(20))
+				suspects.Add(H)
 			// Antags
 			else if(special_role == "traitor" && prob(40) || special_role == "Changeling" && prob(50) \
 			|| special_role == "Cultist" && prob(30) || special_role == "Head Revolutionary" && prob(30))
-				suspects.Add(man)
+				suspects.Add(H)
 
 				// If they're a traitor or likewise, give them extra TC in exchange.
-				var/obj/item/uplink/hidden/suplink = man.mind.find_syndicate_uplink()
+				var/obj/item/uplink/hidden/suplink = H.mind.find_syndicate_uplink()
 				if(isnotnull(suplink))
 					var/extra = 4
 					suplink.uses += extra
-					to_chat(man, SPAN_WARNING("We have received notice that enemy intelligence suspects you to be linked with us. We have thus invested significant resources to increase your uplink's capacity."))
+					to_chat(H, SPAN_WARNING("We have received notice that enemy intelligence suspects you to be linked with us. We have thus invested significant resources to increase your uplink's capacity."))
 				else
 					// Give them a warning!
-					to_chat(man, SPAN_WARNING("They are on to you!"))
+					to_chat(H, SPAN_WARNING("They are on to you!"))
 
 			// Some poor people who were just in the wrong place at the wrong time..
 			else if(prob(10))
-				suspects.Add(man)
+				suspects.Add(H)
 	for(var/mob/M in suspects)
 		switch(rand(1, 100))
 			if(1 to 50)
-				intercepttext += "Someone with the job of <b>[M.mind.assigned_role]</b> <br>"
+				text += "Someone with the job of <b>[M.mind.assigned_role]</b>."
+				text += "<br>"
 			else
-				intercepttext += "<b>[M.name]</b>, the <b>[M.mind.assigned_role]</b> <br>"
+				text += "<b>[M.name]</b>, the <b>[M.mind.assigned_role]</b>."
+				text += "<br>"
 
 	for(var/obj/machinery/computer/communications/comm in GLOBL.machines)
 		if(!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
 			var/obj/item/paper/intercept = new /obj/item/paper(comm.loc)
 			intercept.name = "paper - 'Cent. Com. Status Summary'"
-			intercept.info = intercepttext
+			intercept.info = text
 
 			comm.messagetitle.Add("Cent. Com. Status Summary")
-			comm.messagetext.Add(intercepttext)
+			comm.messagetext.Add(text)
 	world << sound('sound/AI/commandreport.ogg')
 
 /*	command_alert("Summary downloaded and printed out at all communications consoles.", "Enemy communication intercept. Security Level Elevated.")

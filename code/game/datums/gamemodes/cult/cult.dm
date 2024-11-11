@@ -35,8 +35,6 @@
 
 	var/datum/mind/sacrifice_target = null
 	var/finished = 0
-	var/const/waittime_l = 600 //lower bound on time before intercept arrives (in tenths of seconds)
-	var/const/waittime_h = 1800 //upper bound on time before intercept arrives (in tenths of seconds)
 
 	var/list/startwords = list("blood", "join", "self", "hell")
 
@@ -84,6 +82,8 @@
 	return length(cult)
 
 /datum/game_mode/cult/post_setup()
+	. = ..()
+
 	modePlayer += cult
 	if("sacrifice" in objectives)
 		var/list/possible_targets = get_unconvertables()
@@ -106,10 +106,6 @@
 		else
 			FEEDBACK_ANTAGONIST_GREETING_GUIDE(cult_mind.current)
 		cult_mind.special_role = "Cultist"
-
-	spawn(rand(waittime_l, waittime_h))
-		send_intercept()
-	..()
 
 /datum/game_mode/cult/proc/memoize_cult_objectives(datum/mind/cult_mind)
 	for(var/obj_count = 1, obj_count <= length(objectives), obj_count++)
