@@ -6,7 +6,7 @@
  * Computers
  */
 /obj/item/circuitboard/communications
-	name = "circuit board (Communications)"
+	name = "circuit board (communications)"
 	build_path = /obj/machinery/computer/communications
 	origin_tech = list(/datum/tech/magnets = 2, /datum/tech/programming = 2)
 
@@ -32,18 +32,18 @@
 	message_admins("All the AIs, comm consoles and boards are destroyed. Shuttle called.", 1)
 
 /obj/item/circuitboard/card
-	name = "circuit board (ID Computer)"
+	name = "circuit board (id computer)"
 	build_path = /obj/machinery/computer/card
 
 /obj/item/circuitboard/card/centcom
-	name = "circuit board (CentCom ID Computer)"
+	name = "circuit board (centcom id computer)"
 	build_path = /obj/machinery/computer/card/centcom
 
 /obj/item/circuitboard/teleporter
-	name = "circuit board (Teleporter)"
+	name = "circuit board (teleporter)"
 	build_path = /obj/machinery/computer/teleporter
 	origin_tech = list(/datum/tech/programming = 2, /datum/tech/bluespace = 2)
 
 /obj/item/circuitboard/skills
-	name = "circuit board (Employment Records)"
+	name = "circuit board (employment records)"
 	build_path = /obj/machinery/computer/skills

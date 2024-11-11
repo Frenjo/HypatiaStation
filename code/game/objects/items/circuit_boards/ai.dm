@@ -6,17 +6,17 @@
  * Computers
  */
 /obj/item/circuitboard/aiupload
-	name = "circuit board (AI Upload)"
+	name = "circuit board (AI upload)"
 	build_path = /obj/machinery/computer/aiupload
 	origin_tech = list(/datum/tech/programming = 4)
 
 /obj/item/circuitboard/borgupload
-	name = "circuit board (Cyborg Upload)"
+	name = "circuit board (cyborg upload)"
 	build_path = /obj/machinery/computer/borgupload
 	origin_tech = list(/datum/tech/programming = 4)
 
 /obj/item/circuitboard/aifixer
-	name = "circuit board (AI Integrity Restorer)"
+	name = "circuit board (AI integrity restorer)"
 	build_path = /obj/machinery/computer/aifixer
 	origin_tech = list(/datum/tech/biotech = 2, /datum/tech/programming = 3)
 

@@ -6,22 +6,22 @@
  * Computers
  */
 /obj/item/circuitboard/message_monitor
-	name = "circuit board (Message Monitor)"
+	name = "circuit board (message monitor)"
 	build_path = /obj/machinery/computer/message_monitor
 	origin_tech = list(/datum/tech/programming = 3)
 
 /obj/item/circuitboard/comm_monitor
-	name = "circuit board (Telecommunications Monitor)"
+	name = "circuit board (telecommunications monitor)"
 	build_path = /obj/machinery/computer/telecoms/monitor
 	origin_tech = list(/datum/tech/programming = 3)
 
 /obj/item/circuitboard/comm_server
-	name = "circuit board (Telecommunications Server Monitor)"
+	name = "circuit board (telecommunications server monitor)"
 	build_path = /obj/machinery/computer/telecoms/server
 	origin_tech = list(/datum/tech/programming = 3)
 
 /obj/item/circuitboard/comm_traffic
-	name = "circuit board (Telecommunications Traffic Control)"
+	name = "circuit board (telecommunications traffic control)"
 	build_path = /obj/machinery/computer/telecoms/traffic
 	origin_tech = list(/datum/tech/programming = 3)
 
@@ -29,7 +29,7 @@
  * Machines
  */
 /obj/item/circuitboard/telecoms/receiver
-	name = "circuit board (Subspace Receiver)"
+	name = "circuit board (subspace receiver)"
 	build_path = /obj/machinery/telecoms/receiver
 	board_type = "machine"
 	origin_tech = list(/datum/tech/engineering = 3, /datum/tech/programming = 4, /datum/tech/bluespace = 2)
@@ -42,7 +42,7 @@
 	)
 
 /obj/item/circuitboard/telecoms/hub
-	name = "circuit board (Hub Mainframe)"
+	name = "circuit board (hub mainframe)"
 	build_path = /obj/machinery/telecoms/hub
 	board_type = "machine"
 	origin_tech = list(/datum/tech/engineering = 4, /datum/tech/programming = 4)
@@ -54,7 +54,7 @@
 	)
 
 /obj/item/circuitboard/telecoms/relay
-	name = "circuit board (Relay Mainframe)"
+	name = "circuit board (relay mainframe)"
 	build_path = /obj/machinery/telecoms/relay
 	board_type = "machine"
 	origin_tech = list(/datum/tech/engineering = 4, /datum/tech/programming = 3, /datum/tech/bluespace = 3)
@@ -66,7 +66,7 @@
 	)
 
 /obj/item/circuitboard/telecoms/bus
-	name = "circuit board (Bus Mainframe)"
+	name = "circuit board (bus mainframe)"
 	build_path = /obj/machinery/telecoms/bus
 	board_type = "machine"
 	origin_tech = list(/datum/tech/engineering = 4, /datum/tech/programming = 4)
@@ -78,7 +78,7 @@
 	)
 
 /obj/item/circuitboard/telecoms/processor
-	name = "circuit board (Processor Unit)"
+	name = "circuit board (processor unit)"
 	build_path = /obj/machinery/telecoms/processor
 	board_type = "machine"
 	origin_tech = list(/datum/tech/engineering = 4, /datum/tech/programming = 4)
@@ -93,7 +93,7 @@
 	)
 
 /obj/item/circuitboard/telecoms/server
-	name = "circuit board (Telecommunication Server)"
+	name = "circuit board (telecommunication server)"
 	build_path = /obj/machinery/telecoms/server
 	board_type = "machine"
 	origin_tech = list(/datum/tech/engineering = 4, /datum/tech/programming = 4)
@@ -105,7 +105,7 @@
 	)
 
 /obj/item/circuitboard/telecoms/broadcaster
-	name = "circuit board (Subspace Broadcaster)"
+	name = "circuit board (subspace broadcaster)"
 	build_path = /obj/machinery/telecoms/broadcaster
 	board_type = "machine"
 	origin_tech = list(/datum/tech/engineering = 4, /datum/tech/programming = 4, /datum/tech/bluespace = 2)

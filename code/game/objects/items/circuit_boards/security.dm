@@ -6,7 +6,7 @@
  * Computers
  */
 /obj/item/circuitboard/security
-	name = "circuit board (Security)"
+	name = "circuit board (security)"
 	req_access = list(ACCESS_SECURITY)
 	build_path = /obj/machinery/computer/security
 
@@ -58,14 +58,14 @@
 	return ..()
 
 /obj/item/circuitboard/secure_data
-	name = "circuit board (Security Records)"
+	name = "circuit board (security records)"
 	build_path = /obj/machinery/computer/secure_data
 
 /obj/item/circuitboard/prisoner
-	name = "circuit board (Prisoner Management)"
+	name = "circuit board (prisoner management)"
 	build_path = /obj/machinery/computer/prisoner
 
 /obj/item/circuitboard/prison_shuttle
-	name = "circuit board (Prison Shuttle)"
+	name = "circuit board (prison shuttle)"
 	build_path = /obj/machinery/computer/shuttle_control/prison
 	origin_tech = list(/datum/tech/programming = 2)

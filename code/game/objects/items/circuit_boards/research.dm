@@ -6,12 +6,12 @@
  * Computers
  */
 /obj/item/circuitboard/robotics
-	name = "circuit board (Robotics Control)"
+	name = "circuit board (robotics control)"
 	build_path = /obj/machinery/computer/robotics
 	origin_tech = list(/datum/tech/programming = 3)
 
 /obj/item/circuitboard/rdconsole
-	name = "circuit board (RD Console)"
+	name = "circuit board (RD console)"
 	build_path = /obj/machinery/computer/rdconsole/core
 
 /obj/item/circuitboard/rdconsole/attack_tool(obj/item/tool, mob/user)
@@ -34,20 +34,20 @@
 	return ..()
 
 /obj/item/circuitboard/mecha_control
-	name = "circuit board (Exosuit Control Console)"
+	name = "circuit board (exosuit control console)"
 	build_path = /obj/machinery/computer/mecha
 
 /obj/item/circuitboard/rdservercontrol
-	name = "circuit board (R&D Server Control)"
+	name = "circuit board (R&D server control)"
 	build_path = /obj/machinery/computer/rdservercontrol
 
 /obj/item/circuitboard/mech_bay_power_console
-	name = "circuit board (Mech Bay Power Control Console)"
+	name = "circuit board (mech bay power control console)"
 	build_path = /obj/machinery/computer/mech_bay_power_console
 	origin_tech = list(/datum/tech/power_storage = 3, /datum/tech/programming = 2)
 
 /obj/item/circuitboard/research_shuttle
-	name = "circuit board (Research Shuttle)"
+	name = "circuit board (research shuttle)"
 	build_path = /obj/machinery/computer/shuttle_control/research
 	origin_tech = list(/datum/tech/programming = 2)
 
@@ -55,7 +55,7 @@
  * Machines
  */
 /obj/item/circuitboard/destructive_analyser
-	name = "circuit board (Destructive Analyser)"
+	name = "circuit board (destructive analyser)"
 	build_path = /obj/machinery/r_n_d/destructive_analyser
 	board_type = "machine"
 	origin_tech = list(/datum/tech/magnets = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
@@ -67,7 +67,7 @@
 	)
 
 /obj/item/circuitboard/autolathe
-	name = "circuit board (Autolathe)"
+	name = "circuit board (autolathe)"
 	build_path = /obj/machinery/autolathe
 	board_type = "machine"
 	origin_tech = list(/datum/tech/engineering = 2, /datum/tech/programming = 2)
@@ -79,7 +79,7 @@
 	)
 
 /obj/item/circuitboard/protolathe
-	name = "circuit board (Protolathe)"
+	name = "circuit board (protolathe)"
 	build_path = /obj/machinery/r_n_d/protolathe
 	board_type = "machine"
 	origin_tech = list(/datum/tech/engineering = 2, /datum/tech/programming = 2)
@@ -91,7 +91,7 @@
 	)
 
 /obj/item/circuitboard/circuit_imprinter
-	name = "circuit board (Circuit Imprinter)"
+	name = "circuit board (circuit imprinter)"
 	build_path = /obj/machinery/r_n_d/circuit_imprinter
 	board_type = "machine"
 	origin_tech = list(/datum/tech/engineering = 2, /datum/tech/programming = 2)
@@ -103,7 +103,7 @@
 	)
 
 /obj/item/circuitboard/rdserver
-	name = "circuit board (R&D Server)"
+	name = "circuit board (R&D server)"
 	build_path = /obj/machinery/r_n_d/server
 	board_type = "machine"
 	origin_tech = list(/datum/tech/programming = 3)
@@ -114,7 +114,7 @@
 	)
 
 /obj/item/circuitboard/mechfab
-	name = "circuit board (Exosuit Fabricator)"
+	name = "circuit board (exosuit fabricator)"
 	build_path = /obj/machinery/mecha_part_fabricator
 	board_type = "machine"
 	origin_tech = list(/datum/tech/engineering = 3, /datum/tech/programming = 3)

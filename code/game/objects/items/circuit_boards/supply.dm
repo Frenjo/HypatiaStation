@@ -6,12 +6,12 @@
  * Computers
  */
 /obj/item/circuitboard/ordercomp
-	name = "circuit board (Supply ordering console)"
+	name = "circuit board (supply ordering console)"
 	build_path = /obj/machinery/computer/ordercomp
 	origin_tech = list(/datum/tech/programming = 2)
 
 /obj/item/circuitboard/supplycomp
-	name = "circuit board (Supply shuttle console)"
+	name = "circuit board (supply shuttle console)"
 	build_path = /obj/machinery/computer/supplycomp
 	origin_tech = list(/datum/tech/programming = 3)
 
@@ -38,6 +38,6 @@
 	return ..()
 
 /obj/item/circuitboard/mining_shuttle
-	name = "circuit board (Mining Shuttle)"
+	name = "circuit board (mining shuttle)"
 	build_path = /obj/machinery/computer/shuttle_control/mining
 	origin_tech = list(/datum/tech/programming = 2)
