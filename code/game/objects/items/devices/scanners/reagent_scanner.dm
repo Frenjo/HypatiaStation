@@ -5,7 +5,7 @@
 	name = "reagent scanner"
 	desc = "A handheld reagent scanner which identifies chemical agents."
 	icon = 'icons/obj/items/devices/scanner.dmi'
-	icon_state = "spectrometer"
+	icon_state = "reagent_scanner"
 	item_state = "analyser"
 
 	w_class = 2
@@ -60,6 +60,6 @@
  */
 /obj/item/reagent_scanner/adv
 	name = "advanced reagent scanner"
-	icon_state = "adv_spectrometer"
+	icon_state = "adv_reagent_scanner"
 	origin_tech = list(/datum/tech/magnets = 4, /datum/tech/biotech = 2)
 	details = TRUE
