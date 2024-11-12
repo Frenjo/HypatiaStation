@@ -21,12 +21,7 @@
 		/obj/item/eftpos,
 		/obj/structure/closet/crate/secure,
 		/obj/structure/closet/secure,
-		/obj/machinery/suspension_gen,
-		/obj/machinery/shield_capacitor,
-		/obj/machinery/shield_gen,
-		/obj/machinery/deployable,
-		/obj/machinery/turretid,
-		/obj/machinery/door
+		/obj/machinery/suspension_gen
 	)
 
 // This is the new way.
