@@ -174,7 +174,7 @@
 
 	dat += character_setup_footer(user)
 
-	var/datum/browser/panel = new /datum/browser(user, "preferences", "", 700, 600)
+	var/datum/browser/panel = new /datum/browser(user, "preferences", "", 800, 600)
 	panel.set_content(dat)
 	panel.open()
 

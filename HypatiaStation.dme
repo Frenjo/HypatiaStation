@@ -208,6 +208,7 @@
 #include "code\game\client\preferences\preferences_topic.dm"
 #include "code\game\client\preferences\panels\character_records.dm"
 #include "code\game\client\preferences\panels\character_setup.dm"
+#include "code\game\client\preferences\panels\character_slots.dm"
 #include "code\game\client\preferences\panels\occupation_choices.dm"
 #include "code\game\client\preferences\panels\skills.dm"
 #include "code\game\client\preferences\panels\special_roles.dm"

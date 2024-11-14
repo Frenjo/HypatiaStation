@@ -3,6 +3,8 @@
 		return
 
 	switch(href_list["preference"])
+		if("saves")
+			return process_character_slots_panel(user, href_list)
 		if("job")
 			return process_occupation_choices_panel(user, href_list)
 		if("records")
@@ -370,6 +372,10 @@
 
 		else
 			switch(href_list["preference"])
+				if("open_load_dialog")
+					if(!IsGuestKey(user.key))
+						character_slots_panel(user)
+
 				if("gender")
 					if(gender == MALE)
 						gender = FEMALE
@@ -396,17 +402,6 @@
 				if("reload")
 					load_preferences()
 					load_character()
-
-				if("open_load_dialog")
-					if(!IsGuestKey(user.key))
-						open_load_dialog(user)
-
-				if("close_load_dialog")
-					close_load_dialog(user)
-
-				if("changeslot")
-					load_character(text2num(href_list["num"]))
-					close_load_dialog(user)
 
 	character_setup_panel(user)
 	return 1

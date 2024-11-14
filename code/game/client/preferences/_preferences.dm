@@ -202,28 +202,3 @@
 		if(isliving(src)) //Ghosts get neuter by default
 			message_admins("[character] ([character.ckey]) has spawned with their gender as plural or neuter. Please notify coders.")
 			character.gender = MALE
-
-/datum/preferences/proc/open_load_dialog(mob/user)
-	var/dat = "<body>"
-	dat += "<tt><center>"
-
-	var/savefile/S = new /savefile(path)
-	if(isnotnull(S))
-		dat += "<b>Select a character slot to load</b><hr>"
-		var/name
-		for(var/i = 1, i <= MAX_SAVE_SLOTS, i++)
-			S.cd = "/character[i]"
-			S["real_name"] >> name
-			if(!name)
-				name = "Character[i]"
-			if(i == default_slot)
-				name = "<b>[name]</b>"
-			dat += "<a href='byond://?_src_=prefs;preference=changeslot;num=[i];'>[name]</a><br>"
-
-	dat += "<hr>"
-	dat += "<a href='byond://?src=\ref[user];preference=close_load_dialog'>Close</a><br>"
-	dat += "</center></tt>"
-	user << browse(dat, "window=saves;size=300x390")
-
-/datum/preferences/proc/close_load_dialog(mob/user)
-	user << browse(null, "window=saves")
