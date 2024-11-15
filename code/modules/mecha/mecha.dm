@@ -646,162 +646,182 @@
 //////////////////////
 ////// AttackBy //////
 //////////////////////
+/obj/mecha/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool))
+		if(state == 1)
+			state = 2
+			to_chat(user, SPAN_NOTICE("You undo the securing bolts on \the [src]."))
+		else if(state == 2)
+			state = 1
+			to_chat(user, SPAN_NOTICE("You tighten the securing bolts on \the [src]."))
+		return TRUE
 
-/obj/mecha/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/mmi) || istype(W, /obj/item/mmi/posibrain))
-		if(mmi_move_inside(W, user))
-			user << "[src]-MMI interface initialized successfuly"
-		else
-			user << "[src]-MMI interface initialization failed."
-		return
+	if(iscrowbar(tool))
+		if(state == 2)
+			state = 3
+			to_chat(user, SPAN_NOTICE("You open the hatch to \the [src]'s power unit."))
+		else if(state == 3)
+			state = 2
+			to_chat(user, SPAN_NOTICE("You close the hatch to \the [src]'s power unit."))
+		return TRUE
 
-	if(istype(W, /obj/item/mecha_part/equipment))
-		var/obj/item/mecha_part/equipment/E = W
-		spawn()
-			if(E.can_attach(src))
-				user.drop_item()
-				E.attach(src)
-				user.visible_message("[user] attaches [W] to [src]", "You attach [W] to [src]")
+	if(iscable(tool))
+		if(state == 3 && hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
+			var/obj/item/stack/cable_coil/cable = tool
+			if(cable.amount > 1)
+				cable.use(2)
+				clearInternalDamage(MECHA_INT_SHORT_CIRCUIT)
+				to_chat(user, SPAN_NOTICE("You replace \the [src]'s fused wires."))
 			else
-				user << "You were unable to attach [W] to [src]"
-		return
-	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
+				to_chat(user, SPAN_WARNING("There's not enough wire to finish the task!"))
+		return TRUE
+
+	if(isscrewdriver(tool))
+		if(hasInternalDamage(MECHA_INT_TEMP_CONTROL))
+			clearInternalDamage(MECHA_INT_TEMP_CONTROL)
+			to_chat(user, SPAN_NOTICE("You repair \the [src]'s damaged temperature controller."))
+		else if(isnotnull(cell))
+			if(state == 3)
+				cell.forceMove(loc)
+				cell = null
+				state = 4
+				to_chat(user, SPAN_NOTICE("You unscrew and pry out \the [src]'s power cell."))
+				log_message("Powercell removed")
+			else if(state == 4)
+				state = 3
+				to_chat(user, SPAN_NOTICE("You screw \the [src]'s power cell into place."))
+		return TRUE
+
+	if(iswelder(tool) && user.a_intent != "hurt")
+		var/obj/item/weldingtool/welder = tool
+		if(!welder.remove_fuel(0, user))
+			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
+			return TRUE
+		if(hasInternalDamage(MECHA_INT_TANK_BREACH))
+			clearInternalDamage(MECHA_INT_TANK_BREACH)
+			to_chat(user, SPAN_NOTICE("You repair \the [src]'s damaged gas tank."))
+			return TRUE
+		if(health < initial(health))
+			to_chat(user, SPAN_NOTICE("You repair some damage on \the [src]."))
+			health += min(10, initial(health) - health)
+		else
+			to_chat(user, SPAN_NOTICE("\The [src] is at full integrity."))
+		return TRUE
+
+	return ..()
+
+/obj/mecha/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/mmi)) // This should also cover /obj/item/mmi/posibrain.
+		var/obj/item/mmi/brain = I
+		if(mmi_move_inside(brain, user))
+			to_chat(user, SPAN_INFO("[src]-MMI interface initialised sucessfully."))
+		else
+			to_chat(user, SPAN_WARNING("[src]-MMI interface initialisation failed."))
+		return TRUE
+
+	if(istype(I, /obj/item/card/id) || istype(I, /obj/item/pda))
 		if(add_req_access || maint_access)
 			if(internals_access_allowed(usr))
 				var/obj/item/card/id/id_card
-				if(istype(W, /obj/item/card/id))
-					id_card = W
+				if(istype(I, /obj/item/card/id))
+					id_card = I
 				else
-					var/obj/item/pda/pda = W
+					var/obj/item/pda/pda = I
 					id_card = pda.id
 				output_maintenance_dialog(id_card, user)
-				return
+				return TRUE
 			else
-				user << "\red Invalid ID: Access denied."
+				to_chat(user, SPAN_WARNING("Invalid ID: Access denied."))
 		else
-			user << "\red Maintenance protocols disabled by operator."
-	else if(iswrench(W))
-		if(state == 1)
-			state = 2
-			user << "You undo the securing bolts."
-		else if(state == 2)
-			state = 1
-			user << "You tighten the securing bolts."
-		return
-	else if(iscrowbar(W))
-		if(state == 2)
-			state = 3
-			user << "You open the hatch to the power unit"
-		else if(state == 3)
-			state = 2
-			user << "You close the hatch to the power unit"
-		return
-	else if(iscable(W))
-		if(state == 3 && hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
-			var/obj/item/stack/cable_coil/CC = W
-			if(CC.amount > 1)
-				CC.use(2)
-				clearInternalDamage(MECHA_INT_SHORT_CIRCUIT)
-				user << "You replace the fused wires."
-			else
-				user << "There's not enough wire to finish the task."
-		return
-	else if(isscrewdriver(W))
-		if(hasInternalDamage(MECHA_INT_TEMP_CONTROL))
-			clearInternalDamage(MECHA_INT_TEMP_CONTROL)
-			user << "You repair the damaged temperature controller."
-		else if(state == 3 && src.cell)
-			src.cell.forceMove(src.loc)
-			src.cell = null
-			state = 4
-			user << "You unscrew and pry out the powercell."
-			src.log_message("Powercell removed")
-		else if(state == 4 && src.cell)
-			state = 3
-			user << "You screw the cell in place"
-		return
+			to_chat(user, SPAN_WARNING("Maintenance protocols disabled by operator."))
+		return TRUE
 
-	else if(istype(W, /obj/item/cell))
+	if(istype(I, /obj/item/cell))
 		if(state == 4)
-			if(!src.cell)
-				user << "You install the powercell"
+			if(isnull(cell))
+				to_chat(user, SPAN_NOTICE("You install \the [I] into \the [src]."))
 				user.drop_item()
-				W.forceMove(src)
-				src.cell = W
-				src.log_message("Powercell installed")
+				I.forceMove(src)
+				cell = I
+				log_message("Powercell installed")
 			else
-				user << "There's already a powercell installed."
-		return
+				to_chat(user, SPAN_WARNING("There's already a power cell installed in \the [src]."))
+		return TRUE
 
-	else if(iswelder(W) && user.a_intent != "hurt")
-		var/obj/item/weldingtool/WT = W
-		if(WT.remove_fuel(0, user))
-			if (hasInternalDamage(MECHA_INT_TANK_BREACH))
-				clearInternalDamage(MECHA_INT_TANK_BREACH)
-				user << "\blue You repair the damaged gas tank."
+	if(istype(I, /obj/item/mecha_part/equipment))
+		var/obj/item/mecha_part/equipment/E = I
+		if(E.can_attach(src))
+			user.drop_item()
+			E.attach(src)
+			user.visible_message(
+				SPAN_INFO("[user] attaches \the [I] to \the [src]."),
+				SPAN_INFO("You attach \the [I] to \the [src]."),
+				SPAN_INFO("You hear a clunk.")
+			)
 		else
-			return
-		if(src.health < initial(src.health))
-			user << "\blue You repair some damage to [src.name]."
-			src.health += min(10, initial(src.health) - src.health)
-		else
-			user << "The [src.name] is at full integrity"
-		return
+			to_chat(user, SPAN_WARNING("You were unable to attach \the [I] to \the [src]."))
+		return TRUE
 
-	else if(istype(W, /obj/item/mecha_part/tracking))
-		user.drop_from_inventory(W)
-		W.forceMove(src)
-		user.visible_message("[user] attaches [W] to [src].", "You attach [W] to [src]")
-		return
+	if(istype(I, /obj/item/mecha_part/tracking))
+		user.drop_from_inventory(I)
+		I.forceMove(src)
+		user.visible_message(
+			SPAN_INFO("[user] attaches \the [I] to \the [src]."),
+			SPAN_INFO("You attach \the [I] to \the [src]."),
+			SPAN_INFO("You hear a click.")
+		)
+		return TRUE
 
-	else if(istype(W, /obj/item/paintkit))
-		if(occupant)
-			user << "You can't customize a mech while someone is piloting it - that would be unsafe!"
-			return
+	if(istype(I, /obj/item/paintkit))
+		if(isnotnull(occupant))
+			to_chat(user, SPAN_WARNING("You can't customize a mech while someone is piloting it - that would be unsafe!"))
+			return TRUE
 
-		var/obj/item/paintkit/P = W
-		var/found = null
-
+		var/obj/item/paintkit/P = I
+		var/found = FALSE
 		for(var/type in P.allowed_types)
-			if(type == src.initial_icon)
-				found = 1
+			if(type == initial_icon)
+				found = TRUE
 				break
-
 		if(!found)
-			user << "That kit isn't meant for use on this class of exosuit."
-			return
+			to_chat(user, SPAN_WARNING("That kit isn't meant for use on this class of exosuit."))
+			return TRUE
 
-		user.visible_message("[user] opens [P] and spends some quality time customising [src].")
+		user.visible_message(
+			SPAN_INFO("[user] opens \the [I] and spends some quality time customising \the [src]."),
+			SPAN_INFO("You open \the [I] and spend some quality time customising \the [src]."),
+			SPAN_INFO("You hear spraying.")
+		)
 
-		src.name = P.new_name
-		src.desc = P.new_desc
-		src.initial_icon = P.new_icon
-		src.reset_icon()
+		name = P.new_name
+		desc = P.new_desc
+		initial_icon = P.new_icon
+		reset_icon()
 
 		user.drop_item()
 		qdel(P)
+		return TRUE
 
+	return ..()
+
+/obj/mecha/attackby(obj/item/W, mob/user)
+	call((proc_res["dynattackby"]||src), "dynattackby")(W, user)
+/*
+	src.log_message("Attacked by [W]. Attacker - [user]")
+	if(prob(src.deflect_chance))
+		user << "\red The [W] bounces off [src.name] armor."
+		src.log_append_to_last("Armor saved.")
+/*
+		for (var/mob/V in viewers(src))
+			if(V.client && !(V.blinded))
+				V.show_message("The [W] bounces off [src.name] armor.", 1)
+*/
 	else
-		call((proc_res["dynattackby"]||src), "dynattackby")(W, user)
-/*
-		src.log_message("Attacked by [W]. Attacker - [user]")
-		if(prob(src.deflect_chance))
-			user << "\red The [W] bounces off [src.name] armor."
-			src.log_append_to_last("Armor saved.")
-/*
-			for (var/mob/V in viewers(src))
-				if(V.client && !(V.blinded))
-					V.show_message("The [W] bounces off [src.name] armor.", 1)
+		src.occupant_message("<font color='red'><b>[user] hits [src] with [W].</b></font>")
+		user.visible_message("<font color='red'><b>[user] hits [src] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
+		src.take_damage(W.force,W.damtype)
+		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
 */
-		else
-			src.occupant_message("<font color='red'><b>[user] hits [src] with [W].</b></font>")
-			user.visible_message("<font color='red'><b>[user] hits [src] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
-			src.take_damage(W.force,W.damtype)
-			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
-*/
-	return
-
-
 
 /*
 /obj/mecha/attack_ai(var/mob/living/silicon/ai/user)
