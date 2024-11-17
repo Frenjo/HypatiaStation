@@ -32,8 +32,8 @@
 	name = "\improper Ripley chassis"
 
 /obj/item/mecha_part/chassis/ripley/New()
-	..()
-	construct = new /datum/construction/mecha/ripley_chassis(src)
+	. = ..()
+	construct = new /datum/construction/mecha/chassis/ripley(src)
 
 /obj/item/mecha_part/part/ripley_torso
 	name = "\improper Ripley torso"
@@ -85,8 +85,8 @@
 	construction_cost = list(/decl/material/steel = 25000)
 
 /obj/item/mecha_part/chassis/gygax/New()
-	..()
-	construct = new /datum/construction/mecha/gygax_chassis(src)
+	. = ..()
+	construct = new /datum/construction/mecha/chassis/gygax(src)
 
 /obj/item/mecha_part/part/gygax_torso
 	name = "\improper Gygax torso"
@@ -154,8 +154,8 @@
 	construction_cost = list(/decl/material/steel = 25000)
 
 /obj/item/mecha_part/chassis/durand/New()
-	..()
-	construct = new /datum/construction/mecha/durand_chassis(src)
+	. = ..()
+	construct = new /datum/construction/mecha/chassis/durand(src)
 
 /obj/item/mecha_part/part/durand_torso
 	name = "\improper Durand torso"
@@ -218,8 +218,8 @@
 	name = "\improper Firefighter chassis"
 
 /obj/item/mecha_part/chassis/firefighter/New()
-	..()
-	construct = new /datum/construction/mecha/firefighter_chassis(src)
+	. = ..()
+	construct = new /datum/construction/mecha/chassis/firefighter(src)
 /*
 /obj/item/mecha_part/part/firefighter_torso
 	name = "\improper Ripley-on-Fire torso"
@@ -247,8 +247,8 @@
 	name = "\improper H.O.N.K chassis"
 
 /obj/item/mecha_part/chassis/honker/New()
-	..()
-	construct = new /datum/construction/mecha/honker_chassis(src)
+	. = ..()
+	construct = new /datum/construction/mecha/chassis/honker(src)
 
 /obj/item/mecha_part/part/honker_torso
 	name = "\improper H.O.N.K torso"
@@ -293,8 +293,8 @@
 	origin_tech = list(/datum/tech/materials = 7)
 
 /obj/item/mecha_part/chassis/phazon/New()
-	..()
-	construct = new /datum/construction/mecha/phazon_chassis(src)
+	. = ..()
+	construct = new /datum/construction/mecha/chassis/phazon(src)
 
 /obj/item/mecha_part/part/phazon_torso
 	name = "\improper Phazon torso"
@@ -347,8 +347,8 @@
 	name = "\improper Odysseus chassis"
 
 /obj/item/mecha_part/chassis/odysseus/New()
-	..()
-	construct = new /datum/construction/mecha/odysseus_chassis(src)
+	. = ..()
+	construct = new /datum/construction/mecha/chassis/odysseus(src)
 
 /obj/item/mecha_part/part/odysseus_head
 	name = "\improper Odysseus head"

@@ -62,3 +62,17 @@
 			return FALSE
 		S.use(5)
 	return TRUE
+
+// Chassis
+/datum/construction/mecha/chassis/custom_action(step, atom/used_atom, mob/user)
+	user.visible_message(
+		SPAN_NOTICE("[user] connects \the [used_atom] to \the [holder]."),
+		SPAN_NOTICE("You connect \the [used_atom] to \the [holder].")
+	)
+	holder.overlays.Add(used_atom.icon_state + "+o")
+	user.drop_item()
+	qdel(used_atom)
+	return TRUE
+
+/datum/construction/mecha/chassis/action(atom/used_atom, mob/user)
+	return check_all_steps(used_atom, user)
