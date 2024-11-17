@@ -1,7 +1,8 @@
 /obj/mecha/combat/phazon
-	desc = "An exosuit which can only be described as 'WTF?'."
 	name = "Phazon"
+	desc = "An exosuit which can only be described as 'WTF?'."
 	icon_state = "phazon"
+
 	initial_icon = "phazon"
 	step_in = 1
 	dir_in = 1 //Facing North.
@@ -16,17 +17,17 @@
 	//operation_req_access = list()
 	internal_damage_threshold = 25
 	force = 15
-	var/phasing = 0
-	var/phasing_energy_drain = 200
 	max_equip = 4
 
+	var/phasing = FALSE
+	var/phasing_energy_drain = 200
+
 /obj/mecha/combat/phazon/New()
-	..()
-	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/tool/rcd
-	ME.attach(src)
-	ME = new /obj/item/mecha_part/equipment/gravcatapult
-	ME.attach(src)
-	return
+	. = ..()
+	var/obj/item/mecha_part/equipment/equip = new /obj/item/mecha_part/equipment/tool/rcd(src)
+	equip.attach(src)
+	equip = new /obj/item/mecha_part/equipment/gravcatapult(src)
+	equip.attach(src)
 
 /obj/mecha/combat/phazon/Bump(atom/obstacle)
 	if(phasing && get_charge() >= phasing_energy_drain)
@@ -34,29 +35,29 @@
 			if(can_move)
 				can_move = 0
 				flick("phazon-phase", src)
-				src.loc = get_step(src, src.dir)
-				src.use_power(phasing_energy_drain)
+				loc = get_step(src, dir)
+				use_power(phasing_energy_drain)
 				sleep(step_in * 3)
 				can_move = 1
 	else
 		. = ..()
-	return
 
 /obj/mecha/combat/phazon/click_action(atom/target, mob/user)
 	if(phasing)
-		src.occupant_message("Unable to interact with objects while phasing.")
+		occupant_message(SPAN_WARNING("Unable to interact with objects while phasing."))
 		return
-	else
-		return ..()
+	return ..()
 
 /obj/mecha/combat/phazon/verb/switch_damtype()
 	set category = "Exosuit Interface"
-	set name = "Change melee damage type"
+	set name = "Change Melee Damage Type"
+	set popup_menu = FALSE
 	set src = usr.loc
-	set popup_menu = 0
-	if(usr != src.occupant)
+
+	if(usr != occupant)
 		return
-	var/new_damtype = alert(src.occupant, "Melee Damage Type", null, "Brute", "Fire", "Toxic")
+
+	var/new_damtype = alert(occupant, "Melee Damage Type", null, "Brute", "Fire", "Toxic")
 	switch(new_damtype)
 		if("Brute")
 			damtype = "brute"
@@ -64,11 +65,10 @@
 			damtype = "fire"
 		if("Toxic")
 			damtype = "tox"
-	src.occupant_message("Melee damage type switched to [new_damtype]")
-	return
+	occupant_message(SPAN_INFO("Melee damage type switched to [new_damtype]."))
 
 /obj/mecha/combat/phazon/get_commands()
-	var/output = {"<div class='wr'>
+	. = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
 						<a href='byond://?src=\ref[src];phasing=1'><span id="phasing_command">[phasing?"Dis":"En"]able phasing</span></a><br>
@@ -76,15 +76,13 @@
 						</div>
 						</div>
 						"}
-	output += ..()
-	return output
+	. += ..()
 
 /obj/mecha/combat/phazon/Topic(href, href_list)
-	..()
+	. = ..()
 	if(href_list["switch_damtype"])
-		src.switch_damtype()
+		switch_damtype()
 	if(href_list["phasing"])
 		phasing = !phasing
-		send_byjax(src.occupant,"exosuit.browser", "phasing_command", "[phasing ? "Dis" : "En"]able phasing")
-		src.occupant_message("<font color=\"[phasing ? "#00f\">En" : "#f00\">Dis"]abled phasing.</font>")
-	return
+		send_byjax(occupant,"exosuit.browser", "phasing_command", "[phasing ? "Dis" : "En"]able phasing")
+		occupant_message("<font color=\"[phasing ? "#00f\">En" : "#f00\">Dis"]abled phasing.</font>")
