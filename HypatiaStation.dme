@@ -1446,7 +1446,6 @@
 #include "code\modules\mecha\combat\phazon.dm"
 #include "code\modules\mecha\construction\mech_bay.dm"
 #include "code\modules\mecha\construction\mech_fabricator.dm"
-#include "code\modules\mecha\construction\mecha_construction_paths.dm"
 #include "code\modules\mecha\construction\mecha_control_console.dm"
 #include "code\modules\mecha\construction\mecha_parts.dm"
 #include "code\modules\mecha\construction\paths\_mecha.dm"

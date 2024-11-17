@@ -26,31 +26,31 @@
 		list(
 			"key" = /obj/item/weldingtool,
 			"backkey" = /obj/item/wrench,
-			"desc" = "The external armor is wrenched."
+			"desc" = "The external armour is wrenched."
 			),
 		//2
 		list(
 			"key" = /obj/item/wrench,
 			"backkey" = /obj/item/crowbar,
-			"desc" = "The external armor is installed."
+			"desc" = "The external armour is installed."
 		),
 		//3
 		list(
 			"key" = /obj/item/mecha_part/part/gygax_armour,
 			"backkey" = /obj/item/weldingtool,
-			"desc" = "The internal armor is welded."
+			"desc" = "The internal armour is welded."
 		),
 		//4
 		list(
 			"key" = /obj/item/weldingtool,
 			"backkey" = /obj/item/wrench,
-			"desc" = "The internal armor is wrenched."
+			"desc" = "The internal armour is wrenched."
 		),
 		//5
 		list(
 			"key" = /obj/item/wrench,
 			"backkey" = /obj/item/crowbar,
-			"desc" = "The internal armor is installed."
+			"desc" = "The internal armour is installed."
 		),
 		//6
 		list(
@@ -142,9 +142,6 @@
 			"desc" = "The hydraulic systems are disconnected."
 		)
 	)
-
-/datum/construction/reversible/mecha/gygax/action(atom/used_atom, mob/user)
-	return check_step(used_atom, user)
 
 /datum/construction/reversible/mecha/gygax/custom_action(index, diff, atom/used_atom, mob/user)
 	if(!..())
@@ -341,8 +338,8 @@
 		if(6)
 			if(diff == FORWARD)
 				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]'s internal armor layer."),
-					SPAN_NOTICE("You secure \the [holder]'s internal armor layer.")
+					SPAN_NOTICE("[user] secures \the [holder]'s internal armour layer."),
+					SPAN_NOTICE("You secure \the [holder]'s internal armour layer.")
 				)
 				holder.icon_state = "gygax15"
 			else
@@ -354,28 +351,28 @@
 		if(5)
 			if(diff == FORWARD)
 				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]'s internal armor layer."),
-					SPAN_NOTICE("You secure \the [holder]'s internal armor layer.")
+					SPAN_NOTICE("[user] secures \the [holder]'s internal armour layer."),
+					SPAN_NOTICE("You secure \the [holder]'s internal armour layer.")
 				)
 				holder.icon_state = "gygax16"
 			else
 				user.visible_message(
-					SPAN_NOTICE("[user] pries the internal armor layer from \the [holder]."),
-					SPAN_NOTICE("You pry the internal armor layer from \the [holder].")
+					SPAN_NOTICE("[user] pries the internal armour layer from \the [holder]."),
+					SPAN_NOTICE("You pry the internal armour layer from \the [holder].")
 				)
 				new /obj/item/stack/sheet/steel(GET_TURF(holder), 5)
 				holder.icon_state = "gygax14"
 		if(4)
 			if(diff == FORWARD)
 				user.visible_message(
-					SPAN_NOTICE("[user] welds the internal armor layer to \the [holder]."),
-					SPAN_NOTICE("You weld the the internal armor layer to \the [holder].")
+					SPAN_NOTICE("[user] welds the internal armour layer to \the [holder]."),
+					SPAN_NOTICE("You weld the the internal armour layer to \the [holder].")
 				)
 				holder.icon_state = "gygax17"
 			else
 				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]'s internal armor layer."),
-					SPAN_NOTICE("You unfasten \the [holder]'s internal armor layer.")
+					SPAN_NOTICE("[user] unfastens \the [holder]'s internal armour layer."),
+					SPAN_NOTICE("You unfasten \the [holder]'s internal armour layer.")
 				)
 				holder.icon_state = "gygax15"
 		if(3)
@@ -388,8 +385,8 @@
 				holder.icon_state = "gygax18"
 			else
 				user.visible_message(
-					SPAN_NOTICE("[user] cuts the internal armor layer from \the [holder]."),
-					SPAN_NOTICE("You cut the internal armor layer from \the [holder].")
+					SPAN_NOTICE("[user] cuts the internal armour layer from \the [holder]."),
+					SPAN_NOTICE("You cut the internal armour layer from \the [holder].")
 				)
 				holder.icon_state = "gygax16"
 		if(2)

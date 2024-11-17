@@ -26,37 +26,37 @@
 		list(
 			"key" = /obj/item/weldingtool,
 			"backkey" = /obj/item/wrench,
-			"desc" = "The external armor is wrenched."
+			"desc" = "The external armour is wrenched."
 			),
 		//2
 		list(
 			"key" = /obj/item/wrench,
 			"backkey" = /obj/item/crowbar,
-			"desc" = "The external armor is installed."
+			"desc" = "The external armour is installed."
 		),
 		//3
 		list(
 			"key" = /obj/item/stack/sheet/plasteel,
 			"backkey" = /obj/item/crowbar,
-			"desc" = "The external armor is being installed."
+			"desc" = "The external armour is being installed."
 		),
 		//4
 		list(
 			"key" = /obj/item/stack/sheet/plasteel,
 			"backkey" = /obj/item/weldingtool,
-			"desc" = "The internal armor is welded."
+			"desc" = "The internal armour is welded."
 		),
 		//5
 		list(
 			"key" = /obj/item/weldingtool,
 			"backkey" = /obj/item/wrench,
-			"desc" = "The internal armor is wrenched."
+			"desc" = "The internal armour is wrenched."
 		),
 		//6
 		list(
 			"key" = /obj/item/wrench,
 			"backkey" = /obj/item/crowbar,
-			"desc" = "The internal armor is installed."
+			"desc" = "The internal armour is installed."
 		),
 
 		//7
@@ -113,9 +113,6 @@
 			"desc" = "The hydraulic systems are disconnected."
 		)
 	)
-
-/datum/construction/reversible/mecha/firefighter/action(atom/used_atom, mob/user)
-	return check_step(used_atom, user)
 
 /datum/construction/reversible/mecha/firefighter/custom_action(index, diff, atom/used_atom, mob/user)
 	if(!..())
@@ -228,8 +225,8 @@
 		if(7)
 			if(diff == FORWARD)
 				user.visible_message(
-					SPAN_NOTICE("[user] installs the internal armor layer on \the [holder]."),
-					SPAN_NOTICE("You install the internal armor layer on \the [holder].")
+					SPAN_NOTICE("[user] installs the internal armour layer on \the [holder]."),
+					SPAN_NOTICE("You install the internal armour layer on \the [holder].")
 				)
 				holder.icon_state = "fireripley9"
 			else
@@ -242,81 +239,81 @@
 		if(6)
 			if(diff == FORWARD)
 				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]'s internal armor layer."),
-					SPAN_NOTICE("You secure \the [holder]'s internal armor layer.")
+					SPAN_NOTICE("[user] secures \the [holder]'s internal armour layer."),
+					SPAN_NOTICE("You secure \the [holder]'s internal armour layer.")
 				)
 				holder.icon_state = "fireripley10"
 			else
 				user.visible_message(
-					SPAN_NOTICE("[user] pries the internal armor layer from \the [holder]."),
-					SPAN_NOTICE("You pry the internal armor layer from \the [holder].")
+					SPAN_NOTICE("[user] pries the internal armour layer from \the [holder]."),
+					SPAN_NOTICE("You pry the internal armour layer from \the [holder].")
 				)
 				new /obj/item/stack/sheet/plasteel(GET_TURF(holder), 5)
 				holder.icon_state = "fireripley8"
 		if(5)
 			if(diff == FORWARD)
 				user.visible_message(
-					SPAN_NOTICE("[user] welds the internal armor layer to \the [holder]."),
-					SPAN_NOTICE("You weld the the internal armor layer to \the [holder].")
+					SPAN_NOTICE("[user] welds the internal armour layer to \the [holder]."),
+					SPAN_NOTICE("You weld the the internal armour layer to \the [holder].")
 				)
 				holder.icon_state = "fireripley11"
 			else
 				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]'s internal armor layer."),
-					SPAN_NOTICE("You unfasten \the [holder]'s internal armor layer.")
+					SPAN_NOTICE("[user] unfastens \the [holder]'s internal armour layer."),
+					SPAN_NOTICE("You unfasten \the [holder]'s internal armour layer.")
 				)
 				holder.icon_state = "fireripley9"
 		if(4)
 			if(diff == FORWARD)
 				user.visible_message(
-					SPAN_NOTICE("[user] starts to install the external armor layer on \the [holder]."),
-					SPAN_NOTICE("You start to install the external armor layer on \the [holder].")
+					SPAN_NOTICE("[user] starts to install the external armour layer on \the [holder]."),
+					SPAN_NOTICE("You start to install the external armour layer on \the [holder].")
 				)
 				holder.icon_state = "fireripley12"
 			else
 				user.visible_message(
-					SPAN_NOTICE("[user] cuts the internal armor layer from \the [holder]."),
-					SPAN_NOTICE("You cut the internal armor layer from \the [holder].")
+					SPAN_NOTICE("[user] cuts the internal armour layer from \the [holder]."),
+					SPAN_NOTICE("You cut the internal armour layer from \the [holder].")
 				)
 				holder.icon_state = "fireripley10"
 		if(3)
 			if(diff == FORWARD)
 				user.visible_message(
-					SPAN_NOTICE("[user] installs the external reinforced armor layer on \the [holder]."),
-					SPAN_NOTICE("You install the external reinforced armor layer on \the [holder].")
+					SPAN_NOTICE("[user] installs the external reinforced armour layer on \the [holder]."),
+					SPAN_NOTICE("You install the external reinforced armour layer on \the [holder].")
 				)
 				holder.icon_state = "fireripley13"
 			else
 				user.visible_message(
-					"[user] removes the external armor from [holder].",
-					"You remove the external armor from [holder]."
+					"[user] removes the external armour from [holder].",
+					"You remove the external armour from [holder]."
 				)
 				new /obj/item/stack/sheet/plasteel(GET_TURF(holder), 5)
 				holder.icon_state = "fireripley11"
 		if(2)
 			if(diff == FORWARD)
 				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]'s external reinforced armor layer."),
-					SPAN_NOTICE("You secure \the [holder]'s external reinforced armor layer.")
+					SPAN_NOTICE("[user] secures \the [holder]'s external reinforced armour layer."),
+					SPAN_NOTICE("You secure \the [holder]'s external reinforced armour layer.")
 				)
 				holder.icon_state = "fireripley14"
 			else
 				user.visible_message(
-					SPAN_NOTICE("[user] pries the external armor layer from \the [holder]."),
-					SPAN_NOTICE("You pry the external armor layer from \the [holder].")
+					SPAN_NOTICE("[user] pries the external armour layer from \the [holder]."),
+					SPAN_NOTICE("You pry the external armour layer from \the [holder].")
 				)
 				new /obj/item/stack/sheet/plasteel(GET_TURF(holder), 5)
 				holder.icon_state = "fireripley12"
 		if(1)
 			if(diff == FORWARD)
 				user.visible_message(
-					SPAN_NOTICE("[user] welds the external armor layer to \the [holder]."),
-					SPAN_NOTICE("You weld the external armor layer to \the [holder].")
+					SPAN_NOTICE("[user] welds the external armour layer to \the [holder]."),
+					SPAN_NOTICE("You weld the external armour layer to \the [holder].")
 				)
 			else
 				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]'s external armor layer."),
-					SPAN_NOTICE("You unfasten \the [holder]'s external armor layer.")
+					SPAN_NOTICE("[user] unfastens \the [holder]'s external armour layer."),
+					SPAN_NOTICE("You unfasten \the [holder]'s external armour layer.")
 				)
 				holder.icon_state = "fireripley13"
 	return TRUE

@@ -33,9 +33,6 @@
 		list("key" = /obj/item/bikehorn),								//11
 	)
 
-/datum/construction/mecha/honker/action(atom/used_atom, mob/user)
-	return check_step(used_atom, user)
-
 /datum/construction/mecha/honker/custom_action(step, atom/used_atom, mob/user)
 	if(!..())
 		return FALSE

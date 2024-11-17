@@ -35,10 +35,9 @@
 /datum/construction/reversible/mecha/custom_action(index, diff, atom/used_atom, mob/user)
 	if(iswelder(used_atom))
 		var/obj/item/weldingtool/W = used_atom
-		if(W.remove_fuel(0, user))
-			playsound(holder, 'sound/items/Welder2.ogg', 50, 1)
-		else
+		if(!W.remove_fuel(0, user))
 			return FALSE
+		playsound(holder, 'sound/items/Welder2.ogg', 50, 1)
 	else if(iswrench(used_atom))
 		playsound(holder, 'sound/items/Ratchet.ogg', 50, 1)
 
@@ -62,6 +61,9 @@
 			return FALSE
 		S.use(5)
 	return TRUE
+
+/datum/construction/reversible/mecha/action(atom/used_atom, mob/user)
+	return check_step(used_atom, user)
 
 // Chassis
 /datum/construction/mecha/chassis/custom_action(step, atom/used_atom, mob/user)
