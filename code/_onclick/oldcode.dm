@@ -295,7 +295,7 @@
 						src.attack_ai(usr, usr.hand)
 					else if(isslime(usr))
 						src.attack_slime(usr)
-					else if(isanimal(usr))
+					else if(issimple(usr))
 						src.attack_animal(usr)
 		else
 			// ------- YOU ARE RESTRAINED. DETERMINE WHAT YOU ARE AND ATTACK WITH THE PROPER HAND_X PROC -------

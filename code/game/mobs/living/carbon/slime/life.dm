@@ -452,7 +452,7 @@
 				for(var/mob/living/L in view(7, src))
 
 					//Ignore other slimes, dead mobs and simple_animals
-					if(isslime(L) || L.stat != CONSCIOUS || isanimal(L))
+					if(isslime(L) || L.stat != CONSCIOUS || issimple(L))
 						continue
 
 					if(issilicon(L))

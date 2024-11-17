@@ -78,7 +78,7 @@
 						race = "slime"
 						language = race
 
-					else if(isanimal(M))
+					else if(issimple(M))
 						race = "Domestic Animal"
 						language = race
 

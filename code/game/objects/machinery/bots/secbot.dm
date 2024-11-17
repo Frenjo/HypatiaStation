@@ -234,7 +234,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 						target_lastloc = M.loc
 						return
 
-					else if(isanimal(target))
+					else if(issimple(target))
 						//just harmbaton them until dead
 						if(world.time > next_harm_time)
 							next_harm_time = world.time + 15

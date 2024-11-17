@@ -32,7 +32,7 @@
 #define isobserver(X)	istype(X, /mob/dead/observer)
 #define isnewplayer(X)	istype(X, /mob/new_player)
 
-// Carbon.
+// Carbon
 #define iscarbon(X)		istype(X, /mob/living/carbon)
 #define ishuman(X)		istype(X, /mob/living/carbon/human)
 #define ismonkey(X)		istype(X, /mob/living/carbon/monkey)
@@ -42,15 +42,15 @@
 #define isslime(X)		istype(X, /mob/living/carbon/slime)
 #define isslimeadult(X)	istype(X, /mob/living/carbon/slime/adult)
 
-// Silicon.
+// Silicon
 #define issilicon(X)	istype(X, /mob/living/silicon)
 #define isAI(X)			istype(X, /mob/living/silicon/ai)
 #define ispAI(X)		istype(X, /mob/living/silicon/pai)
 #define isrobot(X)		istype(X, /mob/living/silicon/robot)
 #define isdrone(X)		istype(X, /mob/living/silicon/robot/drone)
 
-// Simple.
-#define isanimal(X)		istype(X, /mob/living/simple) // Eventually convert this over to issimple(X).
+// Simple
+#define issimple(X)		istype(X, /mob/living/simple)
 #define iscorgi(X)		istype(X, /mob/living/simple/corgi)
 #define iscrab(X)		istype(X, /mob/living/simple/crab)
 #define iscat(X)		istype(X, /mob/living/simple/cat)
@@ -88,7 +88,7 @@
 */
 #define hasorgans(X)	ishuman(X)
 
-// Z-level helpers.
+// Z-level helpers
 #define isstationlevel(LEVEL) (LEVEL in GLOBL.current_map.station_levels)
 #define isnotstationlevel(LEVEL) !isstationlevel(LEVEL)
 

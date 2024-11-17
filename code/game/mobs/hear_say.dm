@@ -9,7 +9,7 @@
 
 	var/style = "body"
 	if(!say_understands(speaker, language))
-		if(isanimal(speaker))
+		if(issimple(speaker))
 			var/mob/living/simple/S = speaker
 			message = pick(S.speak)
 		else
@@ -58,7 +58,7 @@
 
 	var/style = "body"
 	if(!say_understands(speaker, language))
-		if(isanimal(speaker))
+		if(issimple(speaker))
 			var/mob/living/simple/S = speaker
 			message = pick(S.speak)
 		else

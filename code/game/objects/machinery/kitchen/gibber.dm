@@ -88,7 +88,7 @@
 		user << "\red This item is not suitable for the gibber!"
 		return
 
-	if(!iscarbon(G.affecting) && !isanimal(G.affecting))
+	if(!iscarbon(G.affecting) && !issimple(G.affecting))
 		user << "\red This item is not suitable for the gibber!"
 		return
 
@@ -175,7 +175,7 @@
 		H.death(1)
 		H.ghostize()
 
-	else if(iscarbon(occupant) || isanimal(occupant))
+	else if(iscarbon(occupant) || issimple(occupant))
 		// I don't think /simple_animal actually did anything with their nutrition so it would just always be 400.
 		var/nutrition = iscarbon(occupant) ? src.occupant:nutrition : 400
 		var/sourcename = occupant.name

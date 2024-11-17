@@ -410,7 +410,7 @@
 						for(var/mob/living/L in view(7,src))
 
 							//Ignore other metroids, dead mobs and simple_animals
-							if(isslime(L) || L.stat == DEAD || isanimal(L))
+							if(isslime(L) || L.stat == DEAD || issimple(L))
 								continue
 
 							if(issilicon(L))

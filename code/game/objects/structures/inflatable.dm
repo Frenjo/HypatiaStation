@@ -82,7 +82,7 @@
 		user.visible_message(SPAN_DANGER("[user] tears at [src]!"))
 
 /obj/structure/inflatable/attack_animal(mob/user)
-	if(!isanimal(user))
+	if(!issimple(user))
 		return
 	var/mob/living/simple/M = user
 	if(M.melee_damage_upper <= 0)

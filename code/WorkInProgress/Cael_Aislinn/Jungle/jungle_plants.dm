@@ -20,7 +20,7 @@
 		set_opacity(1)
 
 /obj/structure/bush/Bumped(M as mob)
-	if(isanimal(M))
+	if(issimple(M))
 		var/mob/living/simple/A = M
 		A.loc = GET_TURF(src)
 	else if(ismonkey(M))

@@ -58,7 +58,7 @@
 		return 0//Full block
 	if(!isliving(target))
 		return 0
-	if(isanimal(target))
+	if(issimple(target))
 		return 0
 
 	var/mob/living/L = target

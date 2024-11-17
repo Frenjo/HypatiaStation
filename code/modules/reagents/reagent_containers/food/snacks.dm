@@ -185,7 +185,7 @@
 	return ..()
 
 /obj/item/reagent_holder/food/snacks/attack_animal(mob/M)
-	if(isanimal(M))
+	if(issimple(M))
 		if(iscorgi(M))
 			if(bitecount == 0 || prob(50))
 				M.emote("nibbles away at the [src]")

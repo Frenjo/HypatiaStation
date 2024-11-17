@@ -21,7 +21,7 @@
 		var/obj/mecha/Mech = O
 		if(Mech.occupant)
 			turretTargets |= Mech
-	else if(isanimal(O))
+	else if(issimple(O))
 		turretTargets |= O
 	return 1
 
@@ -165,7 +165,7 @@
 			var/obj/mecha/ME = T
 			if(ME.occupant)
 				return 1
-		else if(isanimal(T))
+		else if(issimple(T))
 			var/mob/living/simple/A = T
 			if(!A.stat)
 				if(lasers)

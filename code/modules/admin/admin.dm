@@ -114,7 +114,7 @@ var/global/floorIsLava = 0
 				"}
 
 			//Simple Animals
-			if(isanimal(M))
+			if(issimple(M))
 				body += "<A href='byond://?src=\ref[src];makeanimal=\ref[M]'>Re-Animalize</A> | "
 			else
 				body += "<A href='byond://?src=\ref[src];makeanimal=\ref[M]'>Animalize</A> | "
