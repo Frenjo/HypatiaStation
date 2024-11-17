@@ -33,12 +33,12 @@
 	if(phasing && get_charge() >= phasing_energy_drain)
 		spawn()
 			if(can_move)
-				can_move = 0
+				can_move = FALSE
 				flick("phazon-phase", src)
 				loc = get_step(src, dir)
 				use_power(phasing_energy_drain)
 				sleep(step_in * 3)
-				can_move = 1
+				can_move = TRUE
 	else
 		. = ..()
 
@@ -84,5 +84,5 @@
 		switch_damtype()
 	if(href_list["phasing"])
 		phasing = !phasing
-		send_byjax(occupant,"exosuit.browser", "phasing_command", "[phasing ? "Dis" : "En"]able phasing")
+		send_byjax(occupant, "exosuit.browser", "phasing_command", "[phasing ? "Dis" : "En"]able phasing")
 		occupant_message("<font color=\"[phasing ? "#00f\">En" : "#f00\">Dis"]abled phasing.</font>")

@@ -62,7 +62,7 @@
 			M.take_overall_damage(dam_force)
 			M.adjustOxyLoss(round(dam_force / 2))
 			M.updatehealth()
-			occupant_message(SPAN_WARNING("You squeeze [target] with [src.name]. Something cracks."))
+			occupant_message(SPAN_WARNING("You squeeze [target] with [name]. Something cracks."))
 			chassis.visible_message(SPAN_WARNING("[chassis] squeezes [target]."))
 		else
 			step_away(M, chassis)
@@ -219,7 +219,7 @@
 			occupant_message("\blue Extinguisher refilled")
 			playsound(chassis, 'sound/effects/refill.ogg', 50, 1, -6)
 		else
-			if(src.reagents.total_volume > 0)
+			if(reagents.total_volume > 0)
 				playsound(chassis, 'sound/effects/extinguish.ogg', 75, 1, -3)
 				var/direction = get_dir(chassis,target)
 				var/turf/T = GET_TURF(target)
@@ -234,7 +234,7 @@
 							return
 						var/turf/my_target = pick(the_targets)
 						W.create_reagents(5)
-						src.reagents.trans_to(W, 1)
+						reagents.trans_to(W, 1)
 						for(var/b = 0, b < 4, b++)
 							if(isnull(W))
 								return
@@ -251,7 +251,7 @@
 	return 1
 
 /obj/item/mecha_part/equipment/tool/extinguisher/get_equip_info()
-	return "[..()] \[[src.reagents.total_volume]\]"
+	return "[..()] \[[reagents.total_volume]\]"
 
 /obj/item/mecha_part/equipment/tool/extinguisher/on_reagent_change()
 	return
@@ -388,7 +388,7 @@
 	range = RANGED
 
 /obj/item/mecha_part/equipment/teleporter/action(atom/target)
-	if(!action_checks(target) || src.loc.z == 2)
+	if(!action_checks(target) || loc.z == 2)
 		return
 	var/turf/T = GET_TURF(target)
 	if(isnotnull(T))
@@ -409,7 +409,7 @@
 	range = RANGED
 
 /obj/item/mecha_part/equipment/wormhole_generator/action(atom/target)
-	if(!action_checks(target) || src.loc.z == 2)
+	if(!action_checks(target) || loc.z == 2)
 		return
 	var/list/theareas = list()
 	for(var/area/AR in orange(100, chassis))
@@ -483,20 +483,20 @@
 					return
 				locked = target
 				occupant_message("Locked on [target].")
-				send_byjax(chassis.occupant, "exosuit.browser","\ref[src]",src.get_equip_info())
+				send_byjax(chassis.occupant, "exosuit.browser","\ref[src]",get_equip_info())
 				return
 			else if(target!=locked)
 				if(locked in view(chassis))
 					locked.throw_at(target, 14, 1.5)
 					locked = null
-					send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", src.get_equip_info())
+					send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 					set_ready_state(0)
 					chassis.use_power(energy_drain)
 					do_after_cooldown()
 				else
 					locked = null
 					occupant_message("Lock on [locked] disengaged.")
-					send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", src.get_equip_info())
+					send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 		if(2)
 			if(!action_checks(target))
 				return
@@ -524,7 +524,7 @@
 	..()
 	if(href_list["mode"])
 		mode = text2num(href_list["mode"])
-		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", src.get_equip_info())
+		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 	return
 
 
@@ -561,7 +561,7 @@
 /obj/item/mecha_part/equipment/anticcw_armor_booster/get_equip_info()
 	if(!chassis)
 		return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name]"
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[name]"
 
 /obj/item/mecha_part/equipment/anticcw_armor_booster/proc/dynattackby(obj/item/W, mob/user)
 	if(!action_checks(user))
@@ -616,7 +616,7 @@
 /obj/item/mecha_part/equipment/antiproj_armor_booster/get_equip_info()
 	if(!chassis)
 		return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name]"
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[name]"
 
 /obj/item/mecha_part/equipment/antiproj_armor_booster/proc/dynbulletdamage(obj/item/projectile/Proj)
 	if(!action_checks(src))
@@ -626,7 +626,7 @@
 		chassis.visible_message("The [chassis.name] armor deflects the projectile")
 		chassis.log_append_to_last("Armor saved.")
 	else
-		chassis.take_damage(round(Proj.damage * src.damage_coeff), Proj.flag)
+		chassis.take_damage(round(Proj.damage * damage_coeff), Proj.flag)
 		chassis.check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
 		Proj.on_hit(chassis)
 	set_ready_state(0)
@@ -678,7 +678,7 @@
 
 /obj/item/mecha_part/equipment/repair_droid/attach(obj/mecha/M)
 	..()
-	droid_overlay = new(src.icon, icon_state = "repair_droid")
+	droid_overlay = new(icon, icon_state = "repair_droid")
 	M.overlays += droid_overlay
 	return
 
@@ -696,7 +696,7 @@
 /obj/item/mecha_part/equipment/repair_droid/get_equip_info()
 	if(!chassis)
 		return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='byond://?src=\ref[src];toggle_repairs=1'>[pr_repair_droid.active()?"Dea":"A"]ctivate</a>"
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[name] - <a href='byond://?src=\ref[src];toggle_repairs=1'>[pr_repair_droid.active()?"Dea":"A"]ctivate</a>"
 
 
 /obj/item/mecha_part/equipment/repair_droid/Topic(href, href_list)
@@ -704,14 +704,14 @@
 	if(href_list["toggle_repairs"])
 		chassis.overlays -= droid_overlay
 		if(pr_repair_droid.toggle())
-			droid_overlay = new(src.icon, icon_state = "repair_droid_a")
+			droid_overlay = new(icon, icon_state = "repair_droid_a")
 			log_message("Activated.")
 		else
-			droid_overlay = new(src.icon, icon_state = "repair_droid")
+			droid_overlay = new(icon, icon_state = "repair_droid")
 			log_message("Deactivated.")
 			set_ready_state(1)
 		chassis.overlays += droid_overlay
-		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", src.get_equip_info())
+		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 	return
 
 /datum/global_iterator/mecha_repair_droid/process(obj/item/mecha_part/equipment/repair_droid/RD)
@@ -819,7 +819,7 @@
 /obj/item/mecha_part/equipment/tesla_energy_relay/get_equip_info()
 	if(!chassis)
 		return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='byond://?src=\ref[src];toggle_relay=1'>[pr_energy_relay.active() ? "Dea" : "A"]ctivate</a>"
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[name] - <a href='byond://?src=\ref[src];toggle_relay=1'>[pr_energy_relay.active() ? "Dea" : "A"]ctivate</a>"
 
 /*
 /obj/item/mecha_part/equipment/tesla_energy_relay/proc/dynusepower(amount)
@@ -923,7 +923,7 @@
 			message = "Unit is full."
 		else
 			message = "[result] unit\s of [fuel] successfully loaded."
-			send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",src.get_equip_info())
+			send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",get_equip_info())
 		occupant_message(message)
 	return
 
@@ -1087,10 +1087,10 @@
 		if(M.stat > 1)
 			return
 		if(chassis.occupant.a_intent == "hurt")
-			chassis.occupant_message("\red You obliterate [target] with [src.name], leaving blood and guts everywhere.")
+			chassis.occupant_message("\red You obliterate [target] with [name], leaving blood and guts everywhere.")
 			chassis.visible_message("\red [chassis] destroys [target] in an unholy fury.")
 		if(chassis.occupant.a_intent == "disarm")
-			chassis.occupant_message("\red You tear [target]'s limbs off with [src.name].")
+			chassis.occupant_message("\red You tear [target]'s limbs off with [name].")
 			chassis.visible_message("\red [chassis] rips [target]'s arms off.")
 		else
 			step_away(M,chassis)
@@ -1130,36 +1130,37 @@
 	return 0
 
 /obj/item/mecha_part/equipment/tool/passenger/proc/move_inside(mob/user)
-	if(chassis)
-		chassis.visible_message("\blue [user] starts to climb into [chassis].")
+	if(isnotnull(chassis))
+		chassis.visible_message(SPAN_INFO("\The [user] starts to climb into \the [chassis]."))
 
-	if(do_after(user, 40, needhand = 0))
-		if(!src.occupant)
+	if(do_after(user, 4 SECONDS, needhand = FALSE))
+		if(isnull(occupant))
 			user.forceMove(src)
 			occupant = user
 			log_message("[user] boarded.")
-			occupant_message("[user] boarded.")
-		else if(src.occupant != user)
-			user << "\red [src.occupant] was faster. Try better next time, loser."
+			occupant_message(SPAN_INFO("\The [user] boarded."))
+		else if(occupant != user)
+			to_chat(user, SPAN_WARNING("[occupant] was faster. Try better next time, loser."))
 	else
-		user << "You stop entering the exosuit."
+		to_chat(user, SPAN_INFO("You stop entering the exosuit."))
 
 /obj/item/mecha_part/equipment/tool/passenger/verb/eject()
-	set name = "Eject"
 	set category = "Exosuit Interface"
+	set name = "Eject"
+	set popup_menu = FALSE
 	set src = usr.loc
-	set popup_menu = 0
 
 	if(usr != occupant)
 		return
-	occupant << "You climb out from \the [src]."
+
+	to_chat(occupant, SPAN_INFO("You climb out from \the [src]."))
 	go_out()
-	occupant_message("[occupant] disembarked.")
+	occupant_message(SPAN_INFO("\The [occupant] disembarked."))
 	log_message("[occupant] disembarked.")
 	add_fingerprint(usr)
 
 /obj/item/mecha_part/equipment/tool/passenger/proc/go_out()
-	if(!occupant)
+	if(isnull(occupant))
 		return
 	occupant.forceMove(GET_TURF(src))
 	occupant.reset_view()
@@ -1169,33 +1170,36 @@
 		occupant.client.perspective = MOB_PERSPECTIVE
 	*/
 	occupant = null
-	return
 
 /obj/item/mecha_part/equipment/tool/passenger/attach()
-	..()
-	if(chassis)
+	. = ..()
+	if(isnotnull(chassis))
 		chassis.verbs |= /obj/mecha/proc/move_inside_passenger
 
 /obj/item/mecha_part/equipment/tool/passenger/detach()
-	if(occupant)
-		occupant_message("Unable to detach [src] - equipment occupied.")
+	if(isnotnull(occupant))
+		occupant_message(SPAN_WARNING("Unable to detach \the [src] - equipment occupied."))
 		return
 
 	var/obj/mecha/M = chassis
-	..()
-	if(M && !(locate(/obj/item/mecha_part/equipment/tool/passenger) in M))
-		M.verbs -= /obj/mecha/proc/move_inside_passenger
+	. = ..()
+	if(isnotnull(M) && !(locate(/obj/item/mecha_part/equipment/tool/passenger) in M))
+		M.verbs.Remove(/obj/mecha/proc/move_inside_passenger)
 
 /obj/item/mecha_part/equipment/tool/passenger/get_equip_info()
-	return "[..()] <br />[occupant? "\[Occupant: [occupant]\]|" : ""]Exterior Hatch: <a href='byond://?src=\ref[src];toggle_lock=1'>Toggle Lock</a>"
+	. = ..()
+	. += " <br>[occupant? "\[Occupant: [occupant]\]|" : ""]Exterior Hatch: <a href='byond://?src=\ref[src];toggle_lock=1'>Toggle Lock</a>"
 
 /obj/item/mecha_part/equipment/tool/passenger/Topic(href,href_list)
-	..()
+	. = ..()
 	if(href_list["toggle_lock"])
 		door_locked = !door_locked
-		occupant_message("Passenger compartment hatch [door_locked? "locked" : "unlocked"].")
-		if(chassis)
-			chassis.visible_message("The hatch on \the [chassis] [door_locked? "locks" : "unlocks"].", "You hear something latching.")
+		occupant_message(SPAN_INFO("Passenger compartment hatch [door_locked ? "locked" : "unlocked"]."))
+		if(isnotnull(chassis))
+			chassis.visible_message(
+				SPAN_INFO("The hatch on \the [chassis] [door_locked? "locks" : "unlocks"]."),
+				SPAN_INFO("You hear something latching.")
+			)
 
 
 #define LOCKED 1
@@ -1268,3 +1272,141 @@
 	var/new_icon = "ripley"		//What base icon will the new mech use?
 	var/removable = null		//Can the kit be removed?
 	var/list/allowed_types = list() //Types of mech that the kit will work on.
+
+/obj/item/mecha_part/equipment/tool/cable_layer
+	name = "cable layer"
+	icon_state = "mecha_wire"
+
+	var/datum/event/event
+	var/turf/old_turf
+	var/obj/structure/cable/last_piece
+	var/obj/item/stack/cable_coil/cable
+	var/max_cable = 1000
+
+/obj/item/mecha_part/equipment/tool/cable_layer/New()
+	. = ..()
+	cable = new /obj/item/stack/cable_coil(src)
+	cable.amount = 0
+
+/obj/item/mecha_part/equipment/tool/cable_layer/can_attach(obj/mecha/working/M)
+	if(..())
+		if(istype(M))
+			return TRUE
+	return FALSE
+
+/obj/item/mecha_part/equipment/tool/cable_layer/attach()
+	. = ..()
+	event = chassis.events.addEvent("onMove", src, "layCable")
+
+/obj/item/mecha_part/equipment/tool/cable_layer/detach()
+	chassis.events.clearEvent("onMove", event)
+	return ..()
+
+/obj/item/mecha_part/equipment/tool/cable_layer/destroy()
+	chassis.events.clearEvent("onMove", event)
+	return ..()
+
+/obj/item/mecha_part/equipment/tool/cable_layer/action(obj/item/stack/cable_coil/target)
+	if(!action_checks(target))
+		return
+	var/result = load_cable(target)
+	var/message
+	if(isnull(result))
+		message = SPAN_WARNING("Unable to load \the [target] - no cable found.")
+	else if(!result)
+		message = "Reel is full."
+	else
+		message = "[result] meters of cable successfully loaded."
+		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
+	occupant_message(message)
+
+/obj/item/mecha_part/equipment/tool/cable_layer/Topic(href,href_list)
+	. = ..()
+	if(href_list["toggle"])
+		set_ready_state(!equip_ready)
+		occupant_message("[src] [equip_ready ? "dea" : "a"]ctivated.")
+		log_message("[equip_ready ? "Dea" : "A"]ctivated.")
+		return
+	if(href_list["cut"])
+		if(cable && cable.amount)
+			var/m = round(input(chassis.occupant, "Please specify the length of cable to cut", "Cut cable", min(cable.amount, 30)), 1)
+			m = min(m, cable.amount)
+			if(m)
+				use_cable(m)
+				new /obj/item/stack/cable_coil(GET_TURF(chassis), m)
+		else
+			occupant_message(SPAN_WARNING("There's no more cable on the reel."))
+
+/obj/item/mecha_part/equipment/tool/cable_layer/get_equip_info()
+	. = ..()
+	if(.)
+		. += " \[Cable: [cable ? cable.amount : 0] m\][(cable && cable.amount) ? "- <a href='byond://?src=\ref[src];toggle=1'>[!equip_ready ? "Dea" : "A"]ctivate</a>|<a href='byond://?src=\ref[src];cut=1'>Cut</a>" : null]"
+
+/obj/item/mecha_part/equipment/tool/cable_layer/proc/load_cable(obj/item/stack/cable_coil/CC)
+	if(istype(CC) && CC.amount)
+		var/cur_amount = cable? cable.amount : 0
+		var/to_load = max(max_cable - cur_amount, 0)
+		if(to_load)
+			to_load = min(CC.amount, to_load)
+			if(isnull(cable))
+				cable = new /obj/item/stack/cable_coil(src, 0)
+			cable.amount += to_load
+			CC.use(to_load)
+			return to_load
+	return null
+
+/obj/item/mecha_part/equipment/tool/cable_layer/proc/use_cable(amount)
+	if(isnull(cable) || cable.amount < 1)
+		set_ready_state(1)
+		occupant_message(SPAN_WARNING("Cable depleted, [src] deactivated."))
+		log_message("Cable depleted, [src] deactivated.")
+		return
+	if(cable.amount < amount)
+		occupant_message(SPAN_WARNING("No enough cable to finish the task."))
+		return
+	cable.use(amount)
+	update_equip_info()
+	return 1
+
+/obj/item/mecha_part/equipment/tool/cable_layer/proc/reset()
+	last_piece = null
+
+/obj/item/mecha_part/equipment/tool/cable_layer/proc/dismantleFloor(turf/new_turf)
+	if(istype(new_turf, /turf/open/floor))
+		var/turf/open/floor/T = new_turf
+		if(!istype(new_turf, /turf/open/floor/plating/metal))
+			if(!T.broken && !T.burnt)
+				new T.tile_path(T)
+			T.make_plating()
+	return !new_turf.intact
+
+/obj/item/mecha_part/equipment/tool/cable_layer/proc/layCable(turf/new_turf)
+	if(equip_ready || !istype(new_turf) || !dismantleFloor(new_turf))
+		return reset()
+	var/fdirn = turn(chassis.dir, 180)
+	for(var/obj/structure/cable/LC in new_turf)		// check to make sure there's not a cable there already
+		if(LC.d1 == fdirn || LC.d2 == fdirn)
+			return reset()
+	if(!use_cable(1))
+		return reset()
+	var/obj/structure/cable/NC = new /obj/structure/cable(new_turf)
+	NC.cableColor("red")
+	NC.d1 = 0
+	NC.d2 = fdirn
+	NC.updateicon()
+
+	var/datum/powernet/PN
+	if(last_piece && last_piece.d2 != chassis.dir)
+		last_piece.d1 = min(last_piece.d2, chassis.dir)
+		last_piece.d2 = max(last_piece.d2, chassis.dir)
+		last_piece.updateicon()
+		PN = last_piece.powernet
+
+	if(isnull(PN))
+		PN = new /datum/powernet()
+	PN.add_cable(NC)
+	NC.mergeConnectedNetworks(NC.d2)
+
+	//NC.mergeConnectedNetworksOnTurf()
+	last_piece = NC
+	return 1

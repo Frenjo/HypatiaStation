@@ -32,7 +32,8 @@
 /obj/mecha/combat/honker/melee_action(target)
 	if(!melee_can_hit)
 		return
-	else if(ismob(target))
+
+	if(ismob(target))
 		step_away(target, src, 15)
 
 /obj/mecha/combat/honker/get_stats_part()
@@ -145,9 +146,8 @@
 			if("sadtrombone")
 				playsound(src, 'sound/misc/sadtrombone.ogg', 50)
 
-/proc/rand_hex_color()
-	var/list/colors = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f")
-	var/color = ""
+/proc/rand_hex_colour()
+	var/list/colours = list("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f")
+	. = ""
 	for(var/i = 0; i < 6; i++)
-		color = color + pick(colors)
-	return color
+		. += pick(colours)

@@ -10,6 +10,20 @@
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley
 	cargo_capacity = 15
 
+/obj/mecha/working/ripley/Destroy()
+	for(var/mob/M in src)
+		if(M == occupant)
+			continue
+		M.loc = GET_TURF(src)
+		M.loc.Entered(M)
+		step_rand(M)
+	for(var/atom/movable/A in cargo)
+		A.loc = GET_TURF(src)
+		var/turf/T = GET_TURF(A)
+		T?.Entered(A)
+		step_rand(A)
+	return ..()
+
 /obj/mecha/working/ripley/Exit(atom/movable/O)
 	if(isnotnull(O) && (O in cargo))
 		return 0
@@ -36,20 +50,6 @@
 	else
 		. += "Nothing"
 	. += "</div>"
-
-/obj/mecha/working/ripley/Destroy()
-	for(var/mob/M in src)
-		if(M == occupant)
-			continue
-		M.loc = GET_TURF(src)
-		M.loc.Entered(M)
-		step_rand(M)
-	for(var/atom/movable/A in cargo)
-		A.loc = GET_TURF(src)
-		var/turf/T = GET_TURF(A)
-		T?.Entered(A)
-		step_rand(A)
-	return ..()
 
 /obj/mecha/working/ripley/firefighter
 	name = "\improper APLU \"Firefighter\""

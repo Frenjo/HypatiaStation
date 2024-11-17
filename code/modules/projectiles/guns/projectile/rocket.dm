@@ -46,7 +46,7 @@
 		var/obj/item/ammo_casing/rocket/I = rockets[1]
 		var/obj/item/missile/M = new projectile(user.loc)
 		playsound(user.loc, 'sound/effects/bang.ogg', 50, 1)
-		M.primed = 1
+		M.primed = TRUE
 		M.throw_at(target, missile_range, missile_speed)
 		message_admins("[key_name_admin(user)] fired a rocket from a rocket launcher ([name]).")
 		log_game("[key_name_admin(user)] used a rocket launcher ([name]).")

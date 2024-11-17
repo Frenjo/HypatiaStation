@@ -1,19 +1,20 @@
 /obj/mecha/combat
 	force = 30
-	var/melee_cooldown = 10
-	var/melee_can_hit = 1
-	var/list/destroyable_obj = list(/obj/mecha, /obj/structure/window, /obj/structure/grille, /turf/closed/wall)
 	internal_damage_threshold = 50
 	maint_access = 0
 	//add_req_access = 0
 	//operation_req_access = list(access_hos)
 	damage_absorption = list("brute" = 0.7, "fire" = 1, "bullet" = 0.7, "laser" = 0.85, "energy" = 1, "bomb" = 0.8)
+
+	var/melee_cooldown = 10
+	var/melee_can_hit = 1
+	var/list/destroyable_obj = list(/obj/mecha, /obj/structure/window, /obj/structure/grille, /turf/closed/wall)
 	var/am = "d3c2fbcadca903a41161ccc9df9cf948"
 
 /*
 /obj/mecha/combat/range_action(atom/target)
 	if(internal_damage&MECHA_INT_CONTROL_LOST)
-		target = pick(view(3,target))
+		target = pick(view(3, target))
 	if(selected_weapon)
 		selected_weapon.fire(target)
 	return
@@ -27,7 +28,7 @@
 
 	if(isliving(target))
 		var/mob/living/M = target
-		if(src.occupant.a_intent == "hurt")
+		if(occupant.a_intent == "hurt")
 			playsound(src, 'sound/weapons/punch4.ogg', 50, 1)
 			if(damtype == "brute")
 				step_away(M, src, 15)
@@ -80,12 +81,12 @@
 					else
 						return
 				M.updatehealth()
-			src.occupant_message("You hit [target].")
-			src.visible_message("<font color='red'><b>[src.name] hits [target].</b></font>")
+			occupant_message(SPAN_DANGER("You hit [target]."))
+			visible_message(SPAN_DANGER("[name] hits [target]!"))
 		else
 			step_away(M, src)
-			src.occupant_message("You push [target] out of the way.")
-			src.visible_message("[src] pushes [target] out of the way.")
+			occupant_message(SPAN_INFO("You push [target] out of the way."))
+			visible_message(SPAN_INFO("\The [src] pushes [target] out of the way."))
 
 		melee_can_hit = 0
 		if(do_after(melee_cooldown))
@@ -94,16 +95,16 @@
 
 	else
 		if(damtype == "brute")
-			for(var/target_type in src.destroyable_obj)
+			for(var/target_type in destroyable_obj)
 				if(istype(target, target_type) && hascall(target, "attackby"))
-					src.occupant_message("You hit [target].")
-					src.visible_message("<font color='red'><b>[src.name] hits [target]</b></font>")
+					occupant_message(SPAN_DANGER("You hit [target]."))
+					visible_message(SPAN_DANGER("[name] hits [target]!"))
 					if(!istype(target, /turf/closed/wall))
-						target:attackby(src, src.occupant)
+						target:attackby(src, occupant)
 					else if(prob(5))
 						target:dismantle_wall(1)
-						src.occupant_message("\blue You smash through the wall.")
-						src.visible_message("<b>[src.name] smashes through the wall</b>")
+						occupant_message(SPAN_INFO_B("You smash through the wall."))
+						visible_message(SPAN_INFO_B("[name] smashes through the wall!"))
 						playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 					melee_can_hit = 0
 					if(do_after(melee_cooldown))
@@ -120,7 +121,7 @@
 		M.adjustBruteLoss(1)
 		M.updatehealth()
 		for (var/mob/V in viewers(src))
-			V.show_message("[src.name] shakes [M] like a rag doll.")
+			V.show_message("[name] shakes [M] like a rag doll.")
 	return
 */
 
@@ -241,29 +242,26 @@
 */
 /obj/mecha/combat/moved_inside(mob/living/carbon/human/H)
 	if(..())
-		if(H.client)
+		if(isnotnull(H.client))
 			H.client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
-		return 1
-	else
-		return 0
+		return TRUE
+	return FALSE
 
 /obj/mecha/combat/mmi_moved_inside(obj/item/mmi/mmi_as_oc, mob/user)
 	if(..())
-		if(occupant.client)
+		if(isnotnull(occupant.client))
 			occupant.client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")
-		return 1
-	else
-		return 0
+		return TRUE
+	return FALSE
 
 /obj/mecha/combat/go_out()
-	if(src.occupant && src.occupant.client)
-		src.occupant.client.mouse_pointer_icon = initial(src.occupant.client.mouse_pointer_icon)
-	..()
-	return
+	if(isnotnull(occupant?.client))
+		occupant.client.mouse_pointer_icon = initial(occupant.client.mouse_pointer_icon)
+	. = ..()
 
 /obj/mecha/combat/Topic(href, href_list)
-	..()
-	var/datum/topic_input/new_filter = new (href, href_list)
+	. = ..()
+	var/datum/topic_input/new_filter = new /datum/topic_input(href, href_list)
 	if(new_filter.get("close"))
 		am = null
 		return

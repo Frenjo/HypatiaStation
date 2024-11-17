@@ -2,6 +2,7 @@
 	name = "mecha weapon"
 	range = RANGED
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/combat = 3)
+
 	var/projectile //Type of projectile fired.
 	var/projectiles = 1 //Amount of projectiles loaded.
 	var/projectiles_per_shot = 1 //Amount of projectiles fired per single shot.
@@ -13,12 +14,12 @@
 
 /obj/item/mecha_part/equipment/weapon/can_attach(obj/mecha/combat/M)
 	if(!istype(M))
-		return 0
+		return FALSE
 	return ..()
 
 /obj/item/mecha_part/equipment/weapon/action_checks(atom/target)
 	if(projectiles <= 0)
-		return 0
+		return FALSE
 	return ..()
 
 /obj/item/mecha_part/equipment/weapon/action(atom/target)
@@ -48,7 +49,6 @@
 		projectiles = projectiles_per_shot
 	set_ready_state(0)
 	do_after_cooldown()
-	return
 
 /obj/item/mecha_part/equipment/weapon/proc/Fire(atom/A, atom/target, turf/aimloc)
 	var/obj/item/projectile/P = A
@@ -101,14 +101,14 @@
 /obj/item/projectile/energy/beam/pulse/heavy
 	name = "heavy pulse laser"
 	icon_state = "pulse1_bl"
+
 	var/life = 20
 
 /obj/item/projectile/energy/beam/pulse/heavy/Bump(atom/A)
 	A.bullet_act(src, def_zone)
-	src.life -= 10
+	life -= 10
 	if(life <= 0)
 		qdel(src)
-	return
 
 /obj/item/mecha_part/equipment/weapon/energy/taser
 	name = "PBT \"Pacifier\" mounted taser"
@@ -133,12 +133,12 @@
 	return ..()
 
 /obj/item/mecha_part/equipment/weapon/honker/action(target)
-	if(!chassis)
-		return 0
+	if(isnull(chassis))
+		return FALSE
 	if(energy_drain && chassis.get_charge() < energy_drain)
-		return 0
+		return FALSE
 	if(!equip_ready)
-		return 0
+		return FALSE
 
 	playsound(chassis, 'sound/items/AirHorn.ogg', 100, 1)
 	chassis.occupant_message("<font color='red' size='5'>HONK</font>")
@@ -169,16 +169,16 @@
 						walk(thingy,0)
 		*/
 	chassis.use_power(energy_drain)
-	log_message("Honked from [src.name]. HONK!")
+	log_message("Honked from [name]. HONK!")
 	do_after_cooldown()
-	return
 
 /obj/item/mecha_part/equipment/weapon/ballistic
-	name = "general ballisic weapon"
+	name = "general ballistic weapon"
+
 	var/projectile_energy_cost
 
 /obj/item/mecha_part/equipment/weapon/ballistic/get_equip_info()
-		return "[..()]\[[src.projectiles]\][(src.projectiles < initial(src.projectiles))?" - <a href='byond://?src=\ref[src];rearm=1'>Rearm</a>":null]"
+	return "[..()]\[[projectiles]\][projectiles < initial(projectiles) ? " - <a href='byond://?src=\ref[src];rearm=1'>Rearm</a>" : null]"
 
 /obj/item/mecha_part/equipment/weapon/ballistic/proc/rearm()
 	if(projectiles < initial(projectiles))
@@ -187,15 +187,13 @@
 			projectiles++
 			projectiles_to_add--
 			chassis.use_power(projectile_energy_cost)
-	send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", src.get_equip_info())
-	log_message("Rearmed [src.name].")
-	return
+	send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
+	log_message("Rearmed [name].")
 
 /obj/item/mecha_part/equipment/weapon/ballistic/Topic(href, href_list)
-	..()
+	. = ..()
 	if(href_list["rearm"])
-		src.rearm()
-	return
+		rearm()
 
 /obj/item/mecha_part/equipment/weapon/ballistic/scattershot
 	name = "\improper LBX AC 10 \"Scattershot\""
@@ -239,14 +237,15 @@
 
 /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/explosive/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	var/obj/item/missile/M = AM
-	M.primed = 1
-	..()
+	M.primed = TRUE
+	. = ..()
 
 /obj/item/missile
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "missile"
-	var/primed = null
 	throwforce = 15
+
+	var/primed = FALSE
 
 /obj/item/missile/throw_impact(atom/hit_atom)
 	if(primed)
@@ -254,7 +253,6 @@
 		qdel(src)
 	else
 		..()
-	return
 
 /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang
 	name = "\improper SGL-6 grenade launcher"
@@ -265,10 +263,11 @@
 	missile_speed = 1.5
 	projectile_energy_cost = 800
 	equip_cooldown = 60
+
 	var/det_time = 20
 
 /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang/Fire(atom/movable/AM, atom/target, turf/aimloc)
-	..()
+	. = ..()
 	var/obj/item/grenade/flashbang/F = AM
 	spawn(det_time)
 		F.prime()
@@ -279,7 +278,7 @@
 	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/gold = 6000, /decl/material/uranium = 6000)
 
 /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited/get_equip_info()//Limited version of the clusterbang launcher that can't reload
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[chassis.selected == src ? "<b>" : "<a href='byond://?src=\ref[chassis];select_equip=\ref[src]'>"][src.name][chassis.selected == src ? "</b>" : "</a>"]\[[src.projectiles]\]"
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[chassis.selected == src ? "<b>" : "<a href='byond://?src=\ref[chassis];select_equip=\ref[src]'>"][name][chassis.selected == src ? "</b>" : "</a>"]\[[projectiles]\]"
 
 /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited/rearm()
 	return//Extra bit of security
@@ -309,5 +308,5 @@
 
 /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	var/obj/item/assembly/mousetrap/M = AM
-	M.secured = 1
-	..()
+	M.secured = TRUE
+	. = ..()
