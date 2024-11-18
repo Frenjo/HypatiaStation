@@ -41,7 +41,8 @@
 	var/screen = "main"
 	var/opened = FALSE
 	var/temp
-	var/list/part_sets = list( //set names must be unique
+	var/list/part_sets = list(
+		//set names must be unique
 		"Robot" = list(
 			/obj/item/robot_parts/robot_suit,
 			/obj/item/robot_parts/chest,
@@ -57,6 +58,14 @@
 			/obj/item/robot_parts/robot_component/camera,
 			/obj/item/robot_parts/robot_component/armour
 		),
+		"Robotic Upgrade Modules" = list(
+			/obj/item/borg/upgrade/reset,
+			/obj/item/borg/upgrade/rename,
+			/obj/item/borg/upgrade/restart,
+			/obj/item/borg/upgrade/vtec,
+			/obj/item/borg/upgrade/tasercooler,
+			/obj/item/borg/upgrade/jetpack
+		),
 		"Ripley" = list(
 			/obj/item/mecha_part/chassis/ripley,
 			/obj/item/mecha_part/part/ripley_torso,
@@ -64,6 +73,9 @@
 			/obj/item/mecha_part/part/ripley_right_arm,
 			/obj/item/mecha_part/part/ripley_left_leg,
 			/obj/item/mecha_part/part/ripley_right_leg
+		),
+		"Firefighter" = list(
+			/obj/item/mecha_part/chassis/firefighter
 		),
 		"Odysseus" = list(
 			/obj/item/mecha_part/chassis/odysseus,
@@ -111,7 +123,6 @@
 			/obj/item/mecha_part/equipment/tool/passenger, // Ported this from NSS Eternal along with the hoverpod. -Frenjo
 			/obj/item/mecha_part/equipment/tool/sleeper,
 			/obj/item/mecha_part/equipment/tool/syringe_gun,
-			/obj/item/mecha_part/chassis/firefighter,
 			/obj/item/mecha_part/equipment/repair_droid, // Re-enabled this. -Frenjo
 			/obj/item/mecha_part/equipment/generator,
 			///obj/item/mecha_part/equipment/jetpack, //TODO MECHA JETPACK SPRITE MISSING
@@ -120,14 +131,6 @@
 			/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar,
 			/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar,
 			/obj/item/mecha_part/equipment/weapon/honker
-		),
-		"Robotic Upgrade Modules" = list(
-			/obj/item/borg/upgrade/reset,
-			/obj/item/borg/upgrade/rename,
-			/obj/item/borg/upgrade/restart,
-			/obj/item/borg/upgrade/vtec,
-			/obj/item/borg/upgrade/tasercooler,
-			/obj/item/borg/upgrade/jetpack
 		),
 		"Misc" = list(
 			/obj/item/mecha_part/tracking
