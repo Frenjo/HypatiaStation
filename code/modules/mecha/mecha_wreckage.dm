@@ -241,3 +241,20 @@
 			welder_salvage += part
 			parts -= part
 	return
+
+/obj/effect/decal/mecha_wreckage/hoverpod
+	name = "Hover pod wreckage"
+	icon_state = "engineering_pod-broken"
+
+/*
+/obj/effect/decal/mecha_wreckage/hoverpod/New()
+	..()
+	var/list/parts = list()
+
+	for(var/i = 0; i < 2; i++)
+		if(!isemptylist(parts) && prob(40))
+			var/part = pick(parts)
+			welder_salvage += part
+			parts -= part
+	return
+*/

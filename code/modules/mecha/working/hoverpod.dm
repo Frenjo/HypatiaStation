@@ -4,6 +4,9 @@
 	desc = "Stubby and round, this space-capable craft is an ancient favorite."
 	icon_state = "engineering_pod"
 
+	step_sound = 'sound/machines/hiss.ogg'
+	turn_sound = null
+
 	initial_icon = "engineering_pod"
 	internal_damage_threshold = 80
 	step_in = 4
@@ -55,22 +58,6 @@
 			return 1
 
 	return ..()
-
-//these three procs overriden to play different sounds
-/obj/mecha/working/hoverpod/mechturn(direction)
-	set_dir(direction)
-	//playsound(src, 'sound/machines/hiss.ogg',40,1)
-	return 1
-
-/obj/mecha/working/hoverpod/mechstep(direction)
-	. = step(src, direction)
-	if(.)
-		playsound(src, 'sound/machines/hiss.ogg', 40, 1)
-
-/obj/mecha/working/hoverpod/mechsteprand()
-	. = step_rand(src)
-	if(.)
-		playsound(src, 'sound/machines/hiss.ogg', 40, 1)
 
 //Hoverpod variants
 /obj/mecha/working/hoverpod/combat

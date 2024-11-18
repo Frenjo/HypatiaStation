@@ -23,6 +23,12 @@
 	layer = MOB_LAYER //icon draw layer
 	infra_luminosity = 15 //byond implementation is bugged.
 
+	// Sounds
+	var/step_sound = 'sound/mecha/mechstep.ogg'
+	var/step_sound_volume = 40
+	var/turn_sound = 'sound/mecha/mechturn.ogg'
+	var/turn_sound_volume = 40
+
 	var/initial_icon = null //Mech type for resetting icon. Only used for reskinning kits (see custom items)
 	var/can_move = 1
 	var/mob/living/carbon/occupant = null

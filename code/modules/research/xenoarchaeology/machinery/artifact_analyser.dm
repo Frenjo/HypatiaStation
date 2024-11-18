@@ -147,7 +147,7 @@
 			return "Automated mining drill - structure composed of titanium-carbide alloy, with tip and drill lines edged in an alloy of diamond and plasma."
 		if(/obj/structure/cult/pylon)
 			return "Tribal pylon - Item resembles statues/emblems built by cargo cult civilisations to honour energy systems from post-warp civilisations."
-		if(/obj/mecha/working/hoverpod)
+		if(/obj/mecha/working/hoverpod/ancient)
 			return "Vacuum capable repair pod - Item is a remarkably intact single man repair craft capable of flight in a vacuum. Outer shell composed of primarily \
 			post-warp hull alloys, with internal wiring and circuitry consistent with modern electronics and engineering."
 		if(/obj/machinery/replicator)

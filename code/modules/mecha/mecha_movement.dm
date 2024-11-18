@@ -53,18 +53,21 @@
 
 /obj/mecha/proc/mechturn(direction)
 	set_dir(direction)
-	playsound(src,'sound/mecha/mechturn.ogg', 40, 1)
+	if(isnotnull(turn_sound))
+		playsound(src, turn_sound, turn_sound_volume, 1)
 	return 1
 
 /obj/mecha/proc/mechstep(direction)
 	. = step(src, direction)
 	if(.)
-		playsound(src,'sound/mecha/mechstep.ogg', 40, 1)
+		if(isnotnull(step_sound))
+			playsound(src, step_sound, step_sound_volume, 1)
 
 /obj/mecha/proc/mechsteprand()
 	. = step_rand(src)
 	if(.)
-		playsound(src,'sound/mecha/mechstep.ogg', 40, 1)
+		if(isnotnull(step_sound))
+			playsound(src, step_sound, step_sound_volume, 1)
 
 /obj/mecha/Bump(atom/obstacle)
 //	src.inertia_dir = null
