@@ -1039,7 +1039,7 @@ other types of metals and chemistry for reagents).
 	name = "Basic Power Cell"
 	desc = "A basic power cell that holds 1000 units of energy"
 	req_tech = list(/datum/tech/power_storage = 1)
-	build_type = PROTOLATHE | AUTOLATHE |MECHFAB
+	build_type = PROTOLATHE | AUTOLATHE | MECHFAB
 	materials = list(MATERIAL_METAL = 700, /decl/material/glass = 50)
 	build_path = /obj/item/cell
 	category = "Misc"
@@ -1596,7 +1596,7 @@ other types of metals and chemistry for reagents).
 	build_type = MECHFAB
 	req_tech = list(/datum/tech/combat = 4, /datum/tech/syndicate = 3)
 	build_path = /obj/item/borg/upgrade/syndicate
-	category = "Cyborg Upgrade Modules"
+	category = "Robotic Upgrade Modules"
 
 /////////////////////////////////////////
 /////////////PDA and Radio stuff/////////

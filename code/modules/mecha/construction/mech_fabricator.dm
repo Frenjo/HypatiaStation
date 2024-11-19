@@ -232,7 +232,7 @@
 		if(1)
 			visible_message("\icon[src] <b>[src]</b> beeps: \"No records in User DB\"")
 
-/obj/machinery/mecha_part_fabricator/proc/convert_part_set(set_name as text)
+/obj/machinery/mecha_part_fabricator/proc/convert_part_set(set_name)
 	var/list/parts = part_sets[set_name]
 	if(istype(parts, /list))
 		for(var/i = 1; i <= length(parts); i++)
@@ -244,7 +244,7 @@
 			if(!isitem(parts[i]))
 				return 0
 
-/obj/machinery/mecha_part_fabricator/proc/add_part_set(set_name as text, parts = null)
+/obj/machinery/mecha_part_fabricator/proc/add_part_set(set_name, parts = null)
 	if(set_name in part_sets)//attempt to create duplicate set
 		return 0
 	if(isnull(parts))
@@ -254,7 +254,7 @@
 	convert_part_set(set_name)
 	return 1
 
-/obj/machinery/mecha_part_fabricator/proc/add_part_to_set(set_name as text, part)
+/obj/machinery/mecha_part_fabricator/proc/add_part_to_set(set_name, part)
 	if(!part)
 		return 0
 	add_part_set(set_name)//if no "set_name" set exists, create
@@ -273,7 +273,7 @@
 	part_set[++part_set.len] = apart
 	return 1
 
-/obj/machinery/mecha_part_fabricator/proc/remove_part_set(set_name as text)
+/obj/machinery/mecha_part_fabricator/proc/remove_part_set(set_name)
 	for(var/i = 1, i <= length(part_sets), i++)
 		if(part_sets[i] == set_name)
 			part_sets.Cut(i, ++i)
@@ -304,17 +304,15 @@
 */
 
 /obj/machinery/mecha_part_fabricator/proc/output_parts_list(set_name)
-	var/output = ""
+	. = ""
 	var/list/part_set = listgetindex(part_sets, set_name)
 	if(istype(part_set))
 		for(var/obj/item/part in part_set)
 			var/resources_available = check_resources(part)
-			output += "<div class='part'>[output_part_info(part)]<br>\[[resources_available ? "<a href='byond://?src=\ref[src];part=\ref[part]'>Build</a> | " : null]<a href='byond://?src=\ref[src];add_to_queue=\ref[part]'>Add to queue</a>\]\[<a href='byond://?src=\ref[src];part_desc=\ref[part]'>?</a>\]</div>"
-	return output
+			. += "<div class='part'>[output_part_info(part)]<br>\[[resources_available ? "<a href='byond://?src=\ref[src];part=\ref[part]'>Build</a> | " : null]<a href='byond://?src=\ref[src];add_to_queue=\ref[part]'>Add to queue</a>\]\[<a href='byond://?src=\ref[src];part_desc=\ref[part]'>?</a>\]</div>"
 
 /obj/machinery/mecha_part_fabricator/proc/output_part_info(obj/item/part)
-	var/output = "[part.name] (Cost: [output_part_cost(part)]) [get_construction_time_w_coeff(part) / 10]sec"
-	return output
+	. = "[part.name] (Cost: [output_part_cost(part)]) [get_construction_time_w_coeff(part) / 10]sec"
 
 /obj/machinery/mecha_part_fabricator/proc/output_part_cost(obj/item/part)
 	var/i = 0
@@ -326,19 +324,16 @@
 				output += "[i ? " | " : null][get_resource_cost_w_coeff(part, path)] [material.name]"
 				i++
 		return output
-	else
-		return 0
+	return 0
 
 /obj/machinery/mecha_part_fabricator/proc/output_available_resources()
-	var/output
 	for(var/material_path in stored_materials)
 		var/decl/material/material = GET_DECL_INSTANCE(material_path)
 		var/amount = min(res_max_amount, stored_materials[material_path])
-		output += "<span class=\"res_name\">[material.name]: </span>[amount] cm&sup3;"
+		. += "<span class=\"res_name\">[material.name]: </span>[amount] cm&sup3;"
 		if(amount > 0)
-			output += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[res_max_amount];material=[material_path]'>All</a>\]</span>"
-		output += "<br/>"
-	return output
+			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[res_max_amount];material=[material_path]'>All</a>\]</span>"
+		. += "<br/>"
 
 /obj/machinery/mecha_part_fabricator/proc/remove_resources(obj/item/part)
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
@@ -354,10 +349,9 @@
 		for(var/resource in part:construction_cost)
 			if(resource in stored_materials)
 				if(stored_materials[resource] < get_resource_cost_w_coeff(part, resource))
-					return 0
-		return 1
-	else
-		return 0
+					return FALSE
+		return TRUE
+	return FALSE
 
 /obj/machinery/mecha_part_fabricator/proc/build_part(obj/item/part)
 	if(!part)
@@ -429,41 +423,38 @@
 	return 1
 
 /obj/machinery/mecha_part_fabricator/proc/list_queue()
-	var/output = "<b>Queue contains:</b>"
+	. = "<b>Queue contains:</b>"
 	if(!length(queue))
-		output += "<br>Nothing"
+		. += "<br>Nothing"
 	else
-		output += "<ol>"
+		. += "<ol>"
 		for(var/i = 1; i <= length(queue); i++)
 			var/obj/item/part = listgetindex(queue, i)
 			if(istype(part))
 				if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
-					output += "<li[!check_resources(part) ? " style='color: #f00;'" : null]>[part.name] - [i > 1 ? "<a href='byond://?src=\ref[src];queue_move=-1;index=[i]' class='arrow'>&uarr;</a>" : null] [i < length(queue) ? "<a href='byond://?src=\ref[src];queue_move=+1;index=[i]' class='arrow'>&darr;</a>" : null] <a href='byond://?src=\ref[src];remove_from_queue=[i]'>Remove</a></li>"
-				else//Prevents junk items from even appearing in the list, and they will be silently removed when the fab processes
+					. += "<li[!check_resources(part) ? " style='color: #f00;'" : null]>[part.name] - [i > 1 ? "<a href='byond://?src=\ref[src];queue_move=-1;index=[i]' class='arrow'>&uarr;</a>" : null] [i < length(queue) ? "<a href='byond://?src=\ref[src];queue_move=+1;index=[i]' class='arrow'>&darr;</a>" : null] <a href='byond://?src=\ref[src];remove_from_queue=[i]'>Remove</a></li>"
+				else // Prevents junk items from even appearing in the list, and they will be silently removed when the fab processes.
 					remove_from_queue(i)//Trash it
 					return list_queue()//Rebuild it
-		output += "</ol>"
-		output += "\[<a href='byond://?src=\ref[src];process_queue=1'>Process queue</a> | <a href='byond://?src=\ref[src];clear_queue=1'>Clear queue</a>\]"
-	return output
+		. += "</ol>"
+		. += "\[<a href='byond://?src=\ref[src];process_queue=1'>Process queue</a> | <a href='byond://?src=\ref[src];clear_queue=1'>Clear queue</a>\]"
 
 /obj/machinery/mecha_part_fabricator/proc/convert_designs()
 	if(!files)
 		return
-	var/i = 0
+	. = 0
 	for(var/datum/design/D in files.known_designs)
-		if(D.build_type & 16)
+		if(D.build_type & 16) // This is equivalent to (D.build_type & MECHFAB).
 			if(D.category in part_sets)//Checks if it's a valid category
 				if(add_part_to_set(D.category, D.build_path))//Adds it to said category
-					i++
+					.++
 			else
 				if(add_part_to_set("Misc", D.build_path))//If in doubt, chunk it into the Misc
-					i++
-	return i
+					.++
 
 /obj/machinery/mecha_part_fabricator/proc/update_tech()
-	if(!files)
+	if(isnull(files))
 		return
-	var/output
 	for(var/datum/tech/T in files.known_tech)
 		if(T?.level > 1)
 			var/diff
@@ -477,7 +468,7 @@
 					diff = round(initial(resource_coeff) - (initial(resource_coeff) * (T.level + pmat)) / 25, 0.01)
 					if(resource_coeff != diff)
 						resource_coeff = diff
-						output += "Production efficiency increased.<br>"
+						. += "Production efficiency increased.<br>"
 				if(/datum/tech/programming)
 					var/ptime = 0
 					for(var/obj/item/stock_part/manipulator/Ma in component_parts)
@@ -487,8 +478,7 @@
 					diff = round(initial(time_coeff) - (initial(time_coeff) * (T.level + ptime)) / 25, 0.1)
 					if(time_coeff != diff)
 						time_coeff = diff
-						output += "Production routines updated.<br>"
-	return output
+						. += "Production routines updated.<br>"
 
 /obj/machinery/mecha_part_fabricator/proc/sync(silent = null)
 /*		if(length(queue))
@@ -531,19 +521,17 @@
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
 		return round(part:construction_cost[resource] * resource_coeff, roundto)
-	else
-		return 0
+	return 0
 
 /obj/machinery/mecha_part_fabricator/proc/get_construction_time_w_coeff(obj/item/part, roundto = 1)
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
 		return round(part:construction_time * time_coeff, roundto)
-	else
-		return 0
+	return 0
 
 /obj/machinery/mecha_part_fabricator/attack_hand(mob/user)
 	var/dat, left_part
-	if (..())
+	if(..())
 		return
 	if(!operation_allowed(user))
 		return
@@ -601,7 +589,7 @@
 	onclose(user, "mecha_fabricator")
 
 /obj/machinery/mecha_part_fabricator/Topic(href, href_list)
-	..()
+	. = ..()
 	var/datum/topic_input/new_filter = new /datum/topic_input(href, href_list)
 	if(href_list["part_set"])
 		var/tpart_set = new_filter.getStr("part_set")
@@ -630,9 +618,9 @@
 		spawn(-1)
 			if(processing_queue || being_built)
 				return
-			processing_queue = 1
+			processing_queue = TRUE
 			process_queue()
-			processing_queue = 0
+			processing_queue = FALSE
 /*
 		if(href_list["list_queue"])
 			list_queue()
@@ -663,24 +651,23 @@
 						<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>
 						"}
 	if(href_list["remove_mat"] && href_list["material"])
-		temp = "Ejected [remove_material(text2path(href_list["material"]),text2num(href_list["remove_mat"]))] of [href_list["material"]]<br><a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
+		temp = "Ejected [remove_material(text2path(href_list["material"]), text2num(href_list["remove_mat"]))] of [href_list["material"]]<br><a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
 	updateUsrDialog()
 
 /obj/machinery/mecha_part_fabricator/proc/remove_material(type, amount)
 	var/decl/material/material = GET_DECL_INSTANCE(type)
 	if(isnull(material.sheet_path))
 		return 0
-	var/result = 0
+	. = 0
 	var/obj/item/stack/sheet/res = new material.sheet_path(src)
 	var/total_amount = round(stored_materials[type] / res.perunit)
 	res.amount = min(total_amount, amount)
 	if(res.amount > 0)
 		stored_materials[type] -= res.amount * res.perunit
 		res.Move(loc)
-		result = res.amount
+		. = res.amount
 	else
 		qdel(res)
-	return result
 
 /obj/machinery/mecha_part_fabricator/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(emagged > 0)
@@ -690,8 +677,8 @@
 	emag()
 	return TRUE
 
-/obj/machinery/mecha_part_fabricator/attackby(obj/W, mob/user)
-	if(isscrewdriver(W))
+/obj/machinery/mecha_part_fabricator/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
 		if(!opened)
 			opened = TRUE
 			icon_state = "fab-o"
@@ -700,27 +687,30 @@
 			icon_state = "fab-idle"
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, opened)
-		return
+		return TRUE
 
+	if(opened && iscrowbar(tool))
+		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
+		var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(loc)
+		M.state = 2
+		M.icon_state = "box_1"
+		for(var/obj/I in component_parts)
+			if(I.reliability != 100 && crit_fail)
+				I.crit_fail = 1
+			I.loc = loc
+		for(var/material_path in stored_materials)
+			var/decl/material/material = GET_DECL_INSTANCE(material_path)
+			if(stored_materials[material_path] >= material.per_unit)
+				new material.sheet_path(loc, round(stored_materials[material_path] / material.per_unit))
+		qdel(src)
+		return TRUE
+
+	return ..()
+
+/obj/machinery/mecha_part_fabricator/attackby(obj/W, mob/user)
 	if(opened)
-		if(iscrowbar(W))
-			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
-			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(loc)
-			M.state = 2
-			M.icon_state = "box_1"
-			for(var/obj/I in component_parts)
-				if(I.reliability != 100 && crit_fail)
-					I.crit_fail = 1
-				I.loc = loc
-			for(var/material_path in stored_materials)
-				var/decl/material/material = GET_DECL_INSTANCE(material_path)
-				if(stored_materials[material_path] >= material.per_unit)
-					new material.sheet_path(loc, round(stored_materials[material_path] / material.per_unit))
-			qdel(src)
-			return 1
-		else
-			to_chat(user, SPAN_WARNING("You can't load the [name] while it's opened."))
-			return 1
+		to_chat(user, SPAN_WARNING("You can't load the [name] while it's opened."))
+		return 1
 
 	if(!istype(W, /obj/item/stack/sheet))
 		return
