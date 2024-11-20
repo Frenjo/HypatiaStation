@@ -1,15 +1,10 @@
-// TODO: Possibly split the new radiation storm-esque functionality into a "severe/large ion storm" event...
-// ... and restore the original functionality to "standard" ion storms.
-
-/datum/event/ionstorm
+/datum/event/storm/ion_large
 	startWhen = 1
-	announceWhen = 1
-	oneShot = FALSE
 
-	var/botEmagChance = 0.5
+	var/bot_emag_chance = 0.5
 	var/list/players = list()
 
-/datum/event/ionstorm/setup()
+/datum/event/storm/ion_large/setup()
 	endWhen = rand(10, 20)
 
 	for(var/mob/living/carbon/human/player in GLOBL.mob_list)
@@ -17,11 +12,11 @@
 			continue
 		players.Add(player.real_name)
 
-/datum/event/ionstorm/announce()
+/datum/event/storm/ion_large/announce()
 	world << sound('sound/AI/ionstorm.ogg')
-	command_alert("The station has entered an ion storm.  Monitor all electronic equipment for malfunctions.", "Anomaly Alert")
+	command_alert("The station has entered a severe ion storm.  Monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
-/datum/event/ionstorm/start()
+/datum/event/storm/ion_large/start()
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		var/turf/T = GET_TURF(H)
 		if(isnull(T))
@@ -75,7 +70,7 @@
 		to_chat(target, law)
 		target.add_ion_law(law)
 
-/datum/event/ionstorm/tick()
+/datum/event/storm/ion_large/tick()
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		var/turf/T = GET_TURF(H)
 		if(isnull(T))
@@ -90,14 +85,14 @@
 		if(ishuman(H))
 			H.client?.screen |= GLOBL.global_hud.ion_storm
 
-	if(botEmagChance)
+	if(bot_emag_chance)
 		for(var/obj/machinery/bot/bot in GLOBL.bots_list)
 			if(isnotstationlevel(bot.z))
 				continue
-			if(prob(botEmagChance))
+			if(prob(bot_emag_chance))
 				bot.Emag()
 
-/datum/event/ionstorm/end()
+/datum/event/storm/ion_large/end()
 	command_alert("The station has passed the ion storm. Monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)

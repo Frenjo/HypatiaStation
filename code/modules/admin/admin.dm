@@ -613,9 +613,11 @@ var/global/floorIsLava = 0
 			<A href='byond://?src=\ref[src];secretsfun=immovable'>Spawn an Immovable Rod</A><BR>
 			<A href='byond://?src=\ref[src];secretsfun=lightsout'>Toggle a "lights out" event</A><BR>
 			<A href='byond://?src=\ref[src];secretsfun=ionstorm'>Spawn an Ion Storm</A><BR>
+			<A href='byond://?src=\ref[src];secretsfun=ion_storm_large'>Spawn a severe Ion Storm</A><BR>
 			<A href='byond://?src=\ref[src];secretsfun=spacevines'>Spawn Space-Vines</A><BR>
 			<A href='byond://?src=\ref[src];secretsfun=comms_blackout'>Trigger a communication blackout</A><BR>
 			<A href='byond://?src=\ref[src];secretsfun=electricstorm'>Spawn an Electrical Storm</A><BR>
+			<A href='byond://?src=\ref[src];secretsfun=electrical_storm_large'>Spawn a severe Electrical Storm</A><BR>
 			<BR>
 			<B>Fun Secrets</B><BR>
 			<BR>
