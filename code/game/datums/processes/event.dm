@@ -10,7 +10,7 @@ PROCESS_DEF(event)
 /datum/process/event/do_work()
 	var/i = 1
 	while(i <= length(GLOBL.events))
-		var/datum/event/event = GLOBL.events[i]
+		var/datum/round_event/event = GLOBL.events[i]
 		if(isnotnull(event))
 			event.process()
 			i++

@@ -94,7 +94,7 @@
 
 /datum/game_mode/epidemic/post_setup()
 	// make sure viral outbreak events don't happen on this mode
-	EventTypes.Remove(/datum/event/viralinfection)
+	EventTypes.Remove(/datum/round_event/viralinfection)
 
 	// scan the crew for possible infectees
 	var/list/crew = list()

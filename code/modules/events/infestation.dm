@@ -13,7 +13,7 @@
 #define VERM_LIZARDS 1
 #define VERM_SPIDERS 2
 
-/datum/event/infestation
+/datum/round_event/infestation
 	announceWhen = 10
 	endWhen = 11
 
@@ -22,7 +22,7 @@
 	var/vermin
 	var/vermstring
 
-/datum/event/infestation/start()
+/datum/round_event/infestation/start()
 	location = rand(0, 9)
 	var/list/turf/open/floor/turfs = list()
 	var/spawn_area_type
@@ -102,7 +102,7 @@
 				var/spawn_type = pick(spawn_types)
 				new spawn_type(T)
 
-/datum/event/infestation/announce()
+/datum/round_event/infestation/announce()
 	command_alert("Bioscans indicate that [vermstring] have been breeding in [locstring]. Clear them out, before this starts to affect productivity.", "Vermin infestation")
 
 #undef LOC_KITCHEN

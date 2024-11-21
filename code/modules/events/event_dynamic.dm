@@ -44,51 +44,51 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 	//see:
 	// Code/WorkInProgress/Cael_Aislinn/Economy/Economy_Events.dm
 	// Code/WorkInProgress/Cael_Aislinn/Economy/Economy_Events_Mundane.dm
-	possibleEvents[/datum/event/economic_event] = 300
-	possibleEvents[/datum/event/trivial_news] = 400
-	possibleEvents[/datum/event/mundane_news] = 300
+	possibleEvents[/datum/round_event/economic_event] = 300
+	possibleEvents[/datum/round_event/trivial_news] = 400
+	possibleEvents[/datum/round_event/mundane_news] = 300
 
-	possibleEvents[/datum/event/pda_spam] = max(min(25, length(GLOBL.player_list)) * 4, 200)
-	possibleEvents[/datum/event/money_lotto] = max(min(5, length(GLOBL.player_list)), 50)
+	possibleEvents[/datum/round_event/pda_spam] = max(min(25, length(GLOBL.player_list)) * 4, 200)
+	possibleEvents[/datum/round_event/money_lotto] = max(min(5, length(GLOBL.player_list)), 50)
 	if(GLOBL.account_hack_attempted)
-		possibleEvents[/datum/event/money_hacker] = max(min(25, length(GLOBL.player_list)) * 4, 200)
+		possibleEvents[/datum/round_event/money_hacker] = max(min(25, length(GLOBL.player_list)) * 4, 200)
 
-	possibleEvents[/datum/event/carp_migration] = 20 + 10 * active_with_role["Engineer"]
-	possibleEvents[/datum/event/brand_intelligence] = 20 + 25 * active_with_role["Janitor"]
+	possibleEvents[/datum/round_event/carp_migration] = 20 + 10 * active_with_role["Engineer"]
+	possibleEvents[/datum/round_event/brand_intelligence] = 20 + 25 * active_with_role["Janitor"]
 
-	possibleEvents[/datum/event/rogue_drone] = 5 + 25 * active_with_role["Engineer"] + 25 * active_with_role["Security"]
-	possibleEvents[/datum/event/infestation] = 100 + 100 * active_with_role["Janitor"]
+	possibleEvents[/datum/round_event/rogue_drone] = 5 + 25 * active_with_role["Engineer"] + 25 * active_with_role["Security"]
+	possibleEvents[/datum/round_event/infestation] = 100 + 100 * active_with_role["Janitor"]
 
-	possibleEvents[/datum/event/communications_blackout] = 50 + 25 * active_with_role["AI"] + active_with_role["Scientist"] * 25
-	possibleEvents[/datum/event/storm/ion] = active_with_role["AI"] * 25 + active_with_role["Cyborg"] * 25 + active_with_role["Engineer"] * 10 + active_with_role["Scientist"] * 5
-	possibleEvents[/datum/event/storm/ion_large] = active_with_role["AI"] * 12.5 + active_with_role["Cyborg"] * 12.5 + active_with_role["Engineer"] * 5 + active_with_role["Scientist"] * 5
-	possibleEvents[/datum/event/grid_check] = 25 + 10 * active_with_role["Engineer"]
-	possibleEvents[/datum/event/storm/electrical] = 15 * active_with_role["Janitor"] + 5 * active_with_role["Engineer"]
-	possibleEvents[/datum/event/storm/electrical_large] = 7.5 * active_with_role["Janitor"] + 2.5 * active_with_role["Engineer"]
-	possibleEvents[/datum/event/wallrot] = 30 * active_with_role["Engineer"] + 50 * active_with_role["Botanist"]
+	possibleEvents[/datum/round_event/communications_blackout] = 50 + 25 * active_with_role["AI"] + active_with_role["Scientist"] * 25
+	possibleEvents[/datum/round_event/storm/ion] = active_with_role["AI"] * 25 + active_with_role["Cyborg"] * 25 + active_with_role["Engineer"] * 10 + active_with_role["Scientist"] * 5
+	possibleEvents[/datum/round_event/storm/ion_large] = active_with_role["AI"] * 12.5 + active_with_role["Cyborg"] * 12.5 + active_with_role["Engineer"] * 5 + active_with_role["Scientist"] * 5
+	possibleEvents[/datum/round_event/grid_check] = 25 + 10 * active_with_role["Engineer"]
+	possibleEvents[/datum/round_event/storm/electrical] = 15 * active_with_role["Janitor"] + 5 * active_with_role["Engineer"]
+	possibleEvents[/datum/round_event/storm/electrical_large] = 7.5 * active_with_role["Janitor"] + 2.5 * active_with_role["Engineer"]
+	possibleEvents[/datum/round_event/wallrot] = 30 * active_with_role["Engineer"] + 50 * active_with_role["Botanist"]
 
 	if(!GLOBL.spacevines_spawned)
-		possibleEvents[/datum/event/spacevine] = 10 + 5 * active_with_role["Engineer"]
+		possibleEvents[/datum/round_event/spacevine] = 10 + 5 * active_with_role["Engineer"]
 	if(minutes_passed >= 30) // Give engineers time to set up engine
-		possibleEvents[/datum/event/meteor_wave] = 10 * active_with_role["Engineer"]
-		possibleEvents[/datum/event/meteor_shower] = 20 * active_with_role["Engineer"]
-		possibleEvents[/datum/event/blob] = 10 * active_with_role["Engineer"]
+		possibleEvents[/datum/round_event/meteor_wave] = 10 * active_with_role["Engineer"]
+		possibleEvents[/datum/round_event/meteor_shower] = 20 * active_with_role["Engineer"]
+		possibleEvents[/datum/round_event/blob] = 10 * active_with_role["Engineer"]
 
-	possibleEvents[/datum/event/viral_infection] = 25 + active_with_role["Medical"] * 15
+	possibleEvents[/datum/round_event/viral_infection] = 25 + active_with_role["Medical"] * 15
 	if(active_with_role["Medical"] > 0)
-		possibleEvents[/datum/event/storm/radiation] = active_with_role["Medical"] * 10
-		possibleEvents[/datum/event/spontaneous_appendicitis] = active_with_role["Medical"] * 10
-		possibleEvents[/datum/event/viral_infection] = active_with_role["Medical"] * 20
-		possibleEvents[/datum/event/organ_failure] = active_with_role["Medical"] * 50
+		possibleEvents[/datum/round_event/storm/radiation] = active_with_role["Medical"] * 10
+		possibleEvents[/datum/round_event/spontaneous_appendicitis] = active_with_role["Medical"] * 10
+		possibleEvents[/datum/round_event/viral_infection] = active_with_role["Medical"] * 20
+		possibleEvents[/datum/round_event/organ_failure] = active_with_role["Medical"] * 50
 
-	possibleEvents[/datum/event/prison_break] = active_with_role["Security"] * 50
+	possibleEvents[/datum/round_event/prison_break] = active_with_role["Security"] * 50
 	if(active_with_role["Security"] > 0)
 		if(!GLOBL.sent_spiders_to_station)
-			possibleEvents[/datum/event/spider_infestation] = max(active_with_role["Security"], 5) + 5
+			possibleEvents[/datum/round_event/spider_infestation] = max(active_with_role["Security"], 5) + 5
 		if(CONFIG_GET(aliens_allowed) && !GLOBL.sent_aliens_to_station)
-			possibleEvents[/datum/event/alien_infestation] = max(active_with_role["Security"], 5) + 2.5
+			possibleEvents[/datum/round_event/alien_infestation] = max(active_with_role["Security"], 5) + 2.5
 		if(!GLOBL.sent_ninja_to_station && GLOBL.toggle_space_ninja)
-			possibleEvents[/datum/event/space_ninja] = max(active_with_role["Security"], 5)
+			possibleEvents[/datum/round_event/space_ninja] = max(active_with_role["Security"], 5)
 
 	for(var/event_type in GLOBL.event_last_fired) if(possibleEvents[event_type])
 		var/time_passed = world.time - GLOBL.event_last_fired[event_type]

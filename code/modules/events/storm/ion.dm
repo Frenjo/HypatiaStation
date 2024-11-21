@@ -1,21 +1,21 @@
-/datum/event/storm/ion
+/datum/round_event/storm/ion
 	startWhen = 1
 
 	var/bot_emag_chance = 0.5
 	var/list/players = list()
 
-/datum/event/storm/ion/setup()
+/datum/round_event/storm/ion/setup()
 	endWhen = rand(500, 1500)
 	for(var/mob/living/carbon/human/player in GLOBL.mob_list)
 		if(isnull(player.client))
 			continue
 		players.Add(player.real_name)
 
-/datum/event/storm/ion/announce()
+/datum/round_event/storm/ion/announce()
 	world << sound('sound/AI/ionstorm.ogg')
 	command_alert("The station has entered an ion storm. Monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
-/datum/event/storm/ion/start()
+/datum/round_event/storm/ion/start()
 	var/random_player = "The Captain"
 	if(length(players))
 		random_player = pick(players)	// Random player's name, to be used in laws.
@@ -55,7 +55,7 @@
 		to_chat(target, law)
 		target.add_ion_law(law)
 
-/datum/event/storm/ion/tick()
+/datum/round_event/storm/ion/tick()
 	if(bot_emag_chance)
 		for(var/obj/machinery/bot/bot in GLOBL.bots_list)
 			if(isnotstationlevel(bot.z))
@@ -63,6 +63,6 @@
 			if(prob(bot_emag_chance))
 				bot.Emag()
 
-/datum/event/storm/ion/end()
+/datum/round_event/storm/ion/end()
 	if(prob(50))
 		command_alert("It has come to our attention that the station passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")

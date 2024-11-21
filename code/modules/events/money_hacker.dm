@@ -1,12 +1,12 @@
 GLOBAL_GLOBL_INIT(account_hack_attempted, FALSE)
 
-/datum/event/money_hacker
+/datum/round_event/money_hacker
 	endWhen = 100
 
 	var/datum/money_account/affected_account
 	var/end_time
 
-/datum/event/money_hacker/setup()
+/datum/round_event/money_hacker/setup()
 	end_time = world.time + 6000
 	if(length(global.CTeconomy.all_money_accounts))
 		affected_account = pick(global.CTeconomy.all_money_accounts)
@@ -15,7 +15,7 @@ GLOBAL_GLOBL_INIT(account_hack_attempted, FALSE)
 	else
 		kill()
 
-/datum/event/money_hacker/announce()
+/datum/round_event/money_hacker/announce()
 	var/message = "A brute force hack has been detected (in progress since [worldtime2text()]). The target of the attack is: Financial account #[affected_account.account_number], \
 	without intervention this attack will succeed in approximately 10 minutes. Required intervention: temporary suspension of affected accounts until the attack has ceased. \
 	Notifications will be sent as updates occur.<br>"
@@ -46,13 +46,13 @@ GLOBAL_GLOBL_INIT(account_hack_attempted, FALSE)
 						O.show_message(text("\icon[Console] *The Requests Console beeps: 'PRIORITY Alert in [my_department]'"))
 				Console.messages += "<B><FONT color='red'>High Priority message from [my_department]</FONT></B><BR>[sending]"
 
-/datum/event/money_hacker/tick()
+/datum/round_event/money_hacker/tick()
 	if(world.time >= end_time)
 		endWhen = activeFor
 	else
 		endWhen = activeFor + 10
 
-/datum/event/money_hacker/end()
+/datum/round_event/money_hacker/end()
 	var/message
 	if(affected_account && !affected_account)
 		//hacker wins

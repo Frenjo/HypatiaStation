@@ -1,4 +1,4 @@
-/datum/event/storm/electrical_large
+/datum/round_event/storm/electrical_large
 	startWhen = 1
 	endWhen = 6
 
@@ -8,15 +8,15 @@
 	var/list/epicentres = list()
 	var/list/possible_epicentres = list()
 
-/datum/event/storm/electrical_large/setup()
+/datum/round_event/storm/electrical_large/setup()
 	for_no_type_check(var/obj/effect/landmark/new_epicentre, GLOBL.landmark_list)
 		if(new_epicentre.name == "lightsout" && !(new_epicentre in epicentres))
 			possible_epicentres.Add(new_epicentre)
 
-/datum/event/storm/electrical_large/announce()
+/datum/round_event/storm/electrical_large/announce()
 	command_alert("A severe electrical storm has been detected in your area, please repair potential electronic overloads.", "Electrical Storm Alert")
 
-/datum/event/storm/electrical_large/start()
+/datum/round_event/storm/electrical_large/start()
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		var/turf/T = GET_TURF(H)
 		if(isnull(T))
@@ -31,7 +31,7 @@
 		if(ishuman(H))
 			H.client?.screen |= GLOBL.global_hud.electrical_storm
 
-/datum/event/storm/electrical_large/tick()
+/datum/round_event/storm/electrical_large/tick()
 	if(length(possible_epicentres))
 		var/obj/effect/landmark/epicentre = pick(possible_epicentres)
 		possible_epicentres.Remove(epicentre)
@@ -65,7 +65,7 @@
 		if(ishuman(H))
 			H.client?.screen |= GLOBL.global_hud.electrical_storm
 
-/datum/event/storm/electrical_large/end()
+/datum/round_event/storm/electrical_large/end()
 	command_alert("The station has passed the electrical storm.", "Electrical Storm Alert")
 
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)

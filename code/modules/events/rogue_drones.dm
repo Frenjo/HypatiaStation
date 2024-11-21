@@ -1,10 +1,10 @@
-/datum/event/rogue_drone
+/datum/round_event/rogue_drone
 	startWhen = 10
 	endWhen = 1000
 
 	var/list/mob/living/simple/hostile/retaliate/malf_drone/drones_list = list()
 
-/datum/event/rogue_drone/start()
+/datum/round_event/rogue_drone/start()
 	//spawn them at the same place as carp
 	var/list/possible_spawns = list()
 	for_no_type_check(var/obj/effect/landmark/C, GLOBL.landmark_list)
@@ -23,7 +23,7 @@
 		if(prob(25))
 			D.disabled = rand(15, 60)
 
-/datum/event/rogue_drone/announce()
+/datum/round_event/rogue_drone/announce()
 	var/msg
 	if(prob(33))
 		msg = "A combat drone wing operating out of the NMV Icarus has failed to return from a sweep of this sector, if any are sighted approach with caution."
@@ -33,10 +33,10 @@
 		msg = "Unidentified hackers have targetted a combat drone wing deployed from the NMV Icarus. If any are sighted in the area, approach with caution."
 	command_alert(msg, "Rogue drone alert")
 
-/datum/event/rogue_drone/tick()
+/datum/round_event/rogue_drone/tick()
 	return
 
-/datum/event/rogue_drone/end()
+/datum/round_event/rogue_drone/end()
 	var/num_recovered = 0
 	for_no_type_check(var/mob/living/simple/hostile/retaliate/malf_drone/D, drones_list)
 		make_sparks(3, FALSE, D.loc)

@@ -1,6 +1,6 @@
-GLOBAL_GLOBL_LIST_INIT(allEvents, SUBTYPESOF(/datum/event))
-GLOBAL_GLOBL_LIST_INIT(potentialRandomEvents, SUBTYPESOF(/datum/event))
-//var/list/potentialRandomEvents = typesof(/datum/event) - /datum/event - /datum/event/spider_infestation - /datum/event/alien_infestation
+GLOBAL_GLOBL_LIST_INIT(allEvents, SUBTYPESOF(/datum/round_event))
+GLOBAL_GLOBL_LIST_INIT(potentialRandomEvents, SUBTYPESOF(/datum/round_event))
+//var/list/potentialRandomEvents = typesof(/datum/round_event) - /datum/round_event - /datum/round_event/spider_infestation - /datum/round_event/alien_infestation
 
 GLOBAL_GLOBL_INIT(eventTimeLower, 12000)	//20 minutes
 GLOBAL_GLOBL_INIT(eventTimeUpper, 24000)	//40 minutes

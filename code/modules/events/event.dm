@@ -1,4 +1,4 @@
-/datum/event	//NOTE: Times are measured in master controller ticks!
+/datum/round_event	//NOTE: Times are measured in master controller ticks!
 	var/startWhen = 0		// When in the lifetime to call start().
 	var/announceWhen = 0	// When in the lifetime to call announce().
 	var/endWhen = 0			// When in the lifetime the event should end.
@@ -10,26 +10,26 @@
 //Allows you to setup your event, such as randomly
 //setting the startWhen and or announceWhen variables.
 //Only called once.
-/datum/event/proc/setup()
+/datum/round_event/proc/setup()
 	return
 
 //Called when the tick is equal to the startWhen variable.
 //Allows you to start before announcing or vice versa.
 //Only called once.
-/datum/event/proc/start()
+/datum/round_event/proc/start()
 	return
 
 //Called when the tick is equal to the announceWhen variable.
 //Allows you to announce before starting or vice versa.
 //Only called once.
-/datum/event/proc/announce()
+/datum/round_event/proc/announce()
 	return
 
 //Called on or after the tick counter is equal to startWhen.
 //You can include code related to your event or add your own
 //time stamped events.
 //Called more than once.
-/datum/event/proc/tick()
+/datum/round_event/proc/tick()
 	return
 
 //Called on or after the tick is equal or more than endWhen
@@ -38,12 +38,12 @@
 //the activeFor variable.
 //For example: if(activeFor == myOwnVariable + 30) doStuff()
 //Only called once.
-/datum/event/proc/end()
+/datum/round_event/proc/end()
 	return
 
 //Do not override this proc, instead use the appropiate procs.
 //This proc will handle the calls to the appropiate procs.
-/datum/event/proc/process()
+/datum/round_event/proc/process()
 
 	if(activeFor > startWhen && activeFor < endWhen)
 		tick()
@@ -66,12 +66,12 @@
 //Garbage collects the event by removing it from the global events list,
 //which should be the only place it's referenced.
 //Called when start(), announce() and end() has all been called.
-/datum/event/proc/kill()
+/datum/round_event/proc/kill()
 	GLOBL.events.Remove(src)
 
 //Adds the event to the global events list, and removes it from the list
 //of potential events.
-/datum/event/New()
+/datum/round_event/New()
 	setup()
 	GLOBL.events.Add(src)
 	/*if(oneShot)

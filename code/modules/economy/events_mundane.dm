@@ -1,8 +1,8 @@
 
-/datum/event/mundane_news
+/datum/round_event/mundane_news
 	endWhen = 10
 
-/datum/event/mundane_news/announce()
+/datum/round_event/mundane_news/announce()
 	var/decl/trade_destination/affected_dest = GET_DECL_INSTANCE(pickweight(global.CTeconomy.weighted_mundane_event_locations))
 	var/event_type = 0
 	if(length(affected_dest.viable_mundane_events))
@@ -131,10 +131,10 @@
 	for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
 		caster.newsAlert("Tau Ceti Daily")
 
-/datum/event/trivial_news
+/datum/round_event/trivial_news
 	endWhen = 10
 
-/datum/event/trivial_news/announce()
+/datum/round_event/trivial_news/announce()
 	//copy-pasted from the admin verbs to submit new newscaster messages
 	var/datum/feed_message/newMsg = new /datum/feed_message
 	newMsg.author = "Editor Mike Hammers"

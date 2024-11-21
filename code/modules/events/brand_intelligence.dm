@@ -1,4 +1,4 @@
-/datum/event/brand_intelligence
+/datum/round_event/brand_intelligence
 	announceWhen	= 21
 	endWhen			= 1000	//Ends when all vending machines are subverted anyway.
 	oneShot			= TRUE
@@ -7,10 +7,10 @@
 	var/list/obj/machinery/vending/infectedVendingMachines = list()
 	var/obj/machinery/vending/originMachine = null
 
-/datum/event/brand_intelligence/announce()
+/datum/round_event/brand_intelligence/announce()
 	command_alert("Rampant brand intelligence has been detected aboard [station_name()], please stand-by.", "Machine Learning Alert")
 
-/datum/event/brand_intelligence/start()
+/datum/round_event/brand_intelligence/start()
 	for(var/obj/machinery/vending/V in GLOBL.machines)
 		if(isnotstationlevel(V.z))
 			continue
@@ -25,7 +25,7 @@
 	originMachine.shut_up = FALSE
 	originMachine.shoot_inventory = TRUE
 
-/datum/event/brand_intelligence/tick()
+/datum/round_event/brand_intelligence/tick()
 	if(!length(vendingMachines) || isnull(originMachine) || originMachine.shut_up)	//if every machine is infected, or if the original vending machine is missing or has it's voice switch flipped
 		end()
 		kill()
@@ -48,7 +48,7 @@
 					"Advertising is legalized lying! But don't let that put you off our great deals!", \
 					"You don't want to buy anything? Yeah, well I didn't want to buy your mom either."))
 
-/datum/event/brand_intelligence/end()
+/datum/round_event/brand_intelligence/end()
 	for_no_type_check(var/obj/machinery/vending/infectedMachine, infectedVendingMachines)
 		infectedMachine.shut_up = TRUE
 		infectedMachine.shoot_inventory = FALSE

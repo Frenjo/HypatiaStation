@@ -1,4 +1,4 @@
-/datum/event/storm/electrical
+/datum/round_event/storm/electrical
 	startWhen = 1
 	endWhen = 1
 
@@ -8,15 +8,15 @@
 	var/list/epicentres = list()
 	var/list/possible_epicentres = list()
 
-/datum/event/storm/electrical/setup()
+/datum/round_event/storm/electrical/setup()
 	for_no_type_check(var/obj/effect/landmark/new_epicentre, GLOBL.landmark_list)
 		if(new_epicentre.name == "lightsout" && !(new_epicentre in epicentres))
 			possible_epicentres.Add(new_epicentre)
 
-/datum/event/storm/electrical/announce()
+/datum/round_event/storm/electrical/announce()
 	command_alert("An electrical storm has been detected in your area, please repair potential electronic overloads.", "Electrical Storm Alert")
 
-/datum/event/storm/electrical/start()
+/datum/round_event/storm/electrical/start()
 	if(!length(epicentres))
 		return
 

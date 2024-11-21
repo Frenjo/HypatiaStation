@@ -1,4 +1,4 @@
-/datum/event/pda_spam
+/datum/round_event/pda_spam
 	endWhen = 6000
 
 	var/time_failed = 0
@@ -49,7 +49,7 @@
 		"You have won tickets to the newest thriller THE CULT OF THE SLEEPING ONE!"
 	)
 
-/datum/event/pda_spam/setup()
+/datum/round_event/pda_spam/setup()
 	dating_messages |= "If you will write to me on my email [pick(GLOBL.first_names_female)]@[pick(GLOBL.last_names)].[pick("ru", "ck", "tj", "ur", "nt")] I shall necessarily send you a photo (QuickDating)."
 	beneficiary_messages |= "YOUR FUND HAS BEEN MOVED TO [pick("Salusa", "Segunda", "Cepheus", "Andromeda", "Gruis", "Corona", "Aquila", "ARES", "Asellus")] DEVELOPMENTARY BANK FOR ONWARD REMITTANCE."
 
@@ -59,7 +59,7 @@
 			useMS = MS
 			break
 
-/datum/event/pda_spam/tick()
+/datum/round_event/pda_spam/tick()
 	if(!useMS || !useMS.active)
 		useMS = null
 		if(GLOBL.message_servers)

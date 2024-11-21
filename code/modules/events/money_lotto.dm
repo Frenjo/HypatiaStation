@@ -1,9 +1,9 @@
-/datum/event/money_lotto
+/datum/round_event/money_lotto
 	var/winner_name = "John Smith"
 	var/winner_sum = 0
 	var/deposit_success = 0
 
-/datum/event/money_lotto/start()
+/datum/round_event/money_lotto/start()
 	winner_sum = pick(5000, 10000, 50000, 100000, 500000, 1000000, 1500000)
 	if(length(global.CTeconomy.all_money_accounts))
 		var/datum/money_account/D = pick(global.CTeconomy.all_money_accounts)
@@ -22,7 +22,7 @@
 
 			deposit_success = 1
 
-/datum/event/money_lotto/announce()
+/datum/round_event/money_lotto/announce()
 	var/datum/feed_message/newMsg = new /datum/feed_message
 	newMsg.author = "NanoTrasen Editor"
 	newMsg.is_admin_message = TRUE

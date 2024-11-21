@@ -1,16 +1,16 @@
-/datum/event/viral_outbreak
+/datum/round_event/viral_outbreak
 	var/severity = 1
 
-/datum/event/viral_outbreak/setup()
+/datum/round_event/viral_outbreak/setup()
 	announceWhen = rand(0, 3000)
 	endWhen = announceWhen + 1
 	severity = rand(2, 4)
 
-/datum/event/viral_outbreak/announce()
+/datum/round_event/viral_outbreak/announce()
 	command_alert("Confirmed outbreak of level 7 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert")
 	world << sound('sound/AI/outbreak7.ogg')
 
-/datum/event/viral_outbreak/start()
+/datum/round_event/viral_outbreak/start()
 	var/list/mob/living/carbon/human/candidates = list()	//list of candidate keys
 	for(var/mob/living/carbon/human/G in GLOBL.player_list)
 		if(isnotnull(G.client) && G.stat != DEAD)

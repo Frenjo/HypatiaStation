@@ -1,10 +1,10 @@
-/datum/event/storm/ion_large
+/datum/round_event/storm/ion_large
 	startWhen = 1
 
 	var/bot_emag_chance = 0.5
 	var/list/players = list()
 
-/datum/event/storm/ion_large/setup()
+/datum/round_event/storm/ion_large/setup()
 	endWhen = rand(10, 20)
 
 	for(var/mob/living/carbon/human/player in GLOBL.mob_list)
@@ -12,11 +12,11 @@
 			continue
 		players.Add(player.real_name)
 
-/datum/event/storm/ion_large/announce()
+/datum/round_event/storm/ion_large/announce()
 	world << sound('sound/AI/ionstorm.ogg')
 	command_alert("The station has entered a severe ion storm.  Monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
-/datum/event/storm/ion_large/start()
+/datum/round_event/storm/ion_large/start()
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		var/turf/T = GET_TURF(H)
 		if(isnull(T))
@@ -70,7 +70,7 @@
 		to_chat(target, law)
 		target.add_ion_law(law)
 
-/datum/event/storm/ion_large/tick()
+/datum/round_event/storm/ion_large/tick()
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		var/turf/T = GET_TURF(H)
 		if(isnull(T))
@@ -92,7 +92,7 @@
 			if(prob(bot_emag_chance))
 				bot.Emag()
 
-/datum/event/storm/ion_large/end()
+/datum/round_event/storm/ion_large/end()
 	command_alert("The station has passed the ion storm. Monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
