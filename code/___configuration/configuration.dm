@@ -60,6 +60,7 @@
 	var/static/list/entries_by_category = list()
 
 	// Gamemode.
+	var/static/list/mode_cache = list()
 	var/static/list/mode_names = list()
 	var/static/list/modes = list()			// Allowed modes.
 	var/static/list/votable_modes = list()	// Votable modes.
@@ -155,20 +156,19 @@
 						entry.value = splittext(value, " ")
 
 /configuration/proc/load_gamemodes()
-	for(var/T in SUBTYPESOF(/datum/game_mode))
+	for(var/path in SUBTYPESOF(/datum/game_mode))
 		// I wish I didn't have to instance the game modes in order to look up
 		// their information, but it is the only way (at least that I know of).
-		var/datum/game_mode/M = new T()
-
-		if(isnotnull(M.config_tag))
-			if(!(M.config_tag in modes))	// ensure each mode is added only once
-				log_misc("Adding game mode [M.name] ([M.config_tag]) to configuration.")
-				modes.Add(M.config_tag)
-				mode_names[M.config_tag] = M.name
-				probabilities[M.config_tag] = M.probability
-				if(M.votable)
-					votable_modes.Add(M.config_tag)
-		qdel(M)
+		var/datum/game_mode/mode = new path()
+		if(isnotnull(mode.config_tag))
+			mode_cache[mode.type] = mode
+			if(!(mode.config_tag in modes))	// ensure each mode is added only once
+				log_misc("Adding game mode [mode.name] ([mode.config_tag]) to configuration.")
+				modes.Add(mode.config_tag)
+				mode_names[mode.config_tag] = mode.name
+				probabilities[mode.config_tag] = mode.probability
+				if(mode.votable)
+					votable_modes.Add(mode.config_tag)
 	votable_modes.Add("secret")
 
 	// Loads the gamemode probabilities from their configuration file.
@@ -183,28 +183,23 @@
 	probabilities["extend-a-traitormongous"] = CONFIG_GET(probability_autotraitor)
 
 /configuration/proc/pick_mode(mode_name)
-	// I wish I didn't have to instance the game modes in order to look up
-	// their information, but it is the only way (at least that I know of).
-	for(var/T in SUBTYPESOF(/datum/game_mode))
-		var/datum/game_mode/M = new T()
-		if(M.config_tag && M.config_tag == mode_name)
-			return M
-		qdel(M)
-	return new /datum/game_mode/extended()
+	for(var/path in mode_cache)
+		var/datum/game_mode/mode = mode_cache[path]
+		if(mode.config_tag && mode.config_tag == mode_name)
+			return mode
+	return mode_cache[/datum/game_mode/extended]
 
 /configuration/proc/get_runnable_modes()
 	var/list/datum/game_mode/runnable_modes = list()
-	for(var/T in SUBTYPESOF(/datum/game_mode))
-		var/datum/game_mode/M = new T()
+	for(var/path in mode_cache)
+		var/datum/game_mode/mode = mode_cache[path]
 		//to_world("DEBUG: [T], tag=[M.config_tag], prob=[probabilities[M.config_tag]]")
-		if(!(M.config_tag in modes))
-			qdel(M)
+		if(!(mode.config_tag in modes))
 			continue
-		if(probabilities[M.config_tag] <= 0)
-			qdel(M)
+		if(probabilities[mode.config_tag] <= 0)
 			continue
-		if(M.can_start())
-			runnable_modes[M] = probabilities[M.config_tag]
+		if(mode.can_start())
+			runnable_modes[mode] = probabilities[mode.config_tag]
 			//to_world("DEBUG: runnable_mode\[[length(runnable_modes)]\] = [M.config_tag]")
 	return runnable_modes
 

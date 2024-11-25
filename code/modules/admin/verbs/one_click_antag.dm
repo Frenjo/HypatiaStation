@@ -61,7 +61,7 @@
 	return 0
 
 /datum/admins/proc/make_traitors()
-	var/datum/game_mode/traitor/temp = new /datum/game_mode/traitor()
+	var/datum/game_mode/traitor/temp = global.config.mode_cache[/datum/game_mode/traitor]
 	if(CONFIG_GET(protect_roles_from_antagonist))
 		temp.restricted_jobs.Add(temp.protected_jobs)
 
@@ -76,7 +76,7 @@
 	return 0
 
 /datum/admins/proc/make_changelings()
-	var/datum/game_mode/changeling/temp = new /datum/game_mode/changeling()
+	var/datum/game_mode/changeling/temp = global.config.mode_cache[/datum/game_mode/changeling]
 	if(CONFIG_GET(protect_roles_from_antagonist))
 		temp.restricted_jobs.Add(temp.protected_jobs)
 
@@ -91,7 +91,7 @@
 	return 0
 
 /datum/admins/proc/make_revolutionaries()
-	var/datum/game_mode/revolution/temp = new
+	var/datum/game_mode/revolution/temp = global.config.mode_cache[/datum/game_mode/revolution]
 	if(CONFIG_GET(protect_roles_from_antagonist))
 		temp.restricted_jobs.Add(temp.protected_jobs)
 
@@ -142,7 +142,7 @@
 	return 0
 
 /datum/admins/proc/make_cult()
-	var/datum/game_mode/cult/temp = new /datum/game_mode/cult()
+	var/datum/game_mode/cult/temp = global.config.mode_cache[/datum/game_mode/cult]
 	if(CONFIG_GET(protect_roles_from_antagonist))
 		temp.restricted_jobs.Add(temp.protected_jobs)
 

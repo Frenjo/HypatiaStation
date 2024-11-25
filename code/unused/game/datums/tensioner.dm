@@ -327,7 +327,7 @@ var/global/datum/tension/tension_master
 
 	proc/makeTratiors()
 
-		var/datum/game_mode/traitor/temp = new
+		var/datum/game_mode/traitor/temp = global.config.mode_cache[/datum/game_mode/traitor]
 
 		if(CONFIG_GET(protect_roles_from_antagonist))
 			temp.restricted_jobs += temp.protected_jobs
@@ -365,7 +365,7 @@ var/global/datum/tension/tension_master
 
 	proc/makeChanglings()
 
-		var/datum/game_mode/changeling/temp = new
+		var/datum/game_mode/changeling/temp = global.config.mode_cache[/datum/game_mode/changeling]
 		if(CONFIG_GET(protect_roles_from_antagonist))
 			temp.restricted_jobs += temp.protected_jobs
 
@@ -401,7 +401,7 @@ var/global/datum/tension/tension_master
 
 	proc/makeRevs()
 
-		var/datum/game_mode/revolution/temp = new
+		var/datum/game_mode/revolution/temp = global.config.mode_cache[/datum/game_mode/revolution]
 		if(CONFIG_GET(protect_roles_from_antagonist))
 			temp.restricted_jobs += temp.protected_jobs
 
@@ -471,7 +471,7 @@ var/global/datum/tension/tension_master
 
 	proc/makeCult()
 
-		var/datum/game_mode/cult/temp = new
+		var/datum/game_mode/cult/temp = global.config.mode_cache[/datum/game_mode/cult]
 		if(CONFIG_GET(protect_roles_from_antagonist))
 			temp.restricted_jobs += temp.protected_jobs
 
