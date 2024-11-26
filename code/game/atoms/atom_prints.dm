@@ -44,7 +44,7 @@
 		add_fibers(M)
 
 		// He has no prints!
-		if(mFingerprints in M.mutations)
+		if(MUTATION_NO_FINGERPRINTS in M.mutations)
 			if(last_fingerprints != M.key)
 				hidden_fingerprints.Add("(Has no fingerprints) Real name: [M.real_name], Key: [M.key]")
 				last_fingerprints = M.key

@@ -26,7 +26,7 @@
 		icon_state = "stunbaton"
 
 /obj/item/melee/baton/attack_self(mob/user)
-	if(status && (CLUMSY in user.mutations) && prob(50))
+	if(status && (MUTATION_CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("You grab the [src] on the wrong side."))
 		user.Weaken(30)
 		charges--
@@ -45,7 +45,7 @@
 	add_fingerprint(user)
 
 /obj/item/melee/baton/attack(mob/M, mob/user)
-	if(status && (CLUMSY in user.mutations) && prob(50))
+	if(status && (MUTATION_CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_DANGER("You accidentally hit yourself with the [src]!"))
 		user.Weaken(30)
 		charges--

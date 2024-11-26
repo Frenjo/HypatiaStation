@@ -132,7 +132,7 @@
 	if(mob.mind)
 		if(mob.mind.assigned_role == "Clown")
 			to_chat(mob, "Your training has allowed you to overcome your clownish nature, allowing you to wield weapons without harming yourself.")
-			mob.mutations.Remove(CLUMSY)
+			mob.mutations.Remove(MUTATION_CLUMSY)
 
 	var/obj/item/paper/talisman/supply/T = new(mob)
 	var/list/slots = list(

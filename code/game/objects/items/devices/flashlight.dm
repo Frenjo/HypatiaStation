@@ -47,7 +47,7 @@
 /obj/item/flashlight/attack(mob/living/M, mob/living/user)
 	add_fingerprint(user)
 	if(on && user.zone_sel.selecting == "eyes")
-		if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
+		if(((MUTATION_CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
 		if(!ishuman(user) && !IS_GAME_MODE(/datum/game_mode/monkey)) //don't have dexterity
@@ -83,7 +83,7 @@
 		if(ishuman(M) || ismonkey(M))	//robots and aliens are unaffected
 			if(M.stat == DEAD || M.sdisabilities & BLIND)	//mob is dead or fully blind
 				to_chat(user, SPAN_NOTICE("[M]'s pupils do not react to the light!"))
-			else if(XRAY in M.mutations)	//mob has X-RAY vision
+			else if(MUTATION_XRAY in M.mutations)	//mob has X-RAY vision
 				flick("flash", M.flash) //Yes, you can still get flashed wit X-Ray.
 				to_chat(user, SPAN_NOTICE("[M]'s pupils give an eerie glow!"))
 			else	//they're okay!

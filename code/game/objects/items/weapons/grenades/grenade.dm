@@ -13,7 +13,7 @@
 	var/det_time = 50
 
 /obj/item/grenade/proc/clown_check(mob/living/user)
-	if((CLUMSY in user.mutations) && prob(50))
+	if((MUTATION_CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("Huh? How does this thing work?"))
 
 		activate(user)

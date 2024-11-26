@@ -29,7 +29,7 @@
 	item_color = pick("red", "blue", "green", "purple")
 
 /obj/item/melee/energy/sword/attack_self(mob/living/user)
-	if((CLUMSY in user.mutations) && prob(50))
+	if((MUTATION_CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("You accidentally cut yourself with [src]."))
 		user.take_organ_damage(5, 5)
 	active = !active
@@ -75,7 +75,7 @@
 	force = 10
 
 /obj/item/melee/classic_baton/attack(mob/M, mob/living/user)
-	if((CLUMSY in user.mutations) && prob(50))
+	if((MUTATION_CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("You club yourself over the head."))
 		user.Weaken(3 * force)
 		if(ishuman(user))
@@ -95,7 +95,7 @@
 		if(!..())
 			return
 		playsound(src, "swing_hit", 50, 1, -1)
-		if(M.stuttering < 8 && !(HULK in M.mutations) /*&& (!istype(H:wear_suit, /obj/item/clothing/suit/judgerobe))*/)
+		if(M.stuttering < 8 && !(MUTATION_HULK in M.mutations) /*&& (!istype(H:wear_suit, /obj/item/clothing/suit/judgerobe))*/)
 			M.stuttering = 8
 		M.Stun(8)
 		M.Weaken(8)
@@ -178,7 +178,7 @@
 
 /obj/item/melee/telebaton/attack(mob/target, mob/living/user)
 	if(on)
-		if((CLUMSY in user.mutations) && prob(50))
+		if((MUTATION_CLUMSY in user.mutations) && prob(50))
 			to_chat(user, SPAN_WARNING("You club yourself over the head."))
 			user.Weaken(3 * force)
 			if(ishuman(user))
@@ -250,7 +250,7 @@
 		return 0
 
 /obj/item/shield/energy/attack_self(mob/living/user)
-	if((CLUMSY in user.mutations) && prob(50))
+	if((MUTATION_CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("You beat yourself in the head with [src]."))
 		user.take_organ_damage(5)
 	active = !active

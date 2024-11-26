@@ -61,7 +61,7 @@
 		return
 
 	if(user.a_intent == "hurt" && ismob(target))
-		if((CLUMSY in user.mutations) && prob(50))
+		if((MUTATION_CLUMSY in user.mutations) && prob(50))
 			target = user
 		syringestab(target, user)
 		return
@@ -85,7 +85,7 @@
 					if(!T.dna)
 						to_chat(user, "You are unable to locate any blood. (To be specific, your target seems to be missing their DNA datum.)")
 						return
-					if(NOCLONE in T.mutations) //target done been et, no more blood in him
+					if(MUTATION_NO_CLONE in T.mutations) //target done been et, no more blood in him
 						to_chat(user, SPAN_WARNING("You are unable to locate any blood."))
 						return
 

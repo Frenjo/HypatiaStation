@@ -202,7 +202,7 @@
 	if(suiciding)
 		msg += "[SPAN_WARNING("[t_He] appears to have commited suicide... there is no hope of recovery.")]\n"
 
-	if(mSmallsize in mutations)
+	if(MUTATION_SMALL_SIZE in mutations)
 		msg += "[t_He] [t_is] small halfling!\n"
 
 	var/distance = get_dist(usr, src)

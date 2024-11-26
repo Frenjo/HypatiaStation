@@ -70,7 +70,7 @@
 	if(isliving(M))
 		M.radiation += rand(5,20)
 
-	if (!(NOCLONE in M.mutations)) // prevents drained people from having their DNA changed
+	if (!(MUTATION_NO_CLONE in M.mutations)) // prevents drained people from having their DNA changed
 		if (buf.types & DNA2_BUF_UI)
 			if (!block) //isolated block?
 				M.UpdateAppearance(buf.dna.UI.Copy())

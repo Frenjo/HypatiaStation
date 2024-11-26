@@ -16,7 +16,7 @@
 
 /obj/structure/attack_hand(mob/user)
 	if(breakable)
-		if(HULK in user.mutations)
+		if(MUTATION_HULK in user.mutations)
 			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
 			visible_message(SPAN_DANGER("[user] smashes the [src] apart!"))
 			qdel(src)

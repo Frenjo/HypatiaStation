@@ -67,15 +67,15 @@
 
 /mob/living/carbon/monkey/handle_mutations_and_radiation()
 	if(getFireLoss())
-		if((COLD_RESISTANCE in mutations) || prob(50))
+		if((MUTATION_COLD_RESISTANCE in mutations) || prob(50))
 			switch(getFireLoss())
 				if(1 to 50)
 					adjustFireLoss(-1)
 				if(51 to 100)
 					adjustFireLoss(-5)
 
-	if((HULK in mutations) && health <= 25)
-		mutations.Remove(HULK)
+	if((MUTATION_HULK in mutations) && health <= 25)
+		mutations.Remove(MUTATION_HULK)
 		to_chat(src, SPAN_WARNING("You suddenly feel very weak."))
 		Weaken(3)
 		emote("collapse")
@@ -157,7 +157,7 @@
 		if(HAZARD_LOW_PRESSURE to WARNING_LOW_PRESSURE)
 			pressure_alert = -1
 		else
-			if(!(COLD_RESISTANCE in mutations))
+			if(!(MUTATION_COLD_RESISTANCE in mutations))
 				adjustBruteLoss(LOW_PRESSURE_DAMAGE)
 				pressure_alert = -2
 			else
@@ -542,7 +542,7 @@
 	return 1
 
 /mob/living/carbon/monkey/proc/handle_regular_hud_updates()
-	if(stat == DEAD || (XRAY in mutations))
+	if(stat == DEAD || (MUTATION_XRAY in mutations))
 		sight |= SEE_TURFS
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS

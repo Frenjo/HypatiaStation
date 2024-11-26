@@ -21,31 +21,31 @@
 #define UNIDNASIZE 13
 
 // Generic mutations:
-#define	TK				1
-#define COLD_RESISTANCE	2
-#define XRAY			3
-#define HULK			4
-#define CLUMSY			5
-#define FAT				6
-#define HUSK			7
-#define NOCLONE			8
+#define	MUTATION_TELEKINESIS		1
+#define MUTATION_COLD_RESISTANCE	2
+#define MUTATION_XRAY				3
+#define MUTATION_HULK				4
+#define MUTATION_CLUMSY				5
+#define MUTATION_FAT				6
+#define MUTATION_HUSK				7
+#define MUTATION_NO_CLONE			8
 
 //2spooky
-#define SKELETON	29
-#define PLANT		30
+#define MUTATION_SKELETON	29
+#define MUTATION_PLANT		30
 
 // Other Mutations:
-#define mNobreath		100		// no need to breathe
-#define mRemote			101		// remote viewing
-#define mRegen			102		// health regen
-#define mRun			103		// no slowdown
-#define mRemotetalk		104		// remote talking
-#define mMorph			105		// changing appearance
-#define mBlend			106		// nothing (seriously nothing)
-#define mHallucination	107		// hallucinations
-#define mFingerprints	108		// no fingerprints
-#define mShock			109		// insulated hands
-#define mSmallsize		110		// table climbing
+#define MUTATION_NO_BREATHE			100		// no need to breathe
+#define MUTATION_REMOTE_VIEW		101		// remote viewing
+#define MUTATION_REGENERATE			102		// health regen
+#define MUTATION_NO_SLOWDOWN		103		// no slowdown
+#define MUTATION_REMOTE_TALK		104		// remote talking
+#define MUTATION_MORPH				105		// changing appearance
+#define MUTATION_BLEND				106		// nothing (seriously nothing)
+#define MUTATION_HALLUCINATION		107		// hallucinations
+#define MUTATION_NO_FINGERPRINTS	108		// no fingerprints
+#define MUTATION_SHOCK_PROOF		109		// insulated hands
+#define MUTATION_SMALL_SIZE			110		// table climbing
 
 // Disabilities.
 #define NEARSIGHTED	BITFLAG(0)

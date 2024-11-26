@@ -521,7 +521,7 @@
 
 			attacked += 10
 			if (prob(90))
-				if (HULK in M.mutations)
+				if (MUTATION_HULK in M.mutations)
 					damage += 5
 					if(victim)
 						victim = null

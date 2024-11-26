@@ -12,7 +12,7 @@
 			nutrition -= HUNGER_FACTOR/10
 			if(IS_RUNNING(src))
 				nutrition -= HUNGER_FACTOR / 10
-		if((FAT in mutations) && IS_RUNNING(src) && bodytemperature <= 360)
+		if((MUTATION_FAT in mutations) && IS_RUNNING(src) && bodytemperature <= 360)
 			bodytemperature += 2
 
 		// Moving around increases germ_level faster
@@ -187,7 +187,7 @@
 				if(status == "")
 					status = "OK"
 				show_message("\t [status == "OK" ? "\blue " : "\red "]My [org.display_name] is [status].", 1)
-			if((SKELETON in H.mutations) && isnull(H.wear_uniform) && isnull(H.wear_suit))
+			if((MUTATION_SKELETON in H.mutations) && isnull(H.wear_uniform) && isnull(H.wear_suit))
 				H.play_xylophone()
 		else
 			var/t_him = "it"

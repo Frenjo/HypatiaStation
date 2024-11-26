@@ -102,7 +102,7 @@
 	..()
 
 /obj/effect/alien/resin/attack_hand()
-	if(HULK in usr.mutations)
+	if(MUTATION_HULK in usr.mutations)
 		usr.visible_message(
 			SPAN_WARNING("[usr] destroys \the [src]!"),
 			SPAN_INFO("You easily destroy \the [src].")

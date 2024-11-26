@@ -103,7 +103,7 @@
 			if(!istype(T)) return
 			if(!T.dna)
 				return
-			if(NOCLONE in T.mutations)
+			if(MUTATION_NO_CLONE in T.mutations)
 				return
 
 			if(isnotnull(T.species) && HAS_SPECIES_FLAGS(T.species, SPECIES_FLAG_NO_BLOOD))

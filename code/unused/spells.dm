@@ -492,13 +492,13 @@
 	usr.say("BIRUZ BENNAR")
 
 	usr << text("\blue You feel strong! You feel pressure building behind your eyes!")
-	if (!(HULK in usr.mutations))
-		usr.mutations.Add(HULK)
+	if (!(MUTATION_HULK in usr.mutations))
+		usr.mutations.Add(MUTATION_HULK)
 	if (!(LASER in usr.mutations))
 		usr.mutations.Add(LASER)
 	spawn (300)
 		if (LASER in usr.mutations) usr.mutations.Remove(LASER)
-		if (HULK in usr.mutations)  usr.mutations.Remove(HULK)
+		if (MUTATION_HULK in usr.mutations)  usr.mutations.Remove(MUTATION_HULK)
 	return
 
 //BODY SWAP /N

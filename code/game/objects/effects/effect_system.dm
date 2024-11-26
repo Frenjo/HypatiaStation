@@ -639,7 +639,7 @@ steam.start() -- spawns the effect
 	return TRUE
 
 /obj/structure/foamedmetal/attack_hand(mob/user)
-	if(HULK in user.mutations || prob(75 - metal * 25))
+	if(MUTATION_HULK in user.mutations || prob(75 - metal * 25))
 		to_chat(user, SPAN_INFO("You smash through the metal foam wall."))
 		for(var/mob/O in oviewers(user))
 			if(O.client && !O.blinded)

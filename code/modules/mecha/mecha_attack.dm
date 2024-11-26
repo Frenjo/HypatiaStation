@@ -27,7 +27,7 @@
 			)
 			log_append_to_last("Armour saved.")
 		return
-	else if((HULK in user.mutations) && !prob(deflect_chance))
+	else if((MUTATION_HULK in user.mutations) && !prob(deflect_chance))
 		take_damage(15)
 		check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
 		user.visible_message(

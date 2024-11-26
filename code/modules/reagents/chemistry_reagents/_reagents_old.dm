@@ -1642,7 +1642,7 @@ datum
 
 			on_mob_life(var/mob/living/M)
 				if(!M) M = holder.my_atom
-				if (FAT in M.mutations)
+				if (MUTATION_FAT in M.mutations)
 					M.gib()
 				..()
 				return

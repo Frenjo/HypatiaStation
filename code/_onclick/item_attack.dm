@@ -139,7 +139,7 @@
 	/////////////////////////
 
 	var/power = force
-	if(HULK in user.mutations)
+	if(MUTATION_HULK in user.mutations)
 		power *= 2
 
 	if(!ishuman(M))
@@ -243,7 +243,7 @@
 							var/turf/open/location = M.loc
 							location.add_blood_floor(M)
 			if("fire")
-				if(!(COLD_RESISTANCE in M.mutations))
+				if(!(MUTATION_COLD_RESISTANCE in M.mutations))
 					M.take_organ_damage(0, power)
 					to_chat(M, "Aargh it burns!")
 		M.updatehealth()

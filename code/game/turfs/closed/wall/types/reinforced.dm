@@ -34,7 +34,7 @@
 	ChangeTurf(/turf/open/floor/plating/metal)
 
 /turf/closed/wall/reinforced/attack_hand(mob/user)
-	if(HULK in user.mutations)
+	if(MUTATION_HULK in user.mutations)
 		if(prob(10) || rotting)
 			to_chat(user, SPAN_INFO("You smash through the wall."))
 			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))

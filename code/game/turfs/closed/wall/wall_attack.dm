@@ -1,8 +1,8 @@
 // Interactions
 /turf/closed/wall/attack_paw(mob/user)
-	if((HULK in user.mutations))
+	if((MUTATION_HULK in user.mutations))
 		usr.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-	if((HULK in user.mutations) || user.get_species() == SPECIES_OBSEDAI)
+	if((MUTATION_HULK in user.mutations) || user.get_species() == SPECIES_OBSEDAI)
 		if(prob(40))
 			to_chat(user, SPAN_INFO("You smash through the wall."))
 			dismantle_wall(1)
@@ -32,9 +32,9 @@
 	to_chat(M, SPAN_INFO("You push the wall but nothing happens!"))
 
 /turf/closed/wall/attack_hand(mob/user)
-	if((HULK in user.mutations))
+	if((MUTATION_HULK in user.mutations))
 		usr.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-	if((HULK in user.mutations) || user.get_species() == SPECIES_OBSEDAI)
+	if((MUTATION_HULK in user.mutations) || user.get_species() == SPECIES_OBSEDAI)
 		if(prob(40))
 			to_chat(user, SPAN_INFO("You smash through the wall."))
 			dismantle_wall(1)

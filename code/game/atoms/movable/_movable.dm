@@ -98,7 +98,7 @@
 	throwing = THROW_WEAK
 
 	if(isnotnull(usr))
-		if(HULK in usr.mutations)
+		if(MUTATION_HULK in usr.mutations)
 			throwing = THROW_STRONG // really strong throw!
 
 	var/dist_x = abs(target.x - src.x)

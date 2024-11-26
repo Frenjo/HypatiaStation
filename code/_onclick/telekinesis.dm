@@ -39,13 +39,13 @@
 /obj/item/attack_tk(mob/user)
 	if(user.stat || !isturf(loc))
 		return
-	if((TK in user.mutations) && !user.get_active_hand()) // both should already be true to get here
+	if((MUTATION_TELEKINESIS in user.mutations) && !user.get_active_hand()) // both should already be true to get here
 		var/obj/item/tk_grab/O = new /obj/item/tk_grab(src)
 		user.put_in_active_hand(O)
 		O.host = user
 		O.focus_object(src)
 	else
-		warning("Strange attack_tk(): TK([TK in user.mutations]) empty hand([!user.get_active_hand()])")
+		warning("Strange attack_tk(): TK([MUTATION_TELEKINESIS in user.mutations]) empty hand([!user.get_active_hand()])")
 
 
 /mob/attack_tk(mob/user)
@@ -100,7 +100,7 @@
 	if(isnull(host) || host != user)
 		qdel(src)
 		return
-	if(!(TK in host.mutations))
+	if(!(MUTATION_TELEKINESIS in host.mutations))
 		qdel(src)
 		return
 	if(isobj(target) && !isturf(target.loc))
@@ -197,7 +197,7 @@
 /*
 /obj/item/tk_grab/equip_to_slot_or_del(obj/item/W, slot, del_on_fail = 1)
 	if(iscarbon(user))
-		if(user:mutations & TK && get_dist(source, user) <= 7)
+		if(user:mutations & MUTATION_TELEKINESIS && get_dist(source, user) <= 7)
 			if(user:get_active_hand())
 				return 0
 			var/X = source:x

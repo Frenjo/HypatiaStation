@@ -16,11 +16,11 @@
 
 	// Check if they have a functioning hand.
 	var/datum/organ/external/E = user.organs_by_name["l_hand"]
-	if(E && !(E.status & ORGAN_DESTROYED))
+	if(isnotnull(E) && !(E.status & ORGAN_DESTROYED))
 		return TRUE
 
 	E = user.organs_by_name["r_hand"]
-	if(E && !(E.status & ORGAN_DESTROYED))
+	if(isnotnull(E) && !(E.status & ORGAN_DESTROYED))
 		return TRUE
 
 	return FALSE

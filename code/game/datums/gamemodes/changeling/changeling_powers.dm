@@ -87,7 +87,7 @@
 		to_chat(src, SPAN_WARNING("[T] is not compatible with our biology."))
 		return
 
-	if(NOCLONE in T.mutations)
+	if(MUTATION_NO_CLONE in T.mutations)
 		to_chat(src, SPAN_WARNING("This creature's DNA is ruined beyond useability!"))
 		return
 
@@ -766,7 +766,7 @@ var/list/datum/dna/hivemind_bank = list()
 	var/mob/living/carbon/T = changeling_sting(40, /mob/proc/changeling_transformation_sting)
 	if(!T)
 		return 0
-	if((HUSK in T.mutations) || (!ishuman(T) && !ismonkey(T)))
+	if((MUTATION_HUSK in T.mutations) || (!ishuman(T) && !ismonkey(T)))
 		to_chat(src, SPAN_WARNING("Our sting appears ineffective against its DNA."))
 		return 0
 	T.visible_message(SPAN_WARNING("[T] transforms!"))

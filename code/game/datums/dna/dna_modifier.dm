@@ -408,7 +408,7 @@
 			"radiationLevel" = null
 		)
 	else
-		var/is_viable_subject = !(NOCLONE in connected.occupant.mutations) && isnotnull(connected.occupant.dna)
+		var/is_viable_subject = !(MUTATION_NO_CLONE in connected.occupant.mutations) && isnotnull(connected.occupant.dna)
 		occupant_data = list(
 			"name" = connected.occupant.name,
 			"stat" = connected.occupant.stat,
@@ -751,7 +751,7 @@
 			return 1
 
 		if(bufferOption == "transfer")
-			if(!src.connected.occupant || (NOCLONE in src.connected.occupant.mutations) || !src.connected.occupant.dna)
+			if(!src.connected.occupant || (MUTATION_NO_CLONE in src.connected.occupant.mutations) || !src.connected.occupant.dna)
 				return
 
 			irradiating = 2

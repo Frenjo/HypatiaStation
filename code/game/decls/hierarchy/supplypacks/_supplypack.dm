@@ -45,7 +45,7 @@
 //NEW NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 */
 /decl/supply_method/proc/spawn_contents(decl/hierarchy/supply_pack/sp, location)
-	if(!sp || !location)
+	if(isnull(sp) || isnull(location))
 		return
 	. = list()
 	for(var/entry in sp.contains)
@@ -64,7 +64,7 @@
 	. = jointext(., null)
 
 /decl/supply_method/randomised/spawn_contents(decl/hierarchy/supply_pack/sp, location)
-	if(!sp || !location)
+	if(isnull(sp) || isnull(location))
 		return
 	. = list()
 	for(var/j = 1 to sp.num_contained)

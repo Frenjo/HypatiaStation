@@ -130,7 +130,7 @@ var/list/possible_changeling_IDs = list(
 	if(changeling.current.mind)
 		if(changeling.current.mind.assigned_role == "Clown")
 			to_chat(changeling.current, "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself.")
-			changeling.current.mutations.Remove(CLUMSY)
+			changeling.current.mutations.Remove(MUTATION_CLUMSY)
 
 	if(!CONFIG_GET(objectives_disabled))
 		var/obj_count = 1

@@ -185,7 +185,7 @@
 	return 1
 
 /mob/living/carbon/brain/proc/handle_regular_hud_updates()
-	if(stat == DEAD || (XRAY in mutations))
+	if(stat == DEAD || (MUTATION_XRAY in mutations))
 		sight |= SEE_TURFS
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS

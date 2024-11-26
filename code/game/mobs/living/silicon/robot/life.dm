@@ -133,7 +133,7 @@
 	return 1
 
 /mob/living/silicon/robot/proc/handle_regular_hud_updates()
-	if(stat == DEAD || (XRAY in mutations) || sight_mode & BORGXRAY)
+	if(stat == DEAD || (MUTATION_XRAY in mutations) || sight_mode & BORGXRAY)
 		sight |= SEE_TURFS
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS

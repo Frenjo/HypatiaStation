@@ -276,14 +276,14 @@
 //	M.see_in_dark = 2
 //	M.see_invisible = 0
 
-	if(PLANT in old_mutations)
-		M.mutations.Add(PLANT)
-	if(SKELETON in old_mutations)
-		M.mutations.Add(SKELETON)
-	if(FAT in old_mutations)
-		M.mutations.Add(FAT)
-	if(HUSK in old_mutations)
-		M.mutations.Add(HUSK)
+	if(MUTATION_PLANT in old_mutations)
+		M.mutations.Add(MUTATION_PLANT)
+	if(MUTATION_SKELETON in old_mutations)
+		M.mutations.Add(MUTATION_SKELETON)
+	if(MUTATION_FAT in old_mutations)
+		M.mutations.Add(MUTATION_FAT)
+	if(MUTATION_HUSK in old_mutations)
+		M.mutations.Add(MUTATION_HUSK)
 
 	if(ismuton(NOBREATHBLOCK,M))
 		if(probinj(45,inj) || (mNobreath in old_mutations))
@@ -333,9 +333,9 @@
 
 
 	if (isblockon(getblock(M.dna.struc_enzymes, HULKBLOCK,3),HULKBLOCK))
-		if(probinj(5,inj) || (HULK in old_mutations))
+		if(probinj(5,inj) || (MUTATION_HULK in old_mutations))
 			M << "\blue Your muscles hurt."
-			M.mutations.Add(HULK)
+			M.mutations.Add(MUTATION_HULK)
 	if (isblockon(getblock(M.dna.struc_enzymes, HEADACHEBLOCK,3),HEADACHEBLOCK))
 		M.disabilities |= EPILEPSY
 		M << "\red You get a headache."
@@ -353,31 +353,31 @@
 		M << "\red You start coughing."
 	if (isblockon(getblock(M.dna.struc_enzymes, CLUMSYBLOCK,3),CLUMSYBLOCK))
 		M << "\red You feel lightheaded."
-		M.mutations.Add(CLUMSY)
+		M.mutations.Add(MUTATION_CLUMSY)
 	if (isblockon(getblock(M.dna.struc_enzymes, TWITCHBLOCK,3),TWITCHBLOCK))
 		M.disabilities |= TOURETTES
 		M << "\red You twitch."
 	if (isblockon(getblock(M.dna.struc_enzymes, XRAYBLOCK,3),XRAYBLOCK))
-		if(probinj(30,inj) || (XRAY in old_mutations))
+		if(probinj(30,inj) || (MUTATION_XRAY in old_mutations))
 			M << "\blue The walls suddenly disappear."
 //			M.sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
 //			M.see_in_dark = 8
 //			M.see_invisible = 2
-			M.mutations.Add(XRAY)
+			M.mutations.Add(MUTATION_XRAY)
 	if (isblockon(getblock(M.dna.struc_enzymes, NERVOUSBLOCK,3),NERVOUSBLOCK))
 		M.disabilities |= NERVOUS
 		M << "\red You feel nervous."
 	if (isblockon(getblock(M.dna.struc_enzymes, FIREBLOCK,3),FIREBLOCK))
-		if(probinj(30,inj) || (COLD_RESISTANCE in old_mutations))
+		if(probinj(30,inj) || (MUTATION_COLD_RESISTANCE in old_mutations))
 			M << "\blue Your body feels warm."
-			M.mutations.Add(COLD_RESISTANCE)
+			M.mutations.Add(MUTATION_COLD_RESISTANCE)
 	if (isblockon(getblock(M.dna.struc_enzymes, BLINDBLOCK,3),BLINDBLOCK))
 		M.sdisabilities |= BLIND
 		M << "\red You can't seem to see anything."
 	if (isblockon(getblock(M.dna.struc_enzymes, TELEBLOCK,3),TELEBLOCK))
-		if(probinj(15,inj) || (TK in old_mutations))
+		if(probinj(15,inj) || (MUTATION_TELEKINESIS in old_mutations))
 			M << "\blue You feel smarter."
-			M.mutations.Add(TK)
+			M.mutations.Add(MUTATION_TELEKINESIS)
 	if (isblockon(getblock(M.dna.struc_enzymes, DEAFBLOCK,3),DEAFBLOCK))
 		M.sdisabilities |= DEAF
 		M.ear_deaf = 1

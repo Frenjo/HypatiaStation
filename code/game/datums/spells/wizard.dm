@@ -41,7 +41,7 @@
 	range = -1
 	include_user = 1
 
-	mutations = list(LASER, HULK)
+	mutations = list(LASER, MUTATION_HULK)
 	duration = 300
 
 

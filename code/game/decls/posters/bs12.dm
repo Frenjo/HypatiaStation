@@ -45,9 +45,9 @@
 	icon_state = "bsposter9"
 
 /decl/poster_design/bay_10
-	icon_state = "bsposter10"
 	name = "Don't Panic"
 	desc = "This particular one depicts some sort of star in a grimace. The \"Don't Panic\" is written in big, friendly letters."
+	icon_state = "bsposter10"
 
 /decl/poster_design/bay_11
 	name = "Underwater Laboratory"

@@ -144,7 +144,7 @@
 				"You hear the tinkle of breaking glass."
 			)
 			if(on && HAS_OBJ_FLAGS(W, OBJ_FLAG_CONDUCT))
-				//if(!user.mutations & COLD_RESISTANCE)
+				//if(!user.mutations & MUTATION_COLD_RESISTANCE)
 				if(prob(12))
 					electrocute_mob(user, GET_AREA(src), src, 0.3)
 			broken()
@@ -168,7 +168,7 @@
 		to_chat(user, "You stick \the [W] into the light socket!")
 		if(powered() && HAS_OBJ_FLAGS(W, OBJ_FLAG_CONDUCT))
 			make_sparks(3, TRUE, src)
-			//if(!user.mutations & COLD_RESISTANCE)
+			//if(!user.mutations & MUTATION_COLD_RESISTANCE)
 			if(prob(75))
 				electrocute_mob(user, GET_AREA(src), src, rand(0.7, 1.0))
 
@@ -219,9 +219,9 @@
 		else
 			prot = TRUE
 
-		if(prot || (COLD_RESISTANCE in user.mutations))
+		if(prot || (MUTATION_COLD_RESISTANCE in user.mutations))
 			to_chat(user, "You remove the light [get_fitting_name()].")
-		else if(TK in user.mutations)
+		else if(MUTATION_TELEKINESIS in user.mutations)
 			to_chat(user, "You telekinetically remove the light [get_fitting_name()].")
 		else
 			to_chat(user, "You try to remove the light [get_fitting_name()], but it's too hot and you don't want to burn your hand.")

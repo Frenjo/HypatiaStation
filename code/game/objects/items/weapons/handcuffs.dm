@@ -21,7 +21,7 @@
 		to_chat(user, SPAN_WARNING("You aren't sure how you could handcuff \the [C]..."))
 		return
 
-	if((CLUMSY in usr.mutations) && prob(50))
+	if((MUTATION_CLUMSY in usr.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("Uh ... how do those things work?!"))
 		if(ishuman(C))
 			if(!C.handcuffed)

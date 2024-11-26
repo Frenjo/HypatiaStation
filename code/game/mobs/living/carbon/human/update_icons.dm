@@ -233,10 +233,10 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 	var/hulk_color_mod = rgb(48,224,40)
 	var/necrosis_color_mod = rgb(10,50,0)
 
-	var/husk = (HUSK in src.mutations)
-	var/fat = (FAT in src.mutations)
-	var/hulk = (HULK in src.mutations)
-	var/skeleton = (SKELETON in src.mutations)
+	var/husk = (MUTATION_HUSK in src.mutations)
+	var/fat = (MUTATION_FAT in src.mutations)
+	var/hulk = (MUTATION_HULK in src.mutations)
+	var/skeleton = (MUTATION_SKELETON in src.mutations)
 
 	var/g = (gender == FEMALE ? "f" : "m")
 	var/has_head = 0
@@ -417,7 +417,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 
 /mob/living/carbon/human/update_mutations(update_icons = 1)
 	var/fat
-	if(FAT in mutations)
+	if(MUTATION_FAT in mutations)
 		fat = "fat"
 
 	var/image/standing	= image("icon" = 'icons/effects/genetics.dmi')
@@ -438,16 +438,16 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 	for(var/mut in mutations)
 		switch(mut)
 			/*
-			if(HULK)
+			if(MUTATION_HULK)
 				if(fat)
 					standing.underlays	+= "hulk_[fat]_s"
 				else
 					standing.underlays	+= "hulk_[g]_s"
 				add_image = 1
-			if(COLD_RESISTANCE)
+			if(MUTATION_COLD_RESISTANCE)
 				standing.underlays	+= "fire[fat]_s"
 				add_image = 1
-			if(TK)
+			if(MUTATION_TELEKINESIS)
 				standing.underlays	+= "telekinesishead[fat]_s"
 				add_image = 1
 			*/
@@ -464,12 +464,12 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 
 /mob/living/carbon/human/proc/update_mutantrace(update_icons = 1)
 	var/fat
-	if(FAT in mutations)
+	if(MUTATION_FAT in mutations)
 		fat = "fat"
 //	var/g = "m"
 //	if (gender == FEMALE)	g = "f"
 //BS12 EDIT
-	var/skeleton = (SKELETON in src.mutations)
+	var/skeleton = (MUTATION_SKELETON in src.mutations)
 	if(skeleton)
 		race_icon = 'icons/mob/human_races/r_skeleton.dmi'
 	else

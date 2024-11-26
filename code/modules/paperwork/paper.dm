@@ -77,7 +77,7 @@
 	set name = "Rename paper"
 	set src in usr
 
-	if((CLUMSY in usr.mutations) && prob(50))
+	if((MUTATION_CLUMSY in usr.mutations) && prob(50))
 		to_chat(usr, SPAN_WARNING("You cut yourself on the paper."))
 		return
 	var/n_name = copytext(sanitize(input(usr, "What would you like to label the paper?", "Paper Labelling", null) as text), 1, MAX_NAME_LEN)

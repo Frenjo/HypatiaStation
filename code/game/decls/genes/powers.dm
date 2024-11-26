@@ -6,7 +6,7 @@
 /decl/gene/basic/nobreath
 	name = "No Breathing"
 	activation_messages = list("You feel no need to breathe.")
-	mutation = mNobreath
+	mutation = MUTATION_NO_BREATHE
 
 /decl/gene/basic/nobreath/New()
 	. = ..()
@@ -16,7 +16,7 @@
 /decl/gene/basic/remoteview
 	name = "Remote Viewing"
 	activation_messages = list("Your mind expands.")
-	mutation = mRemote
+	mutation = MUTATION_REMOTE_VIEW
 
 /decl/gene/basic/remoteview/New()
 	. = ..()
@@ -30,7 +30,7 @@
 /decl/gene/basic/regenerate
 	name = "Regenerate"
 	activation_messages = list("You feel better.")
-	mutation = mRegen
+	mutation = MUTATION_REGENERATE
 
 /decl/gene/basic/regenerate/New()
 	. = ..()
@@ -40,7 +40,7 @@
 /decl/gene/basic/increaserun
 	name = "Super Speed"
 	activation_messages = list("Your leg muscles pulsate.")
-	mutation = mRun
+	mutation = MUTATION_NO_SLOWDOWN
 
 /decl/gene/basic/increaserun/New()
 	. = ..()
@@ -50,7 +50,7 @@
 /decl/gene/basic/remotetalk
 	name = "Telepathy"
 	activation_messages = list("You expand your mind outwards.")
-	mutation = mRemotetalk
+	mutation = MUTATION_REMOTE_TALK
 
 /decl/gene/basic/remotetalk/New()
 	. = ..()
@@ -64,7 +64,7 @@
 /decl/gene/basic/morph
 	name = "Morph"
 	activation_messages = list("Your skin feels strange.")
-	mutation = mMorph
+	mutation = MUTATION_MORPH
 
 /decl/gene/basic/morph/New()
 	. = ..()
@@ -90,7 +90,7 @@
 		return !(/decl/gene/basic/cold_resist in M.active_genes)
 	// Probability check
 	var/_prob = 15
-	if(COLD_RESISTANCE in M.mutations)
+	if(MUTATION_COLD_RESISTANCE in M.mutations)
 		_prob = 5
 	if(probinj(_prob, (flags & MUTCHK_FORCED)))
 		return TRUE
@@ -103,7 +103,7 @@
 /decl/gene/basic/cold_resist
 	name = "Cold Resistance"
 	activation_messages = list("Your body is filled with warmth.")
-	mutation = COLD_RESISTANCE
+	mutation = MUTATION_COLD_RESISTANCE
 
 /decl/gene/basic/cold_resist/New()
 	. = ..()
@@ -127,7 +127,7 @@
 /decl/gene/basic/noprints
 	name = "No Prints"
 	activation_messages = list("Your fingers feel numb.")
-	mutation = mFingerprints
+	mutation = MUTATION_NO_FINGERPRINTS
 
 /decl/gene/basic/noprints/New()
 	. = ..()
@@ -137,7 +137,7 @@
 /decl/gene/basic/noshock
 	name = "Shock Immunity"
 	activation_messages = list("Your skin feels strange.")
-	mutation = mShock
+	mutation = MUTATION_SHOCK_PROOF
 
 /decl/gene/basic/noshock/New()
 	. = ..()
@@ -147,7 +147,7 @@
 /decl/gene/basic/midget
 	name = "Midget"
 	activation_messages = list("Your skin feels rubbery.")
-	mutation = mSmallsize
+	mutation = MUTATION_SMALL_SIZE
 
 /decl/gene/basic/midget/New()
 	. = ..()
@@ -155,7 +155,7 @@
 
 /decl/gene/basic/midget/can_activate(mob/M, flags)
 	// Can't be big and small.
-	if(HULK in M.mutations)
+	if(MUTATION_HULK in M.mutations)
 		return FALSE
 	return ..(M, flags)
 
@@ -171,7 +171,7 @@
 /decl/gene/basic/hulk
 	name = "Hulk"
 	activation_messages = list("Your muscles hurt.")
-	mutation = HULK
+	mutation = MUTATION_HULK
 
 /decl/gene/basic/hulk/New()
 	. = ..()
@@ -179,7 +179,7 @@
 
 /decl/gene/basic/hulk/can_activate(mob/M, flags)
 	// Can't be big and small.
-	if(mSmallsize in M.mutations)
+	if(MUTATION_SMALL_SIZE in M.mutations)
 		return 0
 	return ..(M, flags)
 
@@ -193,7 +193,7 @@
 	if(!istype(M))
 		return
 	if(M.health <= 25)
-		M.mutations.Remove(HULK)
+		M.mutations.Remove(MUTATION_HULK)
 		M.update_mutations()		//update our mutation overlays
 		to_chat(M, SPAN_WARNING("You suddenly feel very weak."))
 		M.Weaken(3)
@@ -203,7 +203,7 @@
 /decl/gene/basic/xray
 	name = "X-Ray Vision"
 	activation_messages = list("The walls suddenly disappear.")
-	mutation = XRAY
+	mutation = MUTATION_XRAY
 
 /decl/gene/basic/xray/New()
 	. = ..()
@@ -213,7 +213,7 @@
 /decl/gene/basic/tk
 	name = "Telekenesis"
 	activation_messages = list("You feel smarter.")
-	mutation = TK
+	mutation = MUTATION_TELEKINESIS
 	activation_prob = 15
 
 /decl/gene/basic/tk/New()

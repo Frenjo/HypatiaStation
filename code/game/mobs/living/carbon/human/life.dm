@@ -136,11 +136,11 @@
 		return
 
 	if(getFireLoss())
-		if((COLD_RESISTANCE in mutations) || prob(1))
+		if((MUTATION_COLD_RESISTANCE in mutations) || prob(1))
 			heal_organ_damage(0, 1)
 
 	// DNA2 - Gene processing.
-	// The HULK stuff that was here is now in the hulk gene.
+	// The MUTATION_HULK stuff that was here is now in the hulk gene.
 	for(var/gene_type in GLOBL.all_dna_genes)
 		var/decl/gene/gene = GLOBL.all_dna_genes[gene_type]
 		if(!gene.block)
@@ -303,7 +303,7 @@
 	else if(adjusted_pressure >= species.hazard_low_pressure)
 		pressure_alert = -1
 
-		if(!(COLD_RESISTANCE in mutations))
+		if(!(MUTATION_COLD_RESISTANCE in mutations))
 			take_overall_damage(brute = LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
 			pressure_alert = -2
 		else
@@ -689,7 +689,7 @@
 		adjustOxyLoss(-5)
 
 	// Hot air hurts :(
-	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in mutations))
+	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(MUTATION_COLD_RESISTANCE in mutations))
 		if(status_flags & GODMODE)
 			return 1
 
@@ -867,7 +867,7 @@
 	return thermal_protection_flags
 
 /mob/living/carbon/human/proc/get_cold_protection(temperature)
-	if(COLD_RESISTANCE in mutations)
+	if(MUTATION_COLD_RESISTANCE in mutations)
 		return 1 //Fully protected from the cold.
 
 	temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
@@ -1009,10 +1009,10 @@
 			heal_overall_damage(1, 1)
 
 /*	//The fucking FAT mutation is the dumbest shit ever. It makes the code so difficult to work with
-	if(FAT in mutations)
+	if(MUTATION_FAT in mutations)
 		if(overeatduration < 100)
 			src << "\blue You feel fit again!"
-			mutations.Remove(FAT)
+			mutations.Remove(MUTATION_FAT)
 			update_mutantrace(0)
 			update_mutations(0)
 			update_inv_wear_uniform(0)
@@ -1020,7 +1020,7 @@
 	else
 		if(overeatduration > 500)
 			src << "\red You suddenly feel blubbery!"
-			mutations.Add(FAT)
+			mutations.Add(MUTATION_FAT)
 			update_mutantrace(0)
 			update_mutations(0)
 			update_inv_wear_uniform(0)
@@ -1320,7 +1320,7 @@
 					see_in_dark = 8
 					see_invisible = SEE_INVISIBLE_LEVEL_ONE
 
-		if(XRAY in mutations)
+		if(MUTATION_XRAY in mutations)
 			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 			see_in_dark = 8
 			if(!druggy)
@@ -1503,7 +1503,7 @@
 				reset_view(null)
 		else
 			var/isRemoteObserve = FALSE
-			if((mRemote in mutations) && remoteview_target)
+			if((MUTATION_REMOTE_VIEW in mutations) && remoteview_target)
 				if(remoteview_target.stat == CONSCIOUS)
 					isRemoteObserve = TRUE
 			if(!isRemoteObserve && isnotnull(client) && !client.adminobs)

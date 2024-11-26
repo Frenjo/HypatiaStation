@@ -215,7 +215,7 @@
 	if(M == assailant && state >= GRAB_AGGRESSIVE)
 		var/can_eat
 
-		if((FAT in user.mutations) && ismonkey(affecting))
+		if((MUTATION_FAT in user.mutations) && ismonkey(affecting))
 			can_eat = 1
 		else
 			var/mob/living/carbon/human/H = user

@@ -46,7 +46,7 @@
 		qdel(src)
 
 /obj/machinery/optable/attack_paw(mob/user)
-	if((HULK in usr.mutations))
+	if((MUTATION_HULK in usr.mutations))
 		to_chat(usr, SPAN_INFO("You destroy the operating table."))
 		visible_message(SPAN_WARNING("[usr] destroys the operating table!"))
 		src.density = FALSE
@@ -59,7 +59,7 @@
 	return
 
 /obj/machinery/optable/attack_hand(mob/user)
-	if(HULK in usr.mutations)
+	if(MUTATION_HULK in usr.mutations)
 		to_chat(usr, SPAN_INFO("You destroy the table."))
 		visible_message(SPAN_WARNING("[usr] destroys the operating table!"))
 		src.density = FALSE

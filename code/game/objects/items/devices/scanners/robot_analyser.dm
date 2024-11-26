@@ -27,7 +27,7 @@
 		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
 		return
 
-	if(((CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
+	if(((MUTATION_CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
 		user.visible_message(
 			SPAN_WARNING("[user] tries to analyse the floor's vitals!"),
 			SPAN_WARNING("You try to analyse the floor's vitals!")

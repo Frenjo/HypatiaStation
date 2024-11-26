@@ -1446,7 +1446,7 @@ It is possible to destroy the net by the occupant or someone else.
 	return
 
 /obj/effect/energy_net/attack_hand()
-	if(HULK in usr.mutations)
+	if(MUTATION_HULK in usr.mutations)
 		usr.visible_message(
 			SPAN_WARNING("[usr] rips the energy net apart!"),
 			SPAN_INFO("You easily destroy the energy net.")

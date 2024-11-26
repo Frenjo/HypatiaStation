@@ -216,7 +216,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 						var/mob/living/carbon/M = target
 						var/maxstuns = 4
 						if(ishuman(M))
-							if(M.stuttering < 10 && (!(HULK in M.mutations)))
+							if(M.stuttering < 10 && (!(MUTATION_HULK in M.mutations)))
 								M.stuttering = 10
 							M.Stun(10)
 							M.Weaken(10)

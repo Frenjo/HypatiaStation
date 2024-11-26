@@ -157,7 +157,7 @@
 		src.now_pushing = 1
 		if(ismob(AM))
 			var/mob/tmob = AM
-			/*if(ishuman(tmob) && (FAT in tmob.mutations))
+			/*if(ishuman(tmob) && (MUTATION_FAT in tmob.mutations))
 				if(prob(20))
 					for(var/mob/M in viewers(src, null))
 						if(M.client)

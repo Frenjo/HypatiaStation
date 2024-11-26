@@ -40,12 +40,12 @@
 	if(shock_stage >= 10)
 		. += 3
 
-	if(FAT in src.mutations)
+	if(MUTATION_FAT in src.mutations)
 		. += 1.5
 	if(bodytemperature < 283.222)
 		. += (283.222 - bodytemperature) / 10 * 1.75
 
-	if(mRun in mutations)
+	if(MUTATION_NO_SLOWDOWN in mutations)
 		. = 0
 
 	. += CONFIG_GET(human_delay)

@@ -98,8 +98,8 @@ default behaviour is:
 			if(!can_move_mob(tmob, 0, 0))
 				now_pushing = 0
 				return
-			if(ishuman(tmob) && (FAT in tmob.mutations))
-				if(prob(40) && !(FAT in src.mutations))
+			if(ishuman(tmob) && (MUTATION_FAT in tmob.mutations))
+				if(prob(40) && !(MUTATION_FAT in src.mutations))
 					to_chat(src, SPAN_DANGER("You fail to push [tmob]'s fat ass out of the way."))
 					now_pushing = 0
 					return
@@ -159,9 +159,9 @@ default behaviour is:
 /mob/living/proc/burn_skin(burn_amount)
 	if(ishuman(src))
 		//to_world("DEBUG: burn_skin(), mutations=[mutations]")
-		if(mShock in src.mutations) //shockproof
+		if(MUTATION_SHOCK_PROOF in src.mutations) //shockproof
 			return 0
-		if(COLD_RESISTANCE in src.mutations) //fireproof
+		if(MUTATION_COLD_RESISTANCE in src.mutations) //fireproof
 			return 0
 		var/mob/living/carbon/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
 		var/divided_damage = burn_amount / length(H.organs)
@@ -174,7 +174,7 @@ default behaviour is:
 		H.updatehealth()
 		return 1
 	else if(ismonkey(src))
-		if(COLD_RESISTANCE in src.mutations) //fireproof
+		if(MUTATION_COLD_RESISTANCE in src.mutations) //fireproof
 			return 0
 		var/mob/living/carbon/monkey/M = src
 		M.adjustFireLoss(burn_amount)
@@ -772,7 +772,7 @@ default behaviour is:
 		if(CM.handcuffed && CM.canmove && (CM.last_special <= world.time))
 			CM.next_move = world.time + 100
 			CM.last_special = world.time + 100
-			if(HULK in usr.mutations) //Don't want to do a lot of logic gating here.
+			if(MUTATION_HULK in usr.mutations) //Don't want to do a lot of logic gating here.
 				CM.visible_message(
 					SPAN_DANGER("[CM] is trying to break the handcuffs!"),
 					SPAN_WARNING("You attempt to break your handcuffs. (This will take around 5 seconds and you need to stand still.)")
@@ -813,7 +813,7 @@ default behaviour is:
 		else if(CM.legcuffed && CM.canmove && (CM.last_special <= world.time))
 			CM.next_move = world.time + 100
 			CM.last_special = world.time + 100
-			if(HULK in usr.mutations) //Don't want to do a lot of logic gating here.
+			if(MUTATION_HULK in usr.mutations) //Don't want to do a lot of logic gating here.
 				CM.visible_message(
 					SPAN_DANGER("[CM] is trying to break the legcuffs!"),
 					SPAN_WARNING("You attempt to break your legcuffs. (This will take around 5 seconds and you need to stand still.)")

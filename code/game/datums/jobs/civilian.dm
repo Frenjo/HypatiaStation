@@ -166,7 +166,7 @@
 /datum/job/clown/equip(mob/living/carbon/human/H)
 	. = ..()
 
-	H.mutations.Add(CLUMSY)
+	H.mutations.Add(MUTATION_CLUMSY)
 
 	return 1
 

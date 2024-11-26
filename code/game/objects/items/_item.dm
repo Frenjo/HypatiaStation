@@ -115,7 +115,7 @@
 		if(5.0)
 			size = "huge"
 		else
-	//if ((CLUMSY in usr.mutations) && prob(50)) t = "funny-looking"
+	//if ((MUTATION_CLUMSY in usr.mutations) && prob(50)) t = "funny-looking"
 	to_chat(usr, "This is a [src.blood_DNA ? "bloody " : ""]\icon[src][src.name]. It is a [size] item.")
 	if(src.desc)
 		to_chat(usr, src.desc)
@@ -482,7 +482,7 @@
 	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)") //BS12 EDIT ALG
 
 	src.add_fingerprint(user)
-	//if((CLUMSY in user.mutations) && prob(50))
+	//if((MUTATION_CLUMSY in user.mutations) && prob(50))
 	//	M = user
 		/*
 		M << "\red You stab yourself in the eye."

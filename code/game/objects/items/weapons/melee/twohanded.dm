@@ -172,7 +172,7 @@
 
 /obj/item/twohanded/dualsaber/attack(mob/target, mob/living/user)
 	..()
-	if((CLUMSY in user.mutations) && wielded && prob(40))
+	if((MUTATION_CLUMSY in user.mutations) && wielded && prob(40))
 		to_chat(user, SPAN_WARNING("You twirl around a bit before losing your balance and impaling yourself on the [src]."))
 		user.take_organ_damage(20, 25)
 		return

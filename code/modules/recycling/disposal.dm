@@ -522,7 +522,7 @@
 		mover.loc = src
 		if(ishuman(mover))
 			var/mob/living/carbon/human/H = mover
-			if(FAT in H.mutations)		// is a human and fat?
+			if(MUTATION_FAT in H.mutations)		// is a human and fat?
 				has_fat_guy = 1			// set flag on holder
 		if(istype(mover, /obj/structure/big_delivery) && !hasmob)
 			var/obj/structure/big_delivery/T = mover

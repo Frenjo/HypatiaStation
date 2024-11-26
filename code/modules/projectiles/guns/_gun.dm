@@ -81,11 +81,11 @@
 	return TRUE
 
 /obj/item/gun/proc/Fire(atom/target, mob/living/user, params, reflex = 0)//TODO: go over this
-	//Exclude lasertag guns from the CLUMSY check.
+	//Exclude lasertag guns from the MUTATION_CLUMSY check.
 	if(clumsy_check)
 		if(isliving(user))
 			var/mob/living/M = user
-			if((CLUMSY in M.mutations) && prob(50))
+			if((MUTATION_CLUMSY in M.mutations) && prob(50))
 				to_chat(M, SPAN_DANGER("\The [src] blows up in your face."))
 				M.take_organ_damage(0, 20)
 				M.drop_item()
@@ -97,7 +97,7 @@
 		return
 	if(isliving(user))
 		var/mob/living/M = user
-		if(HULK in M.mutations)
+		if(MUTATION_HULK in M.mutations)
 			to_chat(M, SPAN_WARNING("Your meaty finger is much too large for the trigger guard!"))
 			return
 	if(ishuman(user))

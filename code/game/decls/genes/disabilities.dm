@@ -55,7 +55,7 @@
 /decl/gene/disability/hallucinate
 	name = "Hallucinate"
 	activation_message = "Your mind says 'Hello'."
-	mutation = mHallucination
+	mutation = MUTATION_HALLUCINATION
 
 /decl/gene/disability/hallucinate/New()
 	. = ..()
@@ -85,7 +85,7 @@
 /decl/gene/disability/clumsy
 	name = "Clumsiness"
 	activation_message = "You feel lightheaded."
-	mutation = CLUMSY
+	mutation = MUTATION_CLUMSY
 
 /decl/gene/disability/clumsy/New()
 	. = ..()
