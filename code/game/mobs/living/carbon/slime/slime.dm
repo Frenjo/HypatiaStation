@@ -406,7 +406,7 @@
 	return
 
 /mob/living/carbon/slime/restrained()
-	return 0
+	return FALSE
 
 
 /mob/living/carbon/slime/var/co2overloadtime = null

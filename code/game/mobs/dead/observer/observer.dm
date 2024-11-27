@@ -203,9 +203,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(usr)
 		to_chat(usr, desc)
 
-/mob/dead/observer/can_use_hands()
-	return 0
-
 /mob/dead/observer/is_active()
 	return 0
 

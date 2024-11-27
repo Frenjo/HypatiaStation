@@ -333,7 +333,7 @@
 /mob/living/carbon/restrained()
 	if(isnotnull(handcuffed))
 		return TRUE
-	return FALSE
+	return ..()
 
 /mob/living/carbon/u_equip(obj/item/W)
 	if(isnull(W))

@@ -123,7 +123,7 @@
 #undef FULLY_BUCKLED
 
 /mob/proc/restrained()
-	return
+	return FALSE
 
 //This proc is called whenever someone clicks an inventory ui slot.
 /mob/proc/attack_ui(slot)
@@ -656,7 +656,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 		pulled.inertia_dir = 0
 
 /mob/proc/can_use_hands()
-	return
+	return FALSE
 
 /mob/proc/is_active()
 	return (0 >= usr.stat)
@@ -683,7 +683,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 		if(statpanel(PANEL_PROCESSES))
 			global.CTmaster?.stat_processes()
 
-	if(listed_turf && client)
+	if(listed_turf && isnotnull(client))
 		if(get_dist(listed_turf, src) > 1)
 			listed_turf = null
 		else
@@ -706,20 +706,20 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 // facing verbs
 /mob/proc/canface()
 	if(!canmove)
-		return 0
+		return FALSE
 	if(client.moving)
-		return 0
+		return FALSE
 	if(world.time < client.move_delay)
-		return 0
+		return FALSE
 	if(stat == DEAD)
-		return 0
+		return FALSE
 	if(anchored)
-		return 0
+		return FALSE
 	if(monkeyizing)
-		return 0
+		return FALSE
 	if(restrained())
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()

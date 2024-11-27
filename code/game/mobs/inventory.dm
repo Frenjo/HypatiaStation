@@ -3,15 +3,13 @@
 
 // Returns the thing in our active hand.
 /mob/proc/get_active_hand()
-	if(!issilicon(src))
-		return hand ? l_hand : r_hand
+	return hand ? l_hand : r_hand
 
-	if(isrobot(src))
-		var/mob/living/silicon/robot/robby = src
-		if(isnotnull(robby.module_active))
-			return robby.module_active
-
+/mob/living/silicon/get_active_hand()
 	return null
+
+/mob/living/silicon/robot/get_active_hand()
+	return module_active
 
 // Returns the thing in our inactive hand.
 /mob/proc/get_inactive_hand()

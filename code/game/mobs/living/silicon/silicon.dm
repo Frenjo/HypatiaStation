@@ -24,6 +24,9 @@
 /mob/living/silicon/drop_item()
 	return
 
+/mob/living/silicon/restrained()
+	return FALSE
+
 /mob/living/silicon/emp_act(severity)
 	switch(severity)
 		if(1)

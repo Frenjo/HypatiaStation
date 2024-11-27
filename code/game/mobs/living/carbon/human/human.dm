@@ -282,11 +282,9 @@
 
 
 /mob/living/carbon/human/restrained()
-	if(handcuffed)
-		return 1
 	if(istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
-		return 1
-	return 0
+		return TRUE
+	return ..()
 
 /mob/living/carbon/human/var/co2overloadtime = null
 /mob/living/carbon/human/var/temperature_resistance = T0C + 75

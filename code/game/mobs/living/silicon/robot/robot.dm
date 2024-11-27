@@ -209,9 +209,6 @@
 		show_cell_power()
 		show_jetpack_pressure()
 
-/mob/living/silicon/robot/restrained()
-	return 0
-
 /mob/living/silicon/robot/meteorhit(obj/O)
 	visible_message(SPAN_DANGER("[src] has been hit by [O]!"))
 	if(health > 0)

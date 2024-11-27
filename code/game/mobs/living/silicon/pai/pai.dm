@@ -108,9 +108,6 @@
 		return 1
 	return 0
 
-/mob/living/silicon/pai/restrained()
-	return 0
-
 /mob/living/silicon/pai/emp_act(severity)
 	// Silence for 2 minutes
 	// 20% chance to kill

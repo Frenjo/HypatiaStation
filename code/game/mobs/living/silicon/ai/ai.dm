@@ -156,9 +156,6 @@
 	user.reset_view(current)
 	return 1
 
-/mob/living/silicon/ai/restrained()
-	return 0
-
 /mob/living/silicon/ai/emp_act(severity)
 	if(prob(30))
 		switch(pick(1, 2))
