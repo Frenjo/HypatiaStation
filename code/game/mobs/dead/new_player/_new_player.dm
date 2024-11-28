@@ -1,22 +1,14 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
-/mob/new_player
-	universal_speak = TRUE
-
+/mob/dead/new_player
 	invisibility = INVISIBILITY_MAXIMUM
-
-	density = FALSE
-	stat = DEAD
-	canmove = FALSE
-
-	anchored = TRUE	// don't get pushed around
 
 	var/ready = FALSE
 	var/spawning = FALSE		//Referenced when you want to delete the new_player later on in the code.
 	var/totalPlayers = 0		//Player counts for the Lobby tab
 	var/totalPlayersReady = 0
 
-/mob/new_player/proc/new_player_panel()
+/mob/dead/new_player/proc/new_player_panel()
 	var/html = "<div align='center'><b>New Player Options</b>"
 	html += "<hr>"
 	html += "<p><a href='byond://?src=\ref[src];show_preferences=1'>Setup Character</a></p>"
@@ -57,7 +49,7 @@
 	panel.set_content(html)
 	panel.open()
 
-/mob/new_player/Stat()
+/mob/dead/new_player/Stat()
 	..()
 
 	statpanel(PANEL_STATUS)
@@ -76,13 +68,13 @@
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
-			for(var/mob/new_player/player in GLOBL.dead_mob_list)
+			for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
 				stat("[player.key]", player.ready ? "(Playing)" : null)
 				totalPlayers++
 				if(player.ready)
 					totalPlayersReady++
 
-/mob/new_player/Topic(href, list/href_list)
+/mob/dead/new_player/Topic(href, list/href_list)
 	if(isnull(client))
 		return 0
 
@@ -255,7 +247,7 @@
 					if(isnotnull(href_list["option_[optionid]"]))	//Test if this optionid was selected
 						vote_on_poll(pollid, optionid, 1)
 
-/mob/new_player/proc/is_job_available(rank)
+/mob/dead/new_player/proc/is_job_available(rank)
 	var/datum/job/job = global.CTjobs.get_job(rank)
 	if(isnull(job))
 		return FALSE
@@ -267,7 +259,7 @@
 		return FALSE
 	return TRUE
 
-/mob/new_player/proc/attempt_late_spawn(rank, spawning_at)
+/mob/dead/new_player/proc/attempt_late_spawn(rank, spawning_at)
 	if(src != usr)
 		return 0
 	if(global.PCticker?.current_state != GAME_STATE_PLAYING)
@@ -318,7 +310,7 @@
 		character.Robotize()
 	qdel(src)
 
-/mob/new_player/proc/announce_arrival(mob/living/carbon/human/character, rank, join_message)
+/mob/dead/new_player/proc/announce_arrival(mob/living/carbon/human/character, rank, join_message)
 	if(global.PCticker?.current_state == GAME_STATE_PLAYING)
 		var/obj/item/radio/intercom/a = new /obj/item/radio/intercom(null)// BS12 EDIT Arrivals Announcement Computer, rather than the AI.
 		if(isnotnull(character.mind.role_alt_title))
@@ -326,7 +318,7 @@
 		a.autosay("[character.real_name], [rank ? "[rank]," : "visitor," ] [join_message ? join_message : "has arrived on the station"].", "Arrivals Announcement Computer")
 		qdel(a)
 
-/mob/new_player/proc/late_join_choices_panel()
+/mob/dead/new_player/proc/late_join_choices_panel()
 	var/mills = world.time // 1/10 of a second, not real milliseconds but whatever
 	//var/secs = ((mills % 36000) % 600) / 10 //Not really needed, but I'll leave it here for refrence.. or something
 	var/mins = (mills % 36000) / 600
@@ -364,7 +356,7 @@
 	panel.set_content(html)
 	panel.open()
 
-/mob/new_player/proc/create_character()
+/mob/dead/new_player/proc/create_character()
 	spawning = TRUE
 	close_spawn_windows()
 
@@ -424,7 +416,7 @@
 
 	return new_character
 
-/mob/new_player/proc/crew_manifest_panel()
+/mob/dead/new_player/proc/crew_manifest_panel()
 	var/html = "<html><body>"
 	html += "<b>Crew Manifest</b>"
 	html += "<hr>"
@@ -435,15 +427,15 @@
 	panel.set_content(html)
 	panel.open()
 
-/mob/new_player/Move()
+/mob/dead/new_player/Move()
 	return 0
 
-/mob/new_player/proc/close_spawn_windows()
+/mob/dead/new_player/proc/close_spawn_windows()
 	src << browse(null, "window=latechoices") //closes late choices window
 	src << browse(null, "window=playersetup") //closes the player setup window
 
-/mob/new_player/hear_say(message, verbage = "says", datum/language/language = null, alt_name = "", italics = 0, mob/speaker = null)
+/mob/dead/new_player/hear_say(message, verbage = "says", datum/language/language = null, alt_name = "", italics = 0, mob/speaker = null)
 	return
 
-/mob/new_player/hear_radio(message, verbage = "says", datum/language/language = null, part_a, part_b, mob/speaker = null, hard_to_hear = 0)
+/mob/dead/new_player/hear_radio(message, verbage = "says", datum/language/language = null, part_a, part_b, mob/speaker = null, hard_to_hear = 0)
 	return

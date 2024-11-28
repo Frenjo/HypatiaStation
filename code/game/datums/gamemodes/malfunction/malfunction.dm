@@ -25,7 +25,7 @@
 	. += "The AI satellite is deep in space and can only be accessed with the use of a teleporter! You have [AI_win_timeleft / 60] minutes to disable it."
 
 /datum/game_mode/malfunction/pre_setup()
-	for(var/mob/new_player/player in GLOBL.dead_mob_list)
+	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
 		if(player.mind && player.mind.assigned_role == "AI")
 			malf_ai.Add(player.mind)
 	if(length(malf_ai))

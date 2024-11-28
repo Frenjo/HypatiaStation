@@ -444,7 +444,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 		log_game("[usr.key] AM failed due to disconnect.")
 		return
 
-	var/mob/new_player/M = new /mob/new_player()
+	var/mob/dead/new_player/M = new /mob/dead/new_player()
 	if(isnull(client))
 		log_game("[usr.key] AM failed due to disconnect.")
 		qdel(M)

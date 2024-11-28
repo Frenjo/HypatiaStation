@@ -30,7 +30,7 @@
 //#define ismob(X)		istype(X, /mob) // Built-in.
 #define isliving(X)		istype(X, /mob/living)
 #define isobserver(X)	istype(X, /mob/dead/observer)
-#define isnewplayer(X)	istype(X, /mob/new_player)
+#define isnewplayer(X)	istype(X, /mob/dead/new_player)
 
 // Carbon
 #define iscarbon(X)		istype(X, /mob/living/carbon)

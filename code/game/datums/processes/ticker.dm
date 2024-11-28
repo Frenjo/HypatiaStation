@@ -293,7 +293,7 @@ PROCESS_DEF(ticker)
 	return
 
 /datum/process/ticker/proc/create_characters()
-	for(var/mob/new_player/player in GLOBL.dead_mob_list)
+	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
 		if(!player.ready || isnull(player.mind))
 			continue
 		if(player.mind.assigned_role == "AI")

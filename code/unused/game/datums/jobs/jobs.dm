@@ -153,7 +153,7 @@
 
 //This datum is used in the plb allocation algorithm to make life easier, not used anywhere else.
 /datum/player_jobs
-	var/mob/new_player/player
+	var/mob/dead/new_player/player
 	var/datum/jobs/selected_jobs
 
 var/datum/jobs/jobs = new/datum/jobs()
@@ -220,8 +220,8 @@ proc/dress_for_job_default(var/mob/living/carbon/human/employee as mob, var/job_
 //3: Assignment of remaining jobs for remaining players based on chosen departments
 //4: Random assignment of remaining jobs for remaining players based on assignment priority
 //5: Assignment of traitor / changeling to assigned roles (if appropriate game mode)
-proc/assignment_algorithm(var/list/mob/new_player/players)
-	for(var/mob/new_player/PLAYER in players)
+proc/assignment_algorithm(var/list/mob/dead/new_player/players)
+	for(var/mob/dead/new_player/PLAYER in players)
 		if(!PLAYER.client)
 			players -= PLAYER
 			continue
@@ -251,9 +251,9 @@ proc/assignment_algorithm(var/list/mob/new_player/players)
 			if(0)
 				not_assigned_jobs += J
 
-	var/list/datum/player_jobs/player_jobs = list() //This datum only holds a mob/new_player and a datum/jobs. The first is the player, the 2nd is the player's selected jobs, from the preferences datum.
+	var/list/datum/player_jobs/player_jobs = list() //This datum only holds a mob/dead/new_player and a datum/jobs. The first is the player, the 2nd is the player's selected jobs, from the preferences datum.
 
-	for(var/mob/new_player/NP in players)
+	for(var/mob/dead/new_player/NP in players)
 		var/datum/player_jobs/PJ = new/datum/player_jobs
 		PJ.player = NP
 		PJ.selected_jobs = NP.preferences.wanted_jobs
@@ -264,11 +264,11 @@ proc/assignment_algorithm(var/list/mob/new_player/players)
 	var/list/datum/job/hp_jobs = jobs.get_jobs_by_priority( HIGH_PRIORITY_JOB, VITAL_PRIORITY_JOB )
 
 	for(var/datum/job/J in hp_jobs)
-		var/list/mob/new_player/candidates = list()
+		var/list/mob/dead/new_player/candidates = list()
 		for(var/datum/player_jobs/PJ in player_jobs)
 			if(J in PJ.selected_jobs)
 				candidates += PJ.player
-		var/mob/new_player/chosen_player
+		var/mob/dead/new_player/chosen_player
 		if(candidates)
 			chosen_player = pick(candidates)
 		else

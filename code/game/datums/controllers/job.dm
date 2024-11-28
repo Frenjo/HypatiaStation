@@ -7,7 +7,7 @@ CONTROLLER_DEF(jobs)
 	// List of all jobs
 	var/list/datum/job/occupations = list()
 	// Players who need jobs
-	var/list/mob/new_player/unassigned = list()
+	var/list/mob/dead/new_player/unassigned = list()
 	// Debug info
 	var/list/job_debug = list()
 
@@ -40,10 +40,10 @@ CONTROLLER_DEF(jobs)
 			return J
 	return null
 
-/datum/controller/jobs/proc/get_player_alt_title(mob/new_player/player, rank)
+/datum/controller/jobs/proc/get_player_alt_title(mob/dead/new_player/player, rank)
 	return player.client.prefs.GetPlayerAltTitle(get_job(rank))
 
-/datum/controller/jobs/proc/assign_role(mob/new_player/player, rank, latejoin = 0)
+/datum/controller/jobs/proc/assign_role(mob/dead/new_player/player, rank, latejoin = 0)
 	debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
 	if(isnotnull(player?.mind) && isnotnull(rank))
 		var/datum/job/job = get_job(rank)
@@ -76,7 +76,7 @@ CONTROLLER_DEF(jobs)
 /datum/controller/jobs/proc/find_occupation_candidates(datum/job/job, level, flag)
 	debug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
 	var/list/candidates = list()
-	for_no_type_check(var/mob/new_player/player, unassigned)
+	for_no_type_check(var/mob/dead/new_player/player, unassigned)
 		if(jobban_isbanned(player, job.title))
 			debug("FOC isbanned failed, Player: [player]")
 			continue
@@ -91,7 +91,7 @@ CONTROLLER_DEF(jobs)
 			candidates.Add(player)
 	return candidates
 
-/datum/controller/jobs/proc/give_random_job(mob/new_player/player)
+/datum/controller/jobs/proc/give_random_job(mob/dead/new_player/player)
 	debug("GRJ Giving random job, Player: [player]")
 	for(var/datum/job/job in shuffle(occupations))
 		if(isnull(job))
@@ -118,7 +118,7 @@ CONTROLLER_DEF(jobs)
 			break
 
 /datum/controller/jobs/proc/reset_occupations()
-	for(var/mob/new_player/player in GLOBL.dead_mob_list)
+	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
 		if(isnotnull(player?.mind))
 			player.mind.assigned_role = null
 			player.mind.special_role = null
@@ -169,7 +169,7 @@ CONTROLLER_DEF(jobs)
 					if(length(candidates) == 1)
 						weightedCandidates[V] = 1
 
-				var/mob/new_player/candidate = pickweight(weightedCandidates)
+				var/mob/dead/new_player/candidate = pickweight(weightedCandidates)
 				if(assign_role(candidate, command_position))
 					return 1
 		return 0
@@ -183,7 +183,7 @@ CONTROLLER_DEF(jobs)
 		var/list/candidates = find_occupation_candidates(job, level)
 		if(!length(candidates))
 			continue
-		var/mob/new_player/candidate = pick(candidates)
+		var/mob/dead/new_player/candidate = pick(candidates)
 		assign_role(candidate, command_position)
 
 /datum/controller/jobs/proc/fill_ai_position()
@@ -202,14 +202,14 @@ CONTROLLER_DEF(jobs)
 			else
 				candidates = find_occupation_candidates(job, level)
 			if(length(candidates))
-				var/mob/new_player/candidate = pick(candidates)
+				var/mob/dead/new_player/candidate = pick(candidates)
 				if(assign_role(candidate, "AI"))
 					ai_selected++
 					break
 		//Malf NEEDS an AI so force one if we didn't get a player who wanted it
 		if(IS_GAME_MODE(/datum/game_mode/malfunction) && !ai_selected)
 			unassigned = shuffle(unassigned)
-			for_no_type_check(var/mob/new_player/player, unassigned)
+			for_no_type_check(var/mob/dead/new_player/player, unassigned)
 				if(jobban_isbanned(player, "AI"))
 					continue
 				if(assign_role(player, "AI"))
@@ -234,7 +234,7 @@ CONTROLLER_DEF(jobs)
 			A.spawn_positions = 3
 
 	//Get the players who are ready
-	for(var/mob/new_player/player in GLOBL.dead_mob_list)
+	for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
 		if(player.ready && isnotnull(player.mind) && !player.mind.assigned_role)
 			unassigned.Add(player)
 
@@ -251,7 +251,7 @@ CONTROLLER_DEF(jobs)
 	debug("DO, Running Assistant Check 1")
 	var/list/assistant_candidates = find_occupation_candidates(GLOBL.all_jobs["Assistant"], 3)
 	debug("AC1, Candidates: [length(assistant_candidates)]")
-	for(var/mob/new_player/player in assistant_candidates)
+	for(var/mob/dead/new_player/player in assistant_candidates)
 		debug("AC1 pass, Player: [player]")
 		assign_role(player, "Assistant")
 		assistant_candidates.Remove(player)
@@ -281,7 +281,7 @@ CONTROLLER_DEF(jobs)
 		check_head_positions(level)
 
 		// Loop through all unassigned players
-		for_no_type_check(var/mob/new_player/player, unassigned)
+		for_no_type_check(var/mob/dead/new_player/player, unassigned)
 			// Loop through all jobs
 			for_no_type_check(var/datum/job/job, shuffledoccupations) // SHUFFLE ME BABY
 				if(isnull(job))
@@ -306,7 +306,7 @@ CONTROLLER_DEF(jobs)
 
 	// Hand out random jobs to the people who didn't get any in the last check
 	// Also makes sure that they got their preference correct
-	for_no_type_check(var/mob/new_player/player, unassigned)
+	for_no_type_check(var/mob/dead/new_player/player, unassigned)
 		if(player.client.prefs.alternate_option == GET_RANDOM_JOB)
 			give_random_job(player)
 
@@ -315,13 +315,13 @@ CONTROLLER_DEF(jobs)
 	debug("DO, Running AC2")
 
 	// For those who wanted to be assistant if their preferences were filled, here you go.
-	for_no_type_check(var/mob/new_player/player, unassigned)
+	for_no_type_check(var/mob/dead/new_player/player, unassigned)
 		if(player.client.prefs.alternate_option == BE_ASSISTANT)
 			debug("AC2 Assistant located, Player: [player]")
 			assign_role(player, "Assistant")
 
 	//For ones returning to lobby
-	for_no_type_check(var/mob/new_player/player, unassigned)
+	for_no_type_check(var/mob/dead/new_player/player, unassigned)
 		if(player.client.prefs.alternate_option == RETURN_TO_LOBBY)
 			player.ready = FALSE
 			unassigned.Remove(player)
@@ -467,7 +467,7 @@ CONTROLLER_DEF(jobs)
 		var/level4 = 0 //never
 		var/level5 = 0 //banned
 		var/level6 = 0 //account too young
-		for(var/mob/new_player/player in GLOBL.dead_mob_list)
+		for(var/mob/dead/new_player/player in GLOBL.dead_mob_list)
 			if(!player.ready || isnull(player.mind) || player.mind.assigned_role)
 				continue //This player is not ready
 			if(jobban_isbanned(player, job.title))

@@ -19,7 +19,7 @@
 /datum/game_mode/monkey/can_start()
 	if (num_players()<2)
 		return 0
-	for(var/mob/new_player/P in dead_mob_list)
+	for(var/mob/dead/new_player/P in dead_mob_list)
 		if(P.client && P.ready && !jobban_isbanned(P, "Syndicate"))
 			return 1
 	return 0

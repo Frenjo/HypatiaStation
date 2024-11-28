@@ -8,7 +8,7 @@
  * Two possibilities exist: either we are alone in the Universe or we are not. Both are equally terrifying. ~ Arthur C. Clarke
 */
 /world
-	mob = /mob/new_player
+	mob = /mob/dead/new_player
 	turf = /turf/space
 	area = /area/space
 	view = "15x15"

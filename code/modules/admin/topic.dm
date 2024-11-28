@@ -1267,7 +1267,7 @@
 
 		var/mob/M = locate(href_list["makeanimal"])
 		if(isnewplayer(M))
-			usr << "This cannot be used on instances of type /mob/new_player"
+			usr << "This cannot be used on instances of type /mob/dead/new_player"
 			return
 
 		usr.client.cmd_admin_animalize(M)

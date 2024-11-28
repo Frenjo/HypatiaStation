@@ -17,7 +17,7 @@
 		to_chat(usr, "Invalid type path (new_type = [new_type]) in change_mob_type(). Contact a coder.")
 		return
 
-	if(new_type == /mob/new_player)
+	if(new_type == /mob/dead/new_player)
 		to_chat(usr, SPAN_WARNING("Cannot convert into a new_player mob type."))
 		return
 

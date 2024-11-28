@@ -1,4 +1,4 @@
-/mob/new_player/proc/handle_privacy_poll()
+/mob/dead/new_player/proc/handle_privacy_poll()
 	establish_db_connection()
 	if(!GLOBL.dbcon.IsConnected())
 		return
@@ -13,7 +13,7 @@
 	if(!voted)
 		privacy_poll()
 
-/mob/new_player/proc/privacy_poll()
+/mob/dead/new_player/proc/privacy_poll()
 	var/output = "<div align='center'><B>Player poll</B>"
 	output +="<hr>"
 	output += "<b>We would like to expand our stats gathering.</b>"
@@ -45,7 +45,7 @@
 	var/optionid
 	var/optiontext
 
-/mob/new_player/proc/handle_player_polling()
+/mob/dead/new_player/proc/handle_player_polling()
 	establish_db_connection()
 	if(GLOBL.dbcon.IsConnected())
 		var/isadmin = 0
@@ -78,7 +78,7 @@
 
 
 
-/mob/new_player/proc/poll_player(var/pollid = -1)
+/mob/dead/new_player/proc/poll_player(var/pollid = -1)
 	if(pollid == -1) return
 	establish_db_connection()
 	if(GLOBL.dbcon.IsConnected())
@@ -335,7 +335,7 @@
 				src << browse(output,"window=playerpoll;size=500x250")
 		return
 
-/mob/new_player/proc/vote_on_poll(var/pollid = -1, var/optionid = -1, var/multichoice = 0)
+/mob/dead/new_player/proc/vote_on_poll(var/pollid = -1, var/optionid = -1, var/multichoice = 0)
 	if(pollid == -1 || optionid == -1)
 		return
 
@@ -405,7 +405,7 @@
 		usr << browse(null,"window=playerpoll")
 
 
-/mob/new_player/proc/log_text_poll_reply(var/pollid = -1, var/replytext = "")
+/mob/dead/new_player/proc/log_text_poll_reply(var/pollid = -1, var/replytext = "")
 	if(pollid == -1 || replytext == "")
 		return
 
@@ -463,7 +463,7 @@
 		usr << browse(null,"window=playerpoll")
 
 
-/mob/new_player/proc/vote_on_numval_poll(var/pollid = -1, var/optionid = -1, var/rating = null)
+/mob/dead/new_player/proc/vote_on_numval_poll(var/pollid = -1, var/optionid = -1, var/rating = null)
 	if(pollid == -1 || optionid == -1)
 		return
 

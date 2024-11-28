@@ -135,7 +135,7 @@
 	if(!registered_name)
 		//Stop giving the players unsanitized unputs! You are giving ways for players to intentionally crash clients! -Nodrak
 		var/t = reject_bad_name(input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name))
-		if(!t) //Same as mob/new_player/prefrences.dm
+		if(!t) //Same as mobs/dead/new_player/preferences.dm
 			alert("Invalid name.")
 			return
 		registered_name = t
@@ -156,7 +156,7 @@
 		switch(alert("Would you like to display the ID, or retitle it?", "Choose.", "Rename", "Show"))
 			if("Rename")
 				var/t = copytext(sanitize(input(user, "What name would you like to put on this card?", "Agent card name", ishuman(user) ? user.real_name : user.name)),1,26)
-				if(!t || t == "Unknown" || t == "floor" || t == "wall" || t == "r-wall") //Same as mob/new_player/prefrences.dm
+				if(!t || t == "Unknown" || t == "floor" || t == "wall" || t == "r-wall") //Same as mobs/dead/new_player/preferences.dm
 					alert("Invalid name.")
 					return
 				registered_name = t

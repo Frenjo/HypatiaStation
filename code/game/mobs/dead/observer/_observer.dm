@@ -7,16 +7,10 @@
 	icon_state = "ghost"
 	plane = GHOST_PLANE
 
-	stat = DEAD
-	density = FALSE
-	canmove = FALSE
 	blinded = 0
-	anchored = TRUE	//  don't get pushed around
 	invisibility = INVISIBILITY_OBSERVER
 
 	hud_type = /datum/hud/ghost
-
-	universal_speak = TRUE
 
 	var/can_reenter_corpse
 	var/datum/hud/living/carbon/hud = null // hud
