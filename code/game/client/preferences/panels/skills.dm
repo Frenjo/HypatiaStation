@@ -11,8 +11,8 @@
 	for(var/V in GLOBL.all_skills)
 		html += "<tr><th colspan = 5><b>[V]</b>"
 		html += "</th></tr>"
-		for(var/datum/skill/S in GLOBL.all_skills[V])
-			var/level = skills[S.id]
+		for(var/decl/hierarchy/skill/S in GLOBL.all_skills[V])
+			var/level = skills[S.type]
 			html += "<tr style='text-align:left;'>"
 			html += "<th><a href='byond://?src=\ref[user];preference=skills;skillinfo=\ref[S]'>[S.name]</a></th>"
 			html += "<th><a href='byond://?src=\ref[user];preference=skills;setskill=\ref[S];newvalue=[SKILL_NONE]'><font color=[(level == SKILL_NONE) ? "red" : "white"]>\[Untrained\]</font></a></th>"
@@ -39,14 +39,14 @@
 		character_setup_panel(user)
 
 	else if(href_list["skillinfo"])
-		var/datum/skill/S = locate(href_list["skillinfo"])
+		var/decl/hierarchy/skill/S = locate(href_list["skillinfo"])
 		var/HTML = "<b>[S.name]</b><br>[S.desc]"
 		user << browse(HTML, "window=\ref[user]skillinfo")
 
 	else if(href_list["setskill"])
-		var/datum/skill/S = locate(href_list["setskill"])
+		var/decl/hierarchy/skill/S = locate(href_list["setskill"])
 		var/value = text2num(href_list["newvalue"])
-		skills[S.id] = value
+		skills[S.type] = value
 		CalculateSkillPoints()
 		set_skills_panel(user)
 

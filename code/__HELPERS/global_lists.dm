@@ -106,12 +106,12 @@
 		if(HAS_SPECIES_FLAGS(S, SPECIES_FLAG_IS_WHITELISTED))
 			GLOBL.whitelisted_species.Add(S.name)
 
-// Skills - Initialises all /datum/skill into a list, indexed by field.
+// Skills - Initialises all /decl/hierarchy/skill into a list, indexed by field.
 /hook/global_init/proc/init_skills()
 	. = TRUE
-	for(var/path in SUBTYPESOF(/datum/skill))
-		var/datum/skill/S = new path()
-		if(S.id == "none")
+	for(var/path in SUBTYPESOF(/decl/hierarchy/skill))
+		var/decl/hierarchy/skill/S = GET_DECL_INSTANCE(path)
+		if(S.is_category())
 			continue
 		if(isnull(GLOBL.all_skills[S.field]))
 			GLOBL.all_skills[S.field] = list()
