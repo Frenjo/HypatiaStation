@@ -28,11 +28,12 @@
 
 /obj/item/storage/belt/utility/full
 	starts_with = list(
-		/obj/item/screwdriver,
-		/obj/item/wrench,
-		/obj/item/weldingtool,
 		/obj/item/crowbar,
-		/obj/item/wirecutters
+		/obj/item/screwdriver,
+		/obj/item/weldingtool,
+		/obj/item/wirecutters,
+		/obj/item/wrench,
+		/obj/item/multitool
 	)
 
 /obj/item/storage/belt/utility/full/New()
@@ -41,12 +42,13 @@
 
 /obj/item/storage/belt/utility/atmostech
 	starts_with = list(
-		/obj/item/screwdriver,
-		/obj/item/wrench,
-		/obj/item/weldingtool,
 		/obj/item/crowbar,
+		/obj/item/screwdriver,
+		/obj/item/weldingtool,
 		/obj/item/wirecutters,
-		/obj/item/t_scanner
+		/obj/item/wrench,
+		/obj/item/t_scanner,
+		/obj/item/gas_analyser
 	)
 
 /obj/item/storage/belt/medical
@@ -63,8 +65,6 @@
 		/obj/item/reagent_holder/pill,
 		/obj/item/reagent_holder/syringe,
 //		/obj/item/reagent_holder/glass/dispenser, // I don't know what this one would map to in current code.
-		/obj/item/lighter/zippo,
-		/obj/item/storage/fancy/cigarettes,
 		/obj/item/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/flashlight/pen,
@@ -93,8 +93,6 @@
 		/obj/item/reagent_holder/food/snacks/donut/jelly,
 		/obj/item/melee/baton,
 		/obj/item/gun/energy/taser,
-		/obj/item/lighter/zippo,
-		/obj/item/storage/fancy/cigarettes,
 		/obj/item/clothing/glasses/hud/security,
 		/obj/item/flashlight,
 		/obj/item/pda,
@@ -155,8 +153,6 @@
 		/obj/item/reagent_holder/food/snacks/donut/jelly,
 		/obj/item/melee/baton,
 		/obj/item/gun/energy/taser,
-		/obj/item/lighter/zippo,
-		/obj/item/storage/fancy/cigarettes,
 		/obj/item/clothing/glasses/hud/security,
 		/obj/item/flashlight,
 		/obj/item/pda,
