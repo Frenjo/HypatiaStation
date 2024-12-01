@@ -8,8 +8,6 @@
 
 	pda_type = /obj/item/pda/medical
 
-	flags = OUTFIT_HIDE_IF_CATEGORY
-
 	backpack = /obj/item/storage/backpack/medic
 	satchel_one = /obj/item/storage/satchel/med
 

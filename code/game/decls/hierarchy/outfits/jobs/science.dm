@@ -2,8 +2,6 @@
  * Science
  */
 /decl/hierarchy/outfit/job/science
-	flags = OUTFIT_HIDE_IF_CATEGORY
-
 	satchel_one = /obj/item/storage/satchel/tox
 
 /*

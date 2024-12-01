@@ -11,8 +11,6 @@
 	pda_slot = SLOT_ID_R_POCKET
 	pda_type = /obj/item/pda/heads
 
-	flags = OUTFIT_HIDE_IF_CATEGORY
-
 /*
  * Representative
  */

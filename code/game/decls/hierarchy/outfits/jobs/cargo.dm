@@ -4,8 +4,6 @@
 /decl/hierarchy/outfit/job/cargo
 	shoes = /obj/item/clothing/shoes/black
 
-	flags = OUTFIT_HIDE_IF_CATEGORY
-
 /*
  * Quartermaster
  */
@@ -63,8 +61,6 @@
 	)
 
 	pda_type = /obj/item/pda/shaftminer
-
-	flags = OUTFIT_HIDE_IF_CATEGORY
 
 	backpack = /obj/item/storage/backpack/industrial
 	satchel_one = /obj/item/storage/satchel/eng

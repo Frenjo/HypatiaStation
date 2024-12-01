@@ -58,10 +58,6 @@ GLOBAL_GLOBL_LIST_NEW(all_outfits)
 
 /decl/hierarchy/outfit/New()
 	. = ..()
-	flags = OUTFIT_HIDE_IF_CATEGORY
-
-/decl/hierarchy/outfit/proc/is_hidden()
-	return is_category() && (flags & OUTFIT_HIDE_IF_CATEGORY)
 
 /decl/hierarchy/outfit/proc/pre_equip(mob/living/carbon/human/user)
 	SHOULD_CALL_PARENT(TRUE)

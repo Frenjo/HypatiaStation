@@ -12,8 +12,6 @@
 	r_hand = /obj/item/gun/energy/pulse_rifle/destroyer
 	l_hand = /obj/item/kitchenknife
 
-	flags = OUTFIT_HIDE_IF_CATEGORY
-
 /*
  * Standard
  *

@@ -10,8 +10,6 @@
 /decl/hierarchy/outfit/job/service
 	l_ear = /obj/item/radio/headset/service
 
-	flags = OUTFIT_HIDE_IF_CATEGORY
-
 /*
  * Bartender
  */

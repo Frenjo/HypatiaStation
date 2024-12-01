@@ -8,8 +8,6 @@
 
 	l_ear = /obj/item/radio/headset/engi
 
-	flags = OUTFIT_HIDE_IF_CATEGORY
-
 	backpack = /obj/item/storage/backpack/industrial
 	satchel_one = /obj/item/storage/satchel/eng
 

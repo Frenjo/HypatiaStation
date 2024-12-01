@@ -74,8 +74,6 @@
 		/obj/item/flashlight
 	)
 
-	flags = OUTFIT_HIDE_IF_CATEGORY
-
 /decl/hierarchy/outfit/death_commando/post_equip(mob/living/carbon/human/user)
 	. = ..()
 	var/obj/item/radio/headset/radio = locate(/obj/item/radio/headset) in user

@@ -9,8 +9,6 @@
 
 	r_hand = /obj/item/melee/energy/sword/pirate
 
-	flags = OUTFIT_HIDE_IF_CATEGORY
-
 /*
  * Standard
  */

@@ -6,8 +6,6 @@
 
 	l_ear = /obj/item/radio/headset/sec
 
-	flags = OUTFIT_HIDE_IF_CATEGORY
-
 	backpack = /obj/item/storage/backpack/security
 	satchel_one = /obj/item/storage/satchel/sec
 

@@ -15,8 +15,6 @@
 	pda_slot = SLOT_ID_BELT
 	pda_type = /obj/item/pda
 
-	flags = OUTFIT_HIDE_IF_CATEGORY
-
 	var/backpack = /obj/item/storage/backpack
 	var/satchel_one = /obj/item/storage/satchel/norm
 	var/satchel_two = /obj/item/storage/satchel

@@ -4,8 +4,6 @@
 /decl/hierarchy/outfit/job/command
 	shoes = /obj/item/clothing/shoes/brown
 
-	flags = OUTFIT_HIDE_IF_CATEGORY
-
 /*
  * Captain
  */

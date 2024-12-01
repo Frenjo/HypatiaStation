@@ -139,7 +139,7 @@
 	. = TRUE
 	for(var/path in SUBTYPESOF(/decl/hierarchy/outfit))
 		var/decl/hierarchy/outfit/O = GET_DECL_INSTANCE(path)
-		if(O.is_hidden())
+		if(O.is_category())
 			continue
 		GLOBL.all_outfits[O.name] = path
 
