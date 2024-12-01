@@ -30,6 +30,3 @@
 						used_skillpoints += 3 * multiplier
 					else
 						used_skillpoints += 6 * multiplier
-
-/datum/preferences/proc/GetSkillClass(points)
-	return calculate_skill_class(points, age)

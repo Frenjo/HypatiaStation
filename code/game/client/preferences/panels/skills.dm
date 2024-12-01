@@ -3,7 +3,7 @@
 		ZeroSkills()
 
 	var/html = "<b>Select your Skills</b><br>"
-	html += "Current skill level: <b>[GetSkillClass(used_skillpoints)]</b> ([used_skillpoints])<br>"
+	html += "Current skill level: <b>[calculate_skill_class(used_skillpoints, age)]</b> ([used_skillpoints])<br>"
 	html += "<a href=\"byond://?src=\ref[user];preference=skills;preconfigured=1;\">Use preconfigured skillset</a><br>"
 	html += "<hr>"
 

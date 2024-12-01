@@ -134,9 +134,6 @@
 		if(24 to 1000)
 			return "God"
 
-/mob/living/carbon/human/proc/GetSkillClass(points)
-	return calculate_skill_class(points, age)
-
 /proc/show_skill_window(mob/user, mob/living/carbon/human/M)
 	if(!istype(M))
 		return
@@ -147,7 +144,7 @@
 
 	var/HTML = "<body>"
 	HTML += "<b>Select your Skills</b><br>"
-	HTML += "Current skill level: <b>[M.GetSkillClass(M.used_skillpoints)]</b> ([M.used_skillpoints])<br>"
+	HTML += "Current skill level: <b>[calculate_skill_class(M.used_skillpoints, M.age)]</b> ([M.used_skillpoints])<br>"
 	HTML += "<table>"
 	for(var/V in GLOBL.all_skills)
 		HTML += "<tr><th colspan = 5><b>[V]</b>"

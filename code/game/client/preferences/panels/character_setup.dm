@@ -194,7 +194,7 @@
 		. += "<font color='red'><b><s><a>Character Records</a></s></b></font> - "
 	else
 		. += "<a href=\"byond://?src=\ref[user];preference=records;record=1\"><b>Character Records</b></a> - "
-	. += "\t<a href=\"byond://?src=\ref[user];preference=skills\"><b>Skills</b> (<i>[GetSkillClass(used_skillpoints)] [used_skillpoints > 0 ? " [used_skillpoints]" : "0"])</i></a> - "
+	. += "\t<a href=\"byond://?src=\ref[user];preference=skills\"><b>Skills</b> (<i>[calculate_skill_class(used_skillpoints, age)] [used_skillpoints > 0 ? " [used_skillpoints]" : "0"])</i></a> - "
 	. += "<a href=\"byond://?src=\ref[user];preference=specialroles;active=0\"><b>Special Roles</b></a> - "
 	. += "<a href=\"byond://?src=\ref[user];preference=uipreferences;task=open\"><b>UI Preferences</b></a>"
 	. += "<hr>"
