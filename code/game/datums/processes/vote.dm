@@ -206,7 +206,7 @@ PROCESS_DEF(vote)
 			if("gamemode")
 				if(global.PCticker.current_state >= GAME_STATE_SETTING_UP)
 					return 0
-				choices.Add(CONFIG_GET_OLD(votable_modes))
+				choices.Add(global.CTconfiguration.votable_modes)
 			if("crew_transfer")
 				if(check_rights(R_ADMIN | R_MOD, 0))
 					question = "End the shift?"

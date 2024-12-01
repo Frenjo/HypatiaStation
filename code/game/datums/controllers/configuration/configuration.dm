@@ -3,21 +3,13 @@
  *
  * The configuration object sets and globally stores configurable values after loading them from their associated files.
  *
- * Most of this is set up in /configuration/New().
+ * Most of this is set up in /datum/controller/configuration/New().
  *
  * In a gentle way, you can shake the world. ~ Mahatma Gandhi
 */
-/var/global/configuration/config // Set in /datum/global_init/New()
+CONTROLLER_DEF(configuration)
+	name = "Configuration"
 
-// These are deprecated but still used in certain places.
-#define CONFIG_GET_OLD(VAR) global.config.VAR
-#define CONFIG_SET_OLD(VAR, VALUE) global.config.VAR = VALUE
-
-// These are for the new system and are the ones that should be used.
-#define CONFIG_GET(VAR) global.config.get_value(#VAR)
-#define CONFIG_SET(VAR, VALUE) global.config.set_value(#VAR, VALUE)
-
-/configuration
 	var/static/list/categories_by_file_name = list(
 		"gamemode_probabilities.txt" = list(
 			CATEGORY_GAMEMODE_PROBABILITIES
@@ -69,7 +61,8 @@
 	// Miscellaneous.
 	//var/static/enable_authentication, FALSE)	// goon authentication
 
-/configuration/New()
+/datum/controller/configuration/New()
+	. = ..()
 	init_entries()
 
 	// Generates the default example configuration files.
@@ -84,7 +77,10 @@
 	load("dbconfig.txt")
 	load("forumdbconfig.txt")
 
-/configuration/proc/init_entries()
+/datum/controller/configuration/Destroy()
+	SHOULD_CALL_PARENT(FALSE)
+
+/datum/controller/configuration/proc/init_entries()
 	for(var/path in SUBTYPESOF(/datum/configuration_entry))
 		var/datum/configuration_entry/entry = new path()
 		entries_by_name[entry.name] = entry
@@ -92,7 +88,7 @@
 			entries_by_category[entry.category] = list()
 		entries_by_category[entry.category] += entry
 
-/configuration/proc/generate_default(file_name)
+/datum/controller/configuration/proc/generate_default(file_name)
 	if(isnull(categories_by_file_name[file_name]))
 		return
 	fdel("config/example/[file_name]")
@@ -115,7 +111,7 @@
 
 // This does what the old /proc/load(filename, type) used to do, except it returns the result as a list...
 // So it can be used in other functions for the different config files. -Frenjo
-/configuration/proc/read(file_name)
+/datum/controller/configuration/proc/read(file_name)
 	file_name = "config/[file_name]"
 
 	var/list/result = list()
@@ -135,7 +131,7 @@
 	return result
 
 // This loads configuration entries using the new system from a provided file.
-/configuration/proc/load(file_name)
+/datum/controller/configuration/proc/load(file_name)
 	var/list/config_file = read(file_name)
 	for(var/option in config_file)
 		var/value = config_file[option]
@@ -155,7 +151,7 @@
 					if(TYPE_LIST)
 						entry.value = splittext(value, " ")
 
-/configuration/proc/load_gamemodes()
+/datum/controller/configuration/proc/load_gamemodes()
 	for(var/path in SUBTYPESOF(/datum/game_mode))
 		// I wish I didn't have to instance the game modes in order to look up
 		// their information, but it is the only way (at least that I know of).
@@ -182,14 +178,14 @@
 	probabilities["cult"] = CONFIG_GET(probability_cult)
 	probabilities["extend-a-traitormongous"] = CONFIG_GET(probability_autotraitor)
 
-/configuration/proc/pick_mode(mode_name)
+/datum/controller/configuration/proc/pick_mode(mode_name)
 	for(var/path in mode_cache)
 		var/datum/game_mode/mode = mode_cache[path]
 		if(mode.config_tag && mode.config_tag == mode_name)
 			return mode
 	return mode_cache[/datum/game_mode/extended]
 
-/configuration/proc/get_runnable_modes()
+/datum/controller/configuration/proc/get_runnable_modes()
 	var/list/datum/game_mode/runnable_modes = list()
 	for(var/path in mode_cache)
 		var/datum/game_mode/mode = mode_cache[path]
@@ -203,7 +199,7 @@
 			//to_world("DEBUG: runnable_mode\[[length(runnable_modes)]\] = [M.config_tag]")
 	return runnable_modes
 
-/configuration/proc/post_load()
+/datum/controller/configuration/proc/post_load()
 	//apply a default value to python_path, if needed
 	if(isnull(CONFIG_GET(python_path)))
 		if(world.system_type == UNIX)
@@ -212,7 +208,7 @@
 			CONFIG_SET(python_path, "python")
 
 // Retrieves and returns a configuration value from its corresponding entry datum.
-/configuration/proc/get_value(name)
+/datum/controller/configuration/proc/get_value(name)
 	if(isnull(entries_by_name[name]))
 		return null
 
@@ -220,7 +216,7 @@
 	return entry.value
 
 // Retrieves and sets the configuration value of the corresponding entry datum.
-/configuration/proc/set_value(name, value)
+/datum/controller/configuration/proc/set_value(name, value)
 	if(isnull(entries_by_name[name]))
 		return
 

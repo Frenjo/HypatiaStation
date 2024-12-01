@@ -104,22 +104,22 @@ PROCESS_DEF(ticker)
 		hide_mode = TRUE
 	var/list/datum/game_mode/runnable_modes
 	if(master_mode == "random" || master_mode == "secret")
-		runnable_modes = CONFIG_GET_OLD(get_runnable_modes())
+		runnable_modes = global.CTconfiguration.get_runnable_modes()
 		if(!length(runnable_modes))
 			current_state = GAME_STATE_PREGAME
 			to_world("<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby.")
 			return 0
 		if(secret_force_mode != "secret")
-			var/datum/game_mode/M = global.config.pick_mode(secret_force_mode)
+			var/datum/game_mode/M = global.CTconfiguration.pick_mode(secret_force_mode)
 			if(M.can_start())
-				mode = global.config.pick_mode(secret_force_mode)
+				mode = global.CTconfiguration.pick_mode(secret_force_mode)
 		global.CTjobs.reset_occupations()
 		if(isnull(mode))
 			mode = pickweight(runnable_modes)
 		if(isnotnull(mode))
 			mode = new mode.type()
 	else
-		mode = global.config.pick_mode(master_mode)
+		mode = global.CTconfiguration.pick_mode(master_mode)
 	if(!mode.can_start())
 		to_world("<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
 		qdel(mode)

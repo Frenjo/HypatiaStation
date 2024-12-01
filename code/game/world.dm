@@ -21,7 +21,7 @@
 	if(byond_version < RECOMMENDED_VERSION)
 		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND."
 
-	global.config.post_load()
+	global.CTconfiguration.post_load()
 
 	if(isnotnull(CONFIG_GET(server_name)) && CONFIG_GET(server_suffix) && world.port > 0)
 		// dumb and hardcoded but I don't care~

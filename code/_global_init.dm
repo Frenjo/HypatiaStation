@@ -16,8 +16,8 @@
 */
 /datum/global_init/New()
 	global.debugger = new /debugger()
-	global.config = new /configuration()
-	global.config.load_gamemodes()
+	global.CTconfiguration = new /datum/controller/configuration()
+	global.CTconfiguration.load_gamemodes()
 	global.GLOBL = new /datum/controller/global_variables()
 	global.CTdecls = new /datum/controller/decls()
 

@@ -32,3 +32,7 @@
 // Returns whether or not the current gamemode is of type X.
 // Basically exists so there isn't the need to type out long lines.
 #define IS_GAME_MODE(X) istype(global.PCticker?.mode, X)
+
+// These are used for the new configuration system.
+#define CONFIG_GET(VAR) global.CTconfiguration.get_value(#VAR)
+#define CONFIG_SET(VAR, VALUE) global.CTconfiguration.set_value(#VAR, VALUE)
