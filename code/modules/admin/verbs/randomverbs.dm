@@ -654,25 +654,31 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	else
 		return
 
-/client/proc/cmd_admin_gib(mob/M as mob in GLOBL.mob_list)
+/client/proc/cmd_admin_gib(mob/victim as mob in GLOBL.mob_list)
 	set category = PANEL_SPECIAL_VERBS
 	set name = "Gib"
 
-	if(!check_rights(R_ADMIN|R_FUN))	return
-
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm != "Yes") return
-	//Due to the delay here its easy for something to have happened to the mob
-	if(!M)	return
-
-	log_admin("[key_name(usr)] has gibbed [key_name(M)]")
-	message_admins("[key_name_admin(usr)] has gibbed [key_name_admin(M)]", 1)
-
-	if(isobserver(M))
-		gibs(M.loc, M.viruses)
+	if(!check_rights(R_ADMIN | R_FUN))
 		return
 
-	M.gib()
+	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
+	if(confirm != "Yes")
+		return
+	// Due to the delay here its easy for something to have happened to the mob
+	if(isnull(victim))
+		return
+
+	log_admin("[key_name(usr)] has gibbed [key_name(victim)]")
+	message_admins("[key_name_admin(usr)] has gibbed [key_name_admin(victim)]", 1)
+
+	if(isobserver(victim))
+		gibs(victim.loc, victim.viruses)
+		return
+
+	if(isliving(victim))
+		var/mob/living/living_victim = victim
+		living_victim.gib()
+
 	feedback_add_details("admin_verb","GIB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_gib_self()
@@ -681,13 +687,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm == "Yes")
-		if(isobserver(mob)) // so they don't spam gibs everywhere
-			return
-		else
-			mob.gib()
-
 		log_admin("[key_name(usr)] used gibself.")
 		message_admins("\blue [key_name_admin(usr)] used gibself.", 1)
+
+		if(isliving(mob))
+			var/mob/living/self = mob
+			self.gib()
+
 		feedback_add_details("admin_verb","GIBS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 /*
 /client/proc/cmd_manual_ban()

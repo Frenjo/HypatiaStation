@@ -120,8 +120,9 @@ Implant Specifics:<BR>"}
 	if((!cause) || (!src.imp_in))
 		return 0
 	explosion(src, -1, 0, 2, 3, 0)//This might be a bit much, dono will have to see.
-	if(src.imp_in)
-		src.imp_in.gib()
+	if(isnotnull(imp_in) && isliving(imp_in))
+		var/mob/living/L = imp_in
+		L.gib()
 
 /obj/item/implant/dexplosive/islegal()
 	return 0
@@ -171,6 +172,7 @@ Implant Specifics:<BR>"}
 		need_gib = 1
 
 		if(ishuman(imp_in))
+			var/mob/living/carbon/human/H = imp_in
 			if(elevel == "Localized Limb")
 				if(part) //For some reason, small_boom() didn't work. So have this bit of working copypaste.
 					imp_in.visible_message("\red Something beeps inside [imp_in][part ? "'s [part.display_name]" : ""]!")
@@ -188,16 +190,17 @@ Implant Specifics:<BR>"}
 						qdel(src)
 			if(elevel == "Destroy Body")
 				explosion(GET_TURF(T), -1, 0, 1, 6)
-				T.gib()
+				H.gib()
 			if(elevel == "Full Explosion")
 				explosion(GET_TURF(T), 0, 1, 3, 6)
-				T.gib()
+				H.gib()
 
 		else
 			explosion(GET_TURF(imp_in), 0, 1, 3, 6)
 
-	if(need_gib)
-		imp_in.gib()
+	if(need_gib && isliving(imp_in))
+		var/mob/living/L = imp_in
+		L.gib()
 
 	var/turf/t = GET_TURF(imp_in)
 

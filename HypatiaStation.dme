@@ -480,7 +480,6 @@
 #include "code\game\mobs\transform_procs.dm"
 #include "code\game\mobs\update_icons.dm"
 #include "code\game\mobs\dead\_dead.dm"
-#include "code\game\mobs\dead\death.dm"
 #include "code\game\mobs\dead\new_player\_new_player.dm"
 #include "code\game\mobs\dead\new_player\login.dm"
 #include "code\game\mobs\dead\new_player\logout.dm"

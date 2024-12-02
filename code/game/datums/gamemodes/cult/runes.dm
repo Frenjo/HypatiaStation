@@ -568,7 +568,7 @@ var/list/sacrificed = list()
 		if(iscultist(C) && !C.stat)
 			cultsinrange += C
 			C.say("Barhah hra zar[pick("'", "`")]garis!")
-	for(var/mob/H in victims)
+	for(var/mob/living/H in victims)
 		if(IS_GAME_MODE(/datum/game_mode/cult))
 			var/datum/game_mode/cult/cult = global.PCticker.mode
 			if(H.mind == cult.sacrifice_target)

@@ -194,7 +194,9 @@
 			src.temp = "You have been drained! GAME OVER"
 			if(emagged)
 				feedback_inc("arcade_loss_mana_emagged")
-				usr.gib()
+				if(isliving(usr))
+					var/mob/living/L = usr
+					L.gib()
 			else
 				feedback_inc("arcade_loss_mana_normal")
 
@@ -213,7 +215,9 @@
 		src.temp = "You have been crushed! GAME OVER"
 		if(emagged)
 			feedback_inc("arcade_loss_hp_emagged")
-			usr.gib()
+			if(isliving(usr))
+				var/mob/living/L = usr
+				L.gib()
 		else
 			feedback_inc("arcade_loss_hp_normal")
 

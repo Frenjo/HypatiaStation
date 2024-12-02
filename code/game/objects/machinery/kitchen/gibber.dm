@@ -38,12 +38,12 @@
 /obj/machinery/gibber/autogibber/Bumped(var/atom/A)
 	if(!input_plate) return
 
-	if(ismob(A))
-		var/mob/M = A
+	if(isliving(A))
+		var/mob/living/L = A
 
-		if(M.loc == input_plate)
-			M.loc = src
-			M.gib()
+		if(L.loc == input_plate)
+			L.loc = src
+			L.gib()
 
 
 /obj/machinery/gibber/New()

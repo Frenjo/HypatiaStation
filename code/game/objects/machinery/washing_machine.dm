@@ -300,8 +300,8 @@
 			if(gibs_ready)
 				gibs_ready = 0
 				if(locate(/mob, contents))
-					var/mob/M = locate(/mob, contents)
-					M.gib()
+					var/mob/living/L = locate(/mob/living, contents)
+					L.gib()
 			for(var/atom/movable/O in contents)
 				O.loc = src.loc
 			crayon = null
