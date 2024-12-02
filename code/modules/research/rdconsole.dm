@@ -234,8 +234,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 									linked_lathe.stored_materials[material_path] += min(storage_capacity, (loaded_item.matter_amounts[material_path] * linked_destroy.decon_mod))
 							linked_destroy.loaded_item = null
 						for(var/obj/I in linked_destroy.contents)
-							for(var/mob/M in I.contents)
-								M.death()
+							for(var/mob/living/L in I.contents)
+								L.death()
 							if(istype(I, /obj/item/stack/sheet))//Only deconsturcts one sheet at a time instead of the entire stack
 								var/obj/item/stack/sheet/S = I
 								if(S.amount > 1)

@@ -462,7 +462,6 @@
 #include "code\game\decls\unarmed_attacks\punch.dm"
 #include "code\game\decls\unarmed_attacks\special.dm"
 #include "code\game\mobs\abilities.dm"
-#include "code\game\mobs\death.dm"
 #include "code\game\mobs\emote.dm"
 #include "code\game\mobs\hear_say.dm"
 #include "code\game\mobs\inventory.dm"
