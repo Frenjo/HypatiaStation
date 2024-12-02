@@ -1,4 +1,4 @@
-/mob/living/carbon/brain/Life()
+/mob/living/brain/Life()
 	set background = BACKGROUND_ENABLED
 
 	. = ..()
@@ -19,7 +19,7 @@
 	if(isnotnull(client))
 		handle_regular_hud_updates()
 
-/mob/living/carbon/brain/handle_mutations_and_radiation()
+/mob/living/brain/handle_mutations_and_radiation()
 	if(radiation)
 		if(radiation > 100)
 			radiation = 100
@@ -51,7 +51,7 @@
 				adjustToxLoss(3)
 				updatehealth()
 
-/mob/living/carbon/brain/handle_environment(datum/gas_mixture/environment)
+/mob/living/brain/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
 		return
 
@@ -72,7 +72,7 @@
 
 	return //TODO: DEFERRED
 
-/mob/living/carbon/brain/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
+/mob/living/brain/proc/handle_temperature_damage(body_part, exposed_temperature, exposed_intensity)
 	if(status_flags & GODMODE)
 		return
 
@@ -87,7 +87,7 @@
 		//adjustFireLoss(2.5*discomfort)
 		adjustFireLoss(5.0 * discomfort)
 
-/mob/living/carbon/brain/proc/handle_chemicals_in_body()
+/mob/living/brain/proc/handle_chemicals_in_body()
 	reagents?.metabolize(src)
 
 	confused = max(0, confused - 1)
@@ -101,7 +101,7 @@
 
 	return //TODO: DEFERRED
 
-/mob/living/carbon/brain/proc/handle_regular_status_updates()	//TODO: comment out the unused bits >_>
+/mob/living/brain/proc/handle_regular_status_updates()	//TODO: comment out the unused bits >_>
 	updatehealth()
 
 	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
@@ -184,7 +184,7 @@
 			druggy = max(druggy - 1, 0)
 	return 1
 
-/mob/living/carbon/brain/proc/handle_regular_hud_updates()
+/mob/living/brain/proc/handle_regular_hud_updates()
 	if(stat == DEAD || (MUTATION_XRAY in mutations))
 		sight |= SEE_TURFS
 		sight |= SEE_MOBS
@@ -247,7 +247,7 @@
 
 	return 1
 
-/*/mob/living/carbon/brain/emp_act(severity)
+/*/mob/living/brain/emp_act(severity)
 	if(!(container && istype(container, /obj/item/mmi)))
 		return
 	else

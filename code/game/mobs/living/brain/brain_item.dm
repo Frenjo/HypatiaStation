@@ -11,7 +11,7 @@
 	origin_tech = list(/datum/tech/biotech = 3)
 	attack_verb = list("attacked", "slapped", "whacked")
 
-	var/mob/living/carbon/brain/brainmob = null
+	var/mob/living/brain/brainmob = null
 
 /obj/item/brain/initialise()
 	. = ..()

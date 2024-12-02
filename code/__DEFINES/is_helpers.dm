@@ -29,6 +29,7 @@
  */
 //#define ismob(X)		istype(X, /mob) // Built-in.
 #define isliving(X)		istype(X, /mob/living)
+#define isbrain(X)		istype(X, /mob/living/brain)
 #define isobserver(X)	istype(X, /mob/dead/observer)
 #define isnewplayer(X)	istype(X, /mob/dead/new_player)
 
@@ -36,7 +37,6 @@
 #define iscarbon(X)		istype(X, /mob/living/carbon)
 #define ishuman(X)		istype(X, /mob/living/carbon/human)
 #define ismonkey(X)		istype(X, /mob/living/carbon/monkey)
-#define isbrain(X)		istype(X, /mob/living/carbon/brain)
 #define isalien(X)		istype(X, /mob/living/carbon/alien)
 #define islarva(X)		istype(X, /mob/living/carbon/alien/larva)
 #define isslime(X)		istype(X, /mob/living/carbon/slime)

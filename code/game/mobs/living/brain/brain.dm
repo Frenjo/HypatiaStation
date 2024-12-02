@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-/mob/living/carbon/brain
+/mob/living/brain
 	use_me = FALSE // Can't use the me verb, it's a freaking immobile brain
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "brain1"
@@ -12,18 +12,18 @@
 	var/emp_damage = 0 //Handles a type of MMI damage
 	var/alert = null
 
-/mob/living/carbon/brain/New()
+/mob/living/brain/New()
 	create_reagents(1000)
 	. = ..()
 
-/mob/living/carbon/brain/Destroy()
+/mob/living/brain/Destroy()
 	if(key)				//If there is a mob connected to this thing. Have to check key twice to avoid false death reporting.
 		if(stat != DEAD)	//If not dead.
 			death(1)	//Brains can die again. AND THEY SHOULD AHA HA HA HA HA HA
 		ghostize()		//Ghostize checks for key so nothing else is necessary.
 	return ..()
 
-/mob/living/carbon/brain/say_understands(other) // Goddamn is this hackish, but this say code is so odd
+/mob/living/brain/say_understands(other) // Goddamn is this hackish, but this say code is so odd
 	if(isAI(other))
 		if(!(container && isMMI(container)))
 			return FALSE
@@ -50,7 +50,7 @@
 		return TRUE
 	return ..()
 
-/mob/living/carbon/brain/update_canmove()
+/mob/living/brain/update_canmove()
 	if(in_contents_of(/obj/mecha))
 		canmove = TRUE
 		use_me = TRUE // If it can move, let it emote

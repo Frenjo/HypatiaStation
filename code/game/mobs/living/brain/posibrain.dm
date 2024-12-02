@@ -25,17 +25,15 @@
 	var/askDelay = 10 * 60 * 1
 
 /obj/item/mmi/posibrain/New()
-	src.brainmob = new(src)
-	src.brainmob.name = "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
-	src.brainmob.real_name = src.brainmob.name
-	src.brainmob.loc = src
-	src.brainmob.container = src
-	src.brainmob.stat = 0
-	src.brainmob.silent = 0
-	src.brainmob.brain_op_stage = 4.0
-	GLOBL.dead_mob_list.Remove(src.brainmob)
-
-	..()
+	brainmob = new /mob/living/brain(src)
+	brainmob.name = "[pick(list("PBU", "HIU", "SINA", "ARMA", "OSI"))]-[rand(100, 999)]"
+	brainmob.real_name = brainmob.name
+	brainmob.loc = src
+	brainmob.container = src
+	brainmob.stat = 0
+	brainmob.silent = 0
+	GLOBL.dead_mob_list.Remove(brainmob)
+	. = ..()
 
 /obj/item/mmi/posibrain/attack_self(mob/user)
 	if(brainmob && !brainmob.key && searching == 0)

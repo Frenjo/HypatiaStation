@@ -3,7 +3,7 @@
 /datum/hud/ghost
 
 /datum/hud/brain/setup(ui_style = 'icons/mob/screen/screen1_Midnight.dmi')
-	var/mob/living/carbon/brain/B = owner
+	var/mob/living/brain/B = owner
 
 	B.blind = new /atom/movable/screen()
 	B.blind.icon = 'icons/mob/screen/screen1_full.dmi'

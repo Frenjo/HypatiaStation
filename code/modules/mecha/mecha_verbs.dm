@@ -181,7 +181,7 @@
 			to_chat(user, SPAN_WARNING("Beta-rhythm below acceptable level."))
 			return FALSE
 		user.drop_from_inventory(mmi_as_oc)
-		var/mob/living/carbon/brain/brainmob = mmi_as_oc.brainmob
+		var/mob/living/brain/brainmob = mmi_as_oc.brainmob
 		brainmob.reset_view(src)
 	/*
 		brainmob.client.eye = src
@@ -243,7 +243,7 @@
 	if(ishuman(occupant))
 		mob_container = occupant
 	else if(isbrain(occupant))
-		var/mob/living/carbon/brain/brain = occupant
+		var/mob/living/brain/brain = occupant
 		mob_container = brain.container
 	else
 		return

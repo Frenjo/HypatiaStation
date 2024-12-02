@@ -999,7 +999,7 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 /obj/item/organ/head
 	name = "head"
 	icon_state = "head_m"
-	var/mob/living/carbon/brain/brainmob
+	var/mob/living/brain/brainmob
 	var/brain_op_stage = 0
 
 /obj/item/organ/head/posi
