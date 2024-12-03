@@ -5,22 +5,24 @@
 	icon_state = "ano00"
 	density = TRUE
 
-	var/icon_num = 0
+	var/static/list/all_effect_types = SUBTYPESOF(/datum/artifact_effect)
 	var/datum/artifact_effect/my_effect
 	var/datum/artifact_effect/secondary_effect
+
+	var/icon_num = 0
 	var/being_used = 0
 
 /obj/machinery/artifact/New()
-	..()
+	. = ..()
 
 	//setup primary effect - these are the main ones (mixed)
-	var/effecttype = pick(GLOBL.all_artifact_effect_types)
-	my_effect = new effecttype(src)
+	var/effect_type = pick(all_effect_types)
+	my_effect = new effect_type(src)
 
 	//75% chance to have a secondary stealthy (and mostly bad) effect
 	if(prob(75))
-		effecttype = pick(GLOBL.all_artifact_effect_types)
-		secondary_effect = new effecttype(src)
+		effect_type = pick(all_effect_types)
+		secondary_effect = new effect_type(src)
 		if(prob(75))
 			secondary_effect.ToggleActivate(0)
 

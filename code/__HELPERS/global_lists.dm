@@ -129,10 +129,6 @@
 		var/datum/design/D = new path()
 		GLOBL.all_designs[path] = D
 
-	// Artifact effects - Adds the typepaths of all /datum/artifact_effect to a list.
-	for(var/path in SUBTYPESOF(/datum/artifact_effect))
-		GLOBL.all_artifact_effect_types.Add(path)
-
 // Outfits - Initialises all /decl/outfit typepaths into a list, indexed by name.
 /hook/global_init/proc/init_outfits()
 	. = TRUE
