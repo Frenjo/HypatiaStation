@@ -209,54 +209,6 @@
 */
 
 /*
-	Shift click
-	For most mobs, examine.
-	This is overridden in ai.dm
-*/
-/mob/proc/ShiftClickOn(atom/A)
-	A.ShiftClick(src)
-	return
-
-/atom/proc/ShiftClick(mob/user)
-	if(isnotnull(user.client) && user.client.eye == user)
-		examine()
-		user.face_atom(src)
-	return
-
-/*
-	Ctrl click
-	For most objects, pull
-*/
-/mob/proc/CtrlClickOn(atom/A)
-	A.CtrlClick(src)
-	return
-
-/atom/proc/CtrlClick(mob/user)
-	return
-
-/atom/movable/CtrlClick(mob/user)
-	if(Adjacent(user))
-		user.start_pulling(src)
-
-/*
-	Alt click
-	Used for some AI things.
-	Used to toggle firing modes of energy weapons and emitters.
-*/
-/mob/proc/AltClickOn(atom/A)
-	A.AltClick(src)
-	return
-
-/atom/proc/AltClick(mob/user)
-	var/turf/T = GET_TURF(src)
-	if(T?.Adjacent(user))
-		if(user.listed_turf == T)
-			user.listed_turf = null
-		else
-			user.listed_turf = T
-			user.client.statpanel = T.name
-
-/*
 	Misc helpers
 
 	Laser Eyes: as the name implies, handles this since nothing else does currently
