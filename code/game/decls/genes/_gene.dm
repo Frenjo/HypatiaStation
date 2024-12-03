@@ -4,8 +4,6 @@
  *
  * The original /datum/dna/gene was authored by N3X15 <nexisentertainment@gmail.com>.
  */
-GLOBAL_GLOBL_LIST_NEW(all_dna_genes)
-
 /decl/gene
 	// Display name.
 	var/name = "BASE GENE"

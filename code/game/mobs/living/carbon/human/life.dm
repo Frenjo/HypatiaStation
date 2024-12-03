@@ -141,8 +141,7 @@
 
 	// DNA2 - Gene processing.
 	// The MUTATION_HULK stuff that was here is now in the hulk gene.
-	for(var/gene_type in GLOBL.all_dna_genes)
-		var/decl/gene/gene = GLOBL.all_dna_genes[gene_type]
+	for_no_type_check(var/decl/gene/gene, GET_DECL_SUBTYPE_INSTANCES(/decl/gene))
 		if(!gene.block)
 			continue
 		if(gene.is_active(src))

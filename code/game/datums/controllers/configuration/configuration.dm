@@ -80,7 +80,7 @@ CONTROLLER_DEF(configuration)
 	SHOULD_CALL_PARENT(FALSE)
 
 /datum/controller/configuration/proc/init_entries()
-	for(var/decl/configuration_entry/entry in GET_DECL_SUBTYPE_INSTANCES(/decl/configuration_entry))
+	for_no_type_check(var/decl/configuration_entry/entry, GET_DECL_SUBTYPE_INSTANCES(/decl/configuration_entry))
 		if(isnull(entries_by_category[entry.category]))
 			entries_by_category[entry.category] = list()
 		entries_by_category[entry.category] += entry.type

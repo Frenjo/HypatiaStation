@@ -289,7 +289,7 @@ CONTROLLER_DEF(master)
 	to_world(SPAN_DANGER("↪ Setting up factions."))
 
 	// Populates the factions list.
-	for(var/decl/faction/F in GET_DECL_SUBTYPE_INSTANCES(/decl/faction))
+	for_no_type_check(var/decl/faction/F, GET_DECL_SUBTYPE_INSTANCES(/decl/faction))
 		GLOBL.factions.Add(F)
 		GLOBL.available_factions.Add(F)
 		// Populates the syndicate coalition.

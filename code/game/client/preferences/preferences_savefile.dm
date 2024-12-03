@@ -147,7 +147,7 @@
 
 	// Jobs.
 	S["alternate_option"]	>> alternate_option
-	for(var/decl/department/dep in GET_DECL_SUBTYPE_INSTANCES(/decl/department))
+	for_no_type_check(var/decl/department/dep, GET_DECL_SUBTYPE_INSTANCES(/decl/department))
 		var/dep_name = lowertext(dep.name)
 		S["job_[dep_name]_high"] >> job_by_department_high[dep.type]
 		S["job_[dep_name]_med"] >> job_by_department_med[dep.type]
@@ -264,7 +264,7 @@
 
 	// Jobs.
 	S["alternate_option"]	<< alternate_option
-	for(var/decl/department/dep in GET_DECL_SUBTYPE_INSTANCES(/decl/department))
+	for_no_type_check(var/decl/department/dep, GET_DECL_SUBTYPE_INSTANCES(/decl/department))
 		var/dep_name = lowertext(dep.name)
 		S["job_[dep_name]_high"] << job_by_department_high[dep.type]
 		S["job_[dep_name]_med"] << job_by_department_med[dep.type]

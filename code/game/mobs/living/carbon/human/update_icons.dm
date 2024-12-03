@@ -426,8 +426,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 	if(gender == FEMALE)
 		g = "f"
 	// DNA2 - Drawing underlays.
-	for(var/gene_type in GLOBL.all_dna_genes)
-		var/decl/gene/gene = GLOBL.all_dna_genes[gene_type]
+	for_no_type_check(var/decl/gene/gene, GET_DECL_SUBTYPE_INSTANCES(/decl/gene))
 		if(!gene.block)
 			continue
 		if(gene.is_active(src))

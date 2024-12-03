@@ -109,7 +109,7 @@
 // Skills - Initialises all /decl/hierarchy/skill and adds their typepaths into a list, indexed by field.
 /hook/global_init/proc/init_skills()
 	. = TRUE
-	for(var/decl/hierarchy/skill/S in GET_DECL_SUBTYPE_INSTANCES(/decl/hierarchy/skill))
+	for_no_type_check(var/decl/hierarchy/skill/S, GET_DECL_SUBTYPE_INSTANCES(/decl/hierarchy/skill))
 		if(S.is_category())
 			continue
 		if(isnull(GLOBL.all_skills[S.field]))
@@ -132,7 +132,7 @@
 // Outfits - Initialises all /decl/outfit typepaths into a list, indexed by name.
 /hook/global_init/proc/init_outfits()
 	. = TRUE
-	for(var/decl/hierarchy/outfit/O in GET_DECL_SUBTYPE_INSTANCES(/decl/hierarchy/outfit))
+	for_no_type_check(var/decl/hierarchy/outfit/O, GET_DECL_SUBTYPE_INSTANCES(/decl/hierarchy/outfit))
 		if(O.is_category())
 			continue
 		GLOBL.all_outfits[O.name] = O.type
@@ -148,12 +148,6 @@
 				. += "    has: [t]\n"
 	to_world(.)
 */
-
-// Genes - Initialises all /decl/gene into a list, indexed by typepath.
-/hook/global_init/proc/init_genes()
-	. = TRUE
-	for(var/decl/gene/gene in GET_DECL_SUBTYPE_INSTANCES(/decl/gene))
-		GLOBL.all_dna_genes[gene.type] = gene
 
 // Dreams - Initialises various categories of dream text into the GLOBL.all_dreams list.
 // This is really just for organisational purposes so things are categorised and can be changed easily.

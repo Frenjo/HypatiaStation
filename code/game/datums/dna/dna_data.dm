@@ -149,8 +149,7 @@ GLOBAL_GLOBL(datum/dna_data/dna_data)
 
 	// And the genes that actually do the work. (domutcheck improvements)
 	var/list/blocks_assigned[DNA_SE_LENGTH]
-	for(var/gene_type in GLOBL.all_dna_genes)
-		var/decl/gene/gene = GLOBL.all_dna_genes[gene_type]
+	for_no_type_check(var/decl/gene/gene, GET_DECL_SUBTYPE_INSTANCES(/decl/gene))
 		if(gene.block)
 			if(gene.block in blocks_assigned)
 				warning("DNA2: Gene [gene.name] trying to use already-assigned block [gene.block] (used by [english_list(blocks_assigned[gene.block])])")
