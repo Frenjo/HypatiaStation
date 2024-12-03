@@ -28,15 +28,15 @@
 	. = TRUE
 	var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
 	for(var/decl/xgm_gas/gas in GET_DECL_SUBTYPE_INSTANCES(/decl/xgm_gas))
-		if(type in gas_data.gases)
-			error("Duplicate gas `[type]`!")
+		if(gas.type in gas_data.gases)
+			error("Duplicate gas `[gas.type]`!")
 
-		gas_data.gases.Add(type)
-		gas_data.name[type] = gas.name
-		gas_data.specific_heat[type] = gas.specific_heat
-		gas_data.molar_mass[type] = gas.molar_mass
-		if(gas.tile_overlay)
-			gas_data.tile_overlay[type] = image('icons/effects/tile_effects.dmi', gas.tile_overlay, FLY_LAYER)
-		if(gas.overlay_limit)
-			gas_data.overlay_limit[type] = gas.overlay_limit
-		gas_data.flags[type] = gas.flags
+		gas_data.gases.Add(gas.type)
+		gas_data.name[gas.type] = gas.name
+		gas_data.specific_heat[gas.type] = gas.specific_heat
+		gas_data.molar_mass[gas.type] = gas.molar_mass
+		if(isnotnull(gas.tile_overlay))
+			gas_data.tile_overlay[gas.type] = image('icons/effects/tile_effects.dmi', gas.tile_overlay, FLY_LAYER)
+		if(isnotnull(gas.overlay_limit))
+			gas_data.overlay_limit[gas.type] = gas.overlay_limit
+		gas_data.flags[gas.type] = gas.flags
