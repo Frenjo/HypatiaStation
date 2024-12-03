@@ -109,14 +109,13 @@
 // Skills - Initialises all /decl/hierarchy/skill and adds their typepaths into a list, indexed by field.
 /hook/global_init/proc/init_skills()
 	. = TRUE
-	for(var/path in SUBTYPESOF(/decl/hierarchy/skill))
-		var/decl/hierarchy/skill/S = GET_DECL_INSTANCE(path)
+	for(var/decl/hierarchy/skill/S in GET_DECL_SUBTYPE_INSTANCES(/decl/hierarchy/skill))
 		if(S.is_category())
 			continue
 		if(isnull(GLOBL.all_skills[S.field]))
 			GLOBL.all_skills[S.field] = list()
 		var/list/field_list = GLOBL.all_skills[S.field]
-		field_list.Add(path)
+		field_list.Add(S.type)
 
 /hook/global_init/proc/init_research()
 	. = TRUE
@@ -134,14 +133,13 @@
 	for(var/path in SUBTYPESOF(/datum/artifact_effect))
 		GLOBL.all_artifact_effect_types.Add(path)
 
-// Outfits - Initialises all /decl/outfit into a list, indexed by name.
+// Outfits - Initialises all /decl/outfit typepaths into a list, indexed by name.
 /hook/global_init/proc/init_outfits()
 	. = TRUE
-	for(var/path in SUBTYPESOF(/decl/hierarchy/outfit))
-		var/decl/hierarchy/outfit/O = GET_DECL_INSTANCE(path)
+	for(var/decl/hierarchy/outfit/O in GET_DECL_SUBTYPE_INSTANCES(/decl/hierarchy/outfit))
 		if(O.is_category())
 			continue
-		GLOBL.all_outfits[O.name] = path
+		GLOBL.all_outfits[O.name] = O.type
 
 /* // Uncomment to debug chemical reaction list.
 /client/verb/debug_chemical_list()
@@ -158,9 +156,8 @@
 // Genes - Initialises all /decl/gene into a list, indexed by typepath.
 /hook/global_init/proc/init_genes()
 	. = TRUE
-	for(var/path in SUBTYPESOF(/decl/gene))
-		var/decl/gene/gene = GET_DECL_INSTANCE(path)
-		GLOBL.all_dna_genes[path] = gene
+	for(var/decl/gene/gene in GET_DECL_SUBTYPE_INSTANCES(/decl/gene))
+		GLOBL.all_dna_genes[gene.type] = gene
 
 // Dreams - Initialises various categories of dream text into the GLOBL.all_dreams list.
 // This is really just for organisational purposes so things are categorised and can be changed easily.
@@ -197,6 +194,5 @@
 // Posters - Initialises all /decl/poster_design into a list.
 /hook/global_init/proc/init_poster_designs()
 	. = TRUE
-	for(var/path in SUBTYPESOF(/decl/poster_design))
-		var/decl/poster_design/design = GET_DECL_INSTANCE(path)
+	for(var/decl/poster_design/design in GET_DECL_SUBTYPE_INSTANCES(/decl/poster_design))
 		GLOBL.all_poster_designs.Add(design)

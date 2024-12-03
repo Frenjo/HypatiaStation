@@ -289,8 +289,7 @@ CONTROLLER_DEF(master)
 	to_world(SPAN_DANGER("↪ Setting up factions."))
 
 	// Populates the factions list.
-	for(var/path in SUBTYPESOF(/decl/faction))
-		var/decl/faction/F = GET_DECL_INSTANCE(path)
+	for(var/decl/faction/F in GET_DECL_SUBTYPE_INSTANCES(/decl/faction))
 		GLOBL.factions.Add(F)
 		GLOBL.available_factions.Add(F)
 

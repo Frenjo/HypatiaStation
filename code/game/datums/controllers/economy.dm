@@ -48,17 +48,15 @@ CONTROLLER_DEF(economy)
 	current_date_string = "[num2text(rand(1, 31))] [pick(GLOBL.months)], [GLOBL.game_year]"
 
 	// Sets up trade destinations.
-	for(var/location_path in SUBTYPESOF(/decl/trade_destination))
-		var/decl/trade_destination/D = GET_DECL_INSTANCE(location_path)
-		weighted_mundane_event_locations[location_path] = length(D.viable_mundane_events)
-		weighted_random_event_locations[location_path] = length(D.viable_random_events)
+	for(var/decl/trade_destination/D in GET_DECL_SUBTYPE_INSTANCES(/decl/trade_destination))
+		weighted_mundane_event_locations[D.type] = length(D.viable_mundane_events)
+		weighted_random_event_locations[D.type] = length(D.viable_random_events)
 
 	// Creates the station and vendor accounts.
 	station_account = create_special_money_account("[station_name()] Station", 75000)
 	vendor_account = create_special_money_account("Vendor", 5000)
 	// Creates departmental accounts.
-	for(var/department_path in SUBTYPESOF(/decl/department))
-		var/decl/department/department = GET_DECL_INSTANCE(department_path)
+	for(var/decl/department/department in GET_DECL_SUBTYPE_INSTANCES(/decl/department))
 		department.account = create_special_money_account(department.name, 5000)
 
 /datum/controller/economy/proc/create_special_money_account(owner_name, starting_money = 0)

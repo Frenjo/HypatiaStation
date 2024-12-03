@@ -27,9 +27,7 @@
 /hook/startup/proc/generate_gas_data()
 	. = TRUE
 	var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-	for(var/type in SUBTYPESOF(/decl/xgm_gas))
-		var/decl/xgm_gas/gas = GET_DECL_INSTANCE(type) // Avoid initial() because of potential New() actions.
-
+	for(var/decl/xgm_gas/gas in GET_DECL_SUBTYPE_INSTANCES(/decl/xgm_gas))
 		if(type in gas_data.gases)
 			error("Duplicate gas `[type]`!")
 

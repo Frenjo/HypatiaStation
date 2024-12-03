@@ -39,10 +39,10 @@
 	occupation_choices_panel(user)
 
 /datum/preferences/proc/ResetJobs()
-	for(var/dep in SUBTYPESOF(/decl/department))
-		job_by_department_high[dep] = 0
-		job_by_department_med[dep] = 0
-		job_by_department_low[dep] = 0
+	for(var/path in SUBTYPESOF(/decl/department))
+		job_by_department_high[path] = 0
+		job_by_department_med[path] = 0
+		job_by_department_low[path] = 0
 
 /datum/preferences/proc/GetJobDepartment(datum/job/job, level)
 	if(isnull(job) || !level)
@@ -64,13 +64,13 @@
 
 	switch(level)
 		if(1) // Only one of these should ever be active at once so clear them all here.
-			for(var/dep in SUBTYPESOF(/decl/department))
-				job_by_department_high[dep] = 0
+			for(var/path in SUBTYPESOF(/decl/department))
+				job_by_department_high[path] = 0
 			return
 		if(2) // Set current highs to med, then reset them.
-			for(var/dep in SUBTYPESOF(/decl/department))
-				job_by_department_med[dep] = job_by_department_high[dep]
-				job_by_department_high[dep] = 0
+			for(var/path in SUBTYPESOF(/decl/department))
+				job_by_department_med[path] = job_by_department_high[path]
+				job_by_department_high[path] = 0
 
 	var/department = job.department
 	var/flag = job.flag

@@ -80,11 +80,10 @@ CONTROLLER_DEF(configuration)
 	SHOULD_CALL_PARENT(FALSE)
 
 /datum/controller/configuration/proc/init_entries()
-	for(var/path in SUBTYPESOF(/decl/configuration_entry))
-		var/decl/configuration_entry/entry = GET_DECL_INSTANCE(path)
+	for(var/decl/configuration_entry/entry in GET_DECL_SUBTYPE_INSTANCES(/decl/configuration_entry))
 		if(isnull(entries_by_category[entry.category]))
 			entries_by_category[entry.category] = list()
-		entries_by_category[entry.category] += path
+		entries_by_category[entry.category] += entry.type
 
 /datum/controller/configuration/proc/generate_default(file_name)
 	if(isnull(categories_by_file_name[file_name]))

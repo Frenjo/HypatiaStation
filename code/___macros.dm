@@ -27,7 +27,8 @@
 #define BITFLAG(X) (1 << X)
 
 // Used to retrieve /decl instances from the declarations controller.
-#define GET_DECL_INSTANCE(X) global.CTdecls.get_decl_instance(X)
+#define GET_DECL_INSTANCE(PATH) global.CTdecls.get_decl_instance(PATH)
+#define GET_DECL_SUBTYPE_INSTANCES(PATH) global.CTdecls.get_decl_subtype_instances(PATH)
 
 // Returns whether or not the current gamemode is of type X.
 // Basically exists so there isn't the need to type out long lines.
