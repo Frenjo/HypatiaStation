@@ -11,10 +11,11 @@
 /obj/structure/sign/poster/New(serial)
 	serial_number = serial
 
+	var/list/decl/poster_design/all_designs = GET_DECL_SUBTYPE_INSTANCES(/decl/poster_design)
 	if(serial_number == loc)
-		serial_number = rand(1, length(GLOBL.all_poster_designs)) // This is for the mappers that want individual posters without having to use rolled posters.
+		serial_number = rand(1, length(all_designs)) // This is for the mappers that want individual posters without having to use rolled posters.
 
-	var/decl/poster_design/design = GLOBL.all_poster_designs[serial_number]
+	var/decl/poster_design/design = all_designs[serial_number]
 	name += " - [design.name]"
 	desc += " [design.desc]"
 	icon_state = design.icon_state // poster[serial_number]

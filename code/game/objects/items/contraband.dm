@@ -46,7 +46,7 @@
 
 /obj/item/contraband/poster/New(turf/loc, given_serial = 0)
 	if(given_serial == 0)
-		serial_number = rand(1, length(GLOBL.all_poster_designs))
+		serial_number = rand(1, length(GET_DECL_SUBTYPE_INSTANCES(/decl/poster_design)))
 	else
 		serial_number = given_serial
 	name += " - No. [serial_number]"

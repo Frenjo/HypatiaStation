@@ -3,9 +3,6 @@ GLOBAL_GLOBL_LIST_NEW(movable_atom_list) // A list of all movable atoms in the w
 GLOBAL_GLOBL_LIST_NEW(obj/structure/cable/cable_list)	// Index for all cables, so that powernets don't have to look through the entire world all the time
 GLOBAL_GLOBL_LIST_NEW(mechas_list)	//list of all mechs. Used by hostile mobs target tracking.
 
-// Posters
-GLOBAL_GLOBL_LIST_NEW(all_poster_designs)
-
 // These networks can only be accessed by preexisting terminals. AIs and new terminals can't use them.
 GLOBAL_GLOBL_LIST_INIT(restricted_camera_networks, list(
 	"thunder",

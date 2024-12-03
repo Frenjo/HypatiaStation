@@ -190,9 +190,3 @@
 		"a monkey", "a mouse", "a skrell", "a soghun", "a tajaran"
 	)
 	GLOBL.all_dreams.Add(things, jobs, locations, species)
-
-// Posters - Initialises all /decl/poster_design into a list.
-/hook/global_init/proc/init_poster_designs()
-	. = TRUE
-	for(var/decl/poster_design/design in GET_DECL_SUBTYPE_INSTANCES(/decl/poster_design))
-		GLOBL.all_poster_designs.Add(design)
