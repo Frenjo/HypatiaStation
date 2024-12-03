@@ -292,10 +292,9 @@ CONTROLLER_DEF(master)
 	for(var/decl/faction/F in GET_DECL_SUBTYPE_INSTANCES(/decl/faction))
 		GLOBL.factions.Add(F)
 		GLOBL.available_factions.Add(F)
-
-	// Populates the syndicate coalition.
-	for(var/decl/faction/syndicate/S in GLOBL.factions)
-		GLOBL.syndicate_coalition.Add(S)
+		// Populates the syndicate coalition.
+		if(istype(F, /decl/faction/syndicate))
+			GLOBL.syndicate_coalition.Add(F)
 
 	WAIT_FOR_BACKLOG
 
