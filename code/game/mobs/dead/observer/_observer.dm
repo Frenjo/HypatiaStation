@@ -150,7 +150,7 @@ Works together with spawning an observer, noted above.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.timeofdeath //BS12 EDIT
 		ghost.key = key
-		if(isnull(ghost.client.holder) && !CONFIG_GET(antag_hud_allowed)) // For new ghosts we remove the verb from even showing up if it's not allowed.
+		if(isnull(ghost.client.holder) && !CONFIG_GET(/decl/configuration_entry/antag_hud_allowed)) // For new ghosts we remove the verb from even showing up if it's not allowed.
 			ghost.verbs.Remove(/mob/dead/observer/verb/toggle_antagHUD) // Poor guys, don't know what they are missing!
 		return ghost
 
@@ -266,14 +266,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(isnull(client))
 		return
-	if(!CONFIG_GET(antag_hud_allowed) && isnull(client.holder))
+	if(!CONFIG_GET(/decl/configuration_entry/antag_hud_allowed) && isnull(client.holder))
 		to_chat(src, SPAN_WARNING("Admins have disabled this for this round."))
 		return
 	var/mob/dead/observer/M = src
 	if(jobban_isbanned(M, "AntagHUD"))
 		to_chat(src, SPAN_DANGER("You have been banned from using this feature."))
 		return
-	if(CONFIG_GET(antag_hud_restricted) && !M.has_enabled_antagHUD && isnull(client.holder))
+	if(CONFIG_GET(/decl/configuration_entry/antag_hud_restricted) && !M.has_enabled_antagHUD && isnull(client.holder))
 		var/response = alert(src, "If you turn this on, you will not be able to take any part in the round.", "Are you sure you want to turn this feature on?", "Yes", "No")
 		if(response == "No")
 			return
@@ -431,12 +431,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = PANEL_GHOST
 	set name = "Become Mouse"
 
-	if(CONFIG_GET(disable_player_mice))
+	if(CONFIG_GET(/decl/configuration_entry/disable_player_mice))
 		to_chat(src, SPAN_WARNING("Spawning as a mouse is currently disabled."))
 		return
 
 	var/mob/dead/observer/M = usr
-	if(CONFIG_GET(antag_hud_restricted) && M.has_enabled_antagHUD)
+	if(CONFIG_GET(/decl/configuration_entry/antag_hud_restricted) && M.has_enabled_antagHUD)
 		to_chat(src, SPAN_WARNING("antagHUD restrictions prevent you from spawning in as a mouse."))
 		return
 
@@ -466,7 +466,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, SPAN_WARNING("Unable to find any unwelded vents to spawn mice at."))
 
 	if(isnotnull(host))
-		if(CONFIG_GET(uneducated_mice))
+		if(CONFIG_GET(/decl/configuration_entry/uneducated_mice))
 			host.universal_understand = FALSE
 		host.ckey = src.ckey
 		to_chat(host, SPAN_INFO("You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent."))
@@ -487,7 +487,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Write in blood"
 	set desc = "If the round is sufficiently spooky, write a short message in blood on the floor or a wall. Remember, no IC in OOC or OOC in IC."
 
-	if(!CONFIG_GET(cult_ghostwriter))
+	if(!CONFIG_GET(/decl/configuration_entry/cult_ghostwriter))
 		to_chat(src, SPAN_WARNING("That verb is not currently permitted."))
 		return
 
@@ -500,7 +500,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/ghosts_can_write
 	if(IS_GAME_MODE(/datum/game_mode/cult))
 		var/datum/game_mode/cult/cult = global.PCticker.mode
-		if(length(cult.cult) > CONFIG_GET(cult_ghostwriter_req_cultists))
+		if(length(cult.cult) > CONFIG_GET(/decl/configuration_entry/cult_ghostwriter_req_cultists))
 			ghosts_can_write = TRUE
 
 	if(!ghosts_can_write)

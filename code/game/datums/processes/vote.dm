@@ -29,7 +29,7 @@ PROCESS_DEF(vote)
 
 		// Calculate how much time is remaining by comparing current time, to time of vote start,
 		// plus vote duration
-		time_remaining = round((started_time + CONFIG_GET(vote_period) - world.time) / 10)
+		time_remaining = round((started_time + CONFIG_GET(/decl/configuration_entry/vote_period) - world.time) / 10)
 		if(time_remaining < 0)
 			result()
 			for(var/client/C in voting)
@@ -80,7 +80,7 @@ PROCESS_DEF(vote)
 		if(votes > greatest_votes)
 			greatest_votes = votes
 	//default-vote for everyone who didn't vote
-	if(!CONFIG_GET(vote_no_default) && length(choices))
+	if(!CONFIG_GET(/decl/configuration_entry/vote_no_default) && length(choices))
 		var/non_voters = (length(GLOBL.clients) - total_votes)
 		if(non_voters > 0)
 			if(mode == "restart")
@@ -181,7 +181,7 @@ PROCESS_DEF(vote)
 
 /datum/process/vote/proc/submit_vote(ckey, vote)
 	if(isnotnull(mode))
-		if(CONFIG_GET(vote_no_dead) && usr.stat == DEAD && isnull(usr.client.holder))
+		if(CONFIG_GET(/decl/configuration_entry/vote_no_dead) && usr.stat == DEAD && isnull(usr.client.holder))
 			return 0
 		if(isnotnull(current_votes[ckey]))
 			choices[choices[current_votes[ckey]]]--
@@ -195,7 +195,7 @@ PROCESS_DEF(vote)
 /datum/process/vote/proc/initiate_vote(vote_type, initiator_key)
 	if(isnull(mode))
 		if(started_time != null && !check_rights(R_ADMIN))
-			var/next_allowed_time = (started_time + CONFIG_GET(vote_delay))
+			var/next_allowed_time = (started_time + CONFIG_GET(/decl/configuration_entry/vote_delay))
 			if(next_allowed_time > world.time)
 				return 0
 
@@ -239,7 +239,7 @@ PROCESS_DEF(vote)
 			text += "\n[question]"
 
 		log_vote(text)
-		to_world("<font color='purple'><b>[text]</b>\nType vote to place your votes.\nYou have [CONFIG_GET(vote_period) / 10] seconds to vote.</font>")
+		to_world("<font color='purple'><b>[text]</b>\nType vote to place your votes.\nYou have [CONFIG_GET(/decl/configuration_entry/vote_period) / 10] seconds to vote.</font>")
 		switch(vote_type)
 			if("crew_transfer")
 				world << sound('sound/ambience/alarm4.ogg')
@@ -271,7 +271,7 @@ PROCESS_DEF(vote)
 			message_admins("OOC has been toggled off automatically.")
 	*/
 
-		time_remaining = round(CONFIG_GET(vote_period) / 10)
+		time_remaining = round(CONFIG_GET(/decl/configuration_entry/vote_period) / 10)
 		return 1
 	return 0
 
@@ -308,25 +308,25 @@ PROCESS_DEF(vote)
 	else
 		. += "<h2>Start a vote:</h2><hr><ul><li>"
 		//restart
-		if(trialmin || CONFIG_GET(allow_vote_restart))
+		if(trialmin || CONFIG_GET(/decl/configuration_entry/allow_vote_restart))
 			. += "<a href='byond://?src=\ref[src];vote=restart'>Restart</a>"
 		else
 			. += "<font color='grey'>Restart (Disallowed)</font>"
 		. += "</li><li>"
-		if(trialmin || CONFIG_GET(allow_vote_restart))
+		if(trialmin || CONFIG_GET(/decl/configuration_entry/allow_vote_restart))
 			. += "<a href='byond://?src=\ref[src];vote=crew_transfer'>Crew Transfer</a>"
 		else
 			. += "<font color='grey'>Crew Transfer (Disallowed)</font>"
 		if(trialmin)
-			. += "\t(<a href='byond://?src=\ref[src];vote=toggle_restart'>[CONFIG_GET(allow_vote_restart) ? "Allowed" : "Disallowed"]</a>)"
+			. += "\t(<a href='byond://?src=\ref[src];vote=toggle_restart'>[CONFIG_GET(/decl/configuration_entry/allow_vote_restart) ? "Allowed" : "Disallowed"]</a>)"
 		. += "</li><li>"
 		//gamemode
-		if(trialmin || CONFIG_GET(allow_vote_mode))
+		if(trialmin || CONFIG_GET(/decl/configuration_entry/allow_vote_mode))
 			. += "<a href='byond://?src=\ref[src];vote=gamemode'>GameMode</a>"
 		else
 			. += "<font color='grey'>GameMode (Disallowed)</font>"
 		if(trialmin)
-			. += "\t(<a href='byond://?src=\ref[src];vote=toggle_gamemode'>[CONFIG_GET(allow_vote_mode) ? "Allowed" : "Disallowed"]</a>)"
+			. += "\t(<a href='byond://?src=\ref[src];vote=toggle_gamemode'>[CONFIG_GET(/decl/configuration_entry/allow_vote_mode) ? "Allowed" : "Disallowed"]</a>)"
 
 		. += "</li>"
 		//custom
@@ -349,18 +349,18 @@ PROCESS_DEF(vote)
 				reset()
 		if("toggle_restart")
 			if(isnotnull(usr.client.holder))
-				CONFIG_SET(allow_vote_restart, !CONFIG_GET(allow_vote_restart))
+				CONFIG_SET(/decl/configuration_entry/allow_vote_restart, !CONFIG_GET(/decl/configuration_entry/allow_vote_restart))
 		if("toggle_gamemode")
 			if(isnotnull(usr.client.holder))
-				CONFIG_SET(allow_vote_mode, !CONFIG_GET(allow_vote_mode))
+				CONFIG_SET(/decl/configuration_entry/allow_vote_mode, !CONFIG_GET(/decl/configuration_entry/allow_vote_mode))
 		if("restart")
-			if(CONFIG_GET(allow_vote_restart) || isnotnull(usr.client.holder))
+			if(CONFIG_GET(/decl/configuration_entry/allow_vote_restart) || isnotnull(usr.client.holder))
 				initiate_vote("restart", usr.key)
 		if("gamemode")
-			if(CONFIG_GET(allow_vote_mode) || isnotnull(usr.client.holder))
+			if(CONFIG_GET(/decl/configuration_entry/allow_vote_mode) || isnotnull(usr.client.holder))
 				initiate_vote("gamemode", usr.key)
 		if("crew_transfer")
-			if(CONFIG_GET(allow_vote_restart) || isnotnull(usr.client.holder))
+			if(CONFIG_GET(/decl/configuration_entry/allow_vote_restart) || isnotnull(usr.client.holder))
 				initiate_vote("crew_transfer", usr.key)
 		if("custom")
 			if(isnotnull(usr.client.holder))

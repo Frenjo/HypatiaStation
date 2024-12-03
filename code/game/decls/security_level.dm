@@ -68,7 +68,7 @@
 
 /decl/security_level/green/New()
 	. = ..()
-	desc_downto = CONFIG_GET(alert_desc_green)
+	desc_downto = CONFIG_GET(/decl/configuration_entry/alert_desc_green)
 
 /*
  * Yellow.
@@ -85,8 +85,8 @@
 
 /decl/security_level/yellow/New()
 	. = ..()
-	desc_upto = CONFIG_GET(alert_desc_yellow_upto)
-	desc_downto = CONFIG_GET(alert_desc_yellow_downto)
+	desc_upto = CONFIG_GET(/decl/configuration_entry/alert_desc_yellow_upto)
+	desc_downto = CONFIG_GET(/decl/configuration_entry/alert_desc_yellow_downto)
 
 /*
  * Blue.
@@ -103,8 +103,8 @@
 
 /decl/security_level/blue/New()
 	. = ..()
-	desc_upto = CONFIG_GET(alert_desc_blue_upto)
-	desc_downto = CONFIG_GET(alert_desc_blue_downto)
+	desc_upto = CONFIG_GET(/decl/configuration_entry/alert_desc_blue_upto)
+	desc_downto = CONFIG_GET(/decl/configuration_entry/alert_desc_blue_downto)
 
 /decl/security_level/blue/on_elevate_to()
 	. = ..()
@@ -129,8 +129,8 @@
 
 /decl/security_level/red/New()
 	. = ..()
-	desc_upto = CONFIG_GET(alert_desc_red_upto)
-	desc_downto = CONFIG_GET(alert_desc_red_downto)
+	desc_upto = CONFIG_GET(/decl/configuration_entry/alert_desc_red_upto)
+	desc_downto = CONFIG_GET(/decl/configuration_entry/alert_desc_red_downto)
 
 /decl/security_level/red/on_change_to()
 	. = ..()
@@ -162,7 +162,7 @@
 
 /decl/security_level/delta/New()
 	. = ..()
-	desc_upto = CONFIG_GET(alert_desc_delta)
+	desc_upto = CONFIG_GET(/decl/configuration_entry/alert_desc_delta)
 
 /decl/security_level/delta/on_change_to()
 	. = ..()

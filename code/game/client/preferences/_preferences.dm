@@ -122,7 +122,7 @@
 	if(be_random_name)
 		real_name = random_name(gender)
 
-	if(CONFIG_GET(humans_need_surnames))
+	if(CONFIG_GET(/decl/configuration_entry/humans_need_surnames))
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
 		if(!firstspace) // We need a surname.

@@ -16,19 +16,19 @@
 #define RECOMMENDED_VERSION 515
 /world/New()
 	name = "Space Station 13 - [GLOBL.game_version]: [GLOBL.current_map.station_name]"
-	tick_lag = CONFIG_GET(ticklag)
+	tick_lag = CONFIG_GET(/decl/configuration_entry/ticklag)
 
 	if(byond_version < RECOMMENDED_VERSION)
 		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND."
 
 	global.CTconfiguration.post_load()
 
-	if(isnotnull(CONFIG_GET(server_name)) && CONFIG_GET(server_suffix) && world.port > 0)
+	if(isnotnull(CONFIG_GET(/decl/configuration_entry/server_name)) && CONFIG_GET(/decl/configuration_entry/server_suffix) && world.port > 0)
 		// dumb and hardcoded but I don't care~
-		var/list/new_name = list(CONFIG_GET(server_name), " #[(world.port % 1000) / 100]")
-		CONFIG_SET(server_name, jointext(new_name, ""))
+		var/list/new_name = list(CONFIG_GET(/decl/configuration_entry/server_name), " #[(world.port % 1000) / 100]")
+		CONFIG_SET(/decl/configuration_entry/server_name, jointext(new_name, ""))
 
-	if(CONFIG_GET(log_runtime))
+	if(CONFIG_GET(/decl/configuration_entry/log_runtime))
 		log = file("data/logs/runtime/[time2text(world.realtime,"YYYY-MM-DD-(hh-mm-ss)")]-runtime.log")
 
 	update_status()
@@ -49,7 +49,7 @@
 	global.PCticker.pregame() // This was moved here to avoid unnecessary while() and sleep().
 
 	spawn(5 MINUTES) // Delay by 5 minutes (300 seconds/3000 deciseconds) so we aren't adding to the round-start lag.
-		if(CONFIG_GET(ToRban))
+		if(CONFIG_GET(/decl/configuration_entry/ToRban))
 			ToRban_autoupdate()
 #undef RECOMMENDED_VERSION
 
@@ -66,8 +66,8 @@
 	global.CTmaster.stop()
 
 	for_no_type_check(var/client/C, GLOBL.clients)
-		if(isnotnull(CONFIG_GET(server)))	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
-			C << link("byond://[CONFIG_GET(server)]")
+		if(isnotnull(CONFIG_GET(/decl/configuration_entry/server)))	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
+			C << link("byond://[CONFIG_GET(/decl/configuration_entry/server)]")
 		else
 			C << link("byond://[world.address]:[world.port]")
 
@@ -93,10 +93,10 @@
 		var/list/s = list(
 			"version" = GLOBL.game_version,
 			"mode" = global.PCticker.master_mode,
-			"respawn" = CONFIG_GET(respawn),
+			"respawn" = CONFIG_GET(/decl/configuration_entry/respawn),
 			"enter" = GLOBL.enter_allowed,
-			"vote" = CONFIG_GET(allow_vote_mode),
-			"ai" = CONFIG_GET(allow_ai),
+			"vote" = CONFIG_GET(/decl/configuration_entry/allow_vote_mode),
+			"ai" = CONFIG_GET(/decl/configuration_entry/allow_ai),
 			"host" = host ? host : null,
 			"players" = list()
 		)
@@ -140,7 +140,7 @@
 // Moderator loading.
 /hook/startup/proc/load_mods()
 	. = TRUE
-	if(CONFIG_GET(admin_legacy_system))
+	if(CONFIG_GET(/decl/configuration_entry/admin_legacy_system))
 		var/text = file2text("config/moderators.txt")
 		if(isnull(text))
 			error("Failed to load config/mods.txt")
@@ -162,8 +162,8 @@
 /world/proc/update_status()
 	var/s = ""
 
-	if(isnotnull(CONFIG_GET(server_name)))
-		s += "<b>[CONFIG_GET(server_name)]</b> &#8212; "
+	if(isnotnull(CONFIG_GET(/decl/configuration_entry/server_name)))
+		s += "<b>[CONFIG_GET(/decl/configuration_entry/server_name)]</b> &#8212; "
 
 	s += "<b>[station_name()]</b>";
 	s += " ("
@@ -183,12 +183,12 @@
 	if(!GLOBL.enter_allowed)
 		features.Add("closed")
 
-	features.Add(CONFIG_GET(respawn) ? "respawn" : "no respawn")
+	features.Add(CONFIG_GET(/decl/configuration_entry/respawn) ? "respawn" : "no respawn")
 
-	if(CONFIG_GET(allow_vote_mode))
+	if(CONFIG_GET(/decl/configuration_entry/allow_vote_mode))
 		features.Add("vote")
 
-	if(CONFIG_GET(allow_ai))
+	if(CONFIG_GET(/decl/configuration_entry/allow_ai))
 		features.Add("AI allowed")
 
 	var/n = 0
@@ -207,8 +207,8 @@
 		features.Add("hosted by <b>[host]</b>")
 	*/
 
-	if(!host && isnotnull(CONFIG_GET(hostedby)))
-		features.Add("hosted by <b>[CONFIG_GET(hostedby)]</b>")
+	if(!host && isnotnull(CONFIG_GET(/decl/configuration_entry/hostedby)))
+		features.Add("hosted by <b>[CONFIG_GET(/decl/configuration_entry/hostedby)]</b>")
 
 	if(isnotnull(features))
 		s += ": [jointext(features, ", ")]"

@@ -16,7 +16,7 @@
 
 	health = species.total_health - oxy_l - tox_l - clone_l - total_burn - total_brute
 	//TODO: fix husking
-	if(((species.total_health - total_burn) < CONFIG_GET(health_threshold_dead)) && stat == DEAD)
+	if(((species.total_health - total_burn) < CONFIG_GET(/decl/configuration_entry/health_threshold_dead)) && stat == DEAD)
 		ChangeToHusk()
 	return
 

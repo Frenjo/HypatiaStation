@@ -16,7 +16,7 @@
 			malfhacking = 0
 			malfhack = null
 
-	if(health <= CONFIG_GET(health_threshold_dead))
+	if(health <= CONFIG_GET(/decl/configuration_entry/health_threshold_dead))
 		death()
 		return
 

@@ -28,7 +28,7 @@
 	if(!(src in global.PCticker.mode.traitors))
 		global.PCticker.mode.traitors.Add(src)
 		special_role = "traitor"
-		if(!CONFIG_GET(objectives_disabled))
+		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			global.PCticker.mode.forge_traitor_objectives(src)
 		global.PCticker.mode.finalize_traitor(src)
 		global.PCticker.mode.greet_traitor(src)
@@ -68,7 +68,7 @@
 		global.PCticker.mode.changelings.Add(src)
 		global.PCticker.mode.grant_changeling_powers(current)
 		special_role = "Changeling"
-		if(!CONFIG_GET(objectives_disabled))
+		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			global.PCticker.mode.forge_changeling_objectives(src)
 		global.PCticker.mode.greet_changeling(src)
 

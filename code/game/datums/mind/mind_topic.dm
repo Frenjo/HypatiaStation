@@ -300,7 +300,7 @@
 					special_role = null
 					var/datum/game_mode/cult/cult = global.PCticker.mode
 					if(istype(cult))
-						if(!CONFIG_GET(objectives_disabled))
+						if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 							cult.memoize_cult_objectives(src)
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a cultist!</font>"))
 					memory = ""
@@ -315,7 +315,7 @@
 					FEEDBACK_ANTAGONIST_GREETING_GUIDE(current)
 					var/datum/game_mode/cult/cult = global.PCticker.mode
 					if(istype(cult))
-						if(!CONFIG_GET(objectives_disabled))
+						if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 							cult.memoize_cult_objectives(src)
 					log_admin("[key_name_admin(usr)] has cult'ed [current].")
 			if("tome")
@@ -347,7 +347,7 @@
 				if(src in global.PCticker.mode.wizards)
 					global.PCticker.mode.wizards.Remove(src)
 					special_role = null
-					current.spellremove(current, CONFIG_GET(feature_object_spell_system) ? "object": "verb")
+					current.spellremove(current, CONFIG_GET(/decl/configuration_entry/feature_object_spell_system) ? "object": "verb")
 					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a wizard!</font>"))
 					log_admin("[key_name_admin(usr)] has de-wizard'ed [current].")
 			if("wizard")
@@ -365,7 +365,7 @@
 			if("name")
 				global.PCticker.mode.name_wizard(current)
 			if("autoobjectives")
-				if(!CONFIG_GET(objectives_disabled))
+				if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 					global.PCticker.mode.forge_wizard_objectives(src)
 					to_chat(usr, SPAN_INFO("The objectives for wizard [key] have been generated. You can edit them and anounce manually."))
 
@@ -388,11 +388,11 @@
 					global.PCticker.mode.grant_changeling_powers(current)
 					special_role = "Changeling"
 					to_chat(current, SPAN_DANGER("Your powers are awoken. A flash of memory returns to us... we are a changeling!"))
-					if(CONFIG_GET(objectives_disabled))
+					if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 						FEEDBACK_ANTAGONIST_GREETING_GUIDE(current)
 					log_admin("[key_name_admin(usr)] has changeling'ed [current].")
 			if("autoobjectives")
-				if(!CONFIG_GET(objectives_disabled))
+				if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 					global.PCticker.mode.forge_changeling_objectives(src)
 				to_chat(usr, SPAN_INFO("The objectives for changeling [key] have been generated. You can edit them and anounce manually."))
 
@@ -428,7 +428,7 @@
 						current.real_name = "[syndicate_name()] Operative #[length(global.PCticker.mode.syndicates) - 1]"
 					special_role = "Syndicate"
 					to_chat(current, SPAN_INFO("You are a [syndicate_name()] agent!"))
-					if(CONFIG_GET(objectives_disabled))
+					if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 						FEEDBACK_ANTAGONIST_GREETING_GUIDE(current)
 					else
 						global.PCticker.mode.forge_syndicate_objectives(src)
@@ -482,7 +482,7 @@
 					special_role = "traitor"
 					to_chat(current, SPAN_DANGER("You are a traitor!"))
 					log_admin("[key_name_admin(usr)] has traitor'ed [current].")
-					if(CONFIG_GET(objectives_disabled))
+					if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 						FEEDBACK_ANTAGONIST_GREETING_GUIDE(current)
 					if(issilicon(current))
 						var/mob/living/silicon/A = current
@@ -490,7 +490,7 @@
 						A.show_laws()
 
 			if("autoobjectives")
-				if(!CONFIG_GET(objectives_disabled))
+				if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 					global.PCticker.mode.forge_traitor_objectives(src)
 					to_chat(usr, SPAN_INFO("The objectives for traitor [key] have been generated. You can edit them and anounce manually."))
 

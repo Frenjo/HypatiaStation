@@ -21,7 +21,7 @@
 	dat += "<b>Spawn Point</b>: <a href='byond://?src=\ref[user];preference=spawnpoint;task=input'>[spawnpoint]</a>"
 	dat += "<br>"
 
-	if(CONFIG_GET(allow_Metadata))
+	if(CONFIG_GET(/decl/configuration_entry/allow_metadata))
 		dat += "<b>OOC Notes:</b> <a href='byond://?_src_=prefs;preference=metadata;task=input'> Edit </a>"
 		dat += "<br>"
 

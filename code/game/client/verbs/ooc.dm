@@ -21,10 +21,10 @@
 		return
 
 	if(isnull(holder) || holder.rank == "Donor") // This is ugly, but I Can't figure out any easy way without duplicating code to confirm the user is not a donor while being a holder using rights.
-		if(!CONFIG_GET(ooc_allowed))
+		if(!CONFIG_GET(/decl/configuration_entry/ooc_allowed))
 			to_chat(src, SPAN_WARNING("OOC is globally muted."))
 			return
-		if(!CONFIG_GET(dead_ooc_allowed) && mob.stat == DEAD)
+		if(!CONFIG_GET(/decl/configuration_entry/dead_ooc_allowed) && mob.stat == DEAD)
 			to_chat(usr, SPAN_WARNING("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_OOC)
@@ -48,7 +48,7 @@
 		if(holder.rights & R_DEBUG && !(holder.rights & R_ADMIN))
 			display_colour = "#1b521f"	//dark green
 		else if(holder.rights & R_ADMIN)
-			if(CONFIG_GET(allow_admin_ooccolor))
+			if(CONFIG_GET(/decl/configuration_entry/allow_admin_ooccolor))
 				display_colour = prefs.ooccolor
 			else
 				display_colour = "#b82e00"	//orange
@@ -68,7 +68,7 @@
 			if(holder)
 				if(!holder.fakekey || C.holder)
 					if(holder.rights & R_ADMIN)
-						to_chat(C, "<font color=[CONFIG_GET(allow_admin_ooccolor) ? prefs.ooccolor :"#b82e00" ]><b><span class='prefix'>OOC:</span> <EM>[key][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></b></font>")
+						to_chat(C, "<font color=[CONFIG_GET(/decl/configuration_entry/allow_admin_ooccolor) ? prefs.ooccolor :"#b82e00" ]><b><span class='prefix'>OOC:</span> <EM>[key][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></b></font>")
 					else if(holder.rights & R_MOD)
 						to_chat(C, "<font color=#184880><b><span class='prefix'>OOC:</span> <EM>[key][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message'>[msg]</span></b></font>")
 					else
@@ -111,10 +111,10 @@
 		return
 
 	if(isnull(holder))
-		if(!CONFIG_GET(ooc_allowed))
+		if(!CONFIG_GET(/decl/configuration_entry/ooc_allowed))
 			to_chat(src, SPAN_WARNING("OOC is globally muted."))
 			return
-		if(!CONFIG_GET(dead_ooc_allowed) && mob.stat == DEAD)
+		if(!CONFIG_GET(/decl/configuration_entry/dead_ooc_allowed) && mob.stat == DEAD)
 			to_chat(usr, SPAN_WARNING("OOC for dead mobs has been turned off."))
 			return
 		if(prefs.muted & MUTE_OOC)

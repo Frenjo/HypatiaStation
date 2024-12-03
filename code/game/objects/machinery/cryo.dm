@@ -97,7 +97,7 @@
 			"stat" = occupant.stat,
 			"health" = occupant.health,
 			"maxHealth" = occupant.maxHealth,
-			"minHealth" = CONFIG_GET(health_threshold_dead),
+			"minHealth" = CONFIG_GET(/decl/configuration_entry/health_threshold_dead),
 			"bruteLoss" = occupant.getBruteLoss(),
 			"oxyLoss" = occupant.getOxyLoss(),
 			"toxLoss" = occupant.getToxLoss(),

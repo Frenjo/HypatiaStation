@@ -103,7 +103,7 @@
 	if(bodytemperature >= 330.23) // 135 F
 		return -1	// slimes become supercharged at high temperatures
 
-	. += CONFIG_GET(slime_delay)
+	. += CONFIG_GET(/decl/configuration_entry/slime_delay)
 
 /mob/living/carbon/slime/Process_Spacemove()
 	return 2

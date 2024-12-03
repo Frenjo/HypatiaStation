@@ -156,19 +156,19 @@
 				if(null,"") return
 				if("*New Rank*")
 					new_rank = input("Please input a new rank", "New custom rank", null, null) as null|text
-					if(CONFIG_GET(admin_legacy_system))
+					if(CONFIG_GET(/decl/configuration_entry/admin_legacy_system))
 						new_rank = ckeyEx(new_rank)
 					if(!new_rank)
 						usr << "<font color='red'>Error: Topic 'editrights': Invalid rank</font>"
 						return
-					if(CONFIG_GET(admin_legacy_system))
+					if(CONFIG_GET(/decl/configuration_entry/admin_legacy_system))
 						if(length(GLOBL.admin_ranks))
 							if(new_rank in GLOBL.admin_ranks)
 								rights = GLOBL.admin_ranks[new_rank]		//we typed a rank which already exists, use its rights
 							else
 								GLOBL.admin_ranks[new_rank] = 0			//add the new rank to admin_ranks
 				else
-					if(CONFIG_GET(admin_legacy_system))
+					if(CONFIG_GET(/decl/configuration_entry/admin_legacy_system))
 						new_rank = ckeyEx(new_rank)
 						rights = GLOBL.admin_ranks[new_rank]				//we input an existing rank, use its rights
 
@@ -738,7 +738,7 @@
 			switch(alert("Temporary Ban?",,"Yes","No", "Cancel"))
 				if("Yes")
 					if(!check_rights(R_MOD,0) && !check_rights(R_BAN))  return
-					if(CONFIG_GET(ban_legacy_system))
+					if(CONFIG_GET(/decl/configuration_entry/ban_legacy_system))
 						usr << "\red Your server is using the legacy banning system, which does not support temporary job bans. Consider upgrading. Aborting ban."
 						return
 					var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
@@ -794,7 +794,7 @@
 		//Unbanning joblist
 		//all jobs in joblist are banned already OR we didn't give a reason (implying they shouldn't be banned)
 		if(length(joblist)) //at least 1 banned job exists in joblist so we have stuff to unban.
-			if(!CONFIG_GET(ban_legacy_system))
+			if(!CONFIG_GET(/decl/configuration_entry/ban_legacy_system))
 				usr << "Unfortunately, database based unbanning cannot be done through this panel"
 				DB_ban_panel(M.ckey)
 				return
@@ -893,8 +893,8 @@
 				feedback_inc("ban_tmp",1)
 				DB_ban_record(BANTYPE_TEMP, M, mins, reason)
 				feedback_inc("ban_tmp_mins",mins)
-				if(isnotnull(CONFIG_GET(banappeals)))
-					M << "\red To try to resolve this matter head to [CONFIG_GET(banappeals)]"
+				if(isnotnull(CONFIG_GET(/decl/configuration_entry/banappeals)))
+					M << "\red To try to resolve this matter head to [CONFIG_GET(/decl/configuration_entry/banappeals)]"
 				else
 					M << "\red No ban appeals URL has been set."
 				log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
@@ -915,8 +915,8 @@
 						AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
 				M << "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>"
 				M << "\red This is a permanent ban."
-				if(isnotnull(CONFIG_GET(banappeals)))
-					M << "\red To try to resolve this matter head to [CONFIG_GET(banappeals)]"
+				if(isnotnull(CONFIG_GET(/decl/configuration_entry/banappeals)))
+					M << "\red To try to resolve this matter head to [CONFIG_GET(/decl/configuration_entry/banappeals)]"
 				else
 					M << "\red No ban appeals URL has been set."
 				ban_unban_log_save("[usr.client.ckey] has permabanned [M.ckey]. - Reason: [reason] - This is a permanent ban.")
@@ -1213,7 +1213,7 @@
 			usr << "This can only be used on instances of type /mob/living"
 			return
 
-		if(CONFIG_GET(allow_admin_rev))
+		if(CONFIG_GET(/decl/configuration_entry/allow_admin_rev))
 			L.revive()
 			message_admins("\red Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!", 1)
 			log_admin("[key_name(usr)] healed / Rrvived [key_name(L)]")
@@ -1614,7 +1614,7 @@
 	else if(href_list["object_list"])			//this is the laggiest thing ever
 		if(!check_rights(R_SPAWN))	return
 
-		if(!CONFIG_GET(allow_admin_spawning))
+		if(!CONFIG_GET(/decl/configuration_entry/allow_admin_spawning))
 			usr << "Spawning of items is not allowed."
 			return
 
@@ -2122,7 +2122,7 @@
 			if("aliens")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","AL")
-				if(CONFIG_GET(aliens_allowed))
+				if(CONFIG_GET(/decl/configuration_entry/aliens_allowed))
 					new /datum/round_event/alien_infestation()
 					message_admins("[key_name_admin(usr)] has spawned aliens", 1)
 			if("spiders")

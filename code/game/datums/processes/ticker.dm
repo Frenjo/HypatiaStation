@@ -70,7 +70,7 @@ PROCESS_DEF(ticker)
 		/decl/music_track/clouds_of_fire,
 		/decl/music_track/space_oddity
 	)
-	if(CONFIG_GET(holiday_name) == "Halloween")
+	if(CONFIG_GET(/decl/configuration_entry/holiday_name) == "Halloween")
 		possible_lobby_music.Add(list(
 			/decl/music_track/spooky_scary_skeletons,
 			/decl/music_track/this_is_halloween,
@@ -175,7 +175,7 @@ PROCESS_DEF(ticker)
 	for(var/obj/multiz/ladder/L in GLOBL.movable_atom_list)
 		L.connect() //Lazy hackfix for ladders. TODO: move this to an actual controller. ~ Z
 
-	if(CONFIG_GET(sql_enabled))
+	if(CONFIG_GET(/decl/configuration_entry/sql_enabled))
 		spawn(3000)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE
 

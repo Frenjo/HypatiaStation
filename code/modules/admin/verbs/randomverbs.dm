@@ -124,7 +124,7 @@
 
 /proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	if(automute)
-		if(!CONFIG_GET(automute_on))
+		if(!CONFIG_GET(/decl/configuration_entry/automute_on))
 			return
 	else
 		if(!usr || !usr.client)
@@ -248,7 +248,7 @@ Ccomp's first proc.
 		return
 
 	var/mob/dead/observer/G = ghosts[target]
-	if(G.has_enabled_antagHUD && CONFIG_GET(antag_hud_restricted))
+	if(G.has_enabled_antagHUD && CONFIG_GET(/decl/configuration_entry/antag_hud_restricted))
 		var/response = alert(src, "Are you sure you wish to allow this individual to play?","Ghost has used AntagHUD","Yes","No")
 		if(response == "No") return
 	G.timeofdeath=-19999						/* time of death is checked in /mob/verb/abandon_mob() which is the Respawn verb.
@@ -271,7 +271,7 @@ Ccomp's first proc.
 	if(!holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 	var/action=""
-	if(CONFIG_GET(antag_hud_allowed))
+	if(CONFIG_GET(/decl/configuration_entry/antag_hud_allowed))
 		for(var/mob/dead/observer/g in get_ghosts())
 			if(!g.client.holder)						//Remove the verb from non-admin ghosts
 				g.verbs -= /mob/dead/observer/verb/toggle_antagHUD
@@ -279,7 +279,7 @@ Ccomp's first proc.
 				g.antagHUD = 0						// Disable it on those that have it enabled
 				g.has_enabled_antagHUD = 2				// We'll allow them to respawn
 				g << "\red <B>The Administrator has disabled AntagHUD </B>"
-		CONFIG_SET(antag_hud_allowed, FALSE)
+		CONFIG_SET(/decl/configuration_entry/antag_hud_allowed, FALSE)
 		src << "\red <B>AntagHUD usage has been disabled</B>"
 		action = "disabled"
 	else
@@ -287,7 +287,7 @@ Ccomp's first proc.
 			if(!g.client.holder)						// Add the verb back for all non-admin ghosts
 				g.verbs += /mob/dead/observer/verb/toggle_antagHUD
 			g << "\blue <B>The Administrator has enabled AntagHUD </B>"	// Notify all observers they can now use AntagHUD
-		CONFIG_SET(antag_hud_allowed, TRUE)
+		CONFIG_SET(/decl/configuration_entry/antag_hud_allowed, TRUE)
 		action = "enabled"
 		src << "\blue <B>AntagHUD usage has been enabled</B>"
 
@@ -305,11 +305,11 @@ Ccomp's first proc.
 	if(!holder)
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 	var/action=""
-	if(CONFIG_GET(antag_hud_restricted))
+	if(CONFIG_GET(/decl/configuration_entry/antag_hud_restricted))
 		for(var/mob/dead/observer/g in get_ghosts())
 			g << "\blue <B>The administrator has lifted restrictions on joining the round if you use AntagHUD</B>"
 		action = "lifted restrictions"
-		CONFIG_SET(antag_hud_restricted, FALSE)
+		CONFIG_SET(/decl/configuration_entry/antag_hud_restricted, FALSE)
 		src << "\blue <B>AntagHUD restrictions have been lifted</B>"
 	else
 		for(var/mob/dead/observer/g in get_ghosts())
@@ -318,7 +318,7 @@ Ccomp's first proc.
 			g.antagHUD = 0
 			g.has_enabled_antagHUD = 0
 		action = "placed restrictions"
-		CONFIG_SET(antag_hud_restricted, TRUE)
+		CONFIG_SET(/decl/configuration_entry/antag_hud_restricted, TRUE)
 		src << "\red <B>AntagHUD restrictions have been enabled</B>"
 
 	log_admin("[key_name(usr)] has [action] on joining the round if they use AntagHUD")
@@ -536,7 +536,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!istype(M))
 		alert("Cannot revive a ghost")
 		return
-	if(CONFIG_GET(allow_admin_rev))
+	if(CONFIG_GET(/decl/configuration_entry/allow_admin_rev))
 		M.revive()
 
 		log_admin("[key_name(usr)] healed / revived [key_name(M)]")
@@ -733,7 +733,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			M << "\red To try to resolve this matter head to http://ss13.donglabs.com/forum/"
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
-			world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=[mins]&server=[replacetextx(CONFIG_GET(server_name), "#", "")]")
+			world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=[mins]&server=[replacetextx(CONFIG_GET(/decl/configuration_entry/server_name), "#", "")]")
 			del(M.client)
 			del(M)
 		else
@@ -748,7 +748,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		M << "\red To try to resolve this matter head to http://ss13.donglabs.com/forum/"
 		log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
 		message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
-		world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=perma&server=[replacetextx(CONFIG_GET(server_name), "#", "")]")
+		world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=perma&server=[replacetextx(CONFIG_GET(/decl/configuration_entry/server_name), "#", "")]")
 		del(M.client)
 		del(M)
 */
@@ -922,12 +922,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!check_rights(R_SERVER))	return
 
-	if(!CONFIG_GET(allow_random_events))
-		CONFIG_SET(allow_random_events, TRUE)
+	if(!CONFIG_GET(/decl/configuration_entry/allow_random_events))
+		CONFIG_SET(/decl/configuration_entry/allow_random_events, TRUE)
 		usr << "Random events enabled"
 		message_admins("Admin [key_name_admin(usr)] has enabled random events.", 1)
 	else
-		CONFIG_SET(allow_random_events, FALSE)
+		CONFIG_SET(/decl/configuration_entry/allow_random_events, FALSE)
 		usr << "Random events disabled"
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

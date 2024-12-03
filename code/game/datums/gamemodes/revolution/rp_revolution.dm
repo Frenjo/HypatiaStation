@@ -21,7 +21,7 @@
 //Gets the round setup, cancelling if there's not enough players at the start//
 ///////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/revolution/rp_revolution/pre_setup()
-	if(CONFIG_GET(protect_roles_from_antagonist))
+	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
 	var/num_players = num_players()
@@ -57,7 +57,7 @@
 	. = ..()
 	heads = get_living_heads()
 	for_no_type_check(var/datum/mind/rev_mind, head_revolutionaries)
-		if(!CONFIG_GET(objectives_disabled))
+		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			for(var/datum/mind/head_mind in heads)
 				var/datum/objective/mutiny/rp/rev_obj = new
 				rev_obj.owner = rev_mind
@@ -78,7 +78,7 @@
 	var/obj_count = 1
 	if(you_are)
 		to_chat(rev_mind.current, SPAN_INFO("You are a member of the revolutionaries' leadership!"))
-	if(!CONFIG_GET(objectives_disabled))
+	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		for(var/datum/objective/objective in rev_mind.objectives)
 			to_chat(rev_mind.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			rev_mind.special_role = "Head Revolutionary"
@@ -110,7 +110,7 @@
 	revolutionaries += rev_mind
 	rev_mind.current << "\red <FONT size = 3> You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill, capture or convert the heads to win the revolution!</FONT>"
 	rev_mind.special_role = "Revolutionary"
-	if(CONFIG_GET(objectives_disabled))
+	if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		FEEDBACK_ANTAGONIST_GREETING_GUIDE(rev_mind.current)
 	update_rev_icons_added(rev_mind)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
@@ -145,7 +145,7 @@
 //Announces the end of the game with all relavent information stated//
 //////////////////////////////////////////////////////////////////////
 /datum/game_mode/revolution/rp_revolution/declare_completion()
-	if(!CONFIG_GET(objectives_disabled))
+	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		if(finished == 1)
 			feedback_set_details("round_end_result", "win - heads overthrown")
 			to_world(SPAN_DANGER("<FONT size = 3>The heads of staff were overthrown! The revolutionaries win!</FONT>"))

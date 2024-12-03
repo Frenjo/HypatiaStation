@@ -4,21 +4,21 @@
 		return ..()
 
 	//Guest Checking
-	if(!CONFIG_GET(guests_allowed) && IsGuestKey(key))
+	if(!CONFIG_GET(/decl/configuration_entry/guests_allowed) && IsGuestKey(key))
 		log_access("Failed Login: [key] - Guests not allowed")
 		message_admins("\blue Failed Login: [key] - Guests not allowed")
 		return list("reason"="guest", "desc"="\nReason: Guests not allowed. Please sign in with a byond account.")
 
 	//check if the IP address is a known TOR node
-	if(CONFIG_GET(ToRban) && ToRban_isbanned(address))
+	if(CONFIG_GET(/decl/configuration_entry/ToRban) && ToRban_isbanned(address))
 		log_access("Failed Login: [src] - Banned: ToR")
 		message_admins("\blue Failed Login: [src] - Banned: ToR")
 		//ban their computer_id and ckey for posterity
 		AddBan(ckey(key), computer_id, "Use of ToR", "Automated Ban", 0, 0)
-		return list("reason"="Using ToR", "desc"="\nReason: The network you are using to connect has been banned.\nIf you believe this is a mistake, please request help at [CONFIG_GET(banappeals)]")
+		return list("reason"="Using ToR", "desc"="\nReason: The network you are using to connect has been banned.\nIf you believe this is a mistake, please request help at [CONFIG_GET(/decl/configuration_entry/banappeals)]")
 
 
-	if(CONFIG_GET(ban_legacy_system))
+	if(CONFIG_GET(/decl/configuration_entry/ban_legacy_system))
 
 		//Ban Checking
 		. = CheckBan( ckey(key), computer_id, address )

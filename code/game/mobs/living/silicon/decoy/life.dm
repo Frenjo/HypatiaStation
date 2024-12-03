@@ -2,7 +2,7 @@
 	if(stat == DEAD)
 		return
 	else
-		if(health <= CONFIG_GET(health_threshold_dead) && src.stat != DEAD)
+		if(health <= CONFIG_GET(/decl/configuration_entry/health_threshold_dead) && src.stat != DEAD)
 			death()
 			return
 

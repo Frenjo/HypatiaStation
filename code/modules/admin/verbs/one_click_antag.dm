@@ -62,7 +62,7 @@
 
 /datum/admins/proc/make_traitors()
 	var/datum/game_mode/traitor/temp = global.CTconfiguration.mode_cache[/datum/game_mode/traitor]
-	if(CONFIG_GET(protect_roles_from_antagonist))
+	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		temp.restricted_jobs.Add(temp.protected_jobs)
 
 	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_TRAITOR, "traitor", temp.restricted_jobs)
@@ -77,7 +77,7 @@
 
 /datum/admins/proc/make_changelings()
 	var/datum/game_mode/changeling/temp = global.CTconfiguration.mode_cache[/datum/game_mode/changeling]
-	if(CONFIG_GET(protect_roles_from_antagonist))
+	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		temp.restricted_jobs.Add(temp.protected_jobs)
 
 	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_CHANGELING, "changeling", temp.restricted_jobs)
@@ -92,7 +92,7 @@
 
 /datum/admins/proc/make_revolutionaries()
 	var/datum/game_mode/revolution/temp = global.CTconfiguration.mode_cache[/datum/game_mode/revolution]
-	if(CONFIG_GET(protect_roles_from_antagonist))
+	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		temp.restricted_jobs.Add(temp.protected_jobs)
 
 	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_REV, "revolutionary", temp.restricted_jobs)
@@ -143,7 +143,7 @@
 
 /datum/admins/proc/make_cult()
 	var/datum/game_mode/cult/temp = global.CTconfiguration.mode_cache[/datum/game_mode/cult]
-	if(CONFIG_GET(protect_roles_from_antagonist))
+	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		temp.restricted_jobs.Add(temp.protected_jobs)
 
 	var/list/mob/living/carbon/human/candidates = return_antagonist_candidates(BE_CULTIST, "cultist", temp.restricted_jobs)

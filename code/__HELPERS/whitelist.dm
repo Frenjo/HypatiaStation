@@ -7,7 +7,7 @@ GLOBAL_GLOBL_LIST_NEW(whitelist)
 
 /hook/startup/proc/load_whitelist()
 	. = TRUE
-	if(CONFIG_GET(usewhitelist))
+	if(CONFIG_GET(/decl/configuration_entry/usewhitelist))
 		GLOBL.whitelist = file2list(WHITELISTFILE)
 		if(!length(GLOBL.whitelist))
 			GLOBL.whitelist = null
@@ -26,7 +26,7 @@ GLOBAL_GLOBL_LIST_NEW(alien_whitelist)
 
 /hook/startup/proc/load_alien_whitelist()
 	. = TRUE
-	if(CONFIG_GET(usealienwhitelist))
+	if(CONFIG_GET(/decl/configuration_entry/usealienwhitelist))
 		var/text = file2text("config/alienwhitelist.txt")
 		if(!text)
 			log_misc("Failed to load config/alienwhitelist.txt")
@@ -37,7 +37,7 @@ GLOBAL_GLOBL_LIST_NEW(alien_whitelist)
 //todo: admin aliens
 // This is also used for languages.
 /proc/is_alien_whitelisted(mob/M, thing_name)
-	if(!CONFIG_GET(usealienwhitelist))
+	if(!CONFIG_GET(/decl/configuration_entry/usealienwhitelist))
 		return TRUE
 	if(thing_name == SPECIES_HUMAN)
 		return TRUE

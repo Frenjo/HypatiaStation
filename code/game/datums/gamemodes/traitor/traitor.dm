@@ -23,7 +23,7 @@
 	. += "<B>There is a syndicate traitor on the station. Do not let the traitor succeed!</B>"
 
 /datum/game_mode/traitor/pre_setup()
-	if(CONFIG_GET(protect_roles_from_antagonist))
+	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
 	var/list/possible_traitors = get_players_for_role(BE_TRAITOR)
@@ -34,7 +34,7 @@
 
 	var/num_traitors = 1
 
-	if(CONFIG_GET(traitor_scaling))
+	if(CONFIG_GET(/decl/configuration_entry/traitor_scaling))
 		num_traitors = max(1, round((num_players()) / (traitor_scaling_coeff)))
 	else
 		num_traitors = max(1, min(num_players(), traitors_possible))
@@ -59,7 +59,7 @@
 /datum/game_mode/traitor/post_setup()
 	. = ..()
 	for(var/datum/mind/traitor in traitors)
-		if(!CONFIG_GET(objectives_disabled))
+		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			forge_traitor_objectives(traitor)
 		spawn(rand(10, 100))
 			finalize_traitor(traitor)
@@ -120,7 +120,7 @@
 
 /datum/game_mode/proc/greet_traitor(datum/mind/traitor)
 	to_chat(traitor.current, "<B><font size=3 color=red>You are the traitor.</font></B>")
-	if(!CONFIG_GET(objectives_disabled))
+	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		var/obj_count = 1
 		for(var/datum/objective/objective in traitor.objectives)
 			to_chat(traitor.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
@@ -206,7 +206,7 @@
 			special_role_text = lowertext(traitor.special_role)
 		else
 			special_role_text = "antagonist"
-		if(!CONFIG_GET(objectives_disabled))
+		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			if(traitorwin)
 				text += "<br><font color='green'><B>The [special_role_text] was successful!</B></font>"
 				feedback_add_details("traitor_success","SUCCESS")

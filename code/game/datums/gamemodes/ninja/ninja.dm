@@ -58,7 +58,7 @@
 	for_no_type_check(var/datum/mind/ninja, ninjas)
 		if(ninja.current && !(ishuman(ninja.current)))
 			return 0
-		if(!CONFIG_GET(objectives_disabled))
+		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			forge_ninja_objectives(ninja)
 		else
 			FEEDBACK_ANTAGONIST_GREETING_GUIDE(ninja.current)
@@ -70,7 +70,7 @@
 			S:randomize_param()
 
 /datum/game_mode/ninja/check_finished()
-	if(CONFIG_GET(continous_rounds))
+	if(CONFIG_GET(/decl/configuration_entry/continous_rounds))
 		return ..()
 	var/ninjas_alive = 0
 	for_no_type_check(var/datum/mind/ninja, ninjas)
@@ -180,7 +180,7 @@
 		else
 			special_role_text = "antagonist"
 
-		if(!CONFIG_GET(objectives_disabled))
+		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			if(ninjawin)
 				text += "<br><font color='green'><B>The [special_role_text] was successful!</B></font>"
 				feedback_add_details("traitor_success","SUCCESS")

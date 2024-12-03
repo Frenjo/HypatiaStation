@@ -117,7 +117,7 @@
 	if(bodytemperature < 283.222)
 		. += (283.222 - bodytemperature) / 10 * 1.75
 
-	. += CONFIG_GET(monkey_delay)
+	. += CONFIG_GET(/decl/configuration_entry/monkey_delay)
 
 /mob/living/carbon/monkey/Topic(href, href_list)
 	..()

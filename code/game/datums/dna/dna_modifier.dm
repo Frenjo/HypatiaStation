@@ -415,7 +415,7 @@
 			"isViableSubject" = is_viable_subject,
 			"health" = connected.occupant.health,
 			"maxHealth" = connected.occupant.maxHealth,
-			"minHealth" = CONFIG_GET(health_threshold_dead),
+			"minHealth" = CONFIG_GET(/decl/configuration_entry/health_threshold_dead),
 			"uniqueEnzymes" = connected.occupant.dna.unique_enzymes,
 			"uniqueIdentity" = connected.occupant.dna.uni_identity,
 			"structuralEnzymes" = connected.occupant.dna.struc_enzymes,

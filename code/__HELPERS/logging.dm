@@ -20,11 +20,11 @@ GLOBAL_BYOND_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "") // P
 
 /proc/log_admin(text)
 	GLOBL.admin_log.Add(text)
-	if(CONFIG_GET(log_admin))
+	if(CONFIG_GET(/decl/configuration_entry/log_admin))
 		GLOBL.diary << "\[[time_stamp()]]ADMIN: [text][global.log_end]"
 
 /proc/log_debug(text)
-	if(CONFIG_GET(log_debug))
+	if(CONFIG_GET(/decl/configuration_entry/log_debug))
 		GLOBL.diary << "\[[time_stamp()]]DEBUG: [text][global.log_end]"
 
 	for_no_type_check(var/client/C, GLOBL.admins)
@@ -32,52 +32,52 @@ GLOBAL_BYOND_INIT(log_end, world.system_type == UNIX ? ascii2text(13) : "") // P
 			to_chat(C, "DEBUG: [text]")
 
 /proc/log_game(text)
-	if(CONFIG_GET(log_game))
+	if(CONFIG_GET(/decl/configuration_entry/log_game))
 		GLOBL.diary << "\[[time_stamp()]]GAME: [text][global.log_end]"
 
 /proc/log_vote(text)
-	if(CONFIG_GET(log_vote))
+	if(CONFIG_GET(/decl/configuration_entry/log_vote))
 		GLOBL.diary << "\[[time_stamp()]]VOTE: [text][global.log_end]"
 
 /proc/log_access(text)
-	if(CONFIG_GET(log_access))
+	if(CONFIG_GET(/decl/configuration_entry/log_access))
 		GLOBL.diary << "\[[time_stamp()]]ACCESS: [text][global.log_end]"
 
 /proc/log_say(text)
-	if(CONFIG_GET(log_say))
+	if(CONFIG_GET(/decl/configuration_entry/log_say))
 		GLOBL.diary << "\[[time_stamp()]]SAY: [text][global.log_end]"
 
 /proc/log_ooc(text)
-	if(CONFIG_GET(log_ooc))
+	if(CONFIG_GET(/decl/configuration_entry/log_ooc))
 		GLOBL.diary << "\[[time_stamp()]]OOC: [text][global.log_end]"
 
 /proc/log_whisper(text)
-	if(CONFIG_GET(log_whisper))
+	if(CONFIG_GET(/decl/configuration_entry/log_whisper))
 		GLOBL.diary << "\[[time_stamp()]]WHISPER: [text][global.log_end]"
 
 /proc/log_emote(text)
-	if(CONFIG_GET(log_emote))
+	if(CONFIG_GET(/decl/configuration_entry/log_emote))
 		GLOBL.diary << "\[[time_stamp()]]EMOTE: [text][global.log_end]"
 
 /proc/log_attack(text)
-	if(CONFIG_GET(log_attack))
+	if(CONFIG_GET(/decl/configuration_entry/log_attack))
 		GLOBL.diary << "\[[time_stamp()]]ATTACK: [text][global.log_end]" //Seperate attack logs? Why?  FOR THE GLORY OF SATAN!
 
 /proc/log_adminsay(text)
-	if(CONFIG_GET(log_adminchat))
+	if(CONFIG_GET(/decl/configuration_entry/log_adminchat))
 		GLOBL.diary << "\[[time_stamp()]]ADMINSAY: [text][global.log_end]"
 
 /proc/log_adminwarn(text)
-	if(CONFIG_GET(log_adminwarn))
+	if(CONFIG_GET(/decl/configuration_entry/log_adminwarn))
 		GLOBL.diary << "\[[time_stamp()]]ADMINWARN: [text][global.log_end]"
 
 /proc/log_pda(text)
-	if(CONFIG_GET(log_pda))
+	if(CONFIG_GET(/decl/configuration_entry/log_pda))
 		GLOBL.diary << "\[[time_stamp()]]PDA: [text][global.log_end]"
 
 /proc/log_to_dd(text)
 	world.log << text //this comes before the config check because it can't possibly runtime
-	if(CONFIG_GET(log_world_output))
+	if(CONFIG_GET(/decl/configuration_entry/log_world_output))
 		GLOBL.diary << "\[[time_stamp()]]DD_OUTPUT: [text][global.log_end]"
 
 /proc/log_misc(text)

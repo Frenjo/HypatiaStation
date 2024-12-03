@@ -228,7 +228,7 @@
 		move_delay += mob.move_intent.move_delay
 		move_delay += mob.movement_delay()
 
-		if(CONFIG_GET(tickcomp))
+		if(CONFIG_GET(/decl/configuration_entry/tickcomp))
 			move_delay -= 1.3
 			var/tickcomp = ((1 / world.tick_lag) * 1.3)
 			move_delay = move_delay + tickcomp

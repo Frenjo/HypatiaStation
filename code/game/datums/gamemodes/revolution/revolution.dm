@@ -42,7 +42,7 @@
 //Gets the round setup, cancelling if there's not enough players at the start//
 ///////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/revolution/pre_setup()
-	if(CONFIG_GET(protect_roles_from_antagonist))
+	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
 	var/list/datum/mind/possible_headrevs = get_players_for_role(BE_REV)
@@ -74,7 +74,7 @@
 	. = ..()
 	var/list/heads = get_living_heads()
 	for(var/datum/mind/rev_mind in head_revolutionaries)
-		if(!CONFIG_GET(objectives_disabled))
+		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			for(var/datum/mind/head_mind in heads)
 				var/datum/objective/mutiny/rev_obj = new
 				rev_obj.owner = rev_mind
@@ -104,7 +104,7 @@
 
 
 /datum/game_mode/proc/forge_revolutionary_objectives(datum/mind/rev_mind)
-	if(!CONFIG_GET(objectives_disabled))
+	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		var/list/heads = get_living_heads()
 		for(var/datum/mind/head_mind in heads)
 			var/datum/objective/mutiny/rev_obj = new
@@ -117,7 +117,7 @@
 	var/obj_count = 1
 	if(you_are)
 		to_chat(rev_mind.current, SPAN_INFO("You are a member of the revolutionaries' leadership!"))
-	if(!CONFIG_GET(objectives_disabled))
+	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		for(var/datum/objective/objective in rev_mind.objectives)
 			to_chat(rev_mind.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			rev_mind.special_role = "Head Revolutionary"
@@ -168,7 +168,7 @@
 //Checks if the round is over//
 ///////////////////////////////
 /datum/game_mode/revolution/check_finished()
-	if(CONFIG_GET(continous_rounds))
+	if(CONFIG_GET(/decl/configuration_entry/continous_rounds))
 		if(finished != 0)
 			if(global.PCemergency)
 				global.PCemergency.auto_recall = TRUE
@@ -193,7 +193,7 @@
 	revolutionaries += rev_mind
 	to_chat(rev_mind.current, SPAN_WARNING("<FONT size = 3> You are now a revolutionary! Help your cause. Do not harm your fellow freedom fighters. You can identify your comrades by the red \"R\" icons, and your leaders by the blue \"R\" icons. Help them kill the heads to win the revolution!</FONT>"))
 	rev_mind.special_role = "Revolutionary"
-	if(CONFIG_GET(objectives_disabled))
+	if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		FEEDBACK_ANTAGONIST_GREETING_GUIDE(rev_mind.current)
 	update_rev_icons_added(rev_mind)
 	return 1
@@ -344,7 +344,7 @@
 //Announces the end of the game with all relavent information stated//
 //////////////////////////////////////////////////////////////////////
 /datum/game_mode/revolution/declare_completion()
-	if(!CONFIG_GET(objectives_disabled))
+	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		if(finished == 1)
 			feedback_set_details("round_end_result", "win - heads killed")
 			to_world(SPAN_DANGER("<FONT size = 3>The heads of staff were killed or abandoned the station! The revolutionaries win!</FONT>"))

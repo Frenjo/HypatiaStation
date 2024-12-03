@@ -1,5 +1,5 @@
 /proc/sql_poll_players()
-	if(!CONFIG_GET(sql_logging))
+	if(!CONFIG_GET(/decl/configuration_entry/sql_logging))
 		return
 	var/playercount = 0
 	for_no_type_check(var/mob/M, GLOBL.player_list)
@@ -16,7 +16,7 @@
 			log_game("SQL ERROR during player polling. Error : \[[err]\]\n")
 
 /proc/sql_poll_admins()
-	if(!CONFIG_GET(sql_logging))
+	if(!CONFIG_GET(/decl/configuration_entry/sql_logging))
 		return
 	var/admincount = length(GLOBL.admins)
 	establish_db_connection()
@@ -31,15 +31,15 @@
 
 /proc/sql_report_round_start()
 	// TODO
-	if(!CONFIG_GET(sql_logging))
+	if(!CONFIG_GET(/decl/configuration_entry/sql_logging))
 		return
 /proc/sql_report_round_end()
 	// TODO
-	if(!CONFIG_GET(sql_logging))
+	if(!CONFIG_GET(/decl/configuration_entry/sql_logging))
 		return
 
 /proc/sql_report_death(mob/living/carbon/human/H)
-	if(!CONFIG_GET(sql_logging))
+	if(!CONFIG_GET(/decl/configuration_entry/sql_logging))
 		return
 	if(isnull(H))
 		return
@@ -72,7 +72,7 @@
 			log_game("SQL ERROR during death reporting. Error : \[[err]\]\n")
 
 /proc/sql_report_cyborg_death(mob/living/silicon/robot/H)
-	if(!CONFIG_GET(sql_logging))
+	if(!CONFIG_GET(/decl/configuration_entry/sql_logging))
 		return
 	if(isnull(H))
 		return
@@ -105,7 +105,7 @@
 			log_game("SQL ERROR during death reporting. Error : \[[err]\]\n")
 
 /proc/statistic_cycle()
-	if(!CONFIG_GET(sql_logging))
+	if(!CONFIG_GET(/decl/configuration_entry/sql_logging))
 		return
 	while(1)
 		sql_poll_players()

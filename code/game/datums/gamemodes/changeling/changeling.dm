@@ -48,7 +48,7 @@ var/list/possible_changeling_IDs = list(
 	. += "<B>There are alien changelings on the station. Do not let the changelings succeed!</B>"
 
 /datum/game_mode/changeling/pre_setup()
-	if(CONFIG_GET(protect_roles_from_antagonist))
+	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
 	var/list/datum/mind/possible_changelings = get_players_for_role(BE_CHANGELING)
@@ -77,7 +77,7 @@ var/list/possible_changeling_IDs = list(
 	for_no_type_check(var/datum/mind/changeling, changelings)
 		grant_changeling_powers(changeling.current)
 		changeling.special_role = "Changeling"
-		if(!CONFIG_GET(objectives_disabled))
+		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			forge_changeling_objectives(changeling)
 		greet_changeling(changeling)
 
@@ -121,10 +121,10 @@ var/list/possible_changeling_IDs = list(
 		to_chat(changeling.current, SPAN_DANGER("You are a changeling!"))
 	to_chat(changeling.current, SPAN_DANGER("Use say \":g message\" to communicate with your fellow changelings. Remember: you get all of their absorbed DNA if you absorb them."))
 
-	if(CONFIG_GET(objectives_disabled))
+	if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		FEEDBACK_ANTAGONIST_GREETING_GUIDE(changeling.current)
 
-	if(!CONFIG_GET(objectives_disabled))
+	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		to_chat(changeling.current, "<B>You must complete the following tasks:</B>")
 
 	if(changeling.current.mind)
@@ -132,7 +132,7 @@ var/list/possible_changeling_IDs = list(
 			to_chat(changeling.current, "You have evolved beyond your clownish nature, allowing you to wield weapons without harming yourself.")
 			changeling.current.mutations.Remove(MUTATION_CLUMSY)
 
-	if(!CONFIG_GET(objectives_disabled))
+	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		var/obj_count = 1
 		for(var/datum/objective/objective in changeling.objectives)
 			to_chat(changeling.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
@@ -189,7 +189,7 @@ var/list/possible_changeling_IDs = list(
 		//Removed sanity if(changeling) because we -want- a runtime to inform us that the changelings list is incorrect and needs to be fixed.
 		text += "<br><b>Changeling ID:</b> [changeling.changeling.changelingID]."
 		text += "<br><b>Genomes Absorbed:</b> [changeling.changeling.absorbedcount]"
-		if(!CONFIG_GET(objectives_disabled))
+		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			if(length(changeling.objectives))
 				var/count = 1
 				for(var/datum/objective/objective in changeling.objectives)
@@ -201,7 +201,7 @@ var/list/possible_changeling_IDs = list(
 						feedback_add_details("changeling_objective", "[objective.type]|FAIL")
 						changelingwin = FALSE
 					count++
-			if(!CONFIG_GET(objectives_disabled))
+			if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 				if(changelingwin)
 					text += "<br><font color='green'><B>The changeling was successful!</B></font>"
 					feedback_add_details("changeling_success", "SUCCESS")

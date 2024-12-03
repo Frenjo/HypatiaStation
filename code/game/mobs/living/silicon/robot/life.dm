@@ -62,7 +62,7 @@
 	if(resting)
 		Weaken(5)
 
-	if(health < CONFIG_GET(health_threshold_dead) && stat != DEAD) //die only once
+	if(health < CONFIG_GET(/decl/configuration_entry/health_threshold_dead) && stat != DEAD) //die only once
 		death()
 
 	if(stat != DEAD) //Alive.
@@ -202,7 +202,7 @@
 					if(0 to 50)
 						healths.icon_state = "health4"
 					else
-						if(health > CONFIG_GET(health_threshold_dead))
+						if(health > CONFIG_GET(/decl/configuration_entry/health_threshold_dead))
 							healths.icon_state = "health5"
 						else
 							healths.icon_state = "health6"

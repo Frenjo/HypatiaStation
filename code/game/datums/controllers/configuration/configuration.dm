@@ -48,7 +48,6 @@ CONTROLLER_DEF(configuration)
 		)
 	)
 
-	var/static/list/entries_by_name = list()
 	var/static/list/entries_by_category = list()
 
 	// Gamemode.
@@ -81,12 +80,11 @@ CONTROLLER_DEF(configuration)
 	SHOULD_CALL_PARENT(FALSE)
 
 /datum/controller/configuration/proc/init_entries()
-	for(var/path in SUBTYPESOF(/datum/configuration_entry))
-		var/datum/configuration_entry/entry = new path()
-		entries_by_name[entry.name] = entry
+	for(var/path in SUBTYPESOF(/decl/configuration_entry))
+		var/decl/configuration_entry/entry = GET_DECL_INSTANCE(path)
 		if(isnull(entries_by_category[entry.category]))
 			entries_by_category[entry.category] = list()
-		entries_by_category[entry.category] += entry
+		entries_by_category[entry.category] += path
 
 /datum/controller/configuration/proc/generate_default(file_name)
 	if(isnull(categories_by_file_name[file_name]))
@@ -96,7 +94,8 @@ CONTROLLER_DEF(configuration)
 	var/list/lines = list()
 	for(var/category in categories_by_file_name[file_name])
 		lines.Add("### [uppertext(category)] ###\n\n")
-		for_no_type_check(var/datum/configuration_entry/entry, entries_by_category[category])
+		for(var/path in entries_by_category[category])
+			var/decl/configuration_entry/entry = GET_DECL_INSTANCE(path)
 			if(isnotnull(entry.description))
 				for(var/desc_line in entry.description)
 					lines.Add("## [desc_line]\n")
@@ -138,7 +137,8 @@ CONTROLLER_DEF(configuration)
 		if(isnull(value))
 			continue
 		for(var/category in categories_by_file_name[file_name])
-			for_no_type_check(var/datum/configuration_entry/entry, entries_by_category[category])
+			for(var/path in entries_by_category[category])
+				var/decl/configuration_entry/entry = GET_DECL_INSTANCE(path)
 				if(option != entry.name)
 					continue
 				switch(entry.value_type)
@@ -170,13 +170,13 @@ CONTROLLER_DEF(configuration)
 	// Loads the gamemode probabilities from their configuration file.
 	load("gamemode_probabilities.txt")
 	// This is ugly but necessary to make the rest of the configuration stuff work currently.
-	probabilities["extended"] = CONFIG_GET(probability_extended)
-	probabilities["malfunction"] = CONFIG_GET(probability_malfunction)
-	probabilities["nuclear"] = CONFIG_GET(probability_nuclear)
-	probabilities["wizard"] = CONFIG_GET(probability_wizard)
-	probabilities["changeling"] = CONFIG_GET(probability_changeling)
-	probabilities["cult"] = CONFIG_GET(probability_cult)
-	probabilities["extend-a-traitormongous"] = CONFIG_GET(probability_autotraitor)
+	probabilities["extended"] = CONFIG_GET(/decl/configuration_entry/probability_extended)
+	probabilities["malfunction"] = CONFIG_GET(/decl/configuration_entry/probability_malfunction)
+	probabilities["nuclear"] = CONFIG_GET(/decl/configuration_entry/probability_nuclear)
+	probabilities["wizard"] = CONFIG_GET(/decl/configuration_entry/probability_wizard)
+	probabilities["changeling"] = CONFIG_GET(/decl/configuration_entry/probability_changeling)
+	probabilities["cult"] = CONFIG_GET(/decl/configuration_entry/probability_cult)
+	probabilities["extend-a-traitormongous"] = CONFIG_GET(/decl/configuration_entry/probability_autotraitor)
 
 /datum/controller/configuration/proc/pick_mode(mode_name)
 	for(var/path in mode_cache)
@@ -201,24 +201,18 @@ CONTROLLER_DEF(configuration)
 
 /datum/controller/configuration/proc/post_load()
 	//apply a default value to python_path, if needed
-	if(isnull(CONFIG_GET(python_path)))
+	if(isnull(CONFIG_GET(/decl/configuration_entry/python_path)))
 		if(world.system_type == UNIX)
-			CONFIG_SET(python_path, "/usr/bin/env python2")
+			CONFIG_SET(/decl/configuration_entry/python_path, "/usr/bin/env python2")
 		else //probably windows, if not this should work anyway
-			CONFIG_SET(python_path, "python")
+			CONFIG_SET(/decl/configuration_entry/python_path, "python")
 
-// Retrieves and returns a configuration value from its corresponding entry datum.
-/datum/controller/configuration/proc/get_value(name)
-	if(isnull(entries_by_name[name]))
-		return null
-
-	var/datum/configuration_entry/entry = entries_by_name[name]
+// Retrieves and returns a configuration value from its corresponding entry decl.
+/datum/controller/configuration/proc/get_value(path)
+	var/decl/configuration_entry/entry = GET_DECL_INSTANCE(path)
 	return entry.value
 
-// Retrieves and sets the configuration value of the corresponding entry datum.
-/datum/controller/configuration/proc/set_value(name, value)
-	if(isnull(entries_by_name[name]))
-		return
-
-	var/datum/configuration_entry/entry = entries_by_name[name]
+// Retrieves and sets the configuration value of the corresponding entry decl.
+/datum/controller/configuration/proc/set_value(path, value)
+	var/decl/configuration_entry/entry = GET_DECL_INSTANCE(path)
 	entry.value = value

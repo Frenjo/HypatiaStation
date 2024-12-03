@@ -430,11 +430,11 @@ datum
 			check_completion()
 				if(target && target.current)
 					if(target.current.stat == 2)
-						if(CONFIG_GET(require_heads_alive)) return 0
+						if(CONFIG_GET(/decl/configuration_entry/require_heads_alive)) return 0
 					else
 						if(!target.current.handcuffed)
 							return 0
-				else if(CONFIG_GET(require_heads_alive)) return 0
+				else if(CONFIG_GET(/decl/configuration_entry/require_heads_alive)) return 0
 				return 1
 
 			find_target_by_role(var/role)

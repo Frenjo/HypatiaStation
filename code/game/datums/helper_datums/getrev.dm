@@ -93,6 +93,6 @@
 	var/output =  "Sorry, the revision info is unavailable."
 	output = file2text("/home/bay12/live/data/gitcommit")
 	output += "Current Infomational Settings: <br>"
-	output += "Protect Authority Roles From Traitor: [CONFIG_GET(protect_roles_from_antagonist)]<br>"
+	output += "Protect Authority Roles From Traitor: [CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist)]<br>"
 	usr << browse(output, "window=revdata");
 	return

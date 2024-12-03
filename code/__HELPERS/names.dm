@@ -26,7 +26,7 @@ GLOBAL_GLOBL_INIT(command_name, null)
 		GLOBL.current_map.station_name = name + " "
 
 	// Prefix
-	switch(CONFIG_GET(holiday_name))
+	switch(CONFIG_GET(/decl/configuration_entry/holiday_name))
 		//get normal name
 		if(null, "", 0)
 			name = pick("", "Stanford", "Dorf", "Alium", "Prefix", "Clowning", "Aegis", "Ishimura", "Scaredy", "Death-World", "Mime", "Honk", "Rogue", "MacRagge", "Ultrameens", "Safety", "Paranoia", "Explosive", "Neckbear", "Donk", "Muppet", "North", "West", "East", "South", "Slant-ways", "Widdershins", "Rimward", "Expensive", "Procreatory", "Imperial", "Unidentified", "Immoral", "Carp", "Ork", "Pete", "Control", "Nettle", "Aspie", "Class", "Crab", "Fist","Corrogated","Skeleton","Race", "Fatguy", "Gentleman", "Capitalist", "Communist", "Bear", "Beard", "Derp", "Space", "Spess", "Star", "Moon", "System", "Mining", "Neckbeard", "Research", "Supply", "Military", "Orbital", "Battle", "Science", "Asteroid", "Home", "Production", "Transport", "Delivery", "Extraplanetary", "Orbital", "Correctional", "Robot", "Hats", "Pizza")
@@ -40,8 +40,8 @@ GLOBAL_GLOBL_INIT(command_name, null)
 			random = 13
 		else
 			//get the first word of the Holiday and use that
-			var/i = findtext(CONFIG_GET(holiday_name), " ", 1, 0)
-			name = copytext(CONFIG_GET(holiday_name), 1, i)
+			var/i = findtext(CONFIG_GET(/decl/configuration_entry/holiday_name), " ", 1, 0)
+			name = copytext(CONFIG_GET(/decl/configuration_entry/holiday_name), 1, i)
 			GLOBL.current_map.station_name += name + " "
 
 	// Suffix
@@ -63,8 +63,8 @@ GLOBAL_GLOBL_INIT(command_name, null)
 		if(13)
 			GLOBL.current_map.station_name += pick("13", "XIII", "Thirteen")
 
-	if(isnotnull(CONFIG_GET(server_name)))
-		world.name = "[CONFIG_GET(server_name)]: [name]"
+	if(isnotnull(CONFIG_GET(/decl/configuration_entry/server_name)))
+		world.name = "[CONFIG_GET(/decl/configuration_entry/server_name)]: [name]"
 	else
 		world.name = GLOBL.current_map.station_name
 
@@ -73,8 +73,8 @@ GLOBAL_GLOBL_INIT(command_name, null)
 /proc/world_name(name)
 	GLOBL.current_map.station_name = name
 
-	if(isnotnull(CONFIG_GET(server_name)))
-		world.name = "[CONFIG_GET(server_name)]: [name]"
+	if(isnotnull(CONFIG_GET(/decl/configuration_entry/server_name)))
+		world.name = "[CONFIG_GET(/decl/configuration_entry/server_name)]: [name]"
 	else
 		world.name = name
 

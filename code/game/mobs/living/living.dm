@@ -475,7 +475,7 @@ default behaviour is:
 	set name = "Examine Meta-Info (OOC)"
 	set src in view()
 
-	if(CONFIG_GET(allow_Metadata))
+	if(CONFIG_GET(/decl/configuration_entry/allow_metadata))
 		if(client)
 			to_chat(usr, "[src]'s Metainfo:<br>[client.prefs.metadata]")
 		else

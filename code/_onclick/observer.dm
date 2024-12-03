@@ -40,7 +40,7 @@
 		return
 
 	next_move = world.time + 8
-	// You are responsible for checking CONFIG_GET(ghost_interaction) when you override this function
+	// You are responsible for checking CONFIG_GET(/decl/configuration_entry/ghost_interaction) when you override this function
 	// Not all of them require checking, see below
 	A.attack_ghost(src)
 

@@ -34,5 +34,5 @@
 #define IS_GAME_MODE(X) istype(global.PCticker?.mode, X)
 
 // These are used for the new configuration system.
-#define CONFIG_GET(VAR) global.CTconfiguration.get_value(#VAR)
-#define CONFIG_SET(VAR, VALUE) global.CTconfiguration.set_value(#VAR, VALUE)
+#define CONFIG_GET(PATH) global.CTconfiguration.get_value(PATH)
+#define CONFIG_SET(PATH, VALUE) global.CTconfiguration.set_value(PATH, VALUE)

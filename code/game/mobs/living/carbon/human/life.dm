@@ -435,7 +435,7 @@
 	var/datum/gas_mixture/breath
 
 	// HACK NEED CHANGING LATER
-	if(health < CONFIG_GET(health_threshold_crit))
+	if(health < CONFIG_GET(/decl/configuration_entry/health_threshold_crit))
 		losebreath++
 
 	if(losebreath > 0) //Suffocating so do not take a breath
@@ -540,7 +540,7 @@
 			oxygen_alert = max(oxygen_alert, 1)
 			return 0
 
-		if(health > CONFIG_GET(health_threshold_crit))
+		if(health > CONFIG_GET(/decl/configuration_entry/health_threshold_crit))
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 			failed_last_breath = TRUE
 		else
@@ -1077,7 +1077,7 @@
 			handle_organs()	//Optimized.
 			handle_blood()
 
-		if(health <= CONFIG_GET(health_threshold_dead) || (species.has_organ["brain"] && !has_brain()))
+		if(health <= CONFIG_GET(/decl/configuration_entry/health_threshold_dead) || (species.has_organ["brain"] && !has_brain()))
 			death()
 			blinded = 1
 			silent = 0
@@ -1087,7 +1087,7 @@
 		analgesic = max(0, analgesic - 1)
 
 		//UNCONSCIOUS. NO-ONE IS HOME
-		if((getOxyLoss() > 50) || (CONFIG_GET(health_threshold_crit) > health))
+		if((getOxyLoss() > 50) || (CONFIG_GET(/decl/configuration_entry/health_threshold_crit) > health))
 			Paralyse(3)
 
 			/* Done by handle_breath()
@@ -1489,13 +1489,13 @@
 
 		if(istype(head, /obj/item/clothing/head/welding) || istype(head, /obj/item/clothing/head/helmet/space/soghun))
 			var/obj/item/clothing/head/welding/O = head
-			if(!O.up && CONFIG_GET(welding_protection_tint))
+			if(!O.up && CONFIG_GET(/decl/configuration_entry/welding_protection_tint))
 				client.screen.Add(GLOBL.global_hud.darkMask)
 				masked = TRUE
 
 		if(!masked && istype(glasses, /obj/item/clothing/glasses/welding))
 			var/obj/item/clothing/glasses/welding/O = glasses
-			if(!O.up && CONFIG_GET(welding_protection_tint))
+			if(!O.up && CONFIG_GET(/decl/configuration_entry/welding_protection_tint))
 				client.screen.Add(GLOBL.global_hud.darkMask)
 
 		if(isnotnull(machine))
@@ -1617,12 +1617,12 @@
 	if(analgesic || HAS_SPECIES_FLAGS(species, SPECIES_FLAG_NO_PAIN))
 		return // analgesic avoids all traumatic shock temporarily
 
-	if(health < CONFIG_GET(health_threshold_softcrit))// health 0 makes you immediately collapse
+	if(health < CONFIG_GET(/decl/configuration_entry/health_threshold_softcrit))// health 0 makes you immediately collapse
 		shock_stage = max(shock_stage, 61)
 
 	if(traumatic_shock >= 80)
 		shock_stage += 1
-	else if(health < CONFIG_GET(health_threshold_softcrit))
+	else if(health < CONFIG_GET(/decl/configuration_entry/health_threshold_softcrit))
 		shock_stage = max(shock_stage, 61)
 	else
 		shock_stage = min(shock_stage, 160)

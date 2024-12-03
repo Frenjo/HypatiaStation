@@ -6,11 +6,11 @@
 	if(isnull(GLOBL.dbcon))
 		GLOBL.dbcon = new /DBConnection()
 
-	var/user = CONFIG_GET(sql_fdbk_login)
-	var/pass = CONFIG_GET(sql_fdbk_pass)
-	var/db = CONFIG_GET(sql_fdbk_db)
-	var/address = CONFIG_GET(sql_address)
-	var/port = CONFIG_GET(sql_port)
+	var/user = CONFIG_GET(/decl/configuration_entry/sql_fdbk_login)
+	var/pass = CONFIG_GET(/decl/configuration_entry/sql_fdbk_pass)
+	var/db = CONFIG_GET(/decl/configuration_entry/sql_fdbk_db)
+	var/address = CONFIG_GET(/decl/configuration_entry/sql_address)
+	var/port = CONFIG_GET(/decl/configuration_entry/sql_port)
 
 	GLOBL.dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
 	. = GLOBL.dbcon.IsConnected()
@@ -40,11 +40,11 @@
 	if(isnull(GLOBL.dbcon_old))
 		GLOBL.dbcon_old = new /DBConnection()
 
-	var/user = CONFIG_GET(sql_login)
-	var/pass = CONFIG_GET(sql_pass)
-	var/db = CONFIG_GET(sql_db)
-	var/address = CONFIG_GET(sql_address)
-	var/port = CONFIG_GET(sql_port)
+	var/user = CONFIG_GET(/decl/configuration_entry/sql_login)
+	var/pass = CONFIG_GET(/decl/configuration_entry/sql_pass)
+	var/db = CONFIG_GET(/decl/configuration_entry/sql_db)
+	var/address = CONFIG_GET(/decl/configuration_entry/sql_address)
+	var/port = CONFIG_GET(/decl/configuration_entry/sql_port)
 
 	GLOBL.dbcon_old.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
 	. = GLOBL.dbcon_old.IsConnected()

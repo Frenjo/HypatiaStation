@@ -88,7 +88,7 @@
 
 /obj/item/paper/attack_self(mob/living/user)
 	examine()
-	if(rigged && (CONFIG_GET(holiday_name) == "April Fool's Day"))
+	if(rigged && (CONFIG_GET(/decl/configuration_entry/holiday_name) == "April Fool's Day"))
 		if(spam_flag == 0)
 			spam_flag = 1
 			playsound(loc, 'sound/items/bikehorn.ogg', 50, 1)

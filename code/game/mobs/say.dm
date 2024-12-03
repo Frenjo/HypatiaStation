@@ -39,7 +39,7 @@
 		return
 
 	if(isnull(client.holder))
-		if(!CONFIG_GET(dsay_allowed))
+		if(!CONFIG_GET(/decl/configuration_entry/dsay_allowed))
 			to_chat(src, SPAN_WARNING("Deadchat is globally muted."))
 			return
 

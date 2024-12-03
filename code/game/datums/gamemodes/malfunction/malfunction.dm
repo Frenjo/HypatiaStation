@@ -85,7 +85,7 @@
 	if(station_captured && !to_nuke_or_not_to_nuke)
 		return 1
 	if(is_malf_ai_dead())
-		if(CONFIG_GET(continous_rounds))
+		if(CONFIG_GET(/decl/configuration_entry/continous_rounds))
 			global.PCemergency?.auto_recall = TRUE
 			malf_mode_declared = 0
 		else

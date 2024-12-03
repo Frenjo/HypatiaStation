@@ -31,11 +31,11 @@
 	update_starlight()
 
 /turf/space/proc/update_starlight()
-	if(!CONFIG_GET(starlight))
+	if(!CONFIG_GET(/decl/configuration_entry/starlight))
 		return
 
 	if(locate(/turf/open) in orange(src, 1))
-		set_light(CONFIG_GET(starlight))
+		set_light(CONFIG_GET(/decl/configuration_entry/starlight))
 	else
 		set_light(0)
 

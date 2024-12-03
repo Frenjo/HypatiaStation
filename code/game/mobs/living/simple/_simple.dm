@@ -297,7 +297,7 @@
 	. = ..() //Incase I need to add stuff other than "speed" later
 	. += speed
 
-	. += CONFIG_GET(animal_delay)
+	. += CONFIG_GET(/decl/configuration_entry/animal_delay)
 
 /mob/living/simple/Stat()
 	..()

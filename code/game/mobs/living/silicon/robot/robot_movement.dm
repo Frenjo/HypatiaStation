@@ -14,7 +14,7 @@
 	if(module_active && istype(module_active, /obj/item/borg/combat/mobility))
 		. += -3
 
-	. += CONFIG_GET(robot_delay)
+	. += CONFIG_GET(/decl/configuration_entry/robot_delay)
 
 /mob/living/silicon/robot/Move()
 	..()

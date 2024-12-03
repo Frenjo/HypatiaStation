@@ -72,7 +72,7 @@
 					var/prev_species = species
 					var/whitelisted = 0
 
-					if(CONFIG_GET(usealienwhitelist)) //If we're using the whitelist, make sure to check it!
+					if(CONFIG_GET(/decl/configuration_entry/usealienwhitelist)) //If we're using the whitelist, make sure to check it!
 						for(var/S in GLOBL.whitelisted_species)
 							if(is_alien_whitelisted(user, S))
 								new_species += S
@@ -134,7 +134,7 @@
 					var/list/new_languages = list("None")
 					var/datum/species/S = GLOBL.all_species[species]
 
-					if(CONFIG_GET(usealienwhitelist))
+					if(CONFIG_GET(/decl/configuration_entry/usealienwhitelist))
 						for(var/L in GLOBL.all_languages)
 							var/datum/language/lang = GLOBL.all_languages[L]
 							if(!HAS_LANGUAGE_FLAGS(lang, LANGUAGE_FLAG_RESTRICTED) && (is_alien_whitelisted(user, L) \

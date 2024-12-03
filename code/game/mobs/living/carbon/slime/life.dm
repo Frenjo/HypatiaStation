@@ -219,11 +219,11 @@
 	else
 		health = 150 - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
 
-	if(health < CONFIG_GET(health_threshold_dead) && stat != DEAD)
+	if(health < CONFIG_GET(/decl/configuration_entry/health_threshold_dead) && stat != DEAD)
 		death()
 		return
 
-	else if(src.health < CONFIG_GET(health_threshold_crit))
+	else if(src.health < CONFIG_GET(/decl/configuration_entry/health_threshold_crit))
 		// if(src.health <= 20 && prob(1)) spawn(0) emote("gasp")
 
 		//if(!src.rejuv) src.oxyloss++

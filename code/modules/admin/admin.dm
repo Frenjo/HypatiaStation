@@ -726,10 +726,10 @@ var/global/floorIsLava = 0
 	set name = "Toggle OOC"
 	set desc = "Toggle whether non-admins can use OOC chat."
 
-	CONFIG_SET(ooc_allowed, !CONFIG_GET(ooc_allowed))
-	to_world("<B>The OOC channel has been globally [CONFIG_GET(ooc_allowed) ? "enabled" : "disabled"]!</B>")
-	log_admin("[key_name(usr)] toggled OOC [CONFIG_GET(ooc_allowed) ? "on" : "off"].")
-	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled OOC [CONFIG_GET(ooc_allowed) ? "on" : "off"]."), 1)
+	CONFIG_SET(/decl/configuration_entry/ooc_allowed, !CONFIG_GET(/decl/configuration_entry/ooc_allowed))
+	to_world("<B>The OOC channel has been globally [CONFIG_GET(/decl/configuration_entry/ooc_allowed) ? "enabled" : "disabled"]!</B>")
+	log_admin("[key_name(usr)] toggled OOC [CONFIG_GET(/decl/configuration_entry/ooc_allowed) ? "on" : "off"].")
+	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled OOC [CONFIG_GET(/decl/configuration_entry/ooc_allowed) ? "on" : "off"]."), 1)
 	feedback_add_details("admin_verb", "TOOC") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_dead_ooc()
@@ -737,10 +737,10 @@ var/global/floorIsLava = 0
 	set name = "Toggle Dead OOC"
 	set desc = "Toggle whether dead, non-admin players can use OOC chat."
 
-	CONFIG_SET(dead_ooc_allowed, !CONFIG_GET(dead_ooc_allowed))
-	to_world("<B>Dead players may [CONFIG_GET(dead_ooc_allowed) ? "now" : "no longer"] use OOC chat.")
-	log_admin("[key_name(usr)] toggled dead OOC [CONFIG_GET(dead_ooc_allowed) ? "on" : "off"].")
-	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled dead OOC [CONFIG_GET(dead_ooc_allowed) ? "on" : "off"]."), 1)
+	CONFIG_SET(/decl/configuration_entry/dead_ooc_allowed, !CONFIG_GET(/decl/configuration_entry/dead_ooc_allowed))
+	to_world("<B>Dead players may [CONFIG_GET(/decl/configuration_entry/dead_ooc_allowed) ? "now" : "no longer"] use OOC chat.")
+	log_admin("[key_name(usr)] toggled dead OOC [CONFIG_GET(/decl/configuration_entry/dead_ooc_allowed) ? "on" : "off"].")
+	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled dead OOC [CONFIG_GET(/decl/configuration_entry/dead_ooc_allowed) ? "on" : "off"]."), 1)
 	feedback_add_details("admin_verb", "TDOOC") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_dsay()
@@ -748,10 +748,10 @@ var/global/floorIsLava = 0
 	set name = "Toggle Deadchat"
 	set desc = "Toggle whether non-admins can use deadchat."
 
-	CONFIG_SET(dsay_allowed, !CONFIG_GET(dsay_allowed))
-	to_world("<B>Deadchat has been globally [CONFIG_GET(dsay_allowed) ? "enabled" : "disabled"]!</B>")
-	log_admin("[key_name(usr)] toggled deadchat [CONFIG_GET(dsay_allowed) ? "on" : "off"].")
-	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled deadchat [CONFIG_GET(dsay_allowed) ? "on" : "off"]."), 1)
+	CONFIG_SET(/decl/configuration_entry/dsay_allowed, !CONFIG_GET(/decl/configuration_entry/dsay_allowed))
+	to_world("<B>Deadchat has been globally [CONFIG_GET(/decl/configuration_entry/dsay_allowed) ? "enabled" : "disabled"]!</B>")
+	log_admin("[key_name(usr)] toggled deadchat [CONFIG_GET(/decl/configuration_entry/dsay_allowed) ? "on" : "off"].")
+	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled deadchat [CONFIG_GET(/decl/configuration_entry/dsay_allowed) ? "on" : "off"]."), 1)
 	feedback_add_details("admin_verb", "TDSAY") // If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
 /datum/admins/proc/toggletraitorscaling()
@@ -759,9 +759,9 @@ var/global/floorIsLava = 0
 	set desc="Toggle traitor scaling"
 	set name="Toggle Traitor Scaling"
 
-	CONFIG_SET(traitor_scaling, !CONFIG_GET(traitor_scaling))
-	log_admin("[key_name(usr)] toggled Traitor Scaling to [CONFIG_GET(traitor_scaling)].")
-	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [CONFIG_GET(traitor_scaling) ? "on" : "off"].", 1)
+	CONFIG_SET(/decl/configuration_entry/traitor_scaling, !CONFIG_GET(/decl/configuration_entry/traitor_scaling))
+	log_admin("[key_name(usr)] toggled Traitor Scaling to [CONFIG_GET(/decl/configuration_entry/traitor_scaling)].")
+	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [CONFIG_GET(/decl/configuration_entry/traitor_scaling) ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/startnow()
@@ -802,8 +802,8 @@ var/global/floorIsLava = 0
 	set desc="People can't be AI"
 	set name="Toggle AI"
 
-	CONFIG_SET(allow_ai, !CONFIG_GET(allow_ai))
-	if(!CONFIG_GET(allow_ai))
+	CONFIG_SET(/decl/configuration_entry/allow_ai, !CONFIG_GET(/decl/configuration_entry/allow_ai))
+	if(!CONFIG_GET(/decl/configuration_entry/allow_ai))
 		to_world("<B>The AI job is no longer chooseable.</B>")
 	else
 		to_world("<B>The AI job is chooseable now.</B>")
@@ -816,14 +816,14 @@ var/global/floorIsLava = 0
 	set name = "Toggle Respawn"
 	set desc = "Toggle whether dead players can respawn."
 
-	CONFIG_SET(respawn, !CONFIG_GET(respawn))
-	if(CONFIG_GET(respawn))
+	CONFIG_SET(/decl/configuration_entry/respawn, !CONFIG_GET(/decl/configuration_entry/respawn))
+	if(CONFIG_GET(/decl/configuration_entry/respawn))
 		to_world("<B>You may now respawn.</B>")
 	else
 		to_world("<B>You may no longer respawn. :(</B>")
 	world.update_status()
-	log_admin("[key_name(usr)] toggled respawn [CONFIG_GET(respawn) ? "on" : "off"].")
-	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled respawn [CONFIG_GET(respawn) ? "on" : "off"]."), 1)
+	log_admin("[key_name(usr)] toggled respawn [CONFIG_GET(/decl/configuration_entry/respawn) ? "on" : "off"].")
+	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled respawn [CONFIG_GET(/decl/configuration_entry/respawn) ? "on" : "off"]."), 1)
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_aliens()
@@ -831,9 +831,9 @@ var/global/floorIsLava = 0
 	set name = "Toggle Aliens"
 	set desc = "Toggle whether aliens are allowed."
 
-	CONFIG_SET(aliens_allowed, !CONFIG_GET(aliens_allowed))
-	log_admin("[key_name(usr)] toggled aliens [CONFIG_GET(aliens_allowed) ? "on" : "off"].")
-	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled aliens [CONFIG_GET(aliens_allowed) ? "on" : "off"]."), 1)
+	CONFIG_SET(/decl/configuration_entry/aliens_allowed, !CONFIG_GET(/decl/configuration_entry/aliens_allowed))
+	log_admin("[key_name(usr)] toggled aliens [CONFIG_GET(/decl/configuration_entry/aliens_allowed) ? "on" : "off"].")
+	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled aliens [CONFIG_GET(/decl/configuration_entry/aliens_allowed) ? "on" : "off"]."), 1)
 	feedback_add_details("admin_verb", "TA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggle_space_ninja()
@@ -872,8 +872,8 @@ var/global/floorIsLava = 0
 	set desc="Toggle admin jumping"
 	set name="Toggle Jump"
 
-	CONFIG_SET(allow_admin_jump, !CONFIG_GET(allow_admin_jump))
-	message_admins("\blue Toggled admin jumping to [CONFIG_GET(allow_admin_jump)].")
+	CONFIG_SET(/decl/configuration_entry/allow_admin_jump, !CONFIG_GET(/decl/configuration_entry/allow_admin_jump))
+	message_admins("\blue Toggled admin jumping to [CONFIG_GET(/decl/configuration_entry/allow_admin_jump)].")
 	feedback_add_details("admin_verb","TJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/adspawn()
@@ -881,8 +881,8 @@ var/global/floorIsLava = 0
 	set desc="Toggle admin spawning"
 	set name="Toggle Spawn"
 
-	CONFIG_SET(allow_admin_spawning, !CONFIG_GET(allow_admin_spawning))
-	message_admins("\blue Toggled admin item spawning to [CONFIG_GET(allow_admin_spawning)].")
+	CONFIG_SET(/decl/configuration_entry/allow_admin_spawning, !CONFIG_GET(/decl/configuration_entry/allow_admin_spawning))
+	message_admins("\blue Toggled admin item spawning to [CONFIG_GET(/decl/configuration_entry/allow_admin_spawning)].")
 	feedback_add_details("admin_verb","TAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/adrev()
@@ -890,8 +890,8 @@ var/global/floorIsLava = 0
 	set desc="Toggle admin revives"
 	set name="Toggle Revive"
 
-	CONFIG_SET(allow_admin_rev, !CONFIG_GET(allow_admin_rev))
-	message_admins("\blue Toggled reviving to [CONFIG_GET(allow_admin_rev)].")
+	CONFIG_SET(/decl/configuration_entry/allow_admin_rev, !CONFIG_GET(/decl/configuration_entry/allow_admin_rev))
+	message_admins("\blue Toggled reviving to [CONFIG_GET(/decl/configuration_entry/allow_admin_rev)].")
 	feedback_add_details("admin_verb","TAR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/immreboot()
@@ -918,7 +918,7 @@ var/global/floorIsLava = 0
 	set name = "Unprison"
 
 	if (M.z == 2)
-		if(CONFIG_GET(allow_admin_jump))
+		if(CONFIG_GET(/decl/configuration_entry/allow_admin_jump))
 			M.loc = pick(GLOBL.latejoin)
 			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", 1)
 			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
@@ -1049,10 +1049,10 @@ var/global/floorIsLava = 0
 	set name = "Toggle Welding Protection Tint"
 	set desc = "Toggles whether welding protection reduces view range."
 
-	CONFIG_SET(welding_protection_tint, !CONFIG_GET(welding_protection_tint))
-	to_world("<B>Welding protection tint has been [CONFIG_GET(welding_protection_tint) ? "enabled" : "disabled"]!</B>")
-	log_admin("[key_name(usr)] toggled welding protection tint [CONFIG_GET(welding_protection_tint) ? "on" : "off"].")
-	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled welding protection tint [CONFIG_GET(welding_protection_tint) ? "on" : "off"]."), 1)
+	CONFIG_SET(/decl/configuration_entry/welding_protection_tint, !CONFIG_GET(/decl/configuration_entry/welding_protection_tint))
+	to_world("<B>Welding protection tint has been [CONFIG_GET(/decl/configuration_entry/welding_protection_tint) ? "enabled" : "disabled"]!</B>")
+	log_admin("[key_name(usr)] toggled welding protection tint [CONFIG_GET(/decl/configuration_entry/welding_protection_tint) ? "on" : "off"].")
+	message_admins(SPAN_INFO("[key_name_admin(usr)] toggled welding protection tint [CONFIG_GET(/decl/configuration_entry/welding_protection_tint) ? "on" : "off"]."), 1)
 	feedback_add_details("admin_verb", "TWPT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleguests()
@@ -1060,13 +1060,13 @@ var/global/floorIsLava = 0
 	set desc="Guests can't enter"
 	set name="Toggle guests"
 
-	CONFIG_SET(guests_allowed, !CONFIG_GET(guests_allowed))
-	if(!CONFIG_GET(guests_allowed))
+	CONFIG_SET(/decl/configuration_entry/guests_allowed, !CONFIG_GET(/decl/configuration_entry/guests_allowed))
+	if(!CONFIG_GET(/decl/configuration_entry/guests_allowed))
 		to_world("<B>Guests may no longer enter the game.</B>")
 	else
 		to_world("<B>Guests may now enter the game.</B>")
-	log_admin("[key_name(usr)] toggled guests game entering [CONFIG_GET(guests_allowed) ? "" : "dis"]allowed.")
-	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [CONFIG_GET(guests_allowed) ? "" : "dis"]allowed.", 1)
+	log_admin("[key_name(usr)] toggled guests game entering [CONFIG_GET(/decl/configuration_entry/guests_allowed) ? "" : "dis"]allowed.")
+	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [CONFIG_GET(/decl/configuration_entry/guests_allowed) ? "" : "dis"]allowed.", 1)
 	feedback_add_details("admin_verb", "TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/output_ai_laws()

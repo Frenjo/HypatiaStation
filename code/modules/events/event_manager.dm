@@ -41,7 +41,7 @@ GLOBAL_GLOBL_INIT(scheduledEvent, null)
 //unused, see proc/dynamic_event()
 /*
 /proc/spawnEvent()
-	if(!CONFIG_GET(allow_random_events))
+	if(!CONFIG_GET(/decl/configuration_entry/allow_random_events))
 		return
 
 	var/Type = pick(potentialRandomEvents)

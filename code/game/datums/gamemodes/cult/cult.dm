@@ -55,7 +55,7 @@
 	. += "<B>Personnel:</B> Do not let the cult succeed in its mission. Brainwashing them with the chaplain's bible reverts them to whatever CentCom-allowed faith they had."
 
 /datum/game_mode/cult/pre_setup()
-	if(!CONFIG_GET(objectives_disabled))
+	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		if(prob(50))
 			objectives += "survive"
 			objectives += "sacrifice"
@@ -63,7 +63,7 @@
 			objectives += "eldergod"
 			objectives += "sacrifice"
 
-	if(CONFIG_GET(protect_roles_from_antagonist))
+	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
 	var/list/datum/mind/cultists_possible = get_players_for_role(BE_CULTIST)
@@ -101,7 +101,7 @@
 		grant_runeword(cult_mind.current)
 		update_cult_icons_added(cult_mind)
 		to_chat(cult_mind.current, SPAN_INFO("You are a member of the cult!"))
-		if(!CONFIG_GET(objectives_disabled))
+		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			memoize_cult_objectives(cult_mind)
 		else
 			FEEDBACK_ANTAGONIST_GREETING_GUIDE(cult_mind.current)
@@ -177,7 +177,7 @@
 /datum/game_mode/cult/add_cultist(datum/mind/cult_mind) //INHERIT
 	if(!..(cult_mind))
 		return
-	if(!CONFIG_GET(objectives_disabled))
+	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		memoize_cult_objectives(cult_mind)
 
 /datum/game_mode/proc/remove_cultist(datum/mind/cult_mind, show_message = TRUE)
@@ -265,7 +265,7 @@
 		return 1
 
 /datum/game_mode/cult/declare_completion()
-	if(CONFIG_GET(objectives_disabled))
+	if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		return 1
 	if(!check_cult_victory())
 		feedback_set_details("round_end_result", "win - cult win")
@@ -277,7 +277,7 @@
 		to_world(SPAN_DANGER("<FONT size = 3>The staff managed to stop the cult!</FONT>"))
 
 	var/text = "<b>Cultists escaped:</b> [acolytes_survived]"
-	if(!CONFIG_GET(objectives_disabled))
+	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		if(length(objectives))
 			text += "<br><b>The cultists' objectives were:</b>"
 			for(var/obj_count = 1, obj_count <= length(objectives), obj_count++)

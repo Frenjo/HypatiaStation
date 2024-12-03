@@ -399,7 +399,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	set category = PANEL_OOC
 	set name = "Respawn"
 
-	if(!CONFIG_GET(respawn))
+	if(!CONFIG_GET(/decl/configuration_entry/respawn))
 		to_chat(usr, SPAN_INFO("Respawn is disabled."))
 		return
 	if(stat != DEAD || isnull(global.PCticker))
@@ -412,7 +412,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 		var/deathtime = world.time - src.timeofdeath
 		if(isobserver(src))
 			var/mob/dead/observer/G = src
-			if(G.has_enabled_antagHUD == 1 && CONFIG_GET(antag_hud_restricted))
+			if(G.has_enabled_antagHUD == 1 && CONFIG_GET(/decl/configuration_entry/antag_hud_restricted))
 				to_chat(usr, SPAN_INFO_B("Upon using the antagHUD you forfeighted the ability to join the round."))
 				return
 		var/deathtimeminutes = round(deathtime / 600)
@@ -592,7 +592,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 /mob/proc/pull_damage()
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
-		if(H.health - H.halloss <= CONFIG_GET(health_threshold_softcrit))
+		if(H.health - H.halloss <= CONFIG_GET(/decl/configuration_entry/health_threshold_softcrit))
 			for(var/name in H.organs_by_name)
 				var/datum/organ/external/e = H.organs_by_name[name]
 				if(H.lying)

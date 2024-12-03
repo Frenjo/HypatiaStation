@@ -188,7 +188,7 @@
 		if("Station Engineer")
 			return list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction)
 		if("Assistant")
-			if(CONFIG_GET(assistant_maint))
+			if(CONFIG_GET(/decl/configuration_entry/assistant_maint))
 				return list(access_maint_tunnels)
 			else
 				return list()

@@ -11,7 +11,7 @@
 					dust_swarm("weak")*/
 			if(!event)
 				//CARN: checks to see if random events are enabled.
-				if(CONFIG_GET(allow_random_events))
+				if(CONFIG_GET(/decl/configuration_entry/allow_random_events))
 					hadevent = event()
 				else
 					Holiday_Random_Event()
@@ -24,7 +24,7 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 
 //Always triggers an event when called, dynamically chooses events based on job population
 /proc/spawn_dynamic_event()
-	if(!CONFIG_GET(allow_random_events))
+	if(!CONFIG_GET(/decl/configuration_entry/allow_random_events))
 		return
 
 	var/minutes_passed = world.time / 600
@@ -85,7 +85,7 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 	if(active_with_role["Security"] > 0)
 		if(!GLOBL.sent_spiders_to_station)
 			possibleEvents[/datum/round_event/spider_infestation] = max(active_with_role["Security"], 5) + 5
-		if(CONFIG_GET(aliens_allowed) && !GLOBL.sent_aliens_to_station)
+		if(CONFIG_GET(/decl/configuration_entry/aliens_allowed) && !GLOBL.sent_aliens_to_station)
 			possibleEvents[/datum/round_event/alien_infestation] = max(active_with_role["Security"], 5) + 2.5
 		if(!GLOBL.sent_ninja_to_station && GLOBL.toggle_space_ninja)
 			possibleEvents[/datum/round_event/space_ninja] = max(active_with_role["Security"], 5)

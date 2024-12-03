@@ -52,7 +52,7 @@
 	set name = "Rotate Chair"
 	set src in oview(1)
 
-	if(CONFIG_GET(ghost_interaction))
+	if(CONFIG_GET(/decl/configuration_entry/ghost_interaction))
 		src.set_dir(turn(src.dir, 90))
 		handle_rotation()
 		return

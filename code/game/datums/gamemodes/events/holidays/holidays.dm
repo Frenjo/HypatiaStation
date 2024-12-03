@@ -19,7 +19,7 @@ GLOBAL_GLOBL_INIT(eventchance, 10)	//% per 5 mins
 
 //sets up the Holiday global variable. Shouldbe called on game configuration or something.
 /proc/get_holiday()
-	if(!CONFIG_GET(allow_holidays))
+	if(!CONFIG_GET(/decl/configuration_entry/allow_holidays))
 		return	// Holiday stuff was not enabled in the config!
 
 	var/YY	=	text2num(time2text(world.timeofday, "YY"))	// get the current year
@@ -31,130 +31,130 @@ GLOBAL_GLOBL_INIT(eventchance, 10)	//% per 5 mins
 		if(1)	//Jan
 			switch(DD)
 				if(1)
-					CONFIG_SET(holiday_name, "New Year's Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "New Year's Day")
 
 		if(2)	//Feb
 			switch(DD)
 				if(2)
-					CONFIG_SET(holiday_name, "Groundhog Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Groundhog Day")
 				if(14)
-					CONFIG_SET(holiday_name, "Valentine's Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Valentine's Day")
 				if(17)
-					CONFIG_SET(holiday_name, "Random Acts of Kindness Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Random Acts of Kindness Day")
 
 		if(3)	//Mar
 			switch(DD)
 				if(14)
-					CONFIG_SET(holiday_name, "Pi Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Pi Day")
 				if(17)
-					CONFIG_SET(holiday_name, "St. Patrick's Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "St. Patrick's Day")
 				if(27)
 					if(YY == 16)
-						CONFIG_SET(holiday_name, "Easter")
+						CONFIG_SET(/decl/configuration_entry/holiday_name, "Easter")
 				if(31)
 					if(YY == 13)
-						CONFIG_SET(holiday_name, "Easter")
+						CONFIG_SET(/decl/configuration_entry/holiday_name, "Easter")
 
 		if(4)	//Apr
 			switch(DD)
 				if(1)
-					CONFIG_SET(holiday_name, "April Fool's Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "April Fool's Day")
 					if(YY == 18 && prob(50))
-						CONFIG_SET(holiday_name, "Easter")
+						CONFIG_SET(/decl/configuration_entry/holiday_name, "Easter")
 				if(5)
 					if(YY == 15)
-						CONFIG_SET(holiday_name, "Easter")
+						CONFIG_SET(/decl/configuration_entry/holiday_name, "Easter")
 				if(16)
 					if(YY == 17)
-						CONFIG_SET(holiday_name, "Easter")
+						CONFIG_SET(/decl/configuration_entry/holiday_name, "Easter")
 				if(20)
-					CONFIG_SET(holiday_name, "Four-Twenty")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Four-Twenty")
 					if(YY == 14 && prob(50))
-						CONFIG_SET(holiday_name, "Easter")
+						CONFIG_SET(/decl/configuration_entry/holiday_name, "Easter")
 				if(22)
-					CONFIG_SET(holiday_name, "Earth Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Earth Day")
 
 		if(5)	//May
 			switch(DD)
 				if(1)
-					CONFIG_SET(holiday_name, "Labour Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Labour Day")
 				if(4)
-					CONFIG_SET(holiday_name, "FireFighter's Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "FireFighter's Day")
 				if(12)
-					CONFIG_SET(holiday_name, "Owl and Pussycat Day")	//what a dumb day of observence...but we -do- have costumes already :3
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Owl and Pussycat Day")	//what a dumb day of observence...but we -do- have costumes already :3
 
 		if(6)	//Jun
 
 		if(7)	//Jul
 			switch(DD)
 				if(1)
-					CONFIG_SET(holiday_name, "Doctor's Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Doctor's Day")
 				if(2)
-					CONFIG_SET(holiday_name, "UFO Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "UFO Day")
 				if(8)
-					CONFIG_SET(holiday_name, "Writer's Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Writer's Day")
 				if(30)
-					CONFIG_SET(holiday_name, "Friendship Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Friendship Day")
 
 		if(8)	//Aug
 			switch(DD)
 				if(5)
-					CONFIG_SET(holiday_name, "Beer Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Beer Day")
 
 		if(9)	//Sep
 			switch(DD)
 				if(19)
-					CONFIG_SET(holiday_name, "Talk-Like-a-Pirate Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Talk-Like-a-Pirate Day")
 				if(28)
-					CONFIG_SET(holiday_name, "Stupid-Questions Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Stupid-Questions Day")
 
 		if(10)	//Oct
 			switch(DD)
 				if(4)
-					CONFIG_SET(holiday_name, "Animal's Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Animal's Day")
 				if(7)
-					CONFIG_SET(holiday_name, "Smiling Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Smiling Day")
 				if(16)
-					CONFIG_SET(holiday_name, "Boss' Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Boss' Day")
 				if(31)
-					CONFIG_SET(holiday_name, "Halloween")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Halloween")
 
 		if(11)	//Nov
 			switch(DD)
 				if(1)
-					CONFIG_SET(holiday_name, "Vegan Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Vegan Day")
 				if(13)
-					CONFIG_SET(holiday_name, "Kindness Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Kindness Day")
 				if(19)
-					CONFIG_SET(holiday_name, "Flowers Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Flowers Day")
 				if(21)
-					CONFIG_SET(holiday_name, "Saying-'Hello' Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Saying-'Hello' Day")
 
 		if(12)	//Dec
 			switch(DD)
 				if(10)
-					CONFIG_SET(holiday_name, "Human-Rights Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Human-Rights Day")
 				if(14)
-					CONFIG_SET(holiday_name, "Monkey Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Monkey Day")
 				if(21)
 					if(YY == 12)
-						CONFIG_SET(holiday_name, "End of the World")
+						CONFIG_SET(/decl/configuration_entry/holiday_name, "End of the World")
 				if(22)
-					CONFIG_SET(holiday_name, "Orgasming Day")		//lol. These all actually exist
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Orgasming Day")		//lol. These all actually exist
 				if(24)
-					CONFIG_SET(holiday_name, "Christmas Eve")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Christmas Eve")
 				if(25)
-					CONFIG_SET(holiday_name, "Christmas")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Christmas")
 				if(26)
-					CONFIG_SET(holiday_name, "Boxing Day")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "Boxing Day")
 				if(31)
-					CONFIG_SET(holiday_name, "New Year's Eve")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "New Year's Eve")
 
-	if(!CONFIG_GET(holiday_name))
+	if(!CONFIG_GET(/decl/configuration_entry/holiday_name))
 		//Friday the 13th
 		if(DD == 13)
 			if(time2text(world.timeofday, "DDD") == "Fri")
-				CONFIG_SET(holiday_name, "Friday the 13th")
+				CONFIG_SET(/decl/configuration_entry/holiday_name, "Friday the 13th")
 
 //Allows GA and GM to set the Holiday variable
 /client/proc/set_holiday(T as text|null)
@@ -165,7 +165,7 @@ GLOBAL_GLOBL_INIT(eventchance, 10)	//% per 5 mins
 	if(!check_rights(R_SERVER))
 		return
 
-	CONFIG_SET(holiday_name, T)
+	CONFIG_SET(/decl/configuration_entry/holiday_name, T)
 	//get a new station name
 	GLOBL.current_map.station_name = null
 	station_name()
@@ -173,15 +173,15 @@ GLOBAL_GLOBL_INIT(eventchance, 10)	//% per 5 mins
 	world.update_status()
 	holiday_game_start()
 
-	message_admins("\blue ADMIN: Event: [key_name(src)] force-set Holiday to \"[CONFIG_GET(holiday_name)]\"")
-	log_admin("[key_name(src)] force-set Holiday to \"[CONFIG_GET(holiday_name)]\"")
+	message_admins("\blue ADMIN: Event: [key_name(src)] force-set Holiday to \"[CONFIG_GET(/decl/configuration_entry/holiday_name)]\"")
+	log_admin("[key_name(src)] force-set Holiday to \"[CONFIG_GET(/decl/configuration_entry/holiday_name)]\"")
 
 //Run at the  start of a round
 /proc/holiday_game_start()
-	if(CONFIG_GET(holiday_name))
+	if(CONFIG_GET(/decl/configuration_entry/holiday_name))
 		to_world("<font color='blue'>and...</font>")
-		to_world("<h4>Happy [CONFIG_GET(holiday_name)] Everybody!</h4>")
-		switch(CONFIG_GET(holiday_name))	//special holidays
+		to_world("<h4>Happy [CONFIG_GET(/decl/configuration_entry/holiday_name)] Everybody!</h4>")
+		switch(CONFIG_GET(/decl/configuration_entry/holiday_name))	//special holidays
 			if("Easter")
 				//do easter stuff
 			if("Christmas Eve", "Christmas")
@@ -190,7 +190,7 @@ GLOBAL_GLOBL_INIT(eventchance, 10)	//% per 5 mins
 
 //Nested in the random events loop. Will be triggered every 2 minutes
 /proc/holiday_random_event()
-	switch(CONFIG_GET(holiday_name))	//special holidays
+	switch(CONFIG_GET(/decl/configuration_entry/holiday_name))	//special holidays
 
 		if("", null)			//no Holiday today! Back to work!
 			return

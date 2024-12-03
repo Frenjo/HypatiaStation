@@ -45,7 +45,7 @@ datum/book_manager/proc/freeid()
 	if(!isbn)
 		return
 
-	if(BOOKS_USE_SQL && CONFIG_GET(sql_enabled))
+	if(BOOKS_USE_SQL && CONFIG_GET(/decl/configuration_entry/sql_enabled))
 		var/DBConnection/dbcon = new()
 		dbcon.Connect("dbi:mysql:[sqldb]:[sqladdress]:[sqlport]","[sqllogin]","[sqlpass]")
 		if(!dbcon.IsConnected())

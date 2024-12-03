@@ -9,10 +9,10 @@ PROCESS_DEF(transfer)
 	var/currenttick = 0
 
 /datum/process/transfer/setup()
-	timerbuffer = CONFIG_GET(vote_autotransfer_initial)
+	timerbuffer = CONFIG_GET(/decl/configuration_entry/vote_autotransfer_initial)
 
 /datum/process/transfer/do_work()
 	currenttick++
 	if(world.time >= timerbuffer - (1 MINUTE))
 		global.PCvote.autotransfer()
-		timerbuffer = timerbuffer + CONFIG_GET(vote_autotransfer_interval)
+		timerbuffer = timerbuffer + CONFIG_GET(/decl/configuration_entry/vote_autotransfer_interval)

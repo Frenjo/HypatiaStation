@@ -307,7 +307,7 @@
 				temp = "Error: Not enough stem cell charges."
 			else if(pod1.mess)
 				temp = "Error: Clonepod malfunction."
-			else if(!CONFIG_GET(revival_cloning))
+			else if(!CONFIG_GET(/decl/configuration_entry/revival_cloning))
 				temp = "Error: Unable to initiate cloning cycle."
 
 			else if(pod1.growclone(C))

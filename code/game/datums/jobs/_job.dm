@@ -26,7 +26,7 @@
 	// If you have use_age_restriction_for_jobs config option enabled and the database set up, this option will add a requirement for players to be at least minimal_player_age days old. (meaning they first signed in at least that many days before.)
 	var/minimal_player_age = 0
 
-	// Job access. The use of minimal_access or access is determined by a config setting: CONFIG_GET(jobs_have_minimal_access).
+	// Job access. The use of minimal_access or access is determined by a config setting: CONFIG_GET(/decl/configuration_entry/jobs_have_minimal_access).
 	var/list/access = null			// Useful for servers which either have fewer players, so each person needs to fill more than one role, or servers which like to give more access, so players can't hide forever in their super secure departments (I'm looking at you, chemistry!)
 	var/list/minimal_access = null	// Useful for servers which prefer to only have access given to the places a job absolutely needs (IE larger server population.)
 
@@ -49,7 +49,7 @@
 	return H.equip_outfit(outfit_type)
 
 /datum/job/proc/get_access()
-	if(CONFIG_GET(jobs_have_minimal_access) && isnotnull(minimal_access))
+	if(CONFIG_GET(/decl/configuration_entry/jobs_have_minimal_access) && isnotnull(minimal_access))
 		return minimal_access.Copy()
 	return access.Copy()
 
@@ -71,7 +71,7 @@
 
 	if(isnull(C))
 		return 0
-	if(!CONFIG_GET(use_age_restriction_for_jobs))
+	if(!CONFIG_GET(/decl/configuration_entry/use_age_restriction_for_jobs))
 		return 0
 	if(!isnum(C.player_age))
 		return 0 // This is only a number if the db connection is established, otherwise it is text: "Requires database", meaning these restrictions cannot be enforced.

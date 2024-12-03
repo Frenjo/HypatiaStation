@@ -44,7 +44,7 @@ Growing it to term with nothing injected will grab a ghost from the observers. *
 			to_chat(user, "The strange, sluglike seeds quiver gently and swell with blood.")
 			if(!source.client && source.mind)
 				for(var/mob/dead/observer/O in GLOBL.player_list)
-					if(O.mind == source.mind && CONFIG_GET(revival_pod_plants))
+					if(O.mind == source.mind && CONFIG_GET(/decl/configuration_entry/revival_pod_plants))
 						O << "<b><font color = #330033><font size = 3>Your blood has been placed into a replica pod seed. Return to your body if you want to be returned to life as a pod person!</b> (Verbs -> Ghost -> Re-enter corpse)</font color>"
 						break
 		else
@@ -73,7 +73,7 @@ Growing it to term with nothing injected will grab a ghost from the observers. *
 	)
 
 	//If a sample is injected (and revival is allowed) the plant will be controlled by the original donor.
-	if(source && source.stat == DEAD && source.client && source.ckey && CONFIG_GET(revival_pod_plants))
+	if(source && source.stat == DEAD && source.client && source.ckey && CONFIG_GET(/decl/configuration_entry/revival_pod_plants))
 		transfer_personality(source.client)
 	else // If no sample was injected or revival is not allowed, we grab an interested observer.
 		request_player()

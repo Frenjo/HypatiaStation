@@ -48,7 +48,7 @@
 	if(MUTATION_NO_SLOWDOWN in mutations)
 		. = 0
 
-	. += CONFIG_GET(human_delay)
+	. += CONFIG_GET(/decl/configuration_entry/human_delay)
 
 /mob/living/carbon/human/Process_Spacemove(check_drift = 0)
 	//Can we act

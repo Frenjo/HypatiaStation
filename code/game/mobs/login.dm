@@ -4,7 +4,7 @@
 	lastKnownIP	= client.address
 	computer_id	= client.computer_id
 	log_access("Login: [key_name(src)] from [lastKnownIP ? lastKnownIP : "localhost"]-[computer_id] || BYOND v[client.byond_version]")
-	if(CONFIG_GET(log_access))
+	if(CONFIG_GET(/decl/configuration_entry/log_access))
 		for_no_type_check(var/mob/M, GLOBL.player_list)
 			if(M == src)
 				continue

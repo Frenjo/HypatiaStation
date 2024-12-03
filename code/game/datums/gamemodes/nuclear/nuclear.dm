@@ -133,7 +133,7 @@
 		synd_mind.current.real_name = "[syndicate_name()] Operative" // placeholder while we get their actual name
 		spawn(0)
 			NukeNameAssign(synd_mind)
-		if(!CONFIG_GET(objectives_disabled))
+		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			forge_syndicate_objectives(synd_mind)
 		greet_syndicate(synd_mind)
 		equip_syndicate(synd_mind.current)
@@ -183,7 +183,7 @@
 	if(you_are)
 		to_chat(syndicate.current, SPAN_INFO("You are a [syndicate_name()] agent!"))
 	var/obj_count = 1
-	if(!CONFIG_GET(objectives_disabled))
+	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		for(var/datum/objective/objective in syndicate.objectives)
 			to_chat(syndicate.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			obj_count++
@@ -259,7 +259,7 @@
 
 
 /datum/game_mode/nuclear/declare_completion()
-	if(CONFIG_GET(objectives_disabled))
+	if(CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		return
 	var/disk_rescued = 1
 	for(var/obj/item/disk/nuclear/D in GLOBL.movable_atom_list)

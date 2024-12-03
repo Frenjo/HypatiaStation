@@ -8,7 +8,7 @@ PROCESS_DEF(inactivity)
 	schedule_interval = INACTIVITY_KICK
 
 /datum/process/inactivity/do_work()
-	if(CONFIG_GET(kick_inactive))
+	if(CONFIG_GET(/decl/configuration_entry/kick_inactive))
 		for_no_type_check(var/client/C, GLOBL.clients)
 			if(C.is_afk(INACTIVITY_KICK))
 				if(!istype(C.mob, /mob/dead))

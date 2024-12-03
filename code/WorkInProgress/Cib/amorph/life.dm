@@ -301,9 +301,9 @@
 			if(src.resting)
 				Weaken(5)
 
-			if(health < CONFIG_GET(health_threshold_dead) && stat != 2)
+			if(health < CONFIG_GET(/decl/configuration_entry/health_threshold_dead) && stat != 2)
 				death()
-			else if(src.health < CONFIG_GET(health_threshold_crit))
+			else if(src.health < CONFIG_GET(/decl/configuration_entry/health_threshold_crit))
 				if(src.health <= 20 && prob(1)) spawn(0) emote("gasp")
 
 				// shuffle around the chemical effects for amorphs a little ;)

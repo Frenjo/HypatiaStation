@@ -16,10 +16,10 @@
 */
 /datum/global_init/New()
 	global.debugger = new /debugger()
-	global.CTconfiguration = new /datum/controller/configuration()
-	global.CTconfiguration.load_gamemodes()
 	global.GLOBL = new /datum/controller/global_variables()
 	global.CTdecls = new /datum/controller/decls()
+	global.CTconfiguration = new /datum/controller/configuration()
+	global.CTconfiguration.load_gamemodes()
 
 	// Logs.
 	var/date_string = time2text(world.realtime, "YYYY/MM-Month/DD-Day")

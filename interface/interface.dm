@@ -3,10 +3,10 @@
 	set name = "wiki"
 	set desc = "Visit the wiki."
 	set hidden = TRUE
-	if(isnotnull(CONFIG_GET(wikiurl)))
+	if(isnotnull(CONFIG_GET(/decl/configuration_entry/wikiurl)))
 		if(alert("This will open the wiki in your browser. Are you sure?", , "Yes", "No") == "No")
 			return
-		to_chat(src, link(CONFIG_GET(wikiurl)))
+		to_chat(src, link(CONFIG_GET(/decl/configuration_entry/wikiurl)))
 	else
 		to_chat(src, SPAN_WARNING("The wiki URL is not set in the server configuration."))
 	return
@@ -15,10 +15,10 @@
 	set name = "forum"
 	set desc = "Visit the forum."
 	set hidden = TRUE
-	if(isnotnull(CONFIG_GET(forumurl)))
+	if(isnotnull(CONFIG_GET(/decl/configuration_entry/forumurl)))
 		if(alert("This will open the forum in your browser. Are you sure?", , "Yes", "No") == "No")
 			return
-		to_chat(src, link(CONFIG_GET(forumurl)))
+		to_chat(src, link(CONFIG_GET(/decl/configuration_entry/forumurl)))
 	else
 		to_chat(src, SPAN_WARNING("The forum URL is not set in the server configuration."))
 	return
@@ -48,10 +48,10 @@
 	set name = "donate"
 	set desc = "Donate to the server."
 	set hidden = TRUE
-	if(isnotnull(CONFIG_GET(donateurl)))
+	if(isnotnull(CONFIG_GET(/decl/configuration_entry/donateurl)))
 		if(alert("This will open the donation URL in your browser. Are you sure?", , "Yes", "No") == "No")
 			return
-		to_chat(src, link(CONFIG_GET(donateurl)))
+		to_chat(src, link(CONFIG_GET(/decl/configuration_entry/donateurl)))
 	else
 		to_chat(src, SPAN_WARNING("The donation URL is not set in the server configuration."))
 	return

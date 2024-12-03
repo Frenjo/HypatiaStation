@@ -3,7 +3,7 @@
 	set name = "Possess Obj"
 
 	if(istype(O, /obj/singularity))
-		if(CONFIG_GET(forbid_singulo_possession))
+		if(CONFIG_GET(/decl/configuration_entry/forbid_singulo_possession))
 			usr << "It is forbidden to possess singularities."
 			return
 

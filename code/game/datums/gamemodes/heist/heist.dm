@@ -63,7 +63,7 @@ VOX HEIST ROUNDTYPE
 			continue
 
 	//Generate objectives for the group.
-	if(!CONFIG_GET(objectives_disabled))
+	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		raid_objectives = forge_vox_objectives()
 
 	var/index = 1
@@ -155,7 +155,7 @@ VOX HEIST ROUNDTYPE
 	to_chat(raider.current, SPAN_INFO("Use :V to voxtalk, :H to talk on your encrypted channel, and don't forget to turn on your nitrogen internals!"))
 	to_chat(raider.current, SPAN_WARNING("IF YOU HAVE NOT PLAYED A VOX BEFORE, REVIEW THIS THREAD: http://baystation12.net/forums/viewtopic.php?f=6&t=8657.")) // TODO: Do some research into this, maybe use the wayback machine or just talk to Loaf?
 	var/obj_count = 1
-	if(!CONFIG_GET(objectives_disabled))
+	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		for(var/datum/objective/objective in raider.objectives)
 			to_chat(raider.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			obj_count++

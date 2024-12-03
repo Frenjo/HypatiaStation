@@ -52,7 +52,7 @@
 
 
 /datum/admins/proc/log_admin_rank_modification(adm_ckey, new_rank)
-	if(CONFIG_GET(admin_legacy_system))
+	if(CONFIG_GET(/decl/configuration_entry/admin_legacy_system))
 		return
 
 	if(!usr.client)
@@ -104,7 +104,7 @@
 
 
 /datum/admins/proc/log_admin_permission_modification(adm_ckey, new_permission)
-	if(CONFIG_GET(admin_legacy_system))
+	if(CONFIG_GET(/decl/configuration_entry/admin_legacy_system))
 		return
 
 	if(!usr.client)

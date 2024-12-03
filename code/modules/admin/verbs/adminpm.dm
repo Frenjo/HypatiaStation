@@ -56,12 +56,12 @@
 			adminhelp(msg)	//admin we are replying to left. adminhelp instead
 		return
 
-	/*if(C && C.last_pm_recieved + CONFIG_GET(simultaneous_pm_warning_timeout) > world.time && holder)
+	/*if(C && C.last_pm_recieved + CONFIG_GET(/decl/configuration_entry/simultaneous_pm_warning_timeout) > world.time && holder)
 		//send a warning to admins, but have a delay popup for mods
 		if(holder.rights & R_ADMIN)
-			src << "\red <b>Simultaneous PMs warning:</b> that player has been PM'd in the last [CONFIG_GET(simultaneous_pm_warning_timeout) / 10] seconds by: [C.ckey_last_pm]"
+			src << "\red <b>Simultaneous PMs warning:</b> that player has been PM'd in the last [CONFIG_GET(/decl/configuration_entry/simultaneous_pm_warning_timeout) / 10] seconds by: [C.ckey_last_pm]"
 		else
-			if(alert("That player has been PM'd in the last [CONFIG_GET(simultaneous_pm_warning_timeout) / 10] seconds by: [C.ckey_last_pm]","Simultaneous PMs warning","Continue","Cancel") == "Cancel")
+			if(alert("That player has been PM'd in the last [CONFIG_GET(/decl/configuration_entry/simultaneous_pm_warning_timeout) / 10] seconds by: [C.ckey_last_pm]","Simultaneous PMs warning","Continue","Cancel") == "Cancel")
 				return*/
 
 	//get message text, limit it's length.and clean/escape html
@@ -109,7 +109,7 @@
 	if(holder && !C.holder)
 		recieve_message = "<font color='[recieve_color]' size='4'><b>-- Administrator private message --</b></font>\n"
 		//AdminPM popup for ApocStation and anybody else who wants to use it. Set it with POPUP_ADMIN_PM in config.txt ~Carn
-		if(CONFIG_GET(popup_admin_pm))
+		if(CONFIG_GET(/decl/configuration_entry/popup_admin_pm))
 			spawn(0)	//so we don't hold the caller proc up
 				var/sender = src
 				var/sendername = key
@@ -168,7 +168,7 @@
 			C << 'sound/effects/adminhelp.ogg'
 
 			//AdminPM popup for ApocStation and anybody else who wants to use it. Set it with POPUP_ADMIN_PM in config.txt ~Carn
-			if(CONFIG_GET(popup_admin_pm))
+			if(CONFIG_GET(/decl/configuration_entry/popup_admin_pm))
 				spawn()	//so we don't hold the caller proc up
 					var/sender = src
 					var/sendername = key

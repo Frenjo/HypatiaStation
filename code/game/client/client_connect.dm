@@ -18,10 +18,10 @@
 		return
 
 	// Change the way they should download resources.
-	if(isnotnull(CONFIG_GET(resource_urls)))
-		preload_rsc = pick(CONFIG_GET(resource_urls))
+	if(isnotnull(CONFIG_GET(/decl/configuration_entry/resource_urls)))
+		preload_rsc = pick(CONFIG_GET(/decl/configuration_entry/resource_urls))
 	else
-		preload_rsc = 1 // If CONFIG_GET(resource_urls) is not set, preload like normal.
+		preload_rsc = 1 // If CONFIG_GET(/decl/configuration_entry/resource_urls) is not set, preload like normal.
 
 	to_chat(src, SPAN_WARNING("If the title screen is black, resources are still downloading. Please be patient until the title screen appears."))
 

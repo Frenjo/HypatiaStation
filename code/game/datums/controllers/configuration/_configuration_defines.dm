@@ -1,4 +1,4 @@
-// Value types for /datum/configuration_entry.
+// Value types for /decl/configuration_entry.
 #define TYPE_NONE 0
 #define TYPE_BOOLEAN 1
 #define TYPE_NUMERIC 2

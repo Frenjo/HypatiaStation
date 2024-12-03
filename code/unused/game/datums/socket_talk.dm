@@ -6,7 +6,7 @@
 
 /datum/socket_talk/New()
 	..()
-	src.enabled = CONFIG_GET(socket_talk)
+	src.enabled = CONFIG_GET(/decl/configuration_entry/socket_talk)
 
 	if(enabled)
 		LIBCALL("DLLSocket.so", "establish_connection")("127.0.0.1", "8019")

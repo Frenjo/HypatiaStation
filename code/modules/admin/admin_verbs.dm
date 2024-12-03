@@ -417,7 +417,7 @@ var/list/admin_verbs_donor = list(
 	set name = "Display Job bans"
 
 	if(holder)
-		if(CONFIG_GET(ban_legacy_system))
+		if(CONFIG_GET(/decl/configuration_entry/ban_legacy_system))
 			holder.Jobbans()
 		else
 			holder.DB_ban_panel()
@@ -429,7 +429,7 @@ var/list/admin_verbs_donor = list(
 	set name = "Unban Panel"
 
 	if(holder)
-		if(CONFIG_GET(ban_legacy_system))
+		if(CONFIG_GET(/decl/configuration_entry/ban_legacy_system))
 			holder.unbanpanel()
 		else
 			holder.DB_ban_panel()
@@ -640,11 +640,11 @@ var/list/admin_verbs_donor = list(
 	set name = "Toggle href logging"
 
 	if(!holder)	return
-	if(CONFIG_GET(log_hrefs))
-		CONFIG_SET(log_hrefs, FALSE)
+	if(CONFIG_GET(/decl/configuration_entry/log_hrefs))
+		CONFIG_SET(/decl/configuration_entry/log_hrefs, FALSE)
 		src << "<b>Stopped logging hrefs</b>"
 	else
-		CONFIG_SET(log_hrefs, TRUE)
+		CONFIG_SET(/decl/configuration_entry/log_hrefs, TRUE)
 		src << "<b>Started logging hrefs</b>"
 
 /client/proc/check_ai_laws()
@@ -769,12 +769,12 @@ var/list/admin_verbs_donor = list(
 	set name = "Toggle ghost writers"
 
 	if(!holder)	return
-	if(CONFIG_GET(cult_ghostwriter))
-		CONFIG_SET(cult_ghostwriter, FALSE)
+	if(CONFIG_GET(/decl/configuration_entry/cult_ghostwriter))
+		CONFIG_SET(/decl/configuration_entry/cult_ghostwriter, FALSE)
 		src << "<b>Disallowed ghost writers.</b>"
 		message_admins("Admin [key_name_admin(usr)] has disabled ghost writers.", 1)
 	else
-		CONFIG_SET(cult_ghostwriter, TRUE)
+		CONFIG_SET(/decl/configuration_entry/cult_ghostwriter, TRUE)
 		src << "<b>Enabled ghost writers.</b>"
 		message_admins("Admin [key_name_admin(usr)] has enabled ghost writers.", 1)
 

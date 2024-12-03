@@ -10,7 +10,7 @@
 
 /datum/game_mode/ctf/pre_setup()
 
-	CONFIG_SET(allow_ai, FALSE)
+	CONFIG_SET(/decl/configuration_entry/allow_ai, FALSE)
 	var/list/mobs = list()
 	var/total_mobs
 	for(var/mob/living/carbon/human/M in GLOBL.mob_list)

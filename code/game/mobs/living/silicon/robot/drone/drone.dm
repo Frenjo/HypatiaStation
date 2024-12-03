@@ -149,7 +149,7 @@
 	if(istype(I, /obj/item/card/id) || istype(I, /obj/item/pda))
 		if(stat == DEAD)
 			to_chat(user, SPAN_WARNING("You swipe your ID card through [src], attempting to reboot it."))
-			if(!CONFIG_GET(allow_drone_spawn) || emagged || health < -35) // It's dead, Dave.
+			if(!CONFIG_GET(/decl/configuration_entry/allow_drone_spawn) || emagged || health < -35) // It's dead, Dave.
 				to_chat(user, SPAN_WARNING("The interface is fried, and a distressing burnt smell wafts from the robot's interior. You're not rebooting this one."))
 				return TRUE
 
@@ -157,7 +157,7 @@
 			for(var/mob/living/silicon/robot/drone/D in GLOBL.mob_list)
 				if(D.key && isnotnull(D.client))
 					drones++
-			if(drones < CONFIG_GET(max_maint_drones))
+			if(drones < CONFIG_GET(/decl/configuration_entry/max_maint_drones))
 				request_player()
 			return TRUE
 

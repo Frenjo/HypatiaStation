@@ -2,7 +2,7 @@
  * For the love of god use these when adding a new configuration entry.
  */
 #define CONFIG_ENTRY(TYPE, VALUE, DESCRIPTION, CATEGORY, VALUE_TYPE) \
-/datum/configuration_entry/##TYPE \
+/decl/configuration_entry/##TYPE \
 { \
 	name = #TYPE; \
 	description = DESCRIPTION; \
@@ -15,7 +15,7 @@
 // This one's the same as above except it has a null description value.
 #define CONFIG_ENTRY_UNDESCRIBED(TYPE, VALUE, CATEGORY, VALUE_TYPE) CONFIG_ENTRY(TYPE, VALUE, null, CATEGORY, VALUE_TYPE)
 
-/datum/configuration_entry
+/decl/configuration_entry
 	var/name = null
 	var/list/description = null
 

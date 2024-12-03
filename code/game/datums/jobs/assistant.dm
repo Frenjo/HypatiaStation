@@ -17,4 +17,4 @@
 	alt_titles = list("Technical Assistant", "Medical Intern", "Research Assistant", "Security Cadet", "Visitor")
 
 /datum/job/assistant/get_access()
-	return CONFIG_GET(assistant_maint) ? list(ACCESS_MAINT_TUNNELS) : list()
+	return CONFIG_GET(/decl/configuration_entry/assistant_maint) ? list(ACCESS_MAINT_TUNNELS) : list()

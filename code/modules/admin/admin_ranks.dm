@@ -66,7 +66,7 @@ GLOBAL_GLOBL_LIST_NEW(admin_ranks)	//list of all ranks with associated rights
 		C.holder = null
 	GLOBL.admins.Cut()
 
-	if(CONFIG_GET(admin_legacy_system))
+	if(CONFIG_GET(/decl/configuration_entry/admin_legacy_system))
 		load_admin_ranks()
 
 		//load text from file
@@ -107,7 +107,7 @@ GLOBAL_GLOBL_LIST_NEW(admin_ranks)	//list of all ranks with associated rights
 		if(!GLOBL.dbcon.IsConnected())
 			error("Failed to connect to database in load_admins(). Reverting to legacy system.")
 			log_misc("Failed to connect to database in load_admins(). Reverting to legacy system.")
-			CONFIG_SET(admin_legacy_system, TRUE)
+			CONFIG_SET(/decl/configuration_entry/admin_legacy_system, TRUE)
 			load_admins()
 			return
 
@@ -127,7 +127,7 @@ GLOBAL_GLOBL_LIST_NEW(admin_ranks)	//list of all ranks with associated rights
 		if(!GLOBL.admin_datums)
 			error("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
 			log_misc("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
-			CONFIG_SET(admin_legacy_system, TRUE)
+			CONFIG_SET(/decl/configuration_entry/admin_legacy_system, TRUE)
 			load_admins()
 			return
 

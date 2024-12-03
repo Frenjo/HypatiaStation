@@ -7,7 +7,7 @@
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
-	if(CONFIG_GET(allow_admin_jump))
+	if(CONFIG_GET(/decl/configuration_entry/allow_admin_jump))
 		usr.forceMove(pick(get_area_turfs(A)))
 
 		log_admin("[key_name(usr)] jumped to [A]")
@@ -24,7 +24,7 @@
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
-	if(CONFIG_GET(allow_admin_jump))
+	if(CONFIG_GET(/decl/configuration_entry/allow_admin_jump))
 		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
 		message_admins("[key_name_admin(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]", 1)
 		usr.forceMove(T)
@@ -41,7 +41,7 @@
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
-	if(CONFIG_GET(allow_admin_jump))
+	if(CONFIG_GET(/decl/configuration_entry/allow_admin_jump))
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
 		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
 		if(src.mob)
@@ -63,7 +63,7 @@
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
-	if(CONFIG_GET(allow_admin_jump))
+	if(CONFIG_GET(/decl/configuration_entry/allow_admin_jump))
 		if(src.mob)
 			var/mob/A = src.mob
 			A.x = tx
@@ -83,7 +83,7 @@
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
-	if(CONFIG_GET(allow_admin_jump))
+	if(CONFIG_GET(/decl/configuration_entry/allow_admin_jump))
 		var/list/keys = list()
 		for_no_type_check(var/mob/M, GLOBL.player_list)
 			keys += M.client
@@ -108,7 +108,7 @@
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
-	if(CONFIG_GET(allow_admin_jump))
+	if(CONFIG_GET(/decl/configuration_entry/allow_admin_jump))
 		log_admin("[key_name(usr)] teleported [key_name(M)]")
 		message_admins("[key_name_admin(usr)] teleported [key_name_admin(M)]", 1)
 		M.forceMove(GET_TURF(usr))
@@ -125,7 +125,7 @@
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 		return
 
-	if(CONFIG_GET(allow_admin_jump))
+	if(CONFIG_GET(/decl/configuration_entry/allow_admin_jump))
 		var/list/keys = list()
 		for_no_type_check(var/mob/M, GLOBL.player_list)
 			keys += M.client
@@ -154,7 +154,7 @@
 
 	var/area/A = input(usr, "Pick an area.", "Pick an area") in return_sorted_areas()
 	if(A)
-		if(CONFIG_GET(allow_admin_jump))
+		if(CONFIG_GET(/decl/configuration_entry/allow_admin_jump))
 			M.forceMove(pick(get_area_turfs(A)))
 			feedback_add_details("admin_verb", "SMOB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

@@ -5,6 +5,6 @@
 	if(world.system_type == MS_WINDOWS)
 		script = replacetext(script, "/", "\\")
 
-	var/command = CONFIG_GET(python_path) + " " + script + " " + args
+	var/command = CONFIG_GET(/decl/configuration_entry/python_path) + " " + script + " " + args
 
 	return shell(command)
