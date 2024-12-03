@@ -106,7 +106,7 @@
 		if(HAS_SPECIES_FLAGS(S, SPECIES_FLAG_IS_WHITELISTED))
 			GLOBL.whitelisted_species.Add(S.name)
 
-// Skills - Initialises all /decl/hierarchy/skill into a list, indexed by field.
+// Skills - Initialises all /decl/hierarchy/skill and adds their typepaths into a list, indexed by field.
 /hook/global_init/proc/init_skills()
 	. = TRUE
 	for(var/path in SUBTYPESOF(/decl/hierarchy/skill))
@@ -116,7 +116,7 @@
 		if(isnull(GLOBL.all_skills[S.field]))
 			GLOBL.all_skills[S.field] = list()
 		var/list/field_list = GLOBL.all_skills[S.field]
-		field_list.Add(S)
+		field_list.Add(path)
 
 /hook/global_init/proc/init_research()
 	. = TRUE

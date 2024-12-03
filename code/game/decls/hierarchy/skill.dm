@@ -146,10 +146,11 @@
 	HTML += "<b>Select your Skills</b><br>"
 	HTML += "Current skill level: <b>[calculate_skill_class(M.used_skillpoints, M.age)]</b> ([M.used_skillpoints])<br>"
 	HTML += "<table>"
-	for(var/V in GLOBL.all_skills)
-		HTML += "<tr><th colspan = 5><b>[V]</b>"
+	for(var/field in GLOBL.all_skills)
+		HTML += "<tr><th colspan = 5><b>[field]</b>"
 		HTML += "</th></tr>"
-		for(var/decl/hierarchy/skill/S in GLOBL.all_skills[V])
+		for(var/path in GLOBL.all_skills[field])
+			var/decl/hierarchy/skill/S = GET_DECL_INSTANCE(path)
 			var/level = M.skills[S.type]
 			HTML += "<tr style='text-align:left;'>"
 			HTML += "<th>[S.name]</th>"

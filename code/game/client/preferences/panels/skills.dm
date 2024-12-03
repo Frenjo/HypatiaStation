@@ -8,10 +8,11 @@
 	html += "<hr>"
 
 	html += "<table>"
-	for(var/V in GLOBL.all_skills)
-		html += "<tr><th colspan = 5><b>[V]</b>"
+	for(var/field in GLOBL.all_skills)
+		html += "<tr><th colspan = 5><b>[field]</b>"
 		html += "</th></tr>"
-		for(var/decl/hierarchy/skill/S in GLOBL.all_skills[V])
+		for(var/path in GLOBL.all_skills[field])
+			var/decl/hierarchy/skill/S = GET_DECL_INSTANCE(path)
 			var/level = skills[S.type]
 			html += "<tr style='text-align:left;'>"
 			html += "<th><a href='byond://?src=\ref[user];preference=skills;skillinfo=\ref[S]'>[S.name]</a></th>"

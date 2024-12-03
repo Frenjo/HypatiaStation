@@ -3,15 +3,17 @@
  * (Skill-related preference procs.)
  */
 /datum/preferences/proc/ZeroSkills(forced = 0)
-	for(var/V in GLOBL.all_skills)
-		for(var/decl/hierarchy/skill/S in GLOBL.all_skills[V])
+	for(var/field in GLOBL.all_skills)
+		for(var/path in GLOBL.all_skills[field])
+			var/decl/hierarchy/skill/S = GET_DECL_INSTANCE(path)
 			if(!skills.Find(S.type) || forced)
 				skills[S.type] = SKILL_NONE
 
 /datum/preferences/proc/CalculateSkillPoints()
 	used_skillpoints = 0
-	for(var/V in GLOBL.all_skills)
-		for(var/decl/hierarchy/skill/S in GLOBL.all_skills[V])
+	for(var/field in GLOBL.all_skills)
+		for(var/path in GLOBL.all_skills[field])
+			var/decl/hierarchy/skill/S = GET_DECL_INSTANCE(path)
 			var/multiplier = 1
 			switch(skills[S.type])
 				if(SKILL_NONE)
