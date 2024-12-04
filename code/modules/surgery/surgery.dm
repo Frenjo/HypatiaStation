@@ -1,6 +1,6 @@
 /* SURGERY STEPS */
 
-/datum/surgery_step
+/decl/surgery_step
 	var/priority = 0	//steps with higher priority would be attempted first
 
 	// type path referencing tools that can be used for this step, and how well are they suited for it
@@ -19,14 +19,14 @@
 	var/blood_level = 0
 
 //returns how well tool is suited for this step
-/datum/surgery_step/proc/tool_quality(obj/item/tool)
+/decl/surgery_step/proc/tool_quality(obj/item/tool)
 	for(var/T in allowed_tools)
 		if(istype(tool, T))
 			return allowed_tools[T]
 	return 0
 
 // Checks if this step applies to the mutantrace of the user.
-/datum/surgery_step/proc/is_valid_mutantrace(mob/living/carbon/human/target)
+/decl/surgery_step/proc/is_valid_mutantrace(mob/living/carbon/human/target)
 	if(allowed_species)
 		for(var/species in allowed_species)
 			if(target.species.name == species)
@@ -40,11 +40,11 @@
 	return 1
 
 // checks whether this step can be applied with the given user and target
-/datum/surgery_step/proc/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/decl/surgery_step/proc/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	return 0
 
 // does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too
-/datum/surgery_step/proc/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/decl/surgery_step/proc/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	if(can_infect && affected)
 		spread_germs_to_organ(affected, user)
@@ -57,11 +57,11 @@
 	return
 
 // does stuff to end the step, which is normally print a message + do whatever this step changes
-/datum/surgery_step/proc/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/decl/surgery_step/proc/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	return
 
 // stuff that happens when the step fails
-/datum/surgery_step/proc/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/decl/surgery_step/proc/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	return null
 
 /proc/spread_germs_to_organ(datum/organ/external/E, mob/living/carbon/human/user)
@@ -79,7 +79,7 @@
 		return 0
 	if(user.a_intent == "harm")	//check for Hippocratic Oath
 		return 0
-	for(var/datum/surgery_step/S in GLOBL.surgery_steps)
+	for_no_type_check(var/decl/surgery_step/S, GLOBL.surgery_steps)
 		//check if tool is right or close enough and if this step is possible
 		if(S.tool_quality(tool) && S.can_use(user, M, user.zone_sel.selecting, tool) && S.is_valid_mutantrace(M))
 			S.begin_step(user, M, user.zone_sel.selecting, tool)		//start on it
@@ -101,8 +101,8 @@
 		if(gap < 1)
 			gap = 1
 		for(var/i = 1; gap + i <= length(GLOBL.surgery_steps); i++)
-			var/datum/surgery_step/l = GLOBL.surgery_steps[i]		//Fucking hate
-			var/datum/surgery_step/r = GLOBL.surgery_steps[gap + i]	//how lists work here
+			var/decl/surgery_step/l = GLOBL.surgery_steps[i]		//Fucking hate
+			var/decl/surgery_step/r = GLOBL.surgery_steps[gap + i]	//how lists work here
 			if(l.priority < r.priority)
 				GLOBL.surgery_steps.Swap(i, gap + i)
 				swapped = 1

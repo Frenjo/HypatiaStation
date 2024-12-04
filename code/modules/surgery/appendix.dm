@@ -3,12 +3,12 @@
 //						APPENDECTOMY							//
 //////////////////////////////////////////////////////////////////
 
-/datum/surgery_step/appendectomy
+/decl/surgery_step/appendectomy
 	priority = 2
 	can_infect = 1
 	blood_level = 1
 
-/datum/surgery_step/appendectomy/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/decl/surgery_step/appendectomy/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(target_zone != "groin")
 		return 0
 	var/datum/organ/external/groin = target.get_organ("groin")
@@ -19,7 +19,7 @@
 	return 1
 
 
-/datum/surgery_step/appendectomy/cut_appendix
+/decl/surgery_step/appendectomy/cut_appendix
 	allowed_tools = list(
 		/obj/item/scalpel = 100,
 		/obj/item/kitchenknife = 75,
@@ -29,10 +29,10 @@
 	min_duration = 70
 	max_duration = 90
 
-/datum/surgery_step/appendectomy/cut_appendix/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/decl/surgery_step/appendectomy/cut_appendix/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	return ..() && target.op_stage.appendix == 0
 
-/datum/surgery_step/appendectomy/cut_appendix/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/decl/surgery_step/appendectomy/cut_appendix/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
 		"[user] starts to separate [target]'s appendix from the abdominal wall with \the [tool].",
 		"You start to separate [target]'s appendix from the abdominal wall with \the [tool]."
@@ -40,14 +40,14 @@
 	target.custom_pain("The pain in your abdomen is living hell!", 1)
 	..()
 
-/datum/surgery_step/appendectomy/cut_appendix/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/decl/surgery_step/appendectomy/cut_appendix/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
 		SPAN_INFO("[user] has separated [target]'s appendix with \the [tool]."),
 		SPAN_INFO("You have separated [target]'s appendix with \the [tool].")
 	)
 	target.op_stage.appendix = 1
 
-/datum/surgery_step/appendectomy/cut_appendix/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/decl/surgery_step/appendectomy/cut_appendix/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/groin = target.get_organ("groin")
 	user.visible_message(
 		SPAN_WARNING("[user]'s hand slips, slicing an artery inside [target]'s abdomen with \the [tool]!"),
@@ -56,7 +56,7 @@
 	groin.createwound(CUT, 50, 1)
 
 
-/datum/surgery_step/appendectomy/remove_appendix
+/decl/surgery_step/appendectomy/remove_appendix
 	allowed_tools = list(
 		/obj/item/hemostat = 100,
 		/obj/item/wirecutters = 75,
@@ -66,10 +66,10 @@
 	min_duration = 60
 	max_duration = 80
 
-/datum/surgery_step/appendectomy/remove_appendix/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/decl/surgery_step/appendectomy/remove_appendix/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	return ..() && target.op_stage.appendix == 1
 
-/datum/surgery_step/appendectomy/remove_appendix/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/decl/surgery_step/appendectomy/remove_appendix/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
 		"[user] starts removing [target]'s appendix with \the [tool].",
 		"You start removing [target]'s appendix with \the [tool]."
@@ -77,7 +77,7 @@
 	target.custom_pain("Someone's ripping out your bowels!",1)
 	..()
 
-/datum/surgery_step/appendectomy/remove_appendix/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/decl/surgery_step/appendectomy/remove_appendix/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
 		SPAN_INFO("[user] has removed [target]'s appendix with \the [tool]."),
 		SPAN_INFO("You have removed [target]'s appendix with \the [tool].")
@@ -93,7 +93,7 @@
 		new /obj/item/reagent_holder/food/snacks/appendix(GET_TURF(target))
 	target.op_stage.appendix = 2
 
-/datum/surgery_step/appendectomy/remove_appendix/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/decl/surgery_step/appendectomy/remove_appendix/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
 		SPAN_WARNING("[user]'s hand slips, nicking internal organs in [target]'s abdomen with \the [tool]!"),

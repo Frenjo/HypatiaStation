@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_LIST_NEW(surgery_steps)	// List of all surgery steps. |BS12
+GLOBAL_GLOBL_LIST_NEW(decl/surgery_step/surgery_steps) // Sorted list of all surgery steps. |BS12
 
 /var/global/list/reg_dna = list()
 

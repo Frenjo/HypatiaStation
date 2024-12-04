@@ -33,12 +33,10 @@
 				GLOBL.facial_hair_styles_male_list.Add(H.name)
 				GLOBL.facial_hair_styles_female_list.Add(H.name)
 
-// Surgery Steps - Initialises all /datum/surgery_step into a list.
+// Surgery Steps - Initialises all /decl/surgery_step into a list.
 /hook/global_init/proc/init_surgery_steps()
 	. = TRUE
-	for(var/path in SUBTYPESOF(/datum/surgery_step))
-		var/datum/surgery_step/S = new path()
-		GLOBL.surgery_steps.Add(S)
+	GLOBL.surgery_steps = GET_DECL_SUBTYPE_INSTANCES(/decl/surgery_step)
 	sort_surgeries()
 
 /hook/global_init/proc/init_chemistry()
