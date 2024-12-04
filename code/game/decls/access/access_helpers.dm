@@ -23,24 +23,15 @@
 	RETURN_TYPE(/list)
 
 	. = list()
-	for_no_type_check(var/datum/access/access, get_all_access_datums())
+	for_no_type_check(var/decl/access/access, GET_DECL_SUBTYPE_INSTANCES(/decl/access))
 		if(access.access_type & access_types)
 			. += access.id
-
-GLOBAL_GLOBL_LIST_INIT(all_access_datums, null)
-/proc/get_all_access_datums()
-	RETURN_TYPE(/list/datum/access)
-
-	if(isnull(GLOBL.all_access_datums))
-		GLOBL.all_access_datums = init_subtypes(/datum/access)
-
-	return GLOBL.all_access_datums
 
 GLOBAL_GLOBL_LIST_INIT(all_access_datums_assoc, null)
 /proc/get_all_access_datums_assoc()
 	if(isnull(GLOBL.all_access_datums_assoc))
 		GLOBL.all_access_datums_assoc = list()
-		for_no_type_check(var/datum/access/access, get_all_access_datums())
+		for_no_type_check(var/decl/access/access, GET_DECL_SUBTYPE_INSTANCES(/decl/access))
 			GLOBL.all_access_datums_assoc["[access.id]"] = access
 
 	return GLOBL.all_access_datums_assoc
@@ -81,7 +72,7 @@ GLOBAL_GLOBL_LIST_INIT(all_region_access, null)
 	if(isnull(GLOBL.all_region_access))
 		GLOBL.all_region_access = list()
 		var/list/temp_region_access = list()
-		for_no_type_check(var/datum/access/access, get_all_access_datums())
+		for_no_type_check(var/decl/access/access, GET_DECL_SUBTYPE_INSTANCES(/decl/access))
 			if(isnull(GLOBL.all_region_access["[access.region]"]))
 				GLOBL.all_region_access["[access.region]"] = list()
 			temp_region_access.Add(access.id)
@@ -110,6 +101,6 @@ GLOBAL_GLOBL_LIST_INIT(all_region_access, null)
 
 /proc/get_access_desc(id)
 	var/list/accesses = get_all_access_datums_assoc()
-	var/datum/access/access = accesses["[id]"]
+	var/decl/access/access = accesses["[id]"]
 
 	return isnotnull(access) ? access.name : ""
