@@ -34,28 +34,8 @@
 			delete_me = TRUE
 			return
 
-		if("start")
-			GLOBL.newplayer_start += loc
-			delete_me = TRUE
-			return
-
 		if("wizard")
 			GLOBL.wizardstart += loc
-			delete_me = TRUE
-			return
-
-		if("JoinLate")
-			GLOBL.latejoin += loc
-			delete_me = TRUE
-			return
-
-		if("JoinLateGateway")
-			GLOBL.latejoin_gateway += loc
-			delete_me = TRUE
-			return
-
-		if("JoinLateCryo")
-			GLOBL.latejoin_cryo += loc
 			delete_me = TRUE
 			return
 
@@ -108,21 +88,45 @@
 	GLOBL.landmark_list.Remove(src)
 	return ..()
 
-/obj/effect/landmark/proc/delete()
-	delete_me = TRUE
-
 // Job spawn landmarks.
 /obj/effect/landmark/start
 	name = "start"
-	icon = 'icons/mob/screen/screen1.dmi'
 	icon_state = "x"
-	anchored = TRUE
 
 /obj/effect/landmark/start/New()
 	. = ..()
 	tag = "start*[name]"
 	invisibility = INVISIBILITY_MAXIMUM
 
+// Latejoin landmarks
+/obj/effect/landmark/latejoin
+	name = "latejoin"
+	delete_me = TRUE
+
+/obj/effect/landmark/latejoin/shuttle
+	name = "shuttle latejoin"
+
+/obj/effect/landmark/latejoin/shuttle/New()
+	. = ..()
+	GLOBL.latejoin.Add(loc)
+
+/obj/effect/landmark/latejoin/cryo
+	name = "cryo latejoin"
+
+/obj/effect/landmark/latejoin/cryo/New()
+	. = ..()
+	GLOBL.latejoin_cryo.Add(loc)
+
+/obj/effect/landmark/latejoin/gateway
+	name = "gateway latejoin"
+
+/obj/effect/landmark/latejoin/gateway/New()
+	. = ..()
+	GLOBL.latejoin_gateway.Add(loc)
+
+/obj/effect/landmark/latejoin/observer
+	name = "observer latejoin"
+	delete_me = FALSE
 
 // Costume spawner landmarks.
 /obj/effect/landmark/costume/New() //costume spawner, selects a random subclass and disappears

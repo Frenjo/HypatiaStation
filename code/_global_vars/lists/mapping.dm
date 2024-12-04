@@ -19,7 +19,6 @@ GLOBAL_GLOBL_LIST_NEW(turf/open/open_turf_list) // A list of all open turfs in t
 GLOBAL_GLOBL_LIST_NEW(obj/effect/landmark/landmark_list) // A list of all created landmarks.
 
 // Starts
-GLOBAL_GLOBL_LIST_NEW(newplayer_start)
 GLOBAL_GLOBL_LIST_NEW(monkeystart)
 GLOBAL_GLOBL_LIST_NEW(wizardstart)
 GLOBAL_GLOBL_LIST_NEW(blobstart)

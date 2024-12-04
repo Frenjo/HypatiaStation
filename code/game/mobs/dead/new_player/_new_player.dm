@@ -3,6 +3,8 @@
 /mob/dead/new_player
 	invisibility = INVISIBILITY_MAXIMUM
 
+	var/static/obj/effect/landmark/spawn_point = null
+
 	var/ready = FALSE
 	var/spawning = FALSE		//Referenced when you want to delete the new_player later on in the code.
 	var/totalPlayers = 0		//Player counts for the Lobby tab
@@ -101,11 +103,12 @@
 			spawning = TRUE
 			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
 
-			observer.started_as_observer = 1
+			observer.started_as_observer = TRUE
 			close_spawn_windows()
-			var/obj/O = locate("landmark*Observer-Start")
+			if(isnull(spawn_point))
+				spawn_point = locate(/obj/effect/landmark/latejoin/observer)
 			to_chat(src, SPAN_INFO("Now teleporting."))
-			observer.loc = O.loc
+			observer.loc = spawn_point.loc
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 			client.prefs.update_preview_icon()
