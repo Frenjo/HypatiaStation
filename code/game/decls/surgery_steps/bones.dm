@@ -1,8 +1,7 @@
-//Procedures in this file: Fracture repair surgery
+// Procedures in this file: Fracture repair surgery
 //////////////////////////////////////////////////////////////////
 //						BONE SURGERY							//
 //////////////////////////////////////////////////////////////////
-
 /decl/surgery_step/glue_bone
 	allowed_tools = list(
 		/obj/item/bonegel = 100,

@@ -1,6 +1,4 @@
 //This is an uguu head restoration surgery TOTALLY not yoinked from chinsky's limb reattacher
-
-
 /decl/surgery_step/head
 	can_infect = 0
 

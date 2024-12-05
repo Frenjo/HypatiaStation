@@ -1,9 +1,7 @@
-//Procedures in this file: Putting items in body cavity. Implant removal. Items removal.
-
+// Procedures in this file: Putting items in body cavity. Implant removal. Items removal.
 //////////////////////////////////////////////////////////////////
 //					ITEM PLACEMENT SURGERY						//
 //////////////////////////////////////////////////////////////////
-
 /decl/surgery_step/cavity
 	priority = 1
 
@@ -163,7 +161,6 @@
 //////////////////////////////////////////////////////////////////
 //					IMPLANT/ITEM REMOVAL SURGERY						//
 //////////////////////////////////////////////////////////////////
-
 /decl/surgery_step/cavity/implant_removal
 	allowed_tools = list(
 		/obj/item/hemostat = 100,

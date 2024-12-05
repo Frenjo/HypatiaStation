@@ -1,9 +1,7 @@
-//Procedures in this file: Inernal wound patching, Implant removal.
+// Procedures in this file: Internal wound patching.
 //////////////////////////////////////////////////////////////////
 //					INTERNAL WOUND PATCHING						//
 //////////////////////////////////////////////////////////////////
-
-
 /decl/surgery_step/fix_vein
 	priority = 2
 	allowed_tools = list(

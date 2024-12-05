@@ -1,8 +1,7 @@
-//Procedures in this file: Facial reconstruction surgery
+// Procedures in this file: Facial reconstruction surgery
 //////////////////////////////////////////////////////////////////
 //						FACE SURGERY							//
 //////////////////////////////////////////////////////////////////
-
 /decl/surgery_step/face
 	priority = 2
 	can_infect = 0

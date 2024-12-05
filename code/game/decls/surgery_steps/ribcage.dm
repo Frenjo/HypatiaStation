@@ -1,4 +1,4 @@
-//Procedures in this file: Generic ribcage opening steps, Removing alien embryo, Fixing internal organs.
+// Procedures in this file: Generic ribcage opening steps, Removing alien embryo, Fixing internal organs.
 //////////////////////////////////////////////////////////////////
 //				GENERIC	RIBCAGE SURGERY							//
 //////////////////////////////////////////////////////////////////
@@ -192,7 +192,6 @@
 
 	for(var/obj/item/alien_embryo/A in target)
 		A.loc = GET_TURF(target)
-
 
 //////////////////////////////////////////////////////////////////
 //				CHEST INTERNAL ORGAN SURGERY					//
