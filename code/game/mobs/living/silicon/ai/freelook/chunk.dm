@@ -10,7 +10,7 @@
 	var/list/image/obscured = list()
 	var/list/obj/machinery/camera/cameras = list()
 	var/list/turf/turfs = list()
-	var/list/mob/ai_eye/seen_by = list()
+	var/list/mob/dead/ai_eye/seen_by = list()
 
 	var/visible = 0
 	var/changed = FALSE
@@ -60,7 +60,7 @@
 		obscured.Add(t.obscured)
 
 // Add an AI eye to the chunk, then update if changed.
-/datum/camera_chunk/proc/add(mob/ai_eye/ai)
+/datum/camera_chunk/proc/add(mob/dead/ai_eye/ai)
 	if(isnull(ai.ai))
 		return
 
@@ -73,7 +73,7 @@
 		update()
 
 // Remove an AI eye from the chunk, then update if changed.
-/datum/camera_chunk/proc/remove(mob/ai_eye/ai)
+/datum/camera_chunk/proc/remove(mob/dead/ai_eye/ai)
 	if(isnull(ai.ai))
 		return
 
@@ -134,7 +134,7 @@
 	for_no_type_check(var/turf/t, vis_added)
 		if(isnotnull(t.obscured))
 			obscured.Remove(t.obscured)
-			for_no_type_check(var/mob/ai_eye/m, seen_by)
+			for_no_type_check(var/mob/dead/ai_eye/m, seen_by)
 				if(isnull(m?.ai))
 					continue
 				if(isnotnull(m.ai.client))
@@ -147,7 +147,7 @@
 				t.obscured.plane = OBSCURITY_PLANE
 
 			obscured.Add(t.obscured)
-			for_no_type_check(var/mob/ai_eye/m, seen_by)
+			for_no_type_check(var/mob/dead/ai_eye/m, seen_by)
 				if(isnull(m?.ai))
 					seen_by.Remove(m)
 					continue

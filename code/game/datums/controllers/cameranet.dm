@@ -35,7 +35,7 @@ CONTROLLER_DEF(cameranet)
 	return chunks[key]
 
 // Updates what the aiEye can see. It is recommended you use this when the aiEye moves or it's location is set.
-/datum/controller/cameranet/proc/visibility(mob/ai_eye/ai)
+/datum/controller/cameranet/proc/visibility(mob/dead/ai_eye/ai)
 	// 0xf = 15
 	var/x1 = max(0, ai.x - 16) & ~0xf
 	var/y1 = max(0, ai.y - 16) & ~0xf
