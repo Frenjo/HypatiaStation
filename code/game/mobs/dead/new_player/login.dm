@@ -6,13 +6,13 @@
 	if(GLOBL.join_motd)
 		to_chat(src, "<div class=\"motd\">[GLOBL.join_motd]</div>")
 
-	if(!mind)
+	if(isnull(mind))
 		mind = new /datum/mind(key)
 		mind.active = TRUE
 		mind.current = src
 
 	loc = null
-	client.screen += GLOBL.splashscreen
+	client.screen.Add(GLOBL.splashscreen)
 	my_client = client
 
 	sight |= SEE_TURFS
@@ -20,7 +20,7 @@
 
 	new_player_panel()
 	spawn(10 SECONDS)
-		if(client)
+		if(isnotnull(client))
 			global.PCnanoui.send_resources(client)
 			handle_privacy_poll()
 			client.playtitlemusic()

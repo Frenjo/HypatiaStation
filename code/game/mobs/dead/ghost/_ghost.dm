@@ -30,8 +30,6 @@
 	see_in_dark = 100
 	verbs.Add(/mob/dead/ghost/proc/dead_tele)
 
-	stat = DEAD
-
 	var/turf/T
 	if(ismob(body))
 		T = GET_TURF(body)				//Where is the body located?
@@ -74,7 +72,7 @@
 /mob/dead/ghost/Logout()
 	..()
 	spawn(0)
-		if(src && !key)	//we've transferred to another mob. This ghost should be deleted.
+		if(isnotnull(src) && isnull(key))	//we've transferred to another mob. This ghost should be deleted.
 			qdel(src)
 
 /mob/dead/ghost/Topic(href, href_list)

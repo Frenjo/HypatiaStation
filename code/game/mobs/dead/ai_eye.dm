@@ -6,26 +6,21 @@
 	name = "Inactive AI Eye"
 	icon = 'icons/obj/machines/status_display.dmi' // For AI friend secret shh :o
 
-	status_flags = GODMODE // You can't damage it.
 	mouse_opacity = FALSE
+
+	universal_speak = FALSE
 	see_in_dark = 7
 
 	var/list/datum/camera_chunk/visible_camera_chunks = list()
 	var/mob/living/silicon/ai/ai = null
 
-// Movement code. Returns 0 to stop air movement from moving it.
-/mob/dead/ai_eye/Move()
-	return 0
-
 /mob/dead/ai_eye/examinate(atom/A as mob|obj|turf in view())
 	set popup_menu = 0
 	set src = usr.contents
-	return 0
 
 /mob/dead/ai_eye/point(atom/A as mob|obj|turf in view())
 	set popup_menu = 0
 	set src = usr.contents
-	return 0
 
 /mob/dead/ai_eye/examine(mob/user)
 
