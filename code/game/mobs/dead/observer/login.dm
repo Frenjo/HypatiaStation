@@ -1,2 +1,0 @@
-/mob/dead/ghost/Login()
-	..()

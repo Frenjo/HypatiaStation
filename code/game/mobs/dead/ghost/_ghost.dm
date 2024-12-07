@@ -71,6 +71,12 @@
 	real_name = name
 	. = ..()
 
+/mob/dead/ghost/Logout()
+	..()
+	spawn(0)
+		if(src && !key)	//we've transferred to another mob. This ghost should be deleted.
+			qdel(src)
+
 /mob/dead/ghost/Topic(href, href_list)
 	if(href_list["track"])
 		var/mob/target = locate(href_list["track"]) in GLOBL.mob_list
