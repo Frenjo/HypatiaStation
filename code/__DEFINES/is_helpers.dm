@@ -28,10 +28,15 @@
  * Fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
  */
 //#define ismob(X)		istype(X, /mob) // Built-in.
-#define isliving(X)		istype(X, /mob/living)
-#define isbrain(X)		istype(X, /mob/living/brain)
+
+// Dead
 #define isghost(X)		istype(X, /mob/dead/ghost)
 #define isnewplayer(X)	istype(X, /mob/dead/new_player)
+#define isaieye(X)		istype(X, /mob/dead/ai_eye)
+
+// Living
+#define isliving(X)		istype(X, /mob/living)
+#define isbrain(X)		istype(X, /mob/living/brain)
 
 // Carbon
 #define iscarbon(X)		istype(X, /mob/living/carbon)

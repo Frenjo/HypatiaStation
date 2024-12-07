@@ -934,7 +934,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 						O.loc = X
 
 					for(var/mob/M in T)
-						if(!ismob(M) || istype(M, /mob/dead/ai_eye))
+						if(!ismob(M) || isaieye(M))
 							continue // If we need to check for more mobs, I'll add a variable
 						mobs.Add(M)
 
