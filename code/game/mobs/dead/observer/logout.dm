@@ -1,4 +1,4 @@
-/mob/dead/observer/Logout()
+/mob/dead/ghost/Logout()
 	..()
 	spawn(0)
 		if(src && !key)	//we've transferred to another mob. This ghost should be deleted.

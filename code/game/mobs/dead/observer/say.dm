@@ -1,4 +1,4 @@
-/mob/dead/observer/say(message)
+/mob/dead/ghost/say(message)
 	message = sanitize(copytext(message, 1, MAX_MESSAGE_LEN))
 
 	if(!message)
@@ -16,7 +16,7 @@
 
 	. = src.say_dead(message)
 
-/mob/dead/observer/emote(act, type, message)
+/mob/dead/ghost/emote(act, type, message)
 	message = sanitize(copytext(message, 1, MAX_MESSAGE_LEN))
 
 	if(!message)

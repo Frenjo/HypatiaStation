@@ -1,2 +1,2 @@
-/mob/dead/observer/Login()
+/mob/dead/ghost/Login()
 	..()

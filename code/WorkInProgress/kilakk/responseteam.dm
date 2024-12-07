@@ -59,7 +59,7 @@ var/global/admin_emergency_team = 0 // Used for admin-spawned response teams
 
 /*	var/list/candidates = list() // ghosts who can be picked
 	var/list/members = list() // ghosts who have been picked
-	for(var/mob/dead/observer/G in player_list)
+	for(var/mob/dead/ghost/G in player_list)
 		if(!G.client.holder && !G.client.is_afk())
 			if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 				candidates += G.key
@@ -74,7 +74,7 @@ var/global/admin_emergency_team = 0 // Used for admin-spawned response teams
 	var/list/members = list()
 	var/time_passed = world.time
 
-	for(var/mob/dead/observer/G in player_list)
+	for(var/mob/dead/ghost/G in player_list)
 		if(!jobban_isbanned(G, "Syndicate") && !jobban_isbanned(G, "Emergency Response Team") && !jobban_isbanned(G, "Security Officer"))
 			spawn(0)
 				switch(alert(G, "Do you want to be considered for the Emergency Response Team? Please answer in 30 seconds!",,"Yes","No"))

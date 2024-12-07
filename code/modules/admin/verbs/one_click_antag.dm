@@ -106,11 +106,11 @@
 	return 0
 
 /datum/admins/proc/make_wizard()
-	var/list/mob/dead/observer/candidates = list()
-	var/mob/dead/observer/theghost = null
+	var/list/mob/dead/ghost/candidates = list()
+	var/mob/dead/ghost/theghost = null
 	var/time_passed = world.time
 
-	for(var/mob/dead/observer/G in GLOBL.player_list)
+	for(var/mob/dead/ghost/G in GLOBL.player_list)
 		if(jobban_isbanned(G, "wizard") || jobban_isbanned(G, "Syndicate"))
 			continue
 		spawn(0)
@@ -159,11 +159,11 @@
 	return 0
 
 /datum/admins/proc/make_nuclear_operatives()
-	var/list/mob/dead/observer/candidates = list()
-	var/mob/dead/observer/theghost = null
+	var/list/mob/dead/ghost/candidates = list()
+	var/mob/dead/ghost/theghost = null
 	var/time_passed = world.time
 
-	for(var/mob/dead/observer/G in GLOBL.player_list)
+	for(var/mob/dead/ghost/G in GLOBL.player_list)
 		if(jobban_isbanned(G, "operative") || jobban_isbanned(G, "Syndicate"))
 			continue
 		spawn(0)
@@ -254,8 +254,8 @@
 	return 1
 
 /datum/admins/proc/make_deathsquad()
-	var/list/mob/dead/observer/candidates = list()
-	var/mob/dead/observer/theghost = null
+	var/list/mob/dead/ghost/candidates = list()
+	var/mob/dead/ghost/theghost = null
 	var/time_passed = world.time
 	var/input = "Purify the station."
 	if(prob(10))
@@ -264,7 +264,7 @@
 	var/syndicate_leader_selected = 0 //when the leader is chosen. The last person spawned.
 
 	//Generates a list of commandos from active ghosts. Then the user picks which characters to respawn as the commandos.
-	for(var/mob/dead/observer/G in GLOBL.player_list)
+	for(var/mob/dead/ghost/G in GLOBL.player_list)
 		spawn(0)
 			switch(alert(G,"Do you wish to be considered for an elite syndicate strike team being sent in?", "Please answer in 30 seconds!", "Yes", "No"))
 				if("Yes")
@@ -277,7 +277,7 @@
 					return
 	sleep(300)
 
-	for(var/mob/dead/observer/G in candidates)
+	for(var/mob/dead/ghost/G in candidates)
 		if(isnull(G.key))
 			candidates.Remove(G)
 
@@ -319,7 +319,7 @@
 
 	return 1
 
-/datum/admins/proc/make_body(mob/dead/observer/G_found) // Uses stripped down and bastardized code from respawn character
+/datum/admins/proc/make_body(mob/dead/ghost/G_found) // Uses stripped down and bastardized code from respawn character
 	if(isnull(G_found) || isnull(G_found.key))
 		return
 
@@ -371,15 +371,15 @@
 	return new_syndicate_commando
 
 /datum/admins/proc/make_vox_raiders()
-	var/list/mob/dead/observer/candidates = list()
-	var/mob/dead/observer/theghost = null
+	var/list/mob/dead/ghost/candidates = list()
+	var/mob/dead/ghost/theghost = null
 	var/time_passed = world.time
 	var/input = "Disregard shinies, acquire hardware."
 
 	var/leader_chosen = 0 //when the leader is chosen. The last person spawned.
 
 	//Generates a list of candidates from active ghosts.
-	for(var/mob/dead/observer/G in GLOBL.player_list)
+	for(var/mob/dead/ghost/G in GLOBL.player_list)
 		spawn(0)
 			switch(alert(G,"Do you wish to be considered for a vox raiding party arriving on the station?", "Please answer in 30 seconds!", "Yes", "No"))
 				if("Yes")
@@ -393,7 +393,7 @@
 
 	sleep(300) //Debug.
 
-	for(var/mob/dead/observer/G in candidates)
+	for(var/mob/dead/ghost/G in candidates)
 		if(isnull(G.key))
 			candidates.Remove(G)
 

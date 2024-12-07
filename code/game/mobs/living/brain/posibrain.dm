@@ -46,7 +46,7 @@
 			reset_search()
 
 /obj/item/mmi/posibrain/proc/request_player()
-	for(var/mob/dead/observer/O in GLOBL.player_list)
+	for(var/mob/dead/ghost/O in GLOBL.player_list)
 		if(O.has_enabled_antagHUD == 1 && CONFIG_GET(/decl/configuration_entry/antag_hud_restricted))
 			continue
 		if(jobban_isbanned(O, "pAI"))

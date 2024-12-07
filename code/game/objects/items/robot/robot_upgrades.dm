@@ -91,7 +91,7 @@
 		return 0
 
 	if(isnull(R.key))
-		for(var/mob/dead/observer/ghost in GLOBL.player_list)
+		for(var/mob/dead/ghost/ghost in GLOBL.player_list)
 			if(ghost.mind?.current == R)
 				R.key = ghost.key
 	R.stat = CONSCIOUS

@@ -83,5 +83,5 @@ Creature-level abilities.
 
 	to_chat(mob, SPAN_INFO("You project your words into [target]: [say]"))
 
-	for(var/mob/dead/observer/G in GLOBL.dead_mob_list)
+	for(var/mob/dead/ghost/G in GLOBL.dead_mob_list)
 		to_chat(G, "<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")

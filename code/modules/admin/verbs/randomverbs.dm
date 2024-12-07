@@ -216,7 +216,7 @@ Ccomp's first proc.
 	var/list/ghosts = list()
 	var/list/sortmob = sortAtom(GLOBL.mob_list)	// get the mob list.
 	var/any = FALSE
-	for(var/mob/dead/observer/M in sortmob)
+	for(var/mob/dead/ghost/M in sortmob)
 		mobs.Add(M)					//filter it where it's only ghosts
 		any = TRUE					//if no ghosts show up, any will just be 0
 	if(!any)
@@ -247,7 +247,7 @@ Ccomp's first proc.
 		src << "Hrm, appears you didn't select a ghost"		// Sanity check, if no ghosts in the list we don't want to edit a null variable and cause a runtime error.
 		return
 
-	var/mob/dead/observer/G = ghosts[target]
+	var/mob/dead/ghost/G = ghosts[target]
 	if(G.has_enabled_antagHUD && CONFIG_GET(/decl/configuration_entry/antag_hud_restricted))
 		var/response = alert(src, "Are you sure you wish to allow this individual to play?","Ghost has used AntagHUD","Yes","No")
 		if(response == "No") return
@@ -272,9 +272,9 @@ Ccomp's first proc.
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 	var/action=""
 	if(CONFIG_GET(/decl/configuration_entry/antag_hud_allowed))
-		for(var/mob/dead/observer/g in get_ghosts())
+		for(var/mob/dead/ghost/g in get_ghosts())
 			if(!g.client.holder)						//Remove the verb from non-admin ghosts
-				g.verbs -= /mob/dead/observer/verb/toggle_antagHUD
+				g.verbs -= /mob/dead/ghost/verb/toggle_antagHUD
 			if(g.antagHUD)
 				g.antagHUD = 0						// Disable it on those that have it enabled
 				g.has_enabled_antagHUD = 2				// We'll allow them to respawn
@@ -283,9 +283,9 @@ Ccomp's first proc.
 		src << "\red <B>AntagHUD usage has been disabled</B>"
 		action = "disabled"
 	else
-		for(var/mob/dead/observer/g in get_ghosts())
+		for(var/mob/dead/ghost/g in get_ghosts())
 			if(!g.client.holder)						// Add the verb back for all non-admin ghosts
-				g.verbs += /mob/dead/observer/verb/toggle_antagHUD
+				g.verbs += /mob/dead/ghost/verb/toggle_antagHUD
 			g << "\blue <B>The Administrator has enabled AntagHUD </B>"	// Notify all observers they can now use AntagHUD
 		CONFIG_SET(/decl/configuration_entry/antag_hud_allowed, TRUE)
 		action = "enabled"
@@ -306,13 +306,13 @@ Ccomp's first proc.
 		FEEDBACK_COMMAND_ADMIN_ONLY(src)
 	var/action=""
 	if(CONFIG_GET(/decl/configuration_entry/antag_hud_restricted))
-		for(var/mob/dead/observer/g in get_ghosts())
+		for(var/mob/dead/ghost/g in get_ghosts())
 			g << "\blue <B>The administrator has lifted restrictions on joining the round if you use AntagHUD</B>"
 		action = "lifted restrictions"
 		CONFIG_SET(/decl/configuration_entry/antag_hud_restricted, FALSE)
 		src << "\blue <B>AntagHUD restrictions have been lifted</B>"
 	else
-		for(var/mob/dead/observer/g in get_ghosts())
+		for(var/mob/dead/ghost/g in get_ghosts())
 			g << "\red <B>The administrator has placed restrictions on joining the round if you use AntagHUD</B>"
 			g << "\red <B>Your AntagHUD has been disabled, you may choose to re-enabled it but will be under restrictions </B>"
 			g.antagHUD = 0
@@ -344,8 +344,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!input)
 		return
 
-	var/mob/dead/observer/G_found
-	for(var/mob/dead/observer/G in GLOBL.player_list)
+	var/mob/dead/ghost/G_found
+	for(var/mob/dead/ghost/G in GLOBL.player_list)
 		if(G.ckey == input)
 			G_found = G
 			break

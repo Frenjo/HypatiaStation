@@ -353,7 +353,7 @@ var/list/admin_verbs_donor = list(
 		return
 	if(isobserver(mob))
 		//re-enter
-		var/mob/dead/observer/ghost = mob
+		var/mob/dead/ghost/ghost = mob
 		ghost.can_reenter_corpse = TRUE			//just in-case.
 		ghost.reenter_corpse()
 		feedback_add_details("admin_verb", "P") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

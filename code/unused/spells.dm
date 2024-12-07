@@ -528,7 +528,7 @@
 						H.verbs -= V
 
 				//empty out H
-				var/mob/dead/observer/G = H.ghostize(0) //Transfers H to a temporary mob
+				var/mob/dead/ghost/G = H.ghostize(0) //Transfers H to a temporary mob
 
 				//Start the Transfer
 				U.mind.transfer_to(H)

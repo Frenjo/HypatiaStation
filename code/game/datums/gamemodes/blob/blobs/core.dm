@@ -32,7 +32,7 @@
 
 /obj/effect/blob/core/proc/create_fragments(wave_size = 1)
 	var/list/candidates = list()
-	for(var/mob/dead/observer/G in GLOBL.player_list)
+	for(var/mob/dead/ghost/G in GLOBL.player_list)
 		if(G.client.prefs.be_special & BE_ALIEN)
 			if(!(isnull(G.mind?.current) && G.mind.current.stat != DEAD))
 				candidates.Add(G.key)

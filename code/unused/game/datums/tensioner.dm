@@ -435,11 +435,11 @@ var/global/datum/tension/tension_master
 			return 0
 
 	proc/makeWizard()
-		var/list/mob/dead/observer/candidates = list()
-		var/mob/dead/observer/theghost = null
+		var/list/mob/dead/ghost/candidates = list()
+		var/mob/dead/ghost/theghost = null
 		var/time_passed = world.time
 
-		for(var/mob/dead/observer/G in player_list)
+		for(var/mob/dead/ghost/G in player_list)
 			if(!jobban_isbanned(G, "wizard") && !jobban_isbanned(G, "Syndicate"))
 				spawn(0)
 					switch(alert(G, "Do you wish to be considered for the position of Space Wizard Foundation 'diplomat'?","Please answer in 30 seconds!","Yes","No"))
@@ -452,7 +452,7 @@ var/global/datum/tension/tension_master
 
 		sleep(300)
 
-		for(var/mob/dead/observer/G in candidates)
+		for(var/mob/dead/ghost/G in candidates)
 			if(!G.client)
 				candidates.Remove(G)
 
@@ -515,11 +515,11 @@ var/global/datum/tension/tension_master
 
 	proc/makeNukeTeam()
 
-		var/list/mob/dead/observer/candidates = list()
-		var/mob/dead/observer/theghost = null
+		var/list/mob/dead/ghost/candidates = list()
+		var/mob/dead/ghost/theghost = null
 		var/time_passed = world.time
 
-		for(var/mob/dead/observer/G in player_list)
+		for(var/mob/dead/ghost/G in player_list)
 			if(!jobban_isbanned(G, "operative") && !jobban_isbanned(G, "Syndicate"))
 				spawn(0)
 					switch(alert(G,"Do you wish to be considered for a nuke team being sent in?","Please answer in 30 seconds!","Yes","No"))
@@ -532,7 +532,7 @@ var/global/datum/tension/tension_master
 
 		sleep(300)
 
-		for(var/mob/dead/observer/G in candidates)
+		for(var/mob/dead/ghost/G in candidates)
 			if(!G.client)
 				candidates.Remove(G)
 
@@ -611,8 +611,8 @@ var/global/datum/tension/tension_master
 		return 1
 
 	proc/makeDeathsquad()
-		var/list/mob/dead/observer/candidates = list()
-		var/mob/dead/observer/theghost = null
+		var/list/mob/dead/ghost/candidates = list()
+		var/mob/dead/ghost/theghost = null
 		var/time_passed = world.time
 		var/input = "Purify the station."
 		if(prob(10))
@@ -630,7 +630,7 @@ var/global/datum/tension/tension_master
 	//Generates a list of commandos from active ghosts. Then the user picks which characters to respawn as the commandos.
 
 
-		for(var/mob/dead/observer/G in player_list)
+		for(var/mob/dead/ghost/G in player_list)
 			spawn(0)
 				switch(alert(G,"Do you wish to be considered for an elite syndicate strike team being sent in?","Please answer in 30 seconds!","Yes","No"))
 					if("Yes")
@@ -641,7 +641,7 @@ var/global/datum/tension/tension_master
 						return
 		sleep(300)
 
-		for(var/mob/dead/observer/G in candidates)
+		for(var/mob/dead/ghost/G in candidates)
 			if(!G.key)
 				candidates.Remove(G)
 
@@ -693,14 +693,14 @@ var/global/datum/tension/tension_master
 
 
 	proc/makeBorgDeathsquad()
-		var/list/mob/dead/observer/candidates = list()
-		var/mob/dead/observer/theghost = null
+		var/list/mob/dead/ghost/candidates = list()
+		var/mob/dead/ghost/theghost = null
 		var/time_passed = world.time
 		var/list/namelist = list("Tyr","Fenrir","Lachesis","Clotho","Atropos","Nyx")
 
 	//Generates a list of commandos from active ghosts. Then the user picks which characters to respawn as the commandos.
 
-		for(var/mob/dead/observer/G in player_list)
+		for(var/mob/dead/ghost/G in player_list)
 			spawn(0)
 				switch(alert(G,"Do you wish to be considered for a cyborg strike team being sent in?","Please answer in 30 seconds!","Yes","No"))
 					if("Yes")
@@ -711,7 +711,7 @@ var/global/datum/tension/tension_master
 						return
 		sleep(300)
 
-		for(var/mob/dead/observer/G in candidates)
+		for(var/mob/dead/ghost/G in candidates)
 			if(!G.client || !G.key)
 				candidates.Remove(G)
 
@@ -759,7 +759,7 @@ var/global/datum/tension/tension_master
 		return 1 // Has to return one before it knows if there's a wizard to prevent the parent from automatically selecting another game mode.
 
 
-	proc/makeBody(var/mob/dead/observer/G_found) // Uses stripped down and bastardized code from respawn character
+	proc/makeBody(var/mob/dead/ghost/G_found) // Uses stripped down and bastardized code from respawn character
 		if(!G_found || !G_found.key)	return
 
 		//First we spawn a dude.

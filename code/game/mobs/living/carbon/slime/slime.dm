@@ -722,8 +722,8 @@
 	GLOBL.processing_objects.Add(src)
 
 /obj/effect/golemrune/process()
-	var/mob/dead/observer/ghost
-	for(var/mob/dead/observer/O in src.loc)
+	var/mob/dead/ghost/ghost
+	for(var/mob/dead/ghost/O in src.loc)
 		if(!O.client)
 			continue
 		if(O.mind && O.mind.current && O.mind.current.stat != DEAD)
@@ -736,8 +736,8 @@
 		icon_state = "golem"
 
 /obj/effect/golemrune/attack_hand(mob/living/user)
-	var/mob/dead/observer/ghost
-	for(var/mob/dead/observer/O in src.loc)
+	var/mob/dead/ghost/ghost
+	for(var/mob/dead/ghost/O in src.loc)
 		if(!O.client)
 			continue
 		if(O.mind && O.mind.current && O.mind.current.stat != DEAD)
@@ -762,7 +762,7 @@
 	qdel (src)
 
 /obj/effect/golemrune/proc/announce_to_ghosts()
-	for(var/mob/dead/observer/G in GLOBL.player_list)
+	for(var/mob/dead/ghost/G in GLOBL.player_list)
 		if(G.client)
 			var/area/A = GET_AREA(src)
 			if(isnotnull(A))

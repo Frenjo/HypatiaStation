@@ -1,6 +1,6 @@
 /var/mouse_respawn_time = 5 //Amount of time that must pass between a player dying as a mouse and repawning as a mouse. In minutes.
 
-/mob/dead/observer
+/mob/dead/ghost
 	name = "ghost"
 	desc = "It's a g-g-g-g-ghooooost!" //jinkies!
 	icon = 'icons/mob/mob.dmi'
@@ -24,11 +24,11 @@
 
 	var/atom/movable/following = null
 
-/mob/dead/observer/New(mob/body)
+/mob/dead/ghost/New(mob/body)
 	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
-	verbs.Add(/mob/dead/observer/proc/dead_tele)
+	verbs.Add(/mob/dead/ghost/proc/dead_tele)
 
 	stat = DEAD
 
@@ -71,7 +71,7 @@
 	real_name = name
 	. = ..()
 
-/mob/dead/observer/Topic(href, href_list)
+/mob/dead/ghost/Topic(href, href_list)
 	if(href_list["track"])
 		var/mob/target = locate(href_list["track"]) in GLOBL.mob_list
 		if(isnotnull(target))
@@ -101,7 +101,7 @@ Transfer_mind is there to check if mob is being deleted/not going to have a body
 Works together with spawning an observer, noted above.
 */
 
-/mob/dead/observer/Life()
+/mob/dead/ghost/Life()
 	. = ..()
 	if(!loc)
 		return
@@ -129,7 +129,7 @@ Works together with spawning an observer, noted above.
 		C.images.Add(patient.hud_list[HEALTH_HUD])
 		C.images.Add(patient.hud_list[STATUS_HUD_OOC])
 
-/mob/dead/proc/assess_targets(list/target_list, mob/dead/observer/U)
+/mob/dead/proc/assess_targets(list/target_list, mob/dead/ghost/U)
 	var/client/C = U.client
 	for(var/mob/living/carbon/human/target in target_list)
 		C.images.Add(target.hud_list[SPECIALROLE_HUD])
@@ -146,12 +146,12 @@ Works together with spawning an observer, noted above.
 
 /mob/proc/ghostize(can_reenter_corpse = 1)
 	if(key)
-		var/mob/dead/observer/ghost = new /mob/dead/observer(src) // Transfer safety to observer spawning proc.
+		var/mob/dead/ghost/ghost = new /mob/dead/ghost(src) // Transfer safety to observer spawning proc.
 		ghost.can_reenter_corpse = can_reenter_corpse
 		ghost.timeofdeath = src.timeofdeath //BS12 EDIT
 		ghost.key = key
 		if(isnull(ghost.client.holder) && !CONFIG_GET(/decl/configuration_entry/antag_hud_allowed)) // For new ghosts we remove the verb from even showing up if it's not allowed.
-			ghost.verbs.Remove(/mob/dead/observer/verb/toggle_antagHUD) // Poor guys, don't know what they are missing!
+			ghost.verbs.Remove(/mob/dead/ghost/verb/toggle_antagHUD) // Poor guys, don't know what they are missing!
 		return ghost
 
 /*
@@ -169,10 +169,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(response != "Ghost")
 			return	//didn't want to ghost after-all
 		resting = TRUE
-		var/mob/dead/observer/ghost = ghostize(0)	//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
+		var/mob/dead/ghost/ghost = ghostize(0)	//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
 		ghost.timeofdeath = world.time	// Because the living mob won't have a time of death and we want the respawn timer to work properly.
 
-/mob/dead/observer/Move(NewLoc, direct)
+/mob/dead/ghost/Move(NewLoc, direct)
 	dir = direct
 	if(NewLoc)
 		loc = NewLoc
@@ -193,15 +193,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	for(var/obj/effect/step_trigger/S in locate(x, y, z))	//<-- this is dumb
 		S.Crossed(src)
 
-/mob/dead/observer/examine()
+/mob/dead/ghost/examine()
 	if(usr)
 		to_chat(usr, desc)
 
-/mob/dead/observer/is_active()
+/mob/dead/ghost/is_active()
 	return 0
 
 // Updated to reflect 'shuttles' port. -Frenjo
-/mob/dead/observer/Stat()
+/mob/dead/ghost/Stat()
 	. = ..()
 	statpanel("Status")
 	if(client.statpanel == "Status")
@@ -219,7 +219,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				if(timeleft)
 					stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
 
-/mob/dead/observer/verb/reenter_corpse()
+/mob/dead/ghost/verb/reenter_corpse()
 	set category = PANEL_GHOST
 	set name = "Re-enter Corpse"
 
@@ -248,7 +248,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	return 1
 
-/mob/dead/observer/verb/toggle_medHUD()
+/mob/dead/ghost/verb/toggle_medHUD()
 	set category = PANEL_GHOST
 	set name = "Toggle MedicHUD"
 	set desc = "Toggles Medical HUD allowing you to see how everyone is doing"
@@ -259,7 +259,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	medHUD = !medHUD
 	to_chat(src, SPAN_INFO_B("Medical HUD [medHUD ? "Enabled" : "Disabled"]"))
 
-/mob/dead/observer/verb/toggle_antagHUD()
+/mob/dead/ghost/verb/toggle_antagHUD()
 	set category = PANEL_GHOST
 	set name = "Toggle AntagHUD"
 	set desc = "Toggles AntagHUD allowing you to see who is the antagonist"
@@ -269,7 +269,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!CONFIG_GET(/decl/configuration_entry/antag_hud_allowed) && isnull(client.holder))
 		to_chat(src, SPAN_WARNING("Admins have disabled this for this round."))
 		return
-	var/mob/dead/observer/M = src
+	var/mob/dead/ghost/M = src
 	if(jobban_isbanned(M, "AntagHUD"))
 		to_chat(src, SPAN_DANGER("You have been banned from using this feature."))
 		return
@@ -285,7 +285,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	M.antagHUD = !M.antagHUD
 	to_chat(src, SPAN_INFO_B("AntagHUD [M.antagHUD ? "Enabled" : "Disabled"]"))
 
-/mob/dead/observer/proc/dead_tele()
+/mob/dead/ghost/proc/dead_tele()
 	set category = PANEL_GHOST
 	set name = "Teleport"
 	set desc = "Teleport to a location"
@@ -294,9 +294,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, "Not when you're not dead!")
 		return
 
-	usr.verbs.Remove(/mob/dead/observer/proc/dead_tele)
+	usr.verbs.Remove(/mob/dead/ghost/proc/dead_tele)
 	spawn(30)
-		usr.verbs.Add(/mob/dead/observer/proc/dead_tele)
+		usr.verbs.Add(/mob/dead/ghost/proc/dead_tele)
 	var/A
 	A = input("Area to jump to", "BOOYEA", A) as null|anything in GLOBL.ghostteleportlocs
 	var/area/thearea = GLOBL.ghostteleportlocs[A]
@@ -312,7 +312,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	usr.loc = pick(L)
 
-/mob/dead/observer/verb/follow()
+/mob/dead/ghost/verb/follow()
 	set category = PANEL_GHOST
 	set name = "Follow" // "Haunt"
 	set desc = "Follow and haunt a mob."
@@ -323,7 +323,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	ManualFollow(target)
 
 // This is the ghost's follow verb with an argument
-/mob/dead/observer/proc/ManualFollow(atom/movable/target)
+/mob/dead/ghost/proc/ManualFollow(atom/movable/target)
 	if(isnotnull(target) && target != src)
 		if(isnotnull(following) && following == target)
 			return
@@ -342,7 +342,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				sleep(15)
 			following = null
 
-/mob/dead/observer/verb/jumptomob() // Moves the ghost instead of just changing the ghosts's eye -Nodrak
+/mob/dead/ghost/verb/jumptomob() // Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = PANEL_GHOST
 	set name = "Jump to Mob"
 	set desc = "Teleport to a mob"
@@ -367,7 +367,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				to_chat(A, "This mob is not located in the game world.")
 
 /*
-/mob/dead/observer/verb/boo()
+/mob/dead/ghost/verb/boo()
 	set category = PANEL_GHOST
 	set name = "Boo!"
 	set desc= "Scare your crew members because of boredom!"
@@ -382,15 +382,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	return
 */
 
-/mob/dead/observer/memory()
+/mob/dead/ghost/memory()
 	set hidden = 1
 	to_chat(src, SPAN_WARNING("You are dead! You have no mind to store memory!"))
 
-/mob/dead/observer/add_memory()
+/mob/dead/ghost/add_memory()
 	set hidden = 1
 	to_chat(src, SPAN_WARNING("You are dead! You have no mind to store memory!"))
 
-/mob/dead/observer/verb/analyse_air()
+/mob/dead/ghost/verb/analyse_air()
 	set category = PANEL_GHOST
 	set name = "Analyse Air"
 
@@ -418,7 +418,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, SPAN_INFO("Temperature: [round(environment.temperature - T0C, 0.1)]&deg;C"))
 		to_chat(src, SPAN_INFO("Heat Capacity: [round(environment.heat_capacity(), 0.1)]"))
 
-/mob/dead/observer/verb/toggle_darkness()
+/mob/dead/ghost/verb/toggle_darkness()
 	set category = PANEL_GHOST
 	set name = "Toggle Darkness"
 
@@ -427,7 +427,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 
-/mob/dead/observer/verb/become_mouse()
+/mob/dead/ghost/verb/become_mouse()
 	set category = PANEL_GHOST
 	set name = "Become Mouse"
 
@@ -435,7 +435,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, SPAN_WARNING("Spawning as a mouse is currently disabled."))
 		return
 
-	var/mob/dead/observer/M = usr
+	var/mob/dead/ghost/M = usr
 	if(CONFIG_GET(/decl/configuration_entry/antag_hud_restricted) && M.has_enabled_antagHUD)
 		to_chat(src, SPAN_WARNING("antagHUD restrictions prevent you from spawning in as a mouse."))
 		return
@@ -471,7 +471,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		host.ckey = src.ckey
 		to_chat(host, SPAN_INFO("You are now a mouse. Try to avoid interaction with players, and do not give hints away that you are more than a simple rodent."))
 
-/mob/dead/observer/verb/view_manifest()
+/mob/dead/ghost/verb/view_manifest()
 	set category = PANEL_GHOST
 	set name = "View Crew Manifest"
 

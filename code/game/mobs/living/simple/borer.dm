@@ -416,7 +416,7 @@
 
 //Procs for grabbing players.
 /mob/living/simple/borer/proc/request_player()
-	for(var/mob/dead/observer/O in GLOBL.player_list)
+	for(var/mob/dead/ghost/O in GLOBL.player_list)
 		if(jobban_isbanned(O, "Syndicate"))
 			continue
 		if(O.client)

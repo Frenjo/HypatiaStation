@@ -883,7 +883,7 @@
 	else
 		to_chat(target, SPAN_INFO("You hear a voice that seems to echo around the room: [say]"))
 	to_chat(src, SPAN_INFO("You project your mind into [target]: [say]"))
-	for(var/mob/dead/observer/G in GLOBL.mob_list)
+	for(var/mob/dead/ghost/G in GLOBL.mob_list)
 		to_chat(G, "<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
 
 /mob/living/carbon/human/proc/remoteobserve()

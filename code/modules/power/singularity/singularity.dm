@@ -559,7 +559,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 		acquire(pick(cultists))
 		return
 		//no living cultists, pick a living human instead.
-	for(var/mob/dead/observer/ghost in GLOBL.player_list)
+	for(var/mob/dead/ghost/ghost in GLOBL.player_list)
 		if(!ghost.client)
 			continue
 		if(GET_TURF_Z(ghost) != src.z)

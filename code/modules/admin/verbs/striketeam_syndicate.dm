@@ -54,7 +54,7 @@ GLOBAL_GLOBL_INIT(sent_syndicate_strike_team, 0)
 //Generates a list of commandos from active ghosts. Then the user picks which characters to respawn as the commandos.
 	var/list/candidates = list()	//candidates for being a commando out of all the active ghosts in world.
 	var/list/commandos = list()			//actual commando ghosts as picked by the user.
-	for(var/mob/dead/observer/G	 in GLOBL.player_list)
+	for(var/mob/dead/ghost/G	 in GLOBL.player_list)
 		if(!G.client.holder && !G.client.is_afk())	//Whoever called/has the proc won't be added to the list.
 			if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 				candidates += G.key

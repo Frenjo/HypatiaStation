@@ -196,7 +196,7 @@
 			if(isnull(M.brainmob.key))
 				var/ghost_can_reenter = 0
 				if(isnotnull(M.brainmob.mind))
-					for(var/mob/dead/observer/G in GLOBL.player_list)
+					for(var/mob/dead/ghost/G in GLOBL.player_list)
 						if(G.can_reenter_corpse && G.mind == M.brainmob.mind)
 							ghost_can_reenter = TRUE
 							break

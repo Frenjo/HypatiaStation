@@ -98,7 +98,7 @@
 		if(alert(src, "Are you sure you wish to observe? You will have to wait 30 minutes before being able to respawn!", "Player Setup", "Yes", "No") == "Yes")
 			if(isnull(client))
 				return 1
-			var/mob/dead/observer/observer = new /mob/dead/observer()
+			var/mob/dead/ghost/observer = new /mob/dead/ghost()
 
 			spawning = TRUE
 			src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // MAD JAMS cant last forever yo
@@ -120,7 +120,7 @@
 			observer.real_name = client.prefs.real_name
 			observer.name = observer.real_name
 			if(isnull(client.holder) && !CONFIG_GET(/decl/configuration_entry/antag_hud_allowed))			// For new ghosts we remove the verb from even showing up if it's not allowed.
-				observer.verbs.Remove(/mob/dead/observer/verb/toggle_antagHUD)	// Poor guys, don't know what they are missing!
+				observer.verbs.Remove(/mob/dead/ghost/verb/toggle_antagHUD)	// Poor guys, don't know what they are missing!
 			observer.key = key
 			qdel(src)
 
