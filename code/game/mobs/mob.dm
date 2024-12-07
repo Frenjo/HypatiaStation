@@ -410,7 +410,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 		return
 	else
 		var/deathtime = world.time - src.timeofdeath
-		if(isobserver(src))
+		if(isghost(src))
 			var/mob/dead/ghost/G = src
 			if(G.has_enabled_antagHUD == 1 && CONFIG_GET(/decl/configuration_entry/antag_hud_restricted))
 				to_chat(usr, SPAN_INFO_B("Upon using the antagHUD you forfeighted the ability to join the round."))

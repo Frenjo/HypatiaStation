@@ -206,7 +206,7 @@
 		msg += "[t_He] [t_is] small halfling!\n"
 
 	var/distance = get_dist(usr, src)
-	if(isobserver(usr) || usr.stat == DEAD) // ghosts can see anything
+	if(isghost(usr) || usr.stat == DEAD) // ghosts can see anything
 		distance = 1
 	if(src.stat)
 		msg += "[SPAN_WARNING("[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep.")]\n"

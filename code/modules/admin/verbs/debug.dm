@@ -199,7 +199,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	var/mob/choice = input("Choose a player to play the pAI", "Spawn pAI") in available
 	if(!choice)
 		return 0
-	if(!isobserver(choice))
+	if(!isghost(choice))
 		var/confirm = input("[choice.key] isn't ghosting right now. Are you sure you want to yank them out of them out of their body and place them in this pAI?", "Spawn pAI Confirmation", "No") in list("Yes", "No")
 		if(confirm != "Yes")
 			return 0
@@ -413,7 +413,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(usr)] assumed direct control of [M].")
 	var/mob/adminmob = src.mob
 	M.ckey = src.ckey
-	if(isobserver(adminmob))
+	if(isghost(adminmob))
 		qdel(adminmob)
 	feedback_add_details("admin_verb", "ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

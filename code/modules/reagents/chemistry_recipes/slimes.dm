@@ -472,7 +472,7 @@
 		for (var/atom/movable/A in range(2, FROM )) // iterate thru list of mobs in the area
 			if(istype(A, /obj/item/radio/beacon))
 				continue // don't teleport beacons because that's just insanely stupid
-			if(A.anchored && !isobserver(A))
+			if(A.anchored && !isghost(A))
 				continue // don't teleport anchored things (computers, tables, windows, grilles, etc) because this causes problems!
 			// do teleport ghosts however because hell why not
 

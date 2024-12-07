@@ -31,7 +31,7 @@
 		if(T.mob)
 			if(isnewplayer(T.mob))
 				targets["(New Player) - [T]"] = T
-			else if(isobserver(T.mob))
+			else if(isghost(T.mob))
 				targets["[T.mob.name](Ghost) - [T]"] = T
 			else
 				targets["[T.mob.real_name](as [T.mob.name]) - [T]"] = T

@@ -394,7 +394,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		var/mob/M = old_list[named]
 		if(issilicon(M))
 			ai_list |= M
-		else if(isobserver(M) || M.stat == DEAD)
+		else if(isghost(M) || M.stat == DEAD)
 			dead_list |= M
 		else if(isnotnull(M.key) && isnotnull(M.client))
 			keyclient_list |= M
@@ -428,7 +428,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		if(isnotnull(M.real_name) && M.real_name != M.name)
 			name += " \[[M.real_name]\]"
 		if(M.stat == DEAD)
-			if(isobserver(M))
+			if(isghost(M))
 				name += " \[ghost\]"
 			else
 				name += " \[dead\]"

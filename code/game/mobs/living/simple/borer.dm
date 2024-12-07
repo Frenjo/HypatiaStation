@@ -155,7 +155,7 @@
 		return
 
 	for(var/mob/M in GLOBL.mob_list)
-		if(M.mind && (istype(M, /mob/living/simple/borer) || isobserver(M)))
+		if(M.mind && (istype(M, /mob/living/simple/borer) || isghost(M)))
 			M << "<i>Cortical link, <b>[truename]:</b> [copytext(message, 2)]</i>"
 
 

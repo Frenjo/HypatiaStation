@@ -213,7 +213,7 @@
 								continue
 						else
 							continue
-					else if(!isobserver(ROI))
+					else if(!isghost(ROI))
 						continue
 				do_teleport(ROI, dest)
 			updateDialog()

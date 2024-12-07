@@ -133,7 +133,7 @@
 	set name = "Deflate"
 	set src in oview(1)
 
-	if(isobserver(usr)) //to stop ghosts from deflating
+	if(isghost(usr)) //to stop ghosts from deflating
 		return
 
 	deflate()

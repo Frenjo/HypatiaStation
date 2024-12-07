@@ -28,7 +28,7 @@
 		message = "<i>[message]</i>"
 
 	var/track = null
-	if(isobserver(src))
+	if(isghost(src))
 		if(italics && client.prefs.toggles & CHAT_GHOSTRADIO)
 			return
 		if(speaker_name != speaker.real_name && speaker.real_name)
@@ -99,7 +99,7 @@
 
 		track = "<a href='byond://?src=\ref[src];track=\ref[speaker]'>[speaker_name] ([jobname])</a>"
 
-	if(isobserver(src))
+	if(isghost(src))
 		if(speaker_name != speaker.real_name && !isAI(speaker)) //Announce computer and various stuff that broadcasts doesn't use it's real name but AI's can't pretend to be other mobs.
 			speaker_name = "[speaker.real_name] ([speaker_name])"
 		track = "[speaker_name] (<a href='byond://?src=\ref[src];track=\ref[speaker]'>follow</a>)"

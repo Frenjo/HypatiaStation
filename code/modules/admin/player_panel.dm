@@ -260,7 +260,7 @@
 			else if(isnewplayer(M))
 				M_job = "New player"
 
-			else if(isobserver(M))
+			else if(isghost(M))
 				M_job = "Ghost"
 
 			M_job = replacetext(M_job, "'", "")
@@ -340,7 +340,7 @@
 			dat += "<td>pAI</td>"
 		else if(isnewplayer(M))
 			dat += "<td>New Player</td>"
-		else if(isobserver(M))
+		else if(isghost(M))
 			dat += "<td>Ghost</td>"
 		else if(ismonkey(M))
 			dat += "<td>Monkey</td>"

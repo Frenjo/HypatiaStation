@@ -189,7 +189,7 @@ Implants;
 				if(isnotnull(M.loc?.loc) && M.loc.loc.type == /area/shuttle/escape_pod5/centcom)
 					escaped_on_pod_5++
 
-			if(isobserver(M))
+			if(isghost(M))
 				ghosts++
 
 	if(clients > 0)

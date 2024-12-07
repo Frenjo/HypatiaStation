@@ -123,7 +123,7 @@
 		if(href_list["read"])
 			var/obj/item/paper/P = locate(href_list["read"])
 			if(P)
-				if(!(ishuman(usr) || isobserver(usr) || issilicon(usr)))
+				if(!(ishuman(usr) || isghost(usr) || issilicon(usr)))
 					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
 					onclose(usr, "[P.name]")
 				else

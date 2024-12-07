@@ -16,7 +16,7 @@
 				if(UNCONSCIOUS)
 					entry += " - <font color='darkgray'><b>Unconscious</b></font>"
 				if(DEAD)
-					if(isobserver(C.mob))
+					if(isghost(C.mob))
 						var/mob/dead/ghost/O = C.mob
 						if(O.started_as_observer)
 							entry += " - <font color='gray'>Observing</font>"
@@ -57,7 +57,7 @@
 				if(isnotnull(C.holder.fakekey))
 					msg += " <i>(as [C.holder.fakekey])</i>"
 
-				if(isobserver(C.mob))
+				if(isghost(C.mob))
 					msg += " - Observing"
 				else if(isnewplayer(C.mob))
 					msg += " - Lobby"
@@ -72,7 +72,7 @@
 			else
 				modmsg += "\t[C] is a [C.holder.rank]"
 
-				if(isobserver(C.mob))
+				if(isghost(C.mob))
 					modmsg += " - Observing"
 				else if(isnewplayer(C.mob))
 					modmsg += " - Lobby"

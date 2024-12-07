@@ -152,7 +152,7 @@
 	if(isnotnull(mob.control_object))
 		Move_object(direct)
 
-	if(isobserver(mob))
+	if(isghost(mob))
 		return mob.Move(n, direct)
 
 	if(moving || world.time < move_delay)

@@ -62,7 +62,7 @@
 // I didn't like the idea that people can read tiny pieces of paper from across the room.
 // Now you need to be next to the paper in order to read it.
 	if(in_range(usr, src))
-		if(!(ishuman(usr) || isobserver(usr) || issilicon(usr)))
+		if(!(ishuman(usr) || isghost(usr) || issilicon(usr)))
 			usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 			onclose(usr, "[name]")
 		else

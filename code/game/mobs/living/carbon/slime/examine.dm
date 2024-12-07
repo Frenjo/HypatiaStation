@@ -3,7 +3,7 @@
 
 	if(isnull(usr) || isnull(src))
 		return
-	if((usr.sdisabilities & BLIND || usr.blinded || usr.stat) && !isobserver(usr))
+	if((usr.sdisabilities & BLIND || usr.blinded || usr.stat) && !isghost(usr))
 		usr << "<span class='notice'>Something is there but you can't see it.</span>"
 		return
 

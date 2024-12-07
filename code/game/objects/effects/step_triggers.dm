@@ -13,7 +13,7 @@
 	..()
 	if(!AM)
 		return
-	if(isobserver(AM) && !affect_ghosts)
+	if(isghost(AM) && !affect_ghosts)
 		return
 	Trigger(AM)
 

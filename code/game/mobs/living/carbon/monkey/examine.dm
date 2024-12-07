@@ -3,7 +3,7 @@
 
 	if(isnull(usr) || isnull(src))
 		return
-	if((usr.sdisabilities & BLIND || usr.blinded || usr.stat) && !isobserver(usr))
+	if((usr.sdisabilities & BLIND || usr.blinded || usr.stat) && !isghost(usr))
 		to_chat(usr, SPAN_NOTICE("Something is there but you can't see it."))
 		return
 

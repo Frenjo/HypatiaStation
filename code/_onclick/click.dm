@@ -246,7 +246,7 @@
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /mob/proc/face_atom(atom/A)
-	if(buckled || isnull(A) || !x || !y || !A.x || !A.y || (stat && !isobserver(src)))
+	if(buckled || isnull(A) || !x || !y || !A.x || !A.y || (stat && !isghost(src)))
 		return
 
 	var/dx = A.x - x

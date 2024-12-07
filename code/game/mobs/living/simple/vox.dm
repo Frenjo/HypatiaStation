@@ -88,7 +88,7 @@
 
 	var/mob/M = targets[target]
 
-	if(isobserver(M) || M.stat == DEAD)
+	if(isghost(M) || M.stat == DEAD)
 		src << "Not even the armalis can speak to the dead."
 		return
 

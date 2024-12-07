@@ -111,7 +111,7 @@
 	for(var/mob/M in src.loc)
 		if(itemcount >= storage_capacity)
 			break
-		if(isobserver(M))
+		if(isghost(M))
 			continue
 		if(M.buckled)
 			continue
