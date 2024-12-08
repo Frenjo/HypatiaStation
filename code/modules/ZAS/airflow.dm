@@ -21,7 +21,7 @@ Contains helper procs for airflow, handled in /connection_group.
 /mob/living/silicon/airflow_stun()
 	return
 
-/mob/living/carbon/metroid/airflow_stun()
+/mob/living/carbon/slime/airflow_stun()
 	return
 
 /mob/living/carbon/human/airflow_stun()
