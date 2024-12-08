@@ -267,7 +267,7 @@
 			if(issilicon(usr))
 				if(isrobot(usr))
 					var/mob/living/silicon/robot/R = usr
-					if(isnull(R.module) || !istype(R.module, /obj/item/robot_module/butler))
+					if(isnull(R.module) || !istype(R.module, /obj/item/robot_module/service))
 						to_chat(usr, SPAN_WARNING("The vending machine refuses to interface with you, as you are not in its target demographic!"))
 						return
 				else

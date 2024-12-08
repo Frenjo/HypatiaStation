@@ -679,7 +679,7 @@
 			)
 
 		if("Service")
-			module = new /obj/item/robot_module/butler(src)
+			module = new /obj/item/robot_module/service(src)
 			module_sprites = list(
 				"Waitress" = "Service",
 				"Kent" = "toiletbot",
