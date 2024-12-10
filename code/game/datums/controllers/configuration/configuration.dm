@@ -88,7 +88,8 @@ CONTROLLER_DEF(configuration)
 /datum/controller/configuration/proc/generate_default(file_name)
 	if(isnull(categories_by_file_name[file_name]))
 		return
-	fdel("config/example/[file_name]")
+	if(fexists("config/example/[file_name]"))
+		return
 
 	var/list/lines = list()
 	for(var/category in categories_by_file_name[file_name])
