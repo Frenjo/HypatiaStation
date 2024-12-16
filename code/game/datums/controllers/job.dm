@@ -338,6 +338,9 @@ CONTROLLER_DEF(jobs)
 		else
 			to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
 
+	if(istype(job, /datum/job/captain))
+		to_world("<b>[H.real_name] is the captain!</b>")
+
 	H.job = rank
 
 	if(!joined_late)

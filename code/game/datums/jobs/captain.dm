@@ -25,7 +25,6 @@
 	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(H)
 	L.imp_in = H
 	L.implanted = TRUE
-	to_world("<b>[H.real_name] is the captain!</b>")
 	var/datum/organ/external/affected = H.organs_by_name["head"]
 	affected.implants.Add(L)
 	L.part = affected
