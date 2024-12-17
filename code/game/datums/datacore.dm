@@ -320,7 +320,7 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		L.fields["b_dna"]		= H.dna.unique_enzymes
 		L.fields["enzymes"]		= H.dna.SE // Used in respawning
 		L.fields["identity"]	= H.dna.UI // "
-		L.fields["image"]		= getFlatIcon(H, 0)	//This is god-awful
+		L.fields["image"]		= getFlatIcon(H)	//This is god-awful
 		locked.Add(L)
 
 /proc/get_id_photo(mob/living/carbon/human/H)

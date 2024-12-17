@@ -711,9 +711,8 @@ world
 /*
 Get flat icon by DarkCampainger. As it says on the tin, will return an icon with all the overlays
 as a single icon. Useful for when you want to manipulate an icon via the above as overlays are not normally included.
-The _flatIcons list is a cache for generated icon files.
 */
-/proc/getFlatIcon(atom/A, dir) // 1 = use cache, 2 = override cache, 0 = ignore cache
+/proc/getFlatIcon(atom/A, dir)
 	// Layers will be a sorted list of icons/overlays, based on the order in which they are displayed
 	var/list/layers = list()
 
@@ -789,17 +788,17 @@ The _flatIcons list is a cache for generated icon files.
 		if(I:icon)
 			if(I:icon_state)
 				// Has icon and state set
-				add = icon(I:icon, I:icon_state)
+				add = icon(I:icon, I:icon_state, dir)
 			else
 				if(A.icon_state in icon_states(I:icon))
 					// Inherits icon_state from atom
-					add = icon(I:icon, A.icon_state)
+					add = icon(I:icon, A.icon_state, dir)
 				else
 					// Uses default state ("")
-					add = icon(I:icon)
+					add = icon(I:icon, dir = dir)
 		else if(I:icon_state)
 			// Inherits icon from atom
-			add = icon(A.icon, I:icon_state)
+			add = icon(A.icon, I:icon_state, dir)
 		else
 			// Unknown
 			continue
@@ -813,13 +812,15 @@ The _flatIcons list is a cache for generated icon files.
 		if(addX1 != flatX1 || addX2 != flatX2 || addY1 != flatY1 || addY2 != flatY2)
 			// Resize the flattened icon so the new icon fits
 			flat.Crop(addX1 - flatX1 + 1, addY1 - flatY1 + 1, addX2 - flatX1 + 1, addY2 - flatY1 + 1)
-			flatX1 = addX1; flatX2 = addX2
-			flatY1 = addY1; flatY2 = addY2
+			flatX1 = addX1
+			flatX2 = addX2
+			flatY1 = addY1
+			flatY2 = addY2
 
 		// Blend the overlay into the flattened icon
 		flat.Blend(add, ICON_OVERLAY, I:pixel_x + 2 - flatX1, I:pixel_y + 2 - flatY1)
 
-	return flat
+	return icon(flat, "", dir)
 
 /proc/getIconMask(atom/A)//By yours truly. Creates a dynamic mask for a mob/whatever. /N
 	var/icon/alpha_mask = new(A.icon, A.icon_state)//So we want the default icon and icon state of A.
