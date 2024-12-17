@@ -20,3 +20,8 @@
 #define SPAN_DISARM(text)		SPAN("disarm", text)
 #define SPAN_CAUTION(text)		SPAN("caution", text)
 #define SPAN_MODERATE(text)		SPAN("moderate", text)
+
+/*
+ * Languages
+ */
+#define LANGUAGE_PREFIX_KEY ","

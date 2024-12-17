@@ -86,7 +86,7 @@
 	for(var/path in SUBTYPESOF(/datum/language))
 		var/datum/language/L = new path()
 		GLOBL.all_languages[L.name] = L
-		GLOBL.language_keys[":[lowertext(L.key)]"] = L
+		GLOBL.language_keys["[LANGUAGE_PREFIX_KEY][lowertext(L.key)]"] = L.name
 
 // Species - Initialises all /datum/species into a list.
 /hook/global_init/proc/init_species()

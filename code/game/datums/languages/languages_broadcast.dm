@@ -67,9 +67,6 @@
 /datum/language/binary/drone
 	name = "Drone Talk"
 	desc = "A heavily encoded damage control coordination stream."
-	speech_verb = "transmits"
-	colour = "say_quote"
 	key = "d"
-	flags = LANGUAGE_FLAG_RESTRICTED | LANGUAGE_FLAG_HIVEMIND
 
 	drone_only = TRUE

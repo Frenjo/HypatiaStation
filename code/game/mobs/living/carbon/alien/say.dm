@@ -18,7 +18,7 @@
 		var/channel_prefix = copytext(message, 1 ,3)
 		if(length(languages))
 			for(var/datum/language/L in languages)
-				if(lowertext(channel_prefix) == ":[L.key]")
+				if(lowertext(channel_prefix) == "[LANGUAGE_PREFIX_KEY][L.key]")
 					verb = L.speech_verb
 					speaking = L
 					break

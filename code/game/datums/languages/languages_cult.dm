@@ -1,7 +1,7 @@
 /*
  * Cult languages
  */
-/datum/language/cultcommon
+/datum/language/cult
 	name = "Cult"
 	desc = "The chants of the occult, the incomprehensible."
 	speech_verb = "intones"
@@ -18,7 +18,7 @@
 		"sektath mal'zua", "zasan", "therium", "viortia", "kla'atu", "barada", "nikt'o", "fwe'sh", "mah", "erl", "nyag", "r'ya", \
 		"gal'h'rfikk", "harfrandid", "mud'gib")*/
 
-/datum/language/cult
+/datum/language/occult
 	name = "Occult"
 	desc = "The initiated can share their thoughts, by means defying reason."
 	speech_verb = "intones"
