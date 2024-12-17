@@ -201,8 +201,8 @@
 	//ADD_IF_SLOT_EXISTS(w_radio) commenting this out since headsets go on your ears now PLEASE DON'T BE MAD KEELIN
 	ADD_IF_SLOT_EXISTS(wear_uniform)
 
-	//ADD_IF_SLOT_EXISTS(l_hand)
-	//ADD_IF_SLOT_EXISTS(r_hand)
+	ADD_IF_SLOT_EXISTS(l_hand)
+	ADD_IF_SLOT_EXISTS(r_hand)
 
 	return items
 #undef ADD_IF_SLOT_EXISTS
@@ -284,3 +284,8 @@ if(isnull(SLOT)) \
 		return FALSE
 
 	return outfit.equip(src)
+
+/mob/proc/delete_inventory()
+	for(var/entry in get_equipped_items())
+		drop_from_inventory(entry)
+		qdel(entry)
