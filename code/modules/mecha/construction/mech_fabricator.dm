@@ -50,7 +50,9 @@
 			/obj/item/robot_parts/l_arm,
 			/obj/item/robot_parts/r_arm,
 			/obj/item/robot_parts/l_leg,
-			/obj/item/robot_parts/r_leg,
+			/obj/item/robot_parts/r_leg
+		),
+		"Robot Internal Components" = list(
 			/obj/item/robot_parts/robot_component/binary_communication_device,
 			/obj/item/robot_parts/robot_component/radio,
 			/obj/item/robot_parts/robot_component/actuator,
@@ -58,7 +60,7 @@
 			/obj/item/robot_parts/robot_component/camera,
 			/obj/item/robot_parts/robot_component/armour
 		),
-		"Robotic Upgrade Modules" = list(
+		"Robot Upgrade Modules" = list(
 			/obj/item/borg/upgrade/reset,
 			/obj/item/borg/upgrade/rename,
 			/obj/item/borg/upgrade/restart,
@@ -115,25 +117,29 @@
 			/obj/item/mecha_part/part/honker_left_leg,
 			/obj/item/mecha_part/part/honker_right_leg
 		),
-		"Exosuit Equipment" = list(
+		"General Exosuit Equipment" = list(
+			/obj/item/mecha_part/tracking,
+			/obj/item/mecha_part/equipment/tool/passenger, // Ported this from NSS Eternal along with the hoverpod. -Frenjo
+			/obj/item/mecha_part/equipment/repair_droid, // Re-enabled this. -Frenjo
+			/obj/item/mecha_part/equipment/generator,
+			///obj/item/mecha_part/equipment/jetpack, //TODO MECHA JETPACK SPRITE MISSING,
+		),
+		"Working Exosuit Equipment" = list(
 			/obj/item/mecha_part/equipment/tool/hydraulic_clamp,
 			/obj/item/mecha_part/equipment/tool/drill,
 			/obj/item/mecha_part/equipment/tool/extinguisher,
-			/obj/item/mecha_part/equipment/tool/cable_layer,
-			/obj/item/mecha_part/equipment/tool/passenger, // Ported this from NSS Eternal along with the hoverpod. -Frenjo
+			/obj/item/mecha_part/equipment/tool/cable_layer
+		),
+		"Medical Exosuit Equipment" = list(
 			/obj/item/mecha_part/equipment/tool/sleeper,
-			/obj/item/mecha_part/equipment/tool/syringe_gun,
-			/obj/item/mecha_part/equipment/repair_droid, // Re-enabled this. -Frenjo
-			/obj/item/mecha_part/equipment/generator,
-			///obj/item/mecha_part/equipment/jetpack, //TODO MECHA JETPACK SPRITE MISSING
+			/obj/item/mecha_part/equipment/tool/syringe_gun
+		),
+		"Exosuit Weapons" = list(
 			/obj/item/mecha_part/equipment/weapon/energy/taser,
 			/obj/item/mecha_part/equipment/weapon/ballistic/lmg,
-			/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar,
+			/obj/item/mecha_part/equipment/weapon/honker,
 			/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar,
-			/obj/item/mecha_part/equipment/weapon/honker
-		),
-		"Misc" = list(
-			/obj/item/mecha_part/tracking
+			/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar
 		)
 	)
 
@@ -551,7 +557,7 @@
 				left_part = output_available_resources()+"<hr>"
 				left_part += "<a href='byond://?src=\ref[src];sync=1'>Sync with R&D servers</a><hr>"
 				for(var/part_set in part_sets)
-					left_part += "<a href='byond://?src=\ref[src];part_set=[part_set]'>[part_set]</a> - \[<a href='byond://?src=\ref[src];partset_to_queue=[part_set]'>Add all parts to queue\]<br>"
+					left_part += "<a href='byond://?src=\ref[src];part_set=[part_set]'>[part_set]</a> - <a href='byond://?src=\ref[src];partset_to_queue=[part_set]'>\[Add all parts to queue\]<br>"
 			if("parts")
 				left_part += output_parts_list(part_set)
 				left_part += "<hr><a href='byond://?src=\ref[src];screen=main'>Return</a>"
@@ -585,7 +591,7 @@
 				</table>
 				</body>
 				</html>"}
-	user << browse(dat, "window=mecha_fabricator;size=1000x400")
+	user << browse(dat, "window=mecha_fabricator;size=1000x500")
 	onclose(user, "mecha_fabricator")
 
 /obj/machinery/mecha_part_fabricator/Topic(href, href_list)
@@ -726,10 +732,11 @@
 		//loading animation is now an overlay based on material type. No more spontaneous conversion of all ores to metal. -vey
 		overlays.Add("fab-load-[lowertext(stack.material.name)]")
 		if(do_after(user, 10))
-			if(stack && stack.amount)
-				while(stored_materials[stack.material.type] < res_max_amount && stack)
+			if(stack?.amount)
+				while(stored_materials[stack.material.type] <= (res_max_amount - stack.perunit))
+					if(!stack.use(1))
+						break
 					stored_materials[stack.material.type] += stack.perunit
-					stack.use(1)
 					count++
 				overlays.Remove("fab-load-[lowertext(stack.material.name)]")
 				to_chat(user, SPAN_INFO("You insert [count] [stack.name] into the fabricator."))
