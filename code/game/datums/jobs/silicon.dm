@@ -16,6 +16,13 @@
 	req_admin_notify = TRUE
 	minimal_player_age = 7
 
+/datum/job/ai/equip_preview(mob/living/carbon/human/H, alt_title)
+	H.set_species(SPECIES_HUMAN)
+	H.equip_outfit(/decl/hierarchy/outfit/job/assistant)
+	H.equip_to_slot(new /obj/item/clothing/head/cardborg(H), SLOT_ID_HEAD)
+	H.equip_to_slot(new /obj/item/clothing/suit/straight_jacket(H), SLOT_ID_WEAR_SUIT)
+	return TRUE
+
 /*
  * Cyborg
  */
@@ -34,3 +41,10 @@
 	minimal_player_age = 1
 
 	alt_titles = list("Android", "Robot", "Drone")
+
+/datum/job/cyborg/equip_preview(mob/living/carbon/human/H, alt_title)
+	H.set_species(SPECIES_HUMAN)
+	H.equip_outfit(/decl/hierarchy/outfit/job/assistant)
+	H.equip_to_slot(new /obj/item/clothing/head/cardborg(H), SLOT_ID_HEAD)
+	H.equip_to_slot(new /obj/item/clothing/suit/cardborg(H), SLOT_ID_WEAR_SUIT)
+	return TRUE

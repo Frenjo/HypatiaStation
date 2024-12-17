@@ -235,3 +235,9 @@
 
 		if(isnotnull(ID))
 			return ID.registered_name
+
+/proc/get_mannequin(ckey)
+	. = GLOBL.mannequins_by_ckey[ckey]
+	if(isnull(.))
+		. = new /mob/living/carbon/human/dummy/mannequin()
+		GLOBL.mannequins_by_ckey[ckey] = .

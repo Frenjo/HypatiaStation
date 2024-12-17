@@ -6,6 +6,13 @@
 	real_name = "Test Dummy"
 	status_flags = GODMODE | CANPUSH
 
+/mob/living/carbon/human/dummy/mannequin/New()
+	. = ..()
+	GLOBL.mob_list.Remove(src)
+	GLOBL.dead_mob_list.Remove(src)
+	GLOBL.living_mob_list.Remove(src)
+	delete_inventory()
+
 /mob/living/carbon/human/soghun/New(new_loc)
 	h_style = "Soghun Horns"
 	..(new_loc, SPECIES_SOGHUN)

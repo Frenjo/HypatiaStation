@@ -2,9 +2,9 @@
 	if(isnull(user?.client))
 		return
 
-	update_preview_icon()
-	user << browse_rsc(preview_icon_front, "previewicon.png")
-	user << browse_rsc(preview_icon_side, "previewicon2.png")
+	if(isnull(preview_icon))
+		update_preview_icon()
+	user << browse_rsc(preview_icon, "previewicon.png")
 
 	var/dat = character_setup_header(user)
 
@@ -126,7 +126,7 @@
 	dat += "<td><div class='block'>"
 	dat += "<b>Preview</b>"
 	dat += "<hr>"
-	dat += "<img src=previewicon.png height=64 width=64><img src=previewicon2.png height=64 width=64>"
+	dat += "<img src=previewicon.png height=[preview_icon.Height()] width=[preview_icon.Width()]>"
 	dat += "</div></td>"
 	dat += "</tr></table>"
 

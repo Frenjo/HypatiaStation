@@ -111,9 +111,13 @@
 			observer.loc = spawn_point.loc
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
-			client.prefs.update_preview_icon()
-			observer.icon = client.prefs.preview_icon
+			var/mob/living/carbon/human/dummy/mannequin = new /mob/living/carbon/human/dummy/mannequin()
+			client.prefs.dress_preview_mob(mannequin)
+			observer.appearance = mannequin
 			observer.alpha = 127
+			observer.layer = initial(observer.layer)
+			observer.invisibility = initial(observer.invisibility)
+			qdel(mannequin)
 
 			if(client.prefs.be_random_name)
 				client.prefs.real_name = random_name(client.prefs.gender)

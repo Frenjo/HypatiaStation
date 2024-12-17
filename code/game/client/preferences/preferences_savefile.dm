@@ -205,6 +205,7 @@
 	underwear		= sanitize_integer(underwear, 1, length(GLOBL.underwear_m), initial(underwear))
 	backbag			= sanitize_integer(backbag, 1, length(GLOBL.backbaglist), initial(backbag))
 	b_type			= sanitize_text(b_type, initial(b_type))
+	preview_icon = null
 
 	alternate_option = sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
 	for(var/path in SUBTYPESOF(/decl/department))

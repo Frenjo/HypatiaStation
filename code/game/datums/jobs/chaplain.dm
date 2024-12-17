@@ -20,8 +20,10 @@
 	outfit = /decl/hierarchy/outfit/job/service/chaplain
 	alt_titles = list("Counselor")
 
-/datum/job/chaplain/equip(mob/living/carbon/human/H)
+/datum/job/chaplain/equip(mob/living/carbon/human/H, alt_title, ask_questions = TRUE)
 	. = ..()
+	if(!ask_questions)
+		return
 
 	var/obj/item/storage/bible/B = locate(/obj/item/storage/bible) in H
 	if(isnull(B))
@@ -161,3 +163,16 @@
 		feedback_set_details("religion_book", "[new_book_style]")
 
 	return 1
+
+// This one's very special snowflake.
+/datum/job/chaplain/equip_preview(mob/living/carbon/human/H, alt_title)
+	var/species = H.get_species()
+	if(species == SPECIES_SOGHUN || species == SPECIES_TAJARAN)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H), SLOT_ID_SHOES)
+	else if(species == SPECIES_PLASMALIN)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/plasmalin(H), SLOT_ID_WEAR_UNIFORM)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/plasmalin(H), SLOT_ID_GLOVES)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/plasmalin(H), SLOT_ID_HEAD)
+	else if(species == SPECIES_VOX)
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/vox(src), SLOT_ID_WEAR_MASK)
+	return equip(H, alt_title, FALSE)

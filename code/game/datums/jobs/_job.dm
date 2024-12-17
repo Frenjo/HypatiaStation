@@ -48,6 +48,19 @@
 
 	return H.equip_outfit(outfit_type)
 
+/datum/job/proc/equip_preview(mob/living/carbon/human/H, alt_title)
+	var/species = H.get_species()
+	if(species == SPECIES_SOGHUN || species == SPECIES_TAJARAN)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H), SLOT_ID_SHOES)
+	else if(species == SPECIES_PLASMALIN)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/plasmalin(H), SLOT_ID_WEAR_UNIFORM)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/plasmalin(H), SLOT_ID_GLOVES)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/plasmalin(H), SLOT_ID_HEAD)
+	else if(species == SPECIES_VOX)
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/vox(src), SLOT_ID_WEAR_MASK)
+
+	return equip(H, alt_title)
+
 /datum/job/proc/get_access()
 	if(CONFIG_GET(/decl/configuration_entry/jobs_have_minimal_access) && isnotnull(minimal_access))
 		return minimal_access.Copy()

@@ -51,8 +51,6 @@
 
 	//Mob preview
 	var/icon/preview_icon = null
-	var/icon/preview_icon_front = null
-	var/icon/preview_icon_side = null
 
 	// Jobs, now slightly more modular.
 	// Needs to be finished and is still hardcoded in a few places.
