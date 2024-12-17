@@ -7,6 +7,7 @@
 	var/savefile_version = 0
 
 	//non-preference stuff
+	var/client_ckey = null
 	var/warns = 0
 	var/muted = 0
 	var/last_ip
@@ -89,6 +90,7 @@
 /datum/preferences/New(client/C)
 	if(istype(C))
 		if(!IsGuestKey(C.key))
+			client_ckey = C.key
 			load_path(C.ckey)
 			if(load_preferences())
 				if(load_character())
@@ -134,6 +136,7 @@
 	character.name = character.real_name
 	if(character.dna)
 		character.dna.real_name = character.real_name
+	character.species = GLOBL.all_species[species]
 
 	character.flavor_text = flavor_text
 	character.med_record = med_record
