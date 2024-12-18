@@ -21,7 +21,7 @@
 	name = "Circuit Design (Experimental hull shield generator)"
 	desc = "Allows for the construction of circuit boards used to build an experimental hull shield generator."
 	req_tech = list(/datum/tech/plasma = 3, /datum/tech/bluespace = 4)
-	build_type = IMPRINTER
+	build_type = DESIGN_TYPE_IMPRINTER
 	materials = list(
 		/decl/material/glass = 2000, /decl/material/gold = 10000, /decl/material/diamond = 5000,
 		/decl/material/plasma = 10000, "sacid" = 20
@@ -50,7 +50,7 @@
 	name = "Circuit Design (Experimental bubble shield generator)"
 	desc = "Allows for the construction of circuit boards used to build an experimental shield generator."
 	req_tech = list(/datum/tech/plasma = 3, /datum/tech/bluespace = 4)
-	build_type = IMPRINTER
+	build_type = DESIGN_TYPE_IMPRINTER
 	materials = list(
 		/decl/material/glass = 2000, /decl/material/gold = 10000, /decl/material/diamond = 5000,
 		/decl/material/plasma = 10000, "sacid" = 20
@@ -79,7 +79,7 @@
 	name = "Circuit Design (Experimental shield capacitor)"
 	desc = "Allows for the construction of circuit boards used to build an experimental shielding capacitor."
 	req_tech = list(/datum/tech/magnets = 3, /datum/tech/power_storage = 4)
-	build_type = IMPRINTER
+	build_type = DESIGN_TYPE_IMPRINTER
 	materials = list(
 		/decl/material/glass = 2000, /decl/material/silver = 10000, /decl/material/diamond = 5000,
 		/decl/material/plasma = 10000, "sacid" = 20

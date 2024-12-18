@@ -2,7 +2,7 @@
 /obj/machinery/squeezer
 	name = "squeezer"
 	desc = "It is a machine that squeezes extracts from produce."
-	icon = 'icons/obj/machines/fabricators.dmi'
+	icon = 'icons/obj/machines/fabricators/autolathe.dmi'
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE

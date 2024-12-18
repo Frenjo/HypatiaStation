@@ -115,7 +115,20 @@
 
 /obj/item/circuitboard/mechfab
 	name = "circuit board (exosuit fabricator)"
-	build_path = /obj/machinery/mecha_part_fabricator
+	build_path = /obj/machinery/robotics_fabricator/mecha
+	board_type = "machine"
+	origin_tech = list(/datum/tech/engineering = 3, /datum/tech/programming = 3)
+	frame_desc = "Requires 2 Matter Bins, 1 Micro Manipulator, 1 Micro-Laser and 1 Console Screen."
+	req_components = list(
+		/obj/item/stock_part/matter_bin = 2,
+		/obj/item/stock_part/manipulator = 1,
+		/obj/item/stock_part/micro_laser = 1,
+		/obj/item/stock_part/console_screen = 1
+	)
+
+/obj/item/circuitboard/robofab
+	name = "circuit board (robotic fabricator)"
+	build_path = /obj/machinery/robotics_fabricator/robotic
 	board_type = "machine"
 	origin_tech = list(/datum/tech/engineering = 3, /datum/tech/programming = 3)
 	frame_desc = "Requires 2 Matter Bins, 1 Micro Manipulator, 1 Micro-Laser and 1 Console Screen."

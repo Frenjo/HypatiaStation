@@ -792,7 +792,7 @@
 "AX" = (/obj/effect/overlay/palmtree_r,/turf/open/floor/beach/sand{icon_state = "desert"; tag = "icon-desert"},/area/special/holodeck/source/beach)
 "Ba" = (/obj/structure/rack,/obj/item/crowbar,/obj/item/extinguisher,/turf/open/floor/shuttle/white,/area/enemy/syndicate_station/start)
 "Bd" = (/obj/structure/artilleryplaceholder{icon_state = "9"},/turf/space,/area/space)
-"Bg" = (/obj/machinery/robotic_fabricator,/turf/open/floor/shuttle/yellow,/area/shuttle/administration/centcom)
+"Bg" = (/obj/machinery/robotics_fabricator/robotic,/turf/open/floor/shuttle/yellow,/area/shuttle/administration/centcom)
 "Bj" = (/obj/structure/stool/bed/chair{dir = 8},/obj/effect/decal/floor/industrial/warning/border{dir = 4},/turf/open/floor/tiled/grey,/area/centcom)
 "Bn" = (/turf/closed/wall/shuttle{dir = 5; icon_state = "swall14inv"},/area/shuttle/vox/station)
 "Bp" = (/obj/structure/closet/secure/medical/doctor{pixel_x = -5},/turf/open/floor/tiled/white,/area/centcom/test)

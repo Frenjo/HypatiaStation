@@ -42,7 +42,7 @@ proc/check_craftlathe_recipe(var/list/param_recipe)
 
 /obj/machinery/autolathe2
 	name = "Craft lathe"
-	icon = 'icons/obj/machines/fabricators.dmi'
+	icon = 'icons/obj/machines/fabricators/autolathe.dmi'
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE

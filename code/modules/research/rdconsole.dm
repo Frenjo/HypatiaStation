@@ -535,11 +535,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				dat += "Name: [d_disk.blueprint.name]<BR>"
 				dat += "Level: [clamp((d_disk.blueprint.reliability + rand(-15, 15)), 0, 100)]<BR>"
 				switch(d_disk.blueprint.build_type)
-					if(IMPRINTER)
+					if(DESIGN_TYPE_IMPRINTER)
 						dat += "Lathe Type: Circuit Imprinter<BR>"
-					if(PROTOLATHE)
+					if(DESIGN_TYPE_PROTOLATHE)
 						dat += "Lathe Type: Proto-lathe<BR>"
-					if(AUTOLATHE)
+					if(DESIGN_TYPE_AUTOLATHE)
 						dat += "Lathe Type: Auto-lathe<BR>"
 				dat += "Required Materials:<BR>"
 				for(var/M in d_disk.blueprint.materials)
@@ -622,7 +622,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<B>Material Amount:</B> [linked_lathe.get_total_stored_materials()] cm<sup>3</sup> (MAX: [linked_lathe.max_storage_capacity])<BR>"
 			dat += "<B>Chemical Volume:</B> [linked_lathe.reagents.total_volume] (MAX: [linked_lathe.reagents.maximum_volume])<HR>"
 			for(var/datum/design/D in files.known_designs)
-				if(!(D.build_type & PROTOLATHE))
+				if(!(D.build_type & DESIGN_TYPE_PROTOLATHE))
 					continue
 				var/temp_dat = "[D.name]"
 				var/check_materials = TRUE
@@ -684,7 +684,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Chemical Volume: [linked_imprinter.reagents.total_volume]<HR>"
 
 			for(var/datum/design/D in files.known_designs)
-				if(!(D.build_type & IMPRINTER))
+				if(!(D.build_type & DESIGN_TYPE_IMPRINTER))
 					continue
 				var/temp_dat = "[D.name]"
 				var/check_materials = TRUE

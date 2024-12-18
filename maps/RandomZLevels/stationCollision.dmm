@@ -37,7 +37,7 @@
 "aK" = (/turf/space,/area/away_mission/syndishuttle)
 "aL" = (/obj/machinery/recharge_station,/turf/open/floor/airless,/area/away_mission/northblock)
 "aM" = (/obj/structure/table,/turf/open/floor/airless,/area/away_mission/northblock)
-"aN" = (/obj/machinery/robotic_fabricator,/turf/open/floor/airless,/area/away_mission/northblock)
+"aN" = (/obj/machinery/robotics_fabricator/robotic,/turf/open/floor/airless,/area/away_mission/northblock)
 "aO" = (/obj/structure/shuttle/engine/propulsion{dir = 4; icon_state = "propulsion_r"; tag = "icon-propulsion_r (EAST)"},/turf/open/floor/plating/metal/airless,/area/away_mission/syndishuttle)
 "aP" = (/obj/structure/shuttle/engine/heater{dir = 8; tag = "icon-heater (WEST)"},/turf/open/floor/plating/metal/airless,/area/away_mission/syndishuttle)
 "aQ" = (/turf/open/floor/plating/metal/airless,/turf/closed/wall/shuttle{icon_state = "diagonalWall3"},/area/away_mission/syndishuttle)

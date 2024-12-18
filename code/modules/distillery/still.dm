@@ -2,7 +2,7 @@
 /obj/machinery/still
 	name = "still"
 	desc = "It is a machine that produces hard liquor from alcoholic drinks."
-	icon = 'icons/obj/machines/fabricators.dmi'
+	icon = 'icons/obj/machines/fabricators/autolathe.dmi'
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE

@@ -1,11 +1,8 @@
-/////////////////////////////
-///// Part Fabricator ///////
-/////////////////////////////
-
-/obj/machinery/mecha_part_fabricator
-	name = "exosuit fabricator"
+////////////////////////////////////
+///// Base Robotics Fabricator /////
+////////////////////////////////////
+/obj/machinery/robotics_fabricator
 	desc = "Nothing is being built."
-	icon = 'icons/obj/machines/fabricators.dmi'
 	icon_state = "fab-idle"
 	density = TRUE
 	anchored = TRUE
@@ -31,7 +28,12 @@
 		// Re-enabled bananium. -Frenjo
 	)
 	var/res_max_amount = 200000
+
+	var/ui_id = null
+
 	var/datum/research/files
+	var/design_flag = null
+
 	var/id
 	var/sync = 0
 	var/part_set
@@ -41,112 +43,11 @@
 	var/screen = "main"
 	var/opened = FALSE
 	var/temp
-	var/list/part_sets = list(
-		//set names must be unique
-		"Robot" = list(
-			/obj/item/robot_parts/robot_suit,
-			/obj/item/robot_parts/chest,
-			/obj/item/robot_parts/head,
-			/obj/item/robot_parts/l_arm,
-			/obj/item/robot_parts/r_arm,
-			/obj/item/robot_parts/l_leg,
-			/obj/item/robot_parts/r_leg
-		),
-		"Robot Internal Components" = list(
-			/obj/item/robot_parts/robot_component/binary_communication_device,
-			/obj/item/robot_parts/robot_component/radio,
-			/obj/item/robot_parts/robot_component/actuator,
-			/obj/item/robot_parts/robot_component/diagnosis_unit,
-			/obj/item/robot_parts/robot_component/camera,
-			/obj/item/robot_parts/robot_component/armour
-		),
-		"Robot Upgrade Modules" = list(
-			/obj/item/borg/upgrade/reset,
-			/obj/item/borg/upgrade/rename,
-			/obj/item/borg/upgrade/restart,
-			/obj/item/borg/upgrade/vtec,
-			/obj/item/borg/upgrade/tasercooler,
-			/obj/item/borg/upgrade/jetpack
-		),
-		"Ripley" = list(
-			/obj/item/mecha_part/chassis/ripley,
-			/obj/item/mecha_part/part/ripley_torso,
-			/obj/item/mecha_part/part/ripley_left_arm,
-			/obj/item/mecha_part/part/ripley_right_arm,
-			/obj/item/mecha_part/part/ripley_left_leg,
-			/obj/item/mecha_part/part/ripley_right_leg
-		),
-		"Firefighter" = list(
-			/obj/item/mecha_part/chassis/firefighter
-		),
-		"Odysseus" = list(
-			/obj/item/mecha_part/chassis/odysseus,
-			/obj/item/mecha_part/part/odysseus_torso,
-			/obj/item/mecha_part/part/odysseus_head,
-			/obj/item/mecha_part/part/odysseus_left_arm,
-			/obj/item/mecha_part/part/odysseus_right_arm,
-			/obj/item/mecha_part/part/odysseus_left_leg,
-			/obj/item/mecha_part/part/odysseus_right_leg
-		),
-		"Gygax" = list(
-			/obj/item/mecha_part/chassis/gygax,
-			/obj/item/mecha_part/part/gygax_torso,
-			/obj/item/mecha_part/part/gygax_head,
-			/obj/item/mecha_part/part/gygax_left_arm,
-			/obj/item/mecha_part/part/gygax_right_arm,
-			/obj/item/mecha_part/part/gygax_left_leg,
-			/obj/item/mecha_part/part/gygax_right_leg,
-			/obj/item/mecha_part/part/gygax_armour
-		),
-		"Durand" = list(
-			/obj/item/mecha_part/chassis/durand,
-			/obj/item/mecha_part/part/durand_torso,
-			/obj/item/mecha_part/part/durand_head,
-			/obj/item/mecha_part/part/durand_left_arm,
-			/obj/item/mecha_part/part/durand_right_arm,
-			/obj/item/mecha_part/part/durand_left_leg,
-			/obj/item/mecha_part/part/durand_right_leg,
-			/obj/item/mecha_part/part/durand_armour
-		),
-		"H.O.N.K" = list(
-			/obj/item/mecha_part/chassis/honker,
-			/obj/item/mecha_part/part/honker_torso,
-			/obj/item/mecha_part/part/honker_head,
-			/obj/item/mecha_part/part/honker_left_arm,
-			/obj/item/mecha_part/part/honker_right_arm,
-			/obj/item/mecha_part/part/honker_left_leg,
-			/obj/item/mecha_part/part/honker_right_leg
-		),
-		"General Exosuit Equipment" = list(
-			/obj/item/mecha_part/tracking,
-			/obj/item/mecha_part/equipment/tool/passenger, // Ported this from NSS Eternal along with the hoverpod. -Frenjo
-			/obj/item/mecha_part/equipment/repair_droid, // Re-enabled this. -Frenjo
-			/obj/item/mecha_part/equipment/generator,
-			///obj/item/mecha_part/equipment/jetpack, //TODO MECHA JETPACK SPRITE MISSING,
-		),
-		"Working Exosuit Equipment" = list(
-			/obj/item/mecha_part/equipment/tool/hydraulic_clamp,
-			/obj/item/mecha_part/equipment/tool/drill,
-			/obj/item/mecha_part/equipment/tool/extinguisher,
-			/obj/item/mecha_part/equipment/tool/cable_layer
-		),
-		"Medical Exosuit Equipment" = list(
-			/obj/item/mecha_part/equipment/tool/sleeper,
-			/obj/item/mecha_part/equipment/tool/syringe_gun
-		),
-		"Exosuit Weapons" = list(
-			/obj/item/mecha_part/equipment/weapon/energy/taser,
-			/obj/item/mecha_part/equipment/weapon/ballistic/lmg,
-			/obj/item/mecha_part/equipment/weapon/honker,
-			/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar,
-			/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar
-		)
-	)
+	var/list/part_sets = list() //set names must be unique
 
-/obj/machinery/mecha_part_fabricator/New()
+/obj/machinery/robotics_fabricator/New()
 	. = ..()
 	component_parts = list(
-		new /obj/item/circuitboard/mechfab(src),
 		new /obj/item/stock_part/matter_bin(src),
 		new /obj/item/stock_part/matter_bin(src),
 		new /obj/item/stock_part/manipulator(src),
@@ -155,19 +56,11 @@
 	)
 	RefreshParts()
 
-	//	part_sets["Cyborg Upgrade Modules"] = typesof(/obj/item/borg/upgrade/) - /obj/item/borg/upgrade/  // Eh.  This does it dymaically, but to support having the items referenced otherwhere in the code but not being constructable, going to do it manaully.
-
 	for(var/part_set in part_sets)
 		convert_part_set(part_set)
 	files = new /datum/research(src) //Setup the research data holder.
-	/*
-	if(!id)
-		for(var/obj/machinery/r_n_d/server/centcom/S in GLOBL.machines)
-			S.initialize()
-			break
-	*/
 
-/obj/machinery/mecha_part_fabricator/RefreshParts()
+/obj/machinery/robotics_fabricator/RefreshParts()
 	var/T = 0
 	for(var/obj/item/stock_part/matter_bin/M in component_parts)
 		T += M.rating
@@ -190,12 +83,12 @@
 	if(time_coeff != diff)
 		time_coeff = diff
 
-/obj/machinery/mecha_part_fabricator/Destroy()
+/obj/machinery/robotics_fabricator/Destroy()
 	for(var/atom/A in src)
 		qdel(A)
 	return ..()
 
-/obj/machinery/mecha_part_fabricator/proc/operation_allowed(mob/M)
+/obj/machinery/robotics_fabricator/proc/operation_allowed(mob/M)
 	if(isrobot(M) || isAI(M))
 		return 1
 	if(!length(req_access))
@@ -208,7 +101,7 @@
 	FEEDBACK_ACCESS_DENIED(M)
 	return 0
 
-/obj/machinery/mecha_part_fabricator/check_access(obj/item/card/id/I)
+/obj/machinery/robotics_fabricator/check_access(obj/item/card/id/I)
 	if(istype(I, /obj/item/pda))
 		var/obj/item/pda/pda = I
 		I = pda.id
@@ -219,7 +112,7 @@
 			return 0
 	return 1
 
-/obj/machinery/mecha_part_fabricator/proc/emag()
+/obj/machinery/robotics_fabricator/proc/emag()
 	sleep()
 	switch(emagged)
 		if(0)
@@ -238,7 +131,7 @@
 		if(1)
 			visible_message("\icon[src] <b>[src]</b> beeps: \"No records in User DB\"")
 
-/obj/machinery/mecha_part_fabricator/proc/convert_part_set(set_name)
+/obj/machinery/robotics_fabricator/proc/convert_part_set(set_name)
 	var/list/parts = part_sets[set_name]
 	if(istype(parts, /list))
 		for(var/i = 1; i <= length(parts); i++)
@@ -250,7 +143,7 @@
 			if(!isitem(parts[i]))
 				return 0
 
-/obj/machinery/mecha_part_fabricator/proc/add_part_set(set_name, parts = null)
+/obj/machinery/robotics_fabricator/proc/add_part_set(set_name, parts = null)
 	if(set_name in part_sets)//attempt to create duplicate set
 		return 0
 	if(isnull(parts))
@@ -260,7 +153,7 @@
 	convert_part_set(set_name)
 	return 1
 
-/obj/machinery/mecha_part_fabricator/proc/add_part_to_set(set_name, part)
+/obj/machinery/robotics_fabricator/proc/add_part_to_set(set_name, part)
 	if(!part)
 		return 0
 	add_part_set(set_name)//if no "set_name" set exists, create
@@ -279,7 +172,7 @@
 	part_set[++part_set.len] = apart
 	return 1
 
-/obj/machinery/mecha_part_fabricator/proc/remove_part_set(set_name)
+/obj/machinery/robotics_fabricator/proc/remove_part_set(set_name)
 	for(var/i = 1, i <= length(part_sets), i++)
 		if(part_sets[i] == set_name)
 			part_sets.Cut(i, ++i)
@@ -309,7 +202,7 @@
 		return
 */
 
-/obj/machinery/mecha_part_fabricator/proc/output_parts_list(set_name)
+/obj/machinery/robotics_fabricator/proc/output_parts_list(set_name)
 	. = ""
 	var/list/part_set = listgetindex(part_sets, set_name)
 	if(istype(part_set))
@@ -317,10 +210,10 @@
 			var/resources_available = check_resources(part)
 			. += "<div class='part'>[output_part_info(part)]<br>\[[resources_available ? "<a href='byond://?src=\ref[src];part=\ref[part]'>Build</a> | " : null]<a href='byond://?src=\ref[src];add_to_queue=\ref[part]'>Add to queue</a>\]\[<a href='byond://?src=\ref[src];part_desc=\ref[part]'>?</a>\]</div>"
 
-/obj/machinery/mecha_part_fabricator/proc/output_part_info(obj/item/part)
+/obj/machinery/robotics_fabricator/proc/output_part_info(obj/item/part)
 	. = "[part.name] (Cost: [output_part_cost(part)]) [get_construction_time_w_coeff(part) / 10]sec"
 
-/obj/machinery/mecha_part_fabricator/proc/output_part_cost(obj/item/part)
+/obj/machinery/robotics_fabricator/proc/output_part_cost(obj/item/part)
 	var/i = 0
 	var/output
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))//The most efficient way to go about this. Not all objects have these vars, but if they don't then they CANNOT be made by the mech fab. Doing it this way reduces a major amount of typecasting and switches, while cutting down maintenece for them as well -Sieve
@@ -332,7 +225,7 @@
 		return output
 	return 0
 
-/obj/machinery/mecha_part_fabricator/proc/output_available_resources()
+/obj/machinery/robotics_fabricator/proc/output_available_resources()
 	for(var/material_path in stored_materials)
 		var/decl/material/material = GET_DECL_INSTANCE(material_path)
 		var/amount = min(res_max_amount, stored_materials[material_path])
@@ -341,14 +234,14 @@
 			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[res_max_amount];material=[material_path]'>All</a>\]</span>"
 		. += "<br/>"
 
-/obj/machinery/mecha_part_fabricator/proc/remove_resources(obj/item/part)
+/obj/machinery/robotics_fabricator/proc/remove_resources(obj/item/part)
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
 		for(var/resource in part:construction_cost)
 			if(resource in stored_materials)
 				stored_materials[resource] -= get_resource_cost_w_coeff(part, resource)
 
-/obj/machinery/mecha_part_fabricator/proc/check_resources(obj/item/part)
+/obj/machinery/robotics_fabricator/proc/check_resources(obj/item/part)
 //		if(istype(part, /obj/item/robot_parts) || istype(part, /obj/item/mecha_part) || istype(part,/obj/item/borg/upgrade))
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
@@ -359,7 +252,7 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/mecha_part_fabricator/proc/build_part(obj/item/part)
+/obj/machinery/robotics_fabricator/proc/build_part(obj/item/part)
 	if(!part)
 		return
 	being_built = new part.type(src)
@@ -379,30 +272,30 @@
 	updateUsrDialog()
 	return 1
 
-/obj/machinery/mecha_part_fabricator/proc/update_queue_on_page()
-	send_byjax(usr, "mecha_fabricator.browser", "queue", list_queue())
+/obj/machinery/robotics_fabricator/proc/update_queue_on_page()
+	send_byjax(usr, "[ui_id].browser", "queue", list_queue())
 
-/obj/machinery/mecha_part_fabricator/proc/add_part_set_to_queue(set_name)
+/obj/machinery/robotics_fabricator/proc/add_part_set_to_queue(set_name)
 	if(set_name in part_sets)
 		var/list/part_set = part_sets[set_name]
 		if(islist(part_set))
 			for(var/obj/item/part in part_set)
 				add_to_queue(part)
 
-/obj/machinery/mecha_part_fabricator/proc/add_to_queue(part)
+/obj/machinery/robotics_fabricator/proc/add_to_queue(part)
 	if(!istype(queue))
 		queue = list()
 	if(part)
 		queue[++queue.len] = part
 	return length(queue)
 
-/obj/machinery/mecha_part_fabricator/proc/remove_from_queue(index)
+/obj/machinery/robotics_fabricator/proc/remove_from_queue(index)
 	if(!isnum(index) || !istype(queue) || (index < 1 || index > length(queue)))
 		return 0
 	queue.Cut(index, ++index)
 	return 1
 
-/obj/machinery/mecha_part_fabricator/proc/process_queue()
+/obj/machinery/robotics_fabricator/proc/process_queue()
 	var/obj/item/part = listgetindex(queue, 1)
 	if(!part)
 		remove_from_queue(1)
@@ -428,7 +321,7 @@
 	visible_message("\icon[src] <b>[src]</b> beeps, \"Queue processing finished successfully\".")
 	return 1
 
-/obj/machinery/mecha_part_fabricator/proc/list_queue()
+/obj/machinery/robotics_fabricator/proc/list_queue()
 	. = "<b>Queue contains:</b>"
 	if(!length(queue))
 		. += "<br>Nothing"
@@ -445,12 +338,12 @@
 		. += "</ol>"
 		. += "\[<a href='byond://?src=\ref[src];process_queue=1'>Process queue</a> | <a href='byond://?src=\ref[src];clear_queue=1'>Clear queue</a>\]"
 
-/obj/machinery/mecha_part_fabricator/proc/convert_designs()
+/obj/machinery/robotics_fabricator/proc/convert_designs()
 	if(!files)
 		return
 	. = 0
 	for(var/datum/design/D in files.known_designs)
-		if(D.build_type & 16) // This is equivalent to (D.build_type & MECHFAB).
+		if(D.build_type & design_flag)
 			if(D.category in part_sets)//Checks if it's a valid category
 				if(add_part_to_set(D.category, D.build_path))//Adds it to said category
 					.++
@@ -458,7 +351,7 @@
 				if(add_part_to_set("Misc", D.build_path))//If in doubt, chunk it into the Misc
 					.++
 
-/obj/machinery/mecha_part_fabricator/proc/update_tech()
+/obj/machinery/robotics_fabricator/proc/update_tech()
 	if(isnull(files))
 		return
 	for(var/datum/tech/T in files.known_tech)
@@ -486,7 +379,7 @@
 						time_coeff = diff
 						. += "Production routines updated.<br>"
 
-/obj/machinery/mecha_part_fabricator/proc/sync(silent = null)
+/obj/machinery/robotics_fabricator/proc/sync(silent = null)
 /*		if(length(queue))
 			if(!silent)
 				temp = "Error.  Please clear processing queue before updating!"
@@ -523,19 +416,19 @@
 		updateUsrDialog()
 		visible_message("\icon[src] <b>[src]</b> beeps, \"Error! Couldn't connect to R&D server.\"")
 
-/obj/machinery/mecha_part_fabricator/proc/get_resource_cost_w_coeff(obj/item/part, resource, roundto = 1)
+/obj/machinery/robotics_fabricator/proc/get_resource_cost_w_coeff(obj/item/part, resource, roundto = 1)
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
 		return round(part:construction_cost[resource] * resource_coeff, roundto)
 	return 0
 
-/obj/machinery/mecha_part_fabricator/proc/get_construction_time_w_coeff(obj/item/part, roundto = 1)
+/obj/machinery/robotics_fabricator/proc/get_construction_time_w_coeff(obj/item/part, roundto = 1)
 //Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
 	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
 		return round(part:construction_time * time_coeff, roundto)
 	return 0
 
-/obj/machinery/mecha_part_fabricator/attack_hand(mob/user)
+/obj/machinery/robotics_fabricator/attack_hand(mob/user)
 	var/dat, left_part
 	if(..())
 		return
@@ -591,10 +484,10 @@
 				</table>
 				</body>
 				</html>"}
-	user << browse(dat, "window=mecha_fabricator;size=1000x500")
-	onclose(user, "mecha_fabricator")
+	user << browse(dat, "window=[ui_id];size=1000x600")
+	onclose(user, ui_id)
 
-/obj/machinery/mecha_part_fabricator/Topic(href, href_list)
+/obj/machinery/robotics_fabricator/Topic(href, href_list)
 	. = ..()
 	var/datum/topic_input/new_filter = new /datum/topic_input(href, href_list)
 	if(href_list["part_set"])
@@ -660,7 +553,7 @@
 		temp = "Ejected [remove_material(text2path(href_list["material"]), text2num(href_list["remove_mat"]))] of [href_list["material"]]<br><a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
 	updateUsrDialog()
 
-/obj/machinery/mecha_part_fabricator/proc/remove_material(type, amount)
+/obj/machinery/robotics_fabricator/proc/remove_material(type, amount)
 	var/decl/material/material = GET_DECL_INSTANCE(type)
 	if(isnull(material.sheet_path))
 		return 0
@@ -675,7 +568,7 @@
 	else
 		qdel(res)
 
-/obj/machinery/mecha_part_fabricator/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+/obj/machinery/robotics_fabricator/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(emagged > 0)
 		FEEDBACK_ALREADY_EMAGGED(user)
 		return FALSE
@@ -683,7 +576,7 @@
 	emag()
 	return TRUE
 
-/obj/machinery/mecha_part_fabricator/attack_tool(obj/item/tool, mob/user)
+/obj/machinery/robotics_fabricator/attack_tool(obj/item/tool, mob/user)
 	if(isscrewdriver(tool))
 		if(!opened)
 			opened = TRUE
@@ -713,7 +606,7 @@
 
 	return ..()
 
-/obj/machinery/mecha_part_fabricator/attackby(obj/W, mob/user)
+/obj/machinery/robotics_fabricator/attackby(obj/W, mob/user)
 	if(opened)
 		to_chat(user, SPAN_WARNING("You can't load the [name] while it's opened."))
 		return 1

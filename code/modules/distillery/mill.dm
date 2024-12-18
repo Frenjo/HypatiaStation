@@ -2,7 +2,7 @@
 /obj/machinery/mill
 	name = "mill"
 	desc = "It is a machine that grinds produce."
-	icon = 'icons/obj/machines/fabricators.dmi'
+	icon = 'icons/obj/machines/fabricators/autolathe.dmi'
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE

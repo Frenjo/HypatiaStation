@@ -2,7 +2,7 @@
 /obj/machinery/centrifuge
 	name = "centrifuge"
 	desc = "It is a machine that spins produce."
-	icon = 'icons/obj/machines/fabricators.dmi'
+	icon = 'icons/obj/machines/fabricators/autolathe.dmi'
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE
