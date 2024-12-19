@@ -115,6 +115,7 @@
 			/obj/item/mecha_part/equipment/tool/cable_layer
 		),
 		"Medical Exosuit Equipment" = list(),
+		"Combat Exosuit Equipment" = list(),
 		"Exosuit Weapons" = list(
 			/obj/item/mecha_part/equipment/weapon/energy/taser,
 			/obj/item/mecha_part/equipment/weapon/ballistic/lmg,
