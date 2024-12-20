@@ -17,14 +17,9 @@
 	var/defence = 0
 	var/defence_deflect = 35
 
-/*
 /obj/mecha/combat/durand/New()
-	..()
-	weapons += new /datum/mecha_weapon/ballistic/lmg(src)
-	weapons += new /datum/mecha_weapon/ballistic/scattershot(src)
-	selected_weapon = weapons[1]
-	return
-*/
+	. = ..()
+	excluded_equipment.Add(/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar, /obj/item/mecha_part/equipment/weapon/honker)
 
 /obj/mecha/combat/durand/relaymove(mob/user, direction)
 	if(defence)

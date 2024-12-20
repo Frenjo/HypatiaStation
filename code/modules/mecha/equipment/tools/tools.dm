@@ -5,13 +5,7 @@
 	energy_drain = 10
 
 	var/dam_force = 20
-	var/obj/mecha/working/ripley/cargo_holder
-
-/obj/item/mecha_part/equipment/tool/hydraulic_clamp/can_attach(obj/mecha/working/ripley/M)
-	if(..())
-		if(istype(M))
-			return 1
-	return 0
+	var/obj/mecha/working/cargo_holder
 
 /obj/item/mecha_part/equipment/tool/hydraulic_clamp/attach(obj/mecha/M)
 	..()
@@ -126,12 +120,6 @@
 				target.ex_act(2)
 	return 1
 
-/obj/item/mecha_part/equipment/tool/drill/can_attach(obj/mecha/M)
-	if(..())
-		if(istype(M, /obj/mecha/working) || istype(M, /obj/mecha/combat))
-			return 1
-	return 0
-
 
 /obj/item/mecha_part/equipment/tool/drill/diamond
 	name = "diamond drill"
@@ -185,12 +173,6 @@
 				log_message("Drilled through [target]")
 				target.ex_act(2)
 	return 1
-
-/obj/item/mecha_part/equipment/tool/drill/diamond/can_attach(obj/mecha/M)
-	if(..())
-		if(istype(M, /obj/mecha/working) || istype(M, /obj/mecha/combat))
-			return 1
-	return 0
 
 
 /obj/item/mecha_part/equipment/tool/extinguisher
@@ -255,12 +237,6 @@
 
 /obj/item/mecha_part/equipment/tool/extinguisher/on_reagent_change()
 	return
-
-/obj/item/mecha_part/equipment/tool/extinguisher/can_attach(obj/mecha/working/M)
-	if(..())
-		if(istype(M))
-			return 1
-	return 0
 
 
 /obj/item/mecha_part/equipment/tool/rcd
@@ -541,13 +517,6 @@
 	var/deflect_coeff = 1.15
 	var/damage_coeff = 0.8
 
-/obj/item/mecha_part/equipment/anticcw_armor_booster/can_attach(obj/mecha/M)
-	if(..())
-		if(!istype(M, /obj/mecha/combat/honker))
-			if(!M.proc_res["dynattackby"])
-				return 1
-	return 0
-
 /obj/item/mecha_part/equipment/anticcw_armor_booster/attach(obj/mecha/M)
 	..()
 	chassis.proc_res["dynattackby"] = src
@@ -593,13 +562,6 @@
 
 	var/deflect_coeff = 1.15
 	var/damage_coeff = 0.8
-
-/obj/item/mecha_part/equipment/antiproj_armor_booster/can_attach(obj/mecha/M)
-	if(..())
-		if(!istype(M, /obj/mecha/combat/honker))
-			if(!M.proc_res["dynbulletdamage"] && !M.proc_res["dynhitby"])
-				return 1
-	return 0
 
 /obj/item/mecha_part/equipment/antiproj_armor_booster/attach(obj/mecha/M)
 	..()
@@ -776,12 +738,6 @@
 	chassis.proc_res["dyngetcharge"] = src
 //	chassis.proc_res["dynusepower"] = src
 	return
-
-/obj/item/mecha_part/equipment/tesla_energy_relay/can_attach(obj/mecha/M)
-	if(..())
-		if(!M.proc_res["dyngetcharge"])// && !M.proc_res["dynusepower"])
-			return 1
-	return 0
 
 /obj/item/mecha_part/equipment/tesla_energy_relay/proc/dyngetcharge()
 	if(equip_ready) //disabled
@@ -1039,13 +995,7 @@
 	energy_drain = 0
 
 	var/dam_force = 0
-	var/obj/mecha/working/ripley/cargo_holder
-
-/obj/item/mecha_part/equipment/tool/safety_clamp/can_attach(obj/mecha/working/ripley/M)
-	if(..())
-		if(istype(M))
-			return 1
-	return 0
+	var/obj/mecha/working/cargo_holder
 
 /obj/item/mecha_part/equipment/tool/safety_clamp/attach(obj/mecha/M)
 	..()
@@ -1287,12 +1237,6 @@
 	. = ..()
 	cable = new /obj/item/stack/cable_coil(src)
 	cable.amount = 0
-
-/obj/item/mecha_part/equipment/tool/cable_layer/can_attach(obj/mecha/working/M)
-	if(..())
-		if(istype(M))
-			return TRUE
-	return FALSE
 
 /obj/item/mecha_part/equipment/tool/cable_layer/attach()
 	. = ..()

@@ -15,12 +15,6 @@
 	var/datum/global_iterator/pr_mech_sleeper
 	var/inject_amount = 10
 
-/obj/item/mecha_part/equipment/tool/sleeper/can_attach(obj/mecha/medical/M)
-	if(..())
-		if(istype(M))
-			return TRUE
-	return FALSE
-
 /obj/item/mecha_part/equipment/tool/sleeper/New()
 	. = ..()
 	pr_mech_sleeper = new /datum/global_iterator/mech_sleeper(list(src), 0)
@@ -267,12 +261,6 @@
 /obj/item/mecha_part/equipment/tool/syringe_gun/critfail()
 	. = ..()
 	UNSET_ATOM_FLAGS(src, ATOM_FLAG_NO_REACT)
-
-/obj/item/mecha_part/equipment/tool/syringe_gun/can_attach(obj/mecha/medical/M)
-	if(..())
-		if(istype(M))
-			return TRUE
-	return FALSE
 
 /obj/item/mecha_part/equipment/tool/syringe_gun/get_equip_info()
 	. = ..()

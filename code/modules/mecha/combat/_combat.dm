@@ -6,6 +6,15 @@
 	//operation_req_access = list(access_hos)
 	damage_absorption = list("brute" = 0.7, "fire" = 1, "bullet" = 0.7, "laser" = 0.85, "energy" = 1, "bomb" = 0.8)
 
+	excluded_equipment = list(
+		/obj/item/mecha_part/equipment/tool/hydraulic_clamp,
+		/obj/item/mecha_part/equipment/tool/safety_clamp,
+		/obj/item/mecha_part/equipment/tool/extinguisher,
+		/obj/item/mecha_part/equipment/tool/cable_layer,
+		/obj/item/mecha_part/equipment/tool/sleeper,
+		/obj/item/mecha_part/equipment/tool/syringe_gun
+	)
+
 	var/melee_cooldown = 10
 	var/melee_can_hit = 1
 	var/list/destroyable_obj = list(/obj/mecha, /obj/structure/window, /obj/structure/grille, /turf/closed/wall)

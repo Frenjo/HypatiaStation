@@ -19,6 +19,10 @@
 	var/overload = FALSE
 	var/overload_coeff = 2
 
+/obj/mecha/combat/gygax/New()
+	. = ..()
+	excluded_equipment.Add(/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar, /obj/item/mecha_part/equipment/weapon/honker)
+
 /obj/mecha/combat/gygax/verb/overload()
 	set category = "Exosuit Interface"
 	set name = "Toggle Leg Actuator Overload"

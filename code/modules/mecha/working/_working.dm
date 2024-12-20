@@ -1,6 +1,12 @@
 /obj/mecha/working
 	internal_damage_threshold = 60
 
+	excluded_equipment = list(
+		/obj/item/mecha_part/equipment/tool/sleeper,
+		/obj/item/mecha_part/equipment/tool/syringe_gun,
+		/obj/item/mecha_part/equipment/weapon
+	)
+
 	var/list/cargo
 	var/cargo_capacity = 5
 

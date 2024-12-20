@@ -27,6 +27,8 @@
 
 /obj/mecha/combat/marauder/New()
 	. = ..()
+	excluded_equipment.Add(/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar, /obj/item/mecha_part/equipment/weapon/honker)
+
 	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/weapon/energy/pulse(src)
 	ME.attach(src)
 	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/explosive(src)

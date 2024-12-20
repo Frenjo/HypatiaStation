@@ -74,9 +74,12 @@
 
 	var/wreckage
 
+	// Equipment
+	var/list/excluded_equipment = list() // A list of equipment typepaths this exosuit CANNOT equip.
 	var/list/equipment = list()
 	var/obj/item/mecha_part/equipment/selected
 	var/max_equip = 3
+
 	var/datum/events/events
 
 /obj/mecha/New()

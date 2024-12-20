@@ -7,11 +7,6 @@
 	construction_time = 500
 	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/bananium = 10000)
 
-/obj/item/mecha_part/equipment/weapon/honker/can_attach(obj/mecha/combat/honker/M)
-	if(!istype(M))
-		return 0
-	return ..()
-
 /obj/item/mecha_part/equipment/weapon/honker/action(target)
 	if(isnull(chassis))
 		return FALSE

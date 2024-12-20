@@ -18,16 +18,9 @@
 
 	var/squeak = FALSE
 
-/*
 /obj/mecha/combat/honker/New()
-	..()
-
-	weapons += new /datum/mecha_weapon/honker(src)
-	weapons += new /datum/mecha_weapon/missile_rack/banana_mortar(src)
-	weapons += new /datum/mecha_weapon/missile_rack/banana_mortar/mousetrap_mortar(src)
-	selected_weapon = weapons[1]
-	return
-*/
+	. = ..()
+	excluded_equipment.Add(/obj/item/mecha_part/equipment/anticcw_armor_booster, /obj/item/mecha_part/equipment/antiproj_armor_booster)
 
 /obj/mecha/combat/honker/melee_action(target)
 	if(!melee_can_hit)

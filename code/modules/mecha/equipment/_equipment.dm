@@ -20,6 +20,35 @@
 	var/range = MELEE //bitflags
 	var/salvageable = 1
 
+/obj/item/mecha_part/equipment/proc/can_attach(obj/mecha/M)
+	if(!istype(M))
+		return FALSE
+	if(is_type_in_list(src, M.excluded_equipment))
+		return FALSE
+	if(length(M.equipment) >= M.max_equip)
+		return FALSE
+	return TRUE
+
+/obj/item/mecha_part/equipment/proc/attach(obj/mecha/M)
+	M.equipment.Add(src)
+	chassis = M
+	loc = M
+	M.log_message("[src] initialized.")
+	if(!M.selected)
+		M.selected = src
+	update_chassis_page()
+
+/obj/item/mecha_part/equipment/proc/detach(atom/moveto = null)
+	moveto = moveto || GET_TURF(chassis)
+	if(Move(moveto))
+		chassis.equipment.Remove(src)
+		if(chassis.selected == src)
+			chassis.selected = null
+		update_chassis_page()
+		chassis.log_message("[src] removed from equipment.")
+		chassis = null
+		set_ready_state(1)
+
 /obj/item/mecha_part/equipment/proc/do_after_cooldown(target = 1)
 	sleep(equip_cooldown)
 	set_ready_state(1)
@@ -84,32 +113,6 @@
 
 /obj/item/mecha_part/equipment/proc/action(atom/target)
 	return
-
-/obj/item/mecha_part/equipment/proc/can_attach(obj/mecha/M)
-	if(istype(M))
-		if(length(M.equipment) < M.max_equip)
-			return TRUE
-	return FALSE
-
-/obj/item/mecha_part/equipment/proc/attach(obj/mecha/M)
-	M.equipment.Add(src)
-	chassis = M
-	loc = M
-	M.log_message("[src] initialized.")
-	if(!M.selected)
-		M.selected = src
-	update_chassis_page()
-
-/obj/item/mecha_part/equipment/proc/detach(atom/moveto = null)
-	moveto = moveto || GET_TURF(chassis)
-	if(Move(moveto))
-		chassis.equipment.Remove(src)
-		if(chassis.selected == src)
-			chassis.selected = null
-		update_chassis_page()
-		chassis.log_message("[src] removed from equipment.")
-		chassis = null
-		set_ready_state(1)
 
 /obj/item/mecha_part/equipment/Topic(href, href_list)
 	if(href_list["detach"])

@@ -121,11 +121,6 @@
 	construction_time = 300
 	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/bananium = 5000)
 
-/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/can_attach(obj/mecha/combat/honker/M)
-	if(!istype(M))
-		return 0
-	return ..()
-
 /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar
 	name = "mousetrap mortar"
 	icon_state = "mecha_mousetrapmrtr"

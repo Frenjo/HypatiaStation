@@ -12,11 +12,6 @@
 	var/fire_volume = 50 //How loud it is played.
 	var/auto_rearm = 0 //Does the weapon reload itself after each shot?
 
-/obj/item/mecha_part/equipment/weapon/can_attach(obj/mecha/combat/M)
-	if(!istype(M))
-		return FALSE
-	return ..()
-
 /obj/item/mecha_part/equipment/weapon/action_checks(atom/target)
 	if(projectiles <= 0)
 		return FALSE
