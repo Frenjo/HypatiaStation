@@ -74,24 +74,10 @@
 			/obj/item/mecha_part/chassis/odysseus
 		),
 		"Gygax" = list(
-			/obj/item/mecha_part/chassis/gygax,
-			/obj/item/mecha_part/part/gygax_torso,
-			/obj/item/mecha_part/part/gygax_head,
-			/obj/item/mecha_part/part/gygax_left_arm,
-			/obj/item/mecha_part/part/gygax_right_arm,
-			/obj/item/mecha_part/part/gygax_left_leg,
-			/obj/item/mecha_part/part/gygax_right_leg,
-			/obj/item/mecha_part/part/gygax_armour
+			/obj/item/mecha_part/chassis/gygax
 		),
 		"Durand" = list(
-			/obj/item/mecha_part/chassis/durand,
-			/obj/item/mecha_part/part/durand_torso,
-			/obj/item/mecha_part/part/durand_head,
-			/obj/item/mecha_part/part/durand_left_arm,
-			/obj/item/mecha_part/part/durand_right_arm,
-			/obj/item/mecha_part/part/durand_left_leg,
-			/obj/item/mecha_part/part/durand_right_leg,
-			/obj/item/mecha_part/part/durand_armour
+			/obj/item/mecha_part/chassis/durand
 		),
 		"Phazon" = list(),
 		"H.O.N.K" = list(

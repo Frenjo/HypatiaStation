@@ -81,4 +81,4 @@
 /obj/item/circuitboard/mecha/gygax/targeting
 	name = "circuit board (Gygax Weapon Control and Targeting module)"
 	icon_state = "mcontroller"
-	origin_tech = list(/datum/tech/combat = 4, /datum/tech/programming = 4)
+	origin_tech = list(/datum/tech/combat = 2, /datum/tech/programming = 4)
