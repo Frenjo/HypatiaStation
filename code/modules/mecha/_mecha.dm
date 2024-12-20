@@ -17,7 +17,6 @@
 	desc = "Exosuit"
 	icon = 'icons/mecha/mecha.dmi'
 	density = TRUE //Dense. To raise the heat.
-	opacity = TRUE ///opaque. Menacing.
 	anchored = TRUE //no pulling around.
 	unacidable = 1 //and no deleting hoomans inside
 	layer = MOB_LAYER //icon draw layer
@@ -30,10 +29,9 @@
 	var/turn_sound_volume = 40
 
 	var/initial_icon = null //Mech type for resetting icon. Only used for reskinning kits (see custom items)
-	var/can_move = 1
+	var/can_move = TRUE
 	var/mob/living/carbon/occupant = null
 	var/step_in = 10 //make a step in step_in/10 sec.
-	var/dir_in = 2//What direction will the mech face when entered/powered on? Defaults to South.
 	var/step_energy_drain = 10
 	var/health = 300 //health is health
 	var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
@@ -41,14 +39,16 @@
 	var/list/damage_absorption = list("brute" = 0.8, "fire" = 1.2, "bullet" = 0.9, "laser" = 1, "energy" = 1, "bomb" = 1)
 	var/obj/item/cell/cell
 	var/state = 0
-	var/list/log = new
+	var/list/log = list()
 	var/last_message = 0
 	var/add_req_access = 1
-	var/maint_access = 1
+	var/maint_access = TRUE
 	var/dna	//dna-locking the mech
 	var/list/proc_res = list() //stores proc owners, like proc_res["functionname"] = owner reference
 	var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
-	var/lights = 0
+
+	// Lights
+	var/lights = FALSE
 	var/lights_power = 6
 
 	//inner atmos

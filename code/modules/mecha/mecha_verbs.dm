@@ -135,7 +135,7 @@
 		forceMove(loc)
 		log_append_to_last("[H] moved in as pilot.")
 		icon_state = reset_icon()
-		set_dir(dir_in)
+		set_dir(SOUTH)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 		if(!hasInternalDamage())
 			occupant << sound('sound/mecha/nominal.ogg', volume = 50)
@@ -196,7 +196,7 @@
 		Entered(mmi_as_oc)
 		Move(loc)
 		icon_state = reset_icon()
-		set_dir(dir_in)
+		set_dir(SOUTH)
 		log_message("[mmi_as_oc] moved in as pilot.")
 		if(!hasInternalDamage())
 			occupant << sound('sound/mecha/nominal.ogg', volume = 50)
@@ -286,4 +286,4 @@
 			verbs.Add(/obj/mecha/verb/eject)
 		occupant = null
 		icon_state = reset_icon() + "-open"
-		set_dir(dir_in)
+		set_dir(SOUTH)

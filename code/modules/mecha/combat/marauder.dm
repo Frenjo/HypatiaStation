@@ -2,8 +2,8 @@
 	name = "Marauder"
 	desc = "Heavy-duty, combat exosuit, developed after the Durand model. Rarely found among civilian populations."
 	icon_state = "marauder"
-
 	initial_icon = "marauder"
+
 	step_in = 5
 	health = 500
 	deflect_chance = 25
@@ -79,8 +79,9 @@
 					pr_inertial_movement.set_process_args(list(src, direction))
 					tmp_step_energy_drain = step_energy_drain * 2
 
-		can_move = 0
-		spawn(tmp_step_in) can_move = 1
+		can_move = FALSE
+		spawn(tmp_step_in)
+			can_move = TRUE
 		use_power(tmp_step_energy_drain)
 		return 1
 	return 0

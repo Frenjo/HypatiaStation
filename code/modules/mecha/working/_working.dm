@@ -7,12 +7,8 @@
 		/obj/item/mecha_part/equipment/weapon
 	)
 
-	var/list/cargo
+	var/list/cargo = list()
 	var/cargo_capacity = 5
-
-/obj/mecha/working/New()
-	. = ..()
-	cargo = list()
 
 /obj/mecha/working/initialise()
 	. = ..()

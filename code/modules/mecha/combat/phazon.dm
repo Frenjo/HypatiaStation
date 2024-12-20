@@ -4,8 +4,8 @@
 			The pinnacle of scientific research and pride of NanoTrasen, it uses cutting edge bluespace technology and expensive materials. \
 			To most, it can only be described as 'WTF?'."
 	icon_state = "phazon"
-
 	initial_icon = "phazon"
+
 	step_in = 1
 	step_energy_drain = 3
 	health = 200

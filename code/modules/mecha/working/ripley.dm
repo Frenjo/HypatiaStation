@@ -2,8 +2,8 @@
 	name = "\improper APLU \"Ripley\""
 	desc = "Autonomous Power Loader Unit. The workhorse of the exosuit world."
 	icon_state = "ripley"
-
 	initial_icon = "ripley"
+
 	step_in = 6
 	max_temperature = 20000
 	health = 200
@@ -55,11 +55,10 @@
 	name = "\improper APLU \"Firefighter\""
 	desc = "Standard APLU chassis refitted with additional thermal protection and cistern."
 	icon_state = "firefighter"
-
 	initial_icon = "firefighter"
+
 	max_temperature = 65000
 	health = 250
-	lights_power = 8
 	damage_absorption = list("fire" = 0.5, "bullet" = 0.8, "bomb" = 0.5)
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley/firefighter
 
@@ -67,10 +66,9 @@
 	name = "\improper DEATH-RIPLEY"
 	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE"
 	icon_state = "deathripley"
-	opacity = FALSE
+	initial_icon = "deathripley"
 
 	step_in = 2
-	lights_power = 60
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley/deathripley
 	step_energy_drain = 0
 

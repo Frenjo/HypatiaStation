@@ -40,14 +40,14 @@
 	else
 		move_result	= mechstep(direction)
 	if(move_result)
-		can_move = 0
+		can_move = FALSE
 		use_power(step_energy_drain)
 		if(isspace(loc))
 			if(!check_for_support())
 				pr_inertial_movement.start(list(src, direction))
 				log_message("Movement control lost. Inertial movement started.")
 		if(do_after(step_in))
-			can_move = 1
+			can_move = TRUE
 		return 1
 	return 0
 

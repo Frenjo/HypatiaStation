@@ -3,20 +3,17 @@
 	name = "\improper HoverPod"
 	desc = "Stubby and round, this space-capable craft is an ancient favorite."
 	icon_state = "engineering_pod"
+	initial_icon = "engineering_pod"
 
 	step_sound = 'sound/machines/hiss.ogg'
 	turn_sound = null
 
-	initial_icon = "engineering_pod"
 	internal_damage_threshold = 80
 	step_in = 4
-	step_energy_drain = 10
 	max_temperature = 20000
 	health = 150
 	infra_luminosity = 6
 	wreckage = /obj/effect/decal/mecha_wreckage/hoverpod
-	cargo_capacity = 5
-	max_equip = 3
 
 	var/datum/effect/system/ion_trail_follow/ion_trail
 	var/stabilization_enabled = TRUE
