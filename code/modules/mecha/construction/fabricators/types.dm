@@ -66,13 +66,7 @@
 			/obj/item/mecha_part/chassis/firefighter
 		),
 		"Odysseus" = list(
-			/obj/item/mecha_part/chassis/odysseus,
-			/obj/item/mecha_part/part/odysseus_torso,
-			/obj/item/mecha_part/part/odysseus_head,
-			/obj/item/mecha_part/part/odysseus_left_arm,
-			/obj/item/mecha_part/part/odysseus_right_arm,
-			/obj/item/mecha_part/part/odysseus_left_leg,
-			/obj/item/mecha_part/part/odysseus_right_leg
+			/obj/item/mecha_part/chassis/odysseus
 		),
 		"Gygax" = list(
 			/obj/item/mecha_part/chassis/gygax,

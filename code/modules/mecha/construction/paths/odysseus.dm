@@ -26,17 +26,17 @@
 		list(
 			"key" = /obj/item/weldingtool,
 			"backkey" = /obj/item/wrench,
-			"desc" = "The external armour is wrenched."
+			"desc" = "The external carapace is wrenched."
 		),
 		//2
 		list(
 			"key" = /obj/item/wrench,
 			"backkey" = /obj/item/crowbar,
-			"desc" = "The xxternal armour is installed."
+			"desc" = "The external carapace is installed."
 		),
 		//3
 		list(
-			"key" = /obj/item/stack/sheet/plasteel,
+			"key" = /obj/item/mecha_part/part/odysseus_carapace,
 			"backkey" = /obj/item/weldingtool,
 			"desc" = "The internal armour is welded."
 		),
@@ -258,8 +258,8 @@
 		if(3)
 			if(diff == FORWARD)
 				user.visible_message(
-					SPAN_NOTICE("[user] installs the external reinforced armour layer on \the [holder]."),
-					SPAN_NOTICE("You install the external reinforced armour layer on \the [holder].")
+					SPAN_NOTICE("[user] installs the external carapace on \the [holder]."),
+					SPAN_NOTICE("You install the external carapace on \the [holder].")
 				)
 				holder.icon_state = "odysseus12"
 			else
@@ -270,28 +270,28 @@
 				holder.icon_state = "odysseus10"
 			if(diff == FORWARD)
 				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]'s external reinforced armour layer."),
-					SPAN_NOTICE("You secure \the [holder]'s external reinforced armour layer.")
+					SPAN_NOTICE("[user] secures \the [holder]'s external carapace."),
+					SPAN_NOTICE("You secure \the [holder]'s external carapace.")
 				)
 				holder.icon_state = "odysseus13"
 			else
 				user.visible_message(
-					SPAN_NOTICE("[user] pries the external armour layer from \the [holder]."),
-					SPAN_NOTICE("You pry the external armour layer from \the [holder].")
+					SPAN_NOTICE("[user] pries the external carapace from \the [holder]."),
+					SPAN_NOTICE("You pry the external carapace from \the [holder].")
 				)
-				new /obj/item/stack/sheet/plasteel(GET_TURF(holder), 5)
+				new /obj/item/mecha_part/part/odysseus_carapace(GET_TURF(holder))
 				holder.icon_state = "odysseus11"
 		if(1)
 			if(diff == FORWARD)
 				user.visible_message(
-					SPAN_NOTICE("[user] welds the external armour layer to \the [holder]."),
-					SPAN_NOTICE("You weld the external armour layer to \the [holder].")
+					SPAN_NOTICE("[user] welds the external carapace to \the [holder]."),
+					SPAN_NOTICE("You weld the external carapace to \the [holder].")
 				)
 				holder.icon_state = "odysseus14"
 			else
 				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]'s external armour layer."),
-					SPAN_NOTICE("You unfasten \the [holder]'s external armour layer.")
+					SPAN_NOTICE("[user] unfastens \the [holder]'s external carapace."),
+					SPAN_NOTICE("You unfasten \the [holder]'s external carapace.")
 				)
 				holder.icon_state = "odysseus12"
 	return TRUE
