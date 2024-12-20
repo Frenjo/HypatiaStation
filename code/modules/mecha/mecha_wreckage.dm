@@ -10,6 +10,8 @@
 	density = TRUE
 	anchored = FALSE
 	opacity = FALSE
+
+	var/list/parts = list()
 	var/list/welder_salvage = list(
 		/obj/item/stack/sheet/plasteel,
 		/obj/item/stack/sheet/steel,
@@ -18,13 +20,16 @@
 	var/list/wirecutters_salvage = list(
 		/obj/item/stack/cable_coil
 	)
-	var/list/crowbar_salvage
+	var/list/crowbar_salvage = list()
 	var/salvage_num = 5
 
 /obj/effect/decal/mecha_wreckage/New()
-	..()
-	crowbar_salvage = new
-	return
+	. = ..()
+	for(var/i = 0; i < 2; i++)
+		if(!isemptylist(parts) && prob(40))
+			var/part = pick(parts)
+			welder_salvage.Add(part)
+			parts.Remove(part)
 
 /obj/effect/decal/mecha_wreckage/ex_act(severity)
 	if(severity < 2)
@@ -89,14 +94,10 @@
 		..()
 	return
 
-
 /obj/effect/decal/mecha_wreckage/gygax
 	name = "Gygax wreckage"
 	icon_state = "gygax-broken"
-
-/obj/effect/decal/mecha_wreckage/gygax/New()
-	..()
-	var/list/parts = list(
+	parts = list(
 		/obj/item/mecha_part/part/gygax_torso,
 		/obj/item/mecha_part/part/gygax_head,
 		/obj/item/mecha_part/part/gygax_left_arm,
@@ -104,12 +105,6 @@
 		/obj/item/mecha_part/part/gygax_left_leg,
 		/obj/item/mecha_part/part/gygax_right_leg
 	)
-	for(var/i = 0; i < 2; i++)
-		if(!isemptylist(parts) && prob(40))
-			var/part = pick(parts)
-			welder_salvage += part
-			parts -= part
-	return
 
 /obj/effect/decal/mecha_wreckage/gygax/dark
 	name = "Dark Gygax wreckage"
@@ -131,30 +126,18 @@
 /obj/effect/decal/mecha_wreckage/ripley
 	name = "Ripley wreckage"
 	icon_state = "ripley-broken"
-
-/obj/effect/decal/mecha_wreckage/ripley/New()
-	..()
-	var/list/parts = list(
+	parts = list(
 		/obj/item/mecha_part/part/ripley_torso,
 		/obj/item/mecha_part/part/ripley_left_arm,
 		/obj/item/mecha_part/part/ripley_right_arm,
 		/obj/item/mecha_part/part/ripley_left_leg,
 		/obj/item/mecha_part/part/ripley_right_leg
 	)
-	for(var/i = 0; i < 2; i++)
-		if(!isemptylist(parts) && prob(40))
-			var/part = pick(parts)
-			welder_salvage += part
-			parts -= part
-	return
 
 /obj/effect/decal/mecha_wreckage/ripley/firefighter
 	name = "Firefighter wreckage"
 	icon_state = "firefighter-broken"
-
-/obj/effect/decal/mecha_wreckage/ripley/firefighter/New()
-	..()
-	var/list/parts = list(
+	parts = list(
 		/obj/item/mecha_part/part/ripley_torso,
 		/obj/item/mecha_part/part/ripley_left_arm,
 		/obj/item/mecha_part/part/ripley_right_arm,
@@ -162,12 +145,6 @@
 		/obj/item/mecha_part/part/ripley_right_leg,
 		/obj/item/clothing/suit/fire
 	)
-	for(var/i = 0;i < 2; i++)
-		if(!isemptylist(parts) && prob(40))
-			var/part = pick(parts)
-			welder_salvage += part
-			parts -= part
-	return
 
 /obj/effect/decal/mecha_wreckage/ripley/deathripley
 	name = "Death-Ripley wreckage"
@@ -176,10 +153,7 @@
 /obj/effect/decal/mecha_wreckage/honk
 	name = "H.O.N.K wreckage"
 	icon_state = "honk-broken"
-
-/obj/effect/decal/mecha_wreckage/honk/New()
-	..()
-	var/list/parts = list(
+	parts = list(
 		/obj/item/mecha_part/chassis/honk,
 		/obj/item/mecha_part/part/honk_torso,
 		/obj/item/mecha_part/part/honk_head,
@@ -188,20 +162,11 @@
 		/obj/item/mecha_part/part/honk_left_leg,
 		/obj/item/mecha_part/part/honk_right_leg
 	)
-	for(var/i = 0; i < 2; i++)
-		if(!isemptylist(parts) && prob(40))
-			var/part = pick(parts)
-			welder_salvage += part
-			parts -= part
-	return
 
 /obj/effect/decal/mecha_wreckage/durand
 	name = "Durand wreckage"
 	icon_state = "durand-broken"
-
-/obj/effect/decal/mecha_wreckage/durand/New()
-	..()
-	var/list/parts = list(
+	parts = list(
 		/obj/item/mecha_part/part/durand_torso,
 		/obj/item/mecha_part/part/durand_head,
 		/obj/item/mecha_part/part/durand_left_arm,
@@ -209,12 +174,6 @@
 		/obj/item/mecha_part/part/durand_left_leg,
 		/obj/item/mecha_part/part/durand_right_leg
 	)
-	for(var/i = 0;i < 2; i++)
-		if(!isemptylist(parts) && prob(40))
-			var/part = pick(parts)
-			welder_salvage += part
-			parts -= part
-	return
 
 /obj/effect/decal/mecha_wreckage/phazon
 	name = "Phazon wreckage"
@@ -224,10 +183,7 @@
 /obj/effect/decal/mecha_wreckage/odysseus
 	name = "Odysseus wreckage"
 	icon_state = "odysseus-broken"
-
-/obj/effect/decal/mecha_wreckage/odysseus/New()
-	..()
-	var/list/parts = list(
+	parts = list(
 		/obj/item/mecha_part/part/odysseus_torso,
 		/obj/item/mecha_part/part/odysseus_head,
 		/obj/item/mecha_part/part/odysseus_left_arm,
@@ -235,26 +191,7 @@
 		/obj/item/mecha_part/part/odysseus_left_leg,
 		/obj/item/mecha_part/part/odysseus_right_leg
 	)
-	for(var/i = 0; i < 2; i++)
-		if(!isemptylist(parts) && prob(40))
-			var/part = pick(parts)
-			welder_salvage += part
-			parts -= part
-	return
 
 /obj/effect/decal/mecha_wreckage/hoverpod
 	name = "Hover pod wreckage"
 	icon_state = "engineering_pod-broken"
-
-/*
-/obj/effect/decal/mecha_wreckage/hoverpod/New()
-	..()
-	var/list/parts = list()
-
-	for(var/i = 0; i < 2; i++)
-		if(!isemptylist(parts) && prob(40))
-			var/part = pick(parts)
-			welder_salvage += part
-			parts -= part
-	return
-*/
