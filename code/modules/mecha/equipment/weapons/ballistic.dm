@@ -112,14 +112,20 @@
 /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar
 	name = "banana mortar"
 	icon_state = "mecha_bananamrtr"
+	construction_time = 300
+	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/bananium = 5000)
+
 	projectile = /obj/item/bananapeel
 	fire_sound = 'sound/items/bikehorn.ogg'
 	projectiles = 15
 	missile_speed = 1.5
 	projectile_energy_cost = 100
 	equip_cooldown = 20
-	construction_time = 300
-	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/bananium = 5000)
+
+/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/can_attach(obj/mecha/M)
+	if(!istype(M, /obj/mecha/combat/honk))
+		return FALSE
+	return ..()
 
 /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar
 	name = "mousetrap mortar"

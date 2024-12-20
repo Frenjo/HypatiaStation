@@ -19,10 +19,6 @@
 	var/phasing = FALSE
 	var/phasing_energy_drain = 200
 
-/obj/mecha/combat/phazon/New()
-	. = ..()
-	excluded_equipment.Add(/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar, /obj/item/mecha_part/equipment/weapon/honker)
-
 /obj/mecha/combat/phazon/Bump(atom/obstacle)
 	if(phasing && get_charge() >= phasing_energy_drain)
 		if(can_move)

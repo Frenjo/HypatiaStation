@@ -12,8 +12,7 @@
 	infra_luminosity = 5
 	operation_req_access = list(ACCESS_CLOWN)
 	wreckage = /obj/effect/decal/mecha_wreckage/honk
-	add_req_access = 0
-	max_equip = 3
+	add_req_access = FALSE
 
 	var/squeak = FALSE
 

@@ -13,7 +13,7 @@
 
 	operation_req_access = list(ACCESS_CENT_SPECOPS)
 	wreckage = /obj/effect/decal/mecha_wreckage/marauder
-	add_req_access = 0
+	add_req_access = FALSE
 	internal_damage_threshold = 25
 	force = 45
 	max_equip = 4
@@ -27,8 +27,6 @@
 
 /obj/mecha/combat/marauder/New()
 	. = ..()
-	excluded_equipment.Add(/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar, /obj/item/mecha_part/equipment/weapon/honker)
-
 	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/weapon/energy/pulse(src)
 	ME.attach(src)
 	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/explosive(src)

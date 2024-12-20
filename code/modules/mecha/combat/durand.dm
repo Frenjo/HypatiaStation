@@ -16,10 +16,6 @@
 	var/defence = 0
 	var/defence_deflect = 35
 
-/obj/mecha/combat/durand/New()
-	. = ..()
-	excluded_equipment.Add(/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar, /obj/item/mecha_part/equipment/weapon/honker)
-
 /obj/mecha/combat/durand/relaymove(mob/user, direction)
 	if(defence)
 		if(world.time - last_message > 20)

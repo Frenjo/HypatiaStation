@@ -12,27 +12,6 @@
 	deflect_chance = 15
 	step_energy_drain = 6
 
-	var/obj/item/clothing/glasses/hud/health/mech/hud
-
-/obj/mecha/medical/odysseus/New()
-	. = ..()
-	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
-
-/obj/mecha/medical/odysseus/moved_inside(mob/living/carbon/human/H)
-	if(..())
-		if(isnotnull(H.glasses))
-			occupant_message(SPAN_WARNING("\The [H.glasses] prevent you from using \the [src]'s [hud]."))
-		else
-			H.glasses = hud
-		return TRUE
-	return FALSE
-
-/obj/mecha/medical/odysseus/go_out()
-	if(ishuman(occupant))
-		var/mob/living/carbon/human/H = occupant
-		if(H.glasses == hud)
-			H.glasses = null
-	. = ..()
 /*
 /obj/mecha/medical/odysseus/verb/set_perspective()
 	set category = "Exosuit Interface"
@@ -54,10 +33,4 @@
 		occupant.client.eye = occupant
 	to_world("[occupant.client.eye]")
 */
-
 //TODO - Check documentation for client.eye and client.perspective...
-/obj/item/clothing/glasses/hud/health/mech
-	name = "integrated medical HUD"
-
-/obj/item/clothing/glasses/hud/health/mech/process_hud(mob/M)
-	process_med_hud(M, 1)

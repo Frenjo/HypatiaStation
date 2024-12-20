@@ -41,7 +41,7 @@
 	var/state = 0
 	var/list/log = list()
 	var/last_message = 0
-	var/add_req_access = 1
+	var/add_req_access = TRUE
 	var/maint_access = TRUE
 	var/dna	//dna-locking the mech
 	var/list/proc_res = list() //stores proc owners, like proc_res["functionname"] = owner reference
