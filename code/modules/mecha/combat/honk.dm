@@ -1,8 +1,8 @@
-/obj/mecha/combat/honker
+/obj/mecha/combat/honk
 	name = "H.O.N.K"
 	desc = "Produced by \"Tyranny of Honk, INC\", this exosuit is designed as heavy clown-support. Used to spread the fun and joy of life. HONK!"
-	icon_state = "honker"
-	initial_icon = "honker"
+	icon_state = "honk"
+	initial_icon = "honk"
 
 	step_in = 2
 	health = 140
@@ -11,24 +11,24 @@
 	damage_absorption = list("brute" = 1.2, "fire" = 1.5, "bullet" = 1, "laser" = 1, "energy" = 1, "bomb" = 1)
 	infra_luminosity = 5
 	operation_req_access = list(ACCESS_CLOWN)
-	wreckage = /obj/effect/decal/mecha_wreckage/honker
+	wreckage = /obj/effect/decal/mecha_wreckage/honk
 	add_req_access = 0
 	max_equip = 3
 
 	var/squeak = FALSE
 
-/obj/mecha/combat/honker/New()
+/obj/mecha/combat/honk/New()
 	. = ..()
 	excluded_equipment.Add(/obj/item/mecha_part/equipment/anticcw_armor_booster, /obj/item/mecha_part/equipment/antiproj_armor_booster)
 
-/obj/mecha/combat/honker/melee_action(target)
+/obj/mecha/combat/honk/melee_action(target)
 	if(!melee_can_hit)
 		return
 
 	if(ismob(target))
 		step_away(target, src, 15)
 
-/obj/mecha/combat/honker/get_stats_part()
+/obj/mecha/combat/honk/get_stats_part()
 	var/integrity = health / initial(health) * 100
 	var/cell_charge = get_charge()
 	var/tank_pressure = internal_tank ? round(internal_tank.return_pressure(), 0.01) : "None"
@@ -50,7 +50,7 @@
 						[dna ? "<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[dna]</span> \[<a href='byond://?src=\ref[src];reset_dna=1'>Reset</a>\]<br>" : null]
 					"}
 
-/obj/mecha/combat/honker/get_stats_html()
+/obj/mecha/combat/honk/get_stats_html()
 	. = {"<html>
 						<head><title>[name] data</title>
 						<style>
@@ -104,7 +104,7 @@
 						</html>
 					 "}
 
-/obj/mecha/combat/honker/get_commands()
+/obj/mecha/combat/honk/get_commands()
 	. = {"<div class='wr'>
 						<div class='header'>Sounds of HONK:</div>
 						<div class='links'>
@@ -114,7 +114,7 @@
 						"}
 	. += ..()
 
-/obj/mecha/combat/honker/get_equipment_list()
+/obj/mecha/combat/honk/get_equipment_list()
 	if(!length(equipment))
 		return
 	. = "<b>Honk-ON-Systems:</b><div style=\"margin-left: 15px;\">"
@@ -122,7 +122,7 @@
 		. += "[selected == MT ? "<b id='\ref[MT]'>" : "<a id='\ref[MT]' href='byond://?src=\ref[src];select_equip=\ref[MT]'>"][MT.get_equip_info()][selected == MT ? "</b>" : "</a>"]<br>"
 	. += "</div>"
 
-/obj/mecha/combat/honker/mechstep(direction)
+/obj/mecha/combat/honk/mechstep(direction)
 	. = step(src, direction)
 	if(.)
 		if(!squeak)
@@ -131,7 +131,7 @@
 		else
 			squeak = FALSE
 
-/obj/mecha/combat/honker/Topic(href, href_list)
+/obj/mecha/combat/honk/Topic(href, href_list)
 	. = ..()
 	if(href_list["play_sound"])
 		switch(href_list["play_sound"])

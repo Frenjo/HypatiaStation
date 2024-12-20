@@ -173,11 +173,11 @@
 	name = "Death-Ripley wreckage"
 	icon_state = "deathripley-broken"
 
-/obj/effect/decal/mecha_wreckage/honker
-	name = "Honker wreckage"
-	icon_state = "honker-broken"
+/obj/effect/decal/mecha_wreckage/honk
+	name = "H.O.N.K wreckage"
+	icon_state = "honk-broken"
 
-/obj/effect/decal/mecha_wreckage/honker/New()
+/obj/effect/decal/mecha_wreckage/honk/New()
 	..()
 	var/list/parts = list(
 		/obj/item/mecha_part/chassis/honker,

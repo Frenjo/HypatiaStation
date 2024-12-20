@@ -111,7 +111,7 @@
 
 /obj/item/mecha_part/equipment/defence_shocker/can_attach(obj/mecha/M)
 	if(..())
-		if(!istype(M, /obj/mecha/combat/honker))
+		if(!istype(M, /obj/mecha/combat/honk))
 			if(!M.proc_res["dynattackby"] && !M.proc_res["dynattackhand"] && !M.proc_res["dynattackalien"])
 				return 1
 	return 0

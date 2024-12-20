@@ -117,7 +117,7 @@
 	req_tech = list(/datum/tech/programming = 3)
 	build_type = DESIGN_TYPE_IMPRINTER
 	materials = list(/decl/material/glass = 2000, "sacid" = 20)
-	build_path = /obj/item/circuitboard/mecha/honker/main
+	build_path = /obj/item/circuitboard/mecha/honk/main
 
 /datum/design/honker_peri
 	name = "Circuit Design (\"H.O.N.K\" Peripherals Control module)"
@@ -125,7 +125,7 @@
 	req_tech = list(/datum/tech/programming = 3)
 	build_type = DESIGN_TYPE_IMPRINTER
 	materials = list(/decl/material/glass = 2000, "sacid" = 20)
-	build_path = /obj/item/circuitboard/mecha/honker/peripherals
+	build_path = /obj/item/circuitboard/mecha/honk/peripherals
 
 /datum/design/honker_targ
 	name = "Circuit Design (\"H.O.N.K\" Weapons & Targeting Control module)"
@@ -133,4 +133,4 @@
 	req_tech = list(/datum/tech/programming = 3)
 	build_type = DESIGN_TYPE_IMPRINTER
 	materials = list(/decl/material/glass = 2000, "sacid" = 20)
-	build_path = /obj/item/circuitboard/mecha/honker/targeting
+	build_path = /obj/item/circuitboard/mecha/honk/targeting

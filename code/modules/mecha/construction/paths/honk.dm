@@ -11,29 +11,29 @@
 
 /datum/construction/mecha/chassis/honker/spawn_result()
 	var/obj/item/mecha_part/chassis/const_holder = holder
-	const_holder.construct = new /datum/construction/mecha/honker(const_holder)
+	const_holder.construct = new /datum/construction/mecha/honk(const_holder)
 	const_holder.density = TRUE
 	spawn()
 		qdel(src)
 
-// Honker
-/datum/construction/mecha/honker
-	result = /obj/mecha/combat/honker
+// H.O.N.K
+/datum/construction/mecha/honk
+	result = /obj/mecha/combat/honk
 	steps = list(
 		list("key" = /obj/item/bikehorn),								//1
-		list("key" = /obj/item/clothing/shoes/clown_shoes),						//2
+		list("key" = /obj/item/clothing/shoes/clown_shoes),				//2
 		list("key" = /obj/item/bikehorn),								//3
-		list("key" = /obj/item/clothing/mask/gas/clown_hat),					//4
+		list("key" = /obj/item/clothing/mask/gas/clown_hat),			//4
 		list("key" = /obj/item/bikehorn),								//5
-		list("key" = /obj/item/circuitboard/mecha/honker/targeting),		//6
+		list("key" = /obj/item/circuitboard/mecha/honk/targeting),	//6
 		list("key" = /obj/item/bikehorn),								//7
-		list("key" = /obj/item/circuitboard/mecha/honker/peripherals),	//8
+		list("key" = /obj/item/circuitboard/mecha/honk/peripherals),	//8
 		list("key" = /obj/item/bikehorn),								//9
-		list("key" = /obj/item/circuitboard/mecha/honker/main),			//10
+		list("key" = /obj/item/circuitboard/mecha/honk/main),			//10
 		list("key" = /obj/item/bikehorn),								//11
 	)
 
-/datum/construction/mecha/honker/custom_action(step, atom/used_atom, mob/user)
+/datum/construction/mecha/honk/custom_action(step, atom/used_atom, mob/user)
 	if(!..())
 		return FALSE
 
@@ -75,6 +75,6 @@
 			qdel(used_atom)
 	return TRUE
 
-/datum/construction/mecha/honker/spawn_result()
+/datum/construction/mecha/honk/spawn_result()
 	. = ..()
-	feedback_inc("mecha_honker_created", 1)
+	feedback_inc("mecha_honk_created", 1)
