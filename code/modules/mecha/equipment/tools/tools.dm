@@ -1,5 +1,6 @@
 /obj/item/mecha_part/equipment/tool/hydraulic_clamp
 	name = "hydraulic clamp"
+	desc = "An exosuit-mounted hydraulic clamp with cargo loading capability. (Can be attached to: Working Exosuits)"
 	icon_state = "mecha_clamp"
 	equip_cooldown = 15
 	energy_drain = 10
@@ -70,7 +71,7 @@
 
 /obj/item/mecha_part/equipment/tool/drill
 	name = "drill"
-	desc = "This is the drill that'll pierce the heavens! (Can be attached to: Combat and Engineering Exosuits)"
+	desc = "This is the drill that'll pierce the heavens! (Can be attached to: Working and Combat Exosuits)"
 	icon_state = "mecha_drill"
 	equip_cooldown = 30
 	energy_drain = 10
@@ -123,7 +124,7 @@
 
 /obj/item/mecha_part/equipment/tool/drill/diamond
 	name = "diamond drill"
-	desc = "This is an upgraded version of the drill that'll pierce the heavens! (Can be attached to: Combat and Engineering Exosuits)"
+	desc = "This is an upgraded version of the drill that'll pierce the heavens! (Can be attached to: Working and Combat Exosuits)"
 	icon_state = "mecha_diamond_drill"
 	origin_tech = list(/datum/tech/materials = 4, /datum/tech/engineering = 3)
 	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/diamond = 6500)
@@ -177,7 +178,7 @@
 
 /obj/item/mecha_part/equipment/tool/extinguisher
 	name = "extinguisher"
-	desc = "Exosuit-mounted extinguisher (Can be attached to: Engineering exosuits)"
+	desc = "An exosuit-mounted fire extinguisher. (Can be attached to: Working Exosuits)"
 	icon_state = "mecha_exting"
 	equip_cooldown = 5
 	energy_drain = 0
@@ -241,7 +242,7 @@
 
 /obj/item/mecha_part/equipment/tool/rcd
 	name = "mounted RCD"
-	desc = "An exosuit-mounted rapid-construction-device. (Can be attached to: Any exosuit)"
+	desc = "An exosuit-mounted rapid-construction-device. (Can be attached to: Working Exosuits)"
 	icon_state = "mecha_rcd"
 	origin_tech = list(
 		/datum/tech/materials = 4, /datum/tech/magnets = 4, /datum/tech/power_storage = 4,
@@ -356,7 +357,7 @@
 
 /obj/item/mecha_part/equipment/teleporter
 	name = "teleporter"
-	desc = "An exosuit module that allows exosuits to teleport to any position in view."
+	desc = "An exosuit module that allows exosuits to teleport to any position in view. (Can be attached to: Any Exosuit)"
 	icon_state = "mecha_teleport"
 	origin_tech = list(/datum/tech/bluespace = 10)
 	equip_cooldown = 150
@@ -377,7 +378,7 @@
 
 /obj/item/mecha_part/equipment/wormhole_generator
 	name = "wormhole generator"
-	desc = "An exosuit module that allows generating of small quasi-stable wormholes."
+	desc = "An exosuit module that allows generating of small quasi-stable wormholes. (Can be attached to: Any Exosuit)"
 	icon_state = "mecha_wholegen"
 	origin_tech = list(/datum/tech/bluespace = 3)
 	equip_cooldown = 50
@@ -429,7 +430,7 @@
 
 /obj/item/mecha_part/equipment/gravcatapult
 	name = "gravitational catapult"
-	desc = "An exosuit mounted Gravitational Catapult."
+	desc = "An exosuit mounted Gravitational Catapult. (Can be attached to: Any Exosuit)"
 	icon_state = "mecha_teleport"
 	origin_tech = list(/datum/tech/magnets = 3, /datum/tech/bluespace = 2)
 	equip_cooldown = 10
@@ -506,7 +507,7 @@
 
 /obj/item/mecha_part/equipment/anticcw_armor_booster //what is that noise? A BAWWW from TK mutants.
 	name = "armour booster module (close combat weaponry)"
-	desc = "Boosts exosuit armour against armed melee attacks. Requires energy to operate."
+	desc = "Boosts exosuit armour against armed melee attacks. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K)"
 	icon_state = "mecha_abooster_ccw"
 	origin_tech = list(/datum/tech/materials = 3)
 	equip_cooldown = 10
@@ -552,7 +553,7 @@
 
 /obj/item/mecha_part/equipment/antiproj_armor_booster
 	name = "armour booster module (ranged weaponry)"
-	desc = "Boosts exosuit armour against ranged attacks. Completely blocks taser shots. Requires energy to operate."
+	desc = "Boosts exosuit armour against ranged attacks. Completely blocks taser shots. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K)"
 	icon_state = "mecha_abooster_proj"
 	origin_tech = list(/datum/tech/materials = 4)
 	equip_cooldown = 10
@@ -619,7 +620,7 @@
 
 /obj/item/mecha_part/equipment/repair_droid
 	name = "repair droid"
-	desc = "Automated repair droid. Scans exosuit for damage and repairs it. Can fix almost all types of external or internal damage."
+	desc = "Automated repair droid. Scans exosuit for damage and repairs it. Can fix almost all types of external or internal damage. (Can be attached to: Any Exosuit)"
 	icon_state = "repair_droid"
 	origin_tech = list(/datum/tech/magnets = 3, /datum/tech/programming = 3)
 	equip_cooldown = 20
@@ -708,7 +709,7 @@
 
 /obj/item/mecha_part/equipment/tesla_energy_relay
 	name = "energy relay"
-	desc = "Wirelessly drains energy from any available power channel in area. The performance index is quite low."
+	desc = "Wirelessly drains energy from any available power channel in area. The performance index is quite low. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
 	origin_tech = list(/datum/tech/magnets = 4, /datum/tech/syndicate = 2)
 	equip_cooldown = 10
@@ -818,7 +819,7 @@
 
 /obj/item/mecha_part/equipment/generator
 	name = "plasma converter"
-	desc = "Generates power using solid plasma as fuel. Pollutes the environment."
+	desc = "Generates power using solid plasma as fuel. Pollutes the environment. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
 	origin_tech = list(/datum/tech/engineering = 1, /datum/tech/power_storage = 2, /datum/tech/plasma = 2)
 	equip_cooldown = 10
@@ -954,7 +955,7 @@
 
 /obj/item/mecha_part/equipment/generator/nuclear
 	name = "\improper ExoNuclear reactor"
-	desc = "Generates power using uranium. Pollutes the environment."
+	desc = "Generates power using uranium. Pollutes the environment. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
 	origin_tech = list(/datum/tech/engineering = 3, /datum/tech/power_storage = 3)
 	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/glass = 1000, /decl/material/silver = 500)
@@ -990,6 +991,7 @@
 //This is pretty much just for the death-ripley so that it is harmless
 /obj/item/mecha_part/equipment/tool/safety_clamp
 	name = "kill clamp"
+	desc = "An exosuit-mounted hydraulic clamp with KILL CAPABILITY. (Can be attached to: Working Exosuits)"
 	icon_state = "mecha_clamp"
 	equip_cooldown = 15
 	energy_drain = 0
@@ -1054,7 +1056,7 @@
 // Ported the passenger compartment from NSS Eternal along with the hoverpod. -Frenjo
 /obj/item/mecha_part/equipment/tool/passenger
 	name = "passenger compartment"
-	desc = "A mountable passenger compartment for exo-suits. Rather cramped."
+	desc = "A mountable passenger compartment for exo-suits. Rather cramped. (Can be attached to: Any Exosuit)"
 	icon_state = "mecha_abooster_ccw"
 	origin_tech = list(/datum/tech/biotech = 1, /datum/tech/engineering = 1)
 	energy_drain = 10
@@ -1225,6 +1227,7 @@
 
 /obj/item/mecha_part/equipment/tool/cable_layer
 	name = "cable layer"
+	desc = "An exosuit-mounted cable layer. (Can be attached to: Working Exosuits)"
 	icon_state = "mecha_wire"
 
 	var/datum/event/event

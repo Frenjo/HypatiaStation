@@ -1,6 +1,6 @@
 /obj/item/mecha_part/equipment/tool/sleeper
 	name = "mounted sleeper"
-	desc = "Mounted Sleeper. (Can be attached to: Medical Exosuits)"
+	desc = "An exosuit-mounted medical sleeper. (Can be attached to: Medical Exosuits)"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "sleeper_0"
 	origin_tech = list(/datum/tech/biotech = 3, /datum/tech/programming = 2)

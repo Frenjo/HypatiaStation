@@ -4,6 +4,7 @@
 
 /obj/item/mecha_part/equipment
 	name = "mecha equipment"
+	desc = "A default piece of exosuit equipment. You should never see this."
 	icon = 'icons/mecha/mecha_equipment.dmi'
 	icon_state = "mecha_equip"
 
