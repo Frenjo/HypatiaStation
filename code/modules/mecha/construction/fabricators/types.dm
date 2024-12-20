@@ -63,7 +63,12 @@
 			/obj/item/mecha_part/part/ripley_right_leg
 		),
 		"Firefighter" = list(
-			/obj/item/mecha_part/chassis/firefighter
+			/obj/item/mecha_part/chassis/firefighter,
+			/obj/item/mecha_part/part/ripley_torso,
+			/obj/item/mecha_part/part/ripley_left_arm,
+			/obj/item/mecha_part/part/ripley_right_arm,
+			/obj/item/mecha_part/part/ripley_left_leg,
+			/obj/item/mecha_part/part/ripley_right_leg
 		),
 		"Odysseus" = list(
 			/obj/item/mecha_part/chassis/odysseus
