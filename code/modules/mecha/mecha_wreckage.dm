@@ -180,13 +180,13 @@
 /obj/effect/decal/mecha_wreckage/honk/New()
 	..()
 	var/list/parts = list(
-		/obj/item/mecha_part/chassis/honker,
-		/obj/item/mecha_part/part/honker_torso,
-		/obj/item/mecha_part/part/honker_head,
-		/obj/item/mecha_part/part/honker_left_arm,
-		/obj/item/mecha_part/part/honker_right_arm,
-		/obj/item/mecha_part/part/honker_left_leg,
-		/obj/item/mecha_part/part/honker_right_leg
+		/obj/item/mecha_part/chassis/honk,
+		/obj/item/mecha_part/part/honk_torso,
+		/obj/item/mecha_part/part/honk_head,
+		/obj/item/mecha_part/part/honk_left_arm,
+		/obj/item/mecha_part/part/honk_right_arm,
+		/obj/item/mecha_part/part/honk_left_leg,
+		/obj/item/mecha_part/part/honk_right_leg
 	)
 	for(var/i = 0; i < 2; i++)
 		if(!isemptylist(parts) && prob(40))

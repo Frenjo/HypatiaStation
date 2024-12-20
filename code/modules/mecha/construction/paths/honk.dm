@@ -1,15 +1,15 @@
-// Honker Chassis
-/datum/construction/mecha/chassis/honker
+// H.O.N.K Chassis
+/datum/construction/mecha/chassis/honk
 	steps = list(
-		list("key" = /obj/item/mecha_part/part/honker_torso),		//1
-		list("key" = /obj/item/mecha_part/part/honker_left_arm),	//2
-		list("key" = /obj/item/mecha_part/part/honker_right_arm),	//3
-		list("key" = /obj/item/mecha_part/part/honker_left_leg),	//4
-		list("key" = /obj/item/mecha_part/part/honker_right_leg),	//5
-		list("key" = /obj/item/mecha_part/part/honker_head)
+		list("key" = /obj/item/mecha_part/part/honk_torso),		//1
+		list("key" = /obj/item/mecha_part/part/honk_left_arm),	//2
+		list("key" = /obj/item/mecha_part/part/honk_right_arm),	//3
+		list("key" = /obj/item/mecha_part/part/honk_left_leg),	//4
+		list("key" = /obj/item/mecha_part/part/honk_right_leg),	//5
+		list("key" = /obj/item/mecha_part/part/honk_head)
 	)
 
-/datum/construction/mecha/chassis/honker/spawn_result()
+/datum/construction/mecha/chassis/honk/spawn_result()
 	var/obj/item/mecha_part/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/mecha/honk(const_holder)
 	const_holder.density = TRUE

@@ -111,7 +111,7 @@
 	build_path = /obj/item/circuitboard/mecha/phazon/targeting
 
 // Honk
-/datum/design/honker_main
+/datum/design/honk_main
 	name = "Circuit Design (\"H.O.N.K\" Central Control module)"
 	desc = "Allows for the construction of a \"H.O.N.K\" Central Control module."
 	req_tech = list(/datum/tech/programming = 3)
@@ -119,7 +119,7 @@
 	materials = list(/decl/material/glass = 2000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/mecha/honk/main
 
-/datum/design/honker_peri
+/datum/design/honk_peri
 	name = "Circuit Design (\"H.O.N.K\" Peripherals Control module)"
 	desc = "Allows for the construction of a \"H.O.N.K\" Peripheral Control module."
 	req_tech = list(/datum/tech/programming = 3)
@@ -127,7 +127,7 @@
 	materials = list(/decl/material/glass = 2000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/mecha/honk/peripherals
 
-/datum/design/honker_targ
+/datum/design/honk_targ
 	name = "Circuit Design (\"H.O.N.K\" Weapons & Targeting Control module)"
 	desc = "Allows for the construction of a \"H.O.N.K\" Weapons & Targeting Control module."
 	req_tech = list(/datum/tech/programming = 3)

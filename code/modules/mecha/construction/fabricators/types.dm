@@ -81,13 +81,13 @@
 		),
 		"Phazon" = list(),
 		"H.O.N.K" = list(
-			/obj/item/mecha_part/chassis/honker,
-			/obj/item/mecha_part/part/honker_torso,
-			/obj/item/mecha_part/part/honker_head,
-			/obj/item/mecha_part/part/honker_left_arm,
-			/obj/item/mecha_part/part/honker_right_arm,
-			/obj/item/mecha_part/part/honker_left_leg,
-			/obj/item/mecha_part/part/honker_right_leg
+			/obj/item/mecha_part/chassis/honk,
+			/obj/item/mecha_part/part/honk_torso,
+			/obj/item/mecha_part/part/honk_head,
+			/obj/item/mecha_part/part/honk_left_arm,
+			/obj/item/mecha_part/part/honk_right_arm,
+			/obj/item/mecha_part/part/honk_left_leg,
+			/obj/item/mecha_part/part/honk_right_leg
 		),
 		"General Exosuit Equipment" = list(
 			/obj/item/mecha_part/tracking,
