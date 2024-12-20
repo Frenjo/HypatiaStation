@@ -1692,6 +1692,7 @@
 #include "code\modules\research\designs\computer_circuits.dm"
 #include "code\modules\research\designs\mecha_circuits.dm"
 #include "code\modules\research\designs\mecha_equipment.dm"
+#include "code\modules\research\designs\mecha_parts.dm"
 #include "code\modules\research\designs\medical.dm"
 #include "code\modules\research\designs\mining.dm"
 #include "code\modules\research\designs\misc.dm"

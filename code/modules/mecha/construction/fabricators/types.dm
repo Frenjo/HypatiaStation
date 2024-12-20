@@ -94,6 +94,7 @@
 			/obj/item/mecha_part/part/durand_right_leg,
 			/obj/item/mecha_part/part/durand_armour
 		),
+		"Phazon" = list(),
 		"H.O.N.K" = list(
 			/obj/item/mecha_part/chassis/honker,
 			/obj/item/mecha_part/part/honker_torso,

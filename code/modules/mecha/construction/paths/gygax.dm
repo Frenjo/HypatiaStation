@@ -338,8 +338,8 @@
 		if(6)
 			if(diff == FORWARD)
 				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]'s internal armour layer."),
-					SPAN_NOTICE("You secure \the [holder]'s internal armour layer.")
+					SPAN_NOTICE("[user] installs the internal armour layer on \the [holder]."),
+					SPAN_NOTICE("You install the internal armour layer on \the [holder].")
 				)
 				holder.icon_state = "gygax15"
 			else
