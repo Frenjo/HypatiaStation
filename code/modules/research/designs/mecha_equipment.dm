@@ -8,7 +8,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/magnets = 2, /datum/tech/bluespace = 3)
 	build_path = /obj/item/mecha_part/equipment/wormhole_generator
-	category = "General Exosuit Equipment"
+	categories = list("General Exosuit Equipment")
 
 /datum/design/mech_teleporter
 	name = "Exosuit Module Design (Teleporter Module)"
@@ -16,7 +16,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/magnets = 5, /datum/tech/bluespace = 10)
 	build_path = /obj/item/mecha_part/equipment/teleporter
-	category = "General Exosuit Equipment"
+	categories = list("General Exosuit Equipment")
 
 /datum/design/mech_gravcatapult
 	name = "Exosuit Module Design (Gravitational Catapult Module)"
@@ -24,7 +24,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/magnets = 3, /datum/tech/engineering = 3, /datum/tech/bluespace = 2)
 	build_path = /obj/item/mecha_part/equipment/gravcatapult
-	category = "General Exosuit Equipment"
+	categories = list("General Exosuit Equipment")
 
 /datum/design/mech_repair_droid
 	name = "Exosuit Module Design (Repair Droid Module)"
@@ -32,7 +32,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/magnets = 3, /datum/tech/engineering = 3, /datum/tech/programming = 3)
 	build_path = /obj/item/mecha_part/equipment/repair_droid
-	category = "General Exosuit Equipment"
+	categories = list("General Exosuit Equipment")
 
 /datum/design/mech_plasma_generator
 	name = "Exosuit Module Design (Plasma Converter Module)"
@@ -40,7 +40,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/engineering = 2, /datum/tech/power_storage = 2, /datum/tech/plasma = 2)
 	build_path = /obj/item/mecha_part/equipment/generator
-	category = "General Exosuit Equipment"
+	categories = list("General Exosuit Equipment")
 
 /datum/design/mech_energy_relay
 	name = "Exosuit Module Design (Tesla Energy Relay)"
@@ -48,7 +48,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/magnets = 4, /datum/tech/power_storage = 3)
 	build_path = /obj/item/mecha_part/equipment/tesla_energy_relay
-	category = "General Exosuit Equipment"
+	categories = list("General Exosuit Equipment")
 
 /datum/design/mech_generator_nuclear
 	name = "Exosuit Module Design (ExoNuclear Reactor)"
@@ -56,7 +56,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/power_storage = 3)
 	build_path = /obj/item/mecha_part/equipment/generator/nuclear
-	category = "General Exosuit Equipment"
+	categories = list("General Exosuit Equipment")
 
 // Working
 /datum/design/mech_rcd
@@ -68,7 +68,7 @@
 		/datum/tech/power_storage = 4, /datum/tech/bluespace = 3
 	)
 	build_path = /obj/item/mecha_part/equipment/tool/rcd
-	category = "Working Exosuit Equipment"
+	categories = list("Working Exosuit Equipment")
 
 /datum/design/mech_diamond_drill
 	name = "Exosuit Module Design (Diamond Mining Drill)"
@@ -76,7 +76,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 4, /datum/tech/engineering = 3)
 	build_path = /obj/item/mecha_part/equipment/tool/drill/diamond
-	category = "Working Exosuit Equipment"
+	categories = list("Working Exosuit Equipment")
 
 // Medical
 /datum/design/mech_syringe_gun
@@ -88,7 +88,7 @@
 		/datum/tech/programming = 3
 	)
 	build_path = /obj/item/mecha_part/equipment/tool/syringe_gun
-	category = "Medical Exosuit Equipment"
+	categories = list("Medical Exosuit Equipment")
 
 // Combat
 /datum/design/mech_ccw_armor
@@ -97,7 +97,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 4)
 	build_path = /obj/item/mecha_part/equipment/anticcw_armor_booster
-	category = "Combat Exosuit Equipment"
+	categories = list("Combat Exosuit Equipment")
 
 /datum/design/mech_proj_armor
 	name = "Exosuit Module Design (Reflective Armor Booster Module)"
@@ -105,7 +105,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 5, /datum/tech/engineering = 3)
 	build_path = /obj/item/mecha_part/equipment/antiproj_armor_booster
-	category = "Combat Exosuit Equipment"
+	categories = list("Combat Exosuit Equipment")
 
 // Weapons
 /datum/design/mech_scattershot
@@ -114,7 +114,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/combat = 4)
 	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/scattershot
-	category = "Exosuit Weapons"
+	categories = list("Exosuit Weapons")
 
 /datum/design/mech_laser
 	name = "Exosuit Weapon Design (CH-PS \"Immolator\" Laser)"
@@ -122,7 +122,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/magnets = 3, /datum/tech/combat = 3)
 	build_path = /obj/item/mecha_part/equipment/weapon/energy/laser
-	category = "Exosuit Weapons"
+	categories = list("Exosuit Weapons")
 
 /datum/design/mech_laser_heavy
 	name = "Exosuit Weapon Design (CH-LC \"Solaris\" Laser Cannon)"
@@ -130,7 +130,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/magnets = 4, /datum/tech/combat = 4)
 	build_path = /obj/item/mecha_part/equipment/weapon/energy/laser/heavy
-	category = "Exosuit Weapons"
+	categories = list("Exosuit Weapons")
 
 /datum/design/mech_grenade_launcher
 	name = "Exosuit Weapon Design (SGL-6 Grenade Launcher)"
@@ -138,7 +138,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/combat = 3)
 	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang
-	category = "Exosuit Weapons"
+	categories = list("Exosuit Weapons")
 
 /datum/design/clusterbang_launcher
 	name = "Exosuit Module Design (SOP-6 Clusterbang Launcher)"
@@ -146,4 +146,4 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 5, /datum/tech/syndicate = 3)
 	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited
-	category = "Exosuit Weapons"
+	categories = list("Exosuit Weapons")

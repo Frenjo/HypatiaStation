@@ -241,7 +241,7 @@
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE | DESIGN_TYPE_ROBOFAB | DESIGN_TYPE_MECHFAB
 	materials = list(MATERIAL_METAL = 700, /decl/material/glass = 50)
 	build_path = /obj/item/cell
-	category = "Power Cells"
+	categories = list("Power Cells")
 
 /datum/design/high_cell
 	name = "High-Capacity Power Cell"
@@ -250,7 +250,7 @@
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE | DESIGN_TYPE_ROBOFAB | DESIGN_TYPE_MECHFAB
 	materials = list(MATERIAL_METAL = 700, /decl/material/glass = 60)
 	build_path = /obj/item/cell/high
-	category = "Power Cells"
+	categories = list("Power Cells")
 
 /datum/design/super_cell
 	name = "Super-Capacity Power Cell"
@@ -260,7 +260,7 @@
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_ROBOFAB | DESIGN_TYPE_MECHFAB
 	materials = list(MATERIAL_METAL = 700, /decl/material/glass = 70)
 	build_path = /obj/item/cell/super
-	category = "Power Cells"
+	categories = list("Power Cells")
 
 /datum/design/hyper_cell
 	name = "Hyper-Capacity Power Cell"
@@ -270,4 +270,4 @@
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_ROBOFAB | DESIGN_TYPE_MECHFAB
 	materials = list(MATERIAL_METAL = 400, /decl/material/glass = 70, /decl/material/silver = 150, /decl/material/gold = 150)
 	build_path = /obj/item/cell/hyper
-	category = "Power Cells"
+	categories = list("Power Cells")

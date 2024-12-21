@@ -344,11 +344,14 @@
 	. = 0
 	for(var/datum/design/D in files.known_designs)
 		if(D.build_type & design_flag)
-			if(D.category in part_sets)//Checks if it's a valid category
-				if(add_part_to_set(D.category, D.build_path))//Adds it to said category
-					.++
-			else
-				if(add_part_to_set("Misc", D.build_path))//If in doubt, chunk it into the Misc
+			var/added_to_category = FALSE
+			for(var/category in D.categories)
+				if(category in part_sets) // Checks if it's a valid category.
+					if(add_part_to_set(category, D.build_path)) // Adds it to said category.
+						.++
+						added_to_category = TRUE
+			if(!added_to_category)
+				if(add_part_to_set("Misc", D.build_path)) // If in doubt, chuck it into Misc.
 					.++
 
 /obj/machinery/robotics_fabricator/proc/update_tech()

@@ -35,6 +35,15 @@
 	materials = list(/decl/material/glass = 2000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/mecha/odysseus/peripherals
 
+// Serenity
+/datum/design/serenity_medical
+	name = "Circuit Design (\"Serenity\" Medical Control module)"
+	desc = "Allows for the construction of a \"Serenity\" Medical Control module."
+	req_tech = list(/datum/tech/biotech = 2, /datum/tech/programming = 4)
+	build_type = DESIGN_TYPE_IMPRINTER
+	materials = list(/decl/material/glass = 2000, "sacid" = 20)
+	build_path = /obj/item/circuitboard/mecha/serenity/medical
+
 // Gygax
 /datum/design/gygax_main
 	name = "Circuit Design (\"Gygax\" Central Control module)"

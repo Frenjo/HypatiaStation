@@ -11,7 +11,7 @@
 		/datum/tech/programming = 2
 	)
 	build_path = /obj/item/mecha_part/part/odysseus_torso
-	category = "Odysseus"
+	categories = list("Odysseus")
 
 /datum/design/odysseus_head
 	name = "Exosuit Design (\"Odysseus\" head)"
@@ -19,7 +19,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 2, /datum/tech/programming = 3)
 	build_path = /obj/item/mecha_part/part/odysseus_head
-	category = "Odysseus"
+	categories = list("Odysseus")
 
 /datum/design/odysseus_left_arm
 	name = "Exosuit Design (\"Odysseus\" left arm)"
@@ -27,7 +27,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/odysseus_left_arm
-	category = "Odysseus"
+	categories = list("Odysseus")
 
 /datum/design/odysseus_right_arm
 	name = "Exosuit Design (\"Odysseus\" right arm)"
@@ -35,7 +35,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/odysseus_right_arm
-	category = "Odysseus"
+	categories = list("Odysseus")
 
 /datum/design/odysseus_left_leg
 	name = "Exosuit Design (\"Odysseus\" left leg)"
@@ -43,7 +43,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/odysseus_left_leg
-	category = "Odysseus"
+	categories = list("Odysseus")
 
 /datum/design/odysseus_right_leg
 	name = "Exosuit Design (\"Odysseus\" right leg)"
@@ -51,7 +51,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/odysseus_right_leg
-	category = "Odysseus"
+	categories = list("Odysseus")
 
 /datum/design/odysseus_carapace
 	name = "Exosuit Design (\"Odysseus\" carapace)"
@@ -59,7 +59,16 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3)
 	build_path = /obj/item/mecha_part/part/odysseus_carapace
-	category = "Odysseus"
+	categories = list("Odysseus")
+
+// Serenity
+/datum/design/serenity_carapace
+	name = "Exosuit Design (\"Serenity\" carapace)"
+	desc = "The external carapace of a Serenity-type exosuit."
+	build_type = DESIGN_TYPE_MECHFAB
+	req_tech = list(/datum/tech/materials = 4, /datum/tech/engineering = 4)
+	build_path = /obj/item/mecha_part/part/serenity_carapace
+	categories = list("Serenity")
 
 // Gygax
 /datum/design/gygax_torso
@@ -71,7 +80,7 @@
 		/datum/tech/programming = 2
 	)
 	build_path = /obj/item/mecha_part/part/gygax_torso
-	category = "Gygax"
+	categories = list("Serenity", "Gygax")
 
 /datum/design/gygax_head
 	name = "Exosuit Design (\"Gygax\" head)"
@@ -82,7 +91,7 @@
 		/datum/tech/programming = 2
 	)
 	build_path = /obj/item/mecha_part/part/gygax_head
-	category = "Gygax"
+	categories = list("Serenity", "Gygax")
 
 /datum/design/gygax_left_arm
 	name = "Exosuit Design (\"Gygax\" left arm)"
@@ -90,7 +99,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/gygax_left_arm
-	category = "Gygax"
+	categories = list("Serenity", "Gygax")
 
 /datum/design/gygax_right_arm
 	name = "Exosuit Design (\"Gygax\" right arm)"
@@ -98,7 +107,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/gygax_right_arm
-	category = "Gygax"
+	categories = list("Serenity", "Gygax")
 
 /datum/design/gygax_left_leg
 	name = "Exosuit Design (\"Gygax\" left leg)"
@@ -106,7 +115,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/gygax_left_leg
-	category = "Gygax"
+	categories = list("Serenity", "Gygax")
 
 /datum/design/gygax_right_leg
 	name = "Exosuit Design (\"Gygax\" right leg)"
@@ -114,7 +123,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/gygax_right_leg
-	category = "Gygax"
+	categories = list("Serenity", "Gygax")
 
 /datum/design/gygax_armour
 	name = "Exosuit Design (\"Gygax\" armour)"
@@ -122,7 +131,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 6, /datum/tech/combat = 4, /datum/tech/engineering = 5)
 	build_path = /obj/item/mecha_part/part/gygax_armour
-	category = "Gygax"
+	categories = list("Gygax")
 
 // Durand
 /datum/design/durand_torso
@@ -134,7 +143,7 @@
 		/datum/tech/programming = 2
 	)
 	build_path = /obj/item/mecha_part/part/durand_torso
-	category = "Durand"
+	categories = list("Durand")
 
 /datum/design/durand_head
 	name = "Exosuit Design (\"Durand\" head)"
@@ -145,7 +154,7 @@
 		/datum/tech/programming = 2
 	)
 	build_path = /obj/item/mecha_part/part/durand_head
-	category = "Durand"
+	categories = list("Durand")
 
 /datum/design/durand_left_arm
 	name = "Exosuit Design (\"Durand\" left arm)"
@@ -153,7 +162,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/durand_left_arm
-	category = "Durand"
+	categories = list("Durand")
 
 /datum/design/durand_right_arm
 	name = "Exosuit Design (\"Durand\" right arm)"
@@ -161,7 +170,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/durand_right_arm
-	category = "Durand"
+	categories = list("Durand")
 
 /datum/design/durand_left_leg
 	name = "Exosuit Design (\"Durand\" left leg)"
@@ -169,7 +178,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/durand_left_leg
-	category = "Durand"
+	categories = list("Durand")
 
 /datum/design/durand_right_leg
 	name = "Exosuit Design (\"Durand\" right leg)"
@@ -177,7 +186,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/durand_right_leg
-	category = "Durand"
+	categories = list("Durand")
 
 /datum/design/durand_armour
 	name = "Exosuit Design (\"Durand\" armour)"
@@ -185,7 +194,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 4, /datum/tech/engineering = 5)
 	build_path = /obj/item/mecha_part/part/durand_armour
-	category = "Durand"
+	categories = list("Durand")
 
 // Phazon
 /datum/design/phazon_chassis
@@ -194,7 +203,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 7)
 	build_path = /obj/item/mecha_part/chassis/phazon
-	category = "Phazon"
+	categories = list("Phazon")
 
 /datum/design/phazon_torso
 	name = "Exosuit Design (\"Phazon\" torso)"
@@ -205,7 +214,7 @@
 		/datum/tech/bluespace = 6
 	)
 	build_path = /obj/item/mecha_part/part/phazon_torso
-	category = "Phazon"
+	categories = list("Phazon")
 
 /datum/design/phazon_head
 	name = "Exosuit Design (\"Phazon\" head)"
@@ -213,7 +222,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 6, /datum/tech/programming = 4)
 	build_path = /obj/item/mecha_part/part/phazon_head
-	category = "Phazon"
+	categories = list("Phazon")
 
 /datum/design/phazon_left_arm
 	name = "Exosuit Design (\"Phazon\" left arm)"
@@ -221,7 +230,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 2, /datum/tech/bluespace = 2)
 	build_path = /obj/item/mecha_part/part/phazon_left_arm
-	category = "Phazon"
+	categories = list("Phazon")
 
 /datum/design/phazon_right_arm
 	name = "Exosuit Design (\"Phazon\" right arm)"
@@ -229,7 +238,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 2, /datum/tech/bluespace = 2)
 	build_path = /obj/item/mecha_part/part/phazon_right_arm
-	category = "Phazon"
+	categories = list("Phazon")
 
 /datum/design/phazon_left_leg
 	name = "Exosuit Design (\"Phazon\" left leg)"
@@ -237,7 +246,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 3, /datum/tech/bluespace = 3)
 	build_path = /obj/item/mecha_part/part/phazon_left_leg
-	category = "Phazon"
+	categories = list("Phazon")
 
 /datum/design/phazon_right_leg
 	name = "Exosuit Design (\"Phazon\" right leg)"
@@ -245,7 +254,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 3, /datum/tech/bluespace = 3)
 	build_path = /obj/item/mecha_part/part/phazon_right_leg
-	category = "Phazon"
+	categories = list("Phazon")
 
 /datum/design/phazon_armour
 	name = "Exosuit Design (\"Phazon\" armour)"
@@ -253,4 +262,4 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 7, /datum/tech/magnets = 6, /datum/tech/bluespace = 6)
 	build_path = /obj/item/mecha_part/part/phazon_armour
-	category = "Phazon"
+	categories = list("Phazon")

@@ -110,6 +110,10 @@
 	name = "Dark Gygax wreckage"
 	icon_state = "darkgygax-broken"
 
+/obj/effect/decal/mecha_wreckage/gygax/serenity
+	name = "Serenity wreckage"
+	icon_state = "serenity-broken"
+
 /obj/effect/decal/mecha_wreckage/marauder
 	name = "Marauder wreckage"
 	icon_state = "marauder-broken"

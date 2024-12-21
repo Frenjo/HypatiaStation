@@ -73,6 +73,9 @@
 		"Odysseus" = list(
 			/obj/item/mecha_part/chassis/odysseus
 		),
+		"Serenity" = list(
+			/obj/item/mecha_part/chassis/serenity
+		),
 		"Gygax" = list(
 			/obj/item/mecha_part/chassis/gygax
 		),

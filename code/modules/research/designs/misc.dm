@@ -141,7 +141,7 @@
 	materials = list(MATERIAL_METAL = 1000, /decl/material/glass = 500)
 	reliability_base = 76
 	build_path = /obj/item/mmi
-	category = "Robot Internal Components"
+	categories = list("Robot Internal Components")
 
 /datum/design/mmi_radio
 	name = "Radio-enabled Man-Machine Interface"
@@ -151,7 +151,7 @@
 	materials = list(MATERIAL_METAL = 1200, /decl/material/glass = 500)
 	reliability_base = 74
 	build_path = /obj/item/mmi/radio_enabled
-	category = "Robot Internal Components"
+	categories = list("Robot Internal Components")
 
 /datum/design/posibrain
 	name = "Positronic Brain"
@@ -164,7 +164,7 @@
 		/decl/material/gold = 500, /decl/material/diamond = 100, /decl/material/plasma = 500
 	)
 	build_path = /obj/item/mmi/posibrain
-	category = "Robot Internal Components"
+	categories = list("Robot Internal Components")
 
 /////////////////////////////////////////
 ////////// Miscellaneous Items //////////
@@ -185,7 +185,7 @@
 	materials = list(MATERIAL_METAL = 750, /decl/material/glass = 750)
 	reliability_base = 76
 	build_path = /obj/item/flash/synthetic
-	category = "Robot Internal Components"
+	categories = list("Robot Internal Components")
 
 /datum/design/security_hud
 	name = "Security HUD"
@@ -202,7 +202,7 @@
 	build_type = DESIGN_TYPE_ROBOFAB
 	req_tech = list(/datum/tech/combat = 4, /datum/tech/syndicate = 3)
 	build_path = /obj/item/borg/upgrade/syndicate
-	category = "Robot Upgrade Modules"
+	categories = list("Robot Upgrade Modules")
 
 /datum/design/chameleon
 	name = "Chameleon Jumpsuit"
