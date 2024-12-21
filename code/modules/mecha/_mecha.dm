@@ -84,6 +84,11 @@
 	var/obj/item/mecha_part/equipment/selected
 	var/max_equip = 3
 
+	// Actuator Overload
+	var/overload_capable = FALSE
+	var/overload = FALSE
+	var/overload_coeff = 2
+
 	var/datum/events/events
 
 /obj/mecha/New()
@@ -101,6 +106,8 @@
 	add_iterators()
 	verbs.Remove(/obj/mecha/verb/disconnect_from_port)
 	verbs.Remove(/atom/movable/verb/pull)
+	if(!overload_capable)
+		verbs.Remove(/obj/mecha/verb/overload)
 	log_message("[src.name] created.")
 	loc.Entered(src)
 	GLOBL.mechas_list.Add(src) //global mech list
@@ -565,6 +572,8 @@
 	if(usr.stat > 0)
 		return
 	var/datum/topic_input/new_filter = new /datum/topic_input(href, href_list)
+	if(href_list["toggle_leg_overload"])
+		overload()
 	if(href_list["select_equip"])
 		if(usr != src.occupant)
 			return

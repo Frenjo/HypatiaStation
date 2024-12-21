@@ -48,6 +48,13 @@
 				log_message("Movement control lost. Inertial movement started.")
 		if(do_after(step_in))
 			can_move = TRUE
+		if(overload)
+			health--
+			if(health < initial(health) - initial(health) / 3)
+				overload = FALSE
+				step_in = initial(step_in)
+				step_energy_drain = initial(step_energy_drain)
+				occupant_message(SPAN_WARNING("Leg actuator damage threshold exceded. Disabling overload."))
 		return 1
 	return 0
 

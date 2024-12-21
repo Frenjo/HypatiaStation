@@ -12,59 +12,7 @@
 
 	wreckage = /obj/effect/decal/mecha_wreckage/gygax
 
-	var/overload = FALSE
-	var/overload_coeff = 2
-
-/obj/mecha/combat/gygax/verb/overload()
-	set category = "Exosuit Interface"
-	set name = "Toggle Leg Actuator Overload"
-	set popup_menu = FALSE
-	set src = usr.loc
-
-	if(usr != occupant)
-		return
-
-	if(overload)
-		overload = FALSE
-		step_in = initial(step_in)
-		step_energy_drain = initial(step_energy_drain)
-		occupant_message(SPAN_INFO("You disable the leg actuator overload."))
-	else
-		overload = TRUE
-		step_in = min(1, round(step_in / 2))
-		step_energy_drain = step_energy_drain * overload_coeff
-		occupant_message(SPAN_WARNING("You enable the leg actuator overload."))
-	log_message("Toggled leg actuator overload.")
-
-/obj/mecha/combat/gygax/dyndomove(direction)
-	if(!..())
-		return
-	if(overload)
-		health--
-		if(health < initial(health) - initial(health) / 3)
-			overload = FALSE
-			step_in = initial(step_in)
-			step_energy_drain = initial(step_energy_drain)
-			occupant_message(SPAN_WARNING("Leg actuator damage threshold exceded. Disabling overload."))
-
-/obj/mecha/combat/gygax/get_stats_part()
-	. = ..()
-	. += "<b>Leg actuator overload: [overload ? "on" : "off"]</b>"
-
-/obj/mecha/combat/gygax/get_commands()
-	. = {"<div class='wr'>
-						<div class='header'>Special</div>
-						<div class='links'>
-						<a href='byond://?src=\ref[src];toggle_leg_overload=1'>Toggle leg actuator overload</a>
-						</div>
-						</div>
-						"}
-	. += ..()
-
-/obj/mecha/combat/gygax/Topic(href, href_list)
-	. = ..()
-	if(href_list["toggle_leg_overload"])
-		overload()
+	overload_capable = TRUE
 
 /obj/mecha/combat/gygax/dark
 	name = "Dark Gygax"

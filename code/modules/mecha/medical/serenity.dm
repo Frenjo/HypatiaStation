@@ -15,6 +15,8 @@
 
 	wreckage = /obj/effect/decal/mecha_wreckage/gygax/serenity
 
+	overload_capable = TRUE
+
 /obj/mecha/medical/serenity/New()
 	. = ..()
 	excluded_equipment.Remove(/obj/item/mecha_part/equipment/weapon)

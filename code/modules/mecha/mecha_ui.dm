@@ -83,10 +83,23 @@
 						<b>Lights: </b>[lights ? "on" : "off"]<br>
 						[isnotnull(dna) ? "<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[dna]</span> \[<a href='byond://?src=\ref[src];reset_dna=1'>Reset</a>\]<br>" : null]
 					"}
+
+	if(overload_capable)
+		output += "<b>Leg actuator overload: [overload ? "on" : "off"]</b>"
+
 	return output
 
 /obj/mecha/proc/get_commands()
-	var/output = {"<div class='wr'>
+	var/output
+	if(overload_capable)
+		output += {"<div class='wr'>
+						<div class='header'>Special</div>
+						<div class='links'>
+						<a href='byond://?src=\ref[src];toggle_leg_overload=1'>Toggle leg actuator overload</a>
+						</div>
+						</div>
+						"}
+	output += {"<div class='wr'>
 						<div class='header'>Electronics</div>
 						<div class='links'>
 						<a href='byond://?src=\ref[src];toggle_lights=1'>Toggle Lights</a><br>
