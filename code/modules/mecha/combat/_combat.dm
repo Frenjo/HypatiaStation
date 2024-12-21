@@ -1,7 +1,9 @@
 /obj/mecha/combat
 	force = 30
-	maint_access = FALSE
+
 	damage_absorption = list("brute" = 0.7, "fire" = 1, "bullet" = 0.7, "laser" = 0.85, "energy" = 1, "bomb" = 0.8)
+
+	maint_access = FALSE
 
 	excluded_equipment = list(
 		/obj/item/mecha_part/equipment/tool/hydraulic_clamp,

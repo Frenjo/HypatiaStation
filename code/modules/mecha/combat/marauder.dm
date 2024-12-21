@@ -2,21 +2,24 @@
 	name = "Marauder"
 	desc = "Heavy-duty, combat exosuit, developed after the Durand model. Rarely found among civilian populations."
 	icon_state = "marauder"
+	infra_luminosity = 3
 	initial_icon = "marauder"
 
-	step_in = 5
+	force = 45
+
 	health = 500
+	step_in = 5
+	max_temperature = 60000
 	deflect_chance = 25
 	damage_absorption = list("brute" = 0.5, "fire" = 0.7, "bullet" = 0.45, "laser" = 0.6, "energy" = 0.7, "bomb" = 0.7)
-	max_temperature = 60000
-	infra_luminosity = 3
+	internal_damage_threshold = 25
 
 	operation_req_access = list(ACCESS_CENT_SPECOPS)
-	wreckage = /obj/effect/decal/mecha_wreckage/marauder
 	add_req_access = FALSE
-	internal_damage_threshold = 25
-	force = 45
+
 	max_equip = 4
+
+	wreckage = /obj/effect/decal/mecha_wreckage/marauder
 
 	var/zoom = 0
 	var/thrusters = 0

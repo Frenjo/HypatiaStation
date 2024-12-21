@@ -4,13 +4,14 @@
 	icon_state = "odysseus"
 	initial_icon = "odysseus"
 
-	step_in = 2
-	max_temperature = 15000
 	health = 120
-	wreckage = /obj/effect/decal/mecha_wreckage/odysseus
-	internal_damage_threshold = 35
-	deflect_chance = 15
+	step_in = 2
 	step_energy_drain = 6
+	max_temperature = 15000
+	deflect_chance = 15
+	internal_damage_threshold = 35
+
+	wreckage = /obj/effect/decal/mecha_wreckage/odysseus
 
 /*
 /obj/mecha/medical/odysseus/verb/set_perspective()

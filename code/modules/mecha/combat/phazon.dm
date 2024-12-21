@@ -4,17 +4,19 @@
 			The pinnacle of scientific research and pride of NanoTrasen, it uses cutting edge bluespace technology and expensive materials. \
 			To most, it can only be described as 'WTF?'."
 	icon_state = "phazon"
+	infra_luminosity = 3
 	initial_icon = "phazon"
 
+	force = 15
+
+	health = 200
 	step_in = 1
 	step_energy_drain = 3
-	health = 200
 	deflect_chance = 30
 	damage_absorption = list("brute" = 0.7, "fire" = 0.7, "bullet" = 0.7, "laser" = 0.7, "energy" = 0.7, "bomb" = 0.7)
-	infra_luminosity = 3
-	wreckage = /obj/effect/decal/mecha_wreckage/phazon
 	internal_damage_threshold = 25
-	force = 15
+
+	wreckage = /obj/effect/decal/mecha_wreckage/phazon
 
 	var/phasing = FALSE
 	var/phasing_energy_drain = 200

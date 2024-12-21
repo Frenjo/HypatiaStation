@@ -16,11 +16,27 @@
 	name = "mecha"
 	desc = "Exosuit"
 	icon = 'icons/mecha/mecha.dmi'
-	density = TRUE //Dense. To raise the heat.
-	anchored = TRUE //no pulling around.
-	unacidable = 1 //and no deleting hoomans inside
-	layer = MOB_LAYER //icon draw layer
-	infra_luminosity = 15 //byond implementation is bugged.
+	layer = MOB_LAYER
+	infra_luminosity = 15 // BYOND implementation is bugged.
+
+	density = TRUE // Dense. To raise the heat.
+	anchored = TRUE // No pulling around.
+	unacidable = TRUE // And no deleting hoomans inside.
+
+	var/initial_icon = null // Mech type for resetting icon. Only used for reskinning kits (see custom items)
+	var/can_move = TRUE
+	var/mob/living/carbon/occupant = null
+
+	// Stats
+	var/health = 300
+	var/step_in = 10 // Makes a step every (step_in / 10) sec.
+	var/step_energy_drain = 10
+	var/max_temperature = 25000
+	var/deflect_chance = 10 // Chance to deflect incoming projectiles, hits, or lesser the effect of ex_act.
+	// The values in this list show how much damage will pass through, not how much will be absorbed.
+	var/list/damage_absorption = list("brute" = 0.8, "fire" = 1.2, "bullet" = 0.9, "laser" = 1, "energy" = 1, "bomb" = 1)
+	var/internal_damage_threshold = 50 // Health percentage below which internal damage is possible.
+	var/internal_damage = 0 // Contains bitflags.
 
 	// Sounds
 	var/step_sound = 'sound/mecha/mechstep.ogg'
@@ -28,21 +44,15 @@
 	var/turn_sound = 'sound/mecha/mechturn.ogg'
 	var/turn_sound_volume = 40
 
-	var/initial_icon = null //Mech type for resetting icon. Only used for reskinning kits (see custom items)
-	var/can_move = TRUE
-	var/mob/living/carbon/occupant = null
-	var/step_in = 10 //make a step in step_in/10 sec.
-	var/step_energy_drain = 10
-	var/health = 300 //health is health
-	var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
-	//the values in this list show how much damage will pass through, not how much will be absorbed.
-	var/list/damage_absorption = list("brute" = 0.8, "fire" = 1.2, "bullet" = 0.9, "laser" = 1, "energy" = 1, "bomb" = 1)
-	var/obj/item/cell/cell
+	// Access
+	var/list/operation_req_access = list() // Required access level for mecha operation.
+	var/list/internals_req_access = list(ACCESS_ENGINE, ACCESS_ROBOTICS) // Required access level to open cell compartment.
+	var/add_req_access = TRUE
+	var/maint_access = TRUE
+
 	var/state = 0
 	var/list/log = list()
 	var/last_message = 0
-	var/add_req_access = TRUE
-	var/maint_access = TRUE
 	var/dna	//dna-locking the mech
 	var/list/proc_res = list() //stores proc owners, like proc_res["functionname"] = owner reference
 	var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
@@ -60,13 +70,6 @@
 
 	var/obj/item/radio/radio = null
 
-	var/max_temperature = 25000
-	var/internal_damage_threshold = 50 //health percentage below which internal damage is possible
-	var/internal_damage = 0 //contains bitflags
-
-	var/list/operation_req_access = list()//required access level for mecha operation
-	var/list/internals_req_access = list(ACCESS_ENGINE, ACCESS_ROBOTICS)//required access level to open cell compartment
-
 	var/datum/global_iterator/pr_int_temp_processor //normalizes internal air mixture temperature
 	var/datum/global_iterator/pr_inertial_movement //controls inertial movement in spesss
 	var/datum/global_iterator/pr_give_air //moves air from tank to cabin
@@ -75,6 +78,7 @@
 	var/wreckage
 
 	// Equipment
+	var/obj/item/cell/cell
 	var/list/excluded_equipment = list() // A list of equipment typepaths this exosuit CANNOT equip.
 	var/list/equipment = list()
 	var/obj/item/mecha_part/equipment/selected

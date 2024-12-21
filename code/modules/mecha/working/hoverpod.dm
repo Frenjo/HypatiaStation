@@ -3,16 +3,17 @@
 	name = "\improper HoverPod"
 	desc = "Stubby and round, this space-capable craft is an ancient favorite."
 	icon_state = "engineering_pod"
+	infra_luminosity = 6
 	initial_icon = "engineering_pod"
 
 	step_sound = 'sound/machines/hiss.ogg'
 	turn_sound = null
 
-	internal_damage_threshold = 80
+	health = 150
 	step_in = 4
 	max_temperature = 20000
-	health = 150
-	infra_luminosity = 6
+	internal_damage_threshold = 80
+
 	wreckage = /obj/effect/decal/mecha_wreckage/hoverpod
 
 	var/datum/effect/system/ion_trail_follow/ion_trail
@@ -62,9 +63,11 @@
 	desc = "An ancient, run-down combat spacecraft." // Ideally would have a seperate icon.
 
 	health = 200
+
+	max_equip = 2
+
 	internal_damage_threshold = 35
 	cargo_capacity = 2
-	max_equip = 2
 
 /obj/mecha/working/hoverpod/combat/New()
 	. = ..()

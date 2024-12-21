@@ -2,17 +2,19 @@
 	name = "H.O.N.K"
 	desc = "Produced by \"Tyranny of Honk, INC\", this exosuit is designed as heavy clown-support. Used to spread the fun and joy of life. HONK!"
 	icon_state = "honk"
+	infra_luminosity = 5
 	initial_icon = "honk"
 
-	step_in = 2
 	health = 140
+	step_in = 2
 	deflect_chance = 60
-	internal_damage_threshold = 60
 	damage_absorption = list("brute" = 1.2, "fire" = 1.5, "bullet" = 1, "laser" = 1, "energy" = 1, "bomb" = 1)
-	infra_luminosity = 5
+	internal_damage_threshold = 60
+
 	operation_req_access = list(ACCESS_CLOWN)
-	wreckage = /obj/effect/decal/mecha_wreckage/honk
 	add_req_access = FALSE
+
+	wreckage = /obj/effect/decal/mecha_wreckage/honk
 
 	var/squeak = FALSE
 

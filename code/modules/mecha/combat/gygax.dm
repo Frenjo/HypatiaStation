@@ -2,15 +2,15 @@
 	name = "Gygax"
 	desc = "A lightweight, security exosuit. Popular among private and corporate security."
 	icon_state = "gygax"
+	infra_luminosity = 6
 	initial_icon = "gygax"
 
 	step_in = 3
 	deflect_chance = 15
 	damage_absorption = list("brute" = 0.75, "fire" = 1, "bullet" = 0.8, "laser" = 0.7, "energy" = 0.85, "bomb" = 1)
-	infra_luminosity = 6
+	internal_damage_threshold = 35
 
 	wreckage = /obj/effect/decal/mecha_wreckage/gygax
-	internal_damage_threshold = 35
 
 	var/overload = FALSE
 	var/overload_coeff = 2
@@ -70,16 +70,19 @@
 	name = "Dark Gygax"
 	desc = "A lightweight exosuit used by NanoTrasen Death Squads. A significantly upgraded Gygax security mech."
 	icon_state = "darkgygax"
-
 	initial_icon = "darkgygax"
+
 	health = 400
+	step_energy_drain = 5
+	max_temperature = 45000
 	deflect_chance = 25
 	damage_absorption = list("brute" = 0.6, "fire" = 0.8, "bullet" = 0.6, "laser" = 0.5, "energy" = 0.65, "bomb" = 0.8)
-	max_temperature = 45000
-	overload_coeff = 1
-	wreckage = /obj/effect/decal/mecha_wreckage/gygax/dark
+
 	max_equip = 4
-	step_energy_drain = 5
+
+	wreckage = /obj/effect/decal/mecha_wreckage/gygax/dark
+
+	overload_coeff = 1
 
 /obj/mecha/combat/gygax/dark/New()
 	. = ..()
