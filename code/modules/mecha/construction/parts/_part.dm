@@ -21,8 +21,7 @@
 
 /obj/item/mecha_part/chassis/attackby(obj/item/W, mob/user)
 	if(!construct || !construct.action(W, user))
-		..()
-	return
+		. = ..()
 
 /obj/item/mecha_part/chassis/attack_hand()
 	return

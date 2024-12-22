@@ -1,33 +1,33 @@
-// Durand Chassis
-/datum/construction/mecha/chassis/durand
+// Bulwark Chassis
+/datum/construction/mecha/chassis/bulwark
 	steps = list(
-		list("key" = /obj/item/mecha_part/part/durand_torso),		//1
-		list("key" = /obj/item/mecha_part/part/durand_left_arm),	//2
-		list("key" = /obj/item/mecha_part/part/durand_right_arm),	//3
-		list("key" = /obj/item/mecha_part/part/durand_left_leg),	//4
-		list("key" = /obj/item/mecha_part/part/durand_right_leg),	//5
-		list("key" = /obj/item/mecha_part/part/durand_head)
+		list("key" = /obj/item/mecha_part/part/ripley_torso),		//1
+		list("key" = /obj/item/mecha_part/part/ripley_left_arm),	//2
+		list("key" = /obj/item/mecha_part/part/ripley_right_arm),	//3
+		list("key" = /obj/item/mecha_part/part/ripley_left_leg),	//4
+		list("key" = /obj/item/mecha_part/part/ripley_right_leg)	//5
 	)
 
-/datum/construction/mecha/chassis/durand/spawn_result()
+/datum/construction/mecha/chassis/bulwark/spawn_result()
 	var/obj/item/mecha_part/chassis/const_holder = holder
-	const_holder.construct = new /datum/construction/reversible/mecha/durand(const_holder)
+	const_holder.construct = new /datum/construction/reversible/mecha/bulwark(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
 	const_holder.icon_state = "durand0"
 	const_holder.density = TRUE
+	const_holder.overlays.len = 0
 	spawn()
 		qdel(src)
 
-// Durand
-/datum/construction/reversible/mecha/durand
-	result = /obj/mecha/combat/durand
+// Bulwark
+/datum/construction/reversible/mecha/bulwark
+	result = /obj/mecha/working/dreadnought/bulwark
 	steps = list(
 		//1
 		list(
 			"key" = /obj/item/weldingtool,
 			"backkey" = /obj/item/wrench,
 			"desc" = MECHA_DESC_EXTERNAL_ARMOUR_WRENCHED
-		),
+			),
 		//2
 		list(
 			"key" = /obj/item/wrench,
@@ -90,7 +90,7 @@
 		),
 		//12
 		list(
-			"key" = /obj/item/circuitboard/mecha/durand/targeting,
+			"key" = /obj/item/circuitboard/mecha/bulwark/targeting,
 			"backkey" = /obj/item/screwdriver,
 			"desc" = MECHA_DESC_PERIPHERAL_MODULE_SECURED
 		),
@@ -102,7 +102,7 @@
 		),
 		//14
 		list(
-			"key" = /obj/item/circuitboard/mecha/durand/peripherals,
+			"key" = /obj/item/circuitboard/mecha/dreadnought/peripherals,
 			"backkey" = /obj/item/screwdriver,
 			"desc" = MECHA_DESC_CENTRAL_MODULE_SECURED
 		),
@@ -114,7 +114,7 @@
 		),
 		//16
 		list(
-			"key" = /obj/item/circuitboard/mecha/durand/main,
+			"key" = /obj/item/circuitboard/mecha/dreadnought/main,
 			"backkey" = /obj/item/screwdriver,
 			"desc" = MECHA_DESC_WIRING_ADJUSTED
 		),
@@ -143,7 +143,7 @@
 		)
 	)
 
-/datum/construction/reversible/mecha/durand/custom_action(index, diff, atom/used_atom, mob/user)
+/datum/construction/reversible/mecha/bulwark/custom_action(index, diff, atom/used_atom, mob/user)
 	if(!..())
 		return FALSE
 
@@ -187,7 +187,7 @@
 				holder.icon_state = "durand6"
 			else
 				MECHA_REMOVE_CENTRAL_MODULE
-				new /obj/item/circuitboard/mecha/durand/main(GET_TURF(holder))
+				new /obj/item/circuitboard/mecha/dreadnought/main(GET_TURF(holder))
 				holder.icon_state = "durand4"
 		if(14)
 			if(diff == FORWARD)
@@ -203,7 +203,7 @@
 				holder.icon_state = "durand8"
 			else
 				MECHA_REMOVE_PERIPHERAL_MODULE
-				new /obj/item/circuitboard/mecha/durand/peripherals(GET_TURF(holder))
+				new /obj/item/circuitboard/mecha/dreadnought/peripherals(GET_TURF(holder))
 				holder.icon_state = "durand6"
 		if(12)
 			if(diff == FORWARD)
@@ -219,7 +219,7 @@
 				holder.icon_state = "durand10"
 			else
 				MECHA_REMOVE_WEAPON_MODULE
-				new /obj/item/circuitboard/mecha/durand/targeting(GET_TURF(holder))
+				new /obj/item/circuitboard/mecha/bulwark/targeting(GET_TURF(holder))
 				holder.icon_state = "durand8"
 		if(10)
 			if(diff == FORWARD)
@@ -310,7 +310,7 @@
 		if(2)
 			if(diff == FORWARD)
 				MECHA_SECURE_ARMOUR_PLATES
-				holder.icon_state = "durand19"
+				holder.icon_state = "bulwark19"
 			else
 				MECHA_REMOVE_ARMOUR_PLATES
 				new /obj/item/mecha_part/part/durand_armour(GET_TURF(holder))
@@ -323,6 +323,6 @@
 				holder.icon_state = "durand18"
 	return TRUE
 
-/datum/construction/reversible/mecha/durand/spawn_result()
+/datum/construction/reversible/mecha/bulwark/spawn_result()
 	. = ..()
-	feedback_inc("mecha_durand_created", 1)
+	feedback_inc("mecha_bulwark_created", 1)

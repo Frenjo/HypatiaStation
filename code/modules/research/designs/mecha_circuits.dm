@@ -18,6 +18,32 @@
 	materials = list(/decl/material/glass = 2000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/mecha/ripley/peripherals
 
+// Dreadnought
+/datum/design/dreadnought_main
+	name = "Circuit Design (\"Dreadnought\" Central Control module)"
+	desc = "Allows for the construction of a \"Dreadnought\" Central Control module."
+	req_tech = list(/datum/tech/engineering = 3, /datum/tech/programming = 3)
+	build_type = DESIGN_TYPE_IMPRINTER
+	materials = list(/decl/material/glass = 2000, "sacid" = 20)
+	build_path = /obj/item/circuitboard/mecha/dreadnought/main
+
+/datum/design/dreadnought_peri
+	name = "Circuit Design (\"Dreadnought\" Peripherals Control module)"
+	desc = "Allows for the construction of a \"Dreadnought\" Peripheral Control module."
+	req_tech = list(/datum/tech/engineering = 3, /datum/tech/programming = 3)
+	build_type = DESIGN_TYPE_IMPRINTER
+	materials = list(/decl/material/glass = 2000, "sacid" = 20)
+	build_path = /obj/item/circuitboard/mecha/dreadnought/peripherals
+
+// Bulwark
+/datum/design/bulwark_targ
+	name = "Circuit Design (\"Bulwark\" Weapons & Targeting Control module)"
+	desc = "Allows for the construction of a \"Bulwark\" Weapons & Targeting Control module."
+	req_tech = list(/datum/tech/combat = 2, /datum/tech/engineering = 3, /datum/tech/programming = 3)
+	build_type = DESIGN_TYPE_IMPRINTER
+	materials = list(/decl/material/glass = 2000, "sacid" = 20)
+	build_path = /obj/item/circuitboard/mecha/bulwark/targeting
+
 // Odysseus
 /datum/design/odysseus_main
 	name = "Circuit Design (\"Odysseus\" Central Control module)"

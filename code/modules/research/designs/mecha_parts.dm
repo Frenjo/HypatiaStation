@@ -194,7 +194,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 4, /datum/tech/engineering = 5)
 	build_path = /obj/item/mecha_part/part/durand_armour
-	categories = list("Durand")
+	categories = list("Bulwark", "Durand")
 
 // Phazon
 /datum/design/phazon_chassis

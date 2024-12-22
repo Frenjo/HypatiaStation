@@ -124,6 +124,14 @@
 	name = "Hover pod wreckage"
 	icon_state = "engineering_pod-broken"
 
+/obj/effect/decal/mecha_wreckage/ripley/dreadnought
+	name = "Dreadnought wreckage"
+	icon_state = "dreadnought-broken"
+
+/obj/effect/decal/mecha_wreckage/ripley/dreadnought/bulwark
+	name = "Bulwark wreckage"
+	icon_state = "bulwark-broken"
+
 // Medical
 /obj/effect/decal/mecha_wreckage/odysseus
 	name = "Odysseus wreckage"
