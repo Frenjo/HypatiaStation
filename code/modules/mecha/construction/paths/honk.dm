@@ -41,25 +41,15 @@
 		playsound(holder, 'sound/items/bikehorn.ogg', 50, 1)
 		user.visible_message("HONK!")
 
-	//TODO: better messages.
 	switch(step)
 		if(10)
-			user.visible_message(
-				SPAN_NOTICE("[user] installs the central control module into \the [holder]."),
-				SPAN_NOTICE("You install the central control module into \the [holder].")
-			)
+			MECHA_INSTALL_CENTRAL_MODULE
 			qdel(used_atom)
 		if(8)
-			user.visible_message(
-				SPAN_NOTICE("[user] installs the peripherals control module into \the [holder]."),
-				SPAN_NOTICE("You install the peripherals control module into \the [holder].")
-			)
+			MECHA_INSTALL_PERIPHERAL_MODULE
 			qdel(used_atom)
 		if(6)
-			user.visible_message(
-				SPAN_NOTICE("[user] installs the weapon control module into \the [holder]."),
-				SPAN_NOTICE("You install the weapon control module into \the [holder].")
-			)
+			MECHA_INSTALL_WEAPON_MODULE
 			qdel(used_atom)
 		if(4)
 			user.visible_message(
@@ -69,8 +59,8 @@
 			qdel(used_atom)
 		if(2)
 			user.visible_message(
-				SPAN_NOTICE("[user] puts clown boots on \the [holder]."),
-				SPAN_NOTICE("You put clown boots on \the [holder].")
+				SPAN_NOTICE("[user] puts clown shoes on \the [holder]."),
+				SPAN_NOTICE("You put clown shoes on \the [holder].")
 			)
 			qdel(used_atom)
 	return TRUE

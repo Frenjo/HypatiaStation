@@ -26,31 +26,31 @@
 		list(
 			"key" = /obj/item/weldingtool,
 			"backkey" = /obj/item/wrench,
-			"desc" = "The external armour is wrenched."
+			"desc" = MECHA_DESC_EXTERNAL_ARMOUR_WRENCHED
 			),
 		//2
 		list(
 			"key" = /obj/item/wrench,
 			"backkey" = /obj/item/crowbar,
-			"desc" = "The external armour is installed."
+			"desc" = MECHA_DESC_EXTERNAL_ARMOUR_INSTALLED
 		),
 		//3
 		list(
 			"key" = /obj/item/mecha_part/part/gygax_armour,
 			"backkey" = /obj/item/weldingtool,
-			"desc" = "The internal armour is welded."
+			"desc" = MECHA_DESC_INTERNAL_ARMOUR_WELDED
 		),
 		//4
 		list(
 			"key" = /obj/item/weldingtool,
 			"backkey" = /obj/item/wrench,
-			"desc" = "The internal armour is wrenched."
+			"desc" = MECHA_DESC_INTERNAL_ARMOUR_WRENCHED
 		),
 		//5
 		list(
 			"key" = /obj/item/wrench,
 			"backkey" = /obj/item/crowbar,
-			"desc" = "The internal armour is installed."
+			"desc" = MECHA_DESC_INTERNAL_ARMOUR_INSTALLED
 		),
 		//6
 		list(
@@ -80,66 +80,66 @@
 		list(
 			"key" = /obj/item/stock_part/scanning_module/adv,
 			"backkey" = /obj/item/screwdriver,
-			"desc" = "The targeting module is secured."
+			"desc" = MECHA_DESC_TARGETING_MODULE_SECURED
 		),
 		//11
 		list(
 			"key" = /obj/item/screwdriver,
 			"backkey" = /obj/item/crowbar,
-			"desc" = "The targeting module is installed."
+			"desc" = MECHA_DESC_TARGETING_MODULE_INSTALLED
 		),
 		//12
 		list(
 			"key" = /obj/item/circuitboard/mecha/gygax/targeting,
 			"backkey" = /obj/item/screwdriver,
-			"desc" = "The peripherals control module is secured."
+			"desc" = MECHA_DESC_PERIPHERAL_MODULE_SECURED
 		),
 		//13
 		list(
 			"key" = /obj/item/screwdriver,
 			"backkey" = /obj/item/crowbar,
-			"desc" = "The peripherals control module is installed."
+			"desc" = MECHA_DESC_PERIPHERAL_MODULE_INSTALLED
 		),
 		//14
 		list(
 			"key" = /obj/item/circuitboard/mecha/gygax/peripherals,
 			"backkey" = /obj/item/screwdriver,
-			"desc" = "The central control module is secured."
+			"desc" = MECHA_DESC_CENTRAL_MODULE_SECURED
 		),
 		//15
 		list(
 			"key" = /obj/item/screwdriver,
 			"backkey" = /obj/item/crowbar,
-			"desc" = "The central control module is installed."
+			"desc" = MECHA_DESC_CENTRAL_MODULE_INSTALLED
 		),
 		//16
 		list(
 			"key" = /obj/item/circuitboard/mecha/gygax/main,
 			"backkey" = /obj/item/screwdriver,
-			"desc" = "The wiring is adjusted."
+			"desc" = MECHA_DESC_WIRING_ADJUSTED
 		),
 		//17
 		list(
 			"key" = /obj/item/wirecutters,
 			"backkey" = /obj/item/screwdriver,
-			"desc" = "The wiring is added."
+			"desc" = MECHA_DESC_WIRING_ADDED
 		),
 		//18
 		list(
 			"key" = /obj/item/stack/cable_coil,
 			"backkey" = /obj/item/screwdriver,
-			"desc" = "The hydraulic systems are active."
+			"desc" = MECHA_DESC_HYDRAULICS_ACTIVE
 		),
 		//19
 		list(
 			"key" = /obj/item/screwdriver,
 			"backkey" = /obj/item/wrench,
-			"desc" = "The hydraulic systems are connected."
+			"desc" = MECHA_DESC_HYDRAULICS_CONNECTED
 		),
 		//20
 		list(
 			"key" = /obj/item/wrench,
-			"desc" = "The hydraulic systems are disconnected."
+			"desc" = MECHA_DESC_HYDRAULICS_DISCONNECTED
 		)
 	)
 
@@ -147,136 +147,78 @@
 	if(!..())
 		return FALSE
 
-	//TODO: better messages.
 	switch(index)
 		if(20)
-			user.visible_message(
-				SPAN_NOTICE("[user] connects \the [holder]'s hydraulic systems."),
-				SPAN_NOTICE("You connect \the [holder]'s hydraulic systems.")
-			)
+			MECHA_CONNECT_HYDRAULICS
 			holder.icon_state = "gygax1"
 		if(19)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] activates \the [holder]'s hydraulic systems."),
-					SPAN_NOTICE("You activate [holder] hydraulic systems.")
-				)
+				MECHA_ACTIVATE_HYDRAULICS
 				holder.icon_state = "gygax2"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] disconnects \the [holder]'s hydraulic systems."),
-					SPAN_NOTICE("You disconnect \the [holder]'s hydraulic systems.")
-				)
+				MECHA_DISCONNECT_HYDRAULICS
 				holder.icon_state = "gygax0"
 		if(18)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] adds wiring to \the [holder]."),
-					SPAN_NOTICE("You add wiring to \the [holder].")
-				)
+				MECHA_ADD_WIRING
 				holder.icon_state = "gygax3"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] deactivates \the [holder]'s hydraulic systems."),
-					SPAN_NOTICE("You deactivate \the [holder]'s hydraulic systems.")
-				)
+				MECHA_DEACTIVATE_HYDRAULICS
 				holder.icon_state = "gygax1"
 		if(17)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] adjusts \the [holder]'s wiring."),
-					SPAN_NOTICE("You adjust \the [holder]'s wiring.")
-				)
+				MECHA_ADJUST_WIRING
 				holder.icon_state = "gygax4"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] removes the wiring from \the [holder]."),
-					SPAN_NOTICE("You remove the wiring from \the [holder].")
-				)
+				MECHA_REMOVE_WIRING
 				new /obj/item/stack/cable_coil(GET_TURF(holder), 4)
 				holder.icon_state = "gygax2"
 		if(16)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs the central control module into \the [holder]."),
-					SPAN_NOTICE("You install the central control module into \the [holder].")
-				)
+				MECHA_INSTALL_CENTRAL_MODULE
 				qdel(used_atom)
 				holder.icon_state = "gygax5"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] disconnects \the [holder]'s wiring."),
-					SPAN_NOTICE("You disconnect \the [holder]'s wiring.")
-				)
+				MECHA_DISCONNECT_WIRING
 				holder.icon_state = "gygax3"
 		if(15)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]'s mainboard."),
-					SPAN_NOTICE("You secure \the [holder]'s mainboard.")
-				)
+				MECHA_SECURE_CENTRAL_MODULE
 				holder.icon_state = "gygax6"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] removes the central control module from \the [holder]."),
-					SPAN_NOTICE("You remove the central control module from \the [holder].")
-				)
+				MECHA_REMOVE_CENTRAL_MODULE
 				new /obj/item/circuitboard/mecha/gygax/main(GET_TURF(holder))
 				holder.icon_state = "gygax4"
 		if(14)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs the peripherals control module into \the [holder]."),
-					SPAN_NOTICE("You install the peripherals control module into \the [holder].")
-				)
+				MECHA_INSTALL_PERIPHERAL_MODULE
 				qdel(used_atom)
 				holder.icon_state = "gygax7"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]'s mainboard."),
-					SPAN_NOTICE("You unfasten \the [holder]'s mainboard.")
-				)
+				MECHA_UNSECURE_CENTRAL_MODULE
 				holder.icon_state = "gygax5"
 		if(13)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]'s peripherals control module."),
-					SPAN_NOTICE("You secure \the [holder]'s peripherals control module.")
-				)
+				MECHA_SECURE_PERIPHERAL_MODULE
 				holder.icon_state = "gygax8"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] removes the peripherals control module from \the [holder]."),
-					SPAN_NOTICE("You remove the peripherals control module from \the [holder].")
-				)
+				MECHA_REMOVE_PERIPHERAL_MODULE
 				new /obj/item/circuitboard/mecha/gygax/peripherals(GET_TURF(holder))
 				holder.icon_state = "gygax6"
 		if(12)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs the weapon control module into \the [holder]."),
-					SPAN_NOTICE("You install the weapon control module into \the [holder].")
-				)
+				MECHA_INSTALL_WEAPON_MODULE
 				qdel(used_atom)
 				holder.icon_state = "gygax9"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]'s peripherals control module."),
-					SPAN_NOTICE("You unfasten \the [holder]'s peripherals control module.")
-				)
+				MECHA_UNSECURE_PERIPHERAL_MODULE
 				holder.icon_state = "gygax7"
 		if(11)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]'s weapon control module."),
-					SPAN_NOTICE("You secure \the [holder]'s weapon control module.")
-				)
+				MECHA_SECURE_WEAPON_MODULE
 				holder.icon_state = "gygax10"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] removes the weapon control module from \the [holder]."),
-					SPAN_NOTICE("You remove the weapon control module from \the [holder].")
-				)
+				MECHA_REMOVE_WEAPON_MODULE
 				new /obj/item/circuitboard/mecha/gygax/targeting(GET_TURF(holder))
 				holder.icon_state = "gygax8"
 		if(10)
@@ -288,10 +230,7 @@
 				qdel(used_atom)
 				holder.icon_state = "gygax11"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]'s weapon control module."),
-					SPAN_NOTICE("You unfasten \the [holder]'s weapon control module.")
-				)
+				MECHA_UNSECURE_WEAPON_MODULE
 				holder.icon_state = "gygax9"
 		if(9)
 			if(diff == FORWARD)
@@ -337,10 +276,7 @@
 				holder.icon_state = "gygax12"
 		if(6)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs the internal armour layer on \the [holder]."),
-					SPAN_NOTICE("You install the internal armour layer on \the [holder].")
-				)
+				MECHA_INSTALL_INTERNAL_ARMOUR
 				holder.icon_state = "gygax15"
 			else
 				user.visible_message(
@@ -350,70 +286,40 @@
 				holder.icon_state = "gygax13"
 		if(5)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]'s internal armour layer."),
-					SPAN_NOTICE("You secure \the [holder]'s internal armour layer.")
-				)
+				MECHA_SECURE_INTERNAL_ARMOUR
 				holder.icon_state = "gygax16"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] pries the internal armour layer from \the [holder]."),
-					SPAN_NOTICE("You pry the internal armour layer from \the [holder].")
-				)
+				MECHA_REMOVE_INTERNAL_ARMOUR
 				new /obj/item/stack/sheet/steel(GET_TURF(holder), 5)
 				holder.icon_state = "gygax14"
 		if(4)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] welds the internal armour layer to \the [holder]."),
-					SPAN_NOTICE("You weld the the internal armour layer to \the [holder].")
-				)
+				MECHA_WELD_INTERNAL_ARMOUR
 				holder.icon_state = "gygax17"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]'s internal armour layer."),
-					SPAN_NOTICE("You unfasten \the [holder]'s internal armour layer.")
-				)
+				MECHA_UNSECURE_INTERNAL_ARMOUR
 				holder.icon_state = "gygax15"
 		if(3)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs armour plates on \the [holder]."),
-					SPAN_NOTICE("You install armour plates on \the [holder].")
-				)
+				MECHA_INSTALL_ARMOUR_PLATES
 				qdel(used_atom)
 				holder.icon_state = "gygax18"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] cuts the internal armour layer from \the [holder]."),
-					SPAN_NOTICE("You cut the internal armour layer from \the [holder].")
-				)
+				MECHA_UNWELD_INTERNAL_ARMOUR
 				holder.icon_state = "gygax16"
 		if(2)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]'s armour plates."),
-					SPAN_NOTICE("You secure \the [holder]'s armour plates.")
-				)
+				MECHA_SECURE_ARMOUR_PLATES
 				holder.icon_state = "gygax19"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] pries the armour plates from \the [holder]."),
-					SPAN_NOTICE("You pry the armour plates from \the [holder].")
-				)
+				MECHA_REMOVE_ARMOUR_PLATES
 				new /obj/item/mecha_part/part/gygax_armour(GET_TURF(holder))
 				holder.icon_state = "gygax17"
 		if(1)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] welds the armour plates to \the [holder]."),
-					SPAN_NOTICE("You weld the armour plates to \the [holder].")
-				)
+				MECHA_WELD_ARMOUR_PLATES
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]'s armour plates."),
-					SPAN_NOTICE("You unfasten \the [holder]'s armour plates.")
-				)
+				MECHA_UNSECURE_ARMOUR_PLATES
 				holder.icon_state = "gygax18"
 	return TRUE
 

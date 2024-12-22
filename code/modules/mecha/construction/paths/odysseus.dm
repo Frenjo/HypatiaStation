@@ -26,84 +26,84 @@
 		list(
 			"key" = /obj/item/weldingtool,
 			"backkey" = /obj/item/wrench,
-			"desc" = "The external carapace is wrenched."
+			"desc" = MECHA_DESC_EXTERNAL_CARAPACE_WRENCHED
 		),
 		//2
 		list(
 			"key" = /obj/item/wrench,
 			"backkey" = /obj/item/crowbar,
-			"desc" = "The external carapace is installed."
+			"desc" = MECHA_DESC_EXTERNAL_CARAPACE_INSTALLED
 		),
 		//3
 		list(
 			"key" = /obj/item/mecha_part/part/odysseus_carapace,
 			"backkey" = /obj/item/weldingtool,
-			"desc" = "The internal armour is welded."
+			"desc" = MECHA_DESC_INTERNAL_ARMOUR_WELDED
 		),
 		//4
 		list(
 			"key" = /obj/item/weldingtool,
 			"backkey" = /obj/item/wrench,
-			"desc" = "The internal armour is wrenched."
+			"desc" = MECHA_DESC_INTERNAL_ARMOUR_WRENCHED
 		),
 		//5
 		list(
 			"key" = /obj/item/wrench,
 			"backkey" = /obj/item/crowbar,
-			"desc" = "The internal armour is installed."
+			"desc" = MECHA_DESC_INTERNAL_ARMOUR_INSTALLED
 		),
 		//6
 		list(
 			"key" = /obj/item/stack/sheet/steel,
 			"backkey" = /obj/item/screwdriver,
-			"desc" = "The peripherals control module is secured."
+			"desc" = MECHA_DESC_PERIPHERAL_MODULE_SECURED
 		),
 		//7
 		list(
 			"key" = /obj/item/screwdriver,
 			"backkey" = /obj/item/crowbar,
-			"desc" = "The peripherals control module is installed."
+			"desc" = MECHA_DESC_PERIPHERAL_MODULE_INSTALLED
 		),
 		//8
 		list(
 			"key" = /obj/item/circuitboard/mecha/odysseus/peripherals,
 			"backkey" = /obj/item/screwdriver,
-			"desc" = "The central control module is secured."
+			"desc" = MECHA_DESC_CENTRAL_MODULE_SECURED
 		),
 		//9
 		list(
 			"key" = /obj/item/screwdriver,
 			"backkey" = /obj/item/crowbar,
-			"desc" = "The central control module is installed."
+			"desc" = MECHA_DESC_CENTRAL_MODULE_INSTALLED
 		),
 		//10
 		list(
 			"key" = /obj/item/circuitboard/mecha/odysseus/main,
 			"backkey" = /obj/item/screwdriver,
-			"desc" = "The wiring is adjusted."
+			"desc" = MECHA_DESC_WIRING_ADJUSTED
 		),
 		//11
 		list(
 			"key" = /obj/item/wirecutters,
 			"backkey" = /obj/item/screwdriver,
-			"desc" = "The wiring is added."
+			"desc" = MECHA_DESC_WIRING_ADDED
 		),
 		//12
 		list(
 			"key" = /obj/item/stack/cable_coil,
 			"backkey" = /obj/item/screwdriver,
-			"desc" = "The hydraulic systems are active."
+			"desc" = MECHA_DESC_HYDRAULICS_ACTIVE
 		),
 		//13
 		list(
 			"key" = /obj/item/screwdriver,
 			"backkey" = /obj/item/wrench,
-			"desc" = "The hydraulic systems are connected."
+			"desc" = MECHA_DESC_HYDRAULICS_CONNECTED
 		),
 		//14
 		list(
 			"key" = /obj/item/wrench,
-			"desc" = "The hydraulic systems are disconnected."
+			"desc" = MECHA_DESC_HYDRAULICS_DISCONNECTED
 		)
 	)
 
@@ -111,188 +111,106 @@
 	if(!..())
 		return FALSE
 
-	//TODO: better messages.
 	switch(index)
 		if(14)
-			user.visible_message(
-				SPAN_NOTICE("[user] connects \the [holder]'s hydraulic systems."),
-				SPAN_NOTICE("You connect \the [holder]'s hydraulic systems.")
-			)
+			MECHA_CONNECT_HYDRAULICS
 			holder.icon_state = "odysseus1"
 		if(13)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] activates \the [holder]'s hydraulic systems."),
-					SPAN_NOTICE("You activate [holder] hydraulic systems.")
-				)
+				MECHA_ACTIVATE_HYDRAULICS
 				holder.icon_state = "odysseus2"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] disconnects \the [holder]'s hydraulic systems."),
-					SPAN_NOTICE("You disconnect \the [holder]'s hydraulic systems.")
-				)
+				MECHA_DISCONNECT_HYDRAULICS
 				holder.icon_state = "odysseus0"
 		if(12)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] adds wiring to \the [holder]."),
-					SPAN_NOTICE("You add wiring to \the [holder].")
-				)
+				MECHA_ADD_WIRING
 				holder.icon_state = "odysseus3"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] deactivates \the [holder]'s hydraulic systems."),
-					SPAN_NOTICE("You deactivate \the [holder]'s hydraulic systems.")
-				)
+				MECHA_DEACTIVATE_HYDRAULICS
 				holder.icon_state = "odysseus1"
 		if(11)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] adjusts \the [holder]'s wiring."),
-					SPAN_NOTICE("You adjust \the [holder]'s wiring.")
-				)
+				MECHA_ADJUST_WIRING
 				holder.icon_state = "odysseus4"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] removes the wiring from \the [holder]."),
-					SPAN_NOTICE("You remove the wiring from \the [holder].")
-				)
+				MECHA_REMOVE_WIRING
 				new /obj/item/stack/cable_coil(GET_TURF(holder), 4)
 				holder.icon_state = "odysseus2"
 		if(10)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs the central control module into \the [holder]."),
-					SPAN_NOTICE("You install the central control module into \the [holder].")
-				)
+				MECHA_INSTALL_CENTRAL_MODULE
 				qdel(used_atom)
 				holder.icon_state = "odysseus5"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] disconnects \the [holder]'s wiring."),
-					SPAN_NOTICE("You disconnect \the [holder]'s wiring.")
-				)
+				MECHA_DISCONNECT_WIRING
 				holder.icon_state = "odysseus3"
 		if(9)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]'s mainboard."),
-					SPAN_NOTICE("You secure \the [holder]'s mainboard.")
-				)
+				MECHA_SECURE_CENTRAL_MODULE
 				holder.icon_state = "odysseus6"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] removes the central control module from \the [holder]."),
-					SPAN_NOTICE("You remove the central control module from \the [holder].")
-				)
+				MECHA_REMOVE_CENTRAL_MODULE
 				new /obj/item/circuitboard/mecha/odysseus/main(GET_TURF(holder))
 				holder.icon_state = "odysseus4"
 		if(8)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs the peripherals control module into \the [holder]."),
-					SPAN_NOTICE("You install the peripherals control module into \the [holder].")
-				)
+				MECHA_INSTALL_PERIPHERAL_MODULE
 				qdel(used_atom)
 				holder.icon_state = "odysseus7"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]'s mainboard."),
-					SPAN_NOTICE("You unfasten \the [holder]'s mainboard.")
-				)
+				MECHA_UNSECURE_CENTRAL_MODULE
 				holder.icon_state = "odysseus5"
 		if(7)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]'s peripherals control module."),
-					SPAN_NOTICE("You secure \the [holder]'s peripherals control module.")
-				)
+				MECHA_SECURE_PERIPHERAL_MODULE
 				holder.icon_state = "odysseus8"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] removes the peripherals control module from \the [holder]."),
-					SPAN_NOTICE("You remove the peripherals control module from \the [holder].")
-				)
+				MECHA_REMOVE_PERIPHERAL_MODULE
 				new /obj/item/circuitboard/mecha/odysseus/peripherals(GET_TURF(holder))
 				holder.icon_state = "odysseus6"
 		if(6)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs the internal armour layer on \the [holder]."),
-					SPAN_NOTICE("You install the internal armour layer on \the [holder].")
-				)
+				MECHA_INSTALL_INTERNAL_ARMOUR
 				holder.icon_state = "odysseus9"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]'s peripherals control module."),
-					SPAN_NOTICE("You unfasten \the [holder]'s peripherals control module.")
-				)
+				MECHA_UNSECURE_PERIPHERAL_MODULE
 				holder.icon_state = "odysseus7"
 		if(5)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]'s internal armour layer."),
-					SPAN_NOTICE("You secure \the [holder]'s internal armour layer.")
-				)
+				MECHA_SECURE_INTERNAL_ARMOUR
 				holder.icon_state = "odysseus10"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] pries the internal armour layer from \the [holder]."),
-					SPAN_NOTICE("You pry the internal armour layer from \the [holder].")
-				)
+				MECHA_REMOVE_INTERNAL_ARMOUR
 				new /obj/item/stack/sheet/steel(GET_TURF(holder), 5)
 				holder.icon_state = "odysseus8"
 		if(4)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] welds the internal armour layer to \the [holder]."),
-					SPAN_NOTICE("You weld the the internal armour layer to \the [holder].")
-				)
+				MECHA_WELD_INTERNAL_ARMOUR
 				holder.icon_state = "odysseus11"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]'s internal armour layer."),
-					SPAN_NOTICE("You unfasten \the [holder]'s internal armour layer.")
-				)
+				MECHA_UNSECURE_INTERNAL_ARMOUR
 				holder.icon_state = "odysseus9"
 		if(3)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs the external carapace on \the [holder]."),
-					SPAN_NOTICE("You install the external carapace on \the [holder].")
-				)
+				MECHA_INSTALL_EXTERNAL_CARAPACE
 				holder.icon_state = "odysseus12"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] cuts the internal armour layer from \the [holder]."),
-					SPAN_NOTICE("You cut the internal armour layer from \the [holder].")
-				)
+				MECHA_UNWELD_INTERNAL_ARMOUR
 				holder.icon_state = "odysseus10"
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]'s external carapace."),
-					SPAN_NOTICE("You secure \the [holder]'s external carapace.")
-				)
+				MECHA_SECURE_EXTERNAL_CARAPACE
 				holder.icon_state = "odysseus13"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] pries the external carapace from \the [holder]."),
-					SPAN_NOTICE("You pry the external carapace from \the [holder].")
-				)
+				MECHA_REMOVE_EXTERNAL_CARAPACE
 				new /obj/item/mecha_part/part/odysseus_carapace(GET_TURF(holder))
 				holder.icon_state = "odysseus11"
 		if(1)
 			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] welds the external carapace to \the [holder]."),
-					SPAN_NOTICE("You weld the external carapace to \the [holder].")
-				)
+				MECHA_WELD_EXTERNAL_CARAPACE
 				holder.icon_state = "odysseus14"
 			else
-				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]'s external carapace."),
-					SPAN_NOTICE("You unfasten \the [holder]'s external carapace.")
-				)
+				MECHA_UNSECURE_EXTERNAL_CARAPACE
 				holder.icon_state = "odysseus12"
 	return TRUE
 
