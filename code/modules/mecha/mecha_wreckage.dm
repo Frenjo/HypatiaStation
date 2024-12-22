@@ -1,8 +1,6 @@
 ///////////////////////////////////
 ////////  Mecha wreckage   ////////
 ///////////////////////////////////
-
-
 /obj/effect/decal/mecha_wreckage
 	name = "exosuit wreckage"
 	desc = "Remains of some unfortunate mecha. Completely irreparable."
@@ -94,39 +92,7 @@
 		..()
 	return
 
-/obj/effect/decal/mecha_wreckage/gygax
-	name = "Gygax wreckage"
-	icon_state = "gygax-broken"
-	parts = list(
-		/obj/item/mecha_part/part/gygax_torso,
-		/obj/item/mecha_part/part/gygax_head,
-		/obj/item/mecha_part/part/gygax_left_arm,
-		/obj/item/mecha_part/part/gygax_right_arm,
-		/obj/item/mecha_part/part/gygax_left_leg,
-		/obj/item/mecha_part/part/gygax_right_leg
-	)
-
-/obj/effect/decal/mecha_wreckage/gygax/dark
-	name = "Dark Gygax wreckage"
-	icon_state = "darkgygax-broken"
-
-/obj/effect/decal/mecha_wreckage/gygax/serenity
-	name = "Serenity wreckage"
-	icon_state = "serenity-broken"
-
-/obj/effect/decal/mecha_wreckage/marauder
-	name = "Marauder wreckage"
-	icon_state = "marauder-broken"
-
-/obj/effect/decal/mecha_wreckage/mauler
-	name = "Mauler Wreckage"
-	icon_state = "mauler-broken"
-	desc = "The syndicate won't be very happy about this..."
-
-/obj/effect/decal/mecha_wreckage/seraph
-	name = "Seraph wreckage"
-	icon_state = "seraph-broken"
-
+// Working
 /obj/effect/decal/mecha_wreckage/ripley
 	name = "Ripley wreckage"
 	icon_state = "ripley-broken"
@@ -154,18 +120,43 @@
 	name = "Death-Ripley wreckage"
 	icon_state = "deathripley-broken"
 
-/obj/effect/decal/mecha_wreckage/honk
-	name = "H.O.N.K wreckage"
-	icon_state = "honk-broken"
+/obj/effect/decal/mecha_wreckage/hoverpod
+	name = "Hover pod wreckage"
+	icon_state = "engineering_pod-broken"
+
+// Medical
+/obj/effect/decal/mecha_wreckage/odysseus
+	name = "Odysseus wreckage"
+	icon_state = "odysseus-broken"
 	parts = list(
-		/obj/item/mecha_part/chassis/honk,
-		/obj/item/mecha_part/part/honk_torso,
-		/obj/item/mecha_part/part/honk_head,
-		/obj/item/mecha_part/part/honk_left_arm,
-		/obj/item/mecha_part/part/honk_right_arm,
-		/obj/item/mecha_part/part/honk_left_leg,
-		/obj/item/mecha_part/part/honk_right_leg
+		/obj/item/mecha_part/part/odysseus_torso,
+		/obj/item/mecha_part/part/odysseus_head,
+		/obj/item/mecha_part/part/odysseus_left_arm,
+		/obj/item/mecha_part/part/odysseus_right_arm,
+		/obj/item/mecha_part/part/odysseus_left_leg,
+		/obj/item/mecha_part/part/odysseus_right_leg
 	)
+
+/obj/effect/decal/mecha_wreckage/gygax/serenity
+	name = "Serenity wreckage"
+	icon_state = "serenity-broken"
+
+// Combat
+/obj/effect/decal/mecha_wreckage/gygax
+	name = "Gygax wreckage"
+	icon_state = "gygax-broken"
+	parts = list(
+		/obj/item/mecha_part/part/gygax_torso,
+		/obj/item/mecha_part/part/gygax_head,
+		/obj/item/mecha_part/part/gygax_left_arm,
+		/obj/item/mecha_part/part/gygax_right_arm,
+		/obj/item/mecha_part/part/gygax_left_leg,
+		/obj/item/mecha_part/part/gygax_right_leg
+	)
+
+/obj/effect/decal/mecha_wreckage/gygax/dark
+	name = "Dark Gygax wreckage"
+	icon_state = "darkgygax-broken"
 
 /obj/effect/decal/mecha_wreckage/durand
 	name = "Durand wreckage"
@@ -179,23 +170,32 @@
 		/obj/item/mecha_part/part/durand_right_leg
 	)
 
+/obj/effect/decal/mecha_wreckage/marauder
+	name = "Marauder wreckage"
+	icon_state = "marauder-broken"
+
+/obj/effect/decal/mecha_wreckage/mauler
+	name = "Mauler Wreckage"
+	icon_state = "mauler-broken"
+	desc = "The syndicate won't be very happy about this..."
+
+/obj/effect/decal/mecha_wreckage/seraph
+	name = "Seraph wreckage"
+	icon_state = "seraph-broken"
+
 /obj/effect/decal/mecha_wreckage/phazon
 	name = "Phazon wreckage"
 	icon_state = "phazon-broken"
 
-
-/obj/effect/decal/mecha_wreckage/odysseus
-	name = "Odysseus wreckage"
-	icon_state = "odysseus-broken"
+/obj/effect/decal/mecha_wreckage/honk
+	name = "H.O.N.K wreckage"
+	icon_state = "honk-broken"
 	parts = list(
-		/obj/item/mecha_part/part/odysseus_torso,
-		/obj/item/mecha_part/part/odysseus_head,
-		/obj/item/mecha_part/part/odysseus_left_arm,
-		/obj/item/mecha_part/part/odysseus_right_arm,
-		/obj/item/mecha_part/part/odysseus_left_leg,
-		/obj/item/mecha_part/part/odysseus_right_leg
+		/obj/item/mecha_part/chassis/honk,
+		/obj/item/mecha_part/part/honk_torso,
+		/obj/item/mecha_part/part/honk_head,
+		/obj/item/mecha_part/part/honk_left_arm,
+		/obj/item/mecha_part/part/honk_right_arm,
+		/obj/item/mecha_part/part/honk_left_leg,
+		/obj/item/mecha_part/part/honk_right_leg
 	)
-
-/obj/effect/decal/mecha_wreckage/hoverpod
-	name = "Hover pod wreckage"
-	icon_state = "engineering_pod-broken"
