@@ -29,7 +29,7 @@
 // Circuit Boards
 /obj/item/circuitboard/mecha
 	name = "circuit board (Exosuit)"
-	icon_state = "std_mod"
+	icon_state = "mainboard"
 
 	throw_speed = 3
 	throw_range = 15

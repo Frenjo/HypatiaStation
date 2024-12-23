@@ -48,7 +48,6 @@
 
 /obj/item/circuitboard/mecha/honk/main
 	name = "circuit board (H.O.N.K Central Control module)"
-	icon_state = "mainboard"
 
 /obj/item/circuitboard/mecha/honk/peripherals
 	name = "circuit board (H.O.N.K Peripherals Control module)"

@@ -178,6 +178,10 @@
 		/obj/item/mecha_part/part/durand_right_leg
 	)
 
+/obj/effect/decal/mecha_wreckage/durand/archambeau
+	name = "Archambeau wreckage"
+	icon_state = "archambeau-broken"
+
 /obj/effect/decal/mecha_wreckage/marauder
 	name = "Marauder wreckage"
 	icon_state = "marauder-broken"

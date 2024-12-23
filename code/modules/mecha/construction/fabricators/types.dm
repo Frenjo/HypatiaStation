@@ -98,6 +98,7 @@
 		"Durand" = list(
 			/obj/item/mecha_part/chassis/durand
 		),
+		"Archambeau" = list(),
 		"Phazon" = list(),
 		"H.O.N.K" = list(
 			/obj/item/mecha_part/chassis/honk,

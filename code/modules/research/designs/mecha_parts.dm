@@ -143,7 +143,7 @@
 		/datum/tech/programming = 2
 	)
 	build_path = /obj/item/mecha_part/part/durand_torso
-	categories = list("Durand")
+	categories = list("Durand", "Archambeau")
 
 /datum/design/durand_head
 	name = "Exosuit Design (\"Durand\" head)"
@@ -154,7 +154,7 @@
 		/datum/tech/programming = 2
 	)
 	build_path = /obj/item/mecha_part/part/durand_head
-	categories = list("Durand")
+	categories = list("Durand", "Archambeau")
 
 /datum/design/durand_left_arm
 	name = "Exosuit Design (\"Durand\" left arm)"
@@ -162,7 +162,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/durand_left_arm
-	categories = list("Durand")
+	categories = list("Durand", "Archambeau")
 
 /datum/design/durand_right_arm
 	name = "Exosuit Design (\"Durand\" right arm)"
@@ -170,7 +170,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/durand_right_arm
-	categories = list("Durand")
+	categories = list("Durand", "Archambeau")
 
 /datum/design/durand_left_leg
 	name = "Exosuit Design (\"Durand\" left leg)"
@@ -178,7 +178,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/durand_left_leg
-	categories = list("Durand")
+	categories = list("Durand", "Archambeau")
 
 /datum/design/durand_right_leg
 	name = "Exosuit Design (\"Durand\" right leg)"
@@ -186,7 +186,7 @@
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	build_path = /obj/item/mecha_part/part/durand_right_leg
-	categories = list("Durand")
+	categories = list("Durand", "Archambeau")
 
 /datum/design/durand_armour
 	name = "Exosuit Design (\"Durand\" armour)"
@@ -195,6 +195,23 @@
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 4, /datum/tech/engineering = 5)
 	build_path = /obj/item/mecha_part/part/durand_armour
 	categories = list("Bulwark", "Durand")
+
+// Archambeau
+/datum/design/archambeau_chassis
+	name = "Exosuit Design (\"Archambeau\" chassis)"
+	desc = "The chassis of an Archambeau-type exosuit."
+	build_type = DESIGN_TYPE_MECHFAB
+	req_tech = list(/datum/tech/materials = 7)
+	build_path = /obj/item/mecha_part/chassis/archambeau
+	categories = list("Archambeau")
+
+/datum/design/archambeau_armour
+	name = "Exosuit Design (\"Archambeau\" armour)"
+	desc = "A set of armour plates for an Archambeau-type exosuit."
+	build_type = DESIGN_TYPE_MECHFAB
+	req_tech = list(/datum/tech/materials = 7, /datum/tech/combat = 4, /datum/tech/engineering = 6)
+	build_path = /obj/item/mecha_part/part/archambeau_armour
+	categories = list("Archambeau")
 
 // Phazon
 /datum/design/phazon_chassis

@@ -71,7 +71,6 @@
 
 /obj/item/circuitboard/mecha/odysseus/main
 	name = "circuit board (Odysseus Central Control module)"
-	icon_state = "mainboard"
 
 /obj/item/circuitboard/mecha/odysseus/peripherals
 	name = "circuit board (Odysseus Peripherals Control module)"

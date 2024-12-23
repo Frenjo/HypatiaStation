@@ -55,7 +55,6 @@
 
 /obj/item/circuitboard/mecha/ripley/main
 	name = "circuit board (Ripley Central Control module)"
-	icon_state = "mainboard"
 
 /obj/item/circuitboard/mecha/ripley/peripherals
 	name = "circuit board (Ripley Peripherals Control module)"

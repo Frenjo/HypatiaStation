@@ -120,6 +120,31 @@
 	materials = list(/decl/material/glass = 2000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/mecha/durand/targeting
 
+// Archambeau
+/datum/design/archambeau_main
+	name = "Circuit Design (\"Archambeau\" Central Control module)"
+	desc = "Allows for the construction of an \"Archambeau\" Central Control module."
+	req_tech = list(/datum/tech/materials = 7, /datum/tech/power_storage = 6, /datum/tech/programming = 5)
+	build_type = DESIGN_TYPE_IMPRINTER
+	materials = list(/decl/material/glass = 1000, "sacid" = 20)
+	build_path = /obj/item/circuitboard/mecha/archambeau/main
+
+/datum/design/archambeau_peri
+	name = "Circuit Design (\"Archambeau\" Peripherals Control module)"
+	desc = "Allows for the construction of an \"Archambeau\" Peripheral Control module."
+	req_tech = list(/datum/tech/engineering = 6, /datum/tech/programming = 5)
+	build_type = DESIGN_TYPE_IMPRINTER
+	materials = list(/decl/material/glass = 1000, "sacid" = 20)
+	build_path = /obj/item/circuitboard/mecha/archambeau/peripherals
+
+/datum/design/archambeau_targ
+	name = "Circuit Design (\"Archambeau\" Weapons & Targeting Control module)"
+	desc = "Allows for the construction of a \"Archambeau\" Weapons & Targeting Control module."
+	req_tech = list(/datum/tech/combat = 4, /datum/tech/engineering = 6, /datum/tech/programming = 5)
+	build_type = DESIGN_TYPE_IMPRINTER
+	materials = list(/decl/material/glass = 1000, "sacid" = 20)
+	build_path = /obj/item/circuitboard/mecha/archambeau/targeting
+
 // Phazon
 /datum/design/phazon_main
 	name = "Circuit Design (\"Phazon\" Central Control module)"

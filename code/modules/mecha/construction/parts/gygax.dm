@@ -72,7 +72,6 @@
 
 /obj/item/circuitboard/mecha/gygax/main
 	name = "circuit board (Gygax Central Control module)"
-	icon_state = "mainboard"
 
 /obj/item/circuitboard/mecha/gygax/peripherals
 	name = "circuit board (Gygax Peripherals Control module)"

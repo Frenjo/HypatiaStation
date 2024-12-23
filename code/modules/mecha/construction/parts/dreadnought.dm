@@ -12,7 +12,6 @@
 
 /obj/item/circuitboard/mecha/dreadnought/main
 	name = "circuit board (Dreadnought Central Control module)"
-	icon_state = "mainboard"
 
 /obj/item/circuitboard/mecha/dreadnought/peripherals
 	name = "circuit board (Dreadnought Peripherals Control module)"

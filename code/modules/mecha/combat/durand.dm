@@ -1,6 +1,6 @@
 /obj/mecha/combat/durand
 	name = "Durand"
-	desc = "An aging combat exosuit utilized by the NanoTrasen corporation. Originally developed to combat hostile alien lifeforms."
+	desc = "An aging combat exosuit utilised by the NanoTrasen corporation. Originally developed to combat hostile alien lifeforms."
 	icon_state = "durand"
 	infra_luminosity = 8
 	initial_icon = "durand"
@@ -62,3 +62,22 @@
 	. = ..()
 	if(href_list["toggle_defence_mode"])
 		defence_mode()
+
+// Archambeau
+/obj/mecha/combat/durand/archambeau
+	name = "Archambeau"
+	desc = "A modern variant of the aging Durand-type exosuit. This version features enhanced lightweight armour plating akin to that originally developed for the Phazon-type exosuit."
+	icon_state = "archambeau"
+	infra_luminosity = 6
+	initial_icon = "archambeau"
+
+	force = 25
+
+	step_in = 3
+	step_energy_drain = 15
+	max_temperature = 25000
+	deflect_chance = 20
+	damage_absorption = list("brute" = 0.6, "fire" = 0.9, "bullet" = 0.675, "laser" = 0.775, "energy" = 0.8, "bomb" = 0.75)
+	internal_damage_threshold = 35
+
+	wreckage = /obj/effect/decal/mecha_wreckage/durand/archambeau

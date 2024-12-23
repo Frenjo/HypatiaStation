@@ -68,7 +68,6 @@
 
 /obj/item/circuitboard/mecha/durand/main
 	name = "circuit board (Durand Central Control module)"
-	icon_state = "mainboard"
 
 /obj/item/circuitboard/mecha/durand/peripherals
 	name = "circuit board (Durand Peripherals Control module)"
