@@ -2,15 +2,6 @@
 // I think eventually there will be /decl/construction_step similar to how /decl/air_alarm_mode works.
 
 // Construction step examine descriptions
-#define MECHA_DESC_HYDRAULICS_DISCONNECTED	"The hydraulic systems are disconnected."
-#define MECHA_DESC_HYDRAULICS_CONNECTED		"The hydraulic systems are connected."
-#define MECHA_DESC_HYDRAULICS_ACTIVE		"The hydraulic systems are active."
-#define MECHA_DESC_WIRING_ADDED				"The wiring is added."
-#define MECHA_DESC_WIRING_ADJUSTED			"The wiring is adjusted."
-
-#define MECHA_DESC_CENTRAL_MODULE_INSTALLED		"The central control module is installed."
-#define MECHA_DESC_CENTRAL_MODULE_SECURED		"The central control module is secured."
-#define MECHA_DESC_PERIPHERAL_MODULE_INSTALLED	"The peripherals control module is installed."
 #define MECHA_DESC_PERIPHERAL_MODULE_SECURED	"The peripherals control module is secured."
 #define MECHA_DESC_TARGETING_MODULE_INSTALLED	"The targeting module is installed."
 #define MECHA_DESC_TARGETING_MODULE_SECURED		"The targeting module is secured."

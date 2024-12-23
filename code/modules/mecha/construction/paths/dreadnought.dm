@@ -25,87 +25,43 @@
 		//1
 		list(
 			"key" = /obj/item/weldingtool,
-			"backkey" = /obj/item/wrench,
+			"back_key" = /obj/item/wrench,
 			"desc" = MECHA_DESC_EXTERNAL_ARMOUR_WRENCHED
-			),
+		),
 		//2
 		list(
 			"key" = /obj/item/wrench,
-			"backkey" = /obj/item/crowbar,
+			"back_key" = /obj/item/crowbar,
 			"desc" = MECHA_DESC_EXTERNAL_ARMOUR_INSTALLED
 		),
 		//3
 		list(
 			"key" = /obj/item/stack/sheet/plasteel,
-			"backkey" = /obj/item/weldingtool,
+			"back_key" = /obj/item/weldingtool,
 			"desc" = MECHA_DESC_INTERNAL_ARMOUR_WELDED
 		),
 		//4
 		list(
 			"key" = /obj/item/weldingtool,
-			"backkey" = /obj/item/wrench,
+			"back_key" = /obj/item/wrench,
 			"desc" = MECHA_DESC_INTERNAL_ARMOUR_WRENCHED
 		),
 		//5
 		list(
 			"key" = /obj/item/wrench,
-			"backkey" = /obj/item/crowbar,
+			"back_key" = /obj/item/crowbar,
 			"desc" = MECHA_DESC_INTERNAL_ARMOUR_INSTALLED
 		),
 		//6
 		list(
 			"key" = /obj/item/stack/sheet/steel,
-			"backkey" = /obj/item/screwdriver,
+			"back_key" = /obj/item/screwdriver,
 			"desc" = MECHA_DESC_PERIPHERAL_MODULE_SECURED
-		),
-		//7
-		list(
-			"key" = /obj/item/screwdriver,
-			"backkey" = /obj/item/crowbar,
-			"desc" = MECHA_DESC_PERIPHERAL_MODULE_INSTALLED
-		),
-		//8
-		list(
-			"key" = /obj/item/circuitboard/mecha/dreadnought/peripherals,
-			"backkey" = /obj/item/screwdriver,
-			"desc" = MECHA_DESC_CENTRAL_MODULE_SECURED
-		),
-		//9
-		list(
-			"key" = /obj/item/screwdriver,
-			"backkey" = /obj/item/crowbar,
-			"desc" = MECHA_DESC_CENTRAL_MODULE_INSTALLED
-		),
-		//10
-		list(
-			"key" = /obj/item/circuitboard/mecha/dreadnought/main,
-			"backkey" = /obj/item/screwdriver,
-			"desc" = MECHA_DESC_WIRING_ADJUSTED
-		),
-		//11
-		list(
-			"key" = /obj/item/wirecutters,
-			"backkey" = /obj/item/screwdriver,
-			"desc" = MECHA_DESC_WIRING_ADDED
-		),
-		//12
-		list(
-			"key" = /obj/item/stack/cable_coil,
-			"backkey" = /obj/item/screwdriver,
-			"desc" = MECHA_DESC_HYDRAULICS_ACTIVE
-		),
-		//13
-		list(
-			"key" = /obj/item/screwdriver,
-			"backkey" = /obj/item/wrench,
-			"desc" = MECHA_DESC_HYDRAULICS_CONNECTED
-		),
-		//14
-		list(
-			"key" = /obj/item/wrench,
-			"desc" = MECHA_DESC_HYDRAULICS_DISCONNECTED
 		)
 	)
+
+	central_circuit = /obj/item/circuitboard/mecha/dreadnought/main
+	peripherals_circuit = /obj/item/circuitboard/mecha/dreadnought/peripherals
 
 /datum/construction/reversible/mecha/dreadnought/custom_action(index, diff, atom/used_atom, mob/user)
 	if(!..())

@@ -81,7 +81,7 @@
 	var/list/L = steps[index]
 	if(istype(used_atom, L["key"]))
 		return FORWARD //to the first step -> forward
-	else if(L["backkey"] && istype(used_atom, L["backkey"]))
+	else if(isnotnull(L["back_key"]) && istype(used_atom, L["back_key"]))
 		return BACKWARD //to the last step -> backwards
 	return 0
 

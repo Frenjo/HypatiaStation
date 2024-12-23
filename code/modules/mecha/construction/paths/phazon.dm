@@ -26,123 +26,79 @@
 		//1
 		list(
 			"key" = /obj/item/weldingtool,
-			"backkey" = /obj/item/wrench,
+			"back_key" = /obj/item/wrench,
 			"desc" = MECHA_DESC_EXTERNAL_ARMOUR_WRENCHED
 		),
 		//2
 		list(
 			"key" = /obj/item/wrench,
-			"backkey" = /obj/item/crowbar,
+			"back_key" = /obj/item/crowbar,
 			"desc" = MECHA_DESC_EXTERNAL_ARMOUR_INSTALLED
 		),
 		//3
 		list(
 			"key" = /obj/item/mecha_part/part/phazon_armour,
-			"backkey" = /obj/item/weldingtool,
+			"back_key" = /obj/item/weldingtool,
 			"desc" = MECHA_DESC_INTERNAL_ARMOUR_WELDED
 		),
 		//4
 		list(
 			"key" = /obj/item/weldingtool,
-			"backkey" = /obj/item/wrench,
+			"back_key" = /obj/item/wrench,
 			"desc" = MECHA_DESC_INTERNAL_ARMOUR_WRENCHED
 		),
 		//5
 		list(
 			"key" = /obj/item/wrench,
-			"backkey" = /obj/item/crowbar,
+			"back_key" = /obj/item/crowbar,
 			"desc" = MECHA_DESC_INTERNAL_ARMOUR_INSTALLED
 		),
 		//6
 		list(
 			"key" = /obj/item/stack/sheet/plasteel,
-			"backkey" = /obj/item/screwdriver,
+			"back_key" = /obj/item/screwdriver,
 			"desc" = "The hyper capacitor is secured."
 		),
 		//7
 		list(
 			"key" = /obj/item/screwdriver,
-			"backkey" = /obj/item/crowbar,
+			"back_key" = /obj/item/crowbar,
 			"desc" = "A hyper capacitor is installed."
 		),
 		//8
 		list(
 			"key" = /obj/item/stock_part/capacitor/hyper,
-			"backkey" = /obj/item/screwdriver,
+			"back_key" = /obj/item/screwdriver,
 			"desc" = "The hyper-phasic scanning module is secured."
 		),
 		//9
 		list(
 			"key" = /obj/item/screwdriver,
-			"backkey" = /obj/item/crowbar,
+			"back_key" = /obj/item/crowbar,
 			"desc" = "A hyper-phasic scanning module is installed."
 		),
 		//10
 		list(
 			"key" = /obj/item/stock_part/scanning_module/hyperphasic,
-			"backkey" = /obj/item/screwdriver,
+			"back_key" = /obj/item/screwdriver,
 			"desc" = MECHA_DESC_TARGETING_MODULE_SECURED
 		),
 		//11
 		list(
 			"key" = /obj/item/screwdriver,
-			"backkey" = /obj/item/crowbar,
+			"back_key" = /obj/item/crowbar,
 			"desc" = MECHA_DESC_TARGETING_MODULE_INSTALLED
 		),
 		//12
 		list(
 			"key" = /obj/item/circuitboard/mecha/phazon/targeting,
-			"backkey" = /obj/item/screwdriver,
+			"back_key" = /obj/item/screwdriver,
 			"desc" = MECHA_DESC_PERIPHERAL_MODULE_SECURED
-		),
-		//13
-		list(
-			"key" = /obj/item/screwdriver,
-			"backkey" = /obj/item/crowbar,
-			"desc" = MECHA_DESC_PERIPHERAL_MODULE_INSTALLED
-		),
-		//14
-		list(
-			"key" = /obj/item/circuitboard/mecha/phazon/peripherals,
-			"backkey" = /obj/item/screwdriver,
-			"desc" = MECHA_DESC_CENTRAL_MODULE_SECURED
-		),
-		//15
-		list(
-			"key" = /obj/item/screwdriver,
-			"backkey" = /obj/item/crowbar,
-			"desc" = MECHA_DESC_CENTRAL_MODULE_INSTALLED
-		),
-		//16
-		list(
-			"key" = /obj/item/circuitboard/mecha/phazon/main,
-			"backkey" = /obj/item/screwdriver,
-			"desc" = MECHA_DESC_WIRING_ADJUSTED
-		),
-		//17
-		list(
-			"key" = /obj/item/wirecutters,
-			"backkey" = /obj/item/screwdriver,
-			"desc" = MECHA_DESC_WIRING_ADDED
-		),
-		//18
-		list(
-			"key" = /obj/item/stack/cable_coil,
-			"backkey" = /obj/item/screwdriver,
-			"desc" = MECHA_DESC_HYDRAULICS_ACTIVE
-		),
-		//19
-		list(
-			"key" = /obj/item/screwdriver,
-			"backkey" = /obj/item/wrench,
-			"desc" = MECHA_DESC_HYDRAULICS_CONNECTED
-		),
-		//20
-		list(
-			"key" = /obj/item/wrench,
-			"desc" = MECHA_DESC_HYDRAULICS_DISCONNECTED
 		)
 	)
+
+	central_circuit = /obj/item/circuitboard/mecha/phazon/main
+	peripherals_circuit = /obj/item/circuitboard/mecha/phazon/peripherals
 
 /datum/construction/reversible/mecha/phazon/custom_action(index, diff, atom/used_atom, mob/user)
 	if(!..())
