@@ -4,7 +4,7 @@
 /obj/effect/decal/mecha_wreckage
 	name = "exosuit wreckage"
 	desc = "Remains of some unfortunate mecha. Completely irreparable."
-	icon = 'icons/mecha/mecha.dmi'
+	icon = 'icons/obj/mecha/mecha.dmi'
 	density = TRUE
 	anchored = FALSE
 	opacity = FALSE

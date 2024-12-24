@@ -3,7 +3,7 @@
 /////////////////////////
 /obj/item/mecha_part
 	name = "mecha part"
-	icon = 'icons/mecha/mech_construct.dmi'
+	icon = 'icons/obj/mecha/mech_construct.dmi'
 	icon_state = "blank"
 	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 5

@@ -15,7 +15,7 @@
 /obj/mecha
 	name = "mecha"
 	desc = "Exosuit"
-	icon = 'icons/mecha/mecha.dmi'
+	icon = 'icons/obj/mecha/mecha.dmi'
 	layer = MOB_LAYER
 	infra_luminosity = 15 // BYOND implementation is bugged.
 

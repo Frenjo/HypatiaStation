@@ -46,6 +46,16 @@
 /datum/construction/mecha/chassis/action(atom/used_atom, mob/user)
 	return check_all_steps(used_atom, user)
 
+/datum/construction/mecha/chassis/spawn_result(result_datum, result_icon_state)
+	var/obj/item/mecha_part/chassis/const_holder = holder
+	const_holder.construct = new result_datum(const_holder)
+	const_holder.icon = 'icons/obj/mecha/mech_construction.dmi'
+	const_holder.icon_state = result_icon_state
+	const_holder.density = TRUE
+	const_holder.overlays.len = 0
+	spawn()
+		qdel(src)
+
 // Mecha
 /datum/construction/reversible/mecha
 	var/central_circuit = null

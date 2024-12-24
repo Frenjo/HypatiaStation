@@ -9,14 +9,7 @@
 	)
 
 /datum/construction/mecha/chassis/dreadnought/spawn_result()
-	var/obj/item/mecha_part/chassis/const_holder = holder
-	const_holder.construct = new /datum/construction/reversible/mecha/dreadnought(const_holder)
-	const_holder.icon = 'icons/mecha/mech_construction.dmi'
-	const_holder.icon_state = "durand0"
-	const_holder.density = TRUE
-	const_holder.overlays.len = 0
-	spawn()
-		qdel(src)
+	. = ..(/datum/construction/reversible/mecha/dreadnought, "durand0")
 
 // Dreadnought
 /datum/construction/reversible/mecha/dreadnought

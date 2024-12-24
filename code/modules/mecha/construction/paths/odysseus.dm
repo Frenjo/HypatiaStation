@@ -10,13 +10,7 @@
 	)
 
 /datum/construction/mecha/chassis/odysseus/spawn_result()
-	var/obj/item/mecha_part/chassis/const_holder = holder
-	const_holder.construct = new /datum/construction/reversible/mecha/odysseus(const_holder)
-	const_holder.icon = 'icons/mecha/mech_construction.dmi'
-	const_holder.icon_state = "odysseus0"
-	const_holder.density = TRUE
-	spawn()
-		qdel(src)
+	. = ..(/datum/construction/reversible/mecha/odysseus, "odysseus0")
 
 // Odysseus
 /datum/construction/reversible/mecha/odysseus

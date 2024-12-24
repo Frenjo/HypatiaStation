@@ -12,7 +12,7 @@
 /datum/construction/mecha/chassis/serenity/spawn_result()
 	var/obj/item/mecha_part/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/reversible/mecha/serenity(const_holder)
-	const_holder.icon = 'icons/mecha/mech_construction.dmi'
+	const_holder.icon = 'icons/obj/mecha/mech_construction.dmi'
 	const_holder.icon_state = "gygax0"
 	const_holder.density = TRUE
 	spawn()

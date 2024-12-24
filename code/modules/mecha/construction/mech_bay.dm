@@ -1,6 +1,6 @@
 /obj/machinery/mech_bay_recharge_floor
 	name = "mech bay recharge station"
-	icon = 'icons/mecha/mech_bay.dmi'
+	icon = 'icons/obj/mecha/mech_bay.dmi'
 	icon_state = "recharge_floor"
 
 	var/obj/machinery/mech_bay_recharge_port/recharge_port
@@ -49,7 +49,7 @@
 	name = "mech bay power port"
 	density = TRUE
 	anchored = TRUE
-	icon = 'icons/mecha/mech_bay.dmi'
+	icon = 'icons/obj/mecha/mech_bay.dmi'
 	icon_state = "recharge_port"
 
 	var/obj/machinery/mech_bay_recharge_floor/recharge_floor
