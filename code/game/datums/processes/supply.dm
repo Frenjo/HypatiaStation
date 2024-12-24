@@ -83,7 +83,7 @@ PROCESS_DEF(supply)
 		qdel(MA)
 
 	if(plasma_count)
-		points += Floor(plasma_count / plasma_per_point)
+		points += floor(plasma_count / plasma_per_point)
 
 // Buying.
 /datum/process/supply/proc/buy()

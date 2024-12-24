@@ -78,11 +78,11 @@
 			Pixel_y = 0
 		var/a
 		if(abs(Pixel_x) > 32)
-			a = Pixel_x > 0 ? round(Pixel_x / 32) : Ceiling(Pixel_x / 32)
+			a = Pixel_x > 0 ? round(Pixel_x / 32) : ceil(Pixel_x / 32)
 			X.x += a
 			Pixel_x %= 32
 		if(abs(Pixel_y) > 32)
-			a = Pixel_y > 0 ? round(Pixel_y / 32) : Ceiling(Pixel_y / 32)
+			a = Pixel_y > 0 ? round(Pixel_y / 32) : ceil(Pixel_y / 32)
 			X.y += a
 			Pixel_y %= 32
 
