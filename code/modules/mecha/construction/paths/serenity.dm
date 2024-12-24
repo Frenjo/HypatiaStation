@@ -20,7 +20,7 @@
 
 // Serenity
 /datum/construction/reversible/mecha/serenity
-	result = /obj/mecha/medical/serenity
+	result = /obj/mecha/combat/gygax/serenity
 	steps = list(
 		//1
 		list(

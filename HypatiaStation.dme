@@ -1522,7 +1522,6 @@
 #include "code\modules\mecha\types\combat\phazon.dm"
 #include "code\modules\mecha\types\medical\_medical.dm"
 #include "code\modules\mecha\types\medical\odysseus.dm"
-#include "code\modules\mecha\types\medical\serenity.dm"
 #include "code\modules\mecha\types\working\_working.dm"
 #include "code\modules\mecha\types\working\dreadnought.dm"
 #include "code\modules\mecha\types\working\hoverpod.dm"
