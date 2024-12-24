@@ -82,7 +82,7 @@
 
 /obj/mecha/working/hoverpod/shuttle/New()
 	. = ..()
-	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/tool/passenger(src)
+	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/passenger(src)
 	ME.attach(src)
-	ME = new /obj/item/mecha_part/equipment/tool/passenger(src)
+	ME = new /obj/item/mecha_part/equipment/passenger(src)
 	ME.attach(src)

@@ -36,7 +36,7 @@
 	ME.attach(src)
 	ME = new /obj/item/mecha_part/equipment/tesla_energy_relay(src)
 	ME.attach(src)
-	ME = new /obj/item/mecha_part/equipment/antiproj_armor_booster(src)
+	ME = new /obj/item/mecha_part/equipment/ranged_armour_booster(src)
 	ME.attach(src)
 	smoke_system = new /datum/effect/system/smoke_spread(src)
 	smoke_system.set_up(3, 0, src)
@@ -202,7 +202,7 @@
 	ME.attach(src)
 	ME = new /obj/item/mecha_part/equipment/tesla_energy_relay(src)
 	ME.attach(src)
-	ME = new /obj/item/mecha_part/equipment/antiproj_armor_booster(src)
+	ME = new /obj/item/mecha_part/equipment/ranged_armour_booster(src)
 	ME.attach(src)
 
 /obj/mecha/combat/marauder/mauler

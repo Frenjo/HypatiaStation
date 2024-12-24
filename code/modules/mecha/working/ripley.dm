@@ -116,4 +116,4 @@
 
 /obj/mecha/working/ripley/rescue_ranger/New()
 	. = ..()
-	excluded_equipment.Remove(/obj/item/mecha_part/equipment/tool/sleeper, /obj/item/mecha_part/equipment/tool/syringe_gun)
+	excluded_equipment.Remove(/obj/item/mecha_part/equipment/medical)

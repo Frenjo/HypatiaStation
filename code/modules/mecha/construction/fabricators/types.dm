@@ -119,7 +119,7 @@
 		),
 		"General Exosuit Equipment" = list(
 			/obj/item/mecha_part/tracking,
-			/obj/item/mecha_part/equipment/tool/passenger, // Ported this from NSS Eternal along with the hoverpod. -Frenjo
+			/obj/item/mecha_part/equipment/passenger, // Ported this from NSS Eternal along with the hoverpod. -Frenjo
 			///obj/item/mecha_part/equipment/jetpack, //TODO MECHA JETPACK SPRITE MISSING,
 		),
 		"Working Exosuit Equipment" = list(

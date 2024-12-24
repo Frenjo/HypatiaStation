@@ -87,7 +87,7 @@
 		/datum/tech/materials = 3, /datum/tech/magnets = 4, /datum/tech/biotech = 4,
 		/datum/tech/programming = 3
 	)
-	build_path = /obj/item/mecha_part/equipment/tool/syringe_gun
+	build_path = /obj/item/mecha_part/equipment/medical/syringe_gun
 	categories = list("Medical Exosuit Equipment")
 
 // Combat
@@ -96,7 +96,7 @@
 	desc = "Exosuit-mounted armor booster."
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 4)
-	build_path = /obj/item/mecha_part/equipment/anticcw_armor_booster
+	build_path = /obj/item/mecha_part/equipment/melee_armour_booster
 	categories = list("Combat Exosuit Equipment")
 
 /datum/design/mech_proj_armor
@@ -104,7 +104,7 @@
 	desc = "Exosuit-mounted armor booster."
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 5, /datum/tech/engineering = 3)
-	build_path = /obj/item/mecha_part/equipment/antiproj_armor_booster
+	build_path = /obj/item/mecha_part/equipment/ranged_armour_booster
 	categories = list("Combat Exosuit Equipment")
 
 // Weapons

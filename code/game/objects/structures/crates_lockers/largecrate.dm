@@ -98,6 +98,6 @@
 
 		ME = new /obj/item/mecha_part/equipment/tool/hydraulic_clamp
 		ME.attach(H)
-		ME = new /obj/item/mecha_part/equipment/tool/passenger
+		ME = new /obj/item/mecha_part/equipment/passenger
 		ME.attach(H)
 	..()

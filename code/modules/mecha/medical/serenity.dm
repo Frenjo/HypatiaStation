@@ -19,4 +19,4 @@
 
 /obj/mecha/medical/serenity/New()
 	. = ..()
-	excluded_equipment.Remove(/obj/item/mecha_part/equipment/weapon)
+	excluded_equipment.Remove(/obj/item/mecha_part/equipment/tool/drill, /obj/item/mecha_part/equipment/weapon)
