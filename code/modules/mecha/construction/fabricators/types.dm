@@ -70,6 +70,14 @@
 			/obj/item/mecha_part/part/ripley_left_leg,
 			/obj/item/mecha_part/part/ripley_right_leg
 		),
+		"Rescue Ranger" = list(
+			/obj/item/mecha_part/chassis/rescue_ranger,
+			/obj/item/mecha_part/part/ripley_torso,
+			/obj/item/mecha_part/part/ripley_left_arm,
+			/obj/item/mecha_part/part/ripley_right_arm,
+			/obj/item/mecha_part/part/ripley_left_leg,
+			/obj/item/mecha_part/part/ripley_right_leg
+		),
 		"Dreadnought" = list(
 			/obj/item/mecha_part/chassis/dreadnought,
 			/obj/item/mecha_part/part/ripley_torso,

@@ -100,3 +100,20 @@
 	HC.attach(src)
 	for(var/obj/item/mecha_part/tracking/B in contents)//Deletes the beacon so it can't be found easily
 		qdel(B)
+
+/obj/mecha/working/ripley/rescue_ranger
+	name = "\improper APLU \"Rescue Ranger\""
+	desc = "A standard APLU chassis fitted with mounting hardpoints for basic medical equipment. It is painted in the Vey-Med (&copy; All rights reserved) livery."
+	icon_state = "rescue_ranger"
+	initial_icon = "rescue_ranger"
+
+	wreckage = /obj/effect/decal/mecha_wreckage/ripley/rescue_ranger
+
+	health = 175
+	step_in = 5
+
+	cargo_capacity = 10
+
+/obj/mecha/working/ripley/rescue_ranger/New()
+	. = ..()
+	excluded_equipment.Remove(/obj/item/mecha_part/equipment/tool/sleeper, /obj/item/mecha_part/equipment/tool/syringe_gun)

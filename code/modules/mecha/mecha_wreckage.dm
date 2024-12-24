@@ -120,6 +120,10 @@
 	name = "Death-Ripley wreckage"
 	icon_state = "deathripley-broken"
 
+/obj/effect/decal/mecha_wreckage/ripley/rescue_ranger
+	name = "Rescue Ranger wreckage"
+	icon_state = "rescue_ranger-broken"
+
 /obj/effect/decal/mecha_wreckage/hoverpod
 	name = "Hover pod wreckage"
 	icon_state = "engineering_pod-broken"
