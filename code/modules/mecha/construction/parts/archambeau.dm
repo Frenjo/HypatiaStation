@@ -2,11 +2,9 @@
 /obj/item/mecha_part/chassis/archambeau
 	name = "\improper Archambeau chassis"
 	desc = "The chassis of an Archambeau-type exosuit."
-	origin_tech = list(/datum/tech/materials = 7, /datum/tech/combat = 4, /datum/tech/engineering = 6)
 
-/obj/item/mecha_part/chassis/archambeau/New()
-	. = ..()
-	construct = new /datum/construction/mecha/chassis/archambeau(src)
+	origin_tech = list(/datum/tech/materials = 7, /datum/tech/combat = 4, /datum/tech/engineering = 6)
+	construct_type = /datum/construction/mecha/chassis/archambeau
 
 /obj/item/mecha_part/part/archambeau_armour
 	name = "\improper Archambeau armour plates"

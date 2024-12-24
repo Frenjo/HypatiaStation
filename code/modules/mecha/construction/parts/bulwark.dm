@@ -2,9 +2,7 @@
 /obj/item/mecha_part/chassis/bulwark
 	name = "\improper Bulwark chassis"
 
-/obj/item/mecha_part/chassis/bulwark/New()
-	. = ..()
-	construct = new /datum/construction/mecha/chassis/bulwark(src)
+	construct_type = /datum/construction/mecha/chassis/bulwark
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/bulwark/targeting

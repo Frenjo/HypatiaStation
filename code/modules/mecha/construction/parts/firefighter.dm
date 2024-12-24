@@ -2,9 +2,7 @@
 /obj/item/mecha_part/chassis/firefighter
 	name = "\improper Firefighter chassis"
 
-/obj/item/mecha_part/chassis/firefighter/New()
-	. = ..()
-	construct = new /datum/construction/mecha/chassis/firefighter(src)
+	construct_type = /datum/construction/mecha/chassis/firefighter
 
 /*
 /obj/item/mecha_part/part/firefighter_torso

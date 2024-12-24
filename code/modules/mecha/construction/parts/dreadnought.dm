@@ -2,9 +2,7 @@
 /obj/item/mecha_part/chassis/dreadnought
 	name = "\improper Dreadnought chassis"
 
-/obj/item/mecha_part/chassis/dreadnought/New()
-	. = ..()
-	construct = new /datum/construction/mecha/chassis/dreadnought(src)
+	construct_type = /datum/construction/mecha/chassis/dreadnought
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/dreadnought

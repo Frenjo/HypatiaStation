@@ -1,11 +1,9 @@
 // Durand
 /obj/item/mecha_part/chassis/durand
 	name = "\improper Durand chassis"
-	construction_cost = list(/decl/material/steel = 25000)
 
-/obj/item/mecha_part/chassis/durand/New()
-	. = ..()
-	construct = new /datum/construction/mecha/chassis/durand(src)
+	construction_cost = list(/decl/material/steel = 25000)
+	construct_type = /datum/construction/mecha/chassis/durand
 
 /obj/item/mecha_part/part/durand_torso
 	name = "\improper Durand torso"

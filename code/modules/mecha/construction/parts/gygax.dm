@@ -1,11 +1,9 @@
 // Gygax
 /obj/item/mecha_part/chassis/gygax
 	name = "\improper Gygax chassis"
-	construction_cost = list(/decl/material/steel = 25000)
 
-/obj/item/mecha_part/chassis/gygax/New()
-	. = ..()
-	construct = new /datum/construction/mecha/chassis/gygax(src)
+	construction_cost = list(/decl/material/steel = 25000)
+	construct_type = /datum/construction/mecha/chassis/gygax
 
 /obj/item/mecha_part/part/gygax_torso
 	name = "\improper Gygax torso"

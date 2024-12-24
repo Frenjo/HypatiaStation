@@ -18,6 +18,12 @@
 	construction_cost = list(/decl/material/steel = 20000)
 
 	var/datum/construction/construct
+	var/construct_type
+
+/obj/item/mecha_part/chassis/New()
+	. = ..()
+	if(isnotnull(construct_type))
+		construct = new construct_type(src)
 
 /obj/item/mecha_part/chassis/attackby(obj/item/W, mob/user)
 	if(!construct || !construct.action(W, user))

@@ -2,9 +2,7 @@
 /obj/item/mecha_part/chassis/honk
 	name = "\improper H.O.N.K chassis"
 
-/obj/item/mecha_part/chassis/honk/New()
-	. = ..()
-	construct = new /datum/construction/mecha/chassis/honk(src)
+	construct_type = /datum/construction/mecha/chassis/honk
 
 /obj/item/mecha_part/part/honk_torso
 	name = "\improper H.O.N.K torso"

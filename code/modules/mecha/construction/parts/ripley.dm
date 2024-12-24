@@ -2,9 +2,7 @@
 /obj/item/mecha_part/chassis/ripley
 	name = "\improper Ripley chassis"
 
-/obj/item/mecha_part/chassis/ripley/New()
-	. = ..()
-	construct = new /datum/construction/mecha/chassis/ripley(src)
+	construct_type = /datum/construction/mecha/chassis/ripley
 
 /obj/item/mecha_part/part/ripley_torso
 	name = "\improper Ripley torso"

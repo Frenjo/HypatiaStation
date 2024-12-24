@@ -2,9 +2,7 @@
 /obj/item/mecha_part/chassis/odysseus
 	name = "\improper Odysseus chassis"
 
-/obj/item/mecha_part/chassis/odysseus/New()
-	. = ..()
-	construct = new /datum/construction/mecha/chassis/odysseus(src)
+	construct_type = /datum/construction/mecha/chassis/odysseus
 
 /obj/item/mecha_part/part/odysseus_torso
 	name = "\improper Odysseus torso"

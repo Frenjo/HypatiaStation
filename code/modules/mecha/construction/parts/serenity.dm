@@ -2,9 +2,7 @@
 /obj/item/mecha_part/chassis/serenity
 	name = "\improper Serenity chassis"
 
-/obj/item/mecha_part/chassis/serenity/New()
-	. = ..()
-	construct = new /datum/construction/mecha/chassis/serenity
+	construct_type = /datum/construction/mecha/chassis/serenity
 
 /obj/item/mecha_part/part/serenity_carapace
 	name = "\improper Serenity carapace"
