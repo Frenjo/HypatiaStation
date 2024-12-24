@@ -180,7 +180,7 @@ CONTROLLER_DEF(master)
 /datum/controller/master/proc/update_time_allowance()
 	// Time allowance goes down linearly with world.cpu.
 	var/error = cpu_average - 100
-	var/time_allowance_delta = SIMPLE_SIGN(error) * -0.5 * world.tick_lag * max(0, 0.001 * abs(error))
+	var/time_allowance_delta = sign(error) * -0.5 * world.tick_lag * max(0, 0.001 * abs(error))
 
 	//timeAllowance = world.tick_lag * min(1, 0.5 * ((200/max(1,cpuAverage)) - 1))
 	time_allowance = min(time_allowance_max, max(0, time_allowance + time_allowance_delta))

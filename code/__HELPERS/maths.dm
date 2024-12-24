@@ -34,8 +34,10 @@
 /proc/Ceiling(x)
 	return -round(-x)
 
+#if DM_VERSION < 516
 /proc/sign(x)
 	return x != 0 ? x / abs(x) : 0
+#endif
 
 // Greatest Common Divisor: Euclid's algorithm.
 /proc/Gcd(a, b)

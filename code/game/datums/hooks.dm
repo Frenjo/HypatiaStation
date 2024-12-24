@@ -24,9 +24,9 @@
  */
 /proc/call_hook(hook_path)
 	. = TRUE
-	var/hook/caller = new hook_path()
+	var/hook/called_hook = new hook_path()
 	for(var/P in typesof("[hook_path]/proc"))
-		if(!call(caller, P)())
+		if(!call(called_hook, P)())
 			error("Hook '[P]' failed or runtimed.")
 			. = FALSE
 
