@@ -1,5 +1,5 @@
 /obj/mecha/combat/durand
-	name = "Durand"
+	name = "\improper Durand"
 	desc = "An aging combat exosuit utilised by the NanoTrasen corporation. Originally developed to combat hostile alien lifeforms."
 	icon_state = "durand"
 	infra_luminosity = 8
@@ -65,7 +65,7 @@
 
 // Archambeau
 /obj/mecha/combat/durand/archambeau
-	name = "Archambeau"
+	name = "\improper Archambeau"
 	desc = "A modern variant of the aging Durand-type exosuit. This version features enhanced lightweight armour plating akin to that originally developed for the Phazon-type exosuit."
 	icon_state = "archambeau"
 	infra_luminosity = 6

@@ -1,5 +1,5 @@
 /obj/mecha/combat/phazon
-	name = "Phazon"
+	name = "\improper Phazon"
 	desc = "This is a Phazon exosuit. \
 			The pinnacle of scientific research and pride of NanoTrasen, it uses cutting edge bluespace technology and expensive materials. \
 			To most, it can only be described as 'WTF?'."

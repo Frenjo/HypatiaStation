@@ -59,7 +59,7 @@
 
 //Hoverpod variants
 /obj/mecha/working/hoverpod/combat
-	name = "Combat HoverPod"
+	name = "\improper Combat HoverPod"
 	desc = "An ancient, run-down combat spacecraft." // Ideally would have a seperate icon.
 
 	health = 200
@@ -77,7 +77,7 @@
 	ME.attach(src)
 
 /obj/mecha/working/hoverpod/shuttle
-	name = "Shuttle HoverPod"
+	name = "\improper Shuttle HoverPod"
 	desc = "Who knew a tiny ball could fit three people?"
 
 /obj/mecha/working/hoverpod/shuttle/New()

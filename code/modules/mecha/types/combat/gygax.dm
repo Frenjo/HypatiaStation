@@ -1,5 +1,5 @@
 /obj/mecha/combat/gygax
-	name = "Gygax"
+	name = "\improper Gygax"
 	desc = "A lightweight, security exosuit. Popular among private and corporate security."
 	icon_state = "gygax"
 	infra_luminosity = 6
@@ -16,7 +16,7 @@
 
 // Dark Gygax
 /obj/mecha/combat/gygax/dark
-	name = "Dark Gygax"
+	name = "\improper Dark Gygax"
 	desc = "A lightweight exosuit used by NanoTrasen Death Squads. A significantly upgraded Gygax security mech."
 	icon_state = "darkgygax"
 	initial_icon = "darkgygax"
@@ -53,7 +53,7 @@
 
 // Serenity
 /obj/mecha/combat/gygax/serenity
-	name = "Serenity"
+	name = "\improper Serenity"
 	desc = "A lightweight exosuit constructed from a modified Gygax chassis combined with proprietary Vey-Med(&copy; All rights reserved) medical technology."
 	icon_state = "serenity"
 	infra_luminosity = 11

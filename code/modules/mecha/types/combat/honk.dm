@@ -1,5 +1,5 @@
 /obj/mecha/combat/honk
-	name = "H.O.N.K"
+	name = "\improper H.O.N.K"
 	desc = "Produced by \"Tyranny of Honk, INC\", this exosuit is designed as heavy clown-support. Used to spread the fun and joy of life. HONK!"
 	icon_state = "honk"
 	infra_luminosity = 5

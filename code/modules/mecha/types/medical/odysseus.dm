@@ -1,5 +1,5 @@
 /obj/mecha/medical/odysseus
-	name = "Odysseus"
+	name = "\improper Odysseus"
 	desc = "A medical exosuit developed and produced by Vey-Med(&copy; All rights reserved)."
 	icon_state = "odysseus"
 	initial_icon = "odysseus"
@@ -38,7 +38,7 @@
 
 // Dark Odysseus
 /obj/mecha/medical/odysseus/dark
-	name = "Dark Odysseus"
+	name = "\improper Dark Odysseus"
 	desc = "A significantly upgraded Vey-Med(&copy; All rights reserved) Odysseus-type chassis painted in a dark livery."
 	icon_state = "dark_odysseus"
 	initial_icon = "dark_odysseus"

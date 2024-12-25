@@ -1,5 +1,5 @@
 /obj/mecha/combat/marauder
-	name = "Marauder"
+	name = "\improper Marauder"
 	desc = "Heavy-duty, combat exosuit, developed after the Durand model. Rarely found among civilian populations."
 	icon_state = "marauder"
 	infra_luminosity = 3
@@ -174,7 +174,7 @@
 		zoom()
 
 /obj/mecha/combat/marauder/seraph
-	name = "Seraph"
+	name = "\improper Seraph"
 	desc = "Heavy-duty, command-type exosuit. This is a custom model, utilized only by high-ranking military personnel."
 	icon_state = "seraph"
 
@@ -206,7 +206,7 @@
 	ME.attach(src)
 
 /obj/mecha/combat/marauder/mauler
-	name = "Mauler"
+	name = "\improper Mauler"
 	desc = "Heavy-duty, combat exosuit, developed off of the existing Marauder model."
 	icon_state = "mauler"
 
