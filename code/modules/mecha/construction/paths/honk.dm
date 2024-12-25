@@ -24,13 +24,13 @@
 		list("key" = /obj/item/clothing/shoes/clown_shoes),				//2
 		list("key" = /obj/item/bikehorn),								//3
 		list("key" = /obj/item/clothing/mask/gas/clown_hat),			//4
-		list("key" = /obj/item/bikehorn),								//5
-		list("key" = /obj/item/circuitboard/mecha/honk/targeting),	//6
-		list("key" = /obj/item/bikehorn),								//7
+		list("key" = /obj/item/screwdriver),							//5
+		list("key" = /obj/item/circuitboard/mecha/honk/targeting),		//6
+		list("key" = /obj/item/screwdriver),							//7
 		list("key" = /obj/item/circuitboard/mecha/honk/peripherals),	//8
-		list("key" = /obj/item/bikehorn),								//9
+		list("key" = /obj/item/screwdriver),							//9
 		list("key" = /obj/item/circuitboard/mecha/honk/main),			//10
-		list("key" = /obj/item/bikehorn),								//11
+		list("key" = /obj/item/bikehorn)								//11
 	)
 
 /datum/construction/mecha/honk/custom_action(step, atom/used_atom, mob/user)
@@ -40,17 +40,24 @@
 	if(istype(used_atom, /obj/item/bikehorn))
 		playsound(holder, 'sound/items/bikehorn.ogg', 50, 1)
 		user.visible_message("HONK!")
+		return TRUE
 
 	switch(step)
 		if(10)
 			MECHA_INSTALL_CENTRAL_MODULE
 			qdel(used_atom)
+		if(9)
+			MECHA_SECURE_CENTRAL_MODULE
 		if(8)
 			MECHA_INSTALL_PERIPHERAL_MODULE
 			qdel(used_atom)
+		if(7)
+			MECHA_SECURE_PERIPHERAL_MODULE
 		if(6)
 			MECHA_INSTALL_WEAPON_MODULE
 			qdel(used_atom)
+		if(5)
+			MECHA_SECURE_WEAPON_MODULE
 		if(4)
 			user.visible_message(
 				SPAN_NOTICE("[user] puts a clown wig and mask on \the [holder]."),

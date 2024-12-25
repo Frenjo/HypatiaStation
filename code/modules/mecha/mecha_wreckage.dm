@@ -207,6 +207,7 @@
 	name = "Phazon wreckage"
 	icon_state = "phazon-broken"
 
+// H.O.N.K
 /obj/effect/decal/mecha_wreckage/honk
 	name = "H.O.N.K wreckage"
 	icon_state = "honk-broken"
@@ -219,3 +220,8 @@
 		/obj/item/mecha_part/part/honk_left_leg,
 		/obj/item/mecha_part/part/honk_right_leg
 	)
+
+// Reticence
+/obj/effect/decal/mecha_wreckage/reticence
+	name = "Reticence wreckage"
+	icon_state = "reticence-broken"

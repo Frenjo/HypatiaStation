@@ -61,15 +61,6 @@
 	build_path = /obj/item/mecha_part/part/odysseus_carapace
 	categories = list("Odysseus")
 
-// Serenity
-/datum/design/serenity_carapace
-	name = "Exosuit Design (\"Serenity\" carapace)"
-	desc = "The external carapace of a Serenity-type exosuit."
-	build_type = DESIGN_TYPE_MECHFAB
-	req_tech = list(/datum/tech/materials = 4, /datum/tech/engineering = 4)
-	build_path = /obj/item/mecha_part/part/serenity_carapace
-	categories = list("Serenity")
-
 // Gygax
 /datum/design/gygax_torso
 	name = "Exosuit Design (\"Gygax\" torso)"
@@ -132,6 +123,15 @@
 	req_tech = list(/datum/tech/materials = 6, /datum/tech/combat = 4, /datum/tech/engineering = 5)
 	build_path = /obj/item/mecha_part/part/gygax_armour
 	categories = list("Gygax")
+
+// Serenity
+/datum/design/serenity_carapace
+	name = "Exosuit Design (\"Serenity\" carapace)"
+	desc = "The external carapace of a Serenity-type exosuit."
+	build_type = DESIGN_TYPE_MECHFAB
+	req_tech = list(/datum/tech/materials = 4, /datum/tech/engineering = 4)
+	build_path = /obj/item/mecha_part/part/serenity_carapace
+	categories = list("Serenity")
 
 // Durand
 /datum/design/durand_torso

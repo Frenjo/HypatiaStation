@@ -117,6 +117,15 @@
 			/obj/item/mecha_part/part/honk_left_leg,
 			/obj/item/mecha_part/part/honk_right_leg
 		),
+		"Reticence" = list(
+			/obj/item/mecha_part/chassis/reticence,
+			/obj/item/mecha_part/part/reticence_torso,
+			/obj/item/mecha_part/part/reticence_head,
+			/obj/item/mecha_part/part/reticence_left_arm,
+			/obj/item/mecha_part/part/reticence_right_arm,
+			/obj/item/mecha_part/part/reticence_left_leg,
+			/obj/item/mecha_part/part/reticence_right_leg
+		),
 		"General Exosuit Equipment" = list(
 			/obj/item/mecha_part/tracking,
 			/obj/item/mecha_part/equipment/passenger, // Ported this from NSS Eternal along with the hoverpod. -Frenjo

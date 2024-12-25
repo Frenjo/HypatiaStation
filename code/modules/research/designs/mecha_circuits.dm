@@ -61,15 +61,6 @@
 	materials = list(/decl/material/glass = 2000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/mecha/odysseus/peripherals
 
-// Serenity
-/datum/design/serenity_medical
-	name = "Circuit Design (\"Serenity\" Medical Control module)"
-	desc = "Allows for the construction of a \"Serenity\" Medical Control module."
-	req_tech = list(/datum/tech/biotech = 2, /datum/tech/programming = 4)
-	build_type = DESIGN_TYPE_IMPRINTER
-	materials = list(/decl/material/glass = 2000, "sacid" = 20)
-	build_path = /obj/item/circuitboard/mecha/serenity/medical
-
 // Gygax
 /datum/design/gygax_main
 	name = "Circuit Design (\"Gygax\" Central Control module)"
@@ -94,6 +85,15 @@
 	build_type = DESIGN_TYPE_IMPRINTER
 	materials = list(/decl/material/glass = 2000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/mecha/gygax/targeting
+
+// Serenity
+/datum/design/serenity_medical
+	name = "Circuit Design (\"Serenity\" Medical Control module)"
+	desc = "Allows for the construction of a \"Serenity\" Medical Control module."
+	req_tech = list(/datum/tech/biotech = 2, /datum/tech/programming = 4)
+	build_type = DESIGN_TYPE_IMPRINTER
+	materials = list(/decl/material/glass = 2000, "sacid" = 20)
+	build_path = /obj/item/circuitboard/mecha/serenity/medical
 
 // Durand
 /datum/design/durand_main
@@ -170,11 +170,11 @@
 	materials = list(/decl/material/glass = 1000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/mecha/phazon/targeting
 
-// Honk
+// H.O.N.K
 /datum/design/honk_main
 	name = "Circuit Design (\"H.O.N.K\" Central Control module)"
 	desc = "Allows for the construction of a \"H.O.N.K\" Central Control module."
-	req_tech = list(/datum/tech/programming = 3)
+	req_tech = list(/datum/tech/programming = 4)
 	build_type = DESIGN_TYPE_IMPRINTER
 	materials = list(/decl/material/glass = 2000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/mecha/honk/main
@@ -182,7 +182,7 @@
 /datum/design/honk_peri
 	name = "Circuit Design (\"H.O.N.K\" Peripherals Control module)"
 	desc = "Allows for the construction of a \"H.O.N.K\" Peripheral Control module."
-	req_tech = list(/datum/tech/programming = 3)
+	req_tech = list(/datum/tech/programming = 4)
 	build_type = DESIGN_TYPE_IMPRINTER
 	materials = list(/decl/material/glass = 2000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/mecha/honk/peripherals
@@ -190,7 +190,32 @@
 /datum/design/honk_targ
 	name = "Circuit Design (\"H.O.N.K\" Weapons & Targeting Control module)"
 	desc = "Allows for the construction of a \"H.O.N.K\" Weapons & Targeting Control module."
-	req_tech = list(/datum/tech/programming = 3)
+	req_tech = list(/datum/tech/programming = 4)
 	build_type = DESIGN_TYPE_IMPRINTER
 	materials = list(/decl/material/glass = 2000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/mecha/honk/targeting
+
+// Reticence
+/datum/design/reticence_main
+	name = "Circuit Design (\"Reticence\" Central Control module)"
+	desc = "Allows for the construction of a \"Reticence\" Central Control module."
+	req_tech = list(/datum/tech/programming = 4)
+	build_type = DESIGN_TYPE_IMPRINTER
+	materials = list(/decl/material/glass = 2000, "sacid" = 20)
+	build_path = /obj/item/circuitboard/mecha/reticence/main
+
+/datum/design/reticence_peri
+	name = "Circuit Design (\"Reticence\" Peripherals Control module)"
+	desc = "Allows for the construction of a \"Reticence\" Peripheral Control module."
+	req_tech = list(/datum/tech/programming = 4)
+	build_type = DESIGN_TYPE_IMPRINTER
+	materials = list(/decl/material/glass = 2000, "sacid" = 20)
+	build_path = /obj/item/circuitboard/mecha/reticence/peripherals
+
+/datum/design/reticence_targ
+	name = "Circuit Design (\"Reticence\" Weapons & Targeting Control module)"
+	desc = "Allows for the construction of a \"Reticence\" Weapons & Targeting Control module."
+	req_tech = list(/datum/tech/programming = 4)
+	build_type = DESIGN_TYPE_IMPRINTER
+	materials = list(/decl/material/glass = 2000, "sacid" = 20)
+	build_path = /obj/item/circuitboard/mecha/reticence/targeting
