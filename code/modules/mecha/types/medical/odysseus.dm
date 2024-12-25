@@ -35,3 +35,32 @@
 	to_world("[occupant.client.eye]")
 */
 //TODO - Check documentation for client.eye and client.perspective...
+
+// Dark Odysseus
+/obj/mecha/medical/odysseus/dark
+	name = "Dark Odysseus"
+	desc = "A significantly upgraded Vey-Med (&copy; All rights reserved) Odysseus-type chassis painted in a dark livery."
+	icon_state = "dark_odysseus"
+	initial_icon = "dark_odysseus"
+
+	health = 220
+	step_in = 1.5
+	step_energy_drain = 3
+	max_temperature = 35000
+	deflect_chance = 25
+	damage_absorption = list("brute" = 0.65, "fire" = 1, "bullet" = 0.7, "laser" = 0.8, "energy" = 0.8, "bomb" = 0.8)
+
+	max_equip = 4
+
+	wreckage = /obj/effect/decal/mecha_wreckage/odysseus/dark
+
+/obj/mecha/medical/odysseus/dark/New()
+	. = ..()
+	var/obj/item/mecha_part/equipment/part = new /obj/item/mecha_part/equipment/medical/sleeper(src)
+	part.attach(src)
+	part = new /obj/item/mecha_part/equipment/medical/syringe_gun(src)
+	part.attach(src)
+	part = new /obj/item/mecha_part/equipment/melee_armour_booster(src)
+	part.attach(src)
+	part = new /obj/item/mecha_part/equipment/ranged_armour_booster(src)
+	part.attach(src)
