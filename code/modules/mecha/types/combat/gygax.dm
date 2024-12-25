@@ -54,7 +54,7 @@
 // Serenity
 /obj/mecha/combat/gygax/serenity
 	name = "Serenity"
-	desc = "A lightweight exosuit constructed from a modified Gygax chassis combined with proprietary Vey-Med (&copy; All rights reserved) medical technology."
+	desc = "A lightweight exosuit constructed from a modified Gygax chassis combined with proprietary Vey-Med(&copy; All rights reserved) medical technology."
 	icon_state = "serenity"
 	infra_luminosity = 11
 	initial_icon = "serenity"
