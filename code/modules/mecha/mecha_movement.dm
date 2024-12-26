@@ -46,7 +46,7 @@
 			if(!check_for_support())
 				pr_inertial_movement.start(list(src, direction))
 				log_message("Movement control lost. Inertial movement started.")
-		if(do_after(step_in))
+		if(delay_for(step_in))
 			can_move = TRUE
 		if(overload)
 			health--

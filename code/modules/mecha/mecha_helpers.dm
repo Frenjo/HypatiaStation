@@ -35,18 +35,9 @@
 	pr_give_air = new /datum/global_iterator/mecha_tank_give_air(list(src))
 	pr_internal_damage = new /datum/global_iterator/mecha_internal_damage(list(src), 0)
 
-/obj/mecha/proc/do_after(delay)
+/obj/mecha/proc/delay_for(delay)
 	sleep(delay)
 	return isnotnull(src)
-
-/obj/mecha/proc/enter_after(delay, mob/user, numticks = 5)
-	var/delayfraction = delay / numticks
-	var/turf/T = user.loc
-	for(var/i = 0, i < numticks, i++)
-		sleep(delayfraction)
-		if(isnull(src) || isnull(user) || !user.canmove || !(user.loc == T))
-			return 0
-	return 1
 
 /obj/mecha/proc/check_for_support()
 	if(locate(/obj/structure/grille, orange(1, src)) || locate(/obj/structure/lattice, orange(1, src)) || locate(/turf/open, orange(1, src)))

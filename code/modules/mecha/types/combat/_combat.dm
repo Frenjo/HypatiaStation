@@ -96,7 +96,7 @@
 			visible_message(SPAN_INFO("\The [src] pushes [target] out of the way."))
 
 		melee_can_hit = 0
-		if(do_after(melee_cooldown))
+		if(delay_for(melee_cooldown))
 			melee_can_hit = 1
 		return
 
@@ -114,7 +114,7 @@
 						visible_message(SPAN_INFO_B("[name] smashes through the wall!"))
 						playsound(src, 'sound/weapons/smash.ogg', 50, 1)
 					melee_can_hit = 0
-					if(do_after(melee_cooldown))
+					if(delay_for(melee_cooldown))
 						melee_can_hit = 1
 					break
 	return

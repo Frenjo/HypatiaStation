@@ -113,7 +113,7 @@
 		SPAN_INFO("You start to climb into \the [src].")
 	)
 
-	if(enter_after(40, usr))
+	if(do_after(usr, 4 SECONDS))
 		if(isnull(occupant))
 			moved_inside(usr)
 		else if(occupant != usr)
@@ -136,6 +136,10 @@
 		log_append_to_last("[H] moved in as pilot.")
 		icon_state = reset_icon()
 		set_dir(SOUTH)
+		H.visible_message(
+			SPAN_INFO("[H] climbs into \the [src]."),
+			SPAN_INFO("You climb into \the [src].")
+		)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 		if(!hasInternalDamage())
 			occupant << sound('sound/mecha/nominal.ogg', volume = 50)
@@ -163,7 +167,7 @@
 		SPAN_INFO("You start to insert an MMI into \the [src].")
 	)
 
-	if(enter_after(40, user))
+	if(do_after(user, 4 SECONDS))
 		if(isnull(occupant))
 			return mmi_moved_inside(mmi_as_oc, user)
 		else
