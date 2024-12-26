@@ -282,7 +282,7 @@
 "hj" = (/turf/closed/wall/reinforced/riveted{icon = 'icons/turf/walls/mineral.dmi'; icon_state = "plasma3"},/area/special/alien)
 "hm" = (/obj/effect/decal/floor/coloured/red{dir = 4},/turf/open/floor/holofloor{icon_state = "floor"},/area/special/holodeck/source/empty_court)
 "hp" = (/turf/closed/wall/shuttle/corner/interior/inverted/sw{icon_state = "swall_inv_floor2"},/area/shuttle/administration/centcom)
-"hs" = (/obj/machinery/door/airlock/glass/security{name = "Airlock"; req_access = list(150)},/obj/machinery/door/poddoor{id = "syndicate_elite_mech_room"; name = "Mech Room Door"},/turf/open/floor/shuttle/red,/area/enemy/syndicate_mothership/elite_squad)
+"hs" = (/obj/machinery/door/airlock/glass/security{name = "Mech Room"; req_access = list(150)},/obj/machinery/door/poddoor{id = "syndicate_elite_mech_room"; name = "Mech Room Door"},/turf/open/floor/shuttle/red,/area/enemy/syndicate_mothership/elite_squad)
 "ht" = (/turf/closed/wall/reinforced/riveted,/area/centcom/tdome)
 "hu" = (/obj/structure/table/holotable,/obj/item/clothing/gloves/boxing/hologlove,/obj/effect/decal/floor/coloured/red{dir = 5},/turf/open/floor/holofloor{icon_state = "floor"},/area/special/holodeck/source/boxing_court)
 "hw" = (/turf/closed/wall/shuttle/corner/exterior/inverted/ne,/area/shuttle/specops/centcom)
@@ -511,7 +511,7 @@
 "qr" = (/obj/structure/stool/bed/chair{dir = 4},/turf/open/floor/shuttle/red,/area/shuttle/syndicate_elite/mothership)
 "qs" = (/obj/machinery/computer/shuttle_control/multi/vox,/turf/open/floor/shuttle/red/vox,/area/shuttle/vox/station)
 "qu" = (/obj/machinery/vending/cola,/turf/open/floor{icon_state = "bar"},/area/centcom/living)
-"qy" = (/obj/machinery/camera{c_tag = "Assault Armor North"; network = list("ERT")},/obj/mecha/combat/gygax/dark,/obj/effect/decal/floor/industrial/delivery,/turf/open/floor/tiled/grey,/area/centcom/specops)
+"qy" = (/obj/machinery/camera{c_tag = "Assault Armor North"; network = list("ERT")},/obj/mecha/combat/gygax/dark,/obj/effect/decal/floor/industrial/delivery,/obj/machinery/mech_bay_recharge_floor,/turf/open/floor/tiled/grey,/area/centcom/specops)
 "qz" = (/obj/effect/decal/floor/coloured/green/corner,/turf/open/floor{dir = 5; icon_state = "vault"},/area/centcom/tdome)
 "qB" = (/turf/closed/wall/reinforced/riveted{icon = 'icons/turf/walls/mineral.dmi'; icon_state = "plasma13"},/area/special/alien)
 "qC" = (/obj/machinery/computer/pod{id = "thunderdome"; name = "Thunderdome Blast Door Control"},/turf/open/floor{icon_state = "redyellowfull"},/area/centcom/tdome/admin)
@@ -611,7 +611,7 @@
 "up" = (/obj/machinery/door/airlock/centcom{name = "Bridge"; req_access = list(109)},/turf/open/floor/tiled/grey,/area/centcom/control)
 "ut" = (/obj/structure/table,/obj/machinery/microwave,/turf/open/floor/tiled/white,/area/centcom/tdome)
 "uu" = (/obj/structure/stool/bed/chair{dir = 1},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 8},/turf/open/floor/shuttle/blue,/area/shuttle/escape/centcom)
-"uy" = (/obj/machinery/mech_bay_recharge_port,/obj/effect/decal/floor/industrial/bot,/turf/open/floor/tiled/grey,/area/centcom/specops)
+"uy" = (/obj/machinery/mech_bay_recharge_port,/obj/effect/decal/floor/industrial/bot,/turf/open/floor/plating/metal,/area/centcom/specops)
 "uz" = (/turf/closed/wall/shuttle{dir = 5; icon_state = "swall3inv"},/area/shuttle/vox/station)
 "uB" = (/obj/effect/decal/floor/coloured/green{dir = 6},/turf/open/floor/holofloor{icon_state = "floor"},/area/special/holodeck/source/empty_court)
 "uC" = (/obj/structure/stool,/turf/open/floor/shuttle/blue,/area/shuttle/administration/centcom)
@@ -1027,10 +1027,11 @@
 "JX" = (/obj/machinery/body_scanconsole{known_implants = list(/obj/item/implant/cortical)},/turf/open/floor/shuttle/red/vox,/area/shuttle/vox/station)
 "Ka" = (/turf/closed/wall/shuttle/corner/interior/white/ne,/area/shuttle/escape/centcom)
 "Kb" = (/turf/closed/wall/shuttle{icon_state = "swall11"},/area/shuttle/transport/centcom)
+"Kd" = (/obj/machinery/mech_bay_recharge_floor,/obj/mecha/medical/odysseus/eurymachus,/turf/open/floor/shuttle/red,/area/enemy/syndicate_mothership/elite_squad)
 "Ke" = (/obj/structure/holowindow,/obj/effect/decal/floor/coloured/red{dir = 4},/turf/open/floor/holofloor{icon_state = "floor"},/area/special/holodeck/source/thunderdome_court)
 "Kg" = (/obj/item/reagent_holder/food/drinks/cans/cola,/obj/structure/table,/turf/open/floor{icon_state = "redyellowfull"},/area/centcom/living)
 "Kh" = (/obj/effect/decal/floor/industrial/delivery,/turf/open/floor/tiled/grey,/area/centcom/holding)
-"Ki" = (/obj/effect/decal/floor/industrial/warning/border{dir = 4},/turf/open/floor/tiled/grey,/area/centcom/specops)
+"Ki" = (/obj/effect/decal/floor/industrial/warning/border{dir = 4},/obj/machinery/computer/mech_bay_power_console,/turf/open/floor/circuit_grid/blue,/area/centcom/specops)
 "Kj" = (/obj/machinery/power/port_gen/pacman{anchored = 1},/obj/machinery/light/small,/turf/open/floor/shuttle/yellow,/area/shuttle/administration/centcom)
 "Kl" = (/obj/structure/stool/bed/chair/comfy/black{dir = 8},/turf/open/floor{icon_state = "bar"},/area/enemy/syndicate_mothership)
 "Km" = (/obj/effect/decal/cleanable/blood,/obj/effect/decal/floor/chapel/red,/turf/open/floor/tiled/dark_chapel,/area/enemy/wizard_station)
@@ -1129,7 +1130,7 @@
 "ND" = (/obj/effect/decal/floor/industrial/warning/border{dir = 8},/turf/open/floor/tiled/grey,/area/centcom)
 "NG" = (/turf/open/floor/holofloor{icon_state = "floor"},/area/special/holodeck/source/basketball_court)
 "NH" = (/obj/structure/stool/bed/chair,/obj/structure/disposalpipe/segment,/obj/effect/landmark{name = "tdomeobserve"},/turf/open/floor{icon_state = "redbluefull"},/area/centcom/tdome/observation)
-"NI" = (/obj/mecha/medical/odysseus,/obj/effect/decal/floor/industrial/delivery,/turf/open/floor/tiled/grey,/area/centcom/specops)
+"NI" = (/obj/effect/decal/floor/industrial/delivery,/obj/mecha/medical/odysseus/dark,/obj/machinery/mech_bay_recharge_floor,/turf/open/floor/tiled/grey,/area/centcom/specops)
 "NO" = (/turf/open/floor{dir = 4; icon = 'icons/turf/snow.dmi'; icon_state = "gravsnow_corner"},/area/enemy/syndicate_mothership)
 "NP" = (/obj/structure/table,/obj/machinery/processor{pixel_y = 10},/turf/open/floor{icon_state = "cafeteria"},/area/centcom/living)
 "NS" = (/obj/structure/stool/bed/chair,/turf/open/floor/beach/sand,/area/special/beach)
@@ -1161,7 +1162,7 @@
 "OQ" = (/obj/structure/artilleryplaceholder{icon_state = "27"},/turf/space,/area/space)
 "OR" = (/obj/structure/bookcase{name = "Forbidden Knowledge"},/obj/effect/decal/cleanable/cobweb,/turf/open/floor/wood,/area/enemy/wizard_station)
 "OU" = (/obj/machinery/computer/security/telescreen{name = "Spec. Ops. Monitor"; network = list("ERT")},/obj/structure/table/woodentable{dir = 5},/turf/open/floor/linoleum,/area/centcom/creed)
-"OV" = (/obj/mecha/working/ripley/firefighter,/obj/effect/decal/floor/industrial/delivery,/turf/open/floor/tiled/grey,/area/centcom/specops)
+"OV" = (/obj/mecha/working/ripley/firefighter,/obj/effect/decal/floor/industrial/delivery,/obj/machinery/mech_bay_recharge_floor,/turf/open/floor/tiled/grey,/area/centcom/specops)
 "Pb" = (/obj/machinery/door/airlock/hatch{req_access = list(150)},/turf/open/floor/shuttle/red/brig,/area/shuttle/vox/station)
 "Pc" = (/obj/structure/closet/secure/freezer/fridge,/turf/open/floor/tiled/white,/area/centcom/tdome)
 "Pd" = (/obj/structure/sign/securearea{desc = "A warning sign which reads 'EXTERNAL AIRLOCK'"; icon_state = "space"; layer = 4; name = "EXTERNAL AIRLOCK"},/turf/closed/wall/reinforced/riveted,/area/centcom/shuttle_dock/emergency)
@@ -1299,12 +1300,13 @@
 "TA" = (/obj/machinery/door/window/northleft,/obj/structure/stool/bed/chair,/turf/open/floor/tiled/dark,/area/centcom/control)
 "TC" = (/obj/structure/table,/obj/machinery/microwave,/turf/open/floor{icon_state = "cafeteria"},/area/enemy/syndicate_mothership)
 "TD" = (/obj/structure/table,/obj/item/reagent_holder/food/drinks/cans/beer,/obj/item/reagent_holder/food/drinks/cans/beer,/obj/item/reagent_holder/food/drinks/cans/beer,/obj/item/lighter/zippo,/obj/item/storage/fancy/cigarettes,/turf/open/floor{icon_state = "redbluefull"},/area/centcom/tdome/observation)
+"TE" = (/obj/machinery/mech_bay_recharge_floor,/obj/mecha/combat/marauder/mauler,/turf/open/floor/shuttle/red,/area/enemy/syndicate_mothership/elite_squad)
 "TF" = (/obj/structure/table/woodentable,/turf/open/floor/wood,/area/enemy/wizard_station)
 "TG" = (/obj/effect/decal/cleanable/molten_item,/turf/open/floor/tiled/freezer,/area/enemy/wizard_station)
 "TJ" = (/obj/machinery/portable_atmospherics/canister/oxygen,/obj/effect/decal/floor/industrial/vault,/turf/open/floor/tiled/dark,/area/centcom/specops)
 "TK" = (/turf/closed/wall/reinforced/riveted{icon = 'icons/turf/walls/mineral.dmi'; icon_state = "plasma4"},/area/special/alien)
 "TN" = (/turf/open/floor/holofloor{dir = 4; icon_state = "carpet1-0"},/area/special/holodeck/source/theatre)
-"TO" = (/obj/machinery/mech_bay_recharge_port,/turf/open/floor/shuttle/red,/area/enemy/syndicate_mothership/elite_squad)
+"TO" = (/obj/machinery/mech_bay_recharge_port,/turf/open/floor/plating/metal,/area/enemy/syndicate_mothership/elite_squad)
 "TQ" = (/obj/item/storage/belt/inflatable,/turf/open/floor/beach/sand{icon_state = "desert1"; tag = "icon-desert1"},/area/special/holodeck/source/beach)
 "TS" = (/obj/machinery/cell_charger,/obj/structure/table,/obj/machinery/light/small{dir = 1},/turf/open/floor/shuttle/yellow,/area/shuttle/administration/centcom)
 "TV" = (/obj/machinery/optable,/obj/item/brain,/obj/structure/window/basic{dir = 1},/turf/open/floor/shuttle/red/vox,/area/shuttle/vox/station)
@@ -1341,7 +1343,7 @@
 "Vr" = (/obj/structure/stool/bed/chair{dir = 8},/turf/open/floor{dir = 4; icon_state = "carpetside"},/area/centcom/control)
 "Vu" = (/obj/effect/landmark{name = "voxstart"},/turf/open/floor/shuttle/red/vox,/area/shuttle/vox/station)
 "VB" = (/turf/closed/wall/reinforced/riveted{icon = 'icons/turf/walls/mineral.dmi'; icon_state = "plasma5"},/area/special/alien)
-"VE" = (/obj/mecha/combat/marauder/mauler,/turf/open/floor/shuttle/red,/area/enemy/syndicate_mothership/elite_squad)
+"VE" = (/obj/mecha/combat/marauder/mauler,/obj/machinery/mech_bay_recharge_floor,/turf/open/floor/shuttle/red,/area/enemy/syndicate_mothership/elite_squad)
 "VF" = (/obj/machinery/door/unpowered/shuttle,/turf/open/floor/shuttle/yellow,/area/shuttle/transport/centcom)
 "VI" = (/turf/open/floor/carpet,/area/enemy/wizard_station)
 "VK" = (/turf/closed/wall/shuttle/corner/exterior/inverted/ne,/area/shuttle/syndicate_elite/mothership)
@@ -1367,6 +1369,7 @@
 "WB" = (/turf/open/floor/holofloor{dir = 4; icon_state = "asteroid1"},/area/special/holodeck/source/desert)
 "WD" = (/obj/structure/rack,/obj/item/gun/energy/ion,/obj/effect/decal/floor/industrial/vault,/turf/open/floor/tiled/dark,/area/centcom/specops)
 "WF" = (/obj/effect/decal/cleanable/blood,/turf/open/floor/tiled/grey,/area/centcom/solitary)
+"WI" = (/obj/machinery/computer/mech_bay_power_console,/turf/open/floor/circuit_grid/blue,/area/enemy/syndicate_mothership/elite_squad)
 "WJ" = (/obj/item/clothing/head/collectable/paper,/turf/open/floor/beach/sand{icon_state = "seashallow"; tag = "icon-seashallow"},/area/centcom/holding)
 "WL" = (/obj/structure/stool/bed/chair,/turf/open/floor/tiled/grey,/area/centcom)
 "WM" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 1},/turf/open/floor{dir = 5; icon_state = "carpetside"},/area/centcom/control)
@@ -1505,13 +1508,13 @@ uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
 uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauagRUJEFEFEFWPCGCGCGCGuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
 uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauagRSRvmVVvmSRCGQQIuCGuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
 uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauagRSRqrFqoMSRCGCGCGCGCGCGCGCGCGCGCGCGuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
-uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauagRSRqrFqEmSRuaCGpMmRkUNACGTOVENANACGuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
+uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauagRSRqrFqEmSRuaCGpMmRkUNACGTOVEWINACGuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
 uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauagRSRqrFqoMSRZACGNANAkUNACGNANANANACGuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
-uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauagRSRFqFqFqGgJVlgNANAkUNACGTOVENANACGuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
+uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauagRSRFqFqFqGgJVlgNANAkUNACGTOVEWINACGuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
 uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauagRSRvtFqFqzsJVlgNANANANAhsNANANANACGuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaxNxNxNuaNVNVNVuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
-uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauagRSRcDFqVPSRZACGNANAkUNACGTOVENANACGuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaxNxNxNuaNVNVNVuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
+uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauagRSRcDFqVPSRZACGNANAkUNACGTOKdWINACGuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaxNxNxNuaNVNVNVuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
 uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauagRwiGcvtQiDUuaCGNANAkUNACGNANANANACGuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaxNxNxNuaNVNVNVuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
-uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauagRuawiguDUuauaCGNANAkUNACGTOVENANACGuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaDiaaacafFkxNxNxNuaNVNVNVDiaaacafFkuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
+uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauagRuawiguDUuauaCGNANAkUNACGTOTEWINACGuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaDiaaacafFkxNxNxNuaNVNVNVDiaaacafFkuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
 uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGCGuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaajamamamanrvaqvIrvvIasrvanamamamatuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
 uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaClawaCaHaIaLaPaQaTaXbbaLbdbkblbmCluauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
 uauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHXHuauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaClbnbpClbqbrbvbrbAbrbvbrbBClbpbCCluauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauauaua
