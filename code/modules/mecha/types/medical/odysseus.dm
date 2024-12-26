@@ -1,6 +1,6 @@
 /obj/mecha/medical/odysseus
 	name = "\improper Odysseus"
-	desc = "A medical exosuit developed and produced by Vey-Med(&copy; All rights reserved)."
+	desc = "A medical exosuit developed and produced by Vey-Med(&copy; all rights reserved)."
 	icon_state = "odysseus"
 	initial_icon = "odysseus"
 
@@ -39,7 +39,7 @@
 // Dark Odysseus
 /obj/mecha/medical/odysseus/dark
 	name = "\improper Dark Odysseus"
-	desc = "A significantly upgraded Vey-Med(&copy; All rights reserved) Odysseus-type chassis painted in a dark livery."
+	desc = "A significantly upgraded Vey-Med(&copy; all rights reserved) Odysseus-type chassis painted in a dark livery."
 	icon_state = "dark_odysseus"
 	initial_icon = "dark_odysseus"
 
@@ -75,7 +75,7 @@
 // Eurymachus
 /obj/mecha/medical/odysseus/eurymachus
 	name = "\improper Eurymachus"
-	desc = "A sinister variant of the Vey-Med(&copy; All rights reserved) Odysseus-type chassis featuring weapons-capable hardpoints and the unique ability to camouflage as its regular counterpart."
+	desc = "A sinister variant of the Vey-Med(&copy; all rights reserved) Odysseus-type chassis featuring weapons-capable hardpoints and the unique ability to camouflage as its regular counterpart."
 	icon_state = "eurymachus"
 	initial_icon = "eurymachus"
 
@@ -150,11 +150,11 @@
 	// Swaps the icon states and descriptions then updates the iterator.
 	if(camouflage)
 		icon_state = "odysseus"
-		desc = "A medical exosuit developed and produced by Vey-Med(&copy; All rights reserved)."
+		desc = "A medical exosuit developed and produced by Vey-Med(&copy; all rights reserved)."
 		camouflage_iterator.start()
 	else
 		icon_state = "eurymachus"
-		desc = "A sinister variant of the Vey-Med(&copy; All rights reserved) Odysseus-type chassis featuring weapons-capable hardpoints and the unique ability to camouflage as its regular counterpart."
+		desc = "A sinister variant of the Vey-Med(&copy; all rights reserved) Odysseus-type chassis featuring weapons-capable hardpoints and the unique ability to camouflage as its regular counterpart."
 		camouflage_iterator.stop()
 	log_message("Toggled camouflage.")
 

@@ -103,7 +103,7 @@
 
 /obj/mecha/working/ripley/rescue_ranger
 	name = "\improper APLU \"Rescue Ranger\""
-	desc = "A standard APLU chassis fitted with mounting hardpoints for basic medical equipment. It is painted in the Vey-Med(&copy; All rights reserved) livery."
+	desc = "A standard APLU chassis fitted with mounting hardpoints for basic medical equipment. It is painted in the Vey-Med(&copy; all rights reserved) livery."
 	icon_state = "rescue_ranger"
 	initial_icon = "rescue_ranger"
 
