@@ -153,6 +153,10 @@
 	name = "Dark Odysseus wreckage"
 	icon_state = "dark_odysseus-broken"
 
+/obj/effect/decal/mecha_wreckage/odysseus/eurymachus
+	name = "Eurymachus wreckage"
+	icon_state = "eurymachus-broken"
+
 // Combat
 /obj/effect/decal/mecha_wreckage/gygax
 	name = "Gygax wreckage"

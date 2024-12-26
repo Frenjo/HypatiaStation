@@ -64,3 +64,106 @@
 	part.attach(src)
 	part = new /obj/item/mecha_part/equipment/ranged_armour_booster(src)
 	part.attach(src)
+
+/obj/mecha/medical/odysseus/dark/add_cell(obj/item/cell/C = null)
+	if(isnotnull(C))
+		C.forceMove(src)
+		cell = C
+		return
+	cell = new /obj/item/cell/hyper(src)
+
+// Eurymachus
+/obj/mecha/medical/odysseus/eurymachus
+	name = "\improper Eurymachus"
+	desc = "A sinister variant of the Vey-Med(&copy; All rights reserved) Odysseus-type chassis featuring weapons-capable hardpoints and the unique ability to camouflage as its regular counterpart."
+	icon_state = "eurymachus"
+	initial_icon = "eurymachus"
+
+	health = 170
+	step_in = 1.75
+	step_energy_drain = 4.5
+	max_temperature = 25000
+	deflect_chance = 20
+	damage_absorption = list("brute" = 0.725, "fire" = 1.1, "bullet" = 0.8, "laser" = 0.9, "energy" = 0.9, "bomb" = 0.9)
+
+	wreckage = /obj/effect/decal/mecha_wreckage/odysseus/eurymachus
+
+	var/datum/global_iterator/camouflage_iterator
+	var/camouflage = FALSE
+	var/camouflage_energy_drain = 100
+
+/obj/mecha/medical/odysseus/eurymachus/New()
+	. = ..()
+	excluded_equipment.Remove(/obj/item/mecha_part/equipment/weapon)
+	var/obj/item/mecha_part/equipment/part = new /obj/item/mecha_part/equipment/medical/sleeper(src)
+	part.attach(src)
+	part = new /obj/item/mecha_part/equipment/medical/syringe_gun(src)
+	part.attach(src)
+	part = new /obj/item/mecha_part/equipment/weapon/energy/taser(src)
+	part.attach(src)
+
+/obj/mecha/medical/odysseus/eurymachus/add_cell(obj/item/cell/C = null)
+	if(isnotnull(C))
+		C.forceMove(src)
+		cell = C
+		return
+	cell = new /obj/item/cell/hyper(src)
+
+/obj/mecha/medical/odysseus/eurymachus/add_iterators()
+	. = ..()
+	camouflage_iterator = new /datum/global_iterator/mecha_camouflage(list(src))
+
+/obj/mecha/medical/odysseus/eurymachus/get_commands()
+	. = {"<div class='wr'>
+						<div class='header'>Special</div>
+						<div class='links'>
+						<a href='byond://?src=\ref[src];camouflage=1'><span id="camouflage_command">[camouflage ? "Dis" : "En"]able camouflage</span></a><br>
+						</div>
+						</div>
+						"}
+	. += ..()
+
+/obj/mecha/medical/odysseus/eurymachus/Topic(href, href_list)
+	. = ..()
+	if(href_list["camouflage"])
+		toggle_camouflage()
+
+/obj/mecha/medical/odysseus/eurymachus/verb/toggle_camouflage()
+	set category = "Exosuit Interface"
+	set name = "Toggle Camouflage"
+	set popup_menu = FALSE
+	set src = usr.loc
+
+	camouflage = !camouflage
+	send_byjax(occupant, "exosuit.browser", "camouflage_command", "[camouflage ? "Dis" : "En"]able camouflage")
+	occupant_message("<font color=\"[camouflage ? "#00f\">En" : "#f00\">Dis"]abled camouflage.</font>")
+	// Does some sparks and the chameleon projector effect.
+	var/turf/T = GET_TURF(src)
+	make_sparks(3, TRUE, T)
+	var/obj/effect/overlay/pulse = new /obj/effect/overlay(T)
+	pulse.icon = 'icons/effects/effects.dmi'
+	pulse.plane = UNLIT_EFFECTS_PLANE
+	flick("emppulse", pulse)
+	spawn(8)
+		qdel(pulse)
+	playsound(T, 'sound/effects/pop.ogg', 100, TRUE, -6)
+	// Swaps the icon states and descriptions then updates the iterator.
+	if(camouflage)
+		icon_state = "odysseus"
+		desc = "A medical exosuit developed and produced by Vey-Med(&copy; All rights reserved)."
+		camouflage_iterator.start()
+	else
+		icon_state = "eurymachus"
+		desc = "A sinister variant of the Vey-Med(&copy; All rights reserved) Odysseus-type chassis featuring weapons-capable hardpoints and the unique ability to camouflage as its regular counterpart."
+		camouflage_iterator.stop()
+	log_message("Toggled camouflage.")
+
+// Mecha camouflage power drain handler.
+/datum/global_iterator/mecha_camouflage
+	delay = 2 SECONDS
+
+/datum/global_iterator/mecha_camouflage/process(obj/mecha/medical/odysseus/eurymachus/mecha)
+	if(mecha.get_charge() >= mecha.camouflage_energy_drain)
+		mecha.use_power(mecha.camouflage_energy_drain)
+	else
+		mecha.toggle_camouflage()
