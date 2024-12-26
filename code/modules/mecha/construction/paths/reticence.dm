@@ -9,7 +9,7 @@
 		list("key" = /obj/item/mecha_part/part/reticence_head)
 	)
 
-/datum/construction/mecha/chassis/honk/spawn_result()
+/datum/construction/mecha/chassis/reticence/spawn_result()
 	var/obj/item/mecha_part/chassis/const_holder = holder
 	const_holder.construct = new /datum/construction/mecha/reticence(const_holder)
 	const_holder.density = TRUE
