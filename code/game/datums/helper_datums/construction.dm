@@ -1,6 +1,3 @@
-#define FORWARD -1
-#define BACKWARD 1
-
 /datum/construction
 	var/list/steps
 	var/atom/holder
@@ -22,7 +19,7 @@
 		set_desc(length(steps))
 
 /datum/construction/proc/action(obj/item/used_item, mob/living/user)
-	return
+	return check_step(used_item, user)
 
 /datum/construction/proc/check_step(obj/item/used_item, mob/living/user) //check last step only
 	var/valid_step = is_right_key(used_item)
@@ -35,7 +32,7 @@
 	var/list/step = steps[length(steps)]
 	if(istype(used_item, step["key"]))
 		return length(steps)
-	return 0
+	return FALSE
 
 /datum/construction/proc/custom_action(step, obj/item/used_item, mob/living/user)
 	return TRUE
@@ -61,20 +58,29 @@
 	var/list/step = steps[index]
 	holder.desc = step["desc"]
 
+/*
+ * Reversible Construction
+ *
+ * This is a heavily modified version of tgstation's /datum/construction, but here it's applied only to the /reversible subtype.
+ */
+#define FORWARD 1
+#define BACKWARD -1
+
+#define CONSTRUCTION_ACTION_DELETE "delete"
 
 /datum/construction/reversible
-	var/index
+	var/index = 1
 
 /datum/construction/reversible/New(atom)
 	. = ..()
-	index = length(steps)
+	update_holder(index)
 
-/datum/construction/reversible/proc/update_index(diff)
-	index += diff
-	if(index == 0)
-		spawn_result()
-	else
-		set_desc(index)
+/datum/construction/reversible/check_step(obj/item/used_item, mob/living/user)
+	var/diff = is_right_key(used_item)
+	if(diff && custom_action(diff, used_item, user))
+		update_index(diff)
+		return TRUE
+	return FALSE
 
 /datum/construction/reversible/is_right_key(obj/item/used_item) // returns index step
 	var/list/step = steps[index]
@@ -82,14 +88,25 @@
 		return FORWARD //to the first step -> forward
 	else if(isnotnull(step["back_key"]) && istype(used_item, step["back_key"]))
 		return BACKWARD //to the last step -> backwards
-	return 0
-
-/datum/construction/reversible/check_step(obj/item/used_item, mob/living/user)
-	var/diff = is_right_key(used_item)
-	if(diff && custom_action(index, diff, used_item, user))
-		update_index(diff)
-		return TRUE
 	return FALSE
 
-/datum/construction/reversible/custom_action(index, diff, used_item, user)
+/datum/construction/reversible/custom_action(diff, obj/item/used_item, mob/living/user)
 	return TRUE
+
+/datum/construction/reversible/proc/update_holder(index)
+	var/list/step = steps[index]
+
+	if(isnotnull(step["desc"]))
+		holder.desc = step["desc"]
+	if(isnotnull(step["icon_state"]))
+		holder.icon_state = step["icon_state"]
+
+/datum/construction/reversible/proc/on_step()
+	if(index > length(steps))
+		spawn_result()
+	else
+		update_holder(index)
+
+/datum/construction/reversible/proc/update_index(diff)
+	index += diff
+	on_step()

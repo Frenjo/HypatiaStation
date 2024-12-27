@@ -43,15 +43,27 @@
 
 	switch(step)
 		if(10)
-			MECHA_INSTALL_CENTRAL_MODULE
+			user.visible_message(
+					SPAN_NOTICE("[user] installs the central control module into \the [holder]."),
+					SPAN_NOTICE("You install the central control module into \the [holder].")
+				)
 			qdel(used_item)
 		if(9)
-			MECHA_SECURE_CENTRAL_MODULE
+			user.visible_message(
+					SPAN_NOTICE("[user] secures \the [holder]' mainboard."),
+					SPAN_NOTICE("You secure \the [holder]' mainboard.")
+				)
 		if(8)
-			MECHA_INSTALL_PERIPHERAL_MODULE
+			user.visible_message(
+					SPAN_NOTICE("[user] installs the peripherals control module into \the [holder]."),
+					SPAN_NOTICE("You install the peripherals control module into \the [holder].")
+				)
 			qdel(used_item)
 		if(7)
-			MECHA_SECURE_PERIPHERAL_MODULE
+			user.visible_message(
+					SPAN_NOTICE("[user] secures \the [holder]' peripherals control module."),
+					SPAN_NOTICE("You secure \the [holder]' peripherals control module.")
+				)
 		if(6)
 			MECHA_INSTALL_WEAPON_MODULE
 			qdel(used_item)

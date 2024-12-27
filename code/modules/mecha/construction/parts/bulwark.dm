@@ -2,7 +2,7 @@
 /obj/item/mecha_part/chassis/bulwark
 	name = "\improper Bulwark chassis"
 
-	construct_type = /datum/construction/mecha_chassis/bulwark
+	construct_type = /datum/construction/mecha_chassis/ripley/bulwark
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/bulwark/targeting

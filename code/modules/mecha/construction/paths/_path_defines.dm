@@ -16,38 +16,6 @@
 #define MECHA_DESC_EXTERNAL_CARAPACE_WRENCHED	"The external carapace is wrenched."
 
 // Construction step text macros
-#define MECHA_CONNECT_HYDRAULICS user.visible_message(\
-SPAN_NOTICE("[user] connects \the [holder]' hydraulic systems."), SPAN_NOTICE("You connect \the [holder]' hydraulic systems."))
-#define MECHA_DISCONNECT_HYDRAULICS user.visible_message(\
-SPAN_NOTICE("[user] disconnects \the [holder]' hydraulic systems."), SPAN_NOTICE("You disconnect \the [holder]' hydraulic systems."))
-#define MECHA_ACTIVATE_HYDRAULICS user.visible_message(\
-SPAN_NOTICE("[user] activates \the [holder]' hydraulic systems."), SPAN_NOTICE("You activate \the [holder]' hydraulic systems."))
-#define MECHA_DEACTIVATE_HYDRAULICS user.visible_message(\
-SPAN_NOTICE("[user] deactivates \the [holder]' hydraulic systems."), SPAN_NOTICE("You deactivate \the [holder]' hydraulic systems."))
-#define MECHA_ADD_WIRING user.visible_message(\
-SPAN_NOTICE("[user] adds wiring to \the [holder]."), SPAN_NOTICE("You add wiring to \the [holder]."))
-#define MECHA_ADJUST_WIRING user.visible_message(\
-SPAN_NOTICE("[user] adjusts \the [holder]' wiring."), SPAN_NOTICE("You adjust \the [holder]' wiring."))
-#define MECHA_DISCONNECT_WIRING user.visible_message(\
-SPAN_NOTICE("[user] disconnects \the [holder]' wiring."), SPAN_NOTICE("You disconnect \the [holder]' wiring."))
-#define MECHA_REMOVE_WIRING user.visible_message(\
-SPAN_NOTICE("[user] removes the wiring from \the [holder]."), SPAN_NOTICE("You remove the wiring from \the [holder]."))
-
-#define MECHA_INSTALL_CENTRAL_MODULE user.visible_message(\
-SPAN_NOTICE("[user] installs the central control module into \the [holder]."), SPAN_NOTICE("You install the central control module into \the [holder]."))
-#define MECHA_REMOVE_CENTRAL_MODULE user.visible_message(\
-SPAN_NOTICE("[user] removes the central control module from \the [holder]."), SPAN_NOTICE("You remove the central control module from \the [holder]."))
-#define MECHA_SECURE_CENTRAL_MODULE user.visible_message(\
-SPAN_NOTICE("[user] secures \the [holder]' mainboard."), SPAN_NOTICE("You secure \the [holder]' mainboard."))
-#define MECHA_UNSECURE_CENTRAL_MODULE user.visible_message(\
-SPAN_NOTICE("[user] unfastens \the [holder]' mainboard."), SPAN_NOTICE("You unfasten \the [holder]' mainboard."))
-
-#define MECHA_INSTALL_PERIPHERAL_MODULE user.visible_message(\
-SPAN_NOTICE("[user] installs the peripherals control module into \the [holder]."), SPAN_NOTICE("You install the peripherals control module into \the [holder]."))
-#define MECHA_REMOVE_PERIPHERAL_MODULE user.visible_message(\
-SPAN_NOTICE("[user] removes the peripherals control module from \the [holder]."), SPAN_NOTICE("You remove the peripherals control module from \the [holder]."))
-#define MECHA_SECURE_PERIPHERAL_MODULE user.visible_message(\
-SPAN_NOTICE("[user] secures \the [holder]' peripherals control module."), SPAN_NOTICE("You secure \the [holder]' peripherals control module."))
 #define MECHA_UNSECURE_PERIPHERAL_MODULE user.visible_message(\
 SPAN_NOTICE("[user] unfastens \the [holder]' peripherals control module."), SPAN_NOTICE("You unfasten \the [holder]' peripherals control module."))
 
