@@ -1,5 +1,6 @@
 // Durand Chassis
-/datum/construction/mecha/chassis/durand
+/datum/construction/mecha_chassis/durand
+	result = /datum/construction/reversible/mecha/durand
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/durand_torso),		//1
 		list("key" = /obj/item/mecha_part/part/durand_left_arm),	//2
@@ -8,9 +9,6 @@
 		list("key" = /obj/item/mecha_part/part/durand_right_leg),	//5
 		list("key" = /obj/item/mecha_part/part/durand_head)
 	)
-
-/datum/construction/mecha/chassis/durand/spawn_result()
-	. = ..(/datum/construction/reversible/mecha/durand, "durand0")
 
 // Durand
 /datum/construction/reversible/mecha/durand
@@ -90,10 +88,12 @@
 		)
 	)
 
+	base_icon = "durand"
+
 	central_circuit = /obj/item/circuitboard/mecha/durand/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/durand/peripherals
 
-/datum/construction/reversible/mecha/durand/custom_action(index, diff, atom/used_atom, mob/user)
+/datum/construction/reversible/mecha/durand/custom_action(index, diff, obj/item/used_item, mob/living/user)
 	if(!..())
 		return FALSE
 
@@ -126,7 +126,7 @@
 		if(16)
 			if(diff == FORWARD)
 				MECHA_INSTALL_CENTRAL_MODULE
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "durand5"
 			else
 				MECHA_DISCONNECT_WIRING
@@ -142,7 +142,7 @@
 		if(14)
 			if(diff == FORWARD)
 				MECHA_INSTALL_PERIPHERAL_MODULE
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "durand7"
 			else
 				MECHA_UNSECURE_CENTRAL_MODULE
@@ -158,7 +158,7 @@
 		if(12)
 			if(diff == FORWARD)
 				MECHA_INSTALL_WEAPON_MODULE
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "durand9"
 			else
 				MECHA_UNSECURE_PERIPHERAL_MODULE
@@ -177,7 +177,7 @@
 					SPAN_NOTICE("[user] installs an advanced scanning module to \the [holder]."),
 					SPAN_NOTICE("You install an advanced scanning module to \the [holder].")
 				)
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "durand11"
 			else
 				MECHA_UNSECURE_WEAPON_MODULE
@@ -202,7 +202,7 @@
 					SPAN_NOTICE("[user] installs an advanced capacitor to \the [holder]."),
 					SPAN_NOTICE("You install an advanced capacitor to \the [holder].")
 				)
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "durand13"
 			else
 				user.visible_message(
@@ -252,7 +252,7 @@
 		if(3)
 			if(diff == FORWARD)
 				MECHA_INSTALL_ARMOUR_PLATES
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "durand18"
 			else
 				MECHA_UNWELD_INTERNAL_ARMOUR

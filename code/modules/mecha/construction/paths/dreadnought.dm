@@ -1,5 +1,6 @@
 // Dreadnought Chassis
-/datum/construction/mecha/chassis/dreadnought
+/datum/construction/mecha_chassis/dreadnought
+	result = /datum/construction/reversible/mecha/dreadnought
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/ripley_torso),		//1
 		list("key" = /obj/item/mecha_part/part/ripley_left_arm),	//2
@@ -7,9 +8,6 @@
 		list("key" = /obj/item/mecha_part/part/ripley_left_leg),	//4
 		list("key" = /obj/item/mecha_part/part/ripley_right_leg)	//5
 	)
-
-/datum/construction/mecha/chassis/dreadnought/spawn_result()
-	. = ..(/datum/construction/reversible/mecha/dreadnought, "durand0")
 
 // Dreadnought
 /datum/construction/reversible/mecha/dreadnought
@@ -53,10 +51,12 @@
 		)
 	)
 
+	base_icon = "durand"
+
 	central_circuit = /obj/item/circuitboard/mecha/dreadnought/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/dreadnought/peripherals
 
-/datum/construction/reversible/mecha/dreadnought/custom_action(index, diff, atom/used_atom, mob/user)
+/datum/construction/reversible/mecha/dreadnought/custom_action(index, diff, obj/item/used_item, mob/living/user)
 	if(!..())
 		return FALSE
 
@@ -89,7 +89,7 @@
 		if(10)
 			if(diff == FORWARD)
 				MECHA_INSTALL_CENTRAL_MODULE
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "durand5"
 			else
 				MECHA_DISCONNECT_WIRING
@@ -105,7 +105,7 @@
 		if(8)
 			if(diff == FORWARD)
 				MECHA_INSTALL_PERIPHERAL_MODULE
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "durand7"
 			else
 				MECHA_UNSECURE_CENTRAL_MODULE

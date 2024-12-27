@@ -1,5 +1,6 @@
 // Firefighter Chassis
-/datum/construction/mecha/chassis/firefighter
+/datum/construction/mecha_chassis/firefighter
+	result = /datum/construction/reversible/mecha/firefighter
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/ripley_torso),		//1
 		list("key" = /obj/item/mecha_part/part/ripley_left_arm),	//2
@@ -8,9 +9,6 @@
 		list("key" = /obj/item/mecha_part/part/ripley_right_leg),	//5
 		list("key" = /obj/item/clothing/suit/fire)					//6
 	)
-
-/datum/construction/mecha/chassis/firefighter/spawn_result()
-	. = ..(/datum/construction/reversible/mecha/firefighter, "fireripley0")
 
 // Firefighter
 /datum/construction/reversible/mecha/firefighter
@@ -61,10 +59,12 @@
 		)
 	)
 
+	base_icon = "fireripley"
+
 	central_circuit = /obj/item/circuitboard/mecha/ripley/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/ripley/peripherals
 
-/datum/construction/reversible/mecha/firefighter/custom_action(index, diff, atom/used_atom, mob/user)
+/datum/construction/reversible/mecha/firefighter/custom_action(index, diff, obj/item/used_item, mob/living/user)
 	if(!..())
 		return FALSE
 
@@ -97,7 +97,7 @@
 		if(11)
 			if(diff == FORWARD)
 				MECHA_INSTALL_CENTRAL_MODULE
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "fireripley5"
 			else
 				MECHA_DISCONNECT_WIRING
@@ -113,7 +113,7 @@
 		if(9)
 			if(diff == FORWARD)
 				MECHA_INSTALL_PERIPHERAL_MODULE
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "fireripley7"
 			else
 				MECHA_UNSECURE_CENTRAL_MODULE

@@ -2,7 +2,7 @@
 /obj/item/mecha_part/chassis/honk
 	name = "\improper H.O.N.K chassis"
 
-	construct_type = /datum/construction/mecha/chassis/honk
+	construct_type = /datum/construction/mecha_chassis/honk
 
 /obj/item/mecha_part/part/honk_torso
 	name = "\improper H.O.N.K torso"

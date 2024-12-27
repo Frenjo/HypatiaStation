@@ -1,5 +1,6 @@
 // Phazon Chassis
-/datum/construction/mecha/chassis/phazon
+/datum/construction/mecha_chassis/phazon
+	result = /datum/construction/reversible/mecha/phazon
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/phazon_torso),		//1
 		list("key" = /obj/item/mecha_part/part/phazon_left_arm),	//2
@@ -8,9 +9,6 @@
 		list("key" = /obj/item/mecha_part/part/phazon_right_leg),	//5
 		list("key" = /obj/item/mecha_part/part/phazon_head)
 	)
-
-/datum/construction/mecha/chassis/phazon/spawn_result()
-	. = ..(/datum/construction/reversible/mecha/phazon, "phazon0")
 
 // Phazon
 /datum/construction/reversible/mecha/phazon
@@ -90,10 +88,12 @@
 		)
 	)
 
+	base_icon = "phazon"
+
 	central_circuit = /obj/item/circuitboard/mecha/phazon/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/phazon/peripherals
 
-/datum/construction/reversible/mecha/phazon/custom_action(index, diff, atom/used_atom, mob/user)
+/datum/construction/reversible/mecha/phazon/custom_action(index, diff, obj/item/used_item, mob/living/user)
 	if(!..())
 		return FALSE
 
@@ -126,7 +126,7 @@
 		if(16)
 			if(diff == FORWARD)
 				MECHA_INSTALL_CENTRAL_MODULE
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "phazon5"
 			else
 				MECHA_DISCONNECT_WIRING
@@ -142,7 +142,7 @@
 		if(14)
 			if(diff == FORWARD)
 				MECHA_INSTALL_PERIPHERAL_MODULE
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "phazon7"
 			else
 				MECHA_UNSECURE_CENTRAL_MODULE
@@ -158,7 +158,7 @@
 		if(12)
 			if(diff == FORWARD)
 				MECHA_INSTALL_WEAPON_MODULE
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "phazon9"
 			else
 				MECHA_UNSECURE_PERIPHERAL_MODULE
@@ -177,7 +177,7 @@
 					SPAN_NOTICE("[user] installs a hyper-phasic scanning module to \the [holder]."),
 					SPAN_NOTICE("You install a hyper-phasic scanning module to \the [holder].")
 				)
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "phazon11"
 			else
 				MECHA_UNSECURE_WEAPON_MODULE
@@ -202,7 +202,7 @@
 					SPAN_NOTICE("[user] installs a hyper capacitor to \the [holder]."),
 					SPAN_NOTICE("You install a hyper capacitor to \the [holder].")
 				)
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "phazon13"
 			else
 				user.visible_message(
@@ -252,7 +252,7 @@
 		if(3)
 			if(diff == FORWARD)
 				MECHA_INSTALL_ARMOUR_PLATES
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "phazon18"
 			else
 				MECHA_UNWELD_INTERNAL_ARMOUR

@@ -1,7 +1,7 @@
 /obj/item/mecha_part/chassis/reticence
 	name = "\improper Reticence chassis"
 
-	construct_type = /datum/construction/mecha/chassis/reticence
+	construct_type = /datum/construction/mecha_chassis/reticence
 
 /obj/item/mecha_part/part/reticence_torso
 	name = "\improper Reticence torso"

@@ -1,5 +1,6 @@
 // Ripley Chassis
-/datum/construction/mecha/chassis/ripley
+/datum/construction/mecha_chassis/ripley
+	result = /datum/construction/reversible/mecha/ripley
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/ripley_torso),		//1
 		list("key" = /obj/item/mecha_part/part/ripley_left_arm),	//2
@@ -7,9 +8,6 @@
 		list("key" = /obj/item/mecha_part/part/ripley_left_leg),	//4
 		list("key" = /obj/item/mecha_part/part/ripley_right_leg)	//5
 	)
-
-/datum/construction/mecha/chassis/ripley/spawn_result()
-	. = ..(/datum/construction/reversible/mecha/ripley, "ripley0")
 
 // Ripley
 /datum/construction/reversible/mecha/ripley
@@ -53,10 +51,12 @@
 		)
 	)
 
+	base_icon = "ripley"
+
 	central_circuit = /obj/item/circuitboard/mecha/ripley/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/ripley/peripherals
 
-/datum/construction/reversible/mecha/ripley/custom_action(index, diff, atom/used_atom, mob/user)
+/datum/construction/reversible/mecha/ripley/custom_action(index, diff, obj/item/used_item, mob/living/user)
 	if(!..())
 		return FALSE
 
@@ -89,7 +89,7 @@
 		if(10)
 			if(diff == FORWARD)
 				MECHA_INSTALL_CENTRAL_MODULE
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "ripley5"
 			else
 				MECHA_DISCONNECT_WIRING
@@ -105,7 +105,7 @@
 		if(8)
 			if(diff == FORWARD)
 				MECHA_INSTALL_PERIPHERAL_MODULE
-				qdel(used_atom)
+				qdel(used_item)
 				holder.icon_state = "ripley7"
 			else
 				MECHA_UNSECURE_CENTRAL_MODULE

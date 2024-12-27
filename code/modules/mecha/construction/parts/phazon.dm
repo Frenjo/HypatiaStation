@@ -4,7 +4,7 @@
 	desc = "The chassis of a Phazon-type exosuit."
 
 	origin_tech = list(/datum/tech/materials = 7)
-	construct_type = /datum/construction/mecha/chassis/phazon
+	construct_type = /datum/construction/mecha_chassis/phazon
 
 /obj/item/mecha_part/part/phazon_torso
 	name = "\improper Phazon torso"

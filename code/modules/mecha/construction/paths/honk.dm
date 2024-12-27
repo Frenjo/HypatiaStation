@@ -1,5 +1,5 @@
 // H.O.N.K Chassis
-/datum/construction/mecha/chassis/honk
+/datum/construction/mecha_chassis/honk
 	steps = list(
 		list("key" = /obj/item/mecha_part/part/honk_torso),		//1
 		list("key" = /obj/item/mecha_part/part/honk_left_arm),	//2
@@ -9,15 +9,14 @@
 		list("key" = /obj/item/mecha_part/part/honk_head)
 	)
 
-/datum/construction/mecha/chassis/honk/spawn_result()
+/datum/construction/mecha_chassis/honk/spawn_result()
 	var/obj/item/mecha_part/chassis/const_holder = holder
-	const_holder.construct = new /datum/construction/mecha/honk(const_holder)
+	const_holder.construct = new /datum/construction/mecha_honk(const_holder)
 	const_holder.density = TRUE
-	spawn()
-		qdel(src)
+	qdel(src)
 
 // H.O.N.K
-/datum/construction/mecha/honk
+/datum/construction/mecha_honk
 	result = /obj/mecha/combat/honk
 	steps = list(
 		list("key" = /obj/item/bikehorn),								//1
@@ -33,11 +32,11 @@
 		list("key" = /obj/item/bikehorn)								//11
 	)
 
-/datum/construction/mecha/honk/custom_action(step, atom/used_atom, mob/user)
+/datum/construction/mecha_honk/custom_action(step, obj/item/used_item, mob/living/user)
 	if(!..())
 		return FALSE
 
-	if(istype(used_atom, /obj/item/bikehorn))
+	if(istype(used_item, /obj/item/bikehorn))
 		playsound(holder, 'sound/items/bikehorn.ogg', 50, 1)
 		user.visible_message("HONK!")
 		return TRUE
@@ -45,17 +44,17 @@
 	switch(step)
 		if(10)
 			MECHA_INSTALL_CENTRAL_MODULE
-			qdel(used_atom)
+			qdel(used_item)
 		if(9)
 			MECHA_SECURE_CENTRAL_MODULE
 		if(8)
 			MECHA_INSTALL_PERIPHERAL_MODULE
-			qdel(used_atom)
+			qdel(used_item)
 		if(7)
 			MECHA_SECURE_PERIPHERAL_MODULE
 		if(6)
 			MECHA_INSTALL_WEAPON_MODULE
-			qdel(used_atom)
+			qdel(used_item)
 		if(5)
 			MECHA_SECURE_WEAPON_MODULE
 		if(4)
@@ -63,15 +62,15 @@
 				SPAN_NOTICE("[user] puts a clown wig and mask on \the [holder]."),
 				SPAN_NOTICE("You put a clown wig and mask on \the [holder].")
 			)
-			qdel(used_atom)
+			qdel(used_item)
 		if(2)
 			user.visible_message(
 				SPAN_NOTICE("[user] puts clown shoes on \the [holder]."),
 				SPAN_NOTICE("You put clown shoes on \the [holder].")
 			)
-			qdel(used_atom)
+			qdel(used_item)
 	return TRUE
 
-/datum/construction/mecha/honk/spawn_result()
+/datum/construction/mecha_honk/spawn_result()
 	. = ..()
 	feedback_inc("mecha_honk_created", 1)

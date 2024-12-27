@@ -3,7 +3,7 @@
 	name = "\improper Gygax chassis"
 
 	construction_cost = list(/decl/material/steel = 25000)
-	construct_type = /datum/construction/mecha/chassis/gygax
+	construct_type = /datum/construction/mecha_chassis/gygax
 
 /obj/item/mecha_part/part/gygax_torso
 	name = "\improper Gygax torso"
