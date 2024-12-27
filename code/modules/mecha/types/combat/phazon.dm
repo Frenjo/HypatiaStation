@@ -25,7 +25,7 @@
 	if(phasing && get_charge() >= phasing_energy_drain)
 		if(can_move)
 			can_move = FALSE
-			flick("phazon-phase", src)
+			flick("[initial_icon]-phase", src)
 			loc = get_step(src, dir)
 			use_power(phasing_energy_drain)
 			sleep(step_in * 3)
@@ -78,10 +78,42 @@
 		send_byjax(occupant, "exosuit.browser", "phasing_command", "[phasing ? "Dis" : "En"]able phasing")
 		occupant_message("<font color=\"[phasing ? "#00f\">En" : "#f00\">Dis"]abled phasing.</font>")
 
-// This is the pre-equipped version for admin shenanigans.
-/obj/mecha/combat/phazon/equipped/New()
+// Dark Phazon
+// This is the new variant to replace the old pre-equipped/pre-constructable version for admin shenanigans.
+/obj/mecha/combat/phazon/dark
+	name = "\improper Dark Phazon"
+	desc = "This is a Dark Phazon exosuit. \
+			A sinister variant of the pinnacle of scientific research and pride of NanoTrasen, it uses cutting edge bluespace technology and even more expensive materials. \
+			To most, it can only be described as 'WTF?'."
+	icon_state = "dark_phazon"
+	initial_icon = "dark_phazon"
+
+	health = 300
+	step_energy_drain = 1.5
+	max_temperature = 45000
+	deflect_chance = 40
+	damage_absorption = list("brute" = 0.65, "fire" = 0.75, "bullet" = 0.65, "laser" = 0.6, "energy" = 0.675, "bomb" = 0.75)
+
+	max_equip = 4
+
+	wreckage = /obj/effect/decal/mecha_wreckage/phazon/dark
+
+	phasing_energy_drain = 100
+
+/obj/mecha/combat/phazon/dark/New()
 	. = ..()
 	var/obj/item/mecha_part/equipment/equip = new /obj/item/mecha_part/equipment/tool/rcd(src)
 	equip.attach(src)
 	equip = new /obj/item/mecha_part/equipment/gravcatapult(src)
 	equip.attach(src)
+	equip = new /obj/item/mecha_part/equipment/teleporter(src)
+	equip.attach(src)
+	equip = new /obj/item/mecha_part/equipment/tesla_energy_relay(src)
+	equip.attach(src)
+
+/obj/mecha/combat/phazon/dark/add_cell(obj/item/cell/C = null)
+	if(isnotnull(C))
+		C.forceMove(src)
+		cell = C
+		return
+	cell = new /obj/item/cell/hyper(src)

@@ -207,9 +207,14 @@
 	name = "Seraph wreckage"
 	icon_state = "seraph-broken"
 
+// Phazon
 /obj/effect/decal/mecha_wreckage/phazon
 	name = "Phazon wreckage"
 	icon_state = "phazon-broken"
+
+/obj/effect/decal/mecha_wreckage/phazon/dark
+	name = "Dark Phazon wreckage"
+	icon_state = "dark_phazon-broken"
 
 // H.O.N.K
 /obj/effect/decal/mecha_wreckage/honk
