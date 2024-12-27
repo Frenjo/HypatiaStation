@@ -7,8 +7,8 @@
 	construction_time = 500
 	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/bananium = 10000)
 
-/obj/item/mecha_part/equipment/weapon/honker/can_attach(obj/mecha/M)
-	if(!istype(M, /obj/mecha/combat/honk))
+/obj/item/mecha_part/equipment/weapon/honker/can_attach(obj/mecha/combat/honk/M)
+	if(!istype(M))
 		return FALSE
 	return ..()
 

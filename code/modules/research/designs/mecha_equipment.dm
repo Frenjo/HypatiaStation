@@ -61,13 +61,24 @@
 // Working
 /datum/design/mech_rcd
 	name = "Exosuit Module Design (RCD Module)"
-	desc = "An exosuit-mounted Rapid Construction Device."
+	desc = "An exosuit-mounted rapid-construction-device."
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(
 		/datum/tech/materials = 4, /datum/tech/magnets = 4, /datum/tech/engineering = 4,
 		/datum/tech/power_storage = 4, /datum/tech/bluespace = 3
 	)
 	build_path = /obj/item/mecha_part/equipment/tool/rcd
+	categories = list("Working Exosuit Equipment")
+
+/datum/design/mech_mrcd
+	name = "Exosuit Module Design (MRCD Module)"
+	desc = "An exosuit-mounted mime-rapid-construction-device."
+	build_type = DESIGN_TYPE_MECHFAB
+	req_tech = list(
+		/datum/tech/materials = 4, /datum/tech/magnets = 4, /datum/tech/engineering = 4,
+		/datum/tech/power_storage = 4, /datum/tech/bluespace = 3
+	)
+	build_path = /obj/item/mecha_part/equipment/tool/mimercd
 	categories = list("Working Exosuit Equipment")
 
 /datum/design/mech_diamond_drill

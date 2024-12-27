@@ -122,8 +122,8 @@
 	projectile_energy_cost = 100
 	equip_cooldown = 20
 
-/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/can_attach(obj/mecha/M)
-	if(!istype(M, /obj/mecha/combat/honk))
+/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/can_attach(obj/mecha/combat/honk/M)
+	if(!istype(M))
 		return FALSE
 	return ..()
 
