@@ -109,7 +109,7 @@
 
 /obj/effect/spacevine_controller/New()
 	. = ..()
-	if(!istype(src.loc, /turf/open/floor))
+	if(!isfloorturf(src.loc))
 		qdel(src)
 
 	spawn_spacevine_piece(src.loc)
@@ -194,7 +194,7 @@
 /obj/effect/spacevine/proc/spread()
 	var/direction = pick(GLOBL.cardinal)
 	var/step = get_step(src, direction)
-	if(istype(step, /turf/open/floor))
+	if(isfloorturf(step))
 		var/turf/open/floor/F = step
 		if(!locate(/obj/effect/spacevine, F))
 			if(F.Enter(src))
@@ -208,7 +208,8 @@
 	if (prob(50)) Vspread = locate(src.x + rand(-1,1),src.y,src.z)
 	else Vspread = locate(src.x,src.y + rand(-1, 1),src.z)
 	var/dogrowth = 1
-	if (!istype(Vspread, /turf/open/floor)) dogrowth = 0
+	if(!isfloorturf(Vspread))
+		dogrowth = 0
 	for(var/obj/O in Vspread)
 		if (istype(O, /obj/structure/window) || istype(O, /obj/effect/forcefield) || istype(O, /obj/effect/blob) || istype(O, /obj/effect/alien/weeds) || istype(O, /obj/effect/spacevine)) dogrowth = 0
 		if (istype(O, /obj/machinery/door/))

@@ -384,7 +384,7 @@
 			M.visible_message(SPAN_WARNING("[user] waves [src] over [M]'s head."))
 
 /obj/item/nullrod/afterattack(atom/A, mob/user)
-	if(istype(A, /turf/open/floor))
+	if(isfloorturf(A))
 		to_chat(user, SPAN_INFO("You hit the floor with the [src]."))
 		call(/obj/effect/rune/proc/revealrunes)(src)
 

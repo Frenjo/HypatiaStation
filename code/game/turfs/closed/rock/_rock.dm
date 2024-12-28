@@ -37,22 +37,22 @@ GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/artifact_spawning_turfs)
 	// I've tidied this up but I still hate it.
 	var/turf/T = get_step(src, NORTH)
 	if(isnotnull(T))
-		if(istype(T, /turf/open/floor) || isspace(T))
+		if(isfloorturf(T) || isspace(T))
 			T.overlays.Add(image(icon, "rock_side_s"))
 		T = null
 	T = get_step(src, SOUTH)
 	if(isnotnull(T))
-		if(istype(T, /turf/open/floor) || isspace(T))
+		if(isfloorturf(T) || isspace(T))
 			T.overlays.Add(image(icon, "rock_side_n", layer = 6))
 		T = null
 	T = get_step(src, EAST)
 	if(isnotnull(T))
-		if(istype(T, /turf/open/floor) || isspace(T))
+		if(isfloorturf(T) || isspace(T))
 			T.overlays.Add(image(icon, "rock_side_w", layer = 6))
 		T = null
 	T = get_step(src, WEST)
 	if(isnotnull(T))
-		if(istype(T, /turf/open/floor) || isspace(T))
+		if(isfloorturf(T) || isspace(T))
 			T.overlays.Add(image(icon, "rock_side_e", layer = 6))
 
 /turf/closed/rock/Destroy()

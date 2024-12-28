@@ -14,7 +14,7 @@
 /turf/open/floor/carpet/update_special()
 	for(var/direction in GLOBL.alldirs)
 		var/turf/T = get_step(src, direction)
-		if(istype(T, /turf/open/floor))
+		if(isfloorturf(T))
 			var/turf/open/floor/F = T
 			F.update_icon() //so siding get updated properly
 

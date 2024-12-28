@@ -2227,7 +2227,7 @@
 					for(var/i = 0, i < length, i++) // 180 = 3 minutes
 						if(damage)
 							for(var/mob/living/carbon/L in GLOBL.living_mob_list)
-								if(istype(L.loc, /turf/open/floor)) // Are they on LAVA?!
+								if(isfloorturf(L.loc)) // Are they on LAVA?!
 									var/turf/open/floor/F = L.loc
 									if(F.lava)
 										var/safe = 0

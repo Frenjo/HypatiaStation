@@ -101,7 +101,7 @@
 		var/obj/item/stack/cable_coil/coil = W
 		var/turf/T = user.loc
 
-		if(T.intact || !istype(T, /turf/open/floor))
+		if(T.intact || !isfloorturf(T))
 			return
 
 		if(!in_range(src, user))

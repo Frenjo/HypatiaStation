@@ -68,7 +68,7 @@
 
 /obj/effect/biomass_controller/New()
 	. = ..()
-	if(!istype(src.loc, /turf/open/floor))
+	if(!isfloorturf(src.loc))
 		qdel(src)
 
 	spawn_biomass_piece(src.loc)
@@ -144,7 +144,7 @@
 /obj/effect/biomass/proc/spread()
 	var/direction = pick(GLOBL.cardinal)
 	var/step = get_step(src, direction)
-	if(istype(step, /turf/open/floor))
+	if(isfloorturf(step))
 		var/turf/open/floor/F = step
 		if(!locate(/obj/effect/biomass, F))
 			if(F.Enter(src))

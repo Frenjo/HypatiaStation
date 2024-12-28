@@ -8,7 +8,7 @@
 
 /obj/machinery/constructable_frame/wallmount_frame/New()
 	spawn(1)
-		if (!istype(loc, /turf/open/floor))
+		if(!isfloorturf(loc))
 			usr << "\red [name] cannot be placed on this spot."
 			new/obj/item/stack/sheet/steel(GET_TURF(src), 2)
 			del(src)

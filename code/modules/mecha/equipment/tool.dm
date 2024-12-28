@@ -345,7 +345,7 @@
 					target:ChangeTurf(/turf/open/floor/plating/metal)
 					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
 					chassis.use_power(energy_drain)
-			else if(istype(target, /turf/open/floor))
+			else if(isfloorturf(target))
 				occupant_message("Deconstructing [target]...")
 				set_ready_state(0)
 				if(do_after_cooldown(target))
@@ -376,7 +376,7 @@
 					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
 					chassis.spark_system.start()
 					chassis.use_power(energy_drain * 2)
-			else if(istype(target, /turf/open/floor))
+			else if(isfloorturf(target))
 				occupant_message("Building Wall...")
 				set_ready_state(0)
 				if(do_after_cooldown(target))
@@ -387,7 +387,7 @@
 					chassis.spark_system.start()
 					chassis.use_power(energy_drain * 2)
 		if(2)
-			if(istype(target, /turf/open/floor))
+			if(isfloorturf(target))
 				occupant_message("Building Airlock...")
 				set_ready_state(0)
 				if(do_after_cooldown(target))
@@ -449,7 +449,7 @@
 	if(!isturf(target))
 		target = GET_TURF(target)
 
-	if(istype(target, /turf/open/floor))
+	if(isfloorturf(target))
 		occupant_message("Miming Wall...")
 		if(do_after_cooldown(target))
 			new /obj/effect/forcefield/mime(target)
@@ -553,7 +553,7 @@
 	last_piece = null
 
 /obj/item/mecha_part/equipment/tool/cable_layer/proc/dismantleFloor(turf/new_turf)
-	if(istype(new_turf, /turf/open/floor))
+	if(isfloorturf(new_turf))
 		var/turf/open/floor/T = new_turf
 		if(!istype(new_turf, /turf/open/floor/plating/metal))
 			if(!T.broken && !T.burnt)

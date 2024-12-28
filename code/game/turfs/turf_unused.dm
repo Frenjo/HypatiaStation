@@ -17,7 +17,7 @@
 		if(isspace(T))//Counted as no air
 			turf_count++//Considered a valid turf for air calcs
 			continue
-		else if(istype(T,/turf/open/floor))
+		else if(isfloorturf(T))
 			var/turf/open/S = T
 			if(S.air)//Add the air's contents to the holders
 				aoxy += S.air.oxygen
@@ -38,7 +38,7 @@
 		var/turf/T = get_step(src,direction)
 		if(isspace(T))//Counted as no air
 			continue
-		else if(istype(T,/turf/open/floor))
+		else if(isfloorturf(T))
 			var/turf/open/S = T
 			if(S.air)//Add the air's contents to the holders
 				S.air.oxygen = air.oxygen

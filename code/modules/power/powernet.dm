@@ -145,7 +145,7 @@
 // return a knot cable (O-X) if one is present in the turf
 // null if there's none
 /turf/proc/get_cable_node()
-	if(!istype(src, /turf/open/floor))
+	if(!isfloorturf(src))
 		return null
 	for(var/obj/structure/cable/C in src)
 		if(C.d1 == 0)

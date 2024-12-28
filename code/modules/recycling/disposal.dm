@@ -739,7 +739,7 @@
 		H.active = 0
 		H.loc = src
 		return
-	if(T.intact && istype(T, /turf/open/floor)) //intact floor, pop the tile
+	if(T.intact && isfloorturf(T)) //intact floor, pop the tile
 		var/turf/open/floor/F = T
 		//F.health	= 100
 		F.burnt	= 1

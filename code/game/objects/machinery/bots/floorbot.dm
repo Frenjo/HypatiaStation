@@ -240,7 +240,7 @@
 			maketile(target)
 		else if(istype(target, /turf/) && emagged < 2)
 			repair(target)
-		else if(emagged == 2 && istype(target,/turf/open/floor))
+		else if(emagged == 2 && isfloorturf(target))
 			var/turf/open/floor/F = target
 			anchored = TRUE
 			repairing = TRUE
@@ -266,7 +266,7 @@
 	if(isspace(target))
 		if(istype(target.loc, /area/space))
 			return
-	else if(!istype(target, /turf/open/floor))
+	else if(!isfloorturf(target))
 		return
 	if(amount <= 0)
 		return

@@ -193,7 +193,7 @@
 					var/turf/T = object
 					T.ChangeTurf(/turf/open/floor)
 					return
-				else if(istype(object, /turf/open/floor))
+				else if(isfloorturf(object))
 					var/turf/T = object
 					T.ChangeTurf(/turf/closed/wall/steel)
 					return
@@ -206,7 +206,7 @@
 					var/turf/T = object
 					T.ChangeTurf(/turf/open/floor)
 					return
-				else if(istype(object, /turf/open/floor))
+				else if(isfloorturf(object))
 					var/turf/T = object
 					T.ChangeTurf(/turf/space)
 					return

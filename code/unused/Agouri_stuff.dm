@@ -1208,7 +1208,7 @@ var/list/plating_icons = list("plating","platingdmg1","platingdmg2","platingdmg3
 			spawn(4)
 				update_icon()
 				for(var/direction in cardinal)
-					if(istype(get_step(src,direction),/turf/open/floor))
+					if(isfloorturf(get_step(src, direction)))
 						var/turf/open/floor/FF = get_step(src,direction)
 						FF.update_icon() //so siding get updated properly
 
@@ -1350,7 +1350,7 @@ turf/open/floor/proc/update_icon()
 			if(!(icon_state in list("grass1","grass2","grass3","grass4")))
 				icon_state = "grass[pick("1","2","3","4")]"
 	spawn(1)
-		if(istype(src,/turf/open/floor)) //Was throwing runtime errors due to a chance of it changing to space halfway through.
+		if(isfloorturf(src)) //Was throwing runtime errors due to a chance of it changing to space halfway through.
 			if(air)
 				update_visuals(air)
 
@@ -1479,7 +1479,7 @@ turf/open/floor/return_siding_icon_state()
 
 	if(is_grass_floor())
 		for(var/direction in cardinal)
-			if(istype(get_step(src,direction),/turf/open/floor))
+			if(isfloorturf(get_step(src, direction)))
 				var/turf/open/floor/FF = get_step(src,direction)
 				FF.update_icon() //so siding get updated properly
 
@@ -1617,7 +1617,7 @@ turf/open/floor/return_siding_icon_state()
 					F.on = L.on
 				if(istype(T,/obj/item/stack/tile/grass))
 					for(var/direction in cardinal)
-						if(istype(get_step(src,direction),/turf/open/floor))
+						if(isfloorturf(get_step(src, direction)))
 							var/turf/open/floor/FF = get_step(src,direction)
 							FF.update_icon() //so siding gets updated properly
 				T.use(1)

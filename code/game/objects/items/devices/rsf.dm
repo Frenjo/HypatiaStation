@@ -69,7 +69,7 @@ RSF
 /obj/item/rsf/afterattack(atom/A, mob/user, proximity)
 	if(!proximity)
 		return
-	if(!(istype(A, /obj/structure/table) || istype(A, /turf/open/floor)))
+	if(!(istype(A, /obj/structure/table) || isfloorturf(A)))
 		return
 
 	if(istype(A, /obj/structure/table) && mode == MODE_DOSH)
@@ -86,8 +86,8 @@ RSF
 				desc = "An RSF. It currently holds [matter]/30 fabrication-units."
 		return
 
-	else if(istype(A, /turf/open/floor) && mode == MODE_DOSH)
-		if(istype(A, /turf/open/floor) && matter >= 1)
+	else if(isfloorturf(A) && mode == MODE_DOSH)
+		if(isfloorturf(A) && matter >= 1)
 			user << "Dispensing Dosh..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/spacecash/c10(A)
@@ -114,8 +114,8 @@ RSF
 				desc = "An RSF. It currently holds [matter]/30 fabrication-units."
 		return
 
-	else if(istype(A, /turf/open/floor) && mode == MODE_DRINKING_GLASS)
-		if(istype(A, /turf/open/floor) && matter >= 1)
+	else if(isfloorturf(A) && mode == MODE_DRINKING_GLASS)
+		if(isfloorturf(A) && matter >= 1)
 			user << "Dispensing Drinking Glass..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/reagent_holder/food/drinks/drinkingglass(A)
@@ -142,8 +142,8 @@ RSF
 				desc = "An RSF. It currently holds [matter]/30 fabrication-units."
 		return
 
-	else if(istype(A, /turf/open/floor) && mode == MODE_PAPER)
-		if(istype(A, /turf/open/floor) && matter >= 1)
+	else if(isfloorturf(A) && mode == MODE_PAPER)
+		if(isfloorturf(A) && matter >= 1)
 			user << "Dispensing Paper Sheet..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/paper(A)
@@ -170,8 +170,8 @@ RSF
 				desc = "An RSF. It currently holds [matter]/30 fabrication-units."
 		return
 
-	else if(istype(A, /turf/open/floor) && mode == MODE_PEN)
-		if(istype(A, /turf/open/floor) && matter >= 1)
+	else if(isfloorturf(A) && mode == MODE_PEN)
+		if(isfloorturf(A) && matter >= 1)
 			user << "Dispensing Pen..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/pen(A)
@@ -198,8 +198,8 @@ RSF
 				desc = "An RSF. It currently holds [matter]/30 fabrication-units."
 		return
 
-	else if(istype(A, /turf/open/floor) && mode == MODE_DICE_PACK)
-		if(istype(A, /turf/open/floor) && matter >= 1)
+	else if(isfloorturf(A) && mode == MODE_DICE_PACK)
+		if(isfloorturf(A) && matter >= 1)
 			user << "Dispensing Dice Pack..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/storage/pill_bottle/dice(A)
@@ -226,8 +226,8 @@ RSF
 				desc = "An RSF. It currently holds [matter]/30 fabrication-units."
 		return
 
-	else if(istype(A, /turf/open/floor) && mode == MODE_CIGARETTE)
-		if(istype(A, /turf/open/floor) && matter >= 1)
+	else if(isfloorturf(A) && mode == MODE_CIGARETTE)
+		if(isfloorturf(A) && matter >= 1)
 			user << "Dispensing Cigarette..."
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			new /obj/item/clothing/mask/cigarette(A)
