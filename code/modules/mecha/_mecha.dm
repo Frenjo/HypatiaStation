@@ -24,6 +24,7 @@
 	unacidable = TRUE // And no deleting hoomans inside.
 
 	var/initial_icon = null // Mech type for resetting icon. Only used for reskinning kits (see custom items)
+	var/entry_direction = SOUTH // Which direction the exosuit faces when entered. I only recently realised some are entered from the back not the front!
 	var/can_move = TRUE
 	var/mob/living/carbon/occupant = null
 

@@ -5,6 +5,8 @@
 	infra_luminosity = 8
 	initial_icon = "durand"
 
+	entry_direction = NORTH
+
 	force = 40
 
 	health = 400

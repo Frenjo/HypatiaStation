@@ -7,6 +7,8 @@
 	infra_luminosity = 3
 	initial_icon = "phazon"
 
+	entry_direction = NORTH
+
 	force = 15
 
 	health = 200

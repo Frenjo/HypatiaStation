@@ -135,7 +135,7 @@
 		forceMove(loc)
 		log_append_to_last("[H] moved in as pilot.")
 		icon_state = reset_icon()
-		set_dir(SOUTH)
+		set_dir(entry_direction)
 		H.visible_message(
 			SPAN_INFO("[H] climbs into \the [src]."),
 			SPAN_INFO("You climb into \the [src].")
@@ -200,7 +200,7 @@
 		Entered(mmi_as_oc)
 		Move(loc)
 		icon_state = reset_icon()
-		set_dir(SOUTH)
+		set_dir(entry_direction)
 		log_message("[mmi_as_oc] moved in as pilot.")
 		if(!hasInternalDamage())
 			occupant << sound('sound/mecha/nominal.ogg', volume = 50)
@@ -290,4 +290,4 @@
 			verbs.Add(/obj/mecha/verb/eject)
 		occupant = null
 		icon_state = reset_icon() + "-open"
-		set_dir(SOUTH)
+		set_dir(entry_direction)
