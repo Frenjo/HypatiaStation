@@ -172,7 +172,7 @@ datum
 						for(var/direction in cardinal)
 							var/turf/T = get_step(test,direction)
 							if(T && !members.Find(T) && test.CanPass(null, T, null,1))
-								if(issimulated(T) && !T:parent)
+								if(isopenturf(T) && !T:parent)
 									possible_members += T
 									members += T
 								else if(isspace(T))

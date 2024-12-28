@@ -29,7 +29,7 @@
 
 	connections?.erase_all()
 
-	if(issimulated(src))
+	if(isopenturf(src))
 		//Yeah, we're just going to rebuild the whole thing.
 		//Despite this being called a bunch during explosions,
 		//the zone will only really do heavy lifting once.

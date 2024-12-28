@@ -160,7 +160,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 		visible_message("[src] makes an excited beeping booping sound!")
 
 	if(screwloose && prob(5))
-		if(issimulated(loc))
+		if(isopenturf(loc))
 			var/turf/open/T = loc
 			if(T.wet < 1)
 				T.wet = TRUE
@@ -308,7 +308,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 	if(istype(target, /obj/effect/decal/cleanable/dirt))		// Clean Dirt much faster
 		cleantime = 10
 	spawn(cleantime)
-		if(issimulated(loc))
+		if(isopenturf(loc))
 			var/turf/open/f = loc
 			f.dirt = 0
 		cleaning = FALSE

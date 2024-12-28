@@ -129,7 +129,7 @@
 	//account for darkness
 	var/turf/T = GET_TURF(src)
 	var/in_darkness = 0
-	if(T.luminosity == 0 && !issimulated(T))
+	if(T.luminosity == 0 && !isopenturf(T))
 		in_darkness = 1
 
 	//see if we're able to do stuff

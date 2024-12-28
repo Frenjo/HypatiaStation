@@ -50,11 +50,11 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/update_icon()
 	if(node && on && !(stat & (NOPOWER|BROKEN)))
 		if(scrubbing)
-			icon_state = "[level == 1 && issimulated(loc) ? "h" : "" ]on"
+			icon_state = "[level == 1 && isopenturf(loc) ? "h" : "" ]on"
 		else
-			icon_state = "[level == 1 && issimulated(loc) ? "h" : "" ]in"
+			icon_state = "[level == 1 && isopenturf(loc) ? "h" : "" ]in"
 	else
-		icon_state = "[level == 1 && issimulated(loc) ? "h" : "" ]off"
+		icon_state = "[level == 1 && isopenturf(loc) ? "h" : "" ]off"
 	return
 
 /obj/machinery/atmospherics/unary/vent_scrubber/proc/broadcast_status()
@@ -157,11 +157,11 @@
 	hide(var/i) //to make the little pipe section invisible, the icon changes.
 		if(on&&node)
 			if(scrubbing)
-				icon_state = "[i == 1 && issimulated(loc) ? "h" : "" ]on"
+				icon_state = "[i == 1 && isopenturf(loc) ? "h" : "" ]on"
 			else
-				icon_state = "[i == 1 && issimulated(loc) ? "h" : "" ]in"
+				icon_state = "[i == 1 && isopenturf(loc) ? "h" : "" ]in"
 		else
-			icon_state = "[i == 1 && issimulated(loc) ? "h" : "" ]off"
+			icon_state = "[i == 1 && isopenturf(loc) ? "h" : "" ]off"
 			on = 0
 		return
 */

@@ -76,7 +76,7 @@
 	return ..()
 
 /obj/machinery/atmospherics/pipe/simple/hide(i)
-	if(level == 1 && issimulated(loc))
+	if(level == 1 && isopenturf(loc))
 		invisibility = i ? 101 : 0
 	update_icon()
 

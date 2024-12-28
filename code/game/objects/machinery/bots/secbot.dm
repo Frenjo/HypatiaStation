@@ -360,7 +360,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			path -= next
 			return
 
-		if(issimulated(next))
+		if(isopenturf(next))
 			var/moved = step_towards(src, next)	// attempt to move
 			if(moved)	// successful move
 				blockcount = 0

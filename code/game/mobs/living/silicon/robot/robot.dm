@@ -621,7 +621,7 @@
 			var/turf/tile = loc
 			if(isturf(tile))
 				tile.clean_blood()
-				if(issimulated(tile))
+				if(isopenturf(tile))
 					var/turf/open/S = tile
 					S.dirt = 0
 				for(var/A in tile)

@@ -939,7 +939,7 @@ datum
 
 			reaction_turf(var/turf/T, var/volume)
 				if(volume >= 1)
-					if(issimulated(T))
+					if(isopenturf(T))
 						var/turf/open/S = T
 						S.dirt = 0
 					T.clean_blood()

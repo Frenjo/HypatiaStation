@@ -99,7 +99,7 @@ Class Procs:
 
 /connection/proc/update()
 	//to_world("Updated, \...")
-	if(!issimulated(A))
+	if(!isopenturf(A))
 		//to_world("Invalid A.")
 		erase()
 		return
@@ -115,7 +115,7 @@ Class Procs:
 		else
 			mark_direct()
 
-	var/b_is_space = !issimulated(B)
+	var/b_is_space = !isopenturf(B)
 
 	if(state & CONNECTION_SPACE)
 		if(!b_is_space)

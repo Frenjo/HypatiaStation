@@ -865,7 +865,7 @@ var/global/datum/tension/tension_master
 						//var/turf/E = get_step(D, SOUTH)
 			for(var/atom/movable/AM as mob|obj in T)
 				AM.Move(D)
-			if(issimulated(T))
+			if(isopenturf(T))
 				del(T)
 
 		start_location.move_contents_to(end_location)

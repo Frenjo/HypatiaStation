@@ -45,7 +45,7 @@ proc/move_research_shuttle()
 					return
 				*/
 
-			if(issimulated(T))
+			if(isopenturf(T))
 				qdel(T)
 
 		for(var/mob/living/carbon/bug in toArea) // If someone somehow is still in the shuttle's docking area...

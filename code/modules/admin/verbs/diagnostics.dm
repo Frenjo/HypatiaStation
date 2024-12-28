@@ -159,7 +159,7 @@
 		return
 
 	var/turf/T = GET_TURF(usr)
-	if(issimulated(T))
+	if(isopenturf(T))
 		var/datum/air_group/AG = T:parent
 		AG.next_check = 30
 		AG.group_processing = 0

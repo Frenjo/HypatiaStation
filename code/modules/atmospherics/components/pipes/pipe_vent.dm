@@ -79,7 +79,7 @@
 
 /obj/machinery/atmospherics/pipe/vent/hide(i) //to make the little pipe section invisible, the icon changes.
 	if(isnotnull(node1))
-		icon_state = "[i == 1 && issimulated(loc) ? "h" : "" ]intact"
+		icon_state = "[i == 1 && isopenturf(loc) ? "h" : "" ]intact"
 		dir = get_dir(src, node1)
 	else
 		icon_state = "exposed"

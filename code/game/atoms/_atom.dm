@@ -206,7 +206,7 @@ Maxdistance is the longest range the beam will persist before it gives up.
 	return TRUE
 
 /atom/proc/add_vomit_floor(mob/living/carbon/M, toxvomit = FALSE)
-	if(issimulated(src))
+	if(isopenturf(src))
 		var/obj/effect/decal/cleanable/vomit/this = new /obj/effect/decal/cleanable/vomit(src)
 		// Make toxins vomit look different
 		if(toxvomit)

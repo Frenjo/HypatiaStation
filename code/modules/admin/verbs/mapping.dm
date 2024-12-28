@@ -210,7 +210,7 @@ var/list/debug_verbs = list(
 
 	var/turf/open/location = GET_TURF(usr)
 
-	if(!issimulated(location)) // We're in space, let's not cause runtimes.
+	if(!isopenturf(location)) // We're in space, let's not cause runtimes.
 		to_chat(usr, SPAN_WARNING("This debug tool cannot be used from space."))
 		return
 

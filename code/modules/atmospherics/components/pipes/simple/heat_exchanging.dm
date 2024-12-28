@@ -46,7 +46,7 @@
 		..()
 	else
 		var/environment_temperature = 0
-		if(issimulated(loc))
+		if(isopenturf(loc))
 			var/turf/open/T = loc
 			if(HAS_TURF_FLAGS(T, TURF_FLAG_BLOCKS_AIR))
 				environment_temperature = T.temperature

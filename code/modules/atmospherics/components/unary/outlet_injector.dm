@@ -30,9 +30,9 @@
 /obj/machinery/atmospherics/unary/outlet_injector/update_icon()
 	if(isnotnull(node))
 		if(on && !(stat & NOPOWER))
-			icon_state = "[level == 1 && issimulated(loc) ? "h" : "" ]on"
+			icon_state = "[level == 1 && isopenturf(loc) ? "h" : "" ]on"
 		else
-			icon_state = "[level == 1 && issimulated(loc) ? "h" : "" ]off"
+			icon_state = "[level == 1 && isopenturf(loc) ? "h" : "" ]off"
 	else
 		icon_state = "exposed"
 		on = FALSE
@@ -93,11 +93,11 @@
 /obj/machinery/atmospherics/unary/outlet_injector/hide(i) //to make the little pipe section invisible, the icon changes.
 	if(node)
 		if(on)
-			icon_state = "[i == 1 && issimulated(loc) ? "h" : "" ]on"
+			icon_state = "[i == 1 && isopenturf(loc) ? "h" : "" ]on"
 		else
-			icon_state = "[i == 1 && issimulated(loc) ? "h" : "" ]off"
+			icon_state = "[i == 1 && isopenturf(loc) ? "h" : "" ]off"
 	else
-		icon_state = "[i == 1 && issimulated(loc) ? "h" : "" ]exposed"
+		icon_state = "[i == 1 && isopenturf(loc) ? "h" : "" ]exposed"
 		on = FALSE
 
 /obj/machinery/atmospherics/unary/outlet_injector/proc/inject()

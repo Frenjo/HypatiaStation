@@ -77,7 +77,7 @@
 	return ..()
 
 /obj/machinery/atmospherics/pipe/manifold/hide(i)
-	if(level == 1 && issimulated(loc))
+	if(level == 1 && isopenturf(loc))
 		invisibility = i ? 101 : 0
 	update_icon()
 
@@ -299,7 +299,7 @@
 	return ..()
 
 /obj/machinery/atmospherics/pipe/manifold4w/hide(i)
-	if(level == 1 && issimulated(loc))
+	if(level == 1 && isopenturf(loc))
 		invisibility = i ? 101 : 0
 	update_icon()
 

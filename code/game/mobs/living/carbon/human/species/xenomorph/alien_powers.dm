@@ -140,7 +140,7 @@
 			return
 
 	// TURF CHECK
-	else if(issimulated(O))
+	else if(isopenturf(O))
 		var/turf/T = O
 		// R WALL
 		if(istype(T, /turf/closed/wall/reinforced))

@@ -692,7 +692,7 @@
 
 /datum/reagent/space_cleaner/reaction_turf(turf/T, volume)
 	if(volume >= 1)
-		if(issimulated(T))
+		if(isopenturf(T))
 			var/turf/open/S = T
 			S.dirt = 0
 		T.clean_blood()

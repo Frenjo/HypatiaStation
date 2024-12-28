@@ -215,7 +215,7 @@
 					qdel(S)
 				M.emote("scream")
 			var/turf/location = loc
-			if(issimulated(location))
+			if(isopenturf(location))
 				location.add_blood(M)
 
 	use_power(360) // 360W seems much more appropriate for an actuator moving an industrial door capable of crushing people.

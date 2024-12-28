@@ -173,7 +173,7 @@ Attach to transfer valve and open. BOOM.
 	global.PCair.active_hotspots.Add(src)
 
 /obj/fire/Destroy()
-	if(issimulated(loc))
+	if(isopenturf(loc))
 		set_light(0)
 
 		loc = null
