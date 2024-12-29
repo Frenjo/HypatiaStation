@@ -16,11 +16,14 @@
 
 	wreckage = /obj/structure/mecha_wreckage/hoverpod
 
+	var/initial_pixel_y
+
 	var/datum/effect/system/ion_trail_follow/ion_trail
 	var/stabilization_enabled = TRUE
 
 /obj/mecha/working/hoverpod/New()
 	. = ..()
+	initial_pixel_y = pixel_y
 	ion_trail = new /datum/effect/system/ion_trail_follow()
 	ion_trail.set_up(src)
 	ion_trail.start()
@@ -56,6 +59,27 @@
 			return 1
 
 	return ..()
+
+/obj/mecha/working/hoverpod/moved_inside(mob/living/carbon/human/H)
+	. = ..()
+	if(.)
+		start_floating_animation()
+
+/obj/mecha/working/hoverpod/mmi_moved_inside(obj/item/mmi/mmi_as_oc, mob/user)
+	. = ..()
+	if(.)
+		start_floating_animation()
+
+/obj/mecha/working/hoverpod/go_out()
+	stop_floating_animation()
+	. = ..()
+
+/obj/mecha/working/hoverpod/proc/start_floating_animation()
+	animate(src, pixel_y = 2, time = 2 SECONDS, loop = -1, flags = ANIMATION_RELATIVE)
+	animate(pixel_y = -2, time = 2 SECONDS, flags = ANIMATION_RELATIVE)
+
+/obj/mecha/working/hoverpod/proc/stop_floating_animation()
+	animate(src, pixel_y = initial_pixel_y, time = 2 SECONDS)
 
 //Hoverpod variants
 /obj/mecha/working/hoverpod/combat
