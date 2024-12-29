@@ -88,13 +88,20 @@
 
 	wreckage = /obj/effect/decal/mecha_wreckage/odysseus/eurymachus
 
+	excluded_equipment = list(
+		/obj/item/mecha_part/equipment/tool/hydraulic_clamp,
+		/obj/item/mecha_part/equipment/tool/safety_clamp,
+		/obj/item/mecha_part/equipment/tool/extinguisher,
+		/obj/item/mecha_part/equipment/tool/rcd,
+		/obj/item/mecha_part/equipment/tool/cable_layer
+	)
+
 	var/datum/global_iterator/camouflage_iterator
 	var/camouflage = FALSE
 	var/camouflage_energy_drain = 100
 
 /obj/mecha/medical/odysseus/eurymachus/New()
 	. = ..()
-	excluded_equipment.Remove(/obj/item/mecha_part/equipment/weapon)
 	var/obj/item/mecha_part/equipment/part = new /obj/item/mecha_part/equipment/medical/sleeper(src)
 	part.attach(src)
 	part = new /obj/item/mecha_part/equipment/medical/syringe_gun(src)
