@@ -1,7 +1,7 @@
 // Melee Armour Booster
 /obj/item/mecha_part/equipment/melee_armour_booster // What is that noise? A BAWWW from TK mutants.
 	name = "armour booster module (close combat weaponry)"
-	desc = "Boosts exosuit armour against armed melee attacks. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K)"
+	desc = "Boosts exosuit armour against armed melee attacks. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "mecha_abooster_ccw"
 	origin_tech = list(/datum/tech/materials = 3)
 	equip_cooldown = 10
@@ -45,7 +45,7 @@
 // Ranged Armour Booster
 /obj/item/mecha_part/equipment/ranged_armour_booster
 	name = "armour booster module (ranged weaponry)"
-	desc = "Boosts exosuit armour against ranged attacks. Completely blocks taser shots. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K)"
+	desc = "Boosts exosuit armour against ranged attacks. Completely blocks taser shots. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "mecha_abooster_proj"
 	origin_tech = list(/datum/tech/materials = 4)
 	equip_cooldown = 10
