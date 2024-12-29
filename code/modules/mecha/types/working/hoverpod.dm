@@ -87,14 +87,15 @@
 	desc = "An ancient, run-down combat spacecraft." // Ideally would have a seperate icon.
 
 	health = 200
+	internal_damage_threshold = 35
 
 	max_equip = 2
 
-	internal_damage_threshold = 35
 	cargo_capacity = 2
 
 /obj/mecha/working/hoverpod/combat/New()
 	. = ..()
+	excluded_equipment.Remove(/obj/item/mecha_part/equipment/weapon)
 	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/weapon/energy/laser(src)
 	ME.attach(src)
 	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/explosive(src)
