@@ -18,7 +18,7 @@
 	damage_absorption = list("brute" = 0.7, "fire" = 0.7, "bullet" = 0.7, "laser" = 0.7, "energy" = 0.7, "bomb" = 0.7)
 	internal_damage_threshold = 25
 
-	wreckage = /obj/effect/decal/mecha_wreckage/phazon
+	wreckage = /obj/structure/mecha_wreckage/phazon
 
 	var/phasing = FALSE
 	var/phasing_energy_drain = 200
@@ -118,7 +118,7 @@
 
 	max_equip = 4
 
-	wreckage = /obj/effect/decal/mecha_wreckage/phazon/dark
+	wreckage = /obj/structure/mecha_wreckage/phazon/dark
 
 	phasing_energy_drain = 100
 

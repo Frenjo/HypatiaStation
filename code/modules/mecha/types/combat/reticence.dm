@@ -17,7 +17,7 @@
 	operation_req_access = list(ACCESS_MIME)
 	add_req_access = FALSE
 
-	wreckage = /obj/effect/decal/mecha_wreckage/reticence
+	wreckage = /obj/structure/mecha_wreckage/reticence
 
 /obj/mecha/combat/reticence/New()
 	. = ..()

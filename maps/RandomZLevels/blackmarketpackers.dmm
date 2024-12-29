@@ -398,7 +398,7 @@
 "hU" = (/obj/structure/window/reinforced{dir = 4},/obj/structure/grille,/obj/item/shard{icon_state = "small"},/turf/open/floor/reinforced,/area/away_mission/BMPship3)
 "hW" = (/obj/effect/gibspawner/robot,/turf/open/floor/plating/metal/airless,/area/away_mission/BMPship3)
 "hX" = (/turf/open/floor/plating/metal/airless{icon_state = "platingdmg2"; tag = "icon-platingdmg2"},/area/away_mission)
-"hY" = (/obj/effect/decal/mecha_wreckage/ripley,/turf/open/floor/plating/metal/airless,/area/away_mission)
+"hY" = (/obj/structure/mecha_wreckage/ripley,/turf/open/floor/plating/metal/airless,/area/away_mission)
 "hZ" = (/obj/effect/landmark{name = "awaystart"},/turf/open/floor/plating/asteroid/airless,/area/away_mission)
 "ia" = (/obj/effect/landmark{name = "awaystart"},/turf/open/floor/plating/metal/airless{icon_state = "platingdmg3"; tag = "icon-platingdmg3"},/area/away_mission)
 "ib" = (/obj/effect/landmark{name = "awaystart"},/turf/open/floor/plating/metal/airless,/area/away_mission)

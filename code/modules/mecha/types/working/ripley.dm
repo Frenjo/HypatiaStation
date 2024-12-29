@@ -8,7 +8,7 @@
 	step_in = 6
 	max_temperature = 20000
 
-	wreckage = /obj/effect/decal/mecha_wreckage/ripley
+	wreckage = /obj/structure/mecha_wreckage/ripley
 
 	cargo_capacity = 15
 
@@ -63,7 +63,7 @@
 	max_temperature = 65000
 	damage_absorption = list("fire" = 0.5, "bullet" = 0.8, "bomb" = 0.5)
 
-	wreckage = /obj/effect/decal/mecha_wreckage/ripley/firefighter
+	wreckage = /obj/structure/mecha_wreckage/ripley/firefighter
 
 /obj/mecha/working/ripley/deathripley
 	name = "\improper DEATH-RIPLEY"
@@ -74,7 +74,7 @@
 	step_in = 2
 	step_energy_drain = 0
 
-	wreckage = /obj/effect/decal/mecha_wreckage/ripley/deathripley
+	wreckage = /obj/structure/mecha_wreckage/ripley/deathripley
 
 /obj/mecha/working/ripley/deathripley/New()
 	. = ..()
@@ -107,7 +107,7 @@
 	icon_state = "rescue_ranger"
 	initial_icon = "rescue_ranger"
 
-	wreckage = /obj/effect/decal/mecha_wreckage/ripley/rescue_ranger
+	wreckage = /obj/structure/mecha_wreckage/ripley/rescue_ranger
 
 	health = 175
 	step_in = 5

@@ -14,7 +14,7 @@
 	max_temperature = 20000
 	internal_damage_threshold = 80
 
-	wreckage = /obj/effect/decal/mecha_wreckage/hoverpod
+	wreckage = /obj/structure/mecha_wreckage/hoverpod
 
 	var/datum/effect/system/ion_trail_follow/ion_trail
 	var/stabilization_enabled = TRUE

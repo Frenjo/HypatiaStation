@@ -15,7 +15,7 @@
 	deflect_chance = 20
 	damage_absorption = list("brute" = 0.5, "fire" = 1.1, "bullet" = 0.65, "laser" = 0.85, "energy" = 0.9, "bomb" = 0.8)
 
-	wreckage = /obj/effect/decal/mecha_wreckage/durand
+	wreckage = /obj/structure/mecha_wreckage/durand
 
 	var/defence = 0
 	var/defence_deflect = 35
@@ -82,4 +82,4 @@
 	damage_absorption = list("brute" = 0.6, "fire" = 0.9, "bullet" = 0.675, "laser" = 0.775, "energy" = 0.8, "bomb" = 0.75)
 	internal_damage_threshold = 35
 
-	wreckage = /obj/effect/decal/mecha_wreckage/durand/archambeau
+	wreckage = /obj/structure/mecha_wreckage/durand/archambeau

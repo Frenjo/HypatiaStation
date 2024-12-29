@@ -12,7 +12,7 @@
 	damage_absorption = list("brute" = 0.75, "fire" = 1, "bullet" = 0.8, "laser" = 0.7, "energy" = 0.85, "bomb" = 1)
 	internal_damage_threshold = 35
 
-	wreckage = /obj/effect/decal/mecha_wreckage/gygax
+	wreckage = /obj/structure/mecha_wreckage/gygax
 
 	overload_capable = TRUE
 
@@ -31,7 +31,7 @@
 
 	max_equip = 4
 
-	wreckage = /obj/effect/decal/mecha_wreckage/gygax/dark
+	wreckage = /obj/structure/mecha_wreckage/gygax/dark
 
 	overload_coeff = 1
 
@@ -72,7 +72,7 @@
 	step_sound_volume = 25
 	turn_sound = 'sound/mecha/mechmove01.ogg'
 
-	wreckage = /obj/effect/decal/mecha_wreckage/gygax/serenity
+	wreckage = /obj/structure/mecha_wreckage/gygax/serenity
 
 /obj/mecha/combat/gygax/serenity/New()
 	. = ..()

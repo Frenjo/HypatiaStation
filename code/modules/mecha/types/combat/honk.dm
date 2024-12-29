@@ -14,7 +14,7 @@
 	operation_req_access = list(ACCESS_CLOWN)
 	add_req_access = FALSE
 
-	wreckage = /obj/effect/decal/mecha_wreckage/honk
+	wreckage = /obj/structure/mecha_wreckage/honk
 
 	var/squeak = FALSE
 

@@ -11,7 +11,7 @@
 	deflect_chance = 15
 	internal_damage_threshold = 35
 
-	wreckage = /obj/effect/decal/mecha_wreckage/odysseus
+	wreckage = /obj/structure/mecha_wreckage/odysseus
 
 /*
 /obj/mecha/medical/odysseus/verb/set_perspective()
@@ -52,7 +52,7 @@
 
 	max_equip = 4
 
-	wreckage = /obj/effect/decal/mecha_wreckage/odysseus/dark
+	wreckage = /obj/structure/mecha_wreckage/odysseus/dark
 
 /obj/mecha/medical/odysseus/dark/New()
 	. = ..()
@@ -86,7 +86,7 @@
 	deflect_chance = 20
 	damage_absorption = list("brute" = 0.725, "fire" = 1.1, "bullet" = 0.8, "laser" = 0.9, "energy" = 0.9, "bomb" = 0.9)
 
-	wreckage = /obj/effect/decal/mecha_wreckage/odysseus/eurymachus
+	wreckage = /obj/structure/mecha_wreckage/odysseus/eurymachus
 
 	excluded_equipment = list(
 		/obj/item/mecha_part/equipment/tool/hydraulic_clamp,

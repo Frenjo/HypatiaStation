@@ -9,7 +9,7 @@
 	max_temperature = 22500
 	internal_damage_threshold = 50
 
-	wreckage = /obj/effect/decal/mecha_wreckage/ripley/dreadnought
+	wreckage = /obj/structure/mecha_wreckage/ripley/dreadnought
 
 	cargo_capacity = 7
 
@@ -24,7 +24,7 @@
 	step_in = 7
 	max_temperature = 25000
 
-	wreckage = /obj/effect/decal/mecha_wreckage/ripley/dreadnought/bulwark
+	wreckage = /obj/structure/mecha_wreckage/ripley/dreadnought/bulwark
 
 	cargo_capacity = 5
 

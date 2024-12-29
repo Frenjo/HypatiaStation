@@ -19,7 +19,7 @@
 
 	max_equip = 4
 
-	wreckage = /obj/effect/decal/mecha_wreckage/marauder
+	wreckage = /obj/structure/mecha_wreckage/marauder
 
 	var/zoom = 0
 	var/thrusters = 0
@@ -182,7 +182,7 @@
 	operation_req_access = list(ACCESS_CENT_CREED)
 	step_in = 3
 	health = 550
-	wreckage = /obj/effect/decal/mecha_wreckage/seraph
+	wreckage = /obj/structure/mecha_wreckage/seraph
 	internal_damage_threshold = 20
 	force = 55
 	max_equip = 5
@@ -212,4 +212,4 @@
 
 	initial_icon = "mauler"
 	operation_req_access = list(ACCESS_SYNDICATE)
-	wreckage = /obj/effect/decal/mecha_wreckage/mauler
+	wreckage = /obj/structure/mecha_wreckage/mauler
