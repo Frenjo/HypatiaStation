@@ -141,7 +141,7 @@
 			SPAN_INFO("You climb into \the [src].")
 		)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
-		if(!hasInternalDamage())
+		if(!internal_damage)
 			occupant << sound('sound/mecha/nominal.ogg', volume = 50)
 		return TRUE
 	return FALSE
@@ -202,7 +202,7 @@
 		icon_state = reset_icon()
 		set_dir(entry_direction)
 		log_message("[mmi_as_oc] moved in as pilot.")
-		if(!hasInternalDamage())
+		if(!internal_damage)
 			occupant << sound('sound/mecha/nominal.ogg', volume = 50)
 		return TRUE
 	return FALSE

@@ -35,10 +35,6 @@
 	pr_give_air = new /datum/global_iterator/mecha_tank_give_air(list(src))
 	pr_internal_damage = new /datum/global_iterator/mecha_internal_damage(list(src), 0)
 
-/obj/mecha/proc/delay_for(delay)
-	sleep(delay)
-	return isnotnull(src)
-
 /obj/mecha/proc/check_for_support()
 	if(locate(/obj/structure/grille, orange(1, src)) || locate(/obj/structure/lattice, orange(1, src)) || locate(/turf/open, orange(1, src)))
 		return TRUE

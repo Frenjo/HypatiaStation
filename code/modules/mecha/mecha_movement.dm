@@ -33,7 +33,7 @@
 	if(!has_charge(step_energy_drain))
 		return 0
 	var/move_result = 0
-	if(hasInternalDamage(MECHA_INT_CONTROL_LOST))
+	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		move_result = mechsteprand()
 	else if(src.dir != direction)
 		move_result = mechturn(direction)
@@ -46,7 +46,7 @@
 			if(!check_for_support())
 				pr_inertial_movement.start(list(src, direction))
 				log_message("Movement control lost. Inertial movement started.")
-		if(delay_for(step_in))
+		if(do_after(occupant, step_in, needhand = FALSE, progress = FALSE))
 			can_move = TRUE
 		if(overload)
 			health--

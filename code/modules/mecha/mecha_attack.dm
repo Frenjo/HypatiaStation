@@ -89,19 +89,19 @@
 		return TRUE
 
 	if(iscable(tool))
-		if(state == 3 && hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
+		if(state == 3 && internal_damage & MECHA_INT_SHORT_CIRCUIT)
 			var/obj/item/stack/cable_coil/cable = tool
 			if(cable.amount > 1)
 				cable.use(2)
-				clearInternalDamage(MECHA_INT_SHORT_CIRCUIT)
+				clear_internal_damage(MECHA_INT_SHORT_CIRCUIT)
 				to_chat(user, SPAN_NOTICE("You replace \the [src]'s fused wires."))
 			else
 				to_chat(user, SPAN_WARNING("There's not enough wire to finish the task!"))
 		return TRUE
 
 	if(isscrewdriver(tool))
-		if(hasInternalDamage(MECHA_INT_TEMP_CONTROL))
-			clearInternalDamage(MECHA_INT_TEMP_CONTROL)
+		if(internal_damage & MECHA_INT_TEMP_CONTROL)
+			clear_internal_damage(MECHA_INT_TEMP_CONTROL)
 			to_chat(user, SPAN_NOTICE("You repair \the [src]'s damaged temperature controller."))
 		else if(isnotnull(cell))
 			if(state == 3)
@@ -120,8 +120,8 @@
 		if(!welder.remove_fuel(0, user))
 			FEEDBACK_NOT_ENOUGH_WELDING_FUEL(user)
 			return TRUE
-		if(hasInternalDamage(MECHA_INT_TANK_BREACH))
-			clearInternalDamage(MECHA_INT_TANK_BREACH)
+		if(internal_damage & MECHA_INT_TANK_BREACH)
+			clear_internal_damage(MECHA_INT_TANK_BREACH)
 			to_chat(user, SPAN_NOTICE("You repair \the [src]'s damaged gas tank."))
 			return TRUE
 		if(health < initial(health))

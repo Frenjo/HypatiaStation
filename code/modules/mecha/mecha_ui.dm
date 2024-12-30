@@ -57,7 +57,7 @@
 	)
 	for(var/tflag in dam_reports)
 		var/intdamflag = text2num(tflag)
-		if(hasInternalDamage(intdamflag))
+		if(internal_damage & intdamflag)
 			output += dam_reports[tflag]
 			output += "<br>"
 	if(return_pressure() > WARNING_HIGH_PRESSURE)

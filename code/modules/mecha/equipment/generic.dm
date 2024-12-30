@@ -59,12 +59,12 @@
 		return
 	var/health_boost = RD.health_boost
 	var/repaired = 0
-	if(RD.chassis.hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
+	if(RD.chassis.internal_damage & MECHA_INT_SHORT_CIRCUIT)
 		health_boost *= -2
-	else if(RD.chassis.hasInternalDamage() && prob(15))
+	else if(RD.chassis.internal_damage && prob(15))
 		for(var/int_dam_flag in RD.repairable_damage)
-			if(RD.chassis.hasInternalDamage(int_dam_flag))
-				RD.chassis.clearInternalDamage(int_dam_flag)
+			if(RD.chassis.internal_damage & int_dam_flag)
+				RD.chassis.clear_internal_damage(int_dam_flag)
 				repaired = 1
 				break
 	if(health_boost < 0 || RD.chassis.health < initial(RD.chassis.health))

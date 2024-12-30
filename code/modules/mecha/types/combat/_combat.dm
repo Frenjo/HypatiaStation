@@ -96,9 +96,9 @@
 			occupant_message(SPAN_INFO("You push [target] out of the way."))
 			visible_message(SPAN_INFO("\The [src] pushes [target] out of the way."))
 
-		melee_can_hit = 0
-		if(delay_for(melee_cooldown))
-			melee_can_hit = 1
+		melee_can_hit = FALSE
+		if(do_after(occupant, melee_cooldown, progress = FALSE))
+			melee_can_hit = TRUE
 		return
 
 	else
@@ -114,9 +114,9 @@
 						occupant_message(SPAN_INFO_B("You smash through the wall."))
 						visible_message(SPAN_INFO_B("[name] smashes through the wall!"))
 						playsound(src, 'sound/weapons/smash.ogg', 50, 1)
-					melee_can_hit = 0
-					if(delay_for(melee_cooldown))
-						melee_can_hit = 1
+					melee_can_hit = FALSE
+					if(do_after(occupant, melee_cooldown, progress = FALSE))
+						melee_can_hit = TRUE
 					break
 	return
 

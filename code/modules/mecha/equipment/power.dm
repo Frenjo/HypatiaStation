@@ -78,7 +78,7 @@
 */
 
 /datum/global_iterator/mecha_energy_relay/process(obj/item/mecha_part/equipment/tesla_energy_relay/ER)
-	if(!ER.chassis || ER.chassis.hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
+	if(!ER.chassis || ER.chassis.internal_damage & MECHA_INT_SHORT_CIRCUIT)
 		stop()
 		ER.set_ready_state(1)
 		return
