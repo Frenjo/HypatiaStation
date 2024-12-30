@@ -18,6 +18,11 @@
 	pr_energy_relay = new /datum/global_iterator/mecha_energy_relay(list(src), 0)
 	pr_energy_relay.set_delay(equip_cooldown)
 
+/obj/item/mecha_part/equipment/tesla_energy_relay/Destroy()
+	qdel(pr_energy_relay)
+	pr_energy_relay = null
+	return ..()
+
 /obj/item/mecha_part/equipment/tesla_energy_relay/detach()
 	pr_energy_relay.stop()
 //	chassis.proc_res["dynusepower"] = null
@@ -130,6 +135,11 @@
 	. = ..()
 	init()
 
+/obj/item/mecha_part/equipment/generator/Destroy()
+	qdel(pr_mech_generator)
+	pr_mech_generator = null
+	return ..()
+
 /obj/item/mecha_part/equipment/generator/proc/init()
 	fuel = new /obj/item/stack/sheet/plasma(src)
 	fuel.amount = 0
@@ -198,7 +208,7 @@
 	if(prob(10))
 		T.assume_gas(/decl/xgm_gas/plasma, 100, 1500 + T0C)
 		T.visible_message("The [src] suddenly disgorges a cloud of heated plasma.")
-		destroy()
+		qdel(src)
 	else
 		T.assume_gas(/decl/xgm_gas/plasma, 5, istype(T) ? T.air.temperature : T20C)
 		T.visible_message("The [src] suddenly disgorges a cloud of plasma.")

@@ -14,6 +14,15 @@
 	if(GET_TURF_Z(src) != 2)
 		new /obj/item/mecha_part/tracking(src)
 
+/obj/mecha/working/Destroy()
+	if(!isemptylist(cargo))
+		var/turf/T = GET_TURF(src)
+		for(var/obj/O in cargo) // Dumps contents of stored cargo.
+			O.loc = T
+			cargo.Remove(O)
+			T.Entered(O)
+	return ..()
+
 /*
 /obj/mecha/working/melee_action(atom/target)
 	if(internal_damage&MECHA_INT_CONTROL_LOST)

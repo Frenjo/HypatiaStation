@@ -21,13 +21,15 @@
 	pr_mech_sleeper = new /datum/global_iterator/mech_sleeper(list(src), 0)
 	pr_mech_sleeper.set_delay(equip_cooldown)
 
-/obj/item/mecha_part/equipment/medical/sleeper/allow_drop()
-	return FALSE
-
-/obj/item/mecha_part/equipment/medical/sleeper/destroy()
+/obj/item/mecha_part/equipment/medical/sleeper/Destroy()
 	for(var/atom/movable/AM in src)
 		AM.forceMove(GET_TURF(src))
+	qdel(pr_mech_sleeper)
+	pr_mech_sleeper = null
 	return ..()
+
+/obj/item/mecha_part/equipment/medical/sleeper/allow_drop()
+	return FALSE
 
 /obj/item/mecha_part/equipment/medical/sleeper/Exit(atom/movable/O)
 	return FALSE
@@ -255,6 +257,11 @@
 	processed_reagents = list()
 	create_reagents(max_volume)
 	synth = new /datum/global_iterator/mech_synth(list(src), 0)
+
+/obj/item/mecha_part/equipment/medical/syringe_gun/Destroy()
+	qdel(synth)
+	synth = null
+	return ..()
 
 /obj/item/mecha_part/equipment/medical/syringe_gun/detach()
 	synth.stop()

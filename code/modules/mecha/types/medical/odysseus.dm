@@ -120,6 +120,11 @@
 	. = ..()
 	camouflage_iterator = new /datum/global_iterator/mecha_camouflage(list(src))
 
+/obj/mecha/medical/odysseus/eurymachus/remove_iterators()
+	. = ..()
+	qdel(camouflage_iterator)
+	camouflage_iterator = null
+
 /obj/mecha/medical/odysseus/eurymachus/get_commands()
 	. = {"<div class='wr'>
 						<div class='header'>Special</div>

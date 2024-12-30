@@ -3,6 +3,8 @@
 	range = RANGED
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/combat = 3)
 
+	destruction_sound = 'sound/mecha/weapdestr.ogg'
+
 	var/projectile //Type of projectile fired.
 	var/projectiles = 1 //Amount of projectiles loaded.
 	var/projectiles_per_shot = 1 //Amount of projectiles fired per single shot.

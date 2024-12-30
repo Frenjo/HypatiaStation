@@ -60,6 +60,11 @@
 	. = ..()
 	pr_recharger = new /datum/global_iterator/mech_bay_recharger(null, 0)
 
+/obj/machinery/mech_bay_recharge_port/Destroy()
+	qdel(pr_recharger)
+	pr_recharger = null
+	return ..()
+
 /obj/machinery/mech_bay_recharge_port/proc/start_charge(obj/mecha/recharging_mecha)
 	if(stat & (NOPOWER | BROKEN))
 		recharging_mecha.occupant_message(SPAN_WARNING("Power port not responding. Terminating."))

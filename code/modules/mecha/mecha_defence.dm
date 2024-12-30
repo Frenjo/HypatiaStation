@@ -19,8 +19,7 @@
 	if(src.health > 0)
 		src.spark_system.start()
 	else
-		src.destroy()
-	return
+		qdel(src)
 
 /obj/mecha/hitby(atom/movable/A) //wrapper
 	src.log_message("Hit by [A].", 1)
@@ -69,52 +68,6 @@
 	Proj.on_hit(src)
 	return
 
-/obj/mecha/proc/destroy()
-	spawn()
-		go_out()
-		var/turf/T = GET_TURF(src)
-		tag = "\ref[src]" //better safe then sorry
-		if(loc)
-			loc.Exited(src)
-		loc = null
-		if(isnotnull(T))
-			if(istype(src, /obj/mecha/working/ripley))
-				var/obj/mecha/working/ripley/R = src
-				if(R.cargo)
-					for(var/obj/O in R.cargo) //Dump contents of stored cargo
-						O.loc = T
-						R.cargo -= O
-						T.Entered(O)
-
-			if(prob(30))
-				explosion(T, 0, 0, 1, 3)
-			spawn(0)
-				if(wreckage)
-					var/obj/structure/mecha_wreckage/WR = new wreckage(T)
-					for(var/obj/item/mecha_part/equipment/E in equipment)
-						if(E.salvageable && prob(30))
-							WR.crowbar_salvage += E
-							E.forceMove(WR)
-							E.equip_ready = 1
-							E.reliability = round(rand(E.reliability / 3, E.reliability))
-						else
-							E.forceMove(T)
-							E.destroy()
-					if(cell)
-						WR.crowbar_salvage += cell
-						cell.forceMove(WR)
-						cell.charge = rand(0, cell.charge)
-					if(internal_tank)
-						WR.crowbar_salvage += internal_tank
-						internal_tank.forceMove(WR)
-				else
-					for(var/obj/item/mecha_part/equipment/E in equipment)
-						E.forceMove(T)
-						E.destroy()
-		spawn(0)
-			qdel(src)
-	return
-
 /obj/mecha/ex_act(severity)
 	src.log_message("Affected by explosion of severity: [severity].", 1)
 	if(prob(src.deflect_chance))
@@ -122,16 +75,16 @@
 		src.log_append_to_last("Armor saved, changing severity to [severity].")
 	switch(severity)
 		if(1.0)
-			src.destroy()
+			qdel(src)
 		if(2.0)
-			if (prob(30))
-				src.destroy()
+			if(prob(30))
+				qdel(src)
 			else
 				src.take_damage(initial(src.health)/2)
 				src.check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST, MECHA_INT_SHORT_CIRCUIT), 1)
 		if(3.0)
-			if (prob(5))
-				src.destroy()
+			if(prob(5))
+				qdel(src)
 			else
 				src.take_damage(initial(src.health)/5)
 				src.check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST, MECHA_INT_SHORT_CIRCUIT), 1)
@@ -212,8 +165,8 @@
 	if(prob(5))
 		if(ignore_threshold || src.health * 100 / initial(src.health) < src.internal_damage_threshold)
 			var/obj/item/mecha_part/equipment/destr = safepick(equipment)
-			if(destr)
-				destr.destroy()
+			if(isnotnull(destr))
+				qdel(destr)
 
 /obj/mecha/proc/set_internal_damage(int_dam_flag)
 	internal_damage |= int_dam_flag

@@ -19,14 +19,16 @@
 	pr_repair_droid = new /datum/global_iterator/mecha_repair_droid(list(src), 0)
 	pr_repair_droid.set_delay(equip_cooldown)
 
+/obj/item/mecha_part/equipment/repair_droid/Destroy()
+	chassis.overlays.Remove(droid_overlay)
+	qdel(pr_repair_droid)
+	pr_repair_droid = null
+	return ..()
+
 /obj/item/mecha_part/equipment/repair_droid/attach(obj/mecha/M)
 	. = ..()
 	droid_overlay = new(icon, icon_state = "repair_droid")
 	M.overlays.Add(droid_overlay)
-
-/obj/item/mecha_part/equipment/repair_droid/destroy()
-	chassis.overlays.Remove(droid_overlay)
-	. = ..()
 
 /obj/item/mecha_part/equipment/repair_droid/detach()
 	chassis.overlays.Remove(droid_overlay)

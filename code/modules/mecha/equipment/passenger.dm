@@ -15,14 +15,14 @@
 	var/mob/living/carbon/occupant = null
 	var/door_locked = 1
 
-/obj/item/mecha_part/equipment/passenger/allow_drop()
-	return 0
-
-/obj/item/mecha_part/equipment/passenger/destroy()
+/obj/item/mecha_part/equipment/passenger/Destroy()
 	var/turf/T = GET_TURF(src)
 	for_no_type_check(var/atom/movable/mover, src)
 		mover.forceMove(T)
 	return ..()
+
+/obj/item/mecha_part/equipment/passenger/allow_drop()
+	return 0
 
 /obj/item/mecha_part/equipment/passenger/Exit(atom/movable/O)
 	return 0

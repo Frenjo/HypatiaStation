@@ -15,11 +15,25 @@
 	reliability = 1000
 
 	var/equip_cooldown = 0
-	var/equip_ready = 1
+	var/equip_ready = TRUE
 	var/energy_drain = 0
 	var/obj/mecha/chassis = null
 	var/range = MELEE //bitflags
 	var/salvageable = 1
+	var/destruction_sound = 'sound/mecha/critdestr.ogg'
+
+/obj/item/mecha_part/equipment/Destroy() //missiles detonating, teleporter creating singularity?
+	if(isnotnull(chassis))
+		chassis.equipment.Remove(src)
+		listclearnulls(chassis.equipment)
+		if(chassis.selected == src)
+			chassis.selected = null
+		update_chassis_page()
+		chassis.occupant_message(SPAN_DANGER("The [src] is destroyed!"))
+		chassis.log_append_to_last("[src] is destroyed.", 1)
+		chassis.occupant << sound(destruction_sound, volume = 50)
+		chassis = null
+	return ..()
 
 /obj/item/mecha_part/equipment/proc/can_attach(obj/mecha/M)
 	if(!istype(M))
@@ -67,22 +81,6 @@
 	if(isnotnull(chassis))
 		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 		return TRUE
-
-/obj/item/mecha_part/equipment/proc/destroy()//missiles detonating, teleporter creating singularity?
-	if(isnotnull(chassis))
-		chassis.equipment.Remove(src)
-		listclearnulls(chassis.equipment)
-		if(chassis.selected == src)
-			chassis.selected = null
-		update_chassis_page()
-		chassis.occupant_message(SPAN_DANGER("The [src] is destroyed!"))
-		chassis.log_append_to_last("[src] is destroyed.", 1)
-		if(istype(src, /obj/item/mecha_part/equipment/weapon))
-			chassis.occupant << sound('sound/mecha/weapdestr.ogg', volume = 50)
-		else
-			chassis.occupant << sound('sound/mecha/critdestr.ogg', volume = 50)
-	spawn()
-		qdel(src)
 
 /obj/item/mecha_part/equipment/proc/critfail()
 	if(isnotnull(chassis))

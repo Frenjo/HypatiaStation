@@ -127,15 +127,15 @@
 	cable = new /obj/item/stack/cable_coil(src)
 	cable.amount = 0
 
+/obj/item/mecha_part/equipment/tool/cable_layer/Destroy()
+	chassis.events.clearEvent("onMove", event)
+	return ..()
+
 /obj/item/mecha_part/equipment/tool/cable_layer/attach()
 	. = ..()
 	event = chassis.events.addEvent("onMove", src, "layCable")
 
 /obj/item/mecha_part/equipment/tool/cable_layer/detach()
-	chassis.events.clearEvent("onMove", event)
-	return ..()
-
-/obj/item/mecha_part/equipment/tool/cable_layer/destroy()
 	chassis.events.clearEvent("onMove", event)
 	return ..()
 

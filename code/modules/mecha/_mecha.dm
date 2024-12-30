@@ -109,12 +109,44 @@
 	verbs.Remove(/atom/movable/verb/pull)
 	if(!overload_capable)
 		verbs.Remove(/obj/mecha/verb/overload)
-	log_message("[src.name] created.")
+	log_message("[name] created.")
 	loc.Entered(src)
 	GLOBL.mechas_list.Add(src) //global mech list
 
 /obj/mecha/Destroy()
 	go_out()
+	remove_iterators()
+	var/turf/T = GET_TURF(src)
+	tag = "\ref[src]" //better safe then sorry
+	if(isnotnull(loc))
+		loc.Exited(src)
+	loc = null
+	if(isnotnull(T))
+		if(prob(30))
+			explosion(T, 0, 0, 1, 3)
+
+		if(isnull(wreckage))
+			for(var/obj/item/mecha_part/equipment/E in equipment)
+				E.forceMove(T)
+				qdel(E)
+		else
+			var/obj/structure/mecha_wreckage/wreck = new wreckage(T)
+			for(var/obj/item/mecha_part/equipment/E in equipment)
+				if(E.salvageable && prob(30))
+					wreck.crowbar_salvage.Add(E)
+					E.forceMove(wreck)
+					E.equip_ready = TRUE
+					E.reliability = round(rand(E.reliability / 3, E.reliability))
+				else
+					E.forceMove(T)
+					qdel(E)
+			if(isnotnull(cell))
+				wreck.crowbar_salvage.Add(cell)
+				cell.forceMove(wreck)
+				cell.charge = rand(0, cell.charge)
+			if(isnotnull(internal_tank))
+				wreck.crowbar_salvage.Add(internal_tank)
+				internal_tank.forceMove(wreck)
 	GLOBL.mechas_list.Remove(src) //global mech list
 	return ..()
 
