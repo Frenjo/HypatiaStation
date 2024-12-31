@@ -2,12 +2,12 @@
 /datum/construction/mecha_chassis/firefighter
 	result = /datum/construction/reversible/mecha/firefighter
 	steps = list(
-		list("key" = /obj/item/mecha_part/part/ripley_torso),		//1
-		list("key" = /obj/item/mecha_part/part/ripley_left_arm),	//2
-		list("key" = /obj/item/mecha_part/part/ripley_right_arm),	//3
-		list("key" = /obj/item/mecha_part/part/ripley_left_leg),	//4
-		list("key" = /obj/item/mecha_part/part/ripley_right_leg),	//5
-		list("key" = /obj/item/clothing/suit/fire)					//6
+		list("key" = /obj/item/mecha_part/part/ripley_torso),
+		list("key" = /obj/item/mecha_part/part/ripley_left_arm),
+		list("key" = /obj/item/mecha_part/part/ripley_right_arm),
+		list("key" = /obj/item/mecha_part/part/ripley_left_leg),
+		list("key" = /obj/item/mecha_part/part/ripley_right_leg),
+		list("key" = /obj/item/clothing/suit/fire)
 	)
 
 // Firefighter

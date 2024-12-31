@@ -3,8 +3,6 @@
 
 // Construction step examine descriptions
 #define MECHA_DESC_PERIPHERAL_MODULE_SECURED	"The peripherals control module is secured."
-#define MECHA_DESC_TARGETING_MODULE_INSTALLED	"The targeting module is installed."
-#define MECHA_DESC_TARGETING_MODULE_SECURED		"The targeting module is secured."
 
 #define MECHA_DESC_INTERNAL_ARMOUR_INSTALLED	"The internal armour is installed."
 #define MECHA_DESC_INTERNAL_ARMOUR_WRENCHED		"The internal armour is wrenched."
@@ -19,14 +17,10 @@
 #define MECHA_UNSECURE_PERIPHERAL_MODULE user.visible_message(\
 SPAN_NOTICE("[user] unfastens \the [holder]' peripherals control module."), SPAN_NOTICE("You unfasten \the [holder]' peripherals control module."))
 
-#define MECHA_INSTALL_WEAPON_MODULE user.visible_message(\
-SPAN_NOTICE("[user] installs the weapon control module into \the [holder]."), SPAN_NOTICE("You install the weapon control module into \the [holder]."))
-#define MECHA_REMOVE_WEAPON_MODULE user.visible_message(\
-SPAN_NOTICE("[user] removes the weapon control module from \the [holder]."), SPAN_NOTICE("You remove the weapon control module from \the [holder]."))
-#define MECHA_SECURE_WEAPON_MODULE user.visible_message(\
-SPAN_NOTICE("[user] secures \the [holder]' weapon control module."), SPAN_NOTICE("You secure \the [holder]' weapon control module."))
-#define MECHA_UNSECURE_WEAPON_MODULE user.visible_message(\
-SPAN_NOTICE("[user] unfastens \the [holder]' weapon control module."), SPAN_NOTICE("You unfasten \the [holder]' weapon control module."))
+#define MECHA_INSTALL_TARGETING_MODULE user.visible_message(\
+SPAN_NOTICE("[user] installs the targeting module into \the [holder]."), SPAN_NOTICE("You install the targeting module into \the [holder]."))
+#define MECHA_SECURE_TARGETING_MODULE user.visible_message(\
+SPAN_NOTICE("[user] secures \the [holder]' targeting module."), SPAN_NOTICE("You secure \the [holder]' targeting module."))
 
 #define MECHA_INSTALL_INTERNAL_ARMOUR user.visible_message(\
 SPAN_NOTICE("[user] installs the internal armour layer on \the [holder]."), SPAN_NOTICE("You install the internal armour layer on \the [holder]."))

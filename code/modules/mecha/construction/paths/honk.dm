@@ -1,11 +1,11 @@
 // H.O.N.K Chassis
 /datum/construction/mecha_chassis/honk
 	steps = list(
-		list("key" = /obj/item/mecha_part/part/honk_torso),		//1
-		list("key" = /obj/item/mecha_part/part/honk_left_arm),	//2
-		list("key" = /obj/item/mecha_part/part/honk_right_arm),	//3
-		list("key" = /obj/item/mecha_part/part/honk_left_leg),	//4
-		list("key" = /obj/item/mecha_part/part/honk_right_leg),	//5
+		list("key" = /obj/item/mecha_part/part/honk_torso),
+		list("key" = /obj/item/mecha_part/part/honk_left_arm),
+		list("key" = /obj/item/mecha_part/part/honk_right_arm),
+		list("key" = /obj/item/mecha_part/part/honk_left_leg),
+		list("key" = /obj/item/mecha_part/part/honk_right_leg),
 		list("key" = /obj/item/mecha_part/part/honk_head)
 	)
 
@@ -65,10 +65,10 @@
 					SPAN_NOTICE("You secure \the [holder]' peripherals control module.")
 				)
 		if(6)
-			MECHA_INSTALL_WEAPON_MODULE
+			MECHA_INSTALL_TARGETING_MODULE
 			qdel(used_item)
 		if(5)
-			MECHA_SECURE_WEAPON_MODULE
+			MECHA_SECURE_TARGETING_MODULE
 		if(4)
 			user.visible_message(
 				SPAN_NOTICE("[user] puts a clown wig and mask on \the [holder]."),

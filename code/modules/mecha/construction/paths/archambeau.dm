@@ -6,45 +6,6 @@
 /datum/construction/reversible/mecha/archambeau
 	result = /obj/mecha/combat/durand/archambeau
 	steps = list(
-		// 9
-		list(
-			"desc" = MECHA_DESC_PERIPHERAL_MODULE_SECURED,
-			"key" = /obj/item/circuitboard/mecha/archambeau/targeting,
-			"action" = CONSTRUCTION_ACTION_DELETE,
-			"back_key" = /obj/item/screwdriver
-		),
-		// 10
-		list(
-			"desc" = MECHA_DESC_TARGETING_MODULE_INSTALLED,
-			"key" = /obj/item/screwdriver,
-			"back_key" = /obj/item/crowbar
-		),
-		// 11
-		list(
-			"desc" = MECHA_DESC_TARGETING_MODULE_SECURED,
-			"key" = /obj/item/stock_part/scanning_module/phasic,
-			"action" = CONSTRUCTION_ACTION_DELETE,
-			"back_key" = /obj/item/screwdriver
-		),
-		// 12
-		list(
-			"desc" = "A phasic scanning module is installed.",
-			"key" = /obj/item/screwdriver,
-			"back_key" = /obj/item/crowbar
-		),
-		// 13
-		list(
-			"desc" = "The phasic scanning module is secured.",
-			"key" = /obj/item/stock_part/capacitor/super,
-			"action" = CONSTRUCTION_ACTION_DELETE,
-			"back_key" = /obj/item/screwdriver
-		),
-		// 14
-		list(
-			"desc" = "A super capacitor is installed.",
-			"key" = /obj/item/screwdriver,
-			"back_key" = /obj/item/crowbar
-		),
 		// 15
 		list(
 			"desc" = "The super capacitor is secured.",
@@ -90,70 +51,25 @@
 
 	central_circuit = /obj/item/circuitboard/mecha/archambeau/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/archambeau/peripherals
+	optional_circuit = /obj/item/circuitboard/mecha/archambeau/targeting
+
+	scanning_module = /obj/item/stock_part/scanning_module/phasic
+	scanning_module_name = /obj/item/stock_part/scanning_module/phasic::name
+	capacitor = /obj/item/stock_part/capacitor/super
+	capacitor_name = /obj/item/stock_part/capacitor/super::name
 
 /datum/construction/reversible/mecha/archambeau/custom_action(diff, obj/item/used_item, mob/living/user)
 	if(!..())
 		return FALSE
 
 	switch(index)
-		if(9)
-			if(diff == FORWARD)
-				MECHA_INSTALL_WEAPON_MODULE
-			else
-				MECHA_UNSECURE_PERIPHERAL_MODULE
-		if(10)
-			if(diff == FORWARD)
-				MECHA_SECURE_WEAPON_MODULE
-			else
-				MECHA_REMOVE_WEAPON_MODULE
-		if(11)
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs a phasic scanning module to \the [holder]."),
-					SPAN_NOTICE("You install a phasic scanning module to \the [holder].")
-				)
-			else
-				MECHA_UNSECURE_WEAPON_MODULE
-		if(12)
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]' phasic scanner module."),
-					SPAN_NOTICE("You secure \the [holder]' phasic scanner module.")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] removes the phasic scanning module from \the [holder]."),
-					SPAN_NOTICE("You remove the phasic scanning module from \the [holder].")
-				)
-		if(13)
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs a super capacitor to \the [holder]."),
-					SPAN_NOTICE("You install a super capacitor to \the [holder].")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]' phasic scanner module."),
-					SPAN_NOTICE("You unfasten \the [holder]' phasic scanner module.")
-				)
-		if(14)
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]' super capacitor."),
-					SPAN_NOTICE("You secure \the [holder]' super capacitor.")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] removes the super capacitor from \the [holder]."),
-					SPAN_NOTICE("You remove the super capacitor from \the [holder].")
-				)
 		if(15)
 			if(diff == FORWARD)
 				MECHA_INSTALL_INTERNAL_ARMOUR
 			else
 				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]'s advanced capacitor."),
-					SPAN_NOTICE("You unfasten \the [holder]'s advanced capacitor.")
+					SPAN_NOTICE("[user] unfastens \the [holder]' [capacitor_name]."),
+					SPAN_NOTICE("You unfasten \the [holder]' [capacitor_name].")
 				)
 		if(16)
 			if(diff == FORWARD)

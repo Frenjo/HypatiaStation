@@ -1,11 +1,11 @@
 // Chassis
 /datum/construction/mecha_chassis/reticence
 	steps = list(
-		list("key" = /obj/item/mecha_part/part/reticence_torso),		//1
-		list("key" = /obj/item/mecha_part/part/reticence_left_arm),		//2
-		list("key" = /obj/item/mecha_part/part/reticence_right_arm),	//3
-		list("key" = /obj/item/mecha_part/part/reticence_left_leg),		//4
-		list("key" = /obj/item/mecha_part/part/reticence_right_leg),	//5
+		list("key" = /obj/item/mecha_part/part/reticence_torso),
+		list("key" = /obj/item/mecha_part/part/reticence_left_arm),
+		list("key" = /obj/item/mecha_part/part/reticence_right_arm),
+		list("key" = /obj/item/mecha_part/part/reticence_left_leg),
+		list("key" = /obj/item/mecha_part/part/reticence_right_leg),
 		list("key" = /obj/item/mecha_part/part/reticence_head)
 	)
 
@@ -66,10 +66,10 @@
 					SPAN_NOTICE("You secure \the [holder]' peripherals control module.")
 				)
 		if(8)
-			MECHA_INSTALL_WEAPON_MODULE
+			MECHA_INSTALL_TARGETING_MODULE
 			qdel(used_item)
 		if(7)
-			MECHA_SECURE_WEAPON_MODULE
+			MECHA_SECURE_TARGETING_MODULE
 		if(6)
 			user.visible_message(
 				SPAN_NOTICE("[user] puts some suspenders on \the [holder]."),
