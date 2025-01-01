@@ -3,7 +3,6 @@
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves."
 	icon = 'icons/obj/items/assemblies/assemblies.dmi'
 	icon_state = "posibrain"
-	w_class = 3
 	origin_tech = list(
 		/datum/tech/materials = 4, /datum/tech/engineering = 4, /datum/tech/programming = 4,
 		/datum/tech/bluespace = 2
@@ -13,16 +12,8 @@
 		MATERIAL_METAL = 500, /decl/material/glass = 500, /decl/material/silver = 200,
 		/decl/material/gold = 200, /decl/material/diamond = 10, /decl/material/plasma = 100
 	)
-	construction_time = 75
-
-	req_access = list(ACCESS_ROBOTICS)
-	locked = 0
-	mecha = null//This does not appear to be used outside of reference in mecha.dm.
-
-	brainmob = null
 
 	var/searching = 0
-	var/askDelay = 10 * 60 * 1
 
 /obj/item/mmi/posibrain/New()
 	brainmob = new /mob/living/brain(src)
@@ -36,34 +27,36 @@
 	. = ..()
 
 /obj/item/mmi/posibrain/attack_self(mob/user)
-	if(brainmob && !brainmob.key && searching == 0)
-		//Start the process of searching for a new user.
-		user << "\blue You carefully locate the manual activation switch and start the positronic brain's boot process."
+	if(isnotnull(brainmob) && isnull(brainmob.key) && !searching)
+		// Starts the process of searching for a new user.
+		to_chat(user, SPAN_INFO("You carefully locate the manual activation switch and start the positronic brain's boot process."))
 		icon_state = "posibrain-searching"
-		src.searching = 1
-		src.request_player()
-		spawn(600)
+		searching = TRUE
+		request_player()
+		spawn(1 MINUTE)
 			reset_search()
 
 /obj/item/mmi/posibrain/proc/request_player()
 	for(var/mob/dead/ghost/O in GLOBL.player_list)
-		if(O.has_enabled_antagHUD == 1 && CONFIG_GET(/decl/configuration_entry/antag_hud_restricted))
+		if(O.has_enabled_antagHUD && CONFIG_GET(/decl/configuration_entry/antag_hud_restricted))
 			continue
 		if(jobban_isbanned(O, "pAI"))
 			continue
-		if(O.client)
-			if(O.client.prefs.be_special & BE_PAI)
-				question(O.client)
+		if(O.client?.prefs.be_special & BE_PAI)
+			question(O.client)
 
-/obj/item/mmi/posibrain/proc/question(var/client/C)
-	spawn(0)
-		if(!C)	return
-		var/response = alert(C, "Someone is requesting a personality for a positronic brain. Would you like to play as one?", "Positronic brain request", "Yes", "No", "Never for this round")
-		if(!C || brainmob.key || 0 == searching)	return		//handle logouts that happen whilst the alert is waiting for a response, and responses issued after a brain has been located.
-		if(response == "Yes")
-			transfer_personality(C.mob)
-		else if (response == "Never for this round")
-			C.prefs.be_special ^= BE_PAI
+/obj/item/mmi/posibrain/proc/question(client/C)
+	set waitfor = FALSE
+
+	if(isnull(C))
+		return
+	var/response = alert(C, "Someone is requesting a personality for a positronic brain. Would you like to play as one?", "Positronic brain request", "Yes", "No", "Never for this round")
+	if(isnull(C) || brainmob.key || !searching)
+		return // Handles logouts that happen whilst the alert is waiting for a response, and responses issued after a brain has been located.
+	if(response == "Yes")
+		transfer_personality(C.mob)
+	else if(response == "Never for this round")
+		C.prefs.be_special ^= BE_PAI
 
 /obj/item/mmi/posibrain/transfer_identity(mob/living/carbon/H)
 	name = "positronic brain ([H])"
@@ -71,38 +64,38 @@
 	brainmob.real_name = H.real_name
 	brainmob.dna = H.dna
 	brainmob.timeofhostdeath = H.timeofdeath
-	if(brainmob.mind)
+	if(isnotnull(brainmob.mind))
 		brainmob.mind.assigned_role = "Positronic Brain"
-	if(H.mind)
+	if(isnotnull(H.mind))
 		H.mind.transfer_to(brainmob)
-	brainmob << "\blue You feel slightly disoriented. That's normal when you're just a metal cube."
+	to_chat(brainmob, SPAN_INFO("You feel slightly disoriented. That's normal when you're just a metal cube."))
 	icon_state = "posibrain-occupied"
-	return
 
 /obj/item/mmi/posibrain/proc/transfer_personality(mob/candidate)
-	src.searching = 0
-	src.brainmob.mind = candidate.mind
+	searching = FALSE
+	brainmob.mind = candidate.mind
 	//src.brainmob.key = candidate.key
-	src.brainmob.ckey = candidate.ckey
-	src.name = "positronic brain ([src.brainmob.name])"
+	brainmob.ckey = candidate.ckey
+	name = "positronic brain ([brainmob.name])"
 
-	src.brainmob << "<b>You are a positronic brain, brought into existence on [station_name()].</b>"
-	src.brainmob << "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>"
-	src.brainmob << "<b>Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>"
-	src.brainmob << "<b>Use say :b to speak to other artificial intelligences.</b>"
-	src.brainmob.mind.assigned_role = "Positronic Brain"
+	to_chat(brainmob, "<b>You are a positronic brain, brought into existence on [station_name()].</b>")
+	to_chat(brainmob, "<b>As a synthetic intelligence, you answer to all crewmembers, as well as the AI.</b>")
+	to_chat(brainmob, "<b>Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")
+	to_chat(brainmob, "<b>Use say :b to speak to other artificial intelligences.</b>")
+	brainmob.mind.assigned_role = "Positronic Brain"
 
-	var/turf/T = get_turf_or_move(src.loc)
+	var/turf/T = get_turf_or_move(loc)
 	T.visible_message(SPAN_INFO("The positronic brain chimes quietly."))
 	icon_state = "posibrain-occupied"
 
-/obj/item/mmi/posibrain/proc/reset_search() //We give the players sixty seconds to decide, then reset the timer.
-	if(src.brainmob && src.brainmob.key) return
+/obj/item/mmi/posibrain/proc/reset_search() // We give the players sixty seconds to decide, then reset the timer.
+	if(isnotnull(brainmob?.key))
+		return
 
-	src.searching = 0
+	searching = FALSE
 	icon_state = "posibrain"
 
-	var/turf/T = get_turf_or_move(src.loc)
+	var/turf/T = get_turf_or_move(loc)
 	T.visible_message(SPAN_INFO("The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?"))
 
 /obj/item/mmi/posibrain/examine()
@@ -127,16 +120,3 @@
 	msg += "<span class='info'>*---------*</span>"
 	usr << msg
 	return
-
-/obj/item/mmi/posibrain/emp_act(severity)
-	if(!src.brainmob)
-		return
-	else
-		switch(severity)
-			if(1)
-				src.brainmob.emp_damage += rand(20,30)
-			if(2)
-				src.brainmob.emp_damage += rand(10,20)
-			if(3)
-				src.brainmob.emp_damage += rand(0,10)
-	..()

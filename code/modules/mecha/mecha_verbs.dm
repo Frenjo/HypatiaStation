@@ -195,7 +195,6 @@
 		brainmob.loc = src //should allow relaymove
 		brainmob.canmove = TRUE
 		mmi_as_oc.loc = src
-		mmi_as_oc.mecha = src
 		verbs.Remove(/obj/mecha/verb/eject)
 		Entered(mmi_as_oc)
 		Move(loc)
@@ -285,7 +284,6 @@
 			var/obj/item/mmi/mmi = mob_container
 			if(isnotnull(mmi.brainmob))
 				occupant.loc = mmi
-			mmi.mecha = null
 			occupant.canmove = FALSE
 			verbs.Add(/obj/mecha/verb/eject)
 		occupant = null

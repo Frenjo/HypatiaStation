@@ -525,7 +525,7 @@
 #include "code\game\mobs\living\brain\death.dm"
 #include "code\game\mobs\living\brain\emote.dm"
 #include "code\game\mobs\living\brain\life.dm"
-#include "code\game\mobs\living\brain\MMI.dm"
+#include "code\game\mobs\living\brain\mmi.dm"
 #include "code\game\mobs\living\brain\posibrain.dm"
 #include "code\game\mobs\living\brain\say.dm"
 #include "code\game\mobs\living\carbon\carbon.dm"
