@@ -1,9 +1,6 @@
 // Chassis
 /datum/construction/mecha_chassis/custom_action(step, obj/item/used_item, mob/living/user)
-	user.visible_message(
-		SPAN_NOTICE("[user] connects \the [used_item] to \the [holder]."),
-		SPAN_NOTICE("You connect \the [used_item] to \the [holder].")
-	)
+	holder.balloon_alert_visible("connected [used_item.name]")
 	holder.overlays.Add(used_item.icon_state + "+o")
 	user.drop_item()
 	qdel(used_item)

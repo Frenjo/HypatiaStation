@@ -39,54 +39,33 @@
 		return FALSE
 
 	if(istype(used_item, /obj/item/toy/crayon/mime))
-		user.visible_message("...")
+		holder.balloon_alert_visible("...")
 		return TRUE
 
 	switch(step)
 		if(12)
-			user.visible_message(
-					SPAN_NOTICE("[user] installs the central control module into \the [holder]."),
-					SPAN_NOTICE("You install the central control module into \the [holder].")
-				)
+			holder.balloon_alert_visible("installed central control module")
 			qdel(used_item)
 		if(11)
-			user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]' mainboard."),
-					SPAN_NOTICE("You secure \the [holder]' mainboard.")
-				)
+			holder.balloon_alert_visible("secured central control module")
 		if(10)
-			user.visible_message(
-					SPAN_NOTICE("[user] installs the peripherals control module into \the [holder]."),
-					SPAN_NOTICE("You install the peripherals control module into \the [holder].")
-				)
+			holder.balloon_alert_visible("installed peripherals control module")
 			qdel(used_item)
 		if(9)
-			user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]' peripherals control module."),
-					SPAN_NOTICE("You secure \the [holder]' peripherals control module.")
-				)
+			holder.balloon_alert_visible("secured peripherals control module")
 		if(8)
-			MECHA_INSTALL_TARGETING_MODULE
+			holder.balloon_alert_visible("installed targeting module")
 			qdel(used_item)
 		if(7)
-			MECHA_SECURE_TARGETING_MODULE
+			holder.balloon_alert_visible("secured targeting module")
 		if(6)
-			user.visible_message(
-				SPAN_NOTICE("[user] puts some suspenders on \the [holder]."),
-				SPAN_NOTICE("You put some suspenders on \the [holder].")
-			)
+			holder.balloon_alert_visible("added suspenders")
 			qdel(used_item)
 		if(4)
-			user.visible_message(
-				SPAN_NOTICE("[user] puts a mime mask on \the [holder]."),
-				SPAN_NOTICE("You put a mime mask on \the [holder].")
-			)
+			holder.balloon_alert_visible("added mime mask")
 			qdel(used_item)
 		if(2)
-			user.visible_message(
-				SPAN_NOTICE("[user] puts a beret on \the [holder]."),
-				SPAN_NOTICE("You put a beret on \the [holder].")
-			)
+			holder.balloon_alert_visible("added beret")
 			qdel(used_item)
 	return TRUE
 

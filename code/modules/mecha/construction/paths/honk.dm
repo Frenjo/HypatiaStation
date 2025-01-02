@@ -38,48 +38,30 @@
 
 	if(istype(used_item, /obj/item/bikehorn))
 		playsound(holder, 'sound/items/bikehorn.ogg', 50, 1)
-		user.visible_message("HONK!")
+		holder.balloon_alert_visible("HONK!")
 		return TRUE
 
 	switch(step)
 		if(10)
-			user.visible_message(
-					SPAN_NOTICE("[user] installs the central control module into \the [holder]."),
-					SPAN_NOTICE("You install the central control module into \the [holder].")
-				)
+			holder.balloon_alert_visible("installed central control module")
 			qdel(used_item)
 		if(9)
-			user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]' mainboard."),
-					SPAN_NOTICE("You secure \the [holder]' mainboard.")
-				)
+			holder.balloon_alert_visible("secured central control module")
 		if(8)
-			user.visible_message(
-					SPAN_NOTICE("[user] installs the peripherals control module into \the [holder]."),
-					SPAN_NOTICE("You install the peripherals control module into \the [holder].")
-				)
+			holder.balloon_alert_visible("installed peripherals control module")
 			qdel(used_item)
 		if(7)
-			user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]' peripherals control module."),
-					SPAN_NOTICE("You secure \the [holder]' peripherals control module.")
-				)
+			holder.balloon_alert_visible("secured peripherals control module")
 		if(6)
-			MECHA_INSTALL_TARGETING_MODULE
+			holder.balloon_alert_visible("installed targeting module")
 			qdel(used_item)
 		if(5)
-			MECHA_SECURE_TARGETING_MODULE
+			holder.balloon_alert_visible("secured targeting module")
 		if(4)
-			user.visible_message(
-				SPAN_NOTICE("[user] puts a clown wig and mask on \the [holder]."),
-				SPAN_NOTICE("You put a clown wig and mask on \the [holder].")
-			)
+			holder.balloon_alert_visible("added clown wig and mask")
 			qdel(used_item)
 		if(2)
-			user.visible_message(
-				SPAN_NOTICE("[user] puts clown shoes on \the [holder]."),
-				SPAN_NOTICE("You put clown shoes on \the [holder].")
-			)
+			holder.balloon_alert_visible("added clown shoes")
 			qdel(used_item)
 	return TRUE
 

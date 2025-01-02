@@ -6,110 +6,89 @@
 
 	var/central_circuit = null
 	var/peripherals_circuit = null
-	var/optional_circuit = null
-	var/optional_circuit_name = "targeting" // This should either be "targeting" or "medical".
-
-	var/scanning_module = null
-	var/scanning_module_name = null // I have to do this manually on each subtype because I can't dynamically do scanning_module::name.
-	var/capacitor = null
-	var/capacitor_name = null // See above.
 
 /datum/construction/reversible/mecha/New()
-	steps = get_frame_steps() + get_circuit_steps() + get_stock_part_steps() + steps
+	steps = get_frame_steps() + get_circuit_steps() + get_stock_part_steps() + get_other_steps() + steps
 	. = ..()
 
 /datum/construction/reversible/mecha/proc/get_frame_steps()
+	RETURN_TYPE(/list)
+
 	. = list(
 		list(
 			"desc" = "The hydraulic systems are disconnected.",
-			"key" = /obj/item/wrench
+			"key" = /obj/item/wrench,
+			"message" = "connected hydraulic systems"
 		),
 		list(
 			"desc" = "The hydraulic systems are connected.",
 			"key" = /obj/item/screwdriver,
-			"back_key" = /obj/item/wrench
+			"message" = "activated hydraulic systems",
+			"back_key" = /obj/item/wrench,
+			"back_message" = "disconnected hydraulic systems"
 		),
 		list(
 			"desc" = "The hydraulic systems are active.",
 			"key" = /obj/item/stack/cable_coil,
 			"amount" = 4,
-			"back_key" = /obj/item/screwdriver
+			"message" = "added wiring",
+			"back_key" = /obj/item/screwdriver,
+			"back_message" = "deactivated hydraulic systems"
 		),
 		list(
 			"desc" = "The wiring is added.",
 			"key" = /obj/item/wirecutters,
-			"back_key" = /obj/item/screwdriver
+			"message" = "adjusted wiring",
+			"back_key" = /obj/item/screwdriver,
+			"back_message" = "removed wiring"
 		)
 	)
 
 /datum/construction/reversible/mecha/proc/get_circuit_steps()
+	RETURN_TYPE(/list)
+
 	. = list(
 		list(
 			"desc" = "The wiring is adjusted.",
 			"key" = central_circuit,
 			"action" = CONSTRUCTION_ACTION_DELETE,
-			"back_key" = /obj/item/screwdriver
+			"message" = "installed central control module",
+			"back_key" = /obj/item/screwdriver,
+			"back_message" = "disconnected wiring"
 		),
 		list(
 			"desc" = "The central control module is installed.",
 			"key" = /obj/item/screwdriver,
-			"back_key" = /obj/item/crowbar
+			"message" = "secured central control module",
+			"back_key" = /obj/item/crowbar,
+			"back_message" = "removed central control module"
 		),
 		list(
 			"desc" = "The central control module is secured.",
 			"key" = peripherals_circuit,
 			"action" = CONSTRUCTION_ACTION_DELETE,
-			"back_key" = /obj/item/screwdriver
+			"message" = "installed peripherals control module",
+			"back_key" = /obj/item/screwdriver,
+			"back_message" = "unfastened central control module"
 		),
 		list(
 			"desc" = "The peripherals control module is installed.",
 			"key" = /obj/item/screwdriver,
-			"back_key" = /obj/item/crowbar
+			"message" = "secured peripherals control module",
+			"back_key" = /obj/item/crowbar,
+			"back_message" = "removed peripherals control module"
 		)
 	)
 
-	if(isnotnull(optional_circuit) && isnotnull(optional_circuit_name))
-		. += list(
-			list(
-				"desc" = "The peripherals control module is secured.",
-				"key" = optional_circuit,
-				"action" = CONSTRUCTION_ACTION_DELETE,
-				"back_key" = /obj/item/screwdriver
-			),
-			list(
-				"desc" = "The [optional_circuit_name] module is installed.",
-				"key" = /obj/item/screwdriver,
-				"back_key" = /obj/item/crowbar
-			)
-		)
-
 /datum/construction/reversible/mecha/proc/get_stock_part_steps()
+	RETURN_TYPE(/list)
+
 	. = list()
-	if(isnotnull(scanning_module) && isnotnull(capacitor))
-		. += list(
-			list(
-				"desc" = "The [optional_circuit_name] module is secured.",
-				"key" = scanning_module,
-				"action" = CONSTRUCTION_ACTION_DELETE,
-				"back_key" = /obj/item/screwdriver
-			),
-			list(
-				"desc" = "\A [scanning_module_name] is installed.",
-				"key" = /obj/item/screwdriver,
-				"back_key" = /obj/item/crowbar
-			),
-			list(
-				"desc" = "The [scanning_module_name] is secured.",
-				"key" = capacitor,
-				"action" = CONSTRUCTION_ACTION_DELETE,
-				"back_key" = /obj/item/screwdriver
-			),
-			list(
-				"desc" = "\A [capacitor_name] is installed.",
-				"key" = /obj/item/screwdriver,
-				"back_key" = /obj/item/crowbar
-			)
-		)
+
+/datum/construction/reversible/mecha/proc/get_other_steps()
+	RETURN_TYPE(/list)
+
+	. = list()
 
 /datum/construction/reversible/mecha/custom_action(diff, obj/item/used_item, mob/living/user)
 	var/target_index = index + diff
@@ -159,7 +138,14 @@
 		else if(ispath(target_step_key, target_step["amount"]))
 			new target_step_key(GET_TURF(holder), target_step["amount"])
 
-	output_core_feedback(diff, user)
+	var/list/step = steps[index]
+	var/message = null
+	if(diff == FORWARD && isnotnull(step["message"]))
+		message = step["message"]
+	else if(diff == BACKWARD && isnotnull(step["back_message"]))
+		message = step["back_message"]
+	if(isnotnull(message))
+		holder.balloon_alert_visible(message)
 
 /datum/construction/reversible/mecha/update_holder(step_index)
 	. = ..()
@@ -168,166 +154,3 @@
 	// For example, Ripley's step 1 icon_state is "ripley0".
 	if(!steps[index]["icon_state"] && base_icon)
 		holder.icon_state = "[base_icon][index - 1]"
-
-/datum/construction/reversible/mecha/proc/output_core_feedback(diff, mob/living/user)
-	switch(index)
-		if(1)
-			user.visible_message(
-				SPAN_NOTICE("[user] connects \the [holder]' hydraulic systems."),
-				SPAN_NOTICE("You connect \the [holder]' hydraulic systems.")
-			)
-		if(2)
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] activates \the [holder]' hydraulic systems."),
-					SPAN_NOTICE("You activate \the [holder]' hydraulic systems.")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] disconnects \the [holder]' hydraulic systems."),
-					SPAN_NOTICE("You disconnect \the [holder]' hydraulic systems.")
-				)
-		if(3)
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] adds wiring to \the [holder]."),
-					SPAN_NOTICE("You add wiring to \the [holder].")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] deactivates \the [holder]' hydraulic systems."),
-					SPAN_NOTICE("You deactivate \the [holder]' hydraulic systems.")
-				)
-		if(4)
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] adjusts \the [holder]' wiring."),
-					SPAN_NOTICE("You adjust \the [holder]' wiring.")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] removes the wiring from \the [holder]."),
-					SPAN_NOTICE("You remove the wiring from \the [holder].")
-				)
-		if(5)
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs the central control module into \the [holder]."),
-					SPAN_NOTICE("You install the central control module into \the [holder].")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] disconnects \the [holder]' wiring."),
-					SPAN_NOTICE("You disconnect \the [holder]' wiring.")
-				)
-		if(6)
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]' mainboard."),
-					SPAN_NOTICE("You secure \the [holder]' mainboard.")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] removes the central control module from \the [holder]."),
-					SPAN_NOTICE("You remove the central control module from \the [holder].")
-				)
-		if(7)
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs the peripherals control module into \the [holder]."),
-					SPAN_NOTICE("You install the peripherals control module into \the [holder].")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]' mainboard."),
-					SPAN_NOTICE("You unfasten \the [holder]' mainboard.")
-				)
-		if(8)
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]' peripherals control module."),
-					SPAN_NOTICE("You secure \the [holder]' peripherals control module.")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] removes the peripherals control module from \the [holder]."),
-					SPAN_NOTICE("You remove the peripherals control module from \the [holder].")
-				)
-		if(9)
-			if(isnull(optional_circuit) || isnull(optional_circuit_name))
-				return
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs the [optional_circuit_name] module into \the [holder]."),
-					SPAN_NOTICE("You install the [optional_circuit_name] module into \the [holder].")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]' peripherals control module."),
-					SPAN_NOTICE("You unfasten \the [holder]' peripherals control module.")
-				)
-		if(10)
-			if(isnull(optional_circuit) || isnull(optional_circuit_name))
-				return
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]' [optional_circuit_name] module."),
-					SPAN_NOTICE("You secure \the [holder]' [optional_circuit_name] module.")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] removes the [optional_circuit_name] module from \the [holder]."),
-					SPAN_NOTICE("You remove the [optional_circuit_name] module from \the [holder].")
-				)
-		if(11)
-			if(isnull(scanning_module) || isnull(capacitor))
-				return
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs \a [scanning_module_name] to \the [holder]."),
-					SPAN_NOTICE("You install \a [scanning_module_name] to \the [holder].")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]' [optional_circuit_name] module."),
-					SPAN_NOTICE("You unfasten \the [holder]' [optional_circuit_name] module.")
-				)
-		if(12)
-			if(isnull(scanning_module) || isnull(capacitor))
-				return
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]' [scanning_module_name]."),
-					SPAN_NOTICE("You secure \the [holder]' [scanning_module_name].")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] removes the [scanning_module_name] from \the [holder]."),
-					SPAN_NOTICE("You remove the [scanning_module_name] from \the [holder].")
-				)
-		if(13)
-			if(isnull(scanning_module) || isnull(capacitor))
-				return
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] installs \a [capacitor_name] to \the [holder]."),
-					SPAN_NOTICE("You install \a [capacitor_name] to \the [holder].")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] unfastens \the [holder]' [scanning_module_name]."),
-					SPAN_NOTICE("You unfasten \the [holder]' [scanning_module_name].")
-				)
-		if(14)
-			if(isnull(scanning_module) || isnull(capacitor))
-				return
-			if(diff == FORWARD)
-				user.visible_message(
-					SPAN_NOTICE("[user] secures \the [holder]' [capacitor_name]."),
-					SPAN_NOTICE("You secure \the [holder]' [capacitor_name].")
-				)
-			else
-				user.visible_message(
-					SPAN_NOTICE("[user] removes the [capacitor_name] from \the [holder]."),
-					SPAN_NOTICE("You remove the [capacitor_name] from \the [holder].")
-				)

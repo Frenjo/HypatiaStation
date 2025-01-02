@@ -5,6 +5,12 @@
 #define BALLOON_TEXT_FULLY_VISIBLE_TIME (0.7 SECONDS)
 #define BALLOON_TEXT_TOTAL_LIFETIME (BALLOON_TEXT_SPAWN_TIME + BALLOON_TEXT_FULLY_VISIBLE_TIME + BALLOON_TEXT_FADE_TIME)
 
+// Creates text that will float from the atom upwards to all viewers in range.
+// This uses the same code as /atom/proc/visible_message
+/atom/proc/balloon_alert_visible(text)
+	for(var/mob/M in viewers(src))
+		balloon_alert(M, text)
+
 // Creates text that will float from the atom upwards to the viewer.
 /atom/proc/balloon_alert(mob/viewer, text)
 	var/client/viewer_client = viewer.client
