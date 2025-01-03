@@ -15,6 +15,7 @@
 /obj/item/mecha_part/chassis
 	name = "mecha chassis"
 	icon_state = "backbone"
+	density = TRUE
 	construction_cost = list(/decl/material/steel = 20000)
 
 	var/datum/construction/construct

@@ -5,10 +5,9 @@
 	delay = 2 SECONDS
 
 /datum/global_iterator/mecha_preserve_temp/process(obj/mecha/mecha)
-	if(mecha.cabin_air && mecha.cabin_air.volume > 0)
+	if(mecha.cabin_air?.volume > 0)
 		var/delta = mecha.cabin_air.temperature - T20C
 		mecha.cabin_air.temperature -= max(-10, min(10, round(delta / 4, 0.1)))
-	return
 
 /datum/global_iterator/mecha_tank_give_air
 	delay = 1.5 SECONDS
@@ -47,7 +46,7 @@
 
 /datum/global_iterator/mecha_inertial_movement/process(obj/mecha/mecha, direction)
 	if(direction)
-		if(!step(mecha, direction)||mecha.check_for_support())
+		if(!step(mecha, direction) || mecha.check_for_support())
 			stop()
 	else
 		stop()

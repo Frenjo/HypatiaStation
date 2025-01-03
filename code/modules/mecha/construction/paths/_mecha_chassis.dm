@@ -11,7 +11,6 @@
 
 /datum/construction/mecha_chassis/spawn_result()
 	holder.icon = 'icons/obj/mecha/mech_construction.dmi'
-	holder.density = TRUE
 	holder.overlays.len = 0
 
 	var/obj/item/mecha_part/chassis/chassis = holder

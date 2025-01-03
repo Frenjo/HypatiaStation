@@ -12,7 +12,7 @@
 		user.forceMove(GET_TURF(src))
 		to_chat(user, SPAN_INFO("You climb out from \the [src]."))
 		return FALSE
-	if(connected_port)
+	if(isnotnull(connected_port))
 		if(world.time - last_message > 20)
 			occupant_message(SPAN_WARNING("Unable to move while connected to the air system port."))
 			last_message = world.time
@@ -59,22 +59,19 @@
 	return 0
 
 /obj/mecha/proc/mechturn(direction)
-	set_dir(direction)
-	if(isnotnull(turn_sound))
+	. = set_dir(direction)
+	if(. && isnotnull(turn_sound))
 		playsound(src, turn_sound, turn_sound_volume, 1)
-	return 1
 
 /obj/mecha/proc/mechstep(direction)
 	. = step(src, direction)
-	if(.)
-		if(isnotnull(step_sound))
-			playsound(src, step_sound, step_sound_volume, 1)
+	if(. && isnotnull(step_sound))
+		playsound(src, step_sound, step_sound_volume, 1)
 
 /obj/mecha/proc/mechsteprand()
 	. = step_rand(src)
-	if(.)
-		if(isnotnull(step_sound))
-			playsound(src, step_sound, step_sound_volume, 1)
+	if(. && isnotnull(step_sound))
+		playsound(src, step_sound, step_sound_volume, 1)
 
 /obj/mecha/Bump(atom/obstacle)
 //	src.inertia_dir = null
@@ -84,7 +81,7 @@
 			anchored = FALSE
 			O.Crossed(src)
 			spawn(0)//countering portal teleport spawn(0), hurr
-				src.anchored = TRUE
+				anchored = TRUE
 		else if(!O.anchored)
 			step(obstacle, dir)
 		else //I have no idea why I disabled this

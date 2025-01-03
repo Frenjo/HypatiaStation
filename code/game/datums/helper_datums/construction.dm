@@ -4,12 +4,13 @@
 	var/result
 	var/list/steps_desc
 
-/datum/construction/New(atom)
+/datum/construction/New(atom, update_holder = TRUE)
 	. = ..()
 	holder = atom
 	if(!holder) //don't want this without a holder
 		qdel(src)
-	set_desc(length(steps))
+	if(update_holder)
+		set_desc(length(steps))
 
 /datum/construction/proc/next_step()
 	steps.len--
@@ -56,7 +57,8 @@
 
 /datum/construction/proc/set_desc(index)
 	var/list/step = steps[index]
-	holder.desc = step["desc"]
+	if(isnotnull(step["desc"]))
+		holder.desc = step["desc"]
 
 /*
  * Reversible Construction
@@ -72,7 +74,7 @@
 	var/index = 1
 
 /datum/construction/reversible/New(atom)
-	. = ..()
+	. = ..(atom, FALSE)
 	update_holder(index)
 
 /datum/construction/reversible/check_step(obj/item/used_item, mob/living/user)
@@ -93,19 +95,18 @@
 /datum/construction/reversible/custom_action(diff, obj/item/used_item, mob/living/user)
 	return TRUE
 
-/datum/construction/reversible/proc/update_holder(index)
+/datum/construction/reversible/proc/update_holder()
 	var/list/step = steps[index]
-
 	if(isnotnull(step["desc"]))
 		holder.desc = step["desc"]
 	if(isnotnull(step["icon_state"]))
 		holder.icon_state = step["icon_state"]
 
 /datum/construction/reversible/proc/on_step()
-	if(index > length(steps))
+	if(index == length(steps))
 		spawn_result()
 	else
-		update_holder(index)
+		update_holder()
 
 /datum/construction/reversible/proc/update_index(diff)
 	index += diff
