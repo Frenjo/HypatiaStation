@@ -553,7 +553,11 @@
 						<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>
 						"}
 	if(href_list["remove_mat"] && href_list["material"])
-		temp = "Ejected [remove_material(text2path(href_list["material"]), text2num(href_list["remove_mat"]))] of [href_list["material"]]<br><a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
+		var/material_path = text2path(href_list["material"])
+		var/decl/material/mat = GET_DECL_INSTANCE(material_path)
+		temp = "Ejected [remove_material(material_path, text2num(href_list["remove_mat"]))] sheets of [lowertext(mat.name)]."
+		temp += "<br>"
+		temp += "<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
 	updateUsrDialog()
 
 /obj/machinery/robotics_fabricator/proc/remove_material(type, amount)
