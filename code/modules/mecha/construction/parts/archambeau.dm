@@ -11,7 +11,7 @@
 	icon_state = "archambeau_armour"
 	origin_tech = list(/datum/tech/materials = 7, /datum/tech/combat = 4, /datum/tech/engineering = 6)
 	construction_time = 600
-	construction_cost = list(/decl/material/steel = 50000, /decl/material/uranium = 30000, /decl/material/plasma = 30000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 15, /decl/material/uranium = 30000, /decl/material/plasma = 30000)
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/archambeau/main

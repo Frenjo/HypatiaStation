@@ -13,14 +13,14 @@
 		/datum/tech/programming = 2
 	)
 	construction_time = 180
-	construction_cost = list(/decl/material/steel = 25000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8)
 
 /obj/item/mecha_part/part/odysseus_head
 	name = "\improper Odysseus head"
 	desc = "The head of an Odysseus-type exosuit."
 	icon_state = "odysseus_head"
 	construction_time = 100
-	construction_cost = list(/decl/material/steel = 2000, /decl/material/glass = 10000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 3, /decl/material/glass = 10000)
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/programming = 3)
 
 /obj/item/mecha_part/part/odysseus_left_arm
@@ -29,7 +29,7 @@
 	icon_state = "odysseus_l_arm"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 120
-	construction_cost = list(/decl/material/steel = 10000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 3)
 
 /obj/item/mecha_part/part/odysseus_right_arm
 	name = "\improper Odysseus right arm"
@@ -37,7 +37,7 @@
 	icon_state = "odysseus_r_arm"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 120
-	construction_cost = list(/decl/material/steel = 10000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 3)
 
 /obj/item/mecha_part/part/odysseus_left_leg
 	name = "\improper Odysseus left leg"
@@ -45,7 +45,7 @@
 	icon_state = "odysseus_l_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 130
-	construction_cost = list(/decl/material/steel = 15000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5)
 
 /obj/item/mecha_part/part/odysseus_right_leg
 	name = "\improper Odysseus right leg"
@@ -53,7 +53,7 @@
 	icon_state = "odysseus_r_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 130
-	construction_cost = list(/decl/material/steel = 15000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5)
 
 /obj/item/mecha_part/part/odysseus_carapace
 	name = "\improper Odysseus carapace"
@@ -61,7 +61,7 @@
 	icon_state = "odysseus_carapace"
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3)
 	construction_time = 200
-	construction_cost = list(/decl/material/steel = 15000) // This may require plasma later as it replaced five plasteel sheets during construction.
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 3)
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/odysseus

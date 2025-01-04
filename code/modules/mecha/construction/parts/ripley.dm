@@ -13,7 +13,7 @@
 		/datum/tech/programming = 2
 	)
 	construction_time = 200
-	construction_cost = list(/decl/material/steel = 40000, /decl/material/glass = 15000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 12, /decl/material/glass = 15000)
 
 /obj/item/mecha_part/part/ripley_left_arm
 	name = "\improper Ripley left arm"
@@ -21,7 +21,7 @@
 	icon_state = "ripley_l_arm"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 150
-	construction_cost = list(/decl/material/steel = 25000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8)
 
 /obj/item/mecha_part/part/ripley_right_arm
 	name = "\improper Ripley right arm"
@@ -29,7 +29,7 @@
 	icon_state = "ripley_r_arm"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 150
-	construction_cost = list(/decl/material/steel = 25000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8)
 
 /obj/item/mecha_part/part/ripley_left_leg
 	name = "\improper Ripley left leg"
@@ -37,7 +37,7 @@
 	icon_state = "ripley_l_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 150
-	construction_cost = list(/decl/material/steel = 30000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 9)
 
 /obj/item/mecha_part/part/ripley_right_leg
 	name = "\improper Ripley right leg"
@@ -45,7 +45,7 @@
 	icon_state = "ripley_r_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
 	construction_time = 150
-	construction_cost = list(/decl/material/steel = 30000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 9)
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/ripley

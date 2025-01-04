@@ -7,16 +7,16 @@
 /*
 For the materials datum, it assumes you need reagents unless specified otherwise. To designate a material that isn't a reagent,
 you use one of the material IDs below. These are NOT ids in the usual sense (they aren't defined in the object or part of a datum),
-they are simply references used as part of a "has materials?" type proc. They all start with a $ to denote that they aren't reagents.
-The currently supporting non-reagent materials:
-- $metal (/obj/item/stack/metal).
-- $glass (/obj/item/stack/glass).
-- $plasma (/obj/item/stack/plasma).
-- $silver (/obj/item/stack/silver).
-- $gold (/obj/item/stack/gold).
-- $uranium (/obj/item/stack/uranium).
-- $diamond (/obj/item/stack/diamond).
-- $clown (/obj/item/stack/clown). ("Bananium")
+they are simply references used as part of a "has materials?" type proc.
+The currently supported non-reagent materials are:
+- MATERIAL_METAL
+- /decl/material/glass
+- /decl/material/silver
+- /decl/material/gold
+- /decl/material/diamond
+- /decl/material/uranium
+- /decl/material/plasma
+- /decl/material/bananium
 - All values are that one sheet = MATERIAL_AMOUNT_PER_SHEET units.
 (Insert new ones here)
 

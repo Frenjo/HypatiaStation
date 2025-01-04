@@ -10,7 +10,7 @@
 	icon_state = "serenity_carapace"
 	origin_tech = list(/datum/tech/materials = 4, /datum/tech/engineering = 4)
 	construction_time = 400
-	construction_cost = list(/decl/material/steel = 15000) // This may require changing if/when the Odysseus carapace gets changed.
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 3)
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/serenity/medical
