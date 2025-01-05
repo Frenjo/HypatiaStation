@@ -5,14 +5,13 @@
 	name = "robot module"
 	icon = 'icons/obj/items/module.dmi'
 	icon_state = "std_module"
-	w_class = 100.0
+	w_class = 100
 	item_state = "electronic"
 	obj_flags = OBJ_FLAG_CONDUCT
 
 	var/channels = list()
 	var/list/modules = list()
 	var/obj/item/emag = null
-	var/obj/item/borg/upgrade/jetpack = null
 
 /obj/item/robot_module/emp_act(severity)
 	if(modules)
@@ -28,16 +27,12 @@
 	modules.Add(new /obj/item/flash(src))
 	emag = new /obj/item/toy/sword(src)
 	emag.name = "Placeholder Emag Item"
-//	jetpack = new /obj/item/toy/sword(src)
-//	jetpack.name = "Placeholder Upgrade Item"
 
 /obj/item/robot_module/Destroy()
 	qdel(modules)
 	qdel(emag)
-	qdel(jetpack)
 	modules = null
 	emag = null
-	jetpack = null
 	return ..()
 
 /obj/item/robot_module/proc/respawn_consumable(mob/living/silicon/robot/R)

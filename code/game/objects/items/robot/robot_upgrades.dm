@@ -7,7 +7,7 @@
  * Base Upgrade
  */
 /obj/item/borg/upgrade
-	name = "borg upgrade module."
+	name = "borg upgrade module"
 	desc = "Protected by FRM."
 	icon = 'icons/obj/items/module.dmi'
 	icon_state = "cyborg_upgrade"
@@ -59,7 +59,7 @@
 	desc = "Used to rename a robot."
 	icon_state = "cyborg_upgrade1"
 
-	construction_cost = list(MATERIAL_METAL = 35000)
+	construction_cost = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 11)
 
 	var/heldname = "default name"
 
@@ -83,12 +83,12 @@
 	desc = "Used to force a restart of a disabled-but-repaired robot, bringing it back online."
 	icon_state = "cyborg_upgrade1"
 
-	construction_cost = list(MATERIAL_METAL = 60000, /decl/material/glass = 5000)
+	construction_cost = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 18, /decl/material/glass = 5000)
 
 /obj/item/borg/upgrade/restart/action(mob/living/silicon/robot/R)
 	if(R.health < 0)
 		to_chat(usr, "You have to repair the robot before using this module!")
-		return 0
+		return FALSE
 
 	if(isnull(R.key))
 		for(var/mob/dead/ghost/ghost in GLOBL.player_list)
@@ -100,25 +100,24 @@
 /*
  * VTEC Module
  */
-#define VTEC_MOVE_DELAY_REDUCTION 0.5
 /obj/item/borg/upgrade/vtec
 	name = "robotic VTEC Module"
 	desc = "Used to kick in a robot's VTEC systems, increasing their speed."
 	icon_state = "cyborg_upgrade2"
 
-	construction_cost = list(MATERIAL_METAL = 80000, /decl/material/glass = 6000, /decl/material/gold = 5000)
+	construction_cost = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 24, /decl/material/glass = 6000, /decl/material/gold = 5000)
 	require_module = TRUE
+
+	var/move_delay_reduction = 0.5
 
 /obj/item/borg/upgrade/vtec/action(mob/living/silicon/robot/R)
 	if(!..())
 		return FALSE
-
-	if(R.speed == (initial(R.speed) - VTEC_MOVE_DELAY_REDUCTION))
+	if(R.speed == (initial(R.speed) - move_delay_reduction))
 		return FALSE
 
-	R.speed -= VTEC_MOVE_DELAY_REDUCTION
+	R.speed -= move_delay_reduction
 	return TRUE
-#undef VTEC_MOVE_DELAY_REDUCTION
 
 /*
  * Rapid Taser Cooling Module
@@ -130,33 +129,35 @@
 	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
 	icon_state = "cyborg_upgrade3"
 
-	construction_cost = list(MATERIAL_METAL = 80000, /decl/material/glass = 6000, /decl/material/gold = 2000, /decl/material/diamond = 500)
+	construction_cost = list(
+		MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 24, /decl/material/glass = 6000,
+		/decl/material/gold = 2000, /decl/material/diamond = 500
+	)
 	require_module = TRUE
 
 /obj/item/borg/upgrade/tasercooler/action(mob/living/silicon/robot/R)
 	if(!..())
 		return FALSE
-
 	if(!istype(R.module, /obj/item/robot_module/security))
 		to_chat(R, "Upgrade mounting error! No suitable hardpoint detected!")
 		to_chat(usr, "There's no mounting point for the module!")
 		return FALSE
 
-	var/obj/item/gun/energy/taser/cyborg/T = locate() in R.module
-	if(isnull(T))
-		T = locate() in R.module.contents
-	if(isnull(T))
-		T = locate() in R.module.modules
-	if(isnull(T))
+	var/obj/item/gun/energy/taser/cyborg/taser = locate() in R.module
+	if(isnull(taser))
+		taser = locate() in R.module.contents
+	if(isnull(taser))
+		taser = locate() in R.module.modules
+	if(isnull(taser))
 		to_chat(usr, "This robot has had its taser removed!")
 		return FALSE
 
-	if(T.recharge_time <= 2)
+	if(taser.recharge_time <= 2)
 		to_chat(R, "Maximum cooling achieved for this hardpoint!")
 		to_chat(usr, "There's no room for another cooling unit!")
 		return FALSE
 
-	T.recharge_time = max(2 , T.recharge_time - 4)
+	taser.recharge_time = max(2 , taser.recharge_time - 4)
 	return TRUE
 
 /*
@@ -173,14 +174,14 @@
 /obj/item/borg/upgrade/jetpack/action(mob/living/silicon/robot/R)
 	if(!..())
 		return FALSE
-
 	if(!istype(R.module, /obj/item/robot_module/miner))
 		to_chat(R, "Upgrade mounting error! No suitable hardpoint detected!")
 		to_chat(usr, "There's no mounting point for the module!")
 		return FALSE
 
-	R.module.modules.Add(new /obj/item/tank/jetpack/carbon_dioxide(src))
-	for(var/obj/item/tank/jetpack/carbondioxide in R.module.modules)
+	var/obj/item/robot_module/miner/module = R.module
+	module.modules.Add(new /obj/item/tank/jetpack/carbon_dioxide(src))
+	for(var/obj/item/tank/jetpack/carbondioxide in module.modules)
 		R.internals = src
 	//R.icon_state="Miner+j"
 	return TRUE
@@ -202,7 +203,6 @@
 /obj/item/borg/upgrade/syndicate/action(mob/living/silicon/robot/R)
 	if(!..())
 		return FALSE
-
 	if(R.emagged)
 		return FALSE
 
@@ -219,7 +219,10 @@
 	desc = "A highly advanced, complex system for supressing incoming flashes directed at the borg's optical processing system."
 	icon_state = "cyborg_upgrade4"
 
-	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/glass = 2000, /decl/material/silver = 3000, /decl/material/gold = 2000, /decl/material/diamond = 5000)
+	construction_cost = list(
+		MATERIAL_METAL = 10000, /decl/material/glass = 2000, /decl/material/silver = 3000,
+		/decl/material/gold = 2000, /decl/material/diamond = 5000
+	)
 	require_module = TRUE
 
 /obj/item/borg/upgrade/flashproof/action(mob/living/silicon/robot/R)
