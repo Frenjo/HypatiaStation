@@ -30,17 +30,17 @@ Note: Must be placed west/left of and R&D console to function.
 		new /obj/item/reagent_holder/glass/beaker(src),
 		new /obj/item/reagent_holder/glass/beaker(src)
 	)
-	RefreshParts()
+	refresh_parts()
 
-/obj/machinery/r_n_d/protolathe/RefreshParts()
-	var/T = 0
-	for(var/obj/item/reagent_holder/glass/G in component_parts)
-		T += G.reagents.maximum_volume
-	create_reagents(T) // Holder for the reagents used as materials.
-	T = 0
-	for(var/obj/item/stock_part/matter_bin/M in component_parts)
-		T += M.rating
-	max_storage_capacity = T * 75000
+/obj/machinery/r_n_d/protolathe/refresh_parts()
+	var/total_rating = 0
+	for(var/obj/item/reagent_holder/glass/container in component_parts)
+		total_rating += container.reagents.maximum_volume
+	create_reagents(total_rating) // Holder for the reagents used as materials.
+	total_rating = 0
+	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
+		total_rating += bin.rating
+	max_storage_capacity = total_rating * 75000
 
 /obj/machinery/r_n_d/protolathe/attackby(obj/item/O, mob/user)
 	if(..())

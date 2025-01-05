@@ -319,14 +319,13 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/autolathe/RefreshParts()
-	..()
-	var/tot_rating = 0
-	for(var/obj/item/stock_part/matter_bin/MB in component_parts)
-		tot_rating += MB.rating
-	tot_rating *= 25000
-	storage_capacity[MATERIAL_METAL] = tot_rating * 2
-	storage_capacity[/decl/material/glass] = tot_rating
+/obj/machinery/autolathe/refresh_parts()
+	var/total_rating = 0
+	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
+		total_rating += bin.rating
+	total_rating *= 25000
+	storage_capacity[MATERIAL_METAL] = total_rating * 2
+	storage_capacity[/decl/material/glass] = total_rating
 
 /obj/machinery/autolathe/New()
 	. = ..()
@@ -339,7 +338,7 @@
 		new /obj/item/stock_part/manipulator(src),
 		new /obj/item/stock_part/console_screen(src)
 	)
-	RefreshParts()
+	refresh_parts()
 
 	src.L = global.autolathe_recipes
 	src.LL = global.autolathe_recipes_hidden

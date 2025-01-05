@@ -22,7 +22,7 @@
 		new /obj/item/stock_part/capacitor(src),
 		new board_path(src)
 	)
-	RefreshParts()
+	refresh_parts()
 
 /obj/machinery/power/port_gen/pacman/initialise()
 	. = ..()
@@ -33,14 +33,14 @@
 	drop_fuel()
 	return ..()
 
-/obj/machinery/power/port_gen/pacman/RefreshParts()
+/obj/machinery/power/port_gen/pacman/refresh_parts()
 	var/temp_rating = 0
 	var/temp_reliability = 0
-	for(var/obj/item/stock_part/SP in component_parts)
-		if(istype(SP, /obj/item/stock_part/matter_bin))
-			max_sheets = SP.rating * SP.rating * 50
-		else if(istype(SP, /obj/item/stock_part/micro_laser) || istype(SP, /obj/item/stock_part/capacitor))
-			temp_rating += SP.rating
+	for(var/obj/item/stock_part/part in component_parts)
+		if(istype(part, /obj/item/stock_part/matter_bin))
+			max_sheets = part.rating * part.rating * 50
+		else if(istype(part, /obj/item/stock_part/micro_laser) || istype(part, /obj/item/stock_part/capacitor))
+			temp_rating += part.rating
 	for(var/obj/item/CP in component_parts)
 		temp_reliability += CP.reliability
 	reliability = min(round(temp_reliability / 4), 100)

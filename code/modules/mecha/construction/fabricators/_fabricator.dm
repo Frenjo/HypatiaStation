@@ -54,34 +54,35 @@
 		new /obj/item/stock_part/micro_laser(src),
 		new /obj/item/stock_part/console_screen(src)
 	)
-	RefreshParts()
+	refresh_parts()
 
 	for(var/part_set in part_sets)
 		convert_part_set(part_set)
 	files = new /datum/research(src) //Setup the research data holder.
 
-/obj/machinery/robotics_fabricator/RefreshParts()
-	var/T = 0
-	for(var/obj/item/stock_part/matter_bin/M in component_parts)
-		T += M.rating
-	res_max_amount = ((MATERIAL_AMOUNT_PER_SHEET * 50) + (T * (MATERIAL_AMOUNT_PER_SHEET * 100)))
-	T = 0
-	for(var/obj/item/stock_part/micro_laser/Ma in component_parts)
-		T += Ma.rating
-	if(T >= 1)
-		T -= 1
-	var/diff
-	diff = round(initial(resource_coeff) - (initial(resource_coeff) * (T)) / 25, 0.01)
-	if(resource_coeff != diff)
-		resource_coeff = diff
-	T = 0
-	for(var/obj/item/stock_part/manipulator/Ml in component_parts)
-		T += Ml.rating
-	if(T >= 1)
-		T -= 1
-	diff = round(initial(time_coeff) - (initial(time_coeff) * (T)) / 25, 0.01)
-	if(time_coeff != diff)
-		time_coeff = diff
+/obj/machinery/robotics_fabricator/refresh_parts()
+	var/total_rating = 0
+	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
+		total_rating += bin.rating
+	res_max_amount = ((MATERIAL_AMOUNT_PER_SHEET * 50) + (total_rating * (MATERIAL_AMOUNT_PER_SHEET * 100)))
+
+	total_rating = 0
+	for(var/obj/item/stock_part/micro_laser/laser in component_parts)
+		total_rating += laser.rating
+	if(total_rating >= 1)
+		total_rating -= 1
+	var/coeff_diff = round(initial(resource_coeff) - (initial(resource_coeff) * total_rating) / 25, 0.01)
+	if(resource_coeff != coeff_diff)
+		resource_coeff = coeff_diff
+
+	total_rating = 0
+	for(var/obj/item/stock_part/manipulator/manipulator in component_parts)
+		total_rating += manipulator.rating
+	if(total_rating >= 1)
+		total_rating -= 1
+	coeff_diff = round(initial(time_coeff) - (initial(time_coeff) * total_rating) / 25, 0.01)
+	if(time_coeff != coeff_diff)
+		time_coeff = coeff_diff
 
 /obj/machinery/robotics_fabricator/Destroy()
 	for(var/atom/A in src)

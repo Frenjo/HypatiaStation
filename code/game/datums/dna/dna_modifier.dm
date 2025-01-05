@@ -63,7 +63,7 @@
 		new /obj/item/stack/cable_coil(src),
 		new /obj/item/stack/cable_coil(src)
 	)
-	RefreshParts()
+	refresh_parts()
 
 /obj/machinery/dna_scannernew/allow_drop()
 	return 0

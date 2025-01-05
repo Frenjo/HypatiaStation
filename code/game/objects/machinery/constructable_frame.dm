@@ -127,7 +127,7 @@
 							circuit.loc = new_machine
 						else
 							circuit.loc = null
-						new_machine.RefreshParts()
+						new_machine.refresh_parts()
 						qdel(src)
 				else
 					if(isitem(P))

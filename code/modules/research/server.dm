@@ -30,19 +30,19 @@
 		new /obj/item/stack/cable_coil(src),
 		new /obj/item/stack/cable_coil(src)
 	)
-	RefreshParts()
+	refresh_parts()
 
 /obj/machinery/r_n_d/server/Destroy()
 	griefProtection()
 	return ..()
 
-/obj/machinery/r_n_d/server/RefreshParts()
-	var/tot_rating = 0
-	for(var/obj/item/stock_part/SP in src)
-		tot_rating += SP.rating
+/obj/machinery/r_n_d/server/refresh_parts()
+	var/total_rating = 0
+	for(var/obj/item/stock_part/part in src)
+		total_rating += part.rating
 	//heat_gen /= max(1, tot_rating)
-	operating_temperature /= max(1, tot_rating)
-	power_usage[USE_POWER_IDLE] /= max(1, tot_rating)
+	operating_temperature /= max(1, total_rating)
+	power_usage[USE_POWER_IDLE] /= max(1, total_rating)
 
 /obj/machinery/r_n_d/server/initialise()
 	. = ..()

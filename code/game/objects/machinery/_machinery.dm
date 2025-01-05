@@ -259,5 +259,5 @@
 	use_power(power_usage[power_state], power_channel, 1)
 	return TRUE
 
-/obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
+/obj/machinery/proc/refresh_parts() //Placeholder proc for machines that are built using frames.
 	return 0

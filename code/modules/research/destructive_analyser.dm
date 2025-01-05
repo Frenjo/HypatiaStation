@@ -22,14 +22,14 @@ Note: Must be placed within 3 tiles of the R&D Console
 		new /obj/item/stock_part/manipulator(src),
 		new /obj/item/stock_part/micro_laser(src)
 	)
-	RefreshParts()
+	refresh_parts()
 
-/obj/machinery/r_n_d/destructive_analyser/RefreshParts()
-	var/T = 0
-	for(var/obj/item/stock_part/S in src)
-		T += S.rating * 0.1
-	T = clamp(T, 0, 1)
-	decon_mod = T
+/obj/machinery/r_n_d/destructive_analyser/refresh_parts()
+	var/total_rating = 0
+	for(var/obj/item/stock_part/part in src)
+		total_rating += part.rating * 0.1
+	total_rating = clamp(total_rating, 0, 1)
+	decon_mod = total_rating
 
 /obj/machinery/r_n_d/destructive_analyser/meteorhit()
 	qdel(src)
