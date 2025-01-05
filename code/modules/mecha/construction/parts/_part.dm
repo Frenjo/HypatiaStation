@@ -10,7 +10,7 @@
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/programming = 2)
 
 	var/construction_time = 100
-	var/list/construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/glass = 5000)
+	var/list/construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3)
 
 /obj/item/mecha_part/chassis
 	name = "mecha chassis"

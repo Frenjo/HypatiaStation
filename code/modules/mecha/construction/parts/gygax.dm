@@ -14,7 +14,7 @@
 		/datum/tech/programming = 2
 	)
 	construction_time = 300
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 15, /decl/material/glass = 20000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 15, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 10)
 
 /obj/item/mecha_part/part/gygax_head
 	name = "\improper Gygax head"
@@ -25,7 +25,7 @@
 		/datum/tech/programming = 2
 	)
 	construction_time = 200
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/glass = 10000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 5)
 
 /obj/item/mecha_part/part/gygax_left_arm
 	name = "\improper Gygax left arm"
@@ -62,7 +62,7 @@
 	icon_state = "gygax_armour"
 	origin_tech = list(/datum/tech/materials = 6, /datum/tech/combat = 4, /datum/tech/engineering = 5)
 	construction_time = 600
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8, /decl/material/diamond = 10000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 5)
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/gygax

@@ -13,7 +13,7 @@
 		/datum/tech/programming = 2
 	)
 	construction_time = 200
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 12, /decl/material/glass = 15000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 12, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 8)
 
 /obj/item/mecha_part/part/ripley_left_arm
 	name = "\improper Ripley left arm"

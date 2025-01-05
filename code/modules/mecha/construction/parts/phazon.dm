@@ -11,7 +11,10 @@
 	desc = "The torso of a Phazon-type exosuit."
 	icon_state = "phazon_harness"
 	construction_time = 300
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11, /decl/material/glass = 10000, /decl/material/plasma = 20000)
+	construction_cost = list(
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 5,
+		/decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 10
+	)
 	origin_tech = list(
 		/datum/tech/materials = 7, /datum/tech/power_storage = 6, /datum/tech/programming = 5,
 		/datum/tech/bluespace = 6
@@ -22,7 +25,10 @@
 	icon_state = "phazon_head"
 	desc = "The head of a Phazon-type exosuit. Its sensors are carefully calibrated to provide vision and data even when the exosuit is phasing."
 	construction_time = 200
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/glass = 5000, /decl/material/plasma = 10000)
+	construction_cost = list(
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3,
+		/decl/material/plasma = 10000
+	)
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 6, /datum/tech/programming = 4)
 
 /obj/item/mecha_part/part/phazon_left_arm
@@ -30,7 +36,7 @@
 	icon_state = "phazon_l_arm"
 	desc = "The left arm of a Phazon-type exosuit. Several microtool arrays are located under the armour plating, which can be adjusted on the fly."
 	construction_time = 200
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/plasma = 10000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 5)
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 2, /datum/tech/bluespace = 2)
 
 /obj/item/mecha_part/part/phazon_right_arm
@@ -38,7 +44,7 @@
 	icon_state = "phazon_r_arm"
 	desc = "The right arm of a Phazon-type exosuit. Several microtool arrays are located under the armour plating, which can be adjusted on the fly."
 	construction_time = 200
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/plasma = 10000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 5)
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 2, /datum/tech/bluespace = 2)
 
 /obj/item/mecha_part/part/phazon_left_leg
@@ -46,7 +52,7 @@
 	icon_state = "phazon_l_leg"
 	desc = "The left leg of a Phazon-type exosuit. It contains one of the two unique phase drives required to allow the exosuit to phase through solid matter when engaged."
 	construction_time = 200
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/plasma = 10000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 5)
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 3, /datum/tech/bluespace = 3)
 
 /obj/item/mecha_part/part/phazon_right_leg
@@ -54,7 +60,7 @@
 	icon_state = "phazon_r_leg"
 	desc = "The right leg of a Phazon-type exosuit. It contains one of the two unique phase drives required to allow the exosuit to phase through solid matter when engaged."
 	construction_time = 200
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/plasma = 10000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 5)
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 3, /datum/tech/bluespace = 3)
 
 /obj/item/mecha_part/part/phazon_armour

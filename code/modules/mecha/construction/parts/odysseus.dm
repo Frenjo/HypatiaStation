@@ -20,7 +20,7 @@
 	desc = "The head of an Odysseus-type exosuit."
 	icon_state = "odysseus_head"
 	construction_time = 100
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 3, /decl/material/glass = 10000)
+	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 3, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 5)
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/programming = 3)
 
 /obj/item/mecha_part/part/odysseus_left_arm
