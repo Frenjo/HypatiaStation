@@ -9,8 +9,8 @@
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/stock_part/capacitor
 
-/datum/design/basic_sensor
-	name = "Basic Sensor Module"
+/datum/design/basic_scanning_module
+	name = "Basic Scanning Module"
 	desc = "A stock part used in the construction of various devices."
 	req_tech = list(/datum/tech/magnets = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
@@ -49,8 +49,8 @@
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/stock_part/capacitor/adv
 
-/datum/design/adv_sensor
-	name = "Advanced Sensor Module"
+/datum/design/adv_scanning_module
+	name = "Advanced Scanning Module"
 	desc = "A stock part used in the construction of various devices."
 	req_tech = list(/datum/tech/magnets = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
@@ -90,8 +90,8 @@
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50, /decl/material/gold = 20)
 	build_path = /obj/item/stock_part/capacitor/super
 
-/datum/design/phasic_sensor
-	name = "Phasic Sensor Module"
+/datum/design/phasic_scanning_module
+	name = "Phasic Scanning Module"
 	desc = "A stock part used in the construction of various devices."
 	req_tech = list(/datum/tech/materials = 3, /datum/tech/magnets = 5)
 	build_type = DESIGN_TYPE_PROTOLATHE
@@ -136,8 +136,8 @@
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50, /decl/material/silver = 20, /decl/material/gold = 20)
 	build_path = /obj/item/stock_part/capacitor/hyper
 
-/datum/design/hyperphasic_sensor
-	name = "Hyper-Phasic Sensor Module"
+/datum/design/hyperphasic_scanning_module
+	name = "Hyper-Phasic Scanning Module"
 	desc = "A stock part used in the construction of various devices."
 	req_tech = list(/datum/tech/materials = 3, /datum/tech/magnets = 7)
 	build_type = DESIGN_TYPE_PROTOLATHE
