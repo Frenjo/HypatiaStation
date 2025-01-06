@@ -1,3 +1,4 @@
+// Recharge Floor
 /obj/machinery/mech_bay_recharge_floor
 	name = "mech bay recharge station"
 	icon = 'icons/obj/mecha/mech_bay.dmi'
@@ -9,26 +10,30 @@
 
 /obj/machinery/mech_bay_recharge_floor/Crossed(atom/movable/mover)
 	. = ..()
-	if(ismecha(mover))
-		var/obj/mecha/mecha = mover
-		mecha.occupant_message(SPAN_INFO_B("Initializing power control devices."))
-		init_devices()
-		if(isnotnull(recharge_console) && isnotnull(recharge_port))
-			recharging_mecha = mecha
-			recharge_console.mecha_in(mecha)
-			return
+	if(!ismecha(mover))
+		return
 
-		if(isnull(recharge_console))
-			mecha.occupant_message(SPAN_WARNING("Control console not found. Terminating."))
-		else if(isnull(recharge_port))
-			mecha.occupant_message(SPAN_WARNING("Power port not found. Terminating."))
+	var/obj/mecha/mecha = mover
+	mecha.occupant_message(SPAN_INFO_B("Initializing power control devices."))
+	init_devices()
+	if(isnotnull(recharge_console) && isnotnull(recharge_port))
+		recharging_mecha = mecha
+		recharge_console.mecha_in(mecha)
+		return
+
+	if(isnull(recharge_console))
+		mecha.occupant_message(SPAN_WARNING("Control console not found. Terminating."))
+	else if(isnull(recharge_port))
+		mecha.occupant_message(SPAN_WARNING("Power port not found. Terminating."))
 
 /obj/machinery/mech_bay_recharge_floor/Uncrossed(atom/movable/mover)
 	. = ..()
-	if(mover == recharging_mecha)
-		recharging_mecha = null
-		if(isnotnull(recharge_console))
-			recharge_console.mecha_out()
+	if(mover != recharging_mecha)
+		return
+
+	recharging_mecha = null
+	if(isnotnull(recharge_console))
+		recharge_console.mecha_out()
 
 /obj/machinery/mech_bay_recharge_floor/proc/init_devices()
 	recharge_console = locate() in range(1, src)
@@ -45,20 +50,23 @@
 /obj/machinery/mech_bay_recharge_floor/asteroid
 	icon_state = "recharge_floor_asteroid"
 
+// Recharge Port
 /obj/machinery/mech_bay_recharge_port
 	name = "mech bay power port"
-	density = TRUE
-	anchored = TRUE
 	icon = 'icons/obj/mecha/mech_bay.dmi'
 	icon_state = "recharge_port"
 
+	density = TRUE
+	anchored = TRUE
+
 	var/obj/machinery/mech_bay_recharge_floor/recharge_floor
 	var/obj/machinery/computer/mech_bay_power_console/recharge_console
+
 	var/datum/global_iterator/mech_bay_recharger/pr_recharger
 
 /obj/machinery/mech_bay_recharge_port/New()
 	. = ..()
-	pr_recharger = new /datum/global_iterator/mech_bay_recharger(null, 0)
+	pr_recharger = new /datum/global_iterator/mech_bay_recharger(null, FALSE)
 
 /obj/machinery/mech_bay_recharge_port/Destroy()
 	qdel(pr_recharger)
@@ -69,11 +77,11 @@
 	if(stat & (NOPOWER | BROKEN))
 		recharging_mecha.occupant_message(SPAN_WARNING("Power port not responding. Terminating."))
 		return FALSE
-	else
-		if(isnotnull(recharging_mecha.cell))
-			recharging_mecha.occupant_message(SPAN_INFO("Now charging..."))
-			pr_recharger.start(list(src, recharging_mecha))
-			return TRUE
+
+	if(isnotnull(recharging_mecha.cell))
+		recharging_mecha.occupant_message(SPAN_INFO("Now charging..."))
+		pr_recharger.start(list(src, recharging_mecha))
+		return TRUE
 	return FALSE
 
 /obj/machinery/mech_bay_recharge_port/proc/stop_charge()
@@ -91,25 +99,24 @@
 		spawn(rand(0, 15))
 			stat |= NOPOWER
 			pr_recharger.stop()
-	return
 
 /obj/machinery/mech_bay_recharge_port/proc/set_voltage(new_voltage)
 	if(new_voltage && isnum(new_voltage))
 		pr_recharger.max_charge = new_voltage
-		return 1
-	else
-		return 0
+		return TRUE
+	return FALSE
 
-
+// Recharge port iterator
 /datum/global_iterator/mech_bay_recharger
-	delay = 20
+	delay = 2 SECONDS
+	check_for_null = FALSE //since port.stop_charge() must be called. The checks are made in process()
+
 	var/max_charge = 45
-	check_for_null = 0 //since port.stop_charge() must be called. The checks are made in process()
 
 /datum/global_iterator/mech_bay_recharger/process(obj/machinery/mech_bay_recharge_port/port, obj/mecha/mecha)
 	if(isnull(port))
-		return 0
-	if(isnotnull(mecha) && (mecha in port.recharge_floor))
+		return
+	if(isnotnull(mecha) && (mecha in GET_TURF(port.recharge_floor)))
 		if(isnull(mecha.cell))
 			return
 		var/delta = min(max_charge, mecha.cell.maxcharge - mecha.cell.charge)
@@ -122,7 +129,7 @@
 	else
 		port.stop_charge()
 
-
+// Power Console
 /obj/machinery/computer/mech_bay_power_console
 	name = "mech bay power control console"
 	density = TRUE
@@ -130,20 +137,19 @@
 	icon_state = "recharge_comp"
 	circuit = /obj/item/circuitboard/mech_bay_power_console
 
-	var/autostart = 1
+	light_color = "#a97faa"
+
+	var/autostart = TRUE
 	var/voltage = 45
 	var/obj/machinery/mech_bay_recharge_floor/recharge_floor
 	var/obj/machinery/mech_bay_recharge_port/recharge_port
-
-	light_color = "#a97faa"
 
 /obj/machinery/computer/mech_bay_power_console/proc/mecha_in(obj/mecha/mecha)
 	if(stat & (NOPOWER | BROKEN))
 		mecha.occupant_message(SPAN_WARNING("Control console not responding. Terminating..."))
 		return
 	if(isnotnull(recharge_port) && autostart)
-		var/answer = recharge_port.start_charge(mecha)
-		if(answer)
+		if(recharge_port.start_charge(mecha))
 			recharge_port.set_voltage(voltage)
 			icon_state = initial(icon_state) + "_on"
 
@@ -171,17 +177,17 @@
 /obj/machinery/computer/mech_bay_power_console/attack_hand(mob/user)
 	if(..())
 		return
-	var/output = "<html><head><title>[src.name]</title></head><body>"
-	if(!recharge_floor)
+	var/output = "<html><head><title>[name]</title></head><body>"
+	if(isnull(recharge_floor))
 		output += "<font color='red'>Mech Bay Recharge Station not initialized.</font><br>"
 	else
 		output += {"<b>Mech Bay Recharge Station Data:</b><div style='margin-left: 15px;'>
 						<b>Mecha: </b>[recharge_floor.recharging_mecha || "None"]<br>"}
-		if(recharge_floor.recharging_mecha)
+		if(isnotnull(recharge_floor.recharging_mecha))
 			var/cell_charge = recharge_floor.recharging_mecha.get_charge()
 			output += "<b>Cell charge: </b>[isnull(cell_charge) ? "No powercell found" : "[recharge_floor.recharging_mecha.cell.charge] / [recharge_floor.recharging_mecha.cell.maxcharge]"]<br>"
 		output += "</div>"
-	if(!recharge_port)
+	if(isnull(recharge_port))
 		output += "<font color='red'>Mech Bay Power Port not initialized.</font><br>"
 	else
 		output += "<b>Mech Bay Power Port Status: </b>[recharge_port.active() ? "Now charging" : "On hold"]<br>"
