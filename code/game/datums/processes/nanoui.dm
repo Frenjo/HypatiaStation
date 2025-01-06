@@ -60,13 +60,12 @@ PROCESS_DEF(nanoui)
 /datum/process/nanoui/proc/get_open_ui(mob/user, src_object, ui_key)
 	RETURN_TYPE(/datum/nanoui)
 
-	var/src_object_key = "\ref[src_object]"
-	if(isnull(open_uis[src_object_key]) || !islist(open_uis[src_object_key]))
+	if(isnull(open_uis[src_object]) || !islist(open_uis[src_object]))
 		return null
-	else if(isnull(open_uis[src_object_key][ui_key]) || !islist(open_uis[src_object_key][ui_key]))
+	else if(isnull(open_uis[src_object][ui_key]) || !islist(open_uis[src_object][ui_key]))
 		return null
 
-	for(var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
+	for(var/datum/nanoui/ui in open_uis[src_object][ui_key])
 		if(ui.user == user)
 			return ui
 
@@ -80,13 +79,12 @@ PROCESS_DEF(nanoui)
  * @return int The number of UIs updated.
  */
 /datum/process/nanoui/proc/update_uis(src_object)
-	var/src_object_key = "\ref[src_object]"
-	if(isnull(open_uis[src_object_key]) || !islist(open_uis[src_object_key]))
+	if(isnull(open_uis[src_object]) || !islist(open_uis[src_object]))
 		return 0
 
 	var/update_count = 0
-	for(var/ui_key in open_uis[src_object_key])
-		for(var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
+	for(var/ui_key in open_uis[src_object])
+		for(var/datum/nanoui/ui in open_uis[src_object][ui_key])
 			if(isnull(ui))
 				continue
 			if(isnotnull(ui.src_object) && isnotnull(ui.user))
@@ -145,14 +143,14 @@ PROCESS_DEF(nanoui)
  * @return nothing.
  */
 /datum/process/nanoui/proc/ui_opened(datum/nanoui/ui)
-	var/src_object_key = "\ref[ui.src_object]"
-	if(isnull(open_uis[src_object_key]) || !islist(open_uis[src_object_key]))
-		open_uis[src_object_key] = list(ui.ui_key = list())
-	else if(isnull(open_uis[src_object_key][ui.ui_key]) || !islist(open_uis[src_object_key][ui.ui_key]))
-		open_uis[src_object_key][ui.ui_key] = list()
+	var/src_object = ui.src_object
+	if(isnull(open_uis[src_object]) || !islist(open_uis[src_object]))
+		open_uis[src_object] = list(ui.ui_key = list())
+	else if(isnull(open_uis[src_object][ui.ui_key]) || !islist(open_uis[src_object][ui.ui_key]))
+		open_uis[src_object][ui.ui_key] = list()
 
 	ui.user.open_uis.Add(ui)
-	var/list/uis = open_uis[src_object_key][ui.ui_key]
+	var/list/uis = open_uis[src_object][ui.ui_key]
 	uis.Add(ui)
 	processing_uis.Add(ui)
 
@@ -165,15 +163,15 @@ PROCESS_DEF(nanoui)
  * @return boolean FALSE if no UI was removed, TRUE if removed successfully
  */
 /datum/process/nanoui/proc/ui_closed(datum/nanoui/ui)
-	var/src_object_key = "\ref[ui.src_object]"
-	if(isnull(open_uis[src_object_key]) || !islist(open_uis[src_object_key]))
+	var/src_object = ui.src_object
+	if(isnull(open_uis[src_object]) || !islist(open_uis[src_object]))
 		return FALSE // wasn't open
-	else if(isnull(open_uis[src_object_key][ui.ui_key]) || !islist(open_uis[src_object_key][ui.ui_key]))
+	else if(isnull(open_uis[src_object][ui.ui_key]) || !islist(open_uis[src_object][ui.ui_key]))
 		return FALSE // wasn't open
 
 	processing_uis.Remove(ui)
 	ui.user.open_uis.Remove(ui)
-	var/list/uis = open_uis[src_object_key][ui.ui_key]
+	var/list/uis = open_uis[src_object][ui.ui_key]
 	return uis.Remove(ui)
 
 /*
