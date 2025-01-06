@@ -30,15 +30,15 @@
 
 /decl/surgery_step/eye/cut_open/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		"[user] starts to separate the corneas on [target]'s eyes with \the [tool].",
-		"You start to separate the corneas on [target]'s eyes with \the [tool]."
+		SPAN_INFO("[user] starts to separate the corneas on [target]'s eyes with \the [tool]."),
+		SPAN_INFO("You start to separate the corneas on [target]'s eyes with \the [tool].")
 	)
 	..()
 
 /decl/surgery_step/eye/cut_open/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		SPAN_INFO("[user] has separated the corneas on [target]'s eyes with \the [tool]."),
-		SPAN_INFO("You have separated the corneas on [target]'s eyes with \the [tool].")
+		SPAN_INFO_B("[user] separates the corneas on [target]'s eyes with \the [tool]."),
+		SPAN_INFO_B("You separate the corneas on [target]'s eyes with \the [tool].")
 	)
 	target.op_stage.eyes = 1
 	target.blinded += 1.5
@@ -68,15 +68,15 @@
 
 /decl/surgery_step/eye/lift_eyes/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		"[user] starts lifting corneas from [target]'s eyes with \the [tool].",
-		"You start lifting corneas from [target]'s eyes with \the [tool]."
+		SPAN_INFO("[user] starts lifting corneas from [target]'s eyes with \the [tool]."),
+		SPAN_INFO("You start lifting corneas from [target]'s eyes with \the [tool].")
 	)
 	..()
 
 /decl/surgery_step/eye/lift_eyes/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		SPAN_INFO("[user] has lifted the corneas from [target]'s eyes from with \the [tool]."),
-		SPAN_INFO("You has lifted the corneas from [target]'s eyes from with \the [tool].")
+		SPAN_INFO_B("[user] lifts the corneas from [target]'s eyes from with \the [tool]."),
+		SPAN_INFO_B("You lift the corneas from [target]'s eyes from with \the [tool].")
 	)
 	target.op_stage.eyes = 2
 
@@ -106,15 +106,15 @@
 
 /decl/surgery_step/eye/mend_eyes/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		"[user] starts mending the nerves and lenses in [target]'s eyes with \the [tool].",
-		"You start mending the nerves and lenses in [target]'s eyes with the [tool]."
+		SPAN_INFO("[user] starts mending the nerves and lenses in [target]'s eyes with \the [tool]."),
+		SPAN_INFO("You start mending the nerves and lenses in [target]'s eyes with \the [tool].")
 	)
 	..()
 
 /decl/surgery_step/eye/mend_eyes/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		SPAN_INFO("[user] mends the nerves and lenses in [target]'s with \the [tool]."),
-		SPAN_INFO("You mend the nerves and lenses in [target]'s with \the [tool].")
+		SPAN_INFO_B("[user] mends the nerves and lenses in [target]'s with \the [tool]."),
+		SPAN_INFO_B("You mend the nerves and lenses in [target]'s with \the [tool].")
 	)
 	target.op_stage.eyes = 3
 
@@ -145,15 +145,15 @@
 
 /decl/surgery_step/eye/cauterize/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		"[user] is beginning to cauterize the incision around [target]'s eyes with \the [tool].",
-		"You are beginning to cauterize the incision around [target]'s eyes with \the [tool]."
+		SPAN_INFO("[user] begins to cauterize the incision around [target]'s eyes with \the [tool]."),
+		SPAN_INFO("You begin to cauterize the incision around [target]'s eyes with \the [tool].")
 	)
 
 /decl/surgery_step/eye/cauterize/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/internal/eyes/eyes = target.internal_organs["eyes"]
 	user.visible_message(
-		SPAN_INFO("[user] cauterizes the incision around [target]'s eyes with \the [tool]."),
-		SPAN_INFO("You cauterize the incision around [target]'s eyes with \the [tool].")
+		SPAN_INFO_B("[user] cauterizes the incision around [target]'s eyes with \the [tool]."),
+		SPAN_INFO_B("You cauterize the incision around [target]'s eyes with \the [tool].")
 	)
 	if(target.op_stage.eyes == 3)
 		target.disabilities &= ~NEARSIGHTED

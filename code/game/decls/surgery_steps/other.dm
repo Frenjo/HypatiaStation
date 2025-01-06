@@ -28,8 +28,8 @@
 /decl/surgery_step/fix_vein/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"[user] starts patching the damaged vein in [target]'s [affected.display_name] with \the [tool].",
-		"You start patching the damaged vein in [target]'s [affected.display_name] with \the [tool]."
+		SPAN_INFO("[user] starts patching the damaged vein in [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO("You start patching the damaged vein in [target]'s [affected.display_name] with \the [tool].")
 	)
 	target.custom_pain("The pain in [affected.display_name] is unbearable!",1)
 	..()
@@ -37,8 +37,8 @@
 /decl/surgery_step/fix_vein/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		SPAN_INFO("[user] has patched the damaged vein in [target]'s [affected.display_name] with \the [tool]."),
-		SPAN_INFO("You have patched the damaged vein in [target]'s [affected.display_name] with \the [tool].")
+		SPAN_INFO_B("[user] patches the damaged vein in [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO_B("You patch the damaged vein in [target]'s [affected.display_name] with \the [tool].")
 	)
 
 	for(var/datum/wound/W in affected.wounds)

@@ -33,16 +33,16 @@
 
 /decl/surgery_step/appendectomy/cut_appendix/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		"[user] starts to separate [target]'s appendix from the abdominal wall with \the [tool].",
-		"You start to separate [target]'s appendix from the abdominal wall with \the [tool]."
+		SPAN_INFO("[user] starts to separate [target]'s appendix from the abdominal wall with \the [tool]."),
+		SPAN_INFO("You start to separate [target]'s appendix from the abdominal wall with \the [tool].")
 	)
 	target.custom_pain("The pain in your abdomen is living hell!", 1)
 	..()
 
 /decl/surgery_step/appendectomy/cut_appendix/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		SPAN_INFO("[user] has separated [target]'s appendix with \the [tool]."),
-		SPAN_INFO("You have separated [target]'s appendix with \the [tool].")
+		SPAN_INFO_B("[user] separates [target]'s appendix with \the [tool]."),
+		SPAN_INFO_B("You separate [target]'s appendix with \the [tool].")
 	)
 	target.op_stage.appendix = 1
 
@@ -70,16 +70,16 @@
 
 /decl/surgery_step/appendectomy/remove_appendix/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		"[user] starts removing [target]'s appendix with \the [tool].",
-		"You start removing [target]'s appendix with \the [tool]."
+		SPAN_INFO("[user] starts removing [target]'s appendix with \the [tool]."),
+		SPAN_INFO("You start removing [target]'s appendix with \the [tool].")
 	)
 	target.custom_pain("Someone's ripping out your bowels!",1)
 	..()
 
 /decl/surgery_step/appendectomy/remove_appendix/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		SPAN_INFO("[user] has removed [target]'s appendix with \the [tool]."),
-		SPAN_INFO("You have removed [target]'s appendix with \the [tool].")
+		SPAN_INFO_B("[user] removes [target]'s appendix with \the [tool]."),
+		SPAN_INFO_B("You removes [target]'s appendix with \the [tool].")
 	)
 	var/app = 0
 	for(var/datum/disease/appendicitis/appendicitis in target.viruses)

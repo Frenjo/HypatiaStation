@@ -42,8 +42,8 @@
 /decl/surgery_step/generic/cut_with_laser/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"[user] starts the bloodless incision on [target]'s [affected.display_name] with \the [tool].",
-		"You start the bloodless incision on [target]'s [affected.display_name] with \the [tool]."
+		SPAN_INFO("[user] starts the bloodless incision on [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO("You start the bloodless incision on [target]'s [affected.display_name] with \the [tool].")
 	)
 	target.custom_pain("You feel a horrible, searing pain in your [affected.display_name]!", 1)
 	..()
@@ -51,8 +51,8 @@
 /decl/surgery_step/generic/cut_with_laser/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		SPAN_INFO("[user] has made a bloodless incision on [target]'s [affected.display_name] with \the [tool]."),
-		SPAN_INFO("You have made a bloodless incision on [target]'s [affected.display_name] with \the [tool].")
+		SPAN_INFO_B("[user] makes a bloodless incision on [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO_B("You make a bloodless incision on [target]'s [affected.display_name] with \the [tool].")
 	)
 	//Could be cleaner ...
 	affected.open = 1
@@ -88,8 +88,8 @@
 /decl/surgery_step/generic/incision_manager/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"[user] starts to construct a prepared incision on and within [target]'s [affected.display_name] with \the [tool].",
-		"You start to construct a prepared incision on and within [target]'s [affected.display_name] with \the [tool]."
+		SPAN_INFO("[user] starts to construct a prepared incision on and within [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO("You start to construct a prepared incision on and within [target]'s [affected.display_name] with \the [tool].")
 	)
 	target.custom_pain("You feel a horrible, searing pain in your [affected.display_name] as it is pushed apart!", 1)
 	..()
@@ -97,8 +97,8 @@
 /decl/surgery_step/generic/incision_manager/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		SPAN_INFO("[user] has constructed a prepared incision on and within [target]'s [affected.display_name] with \the [tool]."),
-		SPAN_INFO("You have constructed a prepared incision on and within [target]'s [affected.display_name] with \the [tool].")
+		SPAN_INFO_B("[user] constructs a prepared incision on and within [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO_B("You construct a prepared incision on and within [target]'s [affected.display_name] with \the [tool].")
 	)
 	affected.open = 1
 	affected.status |= ORGAN_BLEEDING
@@ -137,8 +137,8 @@
 /decl/surgery_step/generic/cut_open/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"[user] starts the incision on [target]'s [affected.display_name] with \the [tool].",
-		"You start the incision on [target]'s [affected.display_name] with \the [tool]."
+		SPAN_INFO("[user] starts the incision on [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO("You start the incision on [target]'s [affected.display_name] with \the [tool].")
 	)
 	target.custom_pain("You feel a horrible pain as if from a sharp knife in your [affected.display_name]!",1)
 	..()
@@ -146,8 +146,8 @@
 /decl/surgery_step/generic/cut_open/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		SPAN_INFO("[user] has made an incision on [target]'s [affected.display_name] with \the [tool]."),
-		SPAN_INFO("You have made an incision on [target]'s [affected.display_name] with \the [tool].")
+		SPAN_INFO_B("[user] makes an incision on [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO_B("You make an incision on [target]'s [affected.display_name] with \the [tool].")
 	)
 	affected.open = 1
 	affected.status |= ORGAN_BLEEDING
@@ -181,8 +181,8 @@
 /decl/surgery_step/generic/clamp_bleeders/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"[user] starts clamping bleeders in [target]'s [affected.display_name] with \the [tool].",
-		"You start clamping bleeders in [target]'s [affected.display_name] with \the [tool]."
+		SPAN_INFO("[user] starts clamping bleeders in [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO("You start clamping bleeders in [target]'s [affected.display_name] with \the [tool].")
 	)
 	target.custom_pain("The pain in your [affected.display_name] is maddening!",1)
 	..()
@@ -190,8 +190,8 @@
 /decl/surgery_step/generic/clamp_bleeders/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		SPAN_INFO("[user] clamps bleeders in [target]'s [affected.display_name] with \the [tool]."),
-		SPAN_INFO("You clamp bleeders in [target]'s [affected.display_name] with \the [tool].")
+		SPAN_INFO_B("[user] clamps bleeders in [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO_B("You clamp bleeders in [target]'s [affected.display_name] with \the [tool].")
 	)
 	affected.clamp_bleeding()
 	spread_germs_to_organ(affected, user)
@@ -229,7 +229,7 @@
 	if(target_zone == "groin")
 		msg = "[user] starts to pry open the incision and rearrange the organs in [target]'s lower abdomen with \the [tool]."
 		self_msg = "You start to pry open the incision and rearrange the organs in [target]'s lower abdomen with \the [tool]."
-	user.visible_message(msg, self_msg)
+	user.visible_message(SPAN_INFO(msg), SPAN_INFO(self_msg))
 	target.custom_pain("It feels like the skin on your [affected.display_name] is on fire!",1)
 	..()
 
@@ -243,7 +243,7 @@
 	if(target_zone == "groin")
 		msg = "[user] keeps the incision open on [target]'s lower abdomen with \the [tool]."
 		self_msg = "You keep the incision open on [target]'s lower abdomen with \the [tool]."
-	user.visible_message(SPAN_INFO(msg), SPAN_INFO(self_msg))
+	user.visible_message(SPAN_INFO_B(msg), SPAN_INFO_B(self_msg))
 	affected.open = 2
 
 /decl/surgery_step/generic/retract_skin/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -254,7 +254,7 @@
 		msg = "[user]'s hand slips, damaging several organs in [target]'s torso with \the [tool]!"
 		self_msg = "Your hand slips, damaging several organs in [target]'s torso with \the [tool]!"
 	if(target_zone == "groin")
-		msg = "[user]'s hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]"
+		msg = "[user]'s hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]!"
 		self_msg = "Your hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]!"
 	user.visible_message(SPAN_WARNING(msg), SPAN_WARNING(self_msg))
 	target.apply_damage(12, BRUTE, affected, sharp = 1)
@@ -278,8 +278,8 @@
 /decl/surgery_step/generic/cauterize/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"[user] is beginning to cauterize the incision on [target]'s [affected.display_name] with \the [tool].",
-		"You are beginning to cauterize the incision on [target]'s [affected.display_name] with \the [tool]."
+		SPAN_INFO("[user] begins to cauterize the incision on [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO("You begins to cauterize the incision on [target]'s [affected.display_name] with \the [tool].")
 	)
 	target.custom_pain("Your [affected.display_name] is being burned!",1)
 	..()
@@ -287,8 +287,8 @@
 /decl/surgery_step/generic/cauterize/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		SPAN_INFO("[user] cauterizes the incision on [target]'s [affected.display_name] with \the [tool]."),
-		SPAN_INFO("You cauterize the incision on [target]'s [affected.display_name] with \the [tool].")
+		SPAN_INFO_B("[user] cauterizes the incision on [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO_B("You cauterize the incision on [target]'s [affected.display_name] with \the [tool].")
 	)
 	affected.open = 0
 	affected.germ_level = 0
@@ -327,8 +327,8 @@
 /decl/surgery_step/generic/cut_limb/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"[user] is beginning to cut off [target]'s [affected.display_name] with \the [tool].",
-		"You are beginning to cut off [target]'s [affected.display_name] with \the [tool]."
+		SPAN_INFO("[user] begins to cut off [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO("You begin to cut off [target]'s [affected.display_name] with \the [tool].")
 	)
 	target.custom_pain("Your [affected.display_name] is being ripped apart!", 1)
 	..()
@@ -336,8 +336,8 @@
 /decl/surgery_step/generic/cut_limb/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		SPAN_INFO("[user] cuts off [target]'s [affected.display_name] with \the [tool]."),
-		SPAN_INFO("You cut off [target]'s [affected.display_name] with \the [tool].")
+		SPAN_INFO_B("[user] cuts off [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO_B("You cut off [target]'s [affected.display_name] with \the [tool].")
 	)
 	affected.droplimb(1, 0)
 

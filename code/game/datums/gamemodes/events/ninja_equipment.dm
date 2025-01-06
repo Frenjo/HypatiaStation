@@ -1059,7 +1059,7 @@ ________________________________________________________________________________
 				var/datum/research/files = A:files
 				if(length(files.known_tech))
 					for(var/datum/tech/current_data in S.stored_research)
-						to_chat(U, SPAN_INFO("Checking \the [current_data.name] database."))
+						to_chat(U, SPAN_INFO("Checking \the [current_data] database."))
 						if(do_after(U, S.s_delay) && G.candrain && isnotnull(A))
 							for(var/datum/tech/analyzing_data in files.known_tech)
 								if(current_data.type == analyzing_data.type)

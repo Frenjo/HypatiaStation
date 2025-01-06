@@ -36,16 +36,16 @@
 /decl/surgery_step/limb/cut/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"[user] starts cutting away flesh where [target]'s [affected.display_name] used to be with \the [tool].",
-		"You start cutting away flesh where [target]'s [affected.display_name] used to be with \the [tool]."
+		SPAN_INFO("[user] starts cutting away flesh where [target]'s [affected.display_name] used to be with \the [tool]."),
+		SPAN_INFO("You start cutting away flesh where [target]'s [affected.display_name] used to be with \the [tool].")
 	)
 	..()
 
 /decl/surgery_step/limb/cut/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		SPAN_INFO("[user] cuts away flesh where [target]'s [affected.display_name] used to be with \the [tool]."),
-		SPAN_INFO("You cut away flesh where [target]'s [affected.display_name] used to be with \the [tool].")
+		SPAN_INFO_B("[user] cuts away flesh where [target]'s [affected.display_name] used to be with \the [tool]."),
+		SPAN_INFO_B("You cut away flesh where [target]'s [affected.display_name] used to be with \the [tool].")
 	)
 	affected.status |= ORGAN_CUT_AWAY
 
@@ -77,16 +77,16 @@
 /decl/surgery_step/limb/mend/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"[user] is beginning to reposition flesh and nerve endings where where [target]'s [affected.display_name] used to be with [tool].",
-		"You start repositioning flesh and nerve endings where [target]'s [affected.display_name] used to be with [tool]."
+		SPAN_INFO("[user] begins to reposition flesh and nerve endings where where [target]'s [affected.display_name] used to be with \the [tool]."),
+		SPAN_INFO("You begin repositioning flesh and nerve endings where [target]'s [affected.display_name] used to be with \the [tool].")
 	)
 	..()
 
 /decl/surgery_step/limb/mend/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		SPAN_INFO("[user] has finished repositioning flesh and nerve endings where [target]'s [affected.display_name] used to be with [tool]."),
-		SPAN_INFO("You have finished repositioning flesh and nerve endings where [target]'s [affected.display_name] used to be with [tool].")
+		SPAN_INFO_B("[user] finishes repositioning flesh and nerve endings where [target]'s [affected.display_name] used to be with \the [tool]."),
+		SPAN_INFO_B("You finish repositioning flesh and nerve endings where [target]'s [affected.display_name] used to be with \the [tool].")
 	)
 	affected.open = 3
 
@@ -119,16 +119,16 @@
 /decl/surgery_step/limb/prepare/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"[user] starts adjusting the area around [target]'s [affected.display_name] with \the [tool].",
-		"You start adjusting the area around [target]'s [affected.display_name] with \the [tool]."
+		SPAN_INFO("[user] starts adjusting the area around [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO("You start adjusting the area around [target]'s [affected.display_name] with \the [tool].")
 	)
 	..()
 
 /decl/surgery_step/limb/prepare/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		SPAN_INFO("[user] has finished adjusting the area around [target]'s [affected.display_name] with \the [tool]."),
-		SPAN_INFO("You have finished adjusting the area around [target]'s [affected.display_name] with \the [tool].")
+		SPAN_INFO_B("[user] finishes adjusting the area around [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO_B("You finish adjusting the area around [target]'s [affected.display_name] with \the [tool].")
 	)
 	affected.status |= ORGAN_ATTACHABLE
 	affected.amputated = 1
@@ -163,16 +163,16 @@
 /decl/surgery_step/limb/attach/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"[user] starts attaching \the [tool] where [target]'s [affected.display_name] used to be.",
-		"You start attaching \the [tool] where [target]'s [affected.display_name] used to be."
+		SPAN_INFO("[user] starts attaching \the [tool] where [target]'s [affected.display_name] used to be."),
+		SPAN_INFO("You start attaching \the [tool] where [target]'s [affected.display_name] used to be.")
 	)
 
 /decl/surgery_step/limb/attach/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/robot_parts/L = tool
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		SPAN_INFO("[user] has attached \the [tool] where [target]'s [affected.display_name] used to be."),
-		SPAN_INFO("You have attached \the [tool] where [target]'s [affected.display_name] used to be.")
+		SPAN_INFO_B("[user] attaches \the [tool] where [target]'s [affected.display_name] used to be."),
+		SPAN_INFO_B("You attach \the [tool] where [target]'s [affected.display_name] used to be.")
 	)
 	affected.germ_level = 0
 	affected.robotize()

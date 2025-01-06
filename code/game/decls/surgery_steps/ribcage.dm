@@ -28,16 +28,16 @@
 
 /decl/surgery_step/ribcage/saw_ribcage/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		"[user] begins to cut through [target]'s ribcage with \the [tool].",
-		"You begin to cut through [target]'s ribcage with \the [tool]."
+		SPAN_INFO("[user] begins to cut through [target]'s ribcage with \the [tool]."),
+		SPAN_INFO("You begin to cut through [target]'s ribcage with \the [tool].")
 	)
 	target.custom_pain("Something hurts horribly in your chest!",1)
 	..()
 
 /decl/surgery_step/ribcage/saw_ribcage/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		SPAN_INFO("[user] has cut [target]'s ribcage open with \the [tool]."),
-		SPAN_INFO("You have cut [target]'s ribcage open with \the [tool].")
+		SPAN_INFO_B("[user] cuts [target]'s ribcage open with \the [tool]."),
+		SPAN_INFO_B("You cut [target]'s ribcage open with \the [tool].")
 	)
 	target.op_stage.ribcage = 1
 
@@ -65,16 +65,18 @@
 	return ..() && target.op_stage.ribcage == 1
 
 /decl/surgery_step/ribcage/retract_ribcage/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/msg = "[user] starts to force open the ribcage in [target]'s torso with \the [tool]."
-	var/self_msg = "You start to force open the ribcage in [target]'s torso with \the [tool]."
-	user.visible_message(msg, self_msg)
+	user.visible_message(
+		SPAN_INFO("[user] starts to force open the ribcage in [target]'s torso with \the [tool]."),
+		SPAN_INFO("You start to force open the ribcage in [target]'s torso with \the [tool].")
+	)
 	target.custom_pain("Something hurts horribly in your chest!", 1)
 	..()
 
 /decl/surgery_step/ribcage/retract_ribcage/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/msg = "[user] forces open [target]'s ribcage with \the [tool]."
-	var/self_msg = "You force open [target]'s ribcage with \the [tool]."
-	user.visible_message(SPAN_INFO(msg), SPAN_INFO(self_msg))
+	user.visible_message(
+		SPAN_INFO_B("[user] forces open [target]'s ribcage with \the [tool]."),
+		SPAN_INFO_B("You force open [target]'s ribcage with \the [tool].")
+	)
 	target.op_stage.ribcage = 2
 
 	// Whoops!
@@ -83,9 +85,10 @@
 		affected.fracture()
 
 /decl/surgery_step/ribcage/retract_ribcage/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/msg = "[user]'s hand slips, breaking [target]'s ribcage!"
-	var/self_msg = "Your hand slips, breaking [target]'s ribcage!"
-	user.visible_message(SPAN_WARNING(msg), SPAN_WARNING(self_msg))
+	user.visible_message(
+		SPAN_WARNING("[user]'s hand slips, breaking [target]'s ribcage!"),
+		SPAN_WARNING("Your hand slips, breaking [target]'s ribcage!")
+	)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	affected.createwound(BRUISE, 20)
 	affected.fracture()
@@ -105,23 +108,26 @@
 		return ..() && target.op_stage.ribcage == 2
 
 /decl/surgery_step/ribcage/close_ribcage/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/msg = "[user] starts bending [target]'s ribcage back into place with \the [tool]."
-	var/self_msg = "You start bending [target]'s ribcage back into place with \the [tool]."
-	user.visible_message(msg, self_msg)
+	user.visible_message(
+		SPAN_INFO("[user] starts bending [target]'s ribcage back into place with \the [tool]."),
+		SPAN_INFO("You start bending [target]'s ribcage back into place with \the [tool].")
+	)
 	target.custom_pain("Something hurts horribly in your chest!", 1)
 	..()
 
 /decl/surgery_step/ribcage/close_ribcage/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/msg = "[user] bends [target]'s ribcage back into place with \the [tool]."
-	var/self_msg = "You bend [target]'s ribcage back into place with \the [tool]."
-	user.visible_message(SPAN_INFO(msg), SPAN_INFO(self_msg))
+	user.visible_message(
+		SPAN_INFO_B("[user] bends [target]'s ribcage back into place with \the [tool]."),
+		SPAN_INFO_B("You bend [target]'s ribcage back into place with \the [tool].")
+	)
 
 	target.op_stage.ribcage = 1
 
 /decl/surgery_step/ribcage/close_ribcage/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/msg = "[user]'s hand slips, bending [target]'s ribs the wrong way!"
-	var/self_msg = "Your hand slips, bending [target]'s ribs the wrong way!"
-	user.visible_message(SPAN_WARNING(msg), SPAN_WARNING(self_msg))
+	user.visible_message(
+		SPAN_WARNING("[user]'s hand slips, bending [target]'s ribs the wrong way!"),
+		SPAN_WARNING("Your hand slips, bending [target]'s ribs the wrong way!")
+	)
 	var/datum/organ/external/chest/affected = target.get_organ("chest")
 	affected.createwound(BRUISE, 20)
 	affected.fracture()
@@ -143,16 +149,18 @@
 		return ..() && target.op_stage.ribcage == 1
 
 /decl/surgery_step/ribcage/mend_ribcage/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/msg = "[user] starts applying \the [tool] to [target]'s ribcage."
-	var/self_msg = "You start applying \the [tool] to [target]'s ribcage."
-	user.visible_message(msg, self_msg)
+	user.visible_message(
+		SPAN_INFO("[user] starts applying \the [tool] to [target]'s ribcage."),
+		SPAN_INFO("You start applying \the [tool] to [target]'s ribcage.")
+	)
 	target.custom_pain("Something hurts horribly in your chest!", 1)
 	..()
 
 /decl/surgery_step/ribcage/mend_ribcage/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/msg = "[user] applied \the [tool] to [target]'s ribcage."
-	var/self_msg = "You applied \the [tool] to [target]'s ribcage."
-	user.visible_message(SPAN_INFO(msg), SPAN_INFO(self_msg))
+	user.visible_message(
+		SPAN_INFO_B("[user] applies \the [tool] to [target]'s ribcage."),
+		SPAN_INFO_B("You apply \the [tool] to [target]'s ribcage.")
+	)
 
 	target.op_stage.ribcage = 0
 
@@ -178,16 +186,17 @@
 	return ..() && embryo && target.op_stage.ribcage == 2
 
 /decl/surgery_step/ribcage/remove_embryo/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/msg = "[user] starts to pull something out from [target]'s ribcage with \the [tool]."
-	var/self_msg = "You start to pull something out from [target]'s ribcage with \the [tool]."
-	user.visible_message(msg, self_msg)
+	user.visible_message(
+		SPAN_INFO("[user] starts to pull something out from [target]'s ribcage with \the [tool]."),
+		SPAN_INFO("You start to pull something out from [target]'s ribcage with \the [tool].")
+	)
 	target.custom_pain("Something hurts horribly in your chest!", 1)
 	..()
 
 /decl/surgery_step/ribcage/remove_embryo/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		SPAN_WARNING("[user] rips the larva out of [target]'s ribcage!"),
-		"You rip the larva out of [target]'s ribcage!"
+		SPAN_DANGER("[user] rips the larva out of [target]'s ribcage!"),
+		SPAN_DANGER("You rip the larva out of [target]'s ribcage!")
 	)
 
 	for(var/obj/item/alien_embryo/A in target)
@@ -228,8 +237,8 @@
 		if(I && I.damage > 0)
 			if(I.robotic < 2)
 				user.visible_message(
-					"[user] starts treating damage to [target]'s [I.name] with [tool_name].",
-					"You start treating damage to [target]'s [I.name] with [tool_name]."
+					SPAN_INFO("[user] starts treating damage to [target]'s [I.name] with [tool_name]."),
+					SPAN_INFO("You start treating damage to [target]'s [I.name] with [tool_name].")
 				)
 			else
 				user.visible_message(
@@ -254,13 +263,13 @@
 		if(I && I.damage > 0)
 			if(I.robotic < 2)
 				user.visible_message(
-					"[user] treats damage to [target]'s [I.name] with [tool_name].",
-					"You treat damage to [target]'s [I.name] with [tool_name]."
+					SPAN_INFO_B("[user] treats damage to [target]'s [I.name] with [tool_name]."),
+					SPAN_INFO_B("You treat damage to [target]'s [I.name] with [tool_name].")
 				)
 			else
 				user.visible_message(
-					SPAN_INFO("[user] pokes [target]'s mechanical [I.name] with [tool_name]..."),
-					"\blue You poke [target]'s mechanical [I.name] with [tool_name]... \red For no effect, since it's robotic."
+					SPAN_INFO_B("[user] pokes [target]'s mechanical [I.name] with [tool_name]..."),
+					SPAN_INFO_B("You poke [target]'s mechanical [I.name] with [tool_name]...") + SPAN_DANGER(" For no effect, since it's robotic.")
 				)
 			I.damage = 0
 
@@ -313,8 +322,8 @@
 
 	if(heart.damage > 0)
 		user.visible_message(
-			"[user] starts mending the mechanisms on [target]'s heart with \the [tool].",
-			"You start mending the mechanisms on [target]'s heart with \the [tool]."
+			SPAN_INFO("[user] starts mending the mechanisms on [target]'s heart with \the [tool]."),
+			SPAN_INFO("You start mending the mechanisms on [target]'s heart with \the [tool].")
 		)
 	target.custom_pain("The pain in your chest is living hell!", 1)
 	..()
@@ -323,8 +332,8 @@
 	var/datum/organ/internal/heart/heart = target.internal_organs["heart"]
 	if(heart.damage > 0)
 		user.visible_message(
-			SPAN_INFO("[user] repairs [target]'s heart with \the [tool]."),
-			SPAN_INFO("You repair [target]'s heart with \the [tool].")
+			SPAN_INFO_B("[user] repairs [target]'s heart with \the [tool]."),
+			SPAN_INFO_B("You repair [target]'s heart with \the [tool].")
 		)
 		heart.damage = 0
 

@@ -24,15 +24,15 @@
 
 /decl/surgery_step/brain/saw_skull/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		"[user] begins to cut through [target]'s skull with \the [tool].",
-		"You begin to cut through [target]'s skull with \the [tool]."
+		SPAN_INFO("[user] begins to cut through [target]'s skull with \the [tool]."),
+		SPAN_INFO("You begin to cut through [target]'s skull with \the [tool].")
 	)
 	..()
 
 /decl/surgery_step/brain/saw_skull/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		SPAN_INFO("[user] has cut [target]'s skull open with \the [tool]."),
-		SPAN_INFO("You have cut [target]'s skull open with \the [tool].")
+		SPAN_INFO_B("[user] cuts [target]'s skull open with \the [tool]."),
+		SPAN_INFO_B("You cuts [target]'s skull open with \the [tool].")
 	)
 	target.brain_op_stage = 2
 
@@ -59,15 +59,15 @@
 
 /decl/surgery_step/brain/cut_brain/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		"[user] starts separating connections to [target]'s brain with \the [tool].",
-		"You start separating connections to [target]'s brain with \the [tool]."
+		SPAN_INFO("[user] starts separating connections to [target]'s brain with \the [tool]."),
+		SPAN_INFO("You start separating connections to [target]'s brain with \the [tool].")
 	)
 	..()
 
 /decl/surgery_step/brain/cut_brain/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		SPAN_INFO("[user] separates connections to [target]'s brain with \the [tool]."),
-		SPAN_INFO("You separate connections to [target]'s brain with \the [tool].")
+		SPAN_INFO_B("[user] separates connections to [target]'s brain with \the [tool]."),
+		SPAN_INFO_B("You separate connections to [target]'s brain with \the [tool].")
 	)
 	target.brain_op_stage = 3
 
@@ -93,15 +93,15 @@
 
 /decl/surgery_step/brain/saw_spine/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		"[user] starts separating [target]'s brain from \his spine with \the [tool].",
-		"You start separating [target]'s brain from spine with \the [tool]."
+		SPAN_INFO("[user] starts separating [target]'s brain from \his spine with \the [tool]."),
+		SPAN_INFO("You start separating [target]'s brain from spine with \the [tool].")
 	)
 	..()
 
 /decl/surgery_step/brain/saw_spine/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		SPAN_INFO("[user] separates [target]'s brain from \his spine with \the [tool]."),
-		SPAN_INFO("You separate [target]'s brain from spine with \the [tool].")
+		SPAN_INFO_B("[user] separates [target]'s brain from \his spine with \the [tool]."),
+		SPAN_INFO_B("You separate [target]'s brain from spine with \the [tool].")
 	)
 
 	var/mob/living/simple/borer/borer = target.has_brain_worms()
@@ -159,15 +159,15 @@
 
 /decl/surgery_step/brain/bone_chips/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		"[user] starts taking bone chips out of [target]'s brain with \the [tool].",
-		"You start taking bone chips out of [target]'s brain with \the [tool]."
+		SPAN_INFO("[user] starts taking bone chips out of [target]'s brain with \the [tool]."),
+		SPAN_INFO("You start taking bone chips out of [target]'s brain with \the [tool].")
 	)
 	..()
 
 /decl/surgery_step/brain/bone_chips/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		SPAN_INFO("[user] takes out all the bone chips in [target]'s brain with \the [tool]."),
-		SPAN_INFO("You take out all the bone chips in [target]'s brain with \the [tool].")
+		SPAN_INFO_B("[user] takes out all the bone chips in [target]'s brain with \the [tool]."),
+		SPAN_INFO_B("You take out all the bone chips in [target]'s brain with \the [tool].")
 	)
 	target.brain_op_stage = 3
 
@@ -193,15 +193,15 @@
 
 /decl/surgery_step/brain/hematoma/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		"[user] starts mending hematoma in [target]'s brain with \the [tool].",
-		"You start mending hematoma in [target]'s brain with \the [tool]."
+		SPAN_INFO("[user] starts mending hematoma in [target]'s brain with \the [tool]."),
+		SPAN_INFO("You start mending hematoma in [target]'s brain with \the [tool].")
 	)
 	..()
 
 /decl/surgery_step/brain/hematoma/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message(
-		SPAN_INFO("[user] mends hematoma in [target]'s brain with \the [tool]."),
-		SPAN_INFO("You mend hematoma in [target]'s brain with \the [tool].")
+		SPAN_INFO_B("[user] mends hematoma in [target]'s brain with \the [tool]."),
+		SPAN_INFO_B("You mend hematoma in [target]'s brain with \the [tool].")
 	)
 	var/datum/organ/internal/brain/sponge = target.internal_organs["brain"]
 	if(sponge)

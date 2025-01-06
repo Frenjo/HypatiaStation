@@ -47,8 +47,8 @@
 /decl/surgery_step/cavity/make_space/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"[user] starts making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].",
-		"You start making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool]."
+		SPAN_INFO("[user] starts making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool]."),
+		SPAN_INFO("You start making some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].")
 	)
 	target.custom_pain("The pain in your chest is living hell!",1)
 	affected.cavity = 1
@@ -57,8 +57,8 @@
 /decl/surgery_step/cavity/make_space/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message(
-		SPAN_INFO("[user] makes some space inside [target]'s [get_cavity(affected)] cavity with \the [tool]."),
-		SPAN_INFO("You make some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].")
+		SPAN_INFO_B("[user] makes some space inside [target]'s [get_cavity(affected)] cavity with \the [tool]."),
+		SPAN_INFO_B("You make some space inside [target]'s [get_cavity(affected)] cavity with \the [tool].")
 	)
 
 /decl/surgery_step/cavity/make_space/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -89,8 +89,8 @@
 /decl/surgery_step/cavity/close_space/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"[user] starts mending [target]'s [get_cavity(affected)] cavity wall with \the [tool].",
-		"You start mending [target]'s [get_cavity(affected)] cavity wall with \the [tool]."
+		SPAN_INFO("[user] starts mending [target]'s [get_cavity(affected)] cavity wall with \the [tool]."),
+		SPAN_INFO("You start mending [target]'s [get_cavity(affected)] cavity wall with \the [tool].")
 	)
 	target.custom_pain("The pain in your chest is living hell!",1)
 	affected.cavity = 0
@@ -99,8 +99,8 @@
 /decl/surgery_step/cavity/close_space/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message(
-		SPAN_INFO("[user] mends [target]'s [get_cavity(affected)] cavity walls with \the [tool]."),
-		SPAN_INFO("You mend [target]'s [get_cavity(affected)] cavity walls with \the [tool].")
+		SPAN_INFO_B("[user] mends [target]'s [get_cavity(affected)] cavity walls with \the [tool]."),
+		SPAN_INFO_B("You mend [target]'s [get_cavity(affected)] cavity walls with \the [tool].")
 	)
 
 /decl/surgery_step/cavity/close_space/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -128,8 +128,8 @@
 /decl/surgery_step/cavity/place_item/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"[user] starts putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.",
-		"You start putting \the [tool] inside [target]'s [get_cavity(affected)] cavity."
+		SPAN_INFO("[user] starts putting \the [tool] inside [target]'s [get_cavity(affected)] cavity."),
+		SPAN_INFO("You start putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.")
 	)
 	target.custom_pain("The pain in your chest is living hell!",1)
 	..()
@@ -137,8 +137,8 @@
 /decl/surgery_step/cavity/place_item/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/chest/affected = target.get_organ(target_zone)
 	user.visible_message(
-		SPAN_INFO("[user] puts \the [tool] inside [target]'s [get_cavity(affected)] cavity."),
-		SPAN_INFO("You put \the [tool] inside [target]'s [get_cavity(affected)] cavity.")
+		SPAN_INFO_B("[user] puts \the [tool] inside [target]'s [get_cavity(affected)] cavity."),
+		SPAN_INFO_B("You put \the [tool] inside [target]'s [get_cavity(affected)] cavity.")
 	)
 	if(tool.w_class > get_max_wclass(affected) / 2 && prob(50))
 		to_chat(user, SPAN_WARNING("You tear some blood vessels trying to fit such a big object in this cavity."))
@@ -174,8 +174,8 @@
 /decl/surgery_step/cavity/implant_removal/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
-		"[user] starts poking around inside the incision on [target]'s [affected.display_name] with \the [tool].",
-		"You start poking around inside the incision on [target]'s [affected.display_name] with \the [tool]"
+		SPAN_INFO("[user] starts poking around inside the incision on [target]'s [affected.display_name] with \the [tool]."),
+		SPAN_INFO("You start poking around inside the incision on [target]'s [affected.display_name] with \the [tool].")
 	)
 	target.custom_pain("The pain in your chest is living hell!", 1)
 	..()
@@ -197,8 +197,8 @@
 
 		if(prob(find_prob))
 			user.visible_message(
-				SPAN_INFO("[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool]."),
-				SPAN_INFO("You take [obj] out of incision on [target]'s [affected.display_name]s with \the [tool].")
+				SPAN_INFO_B("[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool]."),
+				SPAN_INFO_B("You take [obj] out of incision on [target]'s [affected.display_name]s with \the [tool].")
 			)
 			affected.implants -= obj
 
@@ -218,13 +218,13 @@
 				imp.implanted = 0
 		else
 			user.visible_message(
-				SPAN_INFO("[user] removes \the [tool] from [target]'s [affected.display_name]."),
-				SPAN_INFO("There's something inside [target]'s [affected.display_name], but you just missed it this time.")
+				SPAN_INFO_B("[user] removes \the [tool] from [target]'s [affected.display_name]."),
+				SPAN_INFO_B("There's something inside [target]'s [affected.display_name], but you just missed it this time.")
 			)
 	else if(affected.hidden)
 		user.visible_message(
-			SPAN_INFO("[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool]."),
-			SPAN_INFO("You take something out of incision on [target]'s [affected.display_name]s with \the [tool].")
+			SPAN_INFO_B("[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool]."),
+			SPAN_INFO_B("You take something out of incision on [target]'s [affected.display_name]s with \the [tool].")
 		)
 		affected.hidden.loc = GET_TURF(target)
 		if(!affected.hidden.blood_DNA)
@@ -235,8 +235,8 @@
 
 	else
 		user.visible_message(
-			SPAN_INFO("[user] could not find anything inside [target]'s [affected.display_name], and pulls \the [tool] out."),
-			SPAN_INFO("You could not find anything inside [target]'s [affected.display_name].")
+			SPAN_INFO_B("[user] could not find anything inside [target]'s [affected.display_name], and pulls \the [tool] out."),
+			SPAN_INFO_B("You could not find anything inside [target]'s [affected.display_name].")
 		)
 
 /decl/surgery_step/cavity/implant_removal/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
