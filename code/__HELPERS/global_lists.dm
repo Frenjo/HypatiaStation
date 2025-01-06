@@ -33,12 +33,6 @@
 				GLOBL.facial_hair_styles_male_list.Add(H.name)
 				GLOBL.facial_hair_styles_female_list.Add(H.name)
 
-// Surgery Steps - Initialises all /decl/surgery_step into a list.
-/hook/global_init/proc/init_surgery_steps()
-	. = TRUE
-	GLOBL.surgery_steps = GET_DECL_SUBTYPE_INSTANCES(/decl/surgery_step)
-	sort_surgeries()
-
 /hook/global_init/proc/init_chemistry()
 	. = TRUE
 	// Chemical Reagents - Initialises all /datum/reagent into a list, indexed by reagent id.
