@@ -16,7 +16,7 @@
 		overlays.Cut()
 	if(density)
 		// Maintenance doors flash yellow if we have emergency maintenance access. -Frenjo
-		if(isstationlevel(z) && maint_all_access)
+		if(GLOBL.maint_all_access && isstationlevel(z))
 			if(lights && !locked)
 				icon_state = "door_maint_access"
 			else if(lights && locked)
@@ -54,7 +54,12 @@
 			flick("door_spark", src)
 		if("deny")
 			// Flick to deny even if the door has maint access. -Frenjo
-			if(isstationlevel(z) && maint_all_access)
+			if(GLOBL.maint_all_access && isstationlevel(z))
 				flick("door_maint_access_locked_deny", src)
 			else
 				flick("door_deny", src)
+
+/obj/machinery/door/airlock/maintenance/allowed(mob/M)
+	if(GLOBL.maint_all_access && isstationlevel(M.z))
+		return TRUE
+	return ..(M)

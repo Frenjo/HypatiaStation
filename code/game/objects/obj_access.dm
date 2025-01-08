@@ -3,25 +3,25 @@
 	var/list/req_access
 	var/list/req_one_access
 
-//returns 1 if this mob has sufficient access to use this object
+// Returns TRUE if this mob has sufficient access to use this object.
 /obj/proc/allowed(mob/M)
 	//check if it doesn't require any access at all
 	if(check_access(null))
-		return 1
+		return TRUE
 	if(issilicon(M))
 		//AI can do whatever he wants
-		return 1
+		return TRUE
 	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		//if they are holding or wearing a card that has access, that works
 		if(check_access(H.get_active_hand()) || check_access(H.id_store))
-			return 1
-	else if(ismonkey(M))
+			return TRUE
+	else if(iscarbon(M))
 		var/mob/living/carbon/george = M
 		//they can only hold things :(
 		if(check_access(george.get_active_hand()))
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /obj/item/proc/get_access()
 	return list()

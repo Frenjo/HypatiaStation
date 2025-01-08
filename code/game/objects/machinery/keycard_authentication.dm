@@ -160,11 +160,10 @@
 				trigger_armed_response_team(1)
 				feedback_inc("alert_keycard_auth_ert", 1)
 
-
-/var/global/maint_all_access = FALSE
+GLOBAL_GLOBL_INIT(maint_all_access, FALSE)
 
 /proc/make_maint_all_access()
-	maint_all_access = TRUE
+	GLOBL.maint_all_access = TRUE
 	to_world("<font size=4 color='red'>Attention!</font>")
 	to_world("<font color='red'>The maintenance access requirement has been revoked on all maintenance airlocks.</font>")
 
@@ -174,7 +173,7 @@
 			M.update_icon()
 
 /proc/revoke_maint_all_access()
-	maint_all_access = FALSE
+	GLOBL.maint_all_access = FALSE
 	to_world("<font size=4 color='red'>Attention!</font>")
 	to_world("<font color='red'>The maintenance access requirement has been readded on all maintenance airlocks.</font>")
 
@@ -182,8 +181,3 @@
 	for_no_type_check(var/obj/machinery/door/airlock/maintenance/M, GLOBL.maintenance_airlocks_list)
 		if(isstationlevel(M.z))
 			M.update_icon()
-
-/obj/machinery/door/airlock/allowed(mob/M)
-	if((isstationlevel(M.z) && maint_all_access) || src.check_access_list(list(ACCESS_MAINT_TUNNELS)))
-		return 1
-	return ..(M)
