@@ -1061,7 +1061,7 @@ ________________________________________________________________________________
 					for(var/datum/tech/current_data in S.stored_research)
 						to_chat(U, SPAN_INFO("Checking \the [current_data] database."))
 						if(do_after(U, S.s_delay) && G.candrain && isnotnull(A))
-							for(var/datum/tech/analyzing_data in files.known_tech)
+							for_no_type_check(var/datum/tech/analyzing_data, files.known_tech)
 								if(current_data.type == analyzing_data.type)
 									if(analyzing_data.level > current_data.level)
 										to_chat(U, "\blue Database: \black <b>UPDATED</b>.")

@@ -72,10 +72,10 @@
 	if(health <= 0)
 		griefProtection() //I dont like putting this in process() but it's the best I can do without re-writing a chunk of rd servers.
 		files.known_designs = list()
-		for(var/datum/tech/T in files.known_tech)
+		for_no_type_check(var/datum/tech/T, files.known_tech)
 			if(prob(1))
 				T.level--
-		files.RefreshResearch()
+		files.refresh_research()
 	if(delay)
 		delay--
 	else
@@ -102,11 +102,11 @@
 //Backup files to centcom to help admins recover data after greifer attacks
 /obj/machinery/r_n_d/server/proc/griefProtection()
 	for(var/obj/machinery/r_n_d/server/centcom/C in GLOBL.machines)
-		for(var/datum/tech/T in files.known_tech)
+		for_no_type_check(var/datum/tech/T, files.known_tech)
 			C.files.AddTech2Known(T)
-		for(var/datum/design/D in files.known_designs)
+		for_no_type_check(var/datum/design/D, files.known_designs)
 			C.files.AddDesign2Known(D)
-		C.files.RefreshResearch()
+		C.files.refresh_research()
 
 /obj/machinery/r_n_d/server/proc/produce_heat(/*heat_amt*/new_temperature)
 	if(!(stat & (NOPOWER | BROKEN))) //Blatently stolen from space heater.
@@ -263,21 +263,21 @@
 	else if(href_list["reset_tech"])
 		var/choice = alert("Technology Data Rest", "Are you sure you want to reset this technology to its default data? Data lost cannot be recovered.", "Continue", "Cancel")
 		if(choice == "Continue")
-			for(var/datum/tech/T in temp_server.files.known_tech)
+			for_no_type_check(var/datum/tech/T, temp_server.files.known_tech)
 				if(T.type == text2path(href_list["reset_tech"]))
 					T.level = 1
 					break
-		temp_server.files.RefreshResearch()
+		temp_server.files.refresh_research()
 
 	else if(href_list["reset_design"])
 		var/choice = alert("Design Data Deletion", "Are you sure you want to delete this design? If you still have the prerequisites for the design, it'll reset to its base reliability. Data lost cannot be recovered.", "Continue", "Cancel")
 		if(choice == "Continue")
-			for(var/datum/design/D in temp_server.files.known_designs)
+			for_no_type_check(var/datum/design/D, temp_server.files.known_designs)
 				if(D.type == text2path(href_list["reset_design"]))
 					D.reliability_mod = 0
-					temp_server.files.known_designs -= D
+					temp_server.files.known_designs.Remove(D)
 					break
-		temp_server.files.RefreshResearch()
+		temp_server.files.refresh_research()
 
 	updateUsrDialog()
 	return
@@ -324,11 +324,11 @@
 		if(RDSCONTROL_SCREEN_DATA_MENU) //Data Management menu
 			dat += "[temp_server.name] Data ManagementP<BR><BR>"
 			dat += "Known Technologies<BR>"
-			for(var/datum/tech/T in temp_server.files.known_tech)
+			for_no_type_check(var/datum/tech/T, temp_server.files.known_tech)
 				dat += "* [T.name] "
 				dat += "<A href='byond://?src=\ref[src];reset_tech=[T.type]'>(Reset)</A><BR>" //FYI, these are all strings.
 			dat += "Known Designs<BR>"
-			for(var/datum/design/D in temp_server.files.known_designs)
+			for_no_type_check(var/datum/design/D, temp_server.files.known_designs)
 				dat += "* [D.name] "
 				dat += "<A href='byond://?src=\ref[src];reset_design=[D.type]'>(Delete)</A><BR>"
 			dat += "<HR><A href='byond://?src=\ref[src];main=1'>Main Menu</A>"

@@ -34,23 +34,35 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	icon_state = "rdcomp"
 	circuit = /obj/item/circuitboard/rdconsole
 
-	req_access = list(ACCESS_RESEARCH)	//Data and setting manipulation requires scientist access.
+	req_access = list(ACCESS_RESEARCH) // Data and setting manipulation requires scientist access.
 
 	light_color = "#a97faa"
 
-	var/datum/research/files							//Stores all the collected research data.
-	var/obj/item/disk/tech/t_disk = null	//Stores the technology disk.
-	var/obj/item/disk/design/d_disk = null	//Stores the design disk.
+	var/datum/research/files				// Stores all the collected research data.
+	var/obj/item/disk/tech/t_disk = null	// Stores the technology disk.
+	var/obj/item/disk/design/d_disk = null	// Stores the design disk.
 
-	var/obj/machinery/r_n_d/destructive_analyser/linked_destroy = null	//Linked Destructive Analyser
-	var/obj/machinery/r_n_d/protolathe/linked_lathe = null				//Linked Protolathe
-	var/obj/machinery/r_n_d/circuit_imprinter/linked_imprinter = null	//Linked Circuit Imprinter
+	var/obj/machinery/r_n_d/destructive_analyser/linked_destroy = null	// Linked Destructive Analyser
+	var/obj/machinery/r_n_d/protolathe/linked_lathe = null				// Linked Protolathe
+	var/obj/machinery/r_n_d/circuit_imprinter/linked_imprinter = null	// Linked Circuit Imprinter
 
-	var/screen = 1.0	//Which screen is currently showing.
-	var/id = 0			//ID of the computer (for server restrictions).
-	var/sync = 1		//If sync = 0, it doesn't show up on Server Control Console
+	var/screen = 1.0 // Which screen is currently showing.
+	var/id = 0 // ID of the computer (for server restrictions).
+	var/sync = TRUE // If sync = FALSE, it doesn't show up on Server Control Console
 
-/obj/machinery/computer/rdconsole/proc/SyncRDevices() //Makes sure it is properly sync'ed up with the devices attached to it (if any).
+/obj/machinery/computer/rdconsole/New()
+	. = ..()
+	files = new /datum/research(src) //Setup the research data holder.
+	if(!id)
+		for(var/obj/machinery/r_n_d/server/centcom/S in GLOBL.machines)
+			S.initialise()
+			break
+
+/obj/machinery/computer/rdconsole/initialise()
+	. = ..()
+	sync_devices()
+
+/obj/machinery/computer/rdconsole/proc/sync_devices() //Makes sure it is properly sync'ed up with the devices attached to it (if any).
 	for(var/obj/machinery/r_n_d/D in oview(3, src))
 		if(isnotnull(D.linked_console) || D.disabled || D.opened)
 			continue
@@ -66,28 +78,15 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			if(isnull(linked_imprinter))
 				linked_imprinter = D
 				D.linked_console = src
-	return
 
-//Have it automatically push research to the centcom server so wild griffins can't fuck up R&D's work --NEO
-/obj/machinery/computer/rdconsole/proc/griefProtection()
+// Have it automatically push research to the centcom server so wild griffins can't fuck up R&D's work --NEO
+/obj/machinery/computer/rdconsole/proc/grief_protection()
 	for(var/obj/machinery/r_n_d/server/centcom/C in GLOBL.machines)
-		for(var/datum/tech/T in files.known_tech)
+		for_no_type_check(var/datum/tech/T, files.known_tech)
 			C.files.AddTech2Known(T)
-		for(var/datum/design/D in files.known_designs)
+		for_no_type_check(var/datum/design/D, files.known_designs)
 			C.files.AddDesign2Known(D)
-		C.files.RefreshResearch()
-
-/obj/machinery/computer/rdconsole/New()
-	. = ..()
-	files = new /datum/research(src) //Setup the research data holder.
-	if(!id)
-		for(var/obj/machinery/r_n_d/server/centcom/S in GLOBL.machines)
-			S.initialise()
-			break
-
-/obj/machinery/computer/rdconsole/initialise()
-	. = ..()
-	SyncRDevices()
+		C.files.refresh_research()
 
 /*	Instead of calling this every tick, it is only being called when needed
 /obj/machinery/computer/rdconsole/process()
@@ -150,7 +149,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			screen = 1.2
 			files.AddTech2Known(t_disk.stored)
 			updateUsrDialog()
-			griefProtection() //Update centcom too
+			grief_protection() //Update centcom too
 
 	else if(href_list["clear_tech"]) //Erase data on the technology disk.
 		t_disk.stored = null
@@ -161,7 +160,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		screen = 1.0
 
 	else if(href_list["copy_tech"]) //Copys some technology data from the research holder to the disk.
-		for(var/datum/tech/T in files.known_tech)
+		for_no_type_check(var/datum/tech/T, files.known_tech)
 			if(text2path(href_list["copy_tech_ID"]) == T.type)
 				t_disk.stored = T
 				break
@@ -173,7 +172,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			screen = 1.4
 			files.AddDesign2Known(d_disk.blueprint)
 			updateUsrDialog()
-			griefProtection() //Update centcom too
+			grief_protection() //Update centcom too
 
 	else if(href_list["clear_design"]) //Erases data on the design disk.
 		d_disk.blueprint = null
@@ -184,7 +183,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		screen = 1.0
 
 	else if(href_list["copy_design"]) //Copy design data from the research holder to the design disk.
-		for(var/datum/design/D in files.known_designs)
+		for_no_type_check(var/datum/design/D, files.known_designs)
 			if(text2path(href_list["copy_design_ID"]) == D.type)
 				d_disk.blueprint = D
 				break
@@ -224,20 +223,20 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 							if(linked_destroy.loaded_item.reliability >= 90)
 								var/list/temp_tech = linked_destroy.loaded_item.origin_tech
 								for(var/T in temp_tech)
-									files.UpdateTech(T, temp_tech[T])
+									files.update_tech(T, temp_tech[T])
 							if(linked_destroy.loaded_item.reliability < 100 && linked_destroy.loaded_item.crit_fail)
-								files.UpdateDesign(linked_destroy.loaded_item.type)
-							if(isnotnull(linked_lathe)) //Also sends salvaged materials to a linked protolathe, if any.
+								files.update_design(linked_destroy.loaded_item.type)
+							if(isnotnull(linked_lathe)) // Also sends salvaged materials to a linked protolathe, if any.
 								var/obj/item/loaded_item = linked_destroy.loaded_item
 								for(var/material_path in loaded_item.matter_amounts)
 									var/storage_capacity = linked_lathe.max_storage_capacity - linked_lathe.get_total_stored_materials()
 									linked_lathe.stored_materials[material_path] += min(storage_capacity, (loaded_item.matter_amounts[material_path] * linked_destroy.decon_mod))
 							linked_destroy.loaded_item = null
-						for(var/obj/I in linked_destroy.contents)
-							for(var/mob/living/L in I.contents)
+						for_no_type_check(var/atom/A, linked_destroy.contents)
+							for(var/mob/living/L in A.contents)
 								L.death()
-							if(istype(I, /obj/item/stack/sheet))//Only deconsturcts one sheet at a time instead of the entire stack
-								var/obj/item/stack/sheet/S = I
+							if(istype(A, /obj/item/stack/sheet)) // Only deconstructs one sheet at a time instead of the entire stack.
+								var/obj/item/stack/sheet/S = A
 								if(S.amount > 1)
 									S.amount--
 									linked_destroy.loaded_item = S
@@ -245,8 +244,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 									qdel(S)
 									linked_destroy.icon_state = "d_analyser"
 							else
-								if(!(I in linked_destroy.component_parts))
-									qdel(I)
+								if(!(A in linked_destroy.component_parts))
+									qdel(A)
 									linked_destroy.icon_state = "d_analyser"
 						use_power(250)
 						screen = 1.0
@@ -263,7 +262,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(!sync)
 			to_chat(usr, SPAN_WARNING("You must connect to the network first!"))
 		else
-			griefProtection() //Putting this here because I dont trust the sync process
+			grief_protection() //Putting this here because I dont trust the sync process
 			spawn(30)
 				if(src)
 					for(var/obj/machinery/r_n_d/server/S in GLOBL.machines)
@@ -271,18 +270,18 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						if(S.disabled)
 							continue
 						if((id in S.id_with_upload) || istype(S, /obj/machinery/r_n_d/server/centcom))
-							for(var/datum/tech/T in files.known_tech)
+							for_no_type_check(var/datum/tech/T, files.known_tech)
 								S.files.AddTech2Known(T)
-							for(var/datum/design/D in files.known_designs)
+							for_no_type_check(var/datum/design/D, files.known_designs)
 								S.files.AddDesign2Known(D)
-							S.files.RefreshResearch()
+							S.files.refresh_research()
 							server_processed = 1
 						if(((id in S.id_with_download) && !istype(S, /obj/machinery/r_n_d/server/centcom)) || S.hacked)
-							for(var/datum/tech/T in S.files.known_tech)
+							for_no_type_check(var/datum/tech/T, S.files.known_tech)
 								files.AddTech2Known(T)
-							for(var/datum/design/D in S.files.known_designs)
+							for_no_type_check(var/datum/design/D, S.files.known_designs)
 								files.AddDesign2Known(D)
-							files.RefreshResearch()
+							files.refresh_research()
 							server_processed = 1
 						if(!istype(S, /obj/machinery/r_n_d/server/centcom) && server_processed)
 							S.produce_heat(100)
@@ -295,7 +294,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["build"]) // Causes the Protolathe to build something.
 		if(linked_lathe)
 			var/datum/design/being_built = null
-			for(var/datum/design/D in files.known_designs)
+			for_no_type_check(var/datum/design/D, files.known_designs)
 				if(D.type == text2path(href_list["build"]))
 					being_built = D
 					break
@@ -337,7 +336,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["imprint"]) // Causes the Circuit Imprinter to build something.
 		if(linked_imprinter)
 			var/datum/design/being_built = null
-			for(var/datum/design/D in files.known_designs)
+			for_no_type_check(var/datum/design/D, files.known_designs)
 				if(D.type == text2path(href_list["imprint"]))
 					being_built = D
 					break
@@ -365,19 +364,19 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					screen = 4.1
 					updateUsrDialog()
 
-	else if(href_list["disposeI"] && linked_imprinter)  //Causes the circuit imprinter to dispose of a single reagent (all of it)
+	else if(href_list["disposeI"] && isnotnull(linked_imprinter)) // Causes the circuit imprinter to dispose of a single reagent (all of it)
 		linked_imprinter.reagents.del_reagent(text2path(href_list["disposeI"]))
 
-	else if(href_list["disposeallI"] && linked_imprinter) //Causes the circuit imprinter to dispose of all it's reagents.
+	else if(href_list["disposeallI"] && isnotnull(linked_imprinter)) // Causes the circuit imprinter to dispose of all it's reagents.
 		linked_imprinter.reagents.clear_reagents()
 
-	else if(href_list["disposeP"] && linked_lathe)  //Causes the protolathe to dispose of a single reagent (all of it)
+	else if(href_list["disposeP"] && isnotnull(linked_lathe)) // Causes the protolathe to dispose of a single reagent (all of it)
 		linked_lathe.reagents.del_reagent(text2path(href_list["disposeP"]))
 
-	else if(href_list["disposeallP"] && linked_lathe) //Causes the protolathe to dispose of all it's reagents.
+	else if(href_list["disposeallP"] && isnotnull(linked_lathe)) // Causes the protolathe to dispose of all it's reagents.
 		linked_lathe.reagents.clear_reagents()
 
-	else if(href_list["lathe_ejectsheet"] && linked_lathe) // Causes the protolathe to eject a sheet of material.
+	else if(href_list["lathe_ejectsheet"] && isnotnull(linked_lathe)) // Causes the protolathe to eject a sheet of material.
 		var/material_type = text2path(href_list["lathe_ejectsheet"])
 		var/desired_num_sheets = text2num(href_list["lathe_ejectsheet_amt"])
 		var/decl/material/material = GET_DECL_INSTANCE(material_type)
@@ -389,7 +388,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				linked_lathe.stored_materials[material_type] = max(0, (linked_lathe.stored_materials[material_type] - sheet.amount * sheet.perunit))
 			else
 				qdel(sheet)
-	else if(href_list["imprinter_ejectsheet"] && linked_imprinter) // Causes the circuit imprinter to eject a sheet of material.
+	else if(href_list["imprinter_ejectsheet"] && isnotnull(linked_imprinter)) // Causes the circuit imprinter to eject a sheet of material.
 		var/material_type = text2path(href_list["imprinter_ejectsheet"])
 		var/desired_num_sheets = text2num(href_list["imprinter_ejectsheet_amt"])
 		var/decl/material/material = GET_DECL_INSTANCE(material_type)
@@ -405,7 +404,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["find_device"]) //The R&D console looks for devices nearby to link up with.
 		screen = 0.0
 		spawn(20)
-			SyncRDevices()
+			sync_devices()
 			screen = 1.7
 			updateUsrDialog()
 
@@ -422,7 +421,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				linked_imprinter = null
 
 	else if(href_list["reset"]) //Reset the R&D console's database.
-		griefProtection()
+		grief_protection()
 		var/choice = alert("R&D Console Database Reset", "Are you sure you want to reset the R&D console's database? Data lost cannot be recovered.", "Continue", "Cancel")
 		if(choice == "Continue")
 			screen = 0.0
@@ -440,7 +439,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 	user.set_machine(src)
 	var/dat = ""
-	files.RefreshResearch()
+	files.refresh_research()
 	switch(screen) //A quick check to make sure you get the right screen when a device is disconnected.
 		if(2 to 2.9)
 			if(isnull(linked_destroy))
@@ -493,7 +492,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 		if(1.1) //Research viewer
 			dat += "Current Research Levels:<BR><BR>"
-			for(var/datum/tech/T in files.known_tech)
+			for_no_type_check(var/datum/tech/T, files.known_tech)
 				if(T.level == 0) // If it's a secret tech, don't display it until it's actually researched.
 					continue
 				dat += "[T.name]<BR>"
@@ -521,7 +520,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<BR><A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='byond://?src=\ref[src];menu=1.2'>Return to Disk Operations</A><HR>"
 			dat += "Load Technology to Disk:<BR><BR>"
-			for(var/datum/tech/T in files.known_tech)
+			for_no_type_check(var/datum/tech/T, files.known_tech)
 				dat += "[T.name] "
 				dat += "<A href='byond://?src=\ref[src];copy_tech=1;copy_tech_ID=[T.type]'>(Copy to Disk)</A><BR>"
 
@@ -553,7 +552,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='byond://?src=\ref[src];menu=1.4'>Return to Disk Operations</A><HR>"
 			dat += "Load Design to Disk:<BR><BR>"
-			for(var/datum/design/D in files.known_designs)
+			for_no_type_check(var/datum/design/D, files.known_designs)
 				dat += "[D.name] "
 				dat += "<A href='byond://?src=\ref[src];copy_design=1;copy_design_ID=[D.type]'>(Copy to Disk)</A><BR>"
 
@@ -621,7 +620,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Protolathe Menu:<BR><BR>"
 			dat += "<B>Material Amount:</B> [linked_lathe.get_total_stored_materials()] cm<sup>3</sup> (MAX: [linked_lathe.max_storage_capacity])<BR>"
 			dat += "<B>Chemical Volume:</B> [linked_lathe.reagents.total_volume] (MAX: [linked_lathe.reagents.maximum_volume])<HR>"
-			for(var/datum/design/D in files.known_designs)
+			for_no_type_check(var/datum/design/D, files.known_designs)
 				if(!(D.build_type & DESIGN_TYPE_PROTOLATHE))
 					continue
 				var/temp_dat = "[D.name]"
@@ -665,7 +664,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='byond://?src=\ref[src];menu=3.1'>Protolathe Menu</A><HR>"
 			dat += "Chemical Storage<BR><HR>"
-			for(var/datum/reagent/R in linked_lathe.reagents.reagent_list)
+			for_no_type_check(var/datum/reagent/R, linked_lathe.reagents.reagent_list)
 				dat += "Name: [R.name] | Units: [R.volume] "
 				dat += "<A href='byond://?src=\ref[src];disposeP=[R.type]'>(Purge)</A><BR>"
 				dat += "<A href='byond://?src=\ref[src];disposeallP=1'><U>Disposal All Chemicals in Storage</U></A><BR>"
@@ -683,7 +682,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Material Amount: [linked_imprinter.get_total_stored_materials()] cm<sup>3</sup><BR>"
 			dat += "Chemical Volume: [linked_imprinter.reagents.total_volume]<HR>"
 
-			for(var/datum/design/D in files.known_designs)
+			for_no_type_check(var/datum/design/D, files.known_designs)
 				if(!(D.build_type & DESIGN_TYPE_IMPRINTER))
 					continue
 				var/temp_dat = "[D.name]"
@@ -710,7 +709,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='byond://?src=\ref[src];menu=4.1'>Imprinter Menu</A><HR>"
 			dat += "Chemical Storage<BR><HR>"
-			for(var/datum/reagent/R in linked_imprinter.reagents.reagent_list)
+			for_no_type_check(var/datum/reagent/R, linked_imprinter.reagents.reagent_list)
 				dat += "Name: [R.name] | Units: [R.volume] "
 				dat += "<A href='byond://?src=\ref[src];disposeI=[R.type]'>(Purge)</A><BR>"
 				dat += "<A href='byond://?src=\ref[src];disposeallI=1'><U>Disposal All Chemicals in Storage</U></A><BR>"

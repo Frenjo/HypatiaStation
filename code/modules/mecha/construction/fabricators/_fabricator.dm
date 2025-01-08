@@ -343,7 +343,7 @@
 	if(!files)
 		return
 	. = 0
-	for(var/datum/design/D in files.known_designs)
+	for_no_type_check(var/datum/design/D, files.known_designs)
 		if(D.build_type & design_flag)
 			var/added_to_category = FALSE
 			for(var/category in D.categories)
@@ -358,7 +358,7 @@
 /obj/machinery/robotics_fabricator/proc/update_tech()
 	if(isnull(files))
 		return
-	for(var/datum/tech/T in files.known_tech)
+	for_no_type_check(var/datum/tech/T, files.known_tech)
 		if(T?.level > 1)
 			var/diff
 			switch(T.type) //bad, bad formulas
@@ -400,11 +400,11 @@
 		if(!RDC.sync)
 			continue
 		found++
-		for(var/datum/tech/T in RDC.files.known_tech)
+		for_no_type_check(var/datum/tech/T, RDC.files.known_tech)
 			files.AddTech2Known(T)
-		for(var/datum/design/D in RDC.files.known_designs)
+		for_no_type_check(var/datum/design/D, RDC.files.known_designs)
 			files.AddDesign2Known(D)
-		files.RefreshResearch()
+		files.refresh_research()
 		var/i = convert_designs()
 		var/tech_output = update_tech()
 		if(!silent)

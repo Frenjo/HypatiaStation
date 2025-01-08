@@ -45,17 +45,17 @@ research holder datum.
 ***************************************************************/
 /datum/research	// Holder for all the existing, archived, and known tech. Individual to console.
 	// Datum/tech go here.
-	var/list/possible_tech = list()		// List of all tech in the game that players have access to (barring special events).
-	var/list/known_tech = list()		// List of locally known tech.
-	var/list/possible_designs = list()	// List of all designs (at base reliability).
-	var/list/known_designs = list()		// List of available designs (at base reliability).
+	var/list/datum/tech/possible_tech = list()		// List of all tech in the game that players have access to (barring special events).
+	var/list/datum/tech/known_tech = list()			// List of locally known tech.
+	var/list/datum/design/possible_designs = list()	// List of all designs (at base reliability).
+	var/list/datum/design/known_designs = list()	// List of available designs (at base reliability).
 
 /datum/research/New()	// Insert techs into possible_tech here. Known_tech automatically updated.
 	for(var/T in GLOBL.all_techs)
-		possible_tech += GLOBL.all_techs[T]
+		possible_tech.Add(GLOBL.all_techs[T])
 	for(var/D in GLOBL.all_designs)
-		possible_designs += GLOBL.all_designs[D]
-	RefreshResearch()
+		possible_designs.Add(GLOBL.all_designs[D])
+	refresh_research()
 
 // Checks to see if tech has all the required pre-reqs.
 // Input: datum/tech; Output: TRUE/FALSE
@@ -64,7 +64,7 @@ research holder datum.
 		return TRUE
 	var/matches = 0
 	for(var/req in T.req_tech)
-		for(var/datum/tech/known in known_tech)
+		for_no_type_check(var/datum/tech/known, known_tech)
 			if(req == known.type && known.level >= T.req_tech[req])
 				matches++
 				break
@@ -80,7 +80,7 @@ research holder datum.
 		return TRUE
 	var/matches = 0
 	var/list/k_tech = list()
-	for(var/datum/tech/known in known_tech)
+	for_no_type_check(var/datum/tech/known, known_tech)
 		k_tech[known.type] = known.level
 	for(var/req in D.req_tech)
 		if(isnotnull(k_tech[req]) && k_tech[req] >= D.req_tech[req])
@@ -110,53 +110,48 @@ research holder datum.
 // Adds a tech to known_tech list. Checks to make sure there aren't duplicates and updates existing tech's levels if needed.
 // Input: datum/tech; Output: Null
 /datum/research/proc/AddTech2Known(datum/tech/T)
-	for(var/datum/tech/known in known_tech)
+	for_no_type_check(var/datum/tech/known, known_tech)
 		if(T.type == known.type)
 			if(T.level > known.level)
 				known.level = T.level
 			return
-	known_tech += T
-	return
+	known_tech.Add(T)
 
 /datum/research/proc/AddDesign2Known(datum/design/D)
-	for(var/datum/design/known in known_designs)
+	for_no_type_check(var/datum/design/known, known_designs)
 		if(D.type == known.type)
 			if(D.reliability_mod > known.reliability_mod)
 				known.reliability_mod = D.reliability_mod
 			return
-	known_designs += D
-	return
+	known_designs.Add(D)
 
 // Refreshes known_tech and known_designs list. Then updates the reliability vars of the designs in the known_designs list.
 // Input/Output: n/a
-/datum/research/proc/RefreshResearch()
-	for(var/datum/tech/PT in possible_tech)
+/datum/research/proc/refresh_research()
+	for_no_type_check(var/datum/tech/PT, possible_tech)
 		if(TechHasReqs(PT))
 			AddTech2Known(PT)
-	for(var/datum/design/PD in possible_designs)
+	for_no_type_check(var/datum/design/PD, possible_designs)
 		if(DesignHasReqs(PD))
 			AddDesign2Known(PD)
-	for(var/datum/tech/T in known_tech)
+	for_no_type_check(var/datum/tech/T, known_tech)
 		T = clamp(T.level, 1, 20)
-	for(var/datum/design/D in known_designs)
+	for_no_type_check(var/datum/design/D, known_designs)
 		D.CalcReliability(known_tech)
-	return
 
 // Refreshes the levels of a given tech.
 // Input: Tech's typepath and Level; Output: null
-/datum/research/proc/UpdateTech(typepath, level)
-	for(var/datum/tech/KT in known_tech)
+/datum/research/proc/update_tech(typepath, level)
+	for_no_type_check(var/datum/tech/KT, known_tech)
 		if(KT.type == typepath)
 			if(KT.level <= level)
 				KT.level = max((KT.level + 1), (level - 1))
-	return
 
-/datum/research/proc/UpdateDesign(path)
-	for(var/datum/design/KD in known_designs)
+/datum/research/proc/update_design(path)
+	for_no_type_check(var/datum/design/KD, known_designs)
 		if(KD.build_path == path)
 			KD.reliability_mod += rand(1, 2)
 			break
-	return
 
 /***************************************************************
 **						Technology Datums					  **
