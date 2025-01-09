@@ -1300,7 +1300,7 @@
 "TA" = (/obj/machinery/door/window/northleft,/obj/structure/stool/bed/chair,/turf/open/floor/tiled/dark,/area/centcom/control)
 "TC" = (/obj/structure/table,/obj/machinery/microwave,/turf/open/floor{icon_state = "cafeteria"},/area/enemy/syndicate_mothership)
 "TD" = (/obj/structure/table,/obj/item/reagent_holder/food/drinks/cans/beer,/obj/item/reagent_holder/food/drinks/cans/beer,/obj/item/reagent_holder/food/drinks/cans/beer,/obj/item/lighter/zippo,/obj/item/storage/fancy/cigarettes,/turf/open/floor{icon_state = "redbluefull"},/area/centcom/tdome/observation)
-"TE" = (/obj/machinery/mech_bay_recharge_floor,/obj/mecha/combat/marauder/mauler,/turf/open/floor/shuttle/red,/area/enemy/syndicate_mothership/elite_squad)
+"TE" = (/obj/machinery/mech_bay_recharge_floor,/obj/mecha/working/ripley/sindy,/turf/open/floor/shuttle/red,/area/enemy/syndicate_mothership/elite_squad)
 "TF" = (/obj/structure/table/woodentable,/turf/open/floor/wood,/area/enemy/wizard_station)
 "TG" = (/obj/effect/decal/cleanable/molten_item,/turf/open/floor/tiled/freezer,/area/enemy/wizard_station)
 "TJ" = (/obj/machinery/portable_atmospherics/canister/oxygen,/obj/effect/decal/floor/industrial/vault,/turf/open/floor/tiled/dark,/area/centcom/specops)

@@ -173,6 +173,13 @@
 	if(href_list["toggle_zoom"])
 		zoom()
 
+/obj/mecha/combat/marauder/add_cell(obj/item/cell/C = null)
+	if(isnotnull(C))
+		C.forceMove(src)
+		cell = C
+		return
+	cell = new /obj/item/cell/hyper(src)
+
 /obj/mecha/combat/marauder/seraph
 	name = "\improper Seraph"
 	desc = "Heavy-duty, command-type exosuit. This is a custom model, utilized only by high-ranking military personnel."

@@ -117,3 +117,35 @@
 /obj/mecha/working/ripley/rescue_ranger/New()
 	. = ..()
 	excluded_equipment.Remove(/obj/item/mecha_part/equipment/medical)
+
+/obj/mecha/working/ripley/sindy
+	name = "\improper APLU \"Sindy\""
+	desc = "A sinister variant of the standard APLU chassis fitted with rudimentary targeting systems and mounting hardpoints for basic weaponry."
+	icon_state = "sindy"
+	initial_icon = "sindy"
+
+	wreckage = /obj/structure/mecha_wreckage/ripley/sindy
+
+	health = 225
+	step_in = 5
+	max_temperature = 42500
+	damage_absorption = list("brute" = 0.8, "fire" = 0.85, "bullet" = 0.85, "laser" = 1, "energy" = 1, "bomb" = 0.75)
+
+	cargo_capacity = 10
+
+/obj/mecha/working/ripley/sindy/New()
+	. = ..()
+	excluded_equipment.Remove(/obj/item/mecha_part/equipment/weapon)
+	var/obj/item/mecha_part/equipment/equip = new /obj/item/mecha_part/equipment/weapon/energy/laser/heavy(src)
+	equip.attach(src)
+	equip = new /obj/item/mecha_part/equipment/tool/hydraulic_clamp(src)
+	equip.attach(src)
+	equip = new /obj/item/mecha_part/equipment/melee_armour_booster(src)
+	equip.attach(src)
+
+/obj/mecha/working/ripley/sindy/add_cell(obj/item/cell/C = null)
+	if(isnotnull(C))
+		C.forceMove(src)
+		cell = C
+		return
+	cell = new /obj/item/cell/hyper(src)

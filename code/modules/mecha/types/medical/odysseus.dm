@@ -102,11 +102,11 @@
 
 /obj/mecha/medical/odysseus/eurymachus/New()
 	. = ..()
-	var/obj/item/mecha_part/equipment/part = new /obj/item/mecha_part/equipment/medical/sleeper(src)
+	var/obj/item/mecha_part/equipment/part = new /obj/item/mecha_part/equipment/weapon/energy/taser(src)
+	part.attach(src)
+	part = new /obj/item/mecha_part/equipment/medical/sleeper(src)
 	part.attach(src)
 	part = new /obj/item/mecha_part/equipment/medical/syringe_gun(src)
-	part.attach(src)
-	part = new /obj/item/mecha_part/equipment/weapon/energy/taser(src)
 	part.attach(src)
 
 /obj/mecha/medical/odysseus/eurymachus/add_cell(obj/item/cell/C = null)
