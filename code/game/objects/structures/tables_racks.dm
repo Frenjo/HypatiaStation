@@ -367,8 +367,8 @@
 	return T.straight_table_check(direction)
 
 /obj/structure/table/verb/do_flip()
-	set category = PANEL_OBJECT
-	set name = "Flip table"
+	set category = null
+	set name = "Flip Table"
 	set desc = "Flips a non-reinforced table"
 	set src in oview(1)
 

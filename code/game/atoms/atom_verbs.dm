@@ -17,7 +17,7 @@
 	return distance == -1 || (get_dist(src, user) <= distance)
 
 /atom/movable/verb/pull()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Pull"
 	set src in oview(1)
 

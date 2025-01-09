@@ -319,8 +319,8 @@ if(isnotnull(VAR)) \
 #undef SET_SCREEN_LOC
 
 /mob/living/carbon/human/verb/toggle_hotkey_verbs()
-	set category = PANEL_OOC
-	set name = "Toggle hotkey buttons"
+	set category = PANEL_PREFERENCES
+	set name = "Toggle Hotkey Buttons"
 	set desc = "This disables or enables the user interface buttons which can be used with hotkeys."
 
 	var/datum/hud/human/human_hud = hud_used

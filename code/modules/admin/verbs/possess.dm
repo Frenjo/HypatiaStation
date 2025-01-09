@@ -1,6 +1,6 @@
 /proc/possess(obj/O as obj in GLOBL.movable_atom_list)
-	set category = PANEL_OBJECT
-	set name = "Possess Obj"
+	set category = PANEL_ADMIN
+	set name = "Possess Object"
 
 	if(istype(O, /obj/singularity))
 		if(CONFIG_GET(/decl/configuration_entry/forbid_singulo_possession))
@@ -27,8 +27,8 @@
 	feedback_add_details("admin_verb", "PO") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /proc/release(obj/O as obj in GLOBL.movable_atom_list)
-	set category = PANEL_OBJECT
-	set name = "Release Obj"
+	set category = PANEL_ADMIN
+	set name = "Release Object"
 	//usr.loc = GET_TURF(usr)
 
 	if(usr.control_object && usr.name_archive) //if you have a name archived and if you are actually relassing an object

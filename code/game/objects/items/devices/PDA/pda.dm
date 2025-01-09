@@ -721,7 +721,7 @@
 
 /obj/item/pda/verb/verb_remove_id()
 	set category = PANEL_OBJECT
-	set name = "Remove id"
+	set name = "Remove ID"
 	set src in usr
 
 	if(issilicon(usr))
@@ -737,7 +737,7 @@
 
 /obj/item/pda/verb/verb_remove_pen()
 	set category = PANEL_OBJECT
-	set name = "Remove pen"
+	set name = "Remove Pen"
 	set src in usr
 
 	if(issilicon(usr))

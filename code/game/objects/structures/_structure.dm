@@ -56,8 +56,8 @@
 	qdel(src)
 
 /obj/structure/proc/do_climb()
-	set category = PANEL_OBJECT
-	set name = "Climb structure"
+	set category = null
+	set name = "Climb Structure"
 	set desc = "Climbs onto a structure."
 	set src in oview(1)
 

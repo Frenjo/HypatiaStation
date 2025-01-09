@@ -1068,8 +1068,8 @@
 					src.adjustToxLoss(rand(1, 3))
 
 /mob/living/carbon/human/verb/check_pulse()
-	set category = PANEL_OBJECT
-	set name = "Check pulse"
+	set category = null
+	set name = "Check Pulse"
 	set desc = "Approximately count somebody's pulse. Requires you to stand still at least 6 seconds."
 	set src in view(1)
 	var/self = 0

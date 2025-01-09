@@ -1,5 +1,5 @@
 /client/verb/ooc(msg as text)
-	set category = PANEL_OOC
+	set category = null
 	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 
 	if(say_disabled)
@@ -88,7 +88,7 @@
 	GLOBL.normal_ooc_colour = new_colour
 
 /client/verb/looc(msg as text)
-	set category = PANEL_OOC
+	set category = null
 	set name = "LOOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 	set desc = "Local OOC, seen only by those in view."
 

@@ -2,13 +2,12 @@
 	return
 
 /mob/verb/whisper()
-	set category = PANEL_IC
-	set name = "Whisper"
-	return
+	set category = null
+	set name = "whisper"
 
 /mob/verb/say_verb(message as text)
-	set category = PANEL_IC
-	set name = "Say"
+	set category = null
+	set name = "say"
 
 	if(say_disabled)
 		FEEDBACK_SPEECH_ADMIN_DISABLED(usr) // This is here to try to identify lag problems.
@@ -16,8 +15,8 @@
 	usr.say(message)
 
 /mob/verb/me_verb(message as text)
-	set category = PANEL_IC
-	set name = "Me"
+	set category = null
+	set name = "me"
 
 	if(say_disabled)
 		FEEDBACK_SPEECH_ADMIN_DISABLED(usr) // This is here to try to identify lag problems.

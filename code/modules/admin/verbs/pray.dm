@@ -1,6 +1,6 @@
 /mob/verb/pray(msg as text)
-	set category = PANEL_IC
-	set name = "Pray"
+	set category = null
+	set name = "pray"
 
 	if(say_disabled)
 		FEEDBACK_SPEECH_ADMIN_DISABLED(usr) // This is here to try to identify lag problems.

@@ -231,7 +231,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 
 //mob verbs are faster than object verbs. See http://www.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
 /mob/verb/examinate(atom/A as mob|obj|turf in view())
-	set category = PANEL_IC
+	set category = null
 	set name = "Examine"
 
 	if(is_blind(src) || usr.stat)
@@ -242,7 +242,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	A.examine(src)
 
 /mob/verb/point(atom/A as mob|obj|turf in view())
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Point To"
 
 	if(isnull(src) || !isturf(loc) || !(A in view(loc)))
@@ -454,7 +454,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 //	M.Login()	//wat
 
 /client/verb/changes()
-	set category = PANEL_OOC
+	set category = null
 	set name = "Changelog"
 
 	getFiles(
@@ -612,10 +612,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 		return
 	show_inv(usr)
 
-/mob/verb/stop_pulling()
-	set category = PANEL_IC
-	set name = "Stop Pulling"
-
+/mob/proc/stop_pulling()
 	if(isnotnull(pulling))
 		pulling.pulledby = null
 		pulling = null

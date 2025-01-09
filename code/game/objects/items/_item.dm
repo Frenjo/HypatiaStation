@@ -86,7 +86,7 @@
 	return
 
 /obj/item/verb/move_to_top()
-	set category = PANEL_OBJECT
+	set category = null
 	set name = "Move To Top"
 	set src in oview(1)
 
@@ -420,9 +420,9 @@
 		//END HUMAN
 
 /obj/item/verb/verb_pickup()
-	set category = PANEL_OBJECT
+	set category = null
 	set src in oview(1)
-	set name = "Pick up"
+	set name = "Pick Up"
 
 	if(!(usr)) //BS12 EDIT
 		return
