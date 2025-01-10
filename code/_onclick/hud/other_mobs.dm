@@ -1,5 +1,3 @@
-/datum/hud/unplayer
-
 /datum/hud/ghost
 
 /datum/hud/brain/setup(ui_style = 'icons/mob/screen/screen1_Midnight.dmi')
