@@ -21,6 +21,8 @@
 	var/toggles = TOGGLES_DEFAULT
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
+	var/screentip_pref = TRUE
+	var/screentip_colour = "#ffd391"
 
 	//character preferences
 	var/real_name						//our character's name

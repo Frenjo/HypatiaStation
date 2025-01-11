@@ -23,6 +23,12 @@
 	var/atom/movable/screen/r_hand_hud_object
 	var/atom/movable/screen/l_hand_hud_object
 
+	/*
+	 * Screentips
+	 */
+	// UI for screentips that appear when you mouse over things.
+	var/atom/movable/screen/screentip/screentip_text
+
 	var/atom/movable/screen/lingchemdisplay
 
 	var/list/adding
@@ -36,9 +42,15 @@
 
 	. = ..()
 	owner = target
-	adding = list()
+	screentip_text = new /atom/movable/screen/screentip(src)
+	adding = list(screentip_text)
 	other = list()
 	setup(ui_style2icon(owner.client.prefs.UI_style), owner.client.prefs.UI_style_color, owner.client.prefs.UI_style_alpha)
+
+/datum/hud/Destroy()
+	qdel(screentip_text)
+	screentip_text = null
+	return ..()
 
 /*
  * Factory proc for generic screen objects.

@@ -12,6 +12,10 @@
 	html += "Color: <a href='byond://?_src_=prefs;preference=uipreferences;task=UIcolor'><b>[UI_style_color]</b></a> <font face='fixedsys' size='3' color='[UI_style_color]'><table style='display:inline;' bgcolor='[UI_style_color]'><tr><td>__</td></tr></font></table>"
 	html += "<br>"
 	html += "Alpha (transparency): <a href='byond://?_src_=prefs;preference=uipreferences;task=UIalpha'><b>[UI_style_alpha]</b></a>"
+	html += "<br>"
+	html += "<b>Screentips:</b> <a href='byond://?_src_=prefs;preference=uipreferences;task=screentip_pref'>[screentip_pref ? "Enabled" : "Disabled"]</a>"
+	html += "<br>"
+	html += "<b>Screentip Colour:</b> <span style='border:1px solid #161616; background-color: [screentip_colour];'>&nbsp;&nbsp;&nbsp;</span> <a href='byond://?_src_=prefs;preference=uipreferences;task=screentip_colour'>Change</a>"
 	html += "<hr>"
 
 	html += "<b>Play admin midis:</b> <a href='byond://?_src_=prefs;preference=uipreferences;task=hear_midis'><b>[(toggles & SOUND_MIDI) ? "Yes" : "No"]</b></a>"
@@ -28,7 +32,7 @@
 	html += "<a href='byond://?src=\ref[user];preference=uipreferences;task=close'>\[Done\]</a>"
 	html += "</div>"
 
-	var/datum/browser/panel = new /datum/browser(user, "uipreferences", "", 300, 320)
+	var/datum/browser/panel = new /datum/browser(user, "uipreferences", "", 300, 350)
 	panel.set_content(html)
 	panel.open()
 
@@ -62,6 +66,15 @@
 			if(!UI_style_alpha_new || !(UI_style_alpha_new <= 255 && UI_style_alpha_new >= 50))
 				return
 			UI_style_alpha = UI_style_alpha_new
+
+		if("screentip_pref")
+			screentip_pref = !screentip_pref
+			ui_preferences_panel(user)
+		if("screentip_colour")
+			var/picked_screentip_colour = input(user, "Choose your screentip colour.", "General Preference", screentip_colour) as color | null
+			if(isnotnull(picked_screentip_colour))
+				screentip_colour = picked_screentip_colour
+				ui_preferences_panel(user)
 
 		if("hear_midis")
 			toggles ^= SOUND_MIDI

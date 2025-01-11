@@ -608,6 +608,7 @@ window "mainwindow"
 		anchor2 = -1,-1
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
+		statusbar = false
 		is-maximized = true
 		icon = 'icons\\ss13_64.png'
 		macro = "macro"
@@ -636,6 +637,7 @@ window "mapwindow"
 		can-minimize = false
 		can-resize = false
 		is-pane = true
+		on-status = ".winset \"status_bar.text=[[*]]\" "
 	elem "map"
 		type = MAP
 		pos = 0,0
@@ -648,6 +650,13 @@ window "mapwindow"
 		saved-params = "icon-size"
 		on-show = ".winset\"mainwindow.mainvsplit.left=mapwindow\""
 		on-hide = ".winset\"mainwindow.mainvsplit.left=\""
+	elem "status_bar"
+		type = LABEL
+		pos = 0,464
+		size = 360x16
+		anchor1 = 0,100
+		text = ""
+		align = left
 
 window "outputwindow"
 	elem "outputwindow"
