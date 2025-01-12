@@ -65,4 +65,6 @@
 	if(prefs.lastchangelog != GLOBL.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 
+	fit_viewport() // Adjusts the viewport to make it fit by default.
+
 #undef MIN_CLIENT_VERSION

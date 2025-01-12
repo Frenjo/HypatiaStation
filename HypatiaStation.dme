@@ -210,6 +210,7 @@
 #include "code\game\client\preferences\panels\special_roles.dm"
 #include "code\game\client\preferences\panels\ui_preferences.dm"
 #include "code\game\client\verbs\ooc.dm"
+#include "code\game\client\verbs\viewport.dm"
 #include "code\game\client\verbs\who.dm"
 #include "code\game\datums\beam.dm"
 #include "code\game\datums\browser.dm"
