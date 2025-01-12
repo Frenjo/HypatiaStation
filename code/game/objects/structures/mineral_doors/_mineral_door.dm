@@ -103,20 +103,23 @@
 	else
 		icon_state = material.icon_prefix
 
-/obj/structure/mineral_door/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/pickaxe))
-		var/obj/item/pickaxe/digTool = W
-		to_chat(user, "You start digging the [name].")
-		if(do_after(user, digTool.digspeed * hardness) && src)
-			to_chat(user, "You finished digging.")
+/obj/structure/mineral_door/attack_tool(obj/item/tool, mob/user)
+	if(istype(tool, /obj/item/pickaxe))
+		var/obj/item/pickaxe/P = tool
+		to_chat(user, SPAN_INFO("You start [P.drill_verb] \the [src]."))
+		if(do_after(user, P.dig_time * hardness))
+			to_chat(user, SPAN_INFO("You finish [P.drill_verb] \the [src]."))
 			Dismantle()
-	else if(isitem(W)) //not sure, can't not just weapons get passed to this proc?
+		return TRUE
+	return ..()
+
+/obj/structure/mineral_door/attackby(obj/item/W, mob/user)
+	if(!HAS_ITEM_FLAGS(W, ITEM_FLAG_NO_BLUDGEON)) //not sure, can't not just weapons get passed to this proc?
 		hardness -= W.force / 100
 		to_chat(user, "You hit the [name] with your [W.name]!")
 		CheckHardness()
 	else
 		attack_hand(user)
-	return
 
 /obj/structure/mineral_door/proc/CheckHardness()
 	if(hardness <= 0)

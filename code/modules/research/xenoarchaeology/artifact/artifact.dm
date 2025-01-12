@@ -74,20 +74,20 @@
 	if(istype(I, /obj/item/pickaxe))
 		var/obj/item/pickaxe/P = I
 
-		if(last_act + P.digspeed > world.time)//prevents message spam
+		if(last_act + P.dig_time > world.time)//prevents message spam
 			return
 		last_act = world.time
 
-		to_chat(user, SPAN_WARNING("You start [P.drill_verb] [src]."))
+		to_chat(user, SPAN_INFO("You start [P.drill_verb] \the [src]."))
 
-		if(!do_after(user, P.digspeed))
+		if(!do_after(user, P.dig_time))
 			return
 
-		to_chat(user, SPAN_INFO("You finish [P.drill_verb] [src]."))
+		to_chat(user, SPAN_INFO("You finish [P.drill_verb] \the [src]."))
 		excavation_level += P.excavation_amount
 
 		if(excavation_level > 100)
-			//failure
+			// Failure!
 			user.visible_message(
 				SPAN_DANGER("\The [src] suddenly crumbles away."),
 				SPAN_WARNING("\The [src] has disintegrated under your onslaught, any secrets it was holding are long gone.")
@@ -96,7 +96,7 @@
 			return TRUE
 
 		if(prob(excavation_level))
-			//success
+			// Success!
 			if(artifact_find)
 				var/spawn_type = artifact_find.artifact_find_type
 				var/obj/O = new spawn_type(GET_TURF(src))
