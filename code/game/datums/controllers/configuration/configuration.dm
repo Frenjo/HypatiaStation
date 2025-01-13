@@ -62,7 +62,12 @@ CONTROLLER_DEF(configuration)
 
 /datum/controller/configuration/New()
 	. = ..()
-	init_entries()
+	// Initialises all configuration entries.
+	for_no_type_check(var/decl/configuration_entry/entry, GET_DECL_SUBTYPE_INSTANCES(/decl/configuration_entry))
+		if(isnull(entries_by_category[entry.category]))
+			entries_by_category[entry.category] = list()
+		var/list/category_entries = entries_by_category[entry.category]
+		category_entries.Add(entry.type)
 
 	// Generates the default example configuration files.
 	generate_default("gamemode_probabilities.txt")
@@ -78,12 +83,6 @@ CONTROLLER_DEF(configuration)
 
 /datum/controller/configuration/Destroy()
 	SHOULD_CALL_PARENT(FALSE)
-
-/datum/controller/configuration/proc/init_entries()
-	for_no_type_check(var/decl/configuration_entry/entry, GET_DECL_SUBTYPE_INSTANCES(/decl/configuration_entry))
-		if(isnull(entries_by_category[entry.category]))
-			entries_by_category[entry.category] = list()
-		entries_by_category[entry.category] += entry.type
 
 /datum/controller/configuration/proc/generate_default(file_name)
 	if(isnull(categories_by_file_name[file_name]))
@@ -115,17 +114,17 @@ CONTROLLER_DEF(configuration)
 
 	var/list/result = list()
 	var/list/lines = file2list(file_name)
-	for(var/t in lines)
-		if(isnull(t))
+	for(var/line in lines)
+		if(isnull(line))
 			continue
-		t = trim(t)
-		if(length(t) == 0 || copytext(t, 1, 2) == "#")
+		line = trim(line)
+		if(length(line) == 0 || copytext(line, 1, 2) == "#")
 			continue
-		var/pos = findtext(t, " ")
-		var/name = (pos ? lowertext(copytext(t, 1, pos)) : lowertext(t))
+		var/pos = findtext(line, " ")
+		var/name = (pos ? lowertext(copytext(line, 1, pos)) : lowertext(line))
 		if(isnull(name))
 			continue
-		var/value = (pos ? copytext(t, pos + 1) : null)
+		var/value = (pos ? copytext(line, pos + 1) : null)
 		result[name] = value
 	return result
 
@@ -142,8 +141,6 @@ CONTROLLER_DEF(configuration)
 				if(option != entry.name)
 					continue
 				switch(entry.value_type)
-					if(TYPE_NONE)
-						;
 					if(TYPE_BOOLEAN, TYPE_NUMERIC)
 						entry.value = text2num(value)
 					if(TYPE_STRING)
@@ -181,7 +178,7 @@ CONTROLLER_DEF(configuration)
 /datum/controller/configuration/proc/pick_mode(mode_name)
 	for(var/path in mode_cache)
 		var/datum/game_mode/mode = mode_cache[path]
-		if(mode.config_tag && mode.config_tag == mode_name)
+		if(isnotnull(mode.config_tag) && mode.config_tag == mode_name)
 			return mode
 	return mode_cache[/datum/game_mode/extended]
 
