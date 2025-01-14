@@ -38,11 +38,10 @@
 
 /datum/preferences/proc/process_ui_preferences_panel(mob/user, list/href_list)
 	switch(href_list["task"])
-		if("open")
-			ui_preferences_panel(user)
 		if("close")
 			user << browse(null, "window=uipreferences")
 			character_setup_panel(user)
+			return
 
 		if("ui")
 			switch(UI_style)
@@ -69,12 +68,10 @@
 
 		if("screentip_pref")
 			screentip_pref = !screentip_pref
-			ui_preferences_panel(user)
 		if("screentip_colour")
 			var/picked_screentip_colour = input(user, "Choose your screentip colour.", "General Preference", screentip_colour) as color | null
 			if(isnotnull(picked_screentip_colour))
 				screentip_colour = picked_screentip_colour
-				ui_preferences_panel(user)
 
 		if("hear_midis")
 			toggles ^= SOUND_MIDI
@@ -94,5 +91,7 @@
 
 		if("ghost_radio")
 			toggles ^= CHAT_GHOSTRADIO
+
+	ui_preferences_panel(user) // Refreshes the panel so things update.
 
 	return 1

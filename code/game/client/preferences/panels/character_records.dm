@@ -29,7 +29,7 @@
 
 	html += "<br>"
 	html += "<hr>"
-	html += "<a href=\"byond://?src=\ref[user];preference=records;records=-1\">\[Done\]</a>"
+	html += "<a href=\"byond://?src=\ref[user];preference=records;task=close\">\[Done\]</a>"
 	html += "</div>"
 
 	var/datum/browser/panel = new /datum/browser(user, "records", "", 360, 280)
@@ -37,37 +37,34 @@
 	panel.open()
 
 /datum/preferences/proc/process_character_records_panel(mob/user, list/href_list)
-	if(text2num(href_list["record"]) >= 1)
-		character_records_panel(user)
-		return
-	else
-		user << browse(null, "window=records")
+	switch(href_list["task"])
+		if("close")
+			user << browse(null, "window=records")
+			return
 
-	if(href_list["task"] == "med_record")
-		var/medmsg = input(usr,"Set your medical notes here.", "Medical Records", html_decode(med_record)) as message
-		if(medmsg != null)
-			medmsg = copytext(medmsg, 1, MAX_PAPER_MESSAGE_LEN)
-			medmsg = html_encode(medmsg)
+		if("med_record")
+			var/medmsg = input(usr,"Set your medical notes here.", "Medical Records", html_decode(med_record)) as message
+			if(medmsg != null)
+				medmsg = copytext(medmsg, 1, MAX_PAPER_MESSAGE_LEN)
+				medmsg = html_encode(medmsg)
 
-			med_record = medmsg
-			character_records_panel(user)
+				med_record = medmsg
 
-	if(href_list["task"] == "sec_record")
-		var/secmsg = input(usr, "Set your security notes here.", "Security Records", html_decode(sec_record)) as message
-		if(secmsg != null)
-			secmsg = copytext(secmsg, 1, MAX_PAPER_MESSAGE_LEN)
-			secmsg = html_encode(secmsg)
+		if("sec_record")
+			var/secmsg = input(usr, "Set your security notes here.", "Security Records", html_decode(sec_record)) as message
+			if(secmsg != null)
+				secmsg = copytext(secmsg, 1, MAX_PAPER_MESSAGE_LEN)
+				secmsg = html_encode(secmsg)
 
-			sec_record = secmsg
-			character_records_panel(user)
+				sec_record = secmsg
 
-	if(href_list["task"] == "gen_record")
-		var/genmsg = input(usr, "Set your employment notes here.", "Employment Records", html_decode(gen_record)) as message
-		if(genmsg != null)
-			genmsg = copytext(genmsg, 1, MAX_PAPER_MESSAGE_LEN)
-			genmsg = html_encode(genmsg)
+		if("gen_record")
+			var/genmsg = input(usr, "Set your employment notes here.", "Employment Records", html_decode(gen_record)) as message
+			if(genmsg != null)
+				genmsg = copytext(genmsg, 1, MAX_PAPER_MESSAGE_LEN)
+				genmsg = html_encode(genmsg)
 
-			gen_record = genmsg
-			character_records_panel(user)
+				gen_record = genmsg
 
+	character_records_panel(user) // Refreshes the panel so things update.
 	return 1

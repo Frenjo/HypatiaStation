@@ -388,10 +388,6 @@
 				if("hear_adminhelps")
 					toggles ^= SOUND_ADMINHELP
 
-				if("be_special")
-					var/num = text2num(href_list["num"])
-					be_special ^= (1<<num)
-
 				if("name")
 					be_random_name = !be_random_name
 

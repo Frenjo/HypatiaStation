@@ -112,9 +112,10 @@
 	switch(href_list["task"])
 		if("close")
 			user << browse(null, "window=mob_occupation")
+			return
+
 		if("reset")
 			ResetJobs()
-			occupation_choices_panel(user)
 		if("input")
 			SetJob(user, href_list["text"])
 		if("random")
@@ -122,9 +123,6 @@
 				alternate_option += 1
 			else if(alternate_option == RETURN_TO_LOBBY)
 				alternate_option = 0
-			else
-				return 0
-			occupation_choices_panel(user)
 		if("alt_title")
 			var/datum/job/job = locate(href_list["job"])
 			if(job)
@@ -132,7 +130,6 @@
 				var/choice = input("Pick a title for [job.title].", "Character Generation", GetPlayerAltTitle(job)) as anything in choices | null
 				if(choice)
 					SetPlayerAltTitle(job, choice)
-					occupation_choices_panel(user)
-		else
-			occupation_choices_panel(user)
+
+	occupation_choices_panel(user) // Refreshes the panel so things update.
 	return 1

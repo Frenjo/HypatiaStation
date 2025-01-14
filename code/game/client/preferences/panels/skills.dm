@@ -38,8 +38,9 @@
 	if(href_list["cancel"])
 		user << browse(null, "window=show_skills")
 		character_setup_panel(user)
+		return
 
-	else if(href_list["skillinfo"])
+	if(href_list["skillinfo"])
 		var/decl/hierarchy/skill/S = locate(href_list["skillinfo"])
 		var/HTML = "<b>[S.name]</b><br>[S.desc]"
 		user << browse(HTML, "window=\ref[user]skillinfo")
@@ -49,7 +50,6 @@
 		var/value = text2num(href_list["newvalue"])
 		skills[S.type] = value
 		CalculateSkillPoints()
-		set_skills_panel(user)
 
 	else if(href_list["preconfigured"])
 		var/selected = input(user, "Select a skillset", "Skillset") as null | anything in GLOBL.skill_presets
@@ -63,13 +63,10 @@
 			skills[V] = GLOBL.skill_presets[selected][V]
 		CalculateSkillPoints()
 
-		set_skills_panel(user)
-
 	else if(href_list["setspecialization"])
 		skill_specialization = href_list["setspecialization"]
 		CalculateSkillPoints()
-		set_skills_panel(user)
-	else
-		set_skills_panel(user)
+
+	set_skills_panel(user)
 
 	return 1

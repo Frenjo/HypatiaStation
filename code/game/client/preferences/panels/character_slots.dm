@@ -32,6 +32,6 @@
 			load_character(text2num(href_list["num"]))
 
 	// Triggers both relevant panels to update after clicking an option.
-	character_slots_panel(user)
 	character_setup_panel(user)
+	character_slots_panel(user)
 	return TRUE
