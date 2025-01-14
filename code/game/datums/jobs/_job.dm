@@ -34,6 +34,8 @@
 	var/outfit
 	// List of alternate titles with alternate outfit typepaths as associative values, if any.
 	var/list/alt_titles
+	// Whether this job spawns with a loyalty implant.
+	var/has_loyalty_implant = FALSE
 
 	// The typepath of the specific survival kit provided to characters with this job, if there is one.
 	// Currently only used for engineering jobs.
@@ -46,7 +48,15 @@
 	if(isnotnull(alt_title) && alt_title != title)
 		outfit_type = alt_titles[alt_title]
 
-	return H.equip_outfit(outfit_type)
+	. = H.equip_outfit(outfit_type)
+
+	if(has_loyalty_implant)
+		var/obj/item/implant/loyalty/L = new /obj/item/implant/loyalty(H)
+		L.imp_in = H
+		L.implanted = TRUE
+		var/datum/organ/external/affected = H.organs_by_name["head"]
+		affected.implants.Add(L)
+		L.part = affected
 
 /datum/job/proc/equip_preview(mob/living/carbon/human/H, alt_title)
 	var/species = H.get_species()

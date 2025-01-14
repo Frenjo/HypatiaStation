@@ -27,18 +27,7 @@
 
 	outfit = /decl/hierarchy/outfit/job/security/hos
 	alt_titles = list("Security Commander")
-
-/datum/job/hos/equip(mob/living/carbon/human/H)
-	. = ..()
-
-	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(H)
-	L.imp_in = H
-	L.implanted = TRUE
-	var/datum/organ/external/affected = H.organs_by_name["head"]
-	affected.implants.Add(L)
-	L.part = affected
-
-	return 1
+	has_loyalty_implant = TRUE
 
 /*
  * Warden

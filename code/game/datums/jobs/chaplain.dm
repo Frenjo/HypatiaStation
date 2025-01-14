@@ -162,8 +162,6 @@
 		feedback_set_details("religion_deity", "[new_deity]")
 		feedback_set_details("religion_book", "[new_book_style]")
 
-	return 1
-
 // This one's very special snowflake.
 /datum/job/chaplain/equip_preview(mob/living/carbon/human/H, alt_title)
 	var/species = H.get_species()

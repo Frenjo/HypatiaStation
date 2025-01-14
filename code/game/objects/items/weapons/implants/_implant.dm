@@ -322,7 +322,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	desc = "Makes you loyal or such."
 
 /obj/item/implant/loyalty/get_data()
-	var/dat = {"
+	. = {"
 <b>Implant Specifications:</b><BR>
 <b>Name:</b> NanoTrasen Employee Management Implant<BR>
 <b>Life:</b> Ten years.<BR>
@@ -332,7 +332,6 @@ the implant may become unstable and either pre-maturely inject the subject or si
 <b>Function:</b> Contains a small pod of nanobots that manipulate the host's mental functions.<BR>
 <b>Special Features:</b> Will prevent and cure most forms of brainwashing.<BR>
 <b>Integrity:</b> Implant will last so long as the nanobots are inside the bloodstream."}
-	return dat
 
 /obj/item/implant/loyalty/implanted(mob/M)
 	if(!ishuman(M))

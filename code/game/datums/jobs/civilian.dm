@@ -21,7 +21,6 @@
 
 /datum/job/bartender/equip(mob/living/carbon/human/H)
 	. = ..()
-
 	var/obj/item/storage/box/barpack = new /obj/item/storage/box(H)
 	barpack.name = "bartender survival kit"
 	new /obj/item/ammo_casing/shotgun/beanbag(barpack)
@@ -32,8 +31,6 @@
 		H.equip_to_slot_or_del(barpack, SLOT_ID_R_HAND)
 	else
 		H.equip_to_slot_or_del(barpack, SLOT_ID_IN_BACKPACK)
-
-	return 1
 
 /*
  * Chef
@@ -165,10 +162,7 @@
 
 /datum/job/clown/equip(mob/living/carbon/human/H)
 	. = ..()
-
 	H.mutations.Add(MUTATION_CLUMSY)
-
-	return 1
 
 /*
  * Mime
@@ -192,14 +186,11 @@
 
 /datum/job/mime/equip(mob/living/carbon/human/H)
 	. = ..()
-
 	H.verbs.Add(/client/proc/mimespeak)
 	H.verbs.Add(/client/proc/mimewall)
 	H.mind.special_verbs.Add(/client/proc/mimespeak)
 	H.mind.special_verbs.Add(/client/proc/mimewall)
 	H.miming = TRUE
-
-	return 1
 
 /*
  * Mimewalls

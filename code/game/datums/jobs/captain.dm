@@ -18,18 +18,7 @@
 	minimal_player_age = 14
 
 	outfit = /decl/hierarchy/outfit/job/command/captain
-
-/datum/job/captain/equip(mob/living/carbon/human/H)
-	. = ..()
-
-	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(H)
-	L.imp_in = H
-	L.implanted = TRUE
-	var/datum/organ/external/affected = H.organs_by_name["head"]
-	affected.implants.Add(L)
-	L.part = affected
-
-	return 1
+	has_loyalty_implant = TRUE
 
 /datum/job/captain/get_access()
 	return get_all_station_access()
@@ -94,15 +83,4 @@
 	)
 
 	outfit = /decl/hierarchy/outfit/job/command/internal_affairs
-
-/datum/job/internal_affairs/equip(mob/living/carbon/human/H)
-	. = ..()
-
-	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(H)
-	L.imp_in = H
-	L.implanted = TRUE
-	var/datum/organ/external/affected = H.organs_by_name["head"]
-	affected.implants.Add(L)
-	L.part = affected
-
-	return 1
+	has_loyalty_implant = TRUE
