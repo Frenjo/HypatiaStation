@@ -1190,7 +1190,7 @@
 "PS" = (/obj/structure/rack,/obj/item/tank/emergency/oxygen/double,/obj/item/tank/emergency/oxygen/double,/obj/item/tank/emergency/oxygen/double,/obj/item/tank/emergency/oxygen/double,/obj/item/tank/emergency/oxygen/double,/obj/item/tank/emergency/oxygen/double,/obj/item/tank/emergency/oxygen/double,/obj/item/tank/emergency/oxygen/double,/obj/item/tank/emergency/oxygen/double,/obj/item/tank/emergency/oxygen/double,/obj/item/tank/emergency/oxygen/double,/obj/effect/decal/floor/industrial/vault,/turf/open/floor/tiled/dark,/area/centcom/specops)
 "PW" = (/obj/structure/stool/bed/chair{dir = 4},/turf/open/floor/carpet,/area/centcom/control)
 "PZ" = (/obj/structure/rack,/obj/item/clothing/under/color/red,/obj/item/clothing/shoes/brown,/obj/item/melee/energy/axe,/turf/open/floor/tiled/dark,/area/centcom/tdome)
-"Qb" = (/obj/structure/rack,/obj/item/grenade/smokebomb,/obj/item/grenade/smokebomb,/obj/item/grenade/smokebomb,/obj/effect/decal/floor/industrial/vault,/turf/open/floor/tiled/dark,/area/centcom/specops)
+"Qb" = (/obj/structure/rack,/obj/item/grenade/smoke,/obj/item/grenade/smoke,/obj/item/grenade/smoke,/obj/effect/decal/floor/industrial/vault,/turf/open/floor/tiled/dark,/area/centcom/specops)
 "Qc" = (/obj/machinery/embedded_controller/radio/simple_docking_controller{id_tag = "specopsshuttle_dock_centcom"; pixel_y = -25; tag_door = "specopsshuttle_dock_centcom_hatch"},/obj/effect/decal/floor/industrial/bot/vault,/turf/open/floor/tiled/dark,/area/centcom/specops)
 "Qe" = (/obj/effect/decal/floor/coloured/green{dir = 8},/turf/open/floor/holofloor{icon_state = "floor"},/area/special/holodeck/source/boxing_court)
 "Qi" = (/turf/closed/wall/shuttle{icon_state = "swallc2inv"},/area/shuttle/syndicate_elite/mothership)

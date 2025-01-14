@@ -165,7 +165,7 @@
 "li" = (/turf/open/floor/airless{icon_state = "white"},/area/space)
 "lj" = (/turf/open/floor/airless{icon_state = "derelict9"},/area/external/abandoned/derelict/hallway/secondary)
 "lk" = (/obj/structure/grille,/obj/item/shard,/obj/item/shard{icon_state = "medium"},/turf/open/floor/plating/metal/airless,/area/space)
-"lp" = (/obj/item/grenade/empgrenade,/obj/structure/table,/obj/structure/window/reinforced{dir = 4},/turf/open/floor/tiled/grey,/area/external/abandoned/derelict/bridge)
+"lp" = (/obj/item/grenade/emp,/obj/structure/table,/obj/structure/window/reinforced{dir = 4},/turf/open/floor/tiled/grey,/area/external/abandoned/derelict/bridge)
 "lA" = (/turf/closed/wall/steel,/area/external/abandoned/derelict/bridge)
 "lB" = (/obj/structure/grille,/turf/open/floor/plating/metal/airless,/area/space)
 "lN" = (/obj/item/shard{icon_state = "small"},/obj/item/shard{icon_state = "medium"},/turf/open/floor/plating/metal/airless,/area/external/abandoned/derelict/singularity_engine)

@@ -3,25 +3,25 @@
 	icon_state = "flashbang"
 	item_state = "flashbang"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/combat = 1)
+
 	var/banglet = 0
 
 /obj/item/grenade/flashbang/prime()
 	..()
-	for(var/obj/structure/closet/L in view(GET_TURF(src), null))
+	var/turf/T = GET_TURF(src)
+	for(var/obj/structure/closet/L in view(T, null))
 		if(locate(/mob/living/carbon, L))
 			for(var/mob/living/carbon/M in L)
-				bang(GET_TURF(src), M)
+				bang(T, M)
 
+	for(var/mob/living/carbon/M in viewers(T, null))
+		bang(T, M)
 
-	for(var/mob/living/carbon/M in viewers(GET_TURF(src), null))
-		bang(GET_TURF(src), M)
-
-	for(var/obj/effect/blob/B in view(8, GET_TURF(src)))		//Blob damage here
-		var/damage = round(30 / (get_dist(B, GET_TURF(src)) + 1))
+	for(var/obj/effect/blob/B in view(8, T))		//Blob damage here
+		var/damage = round(30 / (get_dist(B, T) + 1))
 		B.health -= damage
 		B.update_icon()
 	qdel(src)
-	return
 
 /obj/item/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)						// Added a new proc called 'bang' that takes a location and a person to be banged.
 	if (locate(/obj/item/cloaking_device, M))			// Called during the loop that bangs people in lockers/containers and when banging
@@ -37,12 +37,13 @@
 	var/ear_safety = 0
 	if(iscarbon(M))
 		eye_safety = M.eyecheck()
+		if(MUTATION_HULK in M.mutations)
+			ear_safety += 1
 		if(ishuman(M))
-			if(istype(M:l_ear, /obj/item/clothing/ears/earmuffs) || istype(M:r_ear, /obj/item/clothing/ears/earmuffs))
+			var/mob/living/carbon/human/H = M
+			if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) || istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
 				ear_safety += 2
-			if(MUTATION_HULK in M.mutations)
-				ear_safety += 1
-			if(istype(M:head, /obj/item/clothing/head/helmet))
+			if(istype(H.head, /obj/item/clothing/head/helmet))
 				ear_safety += 1
 
 //Flashing everyone

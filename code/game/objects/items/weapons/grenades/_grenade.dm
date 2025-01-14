@@ -1,14 +1,15 @@
 /obj/item/grenade
 	name = "grenade"
 	desc = "A hand held grenade, with an adjustable timer."
-	w_class = 2.0
 	icon = 'icons/obj/weapons/grenade.dmi'
 	icon_state = "grenade"
 	item_state = "flashbang"
+	w_class = 2
 	throw_speed = 4
 	throw_range = 20
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
+
 	var/active = 0
 	var/det_time = 50
 

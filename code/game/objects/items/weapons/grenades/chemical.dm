@@ -1,10 +1,10 @@
 /obj/item/grenade/chemical
 	name = "grenade casing"
+	desc = "A hand made chemical grenade."
 	icon_state = "chemg"
 	item_state = "flashbang"
-	desc = "A hand made chemical grenade."
-	w_class = 2.0
-	force = 2.0
+	w_class = 2
+	force = 2
 
 	var/stage = 0
 	var/state = 0

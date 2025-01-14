@@ -123,7 +123,7 @@
 
 	suit_store = /obj/item/tank/emergency/oxygen
 	l_pocket = /obj/item/melee/energy/sword
-	r_pocket = /obj/item/grenade/empgrenade
+	r_pocket = /obj/item/grenade/emp
 
 	l_ear = /obj/item/radio/headset/syndicate
 

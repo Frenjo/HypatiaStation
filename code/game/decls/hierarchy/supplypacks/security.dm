@@ -6,9 +6,9 @@
 	name = "Special Ops supplies"
 	contains = list(
 		/obj/item/storage/box/emps,
-		/obj/item/grenade/smokebomb,
-		/obj/item/grenade/smokebomb,
-		/obj/item/grenade/smokebomb,
+		/obj/item/grenade/smoke,
+		/obj/item/grenade/smoke,
+		/obj/item/grenade/smoke,
 		/obj/item/pen/paralysis,
 		/obj/item/grenade/chemical/incendiary
 	)

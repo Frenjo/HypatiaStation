@@ -72,7 +72,7 @@
 		/obj/item/pickaxe/silver, \
 		/obj/item/pen/invisible, \
 		/obj/item/lipstick/random, \
-		/obj/item/grenade/smokebomb, \
+		/obj/item/grenade/smoke, \
 		/obj/item/corncob, \
 		/obj/item/contraband/poster, \
 		/obj/item/book/manual/barman_recipes, \

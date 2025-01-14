@@ -74,7 +74,7 @@
 	icon_state = "flashbang"
 
 	starts_with = list(
-		/obj/item/grenade/empgrenade = 5
+		/obj/item/grenade/emp = 5
 	)
 
 // Tracking Implant Kit
