@@ -1,16 +1,16 @@
 /obj/item/lipstick
-	gender = PLURAL
 	name = "red lipstick"
 	desc = "A generic brand of lipstick."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "lipstick"
-	w_class = 1.0
+	gender = PLURAL
+	w_class = 1
 
 	var/colour = "red"
 	var/open = 0
 
 /obj/item/lipstick/attack_self(mob/user)
-	to_chat(user, SPAN_NOTICE("You twist \the [src] [open ? "closed" : "open"]."))
+	to_chat(user, SPAN_INFO("You twist \the [src] [open ? "closed" : "open"]."))
 	open = !open
 	if(open)
 		icon_state = "[initial(icon_state)]_[colour]"
@@ -27,29 +27,29 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.lip_style)	//if they already have lipstick on
-			to_chat(user, SPAN_NOTICE("You need to wipe off the old lipstick first!"))
+			to_chat(user, SPAN_WARNING("You need to wipe off the old lipstick first!"))
 			return
 		if(H == user)
 			user.visible_message(
-				SPAN_NOTICE("[user] does their lips with \the [src]."),
-				SPAN_NOTICE("You take a moment to apply \the [src]. Perfect!")
+				SPAN_INFO("[user] does their lips with \the [src]."),
+				SPAN_INFO("You take a moment to apply \the [src]. Perfect!")
 			)
 			H.lip_style = colour
 			H.update_body()
 		else
 			user.visible_message(
-				SPAN_WARNING("[user] begins to do [H]'s lips with \the [src]."),
-				SPAN_NOTICE("You begin to apply \the [src].")
+				SPAN_INFO("[user] begins to do [H]'s lips with \the [src]."),
+				SPAN_INFO("You begin to apply \the [src].")
 			)
 			if(do_after(user, 20) && do_after(H, 20, 5, 0))	//user needs to keep their active hand, H does not.
 				user.visible_message(
-					SPAN_NOTICE("[user] does [H]'s lips with \the [src]."),
-					SPAN_NOTICE("You apply \the [src].")
+					SPAN_INFO("[user] does [H]'s lips with \the [src]."),
+					SPAN_INFO("You apply \the [src].")
 				)
 				H.lip_style = colour
 				H.update_body()
 	else
-		to_chat(user, SPAN_NOTICE("Where are the lips on that?"))
+		to_chat(user, SPAN_WARNING("Where are the lips on that?"))
 
 /obj/item/lipstick/purple
 	name = "purple lipstick"
@@ -80,18 +80,18 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H == user)
-				to_chat(user, SPAN_NOTICE("You wipe off the lipstick with [src]."))
+				to_chat(user, SPAN_INFO("You wipe off the lipstick with \the [src]."))
 				H.lip_style = null
 				H.update_body()
 			else
 				user.visible_message(
-					SPAN_WARNING("[user] begins to wipe [H]'s lipstick off with \the [src]."),
-					SPAN_NOTICE("You begin to wipe off [H]'s lipstick.")
+					SPAN_INFO("[user] begins to wipe [H]'s lipstick off with \the [src]."),
+					SPAN_INFO("You begin to wipe off [H]'s lipstick.")
 				)
-				if(do_after(user, 10) && do_after(H, 10, 5, 0))	//user needs to keep their active hand, H does not.
+				if(do_after(user, 1 SECOND) && do_after(H, 1 SECOND, 5, 0))	//user needs to keep their active hand, H does not.
 					user.visible_message(
-						SPAN_NOTICE("[user] wipes [H]'s lipstick off with \the [src]."),
-						SPAN_NOTICE("You wipe off [H]'s lipstick.")
+						SPAN_INFO("[user] wipes [H]'s lipstick off with \the [src]."),
+						SPAN_INFO("You wipe off [H]'s lipstick.")
 					)
 					H.lip_style = null
 					H.update_body()

@@ -9,7 +9,7 @@
 /obj/item/pai_cable/proc/plugin(obj/machinery/M, mob/user)
 	if(!istype(M, /obj/machinery/door) && !istype(M, /obj/machinery/camera))
 		user.visible_message(
-			SPAN_NOTICE("[user] dumbly fumbles to find a place on \the [M] to plug in \the [src]."),
+			SPAN_WARNING("[user] dumbly fumbles to find a place on \the [M] to plug in \the [src]."),
 			SPAN_WARNING("There aren't any ports on \the [M] that match the jack belonging to \the [src].")
 		)
 		return FALSE

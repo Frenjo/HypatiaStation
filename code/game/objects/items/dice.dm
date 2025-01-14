@@ -11,12 +11,6 @@
 	. = ..()
 	icon_state = "[name][rand(sides)]"
 
-/obj/item/dice/d20
-	name = "d20"
-	desc = "A dice with twenty sides."
-	icon_state = "d2020"
-	sides = 20
-
 /obj/item/dice/attack_self(mob/user)
 	var/result = rand(1, sides)
 	var/comment = ""
@@ -25,6 +19,14 @@
 	else if(sides == 20 && result == 1)
 		comment = "Ouch, bad luck."
 	icon_state = "[name][result]"
-	user.visible_message("<span class='notice'>[user] has thrown [src]. It lands on [result]. [comment]</span>", \
-						 "<span class='notice'>You throw [src]. It lands on a [result]. [comment]</span>", \
-						 "<span class='notice'>You hear [src] landing on a [result]. [comment]</span>")
+	user.visible_message(
+		SPAN_NOTICE("[user] has thrown \the [src]. It lands on [result]. [comment]"),
+		SPAN_NOTICE("You throw \the [src]. It lands on a [result]. [comment]"),
+		SPAN_INFO("You hear a [src] landing.")
+	)
+
+/obj/item/dice/d20
+	name = "d20"
+	desc = "A dice with twenty sides."
+	icon_state = "d2020"
+	sides = 20
