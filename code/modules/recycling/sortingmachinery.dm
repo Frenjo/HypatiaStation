@@ -16,7 +16,7 @@
 			var/obj/structure/closet/O = wrapped
 			O.welded = 0
 	var/turf/T = GET_TURF(src)
-	for(var/atom/movable/AM in contents)
+	for_no_type_check(var/atom/movable/AM, src)
 		AM.loc = T
 	return ..()
 
@@ -224,8 +224,7 @@
 		trunk.linked = src	// link the pipe trunk to self
 
 /obj/machinery/disposal/delivery_chute/Destroy()
-	if(trunk)
-		trunk.linked = null
+	trunk?.linked = null
 	return ..()
 
 /obj/machinery/disposal/delivery_chute/interact()

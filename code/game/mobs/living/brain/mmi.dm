@@ -24,8 +24,7 @@
 		var/mob/living/silicon/robot/borg = loc
 		borg.mmi = null
 	if(isnotnull(brainmob))
-		qdel(brainmob)
-		brainmob = null
+		QDEL_NULL(brainmob)
 	return ..()
 
 /obj/item/mmi/attack_by(obj/item/I, mob/user)

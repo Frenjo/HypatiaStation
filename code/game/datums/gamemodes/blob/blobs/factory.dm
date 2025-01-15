@@ -6,7 +6,7 @@
 	brute_resist = 1
 	fire_resist = 2
 
-	var/list/spores = list()
+	var/list/mob/living/simple/hostile/blobspore/spores = list()
 	var/max_spores = 4
 
 /obj/effect/blob/factory/update_icon()
@@ -21,7 +21,7 @@
 	return 1
 
 /obj/effect/blob/factory/Destroy()
-	for(var/mob/living/simple/hostile/blobspore/spore in spores)
+	for_no_type_check(var/mob/living/simple/hostile/blobspore/spore, spores)
 		if(spore.factory == src)
 			spore.factory = null
 	return ..()

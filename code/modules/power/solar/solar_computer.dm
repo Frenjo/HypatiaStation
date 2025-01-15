@@ -30,7 +30,7 @@
 	var/trackrate = 600		// 300-900 seconds
 	var/nexttime = 0		// time for a panel to rotate of 1° in manual tracking
 	var/obj/machinery/power/tracker/connected_tracker = null
-	var/list/connected_panels = list()
+	var/list/obj/machinery/power/solar/connected_panels = list()
 
 /obj/machinery/power/solar_control/initialise()
 	. = ..()
@@ -40,7 +40,7 @@
 	connect_to_network()
 
 /obj/machinery/power/solar_control/Destroy()
-	for(var/obj/machinery/power/solar/M in connected_panels)
+	for_no_type_check(var/obj/machinery/power/solar/M, connected_panels)
 		M.unset_control()
 	connected_tracker?.unset_control()
 	return ..()
@@ -253,7 +253,7 @@
 	updateDialog()
 
 /obj/machinery/power/solar_control/proc/set_panels(cdir)
-	for(var/obj/machinery/power/solar/S in connected_panels)
+	for_no_type_check(var/obj/machinery/power/solar/S, connected_panels)
 		S.adir = cdir //instantly rotates the panel
 		S.occlusion()//and
 		S.update_icon() //update it

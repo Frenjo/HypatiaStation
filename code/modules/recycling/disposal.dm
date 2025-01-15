@@ -45,8 +45,7 @@
 
 /obj/machinery/disposal/Destroy()
 	eject()
-	if(trunk)
-		trunk.linked = null
+	trunk?.linked = null
 	return ..()
 
 // attack by item places it in to disposal

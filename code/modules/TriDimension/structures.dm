@@ -22,7 +22,7 @@
 
 /obj/multiz/ladder/Destroy()
 	spawn(1)
-		if(target && icon_state == "ladderdown")
+		if(isnotnull(target) && icon_state == "ladderdown")
 			qdel(target)
 	return ..()
 

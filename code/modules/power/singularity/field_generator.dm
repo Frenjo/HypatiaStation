@@ -181,7 +181,7 @@ field_generator power level display
 	return 0
 
 /obj/machinery/field_generator/Destroy()
-	src.cleanup()
+	cleanup()
 	return ..()
 
 /obj/machinery/field_generator/proc/turn_off()

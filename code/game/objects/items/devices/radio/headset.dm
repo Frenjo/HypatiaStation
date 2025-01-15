@@ -27,10 +27,8 @@
 	recalculateChannels()
 
 /obj/item/radio/headset/Destroy()
-	keyslot1 = null
-	keyslot2 = null
-	qdel(keyslot1)
-	qdel(keyslot2)
+	QDEL_NULL(keyslot1)
+	QDEL_NULL(keyslot2)
 	return ..()
 
 /obj/item/radio/headset/receive_range(freq, level)

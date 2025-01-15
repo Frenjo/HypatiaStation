@@ -76,7 +76,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	GLOBL.cable_list.Add(src) //add it to the global cable list
 
 /obj/structure/cable/Destroy()					// called when a cable is deleted
-	if(powernet)
+	if(isnotnull(powernet))
 		cut_cable_from_powernet()				// update the powernets
 	GLOBL.cable_list.Remove(src)				//remove it from global cable list
 	return ..()									// then go ahead and delete the cable

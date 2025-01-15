@@ -15,7 +15,7 @@
 	blood_DNA = list()
 
 	var/base_icon = 'icons/effects/blood.dmi'
-	var/list/viruses = list()
+	var/list/datum/disease/viruses = list()
 	var/basecolor = "#A10808" // Color when wet.
 	var/list/datum/disease2/disease/virus2 = list()
 	var/amount = 5
@@ -38,7 +38,7 @@
 		dry()
 
 /obj/effect/decal/cleanable/blood/Destroy()
-	for(var/datum/disease/D in viruses)
+	for_no_type_check(var/datum/disease/D, viruses)
 		D.cure(0)
 	return ..()
 
@@ -188,7 +188,7 @@
 				var/obj/effect/decal/cleanable/blood/b = new /obj/effect/decal/cleanable/blood/splatter(src.loc)
 				b.basecolor = src.basecolor
 				b.update_icon()
-				for(var/datum/disease/D in src.viruses)
+				for_no_type_check(var/datum/disease/D, viruses)
 					var/datum/disease/ND = D.Copy(1)
 					b.viruses += ND
 					ND.holder = b

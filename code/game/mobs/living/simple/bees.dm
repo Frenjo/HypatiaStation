@@ -24,8 +24,7 @@
 	verbs -= /atom/movable/verb/pull
 
 /mob/living/simple/bee/Destroy()
-	if(parent)
-		parent.owned_bee_swarms.Remove(src)
+	parent?.owned_bee_swarms.Remove(src)
 	return ..()
 
 /mob/living/simple/bee/Life()

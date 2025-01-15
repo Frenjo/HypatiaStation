@@ -71,8 +71,7 @@
 	power_change()
 
 /obj/machinery/vending/Destroy()
-	qdel(coin)
-	coin = null
+	QDEL_NULL(coin)
 	return ..()
 
 /obj/machinery/vending/ex_act(severity)

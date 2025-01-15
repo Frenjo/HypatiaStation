@@ -19,8 +19,7 @@
 	pr_energy_relay.set_delay(equip_cooldown)
 
 /obj/item/mecha_part/equipment/tesla_energy_relay/Destroy()
-	qdel(pr_energy_relay)
-	pr_energy_relay = null
+	QDEL_NULL(pr_energy_relay)
 	return ..()
 
 /obj/item/mecha_part/equipment/tesla_energy_relay/detach()
@@ -136,8 +135,7 @@
 	init()
 
 /obj/item/mecha_part/equipment/generator/Destroy()
-	qdel(pr_mech_generator)
-	pr_mech_generator = null
+	QDEL_NULL(pr_mech_generator)
 	return ..()
 
 /obj/item/mecha_part/equipment/generator/proc/init()

@@ -85,8 +85,8 @@
 		time_coeff = coeff_diff
 
 /obj/machinery/robotics_fabricator/Destroy()
-	for(var/atom/A in src)
-		qdel(A)
+	for_no_type_check(var/atom/movable/mover, src)
+		qdel(mover)
 	return ..()
 
 /obj/machinery/robotics_fabricator/proc/operation_allowed(mob/M)

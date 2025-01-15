@@ -180,8 +180,7 @@
 
 /obj/machinery/porta_turret/Destroy()
 	// deletes its own cover with it
-	qdel(cover)
-	cover = null
+	QDEL_NULL(cover)
 	return ..()
 
 /obj/machinery/porta_turret/attack_ai(mob/user)

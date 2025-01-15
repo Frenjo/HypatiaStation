@@ -69,10 +69,8 @@
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/simple/Destroy()
-	if(node1)
-		node1.disconnect(src)
-	if(node2)
-		node2.disconnect(src)
+	node1?.disconnect(src)
+	node2?.disconnect(src)
 	return ..()
 
 /obj/machinery/atmospherics/pipe/simple/hide(i)

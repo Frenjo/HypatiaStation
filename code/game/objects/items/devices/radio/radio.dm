@@ -44,8 +44,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	wires = new(src)
 
 /obj/item/radio/Destroy()
-	qdel(wires)
-	wires = null
+	QDEL_NULL(wires)
 	unregister_radio(src, frequency)
 	for(var/ch_name in channels)
 		unregister_radio(src, GLOBL.radio_channels[ch_name])

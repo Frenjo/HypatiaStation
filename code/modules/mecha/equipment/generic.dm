@@ -21,8 +21,7 @@
 
 /obj/item/mecha_part/equipment/repair_droid/Destroy()
 	chassis.overlays.Remove(droid_overlay)
-	qdel(pr_repair_droid)
-	pr_repair_droid = null
+	QDEL_NULL(pr_repair_droid)
 	return ..()
 
 /obj/item/mecha_part/equipment/repair_droid/attach(obj/mecha/M)

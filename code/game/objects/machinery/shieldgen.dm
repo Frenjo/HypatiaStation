@@ -149,12 +149,12 @@
 		var/health = max_health
 		var/active = 0
 		var/malfunction = 0 //Malfunction causes parts of the shield to slowly dissapate
-		var/list/deployed_shields = list()
+		var/list/obj/machinery/shield/deployed_shields = list()
 		var/is_open = 0 //Whether or not the wires are exposed
 		var/locked = 0
 
 /obj/machinery/shieldgen/Destroy()
-	for(var/obj/machinery/shield/shield_tile in deployed_shields)
+	for_no_type_check(var/obj/machinery/shield/shield_tile, deployed_shields)
 		qdel(shield_tile)
 	return ..()
 
@@ -177,7 +177,7 @@
 	src.active = 0
 	update_icon()
 
-	for(var/obj/machinery/shield/shield_tile in deployed_shields)
+	for_no_type_check(var/obj/machinery/shield/shield_tile, deployed_shields)
 		qdel(shield_tile)
 
 /obj/machinery/shieldgen/process()

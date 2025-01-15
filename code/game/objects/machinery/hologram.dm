@@ -181,7 +181,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	return
 
 /obj/machinery/hologram/Destroy()
-	if(hologram)
+	if(isnotnull(hologram))
 		src:clear_holo()
 	return ..()
 

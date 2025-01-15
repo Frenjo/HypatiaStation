@@ -13,14 +13,15 @@
 	cargo_capacity = 15
 
 /obj/mecha/working/ripley/Destroy()
+	var/turf/source_turf = GET_TURF(src)
 	for(var/mob/M in src)
 		if(M == occupant)
 			continue
-		M.loc = GET_TURF(src)
+		M.loc = source_turf
 		M.loc.Entered(M)
 		step_rand(M)
 	for(var/atom/movable/A in cargo)
-		A.loc = GET_TURF(src)
+		A.loc = source_turf
 		var/turf/T = GET_TURF(A)
 		T?.Entered(A)
 		step_rand(A)

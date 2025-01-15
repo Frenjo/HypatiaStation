@@ -73,8 +73,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 	set_opacity(0)
 
 	if(isnotnull(reagents))
-		qdel(reagents)
-		reagents = null
+		QDEL_NULL(reagents)
 
 	return ..()
 

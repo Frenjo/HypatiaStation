@@ -34,7 +34,7 @@ var/list/advance_cures = list(
 
 	// NEW VARS
 
-	var/list/symptoms = list() // The symptoms of the disease.
+	var/list/datum/symptom/symptoms = list() // The symptoms of the disease.
 	var/id = ""
 	var/processing = 0
 
@@ -60,7 +60,7 @@ var/list/advance_cures = list(
 		if(!D || !length(D.symptoms))
 			symptoms = GenerateSymptoms()
 		else
-			for(var/datum/symptom/S in D.symptoms)
+			for_no_type_check(var/datum/symptom/S, D.symptoms)
 				symptoms += new S.type
 
 	Refresh()
@@ -69,7 +69,7 @@ var/list/advance_cures = list(
 
 /datum/disease/advance/Destroy()
 	if(processing)
-		for(var/datum/symptom/S in symptoms)
+		for_no_type_check(var/datum/symptom/S, symptoms)
 			S.End(src)
 	return ..()
 
@@ -80,10 +80,10 @@ var/list/advance_cures = list(
 
 		if(!processing)
 			processing = 1
-			for(var/datum/symptom/S in symptoms)
+			for_no_type_check(var/datum/symptom/S, symptoms)
 				S.Start(src)
 
-		for(var/datum/symptom/S in symptoms)
+		for_no_type_check(var/datum/symptom/S, symptoms)
 			S.Activate(src)
 	else
 		CRASH("We do not have any symptoms during stage_act()!")
@@ -125,7 +125,7 @@ var/list/advance_cures = list(
 			AddSymptom(new S.type)
 
 /datum/disease/advance/proc/HasSymptom(datum/symptom/S)
-	for(var/datum/symptom/symp in symptoms)
+	for_no_type_check(var/datum/symptom/symp, symptoms)
 		if(symp.id == S.id)
 			return 1
 	return 0
@@ -181,7 +181,7 @@ var/list/advance_cures = list(
 
 	var/list/properties = list("resistance" = 1, "stealth" = 1, "stage_rate" = 1, "transmittable" = 1, "severity" = 1)
 
-	for(var/datum/symptom/S in symptoms)
+	for_no_type_check(var/datum/symptom/S, symptoms)
 
 		properties["resistance"] += S.resistance
 		properties["stealth"] += S.stealth
@@ -277,7 +277,7 @@ var/list/advance_cures = list(
 // Return a unique ID of the disease.
 /datum/disease/advance/proc/GetDiseaseID()
 	var/list/L = list()
-	for(var/datum/symptom/S in symptoms)
+	for_no_type_check(var/datum/symptom/S, symptoms)
 		L += S.id
 	L = sortList(L) // Sort the list so it doesn't matter which order the symptoms are in.
 	var/result = jointext(L, ":")
@@ -388,7 +388,7 @@ var/list/advance_cures = list(
 				break
 
 		var/list/name_symptoms = list()
-		for(var/datum/symptom/S in D.symptoms)
+		for_no_type_check(var/datum/symptom/S, D.symptoms)
 			name_symptoms += S.name
 		message_admins("[key_name_admin(user)] has triggered a custom virus outbreak of [D.name]! It has these symptoms: [english_list(name_symptoms)]")
 

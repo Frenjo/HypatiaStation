@@ -32,14 +32,12 @@
 /obj/machinery/atmospherics/unary/portables_connector/Destroy()
 	loc = null
 
-	if(isnotnull(connected_device))
-		connected_device.disconnect()
+	connected_device?.disconnect()
 
 	if(isnotnull(node))
 		node.disconnect(src)
 		qdel(network)
-
-	node = null
+		node = null
 
 	return ..()
 

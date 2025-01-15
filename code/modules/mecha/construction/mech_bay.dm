@@ -69,8 +69,7 @@
 	pr_recharger = new /datum/global_iterator/mech_bay_recharger(null, FALSE)
 
 /obj/machinery/mech_bay_recharge_port/Destroy()
-	qdel(pr_recharger)
-	pr_recharger = null
+	QDEL_NULL(pr_recharger)
 	return ..()
 
 /obj/machinery/mech_bay_recharge_port/proc/start_charge(obj/mecha/recharging_mecha)

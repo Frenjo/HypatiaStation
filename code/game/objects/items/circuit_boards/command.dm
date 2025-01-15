@@ -21,7 +21,7 @@
 			return .
 
 	for(var/mob/living/silicon/ai/shuttlecaller in GLOBL.player_list)
-		if(!shuttlecaller.stat && shuttlecaller.client && isturf(shuttlecaller.loc))
+		if(!shuttlecaller.stat && isnotnull(shuttlecaller.client) && isturf(shuttlecaller.loc))
 			return .
 
 	if(IS_GAME_MODE(/datum/game_mode/revolution) || IS_GAME_MODE(/datum/game_mode/malfunction) || GLOBL.sent_strike_team)

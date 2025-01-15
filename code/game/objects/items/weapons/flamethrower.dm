@@ -23,11 +23,11 @@
 	var/obj/item/tank/plasma/ptank = null
 
 /obj/item/flamethrower/Destroy()
-	if(weldtool)
+	if(isnotnull(weldtool))
 		qdel(weldtool)
-	if(igniter)
+	if(isnotnull(igniter))
 		qdel(igniter)
-	if(ptank)
+	if(isnotnull(ptank))
 		qdel(ptank)
 	return ..()
 

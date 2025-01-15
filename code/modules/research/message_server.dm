@@ -210,7 +210,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/message_server/message_servers)
 
 /obj/machinery/blackbox_recorder/Destroy()
 	var/turf/T = locate(1, 1, 2)
-	if(T)
+	if(isnotnull(T))
 		blackbox = null
 		var/obj/machinery/blackbox_recorder/box = new/obj/machinery/blackbox_recorder(T)
 		box.msg_common = msg_common

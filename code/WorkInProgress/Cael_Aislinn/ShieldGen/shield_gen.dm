@@ -20,7 +20,7 @@
 
 	var/active = 0
 	var/field_radius = 3
-	var/list/field
+	var/list/obj/effect/energy_field/field
 
 	var/locked = 0
 	var/average_field_strength = 0
@@ -45,7 +45,7 @@
 			break
 
 /obj/machinery/shield_gen/Destroy()
-	for(var/obj/effect/energy_field/D in field)
+	for_no_type_check(var/obj/effect/energy_field/D, field)
 		field.Remove(D)
 		D.loc = null
 	return ..()
@@ -160,7 +160,7 @@
 		average_field_strength = 0
 		target_field_strength = stored_renwicks / field.len
 
-		for(var/obj/effect/energy_field/E in field)
+		for_no_type_check(var/obj/effect/energy_field/E, field)
 			if(stored_renwicks)
 				var/strength_change = target_field_strength - E.strength
 				if(strength_change > stored_renwicks)
@@ -282,7 +282,7 @@
 		for(var/mob/M in view(5,src))
 			M << "\icon[src] You hear heavy droning start up."
 	else
-		for(var/obj/effect/energy_field/D in field)
+		for_no_type_check(var/obj/effect/energy_field/D, field)
 			field.Remove(D)
 			qdel(D)
 

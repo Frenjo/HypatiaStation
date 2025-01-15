@@ -101,14 +101,11 @@
 	area.power_change()
 	if(occupant)
 		malfvacate(1)
-	qdel(wires)
-	wires = null
-	if(cell)
-		qdel(cell)
-		cell = null
-	if(terminal)
-		qdel(terminal)
-		terminal = null
+	QDEL_NULL(wires)
+	if(isnotnull(cell))
+		QDEL_NULL(cell)
+	if(isnotnull(terminal))
+		QDEL_NULL(terminal)
 	return ..()
 
 /obj/machinery/power/apc/examine(mob/user)

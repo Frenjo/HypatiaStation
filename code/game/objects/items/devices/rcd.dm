@@ -39,8 +39,7 @@ RCD
 	desc = "An RCD. It currently holds [matter]/30 matter-units."
 
 /obj/item/rcd/Destroy()
-	qdel(spark_system)
-	spark_system = null
+	QDEL_NULL(spark_system)
 	return ..()
 
 /obj/item/rcd/attack_by(obj/item/I, mob/user)

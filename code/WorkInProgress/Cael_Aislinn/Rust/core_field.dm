@@ -30,7 +30,7 @@ Deuterium-tritium fusion: 4.5 x 10^7 K
 
 	var/obj/machinery/rust/rad_source/radiator
 	var/datum/gas_mixture/held_plasma = new
-	var/particle_catchers[13]
+	var/list/obj/effect/rust_particle_catcher/particle_catchers[13]
 
 	var/emp_overload = 0
 
@@ -296,7 +296,7 @@ Deuterium-tritium fusion: 4.5 x 10^7 K
 			//
 			changed = 7
 
-	for(var/obj/effect/rust_particle_catcher/catcher in particle_catchers)
+	for_no_type_check(var/obj/effect/rust_particle_catcher/catcher, particle_catchers)
 		catcher.UpdateSize()
 	return changed
 
@@ -429,7 +429,7 @@ Deuterium-tritium fusion: 4.5 x 10^7 K
 
 /obj/effect/rust_em_field/Destroy()
 	//radiate everything in one giant burst
-	for(var/obj/effect/rust_particle_catcher/catcher in particle_catchers)
+	for_no_type_check(var/obj/effect/rust_particle_catcher/catcher, particle_catchers)
 		qdel(catcher)
 	RadiateAll()
 

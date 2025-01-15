@@ -19,7 +19,7 @@
 		new /obj/item/mecha_part/tracking(src)
 
 /obj/mecha/medical/Destroy()
-	hud = null
+	QDEL_NULL(hud)
 	return ..()
 
 /obj/mecha/medical/moved_inside(mob/living/carbon/human/H)

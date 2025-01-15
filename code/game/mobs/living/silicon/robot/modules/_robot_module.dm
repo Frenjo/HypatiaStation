@@ -29,10 +29,8 @@
 	emag.name = "Placeholder Emag Item"
 
 /obj/item/robot_module/Destroy()
-	qdel(modules)
-	qdel(emag)
-	modules = null
-	emag = null
+	QDEL_NULL(modules)
+	QDEL_NULL(emag)
 	return ..()
 
 /obj/item/robot_module/proc/respawn_consumable(mob/living/silicon/robot/R)

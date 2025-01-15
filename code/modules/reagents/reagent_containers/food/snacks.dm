@@ -180,8 +180,9 @@
 
 /obj/item/reagent_holder/food/snacks/Destroy()
 	if(contents)
-		for(var/atom/movable/something in contents)
-			something.loc = GET_TURF(src)
+		var/turf/T = GET_TURF(src)
+		for_no_type_check(var/atom/movable/mover, src)
+			mover.loc = T
 	return ..()
 
 /obj/item/reagent_holder/food/snacks/attack_animal(mob/M)

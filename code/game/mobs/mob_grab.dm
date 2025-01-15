@@ -43,8 +43,7 @@
 	if(isnotnull(assailant))
 		assailant.client?.screen.Remove(hud)
 		assailant = null
-	qdel(hud)
-	hud = null
+	QDEL_NULL(hud)
 	destroying = TRUE // Stops us calling qdel(src) on dropped()
 	return ..()
 

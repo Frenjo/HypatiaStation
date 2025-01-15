@@ -77,8 +77,7 @@
 	update(0)
 
 /obj/machinery/light/Destroy()
-	var/area/A = GET_AREA(src)
-	if(isnotnull(A))
+	if(isnotnull(GET_AREA(src)))
 		on = FALSE
 	return ..()
 

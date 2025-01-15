@@ -9,10 +9,10 @@ var/list/datum/puddle/puddles = list()
 
 /datum/puddle/proc/process()
 	//to_world("DEBUG: Puddle process!")
-	for(var/obj/effect/liquid/L in liquid_objects)
+	for_no_type_check(var/obj/effect/liquid/L, liquid_objects)
 		L.spread()
 
-	for(var/obj/effect/liquid/L in liquid_objects)
+	for_no_type_check(var/obj/effect/liquid/L, liquid_objects)
 		L.apply_calculated_effect()
 
 	if(!length(liquid_objects))
@@ -24,8 +24,8 @@ var/list/datum/puddle/puddles = list()
 
 /datum/puddle/Destroy()
 	puddles -= src
-	for(var/obj/O in liquid_objects)
-		qdel(O)
+	for_no_type_check(var/obj/effect/liquid/L, liquid_objects)
+		qdel(L)
 	return ..()
 
 /client/proc/splash()
@@ -133,7 +133,7 @@ var/list/datum/puddle/puddles = list()
 	return 0
 
 /obj/effect/liquid/Destroy()
-	src.controller.liquid_objects.Remove(src)
+	controller.liquid_objects.Remove(src)
 	return ..()
 
 /obj/effect/liquid/proc/update_icon2()

@@ -28,8 +28,7 @@
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/tank/Destroy()
-	if(isnotnull(node1))
-		node1.disconnect(src)
+	node1?.disconnect(src)
 	return ..()
 
 /obj/machinery/atmospherics/pipe/tank/pipeline_expansion()

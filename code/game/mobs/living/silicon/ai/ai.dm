@@ -135,10 +135,7 @@
 
 /mob/living/silicon/ai/Destroy()
 	GLOBL.ai_list.Remove(src)
-
-	qdel(power_supply)
-	power_supply = null
-
+	QDEL_NULL(power_supply)
 	return ..()
 
 // displays the malf_ai information if the AI is the malf

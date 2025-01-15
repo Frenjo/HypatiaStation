@@ -44,9 +44,9 @@ ________________________________________________________________________________
 /obj/item/clothing/suit/space/space_ninja/Destroy()
 	if(affecting)//To make sure the window is closed.
 		affecting << browse(null, "window=hack spideros")
-	if(AI)//If there are AIs present when the ninja kicks the bucket.
+	if(isnotnull(AI))//If there are AIs present when the ninja kicks the bucket.
 		killai()
-	if(hologram)//If there is a hologram
+	if(isnotnull(hologram))//If there is a hologram
 		qdel(hologram.i_attached)//Delete it and the attached image.
 		qdel(hologram)
 	return ..()

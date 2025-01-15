@@ -77,7 +77,7 @@
 	update_icon()
 
 /obj/machinery/power/smes/Destroy()
-	if(terminal)
+	if(isnotnull(terminal))
 		disconnect_terminal()
 	return ..()
 

@@ -963,8 +963,8 @@
 
 /obj/item/pda/Destroy()
 	GLOBL.pda_list.Remove(src)
-	if(src.id && prob(90)) //IDs are kept in 90% of the cases
-		src.id.loc = GET_TURF(src)
+	if(isnotnull(id) && prob(90)) //IDs are kept in 90% of the cases
+		id.loc = GET_TURF(src)
 	return ..()
 
 /obj/item/pda/proc/available_pdas()

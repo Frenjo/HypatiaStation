@@ -17,7 +17,7 @@
 	SHOULD_CALL_PARENT(FALSE)
 
 /obj/effect/spacevine/Destroy()
-	if(master)
+	if(isnotnull(master))
 		master.vines -= src
 		master.growth_queue -= src
 	return ..()

@@ -35,8 +35,7 @@
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/vent/Destroy()
-	if(isnotnull(node1))
-		node1.disconnect(src)
+	node1?.disconnect(src)
 	return ..()
 
 /obj/machinery/atmospherics/pipe/vent/process()

@@ -20,7 +20,7 @@
 		qdel(src)
 
 /obj/item/alien_embryo/Destroy()
-	if(affected_mob)
+	if(isnotnull(affected_mob))
 		affected_mob.status_flags &= ~(XENO_HOST)
 		spawn(0)
 			RemoveInfectionImages(affected_mob)

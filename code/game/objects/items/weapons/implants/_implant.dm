@@ -47,8 +47,7 @@
 	malfunction = MALFUNCTION_PERMANENT
 
 /obj/item/implant/Destroy()
-	if(part)
-		part.implants.Remove(src)
+	part?.implants.Remove(src)
 	return ..()
 
 

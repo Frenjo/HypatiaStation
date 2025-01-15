@@ -36,8 +36,7 @@
 	update_icon()
 
 /obj/machinery/atmospherics/pipe/cap/Destroy()
-	if(isnotnull(node))
-		node.disconnect(src)
+	node?.disconnect(src)
 	return ..()
 
 /obj/machinery/atmospherics/pipe/cap/hide(i)

@@ -16,7 +16,7 @@
 	SHOULD_CALL_PARENT(FALSE)
 
 /obj/effect/biomass/Destroy()
-	if(master)
+	if(isnotnull(master))
 		master.vines -= src
 		master.growth_queue -= src
 	return ..()

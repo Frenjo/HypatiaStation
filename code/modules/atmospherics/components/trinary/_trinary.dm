@@ -65,16 +65,15 @@
 	if(isnotnull(node1))
 		node1.disconnect(src)
 		qdel(network1)
+		node1 = null
 	if(isnotnull(node2))
 		node2.disconnect(src)
 		qdel(network2)
+		node2 = null
 	if(isnotnull(node3))
 		node3.disconnect(src)
 		qdel(network3)
-
-	node1 = null
-	node2 = null
-	node3 = null
+		node3 = null
 
 	return ..()
 

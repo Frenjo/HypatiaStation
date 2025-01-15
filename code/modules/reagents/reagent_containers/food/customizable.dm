@@ -55,11 +55,11 @@
 	trash = /obj/item/trash/plate
 	bitesize = 2
 
-	var/list/ingredients = list()
+	var/list/obj/item/ingredients = list()
 
 /obj/item/reagent_holder/food/snacks/customizable/attackby(obj/item/W, mob/user)
 	var/sandwich_limit = 4
-	for(var/obj/item/O in ingredients)
+	for_no_type_check(var/obj/item/O, ingredients)
 		if(istype(O, /obj/item/reagent_holder/food/snacks/breadslice))
 			sandwich_limit += 4
 
@@ -117,7 +117,7 @@
 	w_class = n_ceil(clamp((length(ingredients) / 2), 1, 3))
 
 /obj/item/reagent_holder/food/snacks/customizable/Destroy()
-	for(var/obj/item/O in ingredients)
+	for_no_type_check(var/obj/item/O, ingredients)
 		qdel(O)
 	return ..()
 

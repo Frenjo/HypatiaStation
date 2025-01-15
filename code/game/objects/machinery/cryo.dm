@@ -20,7 +20,7 @@
 /obj/machinery/atmospherics/unary/cryo_cell/Destroy()
 	var/turf/T = loc
 	T.contents += contents
-	if(beaker)
+	if(isnotnull(beaker))
 		beaker.loc = get_step(loc, SOUTH) //Beaker is carefully ejected from the wreckage of the cryotube
 	return ..()
 

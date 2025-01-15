@@ -22,10 +22,10 @@
 	pr_mech_sleeper.set_delay(equip_cooldown)
 
 /obj/item/mecha_part/equipment/medical/sleeper/Destroy()
-	for(var/atom/movable/AM in src)
-		AM.forceMove(GET_TURF(src))
-	qdel(pr_mech_sleeper)
-	pr_mech_sleeper = null
+	var/turf/T = GET_TURF(src)
+	for_no_type_check(var/atom/movable/mover, src)
+		mover.forceMove(T)
+	QDEL_NULL(pr_mech_sleeper)
 	return ..()
 
 /obj/item/mecha_part/equipment/medical/sleeper/allow_drop()
@@ -259,8 +259,7 @@
 	synth = new /datum/global_iterator/mech_synth(list(src), 0)
 
 /obj/item/mecha_part/equipment/medical/syringe_gun/Destroy()
-	qdel(synth)
-	synth = null
+	QDEL_NULL(synth)
 	return ..()
 
 /obj/item/mecha_part/equipment/medical/syringe_gun/detach()
