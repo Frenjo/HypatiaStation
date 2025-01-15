@@ -90,7 +90,6 @@
 
 	excluded_equipment = list(
 		/obj/item/mecha_part/equipment/tool/hydraulic_clamp,
-		/obj/item/mecha_part/equipment/tool/safety_clamp,
 		/obj/item/mecha_part/equipment/tool/extinguisher,
 		/obj/item/mecha_part/equipment/tool/rcd,
 		/obj/item/mecha_part/equipment/tool/cable_layer

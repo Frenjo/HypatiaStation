@@ -108,7 +108,7 @@
 				occupant_message("Switched RCD to Construct Airlock.")
 
 /obj/item/mecha_part/equipment/tool/rcd/get_equip_info()
-	return "[..()] \[<a href='byond://?src=\ref[src];mode=0'>D</a>|<a href='byond://?src=\ref[src];mode=1'>C</a>|<a href='byond://?src=\ref[src];mode=2'>A</a>\]"
+	. = "[..()] \[<a href='byond://?src=\ref[src];mode=0'>D</a>|<a href='byond://?src=\ref[src];mode=1'>C</a>|<a href='byond://?src=\ref[src];mode=2'>A</a>\]"
 
 // Cable Layer
 /obj/item/mecha_part/equipment/tool/cable_layer

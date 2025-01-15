@@ -21,9 +21,7 @@
 	. = ..()
 
 /obj/item/mecha_part/equipment/melee_armour_booster/get_equip_info()
-	if(isnull(chassis))
-		return
-	return "<span style=\"color:[equip_ready ? "#0f0":"#f00"];\">*</span>&nbsp;[name]"
+	. = "<span style=\"color:[equip_ready ? "#0f0" : "#f00"];\">*</span>&nbsp;[name]"
 
 /obj/item/mecha_part/equipment/melee_armour_booster/proc/attack_react(mob/user)
 	if(!action_checks(src))
@@ -48,9 +46,7 @@
 	var/damage_coeff = 0.8
 
 /obj/item/mecha_part/equipment/ranged_armour_booster/get_equip_info()
-	if(isnull(chassis))
-		return
-	return "<span style=\"color:[equip_ready ? "#0f0":"#f00"];\">*</span>&nbsp;[name]"
+	. = "<span style=\"color:[equip_ready ? "#0f0" : "#f00"];\">*</span>&nbsp;[name]"
 
 /obj/item/mecha_part/equipment/ranged_armour_booster/proc/projectile_react()
 	if(!action_checks(src))

@@ -79,7 +79,7 @@
 
 /obj/mecha/working/ripley/deathripley/New()
 	. = ..()
-	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/tool/safety_clamp(src)
+	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/tool/hydraulic_clamp/safety(src)
 	ME.attach(src)
 
 /obj/mecha/working/ripley/mining

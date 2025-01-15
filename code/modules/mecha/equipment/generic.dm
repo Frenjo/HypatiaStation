@@ -35,9 +35,7 @@
 	. = ..()
 
 /obj/item/mecha_part/equipment/repair_droid/get_equip_info()
-	if(!chassis)
-		return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[name] - <a href='byond://?src=\ref[src];toggle_repairs=1'>[pr_repair_droid.active()?"Dea":"A"]ctivate</a>"
+	. = "<span style=\"color:[equip_ready ? "#0f0" : "#f00"];\">*</span>&nbsp;[name] - <a href='byond://?src=\ref[src];toggle_repairs=1'>[pr_repair_droid.active()?"Dea":"A"]ctivate</a>"
 
 /obj/item/mecha_part/equipment/repair_droid/Topic(href, href_list)
 	. = ..()
@@ -219,7 +217,7 @@
 			do_after_cooldown()
 
 /obj/item/mecha_part/equipment/gravcatapult/get_equip_info()
-	return "[..()] [mode == 1 ? "([locked || "Nothing"])" : null] \[<a href='byond://?src=\ref[src];mode=1'>S</a>|<a href='byond://?src=\ref[src];mode=2'>P</a>\]"
+	. = "[..()] [mode == 1 ? "([locked || "Nothing"])" : null] \[<a href='byond://?src=\ref[src];mode=1'>S</a>|<a href='byond://?src=\ref[src];mode=2'>P</a>\]"
 
 /obj/item/mecha_part/equipment/gravcatapult/Topic(href, href_list)
 	. = ..()

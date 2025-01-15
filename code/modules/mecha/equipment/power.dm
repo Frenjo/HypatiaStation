@@ -66,9 +66,7 @@
 			log_message("Deactivated.")
 
 /obj/item/mecha_part/equipment/tesla_energy_relay/get_equip_info()
-	if(!chassis)
-		return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[name] - <a href='byond://?src=\ref[src];toggle_relay=1'>[pr_energy_relay.active() ? "Dea" : "A"]ctivate</a>"
+	. = "<span style=\"color:[equip_ready ? "#0f0" : "#f00"];\">*</span>&nbsp;[name] - <a href='byond://?src=\ref[src];toggle_relay=1'>[pr_energy_relay.active() ? "Dea" : "A"]ctivate</a>"
 
 /*
 /obj/item/mecha_part/equipment/tesla_energy_relay/proc/dynusepower(amount)
@@ -159,24 +157,24 @@
 			log_message("Deactivated.")
 
 /obj/item/mecha_part/equipment/generator/get_equip_info()
-	var/output = ..()
-	if(output)
-		return "[output] \[[fuel]: [round(fuel.amount * fuel.perunit, 0.1)] cm<sup>3</sup>\] - <a href='byond://?src=\ref[src];toggle=1'>[pr_mech_generator.active() ? "Dea" : "A"]ctivate</a>"
+	. = ..()
+	if(.)
+		. = "[.] \[[fuel]: [round(fuel.amount * fuel.perunit, 0.1)] cm<sup>3</sup>\] - <a href='byond://?src=\ref[src];toggle=1'>[pr_mech_generator.active() ? "Dea" : "A"]ctivate</a>"
 
 /obj/item/mecha_part/equipment/generator/action(target)
 	if(chassis)
 		var/result = load_fuel(target)
 		var/message
 		if(isnull(result))
-			message = "<font color='red'>[fuel] traces in target minimal. [target] cannot be used as fuel.</font>"
+			message = SPAN_WARNING("[fuel] traces in target minimal. \The [target] cannot be used as fuel.")
 		else if(!result)
-			message = "Unit is full."
+			message = SPAN_WARNING("Unit is full.")
 		else
-			message = "[result] unit\s of [fuel] successfully loaded."
+			message = SPAN_INFO("[result] unit\s of [fuel] successfully loaded.")
 			send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",get_equip_info())
 		occupant_message(message)
 
-/obj/item/mecha_part/equipment/generator/proc/load_fuel(var/obj/item/stack/sheet/P)
+/obj/item/mecha_part/equipment/generator/proc/load_fuel(obj/item/stack/sheet/P)
 	if(P.type == fuel.type && P.amount)
 		var/to_load = max(max_fuel - fuel.amount * fuel.perunit, 0)
 		if(to_load)
@@ -187,15 +185,26 @@
 				return units
 		else
 			return 0
+	return null
 
-/obj/item/mecha_part/equipment/generator/attackby(weapon,mob/user)
-	var/result = load_fuel(weapon)
+/obj/item/mecha_part/equipment/generator/attack_by(obj/item/I, mob/user)
+	var/result = load_fuel(I)
 	if(isnull(result))
-		user.visible_message("[user] tries to shove [weapon] into [src]. What a dumb-ass.", "<font color='red'>[fuel] traces minimal. [weapon] cannot be used as fuel.</font>")
-	else if(!result)
-		user << "Unit is full."
-	else
-		user.visible_message("[user] loads [src] with [fuel].", "[result] unit\s of [fuel] successfully loaded.")
+		user.visible_message(
+			SPAN_WARNING("[user] tries to shove \the [I] into \the [src]. What a dumb-ass."),
+			SPAN_WARNING("[fuel] traces minimal. \The [I] cannot be used as fuel.")
+		)
+		return ..()
+
+	if(!result)
+		to_chat(user, SPAN_WARNING("Unit is full."))
+		return TRUE
+
+	user.visible_message(
+		SPAN_INFO("[user] loads \the [src] with [fuel]."),
+		SPAN_INFO("[result] unit\s of [fuel] successfully loaded.")
+	)
+	return TRUE
 
 /obj/item/mecha_part/equipment/generator/critfail()
 	. = ..()
@@ -205,11 +214,11 @@
 	var/datum/gas_mixture/GM = new /datum/gas_mixture()
 	if(prob(10))
 		T.assume_gas(/decl/xgm_gas/plasma, 100, 1500 + T0C)
-		T.visible_message("The [src] suddenly disgorges a cloud of heated plasma.")
+		T.visible_message(SPAN_WARNING("\The [src] suddenly disgorges a cloud of heated plasma."))
 		qdel(src)
 	else
 		T.assume_gas(/decl/xgm_gas/plasma, 5, istype(T) ? T.air.temperature : T20C)
-		T.visible_message("The [src] suddenly disgorges a cloud of plasma.")
+		T.visible_message(SPAN_WARNING("The [src] suddenly disgorges a cloud of plasma."))
 	T.assume_air(GM)
 
 /datum/global_iterator/mecha_generator/process(obj/item/mecha_part/equipment/generator/EG)

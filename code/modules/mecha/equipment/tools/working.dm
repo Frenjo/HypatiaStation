@@ -9,7 +9,9 @@
 	var/dam_force = 20
 	var/obj/mecha/working/cargo_holder
 
-/obj/item/mecha_part/equipment/tool/hydraulic_clamp/attach(obj/mecha/M)
+	var/is_safety_clamp = FALSE
+
+/obj/item/mecha_part/equipment/tool/hydraulic_clamp/attach(obj/mecha/working/M)
 	. = ..()
 	cargo_holder = M
 
@@ -28,8 +30,8 @@
 		var/obj/O = target
 		if(!O.anchored)
 			if(length(cargo_holder.cargo) < cargo_holder.cargo_capacity)
-				occupant_message("You lift [target] and start to load it into cargo compartment.")
-				chassis.visible_message("[chassis] lifts [target] and starts to load it into cargo compartment.")
+				occupant_message(SPAN_INFO("You lift \the [target] and start to load it into the cargo compartment."))
+				chassis.visible_message(SPAN_INFO("[chassis] lifts \the [target] and starts to load it into the cargo compartment."))
 				set_ready_state(0)
 				chassis.use_power(energy_drain)
 				O.anchored = TRUE
@@ -39,30 +41,45 @@
 						cargo_holder.cargo += O
 						O.loc = chassis
 						O.anchored = FALSE
-						occupant_message("<font color='blue'>[target] succesfully loaded.</font>")
+						occupant_message(SPAN_INFO_B("[target] succesfully loaded."))
 						log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - length(cargo_holder.cargo)]")
 					else
-						occupant_message("<font color='red'>You must hold still while handling objects.</font>")
+						occupant_message(SPAN_INFO("You must hold still while handling objects."))
 						O.anchored = initial(O.anchored)
 			else
-				occupant_message("<font color='red'>Not enough room in cargo compartment.</font>")
+				occupant_message(SPAN_WARNING("Not enough room in cargo compartment."))
 		else
-			occupant_message("<font color='red'>[target] is firmly secured.</font>")
+			occupant_message(SPAN_WARNING("[target] is firmly secured."))
 
 	else if(isliving(target))
 		var/mob/living/M = target
 		if(M.stat > 1)
 			return
+		var/pilot_message = null
+		var/radial_message = null
 		if(chassis.occupant.a_intent == "hurt")
-			M.take_overall_damage(dam_force)
-			M.adjustOxyLoss(round(dam_force / 2))
-			M.updatehealth()
-			occupant_message(SPAN_WARNING("You squeeze [target] with [name]. Something cracks."))
-			chassis.visible_message(SPAN_WARNING("[chassis] squeezes [target]."))
+			if(!is_safety_clamp)
+				M.take_overall_damage(dam_force)
+				M.adjustOxyLoss(round(dam_force / 2))
+				M.updatehealth()
+				pilot_message = SPAN_WARNING("You squeeze [target] with [name]. Something cracks.")
+				radial_message = SPAN_WARNING("[chassis] squeezes [target].")
+			else
+				pilot_message = SPAN_DANGER("You obliterate [target] with [name], leaving blood and guts everywhere!")
+				radial_message = SPAN_DANGER("[chassis] destroys [target] in an unholy fury!")
+		else if(chassis.occupant.a_intent == "disarm" && is_safety_clamp)
+			pilot_message = SPAN_DANGER("You tear [target]'s limbs off with [name]!")
+			radial_message = SPAN_DANGER("[chassis] rips [target]'s arms off!")
 		else
 			step_away(M, chassis)
-			occupant_message("You push [target] out of the way.")
-			chassis.visible_message("[chassis] pushes [target] out of the way.")
+			if(!is_safety_clamp)
+				pilot_message = SPAN_INFO("You push [target] out of the way.")
+				radial_message = SPAN_INFO("[chassis] pushes [target] out of the way.")
+			else
+				pilot_message = SPAN_WARNING("You smash into [target], sending them flying!")
+				radial_message = SPAN_WARNING("[chassis] tosses [target] like a piece of paper!")
+		chassis.occupant_message(pilot_message)
+		chassis.visible_message(radial_message)
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
 		do_after_cooldown()
@@ -70,68 +87,12 @@
 
 // Safety Clamp (Kill Clamp)
 // This is pretty much just for the death-ripley so that it is harmless.
-/obj/item/mecha_part/equipment/tool/safety_clamp
+/obj/item/mecha_part/equipment/tool/hydraulic_clamp/safety
 	name = "kill clamp"
 	desc = "An exosuit-mounted hydraulic clamp with KILL CAPABILITY. (Can be attached to: Working Exosuits)"
-	icon_state = "mecha_clamp"
-	equip_cooldown = 15
 	energy_drain = 0
 
-	var/dam_force = 0
-	var/obj/mecha/working/cargo_holder
-
-/obj/item/mecha_part/equipment/tool/safety_clamp/attach(obj/mecha/M)
-	. = ..()
-	cargo_holder = M
-
-/obj/item/mecha_part/equipment/tool/safety_clamp/action(atom/target)
-	if(!action_checks(target))
-		return
-	if(!cargo_holder)
-		return
-	if(isobj(target))
-		var/obj/O = target
-		if(!O.anchored)
-			if(length(cargo_holder.cargo) < cargo_holder.cargo_capacity)
-				chassis.occupant_message("You lift [target] and start to load it into cargo compartment.")
-				chassis.visible_message("[chassis] lifts [target] and starts to load it into cargo compartment.")
-				set_ready_state(0)
-				chassis.use_power(energy_drain)
-				O.anchored = TRUE
-				var/T = chassis.loc
-				if(do_after_cooldown(target))
-					if(T == chassis.loc && src == chassis.selected)
-						cargo_holder.cargo += O
-						O.loc = chassis
-						O.anchored = FALSE
-						chassis.occupant_message("<font color='blue'>[target] succesfully loaded.</font>")
-						chassis.log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - length(cargo_holder.cargo)]")
-					else
-						chassis.occupant_message("<font color='red'>You must hold still while handling objects.</font>")
-						O.anchored = initial(O.anchored)
-			else
-				chassis.occupant_message("<font color='red'>Not enough room in cargo compartment.</font>")
-		else
-			chassis.occupant_message("<font color='red'>[target] is firmly secured.</font>")
-
-	else if(isliving(target))
-		var/mob/living/M = target
-		if(M.stat > 1)
-			return
-		if(chassis.occupant.a_intent == "hurt")
-			chassis.occupant_message("\red You obliterate [target] with [name], leaving blood and guts everywhere.")
-			chassis.visible_message("\red [chassis] destroys [target] in an unholy fury.")
-		if(chassis.occupant.a_intent == "disarm")
-			chassis.occupant_message("\red You tear [target]'s limbs off with [name].")
-			chassis.visible_message("\red [chassis] rips [target]'s arms off.")
-		else
-			step_away(M,chassis)
-			chassis.occupant_message("You smash into [target], sending them flying.")
-			chassis.visible_message("[chassis] tosses [target] like a piece of paper.")
-		set_ready_state(0)
-		chassis.use_power(energy_drain)
-		do_after_cooldown()
-	return 1
+	is_safety_clamp = TRUE
 
 // Extinguisher
 /obj/item/mecha_part/equipment/tool/extinguisher
@@ -157,7 +118,7 @@
 		if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis, target) <= 1)
 			var/obj/o = target
 			o.reagents.trans_to(src, 200)
-			occupant_message("\blue Extinguisher refilled")
+			occupant_message(SPAN_INFO("Extinguisher refilled."))
 			playsound(chassis, 'sound/effects/refill.ogg', 50, 1, -6)
 		else
 			if(reagents.total_volume > 0)
@@ -192,7 +153,7 @@
 	return 1
 
 /obj/item/mecha_part/equipment/tool/extinguisher/get_equip_info()
-	return "[..()] \[[reagents.total_volume]\]"
+	. = "[..()] \[[reagents.total_volume]\]"
 
 /obj/item/mecha_part/equipment/tool/extinguisher/on_reagent_change()
 	return
