@@ -98,7 +98,7 @@
 	excluded_equipment.Remove(/obj/item/mecha_part/equipment/weapon)
 	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/weapon/energy/laser(src)
 	ME.attach(src)
-	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/explosive(src)
+	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/launcher/missile_rack(src)
 	ME.attach(src)
 
 /obj/mecha/working/hoverpod/shuttle

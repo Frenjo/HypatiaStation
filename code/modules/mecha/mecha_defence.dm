@@ -3,17 +3,17 @@
 ////////////////////////////////////////
 /obj/mecha/proc/take_damage(amount, type = "brute")
 	if(amount)
-		var/damage = absorbDamage(amount, type)
+		var/damage = absorb_damage(amount, type)
 		health -= damage
 		update_health()
-		log_append_to_last("Took [damage] points of damage. Damage type: \"[type]\".",1)
-	return
+		occupant_message(SPAN_DANGER("Taking damage!"))
+		log_append_to_last("Took [damage] points of damage. Damage type: \"[type]\".", 1)
 
-/obj/mecha/proc/absorbDamage(damage, damage_type)
-	return call((proc_res["dynabsorbdamage"]||src), "dynabsorbdamage")(damage, damage_type)
-
-/obj/mecha/proc/dynabsorbdamage(damage, damage_type)
-	return damage*(listgetindex(damage_absorption, damage_type) || 1)
+/obj/mecha/proc/absorb_damage(damage, damage_type)
+	var/coefficient = 1
+	if(damage_absorption[damage_type])
+		coefficient = damage_absorption[damage_type]
+	return damage * coefficient
 
 /obj/mecha/proc/update_health()
 	if(src.health > 0)
@@ -22,51 +22,64 @@
 		qdel(src)
 
 /obj/mecha/hitby(atom/movable/A) //wrapper
-	src.log_message("Hit by [A].", 1)
-	call((proc_res["dynhitby"]||src), "dynhitby")(A)
-	return
+	log_message("Hit by [A].", 1)
 
-/obj/mecha/proc/dynhitby(atom/movable/A)
+	var/deflection_chance = deflect_chance
+	var/damage_coefficient = 1
+	var/deflect_tracking_beacons = FALSE
+	for(var/obj/item/mecha_part/equipment/ranged_armour_booster/booster in equipment)
+		if(booster.projectile_react())
+			deflection_chance *= booster.deflect_coeff
+			damage_coefficient *= booster.damage_coeff
+			deflect_tracking_beacons = TRUE
+			break
+
 	if(istype(A, /obj/item/mecha_part/tracking))
-		A.forceMove(src)
-		src.visible_message("The [A] fastens firmly to [src].")
-		return
-	if(prob(src.deflect_chance) || ismob(A))
-		src.occupant_message("\blue The [A] bounces off the armor.")
-		src.visible_message("The [A] bounces off the [src.name] armor")
-		src.log_append_to_last("Armor saved.")
+		if(!deflect_tracking_beacons)
+			A.forceMove(src)
+			visible_message("The [A] fastens firmly to [src].")
+			return
+		else
+			deflection_chance = 100 // The tracking beacon will bounce off.
+
+	if(prob(deflection_chance) || ismob(A))
+		occupant_message(SPAN_INFO("\The [A] bounces off the armour."))
+		visible_message("\The [A] bounces off \the [src] armour.")
+		log_append_to_last("Armour saved.")
 		if(isliving(A))
 			var/mob/living/M = A
 			M.take_organ_damage(10)
 	else if(isobj(A))
 		var/obj/O = A
 		if(O.throwforce)
-			src.take_damage(O.throwforce)
-			src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
-	return
+			take_damage(round(O.throwforce * damage_coefficient))
+			check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
 
-/obj/mecha/bullet_act(var/obj/item/projectile/Proj) //wrapper
-	src.log_message("Hit by projectile. Type: [Proj.name]([Proj.flag]).", 1)
-	call((proc_res["dynbulletdamage"]||src), "dynbulletdamage")(Proj) //calls equipment
-	..()
-	return
+/obj/mecha/bullet_act(obj/item/projectile/bullet) //wrapper
+	log_message("Hit by projectile. Type: [bullet.name]([bullet.flag]).", 1)
+	var/deflection_chance = deflect_chance
+	var/damage_coefficient = 1
+	for(var/obj/item/mecha_part/equipment/ranged_armour_booster/booster in equipment)
+		if(booster.projectile_react())
+			deflection_chance *= booster.deflect_coeff
+			damage_coefficient *= booster.damage_coeff
+			break
 
-/obj/mecha/proc/dynbulletdamage(var/obj/item/projectile/Proj)
-	if(prob(src.deflect_chance))
-		src.occupant_message("\blue The armor deflects incoming projectile.")
-		src.visible_message("The [src.name] armor deflects the projectile")
-		src.log_append_to_last("Armor saved.")
+	if(prob(deflection_chance))
+		occupant_message(SPAN_INFO("The armour deflects the incoming projectile."))
+		visible_message("\The [src] armour deflects the projectile.")
+		log_append_to_last("Armour saved.")
 		return
+
 	var/ignore_threshold
-	if(Proj.flag == "taser")
+	if(bullet.flag == "taser")
 		use_power(200)
 		return
-	if(istype(Proj, /obj/item/projectile/energy/beam/pulse))
+	if(istype(bullet, /obj/item/projectile/energy/beam/pulse))
 		ignore_threshold = 1
-	src.take_damage(Proj.damage,Proj.flag)
-	src.check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST, MECHA_INT_SHORT_CIRCUIT), ignore_threshold)
-	Proj.on_hit(src)
-	return
+	take_damage(round(bullet.damage * damage_coefficient), bullet.flag)
+	check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST, MECHA_INT_SHORT_CIRCUIT), ignore_threshold)
+	bullet.on_hit(src)
 
 /obj/mecha/ex_act(severity)
 	src.log_message("Affected by explosion of severity: [severity].", 1)
@@ -129,23 +142,6 @@
 		src.log_message("Exposed to dangerous temperature.", 1)
 		src.take_damage(5, "fire")
 		src.check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL))
-	return
-
-/obj/mecha/proc/dynattackby(obj/item/W, mob/user)
-	src.log_message("Attacked by [W]. Attacker - [user]")
-	if(prob(src.deflect_chance))
-		user << "\red \The [W] bounces off [src.name]."
-		src.log_append_to_last("Armor saved.")
-/*
-		for (var/mob/V in viewers(src))
-			if(V.client && !(V.blinded))
-				V.show_message("The [W] bounces off [src.name] armor.", 1)
-*/
-	else
-		src.occupant_message("<font color='red'><b>[user] hits [src] with [W].</b></font>")
-		user.visible_message("<font color='red'><b>[user] hits [src] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
-		src.take_damage(W.force, W.damtype)
-		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
 	return
 
 ///////////////////////////////////

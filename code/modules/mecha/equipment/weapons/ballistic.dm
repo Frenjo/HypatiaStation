@@ -45,14 +45,14 @@
 	projectile_energy_cost = 20
 	fire_cooldown = 2
 
-/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack
+/obj/item/mecha_part/equipment/weapon/ballistic/launcher
 	var/missile_speed = 2
 	var/missile_range = 30
 
-/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/Fire(atom/movable/AM, atom/target, turf/aimloc)
+/obj/item/mecha_part/equipment/weapon/ballistic/launcher/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	AM.throw_at(target, missile_range, missile_speed)
 
-/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/explosive
+/obj/item/mecha_part/equipment/weapon/ballistic/launcher/missile_rack
 	name = "\improper SRM-8 missile rack"
 	icon_state = "mecha_missilerack"
 	projectile = /obj/item/missile
@@ -61,7 +61,7 @@
 	projectile_energy_cost = 1000
 	equip_cooldown = 60
 
-/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/explosive/Fire(atom/movable/AM, atom/target, turf/aimloc)
+/obj/item/mecha_part/equipment/weapon/ballistic/launcher/missile_rack/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	var/obj/item/missile/M = AM
 	M.primed = TRUE
 	. = ..()
@@ -80,7 +80,7 @@
 	else
 		..()
 
-/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang
+/obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang
 	name = "\improper SGL-6 grenade launcher"
 	icon_state = "mecha_grenadelnchr"
 	projectile = /obj/item/grenade/flashbang
@@ -92,24 +92,24 @@
 
 	var/det_time = 20
 
-/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang/Fire(atom/movable/AM, atom/target, turf/aimloc)
+/obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	. = ..()
 	var/obj/item/grenade/flashbang/F = AM
 	spawn(det_time)
 		F.prime()
 
-/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang/clusterbang//Because I am a heartless bastard -Sieve
+/obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang/clusterbang//Because I am a heartless bastard -Sieve
 	name = "\improper SOP-6 grenade launcher"
 	projectile = /obj/item/grenade/flashbang/clusterbang
 	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/gold = 6000, /decl/material/uranium = 6000)
 
-/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited/get_equip_info()//Limited version of the clusterbang launcher that can't reload
+/obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang/clusterbang/limited/get_equip_info()//Limited version of the clusterbang launcher that can't reload
 	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[chassis.selected == src ? "<b>" : "<a href='byond://?src=\ref[chassis];select_equip=\ref[src]'>"][name][chassis.selected == src ? "</b>" : "</a>"]\[[projectiles]\]"
 
-/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited/rearm()
+/obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang/clusterbang/limited/rearm()
 	return//Extra bit of security
 
-/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar
+/obj/item/mecha_part/equipment/weapon/ballistic/launcher/banana_mortar
 	name = "banana mortar"
 	icon_state = "mecha_bananamrtr"
 	construction_time = 300
@@ -122,18 +122,18 @@
 	projectile_energy_cost = 100
 	equip_cooldown = 20
 
-/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/can_attach(obj/mecha/combat/honk/M)
+/obj/item/mecha_part/equipment/weapon/ballistic/launcher/banana_mortar/can_attach(obj/mecha/combat/honk/M)
 	if(!istype(M))
 		return FALSE
 	return ..()
 
-/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar
+/obj/item/mecha_part/equipment/weapon/ballistic/launcher/banana_mortar/mousetrap_mortar
 	name = "mousetrap mortar"
 	icon_state = "mecha_mousetrapmrtr"
 	projectile = /obj/item/assembly/mousetrap
 	equip_cooldown = 10
 
-/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar/Fire(atom/movable/AM, atom/target, turf/aimloc)
+/obj/item/mecha_part/equipment/weapon/ballistic/launcher/banana_mortar/mousetrap_mortar/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	var/obj/item/assembly/mousetrap/M = AM
 	M.secured = TRUE
 	. = ..()

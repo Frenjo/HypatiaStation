@@ -39,7 +39,7 @@
 	. = ..()
 	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/weapon/ballistic/scattershot(src)
 	ME.attach(src)
-	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang/clusterbang(src)
+	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang/clusterbang(src)
 	ME.attach(src)
 	ME = new /obj/item/mecha_part/equipment/teleporter(src)
 	ME.attach(src)

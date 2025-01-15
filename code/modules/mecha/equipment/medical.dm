@@ -12,7 +12,7 @@
 	equip_cooldown = 20
 	salvageable = 0
 
-	var/mob/living/carbon/occupant = null
+	var/mob/living/carbon/patient = null
 	var/datum/global_iterator/pr_mech_sleeper
 	var/inject_amount = 10
 
@@ -42,7 +42,7 @@
 	if(target.buckled)
 		occupant_message(SPAN_WARNING("[target] will not fit into the sleeper because they are buckled to [target.buckled]."))
 		return
-	if(occupant)
+	if(isnotnull(patient))
 		occupant_message(SPAN_WARNING("The sleeper is already occupied"))
 		return
 	for(var/mob/living/carbon/slime/M in range(1, target))
@@ -56,11 +56,11 @@
 	if(do_after_cooldown(target))
 		if(chassis.loc != C || target.loc != T)
 			return
-		if(occupant)
+		if(isnotnull(patient))
 			occupant_message(SPAN_WARNING("The sleeper is already occupied!"))
 			return
 		target.forceMove(src)
-		occupant = target
+		patient = target
 		target.reset_view(src)
 		/*
 		if(target.client)
@@ -74,23 +74,23 @@
 		log_message("[target] loaded. Life support functions engaged.")
 
 /obj/item/mecha_part/equipment/medical/sleeper/proc/go_out()
-	if(isnull(occupant))
+	if(isnull(patient))
 		return
-	occupant.forceMove(GET_TURF(src))
-	occupant_message(SPAN_INFO("[occupant] ejected. Life support functions disabled."))
-	log_message(SPAN_INFO("[occupant] ejected. Life support functions disabled."))
-	occupant.reset_view()
+	patient.forceMove(GET_TURF(src))
+	occupant_message(SPAN_INFO("[patient] ejected. Life support functions disabled."))
+	log_message(SPAN_INFO("[patient] ejected. Life support functions disabled."))
+	patient.reset_view()
 	/*
 	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
 	*/
-	occupant = null
+	patient = null
 	pr_mech_sleeper.stop()
 	set_ready_state(1)
 
 /obj/item/mecha_part/equipment/medical/sleeper/detach()
-	if(isnotnull(occupant))
+	if(isnotnull(patient))
 		occupant_message(SPAN_WARNING("Unable to detach \the [src] - equipment occupied."))
 		return
 	pr_mech_sleeper.stop()
@@ -99,9 +99,9 @@
 /obj/item/mecha_part/equipment/medical/sleeper/get_equip_info()
 	. = ..()
 	if(.)
-		if(isnull(occupant))
+		if(isnull(patient))
 			return
-		. += "<br />\[Occupant: [occupant] (Health: [occupant.health]%)\]<br /><a href='byond://?src=\ref[src];view_stats=1'>View stats</a>|<a href='byond://?src=\ref[src];eject=1'>Eject</a>"
+		. += "<br />\[Occupant: [patient] (Health: [patient.health]%)\]<br /><a href='byond://?src=\ref[src];view_stats=1'>View stats</a>|<a href='byond://?src=\ref[src];eject=1'>Eject</a>"
 
 /obj/item/mecha_part/equipment/medical/sleeper/Topic(href, href_list)
 	. = ..()
@@ -109,18 +109,18 @@
 	if(new_filter.get("eject"))
 		go_out()
 	if(new_filter.get("view_stats"))
-		chassis.occupant << browse(get_occupant_stats(),"window=msleeper")
+		chassis.occupant << browse(get_patient_stats(),"window=msleeper")
 		onclose(chassis.occupant, "msleeper")
 		return
 	if(new_filter.get("inject"))
 		inject_reagent(new_filter.getType("inject", /datum/reagent), new_filter.getObj("source"))
 
-/obj/item/mecha_part/equipment/medical/sleeper/proc/get_occupant_stats()
-	if(isnull(occupant))
+/obj/item/mecha_part/equipment/medical/sleeper/proc/get_patient_stats()
+	if(isnull(patient))
 		return
 	return {"<html>
 				<head>
-				<title>[occupant] statistics</title>
+				<title>[patient] statistics</title>
 				<script language='javascript' type='text/javascript'>
 				[js_byjax]
 				</script>
@@ -132,11 +132,11 @@
 				<body>
 				<h3>Health statistics</h3>
 				<div id="lossinfo">
-				[get_occupant_dam()]
+				[get_patient_dam()]
 				</div>
 				<h3>Reagents in bloodstream</h3>
 				<div id="reagents">
-				[get_occupant_reagents()]
+				[get_patient_reagents()]
 				</div>
 				<div id="injectwith">
 				[get_available_reagents()]
@@ -144,9 +144,9 @@
 				</body>
 				</html>"}
 
-/obj/item/mecha_part/equipment/medical/sleeper/proc/get_occupant_dam()
+/obj/item/mecha_part/equipment/medical/sleeper/proc/get_patient_dam()
 	var/t1
-	switch(occupant.stat)
+	switch(patient.stat)
 		if(0)
 			t1 = "Conscious"
 		if(1)
@@ -155,17 +155,17 @@
 			t1 = "*dead*"
 		else
 			t1 = "Unknown"
-	return {"<font color="[occupant.health > 50 ? "blue" : "red"]"><b>Health:</b> [occupant.health]% ([t1])</font><br />
-				<font color="[occupant.bodytemperature > 50 ? "blue" : "red"]"><b>Core Temperature:</b> [occupant.bodytemperature-T0C]&deg;C ([occupant.bodytemperature*1.8-459.67]&deg;F)</font><br />
-				<font color="[occupant.getBruteLoss() < 60 ? "blue" : "red"]"><b>Brute Damage:</b> [occupant.getBruteLoss()]%</font><br />
-				<font color="[occupant.getOxyLoss() < 60 ? "blue" : "red"]"><b>Respiratory Damage:</b> [occupant.getOxyLoss()]%</font><br />
-				<font color="[occupant.getToxLoss() < 60 ? "blue" : "red"]"><b>Toxin Content:</b> [occupant.getToxLoss()]%</font><br />
-				<font color="[occupant.getFireLoss() < 60 ? "blue" : "red"]"><b>Burn Severity:</b> [occupant.getFireLoss()]%</font><br />
+	return {"<font color="[patient.health > 50 ? "blue" : "red"]"><b>Health:</b> [patient.health]% ([t1])</font><br />
+				<font color="[patient.bodytemperature > 50 ? "blue" : "red"]"><b>Core Temperature:</b> [patient.bodytemperature-T0C]&deg;C ([patient.bodytemperature*1.8-459.67]&deg;F)</font><br />
+				<font color="[patient.getBruteLoss() < 60 ? "blue" : "red"]"><b>Brute Damage:</b> [patient.getBruteLoss()]%</font><br />
+				<font color="[patient.getOxyLoss() < 60 ? "blue" : "red"]"><b>Respiratory Damage:</b> [patient.getOxyLoss()]%</font><br />
+				<font color="[patient.getToxLoss() < 60 ? "blue" : "red"]"><b>Toxin Content:</b> [patient.getToxLoss()]%</font><br />
+				<font color="[patient.getFireLoss() < 60 ? "blue" : "red"]"><b>Burn Severity:</b> [patient.getFireLoss()]%</font><br />
 				"}
 
-/obj/item/mecha_part/equipment/medical/sleeper/proc/get_occupant_reagents()
-	if(occupant.reagents)
-		for(var/datum/reagent/R in occupant.reagents.reagent_list)
+/obj/item/mecha_part/equipment/medical/sleeper/proc/get_patient_reagents()
+	if(isnotnull(patient.reagents))
+		for_no_type_check(var/datum/reagent/R, patient.reagents.reagent_list)
 			if(R.volume > 0)
 				. += "[R]: [round(R.volume, 0.01)]<br />"
 	return . || "None"
@@ -178,19 +178,19 @@
 				. += "<a href=\"?src=\ref[src];inject=\ref[R];source=\ref[SG]\">Inject [R.name]</a><br />"
 
 /obj/item/mecha_part/equipment/medical/sleeper/proc/inject_reagent(datum/reagent/R, obj/item/mecha_part/equipment/medical/syringe_gun/SG)
-	if(isnull(R) || isnull(occupant) || isnull(SG) || !(SG in chassis.equipment))
+	if(isnull(R) || isnull(patient) || isnull(SG) || !(SG in chassis.equipment))
 		return 0
 	var/to_inject = min(R.volume, inject_amount)
-	if(to_inject && occupant.reagents.get_reagent_amount(R.id) + to_inject <= inject_amount * 2)
-		occupant_message("Injecting [occupant] with [to_inject] units of [R.name].")
-		log_message("Injecting [occupant] with [to_inject] units of [R.name].")
-		SG.reagents.trans_id_to(occupant, R.id, to_inject)
+	if(to_inject && patient.reagents.get_reagent_amount(R.id) + to_inject <= inject_amount * 2)
+		occupant_message("Injecting [patient] with [to_inject] units of [R.name].")
+		log_message("Injecting [patient] with [to_inject] units of [R.name].")
+		SG.reagents.trans_id_to(patient, R.id, to_inject)
 		update_equip_info()
 
 /obj/item/mecha_part/equipment/medical/sleeper/update_equip_info()
 	if(..())
-		send_byjax(chassis.occupant, "msleeper.browser", "lossinfo", get_occupant_dam())
-		send_byjax(chassis.occupant, "msleeper.browser", "reagents", get_occupant_reagents())
+		send_byjax(chassis.occupant, "msleeper.browser", "lossinfo", get_patient_dam())
+		send_byjax(chassis.occupant, "msleeper.browser", "reagents", get_patient_reagents())
 		send_byjax(chassis.occupant, "msleeper.browser", "injectwith", get_available_reagents())
 		return 1
 
@@ -203,7 +203,7 @@
 		S.log_message("Deactivated.")
 		S.occupant_message(SPAN_WARNING("[src] deactivated - no power."))
 		return stop()
-	var/mob/living/carbon/M = S.occupant
+	var/mob/living/carbon/M = S.patient
 	if(isnull(M))
 		return
 	if(M.health > 0)

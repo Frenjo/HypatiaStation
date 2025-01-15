@@ -143,8 +143,8 @@
 			/obj/item/mecha_part/equipment/weapon/energy/taser,
 			/obj/item/mecha_part/equipment/weapon/ballistic/lmg,
 			/obj/item/mecha_part/equipment/weapon/honker,
-			/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar,
-			/obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/banana_mortar/mousetrap_mortar
+			/obj/item/mecha_part/equipment/weapon/ballistic/launcher/banana_mortar,
+			/obj/item/mecha_part/equipment/weapon/ballistic/launcher/banana_mortar/mousetrap_mortar
 		),
 		"Power Cells" = list(
 			/obj/item/cell

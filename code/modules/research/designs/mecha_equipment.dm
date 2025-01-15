@@ -148,7 +148,7 @@
 	desc = "Allows for the construction of SGL-6 Grenade Launcher."
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/combat = 3)
-	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang
+	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang
 	categories = list("Exosuit Weapons")
 
 /datum/design/clusterbang_launcher
@@ -156,5 +156,5 @@
 	desc = "A weapon that violates the Geneva Convention at 6 rounds per minute"
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 5, /datum/tech/syndicate = 3)
-	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/missile_rack/flashbang/clusterbang/limited
+	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang/clusterbang/limited
 	categories = list("Exosuit Weapons")

@@ -228,23 +228,29 @@
 	return ..()
 
 /obj/mecha/attackby(obj/item/W, mob/user)
-	call((proc_res["dynattackby"]||src), "dynattackby")(W, user)
-/*
-	src.log_message("Attacked by [W]. Attacker - [user]")
-	if(prob(src.deflect_chance))
-		user << "\red The [W] bounces off [src.name] armor."
-		src.log_append_to_last("Armor saved.")
-/*
-		for (var/mob/V in viewers(src))
-			if(V.client && !(V.blinded))
-				V.show_message("The [W] bounces off [src.name] armor.", 1)
-*/
-	else
-		src.occupant_message("<font color='red'><b>[user] hits [src] with [W].</b></font>")
-		user.visible_message("<font color='red'><b>[user] hits [src] with [W].</b></font>", "<font color='red'><b>You hit [src] with [W].</b></font>")
-		src.take_damage(W.force,W.damtype)
-		src.check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL,MECHA_INT_TANK_BREACH,MECHA_INT_CONTROL_LOST))
-*/
+	if(!HAS_ITEM_FLAGS(W, ITEM_FLAG_NO_BLUDGEON))
+		log_message("Attacked by [W]. Attacker - [user]")
+		var/deflection_chance = deflect_chance
+		var/damage_coefficient = 1
+		for(var/obj/item/mecha_part/equipment/melee_armour_booster/booster in equipment)
+			if(booster.attack_react(user))
+				deflection_chance *= booster.deflect_coeff
+				damage_coefficient *= booster.damage_coeff
+				break
+
+		if(prob(deflection_chance))
+			user.visible_message(
+				SPAN_WARNING("\The [W] bounces off of \the [src]'s armour."),
+				SPAN_WARNING("\The [W] bounces off of \the [src].")
+			)
+			log_append_to_last("Armour saved.")
+		else
+			user.visible_message(
+				SPAN_DANGER("[user] hits \the [src] with \the [W]."),
+				SPAN_DANGER("You hit \the [src] with \the [W].")
+			)
+			take_damage(round(W.force * damage_coefficient), W.damtype)
+			check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
 
 /*
 /obj/mecha/attack_ai(var/mob/living/silicon/ai/user)
