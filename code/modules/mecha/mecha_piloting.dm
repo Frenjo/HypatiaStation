@@ -34,7 +34,7 @@
 		SPAN_INFO("You start to climb into \the [src].")
 	)
 
-	if(do_after(user, 4 SECONDS))
+	if(do_after(user, 4 SECONDS, src))
 		if(isnull(occupant))
 			moved_inside(user)
 		else if(occupant != user)
