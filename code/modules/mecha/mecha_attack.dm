@@ -1,11 +1,29 @@
 /obj/mecha/attack_hand(mob/user)
 	log_message("Attack by hand/paw. Attacker - [user].", 1)
 
+	if(isliving(user))
+		var/mob/living/L = user
+		var/did_shock = FALSE
+		for(var/obj/item/mecha_part/equipment/melee_defence_shocker/shocker in equipment)
+			if(shocker.attack_react(L))
+				did_shock = TRUE
+				break
+		if(did_shock)
+			return
+
+	var/deflection_chance = deflect_chance
+	var/damage_coefficient = 1
+	for(var/obj/item/mecha_part/equipment/melee_armour_booster/booster in equipment)
+		if(booster.attack_react(user))
+			deflection_chance *= booster.deflect_coeff
+			damage_coefficient *= booster.damage_coeff
+			break
+
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(user))
-			if(!prob(deflect_chance))
-				take_damage(15)
+			if(!prob(deflection_chance))
+				take_damage(round(15 * damage_coefficient))
 				check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
 				playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
 				user.visible_message(
@@ -27,8 +45,8 @@
 			)
 			log_append_to_last("Armour saved.")
 		return
-	else if((MUTATION_HULK in user.mutations) && !prob(deflect_chance))
-		take_damage(15)
+	else if((MUTATION_HULK in user.mutations) && !prob(deflection_chance))
+		take_damage(round(15 * damage_coefficient))
 		check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
 		user.visible_message(
 			SPAN_DANGER("[user] hits \the [src], doing some damage."),
@@ -47,12 +65,21 @@
 
 /obj/mecha/attack_animal(mob/living/simple/user)
 	log_message("Attack by simple animal. Attacker - [user].", 1)
+
+	var/deflection_chance = deflect_chance
+	var/damage_coefficient = 1
+	for(var/obj/item/mecha_part/equipment/melee_armour_booster/booster in equipment)
+		if(booster.attack_react(user))
+			deflection_chance *= booster.deflect_coeff
+			damage_coefficient *= booster.damage_coeff
+			break
+
 	if(user.melee_damage_upper == 0)
 		user.emote("[user.friendly] [src]")
 	else
-		if(!prob(deflect_chance))
+		if(!prob(deflection_chance))
 			var/damage = rand(user.melee_damage_lower, user.melee_damage_upper)
-			take_damage(damage)
+			take_damage(round(damage * damage_coefficient))
 			check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
 			visible_message("\red <B>[user]</B> [user.attacktext] [src]!")
 			user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name]</font>")
@@ -70,6 +97,16 @@
 ////// AttackBy //////
 //////////////////////
 /obj/mecha/attack_tool(obj/item/tool, mob/user)
+	if(isliving(user)) // This needs to be moved to a future pre_attack() proc.
+		var/mob/living/L = user
+		var/did_shock = FALSE
+		for(var/obj/item/mecha_part/equipment/melee_defence_shocker/shocker in equipment)
+			if(shocker.attack_react(L))
+				did_shock = TRUE
+				break
+		if(did_shock)
+			return TRUE
+
 	if(iswrench(tool))
 		if(state == 1)
 			state = 2

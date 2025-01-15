@@ -12,14 +12,6 @@
 	var/deflect_coeff = 1.15
 	var/damage_coeff = 0.8
 
-/obj/item/mecha_part/equipment/melee_armour_booster/attach(obj/mecha/M)
-	. = ..()
-	chassis.proc_res["dynattackby"] = src
-
-/obj/item/mecha_part/equipment/melee_armour_booster/detach()
-	chassis.proc_res["dynattackby"] = null
-	. = ..()
-
 /obj/item/mecha_part/equipment/melee_armour_booster/get_equip_info()
 	. = "<span style=\"color:[equip_ready ? "#0f0" : "#f00"];\">*</span>&nbsp;[name]"
 
@@ -30,6 +22,42 @@
 	chassis.use_power(energy_drain)
 	do_after_cooldown()
 	return TRUE
+
+/obj/item/mecha_part/equipment/melee_defence_shocker
+	name = "armour module (melee defence shocker)"
+	desc = "Electrically charges exosuit armour to discourage melee attackers. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
+	icon_state = "melee_defence_shocker"
+	equip_cooldown = 10
+	energy_drain = 100
+	range = 0
+
+	var/active = FALSE
+	var/shock_damage = 15
+
+/obj/item/mecha_part/equipment/melee_defence_shocker/proc/attack_react(mob/living/user)
+	if(!active || !action_checks(src))
+		return FALSE
+	user.electrocute_act(shock_damage, src)
+	set_ready_state(0)
+	chassis.use_power(energy_drain)
+	do_after_cooldown()
+	return TRUE
+
+/obj/item/mecha_part/equipment/melee_defence_shocker/get_equip_info()
+	. = "<span style=\"color:[equip_ready ? "#0f0" : "#f00"];\">*</span>&nbsp;[name] - <a href='byond://?src=\ref[src];toggle_shocker=1'>[active ? "Dea" : "A"]ctivate</a>"
+
+/obj/item/mecha_part/equipment/melee_defence_shocker/Topic(href, list/href_list)
+	. = ..()
+	if(href_list["toggle_shocker"])
+		active = !active
+		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
+
+/obj/item/mecha_part/equipment/melee_defence_shocker/can_attach(obj/mecha/M)
+	var/has_shocker = FALSE
+	for(var/obj/item/mecha_part/equipment/melee_defence_shocker/shocker in M.equipment)
+		has_shocker = TRUE
+		break
+	return has_shocker ? FALSE : ..()
 
 // Ranged Armour Booster
 /obj/item/mecha_part/equipment/ranged_armour_booster

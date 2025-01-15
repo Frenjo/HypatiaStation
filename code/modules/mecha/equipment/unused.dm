@@ -99,35 +99,6 @@
 	return 1
 
 
-/obj/item/mecha_part/equipment/defence_shocker
-	name = "exosuit defence shocker"
-	desc = ""
-	icon_state = "mecha_teleport"
-	equip_cooldown = 10
-	energy_drain = 100
-	range = RANGED
-	var/shock_damage = 15
-	var/active
-
-/obj/item/mecha_part/equipment/defence_shocker/can_attach(obj/mecha/M)
-	if(..())
-		if(!istype(M, /obj/mecha/combat/honk))
-			if(!M.proc_res["dynattackby"] && !M.proc_res["dynattackhand"] && !M.proc_res["dynattackalien"])
-				return 1
-	return 0
-
-/obj/item/mecha_part/equipment/defence_shocker/attach(obj/mecha/M)
-	..()
-	chassis.proc_res["dynattackby"] = src
-	return
-
-/obj/item/mecha_part/equipment/defence_shocker/proc/dynattackby(obj/item/W, mob/user)
-	if(!action_checks(user) || !active)
-		return
-	user.electrocute_act(shock_damage, src)
-	return chassis.dynattackby(W, user)
-
-
 /*
 /obj/item/mecha_part/equipment/book_stocker
 

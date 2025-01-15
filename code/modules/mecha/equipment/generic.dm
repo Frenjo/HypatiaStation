@@ -24,6 +24,13 @@
 	QDEL_NULL(pr_repair_droid)
 	return ..()
 
+/obj/item/mecha_part/equipment/repair_droid/can_attach(obj/mecha/M)
+	var/has_repair_droid = FALSE
+	for(var/obj/item/mecha_part/equipment/repair_droid/droid in M.equipment)
+		has_repair_droid = TRUE
+		break
+	return has_repair_droid ? FALSE : ..()
+
 /obj/item/mecha_part/equipment/repair_droid/attach(obj/mecha/M)
 	. = ..()
 	droid_overlay = new(icon, icon_state = "repair_droid")

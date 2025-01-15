@@ -20,7 +20,11 @@
 
 /obj/mecha/combat/honk/New()
 	. = ..()
-	excluded_equipment.Add(/obj/item/mecha_part/equipment/melee_armour_booster, /obj/item/mecha_part/equipment/ranged_armour_booster)
+	excluded_equipment.Add(
+		/obj/item/mecha_part/equipment/melee_armour_booster,
+		/obj/item/mecha_part/equipment/melee_defence_shocker,
+		/obj/item/mecha_part/equipment/ranged_armour_booster
+	)
 
 /obj/mecha/combat/honk/melee_action(target)
 	if(!melee_can_hit)
