@@ -31,6 +31,8 @@
 	energy_drain = 100
 	range = 0
 
+	allow_duplicates = FALSE
+
 	var/active = FALSE
 	var/shock_damage = 15
 
@@ -51,13 +53,6 @@
 	if(href_list["toggle_shocker"])
 		active = !active
 		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
-
-/obj/item/mecha_part/equipment/melee_defence_shocker/can_attach(obj/mecha/M)
-	var/has_shocker = FALSE
-	for(var/obj/item/mecha_part/equipment/melee_defence_shocker/shocker in M.equipment)
-		has_shocker = TRUE
-		break
-	return has_shocker ? FALSE : ..()
 
 // Ranged Armour Booster
 /obj/item/mecha_part/equipment/ranged_armour_booster

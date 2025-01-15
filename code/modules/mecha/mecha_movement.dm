@@ -51,6 +51,11 @@
 		return 1
 	return 0
 
+/obj/mecha/proc/handle_equipment_movement()
+	for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
+		if(equip.chassis == src) // Sanity.
+			equip.handle_movement_action()
+
 /obj/mecha/proc/mechturn(direction)
 	. = set_dir(direction)
 	if(. && isnotnull(turn_sound))
@@ -60,11 +65,13 @@
 	. = step(src, direction)
 	if(. && isnotnull(step_sound))
 		playsound(src, step_sound, step_sound_volume, 1)
+		handle_equipment_movement()
 
 /obj/mecha/proc/mechsteprand()
 	. = step_rand(src)
 	if(. && isnotnull(step_sound))
 		playsound(src, step_sound, step_sound_volume, 1)
+		handle_equipment_movement()
 
 /obj/mecha/Bump(atom/obstacle)
 //	src.inertia_dir = null

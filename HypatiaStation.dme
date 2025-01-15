@@ -1520,6 +1520,7 @@
 #include "code\modules\mecha\equipment\medical.dm"
 #include "code\modules\mecha\equipment\passenger.dm"
 #include "code\modules\mecha\equipment\power.dm"
+#include "code\modules\mecha\equipment\shield.dm"
 #include "code\modules\mecha\equipment\tools\_tool.dm"
 #include "code\modules\mecha\equipment\tools\construction.dm"
 #include "code\modules\mecha\equipment\tools\mining.dm"

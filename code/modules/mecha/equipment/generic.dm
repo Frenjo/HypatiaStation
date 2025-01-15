@@ -4,10 +4,15 @@
 	desc = "Automated repair droid. Scans exosuit for damage and repairs it. Can fix almost all types of external or internal damage. (Can be attached to: Any Exosuit)"
 	icon_state = "repair_droid"
 	origin_tech = list(/datum/tech/magnets = 3, /datum/tech/programming = 3)
+	construction_cost = list(
+		MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3,
+		/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET
+	)
 	equip_cooldown = 20
 	energy_drain = 100
 	range = 0
-	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/glass = 5000, /decl/material/silver = 2000, /decl/material/gold = 1000)
+
+	allow_duplicates = FALSE
 
 	var/health_boost = 2
 	var/datum/global_iterator/pr_repair_droid
@@ -24,16 +29,9 @@
 	QDEL_NULL(pr_repair_droid)
 	return ..()
 
-/obj/item/mecha_part/equipment/repair_droid/can_attach(obj/mecha/M)
-	var/has_repair_droid = FALSE
-	for(var/obj/item/mecha_part/equipment/repair_droid/droid in M.equipment)
-		has_repair_droid = TRUE
-		break
-	return has_repair_droid ? FALSE : ..()
-
 /obj/item/mecha_part/equipment/repair_droid/attach(obj/mecha/M)
 	. = ..()
-	droid_overlay = new(icon, icon_state = "repair_droid")
+	droid_overlay = new /icon(icon, icon_state = "repair_droid_idle")
 	M.overlays.Add(droid_overlay)
 
 /obj/item/mecha_part/equipment/repair_droid/detach()
@@ -47,15 +45,15 @@
 /obj/item/mecha_part/equipment/repair_droid/Topic(href, href_list)
 	. = ..()
 	if(href_list["toggle_repairs"])
-		chassis.overlays -= droid_overlay
+		chassis.overlays.Remove(droid_overlay)
 		if(pr_repair_droid.toggle())
-			droid_overlay = new(icon, icon_state = "repair_droid_a")
+			droid_overlay = new /icon(icon, icon_state = "repair_droid_a")
 			log_message("Activated.")
 		else
-			droid_overlay = new(icon, icon_state = "repair_droid")
+			droid_overlay = new/icon (icon, icon_state = "repair_droid_idle")
 			log_message("Deactivated.")
 			set_ready_state(1)
-		chassis.overlays += droid_overlay
+		chassis.overlays.Add(droid_overlay)
 		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 
 /datum/global_iterator/mecha_repair_droid/process(obj/item/mecha_part/equipment/repair_droid/RD)

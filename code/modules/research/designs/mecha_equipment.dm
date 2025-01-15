@@ -27,11 +27,19 @@
 	categories = list("General Exosuit Equipment")
 
 /datum/design/mech_repair_droid
-	name = "Exosuit Module Design (Repair Droid Module)"
-	desc = "Automated Repair Droid. BEEP BOOP"
+	name = "Exosuit Module Design (Repair Droid)"
+	desc = "Automated repair droid. BEEP BOOP!"
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/magnets = 3, /datum/tech/engineering = 3, /datum/tech/programming = 3)
 	build_path = /obj/item/mecha_part/equipment/repair_droid
+	categories = list("General Exosuit Equipment")
+
+/datum/design/mech_shield_droid
+	name = "Exosuit Module Design (Linear Shield Droid)"
+	desc = "Automated shield droid. Deploys a large, familiar, and rectangular shield in one direction at a time. BEEP BOOP!"
+	build_type = DESIGN_TYPE_MECHFAB
+	req_tech = list(/datum/tech/magnets = 6, /datum/tech/plasma = 3, /datum/tech/syndicate = 4)
+	build_path = /obj/item/mecha_part/equipment/linear_shield_droid
 	categories = list("General Exosuit Equipment")
 
 /datum/design/mech_plasma_generator

@@ -19,8 +19,10 @@
 	var/energy_drain = 0
 	var/obj/mecha/chassis = null
 	var/range = MELEE //bitflags
-	var/salvageable = 1
+	var/salvageable = TRUE
 	var/destruction_sound = 'sound/mecha/critdestr.ogg'
+
+	var/allow_duplicates = TRUE // Can duplicates of this equipment be fitted.
 
 /obj/item/mecha_part/equipment/Destroy() //missiles detonating, teleporter creating singularity?
 	if(isnotnull(chassis))
@@ -42,6 +44,10 @@
 		return FALSE
 	if(length(M.equipment) >= M.max_equip)
 		return FALSE
+	if(!allow_duplicates)
+		for_no_type_check(var/obj/item/mecha_part/equipment/equip, M.equipment) // Exact duplicate components aren't allowed.
+			if(equip.type == type)
+				return FALSE
 	return TRUE
 
 /obj/item/mecha_part/equipment/proc/attach(obj/mecha/M)
@@ -109,6 +115,9 @@
 	return TRUE
 
 /obj/item/mecha_part/equipment/proc/action(atom/target)
+	return
+
+/obj/item/mecha_part/equipment/proc/handle_movement_action() // Any modules that have special effects or needs when moving.
 	return
 
 /obj/item/mecha_part/equipment/Topic(href, href_list)

@@ -252,10 +252,56 @@
 
 	// Second loop, we build the right side.
 	for(var/i = 1 to length_to_build)
-		temp_T = get_step(temp_T, turn(dir, -90) )
-		if(!temp_T)
+		temp_T = get_step(temp_T, turn(dir, -90))
+		if(isnull(temp_T))
 			break
 		create_shield(temp_T, i == length_to_build ? turn(dir, -45) : dir)
 	// Finished.
 	update_shield_colours()
 	return TRUE
+
+// Variant for Exosuit design.
+/obj/item/shield_projector/line/exosuit
+	name = "linear exosuit shield projector"
+	offset_from_center = 1 // Snug against the exosuit.
+	max_shield_health = 200 // Half as strong as the default.
+
+	var/obj/mecha/my_mecha = null
+	var/obj/item/mecha_part/equipment/linear_shield_droid/my_tool = null
+
+/obj/item/shield_projector/line/exosuit/process()
+	. = ..()
+	if((isnotnull(my_tool) && loc != my_tool) && (isnotnull(my_mecha) && loc != my_mecha))
+		forceMove(my_tool)
+	if(active)
+		my_tool.set_ready_state(0)
+		if(my_mecha.has_charge(my_tool.energy_drain * 100)) // Stops at around 2000 charge.
+			my_mecha.use_power(my_tool.energy_drain)
+		else
+			destroy_shields()
+			my_tool.set_ready_state(1)
+			my_tool.log_message("Power lost.")
+	else
+		my_tool.set_ready_state(1)
+
+/obj/item/shield_projector/line/exosuit/attack_self(mob/living/user)
+	if(active)
+		if(always_on)
+			to_chat(user, SPAN_WARNING("You can't seem to deactivate \the [src]."))
+			return
+
+		destroy_shields()
+	else
+		if(ismecha(user.loc))
+			set_dir(user.loc.dir)
+		else
+			set_dir(user.dir)
+		create_shields()
+	visible_message(SPAN_NOTICE("\The [user] [!active ? "de":""]activates \the [src]."))
+
+/obj/item/shield_projector/line/exosuit/adjust_health(amount)
+	. = ..()
+	my_mecha.use_power(my_tool.energy_drain)
+	if(!active && shield_health < shield_regen_amount)
+		my_tool.log_message("Shield overloaded.")
+		my_mecha.use_power(my_tool.energy_drain * 4)

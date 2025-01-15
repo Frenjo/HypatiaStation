@@ -10,7 +10,7 @@
 	construction_cost = list(MATERIAL_METAL = 5000, /decl/material/glass = 5000)
 	reliability = 1000
 	equip_cooldown = 20
-	salvageable = 0
+	salvageable = FALSE
 
 	var/mob/living/carbon/occupant = null
 	var/door_locked = 1
