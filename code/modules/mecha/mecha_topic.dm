@@ -15,9 +15,6 @@
 		return
 
 	var/datum/topic_input/new_filter = new /datum/topic_input(href, href_list)
-	if(href_list["toggle_leg_overload"])
-		overload()
-
 	if(href_list["select_equip"])
 		if(usr != occupant)
 			return

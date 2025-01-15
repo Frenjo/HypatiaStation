@@ -85,11 +85,6 @@
 	var/obj/item/mecha_part/equipment/selected
 	var/max_equip = 3
 
-	// Actuator Overload
-	var/overload_capable = FALSE
-	var/overload = FALSE
-	var/overload_coeff = 2
-
 	var/datum/events/events
 
 /obj/mecha/New()
@@ -107,8 +102,6 @@
 	add_iterators()
 	verbs.Remove(/obj/mecha/verb/disconnect_from_port)
 	verbs.Remove(/atom/movable/verb/pull)
-	if(!overload_capable)
-		verbs.Remove(/obj/mecha/verb/overload)
 	log_message("[name] created.")
 	loc.Entered(src)
 	GLOBL.mechas_list.Add(src) //global mech list

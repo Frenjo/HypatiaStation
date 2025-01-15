@@ -1471,7 +1471,6 @@
 #include "code\modules\mecha\mecha_helpers.dm"
 #include "code\modules\mecha\mecha_iterators.dm"
 #include "code\modules\mecha\mecha_movement.dm"
-#include "code\modules\mecha\mecha_overload.dm"
 #include "code\modules\mecha\mecha_piloting.dm"
 #include "code\modules\mecha\mecha_power.dm"
 #include "code\modules\mecha\mecha_topic.dm"
