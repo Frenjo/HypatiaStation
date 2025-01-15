@@ -9,7 +9,7 @@
 	density = FALSE // People can move pass these shields.
 	opacity = FALSE
 	anchored = TRUE
-	layer = MOB_LAYER + 0.1
+	plane = UNLIT_EFFECTS_PLANE
 	mouse_opacity = FALSE
 	unacidable = TRUE
 
