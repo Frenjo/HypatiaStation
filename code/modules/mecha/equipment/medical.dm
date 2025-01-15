@@ -26,6 +26,7 @@
 	for_no_type_check(var/atom/movable/mover, src)
 		mover.forceMove(T)
 	QDEL_NULL(pr_mech_sleeper)
+	patient = null
 	return ..()
 
 /obj/item/mecha_part/equipment/medical/sleeper/allow_drop()

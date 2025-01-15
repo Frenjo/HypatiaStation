@@ -42,6 +42,10 @@
 	smoke_system.set_up(3, 0, src)
 	smoke_system.attach(src)
 
+/obj/mecha/combat/marauder/Destroy()
+	QDEL_NULL(smoke_system)
+	return ..()
+
 /obj/mecha/combat/marauder/relaymove(mob/user, direction)
 	if(user != occupant) //While not "realistic", this piece is player friendly.
 		user.loc = GET_TURF(src)

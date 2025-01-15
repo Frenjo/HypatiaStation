@@ -28,6 +28,10 @@
 	ion_trail.set_up(src)
 	ion_trail.start()
 
+/obj/mecha/working/hoverpod/Destroy()
+	QDEL_NULL(ion_trail)
+	return ..()
+
 //Modified phazon code
 /obj/mecha/working/hoverpod/Topic(href, href_list)
 	. = ..()

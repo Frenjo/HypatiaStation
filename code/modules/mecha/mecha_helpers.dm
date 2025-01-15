@@ -36,14 +36,10 @@
 	pr_internal_damage = new /datum/global_iterator/mecha_internal_damage(list(src), 0)
 
 /obj/mecha/proc/remove_iterators()
-	qdel(pr_int_temp_processor)
-	qdel(pr_inertial_movement)
-	qdel(pr_give_air)
-	qdel(pr_internal_damage)
-	pr_int_temp_processor = null
-	pr_inertial_movement = null
-	pr_give_air = null
-	pr_internal_damage = null
+	QDEL_NULL(pr_int_temp_processor)
+	QDEL_NULL(pr_inertial_movement)
+	QDEL_NULL(pr_give_air)
+	QDEL_NULL(pr_internal_damage)
 
 /obj/mecha/proc/check_for_support()
 	if(locate(/obj/structure/grille, orange(1, src)) || locate(/obj/structure/lattice, orange(1, src)) || locate(/turf/open, orange(1, src)))

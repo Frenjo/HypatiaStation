@@ -113,7 +113,7 @@
 	tag = "\ref[src]" //better safe then sorry
 	if(isnotnull(loc))
 		loc.Exited(src)
-	loc = null
+		loc = null
 	if(isnotnull(T))
 		if(prob(30))
 			explosion(T, 0, 0, 1, 3)
@@ -140,6 +140,9 @@
 			if(isnotnull(internal_tank))
 				wreck.crowbar_salvage.Add(internal_tank)
 				internal_tank.forceMove(wreck)
+	QDEL_NULL(radio)
+	cell = null
+	QDEL_NULL(events)
 	GLOBL.mechas_list.Remove(src) //global mech list
 	return ..()
 

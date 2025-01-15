@@ -121,8 +121,7 @@
 
 /obj/mecha/medical/odysseus/eurymachus/remove_iterators()
 	. = ..()
-	qdel(camouflage_iterator)
-	camouflage_iterator = null
+	QDEL_NULL(camouflage_iterator)
 
 /obj/mecha/medical/odysseus/eurymachus/get_commands()
 	. = {"<div class='wr'>
