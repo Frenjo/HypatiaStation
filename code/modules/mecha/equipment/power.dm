@@ -1,6 +1,6 @@
 // Tesla Energy Relay
 /obj/item/mecha_part/equipment/tesla_energy_relay
-	name = "energy relay"
+	name = "tesla energy relay"
 	desc = "Wirelessly drains energy from any available power channel in area. The performance index is quite low. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
 	origin_tech = list(/datum/tech/magnets = 4, /datum/tech/syndicate = 2)
