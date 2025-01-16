@@ -89,7 +89,7 @@
 // Omnidirectional
 /obj/item/mecha_part/equipment/shield_droid/omnidirectional
 	name = "omnidirectional shield droid"
-	desc = "A shield droid that forms a rectangular, unidirectionally projectile-blocking wall around of the exosuit. (Can be attached to: Any Exosuit)"
+	desc = "A shield droid that forms a rectangular, unidirectionally projectile-blocking wall around the exosuit. (Can be attached to: Any Exosuit)"
 	origin_tech = list(/datum/tech/magnets = 6, /datum/tech/plasma = 6, /datum/tech/syndicate = 6)
 	construction_cost = list(
 		MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 4,

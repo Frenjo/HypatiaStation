@@ -7,17 +7,17 @@
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "jammer0"
 
-	var/active = FALSE	// If it's on.
-	var/shield_health = 400	// How much damage the shield blocks before breaking. This is a shared health pool for all shields attached to this projector.
-	var/max_shield_health = 400	// Ditto. This is fairly high, but shields are really big, you can't miss them, and laser carbines pump out so much hurt.
-	var/shield_regen_amount = 20	// How much to recharge every process(), after the delay.
-	var/shield_regen_delay = 5 SECONDS	// If the shield takes damage, it won't recharge for this long.
-	var/last_damaged_time = null	// world.time when the shields took damage, used for the delay.
-	var/list/obj/effect/directional_shield/active_shields = list()	// Shields that are active and deployed.
-	var/always_on = FALSE	// If true, will always try to reactivate if disabled for whatever reason, ideal if AI mobs are holding this.
+	var/active = FALSE // If it's on.
+	var/shield_health = 400 // How much damage the shield blocks before breaking. This is a shared health pool for all shields attached to this projector.
+	var/max_shield_health = 400 // Ditto. This is fairly high, but shields are really big, you can't miss them, and laser carbines pump out so much hurt.
+	var/shield_regen_amount = 20 // How much to recharge every process(), after the delay.
+	var/shield_regen_delay = 5 SECONDS // If the shield takes damage, it won't recharge for this long.
+	var/last_damaged_time = null // world.time when the shields took damage, used for the delay.
+	var/list/obj/effect/directional_shield/active_shields = list() // Shields that are active and deployed.
+	var/always_on = FALSE // If true, will always try to reactivate if disabled for whatever reason, ideal if AI mobs are holding this.
 
-	var/high_colour = "#0099FF"	// Colour the shield will be when at max health.  A light blue.
-	var/low_colour = "#FF0000"		// Colour the shield will drift towards as health is lowered.  Deep red.
+	var/high_colour = "#0099FF" // Colour the shield will be when at max health. A light blue.
+	var/low_colour = "#FF0000" // Colour the shield will drift towards as health is lowered. Deep red.
 
 /obj/item/shield_projector/New()
 	. = ..()
@@ -134,8 +134,8 @@
 	Everything else can pass through the shield freely, including other people and thrown objects. The shield also cannot block certain effects which \
 	take place over an area, such as flashbangs or explosions."
 
-	var/size_x = 3	// How big the rectangle will be, in tiles from the center.
-	var/size_y = 3	// Ditto.
+	var/size_x = 3 // How big the rectangle will be, in tiles from the center.
+	var/size_y = 3 // Ditto.
 
 // Horrible implementation below.
 /obj/item/shield_projector/rectangle/create_shields()
@@ -271,8 +271,8 @@
 	The shield allows projectiles to leave from inside but blocks projectiles from outside. Everything else can pass through the shield freely, \
 	including other people and thrown objects. The shield also cannot block certain effects which take place over an area, such as flashbangs or explosions."
 
-	var/line_length = 5			// How long the line is.  Recommended to be an odd number.
-	var/offset_from_center = 2	// How far from the projector will the line's center be.
+	var/line_length = 5 // How long the line is. Recommended to be an odd number.
+	var/offset_from_center = 2 // How far from the projector will the line's center be.
 
 /obj/item/shield_projector/line/create_shields()
 	if(!..())
@@ -311,8 +311,9 @@
 // Variant for Exosuit design.
 /obj/item/shield_projector/line/exosuit
 	name = "linear exosuit shield projector"
-	offset_from_center = 1 // Snug against the exosuit.
+	shield_health = 200
 	max_shield_health = 200 // Half as strong as the default.
+	offset_from_center = 1 // Snug against the exosuit.
 
 	var/obj/mecha/my_mecha = null
 	var/obj/item/mecha_part/equipment/shield_droid/my_tool = null
