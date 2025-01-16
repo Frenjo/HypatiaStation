@@ -36,7 +36,7 @@
 
 // HoverPod
 /obj/structure/mecha_wreckage/hoverpod
-	name = "Hover pod wreckage"
+	name = "HoverPod wreckage"
 	icon_state = "engineering_pod-broken"
 
 // Dreadnought
