@@ -34,12 +34,20 @@
 	build_path = /obj/item/mecha_part/equipment/repair_droid
 	categories = list("General Exosuit Equipment")
 
-/datum/design/mech_shield_droid
+/datum/design/mech_linear_shield_droid
 	name = "Exosuit Module Design (Linear Shield Droid)"
 	desc = "Automated shield droid. Deploys a large, familiar, and rectangular shield in one direction at a time. BEEP BOOP!"
 	build_type = DESIGN_TYPE_MECHFAB
 	req_tech = list(/datum/tech/magnets = 6, /datum/tech/plasma = 3, /datum/tech/syndicate = 4)
-	build_path = /obj/item/mecha_part/equipment/linear_shield_droid
+	build_path = /obj/item/mecha_part/equipment/shield_droid/linear
+	categories = list("General Exosuit Equipment")
+
+/datum/design/mech_omnidirectional_shield_droid
+	name = "Exosuit Module Design (Omnidirectional Shield Droid)"
+	desc = "Automated shield droid. Deploys a large, familiar, and rectangular shield that surrounds an exosuit. BEEP BOOP!"
+	build_type = DESIGN_TYPE_MECHFAB
+	req_tech = list(/datum/tech/magnets = 6, /datum/tech/plasma = 6, /datum/tech/syndicate = 6)
+	build_path = /obj/item/mecha_part/equipment/shield_droid/omnidirectional
 	categories = list("General Exosuit Equipment")
 
 /datum/design/mech_plasma_generator

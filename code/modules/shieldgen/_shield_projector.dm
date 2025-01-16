@@ -133,6 +133,7 @@
 	desc = "This creates a shield in a rectangular shape, which allows projectiles to leave from inside but blocks projectiles from outside. \
 	Everything else can pass through the shield freely, including other people and thrown objects. The shield also cannot block certain effects which \
 	take place over an area, such as flashbangs or explosions."
+
 	var/size_x = 3	// How big the rectangle will be, in tiles from the center.
 	var/size_y = 3	// Ditto.
 
@@ -218,11 +219,58 @@
 	size_x = 2
 	size_y = 2
 
+// Variant for Exosuit design.
+/obj/item/shield_projector/rectangle/weak/exosuit
+	name = "omnidirectional exosuit shield projector"
+	size_x = 1
+	size_y = 1
+
+	var/obj/mecha/my_mecha = null
+	var/obj/item/mecha_part/equipment/shield_droid/my_tool = null
+
+/obj/item/shield_projector/rectangle/weak/exosuit/process()
+	. = ..()
+	if((isnotnull(my_tool) && loc != my_tool) && (isnotnull(my_mecha) && loc != my_mecha))
+		forceMove(my_tool)
+	if(active)
+		my_tool.set_ready_state(0)
+		if(my_mecha.has_charge(2000)) // Stops at 2000 charge.
+			my_mecha.use_power(my_tool.energy_drain)
+		else
+			destroy_shields()
+			my_tool.set_ready_state(1)
+			my_tool.log_message("Power lost.")
+	else
+		my_tool.set_ready_state(1)
+
+/obj/item/shield_projector/rectangle/weak/exosuit/attack_self(mob/living/user)
+	if(active)
+		if(always_on)
+			to_chat(user, SPAN_WARNING("You can't seem to deactivate \the [src]."))
+			return
+
+		destroy_shields()
+	else
+		if(ismecha(user.loc))
+			set_dir(user.loc.dir)
+		else
+			set_dir(user.dir)
+		create_shields()
+	visible_message(SPAN_NOTICE("\The [user] [!active ? "de":""]activates \the [src]."))
+
+/obj/item/shield_projector/rectangle/weak/exosuit/adjust_health(amount)
+	. = ..()
+	my_mecha.use_power(my_tool.energy_drain)
+	if(!active && shield_health < shield_regen_amount)
+		my_tool.log_message("Shield overloaded.")
+		my_mecha.use_power(my_tool.energy_drain * 4)
+
 /obj/item/shield_projector/line
 	name = "linear combat shield projector"
 	desc = "This creates a shield in a straight line perpendicular to the direction where the user was facing when it was activated. \
 	The shield allows projectiles to leave from inside but blocks projectiles from outside. Everything else can pass through the shield freely, \
 	including other people and thrown objects. The shield also cannot block certain effects which take place over an area, such as flashbangs or explosions."
+
 	var/line_length = 5			// How long the line is.  Recommended to be an odd number.
 	var/offset_from_center = 2	// How far from the projector will the line's center be.
 
@@ -267,7 +315,7 @@
 	max_shield_health = 200 // Half as strong as the default.
 
 	var/obj/mecha/my_mecha = null
-	var/obj/item/mecha_part/equipment/linear_shield_droid/my_tool = null
+	var/obj/item/mecha_part/equipment/shield_droid/my_tool = null
 
 /obj/item/shield_projector/line/exosuit/process()
 	. = ..()
@@ -275,7 +323,7 @@
 		forceMove(my_tool)
 	if(active)
 		my_tool.set_ready_state(0)
-		if(my_mecha.has_charge(my_tool.energy_drain * 100)) // Stops at around 2000 charge.
+		if(my_mecha.has_charge(2000)) // Stops at 2000 charge.
 			my_mecha.use_power(my_tool.energy_drain)
 		else
 			destroy_shields()
