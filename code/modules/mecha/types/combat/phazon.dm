@@ -25,7 +25,7 @@
 
 /obj/mecha/combat/phazon/New()
 	. = ..()
-	filters.Add(filter(type = "blur", size = 0))
+	add_filter("phasing", list(type = "blur", size = 0))
 
 /obj/mecha/combat/phazon/Bump(atom/obstacle)
 	if(phasing && get_charge() >= phasing_energy_drain)
@@ -61,7 +61,7 @@
 	if(can_move)
 		can_move = FALSE
 		// This mostly replicates the original appearance of the manual method as closely as I possibly can.
-		animate(filters[1], size = 2, time = 3, flags = ANIMATION_END_NOW)
+		animate(get_filter("phasing"), size = 2, time = 3, flags = ANIMATION_END_NOW)
 		animate(size = 0, time = 2)
 		forceMove(get_step(src, dir))
 		use_power(phasing_energy_drain)
