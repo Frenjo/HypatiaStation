@@ -14,7 +14,10 @@
 	desc = "A small blue crystal with mystical properties."
 	req_tech = list(/datum/tech/materials = 7, /datum/tech/bluespace = 5)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(/decl/material/gold = 1500, /decl/material/diamond = 3000, /decl/material/plasma = 1500)
+	materials = list(
+		/decl/material/gold = MATERIAL_AMOUNT_PER_SHEET, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 2,
+		/decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET
+	)
 	reliability_base = 100
 	build_path = /obj/item/bluespace_crystal/artificial
 
