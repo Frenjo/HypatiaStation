@@ -3,16 +3,15 @@
 /obj/item/mecha_part/equipment/passenger
 	name = "passenger compartment"
 	desc = "A mountable passenger compartment for exo-suits. Rather cramped. (Can be attached to: Any Exosuit)"
-	icon_state = "mecha_abooster_ccw"
-	origin_tech = list(/datum/tech/biotech = 1, /datum/tech/engineering = 1)
+	icon_state = "passenger_compartment"
+	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1, /datum/tech/engineering = 1)
+	construction_cost = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 3, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3)
 	energy_drain = 10
 	range = MELEE
-	construction_cost = list(MATERIAL_METAL = 5000, /decl/material/glass = 5000)
-	reliability = 1000
 	equip_cooldown = 20
 	salvageable = FALSE
 
-	var/mob/living/carbon/occupant = null
+	var/mob/living/carbon/passenger = null
 	var/door_locked = 1
 
 /obj/item/mecha_part/equipment/passenger/Destroy()
@@ -32,13 +31,13 @@
 		chassis.visible_message(SPAN_INFO("\The [user] starts to climb into \the [chassis]."))
 
 	if(do_after(user, 4 SECONDS, needhand = FALSE))
-		if(isnull(occupant))
+		if(isnull(passenger))
 			user.forceMove(src)
-			occupant = user
+			passenger = user
 			log_message("[user] boarded.")
 			occupant_message(SPAN_INFO("\The [user] boarded."))
-		else if(occupant != user)
-			to_chat(user, SPAN_WARNING("[occupant] was faster. Try better next time, loser."))
+		else if(passenger != user)
+			to_chat(user, SPAN_WARNING("[passenger] was faster. Try better next time, loser."))
 	else
 		to_chat(user, SPAN_INFO("You stop entering the exosuit."))
 
@@ -48,26 +47,26 @@
 	set popup_menu = FALSE
 	set src = usr.loc
 
-	if(usr != occupant)
+	if(usr != passenger)
 		return
 
-	to_chat(occupant, SPAN_INFO("You climb out from \the [src]."))
+	to_chat(passenger, SPAN_INFO("You climb out from \the [src]."))
 	go_out()
-	occupant_message(SPAN_INFO("\The [occupant] disembarked."))
-	log_message("[occupant] disembarked.")
+	occupant_message(SPAN_INFO("\The [passenger] disembarked."))
+	log_message("[passenger] disembarked.")
 	add_fingerprint(usr)
 
 /obj/item/mecha_part/equipment/passenger/proc/go_out()
-	if(isnull(occupant))
+	if(isnull(passenger))
 		return
-	occupant.forceMove(GET_TURF(src))
-	occupant.reset_view()
+	passenger.forceMove(GET_TURF(src))
+	passenger.reset_view()
 	/*
 	if(occupant.client)
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
 	*/
-	occupant = null
+	passenger = null
 
 /obj/item/mecha_part/equipment/passenger/attach()
 	. = ..()
@@ -75,7 +74,7 @@
 		chassis.verbs |= /obj/mecha/proc/move_inside_passenger
 
 /obj/item/mecha_part/equipment/passenger/detach()
-	if(isnotnull(occupant))
+	if(isnotnull(passenger))
 		occupant_message(SPAN_WARNING("Unable to detach \the [src] - equipment occupied."))
 		return
 
@@ -86,9 +85,9 @@
 
 /obj/item/mecha_part/equipment/passenger/get_equip_info()
 	. = ..()
-	. += " <br>[occupant? "\[Occupant: [occupant]\]|" : ""]Exterior Hatch: <a href='byond://?src=\ref[src];toggle_lock=1'>Toggle Lock</a>"
+	. += " <br>[passenger ? "\[Occupant: [passenger]\]|" : ""]Exterior Hatch: <a href='byond://?src=\ref[src];toggle_lock=1'>Toggle Lock</a>"
 
-/obj/item/mecha_part/equipment/passenger/Topic(href,href_list)
+/obj/item/mecha_part/equipment/passenger/Topic(href, list/href_list)
 	. = ..()
 	if(href_list["toggle_lock"])
 		door_locked = !door_locked
@@ -114,24 +113,24 @@
 		return
 
 	if(!isturf(usr.loc))
-		usr << "\red You can't reach the passenger compartment from here."
+		to_chat(usr, SPAN_WARNING("You can't reach the passenger compartment from here."))
 		return
 
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
-			usr << "\red Kinda hard to climb in while handcuffed don't you think?"
+			to_chat(C, SPAN_WARNING("Kinda hard to climb in while handcuffed don't you think?"))
 			return
 
 	for(var/mob/living/carbon/slime/M in range(1, usr))
 		if(M.Victim == usr)
-			usr << "\red You're too busy getting your life sucked out of you."
+			to_chat(usr, SPAN_WARNING("You're too busy getting your life sucked out of you."))
 			return
 
 	//search for a valid passenger compartment
 	var/feedback = 0 //for nicer user feedback
 	for(var/obj/item/mecha_part/equipment/passenger/P in src)
-		if(P.occupant)
+		if(P.passenger)
 			feedback |= OCCUPIED
 			continue
 		if(P.door_locked)
@@ -145,13 +144,13 @@
 	//didn't find anything
 	switch(feedback)
 		if(OCCUPIED)
-			usr << "\red The passenger compartment is already occupied!"
+			to_chat(usr, SPAN_WARNING("The passenger compartment is already occupied!"))
 		if(LOCKED)
-			usr << "\red The passenger compartment hatch is locked!"
+			to_chat(usr, SPAN_WARNING("The passenger compartment hatch is locked!"))
 		if(OCCUPIED|LOCKED)
-			usr << "\red All of the passenger compartments are already occupied or locked!"
+			to_chat(usr, SPAN_WARNING("All of the passenger compartments are already occupied or locked!"))
 		if(0)
-			usr << "\red \The [src] doesn't have a passenger compartment."
+			to_chat(usr, SPAN_WARNING("\The [src] doesn't have a passenger compartment."))
 #undef LOCKED
 #undef OCCUPIED
 // END PORT -Frenjo
