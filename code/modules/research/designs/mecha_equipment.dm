@@ -109,6 +109,13 @@
 	build_path = /obj/item/mecha_part/equipment/melee_armour_booster
 	categories = list("Combat Exosuit Equipment")
 
+/datum/design/mecha_equipment/melee_defence_shocker
+	name = "Exosuit Module Design (Melee Defence Shocker Module)"
+	desc = "An exosuit module that electrifies the external armour to discourge melee attackers."
+	req_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 4, /datum/tech/engineering = 2, /datum/tech/plasma = 2)
+	build_path = /obj/item/mecha_part/equipment/melee_defence_shocker
+	categories = list("Combat Exosuit Equipment")
+
 /datum/design/mecha_equipment/ranged_armour_booster
 	name = "Exosuit Module Design (Reflective Armor Booster Module)"
 	desc = "Exosuit-mounted armor booster."

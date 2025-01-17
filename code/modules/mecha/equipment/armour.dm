@@ -3,11 +3,11 @@
 	name = "armour booster module (close combat weaponry)"
 	desc = "Boosts exosuit armour against armed melee attacks. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "mecha_abooster_ccw"
-	origin_tech = list(/datum/tech/materials = 3)
+	origin_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 4)
+	construction_cost = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 3)
 	equip_cooldown = 10
 	energy_drain = 50
 	range = 0
-	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/silver = 5000)
 
 	var/deflect_coeff = 1.15
 	var/damage_coeff = 0.8
@@ -27,6 +27,8 @@
 	name = "armour module (melee defence shocker)"
 	desc = "Electrically charges exosuit armour to discourage melee attackers. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "melee_defence_shocker"
+	origin_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 4, /datum/tech/engineering = 2, /datum/tech/plasma = 2)
+	construction_cost = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 3)
 	equip_cooldown = 10
 	energy_drain = 100
 	range = 0
@@ -59,11 +61,11 @@
 	name = "armour booster module (ranged weaponry)"
 	desc = "Boosts exosuit armour against ranged attacks. Completely blocks taser shots. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "mecha_abooster_proj"
-	origin_tech = list(/datum/tech/materials = 4)
+	origin_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 5, /datum/tech/engineering = 3)
+	construction_cost = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 3)
 	equip_cooldown = 10
 	energy_drain = 50
 	range = 0
-	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/gold = 5000)
 
 	var/deflect_coeff = 1.15
 	var/damage_coeff = 0.8
