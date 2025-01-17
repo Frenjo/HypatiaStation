@@ -260,19 +260,17 @@ CONTROLLER_DEF(master)
 
 	to_world(SPAN_DANGER("↪ Initialising pipe networks."))
 	for(var/obj/machinery/atmospherics/machine in GLOBL.machines)
-		machine.atmos_initialise()
+		if(!GC_DESTROYED(machine))
+			machine.atmos_initialise()
 	for(var/obj/machinery/atmospherics/machine in GLOBL.machines)
-		machine.build_network()
+		if(!GC_DESTROYED(machine))
+			machine.build_network()
 	WAIT_FOR_BACKLOG
 
 	to_world(SPAN_DANGER("↪ Initialising atmos machinery."))
 	for(var/obj/machinery/atmospherics/unary/U in GLOBL.machines)
-		if(istype(U, /obj/machinery/atmospherics/unary/vent_pump))
-			var/obj/machinery/atmospherics/unary/vent_pump/T = U
-			T.broadcast_status()
-		else if(istype(U, /obj/machinery/atmospherics/unary/vent_scrubber))
-			var/obj/machinery/atmospherics/unary/vent_scrubber/T = U
-			T.broadcast_status()
+		if(!GC_DESTROYED(U))
+			U.broadcast_status()
 	WAIT_FOR_BACKLOG
 
 	// Sets up spawn points.

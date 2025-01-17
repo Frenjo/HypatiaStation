@@ -125,7 +125,7 @@
 					network.update = TRUE
 	return 1
 
-/obj/machinery/atmospherics/unary/vent_pump/proc/broadcast_status()
+/obj/machinery/atmospherics/unary/vent_pump/broadcast_status()
 	if(isnull(radio_connection))
 		return 0
 

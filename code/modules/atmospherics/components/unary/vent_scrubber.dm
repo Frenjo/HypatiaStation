@@ -57,7 +57,7 @@
 		icon_state = "[level == 1 && isopenturf(loc) ? "h" : "" ]off"
 	return
 
-/obj/machinery/atmospherics/unary/vent_scrubber/proc/broadcast_status()
+/obj/machinery/atmospherics/unary/vent_scrubber/broadcast_status()
 	if(isnull(radio_connection))
 		return 0
 

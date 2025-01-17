@@ -118,7 +118,7 @@
 
 	flick("inject", src)
 
-/obj/machinery/atmospherics/unary/outlet_injector/proc/broadcast_status()
+/obj/machinery/atmospherics/unary/outlet_injector/broadcast_status()
 	if(isnull(radio_connection))
 		return 0
 

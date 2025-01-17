@@ -85,3 +85,6 @@
 		node = null
 
 	return null
+
+/obj/machinery/atmospherics/unary/proc/broadcast_status()
+	return
