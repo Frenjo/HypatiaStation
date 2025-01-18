@@ -97,7 +97,8 @@
 
 	var/datum/global_iterator/camouflage_iterator
 	var/camouflage = FALSE
-	var/camouflage_energy_drain = 100
+	var/camouflage_energy_drain = 50
+	var/camouflage_animation_playing = FALSE
 
 /obj/mecha/medical/odysseus/eurymachus/New()
 	. = ..()
@@ -144,10 +145,29 @@
 	set popup_menu = FALSE
 	set src = usr.loc
 
-	camouflage = !camouflage
+	if(camouflage)
+		camouflage = FALSE
+		do_camouflage_effects()
+		disable_camouflage()
+	else
+		if(camouflage_animation_playing)
+			occupant_message(SPAN_WARNING("Camouflage recharging!"))
+			return
+		occupant_message(SPAN_INFO("Activating camouflage..."))
+		apply_wibbly_filters(src)
+		if(do_after(occupant, 4 SECONDS, src) && has_charge(2000)) // This is akin to the force fields where they stop working below 2000 charge.
+			do_camouflage_effects()
+			enable_camouflage()
+		else
+			do_camouflage_effects()
+			occupant_message(SPAN_WARNING("Camouflage failed!"))
+		remove_wibbly_filters(src)
+		camouflage_animation_playing = FALSE
+
 	send_byjax(occupant, "exosuit.browser", "camouflage_command", "[camouflage ? "Dis" : "En"]able camouflage")
-	occupant_message("<font color=\"[camouflage ? "#00f\">En" : "#f00\">Dis"]abled camouflage.</font>")
-	// Does some sparks and the chameleon projector effect.
+	log_message("Toggled camouflage.")
+
+/obj/mecha/medical/odysseus/eurymachus/proc/do_camouflage_effects()
 	var/turf/T = GET_TURF(src)
 	make_sparks(3, TRUE, T)
 	var/obj/effect/overlay/pulse = new /obj/effect/overlay(T)
@@ -157,16 +177,19 @@
 	spawn(8)
 		qdel(pulse)
 	playsound(T, 'sound/effects/pop.ogg', 100, TRUE, -6)
-	// Swaps the icon states and descriptions then updates the iterator.
-	if(camouflage)
-		icon_state = "odysseus"
-		desc = "A medical exosuit developed and produced by Vey-Med(&copy; all rights reserved)."
-		camouflage_iterator.start()
-	else
-		icon_state = "eurymachus"
-		desc = "A sinister variant of the Vey-Med(&copy; all rights reserved) Odysseus-type chassis featuring weapons-capable hardpoints and the unique ability to camouflage as its regular counterpart."
-		camouflage_iterator.stop()
-	log_message("Toggled camouflage.")
+
+/obj/mecha/medical/odysseus/eurymachus/proc/enable_camouflage()
+	occupant_message(SPAN_INFO("Enabled camouflage."))
+	camouflage = TRUE
+	icon_state = "odysseus"
+	desc = "A medical exosuit developed and produced by Vey-Med(&copy; all rights reserved)."
+	camouflage_iterator.start()
+
+/obj/mecha/medical/odysseus/eurymachus/proc/disable_camouflage()
+	occupant_message(SPAN_WARNING("Disabled camouflage."))
+	icon_state = "eurymachus"
+	desc = "A sinister variant of the Vey-Med(&copy; all rights reserved) Odysseus-type chassis featuring weapons-capable hardpoints and the unique ability to camouflage as its regular counterpart."
+	camouflage_iterator.stop()
 
 // Mecha camouflage power drain handler.
 /datum/global_iterator/mecha_camouflage

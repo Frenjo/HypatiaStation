@@ -37,3 +37,25 @@
 		filters.Remove(thing)
 		return TRUE
 	return FALSE
+
+// Anything below here is ported from TG.
+/proc/apply_wibbly_filters(atom/movable/in_atom, length = 7)
+	for(var/i in 1 to length)
+		// This is a very baffling and strange way of doing this but I am just preserving old functionality
+		var/pos_x
+		var/pos_y
+		var/rsq
+		do
+			pos_x = 60 * rand() - 30
+			pos_y = 60 * rand() - 30
+			rsq = pos_x * pos_x + pos_y * pos_y
+		while(rsq < 100 || rsq > 900) // Yeah let's just loop infinitely due to bad luck what's the worst that could happen?
+		var/random_roll = rand()
+		in_atom.add_filter("wibbly-[i]", list(type = "wave", x = pos_y, y = pos_y, size = rand() * 2.5 + 0.5, offset = random_roll))
+		animate(in_atom.get_filter("wibbly-[i]"), offset = random_roll, time = 0, loop = -1, flags = ANIMATION_PARALLEL)
+		animate(offset = random_roll - 1, time = rand() * 20 + 10)
+
+/proc/remove_wibbly_filters(atom/movable/in_atom, length = 7)
+	for(var/i in 1 to length)
+		animate(in_atom.get_filter("wibbly-[i]"))
+		in_atom.remove_filter("wibbly-[i]")
