@@ -12,7 +12,7 @@
 	force = 15
 
 	health = 200
-	step_in = 1
+	step_in = 2
 	step_energy_drain = 3
 	deflect_chance = 30
 	damage_absorption = list("brute" = 0.7, "fire" = 0.7, "bullet" = 0.7, "laser" = 0.7, "energy" = 0.7, "bomb" = 0.7)
@@ -111,6 +111,7 @@
 	initial_icon = "dark_phazon"
 
 	health = 300
+	step_in = 1
 	step_energy_drain = 1.5
 	max_temperature = 45000
 	deflect_chance = 40
