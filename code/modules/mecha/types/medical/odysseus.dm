@@ -86,6 +86,9 @@
 	deflect_chance = 20
 	damage_absorption = list("brute" = 0.725, "fire" = 1.1, "bullet" = 0.8, "laser" = 0.9, "energy" = 0.9, "bomb" = 0.9)
 
+	operation_req_access = list(ACCESS_SYNDICATE)
+	add_req_access = FALSE
+
 	wreckage = /obj/structure/mecha_wreckage/odysseus/eurymachus
 
 	excluded_equipment = list(

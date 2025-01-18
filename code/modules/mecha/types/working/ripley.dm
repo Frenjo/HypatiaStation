@@ -125,12 +125,15 @@
 	icon_state = "sindy"
 	initial_icon = "sindy"
 
-	wreckage = /obj/structure/mecha_wreckage/ripley/sindy
-
 	health = 225
 	step_in = 5
 	max_temperature = 42500
 	damage_absorption = list("brute" = 0.8, "fire" = 0.85, "bullet" = 0.85, "laser" = 1, "energy" = 1, "bomb" = 0.75)
+
+	operation_req_access = list(ACCESS_SYNDICATE)
+	add_req_access = FALSE
+
+	wreckage = /obj/structure/mecha_wreckage/ripley/sindy
 
 	cargo_capacity = 10
 

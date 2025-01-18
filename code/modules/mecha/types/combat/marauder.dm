@@ -17,9 +17,9 @@
 	operation_req_access = list(ACCESS_CENT_SPECOPS)
 	add_req_access = FALSE
 
-	max_equip = 4
-
 	wreckage = /obj/structure/mecha_wreckage/marauder
+
+	max_equip = 4
 
 	var/zoom = 0
 	var/thrusters = 0
@@ -188,14 +188,18 @@
 	name = "\improper Seraph"
 	desc = "Heavy-duty, command-type exosuit. This is a custom model, utilized only by high-ranking military personnel."
 	icon_state = "seraph"
-
 	initial_icon = "seraph"
-	operation_req_access = list(ACCESS_CENT_CREED)
+
+	force = 55
+
 	step_in = 3
 	health = 550
-	wreckage = /obj/structure/mecha_wreckage/seraph
 	internal_damage_threshold = 20
-	force = 55
+
+	operation_req_access = list(ACCESS_CENT_CREED)
+
+	wreckage = /obj/structure/mecha_wreckage/seraph
+
 	max_equip = 5
 
 /obj/mecha/combat/marauder/seraph/New()
@@ -220,7 +224,8 @@
 	name = "\improper Mauler"
 	desc = "Heavy-duty, combat exosuit, developed off of the existing Marauder model."
 	icon_state = "mauler"
-
 	initial_icon = "mauler"
+
 	operation_req_access = list(ACCESS_SYNDICATE)
+
 	wreckage = /obj/structure/mecha_wreckage/mauler
