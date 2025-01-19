@@ -7,6 +7,8 @@
 /atom/movable/clickable_stat
 	name = "clickable"
 
+	atom_flags = ATOM_FLAG_NO_SCREENTIP
+
 	// The controller or process to debug when the button is clicked.
 	var/datum/target = null
 
