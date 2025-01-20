@@ -37,7 +37,7 @@
 	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 40)
 
 /obj/item/cell/crap/empty/New()
-	..()
+	. = ..()
 	charge = 0
 
 /obj/item/cell/secborg
@@ -47,7 +47,7 @@
 	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 40)
 
 /obj/item/cell/secborg/empty/New()
-	..()
+	. = ..()
 	charge = 0
 
 /obj/item/cell/apc
@@ -57,7 +57,8 @@
 	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 50)
 
 /obj/item/cell/apc/empty/New()
-	..()
+	. = ..()
+	charge = 0
 
 /obj/item/cell/high
 	name = "high-capacity power cell"
@@ -67,7 +68,7 @@
 	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 60)
 
 /obj/item/cell/high/empty/New()
-	..()
+	. = ..()
 	charge = 0
 
 /obj/item/cell/super
@@ -79,7 +80,7 @@
 	construction_cost = list(/decl/material/steel = 750, /decl/material/glass = 100)
 
 /obj/item/cell/super/empty/New()
-	..()
+	. = ..()
 	charge = 0
 
 /obj/item/cell/hyper
@@ -91,7 +92,7 @@
 	construction_cost = list(/decl/material/steel = 500, /decl/material/glass = 150, /decl/material/silver = 200, /decl/material/gold = 200)
 
 /obj/item/cell/hyper/empty/New()
-	..()
+	. = ..()
 	charge = 0
 
 /obj/item/cell/infinite
