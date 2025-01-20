@@ -55,7 +55,7 @@
 		C.max_damage = 10
 
 	verbs.Remove(/mob/living/silicon/robot/verb/namepick)
-	module = new /obj/item/robot_module/drone(src)
+	module = new /obj/item/robot_model/drone(src)
 
 	// Grab stacks.
 	stack_metal = locate(/obj/item/stack/sheet/steel/cyborg) in module

@@ -1,0 +1,45 @@
+/*
+ * Engineering Model
+ */
+/obj/item/robot_model/engineering
+	name = "engineering robot model"
+
+	module_types = list(
+		/obj/item/flashlight,
+		/obj/item/flash,
+		/obj/item/borg/sight/meson,
+		/obj/item/rcd/borg,
+		/obj/item/extinguisher,
+		/obj/item/weldingtool/largetank,
+		/obj/item/screwdriver,
+		/obj/item/wrench,
+		/obj/item/crowbar,
+		/obj/item/wirecutters,
+		/obj/item/multitool,
+		/obj/item/t_scanner,
+		/obj/item/gas_analyser,
+		/obj/item/taperoll/engineering
+	)
+	emag_type = /obj/item/borg/stun
+
+/obj/item/robot_model/engineering/New()
+	. = ..()
+	modules.Add(new /obj/item/stack/sheet/steel/cyborg(src, 50))
+	modules.Add(new /obj/item/stack/sheet/glass/reinforced/cyborg(src, 50))
+	modules.Add(new /obj/item/stack/cable_coil(src, 50))
+
+/obj/item/robot_model/engineering/respawn_consumable(mob/living/silicon/robot/R)
+	var/list/stacks = list(
+		/obj/item/stack/sheet/steel/cyborg,
+		/obj/item/stack/sheet/glass/reinforced/cyborg,
+		/obj/item/stack/cable_coil
+	)
+	for(var/path in stacks)
+		var/obj/item/stack/stack = locate(path) in modules
+		if(isnotnull(stack))
+			if(stack.amount < 50)
+				stack.amount++
+		else
+			modules.Remove(null)
+			stack = new path(src, 1)
+			modules.Add(stack)

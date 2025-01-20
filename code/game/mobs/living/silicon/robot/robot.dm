@@ -25,7 +25,7 @@
 	var/atom/movable/screen/inv3 = null
 
 	//3 Modules can be activated at any one time.
-	var/obj/item/robot_module/module = null
+	var/obj/item/robot_model/module = null
 	var/module_active = null
 	var/module_state_1 = null
 	var/module_state_2 = null
@@ -90,7 +90,7 @@
 		scrambledcodes = 1
 		cell.maxcharge = 25000
 		cell.charge = 25000
-		module = new /obj/item/robot_module/syndicate(src)
+		module = new /obj/item/robot_model/syndicate(src)
 		hands.icon_state = "standard"
 		icon_state = "secborg"
 		modtype = "Security"
@@ -296,7 +296,7 @@
 		laws.show_laws(src)
 		to_chat(src, SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and their commands."))
 
-		if(isnotnull(module) && istype(module, /obj/item/robot_module/miner))
+		if(isnotnull(module) && istype(module, /obj/item/robot_model/miner))
 			for(var/obj/item/pickaxe/borgdrill/D in module.modules)
 				qdel(D)
 			module.modules.Add(new /obj/item/pickaxe/diamonddrill(module))
@@ -617,7 +617,7 @@
 /mob/living/silicon/robot/Move(a, b, flag)
 	. = ..()
 	if(isnotnull(module))
-		if(istype(module, /obj/item/robot_module/janitor))
+		if(istype(module, /obj/item/robot_model/janitor))
 			var/turf/tile = loc
 			if(isturf(tile))
 				tile.clean_blood()
@@ -671,7 +671,7 @@
 
 	switch(modtype)
 		if("Standard")
-			module = new /obj/item/robot_module/standard(src)
+			module = new /obj/item/robot_model/standard(src)
 			module_sprites = list(
 				"Basic" = "robot_old",
 				"Android" = "droid",
@@ -679,7 +679,7 @@
 			)
 
 		if("Service")
-			module = new /obj/item/robot_module/service(src)
+			module = new /obj/item/robot_model/service(src)
 			module_sprites = list(
 				"Waitress" = "Service",
 				"Kent" = "toiletbot",
@@ -689,7 +689,7 @@
 			)
 
 		if("Miner")
-			module = new /obj/item/robot_module/miner(src)
+			module = new /obj/item/robot_model/miner(src)
 			module.channels = list("Supply" = 1)
 			if(isnotnull(camera) && ("Robots" in camera.network))
 				camera.network.Add("MINE")
@@ -700,7 +700,7 @@
 			)
 
 		if("Medical")
-			module = new /obj/item/robot_module/medical(src)
+			module = new /obj/item/robot_model/medical(src)
 			module.channels = list("Medical" = 1)
 			if(isnotnull(camera) && ("Robots" in camera.network))
 				camera.network.Add("Medical")
@@ -712,7 +712,7 @@
 			)
 
 		if("Security")
-			module = new /obj/item/robot_module/security(src)
+			module = new /obj/item/robot_model/security(src)
 			module.channels = list("Security" = 1)
 			module_sprites = list(
 				"Basic" = "secborg",
@@ -722,7 +722,7 @@
 			)
 
 		if("Engineering")
-			module = new /obj/item/robot_module/engineering(src)
+			module = new /obj/item/robot_model/engineering(src)
 			module.channels = list("Engineering" = 1)
 			if(isnotnull(camera) && ("Robots" in camera.network))
 				camera.network.Add("Engineering")
@@ -733,7 +733,7 @@
 			)
 
 		if("Janitor")
-			module = new /obj/item/robot_module/janitor(src)
+			module = new /obj/item/robot_model/janitor(src)
 			module_sprites = list(
 				"Basic" = "JanBot2",
 				"Mopbot" = "janitorrobot",
@@ -741,11 +741,11 @@
 			)
 
 		if("Combat")
-			module = new /obj/item/robot_module/combat(src)
+			module = new /obj/item/robot_model/combat(src)
 			module.channels = list("Security" = 1)
 			module_sprites = list("Combat Android" = "droid-combat")
 
-	//languages
+	// Languages
 	module.add_languages(src)
 
 	// Custom_sprite check and entry.

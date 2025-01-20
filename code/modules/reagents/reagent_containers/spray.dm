@@ -17,7 +17,6 @@
 	var/list/spray_sizes = list(1,3)
 	volume = 250
 
-
 /obj/item/reagent_holder/spray/New()
 	..()
 	src.verbs -= /obj/item/reagent_holder/verb/set_APTFT
@@ -123,6 +122,21 @@
 	..()
 	reagents.add_reagent("cleaner", 250)
 
+// Lube
+/obj/item/reagent_holder/spray/lube
+	name = "lube spray"
+
+/obj/item/reagent_holder/spray/lube/New()
+	. = ..()
+	reagents.add_reagent("lube", 250)
+
+// Polyacid
+/obj/item/reagent_holder/spray/polyacid
+	name = "polyacid spray"
+
+/obj/item/reagent_holder/spray/polyacid/New()
+	. = ..()
+	reagents.add_reagent("pacid", 250)
 
 //pepperspray
 /obj/item/reagent_holder/spray/pepper

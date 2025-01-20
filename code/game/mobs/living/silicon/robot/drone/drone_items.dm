@@ -186,7 +186,7 @@
 		return
 
 	if(!module)
-		module = new /obj/item/robot_module/drone(src)
+		module = new /obj/item/robot_model/drone(src)
 
 	var/dat = "<HEAD><TITLE>Drone modules</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
 	dat += {"<A href='byond://?src=\ref[src];mach_close=robotmod'>Close</A>

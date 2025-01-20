@@ -30,7 +30,7 @@
 
 /atom/movable/screen/robot/active_module
 	dir = SOUTHWEST
-	
+
 	var/module_number
 
 /atom/movable/screen/robot/active_module/New(loc, module_number, screen_loc)

@@ -138,7 +138,7 @@
 /obj/item/borg/upgrade/tasercooler/action(mob/living/silicon/robot/R)
 	if(!..())
 		return FALSE
-	if(!istype(R.module, /obj/item/robot_module/security))
+	if(!istype(R.module, /obj/item/robot_model/security))
 		to_chat(R, "Upgrade mounting error! No suitable hardpoint detected!")
 		to_chat(usr, "There's no mounting point for the module!")
 		return FALSE
@@ -174,12 +174,12 @@
 /obj/item/borg/upgrade/jetpack/action(mob/living/silicon/robot/R)
 	if(!..())
 		return FALSE
-	if(!istype(R.module, /obj/item/robot_module/miner))
+	if(!istype(R.module, /obj/item/robot_model/miner))
 		to_chat(R, "Upgrade mounting error! No suitable hardpoint detected!")
 		to_chat(usr, "There's no mounting point for the module!")
 		return FALSE
 
-	var/obj/item/robot_module/miner/module = R.module
+	var/obj/item/robot_model/miner/module = R.module
 	module.modules.Add(new /obj/item/tank/jetpack/carbon_dioxide(src))
 	for(var/obj/item/tank/jetpack/carbondioxide in module.modules)
 		R.internals = src

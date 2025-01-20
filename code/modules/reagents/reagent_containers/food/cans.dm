@@ -163,6 +163,13 @@
 	src.pixel_x = rand(-10.0, 10)
 	src.pixel_y = rand(-10.0, 10)
 
+/obj/item/reagent_holder/food/drinks/cans/beer/special_brew
+	name = "Mickey Finn's Special Brew"
+
+/obj/item/reagent_holder/food/drinks/cans/beer/special_brew/New()
+	. = ..()
+	create_reagents(50)
+	reagents.add_reagent("beer2", 50)
 
 /obj/item/reagent_holder/food/drinks/cans/ale
 	name = "Magm-Ale"

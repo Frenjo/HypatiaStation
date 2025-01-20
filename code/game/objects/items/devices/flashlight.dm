@@ -110,6 +110,10 @@
 	item_state = ""
 	brightness_on = 2
 
+// Subtype used by maintenance drones.
+/obj/item/flashlight/drone
+	brightness_on = 3
+
 // the desk lamps are a bit special
 /obj/item/flashlight/lamp
 	name = "desk lamp"
