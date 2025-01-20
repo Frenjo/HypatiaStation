@@ -14,3 +14,12 @@
 		/obj/item/storage/bag/sheetsnatcher/borg
 	)
 	emag_type = /obj/item/borg/stun
+
+	channels = list(CHANNEL_SUPPLY = TRUE, CHANNEL_MINING = TRUE)
+	camera_networks = list("MINE")
+
+	sprites = list(
+		"Basic" = "Miner_old",
+		"Advanced Droid" = "droid-miner",
+		"Treadhead" = "Miner"
+	)

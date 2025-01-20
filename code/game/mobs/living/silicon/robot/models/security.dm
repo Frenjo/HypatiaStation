@@ -15,6 +15,15 @@
 	)
 	emag_type = /obj/item/gun/energy/laser/cyborg
 
+	channels = list(CHANNEL_SECURITY = TRUE)
+
+	sprites = list(
+		"Basic" = "secborg",
+		"Red Knight" = "Security",
+		"Black Knight" = "securityrobot",
+		"Bloodhound" = "bloodhound"
+	)
+
 /obj/item/robot_model/security/respawn_consumable(mob/living/silicon/robot/R)
 	var/obj/item/flash/F = locate() in modules
 	if(F.broken)

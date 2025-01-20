@@ -16,6 +16,16 @@
 	)
 	emag_type = /obj/item/reagent_holder/food/drinks/cans/beer/special_brew
 
+	channels = list(CHANNEL_SERVICE = TRUE)
+
+	sprites = list(
+		"Waitress" = "Service",
+		"Kent" = "toiletbot",
+		"Bro" = "Brobot",
+		"Rich" = "maximillion",
+		"Default" = "Service2"
+	)
+
 /obj/item/robot_model/service/New()
 	. = ..()
 	var/obj/item/rsf/M = new /obj/item/rsf(src)

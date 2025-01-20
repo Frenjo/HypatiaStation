@@ -18,6 +18,16 @@
 	)
 	emag_type = /obj/item/reagent_holder/spray/polyacid
 
+	channels = list(CHANNEL_MEDICAL = TRUE)
+	camera_networks = list("Medical")
+
+	sprites = list(
+		"Basic" = "Medbot",
+		"Advanced Droid" = "droid-medical",
+		"Needles" = "medicalrobot",
+		"Standard" = "surgeon"
+	)
+
 /obj/item/robot_model/medical/respawn_consumable(mob/living/silicon/robot/R)
 	var/obj/item/reagent_holder/syringe/S = locate() in modules
 	if(S.mode == 2)//SYRINGE_BROKEN

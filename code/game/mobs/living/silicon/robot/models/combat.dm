@@ -15,3 +15,9 @@
 		/obj/item/wrench // Is a combat android really going to be stopped by a chair?
 	)
 	emag_type = /obj/item/gun/energy/lasercannon/cyborg
+
+	channels = list(CHANNEL_SECURITY = TRUE)
+
+	sprites = list(
+		"Combat Android" = "droid-combat"
+	)

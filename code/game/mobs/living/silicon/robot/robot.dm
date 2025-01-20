@@ -128,9 +128,7 @@
 			C.wrapped = new C.external_type()
 
 	if(isnull(cell))
-		cell = new /obj/item/cell(src)
-		cell.maxcharge = 7500
-		cell.charge = 7500
+		cell = new /obj/item/cell/apc(src)
 
 	. = ..()
 
@@ -658,99 +656,38 @@
 /mob/living/silicon/robot/proc/pick_module()
 	if(isnotnull(module))
 		return
-	var/list/modules = list("Standard", "Engineering", "Medical", "Miner", "Janitor", "Service", "Security")
+
+	var/static/list/modules = list(
+		"Standard" = /obj/item/robot_model/standard,
+		"Engineering" = /obj/item/robot_model/engineering,
+		"Medical" = /obj/item/robot_model/medical,
+		"Miner" = /obj/item/robot_model/miner,
+		"Janitor" = /obj/item/robot_model/janitor,
+		"Service" = /obj/item/robot_model/service,
+		"Security" = /obj/item/robot_model/security
+	)
 	if(crisis && IS_SEC_LEVEL(/decl/security_level/red)) // Leaving this in until it's balanced appropriately.
 		to_chat(src, SPAN_WARNING("Crisis mode active. Combat module available."))
-		modules.Add("Combat")
+		modules["Combat"] = /obj/item/robot_model/combat
 	modtype = input("Please, select a module!", "Robot", null, null) in modules
-
-	var/list/module_sprites // Used to store the associations between sprite names and sprite index.
 
 	if(isnotnull(module))
 		return
 
-	switch(modtype)
-		if("Standard")
-			module = new /obj/item/robot_model/standard(src)
-			module_sprites = list(
-				"Basic" = "robot_old",
-				"Android" = "droid",
-				"Default" = "robot"
-			)
+	var/module_path = modules[modtype]
+	module = new module_path(src)
 
-		if("Service")
-			module = new /obj/item/robot_model/service(src)
-			module_sprites = list(
-				"Waitress" = "Service",
-				"Kent" = "toiletbot",
-				"Bro" = "Brobot",
-				"Rich" = "maximillion",
-				"Default" = "Service2"
-			)
-
-		if("Miner")
-			module = new /obj/item/robot_model/miner(src)
-			module.channels = list("Supply" = 1)
-			if(isnotnull(camera) && ("Robots" in camera.network))
-				camera.network.Add("MINE")
-			module_sprites = list(
-				"Basic" = "Miner_old",
-				"Advanced Droid" = "droid-miner",
-				"Treadhead" = "Miner"
-			)
-
-		if("Medical")
-			module = new /obj/item/robot_model/medical(src)
-			module.channels = list("Medical" = 1)
-			if(isnotnull(camera) && ("Robots" in camera.network))
-				camera.network.Add("Medical")
-			module_sprites = list(
-				"Basic" = "Medbot",
-				"Advanced Droid" = "droid-medical",
-				"Needles" = "medicalrobot",
-				"Standard" = "surgeon"
-			)
-
-		if("Security")
-			module = new /obj/item/robot_model/security(src)
-			module.channels = list("Security" = 1)
-			module_sprites = list(
-				"Basic" = "secborg",
-				"Red Knight" = "Security",
-				"Black Knight" = "securityrobot",
-				"Bloodhound" = "bloodhound"
-			)
-
-		if("Engineering")
-			module = new /obj/item/robot_model/engineering(src)
-			module.channels = list("Engineering" = 1)
-			if(isnotnull(camera) && ("Robots" in camera.network))
-				camera.network.Add("Engineering")
-			module_sprites = list(
-				"Basic" = "Engineering",
-				"Antique" = "engineerrobot",
-				"Landmate" = "landmate"
-			)
-
-		if("Janitor")
-			module = new /obj/item/robot_model/janitor(src)
-			module_sprites = list(
-				"Basic" = "JanBot2",
-				"Mopbot" = "janitorrobot",
-				"Mop Gear Rex" = "mopgearrex"
-			)
-
-		if("Combat")
-			module = new /obj/item/robot_model/combat(src)
-			module.channels = list("Security" = 1)
-			module_sprites = list("Combat Android" = "droid-combat")
+	// Camera networks
+	if(isnotnull(camera) && ("Robots" in camera.network))
+		for(var/network in module.camera_networks)
+			camera.network.Add(network)
 
 	// Languages
 	module.add_languages(src)
 
 	// Custom_sprite check and entry.
 	if(custom_sprite)
-		module_sprites["Custom"] = "[ckey]-[modtype]"
+		module.sprites["Custom"] = "[ckey]-[modtype]"
 
 	hands.icon_state = lowertext(modtype)
 	feedback_inc("cyborg_[lowertext(modtype)]",1)
@@ -759,7 +696,7 @@
 	if(modtype == "Medical" || modtype == "Security" || modtype == "Combat")
 		status_flags &= ~CANPUSH
 
-	choose_icon(6, module_sprites)
+	choose_icon(6, module.sprites)
 	radio.config(module.channels)
 
 /mob/living/silicon/robot/proc/updatename(prefix as text)

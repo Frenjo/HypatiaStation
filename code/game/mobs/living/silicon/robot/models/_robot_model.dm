@@ -9,13 +9,16 @@
 	item_state = "electronic"
 	obj_flags = OBJ_FLAG_CONDUCT
 
-	var/channels = list()
-
 	var/list/module_types = list()
 	var/list/modules = list()
 
 	var/emag_type = /obj/item/toy/sword
 	var/obj/item/emag = null
+
+	var/list/channels = list()
+	var/list/camera_networks = list()
+
+	var/list/sprites = list() // Used to store the associations between sprite names and sprite index.
 
 /obj/item/robot_model/New()
 	. = ..()

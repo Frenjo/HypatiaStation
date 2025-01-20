@@ -14,6 +14,14 @@
 	)
 	emag_type = /obj/item/reagent_holder/spray/lube
 
+	channels = list(CHANNEL_SERVICE = TRUE)
+
+	sprites = list(
+		"Basic" = "JanBot2",
+		"Mopbot" = "janitorrobot",
+		"Mop Gear Rex" = "mopgearrex"
+	)
+
 /obj/item/robot_model/janitor/respawn_consumable(mob/living/silicon/robot/R)
 	var/obj/item/lightreplacer/LR = locate() in modules
 	LR.Charge(R)

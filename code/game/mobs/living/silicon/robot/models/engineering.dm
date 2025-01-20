@@ -22,6 +22,15 @@
 	)
 	emag_type = /obj/item/borg/stun
 
+	channels = list(CHANNEL_ENGINEERING = TRUE)
+	camera_networks = list("Engineering")
+
+	sprites = list(
+		"Basic" = "Engineering",
+		"Antique" = "engineerrobot",
+		"Landmate" = "landmate"
+	)
+
 /obj/item/robot_model/engineering/New()
 	. = ..()
 	modules.Add(new /obj/item/stack/sheet/steel/cyborg(src, 50))

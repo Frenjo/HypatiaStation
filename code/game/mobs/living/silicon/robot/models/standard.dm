@@ -14,3 +14,9 @@
 		/obj/item/health_analyser
 	)
 	emag_type = /obj/item/melee/energy/sword
+
+	sprites = list(
+		"Basic" = "robot_old",
+		"Android" = "droid",
+		"Default" = "robot"
+	)
