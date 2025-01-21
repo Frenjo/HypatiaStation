@@ -16,9 +16,10 @@
 
 	channels = list(CHANNEL_SECURITY = TRUE)
 
+	sprite_path = 'icons/mob/silicon/robot/security.dmi'
 	sprites = list(
 		"Basic" = "secborg",
-		"Red Knight" = "Security",
+		"Red Knight" = "security",
 		"Black Knight" = "securityrobot",
 		"Bloodhound" = "bloodhound"
 	)

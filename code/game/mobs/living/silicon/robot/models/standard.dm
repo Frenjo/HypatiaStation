@@ -15,8 +15,9 @@
 	)
 	emag_type = /obj/item/melee/energy/sword
 
+	sprite_path = 'icons/mob/silicon/robot/standard.dmi'
 	sprites = list(
+		"Default" = "robot",
 		"Basic" = "robot_old",
-		"Android" = "droid",
-		"Default" = "robot"
+		"Android" = "droid"
 	)

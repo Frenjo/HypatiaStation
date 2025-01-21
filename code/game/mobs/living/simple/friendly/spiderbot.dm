@@ -16,7 +16,7 @@
 
 	name = "Spider-bot"
 	desc = "A skittering robotic friend!"
-	icon = 'icons/mob/robots.dmi'
+	icon = 'icons/mob/silicon/robot/spiderbot.dmi'
 	icon_state = "spiderbot-chassis"
 	icon_living = "spiderbot-chassis"
 	icon_dead = "spiderbot-smashed"

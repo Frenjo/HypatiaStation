@@ -1,7 +1,7 @@
 /mob/living/silicon/robot
 	name = "Cyborg"
 	real_name = "Cyborg"
-	icon = 'icons/mob/robots.dmi'
+	icon = 'icons/mob/silicon/robot/standard.dmi'
 	icon_state = "robot"
 	maxHealth = 200
 	health = 200
@@ -70,7 +70,7 @@
 	var/braintype = "Cyborg"
 	var/pose
 
-/mob/living/silicon/robot/New(loc, syndie = 0, unfinished = 0)
+/mob/living/silicon/robot/New(loc, unfinished = 0)
 	spark_system = new /datum/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -79,20 +79,7 @@
 	updatename("Default")
 	updateicon()
 
-	if(syndie)
-		if(isnull(cell))
-			cell = new /obj/item/cell(src)
-
-		laws = new /datum/ai_laws/antimov()
-		lawupdate = 0
-		scrambledcodes = 1
-		cell.maxcharge = 25000
-		cell.charge = 25000
-		module = new /obj/item/robot_model/syndicate(src)
-		hands.icon_state = "standard"
-		icon_state = "secborg"
-		modtype = "Security"
-	else if(isdrone(src))
+	if(isdrone(src))
 		laws = new /datum/ai_laws/drone()
 		connected_ai = select_active_ai_with_fewest_borgs()
 		if(isnotnull(connected_ai))
@@ -108,7 +95,8 @@
 		else
 			lawupdate = FALSE
 
-	radio = new /obj/item/radio/borg(src)
+	if(isnull(radio))
+		radio = new /obj/item/radio/borg(src)
 	if(!scrambledcodes && isnull(camera))
 		camera = new /obj/machinery/camera(src)
 		camera.c_tag = real_name
@@ -566,6 +554,11 @@
 
 /mob/living/silicon/robot/updateicon()
 	overlays.Cut()
+	if(!custom_sprite)
+		if(isnotnull(module?.sprite_path))
+			icon = module.sprite_path
+		else
+			icon = initial(icon)
 	if(stat == CONSCIOUS)
 		overlays.Add("eyes")
 		overlays.Cut()
@@ -932,3 +925,19 @@
 			return
 	else
 		to_chat(src, "Your icon has been set. You now require a module reset to change it.")
+
+// Syndicate
+/mob/living/silicon/robot/syndicate
+	icon_state = "syndie_bloodhound"
+	lawupdate = FALSE
+	scrambledcodes = TRUE
+
+/mob/living/silicon/robot/syndicate/New()
+	cell = new /obj/item/cell/hyper(src)
+	. = ..()
+	laws = new /datum/ai_laws/antimov()
+	module = new /obj/item/robot_model/syndicate(src)
+	updateicon()
+	updatename("Syndicate")
+
+	status_flags &= ~CANPUSH

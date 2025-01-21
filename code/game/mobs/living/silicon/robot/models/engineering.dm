@@ -25,8 +25,9 @@
 	channels = list(CHANNEL_ENGINEERING = TRUE)
 	camera_networks = list("Engineering")
 
+	sprite_path = 'icons/mob/silicon/robot/engineering.dmi'
 	sprites = list(
-		"Basic" = "Engineering",
+		"Basic" = "engineering",
 		"Antique" = "engineerrobot",
 		"Landmate" = "landmate"
 	)

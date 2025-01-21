@@ -11,3 +11,8 @@
 		/obj/item/gun/energy/pulse_rifle/destroyer,
 		/obj/item/card/emag
 	)
+
+	sprite_path = 'icons/mob/silicon/robot/syndicate.dmi'
+	sprites = list(
+		"Default" = "syndie_bloodhound"
+	)

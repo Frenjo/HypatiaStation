@@ -1,7 +1,7 @@
 /mob/living/silicon/robot/drone
 	name = "drone"
 	real_name = "drone"
-	icon = 'icons/mob/robots.dmi'
+	icon = 'icons/mob/silicon/robot/drone.dmi'
 	icon_state = "repairbot"
 	maxHealth = 35
 	health = 35
@@ -79,9 +79,9 @@
 /mob/living/silicon/robot/drone/updateicon()
 	overlays.Cut()
 	if(stat == CONSCIOUS)
-		overlays += "eyes-[icon_state]"
+		overlays.Add("eyes-[icon_state]")
 	else
-		overlays -= "eyes"
+		overlays.Remove("eyes")
 
 /mob/living/silicon/robot/drone/choose_icon()
 	return

@@ -20,11 +20,12 @@
 	channels = list(CHANNEL_MEDICAL = TRUE)
 	camera_networks = list("Medical")
 
+	sprite_path = 'icons/mob/silicon/robot/medical.dmi'
 	sprites = list(
-		"Basic" = "Medbot",
+		"Basic" = "medbot",
+		"Standard" = "surgeon",
 		"Advanced Droid" = "droid-medical",
-		"Needles" = "medicalrobot",
-		"Standard" = "surgeon"
+		"Needles" = "medicalrobot"
 	)
 
 /obj/item/robot_model/medical/respawn_consumable(mob/living/silicon/robot/R)

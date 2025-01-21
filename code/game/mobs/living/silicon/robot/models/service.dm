@@ -18,12 +18,14 @@
 
 	channels = list(CHANNEL_SERVICE = TRUE)
 
+	sprite_path = 'icons/mob/silicon/robot/service.dmi'
 	sprites = list(
-		"Waitress" = "Service",
+		"Default" = "service2",
+		"Waitress" = "service",
 		"Kent" = "toiletbot",
-		"Bro" = "Brobot",
+		"Bro" = "brobot",
 		"Rich" = "maximillion",
-		"Default" = "Service2"
+		"Hydrobot" = "hydrobot"
 	)
 
 /obj/item/robot_model/service/New()

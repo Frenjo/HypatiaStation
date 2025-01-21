@@ -16,8 +16,9 @@
 
 	channels = list(CHANNEL_SERVICE = TRUE)
 
+	sprite_path = 'icons/mob/silicon/robot/janitor.dmi'
 	sprites = list(
-		"Basic" = "JanBot2",
+		"Basic" = "janbot2",
 		"Mopbot" = "janitorrobot",
 		"Mop Gear Rex" = "mopgearrex"
 	)

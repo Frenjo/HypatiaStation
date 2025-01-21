@@ -18,6 +18,7 @@
 
 	channels = list(CHANNEL_SECURITY = TRUE)
 
+	sprite_path = 'icons/mob/silicon/robot/combat.dmi'
 	sprites = list(
-		"Combat Android" = "droid-combat"
+		"Combat Android" = "droid_combat"
 	)

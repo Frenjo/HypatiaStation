@@ -18,6 +18,7 @@
 	var/list/channels = list()
 	var/list/camera_networks = list()
 
+	var/sprite_path = null
 	var/list/sprites = list() // Used to store the associations between sprite names and sprite index.
 
 /obj/item/robot_model/New()
