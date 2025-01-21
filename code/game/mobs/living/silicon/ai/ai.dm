@@ -27,8 +27,6 @@
 	var/aiRestorePowerRoutine = 0
 	//var/list/laws = list()
 	var/viewalerts = 0
-	var/lawcheck[1]
-	var/ioncheck[1]
 	var/icon/holo_icon //Default is assigned when AI is created.
 	var/obj/item/pda/ai/aiPDA = null
 	var/obj/item/multitool/aiMulti = null
@@ -185,32 +183,9 @@
 			else
 				to_chat(src, SPAN_NOTICE("Unable to locate the holopad."))
 
-	if(href_list["lawc"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
-		var/L = text2num(href_list["lawc"])
-		switch(lawcheck[L + 1])
-			if("Yes")
-				lawcheck[L + 1] = "No"
-			if("No")
-				lawcheck[L + 1] = "Yes"
-//		src << text ("Switching Law [L]'s report status to []", lawcheck[L+1])
-		checklaws()
-
 	if(href_list["say_word"])
 		play_vox_word(href_list["say_word"], null, src)
 		return
-
-	if(href_list["lawi"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
-		var/L = text2num(href_list["lawi"])
-		switch(ioncheck[L])
-			if("Yes")
-				ioncheck[L] = "No"
-			if("No")
-				ioncheck[L] = "Yes"
-//		src << text ("Switching Law [L]'s report status to []", lawcheck[L+1])
-		checklaws()
-
-	if(href_list["laws"]) // With how my law selection code works, I changed statelaws from a verb to a proc, and call it through my law selection panel. --NeoFite
-		statelaws()
 
 	if(href_list["track"])
 		var/mob/target = locate(href_list["track"]) in GLOBL.mob_list
@@ -335,12 +310,6 @@
 		return TRUE
 
 	return ..()
-
-/mob/living/silicon/ai/proc/add_ai_verbs()
-	verbs |= GLOBL.ai_verbs_default
-
-/mob/living/silicon/ai/proc/remove_ai_verbs()
-	verbs.Remove(GLOBL.ai_verbs_default)
 
 /mob/living/silicon/ai/proc/switchCamera(obj/machinery/camera/C)
 	cameraFollow = null

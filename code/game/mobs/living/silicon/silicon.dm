@@ -13,13 +13,15 @@
 	var/local_transmit //If set, can only speak to others of the same type within a short range.
 
 	var/sensor_mode = 0 //Determines the current HUD.
-	#define SEC_HUD 1 //Security HUD mode
-	#define MED_HUD 2 //Medical HUD mode
+
+	var/lawcheck[1] // For stating laws.
+	var/ioncheck[1] // Ditto.
 
 /mob/living/silicon/New()
 	hud_list = list()
 	speech_synthesizer_langs = list()
 	. = ..()
+	add_silicon_verbs()
 
 /mob/living/silicon/drop_item()
 	return
@@ -175,29 +177,3 @@
 		var/timeleft = global.PCemergency.estimate_arrival_time()
 		if(timeleft)
 			stat(null, "ETA-[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
-
-// this function displays the stations manifest in a separate window
-/mob/living/silicon/proc/show_station_manifest()
-	var/dat
-	dat += "<h4>Crew Manifest</h4>"
-	if(isnotnull(GLOBL.data_core))
-		dat += GLOBL.data_core.get_manifest(1) // make it monochrome
-	dat += "<br>"
-	src << browse(dat, "window=airoster")
-	onclose(src, "airoster")
-
-/mob/living/silicon/proc/toggle_sensor_mode()
-	set name = "Set Sensor Augmentation"
-	set desc = "Augment visual feed with internal sensor overlays."
-
-	var/sensor_type = input("Please select sensor type.", "Sensor Integration", null) in list("Security", "Medical", "Disable")
-	switch(sensor_type)
-		if("Security")
-			sensor_mode = SEC_HUD
-			to_chat(src, SPAN_NOTICE("Security records overlay enabled."))
-		if("Medical")
-			sensor_mode = MED_HUD
-			to_chat(src, SPAN_NOTICE("Life signs monitor overlay enabled."))
-		if("Disable")
-			sensor_mode = 0
-			to_chat(src, "Sensor augmentations disabled.")

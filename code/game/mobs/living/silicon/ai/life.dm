@@ -36,9 +36,9 @@
 
 	regular_hud_updates()
 	switch(sensor_mode)
-		if(SEC_HUD)
+		if(SILICON_HUD_SECURITY)
 			process_sec_hud(src, 0, eyeobj)
-		if(MED_HUD)
+		if(SILICON_HUD_MEDICAL)
 			process_med_hud(src, 0, eyeobj)
 
 /mob/living/silicon/ai/updatehealth()

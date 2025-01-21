@@ -2,8 +2,6 @@
  * AI Verbs
  */
 GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
-	/mob/living/silicon/ai/proc/ai_alerts,
-	/mob/living/silicon/ai/proc/ai_roster,
 	/mob/living/silicon/ai/proc/ai_call_shuttle,
 	/mob/living/silicon/ai/proc/ai_cancel_call,
 	/mob/living/silicon/ai/proc/ai_network_change,
@@ -12,10 +10,14 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 
 	/mob/living/silicon/ai/proc/ai_camera_track,
 	/mob/living/silicon/ai/proc/ai_camera_list,
-	/mob/living/silicon/ai/proc/sensor_mode,
-	/mob/living/silicon/ai/proc/show_laws_verb,
 	/mob/living/silicon/ai/proc/toggle_camera_light
 ))
+
+/mob/living/silicon/ai/proc/add_ai_verbs()
+	verbs |= GLOBL.ai_verbs_default
+
+/mob/living/silicon/ai/proc/remove_ai_verbs()
+	verbs.Remove(GLOBL.ai_verbs_default)
 
 /*
  * Set AI Core Display
@@ -72,49 +74,6 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 	//else
 			//usr <<"You can only change your display once!"
 			//return
-
-/*
- * Show Alerts
- */
-/mob/living/silicon/ai/proc/ai_alerts()
-	set category = PANEL_AI_COMMANDS
-	set name = "Show Alerts"
-
-	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
-	dat += "<A href='byond://?src=\ref[src];mach_close=aialerts'>Close</A><BR><BR>"
-	for(var/cat in alarms)
-		dat += text("<B>[]</B><BR>\n", cat)
-		var/list/alarmlist = alarms[cat]
-		if(length(alarmlist))
-			for(var/area_name in alarmlist)
-				var/datum/alarm/alarm = alarmlist[area_name]
-				dat += "<NOBR>"
-				var/cameratext = ""
-				if(alarm.cameras)
-					for(var/obj/machinery/camera/I in alarm.cameras)
-						cameratext += "[cameratext == "" ? "" : " | "]<A href=byond://?src=\ref[src];switchcamera=\ref[I]>[I.c_tag]</A>"
-				dat += "-- [alarm.area.name] ([cameratext ? cameratext : "No Camera"])"
-
-				if(length(alarm.sources) > 1)
-					dat += " - [length(alarm.sources)] sources"
-				dat += "</NOBR><BR>\n"
-		else
-			dat += "-- All Systems Nominal<BR>\n"
-		dat += "<BR>\n"
-
-	viewalerts = 1
-	src << browse(dat, "window=aialerts&can_close=0")
-
-/*
- * Show Crew Manifest
- *
- * This verb lets the AI see the station's manifest.
- */
-/mob/living/silicon/ai/proc/ai_roster()
-	set category = PANEL_AI_COMMANDS
-	set name = "Show Crew Manifest"
-
-	show_station_manifest()
 
 /*
  * Call Emergency Shuttle
@@ -350,13 +309,3 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 				//current.SetLuminosity(AI_CAMERA_LUMINOSITY)
 				current.set_light(AI_CAMERA_LUMINOSITY)
 		camera_light_on = world.timeofday + 1 * 20 // Update the light every 2 seconds.
-
-/*
- * Set Sensor Augmentation
- */
-/mob/living/silicon/ai/proc/sensor_mode()
-	set category = PANEL_AI_COMMANDS
-	set name = "Set Sensor Augmentation"
-	set desc = "Augment visual feed with internal sensor overlays."
-
-	toggle_sensor_mode()

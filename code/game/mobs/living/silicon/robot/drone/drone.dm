@@ -265,9 +265,3 @@
 	lawupdate = FALSE
 	to_chat(src, "<b>Systems rebooted</b>. Loading base pattern maintenance protocol... <b>loaded</b>.")
 	full_law_reset()
-
-/mob/living/silicon/robot/drone/add_robot_verbs()
-	return
-
-/mob/living/silicon/robot/drone/remove_robot_verbs()
-	return

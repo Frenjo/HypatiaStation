@@ -7,7 +7,6 @@
 	module_types = list(
 		/obj/item/flashlight,
 		/obj/item/flash,
-		/obj/item/borg/sight/hud/sec,
 		/obj/item/handcuffs/cyborg,
 		/obj/item/melee/baton/loaded,
 		/obj/item/gun/energy/taser/cyborg,

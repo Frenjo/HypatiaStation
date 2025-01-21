@@ -160,16 +160,12 @@
 		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
 	regular_hud_updates()
-
-	var/obj/item/borg/sight/hud/hud = (locate(/obj/item/borg/sight/hud) in src)
-	if(isnotnull(hud?.hud))
-		hud.hud.process_hud(src)
-	else
-		switch(sensor_mode)
-			if(SEC_HUD)
-				process_sec_hud(src, 0)
-			if(MED_HUD)
-				process_med_hud(src, 0)
+	// Security and medical models get the advanced versions of their respective HUDs if enabled.
+	switch(sensor_mode)
+		if(SILICON_HUD_SECURITY)
+			process_sec_hud(src, istype(module, /obj/item/robot_model/security))
+		if(SILICON_HUD_MEDICAL)
+			process_med_hud(src, istype(module, /obj/item/robot_model/medical))
 
 	if(isnotnull(healths))
 		if(stat != DEAD)

@@ -64,8 +64,6 @@
 	var/weapon_lock = FALSE
 	var/weaponlock_time = 120
 	var/lawupdate = TRUE // Cyborgs will sync their laws with their AI by default.
-	var/lawcheck[1] //For stating laws.
-	var/ioncheck[1] //Ditto.
 	var/lockcharge //Used when locking down a borg to preserve cell charge
 	var/speed = 0 //Cause sec borgs gotta go fast //No they dont!
 	var/scrambledcodes = 0 // Used to determine if a borg shows up on the robotics console.  Setting to one hides them.
@@ -152,8 +150,6 @@
 		var/datum/robot_component/cell_component = components["power cell"]
 		cell_component.wrapped = cell
 		cell_component.installed = 1
-
-	add_robot_verbs()
 
 	hud_list[HEALTH_HUD]		= image('icons/mob/screen/hud.dmi', src, "hudblank")
 	hud_list[STATUS_HUD]		= image('icons/mob/screen/hud.dmi', src, "hudhealth100")
@@ -897,29 +893,6 @@
 			to_chat(src, "Module isn't activated.")
 		installed_modules()
 
-	if(href_list["lawc"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
-		var/L = text2num(href_list["lawc"])
-		switch(lawcheck[L + 1])
-			if("Yes")
-				lawcheck[L + 1] = "No"
-			if("No")
-				lawcheck[L + 1] = "Yes"
-//		src << text ("Switching Law [L]'s report status to []", lawcheck[L+1])
-		checklaws()
-
-	if(href_list["lawi"]) // Toggling whether or not a law gets stated by the State Laws verb --NeoFite
-		var/L = text2num(href_list["lawi"])
-		switch(ioncheck[L])
-			if("Yes")
-				ioncheck[L] = "No"
-			if("No")
-				ioncheck[L] = "Yes"
-//		src << text ("Switching Law [L]'s report status to []", lawcheck[L+1])
-		checklaws()
-
-	if(href_list["laws"]) // With how my law selection code works, I changed statelaws from a verb to a proc, and call it through my law selection panel. --NeoFite
-		statelaws()
-
 /mob/living/silicon/robot/proc/radio_menu()
 	radio.interact(src) // Just use the radio's Topic() instead of bullshit special-snowflake code.
 
@@ -959,9 +932,3 @@
 			return
 	else
 		to_chat(src, "Your icon has been set. You now require a module reset to change it.")
-
-/mob/living/silicon/robot/proc/add_robot_verbs()
-	verbs |= GLOBL.robot_verbs_default
-
-/mob/living/silicon/robot/proc/remove_robot_verbs()
-	verbs.Remove(GLOBL.robot_verbs_default)

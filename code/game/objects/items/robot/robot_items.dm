@@ -56,29 +56,3 @@
 	sight_mode = BORGMESON
 	icon_state = "meson"
 	icon = 'icons/obj/items/clothing/glasses.dmi'
-
-/*
- * HUDs
- */
-/obj/item/borg/sight/hud
-	name = "hud"
-
-	var/obj/item/clothing/glasses/hud/hud = null
-
-/obj/item/borg/sight/hud/med
-	name = "medical hud"
-	icon_state = "healthhud"
-	icon = 'icons/obj/items/clothing/glasses.dmi'
-
-/obj/item/borg/sight/hud/med/New()
-	. = ..()
-	hud = new /obj/item/clothing/glasses/hud/health(src)
-
-/obj/item/borg/sight/hud/sec
-	name = "security hud"
-	icon_state = "securityhud"
-	icon = 'icons/obj/items/clothing/glasses.dmi'
-
-/obj/item/borg/sight/hud/sec/New()
-	. = ..()
-	hud = new /obj/item/clothing/glasses/hud/security(src)

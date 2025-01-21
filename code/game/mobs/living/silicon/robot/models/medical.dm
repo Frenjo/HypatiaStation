@@ -7,7 +7,6 @@
 	module_types = list(
 		/obj/item/flashlight,
 		/obj/item/flash,
-		/obj/item/borg/sight/hud/med,
 		/obj/item/health_analyser,
 		/obj/item/reagent_scanner/adv,
 		/obj/item/reagent_holder/borghypo,

@@ -120,14 +120,6 @@
 		O.show_laws()
 		to_chat(O, "<b>These laws may be changed by other players, or by you being the traitor.</b>")
 
-	O.verbs += /mob/living/silicon/ai/proc/ai_call_shuttle
-	O.verbs += /mob/living/silicon/ai/proc/show_laws_verb
-	O.verbs += /mob/living/silicon/ai/proc/ai_camera_track
-	O.verbs += /mob/living/silicon/ai/proc/ai_alerts
-	O.verbs += /mob/living/silicon/ai/proc/ai_camera_list
-	O.verbs += /mob/living/silicon/ai/proc/ai_statuschange
-	O.verbs += /mob/living/silicon/ai/proc/ai_roster
-
 	O.job = "AI"
 
 	O.rename_self("ai", 1)
@@ -149,11 +141,6 @@
 		qdel(t)
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(loc)
-
-	// cyborgs produced by Robotize get an automatic power cell
-	O.cell = new(O)
-	O.cell.maxcharge = 7500
-	O.cell.charge = 7500
 
 	O.gender = gender
 	O.invisibility = 0

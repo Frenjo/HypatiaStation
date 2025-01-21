@@ -1,9 +1,6 @@
 /*
  * Robot Verbs
  */
-GLOBAL_GLOBL_LIST_INIT(robot_verbs_default, list(
-	/mob/living/silicon/robot/proc/sensor_mode
-))
 
 /*
  * Namepick
@@ -25,69 +22,20 @@ GLOBAL_GLOBL_LIST_INIT(robot_verbs_default, list(
 		updateicon()
 
 /*
- * Show Alerts
- */
-/mob/living/silicon/robot/verb/cmd_robot_alerts()
-	set category = "Robot Commands"
-	set name = "Show Alerts"
-
-	robot_alerts()
-
-/mob/living/silicon/robot/proc/robot_alerts()
-	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
-	dat += "<A href='byond://?src=\ref[src];mach_close=robotalerts'>Close</A><BR><BR>"
-	for(var/cat in alarms)
-		dat += text("<B>[cat]</B><BR>\n")
-		var/list/alarmlist = alarms[cat]
-		if(length(alarmlist))
-			for(var/area_name in alarmlist)
-				var/datum/alarm/alarm = alarmlist[area_name]
-				dat += "<NOBR>"
-				dat += text("-- [area_name]")
-				if(length(alarm.sources) > 1)
-					dat += "- [length(alarm.sources)] sources"
-				dat += "</NOBR><BR>\n"
-		else
-			dat += "-- All Systems Nominal<BR>\n"
-		dat += "<BR>\n"
-
-	viewalerts = 1
-	src << browse(dat, "window=robotalerts&can_close=0")
-
-/*
- * Show Crew Manifest
- *
- * This verb lets cyborgs see the station's manifest.
- */
-/mob/living/silicon/robot/verb/cmd_station_manifest()
-	set category = "Robot Commands"
-	set name = "Show Station Manifest"
-
-	show_station_manifest()
-
-/*
  * Self Diagnosis
  */
-/mob/living/silicon/robot/verb/self_diagnosis_verb()
+/mob/living/silicon/robot/verb/self_diagnosis()
 	set category = "Robot Commands"
 	set name = "Self Diagnosis"
 
 	if(!is_component_functioning("diagnosis unit"))
 		to_chat(src, SPAN_WARNING("Your self-diagnosis component isn't functioning."))
 
-	var/dat = self_diagnosis()
-	src << browse(dat, "window=robotdiagnosis")
-
-/mob/living/silicon/robot/proc/self_diagnosis()
-	if(!is_component_functioning("diagnosis unit"))
-		return null
-
 	var/dat = "<HEAD><TITLE>[name] Self-Diagnosis Report</TITLE></HEAD><BODY>\n"
 	for(var/V in components)
 		var/datum/robot_component/C = components[V]
 		dat += "<b>[C.name]</b><br><table><tr><td>Power consumption</td><td>[C.energy_consumption]</td></tr><tr><td>Brute Damage:</td><td>[C.brute_damage]</td></tr><tr><td>Electronics Damage:</td><td>[C.electronics_damage]</td></tr><tr><td>Powered:</td><td>[(!C.energy_consumption || C.is_powered()) ? "Yes" : "No"]</td></tr><tr><td>Toggled:</td><td>[ C.toggled ? "Yes" : "No"]</td></table><br>"
-
-	return dat
+	src << browse(dat, "window=robotdiagnosis")
 
 /*
  * Toggle Component
@@ -170,15 +118,3 @@ GLOBAL_GLOBL_LIST_INIT(robot_verbs_default, list(
 	set desc = "Sets an extended description of your character's features."
 
 	flavor_text = copytext(sanitize(input(usr, "Please enter your new flavour text.", "Flavour text", null) as text), 1)
-
-/*
- * Set Sensor Augmentation
- *
- * Medical/Security HUD controller for borgs.
- */
-/mob/living/silicon/robot/proc/sensor_mode()
-	set category = "Robot Commands"
-	set name = "Set Sensor Augmentation"
-	set desc = "Augment visual feed with internal sensor overlays."
-
-	toggle_sensor_mode()
