@@ -458,8 +458,8 @@
 		if(!opened)
 			to_chat(usr, SPAN_WARNING("You must access [src]'s internals!"))
 			return TRUE
-		if(isnull(module) && U.require_module)
-			to_chat(usr, SPAN_WARNING("[src] must choose a module before it can be upgraded!"))
+		if(isnull(module) && U.require_model)
+			to_chat(usr, SPAN_WARNING("[src] must choose a model before it can be upgraded!"))
 			return TRUE
 		if(U.locked)
 			to_chat(usr, SPAN_WARNING("The upgrade is locked and cannot be used yet!"))
