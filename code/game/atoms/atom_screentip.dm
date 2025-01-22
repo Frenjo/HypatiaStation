@@ -7,4 +7,4 @@
 		if(!client.prefs.screentip_pref || HAS_ATOM_FLAGS(src, ATOM_FLAG_NO_SCREENTIP))
 			active_hud.screentip_text.maptext = ""
 		else
-			active_hud.screentip_text.maptext = "<span style='text-align: center; font-size: 12px; color: [client?.prefs?.screentip_colour]'>[name]</span>"
+			active_hud.screentip_text.maptext = "<span style='text-align: center; font-size: 10px; color: [client?.prefs?.screentip_colour]'>[name]</span>"
