@@ -3,8 +3,9 @@
  */
 /obj/item/robot_model/engineering
 	name = "engineering robot model"
+	display_name = "Engineering"
 
-	module_types = list(
+	basic_modules = list(
 		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/borg/sight/meson,

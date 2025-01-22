@@ -185,7 +185,7 @@
 		src << "\red Weapon lock active, unable to use modules! Count:[weaponlock_time]"
 		return
 
-	if(!module)
+	if(istype(module, /obj/item/robot_model/default))
 		module = new /obj/item/robot_model/drone(src)
 
 	var/dat = "<HEAD><TITLE>Drone modules</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"

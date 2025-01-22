@@ -62,9 +62,9 @@
 				else
 					dat += " No Cell Installed |"
 				if(R.module)
-					dat += " Module Installed ([R.module.name]) |"
+					dat += " Model Installed ([R.module.display_name]) |"
 				else
-					dat += " No Module Installed |"
+					dat += " No Model Installed |"
 				if(R.connected_ai)
 					dat += " Slaved to [R.connected_ai.name] |"
 				else

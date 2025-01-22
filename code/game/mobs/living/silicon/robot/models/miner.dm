@@ -3,9 +3,10 @@
  */
 /obj/item/robot_model/miner
 	name = "miner robot model"
+	display_name = "Miner"
 
 	// The shovel was removed due to the buffed drill.
-	module_types = list(
+	basic_modules = list(
 		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/borg/sight/meson,

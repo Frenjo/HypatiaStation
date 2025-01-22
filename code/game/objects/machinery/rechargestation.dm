@@ -57,8 +57,7 @@
 	if(occupant)
 		if(isrobot(occupant))
 			var/mob/living/silicon/robot/R = occupant
-			if(isnotnull(R.module))
-				R.module.respawn_consumable(R)
+			R.module?.respawn_consumable(R)
 			if(isnull(R.cell))
 				return
 			/*else if(R.cell.charge >= R.cell.maxcharge)

@@ -3,8 +3,9 @@
  */
 /obj/item/robot_model/janitor
 	name = "janitorial robot model"
+	display_name = "Janitorial"
 
-	module_types = list(
+	basic_modules = list(
 		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/soap/nanotrasen,

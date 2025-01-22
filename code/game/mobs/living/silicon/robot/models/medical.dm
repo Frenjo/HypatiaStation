@@ -3,8 +3,9 @@
  */
 /obj/item/robot_model/medical
 	name = "medical robot model"
+	display_name = "Medical"
 
-	module_types = list(
+	basic_modules = list(
 		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/health_analyser,
@@ -27,6 +28,8 @@
 		"Advanced Droid" = "droid-medical",
 		"Needles" = "medicalrobot"
 	)
+
+	can_be_pushed = FALSE
 
 /obj/item/robot_model/medical/respawn_consumable(mob/living/silicon/robot/R)
 	var/obj/item/reagent_holder/syringe/S = locate() in modules

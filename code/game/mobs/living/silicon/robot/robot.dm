@@ -52,7 +52,6 @@
 	var/ident = 0
 	//var/list/laws = list()
 	var/viewalerts = 0
-	var/modtype = "Default"
 	var/lower_mod = 0
 	var/jetpack = 0
 	var/datum/effect/system/ion_trail_follow/ion_trail = null
@@ -76,8 +75,6 @@
 	spark_system.attach(src)
 
 	ident = rand(1, 999)
-	updatename("Default")
-	updateicon()
 
 	if(isdrone(src))
 		laws = new /datum/ai_laws/drone()
@@ -85,7 +82,7 @@
 		if(isnotnull(connected_ai))
 			connected_ai.connected_robots.Add(src)
 			lawsync()
-	else
+	else if(lawupdate)
 		laws = new /datum/ai_laws/corporate()
 		connected_ai = select_active_ai_with_fewest_borgs()
 		if(isnotnull(connected_ai))
@@ -103,6 +100,10 @@
 		camera.network = list("SS13","Robots")
 		if(isWireCut(5)) // 5 = BORG CAMERA
 			camera.status = 0
+
+	module = new /obj/item/robot_model/default(src)
+	updatename()
+	updateicon()
 
 	initialize_components()
 	//if(!unfinished)
@@ -219,6 +220,9 @@
 	return has_alarm
 
 /mob/living/silicon/robot/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+	if(src == user) // This prevents syndicate borgs from emagging themselves.
+		return FALSE
+
 	// Unlocking.
 	if(!opened) // If the cover is closed...
 		if(locked) // ... and locked.
@@ -278,7 +282,7 @@
 		laws.show_laws(src)
 		to_chat(src, SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and their commands."))
 
-		if(isnotnull(module) && istype(module, /obj/item/robot_model/miner))
+		if(istype(module, /obj/item/robot_model/miner))
 			for(var/obj/item/pickaxe/borgdrill/D in module.modules)
 				qdel(D)
 			module.modules.Add(new /obj/item/pickaxe/diamonddrill(module))
@@ -442,7 +446,7 @@
 		if(!opened)
 			to_chat(usr, SPAN_WARNING("You must access [src]'s internals!"))
 			return TRUE
-		if(isnull(module) && U.require_model)
+		if(istype(module, /obj/item/robot_model/default) && U.require_model)
 			to_chat(usr, SPAN_WARNING("[src] must choose a model before it can be upgraded!"))
 			return TRUE
 		if(U.locked)
@@ -585,7 +589,7 @@
 	if(module_active && istype(module_active, /obj/item/borg/combat/shield))
 		overlays.Add("[icon_state]-shield")
 
-	if(modtype == "Combat")
+	if(istype(module, /obj/item/robot_model/combat))
 		var/base_icon = ""
 		base_icon = icon_state
 		if(module_active && istype(module_active, /obj/item/borg/combat/mobility))
@@ -603,47 +607,46 @@
 
 /mob/living/silicon/robot/Move(a, b, flag)
 	. = ..()
-	if(isnotnull(module))
-		if(istype(module, /obj/item/robot_model/janitor))
-			var/turf/tile = loc
-			if(isturf(tile))
-				tile.clean_blood()
-				if(isopenturf(tile))
-					var/turf/open/S = tile
-					S.dirt = 0
-				for(var/A in tile)
-					if(istype(A, /obj/effect))
-						if(isrune(A) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
-							qdel(A)
-					else if(isitem(A))
-						var/obj/item/cleaned_item = A
-						cleaned_item.clean_blood()
-					else if(ishuman(A))
-						var/mob/living/carbon/human/cleaned_human = A
-						if(cleaned_human.lying)
-							if(isnotnull(cleaned_human.head))
-								cleaned_human.head.clean_blood()
-								cleaned_human.update_inv_head(0)
-							if(isnotnull(cleaned_human.wear_suit))
-								cleaned_human.wear_suit.clean_blood()
-								cleaned_human.update_inv_wear_suit(0)
-							else if(isnotnull(cleaned_human.wear_uniform))
-								cleaned_human.wear_uniform.clean_blood()
-								cleaned_human.update_inv_wear_uniform(0)
-							if(isnotnull(cleaned_human.shoes))
-								cleaned_human.shoes.clean_blood()
-								cleaned_human.update_inv_shoes(0)
-							cleaned_human.clean_blood(1)
-							to_chat(cleaned_human, SPAN_WARNING("[src] cleans your face!"))
+	if(istype(module, /obj/item/robot_model/janitor))
+		var/turf/tile = loc
+		if(isturf(tile))
+			tile.clean_blood()
+			if(isopenturf(tile))
+				var/turf/open/S = tile
+				S.dirt = 0
+			for(var/A in tile)
+				if(istype(A, /obj/effect))
+					if(isrune(A) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay))
+						qdel(A)
+				else if(isitem(A))
+					var/obj/item/cleaned_item = A
+					cleaned_item.clean_blood()
+				else if(ishuman(A))
+					var/mob/living/carbon/human/cleaned_human = A
+					if(cleaned_human.lying)
+						if(isnotnull(cleaned_human.head))
+							cleaned_human.head.clean_blood()
+							cleaned_human.update_inv_head(0)
+						if(isnotnull(cleaned_human.wear_suit))
+							cleaned_human.wear_suit.clean_blood()
+							cleaned_human.update_inv_wear_suit(0)
+						else if(isnotnull(cleaned_human.wear_uniform))
+							cleaned_human.wear_uniform.clean_blood()
+							cleaned_human.update_inv_wear_uniform(0)
+						if(isnotnull(cleaned_human.shoes))
+							cleaned_human.shoes.clean_blood()
+							cleaned_human.update_inv_shoes(0)
+						cleaned_human.clean_blood(1)
+						to_chat(cleaned_human, SPAN_WARNING("[src] cleans your face!"))
 
 // setup the PDA and its name
 /mob/living/silicon/robot/proc/setup_PDA()
 	if(isnull(rbPDA))
 		rbPDA = new /obj/item/pda/ai(src)
-	rbPDA.set_name_and_job(custom_name, "[modtype] [braintype]")
+	rbPDA.set_name_and_job(custom_name, "[module.display_name] [braintype]")
 
 /mob/living/silicon/robot/proc/pick_module()
-	if(isnotnull(module))
+	if(!istype(module, /obj/item/robot_model/default))
 		return
 
 	var/static/list/modules = list(
@@ -658,12 +661,9 @@
 	if(crisis && IS_SEC_LEVEL(/decl/security_level/red)) // Leaving this in until it's balanced appropriately.
 		to_chat(src, SPAN_WARNING("Crisis mode active. Combat module available."))
 		modules["Combat"] = /obj/item/robot_model/combat
-	modtype = input("Please, select a module!", "Robot", null, null) in modules
+	var/input_module = input("Please, select a module!", "Robot", null, null) in modules
 
-	if(isnotnull(module))
-		return
-
-	var/module_path = modules[modtype]
+	var/module_path = modules[input_module]
 	module = new module_path(src)
 
 	// Camera networks
@@ -674,23 +674,23 @@
 	// Languages
 	module.add_languages(src)
 
+	// Pushable status
+	if(!module.can_be_pushed)
+		status_flags &= ~CANPUSH
+
 	// Custom_sprite check and entry.
 	if(custom_sprite)
-		module.sprites["Custom"] = "[ckey]-[modtype]"
+		module.sprites["Custom"] = "[ckey]-[module.display_name]"
 
-	hands.icon_state = lowertext(modtype)
-	feedback_inc("cyborg_[lowertext(modtype)]",1)
+	var/module_icon = lowertext(module.display_name)
+	hands.icon_state = lowertext(module_icon)
+	feedback_inc("cyborg_[lowertext(module_icon)]",1)
 	updatename()
-
-	if(modtype == "Medical" || modtype == "Security" || modtype == "Combat")
-		status_flags &= ~CANPUSH
 
 	choose_icon(6, module.sprites)
 	radio.config(module.channels)
 
-/mob/living/silicon/robot/proc/updatename(prefix as text)
-	if(prefix)
-		modtype = prefix
+/mob/living/silicon/robot/proc/updatename()
 	if(istype(mmi, /obj/item/mmi/posibrain))
 		braintype = "Android"
 	else
@@ -700,7 +700,7 @@
 	if(custom_name)
 		changed_name = custom_name
 	else
-		changed_name = "[modtype] [braintype]-[num2text(ident)]"
+		changed_name = "[module.display_name] [braintype]-[num2text(ident)]"
 	real_name = changed_name
 	name = real_name
 
@@ -786,7 +786,7 @@
 		to_chat(src, SPAN_WARNING("Weapon lock active, unable to use modules! Count: [weaponlock_time]."))
 		return
 
-	if(isnull(module))
+	if(istype(module, /obj/item/robot_model/default))
 		pick_module()
 		return
 	var/dat = "<HEAD><TITLE>Modules</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
@@ -937,7 +937,5 @@
 	. = ..()
 	laws = new /datum/ai_laws/antimov()
 	module = new /obj/item/robot_model/syndicate(src)
+	updatename()
 	updateicon()
-	updatename("Syndicate")
-
-	status_flags &= ~CANPUSH

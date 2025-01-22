@@ -3,8 +3,9 @@
  */
 /obj/item/robot_model/security
 	name = "security robot model"
+	display_name = "Security"
 
-	module_types = list(
+	basic_modules = list(
 		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/handcuffs/cyborg,
@@ -23,6 +24,8 @@
 		"Black Knight" = "securityrobot",
 		"Bloodhound" = "bloodhound"
 	)
+
+	can_be_pushed = FALSE
 
 /obj/item/robot_model/security/respawn_consumable(mob/living/silicon/robot/R)
 	var/obj/item/flash/F = locate() in modules

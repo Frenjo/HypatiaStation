@@ -14,7 +14,7 @@
 
 	switch(name)
 		if("module")
-			if(isnotnull(R.module))
+			if(!istype(R.module, /obj/item/robot_model/default))
 				return FALSE
 			R.pick_module()
 		if("radio")

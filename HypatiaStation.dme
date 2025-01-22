@@ -668,6 +668,7 @@
 #include "code\game\mobs\living\silicon\robot\drone\drone_model.dm"
 #include "code\game\mobs\living\silicon\robot\models\_robot_model.dm"
 #include "code\game\mobs\living\silicon\robot\models\combat.dm"
+#include "code\game\mobs\living\silicon\robot\models\default.dm"
 #include "code\game\mobs\living\silicon\robot\models\engineering.dm"
 #include "code\game\mobs\living\silicon\robot\models\janitor.dm"
 #include "code\game\mobs\living\silicon\robot\models\medical.dm"

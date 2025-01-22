@@ -9,11 +9,18 @@
 	item_state = "electronic"
 	obj_flags = OBJ_FLAG_CONDUCT
 
-	var/list/module_types = list()
-	var/list/modules = list()
+	// The visible display name of the model.
+	var/display_name = "Unformatted"
 
+	// A list of typepaths for the basic modules this model has.
+	var/list/basic_modules = list()
+
+	// The module this model receives when emagged and the associated instance.
 	var/emag_type = /obj/item/toy/sword
 	var/obj/item/emag = null
+
+	// A list containing all currently useable modules.
+	var/list/modules = list()
 
 	var/list/channels = list()
 	var/list/camera_networks = list()
@@ -21,15 +28,17 @@
 	var/sprite_path = null
 	var/list/sprites = list() // Used to store the associations between sprite names and sprite index.
 
+	var/can_be_pushed = TRUE // Whether this model can be pushed around.
+
 /obj/item/robot_model/New()
 	. = ..()
-	for(var/path in module_types)
+	for(var/path in basic_modules)
 		modules.Add(new path(src))
 	emag = new emag_type(src)
 
 /obj/item/robot_model/Destroy()
-	QDEL_NULL(modules)
 	QDEL_NULL(emag)
+	QDEL_NULL(modules)
 	return ..()
 
 /obj/item/robot_model/emp_act(severity)

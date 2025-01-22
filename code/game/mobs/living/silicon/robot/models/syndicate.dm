@@ -3,8 +3,9 @@
  */
 /obj/item/robot_model/syndicate
 	name = "syndicate robot model"
+	display_name = "Syndicate"
 
-	module_types = list(
+	basic_modules = list(
 		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/melee/energy/sword,
@@ -16,3 +17,5 @@
 	sprites = list(
 		"Default" = "syndie_bloodhound"
 	)
+
+	can_be_pushed = FALSE

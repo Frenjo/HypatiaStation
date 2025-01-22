@@ -4,9 +4,10 @@
  * There's not much ROM to spare in that tiny microprocessor!
  */
 /obj/item/robot_model/drone
-	name = "drone model"
+	name = "drone robot model"
+	display_name = "Drone"
 
-	module_types = list(
+	basic_modules = list(
 		/obj/item/flashlight/drone,
 		/obj/item/weldingtool,
 		/obj/item/screwdriver,

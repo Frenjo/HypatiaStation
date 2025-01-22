@@ -3,8 +3,9 @@
  */
 /obj/item/robot_model/service
 	name = "service robot model"
+	display_name = "Service"
 
-	module_types = list(
+	basic_modules = list(
 		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/reagent_holder/food/drinks/cans/beer,

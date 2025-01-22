@@ -51,7 +51,8 @@
 	for(var/camera_network in borg.module.camera_networks)
 		borg.camera.network.Remove(camera_network)
 	QDEL_NULL(borg.module)
-	borg.updatename("Default")
+	borg.module = new /obj/item/robot_model/default(borg)
+	borg.updatename()
 	borg.status_flags |= CANPUSH
 	borg.updateicon()
 	return TRUE

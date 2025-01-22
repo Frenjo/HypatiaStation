@@ -225,7 +225,7 @@
 			O.mmi = W
 			O.invisibility = 0
 			O.custom_name = created_name
-			O.updatename("Default")
+			O.updatename()
 
 			M.brainmob.mind.transfer_to(O)
 

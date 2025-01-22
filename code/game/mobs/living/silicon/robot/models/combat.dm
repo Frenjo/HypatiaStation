@@ -3,8 +3,9 @@
  */
 /obj/item/robot_model/combat
 	name = "combat robot model"
+	display_name = "Combat"
 
-	module_types = list(
+	basic_modules = list(
 		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/borg/sight/thermal,
@@ -22,3 +23,5 @@
 	sprites = list(
 		"Combat Android" = "droid_combat"
 	)
+
+	can_be_pushed = FALSE

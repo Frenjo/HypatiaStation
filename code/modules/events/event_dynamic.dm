@@ -210,11 +210,11 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 		// Engineering, Medical and Security cyborgs.
 		if(isrobot(M))
 			var/mob/living/silicon/robot/robot = M
-			if(robot.module && robot.module.name == "engineering robot module")
+			if(istype(robot.module, /obj/item/robot_model/engineering))
 				active_with_role["Engineer"]++
-			else if(robot.module && robot.module.name == "medical robot module")
+			else if(istype(robot.module, /obj/item/robot_model/medical))
 				active_with_role["Medical"]++
-			else if(robot.module && robot.module.name == "security robot module")
+			else if(istype(robot.module, /obj/item/robot_model/security))
 				active_with_role["Security"]++
 
 		if(M.mind.assigned_role in list("Research Director", "Scientist"))

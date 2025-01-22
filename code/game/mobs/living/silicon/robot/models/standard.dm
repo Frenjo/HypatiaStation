@@ -3,8 +3,9 @@
  */
 /obj/item/robot_model/standard
 	name = "standard robot model"
+	display_name = "Standard"
 
-	module_types = list(
+	basic_modules = list(
 		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/melee/baton/loaded,
