@@ -6,7 +6,6 @@
 	display_name = "Standard"
 
 	basic_modules = list(
-		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/melee/baton/loaded,
 		/obj/item/extinguisher,

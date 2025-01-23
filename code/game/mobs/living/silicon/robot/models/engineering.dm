@@ -6,7 +6,6 @@
 	display_name = "Engineering"
 
 	basic_modules = list(
-		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/borg/sight/meson,
 		/obj/item/rcd/borg,

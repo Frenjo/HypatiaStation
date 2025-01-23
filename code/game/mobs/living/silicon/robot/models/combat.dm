@@ -6,7 +6,6 @@
 	display_name = "Combat"
 
 	basic_modules = list(
-		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/borg/sight/thermal,
 		/obj/item/gun/energy/laser/cyborg,

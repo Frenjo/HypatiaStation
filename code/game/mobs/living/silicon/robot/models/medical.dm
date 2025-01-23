@@ -6,7 +6,6 @@
 	display_name = "Medical"
 
 	basic_modules = list(
-		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/health_analyser,
 		/obj/item/reagent_scanner/adv,

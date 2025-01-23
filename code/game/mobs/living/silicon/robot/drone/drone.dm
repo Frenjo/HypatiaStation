@@ -12,7 +12,7 @@
 	braintype = "Robot"
 	lawupdate = FALSE
 	density = FALSE
-	integrated_light_power = 2
+	integrated_light_power = 3
 	local_transmit = 1
 
 	mob_bump_flag = SIMPLE_ANIMAL

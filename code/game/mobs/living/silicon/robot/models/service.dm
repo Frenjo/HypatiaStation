@@ -6,7 +6,6 @@
 	display_name = "Service"
 
 	basic_modules = list(
-		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/reagent_holder/food/drinks/cans/beer,
 		/obj/item/reagent_holder/food/condiment/enzyme,

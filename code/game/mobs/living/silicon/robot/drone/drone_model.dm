@@ -8,7 +8,6 @@
 	display_name = "Drone"
 
 	basic_modules = list(
-		/obj/item/flashlight/drone,
 		/obj/item/weldingtool,
 		/obj/item/screwdriver,
 		/obj/item/wrench,

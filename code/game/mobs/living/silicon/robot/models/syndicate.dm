@@ -6,7 +6,6 @@
 	display_name = "Syndicate"
 
 	basic_modules = list(
-		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/melee/energy/sword,
 		/obj/item/gun/energy/pulse_rifle/destroyer,

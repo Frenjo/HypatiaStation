@@ -16,7 +16,7 @@
 	var/custom_name = ""
 	var/custom_sprite = FALSE // Due to all the sprites involved, a var for our custom borgs may be best.
 	var/crisis //Admin-settable for combat module use.
-	var/integrated_light_power = 5
+	var/integrated_light_power = 4
 
 	//Hud stuff
 	var/atom/movable/screen/cells = null

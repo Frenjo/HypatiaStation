@@ -7,7 +7,6 @@
 
 	// The shovel was removed due to the buffed drill.
 	basic_modules = list(
-		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/borg/sight/meson,
 		/obj/item/storage/bag/ore,

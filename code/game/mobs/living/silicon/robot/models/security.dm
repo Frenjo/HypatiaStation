@@ -6,7 +6,6 @@
 	display_name = "Security"
 
 	basic_modules = list(
-		/obj/item/flashlight,
 		/obj/item/flash,
 		/obj/item/handcuffs/cyborg,
 		/obj/item/melee/baton/loaded,
