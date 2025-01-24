@@ -175,7 +175,7 @@
 // true if area has power and lightswitch is on
 /obj/machinery/light/powered()
 	var/area/A = GET_AREA(src)
-	return isnotnull(A) && A.lightswitch && ..(power_channel)
+	return A?.lightswitch && ..(power_channel)
 
 // ai attack - make lights flicker, because why not
 /obj/machinery/light/attack_ai(mob/user)

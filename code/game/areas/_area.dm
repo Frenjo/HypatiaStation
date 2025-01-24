@@ -102,7 +102,7 @@
 	power_change()		// all machines set to current power level, also updates lighting icon
 
 /area/proc/updateicon()
-	if((fire_alarm || evac_alarm || party_alarm || destruct_alarm) && ((!requires_power) ? (!requires_power) : power_channels[ENVIRON]))
+	if((fire_alarm || evac_alarm || party_alarm || destruct_alarm) && (!requires_power ? !requires_power : power_channels[ENVIRON]))
 		if(fire_alarm && !evac_alarm && !party_alarm && !destruct_alarm)
 			icon_state = "blue"
 		else if(atmos_alarm && !fire_alarm && !evac_alarm && !party_alarm && !destruct_alarm)
