@@ -81,3 +81,19 @@
 	name = "circuit board (MRSPACMAN-type generator)"
 	build_path = /obj/machinery/power/port_gen/pacman/mrs
 	origin_tech = list(/datum/tech/engineering = 5, /datum/tech/power_storage = 5, /datum/tech/programming = 3)
+
+/obj/item/circuitboard/cell_rack
+	name = "circuit board (CRES)"
+	build_path = /obj/machinery/power/smes/cell_rack
+	board_type = "machine"
+	origin_tech = list(/datum/tech/engineering = 2, /datum/tech/power_storage = 3)
+	frame_desc = "Requires 3 power cells."
+	req_components = list(/obj/item/cell = 3)
+
+/obj/item/circuitboard/makeshift_cell_rack
+	name = "circuit board (makeshift CRES)"
+	desc = "An APC circuit repurposed into a basic energy storage unit controller."
+	build_path = /obj/machinery/power/smes/cell_rack/makeshift
+	board_type = "machine"
+	frame_desc = "Requires 3 power cells."
+	req_components = list(/obj/item/cell = 3)

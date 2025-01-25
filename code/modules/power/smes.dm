@@ -7,6 +7,7 @@
 /obj/machinery/power/smes
 	name = "power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
+	icon = 'icons/obj/machines/smes.dmi'
 	icon_state = "smes"
 	density = TRUE
 	anchored = TRUE
@@ -83,19 +84,20 @@
 
 /obj/machinery/power/smes/update_icon()
 	overlays.Cut()
-	if(stat & BROKEN)	return
+	if(stat & BROKEN)
+		return
 
-	overlays += image('icons/obj/power.dmi', "smes-op[outputting]")
+	overlays.Add(image(icon, "smes-op[outputting]"))
 
 	if(inputting)
-		overlays += image('icons/obj/power.dmi', "smes-oc1")
+		overlays.Add(image(icon, "smes-oc1"))
 	else
 		if(input_attempt)
-			overlays += image('icons/obj/power.dmi', "smes-oc0")
+			overlays.Add(image(icon, "smes-oc0"))
 
 	var/clevel = chargedisplay()
-	if(clevel>0)
-		overlays += image('icons/obj/power.dmi', "smes-og[clevel]")
+	if(clevel > 0)
+		overlays.Add(image(icon, "smes-og[clevel]"))
 	return
 
 /obj/machinery/power/smes/proc/chargedisplay()

@@ -1583,6 +1583,7 @@
 #include "code\modules\paperwork\photography.dm"
 #include "code\modules\paperwork\stamps.dm"
 #include "code\modules\power\cell.dm"
+#include "code\modules\power\cell_rack.dm"
 #include "code\modules\power\engine.dm"
 #include "code\modules\power\gravitygenerator.dm"
 #include "code\modules\power\power.dm"

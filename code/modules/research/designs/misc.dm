@@ -70,7 +70,7 @@
 ////////////////////////////////////////
 /datum/design/pacman
 	name = "PACMAN-type Generator Board"
-	desc = "The circuit board that for a PACMAN-type portable generator."
+	desc = "The circuit board for a PACMAN-type portable generator."
 	req_tech = list(/datum/tech/engineering = 3, /datum/tech/power_storage = 3, /datum/tech/programming = 3, /datum/tech/plasma = 3)
 	build_type = DESIGN_TYPE_IMPRINTER
 	reliability_base = 79
@@ -79,7 +79,7 @@
 
 /datum/design/superpacman
 	name = "SUPERPACMAN-type Generator Board"
-	desc = "The circuit board that for a SUPERPACMAN-type portable generator."
+	desc = "The circuit board for a SUPERPACMAN-type portable generator."
 	req_tech = list(/datum/tech/engineering = 4, /datum/tech/power_storage = 4, /datum/tech/programming = 3)
 	build_type = DESIGN_TYPE_IMPRINTER
 	reliability_base = 76
@@ -88,12 +88,23 @@
 
 /datum/design/mrspacman
 	name = "MRSPACMAN-type Generator Board"
-	desc = "The circuit board that for a MRSPACMAN-type portable generator."
+	desc = "The circuit board for a MRSPACMAN-type portable generator."
 	req_tech = list(/datum/tech/engineering = 5, /datum/tech/power_storage = 5, /datum/tech/programming = 3)
 	build_type = DESIGN_TYPE_IMPRINTER
 	reliability_base = 74
 	materials = list(/decl/material/glass = 2000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/pacman/mrs
+
+////////////////////////////////////////////
+////////// Power Storage Circuits //////////
+////////////////////////////////////////////
+/datum/design/cell_rack
+	name = "CRES Board"
+	desc = "The circuit board for a Cell Rack Energy Storage unit."
+	req_tech = list(/datum/tech/engineering = 2, /datum/tech/power_storage = 3)
+	build_type = DESIGN_TYPE_IMPRINTER
+	materials = list(/decl/material/glass = 2000, "sacid" = 20)
+	build_path = /obj/item/circuitboard/cell_rack
 
 ////////////////////////////////
 ////////// Data Disks //////////

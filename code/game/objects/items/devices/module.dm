@@ -18,6 +18,14 @@
 	icon_state = "power_mod"
 	matter_amounts = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 
+/obj/item/module/power_control/attack_tool(obj/item/tool, mob/user)
+	if(ismultitool(tool))
+		var/obj/item/circuitboard/makeshift_cell_rack/new_circuit = new /obj/item/circuitboard/makeshift_cell_rack(user.loc)
+		qdel(src)
+		user.put_in_hands(new_circuit)
+		return TRUE
+	return ..()
+
 /obj/item/module/id_auth
 	name = "\improper ID authentication module"
 	desc = "A module allowing secure authorisation of ID cards."
