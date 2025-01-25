@@ -22,28 +22,6 @@
 	//var/heating_power = 40000
 	var/operating_temperature = 100 + T0C
 
-/obj/machinery/r_n_d/server/New()
-	. = ..()
-	component_parts = list(
-		new /obj/item/circuitboard/rdserver(src),
-		new /obj/item/stock_part/scanning_module(src),
-		new /obj/item/stack/cable_coil(src),
-		new /obj/item/stack/cable_coil(src)
-	)
-	refresh_parts()
-
-/obj/machinery/r_n_d/server/Destroy()
-	griefProtection()
-	return ..()
-
-/obj/machinery/r_n_d/server/refresh_parts()
-	var/total_rating = 0
-	for(var/obj/item/stock_part/part in src)
-		total_rating += part.rating
-	//heat_gen /= max(1, tot_rating)
-	operating_temperature /= max(1, total_rating)
-	power_usage[USE_POWER_IDLE] /= max(1, total_rating)
-
 /obj/machinery/r_n_d/server/initialise()
 	. = ..()
 	if(!files)
@@ -59,6 +37,27 @@
 		temp_list = splittext(id_with_download_string, ";")
 		for(var/N in temp_list)
 			id_with_download.Add(text2num(N))
+
+/obj/machinery/r_n_d/server/Destroy()
+	griefProtection()
+	return ..()
+
+/obj/machinery/r_n_d/server/add_parts()
+	component_parts = list(
+		new /obj/item/circuitboard/rdserver(src),
+		new /obj/item/stock_part/scanning_module(src),
+		new /obj/item/stack/cable_coil(src),
+		new /obj/item/stack/cable_coil(src)
+	)
+	return TRUE
+
+/obj/machinery/r_n_d/server/refresh_parts()
+	var/total_rating = 0
+	for(var/obj/item/stock_part/part in src)
+		total_rating += part.rating
+	//heat_gen /= max(1, tot_rating)
+	operating_temperature /= max(1, total_rating)
+	power_usage[USE_POWER_IDLE] /= max(1, total_rating)
 
 /obj/machinery/r_n_d/server/process()
 	var/datum/gas_mixture/environment = loc.return_air()
@@ -150,10 +149,10 @@
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			M.state = 2
 			M.icon_state = "box_1"
-			for(var/obj/I in component_parts)
-				if(I.reliability != 100 && crit_fail)
-					I.crit_fail = 1
-				I.loc = src.loc
+			for_no_type_check(var/obj/item/part, component_parts)
+				if(part.reliability != 100 && crit_fail)
+					part.crit_fail = 1
+				part.loc = src.loc
 			qdel(src)
 			return 1
 

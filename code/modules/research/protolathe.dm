@@ -19,8 +19,7 @@ Note: Must be placed west/left of and R&D console to function.
 	)
 	max_storage_capacity = 100000
 
-/obj/machinery/r_n_d/protolathe/New()
-	. = ..()
+/obj/machinery/r_n_d/protolathe/add_parts()
 	component_parts = list(
 		new /obj/item/circuitboard/protolathe(src),
 		new /obj/item/stock_part/matter_bin(src),
@@ -30,7 +29,7 @@ Note: Must be placed west/left of and R&D console to function.
 		new /obj/item/reagent_holder/glass/beaker(src),
 		new /obj/item/reagent_holder/glass/beaker(src)
 	)
-	refresh_parts()
+	return TRUE
 
 /obj/machinery/r_n_d/protolathe/refresh_parts()
 	var/total_rating = 0
@@ -67,12 +66,12 @@ Note: Must be placed west/left of and R&D console to function.
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			M.state = 2
 			M.icon_state = "box_1"
-			for(var/obj/I in component_parts)
-				if(istype(I, /obj/item/reagent_holder/glass/beaker))
-					reagents.trans_to(I, reagents.total_volume)
-				if(I.reliability != 100 && crit_fail)
-					I.crit_fail = 1
-				I.loc = src.loc
+			for_no_type_check(var/obj/item/part, component_parts)
+				if(istype(part, /obj/item/reagent_holder/glass/beaker))
+					reagents.trans_to(part, reagents.total_volume)
+				if(part.reliability != 100 && crit_fail)
+					part.crit_fail = 1
+				part.loc = src.loc
 			eject_stored_materials()
 			qdel(src)
 			return 1

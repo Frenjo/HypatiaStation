@@ -114,15 +114,15 @@
 					if(component_check)
 						playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 						var/obj/machinery/new_machine = new circuit.build_path(loc)
-						for(var/obj/O in new_machine.component_parts)
-							qdel(O)
+						for_no_type_check(var/obj/item/part, new_machine.component_parts)
+							qdel(part)
 						new_machine.component_parts = list()
-						for(var/obj/O in src)
+						for_no_type_check(var/atom/movable/mover, src)
 							if(circuit.contain_parts) // things like disposal don't want their parts in them
-								O.loc = new_machine
+								mover.loc = new_machine
 							else
-								O.loc = null
-							new_machine.component_parts.Add(O)
+								mover.loc = null
+							new_machine.component_parts.Add(mover)
 						if(circuit.contain_parts)
 							circuit.loc = new_machine
 						else

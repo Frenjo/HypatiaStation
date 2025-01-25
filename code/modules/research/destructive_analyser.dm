@@ -14,15 +14,14 @@ Note: Must be placed within 3 tiles of the R&D Console
 	var/obj/item/loaded_item = null
 	var/decon_mod = 1
 
-/obj/machinery/r_n_d/destructive_analyser/New()
-	. = ..()
+/obj/machinery/r_n_d/destructive_analyser/add_parts()
 	component_parts = list(
 		new /obj/item/circuitboard/destructive_analyser(src),
 		new /obj/item/stock_part/scanning_module(src),
 		new /obj/item/stock_part/manipulator(src),
 		new /obj/item/stock_part/micro_laser(src)
 	)
-	refresh_parts()
+	return TRUE
 
 /obj/machinery/r_n_d/destructive_analyser/refresh_parts()
 	var/total_rating = 0
@@ -58,8 +57,8 @@ Note: Must be placed within 3 tiles of the R&D Console
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			M.state = 2
 			M.icon_state = "box_1"
-			for(var/obj/I in component_parts)
-				I.loc = src.loc
+			for_no_type_check(var/obj/item/part, component_parts)
+				part.loc = src.loc
 			qdel(src)
 			return 1
 		else

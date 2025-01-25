@@ -47,6 +47,16 @@
 
 /obj/machinery/robotics_fabricator/New()
 	. = ..()
+	for(var/part_set in part_sets)
+		convert_part_set(part_set)
+	files = new /datum/research(src) //Setup the research data holder.
+
+/obj/machinery/robotics_fabricator/Destroy()
+	for_no_type_check(var/atom/movable/mover, src)
+		qdel(mover)
+	return ..()
+
+/obj/machinery/robotics_fabricator/add_parts()
 	component_parts = list(
 		new /obj/item/stock_part/matter_bin(src),
 		new /obj/item/stock_part/matter_bin(src),
@@ -54,11 +64,7 @@
 		new /obj/item/stock_part/micro_laser(src),
 		new /obj/item/stock_part/console_screen(src)
 	)
-	refresh_parts()
-
-	for(var/part_set in part_sets)
-		convert_part_set(part_set)
-	files = new /datum/research(src) //Setup the research data holder.
+	return TRUE
 
 /obj/machinery/robotics_fabricator/refresh_parts()
 	var/total_rating = 0
@@ -83,11 +89,6 @@
 	coeff_diff = round(initial(time_coeff) - (initial(time_coeff) * total_rating) / 25, 0.01)
 	if(time_coeff != coeff_diff)
 		time_coeff = coeff_diff
-
-/obj/machinery/robotics_fabricator/Destroy()
-	for_no_type_check(var/atom/movable/mover, src)
-		qdel(mover)
-	return ..()
 
 /obj/machinery/robotics_fabricator/proc/operation_allowed(mob/M)
 	if(isrobot(M) || isAI(M))
@@ -601,10 +602,10 @@
 		var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(loc)
 		M.state = 2
 		M.icon_state = "box_1"
-		for(var/obj/I in component_parts)
-			if(I.reliability != 100 && crit_fail)
-				I.crit_fail = 1
-			I.loc = loc
+		for_no_type_check(var/obj/item/part, component_parts)
+			if(part.reliability != 100 && crit_fail)
+				part.crit_fail = 1
+			part.loc = loc
 		for(var/material_path in stored_materials)
 			var/decl/material/material = GET_DECL_INSTANCE(material_path)
 			if(stored_materials[material_path] >= material.per_unit)

@@ -93,6 +93,13 @@
 
 	var/busy = 0
 
+/obj/machinery/autolathe/New()
+	. = ..()
+	wires = new /datum/wires/autolathe(src)
+
+	src.L = global.autolathe_recipes
+	src.LL = global.autolathe_recipes_hidden
+
 /obj/machinery/autolathe/proc/wires_win(mob/user)
 	var/dat
 	dat += "Autolathe Wires:<BR>"
@@ -178,10 +185,10 @@
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(loc)
 			M.state = 2
 			M.icon_state = "box_1"
-			for(var/obj/I in component_parts)
-				I.loc = loc
-				if(I.reliability != 100 && crit_fail)
-					I.crit_fail = TRUE
+			for_no_type_check(var/obj/item/part, component_parts)
+				part.loc = loc
+				if(part.reliability != 100 && crit_fail)
+					part.crit_fail = TRUE
 			for(var/material_path in stored_materials)
 				var/decl/material/material = GET_DECL_INSTANCE(material_path)
 				if(stored_materials[material_path] >= material.per_unit)
@@ -319,17 +326,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/autolathe/refresh_parts()
-	var/total_rating = 0
-	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
-		total_rating += bin.rating
-	total_rating *= 25000
-	storage_capacity[MATERIAL_METAL] = total_rating * 2
-	storage_capacity[/decl/material/glass] = total_rating
-
-/obj/machinery/autolathe/New()
-	. = ..()
-	wires = new /datum/wires/autolathe(src)
+/obj/machinery/autolathe/add_parts()
 	component_parts = list(
 		new /obj/item/circuitboard/autolathe(src),
 		new /obj/item/stock_part/matter_bin(src),
@@ -338,7 +335,12 @@
 		new /obj/item/stock_part/manipulator(src),
 		new /obj/item/stock_part/console_screen(src)
 	)
-	refresh_parts()
+	return TRUE
 
-	src.L = global.autolathe_recipes
-	src.LL = global.autolathe_recipes_hidden
+/obj/machinery/autolathe/refresh_parts()
+	var/total_rating = 0
+	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
+		total_rating += bin.rating
+	total_rating *= 25000
+	storage_capacity[MATERIAL_METAL] = total_rating * 2
+	storage_capacity[/decl/material/glass] = total_rating

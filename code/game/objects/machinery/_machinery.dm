@@ -103,12 +103,14 @@
 	var/stat = 0
 	var/emagged = 0
 
-	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
+	var/list/obj/item/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
 
 /obj/machinery/New()
 	SHOULD_CALL_PARENT(TRUE)
 
 	. = ..()
+	if(add_parts())
+		refresh_parts()
 	var/area/machine_area = GET_AREA(src)
 	machine_area.machines_list.Add(src)
 	if(!GLOBL.machinery_sort_required && isnotnull(global.PCticker))
@@ -125,11 +127,11 @@
 	GLOBL.machines.Remove(src)
 
 	if(length(component_parts))
-		for(var/atom/A in component_parts)
-			if(A.loc == src) // If the components are inside the machine, delete them.
-				qdel(A)
+		for_no_type_check(var/obj/item/part, component_parts)
+			if(part.loc == src) // If the components are inside the machine, delete them.
+				qdel(part)
 			else // Otherwise we assume they were dropped to the ground during deconstruction, and were not removed from the component_parts list by deconstruction code.
-				component_parts.Remove(A)
+				component_parts.Remove(part)
 	if(length(contents)) // The same for contents.
 		for_no_type_check(var/atom/movable/mover, contents)
 			qdel(mover)
@@ -258,6 +260,9 @@
 		return FALSE
 	use_power(power_usage[power_state], power_channel, 1)
 	return TRUE
+
+/obj/machinery/proc/add_parts()
+	return FALSE
 
 /obj/machinery/proc/refresh_parts() //Placeholder proc for machines that are built using frames.
 	return 0

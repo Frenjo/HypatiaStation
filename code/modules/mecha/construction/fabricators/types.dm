@@ -39,7 +39,7 @@
 		)
 	)
 
-/obj/machinery/robotics_fabricator/robotic/New()
+/obj/machinery/robotics_fabricator/robotic/add_parts()
 	. = ..()
 	component_parts.Add(new /obj/item/circuitboard/robofab(src))
 
@@ -151,6 +151,6 @@
 		)
 	)
 
-/obj/machinery/robotics_fabricator/mecha/New()
+/obj/machinery/robotics_fabricator/mecha/add_parts()
 	. = ..()
 	component_parts.Add(new /obj/item/circuitboard/mechfab(src))

@@ -52,8 +52,7 @@
 	var/obj/item/reagent_holder/glass/beaker = null
 	var/opened = 0
 
-/obj/machinery/dna_scannernew/New()
-	. = ..()
+/obj/machinery/dna_scannernew/add_parts()
 	component_parts = list(
 		new /obj/item/circuitboard/clonescanner(src),
 		new /obj/item/stock_part/scanning_module(src),
@@ -63,7 +62,7 @@
 		new /obj/item/stack/cable_coil(src),
 		new /obj/item/stack/cable_coil(src)
 	)
-	refresh_parts()
+	return TRUE
 
 /obj/machinery/dna_scannernew/allow_drop()
 	return 0

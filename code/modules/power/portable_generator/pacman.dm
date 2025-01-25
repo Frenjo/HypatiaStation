@@ -14,15 +14,6 @@
 	if(isnotnull(fuel_material))
 		fuel_material = GET_DECL_INSTANCE(fuel_material)
 	. = ..()
-	component_parts = list(
-		new /obj/item/stock_part/matter_bin(src),
-		new /obj/item/stock_part/micro_laser(src),
-		new /obj/item/stack/cable_coil(src),
-		new /obj/item/stack/cable_coil(src),
-		new /obj/item/stock_part/capacitor(src),
-		new board_path(src)
-	)
-	refresh_parts()
 
 /obj/machinery/power/port_gen/pacman/initialise()
 	. = ..()
@@ -33,6 +24,17 @@
 	drop_fuel()
 	return ..()
 
+/obj/machinery/power/port_gen/pacman/add_parts()
+	component_parts = list(
+		new /obj/item/stock_part/matter_bin(src),
+		new /obj/item/stock_part/micro_laser(src),
+		new /obj/item/stack/cable_coil(src),
+		new /obj/item/stack/cable_coil(src),
+		new /obj/item/stock_part/capacitor(src),
+		new board_path(src)
+	)
+	return TRUE
+
 /obj/machinery/power/port_gen/pacman/refresh_parts()
 	var/temp_rating = 0
 	var/temp_reliability = 0
@@ -41,8 +43,8 @@
 			max_sheets = part.rating * part.rating * 50
 		else if(istype(part, /obj/item/stock_part/micro_laser) || istype(part, /obj/item/stock_part/capacitor))
 			temp_rating += part.rating
-	for(var/obj/item/CP in component_parts)
-		temp_reliability += CP.reliability
+	for_no_type_check(var/obj/item/part, component_parts)
+		temp_reliability += part.reliability
 	reliability = min(round(temp_reliability / 4), 100)
 	power_gen = round(initial(power_gen) * (max(2, temp_rating) / 2))
 
@@ -142,10 +144,10 @@
 
 	if(iscrowbar(tool) && open)
 		var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(loc)
-		for(var/obj/item/I in component_parts)
-			if(I.reliability < 100)
-				I.crit_fail = 1
-			I.loc = loc
+		for_no_type_check(var/obj/item/part, component_parts)
+			if(part.reliability < 100)
+				part.crit_fail = 1
+			part.loc = loc
 		while(sheets > 0)
 			var/obj/item/stack/sheet/G = new fuel_material.sheet_path(loc)
 			if(sheets > 50)
