@@ -16,7 +16,7 @@
 	var/blocked = 0
 	var/nextstate = null
 	var/net_id
-	var/list/areas_added
+	var/list/area/areas_added
 	var/list/users_to_open
 
 /obj/machinery/door/firedoor/New()
@@ -36,10 +36,10 @@
 		A = GET_AREA(get_step(src, direction))
 		if(istype(A) && !(A in areas_added))
 			A.doors_list.Add(src)
-			areas_added += A
+			areas_added.Add(A)
 
 /obj/machinery/door/firedoor/Destroy()
-	for(var/area/A in areas_added)
+	for_no_type_check(var/area/A, areas_added)
 		A.doors_list.Remove(src)
 	return ..()
 

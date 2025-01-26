@@ -10,11 +10,11 @@
 
 /datum/pipeline/Destroy()
 	if(isnotnull(network))
-		qdel(network)
+		QDEL_NULL(network)
 
 	if(air?.volume)
 		temporarily_store_air()
-		qdel(air)
+		QDEL_NULL(air)
 
 	return ..()
 

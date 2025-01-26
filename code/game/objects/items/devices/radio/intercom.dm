@@ -17,7 +17,7 @@
 	GLOBL.processing_objects += src
 
 /obj/item/radio/intercom/Destroy()
-	GLOBL.processing_objects -= src
+	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/item/radio/intercom/attack_ai(mob/user)

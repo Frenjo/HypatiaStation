@@ -30,15 +30,7 @@
 	update_icon()
 
 /obj/machinery/atmospherics/unary/portables_connector/Destroy()
-	loc = null
-
 	connected_device?.disconnect()
-
-	if(isnotnull(node))
-		node.disconnect(src)
-		qdel(network)
-		node = null
-
 	return ..()
 
 /obj/machinery/atmospherics/unary/portables_connector/update_icon()

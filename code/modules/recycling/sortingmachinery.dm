@@ -17,6 +17,7 @@
 			O.welded = 0
 	var/turf/T = GET_TURF(src)
 	for_no_type_check(var/atom/movable/AM, src)
+
 		AM.loc = T
 	return ..()
 

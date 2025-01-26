@@ -23,7 +23,7 @@
 /obj/multiz/ladder/Destroy()
 	spawn(1)
 		if(isnotnull(target) && icon_state == "ladderdown")
-			qdel(target)
+			QDEL_NULL(target)
 	return ..()
 
 /obj/multiz/ladder/attack_paw(mob/M)

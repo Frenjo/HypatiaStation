@@ -79,7 +79,7 @@
 	radio = new /obj/item/radio(src)
 
 /obj/machinery/power/supermatter/Destroy()
-	qdel(radio)
+	QDEL_NULL(radio)
 	return ..()
 
 /obj/machinery/power/supermatter/proc/explode()

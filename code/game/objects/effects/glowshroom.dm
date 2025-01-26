@@ -46,7 +46,7 @@
 	lastTick = world.timeofday
 
 /obj/effect/glowshroom/Destroy()
-	GLOBL.processing_objects -= src
+	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/effect/glowshroom/process()

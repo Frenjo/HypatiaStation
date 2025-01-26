@@ -88,7 +88,7 @@
 	// Eject contents if deleted somehow
 	var/turf/T = GET_TURF(src)
 	for_no_type_check(var/atom/movable/mover, src)
-		mover.loc = T
+		mover.forceMove(T)
 	return ..()
 
 /obj/effect/dummy/spell_jaunt/relaymove(mob/user, direction)

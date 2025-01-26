@@ -47,8 +47,8 @@ ________________________________________________________________________________
 	if(isnotnull(AI))//If there are AIs present when the ninja kicks the bucket.
 		killai()
 	if(isnotnull(hologram))//If there is a hologram
-		qdel(hologram.i_attached)//Delete it and the attached image.
-		qdel(hologram)
+		QDEL_NULL(hologram.i_attached)//Delete it and the attached image.
+		QDEL_NULL(hologram)
 	return ..()
 
 //Simply deletes all the attachments and self, killing all related procs.

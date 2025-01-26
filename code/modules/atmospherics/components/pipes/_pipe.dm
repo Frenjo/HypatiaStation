@@ -14,7 +14,7 @@
 	//minimum pressure before check_pressure(...) should be called
 
 /obj/machinery/atmospherics/pipe/Destroy()
-	qdel(parent)
+	QDEL_NULL(parent)
 	if(isnotnull(air_temporary))
 		loc.assume_air(air_temporary)
 	return ..()

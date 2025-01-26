@@ -19,7 +19,7 @@ GLOBAL_GLOBL_LIST_NEW(controllers)
 
 /datum/controller/Destroy()
 	GLOBL.controllers.Remove(src)
-	qdel(stat_click)
+	QDEL_NULL(stat_click)
 	return ..()
 
 /datum/controller/proc/setup()

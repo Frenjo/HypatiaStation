@@ -43,7 +43,7 @@
 
 /obj/structure/transit_tube_pod/Destroy()
 	for_no_type_check(var/atom/movable/mover, src)
-		mover.loc = loc
+		mover.forceMove(loc)
 	return ..()
 
 // When destroyed by explosions, properly handle contents.

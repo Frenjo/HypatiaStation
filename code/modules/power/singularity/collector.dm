@@ -21,7 +21,7 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 	GLOBL.rad_collectors += src
 
 /obj/machinery/power/rad_collector/Destroy()
-	GLOBL.rad_collectors -= src
+	GLOBL.rad_collectors.Remove(src)
 	return ..()
 
 /obj/machinery/power/rad_collector/process()

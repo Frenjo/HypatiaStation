@@ -17,8 +17,8 @@
 
 /obj/effect/biomass/Destroy()
 	if(isnotnull(master))
-		master.vines -= src
-		master.growth_queue -= src
+		master.vines.Remove(src)
+		master.growth_queue.Remove(src)
 	return ..()
 
 /obj/effect/biomass/attackby(obj/item/W, mob/user)

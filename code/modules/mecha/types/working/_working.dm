@@ -18,7 +18,7 @@
 	if(!isemptylist(cargo))
 		var/turf/T = GET_TURF(src)
 		for(var/obj/O in cargo) // Dumps contents of stored cargo.
-			O.loc = T
+			O.forceMove(T)
 			cargo.Remove(O)
 			T.Entered(O)
 	return ..()

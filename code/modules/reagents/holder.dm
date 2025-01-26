@@ -12,7 +12,7 @@
 	maximum_volume = maximum
 
 /datum/reagents/Destroy()
-	for(var/datum/reagent/R in reagent_list)
+	for_no_type_check(var/datum/reagent/R, reagent_list)
 		qdel(R)
 	reagent_list.Cut()
 	reagent_list = null

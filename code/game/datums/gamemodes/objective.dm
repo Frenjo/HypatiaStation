@@ -15,7 +15,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	..()
 
 /datum/objective/Destroy()
-	GLOBL.all_objectives -= src
+	GLOBL.all_objectives.Remove(src)
 	return ..()
 
 /datum/objective/proc/check_completion()

@@ -16,6 +16,7 @@
 	GLOBL.processing_objects.Add(src)
 
 /obj/item/beacon_locator/Destroy()
+	target_radio = null
 	GLOBL.processing_objects.Remove(src)
 	return ..()
 

@@ -9,8 +9,8 @@
 	obj_flags = OBJ_FLAG_CONDUCT
 
 /obj/item/assembly/shock_kit/Destroy()
-	qdel(part1)
-	qdel(part2)
+	QDEL_NULL(part1)
+	QDEL_NULL(part2)
 	return ..()
 
 /obj/item/assembly/shock_kit/attackby(obj/item/W, mob/user)

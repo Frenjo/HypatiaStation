@@ -20,6 +20,11 @@
 	src.cell = new/obj/item/cell/high(src)
 	..()
 
+/obj/machinery/suspension_gen/Destroy()
+	//safety checks: clear the field and drop anything it's holding
+	deactivate()
+	return ..()
+
 /obj/machinery/suspension_gen/process()
 	set background = BACKGROUND_ENABLED
 
@@ -335,13 +340,8 @@
 		M.weakened = min(M.weakened, 3)
 
 	visible_message(SPAN_INFO("\icon[src] [src] deactivates with a gentle shudder."))
-	qdel(suspension_field)
+	QDEL_NULL(suspension_field)
 	icon_state = "suspension2"
-
-/obj/machinery/suspension_gen/Destroy()
-	//safety checks: clear the field and drop anything it's holding
-	deactivate()
-	return ..()
 
 /obj/machinery/suspension_gen/verb/toggle()
 	set category = PANEL_IC
@@ -362,6 +362,7 @@
 	var/field_type = "chlorine"
 
 /obj/effect/suspension_field/Destroy()
-	for(var/obj/I in src)
-		I.loc = src.loc
+	var/turf/T = GET_TURF(src)
+	for_no_type_check(var/atom/movable/mover, src)
+		mover.forceMove(T)
 	return ..()

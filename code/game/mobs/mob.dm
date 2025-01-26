@@ -8,15 +8,15 @@
 		GLOBL.living_mob_list.Add(src)
 
 /mob/Destroy()	//This makes sure that mobs with clients/keys are not just deleted from the game.
-	GLOBL.mob_list.Remove(src)
-	GLOBL.dead_mob_list.Remove(src)
-	GLOBL.living_mob_list.Remove(src)
-	qdel(hud_used)
+	QDEL_NULL(hud_used)
 	if(mind?.current == src)
 		spellremove(src)
 	for(var/infection in viruses)
 		qdel(infection)
 	ghostize()
+	GLOBL.mob_list.Remove(src)
+	GLOBL.dead_mob_list.Remove(src)
+	GLOBL.living_mob_list.Remove(src)
 	return ..()
 
 /*

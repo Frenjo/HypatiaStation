@@ -493,7 +493,7 @@
 	var/hasmob = 0 //If it contains a mob
 
 /obj/structure/disposalholder/Destroy()
-	qdel(gas)
+	QDEL_NULL(gas)
 	active = 0
 	return ..()
 
@@ -663,12 +663,12 @@
 	if(isnotnull(H))
 		// holder was present
 		H.active = 0
-		var/turf/T = src.loc
+		var/turf/T = loc
 		if(T.density)
 			// deleting pipe is inside a dense turf (wall)
 			// this is unlikely, but just dump out everything into the turf in case
 			for_no_type_check(var/atom/movable/mover, H)
-				mover.loc = T
+				mover.forceMove(T)
 				mover.pipe_eject(0)
 			qdel(H)
 			return ..()

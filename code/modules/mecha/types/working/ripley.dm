@@ -17,11 +17,11 @@
 	for(var/mob/M in src)
 		if(M == occupant)
 			continue
-		M.loc = source_turf
+		M.forceMove(source_turf)
 		M.loc.Entered(M)
 		step_rand(M)
 	for(var/atom/movable/A in cargo)
-		A.loc = source_turf
+		A.forceMove(source_turf)
 		var/turf/T = GET_TURF(A)
 		T?.Entered(A)
 		step_rand(A)

@@ -55,7 +55,7 @@
 	radio = new /obj/item/radio/integrated/signal(src)
 
 /obj/item/cartridge/signal/Destroy()
-	qdel(radio)
+	QDEL_NULL(radio)
 	return ..()
 
 /obj/item/cartridge/signal/toxins

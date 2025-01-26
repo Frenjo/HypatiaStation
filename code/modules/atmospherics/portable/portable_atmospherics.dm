@@ -27,7 +27,7 @@
 		update_icon()
 
 /obj/machinery/portable_atmospherics/Destroy()
-	qdel(air_contents)
+	QDEL_NULL(air_contents)
 	return ..()
 
 /obj/machinery/portable_atmospherics/process()

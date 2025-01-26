@@ -224,5 +224,5 @@
 	src.visible_message(SPAN_WARNING("\the [src] splits open."))
 	var/turf/T = GET_TURF(src)
 	for_no_type_check(var/atom/movable/mover, src)
-		mover.loc = T
+		mover.forceMove(T)
 	return ..()

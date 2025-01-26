@@ -18,8 +18,8 @@
 
 /obj/effect/spacevine/Destroy()
 	if(isnotnull(master))
-		master.vines -= src
-		master.growth_queue -= src
+		master.vines.Remove(src)
+		master.growth_queue.Remove(src)
 	return ..()
 
 /obj/effect/spacevine/attackby(obj/item/W, mob/user)

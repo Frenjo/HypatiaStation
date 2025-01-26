@@ -46,7 +46,7 @@
 
 /obj/item/shield_projector/proc/destroy_shields()
 	for_no_type_check(var/obj/effect/directional_shield/S, active_shields)
-		active_shields -= S
+		active_shields.Remove(S)
 		qdel(S)
 	active = FALSE
 	icon_state = "jammer0"

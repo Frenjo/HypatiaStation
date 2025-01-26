@@ -17,7 +17,7 @@ GLOBAL_GLOBL_LIST_NEW(bump_teleporters)
 	GLOBL.bump_teleporters += src
 
 /obj/effect/bump_teleporter/Destroy()
-	GLOBL.bump_teleporters -= src
+	GLOBL.bump_teleporters.Remove(src)
 	return ..()
 
 /obj/effect/bump_teleporter/Bumped(atom/user)

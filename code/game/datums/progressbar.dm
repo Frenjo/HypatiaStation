@@ -23,8 +23,8 @@
 
 /datum/progressbar/Destroy()
 	if(isnotnull(client))
-		client.images -= bar
-	qdel(bar)
+		client.images.Remove(bar)
+	QDEL_NULL(bar)
 	return ..()
 
 /datum/progressbar/proc/update(progress)

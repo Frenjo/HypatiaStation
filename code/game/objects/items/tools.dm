@@ -180,7 +180,7 @@
 
 /obj/item/weldingtool/Destroy()
 	if(welding)
-		GLOBL.processing_objects -= src
+		GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/item/weldingtool/examine()

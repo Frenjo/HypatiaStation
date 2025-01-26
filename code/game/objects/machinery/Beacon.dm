@@ -15,13 +15,13 @@
 	var/turf/T = loc
 	Beacon = new /obj/item/radio/beacon
 	Beacon.invisibility = INVISIBILITY_MAXIMUM
-	Beacon.loc = T
+	Beacon.forceMove(T)
 
 	hide(T.intact)
 
 /obj/machinery/bluespace_beacon/Destroy()
-	if(Beacon)
-		qdel(Beacon)
+	if(isnotnull(Beacon))
+		QDEL_NULL(Beacon)
 	return ..()
 
 // update the invisibility and icon

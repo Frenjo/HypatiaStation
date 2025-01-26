@@ -67,8 +67,8 @@
 
 /obj/item/storage/Destroy()
 	close_all()
-	qdel(boxes)
-	qdel(closer)
+	QDEL_NULL(boxes)
+	QDEL_NULL(closer)
 	return ..()
 
 /obj/item/storage/MouseDrop(obj/over_object)

@@ -114,7 +114,7 @@
 
 /datum/process/Destroy()
 	master = null
-	qdel(stat_click)
+	QDEL_NULL(stat_click)
 	return ..()
 
 /datum/process/proc/started()

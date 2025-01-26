@@ -246,5 +246,5 @@
 	return
 
 /obj/effect/beam/i_beam/Destroy()
-	qdel(next)
+	QDEL_NULL(next)
 	return ..()

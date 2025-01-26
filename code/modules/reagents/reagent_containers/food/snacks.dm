@@ -182,7 +182,7 @@
 	if(contents)
 		var/turf/T = GET_TURF(src)
 		for_no_type_check(var/atom/movable/mover, src)
-			mover.loc = T
+			mover.forceMove(T)
 	return ..()
 
 /obj/item/reagent_holder/food/snacks/attack_animal(mob/M)
