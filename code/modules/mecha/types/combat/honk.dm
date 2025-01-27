@@ -123,8 +123,8 @@
 	if(!length(equipment))
 		return
 	. = "<b>Honk-ON-Systems:</b><div style=\"margin-left: 15px;\">"
-	for(var/obj/item/mecha_part/equipment/MT in equipment)
-		. += "[selected == MT ? "<b id='\ref[MT]'>" : "<a id='\ref[MT]' href='byond://?src=\ref[src];select_equip=\ref[MT]'>"][MT.get_equip_info()][selected == MT ? "</b>" : "</a>"]<br>"
+	for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
+		. += "[selected == equip ? "<b id='\ref[equip]'>" : "<a id='\ref[equip]' href='byond://?src=\ref[src];select_equip=\ref[equip]'>"][equip.get_equip_info()][selected == equip ? "</b>" : "</a>"]<br>"
 	. += "</div>"
 
 /obj/mecha/combat/honk/mechstep(direction)

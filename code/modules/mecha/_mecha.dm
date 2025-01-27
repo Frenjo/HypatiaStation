@@ -77,7 +77,7 @@
 	// Equipment
 	var/obj/item/cell/cell
 	var/list/excluded_equipment = list() // A list of equipment typepaths this exosuit CANNOT equip.
-	var/list/equipment = list()
+	var/list/obj/item/mecha_part/equipment/equipment = list()
 	var/obj/item/mecha_part/equipment/selected
 	var/max_equip = 3
 
@@ -115,20 +115,20 @@
 			explosion(T, 0, 0, 1, 3)
 
 		if(isnull(wreckage))
-			for(var/obj/item/mecha_part/equipment/E in equipment)
-				E.forceMove(T)
-				qdel(E)
+			for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
+				equip.forceMove(T)
+				qdel(equip)
 		else
 			var/obj/structure/mecha_wreckage/wreck = new wreckage(T)
-			for(var/obj/item/mecha_part/equipment/E in equipment)
-				if(E.salvageable && prob(30))
-					wreck.crowbar_salvage.Add(E)
-					E.forceMove(wreck)
-					E.equip_ready = TRUE
-					E.reliability = round(rand(E.reliability / 3, E.reliability))
+			for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
+				if(equip.salvageable && prob(30))
+					wreck.crowbar_salvage.Add(equip)
+					equip.forceMove(wreck)
+					equip.equip_ready = TRUE
+					equip.reliability = round(rand(equip.reliability / 3, equip.reliability))
 				else
-					E.forceMove(T)
-					qdel(E)
+					equip.forceMove(T)
+					qdel(equip)
 			if(isnotnull(cell))
 				wreck.crowbar_salvage.Add(cell)
 				cell.forceMove(wreck)
