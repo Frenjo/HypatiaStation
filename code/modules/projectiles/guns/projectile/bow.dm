@@ -83,7 +83,7 @@
 	if(istype(W, /obj/item/cell))
 		if(isnull(cell))
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			cell = W
 			to_chat(user, SPAN_NOTICE("You jam [cell] into [src] and wire it to the firing coil."))
 			if(isnotnull(arrow))

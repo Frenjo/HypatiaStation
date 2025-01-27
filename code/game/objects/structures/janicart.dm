@@ -29,7 +29,7 @@
 	if(istype(I, /obj/item/storage/bag/trash) && isnull(mybag))
 		user.drop_item()
 		mybag = I
-		I.loc = src
+		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
 		to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
@@ -46,7 +46,7 @@
 		if(isnull(mymop))
 			user.drop_item()
 			mymop = I
-			I.loc = src
+			I.forceMove(src)
 			update_icon()
 			updateUsrDialog()
 			to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
@@ -54,7 +54,7 @@
 	else if(istype(I, /obj/item/reagent_holder/spray) && isnull(myspray))
 		user.drop_item()
 		myspray = I
-		I.loc = src
+		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
 		to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
@@ -62,7 +62,7 @@
 	else if(istype(I, /obj/item/lightreplacer) && isnull(myreplacer))
 		user.drop_item()
 		myreplacer = I
-		I.loc = src
+		I.forceMove(src)
 		update_icon()
 		updateUsrDialog()
 		to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
@@ -70,7 +70,7 @@
 	else if(istype(I, /obj/item/caution))
 		if(signs < 4)
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			signs++
 			update_icon()
 			updateUsrDialog()
@@ -196,7 +196,7 @@
 	else if(istype(I, /obj/item/storage/bag/trash))
 		to_chat(user, SPAN_NOTICE("You hook the trashbag onto the [callme]."))
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		mybag = I
 
 /obj/structure/stool/bed/chair/janicart/attack_hand(mob/user)

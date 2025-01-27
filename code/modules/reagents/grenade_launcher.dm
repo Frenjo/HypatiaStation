@@ -22,7 +22,7 @@
 	if((istype(I, /obj/item/grenade)))
 		if(length(grenades) < max_grenades)
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			grenades += I
 			to_chat(user, SPAN_INFO("You put the grenade in the grenade launcher."))
 			to_chat(user, SPAN_INFO("[length(grenades)] / [max_grenades] Grenades."))

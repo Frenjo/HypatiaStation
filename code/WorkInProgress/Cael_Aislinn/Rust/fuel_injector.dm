@@ -141,7 +141,7 @@
 		if(emergency_insert_ready)
 			cur_assembly = I
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			emergency_insert_ready = 0
 			return TRUE
 

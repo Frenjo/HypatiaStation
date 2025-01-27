@@ -301,7 +301,7 @@
 				var/turf/T = loc
 				if(ismob(T))
 					T = T.loc
-				cartridge.loc = T
+				cartridge.forceMove(T)
 				mode = 0
 				scanmode = 0
 				if(cartridge.radio)
@@ -540,7 +540,7 @@
 				if("2")		// Eject pAI device
 					var/turf/T = get_turf_or_move(src.loc)
 					if(T)
-						pai.loc = T
+						pai.forceMove(T)
 						pai = null
 
 		else
@@ -622,7 +622,7 @@
 			M.put_in_hands(id)
 			to_chat(usr, SPAN_NOTICE("You remove the ID from the [name]."))
 		else
-			id.loc = GET_TURF(src)
+			id.forceMove(GET_TURF(src))
 		id = null
 
 /obj/item/pda/proc/create_message(mob/living/U = usr, obj/item/pda/P)
@@ -752,7 +752,7 @@
 					M.put_in_hands(O)
 					to_chat(usr, SPAN_NOTICE("You remove \the [O] from \the [src]."))
 					return
-			O.loc = GET_TURF(src)
+			O.forceMove(GET_TURF(src))
 		else
 			to_chat(usr, SPAN_NOTICE("This PDA does not have a pen in it."))
 	else
@@ -766,14 +766,14 @@
 			var/obj/item/I = user.get_active_hand()
 			if(istype(I, /obj/item/card/id))
 				user.drop_item()
-				I.loc = src
+				I.forceMove(src)
 				id = I
 	else
 		var/obj/item/card/I = user.get_active_hand()
 		if(istype(I, /obj/item/card/id) && I:registered_name)
 			var/obj/old_id = id
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			id = I
 			user.put_in_hands(old_id)
 	return
@@ -784,7 +784,7 @@
 	if(istype(C, /obj/item/cartridge) && !cartridge)
 		cartridge = C
 		user.drop_item()
-		cartridge.loc = src
+		cartridge.forceMove(src)
 		to_chat(user, SPAN_NOTICE("You insert [cartridge] into [src]."))
 		global.PCnanoui.update_uis(src) // update all UIs attached to src
 		if(cartridge.radio)
@@ -808,7 +808,7 @@
 		updateSelfDialog()//For the non-input related code.
 	else if(istype(C, /obj/item/paicard) && !src.pai)
 		user.drop_item()
-		C.loc = src
+		C.forceMove(src)
 		pai = C
 		to_chat(user, SPAN_NOTICE("You slot \the [C] into [src]."))
 		global.PCnanoui.update_uis(src) // update all UIs attached to src
@@ -818,7 +818,7 @@
 			to_chat(user, SPAN_NOTICE("There is already a pen in \the [src]."))
 		else
 			user.drop_item()
-			C.loc = src
+			C.forceMove(src)
 			to_chat(user, SPAN_NOTICE("You slide \the [C] into \the [src]."))
 	return
 

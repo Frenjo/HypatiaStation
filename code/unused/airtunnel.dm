@@ -322,7 +322,7 @@ obj/machinery/computer/airtunnel/attack_ai(user as mob)
 				var/obj/item/card/id/I = usr.equipped()
 				if (istype(I, /obj/item/card/id))
 					usr.drop_item()
-					I.loc = src
+					I.forceMove(src)
 					src.scan = I
 		if (href_list["door1"])
 			if (src.scan)

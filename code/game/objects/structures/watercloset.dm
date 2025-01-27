@@ -105,7 +105,7 @@
 			to_chat(user, SPAN_NOTICE("The cistern is full."))
 			return
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		w_items += I.w_class
 		to_chat(user, "You carefully place \the [I] into the cistern.")
 		return

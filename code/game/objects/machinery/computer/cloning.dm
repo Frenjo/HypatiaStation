@@ -64,7 +64,7 @@
 			to_chat(user, SPAN_WARNING("There is already a disk inserted."))
 			return TRUE
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		diskette = I
 		user.visible_message(
 			SPAN_INFO("[user] inserts \the [I] into \the [src]."),

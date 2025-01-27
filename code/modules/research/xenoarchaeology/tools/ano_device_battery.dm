@@ -42,7 +42,7 @@
 			return TRUE
 		to_chat(user, SPAN_INFO("You insert the battery."))
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		inserted_battery = I
 		UpdateSprite()
 		return TRUE

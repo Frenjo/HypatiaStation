@@ -2872,7 +2872,7 @@
 	if(istype(I, /obj/item/reagent_holder/food/snacks/sliceable/pizza)) // Long ass fucking object name
 		if(src.open)
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			src.pizza = I
 
 			update_icon()

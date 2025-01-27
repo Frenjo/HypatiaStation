@@ -61,7 +61,7 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 			return 1
 		user.drop_item()
 		src.P = W
-		W.loc = src
+		W.forceMove(src)
 		update_icons()
 	else if(iscrowbar(W))
 		if(P && !src.locked)

@@ -62,22 +62,22 @@ datum/hSB
 				if("hsbsuit")
 					var/mob/living/carbon/human/P = usr
 					if(P.wear_suit)
-						P.wear_suit.loc = P.loc
+						P.wear_suit.forceMove(P.loc)
 						P.wear_suit.reset_plane_and_layer()
 						P.wear_suit = null
 					P.equip_to_slot_if_possible(new /obj/item/clothing/suit/space(P), SLOT_ID_WEAR_SUIT, FALSE, TRUE)
 					if(P.head)
-						P.head.loc = P.loc
+						P.head.forceMove(P.loc)
 						P.head.reset_plane_and_layer()
 						P.head = null
 					P.equip_to_slot_if_possible(new /obj/item/clothing/head/helmet/space(P), SLOT_HEAD, FALSE, TRUE)
 					if(P.wear_mask)
-						P.wear_mask.loc = P.loc
+						P.wear_mask.forceMove(P.loc)
 						P.wear_mask.reset_plane_and_layer()
 						P.wear_mask = null
 					P.equip_to_slot_if_possible(new /obj/item/clothing/mask/gas(P), SLOT_ID_WEAR_MASK, FALSE, TRUE)
 					if(P.back)
-						P.back.loc = P.loc
+						P.back.forceMove(P.loc)
 						P.back.reset_plane_and_layer()
 						P.back = null
 					P.equip_to_slot_if_possible(new /obj/item/tank/jetpack(P), SLOT_ID_BACK, FALSE, TRUE)
@@ -85,11 +85,11 @@ datum/hSB
 				if("hsbmetal")
 					var/obj/item/stack/sheet/hsb = new /obj/item/stack/sheet/steel
 					hsb.amount = 50
-					hsb.loc = usr.loc
+					hsb.forceMove(usr.loc)
 				if("hsbglass")
 					var/obj/item/stack/sheet/hsb = new/obj/item/stack/sheet/glass
 					hsb.amount = 50
-					hsb.loc = usr.loc
+					hsb.forceMove(usr.loc)
 				if("hsbairlock")
 					var/obj/machinery/door/hsb = new/obj/machinery/door/airlock
 
@@ -100,7 +100,7 @@ datum/hSB
 						if(alert(usr, "Will this airlock require [get_access_desc(A)] access?", "Sandbox:", "Yes", "No") == "Yes")
 							hsb.req_access += A
 
-					hsb.loc = usr.loc
+					hsb.forceMove(usr.loc)
 					usr << "<b>Sandbox:  Created an airlock."
 				if("hsbcanister")
 					var/list/hsbcanisters = typesof(/obj/machinery/portable_atmospherics/canister/) - /obj/machinery/portable_atmospherics/canister/
@@ -109,19 +109,19 @@ datum/hSB
 						new hsbcanister(usr.loc)
 				if("hsbfueltank")
 					//var/obj/hsb = new/obj/weldfueltank
-					//hsb.loc = usr.loc
+					//hsb.forceMove(usr.loc)
 				if("hsbwatertank")
 					//var/obj/hsb = new/obj/watertank
-					//hsb.loc = usr.loc
+					//hsb.forceMove(usr.loc)
 				if("hsbtoolbox")
 					var/obj/item/storage/hsb = new/obj/item/storage/toolbox/mechanical
 					for(var/obj/item/radio/T in hsb)
 						del(T)
 					new/obj/item/crowbar (hsb)
-					hsb.loc = usr.loc
+					hsb.forceMove(usr.loc)
 				if("hsbmedkit")
 					var/obj/item/storage/firstaid/hsb = new/obj/item/storage/firstaid/regular
-					hsb.loc = usr.loc
+					hsb.forceMove(usr.loc)
 				if("hsbobj")
 					if(!hsboxspawn) return
 

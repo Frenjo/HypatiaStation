@@ -24,7 +24,7 @@
 		if(S.mode != 2) //SYRINGE_BROKEN in syringes.dm
 			if(length(syringes) < max_syringes)
 				user.drop_item()
-				I.loc = src
+				I.forceMove(src)
 				syringes += I
 				to_chat(user, SPAN_INFO("You put the syringe in [src]."))
 				to_chat(user, SPAN_INFO("[length(syringes)] / [max_syringes] syringes."))

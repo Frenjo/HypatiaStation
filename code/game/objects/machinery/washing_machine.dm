@@ -266,7 +266,7 @@
 		if(length(contents) < 5)
 			if(state in list(1, 3))
 				user.drop_item()
-				W.loc = src
+				W.forceMove(src)
 				state = 3
 			else
 				user << "\blue You can't put the item in right now."

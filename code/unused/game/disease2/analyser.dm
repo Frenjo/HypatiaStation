@@ -17,7 +17,7 @@
 
 			dish = I
 			c.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			for(var/mob/M in viewers(src))
 				if(M == user)	continue
 				M.show_message("\blue [user.name] inserts the [dish.name] in the [src.name]", 3)

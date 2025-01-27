@@ -123,7 +123,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			return TRUE
 
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		to_chat(user, SPAN_INFO("You add the disk to the machine!"))
 		updateUsrDialog()
 		return TRUE

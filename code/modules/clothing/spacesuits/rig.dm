@@ -232,7 +232,7 @@
 				else
 					to_chat(user, "You attach \the [W] to \the [src]'s helmet mount.")
 					user.drop_item()
-					W.loc = src
+					W.forceMove(src)
 					src.helmet = W
 				return
 			else
@@ -258,7 +258,7 @@
 				else
 					to_chat(user, "You attach \the [W] to \the [src]'s boot mounts.")
 					user.drop_item()
-					W.loc = src
+					W.forceMove(src)
 					boots = W
 			else
 				return ..()

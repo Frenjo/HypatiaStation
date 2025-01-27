@@ -328,7 +328,7 @@ This function restores all organs.
 			if(ismob(W.loc))
 				var/mob/living/H = W.loc
 				H.drop_item()
-			W.loc = src
+			W.forceMove(src)
 		*/
 		if((damage > (4 * W.w_class)) && ((sharp && !ismob(W.loc)) || prob((damage * 1.5) / W.w_class)))
 			organ.implants += W

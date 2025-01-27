@@ -18,7 +18,7 @@
 			return TRUE
 		cur_assembly = I
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		icon_state = "port1"
 		to_chat(user, SPAN_INFO("You insert \the [I] into \the [src]. Touch the panel again to insert \the [I] into the injector."))
 		return TRUE

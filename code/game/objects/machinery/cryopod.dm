@@ -176,7 +176,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 			//Drop all items into the pod.
 			for(var/obj/item/W in occupant)
 				occupant.drop_from_inventory(W)
-				W.loc = src
+				W.forceMove(src)
 
 				if(length(W.contents)) //Make sure we catch anything not handled by del() on the items.
 					for(var/obj/item/O in W.contents)

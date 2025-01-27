@@ -687,7 +687,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 			var/turf/T = GET_TURF(user)
 			if(isnotnull(T))
-				keyslot.loc = T
+				keyslot.forceMove(T)
 				keyslot = null
 
 			recalculateChannels()
@@ -712,7 +712,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 			if(keyslot)
 				var/turf/T = GET_TURF(user)
 				if(isnotnull(T))
-					keyslot.loc = T
+					keyslot.forceMove(T)
 					keyslot = null
 
 			recalculateChannels()
@@ -727,7 +727,7 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 
 		if(!keyslot)
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			keyslot = W
 
 		recalculateChannels()

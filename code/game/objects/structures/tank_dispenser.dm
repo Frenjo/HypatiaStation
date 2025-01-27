@@ -46,7 +46,7 @@
 	if(istype(I, /obj/item/tank/oxygen) || istype(I, /obj/item/tank/air) || istype(I, /obj/item/tank/anesthetic))
 		if(oxygentanks < 10)
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			oxytanks.Add(I)
 			oxygentanks++
 			to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
@@ -57,7 +57,7 @@
 	if(istype(I, /obj/item/tank/plasma))
 		if(plasmatanks < 10)
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			platanks.Add(I)
 			plasmatanks++
 			to_chat(user, SPAN_NOTICE("You put [I] in [src]."))

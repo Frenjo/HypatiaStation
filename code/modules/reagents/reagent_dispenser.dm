@@ -145,7 +145,7 @@
 
 			rig = W
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 
 			var/icon/test = getFlatIcon(W)
 			test.Shift(NORTH, 1)

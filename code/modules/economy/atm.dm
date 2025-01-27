@@ -407,7 +407,7 @@ log transactions
 						var/obj/item/I = usr.get_active_hand()
 						if(istype(I, /obj/item/card/id))
 							usr.drop_item()
-							I.loc = src
+							I.forceMove(src)
 							held_card = I
 				else
 					release_held_id(usr)

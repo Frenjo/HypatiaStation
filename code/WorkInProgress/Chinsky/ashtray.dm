@@ -21,7 +21,7 @@
 			to_chat(user, "This ashtray is full.")
 			return
 		user.u_equip(W)
-		W.loc = src
+		W.forceMove(src)
 
 		if(istype(W, /obj/item/clothing/mask/cigarette))
 			var/obj/item/clothing/mask/cigarette/cig = W

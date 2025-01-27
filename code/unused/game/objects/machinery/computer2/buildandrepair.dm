@@ -81,7 +81,7 @@
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				user << "\blue You remove the peripheral boards."
 				for(var/obj/item/peripheral/W in src.peripherals)
-					W.loc = src.loc
+					W.forceMove(loc)
 					src.peripherals.Remove(W)
 
 			if(istype(P, /obj/item/cable_coil))

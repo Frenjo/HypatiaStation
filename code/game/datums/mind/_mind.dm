@@ -101,7 +101,7 @@
 			else if (istype(t, /obj/item/SWF_uplink) || istype(t, /obj/item/syndicate_uplink))
 				if (t:origradio)
 					var/obj/item/radio/R = t:origradio
-					R.loc = current.loc
+					R.forceMove(current.loc)
 					R.traitorradio = null
 					R.traitor_frequency = 0.0
 				del(t)

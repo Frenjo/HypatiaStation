@@ -31,7 +31,7 @@
 	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/paper) || istype(I, /obj/item/folder) || istype(I, /obj/item/photo))
-			I.loc = src
+			I.forceMove(src)
 
 /obj/structure/filingcabinet/attack_tool(obj/item/tool, mob/user)
 	if(iswrench(tool))

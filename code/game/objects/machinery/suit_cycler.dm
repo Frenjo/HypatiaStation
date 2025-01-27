@@ -136,7 +136,7 @@
 
 		to_chat(user, SPAN_INFO("You fit \the [I] into the suit cycler."))
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		helmet = I
 
 		update_icon()
@@ -164,7 +164,7 @@
 
 		to_chat(user, SPAN_INFO("You fit \the [I] into the suit cycler."))
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		suit = I
 
 		update_icon()

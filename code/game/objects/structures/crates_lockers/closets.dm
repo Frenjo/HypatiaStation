@@ -33,7 +33,7 @@
 		for(var/obj/item/I in src.loc)
 			if(I.density || I.anchored || I == src)
 				continue
-			I.loc = src
+			I.forceMove(src)
 
 /obj/structure/closet/alter_health()
 	return GET_TURF(src)
@@ -60,7 +60,7 @@
 		AD.loc = src.loc
 
 	for(var/obj/I in src)
-		I.loc = src.loc
+		I.forceMove(loc)
 
 	for(var/mob/M in src)
 		M.loc = src.loc
@@ -105,7 +105,7 @@
 		if(itemcount >= storage_capacity)
 			break
 		if(!I.anchored)
-			I.loc = src
+			I.forceMove(src)
 			itemcount++
 
 	for(var/mob/M in src.loc)
@@ -211,7 +211,7 @@
 			return
 		usr.drop_item()
 		if(W)
-			W.loc = src.loc
+			W.forceMove(loc)
 	else if(istype(W, /obj/item/package_wrap))
 		return
 	else if(iswelder(W))

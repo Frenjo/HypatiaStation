@@ -171,7 +171,7 @@
 			user << "\red There is already a [fueljar] inside!"
 			return
 		fueljar = W
-		W.loc = src
+		W.forceMove(src)
 		if(user.client)
 			user.client.screen -= W
 		user.u_equip(W)

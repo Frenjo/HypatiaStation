@@ -144,5 +144,5 @@
 
 	user.drop_item()
 	if(isnotnull(I?.loc))
-		I.loc = src.loc
+		I.forceMove(loc)
 	return TRUE

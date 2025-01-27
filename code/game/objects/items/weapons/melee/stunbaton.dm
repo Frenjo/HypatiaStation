@@ -75,7 +75,7 @@
 			to_chat(user, SPAN_WARNING("\The [src] already has a cell."))
 			return TRUE
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		bcell = I
 		to_chat(user, SPAN_NOTICE("You install \the [I] in \the [src]."))
 		update_icon()

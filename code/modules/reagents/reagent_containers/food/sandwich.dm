@@ -26,7 +26,7 @@
 	else if(istype(W, /obj/item/shard))
 		to_chat(user, SPAN_INFO("You hide [W] in \the [src]."))
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		update()
 		return
 	else if(istype(W, /obj/item/reagent_holder/food/snacks))
@@ -34,7 +34,7 @@
 		var/obj/item/reagent_holder/F = W
 		F.reagents.trans_to(src, F.reagents.total_volume)
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		ingredients += W
 		update()
 		return

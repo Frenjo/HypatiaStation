@@ -35,10 +35,11 @@
 	set desc = "Release an item from your magnetic gripper."
 	set category = "Drone"
 
+	var/turf/T = GET_TURF(src)
 	if(!wrapped)
 		//There's some weirdness with items being lost inside the arm. Trying to fix all cases. ~Z
-		for(var/obj/item/thing in src.contents)
-			thing.loc = GET_TURF(src)
+		for(var/obj/item/thing in src)
+			thing.forceMove(T)
 		return
 
 	if(wrapped.loc != src)
@@ -46,7 +47,7 @@
 		return
 
 	src.loc << "\red You drop \the [wrapped]."
-	wrapped.loc = GET_TURF(src)
+	wrapped.forceMove(T)
 	wrapped = null
 	//update_icon()
 
@@ -61,12 +62,12 @@
 			break
 
 	if(wrapped) //Already have an item.
-		wrapped.loc = user
+		wrapped.forceMove(user)
 		//Pass the attack on to the target.
-		target.attackby(wrapped,user)
+		target.attackby(wrapped, user)
 
 		if(wrapped && src && wrapped.loc == user)
-			wrapped.loc = src
+			wrapped.forceMove(src)
 
 		//Sanity/item use checks.
 
@@ -94,7 +95,7 @@
 		//We can grab the item, finally.
 		if(grab)
 			user << "You collect \the [I]."
-			I.loc = src
+			I.forceMove(src)
 			wrapped = I
 			return
 		else

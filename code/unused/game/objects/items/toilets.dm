@@ -37,7 +37,7 @@ TOILET
 		user << "You cannot fit the item inside."
 		return
 	user.u_equip(W)
-	W.loc = src
+	W.forceMove(src)
 	if ((user.client && user.s_active != src))
 		user.client.screen -= W
 	src.orient2hud(user)

@@ -171,7 +171,7 @@
 			to_chat(user, SPAN_NOTICE("The fertilizer storage is full!"))
 			return
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		to_chat(user, "You insert [W].")
 		flick("farmbot_hatch", src)
 		updateUsrDialog()

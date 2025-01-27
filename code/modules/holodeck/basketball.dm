@@ -43,7 +43,7 @@
 		if(istype(I, /obj/item/projectile))
 			return
 		if(prob(50))
-			I.loc = src.loc
+			I.forceMove(loc)
 			visible_message(SPAN_INFO("Swish! \the [I] lands in \the [src]."), 3)
 		else
 			visible_message(SPAN_WARNING("\the [I] bounces off of \the [src]'s rim!"), 3)

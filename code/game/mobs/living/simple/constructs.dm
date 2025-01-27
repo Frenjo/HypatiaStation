@@ -251,7 +251,7 @@
 				return
 			if (cultist == usr) //just to be sure.
 				return
-			cultist.loc = usr.loc
+			cultist.forceMove(usr.loc)
 			usr.visible_message("/red [cultist] appears in a flash of red light as [usr] glows with power")*/
 
 

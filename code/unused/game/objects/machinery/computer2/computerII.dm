@@ -222,7 +222,7 @@
 					var/obj/item/I = usr.equipped()
 					if (istype(I, /obj/item/card/id))
 						usr.drop_item()
-						I.loc = src
+						I.forceMove(src)
 						src.authid = I
 			if("aux")
 				if(isnotnull(src.auxid))
@@ -232,7 +232,7 @@
 					var/obj/item/I = usr.equipped()
 					if (istype(I, /obj/item/card/id))
 						usr.drop_item()
-						I.loc = src
+						I.forceMove(src)
 						src.auxid = I
 
 	//Same but for a data disk
@@ -244,7 +244,7 @@
 			var/obj/item/I = usr.equipped()
 			if (istype(I, /obj/item/disk/data))
 				usr.drop_item()
-				I.loc = src
+				I.forceMove(src)
 				src.diskette = I
 */
 	src.add_fingerprint(usr)
@@ -281,7 +281,7 @@
 		if ((!src.diskette) && W:portable)
 			user.machine = src
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			src.diskette = W
 			user << "You insert [W]."
 			src.updateUsrDialog()

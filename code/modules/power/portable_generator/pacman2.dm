@@ -110,7 +110,7 @@
 				for(var/obj/item/I in component_parts)
 					if(I.reliability < 100)
 						I.crit_fail = 1
-					I.loc = src.loc
+					I.forceMove(loc)
 				new_frame.state = 2
 				new_frame.icon_state = "box_1"
 				del(src)

@@ -205,7 +205,7 @@
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 
 		if(do_after(user, 40))
 			if(!src) return
@@ -214,7 +214,7 @@
 			src.name = "Near finished Airlock Assembly"
 			src.electronics = W
 		else
-			W.loc = src.loc
+			W.forceMove(loc)
 
 	else if(iscrowbar(W) && state == 2 )
 		playsound(src, 'sound/items/Crowbar.ogg', 100, 1)

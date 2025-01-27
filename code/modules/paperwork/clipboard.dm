@@ -46,7 +46,7 @@
 /obj/item/clipboard/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo))
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		if(istype(W, /obj/item/paper))
 			toppaper = W
 		to_chat(user, SPAN_NOTICE("You clip the [W] onto \the [src]."))
@@ -97,7 +97,7 @@
 				if(istype(usr.get_active_hand(), /obj/item/pen))
 					var/obj/item/pen/W = usr.get_active_hand()
 					usr.drop_item()
-					W.loc = src
+					W.forceMove(src)
 					haspen = W
 					to_chat(usr, SPAN_NOTICE("You slot the pen into \the [src]."))
 

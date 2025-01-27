@@ -37,7 +37,7 @@
 	if(istype(I, /obj/item/implantcase))
 		if(isnull(case))
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			case = I
 			update()
 		return TRUE

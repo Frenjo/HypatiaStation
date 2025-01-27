@@ -23,12 +23,12 @@
 		if(isnull(tank_one))
 			tank_one = I
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			to_chat(user, SPAN_NOTICE("You attach the tank to the transfer valve."))
 		else if(isnull(tank_two))
 			tank_two = I
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			to_chat(user, SPAN_NOTICE("You attach the tank to the transfer valve."))
 		update_icon()
 		global.PCnanoui.update_uis(src) // update all UIs attached to src
@@ -44,7 +44,7 @@
 			return TRUE
 		user.remove_from_mob(I)
 		attached_device = A
-		A.loc = src
+		A.forceMove(src)
 		to_chat(user, SPAN_NOTICE("You attach \the [I] to the valve controls and secure it."))
 		A.holder = src
 		A.toggle_secure()	//this calls update_icon(), which calls update_icon() on the holder (i.e. the bomb).
@@ -97,20 +97,20 @@
 	if(tank_one && href_list["tankone"])
 		split_gases()
 		valve_open = 0
-		tank_one.loc = GET_TURF(src)
+		tank_one.forceMove(GET_TURF(src))
 		tank_one = null
 		update_icon()
 	else if(tank_two && href_list["tanktwo"])
 		split_gases()
 		valve_open = 0
-		tank_two.loc = GET_TURF(src)
+		tank_two.forceMove(GET_TURF(src))
 		tank_two = null
 		update_icon()
 	else if(href_list["open"])
 		toggle_valve()
 	else if(attached_device)
 		if(href_list["rem_device"])
-			attached_device.loc = GET_TURF(src)
+			attached_device.forceMove(GET_TURF(src))
 			attached_device:holder = null
 			attached_device = null
 			update_icon()

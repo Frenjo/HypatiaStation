@@ -27,7 +27,7 @@
 		A.icon = 'icons/obj/items/assemblies/assemblies.dmi'
 
 		user.drop_from_inventory(W)
-		W.loc = A
+		W.forceMove(A)
 		W.master = A
 		A.part1 = W
 

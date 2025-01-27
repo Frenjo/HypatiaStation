@@ -133,7 +133,8 @@
 
 	// otherwise drop and place on conveyor
 	user.drop_item()
-	if(I && I.loc)	I.loc = src.loc
+	if(I && I.loc)
+		I.forceMove(loc)
 	return
 
 // attack with hand, move pulled object onto conveyor

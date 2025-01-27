@@ -316,7 +316,7 @@
 		var/datum/organ/external/head = H.get_organ("head")
 		head.implants -= src
 
-	src.loc = GET_TURF(host)
+	forceMove(GET_TURF(host))
 	controlling = 0
 
 	reset_view(null)
@@ -399,7 +399,7 @@
 			M << "Something disgusting and slimy wiggles into your ear!"
 
 		src.host = M
-		src.loc = M
+		forceMove(M)
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M

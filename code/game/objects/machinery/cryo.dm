@@ -188,7 +188,7 @@
 			return TRUE
 		beaker = I
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		user.visible_message(
 			SPAN_INFO("[user] adds \a [I] to \the [src]!"),
 			SPAN_INFO("You add \a [I] to \the [src]!")

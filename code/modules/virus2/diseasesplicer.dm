@@ -15,7 +15,7 @@
 		if(isnull(dish))
 			dish = I
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 		return TRUE
 
 	if(istype(I, /obj/item/diseasedisk))

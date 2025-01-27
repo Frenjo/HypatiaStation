@@ -130,7 +130,7 @@
 		if(isnotnull(l_leg))
 			return
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		l_leg = W
 		updateicon()
 
@@ -138,7 +138,7 @@
 		if(isnotnull(r_leg))
 			return
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		r_leg = W
 		updateicon()
 
@@ -146,7 +146,7 @@
 		if(isnotnull(l_arm))
 			return
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		l_arm = W
 		updateicon()
 
@@ -154,7 +154,7 @@
 		if(isnotnull(r_arm))
 			return
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		r_arm = W
 		updateicon()
 
@@ -164,7 +164,7 @@
 		var/obj/item/robot_parts/chest/part_chest = W
 		if(part_chest.wires && isnotnull(part_chest.cell))
 			user.drop_item()
-			part_chest.loc = src
+			part_chest.forceMove(src)
 			chest = part_chest
 			updateicon()
 		else if(part_chest.wires)
@@ -178,7 +178,7 @@
 		var/obj/item/robot_parts/head/part_head = W
 		if(isnotnull(part_head.flash1) && isnotnull(part_head.flash2))
 			user.drop_item()
-			part_head.loc = src
+			part_head.forceMove(src)
 			head = part_head
 			updateicon()
 		else
@@ -235,8 +235,8 @@
 			O.job = "Cyborg"
 
 			O.cell = chest.cell
-			O.cell.loc = O
-			W.loc = O//Should fix cybros run time erroring when blown up. It got deleted before, along with the frame.
+			O.cell.forceMove(O)
+			W.forceMove(O) // Should fix cybros run time erroring when blown up. It got deleted before, along with the frame.
 
 			// Since we "magically" installed a cell, we also have to update the correct component.
 			if(isnotnull(O.cell))
@@ -268,7 +268,7 @@
 			return
 		else
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			src.cell = W
 			to_chat(user, SPAN_INFO("You insert the cell!"))
 	if(iscable(W))
@@ -289,12 +289,12 @@
 			return
 		else if(isnotnull(flash1))
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			flash2 = W
 			to_chat(user, SPAN_INFO("You insert the flash into the eye socket!"))
 		else
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			flash1 = W
 			to_chat(user, SPAN_INFO("You insert the flash into the eye socket!"))
 	else if(istype(W, /obj/item/stock_part/manipulator))

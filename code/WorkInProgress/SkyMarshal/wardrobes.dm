@@ -32,7 +32,7 @@
 			user.drop_item()
 
 			if(I)
-				I.loc = src
+				I.forceMove(src)
 
 			update_icon()
 		else

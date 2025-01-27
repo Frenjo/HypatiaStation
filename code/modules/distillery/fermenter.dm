@@ -23,7 +23,7 @@
 /obj/machinery/fermenter/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/reagent_holder/food))
 		user.u_equip(W)
-		W.loc = src
+		W.forceMove(src)
 		input += W
 	else
 		..()

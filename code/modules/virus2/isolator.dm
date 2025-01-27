@@ -17,7 +17,7 @@
 		return TRUE
 	beaker = I
 	user.drop_item()
-	I.loc = src
+	I.forceMove(src)
 	user.visible_message(
 		SPAN_INFO("[user] adds the syringe to the machine."),
 		SPAN_INFO("You add the syringe to the machine.")

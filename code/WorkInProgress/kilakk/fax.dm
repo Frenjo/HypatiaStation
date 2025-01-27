@@ -132,7 +132,7 @@ var/list/alldepartments = list("Central Command")
 			var/obj/item/I = usr.get_active_hand()
 			if (istype(I, /obj/item/card/id))
 				usr.drop_item()
-				I.loc = src
+				I.forceMove(src)
 				scan = I
 		authenticated = 0
 
@@ -165,7 +165,7 @@ var/list/alldepartments = list("Central Command")
 			return TRUE
 		user.drop_item()
 		tofax = I
-		I.loc = src
+		I.forceMove(src)
 		to_chat(user, SPAN_NOTICE("You insert the paper into \the [src]."))
 		flick("faxsend", src)
 		updateUsrDialog()

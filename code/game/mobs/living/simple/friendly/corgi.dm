@@ -81,14 +81,14 @@
 					emote_see = list("shakes its head", "shivers")
 					desc = "It's a corgi."
 					SetLuminosity(0)
-					inventory_head.loc = src.loc
+					inventory_head.forceMove(loc)
 					inventory_head = null
 				else
 					usr << "\red There is nothing to remove from its [remove_from]."
 					return
 			if("back")
 				if(inventory_back)
-					inventory_back.loc = src.loc
+					inventory_back.forceMove(loc)
 					inventory_back = null
 				else
 					usr << "\red There is nothing to remove from its [remove_from]."
@@ -183,7 +183,7 @@
 						return
 
 					usr.drop_item()
-					item_to_add.loc = src
+					item_to_add.forceMove(src)
 					src.inventory_back = item_to_add
 					regenerate_icons()
 
@@ -192,7 +192,7 @@
 		..()
 
 /mob/living/simple/corgi/proc/place_on_head(obj/item/item_to_add)
-	item_to_add.loc = src
+	item_to_add.forceMove(src)
 	src.inventory_head = item_to_add
 	regenerate_icons()
 

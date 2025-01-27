@@ -36,7 +36,7 @@ FLOOR SAFES
 			return
 		if(I.w_class + space <= maxspace)
 			space += I.w_class
-			I.loc = src
+			I.forceMove(src)
 
 /obj/structure/safe/proc/check_unlocked(mob/user, canhear)
 	if(user && canhear)
@@ -142,7 +142,7 @@ FLOOR SAFES
 		if(I.w_class + space <= maxspace)
 			space += I.w_class
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
 			updateUsrDialog()
 			return

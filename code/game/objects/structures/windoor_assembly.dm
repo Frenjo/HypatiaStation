@@ -190,12 +190,12 @@
 					if(!src) return
 
 					user.drop_item()
-					W.loc = src
+					W.forceMove(src)
 					to_chat(user, SPAN_INFO("You've installed the airlock electronics!"))
 					src.name = "Near finished Windoor Assembly"
 					src.electronics = W
 				else
-					W.loc = src.loc
+					W.forceMove(loc)
 
 			//Screwdriver to remove airlock electronics. Step 6 undone.
 			else if(isscrewdriver(W) && src.electronics)

@@ -219,10 +219,10 @@
 				secure_radio_connections[ch_name] = null
 
 			if(isnotnull(keyslot1))
-				keyslot1.loc = GET_TURF(user)
+				keyslot1.forceMove(GET_TURF(user))
 				keyslot1 = null
 			if(isnotnull(keyslot2))
-				keyslot2.loc = GET_TURF(user)
+				keyslot2.forceMove(GET_TURF(user))
 				keyslot2 = null
 
 			recalculateChannels()
@@ -242,11 +242,11 @@
 
 		if(!keyslot1)
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			keyslot1 = W
 		else
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			keyslot2 = W
 		recalculateChannels()
 

@@ -31,7 +31,7 @@
 /obj/item/folder/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo))
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		to_chat(user, SPAN_NOTICE("You put the [W] into \the [src]."))
 		update_icon()
 	else if(istype(W, /obj/item/pen))

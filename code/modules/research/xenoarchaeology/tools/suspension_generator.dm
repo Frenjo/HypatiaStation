@@ -135,7 +135,7 @@
 		var/obj/item/I = usr.get_active_hand()
 		if(istype(I, /obj/item/card))
 			usr.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			auth_card = I
 			if(attempt_unlock(I))
 				to_chat(usr, SPAN_INFO("You insert [I], the console flashes \'<i>Access granted.</a>\'"))
@@ -227,7 +227,7 @@
 			to_chat(user, SPAN_WARNING("There is already a power cell installed."))
 			return TRUE
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		cell = I
 		to_chat(user, SPAN_INFO("You insert the power cell."))
 		icon_state = "suspension1"

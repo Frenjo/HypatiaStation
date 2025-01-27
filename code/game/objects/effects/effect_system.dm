@@ -632,7 +632,7 @@ steam.start() -- spawns the effect
 	return
 
 /obj/structure/foamedmetal/attack_grab(obj/item/grab/grab, mob/user, mob/grabbed)
-	grab.affecting.loc = src.loc
+	grab.affecting.forceMove(loc)
 	visible_message(SPAN_WARNING("[user] smashes [grabbed] through the foamed metal wall."))
 	qdel(grab)
 	qdel(src)

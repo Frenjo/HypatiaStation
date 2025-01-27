@@ -93,7 +93,7 @@
 				updateicon()
 				return TRUE
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			cell = I
 			to_chat(user, SPAN_NOTICE("You insert the power cell."))
 			updateicon()

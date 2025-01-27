@@ -21,7 +21,7 @@
 	. = ..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/book))
-			I.loc = src
+			I.forceMove(src)
 	update_icon()
 
 /obj/structure/bookcase/attackby(obj/O, mob/user)
@@ -158,7 +158,7 @@
 		if(!store)
 			if(W.w_class < 3)
 				user.drop_item()
-				W.loc = src
+				W.forceMove(src)
 				store = W
 				to_chat(user, SPAN_NOTICE("You put [W] in [title]."))
 				return

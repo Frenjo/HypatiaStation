@@ -96,7 +96,7 @@
 			if(W.reagents.total_volume)
 				to_chat(user, SPAN_INFO("You add \the [W] to the assembly."))
 				user.drop_item()
-				W.loc = src
+				W.forceMove(src)
 				beakers += W
 				stage = 1
 				name = "unsecured grenade with [length(beakers)] containers[detonator ? " and detonator" : ""]"

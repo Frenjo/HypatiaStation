@@ -140,7 +140,7 @@
 		to_chat(user, SPAN_NOTICE("You attach \the [I] into the assembly inner circuits."))
 		upgrades.Add(I)
 		user.drop_item(I)
-		I.loc = src
+		I.forceMove(src)
 		return TRUE
 	return ..()
 

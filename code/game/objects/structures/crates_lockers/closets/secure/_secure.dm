@@ -59,7 +59,7 @@
 			return
 		user.drop_item()
 		if(W)
-			W.loc = src.loc
+			W.forceMove(loc)
 	else if((istype(W, /obj/item/card/emag)||istype(W, /obj/item/melee/energy/blade)) && !src.broken)
 		broken = 1
 		locked = 0

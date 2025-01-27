@@ -28,7 +28,7 @@
 /obj/machinery/computer/secure_data/attack_by(obj/item/I, mob/user)
 	if(isnull(scan) && istype(I, /obj/item/card/id))
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		scan = I
 		to_chat(user, SPAN_INFO("You insert \the [I]."))
 		return TRUE
@@ -238,7 +238,7 @@ What a mess.*/
 					var/obj/item/I = usr.get_active_hand()
 					if (istype(I, /obj/item/card/id))
 						usr.drop_item()
-						I.loc = src
+						I.forceMove(src)
 						scan = I
 
 			if("Log Out")

@@ -55,7 +55,7 @@
 				var/obj/item/I = usr.equipped()
 				if (istype(I, /obj/item/card/data))
 					usr.drop_item()
-					I.loc = src
+					I.forceMove(src)
 					src.modify = I
 				src.mode = null
 		if (href_list["modify2"])
@@ -67,7 +67,7 @@
 				var/obj/item/I = usr.equipped()
 				if (istype(I, /obj/item/card/data))
 					usr.drop_item()
-					I.loc = src
+					I.forceMove(src)
 					src.modify2 = I
 				src.mode = null
 		if (href_list["scan"])
@@ -79,7 +79,7 @@
 				var/obj/item/I = usr.equipped()
 				if (istype(I, /obj/item/card/data))
 					usr.drop_item()
-					I.loc = src
+					I.forceMove(src)
 					src.scan = I
 				src.mode = null
 		if (href_list["clear"])
@@ -658,7 +658,7 @@
 				var/obj/item/I = usr.equipped()
 				if (istype(I, /obj/item/card/data))
 					usr.drop_item()
-					I.loc = src
+					I.forceMove(src)
 					src.scan = I
 		if (href_list["u_dat"])
 			if ((src.scan && !( src.status )))

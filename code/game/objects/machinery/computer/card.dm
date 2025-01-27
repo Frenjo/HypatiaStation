@@ -214,7 +214,7 @@
 				var/obj/item/I = usr.get_active_hand()
 				if (istype(I, /obj/item/card/id))
 					usr.drop_item()
-					I.loc = src
+					I.forceMove(src)
 					modify = I
 			authenticated = 0
 
@@ -232,7 +232,7 @@
 				var/obj/item/I = usr.get_active_hand()
 				if (istype(I, /obj/item/card/id))
 					usr.drop_item()
-					I.loc = src
+					I.forceMove(src)
 					scan = I
 			authenticated = 0
 		if("auth")

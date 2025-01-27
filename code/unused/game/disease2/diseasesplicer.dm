@@ -49,7 +49,7 @@
 
 			dish = I
 			c.drop_item()
-			I.loc = src
+			I.forceMove(src)
 	if(istype(I,/obj/item/diseasedisk))
 		user << "You upload the contents of the disk into the buffer"
 		memorybank = I:effect

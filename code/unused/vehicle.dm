@@ -48,7 +48,7 @@
 
 /obj/machinery/vehicle/meteorhit(var/obj/O as obj)
 	for (var/obj/item/I in src)
-		I.loc = src.loc
+		I.forceMove(loc)
 
 	for (var/mob/M in src)
 		M.loc = src.loc

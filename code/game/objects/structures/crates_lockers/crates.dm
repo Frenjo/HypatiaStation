@@ -72,7 +72,7 @@
 			return
 		user.drop_item()
 		if(W)
-			W.loc = src.loc
+			W.forceMove(loc)
 	else if(istype(W, /obj/item/package_wrap))
 		return
 	else if(iscable(W))
@@ -88,7 +88,7 @@
 		if(rigged)
 			to_chat(user, SPAN_NOTICE("You attach [W] to [src]."))
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			return
 	else if(iswirecutter(W))
 		if(rigged)

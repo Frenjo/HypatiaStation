@@ -94,7 +94,7 @@
 				else
 					user << "\blue You remove the circuit board and other components."
 					for(var/obj/item/W in components)
-						W.loc = src.loc
+						W.forceMove(loc)
 				desc = initial(desc)
 				req_components = null
 				components = null

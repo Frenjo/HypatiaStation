@@ -70,7 +70,7 @@
 				return
 
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			charging = W
 			user.visible_message(
 				SPAN_INFO("[user] inserts a cell into \the [src]."),

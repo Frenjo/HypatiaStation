@@ -14,7 +14,7 @@
 			overlays += image('icons/obj/pipes/disposal.dmi', "dispover-handle")
 			return
 	user.drop_item()
-	I.loc = src.loc
+	I.forceMove(loc)
 
 	for(var/mob/O in hearers(src, null))
 		O.show_message("\icon[src] \blue The [src.name] beeps", 2)

@@ -82,7 +82,7 @@
 				if(!output_attempt && !input_attempt)
 					user.drop_item()
 					component_parts.Add(I)
-					I.loc = src
+					I.forceMove(src)
 					refresh_parts()
 					to_chat(user, SPAN_NOTICE("You upgrade \the [src] with \the [I]."))
 				else

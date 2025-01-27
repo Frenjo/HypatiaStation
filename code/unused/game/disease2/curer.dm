@@ -44,7 +44,7 @@
 
 			dish = I
 			c.drop_item()
-			I.loc = src
+			I.forceMove(src)
 
 	//else
 	src.attack_hand(user)

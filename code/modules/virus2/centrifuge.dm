@@ -15,7 +15,7 @@
 		if(isnull(sample))
 			sample = I
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 		return TRUE
 	return ..()
 

@@ -63,7 +63,7 @@
 /mob/living/simple/hostile/mimic/crate/initialise()
 	. = ..()
 	for(var/obj/item/I in loc)
-		I.loc = src
+		I.forceMove(src)
 
 /mob/living/simple/hostile/mimic/crate/DestroySurroundings()
 	..()
@@ -109,7 +109,7 @@
 	var/obj/structure/closet/crate/C = new /obj/structure/closet/crate(GET_TURF(src))
 	// Put loot in crate
 	for(var/obj/O in src)
-		O.loc = C
+		O.forceMove(C)
 	..()
 
 /mob/living/simple/hostile/mimic/crate/AttackingTarget()
@@ -141,7 +141,7 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 /mob/living/simple/hostile/mimic/copy/Die()
 	var/turf/T = GET_TURF(src)
 	for_no_type_check(var/atom/movable/mover, src)
-		mover.loc = T
+		mover.forceMove(T)
 	..()
 
 /mob/living/simple/hostile/mimic/copy/ListTargets()
@@ -152,8 +152,7 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 /mob/living/simple/hostile/mimic/copy/proc/CopyObject(var/obj/O, var/mob/living/creator)
 
 	if((isitem(O) || istype(O, /obj/structure)) && !is_type_in_list(O, protected_objects))
-
-		O.loc = src
+		O.forceMove(src)
 		name = O.name
 		desc = O.desc
 		icon = O.icon

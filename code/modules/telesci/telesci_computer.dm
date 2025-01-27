@@ -70,7 +70,7 @@
 			return TRUE
 		user.drop_item()
 		crystals.Add(I)
-		I.loc = src
+		I.forceMove(src)
 		user.visible_message(
 			SPAN_INFO("[user] inserts \a [I] into \the [src]'s crystal port."),
 			SPAN_INFO("You insert \a [I] into \the [src]'s crystal port.")
@@ -244,7 +244,7 @@
 
 /obj/machinery/computer/telescience/proc/eject()
 	for(var/obj/item/I in crystals)
-		I.loc = src.loc
+		I.forceMove(loc)
 		crystals.Remove(I)
 	power = 0
 

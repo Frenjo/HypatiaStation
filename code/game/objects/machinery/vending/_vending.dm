@@ -126,7 +126,7 @@
 		return
 	else if(istype(W, /obj/item/coin) && length(premium))
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		coin = W
 		to_chat(user, SPAN_INFO("You insert the [W] into the [src]"))
 		return
@@ -135,7 +135,7 @@
 		scan_card(I)
 	else if(istype(W, /obj/item/spacecash/ewallet))
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		ewallet = W
 		to_chat(user, SPAN_INFO("You insert the [W] into the [src]"))
 	else if(panel_open)

@@ -303,7 +303,7 @@
 	if(isnotnull(usr))
 		usr.u_equip(W)
 		usr.update_icons()	//update our overlays
-	W.loc = src
+	W.forceMove(src)
 	W.on_enter_storage(src)
 	if(isnotnull(usr))
 		if(usr.s_active != src)
@@ -345,9 +345,9 @@
 			W.layer_to_hud()
 		else
 			W.reset_plane_and_layer()
-		W.loc = new_location
+		W.forceMove(new_location)
 	else
-		W.loc = GET_TURF(src)
+		W.forceMove(GET_TURF(src))
 
 	if(isnotnull(usr))
 		orient2hud(usr)
@@ -376,7 +376,7 @@
 				to_chat(user, SPAN_WARNING("The tray won't fit in [src]."))
 				return
 			else
-				W.loc = user.loc
+				W.forceMove(user.loc)
 				if(user.s_active != src)
 					user.client?.screen.Remove(W)
 				W.dropped(user)

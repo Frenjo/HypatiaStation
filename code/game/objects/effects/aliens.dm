@@ -389,7 +389,7 @@ Alien plants should do something if theres a lot of poison
 		status = BURSTING
 		spawn(15)
 			status = BURST
-			child.loc = GET_TURF(src)
+			child.forceMove(GET_TURF(src))
 
 			if(kill && istype(child))
 				child.Die()

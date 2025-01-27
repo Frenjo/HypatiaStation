@@ -171,7 +171,7 @@
 		if(!S.amount)
 			qdel(S)
 		else
-			S.loc = src
+			S.forceMove(src)
 
 	orient2hud(usr)
 	if(usr.s_active)

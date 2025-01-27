@@ -185,7 +185,7 @@
 			return
 
 		user.drop_item()
-		W.loc = src
+		W.forceMove(src)
 		reagent_glass = W
 		to_chat(user, SPAN_NOTICE("You insert [W]."))
 		updateUsrDialog()

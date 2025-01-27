@@ -25,8 +25,8 @@
 	//TODO: make it heat up the surroundings when not in space
 
 /obj/item/suit_cooling_unit/New()
-	cell = new/obj/item/cell()	//comes with the crappy default power cell - high-capacity ones shouldn't be hard to find
-	cell.loc = src
+	cell = new /obj/item/cell()	//comes with the crappy default power cell - high-capacity ones shouldn't be hard to find
+	cell.forceMove(src)
 	. = ..()
 	GLOBL.processing_objects |= src
 
@@ -111,7 +111,7 @@
 		if(ishuman(user))
 			user.put_in_hands(cell)
 		else
-			cell.loc = GET_TURF(src)
+			cell.forceMove(GET_TURF(src))
 
 		cell.add_fingerprint(user)
 		cell.updateicon()
@@ -149,7 +149,7 @@
 				return TRUE
 
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			cell = I
 			to_chat(user, SPAN_NOTICE("You insert \the [cell]."))
 			updateicon()

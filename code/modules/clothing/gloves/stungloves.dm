@@ -32,7 +32,7 @@
 			to_chat(user, SPAN_NOTICE("The [src] need to be wired first."))
 		else if(!cell)
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			cell = W
 			to_chat(user, SPAN_NOTICE("You attach the [cell] to the [src]."))
 			update_icon()

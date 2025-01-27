@@ -58,7 +58,7 @@
 /obj/machinery/computer/guestpass/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/id))
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		giver = I
 		updateUsrDialog()
 		return TRUE
@@ -147,7 +147,7 @@
 					var/obj/item/I = usr.get_active_hand()
 					if(istype(I, /obj/item/card/id))
 						usr.drop_item()
-						I.loc = src
+						I.forceMove(src)
 						giver = I
 				updateUsrDialog()
 

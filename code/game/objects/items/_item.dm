@@ -97,7 +97,7 @@
 
 	src.loc = null
 
-	src.loc = T
+	forceMove(T)
 
 /obj/item/examine()
 	set src in view()

@@ -126,7 +126,7 @@
 				to_chat(user, SPAN_WARNING("There is no connector for your power cell."))
 				return
 			user.drop_item()
-			W.loc = src
+			W.forceMove(src)
 			cell = W
 			user.visible_message(
 				SPAN_WARNING("[user.name] has inserted the power cell to [src.name]!"),

@@ -16,7 +16,7 @@
 		if(isnull(dish))
 			dish = I
 			c.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			user.visible_message(
 				SPAN_INFO("[user] inserts \the [dish] into \the [src]."),
 				SPAN_INFO("You insert \the [dish] into \the [src].")

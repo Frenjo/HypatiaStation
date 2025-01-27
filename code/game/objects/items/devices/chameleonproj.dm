@@ -79,10 +79,10 @@
 		spawn(50) can_use = 1
 
 /obj/item/chameleon/proc/eject_all()
-	for(var/atom/movable/A in active_dummy)
-		A.loc = active_dummy.loc
-		if(ismob(A))
-			var/mob/M = A
+	for_no_type_check(var/atom/movable/mover, active_dummy)
+		mover.forceMove(active_dummy.loc)
+		if(ismob(mover))
+			var/mob/M = mover
 			M.reset_view(null)
 
 
@@ -101,7 +101,7 @@
 	icon_state = new_iconstate
 	overlays = new_overlays
 	dir = O.dir
-	M.loc = src
+	M.forceMove(src)
 	master = C
 	master.active_dummy = src
 

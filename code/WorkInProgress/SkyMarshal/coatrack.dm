@@ -37,7 +37,7 @@
 	var/obj/item/I = user.equipped()
 	if ( istype(I,/obj/item/clothing/head/det_hat) && !hat)
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		hat = I
 		if(!coat)
 			icon_state = "coatrack1"
@@ -49,7 +49,7 @@
 		return
 	if ( istype(I,/obj/item/clothing/suit/storage/det_suit) && !coat)
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		coat = I
 		if(!hat)
 			icon_state = "coatrack2"

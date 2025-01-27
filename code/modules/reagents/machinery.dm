@@ -845,7 +845,7 @@
 
 		beaker = I
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		to_chat(user, SPAN_INFO("You add the beaker to the machine!"))
 		updateUsrDialog()
 		icon_state = "mixer1"

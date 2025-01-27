@@ -25,7 +25,7 @@
 			return TRUE
 		beaker = I
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		user.visible_message(
 			SPAN_INFO("[user] adds \the [is_beaker ? "beaker" : "syringe"] to the machine."),
 			SPAN_INFO("You add the [is_beaker ? "beaker" : "syringe"] to the machine.")
@@ -39,7 +39,7 @@
 			return TRUE
 		dish = I
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		user.visible_message(
 			SPAN_INFO("[user] adds the virus dish to the machine."),
 			SPAN_INFO("You add the virus dish to the machine.")

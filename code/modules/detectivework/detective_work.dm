@@ -159,7 +159,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 				else
 					scanning = I
 					M.drop_item()
-					I.loc = src
+					I.forceMove(src)
 			else
 				usr << "Invalid Object Rejected."
 		if("card")  //Processing a fingerprint card.
@@ -178,7 +178,7 @@ var/const/FINGERPRINT_COMPLETE = 6	//This is the output of the stringpercent(pri
 					card = null
 					return
 				M.drop_item()
-				I.loc = src
+				I.forceMove(src)
 				process_card()
 			else
 				usr << "\red Invalid Object Rejected."
