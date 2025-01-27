@@ -494,9 +494,9 @@
 
 /obj/machinery/robotics_fabricator/Topic(href, href_list)
 	. = ..()
-	var/datum/topic_input/new_filter = new /datum/topic_input(href, href_list)
+	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
 	if(href_list["part_set"])
-		var/tpart_set = new_filter.getStr("part_set")
+		var/tpart_set = topic_filter.getStr("part_set")
 		if(tpart_set)
 			if(tpart_set == "clear")
 				part_set = null
@@ -504,19 +504,19 @@
 				part_set = tpart_set
 				screen = "parts"
 	if(href_list["part"])
-		var/list/part = new_filter.getObj("part")
+		var/list/part = topic_filter.getObj("part")
 		if(!processing_queue)
 			build_part(part)
 		else
 			add_to_queue(part)
 	if(href_list["add_to_queue"])
-		add_to_queue(new_filter.getObj("add_to_queue"))
+		add_to_queue(topic_filter.getObj("add_to_queue"))
 		return update_queue_on_page()
 	if(href_list["remove_from_queue"])
-		remove_from_queue(new_filter.getNum("remove_from_queue"))
+		remove_from_queue(topic_filter.getNum("remove_from_queue"))
 		return update_queue_on_page()
 	if(href_list["partset_to_queue"])
-		add_part_set_to_queue(new_filter.get("partset_to_queue"))
+		add_part_set_to_queue(topic_filter.get("partset_to_queue"))
 		return update_queue_on_page()
 	if(href_list["process_queue"])
 		spawn(-1)
@@ -534,8 +534,8 @@
 	if(href_list["screen"])
 		screen = href_list["screen"]
 	if(href_list["queue_move"] && href_list["index"])
-		var/index = new_filter.getNum("index")
-		var/new_index = index + new_filter.getNum("queue_move")
+		var/index = topic_filter.getNum("index")
+		var/new_index = index + topic_filter.getNum("queue_move")
 		if(isnum(index) && isnum(new_index))
 			if(InRange(new_index, 1, length(queue)))
 				queue.Swap(index, new_index)
@@ -548,7 +548,7 @@
 		sync()
 		return update_queue_on_page()
 	if(href_list["part_desc"])
-		var/obj/part = new_filter.getObj("part_desc")
+		var/obj/part = topic_filter.getObj("part_desc")
 		if(part)
 			temp = {"<h1>[part] description:</h1>
 						[part.desc]<br>

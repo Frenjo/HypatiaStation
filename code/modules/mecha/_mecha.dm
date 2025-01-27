@@ -7,10 +7,6 @@
 #define MELEE 1
 #define RANGED 2
 
-// Changed all the mecha code 'filter' to 'new_filter' because
-// Filter somehow became a reserved proc/makes BYOND confused
-// -Frenjo
-
 
 /obj/mecha
 	name = "mecha"

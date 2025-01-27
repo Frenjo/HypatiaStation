@@ -106,15 +106,15 @@
 
 /obj/item/mecha_part/equipment/medical/sleeper/Topic(href, href_list)
 	. = ..()
-	var/datum/topic_input/new_filter = new /datum/topic_input(href, href_list)
-	if(new_filter.get("eject"))
+	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
+	if(topic_filter.get("eject"))
 		go_out()
-	if(new_filter.get("view_stats"))
+	if(topic_filter.get("view_stats"))
 		chassis.occupant << browse(get_patient_stats(),"window=msleeper")
 		onclose(chassis.occupant, "msleeper")
 		return
-	if(new_filter.get("inject"))
-		inject_reagent(new_filter.getType("inject", /datum/reagent), new_filter.getObj("source"))
+	if(topic_filter.get("inject"))
+		inject_reagent(topic_filter.getType("inject", /datum/reagent), topic_filter.getObj("source"))
 
 /obj/item/mecha_part/equipment/medical/sleeper/proc/get_patient_stats()
 	if(isnull(patient))
@@ -337,19 +337,19 @@
 
 /obj/item/mecha_part/equipment/medical/syringe_gun/Topic(href, href_list)
 	. = ..()
-	var/datum/topic_input/new_filter = new /datum/topic_input(href, href_list)
-	if(new_filter.get("toggle_mode"))
+	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
+	if(topic_filter.get("toggle_mode"))
 		mode = !mode
 		update_equip_info()
 		return
-	if(new_filter.get("select_reagents"))
+	if(topic_filter.get("select_reagents"))
 		processed_reagents.len = 0
 		var/m = 0
 		var/message
 		for(var/i = 1 to known_reagents.len)
 			if(m >= synth_speed)
 				break
-			var/reagent = new_filter.get("reagent_[i]")
+			var/reagent = topic_filter.get("reagent_[i]")
 			if(reagent && (reagent in known_reagents))
 				message = "[m ? ", " : null][known_reagents[reagent]]"
 				processed_reagents += reagent
@@ -361,14 +361,14 @@
 			occupant_message("Reagent processing started.")
 			log_message("Reagent processing started.")
 		return
-	if(new_filter.get("show_reagents"))
+	if(topic_filter.get("show_reagents"))
 		chassis.occupant << browse(get_reagents_page(), "window=msyringegun")
-	if(new_filter.get("purge_reagent"))
-		var/reagent_type = text2path(new_filter.get("purge_reagent"))
+	if(topic_filter.get("purge_reagent"))
+		var/reagent_type = text2path(topic_filter.get("purge_reagent"))
 		if(isnotnull(reagent_type))
 			reagents.del_reagent(reagent_type)
 		return
-	if(new_filter.get("purge_all"))
+	if(topic_filter.get("purge_all"))
 		reagents.clear_reagents()
 		return
 

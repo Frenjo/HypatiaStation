@@ -45,19 +45,19 @@
 /obj/machinery/computer/mecha/Topic(href, href_list)
 	if(..())
 		return
-	var/datum/topic_input/new_filter = new /datum/topic_input(href,href_list)
+	var/datum/topic_input/topic_filter = new /datum/topic_input(href,href_list)
 	if(href_list["send_message"])
-		var/obj/item/mecha_part/tracking/MT = new_filter.getObj("send_message")
+		var/obj/item/mecha_part/tracking/MT = topic_filter.getObj("send_message")
 		var/message = strip_html_simple(input(usr, "Input message", "Transmit message") as text)
 		var/obj/mecha/M = MT.in_mecha()
 		if(trim(message) && M)
 			M.occupant_message(message)
 		return
 	if(href_list["shock"])
-		var/obj/item/mecha_part/tracking/MT = new_filter.getObj("shock")
+		var/obj/item/mecha_part/tracking/MT = topic_filter.getObj("shock")
 		MT.shock()
 	if(href_list["get_log"])
-		var/obj/item/mecha_part/tracking/MT = new_filter.getObj("get_log")
+		var/obj/item/mecha_part/tracking/MT = topic_filter.getObj("get_log")
 		stored_data = MT.get_mecha_log()
 		screen = 1
 	if(href_list["return"])
