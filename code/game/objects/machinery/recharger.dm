@@ -55,7 +55,7 @@
 
 	if(isnotnull(charging))
 		charging.update_icon()
-		charging.loc = loc
+		charging.forceMove(loc)
 		charging = null
 		update_power_state(USE_POWER_IDLE)
 		update_icon()

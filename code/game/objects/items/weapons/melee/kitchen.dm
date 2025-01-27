@@ -294,7 +294,7 @@
 	// Drop all the things. All of them.
 	overlays.Cut()
 	for(var/obj/item/I in carrying)
-		I.loc = M.loc
+		I.forceMove(M.loc)
 		carrying.Remove(I)
 		if(isturf(I.loc))
 			spawn()
@@ -470,7 +470,7 @@
 	overlays.Cut()
 
 	for(var/obj/item/I in carrying)
-		I.loc = loc
+		I.forceMove(loc)
 		carrying.Remove(I)
 		if(!foundtable && isturf(loc))
 			// if no table, presume that the person just shittily dropped the tray on the ground and made a mess everywhere!

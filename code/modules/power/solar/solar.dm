@@ -34,7 +34,7 @@
 		if(do_after(user, 5 SECONDS))
 			var/obj/item/solar_assembly/assembly = locate() in src
 			if(isnotnull(assembly))
-				assembly.loc = loc
+				assembly.forceMove(loc)
 				assembly.give_glass()
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message(

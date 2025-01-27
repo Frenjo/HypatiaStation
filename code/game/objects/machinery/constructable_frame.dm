@@ -92,14 +92,14 @@
 			if(iscrowbar(P))
 				playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 				state = 2
-				circuit.loc = loc
+				circuit.forceMove(loc)
 				circuit = null
 				if(!length(components))
 					to_chat(user, SPAN_INFO("You remove the circuit board."))
 				else
 					to_chat(user, SPAN_INFO("You remove the circuit board and other components."))
 					for(var/obj/item/W in components)
-						W.loc = loc
+						W.forceMove(loc)
 				desc = initial(desc)
 				req_components = null
 				components = null
@@ -119,12 +119,12 @@
 						new_machine.component_parts = list()
 						for_no_type_check(var/atom/movable/mover, src)
 							if(circuit.contain_parts) // things like disposal don't want their parts in them
-								mover.loc = new_machine
+								mover.forceMove(new_machine)
 							else
 								mover.loc = null
 							new_machine.component_parts.Add(mover)
 						if(circuit.contain_parts)
-							circuit.loc = new_machine
+							circuit.forceMove(new_machine)
 						else
 							circuit.loc = null
 						new_machine.refresh_parts()

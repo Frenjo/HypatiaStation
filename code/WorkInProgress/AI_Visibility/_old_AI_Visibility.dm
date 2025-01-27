@@ -72,11 +72,11 @@
 	if(isAI(usr))
 		var/mob/living/silicon/ai/ai = usr
 		ai.freelook()
-		ai.eyeobj.loc = locate(max(1, x - 1), max(1, y - 1), ai.eyeobj.z)
+		ai.eyeobj.forceMove(locate(max(1, x - 1), max(1, y - 1), ai.eyeobj.z))
 		cameranet.visibility(ai.eyeobj)
 
 	else
-		usr.loc = locate(max(1, x - 1), max(1, y - 1), usr.z)
+		usr.forceMove(locate(max(1, x - 1), max(1, y - 1), usr.z))
 
 /mob/dead/verb/Open_Minimap()
 	set category = PANEL_GHOST
@@ -453,7 +453,7 @@ var/datum/cameranet/cameranet = new()
 		eyeobj = new()
 		eyeobj.ai = src
 	client.eye = eyeobj
-	eyeobj.loc = loc
+	eyeobj.forceMove(loc)
 	cameranet.visibility(eyeobj)
 	cameraFollow = null
 
@@ -464,7 +464,7 @@ var/datum/cameranet/cameranet = new()
 
 /client/AIMove(n, direct, var/mob/living/silicon/ai/user)
 	if(eye == user.eyeobj)
-		user.eyeobj.loc = get_step(user.eyeobj, direct)
+		user.eyeobj.forceMove(get_step(user.eyeobj, direct))
 		cameranet.visibility(user.eyeobj)
 
 	else
@@ -478,7 +478,7 @@ var/datum/cameranet/cameranet = new()
 			dif = -1
 		else if(direct == DOWN && user.eyeobj.z < 4)
 			dif = 1
-		user.eyeobj.loc = locate(user.eyeobj.x, user.eyeobj.y, user.eyeobj.z + dif)
+		user.eyeobj.forceMove(locate(user.eyeobj.x, user.eyeobj.y, user.eyeobj.z + dif))
 		cameranet.visibility(user.eyeobj)
 	else
 		return ..()
@@ -546,7 +546,7 @@ var/datum/cameranet/cameranet = new()
 
 	var/obj/machinery/camera/C = D[t]
 
-	eyeobj.loc = C.loc
+	eyeobj.forceMove(C.loc)
 	cameranet.visibility(eyeobj)
 
 	return
@@ -568,9 +568,9 @@ var/datum/cameranet/cameranet = new()
 		client.perspective = EYE_PERSPECTIVE
 
 		if(ismovable(A))
-			eyeobj.loc = locate(A.x, A.y, A.z)
+			eyeobj.forceMove(locate(A.x, A.y, A.z))
 
 		else
-			eyeobj.loc = locate(src.x, src.y, src.z)
+			eyeobj.forceMove(locate(src.x, src.y, src.z))
 
 		cameranet.visibility(eyeobj)

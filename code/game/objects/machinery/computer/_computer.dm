@@ -100,7 +100,7 @@
 			frame.circuit = board
 			frame.anchored = TRUE
 			for(var/obj/C in src)
-				C.loc = loc
+				C.forceMove(loc)
 			if(stat & BROKEN)
 				FEEDBACK_BROKEN_GLASS_FALLS(user)
 				new /obj/item/shard(loc)

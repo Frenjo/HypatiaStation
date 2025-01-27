@@ -154,7 +154,7 @@ GLOBAL_GLOBL(can_call_ert)
 	P.name = "Emergency Nuclear Code, and ERT Orders"
 	for_no_type_check(var/obj/effect/landmark/A, GLOBL.landmark_list)
 		if (A.name == "nukecode")
-			P.loc = A.loc
+			P.forceMove(A.loc)
 			del(A)
 			continue
 */
@@ -228,7 +228,7 @@ GLOBAL_GLOBL(can_call_ert)
 	M.mind.special_role = "Response Team"
 	if(!(M.mind in global.PCticker.minds))
 		global.PCticker.minds.Add(M.mind)	//Adds them to regular mind list.
-	M.loc = spawn_location
+	M.forceMove(spawn_location)
 	M.equip_strike_team(leader_selected)
 	return M
 

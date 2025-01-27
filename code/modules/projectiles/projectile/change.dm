@@ -33,7 +33,7 @@
 					qdel(W)
 					continue
 				W.reset_plane_and_layer()
-				W.loc = M.loc
+				W.forceMove(M.loc)
 				W.dropped(M)
 
 		var/mob/living/new_mob

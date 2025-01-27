@@ -89,7 +89,7 @@
 		var/chosen = pick(critters)
 		var/mob/living/simple/hostile/C = new chosen
 		C.faction = "slimesummon"
-		C.loc = get_turf_loc(holder.my_atom)
+		C.forceMove(get_turf_loc(holder.my_atom))
 		if(prob(50))
 			for(var/j = 1, j <= rand(1, 3), j++)
 				step(C, pick(NORTH,SOUTH,EAST,WEST))*/
@@ -478,7 +478,7 @@
 
 			var/turf/newloc = locate(A.x + x_distance, A.y + y_distance, TO.z) // calculate the new place
 			if(!A.Move(newloc)) // if the atom, for some reason, can't move, FORCE them to move! :) We try Move() first to invoke any movement-related checks the atom needs to perform after moving
-				A.loc = locate(A.x + x_distance, A.y + y_distance, TO.z)
+				A.forceMove(locate(A.x + x_distance, A.y + y_distance, TO.z))
 
 			spawn()
 				if(ismob(A) && !(A in flashers)) // don't flash if we're already doing an effect
@@ -530,7 +530,7 @@
 	for(var/i = 1, i <= created_volume, i++)
 		var/chosen = pick(critters)
 		var/mob/living/simple/hostile/C = new chosen
-		C.loc = get_turf_loc(holder.my_atom)
+		C.forceMove(get_turf_loc(holder.my_atom))
 		if(prob(50))
 			for(var/j = 1, j <= rand(1, 3), j++)
 				step(C, pick(NORTH, SOUTH, EAST, WEST))
@@ -557,7 +557,7 @@
 		var/chosen = pick(borks)
 		var/obj/B = new chosen
 		if(B)
-			B.loc = get_turf_loc(holder.my_atom)
+			B.forceMove(get_turf_loc(holder.my_atom))
 			if(prob(50))
 				for(var/j = 1, j <= rand(1, 3), j++)
 					step(B, pick(NORTH, SOUTH, EAST, WEST))

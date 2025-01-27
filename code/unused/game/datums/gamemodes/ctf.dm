@@ -58,7 +58,7 @@
 					W.registered_name = M.real_name
 					M.equip_to_slot_if_possible(W, SLOT_ID_WEAR_ID, FALSE, TRUE)
 					if(R)
-						M.loc = R.loc
+						M.forceMove(R.loc)
 					else
 						to_world("No red team spawn point detected")
 					M.client.team = "Red"
@@ -94,7 +94,7 @@
 					W.registered_name = M.real_name
 					M.equip_to_slot_if_possible(W, SLOT_ID_WEAR_ID, FALSE, TRUE)
 					if(G)
-						M.loc = G.loc
+						M.forceMove(G.loc)
 					else
 						to_world("No green team spawn point detected")
 					M.client.team = "Green"

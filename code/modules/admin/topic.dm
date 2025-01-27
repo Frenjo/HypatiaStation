@@ -1072,7 +1072,7 @@
 		for(var/obj/item/I in M)
 			M.u_equip(I)
 			if(I)
-				I.loc = locker
+				I.forceMove(locker)
 				I.reset_plane_and_layer()
 				I.dropped(M)
 		M.update_icons()
@@ -1082,7 +1082,7 @@
 		sleep(5)
 		if(!M)	return
 
-		M.loc = prison_cell
+		M.forceMove(prison_cell)
 		if(ishuman(M))
 			var/mob/living/carbon/human/prisoner = M
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), SLOT_ID_WEAR_UNIFORM)
@@ -1109,13 +1109,13 @@
 		for(var/obj/item/I in M)
 			M.u_equip(I)
 			if(I)
-				I.loc = M.loc
+				I.forceMove(M.loc)
 				I.reset_plane_and_layer()
 				I.dropped(M)
 
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(GLOBL.tdome1)
+		M.forceMove(pick(GLOBL.tdome1))
 		spawn(50)
 			M << "\blue You have been sent to the Thunderdome."
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 1)")
@@ -1138,13 +1138,13 @@
 		for(var/obj/item/I in M)
 			M.u_equip(I)
 			if(I)
-				I.loc = M.loc
+				I.forceMove(M.loc)
 				I.reset_plane_and_layer()
 				I.dropped(M)
 
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(GLOBL.tdome2)
+		M.forceMove(pick(GLOBL.tdome2))
 		spawn(50)
 			M << "\blue You have been sent to the Thunderdome."
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 2)")
@@ -1166,7 +1166,7 @@
 
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(GLOBL.tdomeadmin)
+		M.forceMove(pick(GLOBL.tdomeadmin))
 		spawn(50)
 			M << "\blue You have been sent to the Thunderdome."
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Admin.)")
@@ -1189,7 +1189,7 @@
 		for(var/obj/item/I in M)
 			M.u_equip(I)
 			if(I)
-				I.loc = M.loc
+				I.forceMove(M.loc)
 				I.reset_plane_and_layer()
 				I.dropped(M)
 
@@ -1199,7 +1199,7 @@
 			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), SLOT_ID_SHOES)
 		M.Paralyse(5)
 		sleep(5)
-		M.loc = pick(GLOBL.tdomeobserve)
+		M.forceMove(pick(GLOBL.tdomeobserve))
 		spawn(50)
 			M << "\blue You have been sent to the Thunderdome."
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Observer.)")
@@ -1457,7 +1457,7 @@
 		var/obj/effect/stop/S
 		S = new /obj/effect/stop
 		S.victim = M
-		S.loc = M.loc
+		S.forceMove(M.loc)
 		spawn(20)
 			qdel(S)
 
@@ -1916,16 +1916,16 @@
 							if (H.client)
 								H.client.screen -= W
 							if (W)
-								W.loc = H.loc
+								W.forceMove(H.loc)
 								W.dropped(H)
 								W.reset_plane_and_layer()
 						//teleport person to cell
-						H.loc = pick(prisonwarp)
+						H.forceMove(pick(prisonwarp))
 						H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), SLOT_ID_WEAR_UNIFORM)
 						H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), SLOT_ID_SHOES)
 					else
 						//teleport security person
-						H.loc = pick(prisonsecuritywarp)
+						H.forceMove(pick(prisonsecuritywarp))
 					prisonwarped += H
 			*/
 			if("traitor_all")

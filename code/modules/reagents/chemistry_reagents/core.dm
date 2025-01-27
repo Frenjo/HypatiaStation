@@ -270,7 +270,7 @@
 				qdel(W)
 				continue
 			W.reset_plane_and_layer()
-			W.loc = C.loc
+			W.forceMove(C.loc)
 			W.dropped(C)
 
 		var/mob/living/carbon/slime/new_mob = new /mob/living/carbon/slime(C.loc)

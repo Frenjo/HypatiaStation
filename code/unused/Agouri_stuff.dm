@@ -908,7 +908,7 @@
 				del(P)
 			else
 				user << "<FONT COLOR='BLUE'>You stop placing the poster.</FONT>"
-				P.resulting_poster.loc = P
+				P.resulting_poster.forceMove(P)
 				P.resulting_poster.icon_state = temp
 	else
 		return attack_hand(user)
@@ -1117,7 +1117,7 @@
 				del(P)
 			else
 				user << "<FONT COLOR='BLUE'>You stop placing the poster.</FONT>"
-				P.resulting_poster.loc = P
+				P.resulting_poster.forceMove(P)
 				P.resulting_poster.icon_state = temp
 		return
 

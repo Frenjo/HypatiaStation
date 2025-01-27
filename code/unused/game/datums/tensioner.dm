@@ -560,7 +560,7 @@ var/global/datum/tension/tension_master
 					var/obj/item/paper/P = new
 					P.info = "Sadly, the Syndicate could not get you a nuclear bomb.  We have, however, acquired the arming code for the station's onboard nuke.  The nuclear authorisation code is: <b>[nuke_code]</b>"
 					P.name = "nuclear bomb code and instructions"
-					P.loc = nuke_spawn.loc
+					P.forceMove(nuke_spawn.loc)
 
 				if(closet_spawn)
 					new /obj/structure/closet/syndicate/nuclear(closet_spawn.loc)

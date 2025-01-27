@@ -320,7 +320,7 @@
 	make_smoke(10, FALSE, usr.loc)
 	var/turf/picked = pick(turfs)
 	if(!isturf(picked)) return
-	usr.loc = picked
+	usr.forceMove(picked)
 	usr.verbs -= /client/proc/blink
 	spawn(40)
 		usr.verbs += /client/proc/blink
@@ -379,7 +379,7 @@
 		success = Move(pick(L))
 		if(attempt > 20) break	//Failsafe
 	if(!success)
-		usr.loc = pick(L)
+		usr.forceMove(pick(L))
 
 	smoke.start()
 
@@ -413,12 +413,12 @@
 		animation.layer = 5
 		animation.master = holder
 		flick("liquify",animation)
-		H.loc = holder
+		H.forceMove(holder)
 		H.client.eye = holder
 		make_steam(10, FALSE, mobloc)
 		sleep(time)
 		mobloc = GET_TURF(H)
-		animation.loc = mobloc
+		animation.forceMove(mobloc)
 		steam.location = mobloc
 		steam.start()
 		H.canmove = FALSE

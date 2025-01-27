@@ -303,7 +303,7 @@
 				A.icon_state = "4"
 
 			for (var/obj/item/peripheral/C in src.peripherals)
-				C.loc = A
+				C.forceMove(A)
 				A.peripherals.Add(C)
 
 			if(src.diskette)
@@ -317,7 +317,7 @@
 				auxid.forceMove(loc)
 
 			if(src.hd)
-				src.hd.loc = A
+				hd.forceMove(A)
 				A.hd = src.hd
 
 			A.mainboard = new /obj/item/motherboard(A)

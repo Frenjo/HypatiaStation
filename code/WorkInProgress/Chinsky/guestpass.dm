@@ -136,7 +136,7 @@
 			if("id")
 				if(giver)
 					if(ishuman(usr))
-						giver.loc = usr.loc
+						giver.forceMove(usr.loc)
 						if(!usr.get_active_hand())
 							usr.put_in_hands(giver)
 						giver = null

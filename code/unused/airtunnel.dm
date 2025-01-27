@@ -428,7 +428,7 @@ obj/machinery/computer/airtunnel/attack_ai(user as mob)
 			else
 				for(var/obj/move/airtunnel/connector/A in src.connectors)
 					if (A.current)
-						A.current.next.loc = get_step(A.current.loc, EAST)
+						A.current.next.forceMove(get_step(A.current.loc, EAST))
 						A.current = A.current.next
 						A.current.deployed = 1
 					else

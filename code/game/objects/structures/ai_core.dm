@@ -55,7 +55,7 @@
 				to_chat(user, SPAN_INFO("You remove the circuit board."))
 				state = 1
 				icon_state = "0"
-				circuit.loc = loc
+				circuit.forceMove(loc)
 				circuit = null
 		if(2)
 			if(isscrewdriver(object) && circuit)
@@ -142,7 +142,7 @@
 			if(iscrowbar(object) && brain)
 				playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You remove the brain."))
-				brain.loc = loc
+				brain.forceMove(loc)
 				brain = null
 				icon_state = "3"
 
@@ -206,7 +206,7 @@ That prevents a few funky behaviors.
 							new /obj/structure/ai_core/deactivated(target_ai.loc) //Spawns a deactivated terminal at AI location.
 							target_ai.aiRestorePowerRoutine = 0 //So the AI initially has power.
 							target_ai.control_disabled = TRUE //Can't control things remotely if you're stuck in a card!
-							target_ai.loc = card //Throw AI into the card.
+							target_ai.forceMove(card) //Throw AI into the card.
 							card.name = "inteliCard - [target_ai.name]"
 							if(target_ai.stat == DEAD)
 								card.icon_state = "aicard-404"
@@ -232,7 +232,7 @@ That prevents a few funky behaviors.
 								new /obj/structure/ai_core/deactivated(target_ai.loc)
 								target_ai.aiRestorePowerRoutine = 0
 								target_ai.control_disabled = TRUE
-								target_ai.loc = ninja_suit
+								target_ai.forceMove(ninja_suit)
 								ninja_suit.AI = target_ai
 								target_ai.cancel_camera()
 								to_chat(target_ai, "You have been downloaded to a mobile storage device. Remote device connection severed.")
@@ -246,7 +246,7 @@ That prevents a few funky behaviors.
 						var/mob/living/silicon/ai/card_ai = locate() in card //I love locate(). Best proc ever.
 						if(card_ai) //If AI exists on the card. Else nothing since both are empty.
 							card_ai.control_disabled = FALSE
-							card_ai.loc = target_core.loc //To replace the terminal.
+							card_ai.forceMove(target_core.loc) //To replace the terminal.
 							card.icon_state = "aicard"
 							card.name = "inteliCard"
 							card.overlays.Cut()
@@ -260,7 +260,7 @@ That prevents a few funky behaviors.
 						if(suit_ai)
 							suit_ai.control_disabled = FALSE
 							ninja_suit.AI = null
-							suit_ai.loc = target_core.loc
+							suit_ai.forceMove(target_core.loc)
 							suit_ai.cancel_camera()
 							to_chat(suit_ai, "You have been uploaded to a stationary terminal. Remote device connection restored.")
 							to_chat(user, "\blue <b>Transfer successful</b>: \black [suit_ai.name] ([rand(1000, 9999)].exe) installed and executed successfully. Local copy has been removed.")
@@ -278,7 +278,7 @@ That prevents a few funky behaviors.
 								card.icon_state = "aicard"
 								card.name = "inteliCard"
 								card.overlays.Cut()
-								A.loc = target_fixer
+								A.forceMove(target_fixer)
 								target_fixer.occupant = A
 								A.control_disabled = TRUE
 								if(A.stat == DEAD)
@@ -301,7 +301,7 @@ That prevents a few funky behaviors.
 									target_fixer.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-full")
 								to_chat(target_fixer.occupant, "You have been downloaded to a mobile storage device. Still no remote access.")
 								to_chat(user, "\blue <b>Transfer successful</b>: \black [target_fixer.occupant.name] ([rand(1000, 9999)].exe) removed from host terminal and stored within local memory.")
-								target_fixer.occupant.loc = card
+								target_fixer.occupant.forceMove(card)
 								target_fixer.occupant.cancel_camera()
 								target_fixer.occupant = null
 							else if(length(card.contents))
@@ -317,7 +317,7 @@ That prevents a few funky behaviors.
 								to_chat(user, "No AI to copy over!")
 							else
 								var/mob/living/silicon/ai/suit_ai = ninja_suit.AI
-								suit_ai.loc = target_fixer
+								suit_ai.forceMove(target_fixer)
 								target_fixer.occupant = suit_ai
 								ninja_suit.AI = null
 								suit_ai.control_disabled = TRUE
@@ -335,7 +335,7 @@ That prevents a few funky behaviors.
 									target_fixer.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-full")
 									to_chat(target_fixer.occupant, "You have been downloaded to a mobile storage device. Still no remote access.")
 									to_chat(user, "\blue <b>Transfer successful</b>: \black [target_fixer.occupant.name] ([rand(1000, 9999)].exe) removed from host terminal and stored within local memory.")
-									target_fixer.occupant.loc = ninja_suit
+									target_fixer.occupant.forceMove(ninja_suit)
 									target_fixer.occupant.cancel_camera()
 									target_fixer.occupant = null
 							else if(ninja_suit.AI)
@@ -358,7 +358,7 @@ That prevents a few funky behaviors.
 								if(ai_target) //If there is an AI on the target card.
 									to_chat(user, "\red <b>ERROR</b>: \black [ai_target.name] already installed. Remove [ai_target.name] to install a new one.")
 								else
-									ninja_ai.loc = card //Throw them into the target card. Since they are already on a card, transfer is easy.
+									ninja_ai.forceMove(card) //Throw them into the target card. Since they are already on a card, transfer is easy.
 									card.name = "inteliCard - [ninja_ai.name]"
 									card.icon_state = "aicard-full"
 									target_ninja.AI = null
@@ -370,7 +370,7 @@ That prevents a few funky behaviors.
 									to_chat(user, "\red <b>ERROR</b>: \black AI flush is in progress, cannot execute transfer protocol.")
 								else
 									if(ai_target && !ai_target.stat) //If there is an AI on the target card and it's not inactive.
-										ai_target.loc = target_ninja //Throw them into suit.
+										ai_target.forceMove(target_ninja) //Throw them into suit.
 										card.icon_state = "aicard"
 										card.name = "inteliCard"
 										card.overlays.Cut()

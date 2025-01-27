@@ -413,7 +413,7 @@
 					qdel(O)
 					continue
 
-				O.loc = output.loc
+				O.forceMove(output.loc)
 			else
 				break
 

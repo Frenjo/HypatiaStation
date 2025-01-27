@@ -121,7 +121,7 @@
 				O.show_message("\red [M] has been implanted by the [src.name].", 1)
 
 			if(imp.implanted(M))
-				imp.loc = M
+				imp.forceMove(M)
 				imp.imp_in = M
 				imp.implanted = 1
 			implant_list -= imp

@@ -218,33 +218,33 @@
 	if(isnull(helmet))
 		return //Do I even need this sanity check? Nyoro~n
 
-	helmet.loc = loc
+	helmet.forceMove(loc)
 	helmet = null
 
 /obj/machinery/suit_storage_unit/proc/dispense_suit(mob/user)
 	if(isnull(suit))
 		return
 
-	suit.loc = loc
+	suit.forceMove(loc)
 	suit = null
 
 /obj/machinery/suit_storage_unit/proc/dispense_mask(mob/user)
 	if(isnull(mask))
 		return
 
-	mask.loc = loc
+	mask.forceMove(loc)
 	mask = null
 
 /obj/machinery/suit_storage_unit/proc/dump_everything()
 	islocked = FALSE //locks go free
 	if(isnotnull(suit))
-		suit.loc = loc
+		suit.forceMove(loc)
 		suit = null
 	if(isnotnull(helmet))
-		helmet.loc = loc
+		helmet.forceMove(loc)
 		helmet = null
 	if(isnotnull(mask))
-		mask.loc = loc
+		mask.forceMove(loc)
 		mask = null
 	if(isnotnull(occupant))
 		eject_occupant(occupant)
@@ -351,7 +351,7 @@
 	if(isnull(occupant))
 		return
 //	for(var/obj/O in src)
-//		O.loc = loc
+//		O.forceMove(loc)
 
 	if(isnotnull(occupant.client))
 		if(user != occupant)
@@ -361,7 +361,7 @@
 
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
-	occupant.loc = loc
+	occupant.forceMove(loc)
 	occupant = null
 	if(!isopen)
 		isopen = TRUE

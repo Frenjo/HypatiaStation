@@ -210,7 +210,7 @@
 				M.SetWeakened(5)
 				var/obj/effect/stop/S = new /obj/effect/stop()
 				S.victim = M
-				S.loc = M.loc
+				S.forceMove(M.loc)
 				spawn(20)
 					qdel(S)
 				M.emote("scream")

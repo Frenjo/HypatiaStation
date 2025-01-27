@@ -29,7 +29,7 @@
 		eyeobj = new()
 		eyeobj.ai = src
 	client.eye = eyeobj
-	eyeobj.loc = loc
+	eyeobj.forceMove(loc)
 	cameranet.visibility(eyeobj)
 
 /mob/aiEye/Move()
@@ -39,7 +39,7 @@
 
 /client/AIMove(n, direct, var/mob/living/silicon/ai/user)
 	if(eye == user.eyeobj)
-		user.eyeobj.loc = get_step(user.eyeobj, direct)
+		user.eyeobj.forceMove(get_step(user.eyeobj, direct))
 		cameranet.visibility(user.eyeobj)
 
 	else
@@ -79,7 +79,7 @@
 
 	var/obj/machinery/camera/C = D[t]
 
-	eyeobj.loc = C.loc
+	eyeobj.forceMove(C.loc)
 	cameranet.visibility(eyeobj)
 
 	return
@@ -101,9 +101,9 @@
 		client.perspective = EYE_PERSPECTIVE
 
 		if(ismovable(A))
-			eyeobj.loc = locate(A.x, A.y, A.z)
+			eyeobj.forceMove(locate(A.x, A.y, A.z))
 
 		else
-			eyeobj.loc = locate(src.x, src.y, src.z)
+			eyeobj.forceMove(locate(src.x, src.y, src.z))
 
 		cameranet.visibility(eyeobj)

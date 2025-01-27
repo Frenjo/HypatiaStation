@@ -70,7 +70,7 @@
 					for_no_type_check(var/obj/item/part, component_parts)
 						if(part.reliability != 100 && crit_fail)
 							part.crit_fail = 1
-						part.loc = loc
+						part.forceMove(loc)
 					qdel(src)
 					return 1
 				else

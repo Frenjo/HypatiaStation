@@ -50,17 +50,17 @@
 /obj/structure/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			for(var/atom/movable/AM in contents)
-				AM.loc = loc
-				AM.ex_act(severity++)
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(loc)
+				mover.ex_act(severity++)
 
 			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
-				for(var/atom/movable/AM in contents)
-					AM.loc = loc
-					AM.ex_act(severity++)
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
+					mover.ex_act(severity++)
 
 				qdel(src)
 				return
@@ -102,7 +102,7 @@
 				to_chat(AM, SPAN_WARNING("The pod is already occupied."))
 				return
 			else if(!pod.moving && (pod.dir in directions()))
-				AM.loc = pod
+				AM.forceMove(pod)
 				return
 
 /obj/structure/transit_tube/station/attack_hand(mob/user)
@@ -360,7 +360,7 @@
 	if(ismob(mob) && mob.client)
 		// If the pod is not in a tube at all, you can get out at any time.
 		if(!(locate(/obj/structure/transit_tube) in loc))
-			mob.loc = loc
+			mob.forceMove(loc)
 			mob.client.Move(get_step(loc, direction), direction)
 
 			//if(moving && isspace(loc))
@@ -373,7 +373,7 @@
 					if(!station.pod_moving)
 						if(direction == station.dir)
 							if(station.icon_state == "open")
-								mob.loc = loc
+								mob.forceMove(loc)
 								mob.client.Move(get_step(loc, direction), direction)
 
 							else

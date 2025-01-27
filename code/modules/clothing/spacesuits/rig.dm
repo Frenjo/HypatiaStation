@@ -100,7 +100,7 @@
 		else
 			to_chat(M, "Your suit's helmet deploys with a hiss.")
 			//TODO: Species check, skull damage for forcing an unfitting helmet on?
-			helmet.loc = H
+			helmet.forceMove(H)
 			H.equip_to_slot(helmet, SLOT_ID_HEAD)
 			helmet.can_remove = FALSE
 
@@ -109,7 +109,7 @@
 			to_chat(M, "You are unable to deploy your suit's magboots as \the [H.shoes] are in the way.")
 		else
 			to_chat(M, "Your suit's boots deploy with a hiss.")
-			boots.loc = H
+			boots.forceMove(H)
 			H.equip_to_slot(boots, SLOT_ID_SHOES)
 			boots.can_remove = FALSE
 
@@ -198,7 +198,7 @@
 			to_chat(H, SPAN_WARNING("You cannot deploy your helmet while wearing another helmet."))
 			return
 		//TODO: Species check, skull damage for forcing an unfitting helmet on?
-		helmet.loc = H
+		helmet.forceMove(H)
 		H.equip_to_slot(helmet, SLOT_ID_HEAD)
 		helmet.can_remove = FALSE
 		to_chat(H, SPAN_INFO("You deploy your hardsuit helmet, sealing you off from the world."))

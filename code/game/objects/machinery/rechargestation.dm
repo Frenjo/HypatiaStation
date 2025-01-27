@@ -73,11 +73,11 @@
 	if(isnull(occupant))
 		return
 	//for(var/obj/O in src)
-	//	O.loc = loc
+	//	O.forceMove(loc)
 	if(isnotnull(occupant.client))
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
-	occupant.loc = loc
+	occupant.forceMove(loc)
 	occupant = null
 	build_icon()
 	update_power_state(USE_POWER_IDLE) //update area power usage
@@ -120,7 +120,7 @@
 	R.forceMove(src)
 	occupant = R
 	/*for(var/obj/O in src)
-		O.loc = loc*/
+		O.forceMove(loc)*/
 	add_fingerprint(R)
 	build_icon()
 	update_power_state(USE_POWER_ACTIVE) //update area power usage

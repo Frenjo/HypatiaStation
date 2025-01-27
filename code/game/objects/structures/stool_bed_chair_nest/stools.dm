@@ -39,7 +39,7 @@
 		if(H == usr && !H.restrained() && !H.stat && in_range(src, over_object))
 			var/obj/item/stool/S = new/obj/item/stool()
 			S.origin = src
-			src.loc = S
+			forceMove(S)
 			H.put_in_hands(S)
 			H.visible_message(
 				SPAN_WARNING("[H] grabs [src] from the floor!"),

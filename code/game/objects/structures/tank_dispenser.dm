@@ -87,7 +87,7 @@
 					oxytanks.Remove(O)
 				else
 					O = new /obj/item/tank/oxygen(loc)
-				O.loc = loc
+				O.forceMove(loc)
 				to_chat(usr, SPAN_NOTICE("You take [O] out of [src]."))
 				oxygentanks--
 				update_icon()
@@ -99,7 +99,7 @@
 					platanks.Remove(P)
 				else
 					P = new /obj/item/tank/plasma(loc)
-				P.loc = loc
+				P.forceMove(loc)
 				to_chat(usr, SPAN_NOTICE("You take [P] out of [src]."))
 				plasmatanks--
 				update_icon()

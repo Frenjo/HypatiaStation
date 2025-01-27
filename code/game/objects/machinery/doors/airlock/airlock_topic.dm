@@ -54,7 +54,7 @@
 				to_chat(usr, "There's no signaller attached to that wire!")
 				return
 			var/obj/item/assembly/signaler/R = signalers[wirenum]
-			R.loc = usr.loc
+			R.forceMove(usr.loc)
 			R.airlock_wire = null
 			signalers[wirenum] = null
 

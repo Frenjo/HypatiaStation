@@ -113,7 +113,7 @@ var/list/alldepartments = list("Central Command")
 			if(!ishuman(usr))
 				to_chat(usr, SPAN_WARNING("You can't do it."))
 			else
-				tofax.loc = usr.loc
+				tofax.forceMove(usr.loc)
 				usr.put_in_hands(tofax)
 				to_chat(usr, SPAN_NOTICE("You take the paper out of \the [src]."))
 				tofax = null
@@ -121,7 +121,7 @@ var/list/alldepartments = list("Central Command")
 	if(href_list["scan"])
 		if(scan)
 			if(ishuman(usr))
-				scan.loc = usr.loc
+				scan.forceMove(usr.loc)
 				if(!usr.get_active_hand())
 					usr.put_in_hands(scan)
 				scan = null

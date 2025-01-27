@@ -446,14 +446,14 @@
 		for(var/obj/T in (M.contents-implants))
 			del(T)
 
-		O.loc = M.loc
+		O.forceMove(M.loc)
 
 		if(M.mind)
 			M.mind.transfer_to(O)	//transfer our mind to the cute little monkey
 
 		if (connected) //inside dna thing
 			var/obj/machinery/dna_scannernew/C = connected
-			O.loc = C
+			O.forceMove(C)
 			C.occupant = O
 			connected = null
 		O.real_name = text("monkey ([])",copytext(md5(M.real_name), 2, 6))
@@ -463,7 +463,7 @@
 		O.stat = M.stat
 		O.a_intent = "hurt"
 		for (var/obj/item/implant/I in implants)
-			I.loc = O
+			I.forceMove(O)
 			I.implanted = O
 //		O.update_icon = 1	//queue a full icon update at next life() call
 		del(M)
@@ -518,14 +518,14 @@
 		//for(var/obj/T in M)
 		//	del(T)
 
-		O.loc = M.loc
+		O.forceMove(M.loc)
 
 		if(M.mind)
 			M.mind.transfer_to(O)	//transfer our mind to the human
 
 		if (connected) //inside dna thing
 			var/obj/machinery/dna_scannernew/C = connected
-			O.loc = C
+			O.forceMove(C)
 			C.occupant = O
 			connected = null
 
@@ -547,7 +547,7 @@
 		O.adjustOxyLoss(M.getOxyLoss())
 		O.stat = M.stat
 		for (var/obj/item/implant/I in implants)
-			I.loc = O
+			I.forceMove(O)
 			I.implanted = O
 //		O.update_icon = 1	//queue a full icon update at next life() call
 		del(M)

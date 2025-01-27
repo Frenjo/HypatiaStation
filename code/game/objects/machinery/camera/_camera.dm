@@ -133,7 +133,7 @@
 		var/obj/item/weldingtool/WT = tool
 		if(weld(WT, user))
 			if(isnotnull(assembly))
-				assembly.loc = loc
+				assembly.forceMove(loc)
 				assembly.state = 1
 			qdel(src)
 		return TRUE

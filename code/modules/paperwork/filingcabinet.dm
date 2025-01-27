@@ -83,7 +83,7 @@
 	if(length(contents))
 		if(prob(40 + length(contents) * 5))
 			var/obj/item/I = pick(contents)
-			I.loc = loc
+			I.forceMove(loc)
 			if(prob(25))
 				step_rand(I)
 			to_chat(user, SPAN_NOTICE("You pull \a [I] out of [src] at random."))

@@ -244,7 +244,7 @@
 			to_chat(usr, "There is no coin in this machine.")
 			return
 
-		coin.loc = loc
+		coin.forceMove(loc)
 		if(!usr.get_active_hand())
 			usr.put_in_hands(coin)
 		to_chat(usr, SPAN_INFO("You remove the [coin] from the [src]"))
@@ -254,7 +254,7 @@
 		if(isnull(ewallet))
 			to_chat(usr, "There is no charge card in this machine.")
 			return
-		ewallet.loc = loc
+		ewallet.forceMove(loc)
 		if(!usr.get_active_hand())
 			usr.put_in_hands(ewallet)
 		to_chat(usr, SPAN_INFO("You remove the [ewallet] from the [src]"))

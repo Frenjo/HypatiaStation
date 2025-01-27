@@ -311,7 +311,7 @@
 /obj/machinery/disposal/proc/eject()
 	var/turf/T = GET_TURF(src)
 	for_no_type_check(var/atom/movable/mover, src)
-		mover.loc = T
+		mover.forceMove(T)
 		mover.pipe_eject(0)
 	update()
 
@@ -698,9 +698,9 @@
 		if(H2 && !H2.active)
 			H.merge(H2)
 
-		H.loc = P
+		H.forceMove(P)
 	else			// if wasn't a pipe, then set loc to turf
-		H.loc = T
+		H.forceMove(T)
 		return null
 
 	return P
@@ -756,7 +756,7 @@
 		playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
 		if(isnotnull(H))
 			for_no_type_check(var/atom/movable/mover, H)
-				mover.loc = T
+				mover.forceMove(T)
 				mover.pipe_eject(direction)
 				spawn(1)
 					if(mover)
@@ -770,7 +770,7 @@
 			for_no_type_check(var/atom/movable/mover, H)
 				target = get_offset_target_turf(T, rand(5) - rand(5), rand(5) - rand(5))
 
-				mover.loc = T
+				mover.forceMove(T)
 				mover.pipe_eject(0)
 				spawn(1)
 					if(mover)
@@ -802,7 +802,7 @@
 			// broken pipe is inside a dense turf (wall)
 			// this is unlikely, but just dump out everything into the turf in case
 			for_no_type_check(var/atom/movable/mover, H)
-				mover.loc = T
+				mover.forceMove(T)
 				mover.pipe_eject(0)
 			qdel(H)
 			return
@@ -963,9 +963,9 @@
 		if(H2 && !H2.active)
 			H.merge(H2)
 
-		H.loc = P
+		H.forceMove(P)
 	else			// if wasn't a pipe, then set loc to turf
-		H.loc = T
+		H.forceMove(T)
 		return null
 
 	return P
@@ -1016,9 +1016,9 @@
 		if(H2 && !H2.active)
 			H.merge(H2)
 
-		H.loc = P
+		H.forceMove(P)
 	else			// if wasn't a pipe, then set loc to turf
-		H.loc = T
+		H.forceMove(T)
 		return null
 
 	return P
@@ -1142,9 +1142,9 @@
 		if(H2 && !H2.active)
 			H.merge(H2)
 
-		H.loc = P
+		H.forceMove(P)
 	else			// if wasn't a pipe, then set loc to turf
-		H.loc = T
+		H.forceMove(T)
 		return null
 
 	return P
@@ -1200,9 +1200,9 @@
 		if(H2 && !H2.active)
 			H.merge(H2)
 
-		H.loc = P
+		H.forceMove(P)
 	else			// if wasn't a pipe, then set loc to turf
-		H.loc = T
+		H.forceMove(T)
 		return null
 
 	return P
@@ -1359,7 +1359,7 @@
 
 	if(isnotnull(H))
 		for_no_type_check(var/atom/movable/mover, H)
-			mover.loc = loc
+			mover.forceMove(loc)
 			mover.pipe_eject(dir)
 			if(!isdrone(mover)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
 				spawn(5)

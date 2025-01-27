@@ -151,10 +151,10 @@
 		var/turf/T = src.loc
 		if (ismob(T))
 			T = T.loc
-		src.part1.loc = T
+		src.part1.forceMove(T)
 		src.part1.master = null
 		src.part1 = null
-		src.part2.loc = T
+		part2.forceMove(T)
 		src.part2.master = null
 		src.part2 = null
 
@@ -183,10 +183,10 @@
 		var/turf/T = src.loc
 		if (ismob(T))
 			T = T.loc
-		src.part1.loc = T
+		part1.forceMove(T)
 		src.part1.master = null
 		src.part1 = null
-		src.part2.loc = T
+		part2.forceMove(T)
 		src.part2.master = null
 		src.part2 = null
 
@@ -217,7 +217,7 @@
 		del(src)
 
 /* WTF THIS SHIT? It is working? Shouldn't. --rastaf0
-		W.loc = R
+		W.forceMove(R)
 		R.part1 = W
 		R.part2 = W
 		W.reset_plane_and_layer()
@@ -235,17 +235,17 @@
 		user.u_equip(src)
 		if (user.client)
 			user.client.screen -= src
-		src.loc = R
+		forceMove(R)
 		R.part3 = src
 		R.layer_to_hud()
-		R.loc = user
+		R.forceMove(user)
 		src.add_fingerprint(user)
 */
 	return
 /*	else if ((istype(W, /obj/item/timer) && !( src.status )))
 
 		var/obj/item/assembly/time_ignite/R = new /obj/item/assembly/time_ignite( user )
-		W.loc = R
+		W.forceMove(R)
 		R.part1 = W
 		W.reset_plane_and_layer()
 		if (user.client)
@@ -262,10 +262,10 @@
 		user.u_equip(src)
 		if (user.client)
 			user.client.screen -= src
-		src.loc = R
+		forceMove(R)
 		R.part2 = src
 		R.layer_to_hud()
-		R.loc = user
+		R.forceMove(user)
 		src.add_fingerprint(user)
 */
 
@@ -278,13 +278,13 @@
 		var/turf/T = src.loc
 		if (ismob(T))
 			T = T.loc
-		src.part1.loc = T
+		part1.forceMove(T)
 		src.part1.master = null
 		src.part1 = null
-		src.part2.loc = T
+		part2.forceMove(T)
 		src.part2.master = null
 		src.part2 = null
-		src.part3.loc = T
+		part3.forceMove(T)
 		src.part3.master = null
 		src.part3 = null
 
@@ -326,8 +326,8 @@
 		var/turf/T = src.loc
 		if (ismob(T))
 			T = T.loc
-		src.part1.loc = T
-		src.part2.loc = T
+		part1.forceMove(T)
+		part2.forceMove(T)
 		src.part1.master = null
 		src.part2.master = null
 		src.part1 = null
@@ -382,8 +382,8 @@
 		var/turf/T = src.loc
 		if (ismob(T))
 			T = T.loc
-		src.part1.loc = T
-		src.part2.loc = T
+		part1.forceMove(T)
+		part2.forceMove(T)
 		src.part1.master = null
 		src.part2.master = null
 		src.part1 = null
@@ -443,8 +443,8 @@
 		var/turf/T = src.loc
 		if (ismob(T))
 			T = T.loc
-		src.part1.loc = T
-		src.part2.loc = T
+		part1.forceMove(T)
+		part2.forceMove(T)
 		src.part1.master = null
 		src.part2.master = null
 		src.part1 = null
@@ -532,8 +532,8 @@
 		var/turf/T = src.loc
 		if (ismob(T))
 			T = T.loc
-		src.part1.loc = T
-		src.part2.loc = T
+		part1.forceMove(T)
+		part2.forceMove(T)
 		src.part1.master = null
 		src.part2.master = null
 		src.part1 = null
@@ -579,8 +579,8 @@
 		var/turf/T = src.loc
 		if (ismob(T))
 			T = T.loc
-		src.part1.loc = T
-		src.part2.loc = T
+		part1.forceMove(T)
+		part2.forceMove(T)
 		src.part1.master = null
 		src.part2.master = null
 		src.part1 = null
@@ -684,10 +684,10 @@
 		var/obj/item/assembly/prox_ignite/R = new /obj/item/assembly/prox_ignite(GET_TURF(src))
 		R.part1 = src.part1
 		R.part1.master = R
-		R.part1.loc = R
+		R.part1.forceMove(R)
 		R.part2 = src.part2
 		R.part2.master = R
-		R.part2.loc = R
+		R.part2.forceMove(R)
 		if (user.get_inactive_hand()==src)
 			user.put_in_inactive_hand(part3)
 		else
@@ -773,10 +773,10 @@
 		var/obj/item/assembly/time_ignite/R = new /obj/item/assembly/time_ignite(GET_TURF(src))
 		R.part1 = src.part1
 		R.part1.master = R
-		R.part1.loc = R
+		R.part1.forceMove(R)
 		R.part2 = src.part2
 		R.part2.master = R
-		R.part2.loc = R
+		R.part2.forceMove(R)
 		if (user.get_inactive_hand()==src)
 			user.put_in_inactive_hand(part3)
 		else
@@ -852,10 +852,10 @@
 		var/obj/item/assembly/rad_ignite/R = new /obj/item/assembly/rad_ignite(GET_TURF(src))
 		R.part1 = src.part1
 		R.part1.master = R
-		R.part1.loc = R
+		R.part1.forceMove(R)
 		R.part2 = src.part2
 		R.part2.master = R
-		R.part2.loc = R
+		R.part2.forceMove(R)
 		if (user.get_inactive_hand()==src)
 			user.put_in_inactive_hand(part3)
 		else
@@ -896,13 +896,13 @@
 		var/obj/item/assembly/a_i_a/R = new /obj/item/assembly/a_i_a(GET_TURF(src))
 		R.part1 = src.part1
 		R.part1.master = R
-		R.part1.loc = R
+		R.part1.forceMove(R)
 		R.part2 = src.part2
 		R.part2.master = R
-		R.part2.loc = R
+		R.part2.forceMove(R)
 		R.part3 = src.part3
 		R.part3.master = R
-		R.part3.loc = R
+		R.part3.forceMove(R)
 		if (user.get_inactive_hand()==src)
 			user.put_in_inactive_hand(part4)
 		else

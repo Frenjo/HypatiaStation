@@ -395,7 +395,7 @@
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
 
-	occupant.loc = GET_TURF(occupant)
+	occupant.forceMove(GET_TURF(occupant))
 	occupant = null
 
 	add_fingerprint(usr)

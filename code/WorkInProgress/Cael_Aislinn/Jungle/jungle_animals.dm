@@ -22,7 +22,7 @@
 		spawned_animal = new spawn_type(src)
 		//after a random timeout, and in a random position (6-30 seconds)
 		spawn(rand(1200,2400))
-			spawned_animal.loc = locate(src.x + rand(-12,12), src.y + rand(-12,12), src.z)
+			spawned_animal.forceMove(locate(src.x + rand(-12,12), src.y + rand(-12,12), src.z))
 
 /obj/effect/landmark/animal_spawner/Destroy()
 	GLOBL.processing_objects.Remove(src)
@@ -100,7 +100,7 @@
 	if(stance == HOSTILE_STANCE_ATTACKING && get_dist(src, target_mob))
 		stalk_tick_delay -= 1
 		if(stalk_tick_delay <= 0)
-			src.loc = get_step_towards(src, target_mob)
+			forceMove(get_step_towards(src, target_mob))
 			stalk_tick_delay = 3
 
 //*******//
@@ -156,5 +156,5 @@
 	if(stance == HOSTILE_STANCE_ATTACKING && get_dist(src, target_mob))
 		stalk_tick_delay -= 1
 		if(stalk_tick_delay <= 0)
-			src.loc = get_step_towards(src, target_mob)
+			forceMove(get_step_towards(src, target_mob))
 			stalk_tick_delay = 3

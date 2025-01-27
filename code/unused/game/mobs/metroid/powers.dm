@@ -43,7 +43,7 @@
 
 /mob/living/carbon/metroid/proc/Feedon(var/mob/living/carbon/M)
 	victim = M
-	src.loc = M.loc
+	forceMove(M.loc)
 	canmove = FALSE
 	anchored = TRUE
 	var/lastnut = nutrition

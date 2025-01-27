@@ -196,7 +196,7 @@
 		switch(command)
 			if("eject card")
 				if(src.authid)
-					src.authid.loc = src.host.loc
+					authid.forceMove(host.loc)
 					src.authid = null
 			if("add card access")
 				var/new_access = signal.data["access"]

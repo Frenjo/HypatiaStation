@@ -373,8 +373,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 				usr << browse(null, "window=radio")
 				var/obj/item/radio/T = src.origradio
 				var/obj/item/uplink/radio/R = src
-				R.loc = T
-				T.loc = usr
+				R.forceMove(T)
+				T.forceMove(usr)
 				// R.reset_plane_and_layer()
 				R.layer = 0
 				if (usr.client)
@@ -386,7 +386,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 				else
 					usr.u_equip(R)
 					usr.l_hand = T
-				R.loc = T
+				R.forceMove(T)
 				T.layer_to_hud()
 				T.set_frequency(initial(T.frequency))
 				T.attack_self(usr)
@@ -435,8 +435,8 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		var/obj/item/radio/T = src.origradio
 		var/obj/item/uplink/radio/R = src
 		var/mob/L = src.loc
-		R.loc = T
-		T.loc = L
+		R.forceMove(T)
+		T.forceMove(L)
 		// R.reset_plane_and_layer()
 		R.layer = 0
 		if (istype(L))

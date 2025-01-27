@@ -60,7 +60,7 @@
 		if((tmob.a_intent == "help" || tmob.restrained()) && (a_intent == "help" || src.restrained()) && tmob.canmove && canmove) // mutual brohugs all around!
 			var/turf/oldloc = loc
 			loc = tmob.loc
-			tmob.loc = oldloc
+			tmob.forceMove(oldloc)
 			now_pushing = 0
 			for(var/mob/living/carbon/metroid/Metroid in view(1,tmob))
 				if(Metroid.Victim == tmob)

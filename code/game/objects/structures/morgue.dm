@@ -78,8 +78,8 @@
 		if(T.contents.Find(src.connected))
 			src.connected.connected = src
 			src.icon_state = "morgue0"
-			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.connected.loc
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(connected.loc)
 			src.connected.icon_state = "morguet"
 			src.connected.set_dir(src.dir)
 		else
@@ -114,8 +114,8 @@
 	if(T.contents.Find(src.connected))
 		src.connected.connected = src
 		src.icon_state = "morgue0"
-		for(var/atom/movable/A as mob|obj in src)
-			A.loc = src.connected.loc
+		for_no_type_check(var/atom/movable/mover, src)
+			mover.forceMove(connected.loc)
 			//Foreach goto(106)
 		src.connected.icon_state = "morguet"
 	else
@@ -145,7 +145,7 @@
 	if(src.connected)
 		for(var/atom/movable/A as mob|obj in src.loc)
 			if(!A.anchored)
-				A.loc = src.connected
+				A.forceMove(connected)
 			//Foreach goto(26)
 		src.connected.connected = null
 		src.connected.update()
@@ -251,8 +251,8 @@
 		if(T.contents.Find(src.connected))
 			src.connected.connected = src
 			src.icon_state = "crema0"
-			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.connected.loc
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(connected.loc)
 			src.connected.icon_state = "cremat"
 		else
 			//src.connected = null
@@ -285,8 +285,8 @@
 	if(T.contents.Find(src.connected))
 		src.connected.connected = src
 		src.icon_state = "crema0"
-		for(var/atom/movable/A as mob|obj in src)
-			A.loc = src.connected.loc
+		for_no_type_check(var/atom/movable/mover, src)
+			mover.forceMove(connected.loc)
 			//Foreach goto(106)
 		src.connected.icon_state = "cremat"
 	else
@@ -360,7 +360,7 @@
 	if(src.connected)
 		for(var/atom/movable/A as mob|obj in src.loc)
 			if(!A.anchored)
-				A.loc = src.connected
+				A.forceMove(connected)
 			//Foreach goto(26)
 		src.connected.connected = null
 		src.connected.update()

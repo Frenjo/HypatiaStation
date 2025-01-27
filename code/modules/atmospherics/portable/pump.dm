@@ -132,7 +132,7 @@ Target Pressure: <A href='byond://?src=\ref[src];pressure_adj=-1000'>-</A> <A hr
 
 		if(href_list["remove_tank"])
 			if(isnotnull(holding))
-				holding.loc = loc
+				holding.forceMove(loc)
 				holding = null
 
 		if(href_list["pressure_adj"])

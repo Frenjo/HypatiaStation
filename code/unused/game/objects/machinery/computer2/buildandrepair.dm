@@ -142,9 +142,9 @@
 				del(mainboard)
 				if(hd)
 					C.hd = hd
-					hd.loc = C
+					hd.forceMove(C)
 				for(var/obj/item/peripheral/W in src.peripherals)
-					W.loc = C
+					W.forceMove(C)
 					W.host = C
 					C.peripherals.Add(W)
 				del(src)

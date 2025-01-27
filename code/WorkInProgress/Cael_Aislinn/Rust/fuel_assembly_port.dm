@@ -56,7 +56,7 @@
 				break
 
 			I.cur_assembly = cur_assembly
-			cur_assembly.loc = I
+			cur_assembly.forceMove(I)
 			cur_assembly = null
 			icon_state = "port0"
 			success = 1
@@ -86,7 +86,7 @@
 				break
 
 			cur_assembly = I.cur_assembly
-			cur_assembly.loc = src
+			cur_assembly.forceMove(src)
 			I.cur_assembly = null
 			icon_state = "port1"
 			success = 1

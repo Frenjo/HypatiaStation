@@ -282,7 +282,7 @@
 				door.name = created_name
 			else
 				door.name = "[istext(glass) ? "[glass] airlock" : base_name]"
-			src.electronics.loc = door
+			electronics.forceMove(door)
 			qdel(src)
 	else
 		..()

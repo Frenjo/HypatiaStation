@@ -36,7 +36,7 @@ mob/living/parasite/proc/enter_host(mob/living/carbon/host)
 		return 0
 
 	src.host = host
-	src.loc = host
+	forceMove(host)
 	host.parasites.Add(src)
 
 	if(client) client.eye = host
@@ -97,7 +97,8 @@ mob/living/parasite/meme/Life()
 
 mob/living/parasite/meme/death()
 	// make sure the mob is on the actual map before gibbing
-	if(host) src.loc = host.loc
+	if(host)
+		forceMove(host.loc)
 	src.stat = 2
 	..()
 	del src

@@ -370,7 +370,7 @@
 		return
 	if(beaker)
 		filtering = 0
-		beaker.loc = usr.loc
+		beaker.forceMove(usr.loc)
 		beaker = null
 	add_fingerprint(usr)
 	return

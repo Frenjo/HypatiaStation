@@ -584,7 +584,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				Plasma.air_contents.gas[/decl/xgm_gas/plasma] = 70
 				Rad.drainratio = 0
 				Rad.P = Plasma
-				Plasma.loc = Rad
+				Plasma.forceMove(Rad)
 
 			if(!Rad.active)
 				Rad.toggle_power()

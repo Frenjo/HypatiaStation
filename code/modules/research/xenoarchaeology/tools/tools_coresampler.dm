@@ -74,7 +74,7 @@
 			//put in a rock sliver
 			var/obj/item/rocksliver/R = new /obj/item/rocksliver()
 			R.geological_data = geo_data
-			R.loc = filled_bag
+			R.forceMove(filled_bag)
 
 			//update the sample bag
 			filled_bag.icon_state = "evidence"

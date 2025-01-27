@@ -32,7 +32,7 @@
 			wizard.current << "<B>\red A starting location for you could not be found, please report this bug!</B>"
 		else
 			var/starting_loc = pick(wizardstart)
-			wizard.current.loc = starting_loc
+			wizard.current.forceMove(starting_loc)
 
 	for_no_type_check(var/obj/effect/landmark/A, GLOBL.landmark_list)
 		if (A.name == "Teleport-Scroll")
@@ -160,9 +160,9 @@
 			if(ismob(w.loc))
 				var/mob/M = w.loc
 				M.drop_item()
-				w.loc = usr.loc
+				w.forceMove(usr.loc)
 			else
-				w.loc = usr.loc
+				w.forceMove(usr.loc)
 		src.verbs -= /client/proc/summon_weapon
 		spawn(300) src.verbs += /client/proc/summon_weapon
 		return

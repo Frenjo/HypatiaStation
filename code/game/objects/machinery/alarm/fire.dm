@@ -40,7 +40,7 @@
 	name = "fire alarm"
 	. = ..()
 	if(isnotnull(loc))
-		src.loc = loc
+		forceMove(loc)
 
 	if(isnotnull(dir))
 		set_dir(dir)
@@ -141,7 +141,7 @@
 					playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 					spawn(20)
 						var/obj/item/firealarm_electronics/circuit = new /obj/item/firealarm_electronics()
-						circuit.loc = user.loc
+						circuit.forceMove(user.loc)
 						buildstage = 0
 						update_icon()
 			if(0)
@@ -154,7 +154,7 @@
 				else if(iswrench(W))
 					to_chat(user, "You remove the fire alarm assembly from the wall!")
 					var/obj/item/frame/firealarm/frame = new /obj/item/frame/firealarm()
-					frame.loc = user.loc
+					frame.forceMove(user.loc)
 					playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 					qdel(src)
 		return

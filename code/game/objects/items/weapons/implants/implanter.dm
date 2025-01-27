@@ -35,7 +35,7 @@
 
 				user.show_message(SPAN_WARNING("You implanted the implant into [M]."))
 				if(imp.implanted(M))
-					imp.loc = M
+					imp.forceMove(M)
 					imp.imp_in = M
 					imp.implanted = 1
 					if(ishuman(M))

@@ -652,4 +652,4 @@ mob
 				if (!group.group_processing)
 					dead_groups += group
 			var/datum/air_group/dest_group = pick(dead_groups)
-			usr.loc = pick(dest_group.members)*/
+			usr.forceMove(pick(dest_group.members))*/

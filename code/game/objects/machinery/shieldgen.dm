@@ -485,7 +485,7 @@
 		T = get_step(T2, NSEW)
 		T2 = T
 		var/obj/machinery/shieldwall/CF = new/obj/machinery/shieldwall/(src, G) //(ref to this gen, ref to connected gen)
-		CF.loc = T
+		CF.forceMove(T)
 		CF.set_dir(field_dir)
 
 /obj/machinery/shieldwallgen/attackby(obj/item/W, mob/user)

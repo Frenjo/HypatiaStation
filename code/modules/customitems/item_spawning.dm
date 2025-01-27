@@ -77,16 +77,16 @@
 				else if(istype(M.back,/obj/item/storage)) // Try to place it in something on the mob's back
 					var/obj/item/storage/back = M.back
 					if(back.contents.len < back.storage_slots)
-						Item.loc = back
+						Item.forceMove(back)
 						ok = 1
 
 				else
 					for(var/obj/item/storage/S in M.contents) // Try to place it in any item that can store stuff, on the mob.
 						if (S.contents.len < S.storage_slots)
-							Item.loc = S
+							Item.forceMove(S)
 							ok = 1
 							break
 
 				skip:
 				if (ok == 0) // Finally, since everything else failed, place it on the ground
-					Item.loc = GET_TURF(M)
+					Item.forceMove(GET_TURF(M))

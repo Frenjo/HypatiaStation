@@ -195,7 +195,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				to_chat(usr, SPAN_WARNING("The destructive analyser is busy at the moment."))
 
 			else if(linked_destroy.loaded_item)
-				linked_destroy.loaded_item.loc = linked_destroy.loc
+				linked_destroy.loaded_item.forceMove(linked_destroy.loc)
 				linked_destroy.loaded_item = null
 				linked_destroy.icon_state = "d_analyser"
 				screen = 2.1
@@ -325,10 +325,10 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 								being_built.reliability = max((reliability / 2), 0)
 							/*if(being_built.locked)
 								var/obj/item/storage/lockbox/L = new/obj/item/storage/lockbox(linked_lathe.loc)
-								new_item.loc = L
+								new_item.forceMove(L)
 								L.name += " ([new_item.name])"*/
 							else
-								new_item.loc = linked_lathe.loc
+								new_item.forceMove(linked_lathe.loc)
 							linked_lathe.busy = 0
 							screen = 3.1
 							updateUsrDialog()
@@ -359,7 +359,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					new_item.reliability = being_built.reliability
 					if(linked_imprinter.hacked)
 						being_built.reliability = max((reliability / 2), 0)
-					new_item.loc = linked_imprinter.loc
+					new_item.forceMove(linked_imprinter.loc)
 					linked_imprinter.busy = 0
 					screen = 4.1
 					updateUsrDialog()

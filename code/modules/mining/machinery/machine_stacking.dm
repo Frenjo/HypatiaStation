@@ -130,14 +130,14 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 				if(istype(I, /obj/item/ore/slag))
 					I.loc = null
 				else
-					I.loc = output.loc
+					I.forceMove(output.loc)
 				continue
 			if(O.type in stack_amounts)
 				stack_amounts[O.type] += O.amount
 				O.loc = null
 				qdel(O)
 				continue
-			O.loc = output.loc
+			O.forceMove(output.loc)
 
 	for(var/stack_type in stack_amounts)
 		var/amount = stack_amounts[stack_type]

@@ -129,7 +129,7 @@
 		update_icon()
 
 		if(isnotnull(holding))
-			holding.loc = loc
+			holding.forceMove(loc)
 			holding = null
 
 /obj/machinery/portable_atmospherics/canister/process()
@@ -286,7 +286,7 @@
 		if(isnotnull(holding))
 			if(istype(holding, /obj/item/tank))
 				holding.manipulated_by = usr.real_name
-			holding.loc = loc
+			holding.forceMove(loc)
 			holding = null
 
 	if(href_list["pressure_adj"])

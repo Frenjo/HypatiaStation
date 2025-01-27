@@ -90,6 +90,6 @@
 	if(href_list["removeall"])
 		for(var/obj/item/ore/O in contents)
 			contents -= O
-			O.loc = loc
+			O.forceMove(loc)
 		to_chat(usr, SPAN_INFO("You empty the box."))
 	updateUsrDialog()

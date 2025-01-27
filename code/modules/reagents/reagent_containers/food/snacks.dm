@@ -1586,7 +1586,7 @@
 		baconbeacon = new /obj/item/radio/beacon/bacon(src)
 	On_Consume()
 		if(!reagents.total_volume)
-			baconbeacon.loc = usr
+			baconbeacon.forceMove(usr)
 			baconbeacon.digest_delay()
 */
 

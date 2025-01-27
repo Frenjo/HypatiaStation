@@ -89,13 +89,13 @@
 			updateUsrDialog()
 	else if(href_list["remove"])
 		if(copy)
-			copy.loc = usr.loc
+			copy.forceMove(usr.loc)
 			usr.put_in_hands(copy)
 			to_chat(usr, SPAN_NOTICE("You take the paper out of \the [src]."))
 			copy = null
 			updateUsrDialog()
 		else if(photocopy)
-			photocopy.loc = usr.loc
+			photocopy.forceMove(usr.loc)
 			usr.put_in_hands(photocopy)
 			to_chat(usr, SPAN_NOTICE("You take the photo out of \the [src]."))
 			photocopy = null

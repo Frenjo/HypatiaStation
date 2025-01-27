@@ -8,6 +8,6 @@ for(var/obj/O in src.contents) // Where src is a mob
 		O.forceMove(loc)			   // Honestly not sure if these two steps are necessary
 		O.dropped(src)			   // but they seem to occur everywhere else in the code, so we're not taking any chances.
 		O.reset_plane_and_layer()
-		O.loc = P			  // Add the item to the phantasm's inventory
+		O.forceMove(P)			  // Add the item to the phantasm's inventory
 src.Death(0)
 */

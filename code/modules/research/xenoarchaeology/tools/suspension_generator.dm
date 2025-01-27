@@ -50,7 +50,7 @@
 			if(!length(suspension_field.contents))
 				suspension_field.icon_state = "energynet"
 				suspension_field.overlays += "shield2"
-			I.loc = suspension_field
+			I.forceMove(suspension_field)
 
 		for(var/mob/living/simple/M in T)
 			M.weakened = max(M.weakened, 3)
@@ -144,12 +144,12 @@
 	else if(href_list["ejectcard"])
 		if(auth_card)
 			if(ishuman(usr))
-				auth_card.loc = usr.loc
+				auth_card.forceMove(usr.loc)
 				if(!usr.get_active_hand())
 					usr.put_in_hands(auth_card)
 				auth_card = null
 			else
-				auth_card.loc = loc
+				auth_card.forceMove(loc)
 				auth_card = null
 	else if(href_list["lock"])
 		locked = 1
@@ -163,7 +163,7 @@
 	if(!open)
 		interact(user)
 	else if(cell)
-		cell.loc = loc
+		cell.forceMove(loc)
 		cell.add_fingerprint(user)
 		cell.updateicon()
 
@@ -318,7 +318,7 @@
 	icon_state = "suspension3"
 
 	for(var/obj/item/I in T)
-		I.loc = suspension_field
+		I.forceMove(suspension_field)
 		collected++
 
 	if(collected)

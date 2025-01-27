@@ -47,7 +47,7 @@
 		coin = locate(material.coin_path, contents)
 		if(isnull(coin))
 			return
-		coin.loc = loc
+		coin.forceMove(loc)
 
 /*
  * Vault Money Bag

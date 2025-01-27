@@ -27,11 +27,11 @@
 	if(isAI(usr))
 		var/mob/living/silicon/ai/ai = usr
 		ai.freelook()
-		ai.eyeobj.loc = locate(max(1, x - 1), max(1, y - 1), usr.client.minimap_view_z)
+		ai.eyeobj.forceMove(locate(max(1, x - 1), max(1, y - 1), usr.client.minimap_view_z))
 		cameranet.visibility(ai.eyeobj)
 
 	else
-		usr.loc = locate(max(1, x - 1), max(1, y - 1), usr.client.minimap_view_z)
+		usr.forceMove(locate(max(1, x - 1), max(1, y - 1), usr.client.minimap_view_z))
 
 /mob/dead/verb/Open_Minimap()
 	set category = PANEL_GHOST

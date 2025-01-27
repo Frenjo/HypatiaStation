@@ -147,7 +147,7 @@
 		for_no_type_check(var/obj/item/part, component_parts)
 			if(part.reliability < 100)
 				part.crit_fail = 1
-			part.loc = loc
+			part.forceMove(loc)
 		while(sheets > 0)
 			var/obj/item/stack/sheet/G = new fuel_material.sheet_path(loc)
 			if(sheets > 50)

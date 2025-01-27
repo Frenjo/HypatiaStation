@@ -220,7 +220,7 @@
 /obj/structure/stool/bed/chair/janicart/Move()
 	. = ..()
 	if(buckled_mob?.buckled == src)
-		buckled_mob.loc = loc
+		buckled_mob.forceMove(loc)
 
 /obj/structure/stool/bed/chair/janicart/buckle_mob(mob/M, mob/user)
 	if(M != user || !ismob(M) || !in_range(src, user) || user.restrained() || user.lying || user.stat || M.buckled || issilicon(user))
@@ -233,7 +233,7 @@
 		SPAN_NOTICE("You climb onto the [callme]!")
 	)
 	M.buckled = src
-	M.loc = loc
+	M.forceMove(loc)
 	M.set_dir(dir)
 	M.update_canmove()
 	buckled_mob = M

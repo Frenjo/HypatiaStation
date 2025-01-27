@@ -446,7 +446,7 @@
 	new /obj/item/health_analyser(T)
 
 	if(isnotnull(reagent_glass))
-		reagent_glass.loc = T
+		reagent_glass.forceMove(T)
 		reagent_glass = null
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(T)

@@ -16,9 +16,8 @@
 			var/obj/structure/closet/O = wrapped
 			O.welded = 0
 	var/turf/T = GET_TURF(src)
-	for_no_type_check(var/atom/movable/AM, src)
-
-		AM.loc = T
+	for_no_type_check(var/atom/movable/mover, src)
+		mover.forceMove(T)
 	return ..()
 
 /obj/structure/big_delivery/attack_hand(mob/user)
@@ -62,7 +61,7 @@
 
 /obj/item/small_delivery/attack_self(mob/user)
 	if(src.wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
-		wrapped.loc = user.loc
+		wrapped.forceMove(user.loc)
 		if(ishuman(user))
 			user.put_in_hands(wrapped)
 		else
@@ -123,7 +122,7 @@
 				if(user.client)
 					user.client.screen -= O
 			P.wrapped = O
-			O.loc = P
+			O.forceMove(P)
 			var/i = round(O.w_class)
 			if(i in list(1, 2, 3, 4, 5))
 				P.icon_state = "deliverycrate[i]"
@@ -137,7 +136,7 @@
 			var/obj/structure/big_delivery/P = new /obj/structure/big_delivery(GET_TURF(O))
 			P.icon_state = "deliverycrate"
 			P.wrapped = O
-			O.loc = P
+			O.forceMove(P)
 			src.amount -= 3
 		else if(src.amount < 3)
 			to_chat(user, SPAN_INFO("You need more paper."))
@@ -147,7 +146,7 @@
 			var/obj/structure/big_delivery/P = new /obj/structure/big_delivery(GET_TURF(O))
 			P.wrapped = O
 			O.welded = 1
-			O.loc = P
+			O.forceMove(P)
 			src.amount -= 3
 		else if(src.amount < 3)
 			to_chat(user, SPAN_INFO("You need more paper."))

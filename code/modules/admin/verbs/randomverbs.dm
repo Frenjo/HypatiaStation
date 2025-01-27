@@ -33,7 +33,7 @@
 		//teleport person to cell
 		M.Paralyse(5)
 		sleep(5)	//so they black out before warping
-		M.loc = pick(GLOBL.prisonwarp)
+		M.forceMove(pick(GLOBL.prisonwarp))
 		if(ishuman(M))
 			var/mob/living/carbon/human/prisoner = M
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), SLOT_ID_WEAR_UNIFORM)
@@ -436,13 +436,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			global.CTjobs.equip_rank(new_character, new_character.mind.assigned_role, TRUE)
 			global.PCticker.mode.equip_traitor(new_character)
 		if("Wizard")
-			new_character.loc = pick(GLOBL.wizardstart)
+			new_character.forceMove(pick(GLOBL.wizardstart))
 			//ticker.mode.learn_basic_spells(new_character)
 			global.PCticker.mode.equip_wizard(new_character)
 		if("Syndicate")
 			var/obj/effect/landmark/synd_spawn = locate("landmark*Syndicate-Spawn")
 			if(synd_spawn)
-				new_character.loc = GET_TURF(synd_spawn)
+				new_character.forceMove(GET_TURF(synd_spawn))
 			call(/datum/game_mode/proc/equip_syndicate)(new_character)
 		if("Ninja")
 			new_character.equip_space_ninja()
@@ -456,7 +456,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 						GLOBL.ninjastart.Add(L)
 				if(!length(GLOBL.ninjastart) && length(GLOBL.latejoin))
 					new_character << "<B>\red Still no spawneable locations could be found. Defaulting to latejoin.</B>"
-					new_character.loc = pick(GLOBL.latejoin)
+					new_character.forceMove(pick(GLOBL.latejoin))
 				else if(!length(GLOBL.ninjastart))
 					new_character << "<B>\red Still no spawneable locations could be found. Aborting.</B>"
 

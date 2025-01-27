@@ -145,7 +145,7 @@ log transactions
 			if(href_list["eca"])
 				if(accepted)
 					for(var/obj/item/spacecash/M in cashes)
-						M.loc = loc
+						M.forceMove(loc)
 					inserted = 0
 					if(!cashes)
 						cashes = null

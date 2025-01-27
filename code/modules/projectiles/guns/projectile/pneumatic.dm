@@ -44,7 +44,7 @@
 
 	if(isnotnull(tank))
 		to_chat(usr, "You twist the valve and pop the tank out of [src].")
-		tank.loc = usr.loc
+		tank.forceMove(usr.loc)
 		tank = null
 		icon_state = "pneumatic"
 		item_state = "pneumatic"
@@ -56,7 +56,7 @@
 	if(isnull(tank) && istype(W, /obj/item/tank))
 		user.drop_item()
 		tank = W
-		tank.loc = tank_container
+		tank.forceMove(tank_container)
 		user.visible_message(
 			"[user] jams [W] into [src]'s valve and twists it closed.",
 			"You jam [W] into [src]'s valve and twist it closed."

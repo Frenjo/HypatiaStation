@@ -63,7 +63,7 @@
 				to_chat(user, SPAN_INFO("You remove the circuit board."))
 				state = 1
 				icon_state = "0"
-				circuit.loc = loc
+				circuit.forceMove(loc)
 				circuit = null
 		if(2)
 			if(isscrewdriver(P) && circuit)

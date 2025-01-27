@@ -207,11 +207,11 @@
 	new /obj/item/plant_analyser(T)
 
 	if(isnotnull(tank))
-		tank.loc = T
+		tank.forceMove(T)
 
 	for(var/obj/item/nutrient/fert in contents)
 		if(prob(50))
-			fert.loc = T
+			fert.forceMove(T)
 
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(T)
@@ -381,7 +381,7 @@
 
 	if(emagged) // Warning, hungry humans detected: throw fertilizer at them
 		spawn(0)
-			fert.loc = loc
+			fert.forceMove(loc)
 			fert.throw_at(target, 16, 3)
 		visible_message(SPAN_DANGER("[src] launches [fert.name] at [target.name]!"))
 		flick("farmbot_broke", src)
@@ -506,7 +506,7 @@
 
 	// Making a farmbot!
 	var/obj/item/farmbot_assembly/assembly = new /obj/item/farmbot_assembly()
-	assembly.loc = loc
+	assembly.forceMove(loc)
 	to_chat(user, SPAN_INFO("You add the robot arm to \the [src]!"))
 	loc = assembly //Place the water tank into the assembly, it will be needed for the finished bot
 	qdel(I)
@@ -566,7 +566,7 @@
 		to_chat(user, SPAN_INFO("You complete the Farmbot! Beep boop."))
 		var/obj/machinery/bot/farmbot/S = new /obj/machinery/bot/farmbot(GET_TURF(src))
 		for(var/obj/structure/reagent_dispensers/watertank/wTank in contents)
-			wTank.loc = S
+			wTank.forceMove(S)
 			S.tank = wTank
 		S.name = created_name
 		qdel(I)

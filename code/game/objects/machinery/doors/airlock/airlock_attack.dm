@@ -310,7 +310,7 @@
 				else
 					ae = electronics
 					electronics = null
-					ae.loc = loc
+					ae.forceMove(loc)
 				if(operating == -1)
 					ae.icon_state = "door_electronics_smoked"
 					operating = 0

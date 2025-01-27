@@ -117,7 +117,7 @@ Power regulator: <A href='byond://?src=\ref[src];volume_adj=-1000'>-</A> <A href
 
 		if(href_list["remove_tank"])
 			if(isnotnull(holding))
-				holding.loc = loc
+				holding.forceMove(loc)
 				holding = null
 
 		if(href_list["volume_adj"])

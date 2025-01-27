@@ -26,7 +26,7 @@
 			var/i = 0
 			for(var/obj/item/ore/O in BOX.contents)
 				BOX.contents -= O
-				O.loc = output.loc
+				O.forceMove(output.loc)
 				i++
 				if(i >= 10)
 					return
@@ -34,4 +34,4 @@
 			var/obj/item/O
 			for(var/i = 0; i < 10; i++)
 				O = locate(/obj/item, input.loc)
-				O?.loc = output.loc
+				O?.forceMove(output.loc)

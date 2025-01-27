@@ -265,7 +265,7 @@ var/datum/cameranet/cameranet = new()
 			c.remove(eyeobj)
 	else
 		client.eye = eyeobj
-		eyeobj.loc = loc
+		eyeobj.forceMove(loc)
 		cameranet.visibility(eyeobj)
 		cameraFollow = null
 /mob/aiEye/Move()
@@ -275,7 +275,7 @@ var/datum/cameranet/cameranet = new()
 
 /client/AIMove(n, direct, var/mob/living/silicon/ai/user)
 	if(eye == user.eyeobj)
-		user.eyeobj.loc = get_step(user.eyeobj, direct)
+		user.eyeobj.forceMove(get_step(user.eyeobj, direct))
 		cameranet.visibility(user.eyeobj)
 
 	else
@@ -289,7 +289,7 @@ var/datum/cameranet/cameranet = new()
 			dif = -1
 		else if(direct == DOWN && user.eyeobj.z < 4)
 			dif = 1
-		user.eyeobj.loc = locate(user.eyeobj.x, user.eyeobj.y, user.eyeobj.z + dif)
+		user.eyeobj.forceMove(locate(user.eyeobj.x, user.eyeobj.y, user.eyeobj.z + dif))
 		cameranet.visibility(user.eyeobj)
 	else
 		return ..()

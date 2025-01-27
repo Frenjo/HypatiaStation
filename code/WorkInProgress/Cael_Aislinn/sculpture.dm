@@ -57,7 +57,7 @@
 		turfs += thisturf
 	var/turf/target_turf = pick(turfs)
 	src.dir = get_dir(src, target_turf)
-	src.loc = target_turf
+	forceMove(target_turf)
 
 	hibernate = 1
 	spawn(rand(20,35) * 10)
@@ -192,7 +192,7 @@
 						G.ex_act(1)
 					if(!next_turf.CanPass(src, next_turf))
 						break
-					src.loc = next_turf
+					forceMove(next_turf)
 					src.dir = get_dir(src, target_mob)
 					next_turf = get_step(src, get_dir(next_turf,target_mob))
 					num_turfs--
@@ -232,7 +232,7 @@
 						G.ex_act(1)
 					if(!next_turf.CanPass(src, next_turf))
 						break
-					src.loc = next_turf
+					forceMove(next_turf)
 					src.dir = get_dir(src, target_mob)
 					next_turf = get_step(src, get_dir(next_turf,target_turf))
 					num_turfs--

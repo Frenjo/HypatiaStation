@@ -24,7 +24,7 @@
 	if(grab.state < 2)
 		to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
 		return TRUE
-	grabbed.loc = loc
+	grabbed.forceMove(loc)
 	grabbed.Weaken(5)
 	visible_message(SPAN_WARNING("[user] dunks \the [grabbed] into \the [src]!"))
 	qdel(grab)

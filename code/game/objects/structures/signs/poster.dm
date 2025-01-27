@@ -52,8 +52,8 @@
 
 /obj/structure/sign/poster/proc/roll_and_drop(turf/newloc)
 	var/obj/item/contraband/poster/P = new(src, serial_number)
-	P.loc = newloc
-	src.loc = P
+	P.forceMove(newloc)
+	src.forceMove(P)
 	qdel(src)
 
 

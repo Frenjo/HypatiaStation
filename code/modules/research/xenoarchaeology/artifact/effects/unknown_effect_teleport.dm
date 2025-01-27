@@ -14,7 +14,7 @@
 				user.buckled.unbuckle()
 
 			make_sparks(3, FALSE, GET_TURF(user))
-			user.loc = pick(randomturfs)
+			user.forceMove(pick(randomturfs))
 			make_sparks(3, FALSE, GET_TURF(user))
 
 /datum/artifact_effect/teleport/DoEffectAura()
@@ -31,7 +31,7 @@
 						M.buckled.unbuckle()
 
 					make_sparks(3, FALSE, GET_TURF(M))
-					M.loc = pick(randomturfs)
+					M.forceMove(pick(randomturfs))
 					make_sparks(3, FALSE, GET_TURF(M))
 
 /datum/artifact_effect/teleport/DoEffectPulse()
@@ -48,5 +48,5 @@
 					make_sparks(3, FALSE, GET_TURF(M))
 					if(M.buckled)
 						M.buckled.unbuckle()
-					M.loc = pick(randomturfs)
+					M.forceMove(pick(randomturfs))
 					make_sparks(3, FALSE, GET_TURF(M))

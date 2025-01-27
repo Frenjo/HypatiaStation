@@ -111,7 +111,7 @@
 	mode = GET_DECL_INSTANCE(/decl/air_alarm_mode/scrubbing) // Sets the alarm to scrubbing by default.
 	if(building)
 		if(isnotnull(loc))
-			src.loc = loc
+			forceMove(loc)
 
 		if(isnotnull(dir))
 			set_dir(dir)
@@ -1088,7 +1088,7 @@ table tr:first-child th:first-child { border: none;}
 				if(do_after(user, 20))
 					to_chat(user, "You pry out the circuit!")
 					var/obj/item/airalarm_electronics/circuit = new /obj/item/airalarm_electronics()
-					circuit.loc = user.loc
+					circuit.forceMove(user.loc)
 					buildstage = 0
 					update_icon()
 				return
@@ -1103,7 +1103,7 @@ table tr:first-child th:first-child { border: none;}
 			else if(iswrench(W))
 				to_chat(user, "You remove the fire alarm assembly from the wall!")
 				var/obj/item/frame/alarm/frame = new /obj/item/frame/alarm()
-				frame.loc = user.loc
+				frame.forceMove(user.loc)
 				playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 				qdel(src)
 

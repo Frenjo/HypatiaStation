@@ -406,7 +406,7 @@
 	if(istype(crate))
 		crate.close()
 
-	C.loc = loc
+	C.forceMove(loc)
 	sleep(2)
 	if(C.loc != loc) //To prevent you from going onto more thano ne bot.
 		return
@@ -437,7 +437,7 @@
 	mode = 1
 	overlays.Cut()
 
-	load.loc = loc
+	load.forceMove(loc)
 	load.pixel_y -= 9
 	load.reset_plane_and_layer()
 	if(ismob(load))
@@ -452,7 +452,7 @@
 		if(CanPass(load, T))//Can't get off onto anything that wouldn't let you pass normally
 			step(load, dirn)
 		else
-			load.loc = loc//Drops you right there, so you shouldn't be able to get yourself stuck
+			load.forceMove(loc)//Drops you right there, so you shouldn't be able to get yourself stuck
 
 	load = null
 
@@ -464,7 +464,7 @@
 		if(mover == cell || mover == botcard)
 			continue
 
-		mover.loc = loc
+		mover.forceMove(loc)
 		mover.reset_plane_and_layer()
 		mover.pixel_y = initial(mover.pixel_y)
 		if(ismob(mover))
@@ -876,7 +876,7 @@
 	new /obj/item/stack/rods(T)
 	new /obj/item/stack/cable_coil/cut(T)
 	if(isnotnull(cell))
-		cell.loc = T
+		cell.forceMove(T)
 		cell.update_icon()
 		cell = null
 

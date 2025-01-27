@@ -236,7 +236,7 @@
 		x_c = x_c - 3
 
 	var/obj/item/photo/P = new/obj/item/photo()
-	P.loc = user.loc
+	P.forceMove(user.loc)
 	if(!user.get_inactive_hand())
 		user.put_in_inactive_hand(P)
 	var/icon/small_img = icon(temp)

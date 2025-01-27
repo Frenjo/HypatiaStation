@@ -51,7 +51,7 @@
 	to_chat(user, SPAN_WARNING("You fire the grenade launcher!"))
 	var/obj/item/grenade/chemical/F = grenades[1] //Now with less copypasta!
 	grenades -= F
-	F.loc = user.loc
+	F.forceMove(user.loc)
 	F.throw_at(target, 30, 2)
 	message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from a grenade launcher ([src.name]).")
 	log_game("[key_name_admin(user)] used a grenade ([src.name]).")

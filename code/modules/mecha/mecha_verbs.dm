@@ -148,7 +148,7 @@
 		if(istype(mob_container, /obj/item/mmi)) // This should also cover /obj/item/mmi/posibrain.
 			var/obj/item/mmi/mmi = mob_container
 			if(isnotnull(mmi.brainmob))
-				occupant.loc = mmi
+				occupant.forceMove(mmi)
 			occupant.canmove = FALSE
 			verbs.Add(/obj/mecha/verb/eject)
 		occupant = null

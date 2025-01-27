@@ -20,4 +20,4 @@
 		return
 	var/obj/item/paper/P = input(user, "Choose a sheet to take out.", "[src]", "Cancel") as null|obj in src.contents
 	if(isnotnull(P) && in_range(src, user))
-		P.loc = user.loc
+		P.forceMove(user.loc)

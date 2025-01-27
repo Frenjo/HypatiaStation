@@ -16,8 +16,8 @@
 	if(iscrowbar(W))
 		new /obj/item/stack/sheet/wood(src)
 		var/turf/T = GET_TURF(src)
-		for(var/obj/O in contents)
-			O.loc = T
+		for_no_type_check(var/atom/movable/mover, src)
+			mover.forceMove(T)
 		user.visible_message(
 			SPAN_NOTICE("[user] pries \the [src] open."),
 			SPAN_NOTICE("You pry open \the [src]."),

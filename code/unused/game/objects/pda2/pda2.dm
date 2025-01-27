@@ -229,7 +229,7 @@
 			if(src.scan_program && (src.scan_program.holder == src.cartridge))
 				src.scan_program = null
 
-			src.cartridge.loc = T
+			cartridge.forceMove(T)
 			src.cartridge = null
 
 		return

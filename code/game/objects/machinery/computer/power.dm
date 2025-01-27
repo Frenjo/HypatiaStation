@@ -50,7 +50,7 @@
 				new /obj/item/shard(loc)
 				var/obj/item/circuitboard/powermonitor/board = new /obj/item/circuitboard/powermonitor(frame)
 				for(var/obj/C in src)
-					C.loc = loc
+					C.forceMove(loc)
 				frame.circuit = board
 				frame.state = 3
 				frame.icon_state = "3"
@@ -61,7 +61,7 @@
 				var/obj/structure/computerframe/frame = new /obj/structure/computerframe(loc)
 				var/obj/item/circuitboard/powermonitor/board = new /obj/item/circuitboard/powermonitor(frame)
 				for (var/obj/C in src)
-					C.loc = loc
+					C.forceMove(loc)
 				frame.circuit = board
 				frame.state = 4
 				frame.icon_state = "4"

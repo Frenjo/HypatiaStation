@@ -751,7 +751,7 @@
 
 /obj/machinery/newscaster/proc/AttachPhoto(mob/user)
 	if(photo)
-		photo.loc = loc
+		photo.forceMove(loc)
 		user.put_in_inactive_hand(photo)
 		photo = null
 	if(istype(user.get_active_hand(), /obj/item/photo))
