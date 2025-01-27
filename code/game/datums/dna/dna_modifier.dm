@@ -88,12 +88,13 @@
 
 /obj/machinery/dna_scannernew/proc/eject_occupant()
 	src.go_out()
+	var/turf/T = GET_TURF(src)
 	for(var/obj/O in src)
 		if((!istype(O, /obj/item/reagent_holder)) && (!istype(O, /obj/item/circuitboard/clonescanner)) && (!istype(O, /obj/item/stock_part)) && (!iscable(O)))
-			O.loc = GET_TURF(src)//Ejects items that manage to get in there (exluding the components)
+			O.forceMove(T) //Ejects items that manage to get in there (exluding the components)
 	if(!occupant)
 		for(var/mob/M in src)//Failsafe so you can get mobs out
-			M.loc = GET_TURF(src)
+			M.forceMove(T)
 
 /obj/machinery/dna_scannernew/verb/move_inside()
 	set category = PANEL_OBJECT
@@ -114,7 +115,7 @@
 	usr.stop_pulling()
 	usr.client.perspective = EYE_PERSPECTIVE
 	usr.client.eye = src
-	usr.loc = src
+	usr.forceMove(src)
 	src.occupant = usr
 	src.icon_state = "scanner_1"
 	src.add_fingerprint(usr)
@@ -140,7 +141,7 @@
 			return TRUE
 		beaker = I
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		user.visible_message(
 			SPAN_INFO("[user] adds \a [I] to \the [src]!"),
 			SPAN_INFO("You add \a [I] to \the [src]!")
@@ -153,7 +154,7 @@
 	if(M.client)
 		M.client.perspective = EYE_PERSPECTIVE
 		M.client.eye = src
-	M.loc = src
+	M.forceMove(src)
 	src.occupant = M
 	src.icon_state = "scanner_1"
 
@@ -176,7 +177,7 @@
 	if(src.occupant.client)
 		src.occupant.client.eye = src.occupant.client.mob
 		src.occupant.client.perspective = MOB_PERSPECTIVE
-	src.occupant.loc = src.loc
+	occupant.forceMove(loc)
 	src.occupant = null
 	src.icon_state = "scanner_0"
 	return
@@ -184,24 +185,24 @@
 /obj/machinery/dna_scannernew/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.loc
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(loc)
 				ex_act(severity)
 				//Foreach goto(35)
 			qdel(src)
 			return
 		if(2.0)
-			if (prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+			if(prob(50))
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 					//Foreach goto(108)
 				qdel(src)
 				return
 		if(3.0)
-			if (prob(25))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+			if(prob(25))
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 					//Foreach goto(181)
 				qdel(src)
@@ -212,8 +213,8 @@
 
 /obj/machinery/dna_scannernew/blob_act()
 	if(prob(75))
-		for(var/atom/movable/A as mob|obj in src)
-			A.loc = src.loc
+		for_no_type_check(var/atom/movable/mover, src)
+			mover.forceMove(loc)
 		qdel(src)
 
 /obj/machinery/computer/scan_consolenew
@@ -251,7 +252,7 @@
 			to_chat(user, SPAN_WARNING("There is already a disk inserted."))
 			return TRUE
 		user.drop_item()
-		I.loc = src
+		I.forceMove(src)
 		disk = I
 		user.visible_message(
 			SPAN_INFO("[user] inserts \the [I] into \the [src]."),
@@ -667,7 +668,7 @@
 	if(href_list["ejectBeaker"])
 		if(connected.beaker)
 			var/obj/item/reagent_holder/glass/B = connected.beaker
-			B.loc = connected.loc
+			B.forceMove(connected.loc)
 			connected.beaker = null
 		return 1
 
@@ -692,7 +693,7 @@
 		if(bufferOption == "ejectDisk")
 			if(!src.disk)
 				return
-			src.disk.loc = GET_TURF(src)
+			disk.forceMove(GET_TURF(src))
 			src.disk = null
 			return 1
 
@@ -795,7 +796,7 @@
 					I.buf = buf
 				waiting_for_user_input = 0
 				if(success)
-					I.loc = src.loc
+					I.forceMove(loc)
 					I.name += " ([buf.name])"
 					//src.temphtml = "Injector created."
 					src.injector_ready = 0

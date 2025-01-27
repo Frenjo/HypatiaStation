@@ -575,7 +575,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 					client.screen -= thing														//
 																								//
 				if(thing)																		//
-					thing.loc = loc																//
+					thing.forceMove(loc)														//
 					thing.dropped(src)															//
 					thing.reset_plane_and_layer()
 	if(update_icons)

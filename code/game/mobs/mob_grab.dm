@@ -112,7 +112,7 @@
 			hud.icon_state = "!reinforce"
 
 	else if(isnull(affecting.buckled))
-		affecting.loc = assailant.loc
+		affecting.forceMove(assailant.loc)
 
 	if(state >= GRAB_NECK)
 		affecting.Stun(1)
@@ -157,7 +157,7 @@
 		state = GRAB_NECK
 		icon_state = "grabbed+1"
 		if(isnull(affecting.buckled))
-			affecting.loc = assailant.loc
+			affecting.forceMove(assailant.loc)
 		affecting.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their neck grabbed by [assailant.name] ([assailant.ckey])</font>"
 		assailant.attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed the neck of [affecting.name] ([affecting.ckey])</font>"
 		msg_admin_attack("[key_name(assailant)] grabbed the neck of [key_name(affecting)]")
@@ -234,7 +234,7 @@
 				if(!do_mob(user, affecting) || !do_after(user, 100))
 					return
 			user.visible_message(SPAN_DANGER("[user] devours [affecting]!"))
-			affecting.loc = user
+			affecting.forceMove(user)
 			attacker.stomach_contents.Add(affecting)
 			qdel(src)
 

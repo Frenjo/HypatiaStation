@@ -195,7 +195,7 @@
 		for(var/mob/M in src)
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
-				M.loc = loc
+				M.forceMove(loc)
 		src.visible_message(SPAN_DANGER("[src] hurls out the contents of their stomach!"))
 	return
 

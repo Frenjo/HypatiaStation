@@ -80,7 +80,7 @@
 				if (target.client)
 					target.client.screen -= W
 				if (W)
-					W.loc = target.loc
+					W.forceMove(target.loc)
 					W.dropped(target)
 					W.reset_plane_and_layer()
 				W.add_fingerprint(source)
@@ -90,7 +90,7 @@
 					loc = target
 					item.layer_to_hud()
 					target.wear_mask = item
-					item.loc = target
+					item.forceMove(target)
 		if("l_hand")
 			if (target.l_hand)
 				var/obj/item/W = target.l_hand
@@ -98,7 +98,7 @@
 				if (target.client)
 					target.client.screen -= W
 				if (W)
-					W.loc = target.loc
+					W.forceMove(target.loc)
 					W.reset_plane_and_layer()
 					W.dropped(target)
 				W.add_fingerprint(source)
@@ -116,7 +116,7 @@
 				if (target.client)
 					target.client.screen -= W
 				if (W)
-					W.loc = target.loc
+					W.forceMove(target.loc)
 					W.reset_plane_and_layer()
 					W.dropped(target)
 				W.add_fingerprint(source)
@@ -134,7 +134,7 @@
 				if (target.client)
 					target.client.screen -= W
 				if (W)
-					W.loc = target.loc
+					W.forceMove(target.loc)
 					W.dropped(target)
 					W.reset_plane_and_layer()
 				W.add_fingerprint(source)
@@ -144,7 +144,7 @@
 					loc = target
 					item.layer_to_hud()
 					target.back = item
-					item.loc = target
+					item.forceMove(target)
 		if("handcuff")
 			if (target.handcuffed)
 				var/obj/item/W = target.handcuffed
@@ -152,7 +152,7 @@
 				if (target.client)
 					target.client.screen -= W
 				if (W)
-					W.loc = target.loc
+					W.forceMove(target.loc)
 					W.dropped(target)
 					W.reset_plane_and_layer()
 				W.add_fingerprint(source)
@@ -160,7 +160,7 @@
 				if (istype(item, /obj/item/handcuffs))
 					source.drop_item()
 					target.handcuffed = item
-					item.loc = target
+					item.forceMove(target)
 		if("internal")
 			if (target.internal)
 				target.internal.add_fingerprint(source)
@@ -217,7 +217,7 @@
 			W.equipped(src, slot)
 			update_inv_r_hand(redraw_mob)
 		if(SLOT_ID_IN_BACKPACK)
-			W.loc = src.back
+			W.forceMove(back)
 			W.layer_to_hud()
 		else
 			usr << "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."

@@ -44,7 +44,7 @@
 						src.r_hand = I
 					else
 						src.l_hand = I
-				I.loc = src
+				I.forceMove(src)
 				I.layer_to_hud()
 				I.add_fingerprint(src)
 				src.update_inv_l_hand()

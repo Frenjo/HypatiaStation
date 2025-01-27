@@ -179,7 +179,7 @@ emp_act
 			var/turf/picked = pick(turfs)
 			if(!isturf(picked))
 				return
-			src.loc = picked
+			forceMove(picked)
 			return 1
 	return 0
 

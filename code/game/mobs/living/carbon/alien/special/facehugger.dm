@@ -154,7 +154,7 @@ var/const/MAX_ACTIVE_TIME = 400
 		if(!sterile) L.Paralyse(MAX_IMPREGNATION_TIME / 6) //something like 25 ticks = 20 seconds with the default settings
 	else if(iscorgi(M))
 		var/mob/living/simple/corgi/C = M
-		src.loc = C
+		forceMove(C)
 		C.facehugger = src
 		C.wear_mask = src
 		//C.regenerate_icons()
@@ -182,7 +182,7 @@ var/const/MAX_ACTIVE_TIME = 400
 
 		if(iscorgi(target))
 			var/mob/living/simple/corgi/C = target
-			src.loc = GET_TURF(C)
+			forceMove(GET_TURF(C))
 			C.facehugger = null
 	else
 		target.visible_message(SPAN_DANGER("[src] violates [target]'s face!"))

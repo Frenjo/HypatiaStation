@@ -128,7 +128,7 @@
 	for(var/datum/mind/synd_mind in syndicates)
 		if(spawnpos > length(synd_spawn))
 			spawnpos = 1
-		synd_mind.current.loc = synd_spawn[spawnpos]
+		synd_mind.current.forceMove(synd_spawn[spawnpos])
 
 		synd_mind.current.real_name = "[syndicate_name()] Operative" // placeholder while we get their actual name
 		spawn(0)
@@ -161,10 +161,10 @@
 		P.info = "The nuclear authorisation code is: <b>[nuke_code]</b>"
 		P.name = "nuclear bomb code"
 		if(IS_GAME_MODE(/datum/game_mode/nuclear))
-			P.loc = synd_mind.current.loc
+			P.forceMove(synd_mind.current.loc)
 		else
 			var/mob/living/carbon/human/H = synd_mind.current
-			P.loc = H.loc
+			P.forceMove(H.loc)
 			H.equip_to_slot_or_del(P, SLOT_ID_R_POCKET, 0)
 			H.update_icons()
 

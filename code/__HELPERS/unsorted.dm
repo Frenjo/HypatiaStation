@@ -931,7 +931,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 						newobjs.Add(DuplicateObject(O, TRUE))
 
 					for(var/obj/O in newobjs)
-						O.loc = X
+						O.forceMove(X)
 
 					for(var/mob/M in T)
 						if(!ismob(M) || isaieye(M))
@@ -942,7 +942,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 						newmobs.Add(DuplicateObject(M, TRUE))
 
 					for(var/mob/M in newmobs)
-						M.loc = X
+						M.forceMove(X)
 
 					copiedobjs.Add(newobjs)
 					copiedobjs.Add(newmobs)

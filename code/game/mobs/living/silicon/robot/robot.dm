@@ -359,7 +359,7 @@
 			var/datum/robot_component/C = components[remove]
 			var/obj/item/I = C.wrapped
 			to_chat(user, SPAN_NOTICE("You remove \the [I]."))
-			I.loc = loc
+			I.forceMove(loc)
 
 			if(C.installed == 1)
 				C.uninstall()
@@ -411,7 +411,7 @@
 				to_chat(user, SPAN_WARNING("There is \a [cell] already installed."))
 			else
 				user.drop_item()
-				I.loc = src
+				I.forceMove(src)
 				cell = I
 				to_chat(user, SPAN_NOTICE("You insert \the [I]."))
 
@@ -456,7 +456,7 @@
 		if(U.action(src))
 			to_chat(usr, SPAN_NOTICE("You apply the upgrade to [src]!"))
 			usr.drop_item()
-			U.loc = src
+			U.forceMove(src)
 		else
 			to_chat(usr, SPAN_WARNING("Upgrade error!"))
 		return TRUE

@@ -27,7 +27,7 @@ var/list/sacrificed = list()
 		user.visible_message(SPAN_WARNING("[user] disappears in a flash of red light!"), \
 							SPAN_WARNING("You feel as your body gets dragged through the dimension of Nar-Sie!"), \
 							SPAN_WARNING("You hear a sickening crunch and sloshing of viscera."))
-		user.loc = allrunesloc[rand(1, index)]
+		user.forceMove(allrunesloc[rand(1, index)])
 		return
 	if(isrune(src))
 		return fizzle() //Use friggin manuals, Dorf, your list was of zero length.
@@ -67,9 +67,9 @@ var/list/sacrificed = list()
 		)
 		for(var/obj/O in src.loc)
 			if(!O.anchored)
-				O.loc = IP.loc
+				O.forceMove(IP.loc)
 		for(var/mob/M in src.loc)
-			M.loc = IP.loc
+			M.forceMove(IP.loc)
 		return
 
 	return fizzle()
@@ -822,7 +822,7 @@ var/list/sacrificed = list()
 		if(cultist.buckled || cultist.handcuffed || (!isturf(cultist.loc) && !istype(cultist.loc, /obj/structure/closet)))
 			to_chat(user, SPAN_WARNING("You cannot summon \the [cultist], for his shackles of blood are strong."))
 			return fizzle()
-		cultist.loc = src.loc
+		cultist.forceMove(loc)
 		cultist.lying = 1
 		cultist.regenerate_icons()
 		for(var/mob/living/carbon/human/C in orange(1, src))

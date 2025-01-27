@@ -30,11 +30,11 @@
 			if(phaseshift == 1)
 				animation.set_dir(target.dir)
 				flick("phase_shift", animation)
-				target.loc = holder
+				target.forceMove(holder)
 				target.client.eye = holder
 				sleep(jaunt_duration)
 				mobloc = GET_TURF(target)
-				animation.loc = mobloc
+				animation.forceMove(mobloc)
 				target.canmove = FALSE
 				sleep(20)
 				animation.set_dir(target.dir)
@@ -52,12 +52,12 @@
 				qdel(holder)
 			else
 				flick("liquify", animation)
-				target.loc = holder
+				target.forceMove(holder)
 				target.client.eye = holder
 				make_steam(10, FALSE, mobloc)
 				sleep(jaunt_duration)
 				mobloc = GET_TURF(target)
-				animation.loc = mobloc
+				animation.forceMove(mobloc)
 				make_steam(10, FALSE, mobloc)
 				target.canmove = FALSE
 				sleep(20)

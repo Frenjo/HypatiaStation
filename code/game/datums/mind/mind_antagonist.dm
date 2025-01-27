@@ -47,7 +47,7 @@
 		global.PCticker.mode.forge_syndicate_objectives(src)
 		global.PCticker.mode.greet_syndicate(src)
 
-		current.loc = GET_TURF(locate("landmark*Syndicate-Spawn"))
+		current.forceMove(GET_TURF(locate("landmark*Syndicate-Spawn")))
 
 		var/mob/living/carbon/human/H = current
 		qdel(H.belt)
@@ -79,10 +79,10 @@
 		assigned_role = "MODE"
 		//ticker.mode.learn_basic_spells(current)
 		if(!length(GLOBL.wizardstart))
-			current.loc = pick(GLOBL.latejoin)
+			current.forceMove(pick(GLOBL.latejoin))
 			to_chat(current, "HOT INSERTION, GO GO GO!")
 		else
-			current.loc = pick(GLOBL.wizardstart)
+			current.forceMove(pick(GLOBL.wizardstart))
 
 		global.PCticker.mode.equip_wizard(current)
 		for(var/obj/item/spellbook/S in current.contents)

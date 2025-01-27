@@ -61,7 +61,7 @@
 				break
 
 		if(!success)
-			target.loc = pick(L)
+			target.forceMove(pick(L))
 
 	return
 

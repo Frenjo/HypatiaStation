@@ -60,7 +60,7 @@
 
 	for(var/mob/living/carbon/monkey/diona/D in H.contents)
 		if(isnotnull(D.client))
-			D.loc = H.loc
+			D.forceMove(H.loc)
 		else
 			qdel(D)
 

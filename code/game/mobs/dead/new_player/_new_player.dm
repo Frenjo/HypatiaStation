@@ -108,7 +108,7 @@
 			if(isnull(spawn_point))
 				spawn_point = locate(/obj/effect/landmark/latejoin/observer)
 			to_chat(src, SPAN_INFO("Now teleporting."))
-			observer.loc = spawn_point.loc
+			observer.forceMove(spawn_point.loc)
 			observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 			var/mob/living/carbon/human/dummy/mannequin = new /mob/living/carbon/human/dummy/mannequin()
@@ -296,10 +296,10 @@
 		S = GLOBL.spawntypes[spawning_at]
 
 	if(istype(S))
-		character.loc = pick(S.turfs)
+		character.forceMove(pick(S.turfs))
 		join_message = S.msg
 	else
-		character.loc = pick(GLOBL.latejoin)
+		character.forceMove(pick(GLOBL.latejoin))
 		join_message = "has arrived on the station"
 
 	character.lastarea = GET_AREA(src)

@@ -57,21 +57,21 @@
 	var/atom/l = loc
 	var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(l.x - 2, l.y, l.z))
 	if(isnotnull(com.locked))
-		user.loc = GET_TURF(com.locked)
+		user.forceMove(GET_TURF(com.locked))
 
 /obj/effect/portal/attack_ghost(mob/user)
 	if(isnotnull(target))
-		user.loc = GET_TURF(target)
+		user.forceMove(GET_TURF(target))
 
 /obj/machinery/gateway/centerstation/attack_ghost(mob/user)
 	if(isnotnull(awaygate))
-		user.loc = awaygate.loc
+		user.forceMove(awaygate.loc)
 	else
 		to_chat(user, "[src] has no destination.")
 
 /obj/machinery/gateway/centeraway/attack_ghost(mob/user)
 	if(isnotnull(stationgate))
-		user.loc = stationgate.loc
+		user.forceMove(stationgate.loc)
 	else
 		to_chat(user, "[src] has no destination.")
 

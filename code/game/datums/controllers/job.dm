@@ -355,7 +355,7 @@ CONTROLLER_DEF(jobs)
 		if(isnull(S))
 			S = locate("start*[rank]") // use old stype
 		if(istype(S, /obj/effect/landmark/start) && isturf(S.loc))
-			H.loc = S.loc
+			H.forceMove(S.loc)
 
 	//give them an account in the station database
 	var/datum/money_account/M = create_money_account(H.real_name, rand(50, 500) * 10, null)

@@ -32,7 +32,7 @@
 	O.dna = dna.Clone()
 	O.dna.SetSEState(GLOBL.dna_data.monkey_block, 1)
 	O.dna.SetSEValueRange(GLOBL.dna_data.monkey_block, 0xDAC, 0xFFF)
-	O.loc = loc
+	O.forceMove(loc)
 	O.viruses = viruses
 	O.a_intent = "hurt"
 
@@ -107,7 +107,7 @@
 			if(sloc.name == "AI")
 				loc_landmark = sloc
 
-	O.loc = loc_landmark.loc
+	O.forceMove(loc_landmark.loc)
 	for(var/obj/item/radio/intercom/comm in O.loc)
 		comm.ai += O
 
@@ -154,7 +154,7 @@
 	else
 		O.key = key
 
-	O.loc = loc
+	O.forceMove(loc)
 	O.job = "Cyborg"
 	if(O.mind.assigned_role == "Cyborg")
 		if(O.mind.role_alt_title == "Android")

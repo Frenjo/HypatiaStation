@@ -79,7 +79,7 @@
 		update_inv_r_hand()
 		return TRUE
 	else
-		W.loc = GET_TURF(src)
+		W.forceMove(GET_TURF(src))
 		W.reset_plane_and_layer()
 		W.dropped()
 		return FALSE
@@ -96,7 +96,7 @@
 		if(!(W && W.loc))
 			return TRUE // self destroying objects (tk, grabs)
 		W.reset_plane_and_layer()
-		W.loc = loc
+		W.forceMove(loc)
 
 		var/turf/T = GET_TURF(src)
 		if(isturf(T))
@@ -115,7 +115,7 @@
 	client?.screen.Remove(l_hand)
 	l_hand.reset_plane_and_layer()
 
-	l_hand.loc = isnotnull(target) ? target.loc : loc
+	l_hand.forceMove(isnotnull(target) ? target.loc : loc)
 
 	var/turf/T = GET_TURF(target)
 	T?.Entered(l_hand)
@@ -133,7 +133,7 @@
 	client?.screen.Remove(r_hand)
 	r_hand.reset_plane_and_layer()
 
-	r_hand.loc = isnotnull(target) ? target.loc : loc
+	r_hand.forceMove(isnotnull(target) ? target.loc : loc)
 
 	var/turf/T = GET_TURF(target)
 	T?.Entered(r_hand)
@@ -266,13 +266,13 @@ if(isnull(SLOT)) \
 			if(isnotnull(back) && istype(back, /obj/item/storage/backpack))
 				var/obj/item/storage/backpack/B = back
 				if(length(B.contents) < B.storage_slots && W.w_class <= B.max_w_class)
-					W.loc = B
+					W.forceMove(B)
 					. = TRUE
 
 	if(.)
 		W.layer_to_hud()
 		if(isnotnull(back) && W.loc != back)
-			W.loc = src
+			W.forceMove(src)
 	else
 		if(del_on_fail)
 			qdel(W)

@@ -225,7 +225,7 @@
 	if(length(GLOBL.blob_cores))
 		var/obj/effect/blob/core/core = pick(GLOBL.blob_cores)
 		if(core)
-			B.loc = core.loc
+			B.forceMove(core.loc)
 	B.ghost_name = G_found.real_name
 	if (G_found.client)
 		G_found.client.mob = B

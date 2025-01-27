@@ -39,7 +39,7 @@
 
 /datum/game_mode/wizard/pre_setup()
 	for_no_type_check(var/datum/mind/wizard, wizards)
-		wizard.current.loc = pick(GLOBL.wizardstart)
+		wizard.current.forceMove(pick(GLOBL.wizardstart))
 	return 1
 
 /datum/game_mode/wizard/post_setup()

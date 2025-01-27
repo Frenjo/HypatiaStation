@@ -16,7 +16,7 @@
 
 /mob/living/silicon/ai/initialise()
 	. = ..()
-	eyeobj.loc = loc
+	eyeobj.forceMove(loc)
 
 /mob/living/silicon/ai/Destroy()
 	if(isnotnull(eyeobj))
@@ -69,7 +69,7 @@
 	unset_machine()
 
 	if(isnotnull(eyeobj) && isnotnull(loc))
-		eyeobj.loc = loc
+		eyeobj.forceMove(loc)
 	else
 		to_chat(src, "ERROR: Eyeobj not found. Creating new eye...")
 		eyeobj = new /mob/dead/ai_eye(loc)

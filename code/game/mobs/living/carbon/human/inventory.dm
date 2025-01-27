@@ -187,7 +187,7 @@
 		if(W)
 			if(client)
 				client.screen -= W
-			W.loc = loc
+			W.forceMove(loc)
 			W.dropped(src)
 			//if(W)
 				//W.reset_plane_and_layer()
@@ -211,7 +211,7 @@
 		src.r_hand = null
 		update_inv_r_hand()
 
-	W.loc = src
+	W.forceMove(src)
 	switch(slot)
 		if(SLOT_ID_BACK)
 			src.back = W
@@ -251,7 +251,7 @@
 			src.l_ear = W
 			if(l_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
-				O.loc = src
+				O.forceMove(src)
 				src.r_ear = O
 				O.layer_to_hud()
 			W.equipped(src, slot)
@@ -260,7 +260,7 @@
 			src.r_ear = W
 			if(r_ear.slot_flags & SLOT_TWOEARS)
 				var/obj/item/clothing/ears/offear/O = new(W)
-				O.loc = src
+				O.forceMove(src)
 				src.l_ear = O
 				O.layer_to_hud()
 			W.equipped(src, slot)
@@ -312,7 +312,7 @@
 		if(SLOT_ID_IN_BACKPACK)
 			if(src.get_active_hand() == W)
 				src.u_equip(W)
-			W.loc = src.back
+			W.forceMove(back)
 			W.layer_to_hud()
 		else
 			src << "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."
@@ -654,7 +654,7 @@ It can still be worn/put on as normal.
 					var/obj/item/W = new /obj/item/stack/medical/splint(amount=1)
 					o.status &= ~ORGAN_SPLINTED
 					if (W)
-						W.loc = target.loc
+						W.forceMove(target.loc)
 						W.reset_plane_and_layer()
 						W.add_fingerprint(source)
 		if("CPR")
@@ -713,7 +713,7 @@ It can still be worn/put on as normal.
 			if (target.client)
 				target.client.screen -= W
 			if (W)
-				W.loc = target.loc
+				W.forceMove(target.loc)
 				W.reset_plane_and_layer()
 				W.dropped(target)
 			W.add_fingerprint(source)

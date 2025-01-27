@@ -957,7 +957,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 			affected.wounds.Add(I)
 			H.custom_pain("Something tears wetly in your [affected] as [selection] is pulled free!", 1)
 
-	selection.loc = GET_TURF(src)
+	selection.forceMove(GET_TURF(src))
 
 	for(var/obj/item/O in pinned)
 		if(O == selection)

@@ -147,7 +147,7 @@
 		affected.owner.custom_pain("You feel something rip in your [affected.display_name]!", 1)
 	user.drop_item()
 	affected.hidden = tool
-	tool.loc = target
+	tool.forceMove(target)
 	affected.cavity = 0
 
 /decl/surgery_step/cavity/place_item/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -211,7 +211,7 @@
 					target.release_control()
 				worm.detatch()
 
-			obj.loc = GET_TURF(target)
+			obj.forceMove(GET_TURF(target))
 			if(istype(obj, /obj/item/implant))
 				var/obj/item/implant/imp = obj
 				imp.imp_in = null
@@ -226,7 +226,7 @@
 			SPAN_INFO_B("[user] takes something out of incision on [target]'s [affected.display_name] with \the [tool]."),
 			SPAN_INFO_B("You take something out of incision on [target]'s [affected.display_name]s with \the [tool].")
 		)
-		affected.hidden.loc = GET_TURF(target)
+		affected.hidden.forceMove(GET_TURF(target))
 		if(!affected.hidden.blood_DNA)
 			affected.hidden.blood_DNA = list()
 		affected.hidden.blood_DNA[target.dna.unique_enzymes] = target.dna.b_type

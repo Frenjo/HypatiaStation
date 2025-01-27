@@ -19,7 +19,7 @@
 	brainmob = new /mob/living/brain(src)
 	brainmob.name = "[pick(list("PBU", "HIU", "SINA", "ARMA", "OSI"))]-[rand(100, 999)]"
 	brainmob.real_name = brainmob.name
-	brainmob.loc = src
+	brainmob.forceMove(src)
 	brainmob.container = src
 	brainmob.stat = 0
 	brainmob.silent = 0

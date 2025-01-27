@@ -314,7 +314,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!length(L))
 		to_chat(usr, "No area available.")
 
-	usr.loc = pick(L)
+	forceMove(pick(L))
 
 /mob/dead/ghost/verb/follow()
 	set category = PANEL_GHOST
@@ -366,7 +366,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			var/turf/T = GET_TURF(M) // Turf of the destination mob
 
 			if(isturf(T))	// Make sure the turf exists, then move the source to that destination.
-				A.loc = T
+				A.forceMove(T)
 			else
 				to_chat(A, "This mob is not located in the game world.")
 

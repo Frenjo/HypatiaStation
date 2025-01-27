@@ -73,7 +73,7 @@ VOX HEIST ROUNDTYPE
 		if(index > length(raider_spawn))
 			index = 1
 
-		raider.current.loc = raider_spawn[index]
+		raider.current.forceMove(raider_spawn[index])
 		index++
 
 		var/sounds = rand(2, 8)

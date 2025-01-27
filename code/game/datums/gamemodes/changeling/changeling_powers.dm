@@ -256,7 +256,7 @@
 	for(var/obj/T in C)
 		qdel(T)
 
-	O.loc = C.loc
+	O.forceMove(C.loc)
 	O.name = "monkey ([copytext(md5(C.real_name), 2, 6)])"
 	O.setToxLoss(C.getToxLoss())
 	O.adjustBruteLoss(C.getBruteLoss())
@@ -265,7 +265,7 @@
 	O.stat = C.stat
 	O.a_intent = "hurt"
 	for(var/obj/item/implant/I in implants)
-		I.loc = O
+		I.forceMove(O)
 		I.implanted = O
 
 	C.mind.transfer_to(O)
@@ -327,7 +327,7 @@
 		if(C.client)
 			C.client.screen -= W
 		if(W)
-			W.loc = C.loc
+			W.forceMove(C.loc)
 			W.dropped(C)
 			W.reset_plane_and_layer()
 
@@ -343,7 +343,7 @@
 	for(var/obj/T in C)
 		qdel(T)
 
-	O.loc = C.loc
+	O.forceMove(C.loc)
 
 	O.UpdateAppearance()
 	domutcheck(O, null)
@@ -353,7 +353,7 @@
 	O.adjustFireLoss(C.getFireLoss())
 	O.stat = C.stat
 	for(var/obj/item/implant/I in implants)
-		I.loc = O
+		I.forceMove(O)
 		I.implanted = O
 
 	C.mind.transfer_to(O)

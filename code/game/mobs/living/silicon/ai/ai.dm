@@ -51,7 +51,7 @@
 	var/datum/trackable/track = null
 	var/last_announcement = ""
 
-/mob/living/silicon/ai/New(loc, datum/ai_laws/L, obj/item/mmi/B, safety = 0)
+/mob/living/silicon/ai/New(newloc, datum/ai_laws/L, obj/item/mmi/B, safety = 0)
 	. = ..()
 	var/list/possibleNames = GLOBL.ai_names
 
@@ -64,7 +64,7 @@
 				picked_name = null
 
 	fully_replace_character_name(newname = picked_name)
-	src.loc = loc
+	forceMove(newloc)
 
 	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
 

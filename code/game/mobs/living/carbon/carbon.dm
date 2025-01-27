@@ -43,7 +43,7 @@
 
 				if(prob(getBruteLoss() - 50))
 					for(var/atom/movable/A in stomach_contents)
-						A.loc = loc
+						A.forceMove(loc)
 						stomach_contents.Remove(A)
 					gib()
 
@@ -51,7 +51,7 @@
 	for(var/mob/M in src)
 		if(M in stomach_contents)
 			stomach_contents.Remove(M)
-		M.loc = src.loc
+		M.forceMove(loc)
 		visible_message(SPAN_DANGER("[M] bursts out of [src]!"))
 	. = ..(null, 1)
 
@@ -295,7 +295,7 @@
 	update_icons()
 
 	if(iscarbon(usr)) //Check if a carbon mob is throwing. Modify/remove this line as required.
-		item.loc = loc
+		item.forceMove(loc)
 		client?.screen.Remove(item)
 		if(isitem(item))
 			var/obj/item/I = item

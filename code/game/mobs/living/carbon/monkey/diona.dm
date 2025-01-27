@@ -34,7 +34,7 @@
 
 	if(isturf(loc) || !length(contents))
 		for(var/mob/M in contents)
-			M.loc = GET_TURF(src)
+			M.forceMove(GET_TURF(src))
 		qdel(src)
 
 /obj/item/holder/attackby(obj/item/W, mob/user)
@@ -58,10 +58,10 @@
 			src << "You feel your being twine with that of [M] as you merge with its biomass."
 			src.verbs += /mob/living/carbon/monkey/diona/proc/split
 			src.verbs -= /mob/living/carbon/monkey/diona/proc/merge
-			src.loc = M
+			forceMove(M)
 		else
 			var/obj/item/holder/diona/D = new(loc)
-			src.loc = D
+			forceMove(D)
 			D.name = loc.name
 			D.attack_hand(M)
 			M << "You scoop up [src]."
@@ -107,7 +107,7 @@
 	if(ishuman(M))
 		M << "You feel your being twine with that of [src] as it merges with your biomass."
 		src << "You feel your being twine with that of [M] as you merge with its biomass."
-		src.loc = M
+		forceMove(M)
 		src.verbs += /mob/living/carbon/monkey/diona/proc/split
 		src.verbs -= /mob/living/carbon/monkey/diona/proc/merge
 	else
@@ -124,7 +124,7 @@
 
 	src.loc << "You feel a pang of loss as [src] splits away from your biomass."
 	src << "You wiggle out of the depths of [src.loc]'s biomass and plop to the ground."
-	src.loc = GET_TURF(src)
+	forceMove(GET_TURF(src))
 	src.verbs -= /mob/living/carbon/monkey/diona/proc/split
 	src.verbs += /mob/living/carbon/monkey/diona/proc/merge
 
@@ -153,7 +153,7 @@
 
 	if(istype(loc, /obj/item/holder/diona))
 		var/obj/item/holder/diona/L = loc
-		src.loc = L.loc
+		forceMove(L.loc)
 		qdel(L)
 
 	for(var/datum/language/L in languages)

@@ -610,7 +610,7 @@ ________________________________________________________________________________
 				t_disk = null
 			else
 				if(isnotnull(T))
-					t_disk.loc = T
+					t_disk.forceMove(T)
 					t_disk = null
 				else
 					to_chat(U, "\red <b>ERROR<b>: \black Could not eject disk.")
@@ -631,7 +631,7 @@ ________________________________________________________________________________
 				pai = null
 			else
 				if(isnotnull(T))
-					pai.loc = T
+					pai.forceMove(T)
 					pai = null
 				else
 					to_chat(U, "\red <b>ERROR<b>: \black Could not eject pAI card.")
@@ -798,7 +798,7 @@ ________________________________________________________________________________
 			return//Return individually so that ..() can run properly at the end of the proc.
 		else if(istype(I, /obj/item/paicard) && !pai)//If it's a pai card.
 			U:drop_item()
-			I.loc = src
+			I.forceMove(src)
 			pai = I
 			to_chat(U, SPAN_INFO("You slot \the [I] into \the [src]."))
 			updateUsrDialog()
@@ -823,7 +823,7 @@ ________________________________________________________________________________
 				to_chat(U, "\blue Higher maximum capacity detected.\nUpgrading...")
 				if (n_gloves&&n_gloves.candrain&&do_after(U,s_delay))
 					U.drop_item()
-					I.loc = src
+					I.forceMove(src)
 					I:charge = min(I:charge+cell.charge, I:maxcharge)
 					var/obj/item/cell/old_cell = cell
 					old_cell.charge = 0
@@ -851,7 +851,7 @@ ________________________________________________________________________________
 				else
 					to_chat(U, "\red <b>ERROR</b>: \black Procedure interrupted. Process terminated.")
 			else
-				I.loc = src
+				I.forceMove(src)
 				t_disk = I
 				to_chat(U, SPAN_INFO("You slot \the [I] into \the [src]."))
 			return
@@ -1380,7 +1380,7 @@ It is possible to destroy the net by the occupant or someone else.
 			playsound(M.loc, 'sound/effects/sparks4.ogg', 50, 1)
 			anim(M.loc,M,'icons/mob/mob.dmi',,"phaseout",,M.dir)
 
-		M.loc = pick(GLOBL.holdingfacility)//Throw mob in to the holding facility.
+		M.forceMove(pick(GLOBL.holdingfacility)) // Throw mob in to the holding facility.
 		to_chat(M, SPAN_WARNING("You appear in a strange place!"))
 
 		spawn(0)

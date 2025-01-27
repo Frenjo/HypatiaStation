@@ -200,7 +200,7 @@
 	)
 
 	for(var/obj/item/alien_embryo/A in target)
-		A.loc = GET_TURF(target)
+		A.forceMove(GET_TURF(target))
 
 //////////////////////////////////////////////////////////////////
 //				CHEST INTERNAL ORGAN SURGERY					//

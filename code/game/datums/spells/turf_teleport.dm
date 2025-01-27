@@ -36,4 +36,4 @@
 		if(!picked || !isturf(picked))
 			return
 
-		target.loc = picked
+		target.forceMove(picked)
