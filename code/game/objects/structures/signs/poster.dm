@@ -80,7 +80,7 @@
 
 	var/temp_loc = user.loc
 	flick("poster_being_set",D)
-	D.loc = src
+	D.forceMove(src)
 	qdel(P)	//delete it now to cut down on sanity checks afterwards. Agouri's code supports rerolling it anyway
 	playsound(D.loc, 'sound/items/poster_being_created.ogg', 100, 1)
 

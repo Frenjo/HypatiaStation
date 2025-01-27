@@ -201,9 +201,9 @@ for (var/client/C)
 		return
 	//mode = 1
 
-	C.loc = src.loc
+	C.forceMove(loc)
 	sleep(2)
-	C.loc = src
+	C.forceMove(src)
 	load = C
 
 	C.pixel_y += 9
@@ -226,7 +226,7 @@ for (var/client/C)
 
 	overlays.Cut()
 
-	load.loc = src.loc
+	load.forceMove(loc)
 	load.pixel_y -= 9
 	load.reset_plane_and_layer()
 	if(ismob(load))
@@ -245,12 +245,12 @@ for (var/client/C)
 	// this seems to happen sometimes due to race conditions
 	// with items dropping as mobs are loaded
 
-	for(var/atom/movable/AM in src)
-		AM.loc = src.loc
-		AM.reset_plane_and_layer()
-		AM.pixel_y = initial(AM.pixel_y)
-		if(ismob(AM))
-			var/mob/M = AM
+	for_no_type_check(var/atom/movable/mover, src)
+		mover.forceMove(loc)
+		mover.reset_plane_and_layer()
+		mover.pixel_y = initial(mover.pixel_y)
+		if(ismob(mover))
+			var/mob/M = mover
 			if(M.client)
 				M.client.perspective = MOB_PERSPECTIVE
 				M.client.eye = src

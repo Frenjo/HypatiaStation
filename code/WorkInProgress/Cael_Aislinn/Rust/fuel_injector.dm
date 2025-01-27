@@ -207,7 +207,7 @@
 
 	if( href_list["emergency_fuel_assembly"] )
 		if(cur_assembly)
-			cur_assembly.loc = src.loc
+			cur_assembly.forceMove(loc)
 			cur_assembly = null
 			//irradiate!
 		else

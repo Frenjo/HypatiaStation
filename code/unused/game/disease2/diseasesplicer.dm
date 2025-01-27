@@ -26,7 +26,7 @@
 				new /obj/item/shard( src.loc )
 				var/obj/item/circuitboard/diseasesplicer/M = new /obj/item/circuitboard/diseasesplicer( A )
 				for (var/obj/C in src)
-					C.loc = src.loc
+					C.forceMove(loc)
 				A.circuit = M
 				A.state = 3
 				A.icon_state = "3"
@@ -37,7 +37,7 @@
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				var/obj/item/circuitboard/diseasesplicer/M = new /obj/item/circuitboard/diseasesplicer( A )
 				for (var/obj/C in src)
-					C.loc = src.loc
+					C.forceMove(loc)
 				A.circuit = M
 				A.state = 4
 				A.icon_state = "4"
@@ -164,7 +164,7 @@
 			icon_state = "crew"
 
 		else if(href_list["eject"])
-			dish.loc = src.loc
+			dish.forceMove(loc)
 			dish = null
 
 		else if(href_list["splice"])

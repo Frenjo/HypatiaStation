@@ -231,7 +231,7 @@
 			else
 				ae = electronics
 				electronics = null
-				ae.loc = src.loc
+				ae.forceMove(loc)
 
 	else if(istype(W, /obj/item/stack/sheet) && !glass)
 		var/obj/item/stack/sheet/S = W

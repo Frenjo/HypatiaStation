@@ -42,7 +42,7 @@ var/prison_shuttle_timeleft = 0
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 				var/obj/item/circuitboard/prison_shuttle/M = new /obj/item/circuitboard/prison_shuttle( A )
 				for (var/obj/C in src)
-					C.loc = src.loc
+					C.forceMove(loc)
 				A.circuit = M
 				A.anchored = TRUE
 

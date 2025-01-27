@@ -22,14 +22,14 @@ GLOBAL_GLOBL_LIST_NEW(bump_teleporters)
 
 /obj/effect/bump_teleporter/Bumped(atom/user)
 	if(!ismob(user))
-		//user.loc = src.loc	//Stop at teleporter location
+		//user.forceMove(loc)	//Stop at teleporter location
 		return
 
 	if(!id_target)
-		//user.loc = src.loc	//Stop at teleporter location, there is nowhere to teleport to.
+		//user.forceMove(loc)	//Stop at teleporter location, there is nowhere to teleport to.
 		return
 
 	for(var/obj/effect/bump_teleporter/BT in GLOBL.bump_teleporters)
 		if(BT.id == src.id_target)
-			usr.loc = BT.loc	//Teleport to location with correct id.
+			usr.forceMove(BT.loc) // Teleport to location with correct id.
 			return

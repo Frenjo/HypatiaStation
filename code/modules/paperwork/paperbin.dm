@@ -65,7 +65,7 @@
 		return
 
 	user.drop_item()
-	i.loc = src
+	i.forceMove(src)
 	to_chat(user, SPAN_NOTICE("You put [i] in [src]."))
 	papers.Add(i)
 	amount++

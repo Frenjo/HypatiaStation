@@ -23,7 +23,7 @@
 			O.add_fingerprint(user)
 			add_fingerprint(user)
 			user.drop_item()
-			O.loc = src
+			O.forceMove(src)
 			notices++
 			icon_state = "nboard0[notices]"	//update sprite
 			user << "<span class='notice'>You pin the paper to the noticeboard.</span>"
@@ -46,7 +46,7 @@
 			return
 		var/obj/item/P = locate(href_list["remove"])
 		if(P?.loc == src)
-			P.loc = GET_TURF(src)	//dump paper on the floor because you're a clumsy fuck
+			P.forceMove(GET_TURF(src))	//dump paper on the floor because you're a clumsy fuck
 			P.add_fingerprint(usr)
 			add_fingerprint(usr)
 			notices--

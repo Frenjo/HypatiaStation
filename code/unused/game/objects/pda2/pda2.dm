@@ -155,7 +155,7 @@
 /obj/item/pda2/attackby(obj/item/C as obj, mob/user as mob)
 	if (istype(C, /obj/item/disk/data/cartridge) && isnull(src.cartridge))
 		user.drop_item()
-		C.loc = src
+		C.forceMove(src)
 		user << "\blue You insert [C] into [src]."
 		src.cartridge = C
 		src.updateSelfDialog()

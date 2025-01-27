@@ -47,7 +47,7 @@
 	usr.pulling = null
 	usr.client.perspective = EYE_PERSPECTIVE
 	usr.client.eye = src
-	usr.loc = src
+	usr.forceMove(src)
 	src.occupant = usr
 	src.icon_state = "body_scanner_1"
 	for(var/obj/O in src)
@@ -61,12 +61,12 @@
 	if((!(src.occupant) || src.locked))
 		return
 	for(var/obj/O in src)
-		O.loc = src.loc
+		O.forceMove(loc)
 		//Foreach goto(30)
 	if(src.occupant.client)
 		src.occupant.client.eye = src.occupant.client.mob
 		src.occupant.client.perspective = MOB_PERSPECTIVE
-	src.occupant.loc = src.loc
+	occupant.forceMove(loc)
 	src.occupant = null
 	src.icon_state = "body_scanner_0"
 	return
@@ -82,11 +82,11 @@
 	if(isnotnull(grabbed.client))
 		grabbed.client.perspective = EYE_PERSPECTIVE
 		grabbed.client.eye = src
-	grabbed.loc = src
+	grabbed.forceMove(src)
 	occupant = grabbed
 	icon_state = "body_scanner_1"
 	for(var/obj/O in src)
-		O.loc = src.loc
+		O.forceMove(loc)
 	add_fingerprint(user)
 	qdel(grab)
 	return TRUE
@@ -94,24 +94,24 @@
 /obj/machinery/bodyscanner/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.loc
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(loc)
 				ex_act(severity)
 				//Foreach goto(35)
 			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 					//Foreach goto(108)
 				qdel(src)
 				return
 		if(3.0)
 			if(prob(25))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 					//Foreach goto(181)
 				qdel(src)
@@ -121,8 +121,8 @@
 
 /obj/machinery/bodyscanner/blob_act()
 	if(prob(50))
-		for(var/atom/movable/A as mob|obj in src)
-			A.loc = src.loc
+		for_no_type_check(var/atom/movable/mover, src)
+			mover.forceMove(loc)
 		qdel(src)
 
 /obj/machinery/body_scanconsole/ex_act(severity)

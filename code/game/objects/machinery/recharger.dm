@@ -37,7 +37,7 @@
 		if(istype(G, /obj/item/gun/energy/staff))
 			return
 		user.drop_item()
-		G.loc = src
+		G.forceMove(src)
 		charging = G
 		update_power_state(USE_POWER_ACTIVE)
 		update_icon()

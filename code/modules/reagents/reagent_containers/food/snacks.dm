@@ -2854,7 +2854,7 @@
 			if((length(boxes) + 1) + length(boxestoadd) <= 5)
 				user.drop_item()
 
-				box.loc = src
+				box.forceMove(src)
 				box.boxes = list() // Clear the box boxes so we don't have boxes inside boxes. - Xzibit
 				src.boxes.Add(boxestoadd)
 

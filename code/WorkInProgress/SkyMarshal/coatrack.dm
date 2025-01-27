@@ -5,7 +5,7 @@
 				if(!user.get_active_hand())
 					user.put_in_hand(coat)
 				else
-					coat.loc = GET_TURF(user)
+					coat.forceMove(GET_TURF(user))
 				coat = null
 				if(!hat)
 					icon_state = "coatrack0"
@@ -20,7 +20,7 @@
 				if(!user.get_active_hand())
 					user.put_in_hand(hat)
 				else
-					hat.loc = GET_TURF(user)
+					hat.forceMove(GET_TURF(user))
 				hat = null
 				if(!coat)
 					icon_state = "coatrack0"
@@ -71,7 +71,7 @@
 
 /obj/machinery/coatrack/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if ( istype(mover,/obj/item/clothing/head/det_hat) && !hat)
-		mover.loc = src
+		mover.forceMove(src)
 		hat = mover
 		if(!coat)
 			icon_state = "coatrack1"
@@ -82,7 +82,7 @@
 				M.show_message(text("\blue The hat lands perfectly atop its hanger!"), 2)
 		return 0
 	if ( istype(mover,/obj/item/clothing/suit/storage/det_suit) && !coat)
-		mover.loc = src
+		mover.forceMove(src)
 		coat = mover
 		if(!hat)
 			icon_state = "coatrack2"

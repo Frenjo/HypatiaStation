@@ -48,7 +48,7 @@
 				src.icon_state = "1"
 				src.mainboard = P
 				user.drop_item()
-				P.loc = src
+				P.forceMove(src)
 			if(isscrewdriver(P) && mainboard)
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				user << "\blue You screw the mainboard into place."
@@ -59,7 +59,7 @@
 				user << "\blue You remove the mainboard."
 				src.state = 1
 				src.icon_state = "0"
-				mainboard.loc = src.loc
+				mainboard.forceMove(loc)
 				src.mainboard = null
 		if(2)
 			if(isscrewdriver(P) && mainboard && (!peripherals.len))
@@ -72,7 +72,7 @@
 				if(src.peripherals.len < 3)
 					user.drop_item()
 					src.peripherals.Add(P)
-					P.loc = src
+					P.forceMove(src)
 					user << "\blue You add [P] to the frame."
 				else
 					user << "\red There is no more room for peripheral cards."
@@ -102,19 +102,19 @@
 				var/obj/item/cable_coil/A = new /obj/item/cable_coil( src.loc )
 				A.amount = 5
 				if(src.hd)
-					src.hd.loc = src.loc
+					hd.forceMove(loc)
 					src.hd = null
 
 			if(istype(P, /obj/item/disk/data/fixed_disk) && !src.hd)
 				user.drop_item()
 				src.hd = P
-				P.loc = src
+				P.forceMove(src)
 				user << "\blue You connect the drive to the cabling."
 
 			if(iscrowbar(P) && src.hd)
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				user << "\blue You remove the hard drive."
-				src.hd.loc = src.loc
+				hd.forceMove(loc)
 				src.hd = null
 
 			if(istype(P, /obj/item/stack/sheet/glass))

@@ -51,7 +51,7 @@
 		I.forceMove(loc)
 
 	for (var/mob/M in src)
-		M.loc = src.loc
+		M.forceMove(loc)
 		if (M.client)
 			M.client.eye = M.client.mob
 			M.client.perspective = MOB_PERSPECTIVE
@@ -60,22 +60,22 @@
 /obj/machinery/vehicle/ex_act(severity)
 	switch (severity)
 		if (1.0)
-			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.loc
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(loc)
 				ex_act(severity)
 			//SN src = null
 			del(src)
 		if(2.0)
 			if (prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 				//SN src = null
 				del(src)
 
 /obj/machinery/vehicle/blob_act()
-	for(var/atom/movable/A as mob|obj in src)
-		A.loc = src.loc
+	for_no_type_check(var/atom/movable/mover, src)
+		mover.forceMove(loc)
 	del(src)
 
 /obj/machinery/vehicle/Bump(var/atom/A)
@@ -109,7 +109,7 @@
 		return
 
 	var/mob/M = usr
-	M.loc = src.loc
+	M.forceMove(loc)
 	if (M.client)
 		M.client.eye = M.client.mob
 		M.client.perspective = MOB_PERSPECTIVE
@@ -131,7 +131,7 @@
 		M.client.perspective = EYE_PERSPECTIVE
 		M.client.eye = src
 
-	M.loc = src
+	M.forceMove(src)
 
 /obj/machinery/vehicle/verb/unload(var/atom/movable/A in src)
 	set src in oview(1)
@@ -140,7 +140,7 @@
 		return
 
 	if(ismovable(A))
-		A.loc = src.loc
+		A.forceMove(loc)
 		for(var/mob/O in view(src, null))
 			if ((O.client && !(O.blinded)))
 				O << text("\blue <B> [] unloads [] from []!</B>", usr, A, src)
@@ -164,7 +164,7 @@
 			if(src.one_person_only && !isitem(H.pulling))
 				usr << "You may only place items in."
 			else
-				H.pulling.loc = src
+				H.pulling.forceMove(src)
 				if (ismob(H.pulling))
 					var/mob/M = H.pulling
 					if (M.client)

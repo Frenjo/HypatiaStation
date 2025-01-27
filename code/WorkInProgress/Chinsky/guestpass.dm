@@ -141,7 +141,7 @@
 							usr.put_in_hands(giver)
 						giver = null
 					else
-						giver.loc = src.loc
+						giver.forceMove(loc)
 						giver = null
 				else
 					var/obj/item/I = usr.get_active_hand()

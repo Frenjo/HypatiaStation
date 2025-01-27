@@ -100,7 +100,7 @@
 	if(isnotnull(grabbed.client))
 		grabbed.client.perspective = EYE_PERSPECTIVE
 		grabbed.client.eye = src
-	grabbed.loc = src
+	grabbed.forceMove(src)
 	occupant = grabbed
 	add_fingerprint(user)
 	qdel(grab)
@@ -242,12 +242,12 @@
 	if(href_list["eject_suit"])
 		if(!suit)
 			return
-		suit.loc = GET_TURF(src)
+		suit.forceMove(GET_TURF(src))
 		suit = null
 	else if(href_list["eject_helmet"])
 		if(!helmet)
 			return
-		helmet.loc = GET_TURF(src)
+		helmet.forceMove(GET_TURF(src))
 		helmet = null
 	else if(href_list["select_department"])
 		target_department = input("Please select the target department paintjob.", "Suit cycler", null) as null|anything in departments

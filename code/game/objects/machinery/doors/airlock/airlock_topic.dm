@@ -45,7 +45,7 @@
 				return
 			var/mob/M = usr
 			M.drop_item()
-			R.loc = src
+			R.forceMove(src)
 			R.airlock_wire = wirenum
 			signalers[wirenum] = R
 		else if(href_list["remove-signaler"])

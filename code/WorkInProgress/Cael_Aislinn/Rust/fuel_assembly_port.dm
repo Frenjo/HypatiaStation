@@ -65,7 +65,7 @@
 
 /obj/machinery/rust_fuel_assembly_port/proc/eject_assembly()
 	if(cur_assembly)
-		cur_assembly.loc = src.loc//get_step(GET_TURF(src), src.dir)
+		cur_assembly.forceMove(loc)//get_step(GET_TURF(src), src.dir)
 		cur_assembly = null
 		icon_state = "port0"
 		return 1

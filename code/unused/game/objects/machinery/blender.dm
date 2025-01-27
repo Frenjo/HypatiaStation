@@ -53,7 +53,7 @@ the blender or the processor: Processor items are solid objects and Blender resu
 		del(O)
 		src.contents += new /obj/item/reagent_holder/glass/blender_jug(src)
 		//user.drop_item()
-		//O.loc = src
+		//O.forceMove(src)
 		src.container = 1
 		src.flags = OPENCONTAINER
 		src.update_icon()
@@ -62,12 +62,12 @@ the blender or the processor: Processor items are solid objects and Blender resu
 	else
 		if(istype(O, /obj/item/reagent_holder/food/snacks))	//Will only blend food items. Add others in this else clause.
 			user.drop_item()
-			O.loc = src
+			O.forceMove(src)
 			user << "You drop the [O] into the blender."
 		else if (istype(O, /obj/item/plantbag)) //Allows plant bags to empty into the blender.
 			for (var/obj/item/reagent_holder/food/snacks/grown/G in O.contents)
 				O.contents -= G
-				G.loc = src
+				G.forceMove(src)
 				if(src.contents.len >= 10 || src.reagents.total_volume >= 80) //Sanity checking so the blender doesn't overfill
 					user << "You fill the blender to the brim."
 					break
@@ -128,7 +128,7 @@ the blender or the processor: Processor items are solid objects and Blender resu
 	else
 		for(var/obj/O in src.contents)			//Searches through the contents for the jug.
 			if(istype(O, /obj/item/reagent_holder/glass/blender_jug))
-				O.loc = GET_TURF(src)
+				O.forceMove(GET_TURF(src))
 				src.reagents.trans_to(O, src.reagents.total_volume)
 				O = null
 				src.flags = null
@@ -151,6 +151,6 @@ the blender or the processor: Processor items are solid objects and Blender resu
 	else
 		for(var/obj/O in src.contents)
 			if(istype(O, /obj/item/reagent_holder/food/snacks))
-				O.loc = GET_TURF(src)
+				O.forceMove(GET_TURF(src))
 				O = null
 	return

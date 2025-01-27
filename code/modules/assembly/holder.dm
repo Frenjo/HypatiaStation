@@ -41,8 +41,8 @@
 		user.remove_from_mob(D2)
 	D:holder = src
 	D2:holder = src
-	D.loc = src
-	D2.loc = src
+	D.forceMove(src)
+	D2.forceMove(src)
 	a_left = D
 	a_right = D2
 	name = "[D.name]-[D2.name] assembly"

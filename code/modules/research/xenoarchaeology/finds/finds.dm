@@ -52,7 +52,7 @@
 		if(w.isOn())
 			if(w.get_fuel() >= 4 && !src.method)
 				if(inside)
-					inside.loc = GET_TURF(src)
+					inside.forceMove(GET_TURF(src))
 					for(var/mob/M in viewers(world.view, user))
 						M.show_message(SPAN_INFO("[src] burns away revealing [inside]."), 1)
 				else

@@ -720,7 +720,7 @@ mob/living/carbon/metroid/var/temperature_resistance = T0C+75
 						if(!border_obstacle.CanPass(D, D.loc, 1, 0))
 							check_1 = 0
 
-			D.loc = src.loc
+			D.forceMove(loc)
 			if(step_to(D, Step_2))
 				check_2 = 1
 

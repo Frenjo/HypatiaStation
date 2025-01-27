@@ -38,7 +38,7 @@
 		var/obj/O = locate(href_list["drop_from_cargo"])
 		if(isnotnull(O) && (O in cargo))
 			occupant_message(SPAN_INFO("You unload [O]."))
-			O.loc = GET_TURF(src)
+			O.forceMove(GET_TURF(src))
 			cargo.Remove(O)
 			var/turf/T = GET_TURF(O)
 			T?.Entered(O)

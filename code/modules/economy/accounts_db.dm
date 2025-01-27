@@ -89,7 +89,7 @@
 		var/obj/item/card/id/idcard = O
 		if(!held_card)
 			usr.drop_item()
-			idcard.loc = src
+			idcard.forceMove(src)
 			held_card = idcard
 
 			if(ACCESS_CENT_CAPTAIN in idcard.access)
@@ -139,7 +139,7 @@
 				creating_new_account = 0
 			if("insert_card")
 				if(held_card)
-					held_card.loc = src.loc
+					held_card.forceMove(loc)
 
 					if(ishuman(usr) && !usr.get_active_hand())
 						usr.put_in_hands(held_card)
@@ -151,7 +151,7 @@
 					if(istype(I, /obj/item/card/id))
 						var/obj/item/card/id/C = I
 						usr.drop_item()
-						C.loc = src
+						C.forceMove(src)
 						held_card = C
 
 						if(ACCESS_CENT_CAPTAIN in C.access)

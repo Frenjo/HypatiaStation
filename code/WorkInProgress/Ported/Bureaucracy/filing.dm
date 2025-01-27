@@ -10,7 +10,7 @@
 	if(istype(P))
 		to_chat(M, "You put \the [P] in the [src].")
 		M.drop_item()
-		P.loc = src
+		P.forceMove(src)
 	else
 		to_chat(M, "You can't put a [P] in the [src]!")
 

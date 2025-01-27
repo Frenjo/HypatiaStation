@@ -83,7 +83,7 @@
 	if(src.occupant.client)
 		src.occupant.client.eye = src.occupant.client.mob
 		src.occupant.client.perspective = MOB_PERSPECTIVE
-	src.occupant.loc = src.loc
+	occupant.forceMove(loc)
 	if(injecting)
 		implant(src.occupant)
 		injecting = 0
@@ -102,7 +102,7 @@
 		M.client.perspective = EYE_PERSPECTIVE
 		M.client.eye = src
 	M.stop_pulling()
-	M.loc = src
+	M.forceMove(src)
 	src.occupant = M
 	src.add_fingerprint(usr)
 	icon_state = "implantchair_on"

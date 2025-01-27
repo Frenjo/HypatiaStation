@@ -122,7 +122,7 @@
 
 		if("sample")
 			if(sample)
-				sample.loc = src.loc
+				sample.forceMove(loc)
 				sample = null
 
 	src.add_fingerprint(usr)

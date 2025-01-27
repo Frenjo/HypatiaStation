@@ -75,7 +75,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 
 		visible_message(SPAN_INFO("The console beeps happily as it disgorges \the [I]."), 3)
 
-		I.loc = GET_TURF(src)
+		I.forceMove(GET_TURF(src))
 		GLOBL.frozen_items -= I
 
 	else if(href_list["allitems"])
@@ -86,7 +86,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 		visible_message(SPAN_INFO("The console beeps happily as it disgorges the desired objects."), 3)
 
 		for(var/obj/item/I in GLOBL.frozen_items)
-			I.loc = GET_TURF(src)
+			I.forceMove(GET_TURF(src))
 			GLOBL.frozen_items -= I
 
 	else if(href_list["crew"])
@@ -180,7 +180,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 
 				if(length(W.contents)) //Make sure we catch anything not handled by del() on the items.
 					for(var/obj/item/O in W.contents)
-						O.loc = src
+						O.forceMove(src)
 
 			//Delete all items not on the preservation list.
 			var/list/items = src.contents
@@ -287,7 +287,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 		if(isnull(grab) || isnull(grabbed))
 			return TRUE
 
-	grabbed.loc = src
+	grabbed.forceMove(src)
 	if(isnotnull(grabbed.client))
 		grabbed.client.perspective = EYE_PERSPECTIVE
 		grabbed.client.eye = src
@@ -355,7 +355,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 		usr.stop_pulling()
 		usr.client.perspective = EYE_PERSPECTIVE
 		usr.client.eye = src
-		usr.loc = src
+		usr.forceMove(src)
 		src.occupant = usr
 
 		if(orient_right)
@@ -380,7 +380,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 		occupant.client.eye = src.occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
 
-	occupant.loc = GET_TURF(src)
+	occupant.forceMove(GET_TURF(src))
 	occupant = null
 
 	if(orient_right)

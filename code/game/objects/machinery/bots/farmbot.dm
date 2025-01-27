@@ -153,7 +153,7 @@
 	else if(href_list["eject"])
 		flick("farmbot_hatch", src)
 		for(var/obj/item/nutrient/fert in contents)
-			fert.loc = GET_TURF(src)
+			fert.forceMove(GET_TURF(src))
 
 	updateUsrDialog()
 

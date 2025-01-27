@@ -41,7 +41,7 @@
 	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
 	pumped = 0
 	if(isnotnull(current_shell)) // We have a shell in the chamber
-		current_shell.loc = GET_TURF(src)//Eject casing
+		current_shell.forceMove(GET_TURF(src)) // Eject casing
 		current_shell = null
 		if(in_chamber)
 			in_chamber = null
@@ -96,7 +96,7 @@
 
 	if(isnotnull(AC.loaded_bullet))
 		in_chamber = AC.loaded_bullet //Load projectile into chamber.
-		AC.loaded_bullet.loc = src //Set projectile loc to gun.
+		AC.loaded_bullet.forceMove(src) //Set projectile loc to gun.
 		return 1
 	return 0
 
@@ -108,7 +108,7 @@
 	for(var/obj/item/ammo_casing/shotgun/shell in src)	//This feels like a hack.	//don't code at 3:30am kids!!
 		if(shell in loaded)
 			loaded.Remove(shell)
-		shell.loc = GET_TURF(src)
+		shell.forceMove(GET_TURF(src))
 
 	to_chat(user, SPAN_NOTICE("You break \the [src]."))
 	update_icon()
@@ -118,7 +118,7 @@
 		var/obj/item/ammo_casing/AC = A
 		if(AC.caliber == caliber && (length(loaded) < max_shells) && (length(contents) < max_shells))	//forgive me father, for i have sinned
 			user.drop_item()
-			AC.loc = src
+			AC.forceMove(src)
 			loaded.Add(AC)
 			to_chat(user, SPAN_NOTICE("You load a shell into \the [src]!"))
 	A.update_icon()

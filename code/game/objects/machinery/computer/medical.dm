@@ -154,7 +154,7 @@
 					scan = null
 
 				else
-					src.scan.loc = src.loc
+					scan.forceMove(loc)
 					src.scan = null
 
 			else

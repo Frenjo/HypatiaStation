@@ -31,7 +31,7 @@
 
 /obj/machinery/centrifuge/attack_hand(mob/user)
 	for(var/obj/item/reagent_holder/food/F in output)
-		F.loc = src.loc
+		F.forceMove(loc)
 		output -= F
 	while(enzymes >= 50)
 		enzymes -= 50

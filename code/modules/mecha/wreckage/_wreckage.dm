@@ -73,7 +73,7 @@
 		if(!isemptylist(crowbar_salvage))
 			var/obj/S = pick(crowbar_salvage)
 			if(isnotnull(S))
-				S.loc = GET_TURF(user)
+				S.forceMove(GET_TURF(user))
 				crowbar_salvage.Remove(S)
 				user.visible_message(
 					SPAN_NOTICE("[user] pries \the [S] from \the [src]."),

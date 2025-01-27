@@ -43,7 +43,7 @@
 			dish.analysed = 1
 			if (dish.virus2.addToDB())
 				src.state("\The [src.name] states, \"Added new pathogen to database.\"")
-			dish.loc = src.loc
+			dish.forceMove(loc)
 			dish = null
 			icon_state = "analyser"
 
@@ -57,7 +57,7 @@
 		else
 			pause = 1
 			spawn(25)
-				dish.loc = src.loc
+				dish.forceMove(loc)
 				dish = null
 				src.state("\The [src.name] buzzes")
 				pause = 0

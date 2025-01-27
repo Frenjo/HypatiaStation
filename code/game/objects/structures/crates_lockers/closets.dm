@@ -57,13 +57,13 @@
 /obj/structure/closet/proc/dump_contents()
 	//Cham Projector Exception
 	for(var/obj/effect/dummy/chameleon/AD in src)
-		AD.loc = src.loc
+		AD.forceMove(loc)
 
 	for(var/obj/I in src)
 		I.forceMove(loc)
 
 	for(var/mob/M in src)
-		M.loc = src.loc
+		M.forceMove(loc)
 		if(M.client)
 			M.client.eye = M.client.mob
 			M.client.perspective = MOB_PERSPECTIVE
@@ -98,7 +98,7 @@
 	for(var/obj/effect/dummy/chameleon/AD in src.loc)
 		if(itemcount >= storage_capacity)
 			break
-		AD.loc = src
+		AD.forceMove(src)
 		itemcount++
 
 	for(var/obj/item/I in src.loc)
@@ -120,7 +120,7 @@
 			M.client.perspective = EYE_PERSPECTIVE
 			M.client.eye = src
 
-		M.loc = src
+		M.forceMove(src)
 		itemcount++
 
 	src.icon_state = src.icon_closed
@@ -142,29 +142,29 @@
 /obj/structure/closet/ex_act(severity)
 	switch(severity)
 		if(1)
-			for(var/atom/movable/A as mob|obj in src)//pulls everything out of the locker and hits it with an explosion
-				A.loc = src.loc
-				A.ex_act(severity++)
+			for_no_type_check(var/atom/movable/mover, src) // pulls everything out of the locker and hits it with an explosion
+				mover.forceMove(loc)
+				mover.ex_act(severity++)
 			qdel(src)
 		if(2)
 			if(prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
-					A.ex_act(severity++)
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
+					mover.ex_act(severity++)
 				qdel(src)
 		if(3)
 			if(prob(5))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
-					A.ex_act(severity++)
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
+					mover.ex_act(severity++)
 				qdel(src)
 
 /obj/structure/closet/bullet_act(obj/item/projectile/Proj)
 	health -= Proj.damage
 	..()
 	if(health <= 0)
-		for(var/atom/movable/A as mob|obj in src)
-			A.loc = src.loc
+		for_no_type_check(var/atom/movable/mover, src)
+			mover.forceMove(loc)
 		qdel(src)
 
 	return
@@ -172,15 +172,15 @@
 /obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)
 		visible_message(SPAN_WARNING("[user] destroys the [src]."))
-		for(var/atom/movable/A as mob|obj in src)
-			A.loc = src.loc
+		for_no_type_check(var/atom/movable/mover, src)
+			mover.forceMove(loc)
 		qdel(src)
 
 // this should probably use dump_contents()
 /obj/structure/closet/blob_act()
 	if(prob(75))
-		for(var/atom/movable/A as mob|obj in src)
-			A.loc = src.loc
+		for_no_type_check(var/atom/movable/mover, src)
+			mover.forceMove(loc)
 		qdel(src)
 
 /obj/structure/closet/meteorhit(obj/O)

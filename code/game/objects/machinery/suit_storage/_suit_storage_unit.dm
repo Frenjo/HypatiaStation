@@ -400,7 +400,7 @@
 		usr.stop_pulling()
 		usr.client.perspective = EYE_PERSPECTIVE
 		usr.client.eye = src
-		usr.loc = src
+		usr.forceMove(src)
 //		usr.metabslow = 1
 		occupant = usr
 		isopen = FALSE //Close the thing after the guy gets inside
@@ -435,7 +435,7 @@
 	if(isnotnull(grabbed.client))
 		grabbed.client.perspective = EYE_PERSPECTIVE
 		grabbed.client.eye = src
-	grabbed.loc = src
+	grabbed.forceMove(src)
 	occupant = grabbed
 	isopen = FALSE //close ittt
 	add_fingerprint(user)
@@ -465,7 +465,7 @@
 			return
 		to_chat(user, "You load the [S.name] into the storage compartment.")
 		user.drop_item()
-		S.loc = src
+		S.forceMove(src)
 		suit = S
 		update_icon()
 		updateUsrDialog()
@@ -479,7 +479,7 @@
 			return
 		to_chat(user, "You load the [H.name] into the storage compartment.")
 		user.drop_item()
-		H.loc = src
+		H.forceMove(src)
 		helmet = H
 		update_icon()
 		updateUsrDialog()
@@ -493,7 +493,7 @@
 			return
 		to_chat(user, "You load the [M.name] into the storage compartment.")
 		user.drop_item()
-		M.loc = src
+		M.forceMove(src)
 		mask = M
 		update_icon()
 		updateUsrDialog()

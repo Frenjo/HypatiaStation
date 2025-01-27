@@ -124,7 +124,7 @@
 		var/obj/item/pipe/P = W
 		if(P.pipe_type in list(0, 1, 5))	//simple pipes, simple bends, and simple manifolds.
 			user.drop_item()
-			P.loc = src.loc
+			P.forceMove(loc)
 			user << "\blue You fit the pipe into the [src]!"
 	else
 		..()

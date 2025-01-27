@@ -33,7 +33,7 @@
 
 	playsound(src, 'sound/machines/click.ogg', 15, 1, -3)
 	for(var/obj/O in src)
-		O.loc = GET_TURF(src)
+		O.forceMove(GET_TURF(src))
 	icon_state = icon_opened
 	src.opened = 1
 
@@ -59,7 +59,7 @@
 			var/obj/structure/stool/bed/B = O
 			if(B.buckled_mob)
 				continue
-		O.loc = src
+		O.forceMove(src)
 		itemcount++
 
 	icon_state = icon_closed

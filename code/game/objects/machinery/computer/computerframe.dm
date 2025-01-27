@@ -50,7 +50,7 @@
 					icon_state = "1"
 					circuit = P
 					user.drop_item()
-					P.loc = src
+					P.forceMove(src)
 				else
 					to_chat(user, SPAN_WARNING("This frame does not accept circuit boards of this type!"))
 			if(isscrewdriver(P) && circuit)

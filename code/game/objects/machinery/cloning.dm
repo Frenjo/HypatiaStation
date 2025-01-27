@@ -296,7 +296,7 @@
 
 		/*
 		for(var/obj/O in src)
-			O.loc = src.loc
+			O.forceMove(loc)
 		*/
 		return
 
@@ -305,13 +305,13 @@
 
 	/*
 	for(var/obj/O in src)
-		O.loc = src.loc
+		O.forceMove(loc)
 	*/
 
 	if(src.occupant.client)
 		src.occupant.client.eye = src.occupant.client.mob
 		src.occupant.client.perspective = MOB_PERSPECTIVE
-	src.occupant.loc = src.loc
+	occupant.forceMove(loc)
 	src.icon_state = "pod_0"
 	src.eject_wait = 0 //If it's still set somehow.
 	domutcheck(src.occupant) //Waiting until they're out before possible monkeyizing.
@@ -346,22 +346,22 @@
 /obj/machinery/clonepod/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.loc
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
 		if(3.0)
 			if(prob(25))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return

@@ -181,7 +181,7 @@
 	attack_self(mob/user as mob)
 		if(authid)
 			user << "The card falls out."
-			src.authid.loc = GET_TURF(user)
+			authid.forceMove(GET_TURF(user))
 			src.authid = null
 
 		return

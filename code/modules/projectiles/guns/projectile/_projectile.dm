@@ -34,11 +34,11 @@
 	if(isnull(AC) || !istype(AC))
 		return 0
 
-	AC.loc = GET_TURF(src) //Eject casing onto ground.
+	AC.forceMove(GET_TURF(src)) //Eject casing onto ground.
 	if(isnotnull(AC.loaded_bullet))
 		AC.desc += " This one is spent."	//descriptions are magic - only when there's a projectile in the casing
 		in_chamber = AC.loaded_bullet //Load projectile into chamber.
-		AC.loaded_bullet.loc = src //Set projectile loc to gun.
+		AC.loaded_bullet.forceMove(src) //Set projectile loc to gun.
 		return 1
 	return 0
 
@@ -55,19 +55,19 @@
 			if(length(loaded) >= max_shells)
 				break
 			if(AC.caliber == caliber && length(loaded) < max_shells)
-				AC.loc = src
+				AC.forceMove(src)
 				AM.stored_ammo.Remove(AC)
 				loaded.Add(AC)
 				num_loaded++
 		if(load_method == MAGAZINE)
 			user.remove_from_mob(AM)
 			empty_mag = AM
-			empty_mag.loc = src
+			empty_mag.forceMove(src)
 	if(istype(A, /obj/item/ammo_casing) && load_method == SPEEDLOADER)
 		var/obj/item/ammo_casing/AC = A
 		if(AC.caliber == caliber && length(loaded) < max_shells)
 			user.drop_item()
-			AC.loc = src
+			AC.forceMove(src)
 			loaded.Add(AC)
 			num_loaded++
 	if(num_loaded)
@@ -82,14 +82,14 @@
 		if(load_method == SPEEDLOADER)
 			var/obj/item/ammo_casing/AC = loaded[1]
 			loaded.Remove(AC)
-			AC.loc = GET_TURF(src) //Eject casing onto ground.
+			AC.forceMove(GET_TURF(src)) //Eject casing onto ground.
 			to_chat(user, SPAN_INFO("You unload the shells from \the [src]!"))
 		if(load_method == MAGAZINE)
 			var/obj/item/ammo_magazine/AM = empty_mag
 			for(var/obj/item/ammo_casing/AC in loaded)
 				AM.stored_ammo.Add(AC)
 				loaded.Remove(AC)
-			AM.loc = GET_TURF(src)
+			AM.forceMove(GET_TURF(src))
 			empty_mag = null
 			update_icon()
 			AM.update_icon()

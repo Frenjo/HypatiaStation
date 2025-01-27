@@ -48,7 +48,7 @@
 		usr.machine = src
 		if (href_list["modify"])
 			if (src.modify)
-				src.modify.loc = src.loc
+				modify.forceMove(loc)
 				src.modify = null
 				src.mode = null
 			else
@@ -60,7 +60,7 @@
 				src.mode = null
 		if (href_list["modify2"])
 			if (src.modify2)
-				src.modify2.loc = src.loc
+				modify2.forceMove(loc)
 				src.modify2 = null
 				src.mode = null
 			else
@@ -72,7 +72,7 @@
 				src.mode = null
 		if (href_list["scan"])
 			if (src.scan)
-				src.scan.loc = src.loc
+				scan.forceMove(loc)
 				src.scan = null
 				src.mode = null
 			else
@@ -253,7 +253,7 @@
 	usr.stop_pulling()
 	usr.client.perspective = EYE_PERSPECTIVE
 	usr.client.eye = src
-	usr.loc = src
+	usr.forceMove(src)
 	src.occupant = usr
 	src.icon_state = "scanner_1"
 	for(var/obj/O in src)
@@ -276,11 +276,11 @@
 	if (M.client)
 		M.client.perspective = EYE_PERSPECTIVE
 		M.client.eye = src
-	M.loc = src
+	M.forceMove(src)
 	src.occupant = M
 	src.icon_state = "scanner_1"
 	for(var/obj/O in src)
-		O.loc = src.loc
+		O.forceMove(loc)
 		//Foreach goto(154)
 	src.add_fingerprint(user)
 	//G = null
@@ -291,12 +291,12 @@
 	if ((!( src.occupant ) || src.locked))
 		return
 	for(var/obj/O in src)
-		O.loc = src.loc
+		O.forceMove(loc)
 		//Foreach goto(30)
 	if (src.occupant.client)
 		src.occupant.client.eye = src.occupant.client.mob
 		src.occupant.client.perspective = MOB_PERSPECTIVE
-	src.occupant.loc = src.loc
+	occupant.forceMove(loc)
 	src.occupant = null
 	src.icon_state = "scanner_0"
 	return
@@ -304,8 +304,8 @@
 /obj/machinery/dna_scanner/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.loc
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(loc)
 				ex_act(severity)
 				//Foreach goto(35)
 			//SN src = null
@@ -313,8 +313,8 @@
 			return
 		if(2.0)
 			if (prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 					//Foreach goto(108)
 				//SN src = null
@@ -322,8 +322,8 @@
 				return
 		if(3.0)
 			if (prob(25))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 					//Foreach goto(181)
 				//SN src = null
@@ -335,8 +335,8 @@
 
 /obj/machinery/dna_scanner/blob_act()
 	if(prob(75))
-		for(var/atom/movable/A as mob|obj in src)
-			A.loc = src.loc
+		for_no_type_check(var/atom/movable/mover, src)
+			mover.forceMove(loc)
 		del(src)
 
 /obj/machinery/scan_console/ex_act(severity)
@@ -652,7 +652,7 @@
 				src.connected.locked = !( src.connected.locked )
 		if (href_list["scan"])
 			if (src.scan)
-				src.scan.loc = src.loc
+				scan.forceMove(loc)
 				src.scan = null
 			else
 				var/obj/item/I = usr.equipped()
@@ -729,7 +729,7 @@
 						M << "Transferring..."
 						M.client.mob = O
 					O << "Neural Sequencing Complete!"
-					O.loc = src
+					O.forceMove(src)
 					src.occupant = O
 					//M = null
 					del(M)
@@ -752,7 +752,7 @@
 						M << "Transferring..."
 						M.client.mob = O
 					O << "Neural Sequencing Complete!"
-					O.loc = src
+					O.forceMove(src)
 					O << "Genetic Transversal Complete!"
 					src.occupant = O
 					del(M)
@@ -874,7 +874,7 @@
 	usr.stop_pulling()
 	usr.client.perspective = EYE_PERSPECTIVE
 	usr.client.eye = src
-	usr.loc = src
+	usr.forceMove(src)
 	src.occupant = usr
 	src.icon_state = "restruct_1"
 	for(var/obj/O in src)
@@ -905,11 +905,11 @@
 	if (M.client)
 		M.client.perspective = EYE_PERSPECTIVE
 		M.client.eye = src
-	M.loc = src
+	M.forceMove(src)
 	src.occupant = M
 	src.icon_state = "restruct_1"
 	for(var/obj/O in src)
-		O.loc = src.loc
+		O.forceMove(loc)
 		//Foreach goto(154)
 	src.add_fingerprint(user)
 	//G = null
@@ -920,12 +920,12 @@
 	if ((!( src.occupant ) || src.locked))
 		return
 	for(var/obj/O in src)
-		O.loc = src.loc
+		O.forceMove(loc)
 		//Foreach goto(30)
 	if (src.occupant.client)
 		src.occupant.client.eye = src.occupant.client.mob
 		src.occupant.client.perspective = MOB_PERSPECTIVE
-	src.occupant.loc = src.loc
+	occupant.forceMove(loc)
 	src.occupant = null
 	src.icon_state = "restruct_0"
 	return
@@ -933,22 +933,22 @@
 /obj/machinery/restruct/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.loc
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(loc)
 				ex_act(severity)
 			del(src)
 			return
 		if(2.0)
 			if (prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 				del(src)
 				return
 		if(3.0)
 			if (prob(25))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 				del(src)
 				return
@@ -957,6 +957,6 @@
 
 /obj/machinery/restruct/blob_act()
 	if(prob(75))
-		for(var/atom/movable/A as mob|obj in src)
-			A.loc = src.loc
+		for_no_type_check(var/atom/movable/mover, src)
+			mover.forceMove(loc)
 		del(src)

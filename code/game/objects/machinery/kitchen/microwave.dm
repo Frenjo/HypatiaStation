@@ -95,7 +95,7 @@
 		else
 		//	user.before_take_item(O)	//This just causes problems so far as I can tell. -Pete
 			user.drop_item()
-			O.loc = src
+			O.forceMove(src)
 			user.visible_message(SPAN_INFO("[user] has added \the [O] to \the [src]."), SPAN_INFO("You add \the [O] to \the [src]."))
 
 	else if(istype(O, /obj/item/reagent_holder/glass) || istype(O, /obj/item/reagent_holder/food/drinks) || istype(O, /obj/item/reagent_holder/food/condiment))
@@ -212,7 +212,7 @@
 			wzhzhzh(4)
 			muck_finish()
 			cooked = fail()
-			cooked.loc = src.loc
+			cooked.forceMove(loc)
 			return
 		else if(has_extra_item())
 			if(!wzhzhzh(4))
@@ -220,7 +220,7 @@
 				return
 			broke()
 			cooked = fail()
-			cooked.loc = src.loc
+			cooked.forceMove(loc)
 			return
 		else
 			if(!wzhzhzh(10))
@@ -228,7 +228,7 @@
 				return
 			stop()
 			cooked = fail()
-			cooked.loc = src.loc
+			cooked.forceMove(loc)
 			return
 	else
 		var/halftime = round(recipe.time / 10 / 2)
@@ -238,12 +238,12 @@
 		if(!wzhzhzh(halftime))
 			abort()
 			cooked = fail()
-			cooked.loc = src.loc
+			cooked.forceMove(loc)
 			return
 		cooked = recipe.make_food(src)
 		stop()
 		if(cooked)
-			cooked.loc = src.loc
+			cooked.forceMove(loc)
 		return
 
 /obj/machinery/microwave/proc/wzhzhzh(seconds as num)
@@ -279,7 +279,7 @@
 
 /obj/machinery/microwave/proc/dispose()
 	for(var/obj/O in contents)
-		O.loc = src.loc
+		O.forceMove(loc)
 	if(src.reagents.total_volume)
 		src.dirty++
 	src.reagents.clear_reagents()

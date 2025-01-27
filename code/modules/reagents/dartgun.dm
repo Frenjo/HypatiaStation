@@ -85,7 +85,7 @@
 
 		user.drop_item()
 		cartridge = D
-		D.loc = src
+		D.forceMove(src)
 		to_chat(user, SPAN_INFO("You slot [D] into [src]."))
 		update_icon()
 		return
@@ -98,7 +98,7 @@
 			return
 		var/obj/item/reagent_holder/glass/beaker/B = I
 		user.drop_item()
-		B.loc = src
+		B.forceMove(src)
 		beakers += B
 		to_chat(user, SPAN_INFO("You slot [B] into [src]."))
 		src.updateUsrDialog()
@@ -116,7 +116,7 @@
 	if(cartridge)
 		to_chat(usr, SPAN_INFO("You pop the cartridge out of [src]."))
 		var/obj/item/dart_cartridge/C = cartridge
-		C.loc = GET_TURF(src)
+		C.forceMove(GET_TURF(src))
 		C.update_icon()
 		cartridge = null
 		src.update_icon()
@@ -276,7 +276,7 @@
 				to_chat(usr, "You remove [B] from [src].")
 				mixing -= B
 				beakers -= B
-				B.loc = GET_TURF(src)
+				B.forceMove(GET_TURF(src))
 	else if (href_list["eject_cart"])
 		remove_cartridge()
 	src.updateUsrDialog()

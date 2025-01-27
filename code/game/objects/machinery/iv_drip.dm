@@ -124,7 +124,7 @@
 
 /obj/machinery/iv_drip/attack_hand(mob/user)
 	if(src.beaker)
-		src.beaker.loc = GET_TURF(src)
+		beaker.forceMove(GET_TURF(src))
 		src.beaker = null
 		update_icon()
 	else

@@ -133,7 +133,7 @@
 			else // Otherwise we assume they were dropped to the ground during deconstruction, and were not removed from the component_parts list by deconstruction code.
 				component_parts.Remove(part)
 	if(length(contents)) // The same for contents.
-		for_no_type_check(var/atom/movable/mover, contents)
+		for_no_type_check(var/atom/movable/mover, src)
 			qdel(mover)
 	return ..()
 

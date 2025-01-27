@@ -26,7 +26,7 @@
 			if(source.client)
 				source.client.screen -= W
 			if(W)
-				W.loc = source.loc
+				W.forceMove(source.loc)
 				dropped(source)
 				if(W)
 					W.reset_plane_and_layer()
@@ -37,7 +37,7 @@
 			if(source.client)
 				source.client.screen -= W
 			if(W)
-				W.loc = source.loc
+				W.forceMove(source.loc)
 				dropped(source)
 				if(W)
 					W.reset_plane_and_layer()

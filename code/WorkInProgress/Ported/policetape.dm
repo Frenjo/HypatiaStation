@@ -109,7 +109,7 @@
 	if(ismob(AM))
 		var/mob/M = AM
 		if(src.allowed(M))
-			M.loc = GET_TURF(src)
+			M.forceMove(GET_TURF(src))
 
 /obj/item/tape/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(!density)

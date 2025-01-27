@@ -316,7 +316,7 @@ obj/machinery/computer/airtunnel/attack_ai(user as mob)
 		usr.machine = src
 		if (href_list["card"])
 			if (src.scan)
-				src.scan.loc = src.loc
+				scan.forceMove(loc)
 				src.scan = null
 			else
 				var/obj/item/card/id/I = usr.equipped()

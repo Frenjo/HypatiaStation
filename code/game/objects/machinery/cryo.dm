@@ -289,7 +289,7 @@
 		M.client.perspective = EYE_PERSPECTIVE
 		M.client.eye = src
 	M.stop_pulling()
-	M.loc = src
+	M.forceMove(src)
 	M.ExtinguishMob()
 	if(M.health > -100 && (M.health < 0 || M.sleeping))
 		to_chat(M, SPAN_INFO_B("You feel a cold liquid surround you. Your skin starts to freeze up."))

@@ -184,7 +184,7 @@ What a mess.*/
 					if(ishuman(usr) && !usr.get_active_hand())
 						usr.put_in_hands(scan)
 					else
-						scan.loc = GET_TURF(src)
+						scan.forceMove(GET_TURF(src))
 					scan = null
 				else
 					var/obj/item/I = usr.get_active_hand()

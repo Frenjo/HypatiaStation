@@ -113,9 +113,9 @@
 		brainmob.client.perspective = EYE_PERSPECTIVE
 	*/
 		occupant = brainmob
-		brainmob.loc = src //should allow relaymove
+		brainmob.forceMove(src) //should allow relaymove
 		brainmob.canmove = TRUE
-		mmi_as_oc.loc = src
+		mmi_as_oc.forceMove(src)
 		verbs.Remove(/obj/mecha/verb/eject)
 		Entered(mmi_as_oc)
 		Move(loc)

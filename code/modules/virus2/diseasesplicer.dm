@@ -124,7 +124,7 @@
 		scanning = 10
 
 	else if(href_list["eject"])
-		dish.loc = src.loc
+		dish.forceMove(loc)
 		dish = null
 
 	else if(href_list["splice"])

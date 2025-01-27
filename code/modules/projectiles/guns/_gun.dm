@@ -149,7 +149,7 @@
 		)
 
 	in_chamber.original = target
-	in_chamber.loc = GET_TURF(user)
+	in_chamber.forceMove(GET_TURF(user))
 	in_chamber.starting = GET_TURF(user)
 	in_chamber.shot_from = src
 	user.next_move = world.time + 4

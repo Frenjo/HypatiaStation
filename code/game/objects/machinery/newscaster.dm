@@ -757,7 +757,7 @@
 	if(istype(user.get_active_hand(), /obj/item/photo))
 		photo = user.get_active_hand()
 		user.drop_item()
-		photo.loc = src
+		photo.forceMove(src)
 
 //########################################################################################################################
 //###################################### NEWSPAPER! ######################################################################
@@ -937,7 +937,7 @@
 		NEWSPAPER.news_content += FC
 	if(global.CTeconomy.news_network.wanted_issue)
 		NEWSPAPER.important_message = global.CTeconomy.news_network.wanted_issue
-	NEWSPAPER.loc = GET_TURF(src)
+	NEWSPAPER.forceMove(GET_TURF(src))
 	paper_remaining--
 	return
 

@@ -126,7 +126,7 @@ var/list/alldepartments = list("Central Command")
 					usr.put_in_hands(scan)
 				scan = null
 			else
-				scan.loc = src.loc
+				scan.forceMove(loc)
 				scan = null
 		else
 			var/obj/item/I = usr.get_active_hand()
@@ -175,7 +175,7 @@ var/list/alldepartments = list("Central Command")
 		var/obj/item/card/id/card = I
 		if(isnull(scan))
 			usr.drop_item()
-			card.loc = src
+			card.forceMove(src)
 			scan = card
 		return TRUE
 

@@ -96,7 +96,7 @@
 			"You hear metal clanking."
 		)
 	M.buckled = src
-	M.loc = src.loc
+	M.forceMove(loc)
 	M.set_dir(src.dir)
 	M.update_canmove()
 	src.buckled_mob = M
@@ -127,7 +127,7 @@
 	..()
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
-			buckled_mob.loc = src.loc
+			buckled_mob.forceMove(loc)
 		else
 			buckled_mob = null
 

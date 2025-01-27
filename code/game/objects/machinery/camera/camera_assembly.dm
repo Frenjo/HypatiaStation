@@ -126,7 +126,7 @@
 		if(isnotnull(U))
 			to_chat(user, SPAN_NOTICE("You unattach an upgrade from the assembly."))
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
-			U.loc = GET_TURF(src)
+			U.forceMove(GET_TURF(src))
 			upgrades.Remove(U)
 		else
 			to_chat(user, SPAN_WARNING("There are no upgrades to unattach."))

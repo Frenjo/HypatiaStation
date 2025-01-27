@@ -220,7 +220,7 @@
 
 	holstered = W
 	user.drop_from_inventory(holstered)
-	holstered.loc = src
+	holstered.forceMove(src)
 	holstered.add_fingerprint(user)
 	user.visible_message(SPAN_INFO("[user] holsters the [holstered]."), "You holster the [holstered].")
 

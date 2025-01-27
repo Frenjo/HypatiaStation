@@ -149,7 +149,7 @@
 			return 1
 		else
 			user.before_take_item(O)
-			O.loc = src
+			O.forceMove(src)
 			if(item_quants[O.name])
 				item_quants[O.name]++
 			else
@@ -318,7 +318,7 @@
 		var/i = amount
 		for(var/obj/O in contents)
 			if(O.name == N)
-				O.loc = src.loc
+				O.forceMove(loc)
 				i--
 				if(i <= 0)
 					break
@@ -386,7 +386,7 @@
 		item_quants[O]--
 		for(var/obj/T in contents)
 			if(T.name == O)
-				T.loc = src.loc
+				T.forceMove(loc)
 				throw_item = T
 				break
 		break

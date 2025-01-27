@@ -109,7 +109,7 @@
 		SPAN_WARNING("[user] fires [src]!"),
 		SPAN_WARNING("You fire [src]!")
 	)
-	spike.loc = GET_TURF(src)
+	spike.forceMove(GET_TURF(src))
 	spike.throw_at(target, 10, fire_force)
 	spike = null
 	update_icon()

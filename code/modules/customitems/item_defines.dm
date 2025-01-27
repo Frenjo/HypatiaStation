@@ -797,7 +797,7 @@
 /obj/item/clothing/tie/fluff/konaa_hirano/attack_self(mob/user)
 	if(held)
 		user << "You open [src] and [held] falls out."
-		held.loc = GET_TURF(user)
+		held.forceMove(GET_TURF(user))
 		src.held = null
 
 /obj/item/clothing/tie/fluff/konaa_hirano/attackby(obj/item/O, mob/user)
@@ -807,7 +807,7 @@
 		else
 			usr << "You slip [O] into [src]."
 			user.drop_item()
-			O.loc = src
+			O.forceMove(src)
 			src.held = O
 		return
 	..()

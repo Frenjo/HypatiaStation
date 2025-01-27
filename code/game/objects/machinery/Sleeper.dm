@@ -180,9 +180,9 @@
 
 /obj/machinery/sleeper/blob_act()
 	if(prob(75))
-		for(var/atom/movable/A as mob|obj in src)
-			A.loc = src.loc
-			A.blob_act()
+		for_no_type_check(var/atom/movable/mover, src)
+			mover.forceMove(loc)
+			mover.blob_act()
 		qdel(src)
 	return
 
@@ -207,7 +207,7 @@
 	if(isnotnull(grabbed.client))
 		grabbed.client.perspective = EYE_PERSPECTIVE
 		grabbed.client.eye = src
-	grabbed.loc = src
+	grabbed.forceMove(src)
 	occupant = grabbed
 	if(orient == "RIGHT")
 		icon_state = "sleeper_1-r"
@@ -226,7 +226,7 @@
 			return TRUE
 		beaker = G
 		user.drop_item()
-		G.loc = src
+		G.forceMove(src)
 		user.visible_message(
 			"[user] adds \a [G] to \the [src]!",
 			"You add \a [G] to \the [src]!"
@@ -240,22 +240,22 @@
 		toggle_filter()
 	switch(severity)
 		if(1.0)
-			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.loc
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
 		if(3.0)
 			if(prob(25))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
@@ -303,7 +303,7 @@
 	if(src.occupant.client)
 		src.occupant.client.eye = src.occupant.client.mob
 		src.occupant.client.perspective = MOB_PERSPECTIVE
-	src.occupant.loc = src.loc
+	occupant.forceMove(loc)
 	src.occupant = null
 	if(orient == "RIGHT")
 		icon_state = "sleeper_0-r"
@@ -400,7 +400,7 @@
 		usr.stop_pulling()
 		usr.client.perspective = EYE_PERSPECTIVE
 		usr.client.eye = src
-		usr.loc = src
+		usr.forceMove(src)
 		src.occupant = usr
 		src.icon_state = "sleeper_1"
 		if(orient == "RIGHT")

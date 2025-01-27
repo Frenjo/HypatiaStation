@@ -58,7 +58,7 @@
 
 /obj/item/stool/attack_self(mob/user)
 	..()
-	origin.loc = GET_TURF(src)
+	origin.forceMove(GET_TURF(src))
 	user.u_equip(src)
 	user.visible_message(
 		SPAN_INFO("[user] puts [src] down."),

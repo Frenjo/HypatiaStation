@@ -100,7 +100,7 @@
 	if(istype(I, /obj/item/cell) && open && !cell)
 		var/obj/item/cell/C = I
 		user.drop_item()
-		C.loc = src
+		C.forceMove(src)
 		cell = C
 		updateDialog()
 	else if(isscrewdriver(I))
@@ -289,7 +289,7 @@
 					if(istype(C))
 						usr.drop_item()
 						cell = C
-						C.loc = src
+						C.forceMove(src)
 						C.add_fingerprint(usr)
 
 						usr.visible_message(
@@ -410,7 +410,7 @@
 	sleep(2)
 	if(C.loc != loc) //To prevent you from going onto more thano ne bot.
 		return
-	C.loc = src
+	C.forceMove(src)
 	load = C
 
 	C.pixel_y += 9

@@ -29,7 +29,7 @@
 	if(throwforce == 15) // The rod has been superheated - we don't want it to be useable when removed from the bow.
 		to_chat(user, "[src] shatters into a scattering of overstressed metal shards as it leaves the crossbow.")
 		var/obj/item/shard/shrapnel/S = new /obj/item/shard/shrapnel()
-		S.loc = GET_TURF(src)
+		S.forceMove(GET_TURF(src))
 		qdel(src)
 
 /obj/item/crossbow
@@ -57,7 +57,7 @@
 		if(istype(W, /obj/item/arrow))
 			user.drop_item()
 			arrow = W
-			arrow.loc = src
+			arrow.forceMove(src)
 			user.visible_message(
 				"[user] slides [arrow] into [src].",
 				"You slide [arrow] into [src]."
@@ -69,7 +69,7 @@
 			R.use(1)
 			arrow = new /obj/item/arrow/rod(src)
 			arrow.last_fingerprints = last_fingerprints
-			arrow.loc = src
+			arrow.forceMove(src)
 			icon_state = "crossbow-nocked"
 			user.visible_message("[user] haphazardly jams [arrow] into [src].", "You jam [arrow] into [src].")
 			if(isnotnull(cell))
@@ -98,7 +98,7 @@
 	else if(isscrewdriver(W))
 		if(isnotnull(cell))
 			var/obj/item/C = cell
-			C.loc = GET_TURF(user)
+			C.forceMove(GET_TURF(user))
 			cell = null
 			to_chat(user, SPAN_NOTICE("You jimmy [cell] out of [src] with [W]."))
 		else
@@ -115,7 +115,7 @@
 				"You relax the tension on [src]'s string and remove [arrow]."
 			)
 			var/obj/item/arrow/A = arrow
-			A.loc = GET_TURF(src)
+			A.forceMove(GET_TURF(src))
 			A.removed(user)
 			arrow = null
 		else
@@ -203,7 +203,7 @@
 	)
 
 	var/obj/item/arrow/A = arrow
-	A.loc = GET_TURF(user)
+	A.forceMove(GET_TURF(user))
 	A.throw_at(target, 10, tension * release_speed)
 	arrow = null
 	tension = 0
@@ -212,7 +212,7 @@
 /obj/item/crossbow/dropped(mob/user)
 	if(isnotnull(arrow))
 		var/obj/item/arrow/A = arrow
-		A.loc = GET_TURF(src)
+		A.forceMove(GET_TURF(src))
 		A.removed(user)
 		arrow = null
 		tension = 0

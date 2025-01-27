@@ -127,7 +127,7 @@
 		if(!copy && !photocopy)
 			user.drop_item()
 			copy = O
-			O.loc = src
+			O.forceMove(src)
 			to_chat(user, SPAN_NOTICE("You insert the paper into \the [src]."))
 			flick("bigscanner1", src)
 			updateUsrDialog()
@@ -137,7 +137,7 @@
 		if(!copy && !photocopy)
 			user.drop_item()
 			photocopy = O
-			O.loc = src
+			O.forceMove(src)
 			to_chat(user, SPAN_NOTICE("You insert the photo into \the [src]."))
 			flick("bigscanner1", src)
 			updateUsrDialog()

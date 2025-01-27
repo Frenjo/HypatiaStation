@@ -69,7 +69,7 @@
 	if(!do_after(usr, 50))
 		return
 
-	usr.loc = GET_TURF(src)
+	usr.forceMove(GET_TURF(src))
 	if(GET_TURF(usr) == GET_TURF(src))
 		usr.visible_message(SPAN_WARNING("[usr] climbs onto \the [src]!"))
 

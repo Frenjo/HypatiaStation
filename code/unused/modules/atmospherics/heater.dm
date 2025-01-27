@@ -159,7 +159,7 @@
 								if (href_list["tank"])
 									var/cp = text2num(href_list["tank"])
 									if ((cp == 1 && src.holding))
-										src.holding.loc = src.loc
+										holding.forceMove(loc)
 										src.holding = null
 										if (src.t_status == 2)
 											src.t_status = 3
@@ -177,7 +177,7 @@
 			return
 		var/obj/item/tank/T = W
 		user.drop_item()
-		T.loc = src
+		T.forceMove(src)
 		src.holding = T
 	else
 		if(iswrench(W))

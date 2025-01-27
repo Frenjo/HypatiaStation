@@ -60,7 +60,7 @@
 					to_chat(user, SPAN_INFO("You add the circuit board to the frame."))
 					circuit = P
 					user.drop_item()
-					P.loc = src
+					P.forceMove(src)
 					icon_state = "box_2"
 					state = 3
 					components = list()
@@ -147,7 +147,7 @@
 										update_desc()
 										break
 								user.drop_item()
-								P.loc = src
+								P.forceMove(src)
 								components.Add(P)
 								req_components[I]--
 								update_desc()

@@ -42,7 +42,7 @@
 			return 1
 		else
 			user.before_take_item(O)
-			O.loc = src
+			O.forceMove(src)
 			beaker = O
 			src.verbs += /obj/machinery/juicer/verb/detach
 			update_icon()
@@ -52,7 +52,7 @@
 		user << "It looks as not containing any juice."
 		return 1
 	user.before_take_item(O)
-	O.loc = src
+	O.forceMove(src)
 	src.updateUsrDialog()
 	return 0
 
@@ -129,7 +129,7 @@
 	if(!beaker)
 		return
 	src.verbs -= /obj/machinery/juicer/verb/detach
-	beaker.loc = src.loc
+	beaker.forceMove(loc)
 	beaker = null
 	update_icon()
 

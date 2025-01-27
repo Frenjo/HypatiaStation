@@ -44,7 +44,7 @@
 				icon_state = "1"
 				circuit = object
 				user.drop_item()
-				object.loc = src
+				object.forceMove(src)
 			if(isscrewdriver(object) && circuit)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				to_chat(user, SPAN_INFO("You screw the circuit board into place."))
@@ -134,7 +134,7 @@
 					global.PCticker.mode.remove_revolutionary(mmi.brainmob.mind, 1)
 
 				user.drop_item()
-				mmi.loc = src
+				mmi.forceMove(src)
 				brain = mmi
 				to_chat(user, "Added [mmi].")
 				icon_state = "3b"

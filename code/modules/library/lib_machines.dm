@@ -409,7 +409,7 @@
 /obj/machinery/libraryscanner/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/book))
 		user.drop_item()
-		O.loc = src
+		O.forceMove(src)
 
 /obj/machinery/libraryscanner/attack_hand(mob/user)
 	usr.set_machine(src)
@@ -440,7 +440,7 @@
 		cache = null
 	if(href_list["eject"])
 		for(var/obj/item/book/B in contents)
-			B.loc = src.loc
+			B.forceMove(loc)
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()
 	return
@@ -458,7 +458,7 @@
 /obj/machinery/bookbinder/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/paper))
 		user.drop_item()
-		O.loc = src
+		O.forceMove(src)
 		user.visible_message(
 			"[user] loads some paper into [src].",
 			"You load some paper into [src]."

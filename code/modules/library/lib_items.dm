@@ -27,7 +27,7 @@
 /obj/structure/bookcase/attackby(obj/O, mob/user)
 	if(istype(O, /obj/item/book))
 		user.drop_item()
-		O.loc = src
+		O.forceMove(src)
 		update_icon()
 	else if(istype(O, /obj/item/pen))
 		var/newname = stripped_input(usr, "What would you like to title this bookshelf?")
@@ -48,7 +48,7 @@
 				if(!user.get_active_hand())
 					user.put_in_hands(choice)
 			else
-				choice.loc = GET_TURF(src)
+				choice.forceMove(GET_TURF(src))
 			update_icon()
 
 /obj/structure/bookcase/ex_act(severity)
@@ -61,14 +61,14 @@
 		if(2.0)
 			for(var/obj/item/book/b in contents)
 				if(prob(50))
-					b.loc = GET_TURF(src)
+					b.forceMove(GET_TURF(src))
 				else qdel(b)
 			qdel(src)
 			return
 		if(3.0)
 			if(prob(50))
 				for(var/obj/item/book/b in contents)
-					b.loc = GET_TURF(src)
+					b.forceMove(GET_TURF(src))
 				qdel(src)
 			return
 		else
@@ -140,7 +140,7 @@
 	if(carved)
 		if(store)
 			to_chat(user, SPAN_NOTICE("[store] falls out of [title]!"))
-			store.loc = GET_TURF(src)
+			store.forceMove(GET_TURF(src))
 			store = null
 			return
 		else

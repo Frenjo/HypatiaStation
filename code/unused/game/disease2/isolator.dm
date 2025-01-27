@@ -36,7 +36,7 @@
 
 		src.beaker =  B
 		user.drop_item()
-		B.loc = src
+		B.forceMove(src)
 		if(istype(B,/obj/item/reagent_holder/syringe))
 			user << "You add the syringe to the machine!"
 			src.updateUsrDialog()

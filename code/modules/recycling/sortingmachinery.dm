@@ -11,7 +11,7 @@
 
 /obj/structure/big_delivery/Destroy()
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
-		wrapped.loc = GET_TURF(src)
+		wrapped.forceMove(GET_TURF(src))
 		if(istype(wrapped, /obj/structure/closet))
 			var/obj/structure/closet/O = wrapped
 			O.welded = 0
@@ -23,7 +23,7 @@
 
 /obj/structure/big_delivery/attack_hand(mob/user)
 	if(wrapped) //sometimes items can disappear. For example, bombs. --rastaf0
-		wrapped.loc = GET_TURF(src)
+		wrapped.forceMove(GET_TURF(src))
 		if(istype(wrapped, /obj/structure/closet))
 			var/obj/structure/closet/O = wrapped
 			O.welded = 0
@@ -66,7 +66,7 @@
 		if(ishuman(user))
 			user.put_in_hands(wrapped)
 		else
-			wrapped.loc = GET_TURF(src)
+			wrapped.forceMove(GET_TURF(src))
 
 	qdel(src)
 	return
@@ -249,10 +249,10 @@
 
 	if(isobj(AM))
 		var/obj/O = AM
-		O.loc = src
+		O.forceMove(src)
 	else if(ismob(AM))
 		var/mob/M = AM
-		M.loc = src
+		M.forceMove(src)
 	src.flush()
 
 /obj/machinery/disposal/delivery_chute/flush()

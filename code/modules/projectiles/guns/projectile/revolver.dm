@@ -97,7 +97,7 @@
 /obj/item/gun/projectile/detective/semiauto/afterattack(atom/target, mob/living/user, flag)
 	..()
 	if(!length(loaded) && empty_mag)
-		empty_mag.loc = GET_TURF(src)
+		empty_mag.forceMove(GET_TURF(src))
 		empty_mag = null
 		to_chat(user, SPAN_NOTICE("The magazine falls out and clatters on the floor!"))
 
@@ -148,7 +148,7 @@
 			if(getAmmo() > 0 || length(loaded) >= max_shells)
 				break
 			if(AC.caliber == caliber && length(loaded) < max_shells)
-				AC.loc = src
+				AC.forceMove(src)
 				AM.stored_ammo -= AC
 				loaded += AC
 				num_loaded++

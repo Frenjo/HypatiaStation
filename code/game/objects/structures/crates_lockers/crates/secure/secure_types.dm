@@ -88,12 +88,12 @@ periods of time. There is some small print on top, \n \
 				continue
 			if(!S.anchored)
 				found = 1
-				S.loc = src
+				S.forceMove(src)
 				break
 		if(!found)
 			for(var/obj/machinery/M in src.loc)
 				if(!M.anchored)
-					M.loc = src
+					M.forceMove(src)
 					break
 	return
 

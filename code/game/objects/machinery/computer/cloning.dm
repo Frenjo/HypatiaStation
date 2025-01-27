@@ -269,7 +269,7 @@
 				src.temp = "Load successful."
 			if("eject")
 				if (isnotnull(src.diskette))
-					src.diskette.loc = src.loc
+					diskette.forceMove(loc)
 					src.diskette = null
 
 	else if (href_list["save_disk"]) //Save to disk!

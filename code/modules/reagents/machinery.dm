@@ -211,7 +211,7 @@
 			to_chat(user, SPAN_NOTICE("This machine only accepts beakers."))
 		src.beaker =  B
 		user.drop_item()
-		B.loc = src
+		B.forceMove(src)
 		to_chat(user, "You set [B] on the machine.")
 		global.PCnanoui.update_uis(src) // update all UIs attached to src
 		return
@@ -337,7 +337,7 @@
 			return
 		src.beaker = B
 		user.drop_item()
-		B.loc = src
+		B.forceMove(src)
 		to_chat(user, "You add the beaker to the machine!")
 		src.updateUsrDialog()
 		icon_state = "mixer1"
@@ -349,7 +349,7 @@
 
 		src.loaded_pill_bottle = B
 		user.drop_item()
-		B.loc = src
+		B.forceMove(src)
 		to_chat(user, "You add the pill bottle into the dispenser slot!")
 		src.updateUsrDialog()
 	return
@@ -367,7 +367,7 @@
 
 	if(href_list["ejectp"])
 		if(loaded_pill_bottle)
-			loaded_pill_bottle.loc = src.loc
+			loaded_pill_bottle.forceMove(loc)
 			loaded_pill_bottle = null
 	else if(href_list["close"])
 		usr << browse(null, "window=chemmaster")
@@ -935,7 +935,7 @@
 		else
 			src.beaker =  O
 			user.drop_item()
-			O.loc = src
+			O.forceMove(src)
 			update_icon()
 			src.updateUsrDialog()
 			return 0
@@ -948,7 +948,7 @@
 	if(istype(O, /obj/item/storage/bag/plants))
 		for(var/obj/item/reagent_holder/food/snacks/grown/G in O.contents)
 			O.contents -= G
-			G.loc = src
+			G.forceMove(src)
 			holdingitems += G
 			if(length(holdingitems) >= limit) //Sanity checking so the blender doesn't overfill
 				to_chat(user, "You fill the All-In-One grinder to the brim.")
@@ -965,7 +965,7 @@
 		return 1
 
 	user.before_take_item(O)
-	O.loc = src
+	O.forceMove(src)
 	holdingitems += O
 	src.updateUsrDialog()
 	return 0
@@ -1047,7 +1047,7 @@
 		return
 	if(!beaker)
 		return
-	beaker.loc = src.loc
+	beaker.forceMove(loc)
 	beaker = null
 	update_icon()
 
@@ -1058,7 +1058,7 @@
 		return
 
 	for(var/obj/item/O in holdingitems)
-		O.loc = src.loc
+		O.forceMove(loc)
 		holdingitems -= O
 	holdingitems = list()
 

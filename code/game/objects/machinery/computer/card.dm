@@ -20,16 +20,16 @@
 		if(ACCESS_CHANGE_IDS in idcard.access)
 			if(!scan)
 				user.drop_item()
-				idcard.loc = src
+				idcard.forceMove(src)
 				scan = idcard
 			else if(!modify)
 				user.drop_item()
-				idcard.loc = src
+				idcard.forceMove(src)
 				modify = idcard
 		else
 			if(!modify)
 				user.drop_item()
-				idcard.loc = src
+				idcard.forceMove(src)
 				modify = idcard
 		return TRUE
 	return ..()
@@ -226,7 +226,7 @@
 						usr.put_in_hands(scan)
 					scan = null
 				else
-					scan.loc = src.loc
+					scan.forceMove(loc)
 					scan = null
 			else
 				var/obj/item/I = usr.get_active_hand()

@@ -85,7 +85,7 @@
 			return
 		var/obj/item/tank/T = W
 		user.drop_item()
-		T.loc = src
+		T.forceMove(src)
 		holding = T
 		update_icon()
 		return

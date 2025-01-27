@@ -111,7 +111,7 @@ Class Procs:
 	invalid = TRUE
 	global.PCair.remove_zone(src)
 	#ifdef ZASDBG
-	for_no_type_check(var/turf/open/T, contents)
+	for_no_type_check(var/turf/open/T, src)
 		T.dbg(invalid_zone)
 	#endif
 

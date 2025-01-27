@@ -56,7 +56,7 @@
 					user << "\blue You add the circuit board to the frame."
 					circuit = P
 					user.drop_item()
-					P.loc = src
+					P.forceMove(src)
 					icon_state = "wm_2"
 					state = 3
 					components = list()
@@ -87,7 +87,7 @@
 			if(iscrowbar(P))
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 50, 1)
 				state = 2
-				circuit.loc = src.loc
+				circuit.forceMove(loc)
 				circuit = null
 				if(components.len == 0)
 					user << "\blue You remove the circuit board."
@@ -149,7 +149,7 @@
 								update_desc()
 								break
 						user.drop_item()
-						P.loc = src
+						P.forceMove(src)
 						components += P
 						req_components[I]--
 						update_desc()

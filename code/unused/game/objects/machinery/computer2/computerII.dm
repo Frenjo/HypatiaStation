@@ -216,7 +216,7 @@
 		switch(href_list["id"])
 			if("auth")
 				if(isnotnull(src.authid))
-					src.authid.loc = GET_TURF(src)
+					authid.forceMove(GET_TURF(src))
 					src.authid = null
 				else
 					var/obj/item/I = usr.equipped()
@@ -226,7 +226,7 @@
 						src.authid = I
 			if("aux")
 				if(isnotnull(src.auxid))
-					src.auxid.loc = GET_TURF(src)
+					auxid.forceMove(GET_TURF(src))
 					src.auxid = null
 				else
 					var/obj/item/I = usr.equipped()
@@ -238,7 +238,7 @@
 	//Same but for a data disk
 	else if (href_list["disk"])
 		if(isnotnull(src.diskette))
-			src.diskette.loc = GET_TURF(src)
+			diskette.forceMove(GET_TURF(src))
 			src.diskette = null
 /*		else
 			var/obj/item/I = usr.equipped()
@@ -307,14 +307,14 @@
 				A.peripherals.Add(C)
 
 			if(src.diskette)
-				src.diskette.loc = src.loc
+				diskette.forceMove(loc)
 
 			//TO-DO: move card reading to peripheral cards instead
 			if(src.authid)
-				src.authid.loc = src.loc
+				authid.forceMove(loc)
 
 			if(src.auxid)
-				src.auxid.loc = src.loc
+				auxid.forceMove(loc)
 
 			if(src.hd)
 				src.hd.loc = A

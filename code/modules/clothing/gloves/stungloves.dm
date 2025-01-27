@@ -44,7 +44,7 @@
 		if(cell)
 			cell.updateicon()
 			to_chat(user, SPAN_NOTICE("You cut the [cell] away from the [src]."))
-			cell.loc = GET_TURF(src)
+			cell.forceMove(GET_TURF(src))
 			cell = null
 			update_icon()
 			return

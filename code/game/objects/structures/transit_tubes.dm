@@ -89,7 +89,7 @@
 		to_chat(AM, SPAN_WARNING("The tube's support pylons block your way."))
 		return ..()
 	else
-		AM.loc = src.loc
+		AM.forceMove(loc)
 		to_chat(AM, SPAN_INFO("You slip under the tube."))
 
 /obj/structure/transit_tube/station/New(loc)

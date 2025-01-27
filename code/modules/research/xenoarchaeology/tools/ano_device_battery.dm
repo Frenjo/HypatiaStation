@@ -183,7 +183,7 @@
 		archived_time = time
 	if(href_list["ejectbattery"])
 		shutdown_emission()
-		inserted_battery.loc = GET_TURF(src)
+		inserted_battery.forceMove(GET_TURF(src))
 		inserted_battery = null
 		UpdateSprite()
 	if(href_list["close"])

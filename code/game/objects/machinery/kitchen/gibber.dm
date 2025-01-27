@@ -42,7 +42,7 @@
 		var/mob/living/L = A
 
 		if(L.loc == input_plate)
-			L.loc = src
+			L.forceMove(src)
 			L.gib()
 
 
@@ -108,7 +108,7 @@
 		if(M.client)
 			M.client.perspective = EYE_PERSPECTIVE
 			M.client.eye = src
-		M.loc = src
+		M.forceMove(src)
 		src.occupant = M
 		qdel(G)
 		update_icon()
@@ -128,11 +128,11 @@
 	if (!src.occupant)
 		return
 	for(var/obj/O in src)
-		O.loc = src.loc
+		O.forceMove(loc)
 	if (src.occupant.client)
 		src.occupant.client.eye = src.occupant.client.mob
 		src.occupant.client.perspective = MOB_PERSPECTIVE
-	src.occupant.loc = src.loc
+	occupant.forceMove(loc)
 	src.occupant = null
 	update_icon()
 	return
@@ -219,7 +219,7 @@
 		for (var/i=1 to totalslabs)
 			var/obj/item/meatslab = allmeat[i]
 			var/turf/Tx = locate(src.x - i, src.y, src.z)
-			meatslab.loc = src.loc
+			meatslab.forceMove(loc)
 			meatslab.throw_at(Tx,i,3)
 			if (!Tx.density)
 				new /obj/effect/decal/cleanable/blood/gibs(Tx,i)

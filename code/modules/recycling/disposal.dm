@@ -118,7 +118,7 @@
 				if(GM.client)
 					GM.client.perspective = EYE_PERSPECTIVE
 					GM.client.eye = src
-				GM.loc = src
+				GM.forceMove(src)
 				for(var/mob/C in viewers(src))
 					C.show_message(SPAN_WARNING("[GM.name] has been placed in the [src] by [user]."), 3)
 				qdel(G)
@@ -178,7 +178,7 @@
 	if(target.client)
 		target.client.perspective = EYE_PERSPECTIVE
 		target.client.eye = src
-	target.loc = src
+	target.forceMove(src)
 
 	for(var/mob/C in viewers(src))
 		if(C == user)
@@ -204,7 +204,7 @@
 	if(user.client)
 		user.client.eye = user.client.mob
 		user.client.perspective = MOB_PERSPECTIVE
-	user.loc = src.loc
+	user.forceMove(loc)
 	update()
 	return
 
@@ -448,7 +448,7 @@
 		for_no_type_check(var/atom/movable/mover, H)
 			target = get_offset_target_turf(src.loc, rand(5) - rand(5), rand(5) - rand(5))
 
-			mover.loc = src.loc
+			mover.forceMove(loc)
 			mover.pipe_eject(0)
 			if(!isdrone(mover)) //Poor drones kept smashing windows and taking system damage being fired out of disposals. ~Z
 				spawn(1)
@@ -518,7 +518,7 @@
 	// now everything inside the disposal gets put into the holder
 	// note AM since can contain mobs or objs
 	for_no_type_check(var/atom/movable/mover, D)
-		mover.loc = src
+		mover.forceMove(src)
 		if(ishuman(mover))
 			var/mob/living/carbon/human/H = mover
 			if(MUTATION_FAT in H.mutations)		// is a human and fat?
@@ -609,7 +609,7 @@
 	// used when a a holder meets a stuck holder
 /obj/structure/disposalholder/proc/merge(obj/structure/disposalholder/other)
 	for_no_type_check(var/atom/movable/mover, other)
-		mover.loc = src		// move everything in other holder to this one
+		mover.forceMove(src)		// move everything in other holder to this one
 		if(ismob(mover))
 			var/mob/M = mover
 			if(isnotnull(M.client))	// if a client mob, update eye to follow this holder
@@ -736,7 +736,7 @@
 
 	if(T.density)		// dense ouput turf, so stop holder
 		H.active = 0
-		H.loc = src
+		H.forceMove(src)
 		return
 	if(T.intact && isfloorturf(T)) //intact floor, pop the tile
 		var/turf/open/floor/F = T
@@ -947,7 +947,7 @@
 			if(controller.up)
 				T = locate(src.x, src.y, controller.up_target)
 		if(!T)
-			H.loc = src.loc
+			H.forceMove(loc)
 			return
 		else
 			for(var/obj/structure/disposalpipe/down/F in T)
@@ -1000,7 +1000,7 @@
 			if(controller.down)
 				T = locate(src.x, src.y, controller.down_target)
 		if(!T)
-			H.loc = src.loc
+			H.forceMove(loc)
 			return
 		else
 			for(var/obj/structure/disposalpipe/up/F in T)

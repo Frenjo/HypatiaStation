@@ -1301,7 +1301,7 @@
 			healths.icon_state = "health7"	//DEAD healthmeter
 		if(isnotnull(client))
 			if(client.view != world.view)
-				if(locate(/obj/item/gun/energy/sniperrifle, contents))
+				if(locate(/obj/item/gun/energy/sniperrifle, src))
 					var/obj/item/gun/energy/sniperrifle/s = locate() in src
 					if(s.zoom)
 						s.zoom()

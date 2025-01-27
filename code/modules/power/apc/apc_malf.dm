@@ -53,7 +53,7 @@
 	else
 		to_chat(src.occupant, SPAN_WARNING("Primary core damaged, unable to return core processes."))
 		if(forced)
-			src.occupant.loc = src.loc
+			occupant.forceMove(loc)
 			src.occupant.death()
 			src.occupant.gib()
 			for(var/obj/item/pinpointer/point in GLOBL.movable_atom_list)

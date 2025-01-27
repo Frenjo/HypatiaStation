@@ -60,7 +60,7 @@
 			SPAN_NOTICE("You hear squelching...")
 		)
 	M.buckled = src
-	M.loc = src.loc
+	M.forceMove(loc)
 	M.set_dir(src.dir)
 	M.update_canmove()
 	M.pixel_y = 6

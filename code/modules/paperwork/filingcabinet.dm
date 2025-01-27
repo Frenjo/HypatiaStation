@@ -50,7 +50,7 @@
 	if(istype(P, /obj/item/paper) || istype(P, /obj/item/folder) || istype(P, /obj/item/photo))
 		to_chat(user, SPAN_NOTICE("You put [P] in [src]."))
 		user.drop_item()
-		P.loc = src
+		P.forceMove(src)
 		icon_state = "[initial(icon_state)]-open"
 		sleep(5)
 		icon_state = initial(icon_state)

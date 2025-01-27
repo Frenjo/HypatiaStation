@@ -70,7 +70,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 					reagents.trans_to(part, reagents.total_volume)
 				if(part.reliability != 100 && crit_fail)
 					part.crit_fail = 1
-				part.loc = src.loc
+				part.forceMove(loc)
 			eject_stored_materials()
 			qdel(src)
 			return 1

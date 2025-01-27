@@ -152,7 +152,7 @@
 
 	else if(href_list["eject"] && isnotnull(reagent_glass))
 		if(!locked)
-			reagent_glass.loc = GET_TURF(src)
+			reagent_glass.forceMove(GET_TURF(src))
 			reagent_glass = null
 		else
 			to_chat(usr, SPAN_NOTICE("You cannot eject the beaker because the panel is locked."))

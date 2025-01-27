@@ -691,7 +691,7 @@
 		if (user.get_inactive_hand()==src)
 			user.put_in_inactive_hand(part3)
 		else
-			part3.loc = src.loc
+			part3.forceMove(loc)
 		src.part1 = null
 		src.part2 = null
 		src.part3 = null
@@ -780,7 +780,7 @@
 		if (user.get_inactive_hand()==src)
 			user.put_in_inactive_hand(part3)
 		else
-			part3.loc = src.loc
+			part3.forceMove(loc)
 		src.part1 = null
 		src.part2 = null
 		src.part3 = null
@@ -859,7 +859,7 @@
 		if (user.get_inactive_hand()==src)
 			user.put_in_inactive_hand(part3)
 		else
-			part3.loc = src.loc
+			part3.forceMove(loc)
 		src.part1 = null
 		src.part2 = null
 		src.part3 = null
@@ -906,7 +906,7 @@
 		if (user.get_inactive_hand()==src)
 			user.put_in_inactive_hand(part4)
 		else
-			part4.loc = src.loc
+			part4.forceMove(loc)
 		src.part1 = null
 		src.part2 = null
 		src.part3 = null

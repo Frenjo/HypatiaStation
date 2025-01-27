@@ -34,22 +34,22 @@
 /obj/structure/morgue/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.loc
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
 		if(3.0)
 			if(prob(5))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
@@ -65,7 +65,7 @@
 	if(src.connected)
 		for(var/atom/movable/A as mob|obj in src.connected.loc)
 			if(!A.anchored)
-				A.loc = src
+				A.forceMove(src)
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		//src.connected = null
 		qdel(src.connected)
@@ -162,7 +162,7 @@
 		return
 	if(!ismob(user) || user.stat || user.lying || user.stunned)
 		return
-	O.loc = src.loc
+	O.forceMove(loc)
 	if(user != O)
 		for(var/mob/B in viewers(user, 3))
 			if(B.client && !B.blinded)
@@ -198,22 +198,22 @@
 /obj/structure/crematorium/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			for(var/atom/movable/A as mob|obj in src)
-				A.loc = src.loc
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(loc)
 				ex_act(severity)
 			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
 		if(3.0)
 			if(prob(5))
-				for(var/atom/movable/A as mob|obj in src)
-					A.loc = src.loc
+				for_no_type_check(var/atom/movable/mover, src)
+					mover.forceMove(loc)
 					ex_act(severity)
 				qdel(src)
 				return
@@ -238,7 +238,7 @@
 	if(src.connected && !src.locked)
 		for(var/atom/movable/A as mob|obj in src.connected.loc)
 			if(!A.anchored)
-				A.loc = src
+				A.forceMove(src)
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		//src.connected = null
 		qdel(src.connected)
@@ -377,7 +377,7 @@
 		return
 	if(!ismob(user) || user.stat || user.lying || user.stunned)
 		return
-	O.loc = src.loc
+	O.forceMove(loc)
 	if(user != O)
 		for(var/mob/B in viewers(user, 3))
 			if(B.client && !B.blinded)

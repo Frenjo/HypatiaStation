@@ -233,7 +233,7 @@
 		stack.use(amount)
 	else
 		usr.before_take_item(O)
-		O.loc = src
+		O.forceMove(src)
 
 	icon_state = "autolathe"
 	busy = 1

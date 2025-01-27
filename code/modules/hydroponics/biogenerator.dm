@@ -38,7 +38,7 @@
 			to_chat(user, SPAN_WARNING("The biogenerator is already loaded."))
 		else
 			user.before_take_item(O)
-			O.loc = src
+			O.forceMove(src)
 			beaker = O
 			updateUsrDialog()
 	else if(processing)
@@ -51,7 +51,7 @@
 			to_chat(user, SPAN_WARNING("The biogenerator is already full! Activate it."))
 		else
 			for(var/obj/item/reagent_holder/food/snacks/grown/G in O.contents)
-				G.loc = src
+				G.forceMove(src)
 				i++
 				if(i >= 10)
 					to_chat(user, SPAN_INFO("You fill the biogenerator to its capacity."))
@@ -69,7 +69,7 @@
 			user << "\red The biogenerator is full! Activate it."
 		else
 			user.before_take_item(O)
-			O.loc = src
+			O.forceMove(src)
 			to_chat(user, SPAN_INFO("You put [O.name] in [src.name]."))
 	update_icon()
 	return
@@ -220,7 +220,7 @@
 			activate()
 		if("detach")
 			if(beaker)
-				beaker.loc = src.loc
+				beaker.forceMove(loc)
 				beaker = null
 				update_icon()
 		if("create")

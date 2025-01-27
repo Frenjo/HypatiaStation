@@ -19,7 +19,7 @@
 		// put it inside
 		template = O
 		usr.drop_item()
-		O.loc = src
+		O.forceMove(src)
 		update()
 		updateDialog()
 
@@ -89,7 +89,7 @@
 	if(href_list["open"])
 		if(copying)
 			return
-		template.loc = src.loc
+		template.forceMove(loc)
 		template = null
 		updateDialog()
 		update()

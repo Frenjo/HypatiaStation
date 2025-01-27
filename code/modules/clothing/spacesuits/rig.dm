@@ -123,7 +123,7 @@
 			if(helmet && H.head == helmet)
 				helmet.can_remove = TRUE
 				H.drop_from_inventory(helmet)
-				helmet.loc = src
+				helmet.forceMove(src)
 
 	if(boots)
 		H = boots.loc
@@ -131,7 +131,7 @@
 			if(boots && H.shoes == boots)
 				boots.can_remove = TRUE
 				H.drop_from_inventory(boots)
-				boots.loc = src
+				boots.forceMove(src)
 
 /*
 /obj/item/clothing/suit/space/rig/verb/get_mounted_device()
@@ -191,7 +191,7 @@
 	if(H.head == helmet)
 		helmet.can_remove = TRUE
 		H.drop_from_inventory(helmet)
-		helmet.loc = src
+		helmet.forceMove(src)
 		to_chat(H, SPAN_INFO("You retract your hardsuit helmet."))
 	else
 		if(H.head)
@@ -223,7 +223,7 @@
 					to_chat(user, "\The [src] does not have a helmet installed.")
 				else
 					to_chat(user, "You detatch \the [helmet] from \the [src]'s helmet mount.")
-					helmet.loc = GET_TURF(src)
+					helmet.forceMove(GET_TURF(src))
 					src.helmet = null
 				return
 			else if(istype(W, /obj/item/clothing/head/helmet/space))
@@ -249,7 +249,7 @@
 					to_chat(user, "\The [src] does not have any boots installed.")
 				else
 					to_chat(user, "You detatch \the [boots] from \the [src]'s boot mounts.")
-					boots.loc = GET_TURF(src)
+					boots.forceMove(GET_TURF(src))
 					boots = null
 				return
 			else if(istype(W, /obj/item/clothing/shoes/magboots))

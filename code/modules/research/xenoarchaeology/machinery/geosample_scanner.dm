@@ -108,7 +108,7 @@
 
 /obj/machinery/radiocarbon_spectrometer/proc/scan_item(obj/item/item_to_scan, mob/item_holder)
 	item_holder.drop_item()
-	item_to_scan.loc = src
+	item_to_scan.forceMove(src)
 	scanned_item = item_to_scan
 
 /obj/machinery/radiocarbon_spectrometer/proc/update_coolant()
@@ -332,9 +332,9 @@
 		P.info = "<b>[src] analysis report #[report_num]</b><br>"
 		P.info += "<b>Scanned item:</b> [scanned_item.name]<br><br>" + data
 		last_scan_data = P.info
-		P.loc = src.loc
+		P.forceMove(loc)
 
-		scanned_item.loc = src.loc
+		scanned_item.forceMove(loc)
 		scanned_item = null
 
 /obj/machinery/radiocarbon_spectrometer/Topic(href, href_list)
@@ -370,7 +370,7 @@
 
 	if(href_list["ejectItem"])
 		if(scanned_item)
-			scanned_item.loc = src.loc
+			scanned_item.forceMove(loc)
 			scanned_item = null
 
 	add_fingerprint(usr)

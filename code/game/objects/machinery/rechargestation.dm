@@ -117,7 +117,7 @@
 	if(isnotnull(R.client))
 		R.client.perspective = EYE_PERSPECTIVE
 		R.client.eye = src
-	R.loc = src
+	R.forceMove(src)
 	occupant = R
 	/*for(var/obj/O in src)
 		O.loc = loc*/

@@ -56,7 +56,7 @@
 
 	if (href_list["ejectchem"])
 		if(beaker)
-			beaker.loc = src.loc
+			beaker.forceMove(loc)
 			beaker = null
 	if(!dish)
 		return
@@ -68,7 +68,7 @@
 			icon_state = "incubator"
 	if (href_list["ejectdish"])
 		if(dish)
-			dish.loc = src.loc
+			dish.forceMove(loc)
 			dish = null
 	if (href_list["rad"])
 		radiation += 10

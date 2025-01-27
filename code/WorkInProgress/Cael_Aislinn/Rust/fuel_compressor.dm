@@ -98,7 +98,7 @@ var/const/max_assembly_amount = 300
 			compressed_matter = old_matter
 			usr << "\red \icon[src] [src] flashes red: \'Out of matter.\'"
 		else
-			F.loc = src.loc//get_step(GET_TURF(src), src.dir)
+			F.forceMove(loc)//get_step(GET_TURF(src), src.dir)
 			F.percent_depleted = 0
 			if(compressed_matter < 0.034)
 				compressed_matter = 0

@@ -19,7 +19,7 @@
 			seal_torn = 1
 
 			for(var/obj/item/I in src)
-				I.loc = GET_TURF(src)
+				I.forceMove(GET_TURF(src))
 			update_icon()
 		return
 

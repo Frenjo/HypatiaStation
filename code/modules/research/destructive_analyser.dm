@@ -58,7 +58,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 			M.state = 2
 			M.icon_state = "box_1"
 			for_no_type_check(var/obj/item/part, component_parts)
-				part.loc = src.loc
+				part.forceMove(loc)
 			qdel(src)
 			return 1
 		else
@@ -88,7 +88,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	busy = TRUE
 	loaded_item = O
 	user.drop_item()
-	O.loc = src
+	O.forceMove(src)
 	to_chat(user, SPAN_INFO("You add the [O.name] to the [src.name]!"))
 	flick("d_analyser_la", src)
 	spawn(10)

@@ -57,7 +57,7 @@
 		to_chat(user, SPAN_INFO("You add [W] to the metal casing."))
 		playsound(src, 'sound/items/Screwdriver2.ogg', 25, -3)
 		user.remove_from_mob(det)
-		det.loc = src
+		det.forceMove(src)
 		detonator = det
 		icon_state = initial(icon_state) +"_ass"
 		name = "unsecured grenade with [length(beakers)] containers[detonator ? " and detonator" : ""]"

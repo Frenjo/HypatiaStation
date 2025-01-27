@@ -60,7 +60,7 @@
 				if(istype(C))
 					user.drop_item()
 					cell = C
-					C.loc = src
+					C.forceMove(src)
 					C.add_fingerprint(usr)
 
 					user.visible_message(
@@ -145,7 +145,7 @@
 					if(istype(C))
 						usr.drop_item()
 						cell = C
-						C.loc = src
+						C.forceMove(src)
 						C.add_fingerprint(usr)
 
 						usr.visible_message(

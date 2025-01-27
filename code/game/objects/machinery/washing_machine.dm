@@ -187,7 +187,7 @@
 
 	sleep(20)
 	if(state in list(1,3,6) )
-		usr.loc = src.loc
+		usr.forceMove(loc)
 
 
 /obj/machinery/washing_machine/update_icon()
@@ -202,7 +202,7 @@
 			if(!crayon)
 				user.drop_item()
 				crayon = W
-				crayon.loc = src
+				crayon.forceMove(src)
 			else
 				..()
 		else
@@ -211,7 +211,7 @@
 		if((state == 1) && hacked)
 			var/obj/item/grab/G = W
 			if(ishuman(G.assailant) && iscorgi(G.affecting))
-				G.affecting.loc = src
+				G.affecting.forceMove(src)
 				qdel(G)
 				state = 3
 		else
@@ -282,14 +282,14 @@
 			state = 2
 		if(2)
 			state = 1
-			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(loc)
 		if(3)
 			state = 4
 		if(4)
 			state = 3
-			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(loc)
 			crayon = null
 			state = 1
 		if(5)
@@ -302,8 +302,8 @@
 				if(locate(/mob, contents))
 					var/mob/living/L = locate(/mob/living, contents)
 					L.gib()
-			for(var/atom/movable/O in contents)
-				O.loc = src.loc
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(loc)
 			crayon = null
 			state = 1
 

@@ -617,7 +617,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /atom/proc/GetAllContents(searchDepth = 5)
 	var/list/toReturn = list()
 
-	for_no_type_check(var/atom/movable/part, contents)
+	for_no_type_check(var/atom/movable/part, src)
 		toReturn.Add(part)
 		if(length(part.contents) && searchDepth)
 			toReturn.Add(part.GetAllContents(searchDepth - 1))

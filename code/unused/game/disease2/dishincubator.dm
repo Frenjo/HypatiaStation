@@ -44,7 +44,7 @@
 
 			src.beaker =  B
 			user.drop_item()
-			B.loc = src
+			B.forceMove(src)
 			if(istype(B,/obj/item/reagent_holder/syringe))
 				user << "You add the syringe to the machine!"
 				src.updateUsrDialog()
@@ -59,7 +59,7 @@
 
 				src.dish =  B
 				user.drop_item()
-				B.loc = src
+				B.forceMove(src)
 				if(istype(B,/obj/item/virusdish))
 					user << "You add the dish to the machine!"
 					src.updateUsrDialog()
@@ -80,11 +80,11 @@
 				icon_state = "incubator"
 		if (href_list["ejectchem"])
 			if(beaker)
-				beaker.loc = src.loc
+				beaker.forceMove(loc)
 				beaker = null
 		if (href_list["ejectdish"])
 			if(dish)
-				dish.loc = src.loc
+				dish.forceMove(loc)
 				dish = null
 		if (href_list["rad"])
 			radiation += 10

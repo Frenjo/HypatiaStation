@@ -63,7 +63,7 @@ TOILET
 				O << text("\blue [] is seated on the toilet by []!", M, user)
 	M.anchored = TRUE
 	M.buckled = src
-	M.loc = src.loc
+	M.forceMove(loc)
 	src.add_fingerprint(user)
 	return
 

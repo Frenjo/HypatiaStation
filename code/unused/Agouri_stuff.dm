@@ -894,7 +894,7 @@
 
 			user << "<FONT COLOR='blue'>You start placing the poster on the wall...</FONT>" //Looks like it's uncluttered enough. Place the poster.
 
-			P.resulting_poster.loc = src
+			P.resulting_poster.forceMove(src)
 			var/temp = P.resulting_poster.icon_state
 			var/temp_loc = user.loc
 			P.resulting_poster.icon_state = "poster_being_set"
@@ -1103,7 +1103,7 @@
 
 			user << "<FONT COLOR='blue'>You start placing the poster on the wall...</FONT>" //Looks like it's uncluttered enough. Place the poster.
 
-			P.resulting_poster.loc = src
+			P.resulting_poster.forceMove(src)
 			var/temp = P.resulting_poster.icon_state
 			var/temp_loc = user.loc
 			P.resulting_poster.icon_state = "poster_being_set"

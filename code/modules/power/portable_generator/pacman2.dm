@@ -79,7 +79,7 @@
 				return
 			P = O
 			user.drop_item()
-			O.loc = src
+			O.forceMove(src)
 			user << "\blue You add the plasma tank to the generator."
 		else if (istype(O, /obj/item/card/emag))
 			var/obj/item/card/emag/E = O

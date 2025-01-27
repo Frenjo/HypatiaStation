@@ -46,7 +46,7 @@
 		if(implanter.imp)
 			if(src.imp || implanter.imp.implanted)
 				return
-			implanter.imp.loc = src
+			implanter.imp.forceMove(src)
 			src.imp = implanter.imp
 			implanter.imp = null
 			src.update()
@@ -55,7 +55,7 @@
 			if(src.imp)
 				if(implanter.imp)
 					return
-				src.imp.loc = implanter
+				imp.forceMove(implanter)
 				implanter.imp = src.imp
 				src.imp = null
 				update()

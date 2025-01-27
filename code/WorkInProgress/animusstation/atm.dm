@@ -27,38 +27,38 @@ log transactions
 		if(istype(A,/obj/item/spacecash))
 			cashes += A
 			user.drop_item()
-			A.loc = src
+			A.forceMove(src)
 			inserted += A:worth
 			return
 		if(istype(A,/obj/item/coin))
 			if(istype(A,/obj/item/coin/iron))
 				cashes += A
 				user.drop_item()
-				A.loc = src
+				A.forceMove(src)
 				inserted += 1
 				return
 			if(istype(A,/obj/item/coin/silver))
 				cashes += A
 				user.drop_item()
-				A.loc = src
+				A.forceMove(src)
 				inserted += 10
 				return
 			if(istype(A,/obj/item/coin/gold))
 				cashes += A
 				user.drop_item()
-				A.loc = src
+				A.forceMove(src)
 				inserted += 50
 				return
 			if(istype(A,/obj/item/coin/plasma))
 				cashes += A
 				user.drop_item()
-				A.loc = src
+				A.forceMove(src)
 				inserted += 2
 				return
 			if(istype(A,/obj/item/coin/diamond))
 				cashes += A
 				user.drop_item()
-				A.loc = src
+				A.forceMove(src)
 				inserted += 300
 				return
 			user << "You insert your [A.name] in ATM"

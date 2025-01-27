@@ -58,7 +58,7 @@ log transactions
 			number_incorrect_tries = 0
 
 	for(var/obj/item/spacecash/S in src)
-		S.loc = src.loc
+		S.forceMove(loc)
 		if(prob(50))
 			playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
 		else
@@ -92,7 +92,7 @@ log transactions
 		var/obj/item/card/id/idcard = I
 		if(!held_card)
 			usr.drop_item()
-			idcard.loc = src
+			idcard.forceMove(src)
 			held_card = idcard
 			if(authenticated_account && held_card.associated_account_number != authenticated_account.account_number)
 				authenticated_account = null
@@ -448,7 +448,7 @@ log transactions
 	if(!held_card)
 		return
 
-	held_card.loc = src.loc
+	held_card.forceMove(loc)
 	authenticated_account = null
 
 	if(ishuman(human_user) && !human_user.get_active_hand())

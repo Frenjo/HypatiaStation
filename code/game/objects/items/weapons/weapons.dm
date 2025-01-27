@@ -105,7 +105,7 @@
 				if(IS_RUNNING(H))
 					armed = 0
 					H.legcuffed = src
-					src.loc = H
+					forceMove(H)
 					H.update_inv_legcuffed()
 					to_chat(H, SPAN_DANGER("You step on \the [src]!"))
 					feedback_add_details("handcuffs", "B") //Yes, I know they're legcuffs. Don't change this, no need for an extra variable. The "B" is used to tell them apart.

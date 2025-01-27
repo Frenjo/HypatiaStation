@@ -31,7 +31,7 @@
 		if(do_after(user, 50))
 			var/obj/item/solar_assembly/S = locate() in src
 			if(S)
-				S.loc = src.loc
+				S.forceMove(loc)
 				S.give_glass()
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message(SPAN_NOTICE("[user] takes the glass off the tracker."))
@@ -58,7 +58,7 @@
 		assembly.glass_type = /obj/item/stack/sheet/glass
 		assembly.tracker = TRUE
 		assembly.anchored = TRUE
-	assembly.loc = src
+	assembly.forceMove(src)
 	update_icon()
 
 //updates the tracker icon and the facing angle for the control computer

@@ -50,7 +50,7 @@
 			P.info = r
 			dish.info = r
 			dish.analysed = 1
-			dish.loc = src.loc
+			dish.forceMove(loc)
 			dish = null
 			icon_state = "analyser"
 
@@ -64,7 +64,7 @@
 		else
 			pause = 1
 			spawn(25)
-				dish.loc = src.loc
+				dish.forceMove(loc)
 				dish = null
 				for(var/mob/M in viewers(src))
 					M.show_message("\icon[src] \blue The [src.name] buzzes", 2)

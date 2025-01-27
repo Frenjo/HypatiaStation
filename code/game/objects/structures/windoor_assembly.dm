@@ -215,7 +215,7 @@
 						src.name = "Wired Windoor Assembly"
 					var/obj/item/airlock_electronics/ae = electronics
 					electronics = null
-					ae.loc = src.loc
+					ae.forceMove(loc)
 
 			//Crowbar to complete the assembly, Step 7 complete.
 			else if(iscrowbar(W))
