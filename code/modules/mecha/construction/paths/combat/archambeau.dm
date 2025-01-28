@@ -6,7 +6,7 @@
 /datum/construction/reversible/mecha/combat/archambeau
 	result = /obj/mecha/combat/durand/archambeau
 
-	base_icon = "durand"
+	base_icon_state = "durand"
 
 	central_circuit = /obj/item/circuitboard/mecha/archambeau/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/archambeau/peripherals
@@ -18,7 +18,7 @@
 	capacitor_name = /obj/item/stock_part/capacitor/super::name
 
 	internal_armour = /obj/item/stack/sheet/steel
-	external_armour = /obj/item/mecha_part/part/archambeau_armour
+	external_armour = /obj/item/mecha_part/part/durand/armour/archambeau
 
 /datum/construction/reversible/mecha/combat/archambeau/get_other_steps()
 	. = ..()

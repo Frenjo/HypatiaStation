@@ -3,6 +3,7 @@
 	name = "\improper Bulwark chassis"
 
 	construct_type = /datum/construction/mecha_chassis/ripley/bulwark
+	target_icon = 'icons/obj/mecha/construction/ripley.dmi'
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/bulwark/targeting

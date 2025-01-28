@@ -2,11 +2,11 @@
 /datum/construction/mecha_chassis/firefighter
 	result = /datum/construction/reversible/mecha/firefighter
 	steps = list(
-		list("key" = /obj/item/mecha_part/part/ripley_torso),
-		list("key" = /obj/item/mecha_part/part/ripley_left_arm),
-		list("key" = /obj/item/mecha_part/part/ripley_right_arm),
-		list("key" = /obj/item/mecha_part/part/ripley_left_leg),
-		list("key" = /obj/item/mecha_part/part/ripley_right_leg),
+		list("key" = /obj/item/mecha_part/part/ripley/torso),
+		list("key" = /obj/item/mecha_part/part/ripley/left_arm),
+		list("key" = /obj/item/mecha_part/part/ripley/right_arm),
+		list("key" = /obj/item/mecha_part/part/ripley/left_leg),
+		list("key" = /obj/item/mecha_part/part/ripley/right_leg),
 		list("key" = /obj/item/clothing/suit/fire)
 	)
 
@@ -75,7 +75,7 @@
 		)
 	)
 
-	base_icon = "fireripley"
+	base_icon_state = "fireripley"
 
 	central_circuit = /obj/item/circuitboard/mecha/ripley/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/ripley/peripherals

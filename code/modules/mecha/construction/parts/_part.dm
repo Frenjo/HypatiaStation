@@ -3,7 +3,7 @@
 /////////////////////////
 /obj/item/mecha_part
 	name = "mecha part"
-	icon = 'icons/obj/mecha/mech_construct.dmi'
+	icon = 'icons/obj/mecha/parts/common.dmi'
 	icon_state = "blank"
 	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 5
@@ -20,6 +20,7 @@
 
 	var/datum/construction/construct
 	var/construct_type
+	var/target_icon = null
 
 /obj/item/mecha_part/chassis/New()
 	. = ..()

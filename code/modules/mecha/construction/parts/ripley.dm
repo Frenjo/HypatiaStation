@@ -3,8 +3,12 @@
 	name = "\improper Ripley chassis"
 
 	construct_type = /datum/construction/mecha_chassis/ripley
+	target_icon = 'icons/obj/mecha/construction/ripley.dmi'
 
-/obj/item/mecha_part/part/ripley_torso
+/obj/item/mecha_part/part/ripley
+	icon = 'icons/obj/mecha/parts/ripley.dmi'
+
+/obj/item/mecha_part/part/ripley/torso
 	name = "\improper Ripley torso"
 	desc = "A torso part of Ripley APLU. Contains power unit, processing core and life support systems."
 	icon_state = "ripley_harness"
@@ -15,7 +19,7 @@
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 12, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 8)
 
-/obj/item/mecha_part/part/ripley_left_arm
+/obj/item/mecha_part/part/ripley/left_arm
 	name = "\improper Ripley left arm"
 	desc = "A Ripley APLU left arm. Data and power sockets are compatible with most exosuit tools."
 	icon_state = "ripley_l_arm"
@@ -23,7 +27,7 @@
 	construction_time = 150
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8)
 
-/obj/item/mecha_part/part/ripley_right_arm
+/obj/item/mecha_part/part/ripley/right_arm
 	name = "\improper Ripley right arm"
 	desc = "A Ripley APLU right arm. Data and power sockets are compatible with most exosuit tools."
 	icon_state = "ripley_r_arm"
@@ -31,7 +35,7 @@
 	construction_time = 150
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8)
 
-/obj/item/mecha_part/part/ripley_left_leg
+/obj/item/mecha_part/part/ripley/left_leg
 	name = "\improper Ripley left leg"
 	desc = "A Ripley APLU left leg. Contains somewhat complex servodrives and balance maintaining systems."
 	icon_state = "ripley_l_leg"
@@ -39,7 +43,7 @@
 	construction_time = 150
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 9)
 
-/obj/item/mecha_part/part/ripley_right_leg
+/obj/item/mecha_part/part/ripley/right_leg
 	name = "\improper Ripley right leg"
 	desc = "A Ripley APLU right leg. Contains somewhat complex servodrives and balance maintaining systems."
 	icon_state = "ripley_r_leg"

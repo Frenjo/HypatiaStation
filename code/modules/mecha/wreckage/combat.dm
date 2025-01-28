@@ -3,12 +3,12 @@
 	name = "Gygax wreckage"
 	icon_state = "gygax-broken"
 	part_salvage = list(
-		/obj/item/mecha_part/part/gygax_torso,
-		/obj/item/mecha_part/part/gygax_head,
-		/obj/item/mecha_part/part/gygax_left_arm,
-		/obj/item/mecha_part/part/gygax_right_arm,
-		/obj/item/mecha_part/part/gygax_left_leg,
-		/obj/item/mecha_part/part/gygax_right_leg
+		/obj/item/mecha_part/part/gygax/torso,
+		/obj/item/mecha_part/part/gygax/head,
+		/obj/item/mecha_part/part/gygax/left_arm,
+		/obj/item/mecha_part/part/gygax/right_arm,
+		/obj/item/mecha_part/part/gygax/left_leg,
+		/obj/item/mecha_part/part/gygax/right_leg
 	)
 
 /obj/structure/mecha_wreckage/gygax/dark
@@ -24,12 +24,12 @@
 	name = "Durand wreckage"
 	icon_state = "durand-broken"
 	part_salvage = list(
-		/obj/item/mecha_part/part/durand_torso,
-		/obj/item/mecha_part/part/durand_head,
-		/obj/item/mecha_part/part/durand_left_arm,
-		/obj/item/mecha_part/part/durand_right_arm,
-		/obj/item/mecha_part/part/durand_left_leg,
-		/obj/item/mecha_part/part/durand_right_leg
+		/obj/item/mecha_part/part/durand/torso,
+		/obj/item/mecha_part/part/durand/head,
+		/obj/item/mecha_part/part/durand/left_arm,
+		/obj/item/mecha_part/part/durand/right_arm,
+		/obj/item/mecha_part/part/durand/left_leg,
+		/obj/item/mecha_part/part/durand/right_leg
 	)
 
 /obj/structure/mecha_wreckage/durand/archambeau
@@ -65,12 +65,12 @@
 	icon_state = "honk-broken"
 	part_salvage = list(
 		/obj/item/mecha_part/chassis/honk,
-		/obj/item/mecha_part/part/honk_torso,
-		/obj/item/mecha_part/part/honk_head,
-		/obj/item/mecha_part/part/honk_left_arm,
-		/obj/item/mecha_part/part/honk_right_arm,
-		/obj/item/mecha_part/part/honk_left_leg,
-		/obj/item/mecha_part/part/honk_right_leg
+		/obj/item/mecha_part/part/honk/torso,
+		/obj/item/mecha_part/part/honk/head,
+		/obj/item/mecha_part/part/honk/left_arm,
+		/obj/item/mecha_part/part/honk/right_arm,
+		/obj/item/mecha_part/part/honk/left_leg,
+		/obj/item/mecha_part/part/honk/right_leg
 	)
 
 // Reticence

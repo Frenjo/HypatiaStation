@@ -2,3 +2,4 @@
 	name = "\improper Rescue Ranger chassis"
 
 	construct_type = /datum/construction/mecha_chassis/ripley/rescue_ranger
+	target_icon = 'icons/obj/mecha/construction/ripley.dmi'

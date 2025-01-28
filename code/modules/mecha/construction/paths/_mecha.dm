@@ -2,7 +2,7 @@
 ///// Construction datums //////
 ////////////////////////////////
 /datum/construction/reversible/mecha
-	var/base_icon = null
+	var/base_icon_state = null
 
 	var/central_circuit = null
 	var/peripherals_circuit = null
@@ -150,7 +150,7 @@
 /datum/construction/reversible/mecha/update_holder(step_index)
 	. = ..()
 	// By default, each step in mech construction has a single icon_state:
-	// "[base_icon][index - 1]"
+	// "[base_icon_state][index - 1]"
 	// For example, Ripley's step 1 icon_state is "ripley0".
-	if(!steps[index]["icon_state"] && base_icon)
-		holder.icon_state = "[base_icon][index - 1]"
+	if(!steps[index]["icon_state"] && base_icon_state)
+		holder.icon_state = "[base_icon_state][index - 1]"

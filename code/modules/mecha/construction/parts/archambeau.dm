@@ -5,8 +5,9 @@
 
 	origin_tech = list(/datum/tech/materials = 7, /datum/tech/combat = 4, /datum/tech/engineering = 6)
 	construct_type = /datum/construction/mecha_chassis/durand/archambeau
+	target_icon = 'icons/obj/mecha/construction/durand.dmi'
 
-/obj/item/mecha_part/part/archambeau_armour
+/obj/item/mecha_part/part/durand/armour/archambeau
 	name = "\improper Archambeau armour plates"
 	icon_state = "archambeau_armour"
 	origin_tech = list(/datum/tech/materials = 7, /datum/tech/combat = 4, /datum/tech/engineering = 6)

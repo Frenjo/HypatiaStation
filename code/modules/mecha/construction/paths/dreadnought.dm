@@ -63,7 +63,7 @@
 		)
 	)
 
-	base_icon = "durand"
+	base_icon_state = "durand"
 
 	central_circuit = /obj/item/circuitboard/mecha/dreadnought/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/dreadnought/peripherals

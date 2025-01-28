@@ -56,43 +56,43 @@
 	part_sets = list(
 		"Ripley" = list(
 			/obj/item/mecha_part/chassis/ripley,
-			/obj/item/mecha_part/part/ripley_torso,
-			/obj/item/mecha_part/part/ripley_left_arm,
-			/obj/item/mecha_part/part/ripley_right_arm,
-			/obj/item/mecha_part/part/ripley_left_leg,
-			/obj/item/mecha_part/part/ripley_right_leg
+			/obj/item/mecha_part/part/ripley/torso,
+			/obj/item/mecha_part/part/ripley/left_arm,
+			/obj/item/mecha_part/part/ripley/right_arm,
+			/obj/item/mecha_part/part/ripley/left_leg,
+			/obj/item/mecha_part/part/ripley/right_leg
 		),
 		"Firefighter" = list(
 			/obj/item/mecha_part/chassis/firefighter,
-			/obj/item/mecha_part/part/ripley_torso,
-			/obj/item/mecha_part/part/ripley_left_arm,
-			/obj/item/mecha_part/part/ripley_right_arm,
-			/obj/item/mecha_part/part/ripley_left_leg,
-			/obj/item/mecha_part/part/ripley_right_leg
+			/obj/item/mecha_part/part/ripley/torso,
+			/obj/item/mecha_part/part/ripley/left_arm,
+			/obj/item/mecha_part/part/ripley/right_arm,
+			/obj/item/mecha_part/part/ripley/left_leg,
+			/obj/item/mecha_part/part/ripley/right_leg
 		),
 		"Rescue Ranger" = list(
 			/obj/item/mecha_part/chassis/rescue_ranger,
-			/obj/item/mecha_part/part/ripley_torso,
-			/obj/item/mecha_part/part/ripley_left_arm,
-			/obj/item/mecha_part/part/ripley_right_arm,
-			/obj/item/mecha_part/part/ripley_left_leg,
-			/obj/item/mecha_part/part/ripley_right_leg
+			/obj/item/mecha_part/part/ripley/torso,
+			/obj/item/mecha_part/part/ripley/left_arm,
+			/obj/item/mecha_part/part/ripley/right_arm,
+			/obj/item/mecha_part/part/ripley/left_leg,
+			/obj/item/mecha_part/part/ripley/right_leg
 		),
 		"Dreadnought" = list(
 			/obj/item/mecha_part/chassis/dreadnought,
-			/obj/item/mecha_part/part/ripley_torso,
-			/obj/item/mecha_part/part/ripley_left_arm,
-			/obj/item/mecha_part/part/ripley_right_arm,
-			/obj/item/mecha_part/part/ripley_left_leg,
-			/obj/item/mecha_part/part/ripley_right_leg
+			/obj/item/mecha_part/part/ripley/torso,
+			/obj/item/mecha_part/part/ripley/left_arm,
+			/obj/item/mecha_part/part/ripley/right_arm,
+			/obj/item/mecha_part/part/ripley/left_leg,
+			/obj/item/mecha_part/part/ripley/right_leg
 		),
 		"Bulwark" = list(
 			/obj/item/mecha_part/chassis/bulwark,
-			/obj/item/mecha_part/part/ripley_torso,
-			/obj/item/mecha_part/part/ripley_left_arm,
-			/obj/item/mecha_part/part/ripley_right_arm,
-			/obj/item/mecha_part/part/ripley_left_leg,
-			/obj/item/mecha_part/part/ripley_right_leg
+			/obj/item/mecha_part/part/ripley/torso,
+			/obj/item/mecha_part/part/ripley/left_arm,
+			/obj/item/mecha_part/part/ripley/right_arm,
+			/obj/item/mecha_part/part/ripley/left_leg,
+			/obj/item/mecha_part/part/ripley/right_leg
 		),
 		"Odysseus" = list(
 			/obj/item/mecha_part/chassis/odysseus
@@ -110,21 +110,21 @@
 		"Phazon" = list(),
 		"H.O.N.K" = list(
 			/obj/item/mecha_part/chassis/honk,
-			/obj/item/mecha_part/part/honk_torso,
-			/obj/item/mecha_part/part/honk_head,
-			/obj/item/mecha_part/part/honk_left_arm,
-			/obj/item/mecha_part/part/honk_right_arm,
-			/obj/item/mecha_part/part/honk_left_leg,
-			/obj/item/mecha_part/part/honk_right_leg
+			/obj/item/mecha_part/part/honk/torso,
+			/obj/item/mecha_part/part/honk/head,
+			/obj/item/mecha_part/part/honk/left_arm,
+			/obj/item/mecha_part/part/honk/right_arm,
+			/obj/item/mecha_part/part/honk/left_leg,
+			/obj/item/mecha_part/part/honk/right_leg
 		),
 		"Reticence" = list(
 			/obj/item/mecha_part/chassis/reticence,
-			/obj/item/mecha_part/part/reticence_torso,
-			/obj/item/mecha_part/part/reticence_head,
-			/obj/item/mecha_part/part/reticence_left_arm,
-			/obj/item/mecha_part/part/reticence_right_arm,
-			/obj/item/mecha_part/part/reticence_left_leg,
-			/obj/item/mecha_part/part/reticence_right_leg
+			/obj/item/mecha_part/part/reticence/torso,
+			/obj/item/mecha_part/part/reticence/head,
+			/obj/item/mecha_part/part/reticence/left_arm,
+			/obj/item/mecha_part/part/reticence/right_arm,
+			/obj/item/mecha_part/part/reticence/left_leg,
+			/obj/item/mecha_part/part/reticence/right_leg
 		),
 		"General Exosuit Equipment" = list(
 			/obj/item/mecha_part/tracking,

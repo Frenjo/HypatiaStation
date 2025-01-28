@@ -3,12 +3,12 @@
 	name = "Odysseus wreckage"
 	icon_state = "odysseus-broken"
 	part_salvage = list(
-		/obj/item/mecha_part/part/odysseus_torso,
-		/obj/item/mecha_part/part/odysseus_head,
-		/obj/item/mecha_part/part/odysseus_left_arm,
-		/obj/item/mecha_part/part/odysseus_right_arm,
-		/obj/item/mecha_part/part/odysseus_left_leg,
-		/obj/item/mecha_part/part/odysseus_right_leg
+		/obj/item/mecha_part/part/odysseus/torso,
+		/obj/item/mecha_part/part/odysseus/head,
+		/obj/item/mecha_part/part/odysseus/left_arm,
+		/obj/item/mecha_part/part/odysseus/right_arm,
+		/obj/item/mecha_part/part/odysseus/left_leg,
+		/obj/item/mecha_part/part/odysseus/right_leg
 	)
 
 /obj/structure/mecha_wreckage/odysseus/dark

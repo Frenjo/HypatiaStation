@@ -1,12 +1,12 @@
 // H.O.N.K Chassis
 /datum/construction/mecha_chassis/honk
 	steps = list(
-		list("key" = /obj/item/mecha_part/part/honk_torso),
-		list("key" = /obj/item/mecha_part/part/honk_left_arm),
-		list("key" = /obj/item/mecha_part/part/honk_right_arm),
-		list("key" = /obj/item/mecha_part/part/honk_left_leg),
-		list("key" = /obj/item/mecha_part/part/honk_right_leg),
-		list("key" = /obj/item/mecha_part/part/honk_head)
+		list("key" = /obj/item/mecha_part/part/honk/torso),
+		list("key" = /obj/item/mecha_part/part/honk/head),
+		list("key" = /obj/item/mecha_part/part/honk/left_arm),
+		list("key" = /obj/item/mecha_part/part/honk/right_arm),
+		list("key" = /obj/item/mecha_part/part/honk/left_leg),
+		list("key" = /obj/item/mecha_part/part/honk/right_leg)
 	)
 
 /datum/construction/mecha_chassis/honk/spawn_result()

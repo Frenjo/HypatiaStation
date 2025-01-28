@@ -4,8 +4,12 @@
 
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8)
 	construct_type = /datum/construction/mecha_chassis/gygax
+	target_icon = 'icons/obj/mecha/construction/gygax.dmi'
 
-/obj/item/mecha_part/part/gygax_torso
+/obj/item/mecha_part/part/gygax
+	icon = 'icons/obj/mecha/parts/gygax.dmi'
+
+/obj/item/mecha_part/part/gygax/torso
 	name = "\improper Gygax torso"
 	desc = "The torso of a Gygax. Contains a power unit, processing core and life support systems. Has an additional equipment slot."
 	icon_state = "gygax_harness"
@@ -16,7 +20,7 @@
 	construction_time = 300
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 15, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 10)
 
-/obj/item/mecha_part/part/gygax_head
+/obj/item/mecha_part/part/gygax/head
 	name = "\improper Gygax head"
 	desc = "A Gygax head. Houses advanced surveilance and targeting sensors."
 	icon_state = "gygax_head"
@@ -27,7 +31,7 @@
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 5)
 
-/obj/item/mecha_part/part/gygax_left_arm
+/obj/item/mecha_part/part/gygax/left_arm
 	name = "\improper Gygax left arm"
 	desc = "A Gygax left arm. Data and power sockets are compatible with most exosuit tools and weapons."
 	icon_state = "gygax_l_arm"
@@ -35,7 +39,7 @@
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 9)
 
-/obj/item/mecha_part/part/gygax_right_arm
+/obj/item/mecha_part/part/gygax/right_arm
 	name = "\improper Gygax right arm"
 	desc = "A Gygax right arm. Data and power sockets are compatible with most exosuit tools and weapons."
 	icon_state = "gygax_r_arm"
@@ -43,21 +47,21 @@
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 9)
 
-/obj/item/mecha_part/part/gygax_left_leg
+/obj/item/mecha_part/part/gygax/left_leg
 	name = "\improper Gygax left leg"
 	icon_state = "gygax_l_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11)
 
-/obj/item/mecha_part/part/gygax_right_leg
+/obj/item/mecha_part/part/gygax/right_leg
 	name = "\improper Gygax right leg"
 	icon_state = "gygax_r_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11)
 
-/obj/item/mecha_part/part/gygax_armour
+/obj/item/mecha_part/part/gygax/armour
 	name = "\improper Gygax armour plates"
 	icon_state = "gygax_armour"
 	origin_tech = list(/datum/tech/materials = 6, /datum/tech/combat = 4, /datum/tech/engineering = 5)

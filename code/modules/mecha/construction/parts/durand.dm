@@ -4,8 +4,12 @@
 
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8)
 	construct_type = /datum/construction/mecha_chassis/durand
+	target_icon = 'icons/obj/mecha/construction/durand.dmi'
 
-/obj/item/mecha_part/part/durand_torso
+/obj/item/mecha_part/part/durand
+	icon = 'icons/obj/mecha/parts/durand.dmi'
+
+/obj/item/mecha_part/part/durand/torso
 	name = "\improper Durand torso"
 	icon_state = "durand_harness"
 	origin_tech = list(
@@ -18,7 +22,7 @@
 		/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 5
 	)
 
-/obj/item/mecha_part/part/durand_head
+/obj/item/mecha_part/part/durand/head
 	name = "\improper Durand head"
 	icon_state = "durand_head"
 	origin_tech = list(
@@ -31,35 +35,35 @@
 		/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2
 	)
 
-/obj/item/mecha_part/part/durand_left_arm
+/obj/item/mecha_part/part/durand/left_arm
 	name = "\improper Durand left arm"
 	icon_state = "durand_l_arm"
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
 
-/obj/item/mecha_part/part/durand_right_arm
+/obj/item/mecha_part/part/durand/right_arm
 	name = "\improper Durand right arm"
 	icon_state = "durand_r_arm"
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
 
-/obj/item/mecha_part/part/durand_left_leg
+/obj/item/mecha_part/part/durand/left_leg
 	name = "\improper Durand left leg"
 	icon_state = "durand_l_leg"
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 12, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
 
-/obj/item/mecha_part/part/durand_right_leg
+/obj/item/mecha_part/part/durand/right_leg
 	name = "\improper Durand right leg"
 	icon_state = "durand_r_leg"
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 12, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
 
-/obj/item/mecha_part/part/durand_armour
+/obj/item/mecha_part/part/durand/armour
 	name = "\improper Durand armour plates"
 	icon_state = "durand_armour"
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 4, /datum/tech/engineering = 5)

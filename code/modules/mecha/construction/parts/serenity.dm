@@ -3,8 +3,9 @@
 	name = "\improper Serenity chassis"
 
 	construct_type = /datum/construction/mecha_chassis/gygax/serenity
+	target_icon = 'icons/obj/mecha/construction/gygax.dmi'
 
-/obj/item/mecha_part/part/serenity_carapace
+/obj/item/mecha_part/part/gygax/armour/serenity
 	name = "\improper Serenity carapace"
 	desc = "The outer carapace of a Serenity-type exosuit."
 	icon_state = "serenity_carapace"

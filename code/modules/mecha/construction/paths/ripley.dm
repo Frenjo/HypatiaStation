@@ -2,11 +2,11 @@
 /datum/construction/mecha_chassis/ripley
 	result = /datum/construction/reversible/mecha/ripley
 	steps = list(
-		list("key" = /obj/item/mecha_part/part/ripley_torso),
-		list("key" = /obj/item/mecha_part/part/ripley_left_arm),
-		list("key" = /obj/item/mecha_part/part/ripley_right_arm),
-		list("key" = /obj/item/mecha_part/part/ripley_left_leg),
-		list("key" = /obj/item/mecha_part/part/ripley_right_leg)
+		list("key" = /obj/item/mecha_part/part/ripley/torso),
+		list("key" = /obj/item/mecha_part/part/ripley/left_arm),
+		list("key" = /obj/item/mecha_part/part/ripley/right_arm),
+		list("key" = /obj/item/mecha_part/part/ripley/left_leg),
+		list("key" = /obj/item/mecha_part/part/ripley/right_leg)
 	)
 
 // Ripley
@@ -65,7 +65,7 @@
 		)
 	)
 
-	base_icon = "ripley"
+	base_icon_state = "ripley"
 
 	central_circuit = /obj/item/circuitboard/mecha/ripley/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/ripley/peripherals

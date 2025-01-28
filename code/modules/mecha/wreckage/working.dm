@@ -3,22 +3,22 @@
 	name = "Ripley wreckage"
 	icon_state = "ripley-broken"
 	part_salvage = list(
-		/obj/item/mecha_part/part/ripley_torso,
-		/obj/item/mecha_part/part/ripley_left_arm,
-		/obj/item/mecha_part/part/ripley_right_arm,
-		/obj/item/mecha_part/part/ripley_left_leg,
-		/obj/item/mecha_part/part/ripley_right_leg
+		/obj/item/mecha_part/part/ripley/torso,
+		/obj/item/mecha_part/part/ripley/left_arm,
+		/obj/item/mecha_part/part/ripley/right_arm,
+		/obj/item/mecha_part/part/ripley/left_leg,
+		/obj/item/mecha_part/part/ripley/right_leg
 	)
 
 /obj/structure/mecha_wreckage/ripley/firefighter
 	name = "Firefighter wreckage"
 	icon_state = "firefighter-broken"
 	part_salvage = list(
-		/obj/item/mecha_part/part/ripley_torso,
-		/obj/item/mecha_part/part/ripley_left_arm,
-		/obj/item/mecha_part/part/ripley_right_arm,
-		/obj/item/mecha_part/part/ripley_left_leg,
-		/obj/item/mecha_part/part/ripley_right_leg,
+		/obj/item/mecha_part/part/ripley/torso,
+		/obj/item/mecha_part/part/ripley/left_arm,
+		/obj/item/mecha_part/part/ripley/right_arm,
+		/obj/item/mecha_part/part/ripley/left_leg,
+		/obj/item/mecha_part/part/ripley/right_leg,
 		/obj/item/clothing/suit/fire
 	)
 

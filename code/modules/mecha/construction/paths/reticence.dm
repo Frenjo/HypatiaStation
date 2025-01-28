@@ -1,12 +1,12 @@
 // Chassis
 /datum/construction/mecha_chassis/reticence
 	steps = list(
-		list("key" = /obj/item/mecha_part/part/reticence_torso),
-		list("key" = /obj/item/mecha_part/part/reticence_left_arm),
-		list("key" = /obj/item/mecha_part/part/reticence_right_arm),
-		list("key" = /obj/item/mecha_part/part/reticence_left_leg),
-		list("key" = /obj/item/mecha_part/part/reticence_right_leg),
-		list("key" = /obj/item/mecha_part/part/reticence_head)
+		list("key" = /obj/item/mecha_part/part/reticence/torso),
+		list("key" = /obj/item/mecha_part/part/reticence/head),
+		list("key" = /obj/item/mecha_part/part/reticence/left_arm),
+		list("key" = /obj/item/mecha_part/part/reticence/right_arm),
+		list("key" = /obj/item/mecha_part/part/reticence/left_leg),
+		list("key" = /obj/item/mecha_part/part/reticence/right_leg)
 	)
 
 /datum/construction/mecha_chassis/reticence/spawn_result()

@@ -4,7 +4,10 @@
 
 	construct_type = /datum/construction/mecha_chassis/honk
 
-/obj/item/mecha_part/part/honk_torso
+/obj/item/mecha_part/part/honk
+	icon = 'icons/obj/mecha/parts/honk.dmi'
+
+/obj/item/mecha_part/part/honk/torso
 	name = "\improper H.O.N.K torso"
 	icon_state = "honk_harness"
 	construction_time = 300
@@ -13,7 +16,7 @@
 		/decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 5
 	)
 
-/obj/item/mecha_part/part/honk_head
+/obj/item/mecha_part/part/honk/head
 	name = "\improper H.O.N.K head"
 	icon_state = "honk_head"
 	construction_time = 200
@@ -22,25 +25,25 @@
 		/decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 3
 	)
 
-/obj/item/mecha_part/part/honk_left_arm
+/obj/item/mecha_part/part/honk/left_arm
 	name = "\improper H.O.N.K left arm"
 	icon_state = "honk_l_arm"
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 3)
 
-/obj/item/mecha_part/part/honk_right_arm
+/obj/item/mecha_part/part/honk/right_arm
 	name = "\improper H.O.N.K right arm"
 	icon_state = "honk_r_arm"
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 3)
 
-/obj/item/mecha_part/part/honk_left_leg
+/obj/item/mecha_part/part/honk/left_leg
 	name = "\improper H.O.N.K left leg"
 	icon_state = "honk_l_leg"
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 3)
 
-/obj/item/mecha_part/part/honk_right_leg
+/obj/item/mecha_part/part/honk/right_leg
 	name = "\improper H.O.N.K right leg"
 	icon_state = "honk_r_leg"
 	construction_time = 200

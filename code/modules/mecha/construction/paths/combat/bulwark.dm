@@ -6,7 +6,7 @@
 /datum/construction/reversible/mecha/combat/bulwark
 	result = /obj/mecha/working/dreadnought/bulwark
 
-	base_icon = "durand"
+	base_icon_state = "durand"
 
 	central_circuit = /obj/item/circuitboard/mecha/dreadnought/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/dreadnought/peripherals
@@ -18,7 +18,7 @@
 	capacitor_name = /obj/item/stock_part/capacitor/adv::name
 
 	internal_armour = /obj/item/stack/sheet/steel
-	external_armour = /obj/item/mecha_part/part/durand_armour
+	external_armour = /obj/item/mecha_part/part/durand/armour
 
 /datum/construction/reversible/mecha/combat/bulwark/get_other_steps()
 	. = ..()

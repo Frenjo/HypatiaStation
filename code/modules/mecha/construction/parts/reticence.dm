@@ -3,7 +3,10 @@
 
 	construct_type = /datum/construction/mecha_chassis/reticence
 
-/obj/item/mecha_part/part/reticence_torso
+/obj/item/mecha_part/part/reticence
+	icon = 'icons/obj/mecha/parts/reticence.dmi'
+
+/obj/item/mecha_part/part/reticence/torso
 	name = "\improper Reticence torso"
 	icon_state = "reticence_harness"
 	construction_time = 300
@@ -12,7 +15,7 @@
 		/decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 5
 	) // Bananium is a placeholder for tranquilite.
 
-/obj/item/mecha_part/part/reticence_head
+/obj/item/mecha_part/part/reticence/head
 	name = "\improper Reticence head"
 	icon_state = "reticence_head"
 	construction_time = 200
@@ -21,25 +24,25 @@
 		/decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 3
 	)
 
-/obj/item/mecha_part/part/reticence_left_arm
+/obj/item/mecha_part/part/reticence/left_arm
 	name = "\improper Reticence left arm"
 	icon_state = "reticence_l_arm"
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 3)
 
-/obj/item/mecha_part/part/reticence_right_arm
+/obj/item/mecha_part/part/reticence/right_arm
 	name = "\improper Reticence right arm"
 	icon_state = "reticence_r_arm"
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 3)
 
-/obj/item/mecha_part/part/reticence_left_leg
+/obj/item/mecha_part/part/reticence/left_leg
 	name = "\improper Reticence left leg"
 	icon_state = "reticence_l_leg"
 	construction_time = 200
 	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 3)
 
-/obj/item/mecha_part/part/reticence_right_leg
+/obj/item/mecha_part/part/reticence/right_leg
 	name = "\improper Reticence right leg"
 	icon_state = "reticence_r_leg"
 	construction_time = 200

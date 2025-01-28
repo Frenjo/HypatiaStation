@@ -2,19 +2,19 @@
 /datum/construction/mecha_chassis/phazon
 	result = /datum/construction/reversible/mecha/phazon
 	steps = list(
-		list("key" = /obj/item/mecha_part/part/phazon_torso),
-		list("key" = /obj/item/mecha_part/part/phazon_left_arm),
-		list("key" = /obj/item/mecha_part/part/phazon_right_arm),
-		list("key" = /obj/item/mecha_part/part/phazon_left_leg),
-		list("key" = /obj/item/mecha_part/part/phazon_right_leg),
-		list("key" = /obj/item/mecha_part/part/phazon_head)
+		list("key" = /obj/item/mecha_part/part/phazon/torso),
+		list("key" = /obj/item/mecha_part/part/phazon/head),
+		list("key" = /obj/item/mecha_part/part/phazon/left_arm),
+		list("key" = /obj/item/mecha_part/part/phazon/right_arm),
+		list("key" = /obj/item/mecha_part/part/phazon/left_leg),
+		list("key" = /obj/item/mecha_part/part/phazon/right_leg)
 	)
 
 // Phazon
 /datum/construction/reversible/mecha/phazon
 	result = /obj/mecha/combat/phazon
 
-	base_icon = "phazon"
+	base_icon_state = "phazon"
 
 	central_circuit = /obj/item/circuitboard/mecha/phazon/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/phazon/peripherals
@@ -130,7 +130,7 @@
 		),
 		list(
 			"desc" = "The internal armour layer is welded.",
-			"key" = /obj/item/mecha_part/part/phazon_armour,
+			"key" = /obj/item/mecha_part/part/phazon/armour,
 			"action" = CONSTRUCTION_ACTION_DELETE,
 			"message" = "installed external armour plates",
 			"back_key" = /obj/item/weldingtool,

@@ -2,12 +2,12 @@
 /datum/construction/mecha_chassis/odysseus
 	result = /datum/construction/reversible/mecha/odysseus
 	steps = list(
-		list("key" = /obj/item/mecha_part/part/odysseus_torso),
-		list("key" = /obj/item/mecha_part/part/odysseus_head),
-		list("key" = /obj/item/mecha_part/part/odysseus_left_arm),
-		list("key" = /obj/item/mecha_part/part/odysseus_right_arm),
-		list("key" = /obj/item/mecha_part/part/odysseus_left_leg),
-		list("key" = /obj/item/mecha_part/part/odysseus_right_leg)
+		list("key" = /obj/item/mecha_part/part/odysseus/torso),
+		list("key" = /obj/item/mecha_part/part/odysseus/head),
+		list("key" = /obj/item/mecha_part/part/odysseus/left_arm),
+		list("key" = /obj/item/mecha_part/part/odysseus/right_arm),
+		list("key" = /obj/item/mecha_part/part/odysseus/left_leg),
+		list("key" = /obj/item/mecha_part/part/odysseus/right_leg)
 	)
 
 // Odysseus
@@ -42,7 +42,7 @@
 		// 12
 		list(
 			"desc" = MECHA_DESC_INTERNAL_ARMOUR_WELDED,
-			"key" = /obj/item/mecha_part/part/odysseus_carapace,
+			"key" = /obj/item/mecha_part/part/odysseus/carapace,
 			"action" = CONSTRUCTION_ACTION_DELETE,
 			"message" = "installed external carapace",
 			"back_key" = /obj/item/weldingtool,
@@ -66,7 +66,7 @@
 		)
 	)
 
-	base_icon = "odysseus"
+	base_icon_state = "odysseus"
 
 	central_circuit = /obj/item/circuitboard/mecha/odysseus/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/odysseus/peripherals

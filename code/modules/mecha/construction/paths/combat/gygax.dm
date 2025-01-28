@@ -2,19 +2,19 @@
 /datum/construction/mecha_chassis/gygax
 	result = /datum/construction/reversible/mecha/combat/gygax
 	steps = list(
-		list("key" = /obj/item/mecha_part/part/gygax_torso),
-		list("key" = /obj/item/mecha_part/part/gygax_left_arm),
-		list("key" = /obj/item/mecha_part/part/gygax_right_arm),
-		list("key" = /obj/item/mecha_part/part/gygax_left_leg),
-		list("key" = /obj/item/mecha_part/part/gygax_right_leg),
-		list("key" = /obj/item/mecha_part/part/gygax_head)
+		list("key" = /obj/item/mecha_part/part/gygax/torso),
+		list("key" = /obj/item/mecha_part/part/gygax/head),
+		list("key" = /obj/item/mecha_part/part/gygax/left_arm),
+		list("key" = /obj/item/mecha_part/part/gygax/right_arm),
+		list("key" = /obj/item/mecha_part/part/gygax/left_leg),
+		list("key" = /obj/item/mecha_part/part/gygax/right_leg)
 	)
 
 // Gygax
 /datum/construction/reversible/mecha/combat/gygax
 	result = /obj/mecha/combat/gygax
 
-	base_icon = "gygax"
+	base_icon_state = "gygax"
 
 	central_circuit = /obj/item/circuitboard/mecha/gygax/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/gygax/peripherals
@@ -26,7 +26,7 @@
 	capacitor_name = /obj/item/stock_part/capacitor/adv::name
 
 	internal_armour = /obj/item/stack/sheet/steel
-	external_armour = /obj/item/mecha_part/part/gygax_armour
+	external_armour = /obj/item/mecha_part/part/gygax/armour
 
 /datum/construction/reversible/mecha/combat/gygax/get_other_steps()
 	. = ..()

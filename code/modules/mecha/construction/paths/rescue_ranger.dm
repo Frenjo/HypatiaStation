@@ -59,7 +59,7 @@
 		)
 	)
 
-	base_icon = "ripley"
+	base_icon_state = "ripley"
 
 	central_circuit = /obj/item/circuitboard/mecha/ripley/main
 	peripherals_circuit = /obj/item/circuitboard/mecha/ripley/peripherals

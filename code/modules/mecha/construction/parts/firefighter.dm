@@ -3,6 +3,7 @@
 	name = "\improper Firefighter chassis"
 
 	construct_type = /datum/construction/mecha_chassis/firefighter
+	target_icon = 'icons/obj/mecha/construction/ripley.dmi'
 
 /*
 /obj/item/mecha_part/part/firefighter_torso

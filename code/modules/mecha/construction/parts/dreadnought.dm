@@ -3,6 +3,7 @@
 	name = "\improper Dreadnought chassis"
 
 	construct_type = /datum/construction/mecha_chassis/ripley/dreadnought
+	target_icon = 'icons/obj/mecha/construction/ripley.dmi'
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/dreadnought
