@@ -1,59 +1,47 @@
-// Phazon Chassis
-/datum/construction/mecha_chassis/phazon
-	result = /datum/construction/reversible/mecha/phazon
-	steps = list(
-		list("key" = /obj/item/mecha_part/part/phazon/torso),
-		list("key" = /obj/item/mecha_part/part/phazon/head),
-		list("key" = /obj/item/mecha_part/part/phazon/left_arm),
-		list("key" = /obj/item/mecha_part/part/phazon/right_arm),
-		list("key" = /obj/item/mecha_part/part/phazon/left_leg),
-		list("key" = /obj/item/mecha_part/part/phazon/right_leg)
-	)
+// Special
+// This is only used for the Phazon and Eidolon currently.
+/datum/construction/reversible/mecha/special
+	var/optional_circuit = null
+	var/optional_circuit_name = "targeting" // This will basically never change but is here for future-proofing.
 
-// Phazon
-/datum/construction/reversible/mecha/phazon
-	result = /obj/mecha/combat/phazon
+	var/scanning_module = null
+	var/scanning_module_name = null
+	var/capacitor = null
+	var/capacitor_name = null
 
-	base_icon_state = "phazon"
+	var/internal_armour = null
+	var/external_armour = null
 
-	central_circuit = /obj/item/circuitboard/mecha/phazon/main
-	peripherals_circuit = /obj/item/circuitboard/mecha/phazon/peripherals
-
-	var/scanning_module = /obj/item/stock_part/scanning_module/hyperphasic
-	var/scanning_module_name = /obj/item/stock_part/scanning_module/hyperphasic::name
-	var/capacitor = /obj/item/stock_part/capacitor/hyper
-	var/capacitor_name = /obj/item/stock_part/capacitor/hyper::name
-
-/datum/construction/reversible/mecha/phazon/get_circuit_steps()
+/datum/construction/reversible/mecha/special/get_circuit_steps()
 	. = ..()
 	. += list(
 		list(
 			"desc" = "The peripherals control module is secured.",
-			"key" = /obj/item/circuitboard/mecha/phazon/targeting,
+			"key" = optional_circuit,
 			"action" = CONSTRUCTION_ACTION_DELETE,
-			"message" = "installed targeting module",
+			"message" = "installed [optional_circuit_name] module",
 			"back_key" = /obj/item/screwdriver,
 			"back_message" = "unfastened peripherals control module"
 		),
 		list(
-			"desc" = "The targeting module is installed.",
+			"desc" = "The [optional_circuit_name] module is installed.",
 			"key" = /obj/item/screwdriver,
-			"message" = "secured targeting module",
+			"message" = "secured [optional_circuit_name] module",
 			"back_key" = /obj/item/crowbar,
-			"back_message" = "removed targeting module"
+			"back_message" = "removed [optional_circuit_name] module"
 		)
 	)
 
-/datum/construction/reversible/mecha/phazon/get_stock_part_steps()
+/datum/construction/reversible/mecha/special/get_stock_part_steps()
 	. = ..()
 	. += list(
 		list(
-			"desc" = "The targeting module is secured.",
+			"desc" = "The [optional_circuit_name] module is secured.",
 			"key" = scanning_module,
 			"action" = CONSTRUCTION_ACTION_DELETE,
 			"message" = "installed [scanning_module_name]",
 			"back_key" = /obj/item/screwdriver,
-			"back_message" = "unfastened targeting module"
+			"back_message" = "unfastened [optional_circuit_name] module"
 		),
 		list(
 			"desc" = "\A [scanning_module_name] is installed.",
@@ -79,7 +67,7 @@
 		)
 	)
 
-/datum/construction/reversible/mecha/phazon/get_other_steps()
+/datum/construction/reversible/mecha/special/get_other_steps()
 	. = ..()
 	. += list(
 		list(
@@ -108,7 +96,7 @@
 		),
 		list(
 			"desc" = "The artificial bluespace crystal is secured.",
-			"key" = /obj/item/stack/sheet/plasteel,
+			"key" = internal_armour,
 			"amount" = 5,
 			"message" = "installed internal armour layer",
 			"back_key" = /obj/item/screwdriver,
@@ -130,7 +118,7 @@
 		),
 		list(
 			"desc" = "The internal armour layer is welded.",
-			"key" = /obj/item/mecha_part/part/phazon/armour,
+			"key" = external_armour,
 			"action" = CONSTRUCTION_ACTION_DELETE,
 			"message" = "installed external armour plates",
 			"back_key" = /obj/item/weldingtool,
@@ -143,7 +131,6 @@
 			"back_key" = /obj/item/crowbar,
 			"back_message" = "removed external armour plates"
 		),
-		// 20
 		list(
 			"desc" = "The external armour plates are wrenched.",
 			"key" = /obj/item/weldingtool,
@@ -152,7 +139,3 @@
 			"back_message" = "unfastened external armour plates"
 		)
 	)
-
-/datum/construction/reversible/mecha/phazon/spawn_result()
-	. = ..()
-	feedback_inc("mecha_phazon_created", 1)
