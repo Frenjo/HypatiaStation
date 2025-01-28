@@ -39,6 +39,10 @@
 		return
 	return ..()
 
+/obj/mecha/combat/phazon/get_stats_part()
+	. = ..()
+	. += "<b>Phasing: [phasing ? "enabled" : "disabled"]</b>"
+
 /obj/mecha/combat/phazon/get_commands()
 	. = {"<div class='wr'>
 						<div class='header'>Special</div>

@@ -35,7 +35,7 @@
 
 /obj/mecha/combat/gygax/get_stats_part()
 	. = ..()
-	. += "<b>Leg actuator overload: [overload ? "on" : "off"]</b>"
+	. += "<b>Leg actuator overload: [overload ? "enabled" : "disabled"]</b>"
 
 /obj/mecha/combat/gygax/get_commands()
 	. = {"<div class='wr'>
@@ -60,11 +60,11 @@
 	if(overload)
 		step_in = min(1, round(step_in / 2))
 		step_energy_drain = step_energy_drain * overload_coeff
-		occupant_message(SPAN_WARNING("You enable the leg actuator overload."))
+		occupant_message(SPAN_INFO("You enable the leg actuator overload."))
 	else
 		step_in = initial(step_in)
 		step_energy_drain = initial(step_energy_drain)
-		occupant_message(SPAN_INFO("You disable the leg actuator overload."))
+		occupant_message(SPAN_WARNING("You disable the leg actuator overload."))
 	log_message("Toggled leg actuator overload.")
 
 // Dark Gygax
