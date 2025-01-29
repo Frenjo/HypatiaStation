@@ -54,3 +54,17 @@
 	equip_cooldown = 8
 	projectile = /obj/item/projectile/energy/electrode
 	fire_sound = 'sound/weapons/Taser.ogg'
+
+/obj/item/mecha_part/equipment/weapon/energy/rapid_disabler
+	name = "\improper SW-RM \"Peaceforcer\" rapid disabler"
+	desc = "A weapon for combat exosuits of unknown origin. Uses foreign technology to streamline energy compression in order to shoot a stream of disabler shots in quick succession."
+	icon_state = "rapid_disabler"
+
+	equip_cooldown = 30
+	energy_drain = 50
+
+	projectile = /obj/item/projectile/energy/pulse/disabler
+	projectiles_per_shot = 3
+	deviation = 0.7
+	fire_cooldown = 2
+	fire_sound = 'sound/weapons/taser2.ogg'

@@ -1,4 +1,4 @@
-// Eidolon chassis
+// Eidolon Chassis
 /datum/construction/mecha_chassis/eidolon
 	result = /datum/construction/reversible/mecha/special/eidolon
 	steps = list(
@@ -10,6 +10,7 @@
 		list("key" = /obj/item/mecha_part/part/eidolon/right_leg)
 	)
 
+// Eidolon
 /datum/construction/reversible/mecha/special/eidolon
 	result = /obj/mecha/combat/eidolon/salvaged
 

@@ -24,6 +24,11 @@
 	var/rolling = FALSE
 	var/step_loop = 0
 
+/obj/mecha/combat/eidolon/New()
+	. = ..()
+	var/obj/item/mecha_part/equipment/weapon/energy/rapid_disabler/disabler = new /obj/item/mecha_part/equipment/weapon/energy/rapid_disabler(src)
+	disabler.attach(src)
+
 /obj/mecha/combat/eidolon/Topic(href, list/href_list)
 	. = ..()
 	if(href_list["toggle_ball_mode"])
@@ -48,6 +53,13 @@
 		step_loop = (step_loop++) % 3
 		step_sound = "sound/mecha/eidolon/sbdwalk[step_loop].ogg"
 	. = ..()
+
+/obj/mecha/combat/eidolon/go_out()
+	. = ..()
+	if(isnotnull(occupant))
+		return
+	if(rolling)
+		toggle_ball_mode()
 
 /obj/mecha/combat/eidolon/verb/toggle_ball_mode()
 	set category = "Exosuit Interface"
@@ -87,3 +99,9 @@
 	wreckage = /obj/structure/mecha_wreckage/eidolon/wrecked // Double wrecked, he ain't getting up from that!
 
 	salvaged = TRUE
+
+/obj/mecha/combat/eidolon/salvaged/New()
+	. = ..()
+	for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
+		equip.detach()
+		qdel(equip)
