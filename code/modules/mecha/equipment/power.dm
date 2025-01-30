@@ -7,7 +7,6 @@
 	equip_cooldown = 1 SECOND
 	energy_drain = 0
 	range = 0
-	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/glass = 2000, /decl/material/silver = 3000, /decl/material/gold = 2000)
 
 	var/datum/global_iterator/pr_energy_relay
 	var/coeff = 100
@@ -117,7 +116,6 @@
 	equip_cooldown = 1 SECOND
 	energy_drain = 0
 	range = MELEE
-	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/glass = 1000, /decl/material/silver = 500)
 	reliability = 1000
 
 	var/datum/global_iterator/pr_mech_generator
@@ -256,7 +254,6 @@
 	desc = "Generates power using uranium. Pollutes the environment. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
 	origin_tech = list(/datum/tech/engineering = 3, /datum/tech/power_storage = 3)
-	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/glass = 1000, /decl/material/silver = 500)
 	max_fuel = 50000
 	fuel_per_cycle_idle = 10
 	fuel_per_cycle_active = 30

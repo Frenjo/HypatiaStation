@@ -37,8 +37,8 @@
 	var/id
 	var/sync = 0
 	var/part_set
-	var/obj/being_built
-	var/list/queue = list()
+	var/datum/design/being_built
+	var/list/datum/design/queue = list()
 	var/processing_queue = 0
 	var/screen = "main"
 	var/opened = FALSE
@@ -47,14 +47,7 @@
 
 /obj/machinery/robotics_fabricator/New()
 	. = ..()
-	for(var/part_set in part_sets)
-		convert_part_set(part_set)
-	files = new /datum/research(src) //Setup the research data holder.
-
-/obj/machinery/robotics_fabricator/Destroy()
-	for_no_type_check(var/atom/movable/mover, src)
-		qdel(mover)
-	return ..()
+	files = new /datum/research(src) // Sets up the research data holder.
 
 /obj/machinery/robotics_fabricator/add_parts()
 	component_parts = list(
@@ -115,7 +108,6 @@
 	return 1
 
 /obj/machinery/robotics_fabricator/proc/emag()
-	sleep()
 	switch(emagged)
 		if(0)
 			emagged = 0.5
@@ -133,99 +125,27 @@
 		if(1)
 			visible_message("\icon[src] <b>[src]</b> beeps: \"No records in User DB\"")
 
-/obj/machinery/robotics_fabricator/proc/convert_part_set(set_name)
-	var/list/parts = part_sets[set_name]
-	if(istype(parts, /list))
-		for(var/i = 1; i <= length(parts); i++)
-			var/path = parts[i]
-			var/part = new path(src)
-			if(part)
-				parts[i] = part
-			//debug below
-			if(!isitem(parts[i]))
-				return 0
-
-/obj/machinery/robotics_fabricator/proc/add_part_set(set_name, parts = null)
-	if(set_name in part_sets)//attempt to create duplicate set
-		return 0
-	if(isnull(parts))
-		part_sets[set_name] = list()
-	else
-		part_sets[set_name] = parts
-	convert_part_set(set_name)
-	return 1
-
-/obj/machinery/robotics_fabricator/proc/add_part_to_set(set_name, part)
-	if(!part)
-		return 0
-	add_part_set(set_name)//if no "set_name" set exists, create
-	var/list/part_set = part_sets[set_name]
-	var/atom/apart
-	if(ispath(part))
-		apart = new part(src)
-	else
-		apart = part
-	if(!istype(apart))
-		return 0
-	for(var/obj/O in part_set)
-		if(O.type == apart.type)
-			qdel(apart)
-			return 0
-	part_set[++part_set.len] = apart
-	return 1
-
-/obj/machinery/robotics_fabricator/proc/remove_part_set(set_name)
-	for(var/i = 1, i <= length(part_sets), i++)
-		if(part_sets[i] == set_name)
-			part_sets.Cut(i, ++i)
-
-/*
-	proc/sanity_check()
-		for(var/p in resources)
-			var/index = resources.Find(p)
-			index = resources.Find(p, ++index)
-			if(index) //duplicate resource
-				to_world("Duplicate resource definition for [src](\ref[src])")
-				return 0
-		for(var/set_name in part_sets)
-			var/index = part_sets.Find(set_name)
-			index = part_sets.Find(set_name, ++index)
-			if(index) //duplicate part set
-				to_world("Duplicate part set definition for [src](\ref[src])")
-				return 0
-		return 1
-*/
-/*
-	New()
-		..()
-		add_part_to_set("Test",list("result"="/obj/item/mecha_part/part/gygax_armour","time"=600,"metal"=75000,"diamond"=10000))
-		add_part_to_set("Test",list("result"="/obj/item/mecha_part/part/ripley_left_arm","time"=200,"metal"=25000))
-		remove_part_set("Gygax")
-		return
-*/
-
 /obj/machinery/robotics_fabricator/proc/output_parts_list(set_name)
 	. = ""
-	var/list/part_set = listgetindex(part_sets, set_name)
-	if(istype(part_set))
-		for(var/obj/item/part in part_set)
-			var/resources_available = check_resources(part)
-			. += "<div class='part'>[output_part_info(part)]<br>\[[resources_available ? "<a href='byond://?src=\ref[src];part=\ref[part]'>Build</a> | " : null]<a href='byond://?src=\ref[src];add_to_queue=\ref[part]'>Add to queue</a>\]\[<a href='byond://?src=\ref[src];part_desc=\ref[part]'>?</a>\]</div>"
+	for_no_type_check(var/datum/design/D, files.known_designs)
+		if(D.build_type & design_flag)
+			for(var/category in D.categories)
+				if(category != set_name)
+					continue
+				var/resources_available = check_resources(D)
+				. += "<div class='part'>[output_part_info(D)]<br>\[[resources_available ? "<a href='byond://?src=\ref[src];part=[D.type]'>Build</a> | " : null]<a href='byond://?src=\ref[src];add_to_queue=[D.type]'>Add to queue</a>\]\[<a href='byond://?src=\ref[src];part_desc=[D.type]'>?</a>\]</div>"
 
-/obj/machinery/robotics_fabricator/proc/output_part_info(obj/item/part)
-	. = "[part.name] (Cost: [output_part_cost(part)]) [get_construction_time_w_coeff(part) / 10]sec"
+/obj/machinery/robotics_fabricator/proc/output_part_info(datum/design/D)
+	var/obj/part = D.build_path
+	. = "[initial(part.name)] (Cost: [output_part_cost(D)]) [get_construction_time_w_coeff(D) / 10]sec"
 
-/obj/machinery/robotics_fabricator/proc/output_part_cost(obj/item/part)
+/obj/machinery/robotics_fabricator/proc/output_part_cost(datum/design/D)
 	var/i = 0
-	var/output
-	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))//The most efficient way to go about this. Not all objects have these vars, but if they don't then they CANNOT be made by the mech fab. Doing it this way reduces a major amount of typecasting and switches, while cutting down maintenece for them as well -Sieve
-		for(var/path in part:construction_cost)//The check should ensure that anything without the var doesn't make it to this point
-			if(path in stored_materials)
-				var/decl/material/material = GET_DECL_INSTANCE(path)
-				output += "[i ? " | " : null][get_resource_cost_w_coeff(part, path)] [material.name]"
-				i++
-		return output
-	return 0
+	for(var/material_path in D.materials)
+		if(material_path in stored_materials)
+			var/decl/material/material = GET_DECL_INSTANCE(material_path)
+			. += "[i ? " | " : null][get_resource_cost_w_coeff(D, material_path)] [material.name]"
+			i++
 
 /obj/machinery/robotics_fabricator/proc/output_available_resources()
 	for(var/material_path in stored_materials)
@@ -236,41 +156,41 @@
 			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[res_max_amount];material=[material_path]'>All</a>\]</span>"
 		. += "<br/>"
 
-/obj/machinery/robotics_fabricator/proc/remove_resources(obj/item/part)
-//Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
-	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
-		for(var/resource in part:construction_cost)
-			if(resource in stored_materials)
-				stored_materials[resource] -= get_resource_cost_w_coeff(part, resource)
+/obj/machinery/robotics_fabricator/proc/remove_resources(datum/design/D)
+	for(var/material_path in D.materials)
+		if(material_path in stored_materials)
+			stored_materials[material_path] -= get_resource_cost_w_coeff(D, material_path)
 
-/obj/machinery/robotics_fabricator/proc/check_resources(obj/item/part)
-//		if(istype(part, /obj/item/robot_parts) || istype(part, /obj/item/mecha_part) || istype(part,/obj/item/borg/upgrade))
-//Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
-	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
-		for(var/resource in part:construction_cost)
-			if(resource in stored_materials)
-				if(stored_materials[resource] < get_resource_cost_w_coeff(part, resource))
-					return FALSE
-		return TRUE
-	return FALSE
+/obj/machinery/robotics_fabricator/proc/check_resources(datum/design/D)
+	for(var/material_path in D.materials)
+		if(material_path in stored_materials)
+			if(stored_materials[material_path] < get_resource_cost_w_coeff(D, material_path))
+				return FALSE
+		else
+			return FALSE
+	return TRUE
 
-/obj/machinery/robotics_fabricator/proc/build_part(obj/item/part)
-	if(!part)
-		return
-	being_built = new part.type(src)
-	desc = "It's building [being_built]."
-	remove_resources(part)
-	overlays += "fab-active"
+/obj/machinery/robotics_fabricator/proc/build_part(datum/design/D)
+	var/obj/part = D.build_path
+	being_built = D
+	desc = "It's building \a [initial(part.name)]."
+	remove_resources(D)
+	overlays.Add("fab-active")
 	update_power_state(USE_POWER_ACTIVE)
 	updateUsrDialog()
-	sleep(get_construction_time_w_coeff(part))
+	sleep(get_construction_time_w_coeff(D))
 	update_power_state(USE_POWER_IDLE)
-	overlays -= "fab-active"
+	overlays.Remove("fab-active")
 	desc = initial(desc)
-	if(being_built)
-		being_built.Move(get_step(src, SOUTH))
-		visible_message("\icon[src] <b>[src]</b> beeps, \"The following has been completed: [being_built] is built\".")
-		being_built = null
+
+	var/obj/item/output = new D.build_path()
+	output.forceMove(get_step(src, SOUTH))
+	if(isnull(output.matter_amounts))
+		output.matter_amounts = list()
+	for(var/material_path in D.materials)
+		output.matter_amounts[material_path] = get_resource_cost_w_coeff(D, material_path)
+	visible_message("\icon[src] <b>[src]</b> beeps, \"The following has been completed: [output.name] is built.\"")
+	being_built = null
 	updateUsrDialog()
 	return 1
 
@@ -279,16 +199,18 @@
 
 /obj/machinery/robotics_fabricator/proc/add_part_set_to_queue(set_name)
 	if(set_name in part_sets)
-		var/list/part_set = part_sets[set_name]
-		if(islist(part_set))
-			for(var/obj/item/part in part_set)
-				add_to_queue(part)
+		for_no_type_check(var/datum/design/D, files.known_designs)
+			if(D.build_type & design_flag)
+				for(var/category in D.categories)
+					if(category != set_name)
+						continue
+					add_to_queue(D)
 
-/obj/machinery/robotics_fabricator/proc/add_to_queue(part)
+/obj/machinery/robotics_fabricator/proc/add_to_queue(datum/design/D)
 	if(!istype(queue))
 		queue = list()
-	if(part)
-		queue[++queue.len] = part
+	if(D)
+		queue[++queue.len] = D
 	return length(queue)
 
 /obj/machinery/robotics_fabricator/proc/remove_from_queue(index)
@@ -298,28 +220,25 @@
 	return 1
 
 /obj/machinery/robotics_fabricator/proc/process_queue()
-	var/obj/item/part = listgetindex(queue, 1)
-	if(!part)
+	var/datum/design/D = queue[1]
+	if(isnull(D))
 		remove_from_queue(1)
 		if(length(queue))
 			return process_queue()
 		else
 			return
-	if(!part.vars.Find("construction_time") || !part.vars.Find("construction_cost"))//If it shouldn't be printed
-		remove_from_queue(1)//Take it out of the quene
-		return process_queue()//Then reprocess it
 	temp = null
-	while(part)
+	while(D)
 		if(stat & (NOPOWER | BROKEN))
 			return 0
-		if(!check_resources(part))
+		if(!check_resources(D))
 			visible_message("\icon[src] <b>[src]</b> beeps, \"Not enough resources. Queue processing stopped\".")
 			temp = {"<font color='red'>Not enough resources to build next part.</font><br>
 						<a href='byond://?src=\ref[src];process_queue=1'>Try again</a> | <a href='byond://?src=\ref[src];clear_temp=1'>Return</a><a>"}
 			return 0
 		remove_from_queue(1)
-		build_part(part)
-		part = listgetindex(queue, 1)
+		build_part(D)
+		D = listgetindex(queue, 1)
 	visible_message("\icon[src] <b>[src]</b> beeps, \"Queue processing finished successfully\".")
 	return 1
 
@@ -329,32 +248,13 @@
 		. += "<br>Nothing"
 	else
 		. += "<ol>"
-		for(var/i = 1; i <= length(queue); i++)
-			var/obj/item/part = listgetindex(queue, i)
-			if(istype(part))
-				if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
-					. += "<li[!check_resources(part) ? " style='color: #f00;'" : null]>[part.name] - [i > 1 ? "<a href='byond://?src=\ref[src];queue_move=-1;index=[i]' class='arrow'>&uarr;</a>" : null] [i < length(queue) ? "<a href='byond://?src=\ref[src];queue_move=+1;index=[i]' class='arrow'>&darr;</a>" : null] <a href='byond://?src=\ref[src];remove_from_queue=[i]'>Remove</a></li>"
-				else // Prevents junk items from even appearing in the list, and they will be silently removed when the fab processes.
-					remove_from_queue(i)//Trash it
-					return list_queue()//Rebuild it
+		var/i = 0
+		for_no_type_check(var/datum/design/D, queue)
+			i++
+			var/obj/part = D.build_path
+			. += "<li[!check_resources(part) ? " style='color: #f00;'" : null]>[initial(part.name)] - [i > 1 ? "<a href='byond://?src=\ref[src];queue_move=-1;index=[i]' class='arrow'>&uarr;</a>" : null] [i < length(queue) ? "<a href='byond://?src=\ref[src];queue_move=+1;index=[i]' class='arrow'>&darr;</a>" : null] <a href='byond://?src=\ref[src];remove_from_queue=[i]'>Remove</a></li>"
 		. += "</ol>"
 		. += "\[<a href='byond://?src=\ref[src];process_queue=1'>Process queue</a> | <a href='byond://?src=\ref[src];clear_queue=1'>Clear queue</a>\]"
-
-/obj/machinery/robotics_fabricator/proc/convert_designs()
-	if(!files)
-		return
-	. = 0
-	for_no_type_check(var/datum/design/D, files.known_designs)
-		if(D.build_type & design_flag)
-			var/added_to_category = FALSE
-			for(var/category in D.categories)
-				if(category in part_sets) // Checks if it's a valid category.
-					if(add_part_to_set(category, D.build_path)) // Adds it to said category.
-						.++
-						added_to_category = TRUE
-			if(!added_to_category)
-				if(add_part_to_set("Misc", D.build_path)) // If in doubt, chuck it into Misc.
-					.++
 
 /obj/machinery/robotics_fabricator/proc/update_tech()
 	if(isnull(files))
@@ -385,12 +285,6 @@
 						. += "Production routines updated.<br>"
 
 /obj/machinery/robotics_fabricator/proc/sync(silent = null)
-/*		if(length(queue))
-			if(!silent)
-				temp = "Error.  Please clear processing queue before updating!"
-				updateUsrDialog()
-			return
-*/
 	if(!silent)
 		temp = "Updating local R&D database..."
 		updateUsrDialog()
@@ -401,12 +295,13 @@
 		if(!RDC.sync)
 			continue
 		found++
+		var/existing_designs = length(files.known_designs)
 		for_no_type_check(var/datum/tech/T, RDC.files.known_tech)
 			files.AddTech2Known(T)
 		for_no_type_check(var/datum/design/D, RDC.files.known_designs)
 			files.AddDesign2Known(D)
 		files.refresh_research()
-		var/i = convert_designs()
+		var/i = existing_designs - length(files.known_designs)
 		var/tech_output = update_tech()
 		if(!silent)
 			temp = "Processed [i] equipment designs.<br>"
@@ -421,17 +316,11 @@
 		updateUsrDialog()
 		visible_message("\icon[src] <b>[src]</b> beeps, \"Error! Couldn't connect to R&D server.\"")
 
-/obj/machinery/robotics_fabricator/proc/get_resource_cost_w_coeff(obj/item/part, resource, roundto = 1)
-//Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
-	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
-		return round(part:construction_cost[resource] * resource_coeff, roundto)
-	return 0
+/obj/machinery/robotics_fabricator/proc/get_resource_cost_w_coeff(datum/design/D, material_path, roundto = 1)
+	return round(D.materials[material_path] * resource_coeff, roundto)
 
-/obj/machinery/robotics_fabricator/proc/get_construction_time_w_coeff(obj/item/part, roundto = 1)
-//Be SURE to add any new equipment to this switch, but don't be suprised if it spits out children objects
-	if(part.vars.Find("construction_time") && part.vars.Find("construction_cost"))
-		return round(part:construction_time * time_coeff, roundto)
-	return 0
+/obj/machinery/robotics_fabricator/proc/get_construction_time_w_coeff(datum/design/D, roundto = 1)
+	return round(D.build_time * time_coeff, roundto)
 
 /obj/machinery/robotics_fabricator/attack_hand(mob/user)
 	var/dat, left_part
@@ -447,7 +336,8 @@
 	if(temp)
 		left_part = temp
 	else if(being_built)
-		left_part = {"<TT>Building [being_built.name].<BR>
+		var/obj/building = being_built.build_path
+		left_part = {"<TT>Building [initial(building.name)].<BR>
 							Please wait until completion...</TT>"}
 	else
 		switch(screen)
@@ -504,13 +394,22 @@
 				part_set = tpart_set
 				screen = "parts"
 	if(href_list["part"])
-		var/list/part = topic_filter.getObj("part")
-		if(!processing_queue)
-			build_part(part)
-		else
-			add_to_queue(part)
+		var/path = topic_filter.getPath("part")
+		for_no_type_check(var/datum/design/D, files.known_designs)
+			if(D.build_type & design_flag)
+				if(D.type == path)
+					if(!processing_queue)
+						build_part(D)
+					else
+						add_to_queue(D)
+					break
 	if(href_list["add_to_queue"])
-		add_to_queue(topic_filter.getObj("add_to_queue"))
+		var/path = topic_filter.getPath("add_to_queue")
+		for_no_type_check(var/datum/design/D, files.known_designs)
+			if(D.build_type & design_flag)
+				if(D.type == path)
+					add_to_queue(D)
+					break
 		return update_queue_on_page()
 	if(href_list["remove_from_queue"])
 		remove_from_queue(topic_filter.getNum("remove_from_queue"))
@@ -525,10 +424,7 @@
 			processing_queue = TRUE
 			process_queue()
 			processing_queue = FALSE
-/*
-		if(href_list["list_queue"])
-			list_queue()
-*/
+
 	if(href_list["clear_temp"])
 		temp = null
 	if(href_list["screen"])
@@ -548,16 +444,20 @@
 		sync()
 		return update_queue_on_page()
 	if(href_list["part_desc"])
-		var/obj/part = topic_filter.getObj("part_desc")
-		if(part)
-			temp = {"<h1>[part] description:</h1>
-						[part.desc]<br>
-						<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>
-						"}
+		var/path = topic_filter.getPath("part_desc")
+		for_no_type_check(var/datum/design/D, files.known_designs)
+			if(D.build_type & design_flag)
+				if(D.type == path)
+					var/obj/part = D.build_path
+					temp = {"<h1>[initial(part.name)] description:</h1>
+								[initial(part.desc)]<br>
+								<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>
+							"}
+					break
 	if(href_list["remove_mat"] && href_list["material"])
-		var/material_path = text2path(href_list["material"])
+		var/material_path = topic_filter.getPath("material")
 		var/decl/material/mat = GET_DECL_INSTANCE(material_path)
-		temp = "Ejected [remove_material(material_path, text2num(href_list["remove_mat"]))] sheets of [lowertext(mat.name)]."
+		temp = "Ejected [remove_material(material_path, topic_filter.getNum("remove_mat"))] sheets of [lowertext(mat.name)]."
 		temp += "<br>"
 		temp += "<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
 	updateUsrDialog()

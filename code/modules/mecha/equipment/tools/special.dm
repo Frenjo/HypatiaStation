@@ -11,13 +11,6 @@
 	energy_drain = 250
 	range = MELEE | RANGED
 
-	construction_time = 1200
-	construction_cost = list(
-		MATERIAL_METAL = 30000, /decl/material/silver = 20000,
-		/decl/material/gold = 20000, /decl/material/plasma = 25000,
-		/decl/material/bananium = 10000 // This is a placeholder for tranquilite.
-	)
-
 /obj/item/mecha_part/equipment/tool/mimercd/can_attach(obj/mecha/combat/reticence/M)
 	if(!istype(M))
 		return FALSE

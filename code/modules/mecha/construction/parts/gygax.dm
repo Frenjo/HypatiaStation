@@ -2,7 +2,6 @@
 /obj/item/mecha_part/chassis/gygax
 	name = "\improper Gygax chassis"
 
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8)
 	construct_type = /datum/construction/mecha_chassis/gygax
 	target_icon = 'icons/obj/mecha/construction/gygax.dmi'
 
@@ -17,8 +16,6 @@
 		/datum/tech/materials = 2, /datum/tech/biotech = 3, /datum/tech/engineering = 3,
 		/datum/tech/programming = 2
 	)
-	construction_time = 300
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 15, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 10)
 
 /obj/item/mecha_part/part/gygax/head
 	name = "\improper Gygax head"
@@ -28,45 +25,33 @@
 		/datum/tech/materials = 2, /datum/tech/magnets = 3, /datum/tech/engineering = 3,
 		/datum/tech/programming = 2
 	)
-	construction_time = 200
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 5)
 
 /obj/item/mecha_part/part/gygax/left_arm
 	name = "\improper Gygax left arm"
 	desc = "A Gygax left arm. Data and power sockets are compatible with most exosuit tools and weapons."
 	icon_state = "gygax_l_arm"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
-	construction_time = 200
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 9)
 
 /obj/item/mecha_part/part/gygax/right_arm
 	name = "\improper Gygax right arm"
 	desc = "A Gygax right arm. Data and power sockets are compatible with most exosuit tools and weapons."
 	icon_state = "gygax_r_arm"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
-	construction_time = 200
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 9)
 
 /obj/item/mecha_part/part/gygax/left_leg
 	name = "\improper Gygax left leg"
 	icon_state = "gygax_l_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
-	construction_time = 200
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11)
 
 /obj/item/mecha_part/part/gygax/right_leg
 	name = "\improper Gygax right leg"
 	icon_state = "gygax_r_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
-	construction_time = 200
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11)
 
 /obj/item/mecha_part/part/gygax/armour
 	name = "\improper Gygax armour plates"
 	icon_state = "gygax_armour"
 	origin_tech = list(/datum/tech/materials = 6, /datum/tech/combat = 4, /datum/tech/engineering = 5)
-	construction_time = 600
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 5)
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/gygax

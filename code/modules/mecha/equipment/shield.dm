@@ -78,11 +78,6 @@
 	name = "linear shield droid"
 	desc = "A shield droid that forms a rectangular, unidirectionally projectile-blocking wall in front of the exosuit. (Can be attached to: Any Exosuit)"
 	origin_tech = list(/datum/tech/magnets = 6, /datum/tech/plasma = 3, /datum/tech/syndicate = 4)
-	construction_cost = list(
-		MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3,
-		/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET,
-		/decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 3
-	)
 
 	shield_type = /obj/item/shield_projector/line/exosuit
 
@@ -91,10 +86,5 @@
 	name = "omnidirectional shield droid"
 	desc = "A shield droid that forms a rectangular, unidirectionally projectile-blocking wall around the exosuit. (Can be attached to: Any Exosuit)"
 	origin_tech = list(/datum/tech/magnets = 6, /datum/tech/plasma = 6, /datum/tech/syndicate = 6)
-	construction_cost = list(
-		MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 4,
-		/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 3, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 2,
-		/decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 4
-	)
 
 	shield_type = /obj/item/shield_projector/rectangle/weak/exosuit

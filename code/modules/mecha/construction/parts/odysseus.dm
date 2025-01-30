@@ -16,15 +16,11 @@
 		/datum/tech/materials = 2, /datum/tech/biotech = 2, /datum/tech/engineering = 2,
 		/datum/tech/programming = 2
 	)
-	construction_time = 180
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8)
 
 /obj/item/mecha_part/part/odysseus/head
 	name = "\improper Odysseus head"
 	desc = "The head of an Odysseus-type exosuit."
 	icon_state = "odysseus_head"
-	construction_time = 100
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 3, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 5)
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/programming = 3)
 
 /obj/item/mecha_part/part/odysseus/left_arm
@@ -32,40 +28,30 @@
 	desc = "The left arm of an Odysseus-type exosuit. The data and power sockets are compatible with most exosuit tools."
 	icon_state = "odysseus_l_arm"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
-	construction_time = 120
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 3)
 
 /obj/item/mecha_part/part/odysseus/right_arm
 	name = "\improper Odysseus right arm"
 	desc = "The right arm of an Odysseus-type exosuit. The data and power sockets are compatible with most exosuit tools."
 	icon_state = "odysseus_r_arm"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
-	construction_time = 120
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 3)
 
 /obj/item/mecha_part/part/odysseus/left_leg
 	name = "\improper Odysseus left leg"
 	desc = "The left leg of an Odysseus-type exosuit. It contains somewhat complex servodrives and balance systems."
 	icon_state = "odysseus_l_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
-	construction_time = 130
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5)
 
 /obj/item/mecha_part/part/odysseus/right_leg
 	name = "\improper Odysseus right leg"
 	desc = "The right leg of an Odysseus-type exosuit. It contains somewhat complex servodrives and balance systems."
 	icon_state = "odysseus_r_leg"
 	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
-	construction_time = 130
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5)
 
 /obj/item/mecha_part/part/odysseus/carapace
 	name = "\improper Odysseus carapace"
 	desc = "The outer carapace of an Odysseus-type exosuit."
 	icon_state = "odysseus_carapace"
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3)
-	construction_time = 200
-	construction_cost = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 3)
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/odysseus

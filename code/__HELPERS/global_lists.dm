@@ -116,6 +116,8 @@
 	// Designs - Initialises all /datum/design into a list, indexed by typepath.
 	for(var/path in SUBTYPESOF(/datum/design))
 		var/datum/design/D = new path()
+		if(isnull(D.build_path))
+			continue
 		GLOBL.all_designs[path] = D
 
 // Outfits - Initialises all /decl/outfit typepaths into a list, indexed by name.

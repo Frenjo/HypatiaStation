@@ -104,7 +104,6 @@
 /obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang/clusterbang//Because I am a heartless bastard -Sieve
 	name = "\improper SOP-6 grenade launcher"
 	projectile = /obj/item/grenade/flashbang/clusterbang
-	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/gold = 6000, /decl/material/uranium = 6000)
 
 /obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang/clusterbang/limited/get_equip_info()//Limited version of the clusterbang launcher that can't reload
 	. = "<span style=\"color:[equip_ready ? "#0f0" : "#f00"];\">*</span>&nbsp;[chassis.selected == src ? "<b>" : "<a href='byond://?src=\ref[chassis];select_equip=\ref[src]'>"][name][chassis.selected == src ? "</b>" : "</a>"]\[[projectiles]\]"
@@ -115,8 +114,6 @@
 /obj/item/mecha_part/equipment/weapon/ballistic/launcher/banana_mortar
 	name = "banana mortar"
 	icon_state = "bananamrtr"
-	construction_time = 300
-	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/bananium = 5000)
 
 	projectile = /obj/item/bananapeel
 	fire_sound = 'sound/items/bikehorn.ogg'

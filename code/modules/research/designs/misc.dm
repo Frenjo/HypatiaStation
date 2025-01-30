@@ -99,14 +99,6 @@
 	build_path = /obj/item/clothing/glasses/hud/security
 	locked = 1
 
-/datum/design/borg_syndicate_module
-	name = "Borg Illegal Weapons Upgrade"
-	desc = "Allows for the construction of illegal upgrades for cyborgs"
-	build_type = DESIGN_TYPE_ROBOFAB
-	req_tech = list(/datum/tech/combat = 4, /datum/tech/syndicate = 3)
-	build_path = /obj/item/borg/upgrade/syndicate
-	categories = list("Robot Upgrade Modules")
-
 /datum/design/chameleon
 	name = "Chameleon Jumpsuit"
 	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."

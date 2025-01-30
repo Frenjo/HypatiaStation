@@ -4,10 +4,7 @@
 	desc = "Automated repair droid. Scans exosuit for damage and repairs it. Can fix almost all types of external or internal damage. (Can be attached to: Any Exosuit)"
 	icon_state = "repair_droid"
 	origin_tech = list(/datum/tech/magnets = 3, /datum/tech/programming = 3)
-	construction_cost = list(
-		MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3,
-		/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET
-	)
+
 	equip_cooldown = 2 SECONDS
 	energy_drain = 100
 	range = 0

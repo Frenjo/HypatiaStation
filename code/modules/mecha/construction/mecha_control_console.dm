@@ -72,8 +72,6 @@
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "motion2"
 	origin_tech = list(/datum/tech/magnets = 2, /datum/tech/programming = 2)
-	construction_time = 50
-	construction_cost = list(MATERIAL_METAL = 500)
 
 /obj/item/mecha_part/tracking/proc/get_mecha_info()
 	if(!in_mecha())

@@ -7,7 +7,6 @@
 	origin_tech = list(/datum/tech/biotech = 3, /datum/tech/programming = 2)
 	energy_drain = 20
 	range = MELEE
-	construction_cost = list(MATERIAL_METAL = 5000, /decl/material/glass = 10000)
 	reliability = 1000
 	equip_cooldown = 2 SECONDS
 	salvageable = FALSE
@@ -234,8 +233,6 @@
 		/datum/tech/materials = 3, /datum/tech/magnets = 4, /datum/tech/biotech = 4,
 		/datum/tech/programming = 3
 	)
-	construction_time = 200
-	construction_cost = list(MATERIAL_METAL = 3000, /decl/material/glass = 2000)
 
 	var/list/syringes
 	var/list/known_reagents

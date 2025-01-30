@@ -5,7 +5,6 @@
 	desc = "A mountable passenger compartment for exo-suits. Rather cramped. (Can be attached to: Any Exosuit)"
 	icon_state = "passenger_compartment"
 	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1, /datum/tech/engineering = 1)
-	construction_cost = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 3, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3)
 	energy_drain = 10
 	range = MELEE
 	equip_cooldown = 2 SECONDS

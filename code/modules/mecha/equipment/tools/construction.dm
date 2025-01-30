@@ -10,11 +10,6 @@
 	equip_cooldown = 1 SECOND
 	energy_drain = 250
 	range = MELEE|RANGED
-	construction_time = 1200
-	construction_cost = list(
-		MATERIAL_METAL = 30000, /decl/material/silver = 20000,
-		/decl/material/gold = 20000, /decl/material/plasma = 25000
-	)
 	var/mode = 0 //0 - deconstruct, 1 - wall or floor, 2 - airlock.
 	var/disabled = 0 //malf
 

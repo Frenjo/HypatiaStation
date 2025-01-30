@@ -6,7 +6,7 @@
 	desc = "A blue space tracking beacon."
 	req_tech = list(/datum/tech/bluespace = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list (MATERIAL_METAL = 20, /decl/material/glass = 10)
+	materials = list(MATERIAL_METAL = 20, /decl/material/glass = 10)
 	build_path = /obj/item/radio/beacon
 
 /datum/design/bluespace_crystal

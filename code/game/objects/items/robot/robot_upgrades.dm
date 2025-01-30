@@ -12,9 +12,6 @@
 	icon = 'icons/obj/items/module.dmi'
 	icon_state = "cyborg_upgrade"
 
-	var/construction_time = 120
-	var/construction_cost = list(MATERIAL_METAL = 10000)
-
 	var/locked = FALSE
 	var/installed = FALSE
 
@@ -65,8 +62,6 @@
 	desc = "Used to rename a robot."
 	icon_state = "cyborg_upgrade1"
 
-	construction_cost = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 11)
-
 	var/heldname = "default name"
 
 /obj/item/borg/upgrade/rename/attack_self(mob/user)
@@ -89,8 +84,6 @@
 	desc = "Used to force a restart of a disabled-but-repaired robot, bringing it back online."
 	icon_state = "cyborg_upgrade1"
 
-	construction_cost = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 18, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3)
-
 /obj/item/borg/upgrade/restart/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	if(borg.health < 0)
 		to_chat(user, SPAN_WARNING("You have to repair the robot before using this module!"))
@@ -110,12 +103,6 @@
 	name = "robot VTEC module"
 	desc = "Used to kick in a robot's VTEC systems, increasing its speed."
 	icon_state = "cyborg_upgrade2"
-
-	construction_cost = list(
-		MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 24,
-		/decl/material/glass = 6000,
-		/decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 3
-	)
 
 	require_model = TRUE
 
@@ -139,11 +126,6 @@
 	name = "security robot rapid taser cooling module"
 	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
 	icon_state = "cyborg_upgrade3"
-
-	construction_cost = list(
-		MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 24, /decl/material/glass = 6000,
-		/decl/material/gold = 2000, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET
-	)
 
 	require_model = TRUE
 	model_types = list(/obj/item/robot_model/security)
@@ -177,8 +159,6 @@
 	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
 	icon_state = "cyborg_upgrade3"
 
-	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/uranium = 20000, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 8)
-
 	require_model = TRUE
 	model_types = list(/obj/item/robot_model/miner)
 
@@ -206,8 +186,6 @@
 	desc = "Unlocks the hidden, deadlier functions of a robot."
 	icon_state = "cyborg_upgrade3"
 
-	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 8, /decl/material/diamond = 10000)
-
 	require_model = TRUE
 
 /obj/item/borg/upgrade/syndicate/action(mob/living/silicon/robot/borg, mob/living/user = usr)
@@ -228,11 +206,6 @@
 	name = "robot flash-suppression module"
 	desc = "A highly advanced, complex system for supressing incoming flashes directed at a robot's optical processing system."
 	icon_state = "cyborg_upgrade4"
-
-	construction_cost = list(
-		MATERIAL_METAL = 10000, /decl/material/glass = 2000, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2,
-		/decl/material/gold = 2000, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 3
-	)
 
 	require_model = TRUE
 

@@ -4,7 +4,7 @@
 	desc = "Boosts exosuit armour against armed melee attacks. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "melee_armour_booster"
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 4)
-	construction_cost = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 3)
+
 	equip_cooldown = 1 SECOND
 	energy_drain = 50
 	range = 0
@@ -28,7 +28,7 @@
 	desc = "Electrically charges exosuit armour to discourage melee attackers. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "melee_defence_shocker"
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 4, /datum/tech/engineering = 2, /datum/tech/plasma = 2)
-	construction_cost = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 3)
+
 	equip_cooldown = 1 SECOND
 	energy_drain = 100
 	range = 0
@@ -62,7 +62,7 @@
 	desc = "Boosts exosuit armour against ranged attacks. Completely blocks taser shots. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "ranged_armour_booster"
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 5, /datum/tech/engineering = 3)
-	construction_cost = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 3)
+
 	equip_cooldown = 1 SECOND
 	energy_drain = 50
 	range = 0

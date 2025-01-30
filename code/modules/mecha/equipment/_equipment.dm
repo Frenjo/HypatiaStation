@@ -10,8 +10,6 @@
 
 	force = 5
 	origin_tech = list(/datum/tech/materials = 2)
-	construction_time = 100
-	construction_cost = list(MATERIAL_METAL = 10000)
 	reliability = 1000
 
 	var/equip_cooldown = 0
