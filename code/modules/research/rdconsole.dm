@@ -212,7 +212,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				screen = 0.1
 				updateUsrDialog()
 				flick("d_analyser_process", linked_destroy)
-				spawn(24)
+				spawn(2.4 SECONDS)
 					if(linked_destroy)
 						linked_destroy.busy = 0
 						if(!linked_destroy.hacked)
@@ -307,31 +307,30 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				linked_lathe.busy = 1
 				flick("protolathe_n", linked_lathe)
 				var/key = usr.key	//so we don't lose the info during the spawn delay
-				spawn(16)
+				spawn(being_built.build_time)
 					use_power(power)
-					spawn(16)
-						for(var/M in being_built.materials)
-							if(M in linked_lathe.accepted_materials)
-								linked_lathe.stored_materials[M] = max(0, (linked_lathe.stored_materials[M] - being_built.materials[M]))
-							else
-								linked_lathe.reagents.remove_reagent(M, being_built.materials[M])
+					for(var/M in being_built.materials)
+						if(M in linked_lathe.accepted_materials)
+							linked_lathe.stored_materials[M] = max(0, (linked_lathe.stored_materials[M] - being_built.materials[M]))
+						else
+							linked_lathe.reagents.remove_reagent(M, being_built.materials[M])
 
-						if(being_built.build_path)
-							var/obj/new_item = new being_built.build_path(src)
-							if(new_item.type == /obj/item/storage/backpack/holding)
-								new_item.investigate_log("built by [key]", "singulo")
-							new_item.reliability = being_built.reliability
-							if(linked_lathe.hacked)
-								being_built.reliability = max((reliability / 2), 0)
-							/*if(being_built.locked)
-								var/obj/item/storage/lockbox/L = new/obj/item/storage/lockbox(linked_lathe.loc)
-								new_item.forceMove(L)
-								L.name += " ([new_item.name])"*/
-							else
-								new_item.forceMove(linked_lathe.loc)
-							linked_lathe.busy = 0
-							screen = 3.1
-							updateUsrDialog()
+					if(being_built.build_path)
+						var/obj/new_item = new being_built.build_path(src)
+						if(new_item.type == /obj/item/storage/backpack/holding)
+							new_item.investigate_log("built by [key]", "singulo")
+						new_item.reliability = being_built.reliability
+						if(linked_lathe.hacked)
+							being_built.reliability = max((reliability / 2), 0)
+						/*if(being_built.locked)
+							var/obj/item/storage/lockbox/L = new/obj/item/storage/lockbox(linked_lathe.loc)
+							new_item.forceMove(L)
+							L.name += " ([new_item.name])"*/
+						else
+							new_item.forceMove(linked_lathe.loc)
+						linked_lathe.busy = 0
+						screen = 3.1
+						updateUsrDialog()
 
 	else if(href_list["imprint"]) // Causes the Circuit Imprinter to build something.
 		if(linked_imprinter)
@@ -348,7 +347,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				screen = 0.4
 				linked_imprinter.busy = 1
 				flick("circuit_imprinter_ani",linked_imprinter)
-				spawn(16)
+				spawn(being_built.build_time)
 					use_power(power)
 					for(var/M in being_built.materials)
 						if(M in linked_imprinter.accepted_materials)

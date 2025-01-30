@@ -42,8 +42,9 @@ other types of metals and chemistry for reagents).
 	var/reliability_base = 100			//Base reliability of a device before modifiers.
 	var/reliability = 100				//Reliability of the device.
 	var/build_type = null				//Flag as to what kind machine the design is built in. See defines.
-	var/list/materials = list()			//List of materials. Format: /decl/material/* = amount.
-	var/build_path = null					//The path of the object that gets created
+	var/list/materials = list()			// List of materials. Format: /decl/material/* = amount.
+	var/build_time = 3.2 SECONDS		// The time it takes to build this design.
+	var/build_path = null				//The path of the object that gets created
 	var/locked = 0						//If true it will spawn inside a lockbox with currently sec access
 	var/list/categories = null // Primarily used for Mech Fabricators, but can be used for anything
 

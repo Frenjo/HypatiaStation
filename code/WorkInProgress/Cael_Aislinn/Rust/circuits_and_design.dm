@@ -7,12 +7,10 @@
 	build_path = /obj/machinery/computer/rust_core_control
 	origin_tech = list(/datum/tech/engineering = 4, /datum/tech/programming = 4)
 
-/datum/design/rust_core_control
+/datum/design/circuit/rust_core_control
 	name = "Circuit Design (RUST core controller)"
 	desc = "Allows for the construction of circuit boards used to build a core control console for the RUST fusion engine."
 	req_tech = list(/datum/tech/engineering = 4, /datum/tech/programming = 4)
-	build_type = DESIGN_TYPE_IMPRINTER
-	materials = list(/decl/material/glass = 2000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/rust_core_control
 
 //////////////////////////////////////
@@ -23,12 +21,10 @@
 	build_path = /obj/machinery/computer/rust_fuel_control
 	origin_tech = list(/datum/tech/engineering = 4, /datum/tech/programming = 4)
 
-/datum/design/rust_fuel_control
+/datum/design/circuit/rust_fuel_control
 	name = "Circuit Design (RUST fuel controller)"
 	desc = "Allows for the construction of circuit boards used to build a fuel injector control console for the RUST fusion engine."
 	req_tech = list(/datum/tech/engineering = 4, /datum/tech/programming = 4)
-	build_type = DESIGN_TYPE_IMPRINTER
-	materials = list(/decl/material/glass = 2000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/rust_fuel_control
 
 //////////////////////////////////////
@@ -39,11 +35,10 @@
 	icon_state = "card_mod"
 	origin_tech = list(/datum/tech/materials = 5, /datum/tech/engineering = 4)
 
-/datum/design/rust_fuel_port
+/datum/design/circuit/rust_fuel_port
 	name = "Internal circuitry (RUST fuel port)"
 	desc = "Allows for the construction of circuit boards used to build a fuel injection port for the RUST fusion engine."
 	req_tech = list(/datum/tech/materials = 5, /datum/tech/engineering = 4)
-	build_type = DESIGN_TYPE_IMPRINTER
 	materials = list(/decl/material/glass = 2000, /decl/material/uranium = 3000, "sacid" = 20)
 	build_path = /obj/item/module/rust_fuel_port
 
@@ -55,11 +50,10 @@
 	icon_state = "card_mod"
 	origin_tech = list(/datum/tech/materials = 6, /datum/tech/plasma = 4)
 
-/datum/design/rust_fuel_compressor
+/datum/design/circuit/rust_fuel_compressor
 	name = "Circuit Design (RUST fuel compressor)"
 	desc = "Allows for the construction of circuit boards used to build a fuel compressor of the RUST fusion engine."
 	req_tech = list(/datum/tech/materials = 6, /datum/tech/plasma = 4)
-	build_type = DESIGN_TYPE_IMPRINTER
 	materials = list(/decl/material/glass = 2000, /decl/material/diamond = 1000, /decl/material/plasma = 3000, "sacid" = 20)
 	build_path = /obj/item/module/rust_fuel_compressor
 
@@ -83,14 +77,13 @@
 		/obj/item/stack/cable_coil = 5
 	)
 
-/datum/design/rust_core
+/datum/design/circuit/rust_core
 	name = "Internal circuitry (RUST tokamak core)"
 	desc = "The circuit board that for a RUST-pattern tokamak fusion core."
 	req_tech = list(
 		/datum/tech/magnets = 5, /datum/tech/power_storage = 6, /datum/tech/plasma = 4,
 		/datum/tech/bluespace = 3
 	)
-	build_type = DESIGN_TYPE_IMPRINTER
 	reliability_base = 79
 	materials = list(/decl/material/glass = 2000, /decl/material/diamond = 2000, /decl/material/plasma = 3000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/rust_core
@@ -114,14 +107,13 @@
 		/obj/item/stack/cable_coil = 5
 	)
 
-/datum/design/rust_injector
+/datum/design/circuit/rust_injector
 	name = "Internal circuitry (RUST tokamak core)"
 	desc = "The circuit board that for a RUST-pattern particle accelerator."
 	req_tech = list(
 		/datum/tech/materials = 6, /datum/tech/engineering = 4, /datum/tech/power_storage = 3,
 		/datum/tech/plasma = 4
 	)
-	build_type = DESIGN_TYPE_IMPRINTER
 	reliability_base = 79
 	materials = list(/decl/material/glass = 2000, /decl/material/uranium = 2000, /decl/material/plasma = 3000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/rust_core
