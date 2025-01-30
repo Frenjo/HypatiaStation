@@ -1,8 +1,8 @@
 /obj/item/mecha_part/equipment/weapon/honker
 	name = "\improper HoNkER BlAsT 5000"
-	icon_state = "mecha_honker"
+	icon_state = "honker"
 	energy_drain = 200
-	equip_cooldown = 150
+	equip_cooldown = 15 SECONDS
 	range = MELEE|RANGED
 	construction_time = 500
 	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/bananium = 10000)

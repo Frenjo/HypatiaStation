@@ -2,8 +2,8 @@
 /obj/item/mecha_part/equipment/tool/drill
 	name = "drill"
 	desc = "This is the drill that'll pierce the heavens! (Can be attached to: Working and Combat Exosuits)"
-	icon_state = "mecha_drill"
-	equip_cooldown = 30
+	icon_state = "drill"
+	equip_cooldown = 3 SECONDS
 	energy_drain = 10
 	force = 15
 
@@ -55,10 +55,10 @@
 /obj/item/mecha_part/equipment/tool/drill/diamond
 	name = "diamond drill"
 	desc = "This is an upgraded version of the drill that'll pierce the heavens! (Can be attached to: Working and Combat Exosuits)"
-	icon_state = "mecha_diamond_drill"
+	icon_state = "diamond_drill"
 	origin_tech = list(/datum/tech/materials = 4, /datum/tech/engineering = 3)
 	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/diamond = 6500)
-	equip_cooldown = 20
+	equip_cooldown = 2 SECONDS
 	force = 15
 
 /obj/item/mecha_part/equipment/tool/drill/diamond/action(atom/target)

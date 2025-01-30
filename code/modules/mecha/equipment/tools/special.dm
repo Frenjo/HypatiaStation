@@ -2,12 +2,12 @@
 /obj/item/mecha_part/equipment/tool/mimercd
 	name = "mounted MRCD"
 	desc = "An exosuit-mounted mime-rapid-construction-device. (Can be attached to: Reticence)"
-	icon_state = "mecha_rcd"
+	icon_state = "rcd"
 	origin_tech = list(
 		/datum/tech/materials = 4, /datum/tech/magnets = 4, /datum/tech/engineering = 4,
 		/datum/tech/power_storage = 4, /datum/tech/bluespace = 3
 	)
-	equip_cooldown = 10
+	equip_cooldown = 1 SECOND
 	energy_drain = 250
 	range = MELEE | RANGED
 

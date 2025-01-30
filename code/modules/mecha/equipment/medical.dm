@@ -9,7 +9,7 @@
 	range = MELEE
 	construction_cost = list(MATERIAL_METAL = 5000, /decl/material/glass = 10000)
 	reliability = 1000
-	equip_cooldown = 20
+	equip_cooldown = 2 SECONDS
 	salvageable = FALSE
 
 	var/mob/living/carbon/patient = null
@@ -229,7 +229,7 @@
 	icon_state = "syringegun"
 	energy_drain = 10
 	range = MELEE|RANGED
-	equip_cooldown = 10
+	equip_cooldown = 1 SECOND
 	origin_tech = list(
 		/datum/tech/materials = 3, /datum/tech/magnets = 4, /datum/tech/biotech = 4,
 		/datum/tech/programming = 3

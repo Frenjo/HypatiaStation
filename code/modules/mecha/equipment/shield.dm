@@ -2,7 +2,7 @@
 	name = "shield droid"
 	icon_state = "shield_droid"
 
-	equip_cooldown = 10
+	equip_cooldown = 1 SECOND
 	energy_drain = 50
 	range = 0
 

@@ -4,7 +4,7 @@
 	desc = "Wirelessly drains energy from any available power channel in area. The performance index is quite low. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
 	origin_tech = list(/datum/tech/magnets = 4, /datum/tech/syndicate = 2)
-	equip_cooldown = 10
+	equip_cooldown = 1 SECOND
 	energy_drain = 0
 	range = 0
 	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/glass = 2000, /decl/material/silver = 3000, /decl/material/gold = 2000)
@@ -114,7 +114,7 @@
 	desc = "Generates power using solid plasma as fuel. Pollutes the environment. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
 	origin_tech = list(/datum/tech/engineering = 1, /datum/tech/power_storage = 2, /datum/tech/plasma = 2)
-	equip_cooldown = 10
+	equip_cooldown = 1 SECOND
 	energy_drain = 0
 	range = MELEE
 	construction_cost = list(MATERIAL_METAL = 10000, /decl/material/glass = 1000, /decl/material/silver = 500)

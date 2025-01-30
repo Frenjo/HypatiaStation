@@ -2,12 +2,12 @@
 /obj/item/mecha_part/equipment/tool/rcd
 	name = "mounted RCD"
 	desc = "An exosuit-mounted rapid-construction-device. (Can be attached to: Working Exosuits)"
-	icon_state = "mecha_rcd"
+	icon_state = "rcd"
 	origin_tech = list(
 		/datum/tech/materials = 4, /datum/tech/magnets = 4, /datum/tech/engineering = 4,
 		/datum/tech/power_storage = 4, /datum/tech/bluespace = 3
 	)
-	equip_cooldown = 10
+	equip_cooldown = 1 SECOND
 	energy_drain = 250
 	range = MELEE|RANGED
 	construction_time = 1200
@@ -114,7 +114,7 @@
 /obj/item/mecha_part/equipment/tool/cable_layer
 	name = "cable layer"
 	desc = "An exosuit-mounted cable layer. (Can be attached to: Working Exosuits)"
-	icon_state = "mecha_wire"
+	icon_state = "cable_layer"
 
 	var/datum/event/event
 	var/turf/old_turf

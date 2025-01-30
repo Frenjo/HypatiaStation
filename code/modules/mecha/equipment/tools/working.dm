@@ -2,8 +2,8 @@
 /obj/item/mecha_part/equipment/tool/hydraulic_clamp
 	name = "hydraulic clamp"
 	desc = "An exosuit-mounted hydraulic clamp with cargo loading capability. (Can be attached to: Working Exosuits)"
-	icon_state = "mecha_clamp"
-	equip_cooldown = 15
+	icon_state = "clamp"
+	equip_cooldown = 1.5 SECONDS
 	energy_drain = 10
 
 	var/dam_force = 20
@@ -98,8 +98,8 @@
 /obj/item/mecha_part/equipment/tool/extinguisher
 	name = "extinguisher"
 	desc = "An exosuit-mounted fire extinguisher. (Can be attached to: Working Exosuits)"
-	icon_state = "mecha_exting"
-	equip_cooldown = 5
+	icon_state = "exting"
+	equip_cooldown = 0.5 SECONDS
 	energy_drain = 0
 	range = MELEE|RANGED
 

@@ -21,22 +21,11 @@
 	if(href_list["rearm"])
 		rearm()
 
-/obj/item/mecha_part/equipment/weapon/ballistic/scattershot
-	name = "\improper LBX AC 10 \"Scattershot\""
-	icon_state = "mecha_scatter"
-	equip_cooldown = 20
-	projectile = /obj/item/projectile/bullet/midbullet
-	fire_sound = 'sound/weapons/Gunshot.ogg'
-	fire_volume = 80
-	projectiles = 40
-	projectiles_per_shot = 4
-	deviation = 0.7
-	projectile_energy_cost = 25
-
+// LMG
 /obj/item/mecha_part/equipment/weapon/ballistic/lmg
 	name = "\improper Ultra AC 2"
-	icon_state = "mecha_uac2"
-	equip_cooldown = 10
+	icon_state = "uac2"
+	equip_cooldown = 1 SECOND
 	projectile = /obj/item/projectile/bullet/weakbullet
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 	projectiles = 300
@@ -45,6 +34,19 @@
 	projectile_energy_cost = 20
 	fire_cooldown = 2
 
+// Scattershot
+/obj/item/mecha_part/equipment/weapon/ballistic/scattershot
+	name = "\improper LBX AC 10 \"Scattershot\""
+	icon_state = "scatter"
+	equip_cooldown = 2 SECONDS
+	projectile = /obj/item/projectile/bullet/midbullet
+	fire_sound = 'sound/weapons/Gunshot.ogg'
+	fire_volume = 80
+	projectiles = 40
+	projectiles_per_shot = 4
+	deviation = 0.7
+	projectile_energy_cost = 25
+
 /obj/item/mecha_part/equipment/weapon/ballistic/launcher
 	var/missile_speed = 2
 	var/missile_range = 30
@@ -52,14 +54,15 @@
 /obj/item/mecha_part/equipment/weapon/ballistic/launcher/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	AM.throw_at(target, missile_range, missile_speed)
 
+// Launchers
 /obj/item/mecha_part/equipment/weapon/ballistic/launcher/missile_rack
 	name = "\improper SRM-8 missile rack"
-	icon_state = "mecha_missilerack"
+	icon_state = "missilerack"
 	projectile = /obj/item/missile
 	fire_sound = 'sound/effects/bang.ogg'
 	projectiles = 8
 	projectile_energy_cost = 1000
-	equip_cooldown = 60
+	equip_cooldown = 6 SECONDS
 
 /obj/item/mecha_part/equipment/weapon/ballistic/launcher/missile_rack/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	var/obj/item/missile/M = AM
@@ -82,13 +85,13 @@
 
 /obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang
 	name = "\improper SGL-6 grenade launcher"
-	icon_state = "mecha_grenadelnchr"
+	icon_state = "grenadelnchr"
 	projectile = /obj/item/grenade/flashbang
 	fire_sound = 'sound/effects/bang.ogg'
 	projectiles = 6
 	missile_speed = 1.5
 	projectile_energy_cost = 800
-	equip_cooldown = 60
+	equip_cooldown = 6 SECONDS
 
 	var/det_time = 20
 
@@ -111,7 +114,7 @@
 
 /obj/item/mecha_part/equipment/weapon/ballistic/launcher/banana_mortar
 	name = "banana mortar"
-	icon_state = "mecha_bananamrtr"
+	icon_state = "bananamrtr"
 	construction_time = 300
 	construction_cost = list(MATERIAL_METAL = 20000, /decl/material/bananium = 5000)
 
@@ -120,7 +123,7 @@
 	projectiles = 15
 	missile_speed = 1.5
 	projectile_energy_cost = 100
-	equip_cooldown = 20
+	equip_cooldown = 2 SECONDS
 
 /obj/item/mecha_part/equipment/weapon/ballistic/launcher/banana_mortar/can_attach(obj/mecha/combat/honk/M)
 	if(!istype(M))
@@ -129,9 +132,9 @@
 
 /obj/item/mecha_part/equipment/weapon/ballistic/launcher/banana_mortar/mousetrap_mortar
 	name = "mousetrap mortar"
-	icon_state = "mecha_mousetrapmrtr"
+	icon_state = "mousetrapmrtr"
 	projectile = /obj/item/assembly/mousetrap
-	equip_cooldown = 10
+	equip_cooldown = 1 SECOND
 
 /obj/item/mecha_part/equipment/weapon/ballistic/launcher/banana_mortar/mousetrap_mortar/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	var/obj/item/assembly/mousetrap/M = AM

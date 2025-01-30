@@ -8,7 +8,7 @@
 	construction_cost = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 3, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3)
 	energy_drain = 10
 	range = MELEE
-	equip_cooldown = 20
+	equip_cooldown = 2 SECONDS
 	salvageable = FALSE
 
 	var/mob/living/carbon/passenger = null

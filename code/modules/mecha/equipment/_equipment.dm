@@ -6,7 +6,7 @@
 	name = "mecha equipment"
 	desc = "A default piece of exosuit equipment. You should never see this."
 	icon = 'icons/obj/mecha/mecha_equipment.dmi'
-	icon_state = "mecha_equip"
+	icon_state = "blank"
 
 	force = 5
 	origin_tech = list(/datum/tech/materials = 2)

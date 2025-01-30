@@ -8,7 +8,7 @@
 		MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3,
 		/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET
 	)
-	equip_cooldown = 20
+	equip_cooldown = 2 SECONDS
 	energy_drain = 100
 	range = 0
 
@@ -88,9 +88,9 @@
 /obj/item/mecha_part/equipment/teleporter
 	name = "teleporter"
 	desc = "An exosuit module that allows exosuits to teleport to any position in view. (Can be attached to: Any Exosuit)"
-	icon_state = "mecha_teleport"
+	icon_state = "teleporter"
 	origin_tech = list(/datum/tech/bluespace = 10)
-	equip_cooldown = 150
+	equip_cooldown = 15 SECONDS
 	energy_drain = 1000
 	range = RANGED
 
@@ -108,9 +108,9 @@
 /obj/item/mecha_part/equipment/wormhole_generator
 	name = "wormhole generator"
 	desc = "An exosuit module that allows generating of small quasi-stable wormholes. (Can be attached to: Any Exosuit)"
-	icon_state = "mecha_wholegen"
+	icon_state = "wholegen"
 	origin_tech = list(/datum/tech/bluespace = 3)
-	equip_cooldown = 50
+	equip_cooldown = 5 SECONDS
 	energy_drain = 300
 	range = RANGED
 
@@ -159,9 +159,9 @@
 /obj/item/mecha_part/equipment/gravcatapult
 	name = "gravitational catapult"
 	desc = "An exosuit mounted Gravitational Catapult. (Can be attached to: Any Exosuit)"
-	icon_state = "mecha_teleport"
+	icon_state = "teleporter"
 	origin_tech = list(/datum/tech/magnets = 3, /datum/tech/bluespace = 2)
-	equip_cooldown = 10
+	equip_cooldown = 1 SECOND
 	energy_drain = 100
 	range = MELEE | RANGED
 	var/atom/movable/locked

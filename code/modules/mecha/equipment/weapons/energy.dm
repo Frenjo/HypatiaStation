@@ -2,34 +2,61 @@
 	name = "general energy weapon"
 	auto_rearm = 1
 
+// Taser
+/obj/item/mecha_part/equipment/weapon/energy/taser
+	name = "PBT \"Pacifier\" mounted taser"
+	icon_state = "taser"
+	equip_cooldown = 0.8 SECONDS
+	energy_drain = 20
+	projectile = /obj/item/projectile/energy/electrode
+	fire_sound = 'sound/weapons/Taser.ogg'
+
+// Disabler
+/obj/item/mecha_part/equipment/weapon/energy/rapid_disabler
+	name = "\improper SW-RM \"Peaceforcer\" rapid disabler"
+	desc = "A weapon for combat exosuits of unknown origin. Uses foreign technology to streamline energy compression in order to shoot a stream of disabler shots in quick succession."
+	icon_state = "rapid_disabler"
+
+	equip_cooldown = 3 SECONDS
+	energy_drain = 50
+
+	projectile = /obj/item/projectile/energy/pulse/disabler
+	projectiles_per_shot = 3
+	deviation = 0.7
+	fire_cooldown = 2
+	fire_sound = 'sound/weapons/taser2.ogg'
+
+// Laser
 /obj/item/mecha_part/equipment/weapon/energy/laser
-	equip_cooldown = 8
 	name = "\improper CH-PS \"Immolator\" laser"
-	icon_state = "mecha_laser"
+	icon_state = "laser"
+	equip_cooldown = 0.8 SECONDS
 	energy_drain = 30
 	projectile = /obj/item/projectile/energy/beam/laser
 	fire_sound = 'sound/weapons/Laser.ogg'
 
 /obj/item/mecha_part/equipment/weapon/energy/laser/heavy
-	equip_cooldown = 15
 	name = "\improper CH-LC \"Solaris\" laser cannon"
-	icon_state = "mecha_laser"
+	icon_state = "laser_cannon"
+	equip_cooldown = 1.5 SECONDS
 	energy_drain = 60
 	projectile = /obj/item/projectile/energy/beam/laser/heavy
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 
+// Ion
 /obj/item/mecha_part/equipment/weapon/energy/ion
-	equip_cooldown = 40
 	name = "mkIV ion heavy cannon"
-	icon_state = "mecha_ion"
+	icon_state = "ion"
+	equip_cooldown = 4 SECONDS
 	energy_drain = 120
 	projectile = /obj/item/projectile/ion
 	fire_sound = 'sound/weapons/Laser.ogg'
 
+// Pulse
 /obj/item/mecha_part/equipment/weapon/energy/pulse
-	equip_cooldown = 30
 	name = "eZ-13 mk2 heavy pulse rifle"
-	icon_state = "mecha_pulse"
+	icon_state = "pulse"
+	equip_cooldown = 3 SECONDS
 	energy_drain = 120
 	origin_tech = list(/datum/tech/materials = 3, /datum/tech/combat = 6, /datum/tech/power_storage = 4)
 	projectile = /obj/item/projectile/energy/beam/pulse/heavy
@@ -46,25 +73,3 @@
 	life -= 10
 	if(life <= 0)
 		qdel(src)
-
-/obj/item/mecha_part/equipment/weapon/energy/taser
-	name = "PBT \"Pacifier\" mounted taser"
-	icon_state = "mecha_taser"
-	energy_drain = 20
-	equip_cooldown = 8
-	projectile = /obj/item/projectile/energy/electrode
-	fire_sound = 'sound/weapons/Taser.ogg'
-
-/obj/item/mecha_part/equipment/weapon/energy/rapid_disabler
-	name = "\improper SW-RM \"Peaceforcer\" rapid disabler"
-	desc = "A weapon for combat exosuits of unknown origin. Uses foreign technology to streamline energy compression in order to shoot a stream of disabler shots in quick succession."
-	icon_state = "rapid_disabler"
-
-	equip_cooldown = 30
-	energy_drain = 50
-
-	projectile = /obj/item/projectile/energy/pulse/disabler
-	projectiles_per_shot = 3
-	deviation = 0.7
-	fire_cooldown = 2
-	fire_sound = 'sound/weapons/taser2.ogg'
