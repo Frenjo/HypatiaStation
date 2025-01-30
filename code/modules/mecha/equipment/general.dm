@@ -156,7 +156,7 @@
 /obj/item/mecha_part/equipment/gravcatapult
 	name = "gravitational catapult"
 	desc = "An exosuit mounted Gravitational Catapult. (Can be attached to: Any Exosuit)"
-	icon_state = "teleporter"
+	icon_state = "catapult"
 	origin_tech = list(/datum/tech/magnets = 3, /datum/tech/bluespace = 2)
 	equip_cooldown = 1 SECOND
 	energy_drain = 100
