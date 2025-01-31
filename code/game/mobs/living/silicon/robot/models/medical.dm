@@ -17,7 +17,7 @@
 	)
 	emag_type = /obj/item/reagent_holder/spray/polyacid
 
-	channels = list(CHANNEL_MEDICAL = TRUE)
+	channels = list(CHANNEL_MEDICAL)
 	camera_networks = list("Medical")
 
 	sprite_path = 'icons/mob/silicon/robot/medical.dmi'

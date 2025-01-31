@@ -580,11 +580,11 @@
 
 	if(opened)
 		if(wiresexposed)
-			overlays.Add("ov-openpanel +w")
+			overlays.Add(image('icons/mob/silicon/robot/overlays.dmi', "ov-openpanel +w"))
 		else if(cell)
-			overlays.Add("ov-openpanel +c")
+			overlays.Add(image('icons/mob/silicon/robot/overlays.dmi', "ov-openpanel +c"))
 		else
-			overlays.Add("ov-openpanel -c")
+			overlays.Add(image('icons/mob/silicon/robot/overlays.dmi', "ov-openpanel -c"))
 
 	if(module_active && istype(module_active, /obj/item/borg/combat/shield))
 		overlays.Add("[icon_state]-shield")

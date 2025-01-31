@@ -15,12 +15,12 @@
 	)
 	emag_type = /obj/item/borg/stun
 
-	channels = list(CHANNEL_SUPPLY = TRUE, CHANNEL_MINING = TRUE)
+	channels = list(CHANNEL_SUPPLY, CHANNEL_MINING)
 	camera_networks = list("MINE")
 
 	sprite_path = 'icons/mob/silicon/robot/miner.dmi'
 	sprites = list(
-		"Basic" = "miner_old",
+		"Basic" = "miner-old",
 		"Advanced Droid" = "droid-miner",
 		"Treadhead" = "miner"
 	)

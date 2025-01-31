@@ -14,7 +14,7 @@
 	)
 	emag_type = /obj/item/reagent_holder/spray/lube
 
-	channels = list(CHANNEL_SERVICE = TRUE)
+	channels = list(CHANNEL_SERVICE)
 
 	sprite_path = 'icons/mob/silicon/robot/janitor.dmi'
 	sprites = list(

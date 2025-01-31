@@ -18,6 +18,6 @@
 	sprite_path = 'icons/mob/silicon/robot/standard.dmi'
 	sprites = list(
 		"Default" = "robot",
-		"Basic" = "robot_old",
+		"Basic" = "robot-old",
 		"Android" = "droid"
 	)

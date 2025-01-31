@@ -16,7 +16,7 @@
 	)
 	emag_type = /obj/item/reagent_holder/food/drinks/cans/beer/special_brew
 
-	channels = list(CHANNEL_SERVICE = TRUE)
+	channels = list(CHANNEL_SERVICE)
 
 	sprite_path = 'icons/mob/silicon/robot/service.dmi'
 	sprites = list(

@@ -14,7 +14,7 @@
 	)
 	emag_type = /obj/item/gun/energy/laser/cyborg
 
-	channels = list(CHANNEL_SECURITY = TRUE)
+	channels = list(CHANNEL_SECURITY)
 
 	sprite_path = 'icons/mob/silicon/robot/security.dmi'
 	sprites = list(

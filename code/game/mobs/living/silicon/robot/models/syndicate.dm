@@ -12,9 +12,11 @@
 		/obj/item/card/emag
 	)
 
+	channels = list(CHANNEL_SYNDICATE)
+
 	sprite_path = 'icons/mob/silicon/robot/syndicate.dmi'
 	sprites = list(
-		"Default" = "syndie_bloodhound"
+		"Default" = "syndie-bloodhound"
 	)
 
 	can_be_pushed = FALSE

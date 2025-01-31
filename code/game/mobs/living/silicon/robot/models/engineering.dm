@@ -22,7 +22,7 @@
 	)
 	emag_type = /obj/item/borg/stun
 
-	channels = list(CHANNEL_ENGINEERING = TRUE)
+	channels = list(CHANNEL_ENGINEERING)
 	camera_networks = list("Engineering")
 
 	sprite_path = 'icons/mob/silicon/robot/engineering.dmi'

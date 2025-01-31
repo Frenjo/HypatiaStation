@@ -16,11 +16,11 @@
 	)
 	emag_type = /obj/item/gun/energy/lasercannon/cyborg
 
-	channels = list(CHANNEL_SECURITY = TRUE)
+	channels = list(CHANNEL_SECURITY)
 
 	sprite_path = 'icons/mob/silicon/robot/combat.dmi'
 	sprites = list(
-		"Combat Android" = "droid_combat"
+		"Combat Android" = "droid-combat"
 	)
 
 	can_be_pushed = FALSE
