@@ -203,6 +203,10 @@
 	materials = list(MATERIAL_METAL = 10000)
 	build_path = /obj/item/mecha_part/equipment/weapon/energy/taser
 
+/datum/design/mechfab/weapon/disabler
+	materials = list(MATERIAL_METAL = 10000)
+	build_path = /obj/item/mecha_part/equipment/weapon/energy/disabler
+
 /datum/design/mechfab/weapon/lmg
 	materials = list(MATERIAL_METAL = 10000)
 	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/lmg
