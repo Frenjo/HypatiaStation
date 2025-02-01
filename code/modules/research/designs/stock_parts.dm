@@ -239,7 +239,7 @@
 	desc = "A basic power cell that holds 1000 units of energy"
 	req_tech = list(/datum/tech/power_storage = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE | DESIGN_TYPE_ROBOFAB | DESIGN_TYPE_MECHFAB
-	materials = list(MATERIAL_METAL = 700, /decl/material/glass = 50)
+	materials = list(MATERIAL_METAL = 750, /decl/material/glass = 50)
 	build_path = /obj/item/cell
 	categories = list("Power Cells")
 
@@ -248,7 +248,7 @@
 	desc = "A power cell that holds 10000 units of energy"
 	req_tech = list(/datum/tech/power_storage = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE | DESIGN_TYPE_ROBOFAB | DESIGN_TYPE_MECHFAB
-	materials = list(MATERIAL_METAL = 700, /decl/material/glass = 60)
+	materials = list(MATERIAL_METAL = 750, /decl/material/glass = 60)
 	build_path = /obj/item/cell/high
 	categories = list("Power Cells")
 
@@ -258,7 +258,7 @@
 	req_tech = list(/datum/tech/materials = 2, /datum/tech/power_storage = 3)
 	reliability_base = 75
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_ROBOFAB | DESIGN_TYPE_MECHFAB
-	materials = list(MATERIAL_METAL = 700, /decl/material/glass = 70)
+	materials = list(MATERIAL_METAL = 750, /decl/material/glass = 70, /decl/material/silver = 100)
 	build_path = /obj/item/cell/super
 	categories = list("Power Cells")
 
@@ -268,6 +268,6 @@
 	req_tech = list(/datum/tech/materials = 4, /datum/tech/power_storage = 5)
 	reliability_base = 70
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_ROBOFAB | DESIGN_TYPE_MECHFAB
-	materials = list(MATERIAL_METAL = 400, /decl/material/glass = 70, /decl/material/silver = 150, /decl/material/gold = 150)
+	materials = list(MATERIAL_METAL = 750, /decl/material/glass = 80, /decl/material/silver = 200, /decl/material/gold = 200)
 	build_path = /obj/item/cell/hyper
 	categories = list("Power Cells")
