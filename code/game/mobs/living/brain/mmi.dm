@@ -6,13 +6,11 @@
 	icon = 'icons/obj/items/assemblies/assemblies.dmi'
 	icon_state = "mmi_empty"
 	w_class = 3
-	origin_tech = list(/datum/tech/biotech = 3)
+	origin_tech = list(/datum/tech/biotech = 3, /datum/tech/programming = 2)
+
+	matter_amounts = list(MATERIAL_METAL = 1000, /decl/material/glass = 500)
 
 	req_access = list(ACCESS_ROBOTICS)
-
-	var/list/construction_cost = list(MATERIAL_METAL = 1000, /decl/material/glass = 500)
-	var/construction_time = 75
-	//these vars are so the mecha fabricator doesn't shit itself anymore. --NEO
 
 	//Revised. Brainmob is now contained directly within object of transfer. MMI in this case.
 
@@ -120,6 +118,7 @@
 	name = "Radio-enabled Man-Machine Interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio."
 	origin_tech = list(/datum/tech/biotech = 4)
+	matter_amounts = list(MATERIAL_METAL = 1200, /decl/material/glass = 500)
 
 	var/obj/item/radio/radio = null // Let's give it a radio.
 

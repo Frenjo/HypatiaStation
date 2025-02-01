@@ -41,8 +41,9 @@
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
 	req_tech = list(/datum/tech/biotech = 3, /datum/tech/programming = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_ROBOFAB
-	materials = list(MATERIAL_METAL = 1000, /decl/material/glass = 500)
 	reliability_base = 76
+	materials = list(MATERIAL_METAL = 1000, /decl/material/glass = 500)
+	build_time = 7.5 SECONDS
 	build_path = /obj/item/mmi
 	categories = list("Robot Internal Components")
 
@@ -51,8 +52,9 @@
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio."
 	req_tech = list(/datum/tech/biotech = 4, /datum/tech/programming = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_ROBOFAB
-	materials = list(MATERIAL_METAL = 1200, /decl/material/glass = 500)
 	reliability_base = 74
+	materials = list(MATERIAL_METAL = 1200, /decl/material/glass = 500)
+	build_time = 7.5 SECONDS
 	build_path = /obj/item/mmi/radio_enabled
 	categories = list("Robot Internal Components")
 
@@ -66,6 +68,7 @@
 		MATERIAL_METAL = 2000, /decl/material/glass = 1000, /decl/material/silver = 1000,
 		/decl/material/gold = 500, /decl/material/diamond = 100, /decl/material/plasma = 500
 	)
+	build_time = 7.5 SECONDS
 	build_path = /obj/item/mmi/posibrain
 	categories = list("Robot Internal Components")
 
@@ -79,16 +82,6 @@
 	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 1500, /decl/material/glass = 3000, /decl/material/silver = 150)
 	build_path = /obj/item/lightreplacer
-
-/datum/design/synthetic_flash
-	name = "Synthetic Flash"
-	desc = "When a problem arises, SCIENCE is the solution."
-	req_tech = list(/datum/tech/magnets = 3, /datum/tech/combat = 2)
-	build_type = DESIGN_TYPE_ROBOFAB
-	materials = list(MATERIAL_METAL = 750, /decl/material/glass = 750)
-	reliability_base = 76
-	build_path = /obj/item/flash/synthetic
-	categories = list("Robot Internal Components")
 
 /datum/design/security_hud
 	name = "Security HUD"

@@ -190,9 +190,8 @@
 	name = "synthetic flash"
 	desc = "When a problem arises, SCIENCE is the solution."
 	icon_state = "sflash"
-	origin_tech = list(/datum/tech/magnets = 2, /datum/tech/combat = 1)
-	var/construction_cost = list(MATERIAL_METAL = 750, /decl/material/glass = 750)
-	var/construction_time = 100
+	origin_tech = list(/datum/tech/magnets = 3, /datum/tech/combat = 2)
+	matter_amounts = list(MATERIAL_METAL = 750, /decl/material/glass = 750)
 
 /obj/item/flash/synthetic/attack(mob/living/M, mob/user)
 	..()

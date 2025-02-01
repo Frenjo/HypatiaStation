@@ -6,8 +6,6 @@
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 
-	var/construction_time = 100
-	var/list/construction_cost = list(/decl/material/steel = 20000, /decl/material/glass = 5000)
 	var/list/part = null
 	var/sabotaged = 0 // Emagging limbs can have repercussions when installed as prosthetics.
 

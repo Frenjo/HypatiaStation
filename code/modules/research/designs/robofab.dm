@@ -68,6 +68,16 @@
 /datum/design/robofab/robot_component/radio
 	build_path = /obj/item/robot_parts/robot_component/radio
 
+/datum/design/robofab/synthetic_flash
+	name = "Synthetic Flash"
+	desc = "When a problem arises, SCIENCE is the solution."
+	req_tech = list(/datum/tech/magnets = 3, /datum/tech/combat = 2)
+	reliability_base = 76
+	materials = list(MATERIAL_METAL = 750, /decl/material/glass = 750)
+	build_time = 10 SECONDS
+	build_path = /obj/item/flash/synthetic
+	categories = list("Robot Internal Components")
+
 // Robot Upgrade Modules
 /datum/design/robofab/robot_upgrade
 	build_time = 12 SECONDS
