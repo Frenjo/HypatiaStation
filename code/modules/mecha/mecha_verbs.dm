@@ -60,7 +60,7 @@
 
 /obj/mecha/verb/toggle_internal_tank()
 	set category = "Exosuit Interface"
-	set name = "Toggle Internal Airtank Usage"
+	set name = "Toggle Internal Air Tank Usage"
 	set src = usr.loc
 	set popup_menu = 0
 
@@ -68,8 +68,8 @@
 		return
 
 	use_internal_tank = !use_internal_tank
-	occupant_message(SPAN_INFO("Now taking air from [use_internal_tank ? "internal airtank" : "environment"]."))
-	log_message("Now taking air from [use_internal_tank ? "internal airtank" : "environment"].")
+	occupant_message(SPAN_INFO("Now taking air from [use_internal_tank ? "internal air tank" : "environment"]."))
+	log_message("Now taking air from [use_internal_tank ? "internal air tank" : "environment"].")
 
 /obj/mecha/verb/view_stats()
 	set category = "Exosuit Interface"

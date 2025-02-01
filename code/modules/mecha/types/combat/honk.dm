@@ -40,17 +40,17 @@
 	var/tank_temperature = internal_tank ? internal_tank.return_temperature() : "Unknown"
 	var/cabin_pressure = round(return_pressure(), 0.01)
 	. = {"[report_internal_damage()]
-						[integrity < 30 ? "<font color='red'><b>DAMAGE LEVEL CRITICAL</b></font><br>" : null]
-						[internal_damage & MECHA_INT_TEMP_CONTROL ? "<font color='red'><b>CLOWN SUPPORT SYSTEM MALFUNCTION</b></font><br>" : null]
-						[internal_damage & MECHA_INT_TANK_BREACH ? "<font color='red'><b>GAS TANK HONK</b></font><br>" : null]
-						[internal_damage & MECHA_INT_CONTROL_LOST ? "<font color='red'><b>HONK-A-DOODLE</b></font> - <a href='byond://?src=\ref[src];repair_int_control_lost=1'>Recalibrate</a><br>" : null]
+						[integrity < 30 ? "[SPAN_DANGER("DAMAGE LEVEL CRITICAL")]<br>" : null]
+						[internal_damage & MECHA_INT_TEMP_CONTROL ? "[SPAN_DANGER("CLOWN SUPPORT SYSTEM MALFUNCTION")]<br>" : null]
+						[internal_damage & MECHA_INT_TANK_BREACH ? "[SPAN_DANGER("GAS TANK HONK")]<br>" : null]
+						[internal_damage & MECHA_INT_CONTROL_LOST ? "[SPAN_DANGER("HONK-A-DOODLE")] - <a href='byond://?src=\ref[src];repair_int_control_lost=1'>Recalibrate</a><br>" : null]
 						<b>IntegriHONK: </b> [integrity]%<br>
-						<b>PowerHONK charge: </b>[isnull(cell_charge) ? "No powercell installed" : "[cell.percent()]%"]<br>
-						<b>Air source: </b>[use_internal_tank ? "Internal Airtank" : "Environment"]<br>
-						<b>AirHONK pressure: </b>[tank_pressure]kPa<br>
-						<b>AirHONK temperature: </b>[tank_temperature]&deg;K|[tank_temperature - T0C]&deg;C<br>
-						<b>HONK pressure: </b>[cabin_pressure>WARNING_HIGH_PRESSURE ? "<font color='red'>[cabin_pressure]</font>": cabin_pressure]kPa<br>
-						<b>HONK temperature: </b> [return_temperature()]&deg;K|[return_temperature() - T0C]&deg;C<br>
+						<b>PowerHONK Charge: </b>[isnull(cell_charge) ? "no power cell installed" : "[cell.percent()]%"]<br>
+						<b>Air Source: </b>[use_internal_tank ? "internal air tank" : "environment"]<br>
+						<b>AirHONK Pressure: </b>[tank_pressure]kPa<br>
+						<b>AirHONK Temperature: </b>[tank_temperature]&deg;K|[tank_temperature - T0C]&deg;C<br>
+						<b>HONK Pressure: </b>[cabin_pressure > WARNING_HIGH_PRESSURE ? SPAN_WARNING(cabin_pressure) : cabin_pressure]kPa<br>
+						<b>HONK Temperature: </b> [return_temperature()]&deg;K|[return_temperature() - T0C]&deg;C<br>
 						<b>Lights: </b>[lights ? "on" : "off"]<br>
 						[dna ? "<b>DNA-locked:</b><br> <span style='font-size:10px;letter-spacing:-1px;'>[dna]</span> \[<a href='byond://?src=\ref[src];reset_dna=1'>Reset</a>\]<br>" : null]
 					"}

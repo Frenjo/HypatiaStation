@@ -54,7 +54,7 @@
 	. = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
-						<a href='byond://?src=\ref[src];toggle_defence_mode=1'>Toggle defence mode</a>
+						<a href='byond://?src=\ref[src];toggle_defence_mode=1'>Toggle Defence Mode</a>
 						</div>
 						</div>
 						"}

@@ -131,7 +131,8 @@
 	. = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
-						<a href='byond://?src=\ref[src];camouflage=1'><span id="camouflage_command">[camouflage ? "Dis" : "En"]able camouflage</span></a><br>
+						<a href='byond://?src=\ref[src];camouflage=1'><span id="camouflage_command">[camouflage ? "Dis" : "En"]able Camouflage</span></a>
+						<br>
 						</div>
 						</div>
 						"}

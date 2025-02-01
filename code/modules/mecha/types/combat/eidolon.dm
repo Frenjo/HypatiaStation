@@ -42,7 +42,7 @@
 	. = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
-						<a href='byond://?src=\ref[src];toggle_ball_mode=1'>Toggle ball mode</a>
+						<a href='byond://?src=\ref[src];toggle_ball_mode=1'>Toggle Ball Mode</a>
 						</div>
 						</div>
 						"}

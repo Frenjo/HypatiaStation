@@ -47,8 +47,9 @@
 	. = {"<div class='wr'>
 						<div class='header'>Special</div>
 						<div class='links'>
-						<a href='byond://?src=\ref[src];phasing=1'><span id="phasing_command">[phasing ? "Dis" : "En"]able phasing</span></a><br>
-						<a href='byond://?src=\ref[src];switch_damage_type=1'>Change melee damage type</a><br>
+						<a href='byond://?src=\ref[src];phasing=1'><span id="phasing_command">[phasing ? "Dis" : "En"]able Phasing</span></a>
+						<br>
+						<a href='byond://?src=\ref[src];switch_damage_type=1'>Change Melee Damage Type</a><br>
 						</div>
 						</div>
 						"}
