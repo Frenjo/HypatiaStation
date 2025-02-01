@@ -12,11 +12,14 @@
 	origin_tech = list(/datum/tech/materials = 2)
 	reliability = 1000
 
-	var/equip_cooldown = 0
-	var/equip_ready = TRUE
-	var/energy_drain = 0
 	var/obj/mecha/chassis = null
+
+	var/equip_ready = TRUE
+	var/equip_cooldown = 0
+	var/energy_drain = 0
 	var/range = MELEE //bitflags
+	var/selectable = TRUE // This should be set to FALSE for equipment that's passive or has a separate activate button. IE armour plates, droids and passenger compartments.
+
 	var/salvageable = TRUE
 	var/destruction_sound = 'sound/mecha/critdestr.ogg'
 
@@ -53,7 +56,7 @@
 	chassis = M
 	loc = M
 	M.log_message("[src] initialized.")
-	if(!M.selected)
+	if(!M.selected && selectable)
 		M.selected = src
 	update_chassis_page()
 
@@ -91,7 +94,13 @@
 		log_message("Critical failure", 1)
 
 /obj/item/mecha_part/equipment/proc/get_equip_info()
-	. = "<span style=\"color:[equip_ready ? "#0f0" : "#f00"];\">*</span>&nbsp;[chassis.selected == src ? "<b>" : "<a href='byond://?src=\ref[chassis];select_equip=\ref[src]'>"][name][chassis.selected == src ? "</b>" : "</a>"]"
+	. = "<span style=\"color:[equip_ready ? "#0f0" : "#f00"];\">*</span>&nbsp;"
+	if(chassis.selected == src)
+		. += "<b>[name]</b>"
+	else if(selectable)
+		. += "<a href='byond://?src=\ref[chassis];select_equip=\ref[src]'>[name]</a>"
+	else
+		. += "[name]"
 
 /obj/item/mecha_part/equipment/proc/is_ranged()//add a distance restricted equipment. Why not?
 	return range & RANGED

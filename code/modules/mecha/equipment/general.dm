@@ -8,6 +8,7 @@
 	equip_cooldown = 2 SECONDS
 	energy_drain = 100
 	range = 0
+	selectable = FALSE
 
 	allow_duplicates = FALSE
 
@@ -37,7 +38,7 @@
 	. = ..()
 
 /obj/item/mecha_part/equipment/repair_droid/get_equip_info()
-	. = "<span style=\"color:[equip_ready ? "#0f0" : "#f00"];\">*</span>&nbsp;[name] - <a href='byond://?src=\ref[src];toggle_repairs=1'>[pr_repair_droid.active()?"Dea":"A"]ctivate</a>"
+	. = "[..()] - <a href='byond://?src=\ref[src];toggle_repairs=1'>[pr_repair_droid.active() ? "Dea" : "A"]ctivate</a>"
 
 /obj/item/mecha_part/equipment/repair_droid/Topic(href, href_list)
 	. = ..()

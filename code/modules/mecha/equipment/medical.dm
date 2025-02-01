@@ -98,10 +98,9 @@
 
 /obj/item/mecha_part/equipment/medical/sleeper/get_equip_info()
 	. = ..()
-	if(.)
-		if(isnull(patient))
-			return
-		. += "<br />\[Occupant: [patient] (Health: [patient.health]%)\]<br /><a href='byond://?src=\ref[src];view_stats=1'>View stats</a>|<a href='byond://?src=\ref[src];eject=1'>Eject</a>"
+	if(isnull(patient))
+		return
+	. += "<br>\[Occupant: [patient] (Health: [patient.health]%)\]<br /><a href='byond://?src=\ref[src];view_stats=1'>View stats</a>|<a href='byond://?src=\ref[src];eject=1'>Eject</a>"
 
 /obj/item/mecha_part/equipment/medical/sleeper/Topic(href, href_list)
 	. = ..()
@@ -269,9 +268,7 @@
 	UNSET_ATOM_FLAGS(src, ATOM_FLAG_NO_REACT)
 
 /obj/item/mecha_part/equipment/medical/syringe_gun/get_equip_info()
-	. = ..()
-	if(.)
-		. += " \[<a href=\"?src=\ref[src];toggle_mode=1\">[mode ? "Analyse" : "Launch"]</a>\]<br>\[Syringes: [length(syringes)]/[max_syringes] | Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br><a href='byond://?src=\ref[src];show_reagents=1'>Reagents list</a>"
+	. = "[..()] \[<a href=\"?src=\ref[src];toggle_mode=1\">[mode ? "Analyse" : "Launch"]</a>\]<br>\[Syringes: [length(syringes)]/[max_syringes] | Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br><a href='byond://?src=\ref[src];show_reagents=1'>Reagents list</a>"
 
 /obj/item/mecha_part/equipment/medical/syringe_gun/action(atom/movable/target)
 	if(!action_checks(target))

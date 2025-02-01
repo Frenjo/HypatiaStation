@@ -4,9 +4,11 @@
 	desc = "Wirelessly drains energy from any available power channel in area. The performance index is quite low. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
 	origin_tech = list(/datum/tech/magnets = 4, /datum/tech/syndicate = 2)
+
 	equip_cooldown = 1 SECOND
 	energy_drain = 0
 	range = 0
+	selectable = FALSE
 
 	var/datum/global_iterator/pr_energy_relay
 	var/coeff = 100
@@ -65,7 +67,7 @@
 			log_message("Deactivated.")
 
 /obj/item/mecha_part/equipment/tesla_energy_relay/get_equip_info()
-	. = "<span style=\"color:[equip_ready ? "#0f0" : "#f00"];\">*</span>&nbsp;[name] - <a href='byond://?src=\ref[src];toggle_relay=1'>[pr_energy_relay.active() ? "Dea" : "A"]ctivate</a>"
+	. = "[..()] - <a href='byond://?src=\ref[src];toggle_relay=1'>[pr_energy_relay.active() ? "Dea" : "A"]ctivate</a>"
 
 /*
 /obj/item/mecha_part/equipment/tesla_energy_relay/proc/dynusepower(amount)
@@ -155,9 +157,7 @@
 			log_message("Deactivated.")
 
 /obj/item/mecha_part/equipment/generator/get_equip_info()
-	. = ..()
-	if(.)
-		. = "[.] \[[fuel]: [round(fuel.amount * fuel.perunit, 0.1)] cm<sup>3</sup>\] - <a href='byond://?src=\ref[src];toggle=1'>[pr_mech_generator.active() ? "Dea" : "A"]ctivate</a>"
+	. = "[..()] \[[fuel]: [round(fuel.amount * fuel.perunit, 0.1)] cm<sup>3</sup>\] - <a href='byond://?src=\ref[src];toggle=1'>[pr_mech_generator.active() ? "Dea" : "A"]ctivate</a>"
 
 /obj/item/mecha_part/equipment/generator/action(target)
 	if(chassis)

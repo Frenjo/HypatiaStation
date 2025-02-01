@@ -5,9 +5,12 @@
 	desc = "A mountable passenger compartment for exo-suits. Rather cramped. (Can be attached to: Any Exosuit)"
 	icon_state = "passenger_compartment"
 	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1, /datum/tech/engineering = 1)
-	energy_drain = 10
+
 	range = MELEE
 	equip_cooldown = 2 SECONDS
+	energy_drain = 10
+	selectable = FALSE
+
 	salvageable = FALSE
 
 	var/mob/living/carbon/passenger = null
@@ -83,8 +86,7 @@
 		M.verbs.Remove(/obj/mecha/proc/move_inside_passenger)
 
 /obj/item/mecha_part/equipment/passenger/get_equip_info()
-	. = ..()
-	. += " <br>[passenger ? "\[Occupant: [passenger]\]|" : ""]Exterior Hatch: <a href='byond://?src=\ref[src];toggle_lock=1'>Toggle Lock</a>"
+	. = "[..()]<br>[passenger ? "\[Occupant: [passenger]\]|" : ""]Exterior Hatch: <a href='byond://?src=\ref[src];toggle_lock=1'>Toggle Lock</a>"
 
 /obj/item/mecha_part/equipment/passenger/Topic(href, list/href_list)
 	. = ..()
