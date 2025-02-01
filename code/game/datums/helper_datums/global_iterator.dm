@@ -48,29 +48,26 @@ Data storage vars:
 */
 /datum/global_iterator
 	var/control_switch = 0
-	var/delay = 10
-	var/list/arg_list = new
+	var/delay = 1 SECOND
+	var/list/arg_list = null
 	var/last_exec = null
-	var/check_for_null = 1
-	var/forbid_garbage = 0
+	var/check_for_null = TRUE
 	var/result
 	var/state = 0
 
-/datum/global_iterator/New(list/arguments = null, autostart = 1)
-	delay = delay > 0 ? (delay) : 1
-	if(forbid_garbage) //prevents garbage collection with tag != null
-		tag = "\ref[src]"
+/datum/global_iterator/New(list/arguments = null, autostart = TRUE)
+	. = ..()
+	arg_list = list()
+	delay = delay > 0 ? delay : 1
 	set_process_args(arguments)
 	if(autostart)
 		start()
-	return
 
 /datum/global_iterator/Destroy()
-	SHOULD_CALL_PARENT(FALSE) // Do not call ..()
-
-	tag = null
 	arg_list.Cut()
+	arg_list = null
 	stop()
+	return ..()
 
 /datum/global_iterator/proc/main()
 	state = 1

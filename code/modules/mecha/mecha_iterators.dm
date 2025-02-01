@@ -60,25 +60,25 @@
 	if(mecha.internal_damage & MECHA_INT_FIRE)
 		if(!(mecha.internal_damage & MECHA_INT_TEMP_CONTROL) && prob(5))
 			mecha.clear_internal_damage(MECHA_INT_FIRE)
-		if(mecha.internal_tank)
+		if(isnotnull(mecha.internal_tank))
 			if(mecha.internal_tank.return_pressure() > mecha.internal_tank.maximum_pressure && !(mecha.internal_damage & MECHA_INT_TANK_BREACH))
 				mecha.set_internal_damage(MECHA_INT_TANK_BREACH)
 			var/datum/gas_mixture/int_tank_air = mecha.internal_tank.return_air()
 			if(int_tank_air && int_tank_air.volume > 0) //heat the air_contents
 				int_tank_air.temperature = min(6000 + T0C, int_tank_air.temperature + rand(10, 15))
-		if(mecha.cabin_air && mecha.cabin_air.volume > 0)
+		if(mecha.cabin_air?.volume > 0)
 			mecha.cabin_air.temperature = min(6000 + T0C, mecha.cabin_air.temperature + rand(10, 15))
-			if(mecha.cabin_air.temperature>mecha.max_temperature / 2)
+			if(mecha.cabin_air.temperature > mecha.max_temperature / 2)
 				mecha.take_damage(4 / round(mecha.max_temperature / mecha.cabin_air.temperature, 0.1), "fire")
 
 	if(mecha.internal_damage & MECHA_INT_TEMP_CONTROL) //stop the mecha_preserve_temp loop datum
 		mecha.pr_int_temp_processor.stop()
 
 	if(mecha.internal_damage & MECHA_INT_TANK_BREACH) //remove some air from internal tank
-		if(mecha.internal_tank)
+		if(isnotnull(mecha.internal_tank))
 			var/datum/gas_mixture/int_tank_air = mecha.internal_tank.return_air()
 			var/datum/gas_mixture/leaked_gas = int_tank_air.remove_ratio(0.10)
-			if(mecha.loc && hascall(mecha.loc, "assume_air"))
+			if(hascall(mecha?.loc, "assume_air"))
 				mecha.loc.assume_air(leaked_gas)
 			else
 				qdel(leaked_gas)

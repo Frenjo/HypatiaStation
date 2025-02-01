@@ -105,39 +105,17 @@
 /obj/mecha/Destroy()
 	go_out()
 	remove_iterators()
-	var/turf/T = GET_TURF(src)
-	tag = "\ref[src]" //better safe then sorry
 	if(isnotnull(loc))
 		loc.Exited(src)
 		loc = null
-	if(isnotnull(T))
-		if(prob(30))
-			explosion(T, 0, 0, 1, 3)
-
-		if(isnull(wreckage))
-			for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
-				equip.forceMove(T)
-				qdel(equip)
-		else
-			var/obj/structure/mecha_wreckage/wreck = new wreckage(T)
-			for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
-				if(equip.salvageable && prob(30))
-					wreck.crowbar_salvage.Add(equip)
-					equip.forceMove(wreck)
-					equip.equip_ready = TRUE
-					equip.reliability = round(rand(equip.reliability / 3, equip.reliability))
-				else
-					equip.forceMove(T)
-					qdel(equip)
-			if(isnotnull(cell))
-				wreck.crowbar_salvage.Add(cell)
-				cell.forceMove(wreck)
-				cell.charge = rand(0, cell.charge)
-			if(isnotnull(internal_tank))
-				wreck.crowbar_salvage.Add(internal_tank)
-				internal_tank.forceMove(wreck)
+	// If there's any equipment left at this point then the mech's been admin-deleted.
+	for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
+		qdel(equip)
+	QDEL_NULL(spark_system)
+	QDEL_NULL(internal_tank)
+	QDEL_NULL(cabin_air)
 	QDEL_NULL(radio)
-	cell = null
+	QDEL_NULL(cell)
 	QDEL_NULL(events)
 	GLOBL.mechas_list.Remove(src) //global mech list
 	return ..()

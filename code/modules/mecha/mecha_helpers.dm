@@ -3,7 +3,7 @@
 ////////////////////////
 /obj/mecha/proc/add_airtank()
 	internal_tank = new /obj/machinery/portable_atmospherics/canister/air(src)
-	return internal_tank
+	return TRUE
 
 /obj/mecha/proc/add_cell(obj/item/cell/C = null)
 	if(isnotnull(C))

@@ -28,6 +28,8 @@
 
 /obj/machinery/portable_atmospherics/Destroy()
 	QDEL_NULL(air_contents)
+	connected_port = null
+	QDEL_NULL(holding)
 	return ..()
 
 /obj/machinery/portable_atmospherics/process()

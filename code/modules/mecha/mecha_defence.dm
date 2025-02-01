@@ -1,6 +1,36 @@
 ////////////////////////////////////////
 ////////  Health related procs  ////////
 ////////////////////////////////////////
+/obj/mecha/proc/wreck()
+	var/turf/T = GET_TURF(src)
+	if(isnull(T))
+		return
+
+	if(prob(30))
+		explosion(T, 0, 0, 1, 3)
+
+	// If a mech doesn't have an assigned wreckage type then something is very wrong with said mech.
+	var/obj/structure/mecha_wreckage/new_wreck = new wreckage(T)
+	for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
+		if(equip.salvageable && prob(30))
+			new_wreck.crowbar_salvage.Add(equip)
+			equip.forceMove(new_wreck)
+			equip.equip_ready = TRUE
+			equip.reliability = round(rand(equip.reliability / 3, equip.reliability))
+		else
+			equip.forceMove(T)
+			qdel(equip)
+	if(isnotnull(cell))
+		new_wreck.crowbar_salvage.Add(cell)
+		cell.forceMove(new_wreck)
+		cell.charge = rand(0, cell.charge)
+		cell = null
+	if(isnotnull(internal_tank))
+		new_wreck.crowbar_salvage.Add(internal_tank)
+		internal_tank.forceMove(new_wreck)
+		internal_tank = null
+	qdel(src)
+
 /obj/mecha/proc/take_damage(amount, type = "brute")
 	if(amount)
 		var/damage = absorb_damage(amount, type)
@@ -19,7 +49,7 @@
 	if(src.health > 0)
 		src.spark_system.start()
 	else
-		qdel(src)
+		wreck()
 
 /obj/mecha/hitby(atom/movable/A) //wrapper
 	log_message("Hit by [A].", 1)
@@ -88,16 +118,16 @@
 		src.log_append_to_last("Armor saved, changing severity to [severity].")
 	switch(severity)
 		if(1.0)
-			qdel(src)
+			wreck()
 		if(2.0)
 			if(prob(30))
-				qdel(src)
+				wreck()
 			else
 				src.take_damage(initial(src.health)/2)
 				src.check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST, MECHA_INT_SHORT_CIRCUIT), 1)
 		if(3.0)
 			if(prob(5))
-				qdel(src)
+				wreck()
 			else
 				src.take_damage(initial(src.health)/5)
 				src.check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST, MECHA_INT_SHORT_CIRCUIT), 1)
