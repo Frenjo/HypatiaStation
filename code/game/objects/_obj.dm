@@ -23,6 +23,10 @@
 	var/damtype = "brute"
 	var/force = 0
 
+/obj/Destroy()
+	GLOBL.processing_objects.Remove(src)
+	return ..()
+
 /obj/assume_air(datum/gas_mixture/giver)
 	return isnotnull(loc) ? loc.assume_air(giver) : null
 

@@ -120,8 +120,6 @@
 		GLOBL.machinery_sort_required = TRUE
 
 /obj/machinery/Destroy()
-	SHOULD_CALL_PARENT(TRUE)
-
 	var/area/machine_area = GET_AREA(src)
 	machine_area?.machines_list.Remove(src)
 	GLOBL.machines.Remove(src)

@@ -36,7 +36,7 @@
 
 /obj/mecha/combat/eidolon/get_stats_part()
 	. = ..()
-	. += "<b>Ball mode: [rolling ? "enabled" : "disabled"]</b>"
+	. += "<b>Ball Mode: [rolling ? "enabled" : "disabled"]</b>"
 
 /obj/mecha/combat/eidolon/get_commands()
 	. = {"<div class='wr'>

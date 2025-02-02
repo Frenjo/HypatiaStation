@@ -18,7 +18,7 @@
 	// Overridden on subtypes or manipulated with *_TOOL_FLAGS(ITEM, FLAGS) macros.
 	var/tool_flags
 
-	var/origin_tech // Used by R&D to determine what research bonuses this item grants.
+	var/list/origin_tech = null // Used by R&D to determine what research bonuses this item grants.
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/abstract = 0
@@ -51,6 +51,7 @@
 	var/icon_override = null  //Used to override hardcoded clothing dmis in human clothing proc.
 
 /obj/item/Destroy()
+	QDEL_NULL(hidden_uplink)
 	if(ismob(loc))
 		var/mob/M = loc
 		M.drop_from_inventory(src)

@@ -105,11 +105,9 @@
 /obj/mecha/Destroy()
 	go_out()
 	remove_iterators()
-	if(isnotnull(loc))
-		loc.Exited(src)
-		loc = null
 	// If there's any equipment left at this point then the mech's been admin-deleted.
 	for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
+		equip.detach(loc)
 		qdel(equip)
 	QDEL_NULL(spark_system)
 	QDEL_NULL(internal_tank)
@@ -118,6 +116,7 @@
 	QDEL_NULL(cell)
 	QDEL_NULL(events)
 	GLOBL.mechas_list.Remove(src) //global mech list
+	loc?.Exited(src)
 	return ..()
 
 /obj/mecha/proc/reset_icon()
