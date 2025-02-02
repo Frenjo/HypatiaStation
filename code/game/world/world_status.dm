@@ -2,14 +2,15 @@
 /world/proc/update_status()
 	var/s = ""
 
-	if(isnotnull(CONFIG_GET(/decl/configuration_entry/server_name)))
-		s += "<b>[CONFIG_GET(/decl/configuration_entry/server_name)]</b> &#8212; "
+	var/server_name = CONFIG_GET(/decl/configuration_entry/server_name)
+	if(isnotnull(server_name))
+		s += "<b>[server_name]</b> &#8212; "
 
 	s += "<b>[station_name()]</b>";
 	s += " ("
 	s += "<a href=\"http://\">" //Change this to wherever you want the hub to link to.
 //	s += "[game_version]"
-	s += "Default"  //Replace this with something else. Or ever better, delete it and uncomment the game version.
+	s += "Default" //Replace this with something else. Or ever better, delete it and uncomment the game version.
 	s += "</a>"
 	s += ")"
 
@@ -47,8 +48,9 @@
 		features.Add("hosted by <b>[host]</b>")
 	*/
 
-	if(!host && isnotnull(CONFIG_GET(/decl/configuration_entry/hostedby)))
-		features.Add("hosted by <b>[CONFIG_GET(/decl/configuration_entry/hostedby)]</b>")
+	var/hostedby = CONFIG_GET(/decl/configuration_entry/hostedby)
+	if(isnull(host) && isnotnull(hostedby))
+		features.Add("hosted by <b>[hostedby]</b>")
 
 	if(isnotnull(features))
 		s += ": [jointext(features, ", ")]"

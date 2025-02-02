@@ -5,13 +5,15 @@
 	// Stops the master controller's process scheduling.
 	global.CTmaster.stop()
 
+	// If you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
+	var/server_location = CONFIG_GET(/decl/configuration_entry/server)
 	for_no_type_check(var/client/C, GLOBL.clients)
-		if(isnotnull(CONFIG_GET(/decl/configuration_entry/server)))	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
-			C << link("byond://[CONFIG_GET(/decl/configuration_entry/server)]")
+		if(isnotnull(server_location))
+			C << link("byond://[server_location]")
 		else
 			C << link("byond://[world.address]:[world.port]")
 
-	..(reason)
+	. = ..(reason)
 
 // Gamemode saving/loading.
 /hook/startup/proc/load_mode()

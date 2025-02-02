@@ -10,7 +10,7 @@
 	else if(T == "players")
 		var/n = 0
 		for_no_type_check(var/mob/M, GLOBL.player_list)
-			if(M.client)
+			if(isnotnull(M.client))
 				n++
 		return n
 

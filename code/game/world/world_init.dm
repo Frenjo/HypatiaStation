@@ -23,9 +23,10 @@
 
 	global.CTconfiguration.post_load()
 
-	if(isnotnull(CONFIG_GET(/decl/configuration_entry/server_name)) && CONFIG_GET(/decl/configuration_entry/server_suffix) && world.port > 0)
+	var/server_name = CONFIG_GET(/decl/configuration_entry/server_name)
+	if(isnotnull(server_name) && CONFIG_GET(/decl/configuration_entry/server_suffix) && world.port > 0)
 		// dumb and hardcoded but I don't care~
-		var/list/new_name = list(CONFIG_GET(/decl/configuration_entry/server_name), " #[(world.port % 1000) / 100]")
+		var/list/new_name = list(server_name, " #[(world.port % 1000) / 100]")
 		CONFIG_SET(/decl/configuration_entry/server_name, jointext(new_name, ""))
 
 	if(CONFIG_GET(/decl/configuration_entry/log_runtime))
