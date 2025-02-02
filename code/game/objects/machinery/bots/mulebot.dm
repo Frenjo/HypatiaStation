@@ -81,6 +81,7 @@
 /obj/machinery/bot/mulebot/Destroy()
 	unregister_radio(src, beacon_freq)
 	unregister_radio(src, control_freq)
+	QDEL_NULL(wires)
 	return ..()
 
 

@@ -40,6 +40,7 @@
 
 /obj/machinery/door/firedoor/Destroy()
 	for_no_type_check(var/area/A, areas_added)
+		areas_added.Remove(A)
 		A.doors_list.Remove(src)
 	return ..()
 

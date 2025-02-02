@@ -114,6 +114,7 @@
 
 /obj/machinery/atmospherics/mains_pipe/valve/digital/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/atmospherics/mains_pipe/valve/digital/attack_ai(mob/user)

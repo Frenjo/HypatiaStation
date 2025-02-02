@@ -33,6 +33,7 @@
 
 /obj/machinery/bot/Destroy()
 	GLOBL.bots_list.Remove(src)
+	QDEL_NULL(botcard)
 	return ..()
 
 /obj/machinery/bot/proc/turn_on()

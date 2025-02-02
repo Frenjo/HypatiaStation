@@ -432,6 +432,4 @@ Deuterium-tritium fusion: 4.5 x 10^7 K
 	for_no_type_check(var/obj/effect/rust_particle_catcher/catcher, particle_catchers)
 		qdel(catcher)
 	RadiateAll()
-
-	GLOBL.processing_objects.Remove(src)
 	return ..()

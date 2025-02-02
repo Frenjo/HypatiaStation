@@ -13,12 +13,8 @@
 	var/last_tick //used to delay the powercheck
 
 /obj/item/radio/intercom/New()
-	..()
-	GLOBL.processing_objects += src
-
-/obj/item/radio/intercom/Destroy()
-	GLOBL.processing_objects.Remove(src)
-	return ..()
+	. = ..()
+	GLOBL.processing_objects.Add(src)
 
 /obj/item/radio/intercom/attack_ai(mob/user)
 	src.add_fingerprint(user)

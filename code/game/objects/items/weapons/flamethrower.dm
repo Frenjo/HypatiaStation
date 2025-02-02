@@ -23,12 +23,9 @@
 	var/obj/item/tank/plasma/ptank = null
 
 /obj/item/flamethrower/Destroy()
-	if(isnotnull(weldtool))
-		QDEL_NULL(weldtool)
-	if(isnotnull(igniter))
-		QDEL_NULL(igniter)
-	if(isnotnull(ptank))
-		QDEL_NULL(ptank)
+	QDEL_NULL(weldtool)
+	QDEL_NULL(igniter)
+	QDEL_NULL(ptank)
 	return ..()
 
 /obj/item/flamethrower/process()

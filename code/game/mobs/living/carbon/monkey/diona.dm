@@ -16,7 +16,7 @@
 	origin_tech = list(/datum/tech/magnets = 3, /datum/tech/biotech = 5)
 
 /obj/item/holder/New()
-	..()
+	. = ..()
 	GLOBL.processing_objects.Add(src)
 
 /obj/item/holder/Destroy()
@@ -25,7 +25,6 @@
 		var/mob/living/A = src.loc
 		src.loc = null
 		A.update_icons()
-	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/item/holder/process()

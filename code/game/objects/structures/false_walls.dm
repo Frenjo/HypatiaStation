@@ -21,6 +21,7 @@
 		W.relativewall()
 	for(var/obj/structure/falsewall/W in range_list)
 		W.relativewall()
+	material = null
 	return ..()
 
 /obj/structure/falsewall/relativewall()

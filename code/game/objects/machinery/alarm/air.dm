@@ -131,6 +131,7 @@
 
 /obj/machinery/air_alarm/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/air_alarm/proc/first_run()

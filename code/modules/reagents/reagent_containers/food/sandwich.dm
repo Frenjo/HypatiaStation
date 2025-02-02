@@ -73,6 +73,7 @@
 
 /obj/item/reagent_holder/food/snacks/csandwich/Destroy()
 	for_no_type_check(var/obj/item/O, ingredients)
+		ingredients.Remove(O)
 		qdel(O)
 	return ..()
 

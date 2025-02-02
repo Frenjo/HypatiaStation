@@ -153,6 +153,11 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 
 	var/obj/effect/overlay/hologram //The projection itself. If there is one, the instrument is on, off otherwise.
 
+/obj/machinery/hologram/Destroy()
+	if(isnotnull(hologram))
+		src:clear_holo()
+	return ..()
+
 /obj/machinery/hologram/power_change()
 	if(powered())
 		stat &= ~NOPOWER
@@ -179,11 +184,6 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 /obj/machinery/hologram/meteorhit()
 	qdel(src)
 	return
-
-/obj/machinery/hologram/Destroy()
-	if(isnotnull(hologram))
-		src:clear_holo()
-	return ..()
 
 /*
 Holographic project of everything else.

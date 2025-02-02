@@ -33,6 +33,7 @@
 /obj/structure/windoor_assembly/Destroy()
 	density = FALSE
 	update_nearby_tiles()
+	QDEL_NULL(electronics)
 	return ..()
 
 /obj/structure/windoor_assembly/update_icon()

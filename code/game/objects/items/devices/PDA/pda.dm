@@ -59,6 +59,12 @@
 		cartridge = new default_cartridge(src)
 	new /obj/item/pen(src)
 
+/obj/item/pda/Destroy()
+	GLOBL.pda_list.Remove(src)
+	if(isnotnull(id) && prob(90)) //IDs are kept in 90% of the cases
+		id.forceMove(GET_TURF(src))
+	return ..()
+
 /obj/item/pda/pickup(mob/user)
 	if(fon)
 		set_light(0)
@@ -960,12 +966,6 @@
 		T.hotspot_expose(700, 125)
 		explosion(T, 0, 0, 1, rand(1, 2))
 	return
-
-/obj/item/pda/Destroy()
-	GLOBL.pda_list.Remove(src)
-	if(isnotnull(id) && prob(90)) //IDs are kept in 90% of the cases
-		id.forceMove(GET_TURF(src))
-	return ..()
 
 /obj/item/pda/proc/available_pdas()
 	var/list/names = list()

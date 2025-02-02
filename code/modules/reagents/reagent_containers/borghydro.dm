@@ -23,10 +23,6 @@
 
 	GLOBL.processing_objects.Add(src)
 
-/obj/item/reagent_holder/borghypo/Destroy()
-	GLOBL.processing_objects.Remove(src)
-	return ..()
-
 /obj/item/reagent_holder/borghypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg
 	charge_tick++
 	if(charge_tick < recharge_time)

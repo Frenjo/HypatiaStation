@@ -42,9 +42,10 @@
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	if(isnotnull(initial_loc))
-		initial_loc.air_scrub_info -= id_tag
-		initial_loc.air_scrub_names -= id_tag
+		initial_loc.air_scrub_info.Remove(id_tag)
+		initial_loc.air_scrub_names.Remove(id_tag)
 	return ..()
 
 /obj/machinery/atmospherics/unary/vent_scrubber/update_icon()

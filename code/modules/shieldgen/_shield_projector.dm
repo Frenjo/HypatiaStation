@@ -27,7 +27,6 @@
 
 /obj/item/shield_projector/Destroy()
 	destroy_shields()
-	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/item/shield_projector/proc/create_shield(newloc, new_dir)

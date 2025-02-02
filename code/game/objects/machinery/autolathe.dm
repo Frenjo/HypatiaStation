@@ -100,6 +100,10 @@
 	src.L = global.autolathe_recipes
 	src.LL = global.autolathe_recipes_hidden
 
+/obj/machinery/autolathe/Destroy()
+	QDEL_NULL(wires)
+	return ..()
+
 /obj/machinery/autolathe/proc/wires_win(mob/user)
 	var/dat
 	dat += "Autolathe Wires:<BR>"

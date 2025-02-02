@@ -124,6 +124,8 @@
 
 /obj/item/mecha_part/equipment/tool/cable_layer/Destroy()
 	chassis.events.clearEvent("onMove", event)
+	last_piece = null
+	QDEL_NULL(cable)
 	return ..()
 
 /obj/item/mecha_part/equipment/tool/cable_layer/attach()

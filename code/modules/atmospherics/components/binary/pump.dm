@@ -47,6 +47,7 @@ Thus, the two variables affect pump operation are set in New():
 
 /obj/machinery/atmospherics/binary/pump/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/atmospherics/binary/pump/update_icon()

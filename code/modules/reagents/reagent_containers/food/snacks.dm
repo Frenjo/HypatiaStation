@@ -179,7 +179,7 @@
 	return
 
 /obj/item/reagent_holder/food/snacks/Destroy()
-	if(contents)
+	if(length(contents))
 		var/turf/T = GET_TURF(src)
 		for_no_type_check(var/atom/movable/mover, src)
 			mover.forceMove(T)

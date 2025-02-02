@@ -18,6 +18,7 @@
 
 /obj/machinery/computer/atmos_alert/Destroy()
 	unregister_radio(src, receive_frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/computer/atmos_alert/receive_signal(datum/signal/signal)

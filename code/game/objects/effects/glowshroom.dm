@@ -45,10 +45,6 @@
 	set_light(round(potency / 10))
 	lastTick = world.timeofday
 
-/obj/effect/glowshroom/Destroy()
-	GLOBL.processing_objects.Remove(src)
-	return ..()
-
 /obj/effect/glowshroom/process()
 	if(!spreaded)
 		return

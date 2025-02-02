@@ -39,6 +39,7 @@
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/update_icon()

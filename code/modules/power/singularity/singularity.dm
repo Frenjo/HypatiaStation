@@ -53,7 +53,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 	return
 
 /obj/singularity/Destroy()
-	GLOBL.processing_objects.Remove(src)
+	target = null
 	return ..()
 
 /obj/singularity/attack_hand(mob/user)

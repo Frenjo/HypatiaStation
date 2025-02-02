@@ -14,6 +14,7 @@
 		temporarily_store_air()
 		QDEL_NULL(air)
 	for_no_type_check(var/obj/machinery/atmospherics/pipe/P, members)
+		members.Remove(P)
 		P.parent = null
 	return ..()
 

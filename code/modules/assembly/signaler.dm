@@ -162,4 +162,5 @@ Code:
 
 /obj/item/assembly/signaler/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()

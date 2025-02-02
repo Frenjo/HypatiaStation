@@ -102,6 +102,7 @@
 
 /obj/machinery/door/airlock/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/airlock_sensor
@@ -170,6 +171,7 @@
 
 /obj/machinery/airlock_sensor/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/airlock_sensor/airlock_interior
@@ -224,6 +226,7 @@
 
 /obj/machinery/access_button/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/access_button/airlock_interior

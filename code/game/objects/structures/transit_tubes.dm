@@ -39,11 +39,12 @@
 	anchored = TRUE
 	density = TRUE
 	var/moving = 0
-	var/datum/gas_mixture/air_contents = new()
+	var/datum/gas_mixture/air_contents = new /datum/gas_mixture()
 
 /obj/structure/transit_tube_pod/Destroy()
 	for_no_type_check(var/atom/movable/mover, src)
 		mover.forceMove(loc)
+	QDEL_NULL(air_contents)
 	return ..()
 
 // When destroyed by explosions, properly handle contents.

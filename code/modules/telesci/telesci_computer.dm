@@ -42,7 +42,7 @@
 	. = ..()
 	link_telepad()
 	for(var/i = 1; i <= starting_crystals; i++)
-		crystals.Add(new /obj/item/bluespace_crystal/artificial(null)) // starting crystals
+		crystals.Add(new /obj/item/bluespace_crystal/artificial(src)) // starting crystals
 	power = power_options[1]
 
 /obj/machinery/computer/telescience/proc/link_telepad()

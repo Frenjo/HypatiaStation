@@ -27,13 +27,14 @@
 	var/datum/wires/particle_acc/control_box/wires = null
 
 /obj/machinery/particle_accelerator/control_box/New()
-	wires = new(src)
+	wires = new /datum/wires/particle_acc/control_box(src)
 	connected_parts = list()
 	..()
 
 /obj/machinery/particle_accelerator/control_box/Destroy()
 	if(active)
 		toggle_power()
+	QDEL_NULL(wires)
 	return ..()
 
 /obj/machinery/particle_accelerator/control_box/attack_hand(mob/user)

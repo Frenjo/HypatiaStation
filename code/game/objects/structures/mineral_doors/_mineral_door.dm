@@ -22,6 +22,7 @@
 
 /obj/structure/mineral_door/Destroy()
 	update_nearby_tiles()
+	material = null
 	return ..()
 
 /obj/structure/mineral_door/Bumped(atom/user)

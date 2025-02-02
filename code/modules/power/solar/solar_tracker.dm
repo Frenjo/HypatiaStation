@@ -16,7 +16,7 @@
 	var/obj/machinery/power/solar_control/control = null
 
 /obj/machinery/power/tracker/New(turf/loc, obj/item/solar_assembly/assembly)
-	..(loc)
+	. = ..(loc)
 	Make(assembly)
 	connect_to_network()
 

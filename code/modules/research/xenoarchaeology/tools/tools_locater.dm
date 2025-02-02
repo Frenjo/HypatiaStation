@@ -12,12 +12,11 @@
 	var/obj/item/radio/target_radio
 
 /obj/item/beacon_locator/New()
-	..()
+	. = ..()
 	GLOBL.processing_objects.Add(src)
 
 /obj/item/beacon_locator/Destroy()
 	target_radio = null
-	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/item/beacon_locator/process()

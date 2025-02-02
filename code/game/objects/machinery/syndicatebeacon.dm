@@ -120,6 +120,7 @@
 /obj/machinery/singularity_beacon/Destroy()
 	if(active)
 		Deactivate()
+	attached = null
 	return ..()
 
 /obj/machinery/singularity_beacon/proc/Activate(mob/user = null)

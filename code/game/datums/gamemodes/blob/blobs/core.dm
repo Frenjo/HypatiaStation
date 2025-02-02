@@ -14,7 +14,6 @@
 
 /obj/effect/blob/core/Destroy()
 	GLOBL.blob_cores.Remove(src)
-	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/effect/blob/core/update_icon()

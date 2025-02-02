@@ -74,6 +74,7 @@ So, hopefully this is helpful if any more icons are to be added/changed/wonderin
 /obj/structure/particle_accelerator/Destroy()
 	construction_state = 0
 	master?.part_scan()
+	master = null
 	return ..()
 
 /obj/structure/particle_accelerator/end_cap

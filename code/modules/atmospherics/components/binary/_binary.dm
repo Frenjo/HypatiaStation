@@ -49,16 +49,14 @@
 	update_icon()
 
 /obj/machinery/atmospherics/binary/Destroy()
-	loc = null
-
 	if(isnotnull(node1))
 		node1.disconnect(src)
-		qdel(network1)
 		node1 = null
+		QDEL_NULL(network1)
 	if(isnotnull(node2))
 		node2.disconnect(src)
-		qdel(network2)
 		node2 = null
+		QDEL_NULL(network2)
 
 	return ..()
 

@@ -33,10 +33,6 @@
 	. = ..()
 	GLOBL.processing_objects.Add(src)
 
-/obj/item/gun/energy/floragun/Destroy()
-	GLOBL.processing_objects.Remove(src)
-	return ..()
-
 /obj/item/gun/energy/floragun/process()
 	charge_tick++
 	if(charge_tick < 4)
@@ -83,10 +79,6 @@
 /obj/item/gun/energy/meteorgun/New()
 	. = ..()
 	GLOBL.processing_objects.Add(src)
-
-/obj/item/gun/energy/meteorgun/Destroy()
-	GLOBL.processing_objects.Remove(src)
-	return ..()
 
 /obj/item/gun/energy/meteorgun/process()
 	charge_tick++

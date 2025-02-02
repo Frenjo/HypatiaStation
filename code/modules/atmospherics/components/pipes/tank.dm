@@ -29,6 +29,7 @@
 
 /obj/machinery/atmospherics/pipe/tank/Destroy()
 	node1?.disconnect(src)
+	node1 = null
 	return ..()
 
 /obj/machinery/atmospherics/pipe/tank/pipeline_expansion()

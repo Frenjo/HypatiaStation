@@ -25,7 +25,7 @@
 			spawned_animal.forceMove(locate(src.x + rand(-12,12), src.y + rand(-12,12), src.z))
 
 /obj/effect/landmark/animal_spawner/Destroy()
-	GLOBL.processing_objects.Remove(src)
+	spawned_animal = null
 	return ..()
 
 /obj/effect/landmark/animal_spawner/panther

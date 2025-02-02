@@ -75,7 +75,8 @@
 	GLOBL.processing_objects.Add(src)
 
 /obj/effect/biomass_controller/Destroy()
-	GLOBL.processing_objects.Remove(src)
+	vines.Cut()
+	growth_queue.Cut()
 	return ..()
 
 /obj/effect/biomass_controller/proc/spawn_biomass_piece(turf/location)

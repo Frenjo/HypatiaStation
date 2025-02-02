@@ -19,6 +19,7 @@
 
 /obj/machinery/atmospherics/binary/passive_gate/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/atmospherics/binary/passive_gate/update_icon()

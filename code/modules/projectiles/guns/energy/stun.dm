@@ -23,10 +23,6 @@
 	. = ..()
 	GLOBL.processing_objects.Add(src)
 
-/obj/item/gun/energy/taser/cyborg/Destroy()
-	GLOBL.processing_objects.Remove(src)
-	return ..()
-
 /obj/item/gun/energy/taser/cyborg/process() // Every [recharge_time] ticks, recharge a shot for the cyborg
 	charge_tick++
 	if(charge_tick < recharge_time)
@@ -105,10 +101,6 @@
 /obj/item/gun/energy/crossbow/New()
 	. = ..()
 	GLOBL.processing_objects.Add(src)
-
-/obj/item/gun/energy/crossbow/Destroy()
-	GLOBL.processing_objects.Remove(src)
-	return ..()
 
 /obj/item/gun/energy/crossbow/process()
 	charge_tick++

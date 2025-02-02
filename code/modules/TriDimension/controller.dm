@@ -30,7 +30,9 @@
 	return 1
 
 /obj/effect/landmark/zcontroller/Destroy()
-	GLOBL.processing_objects.Remove(src)
+	slow.Cut()
+	normal.Cut()
+	fast.Cut()
 	return ..()
 
 /obj/effect/landmark/zcontroller/process()

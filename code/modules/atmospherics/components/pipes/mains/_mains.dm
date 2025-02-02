@@ -12,6 +12,7 @@
 
 /obj/machinery/atmospherics/pipe/mains_component/Destroy()
 	parent_pipe = null
+	nodes.Cut()
 	return ..()
 
 /obj/machinery/atmospherics/pipe/mains_component/check_pressure(pressure)
@@ -86,12 +87,9 @@
 
 /obj/machinery/atmospherics/mains_pipe/Destroy()
 	disconnect()
-	if(isnotnull(supply))
-		QDEL_NULL(supply)
-	if(isnotnull(scrubbers))
-		QDEL_NULL(scrubbers)
-	if(isnotnull(aux))
-		QDEL_NULL(aux)
+	QDEL_NULL(supply)
+	QDEL_NULL(scrubbers)
+	QDEL_NULL(aux)
 	return ..()
 
 /obj/machinery/atmospherics/mains_pipe/hide(i)

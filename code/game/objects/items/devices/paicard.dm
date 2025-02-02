@@ -11,12 +11,14 @@
 	var/mob/living/silicon/pai/pai
 
 /obj/item/paicard/New()
-	..()
+	. = ..()
 	overlays += "pai-off"
 
 /obj/item/paicard/Destroy()
+	QDEL_NULL(radio)
 	//Will stop people throwing friend pAIs into the singularity so they can respawn
 	pai?.death(0)
+	pai = null
 	return ..()
 
 /obj/item/paicard/attack_self(mob/user)

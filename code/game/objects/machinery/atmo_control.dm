@@ -91,6 +91,7 @@
 
 /obj/machinery/air_sensor/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()
 
 #undef AIR_SENSOR_PRESSURE
@@ -122,6 +123,7 @@
 
 /obj/machinery/computer/general_air_control/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/computer/general_air_control/attack_hand(mob/user)

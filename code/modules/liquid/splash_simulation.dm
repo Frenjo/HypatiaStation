@@ -19,12 +19,13 @@ var/list/datum/puddle/puddles = list()
 		qdel(src)
 
 /datum/puddle/New()
-	..()
-	puddles += src
+	. = ..()
+	puddles.Add(src)
 
 /datum/puddle/Destroy()
-	puddles -= src
+	puddles.Remove(src)
 	for_no_type_check(var/obj/effect/liquid/L, liquid_objects)
+		liquid_objects.Remove(L)
 		qdel(L)
 	return ..()
 

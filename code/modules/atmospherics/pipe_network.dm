@@ -18,8 +18,10 @@
 /datum/pipe_network/Destroy()
 	GLOBL.pipe_networks.Remove(src)
 	for_no_type_check(var/datum/pipeline/line_member, line_members)
+		line_members.Remove(line_member)
 		line_member.network = null
 	for_no_type_check(var/obj/machinery/atmospherics/normal_member, normal_members)
+		normal_members.Remove(normal_member)
 		normal_member.reassign_network(src, null)
 	gases.Cut()
 	normal_members.Cut()

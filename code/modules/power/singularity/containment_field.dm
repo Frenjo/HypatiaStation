@@ -20,8 +20,10 @@
 /obj/machinery/containment_field/Destroy()
 	if(isnotnull(FG1) && !FG1.clean_up)
 		FG1.cleanup()
+	FG1 = null
 	if(isnotnull(FG2) && !FG2.clean_up)
 		FG2.cleanup()
+	FG2 = null
 	return ..()
 
 /obj/machinery/containment_field/attack_hand(mob/user)

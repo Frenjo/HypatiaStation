@@ -74,7 +74,9 @@
 
 /obj/machinery/atmospherics/pipe/zpipe/Destroy()
 	node1?.disconnect(src)
+	node1 = null
 	node2?.disconnect(src)
+	node2 = null
 	return ..()
 
 /obj/machinery/atmospherics/pipe/zpipe/pipeline_expansion()

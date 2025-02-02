@@ -35,6 +35,11 @@
 	..()
 	GLOBL.processing_objects.Add(src)
 
+/obj/item/anodevice/Destroy()
+	QDEL_NULL(inserted_battery)
+	archived_loc = null
+	return ..()
+
 /obj/item/anodevice/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/anobattery))
 		if(isnotnull(inserted_battery))
@@ -200,7 +205,3 @@
 	var/p = (inserted_battery.stored_charge/inserted_battery.capacity) * 100
 	p = min(p, 100)
 	icon_state = "anodev[round(p, 25)]"
-
-/obj/item/anodevice/Destroy()
-	GLOBL.processing_objects.Remove(src)
-	return ..()

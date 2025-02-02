@@ -18,10 +18,12 @@
 	initialize_directions = dir
 
 /obj/machinery/atmospherics/unary/cryo_cell/Destroy()
-	var/turf/T = loc
-	T.contents.Add(contents)
-	if(isnotnull(beaker))
-		beaker.forceMove(get_step(loc, SOUTH)) //Beaker is carefully ejected from the wreckage of the cryotube
+	beaker?.forceMove(get_step(loc, SOUTH)) //Beaker is carefully ejected from the wreckage of the cryotube
+	beaker = null
+	var/turf/T = GET_TURF(src)
+	for_no_type_check(var/atom/movable/mover, src)
+		mover.forceMove(T)
+	occupant = null
 	return ..()
 
 /obj/machinery/atmospherics/unary/cryo_cell/initialise()

@@ -178,11 +178,6 @@
 	reagents.add_reagent("fuel", max_fuel)
 	. = ..()
 
-/obj/item/weldingtool/Destroy()
-	if(welding)
-		GLOBL.processing_objects.Remove(src)
-	return ..()
-
 /obj/item/weldingtool/examine()
 	set src in usr
 	to_chat(usr, "\icon[src] \The [src] contains [get_fuel()]/[max_fuel] units of fuel!")

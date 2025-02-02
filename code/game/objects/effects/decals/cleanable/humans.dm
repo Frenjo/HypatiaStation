@@ -39,6 +39,7 @@
 
 /obj/effect/decal/cleanable/blood/Destroy()
 	for_no_type_check(var/datum/disease/D, viruses)
+		viruses.Remove(D)
 		D.cure(0)
 	return ..()
 

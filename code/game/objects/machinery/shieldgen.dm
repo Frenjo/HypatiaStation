@@ -155,6 +155,7 @@
 
 /obj/machinery/shieldgen/Destroy()
 	for_no_type_check(var/obj/machinery/shield/shield_tile, deployed_shields)
+		deployed_shields.Remove(shield_tile)
 		qdel(shield_tile)
 	return ..()
 

@@ -18,6 +18,7 @@
 /obj/machinery/power/Destroy()
 	disconnect_from_network()
 	disconnect_terminal()
+	powernet = null
 	return ..()
 
 ///////////////////////////////

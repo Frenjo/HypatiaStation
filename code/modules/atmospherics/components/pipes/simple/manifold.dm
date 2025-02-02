@@ -69,8 +69,11 @@
 
 /obj/machinery/atmospherics/pipe/manifold/Destroy()
 	node1?.disconnect(src)
+	node1 = null
 	node2?.disconnect(src)
+	node2 = null
 	node3?.disconnect(src)
+	node3 = null
 	return ..()
 
 /obj/machinery/atmospherics/pipe/manifold/hide(i)
@@ -286,9 +289,13 @@
 
 /obj/machinery/atmospherics/pipe/manifold4w/Destroy()
 	node1?.disconnect(src)
+	node1 = null
 	node2?.disconnect(src)
+	node2 = null
 	node3?.disconnect(src)
+	node3 = null
 	node4?.disconnect(src)
+	node4 = null
 	return ..()
 
 /obj/machinery/atmospherics/pipe/manifold4w/hide(i)

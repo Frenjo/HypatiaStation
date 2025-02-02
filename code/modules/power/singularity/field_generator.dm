@@ -41,6 +41,10 @@ field_generator power level display
 	connected_gens = list()
 	return
 
+/obj/machinery/field_generator/Destroy()
+	cleanup()
+	return ..()
+
 /obj/machinery/field_generator/update_icon()
 	overlays.Cut()
 	if(!active)
@@ -179,10 +183,6 @@ field_generator power level display
 		power += Proj.damage
 		update_icon()
 	return 0
-
-/obj/machinery/field_generator/Destroy()
-	cleanup()
-	return ..()
 
 /obj/machinery/field_generator/proc/turn_off()
 	active = 0

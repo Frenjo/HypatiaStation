@@ -56,6 +56,7 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/atmospherics/unary/vent_pump/update_icon()

@@ -17,10 +17,11 @@ GLOBAL_GLOBL_LIST_NEW(rad_collectors)
 	var/drainratio = 1
 
 /obj/machinery/power/rad_collector/New()
-	..()
-	GLOBL.rad_collectors += src
+	. = ..()
+	GLOBL.rad_collectors.Add(src)
 
 /obj/machinery/power/rad_collector/Destroy()
+	QDEL_NULL(P)
 	GLOBL.rad_collectors.Remove(src)
 	return ..()
 

@@ -30,12 +30,11 @@
 	update_icon()
 
 /obj/machinery/atmospherics/unary/Destroy()
-	loc = null
-
+	QDEL_NULL(air_contents)
 	if(isnotnull(node))
 		node.disconnect(src)
-		qdel(network)
 		node = null
+		QDEL_NULL(network)
 
 	return ..()
 

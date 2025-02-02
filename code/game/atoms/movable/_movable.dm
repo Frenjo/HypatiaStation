@@ -29,7 +29,7 @@
 	if(opacity && isturf(loc))
 		un_opaque = loc
 
-	loc = null
+	forceMove(null)
 	un_opaque?.recalc_atom_opacity()
 
 	if(isnotnull(pulledby))
@@ -64,13 +64,15 @@
 	. = ..()
 
 /atom/movable/proc/forceMove(atom/destination)
-	if(isnotnull(destination))
-		if(isnotnull(loc))
-			loc.Exited(src)
-		loc = destination
-		loc.Entered(src)
-		return 1
-	return 0
+	if(GC_DESTROYED(src) && isnotnull(destination))
+		CRASH("Attempted to forceMove a GC_DESTROYED [src] out of nullspace!")
+	if(destination == loc)
+		return FALSE
+
+	loc?.Exited(src)
+	loc = destination
+	loc?.Entered(src)
+	return TRUE
 
 /atom/movable/proc/hit_check(speed)
 	if(throwing)

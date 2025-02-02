@@ -70,7 +70,9 @@
 
 /obj/machinery/atmospherics/pipe/simple/Destroy()
 	node1?.disconnect(src)
+	node1 = null
 	node2?.disconnect(src)
+	node2 = null
 	return ..()
 
 /obj/machinery/atmospherics/pipe/simple/hide(i)

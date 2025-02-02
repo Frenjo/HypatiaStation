@@ -60,20 +60,18 @@
 	update_icon()
 
 /obj/machinery/atmospherics/trinary/Destroy()
-	loc = null
-
 	if(isnotnull(node1))
 		node1.disconnect(src)
-		QDEL_NULL(network1)
 		node1 = null
+		QDEL_NULL(network1)
 	if(isnotnull(node2))
 		node2.disconnect(src)
-		QDEL_NULL(network2)
 		node2 = null
+		QDEL_NULL(network2)
 	if(isnotnull(node3))
 		node3.disconnect(src)
-		QDEL_NULL(network3)
 		node3 = null
+		QDEL_NULL(network3)
 
 	return ..()
 

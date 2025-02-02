@@ -43,7 +43,7 @@
 	health = 120
 
 /obj/effect/alien/resin/New()
-	..()
+	. = ..()
 	var/turf/T = GET_TURF(src)
 	T?.thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 

@@ -111,13 +111,13 @@
 	..()
 	GLOBL.processing_objects.Add(src)
 
+/obj/item/rcs/Destroy()
+	pad = null
+	return ..()
+
 /obj/item/rcs/examine()
 	desc = "Use this to send crates and closets to cargo telepads. There are [rcharges] charges left."
 	..()
-
-/obj/item/rcs/Destroy()
-	GLOBL.processing_objects.Remove(src)
-	return ..()
 
 /obj/item/rcs/process()
 	if(rcharges > 10)

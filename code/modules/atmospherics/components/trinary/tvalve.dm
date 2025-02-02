@@ -113,6 +113,7 @@
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/atmospherics/trinary/tvalve/digital/attack_ai(mob/user)
@@ -232,6 +233,7 @@
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/atmospherics/trinary/tvalve/mirrored/digital/attack_ai(mob/user)

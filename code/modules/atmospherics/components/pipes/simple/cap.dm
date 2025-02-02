@@ -37,6 +37,7 @@
 
 /obj/machinery/atmospherics/pipe/cap/Destroy()
 	node?.disconnect(src)
+	node = null
 	return ..()
 
 /obj/machinery/atmospherics/pipe/cap/hide(i)

@@ -42,6 +42,7 @@
 
 /obj/machinery/atmospherics/trinary/filter/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/atmospherics/trinary/filter/update_icon()

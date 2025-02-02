@@ -116,7 +116,8 @@
 	GLOBL.processing_objects.Add(src)
 
 /obj/effect/spacevine_controller/Destroy()
-	GLOBL.processing_objects.Remove(src)
+	vines.Cut()
+	growth_queue.Cut()
 	return ..()
 
 /obj/effect/spacevine_controller/proc/spawn_spacevine_piece(turf/location)

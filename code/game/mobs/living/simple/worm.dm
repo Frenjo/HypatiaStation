@@ -100,6 +100,7 @@
 
 /mob/living/simple/space_worm/Destroy() //if a chunk a destroyed, make a new worm out of the split halves
 	previous?.Detach()
+	previous = null
 	return ..()
 
 /mob/living/simple/space_worm/Move()

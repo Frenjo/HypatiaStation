@@ -38,7 +38,7 @@
 	last_regen = world.time
 
 /obj/item/spikethrower/Destroy()
-	GLOBL.processing_objects.Remove(src)
+	QDEL_NULL(spike)
 	return ..()
 
 /obj/item/spikethrower/process()

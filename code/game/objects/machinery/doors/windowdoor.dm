@@ -28,7 +28,7 @@
 		base_state = icon_state
 
 /obj/machinery/door/window/Destroy()
-	density = FALSE
+	QDEL_NULL(electronics)
 	return ..()
 
 /obj/machinery/door/window/Bumped(atom/movable/AM)

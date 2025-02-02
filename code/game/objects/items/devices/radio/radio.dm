@@ -40,14 +40,16 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	var/list/datum/radio_frequency/secure_radio_connections = new
 
 /obj/item/radio/New()
-	..()
-	wires = new(src)
+	. = ..()
+	wires = new /datum/wires/radio(src)
 
 /obj/item/radio/Destroy()
 	QDEL_NULL(wires)
+	patch_link = null
 	unregister_radio(src, frequency)
 	for(var/ch_name in channels)
 		unregister_radio(src, GLOBL.radio_channels[ch_name])
+	radio_connection = null
 	return ..()
 
 /obj/item/radio/initialise()

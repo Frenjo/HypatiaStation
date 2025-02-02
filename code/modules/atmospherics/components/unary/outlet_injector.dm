@@ -25,6 +25,7 @@
 
 /obj/machinery/atmospherics/unary/outlet_injector/Destroy()
 	unregister_radio(src, frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/atmospherics/unary/outlet_injector/update_icon()

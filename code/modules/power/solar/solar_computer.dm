@@ -41,8 +41,10 @@
 
 /obj/machinery/power/solar_control/Destroy()
 	for_no_type_check(var/obj/machinery/power/solar/M, connected_panels)
+		connected_panels.Remove(M)
 		M.unset_control()
 	connected_tracker?.unset_control()
+	connected_tracker = null
 	return ..()
 
 /obj/machinery/power/solar_control/disconnect_from_network()

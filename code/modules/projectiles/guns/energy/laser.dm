@@ -41,10 +41,6 @@
 	. = ..()
 	GLOBL.processing_objects.Add(src)
 
-/obj/item/gun/energy/laser/captain/Destroy()
-	GLOBL.processing_objects.Remove(src)
-	return ..()
-
 /obj/item/gun/energy/laser/captain/process()
 	charge_tick++
 	if(charge_tick < 4)
@@ -134,10 +130,6 @@
 /obj/item/gun/energy/laser/tag/New()
 	. = ..()
 	GLOBL.processing_objects.Add(src)
-
-/obj/item/gun/energy/laser/tag/Destroy()
-	GLOBL.processing_objects.Remove(src)
-	return ..()
 
 /obj/item/gun/energy/laser/tag/process()
 	charge_tick++

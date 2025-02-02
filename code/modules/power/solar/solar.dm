@@ -16,12 +16,13 @@
 	var/obj/machinery/power/solar_control/control = null
 
 /obj/machinery/power/solar/New(turf/loc, obj/item/solar_assembly/S)
-	..(loc)
+	. = ..(loc)
 	Make(S)
 	connect_to_network()
 
 /obj/machinery/power/solar/Destroy()
 	unset_control() //remove from control computer
+	control = null
 	return ..()
 
 /obj/machinery/power/solar/attack_tool(obj/item/tool, mob/user)

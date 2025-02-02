@@ -19,12 +19,13 @@
 	var/obj/machinery/hydroponics/my_hydrotray
 
 /mob/living/simple/bee/New(loc, obj/machinery/apiary/new_parent)
-	..()
+	. = ..()
 	parent = new_parent
-	verbs -= /atom/movable/verb/pull
+	verbs.Remove(/atom/movable/verb/pull)
 
 /mob/living/simple/bee/Destroy()
 	parent?.owned_bee_swarms.Remove(src)
+	parent = null
 	return ..()
 
 /mob/living/simple/bee/Life()

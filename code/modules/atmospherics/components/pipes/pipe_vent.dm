@@ -36,6 +36,7 @@
 
 /obj/machinery/atmospherics/pipe/vent/Destroy()
 	node1?.disconnect(src)
+	node1 = null
 	return ..()
 
 /obj/machinery/atmospherics/pipe/vent/process()

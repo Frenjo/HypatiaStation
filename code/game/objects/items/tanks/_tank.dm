@@ -43,9 +43,6 @@
 /obj/item/tank/Destroy()
 	if(isnotnull(air_contents))
 		QDEL_NULL(air_contents)
-
-	GLOBL.processing_objects.Remove(src)
-
 	return ..()
 
 /obj/item/tank/process()

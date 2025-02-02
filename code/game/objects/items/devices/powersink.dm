@@ -22,8 +22,8 @@
 	var/obj/structure/cable/attached		// the attached cable
 
 /obj/item/powersink/Destroy()
-	GLOBL.processing_objects.Remove(src)
 	GLOBL.processing_power_items.Remove(src)
+	attached = null
 	return ..()
 
 /obj/item/powersink/attack_tool(obj/item/tool, mob/user)

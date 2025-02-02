@@ -31,6 +31,7 @@
 
 /obj/machinery/atmospherics/unary/portables_connector/Destroy()
 	connected_device?.disconnect()
+	connected_device = null
 	return ..()
 
 /obj/machinery/atmospherics/unary/portables_connector/update_icon()

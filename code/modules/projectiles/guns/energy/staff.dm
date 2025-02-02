@@ -23,10 +23,6 @@
 	. = ..()
 	GLOBL.processing_objects.Add(src)
 
-/obj/item/gun/energy/staff/Destroy()
-	GLOBL.processing_objects.Remove(src)
-	return ..()
-
 /obj/item/gun/energy/staff/process()
 	charge_tick++
 	if(charge_tick < 4)

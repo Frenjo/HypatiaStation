@@ -48,6 +48,7 @@
 	setup(ui_style2icon(owner.client.prefs.UI_style), owner.client.prefs.UI_style_color, owner.client.prefs.UI_style_alpha)
 
 /datum/hud/Destroy()
+	owner = null
 	QDEL_NULL(screentip_text)
 	return ..()
 

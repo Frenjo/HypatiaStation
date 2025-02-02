@@ -21,6 +21,8 @@
 //This could all be done better, but it works for now.
 /obj/machinery/computer/holodeck_control/Destroy()
 	emergencyShutdown()
+	linked_holodeck = null
+	target = null
 	return ..()
 
 /obj/machinery/computer/holodeck_control/attack_ai(mob/user)

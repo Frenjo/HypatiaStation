@@ -19,6 +19,7 @@
 
 /obj/machinery/door/airlock/alarmlock/Destroy()
 	unregister_radio(src, air_frequency)
+	radio_connection = null
 	return ..()
 
 /obj/machinery/door/airlock/alarmlock/receive_signal(datum/signal/signal)
