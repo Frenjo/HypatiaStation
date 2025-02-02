@@ -49,6 +49,16 @@
 	. = ..()
 	files = new /datum/research(src) // Sets up the research data holder.
 
+/obj/machinery/robotics_fabricator/Destroy()
+	QDEL_NULL(files)
+	QDEL_NULL(being_built)
+	for_no_type_check(var/datum/design/queued, queue)
+		queue.Remove(queued)
+		qdel(queued)
+	queue.Cut()
+	part_sets.Cut()
+	return ..()
+
 /obj/machinery/robotics_fabricator/add_parts()
 	component_parts = list(
 		new /obj/item/stock_part/matter_bin(src),

@@ -127,9 +127,11 @@
 	if(length(component_parts))
 		for_no_type_check(var/obj/item/part, component_parts)
 			if(part.loc == src) // If the components are inside the machine, delete them.
+				component_parts.Remove(part)
 				qdel(part)
 			else // Otherwise we assume they were dropped to the ground during deconstruction, and were not removed from the component_parts list by deconstruction code.
 				component_parts.Remove(part)
+		component_parts.Cut()
 	if(length(contents)) // The same for contents.
 		for_no_type_check(var/atom/movable/mover, src)
 			qdel(mover)
