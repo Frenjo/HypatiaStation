@@ -98,7 +98,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 /obj/item/circuitboard/cryopodcontrol
 	name = "circuit board (Cryogenic Oversight Console)"
 	build_path = /obj/machinery/computer/cryopod
-	origin_tech = list(/datum/tech/programming = 3)
+	origin_tech = list(/decl/tech/programming = 3)
 
 //Decorative structures to go alongside cryopods.
 /obj/structure/cryofeed

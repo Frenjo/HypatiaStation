@@ -9,7 +9,7 @@
 	icon_state = "blank"
 
 	force = 5
-	origin_tech = list(/datum/tech/materials = 2)
+	origin_tech = list(/decl/tech/materials = 2)
 	reliability = 1000
 
 	var/obj/mecha/chassis = null

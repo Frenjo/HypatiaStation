@@ -3,7 +3,7 @@
 	name = "tesla energy relay"
 	desc = "Wirelessly drains energy from any available power channel in area. The performance index is quite low. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
-	origin_tech = list(/datum/tech/magnets = 4, /datum/tech/syndicate = 2)
+	origin_tech = list(/decl/tech/magnets = 4, /decl/tech/syndicate = 2)
 
 	equip_cooldown = 1 SECOND
 	energy_drain = 0
@@ -114,7 +114,7 @@
 	name = "plasma converter"
 	desc = "Generates power using solid plasma as fuel. Pollutes the environment. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
-	origin_tech = list(/datum/tech/engineering = 1, /datum/tech/power_storage = 2, /datum/tech/plasma = 2)
+	origin_tech = list(/decl/tech/engineering = 1, /decl/tech/power_storage = 2, /decl/tech/plasma = 2)
 	equip_cooldown = 1 SECOND
 	energy_drain = 0
 	range = MELEE
@@ -253,7 +253,7 @@
 	name = "\improper ExoNuclear reactor"
 	desc = "Generates power using uranium. Pollutes the environment. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
-	origin_tech = list(/datum/tech/engineering = 3, /datum/tech/power_storage = 3)
+	origin_tech = list(/decl/tech/engineering = 3, /decl/tech/power_storage = 3)
 	max_fuel = 50000
 	fuel_per_cycle_idle = 10
 	fuel_per_cycle_active = 30

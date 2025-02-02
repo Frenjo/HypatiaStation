@@ -82,7 +82,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 // Have it automatically push research to the centcom server so wild griffins can't fuck up R&D's work --NEO
 /obj/machinery/computer/rdconsole/proc/grief_protection()
 	for(var/obj/machinery/r_n_d/server/centcom/C in GLOBL.machines)
-		for_no_type_check(var/datum/tech/T, files.known_tech)
+		for_no_type_check(var/decl/tech/T, files.known_tech)
 			C.files.AddTech2Known(T)
 		for_no_type_check(var/datum/design/D, files.known_designs)
 			C.files.AddDesign2Known(D)
@@ -160,7 +160,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		screen = 1.0
 
 	else if(href_list["copy_tech"]) //Copys some technology data from the research holder to the disk.
-		for_no_type_check(var/datum/tech/T, files.known_tech)
+		for_no_type_check(var/decl/tech/T, files.known_tech)
 			if(text2path(href_list["copy_tech_ID"]) == T.type)
 				t_disk.stored = T
 				break
@@ -270,14 +270,14 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						if(S.disabled)
 							continue
 						if((id in S.id_with_upload) || istype(S, /obj/machinery/r_n_d/server/centcom))
-							for_no_type_check(var/datum/tech/T, files.known_tech)
+							for_no_type_check(var/decl/tech/T, files.known_tech)
 								S.files.AddTech2Known(T)
 							for_no_type_check(var/datum/design/D, files.known_designs)
 								S.files.AddDesign2Known(D)
 							S.files.refresh_research()
 							server_processed = 1
 						if(((id in S.id_with_download) && !istype(S, /obj/machinery/r_n_d/server/centcom)) || S.hacked)
-							for_no_type_check(var/datum/tech/T, S.files.known_tech)
+							for_no_type_check(var/decl/tech/T, S.files.known_tech)
 								files.AddTech2Known(T)
 							for_no_type_check(var/datum/design/D, S.files.known_designs)
 								files.AddDesign2Known(D)
@@ -491,7 +491,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 		if(1.1) //Research viewer
 			dat += "Current Research Levels:<BR><BR>"
-			for_no_type_check(var/datum/tech/T, files.known_tech)
+			for_no_type_check(var/decl/tech/T, files.known_tech)
 				if(T.level == 0) // If it's a secret tech, don't display it until it's actually researched.
 					continue
 				dat += "[T.name]<BR>"
@@ -519,7 +519,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<BR><A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='byond://?src=\ref[src];menu=1.2'>Return to Disk Operations</A><HR>"
 			dat += "Load Technology to Disk:<BR><BR>"
-			for_no_type_check(var/datum/tech/T, files.known_tech)
+			for_no_type_check(var/decl/tech/T, files.known_tech)
 				dat += "[T.name] "
 				dat += "<A href='byond://?src=\ref[src];copy_tech=1;copy_tech_ID=[T.type]'>(Copy to Disk)</A><BR>"
 
@@ -601,9 +601,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Name: [linked_destroy.loaded_item.name]<BR>"
 			dat += "Origin Tech:<BR>"
 			var/list/temp_tech = linked_destroy.loaded_item.origin_tech
-			for(var/T in temp_tech)
-				var/datum/tech/tech = GLOBL.all_techs[T] // If this comes out as null, then someone has added something invalid to linked_destroy.loaded_item.origin_tech.
-				dat += "* [tech.name] [temp_tech[T]]<BR>"
+			for(var/path in temp_tech)
+				var/decl/tech/tech = GET_DECL_INSTANCE(path) // If this comes out as null, then someone has added something invalid to linked_destroy.loaded_item.origin_tech.
+				dat += "* [tech.name] [temp_tech[path]]<BR>"
 			dat += "<HR><A href='byond://?src=\ref[src];deconstruct=1'>Deconstruct Item</A> || "
 			dat += "<A href='byond://?src=\ref[src];eject_item=1'>Eject Item</A> || "
 

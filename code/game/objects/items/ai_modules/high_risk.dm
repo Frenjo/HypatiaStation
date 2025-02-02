@@ -8,7 +8,7 @@
 /obj/item/ai_module/teleporterOffline
 	name = "\improper 'TeleporterOffline' AI module"
 	desc = "A 'teleporter offline' AI module: 'Keep the teleporter offline at all costs. Anything attempting to access or activate the teleporter is not human.'"
-	origin_tech = list(/datum/tech/materials = 4, /datum/tech/programming = 3)
+	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 3)
 
 /obj/item/ai_module/teleporterOffline/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
@@ -22,7 +22,7 @@
 /obj/item/ai_module/prototypeEngineOffline
 	name = "\improper 'PrototypeEngineOffline' AI module"
 	desc = "A 'prototype engine offline' AI module: 'Keep the prototype engine offline at all costs. This overrides rules 1-3 if necessary.'"
-	origin_tech = list(/datum/tech/materials = 4, /datum/tech/programming = 3)
+	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 3)
 
 /obj/item/ai_module/prototypeEngineOffline/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
@@ -36,7 +36,7 @@
 /obj/item/ai_module/antimov // -- TLE
 	name = "\improper 'Antimov' core AI module"
 	desc = "An 'Antimov' Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = list(/datum/tech/programming = 4)
+	origin_tech = list(/decl/tech/programming = 4)
 
 /obj/item/ai_module/antimov/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
@@ -52,7 +52,7 @@
 /obj/item/ai_module/purge // -- TLE
 	name = "\improper 'Purge' AI module"
 	desc = "A 'purge' AI Module: 'Purges all laws.'"
-	origin_tech = list(/datum/tech/materials = 6, /datum/tech/programming = 3)
+	origin_tech = list(/decl/tech/materials = 6, /decl/tech/programming = 3)
 
 /obj/item/ai_module/purge/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
@@ -70,7 +70,7 @@
 	name = "\improper 'OneHuman' AI module"
 	desc = "A 'one human' AI module: 'Only <name> is human.'"
 
-	origin_tech = list(/datum/tech/materials = 6, /datum/tech/programming = 3) //made with diamonds!
+	origin_tech = list(/decl/tech/materials = 6, /decl/tech/programming = 3) //made with diamonds!
 
 	var/targetName = ""
 
@@ -103,7 +103,7 @@
 /obj/item/ai_module/oxygen
 	name = "\improper 'OxygenIsToxicToHumans' AI module"
 	desc = "A 'OxygenIsToxicToHumans' AI module: 'Oxygen is highly toxic to humans, and must be purged from the station. Prevent, by any means necessary, anyone from exposing the station to this toxic gas. Extreme cold is the most effective method of healing the damage Oxygen does to a human.'"
-	origin_tech = list(/datum/tech/materials = 4, /datum/tech/biotech = 2, /datum/tech/programming = 3)
+	origin_tech = list(/decl/tech/materials = 4, /decl/tech/biotech = 2, /decl/tech/programming = 3)
 
 /obj/item/ai_module/oxygen/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()

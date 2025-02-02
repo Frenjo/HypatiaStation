@@ -3,7 +3,7 @@
 	desc = "A gun that discharges high amounts of controlled radiation to slowly break a target into component elements."
 	icon_state = "decloner"
 
-	origin_tech = list(/datum/tech/materials = 4, /datum/tech/combat = 5, /datum/tech/power_storage = 3)
+	origin_tech = list(/decl/tech/materials = 4, /decl/tech/combat = 5, /decl/tech/power_storage = 3)
 
 	fire_sound = 'sound/weapons/pulse3.ogg'
 
@@ -15,7 +15,7 @@
 	desc = "A tool that discharges controlled radiation which induces mutation in plant cells."
 	icon_state = "floramut100"
 
-	origin_tech = list(/datum/tech/materials = 2, /datum/tech/biotech = 3, /datum/tech/power_storage = 3)
+	origin_tech = list(/decl/tech/materials = 2, /decl/tech/biotech = 3, /decl/tech/power_storage = 3)
 
 	fire_sound = 'sound/effects/stealthoff.ogg'
 
@@ -117,7 +117,7 @@
 	desc = "A specialized firearm designed to fire lethal bolts of toxins."
 	icon_state = "toxgun"
 
-	origin_tech = list(/datum/tech/combat = 5, /datum/tech/plasma = 4)
+	origin_tech = list(/decl/tech/combat = 5, /decl/tech/plasma = 4)
 
 	fire_sound = 'sound/effects/stealthoff.ogg'
 
@@ -131,7 +131,7 @@
 
 	w_class = 4
 	slot_flags = SLOT_BACK
-	origin_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 6, /datum/tech/power_storage = 4)
+	origin_tech = list(/decl/tech/materials = 5, /decl/tech/combat = 6, /decl/tech/power_storage = 4)
 
 	fire_sound = 'sound/weapons/marauder.ogg'
 	fire_delay = 3.5 SECONDS

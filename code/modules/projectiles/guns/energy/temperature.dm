@@ -4,8 +4,8 @@
 	icon_state = "freezegun"
 
 	origin_tech = list(
-		/datum/tech/materials = 4, /datum/tech/magnets = 2, /datum/tech/combat = 3,
-		/datum/tech/power_storage = 3
+		/decl/tech/materials = 4, /decl/tech/magnets = 2, /decl/tech/combat = 3,
+		/decl/tech/power_storage = 3
 	)
 
 	fire_sound = 'sound/weapons/pulse3.ogg'

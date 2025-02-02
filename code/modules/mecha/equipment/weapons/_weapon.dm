@@ -1,7 +1,7 @@
 /obj/item/mecha_part/equipment/weapon
 	name = "mecha weapon"
 	range = RANGED
-	origin_tech = list(/datum/tech/materials = 3, /datum/tech/combat = 3)
+	origin_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 3)
 
 	destruction_sound = 'sound/mecha/weapdestr.ogg'
 

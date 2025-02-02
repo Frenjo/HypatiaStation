@@ -214,52 +214,52 @@
 		if(spawnees & 1)
 			C = new /obj/item/circuitboard(loc)
 			C.name = "Drone CPU motherboard"
-			C.origin_tech = list(/datum/tech/programming = rand(3, 6))
+			C.origin_tech = list(/decl/tech/programming = rand(3, 6))
 
 		if(spawnees & 2)
 			C = new /obj/item/circuitboard(loc)
 			C.name = "Drone neural interface"
-			C.origin_tech = list(/datum/tech/biotech = rand(3, 6))
+			C.origin_tech = list(/decl/tech/biotech = rand(3, 6))
 
 		if(spawnees & 4)
 			C = new /obj/item/circuitboard(loc)
 			C.name = "Drone suspension processor"
-			C.origin_tech = list(/datum/tech/magnets = rand(3, 6))
+			C.origin_tech = list(/decl/tech/magnets = rand(3, 6))
 
 		if(spawnees & 8)
 			C = new /obj/item/circuitboard(loc)
 			C.name = "Drone shielding controller"
-			C.origin_tech = list(/datum/tech/bluespace = rand(3, 6))
+			C.origin_tech = list(/decl/tech/bluespace = rand(3, 6))
 
 		if(spawnees & 16)
 			C = new /obj/item/circuitboard(loc)
 			C.name = "Drone power capacitor"
-			C.origin_tech = list(/datum/tech/power_storage = rand(3, 6))
+			C.origin_tech = list(/decl/tech/power_storage = rand(3, 6))
 
 		if(spawnees & 32)
 			C = new /obj/item/circuitboard(loc)
 			C.name = "Drone hull reinforcer"
-			C.origin_tech = list(/datum/tech/materials = rand(3, 6))
+			C.origin_tech = list(/decl/tech/materials = rand(3, 6))
 
 		if(spawnees & 64)
 			C = new /obj/item/circuitboard(loc)
 			C.name = "Drone auto-repair system"
-			C.origin_tech = list(/datum/tech/engineering = rand(3, 6))
+			C.origin_tech = list(/decl/tech/engineering = rand(3, 6))
 
 		if(spawnees & 128)
 			C = new /obj/item/circuitboard(loc)
 			C.name = "Drone plasma overcharge counter"
-			C.origin_tech = list(/datum/tech/plasma = rand(3, 6))
+			C.origin_tech = list(/decl/tech/plasma = rand(3, 6))
 
 		if(spawnees & 256)
 			C = new /obj/item/circuitboard(loc)
 			C.name = "Drone targetting circuitboard"
-			C.origin_tech = list(/datum/tech/combat = rand(3, 6))
+			C.origin_tech = list(/decl/tech/combat = rand(3, 6))
 
 		if(spawnees & 512)
 			C = new /obj/item/circuitboard(loc)
 			C.name = "Corrupted drone morality core"
-			C.origin_tech = list(/datum/tech/syndicate = rand(3, 6))
+			C.origin_tech = list(/decl/tech/syndicate = rand(3, 6))
 
 	return ..()
 

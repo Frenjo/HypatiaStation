@@ -3,7 +3,7 @@
 	desc = "A small, quiet,  easily concealable gun. Uses .45 rounds."
 	icon_state = "silenced_pistol"
 
-	origin_tech = list(/datum/tech/materials = 2, /datum/tech/combat = 2, /datum/tech/syndicate = 8)
+	origin_tech = list(/decl/tech/materials = 2, /decl/tech/combat = 2, /decl/tech/syndicate = 8)
 
 	silenced = 1
 
@@ -53,7 +53,7 @@
 	desc = "A bulky pistol designed to fire self propelled rounds"
 	icon_state = "gyropistol"
 
-	origin_tech = list(/datum/tech/combat = 3)
+	origin_tech = list(/decl/tech/combat = 3)
 
 	fire_sound = 'sound/effects/Explosion1.ogg'
 
@@ -89,7 +89,7 @@
 	icon_state = "pistol"
 
 	w_class = 2
-	origin_tech = list(/datum/tech/materials = 2, /datum/tech/combat = 2, /datum/tech/syndicate = 2)
+	origin_tech = list(/decl/tech/materials = 2, /decl/tech/combat = 2, /decl/tech/syndicate = 2)
 
 	silenced = 0
 

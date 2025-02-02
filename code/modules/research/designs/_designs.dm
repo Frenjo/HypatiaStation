@@ -49,10 +49,10 @@ other types of metals and chemistry for reagents).
 	var/list/categories = null // Primarily used for Mech Fabricators, but can be used for anything
 
 //A proc to calculate the reliability of a design based on tech levels and innate modifiers.
-//Input: A list of /datum/tech; Output: The new reliabilty.
+//Input: A list of /decl/tech; Output: The new reliabilty.
 /datum/design/proc/CalcReliability(list/temp_techs)
 	var/new_reliability = reliability_mod + reliability_base
-	for(var/datum/tech/T in temp_techs)
+	for(var/decl/tech/T in temp_techs)
 		if(T.type in req_tech)
 			new_reliability += T.level
 	new_reliability = clamp(new_reliability, reliability_base, 100)
@@ -66,6 +66,6 @@ other types of metals and chemistry for reagents).
 			name = "Test Design"
 			desc = "A design to test the new protolathe."
 			build_type = DESIGN_TYPE_PROTOLATHE
-			req_tech = list(/datum/tech/materials = 1)
+			req_tech = list(/decl/tech/materials = 1)
 			materials = list(/decl/material/gold = 3000, "iron" = 15, "copper" = 10, /decl/material/silver = 2500)
 			build_path = "/obj/item/banhammer" */

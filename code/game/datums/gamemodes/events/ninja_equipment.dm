@@ -28,8 +28,8 @@ ________________________________________________________________________________
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-	for(var/T in GLOBL.all_techs) // Store up on research.
-		stored_research += GLOBL.all_techs[T]
+	for(var/decl/tech/T, GET_DECL_SUBTYPE_INSTANCES(/decl/tech)) // Store up on research.
+		stored_research.Add(T)
 
 	var/reagent_amount//reagent initialize
 	for(var/reagent_id in reagent_list)
@@ -455,8 +455,8 @@ ________________________________________________________________________________
 			if(t_disk)
 				dat += "<a href='byond://?src=\ref[src];choice=Eject Disk'>Eject Disk</a><br>"
 			dat += "<ul>"
-			if(istype(stored_research,/list))//If there is stored research. Should be but just in case.
-				for(var/datum/tech/current_data in stored_research)
+			if(islist(stored_research)) // If there is stored research. Should be but just in case.
+				for(var/decl/tech/current_data in stored_research)
 					dat += "<li>"
 					dat += "[current_data.name]: [current_data.level]"
 					if(t_disk)//If there is a disk inserted. We can either write or overwrite.
@@ -616,7 +616,7 @@ ________________________________________________________________________________
 					to_chat(U, "\red <b>ERROR<b>: \black Could not eject disk.")
 
 		if("Copy to Disk")
-			var/datum/tech/current_data = locate(href_list["target"])
+			var/decl/tech/current_data = locate(href_list["target"])
 			to_chat(U, "[current_data.name] successfully [(!t_disk.stored) ? "copied" : "overwritten"] to disk.")
 			t_disk.stored = current_data
 
@@ -841,7 +841,7 @@ ________________________________________________________________________________
 			if(TD.stored)//If it has something on it.
 				to_chat(U, "Research information detected, processing...")
 				if(do_after(U,s_delay))
-					for(var/datum/tech/current_data in stored_research)
+					for(var/decl/tech/current_data in stored_research)
 						if(current_data.type == TD.stored.type)
 							if(current_data.level<TD.stored.level)
 								current_data.level=TD.stored.level
@@ -1058,10 +1058,10 @@ ________________________________________________________________________________
 			if(A:files && istype(A:files, /datum/research))
 				var/datum/research/files = A:files
 				if(length(files.known_tech))
-					for(var/datum/tech/current_data in S.stored_research)
+					for(var/decl/tech/current_data in S.stored_research)
 						to_chat(U, SPAN_INFO("Checking \the [current_data] database."))
 						if(do_after(U, S.s_delay) && G.candrain && isnotnull(A))
-							for_no_type_check(var/datum/tech/analyzing_data, files.known_tech)
+							for_no_type_check(var/decl/tech/analyzing_data, files.known_tech)
 								if(current_data.type == analyzing_data.type)
 									if(analyzing_data.level > current_data.level)
 										to_chat(U, "\blue Database: \black <b>UPDATED</b>.")

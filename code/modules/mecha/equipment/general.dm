@@ -3,7 +3,7 @@
 	name = "repair droid"
 	desc = "Automated repair droid. Scans exosuit for damage and repairs it. Can fix almost all types of external or internal damage. (Can be attached to: Any Exosuit)"
 	icon_state = "repair_droid"
-	origin_tech = list(/datum/tech/magnets = 3, /datum/tech/programming = 3)
+	origin_tech = list(/decl/tech/magnets = 3, /decl/tech/programming = 3)
 
 	equip_cooldown = 2 SECONDS
 	energy_drain = 100
@@ -87,7 +87,7 @@
 	name = "teleporter"
 	desc = "An exosuit module that allows exosuits to teleport to any position in view. (Can be attached to: Any Exosuit)"
 	icon_state = "teleporter"
-	origin_tech = list(/datum/tech/bluespace = 10)
+	origin_tech = list(/decl/tech/bluespace = 10)
 	equip_cooldown = 15 SECONDS
 	energy_drain = 1000
 	range = RANGED
@@ -107,7 +107,7 @@
 	name = "wormhole generator"
 	desc = "An exosuit module that allows generating of small quasi-stable wormholes. (Can be attached to: Any Exosuit)"
 	icon_state = "wholegen"
-	origin_tech = list(/datum/tech/bluespace = 3)
+	origin_tech = list(/decl/tech/bluespace = 3)
 	equip_cooldown = 5 SECONDS
 	energy_drain = 300
 	range = RANGED
@@ -158,7 +158,7 @@
 	name = "gravitational catapult"
 	desc = "An exosuit mounted Gravitational Catapult. (Can be attached to: Any Exosuit)"
 	icon_state = "catapult"
-	origin_tech = list(/datum/tech/magnets = 3, /datum/tech/bluespace = 2)
+	origin_tech = list(/decl/tech/magnets = 3, /decl/tech/bluespace = 2)
 	equip_cooldown = 1 SECOND
 	energy_drain = 100
 	range = MELEE | RANGED

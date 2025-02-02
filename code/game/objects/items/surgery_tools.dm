@@ -22,7 +22,7 @@
 	matter_amounts = list(/decl/material/steel = 10000, /decl/material/glass = 5000)
 	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 2.0
-	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1)
+	origin_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 1)
 
 /*
  * Hemostat
@@ -35,7 +35,7 @@
 	matter_amounts = list(/decl/material/steel = 5000, /decl/material/glass = 2500)
 	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 2.0
-	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1)
+	origin_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 1)
 	attack_verb = list("attacked", "pinched")
 
 /*
@@ -49,7 +49,7 @@
 	matter_amounts = list(/decl/material/steel = 5000, /decl/material/glass = 2500)
 	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 2.0
-	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1)
+	origin_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 1)
 	attack_verb = list("burnt")
 
 /*
@@ -65,7 +65,7 @@
 	obj_flags = OBJ_FLAG_CONDUCT
 	force = 15.0
 	w_class = 2.0
-	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1)
+	origin_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 1)
 	attack_verb = list("drilled")
 
 /obj/item/surgicaldrill/suicide_act(mob/user)
@@ -93,7 +93,7 @@
 	throw_speed = 3
 	throw_range = 5
 	matter_amounts = list(/decl/material/steel = 10000, /decl/material/glass = 5000)
-	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1)
+	origin_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 1)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/scalpel/suicide_act(mob/user)
@@ -150,7 +150,7 @@
 	throw_speed = 3
 	throw_range = 5
 	matter_amounts = list(/decl/material/steel = 20000, /decl/material/glass = 10000)
-	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1)
+	origin_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 1)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = 1
 	edge = 1
@@ -177,7 +177,7 @@
 	icon_state = "fixovein"
 	force = 0
 	throwforce = 1.0
-	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 3)
+	origin_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 3)
 	w_class = 2.0
 
 	var/usage_amount = 10

@@ -53,7 +53,7 @@
 	throw_speed = 3
 	throw_range = 3
 	plant_type = 2
-	origin_tech = list(/datum/tech/materials = 1)
+	origin_tech = list(/decl/tech/materials = 1)
 	seed = /obj/item/seeds/towercap
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
@@ -105,7 +105,7 @@
 	throw_speed = 1
 	throw_range = 3
 	plant_type = 1
-	origin_tech = list(/datum/tech/combat = 1)
+	origin_tech = list(/decl/tech/combat = 1)
 	seed = /obj/item/seeds/nettle
 
 //So potency can be set in the proc that creates these crops
@@ -156,7 +156,7 @@
 	throw_range = 3
 	plant_type = 1
 	seed = /obj/item/seeds/deathnettleseed
-	origin_tech = list(/datum/tech/combat = 3)
+	origin_tech = list(/decl/tech/combat = 3)
 	attack_verb = list("stung")
 
 //So potency can be set in the proc that creates these crops

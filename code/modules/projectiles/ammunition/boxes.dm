@@ -57,7 +57,7 @@
 	name = "magazine (9mm)"
 	icon_state = "9x19p"
 
-	origin_tech = list(/datum/tech/combat = 2)
+	origin_tech = list(/decl/tech/combat = 2)
 
 	ammo_type = /obj/item/ammo_casing/c9mm
 	max_ammo = 8
@@ -70,7 +70,7 @@
 	name = "Ammunition Box (9mm)"
 	icon_state = "9mm"
 
-	origin_tech = list(/datum/tech/combat = 2)
+	origin_tech = list(/decl/tech/combat = 2)
 
 	ammo_type = /obj/item/ammo_casing/c9mm
 	max_ammo = 30
@@ -79,7 +79,7 @@
 	name = "Ammunition Box (.45)"
 	icon_state = "9mm"
 
-	origin_tech = list(/datum/tech/combat = 2)
+	origin_tech = list(/decl/tech/combat = 2)
 
 	ammo_type = /obj/item/ammo_casing/c45
 	max_ammo = 30
@@ -88,7 +88,7 @@
 	name = "magazine (12mm)"
 	icon_state = "12mm"
 
-	origin_tech = list(/datum/tech/combat = 2)
+	origin_tech = list(/decl/tech/combat = 2)
 
 	ammo_type = /obj/item/ammo_casing/a12mm
 	max_ammo = 20
@@ -104,7 +104,7 @@
 	name = "magazine (.50)"
 	icon_state = "50ae"
 
-	origin_tech = list(/datum/tech/combat = 2)
+	origin_tech = list(/decl/tech/combat = 2)
 
 	ammo_type = /obj/item/ammo_casing/a50
 	max_ammo = 7
@@ -136,7 +136,7 @@
 	name = "magazine (a762)"
 	icon_state = "a762"
 
-	origin_tech = list(/datum/tech/combat = 2)
+	origin_tech = list(/decl/tech/combat = 2)
 
 	ammo_type = /obj/item/ammo_casing/a762
 	max_ammo = 50

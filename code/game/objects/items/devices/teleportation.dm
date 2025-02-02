@@ -19,7 +19,7 @@
 	throw_speed = 4
 	throw_range = 20
 	matter_amounts = list(MATERIAL_METAL = 400)
-	origin_tech = list(/datum/tech/magnets = 1)
+	origin_tech = list(/decl/tech/magnets = 1)
 
 	var/temp = null
 	var/frequency = 1451
@@ -134,7 +134,7 @@ Frequency:
 	throw_speed = 3
 	throw_range = 5
 	matter_amounts = list(MATERIAL_METAL = 10000)
-	origin_tech = list(/datum/tech/magnets = 1, /datum/tech/bluespace = 3)
+	origin_tech = list(/decl/tech/magnets = 1, /decl/tech/bluespace = 3)
 
 /obj/item/hand_tele/attack_self(mob/user)
 	var/turf/current_location = GET_TURF(user)//What turf is the user on?

@@ -162,7 +162,7 @@
 	name = "circuit board (Fire Alarm)"
 	build_path = "/obj/machinery/fire_alarm"
 	board_type = "wallmount"
-	origin_tech = list(/datum/tech/engineering = 2)
+	origin_tech = list(/decl/tech/engineering = 2)
 	frame_desc = "Requires 1 Scanning Module, 1 Capacitor, and 2 pieces of cable."
 	contain_parts = 0
 	req_components = list(
@@ -174,7 +174,7 @@
 	name = "circuit board (Atmospheric Alarm)"
 	build_path = "/obj/machinery/air_alarm"
 	board_type = "wallmount"
-	origin_tech = list(/datum/tech/engineering = 2, /datum/tech/programming = 2)
+	origin_tech = list(/decl/tech/engineering = 2, /decl/tech/programming = 2)
 	frame_desc = "Requires 1 Scanning Module, 1 Console Screen, and 2 pieces of cable."
 	contain_parts = 0
 	req_components = list(
@@ -187,7 +187,7 @@
 	name = "circuit board (Intercom)"
 	build_path = "/obj/item/radio/intercom"
 	board_type = "wallmount"
-	origin_tech = list(/datum/tech/engineering = 2)
+	origin_tech = list(/decl/tech/engineering = 2)
 	frame_desc = "Requires 1 Console Screen, and 2 piece of cable."
 	contain_parts = 0
 	req_components = list(
@@ -200,7 +200,7 @@
 	name = "circuit board (Requests Console)"
 	build_path = "/obj/machinery/requests_console"
 	board_type = "wallmount"
-	origin_tech = list(/datum/tech/engineering = 2, /datum/tech/programming = 2)
+	origin_tech = list(/decl/tech/engineering = 2, /decl/tech/programming = 2)
 	frame_desc = "Requires 1 radio, 1 Console Screen, and 1 piece of cable."
 	contain_parts = 0
 	req_components = list(
@@ -213,7 +213,7 @@
 	name = "circuit board (Status Display)"
 	build_path = "/obj/machinery/status_display"
 	board_type = "wallmount"
-	origin_tech = list(/datum/tech/engineering = 2, /datum/tech/programming = 2)
+	origin_tech = list(/decl/tech/engineering = 2, /decl/tech/programming = 2)
 	frame_desc = "Requires 2 Console Screens, and 1 piece of cable."
 	contain_parts = 0
 	req_components = list(
@@ -224,7 +224,7 @@
 	name = "circuit board (Light Switch)"
 	build_path = "/obj/machinery/light_switch"
 	board_type = "wallmount"
-	origin_tech = list(/datum/tech/engineering = 2)
+	origin_tech = list(/decl/tech/engineering = 2)
 	frame_desc = "Requires 2 pieces of cable."
 	contain_parts = 0
 	req_components = list(

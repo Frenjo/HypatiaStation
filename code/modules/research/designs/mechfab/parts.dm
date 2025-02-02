@@ -68,8 +68,8 @@
 	name = "Exosuit Design (\"Odysseus\" torso)"
 	desc = "The torso of an Odysseus-type exosuit."
 	req_tech = list(
-		/datum/tech/materials = 2, /datum/tech/biotech = 2, /datum/tech/engineering = 2,
-		/datum/tech/programming = 2
+		/decl/tech/materials = 2, /decl/tech/biotech = 2, /decl/tech/engineering = 2,
+		/decl/tech/programming = 2
 	)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8)
 	build_time = 18 SECONDS
@@ -79,7 +79,7 @@
 /datum/design/mechfab/odysseus_head
 	name = "Exosuit Design (\"Odysseus\" head)"
 	desc = "The head of an Odysseus-type exosuit."
-	req_tech = list(/datum/tech/materials = 2, /datum/tech/programming = 3)
+	req_tech = list(/decl/tech/materials = 2, /decl/tech/programming = 3)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 3, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_path = /obj/item/mecha_part/part/odysseus/head
 	categories = list("Odysseus")
@@ -87,7 +87,7 @@
 /datum/design/mechfab/odysseus_left_arm
 	name = "Exosuit Design (\"Odysseus\" left arm)"
 	desc = "The left arm of an Odysseus-type exosuit."
-	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
+	req_tech = list(/decl/tech/materials = 2, /decl/tech/engineering = 2, /decl/tech/programming = 2)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 3)
 	build_time = 12 SECONDS
 	build_path = /obj/item/mecha_part/part/odysseus/left_arm
@@ -96,7 +96,7 @@
 /datum/design/mechfab/odysseus_right_arm
 	name = "Exosuit Design (\"Odysseus\" right arm)"
 	desc = "The right arm of an Odysseus-type exosuit."
-	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
+	req_tech = list(/decl/tech/materials = 2, /decl/tech/engineering = 2, /decl/tech/programming = 2)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 3)
 	build_time = 12 SECONDS
 	build_path = /obj/item/mecha_part/part/odysseus/right_arm
@@ -105,7 +105,7 @@
 /datum/design/mechfab/odysseus_left_leg
 	name = "Exosuit Design (\"Odysseus\" left leg)"
 	desc = "The left leg of an Odysseus-type exosuit."
-	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
+	req_tech = list(/decl/tech/materials = 2, /decl/tech/engineering = 2, /decl/tech/programming = 2)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_time = 13 SECONDS
 	build_path = /obj/item/mecha_part/part/odysseus/left_leg
@@ -114,7 +114,7 @@
 /datum/design/mechfab/odysseus_right_leg
 	name = "Exosuit Design (\"Odysseus\" right leg)"
 	desc = "The right leg of an Odysseus-type exosuit."
-	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/programming = 2)
+	req_tech = list(/decl/tech/materials = 2, /decl/tech/engineering = 2, /decl/tech/programming = 2)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_time = 13 SECONDS
 	build_path = /obj/item/mecha_part/part/odysseus/right_leg
@@ -123,7 +123,7 @@
 /datum/design/mechfab/odysseus_carapace
 	name = "Exosuit Design (\"Odysseus\" carapace)"
 	desc = "The external carapace of an Odysseus-type exosuit."
-	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3)
+	req_tech = list(/decl/tech/materials = 3, /decl/tech/engineering = 3)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 3)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/odysseus/carapace
@@ -139,8 +139,8 @@
 	name = "Exosuit Design (\"Gygax\" torso)"
 	desc = "The torso of a Gygax-type exosuit."
 	req_tech = list(
-		/datum/tech/materials = 2, /datum/tech/biotech = 3, /datum/tech/engineering = 3,
-		/datum/tech/programming = 2
+		/decl/tech/materials = 2, /decl/tech/biotech = 3, /decl/tech/engineering = 3,
+		/decl/tech/programming = 2
 	)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 15, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 10)
 	build_time = 30 SECONDS
@@ -151,8 +151,8 @@
 	name = "Exosuit Design (\"Gygax\" head)"
 	desc = "The head of a Gygax-type exosuit."
 	req_tech = list(
-		/datum/tech/materials = 2, /datum/tech/magnets = 3, /datum/tech/engineering = 3,
-		/datum/tech/programming = 2
+		/decl/tech/materials = 2, /decl/tech/magnets = 3, /decl/tech/engineering = 3,
+		/decl/tech/programming = 2
 	)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_time = 20 SECONDS
@@ -162,7 +162,7 @@
 /datum/design/mechfab/gygax_left_arm
 	name = "Exosuit Design (\"Gygax\" left arm)"
 	desc = "The left arm of a Gygax-type exosuit."
-	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
+	req_tech = list(/decl/tech/materials = 2, /decl/tech/engineering = 3, /decl/tech/programming = 2)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 9)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/gygax/left_arm
@@ -171,7 +171,7 @@
 /datum/design/mechfab/gygax_right_arm
 	name = "Exosuit Design (\"Gygax\" right arm)"
 	desc = "The right arm of a Gygax-type exosuit."
-	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
+	req_tech = list(/decl/tech/materials = 2, /decl/tech/engineering = 3, /decl/tech/programming = 2)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 9)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/gygax/right_arm
@@ -180,7 +180,7 @@
 /datum/design/mechfab/gygax_left_leg
 	name = "Exosuit Design (\"Gygax\" left leg)"
 	desc = "The left leg of a Gygax-type exosuit."
-	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
+	req_tech = list(/decl/tech/materials = 2, /decl/tech/engineering = 3, /decl/tech/programming = 2)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/gygax/left_leg
@@ -189,7 +189,7 @@
 /datum/design/mechfab/gygax_right_leg
 	name = "Exosuit Design (\"Gygax\" right leg)"
 	desc = "The right leg of a Gygax-type exosuit."
-	req_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 3, /datum/tech/programming = 2)
+	req_tech = list(/decl/tech/materials = 2, /decl/tech/engineering = 3, /decl/tech/programming = 2)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/gygax/right_leg
@@ -198,7 +198,7 @@
 /datum/design/mechfab/gygax_armour
 	name = "Exosuit Design (\"Gygax\" armour)"
 	desc = "A set of armour plates for a Gygax-type exosuit."
-	req_tech = list(/datum/tech/materials = 6, /datum/tech/combat = 4, /datum/tech/engineering = 5)
+	req_tech = list(/decl/tech/materials = 6, /decl/tech/combat = 4, /decl/tech/engineering = 5)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_time = 60 SECONDS
 	build_path = /obj/item/mecha_part/part/gygax/armour
@@ -213,7 +213,7 @@
 /datum/design/mechfab/serenity_carapace
 	name = "Exosuit Design (\"Serenity\" carapace)"
 	desc = "The external carapace of a Serenity-type exosuit."
-	req_tech = list(/datum/tech/materials = 4, /datum/tech/engineering = 4)
+	req_tech = list(/decl/tech/materials = 4, /decl/tech/engineering = 4)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 3)
 	build_time = 40 SECONDS
 	build_path = /obj/item/mecha_part/part/gygax/armour/serenity
@@ -229,8 +229,8 @@
 	name = "Exosuit Design (\"Durand\" torso)"
 	desc = "The torso of a Durand-type exosuit."
 	req_tech = list(
-		/datum/tech/materials = 3, /datum/tech/biotech = 3, /datum/tech/engineering = 3,
-		/datum/tech/programming = 2
+		/decl/tech/materials = 3, /decl/tech/biotech = 3, /decl/tech/engineering = 3,
+		/decl/tech/programming = 2
 	)
 	materials = list(
 		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 17, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 10,
@@ -244,8 +244,8 @@
 	name = "Exosuit Design (\"Durand\" head)"
 	desc = "The head of a Durand-type exosuit."
 	req_tech = list(
-		/datum/tech/materials = 3, /datum/tech/magnets = 3, /datum/tech/engineering = 3,
-		/datum/tech/programming = 2
+		/decl/tech/materials = 3, /decl/tech/magnets = 3, /decl/tech/engineering = 3,
+		/decl/tech/programming = 2
 	)
 	materials = list(
 		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8, MATERIAL_AMOUNT_PER_SHEET * 5,
@@ -258,7 +258,7 @@
 /datum/design/mechfab/durand_left_arm
 	name = "Exosuit Design (\"Durand\" left arm)"
 	desc = "The left arm of a Durand-type exosuit."
-	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
+	req_tech = list(/decl/tech/materials = 3, /decl/tech/engineering = 3, /decl/tech/programming = 2)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/durand/left_arm
@@ -267,7 +267,7 @@
 /datum/design/mechfab/durand_right_arm
 	name = "Exosuit Design (\"Durand\" right arm)"
 	desc = "The right arm of a Durand-type exosuit."
-	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
+	req_tech = list(/decl/tech/materials = 3, /decl/tech/engineering = 3, /decl/tech/programming = 2)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/durand/right_arm
@@ -276,7 +276,7 @@
 /datum/design/mechfab/durand_left_leg
 	name = "Exosuit Design (\"Durand\" left leg)"
 	desc = "The left leg of a Durand-type exosuit."
-	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
+	req_tech = list(/decl/tech/materials = 3, /decl/tech/engineering = 3, /decl/tech/programming = 2)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 12, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/durand/left_leg
@@ -285,7 +285,7 @@
 /datum/design/mechfab/durand_right_leg
 	name = "Exosuit Design (\"Durand\" right leg)"
 	desc = "The right leg of a Durand-type exosuit."
-	req_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 3, /datum/tech/programming = 2)
+	req_tech = list(/decl/tech/materials = 3, /decl/tech/engineering = 3, /decl/tech/programming = 2)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 12, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/durand/right_leg
@@ -294,7 +294,7 @@
 /datum/design/mechfab/durand_armour
 	name = "Exosuit Design (\"Durand\" armour)"
 	desc = "A set of armour plates for a Durand-type exosuit."
-	req_tech = list(/datum/tech/materials = 5, /datum/tech/combat = 4, /datum/tech/engineering = 5)
+	req_tech = list(/decl/tech/materials = 5, /decl/tech/combat = 4, /decl/tech/engineering = 5)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 15, /decl/material/uranium = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_time = 60 SECONDS
 	build_path = /obj/item/mecha_part/part/durand/armour
@@ -304,14 +304,14 @@
 /datum/design/mechfab/archambeau_chassis
 	name = "Exosuit Design (\"Archambeau\" chassis)"
 	desc = "The chassis of an Archambeau-type exosuit."
-	req_tech = list(/datum/tech/materials = 7)
+	req_tech = list(/decl/tech/materials = 7)
 	build_path = /obj/item/mecha_part/chassis/archambeau
 	categories = list("Archambeau")
 
 /datum/design/mechfab/archambeau_armour
 	name = "Exosuit Design (\"Archambeau\" armour)"
 	desc = "A set of armour plates for an Archambeau-type exosuit."
-	req_tech = list(/datum/tech/materials = 7, /datum/tech/combat = 4, /datum/tech/engineering = 6)
+	req_tech = list(/decl/tech/materials = 7, /decl/tech/combat = 4, /decl/tech/engineering = 6)
 	materials = list(
 		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 15, /decl/material/uranium = MATERIAL_AMOUNT_PER_SHEET * 9,
 		/decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 9
@@ -324,7 +324,7 @@
 /datum/design/mechfab/phazon_chassis
 	name = "Exosuit Design (\"Phazon\" chassis)"
 	desc = "The chassis of a Phazon-type exosuit."
-	req_tech = list(/datum/tech/materials = 7)
+	req_tech = list(/decl/tech/materials = 7)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6)
 	build_path = /obj/item/mecha_part/chassis/phazon
 	categories = list("Phazon")
@@ -333,8 +333,8 @@
 	name = "Exosuit Design (\"Phazon\" torso)"
 	desc = "The torso of a Phazon-type exosuit."
 	req_tech = list(
-		/datum/tech/materials = 7, /datum/tech/power_storage = 6, /datum/tech/programming = 5,
-		/datum/tech/bluespace = 6
+		/decl/tech/materials = 7, /decl/tech/power_storage = 6, /decl/tech/programming = 5,
+		/decl/tech/bluespace = 6
 	)
 	materials = list(
 		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 5,
@@ -347,7 +347,7 @@
 /datum/design/mechfab/phazon_head
 	name = "Exosuit Design (\"Phazon\" head)"
 	desc = "The head of a Phazon-type exosuit."
-	req_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 6, /datum/tech/programming = 4)
+	req_tech = list(/decl/tech/materials = 5, /decl/tech/magnets = 6, /decl/tech/programming = 4)
 	materials = list(
 		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3,
 		/decl/material/plasma = 10000
@@ -359,7 +359,7 @@
 /datum/design/mechfab/phazon_left_arm
 	name = "Exosuit Design (\"Phazon\" left arm)"
 	desc = "The left arm of a Phazon-type exosuit."
-	req_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 2, /datum/tech/bluespace = 2)
+	req_tech = list(/decl/tech/materials = 5, /decl/tech/magnets = 2, /decl/tech/bluespace = 2)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/phazon/left_arm
@@ -368,7 +368,7 @@
 /datum/design/mechfab/phazon_right_arm
 	name = "Exosuit Design (\"Phazon\" right arm)"
 	desc = "The right arm of a Phazon-type exosuit."
-	req_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 2, /datum/tech/bluespace = 2)
+	req_tech = list(/decl/tech/materials = 5, /decl/tech/magnets = 2, /decl/tech/bluespace = 2)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/phazon/right_arm
@@ -377,7 +377,7 @@
 /datum/design/mechfab/phazon_left_leg
 	name = "Exosuit Design (\"Phazon\" left leg)"
 	desc = "The left leg of a Phazon-type exosuit."
-	req_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 3, /datum/tech/bluespace = 3)
+	req_tech = list(/decl/tech/materials = 5, /decl/tech/magnets = 3, /decl/tech/bluespace = 3)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/phazon/left_leg
@@ -386,7 +386,7 @@
 /datum/design/mechfab/phazon_right_leg
 	name = "Exosuit Design (\"Phazon\" right leg)"
 	desc = "The right leg of a Phazon-type exosuit."
-	req_tech = list(/datum/tech/materials = 5, /datum/tech/magnets = 3, /datum/tech/bluespace = 3)
+	req_tech = list(/decl/tech/materials = 5, /decl/tech/magnets = 3, /decl/tech/bluespace = 3)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/phazon/right_leg
@@ -395,7 +395,7 @@
 /datum/design/mechfab/phazon_armour
 	name = "Exosuit Design (\"Phazon\" armour)"
 	desc = "A set of armour plates for a Phazon-type exosuit. They are layered with plasma to protect the pilot from the stress of phasing and have unusual properties."
-	req_tech = list(/datum/tech/materials = 7, /datum/tech/magnets = 6, /datum/tech/bluespace = 6)
+	req_tech = list(/decl/tech/materials = 7, /decl/tech/magnets = 6, /decl/tech/bluespace = 6)
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 14, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 9)
 	build_time = 30 SECONDS
 	build_path = /obj/item/mecha_part/part/phazon/armour

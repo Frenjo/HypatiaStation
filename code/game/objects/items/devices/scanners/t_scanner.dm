@@ -12,7 +12,7 @@
 	slot_flags = SLOT_BELT
 
 	matter_amounts = list(MATERIAL_METAL = 150)
-	origin_tech = list(/datum/tech/magnets = 1, /datum/tech/engineering = 1)
+	origin_tech = list(/decl/tech/magnets = 1, /decl/tech/engineering = 1)
 
 	var/on = FALSE
 

@@ -69,7 +69,7 @@
 	icon_state = "pulse"
 	equip_cooldown = 3 SECONDS
 	energy_drain = 120
-	origin_tech = list(/datum/tech/materials = 3, /datum/tech/combat = 6, /datum/tech/power_storage = 4)
+	origin_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 6, /decl/tech/power_storage = 4)
 	projectile = /obj/item/projectile/energy/beam/pulse/heavy
 	fire_sound = 'sound/weapons/marauder.ogg'
 

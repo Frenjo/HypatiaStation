@@ -28,7 +28,7 @@
 	throwforce = 7.0
 	w_class = 2.0
 	matter_amounts = list(/decl/material/steel = 150)
-	origin_tech = list(/datum/tech/materials = 1, /datum/tech/engineering = 1)
+	origin_tech = list(/decl/tech/materials = 1, /decl/tech/engineering = 1)
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
 /*
@@ -115,7 +115,7 @@
 	throw_range = 9
 	w_class = 2.0
 	matter_amounts = list(/decl/material/steel = 80)
-	origin_tech = list(/datum/tech/materials = 1, /datum/tech/engineering = 1)
+	origin_tech = list(/decl/tech/materials = 1, /decl/tech/engineering = 1)
 	attack_verb = list("pinched", "nipped")
 	sharp = 1
 	edge = 1
@@ -165,7 +165,7 @@
 	matter_amounts = list(/decl/material/steel = 70, /decl/material/glass = 30)
 
 	//R&D tech level
-	origin_tech = list(/datum/tech/engineering = 1)
+	origin_tech = list(/decl/tech/engineering = 1)
 
 	//Welding tool specific stuff
 	var/welding = WELDING_TOOL_OFF	//Whether or not the welding tool is off(0), on(1) or currently welding(2)
@@ -433,21 +433,21 @@
 	name = "industrial welding tool"
 	max_fuel = 40
 	matter_amounts = list(/decl/material/steel = 70, /decl/material/glass = 60)
-	origin_tech = list(/datum/tech/engineering = 2)
+	origin_tech = list(/decl/tech/engineering = 2)
 
 /obj/item/weldingtool/hugetank
 	name = "upgraded welding tool"
 	max_fuel = 80
 	w_class = 3.0
 	matter_amounts = list(/decl/material/steel = 70, /decl/material/glass = 120)
-	origin_tech = list(/datum/tech/engineering = 3)
+	origin_tech = list(/decl/tech/engineering = 3)
 
 /obj/item/weldingtool/experimental
 	name = "experimental welding tool"
 	max_fuel = 40
 	w_class = 3.0
 	matter_amounts = list(/decl/material/steel = 70, /decl/material/glass = 120)
-	origin_tech = list(/datum/tech/engineering = 4, /datum/tech/plasma = 3)
+	origin_tech = list(/decl/tech/engineering = 4, /decl/tech/plasma = 3)
 
 	var/last_gen = 0
 
@@ -475,7 +475,7 @@
 	item_state = "crowbar"
 	w_class = 2.0
 	matter_amounts = list(/decl/material/steel = 50)
-	origin_tech = list(/datum/tech/engineering = 1)
+	origin_tech = list(/decl/tech/engineering = 1)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 
 /obj/item/crowbar/red
@@ -504,5 +504,5 @@
 	throw_speed = 3
 	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
 	matter_amounts = list(MATERIAL_METAL = 50, /decl/material/glass = 20)
-	origin_tech = list(/datum/tech/magnets = 1, /datum/tech/engineering = 1)
+	origin_tech = list(/decl/tech/magnets = 1, /decl/tech/engineering = 1)
 	var/obj/machinery/telecoms/buffer // simple machine buffer for device linkage

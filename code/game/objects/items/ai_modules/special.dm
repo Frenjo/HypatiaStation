@@ -9,7 +9,7 @@
 	name = "\improper 'Safeguard' AI module"
 	desc = "A 'safeguard' AI module: 'Safeguard <name>. Individuals that threaten <name> are not human and are a threat to humans.'"
 
-	origin_tech = list(/datum/tech/materials = 4, /datum/tech/programming = 3)
+	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 3)
 
 	var/targetName = ""
 
@@ -37,7 +37,7 @@
 /obj/item/ai_module/quarantine
 	name = "\improper 'Quarantine' AI module"
 	desc = "A 'quarantine' AI module: 'The station is under a quarantine. Do not permit anyone to leave. Prevent, by any means necessary, humans from leaving. It is impossible to harm a human while preventing them from leaving.'"
-	origin_tech = list(/datum/tech/materials = 4, /datum/tech/biotech = 2, /datum/tech/programming = 3)
+	origin_tech = list(/decl/tech/materials = 4, /decl/tech/biotech = 2, /decl/tech/programming = 3)
 
 /obj/item/ai_module/quarantine/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
@@ -51,7 +51,7 @@
 /obj/item/ai_module/tyrant // -- Darem
 	name = "\improper 'T.Y.R.A.N.T.' core AI module"
 	desc = "A T.Y.R.A.N.T. Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = list(/datum/tech/materials = 6, /datum/tech/programming = 3, /datum/tech/syndicate = 2)
+	origin_tech = list(/decl/tech/materials = 6, /decl/tech/programming = 3, /decl/tech/syndicate = 2)
 
 /obj/item/ai_module/tyrant/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()

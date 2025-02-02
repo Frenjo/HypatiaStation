@@ -4,7 +4,7 @@
 	name = "passenger compartment"
 	desc = "A mountable passenger compartment for exo-suits. Rather cramped. (Can be attached to: Any Exosuit)"
 	icon_state = "passenger_compartment"
-	origin_tech = list(/datum/tech/materials = 1, /datum/tech/biotech = 1, /datum/tech/engineering = 1)
+	origin_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 1, /decl/tech/engineering = 1)
 
 	range = MELEE
 	equip_cooldown = 2 SECONDS

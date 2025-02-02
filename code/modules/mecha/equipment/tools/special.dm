@@ -4,8 +4,8 @@
 	desc = "An exosuit-mounted mime-rapid-construction-device. (Can be attached to: Reticence)"
 	icon_state = "rcd"
 	origin_tech = list(
-		/datum/tech/materials = 4, /datum/tech/magnets = 4, /datum/tech/engineering = 4,
-		/datum/tech/power_storage = 4, /datum/tech/bluespace = 3
+		/decl/tech/materials = 4, /decl/tech/magnets = 4, /decl/tech/engineering = 4,
+		/decl/tech/power_storage = 4, /decl/tech/bluespace = 3
 	)
 	equip_cooldown = 1 SECOND
 	energy_drain = 250

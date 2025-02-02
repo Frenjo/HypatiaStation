@@ -33,7 +33,7 @@
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/honk
-	origin_tech = list(/datum/tech/programming = 4)
+	origin_tech = list(/decl/tech/programming = 4)
 
 /obj/item/circuitboard/mecha/honk/main
 	name = "circuit board (H.O.N.K Central Control module)"

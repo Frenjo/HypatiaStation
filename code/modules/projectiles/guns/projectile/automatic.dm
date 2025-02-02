@@ -3,7 +3,7 @@
 	desc = "A lightweight, fast firing gun. Uses 9mm rounds."
 	icon_state = "saber"	//ugly
 
-	origin_tech = list(/datum/tech/materials = 2, /datum/tech/combat = 4)
+	origin_tech = list(/decl/tech/materials = 2, /decl/tech/combat = 4)
 
 	fire_delay = 0 SECONDS
 
@@ -22,7 +22,7 @@
 	desc = "A lightweight, fast firing gun, for when you want someone dead. Uses .45 rounds."
 	icon_state = "mini-uzi"
 
-	origin_tech = list(/datum/tech/materials = 2, /datum/tech/combat = 5, /datum/tech/syndicate = 8)
+	origin_tech = list(/decl/tech/materials = 2, /decl/tech/combat = 5, /decl/tech/syndicate = 8)
 
 	caliber = ".45"
 
@@ -38,7 +38,7 @@
 	icon_state = "c20r"
 	item_state = "c20r"
 
-	origin_tech = list(/datum/tech/materials = 2, /datum/tech/combat = 5, /datum/tech/syndicate = 8)
+	origin_tech = list(/decl/tech/materials = 2, /decl/tech/combat = 5, /decl/tech/syndicate = 8)
 
 	fire_sound = 'sound/weapons/Gunshot_smg.ogg'
 
@@ -76,7 +76,7 @@
 
 	w_class = 4
 	slot_flags = null
-	origin_tech = list(/datum/tech/materials = 1, /datum/tech/combat = 5, /datum/tech/syndicate = 2)
+	origin_tech = list(/decl/tech/materials = 1, /decl/tech/combat = 5, /decl/tech/syndicate = 2)
 
 	fire_sound = 'sound/weapons/Gunshot_smg.ogg'
 

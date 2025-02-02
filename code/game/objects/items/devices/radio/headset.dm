@@ -40,13 +40,13 @@
 
 // Syndicate
 /obj/item/radio/headset/syndicate
-	origin_tech = list(/datum/tech/syndicate = 3)
+	origin_tech = list(/decl/tech/syndicate = 3)
 	syndie = 1
 	ks1type = /obj/item/encryptionkey/syndicate
 
 // Binary
 /obj/item/radio/headset/binary
-	origin_tech = list(/datum/tech/syndicate = 3)
+	origin_tech = list(/decl/tech/syndicate = 3)
 	ks1type = /obj/item/encryptionkey/binary
 
 // Security

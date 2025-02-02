@@ -453,7 +453,7 @@
 	throwforce = 1.0
 	throw_speed = 3
 	throw_range = 6
-	origin_tech = list(/datum/tech/biotech = 4)
+	origin_tech = list(/decl/tech/biotech = 4)
 	var/Uses = 1 // uses before it goes inert
 
 /obj/item/slime_extract/New()
@@ -783,7 +783,7 @@
 	throwforce = 1.0
 	throw_speed = 3
 	throw_range = 6
-	origin_tech = list(/datum/tech/biotech = 4)
+	origin_tech = list(/decl/tech/biotech = 4)
 	var/POWERFLAG = 0 // sshhhhhhh
 	var/Flush = 30
 	var/Uses = 5 // uses before it goes inert
@@ -815,7 +815,7 @@
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "slime egg-growing"
 	bitesize = 12
-	origin_tech = list(/datum/tech/biotech = 4)
+	origin_tech = list(/decl/tech/biotech = 4)
 	var/grown = 0
 
 /obj/item/reagent_holder/food/snacks/egg/slime/New()

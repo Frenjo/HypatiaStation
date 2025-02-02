@@ -269,11 +269,11 @@
 /obj/machinery/robotics_fabricator/proc/update_tech()
 	if(isnull(files))
 		return
-	for_no_type_check(var/datum/tech/T, files.known_tech)
+	for_no_type_check(var/decl/tech/T, files.known_tech)
 		if(T?.level > 1)
 			var/diff
 			switch(T.type) //bad, bad formulas
-				if(/datum/tech/materials)
+				if(/decl/tech/materials)
 					var/pmat = 0//Calculations to make up for the fact that these parts and tech modify the same thing
 					for(var/obj/item/stock_part/micro_laser/Ml in component_parts)
 						pmat += Ml.rating
@@ -283,7 +283,7 @@
 					if(resource_coeff != diff)
 						resource_coeff = diff
 						. += "Production efficiency increased.<br>"
-				if(/datum/tech/programming)
+				if(/decl/tech/programming)
 					var/ptime = 0
 					for(var/obj/item/stock_part/manipulator/Ma in component_parts)
 						ptime += Ma.rating
@@ -306,7 +306,7 @@
 			continue
 		found++
 		var/existing_designs = length(files.known_designs)
-		for_no_type_check(var/datum/tech/T, RDC.files.known_tech)
+		for_no_type_check(var/decl/tech/T, RDC.files.known_tech)
 			files.AddTech2Known(T)
 		for_no_type_check(var/datum/design/D, RDC.files.known_designs)
 			files.AddDesign2Known(D)

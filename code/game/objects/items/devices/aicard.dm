@@ -6,7 +6,7 @@
 	w_class = 2.0
 	slot_flags = SLOT_BELT
 	var/flush = null
-	origin_tech = list(/datum/tech/materials = 4, /datum/tech/programming = 4)
+	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 4)
 
 /obj/item/aicard/attack(mob/living/silicon/ai/M, mob/user)
 	if(!isAI(M))//If target is not an AI.

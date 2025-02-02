@@ -48,7 +48,7 @@
 	desc = "A high-tech revolver that fires stun cartridges. The stun cartridges can be recharged using a conventional energy weapon recharger."
 	icon_state = "stunrevolver"
 
-	origin_tech = list(/datum/tech/materials = 3, /datum/tech/combat = 3, /datum/tech/power_storage = 2)
+	origin_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 3, /decl/tech/power_storage = 2)
 
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 
@@ -64,7 +64,7 @@
 	desc = "A non-lethal self-defence weapon that exhausts organic targets, weakening them until they collapse."
 	icon_state = "disabler"
 
-	origin_tech = list(/datum/tech/materials = 3, /datum/tech/combat = 3, /datum/tech/power_storage = 1)
+	origin_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 3, /decl/tech/power_storage = 1)
 
 	fire_sound = 'sound/weapons/taser2.ogg'
 
@@ -83,7 +83,7 @@
 	item_state = "crossbow"
 
 	w_class = 2
-	origin_tech = list(/datum/tech/magnets = 2, /datum/tech/combat = 2, /datum/tech/syndicate = 5)
+	origin_tech = list(/decl/tech/magnets = 2, /decl/tech/combat = 2, /decl/tech/syndicate = 5)
 
 	fire_sound = 'sound/weapons/Genhit.ogg'
 

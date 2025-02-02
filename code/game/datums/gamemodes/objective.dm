@@ -632,7 +632,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	if(!length(S.stored_research))
 		return 0
 	else
-		for(var/datum/tech/current_data in S.stored_research)
+		for(var/decl/tech/current_data in S.stored_research)
 			if(current_data.level > 1)
 				current_amount += (current_data.level - 1)
 	if(current_amount<target_amount)

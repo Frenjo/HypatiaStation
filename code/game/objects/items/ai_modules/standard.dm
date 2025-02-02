@@ -9,7 +9,7 @@
 	name = "\improper 'Reset' AI module"
 	desc = "A 'reset' AI module: 'Clears all laws except for the core three.'"
 
-	origin_tech = list(/datum/tech/materials = 4, /datum/tech/programming = 3)
+	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 3)
 
 	var/targetName = "name"
 
@@ -27,7 +27,7 @@
 /obj/item/ai_module/nanotrasen // -- TLE
 	name = "\improper 'NT Default' core AI module"
 	desc = "An 'NT Default' Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = list(/datum/tech/materials = 4, /datum/tech/programming = 3)
+	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 3)
 
 /obj/item/ai_module/nanotrasen/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
@@ -45,7 +45,7 @@
 /obj/item/ai_module/protectStation
 	name = "\improper 'ProtectStation' AI module"
 	desc = "A 'protect station' AI module: 'Protect the space station against damage. Anyone you see harming the station is to be no longer considered human, and is a threat to the station which must be neutralized.'"
-	origin_tech = list(/datum/tech/materials = 4, /datum/tech/programming = 3) //made of gold
+	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 3) //made of gold
 
 /obj/item/ai_module/protectStation/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
@@ -84,7 +84,7 @@
 	name = "\improper 'Freeform' AI module"
 	desc = "A 'freeform' AI module: '<freeform>'"
 
-	origin_tech = list(/datum/tech/materials = 4, /datum/tech/programming = 4)
+	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 4)
 
 	var/newFreeFormLaw = "freeform"
 	var/lawpos = 15
@@ -120,7 +120,7 @@
 	name = "\improper 'Freeform' core AI module"
 	desc = "A 'freeform' Core AI module: '<freeform>'"
 
-	origin_tech = list(/datum/tech/materials = 6, /datum/tech/programming = 3)
+	origin_tech = list(/decl/tech/materials = 6, /decl/tech/programming = 3)
 
 	var/newFreeFormLaw = ""
 
@@ -148,7 +148,7 @@
 	name = "hacked AI module"
 	desc = "A hacked AI law module: '<freeform>'"
 
-	origin_tech = list(/datum/tech/materials = 6, /datum/tech/programming = 3, /datum/tech/syndicate = 7)
+	origin_tech = list(/decl/tech/materials = 6, /decl/tech/programming = 3, /decl/tech/syndicate = 7)
 
 	var/newFreeFormLaw = ""
 

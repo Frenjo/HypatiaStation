@@ -32,7 +32,7 @@
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/reticence
-	origin_tech = list(/datum/tech/programming = 4)
+	origin_tech = list(/decl/tech/programming = 4)
 
 /obj/item/circuitboard/mecha/reticence/main
 	name = "circuit board (Reticence Central Control module)"

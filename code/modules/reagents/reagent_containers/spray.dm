@@ -196,7 +196,7 @@
 	w_class = 3.0
 	possible_transfer_amounts = null
 	volume = 600
-	origin_tech = list(/datum/tech/materials = 3, /datum/tech/combat = 3, /datum/tech/engineering = 3)
+	origin_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 3, /decl/tech/engineering = 3)
 
 //this is a big copypasta clusterfuck, but it's still better than it used to be!
 /obj/item/reagent_holder/spray/chemsprayer/Spray_at(atom/A)

@@ -4,7 +4,7 @@
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
 	icon = 'icons/obj/items/stacks/nanopaste.dmi'
 	icon_state = "tube"
-	origin_tech = list(/datum/tech/materials = 4, /datum/tech/engineering = 3)
+	origin_tech = list(/decl/tech/materials = 4, /decl/tech/engineering = 3)
 	amount = 10
 
 /obj/item/stack/nanopaste/attack(mob/living/M, mob/user)

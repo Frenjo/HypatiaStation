@@ -108,11 +108,6 @@
 
 /hook/global_init/proc/init_research()
 	. = TRUE
-	// Techs - Initialises all /datum/tech into a list, indexed by typepath.
-	for(var/path in SUBTYPESOF(/datum/tech))
-		var/datum/tech/T = new path()
-		GLOBL.all_techs[path] = T
-
 	// Designs - Initialises all /datum/design into a list, indexed by typepath.
 	for(var/path in SUBTYPESOF(/datum/design))
 		var/datum/design/D = new path()

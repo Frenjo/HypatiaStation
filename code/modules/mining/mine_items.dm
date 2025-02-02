@@ -69,7 +69,7 @@
 	throwforce = 4
 	w_class = 4
 	matter_amounts = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET) //one sheet, but where can you make them?
-	origin_tech = list(/datum/tech/materials = 1, /datum/tech/engineering = 1)
+	origin_tech = list(/decl/tech/materials = 1, /decl/tech/engineering = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	sharp = 1
 
@@ -87,7 +87,7 @@
 	icon_state = "spickaxe"
 	item_state = "spickaxe"
 
-	origin_tech = list(/datum/tech/materials = 3)
+	origin_tech = list(/decl/tech/materials = 3)
 	dig_time = 3 SECONDS
 
 /obj/item/pickaxe/gold
@@ -96,7 +96,7 @@
 	icon_state = "gpickaxe"
 	item_state = "gpickaxe"
 
-	origin_tech = list(/datum/tech/materials = 4)
+	origin_tech = list(/decl/tech/materials = 4)
 	dig_time = 2 SECONDS
 
 /obj/item/pickaxe/diamond
@@ -105,7 +105,7 @@
 	icon_state = "dpickaxe"
 	item_state = "dpickaxe"
 
-	origin_tech = list(/datum/tech/materials = 6, /datum/tech/engineering = 4)
+	origin_tech = list(/decl/tech/materials = 6, /decl/tech/engineering = 4)
 	dig_time = 1 SECOND
 
 /obj/item/pickaxe/drill
@@ -114,7 +114,7 @@
 	icon_state = "handdrill"
 	item_state = "jackhammer"
 
-	origin_tech = list(/datum/tech/materials = 2, /datum/tech/engineering = 2, /datum/tech/power_storage = 3)
+	origin_tech = list(/decl/tech/materials = 2, /decl/tech/engineering = 2, /decl/tech/power_storage = 3)
 	dig_time = 3 SECONDS // Can dig sand as well!
 	drill_verb = "drilling"
 
@@ -124,7 +124,7 @@
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
 
-	origin_tech = list(/datum/tech/materials = 6, /datum/tech/engineering = 5, /datum/tech/power_storage = 4)
+	origin_tech = list(/decl/tech/materials = 6, /decl/tech/engineering = 5, /decl/tech/power_storage = 4)
 	dig_time = 0.5 SECONDS // Digs through walls, girders, and can dig up sand.
 	drill_verb = "drilling"
 
@@ -143,7 +143,7 @@
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
 
-	origin_tech = list(/datum/tech/materials = 3, /datum/tech/engineering = 2, /datum/tech/power_storage = 2)
+	origin_tech = list(/decl/tech/materials = 3, /decl/tech/engineering = 2, /decl/tech/power_storage = 2)
 	dig_time = 2 SECONDS // Faster than drill, but cannot dig.
 	drill_verb = "hammering"
 
@@ -155,7 +155,7 @@
 	w_class = 3 //it is smaller than the pickaxe
 	damtype = "fire"
 
-	origin_tech = list(/datum/tech/materials = 4, /datum/tech/engineering = 3, /datum/tech/plasma = 3)
+	origin_tech = list(/decl/tech/materials = 4, /decl/tech/engineering = 3, /decl/tech/plasma = 3)
 	dig_time = 2 SECONDS // Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/light thermite on fire.
 	drill_verb = "cutting"
 
@@ -180,7 +180,7 @@
 	item_state = "shovel"
 	w_class = 3
 	matter_amounts = list(/decl/material/steel = 50)
-	origin_tech = list(/datum/tech/materials = 1, /datum/tech/engineering = 1)
+	origin_tech = list(/decl/tech/materials = 1, /decl/tech/engineering = 1)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 
 /obj/item/shovel/spade

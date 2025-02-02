@@ -23,7 +23,7 @@
 	throw_speed = 3
 	throw_range = 5
 	obj_flags = OBJ_FLAG_CONDUCT
-	origin_tech = list(/datum/tech/materials = 1)
+	origin_tech = list(/decl/tech/materials = 1)
 	attack_verb = list("attacked", "stabbed", "poked")
 
 /obj/item/kitchen/utensil/New()
@@ -164,7 +164,7 @@
 	throw_speed = 3
 	throw_range = 6
 	matter_amounts = list(/decl/material/steel = 12000)
-	origin_tech = list(/datum/tech/materials = 1)
+	origin_tech = list(/decl/tech/materials = 1)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/kitchenknife/suicide_act(mob/user)
@@ -194,7 +194,7 @@
 	throw_speed = 3
 	throw_range = 6
 	matter_amounts = list(/decl/material/steel = 12000)
-	origin_tech = list(/datum/tech/materials = 1)
+	origin_tech = list(/decl/tech/materials = 1)
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = 1
 	edge = 1

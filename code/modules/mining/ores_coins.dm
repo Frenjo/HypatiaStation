@@ -11,17 +11,17 @@
 /obj/item/ore/uranium
 	name = "uranium ore"
 	icon_state = "uranium_ore"
-	origin_tech = list(/datum/tech/materials = 5)
+	origin_tech = list(/decl/tech/materials = 5)
 
 /obj/item/ore/iron
 	name = "iron ore"
 	icon_state = "iron_ore"
-	origin_tech = list(/datum/tech/materials = 1)
+	origin_tech = list(/decl/tech/materials = 1)
 
 /obj/item/ore/glass
 	name = "sand"
 	icon_state = "glass_ore"
-	origin_tech = list(/datum/tech/materials = 1)
+	origin_tech = list(/decl/tech/materials = 1)
 
 /obj/item/ore/glass/attack_self(mob/living/user) //It's magic I ain't gonna explain how instant conversion with no tool works. -- Urist
 	var/location = GET_TURF(user)
@@ -34,27 +34,27 @@
 /obj/item/ore/plasma
 	name = "plasma ore"
 	icon_state = "plasma_ore"
-	origin_tech = list(/datum/tech/materials = 2)
+	origin_tech = list(/decl/tech/materials = 2)
 
 /obj/item/ore/silver
 	name = "silver ore"
 	icon_state = "silver_ore"
-	origin_tech = list(/datum/tech/materials = 3)
+	origin_tech = list(/decl/tech/materials = 3)
 
 /obj/item/ore/gold
 	name = "gold ore"
 	icon_state = "gold_ore"
-	origin_tech = list(/datum/tech/materials = 4)
+	origin_tech = list(/decl/tech/materials = 4)
 
 /obj/item/ore/diamond
 	name = "diamond ore"
 	icon_state = "diamond_ore"
-	origin_tech = list(/datum/tech/materials = 6)
+	origin_tech = list(/decl/tech/materials = 6)
 
 /obj/item/ore/bananium
 	name = "bananium ore"
 	icon_state = "bananium_ore"
-	origin_tech = list(/datum/tech/materials = 4)
+	origin_tech = list(/decl/tech/materials = 4)
 
 /obj/item/ore/slag
 	name = "slag"

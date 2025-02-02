@@ -24,7 +24,7 @@ Mineral Sheets
 	icon_state = "sandstone"
 	throw_speed = 4
 	throw_range = 5
-	origin_tech = list(/datum/tech/materials = 1)
+	origin_tech = list(/decl/tech/materials = 1)
 	material = /decl/material/sandstone
 
 var/global/list/datum/stack_recipe/sandstone_recipes = list(
@@ -46,7 +46,7 @@ var/global/list/datum/stack_recipe/sandstone_recipes = list(
 /obj/item/stack/sheet/diamond
 	name = "diamond"
 	icon_state = "diamond"
-	origin_tech = list(/datum/tech/materials = 6)
+	origin_tech = list(/decl/tech/materials = 6)
 	material = /decl/material/diamond
 
 var/global/list/datum/stack_recipe/diamond_recipes = list(
@@ -65,7 +65,7 @@ var/global/list/datum/stack_recipe/diamond_recipes = list(
 /obj/item/stack/sheet/uranium
 	name = "uranium"
 	icon_state = "uranium"
-	origin_tech = list(/datum/tech/materials = 5)
+	origin_tech = list(/decl/tech/materials = 5)
 	material = /decl/material/uranium
 
 var/global/list/datum/stack_recipe/uranium_recipes = list(
@@ -84,7 +84,7 @@ var/global/list/datum/stack_recipe/uranium_recipes = list(
 /obj/item/stack/sheet/plasma
 	name = "solid plasma"
 	icon_state = "plasma"
-	origin_tech = list(/datum/tech/materials = 2, /datum/tech/plasma = 2)
+	origin_tech = list(/decl/tech/materials = 2, /decl/tech/plasma = 2)
 	material = /decl/material/plasma
 
 var/global/list/datum/stack_recipe/plasma_recipes = list(
@@ -103,7 +103,7 @@ var/global/list/datum/stack_recipe/plasma_recipes = list(
 /obj/item/stack/sheet/plastic
 	name = "Plastic"
 	icon_state = "plastic"
-	origin_tech = list(/datum/tech/materials = 3)
+	origin_tech = list(/decl/tech/materials = 3)
 	material = /decl/material/plastic
 
 /obj/item/stack/sheet/plastic/cyborg
@@ -130,7 +130,7 @@ var/global/list/datum/stack_recipe/plastic_recipes = list(
 /obj/item/stack/sheet/gold
 	name = "gold"
 	icon_state = "gold"
-	origin_tech = list(/datum/tech/materials = 4)
+	origin_tech = list(/decl/tech/materials = 4)
 	material = /decl/material/gold
 
 var/global/list/datum/stack_recipe/gold_recipes = list(
@@ -149,7 +149,7 @@ var/global/list/datum/stack_recipe/gold_recipes = list(
 /obj/item/stack/sheet/silver
 	name = "silver"
 	icon_state = "silver"
-	origin_tech = list(/datum/tech/materials = 3)
+	origin_tech = list(/decl/tech/materials = 3)
 	material = /decl/material/silver
 
 var/global/list/datum/stack_recipe/silver_recipes = list(
@@ -168,7 +168,7 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 /obj/item/stack/sheet/bananium
 	name = "bananium"
 	icon_state = "bananium"
-	origin_tech = list(/datum/tech/materials = 4)
+	origin_tech = list(/decl/tech/materials = 4)
 	material = /decl/material/bananium
 
 /obj/item/stack/sheet/bananium/New(loc, amount = null)
@@ -184,7 +184,7 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 /obj/item/stack/sheet/enruranium
 	name = "enriched uranium"
 	icon_state = "enruranium"
-	origin_tech = list(/datum/tech/materials = 5)
+	origin_tech = list(/decl/tech/materials = 5)
 	material = /decl/material/enriched_uranium
 
 /*
@@ -193,7 +193,7 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 /obj/item/stack/sheet/adamantine
 	name = "adamantine"
 	icon_state = "adamantine"
-	origin_tech = list(/datum/tech/materials = 4)
+	origin_tech = list(/decl/tech/materials = 4)
 	material = /decl/material/adamantine
 
 /*
@@ -202,5 +202,5 @@ var/global/list/datum/stack_recipe/silver_recipes = list(
 /obj/item/stack/sheet/mythril
 	name = "mythril"
 	icon_state = "mythril"
-	origin_tech = list(/datum/tech/materials = 4)
+	origin_tech = list(/decl/tech/materials = 4)
 	material = /decl/material/mythril

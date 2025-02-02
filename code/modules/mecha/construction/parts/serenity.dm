@@ -9,10 +9,10 @@
 	name = "\improper Serenity carapace"
 	desc = "The outer carapace of a Serenity-type exosuit."
 	icon_state = "serenity_carapace"
-	origin_tech = list(/datum/tech/materials = 4, /datum/tech/engineering = 4)
+	origin_tech = list(/decl/tech/materials = 4, /decl/tech/engineering = 4)
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/serenity/medical
 	name = "circuit board (Serenity Medical Control module)"
 	icon_state = "mcontroller"
-	origin_tech = list(/datum/tech/biotech = 2, /datum/tech/programming = 4)
+	origin_tech = list(/decl/tech/biotech = 2, /decl/tech/programming = 4)

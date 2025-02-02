@@ -71,7 +71,7 @@
 	if(health <= 0)
 		griefProtection() //I dont like putting this in process() but it's the best I can do without re-writing a chunk of rd servers.
 		files.known_designs = list()
-		for_no_type_check(var/datum/tech/T, files.known_tech)
+		for_no_type_check(var/decl/tech/T, files.known_tech)
 			if(prob(1))
 				T.level--
 		files.refresh_research()
@@ -101,7 +101,7 @@
 //Backup files to centcom to help admins recover data after greifer attacks
 /obj/machinery/r_n_d/server/proc/griefProtection()
 	for(var/obj/machinery/r_n_d/server/centcom/C in GLOBL.machines)
-		for_no_type_check(var/datum/tech/T, files.known_tech)
+		for_no_type_check(var/decl/tech/T, files.known_tech)
 			C.files.AddTech2Known(T)
 		for_no_type_check(var/datum/design/D, files.known_designs)
 			C.files.AddDesign2Known(D)
@@ -262,7 +262,7 @@
 	else if(href_list["reset_tech"])
 		var/choice = alert("Technology Data Rest", "Are you sure you want to reset this technology to its default data? Data lost cannot be recovered.", "Continue", "Cancel")
 		if(choice == "Continue")
-			for_no_type_check(var/datum/tech/T, temp_server.files.known_tech)
+			for_no_type_check(var/decl/tech/T, temp_server.files.known_tech)
 				if(T.type == text2path(href_list["reset_tech"]))
 					T.level = 1
 					break
@@ -323,7 +323,7 @@
 		if(RDSCONTROL_SCREEN_DATA_MENU) //Data Management menu
 			dat += "[temp_server.name] Data ManagementP<BR><BR>"
 			dat += "Known Technologies<BR>"
-			for_no_type_check(var/datum/tech/T, temp_server.files.known_tech)
+			for_no_type_check(var/decl/tech/T, temp_server.files.known_tech)
 				dat += "* [T.name] "
 				dat += "<A href='byond://?src=\ref[src];reset_tech=[T.type]'>(Reset)</A><BR>" //FYI, these are all strings.
 			dat += "Known Designs<BR>"
