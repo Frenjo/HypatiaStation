@@ -1738,6 +1738,7 @@
 #include "code\modules\research\server.dm"
 #include "code\modules\research\designs\_designs.dm"
 #include "code\modules\research\designs\bluespace.dm"
+#include "code\modules\research\designs\illegal.dm"
 #include "code\modules\research\designs\medical.dm"
 #include "code\modules\research\designs\mining.dm"
 #include "code\modules\research\designs\misc.dm"

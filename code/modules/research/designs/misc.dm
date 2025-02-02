@@ -2,7 +2,7 @@
 ////////// Data Disks //////////
 ////////////////////////////////
 /datum/design/design_disk
-	name = "Design Storage Disk"
+	name = "Disk Design (Design Data)"
 	desc = "Produce additional disks for storing device designs."
 	req_tech = list(/decl/tech/programming = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
@@ -10,7 +10,7 @@
 	build_path = /obj/item/disk/design
 
 /datum/design/tech_disk
-	name = "Technology Data Storage Disk"
+	name = "Disk Design (Technology Data)"
 	desc = "Produce additional disks for storing technology data."
 	req_tech = list(/decl/tech/programming = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
@@ -21,7 +21,7 @@
 ////////// Non-Circuit Computer Stuff //////////
 ////////////////////////////////////////////////
 /datum/design/intellicard
-	name = "Intellicard AI Transportation System"
+	name = "AI Design (Intellicard AI Transportation System)"
 	desc = "Allows for the construction of an intellicard."
 	req_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 4)
 	build_type = DESIGN_TYPE_PROTOLATHE
@@ -29,37 +29,15 @@
 	build_path = /obj/item/aicard
 
 /datum/design/paicard
-	name = "Personal Artificial Intelligence Card"
+	name = "AI Design (Personal Artificial Intelligence Card)"
 	desc = "Allows for the construction of a pAI Card"
 	req_tech = list(/decl/tech/programming = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(/decl/material/glass = 500, MATERIAL_METAL = 500)
 	build_path = /obj/item/paicard
 
-/datum/design/mmi
-	name = "Man-Machine Interface"
-	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity."
-	req_tech = list(/decl/tech/biotech = 3, /decl/tech/programming = 2)
-	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_ROBOFAB
-	reliability_base = 76
-	materials = list(MATERIAL_METAL = 1000, /decl/material/glass = 500)
-	build_time = 7.5 SECONDS
-	build_path = /obj/item/mmi
-	categories = list("Robot Internal Components")
-
-/datum/design/mmi_radio
-	name = "Radio-enabled Man-Machine Interface"
-	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio."
-	req_tech = list(/decl/tech/biotech = 4, /decl/tech/programming = 2)
-	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_ROBOFAB
-	reliability_base = 74
-	materials = list(MATERIAL_METAL = 1200, /decl/material/glass = 500)
-	build_time = 7.5 SECONDS
-	build_path = /obj/item/mmi/radio_enabled
-	categories = list("Robot Internal Components")
-
 /datum/design/posibrain
-	name = "Positronic Brain"
+	name = "AI Design (Positronic Brain)"
 	desc = "Allows for the construction of a positronic brain"
 	req_tech = list(/decl/tech/materials = 6, /decl/tech/engineering = 4, /decl/tech/programming = 4, /decl/tech/bluespace = 2)
 
@@ -76,7 +54,7 @@
 ////////// Miscellaneous Items //////////
 /////////////////////////////////////////
 /datum/design/light_replacer
-	name = "Light Replacer"
+	name = "Custodial Design (Light Replacer)"
 	desc = "A device to automatically replace lights. Refill with working lightbulbs."
 	req_tech = list(/decl/tech/materials = 4, /decl/tech/magnets = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
@@ -84,18 +62,10 @@
 	build_path = /obj/item/lightreplacer
 
 /datum/design/security_hud
-	name = "Security HUD"
+	name = "Security Design (Security HUD)"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status."
 	req_tech = list(/decl/tech/magnets = 3, /decl/tech/combat = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/clothing/glasses/hud/security
 	locked = 1
-
-/datum/design/chameleon
-	name = "Chameleon Jumpsuit"
-	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
-	req_tech = list(/decl/tech/syndicate = 2)
-	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 500)
-	build_path = /obj/item/clothing/under/chameleon

@@ -1,162 +1,125 @@
-///////////////////////////////////////
-////////// PDA & Radio Stuff //////////
-///////////////////////////////////////
-/datum/design/binaryencrypt
-	name = "Binary Encrpytion Key"
-	desc = "An encyption key for a radio headset.  Contains cypherkeys."
-	req_tech = list(/decl/tech/syndicate = 2)
-	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 300, /decl/material/glass = 300)
-	build_path = /obj/item/encryptionkey/binary
-
+///////////////////////////////
+////////// PDA Stuff //////////
+///////////////////////////////
 /datum/design/pda
-	name = "PDA"
+	name = "Microcomputer Design (PDA)"
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/pda
 
-/datum/design/cart_basic
-	name = "Generic Cartridge"
+/datum/design/pda_cartridge
 	desc = "A data cartridge for portable microcomputers."
-	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
+	name_prefix = "Microcomputer Design"
+
+/datum/design/pda_cartridge/basic
+	name = "Generic Cartridge"
+	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge
 
-/datum/design/cart_engineering
+/datum/design/pda_cartridge/engineering
 	name = "Power-ON Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/engineering
 
-/datum/design/cart_atmos
+/datum/design/pda_cartridge/atmos
 	name = "BreatheDeep Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/atmos
 
-/datum/design/cart_medical
+/datum/design/pda_cartridge/medical
 	name = "Med-U Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/medical
 
-/datum/design/cart_chemistry
+/datum/design/pda_cartridge/chemistry
 	name = "ChemWhiz Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/chemistry
 
-/datum/design/cart_security
+/datum/design/pda_cartridge/security
 	name = "R.O.B.U.S.T. Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/security
 	locked = 1
 
-/datum/design/cart_janitor
+/datum/design/pda_cartridge/janitor
 	name = "CustodiPRO Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/janitor
 
-/datum/design/cart_clown
+/datum/design/pda_cartridge/clown
 	name = "Honkworks 5.0 Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/clown
 
-/datum/design/cart_mime
+/datum/design/pda_cartridge/mime
 	name = "Gestur-O 1000 Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/mime
 
-/datum/design/cart_toxins
+/datum/design/pda_cartridge/toxins
 	name = "Signal Ace 2 Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/signal/toxins
 
-/datum/design/cart_quartermaster
+/datum/design/pda_cartridge/quartermaster
 	name = "Space Parts & Space Vendors Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/quartermaster
 	locked = 1
 
-/datum/design/cart_hop
+/datum/design/pda_cartridge/hop
 	name = "Human Resources 9001 Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/hop
 	locked = 1
 
-/datum/design/cart_hos
+/datum/design/pda_cartridge/hos
 	name = "R.O.B.U.S.T. DELUXE Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/hos
 	locked = 1
 
-/datum/design/cart_ce
+/datum/design/pda_cartridge/ce
 	name = "Power-On DELUXE Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/ce
 	locked = 1
 
-/datum/design/cart_cmo
+/datum/design/pda_cartridge/cmo
 	name = "Med-U DELUXE Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/cmo
 	locked = 1
 
-/datum/design/cart_rd
+/datum/design/pda_cartridge/rd
 	name = "Signal Ace DELUXE Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/rd
 	locked = 1
 
-/datum/design/cart_captain
+/datum/design/pda_cartridge/captain
 	name = "Value-PAK Cartridge"
-	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
-	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/cartridge/captain
 	locked = 1

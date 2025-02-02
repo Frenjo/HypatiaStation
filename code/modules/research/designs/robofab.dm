@@ -2,43 +2,46 @@
 	build_type = DESIGN_TYPE_ROBOFAB
 
 // Robot
-/datum/design/robofab/robot_suit
+/datum/design/robofab/robot
+	name_prefix = "Robot Part Design"
+
+/datum/design/robofab/robot/suit
 	materials = list(/decl/material/steel = 50000)
 	build_time = 50 SECONDS
 	build_path = /obj/item/robot_parts/robot_suit
 	categories = list("Robot")
 
-/datum/design/robofab/robot_chest
+/datum/design/robofab/robot/chest
 	materials = list(/decl/material/steel = 40000)
 	build_time = 35 SECONDS
 	build_path = /obj/item/robot_parts/chest
 	categories = list("Robot")
 
-/datum/design/robofab/robot_head
+/datum/design/robofab/robot/head
 	materials = list(/decl/material/steel = 25000)
 	build_time = 35 SECONDS
 	build_path = /obj/item/robot_parts/head
 	categories = list("Robot")
 
-/datum/design/robofab/robot_left_arm
+/datum/design/robofab/robot/left_arm
 	materials = list(/decl/material/steel = 18000)
 	build_time = 20 SECONDS
 	build_path = /obj/item/robot_parts/l_arm
 	categories = list("Robot")
 
-/datum/design/robofab/robot_right_arm
+/datum/design/robofab/robot/right_arm
 	materials = list(/decl/material/steel = 18000)
 	build_time = 20 SECONDS
 	build_path = /obj/item/robot_parts/r_arm
 	categories = list("Robot")
 
-/datum/design/robofab/robot_left_leg
+/datum/design/robofab/robot/left_leg
 	materials = list(/decl/material/steel = 15000)
 	build_time = 20 SECONDS
 	build_path = /obj/item/robot_parts/l_leg
 	categories = list("Robot")
 
-/datum/design/robofab/robot_right_leg
+/datum/design/robofab/robot/right_leg
 	materials = list(/decl/material/steel = 15000)
 	build_time = 20 SECONDS
 	build_path = /obj/item/robot_parts/r_leg
@@ -49,6 +52,7 @@
 	materials = list(MATERIAL_METAL = 5000)
 	build_time = 20 SECONDS
 	categories = list("Robot Internal Components")
+	name_prefix = "Robot Component Design"
 
 /datum/design/robofab/robot_component/binary_comm_device
 	build_path = /obj/item/robot_parts/robot_component/binary_communication_device
@@ -77,11 +81,13 @@
 	build_time = 10 SECONDS
 	build_path = /obj/item/flash/synthetic
 	categories = list("Robot Internal Components")
+	name_prefix = "Robot Component Design"
 
 // Robot Upgrade Modules
 /datum/design/robofab/robot_upgrade
 	build_time = 12 SECONDS
 	categories = list("Robot Upgrade Modules")
+	name_prefix = "Robot Upgrade Design"
 
 /datum/design/robofab/robot_upgrade/reset
 	materials = list(MATERIAL_METAL = 10000)
@@ -111,7 +117,7 @@
 	build_path = /obj/item/borg/upgrade/jetpack
 
 /datum/design/robofab/robot_upgrade/syndicate
-	name = "Robot Scrambled Equipment Upgrade"
+	name = "Scrambled Equipment"
 	desc = "Allows for the construction of illegal upgrades for robots."
 	req_tech = list(/decl/tech/combat = 4, /decl/tech/syndicate = 3)
 	materials = list(MATERIAL_METAL = 10000, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 8, /decl/material/diamond = 10000)
