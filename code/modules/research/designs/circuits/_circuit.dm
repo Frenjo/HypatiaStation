@@ -6,3 +6,5 @@
 	build_type = DESIGN_TYPE_IMPRINTER
 	materials = list(/decl/material/glass = MATERIAL_AMOUNT_PER_SHEET, "sacid" = 20)
 	build_time = 1.6 SECONDS
+
+	name_prefix = "Circuit Design"

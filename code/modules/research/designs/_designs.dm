@@ -48,6 +48,13 @@ other types of metals and chemistry for reagents).
 	var/locked = 0						//If true it will spawn inside a lockbox with currently sec access
 	var/list/categories = null // Primarily used for Mech Fabricators, but can be used for anything
 
+	var/name_prefix = null
+
+/datum/design/New()
+	. = ..()
+	if(isnotnull(name_prefix))
+		name = "[name_prefix] ([name])"
+
 //A proc to calculate the reliability of a design based on tech levels and innate modifiers.
 //Input: A list of /decl/tech; Output: The new reliabilty.
 /datum/design/proc/CalcReliability(list/temp_techs)

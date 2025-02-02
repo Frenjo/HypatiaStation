@@ -2,43 +2,43 @@
 ////////// Subspace Telecoms //////////
 ///////////////////////////////////////
 /datum/design/circuit/subspace_receiver
-	name = "Circuit Design (Subspace Receiver)"
-	desc = "Allows for the construction of Subspace Receiver equipment."
+	name = "Subspace Receiver"
+	desc = "Allows for the construction of circuit boards used to build a subspace receiver."
 	req_tech = list(/decl/tech/engineering = 3, /decl/tech/programming = 4, /decl/tech/bluespace = 2)
 	build_path = /obj/item/circuitboard/telecoms/receiver
 
 /datum/design/circuit/telecoms_bus
-	name = "Circuit Design (Bus Mainframe)"
-	desc = "Allows for the construction of Telecommunications Bus Mainframes."
+	name = "Bus Mainframe"
+	desc = "Allows for the construction of circuit boards used to build a telecommunications bus mainframe."
 	req_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/telecoms/bus
 
 /datum/design/circuit/telecoms_hub
-	name = "Circuit Design (Hub Mainframe)"
-	desc = "Allows for the construction of Telecommunications Hub Mainframes."
+	name = "Hub Mainframe"
+	desc = "Allows for the construction of circuit boards used to build a telecommunications hub mainframe."
 	req_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/telecoms/hub
 
 /datum/design/circuit/telecoms_relay
-	name = "Circuit Design (Relay Mainframe)"
-	desc = "Allows for the construction of Telecommunications Relay Mainframes."
+	name = "Relay Mainframe"
+	desc = "Allows for the construction of circuit boards used to build a telecommunications relay mainframe."
 	req_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 3, /decl/tech/bluespace = 3)
 	build_path = /obj/item/circuitboard/telecoms/relay
 
 /datum/design/circuit/telecoms_processor
-	name = "Circuit Design (Processor Unit)"
-	desc = "Allows for the construction of Telecommunications Processor equipment."
+	name = "Processor Unit"
+	desc = "Allows for the construction of circuit boards used to build a telecommunications processor."
 	req_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/telecoms/processor
 
 /datum/design/circuit/telecoms_server
-	name = "Circuit Design (Server Mainframe)"
-	desc = "Allows for the construction of Telecommunications Servers."
+	name = "Server Mainframe"
+	desc = "Allows for the construction of circuit boards used to build a telecommunications server."
 	req_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/telecoms/server
 
 /datum/design/circuit/subspace_broadcaster
-	name = "Circuit Design (Subspace Broadcaster)"
-	desc = "Allows for the construction of Subspace Broadcasting equipment."
+	name = "Subspace Broadcaster"
+	desc = "Allows for the construction of circuit boards used to build a subspace broadcaster."
 	req_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4, /decl/tech/bluespace = 2)
 	build_path = /obj/item/circuitboard/telecoms/broadcaster
