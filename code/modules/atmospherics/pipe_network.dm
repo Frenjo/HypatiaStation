@@ -15,6 +15,17 @@
 	//air_transient = new()
 	. = ..()
 
+/datum/pipe_network/Destroy()
+	GLOBL.pipe_networks.Remove(src)
+	for_no_type_check(var/datum/pipeline/line_member, line_members)
+		line_member.network = null
+	for_no_type_check(var/obj/machinery/atmospherics/normal_member, normal_members)
+		normal_member.reassign_network(src, null)
+	gases.Cut()
+	normal_members.Cut()
+	line_members.Cut()
+	return ..()
+
 /datum/pipe_network/proc/process()
 	//Equalize gases amongst pipe if called for
 	if(update)
