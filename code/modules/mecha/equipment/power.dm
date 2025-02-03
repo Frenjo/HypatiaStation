@@ -25,36 +25,16 @@
 
 /obj/item/mecha_part/equipment/tesla_energy_relay/detach()
 	pr_energy_relay.stop()
-//	chassis.proc_res["dynusepower"] = null
-	chassis.proc_res["dyngetcharge"] = null
 	. = ..()
-
-/obj/item/mecha_part/equipment/tesla_energy_relay/attach(obj/mecha/M)
-	. = ..()
-	chassis.proc_res["dyngetcharge"] = src
-//	chassis.proc_res["dynusepower"] = src
-
-/obj/item/mecha_part/equipment/tesla_energy_relay/proc/dyngetcharge()
-	if(equip_ready) //disabled
-		return chassis.dyngetcharge()
-	var/area/A = GET_AREA(chassis)
-	var/pow_chan = get_power_channel(A)
-	var/charge = 0
-	if(pow_chan)
-		charge = 1000 //making magic
-	else
-		return chassis.dyngetcharge()
-	return charge
 
 /obj/item/mecha_part/equipment/tesla_energy_relay/proc/get_power_channel(area/A)
-	var/pow_chan
-	if(A)
-		for(var/c in use_channels)
-			//if(A.master && A.master.powered(c))
-			if(A.powered(c))
-				pow_chan = c
-				break
-	return pow_chan
+	. = null
+	if(isnull(A))
+		return .
+	for(var/channel in use_channels)
+		if(A.powered(channel))
+			. = channel
+			break
 
 /obj/item/mecha_part/equipment/tesla_energy_relay/Topic(href, href_list)
 	. = ..()
@@ -69,42 +49,27 @@
 /obj/item/mecha_part/equipment/tesla_energy_relay/get_equip_info()
 	. = "[..()] - <a href='byond://?src=\ref[src];toggle_relay=1'>[pr_energy_relay.active() ? "Dea" : "A"]ctivate</a>"
 
-/*
-/obj/item/mecha_part/equipment/tesla_energy_relay/proc/dynusepower(amount)
-	if(!equip_ready) //enabled
-		var/area/A = GET_AREA(chassis)
-		var/pow_chan = get_power_channel(A)
-		if(pow_chan)
-			A.master.use_power(amount * coeff, pow_chan)
-			return 1
-	return chassis.dynusepower(amount)
-*/
+/datum/global_iterator/mecha_energy_relay/process(obj/item/mecha_part/equipment/tesla_energy_relay/relay)
+	if(!relay.chassis || relay.chassis.internal_damage & MECHA_INT_SHORT_CIRCUIT)
+		stop()
+		relay.set_ready_state(1)
+		return
 
-/datum/global_iterator/mecha_energy_relay/process(obj/item/mecha_part/equipment/tesla_energy_relay/ER)
-	if(!ER.chassis || ER.chassis.internal_damage & MECHA_INT_SHORT_CIRCUIT)
+	var/cur_charge = relay.chassis.get_charge()
+	if(isnull(cur_charge) || !relay.chassis.cell)
 		stop()
-		ER.set_ready_state(1)
+		relay.set_ready_state(1)
+		relay.occupant_message("No power cell detected.")
 		return
-	var/cur_charge = ER.chassis.get_charge()
-	if(isnull(cur_charge) || !ER.chassis.cell)
-		stop()
-		ER.set_ready_state(1)
-		ER.occupant_message("No powercell detected.")
+
+	if(cur_charge > relay.chassis.cell.maxcharge)
 		return
-	if(cur_charge < ER.chassis.cell.maxcharge)
-		var/area/A = GET_AREA(ER.chassis)
-		if(isnotnull(A))
-			var/pow_chan
-			for(var/c in list(EQUIP, ENVIRON, LIGHT))
-				//if(A.master.powered(c))
-				if(A.powered(c))
-					pow_chan = c
-					break
-			if(pow_chan)
-				var/delta = min(12, ER.chassis.cell.maxcharge - cur_charge)
-				ER.chassis.give_power(delta)
-				//A.master.use_power(delta*ER.coeff, pow_chan)
-				A.use_power(delta * ER.coeff, pow_chan)
+	var/area/current_area = GET_AREA(relay.chassis)
+	var/power_channel = relay.get_power_channel(current_area)
+	if(isnotnull(power_channel))
+		var/delta = min(12, relay.chassis.cell.maxcharge - cur_charge)
+		relay.chassis.give_power(delta)
+		current_area.use_power(delta * relay.coeff, power_channel)
 
 /*
  * Generators

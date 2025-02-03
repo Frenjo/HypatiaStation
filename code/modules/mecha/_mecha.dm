@@ -52,14 +52,14 @@
 	var/last_message = 0
 	var/dna	//dna-locking the mech
 	var/list/proc_res = list() //stores proc owners, like proc_res["functionname"] = owner reference
-	var/datum/effect/system/spark_spread/spark_system = new /datum/effect/system/spark_spread()
+	var/datum/effect/system/spark_spread/spark_system = null
 
 	// Lights
 	var/lights = FALSE
 	var/lights_power = 6
 
 	//inner atmos
-	var/use_internal_tank = 0
+	var/use_internal_tank = FALSE
 	var/internal_tank_valve = ONE_ATMOSPHERE
 	var/obj/machinery/portable_atmospherics/canister/internal_tank
 	var/datum/gas_mixture/cabin_air
@@ -92,6 +92,7 @@
 	if(!add_airtank()) //we check this here in case mecha does not have an internal tank available by default - WIP
 		verbs.Remove(/obj/mecha/verb/connect_to_port)
 		verbs.Remove(/obj/mecha/verb/toggle_internal_tank)
+	spark_system = new /datum/effect/system/spark_spread(src)
 	spark_system.set_up(2, 0, src)
 	spark_system.attach(src)
 	add_cell()
@@ -107,6 +108,7 @@
 	remove_iterators()
 	// If there's any equipment left at this point then the mech's been admin-deleted.
 	for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
+		equipment.Remove(equip)
 		equip.detach(loc)
 		qdel(equip)
 	QDEL_NULL(spark_system)
@@ -116,7 +118,6 @@
 	QDEL_NULL(cell)
 	QDEL_NULL(events)
 	GLOBL.mechas_list.Remove(src) //global mech list
-	loc?.Exited(src)
 	return ..()
 
 /obj/mecha/proc/reset_icon()
