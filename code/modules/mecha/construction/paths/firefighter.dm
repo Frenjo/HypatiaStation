@@ -10,6 +10,17 @@
 		list("key" = /obj/item/clothing/suit/fire)
 	)
 
+/datum/construction/mecha_chassis/firefighter/custom_action(step, obj/item/used_item, mob/living/user)
+	// This has to be very special snowflake for player-facing neatness reasons.
+	var/is_firesuit = used_item.type == /obj/item/clothing/suit/fire
+	holder.balloon_alert_visible("[is_firesuit ? "added" : "connected"] [used_item.name]")
+	var/icon_to_use = is_firesuit ? 'icons/obj/mecha/parts/ripley.dmi' : used_item.icon
+	var/state_to_use = "[is_firesuit ? "firesuit" : used_item.icon_state]+o"
+	holder.overlays.Add(image(icon_to_use, state_to_use))
+	user.drop_item()
+	qdel(used_item)
+	return TRUE
+
 // Firefighter
 /datum/construction/reversible/mecha/firefighter
 	result = /obj/mecha/working/ripley/firefighter
