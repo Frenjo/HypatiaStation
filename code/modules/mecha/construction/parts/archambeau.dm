@@ -14,15 +14,15 @@
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/archambeau/main
-	name = "circuit board (Archambeau Central Control module)"
+	name = "circuit board (\"Archambeau\" central control module)"
 	origin_tech = list(/decl/tech/materials = 7, /decl/tech/power_storage = 6, /decl/tech/programming = 5)
 
 /obj/item/circuitboard/mecha/archambeau/peripherals
-	name = "circuit board (Archambeau Peripherals Control module)"
+	name = "circuit board (\"Archambeau\" peripherals control module)"
 	icon_state = "mcontroller"
 	origin_tech = list(/decl/tech/engineering = 6, /decl/tech/programming = 5)
 
 /obj/item/circuitboard/mecha/archambeau/targeting
-	name = "circuit board (Archambeau Weapon Control and Targeting module)"
+	name = "circuit board (\"Archambeau\" weapon control & targeting module)"
 	icon_state = "mcontroller"
 	origin_tech = list(/decl/tech/combat = 4, /decl/tech/engineering = 6, /decl/tech/programming = 5)

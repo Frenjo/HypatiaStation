@@ -32,8 +32,8 @@
 
 // Bulwark
 /datum/design/circuit/mecha/bulwark_targ
-	name = "\"Bulwark\" Weapons & Targeting Control module"
-	desc = "Allows for the construction of a \"Bulwark\" Weapons & Targeting Control module."
+	name = "\"Bulwark\" Weapon Control & Targeting module"
+	desc = "Allows for the construction of a \"Bulwark\" Weapon Control & Targeting module."
 	req_tech = list(/decl/tech/combat = 2, /decl/tech/engineering = 3, /decl/tech/programming = 3)
 	build_path = /obj/item/circuitboard/mecha/bulwark/targeting
 
@@ -64,8 +64,8 @@
 	build_path = /obj/item/circuitboard/mecha/gygax/peripherals
 
 /datum/design/circuit/mecha/gygax_targ
-	name = "\"Gygax\" Weapons & Targeting Control module"
-	desc = "Allows for the construction of a \"Gygax\" Weapons & Targeting Control module."
+	name = "\"Gygax\" Weapon Control & Targeting module"
+	desc = "Allows for the construction of a \"Gygax\" Weapon Control & Targeting module."
 	req_tech = list(/decl/tech/combat = 2, /decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/mecha/gygax/targeting
 
@@ -90,8 +90,8 @@
 	build_path = /obj/item/circuitboard/mecha/durand/peripherals
 
 /datum/design/circuit/mecha/durand_targ
-	name = "\"Durand\" Weapons & Targeting Control module"
-	desc = "Allows for the construction of a \"Durand\" Weapons & Targeting Control module."
+	name = "\"Durand\" Weapon Control & Targeting module"
+	desc = "Allows for the construction of a \"Durand\" Weapon Control & Targeting module."
 	req_tech = list(/decl/tech/combat = 4, /decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/mecha/durand/targeting
 
@@ -109,8 +109,8 @@
 	build_path = /obj/item/circuitboard/mecha/archambeau/peripherals
 
 /datum/design/circuit/mecha/archambeau_targ
-	name = "\"Archambeau\" Weapons & Targeting Control module"
-	desc = "Allows for the construction of a \"Archambeau\" Weapons & Targeting Control module."
+	name = "\"Archambeau\" Weapon Control & Targeting module"
+	desc = "Allows for the construction of a \"Archambeau\" Weapon Control & Targeting module."
 	req_tech = list(/decl/tech/combat = 4, /decl/tech/engineering = 6, /decl/tech/programming = 5)
 	build_path = /obj/item/circuitboard/mecha/archambeau/targeting
 
@@ -128,8 +128,8 @@
 	build_path = /obj/item/circuitboard/mecha/phazon/peripherals
 
 /datum/design/circuit/mecha/phazon_targ
-	name = "\"Phazon\" Weapons & Targeting Control module"
-	desc = "Allows for the construction of a \"Phazon\" Weapons & Targeting Control module."
+	name = "\"Phazon\" Weapon Control & Targeting module"
+	desc = "Allows for the construction of a \"Phazon\" Weapon Control & Targeting module."
 	req_tech = list(/decl/tech/magnets = 6, /decl/tech/combat = 2, /decl/tech/programming = 5)
 	build_path = /obj/item/circuitboard/mecha/phazon/targeting
 
@@ -147,8 +147,8 @@
 	build_path = /obj/item/circuitboard/mecha/honk/peripherals
 
 /datum/design/circuit/mecha/honk_targ
-	name = "\"H.O.N.K\" Weapons & Targeting Control module"
-	desc = "Allows for the construction of a \"H.O.N.K\" Weapons & Targeting Control module."
+	name = "\"H.O.N.K\" Weapon Control & Targeting module"
+	desc = "Allows for the construction of a \"H.O.N.K\" Weapon Control & Targeting module."
 	req_tech = list(/decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/mecha/honk/targeting
 
@@ -166,7 +166,7 @@
 	build_path = /obj/item/circuitboard/mecha/reticence/peripherals
 
 /datum/design/circuit/mecha/reticence_targ
-	name = "\"Reticence\" Weapons & Targeting Control module"
-	desc = "Allows for the construction of a \"Reticence\" Weapons & Targeting Control module."
+	name = "\"Reticence\" Weapon Control & Targeting module"
+	desc = "Allows for the construction of a \"Reticence\" Weapon Control & Targeting module."
 	req_tech = list(/decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/mecha/reticence/targeting

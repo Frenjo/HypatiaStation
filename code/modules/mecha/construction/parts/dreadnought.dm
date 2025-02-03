@@ -10,8 +10,8 @@
 	origin_tech = list(/decl/tech/engineering = 3, /decl/tech/programming = 3)
 
 /obj/item/circuitboard/mecha/dreadnought/main
-	name = "circuit board (Dreadnought Central Control module)"
+	name = "circuit board (\"Dreadnought\" central control module)"
 
 /obj/item/circuitboard/mecha/dreadnought/peripherals
-	name = "circuit board (Dreadnought Peripherals Control module)"
+	name = "circuit board (\"Dreadnought\" peripherals control module)"
 	icon_state = "mcontroller"

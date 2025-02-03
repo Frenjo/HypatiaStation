@@ -37,7 +37,7 @@
 
 // Circuit Boards
 /obj/item/circuitboard/mecha
-	name = "circuit board (Exosuit)"
+	name = "circuit board (exosuit)"
 	icon_state = "mainboard"
 
 	throw_speed = 3

@@ -35,12 +35,12 @@
 	origin_tech = list(/decl/tech/programming = 4)
 
 /obj/item/circuitboard/mecha/reticence/main
-	name = "circuit board (Reticence Central Control module)"
+	name = "circuit board (\"Reticence\" central control module)"
 
 /obj/item/circuitboard/mecha/reticence/peripherals
-	name = "circuit board (Reticence Peripherals Control module)"
+	name = "circuit board (\"Reticence\" peripherals control module)"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/reticence/targeting
-	name = "circuit board (Reticence Weapon Control and Targeting module)"
+	name = "circuit board (\"Reticence\" weapon control & targeting module)"
 	icon_state = "mcontroller"

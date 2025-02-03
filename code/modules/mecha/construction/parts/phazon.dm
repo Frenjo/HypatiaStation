@@ -57,15 +57,15 @@
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/phazon/main
-	name = "circuit board (Phazon Central Control module)"
+	name = "circuit board (\"Phazon\" central control module)"
 	origin_tech = list(/decl/tech/materials = 7, /decl/tech/power_storage = 6, /decl/tech/programming = 5)
 
 /obj/item/circuitboard/mecha/phazon/peripherals
-	name = "circuit board (Phazon Peripherals Control module)"
+	name = "circuit board (\"Phazon\" peripherals control module)"
 	icon_state = "mcontroller"
 	origin_tech = list(/decl/tech/programming = 5, /decl/tech/bluespace = 6)
 
 /obj/item/circuitboard/mecha/phazon/targeting
-	name = "circuit board (Phazon Weapon Control and Targeting module)"
+	name = "circuit board (\"Phazon\" weapon control & targeting module)"
 	icon_state = "mcontroller"
 	origin_tech = list(/decl/tech/magnets = 6, /decl/tech/combat = 2, /decl/tech/programming = 5)

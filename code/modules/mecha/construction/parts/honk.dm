@@ -36,12 +36,12 @@
 	origin_tech = list(/decl/tech/programming = 4)
 
 /obj/item/circuitboard/mecha/honk/main
-	name = "circuit board (H.O.N.K Central Control module)"
+	name = "circuit board (\"H.O.N.K\" central control module)"
 
 /obj/item/circuitboard/mecha/honk/peripherals
-	name = "circuit board (H.O.N.K Peripherals Control module)"
+	name = "circuit board (\"H.O.N.K\" peripherals control module)"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/honk/targeting
-	name = "circuit board (H.O.N.K Weapon Control and Targeting module)"
+	name = "circuit board (\"H.O.N.K\" weapon control & targeting module)"
 	icon_state = "mcontroller"

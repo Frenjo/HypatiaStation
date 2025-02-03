@@ -48,12 +48,12 @@
 	icon = 'icons/obj/mecha/parts/eidolon.dmi'
 
 /obj/item/circuitboard/mecha/eidolon/main
-	name = "circuit board (Eidolon Central Control module)"
+	name = "circuit board (\"Eidolon\" central control module)"
 
 /obj/item/circuitboard/mecha/eidolon/peripherals
-	name = "circuit board (Eidolon Peripherals Control module)"
+	name = "circuit board (\"Eidolon\" peripherals control module)"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/eidolon/targeting
-	name = "circuit board (Eidolon Weapon Control and Targeting module)"
+	name = "circuit board (\"Eidolon\" weapon control & targeting module)"
 	icon_state = "mcontroller"

@@ -58,8 +58,8 @@
 	origin_tech = list(/decl/tech/biotech = 2, /decl/tech/programming = 3)
 
 /obj/item/circuitboard/mecha/odysseus/main
-	name = "circuit board (Odysseus Central Control module)"
+	name = "circuit board (\"Odysseus\" central control module)"
 
 /obj/item/circuitboard/mecha/odysseus/peripherals
-	name = "circuit board (Odysseus Peripherals Control module)"
+	name = "circuit board (\"Odysseus\" peripherals control module)"
 	icon_state = "mcontroller"

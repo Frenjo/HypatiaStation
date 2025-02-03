@@ -1,5 +1,5 @@
 /obj/item/circuitboard/atmoscontrol
-	name = "circuit board (Central Atmospherics Computer)"
+	name = "circuit board (central atmospherics computer)"
 	build_path = /obj/machinery/computer/atmoscontrol
 
 /obj/machinery/computer/atmoscontrol

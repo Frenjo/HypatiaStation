@@ -22,11 +22,11 @@
 			SPAN_INFO("You hear someone using a screwdriver.")
 		)
 		if(ispath(build_path, /obj/machinery/computer/rdconsole/core))
-			name = "circuit board (RD Console - Robotics)"
+			name = "circuit board (robotics RD console)"
 			build_path = /obj/machinery/computer/rdconsole/robotics
 			to_chat(user, SPAN_NOTICE("Access protocols set to robotics."))
 		else
-			name = "circuit board (RD Console)"
+			name = "circuit board (RD console)"
 			build_path = /obj/machinery/computer/rdconsole/core
 			to_chat(user, SPAN_NOTICE("Access protocols defaulted."))
 		return TRUE

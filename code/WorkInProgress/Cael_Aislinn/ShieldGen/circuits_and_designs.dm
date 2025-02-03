@@ -3,7 +3,7 @@
 // External Shield Generator
 
 /obj/item/circuitboard/shield_gen_ex
-	name = "circuit board (Experimental hull shield generator)"
+	name = "circuit board (experimental hull shield generator)"
 	board_type = "machine"
 	build_path = /obj/machinery/shield_gen/external
 	origin_tech = list(/decl/tech/plasma = 3, /decl/tech/bluespace = 4)
@@ -18,7 +18,7 @@
 	)
 
 /datum/design/circuit/shield_gen_ex
-	name = "Circuit Design (Experimental hull shield generator)"
+	name = "Circuit Design (experimental hull shield generator)"
 	desc = "Allows for the construction of circuit boards used to build an experimental hull shield generator."
 	req_tech = list(/decl/tech/plasma = 3, /decl/tech/bluespace = 4)
 	materials = list(
@@ -31,7 +31,7 @@
 // Shield Generator
 
 /obj/item/circuitboard/shield_gen
-	name = "circuit board (Experimental bubble shield generator)"
+	name = "circuit board (experimental bubble shield generator)"
 	board_type = "machine"
 	build_path = /obj/machinery/shield_gen/external
 	origin_tech = list(/decl/tech/plasma = 3, /decl/tech/bluespace = 4)
@@ -46,7 +46,7 @@
 	)
 
 /datum/design/circuit/shield_gen
-	name = "Circuit Design (Experimental bubble shield generator)"
+	name = "Circuit Design (experimental bubble shield generator)"
 	desc = "Allows for the construction of circuit boards used to build an experimental shield generator."
 	req_tech = list(/decl/tech/plasma = 3, /decl/tech/bluespace = 4)
 	materials = list(
@@ -59,7 +59,7 @@
 // Shield Capacitor
 
 /obj/item/circuitboard/shield_cap
-	name = "circuit board (Experimental shield capacitor)"
+	name = "circuit board (experimental shield capacitor)"
 	board_type = "machine"
 	build_path = /obj/machinery/shield_capacitor
 	origin_tech = list(/decl/tech/magnets = 3, /decl/tech/power_storage = 4)
@@ -74,7 +74,7 @@
 	)
 
 /datum/design/circuit/shield_cap
-	name = "Circuit Design (Experimental shield capacitor)"
+	name = "Circuit Design (experimental shield capacitor)"
 	desc = "Allows for the construction of circuit boards used to build an experimental shielding capacitor."
 	req_tech = list(/decl/tech/magnets = 3, /decl/tech/power_storage = 4)
 	materials = list(

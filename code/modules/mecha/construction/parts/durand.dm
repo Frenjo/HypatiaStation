@@ -54,13 +54,13 @@
 	origin_tech = list(/decl/tech/programming = 4)
 
 /obj/item/circuitboard/mecha/durand/main
-	name = "circuit board (Durand Central Control module)"
+	name = "circuit board (\"Durand\" central control module)"
 
 /obj/item/circuitboard/mecha/durand/peripherals
-	name = "circuit board (Durand Peripherals Control module)"
+	name = "circuit board (\"Durand\" peripherals control module)"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/durand/targeting
-	name = "circuit board (Durand Weapon Control and Targeting module)"
+	name = "circuit board (\"Durand\" weapon control & targeting module)"
 	icon_state = "mcontroller"
 	origin_tech = list(/decl/tech/combat = 4, /decl/tech/programming = 4)

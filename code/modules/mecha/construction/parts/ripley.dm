@@ -46,8 +46,8 @@
 	origin_tech = list(/decl/tech/programming = 3)
 
 /obj/item/circuitboard/mecha/ripley/main
-	name = "circuit board (Ripley Central Control module)"
+	name = "circuit board (APLU \"Ripley\" central control module)"
 
 /obj/item/circuitboard/mecha/ripley/peripherals
-	name = "circuit board (Ripley Peripherals Control module)"
+	name = "circuit board (APLU \"Ripley\" peripherals control module)"
 	icon_state = "mcontroller"

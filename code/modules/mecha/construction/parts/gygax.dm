@@ -58,13 +58,13 @@
 	origin_tech = list(/decl/tech/programming = 4)
 
 /obj/item/circuitboard/mecha/gygax/main
-	name = "circuit board (Gygax Central Control module)"
+	name = "circuit board (\"Gygax\" central control module)"
 
 /obj/item/circuitboard/mecha/gygax/peripherals
-	name = "circuit board (Gygax Peripherals Control module)"
+	name = "circuit board (\"Gygax\" peripherals control module)"
 	icon_state = "mcontroller"
 
 /obj/item/circuitboard/mecha/gygax/targeting
-	name = "circuit board (Gygax Weapon Control and Targeting module)"
+	name = "circuit board (\"Gygax\" weapon control & targeting module)"
 	icon_state = "mcontroller"
 	origin_tech = list(/decl/tech/combat = 2, /decl/tech/programming = 4)

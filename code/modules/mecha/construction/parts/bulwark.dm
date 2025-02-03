@@ -7,6 +7,6 @@
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/bulwark/targeting
-	name = "circuit board (Bulwark Weapon Control and Targeting module)"
+	name = "circuit board (\"Bulwark\" weapon control & targeting module)"
 	icon_state = "mcontroller"
 	origin_tech = list(/decl/tech/combat = 2, /decl/tech/engineering = 3, /decl/tech/programming = 3)

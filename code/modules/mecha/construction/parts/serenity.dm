@@ -13,6 +13,6 @@
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/serenity/medical
-	name = "circuit board (Serenity Medical Control module)"
+	name = "circuit board (\"Serenity\" medical control module)"
 	icon_state = "mcontroller"
 	origin_tech = list(/decl/tech/biotech = 2, /decl/tech/programming = 4)
