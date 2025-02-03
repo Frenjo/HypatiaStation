@@ -90,6 +90,9 @@
 	log_message("Toggled ball mode.")
 
 /obj/mecha/combat/eidolon/salvaged // We can rebuild him.
+	name = "\improper Salvaged Eidolon"
+	desc = "A primitive replica of a mech of strange origin. This one appears to be constructed from salvaged parts."
+
 	force = 26
 
 	step_in = 5
