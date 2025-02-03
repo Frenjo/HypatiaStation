@@ -2,8 +2,8 @@
 ////////// Computer Circuits //////////
 ///////////////////////////////////////
 /datum/design/circuit/seccamera
-	name = "Security Camera Computer"
-	desc = "Allows for the construction of circuit boards used to build a security camera computer."
+	name = "Security Camera Console"
+	desc = "Allows for the construction of circuit boards used to build a security camera console."
 	build_path = /obj/item/circuitboard/security
 
 /datum/design/circuit/aicore
@@ -65,8 +65,8 @@
 	build_path = /obj/item/circuitboard/crew
 
 /datum/design/circuit/teleconsole
-	name = "Teleporter Console"
-	desc = "Allows for the construction of circuit boards used to build a teleporter control console."
+	name = "Teleporter Control Computer"
+	desc = "Allows for the construction of circuit boards used to build a teleporter control computer."
 	req_tech = list(/decl/tech/programming = 3, /decl/tech/bluespace = 2)
 	build_path = /obj/item/circuitboard/teleporter
 
@@ -99,8 +99,8 @@
 	build_path = /obj/item/circuitboard/robotics
 
 /datum/design/circuit/clonecontrol
-	name = "Cloning Machine Console"
-	desc = "Allows for the construction of circuit boards used to build a cloning machine console."
+	name = "Cloning Console"
+	desc = "Allows for the construction of circuit boards used to build a cloning console."
 	req_tech = list(/decl/tech/biotech = 3, /decl/tech/programming = 3)
 	build_path = /obj/item/circuitboard/cloning
 
@@ -111,8 +111,8 @@
 	build_path = /obj/item/circuitboard/clonepod
 
 /datum/design/circuit/clonescanner
-	name = "Cloning Scanner"
-	desc = "Allows for the construction of circuit boards used to build a cloning scanner."
+	name = "DNA Modifier"
+	desc = "Allows for the construction of circuit boards used to build a DNA modifier."
 	req_tech = list(/decl/tech/biotech = 3, /decl/tech/programming = 3)
 	build_path = /obj/item/circuitboard/clonescanner
 
@@ -128,8 +128,8 @@
 	build_path = /obj/item/circuitboard/powermonitor
 
 /datum/design/circuit/solarcontrol
-	name = "Solar Control Console"
-	desc = "Allows for the construction of circuit boards used to build a solar control console."
+	name = "Solar Panel Control"
+	desc = "Allows for the construction of circuit boards used to build a solar panel control console."
 	req_tech = list(/decl/tech/power_storage = 2, /decl/tech/programming = 2)
 	build_path = /obj/item/circuitboard/solar_control
 
@@ -151,8 +151,8 @@
 	build_path = /obj/item/circuitboard/mech_bay_power_console
 
 /datum/design/circuit/rdconsole
-	name = "RD Console"
-	desc = "Allows for the construction of circuit boards used to build an RD console."
+	name = "R&D Console"
+	desc = "Allows for the construction of circuit boards used to build core and robotics R&D consoles."
 	req_tech = list(/decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/rdconsole
 

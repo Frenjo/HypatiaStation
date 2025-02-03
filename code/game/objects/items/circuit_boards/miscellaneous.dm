@@ -10,7 +10,7 @@
 	build_path = /obj/machinery/computer/pod
 
 /obj/item/circuitboard/arcade
-	name = "circuit board (arcade)"
+	name = "circuit board (arcade machine)"
 	build_path = /obj/machinery/computer/arcade
 	origin_tech = list(/decl/tech/programming = 1)
 
@@ -26,7 +26,7 @@
 	name = "circuit board (Magix)"
 	build_path = /obj/machinery/computer/pod/old/swf
 
-/obj/item/circuitboard/HolodeckControl // Not going to let people get this, but it's just here for future
-	name = "circuit board (holodeck control)"
+/obj/item/circuitboard/holodeck_control // Not going to let people get this, but it's just here for future
+	name = "circuit board (holodeck control computer)"
 	build_path = /obj/machinery/computer/holodeck_control
 	origin_tech = list(/decl/tech/programming = 4)

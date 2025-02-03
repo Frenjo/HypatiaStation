@@ -6,7 +6,7 @@
  * Computers
  */
 /obj/item/circuitboard/communications
-	name = "circuit board (communications)"
+	name = "circuit board (communications console)"
 	build_path = /obj/machinery/computer/communications
 	origin_tech = list(/decl/tech/magnets = 2, /decl/tech/programming = 2)
 
@@ -40,7 +40,7 @@
 	build_path = /obj/machinery/computer/card/centcom
 
 /obj/item/circuitboard/teleporter
-	name = "circuit board (teleporter)"
+	name = "circuit board (teleporter control computer)"
 	build_path = /obj/machinery/computer/teleporter
 	origin_tech = list(/decl/tech/programming = 2, /decl/tech/bluespace = 2)
 

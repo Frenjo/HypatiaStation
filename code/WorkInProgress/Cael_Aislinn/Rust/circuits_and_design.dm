@@ -3,12 +3,12 @@
 // RUST Core Control computer
 
 /obj/item/circuitboard/rust_core_control
-	name = "circuit board (RUST core controller)"
+	name = "circuit board (RUST core control)"
 	build_path = /obj/machinery/computer/rust_core_control
 	origin_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
 
 /datum/design/circuit/rust_core_control
-	name = "Circuit Design (RUST core controller)"
+	name = "RUST Core Control"
 	desc = "Allows for the construction of circuit boards used to build a core control console for the RUST fusion engine."
 	req_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/rust_core_control
@@ -17,13 +17,13 @@
 // RUST Fuel Control computer
 
 /obj/item/circuitboard/rust_fuel_control
-	name = "circuit board (RUST fuel controller)"
+	name = "circuit board (RUST fuel injection control)"
 	build_path = /obj/machinery/computer/rust_fuel_control
 	origin_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
 
 /datum/design/circuit/rust_fuel_control
-	name = "Circuit Design (RUST fuel controller)"
-	desc = "Allows for the construction of circuit boards used to build a fuel injector control console for the RUST fusion engine."
+	name = "RUST Fuel Injection Control"
+	desc = "Allows for the construction of circuit boards used to build a fuel injection control console for the RUST fusion engine."
 	req_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/rust_fuel_control
 
@@ -31,13 +31,13 @@
 // RUST Fuel Port board
 
 /obj/item/module/rust_fuel_port
-	name = "Internal circuitry (RUST fuel port)"
+	name = "circuit module (RUST fuel port)"
 	icon_state = "card_mod"
 	origin_tech = list(/decl/tech/materials = 5, /decl/tech/engineering = 4)
 
 /datum/design/circuit/rust_fuel_port
-	name = "Internal circuitry (RUST fuel port)"
-	desc = "Allows for the construction of circuit boards used to build a fuel injection port for the RUST fusion engine."
+	name = "RUST fuel port"
+	desc = "Allows for the construction of circuit modules used to build a fuel injection port for the RUST fusion engine."
 	req_tech = list(/decl/tech/materials = 5, /decl/tech/engineering = 4)
 	materials = list(/decl/material/glass = 2000, /decl/material/uranium = 3000, "sacid" = 20)
 	build_path = /obj/item/module/rust_fuel_port
@@ -46,13 +46,13 @@
 // RUST Fuel Compressor board
 
 /obj/item/module/rust_fuel_compressor
-	name = "Internal circuitry (RUST fuel compressor)"
+	name = "circuit module (RUST fuel compressor)"
 	icon_state = "card_mod"
 	origin_tech = list(/decl/tech/materials = 6, /decl/tech/plasma = 4)
 
 /datum/design/circuit/rust_fuel_compressor
-	name = "Circuit Design (RUST fuel compressor)"
-	desc = "Allows for the construction of circuit boards used to build a fuel compressor of the RUST fusion engine."
+	name = "RUST Fuel Compressor"
+	desc = "Allows for the construction of circuit modules used to build a fuel compressor for the RUST fusion engine."
 	req_tech = list(/decl/tech/materials = 6, /decl/tech/plasma = 4)
 	materials = list(/decl/material/glass = 2000, /decl/material/diamond = 1000, /decl/material/plasma = 3000, "sacid" = 20)
 	build_path = /obj/item/module/rust_fuel_compressor
@@ -61,14 +61,14 @@
 // RUST Tokamak Core board
 
 /obj/item/circuitboard/rust_core
-	name = "Internal circuitry (RUST tokamak core)"
+	name = "circuit board (RUST tokamak core)"
 	build_path = /obj/machinery/power/rust_core
 	board_type = "machine"
 	origin_tech = list(
 		/decl/tech/magnets = 5, /decl/tech/power_storage = 6, /decl/tech/plasma = 4,
 		/decl/tech/bluespace = 3
 	)
-	frame_desc = "Requires 2 Pico Manipulators, 1 Ultra Micro-Laser, 5 Pieces of Cable, 1 Subspace Crystal and 1 Console Screen."
+	frame_desc = "Requires 2 pico-manipulators, 1 ultra-high-power micro-laser, 5 pieces of cable, 1 ansible crystal and 1 console screen."
 	req_components = list(
 		/obj/item/stock_part/manipulator/pico = 2,
 		/obj/item/stock_part/micro_laser/ultra = 1,
@@ -78,8 +78,8 @@
 	)
 
 /datum/design/circuit/rust_core
-	name = "Internal circuitry (RUST tokamak core)"
-	desc = "The circuit board that for a RUST-pattern tokamak fusion core."
+	name = "RUST Tokamak Core"
+	desc = "Allows for the construction of circuit boards used to build a RUST-pattern tokamak fusion core."
 	req_tech = list(
 		/decl/tech/magnets = 5, /decl/tech/power_storage = 6, /decl/tech/plasma = 4,
 		/decl/tech/bluespace = 3
@@ -92,13 +92,13 @@
 // RUST Fuel Injector board
 
 /obj/item/circuitboard/rust_injector
-	name = "Internal circuitry (RUST fuel injector)"
+	name = "circuit board (RUST fuel injector)"
 	build_path = /obj/machinery/power/rust_fuel_injector
 	board_type = "machine"
 	origin_tech = list(
 		/decl/tech/materials = 6, /decl/tech/engineering = 4, /decl/tech/power_storage = 3, /decl/tech/plasma = 4
 	)
-	frame_desc = "Requires 2 Pico Manipulators, 1 Phasic Scanning Module, 1 Super Matter Bin, 1 Console Screen and 5 Pieces of Cable."
+	frame_desc = "Requires 2 pico-manipulators, 1 phasic scanning module, 1 super matter bin, 1 console screen and 5 pieces of cable."
 	req_components = list(
 		/obj/item/stock_part/manipulator/pico = 2,
 		/obj/item/stock_part/scanning_module/phasic = 1,
@@ -108,12 +108,12 @@
 	)
 
 /datum/design/circuit/rust_injector
-	name = "Internal circuitry (RUST tokamak core)"
-	desc = "The circuit board that for a RUST-pattern particle accelerator."
+	name = "RUST Fuel Injector"
+	desc = "Allows for the construction of circuit boards used to build a RUST-pattern fuel injection particle accelerator."
 	req_tech = list(
 		/decl/tech/materials = 6, /decl/tech/engineering = 4, /decl/tech/power_storage = 3,
 		/decl/tech/plasma = 4
 	)
 	reliability_base = 79
 	materials = list(/decl/material/glass = 2000, /decl/material/uranium = 2000, /decl/material/plasma = 3000, "sacid" = 20)
-	build_path = /obj/item/circuitboard/rust_core
+	build_path = /obj/item/circuitboard/rust_injector

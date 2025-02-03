@@ -6,7 +6,7 @@
  * Computers
  */
 /obj/item/circuitboard/message_monitor
-	name = "circuit board (message monitor)"
+	name = "circuit board (message monitor console)"
 	build_path = /obj/machinery/computer/message_monitor
 	origin_tech = list(/decl/tech/programming = 3)
 
@@ -33,7 +33,7 @@
 	build_path = /obj/machinery/telecoms/receiver
 	board_type = "machine"
 	origin_tech = list(/decl/tech/engineering = 3, /decl/tech/programming = 4, /decl/tech/bluespace = 2)
-	frame_desc = "Requires 1 Subspace Ansible, 1 Hyperwave Filter, 2 Micro Manipulators, and 1 Micro-Laser."
+	frame_desc = "Requires 1 subspace ansible, 1 hyperwave filter, 2 micro-manipulators, and 1 micro-laser."
 	req_components = list(
 		/obj/item/stock_part/subspace/ansible = 1,
 		/obj/item/stock_part/subspace/filter = 1,
@@ -46,7 +46,7 @@
 	build_path = /obj/machinery/telecoms/hub
 	board_type = "machine"
 	origin_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
-	frame_desc = "Requires 2 Micro Manipulators, 2 Cable Coil and 2 Hyperwave Filter."
+	frame_desc = "Requires 2 micro-manipulators, 2 pieces of cable and 2 hyperwave filter."
 	req_components = list(
 		/obj/item/stock_part/manipulator = 2,
 		/obj/item/stack/cable_coil = 2,
@@ -58,7 +58,7 @@
 	build_path = /obj/machinery/telecoms/relay
 	board_type = "machine"
 	origin_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 3, /decl/tech/bluespace = 3)
-	frame_desc = "Requires 2 Micro Manipulators, 2 Cable Coil and 2 Hyperwave Filters."
+	frame_desc = "Requires 2 micro-manipulators, 2 pieces of cable and 2 hyperwave filters."
 	req_components = list(
 		/obj/item/stock_part/manipulator = 2,
 		/obj/item/stack/cable_coil = 2,
@@ -70,7 +70,7 @@
 	build_path = /obj/machinery/telecoms/bus
 	board_type = "machine"
 	origin_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
-	frame_desc = "Requires 2 Micro Manipulators, 1 Cable Coil and 1 Hyperwave Filter."
+	frame_desc = "Requires 2 micro-manipulators, 1 piece of cable and 1 hyperwave filter."
 	req_components = list(
 		/obj/item/stock_part/manipulator = 2,
 		/obj/item/stack/cable_coil = 1,
@@ -82,7 +82,7 @@
 	build_path = /obj/machinery/telecoms/processor
 	board_type = "machine"
 	origin_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
-	frame_desc = "Requires 3 Micro Manipulators, 1 Hyperwave Filter, 2 Treatment Disks, 1 Wavelength Analyser, 2 Cable Coils and 1 Subspace Amplifier."
+	frame_desc = "Requires 3 micro-manipulators, 1 hyperwave filter, 2 treatment disks, 1 wavelength analyser, 2 pieces of cable and 1 subspace amplifier."
 	req_components = list(
 		/obj/item/stock_part/manipulator = 3,
 		/obj/item/stock_part/subspace/filter = 1,
@@ -97,7 +97,7 @@
 	build_path = /obj/machinery/telecoms/server
 	board_type = "machine"
 	origin_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
-	frame_desc = "Requires 2 Micro Manipulators, 1 Cable Coil and 1 Hyperwave Filter."
+	frame_desc = "Requires 2 micro-manipulators, 1 piece of cable and 1 hyperwave filter."
 	req_components = list(
 		/obj/item/stock_part/manipulator = 2,
 		/obj/item/stack/cable_coil = 1,
@@ -109,7 +109,7 @@
 	build_path = /obj/machinery/telecoms/broadcaster
 	board_type = "machine"
 	origin_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4, /decl/tech/bluespace = 2)
-	frame_desc = "Requires 2 Micro Manipulators, 1 Cable Coil, 1 Hyperwave Filter, 1 Ansible Crystal and 2 High-Powered Micro-Lasers. "
+	frame_desc = "Requires 2 micro-manipulators, 1 piece of cable, 1 hyperwave filter, 1 ansible crystal and 2 high-powered micro-lasers. "
 	req_components = list(
 		/obj/item/stock_part/manipulator = 2,
 		/obj/item/stack/cable_coil = 1,

@@ -11,7 +11,7 @@
 	origin_tech = list(/decl/tech/programming = 3)
 
 /obj/item/circuitboard/rdconsole
-	name = "circuit board (RD console)"
+	name = "circuit board (core R&D console)"
 	build_path = /obj/machinery/computer/rdconsole/core
 
 /obj/item/circuitboard/rdconsole/attack_tool(obj/item/tool, mob/user)
@@ -22,11 +22,11 @@
 			SPAN_INFO("You hear someone using a screwdriver.")
 		)
 		if(ispath(build_path, /obj/machinery/computer/rdconsole/core))
-			name = "circuit board (robotics RD console)"
+			name = "circuit board (robotics R&D console)"
 			build_path = /obj/machinery/computer/rdconsole/robotics
 			to_chat(user, SPAN_NOTICE("Access protocols set to robotics."))
 		else
-			name = "circuit board (RD console)"
+			name = "circuit board (core R&D console)"
 			build_path = /obj/machinery/computer/rdconsole/core
 			to_chat(user, SPAN_NOTICE("Access protocols defaulted."))
 		return TRUE
@@ -47,9 +47,8 @@
 	origin_tech = list(/decl/tech/power_storage = 3, /decl/tech/programming = 2)
 
 /obj/item/circuitboard/research_shuttle
-	name = "circuit board (research shuttle)"
+	name = "circuit board (research shuttle control console)"
 	build_path = /obj/machinery/computer/shuttle_control/research
-	origin_tech = list(/decl/tech/programming = 2)
 
 /*
  * Machines
@@ -59,7 +58,7 @@
 	build_path = /obj/machinery/r_n_d/destructive_analyser
 	board_type = "machine"
 	origin_tech = list(/decl/tech/magnets = 2, /decl/tech/engineering = 2, /decl/tech/programming = 2)
-	frame_desc = "Requires 1 Scanning Module, 1 Micro Manipulator, and 1 Micro-Laser."
+	frame_desc = "Requires 1 scanning module, 1 micro-manipulator, and 1 micro-laser."
 	req_components = list(
 		/obj/item/stock_part/scanning_module = 1,
 		/obj/item/stock_part/manipulator = 1,
@@ -71,7 +70,7 @@
 	build_path = /obj/machinery/autolathe
 	board_type = "machine"
 	origin_tech = list(/decl/tech/engineering = 2, /decl/tech/programming = 2)
-	frame_desc = "Requires 3 Matter Bins, 1 Micro Manipulator, and 1 Console Screen."
+	frame_desc = "Requires 3 matter bins, 1 micro-manipulator, and 1 console screen."
 	req_components = list(
 		/obj/item/stock_part/matter_bin = 3,
 		/obj/item/stock_part/manipulator = 1,
@@ -83,7 +82,7 @@
 	build_path = /obj/machinery/r_n_d/protolathe
 	board_type = "machine"
 	origin_tech = list(/decl/tech/engineering = 2, /decl/tech/programming = 2)
-	frame_desc = "Requires 2 Matter Bins, 2 Micro Manipulators, and 2 Beakers."
+	frame_desc = "Requires 2 matter bins, 2 micro-manipulators, and 2 beakers."
 	req_components = list(
 		/obj/item/stock_part/matter_bin = 2,
 		/obj/item/stock_part/manipulator = 2,
@@ -95,7 +94,7 @@
 	build_path = /obj/machinery/r_n_d/circuit_imprinter
 	board_type = "machine"
 	origin_tech = list(/decl/tech/engineering = 2, /decl/tech/programming = 2)
-	frame_desc = "Requires 1 Matter Bin, 1 Micro Manipulator, and 2 Beakers."
+	frame_desc = "Requires 1 matter bin, 1 micro-manipulator, and 2 beakers."
 	req_components = list(
 		/obj/item/stock_part/matter_bin = 1,
 		/obj/item/stock_part/manipulator = 1,
@@ -107,7 +106,7 @@
 	build_path = /obj/machinery/r_n_d/server
 	board_type = "machine"
 	origin_tech = list(/decl/tech/programming = 3)
-	frame_desc = "Requires 2 pieces of cable, and 1 Scanning Module."
+	frame_desc = "Requires 2 pieces of cable, and 1 scanning module."
 	req_components = list(
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_part/scanning_module = 1
@@ -118,7 +117,7 @@
 	build_path = /obj/machinery/robotics_fabricator/mecha
 	board_type = "machine"
 	origin_tech = list(/decl/tech/engineering = 3, /decl/tech/programming = 3)
-	frame_desc = "Requires 2 Matter Bins, 1 Micro Manipulator, 1 Micro-Laser and 1 Console Screen."
+	frame_desc = "Requires 2 matter bins, 1 micro-manipulator, 1 micro-laser and 1 console screen."
 	req_components = list(
 		/obj/item/stock_part/matter_bin = 2,
 		/obj/item/stock_part/manipulator = 1,
@@ -131,7 +130,7 @@
 	build_path = /obj/machinery/robotics_fabricator/robotic
 	board_type = "machine"
 	origin_tech = list(/decl/tech/engineering = 3, /decl/tech/programming = 3)
-	frame_desc = "Requires 2 Matter Bins, 1 Micro Manipulator, 1 Micro-Laser and 1 Console Screen."
+	frame_desc = "Requires 2 matter bins, 1 micro-manipulator, 1 micro-laser and 1 console screen."
 	req_components = list(
 		/obj/item/stock_part/matter_bin = 2,
 		/obj/item/stock_part/manipulator = 1,

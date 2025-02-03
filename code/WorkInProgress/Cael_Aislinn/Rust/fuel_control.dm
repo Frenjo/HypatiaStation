@@ -1,6 +1,6 @@
 
 /obj/machinery/computer/rust_fuel_control
-	name = "RUST Fuel Injection Control"
+	name = "RUST fuel injection control"
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
 	icon_state = "fuel"
 	var/list/connected_injectors = list()

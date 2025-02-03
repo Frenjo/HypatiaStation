@@ -53,22 +53,22 @@
 ////////// Generator Circuits //////////
 ////////////////////////////////////////
 /datum/design/circuit/pacman
-	name = "PACMAN-type Generator"
-	desc = "Allows for the construction of circuit boards used to build a PACMAN-type portable generator."
+	name = "P.A.C.M.A.N.-type Portable Generator"
+	desc = "Allows for the construction of circuit boards used to build a P.A.C.M.A.N.-type portable generator."
 	req_tech = list(/decl/tech/engineering = 3, /decl/tech/power_storage = 3, /decl/tech/programming = 3, /decl/tech/plasma = 3)
 	reliability_base = 79
 	build_path = /obj/item/circuitboard/pacman
 
 /datum/design/circuit/superpacman
-	name = "SUPERPACMAN-type Generator"
-	desc = "Allows for the construction of circuit boards used to build a SUPERPACMAN-type portable generator."
+	name = "S.U.P.E.R.P.A.C.M.A.N.-type Portable Generator"
+	desc = "Allows for the construction of circuit boards used to build a S.U.P.E.R.P.A.C.M.A.N.-type portable generator."
 	req_tech = list(/decl/tech/engineering = 4, /decl/tech/power_storage = 4, /decl/tech/programming = 3)
 	reliability_base = 76
 	build_path = /obj/item/circuitboard/pacman/super
 
 /datum/design/circuit/mrspacman
-	name = "MRSPACMAN-type Generator"
-	desc = "Allows for the construction of circuit boards used to build a MRSPACMAN-type portable generator."
+	name = "M.R.S.P.A.C.M.A.N.-type Portable Generator"
+	desc = "Allows for the construction of circuit boards used to build a M.R.S.P.A.C.M.A.N.-type portable generator."
 	req_tech = list(/decl/tech/engineering = 5, /decl/tech/power_storage = 5, /decl/tech/programming = 3)
 	reliability_base = 74
 	build_path = /obj/item/circuitboard/pacman/mrs

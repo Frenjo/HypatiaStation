@@ -15,12 +15,12 @@
 	origin_tech = list(/decl/tech/biotech = 2, /decl/tech/programming = 2)
 
 /obj/item/circuitboard/scan_consolenew
-	name = "circuit board (DNA machine)"
+	name = "circuit board (DNA modifier access console)"
 	build_path = /obj/machinery/computer/scan_consolenew
 	origin_tech = list(/decl/tech/biotech = 2, /decl/tech/programming = 2)
 
 /obj/item/circuitboard/cloning
-	name = "circuit board (cloning)"
+	name = "circuit board (cloning console)"
 	build_path = /obj/machinery/computer/cloning
 	origin_tech = list(/decl/tech/biotech = 3, /decl/tech/programming = 3)
 
@@ -50,7 +50,7 @@
 	build_path = /obj/machinery/clonepod
 	board_type = "machine"
 	origin_tech = list(/decl/tech/biotech = 3, /decl/tech/programming = 3)
-	frame_desc = "Requires 2 Manipulator, 2 Scanning Module, 2 pieces of cable and 1 Console Screen."
+	frame_desc = "Requires 2 manipulators, 2 scanning modules, 2 pieces of cable and 1 console screen."
 	req_components = list(
 		/obj/item/stack/cable_coil = 2,
 		/obj/item/stock_part/scanning_module = 2,
@@ -59,11 +59,11 @@
 	)
 
 /obj/item/circuitboard/clonescanner
-	name = "circuit board (cloning scanner)"
+	name = "circuit board (DNA modifier)"
 	build_path = /obj/machinery/dna_scannernew
 	board_type = "machine"
 	origin_tech = list(/decl/tech/biotech = 2, /decl/tech/programming = 2)
-	frame_desc = "Requires 1 Scanning module, 1 Micro Manipulator, 1 Micro-Laser, 2 pieces of cable and 1 Console Screen."
+	frame_desc = "Requires 1 scanning module, 1 micro-manipulator, 1 micro-laser, 2 pieces of cable and 1 console screen."
 	req_components = list(
 		/obj/item/stock_part/scanning_module = 1,
 		/obj/item/stock_part/manipulator = 1,

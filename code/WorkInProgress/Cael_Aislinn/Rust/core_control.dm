@@ -1,6 +1,6 @@
 
 /obj/machinery/computer/rust_core_control
-	name = "RUST Core Control"
+	name = "RUST core control"
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
 	icon_state = "core_control"
 	var/list/connected_devices = list()

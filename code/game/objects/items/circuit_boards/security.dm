@@ -6,7 +6,7 @@
  * Computers
  */
 /obj/item/circuitboard/security
-	name = "circuit board (security)"
+	name = "circuit board (security camera console)"
 	req_access = list(ACCESS_SECURITY)
 	build_path = /obj/machinery/computer/security
 
@@ -66,6 +66,5 @@
 	build_path = /obj/machinery/computer/prisoner
 
 /obj/item/circuitboard/prison_shuttle
-	name = "circuit board (prison shuttle)"
+	name = "circuit board (prison shuttle control console)"
 	build_path = /obj/machinery/computer/shuttle_control/prison
-	origin_tech = list(/decl/tech/programming = 2)

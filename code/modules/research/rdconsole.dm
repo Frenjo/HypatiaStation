@@ -734,11 +734,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	onclose(user, "rdconsole")
 
 /obj/machinery/computer/rdconsole/robotics
-	name = "Robotics R&D Console"
+	name = "robotics R&D console"
 	id = 2
 	req_access = null
 	req_access = list(ACCESS_ROBOTICS)
 
 /obj/machinery/computer/rdconsole/core
-	name = "Core R&D Console"
+	name = "core R&D console"
 	id = 1
