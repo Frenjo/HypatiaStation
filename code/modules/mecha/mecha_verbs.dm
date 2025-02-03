@@ -154,3 +154,4 @@
 		occupant = null
 		icon_state = reset_icon() + "-open"
 		set_dir(entry_direction)
+		can_move = TRUE // This ensures that slow mechs don't break due to their do_after() failing when the occupant exits.

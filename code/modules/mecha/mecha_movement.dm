@@ -46,7 +46,7 @@
 			if(!check_for_support())
 				pr_inertial_movement.start(list(src, direction))
 				log_message("Movement control lost. Inertial movement started.")
-		if(do_after(occupant, step_in, needhand = FALSE, progress = FALSE))
+		if(do_after(occupant, step_in, src, FALSE, FALSE))
 			can_move = TRUE
 		return 1
 	return 0
