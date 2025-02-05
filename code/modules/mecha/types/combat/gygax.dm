@@ -71,8 +71,8 @@
 /obj/mecha/combat/gygax/dark
 	name = "\improper Dark Gygax"
 	desc = "A lightweight exosuit used by NanoTrasen Death Squads. A significantly upgraded Gygax security mech."
-	icon_state = "darkgygax"
-	initial_icon = "darkgygax"
+	icon_state = "dark_gygax"
+	initial_icon = "dark_gygax"
 
 	health = 400
 	step_energy_drain = 5

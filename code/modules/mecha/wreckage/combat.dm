@@ -13,7 +13,7 @@
 
 /obj/structure/mecha_wreckage/gygax/dark
 	name = "Dark Gygax wreckage"
-	icon_state = "darkgygax-broken"
+	icon_state = "dark_gygax-broken"
 
 /obj/structure/mecha_wreckage/gygax/serenity
 	name = "Serenity wreckage"
