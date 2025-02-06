@@ -1203,7 +1203,7 @@ datum
 
 				check_completion()
 					var/held_credits = 0
-					for(var/obj/item/spacecash/M in owner.current.get_contents())
+					for(var/obj/item/cash/M in owner.current.get_contents())
 						held_credits += M.worth
 					if(held_credits >= steal_amount)
 						return 1

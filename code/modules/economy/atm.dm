@@ -44,6 +44,10 @@ log transactions
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
+/obj/machinery/atm/Destroy()
+	QDEL_NULL(spark_system)
+	return ..()
+
 /obj/machinery/atm/process()
 	if(stat & NOPOWER)
 		return
@@ -57,7 +61,7 @@ log transactions
 		if(ticks_left_locked_down <= 0)
 			number_incorrect_tries = 0
 
-	for(var/obj/item/spacecash/S in src)
+	for(var/obj/item/cash/S in src)
 		S.forceMove(loc)
 		if(prob(50))
 			playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
@@ -97,7 +101,7 @@ log transactions
 			if(authenticated_account && held_card.associated_account_number != authenticated_account.account_number)
 				authenticated_account = null
 	else if(authenticated_account)
-		if(istype(I, /obj/item/spacecash))
+		if(istype(I, /obj/item/cash))
 			//consume the money
 			authenticated_account.money += I:worth
 			if(prob(50))
@@ -106,7 +110,7 @@ log transactions
 				playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
 
 			//create a transaction log entry
-			var/datum/transaction/T = new()
+			var/datum/transaction/T = new /datum/transaction()
 			T.target_name = authenticated_account.owner_name
 			T.purpose = "Credit deposit"
 			T.amount = I:worth
@@ -170,7 +174,7 @@ log transactions
 							dat += "<td><b>Value</b></td>"
 							dat += "<td><b>Source terminal ID</b></td>"
 							dat += "</tr>"
-							for(var/datum/transaction/T in authenticated_account.transaction_log)
+							for_no_type_check(var/datum/transaction/T, authenticated_account.transaction_log)
 								dat += "<tr>"
 								dat += "<td>[T.date]</td>"
 								dat += "<td>[T.time]</td>"
@@ -234,7 +238,7 @@ log transactions
 							authenticated_account.money -= transfer_amount
 
 							//create an entry in the account transaction log
-							var/datum/transaction/T = new()
+							var/datum/transaction/T = new /datum/transaction()
 							T.target_name = "Account #[target_account_number]"
 							T.purpose = transfer_purpose
 							T.source_terminal = machine_id
@@ -275,7 +279,7 @@ log transactions
 								//create an entry in the account transaction log
 								var/datum/money_account/failed_account = get_account(tried_account_num)
 								if(failed_account)
-									var/datum/transaction/T = new()
+									var/datum/transaction/T = new /datum/transaction()
 									T.target_name = failed_account.owner_name
 									T.purpose = "Unauthorised login attempt"
 									T.source_terminal = machine_id
@@ -295,7 +299,7 @@ log transactions
 						view_screen = NO_SCREEN
 
 						//create a transaction log entry
-						var/datum/transaction/T = new()
+						var/datum/transaction/T = new /datum/transaction()
 						T.target_name = authenticated_account.owner_name
 						T.purpose = "Remote terminal access"
 						T.source_terminal = machine_id
@@ -317,10 +321,10 @@ log transactions
 						//remove the money
 						authenticated_account.money -= amount
 						//	spawn_money(amount,src.loc)
-						spawn_ewallet(amount, src.loc)
+						spawn_charge_card(amount, loc)
 
 						//create an entry in the account transaction log
-						var/datum/transaction/T = new()
+						var/datum/transaction/T = new /datum/transaction()
 						T.target_name = authenticated_account.owner_name
 						T.purpose = "Credit withdrawal"
 						T.amount = "([amount])"
@@ -373,7 +377,7 @@ log transactions
 					R.info += "<td><b>Value</b></td>"
 					R.info += "<td><b>Source terminal ID</b></td>"
 					R.info += "</tr>"
-					for(var/datum/transaction/T in authenticated_account.transaction_log)
+					for_no_type_check(var/datum/transaction/T, authenticated_account.transaction_log)
 						R.info += "<tr>"
 						R.info += "<td>[T.date]</td>"
 						R.info += "<td>[T.time]</td>"
@@ -433,7 +437,7 @@ log transactions
 					to_chat(human_user, SPAN_INFO("\icon[src] Access granted. Welcome user '[authenticated_account.owner_name].'"))
 
 					//create a transaction log entry
-					var/datum/transaction/T = new()
+					var/datum/transaction/T = new /datum/transaction()
 					T.target_name = authenticated_account.owner_name
 					T.purpose = "Remote terminal access"
 					T.source_terminal = machine_id
@@ -455,8 +459,8 @@ log transactions
 		human_user.put_in_hands(held_card)
 	held_card = null
 
-/obj/machinery/atm/proc/spawn_ewallet(sum, loc)
-	var/obj/item/spacecash/ewallet/E = new /obj/item/spacecash/ewallet(loc)
+/obj/machinery/atm/proc/spawn_charge_card(sum, loc)
+	var/obj/item/cash/charge_card/E = new /obj/item/cash/charge_card(loc)
 	E.worth = sum
 	E.owner_name = authenticated_account.owner_name
 

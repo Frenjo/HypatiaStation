@@ -63,7 +63,7 @@ GLOBAL_GLOBL_INIT(account_hack_attempted, FALSE)
 		affected_account.money -= lost
 
 		//create a taunting log entry
-		var/datum/transaction/T = new()
+		var/datum/transaction/T = new /datum/transaction()
 		T.target_name = pick("","yo brotha from anotha motha", "el Presidente", "chieF smackDowN")
 		T.purpose = pick("Ne$ ---ount fu%ds init*&lisat@*n", "PAY BACK YOUR MUM", "Funds withdrawal", "pWnAgE", "l33t hax", "liberationez")
 		T.amount = pick("", "([rand(0, 99999)])", "alla money", "9001$", "HOLLA HOLLA GET DOLLA", "([lost])")

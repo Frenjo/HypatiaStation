@@ -39,10 +39,10 @@
 	viable_mundane_events = list(RESEARCH_BREAKTHROUGH, RESEARCH_BREAKTHROUGH, BARGAINS, GOSSIP)
 
 /decl/trade_destination/anansi/get_custom_eventstring(event_type)
+	. = null
 	if(event_type == RESEARCH_BREAKTHROUGH)
-		return "Thanks to research conducted on the NSS Anansi, Second Red Cross Society wishes to announce a major breakthough in the field of \
+		. = "Thanks to research conducted on the NSS Anansi, Second Red Cross Society wishes to announce a major breakthough in the field of \
 		[pick("mind-machine interfacing", "neuroscience", "nano-augmentation", "genetics")]. NanoTrasen is expected to announce a co-exploitation deal within the fortnight."
-	return null
 
 /decl/trade_destination/icarus
 	name = "NMV Icarus"
@@ -66,10 +66,10 @@
 	viable_mundane_events = list(RESEARCH_BREAKTHROUGH, RESEARCH_BREAKTHROUGH)
 
 /decl/trade_destination/redolant/get_custom_eventstring(event_type)
+	. = null
 	if(event_type == RESEARCH_BREAKTHROUGH)
-		return "Thanks to research conducted on the OAV Redolant, Osiris Atmospherics wishes to announce a major breakthough in the field of \
+		. = "Thanks to research conducted on the OAV Redolant, Osiris Atmospherics wishes to announce a major breakthough in the field of \
 		[pick("plasma research", "high energy flux capacitance", "super-compressed materials", "theoretical particle physics")]. NanoTrasen is expected to announce a co-exploitation deal within the fortnight."
-	return null
 
 /decl/trade_destination/beltway
 	name = "Beltway mining chain"

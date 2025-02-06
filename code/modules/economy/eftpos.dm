@@ -116,8 +116,8 @@
 			scan_card(I)
 		else
 			to_chat(usr, SPAN_WARNING("\icon[src] Unable to connect to linked account."))
-	else if(istype(O, /obj/item/spacecash/ewallet))
-		var/obj/item/spacecash/ewallet/E = O
+	else if(istype(O, /obj/item/cash/charge_card))
+		var/obj/item/cash/charge_card/E = O
 		if(linked_account)
 			if(!linked_account.suspended)
 				if(transaction_locked && !transaction_paid)
@@ -131,7 +131,7 @@
 						linked_account.money += transaction_amount
 
 						//create entry in the EFTPOS linked account transaction log
-						var/datum/transaction/T = new()
+						var/datum/transaction/T = new /datum/transaction()
 						T.target_name = E.owner_name //D.owner_name
 						T.purpose = transaction_purpose
 						T.amount = transaction_amount
@@ -240,7 +240,7 @@
 								linked_account.money += transaction_amount
 
 								//create entries in the two account transaction logs
-								var/datum/transaction/T = new()
+								var/datum/transaction/T = new /datum/transaction()
 								T.target_name = "[linked_account.owner_name] (via [eftpos_name])"
 								T.purpose = transaction_purpose
 								if(transaction_amount > 0)
@@ -252,7 +252,7 @@
 								T.time = worldtime2text()
 								D.transaction_log.Add(T)
 								//
-								T = new()
+								T = new /datum/transaction()
 								T.target_name = D.owner_name
 								T.purpose = transaction_purpose
 								T.amount = "[transaction_amount]"

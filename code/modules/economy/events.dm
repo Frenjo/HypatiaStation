@@ -1,18 +1,17 @@
-
-/datum/round_event/economic_event
+/datum/round_event/economic
 	endWhen = 50			//this will be set randomly, later
 	announceWhen = 15
+
 	var/event_type = 0
 	var/list/cheaper_goods = list()
 	var/list/dearer_goods = list()
 	var/decl/trade_destination/affected_dest
 
-/datum/round_event/economic_event/start()
+/datum/round_event/economic/start()
 	affected_dest = GET_DECL_INSTANCE(pickweight(global.CTeconomy.weighted_random_event_locations))
 	if(length(affected_dest.viable_random_events))
 		endWhen = rand(60, 300)
 		event_type = pick(affected_dest.viable_random_events)
-
 		if(!event_type)
 			return
 
@@ -51,9 +50,9 @@
 		for(var/good_type in cheaper_goods)
 			affected_dest.temp_price_change[good_type] = rand(1, 100) / 100
 
-/datum/round_event/economic_event/announce()
+/datum/round_event/economic/announce()
 	//copy-pasted from the admin verbs to submit new newscaster messages
-	var/datum/feed_message/newMsg = new /datum/feed_message
+	var/datum/feed_message/newMsg = new /datum/feed_message()
 	newMsg.author = "Tau Ceti Daily"
 	newMsg.is_admin_message = TRUE
 
@@ -93,12 +92,12 @@
 
 	for_no_type_check(var/datum/feed_channel/FC, global.CTeconomy.news_network.channels)
 		if(FC.channel_name == "Tau Ceti Daily")
-			FC.messages += newMsg
+			FC.messages.Add(newMsg)
 			break
 	for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
 		caster.newsAlert("Tau Ceti Daily")
 
-/datum/round_event/economic_event/end()
+/datum/round_event/economic/end()
 	for(var/good_type in dearer_goods)
 		affected_dest.temp_price_change[good_type] = 1
 	for(var/good_type in cheaper_goods)

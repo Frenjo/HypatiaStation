@@ -254,21 +254,21 @@
 	// TODO: Investigate this, it might still be broken. Previous comment said:
 	switch(new_potency) //(potency) //It wants to use the default potency instead of the new, so it was always 10. Will try to come back to this later - Cheridan
 		if(0 to 10)
-			new /obj/item/spacecash/(new_loc)
+			new /obj/item/cash(new_loc)
 		if(11 to 20)
-			new /obj/item/spacecash/c10(new_loc)
+			new /obj/item/cash/c10(new_loc)
 		if(21 to 30)
-			new /obj/item/spacecash/c20(new_loc)
+			new /obj/item/cash/c20(new_loc)
 		if(31 to 40)
-			new /obj/item/spacecash/c50(new_loc)
+			new /obj/item/cash/c50(new_loc)
 		if(41 to 50)
-			new /obj/item/spacecash/c100(new_loc)
+			new /obj/item/cash/c100(new_loc)
 		if(51 to 60)
-			new /obj/item/spacecash/c200(new_loc)
+			new /obj/item/cash/c200(new_loc)
 		if(61 to 80)
-			new /obj/item/spacecash/c500(new_loc)
+			new /obj/item/cash/c500(new_loc)
 		else
-			new /obj/item/spacecash/c1000(new_loc)
+			new /obj/item/cash/c1000(new_loc)
 
 //Workaround to keep harvesting from working weirdly.
 /obj/item/reagent_holder/food/snacks/grown/money/initialise()

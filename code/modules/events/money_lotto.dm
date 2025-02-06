@@ -1,7 +1,7 @@
 /datum/round_event/money_lotto
 	var/winner_name = "John Smith"
 	var/winner_sum = 0
-	var/deposit_success = 0
+	var/deposit_success = FALSE
 
 /datum/round_event/money_lotto/start()
 	winner_sum = pick(5000, 10000, 50000, 100000, 500000, 1000000, 1500000)
@@ -20,10 +20,10 @@
 			T.source_terminal = "Biesel TCD Terminal #[rand(111, 333)]"
 			D.transaction_log.Add(T)
 
-			deposit_success = 1
+			deposit_success = TRUE
 
 /datum/round_event/money_lotto/announce()
-	var/datum/feed_message/newMsg = new /datum/feed_message
+	var/datum/feed_message/newMsg = new /datum/feed_message()
 	newMsg.author = "NanoTrasen Editor"
 	newMsg.is_admin_message = TRUE
 

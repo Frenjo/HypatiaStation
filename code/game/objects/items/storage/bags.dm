@@ -256,4 +256,4 @@
 	max_combined_w_class = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * cash.w_class
 	max_w_class = 3
 	w_class = 1
-	can_hold = list(/obj/item/coin, /obj/item/spacecash)
+	can_hold = list(/obj/item/coin, /obj/item/cash)

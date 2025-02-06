@@ -87,7 +87,7 @@
 		for(var/obj/item/item in case)
 			qdel(item)
 		for(var/i = 0; i < 3; i++)
-			new /obj/item/spacecash/c1000(case)
+			new /obj/item/cash/c1000(case)
 		new /obj/item/gun/energy/crossbow(case)
 		new /obj/item/gun/projectile/mateba(case)
 		new /obj/item/ammo_magazine/a357(case)

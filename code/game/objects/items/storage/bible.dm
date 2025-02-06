@@ -15,7 +15,7 @@
 
 	starts_with = list(
 		/obj/item/reagent_holder/food/drinks/cans/beer = 2,
-		/obj/item/spacecash = 3
+		/obj/item/cash = 3
 	)
 
 //BS12 EDIT

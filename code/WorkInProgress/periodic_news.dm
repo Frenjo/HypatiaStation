@@ -138,7 +138,7 @@ GLOBAL_GLOBL_LIST_INIT(newscaster_standard_feeds, list(
 		sendto.is_admin_channel = TRUE
 		global.CTeconomy.news_network.channels.Add(sendto)
 
-	sendto.messages += newMsg
+	sendto.messages.Add(newMsg)
 
 	for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
 		caster.newsAlert(news.channel_name)

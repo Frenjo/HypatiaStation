@@ -1,4 +1,3 @@
-
 /datum/round_event/mundane_news
 	endWhen = 10
 
@@ -118,7 +117,7 @@
 				else
 					newMsg.body += "is recovering from plastic surgery in a clinic on [affected_dest.name] for the [pick("second", "third", "fourth")] time, reportedly having made the decision in response to "
 					newMsg.body += "[pick("unkind comments by an ex", "rumours started by jealous friends",\
-					"the decision to be dropped by a major sponsor", "a disasterous interview on Tau Ceti Tonight")]."
+					"the decision to be dropped by a major sponsor", "a disastrous interview on Tau Ceti Tonight")]."
 			if(TOURISM)
 				newMsg.body += "Tourists are flocking to [affected_dest.name] after the surprise announcement of [pick("major shopping bargains by a wily retailer", \
 				"a huge new ARG by a popular entertainment company", "a secret tour by popular artiste [random_name(pick(MALE, FEMALE))]")]. \
@@ -126,7 +125,7 @@
 
 	for_no_type_check(var/datum/feed_channel/FC, global.CTeconomy.news_network.channels)
 		if(FC.channel_name == "Tau Ceti Daily")
-			FC.messages += newMsg
+			FC.messages.Add(newMsg)
 			break
 	for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
 		caster.newsAlert("Tau Ceti Daily")
@@ -136,12 +135,12 @@
 
 /datum/round_event/trivial_news/announce()
 	//copy-pasted from the admin verbs to submit new newscaster messages
-	var/datum/feed_message/newMsg = new /datum/feed_message
+	var/datum/feed_message/newMsg = new /datum/feed_message()
 	newMsg.author = "Editor Mike Hammers"
 	//newMsg.is_admin_message = 1
 	var/decl/trade_destination/affected_dest = GET_DECL_INSTANCE(pick(global.CTeconomy.weighted_mundane_event_locations))
 	newMsg.body = pick(
-		"Tree stuck in tajaran; firefighters baffled.", \
+		"Tree stuck in Tajaran; firefighters baffled.", \
 		"Armadillos want aardvarks removed from dictionary claims 'here first'.", \
 		"Angel found dancing on pinhead ordered to stop; cited for public nuisance.", \
 		"Letters claim they are better than number; 'Always have been'.", \
@@ -227,7 +226,7 @@
 
 	for_no_type_check(var/datum/feed_channel/FC, global.CTeconomy.news_network.channels)
 		if(FC.channel_name == "The Gibson Gazette")
-			FC.messages += newMsg
+			FC.messages.Add(newMsg)
 			break
 	for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
 		caster.newsAlert("The Gibson Gazette")

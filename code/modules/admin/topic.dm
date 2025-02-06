@@ -2525,7 +2525,7 @@
 			feedback_inc("newscaster_stories",1)
 			for_no_type_check(var/datum/feed_channel/FC, global.CTeconomy.news_network.channels)
 				if(FC.channel_name == src.admincaster_feed_channel.channel_name)
-					FC.messages += newMsg //Adding message to the network's appropriate feed_channel
+					FC.messages.Add(newMsg) //Adding message to the network's appropriate feed_channel
 					break
 			src.admincaster_screen=4
 

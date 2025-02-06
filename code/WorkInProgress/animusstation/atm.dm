@@ -18,13 +18,13 @@ log transactions
 	use_power = 1
 	idle_power_usage = 10
 	var/obj/item/card/id/card
-	var/obj/item/spacecash/cashes = list()
+	var/obj/item/cash/cashes = list()
 	var/inserted = 0
 	var/accepted = 0
 	var/pincode = 0
 
 	attackby(var/obj/A, var/mob/user)
-		if(istype(A,/obj/item/spacecash))
+		if(istype(A,/obj/item/cash))
 			cashes += A
 			user.drop_item()
 			A.forceMove(src)
@@ -101,21 +101,21 @@ log transactions
 					card.money -= amount
 					switch(amount)
 						if(1)
-							new /obj/item/spacecash(loc)
+							new /obj/item/cash(loc)
 						if(10)
-							new /obj/item/spacecash/c10(loc)
+							new /obj/item/cash/c10(loc)
 						if(20)
-							new /obj/item/spacecash/c20(loc)
+							new /obj/item/cash/c20(loc)
 						if(50)
-							new /obj/item/spacecash/c50(loc)
+							new /obj/item/cash/c50(loc)
 						if(100)
-							new /obj/item/spacecash/c100(loc)
+							new /obj/item/cash/c100(loc)
 						if(200)
-							new /obj/item/spacecash/c200(loc)
+							new /obj/item/cash/c200(loc)
 						if(500)
-							new /obj/item/spacecash/c500(loc)
+							new /obj/item/cash/c500(loc)
 						if(1000)
-							new /obj/item/spacecash/c1000(loc)
+							new /obj/item/cash/c1000(loc)
 				else
 					user << "\red Error: Insufficient funds."
 					return
@@ -144,7 +144,7 @@ log transactions
 		if(usr.machine == src && in_range(src, usr) || issilicon(usr))
 			if(href_list["eca"])
 				if(accepted)
-					for(var/obj/item/spacecash/M in cashes)
+					for(var/obj/item/cash/M in cashes)
 						M.forceMove(loc)
 					inserted = 0
 					if(!cashes)

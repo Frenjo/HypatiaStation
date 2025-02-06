@@ -44,8 +44,9 @@ CONTROLLER_DEF(economy)
 	news_network.channels.Add(new /datum/feed_channel/tau_ceti_daily())
 	news_network.channels.Add(new /datum/feed_channel/gibson_gazette())
 
-	// Sets the current date string.
+	// Sets the current date string and randomises the starting account number.
 	current_date_string = "[num2text(rand(1, 31))] [pick(GLOBL.months)], [GLOBL.game_year]"
+	next_account_number = rand(111111, 999999)
 
 	// Sets up trade destinations.
 	for_no_type_check(var/decl/trade_destination/D, GET_DECL_SUBTYPE_INSTANCES(/decl/trade_destination))
@@ -62,8 +63,6 @@ CONTROLLER_DEF(economy)
 /datum/controller/economy/proc/create_special_money_account(owner_name, starting_money = 0)
 	RETURN_TYPE(/datum/money_account)
 
-	next_account_number = rand(111111, 999999)
-
 	var/datum/money_account/account = new /datum/money_account()
 	account.owner_name = "[owner_name] Account"
 	account.account_number = rand(111111, 999999)
@@ -78,9 +77,9 @@ CONTROLLER_DEF(economy)
 	T.date = "2nd April, 2555"
 	T.time = "11:24"
 	T.source_terminal = "Biesel GalaxyNet Terminal #277"
+	account.transaction_log.Add(T)
 
 	// Adds the account.
-	account.transaction_log.Add(T)
 	all_money_accounts.Add(account)
 
 	return account

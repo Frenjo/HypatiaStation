@@ -44,7 +44,7 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 	//see:
 	// Code/WorkInProgress/Cael_Aislinn/Economy/Economy_Events.dm
 	// Code/WorkInProgress/Cael_Aislinn/Economy/Economy_Events_Mundane.dm
-	possibleEvents[/datum/round_event/economic_event] = 300
+	possibleEvents[/datum/round_event/economic] = 300
 	possibleEvents[/datum/round_event/trivial_news] = 400
 	possibleEvents[/datum/round_event/mundane_news] = 300
 

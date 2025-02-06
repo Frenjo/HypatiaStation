@@ -5,7 +5,7 @@
 	icon_state = "wallet"
 	w_class = 2
 	can_hold = list(
-		/obj/item/spacecash,
+		/obj/item/cash,
 		/obj/item/card,
 		/obj/item/clothing/mask/cigarette,
 		/obj/item/flashlight/pen,
@@ -31,10 +31,10 @@
 
 /obj/item/storage/wallet/random/New()
 	var/list/cash_types = list(
-		/obj/item/spacecash/c10, /obj/item/spacecash/c100,
-		/obj/item/spacecash/c1000, /obj/item/spacecash/c20,
-		/obj/item/spacecash/c200, /obj/item/spacecash/c50,
-		/obj/item/spacecash/c500
+		/obj/item/cash/c10, /obj/item/cash/c100,
+		/obj/item/cash/c1000, /obj/item/cash/c20,
+		/obj/item/cash/c200, /obj/item/cash/c50,
+		/obj/item/cash/c500
 	)
 	var/list/coin_types = list(
 		/obj/item/coin/silver, /obj/item/coin/silver,

@@ -91,18 +91,18 @@
 	req_access = list(ACCESS_HEADS_VAULT)
 
 	starts_with = list(
-		/obj/item/spacecash/c1000,
-		/obj/item/spacecash/c1000,
-		/obj/item/spacecash/c1000,
-		/obj/item/spacecash/c500,
-		/obj/item/spacecash/c500,
-		/obj/item/spacecash/c500,
-		/obj/item/spacecash/c500,
-		/obj/item/spacecash/c500,
-		/obj/item/spacecash/c200,
-		/obj/item/spacecash/c200,
-		/obj/item/spacecash/c200,
-		/obj/item/spacecash/c200,
-		/obj/item/spacecash/c200,
-		/obj/item/spacecash/c200
+		/obj/item/cash/c1000,
+		/obj/item/cash/c1000,
+		/obj/item/cash/c1000,
+		/obj/item/cash/c500,
+		/obj/item/cash/c500,
+		/obj/item/cash/c500,
+		/obj/item/cash/c500,
+		/obj/item/cash/c500,
+		/obj/item/cash/c200,
+		/obj/item/cash/c200,
+		/obj/item/cash/c200,
+		/obj/item/cash/c200,
+		/obj/item/cash/c200,
+		/obj/item/cash/c200
 	)

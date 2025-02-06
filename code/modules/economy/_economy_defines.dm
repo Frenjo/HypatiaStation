@@ -1,4 +1,3 @@
-
 // Events
 #define RIOTS 1
 #define WILD_ANIMAL_ATTACK 2

@@ -57,7 +57,7 @@
 					dat += "<td><b>Value</b></td>"
 					dat += "<td><b>Source terminal ID</b></td>"
 					dat += "</tr>"
-					for(var/datum/transaction/T in detailed_account_view.transaction_log)
+					for_no_type_check(var/datum/transaction/T, detailed_account_view.transaction_log)
 						dat += "<tr>"
 						dat += "<td>[T.date]</td>"
 						dat += "<td>[T.time]</td>"
@@ -127,7 +127,7 @@
 					global.CTeconomy.station_account.money -= starting_funds
 
 					//create a transaction log entry
-					var/datum/transaction/T = new()
+					var/datum/transaction/T = new /datum/transaction()
 					T.target_name = account_name
 					T.purpose = "New account funds initialisation"
 					T.amount = "([starting_funds])"

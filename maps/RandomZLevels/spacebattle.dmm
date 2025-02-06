@@ -341,7 +341,7 @@
 "gF" = (/turf/closed/wall/shuttle/corner/exterior/dark_old/sw,/turf/closed/wall/shuttle{icon_state = "diagonalWall3"},/area/away_mission/spacebattle/syndicate4)
 "gG" = (/turf/closed/wall/shuttle/corner/exterior/dark_old/se,/turf/closed/wall/shuttle{dir = 4; icon_state = "diagonalWall3"},/area/away_mission/spacebattle/syndicate4)
 "gH" = (/obj/structure/closet/crate/secure/weapon,/obj/item/gun/energy/laser,/turf/open/floor/plating/metal,/area/away_mission/spacebattle/cruiser)
-"gI" = (/obj/structure/closet/crate,/obj/item/spacecash/c10,/obj/item/spacecash/c10,/turf/open/floor/plating/metal,/area/away_mission/spacebattle/cruiser)
+"gI" = (/obj/structure/closet/crate,/obj/item/cash/c10,/obj/item/cash/c10,/turf/open/floor/plating/metal,/area/away_mission/spacebattle/cruiser)
 "gJ" = (/obj/effect/decal/cleanable/blood,/turf/closed/wall/shuttle{icon_state = "swall3"; tag = "icon-swall3"},/area/away_mission/spacebattle/cruiser)
 "gK" = (/obj/effect/landmark/corpse/doctor{mobname = "Adam Smith"; name = "Adam Smith"},/obj/effect/decal/cleanable/blood,/turf/open/floor,/area/away_mission/spacebattle/cruiser)
 "gL" = (/obj/machinery/optable,/turf/open/floor/tiled/white,/area/away_mission/spacebattle/cruiser)

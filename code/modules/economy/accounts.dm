@@ -1,4 +1,3 @@
-
 /datum/money_account
 	var/owner_name = ""
 	var/account_number = 0
@@ -20,13 +19,13 @@
 
 /proc/create_money_account(new_owner_name = "Default user", starting_funds = 0, obj/machinery/account_database/source_db)
 	//create a new account
-	var/datum/money_account/M = new()
+	var/datum/money_account/M = new /datum/money_account()
 	M.owner_name = new_owner_name
 	M.remote_access_pin = rand(1111, 111111)
 	M.money = starting_funds
 
 	//create an entry in the account transaction log for when it was created
-	var/datum/transaction/T = new()
+	var/datum/transaction/T = new /datum/transaction()
 	T.target_name = new_owner_name
 	T.purpose = "Account creation"
 	T.amount = starting_funds
@@ -64,9 +63,9 @@
 		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
 		stampoverlay.icon_state = "paper_stamp-cent"
 		if(!R.stamped)
-			R.stamped = new
-		R.stamped += /obj/item/stamp
-		R.overlays += stampoverlay
+			R.stamped = list()
+		R.stamped.Add(/obj/item/stamp)
+		R.overlays.Add(stampoverlay)
 		R.stamps += "<HR><i>This paper has been stamped by the Accounts Database.</i>"
 
 	//add the account
@@ -76,12 +75,12 @@
 	return M
 
 /proc/charge_to_account(attempt_account_number, source_name, purpose, terminal_id, amount)
-	for(var/datum/money_account/D in global.CTeconomy.all_money_accounts)
+	for_no_type_check(var/datum/money_account/D, global.CTeconomy.all_money_accounts)
 		if(D.account_number == attempt_account_number && !D.suspended)
 			D.money += amount
 
 			//create a transaction log entry
-			var/datum/transaction/T = new()
+			var/datum/transaction/T = new /datum/transaction()
 			T.target_name = source_name
 			T.purpose = purpose
 			if(amount < 0)
@@ -100,13 +99,13 @@
 
 //this returns the first account datum that matches the supplied accnum/pin combination, it returns null if the combination did not match any account
 /proc/attempt_account_access(attempt_account_number, attempt_pin_number, security_level_passed = 0)
-	for(var/datum/money_account/D in global.CTeconomy.all_money_accounts)
+	for_no_type_check(var/datum/money_account/D, global.CTeconomy.all_money_accounts)
 		if(D.account_number == attempt_account_number)
 			if(D.security_level <= security_level_passed && (!D.security_level || D.remote_access_pin == attempt_pin_number))
 				return D
 			break
 
 /proc/get_account(account_number)
-	for(var/datum/money_account/D in global.CTeconomy.all_money_accounts)
+	for_no_type_check(var/datum/money_account/D, global.CTeconomy.all_money_accounts)
 		if(D.account_number == account_number)
 			return D

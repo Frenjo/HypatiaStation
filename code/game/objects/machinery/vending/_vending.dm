@@ -27,9 +27,9 @@
 
 	var/list/slogan_list = list()	// Slogans, optional.
 	var/list/ad_list = list()		// Small ad messages in the vending screen with a random chance of popping up whenever you open it.
-	var/list/product_records = list()
-	var/list/hidden_records = list()
-	var/list/coin_records = list()
+	var/list/datum/data/vending_product/product_records = list()
+	var/list/datum/data/vending_product/hidden_records = list()
+	var/list/datum/data/vending_product/coin_records = list()
 
 	var/datum/data/vending_product/currently_vending = null // A /datum/data/vending_product instance of what we're paying for right now.
 
@@ -49,7 +49,7 @@
 	var/obj/item/coin/coin
 
 	var/check_accounts = 0	// 1 = requires PIN and checks accounts. 0 = You slide an ID, it vends, SPACE COMMUNISM!
-	var/obj/item/spacecash/ewallet/ewallet
+	var/obj/item/cash/charge_card/cash_card
 
 	var/wires = 15
 	var/const/WIRE_EXTEND = 1
@@ -106,7 +106,7 @@
 	if(emagged)
 		to_chat(user, SPAN_WARNING("[src]'s product lock is already shorted!"))
 		return FALSE
-	to_chat(user, SPAN_WARNING("You short out the product lock on [src]."))
+	to_chat(user, SPAN_WARNING("You short out the product lock on \the [src]."))
 	emagged = TRUE
 	return TRUE
 
@@ -128,18 +128,18 @@
 		user.drop_item()
 		W.forceMove(src)
 		coin = W
-		to_chat(user, SPAN_INFO("You insert the [W] into the [src]"))
+		to_chat(user, SPAN_INFO("You insert \the [W] into \the [src]."))
 		return
 	else if(istype(W, /obj/item/card) && currently_vending)
 		var/obj/item/card/I = W
 		scan_card(I)
-	else if(istype(W, /obj/item/spacecash/ewallet))
+	else if(istype(W, /obj/item/cash/charge_card))
 		user.drop_item()
 		W.forceMove(src)
-		ewallet = W
-		to_chat(user, SPAN_INFO("You insert the [W] into the [src]"))
+		cash_card = W
+		to_chat(user, SPAN_INFO("You insert \the [W] into \the [src]."))
 	else if(panel_open)
-		for(var/datum/data/vending_product/R in product_records)
+		for_no_type_check(var/datum/data/vending_product/R, product_records)
 			if(istype(W, R.product_path))
 				stock(R, user)
 				qdel(W)
@@ -176,13 +176,13 @@
 	if(length(premium))
 		dat += "<b>Coin slot:</b> [coin ? coin : "No coin inserted"] (<a href='byond://?src=\ref[src];remove_coin=1'>Remove</A>)<br>"
 
-	if(isnotnull(ewallet))
-		dat += "<b>Charge card's credits:</b> [ewallet ? ewallet.worth : "No charge card inserted"] (<a href='byond://?src=\ref[src];remove_ewallet=1'>Remove</A>)<br><br>"
+	if(isnotnull(cash_card))
+		dat += "<b>Charge card's credits:</b> [cash_card ? cash_card.worth : "No charge card inserted"] (<a href='byond://?src=\ref[src];remove_charge_card=1'>Remove</A>)<br><br>"
 
 	if(!length(product_records))
 		dat += SPAN_WARNING("No product loaded!")
 	else
-		var/list/display_records = product_records
+		var/list/datum/data/vending_product/display_records = product_records
 		if(extended_inventory)
 			display_records = product_records + hidden_records
 		if(isnotnull(coin))
@@ -190,7 +190,7 @@
 		if(isnotnull(coin) && extended_inventory)
 			display_records = product_records + hidden_records + coin_records
 
-		for(var/datum/data/vending_product/R in display_records)
+		for_no_type_check(var/datum/data/vending_product/R, display_records)
 			dat += "<FONT color = '[R.display_color]'><B>[R.product_name]</B>:"
 			dat += " <b>[R.amount]</b> </font>"
 			if(R.price)
@@ -250,15 +250,15 @@
 		to_chat(usr, SPAN_INFO("You remove the [coin] from the [src]"))
 		coin = null
 
-	if(href_list["remove_ewallet"] && !issilicon(usr))
-		if(isnull(ewallet))
+	if(href_list["remove_charge_card"] && !issilicon(usr))
+		if(isnull(cash_card))
 			to_chat(usr, "There is no charge card in this machine.")
 			return
-		ewallet.forceMove(loc)
+		cash_card.forceMove(loc)
 		if(!usr.get_active_hand())
-			usr.put_in_hands(ewallet)
-		to_chat(usr, SPAN_INFO("You remove the [ewallet] from the [src]"))
-		ewallet = null
+			usr.put_in_hands(cash_card)
+		to_chat(usr, SPAN_INFO("You remove \the [cash_card] from \the [src]"))
+		cash_card = null
 
 	if(usr.contents.Find(src) || (in_range(src, usr) && isturf(loc)))
 		usr.set_machine(src)
@@ -285,12 +285,12 @@
 			if(isnull(R.price))
 				vend(R, usr)
 			else
-				if(isnotnull(ewallet))
-					if(R.price <= ewallet.worth)
-						ewallet.worth -= R.price
+				if(isnotnull(cash_card))
+					if(R.price <= cash_card.worth)
+						cash_card.worth -= R.price
 						vend(R, usr)
 					else
-						to_chat(usr, SPAN_WARNING("The ewallet doesn't have enough money to pay for that."))
+						to_chat(usr, SPAN_WARNING("The charge card doesn't have enough money to pay for that."))
 						currently_vending = R
 						updateUsrDialog()
 				else
@@ -497,7 +497,7 @@
 
 //Oh no we're malfunctioning! Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()
-	for(var/datum/data/vending_product/R in product_records)
+	for_no_type_check(var/datum/data/vending_product/R, product_records)
 		if(R.amount <= 0) //Try to use a record that actually has something to dump.
 			continue
 		var/dump_path = R.product_path
@@ -519,7 +519,7 @@
 	if(isnull(target))
 		return 0
 
-	for(var/datum/data/vending_product/R in product_records)
+	for_no_type_check(var/datum/data/vending_product/R, product_records)
 		if(R.amount <= 0) //Try to use a record that actually has something to dump.
 			continue
 		var/dump_path = R.product_path
