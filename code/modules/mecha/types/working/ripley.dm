@@ -66,7 +66,7 @@
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/firefighter
 
-/obj/mecha/working/ripley/deathripley
+/obj/mecha/working/ripley/death
 	name = "\improper DEATH-RIPLEY"
 	desc = "OH SHIT IT'S THE DEATHSQUAD WE'RE ALL GONNA DIE"
 	icon_state = "deathripley"
@@ -77,7 +77,7 @@
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/deathripley
 
-/obj/mecha/working/ripley/deathripley/New()
+/obj/mecha/working/ripley/death/New()
 	. = ..()
 	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/tool/hydraulic_clamp/safety(src)
 	ME.attach(src)

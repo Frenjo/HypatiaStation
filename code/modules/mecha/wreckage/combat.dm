@@ -64,7 +64,6 @@
 	name = "H.O.N.K wreckage"
 	icon_state = "honk-broken"
 	part_salvage = list(
-		/obj/item/mecha_part/chassis/honk,
 		/obj/item/mecha_part/part/honk/torso,
 		/obj/item/mecha_part/part/honk/head,
 		/obj/item/mecha_part/part/honk/left_arm,
@@ -73,21 +72,33 @@
 		/obj/item/mecha_part/part/honk/right_leg
 	)
 
+/obj/structure/mecha_wreckage/honk/New()
+	. = ..()
+	crowbar_salvage.Add(new /obj/item/mecha_part/chassis/honk(src))
+
 // Reticence
 /obj/structure/mecha_wreckage/reticence
 	name = "Reticence wreckage"
 	icon_state = "reticence-broken"
+	part_salvage = list(
+		/obj/item/mecha_part/part/reticence/torso,
+		/obj/item/mecha_part/part/reticence/head,
+		/obj/item/mecha_part/part/reticence/left_arm,
+		/obj/item/mecha_part/part/reticence/right_arm,
+		/obj/item/mecha_part/part/reticence/left_leg,
+		/obj/item/mecha_part/part/reticence/right_leg
+	)
+
+/obj/structure/mecha_wreckage/reticence/New()
+	. = ..()
+	crowbar_salvage.Add(new /obj/item/mecha_part/chassis/reticence(src))
 
 // Eidolon
 /obj/structure/mecha_wreckage/eidolon
 	name = "Eidolon wreckage"
 	desc = "Remains of some unfortunate mecha. There's surprising amount of salvage on it."
 	icon_state = "eidolon-broken"
-	salvage_num = 10
-
-/obj/structure/mecha_wreckage/eidolon/New()
-	. = ..()
-	welder_salvage = list(
+	part_salvage = list(
 		/obj/item/mecha_part/part/eidolon/torso,
 		/obj/item/mecha_part/part/eidolon/head,
 		/obj/item/mecha_part/part/eidolon/left_arm,
@@ -95,7 +106,11 @@
 		/obj/item/mecha_part/part/eidolon/left_leg,
 		/obj/item/mecha_part/part/eidolon/right_leg
 	)
-	wirecutters_salvage = list(
+	salvage_num = 10
+
+/obj/structure/mecha_wreckage/eidolon/New()
+	. = ..()
+	wirecutters_salvage.Add(
 		/obj/item/circuitboard/mecha/eidolon/main,
 		/obj/item/circuitboard/mecha/eidolon/peripherals,
 		/obj/item/circuitboard/mecha/eidolon/targeting
