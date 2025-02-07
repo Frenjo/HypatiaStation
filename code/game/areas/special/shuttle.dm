@@ -206,14 +206,57 @@
 	name = "\improper Special Ops Shuttle Station"
 	icon_state = "shuttlered2"
 
-/*
- * Syndicate Elite
- */
-/area/shuttle/syndicate_elite/mothership
+// Syndicate Mercenary
+/area/shuttle/syndicate/mercenary
+	name = "\improper Syndicate Mercenary Shuttle"
+	icon_state = "shuttlered"
+
+/area/shuttle/syndicate/mercenary/start
+	name = "\improper Syndicate Forward Operating Base"
+	base_turf = /turf/open/floor/plating/metal
+
+/area/shuttle/syndicate/mercenary/southwest
+	name = "\improper South-West of SS13"
+	icon_state = "southwest"
+
+/area/shuttle/syndicate/mercenary/northwest
+	name = "\improper North-West of SS13"
+	icon_state = "northwest"
+
+/area/shuttle/syndicate/mercenary/northeast
+	name = "\improper North-East of SS13"
+	icon_state = "northeast"
+
+/area/shuttle/syndicate/mercenary/southeast
+	name = "\improper Nouth-East of SS13"
+	icon_state = "southeast"
+
+/area/shuttle/syndicate/mercenary/north
+	name = "\improper North of SS13"
+	icon_state = "north"
+
+/area/shuttle/syndicate/mercenary/south
+	name = "\improper South of SS13"
+	icon_state = "south"
+
+/area/shuttle/syndicate/mercenary/commssat
+	name = "\improper South of the communication satellite"
+	icon_state = "south"
+
+/area/shuttle/syndicate/mercenary/mining
+	name = "\improper North-East of the mining asteroid"
+	icon_state = "north"
+
+/area/shuttle/syndicate/mercenary/transit
+	name = "\improper Hyperspace"
+	base_turf = /turf/space/transit/north
+
+// Syndicate Elite
+/area/shuttle/syndicate/elite/mothership
 	name = "\improper Syndicate Elite Shuttle Mothership"
 	icon_state = "shuttlered"
 
-/area/shuttle/syndicate_elite/station
+/area/shuttle/syndicate/elite/station
 	name = "\improper Syndicate Elite Shuttle Station"
 	icon_state = "shuttlered2"
 
@@ -247,12 +290,43 @@
 	name = "\improper Research Shuttle Outpost"
 	icon_state = "shuttle"
 
-/*
- * Vox
- */
-/area/shuttle/vox/station
-	name = "\improper Vox Skipjack Station"
-	icon_state = "yellow"
+// Vox
+/area/shuttle/vox
+	name = "\improper Vox Skipjack"
+
+/area/shuttle/vox/start
+	name = "\improper Vox Skipjack Start"
+	icon_state = "shuttle"
+
+/area/shuttle/vox/transit
+	name = "\improper Hyperspace"
+	icon_state = "shuttle"
+	base_turf = /turf/space/transit/north
+
+/area/shuttle/vox/southwest_solars
+	name = "\improper Aft Port Solars"
+	icon_state = "southwest"
+	requires_power = FALSE
+
+/area/shuttle/vox/northwest_solars
+	name = "\improper Fore Port Solars"
+	icon_state = "northwest"
+	requires_power = FALSE
+
+/area/shuttle/vox/northeast_solars
+	name = "\improper Fore Starboard Solars"
+	icon_state = "northeast"
+	requires_power = FALSE
+
+/area/shuttle/vox/southeast_solars
+	name = "\improper Aft Starboard Solars"
+	icon_state = "southeast"
+	requires_power = FALSE
+
+/area/shuttle/vox/mining
+	name = "\improper Nearby mining asteroid"
+	icon_state = "north"
+	requires_power = FALSE
 
 // Engineering
 // Added engineering shuttle to make use of the 'Ruskie DJ Station'. -Frenjo

@@ -42,7 +42,7 @@ var/global/announce_vox_departure = TRUE //Stealth systems - give an announcemen
 	var/warning = FALSE // Warning about the end of the round.
 
 /obj/machinery/computer/vox_station/New()
-	curr_location = locate(/area/shuttle/vox/station)
+	curr_location = locate(/area/shuttle/vox/start)
 
 /obj/machinery/computer/vox_station/proc/vox_move_to(area/destination as area)
 	if(moving)
@@ -54,16 +54,16 @@ var/global/announce_vox_departure = TRUE //Stealth systems - give an announcemen
 		return
 
 	if(announce_vox_departure)
-		if(curr_location == locate(/area/shuttle/vox/station))
+		if(curr_location == locate(/area/shuttle/vox/start))
 			command_alert("Attention, [GLOBL.current_map.short_name], we just tracked a small target bypassing our defensive perimeter. Can't fire on it without hitting the station - you've got incoming visitors, like it or not.", "NSV Icarus")
-		else if(dest_location == locate(/area/shuttle/vox/station))
+		else if(dest_location == locate(/area/shuttle/vox/start))
 			command_alert("Your guests are pulling away, [GLOBL.current_map.short_name] - moving too fast for us to draw a bead on them. Looks like they're heading out of the system at a rapid clip.", "NSV Icarus")
 
 	moving = TRUE
 	lastMove = world.time
 
 	if(curr_location.z != dest_location.z)
-		var/area/transit_location = locate(/area/enemy/vox_station/transit)
+		var/area/transit_location = locate(/area/shuttle/vox/transit)
 		curr_location.move_contents_to(transit_location)
 		curr_location = transit_location
 		sleep(VOX_SHUTTLE_MOVE_TIME)
@@ -116,18 +116,18 @@ var/global/announce_vox_departure = TRUE //Stealth systems - give an announcemen
 				to_chat(user, SPAN_WARNING("Returning to dark space will end your raid and report your success or failure. If you are sure, press the button again."))
 				warning = TRUE
 				return
-		vox_move_to(/area/shuttle/vox/station)
+		vox_move_to(/area/shuttle/vox/start)
 		vox_shuttle_location = "start"
 	else if(href_list["solars_fore_starboard"])
-		vox_move_to(/area/enemy/vox_station/northeast_solars)
+		vox_move_to(/area/shuttle/vox/northeast_solars)
 	else if(href_list["solars_fore_port"])
-		vox_move_to(/area/enemy/vox_station/northwest_solars)
+		vox_move_to(/area/shuttle/vox/northwest_solars)
 	else if(href_list["solars_aft_starboard"])
-		vox_move_to(/area/enemy/vox_station/southeast_solars)
+		vox_move_to(/area/shuttle/vox/southeast_solars)
 	else if(href_list["solars_aft_port"])
-		vox_move_to(/area/enemy/vox_station/southwest_solars)
+		vox_move_to(/area/shuttle/vox/southwest_solars)
 	else if(href_list["mining"])
-		vox_move_to(/area/enemy/vox_station/mining)
+		vox_move_to(/area/shuttle/vox/mining)
 
 	add_fingerprint(usr)
 	updateUsrDialog()

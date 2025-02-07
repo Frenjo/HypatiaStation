@@ -1,7 +1,7 @@
 //Config stuff
 #define SYNDICATE_ELITE_MOVETIME 600	//Time to station is milliseconds. 60 seconds, enough time for everyone to be on the shuttle before it leaves.
-#define SYNDICATE_ELITE_STATION_AREATYPE "/area/shuttle/syndicate_elite/station" //Type of the spec ops shuttle area for station
-#define SYNDICATE_ELITE_DOCK_AREATYPE "/area/shuttle/syndicate_elite/mothership"	//Type of the spec ops shuttle area for dock
+#define SYNDICATE_ELITE_STATION_AREATYPE "/area/shuttle/syndicate/elite/station" //Type of the spec ops shuttle area for station
+#define SYNDICATE_ELITE_DOCK_AREATYPE "/area/shuttle/syndicate/elite/mothership"	//Type of the spec ops shuttle area for dock
 
 var/syndicate_elite_shuttle_moving_to_station = 0
 var/syndicate_elite_shuttle_moving_to_mothership = 0
@@ -22,8 +22,8 @@ var/syndicate_elite_shuttle_timeleft = 0
 	var/allowedtocall = 0
 
 /proc/syndicate_elite_process()
-	var/area/enemy/syndicate_mothership/control/syndicate_ship = locate()//To find announcer. This area should exist for this proc to work.
-	var/area/enemy/syndicate_mothership/elite_squad/elite_squad = locate()//Where is the specops area located?
+	var/area/enemy/syndicate/mothership/control/syndicate_ship = locate()//To find announcer. This area should exist for this proc to work.
+	var/area/enemy/syndicate/mothership/elite_squad/elite_squad = locate()//Where is the specops area located?
 	var/mob/living/silicon/decoy/announcer = locate() in syndicate_ship//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
 
 	var/list/message_tracker = list(0, 1, 2, 3, 5, 10, 30, 45) // Create a a list with potential time values.
@@ -143,8 +143,8 @@ var/syndicate_elite_shuttle_timeleft = 0
 //	proc/explosion(turf/epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range, adminlog = 1)
 
 */
-	var/area/start_location = locate(/area/shuttle/syndicate_elite/mothership)
-	var/area/end_location = locate(/area/shuttle/syndicate_elite/station)
+	var/area/start_location = locate(/area/shuttle/syndicate/elite/mothership)
+	var/area/end_location = locate(/area/shuttle/syndicate/elite/station)
 
 	var/list/turf/dstturfs = list()
 	var/throwy = world.maxy
@@ -245,7 +245,7 @@ var/syndicate_elite_shuttle_timeleft = 0
 		temp  = "Shuttle departing.<BR><BR><A href='byond://?src=\ref[src];mainmenu=1'>OK</A>"
 		updateUsrDialog()
 
-		var/area/enemy/syndicate_mothership/elite_squad/elite_squad = locate()
+		var/area/enemy/syndicate/mothership/elite_squad/elite_squad = locate()
 		if(elite_squad)
 			elite_squad.evac_alert()//Trigger alarm for the spec ops area.
 		syndicate_elite_shuttle_moving_to_station = 1

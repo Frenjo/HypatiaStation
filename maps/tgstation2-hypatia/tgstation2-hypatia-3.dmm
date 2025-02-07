@@ -164,7 +164,7 @@
 "tT" = (/obj/machinery/camera{c_tag = "Central Compartment Aft"; dir = 1; network = list("Tcomsat")},/obj/machinery/light,/turf/open/floor/circuit_grid/blue/mainframe,/area/external/tcomsat/chamber)
 "tU" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/machinery/door/airlock/hatch{name = "Telecoms East Wing"; req_access = list(61)},/obj/machinery/door/firedoor/border_only{dir = 8; icon = 'icons/obj/doors/emergency/fire2.dmi'; name = "Engineering Firelock East"},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/tiled/grey,/area/turret_protected/tcomsat/foyer)
 "tW" = (/obj/machinery/door/airlock/external{frequency = 1381; icon_state = "door_locked"; id_tag = "telecoms_outer"; locked = 1; name = "External Access"; req_access = list(10,13)},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/open/floor/plating/metal,/area/external/tcomsat/entrance)
-"uf" = (/turf/space,/area/enemy/syndicate_station/commssat)
+"uf" = (/turf/space,/area/shuttle/syndicate/mercenary/commssat)
 "ut" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/open/floor/tiled/dark/mainframe,/area/external/tcomsat/chamber)
 "uv" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1},/turf/open/floor/tiled/grey,/area/turret_protected/tcomsat/foyer)
 "uw" = (/turf/closed/wall/shuttle/corner/interior/white/ne{icon_state = "swall_plating"},/area/external/abandoned/ship)

@@ -6,7 +6,7 @@ GLOBAL_GLOBL_LIST_NEW(ghostteleportlocs)
 /hook/startup/proc/setup_teleport_locs()
 	. = TRUE
 	for_no_type_check(var/area/a, GLOBL.area_list)
-		if(istype(a, /area/shuttle) || istype(a, /area/enemy/syndicate_station) || istype(a, /area/enemy/wizard_station))
+		if(istype(a, /area/shuttle) || istype(a, /area/enemy/wizard_station))
 			continue
 		if(GLOBL.teleportlocs.Find(a.name))
 			continue

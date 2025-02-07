@@ -802,7 +802,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 		//if (!target.current.restrained())
 		//	return 0 // They're loose. Close but no cigar.
 
-		var/area/shuttle/vox/station/A = locate()
+		var/area/shuttle/vox/A = locate()
 		for(var/mob/living/carbon/human/M in A)
 			if(target.current == M)
 				return 1 //They're restrained on the shuttle. Success.
@@ -851,7 +851,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 /datum/objective/heist/loot/check_completion()
 	var/total_amount = 0
-	for(var/obj/O in locate(/area/shuttle/vox/station))
+	for(var/obj/O in locate(/area/shuttle/vox/start))
 		if(istype(O, target))
 			total_amount++
 		for(var/obj/I in O.contents)
@@ -907,7 +907,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 /datum/objective/heist/salvage/check_completion()
 	var/total_amount = 0
 
-	for(var/obj/item/O in locate(/area/shuttle/vox/station))
+	for(var/obj/item/O in locate(/area/shuttle/vox/start))
 		if(istype(O, /obj/item/stack/sheet))
 			var/obj/item/stack/sheet/S = O
 			if(S.material.type == target)

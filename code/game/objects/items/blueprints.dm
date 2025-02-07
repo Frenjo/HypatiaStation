@@ -80,7 +80,6 @@ move an amendment</a> to the drawing.</p>
 		/area/shuttle,
 		/area/centcom,
 		/area/external/asteroid,
-		/area/enemy/syndicate_station,
 		/area/enemy/wizard_station,
 		/area/external/prison
 		// /area/external/abandoned/derelict //commented out, all hail derelict-rebuilders!

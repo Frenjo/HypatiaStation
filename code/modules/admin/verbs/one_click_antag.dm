@@ -215,7 +215,7 @@
 		if(isnotnull(closet_spawn))
 			new /obj/structure/closet/syndicate/nuclear(closet_spawn.loc)
 
-		for(var/obj/effect/landmark/A in /area/enemy/syndicate_station/start) // Because that's the only place it can BE -Sieve
+		for(var/obj/effect/landmark/A in /area/shuttle/syndicate/mercenary/start) // Because that's the only place it can BE -Sieve
 			if(A.name == "Syndicate-Gear-Closet")
 				new /obj/structure/closet/syndicate/personal(A.loc)
 				qdel(A)
@@ -284,7 +284,7 @@
 	if(length(candidates))
 		var/num_agents = 6
 		//Spawns commandos and equips them.
-		for(var/obj/effect/landmark/L in /area/enemy/syndicate_mothership/elite_squad)
+		for(var/obj/effect/landmark/L in /area/enemy/syndicate/mothership/elite_squad)
 			if(num_agents <= 0)
 				break
 			if(L.name == "Syndicate-Commando")
@@ -313,7 +313,7 @@
 		if(num_agents >= 6)
 			return 0
 
-		for(var/obj/effect/landmark/L in /area/shuttle/syndicate_elite)
+		for(var/obj/effect/landmark/L in /area/shuttle/syndicate/elite)
 			if(L.name == "Syndicate-Commando-Bomb")
 				new /obj/effect/spawner/newbomb/timer/syndicate(L.loc)
 
