@@ -68,9 +68,9 @@
 /mob/living/carbon/slime/New()
 	create_reagents(100)
 	if(name == "baby slime")
-		name = text("[colour] baby slime ([rand(1, 1000)])")
+		name = "[colour] baby slime ([rand(1, 1000)])"
 	else
-		name = text("[colour] adult slime ([rand(1,1000)])")
+		name = "[colour] adult slime ([rand(1,1000)])"
 	real_name = name
 	spawn(1)
 		regenerate_icons()
@@ -247,8 +247,8 @@
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 50, 1, 1)
 		visible_message(SPAN_WARNING("<B>[M]</B> [M.attacktext] [src]!"))
-		M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
-		src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
+		M.attack_log += "\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>"
+		attack_log += "\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>"
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		adjustBruteLoss(damage)
 		updatehealth()
@@ -420,7 +420,7 @@
 	<BR><HR><BR>
 	<BR><A href='byond://?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
-	user << browse(dat, text("window=mob[name];size=340x480"))
+	user << browse(dat, "window=mob[name];size=340x480")
 	onclose(user, "mob[name]")
 	return
 
@@ -749,7 +749,7 @@
 		return
 	var/mob/living/carbon/human/G = new /mob/living/carbon/human
 	G.dna.mutantrace = "adamantine"
-	G.real_name = text("Adamantine Golem ([rand(1, 1000)])")
+	G.real_name = "Adamantine Golem ([rand(1, 1000)])"
 	G.equip_to_slot_or_del(new /obj/item/clothing/under/golem(G), SLOT_ID_WEAR_UNIFORM)
 	G.equip_to_slot_or_del(new /obj/item/clothing/suit/golem(G), SLOT_ID_WEAR_SUIT)
 	G.equip_to_slot_or_del(new /obj/item/clothing/shoes/golem(G), SLOT_ID_SHOES)

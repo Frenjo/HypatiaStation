@@ -201,8 +201,8 @@
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 50, 1, 1)
 		visible_message(SPAN_WARNING("<B>[M]</B> [M.attacktext] [src]!"))
-		M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
-		src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
+		M.attack_log += "\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>"
+		attack_log += "\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>"
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
 		var/datum/organ/external/affecting = get_organ(ran_zone(dam_zone))
@@ -294,30 +294,30 @@
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
 	<BR><HR>
-	<BR><B>Head(Mask):</B> <A href='byond://?src=\ref[src];item=mask'>[(isnotnull(wear_mask) ? wear_mask : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='byond://?src=\ref[src];item=l_hand'>[(isnotnull(l_hand) ? l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='byond://?src=\ref[src];item=r_hand'>[(isnotnull(r_hand) ? r_hand : "Nothing")]</A>
-	<BR><B>Gloves:</B> <A href='byond://?src=\ref[src];item=gloves'>[(isnotnull(gloves) ? gloves : "Nothing")]</A>
-	<BR><B>Eyes:</B> <A href='byond://?src=\ref[src];item=eyes'>[(isnotnull(glasses) ? glasses : "Nothing")]</A>
-	<BR><B>Left Ear:</B> <A href='byond://?src=\ref[src];item=l_ear'>[(isnotnull(l_ear) ? l_ear : "Nothing")]</A>
-	<BR><B>Right Ear:</B> <A href='byond://?src=\ref[src];item=r_ear'>[(isnotnull(r_ear) ? r_ear : "Nothing")]</A>
-	<BR><B>Head:</B> <A href='byond://?src=\ref[src];item=head'>[(isnotnull(head) ? head : "Nothing")]</A>
-	<BR><B>Shoes:</B> <A href='byond://?src=\ref[src];item=shoes'>[(isnotnull(shoes) ? shoes : "Nothing")]</A>
-	<BR><B>Belt:</B> <A href='byond://?src=\ref[src];item=belt'>[(isnotnull(belt) ? belt : "Nothing")]</A>
-	<BR><B>Uniform:</B> <A href='byond://?src=\ref[src];item=uniform'>[(isnotnull(wear_uniform) ? wear_uniform : "Nothing")]</A>
-	<BR><B>(Exo)Suit:</B> <A href='byond://?src=\ref[src];item=suit'>[(isnotnull(wear_suit) ? wear_suit : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='byond://?src=\ref[src];item=back'>[(isnotnull(back) ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !internal) ? " <A href='byond://?src=\ref[src];item=internal'>Set Internal</A>" : "")]
-	<BR><B>ID:</B> <A href='byond://?src=\ref[src];item=id'>[(isnotnull(id_store) ? id_store : "Nothing")]</A>
-	<BR><B>Suit Storage:</B> <A href='byond://?src=\ref[src];item=suit_store'>[(isnotnull(suit_store) ? suit_store : "Nothing")]</A>
-	<BR>[(isnotnull(handcuffed) ? "<A href='byond://?src=\ref[src];item=handcuff'>Handcuffed</A>" : "<A href='byond://?src=\ref[src];item=handcuff'>Not Handcuffed</A>")]
-	<BR>[(isnotnull(legcuffed) ? "<A href='byond://?src=\ref[src];item=legcuff'>Legcuffed</A>" : "")]
-	<BR>[(isnotnull(internal) ? "<A href='byond://?src=\ref[src];item=internal'>Remove Internal</A>" : "")]
+	<BR><B>Head(Mask):</B> <A href='byond://?src=\ref[src];item=mask'>[isnotnull(wear_mask) ? wear_mask : "Nothing"]</A>
+	<BR><B>Left Hand:</B> <A href='byond://?src=\ref[src];item=l_hand'>[isnotnull(l_hand) ? l_hand  : "Nothing"]</A>
+	<BR><B>Right Hand:</B> <A href='byond://?src=\ref[src];item=r_hand'>[isnotnull(r_hand) ? r_hand : "Nothing"]</A>
+	<BR><B>Gloves:</B> <A href='byond://?src=\ref[src];item=gloves'>[isnotnull(gloves) ? gloves : "Nothing"]</A>
+	<BR><B>Eyes:</B> <A href='byond://?src=\ref[src];item=eyes'>[isnotnull(glasses) ? glasses : "Nothing"]</A>
+	<BR><B>Left Ear:</B> <A href='byond://?src=\ref[src];item=l_ear'>[isnotnull(l_ear) ? l_ear : "Nothing"]</A>
+	<BR><B>Right Ear:</B> <A href='byond://?src=\ref[src];item=r_ear'>[isnotnull(r_ear) ? r_ear : "Nothing"]</A>
+	<BR><B>Head:</B> <A href='byond://?src=\ref[src];item=head'>[isnotnull(head) ? head : "Nothing"]</A>
+	<BR><B>Shoes:</B> <A href='byond://?src=\ref[src];item=shoes'>[isnotnull(shoes) ? shoes : "Nothing"]</A>
+	<BR><B>Belt:</B> <A href='byond://?src=\ref[src];item=belt'>[isnotnull(belt) ? belt : "Nothing"]</A>
+	<BR><B>Uniform:</B> <A href='byond://?src=\ref[src];item=uniform'>[isnotnull(wear_uniform) ? wear_uniform : "Nothing"]</A>
+	<BR><B>(Exo)Suit:</B> <A href='byond://?src=\ref[src];item=suit'>[isnotnull(wear_suit) ? wear_suit : "Nothing"]</A>
+	<BR><B>Back:</B> <A href='byond://?src=\ref[src];item=back'>[isnotnull(back) ? back : "Nothing"]</A> [(istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !internal) ? " <A href='byond://?src=\ref[src];item=internal'>Set Internal</A>" : ""]
+	<BR><B>ID:</B> <A href='byond://?src=\ref[src];item=id'>[isnotnull(id_store) ? id_store : "Nothing"]</A>
+	<BR><B>Suit Storage:</B> <A href='byond://?src=\ref[src];item=suit_store'>[isnotnull(suit_store) ? suit_store : "Nothing"]</A>
+	<BR>[isnotnull(handcuffed) ? "<A href='byond://?src=\ref[src];item=handcuff'>Handcuffed</A>" : "<A href='byond://?src=\ref[src];item=handcuff'>Not Handcuffed</A>"]
+	<BR>[isnotnull(legcuffed) ? "<A href='byond://?src=\ref[src];item=legcuff'>Legcuffed</A>" : ""]
+	<BR>[isnotnull(internal) ? "<A href='byond://?src=\ref[src];item=internal'>Remove Internal</A>" : ""]
 	<BR><A href='byond://?src=\ref[src];item=splints'>Remove Splints</A>
 	<BR><A href='byond://?src=\ref[src];item=pockets'>Empty Pockets</A>
 	<BR><A href='byond://?src=\ref[user];refresh=1'>Refresh</A>
 	<BR><A href='byond://?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
-	user << browse(dat, text("window=mob[name];size=340x480"))
+	user << browse(dat, "window=mob[name];size=340x480")
 	onclose(user, "mob[name]")
 	return
 
@@ -413,7 +413,7 @@
 			show_inv(machine)
 
 	if(href_list["mach_close"])
-		var/t1 = text("window=[]", href_list["mach_close"])
+		var/t1 = "window=[href_list["mach_close"]]"
 		unset_machine()
 		src << browse(null, t1)
 
@@ -515,8 +515,8 @@
 							if(hasHUD(usr, "security"))
 								read = 1
 								var/counter = 1
-								while(R.fields[text("com_[]", counter)])
-									to_chat(usr, text("[]", R.fields[text("com_[]", counter)]))
+								while(R.fields["com_[counter]"])
+									to_chat(usr, "[R.fields["com_[counter]"]]")
 									counter++
 								if(counter == 1)
 									to_chat(usr, "No comment found")
@@ -545,14 +545,14 @@
 								if(!t1 || usr.stat || usr.restrained() || !hasHUD(usr, "security"))
 									return
 								var/counter = 1
-								while(R.fields[text("com_[]", counter)])
+								while(R.fields["com_[counter]"])
 									counter++
 								if(ishuman(usr))
 									var/mob/living/carbon/human/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]")
+									R.fields["com_[counter]"] = "Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]"
 								if(isrobot(usr))
 									var/mob/living/silicon/robot/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.module.display_name] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]")
+									R.fields["com_[counter]"] = "Made by [U.name] ([U.module.display_name] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]"
 
 	if(href_list["medical"])
 		if(hasHUD(usr, "medical"))
@@ -644,8 +644,8 @@
 							if(hasHUD(usr, "medical"))
 								read = 1
 								var/counter = 1
-								while(R.fields[text("com_[]", counter)])
-									to_chat(usr, text("[]", R.fields[text("com_[]", counter)]))
+								while(R.fields["com_[counter]"])
+									to_chat(usr, "[R.fields["com_[counter]"]]")
 									counter++
 								if(counter == 1)
 									to_chat(usr, "No comment found")
@@ -674,14 +674,14 @@
 								if(!t1 || usr.stat || usr.restrained() || !hasHUD(usr, "medical"))
 									return
 								var/counter = 1
-								while(R.fields[text("com_[]", counter)])
+								while(R.fields["com_[counter]"])
 									counter++
 								if(ishuman(usr))
 									var/mob/living/carbon/human/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]")
+									R.fields["com_[counter]"] = "Made by [U.get_authentification_name()] ([U.get_assignment()]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]"
 								if(isrobot(usr))
 									var/mob/living/silicon/robot/U = usr
-									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.module.display_name] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]")
+									R.fields["com_[counter]"] = "Made by [U.name] ([U.module.display_name] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [GLOBL.game_year]<BR>[t1]"
 
 	if(href_list["lookitem"])
 		var/obj/item/I = locate(href_list["lookitem"])

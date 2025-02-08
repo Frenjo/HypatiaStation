@@ -90,7 +90,7 @@
 /mob/living/silicon/robot/proc/interact(mob/user)
 	if(wiresexposed && (!issilicon(user)))
 		user.set_machine(src)
-		var/t1 = text("<B>Access Panel</B><br>\n")
+		var/t1 = "<B>Access Panel</B><br>\n"
 		var/list/Borgwires = list(
 			"Orange" = 1,
 			"Dark red" = 2,
@@ -107,9 +107,9 @@
 				t1 += "<a href='byond://?src=\ref[src];borgwires=[Borgwires[wiredesc]]'>Cut</a> "
 				t1 += "<a href='byond://?src=\ref[src];pulse=[Borgwires[wiredesc]]'>Pulse</a> "
 			t1 += "<br>"
-		t1 += text("<br>\n[(src.lawupdate ? "The LawSync light is on." : "The LawSync light is off.")]<br>\n[(src.connected_ai ? "The AI link light is on." : "The AI link light is off.")]")
-		t1 += text("<br>\n[((isnotnull(src.camera) && src.camera.status == 1) ? "The Camera light is on." : "The Camera light is off.")]<br>\n")
-		t1 += text("<p><a href='byond://?src=\ref[src];close2=1'>Close</a></p>\n")
+		t1 += "<br>\n[(src.lawupdate ? "The LawSync light is on." : "The LawSync light is off.")]<br>\n[(src.connected_ai ? "The AI link light is on." : "The AI link light is off.")]"
+		t1 += "<br>\n[((isnotnull(src.camera) && src.camera.status == 1) ? "The Camera light is on." : "The Camera light is off.")]<br>\n"
+		t1 += "<p><a href='byond://?src=\ref[src];close2=1'>Close</a></p>\n"
 		user << browse(t1, "window=borgwires")
 		onclose(user, "borgwires")
 

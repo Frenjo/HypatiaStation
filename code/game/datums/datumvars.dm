@@ -197,7 +197,7 @@
 
 	body += "</tr></td></table>"
 
-	var/formatted_type = text("[D.type]")
+	var/formatted_type = "[D.type]"
 	if(length(formatted_type) > 25)
 		var/middle_point = length(formatted_type) / 2
 		var/splitpoint = findtext(formatted_type, "/", middle_point)

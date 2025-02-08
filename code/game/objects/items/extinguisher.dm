@@ -40,7 +40,7 @@
 /obj/item/extinguisher/examine()
 	set src in usr
 
-	usr << text("\icon[] [] contains [] units of water left!", src, src.name, src.reagents.total_volume)
+	usr << "\icon[src] [name] contains [reagents.total_volume] units of water left!"
 	..()
 	return
 

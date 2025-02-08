@@ -159,9 +159,9 @@
 // this function shows the health of the pAI in the Status panel
 /mob/living/silicon/proc/show_system_integrity()
 	if(!stat)
-		stat(null, text("System integrity: [(health + 100) / 2]%"))
+		stat(null, "System integrity: [(health + 100) / 2]%")
 	else
-		stat(null, text("Systems nonfunctional"))
+		stat(null, "Systems nonfunctional")
 
 // This is a pure virtual function, it should be overwritten by all subclasses
 /mob/living/silicon/proc/show_malf_ai()

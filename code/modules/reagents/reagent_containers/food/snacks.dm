@@ -68,8 +68,8 @@
 				if(!do_mob(user, C))
 					return
 
-				C.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>")
-				user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [src.name] by [C.name] ([C.ckey]) Reagents: [reagentlist(src)]</font>")
+				C.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [reagentlist(src)]</font>"
+				user.attack_log += "\[[time_stamp()]\] <font color='red'>Fed [src.name] by [C.name] ([C.ckey]) Reagents: [reagentlist(src)]</font>"
 				msg_admin_attack("[key_name(user)] fed [key_name(C)] with [src.name] Reagents: [reagentlist(src)] (INTENT: [uppertext(user.a_intent)])")
 
 				for(var/mob/O in viewers(world.view, user))

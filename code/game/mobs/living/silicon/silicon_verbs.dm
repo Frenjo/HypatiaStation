@@ -26,7 +26,7 @@ GLOBAL_GLOBL_LIST_INIT(silicon_verbs_default, list(
 	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
 	dat += "<A href='byond://?src=\ref[src];mach_close=aialerts'>Close</A><BR><BR>"
 	for(var/cat in alarms)
-		dat += text("<B>[]</B><BR>\n", cat)
+		dat += "<B>[cat]</B><BR>\n"
 		var/list/alarmlist = alarms[cat]
 		if(length(alarmlist))
 			for(var/area_name in alarmlist)
@@ -56,13 +56,13 @@ GLOBAL_GLOBL_LIST_INIT(silicon_verbs_default, list(
 	var/dat = "<HEAD><TITLE>Current Station Alerts</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
 	dat += "<A href='byond://?src=\ref[src];mach_close=robotalerts'>Close</A><BR><BR>"
 	for(var/cat in alarms)
-		dat += text("<B>[cat]</B><BR>\n")
+		dat += "<B>[cat]</B><BR>\n"
 		var/list/alarmlist = alarms[cat]
 		if(length(alarmlist))
 			for(var/area_name in alarmlist)
 				var/datum/alarm/alarm = alarmlist[area_name]
 				dat += "<NOBR>"
-				dat += text("-- [area_name]")
+				dat += "-- [area_name]"
 				if(length(alarm.sources) > 1)
 					dat += "- [length(alarm.sources)] sources"
 				dat += "</NOBR><BR>\n"

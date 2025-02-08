@@ -189,8 +189,8 @@
 	if(isliving(M))
 		to_chat(M, SPAN_WARNING("You are stunned by the powerful acid of the Deathnettle!"))
 
-		M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Had the [src.name] used on them by [user.name] ([user.ckey])</font>")
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] on [M.name] ([M.ckey])</font>")
+		M.attack_log += "\[[time_stamp()]\] <font color='orange'>Had the [src.name] used on them by [user.name] ([user.ckey])</font>"
+		user.attack_log += "\[[time_stamp()]\] <font color='red'>Used the [src.name] on [M.name] ([M.ckey])</font>"
 		msg_admin_attack("[user.name] ([user.ckey]) used the [src.name] on [M.name] ([M.ckey]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 		playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)

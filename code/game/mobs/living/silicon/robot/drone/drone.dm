@@ -99,9 +99,9 @@
 		//Convert to percentage.
 		temphealth = (temphealth / (maxHealth * 2)) * 100
 
-		stat(null, text("System integrity: [temphealth]%"))
+		stat(null, "System integrity: [temphealth]%")
 	else
-		stat(null, text("Systems nonfunctional"))
+		stat(null, "Systems nonfunctional")
 
 /mob/living/silicon/robot/drone/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(isnull(client) || stat == DEAD)

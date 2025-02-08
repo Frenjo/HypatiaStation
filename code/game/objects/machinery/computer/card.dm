@@ -201,7 +201,7 @@
 		if("modify")
 			if(modify)
 				GLOBL.data_core.manifest_modify(modify.registered_name, modify.assignment)
-				modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
+				modify.name = "[modify.registered_name]'s ID Card ([modify.assignment])"
 				if(ishuman(usr))
 					modify.forceMove(usr.loc)
 					if(!usr.get_active_hand())
@@ -316,7 +316,7 @@
 				P.name = "paper- 'Crew Manifest'"
 				printing = null
 	if(modify)
-		modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
+		modify.name = "[modify.registered_name]'s ID Card ([modify.assignment])"
 	updateUsrDialog()
 	return
 

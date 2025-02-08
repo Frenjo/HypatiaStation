@@ -215,7 +215,7 @@
 	var/has_alarm = ..()
 
 	if(!has_alarm)
-		queueAlarm(text("--- [class] alarm in [A.name] has been cleared."), class, 0)
+		queueAlarm("--- [class] alarm in [A.name] has been cleared.", class, 0)
 //		if (viewalerts) robot_alerts()
 	return has_alarm
 
@@ -530,8 +530,8 @@
 		if(isnotnull(M.attack_sound))
 			playsound(loc, M.attack_sound, 50, 1, 1)
 		visible_message(SPAN_WARNING("<B>[M]</B> [M.attacktext] [src]!"))
-		M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>")
-		attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
+		M.attack_log += "\[[time_stamp()]\] <font color='red'>attacked [name] ([ckey])</font>"
+		attack_log += "\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>"
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		adjustBruteLoss(damage)
 		updatehealth()
@@ -747,9 +747,9 @@
 // this function displays the cyborgs current cell charge in the stat panel
 /mob/living/silicon/robot/proc/show_cell_power()
 	if(isnotnull(cell))
-		stat(null, text("Charge Left: [cell.charge]/[cell.maxcharge]"))
+		stat(null, "Charge Left: [cell.charge]/[cell.maxcharge]")
 	else
-		stat(null, text("No Cell Inserted!"))
+		stat(null, "No Cell Inserted!")
 
 /mob/living/silicon/robot/proc/allowed(mob/M)
 	//check if it doesn't require any access at all
@@ -803,28 +803,28 @@
 
 	for(var/obj in module.modules)
 		if(!obj)
-			dat += text("<B>Resource depleted</B><BR>")
+			dat += "<B>Resource depleted</B><BR>"
 		else if(activated(obj))
-			dat += text("[obj]: <B>Activated</B><BR>")
+			dat += "[obj]: <B>Activated</B><BR>"
 		else
-			dat += text("[obj]: <A href=byond://?src=\ref[src];act=\ref[obj]>Activate</A><BR>")
+			dat += "[obj]: <A href=byond://?src=\ref[src];act=\ref[obj]>Activate</A><BR>"
 	if(emagged)
 		if(activated(module.emag))
-			dat += text("[module.emag]: <B>Activated</B><BR>")
+			dat += "[module.emag]: <B>Activated</B><BR>"
 		else
-			dat += text("[module.emag]: <A href=byond://?src=\ref[src];act=\ref[module.emag]>Activate</A><BR>")
+			dat += "[module.emag]: <A href=byond://?src=\ref[src];act=\ref[module.emag]>Activate</A><BR>"
 /*
 		if(activated(obj))
-			dat += text("[obj]: \[<B>Activated</B> | <A href=byond://?src=\ref[src];deact=\ref[obj]>Deactivate</A>\]<BR>")
+			dat += "[obj]: \[<B>Activated</B> | <A href=byond://?src=\ref[src];deact=\ref[obj]>Deactivate</A>\]<BR>"
 		else
-			dat += text("[obj]: \[<A href=byond://?src=\ref[src];act=\ref[obj]>Activate</A> | <B>Deactivated</B>\]<BR>")
+			dat += "[obj]: \[<A href=byond://?src=\ref[src];act=\ref[obj]>Activate</A> | <B>Deactivated</B>\]<BR>"
 */
 	src << browse(dat, "window=robotmod&can_close=0")
 
 /mob/living/silicon/robot/Topic(href, href_list)
 	. = ..()
 	if(href_list["mach_close"])
-		var/t1 = text("window=[href_list["mach_close"]]")
+		var/t1 = "window=[href_list["mach_close"]]"
 		unset_machine()
 		src << browse(null, t1)
 		return

@@ -42,8 +42,8 @@
 		return
 	if(ishuman(C))
 		if(!C.handcuffed)
-			C.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed (attempt) by [user.name] ([user.ckey])</font>")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Attempted to handcuff [C.name] ([C.ckey])</font>")
+			C.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been handcuffed (attempt) by [user.name] ([user.ckey])</font>"
+			user.attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to handcuff [C.name] ([C.ckey])</font>"
 			msg_admin_attack("[key_name(user)] attempted to handcuff [key_name(C)]")
 
 			var/obj/effect/equip_e/human/O = new /obj/effect/equip_e/human()
@@ -106,7 +106,7 @@ var/last_chew = 0
 
 	var/s = SPAN_WARNING("[H.name] chews on \his [O.display_name]!")
 	H.visible_message(s, SPAN_WARNING("You chew on your [O.display_name]!"))
-	H.attack_log += text("\[[time_stamp()]\] <font color='red'>[s] ([H.ckey])</font>")
+	H.attack_log += "\[[time_stamp()]\] <font color='red'>[s] ([H.ckey])</font>"
 	log_attack("[s] ([H.ckey])")
 
 	if(O.take_damage(3, 0, 1, 1, "teeth marks"))

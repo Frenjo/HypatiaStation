@@ -31,7 +31,7 @@
 /obj/item/storage/secure/examine()
 	set src in oview(1)
 	..()
-	usr << text("The service panel is [open ? "open" : "closed"].")
+	usr << "The service panel is [open ? "open" : "closed"]."
 
 /obj/item/storage/secure/attack_paw(mob/user)
 	return attack_hand(user)
@@ -177,8 +177,8 @@
 			user.Paralyse(2)
 			return
 
-		M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been attacked with [name] by [user.name] ([user.ckey])</font>")
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [name] to attack [M.name] ([M.ckey])</font>")
+		M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been attacked with [name] by [user.name] ([user.ckey])</font>"
+		user.attack_log += "\[[time_stamp()]\] <font color='red'>Used the [name] to attack [M.name] ([M.ckey])</font>"
 
 		log_attack("<font color='red'>[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [name] (INTENT: [uppertext(user.a_intent)])</font>")
 

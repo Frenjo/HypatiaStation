@@ -41,7 +41,7 @@
 	else
 		dat +=	"<br><b>Back:</b> <a href='byond://?src=\ref[src];add_inv=back'>Nothing</a>"
 
-	user << browse(dat, text("window=mob[];size=325x500", name))
+	user << browse(dat, "window=mob[name];size=325x500")
 	onclose(user, "mob[real_name]")
 	return
 

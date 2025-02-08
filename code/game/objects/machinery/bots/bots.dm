@@ -78,7 +78,7 @@
 		return
 	health -= M.melee_damage_upper
 	visible_message(SPAN_DANGER("[M] has [M.attacktext] [src]!"))
-	M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [name]</font>")
+	M.attack_log += "\[[time_stamp()]\] <font color='red'>attacked [name]</font>"
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(loc)
 	healthcheck()

@@ -446,8 +446,8 @@
 		return
 	if(!(stat & BROKEN))
 		visible_message(SPAN_DANGER("[M] [M.attacktext] [src]!"))
-		M.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
-		//src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>")
+		M.attack_log += "\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>"
+		//src.attack_log += "\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>"
 		src.health -= M.melee_damage_upper
 		if(src.health <= 0)
 			src.die()

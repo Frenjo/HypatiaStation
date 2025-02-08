@@ -36,7 +36,7 @@
 				m_type = 2
 		if("sign")
 			if(!src.restrained())
-				message = text("<B>The monkey</B> signs[].", (text2num(param) ? text(" the number []", text2num(param)) : null))
+				message = "<B>The monkey</B> signs[text2num(param) ? " the number [text2num(param)]" : null]."
 				m_type = 1
 		if("scratch")
 			if(!src.restrained())
@@ -111,7 +111,7 @@
 			m_type = 1
 		if("collapse")
 			Paralyse(2)
-			message = text("<B>[]</B> collapses!", src)
+			message = "<B>[src]</B> collapses!"
 			m_type = 2
 		if("deathgasp")
 			message = "<b>The [src.name]</b> lets out a faint chimper as it collapses and stops moving..."
@@ -123,7 +123,7 @@
 			text += "choke, collapse, dance, deathgasp, drool, gasp, shiver, gnarl, jump, paw, moan, nod, roar, roll, scratch,\nscretch, shake, sign-#, sit, sulk, sway, tail, twitch, whimper"
 			src << text
 		else
-			src << text("Invalid Emote: []", act)
+			src << "Invalid Emote: [act]"
 	if((message && src.stat == CONSCIOUS))
 		if(src.client)
 			log_emote("[name]/[key] : [message]")

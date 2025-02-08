@@ -209,11 +209,11 @@
 		var/module_string = ""
 
 		if (!O)
-			module_string += text("<B>Resource depleted</B><BR>")
+			module_string += "<B>Resource depleted</B><BR>"
 		else if(activated(O))
-			module_string += text("[O]: <B>Activated</B><BR>")
+			module_string += "[O]: <B>Activated</B><BR>"
 		else
-			module_string += text("[O]: <A href=byond://?src=\ref[src];act=\ref[O]>Activate</A><BR>")
+			module_string += "[O]: <A href=byond://?src=\ref[src];act=\ref[O]>Activate</A><BR>"
 
 		if(isitem(O) && !iscable(O))
 			tools += module_string
@@ -224,11 +224,11 @@
 
 	if(emagged)
 		if(!module.emag)
-			dat += text("<B>Resource depleted</B><BR>")
+			dat += "<B>Resource depleted</B><BR>"
 		else if(activated(module.emag))
-			dat += text("[module.emag]: <B>Activated</B><BR>")
+			dat += "[module.emag]: <B>Activated</B><BR>"
 		else
-			dat += text("[module.emag]: <A href=byond://?src=\ref[src];act=\ref[module.emag]>Activate</A><BR>")
+			dat += "[module.emag]: <A href=byond://?src=\ref[src];act=\ref[module.emag]>Activate</A><BR>"
 
 	dat += resources
 

@@ -19,8 +19,8 @@
 				if(G.cell.charge >= 2500)
 					G.cell.use(2500)
 					visible_message(SPAN_DANGER("[src] has been touched with the stun gloves by [M]!"))
-					M.attack_log += text("\[[time_stamp()]\] <font color='red'>Stungloved [src.name] ([src.ckey])</font>")
-					src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been stungloved by [M.name] ([M.ckey])</font>")
+					M.attack_log += "\[[time_stamp()]\] <font color='red'>Stungloved [src.name] ([src.ckey])</font>"
+					attack_log += "\[[time_stamp()]\] <font color='orange'>Has been stungloved by [M.name] ([M.ckey])</font>"
 
 					msg_admin_attack("[M.name] ([M.ckey]) stungloved [src.name] ([src.ckey]) (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>)")
 
@@ -120,8 +120,8 @@
 
 			var/attack_verb = pick(attack.attack_verb)
 
-			M.attack_log += text("\[[time_stamp()]\] <font color='red'>[attack_verb]ed [src.name] ([src.ckey])</font>")
-			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been [attack_verb]ed by [M.name] ([M.ckey])</font>")
+			M.attack_log += "\[[time_stamp()]\] <font color='red'>[attack_verb]ed [src.name] ([src.ckey])</font>"
+			attack_log += "\[[time_stamp()]\] <font color='orange'>Has been [attack_verb]ed by [M.name] ([M.ckey])</font>"
 			msg_admin_attack("[key_name(M)] [attack_verb]ed [key_name(src)]")
 
 			var/damage = rand(0, 5)//BS12 EDIT
@@ -148,8 +148,8 @@
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp = attack.sharp, edge = attack.edge)
 
 		if("disarm")
-			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")
-			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been disarmed by [M.name] ([M.ckey])</font>")
+			M.attack_log += "\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>"
+			attack_log += "\[[time_stamp()]\] <font color='orange'>Has been disarmed by [M.name] ([M.ckey])</font>"
 
 			msg_admin_attack("[key_name(M)] disarmed [src.name] ([src.ckey])")
 

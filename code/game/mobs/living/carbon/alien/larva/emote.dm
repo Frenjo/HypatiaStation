@@ -29,7 +29,7 @@
 			return custom_emote(m_type, message)
 		if("sign")
 			if(!src.restrained())
-				message = text("<B>The alien</B> signs[].", (text2num(param) ? text(" the number []", text2num(param)) : null))
+				message = "<B>The alien</B> signs[text2num(param) ? " the number [text2num(param)]" : null]."
 				m_type = 1
 		if("burp")
 			if (!muzzled)
@@ -107,12 +107,12 @@
 			m_type = 1
 		if("collapse")
 			Paralyse(2)
-			message = text("<B>[]</B> collapses!", src)
+			message = "<B>[src]</B> collapses!"
 			m_type = 2
 		if("help")
 			src << "burp, choke, collapse, dance, drool, gasp, shiver, gnarl, jump, moan, nod, roll, scratch,\nscretch, shake, sign-#, sulk, sway, tail, twitch, whimper"
 		else
-			src << text("Invalid Emote: []", act)
+			src << "Invalid Emote: [act]"
 	if(message && src.stat == CONSCIOUS)
 		log_emote("[name]/[key] : [message]")
 		if(m_type & 1)

@@ -120,14 +120,14 @@
 	data["mode"] = mode					// The current view
 	data["scanmode"] = scanmode				// Scanners
 	data["fon"] = fon					// Flashlight on?
-	data["pai"] = (isnull(pai) ? FALSE : TRUE)			// pAI inserted?
+	data["pai"] = isnull(pai) ? FALSE : TRUE			// pAI inserted?
 	data["note"] = note					// current pda notes
 	data["silent"] = silent					// does the pda make noise when it receives a message?
 	data["toff"] = toff					// is the messenger function turned off?
 	data["active_conversation"] = active_conversation	// Which conversation are we following right now?
 
-	data["idInserted"] = (id ? TRUE : FALSE)
-	data["idLink"] = (id ? text("[id.registered_name], [id.assignment]") : "--------")
+	data["idInserted"] = id ? TRUE : FALSE
+	data["idLink"] = id ? "[id.registered_name], [id.assignment]" : "--------"
 
 	data["cart_loaded"] = cartridge ? TRUE : FALSE
 	if(cartridge)
@@ -989,12 +989,12 @@
 		var/name = P.owner
 		if(name in names)
 			namecounts[name]++
-			name = text("[name] ([namecounts[name]])")
+			name = "[name] ([namecounts[name]])"
 		else
 			names.Add(name)
 			namecounts[name] = 1
 
-		plist[text("[name]")] = P
+		plist["[name]"] = P
 	return plist
 
 // Access-related overrides.

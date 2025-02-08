@@ -112,7 +112,7 @@
 	if(target in user)
 		return
 
-	user.attack_log += text("\[[time_stamp()]\] <font color='blue'>Has used [src.name] on \ref[target]</font>")
+	user.attack_log += "\[[time_stamp()]\] <font color='blue'>Has used [src.name] on \ref[target]</font>"
 
 	if(isitem(target) && !(istype(target, /obj/item/storage) && !istype(target, /obj/item/storage/box)))
 		var/obj/item/O = target
