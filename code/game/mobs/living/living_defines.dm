@@ -68,4 +68,8 @@
 
 	var/job = null
 
-	var/immune_to_ssd = 0
+	var/immune_to_ssd = FALSE
+
+	var/drowsyness = 0 //Carbon
+
+	var/losebreath = 0 //Carbon

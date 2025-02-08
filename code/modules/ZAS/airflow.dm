@@ -36,7 +36,7 @@ Contains helper procs for airflow, handled in /connection_group.
 		return 0
 	if(weakened <= 0)
 		to_chat(src, SPAN_WARNING("The sudden rush of air knocks you over!"))
-	weakened = max(weakened, rand(1, 5))
+	apply_effect(rand(1, 5), WEAKEN)
 	last_airflow_stun = world.time
 
 /atom/movable/proc/check_airflow_movable(n)

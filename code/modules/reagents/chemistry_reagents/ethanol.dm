@@ -852,7 +852,7 @@
 	color = "#2E2E61" // rgb: 46, 46, 97
 
 /datum/reagent/neurotoxin/on_mob_life(mob/living/carbon/C)
-	C.weakened = max(C.weakened, 3)
+	C.apply_effect(3, WEAKEN)
 	if(!data["special"])
 		data["special"] = 1
 	data["special"]++

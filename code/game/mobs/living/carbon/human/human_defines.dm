@@ -93,3 +93,4 @@
 	 * These need to be sorted eventually.
 	 */
 	var/damageoverlaytemp = 0
+	var/lastpuke = 0

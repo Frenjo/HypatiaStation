@@ -51,8 +51,8 @@
 						H.apply_damage(min(rand(-damage, damage), 0), BRUTE, "r_leg")
 						H.apply_damage(min(rand(-damage, damage), 0), BRUTE, "l_arm")
 						H.apply_damage(min(rand(-damage, damage), 0), BRUTE, "r_arm")
-						H:weakened = max(H:weakened, 2)
-						H:updatehealth()
+						H.apply_effect(2, WEAKEN)
+						H.updatehealth()
 	return ..()
 
 // override to make sure nothing is hidden

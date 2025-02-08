@@ -12,8 +12,8 @@
 	w_class = 5.0
 
 	var/atom/movable/screen/grab/hud = null
-	var/mob/affecting = null
-	var/mob/assailant = null
+	var/mob/living/affecting = null
+	var/mob/living/assailant = null
 	var/state = GRAB_PASSIVE
 
 	var/allow_upgrade = TRUE
@@ -21,7 +21,7 @@
 
 	var/destroying = FALSE
 
-/obj/item/grab/New(mob/user, mob/victim)
+/obj/item/grab/New(mob/living/user, mob/victim)
 	. = ..()
 	loc = user
 	assailant = user
@@ -116,14 +116,11 @@
 
 	if(state >= GRAB_NECK)
 		affecting.Stun(1)
-		if(isliving(affecting))
-			var/mob/living/L = affecting
-			L.adjustOxyLoss(1)
+		affecting.adjustOxyLoss(1)
 
 	if(state >= GRAB_KILL)
-		//affecting.apply_effect(STUTTER, 5) //would do this, but affecting isn't declared as mob/living for some stupid reason.
-		affecting.stuttering = max(affecting.stuttering, 5) //It will hamper your voice, being choked and all.
-		affecting.Weaken(5)	//Should keep you down unless you get help.
+		affecting.apply_effect(5, STUTTER) // It will hamper your voice, being choked and all.
+		affecting.Weaken(5) // Should keep you down unless you get help.
 		affecting.losebreath = min(affecting.losebreath + 2, 3)
 
 /obj/item/grab/proc/s_click(atom/movable/screen/S)

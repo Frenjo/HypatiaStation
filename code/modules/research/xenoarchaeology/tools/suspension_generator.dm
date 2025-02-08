@@ -34,14 +34,14 @@
 		var/turf/T = GET_TURF(suspension_field)
 		if(field_type == "carbon")
 			for(var/mob/living/carbon/M in T)
-				M.weakened = max(M.weakened, 3)
+				M.apply_effect(3, WEAKEN)
 				cell.charge -= power_use
 				if(prob(5))
 					to_chat(M, SPAN_INFO("[pick("You feel tingly.", "You feel like floating.", "It is hard to speak.", "You can barely move.")]"))
 
 		if(field_type == "iron")
 			for(var/mob/living/silicon/M in T)
-				M.weakened = max(M.weakened, 3)
+				M.apply_effect(3, WEAKEN)
 				cell.charge -= power_use
 				if(prob(5))
 					to_chat(M, SPAN_INFO("[pick("You feel tingly.", "You feel like floating.", "It is hard to speak.", "You can barely move.")]"))
@@ -53,7 +53,7 @@
 			I.forceMove(suspension_field)
 
 		for(var/mob/living/simple/M in T)
-			M.weakened = max(M.weakened, 3)
+			M.apply_effect(3, WEAKEN)
 			cell.charge -= power_use
 			if(prob(5))
 				to_chat(M, SPAN_INFO("[pick("You feel tingly.", "You feel like floating.", "It is hard to speak.", "You can barely move.")]"))

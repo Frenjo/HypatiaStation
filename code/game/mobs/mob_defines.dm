@@ -91,7 +91,6 @@
 	var/lying = 0
 	var/lying_prev = 0
 	var/canmove = TRUE
-	var/lastpuke = 0
 	var/unacidable = 0
 	var/small = 0
 	var/list/pinned = list()			// List of things pinning this creature to walls (see living_defense.dm)
@@ -106,12 +105,10 @@
 	var/timeofdeath = 0.0//Living
 
 	var/bodytemperature = 310.055	//98.7 F
-	var/drowsyness = 0.0//Carbon
 
 	var/paralysis = 0.0
 	var/stunned = 0.0
 	var/weakened = 0.0
-	var/losebreath = 0.0	//Carbon
 
 	var/shakecamera = 0
 	var/a_intent = "help"	//Living
