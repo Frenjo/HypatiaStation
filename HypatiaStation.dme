@@ -504,6 +504,7 @@
 #include "code\game\mobs\dead\_dead.dm"
 #include "code\game\mobs\dead\ai_eye.dm"
 #include "code\game\mobs\dead\ghost\_ghost.dm"
+#include "code\game\mobs\dead\ghost\emote.dm"
 #include "code\game\mobs\dead\ghost\say.dm"
 #include "code\game\mobs\dead\new_player\_new_player.dm"
 #include "code\game\mobs\dead\new_player\login.dm"
