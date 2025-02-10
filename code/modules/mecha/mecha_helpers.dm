@@ -48,7 +48,8 @@
 
 /obj/mecha/examine()
 	set src in view()
-	..()
+
+	. = ..()
 	var/integrity = health / initial(health) * 100
 	switch(integrity)
 		if(85 to 100)
@@ -65,7 +66,6 @@
 		usr << "It's equipped with:"
 		for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
 			usr << "\icon[equip] [equip]"
-	return
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
 	return

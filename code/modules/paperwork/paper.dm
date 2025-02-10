@@ -87,7 +87,7 @@
 	return
 
 /obj/item/paper/attack_self(mob/living/user)
-	examine()
+	examine(user)
 	if(rigged && (CONFIG_GET(/decl/configuration_entry/holiday_name) == "April Fool's Day"))
 		if(spam_flag == 0)
 			spam_flag = 1

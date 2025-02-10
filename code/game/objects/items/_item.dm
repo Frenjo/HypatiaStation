@@ -100,11 +100,11 @@
 
 	forceMove(T)
 
-/obj/item/examine()
+/obj/item/examine(mob/user, distance = -1)
 	set src in view()
 
 	var/size
-	switch(src.w_class)
+	switch(w_class)
 		if(1.0)
 			size = "tiny"
 		if(2.0)
@@ -117,10 +117,9 @@
 			size = "huge"
 		else
 	//if ((MUTATION_CLUMSY in usr.mutations) && prob(50)) t = "funny-looking"
-	to_chat(usr, "This is a [src.blood_DNA ? "bloody " : ""]\icon[src][src.name]. It is a [size] item.")
-	if(src.desc)
-		to_chat(usr, src.desc)
-	return
+	to_chat(user, "This is a [src.blood_DNA ? "bloody " : ""]\icon[src][src.name]. It is a [size] item.")
+	if(desc)
+		to_chat(user, desc)
 
 /obj/item/attack_hand(mob/user)
 	if(isnull(user))

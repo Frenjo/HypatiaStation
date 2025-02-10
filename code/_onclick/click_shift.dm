@@ -8,7 +8,7 @@
 	return
 
 /atom/proc/ShiftClick(mob/user)
-	if(isnotnull(user.client) && user.client.eye == user)
-		examine()
+	if(user.client?.eye == user)
+		examine(user)
 		user.face_atom(src)
 	return

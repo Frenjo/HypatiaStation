@@ -685,11 +685,11 @@
 
 	if(href_list["lookitem"])
 		var/obj/item/I = locate(href_list["lookitem"])
-		I.examine()
+		I.examine(usr)
 
 	if(href_list["lookmob"])
 		var/mob/M = locate(href_list["lookmob"])
-		M.examine()
+		M.examine(usr)
 	..()
 	return
 

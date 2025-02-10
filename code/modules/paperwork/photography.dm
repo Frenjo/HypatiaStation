@@ -30,7 +30,7 @@
 	var/scribble	//Scribble on the back.
 
 /obj/item/photo/attack_self(mob/user)
-	examine()
+	examine(user)
 
 /obj/item/photo/attackby(obj/item/P, mob/user)
 	if(istype(P, /obj/item/pen) || istype(P, /obj/item/toy/crayon))
