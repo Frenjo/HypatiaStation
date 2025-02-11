@@ -81,7 +81,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	if(!length(temp_tech))
 		to_chat(user, SPAN_WARNING("You cannot deconstruct this item!"))
 		return 1
-	if(O.reliability < 90 && O.crit_fail == 0)
+	if(O.reliability < 90 && !O.crit_fail)
 		to_chat(user, SPAN_WARNING("This item is neither reliable enough nor broken enough to learn from."))
 		return 1
 

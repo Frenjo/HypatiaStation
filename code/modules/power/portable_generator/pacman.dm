@@ -146,7 +146,7 @@
 		var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(loc)
 		for_no_type_check(var/obj/item/part, component_parts)
 			if(part.reliability < 100)
-				part.crit_fail = 1
+				part.crit_fail = TRUE
 			part.forceMove(loc)
 		while(sheets > 0)
 			var/obj/item/stack/sheet/G = new fuel_material.sheet_path(loc)

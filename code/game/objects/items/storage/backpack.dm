@@ -71,7 +71,7 @@
 		to_chat(user, SPAN_WARNING("The Bluespace generator malfunctions!"))
 		for(var/obj/O in contents) //it broke, delete what was in it
 			qdel(O)
-		crit_fail = 1
+		crit_fail = TRUE
 		icon_state = "brokenpack"
 
 /obj/item/storage/backpack/santabag

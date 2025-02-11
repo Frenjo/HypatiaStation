@@ -52,7 +52,7 @@
 	if(!prob(reliability))
 		minor_fault++
 		if(prob(minor_fault))
-			crit_fail = 1
+			crit_fail = TRUE
 			return 0
 	//charge += power_used
 	//return power_used

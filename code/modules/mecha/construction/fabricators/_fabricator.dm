@@ -514,7 +514,7 @@
 		M.icon_state = "box_1"
 		for_no_type_check(var/obj/item/part, component_parts)
 			if(part.reliability != 100 && crit_fail)
-				part.crit_fail = 1
+				part.crit_fail = TRUE
 			part.forceMove(loc)
 		for(var/material_path in stored_materials)
 			var/decl/material/material = GET_DECL_INSTANCE(material_path)

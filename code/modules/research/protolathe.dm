@@ -70,7 +70,7 @@ Note: Must be placed west/left of and R&D console to function.
 				if(istype(part, /obj/item/reagent_holder/glass/beaker))
 					reagents.trans_to(part, reagents.total_volume)
 				if(part.reliability != 100 && crit_fail)
-					part.crit_fail = 1
+					part.crit_fail = TRUE
 				part.forceMove(loc)
 			eject_stored_materials()
 			qdel(src)
