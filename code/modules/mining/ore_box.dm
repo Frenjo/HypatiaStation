@@ -7,6 +7,7 @@
 	density = TRUE
 
 	var/amt_iron = 0
+	var/amt_coal = 0
 	var/amt_glass = 0
 	var/amt_silver = 0
 	var/amt_gold = 0
@@ -34,6 +35,7 @@
 
 /obj/structure/ore_box/attack_hand(mob/user)
 	amt_iron = 0
+	amt_coal = 0
 	amt_glass = 0
 	amt_silver = 0
 	amt_gold = 0
@@ -46,6 +48,9 @@
 	for_no_type_check(var/obj/item/ore/C, src)
 		if(istype(C, /obj/item/ore/iron))
 			amt_iron++
+			continue
+		if(istype(C, /obj/item/ore/coal))
+			amt_coal++
 			continue
 		if(istype(C, /obj/item/ore/glass))
 			amt_glass++
@@ -75,6 +80,8 @@
 	var/dat = "<b>The contents of the ore box reveal...</b><br>"
 	if(amt_iron)
 		dat += "Iron ore: [amt_iron]<br>"
+	if(amt_coal)
+		dat += "Coal: [amt_coal]<br>"
 	if(amt_glass)
 		dat += "Sand: [amt_glass]<br>"
 	if(amt_silver)

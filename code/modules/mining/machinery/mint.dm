@@ -9,7 +9,8 @@
 	var/obj/machinery/mineral/input = null
 	var/obj/machinery/mineral/output = null
 	var/list/amount_by_material = list(
-		MATERIAL_METAL = 0,
+		/decl/material/iron = 0,
+		/decl/material/steel = 0,
 		/decl/material/silver = 0,
 		/decl/material/gold = 0,
 		/decl/material/diamond = 0,
@@ -21,7 +22,7 @@
 	)
 	var/newCoins = 0	//how many coins the machine made in it's last load
 	var/processing = FALSE
-	var/chosen = MATERIAL_METAL	//which material will be used to make coins
+	var/chosen = /decl/material/iron	//which material will be used to make coins
 	var/coinsToProduce = 10
 
 /obj/machinery/mineral/mint/initialise()

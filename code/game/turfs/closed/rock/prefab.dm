@@ -25,11 +25,12 @@
 
 	var/ore_chance = 10 // Means 10% chance of this plot changing to an ore deposit.
 	var/ore_spawn_chance_list = list(
-		/decl/ore/uranium = 5,
 		/decl/ore/iron = 40,
-		/decl/ore/diamond = 1,
-		/decl/ore/gold = 5,
+		/decl/ore/coal = 45,
 		/decl/ore/silver = 5,
+		/decl/ore/gold = 5,
+		/decl/ore/diamond = 1,
+		/decl/ore/uranium = 5,
 		/decl/ore/plasma = 25,
 		/decl/ore/bananium = 1
 	)
@@ -42,11 +43,12 @@
 /turf/closed/rock/random_ore/high_chance
 	ore_chance = 25
 	ore_spawn_chance_list = list(
-		/decl/ore/uranium = 10,
 		/decl/ore/iron = 30,
-		/decl/ore/diamond = 2,
-		/decl/ore/gold = 10,
+		/decl/ore/coal = 35,
 		/decl/ore/silver = 10,
+		/decl/ore/gold = 10,
+		/decl/ore/diamond = 2,
+		/decl/ore/uranium = 10,
 		/decl/ore/plasma = 25,
 		/decl/ore/bananium = 2
 	)

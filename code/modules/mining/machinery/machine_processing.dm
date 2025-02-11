@@ -6,6 +6,7 @@
 #define ORE_PROC_URANIUM 32
 #define ORE_PROC_IRON 64
 #define ORE_PROC_BANANIUM 128
+#define ORE_PROC_COAL 256
 
 /*
  * Mineral Processing Unit Console
@@ -49,6 +50,18 @@
 		has_materials = TRUE
 	else
 		machine.selected &= ~ORE_PROC_IRON
+
+	// Coal/Carbon
+	if(machine.ore_amounts[/obj/item/ore/coal])
+		html += "Coal: [machine.ore_amounts[/obj/item/ore/coal]] "
+		if(machine.selected & ORE_PROC_COAL)
+			html += "(<A href='byond://?src=\ref[src];sel_coal=no'><font color='green'>Alloying</font></A>)"
+		else
+			html += "(<A href='byond://?src=\ref[src];sel_coal=yes'><font color='red'>Not Alloying</font></A>)"
+		html += "<br>"
+		has_materials = TRUE
+	else
+		machine.selected &= ~ORE_PROC_COAL
 
 	//sand - glass
 	if(machine.ore_amounts[/obj/item/ore/glass])
@@ -192,6 +205,11 @@
 			machine.selected |= ORE_PROC_BANANIUM
 		else
 			machine.selected &= ~ORE_PROC_BANANIUM
+	if(href_list["sel_coal"])
+		if(href_list["sel_coal"] == "yes")
+			machine.selected |= ORE_PROC_COAL
+		else
+			machine.selected &= ~ORE_PROC_COAL
 
 	if(href_list["set_on"])
 		if(href_list["set_on"] == "on")
@@ -213,6 +231,7 @@
 	var/obj/machinery/mineral/console = null
 	var/list/ore_amounts = list(
 		/obj/item/ore/iron = 0,
+		/obj/item/ore/coal = 0,
 		/obj/item/ore/glass = 0,
 		/obj/item/ore/gold = 0,
 		/obj/item/ore/silver = 0,
@@ -295,13 +314,22 @@
 				if(selected == ORE_PROC_IRON)
 					if(ore_amounts[/obj/item/ore/iron] > 0)
 						ore_amounts[/obj/item/ore/iron]--
+						new /obj/item/stack/sheet/iron(output.loc)
+					else
+						on = FALSE
+					continue
+				if(selected == ORE_PROC_IRON + ORE_PROC_COAL)
+					if(ore_amounts[/obj/item/ore/iron] > 0 && ore_amounts[/obj/item/ore/coal] > 0)
+						ore_amounts[/obj/item/ore/iron]--
+						ore_amounts[/obj/item/ore/coal]--
 						new /obj/item/stack/sheet/steel(output.loc)
 					else
 						on = FALSE
 					continue
-				if(selected == ORE_PROC_IRON + ORE_PROC_PLASMA)
-					if(ore_amounts[/obj/item/ore/iron] > 0 && ore_amounts[/obj/item/ore/plasma] > 0)
+				if(selected == ORE_PROC_IRON + ORE_PROC_COAL + ORE_PROC_PLASMA)
+					if(ore_amounts[/obj/item/ore/iron] > 0 && ore_amounts[/obj/item/ore/plasma] > 0 && ore_amounts[/obj/item/ore/plasma] > 0)
 						ore_amounts[/obj/item/ore/iron]--
+						ore_amounts[/obj/item/ore/coal]--
 						ore_amounts[/obj/item/ore/plasma]--
 						new /obj/item/stack/sheet/plasteel(output.loc)
 					else
@@ -378,6 +406,9 @@
 				if(selected & ORE_PROC_BANANIUM)
 					if(ore_amounts[/obj/item/ore/bananium] <= 0)
 						b = 0
+				if(selected & ORE_PROC_COAL)
+					if(ore_amounts[/obj/item/ore/coal] <= 0)
+						b = 0
 
 				if(b) //if they are, deduct one from each, produce slag and shut the machine off
 					if(selected & ORE_PROC_GOLD)
@@ -394,6 +425,8 @@
 						ore_amounts[/obj/item/ore/iron]--
 					if(selected & ORE_PROC_BANANIUM)
 						ore_amounts[/obj/item/ore/bananium]--
+					if(selected & ORE_PROC_COAL)
+						ore_amounts[/obj/item/ore/coal]--
 
 					new /obj/item/ore/slag(output.loc)
 					on = FALSE

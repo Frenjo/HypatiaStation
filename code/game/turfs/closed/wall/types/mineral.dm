@@ -1,11 +1,9 @@
-/turf/closed/wall/gold
-	name = "gold wall"
-	desc = "A wall with gold plating. Swag!"
+/turf/closed/wall/iron
+	name = "iron wall"
+	desc = "A wall with iron plating. Pretty average."
 	icon = 'icons/turf/walls/mineral.dmi'
-	icon_state = "gold0"
-	material = /decl/material/gold
-	//var/electro = 1
-	//var/shocked = null
+	icon_state = "iron0"
+	material = /decl/material/iron
 
 /turf/closed/wall/silver
 	name = "silver wall"
@@ -14,6 +12,15 @@
 	icon_state = "silver0"
 	material = /decl/material/silver
 	//var/electro = 0.75
+	//var/shocked = null
+
+/turf/closed/wall/gold
+	name = "gold wall"
+	desc = "A wall with gold plating. Swag!"
+	icon = 'icons/turf/walls/mineral.dmi'
+	icon_state = "gold0"
+	material = /decl/material/gold
+	//var/electro = 1
 	//var/shocked = null
 
 /turf/closed/wall/diamond

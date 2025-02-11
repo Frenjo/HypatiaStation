@@ -30,19 +30,9 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 
 	var/html = "<b>Stacking Unit Console</b><br><br>"
 
+	ADD_MATERIAL("Iron", /obj/item/stack/sheet/iron)
 	ADD_MATERIAL("Steel", /obj/item/stack/sheet/steel)
-	ADD_MATERIAL("Glass", /obj/item/stack/sheet/glass)
-
 	ADD_MATERIAL("Plasteel", /obj/item/stack/sheet/plasteel)
-	ADD_MATERIAL("Reinforced Glass", /obj/item/stack/sheet/glass/reinforced)
-	ADD_MATERIAL("Plasma Glass", /obj/item/stack/sheet/glass/plasma)
-	ADD_MATERIAL("Reinforced Plasma Glass", /obj/item/stack/sheet/glass/plasma/reinforced)
-
-	ADD_MATERIAL("Wood", /obj/item/stack/sheet/wood)
-	ADD_MATERIAL("Cardboard", /obj/item/stack/sheet/cardboard)
-	ADD_MATERIAL("Cloth", /obj/item/stack/sheet/cloth)
-	ADD_MATERIAL("Leather", /obj/item/stack/sheet/leather)
-
 	ADD_MATERIAL("Gold", /obj/item/stack/sheet/gold)
 	ADD_MATERIAL("Silver", /obj/item/stack/sheet/silver)
 	ADD_MATERIAL("Diamond", /obj/item/stack/sheet/diamond)
@@ -51,6 +41,16 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 	ADD_MATERIAL("Bananium", /obj/item/stack/sheet/bananium)
 	ADD_MATERIAL("Adamantine", /obj/item/stack/sheet/adamantine)
 	ADD_MATERIAL("Mythril", /obj/item/stack/sheet/mythril)
+
+	ADD_MATERIAL("Glass", /obj/item/stack/sheet/glass)
+	ADD_MATERIAL("Reinforced Glass", /obj/item/stack/sheet/glass/reinforced)
+	ADD_MATERIAL("Plasma Glass", /obj/item/stack/sheet/glass/plasma)
+	ADD_MATERIAL("Reinforced Plasma Glass", /obj/item/stack/sheet/glass/plasma/reinforced)
+
+	ADD_MATERIAL("Wood", /obj/item/stack/sheet/wood)
+	ADD_MATERIAL("Cardboard", /obj/item/stack/sheet/cardboard)
+	ADD_MATERIAL("Cloth", /obj/item/stack/sheet/cloth)
+	ADD_MATERIAL("Leather", /obj/item/stack/sheet/leather)
 
 	html += "<br>Stacking: [machine.max_stack_amount]<br><br>"
 
@@ -84,19 +84,9 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 	var/obj/machinery/mineral/input = null
 	var/obj/machinery/mineral/output = null
 	var/list/stack_amounts = list(
+		/obj/item/stack/sheet/iron = 0,
 		/obj/item/stack/sheet/steel = 0,
-		/obj/item/stack/sheet/glass = 0,
-
 		/obj/item/stack/sheet/plasteel = 0,
-		/obj/item/stack/sheet/glass/reinforced = 0,
-		/obj/item/stack/sheet/glass/plasma = 0,
-		/obj/item/stack/sheet/glass/plasma/reinforced = 0,
-
-		/obj/item/stack/sheet/wood = 0,
-		/obj/item/stack/sheet/cardboard = 0,
-		/obj/item/stack/sheet/cloth = 0,
-		/obj/item/stack/sheet/leather = 0,
-
 		/obj/item/stack/sheet/gold = 0,
 		/obj/item/stack/sheet/silver = 0,
 		/obj/item/stack/sheet/diamond = 0,
@@ -104,7 +94,17 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 		/obj/item/stack/sheet/uranium = 0,
 		/obj/item/stack/sheet/bananium = 0,
 		/obj/item/stack/sheet/adamantine = 0,
-		/obj/item/stack/sheet/mythril = 0
+		/obj/item/stack/sheet/mythril = 0,
+
+		/obj/item/stack/sheet/glass = 0,
+		/obj/item/stack/sheet/glass/reinforced = 0,
+		/obj/item/stack/sheet/glass/plasma = 0,
+		/obj/item/stack/sheet/glass/plasma/reinforced = 0,
+
+		/obj/item/stack/sheet/wood = 0,
+		/obj/item/stack/sheet/cardboard = 0,
+		/obj/item/stack/sheet/cloth = 0,
+		/obj/item/stack/sheet/leather = 0
 	)
 	var/max_stack_amount = 50	//ammount to stack before releassing
 

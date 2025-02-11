@@ -3,16 +3,8 @@ Mineral Sheets
 	Contains:
 		- Sandstone
 		- Diamond
-		- Uranium
 		- Plasma
 		- Plastic
-		- Gold
-		- Silver
-		- Bananium (Clown)
-	Others:
-		- Enriched Uranium
-		- Adamantine
-		- Mythril
 */
 /*
  * Sandstone
@@ -55,25 +47,6 @@ var/global/list/datum/stack_recipe/diamond_recipes = list(
 
 /obj/item/stack/sheet/diamond/New(loc, amount = null)
 	recipes = diamond_recipes
-	pixel_x = rand(0, 4) - 4
-	pixel_y = rand(0, 4) - 4
-	..()
-
-/*
- * Uranium
- */
-/obj/item/stack/sheet/uranium
-	name = "uranium"
-	icon_state = "uranium"
-	origin_tech = list(/decl/tech/materials = 5)
-	material = /decl/material/uranium
-
-var/global/list/datum/stack_recipe/uranium_recipes = list(
-	new/datum/stack_recipe("uranium door", /obj/structure/mineral_door/uranium, 10, one_per_turf = 1, on_floor = 1),
-)
-
-/obj/item/stack/sheet/uranium/New(loc, amount = null)
-	recipes = uranium_recipes
 	pixel_x = rand(0, 4) - 4
 	pixel_y = rand(0, 4) - 4
 	..()
@@ -123,84 +96,3 @@ var/global/list/datum/stack_recipe/plastic_recipes = list(
 	pixel_x = rand(0, 4) - 4
 	pixel_y = rand(0, 4) - 4
 	..()
-
-/*
- * Gold
- */
-/obj/item/stack/sheet/gold
-	name = "gold"
-	icon_state = "gold"
-	origin_tech = list(/decl/tech/materials = 4)
-	material = /decl/material/gold
-
-var/global/list/datum/stack_recipe/gold_recipes = list(
-	new/datum/stack_recipe("golden door", /obj/structure/mineral_door/gold, 10, one_per_turf = 1, on_floor = 1),
-)
-
-/obj/item/stack/sheet/gold/New(loc, amount = null)
-	recipes = gold_recipes
-	pixel_x = rand(0, 4) - 4
-	pixel_y = rand(0, 4) - 4
-	..()
-
-/*
- * Silver
- */
-/obj/item/stack/sheet/silver
-	name = "silver"
-	icon_state = "silver"
-	origin_tech = list(/decl/tech/materials = 3)
-	material = /decl/material/silver
-
-var/global/list/datum/stack_recipe/silver_recipes = list(
-	new/datum/stack_recipe("silver door", /obj/structure/mineral_door/silver, 10, one_per_turf = 1, on_floor = 1),
-)
-
-/obj/item/stack/sheet/silver/New(loc, amount = null)
-	recipes = silver_recipes
-	pixel_x = rand(0, 4) - 4
-	pixel_y = rand(0, 4) - 4
-	..()
-
-/*
- * Bananium (Clown)
- */
-/obj/item/stack/sheet/bananium
-	name = "bananium"
-	icon_state = "bananium"
-	origin_tech = list(/decl/tech/materials = 4)
-	material = /decl/material/bananium
-
-/obj/item/stack/sheet/bananium/New(loc, amount = null)
-	pixel_x = rand(0, 4) - 4
-	pixel_y = rand(0, 4) - 4
-	..()
-
-
-/****************************** Others ****************************/
-/*
- * Enriched Uranium
- */
-/obj/item/stack/sheet/enruranium
-	name = "enriched uranium"
-	icon_state = "enruranium"
-	origin_tech = list(/decl/tech/materials = 5)
-	material = /decl/material/enriched_uranium
-
-/*
- * Adamantine
- */
-/obj/item/stack/sheet/adamantine
-	name = "adamantine"
-	icon_state = "adamantine"
-	origin_tech = list(/decl/tech/materials = 4)
-	material = /decl/material/adamantine
-
-/*
- * Mythril
- */
-/obj/item/stack/sheet/mythril
-	name = "mythril"
-	icon_state = "mythril"
-	origin_tech = list(/decl/tech/materials = 4)
-	material = /decl/material/mythril

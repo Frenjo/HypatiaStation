@@ -1,79 +1,4 @@
 /*
- * Mineral Ores
- */
-/obj/item/ore
-	name = "rock"
-	icon = 'icons/obj/mining.dmi'
-	icon_state = "ore2"
-
-	var/datum/geosample/geologic_data
-
-/obj/item/ore/uranium
-	name = "uranium ore"
-	icon_state = "uranium_ore"
-	origin_tech = list(/decl/tech/materials = 5)
-
-/obj/item/ore/iron
-	name = "iron ore"
-	icon_state = "iron_ore"
-	origin_tech = list(/decl/tech/materials = 1)
-
-/obj/item/ore/glass
-	name = "sand"
-	icon_state = "glass_ore"
-	origin_tech = list(/decl/tech/materials = 1)
-
-/obj/item/ore/glass/attack_self(mob/living/user) //It's magic I ain't gonna explain how instant conversion with no tool works. -- Urist
-	var/location = GET_TURF(user)
-	for(var/obj/item/ore/glass/sand in location)
-		new /obj/item/stack/sheet/sandstone(location)
-		qdel(sand)
-	new /obj/item/stack/sheet/sandstone(location)
-	qdel(src)
-
-/obj/item/ore/plasma
-	name = "plasma ore"
-	icon_state = "plasma_ore"
-	origin_tech = list(/decl/tech/materials = 2)
-
-/obj/item/ore/silver
-	name = "silver ore"
-	icon_state = "silver_ore"
-	origin_tech = list(/decl/tech/materials = 3)
-
-/obj/item/ore/gold
-	name = "gold ore"
-	icon_state = "gold_ore"
-	origin_tech = list(/decl/tech/materials = 4)
-
-/obj/item/ore/diamond
-	name = "diamond ore"
-	icon_state = "diamond_ore"
-	origin_tech = list(/decl/tech/materials = 6)
-
-/obj/item/ore/bananium
-	name = "bananium ore"
-	icon_state = "bananium_ore"
-	origin_tech = list(/decl/tech/materials = 4)
-
-/obj/item/ore/slag
-	name = "slag"
-	desc = "Completely useless"
-	icon_state = "slag"
-
-/obj/item/ore/New()
-	. = ..()
-	pixel_x = rand(0, 16) - 8
-	pixel_y = rand(0, 8) - 8
-
-/obj/item/ore/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/core_sampler))
-		var/obj/item/core_sampler/C = W
-		C.sample_item(src, user)
-	else
-		return ..()
-
-/*
  * Coins
  */
 /obj/item/coin
@@ -98,47 +23,52 @@
 
 /obj/item/coin/iron
 	name = "iron coin"
-	icon_state = "coin_iron"
-	material = MATERIAL_METAL
+	icon_state = "iron"
+	material = /decl/material/iron
+
+/obj/item/coin/steel
+	name = "steel coin"
+	icon_state = "steel"
+	material = /decl/material/steel
 
 /obj/item/coin/silver
 	name = "silver coin"
-	icon_state = "coin_silver"
+	icon_state = "silver"
 	material = /decl/material/silver
 
 /obj/item/coin/gold
 	name = "gold coin"
-	icon_state = "coin_gold"
+	icon_state = "gold"
 	material = /decl/material/gold
 
 /obj/item/coin/diamond
 	name = "diamond coin"
-	icon_state = "coin_diamond"
+	icon_state = "diamond"
 	material = /decl/material/diamond
 
 /obj/item/coin/uranium
 	name = "uranium coin"
-	icon_state = "coin_uranium"
+	icon_state = "uranium"
 	material = /decl/material/uranium
 
 /obj/item/coin/plasma
 	name = "solid plasma coin"
-	icon_state = "coin_plasma"
+	icon_state = "plasma"
 	material = /decl/material/plasma
 
 /obj/item/coin/bananium
 	name = "bananium coin"
-	icon_state = "coin_bananium"
+	icon_state = "bananium"
 	material = /decl/material/bananium
 
 /obj/item/coin/adamantine
 	name = "adamantine coin"
-	icon_state = "coin_adamantine"
+	icon_state = "adamantine"
 	material = /decl/material/adamantine
 
 /obj/item/coin/mythril
 	name = "mythril coin"
-	icon_state = "coin_mythril"
+	icon_state = "mythril"
 	material = /decl/material/mythril
 
 /obj/item/coin/attackby(obj/item/W, mob/user)
