@@ -38,7 +38,7 @@
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk2"
 	w_class = 1.0
-	matter_amounts = list(MATERIAL_METAL = 30, MATERIAL_METAL = 10)
+	matter_amounts = list(MATERIAL_METAL = 30, /decl/material/glass = 10)
 
 	var/datum/design/blueprint = null
 
