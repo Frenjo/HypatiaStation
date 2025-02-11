@@ -63,34 +63,6 @@
 	containertype = /obj/structure/closet/crate
 	containername = "Replacement lights"
 
-
-/decl/hierarchy/supply_pack/engineering/steel50
-	name = "50 steel sheets"
-	contains = list(/obj/item/stack/sheet/steel)
-	amount = 50
-	cost = 10
-	containertype = /obj/structure/closet/crate
-	containername = "steel sheets crate"
-
-
-/decl/hierarchy/supply_pack/engineering/glass50
-	name = "50 glass sheets"
-	contains = list(/obj/item/stack/sheet/glass)
-	amount = 50
-	cost = 10
-	containertype = /obj/structure/closet/crate
-	containername = "Glass sheets crate"
-
-
-/decl/hierarchy/supply_pack/engineering/wood50
-	name = "50 wooden planks"
-	contains = list(/obj/item/stack/sheet/wood)
-	amount = 50
-	cost = 10
-	containertype = /obj/structure/closet/crate
-	containername = "Wooden planks crate"
-
-
 /decl/hierarchy/supply_pack/engineering/electrical
 	name = "Electrical maintenance crate"
 	contains = list(

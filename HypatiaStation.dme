@@ -456,6 +456,7 @@
 #include "code\game\decls\hierarchy\supplypacks\engineering.dm"
 #include "code\game\decls\hierarchy\supplypacks\hospitality.dm"
 #include "code\game\decls\hierarchy\supplypacks\hydroponics.dm"
+#include "code\game\decls\hierarchy\supplypacks\materials.dm"
 #include "code\game\decls\hierarchy\supplypacks\medsci.dm"
 #include "code\game\decls\hierarchy\supplypacks\miscellaneous.dm"
 #include "code\game\decls\hierarchy\supplypacks\operations.dm"

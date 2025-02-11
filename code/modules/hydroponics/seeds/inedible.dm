@@ -2,8 +2,8 @@
  * Plastellium
  */
 /obj/item/seeds/plastellium
-	name = "plastellium mycelium"
-	desc = "This mycelium grows into Plastellium"
+	name = "pack of plastellium mycelium"
+	desc = "This mycelium grows into plastellium mushrooms."
 	icon_state = "mycelium-plast"
 	species = "plastellium"
 	plantname = "Plastellium"
