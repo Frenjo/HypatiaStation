@@ -16,18 +16,7 @@
 
 	var/time_coeff = 1.5 //can be upgraded with research
 	var/resource_coeff = 1.5 //can be upgraded with research
-	var/list/stored_materials = list(
-		/decl/material/steel	= 0,
-		/decl/material/glass	= 0,
-		/decl/material/silver	= 0,
-		/decl/material/gold		= 0,
-		/decl/material/diamond	= 0,
-		/decl/material/uranium	= 0,
-		/decl/material/plasma	= 0,
-		/decl/material/bananium	= 0
-		// Re-enabled bananium. -Frenjo
-	)
-	var/res_max_amount = 200000
+	var/datum/material_container/materials
 
 	var/ui_id = null
 
@@ -46,6 +35,11 @@
 	var/list/part_sets = list() //set names must be unique
 
 /obj/machinery/robotics_fabricator/New()
+	materials = new /datum/material_container(src, list(
+		/decl/material/steel, /decl/material/glass, /decl/material/silver,
+		/decl/material/gold, /decl/material/diamond, /decl/material/uranium,
+		/decl/material/plasma, /decl/material/bananium
+	))
 	. = ..()
 	files = new /datum/research(src) // Sets up the research data holder.
 
@@ -73,7 +67,7 @@
 	var/total_rating = 0
 	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
 		total_rating += bin.rating
-	res_max_amount = ((MATERIAL_AMOUNT_PER_SHEET * 50) + (total_rating * (MATERIAL_AMOUNT_PER_SHEET * 100)))
+	materials.set_max_capacity((MATERIAL_AMOUNT_PER_SHEET * 50) + (total_rating * (MATERIAL_AMOUNT_PER_SHEET * 100)))
 
 	total_rating = 0
 	for(var/obj/item/stock_part/micro_laser/laser in component_parts)
@@ -121,19 +115,19 @@
 	switch(emagged)
 		if(0)
 			emagged = 0.5
-			visible_message("\icon[src] <b>[src]</b> beeps: \"DB error \[Code 0x00F1\]\"")
+			visible_message("\icon[src] <b>[src]</b> beeps, \"DB error \[Code 0x00F1\]...\"")
 			sleep(10)
-			visible_message("\icon[src] <b>[src]</b> beeps: \"Attempting auto-repair\"")
+			visible_message("\icon[src] <b>[src]</b> beeps, \"Attempting auto-repair...\"")
 			sleep(15)
-			visible_message("\icon[src] <b>[src]</b> beeps: \"User DB corrupted \[Code 0x00FA\]. Truncating data structure...\"")
+			visible_message("\icon[src] <b>[src]</b> beeps, \"User DB corrupted \[Code 0x00FA\]. Truncating data structure...\"")
 			sleep(30)
-			visible_message("\icon[src] <b>[src]</b> beeps: \"User DB truncated. Please contact your NanoTrasen system operator for future assistance.\"")
+			visible_message("\icon[src] <b>[src]</b> beeps, \"User DB truncated. Please contact your NanoTrasen system operator for future assistance.\"")
 			req_access = null
 			emagged = 1
 		if(0.5)
-			visible_message("\icon[src] <b>[src]</b> beeps: \"DB not responding \[Code 0x0003\]...\"")
+			visible_message("\icon[src] <b>[src]</b> beeps, \"DB not responding \[Code 0x0003\]...\"")
 		if(1)
-			visible_message("\icon[src] <b>[src]</b> beeps: \"No records in User DB\"")
+			visible_message("\icon[src] <b>[src]</b> beeps, \"No records in User DB.\"")
 
 /obj/machinery/robotics_fabricator/proc/output_parts_list(set_name)
 	. = ""
@@ -142,8 +136,7 @@
 			for(var/category in D.categories)
 				if(category != set_name)
 					continue
-				var/resources_available = check_resources(D)
-				. += "<div class='part'>[output_part_info(D)]<br>\[[resources_available ? "<a href='byond://?src=\ref[src];part=[D.type]'>Build</a> | " : null]<a href='byond://?src=\ref[src];add_to_queue=[D.type]'>Add to queue</a>\]\[<a href='byond://?src=\ref[src];part_desc=[D.type]'>?</a>\]</div>"
+				. += "<div class='part'>[output_part_info(D)]<br>\[[has_materials(D) ? "<a href='byond://?src=\ref[src];part=[D.type]'>Build</a> | " : null]<a href='byond://?src=\ref[src];add_to_queue=[D.type]'>Add to queue</a>\]\[<a href='byond://?src=\ref[src];part_desc=[D.type]'>?</a>\]</div>"
 
 /obj/machinery/robotics_fabricator/proc/output_part_info(datum/design/D)
 	var/obj/part = D.build_path
@@ -152,39 +145,25 @@
 /obj/machinery/robotics_fabricator/proc/output_part_cost(datum/design/D)
 	var/i = 0
 	for(var/material_path in D.materials)
-		if(material_path in stored_materials)
+		if(materials.can_contain(material_path))
 			var/decl/material/material = GET_DECL_INSTANCE(material_path)
 			. += "[i ? " | " : null][get_resource_cost_w_coeff(D, material_path)] [material.name]"
 			i++
 
 /obj/machinery/robotics_fabricator/proc/output_available_resources()
-	for(var/material_path in stored_materials)
+	for(var/material_path in materials.stored_materials)
 		var/decl/material/material = GET_DECL_INSTANCE(material_path)
-		var/amount = min(res_max_amount, stored_materials[material_path])
+		var/amount = materials.get_amount(material_path)
 		. += "<span class=\"res_name\">[material.name]: </span>[amount] cm&sup3;"
 		if(amount > 0)
-			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[res_max_amount];material=[material_path]'>All</a>\]</span>"
+			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[materials.max_capacity];material=[material_path]'>All</a>\]</span>"
 		. += "<br/>"
-
-/obj/machinery/robotics_fabricator/proc/remove_resources(datum/design/D)
-	for(var/material_path in D.materials)
-		if(material_path in stored_materials)
-			stored_materials[material_path] -= get_resource_cost_w_coeff(D, material_path)
-
-/obj/machinery/robotics_fabricator/proc/check_resources(datum/design/D)
-	for(var/material_path in D.materials)
-		if(material_path in stored_materials)
-			if(stored_materials[material_path] < get_resource_cost_w_coeff(D, material_path))
-				return FALSE
-		else
-			return FALSE
-	return TRUE
 
 /obj/machinery/robotics_fabricator/proc/build_part(datum/design/D)
 	var/obj/part = D.build_path
 	being_built = D
 	desc = "It's building \a [initial(part.name)]."
-	remove_resources(D)
+	remove_materials(D)
 	overlays.Add("fab-active")
 	update_power_state(USE_POWER_ACTIVE)
 	updateUsrDialog()
@@ -195,10 +174,7 @@
 
 	var/obj/item/output = new D.build_path()
 	output.forceMove(get_step(src, SOUTH))
-	if(isnull(output.matter_amounts))
-		output.matter_amounts = list()
-	for(var/material_path in D.materials)
-		output.matter_amounts[material_path] = get_resource_cost_w_coeff(D, material_path)
+	output.matter_amounts = calculate_materials_with_coeff(D)
 	visible_message("\icon[src] <b>[src]</b> beeps, \"The following has been completed: [output.name] is built.\"")
 	being_built = null
 	updateUsrDialog()
@@ -241,7 +217,7 @@
 	while(D)
 		if(stat & (NOPOWER | BROKEN))
 			return 0
-		if(!check_resources(D))
+		if(!has_materials(D))
 			visible_message("\icon[src] <b>[src]</b> beeps, \"Not enough resources. Queue processing stopped\".")
 			temp = {"<font color='red'>Not enough resources to build next part.</font><br>
 						<a href='byond://?src=\ref[src];process_queue=1'>Try again</a> | <a href='byond://?src=\ref[src];clear_temp=1'>Return</a><a>"}
@@ -262,7 +238,7 @@
 		for_no_type_check(var/datum/design/D, queue)
 			i++
 			var/obj/part = D.build_path
-			. += "<li[!check_resources(part) ? " style='color: #f00;'" : null]>[initial(part.name)] - [i > 1 ? "<a href='byond://?src=\ref[src];queue_move=-1;index=[i]' class='arrow'>&uarr;</a>" : null] [i < length(queue) ? "<a href='byond://?src=\ref[src];queue_move=+1;index=[i]' class='arrow'>&darr;</a>" : null] <a href='byond://?src=\ref[src];remove_from_queue=[i]'>Remove</a></li>"
+			. += "<li[!has_materials(D) ? " style='color: #f00;'" : null]>[initial(part.name)] - [i > 1 ? "<a href='byond://?src=\ref[src];queue_move=-1;index=[i]' class='arrow'>&uarr;</a>" : null] [i < length(queue) ? "<a href='byond://?src=\ref[src];queue_move=+1;index=[i]' class='arrow'>&darr;</a>" : null] <a href='byond://?src=\ref[src];remove_from_queue=[i]'>Remove</a></li>"
 		. += "</ol>"
 		. += "\[<a href='byond://?src=\ref[src];process_queue=1'>Process queue</a> | <a href='byond://?src=\ref[src];clear_queue=1'>Clear queue</a>\]"
 
@@ -325,12 +301,6 @@
 		temp += "<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
 		updateUsrDialog()
 		visible_message("\icon[src] <b>[src]</b> beeps, \"Error! Couldn't connect to R&D server.\"")
-
-/obj/machinery/robotics_fabricator/proc/get_resource_cost_w_coeff(datum/design/D, material_path, roundto = 1)
-	return round(D.materials[material_path] * resource_coeff, roundto)
-
-/obj/machinery/robotics_fabricator/proc/get_construction_time_w_coeff(datum/design/D, roundto = 1)
-	return round(D.build_time * time_coeff, roundto)
 
 /obj/machinery/robotics_fabricator/attack_hand(mob/user)
 	var/dat, left_part
@@ -467,25 +437,10 @@
 	if(href_list["remove_mat"] && href_list["material"])
 		var/material_path = topic_filter.getPath("material")
 		var/decl/material/mat = GET_DECL_INSTANCE(material_path)
-		temp = "Ejected [remove_material(material_path, topic_filter.getNum("remove_mat"))] sheets of [lowertext(mat.name)]."
+		temp = "Ejected [materials.eject_sheets(material_path, topic_filter.getNum("remove_mat"))] sheets of [lowertext(mat.name)]."
 		temp += "<br>"
 		temp += "<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
 	updateUsrDialog()
-
-/obj/machinery/robotics_fabricator/proc/remove_material(type, amount)
-	var/decl/material/material = GET_DECL_INSTANCE(type)
-	if(isnull(material.sheet_path))
-		return 0
-	. = 0
-	var/obj/item/stack/sheet/res = new material.sheet_path(src)
-	var/total_amount = round(stored_materials[type] / res.perunit)
-	res.amount = min(total_amount, amount)
-	if(res.amount > 0)
-		stored_materials[type] -= res.amount * res.perunit
-		res.Move(loc)
-		. = res.amount
-	else
-		qdel(res)
 
 /obj/machinery/robotics_fabricator/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(emagged > 0)
@@ -518,10 +473,7 @@
 			if(part.reliability != 100 && crit_fail)
 				part.crit_fail = TRUE
 			part.forceMove(loc)
-		for(var/material_path in stored_materials)
-			var/decl/material/material = GET_DECL_INSTANCE(material_path)
-			if(stored_materials[material_path] >= material.per_unit)
-				new material.sheet_path(loc, round(stored_materials[material_path] / material.per_unit))
+		materials.eject_all_sheets()
 		qdel(src)
 		return TRUE
 
@@ -529,7 +481,7 @@
 
 /obj/machinery/robotics_fabricator/attackby(obj/W, mob/user)
 	if(opened)
-		to_chat(user, SPAN_WARNING("You can't load the [name] while it's opened."))
+		to_chat(user, SPAN_WARNING("You can't load \the [src] while it's opened."))
 		return 1
 
 	if(!istype(W, /obj/item/stack/sheet))
@@ -538,24 +490,47 @@
 	if(isnull(stack.material))
 		return ..()
 	if(being_built)
-		to_chat(user, SPAN_WARNING("The fabricator is currently processing. Please wait until completion."))
+		to_chat(user, SPAN_WARNING("\The [src] is currently processing. Please wait until completion."))
+		return
+	if(!materials.can_contain(stack.material.type))
+		to_chat(user, SPAN_WARNING("\The [src] cannot accept [stack.name]!"))
+		return
+	if(!materials.can_add_amount(stack.material.type, stack.material.per_unit))
+		to_chat(user, SPAN_WARNING("\The [src] cannot hold more [stack.name]."))
 		return
 
-	if(stored_materials[stack.material.type] < res_max_amount)
-		var/count = 0
-		//loading animation is now an overlay based on material type. No more spontaneous conversion of all ores to metal. -vey
-		overlays.Add("fab-load-[lowertext(stack.material.name)]")
-		if(do_after(user, 10))
-			if(stack?.amount)
-				while(stored_materials[stack.material.type] <= (res_max_amount - stack.perunit))
-					if(!stack.use(1))
-						break
-					stored_materials[stack.material.type] += stack.perunit
-					count++
-				overlays.Remove("fab-load-[lowertext(stack.material.name)]")
-				to_chat(user, SPAN_INFO("You insert [count] [stack.name] into the fabricator."))
-				updateUsrDialog()
-		else
-			to_chat(user, SPAN_WARNING("You fail to insert the [stack.name] into the fabricator."))
+	overlays.Add("fab-load-[lowertext(stack.material.name)]")
+	if(do_after(user, 1 SECOND))
+		to_chat(user, SPAN_INFO("You insert [materials.add_sheets(stack)] [stack.name] into \the [src]."))
 	else
-		to_chat(user, SPAN_WARNING("The fabricator cannot hold more [stack.name]."))
+		to_chat(user, SPAN_WARNING("You fail to insert the [stack.name] into \the [src]."))
+	overlays.Remove("fab-load-[lowertext(stack.material.name)]")
+
+// Returns TRUE if the internal container has all of the required material amounts.
+/obj/machinery/robotics_fabricator/proc/has_materials(datum/design/D)
+	var/list/required_materials = calculate_materials_with_coeff(D)
+	for(var/material_path in required_materials)
+		if(materials.can_contain(material_path))
+			if(materials.stored_materials[material_path] < required_materials[material_path])
+				return FALSE
+		else
+			return FALSE
+	return TRUE
+
+// Removes the provided material amounts from the internal container's stored materials.
+/obj/machinery/robotics_fabricator/proc/remove_materials(datum/design/D)
+	var/list/required_materials = calculate_materials_with_coeff(D)
+	for(var/material_path in required_materials)
+		materials.remove_amount(material_path, required_materials[material_path])
+
+// Helper procs related to calculating material and time coefficients.
+/obj/machinery/robotics_fabricator/proc/calculate_materials_with_coeff(datum/design/D)
+	. = list()
+	for(var/material_path in D.materials)
+		.[material_path] = get_resource_cost_w_coeff(D, material_path)
+
+/obj/machinery/robotics_fabricator/proc/get_resource_cost_w_coeff(datum/design/D, material_path, roundto = 1)
+	return round(D.materials[material_path] * resource_coeff, roundto)
+
+/obj/machinery/robotics_fabricator/proc/get_construction_time_w_coeff(datum/design/D, roundto = 1)
+	return round(D.build_time * time_coeff, roundto)

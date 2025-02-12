@@ -219,6 +219,7 @@
 #include "code\game\datums\datacore.dm"
 #include "code\game\datums\datumvars.dm"
 #include "code\game\datums\hooks.dm"
+#include "code\game\datums\material_container.dm"
 #include "code\game\datums\mixed.dm"
 #include "code\game\datums\progressbar.dm"
 #include "code\game\datums\radio.dm"
