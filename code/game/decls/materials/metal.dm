@@ -89,7 +89,7 @@
 	sheet_path = /obj/item/stack/sheet/adamantine
 
 	coin_path = /obj/item/coin/adamantine
-	mint_colour_code = "#888888"
+	mint_colour_code = "#9999CC"
 
 /decl/material/mythril
 	name = "Mythril"

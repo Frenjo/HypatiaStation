@@ -65,7 +65,7 @@
 
 /obj/machinery/autolathe
 	name = "autolathe"
-	desc = "It produces items using metal and glass."
+	desc = "It produces items using steel and glass."
 	icon = 'icons/obj/machines/fabricators/autolathe.dmi'
 	icon_state = "autolathe"
 	density = TRUE
@@ -76,10 +76,9 @@
 		USE_POWER_ACTIVE = 100
 	)
 
-	var/list/stored_materials = list(MATERIAL_METAL = 0, /decl/material/glass = 0)
-	var/list/storage_capacity = list(MATERIAL_METAL = 150000, /decl/material/glass = 75000)
+	var/list/stored_materials = list(/decl/material/steel = 0, /decl/material/glass = 0)
+	var/list/storage_capacity = list(/decl/material/steel = 0, /decl/material/glass = 0) // This gets determined by the installed matter bins.
 
-	var/operating = 0.0
 	var/panel_open = 0
 
 	var/list/L = list()
@@ -91,7 +90,7 @@
 
 	var/datum/wires/autolathe/wires = null
 
-	var/busy = 0
+	var/busy = FALSE
 
 /obj/machinery/autolathe/New()
 	. = ..()
@@ -104,21 +103,53 @@
 	QDEL_NULL(wires)
 	return ..()
 
+/obj/machinery/autolathe/add_parts()
+	component_parts = list(
+		new /obj/item/circuitboard/autolathe(src),
+		new /obj/item/stock_part/matter_bin(src),
+		new /obj/item/stock_part/matter_bin(src),
+		new /obj/item/stock_part/matter_bin(src),
+		new /obj/item/stock_part/manipulator(src),
+		new /obj/item/stock_part/console_screen(src)
+	)
+	return TRUE
+
+/obj/machinery/autolathe/refresh_parts()
+	var/total_rating = 0
+	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
+		total_rating += bin.rating
+	total_rating *= 25000
+	for(var/material_path in storage_capacity)
+		storage_capacity[material_path] = total_rating * 2
+
 /obj/machinery/autolathe/proc/wires_win(mob/user)
 	var/dat
 	dat += "Autolathe Wires:<BR>"
 	dat += wires.GetInteractWindow()
 
 /obj/machinery/autolathe/proc/regular_win(mob/user)
-	var/dat = "<B>Metal Amount:</B> [stored_materials[MATERIAL_METAL]] cm<sup>3</sup> (MAX: [storage_capacity[MATERIAL_METAL]])<BR>\n<FONT color=blue><B>Glass Amount:</B></FONT> [stored_materials[/decl/material/glass]] cm<sup>3</sup> (MAX: [storage_capacity[/decl/material/glass]])<HR>"
+	var/dat
+	var/total_stored = 0
+	var/total_capacity = 0
+	for(var/material_path in stored_materials)
+		var/decl/material/mat = material_path
+		total_stored += stored_materials[mat]
+		total_capacity += storage_capacity[mat]
+		dat += "<font color='[initial(mat.mint_colour_code)]'><b>[initial(mat.name)] Amount:</b></font> [stored_materials[mat]]cm<sup>3</sup>"
+		dat += " (MAX: [storage_capacity[mat]]cm<sup>3</sup>)"
+		dat += "<br>"
+	dat += "<b>Total Amount:</b> [total_stored]cm<sup>3</sup> (MAX: [total_capacity]cm<sup>3</sup>)"
+	dat += "<hr>"
+
 	var/list/objs = list()
 	objs += src.L
 	if(src.hacked)
 		objs += src.LL
 	for(var/obj/t in objs)
-		var/title = "[t.name] ([t.matter_amounts[MATERIAL_METAL]] m /[t.matter_amounts[/decl/material/glass]] g)"
-		if(stored_materials[MATERIAL_METAL] < t.matter_amounts[MATERIAL_METAL] || stored_materials[/decl/material/glass] < t.matter_amounts[/decl/material/glass])
-			dat += title + "<br>"
+		var/title = "[t.name] ([output_part_cost(t)])"
+		if(!check_resources(t))
+			dat += title
+			dat += "<br>"
 			continue
 		dat += "<A href='byond://?src=\ref[src];make=\ref[t]'>[title]</A>"
 		if(istype(t, /obj/item/stack))
@@ -194,39 +225,36 @@
 				if(part.reliability != 100 && crit_fail)
 					part.crit_fail = TRUE
 			for(var/material_path in stored_materials)
-				var/decl/material/material = GET_DECL_INSTANCE(material_path)
-				if(stored_materials[material_path] >= material.per_unit)
-					new material.sheet_path(loc, round(stored_materials[material_path] / material.per_unit))
+				var/decl/material/mat = material_path
+				var/per_unit = initial(mat.per_unit)
+				if(stored_materials[material_path] >= per_unit)
+					var/sheet_path = initial(mat.sheet_path)
+					new sheet_path(loc, round(stored_materials[material_path] / per_unit))
 			qdel(src)
 			return TRUE
 
 	return ..()
 
 /obj/machinery/autolathe/attackby(obj/item/O, mob/user)
-	if(stored_materials[MATERIAL_METAL] + O.matter_amounts[MATERIAL_METAL] > storage_capacity[MATERIAL_METAL])
-		to_chat(user, SPAN_WARNING("The autolathe is full. Please remove metal from the autolathe in order to insert more."))
-		return 1
-	if(stored_materials[/decl/material/glass] + O.matter_amounts[/decl/material/glass] > storage_capacity[/decl/material/glass])
-		to_chat(user, SPAN_WARNING("The autolathe is full. Please remove glass from the autolathe in order to insert more."))
-		return 1
-	if(O.matter_amounts[MATERIAL_METAL] == 0 && O.matter_amounts[/decl/material/glass] == 0)
-		to_chat(user, SPAN_WARNING("This object does not contain significant amounts of metal or glass, or cannot be accepted by the autolathe due to size or hazardous materials."))
-		return 1
-	/*
-		if (istype(O, /obj/item/grab) && src.hacked)
-			var/obj/item/grab/G = O
-			if (prob(25) && G.affecting)
-				G.affecting.gib()
-				m_amount += 50000
+	if(!length(O.matter_amounts))
+		to_chat(user, SPAN_WARNING("\The [O] does not contain sufficient material to be accepted by \the [src]."))
+		return
+
+	for(var/material_path in O.matter_amounts)
+		if(material_path in stored_materials)
+			if(stored_materials[material_path] + O.matter_amounts[material_path] > storage_capacity[material_path])
+				var/decl/material/mat = material_path
+				to_chat(user, SPAN_WARNING("\The [src] is full. Please remove [lowertext(initial(mat.name))] from \the [src] in order to insert more."))
+				return
+		else
+			to_chat(user, SPAN_WARNING("\The [src] cannot accept \the [O]."))
 			return
-	*/
 
 	var/amount = 1
-	var/obj/item/stack/stack
 	var/m_amt = O.matter_amounts[MATERIAL_METAL]
 	var/g_amt = O.matter_amounts[/decl/material/glass]
 	if(istype(O, /obj/item/stack))
-		stack = O
+		var/obj/item/stack/stack = O
 		amount = stack.amount
 		if(m_amt)
 			amount = min(amount, round((storage_capacity[MATERIAL_METAL] - stored_materials[MATERIAL_METAL]) / m_amt))
@@ -240,14 +268,14 @@
 		O.forceMove(src)
 
 	icon_state = "autolathe"
-	busy = 1
+	busy = TRUE
 	use_power(max(1000, (m_amt + g_amt) * amount / 10))
 	stored_materials[MATERIAL_METAL] += m_amt * amount
 	stored_materials[/decl/material/glass] += g_amt * amount
-	to_chat(user, "You insert [amount] sheet[amount > 1 ? "s" : ""] to the autolathe.")
-	if(O && O.loc == src)
+	to_chat(user, SPAN_INFO("You insert [amount] sheet\s into the autolathe."))
+	if(O?.loc == src)
 		qdel(O)
-	busy = 0
+	busy = FALSE
 	updateUsrDialog()
 
 /obj/machinery/autolathe/attack_paw(mob/user)
@@ -263,88 +291,90 @@
 	usr.set_machine(src)
 	src.add_fingerprint(usr)
 
-	if(!busy)
-		if(href_list["make"])
-			var/turf/T = get_step(src.loc, get_dir(src, usr))
+	if(busy)
+		to_chat(usr, SPAN_WARNING("The autolathe is busy. Please wait for completion of previous operation."))
+		return
 
-			// critical exploit fix start -walter0o
-			var/obj/item/template = null
-			var/attempting_to_build = locate(href_list["make"])
+	if(href_list["make"])
+		var/turf/T = get_step(src.loc, get_dir(src, usr))
 
-			if(!attempting_to_build)
-				return
+		// critical exploit fix start -walter0o
+		var/obj/item/template = null
+		var/attempting_to_build = locate(href_list["make"])
 
-			if(locate(attempting_to_build, src.L) || locate(attempting_to_build, src.LL)) // see if the requested object is in one of the construction lists, if so, it is legit -walter0o
-				template = attempting_to_build
+		if(!attempting_to_build)
+			return
 
-			else // somebody is trying to exploit, alert admins -walter0o
-				var/turf/LOC = GET_TURF(usr)
-				message_admins("[key_name_admin(usr)] tried to exploit an autolathe to duplicate <a href='byond://?_src_=vars;Vars=\ref[attempting_to_build]'>[attempting_to_build]</a> ! ([LOC ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[LOC.x];Y=[LOC.y];Z=[LOC.z]'>JMP</a>" : "null"])", 0)
-				log_admin("EXPLOIT : [key_name(usr)] tried to exploit an autolathe to duplicate [attempting_to_build] !")
-				return
+		if(locate(attempting_to_build, src.L) || locate(attempting_to_build, src.LL)) // see if the requested object is in one of the construction lists, if so, it is legit -walter0o
+			template = attempting_to_build
 
-			// now check for legit multiplier, also only stacks should pass with one to prevent raw-materials-manipulation -walter0o
+		else // somebody is trying to exploit, alert admins -walter0o
+			var/turf/LOC = GET_TURF(usr)
+			message_admins("[key_name_admin(usr)] tried to exploit an autolathe to duplicate <a href='byond://?_src_=vars;Vars=\ref[attempting_to_build]'>[attempting_to_build]</a> ! ([LOC ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[LOC.x];Y=[LOC.y];Z=[LOC.z]'>JMP</a>" : "null"])", 0)
+			log_admin("EXPLOIT : [key_name(usr)] tried to exploit an autolathe to duplicate [attempting_to_build] !")
+			return
 
-			var/multiplier = text2num(href_list["multiplier"])
+		// now check for legit multiplier, also only stacks should pass with one to prevent raw-materials-manipulation -walter0o
 
-			if(!multiplier)
-				multiplier = 1
-			var/max_multiplier = 1
+		var/multiplier = text2num(href_list["multiplier"])
 
-			if(istype(template, /obj/item/stack)) // stacks are the only items which can have a multiplier higher than 1 -walter0o
-				var/obj/item/stack/S = template
-				max_multiplier = min(S.max_amount, S.matter_amounts[MATERIAL_METAL] ? round(stored_materials[MATERIAL_METAL] / S.matter_amounts[MATERIAL_METAL]) : INFINITY, \
-					S.matter_amounts[/decl/material/glass] ? round(stored_materials[/decl/material/glass] / S.matter_amounts[/decl/material/glass]) : INFINITY)  // pasta from regular_win() to make sure the numbers match -walter0o
+		if(!multiplier)
+			multiplier = 1
+		var/max_multiplier = 1
 
-			if((multiplier > max_multiplier) || (multiplier <= 0)) // somebody is trying to exploit, alert admins-walter0o
-				var/turf/LOC = GET_TURF(usr)
-				message_admins("[key_name_admin(usr)] tried to exploit an autolathe with multiplier set to <u>[multiplier]</u> on <u>[template]</u>  ! ([LOC ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[LOC.x];Y=[LOC.y];Z=[LOC.z]'>JMP</a>" : "null"])" , 0)
-				log_admin("EXPLOIT : [key_name(usr)] tried to exploit an autolathe with multiplier set to [multiplier] on [template]  !")
-				return
+		if(istype(template, /obj/item/stack)) // stacks are the only items which can have a multiplier higher than 1 -walter0o
+			var/obj/item/stack/S = template
+			max_multiplier = min(S.max_amount, S.matter_amounts[MATERIAL_METAL] ? round(stored_materials[MATERIAL_METAL] / S.matter_amounts[MATERIAL_METAL]) : INFINITY, \
+				S.matter_amounts[/decl/material/glass] ? round(stored_materials[/decl/material/glass] / S.matter_amounts[/decl/material/glass]) : INFINITY)  // pasta from regular_win() to make sure the numbers match -walter0o
 
-			var/power = max(2000, (template.matter_amounts[MATERIAL_METAL] + template.matter_amounts[/decl/material/glass]) * multiplier / 5)
-			if(stored_materials[MATERIAL_METAL] >= template.matter_amounts[MATERIAL_METAL] * multiplier && stored_materials[/decl/material/glass] >= template.matter_amounts[/decl/material/glass] * multiplier)
-				busy = 1
+		if((multiplier > max_multiplier) || (multiplier <= 0)) // somebody is trying to exploit, alert admins-walter0o
+			var/turf/LOC = GET_TURF(usr)
+			message_admins("[key_name_admin(usr)] tried to exploit an autolathe with multiplier set to <u>[multiplier]</u> on <u>[template]</u>  ! ([LOC ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[LOC.x];Y=[LOC.y];Z=[LOC.z]'>JMP</a>" : "null"])" , 0)
+			log_admin("EXPLOIT : [key_name(usr)] tried to exploit an autolathe with multiplier set to [multiplier] on [template]  !")
+			return
+
+		var/total_amount_used = 0
+		var/has_enough_materials = FALSE
+		for(var/material_path in template.matter_amounts)
+			var/matter_amount = template.matter_amounts[material_path]
+			total_amount_used += matter_amount
+			if(stored_materials[material_path] >= matter_amount * multiplier)
+				has_enough_materials = TRUE
+		var/power = max(2000, total_amount_used * multiplier / 5)
+		if(has_enough_materials)
+			busy = TRUE
+			use_power(power)
+			icon_state = "autolathe"
+			flick("autolathe_n", src)
+			spawn(16)
 				use_power(power)
-				icon_state = "autolathe"
-				flick("autolathe_n", src)
 				spawn(16)
 					use_power(power)
 					spawn(16)
-						use_power(power)
-						spawn(16)
-							stored_materials[MATERIAL_METAL] -= template.matter_amounts[MATERIAL_METAL] * multiplier
-							stored_materials[/decl/material/glass] -= template.matter_amounts[/decl/material/glass] * multiplier
-							if(stored_materials[MATERIAL_METAL] < 0)
-								stored_materials[MATERIAL_METAL] = 0
-							if(stored_materials[/decl/material/glass] < 0)
-								stored_materials[/decl/material/glass] = 0
-							var/obj/new_item = new template.type(T)
-							if(multiplier > 1)
-								var/obj/item/stack/S = new_item
-								S.amount = multiplier
-							busy = 0
-							src.updateUsrDialog()
-	else
-		to_chat(usr, SPAN_WARNING("The autolathe is busy. Please wait for completion of previous operation."))
+						for(var/material_path in template.matter_amounts)
+							stored_materials[material_path] -= template.matter_amounts[material_path] * multiplier
+						var/obj/new_item = new template.type(T)
+						if(multiplier > 1)
+							var/obj/item/stack/S = new_item
+							S.amount = multiplier
+						busy = FALSE
+						src.updateUsrDialog()
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/autolathe/add_parts()
-	component_parts = list(
-		new /obj/item/circuitboard/autolathe(src),
-		new /obj/item/stock_part/matter_bin(src),
-		new /obj/item/stock_part/matter_bin(src),
-		new /obj/item/stock_part/matter_bin(src),
-		new /obj/item/stock_part/manipulator(src),
-		new /obj/item/stock_part/console_screen(src)
-	)
-	return TRUE
+/obj/machinery/autolathe/proc/output_part_cost(obj/item/I)
+	var/i = 0
+	for(var/material_path in I.matter_amounts)
+		if(material_path in stored_materials)
+			var/decl/material/mat = material_path
+			. += "[i ? " / " : null][I.matter_amounts[material_path]]cm<sup>3</sup> [lowertext(initial(mat.name))]"
+			i++
 
-/obj/machinery/autolathe/refresh_parts()
-	var/total_rating = 0
-	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
-		total_rating += bin.rating
-	total_rating *= 25000
-	storage_capacity[MATERIAL_METAL] = total_rating * 2
-	storage_capacity[/decl/material/glass] = total_rating
+/obj/machinery/autolathe/proc/check_resources(obj/item/I)
+	for(var/material_path in I.matter_amounts)
+		if(material_path in stored_materials)
+			if(stored_materials[material_path] < I.matter_amounts[material_path])
+				return FALSE
+		else
+			return FALSE
+	return TRUE

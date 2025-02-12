@@ -2,6 +2,8 @@
 	name = "Glass"
 	sheet_path = /obj/item/stack/sheet/glass
 
+	mint_colour_code = "#0055FF"
+
 /decl/material/reinforced_glass
 	name = "Reinforced Glass"
 	sheet_path = /obj/item/stack/sheet/glass/reinforced
