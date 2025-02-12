@@ -23,6 +23,7 @@
 	icon_state = "datadisk2"
 	w_class = 1.0
 	matter_amounts = list(MATERIAL_METAL = 30, /decl/material/glass = 10)
+	origin_tech = list(/decl/tech/programming = 1)
 
 	var/decl/tech/stored = null
 
@@ -39,6 +40,7 @@
 	icon_state = "datadisk2"
 	w_class = 1.0
 	matter_amounts = list(MATERIAL_METAL = 30, /decl/material/glass = 10)
+	origin_tech = list(/decl/tech/programming = 1)
 
 	var/datum/design/blueprint = null
 

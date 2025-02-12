@@ -8,38 +8,39 @@
 
 /datum/design/stock_part/basic_capacitor
 	name = "Basic Capacitor"
-	req_tech = list(/decl/tech/power_storage = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/stock_part/capacitor
 
 /datum/design/stock_part/basic_scanning_module
 	name = "Basic Scanning Module"
-	req_tech = list(/decl/tech/magnets = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 20)
 	build_path = /obj/item/stock_part/scanning_module
 
 /datum/design/stock_part/micro_mani
 	name = "Micro-Manipulator"
-	req_tech = list(/decl/tech/materials = 1, /decl/tech/programming = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
 	materials = list(MATERIAL_METAL = 30)
 	build_path = /obj/item/stock_part/manipulator
 
 /datum/design/stock_part/basic_micro_laser
 	name = "Basic Micro-Laser"
-	req_tech = list(/decl/tech/magnets = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
 	materials = list(MATERIAL_METAL = 10, /decl/material/glass = 20)
 	build_path = /obj/item/stock_part/micro_laser
 
 /datum/design/stock_part/basic_matter_bin
 	name = "Basic Matter Bin"
-	req_tech = list(/decl/tech/materials = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
 	materials = list(MATERIAL_METAL = 80)
 	build_path = /obj/item/stock_part/matter_bin
+
+/datum/design/stock_part/console_screen
+	name = "Console Screen"
+	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
+	materials = list(/decl/material/glass = 200)
+	build_path = /obj/item/stock_part/console_screen
 
 /datum/design/stock_part/adv_capacitor
 	name = "Advanced Capacitor"

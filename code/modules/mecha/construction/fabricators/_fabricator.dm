@@ -493,6 +493,8 @@
 		return FALSE
 
 	emag()
+	files.show_hidden_designs = TRUE
+	files.refresh_research()
 	return TRUE
 
 /obj/machinery/robotics_fabricator/attack_tool(obj/item/tool, mob/user)

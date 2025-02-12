@@ -50,6 +50,8 @@ other types of metals and chemistry for reagents).
 
 	var/name_prefix = null
 
+	var/hidden = FALSE // If true, this design is only visible when the machine is hacked or emagged.
+
 /datum/design/New()
 	. = ..()
 	if(isnotnull(name_prefix))

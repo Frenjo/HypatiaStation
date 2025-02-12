@@ -4,7 +4,6 @@
 /datum/design/design_disk
 	name = "Disk Design (Design Data)"
 	desc = "Produce additional disks for storing device designs."
-	req_tech = list(/decl/tech/programming = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
 	materials = list(MATERIAL_METAL = 30, /decl/material/glass = 10)
 	build_path = /obj/item/disk/design
@@ -12,7 +11,6 @@
 /datum/design/tech_disk
 	name = "Disk Design (Technology Data)"
 	desc = "Produce additional disks for storing technology data."
-	req_tech = list(/decl/tech/programming = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
 	materials = list(MATERIAL_METAL = 30, /decl/material/glass = 10)
 	build_path = /obj/item/disk/tech

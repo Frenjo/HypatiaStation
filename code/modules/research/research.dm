@@ -50,6 +50,8 @@ research holder datum.
 	var/list/datum/design/possible_designs = list()	// List of all designs (at base reliability).
 	var/list/datum/design/known_designs = list()	// List of available designs (at base reliability).
 
+	var/show_hidden_designs = FALSE // If true, displays designs marked as hidden.
+
 /datum/research/New()	// Insert techs into possible_tech here. Known_tech automatically updated.
 	for_no_type_check(var/decl/tech/T, GET_DECL_SUBTYPE_INSTANCES(/decl/tech))
 		possible_tech.Add(T)
@@ -78,6 +80,8 @@ research holder datum.
 /datum/research/proc/DesignHasReqs(datum/design/D)
 	if(!length(D.req_tech))
 		return TRUE
+	if(D.hidden && !show_hidden_designs)
+		return FALSE
 	var/matches = 0
 	var/list/k_tech = list()
 	for_no_type_check(var/decl/tech/known, known_tech)
