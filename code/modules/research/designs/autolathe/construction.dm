@@ -22,27 +22,27 @@
 // Assembly Components
 /datum/design/autolathe/igniter
 	name = "Igniter"
-	materials = list(MATERIAL_METAL = 500, /decl/material/glass = 50, "waste" = 10)
+	materials = list(MATERIAL_METAL = 500, /decl/material/glass = 50)
 	build_path = /obj/item/assembly/igniter
 
 /datum/design/autolathe/signaler
 	name = "Remote Signalling Device"
-	materials = list(MATERIAL_METAL = 1000, /decl/material/glass = 200, "waste" = 100)
+	materials = list(MATERIAL_METAL = 1000, /decl/material/glass = 200)
 	build_path = /obj/item/assembly/signaler
 
 /datum/design/autolathe/infrared_emitter
 	name = "Infrared Emitter"
-	materials = list(MATERIAL_METAL = 1000, /decl/material/glass = 500, "waste" = 100)
+	materials = list(MATERIAL_METAL = 1000, /decl/material/glass = 500)
 	build_path = /obj/item/assembly/infra
 
 /datum/design/autolathe/timer
 	name = "Timer"
-	materials = list(MATERIAL_METAL = 500, /decl/material/glass = 50, "waste" = 10)
+	materials = list(MATERIAL_METAL = 500, /decl/material/glass = 50)
 	build_path = /obj/item/assembly/timer
 
 /datum/design/autolathe/proximity_sensor
 	name = "Proximity Sensor"
-	materials = list(MATERIAL_METAL = 800, /decl/material/glass = 200, "waste" = 50)
+	materials = list(MATERIAL_METAL = 800, /decl/material/glass = 200)
 	build_path = /obj/item/assembly/prox_sensor
 
 // Lights

@@ -2,7 +2,7 @@
 	name = "proximity sensor"
 	desc = "Used for scanning and alerting when someone enters a certain proximity."
 	icon_state = "prox"
-	matter_amounts = list(MATERIAL_METAL = 800, /decl/material/glass = 200, "waste" = 50)
+	matter_amounts = list(MATERIAL_METAL = 800, /decl/material/glass = 200)
 	origin_tech = list(/decl/tech/magnets = 1)
 
 	wires = WIRE_PULSE

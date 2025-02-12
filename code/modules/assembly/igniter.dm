@@ -2,7 +2,7 @@
 	name = "igniter"
 	desc = "A small electronic device able to ignite combustable substances."
 	icon_state = "igniter"
-	matter_amounts = list(MATERIAL_METAL = 500, /decl/material/glass = 50, "waste" = 10)
+	matter_amounts = list(MATERIAL_METAL = 500, /decl/material/glass = 50)
 	origin_tech = list(/decl/tech/magnets = 1)
 
 	secured = 1
