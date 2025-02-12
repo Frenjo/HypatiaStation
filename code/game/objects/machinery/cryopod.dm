@@ -139,7 +139,7 @@ GLOBAL_GLOBL_LIST_NEW(frozen_items)
 
 	// These items are preserved when the process() despawn proc occurs.
 	var/list/preserve_items = list(
-		/obj/item/hand_tele,
+		/obj/item/hand_teleporter,
 		/obj/item/card/id/captains_spare,
 		/obj/item/aicard,
 		/obj/item/mmi,

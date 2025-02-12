@@ -121,10 +121,10 @@ Frequency:
 	return
 
 /*
- * Hand-tele
+ * Hand Teleporter
  */
-/obj/item/hand_tele
-	name = "hand tele"
+/obj/item/hand_teleporter
+	name = "hand teleporter"
 	desc = "A portable item using blue-space technology."
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "hand_tele"
@@ -136,7 +136,7 @@ Frequency:
 	matter_amounts = list(MATERIAL_METAL = 10000)
 	origin_tech = list(/decl/tech/magnets = 1, /decl/tech/bluespace = 3)
 
-/obj/item/hand_tele/attack_self(mob/user)
+/obj/item/hand_teleporter/attack_self(mob/user)
 	var/turf/current_location = GET_TURF(user)//What turf is the user on?
 	if(isnull(current_location) || current_location.z == 2 || current_location.z >= 7)//If turf was not found or they're on z level 2 or >7 which does not currently exist.
 		to_chat(user, SPAN_NOTICE("\The [src] is malfunctioning."))

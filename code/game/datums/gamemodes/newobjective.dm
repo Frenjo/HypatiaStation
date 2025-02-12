@@ -630,7 +630,7 @@ datum
 
 
 			handtele
-				steal_target = /obj/item/hand_tele
+				steal_target = /obj/item/hand_teleporter
 				explanation_text = "Steal a hand teleporter."
 				weight = 20
 

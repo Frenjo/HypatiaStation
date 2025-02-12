@@ -101,7 +101,7 @@ When thinking about new stuff, check here to see if there are any slots unfilled
 //BLUE SPACE
 1	|
 2	|	Teleporter Console Board
-3	|	Teleport Gun, Hand Tele
+3	|	Teleport Gun, Hand Teleporter
 4	|	Teleportation Scroll
 5	|
 6	|

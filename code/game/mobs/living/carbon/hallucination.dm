@@ -361,7 +361,7 @@ var/list/non_fakeattack_weapons = list(
 	/obj/item/radio/headset/syndicate,	/obj/item/plastique,
 	/obj/item/powersink, /obj/item/storage/box/syndie_kit,
 	/obj/item/toy/syndicateballoon, /obj/item/gun/energy/laser/captain,
-	/obj/item/hand_tele, /obj/item/rcd, /obj/item/tank/jetpack,
+	/obj/item/hand_teleporter, /obj/item/rcd, /obj/item/tank/jetpack,
 	/obj/item/clothing/under/rank/captain, /obj/item/aicard,
 	/obj/item/clothing/shoes/magboots, /obj/item/blueprints, /obj/item/disk/nuclear,
 	/obj/item/clothing/suit/space/nasavoid, /obj/item/tank

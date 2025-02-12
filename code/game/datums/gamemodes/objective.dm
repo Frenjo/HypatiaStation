@@ -487,7 +487,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 
 	var/static/list/possible_items = list(
 		"the captain's antique laser gun" = /obj/item/gun/energy/laser/captain,
-		"a hand teleporter" = /obj/item/hand_tele,
+		"a hand teleporter" = /obj/item/hand_teleporter,
 		"an RCD" = /obj/item/rcd,
 		"a jetpack" = /obj/item/tank/jetpack,
 		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
