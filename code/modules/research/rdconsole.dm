@@ -323,7 +323,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 							new_item.investigate_log("built by [key]", "singulo")
 						new_item.reliability = being_built.reliability
 						if(linked_lathe.hacked)
-							being_built.reliability = max((reliability / 2), 0)
+							being_built.reliability = max((new_item.reliability / 2), 0)
 						/*if(being_built.locked)
 							var/obj/item/storage/lockbox/L = new/obj/item/storage/lockbox(linked_lathe.loc)
 							new_item.forceMove(L)
@@ -359,7 +359,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					var/obj/new_item = new being_built.build_path(src)
 					new_item.reliability = being_built.reliability
 					if(linked_imprinter.hacked)
-						being_built.reliability = max((reliability / 2), 0)
+						being_built.reliability = max((new_item.reliability / 2), 0)
 					new_item.forceMove(linked_imprinter.loc)
 					linked_imprinter.busy = 0
 					screen = 4.1
