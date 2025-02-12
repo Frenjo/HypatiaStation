@@ -122,9 +122,28 @@
 	for(var/material_path in storage_capacity)
 		storage_capacity[material_path] = total_rating * 2
 
+/obj/machinery/autolathe/interact(mob/user)
+	if(..())
+		return
+
+	if(shocked)
+		shock(user, 50)
+
+	if(panel_open)
+		wires_win(user, 50)
+		return
+
+	if(disabled)
+		to_chat(user, SPAN_WARNING("You press the button, but nothing happens."))
+		return
+
+	regular_win(user)
+	return
+
 /obj/machinery/autolathe/proc/wires_win(mob/user)
 	var/dat
-	dat += "Autolathe Wires:<BR>"
+	dat += "Autolathe Wires:"
+	dat += "<br>"
 	dat += wires.GetInteractWindow()
 
 /obj/machinery/autolathe/proc/regular_win(mob/user)
@@ -179,24 +198,6 @@
 	else
 		return 0
 
-/obj/machinery/autolathe/interact(mob/user)
-	if(..())
-		return
-
-	if(src.shocked)
-		src.shock(user, 50)
-
-	if(src.panel_open)
-		wires_win(user, 50)
-		return
-
-	if(src.disabled)
-		to_chat(user, SPAN_WARNING("You press the button, but nothing happens."))
-		return
-
-	regular_win(user)
-	return
-
 /obj/machinery/autolathe/attack_tool(obj/item/tool, mob/user)
 	if(stat)
 		return TRUE
@@ -235,21 +236,26 @@
 
 	return ..()
 
+/obj/machinery/autolathe/attack_by(obj/item/I, mob/user)
+	// If it doesn't have any matter then we obviously can't recycle it.
+	if(!length(I.matter_amounts))
+		to_chat(user, SPAN_WARNING("\The [I] does not contain sufficient material to be accepted by \the [src]."))
+		return TRUE
+
+	for(var/material_path in I.matter_amounts)
+		// If it has any matter that we can't accept, then we also can't recycle it.
+		if(!(material_path in stored_materials))
+			to_chat(user, SPAN_WARNING("\The [src] cannot accept \the [I]."))
+			return TRUE
+		// Finally, if any of the required material storages are full, then we again can't recycle it.
+		if(stored_materials[material_path] + I.matter_amounts[material_path] > storage_capacity[material_path])
+			var/decl/material/mat = material_path
+			to_chat(user, SPAN_WARNING("\The [src] is full. Please remove [lowertext(initial(mat.name))] from \the [src] in order to insert more."))
+			return TRUE
+
+	return ..()
+
 /obj/machinery/autolathe/attackby(obj/item/O, mob/user)
-	if(!length(O.matter_amounts))
-		to_chat(user, SPAN_WARNING("\The [O] does not contain sufficient material to be accepted by \the [src]."))
-		return
-
-	for(var/material_path in O.matter_amounts)
-		if(material_path in stored_materials)
-			if(stored_materials[material_path] + O.matter_amounts[material_path] > storage_capacity[material_path])
-				var/decl/material/mat = material_path
-				to_chat(user, SPAN_WARNING("\The [src] is full. Please remove [lowertext(initial(mat.name))] from \the [src] in order to insert more."))
-				return
-		else
-			to_chat(user, SPAN_WARNING("\The [src] cannot accept \the [O]."))
-			return
-
 	var/amount = 1
 	var/m_amt = O.matter_amounts[MATERIAL_METAL]
 	var/g_amt = O.matter_amounts[/decl/material/glass]
