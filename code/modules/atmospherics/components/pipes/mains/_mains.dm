@@ -43,7 +43,6 @@
 /obj/machinery/atmospherics/mains_pipe
 	icon = 'icons/obj/pipes/mains.dmi'
 	layer = 2.4 //under wires with their 2.5
-	force = 20
 
 	var/volume = 0
 

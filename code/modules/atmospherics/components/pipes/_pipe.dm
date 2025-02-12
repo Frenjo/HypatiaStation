@@ -1,6 +1,4 @@
 /obj/machinery/atmospherics/pipe
-	force = 20
-
 	layer = 2.4 //under wires with their 2.44
 
 	power_state = USE_POWER_OFF
