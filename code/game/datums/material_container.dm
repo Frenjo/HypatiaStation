@@ -79,12 +79,14 @@
 // Ejects number of material_path sheets onto the ground.
 // Returns the number of sheets ejected.
 /datum/material_container/proc/eject_sheets(material_path, number)
-	var/decl/material/mat = GET_DECL_INSTANCE(material_path)
-	if(isnull(mat.sheet_path))
+	var/decl/material/mat = material_path
+	var/sheet_path = initial(mat.sheet_path)
+	if(isnull(sheet_path))
 		return 0
+	var/per_unit = initial(mat.per_unit)
 	. = 0
-	var/total_amount = round(stored_materials[material_path] / mat.per_unit)
+	var/total_amount = round(stored_materials[material_path] / per_unit)
 	var/sheet_amount = min(total_amount, number)
-	if(sheet_amount > 0 && remove_amount(material_path, sheet_amount * mat.per_unit))
-		new mat.sheet_path(GET_TURF(holder), sheet_amount)
+	if(sheet_amount > 0 && remove_amount(material_path, sheet_amount * per_unit))
+		new sheet_path(GET_TURF(holder), sheet_amount)
 		. = sheet_amount

@@ -146,15 +146,15 @@
 	var/i = 0
 	for(var/material_path in D.materials)
 		if(materials.can_contain(material_path))
-			var/decl/material/material = GET_DECL_INSTANCE(material_path)
-			. += "[i ? " | " : null][get_resource_cost_w_coeff(D, material_path)] [material.name]"
+			var/decl/material/mat = material_path
+			. += "[i ? " | " : null][get_resource_cost_w_coeff(D, material_path)] [lowertext(initial(mat.name))]"
 			i++
 
 /obj/machinery/robotics_fabricator/proc/output_available_resources()
 	for(var/material_path in materials.stored_materials)
-		var/decl/material/material = GET_DECL_INSTANCE(material_path)
+		var/decl/material/mat = material_path
 		var/amount = materials.get_amount(material_path)
-		. += "<span class=\"res_name\">[material.name]: </span>[amount] cm&sup3;"
+		. += "<span class=\"res_name\">[initial(mat.name)]:</span> [amount]cm<sup>3</sup>"
 		if(amount > 0)
 			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[materials.max_capacity];material=[material_path]'>All</a>\]</span>"
 		. += "<br/>"
@@ -435,9 +435,8 @@
 							"}
 					break
 	if(href_list["remove_mat"] && href_list["material"])
-		var/material_path = topic_filter.getPath("material")
-		var/decl/material/mat = GET_DECL_INSTANCE(material_path)
-		temp = "Ejected [materials.eject_sheets(material_path, topic_filter.getNum("remove_mat"))] sheets of [lowertext(mat.name)]."
+		var/decl/material/mat = topic_filter.getPath("material")
+		temp = "Ejected [materials.eject_sheets(mat, topic_filter.getNum("remove_mat"))] sheets of [lowertext(initial(mat.name))]."
 		temp += "<br>"
 		temp += "<a href='byond://?src=\ref[src];clear_temp=1'>Return</a>"
 	updateUsrDialog()
