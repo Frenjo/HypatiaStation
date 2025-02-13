@@ -173,14 +173,15 @@
 		dat += "<A href='byond://?src=\ref[src];make=\ref[t]'>[title]</A>"
 		if(istype(t, /obj/item/stack))
 			var/obj/item/stack/S = t
-			var/max_multiplier = min(S.max_amount, S.matter_amounts[MATERIAL_METAL] ? round(stored_materials[MATERIAL_METAL] / S.matter_amounts[MATERIAL_METAL]) : INFINITY, \
-				S.matter_amounts[/decl/material/glass] ? round(stored_materials[/decl/material/glass] / S.matter_amounts[/decl/material/glass]) : INFINITY)
+			var/max_multiplier = S.max_amount
+			for(var/material_path in S.matter_amounts)
+				max_multiplier = min(max_multiplier, round(stored_materials[material_path] / S.matter_amounts[material_path]))
 			if(max_multiplier > 1)
 				dat += " |"
 			if(max_multiplier > 10)
-				dat += " <A href='byond://?src=\ref[src];make=\ref[t];multiplier=[10]'>x[10]</A>"
+				dat += " <A href='byond://?src=\ref[src];make=\ref[t];multiplier=10'>x10</A>"
 			if(max_multiplier > 25)
-				dat += " <A href='byond://?src=\ref[src];make=\ref[t];multiplier=[25]'>x[25]</A>"
+				dat += " <A href='byond://?src=\ref[src];make=\ref[t];multiplier=25'>x25</A>"
 			if(max_multiplier > 1)
 				dat += " <A href='byond://?src=\ref[src];make=\ref[t];multiplier=[max_multiplier]'>x[max_multiplier]</A>"
 		dat += "<br>"
@@ -330,8 +331,9 @@
 
 		if(istype(template, /obj/item/stack)) // stacks are the only items which can have a multiplier higher than 1 -walter0o
 			var/obj/item/stack/S = template
-			max_multiplier = min(S.max_amount, S.matter_amounts[MATERIAL_METAL] ? round(stored_materials[MATERIAL_METAL] / S.matter_amounts[MATERIAL_METAL]) : INFINITY, \
-				S.matter_amounts[/decl/material/glass] ? round(stored_materials[/decl/material/glass] / S.matter_amounts[/decl/material/glass]) : INFINITY)  // pasta from regular_win() to make sure the numbers match -walter0o
+			max_multiplier = S.max_amount
+			for(var/material_path in S.matter_amounts)
+				max_multiplier = min(max_multiplier, round(stored_materials[material_path] / S.matter_amounts[material_path]))
 
 		if((multiplier > max_multiplier) || (multiplier <= 0)) // somebody is trying to exploit, alert admins-walter0o
 			var/turf/LOC = GET_TURF(usr)

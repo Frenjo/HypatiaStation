@@ -90,3 +90,18 @@
 	if(sheet_amount > 0 && remove_amount(material_path, sheet_amount * per_unit))
 		new sheet_path(GET_TURF(holder), sheet_amount)
 		. = sheet_amount
+
+// Returns TRUE if the container has all of the required material amounts.
+/datum/material_container/proc/has_materials(list/required_materials)
+	for(var/material_path in required_materials)
+		if(can_contain(material_path))
+			if(stored_materials[material_path] < required_materials[material_path])
+				return FALSE
+		else
+			return FALSE
+	return TRUE
+
+// Removes the provided material amounts from the container's stored materials.
+/datum/material_container/proc/remove_materials(list/required_materials)
+	for(var/material_path in required_materials)
+		remove_amount(material_path, required_materials[material_path])

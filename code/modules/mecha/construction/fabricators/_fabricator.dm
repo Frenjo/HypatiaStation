@@ -507,20 +507,11 @@
 
 // Returns TRUE if the internal container has all of the required material amounts.
 /obj/machinery/robotics_fabricator/proc/has_materials(datum/design/D)
-	var/list/required_materials = calculate_materials_with_coeff(D)
-	for(var/material_path in required_materials)
-		if(materials.can_contain(material_path))
-			if(materials.stored_materials[material_path] < required_materials[material_path])
-				return FALSE
-		else
-			return FALSE
-	return TRUE
+	return materials.has_materials(calculate_materials_with_coeff(D))
 
 // Removes the provided material amounts from the internal container's stored materials.
 /obj/machinery/robotics_fabricator/proc/remove_materials(datum/design/D)
-	var/list/required_materials = calculate_materials_with_coeff(D)
-	for(var/material_path in required_materials)
-		materials.remove_amount(material_path, required_materials[material_path])
+	return materials.remove_materials(calculate_materials_with_coeff(D))
 
 // Helper procs related to calculating material and time coefficients.
 /obj/machinery/robotics_fabricator/proc/calculate_materials_with_coeff(datum/design/D)
