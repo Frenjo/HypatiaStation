@@ -229,10 +229,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 							if(linked_destroy.loaded_item.reliability < 100 && linked_destroy.loaded_item.crit_fail)
 								files.update_design(linked_destroy.loaded_item.type)
 							if(isnotnull(linked_lathe)) // Also sends salvaged materials to a linked protolathe, if any.
-								var/obj/item/loaded_item = linked_destroy.loaded_item
-								for(var/material_path in loaded_item.matter_amounts)
-									var/storage_capacity = linked_lathe.max_storage_capacity - linked_lathe.get_total_stored_materials()
-									linked_lathe.stored_materials[material_path] += min(storage_capacity, (loaded_item.matter_amounts[material_path] * linked_destroy.decon_mod))
+								linked_lathe.materials.add_materials(linked_destroy.loaded_item.matter_amounts, linked_destroy.decon_mod)
 							linked_destroy.loaded_item = null
 						for_no_type_check(var/atom/A, linked_destroy.contents)
 							for(var/mob/living/L in A.contents)
@@ -311,11 +308,10 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				var/key = usr.key	//so we don't lose the info during the spawn delay
 				spawn(being_built.build_time)
 					use_power(power)
-					for(var/M in being_built.materials)
-						if(M in linked_lathe.accepted_materials)
-							linked_lathe.stored_materials[M] = max(0, (linked_lathe.stored_materials[M] - being_built.materials[M]))
-						else
-							linked_lathe.reagents.remove_reagent(M, being_built.materials[M])
+					for(var/material_path in being_built.materials)
+						if(linked_lathe.materials.remove_amount(material_path, being_built.materials[material_path]))
+							continue
+						linked_lathe.reagents.remove_reagent(material_path, being_built.materials[material_path])
 
 					if(being_built.build_path)
 						var/obj/new_item = new being_built.build_path(src)
@@ -351,11 +347,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				flick("circuit_imprinter_ani",linked_imprinter)
 				spawn(being_built.build_time)
 					use_power(power)
-					for(var/M in being_built.materials)
-						if(M in linked_imprinter.accepted_materials)
-							linked_imprinter.stored_materials[M] = max(0, (linked_imprinter.stored_materials[M] - being_built.materials[M]))
-						else
-							linked_imprinter.reagents.remove_reagent(M, being_built.materials[M])
+					for(var/material_path in being_built.materials)
+						if(linked_imprinter.materials.remove_amount(material_path, being_built.materials[material_path]))
+							continue
+						linked_imprinter.reagents.remove_reagent(material_path, being_built.materials[material_path])
+
 					var/obj/new_item = new being_built.build_path(src)
 					new_item.reliability = being_built.reliability
 					if(linked_imprinter.hacked)
@@ -380,27 +376,15 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["lathe_ejectsheet"] && isnotnull(linked_lathe)) // Causes the protolathe to eject a sheet of material.
 		var/material_type = text2path(href_list["lathe_ejectsheet"])
 		var/desired_num_sheets = text2num(href_list["lathe_ejectsheet_amt"])
-		var/decl/material/material = GET_DECL_INSTANCE(material_type)
-		if(ispath(material.sheet_path))
-			var/obj/item/stack/sheet/sheet = new material.sheet_path(linked_lathe.loc)
-			var/available_num_sheets = round(linked_lathe.stored_materials[material_type] / sheet.perunit)
-			if(available_num_sheets > 0)
-				sheet.amount = min(available_num_sheets, desired_num_sheets)
-				linked_lathe.stored_materials[material_type] = max(0, (linked_lathe.stored_materials[material_type] - sheet.amount * sheet.perunit))
-			else
-				qdel(sheet)
+		var/decl/material/mat = material_type
+		if(ispath(initial(mat.sheet_path)))
+			linked_lathe.materials.eject_sheets(mat, desired_num_sheets)
 	else if(href_list["imprinter_ejectsheet"] && isnotnull(linked_imprinter)) // Causes the circuit imprinter to eject a sheet of material.
 		var/material_type = text2path(href_list["imprinter_ejectsheet"])
 		var/desired_num_sheets = text2num(href_list["imprinter_ejectsheet_amt"])
-		var/decl/material/material = GET_DECL_INSTANCE(material_type)
-		if(ispath(material.sheet_path))
-			var/obj/item/stack/sheet/sheet = new material.sheet_path(linked_imprinter.loc)
-			var/available_num_sheets = round(linked_imprinter.stored_materials[material_type] / sheet.perunit)
-			if(available_num_sheets > 0)
-				sheet.amount = min(available_num_sheets, desired_num_sheets)
-				linked_imprinter.stored_materials[material_type] = max(0, (linked_imprinter.stored_materials[material_type] - sheet.amount * sheet.perunit))
-			else
-				qdel(sheet)
+		var/decl/material/mat = material_type
+		if(ispath(initial(mat.sheet_path)))
+			linked_imprinter.materials.eject_sheets(mat, desired_num_sheets)
 
 	else if(href_list["find_device"]) //The R&D console looks for devices nearby to link up with.
 		screen = 0.0
@@ -604,8 +588,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "Origin Tech:<BR>"
 			var/list/temp_tech = linked_destroy.loaded_item.origin_tech
 			for(var/path in temp_tech)
-				var/decl/tech/tech = GET_DECL_INSTANCE(path) // If this comes out as null, then someone has added something invalid to linked_destroy.loaded_item.origin_tech.
-				dat += "* [tech.name] [temp_tech[path]]<BR>"
+				var/decl/tech/tech = path // If this comes out as null, then someone has added something invalid to linked_destroy.loaded_item.origin_tech.
+				dat += "* [initial(tech.name)] [temp_tech[path]]<BR>"
 			dat += "<HR><A href='byond://?src=\ref[src];deconstruct=1'>Deconstruct Item</A> || "
 			dat += "<A href='byond://?src=\ref[src];eject_item=1'>Eject Item</A> || "
 
@@ -619,46 +603,53 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<A href='byond://?src=\ref[src];menu=3.2'>Material Storage</A> || "
 			dat += "<A href='byond://?src=\ref[src];menu=3.3'>Chemical Storage</A><HR>"
 			dat += "Protolathe Menu:<BR><BR>"
-			dat += "<B>Material Amount:</B> [linked_lathe.get_total_stored_materials()] cm<sup>3</sup> (MAX: [linked_lathe.max_storage_capacity])<BR>"
-			dat += "<B>Chemical Volume:</B> [linked_lathe.reagents.total_volume] (MAX: [linked_lathe.reagents.maximum_volume])<HR>"
+			dat += "<B>Material Amount:</B> [linked_lathe.materials.get_total_amount()]cm<sup>3</sup>"
+			dat += " (MAX: [linked_lathe.materials.get_total_capacity()]cm<sup>3</sup>)<br>"
+			dat += "<B>Chemical Volume:</B> [linked_lathe.reagents.total_volume]u (MAX: [linked_lathe.reagents.maximum_volume]u)<HR>"
+
 			for_no_type_check(var/datum/design/D, files.known_designs)
 				if(!(D.build_type & DESIGN_TYPE_PROTOLATHE))
 					continue
-				var/temp_dat = "[D.name]"
+				var/temp_dat = "[D.name] ("
 				var/check_materials = TRUE
+				var/i = 0
 				for(var/material_path in D.materials)
 					var/material_name = null
+					var/is_reagent = FALSE
 					if(ispath(material_path, /decl/material))
-						var/decl/material/material = GET_DECL_INSTANCE(material_path)
-						material_name = material.name
+						var/decl/material/mat = material_path
+						material_name = initial(mat.name)
 					if(isnull(material_name))
 						var/datum/reagent/reagent = GLOBL.chemical_reagents_list[material_path]
 						material_name = reagent.name // If this still comes out as null, then someone has added something invalid to D.materials.
-					temp_dat += " [D.materials[material_path]] [material_name]"
-					if(D.materials[material_path] > linked_lathe.stored_materials[material_path])
+						is_reagent = TRUE
+					temp_dat += "[i ? " | " : null][D.materials[material_path]][is_reagent ? "u" : "cm<sup>3</sup>"] [lowertext(material_name)]"
+					if(!linked_lathe.materials.can_remove_amount(material_path, D.materials[material_path]))
 						check_materials = FALSE
 					if(!check_materials && linked_lathe.reagents.has_reagent(material_path, D.materials[material_path]))
 						check_materials = TRUE
+					i++
+				temp_dat += ")"
 				if(check_materials)
-					dat += "* <A href='byond://?src=\ref[src];build=[D.type]'>[temp_dat]</A><BR>"
+					dat += "* <A href='byond://?src=\ref[src];build=[D.type]'>[temp_dat]</A><br>"
 				else
-					dat += "* [temp_dat]<BR>"
+					dat += "* [temp_dat]<br>"
 
 		if(3.2) //Protolathe Material Storage Sub-menu
 			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='byond://?src=\ref[src];menu=3.1'>Protolathe Menu</A><HR>"
 			dat += "Material Storage<BR><HR>"
-			for(var/material_path in linked_lathe.stored_materials)
-				var/decl/material/material = GET_DECL_INSTANCE(material_path)
-				var/material_amount = linked_lathe.stored_materials[material_path]
-				dat += "* [material_amount] cm<sup>3</sup> of [material.name] || "
-				dat += "Eject: "
-				if(material_amount >= material.per_unit)
-					dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[material_path];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
-				if(material_amount >= (material.per_unit * 5))
-					dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[material_path];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
-				if(material_amount >= material.per_unit)
-					dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[material_path];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
+			for(var/material_path in linked_lathe.materials.stored_materials)
+				var/decl/material/mat = material_path
+				var/per_unit = initial(mat.per_unit)
+				var/material_amount = linked_lathe.materials.get_type_amount(mat)
+				dat += "* [material_amount] cm<sup>3</sup> of <font color='[initial(mat.mint_colour_code)]'>[initial(mat.name)]</font> || Eject: "
+				if(material_amount >= per_unit)
+					dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[mat];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
+				if(material_amount >= (per_unit * 5))
+					dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[mat];lathe_ejectsheet_amt=5'>(5 Sheets)</A> "
+				if(material_amount >= per_unit)
+					dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[mat];lathe_ejectsheet_amt=50'>(Max Sheets)</A>"
 				dat += "<BR>"
 
 		if(3.3) //Protolathe Chemical Storage Submenu
@@ -680,27 +671,32 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<A href='byond://?src=\ref[src];menu=4.3'>Material Storage</A> || "
 			dat += "<A href='byond://?src=\ref[src];menu=4.2'>Chemical Storage</A><HR>"
 			dat += "Circuit Imprinter Menu:<BR><BR>"
-			dat += "Material Amount: [linked_imprinter.get_total_stored_materials()] cm<sup>3</sup><BR>"
-			dat += "Chemical Volume: [linked_imprinter.reagents.total_volume]<HR>"
+			dat += "Material Amount: [linked_imprinter.materials.get_total_amount()]cm<sup>3</sup><br>"
+			dat += "Chemical Volume: [linked_imprinter.reagents.total_volume]u<hr>"
 
 			for_no_type_check(var/datum/design/D, files.known_designs)
 				if(!(D.build_type & DESIGN_TYPE_IMPRINTER))
 					continue
-				var/temp_dat = "[D.name]"
+				var/temp_dat = "[D.name] ("
 				var/check_materials = TRUE
+				var/i = 0
 				for(var/material_path in D.materials)
 					var/material_name = null
+					var/is_reagent = FALSE
 					if(ispath(material_path, /decl/material))
-						var/decl/material/material = GET_DECL_INSTANCE(material_path)
-						material_name = material.name
+						var/decl/material/mat = material_path
+						material_name = initial(mat.name)
 					if(isnull(material_name))
 						var/datum/reagent/reagent = GLOBL.chemical_reagents_list[material_path]
 						material_name = reagent.name // If this still comes out as null, then someone has added something invalid to D.materials.
-					temp_dat += " [D.materials[material_path]] [material_name]"
-					if(D.materials[material_path] > linked_imprinter.stored_materials[material_path])
+						is_reagent = TRUE
+					temp_dat += "[i ? " | " : null][D.materials[material_path]][is_reagent ? "u" : "cm<sup>3</sup>"] [lowertext(material_name)]"
+					if(!linked_imprinter.materials.can_remove_amount(material_path, D.materials[material_path]))
 						check_materials = FALSE
 					if(!check_materials && linked_imprinter.reagents.has_reagent(material_path, D.materials[material_path]))
 						check_materials = TRUE
+					i++
+				temp_dat += ")"
 				if(check_materials)
 					dat += "* <A href='byond://?src=\ref[src];imprint=[D.type]'>[temp_dat]</A><BR>"
 				else
@@ -719,28 +715,28 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			dat += "<A href='byond://?src=\ref[src];menu=1.0'>Main Menu</A> || "
 			dat += "<A href='byond://?src=\ref[src];menu=4.1'>Circuit Imprinter Menu</A><HR>"
 			dat += "Material Storage<BR><HR>"
-			for(var/material_path in linked_imprinter.stored_materials)
-				var/decl/material/material = GET_DECL_INSTANCE(material_path)
-				var/material_amount = linked_imprinter.stored_materials[material_path]
-				dat += "* [material_amount] cm<sup>3</sup> of [material.name] || "
-				dat += "Eject: "
-				if(material_amount >= material.per_unit)
-					dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=[material_path];imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
-				if(material_amount >= (material.per_unit * 5))
-					dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=[material_path];imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
-				if(material_amount >= material.per_unit)
-					dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=[material_path];imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
+			for(var/material_path in linked_imprinter.materials.stored_materials)
+				var/decl/material/mat = material_path
+				var/per_unit = initial(mat.per_unit)
+				var/material_amount = linked_imprinter.materials.get_type_amount(mat)
+				dat += "* [material_amount] cm<sup>3</sup> of <font color='[initial(mat.mint_colour_code)]'>[initial(mat.name)]</font> || Eject: "
+				if(material_amount >= per_unit)
+					dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=[mat];imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
+				if(material_amount >= (per_unit * 5))
+					dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=[mat];imprinter_ejectsheet_amt=5'>(5 Sheets)</A> "
+				if(material_amount >= per_unit)
+					dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=[mat];imprinter_ejectsheet_amt=50'>(Max Sheets)</A>"
 				dat += "<BR>"
 
 	user << browse("<TITLE>Research and Development Console</TITLE><HR>[dat]", "window=rdconsole;size=575x400")
 	onclose(user, "rdconsole")
+
+/obj/machinery/computer/rdconsole/core
+	name = "core R&D console"
+	id = 1
 
 /obj/machinery/computer/rdconsole/robotics
 	name = "robotics R&D console"
 	id = 2
 	req_access = null
 	req_access = list(ACCESS_ROBOTICS)
-
-/obj/machinery/computer/rdconsole/core
-	name = "core R&D console"
-	id = 1

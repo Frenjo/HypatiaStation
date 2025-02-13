@@ -20,9 +20,7 @@
 
 	var/obj/machinery/computer/rdconsole/linked_console
 
-	var/list/accepted_materials = list()
-	var/list/stored_materials = list()
-	var/max_storage_capacity
+	var/datum/material_container/materials
 
 /obj/machinery/r_n_d/New()
 	. = ..()
@@ -39,6 +37,11 @@
 	w -= shock_wire
 	disable_wire = pick(w)
 	w -= disable_wire
+
+/obj/machinery/r_n_d/Destroy()
+	linked_console = null
+	QDEL_NULL(materials)
+	return ..()
 
 /obj/machinery/r_n_d/attack_hand(mob/user)
 	if(shocked)
@@ -122,15 +125,3 @@
 		return 1
 	else
 		return 0
-
-// Returns the total of all the stored materials. Makes code neater.
-/obj/machinery/r_n_d/proc/get_total_stored_materials()
-	for(var/material_path in stored_materials)
-		. += stored_materials[material_path]
-
-// Ejects all stored materials onto the ground.
-/obj/machinery/r_n_d/proc/eject_stored_materials()
-	for(var/material_path in stored_materials)
-		var/decl/material/material = GET_DECL_INSTANCE(material_path)
-		if(stored_materials[material_path] >= material.per_unit)
-			new material.sheet_path(loc, round(stored_materials[material_path] / material.per_unit))

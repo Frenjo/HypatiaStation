@@ -499,12 +499,12 @@
 		to_chat(user, SPAN_WARNING("\The [src] cannot hold more [stack.name]."))
 		return
 
-	overlays.Add("fab-load-[lowertext(stack.material.name)]")
+	overlays.Add("fab-load-[stack.material.icon_prefix]")
 	if(do_after(user, 1 SECOND))
 		to_chat(user, SPAN_INFO("You insert [materials.add_sheets(stack)] [stack.name] into \the [src]."))
 	else
 		to_chat(user, SPAN_WARNING("You fail to insert the [stack.name] into \the [src]."))
-	overlays.Remove("fab-load-[lowertext(stack.material.name)]")
+	overlays.Remove("fab-load-[stack.material.icon_prefix]")
 
 // Returns TRUE if the internal container has all of the required material amounts.
 /obj/machinery/robotics_fabricator/proc/has_materials(datum/design/D)

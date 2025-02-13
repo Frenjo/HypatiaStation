@@ -9,8 +9,11 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	icon_state = "circuit_imprinter"
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 
-	accepted_materials = list(/decl/material/glass, /decl/material/gold, /decl/material/diamond, /decl/material/uranium)
-	max_storage_capacity = 75000
+/obj/machinery/r_n_d/circuit_imprinter/New()
+	materials = new /datum/material_container(src, list(
+		/decl/material/glass, /decl/material/gold, /decl/material/diamond, /decl/material/uranium
+	), FALSE)
+	. = ..()
 
 /obj/machinery/r_n_d/circuit_imprinter/add_parts()
 	component_parts = list(
@@ -30,7 +33,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	total_rating = 0
 	for(var/obj/item/stock_part/matter_bin/bin in component_parts)
 		total_rating += bin.rating
-	max_storage_capacity = total_rating * 75000
+	materials.set_max_capacity(total_rating * 75000)
 
 /obj/machinery/r_n_d/circuit_imprinter/blob_act()
 	if(prob(50))
@@ -40,13 +43,8 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 	qdel(src)
 	return
 
-/obj/machinery/r_n_d/circuit_imprinter/attackby(obj/item/O, mob/user)
-	if(..())
-		return 1
-	if(O.is_open_container())
-		return 0
-
-	if(isscrewdriver(O))
+/obj/machinery/r_n_d/circuit_imprinter/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
 		if(!opened)
 			opened = TRUE
 			if(linked_console)
@@ -58,9 +56,10 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 			icon_state = "circuit_imprinter"
 		playsound(src, 'sound/items/Screwdriver.ogg', 100, 1)
 		FEEDBACK_TOGGLE_MAINTENANCE_PANEL(user, opened)
-		return 1
+		return TRUE
+
 	if(opened)
-		if(iscrowbar(O))
+		if(iscrowbar(tool))
 			playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			M.state = 2
@@ -71,47 +70,45 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 				if(part.reliability != 100 && crit_fail)
 					part.crit_fail = TRUE
 				part.forceMove(loc)
-			eject_stored_materials()
+			materials.eject_all_sheets()
 			qdel(src)
-			return 1
-		else
-			to_chat(user, SPAN_WARNING("You can't load \the [src.name] while it's opened."))
-			return 1
+			return TRUE
+
+	return ..()
+
+/obj/machinery/r_n_d/circuit_imprinter/attackby(obj/item/O, mob/user)
+	if(..())
+		return 1
+	if(O.is_open_container())
+		return 0
+
+	if(opened)
+		to_chat(user, SPAN_WARNING("You can't load \the [src] while it's opened."))
+		return TRUE
 
 	if(!linked_console)
-		to_chat(user, SPAN_WARNING("\The [src.name] must be linked to an R&D console first!"))
+		to_chat(user, SPAN_WARNING("\The [src] must be linked to an R&D console first!"))
 		return 1
 
 	if(!istype(O, /obj/item/stack/sheet))
-		to_chat(user, SPAN_WARNING("You cannot insert this item into the [src.name]!"))
+		to_chat(user, SPAN_WARNING("You cannot insert this item into \the [src]!"))
 		return 1
 
-	var/obj/item/stack/sheet/stack = O
-	if(!O)
-		return
-	if(!(stack.material.type in accepted_materials))
-		to_chat(user, SPAN_WARNING("The [src.name] cannot accept this material!"))
+	var/obj/item/stack/sheet/sheets = O
+	if(!materials.can_contain(sheets.material.type))
+		to_chat(user, SPAN_WARNING("\The [src] cannot accept this material!"))
 		return 1
-	if((get_total_stored_materials() + stack.perunit) > max_storage_capacity)
-		to_chat(user, SPAN_WARNING("The [src.name]'s material bin is full. Please remove material before adding more."))
+	if(!materials.can_add_amount(sheets.material.type, sheets.perunit))
+		to_chat(user, SPAN_WARNING("\The [src]'s material bin is full. Please remove material before adding more."))
 		return 1
-
-	var/num_sheets = round(input("How many sheets do you want to add?") as num)
-	if(num_sheets < 0)
-		num_sheets = 0
-	if(num_sheets == 0)
-		return
-	if(num_sheets > stack.amount)
-		num_sheets = min(stack.amount, round((max_storage_capacity - get_total_stored_materials()) / stack.perunit))
 
 	busy = TRUE
-	use_power(max(1000, (3750 * num_sheets / 10)))
-	stack.use(num_sheets)
-	if(do_after(usr, 16))
-		to_chat(user, SPAN_INFO("You add [num_sheets] sheets to \the [src.name]."))
-		stored_materials[stack.material.type] += (num_sheets * stack.perunit)
+	if(do_after(user, 1.6 SECONDS))
+		var/sheets_added = materials.add_sheets(sheets)
+		to_chat(user, SPAN_INFO("You add [sheets_added] sheets to \the [src]."))
+		use_power(max(1000, (sheets.perunit * sheets_added) / 10))
 	else
-		new stack.type(src.loc, num_sheets)
+		to_chat(user, SPAN_WARNING("You fail to insert the [sheets.name] into \the [src]."))
 	busy = FALSE
 
 	updateUsrDialog()
