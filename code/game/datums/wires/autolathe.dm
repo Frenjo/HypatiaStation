@@ -29,7 +29,7 @@ var/const/AUTOLATHE_DISABLE_WIRE = 4
 	var/obj/machinery/autolathe/A = holder
 	switch(index)
 		if(AUTOLATHE_HACK_WIRE)
-			A.hacked = !mended
+			A.set_hacked(!mended)
 		if(AUTOLATHE_SHOCK_WIRE)
 			A.shocked = !mended
 		if(AUTOLATHE_DISABLE_WIRE)
@@ -41,10 +41,10 @@ var/const/AUTOLATHE_DISABLE_WIRE = 4
 	var/obj/machinery/autolathe/A = holder
 	switch(index)
 		if(AUTOLATHE_HACK_WIRE)
-			A.hacked = !A.hacked
+			A.set_hacked(!A.hacked)
 			spawn(50)
 				if(A && !IsIndexCut(index))
-					A.hacked = 0
+					A.set_hacked(FALSE)
 					Interact(usr)
 		if(AUTOLATHE_SHOCK_WIRE)
 			A.shocked = !A.shocked

@@ -1,68 +1,4 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-/var/global/list/autolathe_recipes = list(
-	/*screwdriver removed*/
-	new /obj/item/reagent_holder/glass/bucket(),
-	new /obj/item/crowbar(),
-	new /obj/item/flashlight(),
-	new /obj/item/extinguisher(),
-	new /obj/item/multitool(),
-	new /obj/item/t_scanner(),
-	new /obj/item/weldingtool(),
-	new /obj/item/screwdriver(),
-	new /obj/item/wirecutters(),
-	new /obj/item/wrench(),
-	new /obj/item/clothing/head/welding(),
-	new /obj/item/stock_part/console_screen(),
-	new /obj/item/airlock_electronics(),
-	new /obj/item/airalarm_electronics(),
-	new /obj/item/firealarm_electronics(),
-	new /obj/item/module/power_control(),
-	new /obj/item/stack/sheet/steel(),
-	new /obj/item/stack/sheet/glass(),
-	new /obj/item/stack/sheet/glass/reinforced(),
-	new /obj/item/stack/rods(),
-	new /obj/item/rcd_ammo(),
-	new /obj/item/kitchenknife(),
-	new /obj/item/scalpel(),
-	new /obj/item/circular_saw(),
-	new /obj/item/surgicaldrill(),
-	new /obj/item/retractor(),
-	new /obj/item/cautery(),
-	new /obj/item/hemostat(),
-	new /obj/item/reagent_holder/glass/beaker(),
-	new /obj/item/reagent_holder/glass/beaker/large(),
-	new /obj/item/reagent_holder/glass/beaker/vial(),
-	new /obj/item/reagent_holder/syringe(),
-	new /obj/item/ammo_casing/shotgun/blank(),
-	new /obj/item/ammo_casing/shotgun/beanbag(),
-	new /obj/item/ammo_magazine/c45r(),
-	new /obj/item/taperecorder(),
-	new /obj/item/assembly/igniter(),
-	new /obj/item/assembly/signaler(),
-	new /obj/item/radio/headset(),
-	new /obj/item/radio/off(),
-	new /obj/item/assembly/infra(),
-	new /obj/item/assembly/timer(),
-	new /obj/item/assembly/prox_sensor(),
-	new /obj/item/light/tube(),
-	new /obj/item/light/bulb(),
-	new /obj/item/ashtray/glass(),
-	new /obj/item/camera_assembly()
-)
-
-/var/global/list/autolathe_recipes_hidden = list(
-	new /obj/item/flamethrower/full(),
-	new /obj/item/rcd(),
-	new /obj/item/radio/electropack(),
-	new /obj/item/weldingtool/largetank(),
-	new /obj/item/handcuffs(),
-	new /obj/item/ammo_magazine/a357(),
-	new /obj/item/ammo_magazine/c45m(),
-	new /obj/item/ammo_casing/shotgun(),
-	new /obj/item/ammo_casing/shotgun/dart()
-	/* new /obj/item/shield/riot()*/
-)
-
 /obj/machinery/autolathe
 	name = "autolathe"
 	desc = "It produces items using steel and glass."
@@ -81,8 +17,7 @@
 
 	var/panel_open = 0
 
-	var/list/L = list()
-	var/list/LL = list()
+	var/datum/research/files
 
 	var/hacked = 0
 	var/disabled = 0
@@ -94,12 +29,11 @@
 
 /obj/machinery/autolathe/New()
 	. = ..()
+	files = new /datum/research(src) // Sets up the research data holder.
 	wires = new /datum/wires/autolathe(src)
 
-	src.L = global.autolathe_recipes
-	src.LL = global.autolathe_recipes_hidden
-
 /obj/machinery/autolathe/Destroy()
+	QDEL_NULL(files)
 	QDEL_NULL(wires)
 	return ..()
 
@@ -160,30 +94,30 @@
 	dat += "<b>Total Amount:</b> [total_stored]cm<sup>3</sup> (MAX: [total_capacity]cm<sup>3</sup>)"
 	dat += "<hr>"
 
-	var/list/objs = list()
-	objs += src.L
-	if(src.hacked)
-		objs += src.LL
-	for(var/obj/t in objs)
-		var/title = "[t.name] ([output_part_cost(t)])"
-		if(!check_resources(t))
+	for_no_type_check(var/datum/design/D, files.known_designs)
+		if(!(D.build_type & DESIGN_TYPE_AUTOLATHE))
+			continue
+		var/obj/part = D.build_path
+		var/title = "[initial(part.name)] ([output_part_cost(D)])"
+		if(!check_resources(D))
 			dat += title
 			dat += "<br>"
 			continue
-		dat += "<A href='byond://?src=\ref[src];make=\ref[t]'>[title]</A>"
-		if(istype(t, /obj/item/stack))
-			var/obj/item/stack/S = t
-			var/max_multiplier = S.max_amount
-			for(var/material_path in S.matter_amounts)
-				max_multiplier = min(max_multiplier, round(stored_materials[material_path] / S.matter_amounts[material_path]))
+		dat += "<A href='byond://?src=\ref[src];make=[D.type]'>[title]</A>"
+		if(ispath(D.build_path, /obj/item/stack))
+			var/obj/item/stack/S = D.build_path
+			var/max_multiplier = initial(S.max_amount)
+			var/list/matter_amounts = initial(S.matter_amounts)
+			for(var/material_path in matter_amounts)
+				max_multiplier = min(max_multiplier, round(stored_materials[material_path] / matter_amounts[material_path]))
 			if(max_multiplier > 1)
 				dat += " |"
 			if(max_multiplier > 10)
-				dat += " <A href='byond://?src=\ref[src];make=\ref[t];multiplier=10'>x10</A>"
+				dat += " <A href='byond://?src=\ref[src];make=[D.type];multiplier=10'>x10</A>"
 			if(max_multiplier > 25)
-				dat += " <A href='byond://?src=\ref[src];make=\ref[t];multiplier=25'>x25</A>"
+				dat += " <A href='byond://?src=\ref[src];make=[D.type];multiplier=25'>x25</A>"
 			if(max_multiplier > 1)
-				dat += " <A href='byond://?src=\ref[src];make=\ref[t];multiplier=[max_multiplier]'>x[max_multiplier]</A>"
+				dat += " <A href='byond://?src=\ref[src];make=[D.type];multiplier=[max_multiplier]'>x[max_multiplier]</A>"
 		dat += "<br>"
 	user << browse("<HTML><HEAD><TITLE>Autolathe Control Panel</TITLE></HEAD><BODY><TT>[dat]</TT></BODY></HTML>", "window=autolathe_regular")
 	onclose(user, "autolathe_regular")
@@ -279,14 +213,14 @@
 	use_power(max(1000, (m_amt + g_amt) * amount / 10))
 	stored_materials[MATERIAL_METAL] += m_amt * amount
 	stored_materials[/decl/material/glass] += g_amt * amount
-	to_chat(user, SPAN_INFO("You insert [amount] sheet\s into the autolathe."))
+	to_chat(user, SPAN_INFO("You insert [amount] sheet\s into \the [src]."))
 	if(O?.loc == src)
 		qdel(O)
 	busy = FALSE
 	updateUsrDialog()
 
 /obj/machinery/autolathe/attack_paw(mob/user)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/machinery/autolathe/attack_hand(mob/user)
 	user.set_machine(src)
@@ -296,93 +230,67 @@
 	if(..())
 		return
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	add_fingerprint(usr)
 
 	if(busy)
-		to_chat(usr, SPAN_WARNING("The autolathe is busy. Please wait for completion of previous operation."))
+		to_chat(usr, SPAN_WARNING("\The [src] is busy. Please wait for completion of the previous operation."))
 		return
 
+	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
+
 	if(href_list["make"])
-		var/turf/T = get_step(src.loc, get_dir(src, usr))
+		var/build_path = topic_filter.getPath("make")
+		var/multiplier = topic_filter.getNum("multiplier")
+		for_no_type_check(var/datum/design/D, files.known_designs)
+			if(!(D.build_type & DESIGN_TYPE_AUTOLATHE))
+				continue
+			if(D.type == build_path)
+				build_part(D, isnotnull(multiplier) ? multiplier : 1)
 
-		// critical exploit fix start -walter0o
-		var/obj/item/template = null
-		var/attempting_to_build = locate(href_list["make"])
-
-		if(!attempting_to_build)
-			return
-
-		if(locate(attempting_to_build, src.L) || locate(attempting_to_build, src.LL)) // see if the requested object is in one of the construction lists, if so, it is legit -walter0o
-			template = attempting_to_build
-
-		else // somebody is trying to exploit, alert admins -walter0o
-			var/turf/LOC = GET_TURF(usr)
-			message_admins("[key_name_admin(usr)] tried to exploit an autolathe to duplicate <a href='byond://?_src_=vars;Vars=\ref[attempting_to_build]'>[attempting_to_build]</a> ! ([LOC ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[LOC.x];Y=[LOC.y];Z=[LOC.z]'>JMP</a>" : "null"])", 0)
-			log_admin("EXPLOIT : [key_name(usr)] tried to exploit an autolathe to duplicate [attempting_to_build] !")
-			return
-
-		// now check for legit multiplier, also only stacks should pass with one to prevent raw-materials-manipulation -walter0o
-
-		var/multiplier = text2num(href_list["multiplier"])
-
-		if(!multiplier)
-			multiplier = 1
-		var/max_multiplier = 1
-
-		if(istype(template, /obj/item/stack)) // stacks are the only items which can have a multiplier higher than 1 -walter0o
-			var/obj/item/stack/S = template
-			max_multiplier = S.max_amount
-			for(var/material_path in S.matter_amounts)
-				max_multiplier = min(max_multiplier, round(stored_materials[material_path] / S.matter_amounts[material_path]))
-
-		if((multiplier > max_multiplier) || (multiplier <= 0)) // somebody is trying to exploit, alert admins-walter0o
-			var/turf/LOC = GET_TURF(usr)
-			message_admins("[key_name_admin(usr)] tried to exploit an autolathe with multiplier set to <u>[multiplier]</u> on <u>[template]</u>  ! ([LOC ? "<a href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[LOC.x];Y=[LOC.y];Z=[LOC.z]'>JMP</a>" : "null"])" , 0)
-			log_admin("EXPLOIT : [key_name(usr)] tried to exploit an autolathe with multiplier set to [multiplier] on [template]  !")
-			return
-
-		var/total_amount_used = 0
-		var/has_enough_materials = FALSE
-		for(var/material_path in template.matter_amounts)
-			var/matter_amount = template.matter_amounts[material_path]
-			total_amount_used += matter_amount
-			if(stored_materials[material_path] >= matter_amount * multiplier)
-				has_enough_materials = TRUE
-		var/power = max(2000, total_amount_used * multiplier / 5)
-		if(has_enough_materials)
-			busy = TRUE
-			use_power(power)
-			icon_state = "autolathe"
-			flick("autolathe_n", src)
-			spawn(16)
-				use_power(power)
-				spawn(16)
-					use_power(power)
-					spawn(16)
-						for(var/material_path in template.matter_amounts)
-							stored_materials[material_path] -= template.matter_amounts[material_path] * multiplier
-						var/obj/new_item = new template.type(T)
-						if(multiplier > 1)
-							var/obj/item/stack/S = new_item
-							S.amount = multiplier
-						busy = FALSE
-						src.updateUsrDialog()
-	src.updateUsrDialog()
-	return
-
-/obj/machinery/autolathe/proc/output_part_cost(obj/item/I)
+/obj/machinery/autolathe/proc/output_part_cost(datum/design/D)
 	var/i = 0
-	for(var/material_path in I.matter_amounts)
+	for(var/material_path in D.materials)
 		if(material_path in stored_materials)
 			var/decl/material/mat = material_path
-			. += "[i ? " / " : null][I.matter_amounts[material_path]]cm<sup>3</sup> [lowertext(initial(mat.name))]"
+			. += "[i ? " / " : null][D.materials[material_path]]cm<sup>3</sup> [lowertext(initial(mat.name))]"
 			i++
 
-/obj/machinery/autolathe/proc/check_resources(obj/item/I)
-	for(var/material_path in I.matter_amounts)
+/obj/machinery/autolathe/proc/check_resources(datum/design/D)
+	for(var/material_path in D.materials)
 		if(material_path in stored_materials)
-			if(stored_materials[material_path] < I.matter_amounts[material_path])
+			if(stored_materials[material_path] < D.materials[material_path])
 				return FALSE
 		else
 			return FALSE
 	return TRUE
+
+/obj/machinery/autolathe/proc/set_hacked(new_hacked)
+	hacked = new_hacked
+	files.show_hidden_designs = hacked
+	files.refresh_research()
+
+/obj/machinery/autolathe/proc/build_part(datum/design/D, multiplier)
+	busy = TRUE
+	var/total_amount_used = 0
+	for(var/material_path in D.materials)
+		var/amount = D.materials[material_path]
+		stored_materials[material_path] -= amount * multiplier
+		total_amount_used += amount
+	icon_state = "autolathe_n"
+	power_usage[USE_POWER_ACTIVE] = max(2000, total_amount_used * multiplier / 5)
+	update_power_state(USE_POWER_ACTIVE)
+	updateUsrDialog()
+	sleep(D.build_time)
+	update_power_state(USE_POWER_IDLE)
+	power_usage[USE_POWER_ACTIVE] = initial(power_usage[USE_POWER_ACTIVE])
+	icon_state = "autolathe"
+
+	var/obj/item/output = new D.build_path()
+	if(multiplier > 1)
+		var/obj/item/stack/output_stack = output
+		output_stack.amount = multiplier
+	output.forceMove(get_step(src, SOUTH))
+	for(var/material_path in D.materials)
+		output.matter_amounts[material_path] = D.materials[material_path]
+	busy = FALSE
+	updateUsrDialog()
