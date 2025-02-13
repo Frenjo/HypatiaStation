@@ -2,7 +2,7 @@
 	name = "Glass"
 	sheet_path = /obj/item/stack/sheet/glass
 
-	mint_colour_code = "#0055FF"
+	mint_colour_code = "#0066FF"
 
 /decl/material/reinforced_glass
 	name = "Reinforced Glass"

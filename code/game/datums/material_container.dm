@@ -57,19 +57,36 @@
 /datum/material_container/proc/remove_amount(material_path, amount)
 	if(!can_remove_amount(material_path, amount))
 		return FALSE
-	stored_materials[material_path] = stored_materials[material_path] - amount
+	stored_materials[material_path] -= amount
 	return TRUE
 
 // Returns the total stored amount of the provided material type.
-/datum/material_container/proc/get_amount(material_path)
+/datum/material_container/proc/get_type_amount(material_path)
 	if(!can_contain(material_path))
 		return 0
 	return stored_materials[material_path]
 
-// Returns the total of all the stored materials. Makes code neater.
+// Returns the storage capacity of the provided material type.
+/datum/material_container/proc/get_total_type_capacity(material_path)
+	if(!can_contain(material_path))
+		return 0
+	return has_individual_storage ? max_capacity : get_total_capacity()
+
+// Returns the remaining storage capacity of the provided material type.
+/datum/material_container/proc/get_remaining_type_capacity(material_path)
+	if(!can_contain(material_path))
+		return 0
+	var/capacity = get_total_type_capacity(material_path)
+	return has_individual_storage ? (capacity - get_type_amount(material_path)) : (capacity - get_total_amount())
+
+// Returns the total amount of all stored materials.
 /datum/material_container/proc/get_total_amount()
 	for(var/material_path in stored_materials)
 		. += stored_materials[material_path]
+
+// Returns the total capacity of the container.
+/datum/material_container/proc/get_total_capacity()
+	return has_individual_storage ? max_capacity * length(stored_materials) : max_capacity
 
 // Ejects all stored material sheets onto the ground.
 /datum/material_container/proc/eject_all_sheets()
@@ -91,6 +108,15 @@
 		new sheet_path(GET_TURF(holder), sheet_amount)
 		. = sheet_amount
 
+// Adds the provided material amounts to the container's stored materials.
+// Returns the total amount of materials added.
+/datum/material_container/proc/add_materials(list/added_materials, multiplier = 1)
+	. = 0
+	for(var/material_path in added_materials)
+		var/to_add = added_materials[material_path] * multiplier
+		if(add_amount(material_path, to_add))
+			. += to_add
+
 // Returns TRUE if the container has all of the required material amounts.
 /datum/material_container/proc/has_materials(list/required_materials)
 	for(var/material_path in required_materials)
@@ -102,6 +128,9 @@
 	return TRUE
 
 // Removes the provided material amounts from the container's stored materials.
+// Returns the total amount of materials removed.
 /datum/material_container/proc/remove_materials(list/required_materials)
+	. = 0
 	for(var/material_path in required_materials)
-		remove_amount(material_path, required_materials[material_path])
+		if(remove_amount(material_path, required_materials[material_path]))
+			. += required_materials[material_path]

@@ -36,9 +36,10 @@
 
 /obj/machinery/robotics_fabricator/New()
 	materials = new /datum/material_container(src, list(
-		/decl/material/steel, /decl/material/glass, /decl/material/silver,
-		/decl/material/gold, /decl/material/diamond, /decl/material/uranium,
-		/decl/material/plasma, /decl/material/bananium
+		/decl/material/iron, /decl/material/steel, /decl/material/plastic,
+		/decl/material/glass, /decl/material/silver, /decl/material/gold,
+		/decl/material/diamond, /decl/material/uranium, /decl/material/plasma,
+		/decl/material/bananium
 	))
 	. = ..()
 	files = new /datum/research(src) // Sets up the research data holder.
@@ -153,8 +154,8 @@
 /obj/machinery/robotics_fabricator/proc/output_available_resources()
 	for(var/material_path in materials.stored_materials)
 		var/decl/material/mat = material_path
-		var/amount = materials.get_amount(material_path)
-		. += "<span class=\"res_name\">[initial(mat.name)]:</span> [amount]cm<sup>3</sup>"
+		var/amount = materials.get_type_amount(material_path)
+		. += "<span class=\"res_name\"><font color='[initial(mat.mint_colour_code)]'>[initial(mat.name)]:</font></span> [amount]cm<sup>3</sup>"
 		if(amount > 0)
 			. += "<span style='font-size:80%;'> - Remove \[<a href='byond://?src=\ref[src];remove_mat=1;material=[material_path]'>1</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=10;material=[material_path]'>10</a>\] | \[<a href='byond://?src=\ref[src];remove_mat=[materials.max_capacity];material=[material_path]'>All</a>\]</span>"
 		. += "<br/>"

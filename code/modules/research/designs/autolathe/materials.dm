@@ -1,21 +1,17 @@
-/*
 /datum/design/autolathe/iron
 	name = "Iron Sheet"
 	materials = list(/decl/material/iron = MATERIAL_AMOUNT_PER_SHEET)
 	build_path = /obj/item/stack/sheet/iron
-*/
 
 /datum/design/autolathe/steel
 	name = "Steel Sheet"
 	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET)
 	build_path = /obj/item/stack/sheet/steel
 
-/*
 /datum/design/autolathe/plastic
 	name = "Plastic Sheet"
 	materials = list(/decl/material/plastic = MATERIAL_AMOUNT_PER_SHEET)
 	build_path = /obj/item/stack/sheet/plastic
-*/
 
 /datum/design/autolathe/glass
 	name = "Glass Sheet"

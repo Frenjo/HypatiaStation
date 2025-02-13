@@ -2,6 +2,8 @@
 	name = "Plastic"
 	sheet_path = /obj/item/stack/sheet/plastic
 
+	mint_colour_code = "#BBBBBB"
+
 /decl/material/wood
 	name = "Wood"
 	sheet_path = /obj/item/stack/sheet/wood
@@ -37,7 +39,7 @@
 	sheet_path = /obj/item/stack/sheet/diamond
 
 	coin_path = /obj/item/coin/diamond
-	mint_colour_code = "#8888FF"
+	mint_colour_code = "#B9F2FF" // Actual colour code for diamond.
 
 	wall_path = /turf/closed/wall/diamond
 	wall_false_path = /obj/structure/falsewall/diamond
@@ -50,7 +52,7 @@
 	sheet_path = /obj/item/stack/sheet/plasma
 
 	coin_path = /obj/item/coin/plasma
-	mint_colour_code = "#FF8800"
+	mint_colour_code = "#BB00DD"
 
 	wall_path = /turf/closed/wall/plasma
 	wall_false_path = /obj/structure/falsewall/plasma

@@ -50,11 +50,11 @@ var/const/AUTOLATHE_DISABLE_WIRE = 4
 			A.shocked = !A.shocked
 			spawn(50)
 				if(A && !IsIndexCut(index))
-					A.shocked = 0
+					A.shocked = FALSE
 					Interact(usr)
 		if(AUTOLATHE_DISABLE_WIRE)
 			A.disabled = !A.disabled
 			spawn(50)
 				if(A && !IsIndexCut(index))
-					A.disabled = 0
+					A.disabled = FALSE
 					Interact(usr)

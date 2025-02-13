@@ -33,7 +33,7 @@
 	sheet_path = /obj/item/stack/sheet/silver
 
 	coin_path = /obj/item/coin/silver
-	mint_colour_code = "#888888"
+	mint_colour_code = "#BCC6CC" // Actual HTML colour code for metallic silver.
 
 	wall_path = /turf/closed/wall/silver
 	wall_false_path = /obj/structure/falsewall/silver
@@ -46,7 +46,7 @@
 	sheet_path = /obj/item/stack/sheet/gold
 
 	coin_path = /obj/item/coin/gold
-	mint_colour_code = "#ffcc00"
+	mint_colour_code = "#D4AF37" // Actual colour code for metallic gold.
 
 	wall_path = /turf/closed/wall/gold
 	wall_false_path = /obj/structure/falsewall/gold
@@ -76,7 +76,7 @@
 	sheet_path = /obj/item/stack/sheet/bananium
 
 	coin_path = /obj/item/coin/bananium
-	mint_colour_code = "#AAAA00"
+	mint_colour_code = "#CCCC00"
 
 	wall_path = /turf/closed/wall/bananium
 	wall_false_path = /obj/structure/falsewall/bananium
