@@ -74,8 +74,9 @@ var/global/list/datum/stack_recipe/plasma_recipes = list(
  * Plastic
  */
 /obj/item/stack/sheet/plastic
-	name = "Plastic"
+	name = "plastic"
 	icon_state = "plastic"
+	singular_name = "plastic sheet"
 	origin_tech = list(/decl/tech/materials = 3)
 	material = /decl/material/plastic
 
