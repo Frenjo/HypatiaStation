@@ -8,22 +8,20 @@
 
 	var/obj/machinery/mineral/input = null
 	var/obj/machinery/mineral/output = null
-	var/list/amount_by_material = list(
-		/decl/material/iron = 0,
-		/decl/material/steel = 0,
-		/decl/material/silver = 0,
-		/decl/material/gold = 0,
-		/decl/material/diamond = 0,
-		/decl/material/uranium = 0,
-		/decl/material/plasma = 0,
-		/decl/material/bananium = 0,
-		/decl/material/adamantine = 0,
-		/decl/material/mythril = 0
-	)
+	var/datum/material_container/materials
 	var/newCoins = 0	//how many coins the machine made in it's last load
 	var/processing = FALSE
-	var/chosen = /decl/material/iron	//which material will be used to make coins
+	var/decl/material/chosen = /decl/material/iron	//which material will be used to make coins
 	var/coinsToProduce = 10
+
+/obj/machinery/mineral/mint/New()
+	materials = new /datum/material_container(src, list(
+		/decl/material/iron, /decl/material/steel, /decl/material/silver,
+		/decl/material/gold, /decl/material/diamond, /decl/material/uranium,
+		/decl/material/plasma, /decl/material/bananium, /decl/material/adamantine,
+		/decl/material/mythril
+	))
+	. = ..()
 
 /obj/machinery/mineral/mint/initialise()
 	. = ..()
@@ -41,8 +39,7 @@
 	if(isnotnull(input))
 		var/obj/item/stack/sheet/O = locate(/obj/item/stack/sheet, input.loc)
 		if(isnotnull(O))
-			amount_by_material[O.material.type] += 100 * O.amount
-			qdel(O)
+			materials.add_sheets(O)
 
 /obj/machinery/mineral/mint/attack_hand(mob/user)
 	var/dat = "<b>Coin Press</b><br>"
@@ -54,13 +51,13 @@
 		dat += "<br>output connection status: "
 		dat += "<b><font color='red'>NOT CONNECTED</font></b><br>"
 
-	for(var/material_path in amount_by_material)
-		var/decl/material/material = GET_DECL_INSTANCE(material_path)
-		dat += "<br><font color='[material.mint_colour_code]'><b>[material.name] inserted: </b>[amount_by_material[material_path]]</font> "
-		if(chosen == material_path)
+	for(var/material_path in materials.stored_materials)
+		var/decl/material/mat = material_path
+		dat += "<br><font color='[initial(mat.mint_colour_code)]'><b>[initial(mat.name)] inserted: </b>[materials.get_type_amount(mat)]cm<sup>3</sup></font> "
+		if(chosen == mat)
 			dat += "chosen"
 		else
-			dat += "<A href='byond://?src=\ref[src];choose=[material_path]'>Choose</A>"
+			dat += "<A href='byond://?src=\ref[src];choose=[mat]'>Choose</A>"
 
 	dat += "<br><br>Will produce [coinsToProduce] [chosen] coins if enough materials are available.<br>"
 	//dat += "The dial which controls the number of coins to produce seems to be stuck. A technician has already been dispatched to fix this."
@@ -80,32 +77,37 @@
 		return
 	usr.set_machine(src)
 	add_fingerprint(usr)
+
 	if(processing)
 		to_chat(usr, SPAN_INFO("The machine is processing."))
 		return
+
+	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
+
 	if(href_list["choose"])
-		chosen = text2path(href_list["choose"])
+		chosen = topic_filter.getPath("choose")
+
 	if(href_list["chooseAmt"])
-		coinsToProduce = clamp(coinsToProduce + text2num(href_list["chooseAmt"]), 0, 1000)
+		coinsToProduce = clamp(coinsToProduce + topic_filter.getNum("chooseAmt"), 0, 1000)
+
 	if(href_list["makeCoins"])
 		var/temp_coins = coinsToProduce
-		if(output)
+		if(isnotnull(output))
 			processing = TRUE
 			icon_state = "coinpress1"
 			var/obj/item/moneybag/M
-			if(chosen)
-				while(amount_by_material[chosen] > 0 && coinsToProduce > 0)
-					if(locate(/obj/item/moneybag, output.loc))
-						M = locate(/obj/item/moneybag, output.loc)
-					else
-						M = new /obj/item/moneybag(output.loc)
-					var/decl/material/material = GET_DECL_INSTANCE(chosen)
-					new material.coin_path(M)
-					amount_by_material[chosen] -= 20
-					coinsToProduce--
-					newCoins++
-					updateUsrDialog()
-					sleep(5)
+			while(materials.can_remove_amount(chosen, 20) && coinsToProduce > 0)
+				if(locate(/obj/item/moneybag, output.loc))
+					M = locate(/obj/item/moneybag, output.loc)
+				else
+					M = new /obj/item/moneybag(output.loc)
+				var/coin_type = initial(chosen.coin_path)
+				new coin_type(M)
+				materials.remove_amount(chosen, 20)
+				coinsToProduce--
+				newCoins++
+				updateUsrDialog()
+				sleep(0.5 SECONDS)
 			icon_state = "coinpress0"
 			processing = FALSE
 			coinsToProduce = temp_coins
