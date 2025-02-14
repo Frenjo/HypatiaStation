@@ -1,5 +1,10 @@
  // This file contains all Nano procs/definitions for external classes/objects
 
+ // Associative list of /datum/nanoui UIs opened on this object, indexed by ui_key.
+/datum/var/tmp/list/open_uis = list()
+// Used by the NanoUI Process (/datum/process/nanoui) to track UIs opened by this mob.
+/mob/var/list/datum/nanoui/opened_uis = list()
+
  /**
   * Called when a Nano UI window is closed
   * This is how Nano handles closed windows
@@ -38,6 +43,3 @@
   */
 /atom/movable/proc/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	return
-
-// Used by the NanoUI Process (/datum/process/nanoui) to track UIs opened by this mob
-/mob/var/list/datum/nanoui/open_uis = list()

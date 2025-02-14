@@ -7,8 +7,6 @@ PROCESS_DEF(nanoui)
 	name = "NanoUI"
 	schedule_interval = 2 SECONDS
 
-	// A list of current open /datum/nanoui UIs, grouped by src_object and ui_key.
-	var/list/open_uis = list()
 	// A list of current open /datum/nanoui UIs, not grouped, for use in processing.
 	var/list/datum/nanoui/processing_uis = list()
 
@@ -30,14 +28,14 @@ PROCESS_DEF(nanoui)
  * Gets an open /datum/nanoui for the current user, src_object and ui_key and tries to update it with data.
  *
  * @param user /mob The mob who opened/owns the UI.
- * @param src_object /obj|/mob The obj or mob which the UI belongs to.
+ * @param src_object /datum The datum which the UI belongs to.
  * @param ui_key string A string key used for the UI.
  * @param ui /datum/nanoui An existing instance of the UI (can be null).
  * @param data list The data to be passed to the UI, if it exists.
  *
  * @return /datum/nanoui Returns the found UI, for null if none exists.
  */
-/datum/process/nanoui/proc/try_update_ui(mob/user, src_object, ui_key, datum/nanoui/ui, list/data)
+/datum/process/nanoui/proc/try_update_ui(mob/user, datum/src_object, ui_key, datum/nanoui/ui, list/data)
 	RETURN_TYPE(/datum/nanoui)
 
 	if(isnull(ui)) // no UI has been passed, so we'll search for one
@@ -52,20 +50,18 @@ PROCESS_DEF(nanoui)
  * Gets an open /datum/nanoui for the current user, src_object and ui_key.
  *
  * @param user /mob The mob who opened/owns the UI.
- * @param src_object /obj|/mob The obj or mob which the UI belongs to.
+ * @param src_object /datum The datum which the UI belongs to.
  * @param ui_key string A string key used for the UI.
  *
  * @return /datum/nanoui Returns the found UI, or null if none exists.
  */
-/datum/process/nanoui/proc/get_open_ui(mob/user, src_object, ui_key)
+/datum/process/nanoui/proc/get_open_ui(mob/user, datum/src_object, ui_key)
 	RETURN_TYPE(/datum/nanoui)
 
-	if(isnull(open_uis[src_object]) || !islist(open_uis[src_object]))
-		return null
-	else if(isnull(open_uis[src_object][ui_key]) || !islist(open_uis[src_object][ui_key]))
+	if(isnull(src_object.open_uis?[ui_key]))
 		return null
 
-	for_no_type_check(var/datum/nanoui/ui, open_uis[src_object][ui_key])
+	for_no_type_check(var/datum/nanoui/ui, src_object.open_uis[ui_key])
 		if(ui.user == user)
 			return ui
 
@@ -74,65 +70,77 @@ PROCESS_DEF(nanoui)
 /*
  * Updates all /datum/nanoui UIs attached to src_object.
  *
- * @param src_object /obj|/mob The obj or mob which the UIs are attached to.
+ * @param src_object /datum The datum which the UIs are attached to.
  *
  * @return int The number of UIs updated.
  */
-/datum/process/nanoui/proc/update_uis(src_object)
-	if(isnull(open_uis[src_object]) || !islist(open_uis[src_object]))
-		return 0
+/datum/process/nanoui/proc/update_uis(datum/src_object)
+	. = 0
+	if(isnull(src_object.open_uis))
+		return
 
-	var/update_count = 0
-	for(var/ui_key in open_uis[src_object])
-		for_no_type_check(var/datum/nanoui/ui, open_uis[src_object][ui_key])
+	for(var/ui_key in src_object.open_uis)
+		for_no_type_check(var/datum/nanoui/ui, src_object.open_uis[ui_key])
 			if(isnull(ui))
 				continue
 			if(isnotnull(ui.src_object) && isnotnull(ui.user))
 				ui.process(1)
-				update_count++
-	return update_count
+				.++
+
+/*
+ * Closes all /datum/nanoui uis attached to src_object.
+ *
+ * @param src_object /datum The datum which the UIs are attached to.
+ *
+ * @return int The number of uis closed.
+ */
+/datum/process/nanoui/proc/close_uis(datum/src_object)
+	. = 0
+	if(!length(src_object.open_uis))
+		return
+
+	for(var/ui_key in src_object.open_uis)
+		for_no_type_check(var/datum/nanoui/ui, src_object.open_uis[ui_key])
+			ui.close() // If it's missing src_object or user, we want to close it even more.
+			.++
 
 /*
  * Updates /datum/nanoui UIs belonging to user.
  *
  * @param user /mob The mob who owns the UIs.
- * @param src_object /obj|/mob If src_object is provided, only update UIs which are attached to src_object (optional).
+ * @param src_object /datum If src_object is provided, only update UIs which are attached to src_object (optional).
  * @param ui_key string If ui_key is provided, only update UIs with a matching ui_key (optional).
  *
  * @return int The number of UIs updated.
  */
-/datum/process/nanoui/proc/update_user_uis(mob/user, src_object = null, ui_key = null)
-	if(isnull(user.open_uis) || !islist(user.open_uis) || !length(open_uis))
-		return 0 // has no open UIs
+/datum/process/nanoui/proc/update_user_uis(mob/user, datum/src_object = null, ui_key = null)
+	. = 0
+	if(!length(user.opened_uis))
+		return // has no open UIs
 
-	var/update_count = 0
-	for_no_type_check(var/datum/nanoui/ui, user.open_uis)
-		if((isnull(src_object) || (isnotnull(src_object) && ui.src_object == src_object)) && (isnull(ui_key) || (isnotnull(ui_key) && ui.ui_key == ui_key)))
+	for_no_type_check(var/datum/nanoui/ui, user.opened_uis)
+		if((isnull(src_object) || ui.src_object == src_object) && (isnull(ui_key) || ui.ui_key == ui_key))
 			ui.process(TRUE)
-			update_count++
-
-	return update_count
+			.++
 
 /**
  * Closes /datum/nanoui UIs belonging to user.
  *
  * @param user /mob The mob who owns the UIs.
- * @param src_object /obj|/mob If src_object is provided, only close UIs which are attached to src_object (optional).
+ * @param src_object /datum If src_object is provided, only close UIs which are attached to src_object (optional).
  * @param ui_key string If ui_key is provided, only close UIs with a matching ui_key (optional).
  *
  * @return int The number of UIs closed.
  */
-/datum/process/nanoui/proc/close_user_uis(mob/user, src_object = null, ui_key = null)
-	if(isnull(user.open_uis) || !islist(user.open_uis) || !length(open_uis))
-		return 0 // has no open uis
+/datum/process/nanoui/proc/close_user_uis(mob/user, datum/src_object = null, ui_key = null)
+	. = 0
+	if(!length(user.opened_uis))
+		return // has no open UIs
 
-	var/close_count = 0
-	for_no_type_check(var/datum/nanoui/ui, user.open_uis)
-		if((isnull(src_object) || (isnotnull(src_object) && ui.src_object == src_object)) && (isnull(ui_key) || (isnotnull(ui_key) && ui.ui_key == ui_key)))
+	for_no_type_check(var/datum/nanoui/ui, user.opened_uis)
+		if((isnull(src_object) || ui.src_object == src_object) && (isnull(ui_key) || ui.ui_key == ui_key))
 			ui.close()
-			close_count++
-
-	return close_count
+			.++
 
 /**
  * Adds a /datum/nanoui UI to the list of open UIs.
@@ -143,15 +151,10 @@ PROCESS_DEF(nanoui)
  * @return nothing.
  */
 /datum/process/nanoui/proc/ui_opened(datum/nanoui/ui)
-	var/src_object = ui.src_object
-	if(isnull(open_uis[src_object]) || !islist(open_uis[src_object]))
-		open_uis[src_object] = list(ui.ui_key = list())
-	else if(isnull(open_uis[src_object][ui.ui_key]) || !islist(open_uis[src_object][ui.ui_key]))
-		open_uis[src_object][ui.ui_key] = list()
-
-	ui.user.open_uis.Add(ui)
-	var/list/uis = open_uis[src_object][ui.ui_key]
-	uis.Add(ui)
+	var/datum/src_object = ui.src_object
+	LAZYINITLIST(src_object.open_uis)
+	LAZYDISTINCTADD(ui.user.opened_uis, ui)
+	LAZYDISTINCTADD(src_object.open_uis[ui.ui_key], ui)
 	processing_uis.Add(ui)
 
 /*
@@ -163,16 +166,16 @@ PROCESS_DEF(nanoui)
  * @return boolean FALSE if no UI was removed, TRUE if removed successfully
  */
 /datum/process/nanoui/proc/ui_closed(datum/nanoui/ui)
-	var/src_object = ui.src_object
-	if(isnull(open_uis[src_object]) || !islist(open_uis[src_object]))
-		return FALSE // wasn't open
-	else if(isnull(open_uis[src_object][ui.ui_key]) || !islist(open_uis[src_object][ui.ui_key]))
+	var/datum/src_object = ui.src_object
+	if(isnull(src_object.open_uis?[ui.ui_key]))
 		return FALSE // wasn't open
 
 	processing_uis.Remove(ui)
-	ui.user.open_uis.Remove(ui)
-	var/list/uis = open_uis[src_object][ui.ui_key]
-	return uis.Remove(ui)
+	if(isnotnull(ui.user)) // Sanity check in case a user has been deleted, IE a blown up borg watching the alarm interface.
+		LAZYREMOVE(ui.user.opened_uis, ui)
+
+	LAZYREMOVE(src_object.open_uis[ui.ui_key], ui)
+	return TRUE
 
 /*
  * Closes/clears all UIs attached to the user's /mob.
@@ -189,25 +192,21 @@ PROCESS_DEF(nanoui)
  * Transfers all open UIs to the new mob.
  * This is called when a player transfers from one mob to another.
  *
- * @param oldMob /mob The user's old mob.
- * @param newMob /mob The user's new mob.
+ * @param old_mob /mob The user's old mob.
+ * @param new_mob /mob The user's new mob.
  *
  * @return nothing.
  */
-/datum/process/nanoui/proc/user_transferred(mob/oldMob, mob/newMob)
-	if(isnull(oldMob.open_uis) || !islist(oldMob.open_uis) || !length(open_uis))
-		return 0 // has no open uis
+/datum/process/nanoui/proc/user_transferred(mob/old_mob, mob/new_mob)
+	if(isnull(old_mob?.opened_uis))
+		return FALSE // has no open UIs
 
-	if(isnull(newMob.open_uis) || !islist(newMob.open_uis))
-		newMob.open_uis = list()
+	for_no_type_check(var/datum/nanoui/ui, old_mob.opened_uis)
+		ui.user = new_mob
 
-	for_no_type_check(var/datum/nanoui/ui, oldMob.open_uis)
-		ui.user = newMob
-		newMob.open_uis.Add(ui)
-
-	oldMob.open_uis.Cut()
-
-	return 1 // success
+	new_mob.opened_uis += old_mob.opened_uis // If the new mob's list is null this just sets it to the old mob's list.
+	old_mob.opened_uis = null
+	return TRUE // success
 
 /*
  * Sends all nano assets to the client.
