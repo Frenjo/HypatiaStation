@@ -298,7 +298,7 @@
 		if(c.status)
 			cameras += c
 
-	turfs = block(locate(x, y, z), locate(min(world.maxx, x + 15), min(world.maxy, y + 15), z))
+	turfs = block(x, y, z, min(world.maxx, x + 15), min(world.maxy, y + 15), z)
 
 	for(var/obj/machinery/camera/c in cameras)
 		var/lum = c.luminosity

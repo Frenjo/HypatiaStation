@@ -1,5 +1,6 @@
 // Directions
 GLOBAL_GLOBL_LIST_INIT(cardinal, list(NORTH, SOUTH, EAST, WEST))
+GLOBAL_GLOBL_LIST_INIT(cardinalz, list(NORTH, SOUTH, EAST, WEST, UP, DOWN))
 GLOBAL_GLOBL_LIST_INIT(alldirs, list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 GLOBAL_GLOBL_LIST_INIT(reverse_dir, list(	// reverse_dir[dir] = reverse of dir
 	2, 1, 3, 8, 10, 9, 11, 4, 6, 5, 7,

@@ -72,9 +72,9 @@
 
 	var/list/postponed
 	#ifdef ZLEVELS
-	for(var/d = 1, d < 64, d *= 2)
+	for(var/d in GLOBL.cardinalz)
 	#else
-	for(var/d = 1, d < 16, d *= 2)
+	for(var/d in GLOBL.cardinal)
 	#endif
 
 		var/turf/unsim = get_step(src, d)

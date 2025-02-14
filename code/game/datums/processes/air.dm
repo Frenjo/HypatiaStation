@@ -105,6 +105,8 @@ PROCESS_DEF(air)
 
 	var/simulated_turf_count = length(GLOBL.open_turf_list)
 	for_no_type_check(var/turf/open/S, GLOBL.open_turf_list)
+		if(!S.needs_air_update) // Skips anything that's already queued.
+			continue
 		S.update_air_properties()
 		CHECK_TICK
 

@@ -130,7 +130,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			var/turf/center = locate((destination.x + xoffset), (destination.y + yoffset), location.z)//So now, find the new center.
 
 			//Now to find a box from center location and make that our destination.
-			for_no_type_check(var/turf/T, block(locate(center.x + b1xerror, center.y + b1yerror, location.z), locate(center.x + b2xerror, center.y + b2yerror, location.z)))
+			for_no_type_check(var/turf/T, block(center.x + b1xerror, center.y + b1yerror, location.z, center.x + b2xerror, center.y + b2yerror, location.z))
 				if(density && T.density)
 					continue//If density was specified.
 				if(T.x > world.maxx || T.x < 1)

@@ -170,7 +170,7 @@
 		swapmaps_byname -= id
 		if(z2 > swapmaps_compiled_maxz || y2 > swapmaps_compiled_maxy || x2 > swapmaps_compiled_maxx)
 			var/list/areas = new
-			for(var/atom/A in block(locate(x1, y1, z1), locate(x2, y2, z2)))
+			for(var/atom/A in block(x1, y1, z1, x2, y2, z2))
 				for(var/obj/O in A)
 					qdel(O)
 				for(var/mob/M in A)
@@ -214,7 +214,7 @@
 	if(!defarea)
 		defarea = new world.area
 	areas = list()
-	for_no_type_check(var/turf/T, block(locate(x1, y1, z1), locate(x2, y2, z2)))
+	for_no_type_check(var/turf/T, block(x1, y1, z1, x2, y2, z2))
 		areas[T.loc] = null
 	for(n in areas)	// quickly eliminate associations for smaller storage
 		areas -= n
@@ -468,9 +468,9 @@
 			new item(T)
 		for(T in block(locate(T1.x, T2.y, T1.z), T2))
 			new item(T)
-		for(T in block(locate(T1.x, T1.y + 1, T1.z), locate(T1.x, T2.y - 1, T2.z)))
+		for(T in block(T1.x, T1.y + 1, T1.z, T1.x, T2.y - 1, T2.z))
 			new item(T)
-		for(T in block(locate(T2.x, T1.y + 1, T1.z), locate(T2.x, T2.y - 1, T2.z)))
+		for(T in block(T2.x, T1.y + 1, T1.z, T2.x, T2.y - 1, T2.z))
 			new item(T)
 
 /*
