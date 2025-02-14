@@ -65,7 +65,7 @@ PROCESS_DEF(nanoui)
 	else if(isnull(open_uis[src_object][ui_key]) || !islist(open_uis[src_object][ui_key]))
 		return null
 
-	for(var/datum/nanoui/ui in open_uis[src_object][ui_key])
+	for_no_type_check(var/datum/nanoui/ui, open_uis[src_object][ui_key])
 		if(ui.user == user)
 			return ui
 
@@ -84,7 +84,7 @@ PROCESS_DEF(nanoui)
 
 	var/update_count = 0
 	for(var/ui_key in open_uis[src_object])
-		for(var/datum/nanoui/ui in open_uis[src_object][ui_key])
+		for_no_type_check(var/datum/nanoui/ui, open_uis[src_object][ui_key])
 			if(isnull(ui))
 				continue
 			if(isnotnull(ui.src_object) && isnotnull(ui.user))
