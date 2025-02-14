@@ -281,15 +281,11 @@
 		if(graphic.Find(gas_data.tile_overlay[g]))
 			// Overlay is already applied for this gas, check if it's still valid.
 			if(gas[g] <= gas_data.overlay_limit[g])
-				if(isnull(graphic_remove))
-					graphic_remove = list()
-				graphic_remove.Add(gas_data.tile_overlay[g])
+				LAZYADD(graphic_remove, gas_data.tile_overlay[g])
 		else
 			// Overlay isn't applied for this gas, check if it's valid and needs to be added.
 			if(gas[g] > gas_data.overlay_limit[g])
-				if(isnull(graphic_add))
-					graphic_add = list()
-				graphic_add.Add(gas_data.tile_overlay[g])
+				LAZYADD(graphic_add, gas_data.tile_overlay[g])
 
 	. = FALSE
 	// Applies changes.

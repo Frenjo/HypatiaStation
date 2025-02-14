@@ -73,8 +73,7 @@ GLOBAL_GLOBL_LIST_INIT(all_region_access, null)
 		GLOBL.all_region_access = list()
 		var/list/temp_region_access = list()
 		for_no_type_check(var/decl/access/access, GET_DECL_SUBTYPE_INSTANCES(/decl/access))
-			if(isnull(GLOBL.all_region_access["[access.region]"]))
-				GLOBL.all_region_access["[access.region]"] = list()
+			LAZYINITLIST(GLOBL.all_region_access["[access.region]"])
 			temp_region_access.Add(access.id)
 		GLOBL.all_region_access = temp_region_access
 

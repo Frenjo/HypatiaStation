@@ -566,9 +566,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 // given an optional turf to avoid
 /obj/machinery/bot/ed209/proc/calc_path(turf/avoid = null)
 	path = AStar(loc, patrol_target, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 120, id = botcard, exclude = avoid)
-	if(isnull(path))
-		path = list()
-
+	LAZYINITLIST(path)
 
 // look for a criminal in view of the bot
 /obj/machinery/bot/ed209/proc/look_for_perp()

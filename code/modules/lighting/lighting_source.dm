@@ -32,16 +32,10 @@
 
 /datum/light_source/New(atom/owner, atom/top)
 	source_atom = owner // Set our new owner.
-	if(isnull(source_atom.light_sources))
-		source_atom.light_sources = list()
-
-	source_atom.light_sources.Add(src) // Add us to the lights of our owner.
+	LAZYADD(source_atom.light_sources, src) // Add us to the lights of our owner.
 	top_atom = top
 	if(top_atom != source_atom)
-		if(isnull(top.light_sources))
-			top.light_sources = list()
-
-		top_atom.light_sources.Add(src)
+		LAZYADD(top_atom.light_sources, src)
 
 	source_turf = top_atom
 	light_power = source_atom.light_power
@@ -86,10 +80,7 @@
 		top_atom = new_top_atom
 
 		if(top_atom != source_atom)
-			if(isnull(top_atom.light_sources))
-				top_atom.light_sources = list()
-
-			top_atom.light_sources.Add(src) // Add ourselves to the light sources of our new top atom.
+			LAZYADD(top_atom.light_sources, src) // Add ourselves to the light sources of our new top atom.
 
 	EFFECT_UPDATE
 
@@ -209,10 +200,7 @@
 
 			APPLY_CORNER(C)
 
-		if(isnull(T.affecting_lights))
-			T.affecting_lights = list()
-
-		T.affecting_lights.Add(src)
+		LAZYADD(T.affecting_lights, src)
 		affecting_turfs.Add(T)
 	END_FOR_DVIEW
 

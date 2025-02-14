@@ -4,9 +4,8 @@
 	if(isnull(M.key))
 		return
 
-	// Add the list if it does not exist.
-	if(isnull(hidden_fingerprints))
-		hidden_fingerprints = list()
+	// Makes the list if it does not exist.
+	LAZYINITLIST(hidden_fingerprints)
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -35,9 +34,8 @@
 	if(isnull(M.key))
 		return
 
-	// Add the list if it does not exist.
-	if(isnull(hidden_fingerprints))
-		hidden_fingerprints = list()
+	// Makes the list if it does not exist.
+	LAZYINITLIST(hidden_fingerprints)
 
 	if(ishuman(M))
 		// Fibers~
@@ -77,9 +75,8 @@
 			hidden_fingerprints.Add("\[[time_stamp()]\]Real name: [H.real_name], Key: [H.key]")
 			last_fingerprints = H.key
 
-		// Make the list if it does not exist.
-		if(isnull(fingerprints))
-			fingerprints = list()
+		// Makes the list if it does not exist.
+		LAZYINITLIST(fingerprints)
 
 		// Hash this shit.
 		var/full_print = md5(H.dna.uni_identity)
@@ -131,10 +128,8 @@
 		qdel(fingerprints)
 
 /atom/proc/transfer_fingerprints_to(atom/A)
-	if(!islist(A.fingerprints))
-		A.fingerprints = list()
-	if(!islist(A.hidden_fingerprints))
-		A.hidden_fingerprints = list()
+	LAZYINITLIST(A.fingerprints)
+	LAZYINITLIST(A.hidden_fingerprints)
 
 	//skytodo
 	//A.fingerprints |= fingerprints			//detective

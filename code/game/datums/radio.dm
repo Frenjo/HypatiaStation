@@ -76,11 +76,7 @@
 	if(isnull(filter))
 		filter = "_default"
 	//log_admin("add_listener(device=[device],filter=[filter]) frequency=[frequency]")
-	var/list/obj/devices_line = devices[filter]
-	if(isnull(devices_line))
-		devices_line = list()
-		devices[filter] = devices_line
-	devices_line.Add(device)
+	LAZYADD(devices[filter], device)
 //	var/list/obj/devices_line___ = devices[filter_str]
 //	var/l = devices_line___.len
 	//log_admin("DEBUG: devices_line.len=[devices_line.len]")

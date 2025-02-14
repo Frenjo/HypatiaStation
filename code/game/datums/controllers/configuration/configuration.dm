@@ -64,10 +64,7 @@ CONTROLLER_DEF(configuration)
 	. = ..()
 	// Initialises all configuration entries.
 	for_no_type_check(var/decl/configuration_entry/entry, GET_DECL_SUBTYPE_INSTANCES(/decl/configuration_entry))
-		if(isnull(entries_by_category[entry.category]))
-			entries_by_category[entry.category] = list()
-		var/list/category_entries = entries_by_category[entry.category]
-		category_entries.Add(entry.type)
+		LAZYADD(entries_by_category[entry.category], entry.type)
 
 	// Generates the default example configuration files.
 	generate_default("gamemode_probabilities.txt")

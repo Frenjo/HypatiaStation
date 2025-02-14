@@ -218,16 +218,13 @@
 		job_by_department_med[path] = sanitize_integer(job_by_department_med[path], 0, 65535, initial(job_by_department_med[path]))
 		job_by_department_low[path] = sanitize_integer(job_by_department_low[path], 0, 65535, initial(job_by_department_low[path]))
 
-	if(isnull(skills))
-		skills = list()
+	LAZYINITLIST(skills)
 	if(!used_skillpoints)
 		used_skillpoints = 0
 	if(!disabilities)
 		disabilities = 0
-	if(isnull(player_alt_titles))
-		player_alt_titles = list()
-	if(isnull(organ_data))
-		organ_data = list()
+	LAZYINITLIST(player_alt_titles)
+	LAZYINITLIST(organ_data)
 	//if(!skin_style) skin_style = "Default"
 
 	return TRUE

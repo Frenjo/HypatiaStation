@@ -54,10 +54,7 @@
 
 		// Create filters based on each reagent id in the required reagents list.
 		for(var/id in reaction_ids)
-			if(isnull(GLOBL.chemical_reactions_list[id]))
-				GLOBL.chemical_reactions_list[id] = list()
-			var/list/id_list = GLOBL.chemical_reactions_list[id]
-			id_list.Add(D)
+			LAZYADD(GLOBL.chemical_reactions_list[id], D)
 			break // Don't bother adding ourselves to other reagent ids, it is redundant.
 
 // Medical side effects - Initialises all /datum/medical_effect into a list, indexed by name.
@@ -101,10 +98,7 @@
 	for_no_type_check(var/decl/hierarchy/skill/S, GET_DECL_SUBTYPE_INSTANCES(/decl/hierarchy/skill))
 		if(S.is_category())
 			continue
-		if(isnull(GLOBL.all_skills[S.field]))
-			GLOBL.all_skills[S.field] = list()
-		var/list/field_list = GLOBL.all_skills[S.field]
-		field_list.Add(S.type)
+		LAZYADD(GLOBL.all_skills[S.field], S.type)
 
 /hook/global_init/proc/init_research()
 	. = TRUE

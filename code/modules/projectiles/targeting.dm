@@ -177,9 +177,7 @@
 	for(var/mob/living/K in viewers(usr))
 		K << 'sound/weapons/TargetOn.ogg'
 
-	if(isnull(targeted_by))
-		targeted_by = list()
-	targeted_by.Add(I)
+	LAZYADD(targeted_by, I)
 	I.lock_time = world.time + 20 //Target has 2 second to realize they're targeted and stop (or target the opponent).
 	to_chat(src, "((\red <b>Your character is being targeted. They have 2 seconds to stop any click or move actions.</b> \black While targeted, they may \
 	drag and drop items in or into the map, speak, and click on interface buttons. Clicking on the map objects (floors and walls are fine), their items \
