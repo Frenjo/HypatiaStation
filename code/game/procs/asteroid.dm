@@ -22,7 +22,7 @@ GLOBAL_GLOBL_INIT(max_secret_rooms, 3)
 	if(isnull(wall))
 		wall = pick(/turf/closed/wall/reinforced, /turf/closed/wall/steel, /obj/effect/alien/resin)
 	if(isnull(floor))
-		floor = pick(/turf/open/floor, /turf/open/floor/reinforced)
+		floor = pick(/turf/open/floor/tiled/grey, /turf/open/floor/reinforced)
 
 	for(var/x = 0, x < x_size, x++)
 		for(var/y = 0, y < y_size, y++)
