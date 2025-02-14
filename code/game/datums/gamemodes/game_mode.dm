@@ -283,9 +283,12 @@ Implants;
 	if(security_level < SEC_LEVEL_BLUE)
 		set_security_level(SEC_LEVEL_BLUE)*/
 
+// Returns: The number of people who had the antagonist role set to yes, regardless of recomended_enemies, if that number is greater than recommended_enemies
+//			recommended_enemies if the number of people with that role set to yes is less than recomended_enemies,
+//			Less if there are not enough valid players in the game entirely to make recommended_enemies.
 /datum/game_mode/proc/get_players_for_role(role, override_jobbans = 0)
+	. = list()
 	var/list/players = list()
-	var/list/datum/mind/candidates = list()
 	//var/list/drafted = list()
 	//var/datum/mind/applicant = null
 
@@ -321,27 +324,27 @@ Implants;
 	for(var/mob/dead/new_player/player in players)
 		if(player.client.prefs.be_special & role)
 			log_debug("[player.key] had [roletext] enabled, so we are drafting them.")
-			candidates.Add(player.mind)
+			. += player.mind
 			players.Remove(player)
 
 	// If we don't have enough antags, draft people who voted for the round.
-	if(length(candidates) < recommended_enemies)
+	if(length(.) < recommended_enemies)
 		for(var/key in global.PCvote.round_voters)
 			for(var/mob/dead/new_player/player in players)
 				if(player.ckey == key)
 					log_debug("[player.key] voted for this round, so we are drafting them.")
-					candidates.Add(player.mind)
+					. += player.mind
 					players.Remove(player)
 					break
 
 	// Remove candidates who want to be antagonist but have a job that precludes it
 	if(restricted_jobs)
-		for_no_type_check(var/datum/mind/player, candidates)
+		for_no_type_check(var/datum/mind/player, .)
 			for(var/job in restricted_jobs)
 				if(player.assigned_role == job)
-					candidates.Remove(player)
+					. -= player
 
-	/*if(length(candidates) < recommended_enemies)
+	/*if(length(.) < recommended_enemies)
 		for(var/mob/dead/new_player/player in players)
 			if(player.client && player.ready)
 				if(!(player.client.prefs.be_special & role)) // We don't have enough people who want to be antagonist, make a seperate list of people who don't want to be one
@@ -356,18 +359,18 @@ Implants;
 
 	drafted = shuffle(drafted) // Will hopefully increase randomness, Donkie
 
-	while(length(candidates) < recommended_enemies)				// Pick randomlly just the number of people we need and add them to our list of candidates
+	while(length(.) < recommended_enemies)				// Pick randomlly just the number of people we need and add them to our list of candidates
 		if(length(drafted) > 0)
 			applicant = pick(drafted)
 			if(applicant)
-				candidates += applicant
+				. += applicant
 				log_debug("[applicant.key] was force-drafted as [roletext], because there aren't enough candidates.")
 				drafted.Remove(applicant)
 
 		else												// Not enough scrubs, ABORT ABORT ABORT
 			break
 
-	if(length(candidates) < recommended_enemies && override_jobbans) //If we still don't have enough people, we're going to start drafting banned people.
+	if(length(.) < recommended_enemies && override_jobbans) //If we still don't have enough people, we're going to start drafting banned people.
 		for(var/mob/dead/new_player/player in players)
 			if (player.client && player.ready)
 				if(jobban_isbanned(player, "Syndicate") || jobban_isbanned(player, roletext)) //Nodrak/Carn: Antag Job-bans
@@ -381,21 +384,17 @@ Implants;
 
 	drafted = shuffle(drafted) // Will hopefully increase randomness, Donkie
 
-	while(length(candidates) < recommended_enemies)				// Pick randomlly just the number of people we need and add them to our list of candidates
+	while(length(.) < recommended_enemies)				// Pick randomlly just the number of people we need and add them to our list of candidates
 		if(length(drafted) > 0)
 			applicant = pick(drafted)
 			if(applicant)
-				candidates += applicant
+				. += applicant
 				drafted.Remove(applicant)
 				log_debug("[applicant.key] was force-drafted as [roletext], because there aren't enough candidates.")
 
 		else												// Not enough scrubs, ABORT ABORT ABORT
 			break
 	*/
-
-	return candidates		// Returns: The number of people who had the antagonist role set to yes, regardless of recomended_enemies, if that number is greater than recommended_enemies
-							//			recommended_enemies if the number of people with that role set to yes is less than recomended_enemies,
-							//			Less if there are not enough valid players in the game entirely to make recommended_enemies.
 
 
 /datum/game_mode/proc/latespawn(mob)
@@ -418,21 +417,19 @@ Implants;
 //Keeps track of all living heads//
 ///////////////////////////////////
 /datum/game_mode/proc/get_living_heads()
-	var/list/heads = list()
+	. = list()
 	for(var/mob/living/carbon/human/player in GLOBL.mob_list)
 		if(player.stat != DEAD && (player.mind?.assigned_role in GLOBL.command_positions))
-			heads.Add(player.mind)
-	return heads
+			. += player.mind
 
 ////////////////////////////
 //Keeps track of all heads//
 ////////////////////////////
 /datum/game_mode/proc/get_all_heads()
-	var/list/heads = list()
+	. = list()
 	for(var/mob/player in GLOBL.mob_list)
 		if((player.mind?.assigned_role in GLOBL.command_positions))
-			heads.Add(player.mind)
-	return heads
+			. += player.mind
 
 //////////////////////////
 //Reports player logouts//

@@ -45,32 +45,26 @@
 //#undef k2
 
 /proc/circlerange(center = usr, radius = 3)
+	. = list()
 	var/turf/centerturf = GET_TURF(center)
-	var/list/turfs = list()
 	var/rsq = radius * (radius + 0.5)
 
 	for_no_type_check(var/atom/T, range(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
 		if(dx * dx + dy * dy <= rsq)
-			turfs.Add(T)
-
-	//turfs += centerturf
-	return turfs
+			. += T
 
 /proc/circleview(center = usr, radius = 3)
+	. = list()
 	var/turf/centerturf = GET_TURF(center)
-	var/list/atoms = list()
 	var/rsq = radius * (radius + 0.5)
 
 	for_no_type_check(var/atom/A, view(radius, centerturf))
 		var/dx = A.x - centerturf.x
 		var/dy = A.y - centerturf.y
 		if(dx * dx + dy * dy <= rsq)
-			atoms.Add(A)
-
-	//turfs += centerturf
-	return atoms
+			. += A
 
 /proc/get_dist_euclidian(atom/Loc1, atom/Loc2)
 	var/dx = Loc1.x - Loc2.x
@@ -81,29 +75,26 @@
 	return dist
 
 /proc/circlerangeturfs(center = usr, radius = 3)
+	. = list()
 	var/turf/centerturf = GET_TURF(center)
-	var/list/turfs = list()
 	var/rsq = radius * (radius + 0.5)
 
 	for(var/turf/T in range(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
 		if(dx * dx + dy * dy <= rsq)
-			turfs.Add(T)
-	return turfs
+			. += T
 
 /proc/circleviewturfs(center = usr, radius = 3)		//Is there even a diffrence between this proc and circlerangeturfs()?
+	. = list()
 	var/turf/centerturf = GET_TURF(center)
-	var/list/turfs = list()
 	var/rsq = radius * (radius + 0.5)
 
 	for(var/turf/T in view(radius, centerturf))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
 		if(dx * dx + dy * dy <= rsq)
-			turfs.Add(T)
-	return turfs
-
+			. += T
 
 //var/debug_mob = 0
 
@@ -138,22 +129,21 @@
 
 // The old system would loop through lists for a total of 5000 per function call, in an empty server.
 // This new system will loop at around 1000 in an empty server.
-
 // SCREW THAT SHIT, we're not recursing.
 
+// Returns a list of mobs in range of R from source. Used in radio and say code.
 /proc/get_mobs_in_view(R, atom/source)
-	// Returns a list of mobs in range of R from source. Used in radio and say code.
+	. = list()
 	var/turf/T = GET_TURF(source)
-	var/list/hear = list()
 
 	if(isnull(T))
-		return hear
+		return
 
 	var/list/range = hear(R, T)
 
 	for(var/mob/M in range)
 		if(isnotnull(M.client))
-			hear.Add(M)
+			. += M
 
 	var/list/objects = list()
 
@@ -164,22 +154,19 @@
 		if(!istype(C) || !C.eye)
 			continue		//I have no idea when this client check would be needed, but if this runtimes people won't hear anything
 							//So kinda paranoid about runtime avoidance.
-		if(C.mob in hear)
+		if(C.mob in .)
 			continue
-		if(C.eye in (hear|objects))
-			if(!(C.mob in hear))
-				hear.Add(C.mob)
+		if(C.eye in (. | objects))
+			if(!(C.mob in .))
+				. += C.mob
 
-		else if(!(C.mob in hear))
-			if(C.mob.loc && (C.mob.loc in (hear | objects)))
-				hear.Add(C.mob)
-			else if(C.mob.loc.loc && (C.mob.loc.loc in (hear | objects)))
-				hear.Add(C.mob)
-			else if(C.mob.loc.loc.loc && (C.mob.loc.loc.loc in (hear | objects)))   //Going a little deeper
-				hear.Add(C.mob)
-
-	return hear
-
+		else if(!(C.mob in .))
+			if(C.mob.loc && (C.mob.loc in (. | objects)))
+				. += C.mob
+			else if(C.mob.loc.loc && (C.mob.loc.loc in (. | objects)))
+				. += C.mob
+			else if(C.mob.loc.loc.loc && (C.mob.loc.loc.loc in (. | objects)))   //Going a little deeper
+				. += C.mob
 
 /proc/get_mobs_in_radio_ranges(list/obj/item/radio/radios)
 	set background = BACKGROUND_ENABLED
@@ -271,28 +258,26 @@
 
 // Will return a list of active candidates. It increases the buffer 5 times until it finds a candidate which is active within the buffer.
 /proc/get_active_candidates(buffer = 1)
-	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
+	. = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
-	while(!length(candidates) && i < 5)
+	while(!length(.) && i < 5)
 		for(var/mob/dead/ghost/G in GLOBL.player_list)
 			if(((G.client.inactivity / 10) / 60) <= buffer + i) // the most active players are more likely to become an alien
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
-					candidates.Add(G.key)
+					. += G.key
 		i++
-	return candidates
 
 // Same as above but for alien candidates.
 /proc/get_alien_candidates()
-	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
+	. = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
-	while(length(candidates) && i < 5)
+	while(!length(.) && i < 5)
 		for(var/mob/dead/ghost/G in GLOBL.player_list)
 			if(G.client.prefs.be_special & BE_ALIEN)
-				if(((G.client.inactivity/10)/60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien
+				if(((G.client.inactivity / 10) / 60) <= ALIEN_SELECT_AFK_BUFFER + i) // the most active players are more likely to become an alien
 					if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
-						candidates.Add(G.key)
+						. += G.key
 		i++
-	return candidates
 
 /proc/ScreenText(obj/O, maptext = "", screen_loc = "CENTER-7,CENTER-7", maptext_height = 480, maptext_width = 480)
 	if(!isobj(O))

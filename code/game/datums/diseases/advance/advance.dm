@@ -132,7 +132,7 @@ var/list/advance_cures = list(
 
 // Will generate new unique symptoms, use this if there are none. Returns a list of symptoms that were generated.
 /datum/disease/advance/proc/GenerateSymptoms(type_level_limit = RANDOM_STARTING_LEVEL, amount_get = 0)
-	var/list/generated = list() // Symptoms we generated.
+	. = list() // Symptoms we generated.
 
 	// Generate symptoms. By default, we only choose non-deadly symptoms.
 	var/list/possible_symptoms = list()
@@ -155,10 +155,8 @@ var/list/advance_cures = list(
 
 	for(var/i = 1; number_of >= i; i++)
 		var/datum/symptom/S = pick(possible_symptoms)
-		generated += S
+		. += S
 		possible_symptoms -= S
-
-	return generated
 
 /datum/disease/advance/proc/Refresh(new_name = 0)
 	//to_world("[src.name] \ref[src] - REFRESH!")
@@ -280,9 +278,8 @@ var/list/advance_cures = list(
 	for_no_type_check(var/datum/symptom/S, symptoms)
 		L += S.id
 	L = sortList(L) // Sort the list so it doesn't matter which order the symptoms are in.
-	var/result = jointext(L, ":")
-	id = result
-	return result
+	. = jointext(L, ":")
+	id = .
 
 // Add a symptom, if it is over the limit (with a small chance to be able to go over)
 // we take a random symptom away and add the new one.

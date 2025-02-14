@@ -75,7 +75,7 @@ CONTROLLER_DEF(jobs)
 
 /datum/controller/jobs/proc/find_occupation_candidates(datum/job/job, level, flag)
 	debug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
-	var/list/candidates = list()
+	. = list()
 	for_no_type_check(var/mob/dead/new_player/player, unassigned)
 		if(jobban_isbanned(player, job.title))
 			debug("FOC isbanned failed, Player: [player]")
@@ -88,8 +88,7 @@ CONTROLLER_DEF(jobs)
 			continue
 		if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
 			debug("FOC pass, Player: [player], Level:[level]")
-			candidates.Add(player)
-	return candidates
+			. += player
 
 /datum/controller/jobs/proc/give_random_job(mob/dead/new_player/player)
 	debug("GRJ Giving random job, Player: [player]")

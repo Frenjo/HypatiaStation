@@ -138,10 +138,10 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
  * RETURNS: list of found atoms
  */
 /atom/proc/search_contents_for(path, list/filter_path = null)
-	var/list/found = list()
+	. = list()
 	for_no_type_check(var/atom/movable/mover, src)
 		if(istype(mover, path))
-			found.Add(mover)
+			. += mover
 		if(filter_path)
 			var/pass = 0
 			for(var/type in filter_path)
@@ -149,8 +149,7 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 			if(!pass)
 				continue
 		if(length(mover.contents))
-			found.Add(mover.search_contents_for(path, filter_path))
-	return found
+			. += mover.search_contents_for(path, filter_path)
 
 /*
 Beam code by Gunbuddy
@@ -197,8 +196,7 @@ Maxdistance is the longest range the beam will persist before it gives up.
 		M.dna = new /datum/dna(null)
 		M.dna.real_name = M.real_name
 	M.check_dna()
-	if(isnull(blood_DNA) || !islist(blood_DNA)) // If our list of DNA doesn't exist yet (or isn't a list) initialise it.
-		blood_DNA = list()
+	LAZYINITLIST(blood_DNA) // If our list of DNA doesn't exist yet (or isn't a list) initialise it.
 	blood_color = "#A10808"
 	if(M.species)
 		blood_color = M.species.blood_color

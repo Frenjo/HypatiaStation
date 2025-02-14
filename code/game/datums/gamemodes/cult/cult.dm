@@ -234,11 +234,10 @@
 						qdel(I)
 
 /datum/game_mode/cult/proc/get_unconvertables()
-	var/list/ucs = list()
+	. = list()
 	for(var/mob/living/carbon/human/player in GLOBL.mob_list)
 		if(!is_convertable_to_cult(player.mind))
-			ucs += player.mind
-	return ucs
+			. += player.mind
 
 /datum/game_mode/cult/proc/check_cult_victory()
 	var/cult_fail = 0

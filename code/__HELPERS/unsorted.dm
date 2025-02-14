@@ -362,7 +362,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		if(A.control_disabled)
 			continue
 		. += A
-	return .
 
 // Find an active ai with the least borgs. VERBOSE PROCNAME HUH!
 /proc/select_active_ai_with_fewest_borgs()
@@ -403,19 +402,18 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		else
 			logged_list |= M
 		old_list.Remove(named)
-	var/list/new_list = list()
-	new_list.Add(ai_list)
-	new_list.Add(keyclient_list)
-	new_list.Add(key_list)
-	new_list.Add(logged_list)
-	new_list.Add(dead_list)
-	return new_list
+	. = list()
+	. += ai_list
+	. += keyclient_list
+	. += key_list
+	. += logged_list
+	. += dead_list
 
 //Returns a list of all mobs with their name
 /proc/getmobs()
+	. = list()
 	var/list/mobs = sortmobs()
 	var/list/names = list()
-	var/list/creatures = list()
 	var/list/namecounts = list()
 	for(var/mob/M in mobs)
 		var/name = M.name
@@ -432,41 +430,38 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				name += " \[ghost\]"
 			else
 				name += " \[dead\]"
-		creatures[name] = M
-
-	return creatures
+		.[name] = M
 
 //Orders mobs by type then by name
 /proc/sortmobs()
-	var/list/moblist = list()
-	var/list/sortmob = sortAtom(GLOBL.mob_list)
-	for(var/mob/living/silicon/ai/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/living/silicon/pai/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/living/silicon/robot/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/living/carbon/human/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/living/brain/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/living/carbon/alien/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/dead/ghost/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/dead/new_player/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/living/carbon/monkey/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/living/carbon/slime/M in sortmob)
-		moblist.Add(M)
-	for(var/mob/living/simple/M in sortmob)
-		moblist.Add(M)
-//	for(var/mob/living/silicon/hivebot/M in sortmob)
-//		moblist.Add(M)
-//	for(var/mob/living/silicon/hive_mainframe/M in sortmob)
-//		moblist.Add(M)
-	return moblist
+	. = list()
+	var/list/sorted_mob_list = sortAtom(GLOBL.mob_list)
+	for(var/mob/living/silicon/ai/M in sorted_mob_list)
+		. += M
+	for(var/mob/living/silicon/pai/M in sorted_mob_list)
+		. += M
+	for(var/mob/living/silicon/robot/M in sorted_mob_list)
+		. += M
+	for(var/mob/living/carbon/human/M in sorted_mob_list)
+		. += M
+	for(var/mob/living/brain/M in sorted_mob_list)
+		. += M
+	for(var/mob/living/carbon/alien/M in sorted_mob_list)
+		. += M
+	for(var/mob/dead/ghost/M in sorted_mob_list)
+		. += M
+	for(var/mob/dead/new_player/M in sorted_mob_list)
+		. += M
+	for(var/mob/living/carbon/monkey/M in sorted_mob_list)
+		. += M
+	for(var/mob/living/carbon/slime/M in sorted_mob_list)
+		. += M
+	for(var/mob/living/simple/M in sorted_mob_list)
+		. += M
+//	for(var/mob/living/silicon/hivebot/M in sorted_mob_list)
+//		. += M
+//	for(var/mob/living/silicon/hive_mainframe/M in sorted_mob_list)
+//		. += M
 
 //E = MC^2
 /proc/convert2energy(M)
@@ -615,14 +610,12 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 //Will return the contents of an atom recursivly to a depth of 'searchDepth'
 /atom/proc/GetAllContents(searchDepth = 5)
-	var/list/toReturn = list()
+	. = list()
 
 	for_no_type_check(var/atom/movable/part, src)
-		toReturn.Add(part)
+		. += part
 		if(length(part.contents) && searchDepth)
-			toReturn.Add(part.GetAllContents(searchDepth - 1))
-
-	return toReturn
+			. += part.GetAllContents(searchDepth - 1)
 
 //Step-towards method of determining whether one atom can see another. Similar to viewers()
 /proc/can_see(atom/source, atom/target, length = 5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
@@ -644,13 +637,12 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return TRUE
 
 /proc/is_blocked_turf(turf/T)
-	var/cant_pass = FALSE
+	. = FALSE
 	if(T.density)
-		cant_pass = TRUE
+		. = TRUE
 	for_no_type_check(var/atom/movable/mover, T)
 		if(mover.density)// && mover.anchored
-			cant_pass = TRUE
-	return cant_pass
+			. = TRUE
 
 /proc/get_step_towards2(atom/ref, atom/trg)
 	var/base_dir = get_dir(ref, get_step_towards(ref, trg))
@@ -707,12 +699,10 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		var/area/areatemp = area_type
 		area_type = areatemp.type
 
-	var/list/areas = list()
+	. = list()
 	for_no_type_check(var/area/A, GLOBL.area_list)
 		if(istype(A, area_type))
-			areas.Add(A)
-
-	return areas
+			. += A
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all turfs in areas of that type of that type in the world.
@@ -746,12 +736,11 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		var/area/areatemp = areatype
 		areatype = areatemp.type
 
-	var/list/atoms = list()
+	. = list()
 	for_no_type_check(var/area/N, GLOBL.area_list)
 		if(istype(N, areatype))
 			for(var/atom/A in N)
-				atoms.Add(A)
-	return atoms
+				. += A
 
 /area/proc/move_contents_to(area/A, turftoleave = null, direction = null, ignore_turf = null)
 	//Takes: Area. Optional: turf type to leave behind.
@@ -990,11 +979,10 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	return
 
 /proc/get_mob_with_client_list()
-	var/list/mobs = list()
+	. = list()
 	for(var/mob/M in GLOBL.mob_list)
 		if(isnotnull(M.client))
-			mobs.Add(M)
-	return mobs
+			. += M
 
 /proc/parse_zone(zone)
 	if(zone == "r_hand")

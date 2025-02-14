@@ -23,7 +23,8 @@ GLOBAL_GLOBL(datum/datacore/data_core)
 	var/list/bot = list()
 	var/list/misc = list()
 	var/list/isactive = list()
-	var/html = {"
+
+	. = {"
 	<head><style>
 		.manifest {border-collapse:collapse;}
 		.manifest td, th {border:1px solid [monochrome ? "black" : "#DEF; background-color:white; color:black"]; padding:.25em}
@@ -80,52 +81,51 @@ GLOBAL_GLOBL(datum/datacore/data_core)
 
 	var/name
 	if(length(heads))
-		html += "<tr><th colspan=3>Heads</th></tr>"
+		. += "<tr><th colspan=3>Heads</th></tr>"
 		for(name in heads)
-			html += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[heads[name]]</td><td>[isactive[name]]</td></tr>"
+			. += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[heads[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	if(length(sec))
-		html += "<tr><th colspan=3>Security</th></tr>"
+		. += "<tr><th colspan=3>Security</th></tr>"
 		for(name in sec)
-			html += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[sec[name]]</td><td>[isactive[name]]</td></tr>"
+			. += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[sec[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	if(length(eng))
-		html += "<tr><th colspan=3>Engineering</th></tr>"
+		. += "<tr><th colspan=3>Engineering</th></tr>"
 		for(name in eng)
-			html += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[eng[name]]</td><td>[isactive[name]]</td></tr>"
+			. += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[eng[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	if(length(med))
-		html += "<tr><th colspan=3>Medical</th></tr>"
+		. += "<tr><th colspan=3>Medical</th></tr>"
 		for(name in med)
-			html += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[med[name]]</td><td>[isactive[name]]</td></tr>"
+			. += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[med[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	if(length(sci))
-		html += "<tr><th colspan=3>Science</th></tr>"
+		. += "<tr><th colspan=3>Science</th></tr>"
 		for(name in sci)
-			html += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[sci[name]]</td><td>[isactive[name]]</td></tr>"
+			. += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[sci[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	if(length(civ))
-		html += "<tr><th colspan=3>Civilian</th></tr>"
+		. += "<tr><th colspan=3>Civilian</th></tr>"
 		for(name in civ)
-			html += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[civ[name]]</td><td>[isactive[name]]</td></tr>"
+			. += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[civ[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	// in case somebody is insane and added them to the manifest, why not
 	if(length(bot))
-		html += "<tr><th colspan=3>Silicon</th></tr>"
+		. += "<tr><th colspan=3>Silicon</th></tr>"
 		for(name in bot)
-			html += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[bot[name]]</td><td>[isactive[name]]</td></tr>"
+			. += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[bot[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 	// misc guys
 	if(length(misc))
-		html += "<tr><th colspan=3>Miscellaneous</th></tr>"
+		. += "<tr><th colspan=3>Miscellaneous</th></tr>"
 		for(name in misc)
-			html += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[misc[name]]</td><td>[isactive[name]]</td></tr>"
+			. += "<tr[even ? " class='alt'" : ""]><td>[name]</td><td>[misc[name]]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 
-	html += "</table>"
-	html = replacetext(html, "\n", "") // so it can be placed on paper correctly
-	html = replacetext(html, "\t", "")
-	return html
+	. += "</table>"
+	. = replacetext(., "\n", "") // so it can be placed on paper correctly
+	. = replacetext(., "\t", "")
 
 /*
 We can't just insert in HTML into the NanoUI so we need the raw data to play with.

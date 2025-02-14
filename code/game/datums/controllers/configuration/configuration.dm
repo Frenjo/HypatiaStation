@@ -109,7 +109,7 @@ CONTROLLER_DEF(configuration)
 /datum/controller/configuration/proc/read(file_name)
 	file_name = "config/[file_name]"
 
-	var/list/result = list()
+	. = list()
 	var/list/lines = file2list(file_name)
 	for(var/line in lines)
 		if(isnull(line))
@@ -122,8 +122,7 @@ CONTROLLER_DEF(configuration)
 		if(isnull(name))
 			continue
 		var/value = (pos ? copytext(line, pos + 1) : null)
-		result[name] = value
-	return result
+		.[name] = value
 
 // This loads configuration entries using the new system from a provided file.
 /datum/controller/configuration/proc/load(file_name)
@@ -180,7 +179,7 @@ CONTROLLER_DEF(configuration)
 	return mode_cache[/datum/game_mode/extended]
 
 /datum/controller/configuration/proc/get_runnable_modes()
-	var/list/datum/game_mode/runnable_modes = list()
+	. = list()
 	for(var/path in mode_cache)
 		var/datum/game_mode/mode = mode_cache[path]
 		//to_world("DEBUG: [T], tag=[M.config_tag], prob=[probabilities[M.config_tag]]")
@@ -189,9 +188,8 @@ CONTROLLER_DEF(configuration)
 		if(probabilities[mode.config_tag] <= 0)
 			continue
 		if(mode.can_start())
-			runnable_modes[mode] = probabilities[mode.config_tag]
-			//to_world("DEBUG: runnable_mode\[[length(runnable_modes)]\] = [M.config_tag]")
-	return runnable_modes
+			.[mode] = probabilities[mode.config_tag]
+			//to_world("DEBUG: runnable_mode\[[length(.)]\] = [M.config_tag]")
 
 /datum/controller/configuration/proc/post_load()
 	//apply a default value to python_path, if needed

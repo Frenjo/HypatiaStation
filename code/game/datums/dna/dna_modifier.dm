@@ -305,10 +305,9 @@
 	return
 
 /obj/machinery/computer/scan_consolenew/proc/all_dna_blocks(list/buffer)
-	var/list/arr = list()
+	. = list()
 	for(var/i = 1, i <= length(buffer), i++)
-		arr += "[i]:[EncodeDNABlock(buffer[i])]"
-	return arr
+		. += "[i]:[EncodeDNABlock(buffer[i])]"
 
 /obj/machinery/computer/scan_consolenew/proc/setInjectorBlock(obj/item/dnainjector/I, blk, datum/dna2/record/buffer)
 	var/pos = findtext(blk, ":")

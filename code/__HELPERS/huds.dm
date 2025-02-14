@@ -78,8 +78,7 @@ the HUD updates properly! */
 /mob/dead/ai_eye/in_view(turf/T)
 	RETURN_TYPE(/list)
 
-	var/list/viewed = list()
+	. = list()
 	for(var/mob/living/carbon/human/H in GLOBL.mob_list)
 		if(get_dist(H, T) <= 7)
-			viewed.Add(H)
-	return viewed
+			. += H

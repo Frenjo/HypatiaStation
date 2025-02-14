@@ -78,15 +78,15 @@
  */
 /proc/difflist(list/first, list/second, skiprep = 0)
 	if(!islist(first) || !islist(second))
-		return
-	var/list/result = list()
+		return null
+
+	. = list()
 	if(skiprep)
-		for(var/e in first)
-			if(!(e in result) && !(e in second))
-				result.Add(e)
+		for(var/entry in first)
+			if(!(entry in .) && !(entry in second))
+				. += entry
 	else
-		result = first - second
-	return result
+		. = first - second
 
 /*
  * Returns list containing entries that are in either list but not both.
@@ -95,13 +95,13 @@
  */
 /proc/uniquemergelist(list/first, list/second, skiprep = 0)
 	if(!islist(first) || !islist(second))
-		return
-	var/list/result = list()
+		return null
+
+	. = list()
 	if(skiprep)
-		result = difflist(first, second, skiprep) + difflist(second, first, skiprep)
+		. = difflist(first, second, skiprep) + difflist(second, first, skiprep)
 	else
-		result = first ^ second
-	return result
+		. = first ^ second
 
 //Pretends to pick an element based on its weight but really just seems to pick a random element.
 /proc/pickweight(list/L)
@@ -148,31 +148,29 @@
  */
 //Reverses the order of items in the list
 /proc/reverselist(list/L)
-	var/list/output = list()
+	. = list()
 	if(isnotnull(L))
 		for(var/i = length(L); i >= 1; i--)
-			output += L[i]
-	return output
+			. += L[i]
 
 //Randomize: Return the list in a random order
 /proc/shuffle(list/shufflelist)
 	if(isnull(shufflelist))
 		return
-	var/list/new_list = list()
+
+	. = list()
 	var/list/old_list = shufflelist.Copy()
 	while(length(old_list))
 		var/item = pick(old_list)
-		new_list.Add(item)
+		. += item
 		old_list.Remove(item)
-	return new_list
 
 //Return a list with no duplicate entries
 /proc/uniquelist(list/L)
-	var/list/K = list()
+	. = list()
 	for(var/item in L)
-		if(!(item in K))
-			K.Add(item)
-	return K
+		if(!(item in .))
+			. += item
 
 //Mergesort: divides up the list into halves to begin the sort
 /proc/sortKey(list/client/L, order = 1)
@@ -336,20 +334,18 @@
 
 //Converts a bitfield to a list of numbers (or words if a wordlist is provided)
 /proc/bitfield2list(bitfield = 0, list/wordlist)
-	var/list/r = list()
+	. = list()
 	if(islist(wordlist))
 		var/max = min(length(wordlist), 16)
 		var/bit = 1
 		for(var/i = 1, i <= max, i++)
 			if(bitfield & bit)
-				r.Add(wordlist[i])
+				. += wordlist[i]
 			bit = bit << 1
 	else
 		for(var/bit = 1, bit <= 65535, bit = bit << 1)
 			if(bitfield & bit)
-				r.Add(bit)
-
-	return r
+				. += bit
 
 // Returns the key based on the index
 /proc/get_key_by_index(list/L, index)

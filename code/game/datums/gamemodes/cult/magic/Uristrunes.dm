@@ -2,7 +2,7 @@
 var/list/word_to_uristrune_table = null
 
 /proc/word_to_uristrune_bit(word)
-	if(word_to_uristrune_table == null)
+	if(isnull(word_to_uristrune_table))
 		word_to_uristrune_table = list()
 
 		var/bit = 1

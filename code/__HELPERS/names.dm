@@ -130,7 +130,7 @@ GLOBAL_GLOBL_INIT(syndicate_code_response, null)	// Code response for traitors.
 */
 
 /proc/generate_code_phrase()//Proc is used for phrase and response in master_controller.dm
-	var/code_phrase = ""//What is returned when the proc finishes.
+	. = "" //What is returned when the proc finishes.
 	var/words = pick(//How many words there will be. Minimum of two. 2, 4 and 5 have a lesser chance of being selected. 3 is the most likely.
 		50; 2,
 		200; 3,
@@ -169,35 +169,33 @@ GLOBAL_GLOBL_INIT(syndicate_code_response, null)	// Code response for traitors.
 				switch(rand(1, 2))//Mainly to add more options later.
 					if(1)
 						if(length(names) && prob(70))
-							code_phrase += pick(names)
+							. += pick(names)
 						else
-							code_phrase += pick(pick(GLOBL.first_names_male, GLOBL.first_names_female))
-							code_phrase += " "
-							code_phrase += pick(GLOBL.last_names)
+							. += pick(pick(GLOBL.first_names_male, GLOBL.first_names_female))
+							. += " "
+							. += pick(GLOBL.last_names)
 					if(2)
-						code_phrase += pick(GLOBL.all_jobs) // Returns a job.
+						. += pick(GLOBL.all_jobs) // Returns a job.
 				safety -= 1
 			if(2)
 				switch(rand(1, 2))//Places or things.
 					if(1)
-						code_phrase += pick(drinks)
+						. += pick(drinks)
 					if(2)
-						code_phrase += pick(locations)
+						. += pick(locations)
 				safety -= 2
 			if(3)
 				switch(rand(1, 3))//Nouns, adjectives, verbs. Can be selected more than once.
 					if(1)
-						code_phrase += pick(nouns)
+						. += pick(nouns)
 					if(2)
-						code_phrase += pick(GLOBL.adjectives)
+						. += pick(GLOBL.adjectives)
 					if(3)
-						code_phrase += pick(GLOBL.verbs)
+						. += pick(GLOBL.verbs)
 		if(words == 1)
-			code_phrase += "."
+			. += "."
 		else
-			code_phrase += ", "
-
-	return code_phrase
+			. += ", "
 
 /*
 //This proc tests the gen above.
