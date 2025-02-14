@@ -9,3 +9,6 @@
 
 // Adds I to L, initialising L if necessary, if I is not already in L.
 #define LAZYDISTINCTADD(L, I) if(isnull(L)) { L = list(); } L |= I;
+
+// Sets L[A] to I, initalizing L if necessary.
+#define LAZYSET(L, A, I) if(isnull(L)) { L = list(); } L[A] = I;

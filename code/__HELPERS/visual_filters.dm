@@ -4,7 +4,7 @@
 // And then ported to Nebula from Polaris.
 // Which was then ported (in a heavily modified form) to Hypatia from Nebula.
 /atom/movable
-	var/list/filter_data = list() // For handling persistent filters
+	VAR_PRIVATE/list/filter_data // For handling persistent filters
 
 /atom/movable/proc/add_filter(filter_name, list/params, force_update = FALSE)
 	// Check if we already have a filter and hence don't need to rebuild filters.
@@ -20,7 +20,7 @@
 				return FALSE
 
 	var/list/p = params.Copy()
-	filter_data[filter_name] = p
+	LAZYSET(filter_data, filter_name, p)
 	filters.Add(filter(arglist(p)))
 	return TRUE
 
@@ -33,7 +33,7 @@
 /atom/movable/proc/remove_filter(filter_name)
 	var/thing = get_filter(filter_name)
 	if(isnotnull(thing))
-		filter_data.Remove(filter_name)
+		LAZYREMOVE(filter_data, filter_name)
 		filters.Remove(thing)
 		return TRUE
 	return FALSE
