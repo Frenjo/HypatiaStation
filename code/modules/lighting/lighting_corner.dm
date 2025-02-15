@@ -1,5 +1,4 @@
 GLOBAL_BYOND_LIST_NEW(all_lighting_corners)
-GLOBAL_BYOND_NEW(datum/lighting_corner/dummy/dummy_lighting_corner)
 // Because we can control each corner of every lighting overlay.
 // And corners get shared between multiple turfs (unless you're on the corners of the map, then 1 corner doesn't).
 // For the record: these should never ever ever be deleted, even if the turf doesn't have dynamic lighting.
@@ -97,7 +96,7 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 
 	if(!needs_update)
 		needs_update = TRUE
-		GLOBL.lighting_update_corners.Add(src)
+		global.PClighting.lighting_update_corners.Add(src)
 
 /datum/lighting_corner/proc/update_overlays()
 	// Cache these values a head of time so 4 individual lighting overlays don't all calculate them individually.
@@ -118,7 +117,7 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 		if(isnotnull(T.lighting_overlay))
 			if(!T.lighting_overlay.needs_update)
 				T.lighting_overlay.needs_update = TRUE
-				GLOBL.lighting_update_overlays.Add(T.lighting_overlay)
+				global.PClighting.lighting_update_overlays.Add(T.lighting_overlay)
 
 /datum/lighting_corner/dummy/New()
 	return

@@ -66,7 +66,7 @@
 #define EFFECT_UPDATE	\
 	if(!needs_update)		\
 	{						\
-		GLOBL.lighting_update_lights.Add(src);	\
+		global.PClighting.lighting_update_lights.Add(src);	\
 		needs_update = TRUE;	\
 	}
 
