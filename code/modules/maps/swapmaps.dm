@@ -416,7 +416,7 @@
 /swapmap/proc/AllTurfs(z)
 	if(isnum(z) && (z < z1 || z > z2))
 		return null
-	return block(LoCorner(z), HiCorner(z))
+	return block(x1, y1, z, x2, y2, z)
 
 // this could be safely called for an obj or mob as well, but
 // probably not an area
@@ -430,11 +430,6 @@
 		for(var/mob/M in T)
 			if(M.key)
 				return 1
-
-/swapmap/proc/LoCorner(z = z1)
-	return locate(x1, y1, z)
-/swapmap/proc/HiCorner(z = z2)
-	return locate(x2, y2, z)
 
 /*
 	Build procs: Take 2 turfs as corners, plus an item type.

@@ -81,14 +81,12 @@
 
 	proc/MoveShip(var/turf/Center) // Center - The new position of the ship's core
 		src.anchored = FALSE
-		var/turf/lowerleft = locate(Center.x - (src.width/2), Center.y - (src.height/2), Center.z)
-		var/turf/upperright = locate(Center.x + (src.width/2), Center.y + (src.height/2), Center.z)
 
 		var/xsav = src.loc.x
 		var/ysav = src.loc.y
 		var/zsav = src.loc.z
 
-		for(var/turf/T in block(lowerleft, upperright))
+		for(var/turf/T in block(Center.x - (src.width/2), Center.y - (src.height/2), Center.z, Center.x + (src.width/2), Center.y + (src.height/2), Center.z))
 			if(!isspace(T))
 				return 0 // One of the tiles in the range we're moving to isn't a space tile - something's in the way!
 
