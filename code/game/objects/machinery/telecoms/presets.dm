@@ -23,15 +23,14 @@
 // Ruskie
 /obj/machinery/telecoms/relay/preset/ruskie
 	id = "Ruskie Relay"
-	hide = 1
-	toggled = 0
+	hide = TRUE
+	toggled = FALSE
 	autolinkers = list("r_relay")
 
 // CentCom
 /obj/machinery/telecoms/relay/preset/centcom
 	id = "CentCom Relay"
-	hide = 1
-	toggled = 1
+	hide = TRUE
 	//anchored = TRUE
 	//use_power = 0
 	//idle_power_usage = 0

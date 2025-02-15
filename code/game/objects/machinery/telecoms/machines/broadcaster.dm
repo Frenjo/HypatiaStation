@@ -232,7 +232,7 @@
 	if(data == 1)
 		for(var/obj/item/radio/intercom/R in connection.devices["[RADIO_CHAT]"])
 			if(R.receive_range(display_freq, level) > -1)
-				radios += R
+				radios.Add(R)
 
 	// --- Broadcast only to intercoms and station-bounced radios ---
 	else if(data == 2)
@@ -241,36 +241,36 @@
 				continue
 
 			if(R.receive_range(display_freq, level) > -1)
-				radios += R
+				radios.Add(R)
 
 	// --- Broadcast to syndicate radio! ---
 	else if(data == 3)
-		var/datum/radio_frequency/syndicateconnection = global.CTradio.return_frequency(FREQUENCY_SYNDICATE)
-		for(var/obj/item/radio/R in syndicateconnection.devices["[RADIO_CHAT]"])
+		var/datum/radio_frequency/syndicate_connection = global.CTradio.return_frequency(FREQUENCY_SYNDICATE)
+		for(var/obj/item/radio/R in syndicate_connection.devices["[RADIO_CHAT]"])
 			if(R.receive_range(FREQUENCY_SYNDICATE, level) > -1)
-				radios += R
+				radios.Add(R)
 
 	// --- Broadcast to ALL radio devices ---
 	else
 		for(var/obj/item/radio/R in connection.devices["[RADIO_CHAT]"])
 			if(R.receive_range(display_freq, level) > -1)
-				radios += R
+				radios.Add(R)
 
 	// Get a list of mobs who can hear from the radios we collected.
-	var/list/receive = get_mobs_in_radio_ranges(radios)
+	var/list/mob/receive = get_mobs_in_radio_ranges(radios)
 
   /* ###### Organize the receivers into categories for displaying the message ###### */
 
   	// Understood the message:
-	var/list/heard_masked 	= list() // masked name or no real name
-	var/list/heard_normal 	= list() // normal message
+	var/list/mob/heard_masked = list() // masked name or no real name
+	var/list/mob/heard_normal = list() // normal message
 
 	// Did not understand the message:
-	var/list/heard_voice 	= list() // voice message	(ie "chimpers")
-	var/list/heard_garbled	= list() // garbled message (ie "f*c* **u, **i*er!")
-	var/list/heard_gibberish= list() // completely screwed over message (ie "F%! (O*# *#!<>&**%!")
+	var/list/mob/heard_voice = list() // voice message	(ie "chimpers")
+	var/list/mob/heard_garbled = list() // garbled message (ie "f*c* **u, **i*er!")
+	var/list/mob/heard_gibberish = list() // completely screwed over message (ie "F%! (O*# *#!<>&**%!")
 
-	for(var/mob/R in receive)
+	for_no_type_check(var/mob/R, receive)
 	  /* --- Loop through the receivers and categorize them --- */
 		if(R.client && !(R.client.prefs.toggles & CHAT_RADIO)) //Adminning with 80 people on can be fun when you're trying to talk and all you can hear is radios.
 			continue
@@ -279,31 +279,31 @@
 			continue
 
 		// Ghosts hearing all radio chat don't want to hear syndicate intercepts, they're duplicates
-		if(data == 3 && isghost(R) && R.client && (R.client.prefs.toggles & CHAT_GHOSTRADIO))
+		if(data == 3 && isghost(R) && (R.client?.prefs.toggles & CHAT_GHOSTRADIO))
 			continue
 
 		// --- Check for compression ---
 		if(compression > 0)
-			heard_gibberish += R
+			heard_gibberish.Add(R)
 			continue
 
 		// --- Can understand the speech ---
-		if(!M || R.say_understands(M))
+		if(isnull(M) || R.say_understands(M))
 			// - Not human or wearing a voice mask -
-			if(!M || !ishuman(M) || vmask)
-				heard_masked += R
+			if(isnull(M) || !ishuman(M) || vmask)
+				heard_masked.Add(R)
 			// - Human and not wearing voice mask -
 			else
-				heard_normal += R
+				heard_normal.Add(R)
 
 		// --- Can't understand the speech ---
 		else
 			// - The speaker has a prespecified "voice message" to display if not understood -
 			if(vmessage)
-				heard_voice += R
+				heard_voice.Add(R)
 			// - Just display a garbled message -
 			else
-				heard_garbled += R
+				heard_garbled.Add(R)
 
   /* ###### Begin formatting and sending the message ###### */
 	if(length(heard_masked) || length(heard_normal) || length(heard_voice) || length(heard_garbled) || length(heard_gibberish))
@@ -395,7 +395,7 @@
 
 		// --- Filter the message; place it in quotes apply a verb ---
 		var/quotedmsg = null
-		if(M)
+		if(isnotnull(M))
 			quotedmsg = M.say_quote(message)
 		else
 			quotedmsg = "says, \"[message]\""
@@ -436,41 +436,41 @@
 	 /* ###### Send the message ###### */
 	  	/* --- Process all the mobs that heard a masked voice (understood) --- */
 		if(length(heard_masked))
-			for(var/mob/R in heard_masked)
-				R.hear_radio(message,verbage, speaking, part_a, part_b, M, 0, name)
+			for_no_type_check(var/mob/R, heard_masked)
+				R.hear_radio(message, verbage, speaking, part_a, part_b, M, FALSE, name)
 
 		/* --- Process all the mobs that heard the voice normally (understood) --- */
 		if(length(heard_normal))
-			for(var/mob/R in heard_normal)
-				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 0, realname)
+			for_no_type_check(var/mob/R, heard_normal)
+				R.hear_radio(message, verbage, speaking, part_a, part_b, M, FALSE, realname)
 
 		/* --- Process all the mobs that heard the voice normally (did not understand) --- */
 		if(length(heard_voice))
-			for(var/mob/R in heard_voice)
-				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 0, vname)
+			for_no_type_check(var/mob/R, heard_voice)
+				R.hear_radio(message, verbage, speaking, part_a, part_b, M, FALSE, vname)
 
 		/* --- Process all the mobs that heard a garbled voice (did not understand) --- */
 			// Displays garbled message (ie "f*c* **u, **i*er!")
 		if(length(heard_garbled))
-			for(var/mob/R in heard_garbled)
-				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1, vname)
+			for_no_type_check(var/mob/R, heard_garbled)
+				R.hear_radio(message, verbage, speaking, part_a, part_b, M, TRUE, vname)
 
 		/* --- Complete gibberish. Usually happens when there's a compressed message --- */
 		if(length(heard_gibberish))
-			for(var/mob/R in heard_gibberish)
-				R.hear_radio(message, verbage, speaking, part_a, part_b, M, 1)
+			for_no_type_check(var/mob/R, heard_gibberish)
+				R.hear_radio(message, verbage, speaking, part_a, part_b, M, TRUE)
 
 /proc/Broadcast_SimpleMessage(source, frequency, text, data, mob/M, compression, level)
   /* ###### Prepare the radio connection ###### */
-	if(!M)
-		var/mob/living/carbon/human/H = new
+	if(isnull(M))
+		var/mob/living/carbon/human/H = new /mob/living/carbon/human()
 		M = H
 
 	var/datum/radio_frequency/connection = global.CTradio.return_frequency(frequency)
 
 	var/display_freq = connection.frequency
 
-	var/list/receive = list()
+	var/list/mob/receive = list()
 
 	// --- Broadcast only to intercom devices ---
 	if(data == 1)
@@ -488,9 +488,8 @@
 
 	// --- Broadcast to syndicate radio! ---
 	else if(data == 3)
-		var/datum/radio_frequency/syndicateconnection = global.CTradio.return_frequency(FREQUENCY_SYNDICATE)
-
-		for(var/obj/item/radio/R in syndicateconnection.devices["[RADIO_CHAT]"])
+		var/datum/radio_frequency/syndicate_connection = global.CTradio.return_frequency(FREQUENCY_SYNDICATE)
+		for(var/obj/item/radio/R in syndicate_connection.devices["[RADIO_CHAT]"])
 			if(GET_TURF_Z(R) == level)
 				receive |= R.send_hear(FREQUENCY_SYNDICATE)
 
@@ -503,30 +502,30 @@
   /* ###### Organize the receivers into categories for displaying the message ###### */
 
 	// Understood the message:
-	var/list/heard_normal 	= list() // normal message
+	var/list/mob/heard_normal = list() // normal message
 
 	// Did not understand the message:
-	var/list/heard_garbled	= list() // garbled message (ie "f*c* **u, **i*er!")
-	var/list/heard_gibberish= list() // completely screwed over message (ie "F%! (O*# *#!<>&**%!")
+	var/list/mob/heard_garbled = list() // garbled message (ie "f*c* **u, **i*er!")
+	var/list/mob/heard_gibberish = list() // completely screwed over message (ie "F%! (O*# *#!<>&**%!")
 
-	for(var/mob/R in receive)
+	for_no_type_check(var/mob/R, receive)
 	  /* --- Loop through the receivers and categorize them --- */
 		if(R.client && !(R.client.prefs.toggles & CHAT_RADIO)) //Adminning with 80 people on can be fun when you're trying to talk and all you can hear is radios.
 			continue
 
 		// --- Check for compression ---
 		if(compression > 0)
-			heard_gibberish += R
+			heard_gibberish.Add(R)
 			continue
 
 		// --- Can understand the speech ---
 		if(R.say_understands(M))
-			heard_normal += R
+			heard_normal.Add(R)
 
 		// --- Can't understand the speech ---
 		else
 			// - Just display a garbled message -
-			heard_garbled += R
+			heard_garbled.Add(R)
 
   /* ###### Begin formatting and sending the message ###### */
 	if(length(heard_normal) || length(heard_garbled) || length(heard_gibberish))
@@ -564,8 +563,8 @@
 		if(data == 3) // intercepted radio message
 			part_b_extra = " <i>(Intercepted)</i>"
 
-		// Create a radio headset for the sole purpose of using its icon
-		var/obj/item/radio/headset/radio = new
+		// Creates a dummy radio headset for the sole purpose of using its icon.
+		var/static/obj/item/radio/headset/radio = new /obj/item/radio/headset()
 
 		var/part_b = "</span><b> \icon[radio]\[[freq_text]\][part_b_extra]</b> <span class='message'>" // Tweaked for security headsets -- TLE
 		var/part_c = "</span></span>"
@@ -613,7 +612,7 @@
 		/* --- Process all the mobs that heard the voice normally (understood) --- */
 		if(length(heard_normal))
 			var/rendered = "[part_a][source][part_b]\"[text]\"[part_c]"
-			for(var/mob/R in heard_normal)
+			for_no_type_check(var/mob/R, heard_normal)
 				R.show_message(rendered, 2)
 
 		/* --- Process all the mobs that heard a garbled voice (did not understand) --- */
@@ -621,14 +620,14 @@
 		if(length(heard_garbled))
 			var/quotedmsg = "\"[stars(text)]\""
 			var/rendered = "[part_a][source][part_b][quotedmsg][part_c]"
-			for(var/mob/R in heard_garbled)
+			for_no_type_check(var/mob/R, heard_garbled)
 				R.show_message(rendered, 2)
 
 		/* --- Complete gibberish. Usually happens when there's a compressed message --- */
 		if(length(heard_gibberish))
 			var/quotedmsg = "\"[Gibberish(text, compression + 50)]\""
 			var/rendered = "[part_a][Gibberish(source, compression + 50)][part_b][quotedmsg][part_c]"
-			for(var/mob/R in heard_gibberish)
+			for_no_type_check(var/mob/R, heard_gibberish)
 				R.show_message(rendered, 2)
 
 
@@ -659,7 +658,7 @@
 	for(var/obj/machinery/telecoms/receiver/R in GLOBL.telecoms_list)
 		R.receive_signal(signal)
 
-	sleep(rand(10, 25))
+	sleep(rand(1 SECOND, 2.5 SECONDS))
 
 	//world.log << "Level: [signal.data["level"]] - Done: [signal.data["done"]]"
 	return signal
