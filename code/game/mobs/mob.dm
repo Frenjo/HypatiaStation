@@ -616,6 +616,8 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	if(isnotnull(pulling))
 		pulling.pulledby = null
 		pulling = null
+		if(pullin)
+			pullin.icon_state = "pull0"
 
 /mob/proc/start_pulling(atom/movable/AM)
 	if(isnull(AM) || isnull(usr) || src == AM || !isturf(src.loc)) // If there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
@@ -641,6 +643,8 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 
 	src.pulling = AM
 	AM.pulledby = src
+	if(pullin)
+		pullin.icon_state = "pull1"
 
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM

@@ -430,9 +430,6 @@
 						else
 							pressure.icon_state = "pressure-2"
 
-			if(src.pullin)	src.pullin.icon_state = "pull[src.pulling ? 1 : 0]"
-
-
 			if (src.toxin)	src.toxin.icon_state = "tox[src.toxins_alert ? 1 : 0]"
 			if (src.oxygen) src.oxygen.icon_state = "oxy[src.oxygen_alert ? 1 : 0]"
 			if (src.fire) src.fire.icon_state = "fire[src.fire_alert ? 1 : 0]"
