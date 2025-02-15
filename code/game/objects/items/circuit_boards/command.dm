@@ -14,18 +14,18 @@
 	. = ..()
 	for_no_type_check(var/obj/machinery/computer/communications/commconsole, GLOBL.communications_consoles)
 		if(isturf(commconsole.loc))
-			return .
+			return
 
 	for(var/obj/item/circuitboard/communications/commboard in GLOBL.movable_atom_list)
 		if((isturf(commboard.loc) || istype(commboard.loc, /obj/item/storage)) && commboard != src)
-			return .
+			return
 
 	for(var/mob/living/silicon/ai/shuttlecaller in GLOBL.player_list)
 		if(!shuttlecaller.stat && isnotnull(shuttlecaller.client) && isturf(shuttlecaller.loc))
-			return .
+			return
 
 	if(IS_GAME_MODE(/datum/game_mode/revolution) || IS_GAME_MODE(/datum/game_mode/malfunction) || GLOBL.sent_strike_team)
-		return .
+		return
 
 	global.PCemergency.call_evac()
 	log_game("All the AIs, comm consoles and boards are destroyed. Shuttle called.")

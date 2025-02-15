@@ -56,4 +56,3 @@
 				. += ascii2text(ascii+32)	//letters A to F - translates to lowercase
 			else
 				return default
-	return .

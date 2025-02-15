@@ -221,7 +221,6 @@
 		. += "[seperator]+SPAWN"
 	if(rights & R_MOD)
 		. += "[seperator]+MODERATOR"
-	return .
 
 /proc/ui_style2icon(ui_style)
 	switch(ui_style)

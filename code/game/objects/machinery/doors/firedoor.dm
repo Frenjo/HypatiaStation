@@ -25,7 +25,7 @@
 		if(F != src)
 			spawn(1)
 				qdel(src)
-			return .
+			return
 	var/area/A = GET_AREA(src)
 	ASSERT(istype(A))
 

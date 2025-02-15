@@ -380,7 +380,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			. = input(usr, "AI signals detected:", "AI selection") in ais
 		else
 			. = pick(ais)
-	return .
 
 /proc/get_sorted_mobs()
 	var/list/old_list = getmobs()
@@ -525,8 +524,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			. += "/([M.real_name])"
 		else if(M.name)
 			. += "/([M.name])"
-
-	return .
 
 /proc/key_name_admin(whom, include_name = 1)
 	return key_name(whom, 1, include_name)

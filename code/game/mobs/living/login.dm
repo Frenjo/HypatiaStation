@@ -1,6 +1,6 @@
 
 /mob/living/Login()
-	..()
+	. = ..()
 	//Mind updates
 	mind_initialize()	//updates the mind (or creates and initializes one if one doesn't exist)
 	mind.active = TRUE	//indicates that the mind is currently synced with a client
@@ -20,7 +20,6 @@
 				var/datum/game_mode/nuclear/nuclear = global.PCticker.mode
 				if(mind in nuclear.syndicates)
 					nuclear.update_all_synd_icons()
-	return .
 
 //This stuff needs to be merged from cloning.dm but I'm not in the mood to be shouted at for breaking all the things :< ~Carn
 	/* clones

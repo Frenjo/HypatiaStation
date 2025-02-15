@@ -259,7 +259,7 @@ if(isnotnull(VAR)) \
 /datum/hud/human/hidden_inventory_update()
 	. = ..()
 	if(!.)
-		return .
+		return
 
 	var/mob/living/carbon/human/H = owner
 	if(inventory_shown && hud_shown)
@@ -296,7 +296,7 @@ if(isnotnull(VAR)) \
 /datum/hud/human/persistent_inventory_update()
 	. = ..()
 	if(!.)
-		return .
+		return
 
 	var/mob/living/carbon/human/H = owner
 	if(hud_shown)

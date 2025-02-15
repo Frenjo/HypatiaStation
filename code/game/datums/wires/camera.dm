@@ -11,7 +11,6 @@
 	. += "<br>\n[(C.can_use() ? "The power link light is on." : "The power link light is off.")]"
 	. += "<br>\n[(C.light_disabled ? "The camera light is off." : "The camera light is on.")]"
 	. += "<br>\n[(C.alarm_on ? "The alarm light is on." : "The alarm light is off.")]"
-	return .
 
 /datum/wires/camera/CanUse(mob/living/L)
 	var/obj/machinery/camera/C = holder

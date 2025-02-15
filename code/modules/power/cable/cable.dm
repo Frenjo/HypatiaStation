@@ -388,8 +388,6 @@ By design, d1 is the smallest direction and d2 is the highest
 				. += power_list(T, src, d2 ^ 12, powernetless_only) //get diagonally matching cables
 		. += power_list(loc, src, d2, powernetless_only) //get on turf matching cables
 
-	return .
-
 //should be called after placing a cable which extends another cable, creating a "smooth" cable that no longer terminates in the centre of a turf.
 //needed as this can, unlike other placements, disconnect cables
 /obj/structure/cable/proc/denode()

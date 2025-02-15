@@ -115,7 +115,6 @@ PROCESS_DEF(vote)
 		for(var/option in choices)
 			if(choices[option] == greatest_votes)
 				. += option
-	return .
 
 /datum/process/vote/proc/announce_result()
 	var/list/winners = get_result()
@@ -143,7 +142,6 @@ PROCESS_DEF(vote)
 		text += "<b>Vote Result: Inconclusive - No Votes!</b>"
 	log_vote(text)
 	to_world("<font color='purple'>[text]</font>")
-	return .
 
 /datum/process/vote/proc/result()
 	. = announce_result()
@@ -176,8 +174,6 @@ PROCESS_DEF(vote)
 		sleep(50)
 		log_game("Rebooting due to restart vote")
 		world.Reboot()
-
-	return .
 
 /datum/process/vote/proc/submit_vote(ckey, vote)
 	if(isnotnull(mode))
@@ -334,7 +330,6 @@ PROCESS_DEF(vote)
 			. += "<li><a href='byond://?src=\ref[src];vote=custom'>Custom</a></li>"
 		. += "</ul><hr>"
 	. += "<a href='byond://?src=\ref[src];vote=close' style='position:absolute;right:50px'>Close</a></body></html>"
-	return .
 
 /datum/process/vote/Topic(href, list/href_list, hsrc)
 	if(isnull(usr) || isnull(usr.client))

@@ -13,7 +13,6 @@ var/const/APC_WIRE_AI_CONTROL = 8
 	. += "<br>\n[(A.locked ? "The APC is locked." : "The APC is unlocked.")]"
 	. += "<br>\n[(A.shorted ? "The APCs power has been shorted." : "The APC is working properly!")]"
 	. += "<br>\n[(A.aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]"
-	return .
 
 /datum/wires/apc/CanUse(mob/living/L)
 	var/obj/machinery/power/apc/A = holder

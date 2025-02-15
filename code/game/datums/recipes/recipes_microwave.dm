@@ -577,11 +577,10 @@ I said no!
 
 /datum/recipe/fortunecookie/check_items(obj/container)
 	. = ..()
-	if (.)
+	if(.)
 		var/obj/item/paper/paper = locate() in container
 		if(!paper.info)
 			return 0
-	return .
 
 
 /datum/recipe/meatsteak

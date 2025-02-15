@@ -275,8 +275,6 @@
 
 		moving = FALSE
 
-		return .
-
 /*
  * Process_Grab()
  * Called by client/Move()

@@ -19,7 +19,7 @@
 /atom/movable/screen/gun/mode/Click(location, control, params)
 	. = ..()
 	if(!.)
-		return .
+		return
 	usr.client.ToggleGunMode()
 
 /atom/movable/screen/gun/move
@@ -30,7 +30,7 @@
 /atom/movable/screen/gun/move/Click(location, control, params)
 	. = ..()
 	if(!.)
-		return .
+		return
 	if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 		return FALSE
 	if(!istype(usr.get_active_hand(), /obj/item/gun))
@@ -48,7 +48,7 @@
 /atom/movable/screen/gun/run/Click(location, control, params)
 	. = ..()
 	if(!.)
-		return .
+		return
 	if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 		return FALSE
 	if(!istype(usr.get_active_hand(), /obj/item/gun))
@@ -66,7 +66,7 @@
 /atom/movable/screen/gun/item/Click(location, control, params)
 	. = ..()
 	if(!.)
-		return .
+		return
 	if(gun_click_time > world.time - 30)	//give them 3 seconds between mode changes.
 		return FALSE
 	if(!istype(usr.get_active_hand(), /obj/item/gun))

@@ -25,7 +25,7 @@
 		if(.)
 			log_access("Failed Login: [key] [computer_id] [address] - Banned [.["reason"]]")
 			message_admins("\blue Failed Login: [key] id:[computer_id] ip:[address] - Banned [.["reason"]]")
-			return .
+			return
 
 		return ..()	//default pager ban stuff
 

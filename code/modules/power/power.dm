@@ -135,7 +135,6 @@
 				continue
 			if(C.d1 == cdir || C.d2 == cdir)
 				. += C
-	return .
 
 //returns all the cables in neighbors turfs,
 //pointing towards the turf the machine is located at
@@ -152,7 +151,6 @@
 		for(var/obj/structure/cable/C in T)
 			if(C.d1 == cdir || C.d2 == cdir)
 				. += C
-	return .
 
 //returns all the NODES (O-X) cables WITHOUT a powernet in the turf the machine is located at
 /obj/machinery/power/proc/get_indirect_connections()
@@ -162,7 +160,6 @@
 			continue
 		if(C.d1 == 0) // the cable is a node cable
 			. += C
-	return .
 
 ///////////////////////////////////////////
 // GLOBAL PROCS for powernets handling
@@ -207,7 +204,6 @@
 					. += C
 				else if(C.d1 == d || C.d2 == d)
 					. += C
-	return .
 
 /hook/startup/proc/build_powernets()
 	. = makepowernets()

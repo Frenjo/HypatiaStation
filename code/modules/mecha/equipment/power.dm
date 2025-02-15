@@ -30,7 +30,7 @@
 /obj/item/mecha_part/equipment/tesla_energy_relay/proc/get_power_channel(area/A)
 	. = null
 	if(isnull(A))
-		return .
+		return
 	for(var/channel in use_channels)
 		if(A.powered(channel))
 			. = channel

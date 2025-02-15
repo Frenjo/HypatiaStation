@@ -24,7 +24,7 @@ var/savefile/Banlist
 			Banlist.cd	= "/base/[ckey][id]"
 			.["desc"]	= "\nReason: [Banlist["reason"]]\nExpires: <B>PERMENANT</B>\nBy: [Banlist["bannedby"]][appeal]"
 		.["reason"]	= "ckey/id"
-		return .
+		return
 	else
 		for(var/A in Banlist.dir)
 			Banlist.cd = "/base/[A]"
@@ -50,7 +50,7 @@ var/savefile/Banlist
 				else
 					.["desc"] = "\nReason: [Banlist["reason"]]\nExpires: <B>PERMENANT</B>\nBy: [Banlist["bannedby"]][appeal]"
 				.["reason"] = matches
-				return .
+				return
 	return 0
 
 /proc/UpdateTime() //No idea why i made this a proc.
