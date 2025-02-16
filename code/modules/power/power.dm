@@ -210,7 +210,7 @@
 
 // rebuild all power networks from scratch - only called at world creation or by the admin verb
 /proc/makepowernets()
-	for(var/datum/powernet/PN in GLOBL.powernets)
+	for_no_type_check(var/datum/powernet/PN, GLOBL.powernets)
 		qdel(PN)
 	GLOBL.powernets.Cut()
 
@@ -225,11 +225,11 @@
 /proc/propagate_network(obj/O, datum/powernet/PN)
 	//world.log << "propagating new network"
 	var/list/worklist = list()
-	var/list/found_machines = list()
+	var/list/obj/machinery/power/found_machines = list()
 	var/index = 1
 	var/obj/P = null
 
-	worklist += O //start propagating from the passed object
+	worklist.Add(O) //start propagating from the passed object
 
 	while(index <= length(worklist)) //until we've exhausted all power objects
 		P = worklist[index] //get the next power object found
@@ -248,7 +248,7 @@
 		else
 			continue
 
-	for(var/obj/machinery/power/PM in found_machines)
+	for_no_type_check(var/obj/machinery/power/PM, found_machines)
 		if(!PM.connect_to_network()) //couldn't find a node on its turf...
 			PM.disconnect_from_network() //... so disconnect if already on a powernet
 

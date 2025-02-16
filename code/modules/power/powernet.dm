@@ -34,9 +34,8 @@
 	return max(avail - load, 0)
 
 /datum/powernet/proc/draw_power(amount)
-	var/draw = clamp(amount, 0, avail - load)
-	load += draw
-	return draw
+	. = clamp(amount, 0, avail - load)
+	load += .
 
 /datum/powernet/proc/is_empty()
 	return !length(cables) && !length(nodes)
