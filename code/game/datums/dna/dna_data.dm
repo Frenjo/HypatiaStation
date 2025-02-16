@@ -3,8 +3,8 @@
 /////////////////////////
 GLOBAL_GLOBL(datum/dna_data/dna_data)
 
-/datum/controller/master/proc/setup_genetics()
-	to_world(SPAN_DANGER("↪ Setting up DNA2."))
+/hook/global_init/proc/setup_genetics()
+	//to_world(SPAN_DANGER("↪ Setting up DNA2."))
 	GLOBL.dna_data = new /datum/dna_data()
 	GLOBL.dna_data.setup()
 

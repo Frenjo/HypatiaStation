@@ -58,7 +58,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/artifact_spawning_turfs)
 /turf/closed/rock/Destroy()
 	GLOBL.all_rock_turfs.Remove(src)
 	QDEL_NULL(geologic_data)
-	finds.Cut()
+	LAZYCLEARLIST(finds)
 	last_find = null
 	QDEL_NULL(artifact_find)
 	return ..()

@@ -120,6 +120,7 @@
 	icon_opened = "toolclosetopen"
 
 /obj/structure/closet/tool/New()
+	starts_with = list()
 	if(prob(40))
 		starts_with.Add(/obj/item/clothing/suit/storage/hazardvest)
 	if(prob(70))

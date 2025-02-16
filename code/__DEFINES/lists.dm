@@ -12,3 +12,6 @@
 
 // Sets L[A] to I, initalizing L if necessary.
 #define LAZYSET(L, A, I) if(isnull(L)) { L = list(); } L[A] = I;
+
+// Null-safe L.Cut().
+#define LAZYCLEARLIST(L) if(isnotnull(L)) { L.Cut(); L = null; }

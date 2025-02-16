@@ -122,7 +122,6 @@ CONTROLLER_DEF(master)
 
 	setup_processes()
 	setup_objects()
-	setup_genetics()
 	setup_factions()
 	setup_xenoarch()
 
