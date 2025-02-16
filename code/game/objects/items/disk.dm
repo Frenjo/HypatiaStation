@@ -22,8 +22,8 @@
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk2"
 	w_class = 1.0
-	matter_amounts = list(MATERIAL_METAL = 30, /decl/material/glass = 10)
-	origin_tech = list(/decl/tech/programming = 1)
+	matter_amounts = /datum/design/tech_disk::materials
+	origin_tech = /datum/design/tech_disk::req_tech
 
 	var/decl/tech/stored = null
 
@@ -39,8 +39,8 @@
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "datadisk2"
 	w_class = 1.0
-	matter_amounts = list(MATERIAL_METAL = 30, /decl/material/glass = 10)
-	origin_tech = list(/decl/tech/programming = 1)
+	matter_amounts = /datum/design/design_disk::materials
+	origin_tech = /datum/design/design_disk::req_tech
 
 	var/datum/design/blueprint = null
 

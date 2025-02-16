@@ -6,9 +6,9 @@
 	icon = 'icons/obj/items/assemblies/assemblies.dmi'
 	icon_state = "mmi_empty"
 	w_class = 3
-	origin_tech = list(/decl/tech/biotech = 3, /decl/tech/programming = 2)
 
-	matter_amounts = list(MATERIAL_METAL = 1000, /decl/material/glass = 500)
+	matter_amounts = /datum/design/medical/mmi::materials
+	origin_tech = /datum/design/medical/mmi::req_tech
 
 	req_access = list(ACCESS_ROBOTICS)
 
@@ -117,8 +117,9 @@
 /obj/item/mmi/radio_enabled
 	name = "Radio-enabled Man-Machine Interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio."
-	origin_tech = list(/decl/tech/biotech = 4)
-	matter_amounts = list(MATERIAL_METAL = 1200, /decl/material/glass = 500)
+
+	matter_amounts = /datum/design/medical/mmi_radio::materials
+	origin_tech = /datum/design/medical/mmi_radio::req_tech
 
 	var/obj/item/radio/radio = null // Let's give it a radio.
 

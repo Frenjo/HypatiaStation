@@ -8,6 +8,9 @@
 	w_class = 1.0
 	slot_flags = SLOT_ID | SLOT_BELT
 
+	matter_amounts = /datum/design/pda::materials
+	origin_tech = /datum/design/pda::req_tech
+
 	//Main variables
 	var/owner = null
 	var/default_cartridge = 0 // Access level defined by cartridge

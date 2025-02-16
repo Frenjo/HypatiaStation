@@ -224,6 +224,8 @@
 	name = "cryostasis beaker"
 	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 50 units."
 	icon_state = "beakernoreact"
+	matter_amounts = /datum/design/medical/noreactbeaker::materials
+	origin_tech = /datum/design/medical/noreactbeaker::req_tech
 	volume = 50
 	amount_per_transfer_from_this = 10
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER | ATOM_FLAG_NO_REACT
@@ -233,7 +235,8 @@
 	name = "bluespace beaker"
 	desc = "A bluespace beaker, powered by experimental bluespace technology. Can hold up to 300 units."
 	icon_state = "beakerbluespace"
-	matter_amounts = list(/decl/material/glass = 5000)
+	matter_amounts = /datum/design/medical/bluespacebeaker::materials
+	origin_tech = /datum/design/medical/bluespacebeaker::req_tech
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 25, 30, 50, 100, 300)

@@ -16,8 +16,8 @@
 	throw_speed = 4
 	throw_range = 20
 
-	matter_amounts = list(MATERIAL_METAL = 30, /decl/material/glass = 20)
-	origin_tech = list(/decl/tech/magnets = 2, /decl/tech/biotech = 2)
+	matter_amounts = /datum/design/medical/reagent_scanner::materials
+	origin_tech = /datum/design/medical/reagent_scanner::req_tech
 
 	var/details = FALSE
 	var/recent_fail = FALSE
@@ -61,5 +61,6 @@
 /obj/item/reagent_scanner/adv
 	name = "advanced reagent scanner"
 	icon_state = "adv_reagent_scanner"
-	origin_tech = list(/decl/tech/magnets = 4, /decl/tech/biotech = 2)
+	matter_amounts = /datum/design/medical/adv_reagent_scanner::materials
+	origin_tech = /datum/design/medical/adv_reagent_scanner::req_tech
 	details = TRUE

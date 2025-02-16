@@ -13,6 +13,8 @@
 	name = "health scanner HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
 	icon_state = "healthhud"
+	matter_amounts = /datum/design/medical/health_hud::materials
+	origin_tech = /datum/design/medical/health_hud::req_tech
 
 /obj/item/clothing/glasses/hud/health/process_hud(mob/M)
 	process_med_hud(M, 1)
@@ -22,6 +24,9 @@
 	name = "security HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
 	icon_state = "securityhud"
+	matter_amounts = /datum/design/security_hud::materials
+	origin_tech = /datum/design/security_hud::req_tech
+
 	var/static/list/jobs[0]
 
 /obj/item/clothing/glasses/hud/security/jensenshades

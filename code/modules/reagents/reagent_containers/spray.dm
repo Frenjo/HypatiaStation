@@ -196,7 +196,8 @@
 	w_class = 3.0
 	possible_transfer_amounts = null
 	volume = 600
-	origin_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 3, /decl/tech/engineering = 3)
+	matter_amounts = /datum/design/weapon/chemsprayer::materials
+	origin_tech = /datum/design/weapon/chemsprayer::req_tech
 
 //this is a big copypasta clusterfuck, but it's still better than it used to be!
 /obj/item/reagent_holder/spray/chemsprayer/Spray_at(atom/A)

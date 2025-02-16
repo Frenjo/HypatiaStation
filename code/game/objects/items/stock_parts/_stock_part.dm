@@ -1,7 +1,6 @@
 /*
  * Stock Part
  */
-// Sprited/added unique icons for upgraded capacitors and scanning modules, along with rating 4 parts. -Frenjo
 /obj/item/stock_part
 	name = "stock part"
 	desc = "What?"
@@ -20,5 +19,5 @@
 	name = "console screen"
 	desc = "Used in the construction of computers and other devices with an interactive console."
 	icon_state = "screen"
-	matter_amounts = list(/decl/material/glass = 200)
-	origin_tech = list(/decl/tech/materials = 1)
+	matter_amounts = /datum/design/stock_part/console_screen::materials
+	origin_tech = /datum/design/stock_part/console_screen::req_tech

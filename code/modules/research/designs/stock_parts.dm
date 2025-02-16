@@ -8,40 +8,47 @@
 
 /datum/design/stock_part/basic_capacitor
 	name = "Basic Capacitor"
+	req_tech = list(/decl/tech/power_storage = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/stock_part/capacitor
 
 /datum/design/stock_part/basic_scanning_module
 	name = "Basic Scanning Module"
+	req_tech = list(/decl/tech/magnets = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 20)
 	build_path = /obj/item/stock_part/scanning_module
 
 /datum/design/stock_part/micro_mani
 	name = "Micro-Manipulator"
+	req_tech = list(/decl/tech/materials = 1, /decl/tech/programming = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
 	materials = list(MATERIAL_METAL = 30)
 	build_path = /obj/item/stock_part/manipulator
 
 /datum/design/stock_part/basic_micro_laser
 	name = "Basic Micro-Laser"
+	req_tech = list(/decl/tech/magnets = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
 	materials = list(MATERIAL_METAL = 10, /decl/material/glass = 20)
 	build_path = /obj/item/stock_part/micro_laser
 
 /datum/design/stock_part/basic_matter_bin
 	name = "Basic Matter Bin"
+	req_tech = list(/decl/tech/materials = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
 	materials = list(MATERIAL_METAL = 80)
 	build_path = /obj/item/stock_part/matter_bin
 
 /datum/design/stock_part/console_screen
 	name = "Console Screen"
+	req_tech = list(/decl/tech/materials = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
 	materials = list(/decl/material/glass = 200)
 	build_path = /obj/item/stock_part/console_screen
 
+// Rating 2.
 /datum/design/stock_part/adv_capacitor
 	name = "Advanced Capacitor"
 	req_tech = list(/decl/tech/power_storage = 3)
@@ -72,6 +79,7 @@
 	materials = list(MATERIAL_METAL = 80)
 	build_path = /obj/item/stock_part/matter_bin/adv
 
+// Rating 3.
 /datum/design/stock_part/super_capacitor
 	name = "Super Capacitor"
 	req_tech = list(/decl/tech/materials = 4, /decl/tech/power_storage = 5)
@@ -108,6 +116,7 @@
 	build_path = /obj/item/stock_part/matter_bin/super
 
 // Rating 4 -Frenjo.
+// Sprited/added unique icons for upgraded capacitors and scanning modules, along with rating 4 parts.
 /datum/design/stock_part/hyper_capacitor
 	name = "Hyper Capacitor"
 	req_tech = list(/decl/tech/materials = 4, /decl/tech/power_storage = 7)
@@ -149,7 +158,7 @@
 /datum/design/stock_part/subspace_ansible
 	name = "Subspace Ansible"
 	desc = "A compact module capable of sensing extradimensional activity."
-	req_tech = list(/decl/tech/materials = 4, /decl/tech/magnets = 4, /decl/tech/programming = 3, /decl/tech/bluespace = 2)
+	req_tech = list(/decl/tech/materials = 4, /decl/tech/magnets = 5, /decl/tech/programming = 3, /decl/tech/bluespace = 2)
 	materials = list(MATERIAL_METAL = 80, /decl/material/silver = 20)
 	build_path = /obj/item/stock_part/subspace/ansible
 
@@ -183,9 +192,9 @@
 
 /datum/design/stock_part/ansible_crystal
 	name = "Ansible Crystal"
-	desc = "A sophisticated analyser capable of analyzing cryptic subspace wavelengths."
+	desc = "A crystal made from pure glass used to transmit laser databursts to subspace."
 	req_tech = list(/decl/tech/materials = 4, /decl/tech/magnets = 4, /decl/tech/bluespace = 2)
-	materials = list(/decl/material/glass = 1000, /decl/material/silver = 20, /decl/material/gold = 20)
+	materials = list(/decl/material/glass = 1000)
 	build_path = /obj/item/stock_part/subspace/crystal
 
 /datum/design/stock_part/subspace_transmitter
@@ -201,7 +210,7 @@
 /datum/design/power_cell
 	name_prefix = "Power Cell Design"
 
-/datum/design/power_cell/basic_cell
+/datum/design/power_cell/basic
 	name = "Basic"
 	desc = "A power cell that holds 1000 units of energy."
 	req_tech = list(/decl/tech/power_storage = 1)
@@ -210,7 +219,7 @@
 	build_path = /obj/item/cell
 	categories = list("Power Cells")
 
-/datum/design/power_cell/high_cell
+/datum/design/power_cell/high
 	name = "High-Capacity"
 	desc = "A power cell that holds 10000 units of energy."
 	req_tech = list(/decl/tech/power_storage = 2)
@@ -219,7 +228,7 @@
 	build_path = /obj/item/cell/high
 	categories = list("Power Cells")
 
-/datum/design/power_cell/super_cell
+/datum/design/power_cell/super
 	name = "Super-Capacity"
 	desc = "A power cell that holds 20000 units of energy."
 	req_tech = list(/decl/tech/materials = 2, /decl/tech/power_storage = 3)
@@ -229,7 +238,7 @@
 	build_path = /obj/item/cell/super
 	categories = list("Power Cells")
 
-/datum/design/power_cell/hyper_cell
+/datum/design/power_cell/hyper
 	name = "Hyper-Capacity"
 	desc = "A power cell that holds 30000 units of energy."
 	req_tech = list(/decl/tech/materials = 4, /decl/tech/power_storage = 5)

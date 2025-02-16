@@ -5,7 +5,8 @@
 	item_state = "electronic"
 	w_class = 2.0
 	slot_flags = SLOT_BELT
-	origin_tech = list(/decl/tech/programming = 2)
+	matter_amounts = /datum/design/paicard::materials
+	origin_tech = /datum/design/paicard::req_tech
 	var/obj/item/radio/radio
 	var/looking_for_personality = 0
 	var/mob/living/silicon/pai/pai

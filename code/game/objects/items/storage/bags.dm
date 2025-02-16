@@ -85,10 +85,11 @@
 	name = "mining satchel of holding"
 	desc = "A revolution in convenience, this satchel allows for infinite ore storage. It's been outfitted with anti-malfunction safety measures."
 	icon_state = "satchel_bspace"
+
+	matter_amounts = /datum/design/bluespace/mining_satchel_holding::materials
+	origin_tech = /datum/design/bluespace/mining_satchel_holding::req_tech
 	storage_slots = INFINITY
 	max_combined_w_class = INFINITY
-	origin_tech = list(/decl/tech/bluespace = 3)
-	can_hold = list(/obj/item/ore)
 
 // -----------------------------
 //          Plant bag

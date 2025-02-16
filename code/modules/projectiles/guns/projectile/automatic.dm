@@ -3,7 +3,8 @@
 	desc = "A lightweight, fast firing gun. Uses 9mm rounds."
 	icon_state = "saber"	//ugly
 
-	origin_tech = list(/decl/tech/materials = 2, /decl/tech/combat = 4)
+	matter_amounts = /datum/design/weapon/smg::materials
+	origin_tech = /datum/design/weapon/smg::req_tech
 
 	fire_delay = 0 SECONDS
 

@@ -36,6 +36,8 @@
 	desc = "Used to reset a robot's model. Destroys any other upgrades applied to the robot."
 	icon_state = "cyborg_upgrade1"
 
+	matter_amounts = /datum/design/robofab/robot_upgrade/reset::materials
+
 	require_model = TRUE
 
 /obj/item/borg/upgrade/reset/action(mob/living/silicon/robot/borg, mob/living/user = usr)
@@ -62,6 +64,8 @@
 	desc = "Used to rename a robot."
 	icon_state = "cyborg_upgrade1"
 
+	matter_amounts = /datum/design/robofab/robot_upgrade/rename::materials
+
 	var/heldname = "default name"
 
 /obj/item/borg/upgrade/rename/attack_self(mob/user)
@@ -84,6 +88,8 @@
 	desc = "Used to force a restart of a disabled-but-repaired robot, bringing it back online."
 	icon_state = "cyborg_upgrade1"
 
+	matter_amounts = /datum/design/robofab/robot_upgrade/restart::materials
+
 /obj/item/borg/upgrade/restart/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	if(borg.health < 0)
 		to_chat(user, SPAN_WARNING("You have to repair the robot before using this module!"))
@@ -103,6 +109,8 @@
 	name = "robot VTEC module"
 	desc = "Used to kick in a robot's VTEC systems, increasing its speed."
 	icon_state = "cyborg_upgrade2"
+
+	matter_amounts = /datum/design/robofab/robot_upgrade/vtec::materials
 
 	require_model = TRUE
 
@@ -126,6 +134,8 @@
 	name = "security robot rapid taser cooling module"
 	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
 	icon_state = "cyborg_upgrade3"
+
+	matter_amounts = /datum/design/robofab/robot_upgrade/taser_cooler::materials
 
 	require_model = TRUE
 	model_types = list(/obj/item/robot_model/security)
@@ -159,6 +169,8 @@
 	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
 	icon_state = "cyborg_upgrade3"
 
+	matter_amounts = /datum/design/robofab/robot_upgrade/jetpack::materials
+
 	require_model = TRUE
 	model_types = list(/obj/item/robot_model/miner)
 
@@ -186,6 +198,9 @@
 	desc = "Unlocks the hidden, deadlier functions of a robot."
 	icon_state = "cyborg_upgrade3"
 
+	matter_amounts = /datum/design/robofab/robot_upgrade/syndicate::materials
+	origin_tech = /datum/design/robofab/robot_upgrade/syndicate::req_tech
+
 	require_model = TRUE
 
 /obj/item/borg/upgrade/syndicate/action(mob/living/silicon/robot/borg, mob/living/user = usr)
@@ -206,6 +221,9 @@
 	name = "robot flash-suppression module"
 	desc = "A highly advanced, complex system for supressing incoming flashes directed at a robot's optical processing system."
 	icon_state = "cyborg_upgrade4"
+
+	//matter_amounts = /datum/design/robofab/robot_upgrade/flashproof::materials
+	//origin_tech = /datum/design/robofab/robot_upgrade/flashproof::req_tech
 
 	require_model = TRUE
 

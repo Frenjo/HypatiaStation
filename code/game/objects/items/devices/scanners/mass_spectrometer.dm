@@ -17,8 +17,8 @@
 	throw_speed = 4
 	throw_range = 20
 
-	matter_amounts = list(MATERIAL_METAL = 30, /decl/material/glass = 20)
-	origin_tech = list(/decl/tech/magnets = 2, /decl/tech/biotech = 2)
+	matter_amounts = /datum/design/medical/mass_spectrometer::materials
+	origin_tech = /datum/design/medical/mass_spectrometer::req_tech
 
 	var/details = FALSE
 	var/recent_fail = FALSE
@@ -77,5 +77,6 @@
 /obj/item/mass_spectrometer/adv
 	name = "advanced mass spectrometer"
 	icon_state = "adv_spectrometer"
-	origin_tech = list(/decl/tech/magnets = 4, /decl/tech/biotech = 2)
+	matter_amounts = /datum/design/medical/adv_mass_spectrometer::materials
+	origin_tech = /datum/design/medical/adv_mass_spectrometer::req_tech
 	details = TRUE

@@ -9,13 +9,13 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "cell"
 	item_state = "cell"
-	origin_tech = list(/decl/tech/power_storage = 1)
+	matter_amounts = /datum/design/power_cell/basic::materials
+	origin_tech = /datum/design/power_cell/basic::req_tech
 	force = 5.0
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
 	w_class = 3.0
-	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 50)
 
 	var/charge = 0	// note %age conveted to actual charge in New
 	var/maxcharge = 1000
@@ -60,10 +60,10 @@
 
 /obj/item/cell/high
 	name = "high-capacity power cell"
-	origin_tech = list(/decl/tech/power_storage = 2)
 	icon_state = "hcell"
+	matter_amounts = /datum/design/power_cell/high::materials
+	origin_tech = /datum/design/power_cell/high::req_tech
 	maxcharge = 10000
-	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 60)
 
 /obj/item/cell/high/empty/New()
 	. = ..()
@@ -71,10 +71,10 @@
 
 /obj/item/cell/super
 	name = "super-capacity power cell"
-	origin_tech = list(/decl/tech/power_storage = 5)
 	icon_state = "scell"
+	matter_amounts = /datum/design/power_cell/super::materials
+	origin_tech = /datum/design/power_cell/super::req_tech
 	maxcharge = 20000
-	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 70, /decl/material/silver = 100)
 
 /obj/item/cell/super/empty/New()
 	. = ..()
@@ -82,10 +82,10 @@
 
 /obj/item/cell/hyper
 	name = "hyper-capacity power cell"
-	origin_tech = list(/decl/tech/power_storage = 6)
 	icon_state = "hpcell"
+	matter_amounts = /datum/design/power_cell/hyper::materials
+	origin_tech = /datum/design/power_cell/hyper::req_tech
 	maxcharge = 30000
-	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 80, /decl/material/silver = 200, /decl/material/gold = 200)
 
 /obj/item/cell/hyper/empty/New()
 	. = ..()

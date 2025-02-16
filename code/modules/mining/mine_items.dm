@@ -105,7 +105,8 @@
 	icon_state = "dpickaxe"
 	item_state = "dpickaxe"
 
-	origin_tech = list(/decl/tech/materials = 6, /decl/tech/engineering = 4)
+	matter_amounts = /datum/design/mining/pick_diamond::materials
+	origin_tech = /datum/design/mining/pick_diamond::req_tech
 	dig_time = 1 SECOND
 
 /obj/item/pickaxe/drill
@@ -114,7 +115,8 @@
 	icon_state = "handdrill"
 	item_state = "jackhammer"
 
-	origin_tech = list(/decl/tech/materials = 2, /decl/tech/engineering = 2, /decl/tech/power_storage = 3)
+	matter_amounts = /datum/design/mining/drill::materials
+	origin_tech = /datum/design/mining/drill::req_tech
 	dig_time = 3 SECONDS // Can dig sand as well!
 	drill_verb = "drilling"
 
@@ -124,7 +126,8 @@
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
 
-	origin_tech = list(/decl/tech/materials = 6, /decl/tech/engineering = 5, /decl/tech/power_storage = 4)
+	matter_amounts = /datum/design/mining/drill_diamond::materials
+	origin_tech = /datum/design/mining/drill_diamond::req_tech
 	dig_time = 0.5 SECONDS // Digs through walls, girders, and can dig up sand.
 	drill_verb = "drilling"
 
@@ -143,7 +146,8 @@
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
 
-	origin_tech = list(/decl/tech/materials = 3, /decl/tech/engineering = 2, /decl/tech/power_storage = 2)
+	matter_amounts = /datum/design/mining/jackhammer::materials
+	origin_tech = /datum/design/mining/jackhammer::req_tech
 	dig_time = 2 SECONDS // Faster than drill, but cannot dig.
 	drill_verb = "hammering"
 
@@ -155,7 +159,8 @@
 	w_class = 3 //it is smaller than the pickaxe
 	damtype = "fire"
 
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/engineering = 3, /decl/tech/plasma = 3)
+	matter_amounts = /datum/design/mining/plasmacutter::materials
+	origin_tech = /datum/design/mining/plasmacutter::req_tech
 	dig_time = 2 SECONDS // Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/light thermite on fire.
 	drill_verb = "cutting"
 

@@ -3,7 +3,8 @@
 	desc = "A gun that discharges high amounts of controlled radiation to slowly break a target into component elements."
 	icon_state = "decloner"
 
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/combat = 5, /decl/tech/power_storage = 3)
+	matter_amounts = /datum/design/weapon/decloner::materials
+	origin_tech = /datum/design/weapon/decloner::req_tech
 
 	fire_sound = 'sound/weapons/pulse3.ogg'
 
@@ -15,7 +16,8 @@
 	desc = "A tool that discharges controlled radiation which induces mutation in plant cells."
 	icon_state = "floramut100"
 
-	origin_tech = list(/decl/tech/materials = 2, /decl/tech/biotech = 3, /decl/tech/power_storage = 3)
+	matter_amounts = /datum/design/weapon/flora_gun::materials
+	origin_tech = /datum/design/weapon/flora_gun::req_tech
 
 	fire_sound = 'sound/effects/stealthoff.ogg'
 
@@ -117,7 +119,8 @@
 	desc = "A specialized firearm designed to fire lethal bolts of toxins."
 	icon_state = "toxgun"
 
-	origin_tech = list(/decl/tech/combat = 5, /decl/tech/plasma = 4)
+	matter_amounts = /datum/design/weapon/plasmapistol::materials
+	origin_tech = /datum/design/weapon/plasmapistol::req_tech
 
 	fire_sound = 'sound/effects/stealthoff.ogg'
 

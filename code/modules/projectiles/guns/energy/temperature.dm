@@ -3,10 +3,8 @@
 	desc = "A gun that changes temperatures."
 	icon_state = "freezegun"
 
-	origin_tech = list(
-		/decl/tech/materials = 4, /decl/tech/magnets = 2, /decl/tech/combat = 3,
-		/decl/tech/power_storage = 3
-	)
+	matter_amounts = /datum/design/weapon/temp_gun::materials
+	origin_tech = /datum/design/weapon/temp_gun::req_tech
 
 	fire_sound = 'sound/weapons/pulse3.ogg'
 

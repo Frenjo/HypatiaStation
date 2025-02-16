@@ -33,5 +33,6 @@
 /obj/item/bluespace_crystal/artificial
 	name = "artificial bluespace crystal"
 	desc = "An artificially made bluespace crystal, it looks delicate."
-	origin_tech = list(/decl/tech/bluespace = 2)
+	matter_amounts = /datum/design/bluespace/bluespace_crystal::materials
+	origin_tech = /datum/design/bluespace/bluespace_crystal::req_tech
 	blink_range = 4 // Not as good as the organic stuff!

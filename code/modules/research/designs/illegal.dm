@@ -12,6 +12,6 @@
 /datum/design/illegal/chameleon
 	name = "Chameleon Jumpsuit"
 	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
-	req_tech = list(/decl/tech/syndicate = 2)
+	req_tech = list(/decl/tech/syndicate = 3)
 	materials = list(MATERIAL_METAL = 500)
 	build_path = /obj/item/clothing/under/chameleon

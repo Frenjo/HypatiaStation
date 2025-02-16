@@ -129,7 +129,7 @@
 /datum/design/medical/mmi_radio
 	name = "Radio-enabled Man-Machine Interface"
 	desc = "The Warrior's bland acronym, MMI, obscures the true horror of this monstrosity. This one comes with a built-in radio."
-	req_tech = list(/decl/tech/biotech = 4, /decl/tech/programming = 2)
+	req_tech = list(/decl/tech/biotech = 4, /decl/tech/programming = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_ROBOFAB
 	reliability_base = 74
 	materials = list(MATERIAL_METAL = 1200, /decl/material/glass = 500)

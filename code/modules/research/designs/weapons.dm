@@ -9,7 +9,7 @@
 	name = "Advanced Energy Gun"
 	desc = "An energy gun with an experimental miniaturized reactor."
 	req_tech = list(/decl/tech/materials = 5, /decl/tech/combat = 3, /decl/tech/power_storage = 3)
-	materials = list(MATERIAL_METAL = 5000, /decl/material/glass = 1000, /decl/material/uranium = 500)
+	materials = list(/decl/material/steel = 5000, /decl/material/glass = 1000, /decl/material/uranium = 500)
 	reliability_base = 76
 	build_path = /obj/item/gun/energy/gun/nuclear
 	locked = 1
@@ -18,7 +18,7 @@
 	name = "Stun Revolver"
 	desc = "The prize of the Head of Security."
 	req_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 3, /decl/tech/power_storage = 2)
-	materials = list(MATERIAL_METAL = 4000)
+	materials = list(/decl/material/steel = 4000)
 	build_path = /obj/item/gun/energy/stunrevolver
 	locked = 1
 
@@ -26,7 +26,7 @@
 	name = "Laser Cannon"
 	desc = "A heavy duty laser cannon."
 	req_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 4, /decl/tech/power_storage = 3)
-	materials = list(MATERIAL_METAL = 10000, /decl/material/glass = 1000, /decl/material/diamond = 2000)
+	materials = list(/decl/material/steel = 10000, /decl/material/glass = 1000, /decl/material/diamond = 2000)
 	build_path = /obj/item/gun/energy/lasercannon
 	locked = 1
 
@@ -50,7 +50,7 @@
 	name = "Rapid Syringe Gun"
 	desc = "A gun that fires many syringes."
 	req_tech = list(/decl/tech/materials = 3, /decl/tech/biotech = 2, /decl/tech/combat = 3, /decl/tech/engineering = 3)
-	materials = list(MATERIAL_METAL = 5000, /decl/material/glass = 1000)
+	materials = list(/decl/material/steel = 5000, /decl/material/glass = 1000)
 	build_path = /obj/item/gun/syringe/rapidsyringe
 
 /*
@@ -58,7 +58,7 @@
 	name = "Energy Crossbow"
 	desc = "A weapon favoured by syndicate infiltration teams."
 	req_tech = list(/decl/tech/materials = 5, /decl/tech/biotech = 4, /decl/tech/combat = 4, /decl/tech/engineering = 3, /decl/tech/syndicate = 3)
-	materials = list(MATERIAL_METAL = 5000, /decl/material/glass = 1000, /decl/material/silver = 1000, /decl/material/uranium = 1000)
+	materials = list(/decl/material/steel = 5000, /decl/material/glass = 1000, /decl/material/silver = 1000, /decl/material/uranium = 1000)
 	build_path = /obj/item/gun/energy/crossbow/largecrossbow
 */
 
@@ -66,7 +66,7 @@
 	name = "Temperature Gun"
 	desc = "A gun that shoots temperature bullet energythings to change temperature."//Change it if you want
 	req_tech = list(/decl/tech/materials = 4, /decl/tech/magnets = 2, /decl/tech/combat = 3, /decl/tech/power_storage = 3)
-	materials = list(MATERIAL_METAL = 5000, /decl/material/glass = 500, /decl/material/silver = 3000)
+	materials = list(/decl/material/steel = 5000, /decl/material/glass = 500, /decl/material/silver = 3000)
 	build_path = /obj/item/gun/energy/temperature
 	locked = 1
 
@@ -74,7 +74,7 @@
 	name = "Floral Somatoray"
 	desc = "A tool that discharges controlled radiation which induces mutation in plant cells. Harmless to other organic life."
 	req_tech = list(/decl/tech/materials = 2, /decl/tech/biotech = 3, /decl/tech/power_storage = 3)
-	materials = list(MATERIAL_METAL = 2000, /decl/material/glass = 500, /decl/material/uranium = 500)
+	materials = list(/decl/material/steel = 2000, /decl/material/glass = 500, /decl/material/uranium = 500)
 	build_path = /obj/item/gun/energy/floragun
 
 /datum/design/weapon/large_grenade

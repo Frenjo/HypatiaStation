@@ -45,7 +45,8 @@
 	icon_state = "meson"
 	item_state = "glasses"
 	icon_action_button = "action_meson"
-	origin_tech = list(/decl/tech/magnets = 2, /decl/tech/engineering = 2)
+	matter_amounts = /datum/design/mining/mesons::materials
+	origin_tech = /datum/design/mining/mesons::req_tech
 	toggleable = TRUE
 	vision_flags = SEE_TURFS
 

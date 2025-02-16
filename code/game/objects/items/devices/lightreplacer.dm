@@ -47,7 +47,8 @@
 
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
-	origin_tech = list(/decl/tech/materials = 2, /decl/tech/magnets = 3)
+	matter_amounts = /datum/design/light_replacer::materials
+	origin_tech = /datum/design/light_replacer::req_tech
 
 	var/max_uses = 20
 	var/uses = 0

@@ -69,7 +69,8 @@
 	desc = "With the L.A.S.E.R. cannon, the lasing medium is enclosed in a tube lined with uranium-235 and subjected to high neutron flux in a nuclear reactor core. This incredible technology may help YOU achieve high excitation rates with small laser volumes!"
 	icon_state = "lasercannon"
 
-	origin_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 4, /decl/tech/power_storage = 3)
+	matter_amounts = /datum/design/weapon/lasercannon::materials
+	origin_tech = /datum/design/weapon/lasercannon::req_tech
 
 	fire_sound = 'sound/weapons/lasercannonfire.ogg'
 	fire_delay = 2 SECONDS

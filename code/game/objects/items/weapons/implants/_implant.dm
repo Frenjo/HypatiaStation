@@ -259,6 +259,8 @@ Implant Specifics:<BR>"}
 /obj/item/implant/chem
 	name = "chemical implant"
 	desc = "Injects things."
+	matter_amounts = /datum/design/implant/chem::materials
+	origin_tech = /datum/design/implant/chem::req_tech
 	allow_reagents = 1
 
 /obj/item/implant/chem/get_data()
@@ -319,6 +321,8 @@ the implant may become unstable and either pre-maturely inject the subject or si
 /obj/item/implant/loyalty
 	name = "loyalty implant"
 	desc = "Makes you loyal or such."
+	matter_amounts = /datum/design/implant/loyal::materials
+	origin_tech = /datum/design/implant/loyal::req_tech
 
 /obj/item/implant/loyalty/get_data()
 	. = {"

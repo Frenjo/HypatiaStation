@@ -3,6 +3,8 @@
 /obj/item/implant/freedom
 	name = "freedom implant"
 	desc = "Use this to escape from those evil Red Shirts."
+	matter_amounts = /datum/design/implant/free::materials
+	origin_tech = /datum/design/implant/free::req_tech
 	item_color = "r"
 	var/activation_emote = "chuckle"
 	var/uses = 1.0

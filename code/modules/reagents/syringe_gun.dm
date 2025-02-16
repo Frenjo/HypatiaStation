@@ -120,6 +120,8 @@
 	name = "rapid syringe gun"
 	desc = "A modification of the syringe gun design, using a rotating cylinder to store up to four syringes."
 	icon_state = "rapidsyringegun"
+	matter_amounts = /datum/design/weapon/rapidsyringe::materials
+	origin_tech = /datum/design/weapon/rapidsyringe::req_tech
 	max_syringes = 4
 
 

@@ -48,7 +48,8 @@
 	desc = "A high-tech revolver that fires stun cartridges. The stun cartridges can be recharged using a conventional energy weapon recharger."
 	icon_state = "stunrevolver"
 
-	origin_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 3, /decl/tech/power_storage = 2)
+	matter_amounts = /datum/design/weapon/stunrevolver::materials
+	origin_tech = /datum/design/weapon/stunrevolver::req_tech
 
 	fire_sound = 'sound/weapons/Gunshot.ogg'
 
@@ -120,7 +121,8 @@
 	desc = "A weapon favored by syndicate infiltration teams."
 
 	w_class = 4
-	matter_amounts = list(MATERIAL_METAL = 200000)
+	//matter_amounts = /datum/design/weapon/largecrossbow::materials
+	//origin_tech = /datum/design/weapon/largecrossbow::req_tech
 
 	force = 10
 

@@ -1,10 +1,13 @@
 /obj/item/stack/nanopaste
 	name = "nanopaste"
-	singular_name = "nanite swarm"
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
 	icon = 'icons/obj/items/stacks/nanopaste.dmi'
 	icon_state = "tube"
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/engineering = 3)
+
+	matter_amounts = /datum/design/medical/nanopaste::materials
+	origin_tech = /datum/design/medical/nanopaste::req_tech
+
+	singular_name = "nanite swarm"
 	amount = 10
 
 /obj/item/stack/nanopaste/attack(mob/living/M, mob/user)

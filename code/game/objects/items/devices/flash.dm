@@ -190,8 +190,8 @@
 	name = "synthetic flash"
 	desc = "When a problem arises, SCIENCE is the solution."
 	icon_state = "sflash"
-	origin_tech = list(/decl/tech/magnets = 3, /decl/tech/combat = 2)
-	matter_amounts = list(MATERIAL_METAL = 750, /decl/material/glass = 750)
+	matter_amounts = /datum/design/robofab/synthetic_flash::materials
+	origin_tech = /datum/design/robofab/synthetic_flash::req_tech
 
 /obj/item/flash/synthetic/attack(mob/living/M, mob/user)
 	..()

@@ -35,8 +35,9 @@
 /obj/item/storage/backpack/holding
 	name = "bag of holding"
 	desc = "A backpack that opens into a localized pocket of Blue Space."
-	origin_tech = list(/decl/tech/bluespace = 4)
 	icon_state = "holdingpack"
+	matter_amounts = /datum/design/bluespace/bag_holding::materials
+	origin_tech = /datum/design/bluespace/bag_holding::req_tech
 	max_w_class = 4
 	max_combined_w_class = 28
 

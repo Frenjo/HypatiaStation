@@ -3,12 +3,9 @@
 	desc = "A cube of shining metal, four inches to a side and covered in shallow grooves."
 	icon = 'icons/obj/items/assemblies/assemblies.dmi'
 	icon_state = "posibrain"
-	origin_tech = list(/decl/tech/materials = 6, /decl/tech/engineering = 4, /decl/tech/programming = 4, /decl/tech/bluespace = 2)
 
-	matter_amounts = list(
-		MATERIAL_METAL = 2000, /decl/material/glass = 1000, /decl/material/silver = 1000,
-		/decl/material/gold = 500, /decl/material/diamond = 100, /decl/material/plasma = 500
-	)
+	matter_amounts = /datum/design/posibrain::materials
+	origin_tech = /datum/design/posibrain::req_tech
 
 	var/searching = 0
 

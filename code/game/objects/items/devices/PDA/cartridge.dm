@@ -6,6 +6,9 @@
 	item_state = "electronic"
 	w_class = 1
 
+	matter_amounts = /datum/design/pda_cartridge::materials
+	origin_tech = /datum/design/pda_cartridge::req_tech
+
 	var/obj/item/radio/integrated/radio = null
 	var/access_security = FALSE
 	var/access_engine = FALSE

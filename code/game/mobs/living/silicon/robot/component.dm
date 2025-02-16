@@ -135,6 +135,7 @@
 /obj/item/robot_parts/robot_component
 	icon = 'icons/obj/items/robot_component.dmi'
 	icon_state = "working"
+	matter_amounts = /datum/design/robofab/robot_component::materials
 
 // TODO: actual icons ;)
 /obj/item/robot_parts/robot_component/binary_communication_device

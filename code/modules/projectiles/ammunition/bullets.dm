@@ -89,7 +89,8 @@
 	desc = "A stunning shell."
 	icon_state = "stunshell"
 
-	matter_amounts = list(MATERIAL_METAL = 2500)
+	matter_amounts = /datum/design/weapon/stunshell::materials
+	origin_tech = /datum/design/weapon/stunshell::req_tech
 	projectile_type = /obj/item/projectile/bullet/stunshot
 
 /obj/item/ammo_casing/shotgun/dart

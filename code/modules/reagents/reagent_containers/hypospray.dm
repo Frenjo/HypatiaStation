@@ -7,6 +7,8 @@
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "hypo"
 	icon_state = "hypo"
+	matter_amounts = /datum/design/medical/hypospray::materials
+	origin_tech = /datum/design/medical/hypospray::req_tech
 	amount_per_transfer_from_this = 5
 	volume = 30
 	possible_transfer_amounts = null

@@ -70,7 +70,8 @@
 	name = "Ammunition Box (9mm)"
 	icon_state = "9mm"
 
-	origin_tech = list(/decl/tech/combat = 2)
+	matter_amounts = /datum/design/weapon/ammo_9mm::materials
+	origin_tech = /datum/design/weapon/ammo_9mm::req_tech
 
 	ammo_type = /obj/item/ammo_casing/c9mm
 	max_ammo = 30

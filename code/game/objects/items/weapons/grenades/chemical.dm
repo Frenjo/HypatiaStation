@@ -172,8 +172,10 @@
 	name = "large chem grenade"
 	desc = "An oversized grenade that affects a larger area."
 	icon_state = "large_grenade"
+	matter_amounts = /datum/design/weapon/large_grenade::materials
+	origin_tech = /datum/design/weapon/large_grenade::req_tech
+
 	allowed_containers = list(/obj/item/reagent_holder/glass)
-	origin_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 3)
 	affected_area = 4
 
 /obj/item/grenade/chemical/metalfoam

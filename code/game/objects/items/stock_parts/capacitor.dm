@@ -6,15 +6,16 @@
 	name = "capacitor"
 	desc = "A basic capacitor used in the construction of a variety of devices."
 	icon_state = "capacitor"
-	matter_amounts = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
-	origin_tech = list(/decl/tech/power_storage = 1)
+	matter_amounts = /datum/design/stock_part/basic_capacitor::materials
+	origin_tech = /datum/design/stock_part/basic_capacitor::req_tech
 
 // Rating 2
 /obj/item/stock_part/capacitor/adv
 	name = "advanced capacitor"
 	desc = "An advanced capacitor used in the construction of a variety of devices."
 	icon_state = "adv_capacitor"
-	origin_tech = list(/decl/tech/power_storage = 3)
+	matter_amounts = /datum/design/stock_part/adv_capacitor::materials
+	origin_tech = /datum/design/stock_part/adv_capacitor::req_tech
 	rating = 2
 
 // Rating 3
@@ -22,7 +23,8 @@
 	name = "super capacitor"
 	desc = "A super-high capacity capacitor used in the construction of a variety of devices."
 	icon_state = "super_capacitor"
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/power_storage = 5)
+	matter_amounts = /datum/design/stock_part/super_capacitor::materials
+	origin_tech = /datum/design/stock_part/super_capacitor::req_tech
 	rating = 3
 
 // Rating 4
@@ -30,5 +32,6 @@
 	name = "hyper capacitor"
 	desc = "A hyper-capacity capacitor used in the construction of a variety of devices."
 	icon_state = "hyper_capacitor"
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/power_storage = 7)
+	matter_amounts = /datum/design/stock_part/hyper_capacitor::materials
+	origin_tech = /datum/design/stock_part/hyper_capacitor::req_tech
 	rating = 4

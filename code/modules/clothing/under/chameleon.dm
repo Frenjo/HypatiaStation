@@ -1,11 +1,14 @@
 /obj/item/clothing/under/chameleon
 //starts off as black
 	name = "black jumpsuit"
+	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
 	icon_state = "black"
 	item_state = "bl_suit"
 	item_color = "black"
-	desc = "It's a plain jumpsuit. It seems to have a small dial on the wrist."
-	origin_tech = list(/decl/tech/syndicate = 3)
+
+	matter_amounts = /datum/design/illegal/chameleon::materials
+	origin_tech = /datum/design/illegal/chameleon::req_tech
+
 	siemens_coefficient = 0.8
 	var/list/clothing_choices = list()
 

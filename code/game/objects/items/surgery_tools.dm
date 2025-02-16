@@ -112,12 +112,16 @@
 	name = "laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks basic and could be improved."
 	icon_state = "scalpel_laser1_on"
+	matter_amounts = /datum/design/medical/scalpel_laser1::materials
+	origin_tech = /datum/design/medical/scalpel_laser1::req_tech
 	damtype = "fire"
 
 /obj/item/scalpel/laser2
 	name = "improved laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks somewhat advanced."
 	icon_state = "scalpel_laser2_on"
+	matter_amounts = /datum/design/medical/scalpel_laser2::materials
+	origin_tech = /datum/design/medical/scalpel_laser2::req_tech
 	damtype = "fire"
 	force = 12.0
 
@@ -125,6 +129,8 @@
 	name = "advanced laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks to be the pinnacle of precision energy cutlery!"
 	icon_state = "scalpel_laser3_on"
+	matter_amounts = /datum/design/medical/scalpel_laser3::materials
+	origin_tech = /datum/design/medical/scalpel_laser3::req_tech
 	damtype = "fire"
 	force = 15.0
 
@@ -132,6 +138,8 @@
 	name = "incision management system"
 	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
 	icon_state = "scalpel_manager_on"
+	matter_amounts = /datum/design/medical/scalpel_manager::materials
+	origin_tech = /datum/design/medical/scalpel_manager::req_tech
 	force = 7.5
 
 /*

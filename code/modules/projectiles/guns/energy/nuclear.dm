@@ -41,7 +41,8 @@
 	desc = "An energy gun with an experimental miniaturized reactor."
 	icon_state = "nucgun"
 
-	origin_tech = list(/decl/tech/materials = 5, /decl/tech/combat = 3, /decl/tech/power_storage = 3)
+	matter_amounts = /datum/design/weapon/nuclear_gun::materials
+	origin_tech = /datum/design/weapon/nuclear_gun::req_tech
 
 	var/lightfail = 0
 	var/charge_tick = 0

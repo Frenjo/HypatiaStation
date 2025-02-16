@@ -22,8 +22,9 @@
 // Binary
 /obj/item/encryptionkey/binary
 	icon_state = "cypherkey"
+	matter_amounts = /datum/design/illegal/binaryencrypt::materials
+	origin_tech = /datum/design/illegal/binaryencrypt::req_tech
 	translate_binary = 1
-	origin_tech = list(/decl/tech/syndicate = 3)
 
 // Security
 /obj/item/encryptionkey/sec

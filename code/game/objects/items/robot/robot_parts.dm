@@ -22,30 +22,36 @@
 	name = "robot left arm"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "l_arm"
+	matter_amounts = /datum/design/robofab/robot/left_arm::materials
 	part = list("l_arm", "l_hand")
 
 /obj/item/robot_parts/r_arm
 	name = "robot right arm"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "r_arm"
+	matter_amounts = /datum/design/robofab/robot/right_arm::materials
 	part = list("r_arm", "r_hand")
 
 /obj/item/robot_parts/l_leg
 	name = "robot left leg"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "l_leg"
+	matter_amounts = /datum/design/robofab/robot/left_leg::materials
 	part = list("l_leg", "l_foot")
 
 /obj/item/robot_parts/r_leg
 	name = "robot right leg"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "r_leg"
+	matter_amounts = /datum/design/robofab/robot/right_leg::materials
 	part = list("r_leg", "r_foot")
 
 /obj/item/robot_parts/chest
 	name = "robot torso"
 	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell."
 	icon_state = "chest"
+
+	matter_amounts = /datum/design/robofab/robot/chest::materials
 
 	var/wires = FALSE
 	var/obj/item/cell/cell = null
@@ -55,6 +61,8 @@
 	desc = "A standard reinforced braincase, with spine-plugged neural socket and sensor gimbals."
 	icon_state = "head"
 
+	matter_amounts = /datum/design/robofab/robot/head::materials
+
 	var/obj/item/flash/flash1 = null
 	var/obj/item/flash/flash2 = null
 
@@ -62,6 +70,8 @@
 	name = "robot endoskeleton"
 	desc = "A complex metal backbone with standard limb sockets and pseudomuscle anchors."
 	icon_state = "robo_suit"
+
+	matter_amounts = /datum/design/robofab/robot/suit::materials
 
 	var/obj/item/robot_parts/l_arm/l_arm = null
 	var/obj/item/robot_parts/r_arm/r_arm = null

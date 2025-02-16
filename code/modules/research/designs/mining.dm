@@ -32,7 +32,7 @@
 /datum/design/mining/pick_diamond
 	name = "Diamond Pickaxe"
 	desc = "A pickaxe with a diamond pick head, this is just like minecraft."
-	req_tech = list(/decl/tech/materials = 6)
+	req_tech = list(/decl/tech/materials = 6, /decl/tech/engineering = 4)
 	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(/decl/material/diamond = 3000)
 	build_path = /obj/item/pickaxe/diamond
@@ -40,7 +40,7 @@
 /datum/design/mining/drill_diamond
 	name = "Diamond Mining Drill"
 	desc = "Yours is the drill that will pierce the heavens!"
-	req_tech = list(/decl/tech/materials = 6, /decl/tech/engineering = 4, /decl/tech/power_storage = 4)
+	req_tech = list(/decl/tech/materials = 6, /decl/tech/engineering = 5, /decl/tech/power_storage = 4)
 	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = list(MATERIAL_METAL = 3000, /decl/material/glass = 1000, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET) //Yes, a whole diamond is needed.
 	reliability_base = 79
