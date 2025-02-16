@@ -398,7 +398,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 /obj/singularity/proc/can_move(turf/T)
 	if(!T)
 		return 0
-	if((locate(/obj/machinery/containment_field) in T) || (locate(/obj/machinery/shieldwall) in T))
+	if((locate(/obj/machinery/containment_field) in T) || (locate(/obj/effect/shield_wall) in T))
 		return 0
 	else if(locate(/obj/machinery/field_generator) in T)
 		var/obj/machinery/field_generator/G = locate(/obj/machinery/field_generator) in T

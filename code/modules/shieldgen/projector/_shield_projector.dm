@@ -2,7 +2,7 @@
 // It should work inside the contents of any mob.
 /obj/item/shield_projector
 	name = "combat shield projector"
-	desc = "A miniturized and compact shield projector. This type has been optimized to diffuse lasers or block high velocity projectiles from the outside, \
+	desc = "A miniaturised and compact shield projector. This type has been optimised to diffuse lasers or block high velocity projectiles from the outside, \
 	but allow those projectiles to leave the shield from the inside. Blocking too many damaging projectiles will cause the shield to fail."
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "jammer0"
@@ -266,7 +266,7 @@
 
 /obj/item/shield_projector/line
 	name = "linear combat shield projector"
-	desc = "This creates a shield in a straight line perpendicular to the direction where the user was facing when it was activated. \
+	desc = "This creates a shield in a straight line perpendicular to the direction the user was facing when it was activated. \
 	The shield allows projectiles to leave from inside but blocks projectiles from outside. Everything else can pass through the shield freely, \
 	including other people and thrown objects. The shield also cannot block certain effects which take place over an area, such as flashbangs or explosions."
 
