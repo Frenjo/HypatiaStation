@@ -105,7 +105,7 @@
 
 /obj/machinery/power/smes/cell_rack/makeshift/add_parts()
 	component_parts = list(
-		new /obj/item/circuitboard/makeshift_cell_rack(src),
+		new /obj/item/circuitboard/cell_rack/makeshift(src),
 		new /obj/item/cell/high(src),
 		new /obj/item/cell/high(src),
 		new /obj/item/cell/high(src)

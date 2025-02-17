@@ -1,6 +1,7 @@
 // Circuits
 /datum/design/autolathe/power_control_module
 	name = "Power Control Module"
+	req_tech = list(/decl/tech/engineering = 1, /decl/tech/power_storage = 1, /decl/tech/programming = 1)
 	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
 	build_path = /obj/item/module/power_control
 

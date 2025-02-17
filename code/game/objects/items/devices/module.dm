@@ -16,11 +16,12 @@
 	name = "power control module"
 	desc = "Heavy-duty switching circuits for power control."
 	icon_state = "power_mod"
-	matter_amounts = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
+	matter_amounts = /datum/design/autolathe/power_control_module::materials
+	origin_tech = /datum/design/autolathe/power_control_module::req_tech
 
 /obj/item/module/power_control/attack_tool(obj/item/tool, mob/user)
 	if(ismultitool(tool))
-		var/obj/item/circuitboard/makeshift_cell_rack/new_circuit = new /obj/item/circuitboard/makeshift_cell_rack(user.loc)
+		var/obj/item/circuitboard/cell_rack/makeshift/new_circuit = new /obj/item/circuitboard/cell_rack/makeshift(user.loc)
 		qdel(src)
 		user.put_in_hands(new_circuit)
 		return TRUE
