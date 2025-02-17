@@ -15,4 +15,5 @@
 /obj/item/circuitboard/mecha/serenity/medical
 	name = "circuit board (\"Serenity\" medical control module)"
 	icon_state = "mcontroller"
-	origin_tech = list(/decl/tech/biotech = 2, /decl/tech/programming = 4)
+	matter_amounts = /datum/design/circuit/mecha/serenity_medical::materials
+	origin_tech = /datum/design/circuit/mecha/serenity_medical::req_tech

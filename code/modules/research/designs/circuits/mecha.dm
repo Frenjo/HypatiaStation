@@ -5,29 +5,31 @@
 	name_prefix = "Exosuit Circuit Design"
 
 // Ripley
-/datum/design/circuit/mecha/ripley_main
+/datum/design/circuit/mecha/ripley
+	req_tech = list(/decl/tech/programming = 3)
+
+/datum/design/circuit/mecha/ripley/main
 	name = "APLU \"Ripley\" Central Control module"
 	desc = "Allows for the construction of a \"Ripley\" Central Control module."
-	req_tech = list(/decl/tech/programming = 3)
 	build_path = /obj/item/circuitboard/mecha/ripley/main
 
-/datum/design/circuit/mecha/ripley_peri
+/datum/design/circuit/mecha/ripley/peri
 	name = "APLU \"Ripley\" Peripherals Control module"
 	desc = "Allows for the construction of a \"Ripley\" Peripheral Control module."
-	req_tech = list(/decl/tech/programming = 3)
 	build_path = /obj/item/circuitboard/mecha/ripley/peripherals
 
 // Dreadnought
-/datum/design/circuit/mecha/dreadnought_main
+/datum/design/circuit/mecha/dreadnought
+	req_tech = list(/decl/tech/engineering = 3, /decl/tech/programming = 3)
+
+/datum/design/circuit/mecha/dreadnought/main
 	name = "\"Dreadnought\" Central Control module"
 	desc = "Allows for the construction of a \"Dreadnought\" Central Control module."
-	req_tech = list(/decl/tech/engineering = 3, /decl/tech/programming = 3)
 	build_path = /obj/item/circuitboard/mecha/dreadnought/main
 
-/datum/design/circuit/mecha/dreadnought_peri
+/datum/design/circuit/mecha/dreadnought/peri
 	name = "\"Dreadnought\" Peripherals Control module"
 	desc = "Allows for the construction of a \"Dreadnought\" Peripheral Control module."
-	req_tech = list(/decl/tech/engineering = 3, /decl/tech/programming = 3)
 	build_path = /obj/item/circuitboard/mecha/dreadnought/peripherals
 
 // Bulwark
@@ -38,32 +40,34 @@
 	build_path = /obj/item/circuitboard/mecha/bulwark/targeting
 
 // Odysseus
-/datum/design/circuit/mecha/odysseus_main
+/datum/design/circuit/mecha/odysseus
+	req_tech = list(/decl/tech/biotech = 2, /decl/tech/programming = 3)
+
+/datum/design/circuit/mecha/odysseus/main
 	name = "\"Odysseus\" Central Control module"
 	desc = "Allows for the construction of a \"Odysseus\" Central Control module."
-	req_tech = list(/decl/tech/biotech = 2, /decl/tech/programming = 3)
 	build_path = /obj/item/circuitboard/mecha/odysseus/main
 
-/datum/design/circuit/mecha/odysseus_peri
+/datum/design/circuit/mecha/odysseus/peri
 	name = "\"Odysseus\" Peripherals Control module"
 	desc = "Allows for the construction of a \"Odysseus\" Peripheral Control module."
-	req_tech = list(/decl/tech/biotech = 2, /decl/tech/programming = 3)
 	build_path = /obj/item/circuitboard/mecha/odysseus/peripherals
 
 // Gygax
-/datum/design/circuit/mecha/gygax_main
+/datum/design/circuit/mecha/gygax
+	req_tech = list(/decl/tech/programming = 4)
+
+/datum/design/circuit/mecha/gygax/main
 	name = "\"Gygax\" Central Control module"
 	desc = "Allows for the construction of a \"Gygax\" Central Control module."
-	req_tech = list(/decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/mecha/gygax/main
 
-/datum/design/circuit/mecha/gygax_peri
+/datum/design/circuit/mecha/gygax/peri
 	name = "\"Gygax\" Peripherals Control module"
 	desc = "Allows for the construction of a \"Gygax\" Peripheral Control module."
-	req_tech = list(/decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/mecha/gygax/peripherals
 
-/datum/design/circuit/mecha/gygax_targ
+/datum/design/circuit/mecha/gygax/targ
 	name = "\"Gygax\" Weapon Control & Targeting module"
 	desc = "Allows for the construction of a \"Gygax\" Weapon Control & Targeting module."
 	req_tech = list(/decl/tech/combat = 2, /decl/tech/programming = 4)
@@ -77,19 +81,20 @@
 	build_path = /obj/item/circuitboard/mecha/serenity/medical
 
 // Durand
-/datum/design/circuit/mecha/durand_main
+/datum/design/circuit/mecha/durand
+	req_tech = list(/decl/tech/programming = 4)
+
+/datum/design/circuit/mecha/durand/main
 	name = "\"Durand\" Central Control module"
 	desc = "Allows for the construction of a \"Durand\" Central Control module."
-	req_tech = list(/decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/mecha/durand/main
 
-/datum/design/circuit/mecha/durand_peri
+/datum/design/circuit/mecha/durand/peri
 	name = "\"Durand\" Peripherals Control module"
 	desc = "Allows for the construction of a \"Durand\" Peripheral Control module."
-	req_tech = list(/decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/mecha/durand/peripherals
 
-/datum/design/circuit/mecha/durand_targ
+/datum/design/circuit/mecha/durand/targ
 	name = "\"Durand\" Weapon Control & Targeting module"
 	desc = "Allows for the construction of a \"Durand\" Weapon Control & Targeting module."
 	req_tech = list(/decl/tech/combat = 4, /decl/tech/programming = 4)
@@ -134,39 +139,39 @@
 	build_path = /obj/item/circuitboard/mecha/phazon/targeting
 
 // H.O.N.K
-/datum/design/circuit/mecha/honk_main
+/datum/design/circuit/mecha/honk
+	req_tech = list(/decl/tech/programming = 4)
+
+/datum/design/circuit/mecha/honk/main
 	name = "\"H.O.N.K\" Central Control module"
 	desc = "Allows for the construction of a \"H.O.N.K\" Central Control module."
-	req_tech = list(/decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/mecha/honk/main
 
-/datum/design/circuit/mecha/honk_peri
+/datum/design/circuit/mecha/honk/peri
 	name = "\"H.O.N.K\" Peripherals Control module"
 	desc = "Allows for the construction of a \"H.O.N.K\" Peripheral Control module."
-	req_tech = list(/decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/mecha/honk/peripherals
 
-/datum/design/circuit/mecha/honk_targ
+/datum/design/circuit/mecha/honk/targ
 	name = "\"H.O.N.K\" Weapon Control & Targeting module"
 	desc = "Allows for the construction of a \"H.O.N.K\" Weapon Control & Targeting module."
-	req_tech = list(/decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/mecha/honk/targeting
 
 // Reticence
-/datum/design/circuit/mecha/reticence_main
+/datum/design/circuit/mecha/reticence
+	req_tech = list(/decl/tech/programming = 4)
+
+/datum/design/circuit/mecha/reticence/main
 	name = "\"Reticence\" Central Control module"
 	desc = "Allows for the construction of a \"Reticence\" Central Control module."
-	req_tech = list(/decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/mecha/reticence/main
 
-/datum/design/circuit/mecha/reticence_peri
+/datum/design/circuit/mecha/reticence/peri
 	name = "\"Reticence\" Peripherals Control module"
 	desc = "Allows for the construction of a \"Reticence\" Peripheral Control module."
-	req_tech = list(/decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/mecha/reticence/peripherals
 
-/datum/design/circuit/mecha/reticence_targ
+/datum/design/circuit/mecha/reticence/targ
 	name = "\"Reticence\" Weapon Control & Targeting module"
 	desc = "Allows for the construction of a \"Reticence\" Weapon Control & Targeting module."
-	req_tech = list(/decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/mecha/reticence/targeting

@@ -7,7 +7,8 @@
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/dreadnought
-	origin_tech = list(/decl/tech/engineering = 3, /decl/tech/programming = 3)
+	matter_amounts = /datum/design/circuit/mecha/dreadnought::materials
+	origin_tech = /datum/design/circuit/mecha/dreadnought::req_tech
 
 /obj/item/circuitboard/mecha/dreadnought/main
 	name = "circuit board (\"Dreadnought\" central control module)"

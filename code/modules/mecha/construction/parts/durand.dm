@@ -51,7 +51,8 @@
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/durand
-	origin_tech = list(/decl/tech/programming = 4)
+	matter_amounts = /datum/design/circuit/mecha/durand::materials
+	origin_tech = /datum/design/circuit/mecha/durand::req_tech
 
 /obj/item/circuitboard/mecha/durand/main
 	name = "circuit board (\"Durand\" central control module)"
@@ -63,4 +64,5 @@
 /obj/item/circuitboard/mecha/durand/targeting
 	name = "circuit board (\"Durand\" weapon control & targeting module)"
 	icon_state = "mcontroller"
-	origin_tech = list(/decl/tech/combat = 4, /decl/tech/programming = 4)
+	matter_amounts = /datum/design/circuit/mecha/durand/targ::materials
+	origin_tech = /datum/design/circuit/mecha/durand/targ::req_tech

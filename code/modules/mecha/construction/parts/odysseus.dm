@@ -55,7 +55,8 @@
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/odysseus
-	origin_tech = list(/decl/tech/biotech = 2, /decl/tech/programming = 3)
+	matter_amounts = /datum/design/circuit/mecha/odysseus::materials
+	origin_tech = /datum/design/circuit/mecha/odysseus::req_tech
 
 /obj/item/circuitboard/mecha/odysseus/main
 	name = "circuit board (\"Odysseus\" central control module)"

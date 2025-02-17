@@ -43,7 +43,8 @@
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/ripley
-	origin_tech = list(/decl/tech/programming = 3)
+	matter_amounts = /datum/design/circuit/mecha/ripley::materials
+	origin_tech = /datum/design/circuit/mecha/ripley::req_tech
 
 /obj/item/circuitboard/mecha/ripley/main
 	name = "circuit board (APLU \"Ripley\" central control module)"

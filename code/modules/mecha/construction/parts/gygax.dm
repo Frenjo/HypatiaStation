@@ -55,7 +55,8 @@
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/gygax
-	origin_tech = list(/decl/tech/programming = 4)
+	matter_amounts = /datum/design/circuit/mecha/gygax::materials
+	origin_tech = /datum/design/circuit/mecha/gygax::req_tech
 
 /obj/item/circuitboard/mecha/gygax/main
 	name = "circuit board (\"Gygax\" central control module)"
@@ -67,4 +68,5 @@
 /obj/item/circuitboard/mecha/gygax/targeting
 	name = "circuit board (\"Gygax\" weapon control & targeting module)"
 	icon_state = "mcontroller"
-	origin_tech = list(/decl/tech/combat = 2, /decl/tech/programming = 4)
+	matter_amounts = /datum/design/circuit/mecha/gygax/targ::materials
+	origin_tech = /datum/design/circuit/mecha/gygax/targ::req_tech
