@@ -9,7 +9,8 @@
 	name = "\improper 'Reset' AI module"
 	desc = "A 'reset' AI module: 'Clears all laws except for the core three.'"
 
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 3)
+	matter_amounts = /datum/design/circuit/ai_module/reset::materials
+	origin_tech = /datum/design/circuit/ai_module/reset::req_tech
 
 	var/targetName = "name"
 
@@ -45,7 +46,8 @@
 /obj/item/ai_module/protectStation
 	name = "\improper 'ProtectStation' AI module"
 	desc = "A 'protect station' AI module: 'Protect the space station against damage. Anyone you see harming the station is to be no longer considered human, and is a threat to the station which must be neutralized.'"
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 3) //made of gold
+	matter_amounts = /datum/design/circuit/ai_module/protectstation::materials
+	origin_tech = /datum/design/circuit/ai_module/protectstation::req_tech
 
 /obj/item/ai_module/protectStation/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
@@ -84,7 +86,8 @@
 	name = "\improper 'Freeform' AI module"
 	desc = "A 'freeform' AI module: '<freeform>'"
 
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 4)
+	matter_amounts = /datum/design/circuit/ai_module/freeform::materials
+	origin_tech = /datum/design/circuit/ai_module/freeform::req_tech
 
 	var/newFreeFormLaw = "freeform"
 	var/lawpos = 15
@@ -120,7 +123,8 @@
 	name = "\improper 'Freeform' core AI module"
 	desc = "A 'freeform' Core AI module: '<freeform>'"
 
-	origin_tech = list(/decl/tech/materials = 6, /decl/tech/programming = 3)
+	matter_amounts = /datum/design/circuit/core_ai_module/freeform::materials
+	origin_tech = /datum/design/circuit/core_ai_module/freeform::req_tech
 
 	var/newFreeFormLaw = ""
 

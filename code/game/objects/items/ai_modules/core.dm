@@ -24,7 +24,8 @@
 /obj/item/ai_module/paladin // -- NEO
 	name = "\improper 'P.A.L.A.D.I.N.' core AI module"
 	desc = "A P.A.L.A.D.I.N. Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = list(/decl/tech/materials = 6, /decl/tech/programming = 3)
+	matter_amounts = /datum/design/circuit/core_ai_module/paladin::materials
+	origin_tech = /datum/design/circuit/core_ai_module/paladin::req_tech
 
 /obj/item/ai_module/paladin/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
@@ -59,7 +60,8 @@
 /obj/item/ai_module/asimov // -- TLE
 	name = "\improper 'Asimov' core AI module"
 	desc = "An 'Asimov' Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 3)
+	matter_amounts = /datum/design/circuit/core_ai_module/asimov::materials
+	origin_tech = /datum/design/circuit/core_ai_module/asimov::req_tech
 
 /obj/item/ai_module/asimov/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
