@@ -1,6 +1,8 @@
 /obj/item/mecha_part/chassis/reticence
 	name = "\improper Reticence chassis"
 
+	matter_amounts = /datum/design/mechfab/part/reticence_chassis::materials
+
 	construct_type = /datum/construction/mecha_chassis/reticence
 
 /obj/item/mecha_part/part/reticence
@@ -10,25 +12,37 @@
 	name = "\improper Reticence torso"
 	icon_state = "reticence_harness"
 
+	matter_amounts = /datum/design/mechfab/part/reticence_torso::materials
+
 /obj/item/mecha_part/part/reticence/head
 	name = "\improper Reticence head"
 	icon_state = "reticence_head"
+
+	matter_amounts = /datum/design/mechfab/part/reticence_head::materials
 
 /obj/item/mecha_part/part/reticence/left_arm
 	name = "\improper Reticence left arm"
 	icon_state = "reticence_l_arm"
 
+	matter_amounts = /datum/design/mechfab/part/reticence_left_arm::materials
+
 /obj/item/mecha_part/part/reticence/right_arm
 	name = "\improper Reticence right arm"
 	icon_state = "reticence_r_arm"
+
+	matter_amounts = /datum/design/mechfab/part/reticence_right_arm::materials
 
 /obj/item/mecha_part/part/reticence/left_leg
 	name = "\improper Reticence left leg"
 	icon_state = "reticence_l_leg"
 
+	matter_amounts = /datum/design/mechfab/part/reticence_left_leg::materials
+
 /obj/item/mecha_part/part/reticence/right_leg
 	name = "\improper Reticence right leg"
 	icon_state = "reticence_r_leg"
+
+	matter_amounts = /datum/design/mechfab/part/reticence_right_leg::materials
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/reticence

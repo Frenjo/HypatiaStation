@@ -3,14 +3,17 @@
 	name = "\improper Archambeau chassis"
 	desc = "The chassis of an Archambeau-type exosuit."
 
-	origin_tech = list(/decl/tech/materials = 7, /decl/tech/combat = 4, /decl/tech/engineering = 6)
+	matter_amounts = /datum/design/mechfab/part/archambeau_chassis::materials
+	origin_tech = /datum/design/mechfab/part/archambeau_chassis::req_tech
+
 	construct_type = /datum/construction/mecha_chassis/durand/archambeau
 	target_icon = 'icons/obj/mecha/construction/durand.dmi'
 
 /obj/item/mecha_part/part/durand/armour/archambeau
 	name = "\improper Archambeau armour plates"
 	icon_state = "archambeau_armour"
-	origin_tech = list(/decl/tech/materials = 7, /decl/tech/combat = 4, /decl/tech/engineering = 6)
+	matter_amounts = /datum/design/mechfab/part/archambeau_armour::materials
+	origin_tech = /datum/design/mechfab/part/archambeau_armour::req_tech
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/archambeau/main

@@ -2,6 +2,8 @@
 /obj/item/mecha_part/chassis/dreadnought
 	name = "\improper Dreadnought chassis"
 
+	matter_amounts = /datum/design/mechfab/part/dreadnought_chassis::materials
+
 	construct_type = /datum/construction/mecha_chassis/ripley/dreadnought
 	target_icon = 'icons/obj/mecha/construction/ripley.dmi'
 

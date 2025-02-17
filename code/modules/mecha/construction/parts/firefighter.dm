@@ -2,6 +2,8 @@
 /obj/item/mecha_part/chassis/firefighter
 	name = "\improper Firefighter chassis"
 
+	matter_amounts = /datum/design/mechfab/part/firefighter_chassis::materials
+
 	construct_type = /datum/construction/mecha_chassis/firefighter
 	target_icon = 'icons/obj/mecha/construction/ripley.dmi'
 

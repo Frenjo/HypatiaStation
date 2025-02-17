@@ -307,7 +307,7 @@
 /datum/design/mechfab/part/archambeau_chassis
 	name = "\"Archambeau\" Chassis"
 	desc = "The chassis of an Archambeau-type exosuit."
-	req_tech = list(/decl/tech/materials = 7)
+	req_tech = list(/decl/tech/materials = 7, /decl/tech/combat = 4, /decl/tech/engineering = 6)
 	build_path = /obj/item/mecha_part/chassis/archambeau
 	categories = list("Archambeau")
 

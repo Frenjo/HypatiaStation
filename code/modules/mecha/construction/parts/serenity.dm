@@ -2,6 +2,8 @@
 /obj/item/mecha_part/chassis/serenity
 	name = "\improper Serenity chassis"
 
+	matter_amounts = /datum/design/mechfab/part/serenity_chassis::materials
+
 	construct_type = /datum/construction/mecha_chassis/gygax/serenity
 	target_icon = 'icons/obj/mecha/construction/gygax.dmi'
 
@@ -9,7 +11,8 @@
 	name = "\improper Serenity carapace"
 	desc = "The outer carapace of a Serenity-type exosuit."
 	icon_state = "serenity_carapace"
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/engineering = 4)
+	matter_amounts = /datum/design/mechfab/part/serenity_carapace::materials
+	origin_tech = /datum/design/mechfab/part/serenity_carapace::req_tech
 
 // Circuit Boards
 /obj/item/circuitboard/mecha/serenity/medical
