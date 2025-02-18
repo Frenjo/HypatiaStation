@@ -41,6 +41,8 @@
 /obj/item/mecha_part/equipment/weapon/energy/laser
 	name = "\improper CH-PS \"Immolator\" laser"
 	icon_state = "laser"
+	matter_amounts = /datum/design/mechfab/equipment/weapon/laser::materials
+	origin_tech = /datum/design/mechfab/equipment/weapon/laser::req_tech
 	equip_cooldown = 0.8 SECONDS
 	energy_drain = 30
 	projectile = /obj/item/projectile/energy/beam/laser
@@ -49,6 +51,8 @@
 /obj/item/mecha_part/equipment/weapon/energy/laser/heavy
 	name = "\improper CH-LC \"Solaris\" laser cannon"
 	icon_state = "laser_cannon"
+	matter_amounts = /datum/design/mechfab/equipment/weapon/heavy_laser::materials
+	origin_tech = /datum/design/mechfab/equipment/weapon/heavy_laser::req_tech
 	equip_cooldown = 1.5 SECONDS
 	energy_drain = 60
 	projectile = /obj/item/projectile/energy/beam/laser/heavy

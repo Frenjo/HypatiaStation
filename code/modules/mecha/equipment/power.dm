@@ -3,7 +3,8 @@
 	name = "tesla energy relay"
 	desc = "Wirelessly drains energy from any available power channel in area. The performance index is quite low. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
-	origin_tech = list(/decl/tech/magnets = 4, /decl/tech/syndicate = 2)
+	matter_amounts = /datum/design/mechfab/equipment/general/energy_relay::materials
+	origin_tech = /datum/design/mechfab/equipment/general/energy_relay::req_tech
 
 	equip_cooldown = 1 SECOND
 	energy_drain = 0
@@ -79,7 +80,8 @@
 	name = "plasma converter"
 	desc = "Generates power using solid plasma as fuel. Pollutes the environment. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
-	origin_tech = list(/decl/tech/engineering = 1, /decl/tech/power_storage = 2, /decl/tech/plasma = 2)
+	matter_amounts = /datum/design/mechfab/equipment/general/plasma_generator::materials
+	origin_tech = /datum/design/mechfab/equipment/general/plasma_generator::req_tech
 	equip_cooldown = 1 SECOND
 	energy_drain = 0
 	range = MELEE
@@ -218,7 +220,8 @@
 	name = "\improper ExoNuclear reactor"
 	desc = "Generates power using uranium. Pollutes the environment. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
-	origin_tech = list(/decl/tech/engineering = 3, /decl/tech/power_storage = 3)
+	matter_amounts = /datum/design/mechfab/equipment/general/nuclear_generator::materials
+	origin_tech = /datum/design/mechfab/equipment/general/nuclear_generator::req_tech
 	max_fuel = 50000
 	fuel_per_cycle_idle = 10
 	fuel_per_cycle_active = 30

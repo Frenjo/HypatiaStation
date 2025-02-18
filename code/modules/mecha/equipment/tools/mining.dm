@@ -56,7 +56,8 @@
 	name = "diamond drill"
 	desc = "This is an upgraded version of the drill that'll pierce the heavens! (Can be attached to: Working and Combat Exosuits)"
 	icon_state = "diamond_drill"
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/engineering = 3)
+	matter_amounts = /datum/design/mechfab/equipment/working/diamond_drill::materials
+	origin_tech = /datum/design/mechfab/equipment/working/diamond_drill::req_tech
 	equip_cooldown = 2 SECONDS
 	force = 15
 

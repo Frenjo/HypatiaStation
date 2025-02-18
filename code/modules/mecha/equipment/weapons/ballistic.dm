@@ -38,6 +38,8 @@
 /obj/item/mecha_part/equipment/weapon/ballistic/scattershot
 	name = "\improper LBX AC 10 \"Scattershot\""
 	icon_state = "scatter"
+	matter_amounts = /datum/design/mechfab/equipment/weapon/scattershot::materials
+	origin_tech = /datum/design/mechfab/equipment/weapon/scattershot::req_tech
 	equip_cooldown = 2 SECONDS
 	projectile = /obj/item/projectile/bullet/midbullet
 	fire_sound = 'sound/weapons/Gunshot.ogg'
@@ -86,6 +88,8 @@
 /obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang
 	name = "\improper SGL-6 grenade launcher"
 	icon_state = "grenadelnchr"
+	matter_amounts = /datum/design/mechfab/equipment/weapon/grenade_launcher::materials
+	origin_tech = /datum/design/mechfab/equipment/weapon/grenade_launcher::req_tech
 	projectile = /obj/item/grenade/flashbang
 	fire_sound = 'sound/effects/bang.ogg'
 	projectiles = 6
@@ -104,6 +108,10 @@
 /obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang/clusterbang//Because I am a heartless bastard -Sieve
 	name = "\improper SOP-6 grenade launcher"
 	projectile = /obj/item/grenade/flashbang/clusterbang
+
+/obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang/clusterbang/limited
+	matter_amounts = /datum/design/mechfab/equipment/weapon/clusterbang_launcher::materials
+	origin_tech = /datum/design/mechfab/equipment/weapon/clusterbang_launcher::req_tech
 
 /obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang/clusterbang/limited/get_equip_info()//Limited version of the clusterbang launcher that can't reload
 	. = "<span style=\"color:[equip_ready ? "#0f0" : "#f00"];\">*</span>&nbsp;[chassis.selected == src ? "<b>" : "<a href='byond://?src=\ref[chassis];select_equip=\ref[src]'>"][name][chassis.selected == src ? "</b>" : "</a>"]\[[projectiles]\]"

@@ -14,6 +14,7 @@
 	build_path = /obj/item/mecha_part/tracking
 
 /datum/design/mechfab/equipment/general/passenger_compartment
+	req_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 1, /decl/tech/engineering = 1)
 	materials = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 3, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3)
 	build_path = /obj/item/mecha_part/equipment/passenger
 
@@ -23,7 +24,7 @@
 */
 
 /datum/design/mechfab/equipment/general/wormhole_gen
-	name = "Localised Wormhole Generator"
+	name = "Wormhole Generator"
 	desc = "An exosuit module that allows the generation of small quasi-stable wormholes."
 	req_tech = list(/decl/tech/magnets = 2, /decl/tech/bluespace = 3)
 	materials = list(MATERIAL_METAL = 10000)
@@ -233,7 +234,7 @@
 /datum/design/mechfab/equipment/weapon/scattershot
 	name = "LBX AC 10 \"Scattershot\""
 	desc = "Allows for the construction of LBX AC 10 scattershots."
-	req_tech = list(/decl/tech/combat = 4)
+	req_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 4)
 	materials = list(MATERIAL_METAL = 10000)
 	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/scattershot
 
@@ -254,7 +255,7 @@
 /datum/design/mechfab/equipment/weapon/grenade_launcher
 	name = "SGL-6 Grenade Launcher"
 	desc = "Allows for the construction of SGL-6 grenade launchers."
-	req_tech = list(/decl/tech/combat = 3)
+	req_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 3)
 	materials = list(MATERIAL_METAL = 10000)
 	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang
 

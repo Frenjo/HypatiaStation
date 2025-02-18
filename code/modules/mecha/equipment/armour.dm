@@ -3,7 +3,8 @@
 	name = "armour booster module (close combat weaponry)"
 	desc = "Boosts exosuit armour against armed melee attacks. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "melee_armour_booster"
-	origin_tech = list(/decl/tech/materials = 5, /decl/tech/combat = 4)
+	matter_amounts = /datum/design/mechfab/equipment/melee_armour_booster::materials
+	origin_tech = /datum/design/mechfab/equipment/melee_armour_booster::req_tech
 
 	equip_cooldown = 1 SECOND
 	energy_drain = 50
@@ -25,7 +26,8 @@
 	name = "armour module (melee defence shocker)"
 	desc = "Electrically charges exosuit armour to discourage melee attackers. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "melee_defence_shocker"
-	origin_tech = list(/decl/tech/materials = 5, /decl/tech/combat = 4, /decl/tech/engineering = 2, /decl/tech/plasma = 2)
+	matter_amounts = /datum/design/mechfab/equipment/melee_defence_shocker::materials
+	origin_tech = /datum/design/mechfab/equipment/melee_defence_shocker::req_tech
 
 	equip_cooldown = 1 SECOND
 	energy_drain = 100
@@ -60,7 +62,8 @@
 	name = "armour booster module (ranged weaponry)"
 	desc = "Boosts exosuit armour against ranged attacks. Completely blocks taser shots. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
 	icon_state = "ranged_armour_booster"
-	origin_tech = list(/decl/tech/materials = 5, /decl/tech/combat = 5, /decl/tech/engineering = 3)
+	matter_amounts = /datum/design/mechfab/equipment/ranged_armour_booster::materials
+	origin_tech = /datum/design/mechfab/equipment/ranged_armour_booster::req_tech
 
 	equip_cooldown = 1 SECOND
 	energy_drain = 50

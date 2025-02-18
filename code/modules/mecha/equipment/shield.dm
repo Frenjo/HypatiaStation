@@ -78,7 +78,8 @@
 /obj/item/mecha_part/equipment/shield_droid/linear
 	name = "linear shield droid"
 	desc = "A shield droid that forms a rectangular, unidirectionally projectile-blocking wall in front of the exosuit. (Can be attached to: Any Exosuit)"
-	origin_tech = list(/decl/tech/magnets = 6, /decl/tech/plasma = 3, /decl/tech/syndicate = 4)
+	matter_amounts = /datum/design/mechfab/equipment/general/linear_shield_droid::materials
+	origin_tech = /datum/design/mechfab/equipment/general/linear_shield_droid::req_tech
 
 	shield_type = /obj/item/shield_projector/line/exosuit
 
@@ -86,6 +87,7 @@
 /obj/item/mecha_part/equipment/shield_droid/omnidirectional
 	name = "omnidirectional shield droid"
 	desc = "A shield droid that forms a rectangular, unidirectionally projectile-blocking wall around the exosuit. (Can be attached to: Any Exosuit)"
-	origin_tech = list(/decl/tech/magnets = 6, /decl/tech/plasma = 6, /decl/tech/syndicate = 6)
+	matter_amounts = /datum/design/mechfab/equipment/general/omnidirectional_shield_droid::materials
+	origin_tech = /datum/design/mechfab/equipment/general/omnidirectional_shield_droid::req_tech
 
 	shield_type = /obj/item/shield_projector/rectangle/weak/exosuit
