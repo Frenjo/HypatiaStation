@@ -66,7 +66,7 @@
 	//loop over the walls in the temple and make them a random pre-chosen mineral (null is a stand in for plasma, which the walls already are)
 	//treat plasma slightly differently because it's the default wall type
 	var/static/list/minerals = list(
-		MATERIAL_METAL, /decl/material/sandstone, /decl/material/silver, /decl/material/gold, /decl/material/diamond,
+		/decl/material/steel, /decl/material/sandstone, /decl/material/silver, /decl/material/gold, /decl/material/diamond,
 		/decl/material/uranium, /decl/material/plasma, /decl/material/bananium
 	)
 	var/mineral = pick(minerals)

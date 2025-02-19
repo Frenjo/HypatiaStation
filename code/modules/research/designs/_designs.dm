@@ -9,7 +9,9 @@ For the materials datum, it assumes you need reagents unless specified otherwise
 you use one of the material IDs below. These are NOT ids in the usual sense (they aren't defined in the object or part of a datum),
 they are simply references used as part of a "has materials?" type proc.
 The currently supported non-reagent materials are:
-- MATERIAL_METAL
+- /decl/material/iron
+- /decl/material/steel
+- /decl/material/plastic
 - /decl/material/glass
 - /decl/material/silver
 - /decl/material/gold

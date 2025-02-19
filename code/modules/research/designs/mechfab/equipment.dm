@@ -161,7 +161,7 @@
 		/decl/tech/materials = 3, /decl/tech/magnets = 4, /decl/tech/biotech = 4,
 		/decl/tech/programming = 3
 	)
-	materials = list(MATERIAL_METAL = 3000, /decl/material/glass = 2000)
+	materials = list(/decl/material/steel = 3000, /decl/material/glass = 2000)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/equipment/medical/syringe_gun
 	categories = list("Medical Exosuit Equipment")
@@ -179,7 +179,7 @@
 	name = "Reactive Armour Booster"
 	desc = "An exosuit-mounted armour booster designed to defend against melee attacks."
 	req_tech = list(/decl/tech/materials = 5, /decl/tech/combat = 4)
-	materials = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 3)
+	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 3)
 	build_path = /obj/item/mecha_part/equipment/melee_armour_booster
 	categories = list("Combat Exosuit Equipment")
 
@@ -187,7 +187,7 @@
 	name = "Melee Defence Shocker"
 	desc = "An exosuit module that electrifies the external armour to discourge melee attackers."
 	req_tech = list(/decl/tech/materials = 5, /decl/tech/combat = 4, /decl/tech/engineering = 2, /decl/tech/plasma = 2)
-	materials = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 3)
+	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 3)
 	build_path = /obj/item/mecha_part/equipment/melee_defence_shocker
 	categories = list("Combat Exosuit Equipment")
 
@@ -195,7 +195,7 @@
 	name = "Reflective Armour Booster"
 	desc = "An exosuit-mounted armor booster designed to deflect projectile attacks."
 	req_tech = list(/decl/tech/materials = 5, /decl/tech/combat = 5, /decl/tech/engineering = 3)
-	materials = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 3)
+	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 3)
 	build_path = /obj/item/mecha_part/equipment/ranged_armour_booster
 	categories = list("Combat Exosuit Equipment")
 
@@ -205,29 +205,29 @@
 	name_prefix = "Exosuit Weapon Design"
 
 /datum/design/mechfab/equipment/weapon/taser
-	materials = list(MATERIAL_METAL = 10000)
+	materials = list(/decl/material/steel = 10000)
 	build_path = /obj/item/mecha_part/equipment/weapon/energy/taser
 
 /datum/design/mechfab/equipment/weapon/disabler
-	materials = list(MATERIAL_METAL = 10000)
+	materials = list(/decl/material/steel = 10000)
 	build_path = /obj/item/mecha_part/equipment/weapon/energy/disabler
 
 /datum/design/mechfab/equipment/weapon/lmg
-	materials = list(MATERIAL_METAL = 10000)
+	materials = list(/decl/material/steel = 10000)
 	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/lmg
 
 /datum/design/mechfab/equipment/weapon/honker
-	materials = list(MATERIAL_METAL = 20000, /decl/material/bananium = 10000)
+	materials = list(/decl/material/steel = 20000, /decl/material/bananium = 10000)
 	build_time = 50 SECONDS
 	build_path = /obj/item/mecha_part/equipment/weapon/honker
 
 /datum/design/mechfab/equipment/weapon/banana_mortar
-	materials = list(MATERIAL_METAL = 20000, /decl/material/bananium = 5000)
+	materials = list(/decl/material/steel = 20000, /decl/material/bananium = 5000)
 	build_time = 30 SECONDS
 	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/launcher/banana_mortar
 
 /datum/design/mechfab/equipment/weapon/mousetrap_mortar
-	materials = list(MATERIAL_METAL = 20000, /decl/material/bananium = 5000)
+	materials = list(/decl/material/steel = 20000, /decl/material/bananium = 5000)
 	build_time = 30 SECONDS
 	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/launcher/banana_mortar/mousetrap_mortar
 
@@ -235,33 +235,33 @@
 	name = "LBX AC 10 \"Scattershot\""
 	desc = "Allows for the construction of LBX AC 10 scattershots."
 	req_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 4)
-	materials = list(MATERIAL_METAL = 10000)
+	materials = list(/decl/material/steel = 10000)
 	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/scattershot
 
 /datum/design/mechfab/equipment/weapon/laser
 	name = "CH-PS \"Immolator\" Laser"
 	desc = "Allows for the construction of CH-PS lasers."
 	req_tech = list(/decl/tech/magnets = 3, /decl/tech/combat = 3)
-	materials = list(MATERIAL_METAL = 10000)
+	materials = list(/decl/material/steel = 10000)
 	build_path = /obj/item/mecha_part/equipment/weapon/energy/laser
 
 /datum/design/mechfab/equipment/weapon/heavy_laser
 	name = "CH-LC \"Solaris\" Laser Cannon"
 	desc = "Allows for the construction of CH-LC laser cannons."
 	req_tech = list(/decl/tech/magnets = 4, /decl/tech/combat = 4)
-	materials = list(MATERIAL_METAL = 10000)
+	materials = list(/decl/material/steel = 10000)
 	build_path = /obj/item/mecha_part/equipment/weapon/energy/laser/heavy
 
 /datum/design/mechfab/equipment/weapon/grenade_launcher
 	name = "SGL-6 Grenade Launcher"
 	desc = "Allows for the construction of SGL-6 grenade launchers."
 	req_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 3)
-	materials = list(MATERIAL_METAL = 10000)
+	materials = list(/decl/material/steel = 10000)
 	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang
 
 /datum/design/mechfab/equipment/weapon/clusterbang_launcher
 	name = "SOP-6 Clusterbang Launcher"
 	desc = "Allows for the construction of SOP-6 clusterbang launchers, weapons that violate the Geneva Convention at 6 rounds per minute."
 	req_tech = list(/decl/tech/materials = 5, /decl/tech/combat = 5, /decl/tech/syndicate = 3)
-	materials = list(MATERIAL_METAL = 20000, /decl/material/gold = 6000, /decl/material/uranium = 6000)
+	materials = list(/decl/material/steel = 20000, /decl/material/gold = 6000, /decl/material/uranium = 6000)
 	build_path = /obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang/clusterbang/limited

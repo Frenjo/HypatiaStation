@@ -42,7 +42,7 @@
 	name = "Chem Sprayer"
 	desc = "An advanced chem spraying device."
 	req_tech = list(/decl/tech/materials = 3, /decl/tech/biotech = 2, /decl/tech/engineering = 3)
-	materials = list(MATERIAL_METAL = 5000, /decl/material/glass = 1000)
+	materials = list(/decl/material/steel = 5000, /decl/material/glass = 1000)
 	reliability_base = 100
 	build_path = /obj/item/reagent_holder/spray/chemsprayer
 
@@ -81,7 +81,7 @@
 	name = "Large Grenade"
 	desc = "A grenade that affects a larger area and use larger containers."
 	req_tech = list(/decl/tech/materials = 2, /decl/tech/combat = 3)
-	materials = list(MATERIAL_METAL = 3000)
+	materials = list(/decl/material/steel = 3000)
 	reliability_base = 79
 	build_path = /obj/item/grenade/chemical/large
 
@@ -89,7 +89,7 @@
 	name = "Submachine Gun"
 	desc = "A lightweight, fast firing gun."
 	req_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 4)
-	materials = list(MATERIAL_METAL = 8000, /decl/material/silver = 2000, /decl/material/diamond = 1000)
+	materials = list(/decl/material/steel = 8000, /decl/material/silver = 2000, /decl/material/diamond = 1000)
 	build_path = /obj/item/gun/projectile/automatic
 	locked = 1
 
@@ -111,5 +111,5 @@
 	name = "Plasma Pistol"
 	desc = "A specialized firearm designed to fire lethal bolts of toxins."
 	req_tech = list(/decl/tech/combat = 5, /decl/tech/plasma = 4)
-	materials = list(MATERIAL_METAL = 5000, /decl/material/glass = 1000, /decl/material/plasma = 3000)
+	materials = list(/decl/material/steel = 5000, /decl/material/glass = 1000, /decl/material/plasma = 3000)
 	build_path = /obj/item/gun/energy/toxgun

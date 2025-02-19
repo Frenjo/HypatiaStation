@@ -42,7 +42,7 @@
 	req_tech = list(/decl/tech/materials = 6, /decl/tech/engineering = 4, /decl/tech/programming = 4, /decl/tech/bluespace = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_ROBOFAB
 	materials = list(
-		MATERIAL_METAL = 2000, /decl/material/glass = 1000, /decl/material/silver = 1000,
+		/decl/material/steel = 2000, /decl/material/glass = 1000, /decl/material/silver = 1000,
 		/decl/material/gold = 500, /decl/material/diamond = 100, /decl/material/plasma = 500
 	)
 	build_time = 7.5 SECONDS

@@ -164,9 +164,9 @@
 
 /obj/machinery/door/airlock/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(isElectrified())
-		if(isitem(mover))
-			var/obj/item/i = mover
-			if(i.matter_amounts[MATERIAL_METAL])
+		if(isobj(mover))
+			var/obj/thing = mover
+			if(HAS_OBJ_FLAGS(thing, OBJ_FLAG_CONDUCT))
 				make_sparks(5, TRUE, src)
 	return ..()
 

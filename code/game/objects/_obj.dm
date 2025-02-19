@@ -7,7 +7,7 @@
 
 	//var/datum/module/mod		//not used
 
-	// Associative list of the materials this object recycles into. list(MATERIAL_METAL = 500) etc.
+	// Associative list of the materials this object recycles into. list(/decl/material/* = 500) etc.
 	var/list/matter_amounts
 
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
