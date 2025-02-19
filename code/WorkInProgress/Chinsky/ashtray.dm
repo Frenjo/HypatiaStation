@@ -80,7 +80,7 @@
 	icon_broken  = "ashtray_bork_bl"
 	max_butts = 14
 	health = 24.0
-	matter_amounts = list(MATERIAL_METAL = 30, /decl/material/glass = 30)
+	matter_amounts = list(/decl/material/plastic = 30, /decl/material/glass = 30)
 	empty_desc = "Cheap plastic ashtray."
 	throwforce = 3.0
 

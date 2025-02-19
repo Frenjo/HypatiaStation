@@ -20,7 +20,7 @@
 	w_class = 1.0
 	throw_speed = 7
 	throw_range = 15
-	matter_amounts = list(MATERIAL_METAL = 10)
+	matter_amounts = list(/decl/material/plastic = 10)
 
 	pressure_resistance = 2
 

@@ -37,7 +37,7 @@
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
-	matter_amounts = list(MATERIAL_METAL = 50)
+	matter_amounts = list(/decl/material/plastic = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
 /*
@@ -218,7 +218,7 @@
 	w_class = 2.0
 	throw_speed = 4
 	throw_range = 20
-	matter_amounts = list(MATERIAL_METAL = 100)
+	matter_amounts = list(/decl/material/plastic = 100)
 	origin_tech = list(/decl/tech/magnets = 1)
 
 	var/temp = null

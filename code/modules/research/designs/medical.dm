@@ -6,7 +6,7 @@
 	desc = "A device for analyzing chemicals in the blood."
 	req_tech = list(/decl/tech/magnets = 2, /decl/tech/biotech = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 30, /decl/material/glass = 20)
+	materials = list(/decl/material/plastic = 30, /decl/material/glass = 20)
 	reliability_base = 76
 	build_path = /obj/item/mass_spectrometer
 
@@ -15,7 +15,7 @@
 	desc = "A device for analyzing chemicals in the blood and their quantities."
 	req_tech = list(/decl/tech/magnets = 4, /decl/tech/biotech = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 30, /decl/material/glass = 20)
+	materials = list(/decl/material/plastic = 30, /decl/material/glass = 20)
 	reliability_base = 74
 	build_path = /obj/item/mass_spectrometer/adv
 
@@ -24,7 +24,7 @@
 	desc = "A device for identifying chemicals."
 	req_tech = list(/decl/tech/magnets = 2, /decl/tech/biotech = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 30, /decl/material/glass = 20)
+	materials = list(/decl/material/plastic = 30, /decl/material/glass = 20)
 	reliability_base = 76
 	build_path = /obj/item/reagent_scanner
 
@@ -33,7 +33,7 @@
 	desc = "A device for identifying chemicals and their proportions."
 	req_tech = list(/decl/tech/magnets = 4, /decl/tech/biotech = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 30, /decl/material/glass = 20)
+	materials = list(/decl/material/plastic = 30, /decl/material/glass = 20)
 	reliability_base = 74
 	build_path = /obj/item/reagent_scanner/adv
 
@@ -101,7 +101,7 @@
 	desc = "The DeForest Medical Corporation hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
 	req_tech = list(/decl/tech/materials = 4, /decl/tech/biotech = 4, /decl/tech/engineering = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 7500, /decl/material/glass = 4500, /decl/material/silver = 1500, /decl/material/gold = 1500)
+	materials = list(/decl/material/plastic = 7500, /decl/material/glass = 4500, /decl/material/silver = 1500, /decl/material/gold = 1500)
 	build_path = /obj/item/reagent_holder/hypospray
 
 /datum/design/medical/health_hud
@@ -109,7 +109,7 @@
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
 	req_tech = list(/decl/tech/magnets = 3, /decl/tech/biotech = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
+	materials = list(/decl/material/plastic = 50, /decl/material/glass = 50)
 	build_path = /obj/item/clothing/glasses/hud/health
 
 //////////////////////////
@@ -121,7 +121,7 @@
 	req_tech = list(/decl/tech/biotech = 3, /decl/tech/programming = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_ROBOFAB
 	reliability_base = 76
-	materials = list(MATERIAL_METAL = 1000, /decl/material/glass = 500)
+	materials = list(/decl/material/plastic = 1000, /decl/material/glass = 500)
 	build_time = 7.5 SECONDS
 	build_path = /obj/item/mmi
 	categories = list("Robot Internal Components")
@@ -132,7 +132,7 @@
 	req_tech = list(/decl/tech/biotech = 4, /decl/tech/programming = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_ROBOFAB
 	reliability_base = 74
-	materials = list(MATERIAL_METAL = 1200, /decl/material/glass = 500)
+	materials = list(/decl/material/plastic = 1200, /decl/material/glass = 500)
 	build_time = 7.5 SECONDS
 	build_path = /obj/item/mmi/radio_enabled
 	categories = list("Robot Internal Components")
@@ -148,7 +148,7 @@
 	desc = "Makes you loyal or such."
 	req_tech = list(/decl/tech/materials = 2, /decl/tech/biotech = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 7000, /decl/material/glass = 7000)
+	materials = list(/decl/material/plastic = 7000, /decl/material/glass = 7000)
 	build_path = /obj/item/implant/loyalty
 
 /datum/design/implant/chem
@@ -156,7 +156,7 @@
 	desc = "Injects things."
 	req_tech = list(/decl/tech/materials = 2, /decl/tech/biotech = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
+	materials = list(/decl/material/plastic = 50, /decl/material/glass = 50)
 	build_path = /obj/item/implant/chem
 
 /datum/design/implant/free
@@ -164,5 +164,5 @@
 	desc = "Use this to escape from those evil Red Shirts."
 	req_tech = list(/decl/tech/biotech = 3, /decl/tech/syndicate = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
+	materials = list(/decl/material/plastic = 50, /decl/material/glass = 50)
 	build_path = /obj/item/implant/freedom

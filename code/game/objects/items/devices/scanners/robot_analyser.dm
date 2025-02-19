@@ -17,7 +17,7 @@
 	throw_speed = 5
 	throw_range = 10
 
-	matter_amounts = list(MATERIAL_METAL = 200)
+	matter_amounts = list(/decl/material/plastic = 200, /decl/material/glass = 50)
 	origin_tech = list(/decl/tech/magnets = 1, /decl/tech/biotech = 1)
 
 /obj/item/robot_analyser/attack(mob/living/M, mob/living/user)

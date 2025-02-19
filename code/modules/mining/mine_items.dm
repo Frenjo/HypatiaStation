@@ -68,7 +68,7 @@
 	force = 15
 	throwforce = 4
 	w_class = 4
-	matter_amounts = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET) //one sheet, but where can you make them?
+	matter_amounts = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET) //one sheet, but where can you make them?
 	origin_tech = list(/decl/tech/materials = 1, /decl/tech/engineering = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	sharp = 1

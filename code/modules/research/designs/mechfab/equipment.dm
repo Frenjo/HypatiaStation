@@ -9,13 +9,13 @@
 	categories = list("General Exosuit Equipment")
 
 /datum/design/mechfab/equipment/general/tracking
-	materials = list(MATERIAL_METAL = 500)
+	materials = list(/decl/material/plastic = 500)
 	build_time = 5 SECONDS
 	build_path = /obj/item/mecha_part/tracking
 
 /datum/design/mechfab/equipment/general/passenger_compartment
 	req_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 1, /decl/tech/engineering = 1)
-	materials = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 3, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3)
+	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 3, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3)
 	build_path = /obj/item/mecha_part/equipment/passenger
 
 /*
@@ -27,21 +27,21 @@
 	name = "Wormhole Generator"
 	desc = "An exosuit module that allows the generation of small quasi-stable wormholes."
 	req_tech = list(/decl/tech/magnets = 2, /decl/tech/bluespace = 3)
-	materials = list(MATERIAL_METAL = 10000)
+	materials = list(/decl/material/steel = 10000)
 	build_path = /obj/item/mecha_part/equipment/wormhole_generator
 
 /datum/design/mechfab/equipment/general/teleporter
 	name = "Teleporter"
 	desc = "An exosuit module that allows teleportation to any position in view."
 	req_tech = list(/decl/tech/magnets = 5, /decl/tech/bluespace = 10)
-	materials = list(MATERIAL_METAL = 10000)
+	materials = list(/decl/material/steel = 10000)
 	build_path = /obj/item/mecha_part/equipment/teleporter
 
 /datum/design/mechfab/equipment/general/gravcatapult
 	name = "Gravitational Catapult"
 	desc = "An exosuit mounted gravitational catapult."
 	req_tech = list(/decl/tech/magnets = 3, /decl/tech/engineering = 3, /decl/tech/bluespace = 2)
-	materials = list(MATERIAL_METAL = 10000)
+	materials = list(/decl/material/steel = 10000)
 	build_path = /obj/item/mecha_part/equipment/gravcatapult
 
 /datum/design/mechfab/equipment/general/repair_droid
@@ -49,7 +49,7 @@
 	desc = "An automated exosuit repair droid. BEEP BOOP!"
 	req_tech = list(/decl/tech/magnets = 3, /decl/tech/engineering = 3, /decl/tech/programming = 3)
 	materials = list(
-		MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3,
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3,
 		/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET
 	)
 	build_path = /obj/item/mecha_part/equipment/repair_droid
@@ -59,7 +59,7 @@
 	desc = "An automated exosuit shield droid. Deploys a large, familiar, and rectangular shield in one direction at a time. BEEP BOOP!"
 	req_tech = list(/decl/tech/magnets = 6, /decl/tech/plasma = 3, /decl/tech/syndicate = 4)
 	materials = list(
-		MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3,
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3,
 		/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET,
 		/decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 3
 	)
@@ -70,7 +70,7 @@
 	desc = "An automated exosuit shield droid. Deploys a small, but familiar, and rectangular shield that surrounds an exosuit. BEEP BOOP!"
 	req_tech = list(/decl/tech/magnets = 6, /decl/tech/plasma = 6, /decl/tech/syndicate = 6)
 	materials = list(
-		MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 4,
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 4,
 		/decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 3, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 2,
 		/decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 4
 	)
@@ -80,21 +80,21 @@
 	name = "Tesla Energy Relay"
 	desc = "An exosuit-mounted energy relay that allows wireless charging from nearby APCs. It isn't very good, though..."
 	req_tech = list(/decl/tech/magnets = 4, /decl/tech/power_storage = 3)
-	materials = list(MATERIAL_METAL = 10000, /decl/material/glass = 2000, /decl/material/silver = 3000, /decl/material/gold = 2000)
+	materials = list(/decl/material/steel = 10000, /decl/material/glass = 2000, /decl/material/silver = 3000, /decl/material/gold = 2000)
 	build_path = /obj/item/mecha_part/equipment/tesla_energy_relay
 
 /datum/design/mechfab/equipment/general/plasma_generator
 	name = "Plasma Converter"
 	desc = "An exosuit-mounted plasma converter module."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 2, /decl/tech/plasma = 2)
-	materials = list(MATERIAL_METAL = 10000, /decl/material/glass = 1000, /decl/material/silver = 500)
+	materials = list(/decl/material/steel = 10000, /decl/material/glass = 1000, /decl/material/silver = 500)
 	build_path = /obj/item/mecha_part/equipment/generator
 
 /datum/design/mechfab/equipment/general/nuclear_generator
 	name = "ExoNuclear Reactor"
 	desc = "An exosuit-mounted compact nuclear reactor module."
 	req_tech = list(/decl/tech/materials = 3, /decl/tech/engineering = 3, /decl/tech/power_storage = 3)
-	materials = list(MATERIAL_METAL = 10000, /decl/material/glass = 1000, /decl/material/silver = 500)
+	materials = list(/decl/material/steel = 10000, /decl/material/glass = 1000, /decl/material/silver = 500)
 	build_path = /obj/item/mecha_part/equipment/generator/nuclear
 
 // Working
@@ -102,19 +102,19 @@
 	categories = list("Working Exosuit Equipment")
 
 /datum/design/mechfab/equipment/working/hydraulic_clamp
-	materials = list(MATERIAL_METAL = 10000)
+	materials = list(/decl/material/steel = 10000)
 	build_path = /obj/item/mecha_part/equipment/tool/hydraulic_clamp
 
 /datum/design/mechfab/equipment/working/drill
-	materials = list(MATERIAL_METAL = 10000)
+	materials = list(/decl/material/steel = 10000)
 	build_path = /obj/item/mecha_part/equipment/tool/drill
 
 /datum/design/mechfab/equipment/working/extinguisher
-	materials = list(MATERIAL_METAL = 10000)
+	materials = list(/decl/material/steel = 10000)
 	build_path = /obj/item/mecha_part/equipment/tool/extinguisher
 
 /datum/design/mechfab/equipment/working/cable_layer
-	materials = list(MATERIAL_METAL = 10000)
+	materials = list(/decl/material/steel = 10000)
 	build_path = /obj/item/mecha_part/equipment/tool/cable_layer
 
 /datum/design/mechfab/equipment/working/rcd
@@ -150,7 +150,7 @@
 	name = "Diamond Mining Drill"
 	desc = "An upgraded version of the standard exosuit drill."
 	req_tech = list(/decl/tech/materials = 4, /decl/tech/engineering = 3)
-	materials = list(MATERIAL_METAL = 10000, /decl/material/diamond = 6500)
+	materials = list(/decl/material/steel = 10000, /decl/material/diamond = 6500)
 	build_path = /obj/item/mecha_part/equipment/tool/drill/diamond
 
 // Medical

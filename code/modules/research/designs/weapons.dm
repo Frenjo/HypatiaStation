@@ -97,14 +97,14 @@
 	name = "Ammunition Box (9mm)"
 	desc = "A box of prototype 9mm ammunition."
 	req_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 4)
-	materials = list(MATERIAL_METAL = MATERIAL_AMOUNT_PER_SHEET, /decl/material/silver = 100)
+	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET, /decl/material/silver = 100)
 	build_path = /obj/item/ammo_magazine/c9mm
 
 /datum/design/weapon/stunshell
 	name = "Stun Shell"
 	desc = "A stunning shell for a shotgun."
 	req_tech = list(/decl/tech/materials = 3, /decl/tech/combat = 3)
-	materials = list(MATERIAL_METAL = 4000)
+	materials = list(/decl/material/steel = 4000)
 	build_path = /obj/item/ammo_casing/shotgun/stunshell
 
 /datum/design/weapon/plasmapistol

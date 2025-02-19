@@ -38,18 +38,18 @@
 /datum/design/autolathe/multitool
 	name = "Multitool"
 	req_tech = list(/decl/tech/magnets = 1, /decl/tech/engineering = 1)
-	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 20)
+	materials = list(/decl/material/plastic = 50, /decl/material/glass = 20)
 	build_path = /obj/item/multitool
 
 /datum/design/autolathe/t_scanner
 	name = "T-Ray Scanner"
 	req_tech = list(/decl/tech/magnets = 1, /decl/tech/engineering = 1)
-	materials = list(MATERIAL_METAL = 150)
+	materials = list(/decl/material/plastic = 150, /decl/material/glass = 20)
 	build_path = /obj/item/t_scanner
 
 /datum/design/autolathe/flashlight
 	name = "Flashlight"
-	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 20)
+	materials = list(/decl/material/plastic = 50, /decl/material/glass = 20)
 	build_path = /obj/item/flashlight
 
 /datum/design/autolathe/extinguisher
@@ -66,12 +66,12 @@
 
 /datum/design/autolathe/tape_recorder
 	name = "Tape Recorder"
-	materials = list(MATERIAL_METAL = 60, /decl/material/glass = 30)
+	materials = list(/decl/material/plastic = 60, /decl/material/glass = 30)
 	build_path = /obj/item/taperecorder
 
 /datum/design/autolathe/bucket
 	name = "Bucket"
-	materials = list(MATERIAL_METAL = 200)
+	materials = list(/decl/material/plastic = 200)
 	build_type = /obj/item/reagent_holder/glass/bucket
 
 /datum/design/autolathe/rcd

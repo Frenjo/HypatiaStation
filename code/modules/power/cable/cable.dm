@@ -463,7 +463,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	w_class = 2.0
 	throw_speed = 2
 	throw_range = 5
-	matter_amounts = list(MATERIAL_METAL = 50, /decl/material/glass = 20)
+	matter_amounts = list(/decl/material/steel = 50, /decl/material/plastic = 20)
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 

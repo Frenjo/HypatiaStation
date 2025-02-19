@@ -77,7 +77,7 @@
 	desc = "When a problem arises, SCIENCE is the solution."
 	req_tech = list(/decl/tech/magnets = 3, /decl/tech/combat = 2)
 	reliability_base = 76
-	materials = list(MATERIAL_METAL = 750, /decl/material/glass = 750)
+	materials = list(/decl/material/plastic = 750, /decl/material/glass = 750)
 	build_time = 10 SECONDS
 	build_path = /obj/item/flash/synthetic
 	categories = list("Robot Internal Components")

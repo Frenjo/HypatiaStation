@@ -18,7 +18,7 @@
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
-	matter_amounts = list(MATERIAL_METAL = 400)
+	matter_amounts = list(/decl/material/plastic = 400)
 	origin_tech = list(/decl/tech/magnets = 1)
 
 	var/temp = null

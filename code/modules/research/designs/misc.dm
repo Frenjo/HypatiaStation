@@ -6,7 +6,7 @@
 	desc = "Produce additional disks for storing device designs."
 	req_tech = list(/decl/tech/programming = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
-	materials = list(MATERIAL_METAL = 30, /decl/material/glass = 10)
+	materials = list(/decl/material/iron = 15, /decl/material/plastic = 15)
 	build_path = /obj/item/disk/design
 
 /datum/design/tech_disk
@@ -14,7 +14,7 @@
 	desc = "Produce additional disks for storing technology data."
 	req_tech = list(/decl/tech/programming = 1)
 	build_type = DESIGN_TYPE_PROTOLATHE | DESIGN_TYPE_AUTOLATHE
-	materials = list(MATERIAL_METAL = 30, /decl/material/glass = 10)
+	materials = list(/decl/material/iron = 15, /decl/material/plastic = 15)
 	build_path = /obj/item/disk/tech
 
 ////////////////////////////////////////////////
@@ -33,7 +33,7 @@
 	desc = "Allows for the construction of a pAI Card"
 	req_tech = list(/decl/tech/programming = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(/decl/material/glass = 500, MATERIAL_METAL = 500)
+	materials = list(/decl/material/plastic = 500, /decl/material/glass = 500)
 	build_path = /obj/item/paicard
 
 /datum/design/posibrain
@@ -65,6 +65,6 @@
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status."
 	req_tech = list(/decl/tech/magnets = 3, /decl/tech/combat = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
+	materials = list(/decl/material/plastic = 50, /decl/material/glass = 50)
 	build_path = /obj/item/clothing/glasses/hud/security
 	locked = 1
