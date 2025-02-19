@@ -25,7 +25,7 @@
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "c_tube"
-	matter_amounts = list(MATERIAL_METAL = 60, /decl/material/glass = 100)
+	matter_amounts = /datum/design/autolathe/light_tube::materials
 
 	brightness_range = 6
 	brightness_power = 2
@@ -48,7 +48,7 @@
 	icon_state = "lbulb"
 	base_state = "lbulb"
 	item_state = "contvapour"
-	matter_amounts = list(MATERIAL_METAL = 60, /decl/material/glass = 100)
+	matter_amounts = /datum/design/autolathe/light_bulb::materials
 
 	brightness_range = 4
 	brightness_power = 2

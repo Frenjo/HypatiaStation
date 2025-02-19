@@ -11,8 +11,8 @@
 	w_class = 2
 	slot_flags = SLOT_BELT
 
-	matter_amounts = list(MATERIAL_METAL = 150)
-	origin_tech = list(/decl/tech/magnets = 1, /decl/tech/engineering = 1)
+	matter_amounts = /datum/design/autolathe/t_scanner::materials
+	origin_tech = /datum/design/autolathe/t_scanner::req_tech
 
 	var/on = FALSE
 

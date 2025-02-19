@@ -5,7 +5,7 @@
 	icon_state = "taperecorderidle"
 	item_state = "analyser"
 	w_class = 1.0
-	matter_amounts = list(MATERIAL_METAL = 60, /decl/material/glass = 30)
+	matter_amounts = /datum/design/autolathe/tape_recorder::materials
 
 	obj_flags = OBJ_FLAG_CONDUCT
 	throwforce = 2

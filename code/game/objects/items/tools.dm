@@ -27,8 +27,8 @@
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
-	matter_amounts = list(/decl/material/steel = 150)
-	origin_tech = list(/decl/tech/materials = 1, /decl/tech/engineering = 1)
+	matter_amounts = /datum/design/autolathe/wrench::materials
+	origin_tech = /datum/design/autolathe/wrench::req_tech
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 
 /*
@@ -49,7 +49,8 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	matter_amounts = list(/decl/material/steel = 75)
+	matter_amounts = /datum/design/autolathe/screwdriver::materials
+	origin_tech = /datum/design/autolathe/screwdriver::req_tech
 	attack_verb = list("stabbed")
 
 /obj/item/screwdriver/suicide_act(mob/user)
@@ -114,8 +115,8 @@
 	throw_speed = 2
 	throw_range = 9
 	w_class = 2.0
-	matter_amounts = list(/decl/material/steel = 80)
-	origin_tech = list(/decl/tech/materials = 1, /decl/tech/engineering = 1)
+	matter_amounts = /datum/design/autolathe/wirecutters::materials
+	origin_tech = /datum/design/autolathe/wirecutters::req_tech
 	attack_verb = list("pinched", "nipped")
 	sharp = 1
 	edge = 1
@@ -162,10 +163,10 @@
 	w_class = 2.0
 
 	//Cost to make in the autolathe
-	matter_amounts = list(/decl/material/steel = 70, /decl/material/glass = 30)
+	matter_amounts = /datum/design/autolathe/welding_tool::materials
 
 	//R&D tech level
-	origin_tech = list(/decl/tech/engineering = 1)
+	origin_tech = /datum/design/autolathe/welding_tool::req_tech
 
 	//Welding tool specific stuff
 	var/welding = WELDING_TOOL_OFF	//Whether or not the welding tool is off(0), on(1) or currently welding(2)
@@ -432,7 +433,7 @@
 /obj/item/weldingtool/largetank
 	name = "industrial welding tool"
 	max_fuel = 40
-	matter_amounts = list(/decl/material/steel = 70, /decl/material/glass = 60)
+	matter_amounts = /datum/design/autolathe/industrial_welding_tool::materials
 	origin_tech = list(/decl/tech/engineering = 2)
 
 /obj/item/weldingtool/hugetank
@@ -474,8 +475,8 @@
 	throwforce = 7.0
 	item_state = "crowbar"
 	w_class = 2.0
-	matter_amounts = list(/decl/material/steel = 50)
-	origin_tech = list(/decl/tech/engineering = 1)
+	matter_amounts = /datum/design/autolathe/crowbar::materials
+	origin_tech = /datum/design/autolathe/crowbar::req_tech
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 
 /obj/item/crowbar/red
@@ -503,6 +504,6 @@
 	throw_range = 15
 	throw_speed = 3
 	desc = "You can use this on airlocks or APCs to try to hack them without cutting wires."
-	matter_amounts = list(MATERIAL_METAL = 50, /decl/material/glass = 20)
-	origin_tech = list(/decl/tech/magnets = 1, /decl/tech/engineering = 1)
+	matter_amounts = /datum/design/autolathe/multitool::materials
+	origin_tech = /datum/design/autolathe/multitool::req_tech
 	var/obj/machinery/telecoms/buffer // simple machine buffer for device linkage

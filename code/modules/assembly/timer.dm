@@ -2,8 +2,8 @@
 	name = "timer"
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	icon_state = "timer"
-	matter_amounts = list(MATERIAL_METAL = 500, /decl/material/glass = 50)
-	origin_tech = list(/decl/tech/magnets = 1)
+	matter_amounts = /datum/design/autolathe/timer::materials
+	origin_tech = /datum/design/autolathe/timer::req_tech
 
 	wires = WIRE_PULSE
 

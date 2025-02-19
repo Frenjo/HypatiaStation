@@ -4,8 +4,8 @@
 	name = "infrared emitter"
 	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
 	icon_state = "infrared"
-	matter_amounts = list(MATERIAL_METAL = 1000, /decl/material/glass = 500)
-	origin_tech = list(/decl/tech/magnets = 2)
+	matter_amounts = /datum/design/autolathe/infrared_emitter::materials
+	origin_tech = /datum/design/autolathe/infrared_emitter::req_tech
 
 	wires = WIRE_PULSE
 

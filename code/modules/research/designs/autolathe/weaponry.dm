@@ -15,6 +15,7 @@
 
 /datum/design/autolathe/flamethrower
 	name = "Flamethrower"
+	req_tech = list(/decl/tech/combat = 1, /decl/tech/plasma = 1)
 	materials = list(/decl/material/steel = 500)
 	build_path = /obj/item/flamethrower/full
 	hidden = TRUE

@@ -15,6 +15,7 @@
 
 /datum/design/autolathe/handcuffs
 	name = "Handcuffs"
+	req_tech = list(/decl/tech/materials = 1)
 	materials = list(/decl/material/steel = 500)
 	build_type = /obj/item/handcuffs
 	hidden = TRUE

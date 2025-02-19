@@ -10,8 +10,8 @@
 	w_class = 2.0
 	throw_speed = 2
 	throw_range = 5
-	matter_amounts = list(/decl/material/steel = 500)
-	origin_tech = list(/decl/tech/materials = 1)
+	matter_amounts = /datum/design/autolathe/handcuffs::materials
+	origin_tech = /datum/design/autolathe/handcuffs::req_tech
 
 	var/dispenser = 0
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes

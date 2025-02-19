@@ -3,6 +3,8 @@
 	desc = "A box of .357 ammo"
 	icon_state = "357"
 
+	matter_amounts = /datum/design/autolathe/a357::materials
+
 	ammo_type = /obj/item/ammo_casing/a357
 	max_ammo = 7
 	multiple_sprites = TRUE
@@ -19,6 +21,8 @@
 	name = "magazine (.45)"
 	icon_state = "45"
 
+	matter_amounts = /datum/design/autolathe/c45m::materials
+
 	ammo_type = /obj/item/ammo_casing/c45
 	max_ammo = 7
 	multiple_sprites = TRUE
@@ -29,6 +33,8 @@
 /obj/item/ammo_magazine/c45r
 	name = "magazine (.45 rubber)"
 	icon_state = "45"
+
+	matter_amounts = /datum/design/autolathe/c45r::materials
 
 	ammo_type = /obj/item/ammo_casing/c45r
 	max_ammo = 7

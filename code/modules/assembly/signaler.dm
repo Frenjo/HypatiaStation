@@ -3,8 +3,8 @@
 	desc = "Used to remotely activate devices."
 	icon_state = "signaller"
 	item_state = "signaler"
-	matter_amounts = list(MATERIAL_METAL = 1000, /decl/material/glass = 200)
-	origin_tech = list(/decl/tech/magnets = 1)
+	matter_amounts = /datum/design/autolathe/signaler::materials
+	origin_tech = /datum/design/autolathe/signaler::req_tech
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 
 	secured = 1

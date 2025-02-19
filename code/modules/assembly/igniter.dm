@@ -2,8 +2,8 @@
 	name = "igniter"
 	desc = "A small electronic device able to ignite combustable substances."
 	icon_state = "igniter"
-	matter_amounts = list(MATERIAL_METAL = 500, /decl/material/glass = 50)
-	origin_tech = list(/decl/tech/magnets = 1)
+	matter_amounts = /datum/design/autolathe/igniter::materials
+	origin_tech = /datum/design/autolathe/igniter::req_tech
 
 	secured = 1
 	wires = WIRE_RECEIVE

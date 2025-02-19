@@ -5,7 +5,7 @@
 	icon = 'icons/obj/doors/door_assembly.dmi'
 	icon_state = "door_electronics"
 	w_class = 2.0 // It should be tiny! -Agouri
-	matter_amounts = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
+	matter_amounts = /datum/design/autolathe/airlock_electronics::materials
 
 	req_access = list(ACCESS_ENGINE)
 

@@ -163,8 +163,8 @@
 	throwforce = 6.0
 	throw_speed = 3
 	throw_range = 6
-	matter_amounts = list(/decl/material/steel = 12000)
-	origin_tech = list(/decl/tech/materials = 1)
+	matter_amounts = /datum/design/autolathe/kitchen_knife::materials
+	origin_tech = /datum/design/autolathe/kitchen_knife::req_tech
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/kitchenknife/suicide_act(mob/user)

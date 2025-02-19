@@ -63,7 +63,7 @@
 	desc = "A 12 gauge shell."
 	icon_state = "gshell"
 
-	matter_amounts = list(MATERIAL_METAL = 12500)
+	matter_amounts = /datum/design/autolathe/shotgun_shell::materials
 
 	caliber = "shotgun"
 	projectile_type = /obj/item/projectile/bullet
@@ -73,7 +73,7 @@
 	desc = "A blank shell."
 	icon_state = "blshell"
 
-	matter_amounts = list(MATERIAL_METAL = 250)
+	matter_amounts = /datum/design/autolathe/blank_shotgun_shell::materials
 	projectile_type = null
 
 /obj/item/ammo_casing/shotgun/beanbag
@@ -81,7 +81,7 @@
 	desc = "A weak beanbag shell."
 	icon_state = "bshell"
 
-	matter_amounts = list(MATERIAL_METAL = 500)
+	matter_amounts = /datum/design/autolathe/beanbag_shell::materials
 	projectile_type = /obj/item/projectile/bullet/weakbullet/beanbag
 
 /obj/item/ammo_casing/shotgun/stunshell
@@ -97,6 +97,8 @@
 	name = "shotgun darts"
 	desc = "A dart for use in shotguns."
 	icon_state = "dart"
+
+	matter_amounts = /datum/design/autolathe/shotgun_dart::materials
 
 	projectile_type = /obj/item/projectile/energy/dart
 

@@ -122,7 +122,7 @@
 	icon_broken  = "ashtray_bork_gl"
 	max_butts = 12
 	health = 12.0
-	matter_amounts = list(/decl/material/glass = 60)
+	matter_amounts = /datum/design/autolathe/glass_ashtray::materials
 	empty_desc = "Glass ashtray. Looks fragile."
 	throwforce = 6.0
 

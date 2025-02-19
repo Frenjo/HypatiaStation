@@ -162,7 +162,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "beaker"
 	item_state = "beaker"
-	matter_amounts = list(/decl/material/glass = 500)
+	matter_amounts = /datum/design/autolathe/beaker::materials
 
 /obj/item/reagent_holder/glass/beaker/on_reagent_change()
 	update_icon()
@@ -214,7 +214,7 @@
 	name = "large beaker"
 	desc = "A large beaker. Can hold up to 100 units."
 	icon_state = "beakerlarge"
-	matter_amounts = list(/decl/material/glass = 5000)
+	matter_amounts = /datum/design/autolathe/large_beaker::materials
 	volume = 100
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 25, 30, 50, 100)
@@ -246,7 +246,7 @@
 	name = "vial"
 	desc = "A small glass vial. Can hold up to 25 units."
 	icon_state = "vial"
-	matter_amounts = list(/decl/material/glass = 250)
+	matter_amounts = /datum/design/autolathe/vial::materials
 	volume = 25
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5, 10, 15, 25)
@@ -279,7 +279,7 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "bucket"
 	item_state = "bucket"
-	matter_amounts = list(MATERIAL_METAL = 200)
+	matter_amounts = /datum/design/autolathe/bucket::materials
 	w_class = 3.0
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10, 20, 30, 50, 70)

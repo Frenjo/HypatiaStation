@@ -28,7 +28,7 @@
 	icon_state = "door_electronics"
 	desc = "Looks like a circuit. Probably is."
 	w_class = 2.0
-	matter_amounts = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
+	matter_amounts = /datum/design/autolathe/air_alarm_electronics::materials
 
 //all air alarms in area are connected via magic
 /area

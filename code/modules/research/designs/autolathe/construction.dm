@@ -23,26 +23,31 @@
 // Assembly Components
 /datum/design/autolathe/igniter
 	name = "Igniter"
+	req_tech = list(/decl/tech/magnets = 1)
 	materials = list(MATERIAL_METAL = 500, /decl/material/glass = 50)
 	build_path = /obj/item/assembly/igniter
 
 /datum/design/autolathe/signaler
 	name = "Remote Signalling Device"
+	req_tech = list(/decl/tech/magnets = 1)
 	materials = list(MATERIAL_METAL = 1000, /decl/material/glass = 200)
 	build_path = /obj/item/assembly/signaler
 
 /datum/design/autolathe/infrared_emitter
 	name = "Infrared Emitter"
+	req_tech = list(/decl/tech/magnets = 1)
 	materials = list(MATERIAL_METAL = 1000, /decl/material/glass = 500)
 	build_path = /obj/item/assembly/infra
 
 /datum/design/autolathe/timer
 	name = "Timer"
+	req_tech = list(/decl/tech/magnets = 1)
 	materials = list(MATERIAL_METAL = 500, /decl/material/glass = 50)
 	build_path = /obj/item/assembly/timer
 
 /datum/design/autolathe/proximity_sensor
 	name = "Proximity Sensor"
+	req_tech = list(/decl/tech/magnets = 1)
 	materials = list(MATERIAL_METAL = 800, /decl/material/glass = 200)
 	build_path = /obj/item/assembly/prox_sensor
 
@@ -65,5 +70,6 @@
 
 /datum/design/autolathe/compressed_matter
 	name = "Compressed Matter Cartridge"
+	req_tech = list(/decl/tech/materials = 1)
 	materials = list(MATERIAL_METAL = 30000, /decl/material/glass = 15000)
 	build_path = /obj/item/rcd_ammo

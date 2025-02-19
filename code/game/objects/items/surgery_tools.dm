@@ -19,10 +19,10 @@
 	desc = "Retracts stuff."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "retractor"
-	matter_amounts = list(/decl/material/steel = 10000, /decl/material/glass = 5000)
+	matter_amounts = /datum/design/autolathe/retractor::materials
+	origin_tech = /datum/design/autolathe/retractor::req_tech
 	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 2.0
-	origin_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 1)
 
 /*
  * Hemostat
@@ -32,10 +32,10 @@
 	desc = "You think you have seen this before."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "hemostat"
-	matter_amounts = list(/decl/material/steel = 5000, /decl/material/glass = 2500)
+	matter_amounts = /datum/design/autolathe/hemostat::materials
+	origin_tech = /datum/design/autolathe/hemostat::req_tech
 	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 2.0
-	origin_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 1)
 	attack_verb = list("attacked", "pinched")
 
 /*
@@ -46,10 +46,10 @@
 	desc = "This stops bleeding."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "cautery"
-	matter_amounts = list(/decl/material/steel = 5000, /decl/material/glass = 2500)
+	matter_amounts = /datum/design/autolathe/cautery::materials
+	origin_tech = /datum/design/autolathe/cautery::req_tech
 	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 2.0
-	origin_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 1)
 	attack_verb = list("burnt")
 
 /*
@@ -61,11 +61,11 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "drill"
 	hitsound = 'sound/weapons/circsawhit.ogg'
-	matter_amounts = list(/decl/material/steel = 15000, /decl/material/glass = 10000)
+	matter_amounts = /datum/design/autolathe/surgical_drill::materials
+	origin_tech = /datum/design/autolathe/surgical_drill::req_tech
 	obj_flags = OBJ_FLAG_CONDUCT
 	force = 15.0
 	w_class = 2.0
-	origin_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 1)
 	attack_verb = list("drilled")
 
 /obj/item/surgicaldrill/suicide_act(mob/user)
@@ -92,8 +92,8 @@
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
-	matter_amounts = list(/decl/material/steel = 10000, /decl/material/glass = 5000)
-	origin_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 1)
+	matter_amounts = /datum/design/autolathe/scalpel::materials
+	origin_tech = /datum/design/autolathe/scalpel::req_tech
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/scalpel/suicide_act(mob/user)
@@ -157,8 +157,8 @@
 	throwforce = 9.0
 	throw_speed = 3
 	throw_range = 5
-	matter_amounts = list(/decl/material/steel = 20000, /decl/material/glass = 10000)
-	origin_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 1)
+	matter_amounts = /datum/design/autolathe/circular_saw::materials
+	origin_tech = /datum/design/autolathe/circular_saw::req_tech
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
 	sharp = 1
 	edge = 1

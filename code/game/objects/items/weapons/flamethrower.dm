@@ -10,8 +10,8 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 3.0
-	matter_amounts = list(/decl/material/steel = 500)
-	origin_tech = list(/decl/tech/combat = 1, /decl/tech/plasma = 1)
+	matter_amounts = /datum/design/autolathe/flamethrower::materials
+	origin_tech = /datum/design/autolathe/flamethrower::req_tech
 
 	var/status = 0
 	var/throw_amount = 100

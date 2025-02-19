@@ -21,7 +21,7 @@ RCD
 	throw_speed = 1
 	throw_range = 5
 	w_class = 3.0
-	matter_amounts = list(MATERIAL_METAL = 50000)
+	matter_amounts = /datum/design/autolathe/rcd::materials
 	origin_tech = list(/decl/tech/materials = 2, /decl/tech/engineering = 4)
 
 	var/datum/effect/system/spark_spread/spark_system
@@ -210,5 +210,5 @@ RCD
 	opacity = FALSE
 	density = FALSE
 	anchored = FALSE
-	origin_tech = list(/decl/tech/materials = 2)
-	matter_amounts = list(MATERIAL_METAL = 30000, /decl/material/glass = 15000)
+	matter_amounts = /datum/design/autolathe/compressed_matter::materials
+	origin_tech = /datum/design/autolathe/compressed_matter::req_tech

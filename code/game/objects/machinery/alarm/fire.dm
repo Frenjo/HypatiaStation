@@ -8,7 +8,7 @@
 	icon_state = "door_electronics"
 	desc = "A circuit. It has a label on it, it says \"Can handle heat levels up to 40 degrees celsius!\""
 	w_class = 2.0
-	matter_amounts = list(MATERIAL_METAL = 50, /decl/material/glass = 50)
+	matter_amounts = /datum/design/autolathe/fire_alarm_electronics::materials
 
 /*
  * Fire Alarm

@@ -3,7 +3,7 @@
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
 	icon_state = "headset"
 	item_state = "headset"
-	matter_amounts = list(MATERIAL_METAL = 75)
+	matter_amounts = /datum/design/autolathe/radio_headset::materials
 	subspace_transmission = 1
 	canhear_range = 0 // can't hear headsets from very far away
 
