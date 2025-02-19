@@ -125,7 +125,7 @@
 		/decl/tech/power_storage = 4, /decl/tech/bluespace = 3
 	)
 	materials = list(
-		MATERIAL_METAL = 30000, /decl/material/silver = 20000,
+		/decl/material/steel = 30000, /decl/material/silver = 20000,
 		/decl/material/gold = 20000, /decl/material/plasma = 25000
 	)
 	build_time = 2 MINUTES
@@ -139,7 +139,7 @@
 		/decl/tech/power_storage = 4, /decl/tech/bluespace = 3
 	)
 	materials = list(
-		MATERIAL_METAL = 30000, /decl/material/silver = 20000,
+		/decl/material/steel = 30000, /decl/material/silver = 20000,
 		/decl/material/gold = 20000, /decl/material/plasma = 25000,
 		/decl/material/tranquilite = 10000
 	)
@@ -170,7 +170,7 @@
 	name = "Mounted Sleeper"
 	desc = "An exosuit-mounted medical sleeper."
 	req_tech = list(/decl/tech/biotech = 3, /decl/tech/programming = 2)
-	materials = list(MATERIAL_METAL = 5000, /decl/material/glass = 10000)
+	materials = list(/decl/material/steel = 5000, /decl/material/glass = 10000)
 	build_path = /obj/item/mecha_part/equipment/medical/sleeper
 	categories = list("Medical Exosuit Equipment")
 

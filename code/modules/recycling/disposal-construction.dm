@@ -9,7 +9,7 @@
 	anchored = FALSE
 	density = FALSE
 	pressure_resistance = 5 * ONE_ATMOSPHERE
-	matter_amounts = list(MATERIAL_METAL = 1850)
+	matter_amounts = list(/decl/material/steel = 1850)
 	level = 2
 
 	var/ptype = 0

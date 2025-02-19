@@ -42,7 +42,7 @@
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
 	req_tech = list(/decl/tech/materials = 4, /decl/tech/engineering = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 7000, /decl/material/glass = 7000)
+	materials = list(/decl/material/steel = 7000, /decl/material/glass = 7000)
 	build_path = /obj/item/stack/nanopaste
 
 /datum/design/medical/noreactbeaker
@@ -50,7 +50,7 @@
 	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 50 units."
 	req_tech = list(/decl/tech/materials = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 3000)
+	materials = list(/decl/material/steel = 3000)
 	reliability_base = 76
 	build_path = /obj/item/reagent_holder/glass/beaker/noreact
 
@@ -59,7 +59,7 @@
 	desc = "A bluespace beaker, powered by experimental bluespace technology and Element Cuban combined with the Compound Pete. Can hold up to 300 units."
 	req_tech = list(/decl/tech/materials = 6, /decl/tech/bluespace = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 3000, /decl/material/diamond = 500, /decl/material/plasma = 3000)
+	materials = list(/decl/material/steel = 3000, /decl/material/diamond = 500, /decl/material/plasma = 3000)
 	reliability_base = 76
 	build_path = /obj/item/reagent_holder/glass/beaker/bluespace
 

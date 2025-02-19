@@ -22,6 +22,6 @@
 
 /datum/design/autolathe/electropack
 	name = "Electropack"
-	materials = list(MATERIAL_METAL = 10000, /decl/material/glass = 2500)
+	materials = list(/decl/material/plastic = 10000, /decl/material/glass = 2500)
 	build_type = /obj/item/radio/electropack
 	hidden = TRUE

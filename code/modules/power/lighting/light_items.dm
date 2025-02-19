@@ -6,7 +6,7 @@
 	force = 2
 	throwforce = 5
 	w_class = 1
-	matter_amounts = list(MATERIAL_METAL = 60)
+	matter_amounts = list(/decl/material/iron = 60)
 
 	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/base_state
@@ -63,7 +63,7 @@
 	icon_state = "fbulb"
 	base_state = "fbulb"
 	item_state = "egg4"
-	matter_amounts = list(MATERIAL_METAL = 60, /decl/material/glass = 100)
+	matter_amounts = list(/decl/material/iron = 60, /decl/material/glass = 100)
 
 	brightness_range = 4
 	brightness_power = 2

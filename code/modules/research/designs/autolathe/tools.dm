@@ -76,6 +76,6 @@
 
 /datum/design/autolathe/rcd
 	name = "Rapid Construction Device"
-	materials = list(MATERIAL_METAL = 50000)
+	materials = list(/decl/material/steel = 50000)
 	build_type = /obj/item/rcd
 	hidden = TRUE

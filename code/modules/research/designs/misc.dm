@@ -57,7 +57,7 @@
 	desc = "A device to automatically replace lights. Refill with working lightbulbs."
 	req_tech = list(/decl/tech/materials = 3, /decl/tech/magnets = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(MATERIAL_METAL = 1500, /decl/material/glass = 3000, /decl/material/silver = 150)
+	materials = list(/decl/material/steel = 1500, /decl/material/glass = 3000, /decl/material/silver = 150)
 	build_path = /obj/item/lightreplacer
 
 /datum/design/security_hud

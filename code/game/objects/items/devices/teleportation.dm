@@ -133,7 +133,7 @@ Frequency:
 	w_class = 2.0
 	throw_speed = 3
 	throw_range = 5
-	matter_amounts = list(MATERIAL_METAL = 10000)
+	matter_amounts = list(/decl/material/plastic = 10000)
 	origin_tech = list(/decl/tech/magnets = 1, /decl/tech/bluespace = 3)
 
 /obj/item/hand_teleporter/attack_self(mob/user)

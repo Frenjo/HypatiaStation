@@ -54,12 +54,12 @@
 // Lights
 /datum/design/autolathe/light_tube
 	name = "Light Tube"
-	materials = list(MATERIAL_METAL = 60, /decl/material/glass = 100)
+	materials = list(/decl/material/iron = 60, /decl/material/glass = 100)
 	build_path = /obj/item/light/tube
 
 /datum/design/autolathe/light_bulb
 	name = "Light Bulb"
-	materials = list(MATERIAL_METAL = 60, /decl/material/glass = 100)
+	materials = list(/decl/material/iron = 60, /decl/material/glass = 100)
 	build_path = /obj/item/light/bulb
 
 // Miscellaneous
@@ -71,5 +71,5 @@
 /datum/design/autolathe/compressed_matter
 	name = "Compressed Matter Cartridge"
 	req_tech = list(/decl/tech/materials = 1)
-	materials = list(MATERIAL_METAL = 30000, /decl/material/glass = 15000)
+	materials = list(/decl/material/steel = 30000, /decl/material/glass = 15000)
 	build_path = /obj/item/rcd_ammo

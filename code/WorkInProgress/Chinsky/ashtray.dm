@@ -101,7 +101,7 @@
 	icon_broken  = "ashtray_bork_br"
 	max_butts = 10
 	health = 72.0
-	matter_amounts = list(MATERIAL_METAL = 80)
+	matter_amounts = list(/decl/material/steel = 80)
 	empty_desc = "Massive bronze ashtray."
 	throwforce = 10.0
 
