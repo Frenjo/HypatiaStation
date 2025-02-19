@@ -193,6 +193,18 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/uranium_recipes, list(
 	pixel_y = rand(0, 4) - 4
 	. = ..()
 
+// Tranquilite
+/obj/item/stack/sheet/tranquilite
+	name = "tranquilite"
+	icon_state = "tranquilite"
+	origin_tech = list (/decl/tech/materials = 4)
+	material = /decl/material/tranquilite
+
+/obj/item/stack/sheet/tranquilite/New(loc, amount = null)
+	pixel_x = rand(0, 4) - 4
+	pixel_y = rand(0, 4) - 4
+	. = ..()
+
 // Adamantine
 /obj/item/stack/sheet/adamantine
 	name = "adamantine"

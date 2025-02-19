@@ -141,7 +141,7 @@
 	materials = list(
 		MATERIAL_METAL = 30000, /decl/material/silver = 20000,
 		/decl/material/gold = 20000, /decl/material/plasma = 25000,
-		/decl/material/bananium = 10000 // This is a placeholder for tranquilite.
+		/decl/material/tranquilite = 10000
 	)
 	build_time = 2 MINUTES
 	build_path = /obj/item/mecha_part/equipment/tool/mimercd

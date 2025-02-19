@@ -54,3 +54,15 @@
 	xenoarch_age_range = list(-1, -999)
 	xenoarch_age_range_thousand = list(-1, -999)
 	xenoarch_source_mineral = "plasma"
+
+/decl/ore/tranquilite
+	name = "Tranquilite"
+
+	item_path = /obj/item/ore/tranquilite
+	result_amount = 3
+	spread_chance = 1
+
+	// This is the joke.
+	xenoarch_age_range = list(-1, -999)
+	xenoarch_age_range_thousand = list(-1, -999)
+	xenoarch_source_mineral = "plasma"

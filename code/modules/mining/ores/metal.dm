@@ -22,3 +22,8 @@
 	name = "bananium ore"
 	icon_state = "bananium_ore"
 	origin_tech = list(/decl/tech/materials = 4)
+
+/obj/item/ore/tranquilite
+	name = "tranquilite ore"
+	icon_state = "tranquilite_ore"
+	origin_tech = list(/decl/tech/materials = 4)

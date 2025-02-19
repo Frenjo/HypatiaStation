@@ -461,8 +461,8 @@
 /datum/design/mechfab/part/reticence_torso
 	materials = list(
 		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 5,
-		/decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 5
-	) // Bananium is a placeholder for tranquilite.
+		/decl/material/tranquilite = MATERIAL_AMOUNT_PER_SHEET * 5
+	)
 	build_time = 30 SECONDS
 	build_path = /obj/item/mecha_part/part/reticence/torso
 	categories = list("Reticence")
@@ -470,32 +470,32 @@
 /datum/design/mechfab/part/reticence_head
 	materials = list(
 		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3,
-		/decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 3
+		/decl/material/tranquilite = MATERIAL_AMOUNT_PER_SHEET * 3
 	)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/reticence/head
 	categories = list("Reticence")
 
 /datum/design/mechfab/part/reticence_left_arm
-	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 3)
+	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/tranquilite = MATERIAL_AMOUNT_PER_SHEET * 3)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/reticence/left_arm
 	categories = list("Reticence")
 
 /datum/design/mechfab/part/reticence_right_arm
-	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 3)
+	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/tranquilite = MATERIAL_AMOUNT_PER_SHEET * 3)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/reticence/right_arm
 	categories = list("Reticence")
 
 /datum/design/mechfab/part/reticence_left_leg
-	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 3)
+	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/tranquilite = MATERIAL_AMOUNT_PER_SHEET * 3)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/reticence/left_leg
 	categories = list("Reticence")
 
 /datum/design/mechfab/part/reticence_right_leg
-	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 3)
+	materials = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6, /decl/material/tranquilite = MATERIAL_AMOUNT_PER_SHEET * 3)
 	build_time = 20 SECONDS
 	build_path = /obj/item/mecha_part/part/reticence/right_leg
 	categories = list("Reticence")

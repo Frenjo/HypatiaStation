@@ -61,6 +61,11 @@
 	icon_state = "bananium"
 	material = /decl/material/bananium
 
+/obj/item/coin/tranquilite
+	name = "tranquilite coin"
+	icon_state = "tranquilite"
+	material = /decl/material/tranquilite
+
 /obj/item/coin/adamantine
 	name = "adamantine coin"
 	icon_state = "adamantine"

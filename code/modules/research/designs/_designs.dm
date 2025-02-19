@@ -19,6 +19,7 @@ The currently supported non-reagent materials are:
 - /decl/material/uranium
 - /decl/material/plasma
 - /decl/material/bananium
+- /decl/material/tranquilite
 - All values are that one sheet = MATERIAL_AMOUNT_PER_SHEET units.
 (Insert new ones here)
 

@@ -5,6 +5,13 @@
 	name = "robotic fabricator"
 	icon = 'icons/obj/machines/fabricators/robotic.dmi'
 
+	accepted_materials = list(
+		/decl/material/iron, /decl/material/steel, /decl/material/plastic,
+		/decl/material/glass, /decl/material/silver, /decl/material/gold,
+		/decl/material/diamond, /decl/material/uranium, /decl/material/plasma,
+		/decl/material/bananium
+	)
+
 	ui_id = "robotic_fabricator"
 	design_flag = DESIGN_TYPE_ROBOFAB
 
@@ -25,6 +32,13 @@
 /obj/machinery/robotics_fabricator/mecha
 	name = "exosuit fabricator"
 	icon = 'icons/obj/machines/fabricators/mecha.dmi'
+
+	accepted_materials = list(
+		/decl/material/iron, /decl/material/steel, /decl/material/plastic,
+		/decl/material/glass, /decl/material/silver, /decl/material/gold,
+		/decl/material/diamond, /decl/material/uranium, /decl/material/plasma,
+		/decl/material/bananium, /decl/material/tranquilite
+	)
 
 	ui_id = "mecha_fabricator"
 	design_flag = DESIGN_TYPE_MECHFAB

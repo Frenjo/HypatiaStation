@@ -16,6 +16,7 @@
 
 	var/time_coeff = 1.5 //can be upgraded with research
 	var/resource_coeff = 1.5 //can be upgraded with research
+	var/list/accepted_materials = list() // A list of /decl/material typepaths of materials this machine can accept and store.
 	var/datum/material_container/materials
 
 	var/ui_id = null
@@ -35,12 +36,7 @@
 	var/list/part_sets = list() //set names must be unique
 
 /obj/machinery/robotics_fabricator/New()
-	materials = new /datum/material_container(src, list(
-		/decl/material/iron, /decl/material/steel, /decl/material/plastic,
-		/decl/material/glass, /decl/material/silver, /decl/material/gold,
-		/decl/material/diamond, /decl/material/uranium, /decl/material/plasma,
-		/decl/material/bananium
-	))
+	materials = new /datum/material_container(src, accepted_materials)
 	. = ..()
 	files = new /datum/research(src) // Sets up the research data holder.
 

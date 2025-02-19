@@ -18,6 +18,10 @@
 	icon_state = "rock_bananium"
 	ore = /decl/ore/bananium
 
+/turf/closed/rock/tranquilite_ore
+	icon_state = "rock_tranquilite"
+	ore = /decl/ore/tranquilite
+
 // End of away mission specific additions.
 
 /turf/closed/rock/random_ore
@@ -32,7 +36,8 @@
 		/decl/ore/diamond = 1,
 		/decl/ore/uranium = 5,
 		/decl/ore/plasma = 25,
-		/decl/ore/bananium = 1
+		/decl/ore/bananium = 1,
+		/decl/ore/tranquilite = 1
 	)
 
 /turf/closed/rock/random_ore/New()
@@ -50,5 +55,6 @@
 		/decl/ore/diamond = 2,
 		/decl/ore/uranium = 10,
 		/decl/ore/plasma = 25,
-		/decl/ore/bananium = 2
+		/decl/ore/bananium = 2,
+		/decl/ore/tranquilite = 2
 	)

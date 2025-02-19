@@ -39,6 +39,7 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 	ADD_MATERIAL("Plasma", /obj/item/stack/sheet/plasma)
 	ADD_MATERIAL("Uranium", /obj/item/stack/sheet/uranium)
 	ADD_MATERIAL("Bananium", /obj/item/stack/sheet/bananium)
+	ADD_MATERIAL("Tranquilite", /obj/item/stack/sheet/tranquilite)
 	ADD_MATERIAL("Adamantine", /obj/item/stack/sheet/adamantine)
 	ADD_MATERIAL("Mythril", /obj/item/stack/sheet/mythril)
 
@@ -93,6 +94,7 @@ if(machine.stack_amounts[STACK]) html += "[NAME]: [machine.stack_amounts[STACK]]
 		/obj/item/stack/sheet/plasma = 0,
 		/obj/item/stack/sheet/uranium = 0,
 		/obj/item/stack/sheet/bananium = 0,
+		/obj/item/stack/sheet/tranquilite = 0,
 		/obj/item/stack/sheet/adamantine = 0,
 		/obj/item/stack/sheet/mythril = 0,
 

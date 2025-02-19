@@ -84,6 +84,15 @@
 
 	can_make_airlock = TRUE
 
+/decl/material/tranquilite
+	name = "Tranquilite"
+	sheet_path = /obj/item/stack/sheet/tranquilite
+
+	coin_path = /obj/item/coin/tranquilite
+	mint_colour_code = "#C5BBB9"
+
+	wall_links_to = list(/decl/material/tranquilite)
+
 /decl/material/adamantine
 	name = "Adamantine"
 	sheet_path = /obj/item/stack/sheet/adamantine
