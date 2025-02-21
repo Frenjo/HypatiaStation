@@ -42,7 +42,7 @@
 	. = ..()
 	if(isrobot(M))
 		var/mob/living/silicon/robot/R = M
-		if(istype(R.module, /obj/item/robot_model/miner))
+		if(istype(R.model, /obj/item/robot_model/miner))
 			if(istype(R.module_state_1, /obj/item/storage/bag/ore))
 				attackby(R.module_state_1, R)
 			else if(istype(R.module_state_2, /obj/item/storage/bag/ore))

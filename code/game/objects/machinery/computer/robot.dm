@@ -61,8 +61,8 @@
 					dat += " Battery Installed ([R.cell.charge]/[R.cell.maxcharge]) |"
 				else
 					dat += " No Cell Installed |"
-				if(R.module)
-					dat += " Model Installed ([R.module.display_name]) |"
+				if(R.model)
+					dat += " Model Installed ([R.model.display_name]) |"
 				else
 					dat += " No Model Installed |"
 				if(R.connected_ai)

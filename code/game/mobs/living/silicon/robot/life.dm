@@ -163,9 +163,9 @@
 	// Security and medical models get the advanced versions of their respective HUDs if enabled.
 	switch(sensor_mode)
 		if(SILICON_HUD_SECURITY)
-			process_sec_hud(src, istype(module, /obj/item/robot_model/security))
+			process_sec_hud(src, istype(model, /obj/item/robot_model/security))
 		if(SILICON_HUD_MEDICAL)
-			process_med_hud(src, istype(module, /obj/item/robot_model/medical))
+			process_med_hud(src, istype(model, /obj/item/robot_model/medical))
 
 	if(isnotnull(healths))
 		if(stat != DEAD)

@@ -24,7 +24,7 @@
 	var/atom/movable/screen/inv3 = null
 
 	//3 Modules can be activated at any one time.
-	var/obj/item/robot_model/module = null
+	var/obj/item/robot_model/model = null
 	var/module_active = null
 	var/module_state_1 = null
 	var/module_state_2 = null
@@ -100,7 +100,7 @@
 		if(isWireCut(5)) // 5 = BORG CAMERA
 			camera.status = 0
 
-	module = new /obj/item/robot_model/default(src)
+	model = new /obj/item/robot_model/default(src)
 	updatename()
 	updateicon()
 
@@ -281,11 +281,11 @@
 		laws.show_laws(src)
 		to_chat(src, SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and their commands."))
 
-		if(istype(module, /obj/item/robot_model/miner))
-			for(var/obj/item/pickaxe/borgdrill/D in module.modules)
+		if(istype(model, /obj/item/robot_model/miner))
+			for(var/obj/item/pickaxe/borgdrill/D in model.modules)
 				qdel(D)
-			module.modules.Add(new /obj/item/pickaxe/diamonddrill(module))
-			module.rebuild()
+			model.modules.Add(new /obj/item/pickaxe/diamonddrill(model))
+			model.rebuild()
 		updateicon()
 		return TRUE
 
@@ -445,7 +445,7 @@
 		if(!opened)
 			to_chat(usr, SPAN_WARNING("You must access [src]'s internals!"))
 			return TRUE
-		if(istype(module, /obj/item/robot_model/default) && U.require_model)
+		if(istype(model, /obj/item/robot_model/default) && U.require_model)
 			to_chat(usr, SPAN_WARNING("[src] must choose a model before it can be upgraded!"))
 			return TRUE
 		if(U.locked)
@@ -558,8 +558,8 @@
 /mob/living/silicon/robot/updateicon()
 	overlays.Cut()
 	if(!custom_sprite)
-		if(isnotnull(module?.sprite_path))
-			icon = module.sprite_path
+		if(isnotnull(model?.sprite_path))
+			icon = model.sprite_path
 		else
 			icon = initial(icon)
 	if(stat == CONSCIOUS)
@@ -588,7 +588,7 @@
 	if(module_active && istype(module_active, /obj/item/borg/combat/shield))
 		overlays.Add("[icon_state]-shield")
 
-	if(istype(module, /obj/item/robot_model/combat))
+	if(istype(model, /obj/item/robot_model/combat))
 		var/base_icon = ""
 		base_icon = icon_state
 		if(module_active && istype(module_active, /obj/item/borg/combat/mobility))
@@ -606,7 +606,7 @@
 
 /mob/living/silicon/robot/Move(a, b, flag)
 	. = ..()
-	if(istype(module, /obj/item/robot_model/janitor))
+	if(istype(model, /obj/item/robot_model/janitor))
 		var/turf/tile = loc
 		if(isturf(tile))
 			tile.clean_blood()
@@ -642,13 +642,13 @@
 /mob/living/silicon/robot/proc/setup_PDA()
 	if(isnull(rbPDA))
 		rbPDA = new /obj/item/pda/ai(src)
-	rbPDA.set_name_and_job(custom_name, "[module.display_name] [braintype]")
+	rbPDA.set_name_and_job(custom_name, "[model.display_name] [braintype]")
 
-/mob/living/silicon/robot/proc/pick_module()
-	if(!istype(module, /obj/item/robot_model/default))
+/mob/living/silicon/robot/proc/pick_model()
+	if(!istype(model, /obj/item/robot_model/default))
 		return
 
-	var/static/list/modules = list(
+	var/static/list/models = list(
 		"Standard" = /obj/item/robot_model/standard,
 		"Engineering" = /obj/item/robot_model/engineering,
 		"Medical" = /obj/item/robot_model/medical,
@@ -658,36 +658,36 @@
 		"Security" = /obj/item/robot_model/security
 	)
 	if(crisis && IS_SEC_LEVEL(/decl/security_level/red)) // Leaving this in until it's balanced appropriately.
-		to_chat(src, SPAN_WARNING("Crisis mode active. Combat module available."))
-		modules["Combat"] = /obj/item/robot_model/combat
-	var/input_module = input("Please, select a module!", "Robot", null, null) in modules
+		to_chat(src, SPAN_WARNING("Crisis mode active. Combat model available."))
+		models["Combat"] = /obj/item/robot_model/combat
+	var/input_module = input("Please, select a model!", "Robot", null, null) in models
 
-	var/module_path = modules[input_module]
-	module = new module_path(src)
+	var/module_path = models[input_module]
+	model = new module_path(src)
 
 	// Camera networks
 	if(isnotnull(camera) && ("Robots" in camera.network))
-		for(var/network in module.camera_networks)
+		for(var/network in model.camera_networks)
 			camera.network.Add(network)
 
 	// Languages
-	module.add_languages(src)
+	model.add_languages(src)
 
 	// Pushable status
-	if(!module.can_be_pushed)
+	if(!model.can_be_pushed)
 		status_flags &= ~CANPUSH
 
 	// Custom_sprite check and entry.
 	if(custom_sprite)
-		module.sprites["Custom"] = "[ckey]-[module.display_name]"
+		model.sprites["Custom"] = "[ckey]-[model.display_name]"
 
-	var/module_icon = lowertext(module.display_name)
-	hands.icon_state = lowertext(module_icon)
-	feedback_inc("cyborg_[lowertext(module_icon)]",1)
+	var/model_icon = lowertext(model.display_name)
+	hands.icon_state = model_icon
+	feedback_inc("cyborg_[model_icon]",1)
 	updatename()
 
-	choose_icon(6, module.sprites)
-	radio.config(module.channels)
+	choose_icon(6, model.sprites)
+	radio.config(model.channels)
 
 /mob/living/silicon/robot/proc/updatename()
 	if(istype(mmi, /obj/item/mmi/posibrain))
@@ -699,7 +699,7 @@
 	if(custom_name)
 		changed_name = custom_name
 	else
-		changed_name = "[module.display_name] [braintype]-[num2text(ident)]"
+		changed_name = "[model.display_name] [braintype]-[num2text(ident)]"
 	real_name = changed_name
 	name = real_name
 
@@ -739,8 +739,8 @@
 
 // this function returns the robots jetpack, if one is installed
 /mob/living/silicon/robot/proc/installed_jetpack()
-	if(isnotnull(module))
-		return (locate(/obj/item/tank/jetpack) in module.modules)
+	if(isnotnull(model))
+		return (locate(/obj/item/tank/jetpack) in model.modules)
 	return null
 
 // this function displays the cyborgs current cell charge in the stat panel
@@ -785,8 +785,8 @@
 		to_chat(src, SPAN_WARNING("Weapon lock active, unable to use modules! Count: [weaponlock_time]."))
 		return
 
-	if(istype(module, /obj/item/robot_model/default))
-		pick_module()
+	if(istype(model, /obj/item/robot_model/default))
+		pick_model()
 		return
 	var/dat = "<HEAD><TITLE>Modules</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
 	dat += {"<A href='byond://?src=\ref[src];mach_close=robotmod'>Close</A>
@@ -800,7 +800,7 @@
 	<BR>
 	<B>Installed Modules</B><BR><BR>"}
 
-	for(var/obj in module.modules)
+	for(var/obj in model.modules)
 		if(!obj)
 			dat += "<B>Resource depleted</B><BR>"
 		else if(activated(obj))
@@ -808,10 +808,10 @@
 		else
 			dat += "[obj]: <A href=byond://?src=\ref[src];act=\ref[obj]>Activate</A><BR>"
 	if(emagged)
-		if(activated(module.emag))
-			dat += "[module.emag]: <B>Activated</B><BR>"
+		if(activated(model.emag))
+			dat += "[model.emag]: <B>Activated</B><BR>"
 		else
-			dat += "[module.emag]: <A href=byond://?src=\ref[src];act=\ref[module.emag]>Activate</A><BR>"
+			dat += "[model.emag]: <A href=byond://?src=\ref[src];act=\ref[model.emag]>Activate</A><BR>"
 /*
 		if(activated(obj))
 			dat += "[obj]: \[<B>Activated</B> | <A href=byond://?src=\ref[src];deact=\ref[obj]>Deactivate</A>\]<BR>"
@@ -891,8 +891,8 @@
 /mob/living/silicon/robot/proc/self_destruct()
 	gib()
 
-/mob/living/silicon/robot/proc/choose_icon(triesleft, list/module_sprites)
-	if(triesleft < 1 || !length(module_sprites))
+/mob/living/silicon/robot/proc/choose_icon(triesleft, list/model_sprites)
+	if(triesleft < 1 || !length(model_sprites))
 		return
 	else
 		triesleft--
@@ -903,13 +903,13 @@
 		icontype = "Custom"
 		triesleft = 0
 	else
-		icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chances." : "This is your last try."]", "Robot", null, null) in module_sprites
+		icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chances." : "This is your last try."]", "Robot", null, null) in model_sprites
 
 	if(icontype)
-		icon_state = module_sprites[icontype]
+		icon_state = model_sprites[icontype]
 	else
 		to_chat(src, "Something is badly wrong with the sprite selection. Harass a coder.")
-		icon_state = module_sprites[1]
+		icon_state = model_sprites[1]
 		return
 
 	overlays.Remove("eyes")
@@ -918,12 +918,12 @@
 	if(triesleft >= 1)
 		var/choice = input("Look at your icon - is this what you want?") in list("Yes","No")
 		if(choice == "No")
-			choose_icon(triesleft, module_sprites)
+			choose_icon(triesleft, model_sprites)
 		else
 			triesleft = 0
 			return
 	else
-		to_chat(src, "Your icon has been set. You now require a module reset to change it.")
+		to_chat(src, "Your icon has been set. You now require a model reset to change it.")
 
 // Syndicate
 /mob/living/silicon/robot/syndicate
@@ -935,6 +935,6 @@
 	cell = new /obj/item/cell/hyper(src)
 	. = ..()
 	laws = new /datum/ai_laws/antimov()
-	module = new /obj/item/robot_model/syndicate(src)
+	model = new /obj/item/robot_model/syndicate(src)
 	updatename()
 	updateicon()

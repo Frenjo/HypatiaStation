@@ -741,12 +741,12 @@ var/GLOBAL_RADIO_TYPE = 1 // radio type to use
 	src.syndie = 0
 
 	var/mob/living/silicon/robot/D = src.loc
-	if(D.module)
-		for(var/ch_name in D.module.channels)
+	if(D.model)
+		for(var/ch_name in D.model.channels)
 			if(ch_name in src.channels)
 				continue
 			src.channels += ch_name
-			src.channels[ch_name] += D.module.channels[ch_name]
+			src.channels[ch_name] += D.model.channels[ch_name]
 	if(keyslot)
 		for(var/ch_name in keyslot.channels)
 			if(ch_name in src.channels)

@@ -186,8 +186,8 @@
 		src << "\red Weapon lock active, unable to use modules! Count:[weaponlock_time]"
 		return
 
-	if(istype(module, /obj/item/robot_model/default))
-		module = new /obj/item/robot_model/drone(src)
+	if(istype(model, /obj/item/robot_model/default))
+		model = new /obj/item/robot_model/drone(src)
 
 	var/dat = "<HEAD><TITLE>Drone modules</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
 	dat += {"<A href='byond://?src=\ref[src];mach_close=robotmod'>Close</A>
@@ -205,7 +205,7 @@
 	var/tools = "<B>Tools and devices</B><BR>"
 	var/resources = "<BR><B>Resources</B><BR>"
 
-	for (var/O in module.modules)
+	for (var/O in model.modules)
 		var/module_string = ""
 
 		if (!O)
@@ -223,12 +223,12 @@
 	dat += tools
 
 	if(emagged)
-		if(!module.emag)
+		if(!model.emag)
 			dat += "<B>Resource depleted</B><BR>"
-		else if(activated(module.emag))
-			dat += "[module.emag]: <B>Activated</B><BR>"
+		else if(activated(model.emag))
+			dat += "[model.emag]: <B>Activated</B><BR>"
 		else
-			dat += "[module.emag]: <A href=byond://?src=\ref[src];act=\ref[module.emag]>Activate</A><BR>"
+			dat += "[model.emag]: <A href=byond://?src=\ref[src];act=\ref[model.emag]>Activate</A><BR>"
 
 	dat += resources
 
@@ -247,19 +247,19 @@
 			switch(type)
 				if(/decl/material/steel)
 					if(isnull(stack_metal))
-						stack_metal = new /obj/item/stack/sheet/steel/cyborg(module, 1)
+						stack_metal = new /obj/item/stack/sheet/steel/cyborg(model, 1)
 					stack = stack_metal
 				if(/decl/material/glass)
 					if(isnull(stack_glass))
-						stack_glass = new /obj/item/stack/sheet/glass/cyborg(module, 1)
+						stack_glass = new /obj/item/stack/sheet/glass/cyborg(model, 1)
 					stack = stack_glass
 				if(/decl/material/plastic)
 					if(isnull(stack_plastic))
-						stack_plastic = new /obj/item/stack/sheet/plastic/cyborg(module, 1)
+						stack_plastic = new /obj/item/stack/sheet/plastic/cyborg(model, 1)
 					stack = stack_plastic
 				if(/decl/material/wood)
 					if(isnull(stack_wood))
-						stack_wood = new /obj/item/stack/sheet/wood/cyborg(module, 1)
+						stack_wood = new /obj/item/stack/sheet/wood/cyborg(model, 1)
 					stack = stack_wood
 
 			stack.amount++

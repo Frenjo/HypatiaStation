@@ -514,7 +514,7 @@
 
 				<ol>
 					<li><a href="#Equipment">Cyborg Related Equipment</a></li>
-					<li><a href="#Modules">Cyborg Modules</a></li>
+					<li><a href="#Models">Cyborg Models</a></li>
 					<li><a href="#Construction">Cyborg Construction</a></li>
 					<li><a href="#Maintenance">Cyborg Maintenance</a></li>
 					<li><a href="#Repairs">Cyborg Repairs</a></li>
@@ -534,11 +534,11 @@
 				This useful piece of equipment can be used to immobolize or destroy a cyborg. A word of warning: Cyborgs are expensive pieces of equipment, do not destroy them without good reason, or NanoTrasen may see to it that it never happens again.
 
 
-				<h2><a name="Modules">Cyborg Modules</h2>
-				When a cyborg is created it picks out of an array of modules to designate its purpose. There are 6 different cyborg modules.
+				<h2><a name="Models">Cyborg Models</h2>
+				When a cyborg is created it picks out of an array of models to designate its purpose. There are 6 different cyborg models.
 
 				<h3>Standard Cyborg</h3>
-				The standard cyborg module is a multi-purpose cyborg. It is equipped with various modules, allowing it to do basic tasks.<br>A Standard Cyborg comes with:
+				The standard cyborg model is a multi-purpose cyborg. It is equipped with various modules, allowing it to do basic tasks.<br>A Standard Cyborg comes with:
 				<ul>
 				  <li>Crowbar</li>
 				  <li>Stun Baton</li>
@@ -547,7 +547,7 @@
 				</ul>
 
 				<h3>Engineering Cyborg</h3>
-				The Engineering cyborg module comes equipped with various engineering-related tools to help with engineering-related tasks.<br>An Engineering Cyborg comes with:
+				The Engineering cyborg model comes equipped with various engineering-related tools to help with engineering-related tasks.<br>An Engineering Cyborg comes with:
 				<ul>
 				  <li>A basic set of engineering tools</li>
 				  <li>Metal Synthesizer</li>
@@ -559,7 +559,7 @@
 				</ul>
 
 				<h3>Mining Cyborg</h3>
-				The Mining Cyborg module comes equipped with the latest in mining equipment. They are efficient at mining due to no need for oxygen, but their power cells limit their time in the mines.<br>A Mining Cyborg comes with:
+				The Mining Cyborg model comes equipped with the latest in mining equipment. They are efficient at mining due to no need for oxygen, but their power cells limit their time in the mines.<br>A Mining Cyborg comes with:
 				<ul>
 				  <li>Jackhammer</li>
 				  <li>Shovel</li>
@@ -568,7 +568,7 @@
 				</ul>
 
 				<h3>Security Cyborg</h3>
-				The Security Cyborg module is equipped with effective security measures used to apprehend and arrest criminals without harming them a bit.<br>A Security Cyborg comes with:
+				The Security Cyborg model is equipped with effective security measures used to apprehend and arrest criminals without harming them a bit.<br>A Security Cyborg comes with:
 				<ul>
 				  <li>Stun Baton</li>
 				  <li>Handcuffs</li>
@@ -576,7 +576,7 @@
 				</ul>
 
 				<h3>Janitor Cyborg</h3>
-				The Janitor Cyborg module is equipped with various cleaning-facilitating devices.<br>A Janitor Cyborg comes with:
+				The Janitor Cyborg model is equipped with various cleaning-facilitating devices.<br>A Janitor Cyborg comes with:
 				<ul>
 				  <li>Mop</li>
 				  <li>Hand Bucket</li>
@@ -584,7 +584,7 @@
 				</ul>
 
 				<h3>Service Cyborg</h3>
-				The service cyborg module comes ready to serve your human needs. It includes various entertainment and refreshment devices. Occasionally some service cyborgs may have been referred to as "Bros"<br>A Service Cyborg comes with:
+				The service cyborg model comes ready to serve your human needs. It includes various entertainment and refreshment devices. Occasionally some service cyborgs may have been referred to as "Bros"<br>A Service Cyborg comes with:
 				<ul>
 				  <li>Shaker</li>
 				  <li>Industrail Dropper</li>

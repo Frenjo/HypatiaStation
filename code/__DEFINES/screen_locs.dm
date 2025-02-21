@@ -69,7 +69,7 @@
 #define UI_ACTI_ALT "14:28,1:5" //alternative intent switcher for when the interface is hidden (F12)
 
 #define UI_BORG_PULL "12:24,2:7"
-#define UI_BORG_MODULE "13:26,2:7"
+#define UI_BORG_MODEL "13:26,2:7"
 #define UI_BORG_PANEL "14:28,2:7"
 
 //Gun buttons

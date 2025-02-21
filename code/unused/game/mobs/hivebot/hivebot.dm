@@ -14,7 +14,7 @@
 	..()
 
 
-/mob/living/silicon/hivebot/proc/pick_module()
+/mob/living/silicon/hivebot/proc/pick_model()
 	if(src.module)
 		return
 	var/mod = input("Please, select a module!", "Robot", null, null) in list("Combat", "Engineering")
@@ -284,8 +284,8 @@
 
 /mob/living/silicon/hivebot/proc/installed_modules()
 
-	if(!src.module)
-		src.pick_module()
+	if(!src.model)
+		src.pick_model()
 		return
 	var/dat = "<HEAD><TITLE>Modules</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
 	dat += {"<A href='byond://?src=\ref[src];mach_close=robotmod'>Close</A>
@@ -299,7 +299,7 @@
 	<BR>
 	<B>Installed Modules</B><BR><BR>"}
 
-	for (var/obj in src.module.modules)
+	for (var/obj in src.model.modules)
 		if(src.activated(obj))
 			dat += text("[obj]: <B>Activated</B><BR>")
 		else

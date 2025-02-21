@@ -22,7 +22,7 @@
 	if(borg.stat == DEAD)
 		to_chat(user, SPAN_WARNING("The [src] will not function on a deceased robot."))
 		return FALSE
-	if(isnotnull(model_types) && !is_type_in_list(borg.module, model_types))
+	if(isnotnull(model_types) && !is_type_in_list(borg.model, model_types))
 		to_chat(borg, SPAN_WARNING("Upgrade mounting error! No suitable hardpoint detected!"))
 		to_chat(user, SPAN_WARNING("There's no mounting point for the module!"))
 		return FALSE
@@ -47,10 +47,10 @@
 	borg.uneq_all()
 	borg.hands.icon_state = "nomod"
 	borg.icon_state = "robot"
-	for(var/camera_network in borg.module.camera_networks)
+	for(var/camera_network in borg.model.camera_networks)
 		borg.camera.network.Remove(camera_network)
-	QDEL_NULL(borg.module)
-	borg.module = new /obj/item/robot_model/default(borg)
+	QDEL_NULL(borg.model)
+	borg.model = new /obj/item/robot_model/default(borg)
 	borg.updatename()
 	borg.status_flags |= CANPUSH
 	borg.updateicon()
@@ -144,11 +144,11 @@
 	if(!..())
 		return FALSE
 
-	var/obj/item/gun/energy/taser/cyborg/taser = locate() in borg.module
+	var/obj/item/gun/energy/taser/cyborg/taser = locate() in borg.model
 	if(isnull(taser))
-		taser = locate() in borg.module.contents
+		taser = locate() in borg.model.contents
 	if(isnull(taser))
-		taser = locate() in borg.module.modules
+		taser = locate() in borg.model.modules
 	if(isnull(taser))
 		to_chat(user, SPAN_WARNING("This robot has had its taser removed!"))
 		return FALSE
@@ -180,9 +180,9 @@
 	if(isnotnull(borg.internals))
 		return FALSE
 
-	var/obj/item/robot_model/miner/module = borg.module
-	module.modules.Add(new /obj/item/tank/jetpack/carbon_dioxide(src))
-	for(var/obj/item/tank/jetpack/carbon_dioxide/jetpack in module.modules)
+	var/obj/item/robot_model/miner/model = borg.model
+	model.modules.Add(new /obj/item/tank/jetpack/carbon_dioxide(src))
+	for(var/obj/item/tank/jetpack/carbon_dioxide/jetpack in model.modules)
 		borg.internals = jetpack
 	//borg.icon_state="Miner+j"
 	return TRUE
@@ -231,5 +231,5 @@
 	if(!..())
 		return FALSE
 
-	borg.module += src
+	borg.model += src
 	return TRUE

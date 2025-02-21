@@ -34,8 +34,8 @@
 //Health
 	R.healths = setup_screen_object("health", 'icons/mob/screen/screen1_robot.dmi', "health0", UI_BORG_HEALTH)
 
-//Installed Module
-	R.hands = new /atom/movable/screen/robot(src, "module", "nomod", UI_BORG_MODULE)
+	// Installed model
+	R.hands = new /atom/movable/screen/robot(src, "model", "nomod", UI_BORG_MODEL)
 
 //Module Panel
 	adding.Add(new /atom/movable/screen/robot(src, "panel", "panel", UI_BORG_PANEL))

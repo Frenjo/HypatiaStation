@@ -13,10 +13,10 @@
 	var/mob/living/silicon/robot/R = usr
 
 	switch(name)
-		if("module")
-			if(!istype(R.module, /obj/item/robot_model/default))
+		if("model")
+			if(!istype(R.model, /obj/item/robot_model/default))
 				return FALSE
-			R.pick_module()
+			R.pick_model()
 		if("radio")
 			R.radio_menu()
 		if("panel")

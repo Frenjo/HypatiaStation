@@ -55,16 +55,16 @@
 			C.max_damage = 10
 
 	verbs.Remove(/mob/living/silicon/robot/verb/namepick)
-	module = new /obj/item/robot_model/drone(src)
+	model = new /obj/item/robot_model/drone(src)
 
 	// Grab stacks.
-	stack_metal = locate(/obj/item/stack/sheet/steel/cyborg) in module
-	stack_wood = locate(/obj/item/stack/sheet/wood/cyborg) in module
-	stack_glass = locate(/obj/item/stack/sheet/glass/cyborg) in module
-	stack_plastic = locate(/obj/item/stack/sheet/plastic/cyborg) in module
+	stack_metal = locate(/obj/item/stack/sheet/steel/cyborg) in model
+	stack_wood = locate(/obj/item/stack/sheet/wood/cyborg) in model
+	stack_glass = locate(/obj/item/stack/sheet/glass/cyborg) in model
+	stack_plastic = locate(/obj/item/stack/sheet/plastic/cyborg) in model
 
 	// Grab decompiler.
-	decompiler = locate(/obj/item/matter_decompiler) in module
+	decompiler = locate(/obj/item/matter_decompiler) in model
 
 	// Some tidying-up.
 	flavor_text = "It's a tiny little repair drone. The casing is stamped with an NT log and the subscript: 'NanoTrasen Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
@@ -86,7 +86,7 @@
 /mob/living/silicon/robot/drone/choose_icon()
 	return
 
-/mob/living/silicon/robot/drone/pick_module()
+/mob/living/silicon/robot/drone/pick_model()
 	return
 
 // Sick of trying to get this to display properly without redefining it.
@@ -196,8 +196,8 @@
 	..()
 
 /mob/living/silicon/robot/drone/death(gibbed)
-	if(isnotnull(module))
-		var/obj/item/gripper/G = locate(/obj/item/gripper) in module
+	if(isnotnull(model))
+		var/obj/item/gripper/G = locate(/obj/item/gripper) in model
 		if(isnotnull(G))
 			G.drop_item()
 

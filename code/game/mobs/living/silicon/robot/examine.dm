@@ -7,7 +7,7 @@
 		to_chat(usr, SPAN_NOTICE("Something is there but you can't see it."))
 		return
 
-	var/msg = "<span class='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>[custom_name ? ", [module.display_name] [braintype]" : ""]!\n"
+	var/msg = "<span class='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>[custom_name ? ", [model.display_name] [braintype]" : ""]!\n"
 	msg += "<span class='warning'>"
 	if(getBruteLoss())
 		if(getBruteLoss() < 75)
