@@ -2,6 +2,10 @@
 	var/mob/living/silicon/robot/R = owner
 	var/atom/movable/screen/using
 
+	// Lights
+	using = new /atom/movable/screen/robot/lights(src)
+	adding.Add(using)
+
 //Radio
 	using = new /atom/movable/screen/robot(src, "radio", "radio", UI_MOVI)
 	using.set_dir(SOUTHWEST)

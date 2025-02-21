@@ -28,6 +28,19 @@
 
 	return TRUE
 
+// Lights
+/atom/movable/screen/robot/lights/New()
+	. = ..(loc, "lights", "lights0", UI_BORG_LIGHTS)
+
+/atom/movable/screen/robot/lights/Click(location, control, params)
+	if(!isrobot(usr))
+		return FALSE
+	var/mob/living/silicon/robot/robby = usr
+	robby.toggle_lights()
+	icon_state = "lights[robby.luminosity]"
+	return TRUE
+
+// Active modules
 /atom/movable/screen/robot/active_module
 	dir = SOUTHWEST
 

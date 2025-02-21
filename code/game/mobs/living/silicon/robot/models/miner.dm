@@ -24,3 +24,5 @@
 		"Advanced Droid" = "droid-miner",
 		"Treadhead" = "miner"
 	)
+
+	integrated_light_power = 6 // Equivalent to a mining lantern.
