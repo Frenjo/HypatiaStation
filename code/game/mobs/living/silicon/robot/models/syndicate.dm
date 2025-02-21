@@ -16,6 +16,7 @@
 
 	sprite_path = 'icons/mob/silicon/robot/syndicate.dmi'
 	sprites = list(
+		"Syndefault" = "syndefault",
 		"Syndiehound" = "syndiehound",
 		"Syndiemate" = "syndiemate"
 	)

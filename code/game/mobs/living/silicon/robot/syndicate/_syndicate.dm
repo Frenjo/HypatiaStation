@@ -1,8 +1,11 @@
 // Syndicate
 /mob/living/silicon/robot/syndicate
-	icon_state = "robot"
+	icon = 'icons/mob/silicon/robot/syndicate.dmi'
+	icon_state = "syndefault"
 	lawupdate = FALSE
 	scrambledcodes = TRUE
+
+	var/selected_icon = FALSE
 
 /mob/living/silicon/robot/syndicate/New()
 	cell = new /obj/item/cell/hyper(src)
@@ -13,8 +16,8 @@
 
 /mob/living/silicon/robot/syndicate/Login()
 	. = ..()
-	if(icon_state == "robot")
-		icon_state = model.sprites[model.sprites[1]]
+	if(!selected_icon)
 		hands.icon_state = "malf"
 		updateicon()
 		choose_icon(6, model.sprites)
+		selected_icon = TRUE
