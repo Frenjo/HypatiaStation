@@ -687,6 +687,7 @@
 #include "code\game\mobs\living\silicon\robot\models\service.dm"
 #include "code\game\mobs\living\silicon\robot\models\standard.dm"
 #include "code\game\mobs\living\silicon\robot\models\syndicate.dm"
+#include "code\game\mobs\living\silicon\robot\syndicate\_syndicate.dm"
 #include "code\game\mobs\living\simple\_simple.dm"
 #include "code\game\mobs\living\simple\bees.dm"
 #include "code\game\mobs\living\simple\borer.dm"

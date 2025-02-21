@@ -686,6 +686,7 @@
 	feedback_inc("cyborg_[model_icon]",1)
 	updatename()
 
+	icon_state = model.sprites[model.sprites[1]]
 	choose_icon(6, model.sprites)
 	radio.config(model.channels)
 
@@ -924,17 +925,3 @@
 			return
 	else
 		to_chat(src, "Your icon has been set. You now require a model reset to change it.")
-
-// Syndicate
-/mob/living/silicon/robot/syndicate
-	icon_state = "syndie_bloodhound"
-	lawupdate = FALSE
-	scrambledcodes = TRUE
-
-/mob/living/silicon/robot/syndicate/New()
-	cell = new /obj/item/cell/hyper(src)
-	. = ..()
-	laws = new /datum/ai_laws/antimov()
-	model = new /obj/item/robot_model/syndicate(src)
-	updatename()
-	updateicon()

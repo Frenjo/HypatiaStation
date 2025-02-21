@@ -16,7 +16,8 @@
 
 	sprite_path = 'icons/mob/silicon/robot/syndicate.dmi'
 	sprites = list(
-		"Default" = "syndie-bloodhound"
+		"Syndiehound" = "syndiehound",
+		"Syndiemate" = "syndiemate"
 	)
 
 	can_be_pushed = FALSE
