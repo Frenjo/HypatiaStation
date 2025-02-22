@@ -25,4 +25,4 @@
 		"Treadhead" = "miner"
 	)
 
-	integrated_light_power = 6 // Equivalent to a mining lantern.
+	integrated_light_range = 6 // Equivalent to a mining lantern.

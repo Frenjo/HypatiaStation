@@ -4,5 +4,5 @@
 		luminosity = FALSE
 		return
 
-	set_light(model.integrated_light_power)
+	set_light(model.integrated_light_range)
 	luminosity = TRUE

@@ -29,7 +29,7 @@
 	var/list/sprites = list() // Used to store the associations between sprite names and sprite index.
 
 	var/can_be_pushed = TRUE // Whether this model can be pushed around.
-	var/integrated_light_power = 4
+	var/integrated_light_range = 4 // The range of this model's integrated light.
 
 /obj/item/robot_model/New()
 	. = ..()

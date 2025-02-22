@@ -21,7 +21,7 @@
 	)
 	emag_type = /obj/item/card/emag
 
-	integrated_light_power = 3
+	integrated_light_range = 3
 
 /obj/item/robot_model/drone/New()
 	. = ..()
