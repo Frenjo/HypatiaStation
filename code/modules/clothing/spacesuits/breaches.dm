@@ -10,7 +10,7 @@
 
 /obj/item/clothing/suit/space
 	var/can_breach = 1						// Set to 0 to disregard all breaching.
-	var/list/breaches = list()				// Breach datum container.
+	var/list/datum/breach/breaches = list()	// Breach datum container.
 	var/resilience = 0.2					// Multiplier that turns damage into breach class. 1 is 100% of damage to breach, 0.1 is 10%.
 	var/breach_threshold = 3				// Min damage before a breach is possible.
 	var/damage = 0							// Current total damage
@@ -19,7 +19,7 @@
 	var/base_name							// Used to keep the original name safe while we apply modifiers.
 
 /obj/item/clothing/suit/space/New()
-	..()
+	. = ..()
 	base_name = "[name]"
 
 //Some simple descriptors for breaches. Global because lazy, TODO: work out a better way to do this.
@@ -54,25 +54,25 @@ GLOBAL_GLOBL_LIST_INIT(breach_burn_descriptors, list(
 		to_chat(user, "There are no breaches to repair on \the [src].")
 		return
 
-	var/list/valid_breaches = list()
+	var/list/datum/breach/valid_breaches = list()
 
-	for(var/datum/breach/B in breaches)
+	for_no_type_check(var/datum/breach/B, breaches)
 		if(B.damtype == damtype)
-			valid_breaches += B
+			valid_breaches.Add(B)
 
 	if(!length(valid_breaches))
 		to_chat(user, "There are no breaches to repair on \the [src].")
 		return
 
 	var/amount_left = amount
-	for(var/datum/breach/B in valid_breaches)
+	for_no_type_check(var/datum/breach/B, valid_breaches)
 		if(!amount_left)
 			break
 
 		if(B.class <= amount_left)
 			amount_left -= B.class
-			valid_breaches -= B
-			breaches -= B
+			valid_breaches.Remove(B)
+			breaches.Remove(B)
 		else
 			B.class	-= amount_left
 			amount_left = 0
@@ -85,8 +85,7 @@ GLOBAL_GLOBL_LIST_INIT(breach_burn_descriptors, list(
 	if(!can_breach || !amount)
 		return
 
-	if(!breaches)
-		breaches = list()
+	LAZYINITLIST(breaches)
 
 	if(damage > 25)
 		return //We don't need to keep tracking it when it's at 250% pressure loss, really.
@@ -100,7 +99,7 @@ GLOBAL_GLOBL_LIST_INIT(breach_burn_descriptors, list(
 	amount = amount * src.resilience
 
 	//Increase existing breaches.
-	for(var/datum/breach/existing in breaches)
+	for_no_type_check(var/datum/breach/existing, breaches)
 		if(existing.damtype != damtype)
 			continue
 
@@ -120,8 +119,8 @@ GLOBAL_GLOBL_LIST_INIT(breach_burn_descriptors, list(
 
 	if(amount)
 		//Spawn a new breach.
-		var/datum/breach/B = new()
-		breaches += B
+		var/datum/breach/B = new /datum/breach()
+		breaches.Add(B)
 
 		B.class = min(amount, 5)
 
@@ -146,9 +145,9 @@ GLOBAL_GLOBL_LIST_INIT(breach_burn_descriptors, list(
 		name = base_name
 		return 0
 
-	for(var/datum/breach/B in breaches)
+	for_no_type_check(var/datum/breach/B, breaches)
 		if(!B.class)
-			src.breaches -= B
+			src.breaches.Remove(B)
 			qdel(B)
 		else
 			damage += B.class
@@ -210,5 +209,5 @@ GLOBAL_GLOBL_LIST_INIT(breach_burn_descriptors, list(
 /obj/item/clothing/suit/space/examine()
 	..()
 	if(can_breach && length(breaches))
-		for(var/datum/breach/B in breaches)
+		for_no_type_check(var/datum/breach/B, breaches)
 			to_chat(usr, SPAN_DANGER("It has \a [B.descriptor]."))
