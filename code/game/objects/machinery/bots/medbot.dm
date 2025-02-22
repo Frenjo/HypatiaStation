@@ -5,7 +5,7 @@
 /obj/machinery/bot/medbot
 	name = "medibot"
 	desc = "A little medical robot. He looks somewhat underwhelmed."
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/mob/bot/medibot.dmi'
 	icon_state = "medibot0"
 	layer = 5.0
 	density = FALSE
@@ -55,7 +55,7 @@
 	. = ..()
 
 	if(isnotnull(skin))
-		overlays.Add(image('icons/obj/aibots.dmi', "medskin_[skin]"))
+		overlays.Add(image('icons/mob/bot/medibot.dmi', "medskin_[skin]"))
 
 	botcard = new /obj/item/card/id(src)
 	if(!length(botcard_access))
@@ -532,7 +532,7 @@
 /obj/item/medbot_assembly
 	name = "first aid/robot arm assembly"
 	desc = "A first aid kit with a robot arm permanently grafted to it."
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/mob/bot/medibot.dmi'
 	icon_state = "firstaid_arm"
 	w_class = 3.0
 
@@ -543,7 +543,7 @@
 /obj/item/medbot_assembly/initialise()
 	. = ..()
 	if(isnotnull(skin))
-		overlays.Add(image('icons/obj/aibots.dmi', "kit_skin_[skin]"))
+		overlays.Add("kit_skin_[skin]")
 
 /obj/item/medbot_assembly/attack_by(obj/item/I, mob/user)
 	if(istype(I, /obj/item/pen))
@@ -563,7 +563,7 @@
 				build_step++
 				to_chat(user, SPAN_INFO("You add the health sensor to [src]."))
 				name = "first aid/robot arm/health analyser assembly"
-				overlays.Add(image('icons/obj/aibots.dmi', "na_scanner"))
+				overlays.Add("na_scanner")
 				return TRUE
 
 		if(1)

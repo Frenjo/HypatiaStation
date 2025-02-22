@@ -2,7 +2,7 @@
 /obj/machinery/bot/floorbot
 	name = "floorbot"
 	desc = "A little floor repairing robot. He looks so excited!"
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/mob/bot/floorbot.dmi'
 	icon_state = "floorbot0"
 	layer = 5
 	density = FALSE
@@ -382,7 +382,7 @@
 /obj/item/floorbot_assembly
 	name = "tiles and toolbox"
 	desc = "It's a toolbox with tiles sticking out of the top."
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/mob/bot/floorbot.dmi'
 	icon_state = "toolbox_tiles"
 
 	w_class = 3

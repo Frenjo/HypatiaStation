@@ -2,7 +2,7 @@
 /obj/machinery/bot/cleanbot
 	name = "cleanbot"
 	desc = "A little cleaning robot. He looks so excited!"
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/mob/bot/cleanbot.dmi'
 	icon_state = "cleanbot0"
 	layer = 5
 	density = FALSE
@@ -344,7 +344,7 @@ Weird button pressed: ["<A href='byond://?src=\ref[src];operation=oddbutton'>[od
 /obj/item/cleanbot_assembly
 	name = "proxy bucket"
 	desc = "It's a bucket with a sensor attached."
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/mob/bot/cleanbot.dmi'
 	icon_state = "bucket_proxy"
 
 	w_class = 3

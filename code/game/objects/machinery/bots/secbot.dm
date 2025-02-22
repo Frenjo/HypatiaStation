@@ -1,7 +1,7 @@
 /obj/machinery/bot/secbot
 	name = "securitron"
 	desc = "A little security robot. He looks less than thrilled."
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/mob/bot/securitron.dmi'
 	icon_state = "secbot0"
 	layer = 5.0
 	density = FALSE
@@ -667,7 +667,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 	var/obj/item/secbot_assembly/Sa = new /obj/item/secbot_assembly(T)
 	Sa.build_step = 1
-	Sa.overlays.Add(image('icons/obj/aibots.dmi', "hs_hole"))
+	Sa.overlays.Add("hs_hole")
 	Sa.created_name = name
 	new /obj/item/assembly/prox_sensor(T)
 
@@ -706,7 +706,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 /obj/item/secbot_assembly
 	name = "helmet/signaler assembly"
 	desc = "Some sort of bizarre assembly."
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/mob/bot/securitron.dmi'
 	icon_state = "helmet_signaler"
 	item_state = "helmet"
 
@@ -728,7 +728,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		if(WT.remove_fuel(0, user))
 			build_step++
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			overlays.Add(image('icons/obj/aibots.dmi', "hs_hole"))
+			overlays.Add("hs_hole")
 			to_chat(user, SPAN_INFO("You weld a hole in \the [src]!"))
 		return TRUE
 
@@ -736,7 +736,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		user.drop_item()
 		build_step++
 		name = "helmet/signaler/prox sensor assembly"
-		overlays.Add(image('icons/obj/aibots.dmi', "hs_eye"))
+		overlays.Add("hs_eye")
 		to_chat(user, SPAN_INFO("You add the prox sensor to \the [src]!"))
 		qdel(I)
 		return TRUE
@@ -745,7 +745,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		user.drop_item()
 		build_step++
 		name = "helmet/signaler/prox sensor/robot arm assembly"
-		overlays.Add(image('icons/obj/aibots.dmi', "hs_arm"))
+		overlays.Add("hs_arm")
 		to_chat(user, SPAN_INFO("You add the robot arm to \the [src]!"))
 		qdel(I)
 		return TRUE

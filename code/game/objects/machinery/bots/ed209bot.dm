@@ -1,7 +1,7 @@
 /obj/machinery/bot/ed209
 	name = "\improper ED-209 security robot"
 	desc = "A security robot. He looks less than thrilled."
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/mob/bot/ed209.dmi'
 	icon_state = "ed2090"
 	layer = 5.0
 	density = TRUE
@@ -709,7 +709,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	var/turf/T = GET_TURF(src)
 	var/obj/item/ed209_assembly/Sa = new /obj/item/ed209_assembly(T)
 	Sa.build_step = 1
-	Sa.overlays.Add(image('icons/obj/aibots.dmi', "hs_hole"))
+	Sa.overlays.Add(image('icons/mob/bot/securitron.dmi', "hs_hole"))
 	Sa.created_name = name
 	new /obj/item/assembly/prox_sensor(T)
 
@@ -841,11 +841,17 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	else
 		..()
 
+/obj/machinery/bot/ed209/bluetag
+	icon_state = "bed2090"
+
 /obj/machinery/bot/ed209/bluetag/New()//If desired, you spawn red and bluetag bots easily
 	SHOULD_CALL_PARENT(FALSE)
 
 	new /obj/machinery/bot/ed209(GET_TURF(src), null, "b")
 	qdel(src)
+
+/obj/machinery/bot/ed209/redtag
+	icon_state = "red2090"
 
 /obj/machinery/bot/ed209/redtag/New()
 	SHOULD_CALL_PARENT(FALSE)
@@ -857,7 +863,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 /obj/item/ed209_assembly
 	name = "ED-209 assembly"
 	desc = "Some sort of bizarre assembly."
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/mob/bot/ed209.dmi'
 	icon_state = "ed209_frame"
 	item_state = "ed209_frame"
 

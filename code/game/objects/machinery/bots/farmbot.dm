@@ -26,7 +26,7 @@
 /obj/machinery/bot/farmbot
 	name = "farmbot"
 	desc = "A little farming robot. The botanist's best friend."
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/mob/bot/farmbot.dmi'
 	icon_state = "farmbot0"
 	layer = 5
 	density = TRUE
@@ -515,7 +515,7 @@
 /obj/item/farmbot_assembly
 	name = "water tank/robot arm assembly"
 	desc = "A water tank with a robot arm permanently grafted to it."
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/mob/bot/farmbot.dmi'
 	icon_state = "water_arm"
 	w_class = 3.0
 

@@ -7,6 +7,7 @@
 /obj/machinery/bot/mulebot
 	name = "\improper MULEbot"
 	desc = "A Multiple Utility Load Effector bot."
+	icon = 'icons/mob/bot/mulebot.dmi'
 	icon_state = "mulebot0"
 	layer = MOB_LAYER
 	density = TRUE

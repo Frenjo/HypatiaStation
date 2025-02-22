@@ -10,7 +10,6 @@
 #define SECBOT_SUMMON		6		// summoned by PDA
 
 /obj/machinery/bot
-	icon = 'icons/obj/aibots.dmi'
 	layer = MOB_LAYER
 	light_range = 3
 
