@@ -3423,7 +3423,7 @@
 	c_tag = "Assault Armor North";
 	network = list("ERT")
 	},
-/obj/mecha/combat/gygax/dark,
+/obj/mecha/combat/gygax/dark/equipped,
 /obj/effect/decal/floor/industrial/delivery,
 /obj/machinery/mech_bay_recharge_floor,
 /turf/open/floor/tiled/grey,
@@ -6888,7 +6888,7 @@
 /area/shuttle/transport/centcom)
 "Kd" = (
 /obj/machinery/mech_bay_recharge_floor,
-/obj/mecha/medical/odysseus/eurymachus,
+/obj/mecha/medical/odysseus/eurymachus/equipped,
 /turf/open/floor/shuttle/red,
 /area/enemy/syndicate/mothership/elite_squad)
 "Ke" = (
@@ -7531,7 +7531,7 @@
 /area/centcom/tdome/observation)
 "NI" = (
 /obj/effect/decal/floor/industrial/delivery,
-/obj/mecha/medical/odysseus/dark,
+/obj/mecha/medical/odysseus/dark/equipped,
 /obj/machinery/mech_bay_recharge_floor,
 /turf/open/floor/tiled/grey,
 /area/centcom/specops)
@@ -8639,7 +8639,7 @@
 /area/centcom/tdome/observation)
 "TE" = (
 /obj/machinery/mech_bay_recharge_floor,
-/obj/mecha/working/ripley/sindy,
+/obj/mecha/working/ripley/sindy/equipped,
 /turf/open/floor/shuttle/red,
 /area/enemy/syndicate/mothership/elite_squad)
 "TF" = (
@@ -8906,7 +8906,7 @@
 	},
 /area/special/alien)
 "VE" = (
-/obj/mecha/combat/marauder/mauler,
+/obj/mecha/combat/marauder/mauler/equipped,
 /obj/machinery/mech_bay_recharge_floor,
 /turf/open/floor/shuttle/red,
 /area/enemy/syndicate/mothership/elite_squad)

@@ -128,7 +128,15 @@
 
 	phasing_energy_drain = 100
 
-/obj/mecha/combat/phazon/dark/New()
+/obj/mecha/combat/phazon/dark/add_cell(obj/item/cell/C = null)
+	if(isnotnull(C))
+		C.forceMove(src)
+		cell = C
+		return
+	cell = new /obj/item/cell/hyper(src)
+
+// Equipped variant
+/obj/mecha/combat/phazon/dark/equipped/New()
 	. = ..()
 	var/obj/item/mecha_part/equipment/equip = new /obj/item/mecha_part/equipment/tool/rcd(src)
 	equip.attach(src)
@@ -138,10 +146,3 @@
 	equip.attach(src)
 	equip = new /obj/item/mecha_part/equipment/tesla_energy_relay(src)
 	equip.attach(src)
-
-/obj/mecha/combat/phazon/dark/add_cell(obj/item/cell/C = null)
-	if(isnotnull(C))
-		C.forceMove(src)
-		cell = C
-		return
-	cell = new /obj/item/cell/hyper(src)

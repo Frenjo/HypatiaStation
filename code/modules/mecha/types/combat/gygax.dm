@@ -86,7 +86,15 @@
 
 	overload_coeff = 1
 
-/obj/mecha/combat/gygax/dark/New()
+/obj/mecha/combat/gygax/dark/add_cell(obj/item/cell/C = null)
+	if(isnotnull(C))
+		C.forceMove(src)
+		cell = C
+		return
+	cell = new /obj/item/cell/hyper(src)
+
+// Equipped variant
+/obj/mecha/combat/gygax/dark/equipped/New()
 	. = ..()
 	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/weapon/ballistic/scattershot(src)
 	ME.attach(src)
@@ -96,13 +104,6 @@
 	ME.attach(src)
 	ME = new /obj/item/mecha_part/equipment/tesla_energy_relay(src)
 	ME.attach(src)
-
-/obj/mecha/combat/gygax/dark/add_cell(obj/item/cell/C = null)
-	if(isnotnull(C))
-		C.forceMove(src)
-		cell = C
-		return
-	cell = new /obj/item/cell/hyper(src)
 
 // Serenity
 /obj/mecha/combat/gygax/serenity

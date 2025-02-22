@@ -1,3 +1,4 @@
+// Marauder
 /obj/mecha/combat/marauder
 	name = "\improper Marauder"
 	desc = "Heavy-duty, combat exosuit, developed after the Durand model. Rarely found among civilian populations."
@@ -30,14 +31,6 @@
 
 /obj/mecha/combat/marauder/New()
 	. = ..()
-	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/weapon/energy/pulse(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/launcher/missile_rack(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_part/equipment/tesla_energy_relay(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_part/equipment/ranged_armour_booster(src)
-	ME.attach(src)
 	smoke_system = new /datum/effect/system/smoke_spread(src)
 	smoke_system.set_up(3, 0, src)
 	smoke_system.attach(src)
@@ -184,6 +177,19 @@
 		return
 	cell = new /obj/item/cell/hyper(src)
 
+// Equipped variant
+/obj/mecha/combat/marauder/equipped/New()
+	. = ..()
+	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/weapon/energy/pulse(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/launcher/missile_rack(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_part/equipment/tesla_energy_relay(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_part/equipment/ranged_armour_booster(src)
+	ME.attach(src)
+
+// Seraph
 /obj/mecha/combat/marauder/seraph
 	name = "\improper Seraph"
 	desc = "Heavy-duty, command-type exosuit. This is a custom model, utilized only by high-ranking military personnel."
@@ -202,14 +208,10 @@
 
 	max_equip = 5
 
-/obj/mecha/combat/marauder/seraph/New()
-	. = ..()//Let it equip whatever is needed.
-	var/obj/item/mecha_part/equipment/ME
-	if(length(equipment))//Now to remove it and equip anew.
-		for(ME in equipment)
-			equipment -= ME
-			qdel(ME)
-	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/scattershot(src)
+// Equipped variant
+/obj/mecha/combat/marauder/seraph/equipped/New()
+	. = ..()
+	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/weapon/ballistic/scattershot(src)
 	ME.attach(src)
 	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/launcher/missile_rack(src)
 	ME.attach(src)
@@ -220,6 +222,7 @@
 	ME = new /obj/item/mecha_part/equipment/ranged_armour_booster(src)
 	ME.attach(src)
 
+// Mauler
 /obj/mecha/combat/marauder/mauler
 	name = "\improper Mauler"
 	desc = "Heavy-duty, combat exosuit, developed off of the existing Marauder model."
@@ -229,3 +232,15 @@
 	operation_req_access = list(ACCESS_SYNDICATE)
 
 	wreckage = /obj/structure/mecha_wreckage/mauler
+
+// Equipped variant
+/obj/mecha/combat/marauder/mauler/equipped/New()
+	. = ..()
+	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/weapon/energy/pulse(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/launcher/missile_rack(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_part/equipment/tesla_energy_relay(src)
+	ME.attach(src)
+	ME = new /obj/item/mecha_part/equipment/ranged_armour_booster(src)
+	ME.attach(src)

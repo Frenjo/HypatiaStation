@@ -54,7 +54,15 @@
 
 	wreckage = /obj/structure/mecha_wreckage/odysseus/dark
 
-/obj/mecha/medical/odysseus/dark/New()
+/obj/mecha/medical/odysseus/dark/add_cell(obj/item/cell/C = null)
+	if(isnotnull(C))
+		C.forceMove(src)
+		cell = C
+		return
+	cell = new /obj/item/cell/hyper(src)
+
+// Equipped variant
+/obj/mecha/medical/odysseus/dark/equipped/New()
 	. = ..()
 	var/obj/item/mecha_part/equipment/part = new /obj/item/mecha_part/equipment/medical/sleeper(src)
 	part.attach(src)
@@ -64,13 +72,6 @@
 	part.attach(src)
 	part = new /obj/item/mecha_part/equipment/ranged_armour_booster(src)
 	part.attach(src)
-
-/obj/mecha/medical/odysseus/dark/add_cell(obj/item/cell/C = null)
-	if(isnotnull(C))
-		C.forceMove(src)
-		cell = C
-		return
-	cell = new /obj/item/cell/hyper(src)
 
 // Eurymachus
 /obj/mecha/medical/odysseus/eurymachus
@@ -102,15 +103,6 @@
 	var/camouflage = FALSE
 	var/camouflage_energy_drain = 50
 	var/camouflage_animation_playing = FALSE
-
-/obj/mecha/medical/odysseus/eurymachus/New()
-	. = ..()
-	var/obj/item/mecha_part/equipment/part = new /obj/item/mecha_part/equipment/weapon/energy/taser(src)
-	part.attach(src)
-	part = new /obj/item/mecha_part/equipment/medical/sleeper(src)
-	part.attach(src)
-	part = new /obj/item/mecha_part/equipment/medical/syringe_gun(src)
-	part.attach(src)
 
 /obj/mecha/medical/odysseus/eurymachus/add_cell(obj/item/cell/C = null)
 	if(isnotnull(C))
@@ -194,6 +186,16 @@
 	icon_state = "eurymachus"
 	desc = "A sinister variant of the Vey-Med(&copy; all rights reserved) Odysseus-type chassis featuring weapons-capable hardpoints and the unique ability to camouflage as its regular counterpart."
 	camouflage_iterator.stop()
+
+// Equipped variant
+/obj/mecha/medical/odysseus/eurymachus/equipped/New()
+	. = ..()
+	var/obj/item/mecha_part/equipment/part = new /obj/item/mecha_part/equipment/weapon/energy/taser(src)
+	part.attach(src)
+	part = new /obj/item/mecha_part/equipment/medical/sleeper(src)
+	part.attach(src)
+	part = new /obj/item/mecha_part/equipment/medical/syringe_gun(src)
+	part.attach(src)
 
 // Mecha camouflage power drain handler.
 /datum/global_iterator/mecha_camouflage

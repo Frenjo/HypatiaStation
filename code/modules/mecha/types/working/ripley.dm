@@ -119,6 +119,7 @@
 	. = ..()
 	excluded_equipment.Remove(/obj/item/mecha_part/equipment/medical)
 
+// Sindy
 /obj/mecha/working/ripley/sindy
 	name = "\improper APLU \"Sindy\""
 	desc = "A sinister variant of the standard APLU chassis fitted with rudimentary targeting systems and mounting hardpoints for basic weaponry."
@@ -140,12 +141,6 @@
 /obj/mecha/working/ripley/sindy/New()
 	. = ..()
 	excluded_equipment.Remove(/obj/item/mecha_part/equipment/weapon)
-	var/obj/item/mecha_part/equipment/equip = new /obj/item/mecha_part/equipment/weapon/energy/laser/heavy(src)
-	equip.attach(src)
-	equip = new /obj/item/mecha_part/equipment/tool/hydraulic_clamp(src)
-	equip.attach(src)
-	equip = new /obj/item/mecha_part/equipment/melee_armour_booster(src)
-	equip.attach(src)
 
 /obj/mecha/working/ripley/sindy/add_cell(obj/item/cell/C = null)
 	if(isnotnull(C))
@@ -153,3 +148,13 @@
 		cell = C
 		return
 	cell = new /obj/item/cell/hyper(src)
+
+// Equipped variant
+/obj/mecha/working/ripley/sindy/equipped/New()
+	. = ..()
+	var/obj/item/mecha_part/equipment/equip = new /obj/item/mecha_part/equipment/weapon/energy/laser/heavy(src)
+	equip.attach(src)
+	equip = new /obj/item/mecha_part/equipment/tool/hydraulic_clamp(src)
+	equip.attach(src)
+	equip = new /obj/item/mecha_part/equipment/melee_armour_booster(src)
+	equip.attach(src)
