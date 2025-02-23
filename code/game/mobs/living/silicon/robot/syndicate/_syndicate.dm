@@ -19,5 +19,5 @@
 	if(!selected_icon)
 		hands.icon_state = "malf"
 		updateicon()
-		choose_icon(6, model.sprites)
+		choose_icon(model.sprites)
 		selected_icon = TRUE

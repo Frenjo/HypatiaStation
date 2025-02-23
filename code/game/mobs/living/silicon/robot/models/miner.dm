@@ -24,5 +24,6 @@
 		"Advanced Droid" = "droid-miner",
 		"Treadhead" = "miner"
 	)
+	model_select_sprite = "miner"
 
 	integrated_light_range = 6 // Equivalent to a mining lantern.

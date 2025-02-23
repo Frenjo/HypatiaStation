@@ -23,6 +23,7 @@
 		"Black Knight" = "securityrobot",
 		"Bloodhound" = "bloodhound"
 	)
+	model_select_sprite = "bloodhound"
 
 	can_be_pushed = FALSE
 

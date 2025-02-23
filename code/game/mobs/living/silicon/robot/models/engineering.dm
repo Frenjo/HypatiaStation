@@ -31,6 +31,7 @@
 		"Antique" = "engineerrobot",
 		"Landmate" = "landmate"
 	)
+	model_select_sprite = "landmate"
 
 /obj/item/robot_model/engineering/New()
 	. = ..()

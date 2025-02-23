@@ -26,6 +26,7 @@
 	var/list/camera_networks = list()
 
 	var/sprite_path = null
+	var/model_select_sprite = null
 	var/list/sprites = list() // Used to store the associations between sprite names and sprite index.
 
 	var/can_be_pushed = TRUE // Whether this model can be pushed around.
@@ -36,6 +37,9 @@
 	for(var/path in basic_modules)
 		modules.Add(new path(src))
 	emag = new emag_type(src)
+
+	if(isnull(model_select_sprite) && length(sprites))
+		model_select_sprite = sprites[sprites[1]]
 
 /obj/item/robot_model/Destroy()
 	QDEL_NULL(emag)

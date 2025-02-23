@@ -27,6 +27,7 @@
 		"Advanced Droid" = "droid-medical",
 		"Needles" = "medicalrobot"
 	)
+	model_select_sprite = "surgeon"
 
 	can_be_pushed = FALSE
 

@@ -22,6 +22,7 @@
 		"Mopbot" = "janitorrobot",
 		"Mop Gear Rex" = "mopgearrex"
 	)
+	model_select_sprite = "mopgearrex"
 
 /obj/item/robot_model/janitor/respawn_consumable(mob/living/silicon/robot/R)
 	var/obj/item/lightreplacer/LR = locate() in modules

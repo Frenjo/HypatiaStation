@@ -22,5 +22,6 @@
 	sprites = list(
 		"Combat Android" = "droid-combat"
 	)
+	model_select_sprite = "droid-combat"
 
 	can_be_pushed = FALSE

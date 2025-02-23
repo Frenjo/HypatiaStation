@@ -21,3 +21,4 @@
 		"Basic" = "robot-old",
 		"Android" = "droid"
 	)
+	model_select_sprite = "robot"

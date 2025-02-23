@@ -660,9 +660,22 @@
 	if(crisis && IS_SEC_LEVEL(/decl/security_level/red)) // Leaving this in until it's balanced appropriately.
 		to_chat(src, SPAN_WARNING("Crisis mode active. Combat model available."))
 		models["Combat"] = /obj/item/robot_model/combat
-	var/input_module = input("Please, select a model!", "Robot", null, null) in models
 
-	var/module_path = models[input_module]
+	var/static/list/radial_models = null
+	if(isnull(radial_models))
+		radial_models = list()
+		for(var/model_type in models)
+			var/obj/item/robot_model/temp_model = models[model_type]
+			var/temp_sprite_path = temp_model::sprite_path
+			var/temp_state = temp_model::model_select_sprite
+			var/image/radial_button = image(icon = temp_sprite_path, icon_state = temp_state)
+			radial_button.overlays.Add(image(icon = temp_sprite_path, icon_state = "eyes-[temp_state]"))
+			radial_models[model_type] = radial_button
+	var/input_model = show_radial_menu(src, src, radial_models)
+	if(isnull(input_model))
+		return
+
+	var/module_path = models[input_model]
 	model = new module_path(src)
 
 	// Camera networks
@@ -687,7 +700,7 @@
 	updatename()
 
 	icon_state = model.sprites[model.sprites[1]]
-	choose_icon(6, model.sprites)
+	choose_icon(model.sprites)
 	radio.config(model.channels)
 
 /mob/living/silicon/robot/proc/updatename()
@@ -892,36 +905,28 @@
 /mob/living/silicon/robot/proc/self_destruct()
 	gib()
 
-/mob/living/silicon/robot/proc/choose_icon(triesleft, list/model_sprites)
-	if(triesleft < 1 || !length(model_sprites))
+/mob/living/silicon/robot/proc/choose_icon(list/model_sprites)
+	set waitfor = FALSE
+	if(!length(model_sprites))
+		to_chat(src, "Something is badly wrong with the sprite selection. Harass a coder.")
 		return
-	else
-		triesleft--
 
 	var/icontype
-
 	if(custom_sprite)
 		icontype = "Custom"
-		triesleft = 0
 	else
-		icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chances." : "This is your last try."]", "Robot", null, null) in model_sprites
+		var/list/options = list()
+		for(var/sprite_name in model_sprites)
+			var/image/radial_button = image(icon = model.sprite_path, icon_state = model_sprites[sprite_name])
+			radial_button.overlays.Add(image(icon = model.sprite_path, icon_state = "eyes-[model_sprites[sprite_name]]"))
+			options[sprite_name] = radial_button
+		icontype = show_radial_menu(src, src, options)
 
 	if(icontype)
 		icon_state = model_sprites[icontype]
 	else
-		to_chat(src, "Something is badly wrong with the sprite selection. Harass a coder.")
-		icon_state = model_sprites[1]
-		return
+		icon_state = model_sprites[model_sprites[1]]
 
 	overlays.Remove("eyes")
 	updateicon()
-
-	if(triesleft >= 1)
-		var/choice = input("Look at your icon - is this what you want?") in list("Yes","No")
-		if(choice == "No")
-			choose_icon(triesleft, model_sprites)
-		else
-			triesleft = 0
-			return
-	else
-		to_chat(src, "Your icon has been set. You now require a model reset to change it.")
+	to_chat(src, "Your icon has been set. You now require a model reset to change it.")

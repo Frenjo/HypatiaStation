@@ -27,6 +27,7 @@
 		"Rich" = "maximillion",
 		"Hydrobot" = "hydrobot"
 	)
+	model_select_sprite = "service2"
 
 /obj/item/robot_model/service/New()
 	. = ..()

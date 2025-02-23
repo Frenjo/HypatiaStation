@@ -20,5 +20,6 @@
 		"Syndiehound" = "syndiehound",
 		"Syndiemate" = "syndiemate"
 	)
+	model_select_sprite = "syndefault"
 
 	can_be_pushed = FALSE
