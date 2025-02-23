@@ -148,6 +148,7 @@
 #include "code\_onclick\hud\screen_objects\intent.dm"
 #include "code\_onclick\hud\screen_objects\inventory.dm"
 #include "code\_onclick\hud\screen_objects\item_action.dm"
+#include "code\_onclick\hud\screen_objects\radial.dm"
 #include "code\_onclick\hud\screen_objects\robot.dm"
 #include "code\_onclick\hud\screen_objects\screentip.dm"
 #include "code\_onclick\hud\screen_objects\text.dm"

@@ -456,3 +456,9 @@
 	for(var/path in SUBTYPESOF(prototype))
 		L.Add(new path())
 	return L
+
+// Returns the first element from the list and removes it.
+/proc/popleft(list/L)
+	if(length(L))
+		. = L[1]
+		L.Cut(1, 2)
