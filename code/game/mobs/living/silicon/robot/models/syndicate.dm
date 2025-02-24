@@ -18,7 +18,8 @@
 	sprites = list(
 		"Syndefault" = "syndefault",
 		"Syndiehound" = "syndiehound",
-		"Syndiemate" = "syndiemate"
+		"Syndiemate" = "syndiemate",
+		"Qualified Syndoctor" = "qualified-syndoctor"
 	)
 	model_select_sprite = "syndefault"
 

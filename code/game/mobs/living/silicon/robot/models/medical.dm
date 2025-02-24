@@ -25,7 +25,8 @@
 		"Basic" = "medbot",
 		"Standard" = "surgeon",
 		"Advanced Droid" = "droid-medical",
-		"Needles" = "medicalrobot"
+		"Needles" = "medicalrobot",
+		"Qualified Doctor" = "qualified-doctor"
 	)
 	model_select_sprite = "surgeon"
 
