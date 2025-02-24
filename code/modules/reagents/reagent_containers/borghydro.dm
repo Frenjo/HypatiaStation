@@ -100,3 +100,9 @@
 
 	if(empty)
 		to_chat(usr, SPAN_INFO("It is currently empty. Allow some time for the internal syntheszier to produce more."))
+
+// Peace hypospray
+/obj/item/reagent_holder/borghypo/peace
+	name = "peace hypospray"
+
+	reagent_ids = list("cryptobiolin")

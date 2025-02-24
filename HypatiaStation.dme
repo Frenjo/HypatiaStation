@@ -684,6 +684,7 @@
 #include "code\game\mobs\living\silicon\robot\models\janitor.dm"
 #include "code\game\mobs\living\silicon\robot\models\medical.dm"
 #include "code\game\mobs\living\silicon\robot\models\miner.dm"
+#include "code\game\mobs\living\silicon\robot\models\peacekeeper.dm"
 #include "code\game\mobs\living\silicon\robot\models\security.dm"
 #include "code\game\mobs\living\silicon\robot\models\service.dm"
 #include "code\game\mobs\living\silicon\robot\models\standard.dm"

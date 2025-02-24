@@ -655,7 +655,8 @@
 		"Miner" = /obj/item/robot_model/miner,
 		"Janitor" = /obj/item/robot_model/janitor,
 		"Service" = /obj/item/robot_model/service,
-		"Security" = /obj/item/robot_model/security
+		"Security" = /obj/item/robot_model/security,
+		"Peacekeeper" = /obj/item/robot_model/peacekeeper
 	)
 	if(crisis && IS_SEC_LEVEL(/decl/security_level/red)) // Leaving this in until it's balanced appropriately.
 		to_chat(src, SPAN_WARNING("Crisis mode active. Combat model available."))
@@ -689,6 +690,11 @@
 	// Pushable status
 	if(!model.can_be_pushed)
 		status_flags &= ~CANPUSH
+
+	// Displays the playstyle string if applicable.
+	var/playstyle_string = model.get_playstyle_string()
+	if(isnotnull(playstyle_string))
+		to_chat(src, playstyle_string)
 
 	// Custom_sprite check and entry.
 	if(custom_sprite)

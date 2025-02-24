@@ -68,3 +68,8 @@
 	SHOULD_CALL_PARENT(TRUE)
 
 	R.add_language("Binary Audio Language", FALSE)
+
+/obj/item/robot_model/proc/get_playstyle_string()
+	SHOULD_CALL_PARENT(FALSE)
+
+	return null
