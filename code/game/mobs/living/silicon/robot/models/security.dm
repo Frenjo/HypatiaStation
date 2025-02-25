@@ -22,7 +22,8 @@
 		"Basic" = "secborg",
 		"Red Knight" = "security",
 		"Black Knight" = "securityrobot",
-		"Bloodhound" = "bloodhound"
+		"Bloodhound" = "bloodhound",
+		"Treadhound" = "treadhound"
 	)
 	model_select_sprite = "bloodhound"
 

@@ -29,7 +29,8 @@
 	sprites = list(
 		"Basic" = "engineering",
 		"Antique" = "engineerrobot",
-		"Landmate" = "landmate"
+		"Landmate" = "landmate",
+		"Treadmate" = "treadmate"
 	)
 	model_select_sprite = "landmate"
 
