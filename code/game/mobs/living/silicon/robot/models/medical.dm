@@ -7,13 +7,13 @@
 
 	basic_modules = list(
 		/obj/item/flash,
+		/obj/item/extinguisher/mini,
 		/obj/item/health_analyser,
 		/obj/item/reagent_scanner/adv,
 		/obj/item/reagent_holder/borghypo,
 		/obj/item/reagent_holder/glass/beaker/large,
 		/obj/item/reagent_holder/robodropper,
-		/obj/item/reagent_holder/syringe,
-		/obj/item/extinguisher/mini
+		/obj/item/reagent_holder/syringe
 	)
 	emag_type = /obj/item/reagent_holder/spray/polyacid
 

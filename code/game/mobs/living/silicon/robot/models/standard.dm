@@ -7,8 +7,8 @@
 
 	basic_modules = list(
 		/obj/item/flash,
-		/obj/item/melee/baton/loaded,
 		/obj/item/extinguisher,
+		/obj/item/melee/baton/loaded,
 		/obj/item/wrench,
 		/obj/item/crowbar,
 		/obj/item/health_analyser

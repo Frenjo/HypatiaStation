@@ -7,6 +7,8 @@
 
 	basic_modules = list(
 		/obj/item/flash,
+		/obj/item/extinguisher/mini,
+		/obj/item/health_analyser,
 		/obj/item/melee/energy/sword,
 		/obj/item/gun/energy/pulse_rifle/destroyer,
 		/obj/item/card/emag

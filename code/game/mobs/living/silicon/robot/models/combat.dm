@@ -7,6 +7,7 @@
 
 	basic_modules = list(
 		/obj/item/flash,
+		/obj/item/extinguisher/mini,
 		/obj/item/borg/sight/thermal,
 		/obj/item/gun/energy/laser/cyborg,
 		/obj/item/pickaxe/plasmacutter,
