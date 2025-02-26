@@ -63,6 +63,12 @@
 	//control_freak = 1
 
 	/*
+	 * Viewport
+	 */
+	var/static/list/scaling_modes = list(SCALING_MODE_NORMAL, SCALING_MODE_DISTORT, SCALING_MODE_BLUR)
+	var/chosen_scaling_mode = SCALING_MODE_DISTORT
+
+	/*
 	 * Things That Require The Database
 	 */
 	// These have default values so admins know why they aren't working.

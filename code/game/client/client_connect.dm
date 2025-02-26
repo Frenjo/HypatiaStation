@@ -66,5 +66,6 @@
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 
 	fit_viewport() // Adjusts the viewport to make it fit by default.
+	set_zoom_mode(chosen_scaling_mode) // Sets the scaling mode to the default.
 
 #undef MIN_CLIENT_VERSION

@@ -1,5 +1,5 @@
 /client/verb/fit_viewport()
-	set category = PANEL_OOC
+	set category = PANEL_PREFERENCES
 	set name = "Fit Viewport"
 	set desc = "Adjusts the width of the map window to remove letterboxing."
 
@@ -41,3 +41,13 @@
 
 		pct += delta
 		winset(src, "mainwindow.mainvsplit", "splitter=[pct]")
+
+/client/verb/adjust_viewport_scaling()
+	set category = PANEL_PREFERENCES
+	set name = "Adjust Viewport Scaling"
+	set desc = "Changes the viewport scaling mode."
+	set waitfor = FALSE
+
+	var/chosen_mode = input(src, "Select a scaling mode:", "Adjust Viewport Scaling", chosen_scaling_mode) as anything in scaling_modes
+	set_zoom_mode(chosen_mode)
+	to_chat(src, SPAN_INFO("Viewport scaling mode changed to [chosen_mode]."))
