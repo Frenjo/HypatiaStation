@@ -25,9 +25,10 @@
 	)
 	model_select_sprite = "mopgearrex"
 
-/obj/item/robot_model/janitor/respawn_consumable(mob/living/silicon/robot/R)
-	var/obj/item/lightreplacer/LR = locate() in modules
-	LR.Charge(R)
-	if(emag)
+/obj/item/robot_model/janitor/respawn_consumable(mob/living/silicon/robot/robby)
+	. = ..()
+	var/obj/item/lightreplacer/replacer = locate() in modules
+	replacer?.Charge(robby)
+	if(isnotnull(emag))
 		var/obj/item/reagent_holder/spray/S = emag
 		S.reagents.add_reagent("lube", 2)

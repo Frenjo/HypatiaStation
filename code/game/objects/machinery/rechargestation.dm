@@ -20,8 +20,7 @@
 	if(stat & (BROKEN | NOPOWER))
 		return
 
-	if(occupant)
-		process_occupant()
+	process_occupant()
 	return 1
 
 /obj/machinery/recharge_station/allow_drop()
@@ -54,20 +53,12 @@
 		icon_state = "borgcharger0"
 
 /obj/machinery/recharge_station/proc/process_occupant()
-	if(occupant)
-		if(isrobot(occupant))
-			var/mob/living/silicon/robot/R = occupant
-			R.model?.respawn_consumable(R)
-			if(isnull(R.cell))
-				return
-			/*else if(R.cell.charge >= R.cell.maxcharge)
-				R.cell.charge = R.cell.maxcharge
-				return
-			else
-				R.cell.charge = min(R.cell.charge + 200, R.cell.maxcharge)
-				return
-			*/
-			R.cell.give(power_usage[USE_POWER_ACTIVE] * CELLRATE)
+	if(isnull(occupant))
+		return
+	if(isrobot(occupant))
+		var/mob/living/silicon/robot/robby = occupant
+		robby.model?.respawn_consumable(robby)
+		robby.cell?.give(power_usage[USE_POWER_ACTIVE] * CELLRATE)
 
 /obj/machinery/recharge_station/proc/go_out()
 	if(isnull(occupant))

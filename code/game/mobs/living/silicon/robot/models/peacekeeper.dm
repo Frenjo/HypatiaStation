@@ -27,6 +27,7 @@
 	can_be_pushed = FALSE
 
 /obj/item/robot_model/peacekeeper/respawn_consumable(mob/living/silicon/robot/robby)
+	. = ..()
 	if(isnotnull(emag))
 		var/obj/item/reagent_holder/spray/polyacid/spray = emag
 		spray.reagents.add_reagent("pacid", 2)

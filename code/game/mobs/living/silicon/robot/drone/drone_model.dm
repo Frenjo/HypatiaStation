@@ -40,8 +40,9 @@
 		modules.Add(new path(src, stack_types[path]))
 
 /obj/item/robot_model/drone/respawn_consumable(mob/living/silicon/robot/R)
-	var/obj/item/reagent_holder/spray/cleaner/C = locate() in modules
-	C?.reagents.add_reagent("cleaner", 10)
+	. = ..()
+	var/obj/item/reagent_holder/spray/cleaner/spray = locate() in modules
+	spray?.reagents.add_reagent("cleaner", 10)
 
 	var/list/stack_types = list(
 		/obj/item/stack/sheet/steel,

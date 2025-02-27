@@ -33,12 +33,13 @@
 	can_be_pushed = FALSE
 
 /obj/item/robot_model/medical/respawn_consumable(mob/living/silicon/robot/robby)
-	var/obj/item/reagent_holder/syringe/S = locate() in modules
-	if(S.mode == 2)//SYRINGE_BROKEN
-		S.reagents.clear_reagents()
-		S.mode = initial(S.mode)
-		S.desc = initial(S.desc)
-		S.update_icon()
+	. = ..()
+	var/obj/item/reagent_holder/syringe/needle = locate() in modules
+	if(needle?.mode == 2) //SYRINGE_BROKEN
+		needle.reagents.clear_reagents()
+		needle.mode = initial(needle.mode)
+		needle.desc = initial(needle.desc)
+		needle.update_icon()
 	if(isnotnull(emag))
 		var/obj/item/reagent_holder/spray/polyacid/spray = emag
 		spray.reagents.add_reagent("pacid", 2)

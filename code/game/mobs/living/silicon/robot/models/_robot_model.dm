@@ -54,8 +54,17 @@
 		emag.emp_act(severity)
 	. = ..()
 
-/obj/item/robot_model/proc/respawn_consumable(mob/living/silicon/robot/R)
-	return
+/obj/item/robot_model/proc/respawn_consumable(mob/living/silicon/robot/robby)
+	SHOULD_CALL_PARENT(TRUE)
+
+	var/obj/item/flash/flasher = locate() in modules
+	if(isnotnull(flasher))
+		if(flasher.broken)
+			flasher.broken = 0
+			flasher.times_used = 0
+			flasher.icon_state = "flash"
+		else if(flasher.times_used)
+			flasher.times_used--
 
 /obj/item/robot_model/proc/rebuild() // Rebuilds the list so it's possible to add/remove items from the module.
 	var/list/temp_list = modules

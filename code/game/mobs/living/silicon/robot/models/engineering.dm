@@ -40,7 +40,8 @@
 	modules.Add(new /obj/item/stack/sheet/glass/reinforced/cyborg(src, 50))
 	modules.Add(new /obj/item/stack/cable_coil(src, 50))
 
-/obj/item/robot_model/engineering/respawn_consumable(mob/living/silicon/robot/R)
+/obj/item/robot_model/engineering/respawn_consumable(mob/living/silicon/robot/robby)
+	. = ..()
 	var/list/stacks = list(
 		/obj/item/stack/sheet/steel/cyborg,
 		/obj/item/stack/sheet/glass/reinforced/cyborg,

@@ -52,9 +52,10 @@
 	R.add_language("Tradeband")
 	R.add_language("Gutter")
 
-/obj/item/robot_model/service/respawn_consumable(mob/living/silicon/robot/R)
-	var/obj/item/reagent_holder/food/condiment/enzyme/E = locate() in modules
-	E.reagents.add_reagent("enzyme", 2)
-	if(emag)
+/obj/item/robot_model/service/respawn_consumable(mob/living/silicon/robot/robby)
+	. = ..()
+	var/obj/item/reagent_holder/food/condiment/enzyme/enzyme_container = locate() in modules
+	enzyme_container?.reagents.add_reagent("enzyme", 2)
+	if(isnotnull(emag))
 		var/obj/item/reagent_holder/food/drinks/cans/beer/special_brew/special = emag
 		special.reagents.add_reagent("beer2", 2)

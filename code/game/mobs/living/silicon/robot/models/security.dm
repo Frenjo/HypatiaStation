@@ -29,17 +29,12 @@
 
 	can_be_pushed = FALSE
 
-/obj/item/robot_model/security/respawn_consumable(mob/living/silicon/robot/R)
-	var/obj/item/flash/F = locate() in modules
-	if(F.broken)
-		F.broken = 0
-		F.times_used = 0
-		F.icon_state = "flash"
-	else if(F.times_used)
-		F.times_used--
-	var/obj/item/gun/energy/taser/cyborg/T = locate() in modules
-	if(T.power_supply.charge < T.power_supply.maxcharge)
-		T.power_supply.give(T.charge_cost)
-		T.update_icon()
-	else
-		T.charge_tick = 0
+/obj/item/robot_model/security/respawn_consumable(mob/living/silicon/robot/robby)
+	. = ..()
+	var/obj/item/gun/energy/taser/cyborg/taser = locate() in modules
+	if(isnotnull(taser))
+		if(taser.power_supply.charge < taser.power_supply.maxcharge)
+			taser.power_supply.give(taser.charge_cost)
+			taser.update_icon()
+		else
+			taser.charge_tick = 0
