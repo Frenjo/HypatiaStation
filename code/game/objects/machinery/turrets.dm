@@ -46,7 +46,7 @@
 	layer = 3
 	invisibility = INVISIBILITY_LEVEL_TWO
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 50,
 		USE_POWER_ACTIVE = 300
 	)

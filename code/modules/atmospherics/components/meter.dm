@@ -6,7 +6,7 @@
 	anchored = TRUE
 
 	power_channel = ENVIRON
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 2,
 		USE_POWER_ACTIVE = 5
 	)

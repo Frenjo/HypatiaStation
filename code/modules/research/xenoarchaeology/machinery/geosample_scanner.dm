@@ -6,7 +6,7 @@
 	icon = 'icons/obj/machines/virology.dmi'
 	icon_state = "analyser"
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 20,
 		USE_POWER_ACTIVE = 300
 	)

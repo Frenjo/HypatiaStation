@@ -31,7 +31,7 @@
 	anchored = TRUE
 	density = FALSE
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 10
 	)
 

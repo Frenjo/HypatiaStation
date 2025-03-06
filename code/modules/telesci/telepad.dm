@@ -6,7 +6,7 @@
 	icon_state = "pad-idle"
 	anchored = TRUE
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 200,
 		USE_POWER_ACTIVE = 5000
 	)
@@ -19,7 +19,7 @@
 	icon_state = "pad-idle"
 	anchored = TRUE
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 20,
 		USE_POWER_ACTIVE = 500
 	)

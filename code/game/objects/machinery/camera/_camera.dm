@@ -6,7 +6,7 @@
 	layer = 5
 
 	power_state = USE_POWER_ACTIVE
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 5,
 		USE_POWER_ACTIVE = 10
 	)

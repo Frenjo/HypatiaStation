@@ -9,7 +9,7 @@
 	icon_state = "dispenser"
 
 	power_state = USE_POWER_OFF
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 40
 	)
 
@@ -286,7 +286,7 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 20
 	)
 
@@ -863,7 +863,7 @@
 	density = TRUE
 	anchored = TRUE
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 5,
 		USE_POWER_ACTIVE = 100
 	)

@@ -4,7 +4,7 @@
 	icon_state = "crew"
 	circuit = /obj/item/circuitboard/crew
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 250,
 		USE_POWER_ACTIVE = 500
 	)

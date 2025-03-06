@@ -19,7 +19,7 @@
 
 	// This turret uses and requires power.
 	// Drains power from the EQUIP channel.
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 50, // When inactive, this turret takes up constant 50 equipment power.
 		USE_POWER_ACTIVE = 300 // When active, this turret takes up constant 300 equipment power.
 	)

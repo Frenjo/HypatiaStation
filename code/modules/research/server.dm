@@ -3,7 +3,7 @@
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "server"
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 600
 	)
 

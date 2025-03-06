@@ -42,7 +42,7 @@
 	density = TRUE
 	anchored = TRUE
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 50,
 		USE_POWER_ACTIVE = 300
 	)
@@ -225,7 +225,7 @@
 	anchored = TRUE
 	circuit = /obj/item/circuitboard/scan_consolenew
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 10,
 		USE_POWER_ACTIVE = 400
 	)

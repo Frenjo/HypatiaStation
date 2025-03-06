@@ -5,7 +5,7 @@
 	icon_state = "cellold0"
 	density = TRUE
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 1000,
 		USE_POWER_ACTIVE = 2000
 	)

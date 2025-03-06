@@ -7,7 +7,7 @@
 	anchored = FALSE
 
 	power_state = USE_POWER_IDLE
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 100 //Watts, I hope.  Just enough to do the computer and display things.
 	)
 

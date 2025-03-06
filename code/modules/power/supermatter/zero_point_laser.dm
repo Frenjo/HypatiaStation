@@ -11,7 +11,7 @@
 	density = TRUE
 	req_access = list(ACCESS_ENGINE)
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 10,
 		USE_POWER_ACTIVE = 300
 	)

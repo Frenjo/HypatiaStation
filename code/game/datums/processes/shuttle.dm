@@ -8,11 +8,11 @@ PROCESS_DEF(shuttle)
 	name = "Shuttle"
 	schedule_interval = 2 SECONDS
 
-	var/list/shuttles			// Associative list of shuttle tags to shuttle datums, so that they can be looked up.
+	var/alist/shuttles			// Associative list of shuttle tags to shuttle datums, so that they can be looked up.
 	var/list/process_shuttles	// Simple list of shuttles, for processing.
 
 /datum/process/shuttle/setup()
-	shuttles = list()
+	shuttles = alist()
 	process_shuttles = list()
 
 	// Shuttle warmup times were reduced from 10 to 7 because the former was just a touch too slow.

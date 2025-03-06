@@ -9,7 +9,7 @@
 	anchored = TRUE
 
 	power_channel = LIGHT
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 20
 	)
 

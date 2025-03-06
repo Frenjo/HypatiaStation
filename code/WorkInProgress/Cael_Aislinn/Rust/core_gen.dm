@@ -58,7 +58,7 @@ max volume of plasma storeable by the field = the total volume of a number of ti
 	density = TRUE
 
 	power_state = USE_POWER_IDLE
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 50,
 		USE_POWER_ACTIVE = 500 //multiplied by field strength
 	)

@@ -7,7 +7,7 @@
 	anchored = TRUE
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER | ATOM_FLAG_NO_REACT
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 5,
 		USE_POWER_ACTIVE = 100
 	)

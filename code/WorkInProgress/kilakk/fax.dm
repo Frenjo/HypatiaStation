@@ -9,7 +9,7 @@ var/list/alldepartments = list("Central Command")
 	anchored = TRUE
 	density = TRUE
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 30,
 		USE_POWER_ACTIVE = 200
 	)

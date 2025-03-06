@@ -7,7 +7,7 @@
 	icon_state = "mass_driver"
 	anchored = TRUE
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 2,
 		USE_POWER_ACTIVE = 50
 	)

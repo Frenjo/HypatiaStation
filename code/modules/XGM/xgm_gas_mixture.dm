@@ -1,7 +1,7 @@
 /datum/gas_mixture
 	// Associative list of gas moles.
 	// Gases with 0 moles are not tracked and are pruned by update_values()
-	var/list/gas
+	var/alist/gas
 	// Temperature in Kelvin of this gas mix.
 	var/temperature = 0
 
@@ -16,7 +16,7 @@
 	var/list/graphic
 
 /datum/gas_mixture/New(vol = CELL_VOLUME)
-	gas = list()
+	gas = alist()
 	graphic = list()
 	. = ..()
 	volume = vol

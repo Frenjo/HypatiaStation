@@ -13,8 +13,6 @@
 #define SHOCKWAVE		(1<<18)	// attack a nearby tile and cause a massive shockwave, knocking most people on their asses (25%)
 #define ELECTRICITY		(1<<19)	// ability to shoot electric attacks (15%)
 
-// String identifiers for associative list lookup
-
 // mob/var/list/mutations
 
 #define STRUCDNASIZE 27

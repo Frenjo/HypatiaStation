@@ -1,7 +1,7 @@
 // Factions, members of the syndicate coalition:
 /decl/faction/syndicate
 	var/list/alliances = list() // These alliances work together.
-	var/list/equipment = list() // Associative list of equipment available for this faction and its prices.
+	var/alist/equipment = alist() // Associative list of equipment available for this faction and its prices.
 	/*
 	 * 0 to 2, the level of identification of fellow operatives or allied factions.
 	 * 0 - no identification clues.

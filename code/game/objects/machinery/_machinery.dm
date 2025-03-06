@@ -95,7 +95,7 @@
 	// Power.
 	var/power_channel = EQUIP // This can be either EQUIP, LIGHT or ENVIRON.
 	var/power_state = USE_POWER_IDLE // This one used to be called use_power.
-	var/list/power_usage = list(
+	var/alist/power_usage = alist(
 		USE_POWER_IDLE = 0, // Power usage while in the USE_POWER_IDLE state.
 		USE_POWER_ACTIVE = 0 // Power usage while in the USE_POWER_ACTIVE state.
 	)

@@ -17,7 +17,7 @@
 	density = TRUE
 
 	power_state = USE_POWER_IDLE
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 250
 	)
 

@@ -144,7 +144,7 @@
 	desc = "It's the hub of a teleporting machine."
 	icon_state = "tele0"
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 10,
 		USE_POWER_ACTIVE = 2000
 	)
@@ -271,7 +271,7 @@
 	desc = "It's the station thingy of a teleport thingy." //seriously, wtf.
 	icon_state = "controller"
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 10,
 		USE_POWER_ACTIVE = 2000
 	)

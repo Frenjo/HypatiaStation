@@ -6,7 +6,7 @@
 	icon_state = "sign_off"
 	layer = 4
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 2,
 		USE_POWER_ACTIVE = 4
 	)
@@ -52,7 +52,7 @@
 	desc = "A remote control switch for a holosign."
 	anchored = TRUE
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 2
 	)
 

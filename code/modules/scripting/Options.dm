@@ -59,14 +59,14 @@ Var: keywords
 An associative list used by the parser to parse keywords. Indices are strings which will trigger the keyword when parsed and the
 associated values are <nS_Keyword> types of which the <n_Keyword.Parse()> proc will be called.
 */
-	var/list/keywords = list(
+	var/alist/keywords = alist(
 		"if"		= /n_Keyword/nS_Keyword/kwIf,		"else"	= /n_Keyword/nS_Keyword/kwElse,
 		"while"		= /n_Keyword/nS_Keyword/kwWhile,	"break"	= /n_Keyword/nS_Keyword/kwBreak,
 		"continue"	= /n_Keyword/nS_Keyword/kwContinue,
 		"return"	= /n_Keyword/nS_Keyword/kwReturn,	"def"	= /n_Keyword/nS_Keyword/kwDef
 	)
 
-	var/list/assign_operators = list(
+	var/alist/assign_operators = alist(
 		"=" = null,	"&=" = "&",
 		"|=" = "|", "`=" = "`",
 		"+=" = "+", "-=" = "-",
@@ -75,13 +75,13 @@ associated values are <nS_Keyword> types of which the <n_Keyword.Parse()> proc w
 		"%=" = "%"
 	)
 
-	var/list/unary_operators = list(
+	var/alist/unary_operators = alist(
 		"!" = /node/expression/_operator/unary/LogicalNot,
 		"~" = /node/expression/_operator/unary/BitwiseNot,
 		"-" = /node/expression/_operator/unary/Minus
 	)
 
-	var/list/binary_operators = list(
+	var/alist/binary_operators = alist(
 		"=="	= /node/expression/_operator/binary/Equal,			"!="	= /node/expression/_operator/binary/NotEqual,
 		">"		= /node/expression/_operator/binary/Greater,			"<"		= /node/expression/_operator/binary/Less,
 		">="	= /node/expression/_operator/binary/GreaterOrEqual,	"<="	= /node/expression/_operator/binary/LessOrEqual,

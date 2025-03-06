@@ -13,7 +13,7 @@
 	layer = 2.5
 	anchored = TRUE
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 50
 	)
 
@@ -199,7 +199,7 @@
 	density = TRUE
 	anchored = TRUE
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 45
 	)
 

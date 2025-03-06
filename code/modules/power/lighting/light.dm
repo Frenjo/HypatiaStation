@@ -15,7 +15,7 @@
 
 	power_channel = LIGHT // Lights are calc'd via area so they dont need to be in the machine list.
 	power_state = USE_POWER_ACTIVE
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 2,
 		USE_POWER_ACTIVE = 20
 	)

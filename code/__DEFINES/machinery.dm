@@ -9,10 +9,9 @@
 #define DOOR_CLOSED 2
 
 // Values for the power_state variable.
-// These must be in string form as they're keys in an associative list.
-#define USE_POWER_OFF		"0" // Don't run the auto.
-#define USE_POWER_IDLE		"1" // Run auto, use idle.
-#define USE_POWER_ACTIVE	"2" // Run auto, use active.
+#define USE_POWER_OFF		0 // Don't run the auto.
+#define USE_POWER_IDLE		1 // Run auto, use idle.
+#define USE_POWER_ACTIVE	2 // Run auto, use active.
 
 // Values for the power_channel variable.
 #define EQUIP	"equip" // Use the equipment power channel.

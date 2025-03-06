@@ -8,7 +8,7 @@
 	icon_state = "fire0"
 	anchored = TRUE
 
-	power_usage = list(
+	power_usage = alist(
 		USE_POWER_IDLE = 2,
 		USE_POWER_ACTIVE = 6
 	)
