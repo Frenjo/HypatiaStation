@@ -75,7 +75,7 @@
 /datum/design/robofab/synthetic_flash
 	name = "Synthetic Flash"
 	desc = "When a problem arises, SCIENCE is the solution."
-	req_tech = list(/decl/tech/magnets = 3, /decl/tech/combat = 2)
+	req_tech = alist(/decl/tech/magnets = 3, /decl/tech/combat = 2)
 	reliability_base = 76
 	materials = alist(/decl/material/plastic = 750, /decl/material/glass = 750)
 	build_time = 10 SECONDS
@@ -119,7 +119,7 @@
 /datum/design/robofab/robot_upgrade/syndicate
 	name = "Scrambled Equipment"
 	desc = "Allows for the construction of illegal upgrades for robots."
-	req_tech = list(/decl/tech/combat = 4, /decl/tech/syndicate = 3)
+	req_tech = alist(/decl/tech/combat = 4, /decl/tech/syndicate = 3)
 	materials = alist(/decl/material/steel = 10000, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 8, /decl/material/diamond = 10000)
 	build_path = /obj/item/borg/upgrade/syndicate
 

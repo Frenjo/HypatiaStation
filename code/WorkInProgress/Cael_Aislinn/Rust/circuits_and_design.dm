@@ -10,7 +10,7 @@
 /datum/design/circuit/rust_core_control
 	name = "RUST Core Control"
 	desc = "Allows for the construction of circuit boards used to build a core control console for the RUST fusion engine."
-	req_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
+	req_tech = alist(/decl/tech/engineering = 4, /decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/rust_core_control
 
 //////////////////////////////////////
@@ -24,7 +24,7 @@
 /datum/design/circuit/rust_fuel_control
 	name = "RUST Fuel Injection Control"
 	desc = "Allows for the construction of circuit boards used to build a fuel injection control console for the RUST fusion engine."
-	req_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
+	req_tech = alist(/decl/tech/engineering = 4, /decl/tech/programming = 4)
 	build_path = /obj/item/circuitboard/rust_fuel_control
 
 //////////////////////////////////////
@@ -38,7 +38,7 @@
 /datum/design/circuit/rust_fuel_port
 	name = "RUST fuel port"
 	desc = "Allows for the construction of circuit modules used to build a fuel injection port for the RUST fusion engine."
-	req_tech = list(/decl/tech/materials = 5, /decl/tech/engineering = 4)
+	req_tech = alist(/decl/tech/materials = 5, /decl/tech/engineering = 4)
 	materials = alist(/decl/material/glass = 2000, /decl/material/uranium = 3000, "sacid" = 20)
 	build_path = /obj/item/module/rust_fuel_port
 
@@ -53,7 +53,7 @@
 /datum/design/circuit/rust_fuel_compressor
 	name = "RUST Fuel Compressor"
 	desc = "Allows for the construction of circuit modules used to build a fuel compressor for the RUST fusion engine."
-	req_tech = list(/decl/tech/materials = 6, /decl/tech/plasma = 4)
+	req_tech = alist(/decl/tech/materials = 6, /decl/tech/plasma = 4)
 	materials = alist(/decl/material/glass = 2000, /decl/material/diamond = 1000, /decl/material/plasma = 3000, "sacid" = 20)
 	build_path = /obj/item/module/rust_fuel_compressor
 
@@ -80,7 +80,7 @@
 /datum/design/circuit/rust_core
 	name = "RUST Tokamak Core"
 	desc = "Allows for the construction of circuit boards used to build a RUST-pattern tokamak fusion core."
-	req_tech = list(
+	req_tech = alist(
 		/decl/tech/magnets = 5, /decl/tech/power_storage = 6, /decl/tech/plasma = 4,
 		/decl/tech/bluespace = 3
 	)
@@ -110,7 +110,7 @@
 /datum/design/circuit/rust_injector
 	name = "RUST Fuel Injector"
 	desc = "Allows for the construction of circuit boards used to build a RUST-pattern fuel injection particle accelerator."
-	req_tech = list(
+	req_tech = alist(
 		/decl/tech/materials = 6, /decl/tech/engineering = 4, /decl/tech/power_storage = 3,
 		/decl/tech/plasma = 4
 	)

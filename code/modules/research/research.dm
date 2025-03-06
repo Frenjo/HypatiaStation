@@ -167,7 +167,7 @@ research holder datum.
 	var/name = "name"			// Name of the technology.
 	var/desc = "description"	// General description of what it does and what it makes.
 	var/level = 1				// A simple number scale of the research level. Level 0 = Secret tech.
-	var/list/req_tech = list()	// List of ids associated values of techs required to research this tech. "id" = #
+	var/alist/req_tech = alist() // Associated list of techs required to research this tech. /decl/tech/* = #
 
 // Trunk Technologies (don't require any other techs and you start knowing them).
 /decl/tech/materials
@@ -223,15 +223,15 @@ research holder datum.
 /decl/tech/explosives
 	name = "Explosives Research"
 	desc = "The creation and application of explosive materials."
-	req_tech = list(/decl/tech/materials = 3)
+	req_tech = alist(/decl/tech/materials = 3)
 
 /decl/tech/power_generation
 	name = "Power Generation Technology"
 	desc = "Research into more powerful and more reliable sources."
-	req_tech = list(/decl/tech/power_storage = 2)
+	req_tech = alist(/decl/tech/power_storage = 2)
 
 /decl/tech/robotics
 	name = "Robotics Technology"
 	desc = "The development of advanced automated, autonomous machines."
-	req_tech = list(/decl/tech/materials = 3, /decl/tech/programming = 3)
+	req_tech = alist(/decl/tech/materials = 3, /decl/tech/programming = 3)
 */

@@ -1,7 +1,7 @@
 // Circuits
 /datum/design/autolathe/power_control_module
 	name = "Power Control Module"
-	req_tech = list(/decl/tech/engineering = 1, /decl/tech/power_storage = 1, /decl/tech/programming = 1)
+	req_tech = alist(/decl/tech/engineering = 1, /decl/tech/power_storage = 1, /decl/tech/programming = 1)
 	materials = alist(/decl/material/plastic = 50, /decl/material/glass = 50)
 	build_path = /obj/item/module/power_control
 
@@ -23,31 +23,31 @@
 // Assembly Components
 /datum/design/autolathe/igniter
 	name = "Igniter"
-	req_tech = list(/decl/tech/magnets = 1)
+	req_tech = alist(/decl/tech/magnets = 1)
 	materials = alist(/decl/material/plastic = 500, /decl/material/glass = 50)
 	build_path = /obj/item/assembly/igniter
 
 /datum/design/autolathe/signaler
 	name = "Remote Signalling Device"
-	req_tech = list(/decl/tech/magnets = 1)
+	req_tech = alist(/decl/tech/magnets = 1)
 	materials = alist(/decl/material/plastic = 1000, /decl/material/glass = 200)
 	build_path = /obj/item/assembly/signaler
 
 /datum/design/autolathe/infrared_emitter
 	name = "Infrared Emitter"
-	req_tech = list(/decl/tech/magnets = 1)
+	req_tech = alist(/decl/tech/magnets = 1)
 	materials = alist(/decl/material/plastic = 1000, /decl/material/glass = 500)
 	build_path = /obj/item/assembly/infra
 
 /datum/design/autolathe/timer
 	name = "Timer"
-	req_tech = list(/decl/tech/magnets = 1)
+	req_tech = alist(/decl/tech/magnets = 1)
 	materials = alist(/decl/material/plastic = 500, /decl/material/glass = 50)
 	build_path = /obj/item/assembly/timer
 
 /datum/design/autolathe/proximity_sensor
 	name = "Proximity Sensor"
-	req_tech = list(/decl/tech/magnets = 1)
+	req_tech = alist(/decl/tech/magnets = 1)
 	materials = alist(/decl/material/plastic = 800, /decl/material/glass = 200)
 	build_path = /obj/item/assembly/prox_sensor
 
@@ -70,6 +70,6 @@
 
 /datum/design/autolathe/compressed_matter
 	name = "Compressed Matter Cartridge"
-	req_tech = list(/decl/tech/materials = 1)
+	req_tech = alist(/decl/tech/materials = 1)
 	materials = alist(/decl/material/steel = 30000, /decl/material/glass = 15000)
 	build_path = /obj/item/rcd_ammo

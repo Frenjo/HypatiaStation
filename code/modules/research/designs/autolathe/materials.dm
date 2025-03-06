@@ -1,12 +1,12 @@
 /datum/design/autolathe/iron
 	name = "Iron Sheet"
-	req_tech = list(/decl/tech/materials = 1)
+	req_tech = alist(/decl/tech/materials = 1)
 	materials = alist(/decl/material/iron = MATERIAL_AMOUNT_PER_SHEET)
 	build_path = /obj/item/stack/sheet/iron
 
 /datum/design/autolathe/steel
 	name = "Steel Sheet"
-	req_tech = list(/decl/tech/materials = 1)
+	req_tech = alist(/decl/tech/materials = 1)
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET)
 	build_path = /obj/item/stack/sheet/steel
 
@@ -17,7 +17,7 @@
 
 /datum/design/autolathe/glass
 	name = "Glass Sheet"
-	req_tech = list(/decl/tech/materials = 1)
+	req_tech = alist(/decl/tech/materials = 1)
 	materials = alist(/decl/material/glass = MATERIAL_AMOUNT_PER_SHEET)
 	build_path = /obj/item/stack/sheet/glass
 

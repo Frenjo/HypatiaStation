@@ -40,7 +40,7 @@ other types of metals and chemistry for reagents).
 /datum/design						//Datum for object designs, used in construction
 	var/name = "Name"					//Name of the created object.
 	var/desc = "Desc"					//Description of the created object.
-	var/list/req_tech = list()			//IDs of that techs the object originated from and the minimum level requirements.
+	var/alist/req_tech = alist()		// Associative list of tech typepaths the object originated from and their minimum level requirements.
 	var/reliability_mod = 0				//Reliability modifier of the device at it's starting point.
 	var/reliability_base = 100			//Base reliability of a device before modifiers.
 	var/reliability = 100				//Reliability of the device.
@@ -78,6 +78,6 @@ other types of metals and chemistry for reagents).
 			name = "Test Design"
 			desc = "A design to test the new protolathe."
 			build_type = DESIGN_TYPE_PROTOLATHE
-			req_tech = list(/decl/tech/materials = 1)
+			req_tech = alist(/decl/tech/materials = 1)
 			materials = alist(/decl/material/gold = 3000, "iron" = 15, "copper" = 10, /decl/material/silver = 2500)
 			build_path = "/obj/item/banhammer" */
