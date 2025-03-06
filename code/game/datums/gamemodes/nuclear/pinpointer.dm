@@ -9,7 +9,7 @@
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
-	matter_amounts = list(/decl/material/plastic = 500, /decl/material/glass = 50)
+	matter_amounts = alist(/decl/material/plastic = 500, /decl/material/glass = 50)
 
 	var/active = FALSE
 	var/atom/thing_to_find = null

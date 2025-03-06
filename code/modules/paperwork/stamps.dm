@@ -8,7 +8,7 @@
 	w_class = 1.0
 	throw_speed = 7
 	throw_range = 15
-	matter_amounts = list(/decl/material/plastic = 60)
+	matter_amounts = alist(/decl/material/plastic = 60)
 	item_color = "cargo"
 	pressure_resistance = 2
 	attack_verb = list("stamped")

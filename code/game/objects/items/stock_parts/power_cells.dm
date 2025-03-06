@@ -32,7 +32,7 @@
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
 	origin_tech = list(/decl/tech/power_storage = 0)
 	maxcharge = 500
-	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 40)
+	matter_amounts = alist(/decl/material/steel = 750, /decl/material/glass = 40)
 
 /obj/item/cell/crap/empty/New()
 	. = ..()
@@ -42,7 +42,7 @@
 	name = "security borg rechargable D battery"
 	origin_tech = list(/decl/tech/power_storage = 0)
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
-	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 40)
+	matter_amounts = alist(/decl/material/steel = 750, /decl/material/glass = 40)
 
 /obj/item/cell/secborg/empty/New()
 	. = ..()
@@ -52,7 +52,7 @@
 	name = "\improper APC power cell"
 	origin_tech = list(/decl/tech/power_storage = 1)
 	maxcharge = 5000
-	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 50)
+	matter_amounts = alist(/decl/material/steel = 750, /decl/material/glass = 50)
 
 /obj/item/cell/apc/empty/New()
 	. = ..()
@@ -96,7 +96,7 @@
 	icon_state = "icell"
 	origin_tech = null
 	maxcharge = 30000
-	matter_amounts = list(/decl/material/steel = 750, /decl/material/glass = 90)
+	matter_amounts = alist(/decl/material/steel = 750, /decl/material/glass = 90)
 
 /obj/item/cell/infinite/use()
 	return 1
@@ -109,7 +109,7 @@
 
 	charge = 100
 	maxcharge = 300
-	matter_amounts = list()
+	matter_amounts = alist()
 	minor_fault = 1
 
 /obj/item/cell/slime
@@ -121,4 +121,4 @@
 	origin_tech = list(/decl/tech/biotech = 4, /decl/tech/power_storage = 2)
 	maxcharge = 10000
 	maxcharge = 10000
-	matter_amounts = list()
+	matter_amounts = alist()

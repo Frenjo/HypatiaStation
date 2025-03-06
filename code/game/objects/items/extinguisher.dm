@@ -28,7 +28,7 @@
 	throwforce = 2
 	w_class = 2.0
 	force = 3.0
-	matter_amounts = list()
+	matter_amounts = alist()
 	max_water = 30
 	sprite_name = "miniFE"
 

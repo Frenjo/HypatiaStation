@@ -4,7 +4,7 @@
 	name = "wire"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "item_wire"
-	matter_amounts = list(/decl/material/steel = 40)
+	matter_amounts = alist(/decl/material/steel = 40)
 	attack_verb = list("whipped", "lashed", "disciplined", "tickled")
 
 	var/amount = 1.0

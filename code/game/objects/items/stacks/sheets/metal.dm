@@ -5,7 +5,7 @@
 	singular_name = "iron sheet"
 	icon_state = "iron"
 
-	matter_amounts = list(/decl/material/iron = MATERIAL_AMOUNT_PER_SHEET)
+	matter_amounts = alist(/decl/material/iron = MATERIAL_AMOUNT_PER_SHEET)
 	throwforce = 13
 	obj_flags = OBJ_FLAG_CONDUCT
 	origin_tech = list(/decl/tech/materials = 1)
@@ -86,7 +86,7 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/steel_recipes, list(
 	desc = "Sheets made out of steel, an alloy of iron and carbon. They have been dubbed steel sheets."
 	singular_name = "steel sheet"
 	icon_state = "steel"
-	matter_amounts = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET)
+	matter_amounts = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET)
 	throwforce = 14
 	obj_flags = OBJ_FLAG_CONDUCT
 	origin_tech = list(/decl/tech/materials = 1)
@@ -113,7 +113,7 @@ GLOBAL_GLOBL_LIST_INIT(datum/stack_recipe/plasteel_recipes, list(
 	desc = "This sheet is an alloy of iron, carbon and plasma."
 	icon_state = "plasteel"
 	item_state = "sheet-metal"
-	matter_amounts = list(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET * 2))
+	matter_amounts = alist(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET * 2))
 	throwforce = 15
 	obj_flags = OBJ_FLAG_CONDUCT
 	origin_tech = list(/decl/tech/materials = 2)

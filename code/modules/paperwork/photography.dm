@@ -115,7 +115,7 @@
 	w_class = 2.0
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
-	matter_amounts = list(/decl/material/plastic = 2000)
+	matter_amounts = alist(/decl/material/plastic = 2000)
 
 	var/pictures_max = 10
 	var/pictures_left = 10

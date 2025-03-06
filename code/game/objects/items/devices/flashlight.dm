@@ -118,7 +118,7 @@
 	item_state = "lamp"
 	brightness_on = 5
 	w_class = 4
-	matter_amounts = list()
+	matter_amounts = alist()
 	on = 1
 
 // green-shaded desk lamp
@@ -201,7 +201,7 @@
 	icon_state = "floor1" //not a slime extract sprite but... something close enough!
 	item_state = "slime"
 	w_class = 1
-	matter_amounts = list()
+	matter_amounts = alist()
 	brightness_on = 6
 	on = 1 //Bio-luminesence has one setting, on.
 

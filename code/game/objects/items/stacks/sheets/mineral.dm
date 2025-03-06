@@ -77,7 +77,7 @@ var/global/list/datum/stack_recipe/plasma_recipes = list(
 	name = "plastic"
 	icon_state = "plastic"
 	singular_name = "plastic sheet"
-	matter_amounts = list(/decl/material/plastic = MATERIAL_AMOUNT_PER_SHEET)
+	matter_amounts = alist(/decl/material/plastic = MATERIAL_AMOUNT_PER_SHEET)
 	origin_tech = list(/decl/tech/materials = 3)
 	material = /decl/material/plastic
 

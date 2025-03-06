@@ -1,7 +1,7 @@
 /datum/material_container
 	var/atom/holder // The atom we're attached to.
 
-	var/list/stored_materials = list() // An associative list of /decl/material typepaths to their corresponding amounts in cm3.
+	var/alist/stored_materials = alist() // An associative list of /decl/material typepaths to their corresponding amounts in cm3.
 	var/max_capacity = 0 // The total amount of materials in cm3 that this container can store.
 	var/has_individual_storage // If TRUE, max_capacity applies per material type instead of across all materials.
 

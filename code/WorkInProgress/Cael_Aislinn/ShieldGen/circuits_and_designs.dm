@@ -21,7 +21,7 @@
 	name = "Experimental Hull Shield Generator"
 	desc = "Allows for the construction of circuit boards used to build an experimental hull shield generator."
 	req_tech = list(/decl/tech/plasma = 3, /decl/tech/bluespace = 4)
-	materials = list(
+	materials = alist(
 		/decl/material/glass = 2000, /decl/material/gold = 10000, /decl/material/diamond = 5000,
 		/decl/material/plasma = 10000, "sacid" = 20
 	)
@@ -49,7 +49,7 @@
 	name = "Experimental Bubble Shield Generator"
 	desc = "Allows for the construction of circuit boards used to build an experimental bubble shield generator."
 	req_tech = list(/decl/tech/plasma = 3, /decl/tech/bluespace = 4)
-	materials = list(
+	materials = alist(
 		/decl/material/glass = 2000, /decl/material/gold = 10000, /decl/material/diamond = 5000,
 		/decl/material/plasma = 10000, "sacid" = 20
 	)
@@ -77,7 +77,7 @@
 	name = "Experimental Shield Capacitor"
 	desc = "Allows for the construction of circuit boards used to build an experimental shield capacitor."
 	req_tech = list(/decl/tech/magnets = 3, /decl/tech/power_storage = 4)
-	materials = list(
+	materials = alist(
 		/decl/material/glass = 2000, /decl/material/silver = 10000, /decl/material/diamond = 5000,
 		/decl/material/plasma = 10000, "sacid" = 20
 	)

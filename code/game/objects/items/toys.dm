@@ -124,7 +124,7 @@
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
 	w_class = 3.0
-	matter_amounts = list(/decl/material/steel = 10, /decl/material/plastic = 10)
+	matter_amounts = alist(/decl/material/steel = 10, /decl/material/plastic = 10)
 	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
 
 	var/bullets = 7.0
@@ -181,7 +181,7 @@
 	icon_state = "357-7"
 	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 1.0
-	matter_amounts = list(/decl/material/plastic = 20)
+	matter_amounts = alist(/decl/material/plastic = 20)
 
 	var/amount_left = 7.0
 

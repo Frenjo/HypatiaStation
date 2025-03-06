@@ -6,14 +6,14 @@
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. Functionality determined by a preprogrammed ROM cartridge."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(/decl/material/plastic = 50, /decl/material/glass = 50)
+	materials = alist(/decl/material/plastic = 50, /decl/material/glass = 50)
 	build_path = /obj/item/pda
 
 /datum/design/pda_cartridge
 	desc = "A data cartridge for portable microcomputers."
 	req_tech = list(/decl/tech/engineering = 2, /decl/tech/power_storage = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
-	materials = list(/decl/material/plastic = 50, /decl/material/glass = 50)
+	materials = alist(/decl/material/plastic = 50, /decl/material/glass = 50)
 	name_prefix = "Microcomputer Design"
 
 /datum/design/pda_cartridge/basic

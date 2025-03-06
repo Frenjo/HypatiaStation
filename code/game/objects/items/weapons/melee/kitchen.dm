@@ -193,7 +193,7 @@
 	throwforce = 8.0
 	throw_speed = 3
 	throw_range = 6
-	matter_amounts = list(/decl/material/steel = 12000)
+	matter_amounts = alist(/decl/material/steel = 12000)
 	origin_tech = list(/decl/tech/materials = 1)
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = 1
@@ -269,7 +269,7 @@
 	throw_range = 5
 	w_class = 3.0
 	obj_flags = OBJ_FLAG_CONDUCT
-	matter_amounts = list(/decl/material/steel = 3000)
+	matter_amounts = alist(/decl/material/steel = 3000)
 	/* // NOPE
 	var/food_total= 0
 	var/burger_amt = 0

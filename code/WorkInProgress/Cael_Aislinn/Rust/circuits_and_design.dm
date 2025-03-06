@@ -39,7 +39,7 @@
 	name = "RUST fuel port"
 	desc = "Allows for the construction of circuit modules used to build a fuel injection port for the RUST fusion engine."
 	req_tech = list(/decl/tech/materials = 5, /decl/tech/engineering = 4)
-	materials = list(/decl/material/glass = 2000, /decl/material/uranium = 3000, "sacid" = 20)
+	materials = alist(/decl/material/glass = 2000, /decl/material/uranium = 3000, "sacid" = 20)
 	build_path = /obj/item/module/rust_fuel_port
 
 //////////////////////////////////////
@@ -54,7 +54,7 @@
 	name = "RUST Fuel Compressor"
 	desc = "Allows for the construction of circuit modules used to build a fuel compressor for the RUST fusion engine."
 	req_tech = list(/decl/tech/materials = 6, /decl/tech/plasma = 4)
-	materials = list(/decl/material/glass = 2000, /decl/material/diamond = 1000, /decl/material/plasma = 3000, "sacid" = 20)
+	materials = alist(/decl/material/glass = 2000, /decl/material/diamond = 1000, /decl/material/plasma = 3000, "sacid" = 20)
 	build_path = /obj/item/module/rust_fuel_compressor
 
 //////////////////////////////////////
@@ -85,7 +85,7 @@
 		/decl/tech/bluespace = 3
 	)
 	reliability_base = 79
-	materials = list(/decl/material/glass = 2000, /decl/material/diamond = 2000, /decl/material/plasma = 3000, "sacid" = 20)
+	materials = alist(/decl/material/glass = 2000, /decl/material/diamond = 2000, /decl/material/plasma = 3000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/rust_core
 
 //////////////////////////////////////
@@ -115,5 +115,5 @@
 		/decl/tech/plasma = 4
 	)
 	reliability_base = 79
-	materials = list(/decl/material/glass = 2000, /decl/material/uranium = 2000, /decl/material/plasma = 3000, "sacid" = 20)
+	materials = alist(/decl/material/glass = 2000, /decl/material/uranium = 2000, /decl/material/plasma = 3000, "sacid" = 20)
 	build_path = /obj/item/circuitboard/rust_injector

@@ -440,14 +440,14 @@
 	name = "upgraded welding tool"
 	max_fuel = 80
 	w_class = 3.0
-	matter_amounts = list(/decl/material/steel = 70, /decl/material/glass = 120)
+	matter_amounts = alist(/decl/material/steel = 70, /decl/material/glass = 120)
 	origin_tech = list(/decl/tech/engineering = 3)
 
 /obj/item/weldingtool/experimental
 	name = "experimental welding tool"
 	max_fuel = 40
 	w_class = 3.0
-	matter_amounts = list(/decl/material/steel = 70, /decl/material/glass = 120)
+	matter_amounts = alist(/decl/material/steel = 70, /decl/material/glass = 120)
 	origin_tech = list(/decl/tech/engineering = 4, /decl/tech/plasma = 3)
 
 	var/last_gen = 0

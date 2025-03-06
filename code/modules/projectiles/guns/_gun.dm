@@ -7,7 +7,7 @@
 
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BELT
-	matter_amounts = list(/decl/material/steel = 2000)
+	matter_amounts = alist(/decl/material/steel = 2000)
 	origin_tech = list(/decl/tech/combat = 1)
 
 	throwforce = 5

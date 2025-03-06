@@ -13,7 +13,7 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = 4.0
-	matter_amounts = list(/decl/material/plastic = 1000, /decl/material/glass = 7500)
+	matter_amounts = alist(/decl/material/plastic = 1000, /decl/material/glass = 7500)
 	origin_tech = list(/decl/tech/materials = 2)
 	attack_verb = list("shoved", "bashed")
 

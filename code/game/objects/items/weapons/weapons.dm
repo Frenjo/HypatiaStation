@@ -37,7 +37,7 @@
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
-	matter_amounts = list(/decl/material/plastic = 50)
+	matter_amounts = alist(/decl/material/plastic = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
 /*
@@ -143,7 +143,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "rack_parts"
 	obj_flags = OBJ_FLAG_CONDUCT
-	matter_amounts = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET)
+	matter_amounts = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET)
 
 /obj/item/shard
 	name = "shard"
@@ -156,7 +156,7 @@
 	force = 5.0
 	throwforce = 8.0
 	item_state = "shard-glass"
-	matter_amounts = list(/decl/material/glass = MATERIAL_AMOUNT_PER_SHEET)
+	matter_amounts = alist(/decl/material/glass = MATERIAL_AMOUNT_PER_SHEET)
 	attack_verb = list("stabbed", "slashed", "sliced", "cut")
 
 /obj/item/shard/suicide_act(mob/user)
@@ -218,7 +218,7 @@
 	w_class = 2.0
 	throw_speed = 4
 	throw_range = 20
-	matter_amounts = list(/decl/material/plastic = 100)
+	matter_amounts = alist(/decl/material/plastic = 100)
 	origin_tech = list(/decl/tech/magnets = 1)
 
 	var/temp = null
@@ -233,7 +233,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/items.dmi'
 	icon_state = "table_parts"
-	matter_amounts = list(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET)
+	matter_amounts = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET)
 	obj_flags = OBJ_FLAG_CONDUCT
 	attack_verb = list("slammed", "bashed", "battered", "bludgeoned", "thrashed", "whacked")
 
@@ -242,7 +242,7 @@
 	desc = "Hard table parts. Well...harder..."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "reinf_tableparts"
-	matter_amounts = list(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET * 2))
+	matter_amounts = alist(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET * 2))
 
 /obj/item/table_parts/wood
 	name = "wooden table parts"

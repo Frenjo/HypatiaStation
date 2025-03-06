@@ -4,7 +4,7 @@
 /obj/item/stack/tile/circuit_grid // This is pretty much just a copypaste of /metal (except for matter_amounts) pending changes.
 	desc = "These could work as a pretty decent throwing weapon!"
 	force = 6
-	matter_amounts = list(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET / 4), /decl/material/glass = (MATERIAL_AMOUNT_PER_SHEET / 4))
+	matter_amounts = alist(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET / 4), /decl/material/glass = (MATERIAL_AMOUNT_PER_SHEET / 4))
 	throwforce = 15
 	throw_speed = 5
 	throw_range = 20
