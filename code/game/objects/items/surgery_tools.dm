@@ -185,7 +185,7 @@
 	icon_state = "fixovein"
 	force = 0
 	throwforce = 1.0
-	origin_tech = list(/decl/tech/materials = 1, /decl/tech/biotech = 3)
+	origin_tech = alist(/decl/tech/materials = 1, /decl/tech/biotech = 3)
 	w_class = 2.0
 
 	var/usage_amount = 10

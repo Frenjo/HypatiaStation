@@ -7,7 +7,7 @@
 	w_class = 4
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BACK
-	origin_tech = list(/decl/tech/materials = 2, /decl/tech/combat = 4)
+	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 4)
 
 	force = 10
 
@@ -60,7 +60,7 @@
 	name = "combat shotgun"
 	icon_state = "cshotgun"
 
-	origin_tech = list(/decl/tech/materials = 2, /decl/tech/combat = 5)
+	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 5)
 
 	ammo_type = /obj/item/ammo_casing/shotgun
 	max_shells = 8
@@ -75,7 +75,7 @@
 	w_class = 4
 	obj_flags = OBJ_FLAG_CONDUCT
 	slot_flags = SLOT_BACK
-	origin_tech = list(/decl/tech/materials = 1, /decl/tech/combat = 3)
+	origin_tech = alist(/decl/tech/materials = 1, /decl/tech/combat = 3)
 
 	force = 10
 

@@ -78,7 +78,7 @@
 	desc = "You can totally see in the dark now!"
 	icon_state = "night"
 	item_state = "glasses"
-	origin_tech = list(/decl/tech/magnets = 2)
+	origin_tech = alist(/decl/tech/magnets = 2)
 	darkness_view = 7
 
 /obj/item/clothing/glasses/night/New()
@@ -106,7 +106,7 @@
 	icon_state = "material"
 	item_state = "glasses"
 	icon_action_button = "action_material"
-	origin_tech = list(/decl/tech/magnets = 3, /decl/tech/engineering = 3)
+	origin_tech = alist(/decl/tech/magnets = 3, /decl/tech/engineering = 3)
 	toggleable = TRUE
 	vision_flags = SEE_OBJS
 
@@ -218,7 +218,7 @@
 	icon_state = "thermal"
 	item_state = "glasses"
 	icon_action_button = "action_thermal"
-	origin_tech = list(/decl/tech/magnets = 3)
+	origin_tech = alist(/decl/tech/magnets = 3)
 	toggleable = TRUE
 	vision_flags = SEE_MOBS
 	invisa_view = 2
@@ -244,7 +244,7 @@
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
 	icon_action_button = "action_meson"
-	origin_tech = list(/decl/tech/magnets = 3, /decl/tech/syndicate = 4)
+	origin_tech = alist(/decl/tech/magnets = 3, /decl/tech/syndicate = 4)
 
 /obj/item/clothing/glasses/thermal/monocle
 	name = "Thermoncle"

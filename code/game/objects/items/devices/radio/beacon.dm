@@ -43,7 +43,7 @@
 /obj/item/radio/beacon/syndicate
 	name = "suspicious beacon"
 	desc = "A label on it reads: <i>Activate to have a singularity beacon teleported to your location</i>."
-	origin_tech = list(/decl/tech/bluespace = 1, /decl/tech/syndicate = 7)
+	origin_tech = alist(/decl/tech/bluespace = 1, /decl/tech/syndicate = 7)
 
 /obj/item/radio/beacon/syndicate/attack_self(mob/user)
 	if(user)

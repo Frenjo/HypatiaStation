@@ -5,7 +5,7 @@
 	singular_name = "ointment"
 	icon_state = "ointment"
 	heal_burn = 1
-	origin_tech = list(/decl/tech/biotech = 1)
+	origin_tech = alist(/decl/tech/biotech = 1)
 
 /obj/item/stack/medical/ointment/attack(mob/living/carbon/M, mob/user)
 	if(..())

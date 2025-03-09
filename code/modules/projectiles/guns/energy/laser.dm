@@ -4,7 +4,7 @@
 	icon_state = "laser"
 	item_state = "laser"
 
-	origin_tech = list(/decl/tech/magnets = 2, /decl/tech/combat = 3)
+	origin_tech = alist(/decl/tech/magnets = 2, /decl/tech/combat = 3)
 
 	fire_sound = 'sound/weapons/Laser.ogg'
 
@@ -99,7 +99,7 @@
 	desc = "A high-power laser gun capable of expelling concentrated xray blasts."
 	icon_state = "xray"
 
-	origin_tech = list(
+	origin_tech = alist(
 		/decl/tech/materials = 3, /decl/tech/magnets = 2, /decl/tech/combat = 5,
 		/decl/tech/syndicate = 2
 	)
@@ -119,7 +119,7 @@
 	name = "laser tag gun"
 	desc = "Standard issue weapon of the Imperial Guard."
 
-	origin_tech = list(/decl/tech/magnets = 2, /decl/tech/combat = 1)
+	origin_tech = alist(/decl/tech/magnets = 2, /decl/tech/combat = 1)
 
 	clumsy_check = FALSE
 

@@ -20,7 +20,7 @@
 	throw_range = 10
 
 	matter_amounts = alist(/decl/material/plastic = 200, /decl/material/glass = 50)
-	origin_tech = list(/decl/tech/magnets = 1, /decl/tech/biotech = 1)
+	origin_tech = alist(/decl/tech/magnets = 1, /decl/tech/biotech = 1)
 
 	var/mode = MODE_SHOW_LIMB_DAMAGE
 

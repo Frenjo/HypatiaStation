@@ -30,7 +30,7 @@
 /obj/item/cell/crap
 	name = "\improper NanoTrasen brand rechargable AA battery"
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
-	origin_tech = list(/decl/tech/power_storage = 0)
+	origin_tech = alist(/decl/tech/power_storage = 0)
 	maxcharge = 500
 	matter_amounts = alist(/decl/material/steel = 750, /decl/material/glass = 40)
 
@@ -40,7 +40,7 @@
 
 /obj/item/cell/secborg
 	name = "security borg rechargable D battery"
-	origin_tech = list(/decl/tech/power_storage = 0)
+	origin_tech = alist(/decl/tech/power_storage = 0)
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
 	matter_amounts = alist(/decl/material/steel = 750, /decl/material/glass = 40)
 
@@ -50,7 +50,7 @@
 
 /obj/item/cell/apc
 	name = "\improper APC power cell"
-	origin_tech = list(/decl/tech/power_storage = 1)
+	origin_tech = alist(/decl/tech/power_storage = 1)
 	maxcharge = 5000
 	matter_amounts = alist(/decl/material/steel = 750, /decl/material/glass = 50)
 
@@ -105,7 +105,7 @@
 	name = "potato battery"
 	desc = "A rechargable starch based power cell."
 	icon_state = "potato_cell"
-	origin_tech = list(/decl/tech/power_storage = 1)
+	origin_tech = alist(/decl/tech/power_storage = 1)
 
 	charge = 100
 	maxcharge = 300
@@ -118,7 +118,7 @@
 	icon = 'icons/mob/slimes.dmi'
 	icon_state = "yellow slime extract"
 
-	origin_tech = list(/decl/tech/biotech = 4, /decl/tech/power_storage = 2)
+	origin_tech = alist(/decl/tech/biotech = 4, /decl/tech/power_storage = 2)
 	maxcharge = 10000
 	maxcharge = 10000
 	matter_amounts = alist()

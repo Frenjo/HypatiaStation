@@ -69,7 +69,7 @@
 	throwforce = 4
 	w_class = 4
 	matter_amounts = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET) //one sheet, but where can you make them?
-	origin_tech = list(/decl/tech/materials = 1, /decl/tech/engineering = 1)
+	origin_tech = alist(/decl/tech/materials = 1, /decl/tech/engineering = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	sharp = 1
 
@@ -87,7 +87,7 @@
 	icon_state = "spickaxe"
 	item_state = "spickaxe"
 
-	origin_tech = list(/decl/tech/materials = 3)
+	origin_tech = alist(/decl/tech/materials = 3)
 	dig_time = 3 SECONDS
 
 /obj/item/pickaxe/gold
@@ -96,7 +96,7 @@
 	icon_state = "gpickaxe"
 	item_state = "gpickaxe"
 
-	origin_tech = list(/decl/tech/materials = 4)
+	origin_tech = alist(/decl/tech/materials = 4)
 	dig_time = 2 SECONDS
 
 /obj/item/pickaxe/diamond
@@ -185,7 +185,7 @@
 	item_state = "shovel"
 	w_class = 3
 	matter_amounts = alist(/decl/material/steel = 50)
-	origin_tech = list(/decl/tech/materials = 1, /decl/tech/engineering = 1)
+	origin_tech = alist(/decl/tech/materials = 1, /decl/tech/engineering = 1)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
 
 /obj/item/shovel/spade

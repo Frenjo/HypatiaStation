@@ -28,7 +28,7 @@
 /obj/item/ai_module/nanotrasen // -- TLE
 	name = "\improper 'NT Default' core AI module"
 	desc = "An 'NT Default' Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 3)
+	origin_tech = alist(/decl/tech/materials = 4, /decl/tech/programming = 3)
 
 /obj/item/ai_module/nanotrasen/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
@@ -152,7 +152,7 @@
 	name = "hacked AI module"
 	desc = "A hacked AI law module: '<freeform>'"
 
-	origin_tech = list(/decl/tech/materials = 6, /decl/tech/programming = 3, /decl/tech/syndicate = 7)
+	origin_tech = alist(/decl/tech/materials = 6, /decl/tech/programming = 3, /decl/tech/syndicate = 7)
 
 	var/newFreeFormLaw = ""
 

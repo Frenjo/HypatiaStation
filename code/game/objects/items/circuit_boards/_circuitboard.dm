@@ -18,7 +18,7 @@
 
 	w_class = 2.0
 
-	origin_tech = list(/decl/tech/programming = 2)
+	origin_tech = alist(/decl/tech/programming = 2)
 
 	var/id = null
 	var/frequency = null

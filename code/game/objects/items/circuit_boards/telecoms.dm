@@ -8,22 +8,22 @@
 /obj/item/circuitboard/message_monitor
 	name = "circuit board (message monitor console)"
 	build_path = /obj/machinery/computer/message_monitor
-	origin_tech = list(/decl/tech/programming = 3)
+	origin_tech = alist(/decl/tech/programming = 3)
 
 /obj/item/circuitboard/comm_monitor
 	name = "circuit board (telecommunications monitor)"
 	build_path = /obj/machinery/computer/telecoms/monitor
-	origin_tech = list(/decl/tech/programming = 3)
+	origin_tech = alist(/decl/tech/programming = 3)
 
 /obj/item/circuitboard/comm_server
 	name = "circuit board (telecommunications server monitor)"
 	build_path = /obj/machinery/computer/telecoms/server
-	origin_tech = list(/decl/tech/programming = 3)
+	origin_tech = alist(/decl/tech/programming = 3)
 
 /obj/item/circuitboard/comm_traffic
 	name = "circuit board (telecommunications traffic control)"
 	build_path = /obj/machinery/computer/telecoms/traffic
-	origin_tech = list(/decl/tech/programming = 3)
+	origin_tech = alist(/decl/tech/programming = 3)
 
 /*
  * Machines

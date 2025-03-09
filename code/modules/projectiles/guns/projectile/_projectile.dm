@@ -4,7 +4,7 @@
 	icon_state = "revolver"
 
 	matter_amounts = alist(/decl/material/steel = 1000)
-	origin_tech = list(/decl/tech/materials = 2, /decl/tech/combat = 2)
+	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 2)
 
 	recoil = TRUE
 

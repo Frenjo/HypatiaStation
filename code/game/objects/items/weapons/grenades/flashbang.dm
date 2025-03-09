@@ -2,7 +2,7 @@
 	name = "flashbang"
 	icon_state = "flashbang"
 	item_state = "flashbang"
-	origin_tech = list(/decl/tech/materials = 2, /decl/tech/combat = 1)
+	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 1)
 
 	var/banglet = 0
 

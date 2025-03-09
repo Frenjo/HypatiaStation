@@ -36,7 +36,7 @@
 /obj/item/circuitboard/solar_control
 	name = "circuit board (solar panel control)"
 	build_path = /obj/machinery/power/solar_control
-	origin_tech = list(/decl/tech/power_storage = 2, /decl/tech/programming = 2)
+	origin_tech = alist(/decl/tech/power_storage = 2, /decl/tech/programming = 2)
 
 /obj/item/circuitboard/powermonitor
 	name = "circuit board (power monitoring computer)"

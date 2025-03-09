@@ -15,7 +15,7 @@
 	singular_name = "grass floor tile"
 	desc = "A patch of grass like they often use on golf courses."
 	icon_state = "grass"
-	origin_tech = list(/decl/tech/biotech = 1)
+	origin_tech = alist(/decl/tech/biotech = 1)
 	turf_path = /turf/open/floor/grass
 
 /*

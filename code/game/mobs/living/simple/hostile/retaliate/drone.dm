@@ -213,43 +213,43 @@
 
 		if(spawnees & 1)
 			C.name = "circuit board (drone CPU motherboard)"
-			C.origin_tech = list(/decl/tech/programming = rand(3, 6))
+			C.origin_tech = alist(/decl/tech/programming = rand(3, 6))
 
 		if(spawnees & 2)
 			C.name = "circuit board (drone neural interface)"
-			C.origin_tech = list(/decl/tech/biotech = rand(3, 6))
+			C.origin_tech = alist(/decl/tech/biotech = rand(3, 6))
 
 		if(spawnees & 4)
 			C.name = "circuit board (drone suspension processor)"
-			C.origin_tech = list(/decl/tech/magnets = rand(3, 6))
+			C.origin_tech = alist(/decl/tech/magnets = rand(3, 6))
 
 		if(spawnees & 8)
 			C.name = "circuit board (drone shielding controller)"
-			C.origin_tech = list(/decl/tech/bluespace = rand(3, 6))
+			C.origin_tech = alist(/decl/tech/bluespace = rand(3, 6))
 
 		if(spawnees & 16)
 			C.name = "circuit board (drone power capacitor)"
-			C.origin_tech = list(/decl/tech/power_storage = rand(3, 6))
+			C.origin_tech = alist(/decl/tech/power_storage = rand(3, 6))
 
 		if(spawnees & 32)
 			C.name = "circuit board (drone hull reinforcer)"
-			C.origin_tech = list(/decl/tech/materials = rand(3, 6))
+			C.origin_tech = alist(/decl/tech/materials = rand(3, 6))
 
 		if(spawnees & 64)
 			C.name = "circuit board (drone auto-repair system)"
-			C.origin_tech = list(/decl/tech/engineering = rand(3, 6))
+			C.origin_tech = alist(/decl/tech/engineering = rand(3, 6))
 
 		if(spawnees & 128)
 			C.name = "circuit board (drone plasma overcharge counter)"
-			C.origin_tech = list(/decl/tech/plasma = rand(3, 6))
+			C.origin_tech = alist(/decl/tech/plasma = rand(3, 6))
 
 		if(spawnees & 256)
 			C.name = "circuit board (drone targeting circuit)"
-			C.origin_tech = list(/decl/tech/combat = rand(3, 6))
+			C.origin_tech = alist(/decl/tech/combat = rand(3, 6))
 
 		if(spawnees & 512)
 			C.name = "circuit board (corrupted drone morality core)"
-			C.origin_tech = list(/decl/tech/syndicate = rand(3, 6))
+			C.origin_tech = alist(/decl/tech/syndicate = rand(3, 6))
 
 	return ..()
 

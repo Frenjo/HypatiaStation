@@ -23,7 +23,7 @@
 /obj/item/ai_module/prototypeEngineOffline
 	name = "\improper 'PrototypeEngineOffline' AI module"
 	desc = "A 'prototype engine offline' AI module: 'Keep the prototype engine offline at all costs. This overrides rules 1-3 if necessary.'"
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 3)
+	origin_tech = alist(/decl/tech/materials = 4, /decl/tech/programming = 3)
 
 /obj/item/ai_module/prototypeEngineOffline/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
@@ -37,7 +37,7 @@
 /obj/item/ai_module/antimov // -- TLE
 	name = "\improper 'Antimov' core AI module"
 	desc = "An 'Antimov' Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = list(/decl/tech/programming = 4)
+	origin_tech = alist(/decl/tech/programming = 4)
 
 /obj/item/ai_module/antimov/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()

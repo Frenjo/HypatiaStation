@@ -28,7 +28,7 @@
 	desc = "Seems to have some unusal strata evident throughout it."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "strange"
-	origin_tech = list(/decl/tech/materials = 5)
+	origin_tech = alist(/decl/tech/materials = 5)
 
 	var/obj/item/inside
 	var/method = 0// 0 = fire, 1 = brush, 2 = pick

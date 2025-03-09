@@ -22,7 +22,7 @@ RCD
 	throw_range = 5
 	w_class = 3.0
 	matter_amounts = /datum/design/autolathe/rcd::materials
-	origin_tech = list(/decl/tech/materials = 2, /decl/tech/engineering = 4)
+	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/engineering = 4)
 
 	var/datum/effect/system/spark_spread/spark_system
 	var/matter = 0

@@ -6,7 +6,7 @@
 	name = "circuit board (experimental hull shield generator)"
 	board_type = "machine"
 	build_path = /obj/machinery/shield_gen/external
-	origin_tech = list(/decl/tech/plasma = 3, /decl/tech/bluespace = 4)
+	origin_tech = alist(/decl/tech/plasma = 3, /decl/tech/bluespace = 4)
 	frame_desc = "Requires 2 pico-manipulators, 1 subspace transmitter, 5 pieces of cable, 1 ansible crystal, 1 subspace amplifier and 1 console screen."
 	req_components = list(
 		/obj/item/stock_part/manipulator/pico = 2,
@@ -34,7 +34,7 @@
 	name = "circuit board (experimental bubble shield generator)"
 	board_type = "machine"
 	build_path = /obj/machinery/shield_gen/external
-	origin_tech = list(/decl/tech/plasma = 3, /decl/tech/bluespace = 4)
+	origin_tech = alist(/decl/tech/plasma = 3, /decl/tech/bluespace = 4)
 	frame_desc = "Requires 2 pico-manipulators, 1 subspace transmitter, 5 pieces of cable, 1 ansible crystal, 1 subspace amplifier and 1 console screen."
 	req_components = list(
 		/obj/item/stock_part/manipulator/pico = 2,
@@ -62,7 +62,7 @@
 	name = "circuit board (experimental shield capacitor)"
 	board_type = "machine"
 	build_path = /obj/machinery/shield_capacitor
-	origin_tech = list(/decl/tech/magnets = 3, /decl/tech/power_storage = 4)
+	origin_tech = alist(/decl/tech/magnets = 3, /decl/tech/power_storage = 4)
 	frame_desc = "Requires 2 pico-manipulators, 1 subspace filter, 5 pieces of cable, 1 subspace treatment disk, 1 subspace analyser and 1 console screen."
 	req_components = list(
 		/obj/item/stock_part/manipulator/pico = 2,

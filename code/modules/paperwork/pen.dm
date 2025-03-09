@@ -60,7 +60,7 @@
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	slot_flags = SLOT_BELT
-	origin_tech = list(/decl/tech/materials = 2, /decl/tech/syndicate = 5)
+	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/syndicate = 5)
 
 
 /obj/item/pen/sleepypen/New()
@@ -84,7 +84,7 @@
 /obj/item/pen/paralysis
 	atom_flags = ATOM_FLAG_OPEN_CONTAINER
 	slot_flags = SLOT_BELT
-	origin_tech = list(/decl/tech/materials = 2, /decl/tech/syndicate = 5)
+	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/syndicate = 5)
 
 
 /obj/item/pen/paralysis/attack(mob/M, mob/user)

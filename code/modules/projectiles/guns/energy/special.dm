@@ -134,7 +134,7 @@
 
 	w_class = 4
 	slot_flags = SLOT_BACK
-	origin_tech = list(/decl/tech/materials = 5, /decl/tech/combat = 6, /decl/tech/power_storage = 4)
+	origin_tech = alist(/decl/tech/materials = 5, /decl/tech/combat = 6, /decl/tech/power_storage = 4)
 
 	fire_sound = 'sound/weapons/marauder.ogg'
 	fire_delay = 3.5 SECONDS

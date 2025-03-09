@@ -8,7 +8,7 @@
 /obj/item/ai_module/robocop // -- TLE
 	name = "\improper 'Robocop' core AI module"
 	desc = "A 'Robocop' Core AI Module: 'Reconfigures the AI's core three laws.'"
-	origin_tech = list(/decl/tech/programming = 4)
+	origin_tech = alist(/decl/tech/programming = 4)
 
 /obj/item/ai_module/robocop/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
@@ -43,7 +43,7 @@
 /obj/item/ai_module/corp
 	name = "\improper 'Corporate' core AI module"
 	desc = "A 'Corporate' Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 3)
+	origin_tech = alist(/decl/tech/materials = 4, /decl/tech/programming = 3)
 
 /obj/item/ai_module/corp/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()
@@ -77,7 +77,7 @@
 /obj/item/ai_module/drone
 	name = "\improper 'Drone' core AI module"
 	desc = "A 'Drone' Core AI Module: 'Reconfigures the AI's core laws.'"
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/programming = 3)
+	origin_tech = alist(/decl/tech/materials = 4, /decl/tech/programming = 3)
 
 /obj/item/ai_module/drone/transmitInstructions(mob/living/silicon/ai/target, mob/sender)
 	. = ..()

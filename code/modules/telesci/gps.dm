@@ -7,7 +7,7 @@ GLOBAL_GLOBL_LIST_NEW(gps_list)
 	icon_state = "gps-c"
 	w_class = 2.0
 	slot_flags = SLOT_BELT
-	origin_tech = list(/decl/tech/engineering = 2, /decl/tech/programming = 3)
+	origin_tech = alist(/decl/tech/engineering = 2, /decl/tech/programming = 3)
 
 	var/gpstag = "COM0"
 	var/emped = FALSE

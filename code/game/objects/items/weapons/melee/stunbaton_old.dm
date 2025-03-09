@@ -13,7 +13,7 @@
 	var/status = 0
 	var/mob/foundmob = "" //Used in throwing proc.
 
-	origin_tech = list(/decl/tech/combat = 2)
+	origin_tech = alist(/decl/tech/combat = 2)
 
 	suicide_act(mob/user)
 		viewers(user) << "\red <b>[user] is putting the live [src.name] in \his mouth! It looks like \he's trying to commit suicide.</b>"

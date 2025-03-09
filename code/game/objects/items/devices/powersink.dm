@@ -12,7 +12,7 @@
 	throw_speed = 1
 	throw_range = 2
 	matter_amounts = alist(/decl/material/steel = 750)
-	origin_tech = list(/decl/tech/power_storage = 3, /decl/tech/syndicate = 5)
+	origin_tech = alist(/decl/tech/power_storage = 3, /decl/tech/syndicate = 5)
 
 	var/drain_rate = 600000		// amount of power to drain per tick
 	var/power_drained = 0 		// has drained this much power

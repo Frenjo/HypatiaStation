@@ -23,5 +23,5 @@
 	desc = "The by-product of mob grinding."
 	singular_name = "leather piece"
 	icon_state = "leather"
-	origin_tech = list(/decl/tech/materials = 2)
+	origin_tech = alist(/decl/tech/materials = 2)
 	material = /decl/material/leather

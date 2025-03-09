@@ -14,7 +14,7 @@
 	throw_range = 4
 	w_class = 4.0
 	matter_amounts = alist(/decl/material/plastic = 1000, /decl/material/glass = 7500)
-	origin_tech = list(/decl/tech/materials = 2)
+	origin_tech = alist(/decl/tech/materials = 2)
 	attack_verb = list("shoved", "bashed")
 
 	var/cooldown = 0 //shield bash cooldown. based on world.time
@@ -45,7 +45,7 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = 1
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/magnets = 3, /decl/tech/syndicate = 4)
+	origin_tech = alist(/decl/tech/materials = 4, /decl/tech/magnets = 3, /decl/tech/syndicate = 4)
 	attack_verb = list("shoved", "bashed")
 
 	var/active = 0
@@ -62,7 +62,7 @@
 	throw_speed = 2
 	throw_range = 10
 	w_class = 2.0
-	origin_tech = list(/decl/tech/magnets = 3, /decl/tech/syndicate = 4)
+	origin_tech = alist(/decl/tech/magnets = 3, /decl/tech/syndicate = 4)
 
 	var/active = 0
 

@@ -8,7 +8,7 @@
 /obj/item/circuitboard/supplycomp
 	name = "circuit board (supply shuttle console)"
 	build_path = /obj/machinery/computer/supplycomp
-	origin_tech = list(/decl/tech/programming = 3)
+	origin_tech = alist(/decl/tech/programming = 3)
 
 	var/contraband_enabled = FALSE
 

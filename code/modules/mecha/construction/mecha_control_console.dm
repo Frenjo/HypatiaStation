@@ -71,7 +71,7 @@
 	desc = "Device used to transmit exosuit data."
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "motion2"
-	origin_tech = list(/decl/tech/magnets = 2, /decl/tech/programming = 2)
+	origin_tech = alist(/decl/tech/magnets = 2, /decl/tech/programming = 2)
 
 /obj/item/mecha_part/tracking/proc/get_mecha_info()
 	if(!in_mecha())

@@ -44,7 +44,7 @@
 	throw_speed = 4
 	throw_range = 4
 	matter_amounts = alist(/decl/material/steel = 15000)
-	origin_tech = list(/decl/tech/materials = 2, /decl/tech/combat = 1)
+	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 1)
 	attack_verb = list("chopped", "torn", "cut")
 
 /obj/item/hatchet/attack(mob/living/carbon/M, mob/living/carbon/user)
@@ -68,7 +68,7 @@
 	w_class = 4.0
 	item_flags = ITEM_FLAG_NO_SHIELD
 	slot_flags = SLOT_BACK
-	origin_tech = list(/decl/tech/materials = 2, /decl/tech/combat = 2)
+	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 2)
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 
 /obj/item/scythe/afterattack(atom/A, mob/user, proximity)

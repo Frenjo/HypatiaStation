@@ -18,7 +18,7 @@
 	// Overridden on subtypes or manipulated with *_TOOL_FLAGS(ITEM, FLAGS) macros.
 	var/tool_flags
 
-	var/list/origin_tech = null // Used by R&D to determine what research bonuses this item grants.
+	var/alist/origin_tech = null // Used by R&D to determine what research bonuses this item grants.
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/abstract = 0

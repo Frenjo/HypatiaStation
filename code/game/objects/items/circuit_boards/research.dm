@@ -8,7 +8,7 @@
 /obj/item/circuitboard/robotics
 	name = "circuit board (robotics control)"
 	build_path = /obj/machinery/computer/robotics
-	origin_tech = list(/decl/tech/programming = 3)
+	origin_tech = alist(/decl/tech/programming = 3)
 
 /obj/item/circuitboard/rdconsole
 	name = "circuit board (core R&D console)"
@@ -46,7 +46,7 @@
 /obj/item/circuitboard/mech_bay_power_console
 	name = "circuit board (mech bay power control console)"
 	build_path = /obj/machinery/computer/mech_bay_power_console
-	origin_tech = list(/decl/tech/power_storage = 3, /decl/tech/programming = 2)
+	origin_tech = alist(/decl/tech/power_storage = 3, /decl/tech/programming = 2)
 
 /obj/item/circuitboard/research_shuttle
 	name = "circuit board (research shuttle control console)"

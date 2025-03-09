@@ -5,7 +5,7 @@
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "bluespace_crystal"
 	w_class = 1
-	origin_tech = list(/decl/tech/materials = 3, /decl/tech/bluespace = 4)
+	origin_tech = alist(/decl/tech/materials = 3, /decl/tech/bluespace = 4)
 	var/blink_range = 8 // The teleport range when crushed/thrown at someone.
 
 /obj/item/bluespace_crystal/New()

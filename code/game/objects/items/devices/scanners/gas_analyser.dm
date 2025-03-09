@@ -17,7 +17,7 @@
 	throw_range = 20
 
 	matter_amounts = alist(/decl/material/plastic = 30, /decl/material/glass = 20)
-	origin_tech = list(/decl/tech/magnets = 1, /decl/tech/engineering = 1)
+	origin_tech = alist(/decl/tech/magnets = 1, /decl/tech/engineering = 1)
 
 /obj/item/gas_analyser/attack_self(mob/user)
 	if(user.stat)

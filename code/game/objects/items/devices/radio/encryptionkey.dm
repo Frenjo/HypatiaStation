@@ -16,7 +16,7 @@
 /obj/item/encryptionkey/syndicate
 	icon_state = "cypherkey"
 	channels = list(CHANNEL_SYNDICATE = 1)
-	origin_tech = list(/decl/tech/syndicate = 3)
+	origin_tech = alist(/decl/tech/syndicate = 3)
 	syndie = 1 //Signifies that it de-crypts Syndicate transmissions
 
 // Binary

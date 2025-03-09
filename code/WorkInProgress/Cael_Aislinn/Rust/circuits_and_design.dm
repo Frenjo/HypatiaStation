@@ -5,7 +5,7 @@
 /obj/item/circuitboard/rust_core_control
 	name = "circuit board (RUST core control)"
 	build_path = /obj/machinery/computer/rust_core_control
-	origin_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
+	origin_tech = alist(/decl/tech/engineering = 4, /decl/tech/programming = 4)
 
 /datum/design/circuit/rust_core_control
 	name = "RUST Core Control"
@@ -19,7 +19,7 @@
 /obj/item/circuitboard/rust_fuel_control
 	name = "circuit board (RUST fuel injection control)"
 	build_path = /obj/machinery/computer/rust_fuel_control
-	origin_tech = list(/decl/tech/engineering = 4, /decl/tech/programming = 4)
+	origin_tech = alist(/decl/tech/engineering = 4, /decl/tech/programming = 4)
 
 /datum/design/circuit/rust_fuel_control
 	name = "RUST Fuel Injection Control"
@@ -33,7 +33,7 @@
 /obj/item/module/rust_fuel_port
 	name = "circuit module (RUST fuel port)"
 	icon_state = "card_mod"
-	origin_tech = list(/decl/tech/materials = 5, /decl/tech/engineering = 4)
+	origin_tech = alist(/decl/tech/materials = 5, /decl/tech/engineering = 4)
 
 /datum/design/circuit/rust_fuel_port
 	name = "RUST fuel port"
@@ -48,7 +48,7 @@
 /obj/item/module/rust_fuel_compressor
 	name = "circuit module (RUST fuel compressor)"
 	icon_state = "card_mod"
-	origin_tech = list(/decl/tech/materials = 6, /decl/tech/plasma = 4)
+	origin_tech = alist(/decl/tech/materials = 6, /decl/tech/plasma = 4)
 
 /datum/design/circuit/rust_fuel_compressor
 	name = "RUST Fuel Compressor"
@@ -64,7 +64,7 @@
 	name = "circuit board (RUST tokamak core)"
 	build_path = /obj/machinery/power/rust_core
 	board_type = "machine"
-	origin_tech = list(
+	origin_tech = alist(
 		/decl/tech/magnets = 5, /decl/tech/power_storage = 6, /decl/tech/plasma = 4,
 		/decl/tech/bluespace = 3
 	)
@@ -95,7 +95,7 @@
 	name = "circuit board (RUST fuel injector)"
 	build_path = /obj/machinery/power/rust_fuel_injector
 	board_type = "machine"
-	origin_tech = list(
+	origin_tech = alist(
 		/decl/tech/materials = 6, /decl/tech/engineering = 4, /decl/tech/power_storage = 3, /decl/tech/plasma = 4
 	)
 	frame_desc = "Requires 2 pico-manipulators, 1 phasic scanning module, 1 super matter bin, 1 console screen and 5 pieces of cable."

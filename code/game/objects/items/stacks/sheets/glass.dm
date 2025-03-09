@@ -16,7 +16,7 @@
 	singular_name = "glass sheet"
 	icon_state = "glass"
 	matter_amounts = alist(/decl/material/glass = MATERIAL_AMOUNT_PER_SHEET)
-	origin_tech = list(/decl/tech/materials = 1)
+	origin_tech = alist(/decl/tech/materials = 1)
 	material = /decl/material/glass
 
 	var/created_window = /obj/structure/window/basic
@@ -138,7 +138,7 @@
 	singular_name = "reinforced glass sheet"
 	icon_state = "rglass"
 	matter_amounts = alist(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET / 2), /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET)
-	origin_tech = list(/decl/tech/materials = 2)
+	origin_tech = alist(/decl/tech/materials = 2)
 
 	material = /decl/material/reinforced_glass
 
@@ -339,7 +339,7 @@
 	singular_name = "plasma glass sheet"
 	icon_state = "plasmaglass"
 	matter_amounts = alist(/decl/material/glass = (MATERIAL_AMOUNT_PER_SHEET * 2))
-	origin_tech = list(/decl/tech/materials = 3, /decl/tech/plasma = 2)
+	origin_tech = alist(/decl/tech/materials = 3, /decl/tech/plasma = 2)
 	material = /decl/material/plasma_glass
 
 	created_window = /obj/structure/window/plasmabasic
@@ -369,7 +369,7 @@
 	singular_name = "reinforced plasma glass sheet"
 	icon_state = "plasmarglass"
 	matter_amounts = alist(/decl/material/steel = (MATERIAL_AMOUNT_PER_SHEET / 2), /decl/material/glass = (MATERIAL_AMOUNT_PER_SHEET * 2))
-	origin_tech = list(/decl/tech/materials = 4, /decl/tech/plasma = 2)
+	origin_tech = alist(/decl/tech/materials = 4, /decl/tech/plasma = 2)
 	material = /decl/material/reinforced_plasma_glass
 
 	created_window = /obj/structure/window/plasmareinforced

@@ -9,7 +9,7 @@
 	throw_speed = 4
 	throw_range = 10
 	obj_flags = OBJ_FLAG_CONDUCT
-	origin_tech = list(/decl/tech/magnets = 2, /decl/tech/combat = 1)
+	origin_tech = alist(/decl/tech/magnets = 2, /decl/tech/combat = 1)
 
 	var/times_used = 0	//Number of times it's been used.
 	var/broken = 0		//Is the flash burnt out?

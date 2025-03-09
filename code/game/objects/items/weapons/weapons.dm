@@ -73,7 +73,7 @@
 	obj_flags = OBJ_FLAG_CONDUCT
 	throwforce = 0
 	w_class = 3.0
-	origin_tech = list(/decl/tech/materials = 1)
+	origin_tech = alist(/decl/tech/materials = 1)
 
 	var/breakouttime = 300	//Deciseconds = 30s = 0.5 minute
 
@@ -185,7 +185,7 @@
 	throw_speed = 4
 	throw_range = 20
 	m_amt = 100
-	origin_tech = list(/decl/tech/magnets = 2, /decl/tech/syndicate = 3)*/
+	origin_tech = alist(/decl/tech/magnets = 2, /decl/tech/syndicate = 3)*/
 
 /obj/item/shard/shrapnel
 	name = "shrapnel"
@@ -219,7 +219,7 @@
 	throw_speed = 4
 	throw_range = 20
 	matter_amounts = alist(/decl/material/plastic = 100)
-	origin_tech = list(/decl/tech/magnets = 1)
+	origin_tech = alist(/decl/tech/magnets = 1)
 
 	var/temp = null
 	var/uses = 4.0
@@ -292,7 +292,7 @@
 	icon_state = "meat"
 	obj_flags = OBJ_FLAG_CONDUCT
 	w_class = 1.0
-	origin_tech = list(/decl/tech/biotech = 2)
+	origin_tech = alist(/decl/tech/biotech = 2)
 
 /obj/item/hatchet/soghunknife
 	name = "duelling knife"
