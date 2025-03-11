@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_LIST_NEW(spawntypes)
+GLOBAL_GLOBL_ALIST_NEW(spawntypes)
 
 /proc/populate_spawn_points()
 	for(var/type in SUBTYPESOF(/datum/spawnpoint))

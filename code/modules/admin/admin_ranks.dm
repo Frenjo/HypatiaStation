@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_LIST_NEW(admin_ranks)	//list of all ranks with associated rights
+GLOBAL_GLOBL_ALIST_NEW(admin_ranks)	//list of all ranks with associated rights
 
 //load our rank - > rights associations
 /proc/load_admin_ranks()

@@ -1,6 +1,6 @@
 GLOBAL_GLOBL_LIST_NEW(chemical_reactions_list)	// List of all /datum/chemical_reaction datums. Used during chemical reactions.
-GLOBAL_GLOBL_LIST_NEW(chemical_reagents_list)	// List of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff.
-GLOBAL_GLOBL_LIST_NEW(side_effects)				// List of all medical sideeffects types by thier names. |BS12
+GLOBAL_GLOBL_ALIST_NEW(chemical_reagents_list)	// Associative list of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff.
+GLOBAL_GLOBL_ALIST_NEW(side_effects)			// Associative list of all medical side effect types indexed by name. |BS12
 
 //feel free to add shit to lists below
 //increases heart rate

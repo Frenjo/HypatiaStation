@@ -1,5 +1,5 @@
 //NEVER USE THIS IT SUX	-PETETHEGOAT
-GLOBAL_GLOBL_LIST_NEW(cached_icons)
+GLOBAL_GLOBL_ALIST_NEW(cached_icons)
 
 /obj/item/reagent_holder/glass/paint
 	desc = "It's a paint bucket."

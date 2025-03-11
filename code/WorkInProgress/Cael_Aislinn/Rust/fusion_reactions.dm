@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_LIST(fusion_reactions)
+GLOBAL_GLOBL_ALIST_NEW(fusion_reactions)
 
 /datum/fusion_reaction
 	var/primary_reactant = ""
@@ -9,7 +9,7 @@ GLOBAL_GLOBL_LIST(fusion_reactions)
 	var/list/products = list()
 
 /proc/get_fusion_reaction(primary_reactant, secondary_reactant)
-	if(!GLOBL.fusion_reactions)
+	if(isemptylist(GLOBL.fusion_reactions))
 		populate_fusion_reactions()
 	if(GLOBL.fusion_reactions.Find(primary_reactant))
 		var/list/secondary_reactions = GLOBL.fusion_reactions[primary_reactant]
@@ -17,16 +17,14 @@ GLOBAL_GLOBL_LIST(fusion_reactions)
 			return GLOBL.fusion_reactions[primary_reactant][secondary_reactant]
 
 /proc/populate_fusion_reactions()
-	if(!GLOBL.fusion_reactions)
-		GLOBL.fusion_reactions = list()
-		for(var/cur_reaction_type in SUBTYPESOF(/datum/fusion_reaction))
-			var/datum/fusion_reaction/cur_reaction = new cur_reaction_type()
-			if(!GLOBL.fusion_reactions[cur_reaction.primary_reactant])
-				GLOBL.fusion_reactions[cur_reaction.primary_reactant] = list()
-			GLOBL.fusion_reactions[cur_reaction.primary_reactant][cur_reaction.secondary_reactant] = cur_reaction
-			if(!GLOBL.fusion_reactions[cur_reaction.secondary_reactant])
-				GLOBL.fusion_reactions[cur_reaction.secondary_reactant] = list()
-			GLOBL.fusion_reactions[cur_reaction.secondary_reactant][cur_reaction.primary_reactant] = cur_reaction
+	for(var/cur_reaction_type in SUBTYPESOF(/datum/fusion_reaction))
+		var/datum/fusion_reaction/cur_reaction = new cur_reaction_type()
+		if(!GLOBL.fusion_reactions[cur_reaction.primary_reactant])
+			GLOBL.fusion_reactions[cur_reaction.primary_reactant] = alist()
+		GLOBL.fusion_reactions[cur_reaction.primary_reactant][cur_reaction.secondary_reactant] = cur_reaction
+		if(!GLOBL.fusion_reactions[cur_reaction.secondary_reactant])
+			GLOBL.fusion_reactions[cur_reaction.secondary_reactant] = alist()
+		GLOBL.fusion_reactions[cur_reaction.secondary_reactant][cur_reaction.primary_reactant] = cur_reaction
 
 //Fake elements and fake reactions, but its nicer gameplay-wise
 //Deuterium

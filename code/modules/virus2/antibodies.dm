@@ -1,21 +1,21 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:33
 
 // reserving some numbers for later special antigens
-/var/global/const/ANTIGEN_A	= 1
-/var/global/const/ANTIGEN_B	= 2
-/var/global/const/ANTIGEN_RH	= 4
-/var/global/const/ANTIGEN_Q	= 8
-/var/global/const/ANTIGEN_U	= 16
-/var/global/const/ANTIGEN_V	= 32
-/var/global/const/ANTIGEN_X	= 64
-/var/global/const/ANTIGEN_Y	= 128
-/var/global/const/ANTIGEN_Z	= 256
-/var/global/const/ANTIGEN_M	= 512
-/var/global/const/ANTIGEN_N	= 1024
-/var/global/const/ANTIGEN_P	= 2048
-/var/global/const/ANTIGEN_O	= 4096
+#define ANTIGEN_A BITFLAG(0)
+#define ANTIGEN_B BITFLAG(1)
+#define ANTIGEN_RH BITFLAG(2)
+#define ANTIGEN_Q BITFLAG(3)
+#define ANTIGEN_U BITFLAG(4)
+#define ANTIGEN_V BITFLAG(5)
+#define ANTIGEN_X BITFLAG(6)
+#define ANTIGEN_Y BITFLAG(7)
+#define ANTIGEN_Z BITFLAG(8)
+#define ANTIGEN_M BITFLAG(9)
+#define ANTIGEN_N BITFLAG(10)
+#define ANTIGEN_P BITFLAG(11)
+#define ANTIGEN_O BITFLAG(12)
 
-GLOBAL_GLOBL_LIST_INIT(antigen_list, list(
+GLOBAL_GLOBL_ALIST_INIT(antigen_list, list( // Change this to alist() when things get more stable.
 	"[ANTIGEN_A]" = "A",
 	"[ANTIGEN_B]" = "B",
 	"[ANTIGEN_RH]" = "RH",

@@ -27,10 +27,9 @@
 		if(access.access_type & access_types)
 			. += access.id
 
-GLOBAL_GLOBL_LIST_INIT(all_access_datums_assoc, null)
+GLOBAL_GLOBL_ALIST_NEW(all_access_datums_assoc)
 /proc/get_all_access_datums_assoc()
-	if(isnull(GLOBL.all_access_datums_assoc))
-		GLOBL.all_access_datums_assoc = list()
+	if(isemptylist(GLOBL.all_access_datums_assoc))
 		for_no_type_check(var/decl/access/access, GET_DECL_SUBTYPE_INSTANCES(/decl/access))
 			GLOBL.all_access_datums_assoc["[access.id]"] = access
 

@@ -21,6 +21,11 @@
 #define GLOBAL_BYOND_LIST(N) GLOBAL_RAW(/list/##N)
 #define GLOBAL_BYOND_LIST_INIT(N, V) GLOBAL_BYOND_LIST(N) = V
 #define GLOBAL_BYOND_LIST_NEW(N) GLOBAL_BYOND_LIST_INIT(N, list())
+// Associative
+// These need to be updated to use alist/alist() when it becomes more supported.
+#define GLOBAL_BYOND_ALIST(N) GLOBAL_RAW(/list/##N)
+#define GLOBAL_BYOND_ALIST_INIT(N, V) GLOBAL_BYOND_ALIST(N) = V
+#define GLOBAL_BYOND_ALIST_NEW(N) GLOBAL_BYOND_ALIST_INIT(N, list())
 
 /*
  * GLOBL
@@ -35,6 +40,11 @@
 #define GLOBAL_GLOBL_LIST(N) GLOBAL_CONTROLLED(/list/##N)
 #define GLOBAL_GLOBL_LIST_INIT(N, V) GLOBAL_GLOBL_LIST(N) = V
 #define GLOBAL_GLOBL_LIST_NEW(N) GLOBAL_GLOBL_LIST_INIT(N, list())
+// Associative
+// These need to be updated to use alist/alist() when it becomes more supported.
+#define GLOBAL_GLOBL_ALIST(N) GLOBAL_CONTROLLED(/list/##N)
+#define GLOBAL_GLOBL_ALIST_INIT(N, V) GLOBAL_GLOBL_ALIST(N) = V
+#define GLOBAL_GLOBL_ALIST_NEW(N) GLOBAL_GLOBL_ALIST_INIT(N, list())
 
 /*
  * Controllers & Processes

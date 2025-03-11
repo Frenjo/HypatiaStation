@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_LIST_NEW(admin_datums)
+GLOBAL_GLOBL_ALIST_NEW(admin_datums)
 
 /datum/admins
 	var/rank			= "Temporary Admin"

@@ -1,6 +1,6 @@
-GLOBAL_GLOBL_LIST_NEW(preferences_datums)
+GLOBAL_GLOBL_ALIST_NEW(preferences_datums)
 
-GLOBAL_GLOBL_LIST_INIT(special_roles, list(
+GLOBAL_GLOBL_ALIST_INIT(special_roles, alist(
 //some autodetection here.
 	"traitor" = IS_MODE_COMPILED(/datum/game_mode/traitor),				// 0
 	"operative" = IS_MODE_COMPILED(/datum/game_mode/nuclear),			// 1
@@ -19,10 +19,10 @@ GLOBAL_GLOBL_LIST_INIT(special_roles, list(
 
 //Preferences stuff
 	//Hairstyles
-GLOBAL_GLOBL_LIST_NEW(hair_styles_list)					//stores /datum/sprite_accessory/hair indexed by name
+GLOBAL_GLOBL_ALIST_NEW(hair_styles_list)					//stores /datum/sprite_accessory/hair indexed by name
 GLOBAL_GLOBL_LIST_NEW(hair_styles_male_list)
 GLOBAL_GLOBL_LIST_NEW(hair_styles_female_list)
-GLOBAL_GLOBL_LIST_NEW(facial_hair_styles_list)			//stores /datum/sprite_accessory/facial_hair indexed by name
+GLOBAL_GLOBL_ALIST_NEW(facial_hair_styles_list)			//stores /datum/sprite_accessory/facial_hair indexed by name
 GLOBAL_GLOBL_LIST_NEW(facial_hair_styles_male_list)
 GLOBAL_GLOBL_LIST_NEW(facial_hair_styles_female_list)
 GLOBAL_GLOBL_LIST_NEW(skin_styles_female_list)			//unused
@@ -33,7 +33,7 @@ GLOBAL_GLOBL_LIST_INIT(underwear_f, list("Red", "White", "Yellow", "Blue", "Blac
 	//Backpacks
 GLOBAL_GLOBL_LIST_INIT(backbaglist, list("Nothing", "Backpack", "Satchel", "Satchel Alt"))
 
-GLOBAL_GLOBL_LIST_INIT(be_special_flags, list(
+GLOBAL_GLOBL_ALIST_INIT(be_special_flags, alist(
 	"Traitor" = BE_TRAITOR,
 	"Operative" = BE_OPERATIVE,
 	"Changeling" = BE_CHANGELING,

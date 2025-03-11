@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_LIST_NEW(all_outfits)
+GLOBAL_GLOBL_ALIST_NEW(all_outfits)
 
 /decl/hierarchy/outfit
 	// The outfit's name.

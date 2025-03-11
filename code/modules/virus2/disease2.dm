@@ -112,7 +112,7 @@
 	uniqueID = rand(0, 10000)
 	var/datum/disease2/effectholder/holder = pick(effects)
 	holder.majormutate()
-	if (prob(5))
+	if(prob(5))
 		antigen = text2num(pick(GLOBL.antigen_list))
 		antigen |= text2num(pick(GLOBL.antigen_list))
 	if(prob(5) && length(GLOBL.all_species))

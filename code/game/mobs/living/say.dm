@@ -1,4 +1,4 @@
-GLOBAL_GLOBL_LIST_INIT(department_radio_keys, list(
+GLOBAL_GLOBL_ALIST_INIT(department_radio_keys, alist(
 	// Lowercase variants.
 	":w" = "whisper",			"#w" = "whisper",			".w" = "whisper",
 	":g" = "changeling",		"#g" = "changeling",		".g" = "changeling",
