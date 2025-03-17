@@ -778,7 +778,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	//obtain all the source turfs and their relative coords,
 	//then use that to find corresponding targets
 	for_no_type_check(var/turf/source, turfs_src)
-		//var/datum/coords/C = new/datum/coords
 		var/x_pos = (source.x - src_min_x)
 		var/y_pos = (source.y - src_min_y)
 
@@ -831,11 +830,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					O.vars[V] = original.vars[V]
 	return O
 
-/datum/coords //Simple datum for storing coordinates.
-	var/x_pos = null
-	var/y_pos = null
-	var/z_pos = null
-
 /area/proc/copy_contents_to(area/A , platingRequired = 0)
 	//Takes: Area. Optional: If it should copy to areas that don't have plating
 	//Returns: Nothing.
@@ -864,21 +858,13 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		if(T.y < trg_min_y || !trg_min_y)
 			trg_min_y	= T.y
 
-	var/list/refined_src = list()
+	var/alist/refined_src = alist()
 	for_no_type_check(var/turf/T, turfs_src)
-		refined_src.Add(T)
-		refined_src[T] = new /datum/coords()
-		var/datum/coords/C = refined_src[T]
-		C.x_pos = (T.x - src_min_x)
-		C.y_pos = (T.y - src_min_y)
+		refined_src[T] = vector(T.x - src_min_x, T.y - src_min_y)
 
-	var/list/refined_trg = list()
+	var/alist/refined_trg = alist()
 	for_no_type_check(var/turf/T, turfs_trg)
-		refined_trg.Add(T)
-		refined_trg[T] = new /datum/coords()
-		var/datum/coords/C = refined_trg[T]
-		C.x_pos = (T.x - trg_min_x)
-		C.y_pos = (T.y - trg_min_y)
+		refined_trg[T] = vector(T.x - trg_min_x, T.y - trg_min_y)
 
 	var/list/toupdate = list()
 
@@ -886,10 +872,10 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 	moving:
 		for_no_type_check(var/turf/T, refined_src)
-			var/datum/coords/C_src = refined_src[T]
+			var/vector/C_src = refined_src[T]
 			for_no_type_check(var/turf/B, refined_trg)
-				var/datum/coords/C_trg = refined_trg[B]
-				if(C_src.x_pos == C_trg.x_pos && C_src.y_pos == C_trg.y_pos)
+				var/vector/C_trg = refined_trg[B]
+				if(C_src.x == C_trg.x && C_src.y == C_trg.y)
 					var/old_dir1 = T.dir
 					var/old_icon_state1 = T.icon_state
 					var/old_icon1 = T.icon
