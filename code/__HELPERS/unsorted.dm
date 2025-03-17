@@ -56,105 +56,6 @@
 	else if(dx < 0)
 		. += 360
 
-//Returns location. Returns null if no location was found.
-/proc/get_teleport_loc(turf/location, mob/target, distance = 1, density = FALSE, errorx = 0, errory = 0, eoffsetx = 0, eoffsety = 0)
-/*
-Location where the teleport begins, target that will teleport, distance to go, density checking 0/1(yes/no).
-Random error in tile placement x, error in tile placement y, and block offset.
-Block offset tells the proc how to place the box. Behind teleport location, relative to starting location, forward, etc.
-Negative values for offset are accepted, think of it in relation to North, -x is west, -y is south. Error defaults to positive.
-Turf and target are seperate in case you want to teleport some distance from a turf the target is not standing on or something.
-*/
-	var/dirx = 0//Generic location finding variable.
-	var/diry = 0
-
-	var/xoffset = 0//Generic counter for offset location.
-	var/yoffset = 0
-
-	var/b1xerror = 0//Generic placing for point A in box. The lower left.
-	var/b1yerror = 0
-	var/b2xerror = 0//Generic placing for point B in box. The upper right.
-	var/b2yerror = 0
-
-	errorx = abs(errorx)//Error should never be negative.
-	errory = abs(errory)
-	//var/errorxy = round((errorx+errory)/2)//Used for diagonal boxes.
-
-	switch(target.dir)//This can be done through equations but switch is the simpler method. And works fast to boot.
-	//Directs on what values need modifying.
-		if(1)//North
-			diry += distance
-			yoffset += eoffsety
-			xoffset += eoffsetx
-			b1xerror -= errorx
-			b1yerror -= errory
-			b2xerror += errorx
-			b2yerror += errory
-		if(2)//South
-			diry -= distance
-			yoffset -= eoffsety
-			xoffset += eoffsetx
-			b1xerror -= errorx
-			b1yerror -= errory
-			b2xerror += errorx
-			b2yerror += errory
-		if(4)//East
-			dirx += distance
-			yoffset += eoffsetx//Flipped.
-			xoffset += eoffsety
-			b1xerror -= errory//Flipped.
-			b1yerror -= errorx
-			b2xerror += errory
-			b2yerror += errorx
-		if(8)//West
-			dirx -= distance
-			yoffset -= eoffsetx//Flipped.
-			xoffset += eoffsety
-			b1xerror -= errory//Flipped.
-			b1yerror -= errorx
-			b2xerror += errory
-			b2yerror += errorx
-
-	var/turf/destination = locate(location.x + dirx, location.y + diry, location.z)
-
-	if(isnotnull(destination)) // If there is a destination.
-		if(errorx || errory)//If errorx or y were specified.
-			var/list/destination_list = list() // To add turfs to list.
-			/*This will draw a block around the target turf, given what the error is.
-			Specifying the values above will basically draw a different sort of block.
-			If the values are the same, it will be a square. If they are different, it will be a rectengle.
-			In either case, it will center based on offset. Offset is position from center.
-			Offset always calculates in relation to direction faced. In other words, depending on the direction of the teleport,
-			the offset should remain positioned in relation to destination.*/
-
-			var/turf/center = locate((destination.x + xoffset), (destination.y + yoffset), location.z)//So now, find the new center.
-
-			//Now to find a box from center location and make that our destination.
-			for_no_type_check(var/turf/T, block(center.x + b1xerror, center.y + b1yerror, location.z, center.x + b2xerror, center.y + b2yerror, location.z))
-				if(density && T.density)
-					continue//If density was specified.
-				if(T.x > world.maxx || T.x < 1)
-					continue//Don't want them to teleport off the map.
-				if(T.y > world.maxy || T.y < 1)
-					continue
-				destination_list.Add(T)
-			if(length(destination_list))
-				destination = pick(destination_list)
-			else
-				return
-
-		else//Same deal here.
-			if(density && destination.density)
-				return
-			if(destination.x > world.maxx || destination.x < 1)
-				return
-			if(destination.y > world.maxy || destination.y < 1)
-				return
-	else
-		return
-
-	return destination
-
 /proc/LinkBlocked(turf/A, turf/B)
 	if(isnull(A) || isnull(B))
 		return 1
@@ -247,94 +148,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			return 0
 	return 1
 
-//This will update a mob's name, real_name, mind.name, data_core records, pda and id
-//Calling this proc without an oldname will only update the mob and skip updating the pda, id and records ~Carn
-/mob/proc/fully_replace_character_name(oldname, newname)
-	if(!newname)
-		return 0
-	real_name = newname
-	name = newname
-	mind?.name = newname
-	dna?.real_name = real_name
-
-	if(oldname)
-		//update the datacore records! This is goig to be a bit costly.
-		for_no_type_check(var/list/L, list(GLOBL.data_core.general, GLOBL.data_core.medical, GLOBL.data_core.security, GLOBL.data_core.locked))
-			for_no_type_check(var/datum/data/record/R, L)
-				if(R.fields["name"] == oldname)
-					R.fields["name"] = newname
-					break
-
-		//update our pda and id if we have them on our person
-		var/list/searching = GetAllContents(searchDepth = 3)
-		var/search_id = TRUE
-		var/search_pda = TRUE
-
-		for(var/A in searching)
-			if(search_id && istype(A, /obj/item/card/id))
-				var/obj/item/card/id/ID = A
-				if(ID.registered_name == oldname)
-					ID.registered_name = newname
-					ID.name = "[newname]'s ID Card ([ID.assignment])"
-					if(!search_pda)
-						break
-					search_id = FALSE
-
-			else if(search_pda && istype(A, /obj/item/pda))
-				var/obj/item/pda/PDA = A
-				if(PDA.owner == oldname)
-					PDA.owner = newname
-					PDA.name = "PDA - [newname] ([PDA.ownjob])" // Edited this to space out the dash. -Frenjo
-					if(!search_id)
-						break
-					search_pda = FALSE
-	return 1
-
-//Generalised helper proc for letting mobs rename themselves. Used to be clname() and ainame()
-//Last modified by Carn
-/mob/proc/rename_self(role, allow_numbers = 0)
-	set waitfor = FALSE
-
-	var/oldname = real_name
-
-	var/time_passed = world.time
-	var/newname
-
-	for(var/i = 1, i <= 3, i++)	//we get 3 attempts to pick a suitable name.
-		newname = input(src, "You are a [role]. Would you like to change your name to something else?", "Name change", oldname) as text
-		if((world.time - time_passed) > 300)
-			return	//took too long
-		newname = reject_bad_name(newname, allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
-
-		for(var/mob/living/M in GLOBL.player_list)
-			if(M == src)
-				continue
-			if(!newname || M.real_name == newname)
-				newname = null
-				break
-		if(newname)
-			break	//That's a suitable name!
-		to_chat(src, "Sorry, that [role]-name wasn't appropriate, please try another. It's possibly too long/short, has bad characters or is already taken.")
-
-	if(!newname)	//we'll stick with the oldname then
-		return
-
-	if(cmptext("ai", role))
-		if(isAI(src))
-			var/mob/living/silicon/ai/A = src
-			oldname = null//don't bother with the records update crap
-			//to_world("<b>[newname] is the AI!</b>")
-			//world << sound('sound/AI/newAI.ogg')
-			// Set eyeobj name
-			A.eyeobj?.name = "[newname] (AI Eye)"
-
-			// Set ai pda name
-			if(isnotnull(A.aiPDA))
-				A.aiPDA.owner = newname
-				A.aiPDA.name = newname + " (" + A.aiPDA.ownjob + ")"
-
-	fully_replace_character_name(oldname, newname)
-
 //Picks a string of symbols to display as the law number for hacked or ion laws
 /proc/ionnum()
 	return "[pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")][pick("!","@","#","$","%","^","&","*")]"
@@ -380,104 +193,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			. = input(usr, "AI signals detected:", "AI selection") in ais
 		else
 			. = pick(ais)
-
-/proc/get_sorted_mobs()
-	var/list/old_list = getmobs()
-	var/list/ai_list = list()
-	var/list/dead_list = list()
-	var/list/keyclient_list = list()
-	var/list/key_list = list()
-	var/list/logged_list = list()
-	for(var/named in old_list)
-		var/mob/M = old_list[named]
-		if(issilicon(M))
-			ai_list |= M
-		else if(isghost(M) || M.stat == DEAD)
-			dead_list |= M
-		else if(isnotnull(M.key) && isnotnull(M.client))
-			keyclient_list |= M
-		else if(isnotnull(M.key))
-			key_list |= M
-		else
-			logged_list |= M
-		old_list.Remove(named)
-	. = list()
-	. += ai_list
-	. += keyclient_list
-	. += key_list
-	. += logged_list
-	. += dead_list
-
-//Returns a list of all mobs with their name
-/proc/getmobs()
-	. = list()
-	var/list/mobs = sortmobs()
-	var/list/names = list()
-	var/list/namecounts = list()
-	for(var/mob/M in mobs)
-		var/name = M.name
-		if(name in names)
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
-		else
-			names.Add(name)
-			namecounts[name] = 1
-		if(isnotnull(M.real_name) && M.real_name != M.name)
-			name += " \[[M.real_name]\]"
-		if(M.stat == DEAD)
-			if(isghost(M))
-				name += " \[ghost\]"
-			else
-				name += " \[dead\]"
-		.[name] = M
-
-//Orders mobs by type then by name
-/proc/sortmobs()
-	. = list()
-	var/list/sorted_mob_list = sortAtom(GLOBL.mob_list)
-	for(var/mob/living/silicon/ai/M in sorted_mob_list)
-		. += M
-	for(var/mob/living/silicon/pai/M in sorted_mob_list)
-		. += M
-	for(var/mob/living/silicon/robot/M in sorted_mob_list)
-		. += M
-	for(var/mob/living/carbon/human/M in sorted_mob_list)
-		. += M
-	for(var/mob/living/brain/M in sorted_mob_list)
-		. += M
-	for(var/mob/living/carbon/alien/M in sorted_mob_list)
-		. += M
-	for(var/mob/dead/ghost/M in sorted_mob_list)
-		. += M
-	for(var/mob/dead/new_player/M in sorted_mob_list)
-		. += M
-	for(var/mob/living/carbon/monkey/M in sorted_mob_list)
-		. += M
-	for(var/mob/living/carbon/slime/M in sorted_mob_list)
-		. += M
-	for(var/mob/living/simple/M in sorted_mob_list)
-		. += M
-//	for(var/mob/living/silicon/hivebot/M in sorted_mob_list)
-//		. += M
-//	for(var/mob/living/silicon/hive_mainframe/M in sorted_mob_list)
-//		. += M
-
-//E = MC^2
-/proc/convert2energy(M)
-	var/E = M * (SPEED_OF_LIGHT_SQ)
-	return E
-
-//M = E/C^2
-/proc/convert2mass(E)
-	var/M = E / (SPEED_OF_LIGHT_SQ)
-	return M
-
-//Forces a variable to be posative
-/proc/modulus(M)
-	if(M >= 0)
-		return M
-	if(M < 0)
-		return -M
 
 /proc/key_name(whom, include_link = null, include_name = 1)
 	var/mob/M
@@ -528,66 +243,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/key_name_admin(whom, include_name = 1)
 	return key_name(whom, 1, include_name)
 
-// returns the turf located at the map edge in the specified direction relative to A
-// used for mass driver
-/proc/get_edge_target_turf(atom/A, direction)
-	var/turf/target = locate(A.x, A.y, A.z)
-	if(isnull(A) || isnull(target))
-		return 0
-		//since NORTHEAST == NORTH & EAST, etc, doing it this way allows for diagonal mass drivers in the future
-		//and isn't really any more complicated
-
-		// Note diagonal directions won't usually be accurate
-	if(direction & NORTH)
-		target = locate(target.x, world.maxy, target.z)
-	if(direction & SOUTH)
-		target = locate(target.x, 1, target.z)
-	if(direction & EAST)
-		target = locate(world.maxx, target.y, target.z)
-	if(direction & WEST)
-		target = locate(1, target.y, target.z)
-
-	return target
-
-// returns turf relative to A in given direction at set range
-// result is bounded to map size
-// note range is non-pythagorean
-// used for disposal system
-/proc/get_ranged_target_turf(atom/A, direction, range)
-	var/x = A.x
-	var/y = A.y
-	if(direction & NORTH)
-		y = min(world.maxy, y + range)
-	if(direction & SOUTH)
-		y = max(1, y - range)
-	if(direction & EAST)
-		x = min(world.maxx, x + range)
-	if(direction & WEST)
-		x = max(1, x - range)
-
-	return locate(x, y, A.z)
-
-// returns turf relative to A offset in dx and dy tiles
-// bound to map limits
-/proc/get_offset_target_turf(atom/A, dx, dy)
-	var/x = min(world.maxx, max(1, A.x + dx))
-	var/y = min(world.maxy, max(1, A.y + dy))
-	return locate(x, y, A.z)
-
-//returns random gauss number
-/proc/GaussRand(sigma)
-	var/x, y, rsq
-	do
-		x = 2 * rand() - 1
-		y = 2 * rand() - 1
-		rsq = x * x + y * y
-	while(rsq > 1 || !rsq)
-	return sigma * y * sqrt(-2 * log(rsq) / rsq)
-
-//returns random gauss number, rounded to 'roundto'
-/proc/GaussRandRound(sigma, roundto)
-	return round(GaussRand(sigma), roundto)
-
 /proc/anim(turf/location as turf, target as mob|obj, a_icon, a_icon_state as text, flick_anim as text, sleeptime = 0, direction as num)
 //This proc throws up either an icon or an animation for a specified amount of time.
 //The variables should be apparent enough.
@@ -604,15 +259,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		flick(flick_anim, animation)
 	sleep(max(sleeptime, 15))
 	qdel(animation)
-
-//Will return the contents of an atom recursivly to a depth of 'searchDepth'
-/atom/proc/GetAllContents(searchDepth = 5)
-	. = list()
-
-	for_no_type_check(var/atom/movable/part, src)
-		. += part
-		if(length(part.contents) && searchDepth)
-			. += part.GetAllContents(searchDepth - 1)
 
 //Step-towards method of determining whether one atom can see another. Similar to viewers()
 /proc/can_see(atom/source, atom/target, length = 5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
@@ -679,22 +325,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		return 1
 	else return 0
 
-//Transports a turf from a source turf to a target turf, moving all of the turf's contents and making the target a copy of the source.
-/proc/transport_turf_contents(turf/source, turf/target, direction)
-	var/turf/new_turf = target.ChangeTurf(source.type, 1, 1)
-	new_turf.transport_properties_from(source)
-
-	for(var/obj/O in source)
-		if(O.simulated)
-			O.forceMove(new_turf)
-
-	for(var/mob/M in source)
-		//if(isEye(M))
-		//	continue // If we need to check for more mobs, I'll add a variable
-		M.forceMove(new_turf)
-
-	return new_turf
-
 /proc/DuplicateObject(obj/original, perfectcopy = 0 , sameloc = 0)
 	if(isnull(original))
 		return null
@@ -738,12 +368,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			. = orange(distance, center)
 	return
 
-/proc/get_mob_with_client_list()
-	. = list()
-	for(var/mob/M in GLOBL.mob_list)
-		if(isnotnull(M.client))
-			. += M
-
 /proc/parse_zone(zone)
 	if(zone == "r_hand")
 		return "right hand"
@@ -778,9 +402,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			return loc
 		loc = loc.loc
 	return null
-
-/proc/get_turf_or_move(turf/location)
-	return GET_TURF(location)
 
 /proc/is_hot(obj/item/W)
 	switch(W.type)

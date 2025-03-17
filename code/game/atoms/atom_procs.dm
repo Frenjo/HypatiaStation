@@ -1,3 +1,12 @@
+//Will return the contents of an atom recursivly to a depth of 'searchDepth'
+/atom/proc/GetAllContents(searchDepth = 5)
+	. = list()
+
+	for_no_type_check(var/atom/movable/part, src)
+		. += part
+		if(length(part.contents) && searchDepth)
+			. += part.GetAllContents(searchDepth - 1)
+
 // This is mostly ported from /tg/ code with slight modifications to make it work with our older infrastructure.
 #define BALLOON_TEXT_WIDTH 200
 #define BALLOON_TEXT_SPAWN_TIME (0.2 SECONDS)

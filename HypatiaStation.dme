@@ -87,6 +87,7 @@
 #include "code\__HELPERS\maths.dm"
 #include "code\__HELPERS\mobs.dm"
 #include "code\__HELPERS\names.dm"
+#include "code\__HELPERS\physics.dm"
 #include "code\__HELPERS\radio.dm"
 #include "code\__HELPERS\sanitize_values.dm"
 #include "code\__HELPERS\sd_alert.dm"
