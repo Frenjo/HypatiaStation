@@ -31,6 +31,8 @@
 	// Used for self-mailing.
 	var/mail_destination = 0
 
+	var/selected_icon = FALSE
+
 /mob/living/silicon/robot/drone/New()
 	. = ..()
 
@@ -71,6 +73,12 @@
 	updatename()
 	updateicon()
 
+/mob/living/silicon/robot/drone/Login()
+	. = ..()
+	if(!selected_icon)
+		choose_icon(model.sprites)
+		selected_icon = TRUE
+
 // Redefining some robot procs...
 /mob/living/silicon/robot/drone/updatename()
 	real_name = "maintenance drone ([rand(100, 999)])"
@@ -80,11 +88,6 @@
 	overlays.Cut()
 	if(stat == CONSCIOUS)
 		overlays.Add("eyes-[icon_state]")
-	else
-		overlays.Remove("eyes")
-
-/mob/living/silicon/robot/drone/choose_icon()
-	return
 
 /mob/living/silicon/robot/drone/pick_model()
 	return
@@ -200,6 +203,8 @@
 		var/obj/item/gripper/G = locate(/obj/item/gripper) in model
 		if(isnotnull(G))
 			G.drop_item()
+
+	icon_state = "[icon_state]-dead"
 
 	..(gibbed)
 

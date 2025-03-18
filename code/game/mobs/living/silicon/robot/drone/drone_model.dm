@@ -22,6 +22,12 @@
 	)
 	emag_type = /obj/item/card/emag
 
+	sprite_path = 'icons/mob/silicon/robot/drone.dmi'
+	sprites = list(
+		"Repairbot" = "repairbot",
+		"Cogscarab" = "cogscarab"
+	)
+
 	integrated_light_range = 3
 
 /obj/item/robot_model/drone/New()
