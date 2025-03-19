@@ -93,7 +93,10 @@
 			flashfail = 1
 
 	else if(issilicon(M))
-		M.Weaken(rand(5, 10))
+		if(M.status_flags & CANWEAKEN)
+			M.Weaken(rand(5, 10))
+		else
+			flashfail = TRUE
 	else
 		flashfail = 1
 

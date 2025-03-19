@@ -229,10 +229,10 @@
 		/obj/item/assembly/prox_sensor,
 		/obj/item/assembly/prox_sensor,
 		/obj/item/storage/toolbox/electrical,
-		/obj/item/flash,
-		/obj/item/flash,
-		/obj/item/flash,
-		/obj/item/flash,
+		/obj/item/flash/synthetic,
+		/obj/item/flash/synthetic,
+		/obj/item/flash/synthetic,
+		/obj/item/flash/synthetic,
 		/obj/item/cell/high,
 		/obj/item/cell/high
 	)

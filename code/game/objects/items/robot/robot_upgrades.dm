@@ -215,15 +215,15 @@
 /*
  * Flash-Suppression Module
  *
- * This doesn't actually work and isn't available but it's here for posterity.
+ * Renders a robot immune to flashes when installed.
  */
 /obj/item/borg/upgrade/flashproof
 	name = "robot flash-suppression module"
 	desc = "A highly advanced, complex system for supressing incoming flashes directed at a robot's optical processing system."
 	icon_state = "cyborg_upgrade4"
 
-	//matter_amounts = /datum/design/robofab/robot_upgrade/flashproof::materials
-	//origin_tech = /datum/design/robofab/robot_upgrade/flashproof::req_tech
+	matter_amounts = /datum/design/robofab/robot_upgrade/flashproof::materials
+	origin_tech = /datum/design/robofab/robot_upgrade/flashproof::req_tech
 
 	require_model = TRUE
 
@@ -231,5 +231,9 @@
 	if(!..())
 		return FALSE
 
-	borg.model += src
+	if(!(borg.status_flags & CANWEAKEN))
+		to_chat(user, SPAN_WARNING("\The [borg]'s optical processing system is already shielded."))
+		return FALSE
+
+	borg.status_flags &= ~CANWEAKEN
 	return TRUE
