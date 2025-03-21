@@ -20,10 +20,9 @@
 	var/list/beam_projectile_types = null
 	var/projectile_type
 
-/obj/item/gun/energy/emp_act(severity)
-	. = ..()
-	power_supply.use(round(power_supply.maxcharge / severity))
-	update_icon()
+	var/self_charging = FALSE // Set to TRUE if the gun is self-charging or used as a cyborg module.
+	var/charge_tick = 0
+	var/recharge_time = 1 SECOND // Time it takes for shots to recharge (in ticks)
 
 /obj/item/gun/energy/New()
 	. = ..()
@@ -35,6 +34,45 @@
 	else
 		power_supply = new /obj/item/cell(src)
 	power_supply.give(power_supply.maxcharge)
+
+	GLOBL.processing_objects.Add(src)
+
+/obj/item/gun/energy/Destroy()
+	GLOBL.processing_objects.Remove(src)
+	return ..()
+
+/obj/item/gun/energy/process()
+	if(!self_charging)
+		return PROCESS_KILL
+
+	charge_tick++
+	if(charge_tick < recharge_time)
+		return 0
+	charge_tick = 0
+
+	if(isnull(power_supply))
+		return 0 // Sanity.
+	if(power_supply.charge >= power_supply.maxcharge)
+		return 0 // Checks if we actually need to recharge.
+	if(failcheck())
+		return 0 // Checks if the gun is going to fail.
+
+	if(isrobot(loc)) // If it's a cyborg gun...
+		var/mob/living/silicon/robot/R = loc
+		if(isnotnull(R?.cell))
+			R.cell.use(charge_cost) // Takes power from the borg to recharge the shot.
+
+	power_supply.give(charge_cost)
+	update_icon()
+
+// Returns TRUE if the gun fails.
+/obj/item/gun/energy/proc/failcheck()
+	return FALSE
+
+/obj/item/gun/energy/emp_act(severity)
+	. = ..()
+	power_supply.use(round(power_supply.maxcharge / severity))
+	update_icon()
 
 /obj/item/gun/energy/load_into_chamber()
 	if(isnotnull(in_chamber))

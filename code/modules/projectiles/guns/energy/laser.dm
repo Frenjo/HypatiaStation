@@ -35,22 +35,8 @@
 
 	force = 10
 
-	var/charge_tick = 0
-
-/obj/item/gun/energy/laser/captain/New()
-	. = ..()
-	GLOBL.processing_objects.Add(src)
-
-/obj/item/gun/energy/laser/captain/process()
-	charge_tick++
-	if(charge_tick < 4)
-		return 0
-	charge_tick = 0
-	if(!power_supply)
-		return 0
-	power_supply.give(100)
-	update_icon()
-	return 1
+	self_charging = TRUE
+	recharge_time = 0.4 SECONDS
 
 /obj/item/gun/energy/laser/cyborg/load_into_chamber()
 	if(in_chamber)
@@ -125,23 +111,10 @@
 
 	gun_setting = GUN_SETTING_SPECIAL
 
-	var/charge_tick = 0
+	self_charging = TRUE
+	recharge_time = 0.4 SECONDS
+
 	var/vest_type = null
-
-/obj/item/gun/energy/laser/tag/New()
-	. = ..()
-	GLOBL.processing_objects.Add(src)
-
-/obj/item/gun/energy/laser/tag/process()
-	charge_tick++
-	if(charge_tick < 4)
-		return 0
-	charge_tick = 0
-	if(isnull(power_supply))
-		return 0
-	power_supply.give(100)
-	update_icon()
-	return 1
 
 /obj/item/gun/energy/laser/tag/special_check(mob/living/carbon/human/M)
 	if(ishuman(M))

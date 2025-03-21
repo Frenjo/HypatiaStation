@@ -44,26 +44,10 @@
 	matter_amounts = /datum/design/weapon/nuclear_gun::materials
 	origin_tech = /datum/design/weapon/nuclear_gun::req_tech
 
-	var/lightfail = 0
-	var/charge_tick = 0
+	self_charging = TRUE
+	recharge_time = 0.4 SECONDS
 
-/obj/item/gun/energy/gun/nuclear/New()
-	. = ..()
-	GLOBL.processing_objects.Add(src)
-
-/obj/item/gun/energy/gun/nuclear/process()
-	charge_tick++
-	if(charge_tick < 4)
-		return 0
-	charge_tick = 0
-	if(isnull(power_supply))
-		return 0
-	if((power_supply.charge / power_supply.maxcharge) != 1)
-		if(!failcheck())
-			return 0
-		power_supply.give(100)
-		update_icon()
-	return 1
+	var/lightfail = FALSE
 
 /obj/item/gun/energy/gun/nuclear/emp_act(severity)
 	. = ..()
@@ -75,10 +59,10 @@
 	update_reactor()
 	update_mode()
 
-/obj/item/gun/energy/gun/nuclear/proc/failcheck()
+/obj/item/gun/energy/gun/nuclear/failcheck()
 	lightfail = FALSE
 	if(prob(reliability))
-		return 1 //No failure
+		return FALSE //No failure
 
 	if(prob(reliability))
 		for(var/mob/living/M in range(0, src)) //Only a minor failure, enjoy your radiation if you're in the same tile or carrying it
@@ -97,7 +81,7 @@
 		crit_fail = TRUE //break the gun so it stops recharging
 		GLOBL.processing_objects.Remove(src)
 		update_icon()
-	return 0
+	return TRUE
 
 /obj/item/gun/energy/gun/nuclear/proc/update_charge()
 	if(crit_fail)

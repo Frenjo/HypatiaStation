@@ -15,33 +15,7 @@
 
 /obj/item/gun/energy/taser/cyborg
 	cell_type = /obj/item/cell/secborg
-
-	var/charge_tick = 0
-	var/recharge_time = 1 SECOND // Time it takes for shots to recharge (in ticks)
-
-/obj/item/gun/energy/taser/cyborg/New()
-	. = ..()
-	GLOBL.processing_objects.Add(src)
-
-/obj/item/gun/energy/taser/cyborg/process() // Every [recharge_time] ticks, recharge a shot for the cyborg
-	charge_tick++
-	if(charge_tick < recharge_time)
-		return 0
-	charge_tick = 0
-
-	if(isnull(power_supply))
-		return 0 //sanity
-	if(power_supply.charge >= power_supply.maxcharge)
-		return 0 // check if we actually need to recharge
-
-	if(isrobot(loc))
-		var/mob/living/silicon/robot/R = loc
-		if(isnotnull(R?.cell))
-			R.cell.use(charge_cost) 		// Take power from the borg...
-			power_supply.give(charge_cost)	// ... to recharge the shot
-
-	update_icon()
-	return 1
+	self_charging = TRUE
 
 /obj/item/gun/energy/stunrevolver
 	name = "stun revolver"
@@ -97,21 +71,8 @@
 		GUN_SETTING_SPECIAL = /obj/item/projectile/energy/bolt
 	)
 
-	var/charge_tick = 0
-
-/obj/item/gun/energy/crossbow/New()
-	. = ..()
-	GLOBL.processing_objects.Add(src)
-
-/obj/item/gun/energy/crossbow/process()
-	charge_tick++
-	if(charge_tick < 4)
-		return 0
-	charge_tick = 0
-	if(isnull(power_supply))
-		return 0
-	power_supply.give(100)
-	return 1
+	self_charging = TRUE
+	recharge_time = 0.4 SECONDS
 
 /obj/item/gun/energy/crossbow/update_icon()
 	return

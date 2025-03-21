@@ -29,22 +29,8 @@
 		GUN_SETTING_SPECIAL = /obj/item/projectile/energy/florayield
 	)
 
-	var/charge_tick = 0
-
-/obj/item/gun/energy/floragun/New()
-	. = ..()
-	GLOBL.processing_objects.Add(src)
-
-/obj/item/gun/energy/floragun/process()
-	charge_tick++
-	if(charge_tick < 4)
-		return 0
-	charge_tick = 0
-	if(isnull(power_supply))
-		return 0
-	power_supply.give(100)
-	update_icon()
-	return 1
+	self_charging = TRUE
+	recharge_time = 0.4 SECONDS
 
 /obj/item/gun/energy/floragun/attack_self(mob/living/user)
 	switch(gun_setting)
@@ -75,21 +61,8 @@
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/meteor)
 
-	var/charge_tick = 0
-	var/recharge_time = 0.5 SECONDS // Time it takes for shots to recharge (in ticks)
-
-/obj/item/gun/energy/meteorgun/New()
-	. = ..()
-	GLOBL.processing_objects.Add(src)
-
-/obj/item/gun/energy/meteorgun/process()
-	charge_tick++
-	if(charge_tick < recharge_time)
-		return 0
-	charge_tick = 0
-	if(isnull(power_supply))
-		return 0
-	power_supply.give(100)
+	self_charging = TRUE
+	recharge_time = 0.5 SECONDS // Time it takes for shots to recharge (in ticks)
 
 /obj/item/gun/energy/meteorgun/update_icon()
 	return

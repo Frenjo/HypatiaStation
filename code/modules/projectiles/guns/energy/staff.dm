@@ -17,21 +17,8 @@
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/change)
 
-	var/charge_tick = 0
-
-/obj/item/gun/energy/staff/New()
-	. = ..()
-	GLOBL.processing_objects.Add(src)
-
-/obj/item/gun/energy/staff/process()
-	charge_tick++
-	if(charge_tick < 4)
-		return 0
-	charge_tick = 0
-	if(isnull(power_supply))
-		return 0
-	power_supply.give(200)
-	return 1
+	self_charging = TRUE
+	recharge_time = 0.4 SECONDS
 
 /obj/item/gun/energy/staff/update_icon()
 	return
