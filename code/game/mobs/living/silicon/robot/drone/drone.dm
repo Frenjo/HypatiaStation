@@ -39,13 +39,8 @@
 	verbs.Add(/mob/living/proc/ventcrawl)
 	verbs.Add(/mob/living/proc/hide)
 
-	remove_language("Robot Talk")
-	add_language("Robot Talk", FALSE)
-	add_language("Drone Talk")
-
 	// They are unable to be upgraded, so let's give them a bit of a better battery.
-	cell.maxcharge = 10000
-	cell.charge = 10000
+	cell = new /obj/item/cell/high(src)
 
 	// NO BRAIN.
 	mmi = null
@@ -57,7 +52,7 @@
 			C.max_damage = 10
 
 	verbs.Remove(/mob/living/silicon/robot/verb/namepick)
-	model = new /obj/item/robot_model/drone(src)
+	transform_to_model(/obj/item/robot_model/drone)
 
 	// Grab stacks.
 	stack_metal = locate(/obj/item/stack/sheet/steel/cyborg) in model

@@ -69,6 +69,8 @@
 	var/pose
 
 /mob/living/silicon/robot/New(loc, unfinished = 0)
+	. = ..()
+
 	spark_system = new /datum/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -100,7 +102,7 @@
 		if(isWireCut(5)) // 5 = BORG CAMERA
 			camera.status = 0
 
-	model = new /obj/item/robot_model/default(src)
+	transform_to_model(/obj/item/robot_model/default)
 	updatename()
 	updateicon()
 
@@ -115,24 +117,6 @@
 
 	if(isnull(cell))
 		cell = new /obj/item/cell/apc(src)
-
-	. = ..()
-
-	// Languages
-	add_language("Robot Talk")
-	add_language("Drone Talk", FALSE)
-
-	add_language("Sol Common", FALSE)
-	add_language("Sinta'unathi", FALSE)
-	add_language("Siik'maas", FALSE)
-	add_language("Siik'tajr", FALSE)
-	add_language("Skrellian", FALSE)
-	add_language("Rootspeak", FALSE)
-	add_language("Obsedaian", FALSE)
-	add_language("Plasmalin", FALSE)
-	add_language("Binary Audio Language")
-	add_language("Tradeband")
-	add_language("Gutter", FALSE)
 
 	if(isnotnull(cell))
 		var/datum/robot_component/cell_component = components["power cell"]
@@ -676,8 +660,10 @@
 	if(isnull(input_model))
 		return
 
-	var/module_path = models[input_model]
-	model = new module_path(src)
+	transform_to_model(models[input_model])
+
+/mob/living/silicon/robot/proc/transform_to_model(model_path)
+	model = new model_path(src)
 
 	// Camera networks
 	if(isnotnull(camera) && ("Robots" in camera.network))
@@ -701,8 +687,8 @@
 		model.sprites["Custom"] = "[ckey]-[model.display_name]"
 
 	var/model_icon = lowertext(model.display_name)
-	hands.icon_state = model_icon
-	feedback_inc("cyborg_[model_icon]",1)
+	hands?.icon_state = model_icon
+	feedback_inc("cyborg_[model_icon]", 1)
 	updatename()
 
 	icon_state = model.sprites[model.sprites[1]]

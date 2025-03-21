@@ -73,10 +73,12 @@
 		if(isnotnull(O))
 			modules.Add(O)
 
-/obj/item/robot_model/proc/add_languages(mob/living/silicon/robot/R)
+/obj/item/robot_model/proc/add_languages(mob/living/silicon/robot/robby)
 	SHOULD_CALL_PARENT(TRUE)
 
-	R.add_language("Binary Audio Language", FALSE)
+	robby.add_language("Robot Talk")
+	robby.add_language("Drone Talk", FALSE)
+	robby.add_language("Binary Audio Language")
 
 /obj/item/robot_model/proc/get_playstyle_string()
 	SHOULD_CALL_PARENT(FALSE)

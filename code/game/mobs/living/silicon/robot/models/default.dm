@@ -4,3 +4,6 @@
 /obj/item/robot_model/default
 	name = "default robot model"
 	display_name = "Default"
+
+	sprite_path = 'icons/mob/silicon/robot/standard.dmi'
+	sprites = list("Default" = "robot")

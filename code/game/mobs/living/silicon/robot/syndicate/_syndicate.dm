@@ -11,7 +11,7 @@
 	cell = new /obj/item/cell/hyper(src)
 	. = ..()
 	laws = new /datum/ai_laws/antimov()
-	model = new /obj/item/robot_model/syndicate(src)
+	transform_to_model(/obj/item/robot_model/syndicate)
 	updatename()
 
 /mob/living/silicon/robot/syndicate/Login()

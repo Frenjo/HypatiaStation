@@ -187,7 +187,7 @@
 		return
 
 	if(istype(model, /obj/item/robot_model/default))
-		model = new /obj/item/robot_model/drone(src)
+		transform_to_model(/obj/item/robot_model/drone)
 
 	var/dat = "<HEAD><TITLE>Drone modules</TITLE><META HTTP-EQUIV='Refresh' CONTENT='10'></HEAD><BODY>\n"
 	dat += {"<A href='byond://?src=\ref[src];mach_close=robotmod'>Close</A>

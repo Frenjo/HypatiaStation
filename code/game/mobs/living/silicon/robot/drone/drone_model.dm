@@ -70,3 +70,10 @@
 
 	var/obj/item/lightreplacer/replacer = locate() in modules
 	replacer?.Charge(R)
+
+/obj/item/robot_model/drone/add_languages(mob/living/silicon/robot/robby)
+	. = ..()
+	robby.remove_language("Robot Talk")
+	robby.add_language("Robot Talk", FALSE)
+	robby.remove_language("Drone Talk")
+	robby.add_language("Drone Talk")
