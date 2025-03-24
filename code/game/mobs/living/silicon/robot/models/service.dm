@@ -10,7 +10,7 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/reagent_holder/food/drinks/cans/beer,
 		/obj/item/reagent_holder/food/condiment/enzyme,
-		/obj/item/pen/robopen,
+		/obj/item/pen/cyborg,
 		/obj/item/reagent_holder/robodropper,
 		/obj/item/tray/robotray,
 		/obj/item/reagent_holder/food/drinks/shaker

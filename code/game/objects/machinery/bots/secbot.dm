@@ -676,7 +676,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 	new /obj/item/melee/baton(T)
 
 	if(prob(50))
-		new /obj/item/robot_parts/l_arm(T)
+		new /obj/item/robot_part/l_arm(T)
 
 	make_sparks(3, TRUE, src)
 
@@ -741,7 +741,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		qdel(I)
 		return TRUE
 
-	if((istype(I, /obj/item/robot_parts/l_arm) || istype(I, /obj/item/robot_parts/r_arm)) && build_step == 2)
+	if((istype(I, /obj/item/robot_part/l_arm) || istype(I, /obj/item/robot_part/r_arm)) && build_step == 2)
 		user.drop_item()
 		build_step++
 		name = "helmet/signaler/prox sensor/robot arm assembly"

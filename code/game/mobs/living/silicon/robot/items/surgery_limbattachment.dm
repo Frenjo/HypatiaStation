@@ -1,4 +1,4 @@
-/obj/item/robot_parts/attack(mob/living/carbon/human/M, mob/living/carbon/user)
+/obj/item/robot_part/attack(mob/living/carbon/human/M, mob/living/carbon/user)
 	var/limbloc = null
 
 	if(!istype(M))
@@ -10,13 +10,13 @@
 	if(!ishuman(M))
 		return ..()
 
-	if((user.zone_sel.selecting == "l_arm") && (istype(src, /obj/item/robot_parts/l_arm)))
+	if((user.zone_sel.selecting == "l_arm") && (istype(src, /obj/item/robot_part/l_arm)))
 		limbloc = "l_hand"
-	else if((user.zone_sel.selecting == "r_arm") && (istype(src, /obj/item/robot_parts/r_arm)))
+	else if((user.zone_sel.selecting == "r_arm") && (istype(src, /obj/item/robot_part/r_arm)))
 		limbloc = "r_hand"
-	else if((user.zone_sel.selecting == "r_leg") && (istype(src, /obj/item/robot_parts/r_leg)))
+	else if((user.zone_sel.selecting == "r_leg") && (istype(src, /obj/item/robot_part/r_leg)))
 		limbloc = "r_foot"
-	else if((user.zone_sel.selecting == "l_leg") && (istype(src, /obj/item/robot_parts/l_leg)))
+	else if((user.zone_sel.selecting == "l_leg") && (istype(src, /obj/item/robot_part/l_leg)))
 		limbloc = "l_foot"
 	else
 		user << "\red That doesn't fit there!"

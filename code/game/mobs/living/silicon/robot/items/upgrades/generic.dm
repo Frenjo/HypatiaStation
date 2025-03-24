@@ -1,34 +1,4 @@
 /*
- * Cyborg/Robot Upgrades
- *
- * Contains various borg upgrades.
- */
-/*
- * Base Upgrade
- */
-/obj/item/borg/upgrade
-	name = "borg upgrade module"
-	desc = "Protected by FRM."
-	icon = 'icons/obj/items/module.dmi'
-	icon_state = "cyborg_upgrade"
-
-	var/locked = FALSE
-	var/installed = FALSE
-
-	var/require_model = FALSE
-	var/list/model_types = null
-
-/obj/item/borg/upgrade/proc/action(mob/living/silicon/robot/borg, mob/living/user = usr)
-	if(borg.stat == DEAD)
-		to_chat(user, SPAN_WARNING("The [src] will not function on a deceased robot."))
-		return FALSE
-	if(isnotnull(model_types) && !is_type_in_list(borg.model, model_types))
-		to_chat(borg, SPAN_WARNING("Upgrade mounting error! No suitable hardpoint detected!"))
-		to_chat(user, SPAN_WARNING("There's no mounting point for the module!"))
-		return FALSE
-	return TRUE
-
-/*
  * Reset Module
  */
 /obj/item/borg/upgrade/reset
@@ -123,68 +93,6 @@
 		return FALSE
 
 	borg.speed -= move_delay_reduction
-	return TRUE
-
-/*
- * Rapid Taser Cooling Module
- *
- * This actually reduces the recharge time, not the fire delay.
- */
-/obj/item/borg/upgrade/tasercooler
-	name = "security robot rapid taser cooling module"
-	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
-	icon_state = "cyborg_upgrade3"
-
-	matter_amounts = /datum/design/robofab/robot_upgrade/taser_cooler::materials
-
-	require_model = TRUE
-	model_types = list(/obj/item/robot_model/security)
-
-/obj/item/borg/upgrade/tasercooler/action(mob/living/silicon/robot/borg, mob/living/user = usr)
-	if(!..())
-		return FALSE
-
-	var/obj/item/gun/energy/taser/cyborg/taser = locate() in borg.model
-	if(isnull(taser))
-		taser = locate() in borg.model.contents
-	if(isnull(taser))
-		taser = locate() in borg.model.modules
-	if(isnull(taser))
-		to_chat(user, SPAN_WARNING("This robot has had its taser removed!"))
-		return FALSE
-
-	if(taser.recharge_time <= 2)
-		to_chat(borg, SPAN_WARNING("Maximum cooling achieved for this hardpoint!"))
-		to_chat(user, SPAN_WARNING("There's no room for another cooling unit!"))
-		return FALSE
-
-	taser.recharge_time = max(2 , taser.recharge_time - 4)
-	return TRUE
-
-/*
- * Jetpack Module
- */
-/obj/item/borg/upgrade/jetpack
-	name = "mining robot jetpack module"
-	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
-	icon_state = "cyborg_upgrade3"
-
-	matter_amounts = /datum/design/robofab/robot_upgrade/jetpack::materials
-
-	require_model = TRUE
-	model_types = list(/obj/item/robot_model/miner)
-
-/obj/item/borg/upgrade/jetpack/action(mob/living/silicon/robot/borg, mob/living/user = usr)
-	if(!..())
-		return FALSE
-	if(isnotnull(borg.internals))
-		return FALSE
-
-	var/obj/item/robot_model/miner/model = borg.model
-	model.modules.Add(new /obj/item/tank/jetpack/carbon_dioxide(src))
-	for(var/obj/item/tank/jetpack/carbon_dioxide/jetpack in model.modules)
-		borg.internals = jetpack
-	//borg.icon_state="Miner+j"
 	return TRUE
 
 /*

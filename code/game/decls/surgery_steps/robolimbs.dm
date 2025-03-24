@@ -147,13 +147,13 @@
 
 
 /decl/surgery_step/limb/attach
-	allowed_tools = list(/obj/item/robot_parts = 100)
+	allowed_tools = list(/obj/item/robot_part = 100)
 
 	min_duration = 80
 	max_duration = 100
 
 /decl/surgery_step/limb/attach/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/obj/item/robot_parts/p = tool
+	var/obj/item/robot_part/p = tool
 	if(p.part)
 		if(!(target_zone in p.part))
 			return 0
@@ -168,7 +168,7 @@
 	)
 
 /decl/surgery_step/limb/attach/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	var/obj/item/robot_parts/L = tool
+	var/obj/item/robot_part/L = tool
 	var/datum/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message(
 		SPAN_INFO_B("[user] attaches \the [tool] where [target]'s [affected.display_name] used to be."),

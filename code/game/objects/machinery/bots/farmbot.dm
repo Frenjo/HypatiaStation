@@ -214,7 +214,7 @@
 			fert.forceMove(T)
 
 	if(prob(50))
-		new /obj/item/robot_parts/l_arm(T)
+		new /obj/item/robot_part/l_arm(T)
 
 	make_sparks(3, TRUE, src)
 	return ..()
@@ -501,7 +501,7 @@
 
 // Farmbot Assembly
 /obj/structure/reagent_dispensers/watertank/attack_by(obj/item/I, mob/user)
-	if(!istype(I, /obj/item/robot_parts/l_arm) && !istype(I, /obj/item/robot_parts/r_arm))
+	if(!istype(I, /obj/item/robot_part/l_arm) && !istype(I, /obj/item/robot_part/r_arm))
 		return ..()
 
 	// Making a farmbot!

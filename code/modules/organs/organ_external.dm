@@ -584,22 +584,22 @@ player's body, though, antitox and spaceacillin are easy enough to get I doubt i
 				owner.u_equip(owner.wear_mask)
 			if(ARM_RIGHT)
 				if(status & ORGAN_ROBOT)
-					organ = new /obj/item/robot_parts/r_arm(owner.loc)
+					organ = new /obj/item/robot_part/r_arm(owner.loc)
 				else
 					organ = new /obj/item/organ/r_arm(owner.loc, owner)
 			if(ARM_LEFT)
 				if(status & ORGAN_ROBOT)
-					organ = new /obj/item/robot_parts/l_arm(owner.loc)
+					organ = new /obj/item/robot_part/l_arm(owner.loc)
 				else
 					organ = new /obj/item/organ/l_arm(owner.loc, owner)
 			if(LEG_RIGHT)
 				if(status & ORGAN_ROBOT)
-					organ = new /obj/item/robot_parts/r_leg(owner.loc)
+					organ = new /obj/item/robot_part/r_leg(owner.loc)
 				else
 					organ = new /obj/item/organ/r_leg(owner.loc, owner)
 			if(LEG_LEFT)
 				if(status & ORGAN_ROBOT)
-					organ = new /obj/item/robot_parts/l_leg(owner.loc)
+					organ = new /obj/item/robot_part/l_leg(owner.loc)
 				else
 					organ = new /obj/item/organ/l_leg(owner.loc, owner)
 			if(HAND_RIGHT)

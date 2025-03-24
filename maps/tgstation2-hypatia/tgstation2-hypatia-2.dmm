@@ -7091,7 +7091,7 @@
 	dir = 1
 	},
 /obj/structure/table,
-/obj/item/robot_parts/chest,
+/obj/item/robot_part/chest,
 /turf/open/floor/shuttle/red/vox,
 /area/shuttle/vox/start)
 "Lk" = (

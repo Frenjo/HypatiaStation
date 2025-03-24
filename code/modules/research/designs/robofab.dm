@@ -8,43 +8,43 @@
 /datum/design/robofab/robot/suit
 	materials = alist(/decl/material/steel = 50000)
 	build_time = 50 SECONDS
-	build_path = /obj/item/robot_parts/robot_suit
+	build_path = /obj/item/robot_part/robot_suit
 	categories = list("Robot")
 
 /datum/design/robofab/robot/chest
 	materials = alist(/decl/material/steel = 40000)
 	build_time = 35 SECONDS
-	build_path = /obj/item/robot_parts/chest
+	build_path = /obj/item/robot_part/chest
 	categories = list("Robot")
 
 /datum/design/robofab/robot/head
 	materials = alist(/decl/material/steel = 25000)
 	build_time = 35 SECONDS
-	build_path = /obj/item/robot_parts/head
+	build_path = /obj/item/robot_part/head
 	categories = list("Robot")
 
 /datum/design/robofab/robot/left_arm
 	materials = alist(/decl/material/steel = 18000)
 	build_time = 20 SECONDS
-	build_path = /obj/item/robot_parts/l_arm
+	build_path = /obj/item/robot_part/l_arm
 	categories = list("Robot")
 
 /datum/design/robofab/robot/right_arm
 	materials = alist(/decl/material/steel = 18000)
 	build_time = 20 SECONDS
-	build_path = /obj/item/robot_parts/r_arm
+	build_path = /obj/item/robot_part/r_arm
 	categories = list("Robot")
 
 /datum/design/robofab/robot/left_leg
 	materials = alist(/decl/material/steel = 15000)
 	build_time = 20 SECONDS
-	build_path = /obj/item/robot_parts/l_leg
+	build_path = /obj/item/robot_part/l_leg
 	categories = list("Robot")
 
 /datum/design/robofab/robot/right_leg
 	materials = alist(/decl/material/steel = 15000)
 	build_time = 20 SECONDS
-	build_path = /obj/item/robot_parts/r_leg
+	build_path = /obj/item/robot_part/r_leg
 	categories = list("Robot")
 
 // Robot Internal Components
@@ -55,22 +55,22 @@
 	name_prefix = "Robot Component Design"
 
 /datum/design/robofab/robot_component/binary_comm_device
-	build_path = /obj/item/robot_parts/robot_component/binary_communication_device
+	build_path = /obj/item/robot_part/component/binary_communication_device
 
 /datum/design/robofab/robot_component/actuator
-	build_path = /obj/item/robot_parts/robot_component/actuator
+	build_path = /obj/item/robot_part/component/actuator
 
 /datum/design/robofab/robot_component/armour
-	build_path = /obj/item/robot_parts/robot_component/armour
+	build_path = /obj/item/robot_part/component/armour
 
 /datum/design/robofab/robot_component/camera
-	build_path = /obj/item/robot_parts/robot_component/camera
+	build_path = /obj/item/robot_part/component/camera
 
 /datum/design/robofab/robot_component/diagnosis_unit
-	build_path = /obj/item/robot_parts/robot_component/diagnosis_unit
+	build_path = /obj/item/robot_part/component/diagnosis_unit
 
 /datum/design/robofab/robot_component/radio
-	build_path = /obj/item/robot_parts/robot_component/radio
+	build_path = /obj/item/robot_part/component/radio
 
 /datum/design/robofab/synthetic_flash
 	name = "Synthetic Flash"

@@ -348,7 +348,7 @@
 	N.contents = list()
 	new /obj/item/assembly/prox_sensor(T)
 	if(prob(50))
-		new /obj/item/robot_parts/l_arm(T)
+		new /obj/item/robot_part/l_arm(T)
 
 	while(amount)//Dumps the tiles into the appropriate sized stacks
 		if(amount >= 16)
@@ -415,7 +415,7 @@
 		user.put_in_hands(src)
 		return TRUE
 
-	if(has_sensor && (istype(I, /obj/item/robot_parts/l_arm) || istype(I, /obj/item/robot_parts/r_arm)))
+	if(has_sensor && (istype(I, /obj/item/robot_part/l_arm) || istype(I, /obj/item/robot_part/r_arm)))
 		qdel(I)
 		var/obj/machinery/bot/floorbot/bot = new /obj/machinery/bot/floorbot(GET_TURF(src))
 		bot.name = created_name

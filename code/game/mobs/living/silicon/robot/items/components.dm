@@ -1,20 +1,18 @@
 // TODO: remove the robot.mmi and robot.cell variables and completely rely on the robot component system
 
-/datum/robot_component/var/name
-/datum/robot_component/var/installed = 0
-/datum/robot_component/var/powered = 0
-/datum/robot_component/var/toggled = 1
-/datum/robot_component/var/brute_damage = 0
-/datum/robot_component/var/electronics_damage = 0
-/datum/robot_component/var/energy_consumption = 0
-/datum/robot_component/var/max_damage = 30
-/datum/robot_component/var/mob/living/silicon/robot/owner
+/datum/robot_component
+	var/name
+	var/installed = 0
+	var/powered = 0
+	var/toggled = 1
+	var/brute_damage = 0
+	var/electronics_damage = 0
+	var/energy_consumption = 0
+	var/max_damage = 30
+	var/mob/living/silicon/robot/owner
 
-// The actual device object that has to be installed for this.
-/datum/robot_component/var/external_type = null
-
-// The wrapped device(e.g. radio), only set if external_type isn't null
-/datum/robot_component/var/obj/item/wrapped = null
+	var/external_type = null // The actual device object that has to be installed for this.
+	var/obj/item/wrapped = null // The wrapped device(e.g. radio), only set if external_type isn't null.
 
 /datum/robot_component/New(mob/living/silicon/robot/R)
 	src.owner = R
@@ -27,7 +25,7 @@
 		qdel(wrapped)
 
 
-	wrapped = new/obj/item/broken_device
+	wrapped = new /obj/item/broken_device
 
 	// The thing itself isn't there anymore, but some fried remains are.
 	installed = -1
@@ -66,13 +64,13 @@
 /datum/robot_component/armour
 	name = "armour plating"
 	energy_consumption = 0
-	external_type = /obj/item/robot_parts/robot_component/armour
+	external_type = /obj/item/robot_part/component/armour
 	max_damage = 60
 
 /datum/robot_component/actuator
 	name = "actuator"
 	energy_consumption = 2
-	external_type = /obj/item/robot_parts/robot_component/actuator
+	external_type = /obj/item/robot_part/component/actuator
 	max_damage = 50
 
 //A fixed and much cleaner implementation of /tg/'s special snowflake code.
@@ -89,26 +87,26 @@
 
 /datum/robot_component/radio
 	name = "radio"
-	external_type = /obj/item/robot_parts/robot_component/radio
+	external_type = /obj/item/robot_part/component/radio
 	energy_consumption = 1
 	max_damage = 40
 
 /datum/robot_component/binary_communication
 	name = "binary communication device"
-	external_type = /obj/item/robot_parts/robot_component/binary_communication_device
+	external_type = /obj/item/robot_part/component/binary_communication_device
 	energy_consumption = 0
 	max_damage = 30
 
 /datum/robot_component/camera
 	name = "camera"
-	external_type = /obj/item/robot_parts/robot_component/camera
+	external_type = /obj/item/robot_part/component/camera
 	energy_consumption = 1
 	max_damage = 40
 
 /datum/robot_component/diagnosis_unit
 	name = "self-diagnosis unit"
 	energy_consumption = 1
-	external_type = /obj/item/robot_parts/robot_component/diagnosis_unit
+	external_type = /obj/item/robot_part/component/diagnosis_unit
 	max_damage = 30
 
 /mob/living/silicon/robot/proc/initialize_components()
@@ -132,26 +130,26 @@
 	icon = 'icons/obj/items/robot_component.dmi'
 	icon_state = "broken"
 
-/obj/item/robot_parts/robot_component
+/obj/item/robot_part/component
 	icon = 'icons/obj/items/robot_component.dmi'
 	icon_state = "working"
 	matter_amounts = /datum/design/robofab/robot_component::materials
 
 // TODO: actual icons ;)
-/obj/item/robot_parts/robot_component/binary_communication_device
+/obj/item/robot_part/component/binary_communication_device
 	name = "binary communication device"
 
-/obj/item/robot_parts/robot_component/actuator
+/obj/item/robot_part/component/actuator
 	name = "actuator"
 
-/obj/item/robot_parts/robot_component/armour
+/obj/item/robot_part/component/armour
 	name = "armour plating"
 
-/obj/item/robot_parts/robot_component/camera
+/obj/item/robot_part/component/camera
 	name = "camera"
 
-/obj/item/robot_parts/robot_component/diagnosis_unit
+/obj/item/robot_part/component/diagnosis_unit
 	name = "diagnosis unit"
 
-/obj/item/robot_parts/robot_component/radio
+/obj/item/robot_part/component/radio
 	name = "radio"

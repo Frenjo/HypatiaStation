@@ -1,4 +1,4 @@
-/obj/item/robot_parts
+/obj/item/robot_part
 	name = "robot parts"
 	icon = 'icons/obj/items/robot_parts.dmi'
 	item_state = "buildpipe"
@@ -9,7 +9,7 @@
 	var/list/part = null
 	var/sabotaged = 0 // Emagging limbs can have repercussions when installed as prosthetics.
 
-/obj/item/robot_parts/attack_emag(obj/item/card/emag/emag, mob/user, uses)
+/obj/item/robot_part/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(sabotaged)
 		to_chat(user, SPAN_WARNING("[src] is already sabotaged!"))
 		return FALSE
@@ -18,35 +18,35 @@
 	sabotaged = TRUE
 	return TRUE
 
-/obj/item/robot_parts/l_arm
+/obj/item/robot_part/l_arm
 	name = "robot left arm"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "l_arm"
 	matter_amounts = /datum/design/robofab/robot/left_arm::materials
 	part = list("l_arm", "l_hand")
 
-/obj/item/robot_parts/r_arm
+/obj/item/robot_part/r_arm
 	name = "robot right arm"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "r_arm"
 	matter_amounts = /datum/design/robofab/robot/right_arm::materials
 	part = list("r_arm", "r_hand")
 
-/obj/item/robot_parts/l_leg
+/obj/item/robot_part/l_leg
 	name = "robot left leg"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "l_leg"
 	matter_amounts = /datum/design/robofab/robot/left_leg::materials
 	part = list("l_leg", "l_foot")
 
-/obj/item/robot_parts/r_leg
+/obj/item/robot_part/r_leg
 	name = "robot right leg"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	icon_state = "r_leg"
 	matter_amounts = /datum/design/robofab/robot/right_leg::materials
 	part = list("r_leg", "r_foot")
 
-/obj/item/robot_parts/chest
+/obj/item/robot_part/chest
 	name = "robot torso"
 	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell."
 	icon_state = "chest"
@@ -56,7 +56,7 @@
 	var/wires = FALSE
 	var/obj/item/cell/cell = null
 
-/obj/item/robot_parts/head
+/obj/item/robot_part/head
 	name = "robot head"
 	desc = "A standard reinforced braincase, with spine-plugged neural socket and sensor gimbals."
 	icon_state = "head"
@@ -66,26 +66,26 @@
 	var/obj/item/flash/flash1 = null
 	var/obj/item/flash/flash2 = null
 
-/obj/item/robot_parts/robot_suit
+/obj/item/robot_part/robot_suit
 	name = "robot endoskeleton"
 	desc = "A complex metal backbone with standard limb sockets and pseudomuscle anchors."
 	icon_state = "robo_suit"
 
 	matter_amounts = /datum/design/robofab/robot/suit::materials
 
-	var/obj/item/robot_parts/l_arm/l_arm = null
-	var/obj/item/robot_parts/r_arm/r_arm = null
-	var/obj/item/robot_parts/l_leg/l_leg = null
-	var/obj/item/robot_parts/r_leg/r_leg = null
-	var/obj/item/robot_parts/chest/chest = null
-	var/obj/item/robot_parts/head/head = null
+	var/obj/item/robot_part/l_arm/l_arm = null
+	var/obj/item/robot_part/r_arm/r_arm = null
+	var/obj/item/robot_part/l_leg/l_leg = null
+	var/obj/item/robot_part/r_leg/r_leg = null
+	var/obj/item/robot_part/chest/chest = null
+	var/obj/item/robot_part/head/head = null
 	var/created_name = ""
 
-/obj/item/robot_parts/robot_suit/New()
+/obj/item/robot_part/robot_suit/New()
 	. = ..()
 	updateicon()
 
-/obj/item/robot_parts/robot_suit/proc/updateicon()
+/obj/item/robot_part/robot_suit/proc/updateicon()
 	overlays.Cut()
 	if(isnotnull(l_arm))
 		overlays.Add("l_arm+o")
@@ -100,7 +100,7 @@
 	if(isnotnull(head))
 		overlays.Add("head+o")
 
-/obj/item/robot_parts/robot_suit/proc/check_completion()
+/obj/item/robot_part/robot_suit/proc/check_completion()
 	if(isnotnull(l_arm) && isnotnull(r_arm))
 		if(isnotnull(l_leg) && isnotnull(r_leg))
 			if(isnotnull(chest) && isnotnull(head))
@@ -108,7 +108,7 @@
 				return TRUE
 	return FALSE
 
-/obj/item/robot_parts/robot_suit/attackby(obj/item/W, mob/user)
+/obj/item/robot_part/robot_suit/attackby(obj/item/W, mob/user)
 	. = ..()
 	if(istype(W, /obj/item/stack/sheet/steel) && isnull(l_arm) && isnull(r_arm) && isnull(l_leg) && isnull(r_leg) && isnull(chest) && isnull(head))
 		var/obj/item/stack/sheet/steel/M = W
@@ -120,7 +120,7 @@
 			user.put_in_inactive_hand(B)
 		qdel(src)
 
-	if(istype(W, /obj/item/robot_parts/l_leg))
+	if(istype(W, /obj/item/robot_part/l_leg))
 		if(isnotnull(l_leg))
 			return
 		user.drop_item()
@@ -128,7 +128,7 @@
 		l_leg = W
 		updateicon()
 
-	if(istype(W, /obj/item/robot_parts/r_leg))
+	if(istype(W, /obj/item/robot_part/r_leg))
 		if(isnotnull(r_leg))
 			return
 		user.drop_item()
@@ -136,7 +136,7 @@
 		r_leg = W
 		updateicon()
 
-	if(istype(W, /obj/item/robot_parts/l_arm))
+	if(istype(W, /obj/item/robot_part/l_arm))
 		if(isnotnull(l_arm))
 			return
 		user.drop_item()
@@ -144,7 +144,7 @@
 		l_arm = W
 		updateicon()
 
-	if(istype(W, /obj/item/robot_parts/r_arm))
+	if(istype(W, /obj/item/robot_part/r_arm))
 		if(isnotnull(r_arm))
 			return
 		user.drop_item()
@@ -152,10 +152,10 @@
 		r_arm = W
 		updateicon()
 
-	if(istype(W, /obj/item/robot_parts/chest))
+	if(istype(W, /obj/item/robot_part/chest))
 		if(isnotnull(chest))
 			return
-		var/obj/item/robot_parts/chest/part_chest = W
+		var/obj/item/robot_part/chest/part_chest = W
 		if(part_chest.wires && isnotnull(part_chest.cell))
 			user.drop_item()
 			part_chest.forceMove(src)
@@ -166,10 +166,10 @@
 		else
 			to_chat(user, SPAN_INFO("You need to attach a cell to it first!"))
 
-	if(istype(W, /obj/item/robot_parts/head))
+	if(istype(W, /obj/item/robot_part/head))
 		if(isnotnull(head))
 			return
-		var/obj/item/robot_parts/head/part_head = W
+		var/obj/item/robot_part/head/part_head = W
 		if(isnotnull(part_head.flash1) && isnotnull(part_head.flash2))
 			user.drop_item()
 			part_head.forceMove(src)
@@ -254,7 +254,7 @@
 
 		src.created_name = t
 
-/obj/item/robot_parts/chest/attackby(obj/item/W, mob/user)
+/obj/item/robot_part/chest/attackby(obj/item/W, mob/user)
 	. = ..()
 	if(istype(W, /obj/item/cell))
 		if(isnotnull(cell))
@@ -275,7 +275,7 @@
 			wires = TRUE
 			to_chat(user, SPAN_INFO("You insert the wire!"))
 
-/obj/item/robot_parts/head/attackby(obj/item/W, mob/user)
+/obj/item/robot_part/head/attackby(obj/item/W, mob/user)
 	. = ..()
 	if(istype(W, /obj/item/flash))
 		if(isnotnull(flash1) && isnotnull(flash2))

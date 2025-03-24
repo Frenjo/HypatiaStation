@@ -157,7 +157,7 @@ I said no!
 /datum/recipe/roburger
 	items = list(
 		/obj/item/reagent_holder/food/snacks/flour,
-		/obj/item/robot_parts/head
+		/obj/item/robot_part/head
 	)
 	result = /obj/item/reagent_holder/food/snacks/roburger
 

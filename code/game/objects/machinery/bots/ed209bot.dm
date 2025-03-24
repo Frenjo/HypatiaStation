@@ -724,9 +724,9 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 		G.power_supply.charge = 0
 
 	if(prob(50))
-		new /obj/item/robot_parts/l_leg(T)
+		new /obj/item/robot_part/l_leg(T)
 		if(prob(25))
-			new /obj/item/robot_parts/r_leg(T)
+			new /obj/item/robot_part/r_leg(T)
 	if(prob(25))//50% chance for a helmet OR vest
 		if(prob(50))
 			new /obj/item/clothing/head/helmet(T)
@@ -884,7 +884,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 	switch(build_step)
 		if(0)
-			if(istype(W, /obj/item/robot_parts/r_leg))
+			if(istype(W, /obj/item/robot_part/r_leg))
 				user.drop_item()
 				qdel(W)
 				build_step++
@@ -894,7 +894,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 				icon_state = "ed209_leg"
 
 		if(1)
-			if(istype(W, /obj/item/robot_parts/l_leg))
+			if(istype(W, /obj/item/robot_part/l_leg))
 				user.drop_item()
 				qdel(W)
 				build_step++
