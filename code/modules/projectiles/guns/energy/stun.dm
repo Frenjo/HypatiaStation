@@ -51,6 +51,10 @@
 		GUN_SETTING_DISABLE = /obj/item/projectile/energy/beam/disabler
 	)
 
+/obj/item/gun/energy/disabler/cyborg
+	cell_type = /obj/item/cell/secborg
+	self_charging = TRUE
+
 /obj/item/gun/energy/crossbow
 	name = "mini energy-crossbow"
 	desc = "A weapon favored by many of the syndicates stealth specialists."

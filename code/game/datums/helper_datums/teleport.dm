@@ -80,14 +80,10 @@
 /datum/teleport/proc/playSpecials(atom/location, datum/effect/system/effect, sound)
 	if(location)
 		if(effect)
-			spawn(-1)
-				qdel(src)
-				effect.attach(location)
-				effect.start()
+			effect.attach(location)
+			effect.start()
 		if(sound)
-			spawn(-1)
-				qdel(src)
-				playsound(location, sound, 60, 1)
+			playsound(location, sound, 60, 1)
 	return
 
 //do the monkey dance
@@ -179,3 +175,74 @@
 	if(destination.z > 7) //Away mission z-levels
 		return 0
 	return 1
+
+/*
+ * Finds a safe turf on a given Z level
+ *
+ * Finds a safe turf on a given Z level and has safety checks
+ * Arguments:
+ * * zlevel - Z-level to check for a safe turf
+ * * zlevels - list of z-levels to check for a safe turf
+ * * extended_safety_checks - check for lava
+ */
+/proc/find_safe_turf(zlevel, list/zlevels, dense_atoms = TRUE)
+	if(!zlevels)
+		if(zlevel)
+			zlevels = list(zlevel)
+		else
+			return null
+
+	var/cycles = 1000
+	for(var/cycle in 1 to cycles)
+		// DRUNK DIALLING WOOOOOOOOO
+		var/x = rand(1, world.maxx)
+		var/y = rand(1, world.maxy)
+		var/z = pick(zlevels)
+		var/random_location = locate(x, y, z)
+
+		if(!isfloorturf(random_location))
+			continue
+		var/turf/open/floor/F = random_location
+		var/datum/gas_mixture/A = F.return_air()
+		if(isnull(A))
+			continue
+
+		// Can most things breathe?
+		if(A.gas[/decl/xgm_gas/oxygen] < 16)
+			continue
+		if(isnotnull(A.gas[/decl/xgm_gas/plasma]))
+			continue
+		if(A.gas[/decl/xgm_gas/carbon_dioxide] >= 10)
+			continue
+
+		// Aim for goldilocks temperatures and pressure
+		if(A.temperature <= 270 || A.temperature >= 360)
+			continue
+		var/pressure = A.return_pressure()
+		if(pressure <= 20 || pressure >= 550)
+			continue
+
+		// Check that we're not warping onto a table or window
+		if(!dense_atoms)
+			var/density_found = FALSE
+			for(var/atom/movable/found_movable in F)
+				if(found_movable.density)
+					density_found = TRUE
+					break
+			if(density_found)
+				continue
+
+		// DING! You have passed the gauntlet, and are "probably" safe.
+		return F
+
+/*
+ * Swarmer Teleportation
+ */
+/proc/swarmer_teleport_target(mob/living/user, mob/living/target)
+	var/turf/open/floor/safe_turf = find_safe_turf(target.z)
+	if(isnull(safe_turf))
+		return
+
+	make_sparks(4, FALSE, GET_TURF(target))
+	playsound(user, 'sound/effects/sparks4.ogg', 50, TRUE)
+	do_teleport(target, safe_turf)

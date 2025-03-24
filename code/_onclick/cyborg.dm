@@ -70,7 +70,7 @@
 		if(HAS_ITEM_FLAGS(W, ITEM_FLAG_HAS_USE_DELAY))
 			next_move += 5
 
-		var/resolved = A.attackby(W, src)
+		var/resolved = W.handle_attack(A, src)
 		if(!resolved && isnotnull(A) && isnotnull(W))
 			W.afterattack(A, src, 1, params)
 		return
@@ -85,7 +85,7 @@
 			if(HAS_ITEM_FLAGS(W, ITEM_FLAG_HAS_USE_DELAY))
 				next_move += 5
 
-			var/resolved = A.attackby(W, src)
+			var/resolved = W.handle_attack(A, src)
 			if(!resolved && A && W)
 				W.afterattack(A, src, 1, params)
 			return

@@ -15,15 +15,11 @@
 		return FALSE
 
 	borg.uneq_all()
-	borg.hands.icon_state = "nomod"
-	borg.icon_state = "robot"
 	for(var/camera_network in borg.model.camera_networks)
 		borg.camera.network.Remove(camera_network)
 	QDEL_NULL(borg.model)
-	borg.model = new /obj/item/robot_model/default(borg)
-	borg.updatename()
-	borg.status_flags |= CANPUSH
-	borg.updateicon()
+	borg.status_flags &= CANPUSH
+	borg.transform_to_model(/obj/item/robot_model/default)
 	return TRUE
 
 /*
