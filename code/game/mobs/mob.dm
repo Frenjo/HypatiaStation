@@ -566,16 +566,6 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 			if(mob_eye == client.mob || client.eye == client.mob)
 				client.adminobs = FALSE
 
-/mob/verb/cancel_camera()
-	set category = PANEL_OOC
-	set name = "Cancel Camera View"
-
-	reset_view(null)
-	unset_machine()
-	if(isliving(src))
-		if(src:cameraFollow)
-			src:cameraFollow = null
-
 /mob/Topic(href, href_list)
 	if(href_list["mach_close"])
 		var/t1 = "window=[href_list["mach_close"]]"

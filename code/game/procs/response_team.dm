@@ -38,48 +38,6 @@ GLOBAL_GLOBL(can_call_ert)
 	log_admin("[key_name(usr)] used Dispatch Response Team.")
 	trigger_armed_response_team(1)
 
-// TODO: Move this to a verb on /mob/dead (or even /mob/dead/ghost) and move it to PANEL_GHOST.
-/client/verb/join_response_team()
-	set category = PANEL_OOC
-	set name = "Join Emergency Response Team"
-
-	if(!isghost(usr) || !isnewplayer(usr))
-		to_chat(usr, "You need to be an observer or new player to use this.")
-		return
-	if(!GLOBL.send_emergency_team)
-		to_chat(usr, "No emergency response team is currently being sent.")
-		return
-/*	if(admin_emergency_team)
-		usr << "An emergency response team has already been sent."
-		return */
-	if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team") || jobban_isbanned(usr, "Security Officer"))
-		to_chat(usr, "<font color=red><b>You are jobbanned from the emergency reponse team!")
-		return
-
-	if(length(GLOBL.response_team_members) > 5)
-		to_chat(usr, "The emergency response team is already full!")
-
-	for_no_type_check(var/obj/effect/landmark/L, GLOBL.landmark_list)
-		if(L.name == "Commando")
-			L.name = null//Reserving the place.
-			var/new_name = input(usr, "Pick a name", "Name") as null|text
-			if(!new_name)//Somebody changed his mind, place is available again.
-				L.name = "Commando"
-				return
-			var/leader_selected = isemptylist(GLOBL.response_team_members)
-			var/mob/living/carbon/human/new_commando = create_response_team(L.loc, leader_selected, new_name)
-			qdel(L)
-			new_commando.mind.key = usr.key
-			new_commando.key = usr.key
-
-			to_chat(new_commando, SPAN_INFO("You are [!leader_selected ? "a member" : "the <B>LEADER</B>"] of an Emergency Response Team, a type of military division, under CentCom's service. There is a code red alert on [station_name()], you are tasked to go and fix the problem."))
-			to_chat(new_commando, "<b>You should first gear up and discuss a plan with your team. More members may be joining, don't move out before you're ready.")
-			if(!leader_selected)
-				to_chat(new_commando, "<b>As member of the Emergency Response Team, you answer only to your leader and CentCom officials.</b>")
-			else
-				to_chat(new_commando, "<b>As leader of the Emergency Response Team, you answer only to CentCom, and have authority to override the Captain where it is necessary to achieve your mission goals. It is recommended that you attempt to cooperate with the captain where possible, however.")
-			return
-
 // returns a number of dead players in %
 /proc/percentage_dead()
 	var/total = 0
