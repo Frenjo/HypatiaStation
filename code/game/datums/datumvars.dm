@@ -512,7 +512,7 @@ body
 		href_list["datumrefresh"] = href_list["ninja"]
 
 	else if(href_list["godmode"])
-		if(!check_rights(R_REJUVINATE))
+		if(!check_rights(R_REJUVENATE))
 			return
 
 		var/mob/M = locate(href_list["godmode"])

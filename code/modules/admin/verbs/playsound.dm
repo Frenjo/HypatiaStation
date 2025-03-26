@@ -2,7 +2,8 @@
 	set category = PANEL_FUN
 	set name = "Play Global Sound"
 
-	if(!check_rights(R_SOUNDS))	return
+	if(!check_rights(R_FUN))
+		return
 
 	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
 	uploaded_sound.priority = 250
@@ -20,7 +21,8 @@
 	set category = PANEL_FUN
 	set name = "Play Local Sound"
 
-	if(!check_rights(R_SOUNDS))	return
+	if(!check_rights(R_FUN))
+		return
 
 	log_admin("[key_name(src)] played a local sound [S]")
 	message_admins("[key_name_admin(src)] played a local sound [S]", 1)

@@ -36,14 +36,11 @@ GLOBAL_GLOBL_ALIST_NEW(admin_ranks)	//list of all ranks with associated rights
 				if("permissions","rights")		rights |= R_PERMISSIONS
 				if("possess")					rights |= R_POSSESS
 				if("stealth")					rights |= R_STEALTH
-				if("rejuv","rejuvinate")		rights |= R_REJUVINATE
+				if("rejuv","rejuvenate")		rights |= R_REJUVENATE
 				if("varedit")					rights |= R_VAREDIT
 				if("everything","host","all")	rights |= R_HOST
-				if("sound","sounds")			rights |= R_SOUNDS
 				if("spawn","create")			rights |= R_SPAWN
 				if("mod")						rights |= R_MOD
-				if("donor")						rights |= R_DONOR
-				if("zas")						rights |= R_ZAS
 		GLOBL.admin_ranks[rank] = rights
 		previous_rights = rights
 

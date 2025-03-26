@@ -211,12 +211,10 @@
 		. += "[seperator]+PERMISSIONS"
 	if(rights & R_STEALTH)
 		. += "[seperator]+STEALTH"
-	if(rights & R_REJUVINATE)
-		. += "[seperator]+REJUVINATE"
+	if(rights & R_REJUVENATE)
+		. += "[seperator]+REJUVENATE"
 	if(rights & R_VAREDIT)
 		. += "[seperator]+VAREDIT"
-	if(rights & R_SOUNDS)
-		. += "[seperator]+SOUND"
 	if(rights & R_SPAWN)
 		. += "[seperator]+SPAWN"
 	if(rights & R_MOD)

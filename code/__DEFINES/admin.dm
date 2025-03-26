@@ -1,12 +1,12 @@
 //A set of constants used to determine which type of mute an admin wishes to apply:
 //Please read and understand the muting/automuting stuff before changing these. MUTE_IC_AUTO etc = (MUTE_IC << 1)
 //Therefore there needs to be a gap between the flags for the automute flags
-#define MUTE_IC			1
-#define MUTE_OOC		2
-#define MUTE_PRAY		4
-#define MUTE_ADMINHELP	8
-#define MUTE_DEADCHAT	16
-#define MUTE_ALL		31
+#define MUTE_IC BITFLAG(0)
+#define MUTE_OOC BITFLAG(1)
+#define MUTE_PRAY BITFLAG(2)
+#define MUTE_ADMINHELP BITFLAG(3)
+#define MUTE_DEADCHAT BITFLAG(4)
+#define MUTE_ALL (MUTE_IC | MUTE_OOC | MUTE_PRAY | MUTE_ADMINHELP | MUTE_DEADCHAT)
 
 //Number of identical messages required to get the spam-prevention automute thing to trigger warnings and automutes
 #define SPAM_TRIGGER_WARNING	5
@@ -23,24 +23,19 @@
 
 //Please don't edit these values without speaking to Errorage first	~Carn
 //Admin Permissions
-#define R_REJUVINATE	1
-#define R_BUILDMODE		2
-#define R_POSSESS		4
-#define R_STEALTH		8
-#define R_SOUNDS		16 //sort of singe-tasked
-#define R_SPAWN			32
-#define R_VAREDIT		64
-#define R_DONOR			128//lowest "rank"/perm
-#define R_MOD			256//MOD > DONOR
-#define R_BAN			512
-#define R_ADMIN			1024
-#define R_FUN			2048
-#define R_SERVER		4096
-#define R_DEBUG			8192
-#define R_ZAS			16384
-//#define R_HIGHDEBUG	16384
-//#define R_PERMISSIONS	32768
-#define R_PERMISSIONS	32768
-#define R_MAXPERMISSION	32768
+#define R_REJUVENATE BITFLAG(0)
+#define R_BUILDMODE BITFLAG(1)
+#define R_POSSESS BITFLAG(2)
+#define R_STEALTH BITFLAG(3)
+#define R_SPAWN BITFLAG(4)
+#define R_VAREDIT BITFLAG(5)
+#define R_MOD BITFLAG(6)
+#define R_BAN BITFLAG(7)
+#define R_ADMIN BITFLAG(8)
+#define R_FUN BITFLAG(9)
+#define R_SERVER BITFLAG(10)
+#define R_DEBUG BITFLAG(11)
+#define R_PERMISSIONS BITFLAG(12)
+#define R_MAXPERMISSION BITFLAG(12)
 
-#define R_HOST			65535
+#define R_HOST (R_REJUVENATE | R_BUILDMODE | R_POSSESS | R_STEALTH | R_SPAWN | R_VAREDIT | R_MOD | R_BAN | R_ADMIN | R_FUN | R_SERVER | R_DEBUG | R_PERMISSIONS)

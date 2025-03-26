@@ -11,7 +11,7 @@
 
 	msg = "<span class='admin'><span class='prefix'>ADMIN:</span> <EM>[key_name(usr, 1)]</EM> (<a href='byond://?_src_=holder;adminplayerobservejump=\ref[mob]'>JMP</A>): <span class='message'>[msg]</span></span>"
 	for_no_type_check(var/client/C, GLOBL.admins)
-		if((R_ADMIN | R_MOD | R_DONOR) & C.holder.rights)
+		if(!check_rights(R_ADMIN | R_MOD))
 			to_chat(C, msg)
 
 	feedback_add_details("admin_verb", "M") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

@@ -83,10 +83,6 @@ var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel,
 	/client/proc/jobbans
 )
-var/list/admin_verbs_sounds = list(
-	/client/proc/play_local_sound,
-	/client/proc/play_sound
-)
 var/list/admin_verbs_fun = list(
 	/client/proc/object_talk,
 	/client/proc/cmd_admin_dress,
@@ -103,7 +99,9 @@ var/list/admin_verbs_fun = list(
 	/client/proc/make_sound,
 	/client/proc/toggle_random_events,
 	/client/proc/set_ooc,
-	/client/proc/editappear
+	/client/proc/editappear,
+	/client/proc/play_local_sound,
+	/client/proc/play_sound
 )
 var/list/admin_verbs_spawn = list(
 	/datum/admins/proc/spawn_atom,	/*allows us to spawn instances*/
@@ -249,13 +247,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_say,
 	/client/proc/shift_change				/*Starts a Shift Change*/
 )
-var/list/admin_verbs_donor = list(
-	/datum/admins/proc/view_txt_log,	/*shows the server log (diary) for today*/
-	/datum/admins/proc/view_atk_log,	/*shows the server combat-log, doesn't do anything presently*/
-	/client/proc/cmd_admin_say,
-	/client/proc/dsay,
-	/client/proc/admin_ghost
-)
+
 /client/proc/add_admin_verbs()
 	if(holder)
 		verbs += admin_verbs_default
@@ -268,11 +260,9 @@ var/list/admin_verbs_donor = list(
 		if(holder.rights & R_POSSESS)		verbs += admin_verbs_possess
 		if(holder.rights & R_PERMISSIONS)	verbs += admin_verbs_permissions
 		if(holder.rights & R_STEALTH)		verbs += /client/proc/stealth
-		if(holder.rights & R_REJUVINATE)	verbs += admin_verbs_rejuv
-		if(holder.rights & R_SOUNDS)		verbs += admin_verbs_sounds
+		if(holder.rights & R_REJUVENATE)	verbs += admin_verbs_rejuv
 		if(holder.rights & R_SPAWN)			verbs += admin_verbs_spawn
 		if(holder.rights & R_MOD)			verbs += admin_verbs_mod
-		if(holder.rights & R_DONOR)			verbs += admin_verbs_donor
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(
@@ -287,7 +277,6 @@ var/list/admin_verbs_donor = list(
 		admin_verbs_permissions,
 		/client/proc/stealth,
 		admin_verbs_rejuv,
-		admin_verbs_sounds,
 		admin_verbs_spawn,
 		/*Debug verbs added by "show debug verbs"*/
 		/client/proc/Cell,
