@@ -102,10 +102,12 @@
 	build_path = /obj/item/borg/upgrade/restart
 
 /datum/design/robofab/robot_upgrade/vtec
+	req_tech = alist(/decl/tech/materials = 3, /decl/tech/engineering = 3)
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 24, /decl/material/glass = 6000, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 3)
 	build_path = /obj/item/borg/upgrade/vtec
 
 /datum/design/robofab/robot_upgrade/taser_cooler
+	req_tech = alist(/decl/tech/combat = 2, /decl/tech/engineering = 3)
 	materials = alist(
 		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 24, /decl/material/glass = 6000,
 		/decl/material/gold = 2000, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET
@@ -113,6 +115,7 @@
 	build_path = /obj/item/borg/upgrade/tasercooler
 
 /datum/design/robofab/robot_upgrade/jetpack
+	req_tech = alist(/decl/tech/materials = 2, /decl/tech/engineering = 2)
 	materials = alist(/decl/material/steel = 10000, /decl/material/uranium = 20000, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 8)
 	build_path = /obj/item/borg/upgrade/jetpack
 
@@ -124,6 +127,7 @@
 	build_path = /obj/item/borg/upgrade/syndicate
 
 /datum/design/robofab/robot_upgrade/flashproof
+	req_tech = alist(/decl/tech/combat = 4, /decl/tech/syndicate = 3)
 	materials = alist(
 		/decl/material/steel = 10000, /decl/material/glass = 2000, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2,
 		/decl/material/gold = 2000, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 3
