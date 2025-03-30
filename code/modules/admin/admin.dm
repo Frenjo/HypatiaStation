@@ -545,138 +545,161 @@ var/global/floorIsLava = 0
 	dat += "</table>"
 	usr << browse(dat, "window=ban;size=400x400")
 
-/datum/admins/proc/Game()
-	if(!check_rights(0))	return
+/datum/admins/proc/game_panel()
+	if(!check_rights(0))
+		return
 
-	var/dat = {"
-		<center><B>Game Panel</B></center><hr>\n
-		<A href='byond://?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
-		"}
+	var/html = "<div align='center'><b>Game Panel</b></div>"
+	html += "<hr>"
+	html += "<a href='byond://?src=\ref[src];c_mode=1'>Change Game Mode</a>"
+	html += "<br>"
 	if(global.PCticker.master_mode == "secret")
-		dat += "<A href='byond://?src=\ref[src];f_secret=1'>(Force Secret Mode)</A><br>"
+		html += "<a href='byond://?src=\ref[src];f_secret=1'>Force Secret Mode</a>"
+	else
+		html += "<s><a>Force Secret Mode</a></s>"
+	html += "<br>"
 
-	dat += {"
-		<BR>
-		<A href='byond://?src=\ref[src];create_object=1'>Create Object</A><br>
-		<A href='byond://?src=\ref[src];quick_create_object=1'>Quick Create Object</A><br>
-		<A href='byond://?src=\ref[src];create_turf=1'>Create Turf</A><br>
-		<A href='byond://?src=\ref[src];create_mob=1'>Create Mob</A><br>
-		<br><A href='byond://?src=\ref[src];vsc=airflow'>Edit Airflow Settings</A><br>
-		<A href='byond://?src=\ref[src];vsc=plasma'>Edit Plasma Settings</A><br>
-		<A href='byond://?src=\ref[src];vsc=default'>Choose a default ZAS setting</A><br>
-		<A href='byond://?src=\ref[src];secretsadmin=change_sec'>Change Security Level</A><br>
-		"}
+	html += "<hr>"
+	html += "<a href='byond://?src=\ref[src];create_object=1'>Create Object</a><br>"
+	html += "<a href='byond://?src=\ref[src];quick_create_object=1'>Quick Create Object</a><br>"
+	html += "<a href='byond://?src=\ref[src];create_turf=1'>Create Turf</a><br>"
+	html += "<a href='byond://?src=\ref[src];create_mob=1'>Create Mob</a><br>"
+	html += "<hr>"
+	html += "<a href='byond://?src=\ref[src];vsc=airflow'>Edit Airflow Settings</a><br>"
+	html += "<a href='byond://?src=\ref[src];vsc=plasma'>Edit Plasma Settings</a><br>"
+	html += "<a href='byond://?src=\ref[src];vsc=default'>Choose Default ZAS Settings</a><br>"
+	html += "<a href='byond://?src=\ref[src];secretsadmin=change_sec'>Change Security Level</a><br>"
 
-	usr << browse(dat, "window=admin2;size=210x280")
-	return
+	var/datum/browser/panel = new /datum/browser(usr, "admin2", "", 240, 300)
+	panel.set_content(html)
+	panel.open()
 
-/datum/admins/proc/Secrets()
-	if(!check_rights(0))	return
+/datum/admins/proc/secrets_panel()
+	if(!check_rights(0))
+		return
 
-	var/dat = "<B>The first rule of adminbuse is: you don't talk about the adminbuse.</B><HR>"
+	var/html = "<b>The first rule of adminbuse is: You don't talk about the adminbuse.</b>"
+	html += "<hr>"
 
-	if(check_rights(R_ADMIN,0))
-		dat += {"
-			<B>Admin Secrets</B><BR>
-			<BR>
-			<A href='byond://?src=\ref[src];secretsadmin=list_bombers'>Bombing List</A><BR>
-			<A href='byond://?src=\ref[src];secretsadmin=check_antagonist'>Show current traitors and objectives</A><BR>
-			<A href='byond://?src=\ref[src];secretsadmin=list_signalers'>Show last [length(GLOBL.lastsignalers)] signalers</A><BR>
-			<A href='byond://?src=\ref[src];secretsadmin=list_lawchanges'>Show last [length(GLOBL.lawchanges)] law changes</A><BR>
-			<A href='byond://?src=\ref[src];secretsadmin=showailaws'>Show AI Laws</A><BR>
-			<A href='byond://?src=\ref[src];secretsadmin=showgm'>Show Game Mode</A><BR>
-			<A href='byond://?src=\ref[src];secretsadmin=manifest'>Show Crew Manifest</A><BR>
-			<A href='byond://?src=\ref[src];secretsadmin=DNA'>List DNA (Blood)</A><BR>
-			<A href='byond://?src=\ref[src];secretsadmin=fingerprints'>List Fingerprints</A><BR><BR>
-			<BR>
-			"}
+	if(check_rights(R_ADMIN, 0))
+		html += "<b>Admin Secrets</b>"
+		html += "<br>"
+		html += "<a href='byond://?src=\ref[src];secretsadmin=list_bombers'>Bombing List</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsadmin=check_antagonist'>Show Current Traitors and Objectives</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsadmin=list_signalers'>Show Last [length(GLOBL.lastsignalers)] Signalers</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsadmin=list_lawchanges'>Show Last [length(GLOBL.lawchanges)] Law Changes</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsadmin=showailaws'>Show AI Laws</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsadmin=showgm'>Show Game Mode</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsadmin=manifest'>Show Crew Manifest</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsadmin=DNA'>List DNA (Blood)</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsadmin=fingerprints'>List Fingerprints</a><br>"
+		html += "<hr>"
 
-	if(check_rights(R_FUN,0))
-		dat += {"
-			<B>'Random' Events</B><BR>
-			<BR>
-			<A href='byond://?src=\ref[src];secretsfun=gravity'>Toggle station artificial gravity</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=wave'>Spawn a wave of meteors (aka lagocolyptic shower)</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=gravanomalies'>Spawn a gravitational anomaly (aka lagitational anomolag)</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=timeanomalies'>Spawn wormholes</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=goblob'>Spawn blob</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=aliens'>Trigger a Xenomorph infestation</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=borers'>Trigger a Cortical Borer infestation</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=alien_silent'>Spawn an Alien silently</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=spiders'>Trigger a Spider infestation</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=spaceninja'>Send in a space ninja</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=striketeam'>Send in a strike team</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=carp'>Trigger an Carp migration</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=radiation'>Irradiate the station</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=prison_break'>Trigger a Prison Break</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=virus'>Trigger a Virus Outbreak</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=immovable'>Spawn an Immovable Rod</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=lightsout'>Toggle a "lights out" event</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=ionstorm'>Spawn an Ion Storm</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=ion_storm_large'>Spawn a severe Ion Storm</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=spacevines'>Spawn Space-Vines</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=comms_blackout'>Trigger a communication blackout</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=electricstorm'>Spawn an Electrical Storm</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=electrical_storm_large'>Spawn a severe Electrical Storm</A><BR>
-			<BR>
-			<B>Fun Secrets</B><BR>
-			<BR>
-			<A href='byond://?src=\ref[src];secretsfun=sec_clothes'>Remove 'internal' clothing</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=sec_all_clothes'>Remove ALL clothing</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=monkey'>Turn all humans into monkeys</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=sec_classic1'>Remove firesuits, grilles, and pods</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=power'>Make all areas powered</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=unpower'>Make all areas unpowered</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=quickpower'>Power all SMES</A><BR>
-			"}
-			//<A href='byond://?src=\ref[src];secretsfun=toggleprisonstatus'>Toggle Prison Shuttle Status(Use with S/R)</A><BR>
-			//<A href='byond://?src=\ref[src];secretsfun=activateprison'>Send Prison Shuttle</A><BR>
-			//<A href='byond://?src=\ref[src];secretsfun=deactivateprison'>Return Prison Shuttle</A><BR>
-			//<A href='byond://?src=\ref[src];secretsfun=prisonwarp'>Warp all Players to Prison</A><BR>
-		dat += {"
-			<A href='byond://?src=\ref[src];secretsfun=tripleAI'>Triple AI mode (needs to be used in the lobby)</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=traitor_all'>Everyone is the traitor</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=onlyone'>There can only be one!</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=flicklights'>Ghost Mode</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=retardify'>Make all players retarded</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=fakeguns'>Make all items look like guns</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=schoolgirl'>Japanese Animes Mode</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=eagles'>Egalitarian Station Mode</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=moveadminshuttle'>Move Administration Shuttle</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=moveferry'>Move CentCom Ferry</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=movealienship'>Move Alien Dinghy</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=moveminingshuttle'>Move Mining Shuttle</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=moveresearchshuttle'>Move Research Shuttle</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=blackout'>Break all lights</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=whiteout'>Fix all lights</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=friendai'>Best Friend AI</A><BR>
-			<A href='byond://?src=\ref[src];secretsfun=floorlava'>The floor is lava! (DANGEROUS: extremely lame)</A><BR>
-			"}
+	if(check_rights(R_FUN, 0))
+		html += "<b>'Random' Events</b>"
+		html += "<br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=gravity'>Toggle Station Artificial Gravity</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=wave'>Spawn a Wave of Meteors</a> <i>(aka lagocolyptic shower)</i><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=gravanomalies'>Spawn a Gravitational Anomaly</a> <i>(aka lagitational anomolag)</i><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=timeanomalies'>Spawn Wormholes</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=goblob'>Spawn Blob</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=aliens'>Trigger a Xenomorph Infestation</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=borers'>Trigger a Cortical Borer Infestation</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=alien_silent'>Spawn an Alien Silently</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=spiders'>Trigger a Spider Infestation</a><br>"
+		html += "Send In a: "
+		html += "<a href='byond://?src=\ref[src];secretsfun=spaceninja'>Space Ninja</a> | "
+		html += "<a href='byond://?src=\ref[src];secretsfun=striketeam'>Strike Team</a>"
+		html += "<br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=carp'>Trigger a Carp Migration</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=radiation'>Irradiate The Station</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=prison_break'>Trigger a Prison Break</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=virus'>Trigger a Virus Outbreak</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=immovable'>Spawn an Immovable Rod</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=lightsout'>Toggle a \"Lights Out\" Event</a><br>"
+		html += "Spawn an Ion Storm: "
+		html += "<a href='byond://?src=\ref[src];secretsfun=ionstorm'>Standard</a> | "
+		html += "<a href='byond://?src=\ref[src];secretsfun=ion_storm_large'>Severe</a>"
+		html += "<br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=spacevines'>Spawn Space-Vines</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=comms_blackout'>Trigger a Communications Blackout</a><br>"
+		html += "Spawn an Electrical Storm: "
+		html += "<a href='byond://?src=\ref[src];secretsfun=electricstorm'>Standard</a> | "
+		html += "<a href='byond://?src=\ref[src];secretsfun=electrical_storm_large'>Severe</a>"
+		html += "<br>"
+		html += "<hr>"
 
-	if(check_rights(R_SERVER,0))
-		dat += "<A href='byond://?src=\ref[src];secretsfun=togglebombcap'>Toggle bomb cap</A><BR>"
+		html += "<b>Fun Secrets</b>"
+		html += "<br>"
+		html += "Remove: "
+		html += "<a href='byond://?src=\ref[src];secretsfun=sec_clothes'>'Internal' Clothing</a> | "
+		html += "<a href='byond://?src=\ref[src];secretsfun=sec_all_clothes'>ALL Clothing</a> | "
+		html += "<a href='byond://?src=\ref[src];secretsfun=sec_classic1'>Firesuits, Grilles, and Pods</a>"
+		html += "<br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=monkey'>Turn All Humans Into Monkeys</a><br>"
+		html += "Make All Areas: "
+		html += "<a href='byond://?src=\ref[src];secretsfun=power'>Powered</a> | "
+		html += "<a href='byond://?src=\ref[src];secretsfun=unpower'>Unpowered</a>"
+		html += "<br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=quickpower'>Power All SMES</a><br>"
 
-	dat += "<BR>"
+		//<A href='byond://?src=\ref[src];secretsfun=toggleprisonstatus'>Toggle Prison Shuttle Status(Use with S/R)</A><BR>
+		//<A href='byond://?src=\ref[src];secretsfun=activateprison'>Send Prison Shuttle</A><BR>
+		//<A href='byond://?src=\ref[src];secretsfun=deactivateprison'>Return Prison Shuttle</A><BR>
+		//<A href='byond://?src=\ref[src];secretsfun=prisonwarp'>Warp all Players to Prison</A><BR>
 
-	if(check_rights(R_DEBUG,0))
-		dat += {"
-			<B>Security Level Elevated</B><BR>
-			<BR>
-			<A href='byond://?src=\ref[src];secretscoder=maint_access_engiebrig'>Change all maintenance doors to engie/brig access only</A><BR>
-			<A href='byond://?src=\ref[src];secretscoder=maint_access_brig'>Change all maintenance doors to brig access only</A><BR>
-			<A href='byond://?src=\ref[src];secretscoder=infinite_sec'>Remove cap on security officers</A><BR>
-			<BR>
-			<B>Coder Secrets</B><BR>
-			<BR>
-			<A href='byond://?src=\ref[src];secretsadmin=list_job_debug'>Show Job Debug</A><BR>
-			<A href='byond://?src=\ref[src];secretscoder=spawn_objects'>Admin Log</A><BR>
-			<BR>
-			"}
+		if(global.PCticker?.current_state != GAME_STATE_PLAYING && global.PCticker?.current_state != GAME_STATE_FINISHED)
+			html += "<a href='byond://?src=\ref[src];secretsfun=tripleAI'>Triple AI Mode</a> <i>(needs to be used in the lobby)</i><br>"
+		else
+			html += "<s><a>Triple AI Mode</a></s> <i><b>(needs to be used in the lobby)</b></i><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=traitor_all'>Everyone Is The Traitor</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=onlyone'>There Can Only Be One!</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=flicklights'>Ghost Mode</a><br>"
+		html += "Make All: "
+		html += "<a href='byond://?src=\ref[src];secretsfun=braindamage'>Players Brain-Damaged</a> | "
+		html += "<a href='byond://?src=\ref[src];secretsfun=fakeguns'>Items Look Like Guns</a>"
+		html += "<br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=schoolgirl'>Japanese Animes Mode</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=eagles'>Egalitarian Station Mode</a><br>"
+		html += "All Lights: <a href='byond://?src=\ref[src];secretsfun=blackout'>Break</a> | <a href='byond://?src=\ref[src];secretsfun=whiteout'>Fix</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=friendai'>Best Friend AI</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=floorlava'>The Floor is Lava!</a> <font color='red'><i>(DANGEROUS: extremely lame)</i></font><br>"
+		html += "<hr>"
 
-	usr << browse(dat, "window=secrets")
-	return
+		html += "<b>Shuttle Secrets</b>"
+		html += "<br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=moveadminshuttle'>Move Administration Shuttle</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=moveferry'>Move CentCom Ferry</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=movealienship'>Move Alien Dinghy</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=moveminingshuttle'>Move Mining Shuttle</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=moveresearchshuttle'>Move Research Shuttle</a><br>"
+		html += "<hr>"
 
+	if(check_rights(R_SERVER, 0))
+		html += "<b>Server Secrets</b>"
+		html += "<br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=togglebombcap'>Toggle Bomb Cap</a><br>"
+		html += "<hr>"
 
+	if(check_rights(R_DEBUG, 0))
+		html += "<b>Security Level Elevated</b>"
+		html += "<br>"
+		html += "Change All Maintenance Door Access: "
+		html += "<a href='byond://?src=\ref[src];secretscoder=maint_access_engiebrig'>Engie/Brig Access Only</a> | "
+		html += "<a href='byond://?src=\ref[src];secretscoder=maint_access_brig'>Brig Access Only</a>"
+		html += "<br>"
+		html += "<a href='byond://?src=\ref[src];secretscoder=infinite_sec'>Remove Cap on Security Officers</a><br>"
+		html += "<hr>"
+
+		html += "<b>Coder Secrets</b>"
+		html += "<br>"
+		html += "<a href='byond://?src=\ref[src];secretsadmin=list_job_debug'>Show Job Debug</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretscoder=spawn_objects'>Admin Log</a><br>"
+		html += "<hr>"
+
+	var/datum/browser/panel = new /datum/browser(usr, "secrets", "", 600, 900)
+	panel.set_content(html)
+	panel.open()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////admins2.dm merge
 //i.e. buttons/verbs

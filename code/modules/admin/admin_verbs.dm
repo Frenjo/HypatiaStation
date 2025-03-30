@@ -429,18 +429,16 @@ var/list/admin_verbs_mod = list(
 	set category = PANEL_ADMIN
 	set name = "Game Panel"
 
-	if(holder)
-		holder.Game()
-	feedback_add_details("admin_verb","GP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	holder?.game_panel()
+	feedback_add_details("admin_verb", "GP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
 /client/proc/secrets()
 	set category = PANEL_ADMIN
 	set name = "Secrets"
 
-	if (holder)
-		holder.Secrets()
-	feedback_add_details("admin_verb","S") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	holder?.secrets_panel()
+	feedback_add_details("admin_verb", "S") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
 /client/proc/colorooc()

@@ -992,7 +992,7 @@
 		log_admin("[key_name(usr)] set the mode as [global.PCticker.master_mode].")
 		message_admins("\blue [key_name_admin(usr)] set the mode as [global.PCticker.master_mode].", 1)
 		to_world("\blue <b>The mode is now: [global.PCticker.master_mode]</b>")
-		Game() // updates the main game menu
+		game_panel() // updates the main game menu
 		world.save_mode(global.PCticker.master_mode)
 		.(href, list("c_mode"=1))
 
@@ -1006,7 +1006,7 @@
 		global.PCticker.secret_force_mode = href_list["f_secret2"]
 		log_admin("[key_name(usr)] set the forced secret mode as [global.PCticker.secret_force_mode].")
 		message_admins("\blue [key_name_admin(usr)] set the forced secret mode as [global.PCticker.secret_force_mode].", 1)
-		Game() // updates the main game menu
+		game_panel() // updates the main game menu
 		.(href, list("f_secret"=1))
 
 	else if(href_list["monkeyone"])
@@ -2261,7 +2261,7 @@
 				else
 					virus2_greater_infection()
 					message_admins("[key_name_admin(usr)] has triggered a greater virus outbreak.", 1)
-			if("retardify")
+			if("braindamage")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","RET")
 				for(var/mob/living/carbon/human/H in GLOBL.player_list)
