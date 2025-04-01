@@ -113,7 +113,7 @@ GLOBAL_GLOBL_ALIST_INIT(department_radio_keys, alist(
 
 		for(var/obj/O in objects)
 			spawn(0)
-				O.hear_talk(src, message, verbage, speaking)
+				O.hear_talk(src, message, verbage, speaking, alt_name, italics)
 
 	var/speech_bubble_test = say_test(message)
 	var/image/speech_bubble = image('icons/mob/talk.dmi', src, "h[speech_bubble_test]")

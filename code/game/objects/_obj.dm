@@ -113,11 +113,11 @@
 /obj/proc/hide(h)
 	return
 
-/obj/proc/hear_talk(mob/M, text)
+/obj/proc/hear_talk(mob/speaker, message, verbage, datum/language/speaking, alt_name, italics)
 /*
 	var/mob/mo = locate(/mob) in src
 	if(mo)
-		var/rendered = "<span class='game say'><span class='name'>[M.name]: </span> <span class='message'>[text]</span></span>"
+		var/rendered = "<span class='game say'><span class='name'>[speaker.name]: </span> <span class='message'>[message]</span></span>"
 		mo.show_message(rendered, 2)
 		*/
 	return
