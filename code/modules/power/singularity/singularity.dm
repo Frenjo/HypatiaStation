@@ -517,7 +517,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 		var/obj/O = A
 		GLOBL.machines -= O
 		GLOBL.processing_objects -= O
-		O.loc = null
+		O.forceMove(null)
 	else if(isturf(A))
 		var/turf/T = A
 		if(T.intact)

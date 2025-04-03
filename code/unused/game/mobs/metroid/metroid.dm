@@ -754,7 +754,7 @@ mob/living/carbon/metroid/var/temperature_resistance = T0C+75
 
 	//del(D)
 	//Garbage Collect Dummy
-	D.loc = null
+	D.forceMove(null)
 	D = null
 	if (!( ok ))
 

@@ -149,7 +149,7 @@
 
 //TODO: phase out this proc
 /mob/proc/before_take_item(obj/item/W)	//TODO: what is this?
-	W.loc = null
+	W.forceMove(null)
 	W.reset_plane_and_layer()
 	u_equip(W)
 	update_icons()

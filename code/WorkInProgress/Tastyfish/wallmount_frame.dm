@@ -123,12 +123,12 @@
 						if(circuit.contain_parts) // things like disposal don't want their parts in them
 							O.forceMove(new_machine)
 						else
-							O.loc = null
+							O.forceMove(null)
 						new_machine.component_parts += O
 					if(circuit.contain_parts)
 						circuit.forceMove(new_machine)
 					else
-						circuit.loc = null
+						circuit.forceMove(null)
 					new_machine.RefreshParts()
 					del(src)
 

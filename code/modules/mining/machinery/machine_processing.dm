@@ -468,7 +468,7 @@
 			if(isnotnull(O))
 				if(O.type in ore_amounts)
 					ore_amounts[O.type]++
-					O.loc = null
+					O.forceMove(null)
 					qdel(O)
 					continue
 

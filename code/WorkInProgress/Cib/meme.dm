@@ -46,7 +46,7 @@ mob/living/parasite/proc/enter_host(mob/living/carbon/host)
 mob/living/parasite/proc/exit_host()
 	src.host.parasites.Remove(src)
 	src.host = null
-	src.loc = null
+	src.forceMove(null)
 
 	return 1
 
@@ -519,7 +519,7 @@ mob/living/parasite/meme/verb/Possession()
 
 	spawn
 		var/mob/dummy = new()
-		dummy.loc = 0
+		dummy.forceMove(null)
 		dummy.sight = BLIND
 
 		var/datum/mind/host_mind = host.mind

@@ -255,7 +255,7 @@
 
 			//del(D)
 			// Garbage Collect Dummy
-			D.loc = null
+			D.forceMove(null)
 			D = null
 
 			// ------- DUMMY OBJECT'S SERVED IT'S PURPOSE, IT'S REWARDED WITH A SWIFT DELETE -------

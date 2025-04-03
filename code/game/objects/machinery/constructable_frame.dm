@@ -121,12 +121,12 @@
 							if(circuit.contain_parts) // things like disposal don't want their parts in them
 								mover.forceMove(new_machine)
 							else
-								mover.loc = null
+								mover.forceMove(null)
 							new_machine.component_parts.Add(mover)
 						if(circuit.contain_parts)
 							circuit.forceMove(new_machine)
 						else
-							circuit.loc = null
+							circuit.forceMove(null)
 						new_machine.refresh_parts()
 						qdel(src)
 				else

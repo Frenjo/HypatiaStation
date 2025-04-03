@@ -23,7 +23,7 @@
 	//Hopefully this will stop the icon from remaining on human mobs.
 	if(isliving(loc))
 		var/mob/living/A = src.loc
-		src.loc = null
+		src.forceMove(null)
 		A.update_icons()
 	return ..()
 

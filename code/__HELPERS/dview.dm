@@ -10,7 +10,7 @@ GLOBAL_BYOND_NEW(mob/dview/dview_mob)
 	dview_mob.see_invisible = invis_flags
 
 	. = view(range, dview_mob)
-	dview_mob.loc = null
+	dview_mob.forceMove(null)
 
 /mob/dview
 	invisibility = INVISIBILITY_MAXIMUM

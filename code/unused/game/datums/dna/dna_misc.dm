@@ -400,7 +400,7 @@
 		var/list/implants = list() //Try to preserve implants.
 		for(var/obj/item/implant/W in H)
 			implants += W
-			W.loc = null
+			W.forceMove(null)
 
 		if(!connected)
 			for(var/obj/item/W in (H.contents-implants))
@@ -476,7 +476,7 @@
 		var/list/implants = list() //Still preserving implants
 		for(var/obj/item/implant/W in Mo)
 			implants += W
-			W.loc = null
+			W.forceMove(null)
 		if(!connected)
 			for(var/obj/item/W in (Mo.contents-implants))
 				Mo.drop_from_inventory(W)

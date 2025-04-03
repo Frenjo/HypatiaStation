@@ -229,7 +229,7 @@
 			else
 				temp.Blend(black, ICON_OVERLAY, 32 * (j-1), 64 - 32 * (i-1))
 			mobs += get_mobs(T)
-			dummy.loc = null
+			dummy.forceMove(null)
 			dummy = null	//Alas, nameless creature	//garbage collect it instead
 			x_c++
 		y_c--

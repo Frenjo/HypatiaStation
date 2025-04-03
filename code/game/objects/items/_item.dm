@@ -96,7 +96,7 @@
 
 	var/turf/T = src.loc
 
-	src.loc = null
+	forceMove(null)
 
 	forceMove(T)
 

@@ -53,7 +53,7 @@
 			break
 
 	var/rval = dummy.Adjacent(target)
-	dummy.loc = null
+	dummy.forceMove(null)
 	dummy = null
 	return rval
 

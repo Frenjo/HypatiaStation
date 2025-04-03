@@ -448,7 +448,7 @@ obj/machinery/computer/airtunnel/attack_ai(user as mob)
 					src.operating = 0
 					return
 				if (A.current)
-					A.current.loc = null
+					A.current.forceMove(null)
 					A.current.deployed = 0
 					A.current = A.current.previous
 				else

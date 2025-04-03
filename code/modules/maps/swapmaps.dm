@@ -177,7 +177,7 @@
 					if(!M.key)
 						qdel(M)
 					else
-						M.loc = null
+						M.forceMove(null)
 				areas[A.loc] = null
 				qdel(A)
 			// delete areas that belong only to this map
@@ -299,7 +299,7 @@
 					if(!M.key)
 						qdel(M)
 					else
-						M.loc = null
+						M.forceMove(null)
 				// finish the read
 				T.Read(S)
 				S.cd = ".."

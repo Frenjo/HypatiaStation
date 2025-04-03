@@ -382,7 +382,7 @@
 				C.wrapped = I
 				C.install()
 				user.drop_item()
-				I.loc = null
+				I.forceMove(null)
 				to_chat(usr, SPAN_NOTICE("You install \the [I]."))
 				return TRUE
 
