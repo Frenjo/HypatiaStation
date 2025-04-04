@@ -21,10 +21,10 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 
 	var/needs_update = FALSE
 
-	var/cache_r		= LIGHTING_SOFT_THRESHOLD
-	var/cache_g		= LIGHTING_SOFT_THRESHOLD
-	var/cache_b		= LIGHTING_SOFT_THRESHOLD
-	var/cache_mx	= 0
+	var/cache_r = LIGHTING_SOFT_THRESHOLD
+	var/cache_g = LIGHTING_SOFT_THRESHOLD
+	var/cache_b = LIGHTING_SOFT_THRESHOLD
+	var/cache_mx = 0
 
 	var/update_gen = 0
 
@@ -108,9 +108,9 @@ GLOBAL_BYOND_LIST_INIT(lighting_corner_diagonal, list(NORTHEAST, SOUTHEAST, SOUT
 	else if(mx < LIGHTING_SOFT_THRESHOLD)
 		. = 0 // 0 means soft lighting.
 
-	cache_r = lum_r * . || LIGHTING_SOFT_THRESHOLD
-	cache_g = lum_g * . || LIGHTING_SOFT_THRESHOLD
-	cache_b = lum_b * . || LIGHTING_SOFT_THRESHOLD
+	cache_r = round(lum_r * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
+	cache_g = round(lum_g * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
+	cache_b = round(lum_b * ., LIGHTING_ROUND_VALUE) || LIGHTING_SOFT_THRESHOLD
 	cache_mx = mx
 
 	for_no_type_check(var/turf/T, masters)
