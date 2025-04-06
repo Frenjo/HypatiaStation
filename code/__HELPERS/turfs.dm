@@ -67,6 +67,3 @@
 		M.forceMove(new_turf)
 
 	return new_turf
-
-/proc/get_turf_or_move(turf/location)
-	return GET_TURF(location)

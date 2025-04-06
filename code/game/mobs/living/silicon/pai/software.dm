@@ -270,7 +270,7 @@
 			if(href_list["cancel"])
 				hackdoor = null
 			if(href_list["cable"])
-				var/turf/T = get_turf_or_move(loc)
+				var/turf/T = GET_TURF(src)
 				cable = new /obj/item/pai_cable(T)
 				visible_message(
 					SPAN_NOTICE("A port on [src] opens to reveal \the [cable], which promptly falls to the floor."),
@@ -556,7 +556,7 @@
 /mob/living/silicon/pai/proc/softwareAtmo()
 	var/dat = "<h2>Atmospheric Sensor</h2><hr>"
 
-	var/turf/T = get_turf_or_move(loc)
+	var/turf/T = GET_TURF(src)
 	if(isnull(T))
 		dat += "Unable to obtain a reading.<br>"
 	else
@@ -625,7 +625,7 @@
 
 // Door Jack - supporting proc
 /mob/living/silicon/pai/proc/hackloop()
-	var/turf/T = get_turf_or_move(loc)
+	var/turf/T = GET_TURF(src)
 	for(var/mob/living/silicon/ai/ai in GLOBL.player_list)
 		if(isnotnull(T.loc))
 			to_chat(ai, SPAN_DANGER("Network Alert: Brute-force encryption crack in progress in [T.loc]."))

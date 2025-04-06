@@ -301,7 +301,7 @@
 				src.overlays += "pai-what"
 
 /obj/item/paicard/proc/alertUpdate()
-	var/turf/T = get_turf_or_move(src.loc)
+	var/turf/T = GET_TURF(src)
 	for(var/mob/M in viewers(T))
 		M.show_message(
 			SPAN_INFO("[src] flashes a message across its screen, \"Additional personalities available for download.\""), 3,

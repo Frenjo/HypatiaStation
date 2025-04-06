@@ -547,7 +547,7 @@
 				if("1")		// Configure pAI device
 					pai.attack_self(U)
 				if("2")		// Eject pAI device
-					var/turf/T = get_turf_or_move(src.loc)
+					var/turf/T = GET_TURF(src)
 					if(T)
 						pai.forceMove(T)
 						pai = null

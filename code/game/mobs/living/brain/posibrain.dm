@@ -78,7 +78,7 @@
 	to_chat(brainmob, "<b>Use say :b to speak to other artificial intelligences.</b>")
 	brainmob.mind.assigned_role = "Positronic Brain"
 
-	var/turf/T = get_turf_or_move(loc)
+	var/turf/T = GET_TURF(src)
 	T.visible_message(SPAN_INFO("The positronic brain chimes quietly."))
 	icon_state = "posibrain-occupied"
 
@@ -89,7 +89,7 @@
 	searching = FALSE
 	icon_state = "posibrain"
 
-	var/turf/T = get_turf_or_move(loc)
+	var/turf/T = GET_TURF(src)
 	T.visible_message(SPAN_INFO("The positronic brain buzzes quietly, and the golden lights fade away. Perhaps you could try again?"))
 
 /obj/item/mmi/posibrain/examine()
