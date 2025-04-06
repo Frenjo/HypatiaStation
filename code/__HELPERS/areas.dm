@@ -40,7 +40,7 @@
 	return list()
 
 //Takes: Area type as a typepath OR an instance of the area.
-//Returns: A list of all atoms	(objs, turfs, mobs) in areas of that type of that type in the world.
+//Returns: A list of all atoms (objs, turfs, mobs) in areas of that type of that type in the world.
 /proc/get_area_all_atoms(areatype)
 	if(!areatype)
 		return null
@@ -51,5 +51,5 @@
 	. = list()
 	for_no_type_check(var/area/N, GLOBL.area_list)
 		if(istype(N, areatype))
-			for(var/atom/A in N)
+			for_no_type_check(var/atom/A, N)
 				. += A
