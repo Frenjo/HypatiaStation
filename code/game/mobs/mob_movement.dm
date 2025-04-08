@@ -437,3 +437,26 @@
 /obj/item/weapon/storage/on_loc_moved(newloc, direct)
 	for(var/obj/O in contents)
 		O.on_loc_moved(newloc, direct)
+
+// /tg/ movement verbs
+// The BYOND versions of these verbs wait for the next tick before acting.
+// Instant verbs however can run mid tick or even during the time between ticks.
+/client/verb/moveup()
+	set name = ".moveup"
+	set instant = TRUE
+	Move(get_step(mob, NORTH), NORTH)
+
+/client/verb/movedown()
+	set name = ".movedown"
+	set instant = TRUE
+	Move(get_step(mob, SOUTH), SOUTH)
+
+/client/verb/moveright()
+	set name = ".moveright"
+	set instant = TRUE
+	Move(get_step(mob, EAST), EAST)
+
+/client/verb/moveleft()
+	set name = ".moveleft"
+	set instant = TRUE
+	Move(get_step(mob, WEST), WEST)

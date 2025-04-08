@@ -22,25 +22,25 @@ macro "macro"
 		command = "westface"
 	elem
 		name = "West+REP"
-		command = ".west"
+		command = ".moveleft"
 	elem
 		name = "CTRL+North"
 		command = "northface"
 	elem
 		name = "North+REP"
-		command = ".north"
+		command = ".moveup"
 	elem
 		name = "CTRL+East"
 		command = "eastface"
 	elem
 		name = "East+REP"
-		command = ".east"
+		command = ".moveright"
 	elem
 		name = "CTRL+South"
 		command = "southface"
 	elem
 		name = "South+REP"
-		command = ".south"
+		command = ".movedown"
 	elem
 		name = "Insert"
 		command = "a-intent right"
@@ -61,10 +61,10 @@ macro "macro"
 		command = "a-intent hurt"
 	elem
 		name = "CTRL+A+REP"
-		command = ".west"
+		command = ".moveleft"
 	elem
 		name = "CTRL+D+REP"
-		command = ".east"
+		command = ".moveright"
 	elem
 		name = "CTRL+E"
 		command = "quick-equip"
@@ -82,10 +82,10 @@ macro "macro"
 		command = ".southwest"
 	elem
 		name = "CTRL+S+REP"
-		command = ".south"
+		command = ".movedown"
 	elem
 		name = "CTRL+W+REP"
-		command = ".north"
+		command = ".moveup"
 	elem
 		name = "CTRL+X"
 		command = ".northeast"
@@ -156,25 +156,25 @@ macro "hotkeymode"
 		command = "westface"
 	elem
 		name = "West+REP"
-		command = ".west"
+		command = ".moveleft"
 	elem
 		name = "CTRL+North"
 		command = "northface"
 	elem
 		name = "North+REP"
-		command = ".north"
+		command = ".moveup"
 	elem
 		name = "CTRL+East"
 		command = "eastface"
 	elem
 		name = "East+REP"
-		command = ".east"
+		command = ".moveright"
 	elem
 		name = "CTRL+South"
 		command = "southface"
 	elem
 		name = "South+REP"
-		command = ".south"
+		command = ".movedown"
 	elem
 		name = "Insert"
 		command = "a-intent right"
@@ -207,16 +207,16 @@ macro "hotkeymode"
 		command = "a-intent hurt"
 	elem
 		name = "A+REP"
-		command = ".west"
+		command = ".moveleft"
 	elem
 		name = "CTRL+A+REP"
-		command = ".west"
+		command = ".moveleft"
 	elem
 		name = "D+REP"
-		command = ".east"
+		command = ".moveright"
 	elem
 		name = "CTRL+D+REP"
-		command = ".east"
+		command = ".moveright"
 	elem
 		name = "E"
 		command = "quick-equip"
@@ -249,19 +249,19 @@ macro "hotkeymode"
 		command = ".southwest"
 	elem "s_key"
 		name = "S+REP"
-		command = ".south"
+		command = ".movedown"
 	elem
 		name = "CTRL+S+REP"
-		command = ".south"
+		command = ".movedown"
 	elem
 		name = "T"
 		command = "say"
 	elem "w_key"
 		name = "W+REP"
-		command = ".north"
+		command = ".moveup"
 	elem
 		name = "CTRL+W+REP"
-		command = ".north"
+		command = ".moveup"
 	elem
 		name = "X"
 		command = ".northeast"
