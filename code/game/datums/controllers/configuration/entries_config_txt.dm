@@ -15,9 +15,6 @@ CONFIG_ENTRY(hostedby, null, list("Sets a hosted by name for unix platforms."), 
  * Category: Tick
  */
 CONFIG_ENTRY(ticklag, 0.9, list("Defines the ticklag for the world. 0.9 is the normal one, 0.5 is smoother."), CATEGORY_TICK, TYPE_NUMERIC)
-CONFIG_ENTRY(tickcomp, FALSE, list("Defines if Tick Compensation is used.",\
-"It results in a minor slowdown of movement of all mobs, but attempts to result in a level movement speed across all ticks.",\
-"Recommended if the tickrate is lowered."), CATEGORY_TICK, TYPE_BOOLEAN)
 
 /*
  * Category: URLs
