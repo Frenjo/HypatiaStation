@@ -31,6 +31,14 @@
 	name = "Close Menu"
 	icon_state = "radial_centre"
 
+/atom/movable/screen/radial/centre/MouseEntered(location, control, params)
+	. = ..()
+	icon_state = "radial_centre_focus"
+
+/atom/movable/screen/radial/centre/MouseExited(location, control, params)
+	. = ..()
+	icon_state = "radial_centre"
+
 /atom/movable/screen/radial/centre/Click(location, control, params)
 	if(usr.client == parent.current_user)
 		parent.finished = TRUE
