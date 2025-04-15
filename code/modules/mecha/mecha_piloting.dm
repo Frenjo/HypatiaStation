@@ -63,7 +63,7 @@
 		)
 		playsound(src, 'sound/machines/windowdoor.ogg', 50, 1)
 		if(!internal_damage)
-			occupant << sound('sound/mecha/nominal.ogg', volume = 50)
+			occupant << sound('sound/mecha/voice/nominal.ogg', volume = 50)
 		return TRUE
 	return FALSE
 
@@ -123,6 +123,6 @@
 		set_dir(entry_direction)
 		log_message("[mmi_as_oc] moved in as pilot.")
 		if(!internal_damage)
-			occupant << sound('sound/mecha/nominal.ogg', volume = 50)
+			occupant << sound('sound/mecha/voice/nominal.ogg', volume = 50)
 		return TRUE
 	return FALSE

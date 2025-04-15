@@ -122,7 +122,7 @@
 	damage_absorption = list("brute" = 0.775, "fire" = 1.1, "bullet" = 0.85, "laser" = 0.85, "energy" = 0.925, "bomb" = 1)
 
 	step_sound_volume = 25
-	turn_sound = 'sound/mecha/mechmove01.ogg'
+	turn_sound = 'sound/mecha/movement/mechmove01.ogg'
 
 	wreckage = /obj/structure/mecha_wreckage/gygax/serenity
 

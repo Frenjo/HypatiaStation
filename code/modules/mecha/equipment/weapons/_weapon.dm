@@ -3,7 +3,7 @@
 	range = RANGED
 	origin_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 3)
 
-	destruction_sound = 'sound/mecha/weapdestr.ogg'
+	destruction_sound = 'sound/mecha/voice/weapdestr.ogg'
 
 	var/projectile //Type of projectile fired.
 	var/projectiles = 1 //Amount of projectiles loaded.

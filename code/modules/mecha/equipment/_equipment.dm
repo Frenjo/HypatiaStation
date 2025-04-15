@@ -21,7 +21,7 @@
 	var/selectable = TRUE // This should be set to FALSE for equipment that's passive or has a separate activate button. IE armour plates, droids and passenger compartments.
 
 	var/salvageable = TRUE
-	var/destruction_sound = 'sound/mecha/critdestr.ogg'
+	var/destruction_sound = 'sound/mecha/voice/critdestr.ogg'
 
 	var/allow_duplicates = TRUE // Can duplicates of this equipment be fitted.
 

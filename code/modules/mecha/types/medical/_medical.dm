@@ -1,6 +1,6 @@
 /obj/mecha/medical
 	step_sound_volume = 25
-	turn_sound = 'sound/mecha/mechmove01.ogg'
+	turn_sound = 'sound/mecha/movement/mechmove01.ogg'
 
 	excluded_equipment = list(
 		/obj/item/mecha_part/equipment/tool,

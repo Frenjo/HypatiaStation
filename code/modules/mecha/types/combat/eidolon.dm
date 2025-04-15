@@ -14,8 +14,8 @@
 	deflect_chance = 30
 	damage_absorption = list("brute" = 0.85, "fire" = 0, "bullet" = 0.65, "laser" = 0.65, "energy" = 0.65, "bomb" = 0.8)
 
-	step_sound = 'sound/mecha/eidolon/sbdwalk0.ogg'
-	turn_sound = 'sound/mecha/mechmove01.ogg'
+	step_sound = 'sound/mecha/movement/eidolon/sbdwalk0.ogg'
+	turn_sound = 'sound/mecha/movement/mechmove01.ogg'
 
 	wreckage = /obj/structure/mecha_wreckage/eidolon
 
@@ -51,7 +51,7 @@
 /obj/mecha/combat/eidolon/mechstep(direction) // No strafing when rolling, also looping movement sound.
 	if(!rolling)
 		step_loop = (step_loop++) % 3
-		step_sound = "sound/mecha/eidolon/sbdwalk[step_loop].ogg"
+		step_sound = "sound/mecha/movement/eidolon/sbdwalk[step_loop].ogg"
 	. = ..()
 
 /obj/mecha/combat/eidolon/go_out()
@@ -75,7 +75,7 @@
 		icon_state = "eidolon-ball"
 		deflect_chance += 40
 		step_in = 0.5
-		step_sound = 'sound/mecha/eidolon/mechball.ogg'
+		step_sound = 'sound/mecha/movement/eidolon/mechball.ogg'
 		step_sound_volume = 100
 		turn_sound = null
 		occupant_message(SPAN_INFO("You enable ball mode."))

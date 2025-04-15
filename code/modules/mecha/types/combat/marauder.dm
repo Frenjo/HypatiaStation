@@ -132,7 +132,7 @@
 	occupant_message(SPAN(zoom ? "info" : "warning", "Zoom mode [zoom ? "en" : "dis"]abled."))
 	if(zoom)
 		occupant.client.view = 12
-		occupant << sound('sound/mecha/imag_enh.ogg', volume = 50)
+		occupant << sound('sound/mecha/voice/image_enh.ogg', volume = 50)
 	else
 		occupant.client.view = world.view//world.view - default mob view size
 
