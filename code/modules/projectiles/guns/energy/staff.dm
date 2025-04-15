@@ -8,7 +8,7 @@
 	slot_flags = SLOT_BACK
 	origin_tech = null
 
-	fire_sound = 'sound/weapons/emitter.ogg'
+	fire_sound = 'sound/weapons/gun/emitter.ogg'
 
 	clumsy_check = FALSE
 

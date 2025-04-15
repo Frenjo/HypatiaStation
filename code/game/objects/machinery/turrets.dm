@@ -84,7 +84,7 @@
 		return ..()
 
 	if(user.species.can_shred(user) && !(stat & BROKEN))
-		playsound(src, 'sound/weapons/slash.ogg', 25, 1, -1)
+		playsound(src, 'sound/weapons/melee/slash.ogg', 25, 1, -1)
 		visible_message(SPAN_DANGER("[] has slashed at []!"), user, src)
 		src.take_damage(15)
 	return
@@ -308,7 +308,7 @@
 
 /obj/machinery/turret/attackby(obj/item/W, mob/user)	//I can't believe no one added this before/N
 	..()
-	playsound(src, 'sound/weapons/smash.ogg', 60, 1)
+	playsound(src, 'sound/weapons/melee/smash.ogg', 60, 1)
 	src.spark_system.start()
 	src.health -= W.force * 0.5
 	if(src.health <= 0)
@@ -642,7 +642,7 @@
 				continue
 			if(targloc == curloc)
 				continue
-			playsound(src, 'sound/weapons/Gunshot.ogg', 50, 1)
+			playsound(src, 'sound/weapons/gun/gunshot.ogg', 50, 1)
 			var/obj/item/projectile/A = new /obj/item/projectile(curloc)
 			src.projectiles--
 			A.current = curloc

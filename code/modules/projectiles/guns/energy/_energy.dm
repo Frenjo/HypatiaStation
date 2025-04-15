@@ -3,7 +3,7 @@
 	desc = "A basic energy-based gun."
 	icon_state = "energy"
 
-	fire_sound = 'sound/weapons/Taser.ogg'
+	fire_sound = 'sound/weapons/gun/taser.ogg'
 
 	var/modifystate = null
 

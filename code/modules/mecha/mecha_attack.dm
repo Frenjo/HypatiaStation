@@ -25,14 +25,14 @@
 			if(!prob(deflection_chance))
 				take_damage(round(15 * damage_coefficient))
 				check_for_internal_damage(list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST))
-				playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
+				playsound(src, 'sound/weapons/melee/slash.ogg', 50, 1, -1)
 				user.visible_message(
 					SPAN_WARNING("\The [user] slashes at \the [src]'s armour!"),
 					SPAN_WARNING("You slash at the armoured suit!")
 				)
 			else
 				log_append_to_last("Armour saved.")
-				playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
+				playsound(src, 'sound/weapons/melee/slash.ogg', 50, 1, -1)
 				user.visible_message(
 					SPAN_INFO("\The [user] rebounds off of \the [src]'s armour!"),
 					SPAN_ALIUM("Your claws have no effect on \the [src]!")
@@ -85,7 +85,7 @@
 			user.attack_log += "\[[time_stamp()]\] <font color='red'>attacked [name]</font>"
 		else
 			log_append_to_last("Armour saved.")
-			playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
+			playsound(src, 'sound/weapons/melee/slash.ogg', 50, 1, -1)
 			user.visible_message(
 				SPAN_WARNING("\The [user] rebounds off of \the [src]'s armour!"),
 				SPAN_WARNING("You rebound off of \the [src]'s armour!")

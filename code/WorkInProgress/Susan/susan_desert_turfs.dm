@@ -436,7 +436,7 @@ Alien plants should do something if theres a lot of poison
 			return
 
 		var/obj/item/projectile/slimeglob/A = new /obj/item/projectile/slimeglob(user:loc)
-		playsound(user, 'sound/weapons/bite.ogg', 100, 1)
+		playsound(user, 'sound/weapons/melee/bite.ogg', 100, 1)
 
 		if(!A)	return
 

@@ -1439,7 +1439,7 @@ It is possible to destroy the net by the occupant or someone else.
 		tforce = 10
 	else
 		tforce = AM:throwforce
-	playsound(src, 'sound/weapons/slash.ogg', 80, 1)
+	playsound(src, 'sound/weapons/melee/slash.ogg', 80, 1)
 	health = max(0, health - tforce)
 	healthcheck()
 	..()
@@ -1459,7 +1459,7 @@ It is possible to destroy the net by the occupant or someone else.
 				SPAN_WARNING("[H] claws at the energy net!"),
 				SPAN_ALIUM("You claw at the energy net.")
 			)
-			playsound(src, 'sound/weapons/slash.ogg', 80, 1)
+			playsound(src, 'sound/weapons/melee/slash.ogg', 80, 1)
 			health -= rand(10, 20)
 			if(health <= 0)
 				H.visible_message(

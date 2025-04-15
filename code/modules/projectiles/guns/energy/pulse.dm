@@ -6,7 +6,7 @@
 
 	force = 10
 
-	fire_sound = 'sound/weapons/pulse.ogg'
+	fire_sound = 'sound/weapons/gun/pulse.ogg'
 	fire_delay = 2.5 SECONDS
 
 	cell_type = /obj/item/cell/super
@@ -29,17 +29,17 @@
 		if(GUN_SETTING_DESTROY)
 			gun_setting = GUN_SETTING_STUN
 			charge_cost = 100
-			fire_sound = 'sound/weapons/Taser.ogg'
+			fire_sound = 'sound/weapons/gun/taser.ogg'
 			to_chat(user, SPAN_WARNING("\The [src] is now set to stun."))
 		if(GUN_SETTING_STUN)
 			gun_setting = GUN_SETTING_KILL
 			charge_cost = 100
-			fire_sound = 'sound/weapons/Laser.ogg'
+			fire_sound = 'sound/weapons/gun/laser.ogg'
 			to_chat(user, SPAN_WARNING("\The [src] is now set to kill."))
 		if(GUN_SETTING_KILL)
 			gun_setting = GUN_SETTING_DESTROY
 			charge_cost = 200
-			fire_sound = 'sound/weapons/pulse.ogg'
+			fire_sound = 'sound/weapons/gun/pulse.ogg'
 			to_chat(user, SPAN_WARNING("\The [src] is now set to DESTROY."))
 
 /obj/item/gun/energy/pulse_rifle/isHandgun()

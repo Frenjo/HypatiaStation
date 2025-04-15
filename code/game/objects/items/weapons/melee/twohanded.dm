@@ -158,8 +158,8 @@
 	w_class = 2.0
 	force_unwielded = 3
 	force_wielded = 30
-	wieldsound = 'sound/weapons/saberon.ogg'
-	unwieldsound = 'sound/weapons/saberoff.ogg'
+	wieldsound = 'sound/weapons/melee/saberon.ogg'
+	unwieldsound = 'sound/weapons/melee/saberoff.ogg'
 	item_flags = ITEM_FLAG_NO_SHIELD
 	origin_tech = alist(/decl/tech/magnets = 3, /decl/tech/syndicate = 4)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")

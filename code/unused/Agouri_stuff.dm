@@ -765,7 +765,7 @@
 			return
 
 	user << "\blue You push the wall but nothing happens!"
-	playsound(src.loc, 'sound/weapons/Genhit.ogg', 25, 1)
+	playsound(src.loc, 'sound/weapons/melee/genhit.ogg', 25, 1)
 	src.add_fingerprint(user)
 	return
 
@@ -865,7 +865,7 @@
 			if ((user.loc == T && user.equipped() == W))
 				W:spark_system.start()
 				playsound(src.loc, "sparks", 50, 1)
-				playsound(src.loc, 'sound/weapons/blade1.ogg', 50, 1)
+				playsound(src.loc, 'sound/weapons/melee/blade1.ogg', 50, 1)
 				dismantle_wall(1)
 				for(var/mob/O in viewers(user, 5))
 					O.show_message(text("\blue The wall was sliced apart by []!", user), 1, text("\red You hear metal being sliced and sparks flying."), 2)
@@ -1623,7 +1623,7 @@ turf/open/floor/return_siding_icon_state()
 				T.use(1)
 				update_icon()
 				levelupdate()
-				playsound(src.loc, 'sound/weapons/Genhit.ogg', 50, 1)
+				playsound(src.loc, 'sound/weapons/melee/genhit.ogg', 50, 1)
 			else
 				user << "\blue This section is too damaged to support a tile. Use a welder to fix the damage."
 
@@ -1707,7 +1707,7 @@ turf/open/floor/return_siding_icon_state()
 			return
 		var/obj/item/stack/rods/R = C
 		user << "\blue Constructing support lattice ..."
-		playsound(src.loc, 'sound/weapons/Genhit.ogg', 50, 1)
+		playsound(src.loc, 'sound/weapons/melee/genhit.ogg', 50, 1)
 		ReplaceWithLattice()
 		R.use(1)
 		return
@@ -1717,7 +1717,7 @@ turf/open/floor/return_siding_icon_state()
 		if(L)
 			var/obj/item/stack/tile/metal/grey/S = C
 			del(L)
-			playsound(src.loc, 'sound/weapons/Genhit.ogg', 50, 1)
+			playsound(src.loc, 'sound/weapons/melee/genhit.ogg', 50, 1)
 			S.build(src)
 			S.use(1)
 			return

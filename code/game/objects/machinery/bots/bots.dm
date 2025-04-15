@@ -178,7 +178,7 @@
 	if(user.species.can_shred(user))
 		health -= rand(15, 30) * brute_dam_coeff
 		visible_message(SPAN_DANGER("[user] has slashed [src]!"))
-		playsound(src, 'sound/weapons/slice.ogg', 25, 1, -1)
+		playsound(src, 'sound/weapons/melee/slice.ogg', 25, 1, -1)
 		if(prob(10))
 			new /obj/effect/decal/cleanable/blood/oil(loc)
 		healthcheck()

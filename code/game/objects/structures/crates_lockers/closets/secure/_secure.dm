@@ -68,7 +68,7 @@
 		flick(icon_broken, src)
 		if(istype(W, /obj/item/melee/energy/blade))
 			make_sparks(5, FALSE, loc)
-			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
+			playsound(src, 'sound/weapons/melee/blade1.ogg', 50, 1)
 			playsound(src, "sparks", 50, 1)
 			for(var/mob/O in viewers(user, 3))
 				O.show_message(SPAN_WARNING("The locker has been sliced open by [user] with an energy blade!"), 1, "You hear metal being sliced and sparks flying.", 2)

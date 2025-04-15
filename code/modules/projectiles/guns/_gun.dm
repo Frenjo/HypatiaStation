@@ -16,7 +16,7 @@
 	force = 5
 	attack_verb = list("struck", "hit", "bashed")
 
-	var/fire_sound = 'sound/weapons/Gunshot.ogg'
+	var/fire_sound = 'sound/weapons/gun/gunshot.ogg'
 	var/fire_delay = 0.6 SECONDS
 	var/last_fired = 0
 	var/firerate = 0 	// 0 for keep shooting until aim is lowered.

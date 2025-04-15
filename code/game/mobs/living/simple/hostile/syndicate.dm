@@ -107,7 +107,7 @@
 	icon_state = "syndicateranged"
 	icon_living = "syndicateranged"
 	casingtype = /obj/item/ammo_casing/a12mm
-	projectilesound = 'sound/weapons/Gunshot_smg.ogg'
+	projectilesound = 'sound/weapons/gun/gunshot_smg.ogg'
 	projectiletype = /obj/item/projectile/bullet/midbullet2
 
 	weapon1 = /obj/item/gun/projectile/automatic/c20r
@@ -145,7 +145,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	attacktext = "cuts"
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'sound/weapons/melee/bladeslice.ogg'
 	faction = "syndicate"
 	min_oxy = 0
 	max_oxy = 0

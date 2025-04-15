@@ -78,7 +78,7 @@
 	// The time it takes for this tool to actually dig something.
 	var/dig_time = 4 SECONDS //moving the delay to an item var so R&D can make improved picks. --NEO
 
-	var/drill_sound = 'sound/weapons/Genhit.ogg'
+	var/drill_sound = 'sound/weapons/melee/genhit.ogg'
 	var/drill_verb = "picking"
 
 /obj/item/pickaxe/silver

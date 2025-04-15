@@ -21,7 +21,7 @@
 	maxHealth = 300
 	speed = 8
 	projectiletype = /obj/item/projectile/energy/beam/laser/drone
-	projectilesound = 'sound/weapons/laser3.ogg'
+	projectilesound = 'sound/weapons/gun/laser3.ogg'
 	destroy_surroundings = 0
 	var/datum/effect/system/ion_trail_follow/ion_trail
 
@@ -53,7 +53,7 @@
 	..()
 	if(prob(5))
 		projectiletype = /obj/item/projectile/energy/beam/pulse/drone
-		projectilesound = 'sound/weapons/pulse2.ogg'
+		projectilesound = 'sound/weapons/gun/pulse2.ogg'
 	ion_trail = new
 	ion_trail.set_up(src)
 	ion_trail.start()

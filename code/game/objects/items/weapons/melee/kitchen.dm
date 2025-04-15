@@ -129,7 +129,7 @@
 		user << "\red You accidentally cut yourself with the [src]."
 		user.take_organ_damage(20)
 		return
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	playsound(loc, 'sound/weapons/melee/bladeslice.ogg', 50, 1, -1)
 	return ..()
 
 /obj/item/kitchen/utensil/pknife
@@ -144,7 +144,7 @@
 		user << "\red You somehow managed to cut yourself with the [src]."
 		user.take_organ_damage(20)
 		return
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	playsound(loc, 'sound/weapons/melee/bladeslice.ogg', 50, 1, -1)
 	return ..()
 
 /*
@@ -200,7 +200,7 @@
 	edge = 1
 
 /obj/item/butch/attack(mob/living/carbon/M, mob/living/carbon/user)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	playsound(loc, 'sound/weapons/melee/bladeslice.ogg', 50, 1, -1)
 	return ..()
 
 /*

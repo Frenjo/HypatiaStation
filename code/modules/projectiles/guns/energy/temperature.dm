@@ -6,7 +6,7 @@
 	matter_amounts = /datum/design/weapon/temp_gun::materials
 	origin_tech = /datum/design/weapon/temp_gun::req_tech
 
-	fire_sound = 'sound/weapons/pulse3.ogg'
+	fire_sound = 'sound/weapons/gun/pulse3.ogg'
 
 	cell_type = /obj/item/cell/crap
 

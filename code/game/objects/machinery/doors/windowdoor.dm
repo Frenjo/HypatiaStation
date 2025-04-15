@@ -190,7 +190,7 @@
 		if(istype(I, /obj/item/melee/energy/blade))
 			make_sparks(5, FALSE, loc)
 			playsound(src, "sparks", 50, 1)
-			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
+			playsound(src, 'sound/weapons/melee/blade1.ogg', 50, 1)
 			visible_message(SPAN_INFO("The glass door was sliced open by [user]!"))
 		flick("[base_state]spark", src)
 		sleep(6)

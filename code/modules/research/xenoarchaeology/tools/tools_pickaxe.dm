@@ -10,7 +10,7 @@
 
 	excavation_amount = 0.5
 	dig_time = 2 SECONDS
-	drill_sound = 'sound/weapons/thudswoosh.ogg'
+	drill_sound = 'sound/weapons/melee/thudswoosh.ogg'
 	drill_verb = "brushing"
 
 /obj/item/pickaxe/one_pick

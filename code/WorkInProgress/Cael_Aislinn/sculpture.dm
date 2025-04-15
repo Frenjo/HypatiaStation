@@ -29,7 +29,7 @@
 		G.synch()
 		target.LAssailant = src
 
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		playsound(loc, 'sound/weapons/melee/thudswoosh.ogg', 50, 1, -1)
 		visible_message("\red [src] has grabbed [target]!")
 		target << "\red <b>You feel something suddenly grab you around the neck from behind!</b> Everything goes black..."
 

@@ -272,7 +272,7 @@
 				return
 			if(health > 0)
 				attacked += 10
-				//playsound(loc, 'sound/weapons/bite.ogg', 50, 1, -1)
+				//playsound(loc, 'sound/weapons/melee/bite.ogg', 50, 1, -1)
 				visible_message(SPAN_DANGER("[M] has attacked [src]!"))
 				adjustBruteLoss(rand(1, 3))
 				updatehealth()
@@ -290,11 +290,11 @@
 		if(Victim == M)
 			if(prob(60))
 				visible_message(SPAN_WARNING("[M] attempts to wrestle \the [src] off!"))
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/melee/punchmiss.ogg', 25, 1, -1)
 
 			else
 				visible_message(SPAN_WARNING("[M] manages to wrestle \the [src] off!"))
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				playsound(loc, 'sound/weapons/melee/thudswoosh.ogg', 50, 1, -1)
 
 				if(prob(90) && !client)
 					Discipline++
@@ -314,11 +314,11 @@
 		else
 			if(prob(30))
 				visible_message(SPAN_WARNING("[M] attempts to wrestle \the [src] off of [Victim]!"))
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/melee/punchmiss.ogg', 25, 1, -1)
 
 			else
 				visible_message(SPAN_WARNING("[M] manages to wrestle \the [src] off of [Victim]!"))
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				playsound(loc, 'sound/weapons/melee/thudswoosh.ogg', 50, 1, -1)
 
 				if(prob(80) && !client)
 					Discipline++
@@ -373,7 +373,7 @@
 
 			LAssailant = M
 
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+			playsound(loc, 'sound/weapons/melee/thudswoosh.ogg', 50, 1, -1)
 			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
 
 		else
@@ -401,7 +401,7 @@
 				adjustBruteLoss(damage)
 				updatehealth()
 			else
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/melee/punchmiss.ogg', 25, 1, -1)
 				visible_message(SPAN_DANGER("[M] has attempted to punch [src]!"))
 	return
 

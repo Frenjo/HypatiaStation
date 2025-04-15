@@ -209,7 +209,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 			if(target)		// make sure target exists
 				if(get_dist(src, target) <= 1 && isturf(target.loc))		// if right next to perp
 					if(iscarbon(target))
-						playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+						playsound(src, 'sound/weapons/melee/egloves.ogg', 50, 1, -1)
 						icon_state = "secbot-c"
 						spawn(2)
 							icon_state = "secbot[on]"
@@ -238,7 +238,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 						//just harmbaton them until dead
 						if(world.time > next_harm_time)
 							next_harm_time = world.time + 15
-							playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+							playsound(src, 'sound/weapons/melee/egloves.ogg', 50, 1, -1)
 							visible_message(SPAN_DANGER("[src] beats [target] with the stun baton!"))
 							icon_state = "secbot-c"
 							spawn(2)

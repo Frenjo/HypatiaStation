@@ -41,7 +41,7 @@
 
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 5, /decl/tech/syndicate = 8)
 
-	fire_sound = 'sound/weapons/Gunshot_smg.ogg'
+	fire_sound = 'sound/weapons/gun/gunshot_smg.ogg'
 
 	caliber = "12mm"
 
@@ -59,7 +59,7 @@
 	if(!length(loaded) && empty_mag)
 		empty_mag.forceMove(GET_TURF(src))
 		empty_mag = null
-		playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
+		playsound(user, 'sound/weapons/gun/smg_empty_alarm.ogg', 40, 1)
 		update_icon()
 
 /obj/item/gun/projectile/automatic/c20r/update_icon()
@@ -79,7 +79,7 @@
 	slot_flags = null
 	origin_tech = alist(/decl/tech/materials = 1, /decl/tech/combat = 5, /decl/tech/syndicate = 2)
 
-	fire_sound = 'sound/weapons/Gunshot_smg.ogg'
+	fire_sound = 'sound/weapons/gun/gunshot_smg.ogg'
 
 	caliber = "a762"
 

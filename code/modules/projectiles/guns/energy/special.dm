@@ -6,7 +6,7 @@
 	matter_amounts = /datum/design/weapon/decloner::materials
 	origin_tech = /datum/design/weapon/decloner::req_tech
 
-	fire_sound = 'sound/weapons/pulse3.ogg'
+	fire_sound = 'sound/weapons/gun/pulse3.ogg'
 
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/declone)
@@ -81,7 +81,7 @@
 	desc = "A prototype weapon recovered from the ruins of Research-Station Epsilon."
 	icon_state = "xray"
 
-	fire_sound = 'sound/weapons/Laser.ogg'
+	fire_sound = 'sound/weapons/gun/laser.ogg'
 
 	gun_mode = GUN_MODE_BEAM
 	gun_setting = GUN_SETTING_SPECIAL
@@ -109,7 +109,7 @@
 	slot_flags = SLOT_BACK
 	origin_tech = alist(/decl/tech/materials = 5, /decl/tech/combat = 6, /decl/tech/power_storage = 4)
 
-	fire_sound = 'sound/weapons/marauder.ogg'
+	fire_sound = 'sound/weapons/gun/marauder.ogg'
 	fire_delay = 3.5 SECONDS
 
 	charge_cost = 250

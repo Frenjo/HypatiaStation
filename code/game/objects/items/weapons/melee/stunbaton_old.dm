@@ -91,7 +91,7 @@
 		H.attack_log += "\[[time_stamp()]\]<font color='orange'> Stunned by [user.name] ([user.ckey]) with [src.name]</font>"
 		msg_admin_attack("[key_name(user)] stunned [key_name(H)] with [src.name]")
 
-		playsound(src.loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+		playsound(src.loc, 'sound/weapons/melee/egloves.ogg', 50, 1, -1)
 		if(charges < 1)
 			status = 0
 			update_icon()

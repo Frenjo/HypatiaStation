@@ -35,7 +35,7 @@
 	if(!length(loaded) && empty_mag)
 		empty_mag.forceMove(GET_TURF(src))
 		empty_mag = null
-		playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
+		playsound(user, 'sound/weapons/gun/smg_empty_alarm.ogg', 40, 1)
 		update_icon()
 
 /obj/item/gun/projectile/deagle/gold
@@ -73,7 +73,7 @@
 	if(!length(loaded) && empty_mag)
 		empty_mag.forceMove(GET_TURF(src))
 		empty_mag = null
-		playsound(user, 'sound/weapons/smg_empty_alarm.ogg', 40, 1)
+		playsound(user, 'sound/weapons/gun/smg_empty_alarm.ogg', 40, 1)
 		update_icon()
 
 /obj/item/gun/projectile/gyropistol/update_icon()

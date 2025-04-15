@@ -14,7 +14,7 @@
 	status_flags = CANPUSH
 	universal_speak = 0
 	universal_understand = 1
-	attack_sound = 'sound/weapons/punch1.ogg'
+	attack_sound = 'sound/weapons/melee/punch1.ogg'
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
@@ -107,7 +107,7 @@
 	attacktext = "smashes their armoured gauntlet into"
 	speed = 3
 	wall_smash = 1
-	attack_sound = 'sound/weapons/punch3.ogg'
+	attack_sound = 'sound/weapons/melee/punch3.ogg'
 	status_flags = 0
 	construct_spells = list(/obj/effect/proc_holder/spell/aoe_turf/conjure/lesserforcewall)
 
@@ -159,7 +159,7 @@
 	attacktext = "slashes"
 	speed = -1
 	see_in_dark = 7
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'sound/weapons/melee/bladeslice.ogg'
 	construct_spells = list(/obj/effect/proc_holder/spell/targeted/ethereal_jaunt/shift)
 
 
@@ -180,7 +180,7 @@
 	attacktext = "rams"
 	speed = 0
 	wall_smash = 1
-	attack_sound = 'sound/weapons/punch2.ogg'
+	attack_sound = 'sound/weapons/melee/punch2.ogg'
 	construct_spells = list(
 		/obj/effect/proc_holder/spell/aoe_turf/conjure/construct/lesser,
 		/obj/effect/proc_holder/spell/aoe_turf/conjure/wall,
@@ -207,7 +207,7 @@
 	attacktext = "brutally crushes"
 	speed = 5
 	wall_smash = 1
-	attack_sound = 'sound/weapons/punch4.ogg'
+	attack_sound = 'sound/weapons/melee/punch4.ogg'
 	var/energy = 0
 	var/max_energy = 1000
 
@@ -271,7 +271,7 @@
 	speed = -1
 	wall_smash = 1
 	see_in_dark = 7
-	attack_sound = 'sound/weapons/pierce.ogg'
+	attack_sound = 'sound/weapons/melee/pierce.ogg'
 
 	construct_spells = list(
 			//spell/targeted/harvest,

@@ -27,7 +27,7 @@
 	icon_state = "uac2"
 	equip_cooldown = 1 SECOND
 	projectile = /obj/item/projectile/bullet/weakbullet
-	fire_sound = 'sound/weapons/Gunshot.ogg'
+	fire_sound = 'sound/weapons/gun/gunshot.ogg'
 	projectiles = 300
 	projectiles_per_shot = 3
 	deviation = 0.3
@@ -42,7 +42,7 @@
 	origin_tech = /datum/design/mechfab/equipment/weapon/scattershot::req_tech
 	equip_cooldown = 2 SECONDS
 	projectile = /obj/item/projectile/bullet/midbullet
-	fire_sound = 'sound/weapons/Gunshot.ogg'
+	fire_sound = 'sound/weapons/gun/gunshot.ogg'
 	fire_volume = 80
 	projectiles = 40
 	projectiles_per_shot = 4

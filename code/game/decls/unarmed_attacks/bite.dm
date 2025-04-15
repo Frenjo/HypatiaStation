@@ -3,7 +3,7 @@
  */
 /decl/unarmed_attack/bite
 	attack_verb = list("bite") // 'x has biteed y', needs work.
-	attack_sound = 'sound/weapons/bite.ogg'
+	attack_sound = 'sound/weapons/melee/bite.ogg'
 	shredding = TRUE
 	damage = 5
 	sharp = TRUE

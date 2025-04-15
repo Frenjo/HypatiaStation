@@ -38,7 +38,7 @@
 	melee_damage_lower = 4
 	melee_damage_upper = 8
 	attacktext = "hits"
-	attack_sound = 'sound/weapons/genhit1.ogg'
+	attack_sound = 'sound/weapons/melee/genhit1.ogg'
 
 	faction = "blob"
 	min_oxy = 0

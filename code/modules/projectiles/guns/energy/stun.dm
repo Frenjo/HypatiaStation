@@ -4,7 +4,7 @@
 	icon_state = "taser"
 	item_state = null	//so the human update icon uses the icon_state instead.
 
-	fire_sound = 'sound/weapons/Taser.ogg'
+	fire_sound = 'sound/weapons/gun/taser.ogg'
 
 	cell_type = /obj/item/cell/crap
 
@@ -25,7 +25,7 @@
 	matter_amounts = /datum/design/weapon/stunrevolver::materials
 	origin_tech = /datum/design/weapon/stunrevolver::req_tech
 
-	fire_sound = 'sound/weapons/Gunshot.ogg'
+	fire_sound = 'sound/weapons/gun/gunshot.ogg'
 
 	charge_cost = 125
 
@@ -41,7 +41,7 @@
 
 	origin_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 3, /decl/tech/power_storage = 1)
 
-	fire_sound = 'sound/weapons/taser2.ogg'
+	fire_sound = 'sound/weapons/gun/taser2.ogg'
 
 	gun_setting = GUN_SETTING_DISABLE
 	pulse_projectile_types = list(
@@ -64,7 +64,7 @@
 	w_class = 2
 	origin_tech = alist(/decl/tech/magnets = 2, /decl/tech/combat = 2, /decl/tech/syndicate = 5)
 
-	fire_sound = 'sound/weapons/Genhit.ogg'
+	fire_sound = 'sound/weapons/melee/genhit.ogg'
 
 	silenced = 1
 

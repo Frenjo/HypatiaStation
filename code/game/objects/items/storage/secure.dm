@@ -47,7 +47,7 @@
 			locked = 0
 			if(istype(W, /obj/item/melee/energy/blade))
 				make_sparks(5, FALSE, loc)
-				playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
+				playsound(src, 'sound/weapons/melee/blade1.ogg', 50, 1)
 				playsound(src, "sparks", 50, 1)
 				user << "You slice through the lock on [src]."
 			else

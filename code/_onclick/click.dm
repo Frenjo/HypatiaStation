@@ -225,7 +225,7 @@
 	var/obj/item/projectile/energy/beam/LE = new /obj/item/projectile/energy/beam(loc)
 	LE.icon = 'icons/effects/genetics.dmi'
 	LE.icon_state = "eyelasers"
-	playsound(usr.loc, 'sound/weapons/taser2.ogg', 75, 1)
+	playsound(usr.loc, 'sound/weapons/gun/taser2.ogg', 75, 1)
 
 	LE.firer = src
 	LE.def_zone = get_organ_target()

@@ -34,13 +34,13 @@
 		force = 30
 		icon_state = "sword[item_color]"
 		w_class = 4
-		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+		playsound(user, 'sound/weapons/melee/saberon.ogg', 50, 1)
 		to_chat(user, SPAN_INFO("[src] is now active."))
 	else
 		force = 3
 		icon_state = "sword0"
 		w_class = 2
-		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+		playsound(user, 'sound/weapons/melee/saberoff.ogg', 50, 1)
 		to_chat(user, SPAN_INFO("[src] can now be concealed."))
 
 	if(ishuman(user))

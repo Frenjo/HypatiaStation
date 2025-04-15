@@ -40,7 +40,7 @@
 		else
 			icon_state = "sword[item_color]"
 		w_class = 4
-		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+		playsound(user, 'sound/weapons/melee/saberon.ogg', 50, 1)
 		to_chat(user, SPAN_INFO("[src] is now active."))
 
 	else
@@ -50,7 +50,7 @@
 		else
 			icon_state = "sword0"
 		w_class = 2
-		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+		playsound(user, 'sound/weapons/melee/saberoff.ogg', 50, 1)
 		to_chat(user, SPAN_INFO("[src] can now be concealed."))
 
 	if(ishuman(user))
@@ -105,7 +105,7 @@
 			blind_message = SPAN_WARNING("You hear someone fall.")
 		)
 	else
-		playsound(src, 'sound/weapons/Genhit.ogg', 50, 1, -1)
+		playsound(src, 'sound/weapons/melee/genhit.ogg', 50, 1, -1)
 		M.Stun(5)
 		M.Weaken(5)
 		M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been attacked with [src.name] by [user.name] ([user.ckey])</font>")
@@ -258,14 +258,14 @@
 		force = 10
 		icon_state = "eshield[active]"
 		w_class = 4
-		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+		playsound(user, 'sound/weapons/melee/saberon.ogg', 50, 1)
 		to_chat(user, SPAN_INFO("[src] is now active."))
 
 	else
 		force = 3
 		icon_state = "eshield[active]"
 		w_class = 1
-		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+		playsound(user, 'sound/weapons/melee/saberoff.ogg', 50, 1)
 		to_chat(user, SPAN_INFO("[src] can now be concealed."))
 
 	if(ishuman(user))

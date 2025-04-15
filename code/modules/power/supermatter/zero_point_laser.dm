@@ -92,7 +92,7 @@
 			shot_number = 0
 		use_power(1000)
 		var/obj/item/projectile/energy/beam/emitter/A = new /obj/item/projectile/energy/beam/emitter(loc)
-		playsound(src, 'sound/weapons/emitter2.ogg', 25, 1)
+		playsound(src, 'sound/weapons/gun/emitter2.ogg', 25, 1)
 		if(prob(35))
 			make_sparks(5, TRUE, src)
 		A.set_dir(src.dir)

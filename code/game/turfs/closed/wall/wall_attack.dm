@@ -50,7 +50,7 @@
 		return
 
 	to_chat(user, SPAN_INFO("You push the wall but nothing happens!"))
-	playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
+	playsound(src, 'sound/weapons/melee/genhit.ogg', 25, 1)
 	add_fingerprint(user)
 
 /turf/closed/wall/attackby(obj/item/W, mob/user)
@@ -95,7 +95,7 @@
 			EB.spark_system.start()
 			to_chat(user, SPAN_NOTICE("You slash \the [src] with \the [EB]; the thermite ignites!"))
 			playsound(src, "sparks", 50, 1)
-			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
+			playsound(src, 'sound/weapons/melee/blade1.ogg', 50, 1)
 
 			thermitemelt(user)
 			return
@@ -189,7 +189,7 @@
 		if(user.loc == T && user.get_active_hand() == W)
 			EB.spark_system.start()
 			playsound(src, "sparks", 50, 1)
-			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
+			playsound(src, 'sound/weapons/melee/blade1.ogg', 50, 1)
 			dismantle_wall(1)
 			for(var/mob/O in viewers(user, 5))
 				O.show_message(

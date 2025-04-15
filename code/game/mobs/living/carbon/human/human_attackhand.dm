@@ -35,7 +35,7 @@
 		if(istype(M.gloves, /obj/item/clothing/gloves/boxing/hologlove))
 			var/damage = rand(0, 9)
 			if(!damage)
-				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+				playsound(loc, 'sound/weapons/melee/punchmiss.ogg', 25, 1, -1)
 				visible_message(SPAN_DANGER("[M] has attempted to punch [src]!"))
 				return 0
 			var/datum/organ/external/affecting = get_organ(ran_zone(M.zone_sel.selecting))
@@ -100,7 +100,7 @@
 			G.synch()
 			LAssailant = M
 
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+			playsound(loc, 'sound/weapons/melee/thudswoosh.ogg', 50, 1, -1)
 			visible_message(SPAN_WARNING("[M] has grabbed [src] passively!"))
 			return 1
 
@@ -181,7 +181,7 @@
 			if(!HAS_SPECIES_FLAGS(species, SPECIES_FLAG_NO_SLIP) && randn <= 25)
 				var/armor_check = run_armor_check(affecting, "melee")
 				apply_effect(3, WEAKEN, armor_check)
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				playsound(loc, 'sound/weapons/melee/thudswoosh.ogg', 50, 1, -1)
 				if(armor_check < 2)
 					visible_message(SPAN_DANGER("[M] has pushed [src]!"))
 				else
@@ -217,11 +217,11 @@
 				if(!talked)	//BubbleWrap
 					drop_item()
 					visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+				playsound(loc, 'sound/weapons/melee/thudswoosh.ogg', 50, 1, -1)
 				return
 
 
-			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+			playsound(loc, 'sound/weapons/melee/punchmiss.ogg', 25, 1, -1)
 			visible_message(SPAN_DANGER("[M] attempted to disarm [src]!"))
 	return
 

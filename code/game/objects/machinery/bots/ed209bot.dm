@@ -249,7 +249,7 @@ Auto Patrol: ["<A href='byond://?src=\ref[src];operation=patrol'>[auto_patrol ? 
 
 			if(target)		// make sure target exists
 				if(get_dist(src, target) <= 1)		// if right next to perp
-					playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+					playsound(src, 'sound/weapons/melee/egloves.ogg', 50, 1, -1)
 					icon_state = "[lasercolor]ed209-c"
 					spawn(2)
 						icon_state = "[lasercolor]ed209[on]"

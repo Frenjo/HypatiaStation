@@ -60,7 +60,7 @@
 	desc = "You can drill using this item. You dig?"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "drill"
-	hitsound = 'sound/weapons/circsawhit.ogg'
+	hitsound = 'sound/weapons/melee/circsawhit.ogg'
 	matter_amounts = /datum/design/autolathe/surgical_drill::materials
 	origin_tech = /datum/design/autolathe/surgical_drill::req_tech
 	obj_flags = OBJ_FLAG_CONDUCT
@@ -150,7 +150,7 @@
 	desc = "For heavy duty cutting."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "saw3"
-	hitsound = 'sound/weapons/circsawhit.ogg'
+	hitsound = 'sound/weapons/melee/circsawhit.ogg'
 	obj_flags = OBJ_FLAG_CONDUCT
 	force = 15.0
 	w_class = 2.0

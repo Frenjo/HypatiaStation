@@ -15,7 +15,7 @@
 	throw_range = 4
 	w_class = 2
 	attack_verb = list("called", "rang")
-	hitsound = 'sound/weapons/ring.ogg'
+	hitsound = 'sound/weapons/melee/ring.ogg'
 
 /obj/item/c_tube
 	name = "cardboard tube"
@@ -165,7 +165,7 @@
 	return (BRUTELOSS)
 
 /obj/item/shard/attack(mob/living/carbon/M, mob/living/carbon/user)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	playsound(loc, 'sound/weapons/melee/bladeslice.ogg', 50, 1, -1)
 	return ..()
 
 /*/obj/item/syndicate_uplink
@@ -407,7 +407,7 @@
 	return(BRUTELOSS)
 
 /obj/item/sord/attack(mob/living/carbon/M, mob/living/carbon/user)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	playsound(loc, 'sound/weapons/melee/bladeslice.ogg', 50, 1, -1)
 	return ..()
 
 /obj/item/claymore
@@ -433,7 +433,7 @@
 	return(BRUTELOSS)
 
 /obj/item/claymore/attack(mob/living/carbon/M, mob/living/carbon/user)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	playsound(loc, 'sound/weapons/melee/bladeslice.ogg', 50, 1, -1)
 	return ..()
 
 /obj/item/katana
@@ -458,7 +458,7 @@
 	return 1
 
 /obj/item/katana/attack(mob/living/carbon/M, mob/living/carbon/user)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
+	playsound(loc, 'sound/weapons/melee/bladeslice.ogg', 50, 1, -1)
 	return ..()
 
 /obj/item/harpoon

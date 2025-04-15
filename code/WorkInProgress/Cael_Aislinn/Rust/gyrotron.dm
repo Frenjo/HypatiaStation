@@ -92,7 +92,7 @@
 		return
 /*
 		var/obj/item/projectile/beam/emitter/A = new /obj/item/projectile/beam/emitter( src.loc )
-		playsound(src.loc, 'sound/weapons/emitter.ogg', 25, 1)
+		playsound(src.loc, 'sound/weapons/gun/emitter.ogg', 25, 1)
 		if(prob(35))
 			make_sparks(5, TRUE, src)
 		A.dir = src.dir
@@ -120,7 +120,7 @@
 	A.damage = mega_energy * 500
 	//
 	A.icon_state = "emitter"
-	playsound(src.loc, 'sound/weapons/emitter.ogg', 25, 1)
+	playsound(src.loc, 'sound/weapons/gun/emitter.ogg', 25, 1)
 	use_power(100 * mega_energy + 500)
 	/*
 	if(prob(35))

@@ -25,7 +25,7 @@
 			return TRUE
 		var/obj/item/stack/rods/R = I
 		to_chat(user, SPAN_INFO("Constructing support lattice ..."))
-		playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+		playsound(src, 'sound/weapons/melee/genhit.ogg', 50, 1)
 		ReplaceWithLattice()
 		R.use(1)
 		return TRUE
@@ -35,7 +35,7 @@
 		if(isnotnull(L))
 			var/obj/item/stack/tile/metal/grey/S = I
 			qdel(L)
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			playsound(src, 'sound/weapons/melee/genhit.ogg', 50, 1)
 			S.build(src)
 			S.use(1)
 		else

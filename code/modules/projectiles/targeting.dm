@@ -175,7 +175,7 @@
 	else
 		return
 	for(var/mob/living/K in viewers(usr))
-		K << 'sound/weapons/TargetOn.ogg'
+		K << 'sound/weapons/gun/target_on.ogg'
 
 	LAZYADD(targeted_by, I)
 	I.lock_time = world.time + 20 //Target has 2 second to realize they're targeted and stop (or target the opponent).
@@ -231,7 +231,7 @@
 /mob/living/proc/NotTargeted(obj/item/gun/I)
 	if(!I.silenced)
 		for(var/mob/living/M in viewers(src))
-			M << 'sound/weapons/TargetOff.ogg'
+			M << 'sound/weapons/gun/target_off.ogg'
 	targeted_by -= I
 	I.target.Remove(src) //De-target them
 	if(!length(I.target))

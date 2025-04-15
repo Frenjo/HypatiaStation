@@ -38,7 +38,7 @@
 		recentpump = FALSE
 
 /obj/item/gun/projectile/shotgun/pump/proc/pump(mob/M)
-	playsound(M, 'sound/weapons/shotgunpump.ogg', 60, 1)
+	playsound(M, 'sound/weapons/gun/shotgunpump.ogg', 60, 1)
 	pumped = 0
 	if(isnotnull(current_shell)) // We have a shell in the chamber
 		current_shell.forceMove(GET_TURF(src)) // Eject casing

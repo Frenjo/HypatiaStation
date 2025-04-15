@@ -217,7 +217,7 @@
 
 /obj/machinery/meteor_battery/attackby(obj/item/W, mob/user)//I can't believe no one added this before/N
 	..()
-	playsound(src.loc, 'sound/weapons/smash.ogg', 60, 1)
+	playsound(src.loc, 'sound/weapons/melee/smash.ogg', 60, 1)
 	src.spark_system.start()
 	src.health -= W.force * 0.5
 	if (src.health <= 0)
@@ -249,7 +249,7 @@
 
 /obj/machinery/meteor_battery/attack_alien(mob/living/carbon/alien/humanoid/M as mob)
 	if(!(stat & BROKEN))
-		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
+		playsound(src.loc, 'sound/weapons/melee/slash.ogg', 25, 1, -1)
 		for(var/mob/O in viewers(src, null))
 			if ((O.client && !( O.blinded )))
 				O.show_message(text("\red <B>[] has slashed at []!</B>", M, src), 1)

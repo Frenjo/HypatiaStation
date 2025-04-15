@@ -7,7 +7,7 @@
 	slot_flags = SLOT_BACK
 	origin_tech = alist(/decl/tech/magnets = 4, /decl/tech/combat = 2)
 
-	fire_sound = 'sound/weapons/Laser.ogg'
+	fire_sound = 'sound/weapons/gun/laser.ogg'
 
 	gun_setting = GUN_SETTING_SPECIAL
 	pulse_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/ion)

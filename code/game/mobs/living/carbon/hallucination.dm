@@ -140,16 +140,16 @@ Gunshots/explosions/opening doors/less rare audio (done)
 						src << 'sound/machines/windowdoor.ogg'
 					if(9)
 						//To make it more realistic, I added two gunshots (enough to kill)
-						src << 'sound/weapons/Gunshot.ogg'
+						src << 'sound/weapons/gun/gunshot.ogg'
 						spawn(rand(10, 30))
-							src << 'sound/weapons/Gunshot.ogg'
+							src << 'sound/weapons/gun/gunshot.ogg'
 					if(10)
-						src << 'sound/weapons/smash.ogg'
+						src << 'sound/weapons/melee/smash.ogg'
 					if(11)
 						//Same as above, but with tasers.
-						src << 'sound/weapons/Taser.ogg'
+						src << 'sound/weapons/gun/taser.ogg'
 						spawn(rand(10, 30))
-							src << 'sound/weapons/Taser.ogg'
+							src << 'sound/weapons/gun/taser.ogg'
 				//Rare audio
 					if(12)
 //These sounds are (mostly) taken from Hidden: Source
@@ -317,7 +317,7 @@ proc/check_panel(mob/M)
 		else
 			if(prob(15))
 				if(weapon_name)
-					my_target << sound(pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg'))
+					my_target << sound(pick('sound/weapons/melee/genhit1.ogg', 'sound/weapons/melee/genhit2.ogg', 'sound/weapons/melee/genhit3.ogg'))
 					my_target.show_message(SPAN_DANGER("[my_target] has been attacked with [weapon_name] by [src.name]!"), 1)
 					my_target.halloss += 8
 					if(prob(20))
@@ -326,7 +326,7 @@ proc/check_panel(mob/M)
 						if(!locate(/obj/effect/overlay) in my_target.loc)
 							fake_blood(my_target)
 				else
-					my_target << sound(pick('sound/weapons/punch1.ogg', 'sound/weapons/punch2.ogg', 'sound/weapons/punch3.ogg', 'sound/weapons/punch4.ogg'))
+					my_target << sound(pick('sound/weapons/melee/punch1.ogg', 'sound/weapons/melee/punch2.ogg', 'sound/weapons/melee/punch3.ogg', 'sound/weapons/melee/punch4.ogg'))
 					my_target.show_message(SPAN_DANGER("[src.name] has punched [my_target]!"), 1)
 					my_target.halloss += 4
 					if(prob(33))

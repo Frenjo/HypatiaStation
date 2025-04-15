@@ -71,7 +71,7 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 15
 	attacktext = "slashes"
-	attack_sound = 'sound/weapons/bite.ogg'
+	attack_sound = 'sound/weapons/melee/bite.ogg'
 
 	layer = 3.1		//so they can stay hidde under the /obj/structure/bush
 	var/stalk_tick_delay = 3
@@ -129,7 +129,7 @@
 	melee_damage_lower = 3
 	melee_damage_upper = 10
 	attacktext = "bites"
-	attack_sound = 'sound/weapons/bite.ogg'
+	attack_sound = 'sound/weapons/melee/bite.ogg'
 
 	layer = 3.1		//so they can stay hidde under the /obj/structure/bush
 	var/stalk_tick_delay = 3

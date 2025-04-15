@@ -167,7 +167,7 @@
 		user.show_message(SPAN_WARNING("*click* *click*"), 2)
 		playsound(user, 'sound/weapons/empty.ogg', 100, 1)
 		return
-	playsound(user, 'sound/weapons/Gunshot.ogg', 100, 1)
+	playsound(user, 'sound/weapons/gun/gunshot.ogg', 100, 1)
 	src.bullets--
 	user.visible_message(
 		message = SPAN_DANGER("[user] fires a cap gun at [target]!"),
@@ -329,13 +329,13 @@
 	src.active = !(src.active)
 	if(src.active)
 		to_chat(user, SPAN_INFO("You extend the plastic blade with a quick flick of your wrist."))
-		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
+		playsound(user, 'sound/weapons/melee/saberon.ogg', 50, 1)
 		src.icon_state = "swordblue"
 		src.item_state = "swordblue"
 		src.w_class = 4
 	else
 		to_chat(user, SPAN_INFO("You push the plastic blade back down into the handle."))
-		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
+		playsound(user, 'sound/weapons/melee/saberoff.ogg', 50, 1)
 		src.icon_state = "sword0"
 		src.item_state = "sword0"
 		src.w_class = 2

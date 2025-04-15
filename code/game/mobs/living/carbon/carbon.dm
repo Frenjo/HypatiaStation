@@ -204,7 +204,7 @@
 			AdjustParalysis(-3)
 			AdjustStunned(-3)
 			AdjustWeakened(-3)
-			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+			playsound(src, 'sound/weapons/melee/thudswoosh.ogg', 50, 1, -1)
 			M.visible_message(
 				SPAN_INFO("[M] shakes [src] trying to wake [t_him] up!"), \
 				SPAN_INFO("You shake [src] trying to wake [t_him] up!"), \

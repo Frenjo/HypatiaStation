@@ -313,7 +313,7 @@
 					living_grabbed.Weaken(5)
 				living_grabbed.apply_damage(8, def_zone = "head")
 				visible_message(SPAN_WARNING("[user] slams \the [living_grabbed]'s face against \the [src]!"))
-				playsound(src, 'sound/weapons/tablehit1.ogg', 50, 1)
+				playsound(src, 'sound/weapons/melee/tablehit1.ogg', 50, 1)
 			else
 				to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
 			return TRUE
@@ -339,7 +339,7 @@
 
 	if(istype(W, /obj/item/melee/energy/blade))
 		make_sparks(5, FALSE, loc)
-		playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
+		playsound(src, 'sound/weapons/melee/blade1.ogg', 50, 1)
 		playsound(src, "sparks", 50, 1)
 		for(var/mob/O in viewers(user, 4))
 			O.show_message(

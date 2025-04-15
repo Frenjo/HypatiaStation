@@ -18,7 +18,7 @@
 	melee_damage_upper = 25
 	attacktext = "slashes"
 	a_intent = "harm"
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'sound/weapons/melee/bladeslice.ogg'
 	min_oxy = 0
 	max_oxy = 0
 	min_tox = 0
@@ -54,7 +54,7 @@
 	melee_damage_upper = 15
 	ranged = 1
 	projectiletype = /obj/item/projectile/neurotox
-	projectilesound = 'sound/weapons/pierce.ogg'
+	projectilesound = 'sound/weapons/melee/pierce.ogg'
 
 
 /mob/living/simple/hostile/alien/queen
@@ -69,7 +69,7 @@
 	ranged = 1
 	move_to_delay = 3
 	projectiletype = /obj/item/projectile/neurotox
-	projectilesound = 'sound/weapons/pierce.ogg'
+	projectilesound = 'sound/weapons/melee/pierce.ogg'
 	rapid = 1
 	status_flags = 0
 

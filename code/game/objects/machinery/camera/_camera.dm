@@ -110,7 +110,7 @@
 	if(user.species.can_shred(user))
 		status = 0
 		visible_message(SPAN_WARNING("\The [user] slashes at [src]!"))
-		playsound(src, 'sound/weapons/slash.ogg', 100, 1)
+		playsound(src, 'sound/weapons/melee/slash.ogg', 100, 1)
 		icon_state = "[initial(icon_state)]1"
 		add_hiddenprint(user)
 		deactivate(user, 0)
@@ -185,7 +185,7 @@
 	else if(istype(W, /obj/item/melee/energy/blade))//Putting it here last since it's a special case. I wonder if there is a better way to do these than type casting.
 		deactivate(user, 2)//Here so that you can disconnect anyone viewing the camera, regardless if it's on or off.
 		make_sparks(5, FALSE, loc)
-		playsound(loc, 'sound/weapons/blade1.ogg', 50, 1)
+		playsound(loc, 'sound/weapons/melee/blade1.ogg', 50, 1)
 		playsound(loc, "sparks", 50, 1)
 		visible_message(SPAN_INFO("The camera has been sliced apart by [] with an energy blade!"))
 		qdel(src)

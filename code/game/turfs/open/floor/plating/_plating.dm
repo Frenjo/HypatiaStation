@@ -39,7 +39,7 @@
 				var/turf/open/floor/light/light_floor = new_floor
 				light_floor.set_state(light_stack.state)
 				light_floor.set_on(light_stack.on)
-			playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+			playsound(src, 'sound/weapons/melee/genhit.ogg', 50, 1)
 		else
 			to_chat(user, SPAN_WARNING("This section is too damaged to support a tile. Use a welder to fix the damage."))
 		return TRUE

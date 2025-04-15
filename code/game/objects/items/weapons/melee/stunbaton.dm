@@ -121,7 +121,7 @@
 		L.apply_effect(STUTTER, stunforce)
 
 		L.visible_message(SPAN_DANGER("[L] has been stunned with [src] by [user]!"))
-		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+		playsound(loc, 'sound/weapons/melee/egloves.ogg', 50, 1, -1)
 
 		msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")
 

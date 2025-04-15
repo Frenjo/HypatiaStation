@@ -147,7 +147,7 @@
 		if(!A)
 			return // Something went very wrong.
 
-		playsound(src, 'sound/weapons/emitter.ogg', 25, 1)
+		playsound(src, 'sound/weapons/gun/emitter.ogg', 25, 1)
 		if(prob(35))
 			make_sparks(5, TRUE, src)
 		A.set_dir(src.dir)
