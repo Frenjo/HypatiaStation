@@ -477,7 +477,7 @@
 				adjustOxyLoss(1)
 			Paralyse(3)
 		if(halloss > 100)
-			src << "<span class='notice'>You're in too much pain to keep going...</span>"
+			to_chat(src, SPAN_NOTICE("You're in too much pain to keep going..."))
 			for(var/mob/O in oviewers(src, null))
 				O.show_message("<B>[src]</B> slumps to the ground, too weak to continue fighting.", 1)
 			Paralyse(10)

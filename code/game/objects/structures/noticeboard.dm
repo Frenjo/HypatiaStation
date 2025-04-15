@@ -26,9 +26,9 @@
 			O.forceMove(src)
 			notices++
 			icon_state = "nboard0[notices]"	//update sprite
-			user << "<span class='notice'>You pin the paper to the noticeboard.</span>"
+			to_chat(user, SPAN_NOTICE("You pin the paper to the noticeboard."))
 		else
-			user << "<span class='notice'>You reach to pin your paper to the board but hesitate. You are certain your paper will not be seen among the many others already attached.</span>"
+			to_chat(user, SPAN_NOTICE("You reach to pin your paper to the board but hesitate. You are certain your paper will not be seen among the many others already attached."))
 
 /obj/structure/noticeboard/attack_hand(mob/user)
 	var/dat = "<B>Noticeboard</B><BR>"
@@ -66,7 +66,7 @@
 					add_fingerprint(usr)
 					P.attackby(usr.l_hand, usr)
 				else
-					usr << "<span class='notice'>You'll need something to write with!</span>"
+					to_chat(usr, SPAN_NOTICE("You'll need something to write with!"))
 
 	if(href_list["read"])
 		var/obj/item/paper/P = locate(href_list["read"])

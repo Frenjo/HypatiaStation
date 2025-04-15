@@ -83,10 +83,10 @@
 	if(istype(O, /obj/item/mmi) || istype(O, /obj/item/mmi/posibrain))
 		var/obj/item/mmi/B = O
 		if(src.mmi) //There's already a brain in it.
-			user << "\red There's already a brain in [src]!"
+			to_chat(user, SPAN_WARNING("There's already a brain in [src]!"))
 			return
 		if(!B.brainmob)
-			user << "\red Sticking an empty MMI into the frame would sort of defeat the purpose."
+			to_chat(user, SPAN_WARNING("Sticking an empty MMI into the frame would sort of defeat the purpose."))
 			return
 		if(!B.brainmob.key)
 			var/ghost_can_reenter = 0
@@ -96,18 +96,18 @@
 						ghost_can_reenter = 1
 						break
 			if(!ghost_can_reenter)
-				user << "<span class='notice'>[O] is completely unresponsive; there's no point.</span>"
+				to_chat(user, SPAN_NOTICE("[O] is completely unresponsive; there's no point."))
 				return
 
 		if(B.brainmob.stat == DEAD)
-			user << "\red [O] is dead. Sticking it into the frame would sort of defeat the purpose."
+			to_chat(user, SPAN_WARNING("[O] is dead. Sticking it into the frame would sort of defeat the purpose."))
 			return
 
 		if(jobban_isbanned(B.brainmob, "Cyborg"))
-			user << "\red [O] does not seem to fit."
+			to_chat(user, SPAN_WARNING("[O] does not seem to fit."))
 			return
 
-		user << "\blue You install [O] in [src]!"
+		to_chat(user, SPAN_INFO("You install \the [O] in \the [src]!"))
 
 		user.drop_item()
 		src.mmi = O

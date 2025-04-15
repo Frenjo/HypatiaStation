@@ -6,7 +6,7 @@
 		var/mob/living/carbon/human/H = src
 		var/obj/item/I = H.get_active_hand()
 		if(!I)
-			H << "<span class='notice'>You are not holding anything to equip.</span>"
+			to_chat(H, SPAN_NOTICE("You are not holding anything to equip."))
 			return
 		if(H.equip_to_appropriate_slot(I))
 			if(hand)
@@ -14,7 +14,7 @@
 			else
 				update_inv_r_hand(0)
 		else
-			H << "\red You are unable to equip that."
+			to_chat(H, SPAN_WARNING("You are unable to equip that."))
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for(var/slot in slots)

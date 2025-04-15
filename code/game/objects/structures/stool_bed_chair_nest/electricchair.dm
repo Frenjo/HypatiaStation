@@ -34,7 +34,7 @@
 	else
 		on = 1
 		icon_state = "echair1"
-	usr << "<span class='notice'>You switch [on ? "on" : "off"] [src].</span>"
+	to_chat(usr, SPAN_NOTICE("You switch \the [src] [on ? "on" : "off"]."))
 	return
 
 /obj/structure/stool/bed/chair/e_chair/rotate()
