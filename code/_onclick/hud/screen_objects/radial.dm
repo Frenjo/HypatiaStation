@@ -1,7 +1,7 @@
 #define NEXT_PAGE_ID "__next__"
 
 /atom/movable/screen/radial
-	icon = 'icons/mob/screen/radial.dmi'
+	icon = 'icons/hud/radial.dmi'
 	layer = HUD_ABOVE_ITEM_LAYER
 
 	var/datum/radial_menu/parent

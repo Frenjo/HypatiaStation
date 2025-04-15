@@ -1,6 +1,6 @@
 /atom/movable/screen/gun
 	name = "gun"
-	icon = 'icons/mob/screen/screen1.dmi'
+	icon = 'icons/hud/screen1.dmi'
 	dir = 2
 
 	var/gun_click_time = -100 //I'm lazy.

@@ -230,7 +230,7 @@
 		H.name = H.real_name
 
 /datum/hud_data/alien
-	icon = 'icons/mob/screen/screen1_alien.dmi'
+	icon = 'icons/hud/screen1_alien.dmi'
 	has_a_intent =	TRUE
 	has_m_intent =	TRUE
 	has_warnings =	TRUE

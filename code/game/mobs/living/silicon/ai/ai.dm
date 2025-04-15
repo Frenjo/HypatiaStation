@@ -120,14 +120,14 @@
 
 	create_power_supply()
 
-	hud_list[HEALTH_HUD]		= image('icons/mob/screen/hud.dmi', src, "hudblank")
-	hud_list[STATUS_HUD]		= image('icons/mob/screen/hud.dmi', src, "hudblank")
-	hud_list[ID_HUD]			= image('icons/mob/screen/hud.dmi', src, "hudblank")
-	hud_list[WANTED_HUD]		= image('icons/mob/screen/hud.dmi', src, "hudblank")
-	hud_list[IMPLOYAL_HUD]		= image('icons/mob/screen/hud.dmi', src, "hudblank")
-	hud_list[IMPCHEM_HUD]		= image('icons/mob/screen/hud.dmi', src, "hudblank")
-	hud_list[IMPTRACK_HUD]		= image('icons/mob/screen/hud.dmi', src, "hudblank")
-	hud_list[SPECIALROLE_HUD]	= image('icons/mob/screen/hud.dmi', src, "hudblank")
+	hud_list[HEALTH_HUD]		= image('icons/hud/hud.dmi', src, "hudblank")
+	hud_list[STATUS_HUD]		= image('icons/hud/hud.dmi', src, "hudblank")
+	hud_list[ID_HUD]			= image('icons/hud/hud.dmi', src, "hudblank")
+	hud_list[WANTED_HUD]		= image('icons/hud/hud.dmi', src, "hudblank")
+	hud_list[IMPLOYAL_HUD]		= image('icons/hud/hud.dmi', src, "hudblank")
+	hud_list[IMPCHEM_HUD]		= image('icons/hud/hud.dmi', src, "hudblank")
+	hud_list[IMPTRACK_HUD]		= image('icons/hud/hud.dmi', src, "hudblank")
+	hud_list[SPECIALROLE_HUD]	= image('icons/hud/hud.dmi', src, "hudblank")
 
 	GLOBL.ai_list.Add(src)
 

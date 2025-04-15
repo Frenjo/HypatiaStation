@@ -42,7 +42,7 @@
 	for(var/obj/item/I in src)
 		if(isnotnull(I.icon_action_button))
 			var/atom/movable/screen/item_action/A = new /atom/movable/screen/item_action(I)
-			//A.icon = 'icons/mob/screen/screen1_action.dmi'
+			//A.icon = 'icons/hud/screen1_action.dmi'
 			//A.icon_state = I.icon_action_button
 			A.icon = ui_style2icon(client.prefs.UI_style)
 			A.icon_state = "template"

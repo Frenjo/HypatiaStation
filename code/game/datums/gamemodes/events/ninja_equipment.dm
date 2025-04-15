@@ -1192,7 +1192,7 @@ ________________________________________________________________________________
 			M.see_invisible = SEE_INVISIBLE_LIVING
 
 /obj/item/clothing/glasses/hud/ninja/proc/assess_targets(list/target_list, mob/living/carbon/U)
-	var/icon/tempHud = 'icons/mob/screen/hud.dmi'
+	var/icon/tempHud = 'icons/hud/hud.dmi'
 	for(var/mob/living/target in target_list)
 		if(iscarbon(target))
 			switch(target.mind.special_role)

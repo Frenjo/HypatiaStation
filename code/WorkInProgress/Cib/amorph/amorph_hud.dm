@@ -1,4 +1,4 @@
-/obj/hud/proc/amorph_hud(var/ui_style='icons/mob/screen/screen1_old.dmi')
+/obj/hud/proc/amorph_hud(var/ui_style='icons/hud/screen1_old.dmi')
 
 	src.adding = list(  )
 	src.other = list(  )
@@ -234,7 +234,7 @@
 
 	mymob.zone_sel = new /atom/movable/screen/zone_sel( null )
 	mymob.zone_sel.overlays = null
-	mymob.zone_sel.overlays += image("icon" = 'icons/mob/screen/zone_sel.dmi', "icon_state" = text("[]", mymob.zone_sel.selecting))
+	mymob.zone_sel.overlays += image("icon" = 'icons/hud/zone_sel.dmi', "icon_state" = text("[]", mymob.zone_sel.selecting))
 
 	//Handle the gun settings buttons
 	mymob.gun_setting_icon = new /atom/movable/screen/gun/mode(null)

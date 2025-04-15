@@ -23,16 +23,16 @@
 	// End of module selection.
 
 //Intent
-	using = setup_screen_object("act_intent", 'icons/mob/screen/screen1_robot.dmi', (R.a_intent == "hurt" ? "harm" : R.a_intent), UI_ACTI)
+	using = setup_screen_object("act_intent", 'icons/hud/screen1_robot.dmi', (R.a_intent == "hurt" ? "harm" : R.a_intent), UI_ACTI)
 	using.set_dir(SOUTHWEST)
 	adding.Add(using)
 	action_intent = using
 
 //Cell
-	R.cells = setup_screen_object("cell", 'icons/mob/screen/screen1_robot.dmi', "charge-empty", UI_TOXIN)
+	R.cells = setup_screen_object("cell", 'icons/hud/screen1_robot.dmi', "charge-empty", UI_TOXIN)
 
 //Health
-	R.healths = setup_screen_object("health", 'icons/mob/screen/screen1_robot.dmi', "health0", UI_BORG_HEALTH)
+	R.healths = setup_screen_object("health", 'icons/hud/screen1_robot.dmi', "health0", UI_BORG_HEALTH)
 
 	// Installed model
 	R.hands = new /atom/movable/screen/robot(src, "model", "nomod", UI_BORG_MODEL)
@@ -44,27 +44,27 @@
 	R.throw_icon = new /atom/movable/screen/robot(src, "store", "store", UI_BORG_STORE)
 
 //Temp
-	R.bodytemp = setup_screen_object("body temperature", 'icons/mob/screen/screen1.dmi', "temp0", UI_TEMP)
-	R.oxygen = setup_screen_object("oxygen", 'icons/mob/screen/screen1_robot.dmi', "oxy0", UI_OXYGEN)
-	R.fire = setup_screen_object("fire", 'icons/mob/screen/screen1_robot.dmi', "fire0", UI_FIRE)
-	R.pullin = new /atom/movable/screen/action/pull('icons/mob/screen/screen1_robot.dmi', UI_BORG_PULL)
+	R.bodytemp = setup_screen_object("body temperature", 'icons/hud/screen1.dmi', "temp0", UI_TEMP)
+	R.oxygen = setup_screen_object("oxygen", 'icons/hud/screen1_robot.dmi', "oxy0", UI_OXYGEN)
+	R.fire = setup_screen_object("fire", 'icons/hud/screen1_robot.dmi', "fire0", UI_FIRE)
+	R.pullin = new /atom/movable/screen/action/pull('icons/hud/screen1_robot.dmi', UI_BORG_PULL)
 
 	R.blind = new /atom/movable/screen()
-	R.blind.icon = 'icons/mob/screen/screen1_full.dmi'
+	R.blind.icon = 'icons/hud/screen1_full.dmi'
 	R.blind.icon_state = "blackimageoverlay"
 	R.blind.name = " "
 	R.blind.screen_loc = "WEST,SOUTH"
 	R.blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 
 	R.flash = new /atom/movable/screen()
-	R.flash.icon = 'icons/mob/screen/screen1_robot.dmi'
+	R.flash.icon = 'icons/hud/screen1_robot.dmi'
 	R.flash.icon_state = "blank"
 	R.flash.name = "flash"
 	R.flash.screen_loc = "WEST,SOUTH to EAST,NORTH"
 	R.flash.plane = FULLSCREEN_PLANE
 
 	R.zone_sel = new /atom/movable/screen/zone_sel()
-	R.zone_sel.icon = 'icons/mob/screen/screen1_robot.dmi'
+	R.zone_sel.icon = 'icons/hud/screen1_robot.dmi'
 	R.zone_sel.update_icon()
 
 	//Handle the gun settings buttons

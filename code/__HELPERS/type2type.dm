@@ -223,13 +223,13 @@
 /proc/ui_style2icon(ui_style)
 	switch(ui_style)
 		if("old")
-			return 'icons/mob/screen/screen1_old.dmi'
+			return 'icons/hud/screen1_old.dmi'
 		if("Orange")
-			return 'icons/mob/screen/screen1_Orange.dmi'
+			return 'icons/hud/screen1_Orange.dmi'
 		if("Midnight")
-			return 'icons/mob/screen/screen1_Midnight.dmi'
+			return 'icons/hud/screen1_Midnight.dmi'
 		else
-			return 'icons/mob/screen/screen1_White.dmi'
+			return 'icons/hud/screen1_White.dmi'
 
 // Ported from Baystation12 on 27/11/2019. -Frenjo
 // heat2color functions. Adapted from: http://www.tannerhelland.com/4435/convert-temperature-rgb-algorithm-code/

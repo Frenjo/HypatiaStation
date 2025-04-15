@@ -121,7 +121,7 @@
 
 	//now mobs
 	var/speech_bubble_test = say_test(message)
-	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
+	var/image/speech_bubble = image('icons/hud/talk.dmi',src,"h[speech_bubble_test]")
 	spawn(30)
 		qdel(speech_bubble)
 

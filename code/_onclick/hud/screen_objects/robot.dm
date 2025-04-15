@@ -1,5 +1,5 @@
 /atom/movable/screen/robot
-	icon = 'icons/mob/screen/screen1_robot.dmi'
+	icon = 'icons/hud/screen1_robot.dmi'
 
 /atom/movable/screen/robot/New(loc, name, icon_state, screen_loc)
 	. = ..(loc)

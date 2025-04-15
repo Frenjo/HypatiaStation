@@ -54,7 +54,7 @@
 	using = new src.h_type( src )
 	using.name = "radio"
 	using.dir = SOUTHWEST
-	using.icon = 'icons/mob/screen/screen1_robot.dmi'
+	using.icon = 'icons/hud/screen1_robot.dmi'
 	using.icon_state = "radio"
 	using.screen_loc = ui_movi_old
 	src.adding += using
@@ -63,19 +63,19 @@
 
 	using = new src.h_type(src) //Right hud bar
 	using.dir = SOUTH
-	using.icon = 'icons/mob/screen/screen1_robot.dmi'
+	using.icon = 'icons/hud/screen1_robot.dmi'
 	using.screen_loc = "EAST+1,SOUTH to EAST+1,NORTH"
 	src.adding += using
 
 	using = new src.h_type(src) //Lower hud bar
 	using.dir = EAST
-	using.icon = 'icons/mob/screen/screen1_robot.dmi'
+	using.icon = 'icons/hud/screen1_robot.dmi'
 	using.screen_loc = "WEST,SOUTH-1 to EAST,SOUTH-1"
 	src.adding += using
 
 	using = new src.h_type(src) //Corner Button
 	using.dir = NORTHWEST
-	using.icon = 'icons/mob/screen/screen1_robot.dmi'
+	using.icon = 'icons/hud/screen1_robot.dmi'
 	using.screen_loc = "EAST+1,SOUTH-1"
 	src.adding += using
 
@@ -85,7 +85,7 @@
 	using = new src.h_type( src )
 	using.name = "module1"
 	using.dir = SOUTHWEST
-	using.icon = 'icons/mob/screen/screen1_robot.dmi'
+	using.icon = 'icons/hud/screen1_robot.dmi'
 	using.icon_state = "inv1"
 	using.screen_loc = ui_inv1
 	src.adding += using
@@ -94,7 +94,7 @@
 	using = new src.h_type( src )
 	using.name = "module2"
 	using.dir = SOUTHWEST
-	using.icon = 'icons/mob/screen/screen1_robot.dmi'
+	using.icon = 'icons/hud/screen1_robot.dmi'
 	using.icon_state = "inv2"
 	using.screen_loc = ui_inv2
 	src.adding += using
@@ -103,7 +103,7 @@
 	using = new src.h_type( src )
 	using.name = "module3"
 	using.dir = SOUTHWEST
-	using.icon = 'icons/mob/screen/screen1_robot.dmi'
+	using.icon = 'icons/hud/screen1_robot.dmi'
 	using.icon_state = "inv3"
 	using.screen_loc = ui_inv3
 	src.adding += using
@@ -115,7 +115,7 @@
 	using = new src.h_type( src )
 	using.name = "act_intent"
 	using.dir = SOUTHWEST
-	using.icon = 'icons/mob/screen/screen1_robot.dmi'
+	using.icon = 'icons/hud/screen1_robot.dmi'
 	using.icon_state = (mymob.a_intent == "hurt" ? "harm" : mymob.a_intent)
 	using.screen_loc = ui_acti
 	src.adding += using
@@ -123,7 +123,7 @@
 
 	using = new src.h_type( src )
 	using.name = "arrowleft"
-	using.icon = 'icons/mob/screen/screen1_robot.dmi'
+	using.icon = 'icons/hud/screen1_robot.dmi'
 	using.icon_state = "s_arrow"
 	using.dir = WEST
 	using.screen_loc = ui_iarrowleft
@@ -131,7 +131,7 @@
 
 	using = new src.h_type( src )
 	using.name = "arrowright"
-	using.icon = 'icons/mob/screen/screen1_robot.dmi'
+	using.icon = 'icons/hud/screen1_robot.dmi'
 	using.icon_state = "s_arrow"
 	using.dir = EAST
 	using.screen_loc = ui_iarrowright
@@ -140,21 +140,21 @@
 
 //Cell
 	mymob:cells = new /atom/movable/screen( null )
-	mymob:cells.icon = 'icons/mob/screen/screen1_robot.dmi'
+	mymob:cells.icon = 'icons/hud/screen1_robot.dmi'
 	mymob:cells.icon_state = "charge-empty"
 	mymob:cells.name = "cell"
 	mymob:cells.screen_loc = ui_toxin
 
 //Health
 	mymob.healths = new /atom/movable/screen( null )
-	mymob.healths.icon = 'icons/mob/screen/screen1_robot.dmi'
+	mymob.healths.icon = 'icons/hud/screen1_robot.dmi'
 	mymob.healths.icon_state = "health0"
 	mymob.healths.name = "health"
 	mymob.healths.screen_loc = ui_health
 
 //Installed Module
 	mymob.hands = new /atom/movable/screen( null )
-	mymob.hands.icon = 'icons/mob/screen/screen1_robot.dmi'
+	mymob.hands.icon = 'icons/hud/screen1_robot.dmi'
 	mymob.hands.icon_state = "nomod"
 	mymob.hands.name = "module"
 	mymob.hands.screen_loc = ui_dropbutton
@@ -162,14 +162,14 @@
 //Module Panel
 	using = new src.h_type( src )
 	using.name = "panel"
-	using.icon = 'icons/mob/screen/screen1_robot.dmi'
+	using.icon = 'icons/hud/screen1_robot.dmi'
 	using.icon_state = "panel"
 	using.screen_loc = ui_throw
 	src.adding += using
 
 //Store
 	mymob.throw_icon = new /atom/movable/screen(null)
-	mymob.throw_icon.icon = 'icons/mob/screen/screen1_robot.dmi'
+	mymob.throw_icon.icon = 'icons/hud/screen1_robot.dmi'
 	mymob.throw_icon.icon_state = "store"
 	mymob.throw_icon.name = "store"
 	mymob.throw_icon.screen_loc = ui_hand
@@ -182,23 +182,23 @@
 
 //does nothing (fire and oxy)
 	mymob.oxygen = new /atom/movable/screen( null )
-	mymob.oxygen.icon = 'icons/mob/screen/screen1_robot.dmi'
+	mymob.oxygen.icon = 'icons/hud/screen1_robot.dmi'
 	mymob.oxygen.icon_state = "oxy0"
 	mymob.oxygen.name = "oxygen"
 	mymob.oxygen.screen_loc = ui_oxygen
 
 	mymob.fire = new /atom/movable/screen( null )
-	mymob.fire.icon = 'icons/mob/screen/screen1_robot.dmi'
+	mymob.fire.icon = 'icons/hud/screen1_robot.dmi'
 	mymob.fire.icon_state = "fire0"
 	mymob.fire.name = "fire"
 	mymob.fire.screen_loc = ui_fire
 
 
 
-	mymob.pullin = new /atom/movable/screen/action/pull('icons/mob/screen/screen1_robot.dmi', UI_PULL)
+	mymob.pullin = new /atom/movable/screen/action/pull('icons/hud/screen1_robot.dmi', UI_PULL)
 
 	mymob.blind = new /atom/movable/screen( null )
-	mymob.blind.icon = 'icons/mob/screen/screen1_full.dmi''
+	mymob.blind.icon = 'icons/hud/screen1_full.dmi''
 	mymob.blind.icon_state = "blackimageoverlay"
 	mymob.blind.name = " "
 	mymob.blind.screen_loc = "1,1"
@@ -206,20 +206,20 @@
 	mymob.blind.mouse_opacity = FALSE
 
 	mymob.flash = new /atom/movable/screen( null )
-	mymob.flash.icon = 'icons/mob/screen/screen1_robot.dmi'
+	mymob.flash.icon = 'icons/hud/screen1_robot.dmi'
 	mymob.flash.icon_state = "blank"
 	mymob.flash.name = "flash"
 	mymob.flash.screen_loc = "1,1 to 15,15"
 	mymob.flash.layer = 17
 
 	mymob.sleep = new /atom/movable/screen( null )
-	mymob.sleep.icon = 'icons/mob/screen/screen1_robot.dmi'
+	mymob.sleep.icon = 'icons/hud/screen1_robot.dmi'
 	mymob.sleep.icon_state = "sleep0"
 	mymob.sleep.name = "sleep"
 	mymob.sleep.screen_loc = ui_sleep
 
 	mymob.rest = new /atom/movable/screen( null )
-	mymob.rest.icon = 'icons/mob/screen/screen1_robot.dmi'
+	mymob.rest.icon = 'icons/hud/screen1_robot.dmi'
 	mymob.rest.icon_state = "rest0"
 	mymob.rest.name = "rest"
 	mymob.rest.screen_loc = ui_rest
@@ -227,7 +227,7 @@
 
 	mymob.zone_sel = new /atom/movable/screen/zone_sel( null )
 	mymob.zone_sel.overlays.Cut()
-	mymob.zone_sel.overlays += image("icon" = 'icons/mob/screen/zone_sel.dmi', "icon_state" = text("[]", mymob.zone_sel.selecting))
+	mymob.zone_sel.overlays += image("icon" = 'icons/hud/zone_sel.dmi', "icon_state" = text("[]", mymob.zone_sel.selecting))
 
 	mymob.client.screen.Cut()
 	mymob.client.screen += list(

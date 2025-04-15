@@ -1,4 +1,4 @@
-/datum/hud/monkey/setup(ui_style = 'icons/mob/screen/screen1_old.dmi')
+/datum/hud/monkey/setup(ui_style = 'icons/hud/screen1_old.dmi')
 	var/mob/living/carbon/monkey/M = owner
 	var/atom/movable/screen/using
 	var/atom/movable/screen/inventory/inv_box
@@ -87,7 +87,7 @@
 	M.healths = setup_screen_object("health", ui_style, "health0", UI_HEALTH)
 
 	M.blind = new /atom/movable/screen()
-	M.blind.icon = 'icons/mob/screen/screen1_full.dmi'
+	M.blind.icon = 'icons/hud/screen1_full.dmi'
 	M.blind.icon_state = "blackimageoverlay"
 	M.blind.name = " "
 	M.blind.screen_loc = "WEST,SOUTH"

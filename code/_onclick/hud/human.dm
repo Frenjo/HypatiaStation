@@ -11,7 +11,7 @@
 	. = ..(owner)
 
 // Pass the player UI style chosen in preferences.
-/datum/hud/human/setup(ui_style = 'icons/mob/screen/screen1_White.dmi', ui_colour = "#ffffff", ui_alpha = 255)
+/datum/hud/human/setup(ui_style = 'icons/hud/screen1_White.dmi', ui_colour = "#ffffff", ui_alpha = 255)
 	var/mob/living/carbon/human/H = owner
 	var/datum/hud_data/hud_data = H.species.hud
 	if(hud_data.icon)
@@ -187,7 +187,7 @@
 		hud_elements |= H.nutrition_icon
 
 	H.blind = new /atom/movable/screen()
-	H.blind.icon = 'icons/mob/screen/screen1_full.dmi'
+	H.blind.icon = 'icons/hud/screen1_full.dmi'
 	H.blind.icon_state = "blackimageoverlay"
 	H.blind.name = " "
 	H.blind.screen_loc = "1,1"
@@ -196,7 +196,7 @@
 	hud_elements |= H.blind
 
 	H.damageoverlay = new /atom/movable/screen()
-	H.damageoverlay.icon = 'icons/mob/screen/screen1_full.dmi'
+	H.damageoverlay.icon = 'icons/hud/screen1_full.dmi'
 	H.damageoverlay.icon_state = "oxydamageoverlay0"
 	H.damageoverlay.name = "dmg"
 	H.damageoverlay.screen_loc = "1,1"

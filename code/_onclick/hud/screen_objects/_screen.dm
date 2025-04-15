@@ -7,7 +7,7 @@
 	For more information, see the byond documentation on the screen_loc and screen vars.
 */
 /atom/movable/screen
-	icon = 'icons/mob/screen/screen1.dmi'
+	icon = 'icons/hud/screen1.dmi'
 	plane = HUD_PLANE
 	layer = HUD_BASE_LAYER
 
