@@ -184,7 +184,7 @@
 /turf/assume_air(datum/gas_mixture/giver) //use this for machines to adjust air
 	return 0
 
-/turf/proc/assume_gas(gasid, moles, temp = 0)
+/turf/proc/assume_gas(gas_type, moles, temp = 0)
 	return 0
 
 /turf/return_air()
@@ -209,13 +209,13 @@
 	var/datum/gas_mixture/my_air = return_air()
 	my_air.merge(giver)
 
-/turf/open/assume_gas(gasid, moles, temp = null)
+/turf/open/assume_gas(gas_type, moles, temp = null)
 	var/datum/gas_mixture/my_air = return_air()
 
 	if(isnull(temp))
-		my_air.adjust_gas(gasid, moles)
+		my_air.adjust_gas(gas_type, moles)
 	else
-		my_air.adjust_gas_temp(gasid, moles, temp)
+		my_air.adjust_gas_temp(gas_type, moles, temp)
 
 	return 1
 

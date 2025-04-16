@@ -24,14 +24,14 @@
 /*
  * adjust_gas()
  *
- * Takes a gas string, and the amount of moles to adjust by.
+ * Takes a gas typepath, and the amount of moles to adjust by.
  * Calls update_values() if update is TRUE.
  */
-/datum/gas_mixture/proc/adjust_gas(gasid, moles, update = TRUE)
+/datum/gas_mixture/proc/adjust_gas(gas_type, moles, update = TRUE)
 	if(moles == 0)
 		return
 
-	gas[gasid] += moles
+	gas[gas_type] += moles
 
 	if(update)
 		update_values()
@@ -41,19 +41,19 @@
  *
  * Same as adjust_gas(), but takes a temperature which is mixed in with the gas.
  */
-/datum/gas_mixture/proc/adjust_gas_temp(gasid, moles, temp, update = TRUE)
+/datum/gas_mixture/proc/adjust_gas_temp(gas_type, moles, temp, update = TRUE)
 	if(moles == 0)
 		return
 
 	if(abs(temperature - temp) > MINIMUM_TEMPERATURE_DELTA_TO_CONSIDER)
 		var/self_heat_capacity = heat_capacity() * group_multiplier
 		var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-		var/giver_heat_capacity = gas_data.specific_heat[gasid] * moles
+		var/giver_heat_capacity = gas_data.specific_heat[gas_type] * moles
 		var/combined_heat_capacity = giver_heat_capacity + self_heat_capacity
 		if(combined_heat_capacity != 0)
 			temperature = (temp * giver_heat_capacity + temperature * self_heat_capacity) / combined_heat_capacity
 
-	gas[gasid] += moles
+	gas[gas_type] += moles
 
 	if(update)
 		update_values()
@@ -105,21 +105,21 @@
 			temperature = (giver.temperature * giver_heat_capacity + temperature * self_heat_capacity) / combined_heat_capacity
 
 	if(group_multiplier != 1 || giver.group_multiplier != 1)
-		for(var/g in giver.gas)
-			gas[g] += giver.gas[g] * giver.group_multiplier / group_multiplier
+		for(var/gas_type in giver.gas)
+			gas[gas_type] += giver.gas[gas_type] * giver.group_multiplier / group_multiplier
 	else
-		for(var/g in giver.gas)
-			gas[g] += giver.gas[g]
+		for(var/gas_type in giver.gas)
+			gas[gas_type] += giver.gas[gas_type]
 
 	update_values()
 
 /datum/gas_mixture/proc/equalize(datum/gas_mixture/sharer)
 	. = TRUE
-	for(var/g in sharer.gas)
-		var/comb = gas[g] + sharer.gas[g]
+	for(var/gas_type in sharer.gas)
+		var/comb = gas[gas_type] + sharer.gas[gas_type]
 		comb /= volume + sharer.volume
-		gas[g] = comb * volume
-		sharer.gas[g] = comb * sharer.volume
+		gas[gas_type] = comb * volume
+		sharer.gas[gas_type] = comb * sharer.volume
 
 	var/our_heatcap = heat_capacity()
 	var/share_heatcap = sharer.heat_capacity()
@@ -133,17 +133,17 @@
 /datum/gas_mixture/proc/heat_capacity()
 	. = 0
 	var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-	for(var/g in gas)
-		. += gas_data.specific_heat[g] * gas[g]
+	for(var/gas_type in gas)
+		. += gas_data.specific_heat[gas_type] * gas[gas_type]
 
 // Updates the total_moles count and trims any empty gases.
 /datum/gas_mixture/proc/update_values()
 	total_moles = 0
-	for(var/g in gas)
-		if(gas[g] <= 0)
-			gas.Remove(g)
+	for(var/gas_type in gas)
+		if(gas[gas_type] <= 0)
+			gas.Remove(gas_type)
 		else
-			total_moles += gas[g]
+			total_moles += gas[gas_type]
 
 /*
  * return_pressure()
@@ -166,9 +166,9 @@
 		return null
 
 	var/datum/gas_mixture/removed = new /datum/gas_mixture()
-	for(var/g in gas)
-		removed.gas[g] = QUANTIZE((gas[g] / sum) * amount)
-		gas[g] -= removed.gas[g] / group_multiplier
+	for(var/gas_type in gas)
+		removed.gas[gas_type] = QUANTIZE((gas[gas_type] / sum) * amount)
+		gas[gas_type] -= removed.gas[gas_type] / group_multiplier
 
 	removed.temperature = temperature
 	update_values()
@@ -189,9 +189,9 @@
 	var/datum/gas_mixture/removed = new /datum/gas_mixture()
 	removed.group_multiplier = out_group_multiplier
 
-	for(var/g in gas)
-		removed.gas[g] = QUANTIZE(gas[g] * ratio)
-		gas[g] = ((gas[g] * group_multiplier) - (removed.gas[g] * out_group_multiplier)) / group_multiplier
+	for(var/gas_type in gas)
+		removed.gas[gas_type] = QUANTIZE(gas[gas_type] * ratio)
+		gas[gas_type] = ((gas[gas_type] * group_multiplier) - (removed.gas[gas_type] * out_group_multiplier)) / group_multiplier
 
 	removed.temperature = temperature
 	update_values()
@@ -213,16 +213,16 @@
 
 	var/sum = 0
 	var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-	for(var/g in gas)
-		if(gas_data.flags[g] & flag)
-			sum += gas[g]
+	for(var/gas_type in gas)
+		if(gas_data.flags[gas_type] & flag)
+			sum += gas[gas_type]
 
 	var/datum/gas_mixture/removed = new /datum/gas_mixture()
 
-	for(var/g in gas)
-		if(gas_data.flags[g] & flag)
-			removed.gas[g] = QUANTIZE((gas[g] / sum) * amount)
-			gas[g] -= removed.gas[g] / group_multiplier
+	for(var/gas_type in gas)
+		if(gas_data.flags[gas_type] & flag)
+			removed.gas[gas_type] = QUANTIZE((gas[gas_type] / sum) * amount)
+			gas[gas_type] -= removed.gas[gas_type] / group_multiplier
 
 	removed.temperature = temperature
 	update_values()
@@ -246,18 +246,18 @@
 		return FALSE
 
 	var/list/marked = list()
-	for(var/g in gas)
-		if((abs(gas[g] - sample.gas[g]) > MINIMUM_AIR_TO_SUSPEND) && \
-		((gas[g] < (1 - MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[g]) || \
-		(gas[g] > (1 + MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[g])))
+	for(var/gas_type in gas)
+		if((abs(gas[gas_type] - sample.gas[gas_type]) > MINIMUM_AIR_TO_SUSPEND) && \
+		((gas[gas_type] < (1 - MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[gas_type]) || \
+		(gas[gas_type] > (1 + MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[gas_type])))
 			return FALSE
-		marked[g] = TRUE
+		marked[gas_type] = TRUE
 
-	for(var/g in sample.gas)
-		if(!marked[g])
-			if((abs(gas[g] - sample.gas[g]) > MINIMUM_AIR_TO_SUSPEND) && \
-			((gas[g] < (1 - MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[g]) || \
-			(gas[g] > (1 + MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[g])))
+	for(var/gas_type in sample.gas)
+		if(!marked[gas_type])
+			if((abs(gas[gas_type] - sample.gas[gas_type]) > MINIMUM_AIR_TO_SUSPEND) && \
+			((gas[gas_type] < (1 - MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[gas_type]) || \
+			(gas[gas_type] > (1 + MINIMUM_AIR_RATIO_TO_SUSPEND) * sample.gas[gas_type])))
 				return FALSE
 
 	if(total_moles > MINIMUM_AIR_TO_SUSPEND)
@@ -277,15 +277,15 @@
 	var/list/graphic_remove = null // List of overlays that need to be removed now that they're not valid.
 
 	var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
-	for(var/g in gas_data.overlay_limit)
-		if(graphic.Find(gas_data.tile_overlay[g]))
+	for(var/gas_type in gas_data.overlay_limit)
+		if(graphic.Find(gas_data.tile_overlay[gas_type]))
 			// Overlay is already applied for this gas, check if it's still valid.
-			if(gas[g] <= gas_data.overlay_limit[g])
-				LAZYADD(graphic_remove, gas_data.tile_overlay[g])
+			if(gas[gas_type] <= gas_data.overlay_limit[gas_type])
+				LAZYADD(graphic_remove, gas_data.tile_overlay[gas_type])
 		else
 			// Overlay isn't applied for this gas, check if it's valid and needs to be added.
-			if(gas[g] > gas_data.overlay_limit[g])
-				LAZYADD(graphic_add, gas_data.tile_overlay[g])
+			if(gas[gas_type] > gas_data.overlay_limit[gas_type])
+				LAZYADD(graphic_add, gas_data.tile_overlay[gas_type])
 
 	. = FALSE
 	// Applies changes.
@@ -298,29 +298,29 @@
 
 // Simpler version of merge(), adjusts gas amounts directly and doesn't account for temperature or group_multiplier.
 /datum/gas_mixture/proc/add(datum/gas_mixture/right_side)
-	for(var/g in right_side.gas)
-		gas[g] += right_side.gas[g]
+	for(var/gas_type in right_side.gas)
+		gas[gas_type] += right_side.gas[gas_type]
 
 	update_values()
 
 // Simpler version of remove(), adjusts gas amounts directly and doesn't account for group_multiplier.
 /datum/gas_mixture/proc/subtract(datum/gas_mixture/right_side)
-	for(var/g in right_side.gas)
-		gas[g] -= right_side.gas[g]
+	for(var/gas_type in right_side.gas)
+		gas[gas_type] -= right_side.gas[gas_type]
 
 	update_values()
 
 // Multiplies all gas amounts by a factor.
 /datum/gas_mixture/proc/multiply(factor)
-	for(var/g in gas)
-		gas[g] *= factor
+	for(var/gas_type in gas)
+		gas[gas_type] *= factor
 
 	update_values()
 
 // Divides all gas amounts by a factor.
 /datum/gas_mixture/proc/divide(factor)
-	for(var/g in gas)
-		gas[g] /= factor
+	for(var/gas_type in gas)
+		gas[gas_type] /= factor
 
 	update_values()
 
@@ -338,16 +338,16 @@
 
 	var/s_full_heat_capacity = other.heat_capacity() * share_size
 
-	var/list/avg_gas = list()
+	var/alist/avg_gas = alist()
 
-	for(var/g in gas)
-		avg_gas[g] += gas[g] * size
+	for(var/gas_type in gas)
+		avg_gas[gas_type] += gas[gas_type] * size
 
-	for(var/g in other.gas)
-		avg_gas[g] += other.gas[g] * share_size
+	for(var/gas_type in other.gas)
+		avg_gas[gas_type] += other.gas[gas_type] * share_size
 
-	for(var/g in avg_gas)
-		avg_gas[g] /= (size + share_size)
+	for(var/gas_type in avg_gas)
+		avg_gas[gas_type] /= (size + share_size)
 
 	var/temp_avg = 0
 	if(full_heat_capacity + s_full_heat_capacity)
@@ -358,10 +358,10 @@
 		ratio = sharing_lookup_table[connecting_tiles]
 	// WOOT WOOT TOUCH THIS AT YOUR OWN RISK.
 
-	for(var/g in avg_gas)
-		gas[g] = max(0, (gas[g] - avg_gas[g]) * (1 - ratio) + avg_gas[g])
+	for(var/gas_type in avg_gas)
+		gas[gas_type] = max(0, (gas[gas_type] - avg_gas[gas_type]) * (1 - ratio) + avg_gas[gas_type])
 		if(!one_way)
-			other.gas[g] = max(0, (other.gas[g] - avg_gas[g]) * (1 - ratio) + avg_gas[g])
+			other.gas[gas_type] = max(0, (other.gas[gas_type] - avg_gas[gas_type]) * (1 - ratio) + avg_gas[gas_type])
 
 	temperature = max(0, (temperature - temp_avg) * (1-ratio) + temp_avg)
 	if(!one_way)
@@ -394,8 +394,8 @@
 		var/temp_heatcap = gasmix.heat_capacity()
 		total_thermal_energy += gasmix.temperature * temp_heatcap
 		total_heat_capacity += temp_heatcap
-		for(var/g in gasmix.gas)
-			total_gas[g] += gasmix.gas[g]
+		for(var/gas_type in gasmix.gas)
+			total_gas[gas_type] += gasmix.gas[gas_type]
 
 	if(total_volume > 0)
 		// Averages out the gases.
