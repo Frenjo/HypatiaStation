@@ -110,7 +110,7 @@ nanoui is used to open and update nano browser uis
 	if(state != status)
 		status = state
 		if(push_update || !status)
-			push_data(list(), TRUE) // Update the UI, force the update in case the status is 0
+			push_data(alist(), TRUE) // Update the UI, force the update in case the status is 0
 	else
 		status = state
 
@@ -164,24 +164,26 @@ nanoui is used to open and update nano browser uis
  /**
   * Set the initial data for the ui. This is vital as the data structure set here cannot be changed when pushing new updates.
   *
-  * @param data /list The list of data for this ui
+  * @param data /alist The list of data for this ui
   *
   * @return nothing
   */
-/datum/nanoui/proc/set_initial_data(list/data)
+/datum/nanoui/proc/set_initial_data(alist/data)
 	initial_data = add_default_data(data)
 
  /**
   * Add default data to the data being sent to the ui.
   *
-  * @param data /list The list of data to be modified
+  * @param data /alist The list of data to be modified
   *
-  * @return /list modified data
+  * @return /alist modified data
   */
-/datum/nanoui/proc/add_default_data(list/data)
+/datum/nanoui/proc/add_default_data(alist/data)
+	RETURN_TYPE(/alist)
+
 	data["ui"] = list(
 		"status" = status,
-		"user" = list("name" = user.name)
+		"user" = alist("name" = user.name)
 	)
 	return data
 
@@ -369,7 +371,7 @@ nanoui is used to open and update nano browser uis
   *
   * @return nothing
   */
-/datum/nanoui/proc/push_data(data, force_push = FALSE)
+/datum/nanoui/proc/push_data(alist/data, force_push = FALSE)
 	update_status(FALSE)
 	if(status == STATUS_DISABLED && !force_push)
 		return // Cannot update UI, no visibility

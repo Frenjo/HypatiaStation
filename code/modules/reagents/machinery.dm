@@ -118,22 +118,24 @@
 	if(user.stat || user.restrained())
 		return
 
+	var/has_beaker = isnotnull(beaker)
 	// this is the data which will be sent to the ui
-	var/list/data = list()
-	data["amount"] = amount
-	data["energy"] = energy
-	data["maxEnergy"] = max_energy
-	data["isBeakerLoaded"] = beaker ? 1 : 0
-	data["glass"] = accept_glass
+	var/alist/data = alist(
+		"amount" = amount,
+		"energy" = energy,
+		"maxEnergy" = max_energy,
+		"isBeakerLoaded" = has_beaker,
+		"glass" = accept_glass
+	)
 	var/list/beakerContents = list()
 	var/beakerCurrentVolume = 0
-	if(beaker && beaker.reagents && length(beaker.reagents.reagent_list))
+	if(has_beaker && isnotnull(beaker.reagents) && length(beaker.reagents.reagent_list))
 		for(var/datum/reagent/R in beaker.reagents.reagent_list)
 			beakerContents.Add(list(list("name" = R.name, "volume" = R.volume))) // list in a list because Byond merges the first list...
 			beakerCurrentVolume += R.volume
 	data["beakerContents"] = beakerContents
 
-	if(beaker)
+	if(has_beaker)
 		data["beakerCurrentVolume"] = beakerCurrentVolume
 		data["beakerMaxVolume"] = beaker:volume
 	else
@@ -152,7 +154,7 @@
 	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "chem_dispenser.tmpl", ui_title, 380, 650)
+		ui = new /datum/nanoui(user, src, ui_key, "chem_dispenser.tmpl", ui_title, 380, 650)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

@@ -73,14 +73,15 @@
 	if(stat & BROKEN)
 		return
 
-	var/list/data = list()
-	data["screen"] = screen
-	data["event"] = event
+	var/alist/data = alist(
+		"screen" = screen,
+		"event" = event
+	)
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
-		ui = new(user, src, ui_key, "keycard_auth.tmpl", "Keycard Authentication Device", 460, 360)
+		ui = new /datum/nanoui(user, src, ui_key, "keycard_auth.tmpl", "Keycard Authentication Device", 460, 360)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update()

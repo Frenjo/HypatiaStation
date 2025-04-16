@@ -236,15 +236,16 @@
 		else
 			current_filter_type = "ERROR - Report this bug to the admin, please!"
 
-	var/list/data = list()
-	data["on"] = on
-	data["current_filter"] = current_filter_type
-	data["target_pressure"] = round(target_pressure, 0.01) // Need to fix this later so it doesn't output 101.3xxxxxxxx. -Frenjo
+	var/alist/data = alist(
+		"on" = on,
+		"current_filter" = current_filter_type,
+		"target_pressure" = round(target_pressure, 0.01) // Need to fix this later so it doesn't output 101.3xxxxxxxx. -Frenjo
+	)
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
-		ui = new(user, src, ui_key, "gas_filter.tmpl", "Gas Filter", 520, 380)
+		ui = new /datum/nanoui(user, src, ui_key, "gas_filter.tmpl", "Gas Filter", 520, 380)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update()

@@ -134,31 +134,33 @@
 	if(user.stat)
 		return
 
+	var/has_scanned_item = isnotnull(scanned_item)
 	// this is the data which will be sent to the ui
-	var/list/data = list()
-	data["scanned_item"] = (scanned_item ? scanned_item.name : "")
-	data["scanned_item_desc"] = (scanned_item ? (scanned_item.desc ? scanned_item.desc : "No information on record.") : "")
-	data["last_scan_data"] = last_scan_data
-	//
-	data["scan_progress"] = round(scanner_progress)
-	data["scanning"] = scanning
-	//
-	data["scanner_seal_integrity"] = round(scanner_seal_integrity)
-	data["scanner_rpm"] = round(scanner_rpm)
-	data["scanner_temperature"] = round(scanner_temperature)
-	//
-	data["coolant_usage_rate"] = "[coolant_usage_rate]"
-	data["unused_coolant_abs"] = round(fresh_coolant)
-	data["unused_coolant_per"] = round(fresh_coolant / reagents.maximum_volume * 100)
-	data["coolant_purity"] = "[coolant_purity * 100]"
-	//
-	data["optimal_wavelength"] = round(optimal_wavelength)
-	data["maser_wavelength"] = round(maser_wavelength)
-	data["maser_efficiency"] = round(maser_efficiency * 100)
-	//
-	data["radiation"] = round(radiation)
-	data["t_left_radspike"] = round(t_left_radspike)
-	data["rad_shield_on"] = rad_shield
+	var/alist/data = alist(
+		"scanned_item" = has_scanned_item ? scanned_item.name : "",
+		"scanned_item_desc" = has_scanned_item ? (scanned_item.desc ? scanned_item.desc : "No information on record.") : "",
+		"last_scan_data" = last_scan_data,
+		//
+		"scan_progress" = round(scanner_progress),
+		"scanning" = scanning,
+		//
+		"scanner_seal_integrity" = round(scanner_seal_integrity),
+		"scanner_rpm" = round(scanner_rpm),
+		"scanner_temperature" = round(scanner_temperature),
+		//
+		"coolant_usage_rate" = coolant_usage_rate,
+		"unused_coolant_abs" = round(fresh_coolant),
+		"unused_coolant_per" = round(fresh_coolant / reagents.maximum_volume * 100),
+		"coolant_purity" = coolant_purity * 100,
+		//
+		"optimal_wavelength" = round(optimal_wavelength),
+		"maser_wavelength" = round(maser_wavelength),
+		"maser_efficiency" = round(maser_efficiency * 100),
+		//
+		"radiation" = round(radiation),
+		"t_left_radspike" = round(t_left_radspike),
+		"rad_shield_on" = rad_shield
+	)
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)

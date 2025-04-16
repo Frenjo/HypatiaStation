@@ -46,13 +46,14 @@
 
 /obj/machinery/atmospherics/unary/cold_sink/freezer/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
 	// this is the data which will be sent to the ui
-	var/list/data = list()
-	data["on"] = on ? TRUE : FALSE
-	data["gasPressure"] = round(air_contents.return_pressure())
-	data["gasTemperature"] = round(air_contents.temperature)
-	data["minGasTemperature"] = round(T0C - 200)
-	data["maxGasTemperature"] = round(T20C)
-	data["targetGasTemperature"] = round(current_temperature)
+	var/alist/data = alist(
+		"on" = on,
+		"gasPressure" = round(air_contents.return_pressure()),
+		"gasTemperature" = round(air_contents.temperature),
+		"minGasTemperature" = round(T0C - 200),
+		"maxGasTemperature" = round(T20C),
+		"targetGasTemperature" = round(current_temperature)
+	)
 
 	var/temp_class = "good"
 	if(air_contents.temperature > (T0C - 20))
@@ -66,7 +67,7 @@
 	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "freezer.tmpl", "Gas Cooling System", 440, 300)
+		ui = new /datum/nanoui(user, src, ui_key, "freezer.tmpl", "Gas Cooling System", 440, 300)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

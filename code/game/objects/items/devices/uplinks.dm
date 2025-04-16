@@ -335,19 +335,18 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	NANO UI FOR UPLINK WOOP WOOP
 */
 /obj/item/uplink/hidden/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
-	var/title = "Syndicate Uplink"
-	var/list/data = list()
-
-	data["crystals"] = uses
-	data["nano_items"] = nanoui_items
-	data["welcome"] = welcome
+	var/alist/data = alist(
+		"crystals" = uses,
+		"nano_items" = nanoui_items,
+		"welcome" = welcome
+	)
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "uplink.tmpl", title, 450, 600)
+		ui = new /datum/nanoui(user, src, ui_key, "uplink.tmpl", "Syndicate Uplink", 450, 600)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

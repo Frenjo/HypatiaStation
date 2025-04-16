@@ -14,11 +14,11 @@
 	program = docking_program
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
-	var/list/data = list(
+	var/alist/data = alist(
 		"docking_status" = docking_program.get_docking_status(),
 		"override_enabled" = docking_program.override_enabled,
 		"door_state" = 	docking_program.memory["door_status"]["state"],
-		"door_lock" = 	docking_program.memory["door_status"]["lock"],
+		"door_lock" = 	docking_program.memory["door_status"]["lock"]
 	)
 
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)

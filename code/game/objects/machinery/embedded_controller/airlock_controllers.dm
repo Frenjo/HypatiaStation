@@ -25,7 +25,7 @@
 	name = "advanced airlock controller"
 
 /obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
-	var/list/data = list(
+	var/alist/data = alist(
 		"chamber_pressure" = round(program.memory["chamber_sensor_pressure"]),
 		"external_pressure" = round(program.memory["external_sensor_pressure"]),
 		"internal_pressure" = round(program.memory["internal_sensor_pressure"]),
@@ -77,11 +77,11 @@
 	tag_secure = 1
 
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
-	var/list/data = list(
+	var/alist/data = alist(
 		"chamber_pressure" = round(program.memory["chamber_sensor_pressure"]),
 		"exterior_status" = program.memory["exterior_status"],
 		"interior_status" = program.memory["interior_status"],
-		"processing" = program.memory["processing"],
+		"processing" = program.memory["processing"]
 	)
 
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -136,7 +136,7 @@
 		icon_state = "access_control_off"
 
 /obj/machinery/embedded_controller/radio/airlock/access_controller/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
-	var/list/data = list(
+	var/alist/data = alist(
 		"exterior_status" = program.memory["exterior_status"],
 		"interior_status" = program.memory["interior_status"],
 		"processing" = program.memory["processing"]

@@ -223,15 +223,16 @@
 	if(stat & BROKEN)
 		return
 
-	var/list/data = list()
-	data["active"] = active
-	data["power_gen"] = power_gen
-	data["power_output"] = power_output
-	data["fuel_type"] = fuel_material.name
-	data["sheets"] = sheets
-	data["fuel_percent"] = round(sheet_left * 100, 1)
-	data["max_sheets"] = max_sheets
-	data["heat_level"] = heat
+	var/alist/data = alist(
+		"active" = active,
+		"power_gen" = power_gen,
+		"power_output" = power_output,
+		"fuel_type" = fuel_material.name,
+		"sheets" = sheets,
+		"fuel_percent" = round(sheet_left * 100, 1),
+		"max_sheets" = max_sheets,
+		"heat_level" = heat
+	)
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)

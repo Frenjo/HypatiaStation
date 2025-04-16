@@ -21,7 +21,6 @@
 	ui_interact(user)
 
 /obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
-	var/list/data
 	var/datum/shuttle/ferry/shuttle = global.PCshuttle.shuttles[shuttle_tag]
 	if(!istype(shuttle))
 		return
@@ -51,20 +50,21 @@
 		if(WAIT_FINISH)
 			shuttle_status = "Arriving at destination now."
 
-	data = list(
+	var/has_docking_controller = isnotnull(shuttle.docking_controller)
+	var/alist/data = alist(
 		"shuttle_status" = shuttle_status,
 		"shuttle_state" = shuttle_state,
-		"has_docking" = shuttle.docking_controller ? 1 : 0,
-		"docking_status" = shuttle.docking_controller ? shuttle.docking_controller.get_docking_status() : null,
-		"docking_override" = shuttle.docking_controller ? shuttle.docking_controller.override_enabled : null,
+		"has_docking" = has_docking_controller,
+		"docking_status" = has_docking_controller ? shuttle.docking_controller.get_docking_status() : null,
+		"docking_override" = has_docking_controller ? shuttle.docking_controller.override_enabled : null,
 		"can_launch" = shuttle.can_launch(),
 		"can_cancel" = shuttle.can_cancel(),
-		"can_force" = shuttle.can_force(),
+		"can_force" = shuttle.can_force()
 	)
 
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(isnull(ui))
-		ui = new(user, src, ui_key, "shuttle_control_console.tmpl", "[shuttle_tag] Shuttle Control", 470, 310)
+		ui = new /datum/nanoui(user, src, ui_key, "shuttle_control_console.tmpl", "[shuttle_tag] Shuttle Control", 470, 310)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update()

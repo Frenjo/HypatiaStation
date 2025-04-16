@@ -133,21 +133,21 @@
 	ui_interact(user)
 
 /obj/item/tank/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null)
-	var/using_internal
+	var/using_internal = FALSE
 	if(iscarbon(loc))
 		var/mob/living/carbon/carbon = loc
 		if(carbon.internal == src)
 			using_internal = TRUE
 
 	// this is the data which will be sent to the ui
-	var/list/data = list()
-	data["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
-	data["releasePressure"] = round(distribute_pressure ? distribute_pressure : 0)
-	data["defaultReleasePressure"] = round(TANK_DEFAULT_RELEASE_PRESSURE)
-	data["maxReleasePressure"] = round(TANK_MAX_RELEASE_PRESSURE)
-	data["valveOpen"] = using_internal ? 1 : 0
-
-	data["maskConnected"] = FALSE
+	var/alist/data = alist(
+		"tankPressure" = round(air_contents.return_pressure()),
+		"releasePressure" = round(distribute_pressure),
+		"defaultReleasePressure" = round(TANK_DEFAULT_RELEASE_PRESSURE),
+		"maxReleasePressure" = round(TANK_MAX_RELEASE_PRESSURE),
+		"valveOpen" = using_internal,
+		"maskConnected" = FALSE
+	)
 	if(iscarbon(loc))
 		var/mob/living/carbon/carbon = loc
 		if(carbon.internal == src || (isnotnull(carbon.wear_mask) && HAS_ITEM_FLAGS(carbon.wear_mask, ITEM_FLAG_AIRTIGHT)))

@@ -62,7 +62,7 @@
 		return
 	user.set_machine(src)
 	scan()
-	var/list/data = list()
+	var/alist/data = alist()
 	var/list/crewmembers = list()
 
 	for(var/obj/item/clothing/under/C in tracked)
@@ -70,18 +70,19 @@
 		if(isnotnull(C) && C.has_sensor && pos?.z == z && C.sensor_mode)
 			if(ishuman(C.loc))
 				var/mob/living/carbon/human/H = C.loc
-				var/list/crew_data = list()
-				crew_data["sensor_type"] = C.sensor_mode
-				crew_data["dead"] = H.stat > 1
-				crew_data["oxy"] = round(H.getOxyLoss(), 1)
-				crew_data["tox"] = round(H.getToxLoss(), 1)
-				crew_data["fire"] = round(H.getFireLoss(), 1)
-				crew_data["brute"] = round(H.getBruteLoss(), 1)
-				crew_data["name"] = isnotnull(H.id_store) ? H.id_store.name : "Unknown"
 				var/area/crew_area = GET_AREA(H)
-				crew_data["area"] = crew_area.name
-				crew_data["x"] = pos.x
-				crew_data["y"] = pos.y
+				var/alist/crew_data = alist(
+					"sensor_type" = C.sensor_mode,
+					"dead" = H.stat > 1,
+					"oxy" = round(H.getOxyLoss(), 1),
+					"tox" = round(H.getToxLoss(), 1),
+					"fire" = round(H.getFireLoss(), 1),
+					"brute" = round(H.getBruteLoss(), 1),
+					"name" = isnotnull(H.id_store) ? H.id_store.name : "Unknown",
+					"area" = crew_area.name,
+					"x" = pos.x,
+					"y" = pos.y
+				)
 
 				// Works around list += list2 merging lists; it's not pretty but it works
 				crewmembers += "temporary item"

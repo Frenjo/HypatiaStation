@@ -26,7 +26,7 @@
 	var/datum/shuttle/ferry/escape_pod/pod
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
-	var/list/data = list(
+	var/alist/data = alist(
 		"docking_status" = docking_program.get_docking_status(),
 		"override_enabled" = docking_program.override_enabled,
 		"door_state" = docking_program.memory["door_status"]["state"],
@@ -37,7 +37,7 @@
 
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(isnull(ui))
-		ui = new(user, src, ui_key, "escape_pod_console.tmpl", name, 470, 290)
+		ui = new /datum/nanoui(user, src, ui_key, "escape_pod_console.tmpl", name, 470, 290)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update()
@@ -66,14 +66,12 @@
 	program = docking_program
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
-	var/list/data
-
 	var/armed = null
 	if(istype(docking_program, /datum/computer/file/embedded_program/docking/simple/escape_pod))
 		var/datum/computer/file/embedded_program/docking/simple/escape_pod/P = docking_program
 		armed = P.armed
 
-	data = list(
+	var/alist/data = alist(
 		"docking_status" = docking_program.get_docking_status(),
 		"override_enabled" = docking_program.override_enabled,
 		"armed" = armed,
@@ -81,7 +79,7 @@
 
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(isnull(ui))
-		ui = new(user, src, ui_key, "escape_pod_berth_console.tmpl", name, 470, 290)
+		ui = new /datum/nanoui(user, src, ui_key, "escape_pod_berth_console.tmpl", name, 470, 290)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update()

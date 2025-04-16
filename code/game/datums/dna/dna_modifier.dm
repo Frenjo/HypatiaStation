@@ -355,16 +355,29 @@
 		return
 
 	// this is the data which will be sent to the ui
-	var/list/data = list()
-	data["selectedMenuKey"] = selected_menu_key
-	data["locked"] = src.connected.locked
-	data["hasOccupant"] = connected.occupant ? 1 : 0
+	var/alist/data = alist(
+		"selectedMenuKey" = selected_menu_key,
+		"locked" = src.connected.locked,
+		"hasOccupant" = isnotnull(connected.occupant),
 
-	data["isInjectorReady"] = injector_ready
+		"isInjectorReady" = injector_ready,
 
-	data["hasDisk"] = disk ? 1 : 0
+		"hasDisk" = isnotnull(disk),
 
-	var/list/diskData = list()
+		"radiationIntensity" = radiation_intensity,
+		"radiationDuration" = radiation_duration,
+		"irradiating" = irradiating,
+
+		"dnaBlockSize" = DNA_BLOCK_SIZE,
+		"selectedUIBlock" = selected_ui_block,
+		"selectedUISubBlock" = selected_ui_subblock,
+		"selectedSEBlock" = selected_se_block,
+		"selectedSESubBlock" = selected_se_subblock,
+		"selectedUITarget" = selected_ui_target,
+		"selectedUITargetHex" = selected_ui_target_hex,
+	)
+
+	var/alist/diskData = alist()
 	if(!disk || !disk.buf)
 		diskData["data"] = null
 		diskData["owner"] = null
@@ -378,23 +391,11 @@
 	var/list/new_buffers = list()
 	for(var/datum/dna2/record/buf in src.buffers)
 		new_buffers += list(buf.GetData())
-	data["buffers"]=new_buffers
+	data["buffers"] = new_buffers
 
-	data["radiationIntensity"] = radiation_intensity
-	data["radiationDuration"] = radiation_duration
-	data["irradiating"] = irradiating
-
-	data["dnaBlockSize"] = DNA_BLOCK_SIZE
-	data["selectedUIBlock"] = selected_ui_block
-	data["selectedUISubBlock"] = selected_ui_subblock
-	data["selectedSEBlock"] = selected_se_block
-	data["selectedSESubBlock"] = selected_se_subblock
-	data["selectedUITarget"] = selected_ui_target
-	data["selectedUITargetHex"] = selected_ui_target_hex
-
-	var/list/occupant_data
+	var/alist/occupant_data
 	if(isnull(connected.occupant) || isnull(connected.occupant.dna))
-		occupant_data = list(
+		occupant_data = alist(
 			"name" = null,
 			"stat" = null,
 			"isViableSubject" = null,
@@ -408,7 +409,7 @@
 		)
 	else
 		var/is_viable_subject = !(MUTATION_NO_CLONE in connected.occupant.mutations) && isnotnull(connected.occupant.dna)
-		occupant_data = list(
+		occupant_data = alist(
 			"name" = connected.occupant.name,
 			"stat" = connected.occupant.stat,
 			"isViableSubject" = is_viable_subject,
@@ -420,12 +421,12 @@
 			"structuralEnzymes" = connected.occupant.dna.struc_enzymes,
 			"radiationLevel" = connected.occupant.radiation
 		)
-	data["occupant"] = occupant_data;
+	data["occupant"] = occupant_data
 
-	data["isBeakerLoaded"] = connected.beaker ? 1 : 0
-	data["beakerLabel"] = null
+	var/has_beaker = isnotnull(connected.beaker)
+	data["isBeakerLoaded"] = has_beaker
 	data["beakerVolume"] = 0
-	if(connected.beaker)
+	if(has_beaker)
 		data["beakerLabel"] = connected.beaker.label_text ? connected.beaker.label_text : null
 		if(connected.beaker.reagents && length(connected.beaker.reagents.reagent_list))
 			for(var/datum/reagent/R in connected.beaker.reagents.reagent_list)
@@ -436,7 +437,7 @@
 	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "dna_modifier.tmpl", "DNA Modifier Console", 660, 700)
+		ui = new /datum/nanoui(user, src, ui_key, "dna_modifier.tmpl", "DNA Modifier Console", 660, 700)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

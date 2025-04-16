@@ -237,26 +237,26 @@
 		return
 
 	// this is the data which will be sent to the ui
-	var/list/data = list()
-	data["name"] = name
-	data["canLabel"] = can_label ? TRUE : FALSE
-	data["portConnected"] = connected_port ? TRUE : FALSE
-	data["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
-	data["releasePressure"] = round(release_pressure ? release_pressure : 0)
-	data["minReleasePressure"] = round(ONE_ATMOSPHERE / 10)
-	data["maxReleasePressure"] = round(10 * ONE_ATMOSPHERE)
-	data["valveOpen"] = valve_open ? TRUE : FALSE
-
-	data["hasHoldingTank"] = holding ? TRUE : FALSE
+	var/alist/data = alist(
+		"name" = name,
+		"canLabel" = can_label,
+		"portConnected" = isnotnull(connected_port),
+		"tankPressure" = round(air_contents.return_pressure()),
+		"releasePressure" = round(release_pressure),
+		"minReleasePressure" = round(ONE_ATMOSPHERE / 10),
+		"maxReleasePressure" = round(10 * ONE_ATMOSPHERE),
+		"valveOpen" = valve_open,
+		"hasHoldingTank" = isnotnull(holding)
+	)
 	if(isnotnull(holding))
-		data["holdingTank"] = list("name" = holding.name, "tankPressure" = round(holding.air_contents.return_pressure()))
+		data["holdingTank"] = alist("name" = holding.name, "tankPressure" = round(holding.air_contents.return_pressure()))
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "canister.tmpl", "Canister", 480, 400)
+		ui = new /datum/nanoui(user, src, ui_key, "canister.tmpl", "Canister", 480, 400)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

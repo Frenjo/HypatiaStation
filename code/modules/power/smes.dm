@@ -289,25 +289,26 @@
 		return
 
 	// this is the data which will be sent to the ui
-	var/list/data = list()
-	data["nameTag"] = name_tag
-	data["storedCapacity"] = round(100.0 * charge / capacity, 0.1)
-	data["charging"] = inputting
-	data["chargeMode"] = input_attempt
-	data["chargeLevel"] = input_level
-	data["chargeMax"] = input_level_max
-	data["outputOnline"] = output_attempt
-	data["outputLevel"] = output_level
-	data["outputMax"] = output_level_max
-	data["outputLoad"] = round(output_used)
-	data["outputting"] = outputting
+	var/alist/data = alist(
+		"nameTag" = name_tag,
+		"storedCapacity" = round(100.0 * charge / capacity, 0.1),
+		"charging" = inputting,
+		"chargeMode" = input_attempt,
+		"chargeLevel" = input_level,
+		"chargeMax" = input_level_max,
+		"outputOnline" = output_attempt,
+		"outputLevel" = output_level,
+		"outputMax" = output_level_max,
+		"outputLoad" = round(output_used),
+		"outputting" = outputting
+	)
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "smes.tmpl", "SMES Power Storage Unit", 540, 380)
+		ui = new /datum/nanoui(user, src, ui_key, "smes.tmpl", "SMES Power Storage Unit", 540, 380)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

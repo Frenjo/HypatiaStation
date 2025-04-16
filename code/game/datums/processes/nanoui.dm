@@ -31,11 +31,11 @@ PROCESS_DEF(nanoui)
  * @param src_object /datum The datum which the UI belongs to.
  * @param ui_key string A string key used for the UI.
  * @param ui /datum/nanoui An existing instance of the UI (can be null).
- * @param data list The data to be passed to the UI, if it exists.
+ * @param data alist The data to be passed to the UI, if it exists.
  *
  * @return /datum/nanoui Returns the found UI, for null if none exists.
  */
-/datum/process/nanoui/proc/try_update_ui(mob/user, datum/src_object, ui_key, datum/nanoui/ui, list/data)
+/datum/process/nanoui/proc/try_update_ui(mob/user, datum/src_object, ui_key, datum/nanoui/ui, alist/data)
 	RETURN_TYPE(/datum/nanoui)
 
 	if(isnull(ui)) // no UI has been passed, so we'll search for one

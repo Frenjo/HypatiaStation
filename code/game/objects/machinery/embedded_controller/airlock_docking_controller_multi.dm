@@ -26,16 +26,17 @@
 			child_names[tags[i]] = names[i]
 
 /obj/machinery/embedded_controller/radio/docking_port_multi/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
-	var/list/data = list()
-
 	var/list/airlocks[length(child_names)]
 	var/i = 1
 	for(var/child_tag in child_names)
-		airlocks[i++] = list("name"=child_names[child_tag], "override_enabled"=(docking_program.children_override[child_tag] == "enabled"))
+		airlocks[i++] = alist(
+			"name" = child_names[child_tag],
+			"override_enabled" = (docking_program.children_override[child_tag] == "enabled")
+		)
 
-	data = list(
+	var/alist/data = alist(
 		"docking_status" = docking_program.get_docking_status(),
-		"airlocks" = airlocks,
+		"airlocks" = airlocks
 	)
 
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -63,14 +64,14 @@
 	program = airlock_program
 
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = TRUE)
-	var/list/data = list(
+	var/alist/data = alist(
 		"chamber_pressure" = round(airlock_program.memory["chamber_sensor_pressure"]),
 		"exterior_status" = airlock_program.memory["exterior_status"],
 		"interior_status" = airlock_program.memory["interior_status"],
 		"processing" = airlock_program.memory["processing"],
 		"docking_status" = airlock_program.master_status,
 		"airlock_disabled" = (airlock_program.docking_enabled && !airlock_program.override_enabled),
-		"override_enabled" = airlock_program.override_enabled,
+		"override_enabled" = airlock_program.override_enabled
 	)
 
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)

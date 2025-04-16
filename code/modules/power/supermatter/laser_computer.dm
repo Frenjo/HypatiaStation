@@ -194,11 +194,12 @@
 		return
 
 	var/obj/machinery/zero_point_emitter/laser = lasers[1]
-	var/list/data = list()
-	data["laser_status"] = laser.active
-	data["laser_energy"] = round(laser.energy, 0.0001)
-	data["laser_frequency"] = laser.frequency
-	data["laser_number"] = lasers.len
+	var/alist/data = alist(
+		"laser_status" = laser.active,
+		"laser_energy" = round(laser.energy, 0.0001),
+		"laser_frequency" = laser.frequency,
+		"laser_number" = lasers.len
+	)
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)

@@ -115,33 +115,35 @@
 
 	var/title = "Personal Data Assistant"
 
-	var/list/data = list() // This is the data that will be sent to the PDA
+	// This is the data that will be sent to the PDA
+	var/alist/data = alist(
+		"owner" = owner, // Who is your daddy...
+		"ownjob" = ownjob, // ...and what does he do?
 
-	data["owner"] = owner					// Who is your daddy...
-	data["ownjob"] = ownjob					// ...and what does he do?
+		"mode" = mode, // The current view
+		"scanmode" = scanmode, // Scanners
+		"fon" = fon, // Flashlight on?
+		"pai" = isnotnull(pai), // pAI inserted?
+		"note" = note, // current pda notes
+		"silent" = silent, // does the pda make noise when it receives a message?
+		"toff" = toff, // is the messenger function turned off?
+		"active_conversation" = active_conversation, // Which conversation are we following right now?
 
-	data["mode"] = mode					// The current view
-	data["scanmode"] = scanmode				// Scanners
-	data["fon"] = fon					// Flashlight on?
-	data["pai"] = isnull(pai) ? FALSE : TRUE			// pAI inserted?
-	data["note"] = note					// current pda notes
-	data["silent"] = silent					// does the pda make noise when it receives a message?
-	data["toff"] = toff					// is the messenger function turned off?
-	data["active_conversation"] = active_conversation	// Which conversation are we following right now?
+		"idInserted" = isnotnull(id),
+		"idLink" = isnotnull(id) ? "[id.registered_name], [id.assignment]" : "--------",
 
-	data["idInserted"] = id ? TRUE : FALSE
-	data["idLink"] = id ? "[id.registered_name], [id.assignment]" : "--------"
+		"cart_loaded" = isnotnull(cartridge)
+	)
 
-	data["cart_loaded"] = cartridge ? TRUE : FALSE
 	if(cartridge)
-		var/list/cartdata = list()
+		var/alist/cartdata = alist()
 
 		if(mode in cartmodes)
 			data["records"] = cartridge.create_NanoUI_values()
 
 		if(mode == 0)
 			cartdata["name"] = cartridge.name
-			cartdata["access"] = list(
+			cartdata["access"] = alist(
 					"access_security" = cartridge.access_security,
 					"access_engine" = cartridge.access_engine,
 					"access_atmos" = cartridge.access_atmos,
@@ -220,25 +222,25 @@
 				var/co2_level = environment.gas[/decl/xgm_gas/carbon_dioxide] / total_moles
 				var/plasma_level = environment.gas[/decl/xgm_gas/plasma] / total_moles
 				var/unknown_level = 1 - (o2_level + n2_level + co2_level + plasma_level)
-				data["aircontents"] = list(
-					"pressure" = "[round(pressure, 0.1)]",
-					"nitrogen" = "[round(n2_level * 100, 0.1)]",
-					"oxygen" = "[round(o2_level * 100, 0.1)]",
-					"carbon_dioxide" = "[round(co2_level*100, 0.1)]",
-					"plasma" = "[round(plasma_level * 100, 0.01)]",
-					"other" = "[round(unknown_level, 0.01)]",
-					"temp" = "[round(environment.temperature - T0C, 0.1)]",
+				data["aircontents"] = alist(
+					"pressure" = round(pressure, 0.1),
+					"nitrogen" = round(n2_level * 100, 0.1),
+					"oxygen" = round(o2_level * 100, 0.1),
+					"carbon_dioxide" = round(co2_level * 100, 0.1),
+					"plasma" = round(plasma_level * 100, 0.01),
+					"other" = round(unknown_level, 0.01),
+					"temp" = round(environment.temperature - T0C, 0.1),
 					"reading" = 1
 				)
 		if(isnull(data["aircontents"]))
-			data["aircontents"] = list("reading" = 0)
+			data["aircontents"] = alist("reading" = 0)
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "pda.tmpl", title, 520, 400)
+		ui = new /datum/nanoui(user, src, ui_key, "pda.tmpl", title, 520, 400)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

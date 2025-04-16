@@ -64,17 +64,18 @@
 	if(stat & BROKEN)
 		return
 
-	var/list/data = list()
-	data["status"] = src.compressor.starter
-	data["speed"] = round(src.compressor.rpm)
-	data["power"] = round(src.compressor.turbine.lastgen)
-	data["temp"] = round(src.compressor.gas_contained.temperature)
-	data["doors"] = src.door_status
+	var/alist/data = alist(
+		"status" = compressor.starter,
+		"speed" = round(compressor.rpm),
+		"power" = round(compressor.turbine.lastgen),
+		"temp" = round(compressor.gas_contained.temperature),
+		"doors" = door_status
+	)
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
-		ui = new(user, src, ui_key, "turbine_ctrl.tmpl", "Gas Turbine Control Computer", 420, 360)
+		ui = new /datum/nanoui(user, src, ui_key, "turbine_ctrl.tmpl", "Gas Turbine Control Computer", 420, 360)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update()

@@ -12,7 +12,7 @@
 	if(isnull(user))
 		return
 
-	var/list/data = list(
+	var/alist/data = alist(
 		"locked" = locked,
 		"isOperating" = operating,
 		"externalPower" = main_status,
@@ -25,34 +25,34 @@
 		"malfStatus" = get_malf_status(user),
 
 		"powerChannels" = list(
-			list(
+			alist(
 				"title" = "Equipment",
 				"powerLoad" = last_used[EQUIP],
 				"status" = equipment,
-				"topicParams" = list(
-					"auto"	= list("eqp" = 3),
-					"on"	= list("eqp" = 2),
-					"off"	= list("eqp" = 1)
+				"topicParams" = alist(
+					"auto" = alist("eqp" = 3),
+					"on" = alist("eqp" = 2),
+					"off" = alist("eqp" = 1)
 				)
 			),
-			list(
+			alist(
 				"title" = "Lighting",
 				"powerLoad" = last_used[LIGHT],
 				"status" = lighting,
-				"topicParams" = list(
-					"auto"	= list("lgt" = 3),
-					"on"	= list("lgt" = 2),
-					"off"	= list("lgt" = 1)
+				"topicParams" = alist(
+					"auto" = alist("lgt" = 3),
+					"on" = alist("lgt" = 2),
+					"off" = alist("lgt" = 1)
 				)
 			),
-			list(
+			alist(
 				"title" = "Environment",
 				"powerLoad" = last_used[ENVIRON],
 				"status" = environ,
-				"topicParams" = list(
-					"auto"	= list("env" = 3),
-					"on"	= list("env" = 2),
-					"off"	= list("env" = 1)
+				"topicParams" = alist(
+					"auto" = alist("env" = 3),
+					"on" = alist("env" = 2),
+					"off" = alist("env" = 1)
 				)
 			)
 		)
@@ -63,7 +63,7 @@
 	if(isnull(ui))
 		// the ui does not exist, so we'll create a new() one
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "apc.tmpl", "[area.name] - APC", 520, data["siliconUser"] ? 465 : 440)
+		ui = new /datum/nanoui(user, src, ui_key, "apc.tmpl", "[area.name] - APC", 520, data["siliconUser"] ? 465 : 440)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window

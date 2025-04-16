@@ -222,15 +222,16 @@ Thus, the two variables affect pump operation are set in New():
 	if(stat & BROKEN)
 		return
 
-	var/list/data = list()
-	data["on"] = on
-	data["target_pressure"] = round(target_pressure, 0.1) // TODO: Need to fix this later so it doesn't output 101.3xxxxxxxx. -Frenjo
-	data["max_pressure"] = max_pressure
+	var/alist/data = alist(
+		"on" = on,
+		"target_pressure" = round(target_pressure, 0.1), // TODO: Need to fix this later so it doesn't output 101.3xxxxxxxx. -Frenjo
+		"max_pressure" = max_pressure
+	)
 
 	// Ported most of this by studying SMES code. -Frenjo
 	ui = global.PCnanoui.try_update_ui(user, src, ui_key, ui, data)
 	if(isnull(ui))
-		ui = new(user, src, ui_key, "gas_pump.tmpl", "Gas Pump", 470, 290)
+		ui = new /datum/nanoui(user, src, ui_key, "gas_pump.tmpl", "Gas Pump", 470, 290)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update()
