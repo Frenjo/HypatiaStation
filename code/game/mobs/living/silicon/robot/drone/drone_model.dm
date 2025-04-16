@@ -7,6 +7,8 @@
 	name = "drone robot model"
 	display_name = "Drone"
 
+	model_icon = "engineering"
+
 	basic_modules = list(
 		/obj/item/extinguisher/mini,
 		/obj/item/weldingtool,

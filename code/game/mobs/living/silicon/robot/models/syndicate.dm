@@ -5,6 +5,8 @@
 	name = "syndicate robot model"
 	display_name = "Syndicate"
 
+	model_icon = "malf"
+
 	basic_modules = list(
 		/obj/item/flash,
 		/obj/item/extinguisher/mini,

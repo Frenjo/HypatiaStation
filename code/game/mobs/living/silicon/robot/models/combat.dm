@@ -5,6 +5,8 @@
 	name = "combat robot model"
 	display_name = "Combat"
 
+	model_icon = "security"
+
 	basic_modules = list(
 		/obj/item/flash,
 		/obj/item/extinguisher/mini,

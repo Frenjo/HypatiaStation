@@ -1,11 +1,11 @@
 /atom/movable/screen/robot
-	icon = 'icons/hud/screen1_robot.dmi'
+	icon = 'icons/hud/robot/robot.dmi'
 
-/atom/movable/screen/robot/New(loc, name, icon_state, screen_loc)
-	. = ..(loc)
-	src.name = name
-	src.icon_state = icon_state
-	src.screen_loc = screen_loc
+/atom/movable/screen/robot/New(_loc, _name, _icon_state, _screen_loc)
+	. = ..(_loc)
+	name = _name
+	icon_state = _icon_state
+	screen_loc = _screen_loc
 
 /atom/movable/screen/robot/Click(location, control, params)
 	if(!isrobot(usr))
@@ -56,3 +56,7 @@
 	var/mob/living/silicon/robot/R = usr
 	R.toggle_module(module_number)
 	return TRUE
+
+// Model icon
+/atom/movable/screen/robot/installed_model
+	icon = 'icons/hud/robot/model_icons.dmi'

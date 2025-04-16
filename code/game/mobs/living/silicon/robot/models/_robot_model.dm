@@ -12,6 +12,10 @@
 	// The visible display name of the model.
 	var/display_name = "Unformatted"
 
+	// The icon displayed on the "installed model" UI element.
+	// This defaults to lowertext(display_name) if unset.
+	var/model_icon = null
+
 	// A list of typepaths for the basic modules this model has.
 	var/list/basic_modules = list()
 

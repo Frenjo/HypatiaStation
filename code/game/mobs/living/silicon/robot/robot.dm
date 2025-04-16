@@ -686,9 +686,12 @@
 	if(custom_sprite)
 		model.sprites["Custom"] = "[ckey]-[model.display_name]"
 
-	var/model_icon = lowertext(model.display_name)
+	// If the model's icon is set explicitly then use that, otherwise use the display name.
+	var/model_icon = model.model_icon
+	if(isnull(model_icon))
+		model_icon = lowertext(model.display_name)
 	hands?.icon_state = model_icon
-	feedback_inc("cyborg_[model_icon]", 1)
+	feedback_inc("cyborg_[lowertext(model.display_name)]", 1)
 	updatename()
 
 	icon_state = model.sprites[model.sprites[1]]
