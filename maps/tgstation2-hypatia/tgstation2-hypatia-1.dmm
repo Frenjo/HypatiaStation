@@ -2112,7 +2112,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "aOk" = (
 /obj/structure/cable{
@@ -4903,7 +4903,7 @@
 	name = "south bump";
 	pixel_y = -24
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "bJY" = (
 /obj/machinery/hydroponics,
@@ -6530,7 +6530,7 @@
 /obj/machinery/atmospherics/mains_pipe/split/scrubbers/hidden{
 	dir = 4
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/carpet,
 /area/station/crew/law_office)
 "cle" = (
 /obj/structure/cable{
@@ -6547,7 +6547,7 @@
 /area/station/crew/vacant_office)
 "cli" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "cll" = (
 /obj/structure/cable{
@@ -6558,7 +6558,7 @@
 /obj/machinery/atmospherics/mains_pipe/cap/hidden{
 	dir = 1
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/carpet,
 /area/station/crew/law_office)
 "clB" = (
 /obj/machinery/camera{
@@ -7303,7 +7303,7 @@
 	dir = 2;
 	icon_state = "shutter0";
 	id = "lawyer_shutters";
-	name = "IA Privacy Shutters";
+	name = "LO Privacy Shutters";
 	opacity = FALSE
 	},
 /obj/machinery/door/firedoor/border_only{
@@ -8460,7 +8460,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "cVN" = (
 /obj/effect/landmark{
@@ -8659,7 +8659,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "cZS" = (
 /obj/effect/decal/floor/industrial/warning/border{
@@ -8775,7 +8775,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "dca" = (
 /obj/structure/disposalpipe/segment{
@@ -9657,19 +9657,6 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/crew/fitness)
-"drW" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/open/floor/tiled/dark,
-/area/turret_protected/ai_chamber)
 "dse" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -16500,10 +16487,6 @@
 	},
 /area/station/command/vault)
 "fQw" = (
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
 /obj/effect/landmark{
 	name = "tripai"
 	},
@@ -17366,7 +17349,7 @@
 /area/station/research/hallway)
 "gfM" = (
 /obj/machinery/door/airlock{
-	name = "Internal Affairs";
+	name = "Law Office";
 	req_access = list(38)
 	},
 /obj/structure/cable{
@@ -17426,7 +17409,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "ghh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -19908,7 +19891,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "gZy" = (
 /obj/machinery/door/firedoor/border_only{
@@ -19942,7 +19925,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "hab" = (
 /obj/structure/disposalpipe/segment,
@@ -20629,7 +20612,7 @@
 	dir = 4;
 	icon_state = "shutter0";
 	id = "lawyer_shutters";
-	name = "IA Privacy Shutters";
+	name = "LO Privacy Shutters";
 	opacity = FALSE
 	},
 /obj/machinery/door/firedoor/border_only,
@@ -21490,7 +21473,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "hDr" = (
 /obj/machinery/light/small{
@@ -21763,11 +21746,6 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "hHt" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -21870,7 +21848,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "hJi" = (
 /obj/machinery/hologram/holopad,
@@ -26897,11 +26875,6 @@
 /turf/open/floor/tiled/grey,
 /area/station/research/toxins/mixing)
 "jrH" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/turretid{
 	name = "AI Chamber turret control";
 	pixel_x = 24;
@@ -27057,7 +27030,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "jvj" = (
 /obj/structure/table,
@@ -27294,7 +27267,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "jBN" = (
 /obj/structure/disposalpipe/segment{
@@ -28351,7 +28324,7 @@
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "jWr" = (
 /obj/structure/disposalpipe/segment{
@@ -28645,11 +28618,6 @@
 /turf/open/floor/plating/metal,
 /area/station/hallway/secondary/arrivals)
 "ker" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/door/window/eastleft{
 	name = "AI Core Door";
 	req_access = list(16)
@@ -30079,7 +30047,7 @@
 /obj/effect/landmark/start{
 	name = "Lawyer"
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/carpet,
 /area/station/crew/law_office)
 "kAs" = (
 /obj/structure/table/woodentable,
@@ -30820,7 +30788,7 @@
 /obj/effect/landmark/start{
 	name = "Lawyer"
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/carpet,
 /area/station/crew/law_office)
 "kPC" = (
 /obj/machinery/disposal,
@@ -31203,10 +31171,6 @@
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/supermatter)
 "kVS" = (
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/effect/landmark{
 	name = "tripai"
 	},
@@ -32740,11 +32704,6 @@
 /turf/open/floor/tiled/grey,
 /area/station/hallway/primary/port)
 "lAs" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
@@ -36703,10 +36662,6 @@
 	name = "Custom Channel";
 	pixel_x = -28
 	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/machinery/door_control{
 	desc = "A remote control switch for the AI chamber door.";
 	id = "AI Door";
@@ -36861,7 +36816,7 @@
 /obj/effect/landmark/start{
 	name = "Internal Affairs Agent"
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/carpet,
 /area/station/crew/law_office)
 "mUe" = (
 /obj/item/paper_bin{
@@ -39022,7 +38977,7 @@
 /obj/effect/landmark/start{
 	name = "Internal Affairs Agent"
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/carpet,
 /area/station/crew/law_office)
 "nGU" = (
 /obj/effect/decal/floor/coloured/blue/corner{
@@ -42444,7 +42399,7 @@
 /obj/machinery/atmospherics/mains_pipe/split/supply/hidden{
 	dir = 8
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/carpet,
 /area/station/crew/law_office)
 "oVD" = (
 /obj/machinery/door/poddoor{
@@ -43138,7 +43093,7 @@
 	name = "south bump";
 	pixel_y = -24
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "peU" = (
 /obj/machinery/atmospherics/binary/pump,
@@ -44360,7 +44315,7 @@
 /area/space)
 "pyY" = (
 /obj/machinery/hologram/holopad,
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/carpet,
 /area/station/crew/law_office)
 "pyZ" = (
 /obj/structure/closet/crate,
@@ -44768,7 +44723,7 @@
 	name = "south bump";
 	pixel_y = -24
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "pEX" = (
 /obj/machinery/light/small,
@@ -46347,7 +46302,7 @@
 	pixel_y = -4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "qnd" = (
 /obj/machinery/requests_console{
@@ -48813,19 +48768,9 @@
 	icon_state = "motion0"
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/obj/structure/cable{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/mains_pipe/split/supply/hidden{
 	dir = 4
@@ -51632,11 +51577,6 @@
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
 "sbj" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/door/window/westright{
 	name = "AI Core Door";
 	req_access = list(16)
@@ -66328,7 +66268,7 @@
 	dir = 4;
 	pixel_x = -28
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "xwc" = (
 /obj/machinery/librarypubliccomp,
@@ -67647,7 +67587,7 @@
 /turf/open/floor/plating/metal,
 /area/station/medical/virology)
 "xVt" = (
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/carpet,
 /area/station/crew/law_office)
 "xVB" = (
 /obj/effect/decal/floor/industrial/warning/corner{
@@ -67991,7 +67931,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/open/floor/reinforced/cult,
+/turf/open/floor/linoleum,
 /area/station/crew/law_office)
 "ybt" = (
 /obj/machinery/ai_slipper{
@@ -96970,7 +96910,7 @@ ohu
 qDT
 yea
 dgM
-drW
+dgM
 wGS
 sPp
 wfg
@@ -97998,8 +97938,8 @@ ohu
 piz
 xab
 dmq
-yea
-wGS
+dmq
+nCP
 lAs
 tWc
 ohu
