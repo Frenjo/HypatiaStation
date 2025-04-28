@@ -344,6 +344,7 @@
 /area/shuttle/supply/centcom
 	name = "\improper Supply Shuttle CentCom"
 	icon_state = "shuttle3"
+	base_turf = /turf/open/floor/plating/metal
 
 /area/shuttle/supply/station
 	name = "\improper Supply Shuttle Station"
