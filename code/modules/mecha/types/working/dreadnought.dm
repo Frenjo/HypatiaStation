@@ -30,4 +30,4 @@
 
 /obj/mecha/working/dreadnought/bulwark/New()
 	. = ..()
-	excluded_equipment.Remove(/obj/item/mecha_part/equipment/weapon)
+	excluded_equipment.Remove(/obj/item/mecha_equipment/weapon)

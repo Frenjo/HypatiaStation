@@ -127,7 +127,7 @@
 		. += {"<div class='wr'>
 						<div class='header'>Equipment</div>
 						<div class='links'>"}
-		for(var/obj/item/mecha_part/equipment/equip in equipment)
+		for(var/obj/item/mecha_equipment/equip in equipment)
 			. += "[equip.name] <a href='byond://?src=\ref[equip];detach=1'>Detach</a><br>"
 		. += "<b>Available equipment slots:</b> [max_equip - length(equipment)]"
 		. += "</div></div>"
@@ -136,7 +136,7 @@
 	if(!length(equipment))
 		return
 	. = "<b>Equipment:</b><div style=\"margin-left: 15px;\">"
-	for(var/obj/item/mecha_part/equipment/equip in equipment)
+	for(var/obj/item/mecha_equipment/equip in equipment)
 		. += "<div id='\ref[equip]'>[equip.get_equip_info()]</div>"
 	. += "</div>"
 

@@ -52,7 +52,7 @@
 	return 0
 
 /obj/mecha/proc/handle_equipment_movement()
-	for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
+	for_no_type_check(var/obj/item/mecha_equipment/equip, equipment)
 		if(equip.chassis == src) // Sanity.
 			equip.handle_movement_action()
 

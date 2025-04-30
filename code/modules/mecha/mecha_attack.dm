@@ -4,7 +4,7 @@
 	if(isliving(user))
 		var/mob/living/L = user
 		var/did_shock = FALSE
-		for(var/obj/item/mecha_part/equipment/melee_defence_shocker/shocker in equipment)
+		for(var/obj/item/mecha_equipment/melee_defence_shocker/shocker in equipment)
 			if(shocker.attack_react(L))
 				did_shock = TRUE
 				break
@@ -13,7 +13,7 @@
 
 	var/deflection_chance = deflect_chance
 	var/damage_coefficient = 1
-	for(var/obj/item/mecha_part/equipment/melee_armour_booster/booster in equipment)
+	for(var/obj/item/mecha_equipment/melee_armour_booster/booster in equipment)
 		if(booster.attack_react(user))
 			deflection_chance *= booster.deflect_coeff
 			damage_coefficient *= booster.damage_coeff
@@ -68,7 +68,7 @@
 
 	var/deflection_chance = deflect_chance
 	var/damage_coefficient = 1
-	for(var/obj/item/mecha_part/equipment/melee_armour_booster/booster in equipment)
+	for(var/obj/item/mecha_equipment/melee_armour_booster/booster in equipment)
 		if(booster.attack_react(user))
 			deflection_chance *= booster.deflect_coeff
 			damage_coefficient *= booster.damage_coeff
@@ -100,7 +100,7 @@
 	if(isliving(user)) // This needs to be moved to a future pre_attack() proc.
 		var/mob/living/L = user
 		var/did_shock = FALSE
-		for(var/obj/item/mecha_part/equipment/melee_defence_shocker/shocker in equipment)
+		for(var/obj/item/mecha_equipment/melee_defence_shocker/shocker in equipment)
 			if(shocker.attack_react(L))
 				did_shock = TRUE
 				break
@@ -208,8 +208,8 @@
 				to_chat(user, SPAN_WARNING("There's already a power cell installed in \the [src]."))
 		return TRUE
 
-	if(istype(I, /obj/item/mecha_part/equipment))
-		var/obj/item/mecha_part/equipment/E = I
+	if(istype(I, /obj/item/mecha_equipment))
+		var/obj/item/mecha_equipment/E = I
 		if(E.can_attach(src))
 			user.drop_item()
 			E.attach(src)
@@ -269,7 +269,7 @@
 		log_message("Attacked by [W]. Attacker - [user]")
 		var/deflection_chance = deflect_chance
 		var/damage_coefficient = 1
-		for(var/obj/item/mecha_part/equipment/melee_armour_booster/booster in equipment)
+		for(var/obj/item/mecha_equipment/melee_armour_booster/booster in equipment)
 			if(booster.attack_react(user))
 				deflection_chance *= booster.deflect_coeff
 				damage_coefficient *= booster.damage_coeff

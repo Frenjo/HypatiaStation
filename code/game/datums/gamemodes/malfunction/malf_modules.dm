@@ -76,7 +76,7 @@ rcd light flash thingy on matter drain
 			rcdmod.uses --
 			for(var/obj/item/rcd/rcd in GLOBL.movable_atom_list)
 				rcd.disabled = TRUE
-			for(var/obj/item/mecha_part/equipment/tool/rcd/rcd in GLOBL.movable_atom_list)
+			for(var/obj/item/mecha_equipment/tool/rcd/rcd in GLOBL.movable_atom_list)
 				rcd.disabled = TRUE
 			to_chat(usr, "RCD-disabling pulse emitted.")
 		else

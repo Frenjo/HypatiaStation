@@ -96,13 +96,13 @@
 // Equipped variant
 /obj/mecha/combat/gygax/dark/equipped/New()
 	. = ..()
-	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/weapon/ballistic/scattershot(src)
+	var/obj/item/mecha_equipment/ME = new /obj/item/mecha_equipment/weapon/ballistic/scattershot(src)
 	ME.attach(src)
-	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/launcher/flashbang/clusterbang(src)
+	ME = new /obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang(src)
 	ME.attach(src)
-	ME = new /obj/item/mecha_part/equipment/teleporter(src)
+	ME = new /obj/item/mecha_equipment/teleporter(src)
 	ME.attach(src)
-	ME = new /obj/item/mecha_part/equipment/tesla_energy_relay(src)
+	ME = new /obj/item/mecha_equipment/tesla_energy_relay(src)
 	ME.attach(src)
 
 // Serenity
@@ -128,4 +128,4 @@
 
 /obj/mecha/combat/gygax/serenity/New()
 	. = ..()
-	excluded_equipment.Remove(/obj/item/mecha_part/equipment/medical)
+	excluded_equipment.Remove(/obj/item/mecha_equipment/medical)

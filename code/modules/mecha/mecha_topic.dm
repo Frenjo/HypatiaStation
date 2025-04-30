@@ -18,7 +18,7 @@
 	if(href_list["select_equip"])
 		if(usr != occupant)
 			return
-		var/obj/item/mecha_part/equipment/equip = topic_filter.getObj("select_equip")
+		var/obj/item/mecha_equipment/equip = topic_filter.getObj("select_equip")
 		if(equip)
 			selected = equip
 			occupant_message("You switch to [equip]")

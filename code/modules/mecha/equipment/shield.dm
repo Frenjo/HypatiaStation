@@ -1,4 +1,4 @@
-/obj/item/mecha_part/equipment/shield_droid
+/obj/item/mecha_equipment/shield_droid
 	name = "shield droid"
 	icon_state = "shield_droid"
 
@@ -13,17 +13,17 @@
 	var/shield_type
 	var/icon/drone_overlay
 
-/obj/item/mecha_part/equipment/shield_droid/New()
+/obj/item/mecha_equipment/shield_droid/New()
 	. = ..()
 	shield = new shield_type(src)
 	shield.shield_regen_delay = equip_cooldown
 	shield:my_tool = src
 
-/obj/item/mecha_part/equipment/shield_droid/critfail()
+/obj/item/mecha_equipment/shield_droid/critfail()
 	. = ..()
 	shield.adjust_health(-200)
 
-/obj/item/mecha_part/equipment/shield_droid/Destroy()
+/obj/item/mecha_equipment/shield_droid/Destroy()
 	chassis.overlays.Remove(drone_overlay)
 	shield.forceMove(src)
 	shield.destroy_shields()
@@ -32,7 +32,7 @@
 	QDEL_NULL(shield)
 	return ..()
 
-/obj/item/mecha_part/equipment/shield_droid/attach(obj/mecha/M)
+/obj/item/mecha_equipment/shield_droid/attach(obj/mecha/M)
 	. = ..()
 	if(isnotnull(chassis))
 		shield.shield_health = shield.shield_health / 2
@@ -42,7 +42,7 @@
 		drone_overlay = new /icon(icon, icon_state = "shield_droid_idle")
 		M.overlays.Add(drone_overlay)
 
-/obj/item/mecha_part/equipment/shield_droid/detach()
+/obj/item/mecha_equipment/shield_droid/detach()
 	chassis.overlays.Remove(drone_overlay)
 	. = ..()
 	shield.destroy_shields()
@@ -50,11 +50,11 @@
 	shield.shield_health = shield.max_shield_health
 	shield.forceMove(src)
 
-/obj/item/mecha_part/equipment/shield_droid/handle_movement_action()
+/obj/item/mecha_equipment/shield_droid/handle_movement_action()
 	if(isnotnull(chassis))
 		shield.update_shield_positions()
 
-/obj/item/mecha_part/equipment/shield_droid/proc/toggle_shield()
+/obj/item/mecha_equipment/shield_droid/proc/toggle_shield()
 	if(isnull(chassis))
 		return
 	shield.attack_self(chassis.occupant)
@@ -65,17 +65,17 @@
 		set_ready_state(1)
 		log_message("Deactivated.")
 
-/obj/item/mecha_part/equipment/shield_droid/Topic(href, href_list)
+/obj/item/mecha_equipment/shield_droid/Topic(href, href_list)
 	. = ..()
 	if(href_list["toggle_shield"])
 		toggle_shield()
 		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 
-/obj/item/mecha_part/equipment/shield_droid/get_equip_info()
+/obj/item/mecha_equipment/shield_droid/get_equip_info()
 	. = "[..()] - <a href='?src=\ref[src];toggle_shield=1'>[shield.active ? "Dea" : "A"]ctivate</a>"
 
 // Linear
-/obj/item/mecha_part/equipment/shield_droid/linear
+/obj/item/mecha_equipment/shield_droid/linear
 	name = "linear shield droid"
 	desc = "A shield droid that forms a rectangular, unidirectionally projectile-blocking wall in front of the exosuit. (Can be attached to: Any Exosuit)"
 	matter_amounts = /datum/design/mechfab/equipment/general/linear_shield_droid::materials
@@ -84,7 +84,7 @@
 	shield_type = /obj/item/shield_projector/line/exosuit
 
 // Omnidirectional
-/obj/item/mecha_part/equipment/shield_droid/omnidirectional
+/obj/item/mecha_equipment/shield_droid/omnidirectional
 	name = "omnidirectional shield droid"
 	desc = "A shield droid that forms a rectangular, unidirectionally projectile-blocking wall around the exosuit. (Can be attached to: Any Exosuit)"
 	matter_amounts = /datum/design/mechfab/equipment/general/omnidirectional_shield_droid::materials

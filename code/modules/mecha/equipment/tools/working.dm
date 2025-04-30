@@ -1,5 +1,5 @@
 // Hydraulic Clamp
-/obj/item/mecha_part/equipment/tool/hydraulic_clamp
+/obj/item/mecha_equipment/tool/hydraulic_clamp
 	name = "hydraulic clamp"
 	desc = "An exosuit-mounted hydraulic clamp with cargo loading capability. (Can be attached to: Working Exosuits)"
 	icon_state = "clamp"
@@ -11,11 +11,11 @@
 
 	var/is_safety_clamp = FALSE
 
-/obj/item/mecha_part/equipment/tool/hydraulic_clamp/attach(obj/mecha/working/M)
+/obj/item/mecha_equipment/tool/hydraulic_clamp/attach(obj/mecha/working/M)
 	. = ..()
 	cargo_holder = M
 
-/obj/item/mecha_part/equipment/tool/hydraulic_clamp/action(atom/target)
+/obj/item/mecha_equipment/tool/hydraulic_clamp/action(atom/target)
 	if(!action_checks(target))
 		return
 	if(!cargo_holder)
@@ -87,7 +87,7 @@
 
 // Safety Clamp (Kill Clamp)
 // This is pretty much just for the death-ripley so that it is harmless.
-/obj/item/mecha_part/equipment/tool/hydraulic_clamp/safety
+/obj/item/mecha_equipment/tool/hydraulic_clamp/safety
 	name = "kill clamp"
 	desc = "An exosuit-mounted hydraulic clamp with KILL CAPABILITY. (Can be attached to: Working Exosuits)"
 	energy_drain = 0
@@ -95,7 +95,7 @@
 	is_safety_clamp = TRUE
 
 // Extinguisher
-/obj/item/mecha_part/equipment/tool/extinguisher
+/obj/item/mecha_equipment/tool/extinguisher
 	name = "extinguisher"
 	desc = "An exosuit-mounted fire extinguisher. (Can be attached to: Working Exosuits)"
 	icon_state = "exting"
@@ -103,12 +103,12 @@
 	energy_drain = 0
 	range = MELEE|RANGED
 
-/obj/item/mecha_part/equipment/tool/extinguisher/New()
+/obj/item/mecha_equipment/tool/extinguisher/New()
 	create_reagents(200)
 	reagents.add_reagent("water", 200)
 	. = ..()
 
-/obj/item/mecha_part/equipment/tool/extinguisher/action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
+/obj/item/mecha_equipment/tool/extinguisher/action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
 	if(!action_checks(target) || get_dist(chassis, target) > 3)
 		return
 	if(get_dist(chassis, target) > 2)
@@ -152,8 +152,8 @@
 							sleep(2)
 	return 1
 
-/obj/item/mecha_part/equipment/tool/extinguisher/get_equip_info()
+/obj/item/mecha_equipment/tool/extinguisher/get_equip_info()
 	. = "[..()] \[[reagents.total_volume]\]"
 
-/obj/item/mecha_part/equipment/tool/extinguisher/on_reagent_change()
+/obj/item/mecha_equipment/tool/extinguisher/on_reagent_change()
 	return

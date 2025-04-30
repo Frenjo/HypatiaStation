@@ -6,11 +6,11 @@
 	maint_access = FALSE
 
 	excluded_equipment = list(
-		/obj/item/mecha_part/equipment/tool/hydraulic_clamp,
-		/obj/item/mecha_part/equipment/tool/extinguisher,
-		/obj/item/mecha_part/equipment/tool/rcd,
-		/obj/item/mecha_part/equipment/tool/cable_layer,
-		/obj/item/mecha_part/equipment/medical
+		/obj/item/mecha_equipment/tool/hydraulic_clamp,
+		/obj/item/mecha_equipment/tool/extinguisher,
+		/obj/item/mecha_equipment/tool/rcd,
+		/obj/item/mecha_equipment/tool/cable_layer,
+		/obj/item/mecha_equipment/medical
 	)
 
 	var/melee_cooldown = 10

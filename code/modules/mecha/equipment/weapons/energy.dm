@@ -1,9 +1,9 @@
-/obj/item/mecha_part/equipment/weapon/energy
+/obj/item/mecha_equipment/weapon/energy
 	name = "general energy weapon"
 	auto_rearm = 1
 
 // Taser
-/obj/item/mecha_part/equipment/weapon/energy/taser
+/obj/item/mecha_equipment/weapon/energy/taser
 	name = "PBT \"Pacifier\" mounted taser"
 	icon_state = "taser"
 	equip_cooldown = 0.8 SECONDS
@@ -12,7 +12,7 @@
 	fire_sound = 'sound/weapons/gun/taser.ogg'
 
 // Disabler
-/obj/item/mecha_part/equipment/weapon/energy/disabler
+/obj/item/mecha_equipment/weapon/energy/disabler
 	name = "\improper CH-DS \"Peacemaker\" disabler"
 	desc = "A weapon for combat exosuits. Shoots basic disablers."
 	icon_state = "disabler"
@@ -23,7 +23,7 @@
 	projectile = /obj/item/projectile/energy/pulse/disabler
 	fire_sound = 'sound/weapons/gun/taser2.ogg'
 
-/obj/item/mecha_part/equipment/weapon/energy/rapid_disabler
+/obj/item/mecha_equipment/weapon/energy/rapid_disabler
 	name = "\improper SW-RM \"Peaceforcer\" rapid disabler"
 	desc = "A weapon for combat exosuits of unknown origin. Uses foreign technology to streamline energy compression in order to shoot a stream of disabler shots in quick succession."
 	icon_state = "rapid_disabler"
@@ -38,7 +38,7 @@
 	fire_sound = 'sound/weapons/gun/taser2.ogg'
 
 // Laser
-/obj/item/mecha_part/equipment/weapon/energy/laser
+/obj/item/mecha_equipment/weapon/energy/laser
 	name = "\improper CH-PS \"Immolator\" laser"
 	icon_state = "laser"
 	matter_amounts = /datum/design/mechfab/equipment/weapon/laser::materials
@@ -48,7 +48,7 @@
 	projectile = /obj/item/projectile/energy/beam/laser
 	fire_sound = 'sound/weapons/gun/laser.ogg'
 
-/obj/item/mecha_part/equipment/weapon/energy/laser/heavy
+/obj/item/mecha_equipment/weapon/energy/laser/heavy
 	name = "\improper CH-LC \"Solaris\" laser cannon"
 	icon_state = "laser_cannon"
 	matter_amounts = /datum/design/mechfab/equipment/weapon/heavy_laser::materials
@@ -59,7 +59,7 @@
 	fire_sound = 'sound/weapons/gun/lasercannonfire.ogg'
 
 // Ion
-/obj/item/mecha_part/equipment/weapon/energy/ion
+/obj/item/mecha_equipment/weapon/energy/ion
 	name = "mkIV ion heavy cannon"
 	icon_state = "ion"
 	equip_cooldown = 4 SECONDS
@@ -68,7 +68,7 @@
 	fire_sound = 'sound/weapons/gun/laser.ogg'
 
 // Pulse
-/obj/item/mecha_part/equipment/weapon/energy/pulse
+/obj/item/mecha_equipment/weapon/energy/pulse
 	name = "eZ-13 mk2 heavy pulse rifle"
 	icon_state = "pulse"
 	equip_cooldown = 3 SECONDS

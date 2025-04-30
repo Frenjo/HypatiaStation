@@ -1,6 +1,6 @@
 // Passenger Compartment
 // Ported the passenger compartment from NSS Eternal along with the hoverpod. -Frenjo
-/obj/item/mecha_part/equipment/passenger
+/obj/item/mecha_equipment/passenger
 	name = "passenger compartment"
 	desc = "A mountable passenger compartment for exo-suits. Rather cramped. (Can be attached to: Any Exosuit)"
 	icon_state = "passenger_compartment"
@@ -17,19 +17,19 @@
 	var/mob/living/carbon/passenger = null
 	var/door_locked = 1
 
-/obj/item/mecha_part/equipment/passenger/Destroy()
+/obj/item/mecha_equipment/passenger/Destroy()
 	var/turf/T = GET_TURF(src)
 	for_no_type_check(var/atom/movable/mover, src)
 		mover.forceMove(T)
 	return ..()
 
-/obj/item/mecha_part/equipment/passenger/allow_drop()
+/obj/item/mecha_equipment/passenger/allow_drop()
 	return 0
 
-/obj/item/mecha_part/equipment/passenger/Exit(atom/movable/O)
+/obj/item/mecha_equipment/passenger/Exit(atom/movable/O)
 	return 0
 
-/obj/item/mecha_part/equipment/passenger/proc/move_inside(mob/user)
+/obj/item/mecha_equipment/passenger/proc/move_inside(mob/user)
 	if(isnotnull(chassis))
 		chassis.visible_message(SPAN_INFO("\The [user] starts to climb into \the [chassis]."))
 
@@ -44,7 +44,7 @@
 	else
 		to_chat(user, SPAN_INFO("You stop entering the exosuit."))
 
-/obj/item/mecha_part/equipment/passenger/verb/eject()
+/obj/item/mecha_equipment/passenger/verb/eject()
 	set category = "Exosuit Interface"
 	set name = "Eject"
 	set popup_menu = FALSE
@@ -59,7 +59,7 @@
 	log_message("[passenger] disembarked.")
 	add_fingerprint(usr)
 
-/obj/item/mecha_part/equipment/passenger/proc/go_out()
+/obj/item/mecha_equipment/passenger/proc/go_out()
 	if(isnull(passenger))
 		return
 	passenger.forceMove(GET_TURF(src))
@@ -71,25 +71,25 @@
 	*/
 	passenger = null
 
-/obj/item/mecha_part/equipment/passenger/attach()
+/obj/item/mecha_equipment/passenger/attach()
 	. = ..()
 	if(isnotnull(chassis))
 		chassis.verbs |= /obj/mecha/proc/move_inside_passenger
 
-/obj/item/mecha_part/equipment/passenger/detach()
+/obj/item/mecha_equipment/passenger/detach()
 	if(isnotnull(passenger))
 		occupant_message(SPAN_WARNING("Unable to detach \the [src] - equipment occupied."))
 		return
 
 	var/obj/mecha/M = chassis
 	. = ..()
-	if(isnotnull(M) && !(locate(/obj/item/mecha_part/equipment/passenger) in M))
+	if(isnotnull(M) && !(locate(/obj/item/mecha_equipment/passenger) in M))
 		M.verbs.Remove(/obj/mecha/proc/move_inside_passenger)
 
-/obj/item/mecha_part/equipment/passenger/get_equip_info()
+/obj/item/mecha_equipment/passenger/get_equip_info()
 	. = "[..()]<br>[passenger ? "\[Occupant: [passenger]\]|" : ""]Exterior Hatch: <a href='byond://?src=\ref[src];toggle_lock=1'>Toggle Lock</a>"
 
-/obj/item/mecha_part/equipment/passenger/Topic(href, list/href_list)
+/obj/item/mecha_equipment/passenger/Topic(href, list/href_list)
 	. = ..()
 	if(href_list["toggle_lock"])
 		door_locked = !door_locked
@@ -131,7 +131,7 @@
 
 	//search for a valid passenger compartment
 	var/feedback = 0 //for nicer user feedback
-	for(var/obj/item/mecha_part/equipment/passenger/P in src)
+	for(var/obj/item/mecha_equipment/passenger/P in src)
 		if(P.passenger)
 			feedback |= OCCUPIED
 			continue

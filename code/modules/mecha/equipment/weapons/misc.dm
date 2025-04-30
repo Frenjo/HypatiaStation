@@ -1,16 +1,16 @@
-/obj/item/mecha_part/equipment/weapon/honker
+/obj/item/mecha_equipment/weapon/honker
 	name = "\improper HoNkER BlAsT 5000"
 	icon_state = "honker"
 	energy_drain = 200
 	equip_cooldown = 15 SECONDS
 	range = MELEE|RANGED
 
-/obj/item/mecha_part/equipment/weapon/honker/can_attach(obj/mecha/combat/honk/M)
+/obj/item/mecha_equipment/weapon/honker/can_attach(obj/mecha/combat/honk/M)
 	if(!istype(M))
 		return FALSE
 	return ..()
 
-/obj/item/mecha_part/equipment/weapon/honker/action(target)
+/obj/item/mecha_equipment/weapon/honker/action(target)
 	if(isnull(chassis))
 		return FALSE
 	if(energy_drain && chassis.get_charge() < energy_drain)

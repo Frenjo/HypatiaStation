@@ -1,5 +1,5 @@
 // Mime RCD
-/obj/item/mecha_part/equipment/tool/mimercd
+/obj/item/mecha_equipment/tool/mimercd
 	name = "mounted MRCD"
 	desc = "An exosuit-mounted mime-rapid-construction-device. (Can be attached to: Reticence)"
 	icon_state = "rcd"
@@ -9,12 +9,12 @@
 	energy_drain = 250
 	range = MELEE | RANGED
 
-/obj/item/mecha_part/equipment/tool/mimercd/can_attach(obj/mecha/combat/reticence/M)
+/obj/item/mecha_equipment/tool/mimercd/can_attach(obj/mecha/combat/reticence/M)
 	if(!istype(M))
 		return FALSE
 	return ..()
 
-/obj/item/mecha_part/equipment/tool/mimercd/action(atom/target)
+/obj/item/mecha_equipment/tool/mimercd/action(atom/target)
 	if(istype(target, /turf/space/transit)) //>implying these are ever made -Sieve
 		return
 	if(!action_checks(target) || get_dist(chassis, target) > 3)

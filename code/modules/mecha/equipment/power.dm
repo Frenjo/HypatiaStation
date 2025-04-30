@@ -1,5 +1,5 @@
 // Tesla Energy Relay
-/obj/item/mecha_part/equipment/tesla_energy_relay
+/obj/item/mecha_equipment/tesla_energy_relay
 	name = "tesla energy relay"
 	desc = "Wirelessly drains energy from any available power channel in area. The performance index is quite low. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
@@ -15,20 +15,20 @@
 	var/coeff = 100
 	var/list/use_channels = list(EQUIP, ENVIRON, LIGHT)
 
-/obj/item/mecha_part/equipment/tesla_energy_relay/New()
+/obj/item/mecha_equipment/tesla_energy_relay/New()
 	. = ..()
 	pr_energy_relay = new /datum/global_iterator/mecha_energy_relay(list(src), 0)
 	pr_energy_relay.set_delay(equip_cooldown)
 
-/obj/item/mecha_part/equipment/tesla_energy_relay/Destroy()
+/obj/item/mecha_equipment/tesla_energy_relay/Destroy()
 	QDEL_NULL(pr_energy_relay)
 	return ..()
 
-/obj/item/mecha_part/equipment/tesla_energy_relay/detach()
+/obj/item/mecha_equipment/tesla_energy_relay/detach()
 	pr_energy_relay.stop()
 	. = ..()
 
-/obj/item/mecha_part/equipment/tesla_energy_relay/proc/get_power_channel(area/A)
+/obj/item/mecha_equipment/tesla_energy_relay/proc/get_power_channel(area/A)
 	. = null
 	if(isnull(A))
 		return
@@ -37,7 +37,7 @@
 			. = channel
 			break
 
-/obj/item/mecha_part/equipment/tesla_energy_relay/Topic(href, href_list)
+/obj/item/mecha_equipment/tesla_energy_relay/Topic(href, href_list)
 	. = ..()
 	if(href_list["toggle_relay"])
 		if(pr_energy_relay.toggle())
@@ -47,10 +47,10 @@
 			set_ready_state(1)
 			log_message("Deactivated.")
 
-/obj/item/mecha_part/equipment/tesla_energy_relay/get_equip_info()
+/obj/item/mecha_equipment/tesla_energy_relay/get_equip_info()
 	. = "[..()] - <a href='byond://?src=\ref[src];toggle_relay=1'>[pr_energy_relay.active() ? "Dea" : "A"]ctivate</a>"
 
-/datum/global_iterator/mecha_energy_relay/process(obj/item/mecha_part/equipment/tesla_energy_relay/relay)
+/datum/global_iterator/mecha_energy_relay/process(obj/item/mecha_equipment/tesla_energy_relay/relay)
 	if(!relay.chassis || relay.chassis.internal_damage & MECHA_INT_SHORT_CIRCUIT)
 		stop()
 		relay.set_ready_state(1)
@@ -76,7 +76,7 @@
  * Generators
  */
 // Plasma
-/obj/item/mecha_part/equipment/generator
+/obj/item/mecha_equipment/generator
 	name = "plasma converter"
 	desc = "Generates power using solid plasma as fuel. Pollutes the environment. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
@@ -95,25 +95,25 @@
 	var/fuel_per_cycle_active = 500
 	var/power_per_cycle = 20
 
-/obj/item/mecha_part/equipment/generator/New()
+/obj/item/mecha_equipment/generator/New()
 	. = ..()
 	init()
 
-/obj/item/mecha_part/equipment/generator/Destroy()
+/obj/item/mecha_equipment/generator/Destroy()
 	QDEL_NULL(pr_mech_generator)
 	return ..()
 
-/obj/item/mecha_part/equipment/generator/proc/init()
+/obj/item/mecha_equipment/generator/proc/init()
 	fuel = new /obj/item/stack/sheet/plasma(src)
 	fuel.amount = 0
 	pr_mech_generator = new /datum/global_iterator/mecha_generator(list(src), 0)
 	pr_mech_generator.set_delay(equip_cooldown)
 
-/obj/item/mecha_part/equipment/generator/detach()
+/obj/item/mecha_equipment/generator/detach()
 	pr_mech_generator.stop()
 	. = ..()
 
-/obj/item/mecha_part/equipment/generator/Topic(href, href_list)
+/obj/item/mecha_equipment/generator/Topic(href, href_list)
 	. = ..()
 	if(href_list["toggle"])
 		if(pr_mech_generator.toggle())
@@ -123,10 +123,10 @@
 			set_ready_state(1)
 			log_message("Deactivated.")
 
-/obj/item/mecha_part/equipment/generator/get_equip_info()
+/obj/item/mecha_equipment/generator/get_equip_info()
 	. = "[..()] \[[fuel]: [round(fuel.amount * fuel.perunit, 0.1)] cm<sup>3</sup>\] - <a href='byond://?src=\ref[src];toggle=1'>[pr_mech_generator.active() ? "Dea" : "A"]ctivate</a>"
 
-/obj/item/mecha_part/equipment/generator/action(target)
+/obj/item/mecha_equipment/generator/action(target)
 	if(chassis)
 		var/result = load_fuel(target)
 		var/message
@@ -139,7 +139,7 @@
 			send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",get_equip_info())
 		occupant_message(message)
 
-/obj/item/mecha_part/equipment/generator/proc/load_fuel(obj/item/stack/sheet/P)
+/obj/item/mecha_equipment/generator/proc/load_fuel(obj/item/stack/sheet/P)
 	if(P.type == fuel.type && P.amount)
 		var/to_load = max(max_fuel - fuel.amount * fuel.perunit, 0)
 		if(to_load)
@@ -152,7 +152,7 @@
 			return 0
 	return null
 
-/obj/item/mecha_part/equipment/generator/attack_by(obj/item/I, mob/user)
+/obj/item/mecha_equipment/generator/attack_by(obj/item/I, mob/user)
 	var/result = load_fuel(I)
 	if(isnull(result))
 		user.visible_message(
@@ -171,7 +171,7 @@
 	)
 	return TRUE
 
-/obj/item/mecha_part/equipment/generator/critfail()
+/obj/item/mecha_equipment/generator/critfail()
 	. = ..()
 	var/turf/open/T = GET_TURF(src)
 	if(isnull(T))
@@ -186,7 +186,7 @@
 		T.visible_message(SPAN_WARNING("The [src] suddenly disgorges a cloud of plasma."))
 	T.assume_air(GM)
 
-/datum/global_iterator/mecha_generator/process(obj/item/mecha_part/equipment/generator/EG)
+/datum/global_iterator/mecha_generator/process(obj/item/mecha_equipment/generator/EG)
 	if(!EG.chassis)
 		stop()
 		EG.set_ready_state(1)
@@ -216,7 +216,7 @@
 	return 1
 
 // Nuclear
-/obj/item/mecha_part/equipment/generator/nuclear
+/obj/item/mecha_equipment/generator/nuclear
 	name = "\improper ExoNuclear reactor"
 	desc = "Generates power using uranium. Pollutes the environment. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
@@ -230,16 +230,16 @@
 
 	var/rad_per_cycle = 0.3
 
-/obj/item/mecha_part/equipment/generator/nuclear/init()
+/obj/item/mecha_equipment/generator/nuclear/init()
 	fuel = new /obj/item/stack/sheet/uranium(src)
 	fuel.amount = 0
 	pr_mech_generator = new /datum/global_iterator/mecha_generator/nuclear(list(src), 0)
 	pr_mech_generator.set_delay(equip_cooldown)
 
-/obj/item/mecha_part/equipment/generator/nuclear/critfail()
+/obj/item/mecha_equipment/generator/nuclear/critfail()
 	return
 
-/datum/global_iterator/mecha_generator/nuclear/process(obj/item/mecha_part/equipment/generator/nuclear/EG)
+/datum/global_iterator/mecha_generator/nuclear/process(obj/item/mecha_equipment/generator/nuclear/EG)
 	if(..())
 		for(var/mob/living/carbon/M in view(EG.chassis))
 			if(ishuman(M))

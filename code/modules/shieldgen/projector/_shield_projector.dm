@@ -225,7 +225,7 @@
 	size_y = 1
 
 	var/obj/mecha/my_mecha = null
-	var/obj/item/mecha_part/equipment/shield_droid/my_tool = null
+	var/obj/item/mecha_equipment/shield_droid/my_tool = null
 
 /obj/item/shield_projector/rectangle/weak/exosuit/process()
 	. = ..()
@@ -315,7 +315,7 @@
 	offset_from_center = 1 // Snug against the exosuit.
 
 	var/obj/mecha/my_mecha = null
-	var/obj/item/mecha_part/equipment/shield_droid/my_tool = null
+	var/obj/item/mecha_equipment/shield_droid/my_tool = null
 
 /obj/item/shield_projector/line/exosuit/process()
 	. = ..()

@@ -77,8 +77,8 @@
 	// Equipment
 	var/obj/item/cell/cell
 	var/list/excluded_equipment = list() // A list of equipment typepaths this exosuit CANNOT equip.
-	var/list/obj/item/mecha_part/equipment/equipment = list()
-	var/obj/item/mecha_part/equipment/selected
+	var/list/obj/item/mecha_equipment/equipment = list()
+	var/obj/item/mecha_equipment/selected
 	var/max_equip = 3
 
 	var/datum/events/events
@@ -107,7 +107,7 @@
 	go_out()
 	remove_iterators()
 	// If there's any equipment left at this point then the mech's been admin-deleted.
-	for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
+	for_no_type_check(var/obj/item/mecha_equipment/equip, equipment)
 		equipment.Remove(equip)
 		equip.detach(loc)
 		qdel(equip)

@@ -26,7 +26,7 @@
 
 /obj/mecha/combat/eidolon/New()
 	. = ..()
-	var/obj/item/mecha_part/equipment/weapon/energy/rapid_disabler/disabler = new /obj/item/mecha_part/equipment/weapon/energy/rapid_disabler(src)
+	var/obj/item/mecha_equipment/weapon/energy/rapid_disabler/disabler = new /obj/item/mecha_equipment/weapon/energy/rapid_disabler(src)
 	disabler.attach(src)
 
 /obj/mecha/combat/eidolon/Topic(href, list/href_list)
@@ -105,6 +105,6 @@
 
 /obj/mecha/combat/eidolon/salvaged/New()
 	. = ..()
-	for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
+	for_no_type_check(var/obj/item/mecha_equipment/equip, equipment)
 		equip.detach()
 		qdel(equip)

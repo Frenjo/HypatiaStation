@@ -1,4 +1,4 @@
-/obj/item/mecha_part/equipment/weapon
+/obj/item/mecha_equipment/weapon
 	name = "mecha weapon"
 	range = RANGED
 	origin_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 3)
@@ -14,12 +14,12 @@
 	var/fire_volume = 50 //How loud it is played.
 	var/auto_rearm = 0 //Does the weapon reload itself after each shot?
 
-/obj/item/mecha_part/equipment/weapon/action_checks(atom/target)
+/obj/item/mecha_equipment/weapon/action_checks(atom/target)
 	if(projectiles <= 0)
 		return FALSE
 	return ..()
 
-/obj/item/mecha_part/equipment/weapon/action(atom/target)
+/obj/item/mecha_equipment/weapon/action(atom/target)
 	if(!action_checks(target))
 		return
 	var/turf/curloc = chassis.loc
@@ -47,7 +47,7 @@
 	set_ready_state(0)
 	do_after_cooldown()
 
-/obj/item/mecha_part/equipment/weapon/proc/Fire(atom/A, atom/target, turf/aimloc)
+/obj/item/mecha_equipment/weapon/proc/Fire(atom/A, atom/target, turf/aimloc)
 	var/obj/item/projectile/P = A
 	P.shot_from = src
 	P.original = target

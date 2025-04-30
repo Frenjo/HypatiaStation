@@ -64,7 +64,7 @@
 			usr << "It's falling apart."
 	if(length(equipment))
 		usr << "It's equipped with:"
-		for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
+		for_no_type_check(var/obj/item/mecha_equipment/equip, equipment)
 			usr << "\icon[equip] [equip]"
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.

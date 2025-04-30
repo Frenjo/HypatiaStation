@@ -64,13 +64,13 @@
 // Equipped variant
 /obj/mecha/medical/odysseus/dark/equipped/New()
 	. = ..()
-	var/obj/item/mecha_part/equipment/part = new /obj/item/mecha_part/equipment/medical/sleeper(src)
+	var/obj/item/mecha_equipment/part = new /obj/item/mecha_equipment/medical/sleeper(src)
 	part.attach(src)
-	part = new /obj/item/mecha_part/equipment/medical/syringe_gun(src)
+	part = new /obj/item/mecha_equipment/medical/syringe_gun(src)
 	part.attach(src)
-	part = new /obj/item/mecha_part/equipment/melee_armour_booster(src)
+	part = new /obj/item/mecha_equipment/melee_armour_booster(src)
 	part.attach(src)
-	part = new /obj/item/mecha_part/equipment/ranged_armour_booster(src)
+	part = new /obj/item/mecha_equipment/ranged_armour_booster(src)
 	part.attach(src)
 
 // Eurymachus
@@ -93,10 +93,10 @@
 	wreckage = /obj/structure/mecha_wreckage/odysseus/eurymachus
 
 	excluded_equipment = list(
-		/obj/item/mecha_part/equipment/tool/hydraulic_clamp,
-		/obj/item/mecha_part/equipment/tool/extinguisher,
-		/obj/item/mecha_part/equipment/tool/rcd,
-		/obj/item/mecha_part/equipment/tool/cable_layer
+		/obj/item/mecha_equipment/tool/hydraulic_clamp,
+		/obj/item/mecha_equipment/tool/extinguisher,
+		/obj/item/mecha_equipment/tool/rcd,
+		/obj/item/mecha_equipment/tool/cable_layer
 	)
 
 	var/datum/global_iterator/camouflage_iterator
@@ -190,11 +190,11 @@
 // Equipped variant
 /obj/mecha/medical/odysseus/eurymachus/equipped/New()
 	. = ..()
-	var/obj/item/mecha_part/equipment/part = new /obj/item/mecha_part/equipment/weapon/energy/taser(src)
+	var/obj/item/mecha_equipment/part = new /obj/item/mecha_equipment/weapon/energy/taser(src)
 	part.attach(src)
-	part = new /obj/item/mecha_part/equipment/medical/sleeper(src)
+	part = new /obj/item/mecha_equipment/medical/sleeper(src)
 	part.attach(src)
-	part = new /obj/item/mecha_part/equipment/medical/syringe_gun(src)
+	part = new /obj/item/mecha_equipment/medical/syringe_gun(src)
 	part.attach(src)
 
 // Mecha camouflage power drain handler.

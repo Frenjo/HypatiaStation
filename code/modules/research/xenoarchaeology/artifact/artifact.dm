@@ -131,5 +131,5 @@
 
 	else if(ismecha(AM))
 		var/obj/mecha/M = AM
-		if(istype(M.selected,/obj/item/mecha_part/equipment/tool/drill))
+		if(istype(M.selected,/obj/item/mecha_equipment/tool/drill))
 			M.selected.action(src)

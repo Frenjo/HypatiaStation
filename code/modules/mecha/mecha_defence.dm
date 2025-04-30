@@ -11,7 +11,7 @@
 
 	// If a mech doesn't have an assigned wreckage type then something is very wrong with said mech.
 	var/obj/structure/mecha_wreckage/new_wreck = new wreckage(T)
-	for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
+	for_no_type_check(var/obj/item/mecha_equipment/equip, equipment)
 		if(equip.salvageable && prob(30))
 			new_wreck.crowbar_salvage.Add(equip)
 			equip.forceMove(new_wreck)
@@ -57,7 +57,7 @@
 	var/deflection_chance = deflect_chance
 	var/damage_coefficient = 1
 	var/deflect_tracking_beacons = FALSE
-	for(var/obj/item/mecha_part/equipment/ranged_armour_booster/booster in equipment)
+	for(var/obj/item/mecha_equipment/ranged_armour_booster/booster in equipment)
 		if(booster.projectile_react())
 			deflection_chance *= booster.deflect_coeff
 			damage_coefficient *= booster.damage_coeff
@@ -89,7 +89,7 @@
 	log_message("Hit by projectile. Type: [bullet.name]([bullet.flag]).", 1)
 	var/deflection_chance = deflect_chance
 	var/damage_coefficient = 1
-	for(var/obj/item/mecha_part/equipment/ranged_armour_booster/booster in equipment)
+	for(var/obj/item/mecha_equipment/ranged_armour_booster/booster in equipment)
 		if(booster.projectile_react())
 			deflection_chance *= booster.deflect_coeff
 			damage_coefficient *= booster.damage_coeff
@@ -190,7 +190,7 @@
 				set_internal_damage(int_dam_flag)
 	if(prob(5))
 		if(ignore_threshold || src.health * 100 / initial(src.health) < src.internal_damage_threshold)
-			var/obj/item/mecha_part/equipment/destr = safepick(equipment)
+			var/obj/item/mecha_equipment/destr = safepick(equipment)
 			if(isnotnull(destr))
 				qdel(destr)
 

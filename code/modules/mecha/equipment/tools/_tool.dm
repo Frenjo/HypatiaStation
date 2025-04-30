@@ -1,3 +1,3 @@
 // Base
-/obj/item/mecha_part/equipment/tool
+/obj/item/mecha_equipment/tool
 	name = "generic mounted tool"

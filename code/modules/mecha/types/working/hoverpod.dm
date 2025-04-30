@@ -100,10 +100,10 @@
 
 /obj/mecha/working/hoverpod/combat/New()
 	. = ..()
-	excluded_equipment.Remove(/obj/item/mecha_part/equipment/weapon)
-	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/weapon/energy/laser(src)
+	excluded_equipment.Remove(/obj/item/mecha_equipment/weapon)
+	var/obj/item/mecha_equipment/ME = new /obj/item/mecha_equipment/weapon/energy/laser(src)
 	ME.attach(src)
-	ME = new /obj/item/mecha_part/equipment/weapon/ballistic/launcher/missile_rack(src)
+	ME = new /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack(src)
 	ME.attach(src)
 
 /obj/mecha/working/hoverpod/shuttle
@@ -112,7 +112,7 @@
 
 /obj/mecha/working/hoverpod/shuttle/New()
 	. = ..()
-	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/passenger(src)
+	var/obj/item/mecha_equipment/ME = new /obj/item/mecha_equipment/passenger(src)
 	ME.attach(src)
-	ME = new /obj/item/mecha_part/equipment/passenger(src)
+	ME = new /obj/item/mecha_equipment/passenger(src)
 	ME.attach(src)

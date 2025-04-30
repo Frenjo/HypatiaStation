@@ -79,7 +79,7 @@
 
 /obj/mecha/working/ripley/death/New()
 	. = ..()
-	var/obj/item/mecha_part/equipment/ME = new /obj/item/mecha_part/equipment/tool/hydraulic_clamp/safety(src)
+	var/obj/item/mecha_equipment/ME = new /obj/item/mecha_equipment/tool/hydraulic_clamp/safety(src)
 	ME.attach(src)
 
 /obj/mecha/working/ripley/mining
@@ -90,14 +90,14 @@
 	. = ..()
 	//Attach drill
 	if(prob(25)) //Possible diamond drill... Feeling lucky?
-		var/obj/item/mecha_part/equipment/tool/drill/diamond/D = new /obj/item/mecha_part/equipment/tool/drill/diamond(src)
+		var/obj/item/mecha_equipment/tool/drill/diamond/D = new /obj/item/mecha_equipment/tool/drill/diamond(src)
 		D.attach(src)
 	else
-		var/obj/item/mecha_part/equipment/tool/drill/D = new /obj/item/mecha_part/equipment/tool/drill(src)
+		var/obj/item/mecha_equipment/tool/drill/D = new /obj/item/mecha_equipment/tool/drill(src)
 		D.attach(src)
 
 	//Attach hydrolic clamp
-	var/obj/item/mecha_part/equipment/tool/hydraulic_clamp/HC = new /obj/item/mecha_part/equipment/tool/hydraulic_clamp(src)
+	var/obj/item/mecha_equipment/tool/hydraulic_clamp/HC = new /obj/item/mecha_equipment/tool/hydraulic_clamp(src)
 	HC.attach(src)
 	for(var/obj/item/mecha_part/tracking/B in contents)//Deletes the beacon so it can't be found easily
 		qdel(B)
@@ -117,7 +117,7 @@
 
 /obj/mecha/working/ripley/rescue_ranger/New()
 	. = ..()
-	excluded_equipment.Remove(/obj/item/mecha_part/equipment/medical)
+	excluded_equipment.Remove(/obj/item/mecha_equipment/medical)
 
 // Sindy
 /obj/mecha/working/ripley/sindy
@@ -140,7 +140,7 @@
 
 /obj/mecha/working/ripley/sindy/New()
 	. = ..()
-	excluded_equipment.Remove(/obj/item/mecha_part/equipment/weapon)
+	excluded_equipment.Remove(/obj/item/mecha_equipment/weapon)
 
 /obj/mecha/working/ripley/sindy/add_cell(obj/item/cell/C = null)
 	if(isnotnull(C))
@@ -152,9 +152,9 @@
 // Equipped variant
 /obj/mecha/working/ripley/sindy/equipped/New()
 	. = ..()
-	var/obj/item/mecha_part/equipment/equip = new /obj/item/mecha_part/equipment/weapon/energy/laser/heavy(src)
+	var/obj/item/mecha_equipment/equip = new /obj/item/mecha_equipment/weapon/energy/laser/heavy(src)
 	equip.attach(src)
-	equip = new /obj/item/mecha_part/equipment/tool/hydraulic_clamp(src)
+	equip = new /obj/item/mecha_equipment/tool/hydraulic_clamp(src)
 	equip.attach(src)
-	equip = new /obj/item/mecha_part/equipment/melee_armour_booster(src)
+	equip = new /obj/item/mecha_equipment/melee_armour_booster(src)
 	equip.attach(src)

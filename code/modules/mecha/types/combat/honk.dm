@@ -21,9 +21,9 @@
 /obj/mecha/combat/honk/New()
 	. = ..()
 	excluded_equipment.Add(
-		/obj/item/mecha_part/equipment/melee_armour_booster,
-		/obj/item/mecha_part/equipment/melee_defence_shocker,
-		/obj/item/mecha_part/equipment/ranged_armour_booster
+		/obj/item/mecha_equipment/melee_armour_booster,
+		/obj/item/mecha_equipment/melee_defence_shocker,
+		/obj/item/mecha_equipment/ranged_armour_booster
 	)
 
 /obj/mecha/combat/honk/melee_action(target)
@@ -123,7 +123,7 @@
 	if(!length(equipment))
 		return
 	. = "<b>Honk-ON-Systems:</b><div style=\"margin-left: 15px;\">"
-	for_no_type_check(var/obj/item/mecha_part/equipment/equip, equipment)
+	for_no_type_check(var/obj/item/mecha_equipment/equip, equipment)
 		. += "[selected == equip ? "<b id='\ref[equip]'>" : "<a id='\ref[equip]' href='byond://?src=\ref[src];select_equip=\ref[equip]'>"][equip.get_equip_info()][selected == equip ? "</b>" : "</a>"]<br>"
 	. += "</div>"
 

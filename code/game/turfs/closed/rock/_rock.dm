@@ -89,7 +89,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/artifact_spawning_turfs)
 
 	else if(ismecha(AM))
 		var/obj/mecha/M = AM
-		if(istype(M.selected, /obj/item/mecha_part/equipment/tool/drill))
+		if(istype(M.selected, /obj/item/mecha_equipment/tool/drill))
 			M.selected.action(src)
 
 /turf/closed/rock/attack_tool(obj/item/tool, mob/user)

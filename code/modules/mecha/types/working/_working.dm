@@ -2,8 +2,8 @@
 	internal_damage_threshold = 60
 
 	excluded_equipment = list(
-		/obj/item/mecha_part/equipment/medical,
-		/obj/item/mecha_part/equipment/weapon
+		/obj/item/mecha_equipment/medical,
+		/obj/item/mecha_equipment/weapon
 	)
 
 	var/list/cargo = list()
@@ -40,7 +40,7 @@
 	. = ..()
 	. += "<b>[name] Tools:</b><div style=\"margin-left: 15px;\">"
 	if(length(equipment))
-		for(var/obj/item/mecha_part/equipment/MT in equipment)
+		for(var/obj/item/mecha_equipment/MT in equipment)
 			. += "[selected == MT?  "<b>" : "<a href='byond://?src=\ref[src];select_equip=\ref[MT]'>"][MT.get_equip_info()][selected == MT ? "</b>" : "</a>"]<br>"
 	else
 		. += "None"

@@ -1,5 +1,5 @@
 // Repair Droid
-/obj/item/mecha_part/equipment/repair_droid
+/obj/item/mecha_equipment/repair_droid
 	name = "repair droid"
 	desc = "Automated repair droid. Scans exosuit for damage and repairs it. Can fix almost all types of external or internal damage. (Can be attached to: Any Exosuit)"
 	icon_state = "repair_droid"
@@ -18,30 +18,30 @@
 	var/icon/droid_overlay
 	var/list/repairable_damage = list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH)
 
-/obj/item/mecha_part/equipment/repair_droid/New()
+/obj/item/mecha_equipment/repair_droid/New()
 	. = ..()
 	pr_repair_droid = new /datum/global_iterator/mecha_repair_droid(list(src), 0)
 	pr_repair_droid.set_delay(equip_cooldown)
 
-/obj/item/mecha_part/equipment/repair_droid/Destroy()
+/obj/item/mecha_equipment/repair_droid/Destroy()
 	chassis.overlays.Remove(droid_overlay)
 	QDEL_NULL(pr_repair_droid)
 	return ..()
 
-/obj/item/mecha_part/equipment/repair_droid/attach(obj/mecha/M)
+/obj/item/mecha_equipment/repair_droid/attach(obj/mecha/M)
 	. = ..()
 	droid_overlay = new /icon(icon, icon_state = "repair_droid_idle")
 	M.overlays.Add(droid_overlay)
 
-/obj/item/mecha_part/equipment/repair_droid/detach()
+/obj/item/mecha_equipment/repair_droid/detach()
 	chassis.overlays.Remove(droid_overlay)
 	pr_repair_droid.stop()
 	. = ..()
 
-/obj/item/mecha_part/equipment/repair_droid/get_equip_info()
+/obj/item/mecha_equipment/repair_droid/get_equip_info()
 	. = "[..()] - <a href='byond://?src=\ref[src];toggle_repairs=1'>[pr_repair_droid.active() ? "Dea" : "A"]ctivate</a>"
 
-/obj/item/mecha_part/equipment/repair_droid/Topic(href, href_list)
+/obj/item/mecha_equipment/repair_droid/Topic(href, href_list)
 	. = ..()
 	if(href_list["toggle_repairs"])
 		chassis.overlays.Remove(droid_overlay)
@@ -55,7 +55,7 @@
 		chassis.overlays.Add(droid_overlay)
 		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 
-/datum/global_iterator/mecha_repair_droid/process(obj/item/mecha_part/equipment/repair_droid/RD)
+/datum/global_iterator/mecha_repair_droid/process(obj/item/mecha_equipment/repair_droid/RD)
 	if(!RD.chassis)
 		stop()
 		RD.set_ready_state(1)
@@ -84,7 +84,7 @@
 		RD.set_ready_state(1)
 
 // Teleporter
-/obj/item/mecha_part/equipment/teleporter
+/obj/item/mecha_equipment/teleporter
 	name = "teleporter"
 	desc = "An exosuit module that allows exosuits to teleport to any position in view. (Can be attached to: Any Exosuit)"
 	icon_state = "teleporter"
@@ -94,7 +94,7 @@
 	energy_drain = 1000
 	range = RANGED
 
-/obj/item/mecha_part/equipment/teleporter/action(atom/target)
+/obj/item/mecha_equipment/teleporter/action(atom/target)
 	if(!action_checks(target) || loc.z == 2)
 		return
 	var/turf/T = GET_TURF(target)
@@ -105,7 +105,7 @@
 		do_after_cooldown()
 
 // Wormhole Generator
-/obj/item/mecha_part/equipment/wormhole_generator
+/obj/item/mecha_equipment/wormhole_generator
 	name = "wormhole generator"
 	desc = "An exosuit module that allows generating of small quasi-stable wormholes. (Can be attached to: Any Exosuit)"
 	icon_state = "wholegen"
@@ -115,7 +115,7 @@
 	energy_drain = 300
 	range = RANGED
 
-/obj/item/mecha_part/equipment/wormhole_generator/action(atom/target)
+/obj/item/mecha_equipment/wormhole_generator/action(atom/target)
 	if(!action_checks(target) || loc.z == 2)
 		return
 	var/list/theareas = list()
@@ -157,7 +157,7 @@
 		qdel(P)
 
 // Gravitational Catapult
-/obj/item/mecha_part/equipment/gravcatapult
+/obj/item/mecha_equipment/gravcatapult
 	name = "gravitational catapult"
 	desc = "An exosuit mounted Gravitational Catapult. (Can be attached to: Any Exosuit)"
 	icon_state = "catapult"
@@ -172,7 +172,7 @@
 	var/last_fired = 0  //Concept stolen from guns.
 	var/fire_delay = 10 //Used to prevent spam-brute against humans.
 
-/obj/item/mecha_part/equipment/gravcatapult/action(atom/movable/target)
+/obj/item/mecha_equipment/gravcatapult/action(atom/movable/target)
 	if(world.time >= last_fired + fire_delay)
 		last_fired = world.time
 	else
@@ -223,10 +223,10 @@
 			chassis.use_power(energy_drain)
 			do_after_cooldown()
 
-/obj/item/mecha_part/equipment/gravcatapult/get_equip_info()
+/obj/item/mecha_equipment/gravcatapult/get_equip_info()
 	. = "[..()] [mode == 1 ? "([locked || "Nothing"])" : null] \[<a href='byond://?src=\ref[src];mode=1'>S</a>|<a href='byond://?src=\ref[src];mode=2'>P</a>\]"
 
-/obj/item/mecha_part/equipment/gravcatapult/Topic(href, href_list)
+/obj/item/mecha_equipment/gravcatapult/Topic(href, href_list)
 	. = ..()
 	if(href_list["mode"])
 		mode = text2num(href_list["mode"])

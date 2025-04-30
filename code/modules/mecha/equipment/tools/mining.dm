@@ -1,5 +1,5 @@
 // Drill
-/obj/item/mecha_part/equipment/tool/drill
+/obj/item/mecha_equipment/tool/drill
 	name = "drill"
 	desc = "This is the drill that'll pierce the heavens! (Can be attached to: Working and Combat Exosuits)"
 	icon_state = "drill"
@@ -7,7 +7,7 @@
 	energy_drain = 10
 	force = 15
 
-/obj/item/mecha_part/equipment/tool/drill/action(atom/target)
+/obj/item/mecha_equipment/tool/drill/action(atom/target)
 	if(!action_checks(target))
 		return
 	if(isobj(target))
@@ -29,7 +29,7 @@
 					if(get_dir(chassis, M) & chassis.dir)
 						M.get_drilled()
 				log_message("Drilled through [target]")
-				if(locate(/obj/item/mecha_part/equipment/tool/hydraulic_clamp) in chassis.equipment)
+				if(locate(/obj/item/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
 					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
 					if(ore_box)
 						for(var/obj/item/ore/ore in range(chassis, 1))
@@ -40,7 +40,7 @@
 					if(get_dir(chassis, M) & chassis.dir)
 						M.gets_dug()
 				log_message("Drilled through [target]")
-				if(locate(/obj/item/mecha_part/equipment/tool/hydraulic_clamp) in chassis.equipment)
+				if(locate(/obj/item/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
 					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
 					if(ore_box)
 						for(var/obj/item/ore/ore in range(chassis, 1))
@@ -52,7 +52,7 @@
 	return 1
 
 // Diamond Drill
-/obj/item/mecha_part/equipment/tool/drill/diamond
+/obj/item/mecha_equipment/tool/drill/diamond
 	name = "diamond drill"
 	desc = "This is an upgraded version of the drill that'll pierce the heavens! (Can be attached to: Working and Combat Exosuits)"
 	icon_state = "diamond_drill"
@@ -61,7 +61,7 @@
 	equip_cooldown = 2 SECONDS
 	force = 15
 
-/obj/item/mecha_part/equipment/tool/drill/diamond/action(atom/target)
+/obj/item/mecha_equipment/tool/drill/diamond/action(atom/target)
 	if(!action_checks(target))
 		return
 	if(isobj(target))
@@ -85,7 +85,7 @@
 					if(get_dir(chassis, M) & chassis.dir)
 						M.get_drilled()
 				log_message("Drilled through [target]")
-				if(locate(/obj/item/mecha_part/equipment/tool/hydraulic_clamp) in chassis.equipment)
+				if(locate(/obj/item/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
 					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
 					if(ore_box)
 						for(var/obj/item/ore/ore in range(chassis, 1))
@@ -95,7 +95,7 @@
 				for(var/turf/open/floor/plating/asteroid/airless/M in range(target, 1))
 					M.gets_dug()
 				log_message("Drilled through [target]")
-				if(locate(/obj/item/mecha_part/equipment/tool/hydraulic_clamp) in chassis.equipment)
+				if(locate(/obj/item/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
 					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
 					if(ore_box)
 						for(var/obj/item/ore/ore in range(target, 1))
