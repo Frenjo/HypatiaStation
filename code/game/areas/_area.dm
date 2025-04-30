@@ -135,7 +135,7 @@
 	var/area/newarea = GET_AREA(L)
 	var/area/oldarea = L.lastarea
 	if(!oldarea.has_gravity && newarea.has_gravity && IS_RUNNING(L)) // Being ready when you change areas gives you a chance to avoid falling all together.
-		thunk(L)
+		L.thunk()
 
 	L.lastarea = newarea
 
@@ -160,22 +160,4 @@
 	if(!new_gravity)
 		return
 	for(var/mob/living/carbon/human/M in src)
-		thunk(M)
-
-// Why is this not a proc on /mob/living?
-/area/proc/thunk(mob/living/mob)
-	if(isspace(GET_TURF(mob))) // Can't fall onto nothing.
-		return
-
-	if(ishuman(mob)) // Only humans can wear magboots, so we give them a chance to.
-		var/mob/living/carbon/human/human = mob
-		if(istype(human.shoes, /obj/item/clothing/shoes/magboots) && HAS_ITEM_FLAGS(human.shoes, ITEM_FLAG_NO_SLIP))
-			return
-		if(IS_RUNNING(human)) // Only clumsy humans can fall on their asses.
-			human.AdjustStunned(5)
-			human.AdjustWeakened(5)
-		else
-			human.AdjustStunned(2)
-			human.AdjustWeakened(2)
-
-	to_chat(mob, "Gravity!")
+		M.thunk()

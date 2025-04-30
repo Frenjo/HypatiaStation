@@ -93,3 +93,18 @@
 
 	prob_slip = round(prob_slip)
 	return(prob_slip)
+
+/mob/living/carbon/human/thunk()
+	// Only humans can wear magboots, so we give them a chance to.
+	if(istype(shoes, /obj/item/clothing/shoes/magboots) && HAS_ITEM_FLAGS(shoes, ITEM_FLAG_NO_SLIP))
+		return FALSE
+	. = ..()
+	if(!.)
+		return FALSE
+
+	if(IS_RUNNING(src)) // Only clumsy humans can fall on their asses.
+		AdjustStunned(5)
+		AdjustWeakened(5)
+	else
+		AdjustStunned(2)
+		AdjustWeakened(2)
