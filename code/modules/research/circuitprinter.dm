@@ -11,7 +11,8 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 
 /obj/machinery/r_n_d/circuit_imprinter/New()
 	materials = new /datum/material_container(src, list(
-		/decl/material/glass, /decl/material/gold, /decl/material/diamond, /decl/material/uranium
+		/decl/material/plastic, /decl/material/glass, /decl/material/gold, /decl/material/diamond,
+		/decl/material/uranium
 	), FALSE)
 	. = ..()
 

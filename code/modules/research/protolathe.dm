@@ -14,9 +14,9 @@ Note: Must be placed west/left of and R&D console to function.
 
 /obj/machinery/r_n_d/protolathe/New()
 	materials = new /datum/material_container(src, list(
-		/decl/material/steel, /decl/material/glass, /decl/material/silver, /decl/material/gold,
-		/decl/material/diamond, /decl/material/uranium, /decl/material/plasma, /decl/material/bananium,
-		/decl/material/adamantine
+		/decl/material/iron, /decl/material/steel, /decl/material/plastic, /decl/material/glass,
+		/decl/material/silver, /decl/material/gold, /decl/material/diamond, /decl/material/uranium,
+		/decl/material/plasma, /decl/material/bananium, /decl/material/adamantine
 	), FALSE)
 	. = ..()
 
