@@ -1738,6 +1738,7 @@
 #include "code\modules\reagents\chemistry_recipes\food.dm"
 #include "code\modules\reagents\chemistry_recipes\immediate.dm"
 #include "code\modules\reagents\chemistry_recipes\medicine.dm"
+#include "code\modules\reagents\chemistry_recipes\sheets.dm"
 #include "code\modules\reagents\chemistry_recipes\slimes.dm"
 #include "code\modules\reagents\chemistry_recipes\toxins.dm"
 #include "code\modules\reagents\reagent_containers\_reagent_containers.dm"

@@ -110,21 +110,3 @@
 	make_chem_smoke(created_volume, FALSE, location, holder, location)
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
 	holder.clear_reagents()
-
-/datum/chemical_reaction/plasmasolidification
-	name = "Solid Plasma"
-	result = null
-	required_reagents = list("iron" = 5, "frostoil" = 5, "plasma" = 20)
-	result_amount = 1
-
-/datum/chemical_reaction/plasmasolidification/on_reaction(datum/reagents/holder, created_volume)
-	new /obj/item/stack/sheet/plasma(GET_TURF(holder.my_atom))
-
-/datum/chemical_reaction/plastication
-	name = "Plastic"
-	result = null
-	required_reagents = list("pacid" = 10, "plasticide" = 20)
-	result_amount = 1
-
-/datum/chemical_reaction/plastication/on_reaction(datum/reagents/holder)
-	new /obj/item/stack/sheet/plastic(GET_TURF(holder.my_atom), 10)

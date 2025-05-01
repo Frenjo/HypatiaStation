@@ -809,3 +809,10 @@
 	description = "A secondary amine, mildly corrosive."
 	reagent_state = REAGENT_LIQUID
 	color = "#604030" // rgb: 96, 64, 48
+
+/datum/reagent/oil
+	name = "Oil"
+	id = "oil"
+	description = "A naturally occurring yellowish-black liquid chemical mixture consisting mainly of hydrocarbons."
+	reagent_state = REAGENT_LIQUID
+	color = "#281E15" // rgb: 40, 30, 21

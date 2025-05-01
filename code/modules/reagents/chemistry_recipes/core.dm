@@ -186,5 +186,12 @@
 /datum/chemical_reaction/diethylamine
 	name = "Diethylamine"
 	result = "diethylamine"
-	required_reagents = list ("ammonia" = 1, "ethanol" = 1)
+	required_reagents = list("ammonia" = 1, "ethanol" = 1)
 	result_amount = 2
+
+// This is a horrible rip off based on /tg/'s chemical reactions for plastic-making.
+/datum/chemical_reaction/oil
+	name = "Oil"
+	result = "oil"
+	required_reagents = list("fuel" = 1, "carbon" = 1, "hydrogen" = 1)
+	result_amount = 3
