@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////////
 /datum/chemical_reaction/explosion_potassium
 	name = "Explosion"
-	required_reagents = list("water" = 1, "potassium" = 1)
+	required_reagents = alist("water" = 1, "potassium" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/explosion_potassium/on_reaction(datum/reagents/holder, created_volume)
@@ -18,7 +18,7 @@
 
 /datum/chemical_reaction/emp_pulse
 	name = "EMP Pulse"
-	required_reagents = list("uranium" = 1, "iron" = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
+	required_reagents = alist("uranium" = 1, "iron" = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
 	result_amount = 2
 
 /datum/chemical_reaction/emp_pulse/on_reaction(datum/reagents/holder, created_volume)
@@ -29,7 +29,7 @@
 
 /datum/chemical_reaction/flash_powder
 	name = "Flash powder"
-	required_reagents = list("aluminum" = 1, "potassium" = 1, "sulfur" = 1 )
+	required_reagents = alist("aluminum" = 1, "potassium" = 1, "sulfur" = 1 )
 	result_amount = null
 
 /datum/chemical_reaction/flash_powder/on_reaction(datum/reagents/holder, created_volume)
@@ -55,7 +55,7 @@
 
 /datum/chemical_reaction/napalm
 	name = "Napalm"
-	required_reagents = list("aluminum" = 1, "plasma" = 1, "sacid" = 1 )
+	required_reagents = alist("aluminum" = 1, "plasma" = 1, "sacid" = 1 )
 	result_amount = 1
 
 /datum/chemical_reaction/napalm/on_reaction(datum/reagents/holder, created_volume)
@@ -70,7 +70,7 @@
 /*
 /datum/chemical_reaction/smoke
 	name = "Smoke"
-	required_reagents = list("potassium" = 1, "sugar" = 1, "phosphorus" = 1)
+	required_reagents = alist("potassium" = 1, "sugar" = 1, "phosphorus" = 1)
 	result_amount = null
 	secondary = 1
 
@@ -95,7 +95,7 @@
 
 /datum/chemical_reaction/chemsmoke
 	name = "Chemsmoke"
-	required_reagents = list("potassium" = 1, "sugar" = 1, "phosphorus" = 1)
+	required_reagents = alist("potassium" = 1, "sugar" = 1, "phosphorus" = 1)
 	result_amount = 0.4
 	secondary = 1
 

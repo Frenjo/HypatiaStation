@@ -3,7 +3,7 @@
 //Grey
 /datum/chemical_reaction/slimespawn
 	name = "Slime Spawn"
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/grey
 	required_other = 1
@@ -15,7 +15,7 @@
 
 /datum/chemical_reaction/slimemonkey
 	name = "Slime Monkey"
-	required_reagents = list("blood" = 5)
+	required_reagents = alist("blood" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/grey
 	required_other = 1
@@ -29,7 +29,7 @@
 /datum/chemical_reaction/slimemutate
 	name = "Mutation Toxin"
 	result = /datum/reagent/slimetoxin
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_other = 1
 	required_container = /obj/item/slime_extract/green
@@ -37,7 +37,7 @@
 //Metal
 /datum/chemical_reaction/slimemetal
 	name = "Slime Metal"
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/metal
 	required_other = 1
@@ -50,7 +50,7 @@
 //Gold
 /datum/chemical_reaction/slimecrit
 	name = "Slime Crit"
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/gold
 	required_other = 1
@@ -94,7 +94,7 @@
 //Silver
 /datum/chemical_reaction/slimebork
 	name = "Slime Bork"
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/silver
 	required_other = 1
@@ -122,7 +122,7 @@
 /datum/chemical_reaction/slimefrost
 	name = "Slime Frost Oil"
 	result = /datum/reagent/frostoil
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 10
 	required_container = /obj/item/slime_extract/blue
 	required_other = 1
@@ -130,7 +130,7 @@
 //Dark Blue
 /datum/chemical_reaction/slimefreeze
 	name = "Slime Freeze"
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/darkblue
 	required_other = 1
@@ -148,14 +148,14 @@
 /datum/chemical_reaction/slimecasp
 	name = "Slime Capsaicin Oil"
 	result = /datum/reagent/capsaicin
-	required_reagents = list("blood" = 5)
+	required_reagents = alist("blood" = 5)
 	result_amount = 10
 	required_container = /obj/item/slime_extract/orange
 	required_other = 1
 
 /datum/chemical_reaction/slimefire
 	name = "Slime fire"
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/orange
 	required_other = 1
@@ -172,7 +172,7 @@
 //Yellow
 /datum/chemical_reaction/slimeoverload
 	name = "Slime EMP"
-	required_reagents = list("blood" = 5)
+	required_reagents = alist("blood" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/yellow
 	required_other = 1
@@ -182,7 +182,7 @@
 
 /datum/chemical_reaction/slimecell
 	name = "Slime Powercell"
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/yellow
 	required_other = 1
@@ -192,7 +192,7 @@
 
 /datum/chemical_reaction/slimeglow
 	name = "Slime Glow"
-	required_reagents = list("water" = 5)
+	required_reagents = alist("water" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/yellow
 	required_other = 1
@@ -205,7 +205,7 @@
 //Purple
 /datum/chemical_reaction/slimepsteroid
 	name = "Slime Steroid"
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/purple
 	required_other = 1
@@ -216,7 +216,7 @@
 /datum/chemical_reaction/slimejam
 	name = "Slime Jam"
 	result = /datum/reagent/toxin/slimejelly
-	required_reagents = list("sugar" = 5)
+	required_reagents = alist("sugar" = 5)
 	result_amount = 10
 	required_container = /obj/item/slime_extract/purple
 	required_other = 1
@@ -224,7 +224,7 @@
 //Dark Purple
 /datum/chemical_reaction/slimeplasma
 	name = "Slime Plasma"
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/darkpurple
 	required_other = 1
@@ -236,14 +236,14 @@
 /datum/chemical_reaction/slimeglycerol
 	name = "Slime Glycerol"
 	result = /datum/reagent/glycerol
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 8
 	required_container = /obj/item/slime_extract/red
 	required_other = 1
 
 /datum/chemical_reaction/slimebloodlust
 	name = "Bloodlust"
-	required_reagents = list("blood" = 5)
+	required_reagents = alist("blood" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/red
 	required_other = 1
@@ -257,7 +257,7 @@
 //Pink
 /datum/chemical_reaction/slimeppotion
 	name = "Slime Potion"
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/pink
 	required_other = 1
@@ -269,7 +269,7 @@
 /datum/chemical_reaction/slimemutate2
 	name = "Advanced Mutation Toxin"
 	result = /datum/reagent/toxin/amatoxin
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_other = 1
 	required_container = /obj/item/slime_extract/black
@@ -277,7 +277,7 @@
 //Oil
 /datum/chemical_reaction/slimeexplosion
 	name = "Slime Explosion"
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/oil
 	required_other = 1
@@ -292,7 +292,7 @@
 	name = "Slime Potion 2"
 	result_amount = 1
 	required_container = /obj/item/slime_extract/lightpink
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	required_other = 1
 
 /datum/chemical_reaction/slimepotion2/on_reaction(datum/reagents/holder)
@@ -301,7 +301,7 @@
 //Adamantine
 /datum/chemical_reaction/slimegolem
 	name = "Slime Golem"
-	required_reagents = list("plasma" = 5)
+	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/adamantine
 	required_other = 1
@@ -315,7 +315,7 @@
 /datum/chemical_reaction/slimepepper
 	name = "Slime Condensedcapaicin"
 	result = /datum/reagent/condensedcapsaicin
-	required_reagents = list("sugar" = 1)
+	required_reagents = alist("sugar" = 1)
 	result_amount = 1
 	required_container = /obj/item/slime_core
 	required_other = 1
@@ -323,7 +323,7 @@
 /datum/chemical_reaction/slimefrost
 	name = "Slime Frost Oil"
 	result = /datum/reagent/frostoil
-	required_reagents = list("water" = 1)
+	required_reagents = alist("water" = 1)
 	result_amount = 1
 	required_container = /obj/item/slime_core
 	required_other = 1
@@ -331,14 +331,14 @@
 /datum/chemical_reaction/slimeglycerol
 	name = "Slime Glycerol"
 	result = /datum/reagent/glycerol
-	required_reagents = list("blood" = 1)
+	required_reagents = alist("blood" = 1)
 	result_amount = 1
 	required_container = /obj/item/slime_core
 	required_other = 1
 
 /datum/chemical_reaction/slime_explosion
 	name = "Slime Explosion"
-	required_reagents = list("blood" = 1)
+	required_reagents = alist("blood" = 1)
 	result_amount = 2
 	required_container = /obj/item/slime_core
 	required_other = 2
@@ -354,14 +354,14 @@
 /datum/chemical_reaction/slimejam
 	name = "Slime Jam"
 	result = /datum/reagent/toxin/slimejelly
-	required_reagents = list("water" = 1)
+	required_reagents = alist("water" = 1)
 	result_amount = 1
 	required_container = /obj/item/slime_core
 	required_other = 2
 
 /datum/chemical_reaction/slimesynthi
 	name = "Slime Synthetic Flesh"
-	required_reagents = list("sugar" = 1)
+	required_reagents = alist("sugar" = 1)
 	result_amount = 1
 	required_container = /obj/item/slime_core
 	required_other = 2
@@ -373,7 +373,7 @@
 /datum/chemical_reaction/slimeenzyme
 	name = "Slime Enzyme"
 	result = /datum/reagent/enzyme
-	required_reagents = list("blood" = 1, "water" = 1)
+	required_reagents = alist("blood" = 1, "water" = 1)
 	result_amount = 2
 	required_container = /obj/item/slime_core
 	required_other = 3
@@ -381,14 +381,14 @@
 /datum/chemical_reaction/slimeplasma
 	name = "Slime Plasma"
 	result = /datum/reagent/plasma
-	required_reagents = list("sugar" = 1, "blood" = 2)
+	required_reagents = alist("sugar" = 1, "blood" = 2)
 	result_amount = 2
 	required_container = /obj/item/slime_core
 	required_other = 3
 
 /datum/chemical_reaction/slimevirus
 	name = "Slime Virus"
-	required_reagents = list("sugar" = 1, "sacid" = 1)
+	required_reagents = alist("sugar" = 1, "sacid" = 1)
 	result_amount = 2
 	required_container = /obj/item/slime_core
 	required_other = 3
@@ -408,7 +408,7 @@
 
 /datum/chemical_reaction/slimeteleport
 	name = "Slime Teleport"
-	required_reagents = list("pacid" = 2, "mutagen" = 2)
+	required_reagents = alist("pacid" = 2, "mutagen" = 2)
 	required_catalysts = list("plasma" = 1)
 	result_amount = 1
 	required_container = /obj/item/slime_core
@@ -468,7 +468,7 @@
 
 /datum/chemical_reaction/slimecrit
 	name = "Slime Crit"
-	required_reagents = list("sacid" = 1, "blood" = 1)
+	required_reagents = alist("sacid" = 1, "blood" = 1)
 	required_catalysts = list("plasma" = 1)
 	result_amount = 1
 	required_container = /obj/item/slime_core
@@ -507,7 +507,7 @@
 
 /datum/chemical_reaction/slimebork
 	name = "Slime Bork"
-	required_reagents = list("sugar" = 1, "water" = 1)
+	required_reagents = alist("sugar" = 1, "water" = 1)
 	result_amount = 2
 	required_container = /obj/item/slime_core
 	required_other = 4
@@ -533,7 +533,7 @@
 /datum/chemical_reaction/slimechloral
 	name = "Slime Chloral"
 	result = /datum/reagent/toxin/chloralhydrate
-	required_reagents = list("blood" = 1, "water" = 2)
+	required_reagents = alist("blood" = 1, "water" = 2)
 	result_amount = 2
 	required_container = /obj/item/slime_core
 	required_other = 5
@@ -541,7 +541,7 @@
 
 /datum/chemical_reaction/slimeretro
 	name = "Slime Retro"
-	required_reagents = list("sugar" = 1)
+	required_reagents = alist("sugar" = 1)
 	result_amount = 1
 	required_container = /obj/item/slime_core
 	required_other = 5
@@ -554,7 +554,7 @@
 
 /datum/chemical_reaction/slimefoam
 	name = "Slime Foam"
-	required_reagents = list("sacid" = 1)
+	required_reagents = alist("sacid" = 1)
 	result_amount = 2
 	required_container = /obj/item/slime_core
 	required_other = 5
