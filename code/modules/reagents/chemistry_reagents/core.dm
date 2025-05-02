@@ -745,30 +745,6 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/datum/reagent/nanites
-	name = "Nanomachines"
-	id = "nanites"
-	description = "Microscopic construction robots."
-	reagent_state = REAGENT_LIQUID
-	color = "#535E66" // rgb: 83, 94, 102
-
-/datum/reagent/nanites/reaction_mob(mob/M, method = TOUCH, volume)
-	qdel(src)
-	if((prob(10) && method == TOUCH) || method == INGEST)
-		M.contract_disease(new /datum/disease/robotic_transformation(0), 1)
-
-/datum/reagent/xenomicrobes
-	name = "Xenomicrobes"
-	id = "xenomicrobes"
-	description = "Microbes with an entirely alien cellular structure."
-	reagent_state = REAGENT_LIQUID
-	color = "#535E66" // rgb: 83, 94, 102
-
-/datum/reagent/xenomicrobes/reaction_mob(mob/M, method = TOUCH, volume)
-	qdel(src)
-	if((prob(10) && method == TOUCH) || method == INGEST)
-		M.contract_disease(new /datum/disease/xeno_transformation(0), 1)
-
 /datum/reagent/fluorosurfactant //foam precursor
 	name = "Fluorosurfactant"
 	id = "fluorosurfactant"

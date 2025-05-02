@@ -1725,6 +1725,7 @@
 #include "code\modules\reagents\chemistry_reagents\_reagent.dm"
 #include "code\modules\reagents\chemistry_reagents\antidepressants.dm"
 #include "code\modules\reagents\chemistry_reagents\core.dm"
+#include "code\modules\reagents\chemistry_reagents\disease.dm"
 #include "code\modules\reagents\chemistry_reagents\drinks.dm"
 #include "code\modules\reagents\chemistry_reagents\ethanol.dm"
 #include "code\modules\reagents\chemistry_reagents\food.dm"
