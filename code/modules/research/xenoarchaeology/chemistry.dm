@@ -45,20 +45,20 @@
 
 /datum/chemical_reaction/lithiumsodiumtungstate	//LiNa2WO4, not the easiest chem to mix
 	name = "Lithium Sodium Tungstate"
-	result = "lithiumsodiumtungstate"
+	result = /datum/reagent/lithiumsodiumtungstate
 	required_reagents = list("lithium" = 1, "sodium" = 2, "tungsten" = 1, "oxygen" = 4)
 	result_amount = 8
 
 /datum/chemical_reaction/density_separated_liquid
 	name = "Density separated sample"
-	result = "density_separated_sample"
+	result = /datum/reagent/density_separated_sample
 	secondary_results = list("chemical_waste" = 1)
 	required_reagents = list("ground_rock" = 1, "lithiumsodiumtungstate" = 2)
 	result_amount = 2
 
 /datum/chemical_reaction/analysis_liquid
 	name = "Analysis sample"
-	result = "analysis_sample"
+	result = /datum/reagent/analysis_sample
 	secondary_results = list("chemical_waste" = 1)
 	required_reagents = list("density_separated_sample" = 5)
 	result_amount = 4

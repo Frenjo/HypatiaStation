@@ -308,11 +308,15 @@
 						remove_reagent(B, (multiplier * C.required_reagents[B]), safety = 1)
 
 					var/created_volume = C.result_amount * multiplier
-					if(C.result)
-						feedback_add_details("chemical_reaction", "[C.result]|[C.result_amount * multiplier]")
+					if(isnotnull(C.result))
+						// Temporary patch until reagent IDs are removed.
+						var/datum/reagent/result_path = C.result
+						var/result_id = initial(result_path.id)
+						// End temporary patch.
+						feedback_add_details("chemical_reaction", "[result_id]|[C.result_amount * multiplier]")
 						multiplier = max(multiplier, 1) //this shouldnt happen ...
-						add_reagent(C.result, C.result_amount * multiplier)
-						set_data(C.result, preserved_data)
+						add_reagent(result_id, C.result_amount * multiplier)
+						set_data(result_id, preserved_data)
 
 						//add secondary products
 						for(var/S in C.secondary_results)

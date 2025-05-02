@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////
 /datum/chemical_reaction/explosion_potassium
 	name = "Explosion"
-	result = null
 	required_reagents = list("water" = 1, "potassium" = 1)
 	result_amount = 2
 
@@ -19,7 +18,6 @@
 
 /datum/chemical_reaction/emp_pulse
 	name = "EMP Pulse"
-	result = null
 	required_reagents = list("uranium" = 1, "iron" = 1) // Yes, laugh, it's the best recipe I could think of that makes a little bit of sense
 	result_amount = 2
 
@@ -31,7 +29,6 @@
 
 /datum/chemical_reaction/flash_powder
 	name = "Flash powder"
-	result = null
 	required_reagents = list("aluminum" = 1, "potassium" = 1, "sulfur" = 1 )
 	result_amount = null
 
@@ -58,7 +55,6 @@
 
 /datum/chemical_reaction/napalm
 	name = "Napalm"
-	result = null
 	required_reagents = list("aluminum" = 1, "plasma" = 1, "sacid" = 1 )
 	result_amount = 1
 
@@ -74,7 +70,6 @@
 /*
 /datum/chemical_reaction/smoke
 	name = "Smoke"
-	result = null
 	required_reagents = list("potassium" = 1, "sugar" = 1, "phosphorus" = 1)
 	result_amount = null
 	secondary = 1
@@ -100,7 +95,6 @@
 
 /datum/chemical_reaction/chemsmoke
 	name = "Chemsmoke"
-	result = null
 	required_reagents = list("potassium" = 1, "sugar" = 1, "phosphorus" = 1)
 	result_amount = 0.4
 	secondary = 1

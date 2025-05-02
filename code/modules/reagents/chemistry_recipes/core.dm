@@ -1,39 +1,39 @@
 ///////////////////////////////////////////////////////////////////////////////////
 /datum/chemical_reaction/water //I can't believe we never had this.
 	name = "Water"
-	result = null
+	result = /datum/reagent/water
 	required_reagents = list("oxygen" = 2, "hydrogen" = 1)
 	result_amount = 1
 
 /datum/chemical_reaction/lube
 	name = "Space Lube"
-	result = "lube"
+	result = /datum/reagent/lube
 	required_reagents = list("water" = 1, "silicon" = 1, "oxygen" = 1)
 	result_amount = 4
 
 /datum/chemical_reaction/space_drugs
 	name = "Space Drugs"
-	result = "space_drugs"
+	result = /datum/reagent/space_drugs
 	required_reagents = list("mercury" = 1, "sugar" = 1, "lithium" = 1)
 	result_amount = 3
 
 /*
 /datum/chemical_reaction/silicate
 	name = "Silicate"
-	result = "silicate"
+	result = /datum/reagent/silicate
 	required_reagents = list("aluminum" = 1, "silicon" = 1, "oxygen" = 1)
 	result_amount = 3
 */
 
 /datum/chemical_reaction/glycerol
 	name = "Glycerol"
-	result = "glycerol"
+	result = /datum/reagent/glycerol
 	required_reagents = list("cornoil" = 3, "sacid" = 1)
 	result_amount = 1
 
 /datum/chemical_reaction/nitroglycerin
 	name = "Nitroglycerin"
-	result = "nitroglycerin"
+	result = /datum/reagent/nitroglycerin
 	required_reagents = list("glycerol" = 1, "pacid" = 1, "sacid" = 1)
 	result_amount = 2
 
@@ -52,20 +52,20 @@
 
 /datum/chemical_reaction/thermite
 	name = "Thermite"
-	result = "thermite"
+	result = /datum/reagent/thermite
 	required_reagents = list("aluminum" = 1, "iron" = 1, "oxygen" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/virus_food
 	name = "Virus Food"
-	result = "virusfood"
+	result = /datum/reagent/virus_food
 	required_reagents = list("water" = 1, "milk" = 1)
 	result_amount = 5
 
 /*
 /datum/chemical_reaction/mix_virus
 	name = "Mix Virus"
-	result = "blood"
+	result = /datum/reagent/blood
 	required_reagents = list("virusfood" = 5)
 	required_catalysts = list("blood")
 	var/level = 2
@@ -96,26 +96,25 @@
 
 /datum/chemical_reaction/space_cleaner
 	name = "Space cleaner"
-	result = "cleaner"
+	result = /datum/reagent/space_cleaner
 	required_reagents = list("ammonia" = 1, "water" = 1)
 	result_amount = 2
 
 /datum/chemical_reaction/impedrezene
 	name = "Impedrezene"
-	result = "impedrezene"
+	result = /datum/reagent/impedrezene
 	required_reagents = list("mercury" = 1, "oxygen" = 1, "sugar" = 1)
 	result_amount = 2
 
 // foam and foam precursor
 /datum/chemical_reaction/surfactant
 	name = "Foam surfactant"
-	result = "fluorosurfactant"
+	result = /datum/reagent/fluorosurfactant
 	required_reagents = list("fluorine" = 2, "carbon" = 2, "sacid" = 1)
 	result_amount = 5
 
 /datum/chemical_reaction/foam
 	name = "Foam"
-	result = null
 	required_reagents = list("fluorosurfactant" = 1, "water" = 1)
 	result_amount = 2
 
@@ -140,7 +139,6 @@
 
 /datum/chemical_reaction/metalfoam
 	name = "Metal Foam"
-	result = null
 	required_reagents = list("aluminum" = 3, "foaming_agent" = 1, "pacid" = 1)
 	result_amount = 5
 
@@ -156,7 +154,6 @@
 
 /datum/chemical_reaction/ironfoam
 	name = "Iron Foam"
-	result = null
 	required_reagents = list("iron" = 3, "foaming_agent" = 1, "pacid" = 1)
 	result_amount = 5
 
@@ -172,26 +169,26 @@
 
 /datum/chemical_reaction/foaming_agent
 	name = "Foaming Agent"
-	result = "foaming_agent"
+	result = /datum/reagent/foaming_agent
 	required_reagents = list("lithium" = 1, "hydrogen" = 1)
 	result_amount = 1
 
 // Synthesizing these two chemicals is pretty complex in real life, but fuck it, it's just a game!
 /datum/chemical_reaction/ammonia
 	name = "Ammonia"
-	result = "ammonia"
+	result = /datum/reagent/ammonia
 	required_reagents = list("hydrogen" = 3, "nitrogen" = 1)
 	result_amount = 3
 
 /datum/chemical_reaction/diethylamine
 	name = "Diethylamine"
-	result = "diethylamine"
+	result = /datum/reagent/diethylamine
 	required_reagents = list("ammonia" = 1, "ethanol" = 1)
 	result_amount = 2
 
 // This is a horrible rip off based on /tg/'s chemical reactions for plastic-making.
 /datum/chemical_reaction/oil
 	name = "Oil"
-	result = "oil"
+	result = /datum/reagent/oil
 	required_reagents = list("fuel" = 1, "carbon" = 1, "hydrogen" = 1)
 	result_amount = 3
