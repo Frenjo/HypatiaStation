@@ -4,10 +4,9 @@
 	anchored = FALSE
 	density = TRUE
 
-
-/obj/machinery/iv_drip/var/mob/living/carbon/human/attached = null
-/obj/machinery/iv_drip/var/mode = 1 // 1 is injecting, 0 is taking blood.
-/obj/machinery/iv_drip/var/obj/item/reagent_holder/beaker = null
+	var/mob/living/carbon/human/attached = null
+	var/mode = 1 // 1 is injecting, 0 is taking blood.
+	var/obj/item/reagent_holder/beaker = null
 
 /obj/machinery/iv_drip/update_icon()
 	if(src.attached)

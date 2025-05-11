@@ -35,3 +35,6 @@
 #define SAFE	BITFLAG(4)
 
 #define ENGINE_EJECT_Z	3
+
+// Used by cloning computers and cloning machines.
+#define CLONE_BIOMASS 1

@@ -3,8 +3,6 @@
 
 //Potential replacement for genetics revives or something I dunno (?)
 
-#define CLONE_BIOMASS 1
-
 /obj/machinery/clonepod
 	anchored = TRUE
 	name = "cloning pod"
