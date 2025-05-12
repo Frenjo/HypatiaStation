@@ -1,6 +1,6 @@
 /mob/living/silicon/decoy
 	name = "AI"
-	icon = 'icons/mob/AI.dmi'//
+	icon = 'icons/mob/silicon/AI.dmi'//
 	icon_state = "ai"
 	anchored = TRUE // -- TLE
 	canmove = FALSE

@@ -174,7 +174,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 							if(2,3)
 								halbody = image('icons/mob/human.dmi', target, "husk_s", TURF_LAYER)
 							if(4)
-								halbody = image('icons/mob/alien.dmi', target, "alienother", TURF_LAYER)
+								halbody = image('icons/mob/simple/alien.dmi', target, "alienother", TURF_LAYER)
 	//						if(5)
 	//							halbody = image('xcomalien.dmi',target,"chryssalid",TURF_LAYER)
 
@@ -343,7 +343,7 @@ proc/check_panel(mob/M)
 /proc/fake_blood(mob/target)
 	var/obj/effect/overlay/O = new /obj/effect/overlay(target.loc)
 	O.name = "blood"
-	var/image/I = image('icons/effects/blood.dmi', O, "floor[rand(1, 7)]", O.dir, 1)
+	var/image/I = image('icons/effects/decals/blood.dmi', O, "floor[rand(1, 7)]", O.dir, 1)
 	target << I
 	spawn(300)
 		qdel(O)

@@ -4,7 +4,7 @@
 /obj/item/alien_embryo
 	name = "alien embryo"
 	desc = "All slimy and yuck."
-	icon = 'icons/mob/alien.dmi'
+	icon = 'icons/mob/simple/alien.dmi'
 	icon_state = "larva0_dead"
 	var/mob/living/affected_mob
 	var/stage = 0
@@ -91,9 +91,9 @@
 		return
 
 	if(affected_mob.lying)
-		affected_mob.overlays += image('icons/mob/alien.dmi', loc = affected_mob, icon_state = "burst_lie")
+		affected_mob.overlays += image('icons/mob/simple/alien.dmi', loc = affected_mob, icon_state = "burst_lie")
 	else
-		affected_mob.overlays += image('icons/mob/alien.dmi', loc = affected_mob, icon_state = "burst_stand")
+		affected_mob.overlays += image('icons/mob/simple/alien.dmi', loc = affected_mob, icon_state = "burst_stand")
 	spawn(6)
 		var/mob/living/carbon/alien/larva/new_xeno = new(affected_mob.loc)
 		new_xeno.key = picked
@@ -115,7 +115,7 @@ Des: Removes all infection images from aliens and places an infection image on a
 			for(var/mob/living/L in GLOBL.mob_list)
 				if(iscorgi(L) || iscarbon(L))
 					if(L.status_flags & XENO_HOST)
-						var/I = image('icons/mob/alien.dmi', loc = L, icon_state = "infected[stage]")
+						var/I = image('icons/mob/simple/alien.dmi', loc = L, icon_state = "infected[stage]")
 						alien.client.images += I
 
 /*----------------------------------------
@@ -127,7 +127,7 @@ Des: Checks if the passed mob (C) is infected with the alien egg, then gives eac
 		for(var/mob/living/carbon/alien/alien in GLOBL.player_list)
 			if(alien.client)
 				if(C.status_flags & XENO_HOST)
-					var/I = image('icons/mob/alien.dmi', loc = C, icon_state = "infected[stage]")
+					var/I = image('icons/mob/simple/alien.dmi', loc = C, icon_state = "infected[stage]")
 					alien.client.images += I
 
 /*----------------------------------------

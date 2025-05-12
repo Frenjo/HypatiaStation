@@ -115,7 +115,7 @@
 /obj/item/cell/slime
 	name = "charged slime core"
 	desc = "A yellow slime core infused with plasma, it crackles with power."
-	icon = 'icons/mob/slimes.dmi'
+	icon = 'icons/mob/simple/slimes.dmi'
 	icon_state = "yellow slime extract"
 
 	origin_tech = alist(/decl/tech/biotech = 4, /decl/tech/power_storage = 2)

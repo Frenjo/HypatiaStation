@@ -65,11 +65,11 @@ var/list/uristrune_cache = list()
 	if(lookup in uristrune_cache)
 		return uristrune_cache[lookup]
 
-	var/icon/I = icon('icons/effects/uristrunes.dmi', "blank")
+	var/icon/I = icon('icons/effects/decals/uristrunes.dmi', "blank")
 
 	for(var/i = 0, i < 10, i++)
 		if(BITTEST(symbol_bits, i))
-			I.Blend(icon('icons/effects/uristrunes.dmi', "rune-[1 << i]"), ICON_OVERLAY)
+			I.Blend(icon('icons/effects/decals/uristrunes.dmi', "rune-[1 << i]"), ICON_OVERLAY)
 
 
 	I.SwapColor(rgb(0, 0, 0, 100), rgb(100, 0, 0, 200))

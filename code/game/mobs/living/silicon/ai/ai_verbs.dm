@@ -44,7 +44,7 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 
 			if(Entry[1] == ckey && Entry[2] == real_name)
 				custom_sprite = TRUE //They're in the list? Custom sprite time
-				icon = 'icons/mob/custom-synthetic.dmi'
+				icon = 'icons/mob/silicon/custom-synthetic.dmi'
 
 		//if(icon_state == initial(icon_state))
 	var/icontype = ""
@@ -245,9 +245,9 @@ GLOBAL_GLOBL_LIST_INIT(ai_verbs_default, list(
 			qdel(holo_icon)
 			switch(input)
 				if("default")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "holo1"))
+					holo_icon = getHologramIcon(icon('icons/mob/silicon/AI.dmi', "holo1"))
 				if("floating face")
-					holo_icon = getHologramIcon(icon('icons/mob/AI.dmi', "holo2"))
+					holo_icon = getHologramIcon(icon('icons/mob/silicon/AI.dmi', "holo2"))
 
 /*
  * Return To Main Core (Malfunction)

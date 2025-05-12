@@ -117,7 +117,7 @@
 
 /mob/living/carbon/monkey/update_fire(var/update_icons=1)
 	if(on_fire)
-		overlays_standing[M_FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing", "layer"= -M_FIRE_LAYER)
+		overlays_standing[M_FIRE_LAYER] = image("icon" = 'icons/mob/on_fire.dmi', "icon_state" = "standing", "layer" = -M_FIRE_LAYER)
 	else
 		overlays_standing[M_FIRE_LAYER] = null
 	if(update_icons)
@@ -132,4 +132,3 @@
 #undef TARGETED_LAYER
 #undef M_FIRE_LAYER
 #undef M_TOTAL_LAYERS
-

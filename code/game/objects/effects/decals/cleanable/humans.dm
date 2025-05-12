@@ -9,12 +9,12 @@
 	density = FALSE
 	anchored = TRUE
 	layer = 2
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/effects/decals/blood.dmi'
 	icon_state = "mfloor1"
 	random_icon_states = list("mfloor1", "mfloor2", "mfloor3", "mfloor4", "mfloor5", "mfloor6", "mfloor7")
 	blood_DNA = list()
 
-	var/base_icon = 'icons/effects/blood.dmi'
+	var/base_icon = 'icons/effects/decals/blood.dmi'
 	var/list/datum/disease/viruses = list()
 	var/basecolor = "#A10808" // Color when wet.
 	var/list/datum/disease2/disease/virus2 = list()
@@ -144,7 +144,7 @@
 	density = FALSE
 	anchored = TRUE
 	layer = 2
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/effects/decals/blood.dmi'
 	icon_state = "gibbl5"
 	random_icon_states = list("gib1", "gib2", "gib3", "gib4", "gib5", "gib6")
 
@@ -205,7 +205,7 @@
 	density = FALSE
 	anchored = TRUE
 	layer = 2
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/effects/decals/blood.dmi'
 	icon_state = "mucus"
 	random_icon_states = list("mucus")
 

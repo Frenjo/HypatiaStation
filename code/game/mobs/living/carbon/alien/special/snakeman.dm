@@ -43,7 +43,7 @@
 
 /obj/effect/snake_egg
 	name = "Egg"
-	icon = 'icons/mob/alien.dmi'
+	icon = 'icons/mob/simple/alien.dmi'
 	icon_state = "egg"
 	density = TRUE
 	anchored = TRUE

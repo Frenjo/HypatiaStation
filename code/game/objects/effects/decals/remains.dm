@@ -2,7 +2,7 @@
 	name = "remains"
 	desc = "They look like human remains. They have a strange aura about them."
 	gender = PLURAL
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/effects/decals/blood.dmi'
 	icon_state = "remains"
 	anchored = TRUE
 
@@ -10,7 +10,7 @@
 	name = "remains"
 	desc = "They look like the remains of something... alien. They have a strange aura about them."
 	gender = PLURAL
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/effects/decals/blood.dmi'
 	icon_state = "remainsxeno"
 	anchored = TRUE
 

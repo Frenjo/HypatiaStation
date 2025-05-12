@@ -734,7 +734,7 @@
 
 			if(Entry[1] == ckey && Entry[2] == real_name) // They're in the list? Custom sprite time, var and icon change required.
 				custom_sprite = TRUE
-				icon = 'icons/mob/custom-synthetic.dmi'
+				icon = 'icons/mob/silicon/custom-synthetic.dmi'
 				if(icon_state == "robot")
 					icon_state = "[ckey]-Standard"
 

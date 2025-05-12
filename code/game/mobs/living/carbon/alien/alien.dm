@@ -1,7 +1,7 @@
 /mob/living/carbon/alien
 	name = "alien"
 	desc = "What IS that?"
-	icon = 'icons/mob/alien.dmi'
+	icon = 'icons/mob/simple/alien.dmi'
 	icon_state = "alien"
 	pass_flags = PASS_FLAG_TABLE
 	melee_damage_lower = 1

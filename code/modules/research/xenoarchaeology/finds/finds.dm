@@ -428,7 +428,7 @@
 			//humanoid remains
 			apply_prefix = 0
 			item_type = "humanoid [pick("remains","skeleton")]"
-			icon = 'icons/effects/blood.dmi'
+			icon = 'icons/effects/decals/blood.dmi'
 			icon_state = "remains"
 			additional_desc = pick("They appear almost human.",\
 				"They are contorted in a most gruesome way.",\
@@ -444,7 +444,7 @@
 			//robot remains
 			apply_prefix = 0
 			item_type = "[pick("mechanical", "robotic", "cyborg")] [pick("remains", "chassis", "debris")]"
-			icon = 'icons/effects/blood.dmi'
+			icon = 'icons/effects/decals/blood.dmi'
 			icon_state = "remainsrobot"
 			additional_desc = pick("Almost mistakeable for the remains of a modern cyborg.",\
 				"They are barely recognisable as anything other than a pile of waste metals.",\
@@ -460,7 +460,7 @@
 			//xenos remains
 			apply_prefix = 0
 			item_type = "alien [pick("remains", "skeleton")]"
-			icon = 'icons/effects/blood.dmi'
+			icon = 'icons/effects/decals/blood.dmi'
 			icon_state = "remainsxeno"
 			additional_desc = pick("It looks vaguely reptilian, but with more teeth.",\
 				"They are faintly unsettling.",\

@@ -1,6 +1,6 @@
 /mob/living/carbon/slime
 	name = "baby slime"
-	icon = 'icons/mob/slimes.dmi'
+	icon = 'icons/mob/simple/slimes.dmi'
 	icon_state = "grey baby slime"
 	pass_flags = PASS_FLAG_TABLE
 	speak_emote = list("hums")
@@ -55,7 +55,7 @@
 
 /mob/living/carbon/slime/adult
 	name = "adult slime"
-	icon = 'icons/mob/slimes.dmi'
+	icon = 'icons/mob/simple/slimes.dmi'
 	icon_state = "grey adult slime"
 	speak_emote = list("telepathically chirps")
 
@@ -446,7 +446,7 @@
 /obj/item/slime_extract
 	name = "slime extract"
 	desc = "Goo extracted from a slime. Legends claim these to have \"magical powers\"."
-	icon = 'icons/mob/slimes.dmi'
+	icon = 'icons/mob/simple/slimes.dmi'
 	icon_state = "grey slime extract"
 	force = 1.0
 	w_class = 1.0
@@ -775,7 +775,7 @@
 /obj/item/slime_core
 	name = "slime extract"
 	desc = "Goo extracted from a slime. Legends claim these to have \"magical powers\"."
-	icon = 'icons/mob/slimes.dmi'
+	icon = 'icons/mob/simple/slimes.dmi'
 	icon_state = "slime extract"
 	flags = TABLEPASS
 	force = 1.0

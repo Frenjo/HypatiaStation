@@ -38,7 +38,7 @@ Des: Gives the client of the alien an image on each infected mob.
 		for(var/mob/living/C in GLOBL.mob_list)
 			if(C.status_flags & XENO_HOST)
 				var/obj/item/alien_embryo/A = locate() in C
-				client.images.Add(image('icons/mob/alien.dmi', loc = C, icon_state = "infected[A.stage]"))
+				client.images.Add(image('icons/mob/simple/alien.dmi', loc = C, icon_state = "infected[A.stage]"))
 
 /*
 ----------------------------------------
@@ -72,7 +72,7 @@ Des: Removes all infected images from the alien.
 
 /* TODO: Convert this over.
 /mob/living/carbon/human/alien/queen/large
-	icon = 'icons/mob/alienqueen.dmi'
+	icon = 'icons/mob/simple/alienqueen.dmi'
 	icon_state = "queen_s"
 	pixel_x = -16
 /mob/living/carbon/human/alien/queen/large/update_icons()

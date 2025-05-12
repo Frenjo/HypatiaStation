@@ -11,7 +11,7 @@ var/const/MAX_ACTIVE_TIME = 400
 /obj/item/clothing/mask/facehugger
 	name = "alien"
 	desc = "It has some sort of a tube at the end of its tail."
-	icon = 'icons/mob/alien.dmi'
+	icon = 'icons/mob/simple/alien.dmi'
 	icon_state = "facehugger"
 	item_state = "facehugger"
 	w_class = 1 //note: can be picked up by aliens unlike most other items of w_class below 4
@@ -197,7 +197,7 @@ var/const/MAX_ACTIVE_TIME = 400
 
 /*
 	for(var/mob/living/carbon/alien/alien in GLOBL.mob_list)
-		var/image/activeIndicator = image('icons/mob/alien.dmi', loc = src, icon_state = "facehugger_active")
+		var/image/activeIndicator = image('icons/mob/simple/alien.dmi', loc = src, icon_state = "facehugger_active")
 		activeIndicator.override = 1
 		alien?.client?.images += activeIndicator
 */

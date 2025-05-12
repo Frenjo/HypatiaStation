@@ -10,7 +10,7 @@
 
 /mob/living/silicon/ai
 	name = "AI"
-	icon = 'icons/mob/AI.dmi'
+	icon = 'icons/mob/silicon/AI.dmi'
 	icon_state = "ai"
 	anchored = TRUE // -- TLE
 	canmove = FALSE
@@ -66,7 +66,7 @@
 	fully_replace_character_name(newname = picked_name)
 	forceMove(newloc)
 
-	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
+	holo_icon = getHologramIcon(icon('icons/mob/silicon/AI.dmi',"holo1"))
 
 	proc_holder_list = list()
 

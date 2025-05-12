@@ -34,7 +34,7 @@
 	amount = 0
 	random_icon_states = null
 	var/dirs = 0
-	icon = 'icons/effects/fluidtracks.dmi'
+	icon = 'icons/effects/decals/fluidtracks.dmi'
 	icon_state = ""
 	var/coming_state = "blood1"
 	var/going_state = "blood2"

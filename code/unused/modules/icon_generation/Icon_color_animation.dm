@@ -83,7 +83,7 @@
 //----------------------------------------
 
 /proc/generate_color_animation(icon/icon, list/colors, list/frames)
-	var/icon/out = icon('icons/effects/uristrunes.dmi', "")
+	var/icon/out = icon('icons/effects/decals/uristrunes.dmi', "")
 	var/frame_num = 1
 
 	for(var/frame in frames)
@@ -91,6 +91,3 @@
 		out.Insert(I, "", 2, frame_num++, 0, frame[2])
 
 	return out
-
-
-

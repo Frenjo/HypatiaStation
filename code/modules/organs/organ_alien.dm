@@ -110,7 +110,7 @@
 
 /obj/item/organ/xenos
 	name = "xeno organ"
-	icon = 'icons/effects/blood.dmi'
+	icon = 'icons/effects/decals/blood.dmi'
 	desc = "It smells like an accident in a chemical factory."
 
 /obj/item/organ/xenos/eggsac

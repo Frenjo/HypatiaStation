@@ -29,7 +29,7 @@
 /mob/living/simple/hostile/blobspore
 	name = "blob"
 	desc = "Some blob thing."
-	icon = 'icons/mob/critter.dmi'
+	icon = 'icons/mob/simple/critter.dmi'
 	icon_state = "blobsquiggle"
 	icon_living = "blobsquiggle"
 	pass_flags = PASS_FLAG_BLOB

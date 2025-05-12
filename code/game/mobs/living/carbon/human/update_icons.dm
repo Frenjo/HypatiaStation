@@ -554,7 +554,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 			standing.icon = 'icons/mob/on_mob/uniform.dmi'
 
 		if(uniform.blood_DNA)
-			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "uniformblood")
+			var/image/bloodsies = image("icon" = 'icons/effects/decals/blood.dmi', "icon_state" = "uniformblood")
 			bloodsies.color = uniform.blood_color
 			standing.overlays += bloodsies
 
@@ -612,7 +612,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 			standing = image("icon" = 'icons/mob/on_mob/hands.dmi', "icon_state" = "[t_state]")
 
 		if(gloves.blood_DNA)
-			var/image/bloodsies	= image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhands")
+			var/image/bloodsies	= image("icon" = 'icons/effects/decals/blood.dmi', "icon_state" = "bloodyhands")
 			bloodsies.color = gloves.blood_color
 			standing.overlays	+= bloodsies
 		gloves.screen_loc = UI_GLOVES
@@ -621,7 +621,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 
 	else
 		if(blood_DNA)
-			var/image/bloodsies	= image("icon" = 'icons/effects/blood.dmi', "icon_state" = "bloodyhands")
+			var/image/bloodsies	= image("icon" = 'icons/effects/decals/blood.dmi', "icon_state" = "bloodyhands")
 			bloodsies.color = hand_blood_color
 			overlays_standing[GLOVES_LAYER] = bloodsies
 		else
@@ -679,7 +679,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 			standing = image("icon" = 'icons/mob/on_mob/feet.dmi', "icon_state" = "[shoes.icon_state]")
 
 		if(shoes.blood_DNA)
-			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "shoeblood")
+			var/image/bloodsies = image("icon" = 'icons/effects/decals/blood.dmi', "icon_state" = "shoeblood")
 			bloodsies.color = shoes.blood_color
 			standing.overlays += bloodsies
 
@@ -687,7 +687,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 
 	else
 		if(feet_blood_DNA)
-			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "shoeblood")
+			var/image/bloodsies = image("icon" = 'icons/effects/decals/blood.dmi', "icon_state" = "shoeblood")
 			bloodsies.color = feet_blood_color
 			overlays_standing[SHOES_LAYER] = bloodsies
 		else
@@ -724,7 +724,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 				standing = image("icon" = 'icons/mob/on_mob/head.dmi', "icon_state" = "[head.icon_state]")
 
 		if(head.blood_DNA)
-			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "helmetblood")
+			var/image/bloodsies = image("icon" = 'icons/effects/decals/blood.dmi', "icon_state" = "helmetblood")
 			bloodsies.color = head.blood_color
 			standing.overlays += bloodsies
 
@@ -774,7 +774,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 
 		if(wear_suit.blood_DNA)
 			var/obj/item/clothing/suit/S = wear_suit
-			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "[S.blood_overlay_type]blood")
+			var/image/bloodsies = image("icon" = 'icons/effects/decals/blood.dmi', "icon_state" = "[S.blood_overlay_type]blood")
 			bloodsies.color = wear_suit.blood_color
 			standing.overlays += bloodsies
 
@@ -811,7 +811,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 			standing = image("icon" = 'icons/mob/on_mob/mask.dmi', "icon_state" = "[wear_mask.icon_state]")
 
 		if(!istype(wear_mask, /obj/item/clothing/mask/cigarette) && wear_mask.blood_DNA)
-			var/image/bloodsies = image("icon" = 'icons/effects/blood.dmi', "icon_state" = "maskblood")
+			var/image/bloodsies = image("icon" = 'icons/effects/decals/blood.dmi', "icon_state" = "maskblood")
 			bloodsies.color = wear_mask.blood_color
 			standing.overlays += bloodsies
 
@@ -927,9 +927,9 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 		update_icons()
 
 //Adds a collar overlay above the helmet layer if the suit has one
-//	Suit needs an identically named sprite in icons/mob/collar.dmi
+//	Suit needs an identically named sprite in icons/mob/on_mob/collar.dmi
 /mob/living/carbon/human/proc/update_collar(update_icons = 1)
-	var/icon/C = new('icons/mob/collar.dmi')
+	var/icon/C = new('icons/mob/on_mob/collar.dmi')
 	var/image/standing = null
 
 	if(isnotnull(wear_suit))
@@ -944,7 +944,7 @@ GLOBAL_BYOND_LIST_NEW(damage_icon_parts)
 /mob/living/carbon/human/update_fire(update_icons = 1)
 	overlays_standing[FIRE_LAYER] = null
 	if(on_fire)
-		overlays_standing[FIRE_LAYER] = image("icon" = 'icons/mob/OnFire.dmi', "icon_state" = "Standing", "layer" = FIRE_LAYER)
+		overlays_standing[FIRE_LAYER] = image("icon" = 'icons/mob/on_fire.dmi', "icon_state" = "standing", "layer" = FIRE_LAYER)
 
 	if(update_icons)
 		update_icons()

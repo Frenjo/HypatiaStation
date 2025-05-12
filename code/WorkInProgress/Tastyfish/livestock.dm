@@ -1,7 +1,7 @@
 // Base Class
 /mob/living/simple/livestock
 	desc = "Tasty!"
-	icon = 'icons/mob/livestock.dmi'
+	icon = 'icons/mob/simple/livestock.dmi'
 	emote_see = list("shakes its head", "kicks the ground")
 	speak_chance = 1
 	turns_per_move = 15
