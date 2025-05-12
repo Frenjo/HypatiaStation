@@ -4061,10 +4061,7 @@
 /obj/item/stack/sheet/glass{
 	amount = 10
 	},
-/obj/item/cell{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell,
 /turf/open/floor/shuttle/red,
 /area/shuttle/syndicate/mercenary/start)
 "um" = (

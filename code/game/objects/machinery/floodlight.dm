@@ -5,16 +5,17 @@
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "flood00"
 	density = TRUE
+
 	var/on = 0
-	var/obj/item/cell/high/cell = null
+	var/obj/item/cell/cell = null
 	var/use = 5
 	var/unlocked = 0
 	var/open = 0
 	var/brightness_on = 999		//can't remember what the maxed out value is
 
 /obj/machinery/floodlight/New()
-	src.cell = new(src)
-	..()
+	. = ..()
+	cell = new /obj/item/cell/high(src)
 
 /obj/machinery/floodlight/proc/updateicon()
 	icon_state = "flood[open ? "o" : ""][open && cell ? "b" : ""]0[on]"

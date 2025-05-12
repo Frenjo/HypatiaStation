@@ -273,9 +273,7 @@
 		C.forceMove(src)
 		cell = C
 		return
-	cell = new(src)
-	cell.charge = 15000
-	cell.maxcharge = 15000
+	cell = new /obj/item/cell/high(src)
 
 /*/obj/vehicle/proc/add_cabin()   //In airtight.dm -Agouri
 	cabin_air = new

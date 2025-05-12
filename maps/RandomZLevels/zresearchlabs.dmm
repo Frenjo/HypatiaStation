@@ -36,7 +36,7 @@
 "aJ" = (/obj/structure/table,/obj/item/cable_coil{pixel_x = -1; pixel_y = 7},/obj/item/cable_coil{pixel_x = 0; pixel_y = 3},/obj/item/cable_coil{pixel_x = 0; pixel_y = 0},/turf/open/floor/plating/metal,/area/away_mission/labs/cave)
 "aK" = (/obj/structure/table,/turf/open/floor/plating/metal,/area/away_mission/labs/cave)
 "aL" = (/obj/structure/table,/obj/machinery/cell_charger,/obj/machinery/camera{c_tag = "Engineering SMES Room"; dir = 4; network = "SS13"},/turf/open/floor/plating/metal,/area/away_mission/labs/cave)
-"aM" = (/obj/structure/table,/obj/item/airlock_electronics,/obj/item/airlock_electronics,/obj/item/module/power_control,/obj/item/cell/high{charge = 100; maxcharge = 15000},/obj/item/cell/high{charge = 100; maxcharge = 15000},/obj/machinery/light,/turf/open/floor/plating/metal,/area/away_mission/labs/cave)
+"aM" = (/obj/structure/table,/obj/item/airlock_electronics,/obj/item/airlock_electronics,/obj/item/module/power_control,/obj/item/cell/high,/obj/item/cell/high,/obj/machinery/light,/turf/open/floor/plating/metal,/area/away_mission/labs/cave)
 "aN" = (/obj/effect/alien/flesh/weeds/node,/turf/open/desert,/area/away_mission/labs/cave)
 "aO" = (/obj/effect/critter/fleshmonster/fleshslime,/turf/open/desert,/area/away_mission/labs/cave)
 "aP" = (/obj/machinery/door/airlock/engineering,/turf/open/floor/plating/metal,/area/away_mission/labs/cave)

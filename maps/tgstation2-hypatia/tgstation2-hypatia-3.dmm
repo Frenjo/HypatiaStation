@@ -74,7 +74,7 @@
 "jf" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/open/floor/plating/metal/airless,/area/external/tcomsat/exterior)
 "jg" = (/obj/machinery/portable_atmospherics/scrubber,/turf/open/floor/shuttle/white,/area/external/abandoned/ship)
 "jn" = (/obj/machinery/atmospherics/unary/cold_sink/freezer{current_temperature = 80; dir = 1; icon_state = "freezer_1"; on = 1; req_access = list(10)},/turf/open/floor/tiled/grey,/area/external/tcomsat/computer)
-"js" = (/obj/item/cell{charge = 100; maxcharge = 15000},/turf/open/floor/shuttle/white,/area/external/abandoned/ship)
+"js" = (/obj/item/cell/high,/turf/open/floor/shuttle/white,/area/external/abandoned/ship)
 "jw" = (/obj/machinery/power/solar{id = "tcommsforesolar"; name = "Telecoms Fore Solar Array"},/obj/effect/decal/floor/solar_panel,/obj/structure/cable{d2 = 4; icon_state = "0-4"},/turf/open/floor/plating/metal/airless,/area/external/tcomsat/solar/fore)
 "jy" = (/obj/structure/disposaloutlet{dir = 4},/obj/structure/disposalpipe/trunk{dir = 8},/turf/open/floor/plating/metal/airless,/area/external/tcomsat/exterior)
 "jz" = (/turf/closed/wall/reinforced,/area/external/tcomsat/lounge)

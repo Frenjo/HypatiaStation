@@ -1,10 +1,12 @@
 /obj/machinery/space_heater
-	anchored = FALSE
-	density = TRUE
-	icon = 'icons/obj/atmospherics/atmos.dmi'
-	icon_state = "sheater0"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
+	icon = 'icons/obj/atmospherics/atmos.dmi'
+	icon_state = "sheater0"
+
+	anchored = FALSE
+	density = TRUE
+
 	var/obj/item/cell/cell
 	var/on = 0
 	var/open = 0
@@ -12,12 +14,9 @@
 	var/heating_power = 40000
 
 /obj/machinery/space_heater/New()
-	..()
-	cell = new(src)
-	cell.charge = 1000
-	cell.maxcharge = 1000
+	. = ..()
+	cell = new /obj/item/cell(src)
 	update_icon()
-	return
 
 /obj/machinery/space_heater/update_icon()
 	overlays.Cut()

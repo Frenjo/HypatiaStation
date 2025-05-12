@@ -11906,14 +11906,8 @@
 "efp" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
+/obj/item/cell/high,
 /turf/open/floor/tiled/white,
 /area/station/research/development)
 "efs" = (
@@ -12784,10 +12778,7 @@
 "eAH" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
 /obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom (General)";
@@ -27554,10 +27545,7 @@
 "jIy" = (
 /obj/structure/table,
 /obj/item/plant_analyser,
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
 /turf/open/floor/plating/metal,
 /area/station/storage/tech)
 "jID" = (
@@ -40020,9 +40008,7 @@
 	layer = 2.9
 	},
 /obj/item/module/power_control,
-/obj/item/cell{
-	maxcharge = 2000
-	},
+/obj/item/cell,
 /turf/open/floor/tiled/grey,
 /area/station/cargo/bay/warehouse)
 "nZR" = (
@@ -50676,21 +50662,12 @@
 /area/station/security/main)
 "rMt" = (
 /obj/machinery/cell_charger,
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
+/obj/item/cell/high,
 /obj/structure/table/reinforced{
 	icon_state = "table"
 	},
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
 /obj/item/stack/cable_coil{
 	pixel_x = 3;
 	pixel_y = -7
@@ -51656,13 +51633,8 @@
 	pixel_x = -8;
 	pixel_y = 4
 	},
+/obj/item/cell/high,
 /obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000;
 	pixel_x = 5;
 	pixel_y = -5
 	},
@@ -64489,14 +64461,8 @@
 /obj/item/clothing/glasses/meson{
 	pixel_y = 4
 	},
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
+/obj/item/cell/high,
 /obj/item/clothing/glasses/welding/superior,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -66312,10 +66278,7 @@
 "xxe" = (
 /obj/structure/table,
 /obj/machinery/cell_charger,
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
 /obj/item/stack/cable_coil{
 	pixel_x = 3;
 	pixel_y = 3
@@ -67143,10 +67106,7 @@
 	pixel_y = 3
 	},
 /obj/item/stack/cable_coil,
-/obj/item/cell/high{
-	charge = 100;
-	maxcharge = 15000
-	},
+/obj/item/cell/high,
 /turf/open/floor/plating/metal,
 /area/station/storage/tech)
 "xMD" = (
