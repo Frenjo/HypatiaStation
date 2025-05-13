@@ -64,8 +64,7 @@ Data storage vars:
 		start()
 
 /datum/global_iterator/Destroy()
-	arg_list.Cut()
-	arg_list = null
+	LAZYCLEARLIST(arg_list)
 	stop()
 	return ..()
 

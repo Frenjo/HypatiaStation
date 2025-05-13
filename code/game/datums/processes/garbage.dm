@@ -27,8 +27,7 @@ PROCESS_DEF(garbage)
 /datum/process/garbage/setup()
 	for(var/garbage in global.delayed_garbage)
 		qdel(garbage)
-	global.delayed_garbage.Cut()
-	global.delayed_garbage = null
+	LAZYCLEARLIST(global.delayed_garbage)
 
 /datum/process/garbage/do_work()
 	if(!garbage_collect)

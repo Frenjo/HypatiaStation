@@ -12,7 +12,7 @@
 	tag = null
 
 	// Closes all NanoUIs attached to the object.
-	if(length(open_uis)) // Inlins the open ui check to avoid unnecessary proc call overhead.
+	if(length(open_uis)) // Inlines the open ui check to avoid unnecessary proc call overhead.
 		global.PCnanoui.close_uis(src)
 
 	return

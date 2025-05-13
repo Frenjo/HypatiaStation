@@ -14,8 +14,7 @@
 /datum/reagents/Destroy()
 	for_no_type_check(var/datum/reagent/R, reagent_list)
 		qdel(R)
-	reagent_list.Cut()
-	reagent_list = null
+	LAZYCLEARLIST(reagent_list)
 	if(my_atom?.reagents == src)
 		my_atom.reagents = null
 	return ..()

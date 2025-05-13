@@ -1,7 +1,7 @@
  // This file contains all Nano procs/definitions for external classes/objects
 
  // Associative list of /datum/nanoui UIs opened on this object, indexed by ui_key.
-/datum/var/tmp/list/open_uis = list()
+/datum/var/tmp/alist/open_uis = null
 // Used by the NanoUI Process (/datum/process/nanoui) to track UIs opened by this mob.
 /mob/var/list/datum/nanoui/opened_uis = list()
 

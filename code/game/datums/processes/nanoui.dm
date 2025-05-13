@@ -152,9 +152,9 @@ PROCESS_DEF(nanoui)
  */
 /datum/process/nanoui/proc/ui_opened(datum/nanoui/ui)
 	var/datum/src_object = ui.src_object
-	LAZYINITLIST(src_object.open_uis)
+	LAZYINITALIST(src_object.open_uis)
 	LAZYDISTINCTADD(ui.user.opened_uis, ui)
-	LAZYDISTINCTADD(src_object.open_uis[ui.ui_key], ui)
+	LAZYASET(src_object.open_uis, ui.ui_key, ui)
 	processing_uis.Add(ui)
 
 /*
