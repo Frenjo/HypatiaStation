@@ -28,9 +28,8 @@ var/engwords = list(
 	anchored = TRUE
 	icon = 'icons/obj/rune.dmi'
 	icon_state = "1"
-	var/visibility = 0
-	unacidable = 1
 	layer = TURF_LAYER
+	var/visibility = 0
 
 	var/word1
 	var/word2

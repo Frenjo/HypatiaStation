@@ -358,21 +358,21 @@
 	name = "gem-encrusted hardsuit helmet"
 	desc = "A bizarre gem-encrusted helmet that radiates magical energies."
 	icon_state = "rig0-wiz"
+	obj_flags = OBJ_FLAG_UNACIDABLE //No longer shall our kind be foiled by lone chemists with spray bottles!
 	item_state = "wiz_helm"
 	item_color = "wiz"
-	unacidable = 1 //No longer shall our kind be foiled by lone chemists with spray bottles!
 	armor = list(melee = 40, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 100, rad = 60)
 	siemens_coefficient = 0.7
 	sprite_sheets = null
 
 /obj/item/clothing/suit/space/rig/wizard
-	icon_state = "rig-wiz"
 	name = "gem-encrusted hardsuit"
 	desc = "A bizarre gem-encrusted suit that radiates magical energies."
+	icon_state = "rig-wiz"
+	obj_flags = OBJ_FLAG_UNACIDABLE
 	item_state = "wiz_hardsuit"
 	slowdown = 1
 	w_class = 3
-	unacidable = 1
 	armor = list(melee = 40, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 100, rad = 60)
 	siemens_coefficient = 0.7
 	sprite_sheets = null

@@ -146,7 +146,7 @@
 // Acid proof variant.
 /obj/machinery/atmospherics/unary/outlet_injector/acid_proof
 	name = "acid-proof air injector (off)"
-	unacidable = TRUE
+	obj_flags = OBJ_FLAG_UNACIDABLE
 
 /obj/machinery/atmospherics/unary/outlet_injector/New()
 	. = ..()

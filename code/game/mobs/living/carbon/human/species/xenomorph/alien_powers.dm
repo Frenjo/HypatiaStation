@@ -135,7 +135,7 @@
 	// OBJ CHECK
 	if(isobj(O))
 		var/obj/I = O
-		if(I.unacidable)	//So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
+		if(HAS_OBJ_FLAGS(I, OBJ_FLAG_UNACIDABLE))	//So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
 			to_chat(src, SPAN_ALIUM("You cannot dissolve this object."))
 			return
 

@@ -5,7 +5,6 @@
 /obj/effect/light_emitter
 	name = "light-emtter"
 	anchored = TRUE
-	unacidable = 1
 	light_range = 8
 
 /*

@@ -340,7 +340,7 @@
 		if(iscarbon(M))
 			var/mob/living/carbon/C = M
 			if(isnotnull(C.wear_mask))
-				if(prob(meltprob) && !C.wear_mask.unacidable)
+				if(prob(meltprob) && !HAS_OBJ_FLAGS(C.wear_mask, OBJ_FLAG_UNACIDABLE))
 					to_chat(C, SPAN_DANGER("Your mask melts away but protects you from the acid!"))
 					qdel(C.wear_mask)
 					C.update_inv_wear_mask(0)
@@ -354,7 +354,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(isnotnull(H.head))
-				if(prob(meltprob) && !H.head.unacidable)
+				if(prob(meltprob) && !HAS_OBJ_FLAGS(H.head, OBJ_FLAG_UNACIDABLE))
 					to_chat(H, SPAN_DANGER("Your headgear melts away but protects you from the acid!"))
 					qdel(H.head)
 					H.update_inv_head(0)
@@ -364,7 +364,7 @@
 				return
 
 			if(isnotnull(H.glasses)) //Doesn't protect you from the acid but can melt anyways!
-				if(prob(meltprob) && !H.glasses.unacidable)
+				if(prob(meltprob) && !HAS_OBJ_FLAGS(H.glasses, OBJ_FLAG_UNACIDABLE))
 					to_chat(H, SPAN_DANGER("Your glasses melt away!"))
 					qdel(H.glasses)
 					H.update_inv_glasses(0)
@@ -387,7 +387,7 @@
 
 /datum/reagent/toxin/acid/reaction_obj(obj/O, volume)
 	if((isitem(O) || istype(O, /obj/effect/glowshroom)) && prob(meltprob * 3))
-		if(!O.unacidable)
+		if(!HAS_OBJ_FLAGS(O, OBJ_FLAG_UNACIDABLE))
 			var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 			I.desc = "Looks like this was \an [O] some time ago."
 			for(var/mob/M in viewers(5, O))

@@ -48,6 +48,8 @@
 	icon_state = "airlock_control_standby"
 	density = FALSE
 
+	obj_flags = OBJ_FLAG_UNACIDABLE
+
 	power_channel = ENVIRON
 
 	var/id_tag
@@ -56,7 +58,6 @@
 	var/frequency = 1379
 	var/radio_filter = null
 	var/datum/radio_frequency/radio_connection
-	unacidable = 1
 
 /obj/machinery/embedded_controller/radio/initialise()
 	. = ..()

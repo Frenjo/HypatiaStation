@@ -12,7 +12,7 @@
 		return
 	if(isobj(target))
 		var/obj/target_obj = target
-		if(!target_obj.vars.Find("unacidable") || target_obj.unacidable)
+		if(HAS_OBJ_FLAGS(target_obj, OBJ_FLAG_UNACIDABLE))
 			return
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
@@ -66,7 +66,7 @@
 		return
 	if(isobj(target))
 		var/obj/target_obj = target
-		if(target_obj.unacidable)
+		if(HAS_OBJ_FLAGS(target_obj, OBJ_FLAG_UNACIDABLE))
 			return
 	set_ready_state(0)
 	chassis.use_power(energy_drain)

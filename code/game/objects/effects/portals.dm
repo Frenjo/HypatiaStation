@@ -4,7 +4,6 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "portal"
 	density = TRUE
-	unacidable = TRUE	//Can't destroy energy portals.
 	anchored = TRUE
 
 	var/failchance = 5

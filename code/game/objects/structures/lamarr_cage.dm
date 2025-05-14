@@ -1,11 +1,12 @@
 /obj/structure/lamarr
 	name = "lab cage"
+	desc = "A glass lab container for storing interesting creatures."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "labcage1"
-	desc = "A glass lab container for storing interesting creatures."
 	density = TRUE
 	anchored = TRUE
-	unacidable = 1//Dissolving the case would also delete Lamarr
+	obj_flags = OBJ_FLAG_UNACIDABLE //Dissolving the case would also delete Lamarr
+
 	var/health = 30
 	var/occupied = 1
 	var/destroyed = 0

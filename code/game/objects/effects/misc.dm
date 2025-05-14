@@ -14,13 +14,11 @@
 	plane = UNLIT_EFFECTS_PLANE
 	layer = 99
 	mouse_opacity = FALSE
-	unacidable = 1 //Just to be sure.
 
 	var/mark = ""
 
 /obj/effect/beam
 	name = "beam"
-	unacidable = 1 //Just to be sure.
 	pass_flags = PASS_FLAG_TABLE
 
 	var/def_zone
@@ -30,7 +28,6 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "begin"
 	anchored = TRUE
-	unacidable = 1
 
 /obj/effect/laser
 	name = "laser"

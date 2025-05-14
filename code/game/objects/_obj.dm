@@ -12,7 +12,6 @@
 
 	var/reliability = 100	//Used by SOME devices to determine how reliable they are.
 	var/crit_fail = FALSE
-	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
 	var/throwforce = 1
 	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 	var/sharp = 0	// whether this object cuts

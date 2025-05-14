@@ -3,7 +3,6 @@
 	icon = 'icons/hud/screen1.dmi'
 	icon_state = "x2"
 	anchored = TRUE
-	unacidable = TRUE
 
 	var/delete_me = FALSE
 

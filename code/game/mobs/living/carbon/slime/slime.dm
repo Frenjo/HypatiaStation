@@ -679,10 +679,10 @@
 	name = "golem's face"
 	desc = "the imposing face of an adamantine golem"
 	icon_state = "golem"
+	obj_flags = OBJ_FLAG_UNACIDABLE
 	item_state = "golem"
 	can_remove = FALSE
 	siemens_coefficient = 0
-	unacidable = 1
 
 
 /obj/item/clothing/gloves/golem
@@ -695,13 +695,13 @@
 
 
 /obj/item/clothing/head/space/golem
-	icon_state = "golem"
-	item_state = "dermal"
-	item_color = "dermal"
 	name = "golem's head"
 	desc = "a golem's head"
+	icon_state = "golem"
+	obj_flags = OBJ_FLAG_UNACIDABLE
+	item_state = "dermal"
+	item_color = "dermal"
 	can_remove = FALSE
-	unacidable = 1
 	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
 	heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
@@ -714,7 +714,6 @@
 	name = "rune"
 	icon = 'icons/obj/rune.dmi'
 	icon_state = "golem"
-	unacidable = 1
 	layer = TURF_LAYER
 
 /obj/effect/golemrune/New()

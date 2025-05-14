@@ -74,7 +74,6 @@
 	anchored = TRUE
 	opacity = FALSE
 	density = TRUE
-	unacidable = 1
 
 /obj/effect/forcefield/bullet_act(obj/item/projectile/Proj, def_zone)
 	var/turf/T = GET_TURF(src)

@@ -24,7 +24,6 @@
 	icon = 'icons/obj/biomass.dmi'
 	icon_state = "rift"
 	density = TRUE
-	unacidable = 1
 	anchored = TRUE
 
 /obj/effect/rend/New()

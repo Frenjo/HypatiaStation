@@ -14,7 +14,7 @@ GLOBAL_GLOBL_LIST_INIT(uneatable, list(
 	density = TRUE
 	layer = 6
 	light_range = 6
-	unacidable = 1 //Don't comment this out.
+	obj_flags = OBJ_FLAG_UNACIDABLE //Don't comment this out.
 
 	var/current_size = 1
 	var/allowed_size = 1

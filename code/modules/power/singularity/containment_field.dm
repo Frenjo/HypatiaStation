@@ -7,7 +7,7 @@
 	icon_state = "Contain_F"
 	anchored = TRUE
 	density = FALSE
-	unacidable = 1
+	obj_flags = OBJ_FLAG_UNACIDABLE
 
 	power_state = USE_POWER_OFF
 

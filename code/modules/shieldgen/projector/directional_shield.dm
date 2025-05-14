@@ -11,7 +11,6 @@
 	anchored = TRUE
 	plane = UNLIT_EFFECTS_PLANE
 	mouse_opacity = FALSE
-	unacidable = TRUE
 
 	var/obj/item/shield_projector/projector = null // The thing creating the shield.
 	var/x_offset = 0 // Offset from the 'center' of where the projector is, so that if it moves, the shield can recalc its position.

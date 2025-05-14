@@ -5,7 +5,6 @@
 	icon_state = "shieldwall"
 	anchored = TRUE
 	density = TRUE
-	unacidable = 1
 	//luminosity = 3
 	light_range = 3
 
