@@ -133,3 +133,10 @@
 		/decl/material/gold = 2000, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 3
 	)
 	build_path = /obj/item/borg/upgrade/flashproof
+
+/datum/design/robofab/robot_upgrade/expander
+	name = "Expander"
+	desc = "Allows for the construction of robot expander modules."
+	req_tech = alist(/decl/tech/materials = 2, /decl/tech/engineering = 3)
+	materials = alist(/decl/material/steel = 181000) // This is the total amount of steel it costs to build a whole other cyborg endoskeleton.
+	build_path = /obj/item/borg/upgrade/expander

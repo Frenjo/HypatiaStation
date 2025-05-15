@@ -35,6 +35,8 @@
 	var/obj/item/cell/cell = null
 	var/obj/machinery/camera/camera = null
 
+	var/is_expanded = FALSE // Whether this robot has been equipped with an expander module.
+
 	// Components are basically robot organs.
 	var/list/components
 

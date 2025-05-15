@@ -141,3 +141,33 @@
 
 	borg.status_flags &= ~CANWEAKEN
 	return TRUE
+
+/*
+ * Expander Module
+ *
+ * Does exactly what it says on the tin.
+ */
+/obj/item/borg/upgrade/expander
+	name = "robot expander module"
+	desc = "A robot resizer, it makes a robot huge."
+	icon_state = "cyborg_upgrade3"
+
+/obj/item/borg/upgrade/expander/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+	if(!..())
+		return FALSE
+
+	if(robby.is_expanded)
+		to_chat(user, SPAN_WARNING("This unit already has an expander module installed!"))
+		return FALSE
+	robby.is_expanded = TRUE
+
+	robby.anchored = TRUE
+	make_smoke(1, FALSE, robby.loc, robby)
+	sleep(0.2 SECONDS)
+	for(var/i in 1 to 4)
+		playsound(robby, pick('sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, 1, -1)
+		sleep(1.2 SECONDS)
+	robby.resize = 2
+	robby.update_transform()
+	robby.anchored = FALSE
+	return TRUE

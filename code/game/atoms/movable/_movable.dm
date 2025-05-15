@@ -2,6 +2,8 @@
 	layer = 3
 	glide_size = 4
 
+	appearance_flags = PIXEL_SCALE
+
 	// Can this atom currently be moved?
 	var/anchored = FALSE
 	// The last direction the atom moved in.

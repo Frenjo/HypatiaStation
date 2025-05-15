@@ -4,6 +4,8 @@
 
 	immune_to_ssd = TRUE
 
+	var/resize = 1 // Currently only used for expander modules, will be moved to /mob/living eventually.
+
 	var/syndicate = 0
 	var/datum/ai_laws/laws = null	//Now... THEY ALL CAN ALL HAVE LAWS
 
