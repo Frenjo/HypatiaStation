@@ -191,12 +191,14 @@ steam.start() -- spawns the effect
 /obj/effect/smoke
 	name = "smoke"
 	icon_state = "smoke"
+	plane = ABOVE_DEFAULT_PLANE
+	layer = FLY_LAYER
 	opacity = TRUE
 	anchored = FALSE
 	mouse_opacity = FALSE
 
-	var/amount = 6.0
-	var/time_to_live = 100
+	var/amount = 6
+	var/time_to_live = 10 SECONDS
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
