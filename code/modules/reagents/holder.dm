@@ -384,29 +384,37 @@
 	switch(method)
 		if(TOUCH)
 			for(var/datum/reagent/R in reagent_list)
-				if(isnull(R))
-					continue
 				if(ismob(A))
 					spawn(0)
+						if(isnull(R))
+							return
 						R.reaction_mob(A, TOUCH, R.volume + volume_modifier)
 				if(isturf(A))
 					spawn(0)
+						if(isnull(R))
+							return
 						R.reaction_turf(A, R.volume + volume_modifier)
 				if(isobj(A))
 					spawn(0)
+						if(isnull(R))
+							return
 						R.reaction_obj(A, R.volume + volume_modifier)
 		if(INGEST)
 			for(var/datum/reagent/R in reagent_list)
-				if(isnull(R))
-					continue
 				if(ismob(A))
 					spawn(0)
+						if(isnull(R))
+							return
 						R.reaction_mob(A, INGEST, R.volume + volume_modifier)
 				if(isturf(A))
 					spawn(0)
+						if(isnull(R))
+							return
 						R.reaction_turf(A, R.volume + volume_modifier)
 				if(isobj(A))
 					spawn(0)
+						if(isnull(R))
+							return
 						R.reaction_obj(A, R.volume + volume_modifier)
 
 /datum/reagents/proc/add_reagent(reagent, amount, list/data = null, safety = 0)
