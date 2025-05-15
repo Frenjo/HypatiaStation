@@ -162,7 +162,7 @@
 	robby.is_expanded = TRUE
 
 	robby.anchored = TRUE
-	make_smoke(1, FALSE, robby.loc, robby)
+	make_smoke(5, FALSE, robby.loc, robby)
 	sleep(0.2 SECONDS)
 	for(var/i in 1 to 4)
 		playsound(robby, pick('sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, 1, -1)
