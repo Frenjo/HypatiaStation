@@ -208,7 +208,7 @@ steam.start() -- spawns the effect
 /obj/effect/smoke/initialise()
 	. = ..()
 	spawn(time_to_live)
-		qdel(src)
+		fade_out()
 
 /obj/effect/smoke/Crossed(mob/living/carbon/M)
 	..()
@@ -222,12 +222,21 @@ steam.start() -- spawns the effect
 		return 0
 	return 1
 
+// Fades out the smoke smoothly using it's alpha variable.
+/obj/effect/smoke/proc/fade_out(frames = 16)
+	set_opacity(FALSE)
+	frames = max(frames, 1) // We will just assume that by 0 frames, the coder meant "during one frame".
+	var/alpha_step = round(alpha / frames)
+	while(alpha > 0)
+		alpha = max(0, alpha - alpha_step)
+		stoplag()
+	qdel(src)
 
 /////////////////////////////////////////////
 // Bad smoke
 /////////////////////////////////////////////
 /obj/effect/smoke/bad
-	time_to_live = 200
+	time_to_live = 20 SECONDS
 
 /obj/effect/smoke/bad/Move()
 	..()
