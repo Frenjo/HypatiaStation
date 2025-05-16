@@ -11,7 +11,7 @@
 	. = ..() //Incase I need to add stuff other than "speed" later
 	. += speed
 
-	if(module_active && istype(module_active, /obj/item/borg/combat/mobility))
+	if(module_active && istype(module_active, /obj/item/robot_module/combat_mobility))
 		. += -3
 
 	. += CONFIG_GET(/decl/configuration_entry/robot_delay)

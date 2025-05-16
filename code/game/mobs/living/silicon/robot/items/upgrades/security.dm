@@ -3,7 +3,7 @@
  *
  * This actually reduces the recharge time, not the fire delay.
  */
-/obj/item/borg/upgrade/tasercooler
+/obj/item/robot_upgrade/tasercooler
 	name = "security robot rapid taser cooling module"
 	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
 	icon_state = "cyborg_upgrade3"
@@ -13,7 +13,7 @@
 	require_model = TRUE
 	model_types = list(/obj/item/robot_model/security)
 
-/obj/item/borg/upgrade/tasercooler/action(mob/living/silicon/robot/borg, mob/living/user = usr)
+/obj/item/robot_upgrade/tasercooler/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	if(!..())
 		return FALSE
 

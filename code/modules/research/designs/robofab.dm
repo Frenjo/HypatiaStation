@@ -106,26 +106,26 @@
 	name = "Model Reset Module"
 	desc = "Allows for the construction of robot model reset modules."
 	materials = alist(/decl/material/steel = 10000)
-	build_path = /obj/item/borg/upgrade/reset
+	build_path = /obj/item/robot_upgrade/reset
 
 /datum/design/robofab/robot_upgrade/rename
 	name = "Reclassification Module"
 	desc = "Allows for the construction of robot reclassification modules."
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 11)
-	build_path = /obj/item/borg/upgrade/rename
+	build_path = /obj/item/robot_upgrade/rename
 
 /datum/design/robofab/robot_upgrade/restart
 	name = "Emergency Restart Module"
 	desc = "Allows for the construction of robot emergency restart modules."
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 18, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 3)
-	build_path = /obj/item/borg/upgrade/restart
+	build_path = /obj/item/robot_upgrade/restart
 
 /datum/design/robofab/robot_upgrade/vtec
 	name = "VTEC Module"
 	desc = "Allows for the construction of robot VTEC modules."
 	req_tech = alist(/decl/tech/materials = 3, /decl/tech/engineering = 3)
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 24, /decl/material/glass = 6000, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 3)
-	build_path = /obj/item/borg/upgrade/vtec
+	build_path = /obj/item/robot_upgrade/vtec
 
 /datum/design/robofab/robot_upgrade/taser_cooler
 	name = "Security Rapid Taser Cooling Module"
@@ -135,21 +135,21 @@
 		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 24, /decl/material/glass = 6000,
 		/decl/material/gold = 2000, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET
 	)
-	build_path = /obj/item/borg/upgrade/tasercooler
+	build_path = /obj/item/robot_upgrade/tasercooler
 
 /datum/design/robofab/robot_upgrade/jetpack
 	name = "Mining Jetpack Module"
 	desc = "Allows for the construction of jetpack modules for mining robots."
 	req_tech = alist(/decl/tech/materials = 2, /decl/tech/engineering = 2)
 	materials = alist(/decl/material/steel = 10000, /decl/material/uranium = 20000, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 8)
-	build_path = /obj/item/borg/upgrade/jetpack
+	build_path = /obj/item/robot_upgrade/jetpack
 
 /datum/design/robofab/robot_upgrade/syndicate
 	name = "Scrambled Equipment Module"
 	desc = "Allows for the construction of illegal upgrades for robots."
 	req_tech = alist(/decl/tech/combat = 4, /decl/tech/syndicate = 3)
 	materials = alist(/decl/material/steel = 10000, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 8, /decl/material/diamond = 10000)
-	build_path = /obj/item/borg/upgrade/syndicate
+	build_path = /obj/item/robot_upgrade/syndicate
 
 /datum/design/robofab/robot_upgrade/flashproof
 	name = "Flash Suppression Module"
@@ -159,7 +159,7 @@
 		/decl/material/steel = 10000, /decl/material/glass = 2000, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 2,
 		/decl/material/gold = 2000, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET * 3
 	)
-	build_path = /obj/item/borg/upgrade/flashproof
+	build_path = /obj/item/robot_upgrade/flashproof
 
 /datum/design/robofab/robot_upgrade/expander
 	name = "Expander Module"
@@ -167,4 +167,4 @@
 	req_tech = alist(/decl/tech/materials = 2, /decl/tech/engineering = 3)
 	// This is the total amount of steel it costs to build a whole other robot endoskeleton.
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 90.5)
-	build_path = /obj/item/borg/upgrade/expander
+	build_path = /obj/item/robot_upgrade/expander

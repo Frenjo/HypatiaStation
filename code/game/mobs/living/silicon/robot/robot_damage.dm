@@ -71,8 +71,8 @@
 		return
 
 	 //Combat shielding absorbs a percentage of damage directly into the cell.
-	if(module_active && istype(module_active, /obj/item/borg/combat/shield))
-		var/obj/item/borg/combat/shield/shield = module_active
+	if(module_active && istype(module_active, /obj/item/robot_module/combat_shield))
+		var/obj/item/robot_module/combat_shield/shield = module_active
 		//Shields absorb a certain percentage of damage based on their power setting.
 		var/absorb_brute = brute * shield.shield_level
 		var/absorb_burn = burn * shield.shield_level
@@ -117,8 +117,8 @@
 	var/list/datum/robot_component/parts = get_damageable_components()
 
 	 //Combat shielding absorbs a percentage of damage directly into the cell.
-	if(module_active && istype(module_active, /obj/item/borg/combat/shield))
-		var/obj/item/borg/combat/shield/shield = module_active
+	if(module_active && istype(module_active, /obj/item/robot_module/combat_shield))
+		var/obj/item/robot_module/combat_shield/shield = module_active
 		//Shields absorb a certain percentage of damage based on their power setting.
 		var/absorb_brute = brute * shield.shield_level
 		var/absorb_burn = burn * shield.shield_level

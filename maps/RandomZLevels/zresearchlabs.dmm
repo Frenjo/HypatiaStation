@@ -499,7 +499,7 @@
 "jE" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/oil,/turf/open/floor{temperature = 393.15},/area/away_mission/labs/researchdivision)
 "jF" = (/obj/machinery/camera{c_tag = "Mining Dock External"; dir = 8},/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; tag = ""},/turf/open/floor,/area/away_mission/labs/researchdivision)
 "jG" = (/obj/structure/table/reinforced,/obj/item/paper_bin{pixel_x = -2; pixel_y = 7},/obj/item/pen{pixel_x = 5; pixel_y = 5},/turf/open/floor/tiled/white,/area/away_mission/labs/researchdivision)
-"jH" = (/obj/structure/table/reinforced,/obj/item/borg/upgrade/vtec,/obj/item/cell/hyper/empty,/turf/open/floor/tiled/white,/area/away_mission/labs/researchdivision)
+"jH" = (/obj/structure/table/reinforced,/obj/item/robot_upgrade/vtec,/obj/item/cell/hyper/empty,/turf/open/floor/tiled/white,/area/away_mission/labs/researchdivision)
 "jI" = (/obj/structure/table/reinforced,/obj/item/storage/backpack/holding{pixel_y = 4},/turf/open/floor/tiled/white,/area/away_mission/labs/researchdivision)
 "jJ" = (/obj/structure/table/reinforced,/obj/item/talkingcrystal{pixel_y = 9},/turf/open/floor/tiled/white,/area/away_mission/labs/researchdivision)
 "jK" = (/obj/effect/landmark{name = "awaystart"},/turf/open/floor/plating/metal,/area/away_mission/labs/solars)

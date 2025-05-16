@@ -140,7 +140,7 @@
 
 // Drones cannot be upgraded with borg modules so we need to catch some items before they get used in ..().
 /mob/living/silicon/robot/drone/attack_by(obj/item/I, mob/user)
-	if(istype(I, /obj/item/borg/upgrade))
+	if(istype(I, /obj/item/robot_upgrade))
 		to_chat(user, SPAN_WARNING("The maintenance drone chassis not compatible with \the [I]."))
 		return TRUE
 

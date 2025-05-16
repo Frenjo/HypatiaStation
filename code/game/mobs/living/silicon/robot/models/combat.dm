@@ -10,11 +10,11 @@
 	basic_modules = list(
 		/obj/item/flash,
 		/obj/item/extinguisher/mini,
-		/obj/item/borg/sight/thermal,
+		/obj/item/robot_module/sight/thermal,
 		/obj/item/gun/energy/laser/cyborg,
 		/obj/item/pickaxe/plasmacutter,
-		/obj/item/borg/combat/shield,
-		/obj/item/borg/combat/mobility,
+		/obj/item/robot_module/combat_shield,
+		/obj/item/robot_module/combat_mobility,
 		/obj/item/wrench // Is a combat android really going to be stopped by a chair?
 	)
 	emag_type = /obj/item/gun/energy/lasercannon/cyborg

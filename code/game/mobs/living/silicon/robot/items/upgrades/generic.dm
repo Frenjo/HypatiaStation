@@ -1,7 +1,7 @@
 /*
  * Reset Module
  */
-/obj/item/borg/upgrade/reset
+/obj/item/robot_upgrade/reset
 	name = "robot model reset module"
 	desc = "Used to reset a robot's model. Destroys any other upgrades applied to the robot."
 	icon_state = "cyborg_upgrade1"
@@ -10,7 +10,7 @@
 
 	require_model = TRUE
 
-/obj/item/borg/upgrade/reset/action(mob/living/silicon/robot/borg, mob/living/user = usr)
+/obj/item/robot_upgrade/reset/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	if(!..())
 		return FALSE
 
@@ -25,7 +25,7 @@
 /*
  * Rename Module
  */
-/obj/item/borg/upgrade/rename
+/obj/item/robot_upgrade/rename
 	name = "robot reclassification module"
 	desc = "Used to rename a robot."
 	icon_state = "cyborg_upgrade1"
@@ -34,10 +34,10 @@
 
 	var/heldname = "default name"
 
-/obj/item/borg/upgrade/rename/attack_self(mob/user)
+/obj/item/robot_upgrade/rename/attack_self(mob/user)
 	heldname = stripped_input(user, "Enter new robot name", "Robot Reclassification", heldname, MAX_NAME_LEN)
 
-/obj/item/borg/upgrade/rename/action(mob/living/silicon/robot/borg, mob/living/user = usr)
+/obj/item/robot_upgrade/rename/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	if(!..())
 		return FALSE
 
@@ -49,14 +49,14 @@
 /*
  * Restart Module
  */
-/obj/item/borg/upgrade/restart
+/obj/item/robot_upgrade/restart
 	name = "robot emergency restart module"
 	desc = "Used to force a restart of a disabled-but-repaired robot, bringing it back online."
 	icon_state = "cyborg_upgrade1"
 
 	matter_amounts = /datum/design/robofab/robot_upgrade/restart::materials
 
-/obj/item/borg/upgrade/restart/action(mob/living/silicon/robot/borg, mob/living/user = usr)
+/obj/item/robot_upgrade/restart/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	if(borg.health < 0)
 		to_chat(user, SPAN_WARNING("You have to repair the robot before using this module!"))
 		return FALSE
@@ -71,7 +71,7 @@
 /*
  * VTEC Module
  */
-/obj/item/borg/upgrade/vtec
+/obj/item/robot_upgrade/vtec
 	name = "robot VTEC module"
 	desc = "Used to kick in a robot's VTEC systems, increasing its speed."
 	icon_state = "cyborg_upgrade2"
@@ -82,7 +82,7 @@
 
 	var/move_delay_reduction = 0.5
 
-/obj/item/borg/upgrade/vtec/action(mob/living/silicon/robot/borg, mob/living/user = usr)
+/obj/item/robot_upgrade/vtec/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	if(!..())
 		return FALSE
 	if(borg.speed == (initial(borg.speed) - move_delay_reduction))
@@ -97,7 +97,7 @@
  * Used to be called "illegal equipment module".
  * I stole "scrambled" from Polaris because it sounds cooler.
  */
-/obj/item/borg/upgrade/syndicate
+/obj/item/robot_upgrade/syndicate
 	name = "robot scrambled equipment module"
 	desc = "Unlocks the hidden, deadlier functions of a robot."
 	icon_state = "cyborg_upgrade3"
@@ -107,7 +107,7 @@
 
 	require_model = TRUE
 
-/obj/item/borg/upgrade/syndicate/action(mob/living/silicon/robot/borg, mob/living/user = usr)
+/obj/item/robot_upgrade/syndicate/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	if(!..())
 		return FALSE
 	if(borg.emagged)
@@ -121,7 +121,7 @@
  *
  * Renders a robot immune to flashes when installed.
  */
-/obj/item/borg/upgrade/flashproof
+/obj/item/robot_upgrade/flashproof
 	name = "robot flash-suppression module"
 	desc = "A highly advanced, complex system for supressing incoming flashes directed at a robot's optical processing system."
 	icon_state = "cyborg_upgrade4"
@@ -131,7 +131,7 @@
 
 	require_model = TRUE
 
-/obj/item/borg/upgrade/flashproof/action(mob/living/silicon/robot/borg, mob/living/user = usr)
+/obj/item/robot_upgrade/flashproof/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	if(!..())
 		return FALSE
 
@@ -147,12 +147,12 @@
  *
  * Does exactly what it says on the tin.
  */
-/obj/item/borg/upgrade/expander
+/obj/item/robot_upgrade/expander
 	name = "robot expander module"
 	desc = "A robot resizer, it makes a robot huge."
 	icon_state = "cyborg_upgrade3"
 
-/obj/item/borg/upgrade/expander/action(mob/living/silicon/robot/robby, mob/living/user = usr)
+/obj/item/robot_upgrade/expander/action(mob/living/silicon/robot/robby, mob/living/user = usr)
 	if(!..())
 		return FALSE
 

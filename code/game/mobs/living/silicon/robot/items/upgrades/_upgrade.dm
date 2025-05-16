@@ -1,8 +1,8 @@
 /*
  * Base Upgrade
  */
-/obj/item/borg/upgrade
-	name = "borg upgrade module"
+/obj/item/robot_upgrade
+	name = "robot upgrade module"
 	desc = "Protected by FRM."
 	icon = 'icons/obj/items/module.dmi'
 	icon_state = "cyborg_upgrade"
@@ -13,7 +13,7 @@
 	var/require_model = FALSE
 	var/list/model_types = null
 
-/obj/item/borg/upgrade/proc/action(mob/living/silicon/robot/borg, mob/living/user = usr)
+/obj/item/robot_upgrade/proc/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	if(borg.stat == DEAD)
 		to_chat(user, SPAN_WARNING("The [src] will not function on a deceased robot."))
 		return FALSE

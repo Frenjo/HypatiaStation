@@ -432,8 +432,8 @@
 				FEEDBACK_ACCESS_DENIED(user)
 		return TRUE
 
-	if(istype(I, /obj/item/borg/upgrade))
-		var/obj/item/borg/upgrade/U = I
+	if(istype(I, /obj/item/robot_upgrade))
+		var/obj/item/robot_upgrade/U = I
 		if(!opened)
 			to_chat(usr, SPAN_WARNING("You must access [src]'s internals!"))
 			return TRUE
@@ -583,13 +583,13 @@
 		else
 			overlays.Add(image('icons/mob/silicon/robot/overlays.dmi', "ov-openpanel -c"))
 
-	if(module_active && istype(module_active, /obj/item/borg/combat/shield))
+	if(module_active && istype(module_active, /obj/item/robot_module/combat_shield))
 		overlays.Add("[icon_state]-shield")
 
 	if(istype(model, /obj/item/robot_model/combat))
 		var/base_icon = ""
 		base_icon = icon_state
-		if(module_active && istype(module_active, /obj/item/borg/combat/mobility))
+		if(module_active && istype(module_active, /obj/item/robot_module/combat_mobility))
 			icon_state = "[icon_state]-roll"
 		else
 			icon_state = base_icon
@@ -869,22 +869,22 @@
 			module_state_1 = O
 			O.layer_to_hud()
 			contents.Add(O)
-			if(istype(module_state_1, /obj/item/borg/sight))
-				var/obj/item/borg/sight/sight = module_state_1
+			if(istype(module_state_1, /obj/item/robot_module/sight))
+				var/obj/item/robot_module/sight/sight = module_state_1
 				sight_mode |= sight.sight_mode
 		else if(isnull(module_state_2))
 			module_state_2 = O
 			O.layer_to_hud()
 			contents.Add(O)
-			if(istype(module_state_2, /obj/item/borg/sight))
-				var/obj/item/borg/sight/sight = module_state_2
+			if(istype(module_state_2, /obj/item/robot_module/sight))
+				var/obj/item/robot_module/sight/sight = module_state_2
 				sight_mode |= sight.sight_mode
 		else if(isnull(module_state_3))
 			module_state_3 = O
 			O.layer_to_hud()
 			contents.Add(O)
-			if(istype(module_state_3, /obj/item/borg/sight))
-				var/obj/item/borg/sight/sight = module_state_3
+			if(istype(module_state_3, /obj/item/robot_module/sight))
+				var/obj/item/robot_module/sight/sight = module_state_3
 				sight_mode |= sight.sight_mode
 		else
 			to_chat(src, "You need to disable a module first!")

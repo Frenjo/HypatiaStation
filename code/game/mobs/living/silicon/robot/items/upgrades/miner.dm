@@ -1,7 +1,7 @@
 /*
  * Jetpack Module
  */
-/obj/item/borg/upgrade/jetpack
+/obj/item/robot_upgrade/jetpack
 	name = "mining robot jetpack module"
 	desc = "A carbon dioxide jetpack suitable for low-gravity mining operations."
 	icon_state = "cyborg_upgrade3"
@@ -11,7 +11,7 @@
 	require_model = TRUE
 	model_types = list(/obj/item/robot_model/miner)
 
-/obj/item/borg/upgrade/jetpack/action(mob/living/silicon/robot/borg, mob/living/user = usr)
+/obj/item/robot_upgrade/jetpack/action(mob/living/silicon/robot/borg, mob/living/user = usr)
 	if(!..())
 		return FALSE
 	if(isnotnull(borg.internals))

@@ -8,7 +8,7 @@
 	basic_modules = list(
 		/obj/item/flash,
 		/obj/item/extinguisher,
-		/obj/item/borg/sight/meson,
+		/obj/item/robot_module/sight/meson,
 		/obj/item/rcd/borg,
 		/obj/item/weldingtool/largetank,
 		/obj/item/screwdriver,
@@ -20,7 +20,7 @@
 		/obj/item/gas_analyser,
 		/obj/item/taperoll/engineering
 	)
-	emag_type = /obj/item/borg/stun
+	emag_type = /obj/item/robot_module/stun
 
 	channels = list(CHANNEL_ENGINEERING)
 	camera_networks = list("Engineering")

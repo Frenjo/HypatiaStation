@@ -690,6 +690,7 @@
 #include "code\game\mobs\living\silicon\robot\drone\drone_model.dm"
 #include "code\game\mobs\living\silicon\robot\items\components.dm"
 #include "code\game\mobs\living\silicon\robot\items\robot_parts.dm"
+#include "code\game\mobs\living\silicon\robot\items\modules\_module.dm"
 #include "code\game\mobs\living\silicon\robot\items\modules\combat.dm"
 #include "code\game\mobs\living\silicon\robot\items\modules\generic.dm"
 #include "code\game\mobs\living\silicon\robot\items\modules\peacekeeper.dm"
