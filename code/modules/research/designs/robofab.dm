@@ -6,50 +6,50 @@
 	name_prefix = "Robot Part Design"
 
 /datum/design/robofab/robot/suit
-	materials = alist(/decl/material/steel = 50000)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 25)
 	build_time = 50 SECONDS
 	build_path = /obj/item/robot_part/robot_suit
 	categories = list("Robot")
 
 /datum/design/robofab/robot/chest
-	materials = alist(/decl/material/steel = 40000)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 20)
 	build_time = 35 SECONDS
 	build_path = /obj/item/robot_part/chest
 	categories = list("Robot")
 
 /datum/design/robofab/robot/head
-	materials = alist(/decl/material/steel = 25000)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 12.5)
 	build_time = 35 SECONDS
 	build_path = /obj/item/robot_part/head
 	categories = list("Robot")
 
 /datum/design/robofab/robot/left_arm
-	materials = alist(/decl/material/steel = 18000)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 9)
 	build_time = 20 SECONDS
 	build_path = /obj/item/robot_part/l_arm
 	categories = list("Robot")
 
 /datum/design/robofab/robot/right_arm
-	materials = alist(/decl/material/steel = 18000)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 9)
 	build_time = 20 SECONDS
 	build_path = /obj/item/robot_part/r_arm
 	categories = list("Robot")
 
 /datum/design/robofab/robot/left_leg
-	materials = alist(/decl/material/steel = 15000)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 7.5)
 	build_time = 20 SECONDS
 	build_path = /obj/item/robot_part/l_leg
 	categories = list("Robot")
 
 /datum/design/robofab/robot/right_leg
-	materials = alist(/decl/material/steel = 15000)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 7.5)
 	build_time = 20 SECONDS
 	build_path = /obj/item/robot_part/r_leg
 	categories = list("Robot")
 
 // Robot Internal Components
 /datum/design/robofab/robot_component
-	materials = alist(/decl/material/steel = 5000)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 2.5)
 	build_time = 20 SECONDS
 	categories = list("Robot Internal Components")
 	name_prefix = "Robot Component Design"
