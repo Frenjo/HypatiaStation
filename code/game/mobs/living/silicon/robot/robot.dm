@@ -563,7 +563,6 @@
 		eye_lights.icon_state = "eyes-[icon_state]"
 		eye_lights.plane = ABOVE_DEFAULT_PLANE
 		eye_lights.color = COLOR_WHITE
-		eye_lights.appearance_flags = PIXEL_SCALE
 		overlays.Add(eye_lights)
 	else
 		overlays.Remove(eye_lights)
