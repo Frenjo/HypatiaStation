@@ -72,7 +72,7 @@
 		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 
 /obj/item/mecha_equipment/shield_droid/get_equip_info()
-	. = "[..()] - <a href='?src=\ref[src];toggle_shield=1'>[shield.active ? "Dea" : "A"]ctivate</a>"
+	. = "[..()] - <a href='byond://?src=\ref[src];toggle_shield=1'>[shield.active ? "Dea" : "A"]ctivate</a>"
 
 // Linear
 /obj/item/mecha_equipment/shield_droid/linear

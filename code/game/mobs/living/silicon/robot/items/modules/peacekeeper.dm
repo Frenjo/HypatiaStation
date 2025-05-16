@@ -37,7 +37,7 @@
 			to_chat(M, "<font color='red' size='7'>HUMAN HARM</font>")
 		playsound(GET_TURF(src), 'sound/items/harm_alarm.ogg', 100, 3)
 		cooldown = world.time + 200
-		message_admins("[key_name_admin(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservefollow=\ref[user]'>FLW</A>) used a cyborg harm alarm in ([user.x], [user.y], [user.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)", 0, 1)
+		message_admins("[key_name_admin(user, user.client)](<A HREF='byond://?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) (<A HREF='byond://?_src_=holder;adminplayerobservefollow=\ref[user]'>FLW</A>) used a cyborg harm alarm in ([user.x], [user.y], [user.z] - <A HREF='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)", 0, 1)
 		log_game("[user.ckey]([user]) used a cyborg harm alarm in ([user.x], [user.y], [user.z])")
 		return
 
