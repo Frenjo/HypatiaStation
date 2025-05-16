@@ -12,6 +12,12 @@
 	mob_swap_flags = ROBOT | MONKEY | SLIME | SIMPLE_ANIMAL
 	mob_push_flags = ALLMOBS //trundle trundle
 
+	// Changed with update_transform(resize).
+	var/current_size = RESIZE_DEFAULT_SIZE // Currently only used for expander modules, will be moved to /mob/living eventually.
+
+	// The overlay for the robot's "eye" lights.
+	var/mutable_appearance/eye_lights = null
+
 	var/sight_mode = 0
 	var/custom_name = ""
 	var/custom_sprite = FALSE // Due to all the sprites involved, a var for our custom borgs may be best.
@@ -548,12 +554,19 @@
 			icon = model.sprite_path
 		else
 			icon = initial(icon)
+
 	if(stat == CONSCIOUS)
-		overlays.Add("eyes")
-		overlays.Cut()
-		overlays.Add("eyes-[icon_state]")
+		// Sets up the robot's eye overlay appearance if not done already.
+		if(isnull(eye_lights))
+			eye_lights = new /mutable_appearance()
+		eye_lights.icon = icon
+		eye_lights.icon_state = "eyes-[icon_state]"
+		eye_lights.plane = ABOVE_DEFAULT_PLANE
+		eye_lights.color = COLOR_WHITE
+		eye_lights.appearance_flags = PIXEL_SCALE
+		overlays.Add(eye_lights)
 	else
-		overlays.Remove("eyes")
+		overlays.Remove(eye_lights)
 
 	if(opened && custom_sprite) // Custom borgs also have custom panels, heh.
 		if(wiresexposed)

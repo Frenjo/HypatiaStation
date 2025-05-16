@@ -138,5 +138,6 @@
 	name = "Expander"
 	desc = "Allows for the construction of robot expander modules."
 	req_tech = alist(/decl/tech/materials = 2, /decl/tech/engineering = 3)
-	materials = alist(/decl/material/steel = 181000) // This is the total amount of steel it costs to build a whole other cyborg endoskeleton.
+	// This is the total amount of steel it costs to build a whole other cyborg endoskeleton.
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 90.5)
 	build_path = /obj/item/borg/upgrade/expander

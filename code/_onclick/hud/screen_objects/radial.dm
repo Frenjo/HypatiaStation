@@ -243,7 +243,7 @@
 	//Blank
 	menu_holder = image(icon = 'icons/effects/effects.dmi', loc = anchor, icon_state = "nothing", layer = HUD_ABOVE_ITEM_LAYER)
 	menu_holder.plane = HUD_PLANE
-	menu_holder.appearance_flags |= KEEP_APART
+	menu_holder.appearance_flags |= RESET_TRANSFORM | KEEP_APART
 	menu_holder.vis_contents.Add(elements + close_button)
 	current_user.images.Add(menu_holder)
 
