@@ -46,12 +46,12 @@
 	matter_amounts = /datum/design/robofab/robot/right_leg::materials
 	part = list("r_leg", "r_foot")
 
-/obj/item/robot_part/chest
+/obj/item/robot_part/torso
 	name = "robot torso"
 	desc = "A heavily reinforced case containing cyborg logic boards, with space for a standard power cell."
-	icon_state = "chest"
+	icon_state = "torso"
 
-	matter_amounts = /datum/design/robofab/robot/chest::materials
+	matter_amounts = /datum/design/robofab/robot/torso::materials
 
 	var/wires = FALSE
 	var/obj/item/cell/cell = null
@@ -66,33 +66,33 @@
 	var/obj/item/flash/flash1 = null
 	var/obj/item/flash/flash2 = null
 
-/obj/item/robot_part/robot_suit
+/obj/item/robot_part/chassis
 	name = "robot endoskeleton"
 	desc = "A complex metal backbone with standard limb sockets and pseudomuscle anchors."
 	icon_state = "robo_suit"
 
-	matter_amounts = /datum/design/robofab/robot/suit::materials
+	matter_amounts = /datum/design/robofab/robot/chassis::materials
 
 	var/obj/item/robot_part/l_arm/l_arm = null
 	var/obj/item/robot_part/r_arm/r_arm = null
 	var/obj/item/robot_part/l_leg/l_leg = null
 	var/obj/item/robot_part/r_leg/r_leg = null
-	var/obj/item/robot_part/chest/chest = null
+	var/obj/item/robot_part/torso/torso = null
 	var/obj/item/robot_part/head/head = null
 	var/created_name = ""
 
-/obj/item/robot_part/robot_suit/New()
+/obj/item/robot_part/chassis/New()
 	. = ..()
 	updateicon()
 
-/obj/item/robot_part/robot_suit/proc/updateicon()
+/obj/item/robot_part/chassis/proc/updateicon()
 	overlays.Cut()
 	if(isnotnull(l_arm))
 		overlays.Add("l_arm+o")
 	if(isnotnull(r_arm))
 		overlays.Add("r_arm+o")
-	if(isnotnull(chest))
-		overlays.Add("chest+o")
+	if(isnotnull(torso))
+		overlays.Add("torso+o")
 	if(isnotnull(l_leg))
 		overlays.Add("l_leg+o")
 	if(isnotnull(r_leg))
@@ -100,17 +100,17 @@
 	if(isnotnull(head))
 		overlays.Add("head+o")
 
-/obj/item/robot_part/robot_suit/proc/check_completion()
+/obj/item/robot_part/chassis/proc/check_completion()
 	if(isnotnull(l_arm) && isnotnull(r_arm))
 		if(isnotnull(l_leg) && isnotnull(r_leg))
-			if(isnotnull(chest) && isnotnull(head))
+			if(isnotnull(torso) && isnotnull(head))
 				feedback_inc("cyborg_frames_built", 1)
 				return TRUE
 	return FALSE
 
-/obj/item/robot_part/robot_suit/attackby(obj/item/W, mob/user)
+/obj/item/robot_part/chassis/attackby(obj/item/W, mob/user)
 	. = ..()
-	if(istype(W, /obj/item/stack/sheet/steel) && isnull(l_arm) && isnull(r_arm) && isnull(l_leg) && isnull(r_leg) && isnull(chest) && isnull(head))
+	if(istype(W, /obj/item/stack/sheet/steel) && isnull(l_arm) && isnull(r_arm) && isnull(l_leg) && isnull(r_leg) && isnull(torso) && isnull(head))
 		var/obj/item/stack/sheet/steel/M = W
 		var/obj/item/ed209_assembly/B = new /obj/item/ed209_assembly(GET_TURF(src))
 		to_chat(user, SPAN_INFO("You reinforce the robot frame."))
@@ -152,16 +152,16 @@
 		r_arm = W
 		updateicon()
 
-	if(istype(W, /obj/item/robot_part/chest))
-		if(isnotnull(chest))
+	if(istype(W, /obj/item/robot_part/torso))
+		if(isnotnull(torso))
 			return
-		var/obj/item/robot_part/chest/part_chest = W
-		if(part_chest.wires && isnotnull(part_chest.cell))
+		var/obj/item/robot_part/torso/part_torso = W
+		if(part_torso.wires && isnotnull(part_torso.cell))
 			user.drop_item()
-			part_chest.forceMove(src)
-			chest = part_chest
+			part_torso.forceMove(src)
+			torso = part_torso
 			updateicon()
-		else if(part_chest.wires)
+		else if(part_torso.wires)
 			to_chat(user, SPAN_INFO("You need to attach wires to it first!"))
 		else
 			to_chat(user, SPAN_INFO("You need to attach a cell to it first!"))
@@ -228,7 +228,7 @@
 
 			O.job = "Cyborg"
 
-			O.cell = chest.cell
+			O.cell = torso.cell
 			O.cell.forceMove(O)
 			W.forceMove(O) // Should fix cybros run time erroring when blown up. It got deleted before, along with the frame.
 
@@ -254,7 +254,7 @@
 
 		src.created_name = t
 
-/obj/item/robot_part/chest/attackby(obj/item/W, mob/user)
+/obj/item/robot_part/torso/attackby(obj/item/W, mob/user)
 	. = ..()
 	if(istype(W, /obj/item/cell))
 		if(isnotnull(cell))

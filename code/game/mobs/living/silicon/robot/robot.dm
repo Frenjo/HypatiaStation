@@ -325,13 +325,13 @@
 				to_chat(user, SPAN_NOTICE("You jam the crowbar into the robot and begin levering [mmi]."))
 				if(do_after(user, 30, src))
 					to_chat(user, SPAN_NOTICE("You damage some parts of the chassis, but eventually manage to rip out [mmi]!"))
-					var/obj/item/robot_part/robot_suit/C = new /obj/item/robot_part/robot_suit(loc)
+					var/obj/item/robot_part/chassis/C = new /obj/item/robot_part/chassis(loc)
 					C.l_leg = new /obj/item/robot_part/l_leg(C)
 					C.r_leg = new /obj/item/robot_part/r_leg(C)
 					C.l_arm = new /obj/item/robot_part/l_arm(C)
 					C.r_arm = new /obj/item/robot_part/r_arm(C)
 					C.updateicon()
-					new /obj/item/robot_part/chest(loc)
+					new /obj/item/robot_part/torso(loc)
 					qdel(src)
 					return TRUE
 

@@ -1011,7 +1011,7 @@ datum
 							return INFINITY
 			*/
 			cyborg
-				steal_target = /obj/item/robot_part/robot_suit
+				steal_target = /obj/item/robot_part/chassis
 				explanation_text = "Steal a completed robot shell (no brain)"
 				weight = 30
 
@@ -1030,8 +1030,8 @@ datum
 
 				check_completion()
 					if(steal_target)
-						for(var/obj/item/robot_part/robot_suit/objective in owner.current.get_contents())
-							if(istype(objective,/obj/item/robot_part/robot_suit) && objective.check_completion())
+						for(var/obj/item/robot_part/chassis/objective in owner.current.get_contents())
+							if(objective.check_completion())
 								return 1
 						return 0
 
