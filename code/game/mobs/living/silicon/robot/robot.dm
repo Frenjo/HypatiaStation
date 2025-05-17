@@ -1,80 +1,3 @@
-/mob/living/silicon/robot
-	name = "Cyborg"
-	real_name = "Cyborg"
-	icon = 'icons/mob/silicon/robot/standard.dmi'
-	icon_state = "robot"
-	maxHealth = 200
-	health = 200
-
-	hud_type = /datum/hud/robot
-
-	mob_bump_flag = ROBOT
-	mob_swap_flags = ROBOT | MONKEY | SLIME | SIMPLE_ANIMAL
-	mob_push_flags = ALLMOBS //trundle trundle
-
-	// Changed with update_transform(resize).
-	var/current_size = RESIZE_DEFAULT_SIZE // Currently only used for expander modules, will be moved to /mob/living eventually.
-
-	// The overlay for the robot's "eye" lights.
-	var/mutable_appearance/eye_lights = null
-
-	var/sight_mode = 0
-	var/custom_name = ""
-	var/custom_sprite = FALSE // Due to all the sprites involved, a var for our custom borgs may be best.
-	var/crisis //Admin-settable for combat module use.
-
-	//Hud stuff
-	var/atom/movable/screen/cells = null
-	var/atom/movable/screen/inv1 = null
-	var/atom/movable/screen/inv2 = null
-	var/atom/movable/screen/inv3 = null
-
-	//3 Modules can be activated at any one time.
-	var/obj/item/robot_model/model = null
-	var/module_active = null
-	var/module_state_1 = null
-	var/module_state_2 = null
-	var/module_state_3 = null
-
-	var/obj/item/radio/borg/radio = null
-	var/mob/living/silicon/ai/connected_ai = null
-	var/obj/item/cell/cell = null
-	var/obj/machinery/camera/camera = null
-
-	var/is_expanded = FALSE // Whether this robot has been equipped with an expander module.
-
-	// Components are basically robot organs.
-	var/list/components
-
-	var/obj/item/mmi/mmi = null
-
-	var/obj/item/pda/ai/rbPDA = null
-
-	var/opened = FALSE
-	var/emagged = FALSE
-	var/wiresexposed = 0
-	var/locked = 1
-	var/has_power = 1
-	var/list/req_access = list(ACCESS_ROBOTICS)
-	var/ident = 0
-	//var/list/laws = list()
-	var/viewalerts = 0
-	var/lower_mod = 0
-	var/datum/effect/system/ion_trail_follow/ion_trail = null
-	var/datum/effect/system/spark_spread/spark_system //So they can initialize sparks whenever/N
-	var/jeton = 0
-	var/borgwires = 31 // 0b11111
-	var/killswitch = 0
-	var/killswitch_time = 60
-	var/weapon_lock = FALSE
-	var/weaponlock_time = 120
-	var/lawupdate = TRUE // Cyborgs will sync their laws with their AI by default.
-	var/lockcharge //Used when locking down a borg to preserve cell charge
-	var/speed = 0 //Cause sec borgs gotta go fast //No they dont!
-	var/scrambledcodes = 0 // Used to determine if a borg shows up on the robotics console.  Setting to one hides them.
-	var/braintype = "Cyborg"
-	var/pose
-
 /mob/living/silicon/robot/New(loc, unfinished = 0)
 	. = ..()
 
@@ -84,21 +7,11 @@
 
 	ident = rand(1, 999)
 
-	if(isdrone(src))
-		laws = new /datum/ai_laws/drone()
-		connected_ai = select_active_ai_with_fewest_borgs()
-		if(isnotnull(connected_ai))
-			connected_ai.connected_robots.Add(src)
-			lawsync()
-	else if(lawupdate)
-		laws = new /datum/ai_laws/corporate()
-		connected_ai = select_active_ai_with_fewest_borgs()
-		if(isnotnull(connected_ai))
-			connected_ai.connected_robots.Add(src)
-			lawsync()
-			lawupdate = TRUE
-		else
-			lawupdate = FALSE
+	laws = new default_law_type()
+	connected_ai = select_active_ai_with_fewest_borgs()
+	if(isnotnull(connected_ai) && (isdrone(src) || lawupdate))
+		connected_ai.connected_robots.Add(src)
+		lawsync()
 
 	if(isnull(radio))
 		radio = new /obj/item/radio/borg(src)
@@ -545,56 +458,6 @@
 			var/obj/item/broken_device = cell_component.wrapped
 			to_chat(user, "You remove \the [broken_device].")
 			user.put_in_active_hand(broken_device)
-
-/mob/living/silicon/robot/updateicon()
-	overlays.Cut()
-	if(!custom_sprite)
-		if(isnotnull(model?.sprite_path))
-			icon = model.sprite_path
-		else
-			icon = initial(icon)
-
-	if(stat == CONSCIOUS)
-		// Sets up the robot's eye overlay appearance if not done already.
-		if(isnull(eye_lights))
-			eye_lights = new /mutable_appearance()
-		eye_lights.icon = icon
-		eye_lights.icon_state = "eyes-[icon_state]"
-		eye_lights.plane = ABOVE_DEFAULT_PLANE
-		eye_lights.color = COLOR_WHITE
-		overlays.Add(eye_lights)
-	else
-		overlays.Remove(eye_lights)
-
-	if(opened && custom_sprite) // Custom borgs also have custom panels, heh.
-		if(wiresexposed)
-			overlays.Add("[ckey]-openpanel +w")
-		else if(cell)
-			overlays.Add("[ckey]-openpanel +c")
-		else
-			overlays.Add("[ckey]-openpanel -c")
-
-	if(opened)
-		if(wiresexposed)
-			overlays.Add(image('icons/mob/silicon/robot/overlays.dmi', "ov-openpanel +w"))
-		else if(cell)
-			overlays.Add(image('icons/mob/silicon/robot/overlays.dmi', "ov-openpanel +c"))
-		else
-			overlays.Add(image('icons/mob/silicon/robot/overlays.dmi', "ov-openpanel -c"))
-
-	if(module_active && istype(module_active, /obj/item/robot_module/combat_shield))
-		overlays.Add("[icon_state]-shield")
-
-	if(istype(model, /obj/item/robot_model/combat))
-		var/base_icon = ""
-		base_icon = icon_state
-		if(module_active && istype(module_active, /obj/item/robot_module/combat_mobility))
-			icon_state = "[icon_state]-roll"
-		else
-			icon_state = base_icon
-
-	if(istype(model, /obj/item/robot_model/miner) && isnotnull(internals))
-		overlays.Add("jetpack-[icon_state]")
 
 // Call when target overlay should be added/removed.
 /mob/living/silicon/robot/update_targeted()
