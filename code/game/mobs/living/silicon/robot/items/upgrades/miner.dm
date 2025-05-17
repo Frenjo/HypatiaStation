@@ -15,11 +15,12 @@
 	if(!..())
 		return FALSE
 	if(isnotnull(robby.internals))
+		to_chat(user, SPAN_WARNING("\The [robby] already has a jetpack installed!"))
 		return FALSE
 
 	var/obj/item/robot_model/miner/model = robby.model
 	model.modules.Add(new /obj/item/tank/jetpack/carbon_dioxide(src))
 	for(var/obj/item/tank/jetpack/carbon_dioxide/jetpack in model.modules)
 		robby.internals = jetpack
-	//robby.icon_state="Miner+j"
+	robby.updateicon()
 	return TRUE

@@ -60,7 +60,6 @@
 	//var/list/laws = list()
 	var/viewalerts = 0
 	var/lower_mod = 0
-	var/jetpack = 0
 	var/datum/effect/system/ion_trail_follow/ion_trail = null
 	var/datum/effect/system/spark_spread/spark_system //So they can initialize sparks whenever/N
 	var/jeton = 0
@@ -593,6 +592,9 @@
 			icon_state = "[icon_state]-roll"
 		else
 			icon_state = base_icon
+
+	if(istype(model, /obj/item/robot_model/miner) && isnotnull(internals))
+		overlays.Add("jetpack-[icon_state]")
 
 // Call when target overlay should be added/removed.
 /mob/living/silicon/robot/update_targeted()
