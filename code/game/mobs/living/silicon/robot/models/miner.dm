@@ -16,7 +16,7 @@
 	)
 	emag_type = /obj/item/robot_module/stun
 
-	channels = list(CHANNEL_SUPPLY, CHANNEL_MINING)
+	channels = list(CHANNEL_MINING)
 	camera_networks = list("MINE")
 
 	sprite_path = 'icons/mob/silicon/robot/miner.dmi'
