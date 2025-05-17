@@ -5,26 +5,27 @@
 	icon_state = "cypherkey"
 	item_state = ""
 
-	var/translate_binary = 0
-	var/translate_hive = 0
-	var/syndie = 0
+	var/translate_binary = FALSE
+	var/translate_hive = FALSE
+	var/syndie = FALSE
 	var/list/channels = list()
 
 /obj/item/encryptionkey/attackby(obj/item/W, mob/user)
 
 // Syndicate
 /obj/item/encryptionkey/syndicate
-	icon_state = "cypherkey"
+	name = "syndicate radio encryption key"
+	desc = "An encryption key for a radio headset. Contains cypherkeys."
+	icon_state = "syn_cypherkey"
 	channels = list(CHANNEL_SYNDICATE = 1)
 	origin_tech = alist(/decl/tech/syndicate = 3)
-	syndie = 1 //Signifies that it de-crypts Syndicate transmissions
+	syndie = TRUE //Signifies that it de-crypts Syndicate transmissions
 
 // Binary
 /obj/item/encryptionkey/binary
-	icon_state = "cypherkey"
 	matter_amounts = /datum/design/illegal/binaryencrypt::materials
 	origin_tech = /datum/design/illegal/binaryencrypt::req_tech
-	translate_binary = 1
+	translate_binary = TRUE
 
 // Security
 /obj/item/encryptionkey/sec
