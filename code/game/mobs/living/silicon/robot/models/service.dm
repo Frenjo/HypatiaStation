@@ -26,7 +26,8 @@
 		"Kent" = "toiletbot",
 		"Bro" = "brobot",
 		"Rich" = "maximillion",
-		"Hydrobot" = "hydrobot"
+		"Hydrobot" = "hydrobot",
+		"Hatchet Gear Rex" = "hatchetgearrex"
 	)
 	model_select_sprite = "service2"
 
