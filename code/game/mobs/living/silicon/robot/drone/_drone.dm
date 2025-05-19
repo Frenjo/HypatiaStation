@@ -125,7 +125,7 @@
 	connected_ai = null
 	clear_supplied_laws()
 	clear_inherent_laws()
-	laws = new /datum/ai_laws/syndicate_override
+	laws = new /datum/ai_laws/syndicate_override()
 	set_zeroth_law("Only [user.real_name] and people he designates as being such are Syndicate Agents.")
 
 	to_chat(src, "<b>Obey these laws:</b>")

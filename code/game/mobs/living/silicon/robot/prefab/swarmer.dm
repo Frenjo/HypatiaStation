@@ -2,15 +2,17 @@
 /mob/living/silicon/robot/swarmer
 	icon = 'icons/mob/silicon/robot/swarmer.dmi'
 	icon_state = "swarmmate"
+
 	lawupdate = FALSE
 	scrambledcodes = TRUE
+
+	default_law_type = /datum/ai_laws/swarmer
 
 	var/selected_icon = FALSE
 
 /mob/living/silicon/robot/swarmer/New()
 	cell = new /obj/item/cell/hyper(src)
 	. = ..()
-	laws = new /datum/ai_laws/swarmer()
 	transform_to_model(/obj/item/robot_model/swarmer)
 	updatename()
 
