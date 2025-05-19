@@ -26,6 +26,8 @@
 
 	can_be_pushed = FALSE
 
+	advanced_huds = list(SILICON_HUD_SECURITY)
+
 /obj/item/robot_model/peacekeeper/respawn_consumable(mob/living/silicon/robot/robby)
 	. = ..()
 	if(isnotnull(emag))

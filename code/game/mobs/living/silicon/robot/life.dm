@@ -160,12 +160,13 @@
 		see_invisible = SEE_INVISIBLE_LEVEL_TWO
 
 	regular_hud_updates()
-	// Security and medical models get the advanced versions of their respective HUDs if enabled.
+	// Various models get the advanced versions of their respective HUDs if they have them enabled.
+	var/is_advanced = isnotnull(model.advanced_huds) && (sensor_mode in model.advanced_huds)
 	switch(sensor_mode)
 		if(SILICON_HUD_SECURITY)
-			process_sec_hud(src, istype(model, /obj/item/robot_model/security))
+			process_sec_hud(src, is_advanced)
 		if(SILICON_HUD_MEDICAL)
-			process_med_hud(src, istype(model, /obj/item/robot_model/medical))
+			process_med_hud(src, is_advanced)
 
 	if(isnotnull(healths))
 		if(stat != DEAD)

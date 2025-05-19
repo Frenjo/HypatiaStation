@@ -29,6 +29,8 @@
 
 	can_be_pushed = FALSE
 
+	advanced_huds = list(SILICON_HUD_SECURITY)
+
 /obj/item/robot_model/security/respawn_consumable(mob/living/silicon/robot/robby)
 	. = ..()
 	var/obj/item/gun/energy/taser/cyborg/taser = locate() in modules

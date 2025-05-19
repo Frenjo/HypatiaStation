@@ -36,6 +36,8 @@
 	var/can_be_pushed = TRUE // Whether this model can be pushed around.
 	var/integrated_light_range = 4 // The range of this model's integrated light.
 
+	var/list/advanced_huds = null // A list of SILICON_HUD_* types that this model will use the advanced version of.
+
 /obj/item/robot_model/New()
 	. = ..()
 	for(var/path in basic_modules)

@@ -32,6 +32,8 @@
 
 	can_be_pushed = FALSE
 
+	advanced_huds = list(SILICON_HUD_MEDICAL)
+
 /obj/item/robot_model/medical/respawn_consumable(mob/living/silicon/robot/robby)
 	. = ..()
 	var/obj/item/reagent_holder/syringe/needle = locate() in modules

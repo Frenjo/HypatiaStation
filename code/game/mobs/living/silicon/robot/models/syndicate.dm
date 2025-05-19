@@ -30,3 +30,5 @@
 	model_select_sprite = "syndefault"
 
 	can_be_pushed = FALSE
+
+	advanced_huds = list(SILICON_HUD_SECURITY)
