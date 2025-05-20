@@ -88,7 +88,7 @@
 	dat += "<tt>"
 	for(var/material_path in materials.stored_materials)
 		var/decl/material/mat = material_path
-		dat += "<font color='[initial(mat.mint_colour_code)]'><b>[initial(mat.name)]:</b></font> [materials.get_type_amount(mat)]cm<sup>3</sup>"
+		dat += "<font color='[initial(mat.colour_code)]'><b>[initial(mat.name)]:</b></font> [materials.get_type_amount(mat)]cm<sup>3</sup>"
 		dat += " (MAX: [materials.get_total_type_capacity(mat)]cm<sup>3</sup>)"
 		dat += "<br>"
 	dat += "<b>Total Amount:</b> [materials.get_total_amount()]cm<sup>3</sup> (MAX: [materials.get_total_capacity()]cm<sup>3</sup>)"

@@ -643,7 +643,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				var/decl/material/mat = material_path
 				var/per_unit = initial(mat.per_unit)
 				var/material_amount = linked_lathe.materials.get_type_amount(mat)
-				dat += "* [material_amount] cm<sup>3</sup> of <font color='[initial(mat.mint_colour_code)]'>[initial(mat.name)]</font> || Eject: "
+				dat += "* [material_amount] cm<sup>3</sup> of <font color='[initial(mat.colour_code)]'>[initial(mat.name)]</font> || Eject: "
 				if(material_amount >= per_unit)
 					dat += "<A href='byond://?src=\ref[src];lathe_ejectsheet=[mat];lathe_ejectsheet_amt=1'>(1 Sheet)</A> "
 				if(material_amount >= (per_unit * 5))
@@ -719,7 +719,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				var/decl/material/mat = material_path
 				var/per_unit = initial(mat.per_unit)
 				var/material_amount = linked_imprinter.materials.get_type_amount(mat)
-				dat += "* [material_amount] cm<sup>3</sup> of <font color='[initial(mat.mint_colour_code)]'>[initial(mat.name)]</font> || Eject: "
+				dat += "* [material_amount] cm<sup>3</sup> of <font color='[initial(mat.colour_code)]'>[initial(mat.name)]</font> || Eject: "
 				if(material_amount >= per_unit)
 					dat += "<A href='byond://?src=\ref[src];imprinter_ejectsheet=[mat];imprinter_ejectsheet_amt=1'>(1 Sheet)</A> "
 				if(material_amount >= (per_unit * 5))

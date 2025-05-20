@@ -4,18 +4,14 @@
 	// The icon state prefix used for icons made of this material.
 	// Equivalent to lowertext(name) if unset.
 	var/icon_prefix
+	// The colour code for the material.
+	var/colour_code = null
 	// The type path of the associated sheet item.
 	var/sheet_path
-	// The amount of this material that each sheet holds.
-	var/per_unit = MATERIAL_AMOUNT_PER_SHEET
-
-	/*
-	 * Mint
-	 */
 	// The type path of the associated coin item.
 	var/coin_path
-	// The colour code used for the mint.
-	var/mint_colour_code
+	// The amount of this material that each sheet holds.
+	var/per_unit = MATERIAL_AMOUNT_PER_SHEET
 
 	/*
 	 * Wall
