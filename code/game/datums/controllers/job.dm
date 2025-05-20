@@ -421,6 +421,7 @@ CONTROLLER_DEF(jobs)
 //	H.update_icons()
 
 	BITSET(H.hud_updateflag, ID_HUD)
+	BITSET(H.hud_updateflag, IMPSHIELD_HUD)
 	BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 	return 1

@@ -9,7 +9,8 @@
 #define STATUS_HUD		"status" // alive, dead, diseased, etc.
 #define ID_HUD			"id" // the job asigned to your ID
 #define WANTED_HUD		"wanted" // wanted, released, parroled, security status
-#define IMPLOYAL_HUD	"loyalty" // loyality implant
+#define IMPSHIELD_HUD	"mindshield" // Mindshield implant
+#define IMPLOYAL_HUD	"loyalty" // Loyalty implant
 #define IMPCHEM_HUD		"chemical" // chemical implant
 #define IMPTRACK_HUD	"tracking" // tracking implant
 #define SPECIALROLE_HUD "antag" // AntagHUD image

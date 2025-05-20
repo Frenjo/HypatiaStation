@@ -73,12 +73,11 @@
 			flick("e_flash", M.flash)
 
 			if(ishuman(M) && ishuman(user) && M.stat != DEAD)
+				var/mob/living/carbon/human/H = M
 				if(user.mind && (user.mind in global.PCticker.mode.head_revolutionaries) && IS_GAME_MODE(/datum/game_mode/revolution))
 					var/revsafe = 0
-					for(var/obj/item/implant/loyalty/L in M)
-						if(L && L.implanted)
-							revsafe = 1
-							break
+					if(H.is_mindshield_implanted() || H.is_loyalty_implanted())
+						revsafe = 1
 					M.mind_initialize()		//give them a mind datum if they don't have one.
 					if(M.mind.has_been_rev)
 						revsafe = 2

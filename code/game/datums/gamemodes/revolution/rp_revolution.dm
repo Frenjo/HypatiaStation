@@ -156,10 +156,12 @@
 	return 1
 
 /datum/game_mode/revolution/proc/is_convertible(mob/M)
-	for(var/obj/item/implant/loyalty/L in M)	//Checking that there is a loyalty implant in the contents
-		if(L.imp_in == M)	//Checking that it's actually implanted
-			return 0
-	return 1
+	if(!ishuman(M))
+		return FALSE
+	var/mob/living/carbon/human/H = M
+	if(H.is_mindshield_implanted() || H.is_loyalty_implanted())
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/proc/RevConvert()
 	set category = PANEL_IC

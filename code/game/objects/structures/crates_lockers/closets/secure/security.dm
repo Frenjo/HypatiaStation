@@ -114,6 +114,7 @@
 		/obj/item/clothing/glasses/sunglasses/sechud,
 		/obj/item/taperoll/police,
 		/obj/item/shield/riot,
+		/obj/item/storage/lockbox/mindshield,
 		/obj/item/storage/lockbox/loyalty,
 		/obj/item/storage/box/flashbangs,
 		/obj/item/storage/belt/security,

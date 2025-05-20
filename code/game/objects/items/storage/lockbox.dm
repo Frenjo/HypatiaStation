@@ -62,22 +62,36 @@
 		..()
 	return
 
+// Mindshield implants
+/obj/item/storage/lockbox/mindshield
+	name = "lockbox of mindshield implants"
+	req_access = list(ACCESS_SECURITY)
+
+/obj/item/storage/lockbox/mindshield/New()
+	. = ..()
+	new /obj/item/implantcase/mindshield(src)
+	new /obj/item/implantcase/mindshield(src)
+	new /obj/item/implantcase/mindshield(src)
+	new /obj/item/implanter/mindshield(src)
+
+// Loyalty implants
 /obj/item/storage/lockbox/loyalty
 	name = "lockbox of loyalty implants"
 	req_access = list(ACCESS_SECURITY)
 
 /obj/item/storage/lockbox/loyalty/New()
-	..()
+	. = ..()
 	new /obj/item/implantcase/loyalty(src)
 	new /obj/item/implantcase/loyalty(src)
 	new /obj/item/implantcase/loyalty(src)
 	new /obj/item/implanter/loyalty(src)
 
+// Clusterbangs
 /obj/item/storage/lockbox/clusterbang
 	name = "lockbox of clusterbangs"
 	desc = "You have a bad feeling about opening this."
 	req_access = list(ACCESS_SECURITY)
 
 /obj/item/storage/lockbox/clusterbang/New()
-	..()
+	. = ..()
 	new /obj/item/grenade/flashbang/clusterbang(src)

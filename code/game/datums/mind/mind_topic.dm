@@ -157,14 +157,32 @@
 		var/mob/living/carbon/human/H = current
 		BITSET(H.hud_updateflag, IMPLOYAL_HUD)	// Updates that players HUD images so secHUD's pick up they are implanted or not.
 		switch(href_list["implant"])
-			if("remove")
+			if("shieldremove")
+				for(var/obj/item/implant/mindshield/I in H.contents)
+					for(var/datum/organ/external/organs in H.organs)
+						if(I in organs.implants)
+							qdel(I)
+							break
+				to_chat(H, SPAN_INFO_B("<font size=3>Your mindshield implant has been deactivated.</font>"))
+
+			if("shieldadd")
+				var/obj/item/implant/mindshield/shield = new/obj/item/implant/mindshield(H)
+				shield.imp_in = H
+				shield.implanted = 1
+				var/datum/organ/external/affected = H.organs_by_name["head"]
+				affected.implants.Add(shield)
+				shield.part = affected
+				to_chat(H, SPAN_DANGER("<font size=3>You have somehow become the recipient of a mindshield implant, and it just activated!</font>"))
+
+			if("loyaltyremove")
 				for(var/obj/item/implant/loyalty/I in H.contents)
 					for(var/datum/organ/external/organs in H.organs)
 						if(I in organs.implants)
 							qdel(I)
 							break
 				to_chat(H, SPAN_INFO_B("<font size=3>Your loyalty implant has been deactivated.</font>"))
-			if("add")
+
+			if("loyaltyadd")
 				var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(H)
 				L.imp_in = H
 				L.implanted = 1
@@ -172,7 +190,7 @@
 				affected.implants.Add(L)
 				L.part = affected
 
-				to_chat(H, SPAN_DANGER("<font size=3>You somehow have become the recepient of a loyalty implant, and it just activated!</font>"))
+				to_chat(H, SPAN_DANGER("<font size=3>You have somehow become the recipient of a loyalty implant, and it just activated!</font>"))
 				if(src in global.PCticker.mode.revolutionaries)
 					special_role = null
 					global.PCticker.mode.revolutionaries.Remove(src)

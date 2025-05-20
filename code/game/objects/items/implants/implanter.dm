@@ -52,6 +52,15 @@
 /*
  * Prefab Types
  */
+// Mindshield
+/obj/item/implanter/mindshield
+	name = "implanter-mindshield"
+
+/obj/item/implanter/mindshield/New()
+	. = ..()
+	imp = new /obj/item/implant/mindshield(src)
+	update()
+
 // Loyalty.
 /obj/item/implanter/loyalty
 	name = "implanter-loyalty"

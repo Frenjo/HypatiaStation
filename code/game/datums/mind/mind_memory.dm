@@ -44,10 +44,14 @@
 	if(ishuman(current) || ismonkey(current))
 		/*** Implanted ***/
 		if(ishuman(current))
-			if(H.is_loyalty_implanted(H))
-				text = "Loyalty Implant:<a href='byond://?src=\ref[src];implant=remove'>Remove</a>|<b>Implanted</b></br>"
+			if(H.is_mindshield_implanted())
+				text = "Mindshield Implant: <a href='byond://?src=\ref[src];implant=shieldremove'>Remove</a> | <b>Implanted</b></br>"
 			else
-				text = "Loyalty Implant:<b>No Implant</b>|<a href='byond://?src=\ref[src];implant=add'>Implant him!</a></br>"
+				text = "Mindshield Implant: <b>No Implant</b> | <a href='byond://?src=\ref[src];implant=shieldadd'>Implant him!</a></br>"
+			if(H.is_loyalty_implanted())
+				text = "Loyalty Implant: <a href='byond://?src=\ref[src];implant=loyaltyremove'>Remove</a> | <b>Implanted</b></br>"
+			else
+				text = "Loyalty Implant: <b>No Implant</b> | <a href='byond://?src=\ref[src];implant=loyaltyadd'>Implant him!</a></br>"
 		else
 			text = "Loyalty Implant: Don't implant that monkey!</br>"
 		sections["implant"] = text
@@ -56,7 +60,7 @@
 		if(IS_GAME_MODE(/datum/game_mode/revolution))
 			text += uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if(ismonkey(current) || H.is_loyalty_implanted(H))
+		if(ismonkey(current) || H.is_loyalty_implanted())
 			text += "<b>LOYAL EMPLOYEE</b>|headrev|rev"
 		else if(src in global.PCticker.mode.head_revolutionaries)
 			text = "<a href='byond://?src=\ref[src];revolution=clear'>employee</a>|<b>HEADREV</b>|<a href='byond://?src=\ref[src];revolution=rev'>rev</a>"
@@ -86,7 +90,7 @@
 		if(IS_GAME_MODE(/datum/game_mode/cult))
 			text = uppertext(text)
 		text = "<i><b>[text]</b></i>: "
-		if(ismonkey(current) || H.is_loyalty_implanted(H))
+		if(ismonkey(current) || H.is_loyalty_implanted())
 			text += "<B>LOYAL EMPLOYEE</B>|cultist"
 		else if(src in global.PCticker.mode.cult)
 			text += "<a href='byond://?src=\ref[src];cult=clear'>employee</a>|<b>CULTIST</b>"
@@ -156,7 +160,7 @@
 		text = uppertext(text)
 	text = "<i><b>[text]</b></i>: "
 	if(ishuman(current))
-		if(H.is_loyalty_implanted(H))
+		if(H.is_loyalty_implanted())
 			text += "traitor|<b>LOYAL EMPLOYEE</b>"
 		else
 			if(src in global.PCticker.mode.traitors)

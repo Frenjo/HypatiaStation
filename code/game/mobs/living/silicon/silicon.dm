@@ -7,7 +7,7 @@
 	var/syndicate = 0
 	var/datum/ai_laws/laws = null	//Now... THEY ALL CAN ALL HAVE LAWS
 
-	var/list/hud_list
+	var/alist/hud_list
 	var/list/speech_synthesizer_langs //which languages can be vocalized by the speech synthesizer
 
 	var/local_transmit //If set, can only speak to others of the same type within a short range.
@@ -18,7 +18,7 @@
 	var/ioncheck[1] // Ditto.
 
 /mob/living/silicon/New()
-	hud_list = list()
+	LAZYINITALIST(hud_list)
 	speech_synthesizer_langs = list()
 	. = ..()
 	add_silicon_verbs()

@@ -143,6 +143,14 @@
 /datum/design/implant
 	name_prefix = "Implant Design"
 
+/datum/design/implant/mindshield
+	name = "Mindshield"
+	desc = "Protects you from brainwashing."
+	req_tech = alist(/decl/tech/materials = 2, /decl/tech/biotech = 2)
+	build_type = DESIGN_TYPE_PROTOLATHE
+	materials = alist(/decl/material/plastic = 7000, /decl/material/glass = 7000)
+	build_path = /obj/item/implant/mindshield
+
 /datum/design/implant/loyal
 	name = "Loyalty"
 	desc = "Makes you loyal or such."

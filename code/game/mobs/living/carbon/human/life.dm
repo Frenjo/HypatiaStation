@@ -1795,27 +1795,32 @@
 						break
 		hud_list[WANTED_HUD] = holder
 
-	if(BITTEST(hud_updateflag, IMPLOYAL_HUD) || BITTEST(hud_updateflag, IMPCHEM_HUD) || BITTEST(hud_updateflag, IMPTRACK_HUD))
+	if(BITTEST(hud_updateflag, IMPTRACK_HUD) || BITTEST(hud_updateflag, IMPSHIELD_HUD) \
+	|| BITTEST(hud_updateflag, IMPLOYAL_HUD) || BITTEST(hud_updateflag, IMPCHEM_HUD))
 		var/image/holder1 = hud_list[IMPTRACK_HUD]
-		var/image/holder2 = hud_list[IMPLOYAL_HUD]
-		var/image/holder3 = hud_list[IMPCHEM_HUD]
+		var/image/holder2 = hud_list[IMPSHIELD_HUD]
+		var/image/holder3 = hud_list[IMPLOYAL_HUD]
+		var/image/holder4 = hud_list[IMPCHEM_HUD]
 
 		holder1.icon_state = "hudblank"
-		holder2.icon_state = "hudblank"
 		holder3.icon_state = "hudblank"
+		holder4.icon_state = "hudblank"
 
 		for(var/obj/item/implant/I in src)
 			if(I.implanted)
 				if(istype(I, /obj/item/implant/tracking))
 					holder1.icon_state = "hud_imp_tracking"
+				if(istype(I, /obj/item/implant/mindshield))
+					holder2.icon_state = "hud_imp_mindshield"
 				if(istype(I, /obj/item/implant/loyalty))
-					holder2.icon_state = "hud_imp_loyal"
+					holder3.icon_state = "hud_imp_loyal"
 				if(istype(I, /obj/item/implant/chem))
-					holder3.icon_state = "hud_imp_chem"
+					holder4.icon_state = "hud_imp_chem"
 
 		hud_list[IMPTRACK_HUD] = holder1
-		hud_list[IMPLOYAL_HUD] = holder2
-		hud_list[IMPCHEM_HUD] = holder3
+		hud_list[IMPSHIELD_HUD] = holder2
+		hud_list[IMPLOYAL_HUD] = holder3
+		hud_list[IMPCHEM_HUD] = holder4
 
 	if(BITTEST(hud_updateflag, SPECIALROLE_HUD))
 		var/image/holder = hud_list[SPECIALROLE_HUD]

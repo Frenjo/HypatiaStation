@@ -5,12 +5,14 @@
 	icon = 'icons/mob/human.dmi'
 	icon_state = "body_m_s"
 
-	var/list/hud_list[9]
+	var/alist/hud_list
 	var/datum/species/species //Contains icon generation and language information, set during New().
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 
 /mob/living/carbon/human/New(new_loc, new_species = null)
-	if(!dna)
+	LAZYINITALIST(hud_list)
+
+	if(isnull(dna))
 		dna = new /datum/dna(null)
 		// Species name is handled by set_species()
 
@@ -26,6 +28,7 @@
 	hud_list[STATUS_HUD]		= image('icons/hud/hud.dmi', src, "hudhealthy")
 	hud_list[ID_HUD]			= image('icons/hud/hud.dmi', src, "hudunknown")
 	hud_list[WANTED_HUD]		= image('icons/hud/hud.dmi', src, "hudblank")
+	hud_list[IMPSHIELD_HUD]		= image('icons/hud/hud.dmi', src, "hudblank")
 	hud_list[IMPLOYAL_HUD]		= image('icons/hud/hud.dmi', src, "hudblank")
 	hud_list[IMPCHEM_HUD]		= image('icons/hud/hud.dmi', src, "hudblank")
 	hud_list[IMPTRACK_HUD]		= image('icons/hud/hud.dmi', src, "hudblank")
@@ -34,8 +37,7 @@
 
 	. = ..()
 
-	if(dna)
-		dna.real_name = real_name
+	dna.real_name = real_name
 
 	//prev_gender = gender // Debug for plural genders
 	make_blood()
@@ -211,14 +213,21 @@
 		if(armor >= 2)
 			return
 
-
-/mob/living/carbon/human/proc/is_loyalty_implanted(mob/living/carbon/human/M)
-	for(var/L in M.contents)
-		if(istype(L, /obj/item/implant/loyalty))
-			for(var/datum/organ/external/O in M.organs)
+/mob/living/carbon/human/proc/is_mindshield_implanted()
+	for(var/L in contents)
+		if(istype(L, /obj/item/implant/mindshield))
+			for(var/datum/organ/external/O in organs)
 				if(L in O.implants)
-					return 1
-	return 0
+					return TRUE
+	return FALSE
+
+/mob/living/carbon/human/proc/is_loyalty_implanted()
+	for(var/L in contents)
+		if(istype(L, /obj/item/implant/loyalty))
+			for(var/datum/organ/external/O in organs)
+				if(L in O.implants)
+					return TRUE
+	return FALSE
 
 /mob/living/carbon/human/attack_slime(mob/living/carbon/slime/M)
 	if(M.Victim)

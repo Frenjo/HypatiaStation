@@ -34,6 +34,7 @@ the HUD updates properly! */
 		if(advanced_mode)
 			P.client.images.Add(perp.hud_list[WANTED_HUD])
 			P.client.images.Add(perp.hud_list[IMPTRACK_HUD])
+			P.client.images.Add(perp.hud_list[IMPSHIELD_HUD])
 			P.client.images.Add(perp.hud_list[IMPLOYAL_HUD])
 			P.client.images.Add(perp.hud_list[IMPCHEM_HUD])
 

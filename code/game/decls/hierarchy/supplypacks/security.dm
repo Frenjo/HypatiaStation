@@ -113,13 +113,20 @@
 	containername = "Riot gear crate"
 	access = ACCESS_ARMOURY
 
+/decl/hierarchy/supply_pack/security/mindshield
+	name = "Mindshield implant crate"
+	contains = list (/obj/item/storage/lockbox/mindshield)
+	cost = 60
+	containertype = /obj/structure/closet/crate/secure
+	containername = "mindshield implant crate"
+	access = ACCESS_ARMOURY
 
 /decl/hierarchy/supply_pack/security/loyalty
 	name = "Loyalty implant crate"
 	contains = list (/obj/item/storage/lockbox/loyalty)
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Loyalty implant crate"
+	containername = "loyalty implant crate"
 	access = ACCESS_ARMOURY
 
 

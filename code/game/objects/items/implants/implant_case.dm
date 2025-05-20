@@ -98,7 +98,18 @@
 	..()
 	return
 
+// Mindshield
+/obj/item/implantcase/mindshield
+	name = "glass case - 'mindshield'"
+	desc = "A case containing a mindshield implant."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "implantcase-r"
 
+/obj/item/implantcase/mindshield/New()
+	. = ..()
+	imp = new /obj/item/implant/mindshield(src)
+
+// Loyalty
 /obj/item/implantcase/loyalty
 	name = "glass case - 'loyalty'"
 	desc = "A case containing a loyalty implant."
@@ -106,9 +117,8 @@
 	icon_state = "implantcase-r"
 
 /obj/item/implantcase/loyalty/New()
-	src.imp = new /obj/item/implant/loyalty(src)
-	..()
-	return
+	. = ..()
+	imp = new /obj/item/implant/loyalty(src)
 
 
 /obj/item/implantcase/death_alarm

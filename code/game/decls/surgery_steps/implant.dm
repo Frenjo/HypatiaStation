@@ -202,6 +202,7 @@
 			)
 			affected.implants -= obj
 
+			BITSET(target.hud_updateflag, IMPSHIELD_HUD)
 			BITSET(target.hud_updateflag, IMPLOYAL_HUD)
 
 			//Handle possessive brain borers.

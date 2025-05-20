@@ -34,6 +34,8 @@
 	var/outfit
 	// List of alternate titles with alternate outfit typepaths as associative values, if any.
 	var/list/alt_titles
+	// Whether this job spawns with a mindshield implant.
+	var/has_mindshield_implant = FALSE
 	// Whether this job spawns with a loyalty implant.
 	var/has_loyalty_implant = FALSE
 
@@ -49,6 +51,14 @@
 		outfit_type = alt_titles[alt_title]
 
 	. = H.equip_outfit(outfit_type)
+
+	if(has_mindshield_implant)
+		var/obj/item/implant/mindshield/shield = new /obj/item/implant/mindshield(H)
+		shield.imp_in = H
+		shield.implanted = TRUE
+		var/datum/organ/external/affected = H.organs_by_name["head"]
+		affected.implants.Add(shield)
+		shield.part = affected
 
 	if(has_loyalty_implant)
 		var/obj/item/implant/loyalty/L = new /obj/item/implant/loyalty(H)

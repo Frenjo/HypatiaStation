@@ -57987,8 +57987,9 @@
 /area/station/engineering/storage/hard)
 "uxV" = (
 /obj/structure/rack,
-/obj/item/storage/lockbox/loyalty,
 /obj/effect/decal/floor/industrial/bot/vault,
+/obj/item/storage/lockbox/mindshield,
+/obj/item/storage/lockbox/loyalty,
 /turf/open/floor/tiled/dark,
 /area/station/security/armoury)
 "uyd" = (
