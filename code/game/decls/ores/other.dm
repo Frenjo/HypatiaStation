@@ -3,7 +3,7 @@
 
 	item_path = /obj/item/ore/coal
 	result_amount = 5
-	spread_chance = 25
+	spread_chance = 20
 
 	xenoarch_age_range_thousand = list(1, 999)
 	xenoarch_age_range_million = list(1, 999)
