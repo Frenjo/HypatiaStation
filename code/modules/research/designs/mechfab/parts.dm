@@ -6,27 +6,27 @@
 
 // Ripley (and friends) Chassis
 /datum/design/mechfab/part/ripley_chassis
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10)
 	build_path = /obj/item/mecha_part/chassis/ripley
 	categories = list("Ripley")
 
 /datum/design/mechfab/part/firefighter_chassis
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10)
 	build_path = /obj/item/mecha_part/chassis/firefighter
 	categories = list("Firefighter")
 
 /datum/design/mechfab/part/rescue_ranger_chassis
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10)
 	build_path = /obj/item/mecha_part/chassis/rescue_ranger
 	categories = list("Rescue Ranger")
 
 /datum/design/mechfab/part/dreadnought_chassis
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10)
 	build_path = /obj/item/mecha_part/chassis/dreadnought
 	categories = list("Dreadnought")
 
 /datum/design/mechfab/part/bulwark_chassis
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 12.5)
 	build_path = /obj/item/mecha_part/chassis/bulwark
 	categories = list("Bulwark")
 
@@ -63,7 +63,7 @@
 
 // Odysseus
 /datum/design/mechfab/part/odysseus_chassis
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10)
 	build_path = /obj/item/mecha_part/chassis/odysseus
 	categories = list("Odysseus")
 
@@ -134,7 +134,7 @@
 
 // Gygax
 /datum/design/mechfab/part/gygax_chassis
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10)
 	build_path = /obj/item/mecha_part/chassis/gygax
 	categories = list("Gygax")
 
@@ -209,7 +209,7 @@
 
 // Serenity
 /datum/design/mechfab/part/serenity_chassis
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10)
 	build_path = /obj/item/mecha_part/chassis/serenity
 	categories = list("Serenity")
 
@@ -224,7 +224,7 @@
 
 // Durand
 /datum/design/mechfab/part/durand_chassis
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 8)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 12.5)
 	build_path = /obj/item/mecha_part/chassis/durand
 	categories = list("Durand")
 
@@ -308,6 +308,7 @@
 	name = "\"Archambeau\" Chassis"
 	desc = "The chassis of an Archambeau-type exosuit."
 	req_tech = alist(/decl/tech/materials = 7, /decl/tech/combat = 4, /decl/tech/engineering = 6)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 12.5)
 	build_path = /obj/item/mecha_part/chassis/archambeau
 	categories = list("Archambeau")
 
@@ -328,7 +329,7 @@
 	name = "\"Phazon\" Chassis"
 	desc = "The chassis of a Phazon-type exosuit."
 	req_tech = alist(/decl/tech/materials = 7)
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10)
 	build_path = /obj/item/mecha_part/chassis/phazon
 	categories = list("Phazon")
 
@@ -406,7 +407,7 @@
 
 // H.O.N.K
 /datum/design/mechfab/part/honk_chassis
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10)
 	build_path = /obj/item/mecha_part/chassis/honk
 	categories = list("H.O.N.K")
 
@@ -454,7 +455,7 @@
 
 // Reticence
 /datum/design/mechfab/part/reticence_chassis
-	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 6)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10)
 	build_path = /obj/item/mecha_part/chassis/reticence
 	categories = list("Reticence")
 
