@@ -12215,13 +12215,13 @@
 	},
 /obj/machinery/door_control{
 	id = "vault_blast";
-	name = "Vault Blast Door Control";
-	pixel_x = 23;
+	name = "vault blast door control";
+	pixel_x = 25;
 	req_access = list(53)
 	},
 /obj/machinery/door/poddoor{
 	id = "vault_blast";
-	name = "Vault Blast Door"
+	name = "vault blast door"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /turf/open/floor{
@@ -13867,6 +13867,7 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/keycard_auth{
+	pixel_x = 5;
 	pixel_y = -24
 	},
 /turf/open/floor{
@@ -16458,9 +16459,9 @@
 	},
 /obj/machinery/door_control{
 	id = "vault_outer";
-	name = "Vault Outer Bolt Control";
+	name = "vault outer bolt control";
 	normaldoorcontrol = 1;
-	pixel_x = 23;
+	pixel_x = 25;
 	req_access = list(53);
 	specialfunctions = 4
 	},
@@ -27960,7 +27961,7 @@
 /area/station/engineering/storage)
 "jQI" = (
 /obj/structure/closet/crate{
-	name = "Gold Crate"
+	name = "gold crate"
 	},
 /obj/item/stack/sheet/gold{
 	pixel_y = 2
@@ -34009,7 +34010,7 @@
 	pixel_y = -8
 	},
 /obj/structure/closet/crate{
-	name = "Silver Crate"
+	name = "silver crate"
 	},
 /obj/effect/decal/floor/industrial/vault/right,
 /turf/open/floor/tiled/dark,
@@ -35871,7 +35872,7 @@
 	dir = 1
 	},
 /obj/structure/closet/crate{
-	name = "Camera Assembly Crate"
+	name = "camera assembly crate"
 	},
 /obj/item/camera_assembly,
 /obj/item/camera_assembly,
@@ -48045,6 +48046,7 @@
 /area/station/command/office/cmo)
 "qTD" = (
 /obj/machinery/keycard_auth{
+	pixel_x = -5;
 	pixel_y = -24
 	},
 /mob/living/simple/mouse/brown/Tom,
@@ -54561,7 +54563,7 @@
 	},
 /obj/structure/closet/crate{
 	desc = "It's a storage unit for kitchen clothes and equipment.";
-	name = "Kitchen Crate"
+	name = "kitchen crate"
 	},
 /obj/item/clothing/head/chefhat,
 /obj/item/clothing/under/rank/chef,
@@ -58760,7 +58762,7 @@
 	name = "Atmos Blast Door";
 	opacity = FALSE
 	},
-/obj/effect/window_spawner/reinforced,
+/obj/effect/window_spawner/reinforced_plasma,
 /turf/open/floor/plating/metal/airless,
 /area/station/engineering/atmospherics)
 "uOQ" = (
@@ -62710,9 +62712,9 @@
 	},
 /obj/machinery/door_control{
 	id = "vault_inner";
-	name = "Vault Inner Bolt Control";
+	name = "vault inner bolt control";
 	normaldoorcontrol = 1;
-	pixel_x = 23;
+	pixel_x = 25;
 	req_access = list(53);
 	specialfunctions = 4
 	},
@@ -64246,7 +64248,7 @@
 /area/station/command/bridge)
 "wPD" = (
 /obj/structure/closet/crate{
-	name = "Materials"
+	name = "materials"
 	},
 /obj/item/stack/sheet/steel{
 	amount = 50
