@@ -2,7 +2,7 @@
  * ERT Commander
  */
 /obj/structure/closet/secure/ert/commander
-	name = "\improper ERT commander locker"
+	name = "\improper ERT commander's locker"
 	req_access = list(ACCESS_SECURITY)
 	icon_state = "capsecure1"
 	icon_closed = "capsecure"
@@ -50,7 +50,7 @@
  * ERT Engineer
  */
 /obj/structure/closet/secure/ert/engineer
-	name = "\improper ERT engineer locker"
+	name = "\improper ERT engineer's locker"
 	req_access = list(ACCESS_ENGINE)
 	icon_state = "secureeng1"
 	icon_closed = "secureeng"

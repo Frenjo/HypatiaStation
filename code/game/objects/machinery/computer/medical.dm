@@ -516,8 +516,8 @@
 
 	..(severity)
 
-
+// Laptop variant
 /obj/machinery/computer/med_data/laptop
-	name = "Medical Laptop"
-	desc = "Cheap NanoTrasen Laptop."
+	name = "medical records laptop"
+	desc = "Cheap NanoTrasen laptop."
 	icon_state = "medlaptop"

@@ -7,7 +7,7 @@
 	contains = list(/obj/item/storage/box/monkeycubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
-	containername = "Monkey crate"
+	containername = "monkey crate"
 
 
 /decl/hierarchy/supply_pack/hydroponics/farwa
@@ -15,7 +15,7 @@
 	contains = list(/obj/item/storage/box/monkeycubes/farwacubes)
 	cost = 30
 	containertype = /obj/structure/closet/crate/freezer
-	containername = "Farwa crate"
+	containername = "farwa crate"
 
 
 /decl/hierarchy/supply_pack/hydroponics/skrell
@@ -23,7 +23,7 @@
 	contains = list(/obj/item/storage/box/monkeycubes/neaeracubes)
 	cost = 30
 	containertype = /obj/structure/closet/crate/freezer
-	containername = "Neaera crate"
+	containername = "neaera crate"
 
 
 /decl/hierarchy/supply_pack/hydroponics/stok
@@ -31,7 +31,7 @@
 	contains = list(/obj/item/storage/box/monkeycubes/stokcubes)
 	cost = 30
 	containertype = /obj/structure/closet/crate/freezer
-	containername = "Stok crate"
+	containername = "stok crate"
 
 
 /decl/hierarchy/supply_pack/hydroponics/lisa
@@ -39,7 +39,7 @@
 	contains = list()
 	cost = 50
 	containertype = /obj/structure/largecrate/lisa
-	containername = "Corgi Crate"
+	containername = "corgi crate"
 
 
 /decl/hierarchy/supply_pack/hydroponics/hydroponics // -- Skie
@@ -57,7 +57,7 @@
 	) // Updated with new things
 	cost = 15
 	containertype = /obj/structure/closet/crate/hydroponics
-	containername = "Hydroponics crate"
+	containername = "hydroponics crate"
 	access = ACCESS_HYDROPONICS
 
 
@@ -66,7 +66,7 @@
 	name = "Cow crate"
 	cost = 30
 	containertype = /obj/structure/largecrate/cow
-	containername = "Cow crate"
+	containername = "cow crate"
 	access = ACCESS_HYDROPONICS
 
 
@@ -74,7 +74,7 @@
 	name = "Goat crate"
 	cost = 25
 	containertype = /obj/structure/largecrate/goat
-	containername = "Goat crate"
+	containername = "goat crate"
 	access = ACCESS_HYDROPONICS
 
 
@@ -82,7 +82,7 @@
 	name = "Chicken crate"
 	cost = 20
 	containertype = /obj/structure/largecrate/chick
-	containername = "Chicken crate"
+	containername = "chicken crate"
 	access = ACCESS_HYDROPONICS
 
 
@@ -109,7 +109,7 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/hydroponics
-	containername = "Seeds crate"
+	containername = "seeds crate"
 	access = ACCESS_HYDROPONICS
 
 
@@ -123,7 +123,7 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/hydroponics
-	containername = "Weed control crate"
+	containername = "weed control crate"
 	access = ACCESS_HYDROPONICS
 
 
@@ -147,7 +147,7 @@
 	)
 	cost = 15
 	containertype = /obj/structure/closet/crate/hydroponics
-	containername = "Exotic Seeds crate"
+	containername = "exotic seeds crate"
 	access = ACCESS_HYDROPONICS
 
 
@@ -172,5 +172,5 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/hydroponics
-	containername = "Beekeeping crate"
+	containername = "beekeeping crate"
 	access = ACCESS_HYDROPONICS

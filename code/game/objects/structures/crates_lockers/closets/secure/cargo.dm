@@ -2,7 +2,7 @@
  * Cargo Technician
  */
 /obj/structure/closet/secure/cargotech
-	name = "Cargo Technician's Locker"
+	name = "cargo technician's locker"
 	req_access = list(ACCESS_CARGO)
 	icon_state = "securecargo1"
 	icon_closed = "securecargo"
@@ -23,7 +23,7 @@
  * Mailman
  */
 /obj/structure/closet/secure/mailman
-	name = "Mailman's Locker"
+	name = "mailman's locker"
 	req_access = list(ACCESS_CARGO)
 	icon_state = "securemailman1"
 	icon_closed = "securemailman"
@@ -50,7 +50,7 @@
  * Quartermaster
  */
 /obj/structure/closet/secure/quartermaster
-	name = "Quartermaster's Locker"
+	name = "quartermaster's locker"
 	req_access = list(ACCESS_QM)
 	icon_state = "secureqm1"
 	icon_closed = "secureqm"

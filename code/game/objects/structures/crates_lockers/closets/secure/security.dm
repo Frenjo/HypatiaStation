@@ -2,7 +2,7 @@
  * Captain
  */
 /obj/structure/closet/secure/captains
-	name = "Captain's Locker"
+	name = "captain's locker"
 	req_access = list(ACCESS_CAPTAIN)
 	icon_state = "capsecure1"
 	icon_closed = "capsecure"
@@ -39,7 +39,7 @@
  * Head of Personnel
  */
 /obj/structure/closet/secure/hop
-	name = "Head of Personnel's Locker"
+	name = "head of personnel's locker"
 	req_access = list(ACCESS_HOP)
 	icon_state = "hopsecure1"
 	icon_closed = "hopsecure"
@@ -92,7 +92,7 @@
  * Head of Security
  */
 /obj/structure/closet/secure/hos
-	name = "Head of Security's Locker"
+	name = "head of security's locker"
 	req_access = list(ACCESS_HOS)
 	icon_state = "hossecure1"
 	icon_closed = "hossecure"
@@ -136,7 +136,7 @@
  * Warden
  */
 /obj/structure/closet/secure/warden
-	name = "Warden's Locker"
+	name = "warden's locker"
 	req_access = list(ACCESS_ARMOURY)
 	icon_state = "wardensecure1"
 	icon_closed = "wardensecure"
@@ -174,7 +174,7 @@
  * Security Officer
  */
 /obj/structure/closet/secure/security
-	name = "Security Officer's Locker"
+	name = "security officer's locker"
 	req_access = list(ACCESS_SECURITY)
 	icon_state = "sec1"
 	icon_closed = "sec"
@@ -293,7 +293,7 @@
  * Brig
  */
 /obj/structure/closet/secure/brig
-	name = "Brig Locker"
+	name = "brig locker"
 	req_access = list(ACCESS_BRIG)
 	anchored = TRUE
 
@@ -308,7 +308,7 @@
  * Courtroom
  */
 /obj/structure/closet/secure/courtroom
-	name = "Courtroom Locker"
+	name = "courtroom locker"
 	req_access = list(ACCESS_COURT)
 
 	starts_with = list(

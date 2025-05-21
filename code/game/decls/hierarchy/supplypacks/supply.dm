@@ -21,7 +21,7 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/freezer
-	containername = "Food crate"
+	containername = "food crate"
 
 
 /decl/hierarchy/supply_pack/supply/toner
@@ -36,7 +36,7 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
-	containername = "Toner cartridges"
+	containername = "toner cartridges crate"
 
 
 /decl/hierarchy/supply_pack/supply/janitor
@@ -59,7 +59,7 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
-	containername = "Janitorial supplies"
+	containername = "janitorial supplies crate"
 
 
 /decl/hierarchy/supply_pack/supply/boxes
@@ -78,4 +78,4 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
-	containername = "Empty box crate"
+	containername = "empty box crate"

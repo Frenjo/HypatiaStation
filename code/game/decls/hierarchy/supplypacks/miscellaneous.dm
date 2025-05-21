@@ -12,7 +12,7 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate
-	containername = "Wizard costume crate"
+	containername = "wizard costume crate"
 
 
 /decl/hierarchy/supply_pack/miscellaneous/hats
@@ -42,7 +42,7 @@
 	name = "Collectable hat crate!"
 	cost = 200
 	containertype = /obj/structure/closet/crate
-	containername = "Collectable hats crate! Brought to you by Bass.inc!"
+	containername = "collectable hats crate! brought to you by Bass.inc!"
 	supply_method = /decl/supply_method/randomised
 
 
@@ -80,7 +80,7 @@
 	name = "Costumes crate"
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Actor Costumes"
+	containername = "actor costumes crate"
 	access = ACCESS_THEATRE
 	supply_method = /decl/supply_method/randomised
 
@@ -105,7 +105,7 @@
 	name = "Formalwear closet"
 	cost = 30
 	containertype = /obj/structure/closet
-	containername = "Formalwear for the best occasions."
+	containername = "formalwear for the best occasions"
 
 
 /decl/hierarchy/supply_pack/miscellaneous/eftpos

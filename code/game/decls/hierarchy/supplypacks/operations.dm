@@ -7,7 +7,7 @@
 	contains = list(/obj/machinery/bot/mulebot)
 	cost = 20
 	containertype = /obj/structure/largecrate/mule
-	containername = "MULEbot Crate"
+	containername = "MULEbot crate"
 
 
 // Ported hoverpod from NSS Eternal. -Frenjo
@@ -16,7 +16,7 @@
 	contains = list()
 	cost = 80
 	containertype = /obj/structure/largecrate/hoverpod
-	containername = "Hoverpod Crate"
+	containername = "hoverpod crate"
 
 
 /decl/hierarchy/supply_pack/operations/artscrafts
@@ -43,7 +43,7 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
-	containername = "Arts and Crafts crate"
+	containername = "arts and crafts crate"
 
 
 /decl/hierarchy/supply_pack/operations/contraband
@@ -56,7 +56,7 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate
-	containername = "Unlabeled crate"
+	containername = "unlabeled crate"
 	contraband = TRUE
 	num_contained = 5
 	supply_method = /decl/supply_method/randomised

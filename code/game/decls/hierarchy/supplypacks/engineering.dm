@@ -14,7 +14,7 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/internals
-	containername = "Internals crate"
+	containername = "internals crate"
 
 
 /decl/hierarchy/supply_pack/engineering/evacuation
@@ -37,7 +37,7 @@
 	)
 	cost = 35
 	containertype = /obj/structure/closet/crate/internals
-	containername = "Emergency crate"
+	containername = "emergency crate"
 
 
 /decl/hierarchy/supply_pack/engineering/inflatables
@@ -49,7 +49,7 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate
-	containername = "Inflatable Barrier Crate"
+	containername = "inflatable barrier crate"
 
 
 /decl/hierarchy/supply_pack/engineering/lightbulbs
@@ -61,7 +61,7 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
-	containername = "Replacement lights"
+	containername = "replacement lights crate"
 
 /decl/hierarchy/supply_pack/engineering/electrical
 	name = "Electrical maintenance crate"
@@ -77,7 +77,7 @@
 	)
 	cost = 15
 	containertype = /obj/structure/closet/crate
-	containername = "Electrical maintenance crate"
+	containername = "electrical maintenance crate"
 
 
 /decl/hierarchy/supply_pack/engineering/mechanical
@@ -95,7 +95,7 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
-	containername = "Mechanical maintenance crate"
+	containername = "mechanical maintenance crate"
 
 
 /decl/hierarchy/supply_pack/engineering/fueltank
@@ -136,7 +136,7 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate
-	containername = "Solar pack crate"
+	containername = "solar pack crate"
 
 
 /decl/hierarchy/supply_pack/engineering/engine
@@ -147,7 +147,7 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Emitter crate"
+	containername = "emitter crate"
 	access = ACCESS_CE
 
 
@@ -158,7 +158,7 @@
 		/obj/machinery/field_generator
 	)
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Field Generator crate"
+	containername = "field generator crate"
 	access = ACCESS_CE
 
 
@@ -166,7 +166,7 @@
 	name = "Singularity Generator crate"
 	contains = list(/obj/machinery/the_singularitygen)
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Singularity Generator crate"
+	containername = "singularity generator crate"
 	access = ACCESS_CE
 
 
@@ -177,7 +177,7 @@
 		/obj/machinery/power/rad_collector,
 		/obj/machinery/power/rad_collector
 	)
-	containername = "Collector crate"
+	containername = "collector crate"
 
 
 /decl/hierarchy/supply_pack/engineering/particle_accelerator
@@ -193,7 +193,7 @@
 		/obj/structure/particle_accelerator/end_cap
 	)
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Particle Accelerator crate"
+	containername = "particle accelerator crate"
 	access = ACCESS_CE
 
 
@@ -206,7 +206,7 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure
-	containername = "APLU \"Ripley\" Circuit Crate"
+	containername = "APLU \"Ripley\" circuit crate"
 	access = ACCESS_ROBOTICS
 
 
@@ -218,7 +218,7 @@
 	)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure
-	containername = "\"Odysseus\" Circuit Crate"
+	containername = "\"Odysseus\" circuit crate"
 	access = ACCESS_ROBOTICS
 
 
@@ -238,7 +238,7 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate/secure/gear
-	containername = "Robotics assembly"
+	containername = "robotics assembly crate"
 	access = ACCESS_ROBOTICS
 
 
@@ -256,7 +256,7 @@
 	name = "RUST fuel compressor circuitry"
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
-	containername = "RUST fuel compressor circuitry"
+	containername = "RUST fuel compressor circuitry crate"
 	access = ACCESS_ENGINE
 
 
@@ -265,7 +265,7 @@
 	name = "RUST fuel assembly port circuitry"
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure
-	containername = "RUST fuel assembly port circuitry"
+	containername = "RUST fuel assembly port circuitry crate"
 	access = ACCESS_ENGINE
 
 
@@ -283,7 +283,7 @@
 	name = "Experimental bubble shield generator circuitry"
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Experimental bubble shield generator circuitry crate"
+	containername = "experimental bubble shield generator circuitry crate"
 	access = ACCESS_CE
 
 
@@ -292,7 +292,7 @@
 	name = "Experimental bubble shield capacitor circuitry"
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Experimental bubble shield capacitor circuitry crate"
+	containername = "experimental bubble shield capacitor circuitry crate"
 	access = ACCESS_CE
 
 
@@ -301,7 +301,7 @@
 	contains = list(/obj/machinery/power/supermatter)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/plasma
-	containername = "Supermatter crate (CAUTION)"
+	containername = "supermatter crate (caution)"
 	access = ACCESS_CE
 
 
@@ -310,7 +310,7 @@
 	contains = list(/obj/machinery/power/supermatter/shard)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/plasma
-	containername = "Supermatter shard crate (CAUTION)"
+	containername = "supermatter shard crate (caution)"
 	access = ACCESS_CE
 
 
@@ -319,7 +319,7 @@
 	name = "Mark I Thermoelectric Generator"
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/large
-	containername = "Mk1 TEG crate"
+	containername = "mk1 TEG crate"
 	access = ACCESS_ENGINE
 
 
@@ -328,7 +328,7 @@
 	name = "Binary atmospheric circulator"
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure/large
-	containername = "Atmospheric circulator crate"
+	containername = "atmospheric circulator crate"
 	access = ACCESS_ENGINE
 
 
@@ -337,7 +337,7 @@
 	name = "Pipe Dispenser"
 	cost = 35
 	containertype = /obj/structure/closet/crate/secure/large
-	containername = "Pipe Dispenser Crate"
+	containername = "pipe dispenser crate"
 	access = ACCESS_ATMOSPHERICS
 
 
@@ -346,5 +346,5 @@
 	name = "Disposals Pipe Dispenser"
 	cost = 35
 	containertype = /obj/structure/closet/crate/secure/large
-	containername = "Disposal Dispenser Crate"
+	containername = "disposal pipe dispenser crate"
 	access = ACCESS_ATMOSPHERICS

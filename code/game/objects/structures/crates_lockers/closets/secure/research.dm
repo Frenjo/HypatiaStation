@@ -2,7 +2,7 @@
  * Scientist
  */
 /obj/structure/closet/secure/scientist
-	name = "Scientist's Locker"
+	name = "scientist's locker"
 	req_access = list(ACCESS_RESEARCH)
 	icon_state = "secureres1"
 	icon_closed = "secureres"
@@ -29,7 +29,7 @@
  * Research Director
  */
 /obj/structure/closet/secure/rd
-	name = "Research Director's Locker"
+	name = "research director's locker"
 	req_access = list(ACCESS_RD)
 	icon_state = "rdsecure1"
 	icon_closed = "rdsecure"

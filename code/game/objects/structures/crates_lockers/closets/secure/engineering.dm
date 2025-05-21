@@ -2,7 +2,7 @@
  * Engineer
  */
 /obj/structure/closet/secure/engineering
-	name = "Engineer's Locker"
+	name = "engineer's locker"
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	icon_state = "secureeng1"
 	icon_closed = "secureeng"
@@ -36,7 +36,7 @@
  * Chief Engineer
  */
 /obj/structure/closet/secure/engineering/chief
-	name = "Chief Engineer's Locker"
+	name = "chief engineer's locker"
 	req_access = list(ACCESS_CE)
 	icon_state = "securece1"
 	icon_closed = "securece"
@@ -132,7 +132,7 @@
  * Atmospheric Technician
  */
 /obj/structure/closet/secure/engineering/atmos
-	name = "Technician's Locker"
+	name = "atmospheric technician's locker"
 	req_access = list(ACCESS_ATMOSPHERICS)
 	icon_state = "secureatm1"
 	icon_closed = "secureatm"

@@ -1155,7 +1155,7 @@
 	dir = 1
 	},
 /obj/machinery/door/window/brigdoor/eastleft{
-	name = "Weapons Locker";
+	name = "weapons locker";
 	req_access = list(3)
 	},
 /obj/effect/decal/floor/industrial/bot/vault,
@@ -1704,7 +1704,7 @@
 /area/station/research/telescience)
 "aFX" = (
 /obj/structure/closet{
-	name = "Evidence Closet"
+	name = "evidence closet"
 	},
 /obj/machinery/atmospherics/mains_pipe/cap/hidden,
 /obj/effect/decal/floor/industrial/bot/vault,
@@ -5214,7 +5214,7 @@
 "bQH" = (
 /obj/structure/closet/secure/brig{
 	id = "Cell 1";
-	name = "Cell 1 Locker"
+	name = "cell 1 locker"
 	},
 /obj/machinery/camera{
 	c_tag = "Brig Cell 1"
@@ -6963,7 +6963,7 @@
 /area/station/storage/tech)
 "cuK" = (
 /obj/structure/closet{
-	name = "Evidence Closet"
+	name = "evidence closet"
 	},
 /obj/effect/decal/floor/industrial/bot/vault,
 /turf/open/floor/tiled/dark,
@@ -7900,7 +7900,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/brigdoor/northleft{
-	name = "Weapons Locker";
+	name = "weapons locker";
 	req_access = list(3)
 	},
 /obj/effect/decal/floor/industrial/bot/vault,
@@ -8969,7 +8969,7 @@
 	dir = 8
 	},
 /obj/machinery/door/window/brigdoor/southleft{
-	name = "Weapons Locker";
+	name = "weapons locker";
 	req_access = list(3)
 	},
 /obj/effect/decal/floor/industrial/bot/vault,
@@ -12063,7 +12063,7 @@
 /area/station/solar/aft/port)
 "ejS" = (
 /obj/structure/closet{
-	name = "Evidence Closet"
+	name = "evidence closet"
 	},
 /turf/open/floor/tiled/white,
 /area/station/security/detective)
@@ -12645,7 +12645,7 @@
 /obj/item/reagent_holder/glass/bottle/stoxin,
 /obj/item/clothing/suit/straight_jacket,
 /obj/structure/closet/secure{
-	name = "Psychiatrist's Locker";
+	name = "psychiatrist's locker";
 	req_access = list(64)
 	},
 /obj/machinery/status_display{
@@ -13136,7 +13136,7 @@
 "eGn" = (
 /obj/structure/closet/secure/brig{
 	id = "Cell 2";
-	name = "Cell 2 Locker"
+	name = "cell 2 locker"
 	},
 /obj/machinery/camera{
 	c_tag = "Brig Cell 2"
@@ -13325,7 +13325,7 @@
 /area/station/engineering/hallway/main)
 "eJa" = (
 /obj/structure/closet{
-	name = "Mime's Closet"
+	name = "mime's closet"
 	},
 /obj/item/clothing/under/mime,
 /obj/item/clothing/shoes/mime,
@@ -15753,7 +15753,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/brigdoor/eastleft{
-	name = "Weapons Locker";
+	name = "weapons locker";
 	req_access = list(3)
 	},
 /obj/effect/decal/floor/industrial/bot/vault,
@@ -16408,7 +16408,7 @@
 "fOK" = (
 /obj/structure/closet/secure/brig{
 	id = "Cell 3";
-	name = "Cell 3 Locker"
+	name = "cell 3 locker"
 	},
 /obj/machinery/camera{
 	c_tag = "Brig Cell 3"
@@ -27267,7 +27267,7 @@
 	icon_state = "pipe-c"
 	},
 /obj/structure/closet/secure/medical/wall{
-	name = "Chemistry-Medical Closet"
+	name = "chemistry-medical closet"
 	},
 /turf/closed/wall/steel,
 /area/station/medical/chemistry)
@@ -31383,7 +31383,7 @@
 /area/station/crew/library)
 "lbR" = (
 /obj/structure/closet{
-	name = "Evidence Closet"
+	name = "evidence closet"
 	},
 /obj/machinery/light/small,
 /obj/effect/decal/floor/industrial/bot/vault,
@@ -32489,7 +32489,7 @@
 /area/station/medical/main)
 "lxv" = (
 /obj/structure/closet{
-	name = "Evidence Closet"
+	name = "evidence closet"
 	},
 /obj/effect/decal/floor/coloured/light_red{
 	dir = 1
@@ -35060,7 +35060,7 @@
 /area/station/hallway/primary/central)
 "mtt" = (
 /obj/structure/closet{
-	name = "Evidence Closet"
+	name = "evidence closet"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -36480,7 +36480,7 @@
 /area/station/research/toxins/mixing)
 "mQf" = (
 /obj/structure/closet{
-	name = "Clown's Closet"
+	name = "clown's closet"
 	},
 /obj/item/clothing/under/rank/clown,
 /obj/item/clothing/shoes/clown_shoes,
@@ -38387,7 +38387,7 @@
 	dir = 4
 	},
 /obj/machinery/door/window/brigdoor/southleft{
-	name = "Weapons Locker";
+	name = "weapons locker";
 	req_access = list(3)
 	},
 /obj/effect/decal/floor/industrial/bot/vault,
@@ -46270,7 +46270,7 @@
 /area/station/engineering/atmospherics)
 "qmF" = (
 /obj/structure/closet{
-	name = "Evidence Closet"
+	name = "evidence closet"
 	},
 /obj/item/taperecorder{
 	pixel_x = -4;
@@ -47158,7 +47158,7 @@
 	},
 /obj/structure/window/reinforced,
 /obj/machinery/door/window/brigdoor/northleft{
-	name = "Weapons Locker";
+	name = "weapons locker";
 	req_access = list(3)
 	},
 /obj/effect/decal/floor/industrial/bot/vault,
@@ -56868,7 +56868,7 @@
 	dir = 1
 	},
 /obj/machinery/door/window/brigdoor/southleft{
-	name = "Weapons Locker";
+	name = "weapons locker";
 	req_access = list(3)
 	},
 /obj/effect/decal/floor/industrial/bot/vault,
@@ -57049,7 +57049,7 @@
 /area/station/maintenance/solar/fore_port)
 "uhm" = (
 /obj/structure/closet/secure/medical/medicine{
-	name = "Medical Emergencies Closet"
+	name = "medical emergencies closet"
 	},
 /obj/item/storage/box/bodybags{
 	pixel_x = 3;
@@ -57757,7 +57757,7 @@
 "uui" = (
 /obj/structure/closet/secure/brig{
 	id = "Cell 4";
-	name = "Cell 4 Locker"
+	name = "cell 4 locker"
 	},
 /obj/machinery/camera{
 	c_tag = "Brig Cell 4"
@@ -64807,7 +64807,7 @@
 	dir = 8
 	},
 /obj/machinery/door/window/brigdoor/eastleft{
-	name = "Weapons Locker";
+	name = "weapons locker";
 	req_access = list(3)
 	},
 /obj/effect/decal/floor/industrial/bot/vault,

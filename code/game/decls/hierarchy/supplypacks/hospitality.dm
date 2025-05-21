@@ -21,7 +21,7 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate
-	containername = "Party equipment"
+	containername = "party equipment crate"
 
 
 /decl/hierarchy/supply_pack/hospitality/pizza
@@ -35,5 +35,5 @@
 	name = "Surprise pack of five pizzas"
 	cost = 15
 	containertype = /obj/structure/closet/crate/freezer
-	containername = "Pizza crate"
+	containername = "pizza crate"
 	supply_method = /decl/supply_method/randomised

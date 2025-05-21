@@ -14,7 +14,7 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate
-	containername = "Special Ops crate"
+	containername = "special ops crate"
 	hidden = TRUE
 
 
@@ -34,7 +34,7 @@
 	)
 	cost = 10
 	containertype = /obj/structure/closet/crate
-	containername = "Beanbag shells"
+	containername = "beanbag shells crate"
 
 
 /decl/hierarchy/supply_pack/security/weapons
@@ -51,7 +51,7 @@
 	)
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure/weapon
-	containername = "Weapons crate"
+	containername = "weapons crate"
 	access = ACCESS_ARMOURY
 
 
@@ -68,12 +68,12 @@
 	)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/weapon
-	containername = "Experimental weapons crate"
+	containername = "experimental weapons crate"
 	access = ACCESS_BRIDGE
 
 
-/decl/hierarchy/supply_pack/security/armor
-	name = "Armor crate"
+/decl/hierarchy/supply_pack/security/armour
+	name = "Armour crate"
 	contains = list(
 		/obj/item/clothing/head/helmet,
 		/obj/item/clothing/head/helmet,
@@ -82,7 +82,7 @@
 	)
 	cost = 15
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Armor crate"
+	containername = "armour crate"
 	access = ACCESS_SECURITY
 
 
@@ -110,7 +110,7 @@
 	)
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Riot gear crate"
+	containername = "riot gear crate"
 	access = ACCESS_ARMOURY
 
 /decl/hierarchy/supply_pack/security/mindshield
@@ -140,7 +140,7 @@
 	)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Ballistic gear crate"
+	containername = "ballistic gear crate"
 	access = ACCESS_ARMOURY
 
 
@@ -154,7 +154,7 @@
 	)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Energy marksman crate"
+	containername = "energy marksman crate"
 	access = ACCESS_ARMOURY
 
 
@@ -174,7 +174,7 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Shotgun shells"
+	containername = "shotgun shells crate"
 	access = ACCESS_ARMOURY
 
 
@@ -188,12 +188,12 @@
 	)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Experimental energy gear crate"
+	containername = "experimental energy gear crate"
 	access = ACCESS_ARMOURY
 
 
-/decl/hierarchy/supply_pack/security/exparmor
-	name = "Experimental armor crate"
+/decl/hierarchy/supply_pack/security/exparmour
+	name = "Experimental armour crate"
 	contains = list(
 		/obj/item/clothing/suit/armor/laserproof,
 		/obj/item/clothing/suit/armor/bulletproof,
@@ -202,7 +202,7 @@
 	)
 	cost = 35
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Experimental armor crate"
+	containername = "experimental armour crate"
 	access = ACCESS_ARMOURY
 
 
@@ -216,7 +216,7 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure/gear
-	containername = "Security barrier crate"
+	containername = "security barrier crate"
 
 
 /decl/hierarchy/supply_pack/security/securityshields
@@ -229,7 +229,7 @@
 	)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Wall shield generators crate"
+	containername = "wall shield generators crate"
 	access = ACCESS_TELEPORTER
 
 
@@ -242,5 +242,5 @@
 	)
 	cost = 20 // This cost seems to be roughly similar to the taser crate except slightly less since they're only disablers.
 	containertype = /obj/structure/closet/crate/secure
-	containername = "Disabler supply crate"
+	containername = "disabler supply crate"
 	access = ACCESS_SECURITY

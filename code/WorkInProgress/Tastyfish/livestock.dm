@@ -177,7 +177,7 @@
 					"/obj/item/reagent_holder/food/snacks/grown/corn")
 	cost = 10
 	containertype = "/obj/structure/closet/critter"
-	containername = "Chicken crate"
+	containername = "chicken crate"
 	//group = "Hydroponics"
 
 /datum/supply_packs/cow
@@ -186,5 +186,5 @@
 					"/obj/item/reagent_holder/food/snacks/grown/corn")
 	cost = 50
 	containertype = "/obj/structure/closet/critter"
-	containername = "Cow crate"
+	containername = "cow crate"
 	//group = "Hydroponics"

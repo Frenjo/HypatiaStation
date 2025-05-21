@@ -129,5 +129,5 @@
 					"/obj/item/wrapping_paper")
 	cost = 20
 	containertype = "/obj/structure/closet/crate"
-	containername = "New Year Celebration crate"
+	containername = "new year celebration crate"
 */
