@@ -466,7 +466,7 @@
 				qdel(H.wear_suit)
 				qdel(H.wear_uniform)
 
-				if(!global.PCticker.mode.equip_syndicate(current))
+				if(!H.equip_outfit(/decl/hierarchy/outfit/syndicate/nuclear))
 					to_chat(usr, SPAN_WARNING("Equipping a syndicate failed!"))
 			if("tellcode")
 				var/code

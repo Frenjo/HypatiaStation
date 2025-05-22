@@ -343,6 +343,7 @@
 #include "code\game\datums\gamemodes\ninja\ninja.dm"
 #include "code\game\datums\gamemodes\nuclear\nuclear.dm"
 #include "code\game\datums\gamemodes\nuclear\nuclearbomb.dm"
+#include "code\game\datums\gamemodes\nuclear\outfit.dm"
 #include "code\game\datums\gamemodes\nuclear\pinpointer.dm"
 #include "code\game\datums\gamemodes\revolution\revolution.dm"
 #include "code\game\datums\gamemodes\revolution\rp_revolution.dm"

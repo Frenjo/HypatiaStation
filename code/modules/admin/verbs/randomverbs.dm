@@ -443,7 +443,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/obj/effect/landmark/synd_spawn = locate("landmark*Syndicate-Spawn")
 			if(synd_spawn)
 				new_character.forceMove(GET_TURF(synd_spawn))
-			call(/datum/game_mode/proc/equip_syndicate)(new_character)
+			new_character.equip_outfit(/decl/hierarchy/outfit/syndicate/nuclear)
 		if("Ninja")
 			new_character.equip_space_ninja()
 			new_character.internal = new_character.suit_store

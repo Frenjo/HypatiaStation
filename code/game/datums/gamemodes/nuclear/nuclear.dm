@@ -126,17 +126,18 @@
 	var/spawnpos = 1
 
 	for(var/datum/mind/synd_mind in syndicates)
+		var/mob/living/carbon/human/synd_mob = synd_mind.current
 		if(spawnpos > length(synd_spawn))
 			spawnpos = 1
-		synd_mind.current.forceMove(synd_spawn[spawnpos])
+		synd_mob.forceMove(synd_spawn[spawnpos])
 
-		synd_mind.current.real_name = "[syndicate_name()] Operative" // placeholder while we get their actual name
+		synd_mob.real_name = "[syndicate_name()] Operative" // placeholder while we get their actual name
 		spawn(0)
 			NukeNameAssign(synd_mind)
 		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			forge_syndicate_objectives(synd_mind)
 		greet_syndicate(synd_mind)
-		equip_syndicate(synd_mind.current)
+		synd_mob.equip_outfit(/decl/hierarchy/outfit/syndicate/nuclear)
 
 		if(!leader_selected)
 			prepare_syndicate_leader(synd_mind, nuke_code)
@@ -194,53 +195,6 @@
 
 /datum/game_mode/proc/random_radio_frequency()
 	return 1337 // WHY??? -- Doohl
-
-
-/datum/game_mode/proc/equip_syndicate(mob/living/carbon/human/synd_mob)
-	var/radio_freq = FREQUENCY_SYNDICATE
-
-	var/obj/item/radio/R = new /obj/item/radio/headset/syndicate(synd_mob)
-	R.radio_connection = register_radio(R, null, radio_freq, RADIO_CHAT)
-	synd_mob.equip_to_slot_or_del(R, SLOT_ID_L_EAR)
-
-	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(synd_mob), SLOT_ID_WEAR_UNIFORM)
-	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(synd_mob), SLOT_ID_SHOES)
-	synd_mob.equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(synd_mob), SLOT_ID_GLOVES)
-	synd_mob.equip_to_slot_or_del(new /obj/item/card/id/syndicate(synd_mob), SLOT_ID_ID_STORE)
-	if(synd_mob.backbag == 2)
-		synd_mob.equip_to_slot_or_del(new /obj/item/storage/backpack(synd_mob), SLOT_ID_BACK)
-	if(synd_mob.backbag == 3)
-		synd_mob.equip_to_slot_or_del(new /obj/item/storage/satchel/norm(synd_mob), SLOT_ID_BACK)
-	if(synd_mob.backbag == 4)
-		synd_mob.equip_to_slot_or_del(new /obj/item/storage/satchel(synd_mob), SLOT_ID_BACK)
-	synd_mob.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(synd_mob), SLOT_ID_IN_BACKPACK)
-	synd_mob.equip_to_slot_or_del(new /obj/item/ammo_magazine/a12mm(synd_mob), SLOT_ID_IN_BACKPACK)
-	synd_mob.equip_to_slot_or_del(new /obj/item/reagent_holder/pill/cyanide(synd_mob), SLOT_ID_IN_BACKPACK)
-	synd_mob.equip_to_slot_or_del(new /obj/item/gun/projectile/automatic/c20r(synd_mob), SLOT_ID_BELT)
-	synd_mob.equip_to_slot_or_del(new /obj/item/storage/box/survival/engineer(synd_mob.back), SLOT_ID_IN_BACKPACK)
-
-	var/obj/item/clothing/suit/space/rig/syndi/new_suit = new(synd_mob)
-	var/obj/item/clothing/head/helmet/space/rig/syndi/new_helmet = new(synd_mob)
-
-	if(synd_mob.species)
-		var/race = synd_mob.species.name
-
-		switch(race)
-			if(SPECIES_SOGHUN)
-				new_suit.species_restricted = list(SPECIES_SOGHUN)
-			if(SPECIES_TAJARAN)
-				new_suit.species_restricted = list(SPECIES_TAJARAN)
-			if(SPECIES_SKRELL)
-				new_suit.species_restricted = list(SPECIES_SKRELL)
-
-	synd_mob.equip_to_slot_or_del(new_suit, SLOT_ID_WEAR_SUIT)
-	synd_mob.equip_to_slot_or_del(new_helmet, SLOT_ID_HEAD)
-
-	var/obj/item/implant/explosive/E = new/obj/item/implant/explosive(synd_mob)
-	E.imp_in = synd_mob
-	E.implanted = 1
-	synd_mob.update_icons()
-	return 1
 
 
 /datum/game_mode/nuclear/check_win()

@@ -61,7 +61,7 @@
 		qdel(H.wear_suit)
 		qdel(H.wear_uniform)
 
-		global.PCticker.mode.equip_syndicate(current)
+		H.equip_outfit(/decl/hierarchy/outfit/syndicate/nuclear)
 
 /datum/mind/proc/make_changeling()
 	if(!(src in global.PCticker.mode.changelings))

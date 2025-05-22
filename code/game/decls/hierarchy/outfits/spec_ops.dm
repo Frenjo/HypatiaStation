@@ -111,7 +111,7 @@
 /*
  * Syndicate Commando Common
  */
-/decl/hierarchy/outfit/syndicate_commando
+/decl/hierarchy/outfit/syndicate/commando
 	uniform = /obj/item/clothing/under/syndicate
 	back = /obj/item/storage/backpack/security
 	belt = /obj/item/gun/projectile/silenced
@@ -144,27 +144,27 @@
 /*
  * Syndicate Commando Standard
  */
-/decl/hierarchy/outfit/syndicate_commando/standard
+/decl/hierarchy/outfit/syndicate/commando/standard
 	name = "Syndicate Commando"
 
 	suit = /obj/item/clothing/suit/space/syndicate/black
 
 	head = /obj/item/clothing/head/helmet/space/syndicate/black
 
-/decl/hierarchy/outfit/syndicate_commando/standard/New()
+/decl/hierarchy/outfit/syndicate/commando/standard/New()
 	backpack_contents.Add(list(/obj/item/plastique = 2))
 	. = ..()
 
 /*
  * Syndicate Commando Leader
  */
-/decl/hierarchy/outfit/syndicate_commando/leader
+/decl/hierarchy/outfit/syndicate/commando/leader
 	name = "Syndicate Commando Leader"
 
 	suit = /obj/item/clothing/suit/space/syndicate/black/red
 
 	head = /obj/item/clothing/head/helmet/space/syndicate/black/red
 
-/decl/hierarchy/outfit/syndicate_commando/leader/New()
+/decl/hierarchy/outfit/syndicate/commando/leader/New()
 	backpack_contents.Add(/obj/item/plastique, /obj/item/pinpointer, /obj/item/disk/nuclear)
 	. = ..()

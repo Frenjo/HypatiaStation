@@ -366,7 +366,7 @@
 
 	//Adds them to current traitor list. Which is really the extra antagonist list.
 	global.PCticker.mode.traitors.Add(new_syndicate_commando.mind)
-	new_syndicate_commando.equip_outfit(syndicate_leader_selected ? /decl/hierarchy/outfit/syndicate_commando/leader : /decl/hierarchy/outfit/syndicate_commando/standard)
+	new_syndicate_commando.equip_outfit(syndicate_leader_selected ? /decl/hierarchy/outfit/syndicate/commando/leader : /decl/hierarchy/outfit/syndicate/commando/standard)
 
 	return new_syndicate_commando
 
