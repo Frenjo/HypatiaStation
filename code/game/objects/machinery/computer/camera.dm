@@ -134,7 +134,7 @@
 	return ..(n, direct)
 
 /obj/machinery/computer/security/telescreen
-	name = "Telescreen"
+	name = "telescreen"
 	desc = "Used for watching an empty arena."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "telescreen"
@@ -154,25 +154,25 @@
 	icon_state = "entertainment"
 
 /obj/machinery/computer/security/wooden_tv
-	name = "Security Cameras"
+	name = "security cameras"
 	desc = "An old TV hooked into the stations camera network."
 	icon_state = "security_det"
 
 
 /obj/machinery/computer/security/mining
-	name = "Outpost Cameras"
+	name = "mining outpost camera console"
 	desc = "Used to access the various cameras on the outpost."
 	icon_state = "miningcameras"
 	network = list("MINE")
 
 /obj/machinery/computer/security/engineering
-	name = "Engineering Cameras"
+	name = "engineering camera console"
 	desc = "Used to monitor fires and breaches."
 	icon_state = "engineeringcameras"
 	network = list("Engineering","Power Alarms","Atmosphere Alarms","Fire Alarms")
 
 /obj/machinery/computer/security/nuclear
-	name = "Mission Monitor"
+	name = "mission monitor"
 	desc = "Used to access the built-in cameras in helmets."
 	icon_state = "syndicam"
 	network = list("NUKE")

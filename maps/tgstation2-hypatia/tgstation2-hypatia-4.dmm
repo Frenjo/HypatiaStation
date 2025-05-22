@@ -282,7 +282,7 @@
 "cG" = (
 /obj/machinery/power/solar{
 	id = "djstationsolars";
-	name = "DJ Station Solar Array"
+	name = "dj station solar array"
 	},
 /obj/structure/cable{
 	d2 = 4;
@@ -1995,7 +1995,7 @@
 /area/external/abandoned/derelict/bridge/access)
 "uL" = (
 /obj/machinery/power/solar_control{
-	name = "DJ Station Solar Control";
+	name = "dj station solar control";
 	track = 2
 	},
 /obj/structure/cable,
@@ -2212,7 +2212,7 @@
 "xI" = (
 /obj/machinery/power/solar{
 	id = "djstationsolars";
-	name = "DJ Station Solar Array"
+	name = "dj station solar array"
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -2517,7 +2517,7 @@
 	},
 /obj/machinery/power/solar_control{
 	id = "derelictsolar";
-	name = "Primary Solar Control"
+	name = "primary solar control"
 	},
 /turf/open/floor/tiled/grey,
 /area/external/abandoned/derelict/solar_control)
@@ -2994,7 +2994,7 @@
 /obj/structure/cable,
 /obj/machinery/power/solar_control{
 	id = "derelictsolar";
-	name = "Primary Solar Control"
+	name = "primary solar control"
 	},
 /turf/open/floor/airless,
 /area/external/abandoned/derelict/bridge/ai_upload)
@@ -3160,7 +3160,7 @@
 "GS" = (
 /obj/machinery/power/solar{
 	id = "djstationsolars";
-	name = "DJ Station Solar Array"
+	name = "dj station solar array"
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -3223,7 +3223,7 @@
 	},
 /obj/machinery/power/solar{
 	id = "derelictsolar";
-	name = "Derelict Solar Array"
+	name = "derelict solar array"
 	},
 /turf/open/floor/airless,
 /area/external/abandoned/derelict/solar/starboard)
@@ -3311,7 +3311,7 @@
 	},
 /obj/machinery/power/solar{
 	id = "derelictsolar";
-	name = "Derelict Solar Array"
+	name = "derelict solar array"
 	},
 /turf/open/floor/airless,
 /area/external/abandoned/derelict/solar/starboard)
@@ -3566,7 +3566,7 @@
 /obj/structure/cable,
 /obj/machinery/power/solar{
 	id = "derelictsolar";
-	name = "Derelict Solar Array"
+	name = "derelict solar array"
 	},
 /turf/open/floor/airless,
 /area/external/abandoned/derelict/solar/aft)
@@ -3797,7 +3797,7 @@
 	},
 /obj/machinery/power/solar{
 	id = "derelictsolar";
-	name = "Derelict Solar Array"
+	name = "derelict solar array"
 	},
 /turf/open/floor/plating/metal/airless,
 /area/external/abandoned/derelict/solar/aft)
@@ -3942,7 +3942,7 @@
 "Pk" = (
 /obj/machinery/power/solar{
 	id = "djstationsolars";
-	name = "DJ Station Solar Array"
+	name = "dj station solar array"
 	},
 /obj/structure/cable{
 	d2 = 4;
@@ -3962,7 +3962,7 @@
 	},
 /obj/machinery/power/solar{
 	id = "derelictsolar";
-	name = "Derelict Solar Array"
+	name = "derelict solar array"
 	},
 /turf/open/floor/airless,
 /area/external/abandoned/derelict/solar/aft)
@@ -4258,7 +4258,7 @@
 "SC" = (
 /obj/machinery/power/solar{
 	id = "djstationsolars";
-	name = "DJ Station Solar Array"
+	name = "dj station solar array"
 	},
 /obj/structure/cable{
 	d2 = 2;
@@ -4350,7 +4350,7 @@
 "TF" = (
 /obj/machinery/power/solar{
 	id = "djstationsolars";
-	name = "DJ Station Solar Array"
+	name = "dj station solar array"
 	},
 /obj/structure/cable,
 /obj/effect/decal/floor/solar_panel,

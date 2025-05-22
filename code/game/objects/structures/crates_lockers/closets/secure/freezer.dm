@@ -14,7 +14,7 @@
  * Kitchen
  */
 /obj/structure/closet/secure/freezer/kitchen
-	name = "Kitchen Cabinet"
+	name = "kitchen cabinet"
 	req_access = list(ACCESS_KITCHEN)
 
 	starts_with = list(
@@ -37,7 +37,7 @@
  * Meat
  */
 /obj/structure/closet/secure/freezer/meat
-	name = "Meat Fridge"
+	name = "meat fridge"
 	icon_state = "fridge1"
 	icon_closed = "fridge"
 	icon_locked = "fridge1"
@@ -56,7 +56,7 @@
  * Fridge
  */
 /obj/structure/closet/secure/freezer/fridge
-	name = "Refrigerator"
+	name = "refrigerator"
 	icon_state = "fridge1"
 	icon_closed = "fridge"
 	icon_locked = "fridge1"
@@ -81,7 +81,7 @@
  * Money
  */
 /obj/structure/closet/secure/freezer/money
-	name = "Freezer"
+	name = "freezer"
 	icon_state = "fridge1"
 	icon_closed = "fridge"
 	icon_locked = "fridge1"

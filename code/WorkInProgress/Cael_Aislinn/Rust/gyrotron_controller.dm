@@ -1,6 +1,6 @@
 
 /obj/machinery/computer/rust_gyrotron_controller
-	name = "Gyrotron Remote Controller"
+	name = "gyrotron remote controller"
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
 	icon_state = "engine"
 	var/updating = 1

@@ -2645,7 +2645,7 @@
 /obj/machinery/door_control{
 	desc = "A remote control switch for port-side blast doors.";
 	id = "CentComPort";
-	name = "Security Doors";
+	name = "security doors";
 	pixel_y = -4;
 	req_access = list(101)
 	},
@@ -2883,14 +2883,14 @@
 /obj/machinery/door_control{
 	desc = "A remote control switch to block view of the singularity.";
 	id = "CREED";
-	name = "Spec Ops Ready Room";
+	name = "spec ops ready room";
 	pixel_y = 15;
 	req_access = list(11)
 	},
 /obj/machinery/door_control{
 	desc = "A remote control switch to block view of the singularity.";
 	id = "ASSAULT";
-	name = "Mech Storage";
+	name = "mech storage";
 	req_access = list(11)
 	},
 /turf/open/floor/linoleum,
@@ -3800,13 +3800,13 @@
 "sy" = (
 /obj/machinery/door_control{
 	id = "QMLoaddoor2";
-	name = "Loading Doors";
+	name = "loading doors";
 	pixel_x = 24;
 	pixel_y = 11
 	},
 /obj/machinery/door_control{
 	id = "QMLoaddoor";
-	name = "Loading Doors";
+	name = "loading doors";
 	pixel_x = 24;
 	pixel_y = -11
 	},
@@ -4675,7 +4675,7 @@
 /obj/structure/table,
 /obj/machinery/door_control{
 	id = "escapeblastshutter";
-	name = "Shuttle Blast Shutters"
+	name = "shuttle blast shutters"
 	},
 /turf/open/floor/shuttle/blue,
 /area/shuttle/escape/centcom)

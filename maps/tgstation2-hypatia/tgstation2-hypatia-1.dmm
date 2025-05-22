@@ -88,7 +88,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	frequency = 1441;
 	input_tag = "h2_in";
-	name = "Hydrogen Supply Control";
+	name = "hydrogen supply control";
 	output_tag = "h2_out";
 	sensors = list("h2_sensor" = "Tank")
 	},
@@ -304,7 +304,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/solar{
-	name = "Prison Satellite Solar Array"
+	name = "prison satellite solar array"
 	},
 /obj/effect/decal/floor/solar_panel,
 /turf/open/floor/plating/metal/airless,
@@ -1166,7 +1166,7 @@
 	desc = "Used for watching the singularity chamber.";
 	dir = 8;
 	layer = 4;
-	name = "Singularity Engine Telescreen";
+	name = "singularity engine telescreen";
 	network = list("Singularity");
 	pixel_y = 30
 	},
@@ -1475,7 +1475,7 @@
 	},
 /obj/machinery/door_control{
 	id = "xenobio4";
-	name = "Containment Blast Doors";
+	name = "containment blast doors";
 	pixel_y = 4;
 	req_access = list(55)
 	},
@@ -1890,7 +1890,7 @@
 "aIy" = (
 /obj/machinery/door_control{
 	id = "Medical_Psychiatry";
-	name = "Privacy Shutters";
+	name = "privacy shutters";
 	pixel_y = -25
 	},
 /obj/structure/table,
@@ -2956,7 +2956,7 @@
 	announcementConsole = 1;
 	department = "Research Director's Desk";
 	departmentType = 5;
-	name = "Research Director RC";
+	name = "research director's desk requests console";
 	pixel_x = -2;
 	pixel_y = 30
 	},
@@ -3347,7 +3347,7 @@
 /obj/machinery/door_control{
 	desc = "A remote control switch for the brig doors leading to cells 3 and 4.";
 	id = "BrigWest";
-	name = "Brig Cells 3-4 Hallway Doors";
+	name = "brig cells 3-4 hallway doors";
 	normaldoorcontrol = 1;
 	pixel_x = -5;
 	pixel_y = -25
@@ -3410,7 +3410,7 @@
 /obj/machinery/requests_console{
 	department = "Medbay";
 	departmentType = 1;
-	name = "Medbay RC";
+	name = "medical bay requests console";
 	pixel_y = 30
 	},
 /turf/open/floor/tiled/white,
@@ -3766,7 +3766,7 @@
 /obj/item/pen,
 /obj/machinery/door_control{
 	id = "kitchen";
-	name = "Kitchen Privacy Shutters";
+	name = "kitchen privacy shutters";
 	pixel_x = 24;
 	throw_range = 15
 	},
@@ -4031,7 +4031,7 @@
 "byu" = (
 /obj/machinery/door_control{
 	id = "Disposal Exit";
-	name = "Disposal Vent Control";
+	name = "disposal vent control";
 	pixel_x = -25;
 	pixel_y = 4;
 	req_access = list(12)
@@ -4175,7 +4175,7 @@
 "bAH" = (
 /obj/machinery/door_control{
 	id = "SMEngineRoomVent";
-	name = "Engine Room Vent Control";
+	name = "engine room vent control";
 	pixel_x = -7;
 	pixel_y = -22;
 	req_access = list(10)
@@ -5649,7 +5649,7 @@
 	},
 /obj/machinery/door_control{
 	id = "xenobio5";
-	name = "Containment Blast Doors";
+	name = "containment blast doors";
 	pixel_y = 4;
 	req_access = list(55)
 	},
@@ -6512,7 +6512,7 @@
 	announcementConsole = 1;
 	department = "Head of Personnel's Desk";
 	departmentType = 5;
-	name = "Head of Personnel RC";
+	name = "head of personnel's desk requests console";
 	pixel_y = -30
 	},
 /obj/machinery/camera{
@@ -7502,8 +7502,7 @@
 /area/station/security/detective)
 "cEa" = (
 /obj/machinery/computer/lasercon{
-	id = "smlaser";
-	name = "Laser Control Computer"
+	id = "smlaser"
 	},
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/supermatter/monitoring)
@@ -9120,7 +9119,7 @@
 "diV" = (
 /obj/machinery/door_control{
 	id = "enginemonitoringshutter";
-	name = "Monitoring Shutters Control";
+	name = "monitoring shutters control";
 	pixel_x = 25;
 	pixel_y = 25;
 	req_access = list(10)
@@ -10741,7 +10740,7 @@
 	announcementConsole = 1;
 	department = "Captain's Desk";
 	departmentType = 5;
-	name = "Captain RC";
+	name = "captain's desk requests console";
 	pixel_x = -30
 	},
 /obj/structure/filingcabinet,
@@ -11451,7 +11450,7 @@
 /obj/item/pen,
 /obj/machinery/door_control{
 	id = "cmo";
-	name = "Privacy Shutters";
+	name = "privacy shutters";
 	pixel_x = -6;
 	pixel_y = 9;
 	req_access = list(40);
@@ -11805,7 +11804,7 @@
 	},
 /obj/machinery/power/solar{
 	id = "starboardsolar";
-	name = "Starboard Solar Array"
+	name = "starboard solar array"
 	},
 /obj/effect/decal/floor/solar_panel,
 /turf/open/floor/plating/metal/airless,
@@ -12161,7 +12160,7 @@
 	department = "Kitchen";
 	departmentType = 2;
 	desc = "A console for sending food orders to the kitchen.";
-	name = "Kitchen Food Request Console";
+	name = "kitchen food requests console";
 	pixel_y = 30
 	},
 /turf/open/floor/tiled/grey,
@@ -12684,7 +12683,7 @@
 	announcementConsole = 1;
 	department = "Bridge";
 	departmentType = 5;
-	name = "Bridge RC";
+	name = "bridge requests console";
 	pixel_y = -30
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden{
@@ -12742,7 +12741,7 @@
 "eAf" = (
 /obj/machinery/door_control{
 	id = "chapel";
-	name = "Privacy Shutters";
+	name = "privacy shutters";
 	pixel_y = 25
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -13282,12 +13281,12 @@
 /obj/machinery/requests_console{
 	department = "Atmospherics";
 	departmentType = 4;
-	name = "Atmos RC";
+	name = "atmospherics requests console";
 	pixel_x = 30
 	},
 /obj/machinery/computer/general_air_control{
 	frequency = 1441;
-	name = "Tank Monitor";
+	name = "tank monitor";
 	sensors = list("n2_sensor" = "Nitrogen", "o2_sensor" = "Oxygen", "co2_sensor" = "Carbon Dioxide", "tox_sensor" = "Toxins", "n2o_sensor" = "Nitrous Oxide", "waste_sensor" = "Gas Mix Tank")
 	},
 /turf/open/floor{
@@ -13539,7 +13538,7 @@
 /obj/machinery/requests_console{
 	department = "Science";
 	departmentType = 2;
-	name = "Science Requests Console";
+	name = "science requests console";
 	pixel_y = 30
 	},
 /obj/machinery/camera{
@@ -13719,9 +13718,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/crew/hydroponics)
 "eQY" = (
-/obj/machinery/vending/medical{
-	pixel_x = -2
-	},
+/obj/machinery/vending/medical,
 /turf/open/floor/tiled/white,
 /area/station/medical/ward)
 "eRb" = (
@@ -14522,7 +14519,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door_control{
 	id = "xenobio3";
-	name = "Containment Blast Doors";
+	name = "containment blast doors";
 	pixel_y = 4;
 	req_access = list(55)
 	},
@@ -15042,7 +15039,7 @@
 	},
 /obj/machinery/power/solar{
 	id = "portsolar";
-	name = "Port Solar Array"
+	name = "port solar array"
 	},
 /obj/effect/decal/floor/solar_panel,
 /turf/open/floor/plating/metal/airless,
@@ -16801,7 +16798,7 @@
 "fVG" = (
 /obj/machinery/door_control{
 	id = "atmos";
-	name = "Atmospherics Lockdown";
+	name = "atmospherics lockdown";
 	pixel_y = -24;
 	req_access = list(24)
 	},
@@ -17268,7 +17265,7 @@
 /obj/machinery/requests_console{
 	department = "Medbay";
 	departmentType = 1;
-	name = "Medbay RC";
+	name = "medical bay requests console";
 	pixel_y = -30
 	},
 /turf/open/floor/tiled/white,
@@ -19365,7 +19362,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	frequency = 1441;
 	input_tag = "o2_in";
-	name = "Oxygen Supply Control";
+	name = "oxygen supply control";
 	output_tag = "o2_out";
 	sensors = list("o2_sensor" = "Tank")
 	},
@@ -19617,7 +19614,7 @@
 	announcementConsole = 1;
 	department = "Chief Engineer's Desk";
 	departmentType = 3;
-	name = "Chief Engineer RC";
+	name = "chief engineer's desk requests console";
 	pixel_y = 32
 	},
 /obj/machinery/light{
@@ -22054,7 +22051,7 @@
 	charge = 5e+006;
 	input_attempt = 1;
 	input_level = 20000;
-	name = "Bunker power storage unit";
+	name = "bunker power storage unit";
 	output = 0;
 	output_level = 15000
 	},
@@ -22404,7 +22401,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	frequency = 1441;
 	input_tag = "tox_in";
-	name = "Toxin Supply Control";
+	name = "toxin supply control";
 	output_tag = "tox_out";
 	sensors = list("tox_sensor" = "Tank")
 	},
@@ -22560,7 +22557,7 @@
 "hUA" = (
 /obj/structure/cable,
 /obj/machinery/power/solar{
-	name = "Prison Satellite Solar Array"
+	name = "prison satellite solar array"
 	},
 /obj/effect/decal/floor/solar_panel,
 /turf/open/floor/plating/metal/airless,
@@ -22774,7 +22771,7 @@
 /obj/machinery/requests_console{
 	department = "Medbay";
 	departmentType = 1;
-	name = "Medbay RC";
+	name = "medical bay requests console";
 	pixel_x = 30
 	},
 /obj/structure/stool/bed/roller,
@@ -22987,7 +22984,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	frequency = 1441;
 	input_tag = "n2_in";
-	name = "Nitrogen Supply Control";
+	name = "nitrogen supply control";
 	output_tag = "n2_out";
 	sensors = list("n2_sensor" = "Tank")
 	},
@@ -24156,7 +24153,7 @@
 /obj/structure/cable,
 /obj/machinery/power/solar{
 	id = "auxsolareast";
-	name = "Port Auxiliary Solar Array"
+	name = "port auxiliary solar array"
 	},
 /obj/effect/decal/floor/solar_panel,
 /turf/open/floor/plating/metal/airless,
@@ -25435,7 +25432,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	frequency = 1441;
 	input_tag = "co2_in";
-	name = "Carbon Dioxide Supply Control";
+	name = "carbon dioxide supply control";
 	output_tag = "co2_out";
 	sensors = list("co2_sensor" = "Tank")
 	},
@@ -25801,7 +25798,7 @@
 /obj/machinery/requests_console{
 	department = "Bar";
 	departmentType = 2;
-	name = "Bar RC";
+	name = "bar requests console";
 	pixel_y = 30
 	},
 /obj/machinery/light{
@@ -25933,7 +25930,7 @@
 "iZu" = (
 /obj/machinery/door_control{
 	id = "sec_office";
-	name = "Security Office Privacy Shutters";
+	name = "security office privacy shutters";
 	pixel_x = 24;
 	req_access = list(1);
 	throw_range = 15
@@ -26990,7 +26987,7 @@
 /obj/machinery/computer/general_air_control{
 	frequency = 1443;
 	level = 3;
-	name = "Core Gas Monitor";
+	name = "core gas monitor";
 	sensors = list("core_sensor" = "Core Status")
 	},
 /turf/open/floor/plating/metal,
@@ -26998,7 +26995,7 @@
 "juY" = (
 /obj/machinery/door_control{
 	id = "lawyer_shutters";
-	name = "Privacy Shutters";
+	name = "privacy shutters";
 	pixel_y = -25
 	},
 /obj/item/folder{
@@ -27827,7 +27824,7 @@
 	},
 /obj/machinery/door_control{
 	id = "SMEngineCoreVent";
-	name = "Engine Ventillatory Control";
+	name = "engine ventillatory control";
 	pixel_x = -7;
 	pixel_y = 22;
 	req_access = list(10)
@@ -27930,9 +27927,7 @@
 /turf/open/floor/tiled/grey,
 /area/station/storage/tools/primary)
 "jQi" = (
-/obj/machinery/computer/operating{
-	name = "Xenobiology Operating Computer"
-	},
+/obj/machinery/computer/operating,
 /turf/open/floor{
 	dir = 8;
 	icon_state = "whitecorner"
@@ -29123,7 +29118,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door_control{
 	id = "xenobio1";
-	name = "Containment Blast Doors";
+	name = "containment blast doors";
 	pixel_y = 4;
 	req_access = list(55)
 	},
@@ -29242,7 +29237,7 @@
 "kmG" = (
 /obj/machinery/door_control{
 	id = "qm_warehouse";
-	name = "Warehouse Door Control";
+	name = "warehouse door control";
 	pixel_x = -1;
 	pixel_y = -24;
 	req_access = list(31)
@@ -30495,7 +30490,7 @@
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the test chamber.";
 	layer = 4;
-	name = "Test Chamber Telescreen";
+	name = "test chamber telescreen";
 	network = list("Toxins Test Area");
 	pixel_x = 32
 	},
@@ -30685,7 +30680,7 @@
 	},
 /obj/machinery/power/solar{
 	id = "auxsolareast";
-	name = "Port Auxiliary Solar Array"
+	name = "port auxiliary solar array"
 	},
 /obj/effect/decal/floor/solar_panel,
 /turf/open/floor/plating/metal/airless,
@@ -31146,8 +31141,7 @@
 /area/station/engineering/foyer)
 "kVI" = (
 /obj/machinery/computer/lasercon{
-	id = "smlaser";
-	name = "Laser Control Computer"
+	id = "smlaser"
 	},
 /obj/machinery/embedded_controller/radio/airlock/access_controller{
 	id_tag = "supermatter_airlock_control";
@@ -31647,14 +31641,14 @@
 	},
 /obj/machinery/door_control{
 	id = "xenobio6";
-	name = "Containment Blast Doors";
+	name = "containment blast doors";
 	pixel_y = 4;
 	req_access = list(55)
 	},
 /obj/machinery/door_control{
 	desc = "A remote control-switch for a door to space.";
 	id = "xenobioout6";
-	name = "Containment Release Switch";
+	name = "containment release switch";
 	pixel_x = 24;
 	pixel_y = 4;
 	req_access = list(55)
@@ -31932,7 +31926,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	frequency = 1443;
 	input_tag = "air_in";
-	name = "Mixed Air Supply Control";
+	name = "mixed air supply control";
 	output_tag = "air_out";
 	pressure_setting = 2000;
 	sensors = list("air_sensor" = "Tank")
@@ -32568,7 +32562,7 @@
 "lyu" = (
 /obj/machinery/door_control{
 	id = "heads_meeting";
-	name = "Security Shutters";
+	name = "security shutters";
 	pixel_y = 24
 	},
 /turf/open/floor/wood,
@@ -33330,7 +33324,7 @@
 /obj/machinery/requests_console{
 	department = "Engineering";
 	departmentType = 4;
-	name = "Engineering RC";
+	name = "engineering requests console";
 	pixel_x = 30
 	},
 /obj/structure/reagent_dispensers/watertank,
@@ -33398,7 +33392,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door_control{
 	id = "xenobio2";
-	name = "Containment Blast Doors";
+	name = "containment blast doors";
 	pixel_y = 4;
 	req_access = list(55)
 	},
@@ -33452,7 +33446,7 @@
 "lOT" = (
 /obj/machinery/door_control{
 	id = "atmos";
-	name = "Atmospherics Lockdown";
+	name = "atmospherics lockdown";
 	pixel_x = 10;
 	pixel_y = 24;
 	req_access = list(24)
@@ -33460,7 +33454,7 @@
 /obj/machinery/door_control{
 	desc = "A remote control-switch for the engineering security doors.";
 	id = "Engineering";
-	name = "Engineering Lockdown";
+	name = "engineering lockdown";
 	pixel_x = -10;
 	pixel_y = 24;
 	req_access = list(10)
@@ -33468,13 +33462,13 @@
 /obj/machinery/door_control{
 	desc = "A remote control-switch for secure storage.";
 	id = "EngineVent";
-	name = "Engine Ventillatory Control";
+	name = "engine ventillatory control";
 	pixel_y = 24;
 	req_access = list(11)
 	},
 /obj/machinery/door_control{
 	id = "ce";
-	name = "Privacy Shutters";
+	name = "privacy shutters";
 	pixel_y = 32;
 	req_access = list(57);
 	throw_range = 15
@@ -33615,7 +33609,7 @@
 /obj/machinery/requests_console{
 	department = "Science";
 	departmentType = 2;
-	name = "Science Requests Console";
+	name = "science requests console";
 	pixel_x = 30
 	},
 /turf/open/floor/tiled/white,
@@ -33979,7 +33973,7 @@
 	announcementConsole = 1;
 	department = "Quartermaster's Desk";
 	departmentType = 3;
-	name = "Quartermaster RC";
+	name = "quartermaster's desk requests console";
 	pixel_x = -30
 	},
 /turf/open/floor/tiled/grey,
@@ -34548,7 +34542,7 @@
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the test chamber.";
 	layer = 4;
-	name = "Test Chamber Telescreen";
+	name = "test chamber telescreen";
 	network = list("Toxins Test Area");
 	pixel_x = 32
 	},
@@ -34641,7 +34635,7 @@
 /obj/machinery/requests_console{
 	department = "Robotics";
 	departmentType = 2;
-	name = "Robotics RC";
+	name = "robotics requests console";
 	pixel_y = 30
 	},
 /obj/machinery/light{
@@ -35103,7 +35097,7 @@
 	},
 /obj/machinery/door_control{
 	id = "EngineRoomVent";
-	name = "Engine Room Vent Control";
+	name = "engine room vent control";
 	pixel_x = 7;
 	pixel_y = -22;
 	req_access = list(10)
@@ -36342,7 +36336,7 @@
 "mNl" = (
 /obj/machinery/computer/general_air_control{
 	frequency = 1443;
-	name = "Core Gas Monitor";
+	name = "core gas monitor";
 	sensors = list("core_sensor" = "Core gas composition")
 	},
 /turf/open/floor/tiled/grey,
@@ -36654,7 +36648,7 @@
 /obj/machinery/door_control{
 	desc = "A remote control switch for the AI chamber door.";
 	id = "AI Door";
-	name = "AI Chamber Door Control";
+	name = "AI Chamber door control";
 	pixel_x = 27;
 	pixel_y = 27;
 	req_access = list(16)
@@ -38637,7 +38631,7 @@
 /obj/structure/stool/bed/chair,
 /obj/machinery/computer/security/telescreen{
 	layer = 4;
-	name = "Observation Screen";
+	name = "observation screen";
 	network = list("Interrogation");
 	pixel_y = -32
 	},
@@ -39345,7 +39339,7 @@
 	},
 /obj/machinery/door_control{
 	id = "thermengineshutter";
-	name = "Core Shutters Control";
+	name = "core shutters control";
 	pixel_x = 7;
 	pixel_y = 25;
 	req_access = list(10)
@@ -39354,7 +39348,7 @@
 /obj/effect/decal/floor/industrial/warning/corner,
 /obj/machinery/door_control{
 	id = "thermenginevent";
-	name = "Engine Ventillatory Control";
+	name = "engine ventillatory control";
 	pixel_y = 33;
 	req_access = list(10)
 	},
@@ -39395,7 +39389,7 @@
 	},
 /obj/machinery/door_control{
 	id = "disvent";
-	name = "Incinerator Vent Control";
+	name = "incinerator vent control";
 	pixel_x = -8;
 	pixel_y = -24;
 	req_access = list(12)
@@ -39403,7 +39397,7 @@
 /obj/machinery/meter,
 /obj/machinery/door_control{
 	id = "disenginevent";
-	name = "Incinerator Engine Vent Control";
+	name = "incinerator engine vent control";
 	pixel_x = 8;
 	pixel_y = -24;
 	req_access = list(12)
@@ -39754,7 +39748,7 @@
 /obj/item/clothing/gloves/latex,
 /obj/machinery/requests_console{
 	department = "Virology";
-	name = "Virology Requests Console";
+	name = "virology requests console";
 	pixel_x = -32
 	},
 /obj/item/health_analyser,
@@ -40089,7 +40083,7 @@
 "oaY" = (
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the department.";
-	name = "Medical Monitor";
+	name = "medical monitor";
 	network = list("Medical");
 	pixel_x = 30
 	},
@@ -40350,7 +40344,7 @@
 	},
 /obj/machinery/requests_console{
 	department = "Genetics";
-	name = "Genetics Requests Console";
+	name = "genetics requests console";
 	pixel_y = 30
 	},
 /turf/open/floor/tiled/white,
@@ -40873,7 +40867,7 @@
 /obj/machinery/requests_console{
 	department = "Science";
 	departmentType = 2;
-	name = "Science Requests Console";
+	name = "science requests console";
 	pixel_x = -30
 	},
 /turf/open/floor/tiled/white,
@@ -41198,7 +41192,7 @@
 /obj/structure/table,
 /obj/machinery/door_control{
 	id = "Biohazard";
-	name = "Biohazard Shutter Control";
+	name = "biohazard shutter control";
 	pixel_x = -5;
 	pixel_y = 5;
 	req_access = list(47)
@@ -42496,7 +42490,7 @@
 	desc = "Used for watching the singularity chamber.";
 	dir = 8;
 	layer = 4;
-	name = "Supermatter Engine Telescreen";
+	name = "supermatter engine telescreen";
 	network = list("Supermatter");
 	pixel_y = 30
 	},
@@ -42968,7 +42962,7 @@
 /obj/machinery/door_control{
 	desc = "A remote control switch for the genetics doors.";
 	id = "GeneticsDoor";
-	name = "Genetics Exit Button";
+	name = "genetics exit button";
 	normaldoorcontrol = 1;
 	pixel_x = 8;
 	pixel_y = 24;
@@ -44437,7 +44431,7 @@
 /obj/structure/cable,
 /obj/machinery/power/solar{
 	id = "auxsolareast";
-	name = "Port Auxiliary Solar Array"
+	name = "port auxiliary solar array"
 	},
 /obj/effect/decal/floor/solar_panel,
 /turf/open/floor/plating/metal/airless,
@@ -45165,7 +45159,7 @@
 	desc = "Used for watching the singularity chamber.";
 	dir = 8;
 	layer = 4;
-	name = "Supermatter Engine Telescreen";
+	name = "supermatter engine telescreen";
 	network = list("Supermatter");
 	pixel_y = 30
 	},
@@ -45891,7 +45885,7 @@
 /obj/structure/table,
 /obj/machinery/door_control{
 	id = "hopprivacy";
-	name = "Privacy Shutters";
+	name = "privacy shutters";
 	pixel_y = 24;
 	req_access = list(57);
 	throw_range = 15
@@ -46059,7 +46053,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	frequency = 1441;
 	input_tag = "waste_in";
-	name = "Gas Mix Tank Control";
+	name = "gas mix tank control";
 	output_tag = "waste_out";
 	sensors = list("waste_sensor" = "Tank")
 	},
@@ -46296,7 +46290,7 @@
 	announcementConsole = 1;
 	department = "Bridge";
 	departmentType = 5;
-	name = "Bridge RC";
+	name = "bridge requests console";
 	pixel_y = -30
 	},
 /turf/open/floor/wood,
@@ -47043,28 +47037,28 @@
 "qBt" = (
 /obj/machinery/door_control{
 	id = "Prison Gate";
-	name = "Prison Wing Lockdown";
+	name = "prison wing lockdown";
 	pixel_x = -25;
 	pixel_y = 7;
 	req_access = list(58)
 	},
 /obj/machinery/door_control{
 	id = "Secure Gate";
-	name = "Brig Lockdown";
+	name = "brig lockdown";
 	pixel_x = -25;
 	pixel_y = -3;
 	req_access = list(58)
 	},
 /obj/machinery/door_control{
 	id = "hossafety";
-	name = "Windows Safety Shutters";
+	name = "windows safety shutters";
 	pixel_x = -38;
 	pixel_y = 7;
 	req_access = list(58)
 	},
 /obj/machinery/door_control{
 	id = "hosprivacy";
-	name = "Privacy Shutters";
+	name = "privacy shutters";
 	pixel_x = -38;
 	pixel_y = -3;
 	req_access = list(58)
@@ -47714,7 +47708,7 @@
 	},
 /obj/machinery/door_control{
 	id = "medexit";
-	name = "Medbay Exit Door";
+	name = "medbay exit door";
 	normaldoorcontrol = 1;
 	pixel_y = 24
 	},
@@ -48619,7 +48613,7 @@
 /obj/structure/cable,
 /obj/machinery/power/solar{
 	id = "starboardsolar";
-	name = "Starboard Solar Array"
+	name = "starboard solar array"
 	},
 /obj/effect/decal/floor/solar_panel,
 /turf/open/floor/plating/metal/airless,
@@ -48807,7 +48801,7 @@
 /obj/machinery/door_control{
 	desc = "You can see a label under the button: 'Only for heads use'.";
 	id = "bunker_blast";
-	name = "Blast Door Control";
+	name = "blast door control";
 	pixel_x = 25;
 	pixel_y = -5;
 	req_access = list(19);
@@ -48816,7 +48810,7 @@
 /obj/machinery/door_control{
 	desc = "You can see a label under the button: 'Only for heads use'.";
 	id = "bunker";
-	name = "Door Bolt Control";
+	name = "door bolt control";
 	normaldoorcontrol = 1;
 	pixel_x = 25;
 	pixel_y = 5;
@@ -49095,7 +49089,7 @@
 	},
 /obj/machinery/door_control{
 	id = "telescilab";
-	name = "Test Chamber Blast Doors";
+	name = "test chamber blast doors";
 	pixel_x = 6;
 	pixel_y = 30;
 	req_access = list(47)
@@ -49335,7 +49329,7 @@
 	},
 /obj/machinery/power/solar{
 	id = "auxsolareast";
-	name = "Port Auxiliary Solar Array"
+	name = "port auxiliary solar array"
 	},
 /obj/effect/decal/floor/solar_panel,
 /turf/open/floor/plating/metal/airless,
@@ -49670,7 +49664,7 @@
 /obj/machinery/requests_console{
 	department = "Waste Disposal";
 	departmentType = 2;
-	name = "Waste Disposal RC";
+	name = "waste disposal requests console";
 	pixel_y = 30
 	},
 /obj/machinery/power/apc/standard/apc{
@@ -49708,7 +49702,7 @@
 /obj/machinery/computer/general_air_control/large_tank_control{
 	frequency = 1441;
 	input_tag = "n2o_in";
-	name = "Nitrous Oxide Supply Control";
+	name = "nitrous oxide supply control";
 	output_tag = "n2o_out";
 	sensors = list("n2o_sensor" = "Tank")
 	},
@@ -49992,7 +49986,7 @@
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the telescience chamber.";
 	layer = 4;
-	name = "Telescience Chamber Telescreen";
+	name = "telescience chamber telescreen";
 	network = list("Telesci Test Area");
 	pixel_x = 32
 	},
@@ -50499,7 +50493,7 @@
 /obj/machinery/computer/general_air_control{
 	frequency = 1443;
 	level = 3;
-	name = "Distribution and Waste Monitor";
+	name = "distribution and waste monitor";
 	sensors = list("mair_in_meter" = "Mixed Air In", "air_sensor" = "Mixed Air Supply Tank", "mair_out_meter" = "Mixed Air Out", "dloop_atm_meter" = "Distribution Loop", "wloop_atm_meter" = "Waste Loop")
 	},
 /turf/open/floor{
@@ -51602,14 +51596,14 @@
 	},
 /obj/machinery/door_control{
 	id = "Prison Gate";
-	name = "Prison Wing Lockdown";
+	name = "prison wing lockdown";
 	pixel_x = -28;
 	pixel_y = 7;
 	req_access = list(2)
 	},
 /obj/machinery/door_control{
 	id = "Secure Gate";
-	name = "Brig Lockdown";
+	name = "brig lockdown";
 	pixel_x = -28;
 	pixel_y = -3;
 	req_access = list(2)
@@ -51866,9 +51860,7 @@
 /turf/open/floor/tiled/dark,
 /area/station/crew/hydroponics)
 "sfk" = (
-/obj/machinery/vending/medical{
-	pixel_x = -2
-	},
+/obj/machinery/vending/medical,
 /turf/open/floor/tiled/white,
 /area/station/medical/main)
 "sfn" = (
@@ -51999,7 +51991,7 @@
 /obj/machinery/door_control{
 	desc = "A remote control switch for the brig foyer.";
 	id = "BrigFoyer";
-	name = "Brig Foyer Doors";
+	name = "brig foyer doors";
 	normaldoorcontrol = 1;
 	pixel_x = 16;
 	pixel_y = -25
@@ -52007,7 +51999,7 @@
 /obj/machinery/door_control{
 	desc = "A remote control switch for the brig doors leading to cells 1 and 2.";
 	id = "BrigEast";
-	name = "Brig Cells 1-2 Hallway Doors";
+	name = "brig cells 1-2 hallway doors";
 	normaldoorcontrol = 1;
 	pixel_x = 5;
 	pixel_y = -25
@@ -52792,7 +52784,7 @@
 /obj/machinery/computer/general_air_control{
 	frequency = 1443;
 	level = 3;
-	name = "Core Gas Monitor";
+	name = "core gas monitor";
 	sensors = list("core_sensor" = "Core Status")
 	},
 /turf/open/floor/plating/metal,
@@ -55053,14 +55045,14 @@
 "tvx" = (
 /obj/machinery/door_control{
 	id = "SMEngineShutter";
-	name = "Core Shutters Control";
+	name = "core shutters control";
 	pixel_x = -7;
 	pixel_y = 22;
 	req_access = list(10)
 	},
 /obj/machinery/door_control{
 	id = "SMEngineMonitoringShutter";
-	name = "Monitoring Shutters Control";
+	name = "monitoring shutters control";
 	pixel_x = 7;
 	pixel_y = 22;
 	req_access = list(10)
@@ -55351,7 +55343,7 @@
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the test chamber.";
 	layer = 4;
-	name = "Test Chamber Telescreen";
+	name = "test chamber telescreen";
 	network = list("Toxins Test Area");
 	pixel_x = 32
 	},
@@ -55983,7 +55975,7 @@
 	announcementConsole = 1;
 	department = "Head of Security's Desk";
 	departmentType = 5;
-	name = "Head of Security RC";
+	name = "head of security's desk requests console";
 	pixel_y = 30
 	},
 /turf/open/floor/tiled/dark,
@@ -56669,7 +56661,7 @@
 "ubf" = (
 /obj/machinery/computer/security/telescreen{
 	desc = "Used for watching the RD's goons from the safety of his office.";
-	name = "Research Monitor";
+	name = "research monitor";
 	network = list("Research","Toxins Test Area","Robots","Anomaly Isolation");
 	pixel_y = 2
 	},
@@ -56778,7 +56770,7 @@
 	},
 /obj/machinery/door_control{
 	id = "bar";
-	name = "Bar Shutters";
+	name = "bar shutters";
 	pixel_y = 25;
 	throw_range = 15
 	},
@@ -57310,7 +57302,7 @@
 	announcementConsole = 1;
 	department = "Chief Medical Officer's Desk";
 	departmentType = 5;
-	name = "Chief Medical Officer RC";
+	name = "chief medical officer's desk requests console";
 	pixel_y = -32
 	},
 /obj/machinery/light,
@@ -57693,7 +57685,7 @@
 	},
 /obj/machinery/door_control{
 	id = "capdoor";
-	name = "Office Door Opening";
+	name = "office door opening";
 	normaldoorcontrol = 1;
 	pixel_y = 30;
 	req_access = list(20)
@@ -58384,7 +58376,7 @@
 /obj/machinery/computer/crew,
 /obj/machinery/door_control{
 	id = "medentrance";
-	name = "Medbay Entrance Door";
+	name = "medbay entrance door";
 	normaldoorcontrol = 1;
 	pixel_x = -5;
 	pixel_y = 30;
@@ -58393,7 +58385,7 @@
 	},
 /obj/machinery/door_control{
 	id = "medexit";
-	name = "Medbay Exit Door";
+	name = "medbay exit door";
 	normaldoorcontrol = 1;
 	pixel_x = 5;
 	pixel_y = 30;
@@ -60360,7 +60352,7 @@
 /obj/machinery/computer/general_air_control{
 	frequency = 1443;
 	level = 3;
-	name = "Core Gas Monitor";
+	name = "core gas monitor";
 	sensors = list("thermengine_sensor" = "Core Status")
 	},
 /obj/effect/decal/floor/industrial/warning/border{
@@ -61941,7 +61933,7 @@
 "vYt" = (
 /obj/machinery/door_control{
 	id = "exam";
-	name = "Privacy Shutters";
+	name = "privacy shutters";
 	pixel_x = 24;
 	req_access = list(5);
 	throw_range = 15
@@ -62221,7 +62213,7 @@
 "wcA" = (
 /obj/machinery/door_control{
 	id = "qm_warehouse";
-	name = "Warehouse Door Control";
+	name = "warehouse door control";
 	pixel_x = -1;
 	pixel_y = 24;
 	req_access = list(31)
@@ -62355,7 +62347,7 @@
 "wfD" = (
 /obj/machinery/door_control{
 	id = "bridge blast";
-	name = "Bridge Blast Door Control";
+	name = "bridge blast door control";
 	pixel_x = -1;
 	pixel_y = -24;
 	req_access = list(19)
@@ -62554,7 +62546,7 @@
 /obj/machinery/door_control{
 	id = "SinguloEngineShutter";
 	layer = 4;
-	name = "Particle Accelerator Shutters";
+	name = "particle accelerator shutters";
 	pixel_x = -24
 	},
 /turf/open/floor/plating/metal,
@@ -63332,7 +63324,7 @@
 /obj/machinery/meter,
 /obj/machinery/door_control{
 	id = "mixvent";
-	name = "Mixing Room Vent Control";
+	name = "mixing room vent control";
 	pixel_x = -25;
 	pixel_y = 5;
 	req_access = list(7)
@@ -64416,7 +64408,7 @@
 "wSi" = (
 /obj/machinery/computer/general_air_control{
 	frequency = 1443;
-	name = "Core Gas Monitor";
+	name = "core gas monitor";
 	sensors = list("core_sensor" = "Core gas composition")
 	},
 /turf/open/floor{
@@ -65356,7 +65348,7 @@
 "xin" = (
 /obj/machinery/door_control{
 	id = "Skynet_launch";
-	name = "Mech Bay Door Control";
+	name = "mech bay door control";
 	pixel_x = 6;
 	pixel_y = 24
 	},
@@ -65995,7 +65987,7 @@
 	},
 /obj/machinery/power/solar{
 	id = "portsolar";
-	name = "Port Solar Array"
+	name = "port solar array"
 	},
 /obj/effect/decal/floor/solar_panel,
 /turf/open/floor/plating/metal/airless,
@@ -66954,10 +66946,8 @@
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/supermatter)
 "xIn" = (
-/obj/machinery/computer/operating{
-	name = "Robotics Operating Computer"
-	},
 /obj/machinery/light,
+/obj/machinery/computer/operating,
 /turf/open/floor/tiled/white,
 /area/station/research/robotics/lab)
 "xIC" = (
@@ -66994,7 +66984,6 @@
 /obj/machinery/computer/turbine_control{
 	compressor = "incinerator_compressor";
 	id = "disenginevent";
-	name = "Gas Turbine Control Computer";
 	tag = "incinerator_engine_control"
 	},
 /turf/open/floor{
@@ -67048,7 +67037,7 @@
 	department = "Kitchen";
 	departmentType = 2;
 	desc = "A console for sending food orders to the kitchen.";
-	name = "Kitchen Food Request Console";
+	name = "kitchen food requests console";
 	pixel_x = 32
 	},
 /turf/open/floor/wood,
@@ -67123,7 +67112,7 @@
 "xMF" = (
 /obj/machinery/door_control{
 	id = "misclab";
-	name = "Test Chamber Blast Doors";
+	name = "test chamber blast doors";
 	pixel_x = 30;
 	pixel_y = -4;
 	req_access = list(47)
@@ -67253,9 +67242,7 @@
 /area/station/research/miscellaneous)
 "xPY" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/vending/medical{
-	pixel_x = -2
-	},
+/obj/machinery/vending/medical,
 /turf/open/floor/tiled/white,
 /area/station/medical/main)
 "xQt" = (
@@ -67965,7 +67952,7 @@
 /obj/machinery/requests_console{
 	department = "Medbay";
 	departmentType = 1;
-	name = "Medbay RC";
+	name = "medical bay requests console";
 	pixel_x = -30
 	},
 /obj/effect/decal/floor/industrial/warning/corner{
@@ -67981,14 +67968,14 @@
 /obj/machinery/door_control{
 	id = "QMLoaddoor";
 	layer = 4;
-	name = "Loading Doors";
+	name = "loading doors";
 	pixel_x = -24;
 	pixel_y = -8
 	},
 /obj/machinery/door_control{
 	id = "QMLoaddoor2";
 	layer = 4;
-	name = "Loading Doors";
+	name = "loading doors";
 	pixel_x = -24;
 	pixel_y = 8
 	},

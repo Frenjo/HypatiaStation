@@ -218,7 +218,7 @@
 		qdel(src)
 
 /obj/machinery/computer/scan_consolenew
-	name = "DNA Modifier Access Console"
+	name = "DNA modifier access console"
 	desc = "Scand DNA."
 	icon_state = "scanner"
 	density = TRUE

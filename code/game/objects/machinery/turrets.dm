@@ -340,7 +340,7 @@
 		qdel(src)
 
 /obj/machinery/turretid
-	name = "Turret deactivation control"
+	name = "turret deactivation control"
 	icon = 'icons/obj/items/devices/device.dmi'
 	icon_state = "motion3"
 	anchored = TRUE

@@ -109,7 +109,7 @@
 	very flexible, but it gets the job done.
 */
 /obj/machinery/telecoms/allinone
-	name = "Telecommunications Mainframe"
+	name = "telecommunications mainframe"
 	icon_state = "comm_server"
 	desc = "A compact machine used for portable subspace telecommuniations processing."
 	density = TRUE

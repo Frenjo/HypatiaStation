@@ -33,7 +33,7 @@
 
 
 /obj/structure/closet/secure/exile
-	name = "Exile Implants"
+	name = "exile implants"
 	req_access = list(ACCESS_HOS)
 
 	starts_with = list(

@@ -77,7 +77,7 @@
  * Electrical
  */
 /obj/structure/closet/secure/engineering/electrical
-	name = "Electrical Supplies"
+	name = "electrical supplies"
 	req_access = list(ACCESS_ENGINE_EQUIP)
 	icon_state = "secureengelec1"
 	icon_closed = "secureengelec"
@@ -107,7 +107,7 @@
  * Welding
  */
 /obj/structure/closet/secure/engineering/welding
-	name = "Welding Supplies"
+	name = "welding supplies"
 	req_access = list(ACCESS_CONSTRUCTION)
 	icon_state = "secureengweld1"
 	icon_closed = "secureengweld"

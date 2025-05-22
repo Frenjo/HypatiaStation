@@ -71,5 +71,5 @@
 */
 
 /obj/machinery/computer/rust_radiation_monitor
-	name = "Radiation Monitor"
+	name = "radiation monitor"
 	icon_state = "power"

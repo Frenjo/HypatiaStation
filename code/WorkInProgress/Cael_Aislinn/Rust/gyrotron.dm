@@ -3,9 +3,9 @@
 /obj/item/projectile/energy/beam/ehf_beam
 
 /obj/machinery/rust/gyrotron
+	name = "gyrotron"
 	icon = 'code/WorkInProgress/Cael_Aislinn/Rust/rust.dmi'
 	icon_state = "emitter-off"
-	name = "Gyrotron"
 	anchored = TRUE
 	density = FALSE
 	layer = 4
@@ -157,8 +157,8 @@
 
 
 /obj/machinery/rust/gyrotron/control_panel
+	name = "control panel"
 	icon_state = "control_panel"
-	name = "Control panel"
 
 	var/obj/machinery/rust/gyrotron/owned_gyrotron
 

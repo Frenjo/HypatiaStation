@@ -151,7 +151,7 @@
 //	Formatting is the same as food.
 
 /obj/item/reagent_holder/food/drinks/milk
-	name = "Space Milk"
+	name = "space milk"
 	desc = "It's milk. White and nutritious goodness!"
 	icon_state = "milk"
 	item_state = "carton"
@@ -179,7 +179,7 @@
 
 
 /obj/item/reagent_holder/food/drinks/soymilk
-	name = "SoyMilk"
+	name = "soy milk"
 	desc = "It's soy milk. White and nutritious goodness!"
 	icon_state = "soymilk"
 	item_state = "carton"
@@ -217,7 +217,7 @@
 
 
 /obj/item/reagent_holder/food/drinks/ice
-	name = "Ice Cup"
+	name = "ice cup"
 	desc = "Careful, cold ice, do not chew."
 	icon_state = "coffee"
 
@@ -242,7 +242,7 @@
 
 
 /obj/item/reagent_holder/food/drinks/dry_ramen
-	name = "Cup Ramen"
+	name = "cup ramen"
 	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
 	icon_state = "ramen"
 
@@ -254,7 +254,7 @@
 
 
 /obj/item/reagent_holder/food/drinks/sillycup
-	name = "Paper Cup"
+	name = "paper cup"
 	desc = "A paper water cup."
 	icon_state = "water_cup_e"
 	possible_transfer_amounts = null
@@ -278,7 +278,7 @@
 //	icon states.
 
 /obj/item/reagent_holder/food/drinks/shaker
-	name = "Shaker"
+	name = "shaker"
 	desc = "A metal shaker to mix drinks in."
 	icon_state = "shaker"
 	amount_per_transfer_from_this = 10
@@ -286,14 +286,14 @@
 
 
 /obj/item/reagent_holder/food/drinks/flask
-	name = "Captain's Flask"
+	name = "captain's flask"
 	desc = "A metal flask belonging to the captain"
 	icon_state = "flask"
 	volume = 60
 
 
 /obj/item/reagent_holder/food/drinks/flask/detflask
-	name = "Detective's Flask"
+	name = "detective's flask"
 	desc = "A metal flask with a leather band and golden badge belonging to the detective."
 	icon_state = "detflask"
 	volume = 60

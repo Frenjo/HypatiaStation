@@ -202,7 +202,7 @@
 
 
 /obj/item/reagent_holder/food/drinks/bottle/holywater
-	name = "Flask of Holy Water"
+	name = "flask of holy water"
 	desc = "A flask of the chaplain's holy water."
 	icon_state = "holyflask"
 
