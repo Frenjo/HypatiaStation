@@ -18,6 +18,8 @@
 
 	uniform = /obj/item/clothing/under/rank/bartender
 
+	backpack_contents = list(/obj/item/storage/box/survival/bartender = 1)
+
 	pda_type = /obj/item/pda/bar
 
 /*

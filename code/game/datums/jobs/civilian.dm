@@ -19,19 +19,6 @@
 	outfit = /decl/hierarchy/outfit/job/service/bartender
 	alt_titles = list("Barista", "Mixologist")
 
-/datum/job/bartender/equip(mob/living/carbon/human/H)
-	. = ..()
-	var/obj/item/storage/box/barpack = new /obj/item/storage/box(H)
-	barpack.name = "bartender survival kit"
-	new /obj/item/ammo_casing/shotgun/beanbag(barpack)
-	new /obj/item/ammo_casing/shotgun/beanbag(barpack)
-	new /obj/item/ammo_casing/shotgun/beanbag(barpack)
-	new /obj/item/ammo_casing/shotgun/beanbag(barpack)
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(barpack, SLOT_ID_R_HAND)
-	else
-		H.equip_to_slot_or_del(barpack, SLOT_ID_IN_BACKPACK)
-
 /*
  * Chef
  */

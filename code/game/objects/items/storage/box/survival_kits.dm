@@ -64,3 +64,12 @@
 	starts_with = list(
 		/obj/item/flashlight
 	)
+
+// Bartender
+/obj/item/storage/box/survival/bartender
+	name = "bartender survival kit"
+	desc = "A bartender-issue survival kit for use in emergencies."
+
+	starts_with = list(
+		/obj/item/ammo_casing/shotgun/beanbag = 4
+	)
