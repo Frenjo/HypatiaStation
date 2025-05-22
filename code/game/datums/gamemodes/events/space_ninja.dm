@@ -527,23 +527,7 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 		qdel(head)
 		qdel(shoes)
 		qdel(gloves)
-
-	var/obj/item/radio/R = new /obj/item/radio/headset(src)
-	equip_to_slot_or_del(R, SLOT_ID_L_EAR)
-	if(gender == FEMALE)
-		equip_to_slot_or_del(new /obj/item/clothing/under/color/blackf(src), SLOT_ID_WEAR_UNIFORM)
-	else
-		equip_to_slot_or_del(new /obj/item/clothing/under/color/black(src), SLOT_ID_WEAR_UNIFORM)
-	equip_to_slot_or_del(new /obj/item/clothing/shoes/space_ninja(src), SLOT_ID_SHOES)
-	equip_to_slot_or_del(new /obj/item/clothing/suit/space/space_ninja(src), SLOT_ID_WEAR_SUIT)
-	equip_to_slot_or_del(new /obj/item/clothing/gloves/space_ninja(src), SLOT_ID_GLOVES)
-	equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/space_ninja(src), SLOT_ID_HEAD)
-	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/voice/space_ninja(src), SLOT_ID_WEAR_MASK)
-	equip_to_slot_or_del(new /obj/item/flashlight(src), SLOT_ID_BELT)
-	equip_to_slot_or_del(new /obj/item/plastique(src), SLOT_ID_R_POCKET)
-	equip_to_slot_or_del(new /obj/item/plastique(src), SLOT_ID_L_POCKET)
-	equip_to_slot_or_del(new /obj/item/tank/oxygen(src), SLOT_ID_SUIT_STORE)
-	return 1
+	return equip_outfit(/decl/hierarchy/outfit/space_ninja)
 
 //=======//HELPER PROCS//=======//
 
@@ -737,6 +721,32 @@ As such, it's hard-coded for now. No reason for it not to be, really.
 	verbs -= /obj/item/clothing/suit/space/space_ninja/proc/ai_return_control
 
 	s_control = 1
+
+// Ninja outfit
+/decl/hierarchy/outfit/space_ninja
+	name = "Space Ninja"
+
+	suit = /obj/item/clothing/suit/space/space_ninja
+	belt = /obj/item/flashlight
+
+	head = /obj/item/clothing/head/helmet/space/space_ninja
+	mask = /obj/item/clothing/mask/gas/voice/space_ninja
+	gloves = /obj/item/clothing/gloves/space_ninja
+	shoes = /obj/item/clothing/shoes/space_ninja
+
+	l_ear = /obj/item/radio/headset
+
+	suit_store = /obj/item/tank/oxygen
+	l_pocket = /obj/item/plastique
+	r_pocket = /obj/item/plastique
+
+/decl/hierarchy/outfit/space_ninja/pre_equip(mob/living/carbon/human/user)
+	. = ..()
+	if(user.gender == FEMALE)
+		back = /obj/item/clothing/under/color/blackf
+	else
+		back = /obj/item/clothing/under/color/black
+
 
 //=======//OLD & UNUSED//=======//
 
