@@ -4,7 +4,7 @@
 		return
 
 	for(var/mob/living/carbon/human/H in GLOBL.player_list)
-		if(H.stat == DEAD || !(H.client))
+		if(H.stat == DEAD || !H.client)
 			continue
 		if(is_special_character(H))
 			continue
@@ -27,17 +27,12 @@
 			H << "<B>Objective #[obj_count]</B>: [OBJ.explanation_text]"
 			obj_count++
 
-		for (var/obj/item/I in H)
-			if (istype(I, /obj/item/implant))
+		for(var/obj/item/I in H)
+			if(istype(I, /obj/item/implant))
 				continue
 			qdel(I)
 
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(H), SLOT_ID_WEAR_UNIFORM)
-		H.equip_to_slot_or_del(new /obj/item/radio/headset/heads/captain(H), SLOT_ID_L_EAR)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret(H), SLOT_ID_HEAD)
-		H.equip_to_slot_or_del(new /obj/item/claymore(H), SLOT_ID_L_HAND)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(H), SLOT_ID_SHOES)
-		H.equip_to_slot_or_del(new /obj/item/pinpointer(H.loc), SLOT_ID_L_POCKET)
+		H.equip_outfit(/decl/hierarchy/outfit/highlander)
 
 		var/obj/item/card/id/W = new(H)
 		W.name = "[H.real_name]'s ID Card"
@@ -50,3 +45,18 @@
 
 	message_admins("\blue [key_name_admin(usr)] used THERE CAN BE ONLY ONE!", 1)
 	log_admin("[key_name(usr)] used there can be only one.")
+
+// Highlander outfit
+/decl/hierarchy/outfit/highlander
+	name = "Highlander"
+
+	uniform = /obj/item/clothing/under/kilt
+
+	head = /obj/item/clothing/head/beret
+	shoes = /obj/item/clothing/shoes/combat
+
+	l_ear = /obj/item/radio/headset/heads/captain
+
+	l_pocket = /obj/item/pinpointer
+
+	l_hand = /obj/item/claymore
