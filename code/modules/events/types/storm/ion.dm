@@ -1,8 +1,14 @@
 /datum/round_event/storm/ion
 	startWhen = 1
 
-	var/bot_emag_chance = 0.5
+	var/bot_emag_chance
 	var/list/players = list()
+
+/datum/round_event/storm/ion/New(_bot_emag_chance = 0.5, silent = FALSE)
+	. = ..()
+	bot_emag_chance = _bot_emag_chance
+	if(silent)
+		announceWhen = -1
 
 /datum/round_event/storm/ion/setup()
 	endWhen = rand(500, 1500)
@@ -57,7 +63,7 @@
 
 /datum/round_event/storm/ion/tick()
 	if(bot_emag_chance)
-		for(var/obj/machinery/bot/bot in GLOBL.bots_list)
+		for_no_type_check(var/obj/machinery/bot/bot, GLOBL.bots_list)
 			if(isnotstationlevel(bot.z))
 				continue
 			if(prob(bot_emag_chance))

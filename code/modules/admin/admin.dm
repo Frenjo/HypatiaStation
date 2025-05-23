@@ -616,7 +616,6 @@ var/global/floorIsLava = 0
 		html += "<a href='byond://?src=\ref[src];secretsfun=prison_break'>Trigger a Prison Break</a><br>"
 		html += "<a href='byond://?src=\ref[src];secretsfun=virus'>Trigger a Virus Outbreak</a><br>"
 		html += "<a href='byond://?src=\ref[src];secretsfun=immovable'>Spawn an Immovable Rod</a><br>"
-		html += "<a href='byond://?src=\ref[src];secretsfun=lightsout'>Toggle a \"Lights Out\" Event</a><br>"
 		html += "Spawn an Ion Storm: "
 		html += "<a href='byond://?src=\ref[src];secretsfun=ionstorm'>Standard</a> | "
 		html += "<a href='byond://?src=\ref[src];secretsfun=ion_storm_large'>Severe</a>"

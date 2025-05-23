@@ -190,7 +190,7 @@
 		command_alert("Ion storm detected near the station. Please check all AI-controlled equipment for errors.", "Anomaly Alert")
 		world << sound('sound/AI/ionstorm.ogg')
 
-	IonStorm(0)
+	new /datum/round_event/storm/ion(0, TRUE)
 	feedback_add_details("admin_verb","ION") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_banhammer()

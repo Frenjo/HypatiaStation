@@ -244,15 +244,6 @@
 
 	return 1
 
-
-/datum/admins/proc/make_aliens()
-	alien_infestation(3)
-	return 1
-
-/datum/admins/proc/make_space_ninja()
-	space_ninja_arrival()
-	return 1
-
 /datum/admins/proc/make_deathsquad()
 	var/list/mob/dead/ghost/candidates = list()
 	var/mob/dead/ghost/theghost = null

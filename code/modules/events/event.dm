@@ -76,4 +76,4 @@
 	GLOBL.events.Add(src)
 	/*if(oneShot)
 		potentialRandomEvents.Remove(type)*/
-	..()
+	. = ..()
