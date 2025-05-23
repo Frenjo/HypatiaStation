@@ -21,10 +21,6 @@
 				var/mob/living/carbon/C = usr
 				C.activate_hand("l")
 				usr.next_move = world.time + 2
-		if("swap")
-			usr:swap_hand()
-		if("hand")
-			usr:swap_hand()
 		else
 			if(usr.attack_ui(slot_id))
 				usr.update_inv_l_hand(0)

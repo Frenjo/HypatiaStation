@@ -2,6 +2,7 @@
 	name = "gun"
 	icon = 'icons/hud/screen1.dmi'
 	dir = 2
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 	var/gun_click_time = -100 //I'm lazy.
 

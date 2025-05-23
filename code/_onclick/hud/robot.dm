@@ -1,32 +1,26 @@
 /datum/hud/robot/setup()
 	var/mob/living/silicon/robot/R = owner
-	var/atom/movable/screen/using
 
 	// Lights
-	using = new /atom/movable/screen/robot/lights(src)
-	adding.Add(using)
+	adding.Add(new /atom/movable/screen/robot/lights())
 
-//Radio
-	using = new /atom/movable/screen/robot(src, "radio", "radio", UI_MOVI)
-	using.set_dir(SOUTHWEST)
-	adding.Add(using)
+	// Radio
+	adding.Add(new /atom/movable/screen/robot/radio())
 
 	// Module selection.
-	R.inv1 = new /atom/movable/screen/robot/active_module(src, 1, UI_INV1)
+	R.inv1 = new /atom/movable/screen/robot/active_module(1, UI_INV1)
 	adding.Add(R.inv1)
 
-	R.inv2 = new /atom/movable/screen/robot/active_module(src, 2, UI_INV2)
+	R.inv2 = new /atom/movable/screen/robot/active_module(2, UI_INV2)
 	adding.Add(R.inv2)
 
-	R.inv3 = new /atom/movable/screen/robot/active_module(src, 3, UI_INV3)
+	R.inv3 = new /atom/movable/screen/robot/active_module(3, UI_INV3)
 	adding.Add(R.inv3)
 	// End of module selection.
 
-//Intent
-	using = setup_screen_object("act_intent", 'icons/hud/robot/robot.dmi', (R.a_intent == "hurt" ? "harm" : R.a_intent), UI_ACTI)
-	using.set_dir(SOUTHWEST)
-	adding.Add(using)
-	action_intent = using
+	// Action intent
+	action_intent = new /atom/movable/screen/robot/action_intent()
+	adding.Add(action_intent)
 
 //Cell
 	R.cells = setup_screen_object("cell", 'icons/hud/robot/robot.dmi', "charge-empty", UI_TOXIN)
@@ -35,13 +29,13 @@
 	R.healths = setup_screen_object("health", 'icons/hud/robot/robot.dmi', "health0", UI_BORG_HEALTH)
 
 	// Installed model
-	R.hands = new /atom/movable/screen/robot/installed_model(src, "model", "nomod", UI_BORG_MODEL)
+	R.hands = new /atom/movable/screen/robot/installed_model(_screen_loc = UI_BORG_MODEL)
 
-//Module Panel
-	adding.Add(new /atom/movable/screen/robot(src, "panel", "panel", UI_BORG_PANEL))
+	// Module panel
+	adding.Add(new /atom/movable/screen/robot/panel(_screen_loc = UI_BORG_PANEL))
 
-//Store
-	R.throw_icon = new /atom/movable/screen/robot(src, "store", "store", UI_BORG_STORE)
+	// Store module
+	R.throw_icon = new /atom/movable/screen/robot/store_module(_screen_loc = UI_BORG_STORE)
 
 //Temp
 	R.bodytemp = setup_screen_object("body temperature", 'icons/hud/screen1.dmi', "temp0", UI_TEMP)

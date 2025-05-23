@@ -15,7 +15,7 @@
 	var/obj/effect/organstructure/organStructure = null
 
 	var/atom/movable/screen/hands = null
-	var/atom/movable/screen/internals = null
+	var/atom/movable/screen/internals/internals = null
 	var/atom/movable/screen/i_select = null
 	var/atom/movable/screen/m_select = null
 

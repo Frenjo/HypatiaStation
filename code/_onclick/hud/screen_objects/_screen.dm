@@ -19,23 +19,83 @@
 
 /atom/movable/screen/Click(location, control, params)
 	if(isnull(usr))
-		return 1
+		return FALSE
+	if(name == "act_intent")
+		usr.a_intent_change("right")
+		return FALSE
+	return TRUE
 
-	switch(name)
-		if("equip")
-			if(ismecha(usr.loc)) // stops inventory actions in a mech
-				return 1
-			if(ishuman(usr))
-				var/mob/living/carbon/human/H = usr
-				H.quick_equip()
+// Internals
+/atom/movable/screen/internals
+	name = "internals"
+	icon_state = "internal0"
+	screen_loc = UI_INTERNAL
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
-		if("internal")
-			if(isliving(usr))
-				var/mob/living/L = usr
-				L.ui_toggle_internals()
-		if("act_intent")
-			usr.a_intent_change("right")
+/atom/movable/screen/internals/New(_ico)
+	. = ..()
+	icon = _ico
 
-		else
-			return 0
-	return 1
+/atom/movable/screen/internals/Click(location, control, params)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!isliving(usr))
+		return FALSE
+
+	var/mob/living/L = usr
+	L.ui_toggle_internals()
+	return TRUE
+
+// Equip
+/atom/movable/screen/equip
+	name = "equip"
+	icon_state = "act_equip"
+	screen_loc = UI_EQUIP
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
+/atom/movable/screen/equip/New(_ico)
+	. = ..()
+	icon = _ico
+
+/atom/movable/screen/equip/Click(location, control, params)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!ishuman(usr))
+		return FALSE
+	if(ismecha(usr.loc)) // stops inventory actions in a mech
+		return FALSE
+
+	var/mob/living/carbon/human/H = usr
+	H.quick_equip()
+	return TRUE
+
+// Swap Hands
+/atom/movable/screen/swap_hands
+	name = "swap hands"
+	dir = SOUTH
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
+/atom/movable/screen/swap_hands/New(_ico, _icon_state, _screen_loc)
+	. = ..()
+	icon = _ico
+	icon_state = _icon_state
+	screen_loc = _screen_loc
+
+/atom/movable/screen/swap_hands/Click(location, control, params)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!iscarbon(usr))
+		return FALSE
+	var/mob/living/carbon/user = usr
+	if(world.time <= user.next_move)
+		return FALSE
+	if(user.stat || user.paralysis || user.stunned || user.weakened)
+		return FALSE
+	if(ismecha(user.loc)) // stops inventory actions in a mech
+		return FALSE
+
+	user.swap_hand()
+	return TRUE

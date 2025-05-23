@@ -1,4 +1,6 @@
 /atom/movable/screen/item_action
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
 	var/obj/item/owner
 
 /atom/movable/screen/item_action/New(obj/item/O)

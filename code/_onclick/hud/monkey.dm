@@ -49,12 +49,10 @@
 	l_hand_hud_object = inv_box
 	adding.Add(inv_box)
 
-	using = setup_screen_object("hand", ui_style, "hand1", UI_SWAPHAND1)
-	using.set_dir(SOUTH)
+	using = new /atom/movable/screen/swap_hands(ui_style, "hand1", UI_SWAPHAND1)
 	adding.Add(using)
 
-	using = setup_screen_object("hand", ui_style, "hand2", UI_SWAPHAND2)
-	using.set_dir(SOUTH)
+	using = new /atom/movable/screen/swap_hands(ui_style, "hand2", UI_SWAPHAND2)
 	adding.Add(using)
 
 	inv_box = new /atom/movable/screen/inventory()
@@ -81,7 +79,7 @@
 	M.oxygen = setup_screen_object("oxygen", ui_style, "oxy0", UI_OXYGEN)
 	M.pressure = setup_screen_object("pressure", ui_style, "pressure0", UI_PRESSURE)
 	M.toxin = setup_screen_object("toxin", ui_style, "tox0", UI_TOXIN)
-	M.internals = setup_screen_object("internal", ui_style, "internal0", UI_INTERNAL)
+	M.internals = new /atom/movable/screen/internals(ui_style)
 	M.fire = setup_screen_object("fire", ui_style, "fire0", UI_FIRE)
 	M.bodytemp = setup_screen_object("body temperature", ui_style, "temp1", UI_TEMP)
 	M.healths = setup_screen_object("health", ui_style, "health0", UI_HEALTH)

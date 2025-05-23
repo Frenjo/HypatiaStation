@@ -3,6 +3,7 @@
 /atom/movable/screen/radial
 	icon = 'icons/hud/radial.dmi'
 	layer = HUD_ABOVE_ITEM_LAYER
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 	var/datum/radial_menu/parent
 

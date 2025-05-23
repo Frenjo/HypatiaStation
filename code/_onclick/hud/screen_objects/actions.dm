@@ -1,3 +1,6 @@
+/atom/movable/screen/action
+	mouse_over_pointer = MOUSE_HAND_POINTER
+
 /atom/movable/screen/action/New(ico, s_loc)
 	. = ..()
 	icon = ico

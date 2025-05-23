@@ -59,20 +59,10 @@
 	l_hand_hud_object = inv_box
 	adding.Add(inv_box)
 
-	using = new /atom/movable/screen/inventory()
-	using.name = "hand"
-	using.set_dir(SOUTH)
-	using.icon = 'icons/hud/screen1_alien.dmi'
-	using.icon_state = "hand1"
-	using.screen_loc = UI_SWAPHAND1
+	using = new /atom/movable/screen/swap_hands('icons/hud/screen1_alien.dmi', "hand1", UI_SWAPHAND1)
 	adding.Add(using)
 
-	using = new /atom/movable/screen/inventory()
-	using.name = "hand"
-	using.set_dir(SOUTH)
-	using.icon = 'icons/hud/screen1_alien.dmi'
-	using.icon_state = "hand2"
-	using.screen_loc = UI_SWAPHAND2
+	using = new /atom/movable/screen/swap_hands('icons/hud/screen1_alien.dmi', "hand2", UI_SWAPHAND2)
 	adding.Add(using)
 
 	//pocket 1

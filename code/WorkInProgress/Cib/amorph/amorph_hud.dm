@@ -106,20 +106,10 @@
 	src.l_hand_hud_object = using
 	src.adding += using
 
-	using = new /atom/movable/screen( src )
-	using.name = "hand"
-	using.dir = SOUTH
-	using.icon = ui_style
-	using.icon_state = "hand1"
-	using.screen_loc = ui_swaphand1
+	using = new /atom/movable/screen/swap_hands(ui_style, "hand1", UI_SWAPHAND1)
 	src.adding += using
 
-	using = new /atom/movable/screen( src )
-	using.name = "hand"
-	using.dir = SOUTH
-	using.icon = ui_style
-	using.icon_state = "hand2"
-	using.screen_loc = ui_swaphand2
+	using = new /atom/movable/screen/swap_hands(ui_style, "hand2", UI_SWAPHAND2)
 	src.adding += using
 
 	using = new /atom/movable/screen( src )

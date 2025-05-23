@@ -5,6 +5,7 @@
 	name = "move intent"
 	dir = SOUTHWEST
 	screen_loc = UI_MOVI
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /atom/movable/screen/move_intent/Click(location, control, params)
 	if(!iscarbon(usr))
@@ -26,6 +27,7 @@
  */
 /atom/movable/screen/action_intent
 	screen_loc = UI_ACTI
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 /atom/movable/screen/action_intent/New(loc, intent, icon/ico, ui_alpha)
 	name = intent

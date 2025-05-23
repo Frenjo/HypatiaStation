@@ -5,6 +5,7 @@
 	name = "damage zone"
 	icon_state = "zone_sel"
 	screen_loc = UI_ZONESEL
+	mouse_over_pointer = MOUSE_HAND_POINTER
 
 	var/selecting = "chest"
 

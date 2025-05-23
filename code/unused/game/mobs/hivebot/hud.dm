@@ -51,13 +51,7 @@
 
 
 //Radio
-	using = new src.h_type( src )
-	using.name = "radio"
-	using.dir = SOUTHWEST
-	using.icon = 'icons/hud/robot/robot.dmi'
-	using.icon_state = "radio"
-	using.screen_loc = ui_movi_old
-	src.adding += using
+	src.adding += new /atom/movable/screen/robot/radio()
 
 //Generic overlays
 
@@ -153,22 +147,13 @@
 	mymob.healths.screen_loc = ui_health
 
 	// Installed model
-	mymob.hands = new /atom/movable/screen/robot/installed_model(src, "model", "nomod", UI_DROPBUTTON)
+	mymob.hands = new /atom/movable/screen/robot/installed_model(_screen_loc = UI_DROPBUTTON)
 
 //Module Panel
-	using = new src.h_type( src )
-	using.name = "panel"
-	using.icon = 'icons/hud/robot/robot.dmi'
-	using.icon_state = "panel"
-	using.screen_loc = ui_throw
-	src.adding += using
+	src.adding += new /atom/movable/screen/robot/panel(_screen_loc = UI_THROW)
 
 //Store
-	mymob.throw_icon = new /atom/movable/screen(null)
-	mymob.throw_icon.icon = 'icons/hud/robot/robot.dmi'
-	mymob.throw_icon.icon_state = "store"
-	mymob.throw_icon.name = "store"
-	mymob.throw_icon.screen_loc = ui_hand
+	mymob.throw_icon = new /atom/movable/screen/robot/store_module(_screen_loc = UI_HAND)
 
 //Temp
 	mymob.bodytemp = new /atom/movable/screen( null )

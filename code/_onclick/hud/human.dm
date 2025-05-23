@@ -86,7 +86,7 @@
 		hotkey_buttons.Add(using)
 
 	if(hud_data.has_hands)
-		using = setup_screen_object("equip", ui_style, "act_equip", UI_EQUIP)
+		using = new /atom/movable/screen/equip(ui_style)
 		using.color = ui_colour
 		using.alpha = ui_alpha
 		adding.Add(using)
@@ -120,22 +120,12 @@
 		l_hand_hud_object = inv_box
 		adding.Add(inv_box)
 
-		using = new /atom/movable/screen/inventory()
-		using.name = "hand"
-		using.set_dir(SOUTH)
-		using.icon = ui_style
-		using.icon_state = "hand1"
-		using.screen_loc = UI_SWAPHAND1
+		using = new /atom/movable/screen/swap_hands(ui_style, "hand1", UI_SWAPHAND1)
 		using.color = ui_colour
 		using.alpha = ui_alpha
 		adding.Add(using)
 
-		using = new /atom/movable/screen/inventory()
-		using.name = "hand"
-		using.set_dir(SOUTH)
-		using.icon = ui_style
-		using.icon_state = "hand2"
-		using.screen_loc = UI_SWAPHAND2
+		using = new /atom/movable/screen/swap_hands(ui_style, "hand2", UI_SWAPHAND2)
 		using.color = ui_colour
 		using.alpha = ui_alpha
 		adding.Add(using)
@@ -158,7 +148,7 @@
 		hud_elements |= H.pullin
 
 	if(hud_data.has_internals)
-		H.internals = setup_screen_object("internal", ui_style, "internal0", UI_INTERNAL)
+		H.internals = new /atom/movable/screen/internals(ui_style)
 		hud_elements |= H.internals
 
 	if(hud_data.has_warnings)
