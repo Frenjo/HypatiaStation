@@ -2,6 +2,9 @@
 	name = "compressed matter implant"
 	desc = "Based on compressed matter technology, can store a single item."
 	icon_state = "implant_evil"
+
+	is_legal = FALSE
+
 	var/activation_emote = "sigh"
 	var/obj/item/scanned = null
 
@@ -41,5 +44,44 @@
 	to_chat(source, "The implanted compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.")
 	return 1
 
-/obj/item/implant/compressed/islegal()
-	return 0
+// Implanter
+/obj/item/implanter/compressed
+	name = "implanter (C)"
+	icon_state = "cimplanter1"
+
+	imp_type = /obj/item/implant/compressed
+
+/obj/item/implanter/compressed/update()
+	if(isnotnull(imp))
+		var/obj/item/implant/compressed/c = imp
+		if(isnull(c.scanned))
+			icon_state = "cimplanter1"
+		else
+			icon_state = "cimplanter2"
+	else
+		icon_state = "cimplanter0"
+
+/obj/item/implanter/compressed/attack(mob/M, mob/user)
+	var/obj/item/implant/compressed/c = imp
+	if(isnull(c))
+		return
+	if(isnull(c.scanned))
+		to_chat(user, "Please scan an object with the implanter first.")
+		return
+	return ..()
+
+/obj/item/implanter/compressed/afterattack(atom/A, mob/user)
+	if(isitem(A) && isnotnull(imp))
+		var/obj/item/implant/compressed/c = imp
+		if(isnotnull(c.scanned))
+			to_chat(user, SPAN_WARNING("Something is already scanned inside the implant!"))
+			return
+		c.scanned = A
+		if(ishuman(A.loc))
+			var/mob/living/carbon/human/H = A.loc
+			H.u_equip(A)
+		else if(istype(A.loc, /obj/item/storage))
+			var/obj/item/storage/S = A.loc
+			S.remove_from_storage(A)
+		A.loc.contents.Remove(A)
+		update()

@@ -60,6 +60,15 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	spawn(20)
 		malfunction--
 
+// Case
+/obj/item/implantcase/chem
+	name = "glass case - 'chem'"
+	desc = "A case containing a chemical implant."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "implantcase-b"
+
+	imp_type = /obj/item/implant/chem
+
 // Adrenalin
 /obj/item/implant/adrenalin
 	name = "adrenalin implant"
@@ -94,3 +103,9 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	source.mind.store_memory("A implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate.", 0, 0)
 	to_chat(source, "The implanted freedom implant can be activated by using the pale emote, <B>say *pale</B> to attempt to activate.")
 	return 1
+
+// Implanter
+/obj/item/implanter/adrenalin
+	name = "implanter (adrenalin)"
+
+	imp_type = /obj/item/implant/adrenalin

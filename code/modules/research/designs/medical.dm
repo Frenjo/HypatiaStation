@@ -149,7 +149,7 @@
 	req_tech = alist(/decl/tech/materials = 2, /decl/tech/biotech = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = alist(/decl/material/plastic = 7000, /decl/material/glass = 7000)
-	build_path = /obj/item/implant/mindshield
+	build_path = /obj/item/implantcase/mindshield
 
 /datum/design/implant/loyal
 	name = "Loyalty"
@@ -157,7 +157,7 @@
 	req_tech = alist(/decl/tech/materials = 2, /decl/tech/biotech = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = alist(/decl/material/plastic = 7000, /decl/material/glass = 7000)
-	build_path = /obj/item/implant/loyalty
+	build_path = /obj/item/implantcase/loyalty
 
 /datum/design/implant/chem
 	name = "Chemical"
@@ -165,7 +165,7 @@
 	req_tech = alist(/decl/tech/materials = 2, /decl/tech/biotech = 3)
 	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = alist(/decl/material/plastic = 50, /decl/material/glass = 50)
-	build_path = /obj/item/implant/chem
+	build_path = /obj/item/implantcase/chem
 
 /datum/design/implant/free
 	name = "Freedom"
@@ -173,4 +173,12 @@
 	req_tech = alist(/decl/tech/biotech = 3, /decl/tech/syndicate = 2)
 	build_type = DESIGN_TYPE_PROTOLATHE
 	materials = alist(/decl/material/plastic = 50, /decl/material/glass = 50)
-	build_path = /obj/item/implant/freedom
+	build_path = /obj/item/implantcase/freedom
+
+/datum/design/implant/sad_trombone
+	name = "Sad Trombone"
+	desc = "Makes death amusing."
+	req_tech = alist(/decl/tech/materials = 4, /decl/tech/biotech = 3) // Contains bananium.
+	build_type = DESIGN_TYPE_PROTOLATHE
+	materials = alist(/decl/material/plastic = 2000, /decl/material/bananium = 2000)
+	build_path = /obj/item/implantcase/sad_trombone

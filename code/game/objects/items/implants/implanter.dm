@@ -10,7 +10,14 @@
 	throw_range = 5
 	w_class = 2.0
 
+	var/imp_type = null
 	var/obj/item/implant/imp = null
+
+/obj/item/implanter/New()
+	. = ..()
+	if(isnotnull(imp_type))
+		imp = new imp_type()
+		update()
 
 /obj/item/implanter/proc/update()
 	if(isnotnull(imp))
@@ -48,87 +55,3 @@
 
 				imp = null
 				update()
-
-/*
- * Prefab Types
- */
-// Mindshield
-/obj/item/implanter/mindshield
-	name = "implanter-mindshield"
-
-/obj/item/implanter/mindshield/New()
-	. = ..()
-	imp = new /obj/item/implant/mindshield(src)
-	update()
-
-// Loyalty.
-/obj/item/implanter/loyalty
-	name = "implanter-loyalty"
-
-/obj/item/implanter/loyalty/New()
-	. = ..()
-	imp = new /obj/item/implant/loyalty(src)
-	update()
-
-// Explosive.
-/obj/item/implanter/explosive
-	name = "implanter (E)"
-
-/obj/item/implanter/explosive/New()
-	. = ..()
-	imp = new /obj/item/implant/explosive(src)
-	update()
-
-// Adrenalin.
-/obj/item/implanter/adrenalin
-	name = "implanter-adrenalin"
-
-/obj/item/implanter/adrenalin/New()
-	. = ..()
-	imp = new /obj/item/implant/adrenalin(src)
-	update()
-
-// Compressed Matter.
-/obj/item/implanter/compressed
-	name = "implanter (C)"
-	icon_state = "cimplanter1"
-
-/obj/item/implanter/compressed/New()
-	. = ..()
-	imp = new /obj/item/implant/compressed(src)
-	update()
-
-/obj/item/implanter/compressed/update()
-	if(isnotnull(imp))
-		var/obj/item/implant/compressed/c = imp
-		if(isnull(c.scanned))
-			icon_state = "cimplanter1"
-		else
-			icon_state = "cimplanter2"
-	else
-		icon_state = "cimplanter0"
-
-/obj/item/implanter/compressed/attack(mob/M, mob/user)
-	var/obj/item/implant/compressed/c = imp
-	if(isnull(c))
-		return
-	if(isnull(c.scanned))
-		to_chat(user, "Please scan an object with the implanter first.")
-		return
-	return ..()
-
-/obj/item/implanter/compressed/afterattack(atom/A, mob/user)
-	if(isitem(A) && isnotnull(imp))
-		var/obj/item/implant/compressed/c = imp
-		if(isnotnull(c.scanned))
-			to_chat(user, SPAN_WARNING("Something is already scanned inside the implant!"))
-			return
-		c.scanned = A
-		if(ishuman(A.loc))
-			var/mob/living/carbon/human/H = A.loc
-			H.u_equip(A)
-		else if(istype(A.loc, /obj/item/storage))
-			var/obj/item/storage/S = A.loc
-			S.remove_from_storage(A)
-		A.loc.contents.Remove(A)
-		update()

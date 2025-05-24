@@ -8,7 +8,15 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 1.0
+
+	var/imp_type = null
 	var/obj/item/implant/imp = null
+
+/obj/item/implantcase/New()
+	. = ..()
+	if(isnotnull(imp_type))
+		imp = new imp_type()
+		update()
 
 /obj/item/implantcase/proc/update()
 	if(src.imp)
@@ -60,74 +68,4 @@
 				src.imp = null
 				update()
 			implanter.update()
-	return
-
-
-/obj/item/implantcase/tracking
-	name = "glass case - 'tracking'"
-	desc = "A case containing a tracking implant."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "implantcase-b"
-
-/obj/item/implantcase/tracking/New()
-	src.imp = new /obj/item/implant/tracking(src)
-	..()
-	return
-
-
-/obj/item/implantcase/explosive
-	name = "glass case - 'explosive'"
-	desc = "A case containing an explosive implant."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "implantcase-r"
-
-/obj/item/implantcase/explosive/New()
-	src.imp = new /obj/item/implant/explosive(src)
-	..()
-	return
-
-
-/obj/item/implantcase/chem
-	name = "glass case - 'chem'"
-	desc = "A case containing a chemical implant."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "implantcase-b"
-
-/obj/item/implantcase/chem/New()
-	src.imp = new /obj/item/implant/chem(src)
-	..()
-	return
-
-// Mindshield
-/obj/item/implantcase/mindshield
-	name = "glass case - 'mindshield'"
-	desc = "A case containing a mindshield implant."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "implantcase-r"
-
-/obj/item/implantcase/mindshield/New()
-	. = ..()
-	imp = new /obj/item/implant/mindshield(src)
-
-// Loyalty
-/obj/item/implantcase/loyalty
-	name = "glass case - 'loyalty'"
-	desc = "A case containing a loyalty implant."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "implantcase-r"
-
-/obj/item/implantcase/loyalty/New()
-	. = ..()
-	imp = new /obj/item/implant/loyalty(src)
-
-
-/obj/item/implantcase/death_alarm
-	name = "glass case - 'death alarm'"
-	desc = "A case containing a death alarm implant."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "implantcase-b"
-
-/obj/item/implantcase/death_alarm/New()
-	src.imp = new /obj/item/implant/death_alarm(src)
-	..()
 	return

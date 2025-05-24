@@ -188,7 +188,7 @@
 		var/obj/item/obj = affected.implants[1]
 		if(istype(obj, /obj/item/implant))
 			var/obj/item/implant/imp = obj
-			if(imp.islegal())
+			if(imp.is_legal)
 				find_prob += 60
 			else
 				find_prob += 40

@@ -3,6 +3,8 @@
 	desc = "And boom goes the weasel."
 	icon_state = "implant_evil"
 
+	is_legal = FALSE
+
 /obj/item/implant/dexplosive/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
@@ -29,16 +31,16 @@
 		var/mob/living/L = imp_in
 		L.gib()
 
-/obj/item/implant/dexplosive/islegal()
-	return 0
-
 //BS12 Explosive
 /obj/item/implant/explosive
 	name = "explosive implant"
 	desc = "A military grade micro bio-explosive. Highly dangerous."
+	icon_state = "implant_evil"
+
+	is_legal = FALSE
+
 	var/elevel = "Localized Limb"
 	var/phrase = "supercalifragilisticexpialidocious"
-	icon_state = "implant_evil"
 
 /obj/item/implant/explosive/get_data()
 	var/dat = {"
@@ -140,9 +142,6 @@
 	spawn(20)
 		malfunction--
 
-/obj/item/implant/explosive/islegal()
-	return 0
-
 /obj/item/implant/explosive/proc/small_boom()
 	if(ishuman(imp_in) && part)
 		imp_in.visible_message("\red Something beeps inside [imp_in][part ? "'s [part.display_name]" : ""]!")
@@ -159,3 +158,18 @@
 					part.droplimb(1)
 			explosion(GET_TURF(imp_in), -1, -1, 2, 3)
 			qdel(src)
+
+// Case
+/obj/item/implantcase/explosive
+	name = "glass case - 'explosive'"
+	desc = "A case containing an explosive implant."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "implantcase-r"
+
+	imp_type = /obj/item/implant/explosive
+
+// Implanter
+/obj/item/implanter/explosive
+	name = "implanter (E)"
+
+	imp_type = /obj/item/implant/explosive

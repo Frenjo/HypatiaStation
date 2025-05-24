@@ -15,6 +15,8 @@
 	var/allow_reagents = 0
 	var/malfunction = 0
 
+	var/is_legal = TRUE
+
 /obj/item/implant/proc/trigger(emote, mob/source)
 	return
 
@@ -32,9 +34,6 @@
 
 /obj/item/implant/proc/hear(message, mob/source)
 	return
-
-/obj/item/implant/proc/islegal()
-	return 0
 
 /obj/item/implant/proc/meltdown()	//breaks it down, making implant unrecongizible
 	to_chat(imp_in, SPAN_WARNING("You feel something melting inside [part ? "your [part.display_name]" : "you"]!"))

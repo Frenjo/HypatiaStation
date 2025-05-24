@@ -35,3 +35,12 @@ Implant Specifics:<BR>"}
 
 	spawn(delay)
 		malfunction--
+
+// Case
+/obj/item/implantcase/tracking
+	name = "glass case - 'tracking'"
+	desc = "A case containing a tracking implant."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "implantcase-b"
+
+	imp_type = /obj/item/implant/tracking

@@ -66,3 +66,12 @@ mechanisms<BR>
 life can drive down to only 1 use.<HR>
 No Implant Specifics"}
 	return dat
+
+// Case
+/obj/item/implantcase/freedom
+	name = "glass case - 'freedom'"
+	desc = "A case containing a freedom implant."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "implantcase-r"
+
+	imp_type = /obj/item/implant/freedom

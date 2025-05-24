@@ -150,6 +150,12 @@
 /datum/job/clown/equip(mob/living/carbon/human/H)
 	. = ..()
 	H.mutations.Add(MUTATION_CLUMSY)
+	var/obj/item/implant/sad_trombone/womp = new /obj/item/implant/sad_trombone(H)
+	womp.imp_in = H
+	womp.implanted = TRUE
+	var/datum/organ/external/affected = H.organs_by_name["head"]
+	affected.implants.Add(womp)
+	womp.part = affected
 
 /*
  * Mime

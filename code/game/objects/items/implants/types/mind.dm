@@ -1,3 +1,4 @@
+// Mindshield
 /obj/item/implant/mindshield
 	name = "mindshield implant"
 	desc = "Protects you from brainwashing."
@@ -25,6 +26,22 @@
 		return FALSE
 	return TRUE
 
+// Case
+/obj/item/implantcase/mindshield
+	name = "glass case - 'mindshield'"
+	desc = "A case containing a mindshield implant."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "implantcase-r"
+
+	imp_type = /obj/item/implant/mindshield
+
+// Implanter
+/obj/item/implanter/mindshield
+	name = "implanter (mindshield)"
+
+	imp_type = /obj/item/implant/mindshield
+
+// Loyalty
 /obj/item/implant/loyalty
 	name = "loyalty implant"
 	desc = "Makes you loyal or such."
@@ -54,3 +71,18 @@
 		global.PCticker.mode:remove_revolutionary(H.mind)
 	to_chat(H, SPAN_INFO("You feel a surge of loyalty towards NanoTrasen."))
 	return TRUE
+
+// Case
+/obj/item/implantcase/loyalty
+	name = "glass case - 'loyalty'"
+	desc = "A case containing a loyalty implant."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "implantcase-r"
+
+	imp_type = /obj/item/implant/loyalty
+
+// Implanter
+/obj/item/implanter/loyalty
+	name = "implanter (loyalty)"
+
+	imp_type = /obj/item/implant/loyalty

@@ -893,6 +893,7 @@
 #include "code\game\objects\items\implants\types\freedom.dm"
 #include "code\game\objects\items\implants\types\mind.dm"
 #include "code\game\objects\items\implants\types\misc.dm"
+#include "code\game\objects\items\implants\types\sad_trombone.dm"
 #include "code\game\objects\items\implants\types\tracking.dm"
 #include "code\game\objects\items\stacks\_stack.dm"
 #include "code\game\objects\items\stacks\light.dm"

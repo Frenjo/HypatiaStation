@@ -70,3 +70,12 @@
 	mobname = source.real_name
 	GLOBL.processing_objects.Add(src)
 	return 1
+
+// Case
+/obj/item/implantcase/death_alarm
+	name = "glass case - 'death alarm'"
+	desc = "A case containing a death alarm implant."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "implantcase-b"
+
+	imp_type = /obj/item/implant/death_alarm
