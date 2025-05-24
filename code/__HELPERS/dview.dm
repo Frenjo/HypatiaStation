@@ -15,11 +15,11 @@ GLOBAL_BYOND_NEW(mob/dview/dview_mob)
 /mob/dview
 	invisibility = INVISIBILITY_MAXIMUM
 	density = FALSE
-
 	anchored = TRUE
-	simulated = FALSE
 
 	see_in_dark = 1e6
+
+	atom_flags = ATOM_FLAG_UNSIMULATED
 
 /mob/dview/New()
 	SHOULD_CALL_PARENT(FALSE)

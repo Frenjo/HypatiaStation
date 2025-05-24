@@ -34,7 +34,6 @@ GLOBAL_GLOBL_LIST_INIT(global_map, null)
 	var/throwpass = 0
 	// The higher the germ level, the more germ on this atom.
 	var/germ_level = GERM_LEVEL_AMBIENT
-	var/simulated = TRUE //filter for actions - used by lighting overlays
 
 	// The atom's holder for chemistry reagents.
 	var/datum/reagents/reagents = null

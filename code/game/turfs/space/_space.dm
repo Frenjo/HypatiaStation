@@ -84,7 +84,7 @@
 		overlays |= speedspace_cache["EW_[transit_state]"]
 
 	for_no_type_check(var/atom/movable/mover, src)
-		if(mover.simulated && !mover.anchored)
+		if(!HAS_ATOM_FLAGS(mover, ATOM_FLAG_UNSIMULATED) && !mover.anchored)
 			mover.throw_at(get_step(src, reverse_direction(direction)), 5, 1)
 
 //generates a list used to randomize transit animations so they aren't in lockstep

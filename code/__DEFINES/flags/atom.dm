@@ -8,3 +8,5 @@
 #define ATOM_FLAG_NO_REACT			BITFLAG(3) // Reagents inside this atom won't react.
 
 #define ATOM_FLAG_NO_SCREENTIP BITFLAG(4) // This atom doesn't display a screentip when you mouse over it.
+
+#define ATOM_FLAG_UNSIMULATED BITFLAG(5) // This atom doesn't get "affected by things".

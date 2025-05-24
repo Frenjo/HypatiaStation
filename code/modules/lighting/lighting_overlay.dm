@@ -2,15 +2,16 @@ GLOBAL_GLOBL_LIST_NEW(all_lighting_overlays) // Global list of lighting overlays
 
 /atom/movable/lighting_overlay
 	name = ""
-	mouse_opacity = FALSE
-	simulated = FALSE
-	anchored = TRUE
 	icon = LIGHTING_ICON
+	icon_state = "light1"
 	plane = LIGHTING_PLANE
+	anchored = TRUE
+	mouse_opacity = FALSE
 	invisibility = INVISIBILITY_LIGHTING
 	color = LIGHTING_BASE_MATRIX
-	icon_state = "light1"
 	blend_mode = BLEND_MULTIPLY
+
+	atom_flags = ATOM_FLAG_UNSIMULATED
 
 	var/lum_r = 0
 	var/lum_g = 0

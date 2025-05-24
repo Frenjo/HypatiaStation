@@ -12,7 +12,7 @@ GLOBAL_GLOBL_LIST_NEW(atom/movable/space_star/bluespace/parallax_bluespace_stars
 	screen_loc = UI_SPACE_PARALLAX
 	appearance_flags = PLANE_MASTER
 	mouse_opacity = FALSE
-	simulated = FALSE
+	atom_flags = ATOM_FLAG_UNSIMULATED
 
 /atom/movable/parallax_master/space
 	plane = SPACE_PARALLAX_PLANE
@@ -29,7 +29,7 @@ GLOBAL_GLOBL_LIST_NEW(atom/movable/space_star/bluespace/parallax_bluespace_stars
 	screen_loc = UI_SPACE_PARALLAX
 	plane = SPACE_PARALLAX_PLANE
 	blend_mode = BLEND_ADD
-	simulated = FALSE
+	atom_flags = ATOM_FLAG_UNSIMULATED
 
 	var/parallax_type = PARALLAX_SPACE
 
@@ -38,7 +38,7 @@ GLOBAL_GLOBL_LIST_NEW(atom/movable/space_star/bluespace/parallax_bluespace_stars
 	icon = 'icons/turf/stars.dmi'
 	blend_mode = BLEND_ADD
 	appearance_flags = KEEP_APART
-	simulated = FALSE
+	atom_flags = ATOM_FLAG_UNSIMULATED
 
 /atom/movable/space_star/New()
 	. = ..()

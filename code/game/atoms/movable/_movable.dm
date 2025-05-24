@@ -8,10 +8,10 @@
 	var/anchored = FALSE
 	// The last direction the atom moved in.
 	var/last_move = null
-	// var/elevation = 2    - not used anywhere
+
 	var/move_speed = 10
 	var/l_move_time = 1
-	var/m_flag = 1
+
 	var/throwing = THROW_NONE
 	var/throw_speed = 2
 	var/throw_range = 7
@@ -49,7 +49,6 @@
 	. = ..()
 	move_speed = world.time - l_move_time
 	l_move_time = world.time
-	m_flag = 1
 	if(A != loc && A?.z == z)
 		last_move = get_dir(A, loc)
 
