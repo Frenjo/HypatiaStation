@@ -203,15 +203,15 @@
 	new /obj/item/flashlight/slime(location)
 
 //Purple
-/datum/chemical_reaction/slimepsteroid
+/datum/chemical_reaction/slime_steroid
 	name = "Slime Steroid"
 	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/purple
 	required_other = 1
 
-/datum/chemical_reaction/slimepsteroid/on_reaction(datum/reagents/holder)
-	new /obj/item/slimesteroid(GET_TURF(holder.my_atom))
+/datum/chemical_reaction/slime_steroid/on_reaction(datum/reagents/holder)
+	new /obj/item/slime_potion/steroid(GET_TURF(holder.my_atom))
 
 /datum/chemical_reaction/slimejam
 	name = "Slime Jam"
@@ -255,15 +255,15 @@
 		slime.visible_message(SPAN_WARNING("The [slime] is driven into a frenzy!"))
 
 //Pink
-/datum/chemical_reaction/slimeppotion
+/datum/chemical_reaction/pet_slime_potion
 	name = "Slime Potion"
 	required_reagents = alist("plasma" = 5)
 	result_amount = 1
 	required_container = /obj/item/slime_extract/pink
 	required_other = 1
 
-/datum/chemical_reaction/slimeppotion/on_reaction(datum/reagents/holder)
-	new /obj/item/slimepotion(GET_TURF(holder.my_atom))
+/datum/chemical_reaction/pet_slime_potion/on_reaction(datum/reagents/holder)
+	new /obj/item/slime_potion/pet(GET_TURF(holder.my_atom))
 
 //Black
 /datum/chemical_reaction/slimemutate2
@@ -288,15 +288,15 @@
 	explosion(GET_TURF(holder.my_atom), 1 , 3, 6)
 
 //Light Pink
-/datum/chemical_reaction/slimepotion2
+/datum/chemical_reaction/advanced_pet_slime_potion
 	name = "Slime Potion 2"
 	result_amount = 1
 	required_container = /obj/item/slime_extract/lightpink
 	required_reagents = alist("plasma" = 5)
 	required_other = 1
 
-/datum/chemical_reaction/slimepotion2/on_reaction(datum/reagents/holder)
-	new /obj/item/slimepotion2(GET_TURF(holder.my_atom))
+/datum/chemical_reaction/advanced_pet_slime_potion/on_reaction(datum/reagents/holder)
+	new /obj/item/slime_potion/pet/advanced(GET_TURF(holder.my_atom))
 
 //Adamantine
 /datum/chemical_reaction/slimegolem
