@@ -36,30 +36,30 @@
 	return FALSE
 
 /obj/item/mecha_equipment/medical/sleeper/action(mob/living/carbon/target)
-	if(!action_checks(target))
-		return
+	if(!..())
+		return FALSE
 	if(!istype(target))
-		return
+		return FALSE
 	if(target.buckled)
 		occupant_message(SPAN_WARNING("[target] will not fit into the sleeper because they are buckled to [target.buckled]."))
-		return
+		return FALSE
 	if(isnotnull(patient))
 		occupant_message(SPAN_WARNING("The sleeper is already occupied"))
-		return
+		return FALSE
 	for(var/mob/living/carbon/slime/M in range(1, target))
 		if(M.Victim == target)
 			occupant_message(SPAN_WARNING("[target] will not fit into the sleeper because they have a slime latched onto their head."))
-			return
+			return FALSE
 	occupant_message(SPAN_INFO("You start putting \the [target] into \the [src]."))
 	chassis.visible_message("[chassis] starts putting \the [target] into the \the [src].")
 	var/C = chassis.loc
 	var/T = target.loc
 	if(do_after_cooldown(target))
 		if(chassis.loc != C || target.loc != T)
-			return
+			return FALSE
 		if(isnotnull(patient))
 			occupant_message(SPAN_WARNING("The sleeper is already occupied!"))
-			return
+			return FALSE
 		target.forceMove(src)
 		patient = target
 		target.reset_view(src)
@@ -73,6 +73,7 @@
 		occupant_message(SPAN_INFO("[target] successfully loaded into \the [src]. Life support functions engaged."))
 		chassis.visible_message(SPAN_INFO("[chassis] loads \the [target] into \the [src]."))
 		log_message("[target] loaded. Life support functions engaged.")
+		return TRUE
 
 /obj/item/mecha_equipment/medical/sleeper/proc/go_out()
 	if(isnull(patient))
@@ -270,22 +271,23 @@
 	. = "[..()] \[<a href=\"?src=\ref[src];toggle_mode=1\">[mode ? "Analyse" : "Launch"]</a>\]<br>\[Syringes: [length(syringes)]/[max_syringes] | Reagents: [reagents.total_volume]/[reagents.maximum_volume]\]<br><a href='byond://?src=\ref[src];show_reagents=1'>Reagents list</a>"
 
 /obj/item/mecha_equipment/medical/syringe_gun/action(atom/movable/target)
-	if(!action_checks(target))
-		return
+	if(!..())
+		return FALSE
 	if(istype(target, /obj/item/reagent_holder/syringe))
 		return load_syringe(target)
 	if(istype(target, /obj/item/storage))//Loads syringes from boxes
+		var/result = FALSE
 		for(var/obj/item/reagent_holder/syringe/S in target.contents)
-			load_syringe(S)
-		return
+			result = result || load_syringe(S)
+		return result
 	if(mode)
 		return analyse_reagents(target)
 	if(!length(syringes))
 		occupant_message(SPAN_ALERT("No syringes loaded."))
-		return
+		return FALSE
 	if(reagents.total_volume <= 0)
 		occupant_message(SPAN_ALERT("No available reagents to load syringe with."))
-		return
+		return FALSE
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
 	var/turf/trg = GET_TURF(target)
@@ -326,7 +328,7 @@
 				break
 			sleep(1)
 	do_after_cooldown()
-	return 1
+	return TRUE
 
 /obj/item/mecha_equipment/medical/syringe_gun/Topic(href, href_list)
 	. = ..()

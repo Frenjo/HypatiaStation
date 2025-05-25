@@ -16,15 +16,14 @@
 	cargo_holder = M
 
 /obj/item/mecha_equipment/tool/hydraulic_clamp/action(atom/target)
-	if(!action_checks(target))
-		return
-	if(!cargo_holder)
-		return
+	if(!..())
+		return FALSE
+	if(isnull(cargo_holder))
+		return FALSE
 	if(istype(target, /obj/structure/stool))
-		return
-	for(var/M in target.contents)
-		if(isliving(M))
-			return
+		return FALSE
+	for(var/mob/living/M in target.contents)
+		return FALSE
 
 	if(isobj(target))
 		var/obj/O = target
@@ -46,15 +45,20 @@
 					else
 						occupant_message(SPAN_INFO("You must hold still while handling objects."))
 						O.anchored = initial(O.anchored)
+						return FALSE
+				else
+					return FALSE
 			else
 				occupant_message(SPAN_WARNING("Not enough room in cargo compartment."))
+				return FALSE
 		else
 			occupant_message(SPAN_WARNING("[target] is firmly secured."))
+			return FALSE
 
 	else if(isliving(target))
 		var/mob/living/M = target
 		if(M.stat > 1)
-			return
+			return FALSE
 		var/pilot_message = null
 		var/radial_message = null
 		if(chassis.occupant.a_intent == "hurt")
@@ -83,7 +87,7 @@
 		set_ready_state(0)
 		chassis.use_power(energy_drain)
 		do_after_cooldown()
-	return 1
+	return TRUE
 
 // Safety Clamp (Kill Clamp)
 // This is pretty much just for the death-ripley so that it is harmless.
@@ -109,10 +113,10 @@
 	. = ..()
 
 /obj/item/mecha_equipment/tool/extinguisher/action(atom/target) //copypasted from extinguisher. TODO: Rewrite from scratch.
-	if(!action_checks(target) || get_dist(chassis, target) > 3)
-		return
+	if(!..() || get_dist(chassis, target) > 3)
+		return FALSE
 	if(get_dist(chassis, target) > 2)
-		return
+		return FALSE
 	set_ready_state(0)
 	if(do_after_cooldown(target))
 		if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis, target) <= 1)
@@ -120,37 +124,37 @@
 			o.reagents.trans_to(src, 200)
 			occupant_message(SPAN_INFO("Extinguisher refilled."))
 			playsound(chassis, 'sound/effects/refill.ogg', 50, 1, -6)
-		else
-			if(reagents.total_volume > 0)
-				playsound(chassis, 'sound/effects/extinguish.ogg', 75, 1, -3)
-				var/direction = get_dir(chassis,target)
-				var/turf/T = GET_TURF(target)
-				var/turf/T1 = get_step(T, turn(direction, 90))
-				var/turf/T2 = get_step(T, turn(direction, -90))
 
-				var/list/the_targets = list(T, T1, T2)
-				spawn(0)
-					for(var/a = 0, a < 5, a++)
-						var/obj/effect/water/W = new /obj/effect/water(GET_TURF(chassis))
+		else if(reagents.total_volume > 0)
+			playsound(chassis, 'sound/effects/extinguish.ogg', 75, 1, -3)
+			var/direction = get_dir(chassis,target)
+			var/turf/T = GET_TURF(target)
+			var/turf/T1 = get_step(T, turn(direction, 90))
+			var/turf/T2 = get_step(T, turn(direction, -90))
+
+			var/list/the_targets = list(T, T1, T2)
+			spawn(0)
+				for(var/a = 0, a < 5, a++)
+					var/obj/effect/water/W = new /obj/effect/water(GET_TURF(chassis))
+					if(isnull(W))
+						return FALSE
+					var/turf/my_target = pick(the_targets)
+					W.create_reagents(5)
+					reagents.trans_to(W, 1)
+					for(var/b = 0, b < 4, b++)
 						if(isnull(W))
-							return
-						var/turf/my_target = pick(the_targets)
-						W.create_reagents(5)
-						reagents.trans_to(W, 1)
-						for(var/b = 0, b < 4, b++)
-							if(isnull(W))
-								return
-							step_towards(W, my_target)
-							if(isnull(W))
-								return
-							var/turf/W_turf = GET_TURF(W)
-							W.reagents.reaction(W_turf)
-							for_no_type_check(var/atom/movable/mover, W_turf)
-								W.reagents.reaction(mover)
-							if(W.loc == my_target)
-								break
-							sleep(2)
-	return 1
+							return FALSE
+						step_towards(W, my_target)
+						if(isnull(W))
+							return FALSE
+						var/turf/W_turf = GET_TURF(W)
+						W.reagents.reaction(W_turf)
+						for_no_type_check(var/atom/movable/mover, W_turf)
+							W.reagents.reaction(mover)
+						if(W.loc == my_target)
+							break
+						sleep(2)
+	return TRUE
 
 /obj/item/mecha_equipment/tool/extinguisher/get_equip_info()
 	. = "[..()] \[[reagents.total_volume]\]"

@@ -12,12 +12,14 @@
 	var/disabled = 0 //malf
 
 /obj/item/mecha_equipment/tool/rcd/action(atom/target)
+	if(!..())
+		return FALSE
 	if(istype(target, /turf/space/transit)) //>implying these are ever made -Sieve
-		return
+		return FALSE
 	if(!isturf(target) && !istype(target, /obj/machinery/door/airlock))
 		target = GET_TURF(target)
-	if(!action_checks(target) || disabled || get_dist(chassis, target) > 3)
-		return
+	if(disabled || get_dist(chassis, target) > 3)
+		return FALSE
 	playsound(chassis, 'sound/machines/click.ogg', 50, 1)
 	//meh
 	switch(mode)
@@ -27,7 +29,7 @@
 				set_ready_state(0)
 				if(do_after_cooldown(target))
 					if(disabled)
-						return
+						return FALSE
 					chassis.spark_system.start()
 					target:ChangeTurf(/turf/open/floor/plating/metal)
 					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -37,7 +39,7 @@
 				set_ready_state(0)
 				if(do_after_cooldown(target))
 					if(disabled)
-						return
+						return FALSE
 					chassis.spark_system.start()
 					target:ChangeTurf(/turf/space)
 					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -47,7 +49,7 @@
 				set_ready_state(0)
 				if(do_after_cooldown(target))
 					if(disabled)
-						return
+						return FALSE
 					chassis.spark_system.start()
 					qdel(target)
 					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -58,7 +60,7 @@
 				set_ready_state(0)
 				if(do_after_cooldown(target))
 					if(disabled)
-						return
+						return FALSE
 					target:ChangeTurf(/turf/open/floor/plating/metal)
 					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
 					chassis.spark_system.start()
@@ -68,7 +70,7 @@
 				set_ready_state(0)
 				if(do_after_cooldown(target))
 					if(disabled)
-						return
+						return FALSE
 					target:ChangeTurf(/turf/closed/wall/steel)
 					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
 					chassis.spark_system.start()
@@ -79,14 +81,14 @@
 				set_ready_state(0)
 				if(do_after_cooldown(target))
 					if(disabled)
-						return
+						return FALSE
 					chassis.spark_system.start()
 					var/obj/machinery/door/airlock/T = new /obj/machinery/door/airlock(target)
 					T.autoclose = TRUE
 					playsound(target, 'sound/items/Deconstruct.ogg', 50, 1)
 					playsound(target, 'sound/effects/sparks2.ogg', 50, 1)
 					chassis.use_power(energy_drain * 2)
-	return
+	return TRUE
 
 /obj/item/mecha_equipment/tool/rcd/Topic(href, href_list)
 	. = ..()
@@ -135,18 +137,19 @@
 	return ..()
 
 /obj/item/mecha_equipment/tool/cable_layer/action(obj/item/stack/cable_coil/target)
-	if(!action_checks(target))
-		return
+	if(!..())
+		return FALSE
 	var/result = load_cable(target)
-	var/message
 	if(isnull(result))
-		message = SPAN_WARNING("Unable to load \the [target] - no cable found.")
-	else if(!result)
-		message = "Reel is full."
-	else
-		message = "[result] meters of cable successfully loaded."
-		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
-	occupant_message(message)
+		occupant_message(SPAN_WARNING("Unable to load \the [target] - no cable found."))
+		return FALSE
+	if(!result)
+		occupant_message("Reel is full.")
+		return FALSE
+
+	occupant_message("[result] meters of cable successfully loaded.")
+	send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
+	return TRUE
 
 /obj/item/mecha_equipment/tool/cable_layer/Topic(href,href_list)
 	. = ..()

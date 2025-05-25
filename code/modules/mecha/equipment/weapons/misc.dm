@@ -1,21 +1,18 @@
-/obj/item/mecha_equipment/weapon/honker
+// This is technically a weapon, but is also very unique.
+/obj/item/mecha_equipment/honker
 	name = "\improper HoNkER BlAsT 5000"
 	icon_state = "honker"
 	energy_drain = 200
 	equip_cooldown = 15 SECONDS
 	range = MELEE|RANGED
 
-/obj/item/mecha_equipment/weapon/honker/can_attach(obj/mecha/combat/honk/M)
+/obj/item/mecha_equipment/honker/can_attach(obj/mecha/combat/honk/M)
 	if(!istype(M))
 		return FALSE
 	return ..()
 
-/obj/item/mecha_equipment/weapon/honker/action(target)
-	if(isnull(chassis))
-		return FALSE
-	if(energy_drain && chassis.get_charge() < energy_drain)
-		return FALSE
-	if(!equip_ready)
+/obj/item/mecha_equipment/honker/action(atom/target)
+	if(!..())
 		return FALSE
 
 	playsound(chassis, 'sound/items/AirHorn.ogg', 100, 1)
@@ -35,17 +32,8 @@
 			M.Paralyse(4)
 		else
 			M.make_jittery(500)
-		/* //else the mousetraps are useless
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(isobj(H.shoes))
-				var/thingy = H.shoes
-				H.drop_from_inventory(H.shoes)
-				walk_away(thingy,chassis,15,2)
-				spawn(20)
-					if(thingy)
-						walk(thingy,0)
-		*/
+
 	chassis.use_power(energy_drain)
 	log_message("Honked from [name]. HONK!")
 	do_after_cooldown()
+	return TRUE

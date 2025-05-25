@@ -127,17 +127,22 @@
 	. = "[..()] \[[fuel]: [round(fuel.amount * fuel.perunit, 0.1)] cm<sup>3</sup>\] - <a href='byond://?src=\ref[src];toggle=1'>[pr_mech_generator.active() ? "Dea" : "A"]ctivate</a>"
 
 /obj/item/mecha_equipment/generator/action(target)
-	if(chassis)
-		var/result = load_fuel(target)
-		var/message
-		if(isnull(result))
-			message = SPAN_WARNING("[fuel] traces in target minimal. \The [target] cannot be used as fuel.")
-		else if(!result)
-			message = SPAN_WARNING("Unit is full.")
-		else
-			message = SPAN_INFO("[result] unit\s of [fuel] successfully loaded.")
-			send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",get_equip_info())
-		occupant_message(message)
+	if(!..())
+		return FALSE
+	if(isnull(chassis))
+		return FALSE
+
+	var/result = load_fuel(target)
+	if(isnull(result))
+		occupant_message(SPAN_WARNING("[fuel] traces in target minimal. \The [target] cannot be used as fuel."))
+		return FALSE
+	if(!result)
+		occupant_message(SPAN_WARNING("Unit is full."))
+		return FALSE
+
+	occupant_message(SPAN_INFO("[result] unit\s of [fuel] successfully loaded."))
+	send_byjax(chassis.occupant,"exosuit.browser", "\ref[src]", get_equip_info())
+	return TRUE
 
 /obj/item/mecha_equipment/generator/proc/load_fuel(obj/item/stack/sheet/P)
 	if(P.type == fuel.type && P.amount)

@@ -95,14 +95,16 @@
 	range = RANGED
 
 /obj/item/mecha_equipment/teleporter/action(atom/target)
-	if(!action_checks(target) || loc.z == 2)
-		return
+	if(!..() || loc.z == 2)
+		return FALSE
 	var/turf/T = GET_TURF(target)
-	if(isnotnull(T))
-		set_ready_state(0)
-		chassis.use_power(energy_drain)
-		do_teleport(chassis, T, 4)
-		do_after_cooldown()
+	if(isnull(T))
+		return FALSE
+	set_ready_state(0)
+	chassis.use_power(energy_drain)
+	do_teleport(chassis, T, 4)
+	do_after_cooldown()
+	return TRUE
 
 // Wormhole Generator
 /obj/item/mecha_equipment/wormhole_generator
@@ -116,15 +118,15 @@
 	range = RANGED
 
 /obj/item/mecha_equipment/wormhole_generator/action(atom/target)
-	if(!action_checks(target) || loc.z == 2)
-		return
+	if(!..() || loc.z == 2)
+		return FALSE
 	var/list/theareas = list()
 	for(var/area/AR in orange(100, chassis))
 		if(AR in theareas)
 			continue
 		theareas += AR
 	if(!length(theareas))
-		return
+		return FALSE
 	var/area/thearea = pick(theareas)
 	var/list/L = list()
 	var/turf/pos = GET_TURF(src)
@@ -138,10 +140,10 @@
 			if(clear)
 				L += T
 	if(!length(L))
-		return
+		return FALSE
 	var/turf/target_turf = pick(L)
 	if(!target_turf)
-		return
+		return FALSE
 	chassis.use_power(energy_drain)
 	set_ready_state(0)
 	var/obj/effect/portal/P = new /obj/effect/portal(GET_TURF(target))
@@ -153,8 +155,9 @@
 	P.name = "wormhole"
 	do_after_cooldown()
 	qdel(src)
-	spawn(rand(150, 300))
+	spawn(rand(15 SECONDS, 30 SECONDS))
 		qdel(P)
+	return TRUE
 
 // Gravitational Catapult
 /obj/item/mecha_equipment/gravcatapult
@@ -178,21 +181,22 @@
 	else
 		if(world.time % 3)
 			occupant_message(SPAN_WARNING("[src] is not ready to fire again!"))
-		return 0
+		return FALSE
+
+	if(!..())
+		return FALSE
 
 	switch(mode)
 		if(1)
-			if(!action_checks(target) && !locked)
-				return
 			if(!locked)
 				if(!istype(target) || target.anchored)
 					occupant_message("Unable to lock on [target].")
-					return
+					return FALSE
 				locked = target
 				occupant_message("Locked on [target].")
 				send_byjax(chassis.occupant, "exosuit.browser","\ref[src]",get_equip_info())
-				return
-			else if(target!=locked)
+				return TRUE
+			else if(target != locked)
 				if(locked in view(chassis))
 					locked.throw_at(target, 14, 1.5)
 					locked = null
@@ -205,23 +209,23 @@
 					occupant_message("Lock on [locked] disengaged.")
 					send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 		if(2)
-			if(!action_checks(target))
-				return
-			var/list/atoms = list()
+			var/list/atom/movable/atoms = null
 			if(isturf(target))
 				atoms = range(target, 3)
 			else
 				atoms = orange(target, 3)
-			for(var/atom/movable/A in atoms)
-				if(A.anchored) continue
+			for_no_type_check(var/atom/movable/mover, atoms)
+				if(mover.anchored)
+					continue
 				spawn(0)
-					var/iter = 5 - get_dist(A, target)
+					var/iter = 5 - get_dist(mover, target)
 					for(var/i = 0 to iter)
-						step_away(A, target)
+						step_away(mover, target)
 						sleep(2)
 			set_ready_state(0)
 			chassis.use_power(energy_drain)
 			do_after_cooldown()
+	return TRUE
 
 /obj/item/mecha_equipment/gravcatapult/get_equip_info()
 	. = "[..()] [mode == 1 ? "([locked || "Nothing"])" : null] \[<a href='byond://?src=\ref[src];mode=1'>S</a>|<a href='byond://?src=\ref[src];mode=2'>P</a>\]"

@@ -15,18 +15,22 @@
 	return ..()
 
 /obj/item/mecha_equipment/tool/mimercd/action(atom/target)
+	if(!..())
+		return FALSE
 	if(istype(target, /turf/space/transit)) //>implying these are ever made -Sieve
-		return
-	if(!action_checks(target) || get_dist(chassis, target) > 3)
-		return
+		return FALSE
+	if(get_dist(chassis, target) > 3)
+		return FALSE
 	if(!isturf(target))
 		target = GET_TURF(target)
-
-	if(isfloorturf(target))
-		occupant_message("Miming Wall...")
-		if(do_after_cooldown(target))
-			new /obj/effect/forcefield/mime(target)
-			chassis.visible_message(
-				SPAN_INFO("[chassis] looks as if a wall is in front of it.")
-			)
-			chassis.spark_system.start()
+	if(!isfloorturf(target))
+		return FALSE
+	occupant_message("Miming Wall...")
+	if(!do_after_cooldown(target))
+		return FALSE
+	new /obj/effect/forcefield/mime(target)
+	chassis.visible_message(
+		SPAN_INFO("[chassis] looks as if a wall is in front of it.")
+	)
+	chassis.spark_system.start()
+	return TRUE

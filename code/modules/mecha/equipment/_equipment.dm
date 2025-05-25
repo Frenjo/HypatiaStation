@@ -125,7 +125,11 @@
 	return TRUE
 
 /obj/item/mecha_equipment/proc/action(atom/target)
-	return
+	SHOULD_CALL_PARENT(TRUE)
+
+	if(!action_checks(target))
+		return FALSE
+	return TRUE
 
 /obj/item/mecha_equipment/proc/handle_movement_action() // Any modules that have special effects or needs when moving.
 	return

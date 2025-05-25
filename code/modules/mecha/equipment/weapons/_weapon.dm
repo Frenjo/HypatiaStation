@@ -20,12 +20,12 @@
 	return ..()
 
 /obj/item/mecha_equipment/weapon/action(atom/target)
-	if(!action_checks(target))
-		return
+	if(!..())
+		return FALSE
 	var/turf/curloc = chassis.loc
 	var/turf/targloc = GET_TURF(target)
 	if(isnull(curloc) || isnull(targloc))
-		return
+		return FALSE
 	chassis.use_power(energy_drain)
 	chassis.visible_message(SPAN_WARNING("[chassis] fires [src]!"))
 	occupant_message(SPAN_WARNING("You fire [src]!"))
@@ -46,6 +46,7 @@
 		projectiles = projectiles_per_shot
 	set_ready_state(0)
 	do_after_cooldown()
+	return TRUE
 
 /obj/item/mecha_equipment/weapon/proc/Fire(atom/A, atom/target, turf/aimloc)
 	var/obj/item/projectile/P = A

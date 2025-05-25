@@ -239,7 +239,7 @@
 /datum/design/mechfab/equipment/weapon/honker
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_time = 50 SECONDS
-	build_path = /obj/item/mecha_equipment/weapon/honker
+	build_path = /obj/item/mecha_equipment/honker
 
 /datum/design/mechfab/equipment/weapon/banana_mortar
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/bananium = MATERIAL_AMOUNT_PER_SHEET * 2.5)

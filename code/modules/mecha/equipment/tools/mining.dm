@@ -7,13 +7,16 @@
 	energy_drain = 10
 	force = 15
 
+	var/can_drill_reinforced = FALSE
+
 /obj/item/mecha_equipment/tool/drill/action(atom/target)
-	if(!action_checks(target))
-		return
+	if(!..())
+		return FALSE
 	if(isobj(target))
 		var/obj/target_obj = target
 		if(HAS_OBJ_FLAGS(target_obj, OBJ_FLAG_UNACIDABLE))
-			return
+			return FALSE
+
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
 	chassis.visible_message("<font color='red'><b>[chassis] starts to drill [target]</b></font>", "You hear the drill.")
@@ -23,7 +26,12 @@
 	if(do_after_cooldown(target))
 		if(T == chassis.loc && src == chassis.selected)
 			if(istype(target, /turf/closed/wall/reinforced))
-				occupant_message("<font color='red'>[target] is too durable to drill through.</font>")
+				if(!can_drill_reinforced)
+					occupant_message("<font color='red'>[target] is too durable to drill through.</font>")
+				else
+					if(do_after_cooldown(target))//To slow down how fast mechs can drill through the station
+						log_message("Drilled through [target]")
+						target.ex_act(3)
 			else if(istype(target, /turf/closed/rock))
 				for(var/turf/closed/rock/M in range(chassis, 1))
 					if(get_dir(chassis, M) & chassis.dir)
@@ -49,7 +57,7 @@
 			else if(target.loc == C)
 				log_message("Drilled through [target]")
 				target.ex_act(2)
-	return 1
+	return TRUE
 
 // Diamond Drill
 /obj/item/mecha_equipment/tool/drill/diamond
@@ -61,46 +69,4 @@
 	equip_cooldown = 2 SECONDS
 	force = 15
 
-/obj/item/mecha_equipment/tool/drill/diamond/action(atom/target)
-	if(!action_checks(target))
-		return
-	if(isobj(target))
-		var/obj/target_obj = target
-		if(HAS_OBJ_FLAGS(target_obj, OBJ_FLAG_UNACIDABLE))
-			return
-	set_ready_state(0)
-	chassis.use_power(energy_drain)
-	chassis.visible_message("<font color='red'><b>[chassis] starts to drill [target]</b></font>", "You hear the drill.")
-	occupant_message("<font color='red'><b>You start to drill [target]</b></font>")
-	var/T = chassis.loc
-	var/C = target.loc	//why are these backwards? we may never know -Pete
-	if(do_after_cooldown(target))
-		if(T == chassis.loc && src == chassis.selected)
-			if(istype(target, /turf/closed/wall/reinforced))
-				if(do_after_cooldown(target))//To slow down how fast mechs can drill through the station
-					log_message("Drilled through [target]")
-					target.ex_act(3)
-			else if(istype(target, /turf/closed/rock))
-				for(var/turf/closed/rock/M in range(chassis, 1))
-					if(get_dir(chassis, M) & chassis.dir)
-						M.get_drilled()
-				log_message("Drilled through [target]")
-				if(locate(/obj/item/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
-					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
-					if(ore_box)
-						for(var/obj/item/ore/ore in range(chassis, 1))
-							if(get_dir(chassis, ore) & chassis.dir)
-								ore.Move(ore_box)
-			else if(istype(target,/turf/open/floor/plating/asteroid/airless))
-				for(var/turf/open/floor/plating/asteroid/airless/M in range(target, 1))
-					M.gets_dug()
-				log_message("Drilled through [target]")
-				if(locate(/obj/item/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
-					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo
-					if(ore_box)
-						for(var/obj/item/ore/ore in range(target, 1))
-							ore.Move(ore_box)
-			else if(target.loc == C)
-				log_message("Drilled through [target]")
-				target.ex_act(2)
-	return 1
+	can_drill_reinforced = TRUE
