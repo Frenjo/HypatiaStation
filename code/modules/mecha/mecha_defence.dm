@@ -164,10 +164,13 @@
 	return ex_act(rand(1, 3))//should do for now
 
 /obj/mecha/emp_act(severity)
-	if(get_charge())
-		use_power((cell.charge / 2) / severity)
-		take_damage(50 / severity, "energy")
-	src.log_message("EMP detected", 1)
+	for(var/obj/item/mecha_equipment/emp_insulation/booster in equipment)
+		if(booster.emp_react())
+			severity *= booster.severity_modifier
+			break
+	use_power((cell.charge / 2) * severity)
+	take_damage(50 * severity, "energy")
+	log_message("EMP detected", 1)
 	check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_CONTROL_LOST, MECHA_INT_SHORT_CIRCUIT), 1)
 	return
 

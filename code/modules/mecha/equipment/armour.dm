@@ -80,3 +80,26 @@
 	chassis.use_power(energy_drain)
 	do_after_cooldown()
 	return TRUE
+
+// EMP Armour Booster
+/obj/item/mecha_equipment/emp_insulation
+	name = "armour module (ablative EMP insulation)"
+	desc = "Boosts exosuit systems against energy and EMP-based interference. Requires energy to operate. (Can be attached to: Any Exosuit except H.O.N.K and Reticence)"
+	icon_state = "emp_insulation"
+	matter_amounts = /datum/design/mechfab/equipment/emp_insulation::materials
+	origin_tech = /datum/design/mechfab/equipment/emp_insulation::req_tech
+
+	equip_cooldown = 1 SECOND
+	energy_drain = 50
+	range = 0
+	selectable = FALSE
+
+	var/severity_modifier = 0.85
+
+/obj/item/mecha_equipment/emp_insulation/proc/emp_react()
+	if(!action_checks(src))
+		return FALSE
+	set_ready_state(0)
+	chassis.use_power(energy_drain)
+	do_after_cooldown()
+	return TRUE

@@ -211,6 +211,14 @@
 	build_path = /obj/item/mecha_equipment/ranged_armour_booster
 	categories = list("Combat Exosuit Equipment")
 
+/datum/design/mechfab/equipment/emp_insulation
+	name = "Ablative EMP Insulation"
+	desc = "An exosuit module that reinforces the internal systems against energy and EMP-based interference."
+	req_tech = alist(/decl/tech/materials = 5, /decl/tech/magnets = 4, /decl/tech/combat = 4, /decl/tech/engineering = 2)
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/uranium = MATERIAL_AMOUNT_PER_SHEET * 3)
+	build_path = /obj/item/mecha_equipment/emp_insulation
+	categories = list("Combat Exosuit Equipment")
+
 // Weapons
 /datum/design/mechfab/equipment/weapon
 	categories = list("Exosuit Weapons")
