@@ -289,12 +289,12 @@
 					if(istype(my_atom, /obj/item/slime_core))
 						var/obj/item/slime_core/M = my_atom
 
-						if(M.POWERFLAG == C.required_other && M.Uses > 0) // added a limit to slime cores -- Muskets requested this
+						if(M.POWERFLAG == C.required_other && M.u > 0) // added a limit to slime cores -- Muskets requested this
 							matching_other = 1
 					*/
 					if(istype(my_atom, /obj/item/slime_extract))
 						var/obj/item/slime_extract/M = my_atom
-						if(M.Uses > 0) // added a limit to slime cores -- Muskets requested this
+						if(M.uses > 0) // added a limit to slime cores -- Muskets requested this
 							matching_other = 1
 
 
@@ -334,8 +334,8 @@
 
 					if(istype(my_atom, /obj/item/slime_extract))
 						var/obj/item/slime_extract/ME2 = my_atom
-						ME2.Uses--
-						if(ME2.Uses <= 0) // give the notification that the slime core is dead
+						ME2.uses--
+						if(ME2.uses <= 0) // give the notification that the slime core is dead
 							my_atom.visible_message(SPAN_INFO("\icon[my_atom] The [my_atom]'s power is consumed in the reaction."))
 							ME2.name = "used slime extract"
 							ME2.desc = "This extract has been used up."

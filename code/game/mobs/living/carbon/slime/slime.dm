@@ -53,18 +53,6 @@
 	var/adulttype = /mob/living/carbon/slime/adult
 	var/coretype = /obj/item/slime_extract/grey
 
-/mob/living/carbon/slime/adult
-	name = "adult slime"
-	icon = 'icons/mob/simple/slimes.dmi'
-	icon_state = "grey adult slime"
-	speak_emote = list("telepathically chirps")
-
-	health = 200
-	gender = NEUTER
-
-	update_icon = 0
-	nutrition = 800 // 1200 = max
-
 /mob/living/carbon/slime/New()
 	create_reagents(100)
 	if(name == "baby slime")
@@ -76,10 +64,6 @@
 		regenerate_icons()
 		to_chat(src, SPAN_INFO("Your icons have been generated!"))
 	. = ..()
-
-/mob/living/carbon/slime/adult/New()
-	//verbs.Remove(/mob/living/carbon/slime/verb/ventcrawl)
-	..()
 
 /mob/living/carbon/slime/movement_delay()
 	. = ..()
@@ -109,26 +93,14 @@
 	return 2
 
 /mob/living/carbon/slime/Stat()
-	..()
-
+	. = ..()
 	statpanel(PANEL_STATUS)
-	if(isslimeadult(src))
-		stat(null, "Health: [round((health / 200) * 100)]%")
-	else
-		stat(null, "Health: [round((health / 150) * 100)]%")
-
+	stat(null, "Health: [round((health / maxHealth) * 100)]%")
 	if(client.statpanel == PANEL_STATUS)
-		if(isslimeadult(src))
-			stat(null, "Nutrition: [nutrition]/1200")
-			if(amount_grown >= 10)
-				stat(null, "You can reproduce!")
-		else
-			stat(null, "Nutrition: [nutrition]/1000")
-			if(amount_grown >= 10)
-				stat(null, "You can evolve!")
-
+		stat(null, "Nutrition: [nutrition]/[isslimeadult(src) ? "1200" : "1000"]")
+		if(amount_grown >= 10)
+			stat(null, "You can [isslimeadult(src) ? "reproduce" : "evolve"]!")
 		stat(null,"Power Level: [powerlevel]")
-
 
 /mob/living/carbon/slime/adjustFireLoss(amount)
 	..(-abs(amount)) // Heals them
@@ -227,10 +199,7 @@
 		var/damage = rand(1, 3)
 		attacked += 5
 
-		if(isslimeadult(src))
-			damage = rand(1, 6)
-		else
-			damage = rand(1, 3)
+		damage = rand(1, isslimeadult(src) ? 6 : 3)
 
 		adjustBruteLoss(damage)
 
@@ -426,353 +395,16 @@
 
 /mob/living/carbon/slime/updatehealth()
 	if(status_flags & GODMODE)
-		if(isslimeadult(src))
-			health = 200
-		else
-			health = 150
+		health = maxHealth
 		stat = CONSCIOUS
 	else
 		// slimes can't suffocate unless they suicide. They are also not harmed by fire
-		if(isslimeadult(src))
-			health = 200 - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
-		else
-			health = 150 - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
+		health = maxHealth - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
 
 /mob/living/carbon/slime/can_use_vents()
 	if(Victim)
 		return "You cannot ventcrawl while feeding."
 	..()
-
-/obj/item/slime_extract
-	name = "slime extract"
-	desc = "Goo extracted from a slime. Legends claim these to have \"magical powers\"."
-	icon = 'icons/mob/simple/slimes.dmi'
-	icon_state = "grey slime extract"
-	force = 1.0
-	w_class = 1.0
-	throwforce = 1.0
-	throw_speed = 3
-	throw_range = 6
-	origin_tech = alist(/decl/tech/biotech = 4)
-	var/Uses = 1 // uses before it goes inert
-
-/obj/item/slime_extract/New()
-	. = ..()
-	create_reagents(100)
-
-
-/obj/item/slime_extract/grey
-	name = "grey slime extract"
-	icon_state = "grey slime extract"
-
-
-/obj/item/slime_extract/gold
-	name = "gold slime extract"
-	icon_state = "gold slime extract"
-
-
-/obj/item/slime_extract/silver
-	name = "silver slime extract"
-	icon_state = "silver slime extract"
-
-
-/obj/item/slime_extract/metal
-	name = "metal slime extract"
-	icon_state = "metal slime extract"
-
-
-/obj/item/slime_extract/purple
-	name = "purple slime extract"
-	icon_state = "purple slime extract"
-
-
-/obj/item/slime_extract/darkpurple
-	name = "dark purple slime extract"
-	icon_state = "dark purple slime extract"
-
-
-/obj/item/slime_extract/orange
-	name = "orange slime extract"
-	icon_state = "orange slime extract"
-
-
-/obj/item/slime_extract/yellow
-	name = "yellow slime extract"
-	icon_state = "yellow slime extract"
-
-
-/obj/item/slime_extract/red
-	name = "red slime extract"
-	icon_state = "red slime extract"
-
-
-/obj/item/slime_extract/blue
-	name = "blue slime extract"
-	icon_state = "blue slime extract"
-
-
-/obj/item/slime_extract/darkblue
-	name = "dark blue slime extract"
-	icon_state = "dark blue slime extract"
-
-
-/obj/item/slime_extract/pink
-	name = "pink slime extract"
-	icon_state = "pink slime extract"
-
-
-/obj/item/slime_extract/green
-	name = "green slime extract"
-	icon_state = "green slime extract"
-
-
-/obj/item/slime_extract/lightpink
-	name = "light pink slime extract"
-	icon_state = "light pink slime extract"
-
-
-/obj/item/slime_extract/black
-	name = "black slime extract"
-	icon_state = "black slime extract"
-
-
-/obj/item/slime_extract/oil
-	name = "oil slime extract"
-	icon_state = "oil slime extract"
-
-
-/obj/item/slime_extract/adamantine
-	name = "adamantine slime extract"
-	icon_state = "adamantine slime extract"
-
-
-////Pet Slime Creation///
-/obj/item/slimepotion
-	name = "docility potion"
-	desc = "A potent chemical mix that will nullify a slime's powers, causing it to become docile and tame."
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "bottle19"
-
-/obj/item/slimepotion/attack(mob/living/carbon/slime/M, mob/user)
-	if(!isslime(M))//If target is not a slime.
-		to_chat(user, SPAN_WARNING("The potion only works on baby slimes!"))
-		return ..()
-	if(isslimeadult(M)) //Can't tame adults
-		to_chat(user, SPAN_WARNING("Only baby slimes can be tamed!"))
-		return..()
-	if(M.stat)
-		to_chat(user, SPAN_WARNING("The slime is dead!"))
-		return..()
-	var/mob/living/simple/slime/pet = new /mob/living/simple/slime(M.loc)
-	pet.icon_state = "[M.colour] baby slime"
-	pet.icon_living = "[M.colour] baby slime"
-	pet.icon_dead = "[M.colour] baby slime dead"
-	pet.colour = "[M.colour]"
-	to_chat(user, "You feed the slime the potion, removing it's powers and calming it.")
-	qdel(M)
-	var/newname = copytext(sanitize(input(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime") as null | text), 1, MAX_NAME_LEN)
-
-	if(!newname)
-		newname = "pet slime"
-	pet.name = newname
-	pet.real_name = newname
-	qdel(src)
-
-
-/obj/item/slimepotion2
-	name = "advanced docility potion"
-	desc = "A potent chemical mix that will nullify a slime's powers, causing it to become docile and tame. This one is meant for adult slimes"
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "bottle19"
-
-/obj/item/slimepotion2/attack(mob/living/carbon/slime/adult/M, mob/user)
-	if(!isslimeadult(M))	//If target is not a slime.
-		to_chat(user, SPAN_WARNING("The potion only works on adult slimes!"))
-		return ..()
-	if(M.stat)
-		to_chat(user, SPAN_WARNING("The slime is dead!"))
-		return..()
-	var/mob/living/simple/adultslime/pet = new /mob/living/simple/adultslime(M.loc)
-	pet.icon_state = "[M.colour] adult slime"
-	pet.icon_living = "[M.colour] adult slime"
-	pet.icon_dead = "[M.colour] baby slime dead"
-	pet.colour = "[M.colour]"
-	to_chat(user, "You feed the slime the potion, removing it's powers and calming it.")
-	qdel(M)
-	var/newname = copytext(sanitize(input(user, "Would you like to give the slime a name?", "Name your new pet", "pet slime") as null | text), 1, MAX_NAME_LEN)
-
-	if(!newname)
-		newname = "pet slime"
-	pet.name = newname
-	pet.real_name = newname
-	qdel(src)
-
-
-/obj/item/slimesteroid
-	name = "slime steroid"
-	desc = "A potent chemical mix that will cause a slime to generate more extract."
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "bottle16"
-
-/obj/item/slimesteroid/attack(mob/living/carbon/slime/M, mob/user)
-	if(!isslime(M))	//If target is not a slime.
-		to_chat(user, SPAN_WARNING("The steroid only works on baby slimes!"))
-		return ..()
-	if(isslimeadult(M)) //Can't tame adults
-		to_chat(user, SPAN_WARNING("Only baby slimes can use the steroid!"))
-		return..()
-	if(M.stat)
-		to_chat(user, SPAN_WARNING("The slime is dead!"))
-		return..()
-	if(M.cores == 3)
-		to_chat(user, SPAN_WARNING("The slime already has the maximum amount of extract!"))
-		return..()
-
-	to_chat(user, "You feed the slime the steroid. It now has triple the amount of extract.")
-	M.cores = 3
-	qdel(src)
-
-
-////////Adamantine Golem stuff I dunno where else to put it
-/obj/item/clothing/under/golem
-	name = "adamantine skin"
-	desc = "a golem's skin"
-	icon_state = "golem"
-	item_state = "golem"
-	item_color = "golem"
-	has_sensor = 0
-	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	can_remove = FALSE
-
-
-/obj/item/clothing/suit/golem
-	name = "adamantine shell"
-	desc = "a golem's thick outer shell"
-	icon_state = "golem"
-	item_state = "golem"
-	w_class = 4//bulky item
-	gas_transfer_coefficient = 0.90
-	permeability_coefficient = 0.50
-	body_parts_covered = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS | HEAD
-	slowdown = 1.0
-	inv_flags = INV_FLAG_HIDE_GLOVES | INV_FLAG_HIDE_JUMPSUIT | INV_FLAG_HIDE_SHOES
-	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE | ITEM_FLAG_ONE_SIZE_FITS_ALL
-	heat_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS | HEAD
-	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS | HEAD
-	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
-	can_remove = FALSE
-	armor = list(melee = 80, bullet = 20, laser = 20, energy = 10, bomb = 0, bio = 0, rad = 0)
-
-
-/obj/item/clothing/shoes/golem
-	name = "golem's feet"
-	desc = "sturdy adamantine feet"
-	icon_state = "golem"
-	item_state = null
-	can_remove = FALSE
-	item_flags = ITEM_FLAG_NO_SLIP
-	slowdown = SHOES_SLOWDOWN + 1
-
-
-/obj/item/clothing/mask/gas/golem
-	name = "golem's face"
-	desc = "the imposing face of an adamantine golem"
-	icon_state = "golem"
-	obj_flags = OBJ_FLAG_UNACIDABLE
-	item_state = "golem"
-	can_remove = FALSE
-	siemens_coefficient = 0
-
-
-/obj/item/clothing/gloves/golem
-	name = "golem's hands"
-	desc = "strong adamantine hands"
-	icon_state = "golem"
-	item_state = null
-	siemens_coefficient = 0
-	can_remove = FALSE
-
-
-/obj/item/clothing/head/space/golem
-	name = "golem's head"
-	desc = "a golem's head"
-	icon_state = "golem"
-	obj_flags = OBJ_FLAG_UNACIDABLE
-	item_state = "dermal"
-	item_color = "dermal"
-	can_remove = FALSE
-	item_flags = ITEM_FLAG_STOPS_PRESSURE_DAMAGE
-	heat_protection = HEAD
-	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
-	armor = list(melee = 80, bullet = 20, laser = 20, energy = 10, bomb = 0, bio = 0, rad = 0)
-
-
-/obj/effect/golemrune
-	anchored = TRUE
-	desc = "a strange rune used to create golems. It glows when spirits are nearby."
-	name = "rune"
-	icon = 'icons/obj/rune.dmi'
-	icon_state = "golem"
-	layer = TURF_LAYER
-
-/obj/effect/golemrune/New()
-	..()
-	GLOBL.processing_objects.Add(src)
-
-/obj/effect/golemrune/process()
-	var/mob/dead/ghost/ghost
-	for(var/mob/dead/ghost/O in src.loc)
-		if(!O.client)
-			continue
-		if(O.mind && O.mind.current && O.mind.current.stat != DEAD)
-			continue
-		ghost = O
-		break
-	if(ghost)
-		icon_state = "golem2"
-	else
-		icon_state = "golem"
-
-/obj/effect/golemrune/attack_hand(mob/living/user)
-	var/mob/dead/ghost/ghost
-	for(var/mob/dead/ghost/O in src.loc)
-		if(!O.client)
-			continue
-		if(O.mind && O.mind.current && O.mind.current.stat != DEAD)
-			continue
-		ghost = O
-		break
-	if(!ghost)
-		to_chat(user, "The rune fizzles uselessly. There is no spirit nearby.")
-		return
-	var/mob/living/carbon/human/G = new /mob/living/carbon/human
-	G.dna.mutantrace = "adamantine"
-	G.real_name = "Adamantine Golem ([rand(1, 1000)])"
-	G.equip_outfit(/decl/hierarchy/outfit/adamantine_golem)
-	G.forceMove(loc)
-	G.key = ghost.key
-	to_chat(G, "You are an adamantine golem. You move slowly, but are highly resistant to heat and cold as well as blunt trauma. You are unable to wear clothes, but can still use most tools. Serve [user], and assist them in completing their goals at any cost.")
-	qdel (src)
-
-/obj/effect/golemrune/proc/announce_to_ghosts()
-	for(var/mob/dead/ghost/G in GLOBL.player_list)
-		if(G.client)
-			var/area/A = GET_AREA(src)
-			if(isnotnull(A))
-				to_chat(G, "Golem rune created in [A.name].")
-
-// Adamanatine Golem outfit
-/decl/hierarchy/outfit/adamantine_golem
-	name = "Adamantine Golem"
-
-	uniform = /obj/item/clothing/under/golem
-	suit = /obj/item/clothing/suit/golem
-
-	head = /obj/item/clothing/head/space/golem
-	mask = /obj/item/clothing/mask/gas/golem
-	gloves = /obj/item/clothing/gloves/golem
-	shoes = /obj/item/clothing/shoes/golem
 
 //////////////////////////////Old shit from metroids/RoRos, and the old cores, would not take much work to re-add them////////////////////////
 
