@@ -88,12 +88,12 @@
 		else
 			return !density
 
-/obj/structure/grille/bullet_act(obj/item/projectile/Proj)
-	if(!Proj)
+/obj/structure/grille/bullet_act(obj/item/projectile/bullet)
+	if(isnull(bullet))
 		return
-	src.health -= Proj.damage * 0.2
-	healthcheck()
-	return 0
+	if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
+		health -= bullet.damage * 0.2
+		healthcheck()
 
 /obj/structure/grille/attackby(obj/item/W, mob/user)
 	if(iswirecutter(W))

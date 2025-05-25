@@ -1405,9 +1405,10 @@ It is possible to destroy the net by the occupant or someone else.
 		to_chat(M, SPAN_INFO("You are free of the net!"))
 	return
 
-/obj/effect/energy_net/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage
-	healthcheck()
+/obj/effect/energy_net/bullet_act(obj/item/projectile/bullet)
+	if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
+		health -= bullet.damage
+		healthcheck()
 	return 0
 
 /obj/effect/energy_net/ex_act(severity)

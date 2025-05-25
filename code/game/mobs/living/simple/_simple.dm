@@ -209,10 +209,12 @@
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		adjustBruteLoss(damage)
 
-/mob/living/simple/bullet_act(obj/item/projectile/Proj)
-	if(!Proj)
+/mob/living/simple/bullet_act(obj/item/projectile/bullet)
+	if(isnull(bullet))
 		return
-	adjustBruteLoss(Proj.damage)
+	if(bullet.damage_type != HALLOSS)
+		adjustBruteLoss(bullet.damage)
+		bullet.on_hit(src, 0)
 	return 0
 
 /mob/living/simple/attack_hand(mob/living/carbon/human/M)

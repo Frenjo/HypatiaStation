@@ -29,11 +29,11 @@
 				src.healthcheck()
 
 
-/obj/structure/displaycase/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage
+/obj/structure/displaycase/bullet_act(obj/item/projectile/bullet)
+	if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
+		health -= bullet.damage
 	..()
-	src.healthcheck()
-	return
+	healthcheck()
 
 
 /obj/structure/displaycase/blob_act()

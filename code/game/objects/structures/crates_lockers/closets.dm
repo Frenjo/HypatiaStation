@@ -159,15 +159,14 @@
 					mover.ex_act(severity++)
 				qdel(src)
 
-/obj/structure/closet/bullet_act(obj/item/projectile/Proj)
-	health -= Proj.damage
-	..()
-	if(health <= 0)
-		for_no_type_check(var/atom/movable/mover, src)
-			mover.forceMove(loc)
-		qdel(src)
-
-	return
+/obj/structure/closet/bullet_act(obj/item/projectile/bullet)
+	if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
+		health -= bullet.damage
+		..()
+		if(health <= 0)
+			for_no_type_check(var/atom/movable/mover, src)
+				mover.forceMove(loc)
+			qdel(src)
 
 /obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)

@@ -52,10 +52,13 @@
 		return 1
 	return 0
 
-/mob/living/silicon/bullet_act(obj/item/projectile/proj)
-	if(!proj.nodamage)
-		adjustBruteLoss(proj.damage)
-	proj.on_hit(src, 2)
+/mob/living/silicon/bullet_act(obj/item/projectile/bullet)
+	switch(bullet.damage_type)
+		if(BRUTE)
+			adjustBruteLoss(bullet.damage)
+		if(BURN)
+			adjustFireLoss(bullet.damage)
+	bullet.on_hit(src, 2)
 
 	updatehealth()
 	return 2

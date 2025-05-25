@@ -89,11 +89,6 @@
 		src.take_damage(15)
 	return
 
-/obj/machinery/turret/bullet_act(obj/item/projectile/Proj)
-	take_damage(Proj.damage)
-	..()
-	return
-
 /obj/machinery/turret/New()
 	spark_system = new /datum/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
@@ -296,15 +291,15 @@
 				invisibility = INVISIBILITY_LEVEL_TWO
 				popping = 0
 
-/obj/machinery/turret/bullet_act(obj/item/projectile/Proj)
-	src.health -= Proj.damage
-	..()
-	if(prob(45) && Proj.damage > 0)
-		src.spark_system.start()
-	qdel (Proj)
-	if(src.health <= 0)
-		src.die()
-	return
+/obj/machinery/turret/bullet_act(obj/item/projectile/bullet)
+	if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
+		health -= bullet.damage
+		..()
+		if(prob(45) && bullet.damage > 0)
+			spark_system.start()
+		qdel(bullet)
+		if(health <= 0)
+			die()
 
 /obj/machinery/turret/attackby(obj/item/W, mob/user)	//I can't believe no one added this before/N
 	..()

@@ -12,6 +12,8 @@
 
 	damage_type = HALLOSS
 	nodamage = TRUE
+	flag = "taser"
+
 	stun = 5
 	weaken = 5
 	stutter = 5

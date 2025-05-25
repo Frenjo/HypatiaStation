@@ -120,10 +120,11 @@
 		else
 			..()
 
-/obj/machinery/bot/bullet_act(obj/item/projectile/proj)
-	health -= proj.damage
-	..()
-	healthcheck()
+/obj/machinery/bot/bullet_act(obj/item/projectile/bullet)
+	if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
+		health -= bullet.damage
+		..()
+		healthcheck()
 
 /obj/machinery/bot/meteorhit()
 	explode()

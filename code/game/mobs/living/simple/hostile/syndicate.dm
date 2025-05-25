@@ -73,12 +73,14 @@
 		visible_message(SPAN_WARNING("[user] gently taps [src] with \the [O]."))
 
 
-/mob/living/simple/hostile/syndicate/melee/bullet_act(var/obj/item/projectile/Proj)
-	if(!Proj)	return
+/mob/living/simple/hostile/syndicate/melee/bullet_act(obj/item/projectile/bullet)
+	if(isnull(bullet))
+		return
 	if(prob(65))
-		src.health -= Proj.damage
+		if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
+			health -= bullet.damage
 	else
-		visible_message("\red <B>[src] blocks [Proj] with its shield!</B>")
+		visible_message(SPAN_DANGER("[src] blocks [bullet] with its shield!"))
 	return 0
 
 

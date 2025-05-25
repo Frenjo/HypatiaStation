@@ -91,6 +91,9 @@
 	var/damage_coefficient = 1
 	for(var/obj/item/mecha_equipment/ranged_armour_booster/booster in equipment)
 		if(booster.projectile_react())
+			if(bullet.flag == "taser") // Ranged armour boosters completely block taser shots.
+				deflection_chance = 100
+				break
 			deflection_chance *= booster.deflect_coeff
 			damage_coefficient *= booster.damage_coeff
 			break
@@ -107,8 +110,9 @@
 		return
 	if(istype(bullet, /obj/item/projectile/energy/beam/pulse))
 		ignore_threshold = 1
-	take_damage(round(bullet.damage * damage_coefficient), bullet.flag)
-	check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST, MECHA_INT_SHORT_CIRCUIT), ignore_threshold)
+	if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
+		take_damage(round(bullet.damage * damage_coefficient), bullet.flag)
+		check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH, MECHA_INT_CONTROL_LOST, MECHA_INT_SHORT_CIRCUIT), ignore_threshold)
 	bullet.on_hit(src)
 
 /obj/mecha/ex_act(severity)

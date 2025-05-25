@@ -146,10 +146,11 @@
 		qdel(src)
 		return
 
-/obj/machinery/door/window/bullet_act(obj/item/projectile/Proj)
-	if(Proj.damage)
-		take_damage(round(Proj.damage / 2))
-	..()
+/obj/machinery/door/window/bullet_act(obj/item/projectile/bullet)
+	if(bullet.damage)
+		if(bullet.damage_type == BRUTE || bullet.damage_type == BURN)
+			take_damage(round(bullet.damage / 2))
+	return ..()
 
 //When an object is thrown at the window
 /obj/machinery/door/window/hitby(atom/movable/AM)
