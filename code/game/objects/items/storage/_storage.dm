@@ -448,6 +448,7 @@
 
 	//Otherwise we'll try to fold it.
 	if(length(contents))
+		to_chat(user, SPAN_WARNING("You can't fold \the [src] with items still inside!"))
 		return
 
 	if(!ispath(foldable))
@@ -462,7 +463,7 @@
 	if(!found)	// User is too far away
 		return
 	// Now make the cardboard
-	to_chat(user, SPAN_NOTICE("You fold [src] flat."))
+	to_chat(user, SPAN_NOTICE("You fold \the [src] flat."))
 	new foldable(GET_TURF(src))
 	qdel(src)
 //BubbleWrap END
