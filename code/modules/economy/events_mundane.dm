@@ -123,12 +123,7 @@
 				"a huge new ARG by a popular entertainment company", "a secret tour by popular artiste [random_name(pick(MALE, FEMALE))]")]. \
 				Tau Ceti Daily is offering discount tickets for two to see [random_name(pick(MALE, FEMALE))] live in return for eyewitness reports and up to the minute coverage."
 
-	for_no_type_check(var/datum/feed_channel/FC, global.CTeconomy.news_network.channels)
-		if(FC.channel_name == "Tau Ceti Daily")
-			FC.messages.Add(newMsg)
-			break
-	for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
-		caster.newsAlert("Tau Ceti Daily")
+	global.CTeconomy.news_network.submit_message(/datum/feed_channel/tau_ceti_daily::channel_name, newMsg)
 
 /datum/round_event/trivial_news
 	endWhen = 10
@@ -224,9 +219,4 @@
 		"Broccoli discovered to be colonies of tiny aliens with murder on their minds" \
 	)
 
-	for_no_type_check(var/datum/feed_channel/FC, global.CTeconomy.news_network.channels)
-		if(FC.channel_name == "The Gibson Gazette")
-			FC.messages.Add(newMsg)
-			break
-	for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
-		caster.newsAlert("The Gibson Gazette")
+	global.CTeconomy.news_network.submit_message(/datum/feed_channel/gibson_gazette::channel_name, newMsg)

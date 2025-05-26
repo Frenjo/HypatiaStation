@@ -31,10 +31,4 @@
 	if(!deposit_success)
 		newMsg.body += "<br>Unfortunately, we were unable to verify the account details provided, so we were unable to transfer the money. Send a cheque containing the sum of $500 to TCD 'Stellar Slam' office on Biesel Prime containing updated details, and your winnings'll be resent within the month."
 
-	for_no_type_check(var/datum/feed_channel/FC, global.CTeconomy.news_network.channels)
-		if(FC.channel_name == "Tau Ceti Daily")
-			FC.messages.Add(newMsg)
-			break
-
-	for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
-		caster.newsAlert("Tau Ceti Daily")
+	global.CTeconomy.news_network.submit_message(/datum/feed_channel/tau_ceti_daily::channel_name, newMsg)

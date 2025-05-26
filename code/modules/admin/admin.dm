@@ -330,11 +330,11 @@ var/global/floorIsLava = 0
 			if(isemptylist(global.CTeconomy.news_network.channels))
 				dat+="<I>No active channels found...</I>"
 			else
-				for_no_type_check(var/datum/feed_channel/CHANNEL, global.CTeconomy.news_network.channels)
-					if(CHANNEL.is_admin_channel)
-						dat+="<B><FONT style='BACKGROUND-COLOR: LightGreen'><A href='byond://?src=\ref[src];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A></FONT></B><BR>"
+				for_no_type_check(var/datum/feed_channel/channel, global.CTeconomy.news_network.channels)
+					if(channel.is_admin_channel)
+						dat+="<B><FONT style='BACKGROUND-COLOR: LightGreen'><A href='byond://?src=\ref[src];ac_show_channel=\ref[channel]'>[channel.channel_name]</A></FONT></B><BR>"
 					else
-						dat+="<B><A href='byond://?src=\ref[src];ac_show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR></B>"
+						dat+="<B><A href='byond://?src=\ref[src];ac_show_channel=\ref[channel]'>[channel.channel_name]</A> [channel.censored ? "<FONT COLOR='red'>***</FONT>" : null]<BR></B>"
 			dat+={"<BR><HR><A href='byond://?src=\ref[src];ac_refresh=1'>Refresh</A>
 				<BR><A href='byond://?src=\ref[src];ac_setScreen=[0]'>Back</A>
 			"}
@@ -417,8 +417,8 @@ var/global/floorIsLava = 0
 			if(isemptylist(global.CTeconomy.news_network.channels))
 				dat+="<I>No feed channels found active...</I><BR>"
 			else
-				for_no_type_check(var/datum/feed_channel/CHANNEL, global.CTeconomy.news_network.channels)
-					dat+="<A href='byond://?src=\ref[src];ac_pick_censor_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR>"
+				for_no_type_check(var/datum/feed_channel/channel, global.CTeconomy.news_network.channels)
+					dat+="<A href='byond://?src=\ref[src];ac_pick_censor_channel=\ref[channel]'>[channel.channel_name]</A> [channel.censored ? "<FONT COLOR='red'>***</FONT>" : null]<BR>"
 			dat+="<BR><A href='byond://?src=\ref[src];ac_setScreen=[0]'>Cancel</A>"
 		if(11)
 			dat+={"
@@ -430,8 +430,8 @@ var/global/floorIsLava = 0
 			if(isemptylist(global.CTeconomy.news_network.channels))
 				dat+="<I>No feed channels found active...</I><BR>"
 			else
-				for_no_type_check(var/datum/feed_channel/CHANNEL, global.CTeconomy.news_network.channels)
-					dat+="<A href='byond://?src=\ref[src];ac_pick_d_notice=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR>"
+				for_no_type_check(var/datum/feed_channel/channel, global.CTeconomy.news_network.channels)
+					dat+="<A href='byond://?src=\ref[src];ac_pick_d_notice=\ref[channel]'>[channel.channel_name]</A> [channel.censored ? "<FONT COLOR='red'>***</FONT>" : null]<BR>"
 
 			dat+="<BR><A href='byond://?src=\ref[src];ac_setScreen=[0]'>Back</A>"
 		if(12)

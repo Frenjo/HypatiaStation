@@ -2,60 +2,6 @@
 //################### NEWSCASTERS BE HERE! ####
 //###-Agouri###################################
 
-/datum/feed_message
-	var/author = ""
-	var/body = ""
-	//var/parent_channel
-	var/backup_body = ""
-	var/backup_author = ""
-	var/is_admin_message = FALSE
-	var/icon/img = null
-	var/icon/backup_img
-
-/datum/feed_message/proc/clear()
-	author = ""
-	body = ""
-	backup_body = ""
-	backup_author = ""
-	img = null
-	backup_img = null
-
-/datum/feed_channel
-	var/channel_name = ""
-	var/list/datum/feed_message/messages = list()
-	//var/message_count = 0
-	var/locked = FALSE
-	var/author = ""
-	var/backup_author = ""
-	var/censored = FALSE
-	var/is_admin_channel = FALSE
-	//var/page = null //For newspapers
-
-/datum/feed_channel/proc/clear()
-	channel_name = ""
-	messages = list()
-	locked = FALSE
-	author = ""
-	backup_author = ""
-	censored = FALSE
-	is_admin_channel = FALSE
-
-/datum/feed_channel/tau_ceti_daily
-	channel_name = "Tau Ceti Daily"
-	author = "CentCom Minister of Information"
-	locked = TRUE
-	is_admin_channel = TRUE
-
-/datum/feed_channel/gibson_gazette
-	channel_name = "The Gibson Gazette"
-	author = "Editor Mike Hammers"
-	locked = TRUE
-	is_admin_channel = TRUE
-
-/datum/feed_network
-	var/list/datum/feed_channel/channels = list()
-	var/datum/feed_message/wanted_issue
-
 /obj/machinery/newscaster
 	name = "newscaster"
 	desc = "A standard NanoTrasen-licensed newsfeed handler for use in commercial space stations. All the news you absolutely have no use for, in one place!"
@@ -63,9 +9,7 @@
 	icon_state = "newscaster_normal"
 	var/isbroken = 0  //1 if someone banged it with something heavy
 	var/ispowered = 1 //starts powered, changes with power_change()
-	//var/list/datum/feed_channel/channel_list = list() //This list will contain the names of the feed channels. Each name will refer to a data region where the messages of the feed channels are stored.
-	//OBSOLETE: We're now using a global news network
-	var/screen = 0					//Or maybe I'll make it into a list within a list afterwards... whichever I prefer, go fuck yourselves :3
+	var/screen = 0	//Or maybe I'll make it into a list within a list afterwards... whichever I prefer, go fuck yourselves :3
 		// 0 = welcome screen - main menu
 		// 1 = view feed channels
 		// 2 = create feed channel
@@ -85,10 +29,6 @@
 		// 1 = the opposite
 	var/static/static_unit_no = 0
 	var/unit_no = 0 //Each newscaster has a unit number
-	//var/datum/feed_message/wanted //We're gonna use a feed_message to store data of the wanted person because fields are similar
-	//var/wanted_issue = 0			//OBSOLETE
-		// 0 = there's no WANTED issued, we don't need a special icon_state
-		// 1 = Guess what.
 	var/alert_delay = 500
 	var/alert = 0
 		// 0 = there hasn't been a news/wanted update in the last alert_delay
@@ -215,17 +155,17 @@
 				if(isemptylist(global.CTeconomy.news_network.channels))
 					dat += "<I>No active channels found...</I>"
 				else
-					for_no_type_check(var/datum/feed_channel/CHANNEL, global.CTeconomy.news_network.channels)
-						if(CHANNEL.is_admin_channel)
-							dat += "<B><FONT style='BACKGROUND-COLOR: LightGreen '><A href='byond://?src=\ref[src];show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A></FONT></B><BR>"
+					for_no_type_check(var/datum/feed_channel/channel, global.CTeconomy.news_network.channels)
+						if(channel.is_admin_channel)
+							dat += "<B><FONT style='BACKGROUND-COLOR: LightGreen '><A href='byond://?src=\ref[src];show_channel=\ref[channel]'>[channel.channel_name]</A></FONT></B><BR>"
 						else
-							dat += "<B><A href='byond://?src=\ref[src];show_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR></B>"
-					/*for_no_type_check(var/datum/feed_channel/CHANNEL, channel_list)
-						dat+="<B>[CHANNEL.channel_name]: </B> <BR><FONT SIZE=1>\[created by: <FONT COLOR='maroon'>[CHANNEL.author]</FONT>\]</FONT><BR><BR>"
-						if( isemptylist(CHANNEL.messages) )
+							dat += "<B><A href='byond://?src=\ref[src];show_channel=\ref[channel]'>[channel.channel_name]</A> [(channel.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR></B>"
+					/*for_no_type_check(var/datum/feed_channel/channel, channel_list)
+						dat+="<B>[channel.channel_name]: </B> <BR><FONT SIZE=1>\[created by: <FONT COLOR='maroon'>[channel.author]</FONT>\]</FONT><BR><BR>"
+						if( isemptylist(channel.messages) )
 							dat+="<I>No feed messages found in channel...</I><BR><BR>"
 						else
-							for_no_type_check(var/datum/feed_message/MESSAGE, CHANNEL.messages)
+							for_no_type_check(var/datum/feed_message/MESSAGE, channel.messages)
 								dat+="-[MESSAGE.body] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR>"*/
 
 				dat += "<BR><HR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A>"
@@ -323,8 +263,8 @@
 				if(isemptylist(global.CTeconomy.news_network.channels))
 					dat += "<I>No feed channels found active...</I><BR>"
 				else
-					for_no_type_check(var/datum/feed_channel/CHANNEL, global.CTeconomy.news_network.channels)
-						dat += "<A href='byond://?src=\ref[src];pick_censor_channel=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR>"
+					for_no_type_check(var/datum/feed_channel/channel, global.CTeconomy.news_network.channels)
+						dat += "<A href='byond://?src=\ref[src];pick_censor_channel=\ref[channel]'>[channel.channel_name]</A> [channel.censored ? "<FONT COLOR='red'>***</FONT>" : null]<BR>"
 				dat += "<BR><A href='byond://?src=\ref[src];setScreen=[0]'>Cancel</A>"
 			if(11)
 				dat += "<B>NanoTrasen D-Notice Handler</B><HR>"
@@ -334,8 +274,8 @@
 				if(isemptylist(global.CTeconomy.news_network.channels))
 					dat += "<I>No feed channels found active...</I><BR>"
 				else
-					for_no_type_check(var/datum/feed_channel/CHANNEL, global.CTeconomy.news_network.channels)
-						dat += "<A href='byond://?src=\ref[src];pick_d_notice=\ref[CHANNEL]'>[CHANNEL.channel_name]</A> [(CHANNEL.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR>"
+					for_no_type_check(var/datum/feed_channel/channel, global.CTeconomy.news_network.channels)
+						dat += "<A href='byond://?src=\ref[src];pick_d_notice=\ref[channel]'>[channel.channel_name]</A> [channel.censored ? "<FONT COLOR='red'>***</FONT>" : null]<BR>"
 
 				dat += "<BR><A href='byond://?src=\ref[src];setScreen=[0]'>Back</A>"
 			if(12)
