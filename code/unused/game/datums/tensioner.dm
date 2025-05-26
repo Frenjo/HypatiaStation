@@ -873,4 +873,4 @@ var/global/datum/tension/tension_master
 		for(var/obj/machinery/door/poddoor/P in end_location)
 			P.open()
 		jumpcomplete = 1
-		command_alert("DRADIS contact!  Set condition one throughout the station!")
+		priority_announce("DRADIS contact!  Set condition one throughout the station!")

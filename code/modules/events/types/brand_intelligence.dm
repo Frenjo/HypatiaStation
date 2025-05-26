@@ -8,7 +8,7 @@
 	var/obj/machinery/vending/originMachine = null
 
 /datum/round_event/brand_intelligence/announce()
-	command_alert("Rampant brand intelligence has been detected aboard [station_name()], please stand-by.", "Machine Learning Alert")
+	priority_announce("Rampant brand intelligence has been detected aboard [station_name()], please stand-by.", "Machine Learning Alert")
 
 /datum/round_event/brand_intelligence/start()
 	for(var/obj/machinery/vending/V in GLOBL.machines)

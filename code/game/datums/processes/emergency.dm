@@ -48,11 +48,15 @@ PROCESS_DEF(emergency)
 			set_launch_countdown(SHUTTLE_LEAVETIME)	//get ready to return
 
 			if(evac)
-				captain_announce("The emergency shuttle has docked with the station. You have approximately [round(estimate_launch_time() / 60, 1)] minutes to board the emergency shuttle.")
-				world << sound('sound/AI/shuttledock.ogg')
+				priority_announce(
+					"The emergency shuttle has docked with the station. You have approximately [round(estimate_launch_time() / 60, 1)] minutes to board the emergency shuttle.",
+					null, 'sound/AI/shuttledock.ogg', "Priority"
+				)
 			else
-				captain_announce("The scheduled crew transfer shuttle has docked with the station. It will depart in approximately [round(estimate_launch_time() / 60, 1)] minutes.")
-				world << sound('sound/AI/shuttledock2.ogg')
+				priority_announce(
+					"The scheduled crew transfer shuttle has docked with the station. It will depart in approximately [round(estimate_launch_time() / 60, 1)] minutes.",
+					null, 'sound/AI/shuttledock2.ogg', "Priority"
+				)
 
 		//arm the escape pods
 		if(evac)
@@ -81,8 +85,10 @@ PROCESS_DEF(emergency)
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
 
 	evac = TRUE
-	captain_announce("An emergency evacuation shuttle has been called. It will arrive in approximately [round(estimate_arrival_time() / 60)] minutes.")
-	world << sound('sound/AI/shuttlecalled.ogg')
+	priority_announce(
+		"An emergency evacuation shuttle has been called. It will arrive in approximately [round(estimate_arrival_time() / 60)] minutes.",
+		null, 'sound/AI/shuttlecalled.ogg', "Priority"
+	)
 	for_no_type_check(var/area/station/hallway/hall, GLOBL.contactable_hallway_areas)
 		hall.evac_alert()
 
@@ -101,8 +107,9 @@ PROCESS_DEF(emergency)
 	//reset the shuttle transit time if we need to
 	shuttle.move_time = SHUTTLE_TRANSIT_DURATION
 
-	captain_announce("A crew transfer has been scheduled. The shuttle has been called. It will arrive in approximately [round(estimate_arrival_time() / 60)] minutes.")
-	world << sound('sound/AI/crewtransfer2.ogg')
+	priority_announce(
+		"A crew transfer has been scheduled. The shuttle has been called. It will arrive in approximately [round(estimate_arrival_time() / 60)] minutes.",
+		null, 'sound/AI/crewtransfer2.ogg', "Priority")
 
 	set_status_displays()
 
@@ -115,15 +122,12 @@ PROCESS_DEF(emergency)
 	shuttle.cancel_launch(src)
 
 	if(evac)
-		captain_announce("The emergency shuttle has been recalled.")
-		world << sound('sound/AI/shuttlerecalled.ogg')
-
+		priority_announce("The emergency shuttle has been recalled.", null, 'sound/AI/shuttlerecalled.ogg', "Priority")
 		for_no_type_check(var/area/station/hallway/hall, GLOBL.contactable_hallway_areas)
 			hall.evac_reset()
 		evac = FALSE
 	else
-		captain_announce("The scheduled crew transfer has been cancelled.")
-		world << sound('sound/AI/shuttlerecall2.ogg')
+		priority_announce("The scheduled crew transfer has been cancelled.", null, 'sound/AI/shuttlerecall2.ogg', "Priority")
 
 	set_status_displays(TRUE)
 

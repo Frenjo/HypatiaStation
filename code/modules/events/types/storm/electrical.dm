@@ -14,7 +14,7 @@
 			possible_epicentres.Add(new_epicentre)
 
 /datum/round_event/storm/electrical/announce()
-	command_alert("An electrical storm has been detected in your area, please repair potential electronic overloads.", "Electrical Storm Alert")
+	priority_announce("An electrical storm has been detected in your area, please repair potential electronic overloads.", "Electrical Storm Alert")
 
 /datum/round_event/storm/electrical/start()
 	if(!length(epicentres))

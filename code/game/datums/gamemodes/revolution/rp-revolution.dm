@@ -49,7 +49,7 @@
 			comm.messagetitle.Add("Cent. Com. Status Summary")
 			comm.messagetext.Add(intercepttext)
 
-	command_alert("Summary downloaded and printed out at all communications consoles.", "Enemy communication intercept. Security Level Elevated.")
+	priority_announce("Summary downloaded and printed out at all communications consoles.", "Incoming Classified Message", 'sound/AI/commandreport.ogg')
 
 /datum/game_mode/rp_revolution/post_setup()
 	. = ..()
@@ -117,10 +117,14 @@
 			comm.messagetitle.Add("Cent. Com. Status Summary")
 			comm.messagetext.Add(intercepttext)
 
-	command_alert("Summary downloaded and printed out at all communications consoles.", "Enemy communication intercept. Security Level Elevated.")
+	priority_announce(
+		"Summary downloaded and printed out at all communications consoles.", "Incoming Classified Message", 'sound/AI/commandreport.ogg'
+	)
 
 	spawn(54000)
-		command_alert("Summary downloaded and printed out at all communications consoles.", "The revolution leaders have been determined.")
+		priority_announce(
+			"Summary downloaded and printed out at all communications consoles.", "Revolution Leaders Determined", 'sound/AI/commandreport.ogg'
+		)
 		intercepttext = "<FONT size = 3><B>Cent. Com. Update</B> Requested status information:</FONT><HR>"
 		intercepttext += "We have determined the revolution leaders to be:"
 		for(var/datum/mind/revmind in head_revolutionaries)
@@ -135,8 +139,10 @@
 				comm.messagetitle.Add("Cent. Com. Status Summary")
 				comm.messagetext.Add(intercepttext)
 		spawn(12000)
-			command_alert("Repeating the previous message over intercoms due to urgency. The station has enemy operatives onboard by the names of [reveal_rev_heads()], please arrest them at once.", "The revolution leaders have been determined.")
-
+			priority_announce(
+				"Repeating the previous message over intercoms due to urgency. The station has enemy operatives onboard by the names of [reveal_rev_heads()], please arrest them at once.",
+				"Revolution Leaders Determined", 'sound/AI/commandreport.ogg'
+			)
 
 /datum/game_mode/rp_revolution/proc/reveal_rev_heads()
 	. = ""

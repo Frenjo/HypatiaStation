@@ -12,8 +12,10 @@ GLOBAL_GLOBL_INIT(sent_spiders_to_station, FALSE)
 	GLOBL.sent_spiders_to_station = TRUE
 
 /datum/round_event/spider_infestation/announce()
-	command_alert("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert")
-	world << sound('sound/AI/aliens.ogg')
+	priority_announce(
+		"Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.",
+		"Lifesign Alert", 'sound/AI/aliens.ogg'
+	)
 
 /datum/round_event/spider_infestation/start()
 	var/list/vents = list()

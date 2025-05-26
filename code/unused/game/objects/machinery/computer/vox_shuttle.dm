@@ -55,9 +55,15 @@ var/global/announce_vox_departure = TRUE //Stealth systems - give an announcemen
 
 	if(announce_vox_departure)
 		if(curr_location == locate(/area/shuttle/vox/start))
-			command_alert("Attention, [GLOBL.current_map.short_name], we just tracked a small target bypassing our defensive perimeter. Can't fire on it without hitting the station - you've got incoming visitors, like it or not.", "NSV Icarus")
+			priority_announce(
+				"Attention, [GLOBL.current_map.short_name], we just tracked a small target bypassing our defensive perimeter. Can't fire on it without hitting the station - you've got incoming visitors, like it or not.",
+				"NSV Icarus"
+			)
 		else if(dest_location == locate(/area/shuttle/vox/start))
-			command_alert("Your guests are pulling away, [GLOBL.current_map.short_name] - moving too fast for us to draw a bead on them. Looks like they're heading out of the system at a rapid clip.", "NSV Icarus")
+			priority_announce(
+				"Your guests are pulling away, [GLOBL.current_map.short_name] - moving too fast for us to draw a bead on them. Looks like they're heading out of the system at a rapid clip.",
+				"NSV Icarus"
+			)
 
 	moving = TRUE
 	lastMove = world.time

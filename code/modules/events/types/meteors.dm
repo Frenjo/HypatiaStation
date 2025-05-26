@@ -9,15 +9,14 @@
 	endWhen = rand(10, 25) * 3
 
 /datum/round_event/meteor_wave/announce()
-	command_alert("Meteors have been detected on collision course with the station.", "Meteor Alert")
-	world << sound('sound/AI/meteors.ogg')
+	priority_announce("Meteors have been detected on collision course with the station.", "Meteor Alert", 'sound/AI/meteors.ogg')
 
 /datum/round_event/meteor_wave/tick()
 	if(IsMultiple(activeFor, 3))
 		spawn_meteors(rand(2, 5))
 
 /datum/round_event/meteor_wave/end()
-	command_alert("The station has cleared the meteor storm.", "Meteor Alert")
+	priority_announce("The station has cleared the meteor storm.", "Meteor Alert")
 
 //
 /datum/round_event/meteor_shower
@@ -31,7 +30,7 @@
 	waves = rand(1, 4)
 
 /datum/round_event/meteor_shower/announce()
-	command_alert("The station is now in a meteor shower.", "Meteor Alert")
+	priority_announce("The station is now in a meteor shower.", "Meteor Alert")
 
 //meteor showers are lighter and more common,
 /datum/round_event/meteor_shower/tick()
@@ -45,4 +44,4 @@
 			endWhen = next_meteor + 1
 
 /datum/round_event/meteor_shower/end()
-	command_alert("The station has cleared the meteor shower", "Meteor Alert")
+	priority_announce("The station has cleared the meteor shower", "Meteor Alert")

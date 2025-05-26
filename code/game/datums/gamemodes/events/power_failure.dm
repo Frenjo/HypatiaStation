@@ -1,8 +1,9 @@
 /proc/power_failure(announce = TRUE)
 	if(announce)
-		command_alert("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Critical Power Failure")
-		for_no_type_check(var/mob/M, GLOBL.player_list)
-			M << sound('sound/AI/poweroff.ogg')
+		priority_announce(
+			"Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.",
+			"Critical Power Failure", 'sound/AI/poweroff.ogg'
+		)
 
 	var/list/skipped_areas = list(/area/station/engineering/engine, /area/turret_protected/ai_chamber)
 
@@ -34,9 +35,9 @@
 
 /proc/power_restore(announce = TRUE)
 	if(announce)
-		command_alert("Power has been restored to [station_name()]. We apologize for the inconvenience.", "Power Systems Nominal")
-		for_no_type_check(var/mob/M, GLOBL.player_list)
-			M << sound('sound/AI/poweron.ogg')
+		priority_announce(
+			"Power has been restored to [station_name()]. We apologize for the inconvenience.", "Power Systems Nominal", 'sound/AI/poweron.ogg'
+		)
 
 	var/list/skipped_areas = list(/area/station/engineering/engine, /area/turret_protected/ai_chamber)
 
@@ -65,9 +66,9 @@
 
 /proc/power_restore_quick(announce = TRUE)
 	if(announce)
-		command_alert("All SMESs on [station_name()] have been recharged. We apologize for the inconvenience.", "Power Systems Nominal")
-		for_no_type_check(var/mob/M, GLOBL.player_list)
-			M << sound('sound/AI/poweron.ogg')
+		priority_announce(
+			"All SMESs on [station_name()] have been recharged. We apologize for the inconvenience.", "Power Systems Nominal", 'sound/AI/poweron.ogg'
+		)
 
 	for(var/obj/machinery/power/smes/S in GLOBL.machines)
 		if(isnotstationlevel(S.z))

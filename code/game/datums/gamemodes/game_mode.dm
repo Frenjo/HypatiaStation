@@ -274,14 +274,17 @@ Implants;
 
 			comm.messagetitle.Add("Cent. Com. Status Summary")
 			comm.messagetext.Add(text)
-	world << sound('sound/AI/commandreport.ogg')
 
-/*	command_alert("Summary downloaded and printed out at all communications consoles.", "Enemy communication intercept. Security Level Elevated.")
-	for(var/mob/M in player_list)
-		if(!isnewplayer(M))
-			M << sound('sound/AI/intercept.ogg')
-	if(security_level < SEC_LEVEL_BLUE)
-		set_security_level(SEC_LEVEL_BLUE)*/
+	priority_announce("Summary downloaded and printed out at all communications consoles.", "Incoming Classified Message", 'sound/AI/commandreport.ogg')
+
+/*
+	priority_announce(
+		"Summary downloaded and printed out at all communications consoles.", "Enemy communication intercept. Security Level Elevated.",
+		'sound/AI/intercept.ogg'
+	)
+	if(GLOBL.security_level.severity < SEC_LEVEL_BLUE)
+		set_security_level(/decl/security_level/blue)
+*/
 
 // Returns: The number of people who had the antagonist role set to yes, regardless of recomended_enemies, if that number is greater than recommended_enemies
 //			recommended_enemies if the number of people with that role set to yes is less than recomended_enemies,

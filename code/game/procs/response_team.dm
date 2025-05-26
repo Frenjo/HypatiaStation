@@ -91,11 +91,15 @@ GLOBAL_GLOBL(can_call_ert)
 
 	// there's only a certain chance a team will be sent
 	if(!prob(send_team_chance))
-		command_alert("It would appear that an emergency response team was requested for [station_name()]. Unfortunately, we were unable to send one at this time.", "Central Command")
+		priority_announce(
+			"It would appear that an emergency response team was requested for [station_name()]. Unfortunately, we were unable to send one at this time."
+		)
 		GLOBL.can_call_ert = FALSE // Only one call per round, ladies.
 		return
 
-	command_alert("It would appear that an emergency response team was requested for [station_name()]. We will prepare and send one as soon as possible.", "Central Command")
+	priority_announce(
+		"It would appear that an emergency response team was requested for [station_name()]. We will prepare and send one as soon as possible."
+	)
 
 	GLOBL.can_call_ert = FALSE // Only one call per round, gentleman.
 	GLOBL.send_emergency_team = TRUE

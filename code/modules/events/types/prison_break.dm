@@ -14,7 +14,10 @@
 
 /datum/round_event/prison_break/announce()
 	if(length(prisonAreas))
-		command_alert("[pick("Gr3y.T1d3 virus", "Malignant trojan")] detected in [station_name()] imprisonment subroutines. Recommend station AI involvement.", "Security Alert")
+		priority_announce(
+			"[pick("Gr3y.T1d3 virus", "Malignant trojan")] detected in [station_name()] imprisonment subroutines. Recommend station AI involvement.",
+			"Security Alert"
+		)
 	else
 		world.log << "ERROR: Could not initate grey-tide. Unable find prison or brig area."
 		kill()

@@ -32,9 +32,15 @@
 		global.PCemergency.departed = TRUE
 
 		if(global.PCemergency.evac)
-			captain_announce("The emergency shuttle has left the station. Estimate [round(global.PCemergency.estimate_arrival_time() / 60, 1)] minutes until the shuttle docks at Central Command.")
+			priority_announce(
+				"The emergency shuttle has left the station. Estimate [round(global.PCemergency.estimate_arrival_time() / 60, 1)] minutes until the shuttle docks at Central Command.",
+				type = "Priority"
+			)
 		else
-			captain_announce("The crew transfer shuttle has left the station. Estimate [round(global.PCemergency.estimate_arrival_time() / 60, 1)] minutes until the shuttle docks at Central Command.")
+			priority_announce(
+				"The crew transfer shuttle has left the station. Estimate [round(global.PCemergency.estimate_arrival_time() / 60, 1)] minutes until the shuttle docks at Central Command.",
+				type = "Priority"
+			)
 
 /datum/shuttle/ferry/emergency/can_launch(user)
 	if(istype(user, /obj/machinery/computer/shuttle_control/emergency))

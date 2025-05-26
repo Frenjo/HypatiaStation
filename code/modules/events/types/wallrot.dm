@@ -7,7 +7,7 @@
 	severity = rand(5, 10)
 
 /datum/round_event/wallrot/announce()
-	command_alert("Harmful fungi detected on station. Station structures may be contaminated.", "Biohazard Alert")
+	priority_announce("Harmful fungi detected on station. Station structures may be contaminated.", "Biohazard Alert")
 
 /datum/round_event/wallrot/start()
 	spawn()

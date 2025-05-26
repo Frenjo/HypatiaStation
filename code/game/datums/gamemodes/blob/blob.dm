@@ -102,10 +102,11 @@
 				return
 
 			if (1)
-				command_alert("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert")
-				for(var/mob/M in player_list)
-					if(!isnewplayer(M))
-						M << sound('sound/AI/outbreak5.ogg')
+				priority_announce(
+					"Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.",
+					"Biohazard Alert",
+					'sound/AI/outbreak5.ogg',
+				)
 				autoexpand = 0//No more extra pulses
 				stage = -1
 				//next stage in 4-5 minutes
@@ -115,11 +116,14 @@
 
 			if (2)
 				if(length(blobs) > blobnukecount && (declared == 1))
-					command_alert("Uncontrolled spread of the biohazard onboard the station. We have issued directive 7-12 for [station_name()].  Any living Heads of Staff are ordered to enact directive 7-12 at any cost, a print out with detailed instructions has been sent to your communications computers.", "Biohazard Alert")
+					priority_announce(
+						"Uncontrolled spread of the biohazard onboard the station. We have issued directive 7-12 for [station_name()]. Any living Heads of Staff are ordered to enact directive 7-12 at any cost, a print out with detailed instructions has been sent to your communications computers.",
+						"Biohazard Alert"
+					)
 					send_intercept(2)
 					declared = 2
 					spawn(20)
-						set_security_level("delta")
+						set_security_level(/decl/security_level/delta)
 				if(length(blobs) > blobwincount)
 					stage = 3
 		return

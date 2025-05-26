@@ -31,7 +31,7 @@
 		msg = "Contact has been lost with a combat drone wing operating out of the NMV Icarus. If any are sighted in the area, approach with caution."
 	else
 		msg = "Unidentified hackers have targetted a combat drone wing deployed from the NMV Icarus. If any are sighted in the area, approach with caution."
-	command_alert(msg, "Rogue drone alert")
+	priority_announce(msg, "Rogue Drone Alert")
 
 /datum/round_event/rogue_drone/tick()
 	return
@@ -47,6 +47,9 @@
 		num_recovered++
 
 	if(num_recovered > length(drones_list) * 0.75)
-		command_alert("Icarus drone control reports the malfunctioning wing has been recovered safely.", "Rogue drone alert")
+		priority_announce("Icarus drone control reports the malfunctioning wing has been recovered safely.", "Rogue Drone Alert")
 	else
-		command_alert("Icarus drone control registers disappointment at the loss of the drones, but the survivors have been recovered.", "Rogue drone alert")
+		priority_announce(
+			"Icarus drone control registers disappointment at the loss of the drones, but the survivors have been recovered.",
+			"Rogue Drone Alert"
+		)

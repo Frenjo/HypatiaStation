@@ -213,7 +213,6 @@
 				if(!global.PCticker || !global.PCemergency.location())
 					return
 				global.PCemergency.call_evac()
-				captain_announce("The emergency shuttle has been called. It will arrive in [round(global.PCemergency.estimate_arrival_time() / 60)] minutes.")
 				log_admin("[key_name(usr)] called the Emergency Shuttle")
 				message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
 
@@ -222,7 +221,6 @@
 					return
 				if(global.PCemergency.can_call())
 					global.PCemergency.call_evac()
-					captain_announce("The emergency shuttle has been called. It will arrive in [round(global.PCemergency.estimate_arrival_time() / 60)] minutes.")
 					log_admin("[key_name(usr)] called the Emergency Shuttle")
 					message_admins("\blue [key_name_admin(usr)] called the Emergency Shuttle to the station", 1)
 				else
@@ -238,7 +236,10 @@
 		//emergency_shuttle.settimeleft( input("Enter new shuttle duration (seconds):","Edit Shuttle Timeleft", emergency_shuttle.timeleft() ) as num )
 		/*emergency_shuttle.settimeleft( input("Enter new shuttle duration (seconds):","Edit Shuttle Timeleft", emergency_shuttle.estimate_arrival_time() ) as num ) // Updated to reflect 'shuttles' port. -Frenjo
 		log_admin("[key_name(usr)] edited the Emergency Shuttle's timeleft to [emergency_shuttle.timeleft()]")
-		captain_announce("The emergency shuttle has been called. It will arrive in [round(emergency_shuttle.timeleft()/60)] minutes.")
+		priority_announce(
+			"The emergency shuttle will reach its destination in [round(emergency_shuttle.timeleft() / 60)] minutes.",
+			null, null, "Priority"
+		)
 		message_admins("\blue [key_name_admin(usr)] edited the Emergency Shuttle's timeleft to [emergency_shuttle.timeleft()]", 1)
 		href_list["secretsadmin"] = "check_antagonist"*/
 
@@ -1810,11 +1811,11 @@
 				if(global.PCticker.gravity_is_on)
 					log_admin("[key_name(usr)] toggled gravity on.", 1)
 					message_admins(SPAN_INFO("[key_name_admin(usr)] toggled gravity on."), 1)
-					command_alert("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.")
+					priority_announce("Gravity generators are again functioning within normal parameters. Sorry for any inconvenience.")
 				else
 					log_admin("[key_name(usr)] toggled gravity off.", 1)
 					message_admins(SPAN_INFO("[key_name_admin(usr)] toggled gravity off."), 1)
-					command_alert("Feedback surge detected in mass-distributions systems. Artifical gravity has been disabled whilst the system reinitializes. Further failures may result in a gravitational collapse and formation of blackholes. Have a nice day.")
+					priority_announce("Feedback surge detected in mass-distributions systems. Artifical gravity has been disabled whilst the system reinitializes. Further failures may result in a gravitational collapse and formation of blackholes. Have a nice day.")
 			if("wave")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","Meteor")
@@ -2105,8 +2106,9 @@
 			if("gravanomalies")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","GA")
-				command_alert("Gravitational anomalies detected on the station. There is no additional data.", "Anomaly Alert")
-				world << sound('sound/AI/granomalies.ogg')
+				priority_announce(
+					"Gravitational anomalies detected on the station. There is no additional data.", "Anomaly Alert", 'sound/AI/granomalies.ogg'
+				)
 				var/turf/T = pick(GLOBL.blobstart)
 				var/obj/effect/bhole/bh = new /obj/effect/bhole( T.loc, 30 )
 				spawn(rand(100, 600))
@@ -2291,8 +2293,10 @@
 					if(isstationlevel(W.z) && !istype(A, /area/station/command) && !istype(A, /area/station/crew) && !istype(A, /area/external/prison))
 						W.req_access = list()
 				message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
-				command_alert("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.")
-				world << sound('sound/AI/commandreport.ogg')
+				priority_announce(
+					"CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.",
+					sound = 'sound/AI/commandreport.ogg'
+				)
 			if("dorf")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","DF")

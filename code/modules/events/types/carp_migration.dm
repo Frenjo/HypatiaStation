@@ -10,7 +10,7 @@
 	endWhen = rand(600, 1200)
 
 /datum/round_event/carp_migration/announce()
-	command_alert("Unknown biological entities have been detected near [station_name()], please stand-by.", "Lifesign Alert")
+	priority_announce("Unknown biological entities have been detected near [station_name()], please stand-by.", "Lifesign Alert")
 
 /datum/round_event/carp_migration/start()
 	for_no_type_check(var/obj/effect/landmark/C, GLOBL.landmark_list)

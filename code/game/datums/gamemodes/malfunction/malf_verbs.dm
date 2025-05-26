@@ -20,15 +20,15 @@
 	if(alert(usr, "Are you sure you wish to initiate the takeover? The station hostile runtime detection software is bound to alert everyone. You have hacked [malf.apcs] APCs.", "Takeover:", "Yes", "No") != "Yes")
 		return
 
-	command_alert("Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.", "Anomaly Alert")
+	priority_announce(
+		"Hostile runtimes detected in all station systems, please deactivate your AI to prevent possible damage to its morality core.",
+		"Anomaly Alert", 'sound/AI/aimalf.ogg'
+	)
 	set_security_level(/decl/security_level/delta)
 
 	malf.malf_mode_declared = TRUE
 	for_no_type_check(var/datum/mind/ai_mind, malf.malf_ai)
 		ai_mind.current.verbs.Remove(/datum/game_mode/malfunction/proc/takeover)
-	for_no_type_check(var/mob/M, GLOBL.player_list)
-		if(!isnewplayer(M))
-			M << sound('sound/AI/aimalf.ogg')
 
 /*
  * AI Win (Explode)

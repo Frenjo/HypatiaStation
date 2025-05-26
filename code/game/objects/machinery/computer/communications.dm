@@ -28,6 +28,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 
 	var/prints_intercept = TRUE
 	var/authenticated = AUTH_NONE
+	var/auth_id = "Unknown"
 	var/list/messagetitle = list()
 	var/list/messagetext = list()
 	var/currmsg = 0
@@ -77,10 +78,14 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 				var/obj/item/pda/pda = I
 				I = pda.id
 			if(I && istype(I))
-				if(src.check_access(I))
+				if(check_access(I))
 					authenticated = AUTH_PARTIAL
+					auth_id = "[I.registered_name] ([I.assignment])"
 				if(ACCESS_CAPTAIN in I.access)
 					authenticated = AUTH_FULL
+				if(emagged)
+					authenticated = AUTH_FULL
+					auth_id = "Unknown"
 		if("logout")
 			authenticated = AUTH_NONE
 
@@ -116,7 +121,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 				var/input = stripped_input(usr, "Please choose a message to announce to the station crew.", "What?")
 				if(!input || !(usr in view(1, src)))
 					return
-				captain_announce(input)//This should really tell who is, IE HoP, CE, HoS, RD, Captain
+				priority_announce(input, null, 'sound/misc/announce.ogg', "Captain", auth_id)
 				log_say("[key_name(usr)] has made a captain announcement: [input]")
 				message_admins("[key_name_admin(usr)] has made a captain announcement.", 1)
 				message_cooldown = TRUE
@@ -317,6 +322,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 	switch(src.state)
 		if(STATE_DEFAULT)
 			if(src.authenticated)
+				dat += "Logged in as: [auth_id]"
 				dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=logout'>Log Out</A> \]"
 				if(src.authenticated == AUTH_FULL)
 					dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=announce'>Make An Announcement</A> \]"
@@ -518,8 +524,10 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 	global.PCemergency.call_transfer()
 	log_game("[key_name(user)] has called the shuttle.")
 	message_admins("[key_name_admin(user)] has called the shuttle.", 1)
-	captain_announce("A crew transfer has been initiated. The shuttle has been called. It will arrive in [round(global.PCemergency.estimate_arrival_time() / 60)] minutes.")
-	world << sound('sound/AI/crewtransfer2.ogg')
+	priority_announce(
+		"A crew transfer has been initiated. The shuttle has been called. It will arrive in [round(global.PCemergency.estimate_arrival_time() / 60)] minutes.",
+		null, 'sound/AI/crewtransfer2.ogg', "Priority"
+	)
 
 	return
 

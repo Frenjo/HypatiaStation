@@ -13,8 +13,9 @@
 		players.Add(player.real_name)
 
 /datum/round_event/storm/ion_large/announce()
-	world << sound('sound/AI/ionstorm.ogg')
-	command_alert("The station has entered a severe ion storm.  Monitor all electronic equipment for malfunctions.", "Anomaly Alert")
+	priority_announce(
+		"The station has entered a severe ion storm. Monitor all electronic equipment for malfunctions.", "Anomaly Alert", 'sound/AI/ionstorm.ogg'
+	)
 
 /datum/round_event/storm/ion_large/start()
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
@@ -93,7 +94,7 @@
 				bot.Emag()
 
 /datum/round_event/storm/ion_large/end()
-	command_alert("The station has passed the ion storm. Monitor all electronic equipment for malfunctions.", "Anomaly Alert")
+	priority_announce("The station has passed the ion storm. Monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		H.client?.screen.Remove(GLOBL.global_hud.ion_storm)

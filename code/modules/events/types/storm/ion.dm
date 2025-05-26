@@ -18,8 +18,9 @@
 		players.Add(player.real_name)
 
 /datum/round_event/storm/ion/announce()
-	world << sound('sound/AI/ionstorm.ogg')
-	command_alert("The station has entered an ion storm. Monitor all electronic equipment for malfunctions.", "Anomaly Alert")
+	priority_announce(
+		"The station has entered an ion storm. Monitor all electronic equipment for malfunctions.", "Anomaly Alert", 'sound/AI/ionstorm.ogg'
+	)
 
 /datum/round_event/storm/ion/start()
 	var/random_player = "The Captain"
@@ -71,4 +72,7 @@
 
 /datum/round_event/storm/ion/end()
 	if(prob(50))
-		command_alert("It has come to our attention that the station passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
+		priority_announce(
+			"It has come to our attention that the station passed through an ion storm.  Please monitor all electronic equipment for malfunctions.",
+			"Anomaly Alert"
+		)

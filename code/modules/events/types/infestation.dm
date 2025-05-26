@@ -103,7 +103,10 @@
 				new spawn_type(T)
 
 /datum/round_event/infestation/announce()
-	command_alert("Bioscans indicate that [vermstring] have been breeding in [locstring]. Clear them out, before this starts to affect productivity.", "Vermin infestation")
+	priority_announce(
+		"Bioscans indicate that [vermstring] have been breeding in [locstring]. Clear them out, before this starts to affect productivity.",
+		"Vermin Infestation"
+	)
 
 #undef LOC_KITCHEN
 #undef LOC_ATMOS

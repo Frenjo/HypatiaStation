@@ -14,7 +14,7 @@
 			possible_epicentres.Add(new_epicentre)
 
 /datum/round_event/storm/electrical_large/announce()
-	command_alert("A severe electrical storm has been detected in your area, please repair potential electronic overloads.", "Electrical Storm Alert")
+	priority_announce("A severe electrical storm has been detected in your area, please repair potential electronic overloads.", "Electrical Storm Alert")
 
 /datum/round_event/storm/electrical_large/start()
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
@@ -66,7 +66,7 @@
 			H.client?.screen |= GLOBL.global_hud.electrical_storm
 
 /datum/round_event/storm/electrical_large/end()
-	command_alert("The station has passed the electrical storm.", "Electrical Storm Alert")
+	priority_announce("The station has passed the electrical storm.", "Electrical Storm Alert")
 
 	for(var/mob/living/carbon/human/H in GLOBL.living_mob_list)
 		H.client?.screen.Remove(GLOBL.global_hud.electrical_storm)

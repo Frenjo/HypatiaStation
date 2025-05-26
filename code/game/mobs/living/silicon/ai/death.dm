@@ -34,11 +34,9 @@
 		callshuttle = 0
 
 	if(callshuttle == 3) //if all three conditions are met
-		global.PCemergency.call_evac()
 		log_game("All the AIs, comm consoles and boards are destroyed. Shuttle called.")
 		message_admins("All the AIs, comm consoles and boards are destroyed. Shuttle called.", 1)
-		captain_announce("The emergency shuttle has been called. It will arrive in [round(global.PCemergency.estimate_arrival_time() / 60)] minutes.")
-		world << sound('sound/AI/shuttlecalled.ogg')
+		global.PCemergency.call_evac()
 
 	if(explosive)
 		spawn(10)

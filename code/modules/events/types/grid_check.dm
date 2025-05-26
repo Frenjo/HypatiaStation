@@ -8,9 +8,10 @@
 	power_failure(0)
 
 /datum/round_event/grid_check/announce()
-	command_alert("Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.", "Automated Grid Check")
-	for_no_type_check(var/mob/M, GLOBL.player_list)
-		M << sound('sound/AI/poweroff.ogg')
+	priority_announce(
+		"Abnormal activity detected in [station_name()]'s powernet. As a precautionary measure, the station's power will be shut off for an indeterminate duration.",
+		"Automated Grid Check", 'sound/AI/poweroff.ogg'
+	)
 
 /datum/round_event/grid_check/end()
 	power_restore()

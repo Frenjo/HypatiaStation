@@ -36,13 +36,13 @@
 	if(cloaked || isnull(departure_message))
 		return
 
-	command_alert(departure_message, (announcer ? announcer : "Central Command"))
+	priority_announce(departure_message, (announcer ? announcer : "Central Command"))
 
 /datum/shuttle/multi_shuttle/proc/announce_arrival()
 	if(cloaked || isnull(arrival_message))
 		return
 
-	command_alert(arrival_message, (announcer ? announcer : "Central Command"))
+	priority_announce(arrival_message, (announcer ? announcer : "Central Command"))
 
 
 /obj/machinery/computer/shuttle_control/multi
