@@ -4,7 +4,7 @@
 	if(type == "Priority")
 		announcement += "<h1 class='alert'>Priority Announcement</h1>"
 	else if(type == "Captain")
-		announcement += "<h1 class='alert'>Captain Announces</h1>"
+		announcement += "<h1 class='alert'>Captain's Announcement</h1>"
 	else
 		announcement += "<h1 class='alert'>[command_name()] Update</h1>"
 		if(title && length(title) > 0)
@@ -13,15 +13,17 @@
 	announcement += "[SPAN_ALERT("[html_encode(text)]")]<br>"
 
 	for_no_type_check(var/mob/M, GLOBL.player_list)
-		to_chat(M, announcement)
-		M << sound(sound)
+		if(!M.ear_deaf)
+			to_chat(M, announcement)
+			M << sound(sound)
 
-/proc/minor_announce(department, message)
-	if(isnull(department) || isnull(message))
+/proc/minor_announce(message, title = "Attention:")
+	if(isnull(message))
 		return
 
 	for_no_type_check(var/mob/M, GLOBL.player_list)
-		to_chat(M, "<b><font size=3><font color=red>[department] Announcement:</font color><br>[message]</font size></b>")
+		if(!M.ear_deaf)
+			to_chat(M, "<b><font size=3><font color=red>[title]</font color><br>[message]</font size></b>")
 
 /proc/print_command_report(text = "", title = "CentCom Status Summary", silent = FALSE)
 	for_no_type_check(var/obj/machinery/computer/communications/console, GLOBL.communications_consoles)

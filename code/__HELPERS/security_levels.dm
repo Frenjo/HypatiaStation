@@ -20,19 +20,13 @@ GLOBAL_GLOBL_LIST_NEW(turf/open/floor/circuit_grid/blue/contactable_blue_grid_tu
 	new_level.on_change_to()
 
 	if(new_level.severity > old_level.severity) // If the level's going up...
-		if(isnotnull(new_level.text_upto))
-			to_world("<font size=4 color='red'>[new_level.text_upto]</font>")
-		else
-			to_world("<font size=4 color='red'>Attention! Security level elevated to [new_level.name].</font>")
-		to_world("<font color='red'>[new_level.desc_upto]</font>")
+		var/title = isnotnull(new_level.text_upto) ? new_level.text_upto : "Attention! Security level elevated to [new_level.name]."
+		minor_announce(new_level.desc_upto, title)
 		world << sound('sound/vox/dadeda.wav', volume = 34)
 		new_level.on_elevate_to()
 	else // Otherwise, if the level's going down...
-		if(isnotnull(new_level.text_downto))
-			to_world("<font size=4 color='red'>[new_level.text_downto]</font>")
-		else
-			to_world("<font size=4 color='red'>Attention! Security level lowered to [new_level.name].</font>")
-		to_world("<font color='red'>[new_level.desc_downto]</font>")
+		var/title = isnotnull(new_level.text_downto) ? new_level.text_downto : "Attention! Security level lowered to [new_level.name]."
+		minor_announce(new_level.desc_downto, title)
 		world << sound('sound/vox/doop.wav', volume = 37)
 		new_level.on_lower_to()
 

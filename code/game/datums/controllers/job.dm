@@ -338,7 +338,7 @@ CONTROLLER_DEF(jobs)
 			to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
 
 	if(istype(job, /datum/job/captain))
-		minor_announce("Staffing", "[H.real_name] is the [H.mind.role_alt_title]!")
+		minor_announce("[H.real_name] is the [H.mind.role_alt_title]!", "Staffing Announcement:")
 
 	H.job = rank
 

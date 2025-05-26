@@ -165,8 +165,7 @@ GLOBAL_GLOBL_INIT(maint_all_access, FALSE)
 
 /proc/make_maint_all_access()
 	GLOBL.maint_all_access = TRUE
-	to_world("<font size=4 color='red'>Attention!</font>")
-	to_world("<font color='red'>The maintenance access requirement has been revoked on all maintenance airlocks.</font>")
+	minor_announce("The maintenance access requirement has been revoked on all maintenance airlocks.", "Attention!")
 
 	// Update all maintenance door icons so they start flashing immediately. -Frenjo
 	for_no_type_check(var/obj/machinery/door/airlock/maintenance/M, GLOBL.maintenance_airlocks_list)
@@ -175,8 +174,7 @@ GLOBAL_GLOBL_INIT(maint_all_access, FALSE)
 
 /proc/revoke_maint_all_access()
 	GLOBL.maint_all_access = FALSE
-	to_world("<font size=4 color='red'>Attention!</font>")
-	to_world("<font color='red'>The maintenance access requirement has been readded on all maintenance airlocks.</font>")
+	minor_announce("The maintenance access requirement has been readded on all maintenance airlocks.", "Attention!")
 
 	// Update all maintenance door icons so they stop flashing immediately. -Frenjo
 	for_no_type_check(var/obj/machinery/door/airlock/maintenance/M, GLOBL.maintenance_airlocks_list)

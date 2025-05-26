@@ -259,7 +259,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	if(href_list["sendAnnouncement"])
 		if(!announcementConsole)
 			return
-		minor_announce(department, message)
+		minor_announce(message, "[department] Announcement:")
 		announceAuth = 0
 		message = ""
 		screen = 0
