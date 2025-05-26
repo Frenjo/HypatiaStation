@@ -58,17 +58,7 @@
 	intercepttext += "<B>* The existence of [virus_name] is highly confidential. To prevent a panic, only high-ranking staff members are authorized to know of its existence. Crew members that illegally obtained knowledge of [virus_name] are to be neutralized.</B><BR>"
 	intercepttext += "<B>* A cure is to be researched immediately, but NanoTrasen intellectual property must be respected. To prevent knowledge of [virus_name] from falling into unauthorized hands, all medical staff that work with the pathogen must be enhanced with a NanoTrasen loyality implant.</B><BR>"
 
-
-	for_no_type_check(var/obj/machinery/computer/communications/comm, GLOBL.communications_consoles)
-		if (!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
-			var/obj/item/paper/intercept = new /obj/item/paper( comm.loc )
-			intercept.name = "paper"
-			intercept.info = intercepttext
-
-			comm.messagetitle.Add("Cent. Com. CONFIDENTIAL REPORT")
-			comm.messagetext.Add(intercepttext)
-
-	world << sound('sound/AI/commandreport.ogg')
+	print_command_report(intercepttext, "CentCom CONFIDENTIAL REPORT")
 
 	// add an extra law to the AI to make sure it cooperates with the heads
 	var/extra_law = "Crew authorized to know of pathogen [virus_name]'s existence are: Heads of command, any crew member with loyalty implant. Do not allow unauthorized personnel to gain knowledge of [virus_name]. Aid authorized personnel in quarantining and neutrlizing the outbreak. This law overrides all other laws."
@@ -81,15 +71,7 @@
 	intercepttext += "<FONT size = 2;color='red'><B>PATHOGEN [virus_name] IS STILL PRESENT ON [station_name()]. IN COMPLIANCE WITH NANOTRASEN LAWS FOR INTERSTELLAR SAFETY, EMERGENCY SAFETY MEASURES HAVE BEEN AUTHORIZED. ALL INFECTED CREW MEMBERS ON [station_name()] ARE TO BE NEUTRALIZED AND DISPOSED OF IN A MANNER THAT WILL DESTROY ALL TRACES OF THE PATHOGEN. FAILURE TO COMPLY WILL RESULT IN IMMEDIATE DESTRUCTION OF [station_name].</B></FONT><BR>"
 	intercepttext += "<B>CRUISER WILL ARRIVE IN [round(cruiser_seconds()/60)] MINUTES</B><BR>"
 
-	for_no_type_check(var/obj/machinery/computer/communications/comm, GLOBL.communications_consoles)
-		if (!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
-			var/obj/item/paper/intercept = new /obj/item/paper( comm.loc )
-			intercept.name = "paper"
-			intercept.info = intercepttext
-
-			comm.messagetitle.Add("Cent. Com. CONFIDENTIAL REPORT")
-			comm.messagetext.Add(intercepttext)
-	world << sound('sound/AI/commandreport.ogg')
+	print_command_report(intercepttext, "CentCom CONFIDENTIAL REPORT")
 
 
 /datum/game_mode/epidemic/post_setup()

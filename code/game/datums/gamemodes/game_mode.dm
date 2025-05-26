@@ -223,7 +223,7 @@ Implants;
 	return 0
 
 /datum/game_mode/proc/send_intercept()
-	var/text = "<font size = 3><B>Cent. Com. Update</B></font>"
+	var/text = "<font size = 3><B>CentCom Update</B></font>"
 	text += "<br>"
 	text += "<font size = 3>Requested status information:</font>"
 	text += "<hr>"
@@ -266,16 +266,7 @@ Implants;
 				text += "<b>[M.name]</b>, the <b>[M.mind.assigned_role]</b>."
 				text += "<br>"
 
-	for(var/obj/machinery/computer/communications/comm in GLOBL.machines)
-		if(!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
-			var/obj/item/paper/intercept = new /obj/item/paper(comm.loc)
-			intercept.name = "paper - 'Cent. Com. Status Summary'"
-			intercept.info = text
-
-			comm.messagetitle.Add("Cent. Com. Status Summary")
-			comm.messagetext.Add(text)
-
-	priority_announce("Summary downloaded and printed out at all communications consoles.", "Incoming Classified Message", 'sound/AI/commandreport.ogg')
+	print_command_report(text)
 
 /*
 	priority_announce(

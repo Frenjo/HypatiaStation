@@ -15,3 +15,14 @@
 	for_no_type_check(var/mob/M, GLOBL.player_list)
 		to_chat(M, announcement)
 		M << sound(sound)
+
+/proc/print_command_report(text = "", title = "CentCom Status Summary", silent = FALSE)
+	for_no_type_check(var/obj/machinery/computer/communications/console, GLOBL.communications_consoles)
+		if(!(console.stat & (BROKEN | NOPOWER)) && console.prints_intercept)
+			var/obj/item/paper/intercept = new /obj/item/paper(console.loc)
+			intercept.name = "paper - '[title]'"
+			intercept.info = text
+			console.messagetitle.Add(title)
+			console.messagetext.Add(text)
+	if(!silent)
+		priority_announce("Summary downloaded and printed out at all communications consoles.", "Incoming Classified Message", 'sound/AI/commandreport.ogg')

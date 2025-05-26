@@ -235,27 +235,16 @@
 				tried_to_add_revheads = world.time + 6000 // wait 10 minutes
 
 	if(last_command_report == 0 && world.time >= 10 * 60 * 10)
-		src.command_report("We are regrettably announcing that your performance has been disappointing, and we are thus forced to cut down on financial support to your station. To achieve this, the pay of all personnal, except the Heads of Staff, has been halved.")
+		print_command_report("We are regrettably announcing that your performance has been disappointing, and we are thus forced to cut down on financial support to your station. To achieve this, the pay of all personnal, except the Heads of Staff, has been halved.")
 		last_command_report = 1
 	else if(last_command_report == 1 && world.time >= 10 * 60 * 30)
-		src.command_report("Statistics hint that a high amount of leisure time, and associated activities, are responsible for the poor performance of many of our stations. You are to bolt and close down any leisure facilities, such as the holodeck, the theatre and the bar. Food can be distributed through vendors and the kitchen.")
+		print_command_report("Statistics hint that a high amount of leisure time, and associated activities, are responsible for the poor performance of many of our stations. You are to bolt and close down any leisure facilities, such as the holodeck, the theatre and the bar. Food can be distributed through vendors and the kitchen.")
 		last_command_report = 2
 	else if(last_command_report == 2 && world.time >= 10 * 60 * 60)
-		src.command_report("It is reported that merely closing down leisure facilities has not been successful. You and your Heads of Staff are to ensure that all crew are working hard, and not wasting time or energy. Any crew caught off duty without leave from their Head of Staff are to be warned, and on repeated offence, to be brigged until the next transfer shuttle arrives, which will take them to facilities where they can be of more use.")
+		print_command_report("It is reported that merely closing down leisure facilities has not been successful. You and your Heads of Staff are to ensure that all crew are working hard, and not wasting time or energy. Any crew caught off duty without leave from their Head of Staff are to be warned, and on repeated offence, to be brigged until the next transfer shuttle arrives, which will take them to facilities where they can be of more use.")
 		last_command_report = 3
 
 	return ..()
-
-/datum/game_mode/revolution/rp_revolution/proc/command_report(message)
-	for_no_type_check(var/obj/machinery/computer/communications/comm, GLOBL.communications_consoles)
-		if(!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
-			var/obj/item/paper/intercept = new /obj/item/paper(comm.loc)
-			intercept.name = "paper - 'Cent. Com. Announcement'"
-			intercept.info = message
-
-			comm.messagetitle.Add("Cent. Com. Announcement")
-			comm.messagetext.Add(message)
-	world << sound('sound/AI/commandreport.ogg')
 
 /datum/game_mode/revolution/rp_revolution/latespawn(mob/M)
 	. = ..()

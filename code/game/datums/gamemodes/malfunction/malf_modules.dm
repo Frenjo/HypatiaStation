@@ -361,7 +361,7 @@ rcd light flash thingy on matter drain
 		if(!already)
 			malf.verbs.Add(/client/proc/interhack)
 			malf.current_modules.Add(new /datum/malf_module/small/interhack())
-			temp = "Hacks the status upgrade from Cent. Com, removing any information about malfunctioning electrical systems."
+			temp = "Hacks the status upgrade from CentCom, removing any information about malfunctioning electrical systems."
 			processing_time -= 15
 		else
 			temp = "This module is only needed once."

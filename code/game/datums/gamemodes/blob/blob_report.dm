@@ -39,13 +39,7 @@
 					aiPlayer.set_zeroth_law(law)
 					to_chat(aiPlayer, "Laws Updated: [law]")
 
-	for(var/obj/machinery/computer/communications/comm in machines)
-		comm.messagetitle.Add(interceptname)
-		comm.messagetext.Add(intercepttext)
-		if(!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
-			var/obj/item/paper/intercept = new /obj/item/paper(comm.loc)
-			intercept.name = "paper- [interceptname]"
-			intercept.info = intercepttext
+	print_command_report(intercepttext, interceptname)
 	return
 
 

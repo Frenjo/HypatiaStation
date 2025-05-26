@@ -25,8 +25,8 @@
 	to_world("<B>The current game mode is - Revolution RP!</B>")
 
 /datum/game_mode/rp_revolution/send_intercept()
-	var/intercepttext = "<FONT size = 3><B>Cent. Com. Update</B> Requested staus information:</FONT><HR>"
-	intercepttext += "<B> Cent. Com has recently been contacted by the following syndicate affiliated organisations in your area, please investigate any information you may have:</B>"
+	var/intercepttext = "<FONT size = 3><B>CentCom Update</B> Requested staus information:</FONT><HR>"
+	intercepttext += "<B> CentCom has recently been contacted by the following syndicate affiliated organisations in your area, please investigate any information you may have:</B>"
 
 	var/list/possible_modes = list()
 	possible_modes.Add("revolution", "wizard", "traitor", "malf")
@@ -40,16 +40,7 @@
 	for(var/A in possible_modes)
 		intercepttext += i_text.build(A, pick(head_revolutionaries))
 
-	for_no_type_check(var/obj/machinery/computer/communications/comm, GLOBL.communications_consoles)
-		if (!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
-			var/obj/item/paper/intercept = new /obj/item/paper( comm.loc )
-			intercept.name = "paper - 'Cent. Com. Status Summary'"
-			intercept.info = intercepttext
-
-			comm.messagetitle.Add("Cent. Com. Status Summary")
-			comm.messagetext.Add(intercepttext)
-
-	priority_announce("Summary downloaded and printed out at all communications consoles.", "Incoming Classified Message", 'sound/AI/commandreport.ogg')
+	print_command_report(intercepttext)
 
 /datum/game_mode/rp_revolution/post_setup()
 	. = ..()
@@ -92,8 +83,8 @@
 			obj_count++
 
 /datum/game_mode/rp_revolution/send_intercept()
-	var/intercepttext = "<FONT size = 3><B>Cent. Com. Update</B> Requested staus information:</FONT><HR>"
-	intercepttext += "<B> Cent. Com has recently been contacted by the following syndicate affiliated organisations in your area, please investigate any information you may have:</B>"
+	var/intercepttext = "<FONT size = 3><B>CentCom Update</B> Requested staus information:</FONT><HR>"
+	intercepttext += "<B> CentCom has recently been contacted by the following syndicate affiliated organisations in your area, please investigate any information you may have:</B>"
 
 	var/list/possible_modes = list()
 	possible_modes.Add("revolution", "wizard", "nuke", "traitor", "malf")
@@ -108,36 +99,18 @@
 	for(var/A in possible_modes)
 		intercepttext += i_text.build(A, pick(head_revolutionaries))
 
-	for_no_type_check(var/obj/machinery/computer/communications/comm, GLOBL.communications_consoles)
-		if (!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
-			var/obj/item/paper/intercept = new /obj/item/paper( comm.loc )
-			intercept.name = "paper - 'Cent. Com. Status Summary'"
-			intercept.info = intercepttext
-
-			comm.messagetitle.Add("Cent. Com. Status Summary")
-			comm.messagetext.Add(intercepttext)
-
-	priority_announce(
-		"Summary downloaded and printed out at all communications consoles.", "Incoming Classified Message", 'sound/AI/commandreport.ogg'
-	)
+	print_command_report(intercepttext)
 
 	spawn(54000)
-		priority_announce(
-			"Summary downloaded and printed out at all communications consoles.", "Revolution Leaders Determined", 'sound/AI/commandreport.ogg'
-		)
-		intercepttext = "<FONT size = 3><B>Cent. Com. Update</B> Requested status information:</FONT><HR>"
+		intercepttext = "<FONT size = 3><B>CentCom Update</B> Requested status information:</FONT><HR>"
 		intercepttext += "We have determined the revolution leaders to be:"
 		for(var/datum/mind/revmind in head_revolutionaries)
 			intercepttext += "<br>[revmind.current.real_name]"
 		intercepttext += "<br>Please arrest them at once."
-		for_no_type_check(var/obj/machinery/computer/communications/comm, GLOBL.communications_consoles)
-			if (!(comm.stat & (BROKEN | NOPOWER)) && comm.prints_intercept)
-				var/obj/item/paper/intercept = new /obj/item/paper( comm.loc )
-				intercept.name = "paper - 'Cent. Com. Status Summary'"
-				intercept.info = intercepttext
-
-				comm.messagetitle.Add("Cent. Com. Status Summary")
-				comm.messagetext.Add(intercepttext)
+		print_command_report(intercepttext, silent = TRUE)
+		priority_announce(
+			"Summary downloaded and printed out at all communications consoles.", "Revolution Leaders Determined", 'sound/AI/commandreport.ogg'
+		)
 		spawn(12000)
 			priority_announce(
 				"Repeating the previous message over intercoms due to urgency. The station has enemy operatives onboard by the names of [reveal_rev_heads()], please arrest them at once.",
