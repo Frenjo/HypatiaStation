@@ -257,10 +257,9 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			screen = 0
 
 	if(href_list["sendAnnouncement"])
-		if(!announcementConsole)	return
-		for_no_type_check(var/mob/M, GLOBL.player_list)
-			if(!isnewplayer(M))
-				M << "<b><font size = 3><font color = red>[department] announcement:</font color> [message]</font size></b>"
+		if(!announcementConsole)
+			return
+		minor_announce(department, message)
 		announceAuth = 0
 		message = ""
 		screen = 0

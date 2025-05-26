@@ -16,6 +16,13 @@
 		to_chat(M, announcement)
 		M << sound(sound)
 
+/proc/minor_announce(department, message)
+	if(isnull(department) || isnull(message))
+		return
+
+	for_no_type_check(var/mob/M, GLOBL.player_list)
+		to_chat(M, "<b><font size=3><font color=red>[department] Announcement:</font color><br>[message]</font size></b>")
+
 /proc/print_command_report(text = "", title = "CentCom Status Summary", silent = FALSE)
 	for_no_type_check(var/obj/machinery/computer/communications/console, GLOBL.communications_consoles)
 		if(!(console.stat & (BROKEN | NOPOWER)) && console.prints_intercept)
