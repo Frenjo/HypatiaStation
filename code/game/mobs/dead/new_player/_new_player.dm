@@ -22,7 +22,7 @@
 			html += "<p><b>You are ready</b> (<a href='byond://?src=\ref[src];ready=2'>Cancel</a>)</p>"
 
 	else
-		html += "<a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</a><br><br>"
+		html += "<p><a href='byond://?src=\ref[src];manifest=1'>View the Crew Manifest</a></p>"
 		html += "<p><a href='byond://?src=\ref[src];late_join=1'>Join Game!</a></p>"
 
 	html += "<p><a href='byond://?src=\ref[src];observe=1'>Observe</a></p>"
@@ -46,7 +46,7 @@
 
 	html += "</div>"
 
-	var/datum/browser/panel = new /datum/browser(src, "playersetup", "", 210, 240, src)
+	var/datum/browser/panel = new /datum/browser(src, "playersetup", "", 210, 220, src)
 	panel.set_window_options("can_close=0")
 	panel.set_content(html)
 	panel.open()
@@ -353,12 +353,18 @@
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
 			for_no_type_check(var/mob/M, GLOBL.player_list)
-				if(M.mind?.assigned_role == job.title && M.client?.inactivity <= 10 * 60 * 10)
+				if(M.mind?.assigned_role == job.title && M.client?.inactivity <= 10 MINUTES)
 					active++
-			html += "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [active])</a><br>"
+			var/job_title = "<a href='byond://?src=\ref[src];SelectedJob=[job.title]'>"
+			if(job.head_position)
+				job_title += "<b>[job.title]</b>"
+			else
+				job_title += "[job.title]"
+			job_title += " ([job.current_positions]) (Active: [active])</a><br>"
+			html += job_title
 	html += "</center>"
 
-	var/datum/browser/panel = new /datum/browser(src, "latechoices", "", 300, 820, src)
+	var/datum/browser/panel = new /datum/browser(src, "latechoices", "", 310, 830, src)
 	panel.set_window_options("can_close=1")
 	panel.set_content(html)
 	panel.open()
