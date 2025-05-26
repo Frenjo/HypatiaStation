@@ -23,12 +23,7 @@
 			deposit_success = TRUE
 
 /datum/round_event/money_lotto/announce()
-	var/datum/feed_message/newMsg = new /datum/feed_message()
-	newMsg.author = "NanoTrasen Editor"
-	newMsg.is_admin_message = TRUE
-
-	newMsg.body = "TC Daily wishes to congratulate <b>[winner_name]</b> for recieving the Tau Ceti Stellar Slam Lottery, and receiving the out of this world sum of [winner_sum] credits!"
+	var/message = "TC Daily wishes to congratulate <b>[winner_name]</b> for recieving the Tau Ceti Stellar Slam Lottery, and receiving the out of this world sum of [winner_sum] credits!"
 	if(!deposit_success)
-		newMsg.body += "<br>Unfortunately, we were unable to verify the account details provided, so we were unable to transfer the money. Send a cheque containing the sum of $500 to TCD 'Stellar Slam' office on Biesel Prime containing updated details, and your winnings'll be resent within the month."
-
-	global.CTeconomy.news_network.submit_message(/datum/feed_channel/tau_ceti_daily::channel_name, newMsg)
+		message = "<br>Unfortunately, we were unable to verify the account details provided, so we were unable to transfer the money. Send a cheque containing the sum of $500 to TCD 'Stellar Slam' office on Biesel Prime containing updated details, and your winnings'll be resent within the month."
+	global.CTeconomy.news_network.submit_message("NanoTrasen Editor", message, /datum/feed_channel/tau_ceti_daily::channel_name, null, TRUE)

@@ -2519,22 +2519,17 @@
 		if(src.admincaster_feed_message.body =="" || src.admincaster_feed_message.body =="\[REDACTED\]" || src.admincaster_feed_channel.channel_name == "" )
 			src.admincaster_screen = 6
 		else
-			var/datum/feed_message/newMsg = new /datum/feed_message
-			newMsg.author = src.admincaster_signature
-			newMsg.body = src.admincaster_feed_message.body
-			newMsg.is_admin_message = TRUE
+			global.CTeconomy.news_network.submit_message(
+				admincaster_signature, admincaster_feed_message.body, admincaster_feed_channel.channel_name, null, TRUE
+			)
 			feedback_inc("newscaster_stories",1)
-			for_no_type_check(var/datum/feed_channel/FC, global.CTeconomy.news_network.channels)
-				if(FC.channel_name == src.admincaster_feed_channel.channel_name)
-					FC.messages.Add(newMsg) //Adding message to the network's appropriate feed_channel
-					break
-			src.admincaster_screen=4
+			admincaster_screen = 4
 
 		for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
 			caster.newsAlert(src.admincaster_feed_channel.channel_name)
 
 		log_admin("[key_name_admin(usr)] submitted a feed story to channel: [src.admincaster_feed_channel.channel_name]!")
-		src.access_news_network()
+		access_news_network()
 
 	else if(href_list["ac_create_channel"])
 		src.admincaster_screen=2
@@ -2582,23 +2577,17 @@
 		else
 			var/choice = alert("Please confirm Wanted Issue [(input_param==1) ? ("creation.") : ("edit.")]","Network Security Handler","Confirm","Cancel")
 			if(choice=="Confirm")
-				if(input_param==1)          //If input_param == 1 we're submitting a new wanted issue. At 2 we're just editing an existing one. See the else below
-					var/datum/feed_message/WANTED = new /datum/feed_message
-					WANTED.author = src.admincaster_feed_message.author               //Wanted name
-					WANTED.body = src.admincaster_feed_message.body                   //Wanted desc
-					WANTED.backup_author = src.admincaster_signature                  //Submitted by
-					WANTED.is_admin_message = TRUE
-					global.CTeconomy.news_network.wanted_issue = WANTED
-					for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
-						caster.newsAlert()
-						caster.update_icon()
-					src.admincaster_screen = 15
+				if(input_param == 1) // If input_param == 1 we're submitting a new wanted issue. At 2 we're just editing an existing one. See the else below
+					global.CTeconomy.news_network.submit_wanted_issue(
+						admincaster_feed_message.author, admincaster_feed_message.body, admincaster_signature, null, TRUE
+					)
+					admincaster_screen = 15
 				else
-					global.CTeconomy.news_network.wanted_issue.author = src.admincaster_feed_message.author
-					global.CTeconomy.news_network.wanted_issue.body = src.admincaster_feed_message.body
-					global.CTeconomy.news_network.wanted_issue.backup_author = src.admincaster_feed_message.backup_author
-					src.admincaster_screen = 19
-				log_admin("[key_name_admin(usr)] issued a Station-wide Wanted Notification for [src.admincaster_feed_message.author]!")
+					global.CTeconomy.news_network.wanted_issue.author = admincaster_feed_message.author
+					global.CTeconomy.news_network.wanted_issue.body = admincaster_feed_message.body
+					global.CTeconomy.news_network.wanted_issue.backup_author = admincaster_feed_message.backup_author
+					admincaster_screen = 19
+				log_admin("[key_name_admin(usr)] issued a Station-wide Wanted Notification for [admincaster_feed_message.author]!")
 		src.access_news_network()
 
 	else if(href_list["ac_cancel_wanted"])

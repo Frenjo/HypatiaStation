@@ -1,7 +1,6 @@
 /datum/feed_message
 	var/author = ""
 	var/body = ""
-	//var/parent_channel
 	var/backup_body = ""
 	var/backup_author = ""
 	var/is_admin_message = FALSE

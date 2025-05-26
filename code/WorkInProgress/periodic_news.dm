@@ -5,7 +5,7 @@
 	var/round_time // time of the round at which this should be announced, in seconds
 	var/message // body of the message
 	var/author = "NanoTrasen Editor"
-	var/channel_name = "Tau Ceti Daily"
+	var/channel_name
 	var/can_be_redacted = 0
 
 /datum/news_announcement/revolution_inciting_event/paycuts_suspicion
@@ -15,6 +15,7 @@
 				stations haven't been able to yield the expected revenue, and thus adjustments
 				have to be made."}
 	author = "Unauthorized"
+	channel_name = /datum/feed_channel/tau_ceti_daily::channel_name
 
 /datum/news_announcement/revolution_inciting_event/paycuts_confirmation
 	round_time = 60 * 40
@@ -22,6 +23,7 @@
 				been confirmed. Shockingly, however, the cuts will only affect lower tier
 				personnel. Heads of Staff will, according to our sources, not be affected."}
 	author = "Unauthorized"
+	channel_name = /datum/feed_channel/tau_ceti_daily::channel_name
 
 /datum/news_announcement/revolution_inciting_event/human_experiments
 	round_time = 60 * 90
@@ -33,6 +35,7 @@
 				humanified monkeys nor volunteers, but rather unqualified staff that were forced into
 				the experiments, and reported to have died in a \"work accident\" by NanoTrasen Inc."}
 	author = "Unauthorized"
+	channel_name = /datum/feed_channel/tau_ceti_daily::channel_name
 
 /datum/news_announcement/bluespace_research/announcement
 	round_time = 60 * 20
@@ -42,20 +45,21 @@
 				to experiment with and research Bluespace effects. Rumours have it some of these
 				stations even sport functional \"travel gates\" that can instantly move a whole research
 				team to an alternate reality."}
+	channel_name = /datum/feed_channel/tau_ceti_daily::channel_name
 
 /datum/news_announcement/random_junk/cheesy_honkers
 	round_time = 60 * 15
 	message = {"Do cheesy honkers increase risk of having a miscarriage? Several health administrations
 				say so!"}
 	author = "Assistant Editor Carl Ritz"
-	channel_name = "The Gibson Gazette"
+	channel_name = /datum/feed_channel/gibson_gazette::channel_name
 
 /datum/news_announcement/random_junk/net_block
 	round_time = 60 * 50
 	message = {"Several corporations banding together to block access to 'wetskrell.nt', site administrators
 				claiming violation of net laws."}
 	author = "Assistant Editor Carl Ritz"
-	channel_name = "The Gibson Gazette"
+	channel_name = /datum/feed_channel/gibson_gazette::channel_name
 
 /datum/news_announcement/random_junk/found_ssd
 	round_time = 60 * 90
@@ -64,7 +68,7 @@
 				reveals that many of them were playing games instead of working and their pay has been docked
 				accordingly."}
 	author = "Doctor Eric Hanfield"
-	channel_name = "Tau Ceti Daily"
+	channel_name = /datum/feed_channel/tau_ceti_daily::channel_name
 
 /datum/news_announcement/lotus_tree/explosions
 	round_time = 60 * 30
@@ -75,7 +79,7 @@
 				announced that they were officially acknowledging inter-species marriage and providing couples
 				with marriage tax-benefits."}
 	author = "Reporter Leland H. Howards"
-	channel_name = "Tau Ceti Daily"
+	channel_name = /datum/feed_channel/tau_ceti_daily::channel_name
 
 /datum/news_announcement/food_riots/breaking_news
 	round_time = 60 * 10
@@ -85,7 +89,7 @@
 				continue. NanoTrasen officials have not given any details about said factions. More on that at the top of
 				the hour."}
 	author = "Reporter Ro'kii Ar-Raqis"
-	channel_name = "Tau Ceti Daily"
+	channel_name = /datum/feed_channel/tau_ceti_daily::channel_name
 
 /datum/news_announcement/food_riots/more
 	round_time = 60 * 60
@@ -96,7 +100,7 @@
 				\"further proof\" of the colony's anti-NanoTrasen stance. Meanwhile, Refuge Security has been unable to quell
 				the riots. More on this at 6."}
 	author = "Reporter Ro'kii Ar-Raqis"
-	channel_name = "Tau Ceti Daily"
+	channel_name = /datum/feed_channel/tau_ceti_daily::channel_name
 
 
 GLOBAL_GLOBL_LIST_INIT(newscaster_standard_feeds, list(

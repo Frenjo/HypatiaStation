@@ -1,13 +1,11 @@
 /datum/feed_channel
 	var/channel_name = ""
 	var/list/datum/feed_message/messages = list()
-	//var/message_count = 0
 	var/locked = FALSE
 	var/author = ""
 	var/backup_author = ""
 	var/censored = FALSE
 	var/is_admin_channel = FALSE
-	//var/page = null //For newspapers
 
 /datum/feed_channel/proc/clear()
 	channel_name = ""

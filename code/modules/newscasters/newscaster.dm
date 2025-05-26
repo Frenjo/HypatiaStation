@@ -246,13 +246,13 @@
 						dat += "<I>No feed messages found in channel...</I><BR>"
 					else
 						var/i = 0
-						for_no_type_check(var/datum/feed_message/MESSAGE, viewing_channel.messages)
+						for_no_type_check(var/datum/feed_message/message, viewing_channel.messages)
 							i++
-							dat += "-[MESSAGE.body] <BR>"
-							if(MESSAGE.img)
-								usr << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
+							dat += "-[message.body] <BR>"
+							if(isnotnull(message.img))
+								usr << browse_rsc(message.img, "tmp_photo[i].png")
 								dat += "<img src='tmp_photo[i].png' width = '180'><BR><BR>"
-							dat += "<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR>"
+							dat += "<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[message.author]</FONT>\]</FONT><BR>"
 				dat += "<BR><HR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A>"
 				dat += "<BR><A href='byond://?src=\ref[src];setScreen=[1]'>Back</A>"
 			if(10)
@@ -445,19 +445,8 @@
 			if(msg == "" || msg == "\[REDACTED\]" || scanned_user == "Unknown" || channel_name == "")
 				screen = 6
 			else
-				var/datum/feed_message/newMsg = new /datum/feed_message
-				newMsg.author = scanned_user
-				newMsg.body = msg
-				if(photo)
-					newMsg.img = photo.img
-				feedback_inc("newscaster_stories", 1)
-				for_no_type_check(var/datum/feed_channel/FC, global.CTeconomy.news_network.channels)
-					if(FC.channel_name == channel_name)
-						FC.messages += newMsg					//Adding message to the network's appropriate feed_channel
-						break
+				global.CTeconomy.news_network.submit_message(scanned_user, msg, channel_name, photo)
 				screen = 4
-				for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
-					caster.newsAlert(channel_name)
 
 			updateUsrDialog()
 
@@ -518,17 +507,8 @@
 			else
 				var/choice = alert("Please confirm Wanted Issue [(input_param == 1) ? "creation" : "edit"].", "Network Security Handler", "Confirm", "Cancel")
 				if(choice == "Confirm")
-					if(input_param == 1)			//If input_param == 1 we're submitting a new wanted issue. At 2 we're just editing an existing one. See the else below
-						var/datum/feed_message/WANTED = new /datum/feed_message
-						WANTED.author = channel_name
-						WANTED.body = msg
-						WANTED.backup_author = scanned_user //I know, a bit wacky
-						if(photo)
-							WANTED.img = photo.img
-						global.CTeconomy.news_network.wanted_issue = WANTED
-						for_no_type_check(var/obj/machinery/newscaster/caster, GLOBL.all_newscasters)
-							caster.newsAlert()
-							caster.update_icon()
+					if(input_param == 1) // If input_param == 1 we're submitting a new wanted issue. At 2 we're just editing an existing one. See the else below
+						global.CTeconomy.news_network.submit_wanted_issue(channel_name, msg, scanned_user, photo)
 						screen = 15
 					else
 						if(global.CTeconomy.news_network.wanted_issue.is_admin_message)

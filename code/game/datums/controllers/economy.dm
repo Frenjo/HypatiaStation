@@ -40,10 +40,6 @@ CONTROLLER_DEF(economy)
 /datum/controller/economy/New()
 	. = ..()
 
-	// Creates newscaster feed channels.
-	news_network.channels.Add(new /datum/feed_channel/tau_ceti_daily())
-	news_network.channels.Add(new /datum/feed_channel/gibson_gazette())
-
 	// Sets the current date string and randomises the starting account number.
 	current_date_string = "[num2text(rand(1, 31))] [pick(GLOBL.months)], [GLOBL.game_year]"
 	next_account_number = rand(111111, 999999)
