@@ -34,12 +34,12 @@
 		if(global.PCemergency.evac)
 			priority_announce(
 				"The emergency shuttle has left the station. Estimate [round(global.PCemergency.estimate_arrival_time() / 60, 1)] minutes until the shuttle docks at Central Command.",
-				type = "Priority"
+				type = ANNOUNCEMENT_TYPE_PRIORITY
 			)
 		else
 			priority_announce(
 				"The crew transfer shuttle has left the station. Estimate [round(global.PCemergency.estimate_arrival_time() / 60, 1)] minutes until the shuttle docks at Central Command.",
-				type = "Priority"
+				type = ANNOUNCEMENT_TYPE_PRIORITY
 			)
 
 /datum/shuttle/ferry/emergency/can_launch(user)

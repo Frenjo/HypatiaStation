@@ -16,6 +16,16 @@
 	censored = FALSE
 	is_admin_channel = FALSE
 
+/datum/feed_channel/command_updates
+	channel_name = "Central Command Updates"
+	author = "Automated Announcement System"
+	locked = TRUE
+
+/datum/feed_channel/station_announcements
+	channel_name = "Station Announcements"
+	author = "Automated Announcement System"
+	locked = TRUE
+
 /datum/feed_channel/tau_ceti_daily
 	channel_name = "Tau Ceti Daily"
 	author = "CentCom Minister of Information"

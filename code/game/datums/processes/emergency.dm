@@ -50,12 +50,12 @@ PROCESS_DEF(emergency)
 			if(evac)
 				priority_announce(
 					"The emergency shuttle has docked with the station. You have approximately [round(estimate_launch_time() / 60, 1)] minutes to board the emergency shuttle.",
-					null, 'sound/AI/shuttledock.ogg', "Priority"
+					null, 'sound/AI/shuttledock.ogg', ANNOUNCEMENT_TYPE_PRIORITY
 				)
 			else
 				priority_announce(
 					"The scheduled crew transfer shuttle has docked with the station. It will depart in approximately [round(estimate_launch_time() / 60, 1)] minutes.",
-					null, 'sound/AI/shuttledock2.ogg', "Priority"
+					null, 'sound/AI/shuttledock2.ogg', ANNOUNCEMENT_TYPE_PRIORITY
 				)
 
 		//arm the escape pods
@@ -87,7 +87,7 @@ PROCESS_DEF(emergency)
 	evac = TRUE
 	priority_announce(
 		"An emergency evacuation shuttle has been called. It will arrive in approximately [round(estimate_arrival_time() / 60)] minutes.",
-		null, 'sound/AI/shuttlecalled.ogg', "Priority"
+		null, 'sound/AI/shuttlecalled.ogg', ANNOUNCEMENT_TYPE_PRIORITY
 	)
 	for_no_type_check(var/area/station/hallway/hall, GLOBL.contactable_hallway_areas)
 		hall.evac_alert()
@@ -109,7 +109,8 @@ PROCESS_DEF(emergency)
 
 	priority_announce(
 		"A crew transfer has been scheduled. The shuttle has been called. It will arrive in approximately [round(estimate_arrival_time() / 60)] minutes.",
-		null, 'sound/AI/crewtransfer2.ogg', "Priority")
+		null, 'sound/AI/crewtransfer2.ogg', ANNOUNCEMENT_TYPE_PRIORITY
+	)
 
 	set_status_displays()
 
@@ -122,12 +123,12 @@ PROCESS_DEF(emergency)
 	shuttle.cancel_launch(src)
 
 	if(evac)
-		priority_announce("The emergency shuttle has been recalled.", null, 'sound/AI/shuttlerecalled.ogg', "Priority")
+		priority_announce("The emergency shuttle has been recalled.", null, 'sound/AI/shuttlerecalled.ogg', ANNOUNCEMENT_TYPE_PRIORITY)
 		for_no_type_check(var/area/station/hallway/hall, GLOBL.contactable_hallway_areas)
 			hall.evac_reset()
 		evac = FALSE
 	else
-		priority_announce("The scheduled crew transfer has been cancelled.", null, 'sound/AI/shuttlerecall2.ogg', "Priority")
+		priority_announce("The scheduled crew transfer has been cancelled.", null, 'sound/AI/shuttlerecall2.ogg', ANNOUNCEMENT_TYPE_PRIORITY)
 
 	set_status_displays(TRUE)
 

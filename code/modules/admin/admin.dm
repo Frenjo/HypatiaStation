@@ -396,13 +396,13 @@ var/global/floorIsLava = 0
 					dat+="<I>No feed messages found in channel...</I><BR>"
 				else
 					var/i = 0
-					for_no_type_check(var/datum/feed_message/MESSAGE, src.admincaster_feed_channel.messages)
+					for_no_type_check(var/datum/feed_message/message, admincaster_feed_channel.messages)
 						i++
-						dat+="-[MESSAGE.body] <BR>"
-						if(MESSAGE.img)
-							usr << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
-							dat+="<img src='tmp_photo[i].png' width = '180'><BR><BR>"
-						dat+="<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR>"
+						dat += "-[message.body] <BR>"
+						if(message.img)
+							usr << browse_rsc(message.img, "tmp_photo[i].png")
+							dat += "<img src='tmp_photo[i].png' width = '180'><BR><BR>"
+						dat += "<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[message.author]</FONT>\]</FONT><BR>"
 			dat+={"
 				<BR><HR><A href='byond://?src=\ref[src];ac_refresh=1'>Refresh</A>
 				<BR><A href='byond://?src=\ref[src];ac_setScreen=[1]'>Back</A>
@@ -442,10 +442,10 @@ var/global/floorIsLava = 0
 			if( isemptylist(src.admincaster_feed_channel.messages) )
 				dat+="<I>No feed messages found in channel...</I><BR>"
 			else
-				for_no_type_check(var/datum/feed_message/MESSAGE, src.admincaster_feed_channel.messages)
-					dat+={"
-						-[MESSAGE.body] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR>
-						<FONT SIZE=2><A href='byond://?src=\ref[src];ac_censor_channel_story_body=\ref[MESSAGE]'>[(MESSAGE.body == "\[REDACTED\]") ? ("Undo story censorship") : ("Censor story")]</A>  -  <A href='byond://?src=\ref[src];ac_censor_channel_story_author=\ref[MESSAGE]'>[(MESSAGE.author == "\[REDACTED\]") ? ("Undo Author Censorship") : ("Censor message Author")]</A></FONT><BR>
+				for_no_type_check(var/datum/feed_message/message, src.admincaster_feed_channel.messages)
+					dat += {"
+						- [message.body]<BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[message.author]</FONT>\]</FONT><BR>
+						<FONT SIZE=2><A href='byond://?src=\ref[src];ac_censor_channel_story_body=\ref[message]'>[message.body == "\[REDACTED\]" ? "Undo story censorship" : "Censor story"]</A>  -  <A href='byond://?src=\ref[src];ac_censor_channel_story_author=\ref[message]'>[message.author == "\[REDACTED\]" ? "Undo Author Censorship" : "Censor message Author"]</A></FONT><BR>
 					"}
 			dat+="<BR><A href='byond://?src=\ref[src];ac_setScreen=[10]'>Back</A>"
 		if(13)
@@ -459,11 +459,11 @@ var/global/floorIsLava = 0
 					No further feed story additions are allowed while the D-Notice is in effect.</FONT><BR><BR>
 				"}
 			else
-				if( isemptylist(src.admincaster_feed_channel.messages) )
+				if(isemptylist(admincaster_feed_channel.messages))
 					dat+="<I>No feed messages found in channel...</I><BR>"
 				else
-					for_no_type_check(var/datum/feed_message/MESSAGE, src.admincaster_feed_channel.messages)
-						dat+="-[MESSAGE.body] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR>"
+					for_no_type_check(var/datum/feed_message/message, admincaster_feed_channel.messages)
+						dat += "- [message.body]<BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[message.author]</FONT>\]</FONT><BR>"
 
 			dat+="<BR><A href='byond://?src=\ref[src];ac_setScreen=[11]'>Back</A>"
 		if(14)

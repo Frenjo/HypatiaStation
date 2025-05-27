@@ -1,29 +1,52 @@
 /proc/priority_announce(text, title = "", sound = 'sound/AI/attention.ogg', type, auth_id)
+	// The actual text of the announcement.
 	var/announcement
+	// Stores the author, message and channel name for the newscaster system.
+	var/author
+	var/message
+	var/channel_name
 
-	if(type == "Priority")
-		announcement += "<h1 class='alert'>Priority Announcement</h1>"
-	else if(type == "Captain")
-		announcement += "<h1 class='alert'>Captain's Announcement</h1>"
-	else
-		announcement += "<h1 class='alert'>[command_name()] Update</h1>"
-		if(title && length(title) > 0)
-			announcement += "<h2 class='alert'>[html_encode(title)]</h2>"
+	switch(type)
+		if(ANNOUNCEMENT_TYPE_PRIORITY)
+			announcement += "<h1 class='alert'>Priority Announcement</h1>"
+		if(ANNOUNCEMENT_TYPE_CAPTAIN)
+			announcement += "<h1 class='alert'>Captain's Announcement</h1>"
+			author = auth_id
+			message = text
+			channel_name = /datum/feed_channel/station_announcements::channel_name
+		else
+			announcement += "<h1 class='alert'>[command_name()] Update</h1>"
+			if(title && length(title) > 0)
+				announcement += "<h2 class='alert'>[html_encode(title)]</h2>"
+			if(title == "")
+				author = "Central Command"
+				message = text
+				channel_name = /datum/feed_channel/command_updates::channel_name
+			else
+				author = "Central Command"
+				message = title + "<br>" + text
+				channel_name = /datum/feed_channel/command_updates::channel_name
 
 	announcement += "[SPAN_ALERT("[html_encode(text)]")]<br>"
 
+	// Actually does the announcement.
 	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(!M.ear_deaf)
 			to_chat(M, announcement)
 			M << sound(sound)
 
-/proc/minor_announce(message, title = "Attention:")
+	// Sends the announcement to the corresponding news channel.
+	global.CTeconomy.news_network.submit_message(author, message, channel_name)
+
+/proc/minor_announce(message, title = "Attention:", silent = FALSE)
 	if(isnull(message))
 		return
 
 	for_no_type_check(var/mob/M, GLOBL.player_list)
 		if(!M.ear_deaf)
 			to_chat(M, "<b><font size=3><font color=red>[title]</font color><br>[message]</font size></b>")
+			if(!silent)
+				M << sound('sound/misc/minor_announce.ogg')
 
 /proc/print_command_report(text = "", title = "CentCom Status Summary", silent = FALSE)
 	for_no_type_check(var/obj/machinery/computer/communications/console, GLOBL.communications_consoles)

@@ -5,6 +5,8 @@
 /datum/feed_network/New()
 	. = ..()
 	// Creates the default newscaster feed channels.
+	channels.Add(new /datum/feed_channel/command_updates())
+	channels.Add(new /datum/feed_channel/station_announcements())
 	channels.Add(new /datum/feed_channel/tau_ceti_daily())
 	channels.Add(new /datum/feed_channel/gibson_gazette())
 

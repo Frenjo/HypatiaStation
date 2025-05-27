@@ -43,8 +43,8 @@
 	light_range = 0
 	anchored = TRUE
 
-/obj/machinery/newscaster/security_unit					//Security unit
-	name = "Security Newscaster"
+/obj/machinery/newscaster/security_unit //Security unit
+	name = "security newscaster"
 	securityCaster = 1
 
 /obj/machinery/newscaster/New()			//Constructor, ho~
@@ -161,12 +161,12 @@
 						else
 							dat += "<B><A href='byond://?src=\ref[src];show_channel=\ref[channel]'>[channel.channel_name]</A> [(channel.censored) ? ("<FONT COLOR='red'>***</FONT>") : null]<BR></B>"
 					/*for_no_type_check(var/datum/feed_channel/channel, channel_list)
-						dat+="<B>[channel.channel_name]: </B> <BR><FONT SIZE=1>\[created by: <FONT COLOR='maroon'>[channel.author]</FONT>\]</FONT><BR><BR>"
+						dat+="<B>[channel.channel_name]:</B><BR><FONT SIZE=1>\[created by: <FONT COLOR='maroon'>[channel.author]</FONT>\]</FONT><BR><BR>"
 						if( isemptylist(channel.messages) )
 							dat+="<I>No feed messages found in channel...</I><BR><BR>"
 						else
-							for_no_type_check(var/datum/feed_message/MESSAGE, channel.messages)
-								dat+="-[MESSAGE.body] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR>"*/
+							for_no_type_check(var/datum/feed_message/message, channel.messages)
+								dat += "- [message.body]<BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[message.author]</FONT>\]</FONT><BR>"*/
 
 				dat += "<BR><HR><A href='byond://?src=\ref[src];refresh=1'>Refresh</A>"
 				dat += "<BR><A href='byond://?src=\ref[src];setScreen=[0]'>Back</A>"
@@ -237,7 +237,7 @@
 				dat += "<BR><BR><A href='byond://?src=\ref[src];print_paper=[0]'>Print Paper</A>"
 				dat += "<BR><A href='byond://?src=\ref[src];setScreen=[0]'>Cancel</A>"
 			if(9)
-				dat += "<B>[viewing_channel.channel_name]: </B><FONT SIZE=1>\[created by: <FONT COLOR='maroon'>[viewing_channel.author]</FONT>\]</FONT><HR>"
+				dat += "<B>[viewing_channel.channel_name]:</B><br><FONT SIZE=1>\[created by: <FONT COLOR='maroon'>[viewing_channel.author]</FONT>\]</FONT><HR>"
 				if(viewing_channel.censored)
 					dat += "<FONT COLOR='red'><B>ATTENTION: </B></FONT>This channel has been deemed as threatening to the welfare of the station, and marked with a NanoTrasen D-Notice.<BR>"
 					dat += "No further feed story additions are allowed while the D-Notice is in effect.</FONT><BR><BR>"
@@ -248,7 +248,7 @@
 						var/i = 0
 						for_no_type_check(var/datum/feed_message/message, viewing_channel.messages)
 							i++
-							dat += "-[message.body] <BR>"
+							dat += "- [message.body]<BR>"
 							if(isnotnull(message.img))
 								usr << browse_rsc(message.img, "tmp_photo[i].png")
 								dat += "<img src='tmp_photo[i].png' width = '180'><BR><BR>"
@@ -279,18 +279,18 @@
 
 				dat += "<BR><A href='byond://?src=\ref[src];setScreen=[0]'>Back</A>"
 			if(12)
-				dat += "<B>[viewing_channel.channel_name]: </B><FONT SIZE=1>\[ created by: <FONT COLOR='maroon'>[viewing_channel.author]</FONT> \]</FONT><BR>"
-				dat += "<FONT SIZE=2><A href='byond://?src=\ref[src];censor_channel_author=\ref[viewing_channel]'>[(viewing_channel.author=="\[REDACTED\]") ? ("Undo Author censorship") : ("Censor channel Author")]</A></FONT><HR>"
+				dat += "<B>[viewing_channel.channel_name]:</B><br><FONT SIZE=1>\[ created by: <FONT COLOR='maroon'>[viewing_channel.author]</FONT> \]</FONT><BR>"
+				dat += "<FONT SIZE=2><A href='byond://?src=\ref[src];censor_channel_author=\ref[viewing_channel]'>[viewing_channel.author == "\[REDACTED\]" ? "Undo Author censorship" : "Censor channel Author"]</A></FONT><HR>"
 
 				if(isemptylist(viewing_channel.messages))
 					dat += "<I>No feed messages found in channel...</I><BR>"
 				else
-					for_no_type_check(var/datum/feed_message/MESSAGE, viewing_channel.messages)
-						dat += "-[MESSAGE.body] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR>"
-						dat += "<FONT SIZE=2><A href='byond://?src=\ref[src];censor_channel_story_body=\ref[MESSAGE]'>[(MESSAGE.body == "\[REDACTED\]") ? ("Undo story censorship") : ("Censor story")]</A>  -  <A href='byond://?src=\ref[src];censor_channel_story_author=\ref[MESSAGE]'>[(MESSAGE.author == "\[REDACTED\]") ? ("Undo Author Censorship") : ("Censor message Author")]</A></FONT><BR>"
+					for_no_type_check(var/datum/feed_message/message, viewing_channel.messages)
+						dat += "- [message.body]<BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[message.author]</FONT>\]</FONT><BR>"
+						dat += "<FONT SIZE=2><A href='byond://?src=\ref[src];censor_channel_story_body=\ref[message]'>[message.body == "\[REDACTED\]" ? "Undo story censorship" : "Censor story"]</A>  -  <A href='byond://?src=\ref[src];censor_channel_story_author=\ref[message]'>[message.author == "\[REDACTED\]" ? "Undo Author Censorship" : "Censor message Author"]</A></FONT><BR>"
 				dat += "<BR><A href='byond://?src=\ref[src];setScreen=[10]'>Back</A>"
 			if(13)
-				dat += "<B>[viewing_channel.channel_name]: </B><FONT SIZE=1>\[ created by: <FONT COLOR='maroon'>[viewing_channel.author]</FONT> \]</FONT><BR>"
+				dat += "<B>[viewing_channel.channel_name]:</B><br><FONT SIZE=1>\[ created by: <FONT COLOR='maroon'>[viewing_channel.author]</FONT> \]</FONT><BR>"
 				dat += "Channel messages listed below. If you deem them dangerous to the station, you can <A href='byond://?src=\ref[src];toggle_d_notice=\ref[viewing_channel]'>Bestow a D-Notice upon the channel</A>.<HR>"
 				if(viewing_channel.censored)
 					dat += "<FONT COLOR='red'><B>ATTENTION: </B></FONT>This channel has been deemed as threatening to the welfare of the station, and marked with a NanoTrasen D-Notice.<BR>"
@@ -299,8 +299,8 @@
 					if(isemptylist(viewing_channel.messages))
 						dat += "<I>No feed messages found in channel...</I><BR>"
 					else
-						for_no_type_check(var/datum/feed_message/MESSAGE, viewing_channel.messages)
-							dat += "-[MESSAGE.body] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR>"
+						for_no_type_check(var/datum/feed_message/message, viewing_channel.messages)
+							dat += "- [message.body]<BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[message.author]</FONT>\]</FONT><BR>"
 
 				dat += "<BR><A href='byond://?src=\ref[src];setScreen=[11]'>Back</A>"
 			if(14)
@@ -743,13 +743,13 @@
 					else
 						dat += "<ul>"
 						var/i = 0
-						for_no_type_check(var/datum/feed_message/MESSAGE, C.messages)
+						for_no_type_check(var/datum/feed_message/message, C.messages)
 							i++
-							dat += "-[MESSAGE.body] <BR>"
-							if(MESSAGE.img)
-								user << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
+							dat += "- [message.body]<BR>"
+							if(message.img)
+								user << browse_rsc(message.img, "tmp_photo[i].png")
 								dat += "<img src='tmp_photo[i].png' width = '180'><BR>"
-							dat += "<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR><BR>"
+							dat += "<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[message.author]</FONT>\]</FONT><BR><BR>"
 						dat += "</ul>"
 				if(scribble_page == curr_page)
 					dat += "<BR><I>There is a small scribble near the end of this page... It reads: \"[scribble]\"</I>"

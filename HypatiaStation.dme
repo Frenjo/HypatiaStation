@@ -18,6 +18,7 @@
 #include "code\__DEFINES\_planes+layers.dm"
 #include "code\__DEFINES\access.dm"
 #include "code\__DEFINES\admin.dm"
+#include "code\__DEFINES\announcements.dm"
 #include "code\__DEFINES\chat.dm"
 #include "code\__DEFINES\chemistry.dm"
 #include "code\__DEFINES\client.dm"

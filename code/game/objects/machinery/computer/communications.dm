@@ -115,13 +115,13 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 				to_chat(usr, "You need to swipe your ID.")
 
 		if("announce")
-			if(src.authenticated == AUTH_FULL)
+			if(authenticated == AUTH_FULL)
 				if(message_cooldown)
 					return
 				var/input = stripped_input(usr, "Please choose a message to announce to the station crew.", "What?")
 				if(!input || !(usr in view(1, src)))
 					return
-				priority_announce(input, null, 'sound/misc/announce.ogg', "Captain", auth_id)
+				priority_announce(input, null, 'sound/misc/announce.ogg', ANNOUNCEMENT_TYPE_CAPTAIN, auth_id)
 				log_say("[key_name(usr)] has made a captain announcement: [input]")
 				message_admins("[key_name_admin(usr)] has made a captain announcement.", 1)
 				message_cooldown = TRUE
@@ -332,7 +332,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 						dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=MessageSyndicate'>Send an emergency message to \[UNKNOWN\]</A> \]"
 						dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=RestoreBackup'>Restore Backup Routing Data</A> \]"
 
-				dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=changeseclevel'>Change alert level</A> \]"
+				dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=changeseclevel'>Change Alert Level</A> \]"
 				if(!global.PCemergency.location())
 					if(global.PCemergency.online())
 						dat += "<BR>\[ <A href='byond://?src=\ref[src];operation=cancelshuttle'>Cancel Shuttle Call</A> \]"
@@ -526,7 +526,7 @@ GLOBAL_GLOBL_LIST_NEW(obj/machinery/computer/communications/communications_conso
 	message_admins("[key_name_admin(user)] has called the shuttle.", 1)
 	priority_announce(
 		"A crew transfer has been initiated. The shuttle has been called. It will arrive in [round(global.PCemergency.estimate_arrival_time() / 60)] minutes.",
-		null, 'sound/AI/crewtransfer2.ogg', "Priority"
+		null, 'sound/AI/crewtransfer2.ogg', ANNOUNCEMENT_TYPE_PRIORITY
 	)
 
 	return
