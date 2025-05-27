@@ -18,13 +18,12 @@
 			announcement += "<h1 class='alert'>[command_name()] Update</h1>"
 			if(title && length(title) > 0)
 				announcement += "<h2 class='alert'>[html_encode(title)]</h2>"
-			if(title == "")
 				author = "Central Command"
-				message = text
+				message = title + "<br>" + text
 				channel_name = /datum/feed_channel/command_updates::channel_name
 			else
 				author = "Central Command"
-				message = title + "<br>" + text
+				message = text
 				channel_name = /datum/feed_channel/command_updates::channel_name
 
 	announcement += "[SPAN_ALERT("[html_encode(text)]")]<br>"

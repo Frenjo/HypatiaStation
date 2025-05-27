@@ -14,7 +14,7 @@
 #define SPAN_WARNING(text)		SPAN("warning", text)
 #define SPAN_DANGER(text)		SPAN("danger", text)
 #define SPAN_ALIUM(text)		SPAN("alium", text)
-#define SPAN_RADIOACTIVE(text)	SPAN_ALIUM("<B>[text]</B>")
+#define SPAN_RADIOACTIVE(text)	SPAN("radioactive", text)
 #define SPAN_ALERT(text)		SPAN("alert", text)
 #define SPAN_ERROR(text)		SPAN("error", text)
 #define SPAN_DISARM(text)		SPAN("disarm", text)
