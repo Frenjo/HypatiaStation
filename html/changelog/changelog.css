@@ -10,18 +10,18 @@ a img {border:none;}
 	border-left:4px solid #999;
 	margin-bottom:2px;
 }
-.bugfix {background-image:url(bug-minus.png)}
-.wip {background-image:url(hard-hat-exclamation.png)}
-.tweak {background-image:url(wrench-screwdriver.png)}
-.soundadd {background-image:url(music-plus.png)}
-.sounddel {background-image:url(music-minus.png)}
-.rscdel {background-image:url(cross-circle.png)}
-.rscadd {background-image:url(tick-circle.png)}
-.imageadd {background-image:url(image-plus.png)}
-.imagedel {background-image:url(image-minus.png)}
-.spellcheck {background-image:url(spell-check.png)}
-.experiment {background-image:url(burn-exclamation.png)}
-.tgs {background-image:url(tg-notif.png)}
+.bugfix {background-image:url(icons/bug-minus.png)}
+.wip {background-image:url(icons/hard-hat-exclamation.png)}
+.tweak {background-image:url(icons/wrench-screwdriver.png)}
+.soundadd {background-image:url(icons/music-plus.png)}
+.sounddel {background-image:url(icons/music-minus.png)}
+.rscdel {background-image:url(icons/cross-circle.png)}
+.rscadd {background-image:url(icons/tick-circle.png)}
+.imageadd {background-image:url(icons/image-plus.png)}
+.imagedel {background-image:url(icons/image-minus.png)}
+.spellcheck {background-image:url(icons/spell-check.png)}
+.experiment {background-image:url(icons/burn-exclamation.png)}
+.tgs {background-image:url(icons/tg-notif.png)}
 .sansserif {font-family:Tahoma,sans-serif;font-size:12px;}
 .commit {margin-bottom:20px;font-size:100%;font-weight:normal;}
 .changes {list-style:none;margin:5px 0;padding:0 0 0 25px;font-size:0.8em;}
@@ -32,6 +32,6 @@ a img {border:none;}
 .indrop {margin:2px 0 0 0;clear:both;background:#fff;border:1px solid #ddd;padding:5px 10px;}
 .indrop p {margin:0;font-size:0.8em;line-height:16px;margin:1px 0;}
 .indrop img {margin-right:5px;vertical-align:middle;}
-.closed {background:url(chevron-expand.png) right center no-repeat;}
-.open {background:url(chevron.png) right center no-repeat;}
+.closed {background:url(icons/chevron-expand.png) right center no-repeat;}
+.open {background:url(icons/chevron.png) right center no-repeat;}
 .lic {font-size:9px;}

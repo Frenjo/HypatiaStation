@@ -30,7 +30,7 @@
 	GLOBL.diaryofmeanpeople << "[global.log_end]\n[global.log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][global.log_end]\n---------------------[global.log_end]"
 
 	// Used for telling if the changelog has changed recently.
-	GLOBL.changelog_hash = md5('html/changelog.html')
+	GLOBL.changelog_hash = md5('html/changelog/changelog.html')
 
 	call_hook(/hook/global_init)
 	del(src) // This shouldn't qdel.

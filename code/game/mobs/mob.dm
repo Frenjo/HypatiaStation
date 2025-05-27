@@ -391,7 +391,7 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 /*
 /mob/verb/help()
 	set name = "Help"
-	src << browse('html/help.html', "window=help")
+	src << browse('html/misc/help.html', "window=help")
 	return
 */
 
@@ -458,27 +458,27 @@ GLOBAL_GLOBL_LIST_INIT(slot_equipment_priority, list(
 	set name = "Changelog"
 
 	getFiles(
-		'html/postcardsmall.jpg',
-		'html/somerights20.png',
-		'html/88x31.png',
-		'html/bug-minus.png',
-		'html/cross-circle.png',
-		'html/hard-hat-exclamation.png',
-		'html/image-minus.png',
-		'html/image-plus.png',
-		'html/music-minus.png',
-		'html/music-plus.png',
-		'html/tick-circle.png',
-		'html/wrench-screwdriver.png',
-		'html/spell-check.png',
-		'html/burn-exclamation.png',
-		'html/chevron.png',
-		'html/chevron-expand.png',
-		'html/changelog.css',
-		'html/changelog.js',
-		'html/changelog.html'
+		'html/assets/postcardsmall.jpg',
+		'html/assets/somerights20.png',
+		'html/assets/88x31.png',
+		'html/changelog/icons/bug-minus.png',
+		'html/changelog/icons/cross-circle.png',
+		'html/changelog/icons/hard-hat-exclamation.png',
+		'html/changelog/icons/image-minus.png',
+		'html/changelog/icons/image-plus.png',
+		'html/changelog/icons/music-minus.png',
+		'html/changelog/icons/music-plus.png',
+		'html/changelog/icons/tick-circle.png',
+		'html/changelog/icons/wrench-screwdriver.png',
+		'html/changelog/icons/spell-check.png',
+		'html/changelog/icons/burn-exclamation.png',
+		'html/changelog/icons/chevron.png',
+		'html/changelog/icons/chevron-expand.png',
+		'html/changelog/changelog.css',
+		'html/changelog/changelog.js',
+		'html/changelog/changelog.html'
 	)
-	src << browse('html/changelog.html', "window=changes;size=675x650")
+	src << browse('html/changelog/changelog.html', "window=changes;size=675x650")
 	if(prefs.lastchangelog != GLOBL.changelog_hash)
 		prefs.lastchangelog = GLOBL.changelog_hash
 		prefs.save_preferences()
