@@ -12,7 +12,7 @@
 	var/casingtype
 	var/move_to_delay = 4 //delay for the automated movement.
 	var/list/friends = list()
-	var/vision_range = 10
+	var/vision_range = 9
 	var/break_stuff_probability = 10
 	var/destroy_surroundings = 1
 

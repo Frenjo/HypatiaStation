@@ -1,6 +1,8 @@
 /*
  * Wood
  */
+var/list/wood_icons = list("wood", "wood-broken")
+
 /turf/open/floor/wood
 	name = "wood floor"
 	icon_state = "wood"

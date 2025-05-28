@@ -27,6 +27,11 @@
 	a_intent = "harm"
 	attack_sound = 'sound/weapons/melee/bladeslice.ogg'
 
+/mob/living/simple/hostile/asteroid/basilisk/death(gibbed)
+	. = ..()
+	for(var/i = 0, i < 2, i++) // Drops some diamonds on death.
+		new /obj/item/ore/diamond(loc)
+
 /mob/living/simple/hostile/asteroid/basilisk/give_target(new_target)
 	target = new_target
 	if(isnull(target))

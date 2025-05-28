@@ -152,3 +152,93 @@
 /turf/open/floor/plating/asteroid/airless/New()
 	. = ..()
 	name = "asteroid"
+
+// Cave
+/turf/open/floor/plating/asteroid/airless/cave
+	name = "asteroid cave"
+
+	var/length = 100
+	var/alist/mob_spawn_list = alist(
+		/mob/living/simple/hostile/asteroid/goliath = 5,
+		/mob/living/simple/hostile/asteroid/basilisk = 1
+	)
+	var/sanity = TRUE
+
+/turf/open/floor/plating/asteroid/airless/cave/New(loc, new_length = null, go_backwards = TRUE, exclude_dir = -1)
+	// If new_length (arg2) isn't defined, get a random length; otherwise assign our length to the length arg.
+	if(isnull(new_length))
+		length = rand(25, 50)
+	else
+		length = new_length
+
+	// Get our directions.
+	var/forward_cave_dir = pick(GLOBL.alldirs - exclude_dir)
+	// Get the opposite direction of our facing direction.
+	var/backward_cave_dir = angle2dir(dir2angle(forward_cave_dir) + 180)
+
+	// Make our tunnels.
+	make_tunnel(forward_cave_dir)
+	if(go_backwards)
+		make_tunnel(backward_cave_dir)
+	// Kill ourselves by replacing ourselves with a normal floor.
+	spawn_floor(src)
+	. = ..()
+
+/turf/open/floor/plating/asteroid/airless/cave/proc/make_tunnel(target_dir)
+	var/turf/closed/rock/tunnel = src
+	var/next_angle = pick(45, -45)
+
+	for(var/i = 0; i < length; i++)
+		if(!sanity)
+			break
+
+		var/list/L = list(45)
+		if(IsOdd(dir2angle(target_dir))) // We're going at an angle and we want thick angled tunnels.
+			L += -45
+
+		// Expand the edges of our tunnel
+		for(var/edge_angle in L)
+			var/turf/closed/rock/edge = get_step(tunnel, angle2dir(dir2angle(target_dir) + edge_angle))
+			if(istype(edge))
+				spawn_floor(edge)
+
+		// Move our tunnel forward
+		tunnel = get_step(tunnel, target_dir)
+
+		if(istype(tunnel))
+			// Small chance to have forks in our tunnel; otherwise dig our tunnel.
+			if(i > 3 && prob(20))
+				new type(tunnel, rand(10, 15), 0, target_dir)
+			else
+				spawn_floor(tunnel)
+		else // We hit space/normal/wall, stop our tunnel.
+			break
+
+		// Chance to change our direction left or right.
+		if(i > 2 && prob(33))
+			// We can't go a full loop though
+			next_angle = -next_angle
+			target_dir = angle2dir(dir2angle(target_dir) + next_angle)
+
+/turf/open/floor/plating/asteroid/airless/cave/proc/spawn_floor(turf/T)
+	for(var/turf/S in range(1, T))
+		if(isspace(S) || istype(S.loc, /area/external/asteroid/mine/explored))
+			sanity = FALSE
+			break
+	if(!sanity)
+		return
+
+	var/turf/open/floor/plating/asteroid/airless/new_turf = T.ChangeTurf(/turf/open/floor/plating/asteroid/airless)
+	spawn_monster(new_turf)
+
+/turf/open/floor/plating/asteroid/airless/cave/proc/spawn_monster(turf/T)
+	if(!prob(2))
+		return
+	if(istype(loc, /area/external/asteroid/mine/explored))
+		return
+	for_no_type_check(var/atom/A, range(7, T)) // Lowers the chance of mob clumps.
+		if(istype(A, /mob/living/simple/hostile/asteroid))
+			return
+
+	var/monster_type = pickweight(mob_spawn_list)
+	new monster_type(T)

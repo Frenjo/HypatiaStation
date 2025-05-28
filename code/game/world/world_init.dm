@@ -36,9 +36,12 @@
 
 	. = ..()
 
-	// Load an away mission and set up the mining asteroid's secrets.
+	// Loads an away mission.
 	createRandomZlevel()
-	for(var/i = 0, i < GLOBL.max_secret_rooms, i++)
+	// Sets up the mining asteroid's caves and secret rooms.
+	for(var/i = 0, i < GLOBL.max_asteroid_caves, i++)
+		make_mining_asteroid_cave()
+	for(var/i = 0, i < GLOBL.max_asteroid_secret_rooms, i++)
 		make_mining_asteroid_secret()
 	WAIT_FOR_BACKLOG
 

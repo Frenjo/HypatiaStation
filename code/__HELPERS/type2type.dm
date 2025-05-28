@@ -146,9 +146,13 @@
 			return 10
 	return
 
-//Converts an angle (degrees) into an ss13 direction
+// Converts an angle (degrees) into an ss13 direction.
 /proc/angle2dir(degree)
-	degree = ((degree + 22.5) % 365)
+	// Will filter out extra rotations and negative rotations
+	// E.g: 540 becomes 180. -180 becomes 180.
+	// Thanks to Flexicode for the formula.
+	degree = ((degree % 360 + 22.5) + 360) % 365
+
 	if(degree < 45)
 		return NORTH
 	if(degree < 90)

@@ -24,6 +24,11 @@
 
 	var/tentacle_recharge = 0
 
+/mob/living/simple/hostile/asteroid/goliath/death(gibbed)
+	. = ..()
+	// Drops some hide plates on death.
+	new /obj/item/stack/goliath_hide(loc)
+
 /mob/living/simple/hostile/asteroid/goliath/OpenFire()
 	tentacle_recharge--
 	if(tentacle_recharge <= 0)
@@ -66,3 +71,10 @@
 		var/turf/T = get_step(src, spawn_dir)
 		new /obj/effect/goliath_tentacle(T)
 	. = ..()
+
+// Hide
+/obj/item/stack/goliath_hide
+	name = "goliath hide plates"
+	desc = "Pieces of a goliath's rocky hide, these might be able to make something a bit more durable to attack from the local fauna."
+	icon = 'icons/obj/items/stacks/mining.dmi'
+	icon_state = "goliath_hide"
