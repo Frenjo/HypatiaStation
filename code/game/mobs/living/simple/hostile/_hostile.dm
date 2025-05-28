@@ -3,7 +3,7 @@
 	stop_automated_movement_when_pulled = FALSE
 
 	var/stance = HOSTILE_STANCE_IDLE	//Used to determine behavior
-	var/mob/living/target_mob
+	var/atom/target
 	var/attack_same = 0
 	var/ranged = 0
 	var/rapid = 0
@@ -64,50 +64,58 @@
 /mob/living/simple/hostile/proc/Found(atom/A)
 	return
 
+/mob/living/simple/hostile/proc/give_target(new_target)
+	target = new_target
+	if(isnotnull(target))
+		stance = HOSTILE_STANCE_ATTACK
+
+/mob/living/simple/hostile/proc/go_to(the_target, delay)
+	walk_to(src, the_target, 1, delay)
+
 /mob/living/simple/hostile/proc/MoveToTarget()
 	stop_automated_movement = 1
-	if(!target_mob || !can_attack(target_mob))
+	if(isnull(target) || !can_attack(target))
 		stance = HOSTILE_STANCE_IDLE
-	if(target_mob in list_targets())
+	if(target in list_targets())
 		if(ranged)
-			if(get_dist(src, target_mob) <= 6)
-				OpenFire(target_mob)
+			if(get_dist(src, target) <= 6)
+				OpenFire(target)
 			else
-				walk_to(src, target_mob, 1, move_to_delay)
+				walk_to(src, target, 1, move_to_delay)
 		else
 			stance = HOSTILE_STANCE_ATTACKING
-			walk_to(src, target_mob, 1, move_to_delay)
+			walk_to(src, target, 1, move_to_delay)
 
 /mob/living/simple/hostile/proc/AttackTarget()
 	stop_automated_movement = 1
-	if(!target_mob || !can_attack(target_mob))
+	if(isnull(target) || !can_attack(target))
 		LoseTarget()
 		return 0
-	if(!(target_mob in list_targets()))
+	if(!(target in list_targets()))
 		LostTarget()
 		return 0
-	if(get_dist(src, target_mob) <= 1)	//Attacking
+	if(get_dist(src, target) <= 1)	//Attacking
 		AttackingTarget()
 		return 1
 
 /mob/living/simple/hostile/proc/AttackingTarget()
-	if(!Adjacent(target_mob))
+	if(!Adjacent(target))
 		return
-	if(isliving(target_mob))
-		var/mob/living/L = target_mob
+	if(isliving(target))
+		var/mob/living/L = target
 		L.attack_animal(src)
 		return L
-	if(ismecha(target_mob))
-		var/obj/mecha/M = target_mob
+	if(ismecha(target))
+		var/obj/mecha/M = target
 		M.attack_animal(src)
 		return M
-	if(istype(target_mob,/obj/machinery/bot))
-		var/obj/machinery/bot/B = target_mob
+	if(istype(target, /obj/machinery/bot))
+		var/obj/machinery/bot/B = target
 		B.attack_animal(src)
 
 /mob/living/simple/hostile/proc/LoseTarget()
 	stance = HOSTILE_STANCE_IDLE
-	target_mob = null
+	target = null
 	walk(src, 0)
 
 /mob/living/simple/hostile/proc/LostTarget()
@@ -127,7 +135,7 @@
 	return L
 
 /mob/living/simple/hostile/Die()
-	..()
+	. = ..()
 	walk(src, 0)
 
 /mob/living/simple/hostile/Life()
@@ -141,7 +149,7 @@
 	if(!stat)
 		switch(stance)
 			if(HOSTILE_STANCE_IDLE)
-				target_mob = FindTarget()
+				target = FindTarget()
 
 			if(HOSTILE_STANCE_ATTACK)
 				if(destroy_surroundings)

@@ -97,10 +97,10 @@
 
 /mob/living/simple/hostile/panther/AttackTarget()
 	..()
-	if(stance == HOSTILE_STANCE_ATTACKING && get_dist(src, target_mob))
+	if(stance == HOSTILE_STANCE_ATTACKING && get_dist(src, target))
 		stalk_tick_delay -= 1
 		if(stalk_tick_delay <= 0)
-			forceMove(get_step_towards(src, target_mob))
+			forceMove(get_step_towards(src, target))
 			stalk_tick_delay = 3
 
 //*******//
@@ -153,8 +153,8 @@
 
 /mob/living/simple/hostile/snake/AttackTarget()
 	..()
-	if(stance == HOSTILE_STANCE_ATTACKING && get_dist(src, target_mob))
+	if(stance == HOSTILE_STANCE_ATTACKING && get_dist(src, target))
 		stalk_tick_delay -= 1
 		if(stalk_tick_delay <= 0)
-			forceMove(get_step_towards(src, target_mob))
+			forceMove(get_step_towards(src, target))
 			stalk_tick_delay = 3

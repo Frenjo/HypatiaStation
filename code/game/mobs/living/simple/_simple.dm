@@ -343,7 +343,7 @@
 	if(ismecha(target_atom))
 		var/obj/mecha/M = target_atom
 		if(isnotnull(M.occupant))
-			return FALSE
+			return TRUE
 	return TRUE
 
 //Call when target overlay should be added/removed
