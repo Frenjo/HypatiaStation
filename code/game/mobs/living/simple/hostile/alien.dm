@@ -19,14 +19,10 @@
 	attacktext = "slashes"
 	a_intent = "harm"
 	attack_sound = 'sound/weapons/melee/bladeslice.ogg'
+
 	min_oxy = 0
-	max_oxy = 0
-	min_tox = 0
 	max_tox = 0
-	min_co2 = 0
 	max_co2 = 0
-	min_n2 = 0
-	max_n2 = 0
 	unsuitable_atoms_damage = 15
 	faction = "alien"
 	wall_smash = 1

@@ -31,7 +31,7 @@
 					M.splat()
 					emote(pick("\red splats the [M]!","\red toys with the [M]","worries the [M]"))
 					movement_target = null
-					stop_automated_movement = 0
+					stop_automated_movement = FALSE
 					break
 
 	..()
@@ -48,16 +48,16 @@
 			turns_since_scan = 0
 			if((movement_target) && !(isturf(movement_target.loc) || ishuman(movement_target.loc) ))
 				movement_target = null
-				stop_automated_movement = 0
+				stop_automated_movement = FALSE
 			if(!movement_target || !(movement_target.loc in oview(src, 3)))
 				movement_target = null
-				stop_automated_movement = 0
+				stop_automated_movement = FALSE
 				for(var/mob/living/simple/mouse/snack in oview(src, 3))
 					if(isturf(snack.loc) && !snack.stat)
 						movement_target = snack
 						break
 			if(movement_target)
-				stop_automated_movement = 1
+				stop_automated_movement = TRUE
 				walk_to(src,movement_target, 0, 3)
 
 //RUNTIME IS ALIVE! SQUEEEEEEEE~

@@ -15,7 +15,7 @@
 			stance = HOSTILE_STANCE_ATTACK
 			return A
 
-/mob/living/simple/hostile/retaliate/ListTargets()
+/mob/living/simple/hostile/retaliate/list_targets()
 	if(!length(enemies))
 		return list()
 	var/list/see = ..()
@@ -23,7 +23,7 @@
 	return see
 
 /mob/living/simple/hostile/retaliate/proc/Retaliate()
-	var/list/around = view(src, 7)
+	var/list/around = view(src, vision_range)
 
 	for(var/atom/movable/A in around)
 		if(A == src)

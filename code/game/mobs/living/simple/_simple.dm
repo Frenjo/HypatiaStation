@@ -20,9 +20,9 @@
 
 	var/meat_amount = 0
 	var/meat_type
-	var/stop_automated_movement = 0 //Use this to temporarely stop random movement or to if you write special movement code for animals.
-	var/wander = 1	// Does the mob wander around when idle?
-	var/stop_automated_movement_when_pulled = 1 //When set to 1 this stops the animal from moving when someone is pulling it.
+	var/stop_automated_movement = FALSE // Use this to temporarily stop random movement or to if you write special movement code for animals.
+	var/wander = TRUE // Does the mob wander around when idle?
+	var/stop_automated_movement_when_pulled = TRUE //When set to TRUE this stops the animal from moving when someone is pulling it.
 
 	//Interaction
 	var/response_help	= "tries to help"
@@ -36,9 +36,12 @@
 	var/heat_damage_per_tick = 3	//amount of damage applied if animal's body temperature is higher than maxbodytemp
 	var/cold_damage_per_tick = 2	//same as heat_damage_per_tick, only if the bodytemperature it's lower than minbodytemp
 
-	//Atmos effect - Yes, you can make creatures that require plasma or co2 to survive. N2O is a trace gas and handled separately, hence why it isn't here. It'd be hard to add it. Hard and me don't mix (Yes, yes make all the dick jokes you want with that.) - Errorage
+	// Atmos effect - Yes, you can make creatures that require plasma or co2 to survive.
+	// N2O is a trace gas and handled separately, hence why it isn't here. It'd be hard to add it.
+	// Hard and me don't mix (Yes, yes make all the dick jokes you want with that.) - Errorage
+	// Leaving something at 0 means it's off - has no maximum
 	var/min_oxy = 5
-	var/max_oxy = 0					//Leaving something at 0 means it's off - has no maximum
+	var/max_oxy = 0
 	var/min_tox = 0
 	var/max_tox = 1
 	var/min_co2 = 0
@@ -48,7 +51,6 @@
 	var/unsuitable_atoms_damage = 2	//This damage is taken when atmos doesn't fit all the requirements above
 
 	var/speed = 0 //LETS SEE IF I CAN SET SPEEDS FOR SIMPLE MOBS WITHOUT DESTROYING EVERYTHING. Higher speed is slower, negative speed is faster
-
 
 	//LETTING SIMPLE ANIMALS ATTACK? WHAT COULD GO WRONG. Defaults to zero so Ian can still be cuddly
 	melee_damage_lower = 0
@@ -331,18 +333,16 @@
 /mob/living/simple/adjustBruteLoss(damage)
 	health = clamp(health - damage, 0, maxHealth)
 
-/mob/living/simple/proc/SA_attackable(target_mob)
-	if(isliving(target_mob))
-		var/mob/living/L = target_mob
-		if(!L.stat && L.health >= 0)
+/mob/living/simple/proc/can_attack(atom/target_atom)
+	if(see_invisible < target_atom.invisibility)
+		return FALSE
+	if(isliving(target_atom))
+		var/mob/living/L = target_atom
+		if(L.stat != CONSCIOUS)
 			return FALSE
-	if(ismecha(target_mob))
-		var/obj/mecha/M = target_mob
+	if(ismecha(target_atom))
+		var/obj/mecha/M = target_atom
 		if(isnotnull(M.occupant))
-			return FALSE
-	if(istype(target_mob, /obj/machinery/bot))
-		var/obj/machinery/bot/B = target_mob
-		if(B.health > 0)
 			return FALSE
 	return TRUE
 

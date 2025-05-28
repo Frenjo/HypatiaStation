@@ -10,7 +10,7 @@
 	response_disarm = "shoves"
 	response_harm = "hits the"
 	speed = 4
-	stop_automated_movement_when_pulled = 0
+	stop_automated_movement_when_pulled = FALSE
 	maxHealth = 100
 	health = 100
 
@@ -21,18 +21,14 @@
 	attack_sound = 'sound/weapons/melee/bladeslice.ogg'
 
 	min_oxy = 5
-	max_oxy = 0
-	min_tox = 0
 	max_tox = 1
-	min_co2 = 0
 	max_co2 = 5
-	min_n2 = 0
-	max_n2 = 0
 	unsuitable_atoms_damage = 15
-	var/corpse = /obj/effect/landmark/mobcorpse/pirate
-	var/weapon1 = /obj/item/melee/energy/sword/pirate
 
 	faction = "pirate"
+
+	var/corpse = /obj/effect/landmark/mobcorpse/pirate
+	var/weapon1 = /obj/item/melee/energy/sword/pirate
 
 /mob/living/simple/hostile/pirate/ranged
 	name = "Pirate Gunner"

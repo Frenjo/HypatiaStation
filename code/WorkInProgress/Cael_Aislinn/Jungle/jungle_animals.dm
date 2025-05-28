@@ -63,7 +63,7 @@
 	response_help = "pets the"
 	response_disarm = "gently pushes aside the"
 	response_harm = "hits the"
-	stop_automated_movement_when_pulled = 0
+	stop_automated_movement_when_pulled = FALSE
 	maxHealth = 50
 	health = 50
 
@@ -76,9 +76,9 @@
 	layer = 3.1		//so they can stay hidde under the /obj/structure/bush
 	var/stalk_tick_delay = 3
 
-/mob/living/simple/hostile/panther/ListTargets()
+/mob/living/simple/hostile/panther/list_targets()
 	var/list/targets = list()
-	for(var/mob/living/carbon/human/H in view(src, 10))
+	for(var/mob/living/carbon/human/H in view(src, vision_range))
 		targets += H
 	return targets
 
@@ -121,7 +121,7 @@
 	response_help = "pets the"
 	response_disarm = "gently pushes aside the"
 	response_harm = "hits the"
-	stop_automated_movement_when_pulled = 0
+	stop_automated_movement_when_pulled = FALSE
 	maxHealth = 25
 	health = 25
 
@@ -134,9 +134,9 @@
 	layer = 3.1		//so they can stay hidde under the /obj/structure/bush
 	var/stalk_tick_delay = 3
 
-/mob/living/simple/hostile/snake/ListTargets()
+/mob/living/simple/hostile/snake/list_targets()
 	var/list/targets = list()
-	for(var/mob/living/carbon/human/H in view(src, 10))
+	for(var/mob/living/carbon/human/H in view(src, vision_range))
 		targets += H
 	return targets
 

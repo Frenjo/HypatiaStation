@@ -1,5 +1,4 @@
 /mob/living/simple/spiderbot
-
 	min_oxy = 0
 	max_tox = 0
 	max_co2 = 0
@@ -7,20 +6,13 @@
 	maxbodytemp = 500
 	pass_flags = PASS_FLAG_TABLE // Pass through tables!
 
-	var/obj/item/radio/borg/radio = null
-	var/mob/living/silicon/ai/connected_ai = null
-	var/obj/item/cell/cell = null
-	var/obj/machinery/camera/camera = null
-	var/obj/item/mmi/mmi = null
-	var/list/req_access = list(ACCESS_ROBOTICS) //Access needed to pop out the brain.
-
 	name = "Spider-bot"
 	desc = "A skittering robotic friend!"
 	icon = 'icons/mob/silicon/robot/spiderbot.dmi'
 	icon_state = "spiderbot-chassis"
 	icon_living = "spiderbot-chassis"
 	icon_dead = "spiderbot-smashed"
-	wander = 0
+	wander = FALSE
 
 	health = 10
 	maxHealth = 10
@@ -34,13 +26,21 @@
 	response_disarm = "shoos"
 	response_harm   = "stomps on"
 
-	var/obj/item/held_item = null //Storage for single item they can hold.
-	var/emagged = 0               //IS WE EXPLODEN?
-	var/syndie = 0                //IS WE SYNDICAT? (currently unused)
 	speed = -1                    //Spiderbots gotta go fast.
 	//pass_flags = PASS_FLAG_TABLE      //Maybe griefy?
 	small = 1
 	speak_emote = list("beeps","clicks","chirps")
+
+	var/obj/item/radio/borg/radio = null
+	var/mob/living/silicon/ai/connected_ai = null
+	var/obj/item/cell/cell = null
+	var/obj/machinery/camera/camera = null
+	var/obj/item/mmi/mmi = null
+	var/list/req_access = list(ACCESS_ROBOTICS) //Access needed to pop out the brain.
+
+	var/obj/item/held_item = null //Storage for single item they can hold.
+	var/emagged = 0               //IS WE EXPLODEN?
+	var/syndie = 0                //IS WE SYNDICAT? (currently unused)
 
 /mob/living/simple/spiderbot/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(emagged)

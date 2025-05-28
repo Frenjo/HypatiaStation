@@ -39,11 +39,11 @@
 	pass_flags = PASS_FLAG_TABLE
 	speed = 5
 	a_intent = "harm"
-	stop_automated_movement = 1
+	stop_automated_movement = TRUE
 	status_flags = CANPUSH
 	attacktext = "nips"
 	friendly = "prods"
-	wander = 0
+	wander = FALSE
 
 	var/used_dominate
 	var/chemicals = 10						// Chemicals used for reproduction and spitting neurotoxin.

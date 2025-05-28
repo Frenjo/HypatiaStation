@@ -10,19 +10,15 @@
 	icon_dead = "shade_dead"
 	speed = -1
 	a_intent = "harm"
-	stop_automated_movement = 1
+	stop_automated_movement = TRUE
 	status_flags = CANPUSH
 	universal_speak = 0
 	universal_understand = 1
 	attack_sound = 'sound/weapons/melee/punch1.ogg'
+
 	min_oxy = 0
-	max_oxy = 0
-	min_tox = 0
 	max_tox = 0
-	min_co2 = 0
 	max_co2 = 0
-	min_n2 = 0
-	max_n2 = 0
 	minbodytemp = 0
 	faction = "cult"
 

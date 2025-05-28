@@ -24,13 +24,8 @@
 	attack_sound = 'sound/weapons/melee/bite.ogg'
 
 	min_oxy = 0
-	max_oxy = 0
-	min_tox = 0
 	max_tox = 0
-	min_co2 = 0
 	max_co2 = 0
-	min_n2 = 0
-	max_n2 = 0
 	minbodytemp = 0
 
 	faction = "mimic"
@@ -55,8 +50,8 @@
 
 	attacktext = "bites"
 
-	stop_automated_movement = 1
-	wander = 0
+	stop_automated_movement = TRUE
+	wander = FALSE
 	var/attempt_open = 0
 
 // Pickup loot
@@ -72,10 +67,10 @@
 	else
 		icon_state = initial(icon_state)
 
-/mob/living/simple/hostile/mimic/crate/ListTargets()
+/mob/living/simple/hostile/mimic/crate/list_targets()
 	if(attempt_open)
 		return ..()
-	return view(src, 1)
+	return ..(1)
 
 /mob/living/simple/hostile/mimic/crate/FindTarget()
 	. = ..()
@@ -144,7 +139,7 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 		mover.forceMove(T)
 	..()
 
-/mob/living/simple/hostile/mimic/copy/ListTargets()
+/mob/living/simple/hostile/mimic/copy/list_targets()
 	// Return a list of targets that isn't the creator
 	. = ..()
 	return . - creator

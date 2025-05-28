@@ -16,13 +16,22 @@
 	speak = list("ALERT.", "Hostile-ile-ile entities dee-twhoooo-wected.", "Threat parameterszzzz- szzet.", "Bring sub-sub-sub-systems uuuup to combat alert alpha-a-a.")
 	emote_see = list("beeps menacingly", "whirrs threateningly", "scans its immediate vicinity")
 	a_intent = "harm"
-	stop_automated_movement_when_pulled = 0
+	stop_automated_movement_when_pulled = FALSE
 	health = 300
 	maxHealth = 300
 	speed = 8
 	projectiletype = /obj/item/projectile/energy/beam/laser/drone
 	projectilesound = 'sound/weapons/gun/laser3.ogg'
 	destroy_surroundings = 0
+
+	// Drones aren't affected by atmos.
+	min_oxy = 0
+	max_tox = 0
+	max_co2 = 0
+	minbodytemp = 0
+
+	faction = "malf_drone"
+
 	var/datum/effect/system/ion_trail_follow/ion_trail
 
 	//the drone randomly switches between these states because it's malfunctioning
@@ -35,19 +44,7 @@
 	var/disabled = 0
 	var/exploding = 0
 
-	//Drones aren't affected by atmos.
-	min_oxy = 0
-	max_oxy = 0
-	min_tox = 0
-	max_tox = 0
-	min_co2 = 0
-	max_co2 = 0
-	min_n2 = 0
-	max_n2 = 0
-	minbodytemp = 0
-
 	var/has_loot = 1
-	faction = "malf_drone"
 
 /mob/living/simple/hostile/retaliate/malf_drone/New()
 	..()
@@ -61,11 +58,14 @@
 /mob/living/simple/hostile/retaliate/malf_drone/Process_Spacemove(check_drift = 0)
 	return 1
 
-/mob/living/simple/hostile/retaliate/malf_drone/ListTargets()
+/*
+// This did literally exactly the same thing as the new parent proc does.
+/mob/living/simple/hostile/retaliate/malf_drone/list_targets()
 	if(hostile_drone)
 		return view(src, 10)
 	else
 		return ..()
+*/
 
 //self repair systems have a chance to bring the drone back to life
 /mob/living/simple/hostile/retaliate/malf_drone/Life()
@@ -74,12 +74,12 @@
 		stat = UNCONSCIOUS
 		icon_state = "drone_dead"
 		disabled--
-		wander = 0
+		wander = FALSE
 		speak_chance = 0
 		if(disabled <= 0)
 			stat = CONSCIOUS
 			icon_state = "drone0"
-			wander = 1
+			wander = TRUE
 			speak_chance = 5
 
 	//repair a bit of damage
@@ -135,7 +135,7 @@
 	if(!exploding && !disabled && prob(explode_chance))
 		exploding = 1
 		stat = UNCONSCIOUS
-		wander = 1
+		wander = TRUE
 		walk(src,0)
 		spawn(rand(50, 150))
 			if(!disabled && exploding)

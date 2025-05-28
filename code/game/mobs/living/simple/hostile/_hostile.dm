@@ -1,5 +1,7 @@
 /mob/living/simple/hostile
 	faction = "hostile"
+	stop_automated_movement_when_pulled = FALSE
+
 	var/stance = HOSTILE_STANCE_IDLE	//Used to determine behavior
 	var/mob/living/target_mob
 	var/attack_same = 0
@@ -10,15 +12,25 @@
 	var/casingtype
 	var/move_to_delay = 4 //delay for the automated movement.
 	var/list/friends = list()
+	var/vision_range = 10
 	var/break_stuff_probability = 10
-	stop_automated_movement_when_pulled = 0
 	var/destroy_surroundings = 1
+
+/mob/living/simple/hostile/can_attack(atom/target_atom)
+	if(!..())
+		return FALSE
+	if(isliving(target_atom))
+		var/mob/living/L = target_atom
+		if(L.faction == faction && !attack_same)
+			return FALSE
+		else if(L in friends)
+			return FALSE
+	return TRUE
 
 /mob/living/simple/hostile/proc/FindTarget()
 	var/atom/T = null
-	stop_automated_movement = 0
-	for(var/atom/A in ListTargets(10))
-
+	stop_automated_movement = FALSE
+	for(var/atom/A in list_targets())
 		if(A == src)
 			continue
 
@@ -27,17 +39,12 @@
 			T = F
 			break
 
+		if(!can_attack(A))
+			continue
+
 		if(isliving(A))
-			var/mob/living/L = A
-			if(L.faction == src.faction && !attack_same)
-				continue
-			else if(L in friends)
-				continue
-			else
-				if(!L.stat)
-					stance = HOSTILE_STANCE_ATTACK
-					T = L
-					break
+			T = A
+			break
 
 		else if(ismecha(A)) // Our line of sight stuff was already done in ListTargets().
 			var/obj/mecha/M = A
@@ -54,15 +61,14 @@
 				break
 	return T
 
-
 /mob/living/simple/hostile/proc/Found(atom/A)
 	return
 
 /mob/living/simple/hostile/proc/MoveToTarget()
 	stop_automated_movement = 1
-	if(!target_mob || SA_attackable(target_mob))
+	if(!target_mob || !can_attack(target_mob))
 		stance = HOSTILE_STANCE_IDLE
-	if(target_mob in ListTargets(10))
+	if(target_mob in list_targets())
 		if(ranged)
 			if(get_dist(src, target_mob) <= 6)
 				OpenFire(target_mob)
@@ -74,10 +80,10 @@
 
 /mob/living/simple/hostile/proc/AttackTarget()
 	stop_automated_movement = 1
-	if(!target_mob || SA_attackable(target_mob))
+	if(!target_mob || !can_attack(target_mob))
 		LoseTarget()
 		return 0
-	if(!(target_mob in ListTargets(10)))
+	if(!(target_mob in list_targets()))
 		LostTarget()
 		return 0
 	if(get_dist(src, target_mob) <= 1)	//Attacking
@@ -108,10 +114,16 @@
 	stance = HOSTILE_STANCE_IDLE
 	walk(src, 0)
 
+/mob/living/simple/hostile/proc/list_targets(override = -1)
+	// Allows you to override how much the mob can see. Defaults to vision_range if none is entered.
+	if(override == -1)
+		override = vision_range
 
-/mob/living/simple/hostile/proc/ListTargets(dist = 7)
-	var/list/L = hearers(src, dist)
-	L += GLOBL.mechas_list
+	var/list/L = hearers(src, override)
+	for_no_type_check(var/obj/mecha/M, GLOBL.mechas_list)
+		// Will check the distance before checking the line of sight, if the distance is small enough.
+		if(get_dist(M, src) <= override && can_see(src, M, override))
+			L.Add(M)
 	return L
 
 /mob/living/simple/hostile/Die()
