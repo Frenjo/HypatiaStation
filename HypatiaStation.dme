@@ -1209,6 +1209,7 @@
 #include "code\game\turfs\closed\_closed.dm"
 #include "code\game\turfs\closed\rock\_rock.dm"
 #include "code\game\turfs\closed\rock\prefab.dm"
+#include "code\game\turfs\closed\rock\rock_attack.dm"
 #include "code\game\turfs\closed\wall\_wall.dm"
 #include "code\game\turfs\closed\wall\wall_act.dm"
 #include "code\game\turfs\closed\wall\wall_attack.dm"

@@ -136,10 +136,9 @@
 		overlays.Add(image('icons/turf/walls/rocks_ores.dmi', "rock_side_w", layer = 6))
 
 /turf/open/floor/plating/asteroid/proc/full_update_mineral_overlays()
-	var/turf/open/floor/plating/asteroid/A
 	for(var/direction in GLOBL.alldirs)
-		if(istype(get_step(src, direction), /turf/open/floor/plating/asteroid))
-			A = get_step(src, direction)
+		var/turf/open/floor/plating/asteroid/A = get_step(src, direction)
+		if(istype(A))
 			A.update_mineral_overlays()
 	update_mineral_overlays()
 
@@ -228,8 +227,8 @@
 	if(!sanity)
 		return
 
-	var/turf/open/floor/plating/asteroid/airless/new_turf = T.ChangeTurf(/turf/open/floor/plating/asteroid/airless)
-	spawn_monster(new_turf)
+	spawn_monster(T)
+	T.ChangeTurf(/turf/open/floor/plating/asteroid/airless)
 
 /turf/open/floor/plating/asteroid/airless/cave/proc/spawn_monster(turf/T)
 	if(!prob(2))
