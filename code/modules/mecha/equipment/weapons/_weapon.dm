@@ -3,6 +3,8 @@
 	range = RANGED
 	origin_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 3)
 
+	mecha_flags = MECHA_FLAG_COMBAT
+
 	destruction_sound = 'sound/mecha/voice/weapdestr.ogg'
 
 	var/projectile //Type of projectile fired.

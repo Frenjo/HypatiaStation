@@ -20,6 +20,8 @@
 
 	wreckage = /obj/structure/mecha_wreckage/marauder
 
+	mecha_flag = MECHA_FLAG_MARAUDER
+
 	max_equip = 4
 
 	var/zoom = 0

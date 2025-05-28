@@ -16,15 +16,15 @@
 
 	wreckage = /obj/structure/mecha_wreckage/honk
 
-	var/squeak = FALSE
-
-/obj/mecha/combat/honk/New()
-	. = ..()
-	excluded_equipment.Add(
+	mecha_flag = MECHA_FLAG_HONK
+	excluded_equipment = list(
 		/obj/item/mecha_equipment/melee_armour_booster,
 		/obj/item/mecha_equipment/melee_defence_shocker,
-		/obj/item/mecha_equipment/ranged_armour_booster
+		/obj/item/mecha_equipment/ranged_armour_booster,
+		/obj/item/mecha_equipment/emp_insulation
 	)
+
+	var/squeak = FALSE
 
 /obj/mecha/combat/honk/melee_action(target)
 	if(!melee_can_hit)

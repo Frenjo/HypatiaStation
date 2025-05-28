@@ -16,6 +16,8 @@
 
 	wreckage = /obj/structure/mecha_wreckage/hoverpod
 
+	mecha_flag = MECHA_FLAG_HOVERPOD
+
 	var/initial_pixel_y
 
 	var/datum/effect/system/ion_trail_follow/ion_trail
@@ -96,11 +98,12 @@
 
 	max_equip = 2
 
+	mecha_flag = MECHA_FLAG_COMBAT_HOVERPOD
+
 	cargo_capacity = 2
 
 /obj/mecha/working/hoverpod/combat/New()
 	. = ..()
-	excluded_equipment.Remove(/obj/item/mecha_equipment/weapon)
 	var/obj/item/mecha_equipment/ME = new /obj/item/mecha_equipment/weapon/energy/laser(src)
 	ME.attach(src)
 	ME = new /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack(src)

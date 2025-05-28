@@ -5,14 +5,12 @@
 	icon_state = "mrcd"
 	matter_amounts = /datum/design/mechfab/equipment/working/mrcd::materials
 	origin_tech = /datum/design/mechfab/equipment/working/mrcd::req_tech
+
+	mecha_flags = MECHA_FLAG_RETICENCE
+
 	equip_cooldown = 1 SECOND
 	energy_drain = 250
 	range = MELEE | RANGED
-
-/obj/item/mecha_equipment/tool/mimercd/can_attach(obj/mecha/combat/reticence/M)
-	if(!istype(M))
-		return FALSE
-	return ..()
 
 /obj/item/mecha_equipment/tool/mimercd/action(atom/target)
 	if(!..())

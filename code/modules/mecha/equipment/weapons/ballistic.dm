@@ -25,6 +25,9 @@
 /obj/item/mecha_equipment/weapon/ballistic/lmg
 	name = "\improper Ultra AC 2"
 	icon_state = "uac2"
+	matter_amounts = /datum/design/mechfab/equipment/weapon/lmg::materials
+	origin_tech = /datum/design/mechfab/equipment/weapon/lmg::req_tech
+
 	equip_cooldown = 1 SECOND
 	projectile = /obj/item/projectile/bullet/weakbullet
 	fire_sound = 'sound/weapons/gun/gunshot.ogg'
@@ -40,6 +43,7 @@
 	icon_state = "scatter"
 	matter_amounts = /datum/design/mechfab/equipment/weapon/scattershot::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/scattershot::req_tech
+
 	equip_cooldown = 2 SECONDS
 	projectile = /obj/item/projectile/bullet/midbullet
 	fire_sound = 'sound/weapons/gun/gunshot.ogg'
@@ -90,6 +94,7 @@
 	icon_state = "grenadelnchr"
 	matter_amounts = /datum/design/mechfab/equipment/weapon/grenade_launcher::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/grenade_launcher::req_tech
+
 	projectile = /obj/item/grenade/flashbang
 	fire_sound = 'sound/effects/bang.ogg'
 	projectiles = 6
@@ -122,6 +127,10 @@
 /obj/item/mecha_equipment/weapon/ballistic/launcher/banana_mortar
 	name = "banana mortar"
 	icon_state = "bananamrtr"
+	matter_amounts = /datum/design/mechfab/equipment/weapon/banana_mortar::materials
+	origin_tech = /datum/design/mechfab/equipment/weapon/banana_mortar::req_tech
+
+	mecha_flags = MECHA_FLAG_HONK
 
 	projectile = /obj/item/bananapeel
 	fire_sound = 'sound/items/bikehorn.ogg'
@@ -130,14 +139,12 @@
 	projectile_energy_cost = 100
 	equip_cooldown = 2 SECONDS
 
-/obj/item/mecha_equipment/weapon/ballistic/launcher/banana_mortar/can_attach(obj/mecha/combat/honk/M)
-	if(!istype(M))
-		return FALSE
-	return ..()
-
 /obj/item/mecha_equipment/weapon/ballistic/launcher/banana_mortar/mousetrap_mortar
 	name = "mousetrap mortar"
 	icon_state = "mousetrapmrtr"
+	matter_amounts = /datum/design/mechfab/equipment/weapon/mousetrap_mortar::materials
+	origin_tech = /datum/design/mechfab/equipment/weapon/mousetrap_mortar::req_tech
+
 	projectile = /obj/item/assembly/mousetrap
 	equip_cooldown = 1 SECOND
 

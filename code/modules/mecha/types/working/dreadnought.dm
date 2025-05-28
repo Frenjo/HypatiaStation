@@ -11,6 +11,8 @@
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/dreadnought
 
+	mecha_flag = MECHA_FLAG_DREADNOUGHT
+
 	cargo_capacity = 7
 
 /obj/mecha/working/dreadnought/bulwark
@@ -26,8 +28,6 @@
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/dreadnought/bulwark
 
-	cargo_capacity = 5
+	mecha_flag = MECHA_FLAG_BULWARK
 
-/obj/mecha/working/dreadnought/bulwark/New()
-	. = ..()
-	excluded_equipment.Remove(/obj/item/mecha_equipment/weapon)
+	cargo_capacity = 5

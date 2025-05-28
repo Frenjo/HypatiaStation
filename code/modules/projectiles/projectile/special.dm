@@ -11,6 +11,10 @@
 	empulse(target, 1, 1)
 	return 1
 
+/obj/item/projectile/ion/pistol/on_hit(atom/target, blocked = 0)
+	empulse(target, 0, 0, 0)
+	return 1
+
 /obj/item/projectile/bullet/gyro
 	name = "explosive bolt"
 	icon_state = "bolter"

@@ -10,6 +10,8 @@
 
 	wreckage = /obj/structure/mecha_wreckage/ripley
 
+	mecha_flag = MECHA_FLAG_RIPLEY
+
 	cargo_capacity = 15
 
 /obj/mecha/working/ripley/Destroy()
@@ -77,6 +79,8 @@
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/deathripley
 
+	mecha_flag = MECHA_FLAG_DEATH_RIPLEY
+
 /obj/mecha/working/ripley/death/New()
 	. = ..()
 	var/obj/item/mecha_equipment/ME = new /obj/item/mecha_equipment/tool/hydraulic_clamp/safety(src)
@@ -108,16 +112,14 @@
 	icon_state = "rescue_ranger"
 	initial_icon = "rescue_ranger"
 
-	wreckage = /obj/structure/mecha_wreckage/ripley/rescue_ranger
-
 	health = 175
 	step_in = 5
 
-	cargo_capacity = 10
+	wreckage = /obj/structure/mecha_wreckage/ripley/rescue_ranger
 
-/obj/mecha/working/ripley/rescue_ranger/New()
-	. = ..()
-	excluded_equipment.Remove(/obj/item/mecha_equipment/medical)
+	mecha_flag = MECHA_FLAG_RESCUE_RANGER
+
+	cargo_capacity = 10
 
 // Sindy
 /obj/mecha/working/ripley/sindy
@@ -136,11 +138,9 @@
 
 	wreckage = /obj/structure/mecha_wreckage/ripley/sindy
 
-	cargo_capacity = 10
+	mecha_flag = MECHA_FLAG_SINDY
 
-/obj/mecha/working/ripley/sindy/New()
-	. = ..()
-	excluded_equipment.Remove(/obj/item/mecha_equipment/weapon)
+	cargo_capacity = 10
 
 /obj/mecha/working/ripley/sindy/add_cell(obj/item/cell/C = null)
 	if(isnotnull(C))

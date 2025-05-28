@@ -75,8 +75,9 @@
 	var/wreckage
 
 	// Equipment
+	var/mecha_flag = null // This exosuit's type bitflag.
+	var/list/excluded_equipment = list() // A list of equipment typepaths this exosuit CANNOT equip, even if their type bitflags match.
 	var/obj/item/cell/cell
-	var/list/excluded_equipment = list() // A list of equipment typepaths this exosuit CANNOT equip.
 	var/list/obj/item/mecha_equipment/equipment = list()
 	var/obj/item/mecha_equipment/selected
 	var/max_equip = 3

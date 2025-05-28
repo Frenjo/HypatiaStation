@@ -20,6 +20,8 @@
 
 	wreckage = /obj/structure/mecha_wreckage/phazon
 
+	mecha_flag = MECHA_FLAG_PHAZON
+
 	var/phasing = FALSE
 	var/phasing_energy_drain = 200
 

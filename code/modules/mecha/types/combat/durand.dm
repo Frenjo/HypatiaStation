@@ -17,6 +17,8 @@
 
 	wreckage = /obj/structure/mecha_wreckage/durand
 
+	mecha_flag = MECHA_FLAG_DURAND
+
 	var/defence = 0
 	var/defence_deflect = 35
 

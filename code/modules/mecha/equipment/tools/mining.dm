@@ -3,6 +3,9 @@
 	name = "drill"
 	desc = "This is the drill that'll pierce the heavens! (Can be attached to: Working and Combat Exosuits)"
 	icon_state = "drill"
+
+	mecha_flags = MECHA_FLAG_WORKING | MECHA_FLAG_COMBAT
+
 	equip_cooldown = 3 SECONDS
 	energy_drain = 10
 	force = 15

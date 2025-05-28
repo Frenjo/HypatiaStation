@@ -5,14 +5,6 @@
 
 	maint_access = FALSE
 
-	excluded_equipment = list(
-		/obj/item/mecha_equipment/tool/hydraulic_clamp,
-		/obj/item/mecha_equipment/tool/extinguisher,
-		/obj/item/mecha_equipment/tool/rcd,
-		/obj/item/mecha_equipment/tool/cable_layer,
-		/obj/item/mecha_equipment/medical
-	)
-
 	var/melee_cooldown = 10
 	var/melee_can_hit = 1
 	var/list/destroyable_obj = list(/obj/mecha, /obj/structure/window, /obj/structure/grille, /turf/closed/wall)

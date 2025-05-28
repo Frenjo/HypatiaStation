@@ -14,6 +14,8 @@
 
 	wreckage = /obj/structure/mecha_wreckage/gygax
 
+	mecha_flag = MECHA_FLAG_GYGAX
+
 	var/overload = FALSE
 	var/overload_coeff = 2
 
@@ -126,6 +128,4 @@
 
 	wreckage = /obj/structure/mecha_wreckage/gygax/serenity
 
-/obj/mecha/combat/gygax/serenity/New()
-	. = ..()
-	excluded_equipment.Remove(/obj/item/mecha_equipment/medical)
+	mecha_flag = MECHA_FLAG_SERENITY

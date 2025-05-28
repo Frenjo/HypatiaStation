@@ -19,12 +19,12 @@
 
 	wreckage = /obj/structure/mecha_wreckage/reticence
 
-/obj/mecha/combat/reticence/New()
-	. = ..()
-	excluded_equipment.Add(
+	mecha_flag = MECHA_FLAG_RETICENCE
+	excluded_equipment = list(
 		/obj/item/mecha_equipment/melee_armour_booster,
 		/obj/item/mecha_equipment/melee_defence_shocker,
-		/obj/item/mecha_equipment/ranged_armour_booster
+		/obj/item/mecha_equipment/ranged_armour_booster,
+		/obj/item/mecha_equipment/emp_insulation
 	)
 
 /obj/mecha/combat/reticence/melee_action(target)

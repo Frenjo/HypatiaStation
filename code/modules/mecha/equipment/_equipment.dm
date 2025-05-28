@@ -17,6 +17,8 @@
 
 	var/obj/mecha/chassis = null
 
+	var/mecha_flags = null // Bitflags which determine which exosuits this equipment can be fitted to.
+
 	var/equip_ready = TRUE
 	var/equip_cooldown = 0
 	var/energy_drain = 0
@@ -41,15 +43,17 @@
 		chassis = null
 	return ..()
 
-/obj/item/mecha_equipment/proc/can_attach(obj/mecha/M)
-	if(!istype(M))
+/obj/item/mecha_equipment/proc/can_attach(obj/mecha/mech)
+	if(!istype(mech))
 		return FALSE
-	if(is_type_in_list(src, M.excluded_equipment))
+	if(isnotnull(mecha_flags) && !(mecha_flags & mech.mecha_flag)) // If we have flags and they aren't right, not allowed!
 		return FALSE
-	if(length(M.equipment) >= M.max_equip)
+	if(is_type_in_list(src, mech.excluded_equipment)) // If it's in the special exclusions list then it's also not allowed!
+		return FALSE
+	if(length(mech.equipment) >= mech.max_equip)
 		return FALSE
 	if(!allow_duplicates)
-		for_no_type_check(var/obj/item/mecha_equipment/equip, M.equipment) // Exact duplicate components aren't allowed.
+		for_no_type_check(var/obj/item/mecha_equipment/equip, mech.equipment) // Exact duplicate components aren't allowed.
 			if(equip.type == type)
 				return FALSE
 	return TRUE

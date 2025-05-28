@@ -2,14 +2,14 @@
 /obj/item/mecha_equipment/honker
 	name = "\improper HoNkER BlAsT 5000"
 	icon_state = "honker"
+	matter_amounts = /datum/design/mechfab/equipment/weapon/honker::materials
+	origin_tech = /datum/design/mechfab/equipment/weapon/honker::req_tech
+
+	mecha_flags = MECHA_FLAG_HONK
+
 	energy_drain = 200
 	equip_cooldown = 15 SECONDS
 	range = MELEE|RANGED
-
-/obj/item/mecha_equipment/honker/can_attach(obj/mecha/combat/honk/M)
-	if(!istype(M))
-		return FALSE
-	return ..()
 
 /obj/item/mecha_equipment/honker/action(atom/target)
 	if(!..())

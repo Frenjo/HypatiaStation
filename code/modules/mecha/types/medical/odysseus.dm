@@ -13,6 +13,8 @@
 
 	wreckage = /obj/structure/mecha_wreckage/odysseus
 
+	mecha_flag = MECHA_FLAG_ODYSSEUS
+
 /*
 /obj/mecha/medical/odysseus/verb/set_perspective()
 	set category = "Exosuit Interface"
@@ -92,12 +94,7 @@
 
 	wreckage = /obj/structure/mecha_wreckage/odysseus/eurymachus
 
-	excluded_equipment = list(
-		/obj/item/mecha_equipment/tool/hydraulic_clamp,
-		/obj/item/mecha_equipment/tool/extinguisher,
-		/obj/item/mecha_equipment/tool/rcd,
-		/obj/item/mecha_equipment/tool/cable_layer
-	)
+	mecha_flag = MECHA_FLAG_EURYMACHUS
 
 	var/datum/global_iterator/camouflage_iterator
 	var/camouflage = FALSE

@@ -2,11 +2,6 @@
 	step_sound_volume = 25
 	turn_sound = 'sound/mecha/movement/mechmove01.ogg'
 
-	excluded_equipment = list(
-		/obj/item/mecha_equipment/tool,
-		/obj/item/mecha_equipment/weapon
-	)
-
 	var/obj/item/clothing/glasses/hud/health/mech/hud
 
 /obj/mecha/medical/New()

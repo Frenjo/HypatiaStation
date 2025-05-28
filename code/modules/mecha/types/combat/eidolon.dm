@@ -19,6 +19,8 @@
 
 	wreckage = /obj/structure/mecha_wreckage/eidolon
 
+	mecha_flag = MECHA_FLAG_EIDOLON
+
 	var/salvaged = FALSE // Salvaged version can fit regular sized humans.
 
 	var/rolling = FALSE
