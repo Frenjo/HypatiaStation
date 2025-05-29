@@ -12,6 +12,7 @@
 
 /obj/item/mecha_equipment/weapon/energy/ion/rigged
 	name = "jury-rigged ion cannon"
+	desc = "A large coil modified to amplify an ionic wave and use it as a projectile. (Can be attached to: Working and Combat Exosuits)"
 	icon_state = "ion_rigged"
 	matter_amounts = /datum/design/mechfab/equipment/weapon/rigged_ion::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/rigged_ion::req_tech

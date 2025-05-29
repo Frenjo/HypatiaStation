@@ -23,6 +23,7 @@
 
 /obj/item/mecha_equipment/weapon/energy/laser/rigged
 	name = "jury-rigged welder-laser"
+	desc = "While not regulation, this inefficient weapon can be attached to working exosuits in desperate, or malicious, times. (Can be attached to: Working and Combat Exosuits)"
 	icon_state = "laser_rigged"
 	matter_amounts = /datum/design/mechfab/equipment/weapon/rigged_laser::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/rigged_laser::req_tech

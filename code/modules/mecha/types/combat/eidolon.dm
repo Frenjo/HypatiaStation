@@ -28,7 +28,7 @@
 
 /obj/mecha/combat/eidolon/New()
 	. = ..()
-	var/obj/item/mecha_equipment/weapon/energy/rapid_disabler/disabler = new /obj/item/mecha_equipment/weapon/energy/rapid_disabler(src)
+	var/obj/item/mecha_equipment/weapon/energy/disabler/rapid/disabler = new /obj/item/mecha_equipment/weapon/energy/disabler/rapid(src)
 	disabler.attach(src)
 
 /obj/mecha/combat/eidolon/Topic(href, list/href_list)

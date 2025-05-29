@@ -11,6 +11,12 @@
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5)
 	build_path = /obj/item/mecha_equipment/weapon/energy/disabler
 
+/datum/design/mechfab/equipment/weapon/rigged_disabler
+	name = "Jury-Rigged Disabler"
+	desc = "Allows for the construction of jury-rigged disablers."
+	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 4)
+	build_path = /obj/item/mecha_equipment/weapon/energy/disabler/rigged
+
 // Ion
 /datum/design/mechfab/equipment/weapon/ion
 	name = "mkIV Ion Heavy Cannon"
