@@ -2,9 +2,9 @@
 	// The actual text of the announcement.
 	var/announcement
 	// Stores the author, message and channel name for the newscaster system.
-	var/author
-	var/message
-	var/channel_name
+	var/author = null
+	var/message = null
+	var/channel_name = null
 
 	switch(type)
 		if(ANNOUNCEMENT_TYPE_PRIORITY)
@@ -16,15 +16,13 @@
 			channel_name = /datum/feed_channel/station_announcements::channel_name
 		else
 			announcement += "<h1 class='alert'>[command_name()] Update</h1>"
+			author = "Central Command"
+			channel_name = /datum/feed_channel/command_updates::channel_name
 			if(title && length(title) > 0)
 				announcement += "<h2 class='alert'>[html_encode(title)]</h2>"
-				author = "Central Command"
 				message = title + "<br>" + text
-				channel_name = /datum/feed_channel/command_updates::channel_name
 			else
-				author = "Central Command"
 				message = text
-				channel_name = /datum/feed_channel/command_updates::channel_name
 
 	announcement += "[SPAN_ALERT("[html_encode(text)]")]<br>"
 
@@ -35,7 +33,8 @@
 			M << sound(sound)
 
 	// Sends the announcement to the corresponding news channel.
-	global.CTeconomy.news_network.submit_message(author, message, channel_name)
+	if(isnotnull(author) && isnotnull(message) && isnotnull(channel_name))
+		global.CTeconomy.news_network.submit_message(author, message, channel_name)
 
 /proc/minor_announce(message, title = "Attention:", silent = FALSE)
 	if(isnull(message))
