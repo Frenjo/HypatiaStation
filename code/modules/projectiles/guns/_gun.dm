@@ -47,8 +47,28 @@
 /obj/item/gun/proc/load_into_chamber()
 	return 0
 
-/obj/item/gun/proc/special_check(mob/M) //Placeholder for any special checks, like detective's revolver.
-	return 1
+/obj/item/gun/proc/special_check(mob/living/user) // Any special checks, like detective's revolver.
+	if(!user.IsAdvancedToolUser())
+		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
+		return FALSE
+
+	if(MUTATION_HULK in user.mutations)
+		to_chat(user, SPAN_WARNING("Your meaty finger is much too large for the trigger guard!"))
+		return FALSE
+
+	if(user.dna?.mutantrace == "adamantine")
+		to_chat(user, SPAN_WARNING("Your metal fingers don't fit in the trigger guard!"))
+		return FALSE
+
+	if(clumsy_check && ((MUTATION_CLUMSY in user.mutations) && prob(50)))
+		handle_post_fire(user)
+		to_chat(user, SPAN_DANGER("\The [src] blows up in your face!"))
+		user.take_organ_damage(0, 20)
+		user.drop_item()
+		qdel(src)
+		return FALSE
+
+	return TRUE
 
 /obj/item/gun/emp_act(severity)
 	for(var/obj/O in contents)
@@ -80,37 +100,11 @@
 /obj/item/gun/proc/isHandgun()
 	return TRUE
 
-/obj/item/gun/proc/Fire(atom/target, mob/living/user, params, reflex = 0)//TODO: go over this
-	//Exclude lasertag guns from the MUTATION_CLUMSY check.
-	if(clumsy_check)
-		if(isliving(user))
-			var/mob/living/M = user
-			if((MUTATION_CLUMSY in M.mutations) && prob(50))
-				to_chat(M, SPAN_DANGER("\The [src] blows up in your face."))
-				M.take_organ_damage(0, 20)
-				M.drop_item()
-				qdel(src)
-				return
-
-	if(!user.IsAdvancedToolUser())
-		FEEDBACK_NOT_ENOUGH_DEXTERITY(user)
+/obj/item/gun/proc/Fire(atom/target, mob/living/user, params, reflex = FALSE)//TODO: go over this
+	if(isnull(target) || isnull(user))
 		return
-	if(isliving(user))
-		var/mob/living/M = user
-		if(MUTATION_HULK in M.mutations)
-			to_chat(M, SPAN_WARNING("Your meaty finger is much too large for the trigger guard!"))
-			return
-	if(ishuman(user))
-		if(user.dna && user.dna.mutantrace == "adamantine")
-			to_chat(user, SPAN_WARNING("Your metal fingers don't fit in the trigger guard!"))
-			return
 
 	add_fingerprint(user)
-
-	var/turf/curloc = GET_TURF(user)
-	var/turf/targloc = GET_TURF(target)
-	if(!istype(targloc) || !istype(curloc))
-		return
 
 	if(!special_check(user))
 		return
@@ -123,68 +117,54 @@
 	if(!load_into_chamber()) //CHECK
 		return click_empty(user)
 
-	if(!in_chamber)
+	if(isnull(in_chamber))
 		return
 
-	in_chamber.firer = user
-	in_chamber.def_zone = user.zone_sel.selecting
-	if(targloc == curloc)
-		user.bullet_act(in_chamber)
-		qdel(in_chamber)
-		update_icon()
-		return
+	user.next_move = world.time + 4
 
-	if(recoil)
-		spawn()
-			shake_camera(user, recoil + 1, recoil)
+	var/x_offset = 0
+	var/y_offset = 0
+	if(iscarbon(user))
+		var/mob/living/carbon/mob = user
+		if(mob.shock_stage > 120)
+			x_offset += rand(-2, 2)
+			y_offset += rand(-2, 2)
+		else if(mob.shock_stage > 70)
+			x_offset += rand(-1, 1)
+			y_offset += rand(-1, 1)
 
+	if(isnotnull(params))
+		in_chamber.set_clickpoint(params)
+
+	if(isnotnull(in_chamber))
+		var/result = in_chamber.launch(target, user, src, user.zone_sel.selecting, x_offset, y_offset)
+		if(!result)
+			return
+
+	sleep(1)
+	in_chamber = null
+
+	handle_post_fire(user, reflex)
+	update_icon()
+	if(user.hand)
+		user.update_inv_l_hand()
+	else
+		user.update_inv_r_hand()
+
+/obj/item/gun/proc/handle_post_fire(mob/user, reflex = FALSE)
 	if(silenced)
 		playsound(user, fire_sound, 10, 1)
 	else
 		playsound(user, fire_sound, 50, 1)
 		user.visible_message(
-			SPAN_WARNING("[user] fires [src][reflex ? " by reflex" : ""]!"),
-			SPAN_WARNING("You fire [src][reflex ? "by reflex":""]!"),
+			SPAN_WARNING("[user] fires \the [src][reflex ? " by reflex" : ""]!"),
+			SPAN_WARNING("You fire \the [src][reflex ? "by reflex":""]!"),
 			"You hear a [istype(in_chamber, /obj/item/projectile/energy) ? "laser blast" : "gunshot"]!"
 		)
 
-	in_chamber.original = target
-	in_chamber.forceMove(GET_TURF(user))
-	in_chamber.starting = GET_TURF(user)
-	in_chamber.shot_from = src
-	user.next_move = world.time + 4
-	in_chamber.silenced = silenced
-	in_chamber.current = curloc
-	in_chamber.yo = targloc.y - curloc.y
-	in_chamber.xo = targloc.x - curloc.x
-	if(iscarbon(user))
-		var/mob/living/carbon/mob = user
-		if(mob.shock_stage > 120)
-			in_chamber.yo += rand(-2, 2)
-			in_chamber.xo += rand(-2, 2)
-		else if(mob.shock_stage > 70)
-			in_chamber.yo += rand(-1, 1)
-			in_chamber.xo += rand(-1, 1)
-
-	if(params)
-		var/list/mouse_control = params2list(params)
-		if(mouse_control["icon-x"])
-			in_chamber.p_x = text2num(mouse_control["icon-x"])
-		if(mouse_control["icon-y"])
-			in_chamber.p_y = text2num(mouse_control["icon-y"])
-
-	spawn()
-		if(in_chamber)
-			in_chamber.process()
-	sleep(1)
-	in_chamber = null
-
-	update_icon()
-
-	if(user.hand)
-		user.update_inv_l_hand()
-	else
-		user.update_inv_r_hand()
+	if(recoil)
+		spawn()
+			shake_camera(user, recoil + 1, recoil)
 
 /obj/item/gun/proc/can_fire()
 	return load_into_chamber()
@@ -193,7 +173,7 @@
 	return in_chamber.check_fire(target, user)
 
 /obj/item/gun/proc/click_empty(mob/user = null)
-	if(user)
+	if(isnotnull(user))
 		user.visible_message("*click click*", SPAN_DANGER("*click*"))
 		playsound(user, 'sound/weapons/empty.ogg', 100, 1)
 	else

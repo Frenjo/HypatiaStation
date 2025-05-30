@@ -10,16 +10,18 @@
 	ammo_type = /obj/item/ammo_casing/c38
 	max_shells = 6
 
-/obj/item/gun/projectile/detective/special_check(mob/living/carbon/human/M)
-	if(caliber == initial(caliber))
-		return 1
-	if(prob(70 - (length(loaded) * 10)))	//minimum probability of 10, maximum of 60
-		to_chat(M, SPAN_DANGER("[src] blows up in your face."))
-		M.take_organ_damage(0, 20)
-		M.drop_item()
+/obj/item/gun/projectile/detective/special_check(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(caliber != initial(caliber) && prob(70 - (length(loaded) * 10))) // Minimum probability of 10, maximum of 60.
+		handle_post_fire(user)
+		to_chat(user, SPAN_DANGER("\The [src] blows up in your face!"))
+		user.take_organ_damage(0, 20)
+		user.drop_item()
 		qdel(src)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/item/gun/projectile/detective/verb/rename_gun()
 	set category = PANEL_OBJECT

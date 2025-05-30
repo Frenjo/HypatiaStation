@@ -116,12 +116,17 @@
 
 	var/vest_type = null
 
-/obj/item/gun/energy/laser/tag/special_check(mob/living/carbon/human/M)
-	if(ishuman(M))
-		if(istype(M.wear_suit, vest_type))
-			return 1
-		to_chat(M, SPAN_WARNING("You need to be wearing your laser tag vest!"))
-	return 0
+/obj/item/gun/energy/laser/tag/special_check(mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!ishuman(user))
+		return FALSE
+	var/mob/living/carbon/human/hugh = user
+	if(!istype(hugh.wear_suit, vest_type))
+		to_chat(user, SPAN_WARNING("You need to be wearing your laser tag vest!"))
+		return FALSE
+	return TRUE
 
 /obj/item/gun/energy/laser/tag/blue
 	icon_state = "bluetag"

@@ -66,21 +66,61 @@
 	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked) // add in AGONY!
 	return 1
 
-/obj/item/projectile/proc/check_fire(mob/living/target, mob/living/user)  //Checks if you can hit them or not.
+/obj/item/projectile/proc/check_fire(mob/living/target, mob/living/user) // Checks if you can hit them or not.
 	if(!istype(target) || !istype(user))
 		return 0
 
-	var/obj/item/projectile/test/in_chamber = new /obj/item/projectile/test(get_step_to(user, target)) //Making the test....
-	in_chamber.target = target
+	var/obj/item/projectile/test/trace = new /obj/item/projectile/test(get_step_to(user, target)) //Making the test....
+	trace.target = target
 	// Sets the flags to that of the real projectile.
-	SET_ATOM_FLAGS(in_chamber, atom_flags)
-	SET_PASS_FLAGS(in_chamber, pass_flags)
-	in_chamber.obj_flags = obj_flags
-	SET_ITEM_FLAGS(in_chamber, item_flags)
-	in_chamber.firer = user
-	var/output = in_chamber.process() //Test it!
-	qdel(in_chamber) //No need for it anymore
-	return output //Send it back to the gun!
+	SET_ATOM_FLAGS(trace, atom_flags)
+	SET_PASS_FLAGS(trace, pass_flags)
+	trace.obj_flags = obj_flags
+	SET_ITEM_FLAGS(trace, item_flags)
+	trace.firer = user
+	var/output = trace.process() // Test it!
+	qdel(trace) // No need for it anymore
+	return output // Send it back to the gun!
+
+// Sets the click point of the projectile using mouse input params.
+/obj/item/projectile/proc/set_clickpoint(params)
+	var/list/mouse_control = params2list(params)
+	if(mouse_control["icon-x"])
+		p_x = text2num(mouse_control["icon-x"])
+	if(mouse_control["icon-y"])
+		p_y = text2num(mouse_control["icon-y"])
+
+/obj/item/projectile/proc/launch(atom/target, mob/user, obj/item/gun/launcher, target_zone, x_offset = 0, y_offset = 0)
+	var/turf/curloc = GET_TURF(user)
+	var/turf/targloc = GET_TURF(target)
+	if(!istype(targloc) || !istype(curloc))
+		return FALSE
+
+	firer = user
+	def_zone = user.zone_sel.selecting
+	if(user == target) // Shooting yourself.
+		user.bullet_act(src, target_zone)
+		qdel(src)
+		return FALSE
+	if(targloc == curloc) // Shooting the ground.
+		targloc.bullet_act(src, target_zone)
+		qdel(src)
+		return FALSE
+
+	original = target
+	forceMove(GET_TURF(user))
+	starting = GET_TURF(user)
+	shot_from = launcher
+
+	silenced = silenced
+	current = curloc
+	xo = targloc.x - curloc.x
+	yo = targloc.y - curloc.y
+
+	spawn()
+		process()
+
+	return TRUE
 
 /obj/item/projectile/Bump(atom/A)
 	if(A == firer)
@@ -136,10 +176,9 @@
 			permutated.Add(A)
 			return 0
 		if(isturf(A))
-			for(var/obj/O in A)
-				O.bullet_act(src)
-			for(var/mob/M in A)
-				M.bullet_act(src, def_zone)
+			for_no_type_check(var/atom/movable/mover, A)
+				mover.bullet_act(src, def_zone)
+
 		density = FALSE
 		invisibility = INVISIBILITY_MAXIMUM
 		qdel(src)

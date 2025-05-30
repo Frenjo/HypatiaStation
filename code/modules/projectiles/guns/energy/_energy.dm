@@ -33,7 +33,6 @@
 		power_supply = new cell_type(src)
 	else
 		power_supply = new /obj/item/cell(src)
-	power_supply.give(power_supply.maxcharge)
 
 	GLOBL.processing_objects.Add(src)
 
@@ -76,19 +75,19 @@
 
 /obj/item/gun/energy/load_into_chamber()
 	if(isnotnull(in_chamber))
-		return 1
+		return TRUE
 	if(isnull(power_supply))
-		return 0
+		return FALSE
 
 	projectile_from_setting()
 	if(isnull(projectile_type))
-		return 0 // Something went very wrong.
+		return FALSE // Something went very wrong.
 
 	if(!power_supply.use(gun_mode == GUN_MODE_PULSE ? charge_cost / 2 : charge_cost))
-		return 0
+		return FALSE
 
 	in_chamber = new projectile_type(src)
-	return 1
+	return TRUE
 
 /obj/item/gun/energy/update_icon()
 	var/ratio = power_supply.charge / power_supply.maxcharge
@@ -115,6 +114,5 @@
 	switch(gun_mode)
 		if(GUN_MODE_PULSE)
 			projectile_type = pulse_projectile_types[gun_setting]
-
 		if(GUN_MODE_BEAM)
 			projectile_type = beam_projectile_types[gun_setting]

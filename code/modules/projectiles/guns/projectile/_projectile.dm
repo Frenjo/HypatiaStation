@@ -24,23 +24,23 @@
 
 /obj/item/gun/projectile/load_into_chamber()
 	if(isnotnull(in_chamber))
-		return 1 //{R}
+		return TRUE //{R}
 
 	if(!length(loaded))
-		return 0
+		return FALSE
 
 	var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
 	loaded.Add(AC) // Remove casing from loaded list.
 	if(isnull(AC) || !istype(AC))
-		return 0
+		return FALSE
 
 	AC.forceMove(GET_TURF(src)) //Eject casing onto ground.
 	if(isnotnull(AC.loaded_bullet))
 		AC.desc += " This one is spent."	//descriptions are magic - only when there's a projectile in the casing
 		in_chamber = AC.loaded_bullet //Load projectile into chamber.
 		AC.loaded_bullet.forceMove(src) //Set projectile loc to gun.
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/item/gun/projectile/attackby(obj/item/A, mob/user)
 	var/num_loaded = 0
