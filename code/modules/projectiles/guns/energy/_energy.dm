@@ -4,6 +4,7 @@
 	icon_state = "energy"
 
 	fire_sound = 'sound/weapons/gun/taser.ogg'
+	fire_sound_text = "laser blast"
 
 	var/modifystate = null
 
@@ -34,16 +35,16 @@
 	else
 		power_supply = new /obj/item/cell(src)
 
-	GLOBL.processing_objects.Add(src)
+	if(self_charging)
+		GLOBL.processing_objects.Add(src)
 
 /obj/item/gun/energy/Destroy()
-	GLOBL.processing_objects.Remove(src)
+	if(self_charging)
+		GLOBL.processing_objects.Remove(src)
 	return ..()
 
+// This is only called if self_charging = TRUE.
 /obj/item/gun/energy/process()
-	if(!self_charging)
-		return PROCESS_KILL
-
 	charge_tick++
 	if(charge_tick < recharge_time)
 		return 0

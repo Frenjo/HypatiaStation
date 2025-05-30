@@ -8,7 +8,7 @@
 
 	recoil = TRUE
 
-	caliber = "357"
+	var/calibre = "357"
 
 	var/ammo_type = /obj/item/ammo_casing/a357
 	var/list/loaded = list()
@@ -29,73 +29,86 @@
 	if(!length(loaded))
 		return FALSE
 
-	var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
-	loaded.Add(AC) // Remove casing from loaded list.
-	if(isnull(AC) || !istype(AC))
+	var/obj/item/ammo_casing/case = loaded[1] //load next casing.
+	if(isnull(case) || !istype(case))
 		return FALSE
-
-	AC.forceMove(GET_TURF(src)) //Eject casing onto ground.
-	if(isnotnull(AC.loaded_bullet))
-		AC.desc += " This one is spent."	//descriptions are magic - only when there's a projectile in the casing
-		in_chamber = AC.loaded_bullet //Load projectile into chamber.
-		AC.loaded_bullet.forceMove(src) //Set projectile loc to gun.
+	if(isnotnull(case.loaded_bullet))
+		case.desc += " This one is spent." //descriptions are magic - only when there's a projectile in the casing
+		in_chamber = case.loaded_bullet //Load projectile into chamber.
+		case.loaded_bullet.forceMove(src) //Set projectile loc to gun.
 		return TRUE
 	return FALSE
 
-/obj/item/gun/projectile/attackby(obj/item/A, mob/user)
+/obj/item/gun/projectile/handle_post_fire()
+	. = ..()
+	if(length(loaded))
+		var/obj/item/ammo_casing/AC = loaded[1]
+		loaded.Remove(AC) // Remove casing from loaded list.
+		AC.forceMove(GET_TURF(src)) // Ejects a casing onto the ground.
+
+/obj/item/gun/projectile/attack_by(obj/item/I, mob/user)
 	var/num_loaded = 0
-	if(istype(A, /obj/item/ammo_magazine))
+	if(istype(I, /obj/item/ammo_magazine))
 		if(load_method == MAGAZINE && length(loaded))
-			return
-		var/obj/item/ammo_magazine/AM = A
-		if(!length(AM.stored_ammo))
+			return TRUE
+		var/obj/item/ammo_magazine/mag = I
+		if(!length(mag.stored_ammo))
 			to_chat(user, SPAN_WARNING("The magazine is empty!"))
-			return
-		for(var/obj/item/ammo_casing/AC in AM.stored_ammo)
+			return TRUE
+
+		for_no_type_check(var/obj/item/ammo_casing/case, mag.stored_ammo)
 			if(length(loaded) >= max_shells)
 				break
-			if(AC.caliber == caliber && length(loaded) < max_shells)
-				AC.forceMove(src)
-				AM.stored_ammo.Remove(AC)
-				loaded.Add(AC)
+			if(case.caliber == calibre && length(loaded) < max_shells)
+				case.forceMove(src)
+				mag.stored_ammo.Remove(case)
+				loaded.Add(case)
 				num_loaded++
+
 		if(load_method == MAGAZINE)
-			user.remove_from_mob(AM)
-			empty_mag = AM
+			user.remove_from_mob(mag)
+			empty_mag = mag
 			empty_mag.forceMove(src)
-	if(istype(A, /obj/item/ammo_casing) && load_method == SPEEDLOADER)
-		var/obj/item/ammo_casing/AC = A
-		if(AC.caliber == caliber && length(loaded) < max_shells)
+
+	else if(istype(I, /obj/item/ammo_casing) && load_method == SPEEDLOADER)
+		var/obj/item/ammo_casing/case = I
+		if(case.caliber == calibre && length(loaded) < max_shells)
 			user.drop_item()
-			AC.forceMove(src)
-			loaded.Add(AC)
+			case.forceMove(src)
+			loaded.Add(case)
 			num_loaded++
+
 	if(num_loaded)
 		to_chat(user, SPAN_INFO("You load [num_loaded] shell\s into the gun!"))
-	A.update_icon()
-	update_icon()
+		I.update_icon()
+		update_icon()
+		return TRUE
+
+	return ..()
 
 /obj/item/gun/projectile/attack_self(mob/user)
 	if(target)
 		return ..()
-	if(length(loaded))
-		if(load_method == SPEEDLOADER)
-			var/obj/item/ammo_casing/AC = loaded[1]
-			loaded.Remove(AC)
-			AC.forceMove(GET_TURF(src)) //Eject casing onto ground.
-			to_chat(user, SPAN_INFO("You unload the shells from \the [src]!"))
-		if(load_method == MAGAZINE)
-			var/obj/item/ammo_magazine/AM = empty_mag
-			for(var/obj/item/ammo_casing/AC in loaded)
-				AM.stored_ammo.Add(AC)
-				loaded.Remove(AC)
-			AM.forceMove(GET_TURF(src))
-			empty_mag = null
-			update_icon()
-			AM.update_icon()
-			to_chat(user, SPAN_INFO("You unload the magazine from \the [src]!"))
-	else
+	if(!length(loaded))
 		to_chat(user, SPAN_WARNING("There is nothing loaded in \the [src]!"))
+		return
+
+	if(load_method == SPEEDLOADER)
+		var/obj/item/ammo_casing/case = loaded[1]
+		loaded.Remove(case)
+		case.forceMove(GET_TURF(src)) // Ejects the casing onto the ground.
+		to_chat(user, SPAN_INFO("You unload a shell from \the [src]!"))
+
+	else if(load_method == MAGAZINE)
+		var/obj/item/ammo_magazine/mag = empty_mag
+		for(var/obj/item/ammo_casing/case in loaded)
+			mag.stored_ammo.Add(case)
+			loaded.Remove(case)
+		mag.forceMove(GET_TURF(src))
+		empty_mag = null
+		update_icon()
+		mag.update_icon()
+		to_chat(user, SPAN_INFO("You unload the magazine from \the [src]!"))
 
 /obj/item/gun/projectile/examine()
 	..()

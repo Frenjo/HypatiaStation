@@ -5,7 +5,7 @@
 
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 2)
 
-	caliber = "38"
+	calibre = "38"
 
 	ammo_type = /obj/item/ammo_casing/c38
 	max_shells = 6
@@ -14,7 +14,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(caliber != initial(caliber) && prob(70 - (length(loaded) * 10))) // Minimum probability of 10, maximum of 60.
+	if(calibre != initial(calibre) && prob(70 - (length(loaded) * 10))) // Minimum probability of 10, maximum of 60.
 		handle_post_fire(user)
 		to_chat(user, SPAN_DANGER("\The [src] blows up in your face!"))
 		user.take_organ_damage(0, 20)
@@ -22,6 +22,47 @@
 		qdel(src)
 		return FALSE
 	return TRUE
+
+/obj/item/gun/projectile/detective/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
+		switch(calibre)
+			if("38")
+				to_chat(user, SPAN_NOTICE("You begin to reinforce the barrel of [src]."))
+				if(length(loaded))
+					go_off(user)
+					return TRUE
+				if(!do_after(user, 3 SECONDS))
+					return TRUE
+				if(length(loaded))
+					to_chat(user, SPAN_NOTICE("You can't modify it!"))
+					return TRUE
+				calibre = "357"
+				desc += " The barrel and chamber assembly seems to have been modified."
+				to_chat(user, SPAN_WARNING("You reinforce the barrel of \the [src]! Now it will fire .357 rounds."))
+
+			if("357")
+				to_chat(user, SPAN_NOTICE("You begin to revert the modifications to \the [src]."))
+				if(length(loaded))
+					go_off(user)
+					return TRUE
+				if(!do_after(user, 3 SECONDS))
+					return TRUE
+				if(length(loaded))
+					to_chat(user, SPAN_NOTICE("You can't modify it!"))
+					return TRUE
+				calibre = "38"
+				desc = initial(desc)
+				to_chat(user, SPAN_WARNING("You remove the modifications from \the [src]! Now it will fire .38 rounds."))
+		return TRUE
+	return ..()
+
+/obj/item/gun/projectile/detective/proc/go_off(mob/user)
+	afterattack(user, user)	//you know the drill
+	playsound(user, fire_sound, 50, 1)
+	user.visible_message(
+		SPAN_DANGER("[src] goes off!"),
+		SPAN_DANGER("[src] goes off in your face!")
+	)
 
 /obj/item/gun/projectile/detective/verb/rename_gun()
 	set category = PANEL_OBJECT
@@ -42,51 +83,12 @@
 		to_chat(M, "You name the gun [input]. Say hello to your new friend.")
 		return 1
 
-/obj/item/gun/projectile/detective/attackby(obj/item/A, mob/user)
-	..()
-	if(isscrewdriver(A))
-		if(caliber == "38")
-			to_chat(user, SPAN_NOTICE("You begin to reinforce the barrel of [src]."))
-			if(length(loaded))
-				afterattack(user, user)	//you know the drill
-				playsound(user, fire_sound, 50, 1)
-				user.visible_message(
-					SPAN_DANGER("[src] goes off!"),
-					SPAN_DANGER("[src] goes off in your face!")
-				)
-				return
-			if(do_after(user, 30))
-				if(length(loaded))
-					to_chat(user, SPAN_NOTICE("You can't modify it!"))
-					return
-				caliber = "357"
-				desc = "The barrel and chamber assembly seems to have been modified."
-				to_chat(user, SPAN_WARNING("You reinforce the barrel of [src]! Now it will fire .357 rounds."))
-		else if(caliber == "357")
-			to_chat(user, SPAN_NOTICE("You begin to revert the modifications to [src]."))
-
-			if(length(loaded))
-				afterattack(user, user)	//and again
-				playsound(user, fire_sound, 50, 1)
-				user.visible_message(
-					SPAN_DANGER("[src] goes off!"),
-					SPAN_DANGER("[src] goes off in your face!")
-				)
-				return
-			if(do_after(user, 30))
-				if(length(loaded))
-					to_chat(user, SPAN_NOTICE("You can't modify it!"))
-					return
-				caliber = "38"
-				desc = initial(desc)
-				to_chat(user, SPAN_WARNING("You remove the modifications on [src]! Now it will fire .38 rounds."))
-
 /obj/item/gun/projectile/detective/semiauto
 	name = "\improper Colt M1911"
 	desc = "A cheap Martian knock-off of a Colt M1911. Uses less-than-lethal .45 rounds."
 	icon_state = "colt"
 
-	caliber = ".45"
+	calibre = ".45"
 
 	ammo_type = /obj/item/ammo_casing/c45r
 	max_shells = 7
@@ -149,7 +151,7 @@
 		for(var/obj/item/ammo_casing/AC in AM.stored_ammo)
 			if(getAmmo() > 0 || length(loaded) >= max_shells)
 				break
-			if(AC.caliber == caliber && length(loaded) < max_shells)
+			if(AC.caliber == calibre && length(loaded) < max_shells)
 				AC.forceMove(src)
 				AM.stored_ammo -= AC
 				loaded += AC
@@ -207,7 +209,7 @@
 				user.visible_message(
 					SPAN_DANGER("[user.name] fires [src] at \his head!"),
 					SPAN_DANGER("You fire [src] at your head!"),
-					"You hear a [istype(in_chamber, /obj/item/projectile/energy) ? "laser blast" : "gunshot"]!"
+					"You hear a [fire_sound_text]!"
 				)
 				if(!P.nodamage)
 					user.apply_damage(300, BRUTE, affecting, sharp = 1) // You are dead, dead, dead.

@@ -7,7 +7,7 @@
 
 	silenced = 1
 
-	caliber = ".45"
+	calibre = ".45"
 
 	ammo_type = /obj/item/ammo_casing/c45
 	max_shells = 12
@@ -19,7 +19,7 @@
 
 	force = 14
 
-	caliber = ".50"
+	calibre = ".50"
 
 	ammo_type = /obj/item/ammo_casing/a50
 	max_shells = 7
@@ -57,7 +57,7 @@
 
 	fire_sound = 'sound/effects/Explosion1.ogg'
 
-	caliber = "75"
+	calibre = "75"
 
 	ammo_type = /obj/item/ammo_casing/a75
 	max_shells = 8
@@ -93,7 +93,7 @@
 
 	silenced = 0
 
-	caliber = "9mm"
+	calibre = "9mm"
 
 	ammo_type = /obj/item/ammo_casing/c9mm
 	max_shells = 8

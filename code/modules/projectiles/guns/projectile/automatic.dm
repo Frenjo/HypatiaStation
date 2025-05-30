@@ -10,7 +10,7 @@
 
 	automatic = TRUE
 
-	caliber = "9mm"
+	calibre = "9mm"
 
 	ammo_type = /obj/item/ammo_casing/c9mm
 	max_shells = 18
@@ -25,7 +25,7 @@
 
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 5, /decl/tech/syndicate = 8)
 
-	caliber = ".45"
+	calibre = ".45"
 
 	ammo_type = /obj/item/ammo_casing/c45
 	max_shells = 16
@@ -43,7 +43,7 @@
 
 	fire_sound = 'sound/weapons/gun/gunshot_smg.ogg'
 
-	caliber = "12mm"
+	calibre = "12mm"
 
 	ammo_type = /obj/item/ammo_casing/a12mm
 	max_shells = 20
@@ -81,7 +81,7 @@
 
 	fire_sound = 'sound/weapons/gun/gunshot_smg.ogg'
 
-	caliber = "a762"
+	calibre = "a762"
 
 	ammo_type = /obj/item/ammo_casing/a762
 	max_shells = 50

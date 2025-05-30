@@ -16,8 +16,9 @@
 	force = 5
 	attack_verb = list("struck", "hit", "bashed")
 
-	var/fire_sound = 'sound/weapons/gun/gunshot.ogg'
 	var/fire_delay = 0.6 SECONDS
+	var/fire_sound = 'sound/weapons/gun/gunshot.ogg'
+	var/fire_sound_text = "gunshot"
 	var/last_fired = 0
 	var/firerate = 0 	// 0 for keep shooting until aim is lowered.
 						// 1 for one bullet after target moves and aim is lowered.
@@ -28,7 +29,6 @@
 	var/clumsy_check = TRUE
 	var/automatic = FALSE	// Used to determine if you can target multiple people.
 
-	var/caliber = ""
 	var/obj/item/projectile/in_chamber = null
 
 	var/tmp/list/mob/living/target = null	// List of who yer targeting.
@@ -159,7 +159,7 @@
 		user.visible_message(
 			SPAN_WARNING("[user] fires \the [src][reflex ? " by reflex" : ""]!"),
 			SPAN_WARNING("You fire \the [src][reflex ? "by reflex":""]!"),
-			"You hear a [istype(in_chamber, /obj/item/projectile/energy) ? "laser blast" : "gunshot"]!"
+			"You hear a [fire_sound_text]!"
 		)
 
 	if(recoil)
@@ -183,42 +183,12 @@
 /obj/item/gun/attack(mob/living/M, mob/living/user, def_zone)
 	//Suicide handling.
 	if(M == user && user.zone_sel.selecting == "mouth" && !mouthshoot)
-		mouthshoot = TRUE
-		M.visible_message(SPAN_WARNING("[user] sticks their gun in their mouth, ready to pull the trigger..."))
-		if(!do_after(user, 40))
-			M.visible_message(SPAN_INFO("[user] decided life was worth living."))
-			mouthshoot = FALSE
-			return
-		if(load_into_chamber())
-			user.visible_message(SPAN_WARNING("[user] pulls the trigger."))
-			if(silenced)
-				playsound(user, fire_sound, 10, 1)
-			else
-				playsound(user, fire_sound, 50, 1)
-			if(istype(in_chamber, /obj/item/projectile/energy/beam/laser/tag))
-				user.show_message(SPAN_WARNING("You feel rather silly, trying to commit suicide with a toy."))
-				mouthshoot = FALSE
-				return
-
-			in_chamber.on_hit(M)
-			if(in_chamber.damage_type != HALLOSS)
-				user.apply_damage(in_chamber.damage * 2.5, in_chamber.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp = 1)
-				user.death()
-			else
-				to_chat(user, SPAN_NOTICE("Ow..."))
-				user.apply_effect(110, AGONY, 0)
-			qdel(in_chamber)
-			mouthshoot = FALSE
-			return
-		else
-			click_empty(user)
-			mouthshoot = FALSE
-			return
-
+		handle_suicide(user)
+		return
 	if(load_into_chamber())
 		//Point blank shooting if on harm intent or target we were targeting.
 		if(user.a_intent == "hurt")
-			user.visible_message(SPAN_DANGER("\The [user] fires \the [src] point blank at [M]!"))
+			user.visible_message(SPAN_DANGER("\The [user] fires \the [src] point blank at \the [M]!"))
 			in_chamber.damage *= 1.3
 			Fire(M, user)
 			return
@@ -227,3 +197,36 @@
 			return
 	else
 		return ..() //Pistolwhippin'
+
+/obj/item/gun/proc/handle_suicide(mob/living/user)
+	mouthshoot = TRUE
+	user.visible_message(SPAN_WARNING("[user] sticks their gun in their mouth, ready to pull the trigger..."))
+	if(!do_after(user, 4 SECONDS))
+		user.visible_message(SPAN_INFO("[user] decided life was worth living."))
+		mouthshoot = FALSE
+		return
+	if(!load_into_chamber())
+		click_empty(user)
+		mouthshoot = FALSE
+		return
+
+	user.visible_message(SPAN_WARNING("[user] pulls the trigger."))
+	if(silenced)
+		playsound(user, fire_sound, 10, 1)
+	else
+		playsound(user, fire_sound, 50, 1)
+	if(istype(in_chamber, /obj/item/projectile/energy/beam/laser/tag))
+		user.show_message(SPAN_WARNING("You feel rather silly, trying to commit suicide with a toy."))
+		mouthshoot = FALSE
+		return
+
+	in_chamber.on_hit(user)
+	if(in_chamber.damage_type != HALLOSS)
+		user.apply_damage(in_chamber.damage * 2.5, in_chamber.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp = 1)
+		user.death()
+	else
+		to_chat(user, SPAN_NOTICE("Ow..."))
+		user.apply_effect(110, AGONY, 0)
+	qdel(in_chamber)
+	mouthshoot = FALSE
+	return

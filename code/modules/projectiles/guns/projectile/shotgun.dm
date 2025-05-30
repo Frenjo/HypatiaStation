@@ -11,7 +11,7 @@
 
 	force = 10
 
-	caliber = "shotgun"
+	calibre = "shotgun"
 
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	max_shells = 4
@@ -79,7 +79,7 @@
 
 	force = 10
 
-	caliber = "shotgun"
+	calibre = "shotgun"
 
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	max_shells = 2
@@ -116,7 +116,7 @@
 /obj/item/gun/projectile/shotgun/doublebarrel/attackby(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ammo_casing) && load_method == SPEEDLOADER)
 		var/obj/item/ammo_casing/AC = A
-		if(AC.caliber == caliber && (length(loaded) < max_shells) && (length(contents) < max_shells))	//forgive me father, for i have sinned
+		if(AC.caliber == calibre && (length(loaded) < max_shells) && (length(contents) < max_shells))	//forgive me father, for i have sinned
 			user.drop_item()
 			AC.forceMove(src)
 			loaded.Add(AC)

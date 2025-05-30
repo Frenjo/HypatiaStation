@@ -164,6 +164,8 @@
 	var/target_locked = null
 
 /mob/living/proc/Targeted(obj/item/gun/I) //Self explanitory.
+	if(!ismob(I.loc))
+		return
 	if(isnull(I.target))
 		I.target = list(src)
 	else if(I.automatic && length(I.target) < 5) //Automatic weapon, they can hold down a room.
