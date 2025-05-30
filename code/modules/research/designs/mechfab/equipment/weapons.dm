@@ -60,6 +60,29 @@
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 3, /decl/material/glass = MATERIAL_AMOUNT_PER_SHEET)
 	build_path = /obj/item/mecha_equipment/weapon/energy/laser/rigged
 
+// X-ray
+/datum/design/mechfab/equipment/weapon/xray
+	name = "CH-XS \"Penetrator\" X-ray laser"
+	desc = "Allows for the construction of CH-XS X-ray lasers."
+	req_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 3, /decl/tech/power_storage = 3, /decl/tech/plasma = 3)
+	materials = alist(
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 4.5, /decl/material/plastic = MATERIAL_AMOUNT_PER_SHEET,
+		/decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 1.5, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 0.75,
+		/decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 1.25, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 0.5
+	)
+	build_path = /obj/item/mecha_equipment/weapon/energy/laser/xray
+
+/datum/design/mechfab/equipment/weapon/rigged_xray
+	name = "Jury-Rigged X-ray Laser"
+	desc = "Allows for the construction of a jury-rigged X-ray laser for non-combat exosuits."
+	req_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 3, /decl/tech/power_storage = 3, /decl/tech/plasma = 3)
+	materials = alist(
+		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 4.25, /decl/material/plastic = MATERIAL_AMOUNT_PER_SHEET,
+		/decl/material/glass = MATERIAL_AMOUNT_PER_SHEET * 1.25, /decl/material/silver = MATERIAL_AMOUNT_PER_SHEET * 0.625,
+		/decl/material/gold = MATERIAL_AMOUNT_PER_SHEET, /decl/material/plasma = MATERIAL_AMOUNT_PER_SHEET * 0.5
+	)
+	build_path = /obj/item/mecha_equipment/weapon/energy/laser/xray/rigged
+
 // Ballistic
 /datum/design/mechfab/equipment/weapon/lmg
 	materials = alist(/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 5)
