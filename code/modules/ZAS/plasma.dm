@@ -84,7 +84,7 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 		contaminate()
 
 	//Anything else requires them to not be dead.
-	if(stat >= 2)
+	if(stat != DEAD)
 		return
 
 	//Burn skin if exposed.
@@ -97,15 +97,15 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 
 	//Burn eyes if exposed.
 	if(global.vsc.plc.EYE_BURNS)
-		if(!head)
-			if(!wear_mask)
+		if(isnull(head))
+			if(isnull(wear_mask))
 				burn_eyes()
 			else
 				if(!HAS_ITEM_FLAGS(wear_mask, ITEM_FLAG_COVERS_EYES))
 					burn_eyes()
 		else
 			if(!HAS_ITEM_FLAGS(head, ITEM_FLAG_COVERS_EYES))
-				if(!wear_mask)
+				if(isnull(wear_mask))
 					burn_eyes()
 				else
 					if(!HAS_ITEM_FLAGS(wear_mask, ITEM_FLAG_COVERS_EYES))
@@ -131,25 +131,25 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 
 /mob/living/carbon/human/proc/pl_head_protected()
 	//Checks if the head is adequately sealed.
-	if(head)
+	if(isnotnull(head))
 		if(global.vsc.plc.PLASMAGUARD_ONLY)
 			if(HAS_ITEM_FLAGS(head, ITEM_FLAG_PLASMAGUARD))
-				return 1
+				return TRUE
 		else if(HAS_ITEM_FLAGS(head, ITEM_FLAG_COVERS_EYES))
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /mob/living/carbon/human/proc/pl_suit_protected()
 	//Checks if the suit is adequately sealed.
 	if(isnotnull(wear_suit))
 		if(global.vsc.plc.PLASMAGUARD_ONLY)
 			if(HAS_ITEM_FLAGS(wear_suit, ITEM_FLAG_PLASMAGUARD))
-				return 1
+				return TRUE
 		else
 			if(HAS_INV_FLAGS(wear_suit, INV_FLAG_HIDE_JUMPSUIT))
-				return 1
+				return TRUE
 		//should check INV_FLAG_HIDE_TAIL as well, but for the moment tails are not a part that can be damaged separately
-	return 0
+	return FALSE
 
 /mob/living/carbon/human/proc/suit_contamination()
 	//Runs over the things that can be contaminated and does so.
@@ -162,7 +162,7 @@ var/global/image/contamination_overlay = image('icons/effects/contamination.dmi'
 	//Items that are in plasma, but not on a mob, can still be contaminated.
 	if(istype(I) && global.vsc.plc.CLOTH_CONTAMINATION && I.can_contaminate())
 		var/datum/gas_mixture/env = return_air(1)
-		if(!env)
+		if(isnull(env))
 			return
 
 		var/decl/xgm_gas_data/gas_data = GET_DECL_INSTANCE(/decl/xgm_gas_data)
