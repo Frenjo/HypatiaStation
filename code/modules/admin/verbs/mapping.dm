@@ -114,7 +114,7 @@ GLOBAL_GLOBL_INIT(intercom_range_display_status, 0)
 
 	if(GLOBL.intercom_range_display_status)
 		for(var/obj/item/radio/intercom/I in GLOBL.movable_atom_list)
-			for(var/turf/T in orange(7, I))
+			for_no_type_check(var/turf/T, RANGE_TURFS(I, 7))
 				var/obj/effect/debugging/marker/F = new/obj/effect/debugging/marker(T)
 				if(!(F in view(7, I.loc)))
 					qdel(F)

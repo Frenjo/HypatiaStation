@@ -347,7 +347,7 @@
 			var/turf/dest = get_step_towards(target, src)  //Can't pathfind to a tray, as it is dense, so pathfind to the spot next to the tray
 			path = AStar(loc, dest, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 30, id = botcard)
 			if(!length(path))
-				for(var/turf/spot in orange(1, target)) //The closest one is unpathable, try  the other spots
+				for(var/turf/spot in RANGE_TURFS(target, 1)) //The closest one is unpathable, try  the other spots
 					if(spot == dest) //We already tried this spot
 						continue
 					if(spot.density)

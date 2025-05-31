@@ -150,7 +150,7 @@ Frequency:
 			else
 				L["[com.id] (Inactive)"] = com.locked
 	var/list/turfs = list()
-	for(var/turf/T in orange(10))
+	for_no_type_check(var/turf/T, RANGE_TURFS(src, 10))
 		if(T.x > world.maxx - 8 || T.x < 8)
 			continue	//putting them at the edge is dumb
 		if(T.y > world.maxy - 8 || T.y < 8)

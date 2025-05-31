@@ -11,12 +11,12 @@
 
 	while(open.len)
 		for_no_type_check(var/turf/T, open)
-			for(var/turf/O in orange(1, T))
+			for_no_type_check(var/turf/O, RANGE_TURFS(T, 1))
 				if(get_dist(O, src) > field_radius)
 					continue
 				var/add_this_turf = 0
 				if(isspace(O))
-					for(var/turf/open/G in orange(1, O))
+					for(var/turf/open/G in RANGE_TURFS(O, 1))
 						add_this_turf = 1
 						break
 

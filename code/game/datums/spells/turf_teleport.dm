@@ -26,8 +26,8 @@
 
 		if(!length(turfs))
 			var/list/turfs_to_pick_from = list()
-			for(var/turf/T in orange(target, outer_tele_radius))
-				if(!(T in orange(target, inner_tele_radius)))
+			for_no_type_check(var/turf/T, RANGE_TURFS(target, outer_tele_radius))
+				if(!(T in RANGE_TURFS(target, inner_tele_radius)))
 					turfs_to_pick_from += T
 			turfs += pick(/turf in turfs_to_pick_from)
 

@@ -80,7 +80,7 @@
 			//1% chance to skitter madly away
 			if(!busy && prob(1))
 				/*var/list/move_targets = list()
-				for(var/turf/T in orange(20, src))
+				for_no_type_check(var/turf/T, RANGE_TURFS(src, 20))
 					move_targets.Add(T)*/
 				stop_automated_movement = TRUE
 				walk_to(src, pick(orange(20, src)), 1, move_to_delay)

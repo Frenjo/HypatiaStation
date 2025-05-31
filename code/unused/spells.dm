@@ -309,14 +309,14 @@
 		return
 	if(!usr.casting()) return
 	var/list/turfs = list()
-	for(var/turf/T in orange(6))
+	for_no_type_check(var/turf/T, RANGE_TURFS(src, 6))
 		if(isspace(T))
 			continue
 		if(T.density) continue
 		if(T.x>world.maxx-4 || T.x<4)	continue	//putting them at the edge is dumb
 		if(T.y>world.maxy-4 || T.y<4)	continue
 		turfs += T
-	if(!turfs.len) turfs += pick(/turf in orange(6))
+	if(!turfs.len) turfs += pick(/turf in RANGE_TURFS(src, 6))
 	make_smoke(10, FALSE, usr.loc)
 	var/turf/picked = pick(turfs)
 	if(!isturf(picked)) return

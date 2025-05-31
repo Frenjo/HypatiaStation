@@ -164,7 +164,7 @@ emp_act
 		if(I.IsShield() && (prob(35)))
 			visible_message(SPAN_DANGER("The reactive teleport system flings [src] clear of [attack_text]!"))
 			var/list/turfs = list()
-			for(var/turf/T in orange(6))
+			for_no_type_check(var/turf/T, RANGE_TURFS(src, 6))
 				if(isspace(T))
 					continue
 				if(T.density)
@@ -175,7 +175,7 @@ emp_act
 					continue
 				turfs += T
 			if(!length(turfs))
-				turfs += pick(/turf in orange(6))
+				turfs += pick(/turf in RANGE_TURFS(src, 6))
 			var/turf/picked = pick(turfs)
 			if(!isturf(picked))
 				return

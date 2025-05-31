@@ -312,7 +312,7 @@ CONTROLLER_DEF(master)
 		var/list/processed_turfs = list()
 		var/list/turf/closed/rock/turfs_to_process = list(turf)
 		for_no_type_check(var/turf/closed/rock/archeo_turf, turfs_to_process)
-			for(var/turf/closed/rock/T in orange(1, archeo_turf))
+			for(var/turf/closed/rock/T in RANGE_TURFS(archeo_turf, 1))
 				if(isnotnull(T.finds))
 					continue
 				if(T in processed_turfs)

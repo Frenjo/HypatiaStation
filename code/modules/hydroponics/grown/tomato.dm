@@ -165,8 +165,8 @@
 		)
 		qdel(src)
 		return
-	for(var/turf/T in orange(M, outer_teleport_radius))
-		if(T in orange(M, inner_teleport_radius))
+	for_no_type_check(var/turf/T, RANGE_TURFS(M, outer_teleport_radius))
+		if(T in RANGE_TURFS(M, inner_teleport_radius))
 			continue
 		if(isspace(T))
 			continue
@@ -179,8 +179,8 @@
 		turfs += T
 	if(!length(turfs))
 		var/list/turfs_to_pick_from = list()
-		for(var/turf/T in orange(M, outer_teleport_radius))
-			if(!(T in orange(M, inner_teleport_radius)))
+		for_no_type_check(var/turf/T, RANGE_TURFS(M, outer_teleport_radius))
+			if(!(T in RANGE_TURFS(M, inner_teleport_radius)))
 				turfs_to_pick_from += T
 		turfs += pick(/turf in turfs_to_pick_from)
 	var/turf/picked = pick(turfs)

@@ -34,7 +34,7 @@
 	if(!CONFIG_GET(/decl/configuration_entry/starlight))
 		return
 
-	if(locate(/turf/open) in orange(src, 1))
+	if(locate(/turf/open) in RANGE_TURFS(src, 1))
 		set_light(CONFIG_GET(/decl/configuration_entry/starlight))
 	else
 		set_light(0)

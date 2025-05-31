@@ -61,7 +61,7 @@
 		return
 
 	//to_world("\blue Spread([probability])")
-	for(var/turf/open/jungle/J in orange(1, src))
+	for(var/turf/open/jungle/J in RANGE_TURFS(src, 1))
 		if(!J.bushes_spawn)
 			continue
 

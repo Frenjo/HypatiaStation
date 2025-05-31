@@ -27,7 +27,7 @@
 
 	..()
 
-	for(var/turf/T in orange(1,src))
+	for_no_type_check(var/turf/T, RANGE_TURFS(src, 1))
 		if(!IsValidBiomassLoc(T))
 			continue
 		var/obj/effect/biomass/starting = new /obj/effect/biomass(T)
@@ -107,7 +107,7 @@
 
 /obj/effect/biomass/proc/NewSpread(maxDistance = 15)
 	set background = BACKGROUND_ENABLED
-	for(var/turf/T in orange(1,src))
+	for_no_type_check(var/turf/T, RANGE_TURFS(src, 1))
 		if(!IsValidBiomassLoc(T,src))
 			continue
 		var/obj/effect/biomass/starting = new /obj/effect/biomass(T)
