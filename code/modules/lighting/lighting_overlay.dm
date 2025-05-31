@@ -50,10 +50,12 @@ GLOBAL_GLOBL_LIST_NEW(all_lighting_overlays) // Global list of lighting overlays
 // Lighting overlays should not be moving.
 /atom/movable/lighting_overlay/Move()
 	return
+
 /atom/movable/lighting_overlay/forceMove(atom/destination)
 	if(GC_DESTROYED(src))
 		return ..() // Unless they're being deleted for some strange reason.
 	return 0
+
 // Lighting overlays should not get exploded either.
 /atom/movable/lighting_overlay/ex_act()
 	return

@@ -101,7 +101,7 @@ PROCESS_DEF(supply)
 			continue
 		var/contcount
 		for_no_type_check(var/atom/movable/mover, T)
-			if(istype(mover, /atom/movable/lighting_overlay))
+			if(HAS_ATOM_FLAGS(mover, ATOM_FLAG_UNSIMULATED))
 				continue
 			if(istype(mover, /obj/machinery/light))
 				continue

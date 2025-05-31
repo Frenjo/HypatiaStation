@@ -41,14 +41,14 @@
 
 	return TRUE // Nothing found to block so return success!
 
-/turf/Entered(atom/atom)
+/turf/Entered(atom/movable/mover)
 	if(movement_disabled)
 		FEEDBACK_MOVEMENT_ADMIN_DISABLED(usr) // This is to identify lag problems.
 		return
-	..()
+	. = ..()
 
 //vvvvv Infared beam stuff vvvvv
-	if(atom?.density && !istype(atom, /obj/effect/beam))
+	if(mover?.density && !istype(mover, /obj/effect/beam))
 		for(var/obj/effect/beam/i_beam/I in src)
 			spawn(0)
 				if(isnotnull(I))
@@ -56,33 +56,33 @@
 				break
 //^^^^^ Infared beam stuff ^^^^^
 
-	if(!ismovable(atom))
+	if(HAS_ATOM_FLAGS(mover, ATOM_FLAG_UNSIMULATED))
 		return
 
-	var/atom/movable/M = atom
-
 	var/loopsanity = 100
-	if(ismob(M))
-		var/mob/mob = M
+	if(ismob(mover))
+		var/mob/mob = mover
 		if(isnull(mob.lastarea))
-			mob.lastarea = GET_AREA(M)
+			mob.lastarea = GET_AREA(mover)
 		if(!mob.lastarea.has_gravity)
-			inertial_drift(M)
+			inertial_drift(mover)
 
 	/*
-		if(M.flags & NOGRAV)
-			inertial_drift(M)
+		if(mover.flags & NOGRAV)
+			inertial_drift(mover)
 	*/
 
 		else if(!isspace(src))
 			mob.inertia_dir = 0
 	..()
 	var/objects = 0
-	for(var/atom/A in range(1))
+	for_no_type_check(var/atom/A, range(1))
+		if(HAS_ATOM_FLAGS(A, ATOM_FLAG_UNSIMULATED))
+			continue
 		if(objects > loopsanity)
 			break
 		objects++
 		spawn(0)
-			if(isnotnull(A) && isnotnull(M))
-				A.HasProximity(M, 1)
+			if(isnotnull(A) && isnotnull(mover))
+				A.HasProximity(mover, 1)
 			return
