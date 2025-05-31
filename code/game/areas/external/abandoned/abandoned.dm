@@ -18,7 +18,7 @@
 /area/external/abandoned/assembly_line
 	name = "\improper Assembly Line"
 	icon_state = "ass_line"
-	power_channels = list(EQUIP = FALSE, LIGHT = FALSE, ENVIRON = FALSE)
+	power_channels = alist(EQUIP = FALSE, LIGHT = FALSE, ENVIRON = FALSE)
 
 // Abandoned Mining Station
 // This one was originally grouped with the non-abandoned mining outpost but I moved it for clarity.

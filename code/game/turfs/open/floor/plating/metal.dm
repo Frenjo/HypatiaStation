@@ -48,6 +48,7 @@
 /turf/open/floor/plating/metal/asteroid
 	name = "dust-covered metal plating"
 	icon_state = "asteroidplating"
+	icon_plating = "asteroidplating"
 
 // Airless
 /turf/open/floor/plating/metal/asteroid/airless

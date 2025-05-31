@@ -14,6 +14,12 @@
 
 	cargo_capacity = 15
 
+	var/goliath_overlay = "ripley"
+
+	var/static/hide_absorption_bonus = 0.1
+	var/static/max_goliath_hides = 3
+	var/static/initial_damage_absorption = 0.8
+
 /obj/mecha/working/ripley/Destroy()
 	var/turf/source_turf = GET_TURF(src)
 	for(var/mob/M in src)
@@ -22,6 +28,9 @@
 		M.forceMove(source_turf)
 		M.loc.Entered(M)
 		step_rand(M)
+	while(damage_absorption["brute"] < initial_damage_absorption)
+		new /obj/item/stack/goliath_hide(source_turf)
+		damage_absorption["brute"] += hide_absorption_bonus
 	for(var/atom/movable/A in cargo)
 		A.forceMove(source_turf)
 		var/turf/T = GET_TURF(A)
@@ -55,6 +64,65 @@
 	else
 		. += "Nothing"
 	. += "</div>"
+
+/obj/mecha/working/ripley/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/stack/goliath_hide))
+		if(isnotnull(occupant))
+			to_chat(user, SPAN_WARNING("You can't add armour onto \the [src] while someone is inside!"))
+			return TRUE
+		var/max_damage_absorption = initial_damage_absorption - (hide_absorption_bonus * max_goliath_hides)
+		if(damage_absorption["brute"] > max_damage_absorption)
+			var/obj/item/stack/goliath_hide/hide = I
+			if(!hide.use(1))
+				return TRUE
+
+			damage_absorption["brute"] -= hide_absorption_bonus
+			to_chat(user, SPAN_INFO("You strengthen the armour on \the [src], improving its resistance against melee attacks."))
+
+			if(damage_absorption["brute"] <= max_damage_absorption)
+				desc = initial(desc) + " It is wearing a fearsome carapace entirely composed of goliath hide plates - the pilot must be an experienced monster hunter."
+			else
+				desc = initial(desc) + " Its armour is enhanced with some goliath hide plates."
+			update_overlays(FALSE)
+		else
+			to_chat(user, SPAN_WARNING("You can't improve the armour on \the [src] any further."))
+		return TRUE
+	return ..()
+
+/obj/mecha/working/ripley/moved_inside(mob/living/carbon/human/H)
+	. = ..()
+	if(!.)
+		return FALSE
+	update_overlays(TRUE)
+
+/obj/mecha/working/ripley/mmi_moved_inside(obj/item/mmi/mmi_as_oc, mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	update_overlays(TRUE)
+
+/obj/mecha/working/ripley/go_out()
+	. = ..()
+	if(!.)
+		return FALSE
+	update_overlays(FALSE)
+
+/obj/mecha/working/ripley/proc/update_overlays(has_occupant)
+	overlays.Cut()
+	var/max_damage_absorption = initial_damage_absorption - (hide_absorption_bonus * max_goliath_hides)
+	var/image/new_overlay = null
+	if(has_occupant)
+		if(damage_absorption["brute"] < initial_damage_absorption && damage_absorption["brute"] > max_damage_absorption)
+			new_overlay = image('icons/obj/mecha/mecha_overlays.dmi', "[goliath_overlay]-g")
+		else if(damage_absorption["brute"] <= max_damage_absorption)
+			new_overlay = image('icons/obj/mecha/mecha_overlays.dmi', "[goliath_overlay]-g-full")
+	else
+		if(damage_absorption["brute"] < initial_damage_absorption && damage_absorption["brute"] > max_damage_absorption)
+			new_overlay = image('icons/obj/mecha/mecha_overlays.dmi', "[goliath_overlay]-g-open")
+		else if(damage_absorption["brute"] <= max_damage_absorption)
+			new_overlay = image('icons/obj/mecha/mecha_overlays.dmi', "[goliath_overlay]-g-full-open")
+	new_overlay.plane = plane
+	overlays.Add(new_overlay)
 
 /obj/mecha/working/ripley/firefighter
 	name = "\improper APLU \"Firefighter\""
@@ -141,6 +209,8 @@
 	mecha_flag = MECHA_FLAG_SINDY
 
 	cargo_capacity = 10
+
+	goliath_overlay = "sindy"
 
 /obj/mecha/working/ripley/sindy/add_cell(obj/item/cell/C = null)
 	if(isnotnull(C))

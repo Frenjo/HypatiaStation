@@ -60,8 +60,8 @@
 	var/requires_power = TRUE
 	var/always_unpowered = FALSE
 	var/obj/machinery/power/apc/apc = null
-	var/list/power_channels = list(EQUIP = TRUE, LIGHT = TRUE, ENVIRON = TRUE)
-	var/list/power_used = list(EQUIP = 0, LIGHT = 0, ENVIRON = 0)
+	var/alist/power_channels = alist(EQUIP = TRUE, LIGHT = TRUE, ENVIRON = TRUE)
+	var/alist/power_used = alist(EQUIP = 0, LIGHT = 0, ENVIRON = 0)
 
 	/*
 	 * Light Switch / Gravity

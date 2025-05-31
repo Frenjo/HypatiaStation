@@ -95,7 +95,7 @@ GLOBAL_GLOBL_INIT(max_asteroid_caves, 12)
 			valid = FALSE
 			continue
 
-		if(locate(/area/external/asteroid/artifact_room) in surroundings)
+		if(locate(/area/external/asteroid/artefact_room) in surroundings)
 			valid = FALSE
 			continue
 
@@ -169,8 +169,11 @@ GLOBAL_GLOBL_INIT(max_asteroid_caves, 12)
 				for(var/O in cur_loc)
 					qdel(O)
 
-			var/area/external/asteroid/artifact_room/A = new /area/external/asteroid/artifact_room()
-			A.name = isnotnull(name) ? name : "Artifact Room #[start_loc.x][start_loc.y][start_loc.z]"
+			var/area/external/asteroid/artefact_room/room_area = new /area/external/asteroid/artefact_room()
+			if(isnotnull(name))
+				room_area.name = name
+			else
+				room_area.name += "[start_loc.x]:[start_loc.y]:[start_loc.z]"
 
 			if(x == 0 || x == (x_size - 1) || y == 0 || y == (y_size - 1))
 				if(wall == /obj/effect/alien/resin)
@@ -188,7 +191,7 @@ GLOBAL_GLOBL_INIT(max_asteroid_caves, 12)
 				var/list/floors = room_turfs["floors"]
 				floors.Add(T)
 
-			A.contents.Add(T)
-			A.turf_list.Add(T)
+			room_area.contents.Add(T)
+			room_area.turf_list.Add(T)
 
 	return room_turfs

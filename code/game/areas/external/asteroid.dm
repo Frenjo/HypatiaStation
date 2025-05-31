@@ -13,11 +13,11 @@
 	)
 
 /area/external/asteroid/cave // -- TLE
-	name = "\improper Asteroid - Underground"
+	name = "\improper Asteroid - Underground #"
 	icon_state = "cave"
 
-/area/external/asteroid/artifact_room
-	name = "\improper Asteroid - Artifact"
+/area/external/asteroid/artefact_room
+	name = "\improper Asteroid - Artefact Room #"
 	icon_state = "cave"
 
 // Mining

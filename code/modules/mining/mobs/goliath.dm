@@ -46,6 +46,8 @@
 	icon = 'icons/mob/simple/mining.dmi'
 	icon_state = "goliath_tentacle"
 
+	anchored = TRUE
+
 /obj/effect/goliath_tentacle/initialise()
 	. = ..()
 	spawn(20)

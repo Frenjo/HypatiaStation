@@ -179,11 +179,20 @@
 	make_tunnel(forward_cave_dir)
 	if(go_backwards)
 		make_tunnel(backward_cave_dir)
-	// Kill ourselves by replacing ourselves with a normal floor.
-	spawn_floor(src)
 	. = ..()
 
+/turf/open/floor/plating/asteroid/airless/cave/initialise()
+	. = ..()
+	// Replace ourself with a normal floor.
+	spawn_floor(loc, src)
+
 /turf/open/floor/plating/asteroid/airless/cave/proc/make_tunnel(target_dir)
+	// Changes our area to the cave type.
+	var/area/external/asteroid/cave/cave_area = new /area/external/asteroid/cave()
+	cave_area.name += "[x]:[y]:[z]"
+	cave_area.contents.Add(src)
+	cave_area.turf_list.Add(src)
+
 	var/turf/closed/rock/tunnel = src
 	var/next_angle = pick(45, -45)
 
@@ -199,7 +208,7 @@
 		for(var/edge_angle in L)
 			var/turf/closed/rock/edge = get_step(tunnel, angle2dir(dir2angle(target_dir) + edge_angle))
 			if(istype(edge))
-				spawn_floor(edge)
+				spawn_floor(cave_area, edge)
 
 		// Move our tunnel forward
 		tunnel = get_step(tunnel, target_dir)
@@ -209,7 +218,7 @@
 			if(i > 3 && prob(20))
 				new type(tunnel, rand(10, 15), 0, target_dir)
 			else
-				spawn_floor(tunnel)
+				spawn_floor(cave_area, tunnel)
 		else // We hit space/normal/wall, stop our tunnel.
 			break
 
@@ -219,7 +228,7 @@
 			next_angle = -next_angle
 			target_dir = angle2dir(dir2angle(target_dir) + next_angle)
 
-/turf/open/floor/plating/asteroid/airless/cave/proc/spawn_floor(turf/T)
+/turf/open/floor/plating/asteroid/airless/cave/proc/spawn_floor(area/external/asteroid/cave/cave_area, turf/T)
 	for(var/turf/S in range(1, T))
 		if(isspace(S) || istype(S.loc, /area/external/asteroid/mine/explored))
 			sanity = FALSE
@@ -228,7 +237,9 @@
 		return
 
 	spawn_monster(T)
-	T.ChangeTurf(/turf/open/floor/plating/asteroid/airless)
+	var/turf/open/floor/plating/asteroid/airless/new_turf = T.ChangeTurf(/turf/open/floor/plating/asteroid/airless)
+	cave_area.contents.Add(new_turf)
+	cave_area.turf_list.Add(new_turf)
 
 /turf/open/floor/plating/asteroid/airless/cave/proc/spawn_monster(turf/T)
 	if(!prob(2))
