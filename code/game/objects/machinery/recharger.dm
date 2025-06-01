@@ -14,41 +14,51 @@
 	var/power_rating = 15000	//15 kW
 	var/obj/item/charging = null
 
-/obj/machinery/recharger/attackby(obj/item/G, mob/user)
-	if(issilicon(user))
-		return
-
-	if(istype(G, /obj/item/gun/energy) || istype(G, /obj/item/melee/baton) || istype(G, /obj/item/cell))
+/obj/machinery/recharger/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool))
 		if(isnotnull(charging))
-			return
+			to_chat(user, SPAN_WARNING("Remove \the [charging] first!"))
+			return TRUE
+		anchored = !anchored
+		user.visible_message(
+			SPAN_NOTICE("[user] [anchored ? "attaches" : "detaches"] \the [src]."),
+			SPAN_NOTICE("You [anchored ? "attach" : "detach"] \the [src]."),
+			SPAN_INFO("You hear a ratchet.")
+		)
+		playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
+		return TRUE
+	return ..()
+
+/obj/machinery/recharger/attack_by(obj/item/I, mob/user)
+	if(issilicon(user))
+		return FALSE
+
+	if(istype(I, /obj/item/gun/energy) || istype(I, /obj/item/melee/baton) || istype(I, /obj/item/cell))
+		if(isnotnull(charging))
+			return TRUE
 
 		// Checks to make sure he's not in space doing it, and that the area got proper power.
 		var/area/a = GET_AREA(src)
 		if(!isarea(a))
-			to_chat(user, SPAN_WARNING("The [name] blinks red as you try to insert the item!"))
-			return
+			to_chat(user, SPAN_WARNING("\The [src] blinks red as you try to insert \the [I]!"))
+			return TRUE
 		if(!a.powered(EQUIP))
-			to_chat(user, SPAN_WARNING("The [name] blinks red as you try to insert the item!"))
-			return
+			to_chat(user, SPAN_WARNING("\The [src] blinks red as you try to insert \the [I]!"))
+			return TRUE
 
-		if(istype(G, /obj/item/gun/energy/gun/nuclear) || istype(G, /obj/item/gun/energy/crossbow))
-			to_chat(user, SPAN_NOTICE("Your gun's recharge port was removed to make room for a miniaturized reactor."))
-			return
-		if(istype(G, /obj/item/gun/energy/staff))
-			return
+		if(istype(I, /obj/item/gun/energy/gun/nuclear) || istype(I, /obj/item/gun/energy/crossbow))
+			to_chat(user, SPAN_NOTICE("Your [I]'s recharge port was removed to make room for a miniaturized reactor."))
+			return TRUE
+		if(istype(I, /obj/item/gun/energy/staff))
+			return TRUE
 		user.drop_item()
-		G.forceMove(src)
-		charging = G
+		I.forceMove(src)
+		charging = I
 		update_power_state(USE_POWER_ACTIVE)
 		update_icon()
+		return TRUE
 
-	else if(iswrench(G))
-		if(isnotnull(charging))
-			to_chat(user, SPAN_WARNING("Remove [charging] first!"))
-			return
-		anchored = !anchored
-		to_chat(user, "You [anchored ? "attached" : "detached"] the recharger.")
-		playsound(loc, 'sound/items/Ratchet.ogg', 75, 1)
+	return ..()
 
 /obj/machinery/recharger/attack_hand(mob/user)
 	add_fingerprint(user)

@@ -324,32 +324,33 @@
 	qdel(grab)
 	return TRUE
 
-/obj/structure/table/attackby(obj/item/W, mob/user)
-	if(!W)
-		return
-	if(iswrench(W))
-		to_chat(user, SPAN_INFO("Now disassembling table."))
+/obj/structure/table/attack_tool(obj/item/tool, mob/user)
+	if(iswrench(tool))
+		to_chat(user, SPAN_INFO("Now disassembling \the [src]..."))
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
-		if(do_after(user,50))
+		if(do_after(user, 5 SECONDS))
 			qdel(src)
-		return
+		return TRUE
+	return ..()
 
-	if(isrobot(user))
-		return
-
-	if(istype(W, /obj/item/melee/energy/blade))
+/obj/structure/table/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/melee/energy/blade))
 		make_sparks(5, FALSE, loc)
 		playsound(src, 'sound/weapons/melee/blade1.ogg', 50, 1)
 		playsound(src, "sparks", 50, 1)
-		for(var/mob/O in viewers(user, 4))
-			O.show_message(
-				SPAN_INFO("The [src] was sliced apart by [user]!"), 1,
-				SPAN_WARNING("You hear [src] coming apart."), 2
-			)
+		user.visible_message(
+			SPAN_WARNING("[user] slices \the [src] apart!"),
+			SPAN_WARNING("You slice \the [src] apart!"),
+			SPAN_WARNING("You hear \the [src] coming apart.")
+		)
 		qdel(src)
+		return TRUE
 
-	user.drop_item(src)
-	return
+	if(!isrobot(user))
+		user.drop_item(src)
+		return TRUE
+
+	return ..()
 
 /obj/structure/table/proc/straight_table_check(direction)
 	var/obj/structure/table/T
