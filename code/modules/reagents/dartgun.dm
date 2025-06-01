@@ -282,7 +282,7 @@
 	src.updateUsrDialog()
 	return
 
-/obj/item/gun/dartgun/Fire(atom/target, mob/living/user, params, reflex = 0)
+/obj/item/gun/dartgun/Fire(atom/target, mob/living/user, params, point_blank = FALSE, reflex = FALSE)
 	if(cartridge)
 		spawn(0) fire_dart(target,user)
 	else

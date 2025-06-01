@@ -12,7 +12,7 @@
 	set category = PANEL_OBJECT
 	set name = "Lower Aim"
 
-	if(isnotnull(target))
+	if(isnotnull(aim_targets))
 		stop_aim()
 		usr.visible_message(SPAN_INFO("\The [usr] lowers \the [src]..."))
 
@@ -34,10 +34,10 @@
 
 // Removes lock from all targets.
 /obj/item/gun/proc/stop_aim()
-	if(isnotnull(target))
-		for(var/mob/living/M in target)
+	if(isnotnull(aim_targets))
+		for(var/mob/living/M in aim_targets)
 			M?.NotTargeted(src) //Untargeting people.
-		qdel(target)
+		qdel(aim_targets)
 
 //Compute how to fire.....
 //Return 1 if a target was found, 0 otherwise.
@@ -47,13 +47,13 @@
 		return
 
 	user.set_dir(get_cardinal_dir(src, A))
-	if(isliving(A) && !(A in target))
+	if(isliving(A) && !(A in aim_targets))
 		Aim(A) 	//Clicked a mob, aim at them
 		return 1
 
 	//Didn't click someone, check if there is anyone along that guntrace
 	var/mob/living/M = GunTrace(usr.x, usr.y, A.x, A.y, usr.z, usr)  //Find dat mob.
-	if(isliving(M) && (M in view(user)) && !(M in target))
+	if(isliving(M) && (M in view(user)) && !(M in aim_targets))
 		Aim(M) //Aha!  Aim at them!
 		return 1
 
@@ -61,12 +61,12 @@
 
 //Aiming at the target mob.
 /obj/item/gun/proc/Aim(mob/living/M)
-	if(isnull(target) || !(M in target))
+	if(isnull(aim_targets) || !(M in aim_targets))
 		lock_time = world.time
-		if(target && !automatic) //If they're targeting someone and they have a non automatic weapon.
-			for(var/mob/living/L in target)
+		if(aim_targets && !automatic) //If they're targeting someone and they have a non automatic weapon.
+			for(var/mob/living/L in aim_targets)
 				L?.NotTargeted(src)
-			qdel(target)
+			qdel(aim_targets)
 			usr.visible_message(SPAN_DANGER("[usr] turns \the [src] on [M]!"))
 		else
 			usr.visible_message(SPAN_DANGER("[usr] aims \a [src] at [M]!"))
@@ -166,11 +166,11 @@
 /mob/living/proc/Targeted(obj/item/gun/I) //Self explanitory.
 	if(!ismob(I.loc))
 		return
-	if(isnull(I.target))
-		I.target = list(src)
-	else if(I.automatic && length(I.target) < 5) //Automatic weapon, they can hold down a room.
-		I.target.Add(src)
-	else if(length(I.target) >= 5)
+	if(isnull(I.aim_targets))
+		I.aim_targets = list(src)
+	else if(I.automatic && length(I.aim_targets) < 5) //Automatic weapon, they can hold down a room.
+		I.aim_targets.Add(src)
+	else if(length(I.aim_targets) >= 5)
 		if(ismob(I.loc))
 			to_chat(I.loc, "You can only target 5 people at once!")
 		return
@@ -235,11 +235,11 @@
 		for(var/mob/living/M in viewers(src))
 			M << 'sound/weapons/gun/target_off.ogg'
 	targeted_by -= I
-	I.target.Remove(src) //De-target them
-	if(!length(I.target))
-		qdel(I.target)
+	I.aim_targets.Remove(src) //De-target them
+	if(!length(I.aim_targets))
+		qdel(I.aim_targets)
 	var/mob/living/T = I.loc //Remove the targeting icons
-	if(isnotnull(T) && ismob(T) && !I.target)
+	if(isnotnull(T) && ismob(T) && !I.aim_targets)
 		T.client.remove_gun_icons()
 	if(!length(targeted_by))
 		qdel(target_locked) //Remove the overlay
@@ -254,8 +254,8 @@
 		if(!(M in view(src)))
 			NotTargeted(G)
 	for(var/obj/item/gun/G in src) //Handle the gunner loosing sight of their target/s
-		if(isnotnull(G.target))
-			for(var/mob/living/M in G.target)
+		if(isnotnull(G.aim_targets))
+			for(var/mob/living/M in G.aim_targets)
 				if(isnotnull(M) && !(M in view(src)))
 					M.NotTargeted(G)
 
@@ -335,8 +335,8 @@
 	//Handling change for all the guns on client
 	for(var/obj/item/gun/G in usr)
 		G.lock_time = world.time + 5
-		if(isnotnull(G.target))
-			for(var/mob/living/M in G.target)
+		if(isnotnull(G.aim_targets))
+			for(var/mob/living/M in G.aim_targets)
 				if(target_can_move)
 					to_chat(M, "Your character may now <b>walk</b> at the discretion of their targeter.")
 					if(!target_can_run)
@@ -363,8 +363,8 @@
 	//Handling change for all the guns on client
 	for(var/obj/item/gun/G in usr)
 		G.lock_time = world.time + 5
-		if(isnotnull(G.target))
-			for(var/mob/living/M in G.target)
+		if(isnotnull(G.aim_targets))
+			for(var/mob/living/M in G.aim_targets)
 				if(target_can_run)
 					to_chat(M, "Your character may now <b>run</b> at the discretion of their targeter.")
 				else
@@ -387,8 +387,8 @@
 	//Handling change for all the guns on client
 	for(var/obj/item/gun/G in usr)
 		G.lock_time = world.time + 5
-		if(isnotnull(G.target))
-			for(var/mob/living/M in G.target)
+		if(isnotnull(G.aim_targets))
+			for(var/mob/living/M in G.aim_targets)
 				if(target_can_click)
 					to_chat(M, "Your character may now <b>use items</b> at the discretion of their targeter.")
 				else

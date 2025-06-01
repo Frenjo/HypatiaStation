@@ -14,7 +14,7 @@
 	if(!.)
 		return FALSE
 	if(calibre != initial(calibre) && prob(70 - (length(loaded) * 10))) // Minimum probability of 10, maximum of 60.
-		handle_post_fire(user)
+		handle_post_fire(user, user, point_blank = TRUE)
 		to_chat(user, SPAN_DANGER("\The [src] blows up in your face!"))
 		user.take_organ_damage(0, 20)
 		user.drop_item()
@@ -178,11 +178,7 @@
 
 /obj/item/gun/projectile/russian/attack(atom/target, mob/living/user)
 	if(!length(loaded))
-		user.visible_message(
-			SPAN_WARNING("*click*"),
-			SPAN_WARNING("*click*")
-		)
-		playsound(user, 'sound/weapons/empty.ogg', 100, 1)
+		click_empty(user)
 		return
 
 	if(isliving(target) && isliving(user))
@@ -191,11 +187,7 @@
 			if(affecting == "head")
 				var/obj/item/ammo_casing/AC = loaded[1]
 				if(!load_into_chamber())
-					user.visible_message(
-						SPAN_WARNING("*click*"),
-						SPAN_WARNING("*click*")
-					)
-					playsound(user, 'sound/weapons/empty.ogg', 100, 1)
+					click_empty(user)
 					return
 				if(isnull(in_chamber))
 					return

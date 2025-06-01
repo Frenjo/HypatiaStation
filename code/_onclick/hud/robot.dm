@@ -67,7 +67,7 @@
 		if(R.client.gun_mode) // If in aim mode, correct the sprite
 			R.gun_setting_icon.set_dir(2)
 	for(var/obj/item/gun/G in R) // If targeting someone, display other buttons
-		if(isnotnull(G.target))
+		if(isnotnull(G.aim_targets))
 			R.item_use_icon = new /atom/movable/screen/gun/item()
 			if(R.client.target_can_click)
 				R.item_use_icon.set_dir(1)

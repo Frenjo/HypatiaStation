@@ -42,7 +42,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/gun/projectile/handle_post_fire()
+/obj/item/gun/projectile/handle_post_fire(atom/target, mob/user, point_blank = FALSE, reflex = FALSE)
 	. = ..()
 	if(length(loaded))
 		var/obj/item/ammo_casing/AC = loaded[1]
@@ -90,7 +90,7 @@
 	return ..()
 
 /obj/item/gun/projectile/attack_self(mob/user)
-	if(target)
+	if(aim_targets)
 		return ..()
 	if(!length(loaded))
 		to_chat(user, SPAN_WARNING("There is nothing loaded in \the [src]!"))

@@ -74,7 +74,7 @@
 /obj/item/projectile/proc/on_penetrate(atom/A)
 	return FALSE
 
-/obj/item/projectile/proc/check_fire(mob/living/target, mob/living/user) // Checks if you can hit them or not.
+/obj/item/projectile/proc/check_fire(atom/target, mob/living/user) // Checks if you can hit them or not.
 	if(!istype(target) || !istype(user))
 		return 0
 
@@ -135,7 +135,7 @@
 	// Accuracy modifier from aiming.
 	if(istype(shot_from, /obj/item/gun)) // If you aim at someone beforehead, it'll hit more often.
 		var/obj/item/gun/daddy = shot_from // Kinda balanced by fact you need like 2 seconds to aim.
-		if(isnotnull(daddy.target) && (original in daddy.target)) // As opposed to no-delay pew pew.
+		if(isnotnull(daddy.aim_targets) && (original in daddy.aim_targets)) // As opposed to no-delay pew pew.
 			miss_modifier += -30
 
 	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_modifier + 15 * distance)
@@ -244,7 +244,7 @@
 	yo = null
 	xo = null
 
-	var/target = null
+	var/atom/target = null
 	var/result = 0 //To pass the message back to the gun.
 
 /obj/item/projectile/test/Bump(atom/A)

@@ -41,7 +41,7 @@
 /obj/item/gun/rocketlauncher/can_fire()
 	return length(rockets)
 
-/obj/item/gun/rocketlauncher/Fire(atom/target, mob/living/user, params, reflex = 0)
+/obj/item/gun/rocketlauncher/Fire(atom/target, mob/living/user, params, point_blank = FALSE, reflex = FALSE)
 	if(length(rockets))
 		var/obj/item/ammo_casing/rocket/I = rockets[1]
 		var/obj/item/missile/M = new projectile(user.loc)

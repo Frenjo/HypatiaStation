@@ -44,7 +44,7 @@
 /obj/item/gun/syringe/can_hit(mob/living/target, mob/living/user)
 	return 1		//SHOOT AND LET THE GOD GUIDE IT (probably will hit a wall anyway)
 
-/obj/item/gun/syringe/Fire(atom/target, mob/living/user, params, reflex = 0)
+/obj/item/gun/syringe/Fire(atom/target, mob/living/user, params, point_blank = FALSE, reflex = FALSE)
 	if(length(syringes))
 		spawn(0)
 			fire_syringe(target,user)

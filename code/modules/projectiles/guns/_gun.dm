@@ -31,7 +31,7 @@
 
 	var/obj/item/projectile/in_chamber = null
 
-	var/tmp/list/mob/living/target = null	// List of who yer targeting.
+	var/tmp/list/mob/living/aim_targets = null	// List of who yer targeting.
 	var/tmp/lock_time = -100
 	var/tmp/mouthshoot = FALSE				// To stop people from suiciding twice... >.>
 	var/tmp/mob/living/last_moved_mob		// Used to fire faster at more than one person.
@@ -61,7 +61,7 @@
 		return FALSE
 
 	if(clumsy_check && ((MUTATION_CLUMSY in user.mutations) && prob(50)))
-		handle_post_fire(user)
+		handle_post_fire(user, user, point_blank = TRUE)
 		to_chat(user, SPAN_DANGER("\The [src] blows up in your face!"))
 		user.take_organ_damage(0, 20)
 		user.drop_item()
@@ -74,15 +74,13 @@
 	for(var/obj/O in contents)
 		O.emp_act(severity)
 
-/obj/item/gun/afterattack(atom/A, mob/living/user, flag, params)
-	if(flag)
-		return //It's adjacent, is the user, or is on the user's person
-	if(istype(target, /obj/machinery/recharger) && istype(src, /obj/item/gun/energy))
-		return//Shouldnt flag take care of this?
+/obj/item/gun/afterattack(atom/A, mob/living/user, adjacent, params)
+	if(adjacent)
+		return // It's adjacent, is the user, or is on the user's person
 
 	//decide whether to aim or shoot normally
 	var/aiming = 0
-	if(user && user.client && !(A in target))
+	if(isnotnull(user?.client) && !(A in aim_targets))
 		var/client/C = user.client
 		//If help intent is on and we have clicked on an eligible target, switch to aim mode automatically
 		if(user.a_intent == "help" && isliving(A) && !C.gun_mode)
@@ -92,7 +90,7 @@
 			aiming = PreFire(A, user, params) //They're using the new gun system, locate what they're aiming at.
 
 	if(!aiming)
-		if(user && user.a_intent == "help") //regardless of what happens, refuse to shoot if help intent is on
+		if(user?.a_intent == "help") //regardless of what happens, refuse to shoot if help intent is on
 			to_chat(user, SPAN_WARNING("You refrain from firing [src] as your intent is set to help."))
 		else
 			Fire(A, user, params) //Otherwise, fire normally.
@@ -100,7 +98,7 @@
 /obj/item/gun/proc/isHandgun()
 	return TRUE
 
-/obj/item/gun/proc/Fire(atom/target, mob/living/user, params, reflex = FALSE)//TODO: go over this
+/obj/item/gun/proc/Fire(atom/target, mob/living/user, params, point_blank = FALSE, reflex = FALSE) //TODO: go over this
 	if(isnull(target) || isnull(user))
 		return
 
@@ -122,6 +120,19 @@
 
 	user.next_move = world.time + 4
 
+	if(process_projectile(in_chamber, target, user, user.zone_sel.selecting, params, point_blank))
+		handle_post_fire(target, user, point_blank, reflex)
+		update_icon()
+		if(user.hand)
+			user.update_inv_l_hand()
+		else
+			user.update_inv_r_hand()
+
+/obj/item/gun/proc/process_projectile(obj/projectile, atom/target, mob/living/user, target_zone, params = null, point_blank = FALSE)
+	if(!istype(projectile, /obj/item/projectile))
+		return FALSE
+	var/obj/item/projectile/bullet = projectile
+
 	var/x_offset = 0
 	var/y_offset = 0
 	if(iscarbon(user))
@@ -133,31 +144,24 @@
 			x_offset += rand(-1, 1)
 			y_offset += rand(-1, 1)
 
-	if(isnotnull(params))
-		in_chamber.set_clickpoint(params)
+	if(point_blank)
+		bullet.damage *= 1.3
 
-	if(isnotnull(in_chamber))
-		var/result = in_chamber.launch(target, user, src, user.zone_sel.selecting, x_offset, y_offset)
-		if(!result)
-			return
+	if(isnotnull(params))
+		bullet.set_clickpoint(params)
+
+	. = bullet.launch(target, user, src, target_zone, x_offset, y_offset)
 
 	sleep(1)
 	in_chamber = null
 
-	handle_post_fire(user, reflex)
-	update_icon()
-	if(user.hand)
-		user.update_inv_l_hand()
-	else
-		user.update_inv_r_hand()
-
-/obj/item/gun/proc/handle_post_fire(mob/user, reflex = FALSE)
+/obj/item/gun/proc/handle_post_fire(atom/target, mob/user, point_blank = FALSE, reflex = FALSE)
 	if(silenced)
 		playsound(user, fire_sound, 10, 1)
 	else
 		playsound(user, fire_sound, 50, 1)
 		user.visible_message(
-			SPAN_WARNING("[user] fires \the [src][reflex ? " by reflex" : ""]!"),
+			SPAN_WARNING("[user] fires \the [src][point_blank ? " point blank at [target]" : ""][reflex ? " by reflex" : ""]!"),
 			SPAN_WARNING("You fire \the [src][reflex ? "by reflex":""]!"),
 			"You hear a [fire_sound_text]!"
 		)
@@ -180,23 +184,19 @@
 		visible_message("*click click*")
 		playsound(src, 'sound/weapons/empty.ogg', 100, 1)
 
-/obj/item/gun/attack(mob/living/M, mob/living/user, def_zone)
-	//Suicide handling.
-	if(M == user && user.zone_sel.selecting == "mouth" && !mouthshoot)
+/obj/item/gun/attack(atom/A, mob/living/user, def_zone)
+	// Suicide handling.
+	if(A == user && user.zone_sel.selecting == "mouth" && !mouthshoot)
 		handle_suicide(user)
 		return
+
 	if(load_into_chamber())
-		//Point blank shooting if on harm intent or target we were targeting.
+		// Point blank shooting if on harm intent or target we were targeting.
 		if(user.a_intent == "hurt")
-			user.visible_message(SPAN_DANGER("\The [user] fires \the [src] point blank at \the [M]!"))
-			in_chamber.damage *= 1.3
-			Fire(M, user)
-			return
-		else if(target && (M in target))
-			Fire(M, user) ///Otherwise, shoot!
+			Fire(A, user, point_blank = TRUE)
 			return
 	else
-		return ..() //Pistolwhippin'
+		return ..() // Pistolwhippin'
 
 /obj/item/gun/proc/handle_suicide(mob/living/user)
 	mouthshoot = TRUE
@@ -220,13 +220,12 @@
 		mouthshoot = FALSE
 		return
 
-	in_chamber.on_hit(user)
 	if(in_chamber.damage_type != HALLOSS)
 		user.apply_damage(in_chamber.damage * 2.5, in_chamber.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [in_chamber]", sharp = 1)
 		user.death()
 	else
 		to_chat(user, SPAN_NOTICE("Ow..."))
-		user.apply_effect(110, AGONY, 0)
+		user.apply_effect(110, AGONY)
+	in_chamber.on_hit(user)
 	qdel(in_chamber)
 	mouthshoot = FALSE
-	return
