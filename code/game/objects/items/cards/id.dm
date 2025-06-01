@@ -195,7 +195,7 @@
 	. = ..()
 
 /obj/item/card/id/centcom
-	name = "\improper CentCom. ID"
+	name = "\improper CentCom ID"
 	desc = "An ID straight from CentCom."
 	icon_state = "centcom"
 	registered_name = "Central Command"
