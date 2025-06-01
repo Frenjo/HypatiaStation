@@ -96,20 +96,17 @@
 		if(prob(35))
 			make_sparks(5, TRUE, src)
 		A.set_dir(src.dir)
+		A.starting = GET_TURF(src)
 		switch(dir)
 			if(NORTH)
-				A.yo = 20
-				A.xo = 0
+				A.original = locate(x, y + 1, z)
 			if(EAST)
-				A.yo = 0
-				A.xo = 20
+				A.original = locate(x + 1, y, z)
 			if(WEST)
-				A.yo = 0
-				A.xo = -20
+				A.original = locate(x - 1, y, z)
 			else // Any other
-				A.yo = -20
-				A.xo = 0
-		A.process()	//TODO: Carn: check this out
+				A.original = locate(x, y - 1, z)
+		A.process()
 
 /obj/machinery/zero_point_emitter/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(stat & (BROKEN | NOPOWER))

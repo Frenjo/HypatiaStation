@@ -7,6 +7,8 @@
 	damage = 60
 	embed = TRUE
 
+	muzzle_type = /obj/effect/projectile/bullet/muzzle
+
 /obj/item/projectile/bullet/on_hit(atom/target, blocked = 0)
 	if(..(target, blocked))
 		var/mob/living/L = target

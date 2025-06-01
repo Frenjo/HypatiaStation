@@ -48,6 +48,8 @@
 
 	damage = 50
 
+	muzzle_type = /obj/effect/projectile/pulse/muzzle
+
 /obj/item/projectile/energy/pulse/deathlaser
 	name = "death laser pulse"
 	icon_state = "heavylaser"

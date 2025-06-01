@@ -54,20 +54,123 @@
 	var/agony = 0
 	var/embed = 0 // whether or not the projectile can embed itself in the mob
 
+	var/hitscan = FALSE // Whether the projectile it hitscan.
+	var/datum/plot_vector/trajectory // Used to plot the path of the projectile.
+	var/datum/vector_loc/location // The projectile's current location in pixel space.
+
+	var/matrix/effect_transform // Matrix to rotate and scale projectile effects - putting it here so it doesn't have to be recreated multiple times.
+	// Visual effect types for the projectile.
+	var/muzzle_type = null
+	var/tracer_type = null
+	var/impact_type = null
+
+/obj/item/projectile/Bump(atom/A)
+	if(A == src)
+		return FALSE
+	if(A == firer)
+		loc = A.loc
+		return FALSE //cannot shoot yourself
+
+	if(bumped || (A in permutated))
+		return FALSE
+
+	var/distance = get_dist(starting, loc)
+	var/passthrough = FALSE // If the projectile should keep flying.
+
+	bumped = TRUE
+	if(ismob(A))
+		var/mob/M = A
+		if(isliving(A))
+			passthrough = !attack_mob(M, distance)
+		else
+			passthrough = TRUE // So that ghosts don't stop bullets.
+	else
+		passthrough = (A.bullet_act(src, def_zone) == -1) // Backwards compatibility.
+		if(isturf(A))
+			for(var/obj/O in A)
+				O.bullet_act(src)
+			for(var/mob/M in A)
+				attack_mob(M, distance)
+
+	// Penetrating projectiles can pass through things outside of this.
+	if(!passthrough && on_penetrate(A))
+		passthrough = TRUE
+
+	// If the bullet passes through a dense object...
+	if(passthrough)
+		if(isnotnull(A))
+			// Moves ourselves onto A so we can continue on our way.
+			loc = GET_TURF(A)
+			permutated.Add(A)
+		bumped = FALSE // Resets the bumped variable.
+		return FALSE
+
+	// Stop flying.
+	on_impact(A)
+
+	density = FALSE
+	invisibility = INVISIBILITY_MAXIMUM
+	qdel(src)
+	return TRUE
+
+/obj/item/projectile/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
+	if(air_group || height == 0)
+		return TRUE
+	if(istype(mover, /obj/item/projectile))
+		return prob(95)
+	return TRUE
+
+/obj/item/projectile/process()
+	var/first_step = TRUE
+
+	// Plots the initial trajectory.
+	setup_trajectory()
+
+	spawn while(isnotnull(src) && isnotnull(loc))
+		if(kill_count-- < 1)
+			on_impact(loc)
+			qdel(src)
+		if(!current || loc == current)
+			current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
+		if(x == 1 || x == world.maxx || y == 1 || y == world.maxy)
+			qdel(src)
+			return
+
+		trajectory.increment() // Increments the current location.
+		location = trajectory.return_location(location) // Updates the locally stored location data.
+		if(isnull(location))
+			qdel(src) // If it's left the world, then kills it.
+		Move(location.return_turf())
+
+		if(first_step)
+			muzzle_effect(effect_transform)
+			first_step = FALSE
+		else if(!bumped)
+			tracer_effect(effect_transform)
+
+		if(!bumped && !isturf(original))
+			if(loc == GET_TURF(original))
+				if(!(original in permutated))
+					Bump(original)
+
+		if(!hitscan)
+			sleep(1) // Adds delay if the projectile isn't hitscan.
+
 /obj/item/projectile/proc/on_hit(atom/target, blocked = 0)
 	if(blocked >= 2)
-		return 0//Full block
+		return FALSE // Full block.
 	if(!isliving(target))
-		return 0
+		return FALSE
 	if(issimple(target))
-		return 0
+		return FALSE
 
 	var/mob/living/L = target
 	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked) // add in AGONY!
-	return 1
+	return TRUE
 
 // Called when the projectile stops flying because it hit something.
 /obj/item/projectile/proc/on_impact(atom/A)
+	impact_effect(effect_transform)
 	return
 
 // Returns TRUE if the projectile penetrates, FALSE if not.
@@ -108,10 +211,12 @@
 	def_zone = user.zone_sel.selecting
 	if(user == target) // Shooting yourself.
 		user.bullet_act(src, target_zone)
+		on_impact(user)
 		qdel(src)
 		return FALSE
 	if(targloc == curloc) // Shooting the ground.
 		targloc.bullet_act(src, target_zone)
+		on_impact(target)
 		qdel(src)
 		return FALSE
 
@@ -168,84 +273,59 @@
 
 	return TRUE
 
-/obj/item/projectile/Bump(atom/A)
-	if(A == src)
-		return FALSE
-	if(A == firer)
-		loc = A.loc
-		return FALSE //cannot shoot yourself
+/obj/item/projectile/proc/setup_trajectory()
+	// Plots the initial trajectory.
+	trajectory = new /datum/plot_vector()
+	trajectory.setup(starting, original, pixel_x, pixel_y)
 
-	var/distance = get_dist(starting, loc)
-	var/passthrough = FALSE // If the projectile should keep flying.
+	// Generate this now since all visual effects the projectile makes can use it.
+	effect_transform = new /matrix()
+	effect_transform.Scale(trajectory.return_hypotenuse(), 1)
+	effect_transform.Turn(-trajectory.return_angle()) // No idea why this has to be inverted, but it works!
 
-	bumped = TRUE
-	if(ismob(A))
-		var/mob/M = A
-		if(isliving(A))
-			passthrough = !attack_mob(M, distance)
-		else
-			passthrough = TRUE // So that ghosts don't stop bullets.
-	else
-		passthrough = (A.bullet_act(src, def_zone) == -1) // Backwards compatibility.
-		if(isturf(A))
-			for(var/obj/O in A)
-				O.bullet_act(src)
-			for(var/mob/M in A)
-				attack_mob(M, distance)
+/obj/item/projectile/proc/muzzle_effect(matrix/mat)
+	if(silenced)
+		return
+	if(isnull(muzzle_type))
+		return
 
-	// Penetrating projectiles can pass through things outside of this.
-	if(on_penetrate(A))
-		passthrough = TRUE
+	var/obj/effect/projectile/proj = new muzzle_type(GET_TURF(src))
+	if(istype(proj))
+		proj.set_transform(mat)
+		proj.pixel_x = location.pixel_x
+		proj.pixel_y = location.pixel_y
+		proj.activate()
 
-	// If the bullet passes through a dense object...
-	if(passthrough)
-		bumped = FALSE
-		loc = GET_TURF(A)
-		permutated.Add(A)
-		return FALSE
+/obj/item/projectile/proc/tracer_effect(matrix/mat)
+	if(isnull(tracer_type))
+		return
 
-	// Stop flying.
-	on_impact(A)
+	var/obj/effect/projectile/proj = new tracer_type(location.loc)
+	if(istype(proj))
+		proj.set_transform(mat)
+		proj.pixel_x = location.pixel_x
+		proj.pixel_y = location.pixel_y
+		proj.activate()
 
-	density = FALSE
-	invisibility = INVISIBILITY_MAXIMUM
-	qdel(src)
-	return TRUE
+/obj/item/projectile/proc/impact_effect(matrix/mat)
+	if(isnull(tracer_type))
+		return
 
-/obj/item/projectile/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
-	if(air_group || height == 0)
-		return TRUE
-	if(istype(mover, /obj/item/projectile))
-		return prob(95)
-	return TRUE
+	var/obj/effect/projectile/proj = new impact_type(location.loc)
+	if(istype(proj))
+		proj.set_transform(mat)
+		proj.pixel_x = location.pixel_x
+		proj.pixel_y = location.pixel_y
+		proj.activate()
 
-/obj/item/projectile/process()
-	if(kill_count < 1)
-		qdel(src)
-	kill_count--
-
-	spawn while(isnotnull(src) && isnotnull(loc))
-		if(!current || loc == current)
-			current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
-		if(x == 1 || x == world.maxx || y == 1 || y == world.maxy)
-			qdel(src)
-			return
-		step_towards(src, current)
-		sleep(1)
-		if(!bumped && !isturf(original))
-			if(loc == GET_TURF(original))
-				if(!(original in permutated))
-					if(Bump(original))
-						return
-					sleep(1)
-
-/obj/item/projectile/test //Used to see if you can hit them.
-	invisibility = INVISIBILITY_MAXIMUM //Nope! Can't see me!
+// "Tracing" projectile
+/obj/item/projectile/test // Used to see if you can hit them.
+	invisibility = INVISIBILITY_MAXIMUM // Nope! Can't see me!
 	yo = null
 	xo = null
 
 	var/atom/target = null
-	var/result = 0 //To pass the message back to the gun.
+	var/result = 0 // To pass the message back to the gun.
 
 /obj/item/projectile/test/Bump(atom/A)
 	if(A == firer)
@@ -268,15 +348,21 @@
 	xo = targloc.x - curloc.x
 	target = targloc
 
-	while(isnotnull(src)) //Loop on through!
+	// Plots the initial trajectory.
+	setup_trajectory()
+
+	while(isnotnull(src)) // Loop on through!
 		if(result)
 			return (result - 1)
 
 		if(!target || loc == target)
 			target = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z) //Finding the target turf at map edge
-		step_towards(src, target)
-		var/mob/living/M = locate() in GET_TURF(src)
 
+		trajectory.increment() // Increments the current location.
+		location = trajectory.return_location(location) // Updates the locally stored location data.
+		Move(location.return_turf())
+
+		var/mob/living/M = locate() in GET_TURF(src)
 		if(istype(M)) //If there is someting living...
 			return 1 //Return 1
 		else

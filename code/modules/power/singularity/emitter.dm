@@ -71,18 +71,18 @@
 	src.add_fingerprint(user)
 	if(state == 2)
 		if(!powernet)
-			to_chat(user, "The emitter isn't connected to a wire.")
+			to_chat(user, SPAN_WARNING("\The [src] isn't connected to a wire."))
 			return 1
 		if(!src.locked)
 			if(src.active == 1)
 				src.active = 0
-				to_chat(user, "You turn off the [src].")
+				to_chat(user, SPAN_INFO("You turn off \the [src]."))
 				message_admins("Emitter turned off by [key_name(user, user.client)](<A href='byond://?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 				log_game("Emitter turned off by [user.ckey]([user]) in ([x],[y],[z])")
 				investigate_log("turned <font color='red'>off</font> by [user.key]","singulo")
 			else
 				src.active = 1
-				to_chat(user, "You turn on the [src].")
+				to_chat(user, SPAN_INFO("You turn on \the [src]."))
 				src.shot_number = 0
 				src.fire_delay = 100
 				message_admins("Emitter turned on by [key_name(user, user.client)](<A href='byond://?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) in ([x],[y],[z] - <A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
@@ -92,7 +92,7 @@
 		else
 			FEEDBACK_CONTROLS_LOCKED(user)
 	else
-		to_chat(user, SPAN_WARNING("The [src] needs to be firmly secured to the floor first."))
+		to_chat(user, SPAN_WARNING("\The [src] needs to be firmly secured to the floor first."))
 		return 1
 
 /obj/machinery/power/emitter/emp_act(severity)	//Emitters are hardened but still might have issues
@@ -151,20 +151,17 @@
 		if(prob(35))
 			make_sparks(5, TRUE, src)
 		A.set_dir(src.dir)
+		A.starting = GET_TURF(src)
 		switch(dir)
 			if(NORTH)
-				A.yo = 20
-				A.xo = 0
+				A.original = locate(x, y + 1, z)
 			if(EAST)
-				A.yo = 0
-				A.xo = 20
+				A.original = locate(x + 1, y, z)
 			if(WEST)
-				A.yo = 0
-				A.xo = -20
+				A.original = locate(x - 1, y, z)
 			else // Any other
-				A.yo = -20
-				A.xo = 0
-		A.process()	//TODO: Carn: check this out
+				A.original = locate(x, y - 1, z)
+		A.process()
 
 /obj/machinery/power/emitter/attack_emag(obj/item/card/emag/emag, mob/user, uses)
 	if(stat & (BROKEN | NOPOWER))

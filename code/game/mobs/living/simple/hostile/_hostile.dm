@@ -202,6 +202,8 @@
 		qdel(A)
 		return
 	A.current = target
+	A.starting = GET_TURF(src)
+	A.original = GET_TURF(target)
 	A.yo = target:y - start:y
 	A.xo = target:x - start:x
 	spawn( 0 )

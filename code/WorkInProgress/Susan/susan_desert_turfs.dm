@@ -444,6 +444,8 @@ Alien plants should do something if theres a lot of poison
 			del(A)
 			return
 		A.current = target
+		A.starting = GET_TURF(src)
+		A.original = GET_TURF(target)
 		A.yo = target:y - start:y
 		A.xo = target:x - start:x
 		spawn( 0 )
