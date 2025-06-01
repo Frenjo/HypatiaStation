@@ -283,7 +283,7 @@
 	if(!length(syndicates) && !IS_GAME_MODE(/datum/game_mode/nuclear))
 		return
 
-	var/text = "<FONT size = 2><B>The syndicate operatives were:</B></FONT>"
+	var/text = "<FONT size = 2><B>The Syndicate operatives were:</B></FONT>"
 	for(var/datum/mind/syndicate in syndicates)
 		text += "<br>[syndicate.key] was [syndicate.name] ("
 		if(isnotnull(syndicate.current))

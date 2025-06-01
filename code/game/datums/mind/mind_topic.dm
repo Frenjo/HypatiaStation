@@ -434,7 +434,7 @@
 					special_role = null
 					for(var/datum/objective/nuclear/O in objectives)
 						objectives.Remove(O)
-					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a syndicate operative!</font>"))
+					to_chat(current, SPAN_DANGER("<font size=3>You have been brainwashed! You are no longer a Syndicate operative!</font>"))
 					log_admin("[key_name_admin(usr)] has de-nuke op'ed [current].")
 			if("nuclear")
 				if(!(src in global.PCticker.mode.syndicates))
@@ -467,7 +467,7 @@
 				qdel(H.wear_uniform)
 
 				if(!H.equip_outfit(/decl/hierarchy/outfit/syndicate/nuclear))
-					to_chat(usr, SPAN_WARNING("Equipping a syndicate failed!"))
+					to_chat(usr, SPAN_WARNING("Equipping a Syndicate failed!"))
 			if("tellcode")
 				var/code
 				for(var/obj/machinery/nuclearbomb/bombue in GLOBL.machines)
@@ -649,7 +649,7 @@
 						suplink?.uses = crystals
 			if("uplink")
 				if(!global.PCticker.mode.equip_traitor(current, !(src in global.PCticker.mode.traitors)))
-					to_chat(usr, SPAN_WARNING("Equipping a syndicate failed!"))
+					to_chat(usr, SPAN_WARNING("Equipping a Syndicate failed!"))
 
 	else if(href_list["obj_announce"])
 		var/obj_count = 1

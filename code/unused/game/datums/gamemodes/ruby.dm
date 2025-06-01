@@ -70,7 +70,7 @@
 		else
 			traitor_name = "[traitor.key] (character destroyed)"
 
-		to_world("<B>The syndicate traitor was [traitor_name]</B>")
+		to_world("<B>The Syndicate traitor was [traitor_name]</B>")
 		var/count = 1
 		for(var/datum/objective/objective in traitor.objectives)
 			if(objective.check_completion())

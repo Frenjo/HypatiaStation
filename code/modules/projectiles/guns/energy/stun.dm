@@ -83,7 +83,7 @@
 
 /obj/item/gun/energy/crossbow/largecrossbow
 	name = "Energy Crossbow"
-	desc = "A weapon favored by syndicate infiltration teams."
+	desc = "A weapon favored by Syndicate infiltration teams."
 
 	w_class = 4
 	//matter_amounts = /datum/design/weapon/largecrossbow::materials

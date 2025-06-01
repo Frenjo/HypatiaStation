@@ -198,7 +198,7 @@
 
 				<h4>Power outage</h4>
 
-				A power problem has made the entire station loose power? Could be station-wide wiring problems or syndicate power sinks. In any case follow these steps:
+				A power problem has made the entire station loose power? Could be station-wide wiring problems or Syndicate power sinks. In any case follow these steps:
 				<p>
 				<b>Step one:</b> <b><font color='red'>PANIC!</font></b><br>
 				<b>Step two:</b> Get your ass over to engineering! <b>QUICKLY!!!</b><br>

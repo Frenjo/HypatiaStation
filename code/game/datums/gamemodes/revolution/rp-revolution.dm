@@ -26,7 +26,7 @@
 
 /datum/game_mode/rp_revolution/send_intercept()
 	var/intercepttext = "<FONT size = 3><B>CentCom Update</B> Requested staus information:</FONT><HR>"
-	intercepttext += "<B> CentCom has recently been contacted by the following syndicate affiliated organisations in your area, please investigate any information you may have:</B>"
+	intercepttext += "<B> CentCom has recently been contacted by the following Syndicate affiliated organisations in your area, please investigate any information you may have:</B>"
 
 	var/list/possible_modes = list()
 	possible_modes.Add("revolution", "wizard", "traitor", "malf")
@@ -84,7 +84,7 @@
 
 /datum/game_mode/rp_revolution/send_intercept()
 	var/intercepttext = "<FONT size = 3><B>CentCom Update</B> Requested staus information:</FONT><HR>"
-	intercepttext += "<B> CentCom has recently been contacted by the following syndicate affiliated organisations in your area, please investigate any information you may have:</B>"
+	intercepttext += "<B> CentCom has recently been contacted by the following Syndicate affiliated organisations in your area, please investigate any information you may have:</B>"
 
 	var/list/possible_modes = list()
 	possible_modes.Add("revolution", "wizard", "nuke", "traitor", "malf")

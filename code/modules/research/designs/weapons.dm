@@ -56,7 +56,7 @@
 /*
 /datum/design/weapon/largecrossbow
 	name = "Energy Crossbow"
-	desc = "A weapon favoured by syndicate infiltration teams."
+	desc = "A weapon favoured by Syndicate infiltration teams."
 	req_tech = alist(/decl/tech/materials = 5, /decl/tech/biotech = 4, /decl/tech/combat = 4, /decl/tech/engineering = 3, /decl/tech/syndicate = 3)
 	materials = alist(/decl/material/steel = 5000, /decl/material/glass = 1000, /decl/material/silver = 1000, /decl/material/uranium = 1000)
 	build_path = /obj/item/gun/energy/crossbow/largecrossbow

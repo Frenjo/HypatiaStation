@@ -632,7 +632,7 @@ var/global/datum/tension/tension_master
 
 		for(var/mob/dead/ghost/G in player_list)
 			spawn(0)
-				switch(alert(G,"Do you wish to be considered for an elite syndicate strike team being sent in?","Please answer in 30 seconds!","Yes","No"))
+				switch(alert(G,"Do you wish to be considered for an elite Syndicate strike team being sent in?","Please answer in 30 seconds!","Yes","No"))
 					if("Yes")
 						if((world.time-time_passed)>300)//If more than 30 game seconds passed.
 							return

@@ -43,7 +43,7 @@
 
 /obj/structure/mecha_wreckage/mauler
 	name = "Mauler Wreckage"
-	desc = "The syndicate won't be very happy about this..."
+	desc = "The Syndicate won't be very happy about this..."
 	icon_state = "mauler-broken"
 
 /obj/structure/mecha_wreckage/seraph

@@ -84,7 +84,7 @@
 
 			M << "<B>You have joined the ranks of the Syndicate and become a traitor to the station!</B>"
 
-			message_admins("[N]/([N.ckey]) has accepted a traitor objective from a syndicate beacon.")
+			message_admins("[N]/([N.ckey]) has accepted a traitor objective from a Syndicate beacon.")
 
 			var/obj_count = 1
 			for(var/datum/objective/OBJ in M.mind.objectives)

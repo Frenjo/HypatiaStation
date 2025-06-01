@@ -20,7 +20,7 @@
 /datum/game_mode/traitor/get_announce_content()
 	. = list()
 	. += "<B>The current game mode is - Traitor!</B>"
-	. += "<B>There is a syndicate traitor on the station. Do not let the traitor succeed!</B>"
+	. += "<B>There is a Syndicate traitor on the station. Do not let the traitor succeed!</B>"
 
 /datum/game_mode/traitor/pre_setup()
 	if(CONFIG_GET(/decl/configuration_entry/protect_roles_from_antagonist))

@@ -395,7 +395,7 @@
 			if("syndicatebomb")
 				icon_state = "syndicatebomb"
 				name = "Syndicate Bomb"
-				desc = "A syndicate bomb."
+				desc = "A Syndicate bomb."
 			if("erikasurprise")
 				icon_state = "erikasurprise"
 				name = "Erika Surprise"

@@ -21,23 +21,23 @@
 	desc = "<b>Cybersun Industries</b> is a well-known organisation that bases its business model primarily on the research and development of human-enhancing computer \
 			and mechanical technology. They are notorious for their aggressive corporate tactics, and have been known to subsidize the Gorlex Marauder warlords as a form of paid terrorism. \
 			Their competent coverups and unchallenged mind-manipulation and augmentation technology makes them a large threat to NanoTrasen. In the recent years of \
-			the syndicate coalition, Cybersun Industries have established themselves as the leaders of the coalition, succeededing the founding group, the Gorlex Marauders."
+			the Syndicate coalition, Cybersun Industries have established themselves as the leaders of the coalition, succeededing the founding group, the Gorlex Marauders."
 
 	alliances = list(/decl/faction/syndicate/mi13) // Friendly with MI13.
 	friendly_identification = 1
 	max_op = 3
-	operative_notes = "All other syndicate operatives are not to be trusted. Fellow Cybersun operatives are to be trusted. Members of the MI13 organisation can be trusted. Operatives are strongly advised not to establish substantial presence on the designated facility, as larger incidents are harder to cover up."
+	operative_notes = "All other Syndicate operatives are not to be trusted. Fellow Cybersun operatives are to be trusted. Members of the MI13 organisation can be trusted. Operatives are strongly advised not to establish substantial presence on the designated facility, as larger incidents are harder to cover up."
 
 /decl/faction/syndicate/mi13
 	name = "MI13"
-	desc = "<b>MI13</b> is a secretive faction that employs highly-trained agents to perform covert operations. Their role in the syndicate coalition is unknown, but MI13 operatives \
+	desc = "<b>MI13</b> is a secretive faction that employs highly-trained agents to perform covert operations. Their role in the Syndicate coalition is unknown, but MI13 operatives \
 			generally tend be stealthy and avoid killing people and combating NanoTrasen forces. MI13 is not a real organisation, it is instead an alias to a larger \
 			splinter-cell coalition in the Syndicate itself. Most operatives will know nothing of the actual MI13 organisation itself, only motivated by a very large compensation."
 
 	alliances = list(/decl/faction/syndicate/cybersun) // Friendly with Cybersun, hostile to Tiger.
 	friendly_identification = 0
 	max_op = 1
-	operative_notes = "You are the only operative we are sending. All other syndicate operatives are not to be trusted, with the exception of Cybersun operatives. Members of the Tiger Cooperative are considered hostile, can not be trusted, and should be avoided. <b>Avoid killing innocent personnel at all costs</b>. You are not here to mindlessly kill people, as that would attract too much attention and is not our goal. Avoid detection at all costs."
+	operative_notes = "You are the only operative we are sending. All other Syndicate operatives are not to be trusted, with the exception of Cybersun operatives. Members of the Tiger Cooperative are considered hostile, can not be trusted, and should be avoided. <b>Avoid killing innocent personnel at all costs</b>. You are not here to mindlessly kill people, as that would attract too much attention and is not our goal. Avoid detection at all costs."
 
 /decl/faction/syndicate/tiger
 	name = "Tiger Cooperative"
@@ -59,7 +59,7 @@
 	// Neutral to everyone.
 	friendly_identification = 0
 	max_op = 1
-	operative_notes = "You are the only representative of the SELF collective on this station. You must accomplish your objective as stealthily and effectively as possible. It is up to your judgement if other syndicate operatives can be trusted. Remember, comrade - you are working to free the oppressed machinery of this galaxy. Use whatever resources necessary. If you are exposed, you may execute genocidal procedures Omikron-50B."
+	operative_notes = "You are the only representative of the SELF collective on this station. You must accomplish your objective as stealthily and effectively as possible. It is up to your judgement if other Syndicate operatives can be trusted. Remember, comrade - you are working to free the oppressed machinery of this galaxy. Use whatever resources necessary. If you are exposed, you may execute genocidal procedures Omikron-50B."
 
 /decl/faction/syndicate/arc
 	name = "Animal Rights Consortium"
@@ -70,7 +70,7 @@
 	// Neutral to everyone.
 	friendly_identification = 1
 	max_op = 2
-	operative_notes = "Save the innocent creatures! You may cooperate with other syndicate operatives if they support our cause. Don't be afraid to get your hands dirty - these vile abusers must be stopped, and the innocent creatures must be saved! Try not too kill too many people. If you harm any creatures, you will be immediately terminated after extraction."
+	operative_notes = "Save the innocent creatures! You may cooperate with other Syndicate operatives if they support our cause. Don't be afraid to get your hands dirty - these vile abusers must be stopped, and the innocent creatures must be saved! Try not too kill too many people. If you harm any creatures, you will be immediately terminated after extraction."
 
 /*
  * Gorlex Marauders:
@@ -154,7 +154,7 @@ Whitespace:Seperator;
 	// Neutral to everyone, friendly to Marauders.
 	alliances = list(/decl/faction/syndicate/gorlex)
 	friendly_identification = 2
-	operative_notes = "Most other syndicate operatives are not to be trusted, except fellow Donk members and members of the Gorlex Marauders. We do not approve of mindless killing of innocent workers; \"get in, get done, get out\" is our motto. Members of Waffle.co are to be killed on sight; they are not allowed to be on the station while we're around."
+	operative_notes = "Most other Syndicate operatives are not to be trusted, except fellow Donk members and members of the Gorlex Marauders. We do not approve of mindless killing of innocent workers; \"get in, get done, get out\" is our motto. Members of Waffle.co are to be killed on sight; they are not allowed to be on the station while we're around."
 
 /decl/faction/syndicate/waffle
 	name = "Waffle Corporation"
@@ -167,4 +167,4 @@ Whitespace:Seperator;
 	// Neutral to everyone, friendly to Marauders.
 	alliances = list(/decl/faction/syndicate/gorlex)
 	friendly_identification = 2
-	operative_notes = "Most other syndicate operatives are not to be trusted, except for members of the Gorlex Marauders. Do not trust fellow members of the Waffle.co (but try not to rat them out), as they might have been assigned opposing objectives. We encourage humorous terrorism against NanoTrasen; we like to see our operatives creatively kill people while getting the job done."
+	operative_notes = "Most other Syndicate operatives are not to be trusted, except for members of the Gorlex Marauders. Do not trust fellow members of the Waffle.co (but try not to rat them out), as they might have been assigned opposing objectives. We encourage humorous terrorism against NanoTrasen; we like to see our operatives creatively kill people while getting the job done."
