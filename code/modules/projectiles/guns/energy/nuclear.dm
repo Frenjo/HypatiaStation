@@ -26,14 +26,12 @@
 			gun_setting = GUN_SETTING_KILL
 			charge_cost = 100
 			fire_sound = 'sound/weapons/gun/laser.ogg'
-			to_chat(user, SPAN_WARNING("\The [src] is now set to kill."))
-			modifystate = "energykill"
 		if(GUN_SETTING_KILL)
 			gun_setting = GUN_SETTING_STUN
 			charge_cost = 100
 			fire_sound = 'sound/weapons/gun/taser.ogg'
-			to_chat(user, SPAN_WARNING("\The [src] is now set to stun."))
-			modifystate = "energystun"
+	modifystate = "energy[gun_setting]"
+	balloon_alert(user, "set to [gun_setting]")
 	update_icon()
 
 /obj/item/gun/energy/gun/nuclear
@@ -103,7 +101,4 @@
 		overlays.Add("nucgun-clean")
 
 /obj/item/gun/energy/gun/nuclear/proc/update_mode()
-	if(gun_setting == GUN_SETTING_STUN)
-		overlays.Add("nucgun-stun")
-	else if(gun_setting == GUN_SETTING_KILL)
-		overlays.Add("nucgun-kill")
+	overlays.Add("nucgun-[gun_setting]")

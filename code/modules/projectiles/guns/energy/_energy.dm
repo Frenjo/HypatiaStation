@@ -47,15 +47,15 @@
 /obj/item/gun/energy/process()
 	charge_tick++
 	if(charge_tick < recharge_time)
-		return 0
+		return
 	charge_tick = 0
 
 	if(isnull(power_supply))
-		return 0 // Sanity.
+		return // Sanity.
 	if(power_supply.charge >= power_supply.maxcharge)
-		return 0 // Checks if we actually need to recharge.
+		return // Checks if we actually need to recharge.
 	if(failcheck())
-		return 0 // Checks if the gun is going to fail.
+		return // Checks if the gun is going to fail.
 
 	if(isrobot(loc)) // If it's a cyborg gun...
 		var/mob/living/silicon/robot/R = loc
@@ -84,7 +84,7 @@
 	if(isnull(projectile_type))
 		return FALSE // Something went very wrong.
 
-	if(!power_supply.use(gun_mode == GUN_MODE_PULSE ? charge_cost / 2 : charge_cost))
+	if(!power_supply.use(gun_mode == GUN_MODE_PULSE ? charge_cost : charge_cost * 2))
 		return FALSE
 
 	in_chamber = new projectile_type(src)

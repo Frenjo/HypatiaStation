@@ -37,13 +37,13 @@
 		if(GUN_SETTING_KILL)
 			gun_setting = GUN_SETTING_SPECIAL
 			charge_cost = 100
-			to_chat(user, SPAN_WARNING("\The [src] is now set to increase yield."))
 			modifystate = "florayield"
+			balloon_alert(user, "set to increase yield")
 		if(GUN_SETTING_SPECIAL)
 			gun_setting = GUN_SETTING_KILL
 			charge_cost = 100
-			to_chat(user, SPAN_WARNING("\The [src] is now set to induce mutations."))
 			modifystate = "floramut"
+			balloon_alert(user, "set to induce mutations")
 	update_icon()
 
 /obj/item/gun/energy/meteorgun

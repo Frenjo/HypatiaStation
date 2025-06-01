@@ -23,13 +23,14 @@
 	beam_projectile_types = list(GUN_SETTING_SPECIAL = /obj/item/projectile/energy/beam/laser/practice)
 
 /obj/item/gun/energy/laser/retro
-	name = "retro laser"
+	name = "retro laser gun"
+	desc = "An older model of the basic laser gun, no longer used by NanoTrasen's security or military forces. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws."
 	icon_state = "retro"
-	desc = "An older model of the basic lasergun, no longer used by NanoTrasen's security or military forces. Nevertheless, it is still quite deadly and easy to maintain, making it a favorite amongst pirates and other outlaws."
 
 /obj/item/gun/energy/laser/captain
-	icon_state = "caplaser"
+	name = "antique laser gun"
 	desc = "This is an antique laser gun. All craftsmanship is of the highest quality. It is decorated with assistant leather and chrome. The object menaces with spikes of energy. On the item is an image of Space Station 13. The station is exploding."
+	icon_state = "caplaser"
 
 	origin_tech = null
 
