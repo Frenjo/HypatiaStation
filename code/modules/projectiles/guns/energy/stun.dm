@@ -66,7 +66,7 @@
 
 	fire_sound = 'sound/weapons/melee/genhit.ogg'
 
-	silenced = 1
+	silenced = TRUE
 
 	cell_type = /obj/item/cell/crap
 

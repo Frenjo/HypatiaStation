@@ -8,18 +8,21 @@
 
 	recoil = TRUE
 
-	var/calibre = "357"
-
 	var/ammo_type = /obj/item/ammo_casing/a357
-	var/list/loaded = list()
+	var/calibre = "357"
 	var/max_shells = 7
-	var/load_method = SPEEDLOADER //0 = Single shells or quick loader, 1 = box, 2 = magazine
+	var/load_method = SPEEDLOADER // SPEEDLOADER, FROM_BOX or MAGAZINE.
+	var/mag_type = null
+
+	var/list/loaded = list()
 	var/obj/item/ammo_magazine/empty_mag = null
 
 /obj/item/gun/projectile/New()
 	. = ..()
 	for(var/i = 1, i <= max_shells, i++)
 		loaded.Add(new ammo_type(src))
+	if(load_method == MAGAZINE)
+		empty_mag = new mag_type(src)
 	update_icon()
 
 /obj/item/gun/projectile/load_into_chamber()

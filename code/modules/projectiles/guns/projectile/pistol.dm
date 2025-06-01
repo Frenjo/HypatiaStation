@@ -5,11 +5,10 @@
 
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 2, /decl/tech/syndicate = 8)
 
-	silenced = 1
-
-	calibre = ".45"
+	silenced = TRUE
 
 	ammo_type = /obj/item/ammo_casing/c45
+	calibre = ".45"
 	max_shells = 12
 
 /obj/item/gun/projectile/deagle
@@ -19,16 +18,11 @@
 
 	force = 14
 
-	calibre = ".50"
-
 	ammo_type = /obj/item/ammo_casing/a50
+	calibre = ".50"
 	max_shells = 7
 	load_method = MAGAZINE
-
-/obj/item/gun/projectile/deagle/New()
-	. = ..()
-	empty_mag = new /obj/item/ammo_magazine/a50/empty(src)
-	update_icon()
+	mag_type = /obj/item/ammo_magazine/a50/empty
 
 /obj/item/gun/projectile/deagle/afterattack(atom/target, mob/living/user, flag)
 	. = ..()
@@ -57,16 +51,11 @@
 
 	fire_sound = 'sound/effects/Explosion1.ogg'
 
-	calibre = "75"
-
 	ammo_type = /obj/item/ammo_casing/a75
+	calibre = "75"
 	max_shells = 8
 	load_method = MAGAZINE
-
-/obj/item/gun/projectile/gyropistol/New()
-	. = ..()
-	empty_mag = new /obj/item/ammo_magazine/a75/empty(src)
-	update_icon()
+	mag_type = /obj/item/ammo_magazine/a75/empty
 
 /obj/item/gun/projectile/gyropistol/afterattack(atom/target, mob/living/user, flag)
 	. = ..()
@@ -91,17 +80,13 @@
 	w_class = 2
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 2, /decl/tech/syndicate = 2)
 
-	silenced = 0
-
-	calibre = "9mm"
+	silenced = FALSE
 
 	ammo_type = /obj/item/ammo_casing/c9mm
+	calibre = "9mm"
 	max_shells = 8
 	load_method = MAGAZINE
-
-/obj/item/gun/projectile/pistol/New()
-	. = ..()
-	empty_mag = new /obj/item/ammo_magazine/mc9mm/empty(src)
+	mag_type = /obj/item/ammo_magazine/mc9mm/empty
 
 /obj/item/gun/projectile/pistol/afterattack(atom/target, mob/living/user, flag)
 	. = ..()

@@ -5,9 +5,8 @@
 
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 2)
 
-	calibre = "38"
-
 	ammo_type = /obj/item/ammo_casing/c38
+	calibre = "38"
 	max_shells = 6
 
 /obj/item/gun/projectile/detective/special_check(mob/living/user)
@@ -88,15 +87,11 @@
 	desc = "A cheap Martian knock-off of a Colt M1911. Uses less-than-lethal .45 rounds."
 	icon_state = "colt"
 
-	calibre = ".45"
-
 	ammo_type = /obj/item/ammo_casing/c45r
+	calibre = ".45"
 	max_shells = 7
 	load_method = MAGAZINE
-
-/obj/item/gun/projectile/detective/semiauto/New()
-	. = ..()
-	empty_mag = new /obj/item/ammo_magazine/c45r/empty(src)
+	mag_type = /obj/item/ammo_magazine/c45r/empty
 
 /obj/item/gun/projectile/detective/semiauto/afterattack(atom/target, mob/living/user, flag)
 	..()

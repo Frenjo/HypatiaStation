@@ -24,7 +24,7 @@
 	var/bumped = FALSE		// Prevents it from hitting more than one guy at once
 	var/def_zone = ""		// Aiming at
 	var/mob/firer = null	// Who shot it
-	var/silenced = 0		// Attack message
+	var/silenced = FALSE		// Attack message
 	var/yo = null
 	var/xo = null
 	var/current = null
@@ -65,6 +65,14 @@
 	var/mob/living/L = target
 	L.apply_effects(stun, weaken, paralyze, irradiate, stutter, eyeblur, drowsy, agony, blocked) // add in AGONY!
 	return 1
+
+// Called when the projectile stops flying because it hit something.
+/obj/item/projectile/proc/on_impact(atom/A)
+	return
+
+// Returns TRUE if the projectile penetrates, FALSE if not.
+/obj/item/projectile/proc/on_penetrate(atom/A)
+	return FALSE
 
 /obj/item/projectile/proc/check_fire(mob/living/target, mob/living/user) // Checks if you can hit them or not.
 	if(!istype(target) || !istype(user))
@@ -122,76 +130,94 @@
 
 	return TRUE
 
+// Called when the projectile intercepts a mob. Returns TRUE if hit, FALSE if missed.
+/obj/item/projectile/proc/attack_mob(mob/living/target_mob, distance, miss_modifier = -30)
+	// Accuracy modifier from aiming.
+	if(istype(shot_from, /obj/item/gun)) // If you aim at someone beforehead, it'll hit more often.
+		var/obj/item/gun/daddy = shot_from // Kinda balanced by fact you need like 2 seconds to aim.
+		if(isnotnull(daddy.target) && (original in daddy.target)) // As opposed to no-delay pew pew.
+			miss_modifier += -30
+
+	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_modifier + 15 * distance)
+	if(!hit_zone)
+		visible_message(SPAN_INFO("\The [src] misses \the [target_mob] narrowly!"))
+		return FALSE
+
+	// Set def_zone, so if the projectile ends up hitting someone else later (to be implemented), it is more likely to hit the same part.
+	def_zone = hit_zone
+
+	// Hit messages.
+	if(silenced)
+		to_chat(target_mob, SPAN_WARNING("You've been shot in the [parse_zone(def_zone)] by \the [src]!"))
+	else
+		// X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter.
+		visible_message(SPAN_WARNING("[target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!"))
+
+	// Admin attack logging.
+	if(ismob(firer))
+		target_mob.attack_log += "\[[time_stamp()]\] <b>[firer]/[firer.ckey]</b> shot <b>[target_mob]/[target_mob.ckey]</b> with a <b>[type]</b>"
+		firer.attack_log += "\[[time_stamp()]\] <b>[firer]/[firer.ckey]</b> shot <b>[target_mob]/[target_mob.ckey]</b> with a <b>[type]</b>"
+		msg_admin_attack("[firer] ([firer.ckey]) shot [target_mob] ([target_mob.ckey]) with a [src] (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[firer.x];Y=[firer.y];Z=[firer.z]'>JMP</a>)") //BS12 EDIT ALG
+	else
+		target_mob.attack_log += "\[[time_stamp()]\] <b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[target_mob]/[target_mob.ckey]</b> with a <b>[src]</b>"
+		msg_admin_attack("UNKNOWN shot [target_mob] ([target_mob.ckey]) with a [src] (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[firer.x];Y=[firer.y];Z=[firer.z]'>JMP</a>)") //BS12 EDIT ALG
+
+	// Sometimes bullet_act() wants the projectile to keep flying.
+	if(target_mob.bullet_act(src, def_zone) == -1)
+		return FALSE
+
+	return TRUE
+
 /obj/item/projectile/Bump(atom/A)
+	if(A == src)
+		return FALSE
 	if(A == firer)
 		loc = A.loc
-		return 0 //cannot shoot yourself
+		return FALSE //cannot shoot yourself
 
-	if(bumped)
-		return 0
-
-	var/forcedodge = 0 // force the projectile to pass
+	var/distance = get_dist(starting, loc)
+	var/passthrough = FALSE // If the projectile should keep flying.
 
 	bumped = TRUE
-	if(isnotnull(firer) && ismob(A))
+	if(ismob(A))
 		var/mob/M = A
-		if(!isliving(A))
-			loc = A.loc
-			return 0// nope.avi
-
-		var/distance = get_dist(starting, loc)
-		var/miss_modifier = -30
-
-		if(istype(shot_from, /obj/item/gun))	//If you aim at someone beforehead, it'll hit more often.
-			var/obj/item/gun/daddy = shot_from //Kinda balanced by fact you need like 2 seconds to aim
-			if(isnotnull(daddy.target) && (original in daddy.target)) //As opposed to no-delay pew pew
-				miss_modifier += -30
-		def_zone = get_zone_with_miss_chance(def_zone, M, miss_modifier + 15 * distance)
-
-		if(!def_zone)
-			visible_message(SPAN_INFO("\The [src] misses [M] narrowly!"))
-			forcedodge = -1
+		if(isliving(A))
+			passthrough = !attack_mob(M, distance)
 		else
-			if(silenced)
-				to_chat(M, SPAN_WARNING("You've been shot in the [parse_zone(def_zone)] by the [name]!"))
-			else
-				visible_message(SPAN_WARNING("[A.name] is hit by the [name] in the [parse_zone(def_zone)]!"))//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
-			if(ismob(firer))
-				M.attack_log += "\[[time_stamp()]\] <b>[firer]/[firer.ckey]</b> shot <b>[M]/[M.ckey]</b> with a <b>[type]</b>"
-				firer.attack_log += "\[[time_stamp()]\] <b>[firer]/[firer.ckey]</b> shot <b>[M]/[M.ckey]</b> with a <b>[type]</b>"
-				msg_admin_attack("[firer] ([firer.ckey]) shot [M] ([M.ckey]) with a [src] (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[firer.x];Y=[firer.y];Z=[firer.z]'>JMP</a>)") //BS12 EDIT ALG
-			else
-				M.attack_log += "\[[time_stamp()]\] <b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[M]/[M.ckey]</b> with a <b>[src]</b>"
-				msg_admin_attack("UNKNOWN shot [M] ([M.ckey]) with a [src] (<A href='byond://?_src_=holder;adminplayerobservecoodjump=1;X=[firer.x];Y=[firer.y];Z=[firer.z]'>JMP</a>)") //BS12 EDIT ALG
-
-	if(isnotnull(A))
-		if(!forcedodge)
-			forcedodge = A.bullet_act(src, def_zone) // searches for return value
-		if(forcedodge == -1) // the bullet passes through a dense object!
-			bumped = FALSE // reset bumped variable!
-			if(isturf(A))
-				loc = A
-			else
-				loc = A.loc
-			permutated.Add(A)
-			return 0
+			passthrough = TRUE // So that ghosts don't stop bullets.
+	else
+		passthrough = (A.bullet_act(src, def_zone) == -1) // Backwards compatibility.
 		if(isturf(A))
-			for_no_type_check(var/atom/movable/mover, A)
-				mover.bullet_act(src, def_zone)
+			for(var/obj/O in A)
+				O.bullet_act(src)
+			for(var/mob/M in A)
+				attack_mob(M, distance)
 
-		density = FALSE
-		invisibility = INVISIBILITY_MAXIMUM
-		qdel(src)
-	return 1
+	// Penetrating projectiles can pass through things outside of this.
+	if(on_penetrate(A))
+		passthrough = TRUE
+
+	// If the bullet passes through a dense object...
+	if(passthrough)
+		bumped = FALSE
+		loc = GET_TURF(A)
+		permutated.Add(A)
+		return FALSE
+
+	// Stop flying.
+	on_impact(A)
+
+	density = FALSE
+	invisibility = INVISIBILITY_MAXIMUM
+	qdel(src)
+	return TRUE
 
 /obj/item/projectile/CanPass(atom/movable/mover, turf/target, height = 0, air_group = 0)
 	if(air_group || height == 0)
-		return 1
-
+		return TRUE
 	if(istype(mover, /obj/item/projectile))
 		return prob(95)
-	else
-		return 1
+	return TRUE
 
 /obj/item/projectile/process()
 	if(kill_count < 1)

@@ -11,9 +11,8 @@
 
 	force = 10
 
-	calibre = "shotgun"
-
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	calibre = "shotgun"
 	max_shells = 4
 
 	var/recentpump = FALSE // to prevent spammage
@@ -79,9 +78,8 @@
 
 	force = 10
 
-	calibre = "shotgun"
-
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
+	calibre = "shotgun"
 	max_shells = 2
 
 /obj/item/gun/projectile/shotgun/doublebarrel/load_into_chamber()

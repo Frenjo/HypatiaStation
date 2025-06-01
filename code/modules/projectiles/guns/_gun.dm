@@ -23,7 +23,7 @@
 	var/firerate = 0 	// 0 for keep shooting until aim is lowered.
 						// 1 for one bullet after target moves and aim is lowered.
 
-	var/silenced = 0
+	var/silenced = FALSE
 	var/recoil = FALSE
 	var/ejectshell = TRUE
 	var/clumsy_check = TRUE

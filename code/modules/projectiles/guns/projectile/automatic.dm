@@ -10,9 +10,8 @@
 
 	automatic = TRUE
 
-	calibre = "9mm"
-
 	ammo_type = /obj/item/ammo_casing/c9mm
+	calibre = "9mm"
 	max_shells = 18
 
 /obj/item/gun/projectile/automatic/isHandgun()
@@ -25,9 +24,8 @@
 
 	origin_tech = alist(/decl/tech/materials = 2, /decl/tech/combat = 5, /decl/tech/syndicate = 8)
 
-	calibre = ".45"
-
 	ammo_type = /obj/item/ammo_casing/c45
+	calibre = ".45"
 	max_shells = 16
 
 /obj/item/gun/projectile/automatic/mini_uzi/isHandgun()
@@ -43,16 +41,11 @@
 
 	fire_sound = 'sound/weapons/gun/gunshot_smg.ogg'
 
-	calibre = "12mm"
-
 	ammo_type = /obj/item/ammo_casing/a12mm
+	calibre = "12mm"
 	max_shells = 20
 	load_method = MAGAZINE
-
-/obj/item/gun/projectile/automatic/c20r/New()
-	. = ..()
-	empty_mag = new /obj/item/ammo_magazine/a12mm/empty(src)
-	update_icon()
+	mag_type = /obj/item/ammo_magazine/a12mm/empty
 
 /obj/item/gun/projectile/automatic/c20r/afterattack(atom/target, mob/living/user, flag)
 	. = ..()
@@ -81,9 +74,8 @@
 
 	fire_sound = 'sound/weapons/gun/gunshot_smg.ogg'
 
-	calibre = "a762"
-
 	ammo_type = /obj/item/ammo_casing/a762
+	calibre = "a762"
 	max_shells = 50
 	load_method = MAGAZINE
 
