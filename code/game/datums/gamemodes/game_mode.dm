@@ -230,7 +230,7 @@ Implants;
 	text += "<B>In case you have misplaced your copy, attached is a list of personnel whom reliable sources&trade; suspect may be affiliated with the Syndicate:</B>"
 	text += "<br>"
 
-	var/list/suspects = list()
+	var/list/mob/suspects = list()
 	for(var/mob/living/carbon/human/H in GLOBL.player_list)
 		if(isnotnull(H.client) && isnotnull(H.mind))
 			// NT relation option
@@ -257,7 +257,7 @@ Implants;
 			// Some poor people who were just in the wrong place at the wrong time..
 			else if(prob(10))
 				suspects.Add(H)
-	for(var/mob/M in suspects)
+	for_no_type_check(var/mob/M, suspects)
 		switch(rand(1, 100))
 			if(1 to 50)
 				text += "Someone with the job of <b>[M.mind.assigned_role]</b>."
@@ -421,7 +421,7 @@ Implants;
 ////////////////////////////
 /datum/game_mode/proc/get_all_heads()
 	. = list()
-	for(var/mob/player in GLOBL.mob_list)
+	for_no_type_check(var/mob/player, GLOBL.mob_list)
 		if((player.mind?.assigned_role in GLOBL.command_positions))
 			. += player.mind
 
@@ -474,7 +474,7 @@ Implants;
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Ghosted</b></font>)\n"
 						continue //Ghosted while alive
 
-	for(var/mob/M in GLOBL.mob_list)
+	for_no_type_check(var/mob/M, GLOBL.mob_list)
 		if(isnotnull(M.client?.holder))
 			to_chat(M, msg)
 

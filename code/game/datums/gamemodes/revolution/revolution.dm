@@ -53,7 +53,7 @@
 			head_check = 1
 			break
 
-	for(var/datum/mind/player in possible_headrevs)
+	for_no_type_check(var/datum/mind/player, possible_headrevs)
 		for(var/job in restricted_jobs)//Removing heads and such from the list
 			if(player.assigned_role == job)
 				possible_headrevs -= player
@@ -118,7 +118,7 @@
 	if(you_are)
 		to_chat(rev_mind.current, SPAN_INFO("You are a member of the revolutionaries' leadership!"))
 	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		for(var/datum/objective/objective in rev_mind.objectives)
+		for_no_type_check(var/datum/objective/objective, rev_mind.objectives)
 			to_chat(rev_mind.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			rev_mind.special_role = "Head Revolutionary"
 			obj_count++
@@ -232,14 +232,14 @@
 		for(var/datum/mind/head_rev_mind in head_revolutionaries)
 			if(head_rev_mind.current)
 				if(head_rev_mind.current.client)
-					for(var/image/I in head_rev_mind.current.client.images)
+					for_no_type_check(var/image/I, head_rev_mind.current.client.images)
 						if(I.icon_state == "rev" || I.icon_state == "rev_head")
 							qdel(I)
 
 		for(var/datum/mind/rev_mind in revolutionaries)
 			if(rev_mind.current)
 				if(rev_mind.current.client)
-					for(var/image/I in rev_mind.current.client.images)
+					for_no_type_check(var/image/I, rev_mind.current.client.images)
 						if(I.icon_state == "rev" || I.icon_state == "rev_head")
 							qdel(I)
 
@@ -301,20 +301,20 @@
 		for(var/datum/mind/head_rev_mind in head_revolutionaries)
 			if(head_rev_mind.current)
 				if(head_rev_mind.current.client)
-					for(var/image/I in head_rev_mind.current.client.images)
+					for_no_type_check(var/image/I, head_rev_mind.current.client.images)
 						if((I.icon_state == "rev" || I.icon_state == "rev_head") && I.loc == rev_mind.current)
 							qdel(I)
 
 		for(var/datum/mind/rev_mind_1 in revolutionaries)
 			if(rev_mind_1.current)
 				if(rev_mind_1.current.client)
-					for(var/image/I in rev_mind_1.current.client.images)
+					for_no_type_check(var/image/I, rev_mind_1.current.client.images)
 						if((I.icon_state == "rev" || I.icon_state == "rev_head") && I.loc == rev_mind.current)
 							qdel(I)
 
 		if(rev_mind.current)
 			if(rev_mind.current.client)
-				for(var/image/I in rev_mind.current.client.images)
+				for_no_type_check(var/image/I, rev_mind.current.client.images)
 					if(I.icon_state == "rev" || I.icon_state == "rev_head")
 						qdel(I)
 
@@ -323,7 +323,7 @@
 //////////////////////////
 /datum/game_mode/revolution/proc/check_rev_victory()
 	for(var/datum/mind/rev_mind in head_revolutionaries)
-		for(var/datum/objective/objective in rev_mind.objectives)
+		for_no_type_check(var/datum/objective/objective, rev_mind.objectives)
 			if(!(objective.check_completion()))
 				return 0
 

@@ -49,7 +49,7 @@ PROCESS_DEF(shuttle)
 	//escape pod arming controllers
 	var/datum/shuttle/ferry/escape_pod/pod
 	var/list/pod_controller_map = list()
-	for(var/datum/shuttle/ferry/escape_pod/P in global.PCemergency.escape_pods)
+	for_no_type_check(var/datum/shuttle/ferry/escape_pod/P, global.PCemergency.escape_pods)
 		if(isnotnull(P.dock_target_station))
 			pod_controller_map[P.dock_target_station] = P
 

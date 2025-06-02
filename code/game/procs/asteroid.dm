@@ -36,7 +36,7 @@ GLOBAL_GLOBL_INIT(max_asteroid_caves, 12)
 		if(isnull(T))
 			return FALSE
 
-		var/list/surroundings = range(1, T)
+		var/list/turf/surroundings = RANGE_TURFS(T, 1)
 
 		if(locate(/area/external/asteroid/mine/explored) in surroundings) // +5s are for view range
 			valid = FALSE
@@ -80,12 +80,12 @@ GLOBAL_GLOBL_INIT(max_asteroid_caves, 12)
 		if(isnull(T))
 			return FALSE
 
-		var/list/surroundings = list()
+		var/list/turf/surroundings = list()
 
-		surroundings.Add(range(7, locate(T.x, T.y, T.z)))
-		surroundings.Add(range(7, locate(T.x + size, T.y, T.z)))
-		surroundings.Add(range(7, locate(T.x, T.y + size, T.z)))
-		surroundings.Add(range(7, locate(T.x + size, T.y + size, T.z)))
+		surroundings.Add(RANGE_TURFS(locate(T.x, T.y, T.z), 7))
+		surroundings.Add(RANGE_TURFS(locate(T.x + size, T.y, T.z), 7))
+		surroundings.Add(RANGE_TURFS(locate(T.x, T.y + size, T.z), 7))
+		surroundings.Add(RANGE_TURFS(locate(T.x + size, T.y + size, T.z), 7))
 
 		if(locate(/area/external/asteroid/mine/explored) in surroundings)			// +5s are for view range
 			valid = FALSE

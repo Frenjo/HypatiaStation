@@ -86,7 +86,7 @@
 		if(armor >= 2)
 			return
 		if(ismonkey(ML))
-			for(var/datum/disease/D in viruses)
+			for_no_type_check(var/datum/disease/D, viruses)
 				if(istype(D, /datum/disease/jungle_fever))
 					ML.contract_disease(D, 1, 0)
 	else

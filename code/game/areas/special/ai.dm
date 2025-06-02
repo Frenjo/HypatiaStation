@@ -13,7 +13,7 @@
 	. = ..()
 	// locate and store the motioncamera
 	// spawn on a delay to let turfs/objs load
-	for(var/obj/machinery/camera/M in src)
+	for(var/obj/machinery/camera/M in machines_list)
 		if(M.isMotion())
 			motioncamera = M
 			M.area_motion = src

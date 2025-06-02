@@ -79,7 +79,7 @@
 	if(you_are)
 		to_chat(rev_mind.current, SPAN_INFO("You are a member of the revolutionaries' leadership!"))
 	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		for(var/datum/objective/objective in rev_mind.objectives)
+		for_no_type_check(var/datum/objective/objective, rev_mind.objectives)
 			to_chat(rev_mind.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			rev_mind.special_role = "Head Revolutionary"
 			obj_count++

@@ -30,7 +30,7 @@
 	active = 1
 	update_icon()
 
-	for(var/turf/target_tile in range(2, src))
+	for_no_type_check(var/turf/target_tile, RANGE_TURFS(src, 2))
 		if(isspace(target_tile) && !(locate(/obj/effect/shield) in target_tile))
 			if(malfunction && prob(33) || !malfunction)
 				deployed_shields.Add(new /obj/effect/shield(target_tile))

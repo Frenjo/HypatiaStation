@@ -69,7 +69,7 @@
 /mob/proc/say_understands_language(mob/other, datum/language/speaking = null)
 	if(isnotnull(speaking)) // Language check.
 		var/understood = FALSE
-		for(var/datum/language/L in languages)
+		for_no_type_check(var/datum/language/L, languages)
 			if(speaking.name == L.name)
 				understood = TRUE
 				break
@@ -99,7 +99,7 @@
 		return FALSE
 
 	//Language check.
-	for(var/datum/language/L in src.languages)
+	for_no_type_check(var/datum/language/L, languages)
 		if(speaking.name == L.name)
 			if(HAS_LANGUAGE_FLAGS(L, LANGUAGE_FLAG_NONVERBAL))
 				if((sdisabilities & BLIND || blinded || stat) || !(other in view(src)))

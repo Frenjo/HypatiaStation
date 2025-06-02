@@ -139,7 +139,7 @@ PROCESS_DEF(ticker)
 
 	if(hide_mode)
 		var/list/modes = list()
-		for(var/datum/game_mode/M in runnable_modes)
+		for_no_type_check(var/datum/game_mode/M, runnable_modes)
 			modes.Add(M.name)
 		modes = sortList(modes)
 		to_world("<B>The current game mode is - Secret!</B>")
@@ -212,11 +212,11 @@ PROCESS_DEF(ticker)
 	var/obj/structure/stool/bed/temp_buckle = new(src)
 	//Incredibly hackish. It creates a bed within the gameticker (lol) to stop mobs running around
 	if(station_missed)
-		for(var/mob/living/M in GLOBL.living_mob_list)
+		for_no_type_check(var/mob/living/M, GLOBL.living_mob_list)
 			M.buckled = temp_buckle				//buckles the mob so it can't do anything
 			M.client?.screen.Add(cinematic)	//show every client the cinematic
 	else	//nuke kills everyone on z-level 1 to prevent "hurr-durr I survived"
-		for(var/mob/living/M in GLOBL.living_mob_list)
+		for_no_type_check(var/mob/living/M, GLOBL.living_mob_list)
 			M.buckled = temp_buckle
 			M.client?.screen.Add(cinematic)
 
@@ -279,7 +279,7 @@ PROCESS_DEF(ticker)
 					flick("station_explode_fade_red", cinematic)
 					world << sound('sound/effects/explosionfar.ogg')
 					cinematic.icon_state = "summary_selfdes"
-			for(var/mob/living/M in GLOBL.living_mob_list)
+			for_no_type_check(var/mob/living/M, GLOBL.living_mob_list)
 				if(isstationlevel(M.loc.z))
 					M.death()//No mercy
 	//If its actually the end of the round, wait for it to end.
@@ -406,7 +406,7 @@ PROCESS_DEF(ticker)
 	//Print a list of antagonists to the server log
 	var/list/total_antagonists = list()
 	//Look into all mobs in world, dead or alive
-	for(var/datum/mind/Mind in minds)
+	for_no_type_check(var/datum/mind/Mind, minds)
 		var/temprole = Mind.special_role
 		if(isnotnull(temprole))					//if they are an antagonist of some sort.
 			if(temprole in total_antagonists)	//If the role exists already, add the name to it

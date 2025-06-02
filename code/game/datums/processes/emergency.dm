@@ -9,7 +9,7 @@ PROCESS_DEF(emergency)
 	schedule_interval = 2 SECONDS
 
 	var/datum/shuttle/ferry/emergency/shuttle
-	var/list/escape_pods
+	var/list/datum/shuttle/ferry/escape_pod/escape_pods
 
 	var/launch_time				// The time at which the shuttle will be launched.
 	var/auto_recall = FALSE		// Whether the shuttle will be auto-recalled.
@@ -34,7 +34,7 @@ PROCESS_DEF(emergency)
 
 			if(!shuttle.location)	//leaving from the station
 				//launch the pods!
-				for(var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
+				for_no_type_check(var/datum/shuttle/ferry/escape_pod/pod, escape_pods)
 					if(isnull(pod.arming_controller) || pod.arming_controller.armed)
 						pod.launch(src)
 
@@ -60,7 +60,7 @@ PROCESS_DEF(emergency)
 
 		//arm the escape pods
 		if(evac)
-			for(var/datum/shuttle/ferry/escape_pod/pod in escape_pods)
+			for_no_type_check(var/datum/shuttle/ferry/escape_pod/pod, escape_pods)
 				pod.arming_controller?.arm()
 
 // Begins the launch countdown and sets the amount of time left until launch.

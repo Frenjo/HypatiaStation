@@ -25,7 +25,7 @@
 
 			// Have a chance to rot lots of other walls.
 			var/rotcount = 0
-			for(var/turf/closed/wall/W in range(5, center))
+			for(var/turf/closed/wall/W in RANGE_TURFS(center, 5))
 				if(prob(50))
 					W:rot()
 					rotcount++

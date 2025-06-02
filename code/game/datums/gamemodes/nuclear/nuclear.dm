@@ -59,7 +59,7 @@
 		possible_syndicates -= new_syndicate //So it doesn't pick the same guy each time.
 		agent_number--
 
-	for(var/datum/mind/synd_mind in syndicates)
+	for_no_type_check(var/datum/mind/synd_mind, syndicates)
 		synd_mind.assigned_role = "MODE" //So they aren't chosen for other jobs.
 		synd_mind.special_role = "Syndicate"//So they actually have a special role/N
 	return 1
@@ -68,17 +68,17 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 /datum/game_mode/proc/update_all_synd_icons()
 	spawn(0)
-		for(var/datum/mind/synd_mind in syndicates)
+		for_no_type_check(var/datum/mind/synd_mind, syndicates)
 			if(synd_mind.current)
 				if(synd_mind.current.client)
-					for(var/image/I in synd_mind.current.client.images)
+					for_no_type_check(var/image/I, synd_mind.current.client.images)
 						if(I.icon_state == "synd")
 							qdel(I)
 
-		for(var/datum/mind/synd_mind in syndicates)
+		for_no_type_check(var/datum/mind/synd_mind, syndicates)
 			if(synd_mind.current)
 				if(synd_mind.current.client)
-					for(var/datum/mind/synd_mind_1 in syndicates)
+					for_no_type_check(var/datum/mind/synd_mind_1, syndicates)
 						if(synd_mind_1.current)
 							var/I = image('icons/mob/mob.dmi', loc = synd_mind_1.current, icon_state = "synd")
 							synd_mind.current.client.images += I
@@ -92,16 +92,16 @@
 
 /datum/game_mode/proc/update_synd_icons_removed(datum/mind/synd_mind)
 	spawn(0)
-		for(var/datum/mind/synd in syndicates)
+		for_no_type_check(var/datum/mind/synd, syndicates)
 			if(synd.current)
 				if(synd.current.client)
-					for(var/image/I in synd.current.client.images)
+					for_no_type_check(var/image/I, synd.current.client.images)
 						if(I.icon_state == "synd" && I.loc == synd_mind.current)
 							qdel(I)
 
 		if(synd_mind.current)
 			if(synd_mind.current.client)
-				for(var/image/I in synd_mind.current.client.images)
+				for_no_type_check(var/image/I, synd_mind.current.client.images)
 					if(I.icon_state == "synd")
 						qdel(I)
 
@@ -125,7 +125,7 @@
 	var/leader_selected = 0
 	var/spawnpos = 1
 
-	for(var/datum/mind/synd_mind in syndicates)
+	for_no_type_check(var/datum/mind/synd_mind, syndicates)
 		var/mob/living/carbon/human/synd_mob = synd_mind.current
 		if(spawnpos > length(synd_spawn))
 			spawnpos = 1
@@ -185,7 +185,7 @@
 		to_chat(syndicate.current, SPAN_INFO("You are a [syndicate_name()] agent!"))
 	var/obj_count = 1
 	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-		for(var/datum/objective/objective in syndicate.objectives)
+		for_no_type_check(var/datum/objective/objective, syndicate.objectives)
 			to_chat(syndicate.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			obj_count++
 	else
@@ -204,7 +204,7 @@
 
 
 /datum/game_mode/proc/is_operatives_are_dead()
-	for(var/datum/mind/operative_mind in syndicates)
+	for_no_type_check(var/datum/mind/operative_mind, syndicates)
 		if(!ishuman(operative_mind.current))
 			if(operative_mind.current)
 				if(operative_mind.current.stat != DEAD)
@@ -284,7 +284,7 @@
 		return
 
 	var/text = "<FONT size = 2><B>The Syndicate operatives were:</B></FONT>"
-	for(var/datum/mind/syndicate in syndicates)
+	for_no_type_check(var/datum/mind/syndicate, syndicates)
 		text += "<br>[syndicate.key] was [syndicate.name] ("
 		if(isnotnull(syndicate.current))
 			if(syndicate.current.stat == DEAD)

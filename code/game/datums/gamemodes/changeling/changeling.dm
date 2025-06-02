@@ -53,7 +53,7 @@ var/list/possible_changeling_IDs = list(
 
 	var/list/datum/mind/possible_changelings = get_players_for_role(BE_CHANGELING)
 
-	for(var/datum/mind/player in possible_changelings)
+	for_no_type_check(var/datum/mind/player, possible_changelings)
 		for(var/job in restricted_jobs)	//Removing robots from the list
 			if(player.assigned_role == job)
 				possible_changelings -= player
@@ -134,7 +134,7 @@ var/list/possible_changeling_IDs = list(
 
 	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		var/obj_count = 1
-		for(var/datum/objective/objective in changeling.objectives)
+		for_no_type_check(var/datum/objective/objective, changeling.objectives)
 			to_chat(changeling.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			obj_count++
 		return
@@ -192,7 +192,7 @@ var/list/possible_changeling_IDs = list(
 		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 			if(length(changeling.objectives))
 				var/count = 1
-				for(var/datum/objective/objective in changeling.objectives)
+				for_no_type_check(var/datum/objective/objective, changeling.objectives)
 					if(objective.check_completion())
 						text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"
 						feedback_add_details("changeling_objective", "[objective.type]|SUCCESS")

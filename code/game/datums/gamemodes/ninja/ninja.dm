@@ -139,7 +139,7 @@
 
 	var/obj_count = 1
 	to_chat(ninja.current, SPAN_INFO("Your current objectives:"))
-	for(var/datum/objective/objective in ninja.objectives)
+	for_no_type_check(var/datum/objective/objective, ninja.objectives)
 		to_chat(ninja.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 		obj_count++
 
@@ -164,7 +164,7 @@
 
 		if(length(ninja.objectives))//If the ninja had no objectives, don't need to process this.
 			var/count = 1
-			for(var/datum/objective/objective in ninja.objectives)
+			for_no_type_check(var/datum/objective/objective, ninja.objectives)
 				if(objective.check_completion())
 					text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"
 					feedback_add_details("traitor_objective","[objective.type]|SUCCESS")

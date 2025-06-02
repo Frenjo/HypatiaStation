@@ -413,6 +413,6 @@
 
 /proc/get_mob_with_client_list()
 	. = list()
-	for(var/mob/M in GLOBL.mob_list)
+	for_no_type_check(var/mob/M, GLOBL.mob_list)
 		if(isnotnull(M.client))
 			. += M

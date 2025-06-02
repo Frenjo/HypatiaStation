@@ -161,7 +161,7 @@ GLOBAL_GLOBL_LIST_INIT(diseases, SUBTYPESOF(/datum/disease))
 		spread(holder)
 
 	if(affected_mob)
-		for(var/datum/disease/D in affected_mob.viruses)
+		for_no_type_check(var/datum/disease/D, affected_mob.viruses)
 			if(D != src)
 				if(IsSame(D))
 					//error("Deleting [D.name] because it's the same as [src.name].")

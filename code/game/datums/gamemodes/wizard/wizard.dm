@@ -124,7 +124,7 @@
 	to_chat(wizard.current, "<B>The Space Wizards Federation has given you the following tasks:</B>")
 	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		var/obj_count = 1
-		for(var/datum/objective/objective in wizard.objectives)
+		for_no_type_check(var/datum/objective/objective, wizard.objectives)
 			to_chat(wizard.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			obj_count++
 	else
@@ -208,7 +208,7 @@
 		var/count = 1
 		var/wizardwin = TRUE
 		if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
-			for(var/datum/objective/objective in wizard.objectives)
+			for_no_type_check(var/datum/objective/objective, wizard.objectives)
 				if(objective.check_completion())
 					text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"
 					feedback_add_details("wizard_objective", "[objective.type]|SUCCESS")

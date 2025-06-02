@@ -40,7 +40,7 @@
 			active = 1
 			for(var/mob/living/L in range(3, src))
 				L.apply_effect(12, IRRADIATE, 0)
-			for(var/turf/closed/wall/uranium/T in range(3, src))
+			for(var/turf/closed/wall/uranium/T in RANGE_TURFS(src, 3))
 				T.radiate()
 			last_event = world.time
 			active = null

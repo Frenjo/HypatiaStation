@@ -72,7 +72,7 @@
 				src.icon_state = "swall_s[junction]"*/
 
 /atom/proc/relativewall_neighbours()
-	for(var/turf/closed/wall/W in range(src, 1))
+	for(var/turf/closed/wall/W in RANGE_TURFS(src, 1))
 		W.relativewall()
 	for(var/obj/structure/falsewall/W in range(src, 1))
 		W.relativewall()
@@ -86,16 +86,16 @@
 
 	spawn(20) //testing if this will make /obj/machinery/shuttle and /door count - It does, it stays.
 		if(src.icon_state in list("wall1", "wall", "diagonalWall", "wall_floor", "wall_space")) //so wizard den, syndie shuttle etc will remain black
-			for(var/turf/closed/wall/shuttle/W in range(src,1))
+			for(var/turf/closed/wall/shuttle/W in RANGE_TURFS(src, 1))
 				W.relativewall()
 
 	..()*/
 
 /turf/closed/wall/Destroy()
-	var/temploc = src.loc
+	var/turf/temploc = src.loc
 
 	spawn(10)
-		for(var/turf/closed/wall/W in range(temploc, 1))
+		for(var/turf/closed/wall/W in RANGE_TURFS(temploc, 1))
 			W.relativewall()
 
 		for(var/obj/structure/falsewall/W in range(temploc, 1))
@@ -116,7 +116,7 @@
 	var/temploc = src.loc
 
 	spawn(10)
-		for(var/turf/closed/wall/shuttle/W in range(temploc,1))
+		for(var/turf/closed/wall/shuttle/W in RANGE_TURFS(temploc, 1))
 			W.relativewall()
 
 	..()*/

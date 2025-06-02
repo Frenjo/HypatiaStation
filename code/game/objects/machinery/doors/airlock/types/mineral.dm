@@ -47,7 +47,7 @@
 		PlasmaBurn(exposed_temperature)
 
 /obj/machinery/door/airlock/plasma/proc/PlasmaBurn(temperature)
-	for(var/turf/open/floor/target_tile in range(2, loc))
+	for(var/turf/open/floor/target_tile in RANGE_TURFS(src, 2))
 		target_tile.assume_gas(/decl/xgm_gas/plasma, 35, 400 + T0C)
 		spawn(0)
 			target_tile.hotspot_expose(temperature, 400)
@@ -55,7 +55,7 @@
 		var/turf/T = GET_TURF(F)
 		T.ChangeTurf(/turf/closed/wall/plasma)
 		qdel(F)
-	for(var/turf/closed/wall/plasma/W in range(3, src))
+	for(var/turf/closed/wall/plasma/W in RANGE_TURFS(src, 3))
 		W.ignite(temperature / 4)	//Added so that you can't set off a massive chain reaction with a small flame
 	for(var/obj/machinery/door/airlock/plasma/D in range(3, src))
 		D.ignite(temperature / 4)

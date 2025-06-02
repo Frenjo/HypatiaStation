@@ -287,7 +287,7 @@ rcd light flash thingy on matter drain
 
 	if(href_list["coreup"])
 		var/already = FALSE
-		for(var/datum/malf_module/mod in malf.current_modules)
+		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/large/fireproof_core))
 				already = TRUE
 		if(!already)
@@ -300,7 +300,7 @@ rcd light flash thingy on matter drain
 
 	else if(href_list["turret"])
 		var/already = FALSE
-		for(var/datum/malf_module/mod in malf.current_modules)
+		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/large/upgrade_turrets))
 				already = TRUE
 		if(!already)
@@ -313,7 +313,7 @@ rcd light flash thingy on matter drain
 
 	else if(href_list["rcd"])
 		var/already = FALSE
-		for(var/datum/malf_module/mod in malf.current_modules)
+		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/large/disable_rcd))
 				mod.uses += 1
 				already = TRUE
@@ -327,7 +327,7 @@ rcd light flash thingy on matter drain
 
 	else if(href_list["overload"])
 		var/already = FALSE
-		for(var/datum/malf_module/mod in malf.current_modules)
+		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/small/overload_machine))
 				mod.uses += 2
 				already = TRUE
@@ -341,7 +341,7 @@ rcd light flash thingy on matter drain
 
 	else if(href_list["blackout"])
 		var/already = FALSE
-		for(var/datum/malf_module/mod in malf.current_modules)
+		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/small/blackout))
 				mod.uses += 3
 				already = TRUE
@@ -355,7 +355,7 @@ rcd light flash thingy on matter drain
 
 	else if(href_list["interhack"])
 		var/already = FALSE
-		for(var/datum/malf_module/mod in malf.current_modules)
+		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/small/interhack))
 				already = TRUE
 		if(!already)
@@ -368,7 +368,7 @@ rcd light flash thingy on matter drain
 
 	else if(href_list["recam"])
 		var/already = FALSE
-		for(var/datum/malf_module/mod in malf.current_modules)
+		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/small/reactivate_camera))
 				mod.uses += 10
 				already = TRUE
@@ -382,7 +382,7 @@ rcd light flash thingy on matter drain
 
 	else if(href_list["upgradecam"])
 		var/already = FALSE
-		for(var/datum/malf_module/mod in malf.current_modules)
+		for_no_type_check(var/datum/malf_module/mod, malf.current_modules)
 			if(istype(mod, /datum/malf_module/small/upgrade_camera))
 				mod.uses += 10
 				already = TRUE

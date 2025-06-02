@@ -46,7 +46,7 @@
 		if(!isnewplayer(M) && !isbrain(M)) //No meta-evesdropping
 			M.show_message("[message_start] [message_body]", 2)
 
-	for(var/mob/living/S in GLOBL.living_mob_list)
+	for_no_type_check(var/mob/living/S, GLOBL.living_mob_list)
 		if(drone_only && !isdrone(S))
 			continue
 		if(isAI(S))

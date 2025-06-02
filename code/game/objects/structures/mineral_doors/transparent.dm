@@ -22,7 +22,7 @@
 		TemperatureAct(exposed_temperature)
 
 /obj/structure/mineral_door/transparent/plasma/proc/TemperatureAct(temperature)
-	for(var/turf/open/floor/target_tile in range(2, loc))
+	for(var/turf/open/floor/target_tile in RANGE_TURFS(src, 2))
 		var/toxinsToDeduce = temperature / 10
 
 		target_tile.assume_gas(/decl/xgm_gas/plasma, toxinsToDeduce, 200 + T0C)

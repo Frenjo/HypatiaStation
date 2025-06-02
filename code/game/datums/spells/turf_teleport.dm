@@ -11,8 +11,8 @@
 /obj/effect/proc_holder/spell/targeted/turf_teleport/cast(list/targets)
 	for(var/mob/living/target in targets)
 		var/list/turfs = list()
-		for(var/turf/T in range(target, outer_tele_radius))
-			if(T in range(target, inner_tele_radius))
+		for_no_type_check(var/turf/T, RANGE_TURFS(target, outer_tele_radius))
+			if(T in RANGE_TURFS(target, inner_tele_radius))
 				continue
 			if(isspace(T) && !include_space)
 				continue

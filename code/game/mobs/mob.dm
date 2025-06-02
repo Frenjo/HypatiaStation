@@ -80,7 +80,7 @@
 		M.show_message(message, 1, blind_message, 2)
 
 /mob/proc/findname(msg)
-	for(var/mob/M in GLOBL.mob_list)
+	for_no_type_check(var/mob/M, GLOBL.mob_list)
 		if(M.real_name == msg)
 			return M
 	return 0

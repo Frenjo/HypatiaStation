@@ -34,7 +34,7 @@
 		if(c.can_use())
 			cameras.Add(c)
 
-	for(var/turf/t in range(10, locate(x + 8, y + 8, z)))
+	for_no_type_check(var/turf/t, RANGE_TURFS(locate(x + 8, y + 8, z), 10))
 		if(t.x >= x && t.y >= y && t.x < x + 16 && t.y < y + 16)
 			turfs[t] = t
 

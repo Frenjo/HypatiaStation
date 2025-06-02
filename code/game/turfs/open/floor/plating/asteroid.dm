@@ -229,7 +229,7 @@
 			target_dir = angle2dir(dir2angle(target_dir) + next_angle)
 
 /turf/open/floor/plating/asteroid/airless/cave/proc/spawn_floor(area/external/asteroid/cave/cave_area, turf/T)
-	for(var/turf/S in range(1, T))
+	for_no_type_check(var/turf/S, RANGE_TURFS(T, 1))
 		if(isspace(S) || istype(S.loc, /area/external/asteroid/mine/explored))
 			sanity = FALSE
 			break

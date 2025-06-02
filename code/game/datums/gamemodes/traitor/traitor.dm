@@ -122,7 +122,7 @@
 	to_chat(traitor.current, "<B><font size=3 color=red>You are the traitor.</font></B>")
 	if(!CONFIG_GET(/decl/configuration_entry/objectives_disabled))
 		var/obj_count = 1
-		for(var/datum/objective/objective in traitor.objectives)
+		for_no_type_check(var/datum/objective/objective, traitor.objectives)
 			to_chat(traitor.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 			obj_count++
 	else
@@ -144,7 +144,7 @@
 	// Make sure all objectives are processed regularly, so that objectives
 	// which can be checked mid-round are checked mid-round.
 	for(var/datum/mind/traitor_mind in traitors)
-		for(var/datum/objective/objective in traitor_mind.objectives)
+		for_no_type_check(var/datum/objective/objective, traitor_mind.objectives)
 			objective.check_completion()
 	return 0
 
@@ -191,7 +191,7 @@
 
 		if(length(traitor.objectives))//If the traitor had no objectives, don't need to process this.
 			var/count = 1
-			for(var/datum/objective/objective in traitor.objectives)
+			for_no_type_check(var/datum/objective/objective, traitor.objectives)
 				if(objective.check_completion())
 					text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"
 					feedback_add_details("traitor_objective", "[objective.type]|SUCCESS")

@@ -79,7 +79,7 @@
 	var/turf/centerturf = GET_TURF(center)
 	var/rsq = radius * (radius + 0.5)
 
-	for(var/turf/T in range(radius, centerturf))
+	for_no_type_check(var/turf/T, RANGE_TURFS(centerturf, radius))
 		var/dx = T.x - centerturf.x
 		var/dy = T.y - centerturf.y
 		if(dx * dx + dy * dy <= rsq)

@@ -12,7 +12,7 @@
 		output += "<HR><B>Objectives:</B>"
 
 		var/obj_count = 1
-		for(var/datum/objective/objective in objectives)
+		for_no_type_check(var/datum/objective/objective, objectives)
 			output += "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
 			obj_count++
 
@@ -181,7 +181,7 @@
 			text += "<a href='byond://?src=\ref[src];monkey=healthy'>healthy</a>|<a href='byond://?src=\ref[src];monkey=infected'>infected</a>|<b>HUMAN</b>|other"
 		else if(ismonkey(current))
 			var/found = 0
-			for(var/datum/disease/D in current.viruses)
+			for_no_type_check(var/datum/disease/D, current.viruses)
 				if(istype(D, /datum/disease/jungle_fever))
 					found = 1
 
@@ -258,7 +258,7 @@
 		out += "EMPTY<br>"
 	else
 		var/obj_count = 1
-		for(var/datum/objective/objective in objectives)
+		for_no_type_check(var/datum/objective/objective, objectives)
 			out += "<B>[obj_count]</B>: [objective.explanation_text] <a href='byond://?src=\ref[src];obj_edit=\ref[objective]'>Edit</a> <a href='byond://?src=\ref[src];obj_delete=\ref[objective]'>Delete</a> <a href='byond://?src=\ref[src];obj_completed=\ref[objective]'><font color=[objective.completed ? "green" : "red"]>Toggle Completion</font></a><br>"
 			obj_count++
 	out += "<a href='byond://?src=\ref[src];obj_add=1'>Add objective</a><br><br>"

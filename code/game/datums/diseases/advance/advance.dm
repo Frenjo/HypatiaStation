@@ -120,8 +120,8 @@ var/list/advance_cures = list(
 // Mix the symptoms of two diseases (the src and the argument)
 /datum/disease/advance/proc/Mix(datum/disease/advance/D)
 	if(!src.IsSame(D))
-		var/list/possible_symptoms = shuffle(D.symptoms)
-		for(var/datum/symptom/S in possible_symptoms)
+		var/list/datum/symptom/possible_symptoms = shuffle(D.symptoms)
+		for_no_type_check(var/datum/symptom/S, possible_symptoms)
 			AddSymptom(new S.type)
 
 /datum/disease/advance/proc/HasSymptom(datum/symptom/S)

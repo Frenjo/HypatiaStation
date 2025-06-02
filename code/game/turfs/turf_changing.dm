@@ -49,7 +49,7 @@
 
 	global.PCair?.mark_for_update(src)
 
-	for(var/turf/space/S in range(new_turf, 1))
+	for(var/turf/space/S in RANGE_TURFS(new_turf, 1))
 		S.update_starlight()
 
 	new_turf.levelupdate()

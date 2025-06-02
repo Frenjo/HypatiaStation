@@ -26,7 +26,7 @@
 	if(!on)
 		return PROCESS_KILL
 
-	for(var/turf/T in range(1, src.loc))
+	for_no_type_check(var/turf/T, RANGE_TURFS(loc, 1))
 		if(!T.intact)
 			continue
 

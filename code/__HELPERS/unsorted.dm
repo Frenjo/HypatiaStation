@@ -180,7 +180,7 @@
 /proc/select_active_ai_with_fewest_borgs()
 	var/mob/living/silicon/ai/selected = null
 	var/list/active = active_ais()
-	for(var/mob/living/silicon/ai/A in active)
+	for_no_type_check(var/mob/living/silicon/ai/A, active)
 		if(isnull(selected) || (selected.connected_robots > A.connected_robots))
 			selected = A
 

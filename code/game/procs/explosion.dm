@@ -84,7 +84,7 @@
 		var/y0 = epicenter.y
 		var/z0 = epicenter.z
 
-		for(var/turf/T in range(epicenter, max_range))
+		for_no_type_check(var/turf/T, RANGE_TURFS(epicenter, max_range))
 			var/dist = cheap_pythag(T.x - x0, T.y - y0)
 
 			if(dist < devastation_range)
@@ -122,7 +122,7 @@
 	return 1
 
 /proc/secondaryexplosion(turf/epicenter, range)
-	for(var/turf/tile in range(range, epicenter))
+	for_no_type_check(var/turf/tile, RANGE_TURFS(epicenter, range))
 		tile.ex_act(2)
 
 ///// Z-Level Stuff

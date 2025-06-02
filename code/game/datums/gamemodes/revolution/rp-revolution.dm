@@ -78,7 +78,7 @@
 	for(var/datum/mind/rev_mind in head_revolutionaries)
 		var/obj_count = 1
 		rev_mind.current << "\blue You are a member of the revolutionaries' leadership!"
-		for(var/datum/objective/objective in rev_mind.objectives)
+		for_no_type_check(var/datum/objective/objective, rev_mind.objectives)
 			rev_mind.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
 			obj_count++
 
@@ -184,7 +184,7 @@
 
 /datum/game_mode/rp_revolution/proc/check_rev_victory()
 	for(var/datum/mind/rev_mind in head_revolutionaries)
-		for(var/datum/objective/objective in rev_mind.objectives)
+		for_no_type_check(var/datum/objective/objective, rev_mind.objectives)
 			if(!(objective.check_completion()))
 				return 0
 

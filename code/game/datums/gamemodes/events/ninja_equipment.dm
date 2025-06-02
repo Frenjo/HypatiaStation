@@ -298,10 +298,10 @@ ________________________________________________________________________________
 			dat += "Radiation Level: [U.radiation] rad<br>"
 			dat += "Body Temperature: [U.bodytemperature-T0C]&deg;C ([U.bodytemperature*1.8-459.67]&deg;F)<br>"
 
-			for(var/datum/disease/D in U.viruses)
+			for_no_type_check(var/datum/disease/D, U.viruses)
 				dat += "Warning: Virus Detected. Name: [D.name].Type: [D.spread]. Stage: [D.stage]/[D.max_stages]. Possible Cure: [D.cure].<br>"
 			dat += "<ul>"
-			for(var/datum/reagent/R in reagents.reagent_list)
+			for_no_type_check(var/datum/reagent/R, reagents.reagent_list)
 				if(istype(R, /datum/reagent/radium) && s_control)//Can only directly inject radium when AI is in control.
 					continue
 				dat += "<li><a href='byond://?src=\ref[src];choice=Inject;name=[R.name];tag=[R.id]'><img src=sos_2.png> Inject [R.name]: [(reagents.get_reagent_amount(R.id) - (istype(R, /datum/reagent/radium) ? (a_boost * a_transfer) : 0)) / (istype(R, /datum/reagent/nutriment) ? 5 : a_transfer)] left</a></li>"

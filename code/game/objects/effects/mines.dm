@@ -46,7 +46,7 @@
 /obj/effect/mine/proc/triggern2o(obj)
 	//example: n2o triggerproc
 	//note: im lazy
-	for(var/turf/open/floor/target in range(1, src))
+	for(var/turf/open/floor/target in RANGE_TURFS(src, 1))
 		if(!HAS_TURF_FLAGS(target, TURF_FLAG_BLOCKS_AIR))
 			target.assume_gas(/decl/xgm_gas/nitrous_oxide, 30)
 
@@ -54,7 +54,7 @@
 		qdel(src)
 
 /obj/effect/mine/proc/triggerplasma(obj)
-	for(var/turf/open/floor/target in range(1, src))
+	for(var/turf/open/floor/target in RANGE_TURFS(src, 1))
 		if(!HAS_TURF_FLAGS(target, TURF_FLAG_BLOCKS_AIR))
 			target.assume_gas(/decl/xgm_gas/plasma, 30)
 			target.hotspot_expose(1000, CELL_VOLUME)

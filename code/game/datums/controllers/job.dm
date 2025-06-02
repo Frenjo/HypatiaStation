@@ -248,9 +248,9 @@ CONTROLLER_DEF(jobs)
 
 	//People who wants to be assistants, sure, go on.
 	debug("DO, Running Assistant Check 1")
-	var/list/assistant_candidates = find_occupation_candidates(GLOBL.all_jobs["Assistant"], 3)
+	var/list/mob/dead/new_player/assistant_candidates = find_occupation_candidates(GLOBL.all_jobs["Assistant"], 3)
 	debug("AC1, Candidates: [length(assistant_candidates)]")
-	for(var/mob/dead/new_player/player in assistant_candidates)
+	for_no_type_check(var/mob/dead/new_player/player, assistant_candidates)
 		debug("AC1 pass, Player: [player]")
 		assign_role(player, "Assistant")
 		assistant_candidates.Remove(player)

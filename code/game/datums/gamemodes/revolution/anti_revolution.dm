@@ -96,7 +96,7 @@
 	if (you_are)
 		to_chat(head_mind.current, SPAN_INFO("It looks like this shift CentCom has some special orders for you.. check your objectives."))
 		to_chat(head_mind.current, SPAN_INFO("Note that you can ignore these objectives, but resisting NT's orders probably means demotion or worse."))
-	for(var/datum/objective/objective in head_mind.objectives)
+	for_no_type_check(var/datum/objective/objective, head_mind.objectives)
 		to_chat(head_mind.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 		head_mind.special_role = "Corrupt Head"
 		obj_count++
@@ -138,7 +138,7 @@
 /////////////////////////////
 /datum/game_mode/anti_revolution/proc/check_head_victory()
 	for(var/datum/mind/head_mind in heads)
-		for(var/datum/objective/objective in head_mind.objectives)
+		for_no_type_check(var/datum/objective/objective, head_mind.objectives)
 			if(!(objective.check_completion()))
 				return 0
 
@@ -176,7 +176,7 @@
 	for(var/datum/mind/head_mind in heads)
 		if(length(head_mind.objectives))//If the traitor had no objectives, don't need to process this.
 			var/count = 1
-			for(var/datum/objective/objective in head_mind.objectives)
+			for_no_type_check(var/datum/objective/objective, head_mind.objectives)
 				if(objective.check_completion())
 					text += "<br><B>Objective #[count]</B>: [objective.explanation_text] <font color='green'><B>Success!</B></font>"
 					feedback_add_details("head_objective","[objective.type]|SUCCESS")

@@ -402,7 +402,7 @@ var/list/datum/power/changeling/powerinstances = list()
 		<table width='560' align='center' cellspacing='0' cellpadding='5' id='maintable_data'>"}
 
 	var/i = 1
-	for(var/datum/power/changeling/P in powerinstances)
+	for_no_type_check(var/datum/power/changeling/P, powerinstances)
 		var/ownsthis = 0
 
 		if(P in purchasedpowers)
@@ -467,7 +467,7 @@ var/list/datum/power/changeling/powerinstances = list()
 
 	var/datum/power/changeling/Thepower = Pname
 
-	for(var/datum/power/changeling/P in powerinstances)
+	for_no_type_check(var/datum/power/changeling/P, powerinstances)
 		//to_world("[P] - [Pname] = [P.name == Pname ? "True" : "False"]")
 		if(P.name == Pname)
 			Thepower = P
