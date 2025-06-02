@@ -189,6 +189,8 @@
 
 	cargo_capacity = 10
 
+	goliath_overlay = "rescue_ranger"
+
 // Sindy
 /obj/mecha/working/ripley/sindy
 	name = "\improper APLU \"Sindy\""
