@@ -18,11 +18,10 @@
 	operation_req_access = list(ACCESS_CENT_SPECOPS)
 	add_req_access = FALSE
 
-	wreckage = /obj/structure/mecha_wreckage/marauder
-
+	max_equip = 4
 	mecha_flag = MECHA_FLAG_MARAUDER
 
-	max_equip = 4
+	wreckage = /obj/structure/mecha_wreckage/marauder
 
 	var/zoom = 0
 	var/thrusters = 0
@@ -180,16 +179,11 @@
 	cell = new /obj/item/cell/hyper(src)
 
 // Equipped variant
-/obj/mecha/combat/marauder/equipped/New()
-	. = ..()
-	var/obj/item/mecha_equipment/ME = new /obj/item/mecha_equipment/weapon/energy/pulse(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_equipment/tesla_energy_relay(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_equipment/ranged_armour_booster(src)
-	ME.attach(src)
+/obj/mecha/combat/marauder/equipped
+	starts_with = list(
+		/obj/item/mecha_equipment/weapon/energy/pulse, /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack,
+		/obj/item/mecha_equipment/tesla_energy_relay, /obj/item/mecha_equipment/ranged_armour_booster
+	)
 
 // Seraph
 /obj/mecha/combat/marauder/seraph
@@ -206,23 +200,16 @@
 
 	operation_req_access = list(ACCESS_CENT_CREED)
 
-	wreckage = /obj/structure/mecha_wreckage/seraph
-
 	max_equip = 5
 
+	wreckage = /obj/structure/mecha_wreckage/seraph
+
 // Equipped variant
-/obj/mecha/combat/marauder/seraph/equipped/New()
-	. = ..()
-	var/obj/item/mecha_equipment/ME = new /obj/item/mecha_equipment/weapon/ballistic/scattershot(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_equipment/teleporter(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_equipment/tesla_energy_relay(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_equipment/ranged_armour_booster(src)
-	ME.attach(src)
+/obj/mecha/combat/marauder/seraph/equipped
+	starts_with = list(
+		/obj/item/mecha_equipment/weapon/ballistic/scattershot, /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack,
+		/obj/item/mecha_equipment/teleporter, /obj/item/mecha_equipment/tesla_energy_relay, /obj/item/mecha_equipment/ranged_armour_booster
+	)
 
 // Mauler
 /obj/mecha/combat/marauder/mauler
@@ -236,13 +223,8 @@
 	wreckage = /obj/structure/mecha_wreckage/mauler
 
 // Equipped variant
-/obj/mecha/combat/marauder/mauler/equipped/New()
-	. = ..()
-	var/obj/item/mecha_equipment/ME = new /obj/item/mecha_equipment/weapon/energy/pulse(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_equipment/tesla_energy_relay(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_equipment/ranged_armour_booster(src)
-	ME.attach(src)
+/obj/mecha/combat/marauder/mauler/equipped
+	starts_with = list(
+		/obj/item/mecha_equipment/weapon/energy/pulse, /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack,
+		/obj/item/mecha_equipment/tesla_energy_relay, /obj/item/mecha_equipment/ranged_armour_booster
+	)

@@ -12,9 +12,9 @@
 	damage_absorption = list("brute" = 0.75, "fire" = 1, "bullet" = 0.8, "laser" = 0.7, "energy" = 0.85, "bomb" = 1)
 	internal_damage_threshold = 35
 
-	wreckage = /obj/structure/mecha_wreckage/gygax
-
 	mecha_flag = MECHA_FLAG_GYGAX
+
+	wreckage = /obj/structure/mecha_wreckage/gygax
 
 	var/overload = FALSE
 	var/overload_coeff = 2
@@ -96,16 +96,11 @@
 	cell = new /obj/item/cell/hyper(src)
 
 // Equipped variant
-/obj/mecha/combat/gygax/dark/equipped/New()
-	. = ..()
-	var/obj/item/mecha_equipment/ME = new /obj/item/mecha_equipment/weapon/ballistic/scattershot(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_equipment/teleporter(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_equipment/tesla_energy_relay(src)
-	ME.attach(src)
+/obj/mecha/combat/gygax/dark/equipped
+	starts_with = list(
+		/obj/item/mecha_equipment/weapon/ballistic/scattershot, /obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang,
+		/obj/item/mecha_equipment/teleporter, /obj/item/mecha_equipment/tesla_energy_relay
+	)
 
 // Serenity
 /obj/mecha/combat/gygax/serenity
@@ -126,6 +121,6 @@
 	step_sound_volume = 25
 	turn_sound = 'sound/mecha/movement/mechmove01.ogg'
 
-	wreckage = /obj/structure/mecha_wreckage/gygax/serenity
-
 	mecha_flag = MECHA_FLAG_SERENITY
+
+	wreckage = /obj/structure/mecha_wreckage/gygax/serenity

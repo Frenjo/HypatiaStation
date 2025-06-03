@@ -145,33 +145,28 @@
 	step_in = 2
 	step_energy_drain = 0
 
-	wreckage = /obj/structure/mecha_wreckage/ripley/deathripley
-
 	mecha_flag = MECHA_FLAG_DEATH_RIPLEY
+	starts_with = list(
+		/obj/item/mecha_equipment/tool/hydraulic_clamp/safety
+	)
 
-/obj/mecha/working/ripley/death/New()
-	. = ..()
-	var/obj/item/mecha_equipment/ME = new /obj/item/mecha_equipment/tool/hydraulic_clamp/safety(src)
-	ME.attach(src)
+	wreckage = /obj/structure/mecha_wreckage/ripley/deathripley
 
 /obj/mecha/working/ripley/mining
 	name = "\improper APLU \"Miner\""
 	desc = "An old, dusty mining ripley."
 
-/obj/mecha/working/ripley/mining/New()
-	. = ..()
-	//Attach drill
-	if(prob(25)) //Possible diamond drill... Feeling lucky?
-		var/obj/item/mecha_equipment/tool/drill/diamond/D = new /obj/item/mecha_equipment/tool/drill/diamond(src)
-		D.attach(src)
-	else
-		var/obj/item/mecha_equipment/tool/drill/D = new /obj/item/mecha_equipment/tool/drill(src)
-		D.attach(src)
+	starts_with = list(/obj/item/mecha_equipment/tool/hydraulic_clamp)
 
-	//Attach hydrolic clamp
-	var/obj/item/mecha_equipment/tool/hydraulic_clamp/HC = new /obj/item/mecha_equipment/tool/hydraulic_clamp(src)
-	HC.attach(src)
-	for(var/obj/item/mecha_part/tracking/B in contents)//Deletes the beacon so it can't be found easily
+/obj/mecha/working/ripley/mining/New()
+	// Chance for different drill types.
+	if(prob(25)) // Possible diamond drill... Feeling lucky?
+		starts_with.Add(/obj/item/mecha_equipment/tool/drill/diamond)
+	else
+		starts_with.Add(/obj/item/mecha_equipment/tool/drill)
+
+	. = ..()
+	for(var/obj/item/mecha_part/tracking/B in contents) // Deletes the beacon so it can't be found easily.
 		qdel(B)
 
 /obj/mecha/working/ripley/rescue_ranger
@@ -183,9 +178,9 @@
 	health = 175
 	step_in = 5
 
-	wreckage = /obj/structure/mecha_wreckage/ripley/rescue_ranger
-
 	mecha_flag = MECHA_FLAG_RESCUE_RANGER
+
+	wreckage = /obj/structure/mecha_wreckage/ripley/rescue_ranger
 
 	cargo_capacity = 10
 
@@ -206,9 +201,9 @@
 	operation_req_access = list(ACCESS_SYNDICATE)
 	add_req_access = FALSE
 
-	wreckage = /obj/structure/mecha_wreckage/ripley/sindy
-
 	mecha_flag = MECHA_FLAG_SINDY
+
+	wreckage = /obj/structure/mecha_wreckage/ripley/sindy
 
 	cargo_capacity = 10
 
@@ -222,11 +217,8 @@
 	cell = new /obj/item/cell/hyper(src)
 
 // Equipped variant
-/obj/mecha/working/ripley/sindy/equipped/New()
-	. = ..()
-	var/obj/item/mecha_equipment/equip = new /obj/item/mecha_equipment/weapon/energy/laser/heavy(src)
-	equip.attach(src)
-	equip = new /obj/item/mecha_equipment/tool/hydraulic_clamp(src)
-	equip.attach(src)
-	equip = new /obj/item/mecha_equipment/melee_armour_booster(src)
-	equip.attach(src)
+/obj/mecha/working/ripley/sindy/equipped
+	starts_with = list(
+		/obj/item/mecha_equipment/weapon/energy/laser/heavy, /obj/item/mecha_equipment/tool/hydraulic_clamp,
+		/obj/item/mecha_equipment/melee_armour_booster
+	)

@@ -15,9 +15,9 @@
 	deflect_chance = 20
 	damage_absorption = list("brute" = 0.5, "fire" = 1.1, "bullet" = 0.65, "laser" = 0.85, "energy" = 0.9, "bomb" = 0.8)
 
-	wreckage = /obj/structure/mecha_wreckage/durand
-
 	mecha_flag = MECHA_FLAG_DURAND
+
+	wreckage = /obj/structure/mecha_wreckage/durand
 
 	var/defence = 0
 	var/defence_deflect = 35

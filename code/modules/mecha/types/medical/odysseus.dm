@@ -11,9 +11,9 @@
 	deflect_chance = 15
 	internal_damage_threshold = 35
 
-	wreckage = /obj/structure/mecha_wreckage/odysseus
-
 	mecha_flag = MECHA_FLAG_ODYSSEUS
+
+	wreckage = /obj/structure/mecha_wreckage/odysseus
 
 /*
 /obj/mecha/medical/odysseus/verb/set_perspective()
@@ -64,16 +64,11 @@
 	cell = new /obj/item/cell/hyper(src)
 
 // Equipped variant
-/obj/mecha/medical/odysseus/dark/equipped/New()
-	. = ..()
-	var/obj/item/mecha_equipment/part = new /obj/item/mecha_equipment/medical/sleeper(src)
-	part.attach(src)
-	part = new /obj/item/mecha_equipment/medical/syringe_gun(src)
-	part.attach(src)
-	part = new /obj/item/mecha_equipment/melee_armour_booster(src)
-	part.attach(src)
-	part = new /obj/item/mecha_equipment/ranged_armour_booster(src)
-	part.attach(src)
+/obj/mecha/medical/odysseus/dark/equipped
+	starts_with = list(
+		/obj/item/mecha_equipment/medical/sleeper, /obj/item/mecha_equipment/medical/syringe_gun,
+		/obj/item/mecha_equipment/melee_armour_booster, /obj/item/mecha_equipment/ranged_armour_booster
+	)
 
 // Eurymachus
 /obj/mecha/medical/odysseus/eurymachus
@@ -92,9 +87,9 @@
 	operation_req_access = list(ACCESS_SYNDICATE)
 	add_req_access = FALSE
 
-	wreckage = /obj/structure/mecha_wreckage/odysseus/eurymachus
-
 	mecha_flag = MECHA_FLAG_EURYMACHUS
+
+	wreckage = /obj/structure/mecha_wreckage/odysseus/eurymachus
 
 	var/datum/global_iterator/camouflage_iterator
 	var/camouflage = FALSE
@@ -185,14 +180,11 @@
 	camouflage_iterator.stop()
 
 // Equipped variant
-/obj/mecha/medical/odysseus/eurymachus/equipped/New()
-	. = ..()
-	var/obj/item/mecha_equipment/part = new /obj/item/mecha_equipment/weapon/energy/taser(src)
-	part.attach(src)
-	part = new /obj/item/mecha_equipment/medical/sleeper(src)
-	part.attach(src)
-	part = new /obj/item/mecha_equipment/medical/syringe_gun(src)
-	part.attach(src)
+/obj/mecha/medical/odysseus/eurymachus/equipped
+	starts_with = list(
+		/obj/item/mecha_equipment/weapon/energy/taser, /obj/item/mecha_equipment/medical/sleeper,
+		/obj/item/mecha_equipment/medical/syringe_gun
+	)
 
 // Mecha camouflage power drain handler.
 /datum/global_iterator/mecha_camouflage

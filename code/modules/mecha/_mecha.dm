@@ -72,8 +72,6 @@
 	var/datum/global_iterator/pr_give_air //moves air from tank to cabin
 	var/datum/global_iterator/pr_internal_damage //processes internal damage
 
-	var/wreckage
-
 	// Equipment
 	var/mecha_flag = null // This exosuit's type bitflag.
 	var/list/excluded_equipment = list() // A list of equipment typepaths this exosuit CANNOT equip, even if their type bitflags match.
@@ -81,6 +79,9 @@
 	var/list/obj/item/mecha_equipment/equipment = list()
 	var/obj/item/mecha_equipment/selected
 	var/max_equip = 3
+	var/list/obj/item/mecha_equipment/starts_with = null // A list of equipment typepaths that the exosuit comes pre-equipped with.
+
+	var/wreckage
 
 	var/datum/events/events
 
@@ -103,6 +104,11 @@
 	log_message("[name] created.")
 	loc.Entered(src)
 	GLOBL.mechas_list.Add(src) //global mech list
+
+	if(isnotnull(starts_with)) // Equips any pre-loaded equipment if applicable.
+		for(var/equipment_path in starts_with)
+			var/obj/item/mecha_equipment/equip = new equipment_path(src)
+			equip.attach(src)
 
 /obj/mecha/Destroy()
 	go_out()

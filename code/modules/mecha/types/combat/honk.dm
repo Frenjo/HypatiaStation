@@ -14,8 +14,6 @@
 	operation_req_access = list(ACCESS_CLOWN)
 	add_req_access = FALSE
 
-	wreckage = /obj/structure/mecha_wreckage/honk
-
 	mecha_flag = MECHA_FLAG_HONK
 	excluded_equipment = list(
 		/obj/item/mecha_equipment/melee_armour_booster,
@@ -23,6 +21,8 @@
 		/obj/item/mecha_equipment/ranged_armour_booster,
 		/obj/item/mecha_equipment/emp_insulation
 	)
+
+	wreckage = /obj/structure/mecha_wreckage/honk
 
 	var/squeak = FALSE
 

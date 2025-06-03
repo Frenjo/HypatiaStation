@@ -14,9 +14,9 @@
 	max_temperature = 20000
 	internal_damage_threshold = 80
 
-	wreckage = /obj/structure/mecha_wreckage/hoverpod
-
 	mecha_flag = MECHA_FLAG_HOVERPOD
+
+	wreckage = /obj/structure/mecha_wreckage/hoverpod
 
 	var/initial_pixel_y
 
@@ -63,7 +63,7 @@
 		if(!ion_trail.on)
 			ion_trail.start()
 		if(stabilization_enabled)
-			return 1
+			return TRUE
 
 	return ..()
 
@@ -78,8 +78,9 @@
 		start_floating_animation()
 
 /obj/mecha/working/hoverpod/go_out()
-	stop_floating_animation()
 	. = ..()
+	if(.)
+		stop_floating_animation()
 
 /obj/mecha/working/hoverpod/proc/start_floating_animation()
 	animate(src, pixel_y = 2, time = 2 SECONDS, loop = -1, flags = ANIMATION_RELATIVE)
@@ -99,23 +100,12 @@
 	max_equip = 2
 
 	mecha_flag = MECHA_FLAG_COMBAT_HOVERPOD
+	starts_with = list(/obj/item/mecha_equipment/weapon/energy/laser, /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack)
 
 	cargo_capacity = 2
-
-/obj/mecha/working/hoverpod/combat/New()
-	. = ..()
-	var/obj/item/mecha_equipment/ME = new /obj/item/mecha_equipment/weapon/energy/laser(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack(src)
-	ME.attach(src)
 
 /obj/mecha/working/hoverpod/shuttle
 	name = "\improper Shuttle HoverPod"
 	desc = "Who knew a tiny ball could fit three people?"
 
-/obj/mecha/working/hoverpod/shuttle/New()
-	. = ..()
-	var/obj/item/mecha_equipment/ME = new /obj/item/mecha_equipment/passenger(src)
-	ME.attach(src)
-	ME = new /obj/item/mecha_equipment/passenger(src)
-	ME.attach(src)
+	starts_with = list(/obj/item/mecha_equipment/passenger, /obj/item/mecha_equipment/passenger)

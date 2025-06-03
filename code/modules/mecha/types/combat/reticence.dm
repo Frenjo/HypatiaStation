@@ -17,8 +17,6 @@
 	operation_req_access = list(ACCESS_MIME)
 	add_req_access = FALSE
 
-	wreckage = /obj/structure/mecha_wreckage/reticence
-
 	mecha_flag = MECHA_FLAG_RETICENCE
 	excluded_equipment = list(
 		/obj/item/mecha_equipment/melee_armour_booster,
@@ -26,6 +24,8 @@
 		/obj/item/mecha_equipment/ranged_armour_booster,
 		/obj/item/mecha_equipment/emp_insulation
 	)
+
+	wreckage = /obj/structure/mecha_wreckage/reticence
 
 /obj/mecha/combat/reticence/melee_action(target)
 	if(!melee_can_hit)

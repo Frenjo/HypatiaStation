@@ -17,19 +17,15 @@
 	step_sound = 'sound/mecha/movement/eidolon/sbdwalk0.ogg'
 	turn_sound = 'sound/mecha/movement/mechmove01.ogg'
 
-	wreckage = /obj/structure/mecha_wreckage/eidolon
-
 	mecha_flag = MECHA_FLAG_EIDOLON
+	starts_with = list(/obj/item/mecha_equipment/weapon/energy/disabler/rapid)
+
+	wreckage = /obj/structure/mecha_wreckage/eidolon
 
 	var/salvaged = FALSE // Salvaged version can fit regular sized humans.
 
 	var/rolling = FALSE
 	var/step_loop = 0
-
-/obj/mecha/combat/eidolon/New()
-	. = ..()
-	var/obj/item/mecha_equipment/weapon/energy/disabler/rapid/disabler = new /obj/item/mecha_equipment/weapon/energy/disabler/rapid(src)
-	disabler.attach(src)
 
 /obj/mecha/combat/eidolon/Topic(href, list/href_list)
 	. = ..()
@@ -101,12 +97,8 @@
 	deflect_chance = 20
 	damage_absorption = list("brute" = 0.85, "fire" = 0, "bullet" = 0.75, "laser" = 0.75, "energy" = 0.75, "bomb" = 0.8)
 
+	starts_with = null
+
 	wreckage = /obj/structure/mecha_wreckage/eidolon/wrecked // Double wrecked, he ain't getting up from that!
 
 	salvaged = TRUE
-
-/obj/mecha/combat/eidolon/salvaged/New()
-	. = ..()
-	for_no_type_check(var/obj/item/mecha_equipment/equip, equipment)
-		equip.detach()
-		qdel(equip)

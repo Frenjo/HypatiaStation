@@ -18,9 +18,9 @@
 	damage_absorption = list("brute" = 0.7, "fire" = 0.7, "bullet" = 0.7, "laser" = 0.7, "energy" = 0.7, "bomb" = 0.7)
 	internal_damage_threshold = 25
 
-	wreckage = /obj/structure/mecha_wreckage/phazon
-
 	mecha_flag = MECHA_FLAG_PHAZON
+
+	wreckage = /obj/structure/mecha_wreckage/phazon
 
 	var/phasing = FALSE
 	var/phasing_energy_drain = 200
@@ -138,13 +138,8 @@
 	cell = new /obj/item/cell/hyper(src)
 
 // Equipped variant
-/obj/mecha/combat/phazon/dark/equipped/New()
-	. = ..()
-	var/obj/item/mecha_equipment/equip = new /obj/item/mecha_equipment/tool/rcd(src)
-	equip.attach(src)
-	equip = new /obj/item/mecha_equipment/gravcatapult(src)
-	equip.attach(src)
-	equip = new /obj/item/mecha_equipment/teleporter(src)
-	equip.attach(src)
-	equip = new /obj/item/mecha_equipment/tesla_energy_relay(src)
-	equip.attach(src)
+/obj/mecha/combat/phazon/dark/equipped
+	starts_with = list(
+		/obj/item/mecha_equipment/tool/rcd, /obj/item/mecha_equipment/gravcatapult,
+		/obj/item/mecha_equipment/teleporter, /obj/item/mecha_equipment/tesla_energy_relay
+	)
