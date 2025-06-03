@@ -2,15 +2,6 @@
 // As part of the docking controller port, because rewriting that code is spaghetti.
 // And I ain't doing it. -Frenjo
 
-/obj/machinery/computer/shuttle_control/specops
-	name = "special operations shuttle console"
-	shuttle_tag = "Special Operations"
-	req_access = list(ACCESS_CENT_SPECOPS)
-
-/obj/machinery/computer/shuttle_control/specops/attack_ai(mob/user)
-	FEEDBACK_ACCESS_DENIED(user)
-	return 1
-
 //for shuttles that may use a different docking port at each location
 /datum/shuttle/ferry/multidock
 	var/docking_controller_tag_station
