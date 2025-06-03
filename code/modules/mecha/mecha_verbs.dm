@@ -4,7 +4,7 @@
 /obj/mecha/verb/connect_to_port()
 	set category = "Exosuit Interface"
 	set name = "Connect To Port"
-	set popup_menu = 0
+	set popup_menu = FALSE
 	set src = usr.loc
 
 	if(isnull(occupant))
@@ -26,7 +26,7 @@
 /obj/mecha/verb/disconnect_from_port()
 	set category = "Exosuit Interface"
 	set name = "Disconnect From Port"
-	set popup_menu = 0
+	set popup_menu = FALSE
 	set src = usr.loc
 
 	if(isnull(occupant))
@@ -44,7 +44,7 @@
 /obj/mecha/verb/toggle_lights()
 	set category = "Exosuit Interface"
 	set name = "Toggle Lights"
-	set popup_menu = 0
+	set popup_menu = FALSE
 	set src = usr.loc
 
 	if(usr != occupant)
@@ -61,8 +61,8 @@
 /obj/mecha/verb/toggle_internal_tank()
 	set category = "Exosuit Interface"
 	set name = "Toggle Internal Air Tank Usage"
+	set popup_menu = FALSE
 	set src = usr.loc
-	set popup_menu = 0
 
 	if(usr != occupant)
 		return
@@ -74,7 +74,7 @@
 /obj/mecha/verb/view_stats()
 	set category = "Exosuit Interface"
 	set name = "View Stats"
-	set popup_menu = 0
+	set popup_menu = FALSE
 	set src = usr.loc
 
 	if(usr != occupant)
@@ -95,7 +95,7 @@
 /obj/mecha/verb/eject()
 	set category = "Exosuit Interface"
 	set name = "Eject"
-	set popup_menu = 0
+	set popup_menu = FALSE
 	set src = usr.loc
 
 	if(usr != occupant)
@@ -145,7 +145,7 @@
 			occupant.client.perspective = MOB_PERSPECTIVE
 		*/
 		occupant << browse(null, "window=exosuit")
-		if(istype(mob_container, /obj/item/mmi)) // This should also cover /obj/item/mmi/posibrain.
+		if(isMMI(mob_container)) // This should also cover /obj/item/mmi/posibrain.
 			var/obj/item/mmi/mmi = mob_container
 			if(isnotnull(mmi.brainmob))
 				occupant.forceMove(mmi)

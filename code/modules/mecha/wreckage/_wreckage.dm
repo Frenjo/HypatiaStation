@@ -38,7 +38,7 @@
 		var/obj/item/weldingtool/welder = tool
 		if(!isemptylist(welder_salvage) && welder.remove_fuel(0, user))
 			var/type = prob(70) ? pick(welder_salvage) : null
-			if(type)
+			if(isnotnull(type))
 				var/N = new type(GET_TURF(user))
 				user.visible_message(
 					SPAN_NOTICE("[user] cuts \the [N] from \the [src]."),

@@ -5,8 +5,10 @@
 	name = "jetpack"
 	desc = "Using directed ion bursts and cunning solar wind reflection technique, this device enables controlled space flight."
 	icon_state = "jetpack"
-	equip_cooldown = 5
+
+	equip_cooldown = 0.5 SECONDS
 	energy_drain = 50
+
 	var/wait = 0
 	var/datum/effect/system/ion_trail_follow/ion_trail
 

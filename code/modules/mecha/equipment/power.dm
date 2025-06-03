@@ -8,7 +8,6 @@
 
 	equip_cooldown = 1 SECOND
 	energy_drain = 0
-	range = 0
 	selectable = FALSE
 
 	var/datum/global_iterator/pr_energy_relay
@@ -80,12 +79,13 @@
 	name = "plasma converter"
 	desc = "Generates power using solid plasma as fuel. Pollutes the environment. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
+
 	matter_amounts = /datum/design/mechfab/equipment/general/plasma_generator::materials
+	reliability = 1000
 	origin_tech = /datum/design/mechfab/equipment/general/plasma_generator::req_tech
+
 	equip_cooldown = 1 SECOND
 	energy_drain = 0
-	range = MELEE
-	reliability = 1000
 
 	var/datum/global_iterator/pr_mech_generator
 	var/coeff = 100
@@ -225,13 +225,15 @@
 	name = "\improper ExoNuclear reactor"
 	desc = "Generates power using uranium. Pollutes the environment. (Can be attached to: Any Exosuit)"
 	icon_state = "tesla"
+
 	matter_amounts = /datum/design/mechfab/equipment/general/nuclear_generator::materials
+	reliability = 1000
 	origin_tech = /datum/design/mechfab/equipment/general/nuclear_generator::req_tech
+
 	max_fuel = 50000
 	fuel_per_cycle_idle = 10
 	fuel_per_cycle_active = 30
 	power_per_cycle = 50
-	reliability = 1000
 
 	var/rad_per_cycle = 0.3
 

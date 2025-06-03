@@ -4,8 +4,8 @@
 #define MECHA_INT_TANK_BREACH 8
 #define MECHA_INT_CONTROL_LOST 16
 
-#define MELEE 1
-#define RANGED 2
+#define MECHA_EQUIP_MELEE BITFLAG(0)
+#define MECHA_EQUIP_RANGED BITFLAG(1)
 
 
 /obj/mecha
@@ -116,7 +116,7 @@
 	// If there's any equipment left at this point then the mech's been admin-deleted.
 	for_no_type_check(var/obj/item/mecha_equipment/equip, equipment)
 		equipment.Remove(equip)
-		equip.detach(loc)
+		equip.detach(loc, TRUE)
 		qdel(equip)
 	QDEL_NULL(spark_system)
 	QDEL_NULL(internal_tank)

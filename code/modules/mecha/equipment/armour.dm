@@ -8,7 +8,6 @@
 
 	equip_cooldown = 1 SECOND
 	energy_drain = 50
-	range = 0
 	selectable = FALSE
 
 	var/deflect_coeff = 1.15
@@ -31,7 +30,6 @@
 
 	equip_cooldown = 1 SECOND
 	energy_drain = 100
-	range = 0
 	selectable = FALSE
 
 	allow_duplicates = FALSE
@@ -67,7 +65,6 @@
 
 	equip_cooldown = 1 SECOND
 	energy_drain = 50
-	range = 0
 	selectable = FALSE
 
 	var/deflect_coeff = 1.15
@@ -91,7 +88,6 @@
 
 	equip_cooldown = 1 SECOND
 	energy_drain = 50
-	range = 0
 	selectable = FALSE
 
 	var/severity_modifier = 0.85

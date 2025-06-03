@@ -3,8 +3,10 @@
 	name = "hydraulic clamp"
 	desc = "An exosuit-mounted hydraulic clamp with cargo loading capability. (Can be attached to: Working Exosuits)"
 	icon_state = "clamp"
+
 	equip_cooldown = 1.5 SECONDS
 	energy_drain = 10
+	equip_range = MECHA_EQUIP_MELEE
 
 	var/dam_force = 20
 	var/obj/mecha/working/cargo_holder
@@ -94,6 +96,7 @@
 /obj/item/mecha_equipment/tool/hydraulic_clamp/safety
 	name = "kill clamp"
 	desc = "An exosuit-mounted hydraulic clamp with KILL CAPABILITY. (Can be attached to: Working Exosuits)"
+
 	energy_drain = 0
 
 	is_safety_clamp = TRUE
@@ -103,9 +106,10 @@
 	name = "extinguisher"
 	desc = "An exosuit-mounted fire extinguisher. (Can be attached to: Working Exosuits)"
 	icon_state = "exting"
+
 	equip_cooldown = 0.5 SECONDS
 	energy_drain = 0
-	range = MELEE|RANGED
+	equip_range = MECHA_EQUIP_MELEE | MECHA_EQUIP_RANGED
 
 /obj/item/mecha_equipment/tool/extinguisher/New()
 	create_reagents(200)

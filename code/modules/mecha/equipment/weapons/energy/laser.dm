@@ -7,6 +7,7 @@
 
 	equip_cooldown = 0.8 SECONDS
 	energy_drain = 30
+
 	projectile = /obj/item/projectile/energy/pulse/laser
 	fire_sound = 'sound/weapons/gun/laser.ogg'
 
@@ -18,6 +19,7 @@
 
 	equip_cooldown = 1.5 SECONDS
 	energy_drain = 60
+
 	projectile = /obj/item/projectile/energy/pulse/laser/heavy
 	fire_sound = 'sound/weapons/gun/lasercannonfire.ogg'
 
@@ -29,6 +31,7 @@
 	origin_tech = /datum/design/mechfab/equipment/weapon/rigged_laser::req_tech
 
 	mecha_flags = MECHA_FLAG_WORKING | MECHA_FLAG_COMBAT
+
 	equip_cooldown = 1.6 SECONDS
 	energy_drain = 60
 
@@ -42,6 +45,7 @@
 
 	equip_cooldown = 0.6 SECONDS
 	energy_drain = 150
+
 	projectile = /obj/item/projectile/energy/pulse/laser/xray
 	fire_sound = 'sound/weapons/gun/laser3.ogg'
 
@@ -53,5 +57,6 @@
 	origin_tech = /datum/design/mechfab/equipment/weapon/rigged_xray::req_tech
 
 	mecha_flags = MECHA_FLAG_WORKING | MECHA_FLAG_COMBAT
+
 	equip_cooldown = 1.2 SECONDS
 	energy_drain = 175

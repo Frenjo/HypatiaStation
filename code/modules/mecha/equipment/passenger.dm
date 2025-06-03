@@ -7,7 +7,6 @@
 	matter_amounts = /datum/design/mechfab/equipment/general/passenger_compartment::materials
 	origin_tech = /datum/design/mechfab/equipment/general/passenger_compartment::req_tech
 
-	range = MELEE
 	equip_cooldown = 2 SECONDS
 	energy_drain = 10
 	selectable = FALSE

@@ -43,7 +43,7 @@
 		to_chat(user, SPAN_INFO("You stop entering the exosuit."))
 
 /obj/mecha/proc/moved_inside(mob/living/carbon/human/H)
-	if(isnotnull(H) && isnotnull(H.client) && (H in range(1)))
+	if(isnotnull(H?.client) && (H in range(1)))
 		H.reset_view(src)
 		/*
 		H.client.perspective = EYE_PERSPECTIVE
@@ -68,7 +68,7 @@
 	return FALSE
 
 /obj/mecha/proc/mmi_move_inside(obj/item/mmi/mmi_as_oc, mob/user)
-	if(isnull(mmi_as_oc.brainmob) || isnull(mmi_as_oc.brainmob.client))
+	if(isnull(mmi_as_oc.brainmob?.client))
 		to_chat(user, SPAN_WARNING("Consciousness matrix not detected."))
 		return FALSE
 	else if(mmi_as_oc.brainmob.stat)
@@ -99,7 +99,7 @@
 
 /obj/mecha/proc/mmi_moved_inside(obj/item/mmi/mmi_as_oc, mob/user)
 	if(isnotnull(mmi_as_oc) && (user in range(1)))
-		if(isnull(mmi_as_oc.brainmob) || isnull(mmi_as_oc.brainmob.client))
+		if(isnull(mmi_as_oc.brainmob?.client))
 			to_chat(user, SPAN_WARNING("Consciousness matrix not detected."))
 			return FALSE
 		else if(mmi_as_oc.brainmob.stat)

@@ -11,6 +11,7 @@
 
 	equip_cooldown = 0.8 SECONDS
 	energy_drain = 20
+
 	projectile = /obj/item/projectile/energy/electrode
 	fire_sound = 'sound/weapons/gun/taser.ogg'
 
@@ -18,10 +19,12 @@
 /obj/item/mecha_equipment/weapon/energy/pulse
 	name = "eZ-13 mk2 heavy pulse rifle"
 	icon_state = "pulse"
-	equip_cooldown = 3 SECONDS
-	energy_drain = 120
 	origin_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 6, /decl/tech/power_storage = 4)
 	projectile = /obj/item/projectile/energy/beam/pulse/heavy
+
+	equip_cooldown = 3 SECONDS
+	energy_drain = 120
+
 	fire_sound = 'sound/weapons/gun/marauder.ogg'
 
 /obj/item/projectile/energy/beam/pulse/heavy

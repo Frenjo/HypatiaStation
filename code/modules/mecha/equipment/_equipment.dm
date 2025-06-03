@@ -22,13 +22,14 @@
 	var/equip_ready = TRUE
 	var/equip_cooldown = 0
 	var/energy_drain = 0
-	var/range = MELEE //bitflags
+	var/equip_range = 0 //bitflags
 	var/selectable = TRUE // This should be set to FALSE for equipment that's passive or has a separate activate button. IE armour plates, droids and passenger compartments.
 
 	var/salvageable = TRUE
 	var/destruction_sound = 'sound/mecha/voice/critdestr.ogg'
 
-	var/allow_duplicates = TRUE // Can duplicates of this equipment be fitted.
+	var/allow_duplicates = TRUE // Can duplicates of this equipment be fitted?
+	var/allow_detach = TRUE // Can this equipment detach once fitted?
 
 /obj/item/mecha_equipment/Destroy() //missiles detonating, teleporter creating singularity?
 	if(isnotnull(chassis))
@@ -67,16 +68,28 @@
 		M.selected = src
 	update_chassis_page()
 
-/obj/item/mecha_equipment/proc/detach(atom/moveto = null)
+/obj/item/mecha_equipment/proc/can_detach(obj/mecha/mech)
+	if(!allow_detach)
+		return FALSE
+	return TRUE
+
+/obj/item/mecha_equipment/proc/detach(atom/moveto = null, force = FALSE)
+	if(!force && !can_detach(chassis))
+		chassis.occupant_message(SPAN_WARNING("Cannot detach \the [src]."))
+		chassis.log_message("Attempted to detach non-removable equipment: [src].")
+		return FALSE
 	moveto = moveto || GET_TURF(chassis)
-	if(Move(moveto))
-		chassis.equipment.Remove(src)
-		if(chassis.selected == src)
-			chassis.selected = null
-		update_chassis_page()
-		chassis.log_message("[src] removed from equipment.")
-		chassis = null
-		set_ready_state(1)
+	if(!Move(moveto))
+		return FALSE
+
+	chassis.equipment.Remove(src)
+	if(chassis.selected == src)
+		chassis.selected = null
+	update_chassis_page()
+	chassis.log_message("[src] removed from equipment.")
+	chassis = null
+	set_ready_state(1)
+	return TRUE
 
 /obj/item/mecha_equipment/proc/do_after_cooldown(target = 1)
 	sleep(equip_cooldown)
@@ -109,11 +122,11 @@
 	else
 		. += "[name]"
 
-/obj/item/mecha_equipment/proc/is_ranged()//add a distance restricted equipment. Why not?
-	return range & RANGED
-
 /obj/item/mecha_equipment/proc/is_melee()
-	return range & MELEE
+	return equip_range & MECHA_EQUIP_MELEE
+
+/obj/item/mecha_equipment/proc/is_ranged() // Add a distance restricted equipment. Why not?
+	return equip_range & MECHA_EQUIP_RANGED
 
 /obj/item/mecha_equipment/proc/action_checks(atom/target)
 	if(isnull(target))

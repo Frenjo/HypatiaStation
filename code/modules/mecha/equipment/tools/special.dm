@@ -10,7 +10,7 @@
 
 	equip_cooldown = 1 SECOND
 	energy_drain = 250
-	range = MELEE | RANGED
+	equip_range = MECHA_EQUIP_MELEE | MECHA_EQUIP_RANGED
 
 /obj/item/mecha_equipment/tool/mimercd/action(atom/target)
 	if(!..())

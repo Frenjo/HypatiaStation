@@ -8,7 +8,6 @@
 
 	equip_cooldown = 2 SECONDS
 	energy_drain = 100
-	range = 0
 	selectable = FALSE
 
 	allow_duplicates = FALSE
@@ -90,9 +89,10 @@
 	icon_state = "teleporter"
 	matter_amounts = /datum/design/mechfab/equipment/general/teleporter::materials
 	origin_tech = /datum/design/mechfab/equipment/general/teleporter::req_tech
+
 	equip_cooldown = 15 SECONDS
 	energy_drain = 1000
-	range = RANGED
+	equip_range = MECHA_EQUIP_RANGED
 
 /obj/item/mecha_equipment/teleporter/action(atom/target)
 	if(!..() || loc.z == 2)
@@ -113,9 +113,10 @@
 	icon_state = "wholegen"
 	matter_amounts = /datum/design/mechfab/equipment/general/wormhole_gen::materials
 	origin_tech = /datum/design/mechfab/equipment/general/wormhole_gen::req_tech
+
 	equip_cooldown = 5 SECONDS
 	energy_drain = 300
-	range = RANGED
+	equip_range = MECHA_EQUIP_RANGED
 
 /obj/item/mecha_equipment/wormhole_generator/action(atom/target)
 	if(!..() || loc.z == 2)
@@ -166,9 +167,11 @@
 	icon_state = "catapult"
 	matter_amounts = /datum/design/mechfab/equipment/general/gravcatapult::materials
 	origin_tech = /datum/design/mechfab/equipment/general/gravcatapult::req_tech
+
 	equip_cooldown = 1 SECOND
 	energy_drain = 100
-	range = MELEE | RANGED
+	equip_range = MECHA_EQUIP_MELEE | MECHA_EQUIP_RANGED
+
 	var/atom/movable/locked
 	var/mode = 1 //1 - gravsling 2 - gravpush
 

@@ -29,6 +29,7 @@
 	origin_tech = /datum/design/mechfab/equipment/weapon/lmg::req_tech
 
 	equip_cooldown = 1 SECOND
+
 	projectile = /obj/item/projectile/bullet/weakbullet
 	fire_sound = 'sound/weapons/gun/gunshot.ogg'
 	projectiles = 300
@@ -45,6 +46,7 @@
 	origin_tech = /datum/design/mechfab/equipment/weapon/scattershot::req_tech
 
 	equip_cooldown = 2 SECONDS
+
 	projectile = /obj/item/projectile/bullet/midbullet
 	fire_sound = 'sound/weapons/gun/gunshot.ogg'
 	fire_volume = 80
@@ -64,11 +66,13 @@
 /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack
 	name = "\improper SRM-8 missile rack"
 	icon_state = "missilerack"
+
+	equip_cooldown = 6 SECONDS
+
 	projectile = /obj/item/missile
 	fire_sound = 'sound/effects/bang.ogg'
 	projectiles = 8
 	projectile_energy_cost = 1000
-	equip_cooldown = 6 SECONDS
 
 /obj/item/mecha_equipment/weapon/ballistic/launcher/missile_rack/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	var/obj/item/missile/M = AM
@@ -95,12 +99,13 @@
 	matter_amounts = /datum/design/mechfab/equipment/weapon/grenade_launcher::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/grenade_launcher::req_tech
 
+	equip_cooldown = 6 SECONDS
+
 	projectile = /obj/item/grenade/flashbang
 	fire_sound = 'sound/effects/bang.ogg'
 	projectiles = 6
 	missile_speed = 1.5
 	projectile_energy_cost = 800
-	equip_cooldown = 6 SECONDS
 
 	var/det_time = 20
 
@@ -132,12 +137,13 @@
 
 	mecha_flags = MECHA_FLAG_HONK
 
+	equip_cooldown = 2 SECONDS
+
 	projectile = /obj/item/bananapeel
 	fire_sound = 'sound/items/bikehorn.ogg'
 	projectiles = 15
 	missile_speed = 1.5
 	projectile_energy_cost = 100
-	equip_cooldown = 2 SECONDS
 
 /obj/item/mecha_equipment/weapon/ballistic/launcher/banana_mortar/mousetrap_mortar
 	name = "mousetrap mortar"
@@ -145,8 +151,9 @@
 	matter_amounts = /datum/design/mechfab/equipment/weapon/mousetrap_mortar::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/mousetrap_mortar::req_tech
 
-	projectile = /obj/item/assembly/mousetrap
 	equip_cooldown = 1 SECOND
+
+	projectile = /obj/item/assembly/mousetrap
 
 /obj/item/mecha_equipment/weapon/ballistic/launcher/banana_mortar/mousetrap_mortar/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	var/obj/item/assembly/mousetrap/M = AM

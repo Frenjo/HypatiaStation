@@ -11,10 +11,12 @@
 	icon_state = "sleeper_0"
 	matter_amounts = /datum/design/mechfab/equipment/sleeper::materials
 	origin_tech = /datum/design/mechfab/equipment/sleeper::req_tech
-	energy_drain = 20
-	range = MELEE
 	reliability = 1000
+
 	equip_cooldown = 2 SECONDS
+	energy_drain = 20
+	equip_range = MECHA_EQUIP_MELEE
+
 	salvageable = FALSE
 
 	var/mob/living/carbon/patient = null
@@ -231,11 +233,12 @@
 	name = "syringe gun"
 	desc = "Exosuit-mounted chem synthesizer with syringe gun. Reagents inside are held in stasis, so no reactions will occur. (Can be attached to: Medical Exosuits)"
 	icon_state = "syringe_gun"
-	energy_drain = 10
-	range = MELEE|RANGED
-	equip_cooldown = 1 SECOND
 	matter_amounts = /datum/design/mechfab/equipment/syringe_gun::materials
 	origin_tech = /datum/design/mechfab/equipment/syringe_gun::req_tech
+
+	equip_cooldown = 1 SECOND
+	energy_drain = 10
+	equip_range = MECHA_EQUIP_MELEE | MECHA_EQUIP_RANGED
 
 	var/list/syringes
 	var/list/known_reagents

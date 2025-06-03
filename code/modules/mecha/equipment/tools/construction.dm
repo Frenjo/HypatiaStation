@@ -5,9 +5,11 @@
 	icon_state = "rcd"
 	matter_amounts = /datum/design/mechfab/equipment/working/rcd::materials
 	origin_tech = /datum/design/mechfab/equipment/working/rcd::req_tech
+
 	equip_cooldown = 1 SECOND
 	energy_drain = 250
-	range = MELEE|RANGED
+	equip_range = MECHA_EQUIP_MELEE | MECHA_EQUIP_RANGED
+
 	var/mode = 0 //0 - deconstruct, 1 - wall or floor, 2 - airlock.
 	var/disabled = 0 //malf
 
@@ -110,6 +112,8 @@
 	name = "cable layer"
 	desc = "An exosuit-mounted cable layer. (Can be attached to: Working Exosuits)"
 	icon_state = "cable_layer"
+
+	equip_range = MECHA_EQUIP_MELEE
 
 	var/datum/event/event
 	var/turf/old_turf

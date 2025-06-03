@@ -32,5 +32,6 @@
 	origin_tech = /datum/design/mechfab/equipment/weapon/rigged_disabler::req_tech
 
 	mecha_flags = MECHA_FLAG_WORKING | MECHA_FLAG_COMBAT
+
 	equip_cooldown = 1.6 SECONDS
 	energy_drain = 60

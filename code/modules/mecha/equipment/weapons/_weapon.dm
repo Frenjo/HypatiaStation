@@ -1,9 +1,10 @@
 /obj/item/mecha_equipment/weapon
 	name = "mecha weapon"
-	range = RANGED
 	origin_tech = alist(/decl/tech/materials = 3, /decl/tech/combat = 3)
 
 	mecha_flags = MECHA_FLAG_COMBAT
+
+	equip_range = MECHA_EQUIP_RANGED
 
 	destruction_sound = 'sound/mecha/voice/weapdestr.ogg'
 

@@ -9,7 +9,7 @@
 
 	energy_drain = 200
 	equip_cooldown = 15 SECONDS
-	range = MELEE|RANGED
+	equip_range = MECHA_EQUIP_MELEE | MECHA_EQUIP_RANGED
 
 /obj/item/mecha_equipment/honker/action(atom/target)
 	if(!..())

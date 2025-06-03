@@ -7,6 +7,7 @@
 
 	equip_cooldown = 4 SECONDS
 	energy_drain = 120
+
 	projectile = /obj/item/projectile/ion
 	fire_sound = 'sound/weapons/gun/laser.ogg'
 
@@ -18,6 +19,8 @@
 	origin_tech = /datum/design/mechfab/equipment/weapon/rigged_ion::req_tech
 
 	mecha_flags = MECHA_FLAG_WORKING | MECHA_FLAG_COMBAT
+
 	equip_cooldown = 5 SECONDS
 	energy_drain = 100
+
 	projectile = /obj/item/projectile/ion/pistol
