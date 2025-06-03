@@ -67,7 +67,10 @@
 	if(istype(A, /obj/item/mecha_part/tracking))
 		if(!deflect_tracking_beacons)
 			A.forceMove(src)
-			visible_message("The [A] fastens firmly to [src].")
+			visible_message(
+				SPAN_INFO("\The [A] fastens firmly to \the [src]."),
+				SPAN_INFO("You hear a click.")
+			)
 			return
 		else
 			deflection_chance = 100 // The tracking beacon will bounce off.

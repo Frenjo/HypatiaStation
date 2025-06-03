@@ -168,10 +168,7 @@
 		starts_with.Add(/obj/item/mecha_equipment/tool/drill/diamond)
 	else
 		starts_with.Add(/obj/item/mecha_equipment/tool/drill)
-
 	. = ..()
-	for(var/obj/item/mecha_part/tracking/B in contents) // Deletes the beacon so it can't be found easily.
-		qdel(B)
 
 /obj/mecha/working/ripley/rescue_ranger
 	name = "\improper APLU \"Rescue Ranger\""

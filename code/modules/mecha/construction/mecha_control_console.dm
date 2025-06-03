@@ -45,13 +45,13 @@
 /obj/machinery/computer/mecha/Topic(href, href_list)
 	if(..())
 		return
-	var/datum/topic_input/topic_filter = new /datum/topic_input(href,href_list)
+	var/datum/topic_input/topic_filter = new /datum/topic_input(href, href_list)
 	if(href_list["send_message"])
 		var/obj/item/mecha_part/tracking/MT = topic_filter.getObj("send_message")
 		var/message = strip_html_simple(input(usr, "Input message", "Transmit message") as text)
 		var/obj/mecha/M = MT.in_mecha()
-		if(trim(message) && M)
-			M.occupant_message(message)
+		if(trim(message))
+			M?.occupant_message(message)
 		return
 	if(href_list["shock"])
 		var/obj/item/mecha_part/tracking/MT = topic_filter.getObj("shock")
@@ -74,9 +74,9 @@
 	origin_tech = alist(/decl/tech/magnets = 2, /decl/tech/programming = 2)
 
 /obj/item/mecha_part/tracking/proc/get_mecha_info()
-	if(!in_mecha())
-		return 0
-	var/obj/mecha/M = src.loc
+	var/obj/mecha/M = in_mecha()
+	if(isnull(M))
+		return null
 	var/cell_charge = M.get_charge()
 	var/answer = {"<b>Name:</b> [M.name]<br>
 						<b>Integrity:</b> [M.health / initial(M.health) * 100]%<br>
@@ -100,21 +100,18 @@
 	return
 
 /obj/item/mecha_part/tracking/proc/in_mecha()
-	if(ismecha(src.loc))
-		return src.loc
-	return 0
+	if(ismecha(loc))
+		return loc
+	return null
 
 /obj/item/mecha_part/tracking/proc/shock()
 	var/obj/mecha/M = in_mecha()
-	if(M)
-		M.emp_act(2)
+	M?.emp_act(2)
 	qdel(src)
 
 /obj/item/mecha_part/tracking/proc/get_mecha_log()
-	if(!src.in_mecha())
-		return 0
-	var/obj/mecha/M = src.loc
-	return M.get_log_html()
+	var/obj/mecha/M = in_mecha()
+	return M?.get_log_html()
 
 
 /obj/item/storage/box/mechabeacons

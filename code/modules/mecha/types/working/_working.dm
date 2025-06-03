@@ -4,11 +4,6 @@
 	var/list/atom/movable/cargo = list()
 	var/cargo_capacity = 5
 
-/obj/mecha/working/initialise()
-	. = ..()
-	if(GET_TURF_Z(src) != 2)
-		new /obj/item/mecha_part/tracking(src)
-
 /obj/mecha/working/Destroy()
 	if(!isemptylist(cargo))
 		var/turf/T = GET_TURF(src)

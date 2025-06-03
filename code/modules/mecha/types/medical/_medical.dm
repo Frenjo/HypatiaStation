@@ -8,11 +8,6 @@
 	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
 
-/obj/mecha/medical/initialise()
-	. = ..()
-	if(isplayerlevel(GET_TURF_Z(src)))
-		new /obj/item/mecha_part/tracking(src)
-
 /obj/mecha/medical/Destroy()
 	QDEL_NULL(hud)
 	return ..()
