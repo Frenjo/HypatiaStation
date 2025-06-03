@@ -8,9 +8,9 @@
 	step_in = 6
 	max_temperature = 20000
 
-	wreckage = /obj/structure/mecha_wreckage/ripley
-
 	mecha_flag = MECHA_FLAG_RIPLEY
+
+	wreckage = /obj/structure/mecha_wreckage/ripley
 
 	cargo_capacity = 15
 
@@ -121,6 +121,10 @@
 			new_overlay = image('icons/obj/mecha/mecha_overlays.dmi', "[goliath_overlay]-g-open")
 		else if(damage_absorption["brute"] <= max_damage_absorption)
 			new_overlay = image('icons/obj/mecha/mecha_overlays.dmi', "[goliath_overlay]-g-full-open")
+
+	if(isnull(new_overlay))
+		return
+
 	new_overlay.plane = plane
 	overlays.Add(new_overlay)
 
