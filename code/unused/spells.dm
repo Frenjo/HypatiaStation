@@ -199,13 +199,13 @@
 
 	switch(user.dir)
 		if(NORTH)
-			T = GET_TURF(locate(x, y + range, z))
+			T = locate(x, y + range, z)
 		if(EAST)
-			T = GET_TURF(locate(x + range, y, z))
+			T = locate(x + range, y, z)
 		if(SOUTH)
-			T = GET_TURF(locate(x, y - range, z))
+			T = locate(x, y - range, z)
 		if(WEST)
-			T = GET_TURF(locate(x - range, y, z))
+			T = locate(x - range, y, z)
 		else
 			return
 

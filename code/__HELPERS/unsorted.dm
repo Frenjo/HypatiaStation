@@ -107,7 +107,7 @@
 /proc/getline(atom/M, atom/N)//Ultra-Fast Bresenham Line-Drawing Algorithm
 	var/px = M.x		//starting x
 	var/py = M.y
-	var/list/line = list(locate(px, py, M.z))
+	var/list/turf/line = list(locate(px, py, M.z))
 	var/dx = N.x - px	//x distance
 	var/dy = N.y - py
 	var/dxabs = abs(dx)//Absolute value of x distance

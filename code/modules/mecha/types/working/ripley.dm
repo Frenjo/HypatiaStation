@@ -31,7 +31,7 @@
 	while(damage_absorption["brute"] < initial_damage_absorption)
 		new /obj/item/stack/goliath_hide(source_turf)
 		damage_absorption["brute"] += hide_absorption_bonus
-	for(var/atom/movable/A in cargo)
+	for_no_type_check(var/atom/movable/A, cargo)
 		A.forceMove(source_turf)
 		var/turf/T = GET_TURF(A)
 		T?.Entered(A)

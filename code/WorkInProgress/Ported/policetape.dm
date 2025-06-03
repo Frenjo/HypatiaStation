@@ -59,12 +59,12 @@
 		if (start.x == end.x)
 			var/d = end.y-start.y
 			if(d) d = d/abs(d)
-			end = GET_TURF(locate(end.x, end.y + d, end.z))
+			end = locate(end.x, end.y + d, end.z)
 			dir = "v"
 		else
 			var/d = end.x-start.x
 			if(d) d = d/abs(d)
-			end = GET_TURF(locate(end.x + d, end.y, end.z))
+			end = locate(end.x + d, end.y, end.z)
 			dir = "h"
 
 		var/can_place = 1

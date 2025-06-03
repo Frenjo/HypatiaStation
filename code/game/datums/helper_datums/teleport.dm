@@ -198,7 +198,7 @@
 		var/x = rand(1, world.maxx)
 		var/y = rand(1, world.maxy)
 		var/z = pick(zlevels)
-		var/random_location = locate(x, y, z)
+		var/turf/random_location = locate(x, y, z)
 
 		if(!isfloorturf(random_location))
 			continue
@@ -225,7 +225,7 @@
 		// Check that we're not warping onto a table or window
 		if(!dense_atoms)
 			var/density_found = FALSE
-			for(var/atom/movable/found_movable in F)
+			for_no_type_check(var/atom/movable/found_movable, F)
 				if(found_movable.density)
 					density_found = TRUE
 					break

@@ -211,7 +211,7 @@
 		SPAN_INFO("[H] looks as if a wall is in front of them."),
 		SPAN_INFO("You form a wall in front of yourself.")
 	)
-	new /obj/effect/forcefield/mime(locate(usr.x, usr.y, usr.z))
+	new /obj/effect/forcefield/mime(GET_TURF(H))
 
 /obj/effect/forcefield/mime
 	icon_state = "empty"

@@ -37,12 +37,13 @@ s_cooldown ticks off each second based on the suit recharge proc, in seconds. De
 
 //=======//TELEPORT GRAB CHECK//=======//
 /obj/item/clothing/suit/space/space_ninja/proc/handle_teleport_grab(turf/T, mob/living/U)
+	var/turf/destination = locate(T.x + rand(-1, 1), T.y + rand(-1, 1), T.z)
 	if(istype(U.get_active_hand(), /obj/item/grab))//Handles grabbed persons.
 		var/obj/item/grab/G = U.get_active_hand()
-		G.affecting.forceMove(locate(T.x + rand(-1, 1), T.y + rand(-1, 1), T.z)) //variation of position.
+		G.affecting.forceMove(destination) //variation of position.
 	if(istype(U.get_inactive_hand(), /obj/item/grab))
 		var/obj/item/grab/G = U.get_inactive_hand()
-		G.affecting.forceMove(locate(T.x + rand(-1, 1), T.y + rand(-1, 1), T.z)) //variation of position.
+		G.affecting.forceMove(destination) //variation of position.
 	return
 
 //=======//SMOKE//=======//

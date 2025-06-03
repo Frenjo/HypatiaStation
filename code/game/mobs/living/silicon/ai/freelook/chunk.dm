@@ -30,11 +30,11 @@
 	src.y = y
 	src.z = z
 
-	for(var/obj/machinery/camera/c in range(16, locate(x + 8, y + 8, z)))
+	var/turf/located_turf = locate(x + 8, y + 8, z)
+	for(var/obj/machinery/camera/c in range(16, located_turf))
 		if(c.can_use())
 			cameras.Add(c)
-
-	for_no_type_check(var/turf/t, RANGE_TURFS(locate(x + 8, y + 8, z), 10))
+	for_no_type_check(var/turf/t, RANGE_TURFS(located_turf, 10))
 		if(t.x >= x && t.y >= y && t.x < x + 16 && t.y < y + 16)
 			turfs[t] = t
 
