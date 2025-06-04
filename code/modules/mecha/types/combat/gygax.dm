@@ -41,12 +41,12 @@
 
 /obj/mecha/combat/gygax/get_commands()
 	. = {"<div class='wr'>
-						<div class='header'>Special</div>
-						<div class='links'>
-						<a href='byond://?src=\ref[src];toggle_leg_overload=1'>Toggle Leg Actuator Overload</a>
-						</div>
-						</div>
-						"}
+		<div class='header'>Special</div>
+		<div class='links'>
+		<a href='byond://?src=\ref[src];toggle_leg_overload=1'>Toggle Leg Actuator Overload</a>
+		</div>
+		</div>
+	"}
 	. += ..()
 
 /obj/mecha/combat/gygax/verb/toggle_actuator_overload()

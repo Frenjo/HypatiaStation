@@ -3,11 +3,11 @@
 	desc = "A heads-up display that provides important info in (almost) real time."
 	item_flags = null //doesn't protect eyes because it's a monocle, duh
 	origin_tech = alist(/decl/tech/magnets = 3, /decl/tech/biotech = 2)
+
 	var/list/icon/current = list() //the current hud icons
 
 /obj/item/clothing/glasses/hud/proc/process_hud(mob/M)
 	return
-
 
 /obj/item/clothing/glasses/hud/health
 	name = "health scanner HUD"
@@ -17,8 +17,7 @@
 	origin_tech = /datum/design/medical/health_hud::req_tech
 
 /obj/item/clothing/glasses/hud/health/process_hud(mob/M)
-	process_med_hud(M, 1)
-
+	process_med_hud(M, TRUE)
 
 /obj/item/clothing/glasses/hud/security
 	name = "security HUD"
@@ -26,8 +25,6 @@
 	icon_state = "securityhud"
 	matter_amounts = /datum/design/security_hud::materials
 	origin_tech = /datum/design/security_hud::req_tech
-
-	var/static/list/jobs[0]
 
 /obj/item/clothing/glasses/hud/security/jensenshades
 	name = "augmented shades"
@@ -38,4 +35,4 @@
 	invisa_view = 2
 
 /obj/item/clothing/glasses/hud/security/process_hud(mob/M)
-	process_sec_hud(M, 1)
+	process_sec_hud(M, TRUE)

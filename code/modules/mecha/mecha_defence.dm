@@ -206,7 +206,6 @@
 
 /obj/mecha/proc/set_internal_damage(int_dam_flag)
 	internal_damage |= int_dam_flag
-	pr_internal_damage.start()
 	log_append_to_last("Internal damage of type [int_dam_flag].", 1)
 	occupant << sound('sound/machines/warning-buzzer.ogg', wait = 0)
 
@@ -214,9 +213,8 @@
 	internal_damage &= ~int_dam_flag
 	switch(int_dam_flag)
 		if(MECHA_INT_TEMP_CONTROL)
-			occupant_message("<font color='blue'><b>Life support system reactivated.</b></font>")
-			pr_int_temp_processor.start()
+			occupant_message(SPAN_INFO_B("Life support system reactivated."))
 		if(MECHA_INT_FIRE)
-			occupant_message("<font color='blue'><b>Internal fire extinquished.</b></font>")
+			occupant_message(SPAN_INFO_B("Internal fire extinquished."))
 		if(MECHA_INT_TANK_BREACH)
-			occupant_message("<font color='blue'><b>Damaged internal tank has been sealed.</b></font>")
+			occupant_message(SPAN_INFO_B("Damaged internal tank has been sealed."))

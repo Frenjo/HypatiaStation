@@ -15,7 +15,7 @@
 /obj/mecha/medical/moved_inside(mob/living/carbon/human/H)
 	if(..())
 		if(isnotnull(H.glasses))
-			occupant_message(SPAN_WARNING("\The [H.glasses] prevent you from using \the [src]'s [hud]."))
+			occupant_message(SPAN_WARNING("\The [H.glasses] prevent you from using \the [hud] on \the [src]."))
 		else
 			H.glasses = hud
 		return TRUE
@@ -30,6 +30,3 @@
 
 /obj/item/clothing/glasses/hud/health/mech
 	name = "integrated medical HUD"
-
-/obj/item/clothing/glasses/hud/health/mech/process_hud(mob/M)
-	process_med_hud(M, 1)

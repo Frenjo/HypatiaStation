@@ -29,43 +29,32 @@
 	radio.icon_state = icon_state
 	radio.subspace_transmission = 1
 
-/obj/mecha/proc/add_iterators()
-	pr_int_temp_processor = new /datum/global_iterator/mecha_preserve_temp(list(src))
-	pr_inertial_movement = new /datum/global_iterator/mecha_inertial_movement(null, 0)
-	pr_give_air = new /datum/global_iterator/mecha_tank_give_air(list(src))
-	pr_internal_damage = new /datum/global_iterator/mecha_internal_damage(list(src), 0)
-
-/obj/mecha/proc/remove_iterators()
-	QDEL_NULL(pr_int_temp_processor)
-	QDEL_NULL(pr_inertial_movement)
-	QDEL_NULL(pr_give_air)
-	QDEL_NULL(pr_internal_damage)
-
 /obj/mecha/proc/check_for_support()
 	if(locate(/obj/structure/grille, orange(1, src)) || locate(/obj/structure/lattice, orange(1, src)) || locate(/turf/open, orange(1, src)))
 		return TRUE
 	return FALSE
 
-/obj/mecha/examine()
+/obj/mecha/examine(mob/user)
 	set src in view()
 
 	. = ..()
 	var/integrity = health / initial(health) * 100
 	switch(integrity)
 		if(85 to 100)
-			usr << "It's fully intact."
+			to_chat(user, SPAN_INFO("It's fully intact."))
 		if(65 to 85)
-			usr << "It's slightly damaged."
+			to_chat(user, SPAN_INFO("It's slightly damaged."))
 		if(45 to 65)
-			usr << "It's badly damaged."
+			to_chat(user, SPAN_INFO("It's badly damaged."))
 		if(25 to 45)
-			usr << "It's heavily damaged."
+			to_chat(user, SPAN_WARNING("It's heavily damaged."))
 		else
-			usr << "It's falling apart."
+			to_chat(user, SPAN_DANGER("It's falling apart."))
+
 	if(length(equipment))
-		usr << "It's equipped with:"
+		to_chat(user, SPAN_INFO_B("It's equipped with:"))
 		for_no_type_check(var/obj/item/mecha_equipment/equip, equipment)
-			usr << "\icon[equip] [equip]"
+			to_chat(user, SPAN_INFO("\icon[equip] [equip]"))
 
 /obj/mecha/proc/drop_item()//Derpfix, but may be useful in future for engineering exosuits.
 	return

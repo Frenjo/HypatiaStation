@@ -45,13 +45,13 @@
 
 /obj/mecha/working/hoverpod/get_commands()
 	. = {"<div class='wr'>
-						<div class='header'>Special</div>
-						<div class='links'>
-						<a href='byond://?src=\ref[src];toggle_stabilization=1'><span id="stabilization_command">[stabilization_enabled ? "Dis" : "En"]able Thruster Stabilisation</span></a>
-						<br>
-						</div>
-						</div>
-						"}
+		<div class='header'>Special</div>
+		<div class='links'>
+		<a href='byond://?src=\ref[src];toggle_stabilization=1'><span id="stabilization_command">[stabilization_enabled ? "Dis" : "En"]able Thruster Stabilisation</span></a>
+		<br>
+		</div>
+		</div>
+	"}
 	. += ..()
 
 //No space drifting

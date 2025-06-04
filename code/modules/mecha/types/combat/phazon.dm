@@ -47,14 +47,14 @@
 
 /obj/mecha/combat/phazon/get_commands()
 	. = {"<div class='wr'>
-						<div class='header'>Special</div>
-						<div class='links'>
-						<a href='byond://?src=\ref[src];phasing=1'><span id="phasing_command">[phasing ? "Dis" : "En"]able Phasing</span></a>
-						<br>
-						<a href='byond://?src=\ref[src];switch_damage_type=1'>Change Melee Damage Type</a><br>
-						</div>
-						</div>
-						"}
+		<div class='header'>Special</div>
+		<div class='links'>
+		<a href='byond://?src=\ref[src];phasing=1'><span id="phasing_command">[phasing ? "Dis" : "En"]able Phasing</span></a>
+		<br>
+		<a href='byond://?src=\ref[src];switch_damage_type=1'>Change Melee Damage Type</a><br>
+		</div>
+		</div>
+	"}
 	. += ..()
 
 /obj/mecha/combat/phazon/Topic(href, href_list)

@@ -54,12 +54,12 @@
 
 /obj/mecha/combat/durand/get_commands()
 	. = {"<div class='wr'>
-						<div class='header'>Special</div>
-						<div class='links'>
-						<a href='byond://?src=\ref[src];toggle_defence_mode=1'>Toggle Defence Mode</a>
-						</div>
-						</div>
-						"}
+		<div class='header'>Special</div>
+		<div class='links'>
+		<a href='byond://?src=\ref[src];toggle_defence_mode=1'>Toggle Defence Mode</a>
+		</div>
+		</div>
+	"}
 	. += ..()
 
 /obj/mecha/combat/durand/Topic(href, href_list)

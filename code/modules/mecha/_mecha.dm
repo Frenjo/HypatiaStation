@@ -7,7 +7,6 @@
 #define MECHA_EQUIP_MELEE BITFLAG(0)
 #define MECHA_EQUIP_RANGED BITFLAG(1)
 
-
 /obj/mecha
 	name = "mecha"
 	desc = "Exosuit"
@@ -67,10 +66,7 @@
 
 	var/obj/item/radio/radio = null
 
-	var/datum/global_iterator/pr_int_temp_processor //normalizes internal air mixture temperature
 	var/datum/global_iterator/pr_inertial_movement //controls inertial movement in spesss
-	var/datum/global_iterator/pr_give_air //moves air from tank to cabin
-	var/datum/global_iterator/pr_internal_damage //processes internal damage
 
 	// Equipment
 	var/mecha_flag = null // This exosuit's type bitflag.
@@ -98,12 +94,13 @@
 	spark_system.set_up(2, 0, src)
 	spark_system.attach(src)
 	add_cell()
-	add_iterators()
+	pr_inertial_movement = new /datum/global_iterator/mecha_inertial_movement(null, 0)
 	verbs.Remove(/obj/mecha/verb/disconnect_from_port)
 	verbs.Remove(/atom/movable/verb/pull)
 	log_message("[name] created.")
 	loc.Entered(src)
 	GLOBL.mechas_list.Add(src) //global mech list
+	GLOBL.processing_objects.Add(src) // Adds the mech to the processing objects list.
 
 	if(isnotnull(starts_with)) // Equips any pre-loaded equipment if applicable.
 		for(var/equipment_path in starts_with)
@@ -112,7 +109,7 @@
 
 /obj/mecha/Destroy()
 	go_out()
-	remove_iterators()
+	QDEL_NULL(pr_inertial_movement)
 	// If there's any equipment left at this point then the mech's been admin-deleted.
 	for_no_type_check(var/obj/item/mecha_equipment/equip, equipment)
 		equipment.Remove(equip)
@@ -125,6 +122,7 @@
 	QDEL_NULL(cell)
 	QDEL_NULL(events)
 	GLOBL.mechas_list.Remove(src) //global mech list
+	GLOBL.processing_objects.Remove(src) // Removes the mech from the processing objects list.
 	return ..()
 
 /obj/mecha/proc/reset_icon()

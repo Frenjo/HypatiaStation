@@ -5,8 +5,8 @@
 
 	maint_access = FALSE
 
-	var/melee_cooldown = 10
-	var/melee_can_hit = 1
+	var/melee_cooldown = 1 SECOND
+	var/melee_can_hit = TRUE
 	var/list/destroyable_obj = list(/obj/mecha, /obj/structure/window, /obj/structure/grille, /turf/closed/wall)
 	var/am = "d3c2fbcadca903a41161ccc9df9cf948"
 

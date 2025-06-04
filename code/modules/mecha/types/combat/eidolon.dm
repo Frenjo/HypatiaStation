@@ -38,12 +38,12 @@
 
 /obj/mecha/combat/eidolon/get_commands()
 	. = {"<div class='wr'>
-						<div class='header'>Special</div>
-						<div class='links'>
-						<a href='byond://?src=\ref[src];toggle_ball_mode=1'>Toggle Ball Mode</a>
-						</div>
-						</div>
-						"}
+		<div class='header'>Special</div>
+		<div class='links'>
+		<a href='byond://?src=\ref[src];toggle_ball_mode=1'>Toggle Ball Mode</a>
+		</div>
+		</div>
+	"}
 	. += ..()
 
 /obj/mecha/combat/eidolon/mechstep(direction) // No strafing when rolling, also looping movement sound.

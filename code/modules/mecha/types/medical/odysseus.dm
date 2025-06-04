@@ -91,10 +91,22 @@
 
 	wreckage = /obj/structure/mecha_wreckage/odysseus/eurymachus
 
-	var/datum/global_iterator/camouflage_iterator
 	var/camouflage = FALSE
 	var/camouflage_energy_drain = 50
 	var/camouflage_animation_playing = FALSE
+
+/obj/mecha/medical/odysseus/eurymachus/process()
+	. = ..()
+	if(!camouflage)
+		return
+	if(world.time % 2 SECONDS != 0)
+		return
+
+	// Handles camouflage power drain.
+	if(get_charge() >= camouflage_energy_drain)
+		use_power(camouflage_energy_drain)
+	else
+		toggle_camouflage()
 
 /obj/mecha/medical/odysseus/eurymachus/add_cell(obj/item/cell/C = null)
 	if(isnotnull(C))
@@ -103,23 +115,15 @@
 		return
 	cell = new /obj/item/cell/hyper(src)
 
-/obj/mecha/medical/odysseus/eurymachus/add_iterators()
-	. = ..()
-	camouflage_iterator = new /datum/global_iterator/mecha_camouflage(list(src))
-
-/obj/mecha/medical/odysseus/eurymachus/remove_iterators()
-	. = ..()
-	QDEL_NULL(camouflage_iterator)
-
 /obj/mecha/medical/odysseus/eurymachus/get_commands()
 	. = {"<div class='wr'>
-						<div class='header'>Special</div>
-						<div class='links'>
-						<a href='byond://?src=\ref[src];camouflage=1'><span id="camouflage_command">[camouflage ? "Dis" : "En"]able Camouflage</span></a>
-						<br>
-						</div>
-						</div>
-						"}
+		<div class='header'>Special</div>
+		<div class='links'>
+		<a href='byond://?src=\ref[src];camouflage=1'><span id="camouflage_command">[camouflage ? "Dis" : "En"]able Camouflage</span></a>
+		<br>
+		</div>
+		</div>
+	"}
 	. += ..()
 
 /obj/mecha/medical/odysseus/eurymachus/Topic(href, href_list)
@@ -169,15 +173,14 @@
 /obj/mecha/medical/odysseus/eurymachus/proc/enable_camouflage()
 	occupant_message(SPAN_INFO("Enabled camouflage."))
 	camouflage = TRUE
-	icon_state = "odysseus"
-	desc = "A medical exosuit developed and produced by Vey-Med(&copy; all rights reserved)."
-	camouflage_iterator.start()
+	icon_state = /obj/mecha/medical/odysseus::icon_state
+	desc = /obj/mecha/medical/odysseus::desc
 
 /obj/mecha/medical/odysseus/eurymachus/proc/disable_camouflage()
 	occupant_message(SPAN_WARNING("Disabled camouflage."))
-	icon_state = "eurymachus"
-	desc = "A sinister variant of the Vey-Med(&copy; all rights reserved) Odysseus-type chassis featuring weapons-capable hardpoints and the unique ability to camouflage as its regular counterpart."
-	camouflage_iterator.stop()
+	camouflage = FALSE
+	icon_state = initial(icon_state)
+	desc = initial(desc)
 
 // Equipped variant
 /obj/mecha/medical/odysseus/eurymachus/equipped
@@ -185,13 +188,3 @@
 		/obj/item/mecha_equipment/weapon/energy/taser, /obj/item/mecha_equipment/medical/sleeper,
 		/obj/item/mecha_equipment/medical/syringe_gun
 	)
-
-// Mecha camouflage power drain handler.
-/datum/global_iterator/mecha_camouflage
-	delay = 2 SECONDS
-
-/datum/global_iterator/mecha_camouflage/process(obj/mecha/medical/odysseus/eurymachus/mecha)
-	if(mecha.get_charge() >= mecha.camouflage_energy_drain)
-		mecha.use_power(mecha.camouflage_energy_drain)
-	else
-		mecha.toggle_camouflage()

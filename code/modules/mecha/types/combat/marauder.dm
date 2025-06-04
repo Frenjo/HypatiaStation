@@ -146,20 +146,20 @@
 /obj/mecha/combat/marauder/get_stats_part()
 	. = ..()
 	. += {"<b>Smoke:</b> [smoke]
-					<br>
-					<b>Thrusters:</b> [thrusters?"on":"off"]
-					"}
+		<br>
+		<b>Thrusters:</b> [thrusters?"on":"off"]
+	"}
 
 /obj/mecha/combat/marauder/get_commands()
 	. = {"<div class='wr'>
-						<div class='header'>Special</div>
-						<div class='links'>
-						<a href='byond://?src=\ref[src];toggle_thrusters=1'>Toggle Thrusters</a><br>
-						<a href='byond://?src=\ref[src];toggle_zoom=1'>Toggle Zoom Mode</a><br>
-						<a href='byond://?src=\ref[src];smoke=1'>Smoke</a>
-						</div>
-						</div>
-						"}
+		<div class='header'>Special</div>
+		<div class='links'>
+		<a href='byond://?src=\ref[src];toggle_thrusters=1'>Toggle Thrusters</a><br>
+		<a href='byond://?src=\ref[src];toggle_zoom=1'>Toggle Zoom Mode</a><br>
+		<a href='byond://?src=\ref[src];smoke=1'>Smoke</a>
+		</div>
+		</div>
+	"}
 	. += ..()
 
 /obj/mecha/combat/marauder/Topic(href, href_list)
