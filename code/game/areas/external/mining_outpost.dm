@@ -34,3 +34,7 @@
 // West Outpost
 /area/external/mining_outpost/west_outpost
 	name = "West Mining Outpost"
+
+// Gutlunch Farm
+/area/external/mining_outpost/gutlunch_farm
+	name = "Gutlunch Farm"

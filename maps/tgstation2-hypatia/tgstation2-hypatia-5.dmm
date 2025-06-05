@@ -23,11 +23,27 @@
 	},
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/hallway)
+"af" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 8
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "ai" = (
 /turf/open/floor/airless{
 	icon_state = "damaged5"
 	},
 /area/external/abandoned/mining_outpost)
+"aj" = (
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 1
+	},
+/obj/structure/closet/emergency,
+/turf/open/floor/tiled/grey,
+/area/external/mining_outpost/gutlunch_farm)
 "ak" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -63,6 +79,13 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/port_wing)
+"aq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/closet/crate/freezer,
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "ar" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/structure/cable{
@@ -97,6 +120,15 @@
 "ax" = (
 /turf/closed/wall/reinforced,
 /area/external/research_outpost/harvesting)
+"ay" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 8
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "az" = (
 /turf/closed/wall/steel,
 /area/external/asteroid/mine/unexplored)
@@ -190,7 +222,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/mains_pipe/cap/hidden{
 	dir = 1
@@ -533,7 +565,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /turf/open/floor/tiled/grey,
@@ -614,6 +646,12 @@
 /obj/item/clothing/suit/space/syndicate,
 /turf/open/floor/plating/metal/airless,
 /area/external/abandoned/mining_outpost)
+"cX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "cY" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -699,6 +737,12 @@
 	},
 /turf/open/floor/circuit_grid/blue,
 /area/external/mining_outpost/communications)
+"dw" = (
+/obj/effect/decal/floor/siding/black/border{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroid,
+/area/external/mining_outpost/gutlunch_farm)
 "dy" = (
 /obj/machinery/atmospherics/unary/heat_reservoir/heater{
 	dir = 1
@@ -1046,6 +1090,10 @@
 "fk" = (
 /turf/open/floor/plating/asteroid/airless,
 /area/external/asteroid/mine/explored)
+"fn" = (
+/obj/structure/stool,
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "fo" = (
 /obj/structure/dispenser/oxygen,
 /turf/open/floor/tiled/grey,
@@ -1087,7 +1135,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /turf/open/floor{
@@ -1375,7 +1423,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -1408,6 +1456,13 @@
 	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/storage/maintenance)
+"gK" = (
+/obj/machinery/fire_alarm{
+	name = "south bump";
+	pixel_y = -24
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "gM" = (
 /obj/machinery/light,
 /turf/open/floor/tiled/grey,
@@ -1431,7 +1486,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /turf/open/floor/tiled/white,
@@ -1543,7 +1598,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /turf/open/floor/tiled/grey,
@@ -1572,6 +1627,10 @@
 /obj/item/bedsheet/brown,
 /turf/open/floor/carpet,
 /area/external/research_outpost/hallway)
+"hB" = (
+/mob/living/simple/hostile/asteroid/gutlunch/guthen,
+/turf/open/floor/plating/asteroid,
+/area/external/mining_outpost/gutlunch_farm)
 "hC" = (
 /obj/structure/lattice,
 /obj/structure/transit_tube{
@@ -1623,7 +1682,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /turf/open/floor/plating/metal,
@@ -1704,6 +1763,13 @@
 /obj/machinery/mech_bay_recharge_floor,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/eva)
+"im" = (
+/obj/effect/decal/floor/siding/black/border{
+	dir = 10
+	},
+/mob/living/simple/hostile/asteroid/gutlunch,
+/turf/open/floor/plating/asteroid,
+/area/external/mining_outpost/gutlunch_farm)
 "in" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1789,6 +1855,15 @@
 /obj/item/stack/nanopaste,
 /turf/open/floor/tiled/dark,
 /area/external/research_outpost/spectro)
+"iL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 4
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "iN" = (
 /obj/structure/closet/walllocker/emerglocker/north,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -1876,6 +1951,10 @@
 	},
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/infirmary)
+"jj" = (
+/obj/structure/ore_box,
+/turf/open/floor/tiled/grey,
+/area/external/mining_outpost/gutlunch_farm)
 "jk" = (
 /obj/structure/transit_tube{
 	icon_state = "D-SW"
@@ -1917,6 +1996,19 @@
 "js" = (
 /turf/closed/wall/reinforced,
 /area/external/research_outpost/storage/temporary)
+"jt" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/closet/crate/hydroponics,
+/obj/item/reagent_holder/glass/bucket,
+/obj/item/screwdriver,
+/obj/item/shovel/spade,
+/obj/item/wrench,
+/turf/open/floor/plating/metal,
+/area/external/mining_outpost/gutlunch_farm)
 "jw" = (
 /obj/structure/cable{
 	d2 = 4;
@@ -2019,6 +2111,14 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/storage/temporary)
+"jX" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/table,
+/obj/item/reagent_holder/glass/bucket,
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "jY" = (
 /obj/structure/sign/nosmoking_2{
 	pixel_y = 32
@@ -2040,6 +2140,15 @@
 "kg" = (
 /turf/closed/rock,
 /area/external/asteroid/mine/unexplored)
+"kh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 8
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "kj" = (
 /obj/machinery/light_switch{
 	pixel_y = -25
@@ -2262,6 +2371,22 @@
 /obj/structure/transit_tube,
 /turf/open/floor/plating/asteroid,
 /area/external/research_outpost/hallway)
+"lu" = (
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 1
+	},
+/obj/structure/sign/securearea{
+	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
+	icon_state = "space";
+	layer = 4;
+	name = "EXTERNAL AIRLOCK";
+	pixel_x = -32
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/tiled/grey,
+/area/external/mining_outpost/gutlunch_farm)
 "lv" = (
 /obj/item/clothing/mask/facehugger{
 	icon_state = "facehugger_dead";
@@ -2508,6 +2633,12 @@
 	icon_state = "bar"
 	},
 /area/external/mining_outpost/port_wing)
+"mv" = (
+/obj/machinery/atmospherics/mains_pipe/split/scrubbers/hidden{
+	dir = 8
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "mx" = (
 /obj/item/stack/rods,
 /obj/structure/lattice,
@@ -2831,6 +2962,15 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/west_outpost)
+"or" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/microwave{
+	pixel_x = -3;
+	pixel_y = 6
+	},
+/obj/structure/table,
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "ot" = (
 /obj/machinery/disposal/delivery_chute{
 	dir = 1
@@ -3067,6 +3207,12 @@
 /obj/effect/decal/floor/industrial/delivery,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/anomaly)
+"pm" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/open/floor/plating/metal,
+/area/external/mining_outpost/gutlunch_farm)
 "pn" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3150,7 +3296,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /turf/open/floor/tiled/grey,
@@ -3340,7 +3486,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /turf/open/floor/tiled/grey,
@@ -3371,7 +3517,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/mains_pipe/cap/hidden{
 	dir = 1
@@ -3405,7 +3551,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -3619,6 +3765,10 @@
 	},
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/west_outpost)
+"si" = (
+/obj/machinery/hydroponics/soil,
+/turf/open/floor/plating/asteroid,
+/area/external/mining_outpost/gutlunch_farm)
 "sl" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -3908,6 +4058,16 @@
 	icon_state = "asteroidwarning"
 	},
 /area/external/asteroid/mine/explored)
+"tC" = (
+/obj/machinery/door/airlock/external{
+	frequency = 1379;
+	icon_state = "door_locked";
+	id_tag = "mining_gutlunch_outer";
+	locked = 1;
+	name = "Mining External Access"
+	},
+/turf/open/floor/plating/metal,
+/area/external/mining_outpost/gutlunch_farm)
 "tD" = (
 /obj/structure/sign/nosmoking_2{
 	pixel_y = 32
@@ -4049,6 +4209,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/west_outpost)
+"uq" = (
+/obj/machinery/atmospherics/mains_pipe/split/supply/hidden{
+	dir = 8
+	},
+/turf/open/floor/tiled/grey,
+/area/external/mining_outpost/gutlunch_farm)
 "ur" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -4294,11 +4460,31 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/storage/maintenance)
+"vD" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/structure/table,
+/obj/item/storage/box/donkpockets{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
+"vL" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 4
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "vM" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1379;
@@ -4336,6 +4522,12 @@
 	},
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/hallway)
+"vT" = (
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 4
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "vU" = (
 /obj/machinery/atmospherics/mains_pipe/cap/hidden,
 /obj/effect/decal/floor/coloured/light_green{
@@ -4383,6 +4575,12 @@
 	},
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/sample)
+"wl" = (
+/obj/machinery/atmospherics/pipe/tank/air{
+	dir = 4
+	},
+/turf/open/floor/plating/metal,
+/area/external/mining_outpost/gutlunch_farm)
 "wm" = (
 /obj/machinery/light{
 	dir = 1;
@@ -4493,6 +4691,10 @@
 	},
 /turf/open/floor/tiled/showroom,
 /area/external/research_outpost/hallway)
+"wO" = (
+/obj/effect/decal/floor/siding/black/border,
+/turf/open/floor/plating/asteroid,
+/area/external/mining_outpost/gutlunch_farm)
 "wP" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -4515,7 +4717,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
 /turf/open/floor/tiled/grey,
@@ -4580,6 +4782,13 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/storage/auxiliary)
+"xb" = (
+/obj/effect/decal/floor/siding/black/border{
+	dir = 5
+	},
+/mob/living/simple/hostile/asteroid/gutlunch/gubbuck,
+/turf/open/floor/plating/asteroid,
+/area/external/mining_outpost/gutlunch_farm)
 "xg" = (
 /obj/machinery/door/airlock,
 /turf/open/floor/airless,
@@ -4821,6 +5030,13 @@
 	},
 /turf/open/floor/wood,
 /area/external/research_outpost/hallway)
+"yb" = (
+/obj/machinery/atmospherics/unary/portables_connector{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister,
+/turf/open/floor/plating/metal,
+/area/external/mining_outpost/gutlunch_farm)
 "yd" = (
 /obj/structure/stool/bed/chair{
 	dir = 1
@@ -5271,7 +5487,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/maintenance)
@@ -5375,6 +5591,24 @@
 	},
 /turf/space,
 /area/external/asteroid/mine/explored)
+"Ay" = (
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	master_tag = "mining_gutlunch_airlock";
+	name = "exterior access button";
+	pixel_x = 25;
+	pixel_y = -25
+	},
+/turf/open/floor/airless{
+	dir = 1;
+	icon_state = "asteroidwarning"
+	},
+/area/external/asteroid/mine/explored)
+"Az" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/reagent_dispensers/watertank,
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "AA" = (
 /obj/structure/lattice,
 /obj/structure/transit_tube{
@@ -5386,6 +5620,14 @@
 /obj/structure/closet/excavation,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/expedition_prep)
+"AE" = (
+/obj/machinery/camera{
+	c_tag = "Gutlunch Farm South";
+	dir = 1;
+	network = list("MINE")
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "AF" = (
 /obj/machinery/artifact_scanpad,
 /turf/open/floor/circuit_grid/blue,
@@ -5459,6 +5701,14 @@
 	},
 /turf/open/floor/tiled/white,
 /area/external/mining_outpost/infirmary)
+"AS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/structure/table,
+/obj/item/reagent_holder/glass/bucket,
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "AU" = (
 /obj/structure/table,
 /obj/item/storage/satchel,
@@ -5492,7 +5742,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/mains_pipe/cap/hidden{
 	dir = 1
@@ -5548,6 +5798,12 @@
 /obj/structure/window/reinforced,
 /turf/space,
 /area/external/asteroid/mine/explored)
+"Bo" = (
+/obj/effect/decal/floor/siding/black/border{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroid,
+/area/external/mining_outpost/gutlunch_farm)
 "Bq" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 4
@@ -5583,6 +5839,18 @@
 	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/maintenance)
+"By" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/stool,
+/obj/machinery/fire_alarm{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "Bz" = (
 /obj/structure/ore_box,
 /obj/effect/decal/floor/industrial/warning/border,
@@ -6134,6 +6402,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/west_outpost)
+"DM" = (
+/turf/closed/rock,
+/area/external/mining_outpost/gutlunch_farm)
 "DN" = (
 /obj/machinery/door/window/westleft,
 /turf/open/floor/tiled/grey,
@@ -6171,7 +6442,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/west_outpost)
@@ -6197,6 +6468,12 @@
 	icon_state = "vault"
 	},
 /area/external/research_outpost/harvesting)
+"Eg" = (
+/obj/machinery/atmospherics/mains_pipe/split3/hidden{
+	dir = 1
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "En" = (
 /obj/structure/transit_tube{
 	icon_state = "D-SE"
@@ -6378,6 +6655,12 @@
 /obj/effect/decal/floor/coloured/light_purple,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/anomaly)
+"Fm" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "Fp" = (
 /obj/machinery/conveyor{
 	dir = 1;
@@ -6600,6 +6883,10 @@
 /obj/machinery/mineral/output,
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/starboard_wing)
+"Gh" = (
+/obj/machinery/light,
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "Gi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -6919,6 +7206,19 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/open/floor/plating/asteroid,
 /area/external/research_outpost/hallway)
+"HO" = (
+/obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/machinery/door/airlock/glass{
+	name = "Gutlunch Pasture";
+	req_access = list(48)
+	},
+/obj/machinery/door/firedoor/border_only{
+	dir = 1;
+	icon = 'icons/obj/doors/emergency/fire2.dmi';
+	name = "Firelock South"
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "HT" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -6957,6 +7257,12 @@
 	},
 /turf/closed/wall/reinforced,
 /area/external/research_outpost/storage/auxiliary)
+"Ii" = (
+/obj/effect/decal/floor/siding/black/border{
+	dir = 9
+	},
+/turf/open/floor/plating/asteroid,
+/area/external/mining_outpost/gutlunch_farm)
 "Ij" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -6996,6 +7302,14 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/shuttle_dock)
+"Ip" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/open/floor/plating/metal,
+/area/external/mining_outpost/gutlunch_farm)
 "Is" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/open/floor{
@@ -7047,6 +7361,17 @@
 /obj/item/storage/firstaid/regular,
 /turf/open/floor/tiled/white,
 /area/external/mining_outpost/infirmary)
+"IC" = (
+/obj/machinery/atmospherics/mains_pipe/simple/hidden,
+/obj/machinery/door/airlock/external{
+	frequency = 1379;
+	icon_state = "door_locked";
+	id_tag = "mining_gutlunch_inner";
+	locked = 1;
+	name = "Mining External Access"
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "IE" = (
 /obj/structure/transit_tube{
 	icon_state = "E-NW"
@@ -7185,6 +7510,19 @@
 	icon_state = "asteroidwarning"
 	},
 /area/external/asteroid/mine/explored)
+"Jz" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/turf/open/floor/plating/metal,
+/area/external/mining_outpost/gutlunch_farm)
 "JA" = (
 /obj/machinery/mineral/unloading_machine,
 /turf/open/floor{
@@ -7233,6 +7571,11 @@
 	},
 /turf/space,
 /area/space)
+"JR" = (
+/obj/effect/window_spawner/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating/metal,
+/area/external/mining_outpost/gutlunch_farm)
 "JU" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/open/floor/tiled/grey,
@@ -7364,6 +7707,9 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/expedition_prep)
+"KD" = (
+/turf/open/floor/plating/metal,
+/area/external/mining_outpost/gutlunch_farm)
 "KF" = (
 /obj/structure/stool/bed/chair{
 	dir = 1
@@ -7385,6 +7731,15 @@
 	icon_state = "vault"
 	},
 /area/external/research_outpost/storage/long_term)
+"KL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/air_alarm{
+	dir = 8;
+	name = "east bump";
+	pixel_x = 24
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "KQ" = (
 /obj/structure/table,
 /obj/item/reagent_holder/glass/beaker/large,
@@ -7635,6 +7990,13 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/harvesting)
+"LX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "Ma" = (
 /turf/open/floor/airless{
 	icon_state = "floorgrime"
@@ -7883,7 +8245,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /turf/open/floor/plating/metal,
@@ -7916,7 +8278,7 @@
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
 	icon = 'icons/obj/doors/emergency/fire2.dmi';
-	name = "\improper Firelock South"
+	name = "Firelock South"
 	},
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/hallway)
@@ -7986,6 +8348,20 @@
 	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/power)
+"NK" = (
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/port_gen/pacman{
+	anchored = TRUE
+	},
+/obj/machinery/camera{
+	c_tag = "Gutlunch Farm North";
+	network = list("MINE")
+	},
+/turf/open/floor/plating/metal,
+/area/external/mining_outpost/gutlunch_farm)
 "NN" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/asteroid/airless,
@@ -8106,6 +8482,13 @@
 /obj/effect/decal/floor/coloured/light_purple,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/hallway)
+"Or" = (
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 1
+	},
+/obj/machinery/atmospherics/mains_pipe/cap/hidden,
+/turf/open/floor/tiled/grey,
+/area/external/mining_outpost/gutlunch_farm)
 "Os" = (
 /obj/item/shard{
 	icon_state = "medium"
@@ -8130,6 +8513,14 @@
 /obj/item/table_parts,
 /turf/open/floor/airless,
 /area/external/abandoned/mining_outpost)
+"Oz" = (
+/obj/structure/sink{
+	dir = 8;
+	pixel_x = -12;
+	pixel_y = 2
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "OA" = (
 /obj/structure/disposalpipe/junction{
 	dir = 4;
@@ -8313,6 +8704,17 @@
 	icon_state = "barber"
 	},
 /area/external/research_outpost/hallway)
+"PH" = (
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/standard/apc{
+	name = "south bump";
+	pixel_y = -24
+	},
+/turf/open/floor/plating/metal,
+/area/external/mining_outpost/gutlunch_farm)
 "PI" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
@@ -8416,6 +8818,10 @@
 	},
 /turf/open/floor/plating/metal/asteroid/airless,
 /area/external/asteroid/mine/explored)
+"Qb" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "Qc" = (
 /obj/machinery/conveyor{
 	dir = 9;
@@ -8423,6 +8829,14 @@
 	},
 /turf/open/floor/plating/metal,
 /area/external/mining_outpost/starboard_wing)
+"Qd" = (
+/obj/machinery/power/smes,
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/open/floor/plating/metal,
+/area/external/mining_outpost/gutlunch_farm)
 "Qg" = (
 /obj/machinery/hologram/holopad,
 /obj/machinery/light,
@@ -8565,6 +8979,12 @@
 	},
 /turf/space,
 /area/external/asteroid/mine/explored)
+"QM" = (
+/obj/machinery/atmospherics/mains_pipe/split/scrubbers/hidden{
+	dir = 4
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "QR" = (
 /obj/machinery/door/airlock{
 	id_tag = "miningdorm2";
@@ -8916,6 +9336,9 @@
 "St" = (
 /turf/space,
 /area/external/asteroid/mine/unexplored)
+"Sw" = (
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "SB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -8942,6 +9365,13 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/plating/metal,
 /area/external/asteroid/mine/explored)
+"SF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/meter,
+/turf/open/floor/plating/metal,
+/area/external/mining_outpost/gutlunch_farm)
 "SK" = (
 /obj/structure/transit_tube{
 	icon_state = "D-NW"
@@ -9253,6 +9683,23 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/isolation/three)
+"Uv" = (
+/obj/machinery/air_alarm{
+	dir = 4;
+	name = "west bump";
+	pixel_x = -24
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/closet/crate,
+/obj/item/storage/toolbox/mechanical{
+	pixel_x = -2;
+	pixel_y = -1
+	},
+/obj/item/hand_labeler,
+/turf/open/floor/plating/metal,
+/area/external/mining_outpost/gutlunch_farm)
 "Uz" = (
 /obj/machinery/computer/mech_bay_power_console,
 /obj/structure/window/reinforced{
@@ -9432,6 +9879,12 @@
 	icon_state = "vault"
 	},
 /area/external/research_outpost/isolation/three)
+"Vq" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "Vs" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -9685,6 +10138,19 @@
 /obj/structure/stool,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/spectro)
+"Wx" = (
+/obj/machinery/atmospherics/mains_pipe/split/supply/hidden{
+	dir = 8
+	},
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	master_tag = "mining_gutlunch_airlock";
+	name = "interior access button";
+	pixel_x = -25;
+	pixel_y = 25
+	},
+/turf/open/floor/tiled/hydroponics,
+/area/external/mining_outpost/gutlunch_farm)
 "Wy" = (
 /obj/structure/transit_tube{
 	icon_state = "N-SE"
@@ -9702,6 +10168,9 @@
 /obj/machinery/vending/cola,
 /turf/open/floor/wood,
 /area/external/research_outpost/hallway)
+"WE" = (
+/turf/open/floor/plating/asteroid,
+/area/external/mining_outpost/gutlunch_farm)
 "WF" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -9713,6 +10182,9 @@
 	},
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/hallway)
+"WH" = (
+/turf/closed/wall/steel,
+/area/external/mining_outpost/gutlunch_farm)
 "WJ" = (
 /obj/structure/transit_tube{
 	icon_state = "W-SE"
@@ -9738,6 +10210,18 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/anomaly)
+"WP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/meter,
+/obj/machinery/fire_alarm{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24
+	},
+/turf/open/floor/plating/metal,
+/area/external/mining_outpost/gutlunch_farm)
 "WS" = (
 /turf/closed/wall/reinforced,
 /area/external/research_outpost/maintenance)
@@ -9921,6 +10405,12 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/starboard_wing)
+"XR" = (
+/obj/effect/decal/floor/siding/black/border{
+	dir = 6
+	},
+/turf/open/floor/plating/asteroid,
+/area/external/mining_outpost/gutlunch_farm)
 "XT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -10059,6 +10549,15 @@
 	},
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/hallway)
+"YI" = (
+/obj/machinery/atmospherics/pipe/cap/hidden{
+	dir = 1
+	},
+/obj/effect/decal/floor/siding/black/border{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid,
+/area/external/mining_outpost/gutlunch_farm)
 "YK" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -10262,6 +10761,28 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/port_wing)
+"ZG" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1379;
+	id_tag = "mining_gutlunch_pump"
+	},
+/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
+	id_tag = "mining_gutlunch_airlock";
+	pixel_x = -25;
+	pixel_y = 5;
+	tag_airpump = "mining_gutlunch_pump";
+	tag_chamber_sensor = "mining_gutlunch_sensor";
+	tag_exterior_door = "mining_gutlunch_outer";
+	tag_interior_door = "mining_gutlunch_inner"
+	},
+/obj/machinery/airlock_sensor{
+	id_tag = "mining_gutlunch_sensor";
+	pixel_x = -25;
+	pixel_y = -5
+	},
+/turf/open/floor/tiled/grey,
+/area/external/mining_outpost/gutlunch_farm)
 "ZH" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -10279,6 +10800,12 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/harvesting)
+"ZK" = (
+/obj/effect/decal/floor/siding/black/border{
+	dir = 1
+	},
+/turf/open/floor/plating/asteroid,
+/area/external/mining_outpost/gutlunch_farm)
 "ZM" = (
 /obj/machinery/artifact_analyser,
 /turf/open/floor/circuit_grid/blue,
@@ -36246,20 +36773,20 @@ fk
 fk
 fk
 aS
-kg
-kg
-kg
-kg
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
+DM
+WH
+WH
+WH
+WH
+WH
+WH
+WH
+WH
+WH
+WH
+WH
+WH
+WH
 bY
 bY
 bY
@@ -36503,20 +37030,20 @@ fk
 fk
 aS
 aS
-kg
-kg
-kg
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
+DM
+WH
+wl
+Uv
+yb
+WH
+jX
+Oz
+Fm
+Sw
+Sw
+Sw
+fn
+WH
 bY
 bY
 bY
@@ -36758,22 +37285,22 @@ fk
 xU
 fk
 fk
-aS
-kg
-kg
-kg
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
+WH
+WH
+WH
+WH
+WP
+pm
+SF
+WH
+aq
+Ii
+Bo
+Bo
+Bo
+im
+Sw
+WH
 bY
 bY
 bY
@@ -37014,23 +37541,23 @@ fk
 fk
 xU
 fk
-fk
-aS
-kg
-kg
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
+uw
+JR
+lu
+ZG
+JR
+ay
+kh
+af
+JR
+cX
+ZK
+si
+WE
+si
+wO
+AE
+WH
 bY
 bY
 bY
@@ -37271,23 +37798,23 @@ fk
 fk
 xU
 fk
-aS
-aS
-kg
-kg
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
+Ay
+tC
+Or
+uq
+IC
+Wx
+QM
+mv
+HO
+Eg
+YI
+WE
+hB
+WE
+wO
+gK
+WH
 bY
 bY
 bY
@@ -37528,23 +38055,23 @@ fk
 fk
 xU
 fk
-fk
-aS
-kg
-kg
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
+Hz
+JR
+aj
+jj
+JR
+vT
+iL
+vL
+JR
+Vq
+ZK
+si
+WE
+si
+wO
+Gh
+WH
 bY
 bY
 bY
@@ -37785,23 +38312,23 @@ fk
 fk
 xU
 fk
-fk
-aS
-kg
-kg
-kg
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
+NN
+WH
+WH
+WH
+WH
+NK
+Ip
+KD
+WH
+By
+xb
+dw
+dw
+dw
+XR
+fn
+WH
 bY
 bY
 bY
@@ -38042,23 +38569,23 @@ fk
 fk
 xU
 fk
-RO
-nh
+fk
 aS
 aS
-kg
-kg
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
+aS
+WH
+WH
+Jz
+PH
+WH
+AS
+Az
+LX
+KL
+Qb
+or
+vD
+WH
 bY
 bY
 bY
@@ -38304,18 +38831,18 @@ fk
 fk
 aS
 aS
-kg
-kg
-kg
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
-bY
+WH
+Qd
+jt
+WH
+WH
+WH
+WH
+WH
+WH
+WH
+WH
+WH
 bY
 bY
 bY
@@ -38561,10 +39088,10 @@ fk
 fk
 fk
 aS
-kg
-kg
-kg
-bY
+WH
+WH
+WH
+WH
 bY
 bY
 bY

@@ -1635,6 +1635,7 @@
 #include "code\modules\mining\mobs\basilisk.dm"
 #include "code\modules\mining\mobs\fugu.dm"
 #include "code\modules\mining\mobs\goliath.dm"
+#include "code\modules\mining\mobs\gutlunch.dm"
 #include "code\modules\mining\ores\_ore.dm"
 #include "code\modules\mining\ores\metal.dm"
 #include "code\modules\mining\ores\other.dm"

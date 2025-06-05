@@ -8646,10 +8646,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_regular_floor = "asteroid";
-	icon_state = "asteroid"
-	},
+/turf/open/floor/plating/asteroid,
 /area/station/crew/hydroponics)
 "cZR" = (
 /obj/machinery/requests_console{
@@ -14665,10 +14662,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/open/floor{
-	icon_regular_floor = "asteroid";
-	icon_state = "asteroid"
-	},
+/turf/open/floor/plating/asteroid,
 /area/station/crew/hydroponics)
 "fiE" = (
 /obj/machinery/vending/coffee,
@@ -16075,10 +16069,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/turf/open/floor{
-	icon_regular_floor = "asteroid";
-	icon_state = "asteroid"
-	},
+/turf/open/floor/plating/asteroid,
 /area/station/crew/hydroponics)
 "fKh" = (
 /obj/structure/closet/secure/warden,
@@ -60996,10 +60987,7 @@
 /obj/effect/decal/floor/siding/black/border{
 	dir = 8
 	},
-/turf/open/floor{
-	icon_regular_floor = "asteroid";
-	icon_state = "asteroid"
-	},
+/turf/open/floor/plating/asteroid,
 /area/station/crew/hydroponics)
 "vJK" = (
 /obj/structure/cable{
