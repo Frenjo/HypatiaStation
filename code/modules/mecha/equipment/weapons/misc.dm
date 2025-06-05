@@ -33,7 +33,6 @@
 		else
 			M.make_jittery(500)
 
-	chassis.use_power(energy_drain)
 	log_message("Honked from [name]. HONK!")
-	do_after_cooldown()
+	start_cooldown()
 	return TRUE

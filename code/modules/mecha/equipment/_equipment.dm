@@ -44,6 +44,11 @@
 		chassis = null
 	return ..()
 
+/obj/item/mecha_equipment/process()
+	if(isnull(chassis))
+		set_ready_state(TRUE)
+		return PROCESS_KILL
+
 /obj/item/mecha_equipment/proc/can_attach(obj/mecha/mech)
 	if(!istype(mech))
 		return FALSE
@@ -91,12 +96,23 @@
 	set_ready_state(1)
 	return TRUE
 
-/obj/item/mecha_equipment/proc/do_after_cooldown(target = 1)
+/obj/item/mecha_equipment/proc/start_cooldown(energy_modifier = 1)
+	set_ready_state(FALSE)
+	chassis.use_power(energy_drain * energy_modifier)
 	sleep(equip_cooldown)
-	set_ready_state(1)
-	if(isnotnull(target) && isnotnull(chassis))
-		return TRUE
-	return FALSE
+	set_ready_state(TRUE)
+
+/obj/item/mecha_equipment/proc/do_after_cooldown(atom/target, energy_modifier = 1)
+	if(isnull(chassis))
+		return FALSE
+
+	var/chassis_loc = chassis.loc
+	set_ready_state(FALSE)
+	chassis.use_power(energy_drain * energy_modifier)
+	. = do_after(chassis.occupant, equip_cooldown, target = target)
+	set_ready_state(TRUE)
+	if(isnull(chassis) || chassis.loc != chassis_loc || src != chassis.selected)
+		return FALSE
 
 /obj/item/mecha_equipment/proc/update_chassis_page()
 	if(isnotnull(chassis))

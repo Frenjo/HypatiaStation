@@ -22,8 +22,6 @@
 		if(HAS_OBJ_FLAGS(target_obj, OBJ_FLAG_UNACIDABLE))
 			return FALSE
 
-	set_ready_state(0)
-	chassis.use_power(energy_drain)
 	chassis.visible_message("<font color='red'><b>[chassis] starts to drill [target]</b></font>", "You hear the drill.")
 	occupant_message("<font color='red'><b>You start to drill [target]</b></font>")
 	var/T = chassis.loc

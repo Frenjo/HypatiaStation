@@ -114,7 +114,7 @@
 		/decl/material/steel = MATERIAL_AMOUNT_PER_SHEET * 10, /decl/material/gold = MATERIAL_AMOUNT_PER_SHEET * 5,
 		/decl/material/uranium = MATERIAL_AMOUNT_PER_SHEET * 5
 	)
-	build_path = /obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang/limited
+	build_path = /obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/cluster/limited
 
 // Clown
 /datum/design/mechfab/equipment/weapon/honker

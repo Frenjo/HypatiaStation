@@ -16,9 +16,7 @@
 /obj/item/mecha_equipment/melee_armour_booster/proc/attack_react(mob/user)
 	if(!action_checks(src))
 		return FALSE
-	set_ready_state(0)
-	chassis.use_power(energy_drain)
-	do_after_cooldown()
+	start_cooldown()
 	return TRUE
 
 /obj/item/mecha_equipment/melee_defence_shocker
@@ -41,9 +39,7 @@
 	if(!active || !action_checks(src))
 		return FALSE
 	user.electrocute_act(shock_damage, src)
-	set_ready_state(0)
-	chassis.use_power(energy_drain)
-	do_after_cooldown()
+	start_cooldown()
 	return TRUE
 
 /obj/item/mecha_equipment/melee_defence_shocker/get_equip_info()
@@ -73,9 +69,7 @@
 /obj/item/mecha_equipment/ranged_armour_booster/proc/projectile_react()
 	if(!action_checks(src))
 		return FALSE
-	set_ready_state(0)
-	chassis.use_power(energy_drain)
-	do_after_cooldown()
+	start_cooldown()
 	return TRUE
 
 // EMP Armour Booster
@@ -95,7 +89,5 @@
 /obj/item/mecha_equipment/emp_insulation/proc/emp_react()
 	if(!action_checks(src))
 		return FALSE
-	set_ready_state(0)
-	chassis.use_power(energy_drain)
-	do_after_cooldown()
+	start_cooldown()
 	return TRUE

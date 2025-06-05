@@ -33,8 +33,6 @@
 			if(length(cargo_holder.cargo) < cargo_holder.cargo_capacity)
 				occupant_message(SPAN_INFO("You lift \the [target] and start to load it into the cargo compartment."))
 				chassis.visible_message(SPAN_INFO("[chassis] lifts \the [target] and starts to load it into the cargo compartment."))
-				set_ready_state(0)
-				chassis.use_power(energy_drain)
 				O.anchored = TRUE
 				var/T = chassis.loc
 				if(do_after_cooldown(target))
@@ -86,9 +84,7 @@
 				radial_message = SPAN_WARNING("[chassis] tosses [target] like a piece of paper!")
 		chassis.occupant_message(pilot_message)
 		chassis.visible_message(radial_message)
-		set_ready_state(0)
-		chassis.use_power(energy_drain)
-		do_after_cooldown()
+		start_cooldown()
 	return TRUE
 
 // Safety Clamp (Kill Clamp)
@@ -121,7 +117,6 @@
 		return FALSE
 	if(get_dist(chassis, target) > 2)
 		return FALSE
-	set_ready_state(0)
 	if(do_after_cooldown(target))
 		if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis, target) <= 1)
 			var/obj/o = target

@@ -13,18 +13,12 @@
 	allow_duplicates = FALSE
 
 	var/health_boost = 2
-	var/datum/global_iterator/pr_repair_droid
 	var/icon/droid_overlay
 	var/list/repairable_damage = list(MECHA_INT_TEMP_CONTROL, MECHA_INT_TANK_BREACH)
 
-/obj/item/mecha_equipment/repair_droid/New()
-	. = ..()
-	pr_repair_droid = new /datum/global_iterator/mecha_repair_droid(list(src), 0)
-	pr_repair_droid.set_delay(equip_cooldown)
-
 /obj/item/mecha_equipment/repair_droid/Destroy()
-	chassis.overlays.Remove(droid_overlay)
-	QDEL_NULL(pr_repair_droid)
+	chassis?.overlays.Remove(droid_overlay)
+	GLOBL.processing_objects.Remove(src)
 	return ..()
 
 /obj/item/mecha_equipment/repair_droid/attach(obj/mecha/M)
@@ -34,53 +28,54 @@
 
 /obj/item/mecha_equipment/repair_droid/detach()
 	chassis.overlays.Remove(droid_overlay)
-	pr_repair_droid.stop()
+	GLOBL.processing_objects.Remove(src)
 	. = ..()
 
 /obj/item/mecha_equipment/repair_droid/get_equip_info()
-	. = "[..()] - <a href='byond://?src=\ref[src];toggle_repairs=1'>[pr_repair_droid.active() ? "Dea" : "A"]ctivate</a>"
+	. = "[..()] - <a href='byond://?src=\ref[src];toggle_repairs=1'>[equip_ready ? "A" : "Dea"]ctivate</a>"
 
 /obj/item/mecha_equipment/repair_droid/Topic(href, href_list)
 	. = ..()
 	if(href_list["toggle_repairs"])
 		chassis.overlays.Remove(droid_overlay)
-		if(pr_repair_droid.toggle())
+		if(equip_ready)
+			GLOBL.processing_objects.Add(src)
 			droid_overlay = new /icon(icon, icon_state = "repair_droid_a")
 			log_message("Activated.")
+			set_ready_state(FALSE)
 		else
-			droid_overlay = new/icon (icon, icon_state = "repair_droid_idle")
+			GLOBL.processing_objects.Remove(src)
+			droid_overlay = new /icon(icon, icon_state = "repair_droid_idle")
 			log_message("Deactivated.")
-			set_ready_state(1)
+			set_ready_state(TRUE)
 		chassis.overlays.Add(droid_overlay)
 		send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
 
-/datum/global_iterator/mecha_repair_droid/process(obj/item/mecha_equipment/repair_droid/RD)
-	if(!RD.chassis)
-		stop()
-		RD.set_ready_state(1)
-		return
-	var/health_boost = RD.health_boost
-	var/repaired = 0
-	if(RD.chassis.internal_damage & MECHA_INT_SHORT_CIRCUIT)
+/obj/item/mecha_equipment/repair_droid/process()
+	if(..() == PROCESS_KILL)
+		return PROCESS_KILL
+
+	var/repaired = FALSE
+	if(chassis.internal_damage & MECHA_INT_SHORT_CIRCUIT)
 		health_boost *= -2
-	else if(RD.chassis.internal_damage && prob(15))
-		for(var/int_dam_flag in RD.repairable_damage)
-			if(RD.chassis.internal_damage & int_dam_flag)
-				RD.chassis.clear_internal_damage(int_dam_flag)
-				repaired = 1
+	else if(chassis.internal_damage && prob(15))
+		for(var/int_dam_flag in repairable_damage)
+			if(chassis.internal_damage & int_dam_flag)
+				chassis.clear_internal_damage(int_dam_flag)
+				repaired = TRUE
 				break
-	if(health_boost < 0 || RD.chassis.health < initial(RD.chassis.health))
-		RD.chassis.health += min(health_boost, initial(RD.chassis.health) - RD.chassis.health)
-		repaired = 1
+
+	if(health_boost < 0 || chassis.health < initial(chassis.health))
+		chassis.health += min(health_boost, initial(chassis.health) - chassis.health)
+		repaired = TRUE
+
 	if(repaired)
-		if(RD.chassis.use_power(RD.energy_drain))
-			RD.set_ready_state(0)
-		else
-			stop()
-			RD.set_ready_state(1)
-			return
-	else
-		RD.set_ready_state(1)
+		if(!chassis.use_power(energy_drain))
+			set_ready_state(TRUE)
+			return PROCESS_KILL
+	else // Turns off if no repairs are needed.
+		set_ready_state(TRUE)
+		return PROCESS_KILL
 
 // Teleporter
 /obj/item/mecha_equipment/teleporter
@@ -103,7 +98,7 @@
 	set_ready_state(0)
 	chassis.use_power(energy_drain)
 	do_teleport(chassis, T, 4)
-	do_after_cooldown()
+	start_cooldown()
 	return TRUE
 
 // Wormhole Generator
@@ -145,8 +140,6 @@
 	var/turf/target_turf = pick(L)
 	if(!target_turf)
 		return FALSE
-	chassis.use_power(energy_drain)
-	set_ready_state(0)
 	var/obj/effect/portal/P = new /obj/effect/portal(GET_TURF(target))
 	P.target = target_turf
 	P.creator = null
@@ -154,7 +147,7 @@
 	P.failchance = 0
 	P.icon_state = "anom"
 	P.name = "wormhole"
-	do_after_cooldown()
+	start_cooldown()
 	qdel(src)
 	spawn(rand(15 SECONDS, 30 SECONDS))
 		qdel(P)
@@ -204,9 +197,7 @@
 					locked.throw_at(target, 14, 1.5)
 					locked = null
 					send_byjax(chassis.occupant, "exosuit.browser", "\ref[src]", get_equip_info())
-					set_ready_state(0)
-					chassis.use_power(energy_drain)
-					do_after_cooldown()
+					start_cooldown()
 				else
 					locked = null
 					occupant_message("Lock on [locked] disengaged.")
@@ -225,9 +216,7 @@
 					for(var/i = 0 to iter)
 						step_away(mover, target)
 						sleep(2)
-			set_ready_state(0)
-			chassis.use_power(energy_drain)
-			do_after_cooldown()
+			start_cooldown()
 	return TRUE
 
 /obj/item/mecha_equipment/gravcatapult/get_equip_info()

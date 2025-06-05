@@ -29,10 +29,11 @@
 	var/turf/targloc = GET_TURF(target)
 	if(isnull(curloc) || isnull(targloc))
 		return FALSE
-	chassis.use_power(energy_drain)
+
 	chassis.visible_message(SPAN_WARNING("[chassis] fires [src]!"))
 	occupant_message(SPAN_WARNING("You fire [src]!"))
 	log_message("Fired from [src], targeting [target].")
+
 	for(var/i = 1 to min(projectiles, projectiles_per_shot))
 		var/turf/aimloc = targloc
 		if(deviation)
@@ -45,10 +46,11 @@
 		Fire(P, target, aimloc)
 		if(fire_cooldown)
 			sleep(fire_cooldown)
+
 	if(auto_rearm)
 		projectiles = projectiles_per_shot
-	set_ready_state(0)
-	do_after_cooldown()
+
+	start_cooldown(projectiles_per_shot)
 	return TRUE
 
 /obj/item/mecha_equipment/weapon/proc/Fire(atom/A, atom/target, turf/aimloc)

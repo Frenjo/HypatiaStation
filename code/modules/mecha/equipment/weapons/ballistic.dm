@@ -115,18 +115,18 @@
 	spawn(det_time)
 		F.prime()
 
-/obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang//Because I am a heartless bastard -Sieve
+/obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/cluster //Because I am a heartless bastard -Sieve
 	name = "\improper SOP-6 grenade launcher"
 	projectile = /obj/item/grenade/flashbang/clusterbang
 
-/obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang/limited
+/obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/cluster/limited
 	matter_amounts = /datum/design/mechfab/equipment/weapon/clusterbang_launcher::materials
 	origin_tech = /datum/design/mechfab/equipment/weapon/clusterbang_launcher::req_tech
 
-/obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang/limited/get_equip_info()//Limited version of the clusterbang launcher that can't reload
+/obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/cluster/limited/get_equip_info() // Limited version of the clusterbang launcher that can't reload
 	. = "<span style=\"color:[equip_ready ? "#0f0" : "#f00"];\">*</span>&nbsp;[chassis.selected == src ? "<b>" : "<a href='byond://?src=\ref[chassis];select_equip=\ref[src]'>"][name][chassis.selected == src ? "</b>" : "</a>"]\[[projectiles]\]"
 
-/obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/clusterbang/limited/rearm()
+/obj/item/mecha_equipment/weapon/ballistic/launcher/flashbang/cluster/limited/rearm()
 	return//Extra bit of security
 
 /obj/item/mecha_equipment/weapon/ballistic/launcher/banana_mortar
