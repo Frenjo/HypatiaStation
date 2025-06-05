@@ -14,9 +14,6 @@
 
 	var/default_law_type = BASE_LAW_TYPE
 
-	// Changed with update_transform(resize).
-	var/current_size = RESIZE_DEFAULT_SIZE // Currently only used for expander modules, will be moved to /mob/living eventually.
-
 	// The overlay for the robot's "eye" lights.
 	var/mutable_appearance/eye_lights = null
 

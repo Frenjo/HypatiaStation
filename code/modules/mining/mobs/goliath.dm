@@ -2,11 +2,12 @@
 	name = "goliath"
 	desc = "A massive beast that uses long tentacles to ensare its prey, threatening them is not advised under any conditions."
 
-	icon = 'icons/mob/simple/mining.dmi'
 	icon_state = "goliath"
 	icon_living = "goliath"
-	icon_aggro = "goliath_alert"
 	icon_dead = "goliath_dead"
+
+	maxHealth = 200
+	health = 200
 
 	move_to_delay = 40
 	ranged = TRUE
@@ -14,20 +15,19 @@
 	vision_range = 5
 	speed = 3
 
-	maxHealth = 200
-	health = 200
-
 	harm_intent_damage = 0
 	melee_damage_lower = 25
 	melee_damage_upper = 25
 	attacktext = "pulverizes"
 
+	icon_aggro = "goliath_alert"
+
 	var/tentacle_recharge = 0
 
-/mob/living/simple/hostile/asteroid/goliath/death(gibbed)
-	. = ..()
+/mob/living/simple/hostile/asteroid/goliath/Die()
 	// Drops some hide plates on death.
 	new /obj/item/stack/goliath_hide(loc)
+	. = ..()
 
 /mob/living/simple/hostile/asteroid/goliath/OpenFire()
 	tentacle_recharge--

@@ -1,4 +1,6 @@
 /mob/living/simple/hostile/asteroid
+	icon = 'icons/mob/simple/mining.dmi'
+
 	vision_range = 2
 	min_oxy = 0
 	max_tox = 0

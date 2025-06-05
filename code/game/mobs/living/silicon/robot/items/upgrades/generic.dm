@@ -167,6 +167,6 @@
 	for(var/i in 1 to 4)
 		playsound(robby, pick('sound/items/welder.ogg', 'sound/items/ratchet.ogg'), 80, 1, -1)
 		sleep(1.2 SECONDS)
-	robby.update_transform(2)
+	robby.update_transform(RESIZE_DOUBLE_SIZE)
 	robby.anchored = FALSE
 	return TRUE

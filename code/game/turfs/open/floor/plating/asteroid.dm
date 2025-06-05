@@ -158,8 +158,9 @@
 
 	var/length = 100
 	var/alist/mob_spawn_list = alist(
-		/mob/living/simple/hostile/asteroid/goliath = 5,
-		/mob/living/simple/hostile/asteroid/basilisk = 1
+		/mob/living/simple/hostile/asteroid/goliath = 4,
+		/mob/living/simple/hostile/asteroid/basilisk = 1,
+		/mob/living/simple/hostile/asteroid/fugu = 1
 	)
 	var/sanity = TRUE
 

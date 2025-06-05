@@ -210,3 +210,6 @@
 	var/turf/listed_turf = null  //the current turf being examined in the stat panel
 
 	var/list/active_genes = list()
+
+	// Changed with update_transform(resize).
+	var/current_size = RESIZE_DEFAULT_SIZE

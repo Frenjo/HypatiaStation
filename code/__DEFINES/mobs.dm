@@ -76,5 +76,7 @@
 #define SILICON_HUD_SECURITY 1 // Security HUD mode.
 #define SILICON_HUD_MEDICAL 2 // Medical HUD mode.
 
-// Used when resizing silicons, will be expanded to all mob types later down the line.
+// Used when resizing mobs, currently only used for robots and simple mobs.
 #define RESIZE_DEFAULT_SIZE 1
+#define RESIZE_DOUBLE_SIZE 2
+#define RESIZE_HALF_SIZE 0.5
