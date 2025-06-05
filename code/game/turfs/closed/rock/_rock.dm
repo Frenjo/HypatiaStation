@@ -7,7 +7,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/artifact_spawning_turfs)
 /turf/closed/rock //wall piece
 	name = "rock"
 	icon = 'icons/turf/walls/rocks_ores.dmi'
-	icon_state = "rock"
+	icon_state = "rock_no_chance"
 
 	temperature = T0C
 
@@ -28,6 +28,7 @@ GLOBAL_GLOBL_LIST_NEW(turf/closed/rock/artifact_spawning_turfs)
 
 /turf/closed/rock/New()
 	. = ..()
+	icon_state = "rock"
 	GLOBL.all_rock_turfs.Add(src)
 
 /turf/closed/rock/initialise()

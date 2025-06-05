@@ -26,6 +26,7 @@
 
 /turf/closed/rock/random_ore
 	name = "mineral deposit"
+	icon_state = "rock_low_chance"
 
 	var/ore_chance = 10 // Means 10% chance of this plot changing to an ore deposit.
 	var/ore_spawn_chance_list = list(
@@ -46,6 +47,8 @@
 	. = ..()
 
 /turf/closed/rock/random_ore/high_chance
+	icon_state = "rock_high_chance"
+
 	ore_chance = 25
 	ore_spawn_chance_list = list(
 		/decl/ore/iron = 20,
