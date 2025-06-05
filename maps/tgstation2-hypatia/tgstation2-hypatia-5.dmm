@@ -45,11 +45,14 @@
 /turf/open/floor/plating/metal/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "ao" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/effect/decal/floor/industrial/warning/corner{
+	dir = 8
 	},
-/turf/closed/wall/reinforced,
-/area/external/asteroid/mine/explored)
+/turf/open/floor{
+	dir = 5;
+	icon_state = "vault"
+	},
+/area/external/research_outpost/storage/temporary)
 "ap" = (
 /obj/machinery/air_alarm{
 	name = "north bump";
@@ -276,6 +279,7 @@
 /obj/machinery/atmospherics/mains_pipe/split/scrubbers/hidden{
 	dir = 1
 	},
+/obj/effect/decal/floor/industrial/warning/corner,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/storage/auxiliary)
 "bD" = (
@@ -466,9 +470,6 @@
 /obj/machinery/conveyor{
 	dir = 9;
 	id = "anotempload"
-	},
-/obj/effect/decal/floor/industrial/warning/border{
-	dir = 8
 	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/storage/temporary)
@@ -770,6 +771,7 @@
 /obj/machinery/atmospherics/mains_pipe/split/scrubbers/hidden{
 	dir = 1
 	},
+/obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -981,12 +983,23 @@
 	icon_state = "asteroidfloor"
 	},
 /area/external/research_outpost/expedition_prep)
+"fd" = (
+/obj/machinery/air_alarm{
+	dir = 8;
+	name = "east bump";
+	pixel_x = 24
+	},
+/turf/open/floor/tiled/grey,
+/area/external/mining_outpost/west_outpost)
 "fe" = (
 /obj/structure/disposaloutlet{
 	dir = 4
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 8
+	},
+/obj/machinery/light/small{
+	dir = 1
 	},
 /turf/open/floor{
 	icon_state = "floorgrime"
@@ -1108,11 +1121,10 @@
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/shuttle_dock)
 "fE" = (
-/obj/machinery/air_alarm{
-	dir = 1;
-	name = "south bump";
-	pixel_y = -24
+/obj/effect/decal/floor/industrial/loadingarea{
+	dir = 4
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/west_outpost)
 "fH" = (
@@ -1240,8 +1252,8 @@
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/expedition_prep)
 "fZ" = (
-/obj/effect/decal/floor/industrial/warning/border{
-	dir = 9
+/obj/effect/decal/floor/industrial/loadingarea{
+	dir = 4
 	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/storage/temporary)
@@ -1296,9 +1308,6 @@
 "gp" = (
 /obj/machinery/conveyor{
 	id = "anotempload"
-	},
-/obj/effect/decal/floor/industrial/warning/border{
-	dir = 4
 	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/maintenance)
@@ -1356,9 +1365,6 @@
 /obj/machinery/door/window/southright{
 	name = "Emitter Testing";
 	req_access = list(65)
-	},
-/obj/effect/decal/floor/industrial/warning/border{
-	dir = 10
 	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/anomaly)
@@ -2306,6 +2312,9 @@
 /obj/effect/decal/floor/industrial/warning/border{
 	dir = 4
 	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 8
+	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/maintenance)
 "lK" = (
@@ -2980,9 +2989,6 @@
 	dir = 8;
 	name = "disposal inlet"
 	},
-/obj/effect/decal/floor/industrial/warning/border{
-	dir = 1
-	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/storage/temporary)
 "pb" = (
@@ -3054,6 +3060,9 @@
 /obj/structure/cable{
 	d2 = 2;
 	icon_state = "0-2"
+	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 4
 	},
 /obj/effect/decal/floor/industrial/delivery,
 /turf/open/floor/tiled/grey,
@@ -3449,6 +3458,9 @@
 /obj/effect/decal/floor/coloured/light_purple{
 	dir = 1
 	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 1
+	},
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/anomaly)
 "rA" = (
@@ -3789,7 +3801,7 @@
 	id = "anosample"
 	},
 /obj/effect/decal/floor/industrial/warning/border{
-	dir = 1
+	dir = 9
 	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/maintenance)
@@ -4128,8 +4140,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/wall/reinforced,
-/area/external/mining_outpost/starboard_wing)
+/turf/open/floor/plating/metal/airless,
+/area/space)
 "uL" = (
 /turf/closed/wall/reinforced,
 /area/external/research_outpost/storage/maintenance)
@@ -4974,6 +4986,9 @@
 	},
 /area/external/mining_outpost/port_wing)
 "yB" = (
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 4
+	},
 /turf/open/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -5262,7 +5277,7 @@
 /area/external/research_outpost/maintenance)
 "Ae" = (
 /obj/effect/decal/floor/industrial/warning/border{
-	dir = 1
+	dir = 5
 	},
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/storage/temporary)
@@ -5883,6 +5898,9 @@
 /obj/effect/decal/floor/coloured/light_purple{
 	dir = 6
 	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 4
+	},
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/anomaly)
 "Cx" = (
@@ -6369,9 +6387,6 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/effect/decal/floor/industrial/warning/border{
-	dir = 8
-	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/anomaly)
 "Fw" = (
@@ -6655,7 +6670,9 @@
 	name = "VACUUM";
 	pixel_y = -32
 	},
-/obj/machinery/door/window/westleft,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/open/floor/plating/metal/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "GK" = (
@@ -6749,6 +6766,7 @@
 /obj/effect/decal/floor/industrial/loadingarea{
 	dir = 8
 	},
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/starboard_wing)
 "Hf" = (
@@ -7110,9 +7128,6 @@
 /obj/machinery/conveyor{
 	dir = 1;
 	id = "anosample"
-	},
-/obj/effect/decal/floor/industrial/warning/border{
-	dir = 4
 	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/maintenance)
@@ -7890,6 +7905,13 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/starboard_wing)
+"Nz" = (
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 5
+	},
+/obj/effect/decal/floor/industrial/bot/vault,
+/turf/open/floor/tiled/dark,
+/area/external/research_outpost/storage/temporary)
 "NA" = (
 /obj/machinery/door/firedoor/border_only{
 	dir = 1;
@@ -7989,6 +8011,9 @@
 	},
 /obj/effect/decal/floor/coloured/light_purple{
 	dir = 1
+	},
+/obj/effect/decal/floor/industrial/warning/corner{
+	dir = 8
 	},
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/anomaly)
@@ -8110,7 +8135,9 @@
 	dir = 4;
 	icon_state = "pipe-j2"
 	},
-/turf/closed/wall/steel,
+/obj/effect/window_spawner/reinforced,
+/obj/machinery/door/firedoor/border_only,
+/turf/open/floor/plating/metal,
 /area/external/mining_outpost/starboard_wing)
 "OE" = (
 /obj/structure/transit_tube{
@@ -8705,9 +8732,6 @@
 	dir = 1;
 	id = "anolaser"
 	},
-/obj/effect/decal/floor/industrial/warning/border{
-	dir = 8
-	},
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/anomaly)
 "RM" = (
@@ -8847,6 +8871,7 @@
 /obj/machinery/atmospherics/mains_pipe/cap/hidden{
 	dir = 4
 	},
+/obj/effect/decal/floor/industrial/warning/corner,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -8972,6 +8997,9 @@
 "SX" = (
 /obj/machinery/conveyor_switch{
 	id = "anolaser"
+	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 4
 	},
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/anomaly)
@@ -9532,6 +9560,7 @@
 /obj/machinery/atmospherics/mains_pipe/split/supply/hidden{
 	dir = 1
 	},
+/obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -10204,11 +10233,12 @@
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/atmos)
 "Zw" = (
-/obj/machinery/mineral/input,
-/obj/effect/decal/floor/industrial/loadingarea{
-	dir = 4
+/obj/machinery/conveyor{
+	dir = 5;
+	id = "mining_west"
 	},
-/turf/open/floor/tiled/grey,
+/obj/machinery/mineral/input,
+/turf/open/floor/plating/metal,
 /area/external/mining_outpost/west_outpost)
 "Zy" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -10282,6 +10312,7 @@
 	pixel_y = 16
 	},
 /obj/effect/decal/floor/industrial/loadingarea,
+/obj/machinery/door/firedoor/border_only,
 /turf/open/floor/tiled/grey,
 /area/external/research_outpost/storage/temporary)
 "ZS" = (
@@ -26186,7 +26217,7 @@ ON
 yL
 Ke
 xk
-xk
+fd
 RM
 CG
 hQ
@@ -49586,7 +49617,7 @@ Cx
 MJ
 MJ
 Ni
-ao
+UT
 Ni
 fk
 fk
@@ -50742,7 +50773,7 @@ vZ
 cE
 Sn
 yB
-yB
+ao
 BM
 Ae
 js
@@ -50999,7 +51030,7 @@ vZ
 fp
 VP
 fZ
-cE
+Nz
 WS
 Iu
 WS
