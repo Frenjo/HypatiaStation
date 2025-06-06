@@ -1389,6 +1389,7 @@
 /obj/effect/decal/cleanable/cobweb2,
 /obj/machinery/atmospherics/unary/portables_connector,
 /obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/decal/floor/industrial/warning/corner,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard_central)
 "aAM" = (
@@ -1800,6 +1801,9 @@
 	c_tag = "Prison Satellite Solar Control";
 	dir = 8;
 	network = list("SS13","Prison")
+	},
+/obj/effect/decal/floor/industrial/warning/corner{
+	dir = 4
 	},
 /turf/open/floor/tiled/grey,
 /area/external/prison/solar_control)
@@ -4180,6 +4184,9 @@
 	pixel_y = -22;
 	req_access = list(10)
 	},
+/obj/effect/decal/floor/industrial/warning/corner{
+	dir = 1
+	},
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/supermatter)
 "bAJ" = (
@@ -5579,6 +5586,9 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 1
+	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/fore_starboard)
 "bWq" = (
@@ -5885,6 +5895,9 @@
 	pixel_x = 25;
 	pixel_y = 25;
 	req_access = list(13)
+	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 1
 	},
 /turf/open/floor/tiled/grey,
 /area/external/prison/solar_control)
@@ -9981,6 +9994,7 @@
 "dwK" = (
 /obj/machinery/atmospherics/unary/portables_connector,
 /obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/decal/floor/industrial/warning/corner,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
 "dwM" = (
@@ -11175,6 +11189,12 @@
 	},
 /turf/open/floor/plating/metal,
 /area/station/engineering/storage/hard)
+"dSx" = (
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 10
+	},
+/turf/open/floor/plating/metal,
+/area/station/engineering/hallway/auxiliary)
 "dSZ" = (
 /turf/closed/wall/steel,
 /area/station/crew/law_office)
@@ -12908,6 +12928,12 @@
 	icon_state = "arrival"
 	},
 /area/station/hallway/secondary/arrivals)
+"eDc" = (
+/obj/effect/decal/floor/industrial/warning/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/metal,
+/area/station/maintenance/fore/port_central)
 "eDj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2;
@@ -13395,6 +13421,9 @@
 /obj/structure/sign/pods{
 	pixel_x = -32
 	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 8
+	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "eKy" = (
@@ -13460,6 +13489,12 @@
 "eMp" = (
 /turf/closed/wall/steel,
 /area/station/research/toxins/test_area)
+"eMq" = (
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 8
+	},
+/turf/open/floor/plating/metal,
+/area/station/maintenance/aft/port)
 "eMv" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/open/floor/tiled/grey,
@@ -15760,6 +15795,9 @@
 /obj/machinery/airlock_sensor{
 	id_tag = "engineeringshuttle_dock_airlock_sensor";
 	pixel_x = 25
+	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 6
 	},
 /turf/open/floor/plating/metal,
 /area/station/engineering/hallway/auxiliary)
@@ -18064,6 +18102,9 @@
 	frequency = 1379;
 	id_tag = "engineeringshuttle_dock_airlock_pump"
 	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 9
+	},
 /turf/open/floor/plating/metal,
 /area/station/engineering/hallway/auxiliary)
 "grh" = (
@@ -18088,6 +18129,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/aft_starboard)
 "grj" = (
@@ -19672,6 +19714,9 @@
 	pixel_y = 25;
 	tag_door = "escape_pod_5_berth_hatch"
 	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 8
+	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "gVe" = (
@@ -20327,6 +20372,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 5
 	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 4
+	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/starboard_central)
 "hhW" = (
@@ -20498,6 +20546,12 @@
 /obj/structure/stool,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port_central)
+"hkU" = (
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 1
+	},
+/turf/open/floor/plating/metal,
+/area/station/maintenance/fore/port)
 "hlb" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -23505,6 +23559,9 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 1
+	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/fore_port)
 "imV" = (
@@ -24646,6 +24703,10 @@
 	},
 /turf/open/floor/tiled/grey,
 /area/station/crew/hydroponics)
+"iDg" = (
+/obj/effect/decal/floor/industrial/warning/border,
+/turf/open/floor/reinforced,
+/area/station/research/xenobiology)
 "iDl" = (
 /obj/machinery/status_display{
 	dir = 1;
@@ -25406,6 +25467,9 @@
 /obj/structure/sign/vacuum{
 	pixel_x = 32
 	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 1
+	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/fore_port)
 "iQJ" = (
@@ -25487,12 +25551,12 @@
 	name = "Biohazard Shutter";
 	opacity = FALSE
 	},
-/obj/effect/decal/floor/industrial/bot,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/effect/decal/floor/industrial/bot,
 /turf/open/floor/tiled/grey,
 /area/station/research/hallway)
 "iSP" = (
@@ -26373,6 +26437,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 10
 	},
+/obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "jiO" = (
@@ -30954,6 +31019,9 @@
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 1
+	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/fore_starboard)
 "kTo" = (
@@ -35086,6 +35154,7 @@
 	pixel_y = -22;
 	req_access = list(10)
 	},
+/obj/effect/decal/floor/industrial/warning/corner,
 /turf/open/floor/plating/metal,
 /area/station/engineering/engine/supermatter)
 "mtJ" = (
@@ -35773,6 +35842,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 5
 	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 1
+	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/fore_starboard)
 "mFp" = (
@@ -35973,6 +36045,9 @@
 /obj/machinery/camera{
 	c_tag = "Aft Starboard Solar Access";
 	dir = 1
+	},
+/obj/effect/decal/floor/industrial/warning/corner{
+	dir = 8
 	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
@@ -38149,6 +38224,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 5
+	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 1
 	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port)
@@ -43492,6 +43570,9 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 5
+	},
 /turf/open/floor/plating/metal,
 /area/station/engineering/hallway/auxiliary)
 "pmk" = (
@@ -44708,6 +44789,7 @@
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/aft_starboard)
 "pFO" = (
@@ -45794,6 +45876,9 @@
 	pixel_x = -25;
 	pixel_y = -25;
 	req_access = list(13)
+	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 8
 	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/aft_port)
@@ -52558,6 +52643,7 @@
 /obj/machinery/atmospherics/mains_pipe/simple/visible{
 	dir = 5
 	},
+/obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/central)
 "sul" = (
@@ -53254,6 +53340,23 @@
 /obj/effect/window_spawner/reinforced,
 /turf/open/floor/plating/metal,
 /area/station/engineering/hallway/main)
+"sKA" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/mains_pipe/simple/visible{
+	dir = 4
+	},
+/obj/effect/decal/floor/industrial/warning/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/metal,
+/area/station/maintenance/central)
 "sLh" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -53524,6 +53627,16 @@
 	},
 /turf/open/floor/tiled/white,
 /area/station/medical/treatment)
+"sQj" = (
+/obj/structure/disposaloutlet{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/effect/decal/floor/industrial/warning/border,
+/turf/open/floor/reinforced,
+/area/station/research/xenobiology)
 "sQv" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -54632,6 +54745,9 @@
 	name = "Aft Port Solar Control"
 	},
 /obj/structure/cable,
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 8
+	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/aft_port)
 "toY" = (
@@ -55944,6 +56060,9 @@
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 1
+	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/fore/port)
 "tNT" = (
@@ -55979,6 +56098,7 @@
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/decal/floor/industrial/warning/corner,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/port)
 "tOr" = (
@@ -59036,6 +59156,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 4
+	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
 "uTD" = (
@@ -61362,6 +61485,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 5
 	},
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 1
+	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/fore_port)
 "vRi" = (
@@ -62077,6 +62203,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
+/obj/effect/decal/floor/industrial/warning/border,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/aft_starboard)
 "waN" = (
@@ -64384,6 +64511,7 @@
 "wRK" = (
 /obj/structure/rack,
 /obj/item/clothing/mask/gas,
+/obj/effect/decal/floor/industrial/warning/corner,
 /turf/open/floor/plating/metal,
 /area/station/maintenance/aft/starboard)
 "wSi" = (
@@ -66029,6 +66157,9 @@
 "xtA" = (
 /obj/machinery/atmospherics/unary/portables_connector,
 /obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/decal/floor/industrial/warning/border{
+	dir = 8
+	},
 /turf/open/floor/plating/metal,
 /area/station/maintenance/solar/aft_port)
 "xtG" = (
@@ -80108,7 +80239,7 @@ wHV
 wHV
 wHV
 wHV
-teW
+hkU
 mJN
 mvg
 aFi
@@ -91479,7 +91610,7 @@ sjh
 nNN
 sjh
 sjh
-nID
+eMq
 gUN
 eKh
 wyq
@@ -92951,7 +93082,7 @@ rhp
 xiY
 qQr
 xdq
-qQr
+eDc
 pux
 mHw
 uiu
@@ -104351,7 +104482,7 @@ ciU
 eMU
 ijR
 gra
-woy
+dSx
 ymc
 fFB
 mma
@@ -106377,7 +106508,7 @@ okH
 okH
 okH
 okH
-vYU
+sKA
 kUr
 kUr
 kUr
@@ -115399,7 +115530,7 @@ iRZ
 utQ
 pms
 rVJ
-lLW
+sQj
 cct
 ced
 ciU
@@ -115656,7 +115787,7 @@ mzj
 iur
 rrI
 rrI
-rrI
+iDg
 cct
 ced
 ciU
@@ -115913,7 +116044,7 @@ lgm
 afW
 rrI
 rrI
-rrI
+iDg
 cct
 ced
 ciU

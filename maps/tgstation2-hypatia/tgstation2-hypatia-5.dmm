@@ -208,10 +208,7 @@
 	name = "Mining Bridge";
 	req_access = list(54)
 	},
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "bc" = (
 /obj/machinery/door/airlock/external{
@@ -665,10 +662,7 @@
 	dir = 1
 	},
 /obj/machinery/mech_bay_recharge_floor/asteroid,
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/research_outpost/expedition_prep)
 "df" = (
 /obj/structure/window/reinforced{
@@ -760,10 +754,7 @@
 /turf/open/floor/tiled/white,
 /area/external/mining_outpost/infirmary)
 "dG" = (
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/abandoned/mining_outpost)
 "dI" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -827,9 +818,8 @@
 	dir = 4;
 	network = list("MINE")
 	},
-/turf/open/floor/airless{
-	icon_state = "asteroidwarning"
-	},
+/obj/effect/decal/floor/industrial/warning/asteroid,
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "ec" = (
 /obj/structure/rack,
@@ -1022,10 +1012,7 @@
 /area/external/mining_outpost/port_wing)
 "fc" = (
 /obj/machinery/computer/mech_bay_power_console,
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/research_outpost/expedition_prep)
 "fd" = (
 /obj/machinery/air_alarm{
@@ -1562,10 +1549,10 @@
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/port_wing)
 "ho" = (
-/turf/open/floor/airless{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 1
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "hq" = (
 /obj/structure/cable{
@@ -2016,9 +2003,8 @@
 	name = "north bump";
 	pixel_y = 24
 	},
-/turf/open/floor/airless{
-	icon_state = "asteroidwarning"
-	},
+/obj/effect/decal/floor/industrial/warning/asteroid,
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "jx" = (
 /obj/effect/decal/floor/industrial/warning/border,
@@ -2730,10 +2716,10 @@
 	pixel_x = -25;
 	pixel_y = -25
 	},
-/turf/open/floor/airless{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 4
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "mR" = (
 /obj/item/reagent_holder/food/snacks/grown/mushroom/libertycap,
@@ -2863,10 +2849,10 @@
 /turf/open/floor/tiled/dark,
 /area/external/research_outpost/harvesting)
 "nN" = (
-/turf/open/floor/airless{
-	dir = 6;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 6
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/unexplored)
 "nP" = (
 /obj/item/storage/toolbox/mechanical{
@@ -3173,10 +3159,7 @@
 /area/external/research_outpost/hallway)
 "pg" = (
 /obj/machinery/door/airlock/external,
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/abandoned/mining_outpost)
 "ph" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -3495,9 +3478,8 @@
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/starboard_wing)
 "qR" = (
-/turf/open/floor/airless{
-	icon_state = "asteroidwarning"
-	},
+/obj/effect/decal/floor/industrial/warning/asteroid,
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/abandoned/mining_outpost)
 "qY" = (
 /obj/machinery/atmospherics/mains_pipe/cap/hidden{
@@ -3529,10 +3511,10 @@
 	pixel_x = -25;
 	pixel_y = -25
 	},
-/turf/open/floor/airless{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 4
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "ri" = (
 /obj/structure/dispenser,
@@ -3927,10 +3909,10 @@
 	},
 /area/external/research_outpost/hallway)
 "sZ" = (
-/turf/open/floor/airless{
-	dir = 10;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 10
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/unexplored)
 "te" = (
 /obj/effect/decal/remains/human,
@@ -4047,10 +4029,10 @@
 	id = "anotempload";
 	req_access = list(65)
 	},
-/turf/open/floor/airless{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 1
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "tC" = (
 /obj/machinery/door/airlock/external{
@@ -4234,10 +4216,10 @@
 /turf/open/floor/tiled/white,
 /area/external/research_outpost/anomaly)
 "uw" = (
-/turf/open/floor/airless{
-	dir = 9;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 9
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "uz" = (
 /obj/structure/cable{
@@ -4378,10 +4360,10 @@
 /turf/open/floor/tiled/grey,
 /area/external/abandoned/mining_outpost)
 "vm" = (
-/turf/open/floor/airless{
-	dir = 10;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 10
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "vo" = (
 /obj/machinery/light/small{
@@ -4609,10 +4591,10 @@
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/starboard_wing)
 "wA" = (
-/turf/open/floor/airless{
-	dir = 6;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 6
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "wB" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -4718,10 +4700,7 @@
 /area/external/research_outpost/isolation/three)
 "wR" = (
 /obj/item/rack_parts,
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/abandoned/mining_outpost)
 "wS" = (
 /obj/machinery/portable_atmospherics/scrubber,
@@ -4752,10 +4731,7 @@
 /area/external/research_outpost/expedition_prep)
 "wV" = (
 /obj/machinery/mech_bay_recharge_floor/asteroid,
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/mining_outpost/west_outpost)
 "wW" = (
 /obj/structure/lattice,
@@ -4858,10 +4834,7 @@
 	pixel_x = 25;
 	pixel_y = 25
 	},
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "xq" = (
 /obj/machinery/atmospherics/trinary/filter{
@@ -4890,10 +4863,10 @@
 	dir = 1;
 	on = 1
 	},
-/turf/open/floor/airless{
-	dir = 9;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 9
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "xv" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -4985,10 +4958,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/airless{
-	dir = 8;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 8
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "xR" = (
 /obj/structure/window/reinforced{
@@ -5129,9 +5102,8 @@
 /turf/open/floor/plating/metal/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "yu" = (
-/turf/open/floor/airless{
-	icon_state = "asteroidwarning"
-	},
+/obj/effect/decal/floor/industrial/warning/asteroid,
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/unexplored)
 "yv" = (
 /obj/structure/window/reinforced{
@@ -5572,10 +5544,7 @@
 /area/external/research_outpost/sample)
 "Au" = (
 /obj/structure/rack,
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/abandoned/mining_outpost)
 "Aw" = (
 /obj/structure/window/reinforced,
@@ -5593,10 +5562,10 @@
 	pixel_x = 25;
 	pixel_y = -25
 	},
-/turf/open/floor/airless{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 1
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "Az" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6243,10 +6212,10 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/airless{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 1
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "CY" = (
 /obj/structure/sign/science{
@@ -6303,9 +6272,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/open/floor/airless{
-	icon_state = "asteroidwarning"
-	},
+/obj/effect/decal/floor/industrial/warning/asteroid,
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "Do" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -6583,10 +6551,7 @@
 /area/external/mining_outpost/starboard_wing)
 "EX" = (
 /obj/machinery/door/airlock/glass,
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/abandoned/mining_outpost)
 "EZ" = (
 /obj/structure/transit_tube{
@@ -7139,10 +7104,10 @@
 /turf/open/floor/plating/metal,
 /area/external/research_outpost/shuttle_dock)
 "Hz" = (
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 5
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "HA" = (
 /turf/open/floor/carpet,
@@ -7416,10 +7381,7 @@
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/eva)
 "IN" = (
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "IO" = (
 /obj/effect/window_spawner/reinforced,
@@ -7427,9 +7389,8 @@
 /area/external/research_outpost/hallway)
 "IR" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/airless{
-	icon_state = "asteroidwarning"
-	},
+/obj/effect/decal/floor/industrial/warning/asteroid,
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "IU" = (
 /obj/machinery/conveyor{
@@ -7499,10 +7460,10 @@
 /turf/open/floor/plating/metal/asteroid/airless,
 /area/external/asteroid/mine/unexplored)
 "Jy" = (
-/turf/open/floor/airless{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 4
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "Jz" = (
 /obj/machinery/light/small{
@@ -7906,9 +7867,8 @@
 	pixel_x = 25;
 	pixel_y = 25
 	},
-/turf/open/floor/airless{
-	icon_state = "asteroidwarning"
-	},
+/obj/effect/decal/floor/industrial/warning/asteroid,
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "LH" = (
 /obj/structure/transit_tube/station{
@@ -7942,10 +7902,7 @@
 /area/external/research_outpost/atmos)
 "LQ" = (
 /obj/item/reagent_holder/food/snacks/grown/ambrosiavulgaris,
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "LT" = (
 /obj/machinery/door/airlock/external{
@@ -8487,9 +8444,8 @@
 /obj/item/shard{
 	icon_state = "medium"
 	},
-/turf/open/floor/airless{
-	icon_state = "asteroidwarning"
-	},
+/obj/effect/decal/floor/industrial/warning/asteroid,
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/abandoned/mining_outpost)
 "Ou" = (
 /obj/machinery/atmospherics/mains_pipe/simple/hidden,
@@ -8605,10 +8561,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/airless{
-	dir = 4;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 4
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "Pl" = (
 /obj/machinery/artifact_scanpad,
@@ -9517,9 +9473,8 @@
 /turf/open/floor/tiled/grey,
 /area/external/mining_outpost/eva)
 "TF" = (
-/turf/open/floor/airless{
-	icon_state = "asteroidwarning"
-	},
+/obj/effect/decal/floor/industrial/warning/asteroid,
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "TH" = (
 /obj/structure/sink{
@@ -9699,10 +9654,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/mining_outpost/west_outpost)
 "UI" = (
 /obj/structure/stool/bed/chair{
@@ -9887,10 +9839,10 @@
 	id = "anosample";
 	req_access = list(65)
 	},
-/turf/open/floor/airless{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 1
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "Vu" = (
 /obj/structure/transit_tube{
@@ -9960,10 +9912,10 @@
 /area/external/research_outpost/isolation/one)
 "VM" = (
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/airless{
-	dir = 1;
-	icon_state = "asteroidwarning"
+/obj/effect/decal/floor/industrial/warning/asteroid{
+	dir = 1
 	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "VN" = (
 /obj/structure/closet/walllocker/emerglocker/west,
@@ -10388,9 +10340,8 @@
 /obj/machinery/conveyor_switch{
 	id = "mining_external"
 	},
-/turf/open/floor/airless{
-	icon_state = "asteroidwarning"
-	},
+/obj/effect/decal/floor/industrial/warning/asteroid,
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "XQ" = (
 /obj/structure/disposalpipe/segment{
@@ -10849,9 +10800,8 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/open/floor/airless{
-	icon_state = "asteroidwarning"
-	},
+/obj/effect/decal/floor/industrial/warning/asteroid,
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "ZV" = (
 /obj/structure/reagent_dispensers/coolanttank,
@@ -10870,10 +10820,7 @@
 	name = "Mining Bridge";
 	req_one_access = list(54,65)
 	},
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/tiled/grey/asteroid/airless,
 /area/external/asteroid/mine/explored)
 "ZZ" = (
 /obj/structure/window/reinforced{

@@ -38,8 +38,9 @@
 /obj/effect/decal/floor/industrial/warning/border
 	icon_state = "warning_border"
 
-/obj/effect/decal/floor/industrial/warning/tri_border
-	icon_state = "warning_tri_border"
-
 /obj/effect/decal/floor/industrial/warning/corner
 	icon_state = "warning_corner"
+
+/obj/effect/decal/floor/industrial/warning/asteroid
+	name = "asteroid warning stripes"
+	icon_state = "warning_asteroid"

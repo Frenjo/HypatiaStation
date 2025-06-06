@@ -32,6 +32,20 @@
 	icon_state = "floor"
 	tile_path = /obj/item/stack/tile/metal/grey
 
+// Dust-covered asteroid variant
+/turf/open/floor/tiled/grey/asteroid
+	name = "dust-covered tiled floor"
+	icon_state = "asteroidfloor"
+
+/turf/open/floor/tiled/grey/asteroid/airless
+	name = "airless dust-covered tiled floor"
+	initial_gases = null
+	temperature = TCMB
+
+/turf/open/floor/tiled/grey/asteroid/airless/New()
+	. = ..()
+	name = "dust-covered tiled floor"
+
 // White Tiles - The medical and science ones.
 /turf/open/floor/tiled/white
 	icon_state = "white"
