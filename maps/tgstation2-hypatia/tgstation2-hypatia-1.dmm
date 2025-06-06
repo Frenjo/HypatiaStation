@@ -34527,18 +34527,11 @@
 	},
 /area/station/crew/kitchen)
 "mjn" = (
-/obj/structure/stool/bed/chair{
-	dir = 4
-	},
-/obj/machinery/computer/security/telescreen{
-	desc = "Used for watching the test chamber.";
-	layer = 4;
-	name = "test chamber telescreen";
-	network = list("Toxins Test Area");
-	pixel_x = 32
-	},
 /obj/effect/decal/floor/industrial/warning/corner{
 	dir = 1
+	},
+/obj/machinery/doppler_array{
+	dir = 4
 	},
 /turf/open/floor/tiled/grey,
 /area/station/research/toxins/mixing)
