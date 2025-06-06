@@ -1704,10 +1704,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/plating/metal/asteroid/airless,
 /area/external/mining_outpost/west_outpost)
 "hT" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/supply,
@@ -3826,10 +3823,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/open/floor/airless{
-	dir = 5;
-	icon_state = "asteroidfloor"
-	},
+/turf/open/floor/plating/metal/asteroid/airless,
 /area/external/research_outpost/expedition_prep)
 "sA" = (
 /obj/machinery/atmospherics/pipe/tank/air{
@@ -23146,10 +23140,10 @@ St
 St
 St
 St
-bY
-bY
-bY
-bY
+kg
+kg
+kg
+kg
 MJ
 MJ
 MJ
@@ -23403,12 +23397,12 @@ St
 St
 kg
 kg
-bY
-bY
-bY
-bY
-bY
-bY
+kg
+kg
+kg
+kg
+kg
+kg
 MJ
 MJ
 MJ
@@ -23664,11 +23658,11 @@ aS
 kg
 kg
 kg
-bY
-bY
-bY
-bY
-bY
+kg
+kg
+kg
+kg
+kg
 MJ
 MJ
 MJ
@@ -23922,11 +23916,11 @@ aS
 aS
 aS
 kg
-bY
-bY
-bY
-bY
-bY
+kg
+kg
+kg
+kg
+kg
 MJ
 MJ
 MJ
@@ -24181,10 +24175,10 @@ aS
 aS
 aS
 aS
-ZT
-bY
-bY
-bY
+aS
+kg
+kg
+kg
 bY
 MJ
 MJ
@@ -24439,9 +24433,9 @@ fk
 fk
 fk
 fk
-ZT
-bY
-bY
+aS
+kg
+kg
 bY
 bY
 MJ
@@ -24697,8 +24691,8 @@ CG
 fk
 fk
 aS
-bY
-bY
+kg
+kg
 bY
 bY
 bY
@@ -24954,8 +24948,8 @@ CG
 fk
 fk
 aS
-bY
-bY
+kg
+kg
 bY
 bY
 bY
@@ -25212,7 +25206,7 @@ fk
 fk
 aS
 kg
-bY
+kg
 kg
 bY
 bY
@@ -25469,8 +25463,8 @@ fk
 fk
 aS
 aS
-bY
-bY
+kg
+kg
 bY
 bY
 bY
@@ -25727,7 +25721,7 @@ fk
 fk
 aS
 kg
-bY
+kg
 bY
 bY
 bY
