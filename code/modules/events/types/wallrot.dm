@@ -2,8 +2,8 @@
 	var/severity = 1
 
 /datum/round_event/wallrot/setup()
-	announceWhen = rand(0, 300)
-	endWhen = announceWhen + 1
+	announce_when = rand(0, 300)
+	end_when = announce_when + 1
 	severity = rand(5, 10)
 
 /datum/round_event/wallrot/announce()

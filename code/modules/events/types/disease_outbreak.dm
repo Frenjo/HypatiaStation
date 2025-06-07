@@ -1,6 +1,6 @@
 /datum/round_event/disease_outbreak
-	announceWhen	= 15
-	oneShot			= TRUE
+	announce_when = 15
+	one_shot = TRUE
 
 /datum/round_event/disease_outbreak/announce()
 	priority_announce(
@@ -9,7 +9,7 @@
 	)
 
 /datum/round_event/disease_outbreak/setup()
-	announceWhen = rand(15, 30)
+	announce_when = rand(15, 30)
 
 /datum/round_event/disease_outbreak/start()
 	var/virus_type = pick(/datum/disease/dnaspread, /datum/disease/advance/flu, /datum/disease/advance/cold, /datum/disease/brainrot, /datum/disease/magnitis)

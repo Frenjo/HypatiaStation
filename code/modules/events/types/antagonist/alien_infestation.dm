@@ -1,8 +1,8 @@
 GLOBAL_GLOBL_INIT(sent_aliens_to_station, FALSE)
 
 /datum/round_event/alien_infestation
-	announceWhen	= 400
-	oneShot			= TRUE
+	announce_when = 400
+	one_shot = TRUE
 
 	var/spawncount
 	var/successSpawn = FALSE	// So we don't make a command report if nothing gets spawned.
@@ -12,7 +12,7 @@ GLOBAL_GLOBL_INIT(sent_aliens_to_station, FALSE)
 	spawncount = spawn_count
 
 /datum/round_event/alien_infestation/setup()
-	announceWhen = rand(announceWhen, announceWhen + 50)
+	announce_when = rand(announce_when, announce_when + 50)
 	spawncount = rand(1, 2)
 	GLOBL.sent_aliens_to_station = TRUE
 

@@ -1,5 +1,5 @@
 /datum/round_event/storm/ion
-	startWhen = 1
+	start_when = 1
 
 	var/bot_emag_chance
 	var/list/players = list()
@@ -8,10 +8,10 @@
 	. = ..()
 	bot_emag_chance = _bot_emag_chance
 	if(silent)
-		announceWhen = -1
+		announce_when = -1
 
 /datum/round_event/storm/ion/setup()
-	endWhen = rand(500, 1500)
+	end_when = rand(500, 1500)
 	for(var/mob/living/carbon/human/player in GLOBL.mob_list)
 		if(isnull(player.client))
 			continue

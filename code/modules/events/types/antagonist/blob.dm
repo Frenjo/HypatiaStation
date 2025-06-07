@@ -1,6 +1,6 @@
 /datum/round_event/blob
-	announceWhen	= 12
-	endWhen			= 120
+	announce_when = 12
+	end_when = 120
 
 	var/obj/effect/blob/core/blob = null
 
@@ -23,5 +23,5 @@
 	if(isnull(blob))
 		kill()
 		return
-	if(IsMultiple(activeFor, 3))
+	if(IsMultiple(active_for, 3))
 		blob.process()

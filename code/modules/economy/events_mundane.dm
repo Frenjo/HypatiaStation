@@ -1,5 +1,5 @@
 /datum/round_event/mundane_news
-	endWhen = 10
+	end_when = 10
 
 /datum/round_event/mundane_news/announce()
 	var/decl/trade_destination/affected_dest = GET_DECL_INSTANCE(pickweight(global.CTeconomy.weighted_mundane_event_locations))
@@ -121,7 +121,7 @@
 	global.CTeconomy.news_network.submit_message("Tau Ceti Daily", message, /datum/feed_channel/tau_ceti_daily::channel_name, null, TRUE)
 
 /datum/round_event/trivial_news
-	endWhen = 10
+	end_when = 10
 
 /datum/round_event/trivial_news/announce()
 	var/decl/trade_destination/affected_dest = GET_DECL_INSTANCE(pick(global.CTeconomy.weighted_mundane_event_locations))

@@ -2,8 +2,8 @@
 	var/severity = 1
 
 /datum/round_event/organ_failure/setup()
-	announceWhen = rand(0, 300)
-	endWhen = announceWhen + 1
+	announce_when = rand(0, 300)
+	end_when = announce_when + 1
 	severity = rand(1, 3)
 
 /datum/round_event/organ_failure/announce()

@@ -1,8 +1,8 @@
 /datum/round_event/grid_check	//NOTE: Times are measured in master controller ticks!
-	announceWhen = 5
+	announce_when = 5
 
 /datum/round_event/grid_check/setup()
-	endWhen = rand(30, 120)
+	end_when = rand(30, 120)
 
 /datum/round_event/grid_check/start()
 	power_failure(0)

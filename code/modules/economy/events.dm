@@ -1,6 +1,6 @@
 /datum/round_event/economic
-	endWhen = 50			//this will be set randomly, later
-	announceWhen = 15
+	end_when = 50 //this will be set randomly, later
+	announce_when = 15
 
 	var/event_type = 0
 	var/list/cheaper_goods = list()
@@ -10,7 +10,7 @@
 /datum/round_event/economic/start()
 	affected_dest = GET_DECL_INSTANCE(pickweight(global.CTeconomy.weighted_random_event_locations))
 	if(length(affected_dest.viable_random_events))
-		endWhen = rand(60, 300)
+		end_when = rand(60, 300)
 		event_type = pick(affected_dest.viable_random_events)
 		if(!event_type)
 			return

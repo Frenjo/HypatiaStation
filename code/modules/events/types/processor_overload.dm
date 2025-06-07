@@ -1,5 +1,5 @@
 /datum/round_event/processor_overload
-	announceWhen = 1
+	announce_when = 1
 
 	var/static/list/possible_alerts = list(
 		"Exospheric bubble inbound. Processor overload is likely. Please contact you*%xp25)`6cq-BZZT",

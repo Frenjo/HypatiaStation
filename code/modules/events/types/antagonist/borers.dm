@@ -1,13 +1,13 @@
 //Cortical borer spawn event - care of RobRichards1997 with minor editing by Zuhayr.
 /datum/round_event/borer_infestation
-	announceWhen = 400
-	oneShot = TRUE
+	announce_when = 400
+	one_shot = TRUE
 
 	var/spawncount = 1
 	var/successSpawn = FALSE	// So we don't make a command report if nothing gets spawned.
 
 /datum/round_event/borer_infestation/setup()
-	announceWhen = rand(announceWhen, announceWhen + 50)
+	announce_when = rand(announce_when, announce_when + 50)
 	spawncount = rand(1, 3)
 
 /datum/round_event/borer_infestation/announce()

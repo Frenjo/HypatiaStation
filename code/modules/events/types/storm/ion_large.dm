@@ -1,11 +1,11 @@
 /datum/round_event/storm/ion_large
-	startWhen = 1
+	start_when = 1
 
 	var/bot_emag_chance = 0.5
 	var/list/players = list()
 
 /datum/round_event/storm/ion_large/setup()
-	endWhen = rand(10, 20)
+	end_when = rand(10, 20)
 
 	for(var/mob/living/carbon/human/player in GLOBL.mob_list)
 		if(isnull(player.client))

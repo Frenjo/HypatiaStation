@@ -65,7 +65,7 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 	possibleEvents[/datum/round_event/storm/ion_large] = active_with_role["AI"] * 12.5 + active_with_role["Cyborg"] * 12.5 + active_with_role["Engineer"] * 5 + active_with_role["Scientist"] * 5
 	possibleEvents[/datum/round_event/grid_check] = 25 + 10 * active_with_role["Engineer"]
 	possibleEvents[/datum/round_event/storm/electrical] = 15 * active_with_role["Janitor"] + 5 * active_with_role["Engineer"]
-	possibleEvents[/datum/round_event/storm/electrical_large] = 7.5 * active_with_role["Janitor"] + 2.5 * active_with_role["Engineer"]
+	possibleEvents[/datum/round_event/storm/electrical/large] = 7.5 * active_with_role["Janitor"] + 2.5 * active_with_role["Engineer"]
 	possibleEvents[/datum/round_event/wallrot] = 30 * active_with_role["Engineer"] + 50 * active_with_role["Botanist"]
 
 	if(!GLOBL.spacevines_spawned)

@@ -1,7 +1,7 @@
 GLOBAL_GLOBL_INIT(account_hack_attempted, FALSE)
 
 /datum/round_event/money_hacker
-	endWhen = 100
+	end_when = 100
 
 	var/datum/money_account/affected_account
 	var/end_time
@@ -48,9 +48,9 @@ GLOBAL_GLOBL_INIT(account_hack_attempted, FALSE)
 
 /datum/round_event/money_hacker/tick()
 	if(world.time >= end_time)
-		endWhen = activeFor
+		end_when = active_for
 	else
-		endWhen = activeFor + 10
+		end_when = active_for + 10
 
 /datum/round_event/money_hacker/end()
 	var/message
