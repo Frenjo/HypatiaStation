@@ -622,6 +622,7 @@ var/global/floorIsLava = 0
 		html += "<br>"
 		html += "<a href='byond://?src=\ref[src];secretsfun=spacevines'>Spawn Space-Vines</a><br>"
 		html += "<a href='byond://?src=\ref[src];secretsfun=comms_blackout'>Trigger a Communications Blackout</a><br>"
+		html += "<a href='byond://?src=\ref[src];secretsfun=processor_overload'>Trigger a Processor Overload</a><br>"
 		html += "Spawn an Electrical Storm: "
 		html += "<a href='byond://?src=\ref[src];secretsfun=electricstorm'>Standard</a> | "
 		html += "<a href='byond://?src=\ref[src];secretsfun=electrical_storm_large'>Severe</a>"

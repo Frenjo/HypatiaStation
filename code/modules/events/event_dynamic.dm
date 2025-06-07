@@ -60,6 +60,7 @@ GLOBAL_GLOBL_LIST_NEW(event_last_fired)
 	possibleEvents[/datum/round_event/infestation] = 100 + 100 * active_with_role["Janitor"]
 
 	possibleEvents[/datum/round_event/communications_blackout] = 50 + 25 * active_with_role["AI"] + active_with_role["Scientist"] * 25
+	possibleEvents[/datum/round_event/processor_overload] = 50 + 25 * active_with_role["AI"] + active_with_role["Scientist"] * 25
 	possibleEvents[/datum/round_event/storm/ion] = active_with_role["AI"] * 25 + active_with_role["Cyborg"] * 25 + active_with_role["Engineer"] * 10 + active_with_role["Scientist"] * 5
 	possibleEvents[/datum/round_event/storm/ion_large] = active_with_role["AI"] * 12.5 + active_with_role["Cyborg"] * 12.5 + active_with_role["Engineer"] * 5 + active_with_role["Scientist"] * 5
 	possibleEvents[/datum/round_event/grid_check] = 25 + 10 * active_with_role["Engineer"]
