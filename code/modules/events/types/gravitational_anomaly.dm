@@ -1,3 +1,21 @@
+/datum/round_event/gravitational_anomaly
+	startWhen = 10
+
+	var/obj/effect/bhole/black_hole
+
+/datum/round_event/gravitational_anomaly/setup()
+	endWhen = rand(100, 600)
+
+/datum/round_event/gravitational_anomaly/announce()
+	priority_announce("Gravitational anomalies detected on the station. There is no additional data.", "Anomaly Alert", 'sound/AI/granomalies.ogg')
+
+/datum/round_event/gravitational_anomaly/start()
+	black_hole = new /obj/effect/bhole(GET_TURF(pick(GLOBL.blobstart)), 30)
+
+/datum/round_event/gravitational_anomaly/end()
+	QDEL_NULL(black_hole)
+
+// The black hole itself.
 /obj/effect/bhole
 	name = "black hole"
 	icon = 'icons/obj/objects.dmi'

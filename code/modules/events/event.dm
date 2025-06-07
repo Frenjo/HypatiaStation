@@ -44,6 +44,7 @@
 //Do not override this proc, instead use the appropiate procs.
 //This proc will handle the calls to the appropiate procs.
 /datum/round_event/proc/process()
+	SHOULD_NOT_OVERRIDE(TRUE)
 
 	if(activeFor > startWhen && activeFor < endWhen)
 		tick()
