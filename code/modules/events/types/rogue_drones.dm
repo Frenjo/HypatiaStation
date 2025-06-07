@@ -1,6 +1,6 @@
 /datum/round_event/rogue_drone
-	startWhen = 10
-	endWhen = 1000
+	start_when = 10
+	end_when = 1000
 
 	var/list/mob/living/simple/hostile/retaliate/malf_drone/drones_list = list()
 

@@ -633,6 +633,10 @@ var/global/floorIsLava = 0
 		html += "<a href='byond://?src=\ref[src];secretsfun=space_dust;severity=strong'>Strong</a> | "
 		html += "<a href='byond://?src=\ref[src];secretsfun=space_dust;severity=super'>Super</a>"
 		html += "<br>"
+		html += "Spawn a Portal Storm: "
+		html += "<a href='byond://?src=\ref[src];secretsfun=portal_storm;faction=syndie'>Syndicate</a> | "
+		html += "<a href='byond://?src=\ref[src];secretsfun=portal_storm;faction=cult'>Nar'sie</a>"
+		html += "<br>"
 		html += "<hr>"
 
 		html += "<b>Fun Secrets</b>"

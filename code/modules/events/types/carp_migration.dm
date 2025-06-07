@@ -1,13 +1,13 @@
 /datum/round_event/carp_migration
-	announceWhen = 50
-	endWhen = 900
-	oneShot = TRUE
+	announce_when = 50
+	end_when = 900
+	one_shot = TRUE
 
 	var/list/mob/living/simple/hostile/carp/spawned_carp = list()
 
 /datum/round_event/carp_migration/setup()
-	announceWhen = rand(40, 60)
-	endWhen = rand(600, 1200)
+	announce_when = rand(40, 60)
+	end_when = rand(600, 1200)
 
 /datum/round_event/carp_migration/announce()
 	priority_announce("Unknown biological entities have been detected near [station_name()], please stand-by.", "Lifesign Alert")

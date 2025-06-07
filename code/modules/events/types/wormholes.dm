@@ -1,6 +1,6 @@
 /datum/round_event/wormholes
-	announceWhen = 10
-	endWhen = 60
+	announce_when = 10
+	end_when = 60
 
 	var/list/turf/open/floor/pickable_turfs = list()
 	var/list/obj/effect/portal/wormhole/wormholes = list()
@@ -9,8 +9,8 @@
 	var/static/total_wormholes = 1000
 
 /datum/round_event/wormholes/setup()
-	announceWhen = rand(0, 20)
-	endWhen = rand(40, 80)
+	announce_when = rand(0, 20)
+	end_when = rand(40, 80)
 
 /datum/round_event/wormholes/announce()
 	// Announces that bad juju is afoot.
@@ -18,6 +18,8 @@
 
 /datum/round_event/wormholes/start()
 	for(var/turf/open/floor/valid in GLOBL.open_turf_list)
+		if(valid.z != 1)
+			continue
 		pickable_turfs.Add(valid)
 
 	// Gets our entry and exit locations.
@@ -27,7 +29,7 @@
 		wormholes.Add(new /obj/effect/portal/wormhole(entry, exit))
 
 /datum/round_event/wormholes/tick()
-	if(activeFor % shift_frequency == 0)
+	if(IsMultiple(active_for, shift_frequency))
 		for_no_type_check(var/obj/effect/portal/wormhole/hole, wormholes)
 			var/turf/open/floor/T = pick(pickable_turfs)
 			hole.forceMove(T)

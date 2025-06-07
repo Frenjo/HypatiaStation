@@ -7,7 +7,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 --NEOFite
 */
 /datum/round_event/immovable_rod
-	announceWhen = 5
+	announce_when = 5
 
 /datum/round_event/immovable_rod/announce()
 	priority_announce("What the fuck was that?!", "General Alert")

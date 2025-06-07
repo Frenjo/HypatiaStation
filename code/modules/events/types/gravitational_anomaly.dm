@@ -1,10 +1,10 @@
 /datum/round_event/gravitational_anomaly
-	startWhen = 10
+	start_when = 10
 
 	var/obj/effect/bhole/black_hole
 
 /datum/round_event/gravitational_anomaly/setup()
-	endWhen = rand(100, 600)
+	end_when = rand(100, 600)
 
 /datum/round_event/gravitational_anomaly/announce()
 	priority_announce("Gravitational anomalies detected on the station. There is no additional data.", "Anomaly Alert", 'sound/AI/granomalies.ogg')

@@ -1,5 +1,5 @@
 /datum/round_event/pda_spam
-	endWhen = 6000
+	end_when = 6000
 
 	var/time_failed = 0
 	var/obj/machinery/message_server/useMS

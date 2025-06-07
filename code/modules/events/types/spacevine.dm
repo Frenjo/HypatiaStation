@@ -1,7 +1,7 @@
 GLOBAL_GLOBL_INIT(spacevines_spawned, FALSE)
 
 /datum/round_event/spacevine
-	oneShot = TRUE
+	one_shot = TRUE
 
 /datum/round_event/spacevine/start()
 	//biomass is basically just a resprited version of space vines

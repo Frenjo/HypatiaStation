@@ -1,13 +1,13 @@
 GLOBAL_GLOBL_INIT(sent_spiders_to_station, FALSE)
 
 /datum/round_event/spider_infestation
-	announceWhen = 400
-	oneShot = TRUE
+	announce_when = 400
+	one_shot = TRUE
 
 	var/spawncount = 1
 
 /datum/round_event/spider_infestation/setup()
-	announceWhen = rand(announceWhen, announceWhen + 50)
+	announce_when = rand(announce_when, announce_when + 50)
 	spawncount = rand(8, 12)	//spiderlings only have a 50% chance to grow big and strong
 	GLOBL.sent_spiders_to_station = TRUE
 

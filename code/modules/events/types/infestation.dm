@@ -14,8 +14,8 @@
 #define VERM_SPIDERS 2
 
 /datum/round_event/infestation
-	announceWhen = 10
-	endWhen = 11
+	announce_when = 10
+	end_when = 11
 
 	var/location
 	var/locstring

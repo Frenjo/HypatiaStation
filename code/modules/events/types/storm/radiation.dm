@@ -1,6 +1,6 @@
 /datum/round_event/storm/radiation
-	startWhen = 15
-	endWhen = 35
+	start_when = 15
+	end_when = 35
 
 /datum/round_event/storm/radiation/announce()
 	priority_announce(

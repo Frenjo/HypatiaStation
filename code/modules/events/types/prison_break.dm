@@ -1,16 +1,16 @@
 /datum/round_event/prison_break
-	announceWhen = 50
-	oneShot = TRUE
+	announce_when = 50
+	one_shot = TRUE
 
 	var/releaseWhen = 25
 	var/list/area/external/prisonAreas = list()
 
 /datum/round_event/prison_break/setup()
-	announceWhen = rand(50, 60)
+	announce_when = rand(50, 60)
 	releaseWhen = rand(20, 30)
 
-	startWhen = releaseWhen - 1
-	endWhen = releaseWhen + 1
+	start_when = releaseWhen - 1
+	end_when = releaseWhen + 1
 
 /datum/round_event/prison_break/announce()
 	if(length(prisonAreas))
@@ -33,7 +33,7 @@
 				L.flicker(10)
 
 /datum/round_event/prison_break/tick()
-	if(activeFor == releaseWhen)
+	if(active_for == releaseWhen)
 		if(length(prisonAreas))
 			for_no_type_check(var/area/A, prisonAreas)
 				for(var/obj/machinery/power/apc/temp_apc in A)
