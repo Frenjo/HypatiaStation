@@ -376,8 +376,7 @@ Malf AIs/silicons aren't added. Monkeys aren't added. Messes with objective comp
 				to_chat(new_ninja, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 				obj_count++
 
-		GLOBL.sent_ninja_to_station = TRUE//And we're done.
-		return new_ninja//Return the ninja in case we need to reference them later.
+		GLOBL.sent_ninja_to_station = TRUE // And we're done.
 
 /*
 This proc will give the ninja a directive to follow. They are not obligated to do so but it's a fun roleplay reminder.

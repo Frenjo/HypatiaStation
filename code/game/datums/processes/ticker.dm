@@ -159,9 +159,6 @@ PROCESS_DEF(ticker)
 
 	post_setup() // This forks off and doesn't need to be waited on.
 
-	//start_events() //handles random events and space dust.
-	//new random event system is handled from the MC.
-
 	var/admins_number = 0
 	for(var/client/C)
 		if(C.holder)

@@ -6,29 +6,37 @@ Commonish random event that causes small clumps of "space dust" to hit the stati
 No command report on the common version of this event.
 The "dust" will damage the hull of the station causin minor hull breaches.
 */
-/proc/dust_swarm(strength = "weak")
-	var/numbers = 1
-	switch(strength)
-		if("weak")
-		 numbers = rand(2, 4)
-		 for(var/i = 0 to numbers)
-		 	new/obj/effect/space_dust/weak()
-		if("norm")
-		 numbers = rand(5, 10)
-		 for(var/i = 0 to numbers)
-		 	new/obj/effect/space_dust()
-		if("strong")
-		 numbers = rand(10, 15)
-		 for(var/i = 0 to numbers)
-		 	new/obj/effect/space_dust/strong()
-		if("super")
-		 numbers = rand(15, 25)
-		 for(var/i = 0 to numbers)
-		 	new/obj/effect/space_dust/super()
-	return
+/datum/round_event/space_dust
+	var/quantity = 1
+	var/min_quantity = 5
+	var/max_quantity = 10
+	var/dust_type = /obj/effect/space_dust
 
+/datum/round_event/space_dust/setup()
+	quantity = rand(min_quantity, max_quantity)
+
+/datum/round_event/space_dust/start()
+	while(quantity-- > 0)
+		new dust_type()
+
+/datum/round_event/space_dust/weak
+	min_quantity = 2
+	max_quantity = 4
+	dust_type = /obj/effect/space_dust/weak
+
+/datum/round_event/space_dust/strong
+	min_quantity = 10
+	max_quantity = 15
+	dust_type = /obj/effect/space_dust/strong
+
+/datum/round_event/space_dust/super
+	min_quantity = 15
+	max_quantity = 25
+	dust_type = /obj/effect/space_dust/super
+
+// The dust itself.
 /obj/effect/space_dust
-	name = "Space Dust"
+	name = "space dust"
 	desc = "Dust in space."
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "space_dust"
