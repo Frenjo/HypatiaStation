@@ -22,60 +22,59 @@
 	if(iswrench(tool) && isturf(loc))
 		anchored = !anchored
 		user.visible_message(
-			SPAN_NOTICE("[user] [anchored ? "wrenches" : "unwrenches"] the solar assembly [anchored ? "into" : "from its"] place."),
-			SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] the solar assembly [anchored ? "into" : "from its"] place."),
+			SPAN_NOTICE("[user] [anchored ? "wrenches" : "unwrenches"] \the [src] [anchored ? "into" : "from its"] place."),
+			SPAN_NOTICE("You [anchored ? "wrench" : "unwrench"] \the [src] [anchored ? "into" : "from its"] place."),
 			SPAN_INFO("You hear a ratchet.")
 		)
 		playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 		return TRUE
 
+	if(tracker && iscrowbar(tool))
+		tracker = FALSE
+		user.visible_message(
+			SPAN_NOTICE("[user] takes the tracker electronics out of \the [src]."),
+			SPAN_NOTICE("You take the tracker electronics out of \the [src].")
+		)
+		new /obj/item/tracker_electronics(GET_TURF(src))
+		return TRUE
+
 	return ..()
 
-/obj/item/solar_assembly/attackby(obj/item/W, mob/user)
-	if(anchored)
-		if(istype(W, /obj/item/stack/sheet/glass))
-			var/obj/item/stack/sheet/S = W
-			if(S.amount >= 2)
-				glass_type = W.type
-				S.use(2)
-				playsound(src, 'sound/machines/click.ogg', 50, 1)
-				user.visible_message(
-					SPAN_NOTICE("[user] places the glass on the solar assembly."),
-					SPAN_NOTICE("You place the glass on the solar assembly.")
-				)
-				if(tracker)
-					new /obj/machinery/power/tracker(GET_TURF(src), src)
-				else
-					new /obj/machinery/power/solar(GET_TURF(src), src)
-			else
-				to_chat(user, SPAN_WARNING("You need two sheets of glass to put them into a solar panel."))
-				return
-			return 1
+/obj/item/solar_assembly/attack_by(obj/item/I, mob/user)
+	if(!anchored)
+		return ..()
 
-	if(!tracker)
-		if(istype(W, /obj/item/tracker_electronics))
-			tracker = TRUE
-			user.drop_item()
-			qdel(W)
-			user.visible_message(
-				SPAN_NOTICE("[user] inserts the electronics into the solar assembly."),
-				SPAN_NOTICE("You insert the electronics into the solar assembly.")
-			)
-			return 1
-	else
-		if(iscrowbar(W))
-			new /obj/item/tracker_electronics(loc)
-			tracker = FALSE
-			user.visible_message(
-				SPAN_NOTICE("[user] takes the electronics out of the solar assembly."),
-				SPAN_NOTICE("You take the electronics out of the solar assembly.")
-			)
-			return 1
-	..()
+	if(!tracker && istype(I, /obj/item/tracker_electronics))
+		tracker = TRUE
+		user.visible_message(
+			SPAN_NOTICE("[user] inserts \the [I] into \the [src]."),
+			SPAN_NOTICE("You insert \the [I] into \the [src].")
+		)
+		user.drop_item()
+		qdel(I)
+		return TRUE
 
-// Give back the glass type we were supplied with
+	if(istype(I, /obj/item/stack/sheet/glass))
+		var/obj/item/stack/sheet/glass/sheet = I
+		if(!sheet.use(2))
+			to_chat(user, SPAN_WARNING("You need two sheets of [I] to put them into \a [src]."))
+			return TRUE
+		glass_type = I.type
+		playsound(src, 'sound/machines/click.ogg', 50, 1)
+		user.visible_message(
+			SPAN_NOTICE("[user] places \the [I] on \the [src]."),
+			SPAN_NOTICE("You place \the [I] on \the [src].")
+		)
+		if(tracker)
+			new /obj/machinery/power/tracker(GET_TURF(src), src)
+		else
+			new /obj/machinery/power/solar(GET_TURF(src), src)
+		return TRUE
+
+	return ..()
+
+// Gives back the glass type we were supplied with.
 /obj/item/solar_assembly/proc/give_glass()
-	if(glass_type)
-		var/obj/item/stack/sheet/S = new glass_type(src.loc)
-		S.amount = 2
+	if(isnotnull(glass_type))
+		new glass_type(GET_TURF(src), 2)
 		glass_type = null

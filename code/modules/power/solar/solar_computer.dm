@@ -110,36 +110,33 @@
 	popup.set_content(html)
 	popup.open()
 
-/obj/machinery/power/solar_control/attackby(obj/item/I, mob/user)
-	if(isscrewdriver(I))
+/obj/machinery/power/solar_control/attack_tool(obj/item/tool, mob/user)
+	if(isscrewdriver(tool))
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-		if(do_after(user, 20))
-			if(src.stat & BROKEN)
+		if(do_after(user, 2 SECONDS))
+			if(stat & BROKEN)
 				FEEDBACK_BROKEN_GLASS_FALLS(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				new /obj/item/shard(src.loc)
-				var/obj/item/circuitboard/solar_control/M = new /obj/item/circuitboard/solar_control(A)
+				var/obj/structure/computerframe/frame = new /obj/structure/computerframe(GET_TURF(src))
+				new /obj/item/shard(GET_TURF(src))
+				frame.circuit = new /obj/item/circuitboard/solar_control(frame)
+				frame.state = 3
+				frame.icon_state = "3"
+				frame.anchored = TRUE
 				for(var/obj/C in src)
 					C.forceMove(loc)
-				A.circuit = M
-				A.state = 3
-				A.icon_state = "3"
-				A.anchored = TRUE
 				qdel(src)
 			else
 				FEEDBACK_DISCONNECT_MONITOR(user)
-				var/obj/structure/computerframe/A = new /obj/structure/computerframe(src.loc)
-				var/obj/item/circuitboard/solar_control/M = new /obj/item/circuitboard/solar_control(A)
+				var/obj/structure/computerframe/frame = new /obj/structure/computerframe(GET_TURF(src))
+				frame.circuit = new /obj/item/circuitboard/solar_control(frame)
+				frame.state = 4
+				frame.icon_state = "4"
+				frame.anchored = TRUE
 				for(var/obj/C in src)
 					C.forceMove(loc)
-				A.circuit = M
-				A.state = 4
-				A.icon_state = "4"
-				A.anchored = TRUE
 				qdel(src)
-	else
-		src.attack_hand(user)
-	return
+			return TRUE
+	return ..()
 
 /obj/machinery/power/solar_control/process()
 	lastgen = gen
@@ -148,7 +145,7 @@
 	if(stat & (NOPOWER | BROKEN))
 		return
 
-	if(connected_tracker && connected_tracker.powernet != powernet) //NOTE : handled here so that we don't add trackers to the processing list
+	if(isnotnull(connected_tracker) && connected_tracker.powernet != powernet) //NOTE : handled here so that we don't add trackers to the processing list
 		connected_tracker.unset_control()
 
 	if(track == TRACKING_MANUAL && trackrate) //manual tracking and set a rotation speed
@@ -202,7 +199,7 @@
 	return 1
 
 /obj/machinery/power/solar_control/power_change()
-	..()
+	. = ..()
 	update_icon()
 
 /obj/machinery/power/solar_control/ex_act(severity)

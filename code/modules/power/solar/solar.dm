@@ -15,13 +15,18 @@
 	var/turn_angle = 0
 	var/obj/machinery/power/solar_control/control = null
 
-/obj/machinery/power/solar/New(turf/loc, obj/item/solar_assembly/S)
+	var/static/alist/health_multiplier_by_glass_type = alist(
+		/obj/item/stack/sheet/glass = 1,
+		/obj/item/stack/sheet/glass/reinforced = 2
+	)
+
+/obj/machinery/power/solar/New(turf/loc, obj/item/solar_assembly/assembly)
 	. = ..(loc)
-	Make(S)
+	make_panel(assembly)
 	connect_to_network()
 
 /obj/machinery/power/solar/Destroy()
-	unset_control() //remove from control computer
+	unset_control() // Removes ourselves from the attached control computer.
 	control = null
 	return ..()
 
@@ -29,8 +34,8 @@
 	if(iscrowbar(tool))
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
 		user.visible_message(
-			SPAN_NOTICE("[user] begins to take the glass off the solar panel..."),
-			SPAN_NOTICE("You begin to take the glass off the solar panel...")
+			SPAN_NOTICE("[user] begins to take the glass off of \the [src]..."),
+			SPAN_NOTICE("You begin to take the glass off of \the [src]...")
 		)
 		if(do_after(user, 5 SECONDS))
 			var/obj/item/solar_assembly/assembly = locate() in src
@@ -39,35 +44,33 @@
 				assembly.give_glass()
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message(
-				SPAN_NOTICE("[user] takes the glass off the solar panel."),
-				SPAN_NOTICE("You take the glass off the solar panel.")
+				SPAN_NOTICE("[user] takes the glass off \the [src]."),
+				SPAN_NOTICE("You take the glass off \the [src].")
 			)
 			qdel(src)
 		return TRUE
 
 	return ..()
 
-/obj/machinery/power/solar/attackby(obj/item/W, mob/user)
-	if(isnotnull(W))
+/obj/machinery/power/solar/attack_weapon(obj/item/W, mob/user)
+	. = ..()
+	if(.)
 		add_fingerprint(user)
 		health -= W.force
 		healthcheck()
-	..()
 
 /obj/machinery/power/solar/blob_act()
-	src.health--
-	src.healthcheck()
-	return
+	health--
+	healthcheck()
 
 /obj/machinery/power/solar/update_icon()
-	..()
+	. = ..()
 	overlays.Cut()
 	if(stat & BROKEN)
-		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel-b", layer = FLY_LAYER)
+		overlays.Add(image(icon, "solar_panel-b", layer = FLY_LAYER))
 	else
-		overlays += image('icons/obj/power.dmi', icon_state = "solar_panel", layer = FLY_LAYER)
-		src.set_dir(angle2dir(adir))
-	return
+		overlays.Add(image(icon, "solar_panel", layer = FLY_LAYER))
+		set_dir(angle2dir(adir))
 
 /obj/machinery/power/solar/process()//TODO: remove/add this from machines to save on processing as needed ~Carn PRIORITY
 	if(stat & BROKEN)
@@ -123,18 +126,16 @@
 
 //set the control of the panel to null and removes it from the control list of the previous control computer if needed
 /obj/machinery/power/solar/proc/unset_control()
-	if(control)
-		control.connected_panels.Remove(src)
+	control?.connected_panels.Remove(src)
 	control = null
 
-/obj/machinery/power/solar/proc/Make(obj/item/solar_assembly/S)
-	if(!S)
-		S = new /obj/item/solar_assembly(src)
-		S.glass_type = /obj/item/stack/sheet/glass
-		S.anchored = TRUE
-	S.forceMove(src)
-	if(S.glass_type == /obj/item/stack/sheet/glass/reinforced)	//if the panel is in reinforced glass
-		health *= 2										//this need to be placed here, because panels already on the map don't have an assembly linked to
+/obj/machinery/power/solar/proc/make_panel(obj/item/solar_assembly/assembly)
+	if(isnull(assembly))
+		assembly = new /obj/item/solar_assembly(src)
+		assembly.glass_type = /obj/item/stack/sheet/glass
+		assembly.anchored = TRUE
+	assembly.forceMove(src)
+	health *= health_multiplier_by_glass_type[assembly.glass_type] // Updates the health based on the glass type's multiplier.
 	update_icon()
 
 /obj/machinery/power/solar/proc/healthcheck()
