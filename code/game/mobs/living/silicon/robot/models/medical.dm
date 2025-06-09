@@ -15,7 +15,7 @@
 		/obj/item/reagent_holder/robodropper,
 		/obj/item/reagent_holder/syringe
 	)
-	emag_type = /obj/item/reagent_holder/spray/polyacid
+	emag_modules = list(/obj/item/reagent_holder/spray/polyacid)
 
 	channels = list(CHANNEL_MEDICAL)
 	camera_networks = list("Medical")
@@ -42,6 +42,6 @@
 		needle.mode = initial(needle.mode)
 		needle.desc = initial(needle.desc)
 		needle.update_icon()
-	if(isnotnull(emag))
-		var/obj/item/reagent_holder/spray/polyacid/spray = emag
+	if(robby.emagged)
+		var/obj/item/reagent_holder/spray/polyacid/spray = locate() in modules
 		spray.reagents.add_reagent("pacid", 2)

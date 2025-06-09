@@ -13,7 +13,7 @@
 		/obj/item/crowbar,
 		/obj/item/health_analyser
 	)
-	emag_type = /obj/item/melee/energy/sword
+	emag_modules = list(/obj/item/melee/energy/sword)
 
 	sprite_path = 'icons/mob/silicon/robot/standard.dmi'
 	sprites = list(

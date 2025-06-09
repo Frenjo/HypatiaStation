@@ -22,7 +22,7 @@
 		/obj/item/gripper,
 		/obj/item/matter_decompiler
 	)
-	emag_type = /obj/item/card/emag
+	emag_modules = list(/obj/item/card/emag)
 
 	sprite_path = 'icons/mob/silicon/robot/drone.dmi'
 	sprites = list(

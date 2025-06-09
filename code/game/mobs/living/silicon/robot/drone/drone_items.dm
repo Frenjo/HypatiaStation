@@ -205,10 +205,9 @@
 	var/tools = "<B>Tools and devices</B><BR>"
 	var/resources = "<BR><B>Resources</B><BR>"
 
-	for (var/O in model.modules)
+	for(var/O in model.modules)
 		var/module_string = ""
-
-		if (!O)
+		if(!O)
 			module_string += "<B>Resource depleted</B><BR>"
 		else if(activated(O))
 			module_string += "[O]: <B>Activated</B><BR>"
@@ -221,14 +220,6 @@
 			resources += module_string
 
 	dat += tools
-
-	if(emagged)
-		if(!model.emag)
-			dat += "<B>Resource depleted</B><BR>"
-		else if(activated(model.emag))
-			dat += "[model.emag]: <B>Activated</B><BR>"
-		else
-			dat += "[model.emag]: <A href=byond://?src=\ref[src];act=\ref[model.emag]>Activate</A><BR>"
 
 	dat += resources
 

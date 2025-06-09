@@ -15,7 +15,7 @@
 		/obj/item/tray/robotray,
 		/obj/item/reagent_holder/food/drinks/shaker
 	)
-	emag_type = /obj/item/reagent_holder/food/drinks/cans/beer/special_brew
+	emag_modules = list(/obj/item/reagent_holder/food/drinks/cans/beer/special_brew)
 
 	channels = list(CHANNEL_SERVICE)
 
@@ -59,6 +59,6 @@
 	. = ..()
 	var/obj/item/reagent_holder/food/condiment/enzyme/enzyme_container = locate() in modules
 	enzyme_container?.reagents.add_reagent("enzyme", 2)
-	if(isnotnull(emag))
-		var/obj/item/reagent_holder/food/drinks/cans/beer/special_brew/special = emag
+	if(robby.emagged)
+		var/obj/item/reagent_holder/food/drinks/cans/beer/special_brew/special = locate() in modules
 		special.reagents.add_reagent("beer2", 2)

@@ -11,7 +11,7 @@
 		/obj/item/gun/energy/disabler/cyborg,
 		/obj/item/robot_module/swarmer_teleporter
 	)
-	emag_type = /obj/item/robot_module/stun
+	emag_modules = list(/obj/item/robot_module/stun)
 
 	sprite_path = 'icons/mob/silicon/robot/swarmer.dmi'
 	sprites = list(

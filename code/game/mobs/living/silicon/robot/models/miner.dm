@@ -14,7 +14,7 @@
 		/obj/item/pickaxe/drill/cyborg,
 		/obj/item/storage/bag/sheetsnatcher/borg
 	)
-	emag_type = /obj/item/robot_module/stun
+	emag_modules = list(/obj/item/robot_module/stun, /obj/item/pickaxe/drill/diamond)
 
 	channels = list(CHANNEL_MINING)
 	camera_networks = list("MINE")
@@ -30,15 +30,10 @@
 	integrated_light_range = 6 // Equivalent to a mining lantern.
 
 /obj/item/robot_model/miner/on_emag(mob/living/silicon/robot/robby)
-	. = ..()
-	var/obj/item/pickaxe/drill/cyborg/drill = locate() in modules
+	var/obj/item/pickaxe/drill/cyborg/drill = locate() in modules // Removes the regular drill.
 	qdel(drill)
-	modules.Add(new /obj/item/pickaxe/drill/diamond(src))
-	rebuild()
+	. = ..()
 
 /obj/item/robot_model/miner/on_unemag(mob/living/silicon/robot/robby)
+	modules.Add(new /obj/item/pickaxe/drill/cyborg(src)) // Re-adds the regular drill.
 	. = ..()
-	var/obj/item/pickaxe/drill/diamond/drill = locate() in modules
-	qdel(drill)
-	modules.Add(new /obj/item/pickaxe/drill/cyborg(src))
-	rebuild()

@@ -25,7 +25,7 @@
 	ion.Add(law)
 
 /datum/ai_laws/proc/clear_inherent_laws()
-	qdel(inherent)
+	inherent.Cut()
 	inherent = list()
 
 /datum/ai_laws/proc/add_supplied_law(number, law)

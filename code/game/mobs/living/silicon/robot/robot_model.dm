@@ -121,15 +121,5 @@
 			dat += "[obj]: <B>Activated</B><BR>"
 		else
 			dat += "[obj]: <A href=byond://?src=\ref[src];act=\ref[obj]>Activate</A><BR>"
-	if(emagged)
-		if(activated(model.emag))
-			dat += "[model.emag]: <B>Activated</B><BR>"
-		else
-			dat += "[model.emag]: <A href=byond://?src=\ref[src];act=\ref[model.emag]>Activate</A><BR>"
-/*
-		if(activated(obj))
-			dat += "[obj]: \[<B>Activated</B> | <A href=byond://?src=\ref[src];deact=\ref[obj]>Deactivate</A>\]<BR>"
-		else
-			dat += "[obj]: \[<A href=byond://?src=\ref[src];act=\ref[obj]>Activate</A> | <B>Deactivated</B>\]<BR>"
-*/
+
 	src << browse(dat, "window=robotmod&can_close=0")

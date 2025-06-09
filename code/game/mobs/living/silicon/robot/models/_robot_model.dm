@@ -18,10 +18,8 @@
 
 	// A list of typepaths for the basic modules this model has.
 	var/list/basic_modules = list()
-
-	// The module this model receives when emagged and the associated instance.
-	var/emag_type = /obj/item/toy/sword
-	var/obj/item/emag = null
+	// A list of typepaths for the modules this model gets when emagged.
+	var/list/emag_modules = list(/obj/item/toy/sword)
 
 	// A list containing all currently useable modules.
 	var/list/modules = list()
@@ -42,13 +40,11 @@
 	. = ..()
 	for(var/path in basic_modules)
 		modules.Add(new path(src))
-	emag = new emag_type(src)
 
 	if(isnull(model_select_sprite) && length(sprites))
 		model_select_sprite = sprites[sprites[1]]
 
 /obj/item/robot_model/Destroy()
-	QDEL_NULL(emag)
 	QDEL_NULL(modules)
 	return ..()
 
@@ -56,8 +52,6 @@
 	if(modules)
 		for(var/obj/O in modules)
 			O.emp_act(severity)
-	if(emag)
-		emag.emp_act(severity)
 	. = ..()
 
 /obj/item/robot_model/proc/respawn_consumable(mob/living/silicon/robot/robby)
@@ -93,20 +87,27 @@
 
 // Any model-specific behaviour to be performed when getting emagged.
 /obj/item/robot_model/proc/on_emag(mob/living/silicon/robot/robby)
-	return
+	SHOULD_CALL_PARENT(TRUE)
+
+	for(var/path in emag_modules)
+		modules.Add(new path(src))
+	rebuild()
 
 // Any model-specific behaviour to be performed when getting un-emagged.
 /obj/item/robot_model/proc/on_unemag(mob/living/silicon/robot/robby)
 	SHOULD_CALL_PARENT(TRUE)
 
-	if(robby.activated(emag))
-		robby.module_active = null
-	if(robby.module_state_1 == emag)
-		robby.module_state_1 = null
-		robby.contents.Remove(emag)
-	else if(robby.module_state_2 == emag)
-		robby.module_state_2 = null
-		robby.contents.Remove(emag)
-	else if(robby.module_state_3 == emag)
-		robby.module_state_3 = null
-		robby.contents.Remove(emag)
+	for(var/obj/module in modules)
+		if(!(module.type in emag_modules))
+			continue
+		if(robby.activated(module))
+			robby.module_active = null
+		if(robby.module_state_1 == module)
+			robby.module_state_1 = null
+		else if(robby.module_state_2 == module)
+			robby.module_state_2 = null
+		else if(robby.module_state_3 == module)
+			robby.module_state_3 = null
+		modules.Remove(module)
+		qdel(module)
+	rebuild()

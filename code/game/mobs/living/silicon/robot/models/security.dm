@@ -13,7 +13,7 @@
 		/obj/item/gun/energy/taser/cyborg,
 		/obj/item/taperoll/police
 	)
-	emag_type = /obj/item/gun/energy/laser/cyborg
+	emag_modules = list(/obj/item/gun/energy/laser/cyborg)
 
 	channels = list(CHANNEL_SECURITY)
 

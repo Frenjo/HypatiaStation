@@ -12,7 +12,7 @@
 		/obj/item/rsf/cookie,
 		/obj/item/harm_alarm
 	)
-	emag_type = /obj/item/reagent_holder/spray/polyacid
+	emag_modules = list(/obj/item/reagent_holder/spray/polyacid)
 
 	sprite_path = 'icons/mob/silicon/robot/peacekeeper.dmi'
 	sprites = list(
@@ -30,8 +30,8 @@
 
 /obj/item/robot_model/peacekeeper/respawn_consumable(mob/living/silicon/robot/robby)
 	. = ..()
-	if(isnotnull(emag))
-		var/obj/item/reagent_holder/spray/polyacid/spray = emag
+	if(robby.emagged)
+		var/obj/item/reagent_holder/spray/polyacid/spray = locate() in modules
 		spray.reagents.add_reagent("pacid", 2)
 
 /obj/item/robot_model/peacekeeper/get_playstyle_string()

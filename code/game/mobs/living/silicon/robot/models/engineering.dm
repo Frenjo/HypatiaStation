@@ -20,7 +20,7 @@
 		/obj/item/gas_analyser,
 		/obj/item/taperoll/engineering
 	)
-	emag_type = /obj/item/robot_module/stun
+	emag_modules = list(/obj/item/robot_module/stun)
 
 	channels = list(CHANNEL_ENGINEERING)
 	camera_networks = list("Engineering")

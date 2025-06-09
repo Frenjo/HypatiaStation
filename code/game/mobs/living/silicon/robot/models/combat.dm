@@ -17,7 +17,7 @@
 		/obj/item/robot_module/combat_mobility,
 		/obj/item/wrench // Is a combat android really going to be stopped by a chair?
 	)
-	emag_type = /obj/item/gun/energy/lasercannon/cyborg
+	emag_modules = list(/obj/item/gun/energy/lasercannon/cyborg)
 
 	channels = list(CHANNEL_SECURITY)
 
