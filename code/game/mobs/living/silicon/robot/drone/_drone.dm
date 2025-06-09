@@ -115,6 +115,10 @@
 	to_chat(user, SPAN_WARNING("You swipe the sequencer across [src]'s interface and watch its eyes flicker."))
 	to_chat(src, SPAN_WARNING("You feel a sudden burst of malware loaded into your execute-as-root buffer. Your tiny brain methodically parses, loads and executes the script."))
 
+	emag(user)
+	return TRUE
+
+/mob/living/silicon/robot/drone/emag(mob/living/user)
 	var/time = time2text(world.realtime,"hh:mm:ss")
 	GLOBL.lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
 	message_admins("[key_name_admin(user)] emagged drone [key_name_admin(src)]. Laws overridden.")
@@ -131,7 +135,8 @@
 	to_chat(src, "<b>Obey these laws:</b>")
 	laws.show_laws(src)
 	to_chat(src, SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and his commands."))
-	return TRUE
+
+	model.on_emag()
 
 /mob/living/silicon/robot/drone/attack_tool(obj/item/tool, mob/user)
 	if(iscrowbar(tool))

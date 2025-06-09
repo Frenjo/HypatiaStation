@@ -28,3 +28,17 @@
 	model_select_sprite = "miner"
 
 	integrated_light_range = 6 // Equivalent to a mining lantern.
+
+/obj/item/robot_model/miner/on_emag(mob/living/silicon/robot/robby)
+	. = ..()
+	var/obj/item/pickaxe/drill/cyborg/drill = locate() in modules
+	qdel(drill)
+	modules.Add(new /obj/item/pickaxe/drill/diamond(src))
+	rebuild()
+
+/obj/item/robot_model/miner/on_unemag(mob/living/silicon/robot/robby)
+	. = ..()
+	var/obj/item/pickaxe/drill/diamond/drill = locate() in modules
+	qdel(drill)
+	modules.Add(new /obj/item/pickaxe/drill/cyborg(src))
+	rebuild()

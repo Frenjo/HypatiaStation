@@ -90,3 +90,23 @@
 	SHOULD_CALL_PARENT(FALSE)
 
 	return null
+
+// Any model-specific behaviour to be performed when getting emagged.
+/obj/item/robot_model/proc/on_emag(mob/living/silicon/robot/robby)
+	return
+
+// Any model-specific behaviour to be performed when getting un-emagged.
+/obj/item/robot_model/proc/on_unemag(mob/living/silicon/robot/robby)
+	SHOULD_CALL_PARENT(TRUE)
+
+	if(robby.activated(emag))
+		robby.module_active = null
+	if(robby.module_state_1 == emag)
+		robby.module_state_1 = null
+		robby.contents.Remove(emag)
+	else if(robby.module_state_2 == emag)
+		robby.module_state_2 = null
+		robby.contents.Remove(emag)
+	else if(robby.module_state_3 == emag)
+		robby.module_state_3 = null
+		robby.contents.Remove(emag)

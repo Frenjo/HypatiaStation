@@ -597,39 +597,16 @@
 				log_admin("[key_name_admin(usr)] has malf'ed [current].")
 
 			if("unemag")
-				var/mob/living/silicon/robot/R = current
-				if(istype(R))
-					R.emagged = FALSE
-					if(R.activated(R.model.emag))
-						R.module_active = null
-					if(R.module_state_1 == R.model.emag)
-						R.module_state_1 = null
-						R.contents.Remove(R.model.emag)
-					else if(R.module_state_2 == R.model.emag)
-						R.module_state_2 = null
-						R.contents.Remove(R.model.emag)
-					else if(R.module_state_3 == R.model.emag)
-						R.module_state_3 = null
-						R.contents.Remove(R.model.emag)
-					log_admin("[key_name_admin(usr)] has unemag'ed [R].")
+				var/mob/living/silicon/robot/robby = current
+				if(istype(robby))
+					robby.unemag()
+					log_admin("[key_name_admin(usr)] has unemag'ed [robby].")
 
 			if("unemagcyborgs")
 				if(isAI(current))
 					var/mob/living/silicon/ai/ai = current
-					for(var/mob/living/silicon/robot/R in ai.connected_robots)
-						R.emagged = FALSE
-						if(isnotnull(R.model))
-							if(R.activated(R.model.emag))
-								R.module_active = null
-							if(R.module_state_1 == R.model.emag)
-								R.module_state_1 = null
-								R.contents.Remove(R.model.emag)
-							else if(R.module_state_2 == R.model.emag)
-								R.module_state_2 = null
-								R.contents.Remove(R.model.emag)
-							else if(R.module_state_3 == R.model.emag)
-								R.module_state_3 = null
-								R.contents.Remove(R.model.emag)
+					for(var/mob/living/silicon/robot/robby in ai.connected_robots)
+						robby.unemag()
 					log_admin("[key_name_admin(usr)] has unemag'ed [ai]'s Cyborgs.")
 
 	else if(href_list["common"])

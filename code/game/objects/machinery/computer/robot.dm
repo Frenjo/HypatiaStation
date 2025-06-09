@@ -199,7 +199,7 @@
 						if(R && istype(R))
 //							message_admins("\blue [key_name_admin(usr)] emagged [R.name] using robotic console!")
 							log_game("[key_name(usr)] emagged [R.name] using robotic console!")
-							R.emagged = 1
+							R.emagged = TRUE
 							if(R.mind.special_role)
 								R.verbs.Add(/mob/living/silicon/robot/proc/reset_identity_codes)
 

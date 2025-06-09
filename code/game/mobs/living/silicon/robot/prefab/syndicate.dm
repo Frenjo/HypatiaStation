@@ -6,7 +6,7 @@
 	lawupdate = FALSE
 	scrambledcodes = TRUE
 
-	default_law_type = /datum/ai_laws/antimov
+	default_law_type = /datum/ai_laws/syndicate_override
 
 	var/selected_icon = FALSE
 
