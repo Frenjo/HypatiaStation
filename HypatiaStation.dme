@@ -755,7 +755,6 @@
 #include "code\game\objects\_obj.dm"
 #include "code\game\objects\obj_access.dm"
 #include "code\game\objects\effects\aliens.dm"
-#include "code\game\objects\effects\barsign.dm"
 #include "code\game\objects\effects\bump_teleporter.dm"
 #include "code\game\objects\effects\chemsmoke.dm"
 #include "code\game\objects\effects\effect_system.dm"

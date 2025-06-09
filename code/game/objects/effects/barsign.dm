@@ -1,9 +1,0 @@
-/obj/effect/sign/double/barsign
-	icon = 'icons/obj/barsigns.dmi'
-	icon_state = "empty"
-	anchored = TRUE
-
-/obj/effect/sign/double/barsign/New()
-	. = ..()
-	var/list/valid_states = list("pinkflamingo", "magmasea", "limbo", "rustyaxe", "armokbar", "brokendrum", "meadbay", "thedamnwall", "thecavern", "cindikate", "theorchard", "thesaucyclown", "theclownshead", "whiskeyimplant", "carpecarp", "robustroadhouse", "greytide", "theredshirt")
-	icon_state = "[pick(valid_states)]"

@@ -2104,7 +2104,7 @@
 /turf/closed/wall/reinforced,
 /area/external/prison/cell_block/B)
 "aNG" = (
-/obj/effect/sign/double/barsign,
+/obj/structure/sign/double/bar,
 /turf/closed/wall/steel,
 /area/station/crew/bar)
 "aNU" = (
