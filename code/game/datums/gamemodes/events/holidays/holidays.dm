@@ -137,8 +137,7 @@ GLOBAL_GLOBL_INIT(eventchance, 10)	//% per 5 mins
 				if(14)
 					CONFIG_SET(/decl/configuration_entry/holiday_name, "Monkey Day")
 				if(21)
-					if(YY == 12)
-						CONFIG_SET(/decl/configuration_entry/holiday_name, "End of the World")
+					CONFIG_SET(/decl/configuration_entry/holiday_name, "End of the World Anniversary")
 				if(22)
 					CONFIG_SET(/decl/configuration_entry/holiday_name, "Orgasming Day")		//lol. These all actually exist
 				if(24)
@@ -213,9 +212,6 @@ GLOBAL_GLOBL_INIT(eventchance, 10)	//% per 5 mins
 				containers += S
 
 			message_admins("\blue DEBUG: Event: Egg spawned at [Egg.loc] ([Egg.x],[Egg.y],[Egg.z])")*/
-		if("End of the World")
-			if(prob(GLOBL.eventchance))
-				game_over_event()
 
 		if("Christmas", "Christmas Eve")
 			if(prob(GLOBL.eventchance))

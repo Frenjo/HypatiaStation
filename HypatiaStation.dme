@@ -326,7 +326,6 @@
 #include "code\game\datums\gamemodes\events\spacevines.dm"
 #include "code\game\datums\gamemodes\events\holidays\christmas.dm"
 #include "code\game\datums\gamemodes\events\holidays\holidays.dm"
-#include "code\game\datums\gamemodes\events\holidays\other.dm"
 #include "code\game\datums\gamemodes\extended\extended.dm"
 #include "code\game\datums\gamemodes\heist\heist.dm"
 #include "code\game\datums\gamemodes\heist\outfit.dm"
