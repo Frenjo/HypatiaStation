@@ -80,3 +80,7 @@
 	desc = "Pieces of a goliath's rocky hide, these might be able to make something a bit more durable to attack from the local fauna."
 	icon = 'icons/obj/items/stacks/mining.dmi'
 	icon_state = "goliath_hide"
+
+	item_flags = ITEM_FLAG_NO_BLUDGEON
+
+	origin_tech = alist(/decl/tech/biotech = 3)

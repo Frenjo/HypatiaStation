@@ -26,7 +26,7 @@
 
 	icon_aggro = "basilisk_alert"
 	ranged_message = "stares"
-	throw_message = "rebounds off its hard shell to no effect"
+	throw_message = "rebounds off of the hard shell of the"
 
 /mob/living/simple/hostile/asteroid/basilisk/Die()
 	for(var/i = 0, i < 2, i++) // Drops some diamonds on death.
