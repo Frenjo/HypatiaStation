@@ -49,7 +49,7 @@
 			else if(istype(target, /turf/open/floor/plating/asteroid/airless))
 				for(var/turf/open/floor/plating/asteroid/airless/M in RANGE_TURFS(chassis, 1))
 					if(get_dir(chassis, M) & chassis.dir)
-						M.gets_dug()
+						M.get_dug()
 				log_message("Drilled through [target]")
 				if(locate(/obj/item/mecha_equipment/tool/hydraulic_clamp) in chassis.equipment)
 					var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in chassis:cargo

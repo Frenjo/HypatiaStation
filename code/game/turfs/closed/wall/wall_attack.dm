@@ -154,7 +154,7 @@
 		return
 
 	//DRILLING
-	else if(istype(W, /obj/item/pickaxe/diamonddrill))
+	else if(istype(W, /obj/item/pickaxe/drill/diamond))
 		to_chat(user, SPAN_NOTICE("You begin to drill though the wall."))
 
 		sleep(60)

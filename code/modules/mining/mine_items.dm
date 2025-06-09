@@ -119,7 +119,7 @@
 	dig_time = 3 SECONDS // Can dig sand as well!
 	drill_verb = "drilling"
 
-/obj/item/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
+/obj/item/pickaxe/drill/diamond //When people ask about the badass leader of the mining tools, they are talking about ME!
 	name = "diamond mining drill"
 	desc = "Yours is the drill that will pierce the heavens!"
 	icon_state = "diamonddrill"
@@ -128,16 +128,14 @@
 	matter_amounts = /datum/design/mining/drill_diamond::materials
 	origin_tech = /datum/design/mining/drill_diamond::req_tech
 	dig_time = 0.5 SECONDS // Digs through walls, girders, and can dig up sand.
-	drill_verb = "drilling"
 
-/obj/item/pickaxe/borgdrill
+/obj/item/pickaxe/drill/cyborg
 	name = "cyborg mining drill"
 	desc = ""
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
 
 	dig_time = 1.5 SECONDS
-	drill_verb = "drilling"
 
 /obj/item/pickaxe/jackhammer
 	name = "sonic jackhammer"

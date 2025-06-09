@@ -5,7 +5,7 @@ GLOBAL_GLOBL_ALIST_INIT(space_surprises, alist(
 	/obj/item/pickaxe/jackhammer = 4,
 	//mob/living/simple/hostile/carp = 3,
 	/obj/item/pickaxe/diamond = 3,
-	/obj/item/pickaxe/diamonddrill = 3,
+	/obj/item/pickaxe/drill/diamond = 3,
 	/obj/item/pickaxe/gold = 3,
 	/obj/item/pickaxe/plasmacutter = 2,
 	/obj/structure/closet/syndicate/resources/random = 2,

@@ -267,7 +267,7 @@
 //vv OK, we weren't performing a valid deconstruction step or igniting thermite,let's check the other possibilities vv
 
 	//DRILLING
-	if(istype(W, /obj/item/pickaxe/diamonddrill))
+	if(istype(W, /obj/item/pickaxe/drill/diamond))
 		to_chat(user, SPAN_NOTICE("You begin to drill though the wall."))
 
 		sleep(200)

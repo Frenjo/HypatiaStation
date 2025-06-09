@@ -511,7 +511,7 @@ GLOBAL_GLOBL_LIST_NEW(all_objectives)
 	var/static/list/possible_items_special = list(
 		/*"nuclear authentication disk" = /obj/item/disk/nuclear,*///Broken with the change to nuke disk making it respawn on z level change.
 		"nuclear gun" = /obj/item/gun/energy/gun/nuclear,
-		"diamond drill" = /obj/item/pickaxe/diamonddrill,
+		"diamond drill" = /obj/item/pickaxe/drill/diamond,
 		"bag of holding" = /obj/item/storage/backpack/holding,
 		"hyper-capacity cell" = /obj/item/cell/hyper,
 		"10 diamonds" = /obj/item/stack/sheet/diamond,

@@ -11,7 +11,7 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/robot_module/sight/meson,
 		/obj/item/storage/bag/ore,
-		/obj/item/pickaxe/borgdrill,
+		/obj/item/pickaxe/drill/cyborg,
 		/obj/item/storage/bag/sheetsnatcher/borg
 	)
 	emag_type = /obj/item/robot_module/stun

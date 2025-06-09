@@ -27,10 +27,10 @@
 		if(3)
 			return
 		if(2)
-			if (prob(70))
-				gets_dug()
+			if(prob(70))
+				get_dug()
 		if(1)
-			gets_dug()
+			get_dug()
 	return
 
 /turf/open/floor/plating/asteroid/burn_tile()
@@ -44,78 +44,48 @@
 		var/mob/living/silicon/robot/R = M
 		if(istype(R.model, /obj/item/robot_model/miner))
 			if(istype(R.module_state_1, /obj/item/storage/bag/ore))
-				attackby(R.module_state_1, R)
+				attack_by(R.module_state_1, R)
 			else if(istype(R.module_state_2, /obj/item/storage/bag/ore))
-				attackby(R.module_state_2, R)
+				attack_by(R.module_state_2, R)
 			else if(istype(R.module_state_3, /obj/item/storage/bag/ore))
-				attackby(R.module_state_3, R)
+				attack_by(R.module_state_3, R)
 
-/turf/open/floor/plating/asteroid/attackby(obj/item/W, mob/user)
-	if(isnull(W) || isnull(user))
-		return 0
+/turf/open/floor/plating/asteroid/attack_tool(obj/item/tool, mob/user)
+	if(istype(tool, /obj/item/shovel))
+		return start_digging(user, "digging", 4 SECONDS)
 
-	if(istype(W, /obj/item/shovel))
-		var/turf/T = user.loc
-		if(!isturf(T))
-			return
+	if(istype(tool, /obj/item/pickaxe/drill))
+		var/obj/item/pickaxe/drill/drill = tool
+		return start_digging(user, drill.drill_verb, drill.dig_time)
 
-		if(dug)
-			to_chat(user, SPAN_WARNING("This area has already been dug."))
-			return
+	return ..()
 
-		to_chat(user, SPAN_WARNING("You start digging."))
-		playsound(loc, 'sound/effects/rustle1.ogg', 50, 1) //russle sounds sounded better
-
-		sleep(40)
-		if(user.loc == T && user.get_active_hand() == W)
-			to_chat(user, SPAN_INFO("You dug a hole."))
-			gets_dug()
-
-	if(istype(W, /obj/item/pickaxe/drill))
-		var/turf/T = user.loc
-		if(!isturf(T))
-			return
-
-		if(dug)
-			to_chat(user, SPAN_WARNING("This area has already been dug."))
-			return
-
-		to_chat(user, SPAN_WARNING("You start digging."))
-		playsound(loc, 'sound/effects/rustle1.ogg', 50, 1) //russle sounds sounded better
-
-		sleep(30)
-		if(user.loc == T && user.get_active_hand() == W)
-			to_chat(user, SPAN_INFO("You dug a hole."))
-			gets_dug()
-
-	if(istype(W, /obj/item/pickaxe/diamonddrill) || istype(W, /obj/item/pickaxe/borgdrill))
-		var/turf/T = user.loc
-		if(!isturf(T))
-			return
-
-		if(dug)
-			to_chat(user, SPAN_WARNING("This area has already been dug."))
-			return
-
-		to_chat(user, SPAN_WARNING("You start digging."))
-		playsound(loc, 'sound/effects/rustle1.ogg', 50, 1) //russle sounds sounded better
-
-		sleep(0)
-		if(user.loc == T && user.get_active_hand() == W)
-			to_chat(user, SPAN_INFO("You dug a hole."))
-			gets_dug()
-
-	if(istype(W, /obj/item/storage/bag/ore))
-		var/obj/item/storage/bag/ore/S = W
+/turf/open/floor/plating/asteroid/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/storage/bag/ore))
+		var/obj/item/storage/bag/ore/S = I
 		if(S.collection_mode)
-			for(var/obj/item/ore/O in contents)
-				O.attackby(W, user)
-				return
+			for(var/obj/item/ore/O in src)
+				O.handle_attack(I, user)
+		return TRUE
 
-	else
-		..(W, user)
+	return ..()
 
-/turf/open/floor/plating/asteroid/proc/gets_dug()
+/turf/open/floor/plating/asteroid/proc/start_digging(mob/digger, drill_verb, time)
+	if(dug)
+		to_chat(digger, SPAN_WARNING("This area has already been dug!"))
+		return FALSE
+
+	to_chat(digger, SPAN_WARNING("You start [drill_verb] \the [src]."))
+	playsound(loc, 'sound/effects/rustle1.ogg', 50, 1) // Rustling sounds sounded better.
+	if(do_after(digger, time, src, TRUE))
+		to_chat(digger, SPAN_INFO("You finish [drill_verb] \the [src]."))
+		get_dug()
+		return TRUE
+
+	to_chat(digger, SPAN_WARNING("You must stand still to finish [drill_verb] \the [src]!"))
+	return FALSE
+
+/turf/open/floor/plating/asteroid/proc/get_dug()
 	if(dug)
 		return
 	for(var/i = 0; i < 5; i++)

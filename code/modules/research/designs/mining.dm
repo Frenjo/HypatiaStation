@@ -46,7 +46,7 @@
 		/decl/material/steel = 3000, /decl/material/glass = 1000, /decl/material/diamond = MATERIAL_AMOUNT_PER_SHEET
 	) //Yes, a whole diamond is needed.
 	reliability_base = 79
-	build_path = /obj/item/pickaxe/diamonddrill
+	build_path = /obj/item/pickaxe/drill/diamond
 
 /datum/design/mining/mesons
 	name = "Optical Meson Scanners"

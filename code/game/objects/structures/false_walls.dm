@@ -107,7 +107,7 @@
 		qdel(src)
 
 	//DRILLING
-	else if(istype(W, /obj/item/pickaxe/diamonddrill))
+	else if(istype(W, /obj/item/pickaxe/drill/diamond))
 		var/turf/T = GET_TURF(src)
 		T.ChangeTurf(material.wall_path)
 		T = GET_TURF(src)
@@ -181,7 +181,7 @@
 		qdel(src)
 
 	//DRILLING
-	else if(istype(W, /obj/item/pickaxe/diamonddrill))
+	else if(istype(W, /obj/item/pickaxe/drill/diamond))
 		var/turf/T = GET_TURF(src)
 		T.ChangeTurf(/turf/closed/wall/steel)
 		T = GET_TURF(src)

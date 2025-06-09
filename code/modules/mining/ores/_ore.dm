@@ -10,9 +10,9 @@
 	pixel_x = rand(0, 16) - 8
 	pixel_y = rand(0, 8) - 8
 
-/obj/item/ore/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/core_sampler))
-		var/obj/item/core_sampler/C = W
-		C.sample_item(src, user)
-	else
-		return ..()
+/obj/item/ore/attack_by(obj/item/I, mob/user)
+	if(istype(I, /obj/item/core_sampler))
+		var/obj/item/core_sampler/sampler = I
+		sampler.sample_item(src, user)
+		return TRUE
+	return ..()

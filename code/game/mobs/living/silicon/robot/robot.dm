@@ -187,9 +187,9 @@
 		to_chat(src, SPAN_DANGER("ALERT: [user.real_name] is your new master. Obey your new laws and their commands."))
 
 		if(istype(model, /obj/item/robot_model/miner))
-			for(var/obj/item/pickaxe/borgdrill/D in model.modules)
+			for(var/obj/item/pickaxe/drill/cyborg/D in model.modules)
 				qdel(D)
-			model.modules.Add(new /obj/item/pickaxe/diamonddrill(model))
+			model.modules.Add(new /obj/item/pickaxe/drill/diamond(model))
 			model.rebuild()
 		updateicon()
 		return TRUE

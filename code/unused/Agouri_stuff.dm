@@ -842,7 +842,7 @@
 						O.show_message(text("\blue The wall was sliced apart by []!", user), 1, text("\red You hear metal being sliced apart."), 2)
 		return
 
-	else if(istype(W, /obj/item/pickaxe/diamonddrill))
+	else if(istype(W, /obj/item/pickaxe/drill/diamond))
 		var/turf/T = user.loc
 		user << "\blue Now drilling through wall."
 		sleep(60)
@@ -1058,7 +1058,7 @@
 					dismantle_wall()
 					return
 
-	else if (istype(W, /obj/item/pickaxe/diamonddrill))
+	else if (istype(W, /obj/item/pickaxe/drill/diamond))
 		var/turf/T = user.loc
 		user << "\blue You begin to drill though, this will take some time."
 		sleep(200)
