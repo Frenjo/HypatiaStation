@@ -5,6 +5,8 @@
 	// A list containing the item action button objects.
 	var/list/atom/movable/screen/item_action/item_actions
 
+	var/inventory_shown = TRUE // The inventory.
+
 /datum/hud/human/New(mob/living/carbon/human/owner)
 	hotkey_buttons = list()
 	item_actions = list()
@@ -233,9 +235,9 @@
 				adding.Add(H.gun_run_icon)
 			adding.Add(H.gun_move_icon)
 
-	H.client.screen.Cut()
+	. = ..()
 	H.client.screen.Add(hud_elements)
-	H.client.screen.Add(adding + hotkey_buttons)
+	H.client.screen.Add(hotkey_buttons)
 	inventory_shown = FALSE
 
 	return TRUE

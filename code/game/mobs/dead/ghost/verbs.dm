@@ -200,11 +200,7 @@ GLOBAL_GLOBL_INIT(mouse_respawn_time, 5 MINUTES) // Amount of time that must pas
 	set category = PANEL_GHOST
 	set name = "View Crew Manifest"
 
-	var/dat
-	dat += "<h4>Crew Manifest</h4>"
-	dat += GLOBL.data_core.get_manifest()
-
-	src << browse(dat, "window=manifest;size=370x420;can_close=1")
+	GLOBL.data_core.show_manifest_to(src)
 
 // Used for drawing on walls with blood puddles as a spooky ghost.
 /mob/dead/ghost/verb/bloody_doodle()

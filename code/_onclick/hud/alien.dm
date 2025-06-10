@@ -122,7 +122,7 @@
 	owner.zone_sel.icon = 'icons/hud/screen1_alien.dmi'
 	owner.zone_sel.update_icon()
 
-	owner.client.screen.Cut()
+	. = ..()
 	owner.client.screen.Add(list(
 		owner.throw_icon,
 		owner.zone_sel,
@@ -134,4 +134,3 @@
 		owner.blind,
 		owner.flash
 	)) //, owner.hands, owner.rest, owner.sleep, owner.mach )
-	owner.client.screen.Add(adding + other)

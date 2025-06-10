@@ -13,7 +13,7 @@ GLOBAL_GLOBL(datum/datacore/data_core)
 	// This was originally a global variable, but why not just put it on the datacore since that in itself is global anyway?!
 	var/list/pda_manifest = list()
 
-/datum/datacore/proc/get_manifest(monochrome, OOC)
+/datum/datacore/proc/get_manifest(monochrome = FALSE, is_ooc = FALSE)
 	var/list/heads = list()
 	var/list/sec = list()
 	var/list/eng = list()
@@ -31,7 +31,7 @@ GLOBAL_GLOBL(datum/datacore/data_core)
 		.manifest th {height: 2em; [monochrome ? "border-top-width: 3px" : "background-color: #48C; color:white"]}
 		.manifest tr.head th { [monochrome ? "border-top-width: 1px" : "background-color: #488;"] }
 		.manifest td:first-child {text-align:right}
-		.manifest tr.alt td {[monochrome?"border-top-width: 2px" : "background-color: #DEF"]}
+		.manifest tr.alt td {[monochrome ? "border-top-width: 2px" : "background-color: #DEF"]}
 	</style></head>
 	<table class="manifest" width='350px'>
 	<tr class='head'><th>Name</th><th>Rank</th><th>Activity</th></tr>
@@ -43,7 +43,7 @@ GLOBAL_GLOBL(datum/datacore/data_core)
 		var/name = t.fields["name"]
 		var/rank = t.fields["rank"]
 		var/real_rank = t.fields["real_rank"]
-		if(OOC)
+		if(is_ooc)
 			var/active = FALSE
 			for_no_type_check(var/mob/M, GLOBL.player_list)
 				if(M.real_name == name && M.client?.inactivity <= 10 * 60 * 10)
@@ -208,6 +208,16 @@ using /datum/datacore/proc/manifest_inject(), or manifest_insert()
 		"misc" = misc
 	)
 	return pda_manifest
+
+/datum/datacore/proc/show_manifest_to(mob/user, monochrome = FALSE, is_ooc = FALSE)
+	var/html = "<h2>Crew Manifest</h2>"
+	html += "<hr>"
+	html += get_manifest(monochrome, is_ooc)
+	html += "<br>"
+
+	var/datum/browser/panel = new /datum/browser(user, "manifest", "", 370, 420)
+	panel.set_content(html)
+	panel.open()
 
 /datum/datacore/proc/manifest()
 	for(var/mob/living/carbon/human/H in GLOBL.player_list)

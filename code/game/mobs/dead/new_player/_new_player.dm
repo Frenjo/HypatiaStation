@@ -143,7 +143,7 @@
 		late_join_choices_panel()
 
 	if(href_list["manifest"])
-		crew_manifest_panel()
+		GLOBL.data_core.show_manifest_to(usr, is_ooc = TRUE)
 
 	if(href_list["SelectedJob"])
 		if(!GLOBL.enter_allowed)
@@ -428,17 +428,6 @@
 	new_character.key = key		//Manually transfer the key to log them in
 
 	return new_character
-
-/mob/dead/new_player/proc/crew_manifest_panel()
-	var/html = "<html><body>"
-	html += "<b>Crew Manifest</b>"
-	html += "<hr>"
-	html += GLOBL.data_core.get_manifest(OOC = 1)
-
-	var/datum/browser/panel = new /datum/browser(src, "manifest", "", 370, 420, src)
-	panel.set_window_options("can_close=1")
-	panel.set_content(html)
-	panel.open()
 
 /mob/dead/new_player/Move()
 	return 0

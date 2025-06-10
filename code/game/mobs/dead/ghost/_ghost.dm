@@ -23,6 +23,7 @@
 	var/atom/movable/following = null
 
 /mob/dead/ghost/New(mob/body)
+	. = ..()
 	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = 100
@@ -65,13 +66,11 @@
 	if(!name)							//To prevent nameless ghosts
 		name = capitalize(pick(GLOBL.first_names_male)) + " " + capitalize(pick(GLOBL.last_names))
 	real_name = name
-	. = ..()
 
 /mob/dead/ghost/Logout()
-	..()
-	spawn(0)
-		if(isnotnull(src) && isnull(key))	//we've transferred to another mob. This ghost should be deleted.
-			qdel(src)
+	. = ..()
+	if(isnotnull(src) && isnull(key))	//we've transferred to another mob. This ghost should be deleted.
+		qdel(src)
 
 /mob/dead/ghost/Topic(href, href_list)
 	if(href_list["track"])

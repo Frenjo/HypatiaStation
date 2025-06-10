@@ -10,6 +10,8 @@
 	B.blind.screen_loc = "WEST,SOUTH"
 	B.blind.invisibility = INVISIBILITY_MAXIMUM // Changed blind.layer to blind.invisibility to become compatible with not-2014 BYOND. -Frenjo
 
+	. = ..()
+
 /datum/hud/ai
 
 /datum/hud/blob
@@ -21,5 +23,5 @@
 	blob_health_display = setup_screen_object("blob health", ui_style, "block", UI_INTERNAL)
 	blob_power_display = setup_screen_object("blob power", ui_style, "block", UI_HEALTH)
 
-	owner.client.screen.Cut()
+	. = ..()
 	owner.client.screen.Add(list(blob_health_display, blob_power_display))

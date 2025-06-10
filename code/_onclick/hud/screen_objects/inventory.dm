@@ -36,17 +36,20 @@
 
 /atom/movable/screen/inventory_toggle/Click(location, control, params)
 	if(isnull(usr))
-		return 1
+		return FALSE
+	if(!ishuman(usr))
+		return FALSE
+	var/mob/living/carbon/human/user = usr
+	var/datum/hud/human/hud_used = user.hud_used
 
-	usr.hud_used.inventory_shown = !usr.hud_used.inventory_shown
-	if(usr.hud_used.inventory_shown)
-		usr.client.screen.Add(usr.hud_used.other)
+	hud_used.inventory_shown = !hud_used.inventory_shown
+	if(hud_used.inventory_shown)
+		user.client.screen.Add(hud_used.other)
 	else
-		usr.client.screen.Remove(usr.hud_used.other)
+		user.client.screen.Remove(hud_used.other)
 
-	usr.hud_used.hidden_inventory_update()
-
-	return 1
+	hud_used.hidden_inventory_update()
+	return TRUE
 
 /*
  * Grabs

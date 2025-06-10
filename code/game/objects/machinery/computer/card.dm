@@ -55,8 +55,7 @@
 
 		dat += "<h4>Crew Manifest</h4>"
 		dat += "Entries cannot be modified from this terminal.<br><br>"
-		if(GLOBL.data_core)
-			dat += GLOBL.data_core.get_manifest(0) // make it monochrome
+		dat += GLOBL.data_core.get_manifest()
 		dat += "<br>"
 		dat += "<a href='byond://?src=\ref[src];choice=print'>Print</a><br>"
 		dat += "<br>"
@@ -309,8 +308,7 @@
 
 				var/t1 = "<h4>Crew Manifest</h4>"
 				t1 += "<br>"
-				if(GLOBL.data_core)
-					t1 += GLOBL.data_core.get_manifest(0) // make it monochrome
+				t1 += GLOBL.data_core.get_manifest()
 
 				P.info = t1
 				P.name = "paper- 'Crew Manifest'"

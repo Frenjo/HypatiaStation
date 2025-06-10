@@ -195,9 +195,9 @@
 	<BR>
 	<B>Activated Modules</B>
 	<BR>
-	Module 1: [module_state_1 ? "<A href=byond://?src=\ref[src];mod=\ref[module_state_1]>[module_state_1]<A>" : "No Module"]<BR>
-	Module 2: [module_state_2 ? "<A href=byond://?src=\ref[src];mod=\ref[module_state_2]>[module_state_2]<A>" : "No Module"]<BR>
-	Module 3: [module_state_3 ? "<A href=byond://?src=\ref[src];mod=\ref[module_state_3]>[module_state_3]<A>" : "No Module"]<BR>
+	Module 1: [module_state_1 ? "<A href='byond://?src=\ref[src];mod=\ref[module_state_1]'>[module_state_1]</A>" : "No Module"]<BR>
+	Module 2: [module_state_2 ? "<A href='byond://?src=\ref[src];mod=\ref[module_state_2]'>[module_state_2]</A>" : "No Module"]<BR>
+	Module 3: [module_state_3 ? "<A href='byond://?src=\ref[src];mod=\ref[module_state_3]'>[module_state_3]</A>" : "No Module"]<BR>
 	<BR>
 	<B>Installed Modules</B><BR><BR>"}
 
@@ -212,7 +212,7 @@
 		else if(activated(O))
 			module_string += "[O]: <B>Activated</B><BR>"
 		else
-			module_string += "[O]: <A href=byond://?src=\ref[src];act=\ref[O]>Activate</A><BR>"
+			module_string += "[O]: <A href='byond://?src=\ref[src];act=\ref[O]'>Activate</A><BR>"
 
 		if(isitem(O) && !iscable(O))
 			tools += module_string

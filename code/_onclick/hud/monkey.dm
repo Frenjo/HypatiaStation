@@ -122,7 +122,7 @@
 				adding.Add(M.gun_run_icon)
 			adding.Add(M.gun_move_icon)
 
-	M.client.screen.Cut()
+	. = ..()
 	M.client.screen.Add(list(
 		M.throw_icon,
 		M.zone_sel,
@@ -138,4 +138,3 @@
 		M.flash,
 		M.gun_setting_icon
 	)) //, M.hands, M.rest, M.sleep, M.mach )
-	M.client.screen.Add(adding + other)

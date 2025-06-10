@@ -438,12 +438,10 @@
 
 // Crew Manifest
 /mob/living/silicon/pai/proc/softwareManifest()
-	var/dat = ""
-	dat += "<h2>Crew Manifest</h2><hr>"
-	if(isnotnull(GLOBL.data_core))
-		dat += GLOBL.data_core.get_manifest(0) // make it monochrome
-	dat += "<br>"
-	return dat
+	. = "<h2>Crew Manifest</h2>"
+	. += "<hr>"
+	. += GLOBL.data_core.get_manifest(TRUE) // make it monochrome
+	. += "<br>"
 
 // Medical Records
 /mob/living/silicon/pai/proc/softwareMedicalRecord()

@@ -8,7 +8,6 @@
 	var/mob/owner = null
 
 	var/hud_shown = TRUE			// Used for the HUD toggle (F12).
-	var/inventory_shown = TRUE		// The inventory.
 	var/show_intent_icons = 0
 
 	/*
@@ -68,7 +67,10 @@
 
 // ui_colour and ui_alpha can be safely ignored if not needed.
 /datum/hud/proc/setup(ui_style, ui_colour, ui_alpha)
-	return
+	// Provides some default behaviour.
+	if(isnotnull(owner?.client))
+		owner.client.screen.Cut()
+		owner.client.screen.Add(adding + other)
 
 /datum/hud/proc/hidden_inventory_update()
 	SHOULD_CALL_PARENT(TRUE)

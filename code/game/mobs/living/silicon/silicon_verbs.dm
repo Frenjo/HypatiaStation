@@ -35,7 +35,7 @@ GLOBAL_GLOBL_LIST_INIT(silicon_verbs_default, list(
 				var/cameratext = ""
 				if(alarm.cameras)
 					for(var/obj/machinery/camera/I in alarm.cameras)
-						cameratext += "[cameratext == "" ? "" : " | "]<A href=byond://?src=\ref[src];switchcamera=\ref[I]>[I.c_tag]</A>"
+						cameratext += "[cameratext == "" ? "" : " | "]<A href='byond://?src=\ref[src];switchcamera=\ref[I]'>[I.c_tag]</A>"
 				dat += "-- [alarm.area.name] ([cameratext ? cameratext : "No Camera"])"
 
 				if(length(alarm.sources) > 1)
@@ -82,13 +82,7 @@ GLOBAL_GLOBL_LIST_INIT(silicon_verbs_default, list(
 	set category = PANEL_SILICON_COMMANDS
 	set name = "Show Station Manifest"
 
-	var/dat
-	dat += "<h4>Crew Manifest</h4>"
-	if(isnotnull(GLOBL.data_core))
-		dat += GLOBL.data_core.get_manifest(1) // make it monochrome
-	dat += "<br>"
-	src << browse(dat, "window=airoster")
-	onclose(src, "airoster")
+	GLOBL.data_core.show_manifest_to(usr, TRUE)
 
 /*
  * Set Sensor Augmentation

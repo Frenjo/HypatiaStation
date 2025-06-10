@@ -35,7 +35,7 @@
 	owner.zone_sel = new /atom/movable/screen/zone_sel()
 	owner.zone_sel.update_icon()
 
-	owner.client.screen.Cut()
+	. = ..()
 	owner.client.screen.Add(list(
 		owner.zone_sel,
 		owner.oxygen,
@@ -46,4 +46,3 @@
 		owner.blind,
 		owner.flash
 	)) //, owner.rest, owner.sleep, owner.mach )
-	owner.client.screen.Add(adding + other)

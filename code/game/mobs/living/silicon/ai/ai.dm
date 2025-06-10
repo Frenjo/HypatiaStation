@@ -118,8 +118,6 @@
 
 			job = "AI"
 
-	create_power_supply()
-
 	hud_list[HEALTH_HUD]		= image('icons/hud/hud.dmi', src, "hudblank")
 	hud_list[STATUS_HUD]		= image('icons/hud/hud.dmi', src, "hudblank")
 	hud_list[ID_HUD]			= image('icons/hud/hud.dmi', src, "hudblank")
@@ -131,6 +129,10 @@
 	hud_list[SPECIALROLE_HUD]	= image('icons/hud/hud.dmi', src, "hudblank")
 
 	GLOBL.ai_list.Add(src)
+
+/mob/living/silicon/ai/initialise()
+	. = ..()
+	create_power_supply()
 
 /mob/living/silicon/ai/Destroy()
 	GLOBL.ai_list.Remove(src)
@@ -257,8 +259,8 @@
 
 	var/cameratext = ""
 	for(var/obj/machinery/camera/C in cameralist)
-		cameratext += "[(cameratext == "")? "" : "|"]<A href=byond://?src=\ref[src];switchcamera=\ref[C]>[C.c_tag]</A>"
-	queueAlarm("--- [class] alarm detected in [A.name]! ([(cameratext)? cameratext : "No Camera"])", class)
+		cameratext += "[cameratext == "" ? "" : "|"]<A href='byond://?src=\ref[src];switchcamera=\ref[C]'>[C.c_tag]</A>"
+	queueAlarm("--- [class] alarm detected in [A.name]! ([cameratext ? cameratext : "No Camera"])", class)
 
 	if(viewalerts)
 		ai_alerts()

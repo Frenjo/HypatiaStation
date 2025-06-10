@@ -81,7 +81,7 @@
 				adding.Add(R.gun_run_icon)
 			adding.Add(R.gun_move_icon)
 
-	R.client.screen.Cut()
+	. = ..()
 	R.client.screen.Add(list(
 		R.throw_icon,
 		R.zone_sel,
@@ -95,4 +95,3 @@
 		R.flash,
 		R.gun_setting_icon
 	)) //, R.rest, R.sleep, R.mach )
-	R.client.screen.Add(adding + other)

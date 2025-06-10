@@ -14,8 +14,8 @@
 
 	var/sensor_mode = 0 //Determines the current HUD.
 
-	var/lawcheck[1] // For stating laws.
-	var/ioncheck[1] // Ditto.
+	var/list/lawcheck = list() // For stating laws.
+	var/list/ioncheck = list() // Ditto.
 
 /mob/living/silicon/New()
 	LAZYINITALIST(hud_list)
