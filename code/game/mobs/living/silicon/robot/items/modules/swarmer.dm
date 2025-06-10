@@ -1,5 +1,5 @@
 /*
- * Swarmer Module Items
+ * Swarmer Model Items
  */
 /obj/item/robot_module/swarmer_teleporter
 	name = "organic relocation device"

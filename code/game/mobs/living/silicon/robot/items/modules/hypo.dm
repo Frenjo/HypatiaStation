@@ -1,12 +1,14 @@
 /obj/item/reagent_holder/borghypo
 	name = "cyborg hypospray"
 	desc = "An advanced chemical synthesizer and injection system, designed for heavy-duty medical equipment."
-	icon = 'icons/obj/items/syringe.dmi'
+	icon = 'icons/obj/items/robot_modules.dmi'
+	icon_state = "hypo"
 	item_state = "hypo"
-	icon_state = "borghypo"
+
 	amount_per_transfer_from_this = 5
 	volume = 30
 	possible_transfer_amounts = null
+
 	var/mode = 1
 	var/charge_cost = 50
 	var/charge_tick = 0
@@ -17,11 +19,14 @@
 	var/list/reagent_ids = list("dexalin", "kelotane", "bicaridine", "anti_toxin", "inaprovaline", "spaceacillin")
 
 /obj/item/reagent_holder/borghypo/New()
-	..()
-	for(var/R in reagent_ids)
-		add_reagent(R)
-
+	. = ..()
+	for(var/id in reagent_ids)
+		add_reagent(id)
 	GLOBL.processing_objects.Add(src)
+
+/obj/item/reagent_holder/borghypo/Destroy()
+	GLOBL.processing_objects.Remove(src)
+	return ..()
 
 /obj/item/reagent_holder/borghypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg
 	charge_tick++
@@ -29,32 +34,23 @@
 		return 0
 	charge_tick = 0
 
-	if(isrobot(src.loc))
-		var/mob/living/silicon/robot/R = src.loc
-		if(R && R.cell)
-			var/datum/reagents/RG = reagent_list[mode]
-			if(RG.total_volume < RG.maximum_volume) 	//Don't recharge reagents and drain power if the storage is full.
-				R.cell.use(charge_cost) 					//Take power from borg...
-				RG.add_reagent(reagent_ids[mode], 5)		//And fill hypo with reagent.
+	if(isrobot(loc))
+		var/mob/living/silicon/robot/robby = loc
+		if(robby?.cell)
+			var/datum/reagents/reagent = reagent_list[mode]
+			if(reagent.total_volume < reagent.maximum_volume) // Don't recharge reagents and drain power if the storage is full.
+				robby.cell.use(charge_cost) // Take power from borg...
+				reagent.add_reagent(reagent_ids[mode], 5) // And fill hypo with reagent.
 	//update_icon()
 	return 1
 
-// Purely for testing purposes I swear~
-/*
-/obj/item/reagent_holder/borghypo/verb/add_cyanide()
-	set src in world
-	add_reagent("cyanide")
-*/
-
 // Use this to add more chemicals for the borghypo to produce.
-/obj/item/reagent_holder/borghypo/proc/add_reagent(reagent)
-	reagent_ids |= reagent
-	var/datum/reagents/RG = new(30)
-	RG.my_atom = src
-	reagent_list += RG
-
-	var/datum/reagents/R = reagent_list[length(reagent_list)]
-	R.add_reagent(reagent, 30)
+/obj/item/reagent_holder/borghypo/proc/add_reagent(reagent_id)
+	reagent_ids |= reagent_id
+	var/datum/reagents/holder = new /datum/reagents(30)
+	holder.my_atom = src
+	holder.add_reagent(reagent_id, 30)
+	reagent_list.Add(holder)
 
 /obj/item/reagent_holder/borghypo/attack(mob/M, mob/user)
 	var/datum/reagents/R = reagent_list[mode]
@@ -86,16 +82,16 @@
 
 /obj/item/reagent_holder/borghypo/examine()
 	set src in view()
-	..()
+	. = ..()
 	if(!(usr in view(2)) && usr != src.loc)
 		return
 
 	var/empty = 1
 
-	for(var/datum/reagents/RS in reagent_list)
-		var/datum/reagent/R = locate() in RS.reagent_list
-		if(R)
-			to_chat(usr, SPAN_INFO("It currently has [R.volume] units of [R.name] stored."))
+	for(var/datum/reagents/holder in reagent_list)
+		var/datum/reagent/reagent = locate() in holder.reagent_list
+		if(reagent)
+			to_chat(usr, SPAN_INFO("It currently has [reagent.volume] units of [reagent.name] stored."))
 			empty = 0
 
 	if(empty)
