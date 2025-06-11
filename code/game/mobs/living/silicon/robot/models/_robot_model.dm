@@ -32,7 +32,9 @@
 	var/list/sprites = list() // Used to store the associations between sprite names and sprite index.
 
 	var/can_be_pushed = TRUE // Whether this model can be pushed around.
+
 	var/integrated_light_range = 4 // The range of this model's integrated light.
+	var/integrated_light_colour = null // The colour of this model's integrated light. If null, it uses the default.
 
 	var/list/advanced_huds = null // A list of SILICON_HUD_* types that this model will use the advanced version of.
 

@@ -22,6 +22,8 @@
 
 	can_be_pushed = FALSE
 
+	integrated_light_colour = "#0066FF"
+
 /obj/item/robot_model/swarmer/on_transform_to(mob/living/silicon/robot/robby)
 	. = ..()
 	robby.pass_flags |= PASS_FLAG_SWARMER

@@ -31,4 +31,6 @@
 
 	can_be_pushed = FALSE
 
+	integrated_light_colour = "#F03333"
+
 	advanced_huds = list(SILICON_HUD_SECURITY)
