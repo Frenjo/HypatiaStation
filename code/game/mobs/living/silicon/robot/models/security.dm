@@ -40,3 +40,6 @@
 			taser.update_icon()
 		else
 			taser.charge_tick = 0
+
+/obj/item/robot_model/security/get_playstyle_string()
+	. = SPAN_DANGER("Remember: While you have selected the security model and CAN act in that capacity, you MUST follow your LAWS above all else.")
