@@ -72,7 +72,19 @@
 			attack_log += "\[[time_stamp()]\] <font color='orange'>was attacked by [M.name] ([M.ckey])</font>"
 
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
-			adjustBruteLoss(damage)
+			switch(M.melee_damage_type)
+				if(BRUTE)
+					adjustBruteLoss(damage)
+				if(BURN)
+					adjustFireLoss(damage)
+				if(TOX)
+					adjustToxLoss(damage)
+				if(OXY)
+					adjustOxyLoss(damage)
+				if(CLONE)
+					adjustCloneLoss(damage)
+				if(HALLOSS)
+					adjustHalLoss(damage)
 
 /mob/living/simple/construct/attackby(obj/item/O, mob/user)
 	if(O.force)

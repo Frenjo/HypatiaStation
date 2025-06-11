@@ -85,7 +85,7 @@
 	if(!issimple(user))
 		return
 	var/mob/living/simple/M = user
-	if(M.melee_damage_upper <= 0)
+	if(M.melee_damage_upper <= 0 || (M.melee_damage_type != BRUTE && M.melee_damage_type != BURN))
 		return
 	attack_generic(M, M.melee_damage_upper)
 

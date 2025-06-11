@@ -27,6 +27,25 @@
 	var/rolling = FALSE
 	var/step_loop = 0
 
+/obj/mecha/combat/eidolon/MouseDrop_T(atom/dropping, mob/user)
+	if(salvaged)
+		return ..()
+	if(!isswarmer(user))
+		return FALSE
+
+	user.visible_message(
+		SPAN_INFO("[user] starts to climb into \the [src]."),
+		SPAN_INFO("You start to climb into \the [src].")
+	)
+	if(do_after(user, 4 SECONDS, src))
+		if(isnull(occupant))
+			moved_inside(user)
+		else if(occupant != user)
+			to_chat(user, SPAN_WARNING("\The [occupant] was faster. Try better next time, loser."))
+	else
+		to_chat(user, SPAN_INFO("You stop entering the exosuit."))
+	return TRUE
+
 /obj/mecha/combat/eidolon/Topic(href, list/href_list)
 	. = ..()
 	if(href_list["toggle_ball_mode"])

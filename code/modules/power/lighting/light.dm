@@ -182,7 +182,7 @@
 	flicker(1)
 
 /obj/machinery/light/attack_animal(mob/living/M)
-	if(M.melee_damage_upper == 0)
+	if(M.melee_damage_upper <= 0 || (M.melee_damage_type != BRUTE && M.melee_damage_type != BURN))
 		return
 	if(status == LIGHT_EMPTY || status == LIGHT_BROKEN)
 		to_chat(M, SPAN_WARNING("That object is useless to you."))

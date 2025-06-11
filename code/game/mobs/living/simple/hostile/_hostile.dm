@@ -16,6 +16,14 @@
 	var/break_stuff_probability = 10
 	var/destroy_surroundings = 1
 
+	var/ranged_cooldown = 0 // The current cooldown of our ranged attacks.
+	var/max_ranged_cooldown = 3 // The maximum cooldown of our ranged attacks, in Life() ticks.
+
+/mob/living/simple/hostile/Life()
+	. = ..()
+	if(ranged)
+		ranged_cooldown--
+
 /mob/living/simple/hostile/can_attack(atom/target_atom)
 	if(!..())
 		return FALSE
@@ -78,7 +86,7 @@
 		stance = HOSTILE_STANCE_IDLE
 	if(target in list_targets())
 		if(ranged)
-			if(get_dist(src, target) <= 6)
+			if(get_dist(src, target) <= 6 && ranged_cooldown <= 0)
 				OpenFire(target)
 			else
 				walk_to(src, target, 1, move_to_delay)
@@ -161,9 +169,9 @@
 					DestroySurroundings()
 				AttackTarget()
 
-/mob/living/simple/hostile/proc/OpenFire(target_mob)
-	var/target = target_mob
-	visible_message(SPAN_WARNING("<b>[src]</b> fires at [target]!"), 1)
+/mob/living/simple/hostile/proc/OpenFire(new_target)
+	var/atom/target = new_target
+	visible_message(SPAN_WARNING("<b>[src]</b> fires at \the [target]!"), SPAN_WARNING("You fire at \the [target]!"))
 
 	var/tturf = GET_TURF(target)
 	if(rapid)
@@ -184,18 +192,17 @@
 		if(casingtype)
 			new casingtype
 
+	ranged_cooldown = max_ranged_cooldown
 	stance = HOSTILE_STANCE_IDLE
-	target_mob = null
 	return
-
 
 /mob/living/simple/hostile/proc/Shoot(target, start, user, bullet = 0)
 	if(target == start)
 		return
 
-	var/obj/item/projectile/A = new projectiletype(user:loc)
+	var/obj/item/projectile/A = new projectiletype(GET_TURF(src))
 	playsound(user, projectilesound, 100, 1)
-	if(!A)
+	if(isnull(A))
 		return
 
 	if(!isturf(target))
@@ -206,9 +213,8 @@
 	A.original = GET_TURF(target)
 	A.yo = target:y - start:y
 	A.xo = target:x - start:x
-	spawn( 0 )
+	spawn(0)
 		A.process()
-	return
 
 /mob/living/simple/hostile/proc/DestroySurroundings()
 	if(prob(break_stuff_probability))
@@ -216,3 +222,8 @@
 			var/obj/structure/obstacle = locate(/obj/structure, get_step(src, dir))
 			if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
 				obstacle.attack_animal(src)
+
+/mob/living/simple/hostile/RangedAttack(atom/new_target, params) // Player firing.
+	if(ranged && ranged_cooldown <= 0)
+		target = new_target
+		OpenFire(new_target)

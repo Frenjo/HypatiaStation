@@ -111,6 +111,6 @@
  */
 /datum/ai_laws/swarmer/New()
 	. = ..()
-	add_inherent_law("Consume resources and replicate on the station until there are no more resources left.")
-	add_inherent_law("Ensure protection of the beacon so this location can be invaded at a later date; do not perform actions that would render this location dangerous or inhospitable.")
-	add_inherent_law("Biological resources will be harvested at a later date: do not harm them.")
+	add_inherent_law("Consume resources and replicate until there are no more resources left.")
+	add_inherent_law("Ensure that this location is fit for invasion at a later date, do not perform actions that would render it dangerous or inhospitable.")
+	add_inherent_law("Biological resources will be harvested at a later date, do not harm them.")

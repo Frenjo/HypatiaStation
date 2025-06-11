@@ -108,7 +108,7 @@
 	if(isnull(occupant))
 		return FALSE
 	var/atom/movable/mob_container
-	if(ishuman(occupant))
+	if(ishuman(occupant) || isswarmer(occupant))
 		mob_container = occupant
 	else if(isbrain(occupant))
 		var/mob/living/brain/brain = occupant

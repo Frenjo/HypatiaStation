@@ -47,6 +47,7 @@
 	// Putting these here for attack_animal().
 	var/melee_damage_lower = 0
 	var/melee_damage_upper = 0
+	var/melee_damage_type = BRUTE
 	var/attacktext = "attacks"
 	var/attack_sound = null
 	var/friendly = "nuzzles"

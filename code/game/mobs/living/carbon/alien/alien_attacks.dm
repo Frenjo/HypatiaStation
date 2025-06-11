@@ -20,7 +20,19 @@
 		else
 			visible_message(SPAN_WARNING("<B>[S]</B> [S.attacktext] [src]!"))
 			var/damage = rand(S.melee_damage_lower, S.melee_damage_upper)
-			adjustBruteLoss(damage)
+			switch(M.melee_damage_type)
+				if(BRUTE)
+					adjustBruteLoss(damage)
+				if(BURN)
+					adjustFireLoss(damage)
+				if(TOX)
+					adjustToxLoss(damage)
+				if(OXY)
+					adjustOxyLoss(damage)
+				if(CLONE)
+					adjustCloneLoss(damage)
+				if(HALLOSS)
+					adjustHalLoss(damage)
 			S.attack_log += "\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>"
 			src.attack_log += "\[[time_stamp()]\] <font color='orange'>was attacked by [S.name] ([S.ckey])</font>"
 			updatehealth()
